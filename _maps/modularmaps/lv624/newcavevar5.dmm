@@ -183,7 +183,7 @@
 	},
 /area/lv624/ground/caves/central2)
 "nH" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "nZ" = (
 /obj/effect/landmark/excavation_site_spawner,
@@ -313,7 +313,7 @@
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "tS" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/central2)
 "us" = (
 /obj/item/storage/firstaid/fire,
@@ -558,7 +558,7 @@
 /area/lv624/ground/caves/central1)
 "IF" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "IL" = (
 /turf/closed/wall,
@@ -743,7 +743,7 @@
 "XN" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "Yt" = (
 /turf/closed/wall/r_wall,
@@ -752,7 +752,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "ZD" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/lv624/ground/caves/rock)
 
 (1,1,1) = {"

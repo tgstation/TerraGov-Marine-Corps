@@ -12,10 +12,24 @@
 /area/bigredv2/caves/southeast)
 "h" = (
 /obj/docking_port/stationary/crashmode,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "i" = (
 /obj/effect/landmark/start/job/xenomorph,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southeast)
+"k" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_12";
+	name = "TGMC exit point 12"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southeast)
+"l" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_13";
+	name = "TGMC exit point 13"
+	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "m" = (
@@ -37,7 +51,7 @@
 /area/bigredv2/caves/southeast)
 "s" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "t" = (
 /obj/effect/landmark/xeno_resin_door,
@@ -47,7 +61,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "x" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "y" = (
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -61,9 +75,23 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
+"E" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_11";
+	name = "TGMC exit point 11"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southeast)
 "J" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
+"L" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_14";
+	name = "TGMC exit point 14"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southeast)
 "N" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
@@ -2122,7 +2150,7 @@ x
 x
 x
 x
-w
+l
 w
 w
 w
@@ -2341,7 +2369,7 @@ w
 w
 w
 w
-w
+k
 x
 x
 s
@@ -3086,7 +3114,7 @@ w
 w
 w
 w
-w
+L
 w
 x
 x
@@ -3166,7 +3194,7 @@ x
 x
 x
 x
-w
+E
 w
 w
 x

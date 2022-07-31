@@ -5,10 +5,10 @@
 "b" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "c" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "d" = (
 /obj/effect/landmark/xeno_resin_wall,
@@ -91,7 +91,7 @@
 /area/lv624/ground/caves/central1)
 "v" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "w" = (
 /turf/closed/wall/r_wall,
@@ -221,7 +221,7 @@
 	},
 /area/lv624/ground/caves/central1)
 "X" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/lv624/ground/caves/rock)
 "Y" = (
 /obj/effect/landmark/lv624/fog_blocker,

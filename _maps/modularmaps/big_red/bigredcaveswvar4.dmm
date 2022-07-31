@@ -6,6 +6,20 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
+"f" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_12";
+	name = "SOM exit point 12"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southwest)
+"g" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_14";
+	name = "SOM exit point 14"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southwest)
 "h" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
@@ -15,7 +29,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/southwest)
 "l" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "m" = (
 /obj/effect/ai_node,
@@ -46,10 +60,10 @@
 /area/bigredv2/caves/southwest)
 "x" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "y" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
 "z" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -61,6 +75,20 @@
 "D" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southwest)
+"E" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_11";
+	name = "SOM exit point 11"
+	},
+/turf/open/floor/plating/ground/mars/random/cave/rock,
+/area/bigredv2/caves/southwest)
+"G" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_13";
+	name = "SOM exit point 13"
+	},
+/turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/southwest)
 "I" = (
 /obj/effect/landmark/xeno_resin_door,
@@ -90,7 +118,7 @@
 /area/bigredv2/caves/southwest)
 "W" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "Y" = (
 /obj/effect/landmark/xeno_resin_wall,
@@ -350,7 +378,7 @@ R
 R
 R
 R
-R
+E
 l
 l
 l
@@ -384,7 +412,7 @@ l
 l
 l
 j
-B
+g
 B
 B
 z
@@ -892,7 +920,7 @@ B
 B
 B
 B
-B
+f
 l
 l
 l
@@ -1065,7 +1093,7 @@ R
 B
 B
 B
-R
+G
 l
 l
 B

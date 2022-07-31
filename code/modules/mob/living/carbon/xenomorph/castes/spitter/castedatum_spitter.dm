@@ -2,10 +2,11 @@
 	caste_name = "Spitter"
 	display_name = "Spitter"
 	upgrade_name = ""
-	caste_desc = "Ptui!"
+	caste_desc = "Gotta dodge!"
 	caste_type_path = /mob/living/carbon/xenomorph/spitter
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_BASETYPE
+	wound_type = "spitter" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
 	melee_damage = 17

@@ -71,7 +71,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "gE" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "gQ" = (
 /obj/structure/table,
@@ -82,7 +82,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "hB" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "hR" = (
 /obj/structure/table,
@@ -171,7 +171,7 @@
 /turf/open/floor/tile/dark/red2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "pI" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
 "qc" = (
 /turf/open/floor/tile/dark/red2/corner,
@@ -548,7 +548,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/south)
 "XS" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "YW" = (
 /obj/machinery/light{

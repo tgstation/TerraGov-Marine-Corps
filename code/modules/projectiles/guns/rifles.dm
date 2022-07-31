@@ -92,8 +92,14 @@
 /obj/item/weapon/gun/rifle/standard_carbine/pointman
 	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/lasersight, /obj/item/attachable/flashlight)
 
+/obj/item/weapon/gun/rifle/standard_carbine/standard
+	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/weapon/gun/grenade_launcher/underslung, /obj/item/attachable/reddot, /obj/item/attachable/extended_barrel)
+
 /obj/item/weapon/gun/rifle/standard_carbine/engineer
 	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/magnetic_harness, /obj/item/attachable/lasersight)
+
+/obj/item/weapon/gun/rifle/standard_carbine/plasma_pistol
+	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/weapon/gun/pistol/plasma_pistol, /obj/item/attachable/motiondetector, /obj/item/attachable/compensator)
 
 //-------------------------------------------------------
 //AR-12 Assault Rifle
@@ -170,7 +176,7 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/t12stock, /obj/item/attachable/magnetic_harness, /obj/item/attachable/extended_barrel, /obj/item/weapon/gun/flamer/mini_flamer)
 
 /obj/item/weapon/gun/rifle/standard_assaultrifle/medic
-	starting_attachment_types = list(/obj/item/attachable/stock/t12stock, /obj/item/attachable/magnetic_harness, /obj/item/attachable/lasersight)
+	starting_attachment_types = list(/obj/item/attachable/stock/t12stock, /obj/item/attachable/magnetic_harness, /obj/item/attachable/extended_barrel, /obj/item/weapon/gun/grenade_launcher/underslung)
 
 //-------------------------------------------------------
 //DMR-37 DMR
@@ -506,14 +512,6 @@
 	wield_delay = 0.8 SECONDS
 
 	placed_overlay_iconstate = "ak47"
-
-/obj/item/weapon/gun/rifle/mpi_km/som
-	starting_attachment_types = list(
-		/obj/item/attachable/stock/mpi_km,
-		/obj/item/attachable/bayonet,
-		/obj/item/attachable/magnetic_harness,
-		/obj/item/weapon/gun/grenade_launcher/underslung,
-	)
 
 //-------------------------------------------------------
 //M16 RIFLE
@@ -977,6 +975,12 @@
 /obj/item/weapon/gun/rifle/standard_autoshotgun/engineer
 	starting_attachment_types = list(/obj/item/attachable/stock/tx15, /obj/item/attachable/magnetic_harness, /obj/item/weapon/gun/grenade_launcher/underslung)
 
+/obj/item/weapon/gun/rifle/standard_autoshotgun/standard
+	starting_attachment_types = list(/obj/item/attachable/stock/tx15, /obj/item/attachable/magnetic_harness, /obj/item/attachable/heavy_barrel, /obj/item/weapon/gun/grenade_launcher/underslung)
+
+/obj/item/weapon/gun/rifle/standard_autoshotgun/plasma_pistol
+	starting_attachment_types = list(/obj/item/attachable/stock/tx15, /obj/item/attachable/reddot, /obj/item/attachable/extended_barrel, /obj/item/weapon/gun/pistol/plasma_pistol)
+
 //-------------------------------------------------------
 //SG-29 Smart Machine Gun (It's more of a rifle than the SG.)
 
@@ -1241,6 +1245,9 @@
 
 /obj/item/weapon/gun/rifle/tx11/freelancertwo
 	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/tx11, /obj/item/attachable/motiondetector, /obj/item/attachable/bayonet, /obj/item/attachable/lasersight)
+
+/obj/item/weapon/gun/rifle/tx11/standard
+	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/tx11, /obj/item/attachable/reddot, /obj/item/attachable/lasersight)
 
 //-------------------------------------------------------
 //AR-21 Assault Rifle
@@ -1526,4 +1533,83 @@
 		/obj/item/attachable/scope/optical,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/gyro,
+	)
+
+//-------------------------------------------------------
+// V-31 SOM rifle
+
+/obj/item/weapon/gun/rifle/som
+	name = "\improper V-31 assault rifle"
+	desc = "The V-31 was the primary rifle of the Sons of Mars until the introduction of more advanced energy weapons. Nevertheless the V-31 continues to see common use due to it's comparative ease of production and maintenance, and due to the inbuilt low velocity railgun designed for so called 'micro' grenades. Has good handling due to its compact bullpup design, and is generally effective at all ranges. Uses 10x25mm caseless ammunition."
+	icon_state = "v31"
+	icon = 'icons/Marine/gun64.dmi'
+	item_state = "v31"
+	fire_sound = 'sound/weapons/guns/fire/som_rifle.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
+	caliber = CALIBER_10X24_CASELESS
+	max_shells = 50
+	default_ammo_type = /obj/item/ammo_magazine/rifle/som
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/som, /obj/item/ammo_magazine/rifle/som/ap, /obj/item/ammo_magazine/rifle/som/incendiary)
+	attachable_allowed = list(
+		/obj/item/weapon/gun/shotgun/micro_grenade,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/motiondetector,
+	)
+
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
+	starting_attachment_types = list(
+		/obj/item/weapon/gun/shotgun/micro_grenade,
+	)
+	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 16,"rail_x" = 23, "rail_y" = 24, "under_x" = 33, "under_y" = 11, "stock_x" = -1, "stock_y" = 17)
+	actions_types = list(/datum/action/item_action/aim_mode)
+
+	wield_delay = 0.6 SECONDS
+
+	aim_fire_delay = 0.1 SECONDS
+	aim_speed_modifier = 2
+
+	fire_delay = 0.2 SECONDS
+	aim_slowdown = 0.35
+
+	accuracy_mult = 1.15
+	accuracy_mult_unwielded = 0.55
+	scatter = 1
+	scatter_unwielded = 15
+
+	burst_amount = 3
+	burst_delay = 0.1 SECONDS
+	extra_delay = 0.1 SECONDS
+	autoburst_delay = 0.3 SECONDS
+
+	damage_falloff_mult = 0.7
+
+/obj/item/weapon/gun/rifle/som/standard
+	starting_attachment_types = list(
+		/obj/item/weapon/gun/shotgun/micro_grenade,
+		/obj/item/attachable/verticalgrip,
+	)
+
+/obj/item/weapon/gun/rifle/som/mag_harness
+	starting_attachment_types = list(
+		/obj/item/weapon/gun/shotgun/micro_grenade,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/magnetic_harness,
 	)

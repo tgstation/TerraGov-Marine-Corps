@@ -281,6 +281,13 @@
 	dir = 6
 	},
 /area/outpost/yard/east)
+"bo" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_22";
+	name = "TGMC exit point 22"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/north_west)
 "bp" = (
 /obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/tile/dark,
@@ -457,7 +464,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/brig/gear_room)
 "cg" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/outpost/caves/north_east)
 "ch" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -499,7 +506,7 @@
 /area/outpost/caves/north_east)
 "cv" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/outpost/caves/west)
 "cw" = (
 /obj/structure/cable,
@@ -671,6 +678,13 @@
 	dir = 4
 	},
 /area/outpost/yard/east)
+"dv" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_13";
+	name = "SOM exit point 13"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/south_west)
 "dw" = (
 /turf/open/floor/plating/dmg2,
 /area/outpost/arrivals)
@@ -934,7 +948,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/outpost/lz2)
 "eG" = (
 /obj/structure/table,
@@ -1211,7 +1225,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "fW" = (
 /obj/machinery/power/apc/drained{
@@ -1326,6 +1340,13 @@
 	},
 /turf/open/floor/tile/dark,
 /area/outpost/medbay/chemistry)
+"gs" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_11";
+	name = "SOM exit point 11"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/south_west)
 "gt" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -2005,7 +2026,7 @@
 	},
 /area/outpost/engineering/engine)
 "jk" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/outpost/cargo)
 "jl" = (
 /turf/open/floor/plating/asteroidwarning{
@@ -2028,7 +2049,7 @@
 /turf/open/floor/tile/dark2,
 /area/outpost/cargo/engineering)
 "jq" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
 "jr" = (
 /turf/open/floor/marking/asteroidwarning{
@@ -2589,6 +2610,13 @@
 "lA" = (
 /turf/open/floor/tile/dark,
 /area/outpost/engineering)
+"lB" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_21";
+	name = "SOM exit point 21"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/north_east)
 "lC" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -2760,7 +2788,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/outpost/caves/south_west)
 "mv" = (
 /obj/machinery/floodlight/landing,
@@ -3293,7 +3321,7 @@
 /area/outpost/caves/west)
 "oU" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "oV" = (
 /obj/structure/largecrate/random/case,
@@ -3378,7 +3406,7 @@
 "pj" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /obj/structure/cable,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/outpost/yard/east)
 "pk" = (
 /obj/effect/decal/cleanable/blood/writing{
@@ -4332,8 +4360,15 @@
 	dir = 9
 	},
 /area/outpost/cargo)
+"tG" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_11";
+	name = "TGMC exit point 11"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/south_east)
 "tH" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/bigred/indestructible,
 /area/lv624/lazarus/console)
 "tJ" = (
 /obj/structure/cable,
@@ -4440,6 +4475,13 @@
 	dir = 1
 	},
 /area/outpost/brig)
+"ui" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_23";
+	name = "SOM exit point 23"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/north_east)
 "uj" = (
 /obj/machinery/landinglight/ds2/delayone{
 	dir = 4
@@ -4553,7 +4595,7 @@
 /area/outpost/yard/north_east)
 "uP" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "uQ" = (
 /obj/effect/landmark/excavation_site_spawner,
@@ -4921,7 +4963,7 @@
 	},
 /area/outpost/caves/south)
 "wz" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/outpost/yard/east)
 "wA" = (
 /obj/machinery/light,
@@ -5403,6 +5445,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
+"zc" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_21";
+	name = "TGMC exit point 21"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/north_west)
 "ze" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/beaker/noreact,
@@ -6088,6 +6137,13 @@
 	dir = 9
 	},
 /area/outpost/lz1)
+"Cj" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_14";
+	name = "TGMC exit point 14"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/south_east)
 "Ck" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/asteroidfloor,
@@ -6193,11 +6249,11 @@
 "CO" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "CP" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/outpost/cargo)
 "CR" = (
 /obj/structure/window/framed/colony/reinforced,
@@ -6472,7 +6528,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "Em" = (
 /obj/structure/table,
@@ -7009,7 +7065,7 @@
 /area/outpost/cargo)
 "GF" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/outpost/lz1)
 "GH" = (
 /obj/structure/cable,
@@ -7088,6 +7144,13 @@
 	dir = 8
 	},
 /area/outpost/yard/east)
+"GZ" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_13";
+	name = "TGMC exit point 13"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/south_east)
 "Hb" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -7311,6 +7374,13 @@
 	},
 /turf/open/floor/tile/dark,
 /area/outpost/arrivals/securitylz1)
+"Ij" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_24";
+	name = "SOM exit point 24"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/north_east)
 "Ik" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -7443,6 +7513,13 @@
 /obj/machinery/landinglight/ds2/delayone,
 /turf/open/floor/marking/asteroidwarning,
 /area/outpost/lz1)
+"IQ" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_12";
+	name = "TGMC exit point 12"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/south_east)
 "IS" = (
 /obj/structure/table,
 /obj/structure/paper_bin,
@@ -7608,6 +7685,13 @@
 	dir = 4
 	},
 /area/outpost/science)
+"JD" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_24";
+	name = "TGMC exit point 24"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/north_west)
 "JF" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/south_west)
@@ -7943,7 +8027,7 @@
 /turf/open/floor/tile/dark2,
 /area/outpost/arrivals/securitylz2)
 "KR" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/outpost/lz2)
 "KS" = (
 /obj/machinery/vending/hydroseeds,
@@ -8111,7 +8195,7 @@
 	},
 /area/outpost/caves/north_west)
 "LU" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/outpost/caves/south_east)
 "LV" = (
 /obj/structure/cable,
@@ -8787,7 +8871,7 @@
 /area/outpost/cargo/engineering)
 "OF" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/outpost/lz2)
 "OG" = (
 /obj/structure/cable,
@@ -9163,7 +9247,7 @@
 /area/outpost/hallway/west)
 "Qw" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/outpost/caves/south_east)
 "Qz" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -9278,7 +9362,7 @@
 /area/outpost/lz2)
 "QX" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "QY" = (
 /turf/closed/wall/r_wall,
@@ -9781,6 +9865,13 @@
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/tile/dark,
 /area/outpost/hallway/central)
+"Tf" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_23";
+	name = "TGMC exit point 23"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/north_west)
 "Tg" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -10094,7 +10185,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/outpost/caves/west)
 "UA" = (
 /obj/effect/ai_node,
@@ -10113,6 +10204,13 @@
 	dir = 5
 	},
 /area/outpost/yard/central)
+"UD" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_12";
+	name = "SOM exit point 12"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/south_west)
 "UE" = (
 /obj/structure/table,
 /obj/machinery/power/apc/drained,
@@ -10177,6 +10275,13 @@
 	dir = 8
 	},
 /area/outpost/hallway/central)
+"UX" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_22";
+	name = "SOM exit point 22"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/north_east)
 "UY" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1
@@ -10649,7 +10754,7 @@
 	},
 /area/outpost/hallway/central)
 "Xi" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/outpost/caves/east)
 "Xj" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -10832,7 +10937,7 @@
 /area/outpost/cargo/engineering)
 "Yb" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/outpost/caves/south_east)
 "Yc" = (
 /obj/structure/cable,
@@ -10858,7 +10963,7 @@
 /area/outpost/hallway/central)
 "Yg" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/outpost/caves/south_west)
 "Yh" = (
 /obj/effect/landmark/weed_node,
@@ -10902,6 +11007,13 @@
 	dir = 8
 	},
 /area/outpost/medbay/chemistry)
+"Yu" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_14";
+	name = "SOM exit point 14"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/south_west)
 "Yv" = (
 /obj/machinery/light{
 	dir = 1
@@ -11045,7 +11157,7 @@
 	},
 /area/outpost/lz2)
 "Zc" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "Zd" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -14835,7 +14947,7 @@ Zc
 Zc
 mu
 Zc
-JF
+gs
 JF
 JF
 JF
@@ -15235,7 +15347,7 @@ Zc
 JF
 JF
 JF
-JF
+UD
 Zc
 Zc
 jq
@@ -15953,7 +16065,7 @@ Cp
 Cp
 Cp
 Cp
-Cp
+JD
 Cp
 Cp
 Cp
@@ -16207,7 +16319,7 @@ Zc
 Zc
 Zc
 QX
-Cp
+zc
 Cp
 Cp
 Cp
@@ -16346,7 +16458,7 @@ Cp
 Cp
 rj
 Cp
-Cp
+bo
 Zc
 Cp
 Cp
@@ -16419,7 +16531,7 @@ Hc
 Zc
 mu
 QX
-JF
+dv
 JF
 JF
 Zh
@@ -16601,7 +16713,7 @@ Zc
 Zc
 Zc
 Zc
-Cp
+Tf
 rj
 rj
 rj
@@ -17083,7 +17195,7 @@ Zc
 JF
 JF
 JF
-JF
+Yu
 Zc
 Zc
 jq
@@ -25979,7 +26091,7 @@ Yo
 cs
 WB
 WB
-Yx
+UX
 Yo
 Yo
 QX
@@ -26766,7 +26878,7 @@ Zc
 Zc
 QX
 Yo
-Yx
+lB
 qO
 WB
 WB
@@ -26907,7 +27019,7 @@ EV
 WB
 Yx
 Yo
-Yx
+Ij
 Zc
 DB
 Yx
@@ -27562,7 +27674,7 @@ QX
 Yo
 Yx
 Yx
-Yx
+ui
 Yo
 qO
 qO
@@ -28951,7 +29063,7 @@ Zc
 Zc
 Zc
 Zc
-Hm
+Cj
 Hm
 Hm
 Zc
@@ -29739,7 +29851,7 @@ PD
 Qz
 Dk
 TD
-Hm
+GZ
 Hm
 sI
 Hm
@@ -30273,7 +30385,7 @@ Hm
 Hm
 Hm
 Hm
-Hm
+IQ
 LU
 jq
 Kv
@@ -30665,7 +30777,7 @@ OF
 Qw
 Zc
 Zc
-Hm
+tG
 Hm
 Hm
 LU

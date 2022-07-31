@@ -352,7 +352,7 @@
 /area/bigredv2/caves/northeast)
 "su" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "sw" = (
 /obj/machinery/washing_machine,
@@ -961,7 +961,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/general_offices)
 "VM" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "Wy" = (
 /obj/effect/decal/cleanable/dirt,

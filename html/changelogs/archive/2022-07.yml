@@ -20,3 +20,140 @@
   Vondiech:
   - bugfix: Removes non-existant reqtorio recipe for br-8 scout rifle ammo since it
       was merged with the IFF ammo recipe.
+2022-07-06:
+  Lumipharon:
+  - rscadd: Adds the Quick equip vendor for future gamemode and admin use
+2022-07-08:
+  QualityVan:
+  - rscadd: Clicking on stuff when you're carrying a compass will tell you that stuff's
+      coordinates.
+  - bugfix: Kidneys count microdosed chems against their limit
+  - bugfix: Confuse effects won't be created with infinite duration and zero function.
+2022-07-10:
+  crayonLover09:
+  - soundadd: Added splint break sound
+  goose4429:
+  - balance: If xeno lose shipside, they lose
+2022-07-11:
+  QualityVan:
+  - bugfix: If you stand still as a disguised hunter, you won't use any plasma.
+  - bugfix: Hunters with stealth active get half plasma regen while still and zero
+      while moving, instead of the opposite.
+  Wayland-Smithy:
+  - bugfix: Fixed wraith portal changing projectile's shooter and breaking things
+      like boiler glob size, and teleporting buckled humans.
+  crayonLover09:
+  - qol: Delimbing procs scream emote
+2022-07-13:
+  Lumipharon:
+  - bugfix: Orders no longer apply to humans in factions other than your own
+  - rscadd: Adds the COPE sentry for the SOM
+  - bugfix: Fixed projectile staggerstun effects not respecting their max range unless
+      they caused screenshake
+  - refactor: minor refactors to the staggerstun proc
+  - bugfix: Some gun mob sprite fixes
+  - bugfix: Attachments like capes and Tyr no longer get stuck on your mob when removed
+  - balance: SH39 akimbo additional delay changed to 0.9 from 0.5.
+  - bugfix: Volkite culverins and calivers can now be normally reloaded by clicking
+      the powerpack with the gun, instead of only being tac reloadable
+  - rscadd: Volkite powerpacks now recharge cells by clicking the powerpack with the
+      cell instead of click dragging
+2022-07-14:
+  Lumipharon:
+  - balance: C4 causes less smoke for a much shorter duration on detonation
+  - bugfix: Splint break sounds no longer carry over large distances
+  Wayland-Smithy:
+  - qol: 'Added a keybind for Wraith: Time Shift.'
+  tyeagg:
+  - bugfix: orion cave and grass turf
+  - bugfix: generators not being wired
+  - balance: increase coverage of vehicle props
+  - balance: reworked caves for orion
+  - rscadd: surv spawns for orion
+2022-07-15:
+  RipGrayson:
+  - bugfix: Fixed fancy tables not displaying correctly
+  - bugfix: Fixed invisible blockers being visible
+  - bugfix: Fixed a busted overlay check when welding scrubbers.
+  - soundadd: Added a warning sound for self destruct during Delta alert levels.
+  - imageadd: Added some custom icons for red tinted lights during red alert.
+2022-07-16:
+  Arctrooper8:
+  - rscdel: Fully removes Bottlecases.
+  - qol: Chemical liquid colours now match their pill bottles.
+  - qol: Premade Hypospray descriptions have been updated to explain what their chems
+      do.
+  - balance: Changes the content of Hypospray belt.
+  - bugfix: No more invisible things in hypospray belt.
+  Lumipharon:
+  - bugfix: Armour attachments will display the correct icons on armor types as expected
+  - refactor: Refactored variant icons for armor attachments
+  - rscadd: Added variant icon support to gun attachments
+  - balance: accuracy bonus for large mob size reduced slightly
+  - balance: accuracy bonus for PB range reduced slightly
+  - balance: Akimbo makes PB range 0 instead of 2
+  - bugfix: Fixed an accuracy malus triggering for a target being out of view when
+      it was still in widescreen view.
+2022-07-19:
+  Stan_Albatross:
+  - refactor: refactored the application and removal of welding torch overlays so
+      that they do not use istype() procs excessively
+2022-07-22:
+  BraveMole:
+  - rscadd: Allow multiple choice voting
+  XElectricX:
+  - bugfix: Make hybrid lights visible again
+2022-07-24:
+  Dediinside:
+  - imageadd: Belt sprite for revolvers.
+2022-07-25:
+  BraveMole:
+  - code_imp: Remove a unused part of jobspawning system
+  KrabSpider:
+  - balance: Arrowhead now has negative armor.
+  - balance: Increases arrowhead recharge to 10 from 8.
+  QualityVan:
+  - bugfix: You won't get sent to zoom hell for zooming while you zoom.
+  Wayland-Smithy:
+  - balance: Untangle from razorwire via resist no longer applies a slowdown.
+2022-07-28:
+  Arctrooper8:
+  - rscdel: TerraGov Tech Vendor
+  - qol: Reorganized Automated Weapons Vendors, adding new tabs such as Melee and
+      Heavy Weapons. (Nothing removed)
+  - balance: Crash specific Automated Weapons Vendor lacking Heavy weapons tab and
+      RPG.
+  - imagedel: TerraGov Tech Vendor
+  - bugfix: Reverts Arithrazine to it's old form
+  Lumipharon:
+  - rscadd: Combat Patrol - a new gamemode pitting the TGMC vs SOM in a TDM
+  - rscadd: Fleshed out the SOM as a proper faction, with their own squads and related
+      features
+  - rscadd: A variety of new SOM weaponry has been introduced to flesh out their gear
+      options
+  - balance: Volkite weapons have been tuned down slightly
+  - balance: SOM armour has been tuned down slightly
+  - bugfix: Marine shield no longer has 100 energy armor
+  - bugfix: Volkite deflagrate correctly takes damage fall off into account
+  - bugfix: Volkite deflagrate soft CC max range fixed
+  TheOneAndMightyRed:
+  - qol: Added a new button to restock all loose items ontop of a vending machine's
+      turf.
+  - bugfix: Lasgun field charger now updates their charge meter icon state properly.
+  - bugfix: Vending machines no longer save you from active grenades
+  nova_epee, Benjamin Carmine:
+  - imageadd: new spitter sprites!
+  nova_epee, Ghost_Guts | sleepy eyed robot, and Foster:
+  - imageadd: added two title arts and change two preexisting title arts
+2022-07-30:
+  RipGrayson:
+  - bugfix: The Canterbury can no longer land on the red disk generator in LV.
+  - imageadd: Created new wall sprites for Big Red.
+  - code_imp: Changed typepaths for smooth mineral walls so they aren't scattered
+      across the multiple areas.
+  novaepee:
+  - bugfix: Fix off-set of spitter sprites
+2022-07-31:
+  Lumipharon:
+  - bugfix: Vote ballot stuffing has been fixed
+  - rscadd: SOM ERT now have access to more recent SOM equipment

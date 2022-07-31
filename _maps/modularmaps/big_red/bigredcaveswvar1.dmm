@@ -12,7 +12,7 @@
 /area/bigredv2/caves/southwest)
 "g" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "h" = (
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -20,6 +20,13 @@
 "i" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southwest)
+"k" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_12";
+	name = "SOM exit point 12"
+	},
+/turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/southwest)
 "p" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
@@ -37,7 +44,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
 "x" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "A" = (
 /obj/effect/landmark/xeno_silo_spawn,
@@ -48,6 +55,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
+"F" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_11";
+	name = "SOM exit point 11"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southwest)
 "H" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/weed_node,
@@ -55,14 +69,14 @@
 /area/bigredv2/caves/southwest)
 "I" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "N" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
 "O" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
 "R" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -76,6 +90,20 @@
 "T" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southwest)
+"U" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_14";
+	name = "SOM exit point 14"
+	},
+/turf/open/floor/plating/ground/mars/random/cave/rock,
+/area/bigredv2/caves/southwest)
+"X" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_13";
+	name = "SOM exit point 13"
+	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
 "Z" = (
@@ -326,7 +354,7 @@ x
 x
 x
 x
-h
+F
 p
 p
 p
@@ -727,7 +755,7 @@ x
 x
 x
 I
-p
+U
 h
 h
 h
@@ -831,7 +859,7 @@ h
 h
 h
 h
-p
+k
 x
 x
 x
@@ -1050,7 +1078,7 @@ I
 p
 h
 h
-h
+X
 p
 x
 x

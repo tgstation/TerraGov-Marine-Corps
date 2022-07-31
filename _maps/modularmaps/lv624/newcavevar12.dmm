@@ -83,7 +83,7 @@
 "qQ" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "rR" = (
 /turf/closed/wall/r_wall,
@@ -141,7 +141,7 @@
 /area/lv624/ground/caves/central2)
 "zr" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "zx" = (
 /obj/effect/landmark/weed_node,
@@ -206,7 +206,7 @@
 	},
 /area/lv624/ground/caves/central1)
 "DA" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/lv624/ground/caves/rock)
 "EG" = (
 /obj/structure/rack,
@@ -227,7 +227,7 @@
 	},
 /area/lv624/ground/caves/central1)
 "FB" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "FZ" = (
 /turf/open/ground/coast/corner{

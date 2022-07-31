@@ -199,6 +199,13 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
+"fu" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_22";
+	name = "TGMC exit point 22"
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
 "fy" = (
 /obj/structure/cable,
 /turf/open/floor/marking/asteroidwarning,
@@ -276,7 +283,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "iL" = (
 /obj/machinery/door/airlock/mainship/security/glass/free_access{
@@ -531,7 +538,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "oJ" = (
 /obj/structure/window/framed/colony,
@@ -564,7 +571,7 @@
 "pw" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/northwest)
 "pB" = (
 /obj/structure/cable,
@@ -793,7 +800,7 @@
 /area/bigredv2/outside/marshal_office)
 "ud" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "ui" = (
 /obj/structure/table,
@@ -904,7 +911,7 @@
 "xf" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "xh" = (
 /obj/structure/table,
@@ -983,7 +990,7 @@
 /area/bigredv2/outside/space_port)
 "yO" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "yP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -1115,7 +1122,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "CQ" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "Db" = (
 /obj/effect/decal/cleanable/blood,
@@ -1208,6 +1215,14 @@
 "EP" = (
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
+"EQ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_21";
+	name = "TGMC exit point 21"
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
 "Fb" = (
 /obj/structure/window/reinforced,
 /obj/machinery/botany,
@@ -1274,7 +1289,7 @@
 "Gs" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "Gx" = (
 /obj/machinery/computer/telecomms/monitor,
@@ -1551,6 +1566,15 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
+"Nk" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_23";
+	name = "TGMC exit point 23"
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
 "NJ" = (
 /obj/structure/toilet{
 	dir = 4
@@ -1654,6 +1678,16 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
+/area/bigredv2/outside/space_port)
+"Qq" = (
+/obj/structure/prop/mainship/hangar_stencil,
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_24";
+	name = "TGMC exit point 24"
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 10
+	},
 /area/bigredv2/outside/space_port)
 "Qw" = (
 /obj/machinery/disposal,
@@ -2250,12 +2284,12 @@ rc
 QK
 qE
 ig
-XU
+EQ
 IU
 IU
 IU
 IU
-IU
+fu
 IU
 Kp
 gb
@@ -2648,7 +2682,7 @@ gY
 SA
 gY
 Ps
-xL
+Nk
 gY
 gY
 gY
@@ -2696,7 +2730,7 @@ IU
 IU
 aK
 Or
-LI
+Qq
 fy
 gb
 oF

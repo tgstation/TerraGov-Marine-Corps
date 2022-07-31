@@ -58,7 +58,7 @@ export const MESSAGE_TYPES = [
     type: MESSAGE_TYPE_RADIO,
     name: 'Radio',
     description: 'All departments of radio messages',
-    selector: '.alert, .minorannounce, .radio, .deptradio, .syndradio, .comradio, .casradio, .engradio, .medradio, .sciradio, .supradio, .alpharadio, .bravoradio, .charlieradio, .deltaradio, .newscaster, .binarysay, .hivemind',
+    selector: '.alert, .minorannounce, .radio, .deptradio, .syndradio, .comradio, .casradio, .engradio, .medradio, .sciradio, .supradio, .alpharadio, .bravoradio, .charlieradio, .deltaradio, .zuluradio, .yankeeradio, .xrayradio, .whiskeyradio, .newscaster, .binarysay, .hivemind',
   },
   {
     type: MESSAGE_TYPE_INFO,

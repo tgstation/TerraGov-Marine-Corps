@@ -594,6 +594,12 @@
 	description = "Fires a scattershot of 6 acid globules which create acid puddles on impact or at the end of their range."
 	keybind_signal = COMSIG_XENOABILITY_SCATTER_SPIT
 
+/datum/keybinding/xeno/rewind
+	name = "rewind"
+	full_name = "Wraith: Time Shift"
+	description = "Save the location and status of the target. When the time is up, the target location and status are restored"
+	keybind_signal = COMSIG_XENOABILITY_REWIND
+
 /datum/keybinding/xeno/portal
 	name = "portal"
 	full_name = "Wraith: Portal"

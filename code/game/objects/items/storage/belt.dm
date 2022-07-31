@@ -137,7 +137,7 @@
 	item_state = "medicbag_u"
 
 
-/obj/item/storage/belt/lifesaver/som/
+/obj/item/storage/belt/lifesaver/som
 	name = "\improper S17 lifesaver bag"
 	desc = "A belt with heavy origins from the belt used by paramedics and doctors in the old mining colonies."
 	icon_state = "medicbag_som"
@@ -271,23 +271,22 @@
 
 /obj/item/storage/belt/hypospraybelt/Initialize()  //The belt, with all it's magic inside!
 	. = ..()
+	new /obj/item/reagent_containers/hypospray/advanced/big/bicaridine(src)
+	new /obj/item/reagent_containers/glass/bottle/bicaridine(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/kelotane(src)
+	new /obj/item/reagent_containers/glass/bottle/kelotane(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/tramadol(src)
+	new /obj/item/reagent_containers/glass/bottle/tramadol(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/tricordrazine(src)
+	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/dylovene(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/inaprovaline(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/dexalin(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/spaceacillin(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/imialky(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/quickclot(src)
+	new /obj/item/reagent_containers/hypospray/advanced/hypervene(src)
 	new /obj/item/healthanalyzer(src)
-	new /obj/item/reagent_containers/hypospray/advanced/bicaridine(src)
-	new /obj/item/storage/bottlecase/bica(src)
-	new /obj/item/reagent_containers/hypospray/advanced/kelotane(src)
-	new /obj/item/storage/bottlecase/kelo(src)
-	new /obj/item/reagent_containers/hypospray/advanced/dylovene(src)
-	new /obj/item/storage/bottlecase/dylo(src)
-	new /obj/item/reagent_containers/hypospray/advanced/tramadol(src)
-	new /obj/item/storage/bottlecase/tram(src)
-	new /obj/item/reagent_containers/hypospray/advanced/tricordrazine(src)
-	new /obj/item/storage/bottlecase/tricord(src)
-	new /obj/item/reagent_containers/hypospray/advanced/dexalin(src)
-	new /obj/item/reagent_containers/glass/bottle/dexalin(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/spaceacillin(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/quickclot(src)
 
 /obj/item/storage/belt/security
 	name = "\improper M276 pattern security rig"
@@ -483,6 +482,10 @@
 
 	return ..()
 
+/obj/item/storage/belt/shotgun/som
+	desc = "An ammunition belt designed to hold shotgun shells or individual bullets. Made with traditional SOM leather."
+	icon_state = "shotgunbelt_som"
+
 /obj/item/storage/belt/shotgun/martini
 	name = "martini henry ammo belt"
 	desc = "A belt good enough for holding all your .577/400 ball rounds."
@@ -566,7 +569,7 @@
 /obj/item/storage/belt/grenade
 	name="\improper M276 pattern M40 HEDP rig"
 	desc="The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is designed to carry bulk quantities of M40 HEDP Grenades."
-	icon_state="grenadebelt" // temp
+	icon_state="grenadebelt"
 	item_state="grenadebelt"
 	w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 9
@@ -574,6 +577,10 @@
 	max_storage_space = 27
 	can_hold = list(/obj/item/explosive/grenade)
 
+/obj/item/storage/belt/grenade/som
+	name="\improper S16 pattern grenade rig"
+	desc="A simple harness system available in many configurations. This version is designed to carry bulk quantities of grenades."
+	icon_state="grenadebelt_som"
 
 /obj/item/storage/belt/grenade/standard/Initialize()
 	. = ..()
@@ -793,7 +800,7 @@
 
 /obj/item/storage/belt/gun/pistol/m4a3/som
 	name = "\improper S19 holster rig"
-	desc = "A belt with origins to old colony security holster rigs."
+	desc = "A belt with origins dating back to old colony security holster rigs."
 	icon_state = "som_belt_pistol"
 	item_state = "som_belt_pistol"
 

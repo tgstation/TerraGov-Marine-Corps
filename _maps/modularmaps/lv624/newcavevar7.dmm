@@ -95,14 +95,14 @@
 	},
 /area/lv624/ground/caves/central2)
 "rJ" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/central1)
 "sH" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
 "ty" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/lv624/ground/caves/rock)
 "tM" = (
 /obj/structure/rack,
@@ -128,7 +128,7 @@
 "xh" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "xm" = (
 /obj/structure/rack,
@@ -177,7 +177,7 @@
 /area/lv624/ground/caves/central1)
 "JZ" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "Kx" = (
 /turf/open/floor/plating/ground/dirt,
@@ -186,7 +186,7 @@
 /turf/closed/wall/r_wall,
 /area/lv624/ground/caves/central1)
 "Mb" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "Mo" = (
 /obj/structure/rack,

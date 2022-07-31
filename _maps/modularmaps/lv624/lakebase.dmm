@@ -8,7 +8,7 @@
 /turf/open/floor,
 /area/lv624/ground/caves/central1)
 "dd" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/central1)
 "fx" = (
 /obj/effect/landmark/xeno_resin_door,
@@ -78,7 +78,7 @@
 	},
 /area/lv624/ground/caves/central2)
 "oz" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/lv624/ground/caves/rock)
 "rO" = (
 /obj/structure/rack,
@@ -214,7 +214,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/ground/caves/central1)
 "Ji" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "Jt" = (
 /obj/effect/landmark/weed_node,
@@ -261,7 +261,7 @@
 "SB" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "Uf" = (
 /obj/structure/rack,
@@ -288,7 +288,7 @@
 /area/lv624/ground/caves/central2)
 "Wc" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "WV" = (
 /obj/effect/landmark/excavation_site_spawner,
