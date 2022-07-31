@@ -363,7 +363,7 @@
 
 /obj/structure/prop/mainship/prop_sec
 	name = "Security Officer"
-	desc = "They look rather busy and pays no attention to you."
+	desc = "A NT security officer guarding the perimeter. They look rather busy and pays no attention to you."
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "secprop"
 	resistance_flags = RESIST_ALL
@@ -371,7 +371,7 @@
 
 /obj/structure/prop/mainship/prop_so
 	name = "Officer"
-	desc = "They look rather busy and pays no attention to you."
+	desc = "A staff officer in charge of the ongoing operation, either too busy operating the observation consoles or simply looking at you and your comrades and hoping that you will succeed, that being said, it's best to leave them be."
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "officerprop"
 	resistance_flags = RESIST_ALL
@@ -379,7 +379,7 @@
 
 /obj/structure/prop/mainship/prop_tech
 	name = "Technician"
-	desc = "They look rather busy and pays no attention to you."
+	desc = "A hard working technician maintaining the vehicles of the base, as well as the base itself. They seem to be very busy investigating something right now."
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "techieprop"
 	resistance_flags = RESIST_ALL
@@ -387,7 +387,7 @@
 
 /obj/structure/prop/mainship/prop_sominf
 	name = "SOM Infantry"
-	desc = "They look rather busy and pays no attention to you."
+	desc = "Standard Sons of Mars infantry with a V-31 assault rifle on hand. While their face is obscured by the visor, it feels like you should keep going instead of loitering around."
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "som_inf"
 	resistance_flags = RESIST_ALL
@@ -1106,7 +1106,7 @@
 
 
 /obj/structure/prop/radio_prop
-	name = "Radio"
+	name = "radio"
 	desc = "A standard military radio."
 	icon = 'icons/obj/items/radio.dmi'
 	icon_state = "beacon"
@@ -1122,7 +1122,7 @@
 	return ..()
 
 /obj/structure/prop/vehicle/som_mech
-	name = "Marauder Assault Mech"
+	name = "Marauder assault mech"
 	desc = "A heavily armed mech used by the SOM to spearhead an assault, this one seems to be non-functional."
 	icon = 'icons/Marine/mech_prop.dmi'
 	icon_state = "som_mech"

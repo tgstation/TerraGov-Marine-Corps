@@ -1,6 +1,6 @@
 /obj/structure/somcas
-	name = "\improper SOM Manta Jet"
-	desc = "The premier CAS VTOL of the SOM.Outmatches the TGMC Condor in speed and firepower with it's twin S-15 Fusion Engine it can reach an AO and lay heavy fire support within a short length of time."
+	name = "\improper Manta jet"
+	desc = "The premier CAS VTOL of the SOM. Outmatches the TGMC Condor in speed and firepower with it's twin S-15 fusion engines, albeit very costly to produce. It can reach an AO and lay heavy fire support within a short length of time."
 	icon = 'icons/Marine/somshipprop.dmi'
 	icon_state = "1"
 	appearance_flags = TILE_BOUND|KEEP_TOGETHER

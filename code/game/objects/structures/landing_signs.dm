@@ -47,7 +47,7 @@
 
 /obj/structure/tachi_sign
 	name = "Tachi Base sign"
-	desc = "A large sign that reads 'Tachi Base located at the planet of Ceres V' with a flag of the som."
+	desc = "A large sign that reads 'Tachi Base located at the planet of Ceres V' with a flag of the Sons of Mars."
 	icon = 'icons/obj/landing_signs.dmi'
 	icon_state = "tachi_sign"
 	bound_width = 64
