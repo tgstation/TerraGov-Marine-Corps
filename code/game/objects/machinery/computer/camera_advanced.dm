@@ -304,12 +304,39 @@
 		return
 	holder.icon = icon
 	holder.icon_state = icon_state_on
-	hud_list[hud_type] = holder
 
 //This one's for overwatch/CIC
 /mob/camera/aiEye/remote/hud/overwatch
 	icon_state_on = "cic_camera"
+	///List of current aura defines we're emitting, for overlay purposes
+	var/list/current_aura_list = list()
 
+/mob/camera/aiEye/remote/hud/overwatch/Initialize()
+	..()
+	RegisterSignal(src, COMSIG_AURA_STARTED, .proc/add_emitted_auras)
+	RegisterSignal(src, COMSIG_AURA_FINISHED, .proc/remove_emitted_auras)
+
+///Add to our current aura list and update overlays.
+/mob/camera/aiEye/remote/hud/overwatch/proc/add_emitted_auras(source, list/new_auras)
+	SIGNAL_HANDLER
+	current_aura_list += new_auras
+	update_aura_overlays()
+
+///Remove from our current aura list and update overlays
+/mob/camera/aiEye/remote/hud/overwatch/proc/remove_emitted_auras(source, list/dead_auras)
+	SIGNAL_HANDLER
+	current_aura_list -= dead_auras
+	update_aura_overlays()
+
+///Applies order overlays (hold/move/focus) depending on what we have. Only visible to marines.
+/mob/camera/aiEye/remote/hud/overwatch/proc/update_aura_overlays(source, list/new_auras)
+	var/image/holder = hud_list[SQUAD_HUD_TERRAGOV]
+	if(!holder)
+		return
+	holder.overlays.Cut()
+	for(var/aura_type in current_aura_list)
+		holder.overlays += image('icons/mob/hud.dmi', src, "hud[aura_type]")
+		holder.overlays += image('icons/mob/hud.dmi', src, "hud[aura_type]aura")
 
 
 /datum/action/innate/camera_off
