@@ -153,3 +153,7 @@
       across the multiple areas.
   novaepee:
   - bugfix: Fix off-set of spitter sprites
+2022-07-31:
+  Lumipharon:
+  - bugfix: Vote ballot stuffing has been fixed
+  - rscadd: SOM ERT now have access to more recent SOM equipment
