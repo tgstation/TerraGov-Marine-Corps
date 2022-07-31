@@ -178,7 +178,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "od" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
 "oH" = (
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -700,7 +700,7 @@
 	},
 /area/bigredv2/outside/virology)
 "Ro" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "RJ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{

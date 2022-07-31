@@ -141,7 +141,7 @@
 /area/bigredv2/outside/virology)
 "mj" = (
 /obj/structure/cable,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "mm" = (
 /atom/movable/effect/ai_node,
@@ -410,7 +410,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "Bz" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "BS" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -440,7 +440,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/bigredv2/outside/nw)
 "CU" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
 "Dy" = (
 /obj/machinery/light{

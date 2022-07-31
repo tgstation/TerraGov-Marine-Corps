@@ -54,7 +54,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "dR" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "em" = (
 /turf/open/floor/plating,
@@ -617,7 +617,7 @@
 	},
 /area/bigredv2/outside/virology)
 "QR" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
 "Ri" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -722,7 +722,7 @@
 /area/bigredv2/outside/virology)
 "Zu" = (
 /obj/structure/cable,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "ZC" = (
 /obj/machinery/light{

@@ -124,7 +124,7 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/virology)
 "jH" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "jQ" = (
 /turf/open/floor/marking/asteroidwarning{
@@ -561,7 +561,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/nw)
 "TP" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
 "TR" = (
 /atom/movable/effect/decal/cleanable/dirt,

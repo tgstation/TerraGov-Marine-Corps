@@ -381,6 +381,15 @@
 	new /obj/item/explosive/grenade/flashbang/stun(src)
 	new /obj/item/explosive/grenade/flashbang/stun(src)
 
+/obj/item/storage/pouch/grenade/som/ert/Initialize()
+	. = ..()
+	new /obj/item/explosive/grenade/smokebomb(src)
+	new /obj/item/explosive/grenade/smokebomb(src)
+	new /obj/item/explosive/grenade/smokebomb/satrapine(src)
+	new /obj/item/explosive/grenade/smokebomb/satrapine(src)
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/stick(src)
+
 /obj/item/storage/pouch/medkit
 	name = "medkit pouch"
 	desc = "A standard use medkit pouch that can contain all kinds of medical supplies and equipment."

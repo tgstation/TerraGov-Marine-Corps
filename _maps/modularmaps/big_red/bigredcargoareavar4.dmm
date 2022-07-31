@@ -171,7 +171,7 @@
 	},
 /area/bigredv2/outside/nw)
 "lm" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
 "lM" = (
 /obj/structure/cargo_container/green,
@@ -376,7 +376,7 @@
 /area/bigredv2/outside/nw)
 "zV" = (
 /obj/structure/cable,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "At" = (
 /obj/structure/cable,
@@ -686,7 +686,7 @@
 	},
 /area/bigredv2/outside/nw)
 "Uk" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "Un" = (
 /atom/movable/effect/landmark/weed_node,

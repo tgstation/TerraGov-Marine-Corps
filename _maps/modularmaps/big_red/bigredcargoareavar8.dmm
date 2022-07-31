@@ -140,7 +140,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/nw)
 "hV" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
 "hZ" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -832,7 +832,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/nw)
 "YP" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "YQ" = (
 /atom/movable/effect/ai_node,

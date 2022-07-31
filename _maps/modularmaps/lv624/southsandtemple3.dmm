@@ -10,7 +10,7 @@
 	pixel_y = 1;
 	icon_state = "Hvy2"
 	},
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "dc" = (
 /turf/open/ground/coast{
@@ -380,7 +380,7 @@
 	pixel_y = 1;
 	icon_state = "Light1"
 	},
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "FN" = (
 /atom/movable/effect/landmark/weed_node,
@@ -617,7 +617,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
 "Xx" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "XR" = (
 /atom/movable/effect/decal/warning_stripes/thin{

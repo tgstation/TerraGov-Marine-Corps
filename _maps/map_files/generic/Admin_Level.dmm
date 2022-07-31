@@ -1007,7 +1007,7 @@
 /area/centcom/valhalla/library)
 "bhl" = (
 /obj/structure/sign/vacuum,
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/centcom/valhalla/exterior)
 "bhD" = (
 /atom/movable/effect/decal/warning_stripes/thick{
@@ -4097,7 +4097,7 @@
 /turf/open/floor/grimy,
 /area/centcom/valhalla/security/detectives_office)
 "fmR" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/centcom/valhalla/exterior)
 "foe" = (
 /obj/structure/bed/chair/office/dark{
@@ -4606,7 +4606,7 @@
 	},
 /area/centcom/valhalla/security/brig)
 "fWu" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/centcom/valhalla/exterior)
 "fXm" = (
 /atom/movable/effect/decal/tile/black{
@@ -7489,7 +7489,7 @@
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/primary/central_one)
 "jYG" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/space)
 "jYM" = (
 /turf/closed/wall,
@@ -13927,7 +13927,7 @@
 	icon_state = "doors";
 	name = "WARNING: BLAST DOORS"
 	},
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/centcom/valhalla/exterior)
 "srV" = (
 /turf/closed/wall,
@@ -18334,7 +18334,7 @@
 /area/centcom/valhalla/starboard)
 "xAJ" = (
 /obj/structure/sign/securearea,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/centcom/valhalla/exterior)
 "xAL" = (
 /turf/open/floor/wood,

@@ -234,7 +234,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "nP" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "os" = (
 /atom/movable/effect/decal/cleanable/dirt,

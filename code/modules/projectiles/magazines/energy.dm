@@ -85,7 +85,7 @@
 	desc = "An advanced, ultrahigh capacity battery used to power volkite weaponry."
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "volkite_big"
-	maxcharge = 1800
+	maxcharge = 1440
 	w_class = WEIGHT_CLASS_NORMAL
 	icon_state_mini = "mag_cell"
 	charge_overlay = "volkite_big"

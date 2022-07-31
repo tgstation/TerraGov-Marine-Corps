@@ -429,7 +429,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand9)
 "HW" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "Ix" = (
 /obj/structure/jungle/vines,
@@ -664,7 +664,7 @@
 /area/lv624/ground/sand6)
 "WD" = (
 /obj/structure/jungle/vines,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "WO" = (
 /turf/open/ground/coast{

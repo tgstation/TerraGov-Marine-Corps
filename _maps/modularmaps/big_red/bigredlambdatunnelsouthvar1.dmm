@@ -1,105 +1,105 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/turf/closed/mineral/bigred,
+"b" = (
+/atom/movable/effect/landmark/lv624/fog_blocker,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
-"i" = (
+"d" = (
+/atom/movable/effect/landmark/weed_node,
+/atom/movable/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/east)
+"n" = (
 /atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/east)
-"o" = (
+"p" = (
+/atom/movable/effect/landmark/lv624/fog_blocker,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/east)
+"t" = (
 /atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/east)
-"r" = (
-/atom/movable/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
 "w" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/northeast)
+"y" = (
+/atom/movable/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/east)
 "B" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
-"F" = (
-/atom/movable/effect/landmark/start/job/xenomorph,
-/atom/movable/effect/landmark/weed_node,
+"H" = (
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
 "I" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/east)
-"K" = (
-/atom/movable/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east)
-"N" = (
-/atom/movable/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/bigred,
-/area/bigredv2/caves/rock)
-"O" = (
+"J" = (
+/atom/movable/effect/landmark/start/job/xenomorph,
 /atom/movable/effect/landmark/weed_node,
-/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
+"M" = (
+/turf/closed/mineral/smooth/bigred,
+/area/bigredv2/caves/rock)
 "P" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
-"Z" = (
-/atom/movable/effect/landmark/lv624/fog_blocker,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east)
 
 (1,1,1) = {"
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+M
+M
+M
+M
+M
+M
+M
+M
+M
+M
+M
 "}
 (2,1,1) = {"
-a
-a
+M
+M
 I
 I
-a
-a
-a
-a
-a
-a
-a
+M
+M
+M
+M
+M
+M
+M
 "}
 (3,1,1) = {"
-a
-o
+M
+t
 B
 B
 I
 I
 I
-a
-a
-a
-a
+M
+M
+M
+M
 "}
 (4,1,1) = {"
-a
-K
+M
+H
 B
 B
 B
 B
-r
-i
-a
-a
-a
+y
+n
+M
+M
+M
 "}
 (5,1,1) = {"
 w
@@ -110,22 +110,22 @@ B
 B
 B
 I
-a
-a
-a
+M
+M
+M
 "}
 (6,1,1) = {"
 P
 B
 B
-r
+y
 B
 B
 B
 I
 B
-a
-a
+M
+M
 "}
 (7,1,1) = {"
 P
@@ -142,16 +142,16 @@ I
 "}
 (8,1,1) = {"
 P
-K
-r
+H
+y
 B
 B
 B
 B
-O
+d
 B
-K
-Z
+H
+p
 "}
 (9,1,1) = {"
 P
@@ -163,43 +163,43 @@ B
 B
 B
 B
-Z
-K
+p
+H
 "}
 (10,1,1) = {"
 P
 B
 B
 B
-a
-a
+M
+M
 B
 I
 B
-Z
+p
 B
 "}
 (11,1,1) = {"
 P
-K
+H
 B
-a
-a
-a
+M
+M
+M
 B
-Z
-Z
+p
+p
 B
-F
+J
 "}
 (12,1,1) = {"
 P
 B
-a
-a
-a
-a
-N
+M
+M
+M
+M
+b
 I
 B
 B
@@ -207,131 +207,131 @@ B
 "}
 (13,1,1) = {"
 P
-a
-a
-a
-a
-N
-a
-a
-a
-a
-a
+M
+M
+M
+M
+b
+M
+M
+M
+M
+M
 "}
 (14,1,1) = {"
-a
-a
-a
-a
-a
-N
-a
-a
-a
-a
-a
+M
+M
+M
+M
+M
+b
+M
+M
+M
+M
+M
 "}
 (15,1,1) = {"
-a
-a
-a
-a
-a
-N
-a
-a
-a
-a
-a
+M
+M
+M
+M
+M
+b
+M
+M
+M
+M
+M
 "}
 (16,1,1) = {"
-a
-a
-a
-a
-a
-N
-a
-a
-a
-a
-a
+M
+M
+M
+M
+M
+b
+M
+M
+M
+M
+M
 "}
 (17,1,1) = {"
-a
-a
-a
-a
-a
-N
-a
-a
-a
-a
-a
+M
+M
+M
+M
+M
+b
+M
+M
+M
+M
+M
 "}
 (18,1,1) = {"
-a
-a
-a
-a
-a
-N
-a
-a
-a
-a
-a
+M
+M
+M
+M
+M
+b
+M
+M
+M
+M
+M
 "}
 (19,1,1) = {"
-a
-a
-a
-a
-a
-N
-a
-a
-a
-a
-a
+M
+M
+M
+M
+M
+b
+M
+M
+M
+M
+M
 "}
 (20,1,1) = {"
-a
-a
-a
-a
-a
-N
-a
-a
-a
-a
-a
+M
+M
+M
+M
+M
+b
+M
+M
+M
+M
+M
 "}
 (21,1,1) = {"
-a
-a
-a
-a
-a
-N
-a
-a
-a
-a
-a
+M
+M
+M
+M
+M
+b
+M
+M
+M
+M
+M
 "}
 (22,1,1) = {"
-N
-N
-N
-N
-N
-a
-a
-a
-a
-a
-a
+b
+b
+b
+b
+b
+M
+M
+M
+M
+M
+M
 "}
