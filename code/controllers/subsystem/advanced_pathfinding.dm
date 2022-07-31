@@ -8,6 +8,11 @@ SUBSYSTEM_DEF(advanced_pathfinding)
 	///List of ai_behaviour datum asking for a tile pathfinding
 	var/list/datum/ai_behavior/node_pathfinding_to_do = list()
 
+/datum/controller/subsystem/advanced_pathfinding/Initialize(start_timeofday)
+	. = ..()
+
+
+
 /datum/controller/subsystem/advanced_pathfinding/fire()
 	for(var/datum/ai_behavior/ai_behavior AS in tile_pathfinding_to_do)
 		ai_behavior.look_for_tile_path()

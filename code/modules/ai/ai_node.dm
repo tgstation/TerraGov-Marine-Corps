@@ -12,6 +12,8 @@
 	#else
 	invisibility = INVISIBILITY_ABSTRACT
 	#endif
+	/// A unique id for this node
+	var/unique_id
 	///Assoc list of adjacent landmark nodes by dir
 	var/list/adjacent_nodes = list()
 
@@ -24,6 +26,7 @@
 /obj/effect/ai_node/Initialize()
 	..()
 	GLOB.allnodes += src
+	unique_id = UNIQUEID;
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/effect/ai_node/LateInitialize()
