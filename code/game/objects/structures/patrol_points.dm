@@ -48,7 +48,7 @@
 	user.visible_message(span_notice("[user] goes through the [src]."),
 	span_notice("You walk through the [src]."))
 	user.trainteleport(linked_point.loc)
-	new /obj/effect/rappel_rope(linked_point.loc)
+	new /atom/movable/effect/rappel_rope(linked_point.loc)
 	user.playsound_local(user, "sound/effects/CIC_order.ogg", 10, 1)
 	user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>OVERWATCH</u></span><br>" + "CURRENT OBJECTIVE: ELIMINATE HOSTILE FORCES IN THE AO.", /obj/screen/text/screen_text/command_order)
 	update_icon()
@@ -60,7 +60,7 @@
 
 	user.forceMove(get_turf(linked_point))
 
-/obj/effect/rappel_rope
+/atom/movable/effect/rappel_rope
 	name = "rope"
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "rope"
@@ -69,17 +69,17 @@
 	resistance_flags = RESIST_ALL
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
-/obj/effect/rappel_rope/Initialize()
+/atom/movable/effect/rappel_rope/Initialize()
 	. = ..()
 	playsound(loc, 'sound/effects/rappel.ogg', 50, TRUE)
 	playsound(loc, 'sound/effects/tadpolehovering.ogg', 100, TRUE)
 	balloon_alert_to_viewers("You see a dropship fly overhead and begin dropping ropes!")
 	ropeanimation()
 
-/obj/effect/rappel_rope/proc/ropeanimation()
+/atom/movable/effect/rappel_rope/proc/ropeanimation()
 	flick("rope_deploy", src)
 	addtimer(CALLBACK(src, .proc/ropeanimation_stop), 2 SECONDS)
 
-/obj/effect/rappel_rope/proc/ropeanimation_stop()
+/atom/movable/effect/rappel_rope/proc/ropeanimation_stop()
 	flick("rope_up", src)
 	QDEL_IN(src, 5)
