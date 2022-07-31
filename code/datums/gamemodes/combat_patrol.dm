@@ -5,7 +5,7 @@
 	flags_landmarks = MODE_LANDMARK_SPAWN_SPECIFIC_SHUTTLE_CONSOLE
 	shutters_drop_time = 5 MINUTES
 	flags_xeno_abilities = ABILITY_CRASH
-	respawn_time = 8 MINUTES
+	respawn_time = 6 MINUTES
 	time_between_round = 0 HOURS
 	valid_job_types = list(
 		/datum/job/terragov/squad/engineer = 4,
@@ -24,7 +24,7 @@
 	///The length of time until round ends.
 	var/max_game_time = 35 MINUTES
 	///The length of time until next wave.
-	var/wave_timer = 7 MINUTES
+	var/wave_timer = 5 MINUTES
 	///Whether the max game time has been reached
 	var/max_time_reached = FALSE
 	/// Time between two bioscan
