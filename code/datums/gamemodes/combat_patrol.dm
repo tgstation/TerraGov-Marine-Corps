@@ -3,7 +3,7 @@
 	config_tag = "Combat Patrol"
 	flags_round_type = MODE_LZ_SHUTTERS|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_WIN_POINTS|MODE_SOM_OPFOR|MODE_SPECIFIC_SHIP_MAP //MODE_NO_PERMANENT_WOUNDS is for nerds
 	flags_landmarks = MODE_LANDMARK_SPAWN_SPECIFIC_SHUTTLE_CONSOLE
-	shutters_drop_time = 5 MINUTES
+	shutters_drop_time = 1 MINUTES
 	flags_xeno_abilities = ABILITY_CRASH
 	respawn_time = 7 MINUTES
 	time_between_round = 0 HOURS
@@ -22,7 +22,7 @@
 	/// Timer used to calculate how long till round ends
 	var/game_timer
 	///The length of time until round ends.
-	var/max_game_time = 35 MINUTES
+	var/max_game_time = 1 MINUTES
 	///The length of time until next wave.
 	var/wave_timer = 5 MINUTES
 	///Whether the max game time has been reached
@@ -231,22 +231,27 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 	if(!max_time_reached)
 		return //fighting is ongoing
 
+	if(LAZYACCESS(points_per_faction, FACTION_TERRAGOV) == LAZYACCESS(points_per_faction, FACTION_SOM))
+		message_admins("Round finished: [MODE_COMBAT_PATROL_DRAW]")
+		round_finished = MODE_COMBAT_PATROL_DRAW
+		return TRUE
 	if(LAZYACCESS(points_per_faction, FACTION_TERRAGOV) >= win_points_needed)
 		message_admins("Round finished: [MODE_COMBAT_PATROL_MARINE_MAJOR]")
 		round_finished = MODE_COMBAT_PATROL_MARINE_MAJOR
-		return TRUE
-	if(LAZYACCESS(points_per_faction, FACTION_TERRAGOV) > FACTION_SOM)
-		message_admins("Round finished: [MODE_COMBAT_PATROL_MARINE_MINOR]") //The TGMC has greater points than the SOM, TGMC minor victory
-		round_finished = MODE_COMBAT_PATROL_MARINE_MINOR
-		return TRUE
-	if(LAZYACCESS(points_per_faction, FACTION_TERRAGOV) < FACTION_SOM)
-		message_admins("Round finished: [MODE_COMBAT_PATROL_SOM_MINOR]") //The SOM has greater points than the TGMC, SOM minor victory
-		round_finished = MODE_COMBAT_PATROL_SOM_MINOR
 		return TRUE
 	if(LAZYACCESS(points_per_faction, FACTION_SOM) >= win_points_needed)
 		message_admins("Round finished: [MODE_COMBAT_PATROL_SOM_MAJOR]")
 		round_finished = MODE_COMBAT_PATROL_SOM_MAJOR
 		return TRUE
+	if(LAZYACCESS(points_per_faction, FACTION_TERRAGOV) > LAZYACCESS(points_per_faction, FACTION_SOM))
+		message_admins("Round finished: [MODE_COMBAT_PATROL_MARINE_MINOR]") //The TGMC has greater points than the SOM, TGMC minor victory
+		round_finished = MODE_COMBAT_PATROL_MARINE_MINOR
+		return TRUE
+	if(LAZYACCESS(points_per_faction, FACTION_TERRAGOV) < LAZYACCESS(points_per_faction, FACTION_SOM))
+		message_admins("Round finished: [MODE_COMBAT_PATROL_SOM_MINOR]") //The SOM has greater points than the TGMC, SOM minor victory
+		round_finished = MODE_COMBAT_PATROL_SOM_MINOR
+		return TRUE
+
 
 	message_admins("Round finished: [MODE_COMBAT_PATROL_DRAW]") //equal number of kills, or any other edge cases
 	round_finished = MODE_COMBAT_PATROL_DRAW
