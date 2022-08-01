@@ -15,7 +15,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/som)
 "ak" = (
-/obj/effect/decal/warning_stripes/box,
+/atom/movable/effect/decal/warning_stripes/box,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "al" = (
@@ -29,7 +29,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base)
 "ap" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
 /obj/machinery/light{
@@ -52,7 +52,7 @@
 	},
 /area/mainship/patrol_base)
 "ax" = (
-/obj/effect/decal/siding{
+/atom/movable/effect/decal/siding{
 	dir = 6
 	},
 /turf/open/floor/mainship/som/sw,
@@ -105,7 +105,7 @@
 /turf/closed/wall/r_wall/unmeltable,
 /area/mainship/patrol_base/telecomms)
 "bs" = (
-/obj/effect/landmark/start/job/squadcorpsman,
+/atom/movable/effect/landmark/start/job/squadcorpsman,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -155,7 +155,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/som)
 "cv" = (
-/obj/effect/landmark/start/job/som/squadcorpsman,
+/atom/movable/effect/landmark/start/job/som/squadcorpsman,
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
 "cA" = (
@@ -201,7 +201,7 @@
 	},
 /area/mainship/patrol_base)
 "dk" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -242,7 +242,7 @@
 /turf/open/floor/plating/ground/snow/layer3,
 /area/mainship/patrol_base/som)
 "dI" = (
-/obj/effect/decal/siding,
+/atom/movable/effect/decal/siding,
 /turf/open/floor/mainship/som/s,
 /area/mainship/patrol_base/som)
 "dM" = (
@@ -280,7 +280,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "ec" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/atom/movable/effect/decal/warning_stripes/box/arrow{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete/lines{
@@ -350,7 +350,7 @@
 /area/mainship/patrol_base/som)
 "eS" = (
 /obj/machinery/light,
-/obj/effect/decal/warning_stripes/box/arrow{
+/atom/movable/effect/decal/warning_stripes/box/arrow{
 	dir = 4
 	},
 /turf/open/floor/mainship/black,
@@ -359,7 +359,7 @@
 /turf/open/floor/mainship/ntlogo,
 /area/mainship/patrol_base)
 "eX" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/atom/movable/effect/decal/warning_stripes/box/arrow{
 	dir = 4
 	},
 /turf/open/floor/mainship/red,
@@ -427,7 +427,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/box/arrow{
+/atom/movable/effect/decal/warning_stripes/box/arrow{
 	dir = 4
 	},
 /turf/open/floor/mainship/black{
@@ -717,7 +717,7 @@
 /turf/open/shuttle/dropship/three,
 /area/mainship/patrol_base)
 "kM" = (
-/obj/effect/decal/siding{
+/atom/movable/effect/decal/siding{
 	dir = 1
 	},
 /turf/open/floor/mainship/som,
@@ -769,7 +769,7 @@
 /turf/open/floor/mainship/blue,
 /area/mainship/patrol_base)
 "ln" = (
-/obj/effect/decal/warning_stripes/stripedsquare,
+/atom/movable/effect/decal/warning_stripes/stripedsquare,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -841,7 +841,7 @@
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
 "mg" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/atom/movable/effect/decal/warning_stripes/box/arrow{
 	dir = 1
 	},
 /turf/open/floor/mainship/office,
@@ -905,7 +905,7 @@
 	},
 /area/mainship/patrol_base/som)
 "nm" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship/black{
@@ -981,7 +981,7 @@
 /turf/open/floor/mainship/black,
 /area/mainship/patrol_base)
 "oK" = (
-/obj/effect/decal/warning_stripes/thin,
+/atom/movable/effect/decal/warning_stripes/thin,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "oO" = (
@@ -1102,7 +1102,7 @@
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
 "qK" = (
-/obj/effect/decal/warning_stripes/box/arrow,
+/atom/movable/effect/decal/warning_stripes/box/arrow,
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
 "qL" = (
@@ -1177,7 +1177,7 @@
 	},
 /area/mainship/patrol_base)
 "rM" = (
-/obj/effect/decal/warning_stripes/box/empty,
+/atom/movable/effect/decal/warning_stripes/box/empty,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "rN" = (
@@ -1188,8 +1188,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/som)
 "rO" = (
-/obj/effect/landmark/start/latejoinsom,
-/obj/effect/landmark/start/latejoinsom,
+/atom/movable/effect/landmark/start/latejoinsom,
+/atom/movable/effect/landmark/start/latejoinsom,
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
 "rR" = (
@@ -1264,7 +1264,7 @@
 /turf/closed/wall/mainship/outer/reinforced,
 /area/mainship/patrol_base)
 "ss" = (
-/obj/effect/landmark/start/job/squadengineer,
+/atom/movable/effect/landmark/start/job/squadengineer,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "st" = (
@@ -1334,7 +1334,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "tp" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/atom/movable/effect/decal/warning_stripes/box/arrow{
 	dir = 4
 	},
 /turf/open/floor/mainship/black/corner,
@@ -1381,7 +1381,7 @@
 /turf/open/floor/mainship_hull,
 /area/mainship/patrol_base)
 "tU" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -1483,7 +1483,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base)
 "vf" = (
-/obj/effect/landmark/start/job/squadmarine,
+/atom/movable/effect/landmark/start/job/squadmarine,
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
@@ -1491,7 +1491,7 @@
 /obj/structure/bed/chair/nometal{
 	dir = 8
 	},
-/obj/effect/landmark/start/job/squadsmartgunner,
+/atom/movable/effect/landmark/start/job/squadsmartgunner,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "vi" = (
@@ -1520,7 +1520,7 @@
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
 "vL" = (
-/obj/effect/landmark/start/job/squadsmartgunner,
+/atom/movable/effect/landmark/start/job/squadsmartgunner,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "vU" = (
@@ -1612,11 +1612,11 @@
 /turf/open/floor/mainship/red,
 /area/mainship/patrol_base/som)
 "wY" = (
-/obj/effect/landmark/start/job/som/squadstandard,
+/atom/movable/effect/landmark/start/job/som/squadstandard,
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
 "wZ" = (
-/obj/effect/decal/warning_stripes/box,
+/atom/movable/effect/decal/warning_stripes/box,
 /turf/open/floor/mainship/red{
 	dir = 8
 	},
@@ -1769,7 +1769,7 @@
 /turf/open/floor/mainship/black,
 /area/mainship/patrol_base)
 "yI" = (
-/obj/effect/landmark/start/job/som/squadveteran,
+/atom/movable/effect/landmark/start/job/som/squadveteran,
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
 "yL" = (
@@ -1798,7 +1798,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/mainship/patrol_base/som)
 "zl" = (
-/obj/effect/decal/warning_stripes/box,
+/atom/movable/effect/decal/warning_stripes/box,
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
@@ -1864,7 +1864,7 @@
 	},
 /area/mainship/patrol_base/som)
 "Bl" = (
-/obj/effect/landmark/start/job/squadleader,
+/atom/movable/effect/landmark/start/job/squadleader,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "Bm" = (
@@ -1975,7 +1975,7 @@
 	},
 /area/mainship/patrol_base/som)
 "Db" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/mainship/black{
@@ -1998,7 +1998,7 @@
 	},
 /area/mainship/patrol_base)
 "Dq" = (
-/obj/effect/landmark/start/job/som/squadstandard,
+/atom/movable/effect/landmark/start/job/som/squadstandard,
 /obj/machinery/light,
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
@@ -2032,7 +2032,7 @@
 	},
 /area/mainship/patrol_base)
 "El" = (
-/obj/effect/decal/warning_stripes/box,
+/atom/movable/effect/decal/warning_stripes/box,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -2116,7 +2116,7 @@
 /area/mainship/patrol_base/som)
 "Fc" = (
 /obj/machinery/elevator_strut/bottom,
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -2175,7 +2175,7 @@
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
 "FX" = (
-/obj/effect/landmark/start/latejoinsom,
+/atom/movable/effect/landmark/start/latejoinsom,
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
 "FZ" = (
@@ -2277,7 +2277,7 @@
 	},
 /area/mainship/patrol_base/som)
 "HZ" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/atom/movable/effect/decal/warning_stripes/box/arrow{
 	dir = 8
 	},
 /obj/machinery/light,
@@ -2460,7 +2460,7 @@
 	},
 /area/mainship/patrol_base)
 "Ks" = (
-/obj/effect/decal/siding{
+/atom/movable/effect/decal/siding{
 	dir = 9
 	},
 /turf/open/floor/mainship/som/ne,
@@ -2519,11 +2519,11 @@
 	},
 /area/mainship/patrol_base/som)
 "Ll" = (
-/obj/effect/landmark/start/job/squadcorpsman,
+/atom/movable/effect/landmark/start/job/squadcorpsman,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "Lm" = (
-/obj/effect/landmark/start/latejoin,
+/atom/movable/effect/landmark/start/latejoin,
 /turf/open/floor/mainship/black,
 /area/mainship/patrol_base)
 "Lo" = (
@@ -2561,7 +2561,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base/som)
 "LP" = (
-/obj/effect/landmark/start/job/squadleader,
+/atom/movable/effect/landmark/start/job/squadleader,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -2585,7 +2585,7 @@
 	},
 /area/mainship/patrol_base/som)
 "Me" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/atom/movable/effect/decal/warning_stripes/box/arrow{
 	dir = 4
 	},
 /turf/open/floor/mainship/black,
@@ -2611,7 +2611,7 @@
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
 "MF" = (
-/obj/effect/decal/warning_stripes/stripedsquare,
+/atom/movable/effect/decal/warning_stripes/stripedsquare,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -2622,7 +2622,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "MP" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/mainship/mono,
@@ -2638,7 +2638,7 @@
 	},
 /area/mainship/patrol_base)
 "MU" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/atom/movable/effect/decal/warning_stripes/box/arrow{
 	dir = 4
 	},
 /turf/open/floor/mainship/red{
@@ -2680,11 +2680,11 @@
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
 "NG" = (
-/obj/effect/landmark/start/job/som/squadleader,
+/atom/movable/effect/landmark/start/job/som/squadleader,
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
 "NP" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/atom/movable/effect/decal/warning_stripes/box/arrow{
 	dir = 4
 	},
 /turf/open/floor/mainship/office,
@@ -2738,7 +2738,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "Oe" = (
-/obj/effect/decal/siding{
+/atom/movable/effect/decal/siding{
 	dir = 5
 	},
 /turf/open/floor/mainship/som/nw,
@@ -2789,13 +2789,13 @@
 	},
 /area/space)
 "OG" = (
-/obj/effect/decal/siding{
+/atom/movable/effect/decal/siding{
 	dir = 10
 	},
 /turf/open/floor/mainship/som/se,
 /area/mainship/patrol_base/som)
 "OH" = (
-/obj/effect/landmark/start/job/som/squadstandard,
+/atom/movable/effect/landmark/start/job/som/squadstandard,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -2851,7 +2851,7 @@
 	},
 /area/mainship/patrol_base/som)
 "Ps" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/atom/movable/effect/decal/warning_stripes/box/arrow{
 	dir = 4
 	},
 /turf/open/floor/mainship/black/corner{
@@ -2914,7 +2914,7 @@
 /turf/open/floor/mainship/blue,
 /area/mainship/patrol_base)
 "Qw" = (
-/obj/effect/landmark/start/job/squadmarine,
+/atom/movable/effect/landmark/start/job/squadmarine,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "Qx" = (
@@ -3037,10 +3037,10 @@
 	},
 /area/mainship/patrol_base/som)
 "RW" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/box/arrow{
+/atom/movable/effect/decal/warning_stripes/box/arrow{
 	dir = 1
 	},
 /turf/open/floor/mainship/black{
@@ -3168,7 +3168,7 @@
 	},
 /area/mainship/patrol_base)
 "SU" = (
-/obj/effect/decal/warning_stripes/stripedsquare,
+/atom/movable/effect/decal/warning_stripes/stripedsquare,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "SX" = (
@@ -3320,7 +3320,7 @@
 	},
 /area/mainship/patrol_base)
 "Vq" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/atom/movable/effect/decal/warning_stripes/box/arrow{
 	dir = 4
 	},
 /turf/open/floor/mainship/black{
@@ -3355,7 +3355,7 @@
 	},
 /area/mainship/patrol_base)
 "VI" = (
-/obj/effect/landmark/start/job/squadengineer,
+/atom/movable/effect/landmark/start/job/squadengineer,
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
@@ -3442,7 +3442,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/mainship/patrol_base/som)
 "WQ" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
 /obj/machinery/light{
@@ -3471,7 +3471,7 @@
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
 "Xe" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor/mainship/mono,
@@ -3493,7 +3493,7 @@
 /turf/open/floor/mainship_hull/dir,
 /area/mainship/patrol_base/som)
 "XJ" = (
-/obj/effect/landmark/start/latejoin,
+/atom/movable/effect/landmark/start/latejoin,
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
@@ -3541,7 +3541,7 @@
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
 "YD" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/elevator_strut/bottom,
@@ -3580,7 +3580,7 @@
 /turf/open/floor/mainship/green/full,
 /area/mainship/patrol_base/som)
 "Zl" = (
-/obj/effect/decal/warning_stripes/box,
+/atom/movable/effect/decal/warning_stripes/box,
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
 "Zt" = (
@@ -3597,7 +3597,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "ZN" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/mainship/black{
