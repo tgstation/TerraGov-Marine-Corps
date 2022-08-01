@@ -215,7 +215,7 @@
 			if(istype(O, /obj/structure/morgue_tray)) continue
 			qdel(O)
 
-		new /atom/movable/effect/decal/cleanable/ash(src)
+		new /obj/effect/decal/cleanable/ash(src)
 		sleep(30)
 		cremating = 0
 		update_icon()

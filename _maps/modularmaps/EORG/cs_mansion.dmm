@@ -1,26 +1,26 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "ai" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/atom/movable/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
 /turf/open/floor/grass,
 /area/deathmatch)
 "aj" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/remains/human,
-/atom/movable/effect/decal/cleanable/cobweb{
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/cobweb{
 	dir = 8
 	},
-/atom/movable/effect/decal/riverdecal/edge,
+/obj/effect/decal/riverdecal/edge,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "as" = (
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/grime,
 /area/deathmatch)
 "aJ" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/riverdecal,
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/riverdecal,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "aQ" = (
@@ -34,11 +34,11 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "bd" = (
-/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/grass,
 /area/deathmatch)
 "bf" = (
-/atom/movable/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
 /turf/open/floor/grime,
 /area/deathmatch)
 "bJ" = (
@@ -62,22 +62,22 @@
 /turf/open/floor/grass,
 /area/deathmatch)
 "dd" = (
-/atom/movable/effect/decal/cleanable/blood/gibs/xeno,
+/obj/effect/decal/cleanable/blood/gibs/xeno,
 /turf/open/floor/wood,
 /area/deathmatch)
 "dQ" = (
-/atom/movable/effect/decal/cleanable/cobweb{
+/obj/effect/decal/cleanable/cobweb{
 	dir = 1
 	},
 /turf/open/floor/wood,
 /area/deathmatch)
 "dZ" = (
 /obj/structure/flora/ausbushes/brflowers,
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/grass,
 /area/deathmatch)
 "es" = (
-/atom/movable/effect/landmark/weapon_spawn/tier5_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier5_weapon_spawn,
 /turf/open/floor/grime,
 /area/deathmatch)
 "eU" = (
@@ -92,26 +92,26 @@
 /area/deathmatch)
 "fs" = (
 /obj/structure/inflatable/popped,
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/wood,
 /area/deathmatch)
 "fy" = (
 /turf/open/ground/jungle/impenetrable,
 /area/deathmatch)
 "fK" = (
-/atom/movable/effect/decal/cleanable/vomit,
+/obj/effect/decal/cleanable/vomit,
 /turf/open/floor/wood,
 /area/deathmatch)
 "fW" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/grass,
 /area/deathmatch)
 "fZ" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/remains/human,
-/atom/movable/effect/decal/cleanable/cobweb2,
-/atom/movable/effect/decal/riverdecal/edge{
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/cobweb2,
+/obj/effect/decal/riverdecal/edge{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -122,7 +122,7 @@
 /turf/open/floor/grass,
 /area/deathmatch)
 "gy" = (
-/atom/movable/effect/decal/cleanable/vomit,
+/obj/effect/decal/cleanable/vomit,
 /obj/machinery/light,
 /turf/open/floor/wood,
 /area/deathmatch)
@@ -144,17 +144,17 @@
 /area/deathmatch)
 "hj" = (
 /obj/structure/flora/ausbushes/grassybush,
-/atom/movable/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
 /turf/open/floor/grass,
 /area/deathmatch)
 "hx" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/riverdecal/edge,
-/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/riverdecal/edge,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "hE" = (
-/atom/movable/effect/decal/cleanable/vomit,
+/obj/effect/decal/cleanable/vomit,
 /obj/structure/largecrate/random/barrel/green,
 /turf/open/floor/wood,
 /area/deathmatch)
@@ -170,8 +170,8 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "jf" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/grime,
 /area/deathmatch)
 "jq" = (
@@ -182,18 +182,18 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "jH" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/cleanable/liquid_fuel,
-/atom/movable/effect/decal/riverdecal/edge,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/liquid_fuel,
+/obj/effect/decal/riverdecal/edge,
 /turf/open/floor/plating/plating_catwalk,
 /area/deathmatch)
 "jM" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/cleanable/vomit,
-/atom/movable/effect/decal/riverdecal/edge{
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/vomit,
+/obj/effect/decal/riverdecal/edge{
 	dir = 1
 	},
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/plating/plating_catwalk,
 /area/deathmatch)
 "kk" = (
@@ -221,13 +221,13 @@
 /turf/open/floor/grime,
 /area/deathmatch)
 "ld" = (
-/atom/movable/effect/decal/cleanable/blood/gibs/xeno,
-/atom/movable/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/obj/effect/decal/cleanable/blood/gibs/xeno,
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
 /turf/open/floor/wood,
 /area/deathmatch)
 "lE" = (
 /obj/structure/table/woodentable,
-/atom/movable/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
 /turf/open/floor/wood,
 /area/deathmatch)
 "ma" = (
@@ -235,19 +235,19 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "ne" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/cleanable/cobweb2,
-/atom/movable/effect/decal/remains/human,
-/atom/movable/effect/decal/riverdecal/edge{
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/cobweb2,
+/obj/effect/decal/remains/human,
+/obj/effect/decal/riverdecal/edge{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "nC" = (
-/atom/movable/effect/decal/riverdecal/edge{
+/obj/effect/decal/riverdecal/edge{
 	dir = 1
 	},
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "nK" = (
@@ -256,41 +256,41 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "nN" = (
-/atom/movable/effect/decal/cleanable/cobweb2,
+/obj/effect/decal/cleanable/cobweb2,
 /obj/structure/inflatable,
 /turf/open/floor/wood,
 /area/deathmatch)
 "nP" = (
-/atom/movable/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
 /turf/open/floor/wood,
 /area/deathmatch)
 "og" = (
-/atom/movable/effect/decal/cleanable/vomit,
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/decal/cleanable/vomit,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/wood/broken,
 /area/deathmatch)
 "ol" = (
 /obj/structure/flora/ausbushes/grassybush,
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/grass,
 /area/deathmatch)
 "oq" = (
 /obj/structure/flora/ausbushes/lavendergrass,
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/grass,
 /area/deathmatch)
 "oD" = (
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/grass,
 /area/deathmatch)
 "pq" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/cleanable/blood/gibs/xeno,
-/atom/movable/effect/decal/riverdecal,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/gibs/xeno,
+/obj/effect/decal/riverdecal,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "pD" = (
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/wood,
 /area/deathmatch)
 "pM" = (
@@ -306,14 +306,14 @@
 /turf/open/ground/river,
 /area/deathmatch)
 "pT" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/remains/human,
-/atom/movable/effect/decal/riverdecal,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/remains/human,
+/obj/effect/decal/riverdecal,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "pZ" = (
 /obj/structure/flora/ausbushes/palebush,
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/grass,
 /area/deathmatch)
 "qq" = (
@@ -332,7 +332,7 @@
 /turf/open/floor/grass,
 /area/deathmatch)
 "qW" = (
-/atom/movable/effect/decal/remains/xeno,
+/obj/effect/decal/remains/xeno,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -353,7 +353,7 @@
 /turf/open/floor/grass,
 /area/deathmatch)
 "rI" = (
-/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/wood,
 /area/deathmatch)
 "rS" = (
@@ -369,14 +369,14 @@
 /turf/open/floor/grass,
 /area/deathmatch)
 "sb" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/cleanable/liquid_fuel,
-/atom/movable/effect/decal/riverdecal/edge,
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/liquid_fuel,
+/obj/effect/decal/riverdecal/edge,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "sQ" = (
-/atom/movable/effect/decal/cleanable/cobweb{
+/obj/effect/decal/cleanable/cobweb{
 	dir = 8
 	},
 /obj/structure/largecrate/guns/merc,
@@ -392,11 +392,11 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "tq" = (
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/wood,
 /area/deathmatch)
 "tr" = (
-/atom/movable/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
 /turf/open/floor/grass,
 /area/deathmatch)
 "tG" = (
@@ -409,12 +409,12 @@
 /area/deathmatch)
 "uS" = (
 /obj/structure/flora/ausbushes/ywflowers,
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/grass,
 /area/deathmatch)
 "uX" = (
 /obj/vehicle/train/cargo/trolley,
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/grass,
 /area/deathmatch)
 "va" = (
@@ -442,12 +442,12 @@
 /turf/closed/wall/mainship/outer,
 /area/deathmatch)
 "wJ" = (
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/grime,
 /area/deathmatch)
 "xc" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/grime,
 /area/deathmatch)
 "xL" = (
@@ -470,12 +470,12 @@
 /area/deathmatch)
 "yl" = (
 /obj/structure/flora/ausbushes/brflowers,
-/atom/movable/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
 /turf/open/floor/grass,
 /area/deathmatch)
 "yo" = (
-/atom/movable/effect/decal/cleanable/blood/gibs/xeno,
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/decal/cleanable/blood/gibs/xeno,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/wood,
 /area/deathmatch)
 "yr" = (
@@ -487,19 +487,19 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/atom/movable/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
 /turf/open/floor/wood,
 /area/deathmatch)
 "yI" = (
-/atom/movable/effect/decal/remains/human,
-/atom/movable/effect/decal/cleanable/vomit,
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/vomit,
 /turf/open/floor/wood,
 /area/deathmatch)
 "yM" = (
 /turf/closed/wall/wood,
 /area/deathmatch)
 "yR" = (
-/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/wood/broken,
 /area/deathmatch)
 "yT" = (
@@ -508,16 +508,16 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "zd" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/riverdecal/edge{
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/riverdecal/edge{
 	dir = 1
 	},
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "zf" = (
 /obj/structure/flora/ausbushes/ppflowers,
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/grass,
 /area/deathmatch)
 "zt" = (
@@ -525,21 +525,21 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "zM" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/cleanable/vomit,
-/atom/movable/effect/decal/riverdecal/edge{
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/vomit,
+/obj/effect/decal/riverdecal/edge{
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/deathmatch)
 "zS" = (
-/atom/movable/effect/decal/cleanable/cobweb,
+/obj/effect/decal/cleanable/cobweb,
 /obj/structure/inflatable/popped,
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/wood,
 /area/deathmatch)
 "Ac" = (
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/grime,
 /area/deathmatch)
 "An" = (
@@ -549,7 +549,7 @@
 /turf/open/floor/grime,
 /area/deathmatch)
 "Ay" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/stairs/rampbottom{
 	dir = 4
 	},
@@ -560,7 +560,7 @@
 /area/deathmatch)
 "AU" = (
 /obj/structure/platform,
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/grass,
 /area/deathmatch)
 "AX" = (
@@ -570,8 +570,8 @@
 /turf/open/floor/grass,
 /area/deathmatch)
 "Ba" = (
-/atom/movable/effect/decal/riverdecal/edge,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/riverdecal/edge,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "BC" = (
@@ -589,25 +589,25 @@
 /area/deathmatch)
 "BY" = (
 /obj/structure/flora/ausbushes/palebush,
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/grass,
 /area/deathmatch)
 "Cb" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/cleanable/cobweb,
-/atom/movable/effect/decal/riverdecal/edge{
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/cobweb,
+/obj/effect/decal/riverdecal/edge{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "CC" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/stairs/rampbottom{
 	dir = 1
 	},
 /area/deathmatch)
 "CI" = (
-/atom/movable/effect/decal/remains/human,
+/obj/effect/decal/remains/human,
 /turf/open/floor/wood,
 /area/deathmatch)
 "CQ" = (
@@ -618,8 +618,8 @@
 /obj/structure/platform_decoration{
 	dir = 10
 	},
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/riverdecal/edge,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/riverdecal/edge,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "Db" = (
@@ -629,9 +629,9 @@
 /turf/open/floor/grass,
 /area/deathmatch)
 "Ds" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/remains/xeno,
-/atom/movable/effect/decal/riverdecal/edge,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/remains/xeno,
+/obj/effect/decal/riverdecal/edge,
 /turf/open/floor/plating/plating_catwalk,
 /area/deathmatch)
 "DA" = (
@@ -640,9 +640,9 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "DG" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/cleanable/blood/gibs/xeno,
-/atom/movable/effect/decal/riverdecal/edge{
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/gibs/xeno,
+/obj/effect/decal/riverdecal/edge{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -662,7 +662,7 @@
 /turf/open/ground/river,
 /area/deathmatch)
 "EV" = (
-/atom/movable/effect/decal/cleanable/cobweb,
+/obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/wood,
 /area/deathmatch)
 "Fu" = (
@@ -683,11 +683,11 @@
 /turf/open/floor/grass,
 /area/deathmatch)
 "Go" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/riverdecal/edge{
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/riverdecal/edge{
 	dir = 1
 	},
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/plating/plating_catwalk,
 /area/deathmatch)
 "Gp" = (
@@ -695,15 +695,15 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/wood/broken,
 /area/deathmatch)
 "Gs" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/riverdecal/edge{
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/riverdecal/edge{
 	dir = 1
 	},
-/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "GF" = (
@@ -712,9 +712,9 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "GG" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/cleanable/ash,
-/atom/movable/effect/decal/riverdecal/edge,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/ash,
+/obj/effect/decal/riverdecal/edge,
 /turf/open/floor/plating/plating_catwalk,
 /area/deathmatch)
 "Hg" = (
@@ -723,7 +723,7 @@
 /turf/open/floor/grass,
 /area/deathmatch)
 "Hm" = (
-/atom/movable/effect/decal/remains/human,
+/obj/effect/decal/remains/human,
 /obj/structure/closet/cabinet,
 /obj/machinery/light{
 	dir = 4
@@ -731,14 +731,14 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "HF" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/riverdecal,
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/riverdecal,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "HH" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/grass,
 /area/deathmatch)
 "HP" = (
@@ -754,15 +754,15 @@
 /turf/open/floor/grass,
 /area/deathmatch)
 "Ip" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/riverdecal/edge,
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/riverdecal/edge,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/plating/plating_catwalk,
 /area/deathmatch)
 "IM" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/remains/human,
-/atom/movable/effect/decal/riverdecal/edge{
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/remains/human,
+/obj/effect/decal/riverdecal/edge{
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -772,9 +772,9 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "IV" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/cleanable/liquid_fuel,
-/atom/movable/effect/decal/riverdecal/edge,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/liquid_fuel,
+/obj/effect/decal/riverdecal/edge,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "Jd" = (
@@ -783,18 +783,18 @@
 /turf/open/floor/grime,
 /area/deathmatch)
 "Jt" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/cleanable/cobweb{
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/cobweb{
 	dir = 1
 	},
-/atom/movable/effect/decal/cleanable/ash,
-/atom/movable/effect/decal/riverdecal/edge,
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/decal/cleanable/ash,
+/obj/effect/decal/riverdecal/edge,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "Jx" = (
 /obj/structure/flora/ausbushes/brflowers,
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/grass,
 /area/deathmatch)
 "JF" = (
@@ -823,7 +823,7 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "Ky" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/grime,
 /area/deathmatch)
 "KR" = (
@@ -831,20 +831,20 @@
 /turf/open/floor/grass,
 /area/deathmatch)
 "MZ" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/cleanable/liquid_fuel,
-/atom/movable/effect/decal/riverdecal/edge{
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/liquid_fuel,
+/obj/effect/decal/riverdecal/edge{
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/deathmatch)
 "Nb" = (
-/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/grime,
 /area/deathmatch)
 "Ne" = (
 /obj/structure/flora/ausbushes/grassybush,
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/grass,
 /area/deathmatch)
 "Nn" = (
@@ -860,8 +860,8 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "Nu" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/riverdecal/edge,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/riverdecal/edge,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "Nw" = (
@@ -872,7 +872,7 @@
 /area/deathmatch)
 "Ny" = (
 /obj/structure/flora/ausbushes/ywflowers,
-/atom/movable/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
 /turf/open/floor/grass,
 /area/deathmatch)
 "Nz" = (
@@ -883,20 +883,20 @@
 /obj/structure/platform_decoration{
 	dir = 6
 	},
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/cleanable/blood/gibs/xeno,
-/atom/movable/effect/decal/riverdecal/edge,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/gibs/xeno,
+/obj/effect/decal/riverdecal/edge,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "ND" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/cleanable/blood/gibs/xeno,
-/atom/movable/effect/decal/riverdecal/edge,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/gibs/xeno,
+/obj/effect/decal/riverdecal/edge,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "NR" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/grime,
 /area/deathmatch)
 "Oh" = (
@@ -922,9 +922,9 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "PP" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/riverdecal/edge,
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/riverdecal/edge,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "PT" = (
@@ -934,9 +934,9 @@
 /turf/open/ground/river,
 /area/deathmatch)
 "Qd" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/remains/xeno,
-/atom/movable/effect/decal/riverdecal/edge,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/remains/xeno,
+/obj/effect/decal/riverdecal/edge,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "Qm" = (
@@ -956,8 +956,8 @@
 /turf/open/floor/grass,
 /area/deathmatch)
 "QL" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/riverdecal/edge{
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/riverdecal/edge{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -989,19 +989,19 @@
 /turf/open/ground/river,
 /area/deathmatch)
 "Sr" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/riverdecal,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/riverdecal,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "Sz" = (
-/atom/movable/effect/decal/cleanable/cobweb2,
+/obj/effect/decal/cleanable/cobweb2,
 /obj/structure/table/woodentable,
-/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/wood,
 /area/deathmatch)
 "SC" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/riverdecal/edge,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/riverdecal/edge,
 /turf/open/floor/plating/plating_catwalk,
 /area/deathmatch)
 "SO" = (
@@ -1009,7 +1009,7 @@
 /turf/open/floor/grass,
 /area/deathmatch)
 "SW" = (
-/atom/movable/effect/decal/cleanable/cobweb2,
+/obj/effect/decal/cleanable/cobweb2,
 /obj/structure/ore_box,
 /turf/open/floor/wood,
 /area/deathmatch)
@@ -1027,7 +1027,7 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "Un" = (
-/atom/movable/effect/decal/remains/human,
+/obj/effect/decal/remains/human,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -1038,20 +1038,20 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "UK" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/riverdecal/edge{
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/riverdecal/edge{
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/deathmatch)
 "Vv" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/cleanable/liquid_fuel,
-/atom/movable/effect/decal/cleanable/ash,
-/atom/movable/effect/decal/riverdecal/edge{
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/liquid_fuel,
+/obj/effect/decal/cleanable/ash,
+/obj/effect/decal/riverdecal/edge{
 	dir = 1
 	},
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "Vy" = (
@@ -1063,37 +1063,37 @@
 /turf/open/floor/grass,
 /area/deathmatch)
 "VE" = (
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/grass,
 /area/deathmatch)
 "VZ" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/riverdecal,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/riverdecal,
 /turf/open/floor/plating/plating_catwalk,
 /area/deathmatch)
 "Wj" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /obj/structure/flora/ausbushes/ppflowers,
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/grass,
 /area/deathmatch)
 "Wk" = (
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/wood/broken,
 /area/deathmatch)
 "Ws" = (
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/grass,
 /area/deathmatch)
 "WK" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/cleanable/vomit,
-/atom/movable/effect/decal/riverdecal/edge,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/vomit,
+/obj/effect/decal/riverdecal/edge,
 /turf/open/floor/plating/plating_catwalk,
 /area/deathmatch)
 "WT" = (
 /obj/structure/table/woodentable,
-/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/wood,
 /area/deathmatch)
 "WW" = (
@@ -1101,7 +1101,7 @@
 /turf/open/ground/river,
 /area/deathmatch)
 "WY" = (
-/atom/movable/effect/decal/cleanable/cobweb2,
+/obj/effect/decal/cleanable/cobweb2,
 /turf/open/floor/wood,
 /area/deathmatch)
 "Xb" = (
@@ -1109,11 +1109,11 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/wood,
 /area/deathmatch)
 "Xv" = (
-/atom/movable/effect/decal/cleanable/blood/gibs/xeno,
+/obj/effect/decal/cleanable/blood/gibs/xeno,
 /obj/structure/ore_box,
 /turf/open/floor/wood,
 /area/deathmatch)
@@ -1121,16 +1121,16 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/wood,
 /area/deathmatch)
 "XJ" = (
 /obj/structure/flora/ausbushes/ppflowers,
-/atom/movable/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
 /turf/open/floor/grass,
 /area/deathmatch)
 "XY" = (
-/atom/movable/effect/decal/remains/xeno,
+/obj/effect/decal/remains/xeno,
 /turf/open/floor/wood,
 /area/deathmatch)
 "Ya" = (
@@ -1140,7 +1140,7 @@
 /turf/open/ground/river,
 /area/deathmatch)
 "YK" = (
-/atom/movable/effect/decal/cleanable/blood/gibs/xeno,
+/obj/effect/decal/cleanable/blood/gibs/xeno,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -1157,25 +1157,25 @@
 /turf/open/floor/grass,
 /area/deathmatch)
 "YZ" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/riverdecal/edge{
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/riverdecal/edge{
 	dir = 1
 	},
-/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/plating/plating_catwalk,
 /area/deathmatch)
 "Ze" = (
 /turf/open/floor/wood/broken,
 /area/deathmatch)
 "ZD" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/cleanable/vomit,
-/atom/movable/effect/decal/riverdecal/edge,
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/vomit,
+/obj/effect/decal/riverdecal/edge,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/plating/plating_catwalk,
 /area/deathmatch)
 "ZJ" = (
-/atom/movable/effect/landmark/weapon_spawn/tier5_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier5_weapon_spawn,
 /turf/open/ground/river,
 /area/deathmatch)
 

@@ -109,7 +109,7 @@
 			return
 		else if (bullets)
 			var/turf/trg = get_turf(target)
-			var/atom/movable/effect/foam_dart_dummy/D = new/atom/movable/effect/foam_dart_dummy(get_turf(src))
+			var/obj/effect/foam_dart_dummy/D = new/obj/effect/foam_dart_dummy(get_turf(src))
 			bullets--
 			D.icon_state = "foamdart"
 			D.name = "foam dart"
@@ -172,7 +172,7 @@
 	icon_state = "foamdart"
 	w_class = WEIGHT_CLASS_TINY
 
-/atom/movable/effect/foam_dart_dummy
+/obj/effect/foam_dart_dummy
 	name = ""
 	desc = ""
 	icon = 'icons/obj/items/toy.dmi'

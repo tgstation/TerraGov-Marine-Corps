@@ -1,10 +1,10 @@
-/atom/movable/effect/spawner/vaultspawner
+/obj/effect/spawner/vaultspawner
 	var/maxX = 6
 	var/maxY = 6
 	var/minX = 2
 	var/minY = 2
 
-/atom/movable/effect/spawner/vaultspawner/Initialize(mapload, lX = minX, uX = maxX, lY = minY, uY = maxY,type = null)
+/obj/effect/spawner/vaultspawner/Initialize(mapload, lX = minX, uX = maxX, lY = minY, uY = maxY,type = null)
 	. = ..()
 	if(!type)
 		type = pick("sandstone","rock","alien")

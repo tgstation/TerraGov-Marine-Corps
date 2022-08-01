@@ -41,7 +41,7 @@
 	var/turf_targeted = get_turf(target)
 	if(!turf_targeted)
 		return
-	new /atom/movable/effect/ai_node/goal(turf_targeted, owner)
+	new /obj/effect/ai_node/goal(turf_targeted, owner)
 	succeed_activate()
 	add_cooldown()
 

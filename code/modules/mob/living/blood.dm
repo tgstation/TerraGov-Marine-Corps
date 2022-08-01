@@ -336,7 +336,7 @@
 
 	if(small_drip)
 		// Only a certain number of drips (or one large splatter) can be on a given turf.
-		var/atom/movable/effect/decal/cleanable/blood/drip/drop = locate() in T
+		var/obj/effect/decal/cleanable/blood/drip/drop = locate() in T
 		if(drop)
 			if(drop.drips < 3)
 				drop.drips++
@@ -353,10 +353,10 @@
 
 
 	// Find a blood decal or create a new one.
-	var/atom/movable/effect/decal/cleanable/blood/B = locate() in T
+	var/obj/effect/decal/cleanable/blood/B = locate() in T
 	if(B)
 		return
-	B = new /atom/movable/effect/decal/cleanable/blood/splatter(T)
+	B = new /obj/effect/decal/cleanable/blood/splatter(T)
 	if(b_color)
 		B.basecolor = b_color
 		B.color = b_color
@@ -377,6 +377,6 @@
 	if(!T.can_bloody)
 		return
 
-	var/atom/movable/effect/decal/cleanable/blood/xeno/XB = locate() in T.contents
+	var/obj/effect/decal/cleanable/blood/xeno/XB = locate() in T.contents
 	if(!XB)
 		XB = new(T)

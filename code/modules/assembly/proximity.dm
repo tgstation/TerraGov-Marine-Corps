@@ -64,7 +64,7 @@
 
 
 /obj/item/assembly/prox_sensor/HasProximity(atom/movable/AM)
-	if(istype(AM, /atom/movable/effect/beam))
+	if(istype(AM, /obj/effect/beam))
 		return
 	sense()
 

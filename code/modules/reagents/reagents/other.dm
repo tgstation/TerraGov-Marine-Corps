@@ -229,9 +229,9 @@
 
 /datum/reagent/carbon/reaction_turf(turf/T, volume)
 	if(!isspaceturf(T))
-		var/atom/movable/effect/decal/cleanable/dirt/dirtoverlay = locate(/atom/movable/effect/decal/cleanable/dirt, T)
+		var/obj/effect/decal/cleanable/dirt/dirtoverlay = locate(/obj/effect/decal/cleanable/dirt, T)
 		if(!dirtoverlay)
-			dirtoverlay = new/atom/movable/effect/decal/cleanable/dirt(T)
+			dirtoverlay = new/obj/effect/decal/cleanable/dirt(T)
 			dirtoverlay.alpha = volume*30
 		else
 			dirtoverlay.alpha = min(dirtoverlay.alpha+volume*30, 255)
@@ -340,9 +340,9 @@
 /datum/reagent/radium/reaction_turf(turf/T, volume)
 	if(volume <= 3 || !isfloorturf(T))
 		return
-	var/atom/movable/effect/decal/cleanable/greenglow/glow = locate(/atom/movable/effect/decal/cleanable/greenglow, T)
+	var/obj/effect/decal/cleanable/greenglow/glow = locate(/obj/effect/decal/cleanable/greenglow, T)
 	if(!glow)
-		new /atom/movable/effect/decal/cleanable/greenglow(T)
+		new /obj/effect/decal/cleanable/greenglow(T)
 
 
 /datum/reagent/iron
@@ -389,9 +389,9 @@
 /datum/reagent/uranium/reaction_turf(turf/T, reac_volume)
 	if(reac_volume <= 3 || !isfloorturf(T))
 		return
-	var/atom/movable/effect/decal/cleanable/greenglow/glow = locate(/atom/movable/effect/decal/cleanable/greenglow, T)
+	var/obj/effect/decal/cleanable/greenglow/glow = locate(/obj/effect/decal/cleanable/greenglow, T)
 	if(!glow)
-		new /atom/movable/effect/decal/cleanable/greenglow(T)
+		new /obj/effect/decal/cleanable/greenglow(T)
 
 /datum/reagent/aluminum
 	name = "Aluminum"
@@ -416,7 +416,7 @@
 /datum/reagent/fuel/reaction_turf(turf/T, volume)
 	if(volume <= 3 || !isfloorturf(T))
 		return
-	new /atom/movable/effect/decal/cleanable/liquid_fuel(T, volume) //It already handles dupes on it own turf.
+	new /obj/effect/decal/cleanable/liquid_fuel(T, volume) //It already handles dupes on it own turf.
 
 /datum/reagent/fuel/on_mob_life(mob/living/L)
 	L.adjustToxLoss(1)
@@ -444,7 +444,7 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 
 /datum/reagent/space_cleaner/reaction_obj(obj/O, volume)
-	if(istype(O,/atom/movable/effect/decal/cleanable))
+	if(istype(O,/obj/effect/decal/cleanable))
 		qdel(O)
 	else if(O)
 		O.clean_blood()
@@ -452,7 +452,7 @@
 /datum/reagent/space_cleaner/reaction_turf(turf/T, volume)
 	if(volume >= 1)
 		T.clean_blood()
-		for(var/atom/movable/effect/decal/cleanable/C in T.contents)
+		for(var/obj/effect/decal/cleanable/C in T.contents)
 			reaction_obj(C, volume)
 			qdel(C)
 

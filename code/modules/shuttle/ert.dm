@@ -76,9 +76,9 @@
 	for(var/t in return_turfs())
 		var/turf/T = t
 		for(var/atom/movable/O in T.GetAllContents())
-			if(istype(O, /atom/movable/effect/landmark/distress))
+			if(istype(O, /obj/effect/landmark/distress))
 				mob_spawns += O
-			else if(istype(O, /atom/movable/effect/landmark/distress_item))
+			else if(istype(O, /obj/effect/landmark/distress_item))
 				item_spawns += O
 			else if(istype(O, /obj/machinery/door/poddoor/shutters/transit))
 				shutters += O

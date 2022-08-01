@@ -1,10 +1,10 @@
 /*SPAWNING LANDMARKS*/
 //Check below to see what the crates contain, these landmarks will spawn in a bunch of crates at once, to make it easy to spawn in supplies.
-/atom/movable/effect/landmark/supplyspawner
+/obj/effect/landmark/supplyspawner
 	name = "supply spawner"
 	var/list/supply = list()
 
-/atom/movable/effect/landmark/supplyspawner/Initialize()
+/obj/effect/landmark/supplyspawner/Initialize()
 	. = ..()
 	if(/turf/open in range(1))
 		var/list/T = list()
@@ -18,7 +18,7 @@
 	return INITIALIZE_HINT_QDEL
 
 
-/atom/movable/effect/landmark/supplyspawner/weapons
+/obj/effect/landmark/supplyspawner/weapons
 	name = "weapon supplies"
 	supply = list(
 		/obj/structure/largecrate/supply/weapons/standard_carbine = 2,
@@ -32,7 +32,7 @@
 		/obj/structure/largecrate/supply/explosives/grenades = 2,
 	)
 
-/atom/movable/effect/landmark/supplyspawner/ammo
+/obj/effect/landmark/supplyspawner/ammo
 	name = "ammunition supplies"
 	supply = list(
 		/obj/structure/largecrate/supply/ammo/m41a = 4,
@@ -42,7 +42,7 @@
 		/obj/structure/largecrate/supply/ammo/pistol = 4,
 	)
 
-/atom/movable/effect/landmark/supplyspawner/engineering
+/obj/effect/landmark/supplyspawner/engineering
 	name = "engineering supplies"
 	supply = list(
 		/obj/structure/largecrate/supply/supplies/metal = 5,
@@ -54,7 +54,7 @@
 		/obj/structure/largecrate/supply/powerloader = 1,
 	)
 
-/atom/movable/effect/landmark/supplyspawner/turrets
+/obj/effect/landmark/supplyspawner/turrets
 	name = "defensive gun emplacement supplies"
 	supply = list(
 		/obj/structure/largecrate/supply/weapons/sentries = 2,
@@ -63,11 +63,11 @@
 		/obj/structure/largecrate/supply/ammo/standard_hmg = 1,
 	)
 
-/atom/movable/effect/landmark/supplyspawner/food
+/obj/effect/landmark/supplyspawner/food
 	name = "food crate supplies"
 	supply = list(/obj/structure/largecrate/supply/supplies/mre = 3, /obj/structure/largecrate/supply/supplies/water = 2)
 
-/atom/movable/effect/landmark/supplyspawner/medical
+/obj/effect/landmark/supplyspawner/medical
 	name = "medical supplies"
 	supply = list(
 		/obj/structure/largecrate/supply/medicine/medkits = 2,

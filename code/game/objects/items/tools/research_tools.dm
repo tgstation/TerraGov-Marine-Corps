@@ -86,7 +86,7 @@
 		return
 
 	var/spawner_located = FALSE
-	for(var/atom/movable/effect/landmark/excavation_site_spawner/spawner_to_check AS in SSexcavation.active_spawners)
+	for(var/obj/effect/landmark/excavation_site_spawner/spawner_to_check AS in SSexcavation.active_spawners)
 		if(get_dist(user, spawner_to_check) < 3)
 			say(span_notice("<b>Excavation site found, escavating...</b>"))
 			SSexcavation.excavate_site(spawner_to_check)

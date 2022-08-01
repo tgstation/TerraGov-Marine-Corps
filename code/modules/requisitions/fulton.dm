@@ -8,7 +8,7 @@
 	resistance_flags = RESIST_ALL
 	///Reference to the balloon vis obj effect
 	var/atom/movable/vis_obj/fulton_baloon/baloon
-	var/atom/movable/effect/fulton_extraction_holder/holder_obj
+	var/obj/effect/fulton_extraction_holder/holder_obj
 	/// How many times you can use the fulton before it goes poof
 	var/uses = 3
 
@@ -107,7 +107,7 @@
 	active = FALSE
 
 
-/atom/movable/effect/fulton_extraction_holder
+/obj/effect/fulton_extraction_holder
 	name = "fulton extraction holder"
 	desc = "You shouldn't see this."
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT

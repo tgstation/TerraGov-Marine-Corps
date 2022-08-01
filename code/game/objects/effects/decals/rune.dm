@@ -1,4 +1,4 @@
-/atom/movable/effect/decal/cleanable/rune
+/obj/effect/decal/cleanable/rune
 	name = "rune"
 	desc = "A rune drawn in blood."
 	icon = 'icons/obj/rune.dmi'
@@ -7,20 +7,20 @@
 	anchored = TRUE
 
 
-/atom/movable/effect/decal/cleanable/rune/Initialize()
+/obj/effect/decal/cleanable/rune/Initialize()
 	. = ..()
 	icon_state = "rune[pick("1","2","3","4","5","6")]"
 
-/atom/movable/effect/decal/cleanable/rune/blank
+/obj/effect/decal/cleanable/rune/blank
 	icon_state = "main1"
 
-/atom/movable/effect/decal/cleanable/rune/blank/Initialize()
+/obj/effect/decal/cleanable/rune/blank/Initialize()
 	. = ..()
 	icon_state = "main[pick("1","2","3","4","5","6")]"
 
-/atom/movable/effect/decal/cleanable/rune/alt
+/obj/effect/decal/cleanable/rune/alt
 	icon_state = "shade"
 
-/atom/movable/effect/decal/cleanable/rune/alt/Initialize()
+/obj/effect/decal/cleanable/rune/alt/Initialize()
 	. = ..()
 	icon_state = "shade[pick("1","2","3","4","5","6")]"

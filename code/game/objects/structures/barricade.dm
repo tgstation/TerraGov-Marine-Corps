@@ -130,7 +130,7 @@
 /obj/structure/barricade/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	for(var/atom/movable/effect/xenomorph/acid/A in loc)
+	for(var/obj/effect/xenomorph/acid/A in loc)
 		if(A.acid_t == src)
 			to_chat(user, "You can't get near that, it's melting!")
 			return
@@ -254,7 +254,7 @@
 			. += image('icons/Marine/barricades.dmi', icon_state = "[barricade_type]_closed_wire")
 
 
-/obj/structure/barricade/effect_smoke(atom/movable/effect/particle_effect/smoke/S)
+/obj/structure/barricade/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
 	if(!.)
 		return
@@ -314,7 +314,7 @@
 /obj/structure/barricade/snow/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	for(var/atom/movable/effect/xenomorph/acid/A in loc)
+	for(var/obj/effect/xenomorph/acid/A in loc)
 		if(A.acid_t == src)
 			to_chat(user, "You can't get near that, it's melting!")
 			return
@@ -338,7 +338,7 @@
 		if(!ET.folded)
 			user.visible_message(span_notice(" \The [user] removes \the [src]."))
 			var/deconstructed = TRUE
-			for(var/atom/movable/effect/xenomorph/acid/A in loc)
+			for(var/obj/effect/xenomorph/acid/A in loc)
 				if(A.acid_t != src)
 					continue
 				deconstructed = FALSE
@@ -392,7 +392,7 @@
 /obj/structure/barricade/wooden/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	for(var/atom/movable/effect/xenomorph/acid/A in loc)
+	for(var/obj/effect/xenomorph/acid/A in loc)
 		if(A.acid_t == src)
 			to_chat(user, "You can't get near that, it's melting!")
 			return
@@ -570,7 +570,7 @@
 	if(!WT.isOn())
 		return FALSE
 
-	for(var/atom/movable/effect/xenomorph/acid/A in loc)
+	for(var/obj/effect/xenomorph/acid/A in loc)
 		if(A.acid_t == src)
 			to_chat(user, "You can't get near that, it's melting!")
 			return TRUE
@@ -741,7 +741,7 @@
 			span_notice("You take [src]'s panels apart."))
 			playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 			var/deconstructed = TRUE
-			for(var/atom/movable/effect/xenomorph/acid/A in loc)
+			for(var/obj/effect/xenomorph/acid/A in loc)
 				if(A.acid_t != src)
 					continue
 				deconstructed = FALSE
@@ -1030,7 +1030,7 @@
 				span_notice("You take [src]'s panels apart."))
 				playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 				var/deconstructed = TRUE
-				for(var/atom/movable/effect/xenomorph/acid/A in loc)
+				for(var/obj/effect/xenomorph/acid/A in loc)
 					if(A.acid_t != src)
 						continue
 					deconstructed = FALSE
@@ -1118,7 +1118,7 @@
 /obj/structure/barricade/sandbags/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	for(var/atom/movable/effect/xenomorph/acid/A in loc)
+	for(var/obj/effect/xenomorph/acid/A in loc)
 		if(A.acid_t == src)
 			to_chat(user, "You can't get near that, it's melting!")
 			return
@@ -1132,7 +1132,7 @@
 				user.visible_message(span_notice("[user] disassembles [src]."),
 				span_notice("You disassemble [src]."))
 				var/deconstructed = TRUE
-				for(var/atom/movable/effect/xenomorph/acid/A in loc)
+				for(var/obj/effect/xenomorph/acid/A in loc)
 					if(A.acid_t != src)
 						continue
 					deconstructed = FALSE

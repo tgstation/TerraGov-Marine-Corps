@@ -26,7 +26,7 @@
  *  Muzzle Vars
 */
 	///Effect for the muzzle flash of the gun.
-	var/atom/movable/vis_atom/movable/effect/muzzle_flash/muzzle_flash
+	var/atom/movable/vis_obj/effect/muzzle_flash/muzzle_flash
 	///Icon state of the muzzle flash effect.
 	var/muzzleflash_iconstate
 	///Brightness of the muzzle flash effect.
@@ -1689,7 +1689,7 @@
 	if(lightrange <= 0)
 		set_light_on(FALSE)
 
-/obj/item/weapon/gun/proc/remove_muzzle_flash(atom/movable/flash_loc, atom/movable/vis_atom/movable/effect/muzzle_flash/muzzle_flash)
+/obj/item/weapon/gun/proc/remove_muzzle_flash(atom/movable/flash_loc, atom/movable/vis_obj/effect/muzzle_flash/muzzle_flash)
 	if(!QDELETED(flash_loc))
 		flash_loc.vis_contents -= muzzle_flash
 	muzzle_flash.applied = FALSE

@@ -8,7 +8,7 @@
 
 //the bases onto which you attach dropship equipments.
 
-/atom/movable/effect/attach_point
+/obj/effect/attach_point
 	name = "equipment attach point"
 	desc = "A place where heavy equipment can be installed with a powerloader."
 	anchored = TRUE
@@ -25,11 +25,11 @@
 	///The actual equipment installed on the attach point
 	var/obj/structure/dropship_equipment/installed_equipment
 
-/atom/movable/effect/attach_point/Destroy()
+/obj/effect/attach_point/Destroy()
 	QDEL_NULL(installed_equipment)
 	return ..()
 
-/atom/movable/effect/attach_point/attackby(obj/item/I, mob/user, params)
+/obj/effect/attach_point/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(!istype(I, /obj/item/powerloader_clamp))
@@ -70,92 +70,92 @@
 	return TRUE
 
 
-/atom/movable/effect/attach_point/weapon
+/obj/effect/attach_point/weapon
 	name = "weapon system attach point"
 	icon_state = "equip_base_front"
 	base_category = DROPSHIP_WEAPON
 
-/atom/movable/effect/attach_point/weapon/dropship1
+/obj/effect/attach_point/weapon/dropship1
 	ship_tag = SHUTTLE_ALAMO
 
-/atom/movable/effect/attach_point/weapon/dropship2
+/obj/effect/attach_point/weapon/dropship2
 	ship_tag = SHUTTLE_NORMANDY
 
-/atom/movable/effect/attach_point/weapon/dropship3
+/obj/effect/attach_point/weapon/dropship3
 	ship_tag = SHUTTLE_TRIUMPH
 
-/atom/movable/effect/attach_point/weapon/cas
+/obj/effect/attach_point/weapon/cas
 	ship_tag = SHUTTLE_CAS_DOCK
 	icon = 'icons/Marine/casship.dmi'
 	icon_state = "15"
 
-/atom/movable/effect/attach_point/weapon/minidropship
+/obj/effect/attach_point/weapon/minidropship
 	ship_tag = SHUTTLE_TADPOLE
 	icon_state = "equip_base"
 
-/atom/movable/effect/attach_point/weapon/minidropship/pointing_east
+/obj/effect/attach_point/weapon/minidropship/pointing_east
 	dir = 4
 
-/atom/movable/effect/attach_point/weapon/minidropship/pointing_west
+/obj/effect/attach_point/weapon/minidropship/pointing_west
 	dir = 8
 
-/atom/movable/effect/attach_point/crew_weapon
+/obj/effect/attach_point/crew_weapon
 	name = "rear attach point"
 	base_category = DROPSHIP_CREW_WEAPON
 
-/atom/movable/effect/attach_point/crew_weapon/dropship1
+/obj/effect/attach_point/crew_weapon/dropship1
 	ship_tag = SHUTTLE_ALAMO
 
-/atom/movable/effect/attach_point/crew_weapon/dropship2
+/obj/effect/attach_point/crew_weapon/dropship2
 	ship_tag = SHUTTLE_NORMANDY
 
-/atom/movable/effect/attach_point/crew_weapon/minidropship
+/obj/effect/attach_point/crew_weapon/minidropship
 	ship_tag = SHUTTLE_TADPOLE
 
-/atom/movable/effect/attach_point/crew_weapon/dropship1
+/obj/effect/attach_point/crew_weapon/dropship1
 	ship_tag = SHUTTLE_ALAMO
 
-/atom/movable/effect/attach_point/crew_weapon/dropship3
+/obj/effect/attach_point/crew_weapon/dropship3
 	ship_tag = SHUTTLE_ALAMO
 
-/atom/movable/effect/attach_point/electronics
+/obj/effect/attach_point/electronics
 	name = "electronic system attach point"
 	base_category = DROPSHIP_ELECTRONICS
 	icon_state = "equip_base_front"
 
-/atom/movable/effect/attach_point/electronics/dropship1
+/obj/effect/attach_point/electronics/dropship1
 	ship_tag = SHUTTLE_ALAMO
 
-/atom/movable/effect/attach_point/electronics/dropship2
+/obj/effect/attach_point/electronics/dropship2
 	ship_tag = SHUTTLE_NORMANDY
 
-/atom/movable/effect/attach_point/electronics/dropship3
+/obj/effect/attach_point/electronics/dropship3
 	ship_tag = SHUTTLE_TRIUMPH
 
 
-/atom/movable/effect/attach_point/fuel
+/obj/effect/attach_point/fuel
 	name = "engine system attach point"
 	icon = 'icons/Marine/mainship_props64.dmi'
 	icon_state = "fuel_base"
 	base_category = DROPSHIP_FUEL_EQP
 
-/atom/movable/effect/attach_point/fuel/dropship1
+/obj/effect/attach_point/fuel/dropship1
 	ship_tag = SHUTTLE_ALAMO
 
-/atom/movable/effect/attach_point/fuel/dropship2
+/obj/effect/attach_point/fuel/dropship2
 	ship_tag = SHUTTLE_NORMANDY
 
-/atom/movable/effect/attach_point/fuel/dropship3
+/obj/effect/attach_point/fuel/dropship3
 	ship_tag = SHUTTLE_TRIUMPH
 
 
-/atom/movable/effect/attach_point/computer
+/obj/effect/attach_point/computer
 	base_category = DROPSHIP_COMPUTER
 
-/atom/movable/effect/attach_point/computer/dropship1
+/obj/effect/attach_point/computer/dropship1
 	ship_tag = SHUTTLE_ALAMO
 
-/atom/movable/effect/attach_point/computer/dropship2
+/obj/effect/attach_point/computer/dropship2
 	ship_tag = SHUTTLE_NORMANDY
 
 
@@ -175,7 +175,7 @@
 	///on what kind of base this can be installed.
 	var/equip_category
 	///the ship base the equipment is currently installed on.
-	var/atom/movable/effect/attach_point/ship_base
+	var/obj/effect/attach_point/ship_base
 	///whether it uses ammo
 	var/dropship_equipment_flags = NONE
 	///the ammo currently equipped.
@@ -829,14 +829,14 @@
 		playsound(target_turf, ammo_warn_sound, 70, 1)
 
 	//Lase
-	var/atom/movable/effect/overlay/blinking_laser/laserdot = new SA.cas_effect(target_turf)
+	var/obj/effect/overlay/blinking_laser/laserdot = new SA.cas_effect(target_turf)
 	laserdot.dir = attackdir
 	var/list/effects_to_delete = list(laserdot)
 
 	//Marine-only visuals
 	var/predicted_dangerous_turfs = SA.get_turfs_to_impact(target_turf, attackdir)
 	for(var/turf/impact in predicted_dangerous_turfs)
-		effects_to_delete += new /atom/movable/effect/overlay/blinking_laser/marine/lines(impact)
+		effects_to_delete += new /obj/effect/overlay/blinking_laser/marine/lines(impact)
 
 	addtimer(CALLBACK(SA, /obj/structure/ship_ammo.proc/detonate_on, target_turf, attackdir), ammo_travelling_time)
 	QDEL_LIST_IN(effects_to_delete, ammo_travelling_time)

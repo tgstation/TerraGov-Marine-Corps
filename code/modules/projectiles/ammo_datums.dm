@@ -2517,7 +2517,7 @@ datum/ammo/bullet/revolver/tp44
 	if(T.density)
 		return
 
-	new /atom/movable/effect/xenomorph/spray(T, puddle_duration, puddle_acid_damage)
+	new /obj/effect/xenomorph/spray(T, puddle_duration, puddle_acid_damage)
 
 
 ///For the Spitter's Scatterspit ability

@@ -52,7 +52,7 @@
 
 
 /obj/item/reagent_containers/spray/proc/Spray_at(atom/A)
-	var/atom/movable/effect/decal/chempuff/D = new/atom/movable/effect/decal/chempuff(get_turf(src))
+	var/obj/effect/decal/chempuff/D = new/obj/effect/decal/chempuff(get_turf(src))
 	D.create_reagents(amount_per_transfer_from_this)
 	reagents.trans_to(D, amount_per_transfer_from_this, 1/spray_size)
 	D.color = mix_color_from_reagents(D.reagents.reagent_list)
@@ -167,7 +167,7 @@
 	var/Sprays[3]
 	for(var/i=1, i<=3, i++) // intialize sprays
 		if(src.reagents.total_volume < 1) break
-		var/atom/movable/effect/decal/chempuff/D = new/atom/movable/effect/decal/chempuff(get_turf(src))
+		var/obj/effect/decal/chempuff/D = new/obj/effect/decal/chempuff(get_turf(src))
 		D.create_reagents(amount_per_transfer_from_this)
 		src.reagents.trans_to(D, amount_per_transfer_from_this)
 
@@ -183,7 +183,7 @@
 
 	for(var/i=1, i<=Sprays.len, i++)
 		spawn()
-			var/atom/movable/effect/decal/chempuff/D = Sprays[i]
+			var/obj/effect/decal/chempuff/D = Sprays[i]
 			if(!D) continue
 
 			// Spreads the sprays a little bit

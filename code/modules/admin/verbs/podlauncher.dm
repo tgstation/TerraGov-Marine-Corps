@@ -17,7 +17,7 @@
 
 /datum/podlauncher
 	interaction_flags = INTERACT_UI_INTERACT
-	var/static/list/ignored_atoms = typecacheof(list(null, /mob/dead, /atom/movable/effect/landmark, /obj/docking_port, /atom/movable/effect/particle_effect/sparks, /atom/movable/effect/DPtarget, /atom/movable/effect/supplypod_selector))
+	var/static/list/ignored_atoms = typecacheof(list(null, /mob/dead, /obj/effect/landmark, /obj/docking_port, /obj/effect/particle_effect/sparks, /obj/effect/DPtarget, /obj/effect/supplypod_selector))
 	var/turf/oldTurf
 	var/client/holder
 	var/area/bay
@@ -35,7 +35,7 @@
 	var/list/orderedArea
 	var/list/turf/acceptableTurfs
 	var/list/launchList
-	var/atom/movable/effect/supplypod_selector/selector
+	var/obj/effect/supplypod_selector/selector
 	var/obj/structure/closet/supplypod/centcompod/temp_pod
 
 
@@ -643,11 +643,11 @@
 	if(launchClone)
 		for(var/atom/movable/O in launchList)
 			DuplicateObject(O, toLaunch)
-		new /atom/movable/effect/DPtarget(A, toLaunch)
+		new /obj/effect/DPtarget(A, toLaunch)
 	else
 		for(var/atom/movable/O in launchList)
 			O.forceMove(toLaunch)
-		new /atom/movable/effect/DPtarget(A, toLaunch)
+		new /obj/effect/DPtarget(A, toLaunch)
 	if(launchClone)
 		launchCounter++
 

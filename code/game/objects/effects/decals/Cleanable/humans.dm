@@ -1,6 +1,6 @@
 #define DRYING_TIME 5 * 60*10                        //for 1 unit of depth in puddle (amount var)
 
-/atom/movable/effect/decal/cleanable/blood
+/obj/effect/decal/cleanable/blood
 	name = "blood"
 	desc = "It's thick and gooey. Perhaps it's the chef's cooking?"
 	gender = PLURAL
@@ -16,42 +16,42 @@
 	var/drying_timer
 
 
-/atom/movable/effect/decal/cleanable/blood/Initialize()
+/obj/effect/decal/cleanable/blood/Initialize()
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = .proc/on_cross,
 	)
 	AddElement(/datum/element/connect_loc, connections)
 	update_icon()
-	if(istype(src, /atom/movable/effect/decal/cleanable/blood/gibs))
+	if(istype(src, /obj/effect/decal/cleanable/blood/gibs))
 		return
-	if(istype(src, /atom/movable/effect/decal/cleanable/blood/tracks))
+	if(istype(src, /obj/effect/decal/cleanable/blood/tracks))
 		return // We handle our own drying.
 	if(isturf(loc))
-		for(var/atom/movable/effect/decal/cleanable/blood/B in loc)
+		for(var/obj/effect/decal/cleanable/blood/B in loc)
 			if(B == src)
 				continue
 			return INITIALIZE_HINT_QDEL
 	return INITIALIZE_HINT_LATELOAD
 
-/atom/movable/effect/decal/cleanable/blood/LateInitialize()
+/obj/effect/decal/cleanable/blood/LateInitialize()
 	. = ..()
 	if(QDELETED(src))
 		CRASH("[type] already deleted on LateInitialize. Loc: ([x], [y], [z])")
 	drying_timer = addtimer(CALLBACK(src, .proc/dry), DRYING_TIME * (amount + 1), TIMER_STOPPABLE)
 
 
-/atom/movable/effect/decal/cleanable/blood/Destroy()
+/obj/effect/decal/cleanable/blood/Destroy()
 	if(drying_timer)
 		deltimer(drying_timer)
 	return ..()
 
 
-/atom/movable/effect/decal/cleanable/blood/update_icon()
+/obj/effect/decal/cleanable/blood/update_icon()
 	if(basecolor == "rainbow") basecolor = "#[pick(list("FF0000","FF7F00","FFFF00","00FF00","0000FF","4B0082","8F00FF"))]"
 	color = basecolor
 
-/atom/movable/effect/decal/cleanable/blood/proc/on_cross(datum/source, mob/living/carbon/human/perp, oldloc, oldlocs)
+/obj/effect/decal/cleanable/blood/proc/on_cross(datum/source, mob/living/carbon/human/perp, oldloc, oldlocs)
 	SIGNAL_HANDLER
 	if(!istype(perp))
 		return
@@ -81,13 +81,13 @@
 	perp.update_inv_shoes(1)
 	amount--
 
-/atom/movable/effect/decal/cleanable/blood/proc/dry()
+/obj/effect/decal/cleanable/blood/proc/dry()
 		name = "dried [src.name]"
 		desc = "It's dry and crusty. Someone is not doing their job."
 		color = adjust_brightness(color, -50)
 		amount = 0
 
-/atom/movable/effect/decal/cleanable/blood/attack_hand(mob/living/user)
+/obj/effect/decal/cleanable/blood/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -109,11 +109,11 @@
 
 
 
-/atom/movable/effect/decal/cleanable/blood/splatter
+/obj/effect/decal/cleanable/blood/splatter
 	random_icon_states = list("mgibbl1", "mgibbl2", "mgibbl3", "mgibbl4", "mgibbl5")
 	amount = 2
 
-/atom/movable/effect/decal/cleanable/blood/drip
+/obj/effect/decal/cleanable/blood/drip
 	name = "drips of blood"
 	desc = "Some small drips of blood."
 	gender = PLURAL
@@ -123,21 +123,21 @@
 	amount = 0
 	var/drips
 
-/atom/movable/effect/decal/cleanable/blood/six
+/obj/effect/decal/cleanable/blood/six
 	icon_state = "gib6"
 
-/atom/movable/effect/decal/cleanable/blood/drip/tracking_fluid
+/obj/effect/decal/cleanable/blood/drip/tracking_fluid
 	name = "tracking fluid"
 	desc = "Tracking fluid from a tracking round."
 	basecolor = "#00FFFF"
 
-/atom/movable/effect/decal/cleanable/blood/drip/tracking_fluid/dry()
+/obj/effect/decal/cleanable/blood/drip/tracking_fluid/dry()
 	name = "dried [name]"
 	desc = "Tracking fluid from a tracking round. It appears to have lost its color."
 	color = adjust_brightness(color, -75)
 	amount = 0
 
-/atom/movable/effect/decal/cleanable/blood/writing
+/obj/effect/decal/cleanable/blood/writing
 	icon_state = "tracks"
 	desc = "It looks like a writing in blood."
 	gender = NEUTER
@@ -145,20 +145,20 @@
 	amount = 0
 	var/message
 
-/atom/movable/effect/decal/cleanable/blood/writing/Initialize()
+/obj/effect/decal/cleanable/blood/writing/Initialize()
 	. = ..()
 	if(length(random_icon_states))
-		for(var/atom/movable/effect/decal/cleanable/blood/writing/W in loc)
+		for(var/obj/effect/decal/cleanable/blood/writing/W in loc)
 			random_icon_states.Remove(W.icon_state)
 		icon_state = pick(random_icon_states)
 	else
 		icon_state = "writing1"
 
-/atom/movable/effect/decal/cleanable/blood/writing/examine(mob/user)
+/obj/effect/decal/cleanable/blood/writing/examine(mob/user)
 	. = ..()
 	. += "It reads: <font color='[basecolor]'>\"[message]\"<font>"
 
-/atom/movable/effect/decal/cleanable/blood/gibs
+/obj/effect/decal/cleanable/blood/gibs
 	name = "gibs"
 	desc = "They look bloody and gruesome."
 	gender = PLURAL
@@ -170,7 +170,7 @@
 	random_icon_states = list("gib1", "gib2", "gib3", "gib4", "gib5", "gib6")
 	var/fleshcolor = "#FFC896"
 
-/atom/movable/effect/decal/cleanable/blood/gibs/update_icon()
+/obj/effect/decal/cleanable/blood/gibs/update_icon()
 
 	var/image/giblets = new(base_icon, "[icon_state]_flesh", dir)
 	if(!fleshcolor || fleshcolor == "rainbow")
@@ -185,29 +185,29 @@
 	overlays.Cut()
 	overlays += giblets
 
-/atom/movable/effect/decal/cleanable/blood/gibs/up
+/obj/effect/decal/cleanable/blood/gibs/up
 	random_icon_states = list("gib1", "gib2", "gib3", "gib4", "gib5", "gib6","gibup1","gibup1","gibup1")
 
-/atom/movable/effect/decal/cleanable/blood/gibs/down
+/obj/effect/decal/cleanable/blood/gibs/down
 	random_icon_states = list("gib1", "gib2", "gib3", "gib4", "gib5", "gib6","gibdown1","gibdown1","gibdown1")
 
-/atom/movable/effect/decal/cleanable/blood/gibs/body
+/obj/effect/decal/cleanable/blood/gibs/body
 	random_icon_states = list("gibhead", "gibtorso")
 
-/atom/movable/effect/decal/cleanable/blood/gibs/limb
+/obj/effect/decal/cleanable/blood/gibs/limb
 	random_icon_states = list("gibleg", "gibarm")
 
-/atom/movable/effect/decal/cleanable/blood/gibs/core
+/obj/effect/decal/cleanable/blood/gibs/core
 	random_icon_states = list("gibmid1", "gibmid2", "gibmid3")
 
 
-/atom/movable/effect/decal/cleanable/blood/gibs/proc/streak(list/directions)
+/obj/effect/decal/cleanable/blood/gibs/proc/streak(list/directions)
 	spawn (0)
 		var/direction = pick(directions)
 		for (var/i = 0, i < pick(1, 200; 2, 150; 3, 50; 4), i++)
 			sleep(3)
 			if (i > 0)
-				var/atom/movable/effect/decal/cleanable/blood/b = new /atom/movable/effect/decal/cleanable/blood/splatter(src.loc)
+				var/obj/effect/decal/cleanable/blood/b = new /obj/effect/decal/cleanable/blood/splatter(src.loc)
 				b.basecolor = src.basecolor
 				b.update_icon()
 
@@ -215,7 +215,7 @@
 				break
 
 
-/atom/movable/effect/decal/cleanable/mucus
+/obj/effect/decal/cleanable/mucus
 	name = "mucus"
 	desc = "Disgusting mucus."
 	gender = PLURAL
@@ -227,6 +227,6 @@
 	random_icon_states = list("mucus")
 	var/dry=0 // Keeps the lag down
 
-/atom/movable/effect/decal/cleanable/mucus/Initialize()
+/obj/effect/decal/cleanable/mucus/Initialize()
 	. = ..()
 	addtimer(VARSET_CALLBACK(src, dry, TRUE), DRYING_TIME * 2)

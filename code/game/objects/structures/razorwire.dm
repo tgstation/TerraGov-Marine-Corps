@@ -240,7 +240,7 @@
 	var/remaining = CEILING(health_percent, 25)
 	icon_state = "[base_icon_state]_[remaining]"
 
-/obj/structure/razorwire/effect_smoke(atom/movable/effect/particle_effect/smoke/S)
+/obj/structure/razorwire/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
 	if(!.)
 		return

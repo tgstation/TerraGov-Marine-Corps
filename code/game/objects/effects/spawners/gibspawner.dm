@@ -1,17 +1,17 @@
 
 /proc/gibs(atom/location)		//CARN MARKER
-	new /atom/movable/effect/spawner/gibspawner/generic(get_turf(location))
+	new /obj/effect/spawner/gibspawner/generic(get_turf(location))
 
 /proc/hgibs(atom/location, fleshcolor, bloodcolor)
-	new /atom/movable/effect/spawner/gibspawner/human(get_turf(location),fleshcolor,bloodcolor)
+	new /obj/effect/spawner/gibspawner/human(get_turf(location),fleshcolor,bloodcolor)
 
 /proc/xgibs(atom/location)
-	new /atom/movable/effect/spawner/gibspawner/xeno(get_turf(location))
+	new /obj/effect/spawner/gibspawner/xeno(get_turf(location))
 
 /proc/robogibs(atom/location)
-	new /atom/movable/effect/spawner/gibspawner/robot(get_turf(location))
+	new /obj/effect/spawner/gibspawner/robot(get_turf(location))
 
-/atom/movable/effect/spawner/gibspawner
+/obj/effect/spawner/gibspawner
 	icon = 'icons/effects/landmarks_static.dmi'
 	icon_state = "gibsmarker"
 	var/sparks = 0 //whether sparks spread on Gib()
@@ -35,7 +35,7 @@
 			to_chat(world, span_warning("Gib list length mismatch!"))
 			return
 
-		var/atom/movable/effect/decal/cleanable/blood/gibs/gib = null
+		var/obj/effect/decal/cleanable/blood/gibs/gib = null
 		if(sparks)
 			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 			s.set_up(2, 1, location)
@@ -64,9 +64,9 @@
 
 
 
-/atom/movable/effect/spawner/gibspawner
+/obj/effect/spawner/gibspawner
 	generic
-		gibtypes = list(/atom/movable/effect/decal/cleanable/blood/gibs,/atom/movable/effect/decal/cleanable/blood/gibs,/atom/movable/effect/decal/cleanable/blood/gibs/core)
+		gibtypes = list(/obj/effect/decal/cleanable/blood/gibs,/obj/effect/decal/cleanable/blood/gibs,/obj/effect/decal/cleanable/blood/gibs/core)
 		gibamounts = list(2,2,1)
 
 		New()
@@ -74,7 +74,7 @@
 			..()
 
 	human
-		gibtypes = list(/atom/movable/effect/decal/cleanable/blood/gibs,/atom/movable/effect/decal/cleanable/blood/gibs/down,/atom/movable/effect/decal/cleanable/blood/gibs,/atom/movable/effect/decal/cleanable/blood/gibs,/atom/movable/effect/decal/cleanable/blood/gibs,/atom/movable/effect/decal/cleanable/blood/gibs,/atom/movable/effect/decal/cleanable/blood/gibs/core)
+		gibtypes = list(/obj/effect/decal/cleanable/blood/gibs,/obj/effect/decal/cleanable/blood/gibs/down,/obj/effect/decal/cleanable/blood/gibs,/obj/effect/decal/cleanable/blood/gibs,/obj/effect/decal/cleanable/blood/gibs,/obj/effect/decal/cleanable/blood/gibs,/obj/effect/decal/cleanable/blood/gibs/core)
 		gibamounts = list(1,1,1,1,1,1,1)
 
 		New()
@@ -83,7 +83,7 @@
 			..()
 
 	xeno
-		gibtypes = list(/atom/movable/effect/decal/cleanable/blood/gibs/xeno/up,/atom/movable/effect/decal/cleanable/blood/gibs/xeno/down,/atom/movable/effect/decal/cleanable/blood/gibs/xeno,/atom/movable/effect/decal/cleanable/blood/gibs/xeno,/atom/movable/effect/decal/cleanable/blood/gibs/xeno/body,/atom/movable/effect/decal/cleanable/blood/gibs/xeno/limb,/atom/movable/effect/decal/cleanable/blood/gibs/xeno/core)
+		gibtypes = list(/obj/effect/decal/cleanable/blood/gibs/xeno/up,/obj/effect/decal/cleanable/blood/gibs/xeno/down,/obj/effect/decal/cleanable/blood/gibs/xeno,/obj/effect/decal/cleanable/blood/gibs/xeno,/obj/effect/decal/cleanable/blood/gibs/xeno/body,/obj/effect/decal/cleanable/blood/gibs/xeno/limb,/obj/effect/decal/cleanable/blood/gibs/xeno/core)
 		gibamounts = list(1,1,1,1,1,1,1)
 
 		New()
@@ -93,7 +93,7 @@
 
 	robot
 		sparks = 1
-		gibtypes = list(/atom/movable/effect/decal/cleanable/blood/gibs/robot/up,/atom/movable/effect/decal/cleanable/blood/gibs/robot/down,/atom/movable/effect/decal/cleanable/blood/gibs/robot,/atom/movable/effect/decal/cleanable/blood/gibs/robot,/atom/movable/effect/decal/cleanable/blood/gibs/robot,/atom/movable/effect/decal/cleanable/blood/gibs/robot/limb)
+		gibtypes = list(/obj/effect/decal/cleanable/blood/gibs/robot/up,/obj/effect/decal/cleanable/blood/gibs/robot/down,/obj/effect/decal/cleanable/blood/gibs/robot,/obj/effect/decal/cleanable/blood/gibs/robot,/obj/effect/decal/cleanable/blood/gibs/robot,/obj/effect/decal/cleanable/blood/gibs/robot/limb)
 		gibamounts = list(1,1,1,1,1,1)
 
 		New()

@@ -156,7 +156,7 @@
 /mob/living/simple_animal/gib_animation()
 	if(!icon_gib)
 		return
-	new /atom/movable/effect/overlay/temp/gib_animation/animal(loc, 0, src, icon_gib)
+	new /obj/effect/overlay/temp/gib_animation/animal(loc, 0, src, icon_gib)
 
 
 /mob/living/simple_animal/proc/set_varspeed(var_value)

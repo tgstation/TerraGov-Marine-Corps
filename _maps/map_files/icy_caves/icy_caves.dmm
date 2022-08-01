@@ -3,7 +3,7 @@
 /turf/open/space/basic,
 /area/space)
 "ab" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /obj/structure/cable,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
@@ -12,26 +12,26 @@
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "ad" = (
-/atom/movable/effect/decal/cleanable/blood,
-/atom/movable/effect/landmark/corpsespawner/pmc,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/landmark/corpsespawner/pmc,
 /turf/open/floor/plating/dmg3,
 /area/icy_caves/caves/crashed_ship)
 "ae" = (
 /obj/structure/xenoautopsy/tank/broken,
 /obj/item/alien_embryo,
-/atom/movable/effect/decal/cleanable/blood/xeno,
+/obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/plating/dmg1,
 /area/icy_caves/caves/crashed_ship)
 "af" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
 /turf/open/floor/cult,
 /area/icy_caves/caves/chapel)
 "ag" = (
-/atom/movable/effect/decal/cleanable/blood/xeno,
-/atom/movable/effect/landmark/nuke_spawn,
+/obj/effect/decal/cleanable/blood/xeno,
+/obj/effect/landmark/nuke_spawn,
 /turf/open/floor/plating/dmg3,
 /area/icy_caves/caves/crashed_ship)
 "ah" = (
@@ -43,7 +43,7 @@
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "aj" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "ak" = (
@@ -52,8 +52,8 @@
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "al" = (
-/atom/movable/effect/decal/cleanable/blood,
-/atom/movable/effect/landmark/corpsespawner/pmc,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/landmark/corpsespawner/pmc,
 /turf/open/floor/plating/dmg1,
 /area/icy_caves/caves/crashed_ship)
 "am" = (
@@ -64,12 +64,12 @@
 /area/icy_caves/caves/northwestmonorail)
 "an" = (
 /obj/structure/xenoautopsy/tank/broken,
-/atom/movable/effect/decal/cleanable/blood/xeno,
+/obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "ao" = (
-/atom/movable/effect/decal/cleanable/blood,
-/atom/movable/effect/landmark/corpsespawner/scientist,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/landmark/corpsespawner/scientist,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "aq" = (
@@ -78,11 +78,11 @@
 /area/icy_caves/caves/crashed_ship)
 "ar" = (
 /obj/machinery/cryopod,
-/atom/movable/effect/landmark/corpsespawner/pmc,
+/obj/effect/landmark/corpsespawner/pmc,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "as" = (
-/atom/movable/effect/landmark/corpsespawner/miner,
+/obj/effect/landmark/corpsespawner/miner,
 /turf/open/floor/cult,
 /area/icy_caves/caves/south)
 "at" = (
@@ -93,7 +93,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ2)
 "au" = (
-/atom/movable/effect/landmark/corpsespawner/miner{
+/obj/effect/landmark/corpsespawner/miner{
 	corpseback = /obj/item/storage/backpack/satchel/norm;
 	corpsehelmet = /obj/item/clothing/head/hardhat/white;
 	corpseradio = /obj/item/radio/headset/survivor;
@@ -107,7 +107,7 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/west)
 "av" = (
-/atom/movable/effect/decal/cleanable/blood/xeno,
+/obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "aw" = (
@@ -119,8 +119,8 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/west)
 "ay" = (
-/atom/movable/effect/landmark/weed_node,
-/atom/movable/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "az" = (
@@ -155,7 +155,7 @@
 	},
 /area/icy_caves/outpost/refinery)
 "aE" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/cult,
 /area/icy_caves/caves/chapel)
 "aF" = (
@@ -179,7 +179,7 @@
 	},
 /area/icy_caves/caves)
 "aJ" = (
-/atom/movable/effect/landmark/corpsespawner/pmc,
+/obj/effect/landmark/corpsespawner/pmc,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "aL" = (
@@ -188,7 +188,7 @@
 	},
 /area/icy_caves/caves/alienstuff)
 "aM" = (
-/atom/movable/effect/landmark/corpsespawner/miner{
+/obj/effect/landmark/corpsespawner/miner{
 	corpseback = /obj/item/storage/backpack/satchel/norm;
 	corpsehelmet = /obj/item/clothing/head/hardhat/white;
 	corpseradio = /obj/item/radio/headset/survivor;
@@ -208,22 +208,22 @@
 /turf/open/floor/plating/dmg2,
 /area/icy_caves/caves/crashed_ship)
 "aP" = (
-/atom/movable/effect/landmark/corpsespawner/doctor,
+/obj/effect/landmark/corpsespawner/doctor,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
 "aQ" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "aR" = (
-/atom/movable/effect/spawner/random/ammo/rifle,
-/atom/movable/effect/spawner/random/gun/rifles,
-/atom/movable/effect/spawner/random/ammo/rifle,
-/atom/movable/effect/spawner/random/ammo/rifle,
-/atom/movable/effect/spawner/random/ammo/rifle,
-/atom/movable/effect/spawner/random/ammo/rifle,
-/atom/movable/effect/spawner/random/ammo/rifle,
-/atom/movable/effect/spawner/random/ammo/rifle,
+/obj/effect/spawner/random/ammo/rifle,
+/obj/effect/spawner/random/gun/rifles,
+/obj/effect/spawner/random/ammo/rifle,
+/obj/effect/spawner/random/ammo/rifle,
+/obj/effect/spawner/random/ammo/rifle,
+/obj/effect/spawner/random/ammo/rifle,
+/obj/effect/spawner/random/ammo/rifle,
+/obj/effect/spawner/random/ammo/rifle,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "aS" = (
@@ -270,7 +270,7 @@
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "be" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/thin/end,
 /area/icy_caves/caves/rock)
 "bf" = (
@@ -284,8 +284,8 @@
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "bi" = (
-/atom/movable/effect/landmark/weed_node,
-/atom/movable/effect/landmark/corpsespawner/pmc,
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/corpsespawner/pmc,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "bj" = (
@@ -293,11 +293,11 @@
 /turf/open/floor/prison/kitchen,
 /area/icy_caves/outpost/kitchen)
 "bk" = (
-/atom/movable/effect/landmark/corpsespawner/engineer,
+/obj/effect/landmark/corpsespawner/engineer,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "bl" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
 "bm" = (
@@ -309,7 +309,7 @@
 	dir = 10
 	},
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
 "bo" = (
@@ -325,8 +325,8 @@
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "bp" = (
-/atom/movable/effect/landmark/weed_node,
-/atom/movable/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
 "bq" = (
@@ -399,10 +399,10 @@
 	},
 /area/icy_caves/caves/crashed_ship)
 "bB" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -410,15 +410,15 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/garage)
 "bC" = (
-/atom/movable/effect/landmark/xeno_silo_spawn,
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
 "bD" = (
 /turf/closed/ice_rock/northWall,
 /area/icy_caves/caves)
 "bE" = (
-/atom/movable/effect/decal/warning_stripes/thin,
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin,
+/obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -433,7 +433,7 @@
 	},
 /area/icy_caves/caves)
 "bG" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
@@ -447,7 +447,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
 "bQ" = (
-/atom/movable/effect/decal/cleanable/blood/xeno,
+/obj/effect/decal/cleanable/blood/xeno,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
@@ -459,9 +459,9 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ1)
 "bV" = (
-/atom/movable/effect/landmark/weed_node,
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/atom/movable/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
 "bW" = (
@@ -471,8 +471,8 @@
 /turf/open/floor/engine,
 /area/icy_caves/caves/northwestmonorail)
 "cb" = (
-/atom/movable/effect/landmark/weed_node,
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
 "ch" = (
@@ -482,21 +482,21 @@
 /turf/open/shuttle/dropship/floor,
 /area/space)
 "ck" = (
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/wood,
 /area/icy_caves/outpost/dorms)
 "cl" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/south)
 "co" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/bed/chair/office/dark{
@@ -505,7 +505,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/icy_caves/caves/northwestmonorail)
 "cp" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/corners,
 /area/icy_caves/caves)
 "cq" = (
@@ -513,12 +513,12 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
 "cr" = (
-/atom/movable/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood/drip,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
 "cs" = (
@@ -529,7 +529,7 @@
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/northwestmonorail)
 "ct" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /obj/structure/cable,
 /turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
@@ -542,11 +542,11 @@
 	},
 /area/icy_caves/outpost/LZ2)
 "cv" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail)
 "cw" = (
-/atom/movable/effect/landmark/xeno_silo_spawn,
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/breakroom)
 "cx" = (
@@ -554,11 +554,11 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail)
 "cy" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/outpost/LZ2)
 "cz" = (
@@ -573,7 +573,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/breakroom)
 "cD" = (
@@ -614,11 +614,11 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/icy_caves/caves/northwestmonorail)
 "cJ" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall,
 /area/icy_caves/caves/northwestmonorail/breakroom)
 "cK" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/corners,
 /area/icy_caves/caves/northwestmonorail)
 "cL" = (
@@ -627,20 +627,20 @@
 /turf/open/floor/mainship_hull,
 /area/icy_caves/caves/northwestmonorail)
 "cM" = (
-/atom/movable/effect/landmark/xeno_resin_door,
+/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/crashed_ship)
 "cO" = (
 /obj/structure/window/framed/colony/reinforced,
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/breakroom)
 "cP" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/thin/corner,
 /area/icy_caves/caves/northern)
 "cQ" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/thin/corner{
 	dir = 1
 	},
@@ -650,7 +650,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
 "cT" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
 "cU" = (
@@ -668,12 +668,12 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
 "db" = (
 /obj/machinery/light,
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "dc" = (
@@ -683,11 +683,11 @@
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/underground_cafeteria)
 "dd" = (
-/atom/movable/effect/decal/cleanable/blood/xtracks,
+/obj/effect/decal/cleanable/blood/xtracks,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail)
@@ -719,7 +719,7 @@
 /turf/open/floor/cult,
 /area/icy_caves/caves/chapel)
 "dq" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/east)
 "ds" = (
@@ -730,11 +730,11 @@
 /area/icy_caves/caves/northwestmonorail)
 "dt" = (
 /obj/structure/table/reinforced/prison,
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/prison/red,
 /area/icy_caves/caves/cavesbrig)
 "du" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/corners{
 	dir = 9
 	},
@@ -750,7 +750,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
 	},
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail)
 "dA" = (
@@ -769,11 +769,11 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/south)
 "dI" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/east)
 "dL" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail)
 "dN" = (
@@ -819,7 +819,7 @@
 /turf/closed/wall/r_wall,
 /area/icy_caves/caves/east)
 "dW" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ1)
 "dX" = (
@@ -832,16 +832,16 @@
 	},
 /area/icy_caves/caves/northwestmonorail)
 "ea" = (
-/atom/movable/effect/landmark/corpsespawner/pmc,
+/obj/effect/landmark/corpsespawner/pmc,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
 "ed" = (
-/atom/movable/effect/decal/cleanable/blood/splatter,
+/obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
 "ef" = (
-/atom/movable/effect/decal/remains/human,
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark/green2{
 	dir = 4
 	},
@@ -853,11 +853,11 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/west)
 "eh" = (
-/atom/movable/effect/decal/cleanable/blood/splatter,
+/obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
 "ei" = (
-/atom/movable/effect/landmark/corpsespawner/pmc,
+/obj/effect/landmark/corpsespawner/pmc,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/west)
 "ej" = (
@@ -874,11 +874,11 @@
 /turf/open/floor/cult,
 /area/icy_caves/caves/south)
 "em" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/south)
 "en" = (
-/atom/movable/effect/landmark/corpsespawner/miner{
+/obj/effect/landmark/corpsespawner/miner{
 	corpseback = /obj/item/storage/backpack/satchel/norm;
 	corpsehelmet = /obj/item/clothing/head/hardhat/white;
 	corpseradio = /obj/item/radio/headset/survivor;
@@ -888,7 +888,7 @@
 	mobname = "Shaft Miner";
 	name = "Shaft Miner"
 	},
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/south)
 "eo" = (
@@ -899,7 +899,7 @@
 /turf/open/floor/plating/ground/snow/layer1,
 /area/icy_caves/caves/rock)
 "eq" = (
-/atom/movable/effect/decal/cleanable/blood/xeno,
+/obj/effect/decal/cleanable/blood/xeno,
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
@@ -911,15 +911,15 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/east)
 "es" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/east)
 "et" = (
-/atom/movable/effect/landmark/weed_node,
-/atom/movable/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/east)
 "ew" = (
@@ -938,11 +938,11 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
 "ez" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
 "eA" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
@@ -953,7 +953,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	name = "Canteen"
 	},
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/breakroom)
 "eD" = (
@@ -961,7 +961,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/breakroom)
 "eF" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/corner{
 	dir = 8
 	},
@@ -974,7 +974,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/south)
 "eH" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -988,7 +988,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
@@ -1000,17 +1000,17 @@
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "eK" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/east)
 "eL" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/end{
 	dir = 4
 	},
 /area/icy_caves/caves/northern)
 "eM" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison/red{
 	dir = 1
 	},
@@ -1050,11 +1050,11 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/atom/movable/effect/landmark/corpsespawner/pmc,
+/obj/effect/landmark/corpsespawner/pmc,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/west)
 "eV" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/icy_caves/caves/cavesbrig)
 "eW" = (
@@ -1095,24 +1095,24 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
 "fc" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/singleT{
 	dir = 1
 	},
 /area/icy_caves/caves/rock)
 "fd" = (
 /obj/structure/rack,
-/atom/movable/effect/spawner/random/powercell,
-/atom/movable/effect/spawner/random/powercell,
+/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/powercell,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
 "fe" = (
 /obj/structure/rack,
-/atom/movable/effect/spawner/random/tech_supply,
-/atom/movable/effect/spawner/random/tech_supply,
-/atom/movable/effect/spawner/random/tech_supply,
-/atom/movable/effect/spawner/random/tech_supply,
-/atom/movable/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/tech_supply,
 /obj/item/clothing/glasses/welding,
 /obj/machinery/light/small,
 /turf/open/floor/tile/dark,
@@ -1120,28 +1120,28 @@
 "ff" = (
 /obj/structure/rack,
 /obj/structure/rack,
-/atom/movable/effect/spawner/random/toolbox,
-/atom/movable/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/toolbox,
 /obj/item/clothing/glasses/welding,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
 "fg" = (
 /obj/structure/rack,
-/atom/movable/effect/spawner/random/tool,
-/atom/movable/effect/spawner/random/tool,
-/atom/movable/effect/spawner/random/tool,
+/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/tool,
 /obj/item/storage/belt/utility/full,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
 "fk" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/south)
 "fl" = (
-/atom/movable/effect/landmark/corpsespawner/engineer,
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/landmark/corpsespawner/engineer,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/south)
 "fn" = (
@@ -1150,7 +1150,7 @@
 	},
 /area/icy_caves/caves/east)
 "fq" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/outpost/LZ1)
 "fr" = (
@@ -1199,7 +1199,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
 "fE" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/south)
 "fG" = (
@@ -1207,14 +1207,14 @@
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/south)
 "fP" = (
-/atom/movable/effect/landmark/patrol_point{
+/obj/effect/landmark/patrol_point{
 	id = "SOM_13";
 	name = "SOM exit point 13"
 	},
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ1)
 "fS" = (
-/atom/movable/effect/landmark/patrol_point{
+/obj/effect/landmark/patrol_point{
 	id = "SOM_11";
 	name = "SOM exit point 11"
 	},
@@ -1252,7 +1252,7 @@
 	},
 /area/icy_caves/caves/rock)
 "gx" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
 "gB" = (
@@ -1261,7 +1261,7 @@
 "gF" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/east)
 "gG" = (
@@ -1299,13 +1299,13 @@
 /turf/closed/ice_rock/corners,
 /area/icy_caves/caves)
 "gM" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/mainship/cargo,
@@ -1316,10 +1316,10 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/east)
 "gP" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/atom/movable/effect/decal/cleanable/blood/xtracks,
+/obj/effect/decal/cleanable/blood/xtracks,
 /obj/structure/cable,
 /turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
@@ -1344,12 +1344,12 @@
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/south)
 "gY" = (
-/atom/movable/effect/ai_node,
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/ai_node,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
 "gZ" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/purple/whitepurplefull,
 /area/icy_caves/caves/northwestmonorail/medbay)
@@ -1362,7 +1362,7 @@
 /area/icy_caves/caves/rock)
 "hh" = (
 /obj/structure/cable,
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/research)
 "hi" = (
@@ -1387,7 +1387,7 @@
 	},
 /area/icy_caves/outpost/research)
 "hs" = (
-/atom/movable/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/south)
 "hy" = (
@@ -1407,7 +1407,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail)
 "hD" = (
-/atom/movable/effect/decal/cleanable/blood/gibs/xeno,
+/obj/effect/decal/cleanable/blood/gibs/xeno,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/south)
 "hG" = (
@@ -1418,13 +1418,13 @@
 	},
 /area/icy_caves/caves/northwestmonorail/medbay)
 "hI" = (
-/atom/movable/effect/landmark/xeno_resin_door,
-/atom/movable/effect/ai_node,
+/obj/effect/landmark/xeno_resin_door,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/east)
 "hJ" = (
-/atom/movable/effect/landmark/corpsespawner/miner,
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/landmark/corpsespawner/miner,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/cult,
 /area/icy_caves/caves/south)
 "hN" = (
@@ -1471,17 +1471,17 @@
 /turf/open/floor/tile/purple/whitepurplefull,
 /area/icy_caves/caves/northwestmonorail/medbay)
 "hX" = (
-/atom/movable/effect/landmark/excavation_site_spawner,
-/atom/movable/effect/ai_node,
+/obj/effect/landmark/excavation_site_spawner,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
 "hY" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/cult,
 /area/icy_caves/caves/south)
 "hZ" = (
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/south)
@@ -1489,7 +1489,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/atom/movable/effect/decal/remains/marauder,
+/obj/effect/decal/remains/marauder,
 /obj/machinery/light/small{
 	dir = 4
 	},
@@ -1508,11 +1508,11 @@
 /turf/closed/wall/prison,
 /area/icy_caves/caves/cavesbrig)
 "id" = (
-/atom/movable/effect/decal/remains/human,
+/obj/effect/decal/remains/human,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
 "if" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
@@ -1530,11 +1530,11 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/LZ2)
 "ii" = (
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/garage)
 "ij" = (
-/atom/movable/effect/landmark/xeno_resin_door,
+/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/south)
 "il" = (
@@ -1542,11 +1542,11 @@
 /turf/open/floor/prison,
 /area/icy_caves/caves/cavesbrig)
 "im" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
 "in" = (
-/atom/movable/effect/decal/cleanable/blood/xtracks,
+/obj/effect/decal/cleanable/blood/xtracks,
 /turf/open/floor/plating/plating_catwalk,
 /area/icy_caves/caves/northwestmonorail)
 "io" = (
@@ -1587,12 +1587,12 @@
 /turf/open/floor/wood,
 /area/icy_caves/caves/underground_cafeteria)
 "iw" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/icy_caves/outpost/outside/center)
 "ix" = (
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
 "iy" = (
@@ -1631,7 +1631,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
 "iJ" = (
@@ -1645,7 +1645,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/outside)
 "iM" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/caves/west)
 "iN" = (
@@ -1660,11 +1660,11 @@
 	},
 /area/icy_caves/caves/cavesbrig)
 "iP" = (
-/atom/movable/effect/landmark/corpsespawner/syndicatesoldier,
+/obj/effect/landmark/corpsespawner/syndicatesoldier,
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
 	},
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/podhatch{
 	dir = 4
 	},
@@ -1672,11 +1672,11 @@
 "iQ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/south)
 "iS" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/southWall,
 /area/icy_caves/caves/rock)
 "iT" = (
@@ -1692,7 +1692,7 @@
 /area/icy_caves/outpost/LZ2)
 "iY" = (
 /obj/machinery/door/airlock/secure,
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/podhatch,
 /area/icy_caves/caves/northern)
 "iZ" = (
@@ -1700,12 +1700,12 @@
 /area/icy_caves/outpost/garage)
 "ja" = (
 /obj/item/lightstick/anchored,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
 "jb" = (
-/atom/movable/effect/decal/cleanable/blood/splatter,
-/atom/movable/effect/landmark/xeno_resin_door,
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
 "jd" = (
@@ -1713,13 +1713,13 @@
 /area/icy_caves/caves/northwestmonorail/hallway)
 "jf" = (
 /obj/item/stool,
-/atom/movable/effect/decal/cleanable/vomit,
+/obj/effect/decal/cleanable/vomit,
 /turf/open/floor/tile/purple/whitepurplefull,
 /area/icy_caves/caves/northwestmonorail/medbay)
 "jg" = (
 /obj/structure/table/woodentable,
-/atom/movable/effect/landmark/corpsespawner/colonist,
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/landmark/corpsespawner/colonist,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/cult,
 /area/icy_caves/caves/chapel)
 "jk" = (
@@ -1734,8 +1734,8 @@
 /turf/open/floor/wood,
 /area/icy_caves/caves/underground_cafeteria)
 "jo" = (
-/atom/movable/effect/ai_node,
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/ai_node,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
 "jq" = (
@@ -1744,14 +1744,14 @@
 /area/icy_caves/caves/northwestmonorail/breakroom)
 "jr" = (
 /obj/structure/table/reinforced/prison,
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/prison/red{
 	dir = 4
 	},
 /area/icy_caves/caves/cavesbrig)
 "jt" = (
 /obj/machinery/floodlight/landing,
-/atom/movable/effect/decal/warning_stripes,
+/obj/effect/decal/warning_stripes,
 /turf/open/floor/mech_bay_recharge_floor,
 /area/icy_caves/outpost/LZ2)
 "ju" = (
@@ -1771,7 +1771,7 @@
 /area/icy_caves/outpost/LZ2)
 "jy" = (
 /obj/structure/cable,
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark/brown2/corner{
 	dir = 4
 	},
@@ -1787,11 +1787,11 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/icy_caves/caves/northwestmonorail)
 "jB" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
 "jC" = (
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
 "jD" = (
@@ -1799,14 +1799,14 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
-/atom/movable/effect/decal/remains/human,
+/obj/effect/decal/remains/human,
 /turf/open/floor/prison/red{
 	dir = 4
 	},
 /area/icy_caves/caves/cavesbrig)
 "jE" = (
 /obj/structure/table/reinforced,
-/atom/movable/effect/landmark/dropship_console_spawn_lz1,
+/obj/effect/landmark/dropship_console_spawn_lz1,
 /turf/open/floor/plating/ground/snow,
 /area/lv624/lazarus/console)
 "jH" = (
@@ -1816,7 +1816,7 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/LZ2)
 "jI" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/corners,
 /area/icy_caves/caves/rock)
 "jJ" = (
@@ -1826,7 +1826,7 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/LZ2)
 "jK" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/singlePart,
 /area/icy_caves/caves/rock)
 "jL" = (
@@ -1835,7 +1835,7 @@
 	},
 /area/icy_caves/caves/northwestmonorail)
 "jM" = (
-/atom/movable/effect/landmark/corpsespawner/miner{
+/obj/effect/landmark/corpsespawner/miner{
 	corpseback = /obj/item/storage/backpack/satchel/norm;
 	corpsehelmet = /obj/item/clothing/head/hardhat/white;
 	corpseradio = /obj/item/radio/headset/survivor;
@@ -1845,7 +1845,7 @@
 	mobname = "Shaft Miner";
 	name = "Shaft Miner"
 	},
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
 "jN" = (
@@ -1853,7 +1853,7 @@
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
 "jP" = (
-/atom/movable/effect/decal/cleanable/blood/xeno,
+/obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
 "jQ" = (
@@ -1896,7 +1896,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
 "jY" = (
@@ -1904,7 +1904,7 @@
 	dir = 10
 	},
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/icy_caves/caves/northwestmonorail)
 "ka" = (
@@ -1944,7 +1944,7 @@
 /turf/open/floor/tile/dark/brown2/corner,
 /area/icy_caves/outpost/refinery)
 "km" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
@@ -1961,22 +1961,22 @@
 /turf/open/shuttle/dropship/seven,
 /area/icy_caves/caves/northwestmonorail)
 "ko" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/singlePart{
 	dir = 10
 	},
 /area/icy_caves/caves/rock)
 "kp" = (
 /obj/machinery/miner/damaged/platinum,
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
 "kr" = (
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "kt" = (
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/tile/dark/green2{
 	dir = 8
 	},
@@ -2002,7 +2002,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ2)
 "ky" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/thin/end{
 	dir = 1
 	},
@@ -2059,7 +2059,7 @@
 	},
 /area/icy_caves/outpost/research)
 "kL" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/thin/corner{
 	dir = 8
 	},
@@ -2071,16 +2071,16 @@
 	},
 /area/icy_caves/caves)
 "kN" = (
-/atom/movable/effect/landmark/xeno_resin_door,
-/atom/movable/effect/ai_node,
+/obj/effect/landmark/xeno_resin_door,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
 "kR" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
 "kS" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/thin/intersection,
 /area/icy_caves/caves/rock)
 "kT" = (
@@ -2127,7 +2127,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
-/atom/movable/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/wood,
 /area/icy_caves/outpost/office)
 "lh" = (
@@ -2142,7 +2142,7 @@
 /turf/open/floor/plating/ground/snow/layer1,
 /area/icy_caves/outpost/outside/center)
 "lk" = (
-/atom/movable/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood/drip,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -2150,12 +2150,12 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
 "ll" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/morgue)
 "ln" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/thin/corner{
 	dir = 4
 	},
@@ -2198,12 +2198,12 @@
 /turf/open/floor/plating/ground/snow/layer1,
 /area/icy_caves/outpost/outside/center)
 "ly" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/south)
 "lz" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -2254,8 +2254,8 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
-/atom/movable/effect/ai_node,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
 "lM" = (
@@ -2270,7 +2270,7 @@
 	},
 /area/icy_caves/outpost/research)
 "lO" = (
-/atom/movable/effect/decal/cleanable/blood/xtracks,
+/obj/effect/decal/cleanable/blood/xtracks,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
@@ -2287,7 +2287,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ2)
 "lR" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/singleEnd{
 	dir = 1
 	},
@@ -2327,7 +2327,7 @@
 	},
 /area/icy_caves/caves/northwestmonorail)
 "md" = (
-/atom/movable/effect/decal/cleanable/blood/oil,
+/obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
 "me" = (
@@ -2355,7 +2355,7 @@
 /turf/closed/wall/r_wall/unmeltable,
 /area/lv624/lazarus/console)
 "mj" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/bed/chair/office/dark{
@@ -2368,7 +2368,7 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/LZ2)
 "ml" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -2390,7 +2390,7 @@
 /area/icy_caves/outpost/outside/center)
 "mp" = (
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/engineering)
 "mq" = (
@@ -2411,7 +2411,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail)
@@ -2420,8 +2420,8 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/atom/movable/effect/landmark/dropship_start_location,
-/atom/movable/effect/ai_node,
+/obj/effect/landmark/dropship_start_location,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
 "mu" = (
@@ -2450,23 +2450,23 @@
 /area/icy_caves/outpost/outside/center)
 "mz" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
 "mA" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/end{
 	dir = 8
 	},
 /area/icy_caves/caves/rock)
 "mC" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/corner{
 	dir = 1
 	},
 /area/icy_caves/caves/northern)
 "mE" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/corners{
 	dir = 5
 	},
@@ -2487,10 +2487,10 @@
 	},
 /area/icy_caves/outpost/LZ2)
 "mK" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/atom/movable/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark/brown2,
 /area/icy_caves/outpost/garage)
 "mL" = (
@@ -2500,7 +2500,7 @@
 "mM" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
 "mN" = (
@@ -2519,7 +2519,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ2)
 "mS" = (
-/atom/movable/effect/landmark/patrol_point{
+/obj/effect/landmark/patrol_point{
 	id = "TGMC_11";
 	name = "TGMC exit point 11"
 	},
@@ -2537,11 +2537,11 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/outpost/outside)
 "mY" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/westWall,
 /area/icy_caves/caves/rock)
 "mZ" = (
-/atom/movable/effect/decal/cleanable/blood/xtracks,
+/obj/effect/decal/cleanable/blood/xtracks,
 /obj/machinery/power/apc/drained{
 	dir = 8
 	},
@@ -2558,7 +2558,7 @@
 /area/icy_caves/outpost/LZ2)
 "ne" = (
 /obj/item/lightstick/anchored,
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
 "nf" = (
@@ -2575,16 +2575,16 @@
 	},
 /area/icy_caves/caves)
 "nj" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/tile/dark/brown2/corner,
 /area/icy_caves/outpost/garage)
 "nk" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/corner{
 	dir = 4
 	},
@@ -2603,12 +2603,12 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/weapon_vault)
 "no" = (
-/atom/movable/effect/decal/remains/xeno,
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/remains/xeno,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
 "np" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/icy_caves/outpost/outside)
 "nr" = (
@@ -2662,7 +2662,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/east)
 "nC" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison/red{
 	dir = 8
 	},
@@ -2675,7 +2675,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/alienstuff)
 "nF" = (
@@ -2697,7 +2697,7 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/outpost/LZ2)
 "nJ" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/outpost/outside/center)
 "nK" = (
@@ -2746,16 +2746,16 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/mainship/red/full,
 /area/icy_caves/caves/northern)
 "ob" = (
-/atom/movable/effect/decal/remains/human,
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
 "oc" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -2775,7 +2775,7 @@
 /turf/open/floor/plating/dmg3,
 /area/icy_caves/caves/crashed_ship)
 "oi" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall,
 /area/icy_caves/caves/northwestmonorail)
 "oj" = (
@@ -2790,7 +2790,7 @@
 /turf/open/floor/tile/dark/yellow2,
 /area/icy_caves/outpost/engineering)
 "om" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -2804,12 +2804,12 @@
 "oo" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
 "op" = (
 /obj/structure/prop/mainship/sensor_computer3/sd,
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor/mainship/tcomms,
@@ -2821,7 +2821,7 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/LZ2)
 "or" = (
-/atom/movable/effect/landmark/corpsespawner/colonist,
+/obj/effect/landmark/corpsespawner/colonist,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
@@ -2869,7 +2869,7 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/LZ2)
 "oG" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/cult,
 /area/icy_caves/caves/chapel)
 "oI" = (
@@ -2900,7 +2900,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
 "oO" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/outside)
 "oP" = (
@@ -2938,8 +2938,8 @@
 /turf/closed/ice_rock/westWall,
 /area/icy_caves/caves/rock)
 "oY" = (
-/atom/movable/effect/decal/remains/human,
-/atom/movable/effect/ai_node,
+/obj/effect/decal/remains/human,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
 "oZ" = (
@@ -2951,11 +2951,11 @@
 /area/icy_caves/outpost/outside)
 "pc" = (
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail)
 "pd" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
@@ -2973,7 +2973,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/weapon_vault)
 "pf" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/brown2/corner{
 	dir = 8
 	},
@@ -2983,7 +2983,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
 "ph" = (
@@ -2993,14 +2993,14 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail)
 "pj" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/west)
 "pl" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/icy_caves/caves/northwestmonorail)
 "pm" = (
-/atom/movable/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood/drip,
 /obj/structure/cable,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -3009,7 +3009,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside)
 "pn" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/corner,
 /area/icy_caves/caves/rock)
 "po" = (
@@ -3027,11 +3027,11 @@
 	},
 /area/icy_caves/caves)
 "ps" = (
-/atom/movable/effect/landmark/xeno_resin_door,
+/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/dmg1,
 /area/icy_caves/caves/crashed_ship)
 "pt" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark/brown2,
 /area/icy_caves/outpost/refinery)
 "pu" = (
@@ -3077,7 +3077,7 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/west)
 "pC" = (
-/atom/movable/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/outside/center)
 "pD" = (
@@ -3101,7 +3101,7 @@
 /area/icy_caves/outpost/security)
 "pG" = (
 /obj/structure/window/reinforced,
-/atom/movable/effect/decal/remains/marauder,
+/obj/effect/decal/remains/marauder,
 /obj/machinery/light/small{
 	dir = 4
 	},
@@ -3117,7 +3117,7 @@
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
 "pL" = (
-/atom/movable/effect/decal/cleanable/blood/xtracks,
+/obj/effect/decal/cleanable/blood/xtracks,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -3133,16 +3133,16 @@
 /obj/item/storage/box/lightstick/red,
 /obj/item/storage/box/lightstick,
 /obj/item/storage/box/lightstick,
-/atom/movable/effect/spawner/random/powercell,
+/obj/effect/spawner/random/powercell,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
 "pR" = (
-/atom/movable/effect/landmark/fob_sentry,
+/obj/effect/landmark/fob_sentry,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/outpost/outside)
 "pT" = (
-/atom/movable/effect/landmark/fob_sentry,
-/atom/movable/effect/ai_node,
+/obj/effect/landmark/fob_sentry,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/outside)
 "pU" = (
@@ -3202,7 +3202,7 @@
 	},
 /area/icy_caves/outpost/refinery)
 "qe" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/single,
 /area/icy_caves/caves/rock)
 "qf" = (
@@ -3227,7 +3227,7 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/east)
 "qj" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -3239,7 +3239,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail)
 "ql" = (
@@ -3253,7 +3253,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/east)
 "qo" = (
@@ -3263,7 +3263,7 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/west)
 "qp" = (
-/atom/movable/effect/landmark/corpsespawner/miner{
+/obj/effect/landmark/corpsespawner/miner{
 	corpseback = /obj/item/storage/backpack/satchel/norm;
 	corpsehelmet = /obj/item/clothing/head/hardhat/white;
 	corpseradio = /obj/item/radio/headset/survivor;
@@ -3319,7 +3319,7 @@
 /area/icy_caves/caves)
 "qA" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail)
 "qB" = (
@@ -3327,13 +3327,13 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
 "qF" = (
-/atom/movable/effect/decal/warning_stripes/thin,
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
 	},
 /area/icy_caves/outpost/garage)
 "qG" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/research)
 "qH" = (
@@ -3343,7 +3343,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail)
 "qJ" = (
-/atom/movable/effect/landmark/corpsespawner/scientist,
+/obj/effect/landmark/corpsespawner/scientist,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/research)
 "qK" = (
@@ -3362,7 +3362,7 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/east)
 "qO" = (
-/atom/movable/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/west)
 "qP" = (
@@ -3372,7 +3372,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
 "qQ" = (
-/atom/movable/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
 "qR" = (
@@ -3390,8 +3390,8 @@
 	},
 /area/icy_caves/caves/alienstuff)
 "qW" = (
-/atom/movable/effect/decal/cleanable/blood/drip,
-/atom/movable/effect/landmark/start/job/survivor,
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/landmark/start/job/survivor,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -3429,7 +3429,7 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/east)
 "rd" = (
-/atom/movable/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/job/survivor,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -3442,7 +3442,7 @@
 	},
 /area/icy_caves/caves/northwestmonorail)
 "rh" = (
-/atom/movable/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood/drip,
 /obj/machinery/door/airlock/multi_tile/mainship/research{
 	dir = 1
 	},
@@ -3455,7 +3455,7 @@
 /turf/open/floor/wood/broken,
 /area/icy_caves/caves/underground_cafeteria)
 "rj" = (
-/atom/movable/effect/decal/cleanable/blood/xtracks,
+/obj/effect/decal/cleanable/blood/xtracks,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/morgue)
 "rk" = (
@@ -3556,7 +3556,7 @@
 /area/icy_caves/outpost/medbay)
 "rC" = (
 /obj/machinery/computer/intel_computer,
-/atom/movable/effect/decal/warning_stripes/thin,
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
 	},
@@ -3589,7 +3589,7 @@
 /turf/open/floor/wood,
 /area/icy_caves/caves/underground_cafeteria)
 "rJ" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/icy_caves/outpost/outside/center)
 "rL" = (
@@ -3629,7 +3629,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/west)
 "rQ" = (
@@ -3660,7 +3660,7 @@
 	},
 /area/icy_caves/outpost/engineering)
 "rU" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
@@ -3677,7 +3677,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/medbay)
 "rX" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/tile/dark/brown2,
@@ -3700,11 +3700,11 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/medbay)
 "sb" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/straight,
 /area/icy_caves/caves/rock)
 "sc" = (
-/atom/movable/effect/decal/cleanable/blood/gibs/limb,
+/obj/effect/decal/cleanable/blood/gibs/limb,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -3745,7 +3745,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/engineering)
 "sj" = (
-/atom/movable/effect/landmark/corpsespawner/engineer,
+/obj/effect/landmark/corpsespawner/engineer,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/engineering)
 "sk" = (
@@ -3784,13 +3784,13 @@
 	},
 /area/icy_caves/outpost/medbay)
 "sq" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark/green2{
 	dir = 10
 	},
 /area/icy_caves/outpost/medbay)
 "sr" = (
-/atom/movable/effect/landmark/corpsespawner/doctor,
+/obj/effect/landmark/corpsespawner/doctor,
 /turf/open/floor/tile/dark/green2,
 /area/icy_caves/outpost/medbay)
 "st" = (
@@ -3801,11 +3801,11 @@
 	},
 /area/icy_caves/outpost/medbay)
 "su" = (
-/atom/movable/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/medbay)
 "sv" = (
-/atom/movable/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/engineering)
 "sw" = (
@@ -3849,13 +3849,13 @@
 	},
 /area/icy_caves/outpost/medbay)
 "sB" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/thin/end{
 	dir = 1
 	},
 /area/icy_caves/caves/rock)
 "sC" = (
-/atom/movable/effect/spawner/gibspawner/human,
+/obj/effect/spawner/gibspawner/human,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
@@ -3864,7 +3864,7 @@
 	dir = 1
 	},
 /obj/structure/table/reinforced/prison,
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/prison/red{
 	dir = 1
 	},
@@ -3889,7 +3889,7 @@
 "sL" = (
 /obj/structure/table/woodentable,
 /obj/item/tool/kitchen/knife/ritual,
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/cult,
 /area/icy_caves/caves/chapel)
 "sM" = (
@@ -3911,7 +3911,7 @@
 /turf/open/floor/freezer,
 /area/icy_caves/outpost/dorms)
 "sT" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/icy_caves/outpost/LZ2)
 "sV" = (
@@ -3919,7 +3919,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
 "sW" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/breakroom)
 "sX" = (
@@ -3938,7 +3938,7 @@
 /turf/closed/ice_rock/westWall,
 /area/icy_caves/caves)
 "td" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ2)
 "tf" = (
@@ -3948,7 +3948,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
 "th" = (
-/atom/movable/effect/landmark/corpsespawner/miner{
+/obj/effect/landmark/corpsespawner/miner{
 	corpseback = /obj/item/storage/backpack/satchel/norm;
 	corpsehelmet = /obj/item/clothing/head/hardhat/white;
 	corpseradio = /obj/item/radio/headset/survivor;
@@ -3958,7 +3958,7 @@
 	mobname = "Shaft Miner";
 	name = "Shaft Miner"
 	},
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/east)
 "ti" = (
@@ -3984,16 +3984,16 @@
 /area/icy_caves/outpost/engineering)
 "to" = (
 /obj/structure/bed/chair/pew,
-/atom/movable/effect/landmark/corpsespawner/colonist,
+/obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/cult,
 /area/icy_caves/caves/chapel)
 "tp" = (
 /obj/item/lightstick/anchored,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/west)
 "tq" = (
-/atom/movable/effect/landmark/start/job/xenomorph,
+/obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
 "tr" = (
@@ -4005,7 +4005,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/east)
 "tu" = (
@@ -4023,18 +4023,18 @@
 /turf/closed/ice/junction,
 /area/icy_caves/outpost/LZ2)
 "tw" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/singleEnd{
 	dir = 1
 	},
 /area/icy_caves/caves/northern)
 "tx" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /obj/structure/cable,
 /turf/open/floor/tile/purple/whitepurplefull,
 /area/icy_caves/caves/northwestmonorail/medbay)
 "tz" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/thin/junction,
 /area/icy_caves/caves/rock)
 "tA" = (
@@ -4058,7 +4058,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
 "tE" = (
@@ -4092,8 +4092,8 @@
 	},
 /area/icy_caves/outpost/garage)
 "tJ" = (
-/atom/movable/effect/decal/cleanable/blood/drip,
-/atom/movable/effect/ai_node,
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
 "tK" = (
@@ -4105,13 +4105,13 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/LZ2)
 "tM" = (
-/atom/movable/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/job/survivor,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/outside)
 "tN" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -4121,13 +4121,13 @@
 /turf/open/floor/tile/dark/brown2,
 /area/icy_caves/outpost/garage)
 "tO" = (
-/atom/movable/effect/decal/warning_stripes/thin,
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/tile/dark/brown2{
 	dir = 5
 	},
 /area/icy_caves/outpost/garage)
 "tP" = (
-/atom/movable/effect/decal/remains/human,
+/obj/effect/decal/remains/human,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
 "tQ" = (
@@ -4135,7 +4135,7 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
 "tR" = (
-/atom/movable/effect/decal/warning_stripes/thin,
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/garage)
 "tT" = (
@@ -4144,7 +4144,7 @@
 /turf/open/floor/mainship/mono,
 /area/icy_caves/caves/northwestmonorail/morgue)
 "tU" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -4152,16 +4152,16 @@
 	},
 /area/icy_caves/outpost/garage)
 "tV" = (
-/atom/movable/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/wood/broken,
 /area/icy_caves/caves/underground_cafeteria)
 "tW" = (
-/atom/movable/effect/landmark/corpsespawner/colonist,
+/obj/effect/landmark/corpsespawner/colonist,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
 "tX" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
 "tY" = (
@@ -4210,7 +4210,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
 "uh" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/green2/corner{
 	dir = 1
 	},
@@ -4229,14 +4229,14 @@
 /area/icy_caves/caves/northwestmonorail)
 "um" = (
 /obj/structure/rack,
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /obj/machinery/light/small{
 	dir = 1
 	},
 /turf/open/floor/gcircuit/anim,
 /area/icy_caves/caves/weapon_vault)
 "un" = (
-/atom/movable/effect/decal/cleanable/blood/xtracks,
+/obj/effect/decal/cleanable/blood/xtracks,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
@@ -4244,7 +4244,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /obj/docking_port/mobile/crashmode/bigbury,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
 "up" = (
@@ -4259,7 +4259,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ2)
 "uq" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/LZ2)
 "ur" = (
@@ -4269,7 +4269,7 @@
 	},
 /area/icy_caves/caves/cavesbrig)
 "us" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/singlePart{
 	dir = 5
 	},
@@ -4278,7 +4278,7 @@
 /obj/machinery/door/window/secure{
 	dir = 2
 	},
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/alienstuff)
 "uv" = (
@@ -4308,7 +4308,7 @@
 	},
 /area/icy_caves/caves)
 "uz" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -4336,7 +4336,7 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
 "uE" = (
-/atom/movable/effect/landmark/patrol_point{
+/obj/effect/landmark/patrol_point{
 	id = "SOM_24";
 	name = "SOM exit point 24"
 	},
@@ -4364,13 +4364,13 @@
 	},
 /area/icy_caves/outpost/LZ2)
 "uM" = (
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/tile/dark/green2/corner{
 	dir = 1
 	},
 /area/icy_caves/caves/alienstuff)
 "uN" = (
-/atom/movable/effect/decal/cleanable/blood/xeno,
+/obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
 "uO" = (
@@ -4378,20 +4378,20 @@
 /turf/open/shuttle/dropship/floor,
 /area/icy_caves/caves/northwestmonorail)
 "uP" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
-/atom/movable/effect/landmark/corpsespawner/colonist,
+/obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/tile/dark/brown2/corner{
 	dir = 1
 	},
 /area/icy_caves/outpost/garage)
 "uQ" = (
-/atom/movable/effect/decal/cleanable/blood/drip,
-/atom/movable/effect/landmark/start/job/survivor,
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/landmark/start/job/survivor,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/medbay)
@@ -4404,17 +4404,17 @@
 	},
 /area/icy_caves/outpost/medbay)
 "uS" = (
-/atom/movable/effect/landmark/corpsespawner/syndicatesoldier,
+/obj/effect/landmark/corpsespawner/syndicatesoldier,
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
 	},
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/podhatch{
 	dir = 8
 	},
 /area/icy_caves/caves/northern)
 "uT" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -4446,7 +4446,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
 "vd" = (
@@ -4467,11 +4467,11 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/atom/movable/effect/spawner/random/gun,
+/obj/effect/spawner/random/gun,
 /turf/open/floor/gcircuit/anim,
 /area/icy_caves/caves/weapon_vault)
 "vh" = (
-/atom/movable/effect/landmark/corpsespawner/colonist,
+/obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/outside/center)
 "vi" = (
@@ -4514,11 +4514,11 @@
 "vp" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/outside)
 "vq" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -4541,7 +4541,7 @@
 /area/icy_caves/outpost/medbay)
 "vv" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
@@ -4560,7 +4560,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/atom/movable/effect/landmark/corpsespawner/colonist,
+/obj/effect/landmark/corpsespawner/colonist,
 /obj/structure/cable,
 /turf/open/floor/prison/kitchen,
 /area/icy_caves/outpost/kitchen)
@@ -4586,7 +4586,7 @@
 "vF" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/south)
 "vH" = (
@@ -4601,11 +4601,11 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
 "vJ" = (
-/atom/movable/effect/landmark/xeno_silo_spawn,
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/caves)
 "vL" = (
-/atom/movable/effect/decal/cleanable/blood/gibs/robot,
+/obj/effect/decal/cleanable/blood/gibs/robot,
 /turf/open/floor/tile/dark/brown2/corner,
 /area/icy_caves/outpost/refinery)
 "vM" = (
@@ -4613,7 +4613,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/research)
 "vO" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/end,
 /area/icy_caves/caves/rock)
 "vP" = (
@@ -4639,7 +4639,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
@@ -4674,7 +4674,7 @@
 	},
 /area/icy_caves/outpost/medbay)
 "wc" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
@@ -4686,7 +4686,7 @@
 /turf/open/floor/tile/dark/green2,
 /area/icy_caves/outpost/medbay)
 "we" = (
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
 "wf" = (
@@ -4694,7 +4694,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
 "wg" = (
-/atom/movable/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/freezer,
 /area/icy_caves/outpost/dorms)
 "wh" = (
@@ -4728,7 +4728,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/green2/corner{
 	dir = 1
 	},
@@ -4738,7 +4738,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
 "wr" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/corner{
 	dir = 1
 	},
@@ -4766,7 +4766,7 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/refinery)
 "wz" = (
-/atom/movable/effect/decal/cleanable/blood/gibs/limb,
+/obj/effect/decal/cleanable/blood/gibs/limb,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -4774,17 +4774,17 @@
 /area/icy_caves/outpost/refinery)
 "wA" = (
 /obj/structure/cable,
-/atom/movable/effect/decal/remains/human,
+/obj/effect/decal/remains/human,
 /turf/open/floor/prison,
 /area/icy_caves/caves/cavesbrig)
 "wC" = (
-/atom/movable/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/tile/dark/green2{
 	dir = 1
 	},
 /area/icy_caves/outpost/medbay)
 "wD" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/caves)
 "wE" = (
@@ -4801,12 +4801,12 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/alienstuff)
 "wG" = (
-/atom/movable/effect/spawner/gibspawner/human,
+/obj/effect/spawner/gibspawner/human,
 /obj/structure/cable,
 /turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
 "wH" = (
-/atom/movable/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/tile/dark/brown2,
 /area/icy_caves/outpost/refinery)
 "wI" = (
@@ -4836,10 +4836,10 @@
 /turf/open/floor/plating/ground/snow/layer1,
 /area/icy_caves/outpost/outside)
 "wP" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -4849,7 +4849,7 @@
 	},
 /area/icy_caves/outpost/garage)
 "wQ" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/brown2,
 /area/icy_caves/outpost/refinery)
 "wR" = (
@@ -4870,15 +4870,15 @@
 /turf/open/shuttle/escapepod/plain,
 /area/space)
 "wU" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/outside/center)
 "wW" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/west)
 "wY" = (
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
 "wZ" = (
@@ -4912,7 +4912,7 @@
 /turf/closed/ice/intersection,
 /area/icy_caves/outpost/outside/center)
 "xh" = (
-/atom/movable/effect/landmark/corpsespawner/scientist,
+/obj/effect/landmark/corpsespawner/scientist,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/outside)
 "xi" = (
@@ -4938,7 +4938,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
 "xo" = (
@@ -4960,7 +4960,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail)
 "xq" = (
-/atom/movable/effect/decal/remains/human,
+/obj/effect/decal/remains/human,
 /turf/open/floor/prison,
 /area/icy_caves/caves/cavesbrig)
 "xr" = (
@@ -4984,7 +4984,7 @@
 /area/icy_caves/outpost/medbay)
 "xw" = (
 /obj/machinery/atmospherics/pipe/manifold,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/medbay)
 "xx" = (
@@ -4994,7 +4994,7 @@
 /area/icy_caves/outpost/LZ2)
 "xy" = (
 /obj/structure/rack,
-/atom/movable/effect/spawner/random/gun,
+/obj/effect/spawner/random/gun,
 /turf/open/floor/gcircuit/anim,
 /area/icy_caves/caves/weapon_vault)
 "xz" = (
@@ -5014,7 +5014,7 @@
 	},
 /area/icy_caves/caves)
 "xB" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/singlePart{
 	dir = 9
 	},
@@ -5025,7 +5025,7 @@
 	},
 /area/icy_caves/caves/rock)
 "xE" = (
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
 "xH" = (
@@ -5044,7 +5044,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
 "xO" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/cult,
 /area/icy_caves/caves/south)
 "xR" = (
@@ -5108,7 +5108,7 @@
 	},
 /area/icy_caves/outpost/office)
 "yh" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
 "yi" = (
@@ -5154,7 +5154,7 @@
 /turf/open/floor/cult,
 /area/icy_caves/caves/chapel)
 "yr" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
@@ -5176,7 +5176,7 @@
 /area/icy_caves/outpost/engineering)
 "yz" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/breakroom)
 "yA" = (
@@ -5230,20 +5230,20 @@
 /obj/item/cell/hyper,
 /obj/item/cell/hyper,
 /obj/item/cell/hyper,
-/atom/movable/effect/spawner/random/tech_supply,
-/atom/movable/effect/spawner/random/tech_supply,
-/atom/movable/effect/spawner/random/tech_supply,
-/atom/movable/effect/spawner/random/tech_supply,
-/atom/movable/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/tech_supply,
 /obj/item/storage/belt/utility/full,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
 "yK" = (
-/atom/movable/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
 "yL" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/thin/corner{
 	dir = 1
 	},
@@ -5259,7 +5259,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
 "yS" = (
@@ -5270,10 +5270,10 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail)
 "yU" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/tile/dark/brown2/corner{
@@ -5281,7 +5281,7 @@
 	},
 /area/icy_caves/outpost/garage)
 "yV" = (
-/atom/movable/effect/spawner/gibspawner/human,
+/obj/effect/spawner/gibspawner/human,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -5293,7 +5293,7 @@
 	},
 /area/icy_caves/caves/alienstuff)
 "yZ" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/fourway,
 /area/icy_caves/caves/rock)
 "za" = (
@@ -5304,12 +5304,12 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
 "zc" = (
-/atom/movable/effect/spawner/gibspawner/human,
+/obj/effect/spawner/gibspawner/human,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail)
 "zd" = (
 /obj/structure/rack,
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /obj/machinery/light/small,
 /turf/open/floor/gcircuit/anim,
 /area/icy_caves/caves/weapon_vault)
@@ -5321,14 +5321,14 @@
 /obj/machinery/landinglight/ds1/delaytwo{
 	dir = 4
 	},
-/atom/movable/effect/landmark/patrol_point{
+/obj/effect/landmark/patrol_point{
 	id = "SOM_14";
 	name = "SOM exit point 14"
 	},
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ1)
 "zg" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/singleEnd,
 /area/icy_caves/caves/rock)
 "zh" = (
@@ -5336,7 +5336,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
 "zi" = (
@@ -5349,7 +5349,7 @@
 /area/icy_caves/caves)
 "zj" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/alienstuff)
 "zk" = (
@@ -5372,23 +5372,23 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
 "zo" = (
-/atom/movable/effect/decal/cleanable/blood/gibs/robot,
+/obj/effect/decal/cleanable/blood/gibs/robot,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
 "zp" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/brown2/corner,
 /area/icy_caves/outpost/garage)
 "zq" = (
@@ -5410,7 +5410,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
 "zs" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/singleT,
 /area/icy_caves/caves/rock)
 "zu" = (
@@ -5429,7 +5429,7 @@
 /turf/open/floor/tile/dark/purple2,
 /area/icy_caves/outpost/research)
 "zy" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/junction{
 	dir = 4
 	},
@@ -5438,7 +5438,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 1
 	},
-/atom/movable/effect/landmark/patrol_point{
+/obj/effect/landmark/patrol_point{
 	id = "TGMC_21";
 	name = "TGMC exit point 21"
 	},
@@ -5456,11 +5456,11 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
 "zD" = (
-/atom/movable/effect/landmark/corpsespawner/colonist,
+/obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
 "zE" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/end{
 	dir = 4
 	},
@@ -5488,8 +5488,8 @@
 	},
 /area/icy_caves/caves/northwestmonorail)
 "zJ" = (
-/atom/movable/effect/landmark/corpsespawner/colonist,
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/corpsespawner/colonist,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/outside/center)
 "zK" = (
@@ -5509,11 +5509,11 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ1)
 "zN" = (
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/engineering)
 "zO" = (
-/atom/movable/effect/landmark/patrol_point{
+/obj/effect/landmark/patrol_point{
 	id = "SOM_22";
 	name = "SOM exit point 22"
 	},
@@ -5524,11 +5524,11 @@
 	dir = 1;
 	name = "\improper Dormitories Bedroom"
 	},
-/atom/movable/effect/decal/cleanable/blood/writing,
+/obj/effect/decal/cleanable/blood/writing,
 /turf/open/floor/wood,
 /area/icy_caves/outpost/dorms)
 "zQ" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/south)
 "zS" = (
@@ -5549,7 +5549,7 @@
 "zU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/south)
 "zV" = (
@@ -5578,7 +5578,7 @@
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "Ab" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/west)
 "Ac" = (
@@ -5591,7 +5591,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
 "Ad" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -5600,11 +5600,11 @@
 	},
 /area/icy_caves/outpost/garage)
 "Af" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/eastWall,
 /area/icy_caves/caves/rock)
 "Ah" = (
-/atom/movable/effect/landmark/corpsespawner/security{
+/obj/effect/landmark/corpsespawner/security{
 	corpsebelt = /obj/item/weapon/gun/revolver/cmb;
 	corpsesuit = /obj/item/clothing/suit/storage/CMB;
 	corpseuniform = /obj/item/clothing/under/CM_uniform;
@@ -5616,7 +5616,7 @@
 /turf/open/floor/tile/dark/green2,
 /area/icy_caves/outpost/medbay)
 "Aj" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/green2{
 	dir = 5
 	},
@@ -5630,7 +5630,7 @@
 "Al" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside)
 "Am" = (
@@ -5639,7 +5639,7 @@
 /turf/open/floor/prison/kitchen,
 /area/icy_caves/outpost/kitchen)
 "Ap" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/icy_caves/caves/cavesbrig)
@@ -5674,13 +5674,13 @@
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
 "Av" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -5696,7 +5696,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
 "Ay" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/corners{
 	dir = 6
 	},
@@ -5710,17 +5710,17 @@
 /area/icy_caves/caves/alienstuff)
 "AC" = (
 /obj/machinery/light/small,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/red2,
 /area/icy_caves/outpost/security)
 "AD" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
-/atom/movable/effect/landmark/corpsespawner/colonist,
+/obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/tile/dark/brown2/corner{
 	dir = 4
 	},
@@ -5753,7 +5753,7 @@
 	},
 /area/icy_caves/caves/cavesbrig)
 "AI" = (
-/atom/movable/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/tile/dark/brown2/corner{
 	dir = 4
 	},
@@ -5762,7 +5762,7 @@
 /turf/open/floor/tile/purple/whitepurplefull,
 /area/icy_caves/caves/northwestmonorail/medbay)
 "AM" = (
-/atom/movable/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood/drip,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -5770,7 +5770,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
 "AN" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "AQ" = (
@@ -5816,7 +5816,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
 "AW" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/outpost/outside)
 "AX" = (
@@ -5829,7 +5829,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/research)
 "AY" = (
-/atom/movable/effect/decal/cleanable/blood/xeno,
+/obj/effect/decal/cleanable/blood/xeno,
 /obj/item/ammo_casing,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
@@ -5847,7 +5847,7 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/caves/west)
 "Bc" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/northWall,
 /area/icy_caves/caves/rock)
 "Bd" = (
@@ -5859,7 +5859,7 @@
 	},
 /area/icy_caves/outpost/security)
 "Be" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/south)
 "Bi" = (
@@ -5887,8 +5887,8 @@
 /turf/open/floor/podhatch/floor,
 /area/icy_caves/outpost/engineering)
 "Bt" = (
-/atom/movable/effect/decal/cleanable/blood/xtracks,
-/atom/movable/effect/ai_node,
+/obj/effect/decal/cleanable/blood/xtracks,
+/obj/effect/ai_node,
 /turf/open/shuttle/dropship/floor,
 /area/icy_caves/caves/northwestmonorail)
 "Bu" = (
@@ -5908,7 +5908,7 @@
 /area/icy_caves/outpost/engineering)
 "By" = (
 /obj/structure/table,
-/atom/movable/effect/landmark/corpsespawner/colonist,
+/obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
 "Bz" = (
@@ -5967,7 +5967,7 @@
 	},
 /area/icy_caves/caves/rock)
 "BM" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/thin/straight,
 /area/icy_caves/caves/northern)
 "BO" = (
@@ -6017,7 +6017,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/breakroom)
 "BX" = (
-/atom/movable/effect/decal/cleanable/blood/xeno,
+/obj/effect/decal/cleanable/blood/xeno,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -6041,8 +6041,8 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
 "Cb" = (
-/atom/movable/effect/decal/remains/human,
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/alienstuff)
 "Ce" = (
@@ -6077,18 +6077,18 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/west)
 "Cn" = (
-/atom/movable/effect/decal/cleanable/blood/xtracks,
+/obj/effect/decal/cleanable/blood/xtracks,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/morgue)
 "Co" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/corners{
 	dir = 10
 	},
@@ -6098,7 +6098,7 @@
 /turf/open/floor/wood,
 /area/icy_caves/outpost/dorms)
 "Cu" = (
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
 "Cv" = (
@@ -6121,7 +6121,7 @@
 /turf/open/floor/cult,
 /area/icy_caves/caves/chapel)
 "CA" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison/red,
 /area/icy_caves/caves/cavesbrig)
 "CC" = (
@@ -6131,7 +6131,7 @@
 	},
 /area/icy_caves/outpost/research)
 "CD" = (
-/atom/movable/effect/decal/cleanable/blood/xtracks,
+/obj/effect/decal/cleanable/blood/xtracks,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/medbay)
 "CF" = (
@@ -6173,7 +6173,7 @@
 /turf/closed/wall/r_wall,
 /area/icy_caves/caves/south)
 "CQ" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/singleEnd{
 	dir = 4
 	},
@@ -6197,7 +6197,7 @@
 /area/icy_caves/outpost/outside)
 "CW" = (
 /obj/item/ammo_casing,
-/atom/movable/effect/decal/cleanable/blood/xeno,
+/obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/tile/dark/brown2{
 	dir = 9
 	},
@@ -6226,7 +6226,7 @@
 	},
 /area/icy_caves/caves/northern)
 "Dc" = (
-/atom/movable/effect/decal/cleanable/blood/gibs/xeno/up,
+/obj/effect/decal/cleanable/blood/gibs/xeno/up,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
 "Dd" = (
@@ -6244,7 +6244,7 @@
 /area/icy_caves/caves/underground_cafeteria)
 "Df" = (
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/icy_caves/caves/underground_cafeteria)
 "Dg" = (
@@ -6313,7 +6313,7 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
 "Du" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/wood/broken,
 /area/icy_caves/caves/underground_cafeteria)
 "Dv" = (
@@ -6337,11 +6337,11 @@
 	},
 /area/icy_caves/caves/alienstuff)
 "Dy" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/alienstuff)
 "DA" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail)
 "DB" = (
@@ -6351,7 +6351,7 @@
 	},
 /area/icy_caves/caves)
 "DC" = (
-/atom/movable/effect/landmark/patrol_point{
+/obj/effect/landmark/patrol_point{
 	id = "SOM_23";
 	name = "SOM exit point 23"
 	},
@@ -6365,7 +6365,7 @@
 /turf/closed/ice_rock/single,
 /area/icy_caves/caves)
 "DG" = (
-/atom/movable/effect/decal/cleanable/blood/writing,
+/obj/effect/decal/cleanable/blood/writing,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
 "DH" = (
@@ -6387,7 +6387,7 @@
 	},
 /area/icy_caves/outpost/outside)
 "DM" = (
-/atom/movable/effect/decal/cleanable/blood/writing{
+/obj/effect/decal/cleanable/blood/writing{
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -6407,7 +6407,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/alienstuff)
 "DR" = (
-/atom/movable/effect/landmark/patrol_point{
+/obj/effect/landmark/patrol_point{
 	id = "SOM_21";
 	name = "SOM exit point 21"
 	},
@@ -6431,10 +6431,10 @@
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/northwestmonorail/hallway)
 "DW" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/atom/movable/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/job/survivor,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
@@ -6451,12 +6451,12 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/morgue)
 "Eb" = (
-/atom/movable/effect/landmark/excavation_site_spawner,
-/atom/movable/effect/ai_node,
+/obj/effect/landmark/excavation_site_spawner,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
 "Ec" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/outside/center)
 "Ee" = (
@@ -6465,7 +6465,7 @@
 /turf/open/floor/tile/dark/purple2,
 /area/icy_caves/outpost/research)
 "Ef" = (
-/atom/movable/effect/landmark/corpsespawner/security,
+/obj/effect/landmark/corpsespawner/security,
 /obj/item/ammo_casing,
 /obj/item/ammo_magazine/pistol/g22,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -6475,9 +6475,9 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
 "Eg" = (
-/atom/movable/effect/decal/remains/human,
-/atom/movable/effect/decal/cleanable/blood,
-/atom/movable/effect/ai_node,
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison,
 /area/icy_caves/caves/cavesbrig)
@@ -6498,16 +6498,16 @@
 /area/icy_caves/outpost/medbay)
 "Ek" = (
 /obj/structure/table/mainship,
-/atom/movable/effect/decal/cleanable/blood/xtracks,
+/obj/effect/decal/cleanable/blood/xtracks,
 /turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
 "El" = (
 /obj/structure/table/reinforced,
-/atom/movable/effect/landmark/dropship_console_spawn_lz2,
+/obj/effect/landmark/dropship_console_spawn_lz2,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/console)
 "Em" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice,
 /area/icy_caves/caves/rock)
 "En" = (
@@ -6522,7 +6522,7 @@
 	},
 /area/icy_caves/caves/alienstuff)
 "Ep" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/east)
 "Eq" = (
@@ -6538,10 +6538,10 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
 "Eu" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
@@ -6551,12 +6551,12 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
 "Ex" = (
-/atom/movable/effect/decal/cleanable/mucus,
+/obj/effect/decal/cleanable/mucus,
 /obj/structure/table,
 /turf/open/floor/tile/purple/whitepurplefull,
 /area/icy_caves/caves/northwestmonorail/medbay)
 "Ey" = (
-/atom/movable/effect/landmark/fob_sentry_rebel,
+/obj/effect/landmark/fob_sentry_rebel,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/icy_caves/outpost/outside)
 "Ez" = (
@@ -6576,13 +6576,13 @@
 	dir = 4
 	},
 /obj/structure/table/reinforced/prison,
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/prison/red{
 	dir = 4
 	},
 /area/icy_caves/caves/cavesbrig)
 "EG" = (
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -6608,7 +6608,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/medbay)
 "EK" = (
-/atom/movable/effect/landmark/corpsespawner/colonist,
+/obj/effect/landmark/corpsespawner/colonist,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -6658,7 +6658,7 @@
 "EZ" = (
 /obj/item/ammo_casing,
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
 "Fa" = (
@@ -6672,17 +6672,17 @@
 	dir = 9
 	},
 /obj/structure/cable,
-/atom/movable/effect/landmark/sensor_tower,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
 "Fd" = (
 /obj/structure/rack,
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/gcircuit/anim,
 /area/icy_caves/caves/weapon_vault)
 "Fe" = (
 /obj/structure/table/gamblingtable,
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/wood,
 /area/icy_caves/caves/underground_cafeteria)
 "Ff" = (
@@ -6697,7 +6697,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
 "Fi" = (
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/medbay)
 "Fj" = (
@@ -6712,17 +6712,17 @@
 /turf/open/shuttle/dropship/seven,
 /area/space)
 "Fm" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/tile/dark/brown2/corner,
 /area/icy_caves/outpost/garage)
 "Fn" = (
-/atom/movable/effect/decal/remains/human,
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark/green2/corner{
 	dir = 1
 	},
@@ -6738,11 +6738,11 @@
 	dir = 6
 	},
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
 "Fq" = (
-/atom/movable/effect/spawner/gibspawner/human,
+/obj/effect/spawner/gibspawner/human,
 /turf/open/floor/tile/purple/whitepurplefull,
 /area/icy_caves/caves/northwestmonorail/medbay)
 "Fr" = (
@@ -6752,13 +6752,13 @@
 	},
 /area/icy_caves/outpost/research)
 "Fs" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -6772,7 +6772,7 @@
 "Ft" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
 "Fw" = (
@@ -6791,7 +6791,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
 "FD" = (
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/tile/dark/green2{
 	dir = 4
 	},
@@ -6812,14 +6812,14 @@
 /area/icy_caves/outpost/medbay)
 "FI" = (
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
 /obj/machinery/light{
 	dir = 4
 	},
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
 	},
@@ -6854,10 +6854,10 @@
 /turf/open/floor/freezer,
 /area/icy_caves/outpost/dorms)
 "FP" = (
-/atom/movable/effect/landmark/weed_node,
-/atom/movable/effect/landmark/excavation_site_spawner,
-/atom/movable/effect/landmark/weed_node,
-/atom/movable/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/west)
 "FQ" = (
@@ -6867,7 +6867,7 @@
 /turf/open/floor/prison/red,
 /area/icy_caves/caves/cavesbrig)
 "FT" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -6883,12 +6883,12 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside)
 "FW" = (
 /obj/structure/barricade/guardrail,
-/atom/movable/effect/landmark/patrol_point{
+/obj/effect/landmark/patrol_point{
 	id = "TGMC_23";
 	name = "TGMC exit point 23"
 	},
@@ -6925,11 +6925,11 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
 "Gf" = (
-/atom/movable/effect/spawner/gibspawner/human,
+/obj/effect/spawner/gibspawner/human,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/breakroom)
 "Gh" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/table/mainship,
@@ -6956,14 +6956,14 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/office)
 "Gl" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/outpost/LZ2)
 "Gm" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -6990,7 +6990,7 @@
 /obj/structure/table/woodentable,
 /obj/item/storage/bible/booze,
 /obj/item/reagent_containers/food/drinks/bottle/vodka,
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/cult,
 /area/icy_caves/caves/chapel)
 "Gr" = (
@@ -7016,7 +7016,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail)
 "Gy" = (
-/atom/movable/effect/decal/remains/human,
+/obj/effect/decal/remains/human,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
 "Gz" = (
@@ -7024,8 +7024,8 @@
 /turf/closed/ice_rock/singleT,
 /area/icy_caves/caves)
 "GB" = (
-/atom/movable/effect/landmark/weed_node,
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
 "GD" = (
@@ -7059,7 +7059,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/breakroom)
 "GK" = (
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside)
 "GL" = (
@@ -7092,7 +7092,7 @@
 /turf/open/shuttle/escapepod/plain,
 /area/space)
 "GO" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/icy_caves/outpost/outside)
 "GQ" = (
@@ -7116,8 +7116,8 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
 "GT" = (
-/atom/movable/effect/landmark/weed_node,
-/atom/movable/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -7139,7 +7139,7 @@
 	},
 /area/icy_caves/outpost/medbay)
 "GW" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/singleEnd{
 	dir = 8
 	},
@@ -7155,11 +7155,11 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/engineering)
 "Hd" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
 "He" = (
-/atom/movable/effect/decal/cleanable/blood/xtracks,
+/obj/effect/decal/cleanable/blood/xtracks,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/breakroom)
@@ -7209,7 +7209,7 @@
 	},
 /area/icy_caves/outpost/research)
 "Hv" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /obj/machinery/light/small,
 /turf/open/floor/wood,
 /area/icy_caves/outpost/dorms)
@@ -7221,11 +7221,11 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail)
 "Hx" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/icy_caves/outpost/outside)
 "Hz" = (
-/atom/movable/effect/landmark/patrol_point{
+/obj/effect/landmark/patrol_point{
 	id = "TGMC_12";
 	name = "TGMC exit point 12"
 	},
@@ -7240,7 +7240,7 @@
 /area/icy_caves/outpost/outside/center)
 "HB" = (
 /obj/structure/prop/mainship/hangar_stencil,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ1)
 "HC" = (
@@ -7259,8 +7259,8 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ1)
 "HH" = (
-/atom/movable/effect/ai_node,
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/ai_node,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/mainship/red/full,
 /area/icy_caves/caves/northern)
 "HI" = (
@@ -7299,7 +7299,7 @@
 	},
 /area/icy_caves/outpost/refinery)
 "HO" = (
-/atom/movable/effect/decal/cleanable/blood/gibs,
+/obj/effect/decal/cleanable/blood/gibs,
 /obj/structure/closet/cabinet,
 /obj/item/clothing/suit/nun,
 /obj/item/clothing/shoes/leather,
@@ -7334,7 +7334,7 @@
 	dir = 9
 	},
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
 "HT" = (
@@ -7360,12 +7360,12 @@
 /obj/structure/bed/chair/comfy{
 	dir = 1
 	},
-/atom/movable/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
 "HX" = (
 /obj/structure/barricade/guardrail,
-/atom/movable/effect/landmark/patrol_point{
+/obj/effect/landmark/patrol_point{
 	id = "TGMC_24";
 	name = "TGMC exit point 24"
 	},
@@ -7393,11 +7393,11 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
 "If" = (
-/atom/movable/effect/decal/warning_stripes/thin,
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin,
+/obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor/mainship/cargo,
@@ -7413,7 +7413,7 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
 "Ii" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/outside)
 "Ij" = (
@@ -7433,7 +7433,7 @@
 /turf/closed/ice_rock/southWall,
 /area/icy_caves/caves/rock)
 "In" = (
-/atom/movable/effect/decal/cleanable/blood/xeno,
+/obj/effect/decal/cleanable/blood/xeno,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
@@ -7442,11 +7442,11 @@
 	dir = 5
 	},
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
 "Is" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -7469,7 +7469,7 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
 "Iw" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
 "Ix" = (
@@ -7480,16 +7480,16 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/office)
 "Iz" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/wood,
 /area/icy_caves/caves/underground_cafeteria)
 "IA" = (
 /obj/machinery/light,
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
 "IB" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
@@ -7506,7 +7506,7 @@
 	},
 /area/icy_caves/outpost/research)
 "IE" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/outside/center)
 "IG" = (
@@ -7554,7 +7554,7 @@
 /area/icy_caves/caves/underground_cafeteria)
 "IN" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail)
 "IO" = (
@@ -7562,7 +7562,7 @@
 	amount = 25
 	},
 /obj/item/stack/barbed_wire/half_stack,
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /obj/structure/closet/crate/secure/phoron,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
@@ -7572,7 +7572,7 @@
 	},
 /area/icy_caves/caves/northwestmonorail)
 "IR" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
 "IS" = (
@@ -7588,7 +7588,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/breakroom)
 "IX" = (
-/atom/movable/effect/decal/cleanable/blood/xeno,
+/obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
 "IY" = (
@@ -7618,7 +7618,7 @@
 	},
 /area/icy_caves/outpost/medbay)
 "Ji" = (
-/atom/movable/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/job/survivor,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
@@ -7644,7 +7644,7 @@
 	},
 /area/icy_caves/outpost/outside)
 "Jn" = (
-/atom/movable/effect/decal/cleanable/blood/xtracks,
+/obj/effect/decal/cleanable/blood/xtracks,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail)
@@ -7665,11 +7665,11 @@
 	},
 /area/icy_caves/outpost/LZ2)
 "Jq" = (
-/atom/movable/effect/decal/cleanable/blood/splatter,
+/obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/medbay)
 "Js" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/end{
 	dir = 1
 	},
@@ -7694,8 +7694,8 @@
 /turf/open/floor/prison/kitchen,
 /area/icy_caves/outpost/kitchen)
 "Jw" = (
-/atom/movable/effect/decal/remains/human,
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/weapon_vault)
 "Jx" = (
@@ -7723,7 +7723,7 @@
 /turf/open/floor/tile/dark/green2,
 /area/icy_caves/outpost/medbay)
 "JC" = (
-/atom/movable/effect/decal/cleanable/blood/gibs,
+/obj/effect/decal/cleanable/blood/gibs,
 /obj/structure/closet/cabinet,
 /obj/item/weapon/katana,
 /obj/item/clothing/head/fedora,
@@ -7759,7 +7759,7 @@
 	},
 /area/icy_caves/outpost/security)
 "JI" = (
-/atom/movable/effect/decal/remains/human,
+/obj/effect/decal/remains/human,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/south)
 "JJ" = (
@@ -7772,7 +7772,7 @@
 /turf/open/shuttle/dropship/floor,
 /area/icy_caves/caves/northwestmonorail)
 "JM" = (
-/atom/movable/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark/green2,
 /area/icy_caves/outpost/medbay)
 "JN" = (
@@ -7820,7 +7820,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/alienstuff)
 "JW" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
 "JY" = (
@@ -7855,7 +7855,7 @@
 "Ke" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
 "Kf" = (
@@ -7864,21 +7864,21 @@
 	},
 /area/icy_caves/caves/weapon_vault)
 "Kg" = (
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/icy_caves/outpost/outside/center)
 "Kh" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
 "Ki" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/intersection,
 /area/icy_caves/caves/rock)
 "Kj" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/medbay)
 "Kk" = (
@@ -7889,7 +7889,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
 "Km" = (
-/atom/movable/effect/landmark/corpsespawner/colonist,
+/obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/tile/dark/brown2/corner{
 	dir = 1
 	},
@@ -7904,7 +7904,7 @@
 /area/icy_caves/outpost/medbay)
 "Kq" = (
 /obj/structure/rack,
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/gcircuit/anim,
 /area/icy_caves/caves/weapon_vault)
 "Kr" = (
@@ -7917,11 +7917,11 @@
 	},
 /area/icy_caves/outpost/garage)
 "Kt" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/blue2,
 /area/icy_caves/outpost/LZ2)
 "Ku" = (
-/atom/movable/effect/decal/cleanable/cobweb2,
+/obj/effect/decal/cleanable/cobweb2,
 /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine,
 /obj/structure/rack,
 /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus{
@@ -7937,7 +7937,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
 "Kx" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/weapon_vault)
 "Ky" = (
@@ -7964,7 +7964,7 @@
 /turf/open/floor/wood,
 /area/icy_caves/outpost/dorms)
 "KD" = (
-/atom/movable/effect/decal/remains/xeno,
+/obj/effect/decal/remains/xeno,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
 "KH" = (
@@ -7975,7 +7975,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
 "KI" = (
-/atom/movable/effect/landmark/corpsespawner/colonist,
+/obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
 "KJ" = (
@@ -7983,7 +7983,7 @@
 /turf/open/floor/plating/ground/snow,
 /area/icy_caves/outpost/outside)
 "KL" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/singlePart{
 	dir = 6
 	},
@@ -7994,7 +7994,7 @@
 	},
 /area/icy_caves/caves/rock)
 "KO" = (
-/atom/movable/effect/decal/cleanable/blood/gibs,
+/obj/effect/decal/cleanable/blood/gibs,
 /obj/structure/closet/cabinet,
 /obj/item/clothing/suit/hgpirate,
 /turf/open/floor/wood,
@@ -8016,14 +8016,14 @@
 	},
 /area/icy_caves/caves/rock)
 "KW" = (
-/atom/movable/effect/landmark/patrol_point{
+/obj/effect/landmark/patrol_point{
 	id = "TGMC_13";
 	name = "TGMC exit point 13"
 	},
 /turf/open/floor/plating/ground/snow/layer1,
 /area/icy_caves/outpost/LZ2)
 "KX" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/breakroom)
@@ -8051,8 +8051,8 @@
 	},
 /area/icy_caves/caves)
 "Le" = (
-/atom/movable/effect/decal/remains/human,
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/cult,
 /area/icy_caves/caves/chapel)
 "Lf" = (
@@ -8095,7 +8095,7 @@
 	},
 /area/icy_caves/caves/rock)
 "Ln" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside)
 "Lo" = (
@@ -8105,7 +8105,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
 "Lp" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /obj/item/tool/pickaxe,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
@@ -8126,17 +8126,17 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail)
 "Lt" = (
-/atom/movable/effect/landmark/corpsespawner/miner{
+/obj/effect/landmark/corpsespawner/miner{
 	corpseback = null;
 	corpseidjob = "Laborer";
 	name = "Colonist Kira Von"
 	},
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /obj/item/ammo_casing,
 /turf/open/floor/wood,
 /area/icy_caves/outpost/dorms)
 "Lu" = (
-/atom/movable/effect/decal/warning_stripes/thin,
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/tile/dark/brown2{
 	dir = 9
 	},
@@ -8163,7 +8163,7 @@
 	dir = 6
 	},
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
 "LB" = (
@@ -8176,7 +8176,7 @@
 /turf/open/floor/wood,
 /area/icy_caves/outpost/dorms)
 "LD" = (
-/atom/movable/effect/decal/cleanable/blood/xeno,
+/obj/effect/decal/cleanable/blood/xeno,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -8188,7 +8188,7 @@
 	dir = 8;
 	pixel_x = -4
 	},
-/atom/movable/effect/landmark/corpsespawner/prisoner,
+/obj/effect/landmark/corpsespawner/prisoner,
 /turf/open/floor/prison,
 /area/icy_caves/caves/cavesbrig)
 "LF" = (
@@ -8213,16 +8213,16 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
 "LK" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
-/atom/movable/effect/landmark/corpsespawner/colonist,
+/obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/tile/dark/brown2/corner{
 	dir = 4
 	},
@@ -8248,7 +8248,7 @@
 "LQ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/east)
 "LR" = (
@@ -8269,10 +8269,10 @@
 /turf/open/floor/tile/dark/red2/corner,
 /area/icy_caves/caves/cavesbrig)
 "LT" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -8291,10 +8291,10 @@
 /turf/closed/ice/corner,
 /area/icy_caves/outpost/outside/center)
 "LX" = (
-/atom/movable/effect/decal/cleanable/blood/xeno,
+/obj/effect/decal/cleanable/blood/xeno,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
 "LY" = (
@@ -8309,7 +8309,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
 "Mb" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/thin/corner,
 /area/icy_caves/caves/rock)
 "Mc" = (
@@ -8318,8 +8318,8 @@
 	},
 /area/icy_caves/caves/northwestmonorail)
 "Md" = (
-/atom/movable/effect/decal/remains/xeno,
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/remains/xeno,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
 "Me" = (
@@ -8348,7 +8348,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/office)
 "Mk" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/east)
 "Ml" = (
@@ -8357,7 +8357,7 @@
 	},
 /area/icy_caves/outpost/LZ1)
 "Mm" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -8375,7 +8375,7 @@
 	},
 /area/icy_caves/caves)
 "Mr" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/single,
 /area/icy_caves/caves/rock)
 "Ms" = (
@@ -8398,7 +8398,7 @@
 /area/icy_caves/outpost/security)
 "Mv" = (
 /obj/machinery/optable,
-/atom/movable/effect/decal/cleanable/blood/xtracks,
+/obj/effect/decal/cleanable/blood/xtracks,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/morgue)
 "Mx" = (
@@ -8421,7 +8421,7 @@
 /area/icy_caves/outpost/LZ1)
 "MA" = (
 /obj/structure/barricade/guardrail,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/shuttle/dropship/floor,
 /area/icy_caves/caves/northwestmonorail)
 "MB" = (
@@ -8446,7 +8446,7 @@
 	},
 /area/icy_caves/caves/rock)
 "MF" = (
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
@@ -8454,7 +8454,7 @@
 /area/icy_caves/caves/chapel)
 "MG" = (
 /obj/structure/window/framed/colony/reinforced,
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/research)
 "MH" = (
@@ -8555,15 +8555,15 @@
 /turf/open/floor/wood,
 /area/icy_caves/outpost/office)
 "Na" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
 "Nb" = (
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
 "Nc" = (
-/atom/movable/effect/decal/warning_stripes/thin,
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin,
+/obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
@@ -8587,7 +8587,7 @@
 	dir = 10
 	},
 /obj/structure/cable,
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside)
 "Nk" = (
@@ -8595,7 +8595,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
 "Nl" = (
-/atom/movable/effect/decal/cleanable/blood/gibs,
+/obj/effect/decal/cleanable/blood/gibs,
 /obj/structure/closet/cabinet,
 /obj/item/clothing/under/lawyer/blue,
 /turf/open/floor/wood,
@@ -8615,11 +8615,11 @@
 /area/icy_caves/outpost/outside)
 "No" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/atom/movable/effect/decal/remains/human,
+/obj/effect/decal/remains/human,
 /obj/machinery/light{
 	dir = 8
 	},
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
 	},
@@ -8627,7 +8627,7 @@
 "Ns" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
-/atom/movable/effect/landmark/fob_sentry,
+/obj/effect/landmark/fob_sentry,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside)
 "Nt" = (
@@ -8649,12 +8649,12 @@
 	},
 /area/icy_caves/outpost/garage)
 "Ny" = (
-/atom/movable/effect/landmark/corpsespawner/colonist,
+/obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
 "NA" = (
-/atom/movable/effect/decal/cleanable/blood/drip,
-/atom/movable/effect/ai_node,
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/green2/corner{
 	dir = 1
 	},
@@ -8688,7 +8688,7 @@
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/rock)
 "NJ" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/light{
@@ -8703,7 +8703,7 @@
 /turf/open/floor/wood,
 /area/icy_caves/outpost/office)
 "NL" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
@@ -8747,7 +8747,7 @@
 /turf/open/floor/wood,
 /area/icy_caves/caves/underground_cafeteria)
 "NS" = (
-/atom/movable/effect/decal/cleanable/blood/gibs,
+/obj/effect/decal/cleanable/blood/gibs,
 /obj/structure/closet/cabinet,
 /obj/item/clothing/under/soviet,
 /obj/item/clothing/shoes/blue,
@@ -8773,11 +8773,11 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/alienstuff)
 "Ob" = (
-/atom/movable/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/research)
 "Oc" = (
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/east)
 "Od" = (
@@ -8797,15 +8797,15 @@
 	},
 /area/icy_caves/outpost/refinery)
 "Of" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/outside)
 "Og" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison,
 /area/icy_caves/caves/cavesbrig)
 "Oh" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
@@ -8814,30 +8814,30 @@
 /obj/structure/bed/chair/comfy{
 	dir = 1
 	},
-/atom/movable/effect/landmark/corpsespawner/prison_security,
+/obj/effect/landmark/corpsespawner/prison_security,
 /turf/open/floor/prison/red,
 /area/icy_caves/caves/cavesbrig)
 "Ok" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
 "On" = (
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
 "Oo" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark/green2,
 /area/icy_caves/caves/alienstuff)
 "Op" = (
 /obj/machinery/light{
 	dir = 1
 	},
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
 "Os" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -8856,7 +8856,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
 "Ox" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship/tcomms,
@@ -8872,11 +8872,11 @@
 /turf/open/floor/wood,
 /area/icy_caves/outpost/office)
 "OD" = (
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/outpost/outside)
 "OE" = (
-/atom/movable/effect/landmark/corpsespawner/colonist,
+/obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/tile/dark/brown2,
 /area/icy_caves/outpost/refinery)
 "OF" = (
@@ -8884,7 +8884,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
 "OH" = (
@@ -8917,25 +8917,25 @@
 	},
 /area/icy_caves/caves/alienstuff)
 "OO" = (
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/icy_caves/outpost/outside)
 "OP" = (
 /turf/open/floor/mainship/mono,
 /area/icy_caves/caves/northwestmonorail)
 "OQ" = (
-/atom/movable/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison/kitchen,
 /area/icy_caves/outpost/kitchen)
 "OR" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
 	},
 /area/icy_caves/caves/weapon_vault)
 "OS" = (
-/atom/movable/effect/decal/remains/human,
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
 "OT" = (
@@ -8956,7 +8956,7 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
 "Pa" = (
-/atom/movable/effect/decal/cleanable/blood/xtracks,
+/obj/effect/decal/cleanable/blood/xtracks,
 /turf/open/shuttle/dropship/floor,
 /area/icy_caves/caves/northwestmonorail)
 "Pb" = (
@@ -8984,7 +8984,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
 "Pi" = (
@@ -8993,7 +8993,7 @@
 	},
 /area/icy_caves/outpost/outside/center)
 "Pl" = (
-/atom/movable/effect/decal/cleanable/blood/gibs/xeno,
+/obj/effect/decal/cleanable/blood/gibs/xeno,
 /obj/item/ammo_casing,
 /turf/open/floor/wood,
 /area/icy_caves/outpost/dorms)
@@ -9004,7 +9004,7 @@
 /area/icy_caves/caves/northwestmonorail)
 "Pn" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
 "Po" = (
@@ -9013,7 +9013,7 @@
 	},
 /area/icy_caves/caves/rock)
 "Pp" = (
-/atom/movable/effect/decal/cleanable/blood/xtracks,
+/obj/effect/decal/cleanable/blood/xtracks,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
 "Pq" = (
@@ -9026,7 +9026,7 @@
 	dir = 8;
 	name = "Security Desk"
 	},
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/cult,
 /area/icy_caves/caves/alienstuff)
 "Pu" = (
@@ -9071,12 +9071,12 @@
 /turf/closed/wall/r_wall,
 /area/icy_caves/caves/underground_cafeteria)
 "PF" = (
-/atom/movable/effect/landmark/corpsespawner/colonist,
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/landmark/corpsespawner/colonist,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/weapon_vault)
 "PI" = (
-/atom/movable/effect/landmark/xeno_resin_door,
+/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
 "PJ" = (
@@ -9121,11 +9121,11 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/south)
 "PU" = (
-/atom/movable/effect/decal/cleanable/blood/gibs/limb,
+/obj/effect/decal/cleanable/blood/gibs/limb,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
 "PV" = (
@@ -9140,7 +9140,7 @@
 	},
 /area/icy_caves/outpost/security)
 "PW" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/icy_caves/caves/underground_cafeteria)
 "PX" = (
@@ -9168,7 +9168,7 @@
 /turf/open/floor/prison/kitchen,
 /area/icy_caves/outpost/kitchen)
 "Qd" = (
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
 "Qe" = (
@@ -9179,7 +9179,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside)
 "Qf" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/green2{
 	dir = 8
 	},
@@ -9237,11 +9237,11 @@
 	},
 /area/icy_caves/outpost/outside/center)
 "Qr" = (
-/atom/movable/effect/decal/cleanable/blood/xtracks,
+/obj/effect/decal/cleanable/blood/xtracks,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail)
 "Qs" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/south)
 "Qw" = (
@@ -9270,7 +9270,7 @@
 	},
 /area/icy_caves/outpost/medbay)
 "QC" = (
-/atom/movable/effect/decal/cleanable/blood/writing,
+/obj/effect/decal/cleanable/blood/writing,
 /turf/open/floor/wood,
 /area/icy_caves/outpost/dorms)
 "QD" = (
@@ -9301,11 +9301,11 @@
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4
 	},
-/atom/movable/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark/brown2,
 /area/icy_caves/outpost/refinery)
 "QI" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/weapon_vault)
 "QJ" = (
@@ -9315,14 +9315,14 @@
 	},
 /area/icy_caves/outpost/refinery)
 "QK" = (
-/atom/movable/effect/landmark/patrol_point{
+/obj/effect/landmark/patrol_point{
 	id = "TGMC_14";
 	name = "TGMC exit point 14"
 	},
 /turf/open/floor/plating/ground/snow/layer1,
 /area/icy_caves/outpost/LZ2)
 "QL" = (
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/south)
 "QM" = (
@@ -9365,7 +9365,7 @@
 	},
 /area/icy_caves/outpost/refinery)
 "QT" = (
-/atom/movable/effect/landmark/corpsespawner/colonist,
+/obj/effect/landmark/corpsespawner/colonist,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -9407,11 +9407,11 @@
 /turf/open/floor/cult,
 /area/icy_caves/caves/alienstuff)
 "Rd" = (
-/atom/movable/effect/decal/remains/xeno,
+/obj/effect/decal/remains/xeno,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
 "Rf" = (
-/atom/movable/effect/decal/cleanable/blood/splatter,
+/obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
 "Rg" = (
@@ -9420,7 +9420,7 @@
 	},
 /area/icy_caves/outpost/refinery)
 "Ri" = (
-/atom/movable/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
 	},
@@ -9476,7 +9476,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/engineering)
 "Rr" = (
-/atom/movable/effect/spawner/gibspawner/human,
+/obj/effect/spawner/gibspawner/human,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/morgue)
@@ -9486,7 +9486,7 @@
 	},
 /area/icy_caves/caves/northern)
 "Rt" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/junction,
 /area/icy_caves/caves/rock)
 "Ru" = (
@@ -9548,20 +9548,20 @@
 /turf/closed/ice_rock/northWall,
 /area/icy_caves/caves)
 "RJ" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/atom/movable/effect/landmark/corpsespawner/colonist,
+/obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/tile/dark/brown2{
 	dir = 6
 	},
 /area/icy_caves/outpost/garage)
 "RK" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/medbay)
 "RL" = (
-/atom/movable/effect/decal/cleanable/blood/splatter,
+/obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/west)
 "RM" = (
@@ -9578,7 +9578,7 @@
 	},
 /area/icy_caves/caves/rock)
 "RO" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/straight{
 	dir = 4
 	},
@@ -9613,16 +9613,16 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
 "RZ" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
 "Sa" = (
 /obj/structure/bed,
-/atom/movable/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/wood,
 /area/icy_caves/outpost/dorms)
 "Sb" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/junction{
 	dir = 1
 	},
@@ -9637,11 +9637,11 @@
 	},
 /area/icy_caves/caves/northwestmonorail)
 "Sf" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
 "Sh" = (
@@ -9684,7 +9684,7 @@
 /turf/closed/ice/thin/end,
 /area/icy_caves/caves/west)
 "So" = (
-/atom/movable/effect/landmark/corpsespawner/security{
+/obj/effect/landmark/corpsespawner/security{
 	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Jac Mester"
 	},
@@ -9719,7 +9719,7 @@
 	},
 /area/icy_caves/caves/rock)
 "SC" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/caves)
 "SD" = (
@@ -9731,11 +9731,11 @@
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/outpost/outside)
 "SF" = (
-/atom/movable/effect/landmark/xeno_resin_door,
+/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
 "SG" = (
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
 "SH" = (
@@ -9761,7 +9761,7 @@
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
 "SS" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/alienstuff)
 "ST" = (
@@ -9770,11 +9770,11 @@
 	},
 /area/icy_caves/caves/rock)
 "SU" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/outpost/outside)
 "SV" = (
-/atom/movable/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
 "SW" = (
@@ -9801,8 +9801,8 @@
 /turf/open/floor/prison,
 /area/icy_caves/caves/cavesbrig)
 "Ta" = (
-/atom/movable/effect/decal/cleanable/blood,
-/atom/movable/effect/decal/remains/human,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/remains/human,
 /turf/open/floor/prison,
 /area/icy_caves/caves/cavesbrig)
 "Tb" = (
@@ -9836,8 +9836,8 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/atom/movable/effect/decal/remains/human,
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/cult,
 /area/icy_caves/caves/chapel)
 "Th" = (
@@ -9853,7 +9853,7 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/outpost/outside)
 "Tk" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/icy_caves/outpost/outside/center)
 "Tl" = (
@@ -9879,19 +9879,19 @@
 /obj/structure/barricade/guardrail{
 	dir = 1
 	},
-/atom/movable/effect/landmark/patrol_point{
+/obj/effect/landmark/patrol_point{
 	id = "TGMC_22";
 	name = "TGMC exit point 22"
 	},
 /turf/open/shuttle/dropship/floor,
 /area/icy_caves/caves/northwestmonorail)
 "Tq" = (
-/atom/movable/effect/decal/cleanable/blood/xtracks,
+/obj/effect/decal/cleanable/blood/xtracks,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
 "Tr" = (
-/atom/movable/effect/landmark/xeno_resin_door,
+/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/east)
 "Ts" = (
@@ -9922,8 +9922,8 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/atom/movable/effect/decal/cleanable/blood,
-/atom/movable/effect/ai_node,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
@@ -9934,8 +9934,8 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
 "TB" = (
-/atom/movable/effect/decal/warning_stripes/thin,
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin,
+/obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -9961,12 +9961,12 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside)
 "TF" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/alienstuff)
 "TH" = (
@@ -9992,7 +9992,7 @@
 /turf/closed/wall/r_wall,
 /area/icy_caves/outpost/LZ1)
 "TN" = (
-/atom/movable/effect/spawner/gibspawner/human,
+/obj/effect/spawner/gibspawner/human,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
@@ -10014,7 +10014,7 @@
 /turf/open/floor/plating/ground/snow/layer1,
 /area/icy_caves/outpost/outside)
 "TU" = (
-/atom/movable/effect/decal/warning_stripes/thin,
+/obj/effect/decal/warning_stripes/thin,
 /obj/docking_port/mobile/crashmode/bigbury,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/garage)
@@ -10098,13 +10098,13 @@
 /turf/closed/ice/thin/end,
 /area/icy_caves/caves/rock)
 "Ul" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/garage)
 "Un" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/breakroom)
 "Uo" = (
@@ -10121,7 +10121,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4
 	},
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside)
 "Us" = (
@@ -10144,7 +10144,7 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/LZ2)
 "Uz" = (
-/atom/movable/effect/decal/cleanable/blood/xeno,
+/obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/wood,
 /area/icy_caves/outpost/dorms)
 "UA" = (
@@ -10156,7 +10156,7 @@
 /area/icy_caves/outpost/outside/center)
 "UD" = (
 /obj/structure/bed/chair/comfy,
-/atom/movable/effect/landmark/corpsespawner/colonist,
+/obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/wood,
 /area/icy_caves/caves/underground_cafeteria)
 "UE" = (
@@ -10232,7 +10232,7 @@
 /turf/open/floor/prison/kitchen,
 /area/icy_caves/outpost/kitchen)
 "UT" = (
-/atom/movable/effect/decal/cleanable/blood/gibs,
+/obj/effect/decal/cleanable/blood/gibs,
 /obj/structure/closet/cabinet,
 /obj/item/clothing/shoes/blue,
 /turf/open/floor/wood,
@@ -10301,10 +10301,10 @@
 	},
 /area/icy_caves/outpost/security)
 "Vf" = (
-/atom/movable/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/job/survivor,
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
 "Vg" = (
@@ -10313,8 +10313,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/icy_caves/caves/alienstuff)
 "Vh" = (
-/atom/movable/effect/decal/remains/human,
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark/brown2/corner{
 	dir = 4
 	},
@@ -10325,7 +10325,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/research)
 "Vj" = (
-/atom/movable/effect/decal/cleanable/blood/gibs/limb,
+/obj/effect/decal/cleanable/blood/gibs/limb,
 /obj/structure/cable,
 /turf/open/floor/tile/purple/whitepurplefull,
 /area/icy_caves/caves/northwestmonorail/medbay)
@@ -10338,7 +10338,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison,
 /area/icy_caves/caves/cavesbrig)
 "Vm" = (
@@ -10354,15 +10354,15 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
 "Vp" = (
-/atom/movable/effect/landmark/xeno_silo_spawn,
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
 "Vq" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/atom/movable/effect/decal/warning_stripes/thin,
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin,
+/obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/mainship/cargo,
@@ -10404,10 +10404,10 @@
 /turf/open/floor/cult,
 /area/icy_caves/caves/chapel)
 "Vx" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/tile/dark/brown2/corner{
@@ -10425,7 +10425,7 @@
 	},
 /area/icy_caves/caves/rock)
 "VC" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/icy_caves/outpost/outside/center)
 "VD" = (
@@ -10467,13 +10467,13 @@
 	},
 /area/icy_caves/outpost/security)
 "VL" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/mainship/cargo,
@@ -10492,7 +10492,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/research)
 "VP" = (
@@ -10544,7 +10544,7 @@
 /area/icy_caves/outpost/outside/center)
 "VZ" = (
 /obj/item/shard,
-/atom/movable/effect/decal/cleanable/blood/xtracks,
+/obj/effect/decal/cleanable/blood/xtracks,
 /turf/open/floor/tile/purple/whitepurplefull,
 /area/icy_caves/caves/northwestmonorail/medbay)
 "Wa" = (
@@ -10561,7 +10561,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/breakroom)
 "Wd" = (
-/atom/movable/effect/decal/cleanable/blood/xtracks,
+/obj/effect/decal/cleanable/blood/xtracks,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
 	},
@@ -10584,7 +10584,7 @@
 /turf/open/shuttle/dropship/seven,
 /area/icy_caves/caves/northwestmonorail)
 "Wh" = (
-/atom/movable/effect/landmark/patrol_point{
+/obj/effect/landmark/patrol_point{
 	id = "SOM_12";
 	name = "SOM exit point 12"
 	},
@@ -10613,7 +10613,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
 "Wo" = (
-/atom/movable/effect/landmark/fob_sentry_rebel,
+/obj/effect/landmark/fob_sentry_rebel,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/outpost/outside)
 "Wp" = (
@@ -10630,7 +10630,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/morgue)
 "Ws" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/west)
 "Wt" = (
@@ -10692,7 +10692,7 @@
 /turf/closed/ice_rock/corners,
 /area/icy_caves/caves/rock)
 "WH" = (
-/atom/movable/effect/landmark/xeno_resin_door,
+/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/rock)
 "WI" = (
@@ -10703,7 +10703,7 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/LZ1)
 "WN" = (
-/atom/movable/effect/landmark/corpsespawner/syndicatesoldier,
+/obj/effect/landmark/corpsespawner/syndicatesoldier,
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
 	},
@@ -10712,11 +10712,11 @@
 	},
 /area/icy_caves/caves/northern)
 "WO" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
 "WP" = (
-/atom/movable/effect/decal/cleanable/vomit,
+/obj/effect/decal/cleanable/vomit,
 /turf/open/floor/tile/purple/whitepurplefull,
 /area/icy_caves/caves/northwestmonorail/medbay)
 "WR" = (
@@ -10742,7 +10742,7 @@
 /turf/open/floor/wood,
 /area/icy_caves/outpost/dorms)
 "WV" = (
-/atom/movable/effect/decal/remains/human,
+/obj/effect/decal/remains/human,
 /turf/open/floor/prison/red{
 	dir = 8
 	},
@@ -10784,7 +10784,7 @@
 /turf/open/shuttle/dropship/floor,
 /area/icy_caves/caves/northwestmonorail)
 "Xf" = (
-/atom/movable/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/job/survivor,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
@@ -10804,7 +10804,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/breakroom)
 "Xi" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/power/apc/drained{
@@ -10827,7 +10827,7 @@
 /turf/open/floor/prison/kitchen,
 /area/icy_caves/outpost/kitchen)
 "Xl" = (
-/atom/movable/effect/landmark/corpsespawner/colonist,
+/obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/wood,
 /area/icy_caves/outpost/dorms)
 "Xm" = (
@@ -10855,7 +10855,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
 	},
@@ -10864,11 +10864,11 @@
 /obj/machinery/landinglight/ds1/delayone{
 	dir = 4
 	},
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ1)
 "Xr" = (
-/atom/movable/effect/landmark/xeno_resin_door,
+/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/dmg3,
 /area/icy_caves/caves/crashed_ship)
 "Xs" = (
@@ -10915,7 +10915,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail)
 "XA" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
@@ -10935,7 +10935,7 @@
 /turf/open/shuttle/dropship/seven,
 /area/space)
 "XG" = (
-/atom/movable/effect/decal/cleanable/blood/writing{
+/obj/effect/decal/cleanable/blood/writing{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -10950,10 +10950,10 @@
 	},
 /area/icy_caves/caves)
 "XI" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -10977,7 +10977,7 @@
 /area/space)
 "XM" = (
 /obj/structure/bed/chair,
-/atom/movable/effect/landmark/corpsespawner/colonist,
+/obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
@@ -11036,7 +11036,7 @@
 /turf/open/floor/mainship/green/full,
 /area/icy_caves/caves/alienstuff)
 "XZ" = (
-/atom/movable/effect/decal/cleanable/blood/writing{
+/obj/effect/decal/cleanable/blood/writing{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -11056,7 +11056,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
 "Yd" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/prison/red{
 	dir = 1
 	},
@@ -11077,7 +11077,7 @@
 "Yh" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/breakroom)
 "Yi" = (
@@ -11172,7 +11172,7 @@
 /turf/open/shuttle/escapepod/plain,
 /area/icy_caves/caves/northwestmonorail)
 "YC" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall,
 /area/icy_caves/outpost/research)
 "YE" = (
@@ -11208,8 +11208,8 @@
 /turf/open/floor/prison/kitchen,
 /area/icy_caves/outpost/kitchen)
 "YO" = (
-/atom/movable/effect/decal/warning_stripes/thin,
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin,
+/obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -11264,7 +11264,7 @@
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
 "Zc" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/light{
@@ -11293,7 +11293,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
 "Zh" = (
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/south)
 "Zi" = (
@@ -11323,7 +11323,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/LZ1)
 "Zn" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/brown2/corner{
 	dir = 4
 	},
@@ -11353,7 +11353,7 @@
 /turf/closed/ice/thin/corner,
 /area/icy_caves/caves/rock)
 "Zu" = (
-/atom/movable/effect/decal/remains/human,
+/obj/effect/decal/remains/human,
 /turf/open/floor/wood/broken,
 /area/icy_caves/caves/underground_cafeteria)
 "Zw" = (

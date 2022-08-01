@@ -13,7 +13,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/template_noop)
 "j" = (
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/prison/bright_clean/two,
 /area/template_noop)
 "m" = (
@@ -58,7 +58,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/template_noop)
 "E" = (
-/atom/movable/effect/landmark/corpsespawner/scientist,
+/obj/effect/landmark/corpsespawner/scientist,
 /turf/open/floor/prison/bright_clean/two,
 /area/template_noop)
 "I" = (
@@ -71,7 +71,7 @@
 /area/template_noop)
 "K" = (
 /obj/machinery/light/small,
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/prison/bright_clean/two,
 /area/template_noop)
 "L" = (
