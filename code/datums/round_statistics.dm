@@ -19,10 +19,10 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/points_from_research = 0
 	var/total_xeno_deaths = 0
 	var/list/total_human_deaths = list()
-	var/total_human_revives = list()
-	var/total_human_respawns = list()
+	var/list/total_human_revives = list()
+	var/list/total_human_respawns = list()
 	var/total_xenos_created = 0
-	var/total_humans_created = 0
+	var/list/total_humans_created = list()
 	var/list/total_bullet_hits_on_humans = list()
 	var/total_bullet_hits_on_marines = 0
 	var/total_bullet_hits_on_xenos = 0
