@@ -130,6 +130,8 @@
 	var/leash_radius = 5
 	/// How much more integrity aoe_leash gains per caught marine, it is preferable that max_integrity is this var * 8.
 	var/integrity_increase = 240
+	/// List of beams to be removed on obj_destruction
+	var/list/beams
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 
@@ -144,11 +146,12 @@
 		if(obj_integrity > max_integrity)
 			obj_integrity = max_integrity
 
-/*
+
 /obj/structure/xeno/aoe_leash/obj_destruction()
 	. = ..()
-	// Remove beams here and unregister signals if necessary
-*/
+	for(var/obj/effect/ebeam/beam in view(leash_radius, loc))
+		beam.Destroy(beam)
+
 /// Humans caught in the aoe_leash will be pulled back if they leave it's radius
 /obj/structure/xeno/aoe_leash/proc/check_dist(datum/leash_victims, atom/oldloc)
 	SIGNAL_HANDLER
@@ -162,7 +165,7 @@
 		return
 	X.visible_message(span_xenonotice("\The [X] starts tearing down \the [src]!"), \
 	span_xenonotice("We start to tear down \the [src]."))
-	if(!do_after(X, 4 SECONDS, TRUE, X, BUSY_ICON_GENERIC))
+	if(!do_after(X, 2 SECONDS, TRUE, X, BUSY_ICON_GENERIC))
 		return
 	if(!istype(src)) // Prevent jumping to other turfs if do_after completes with the wall already gone
 		return
