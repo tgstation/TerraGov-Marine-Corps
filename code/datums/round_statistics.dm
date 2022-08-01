@@ -18,12 +18,12 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/human_bump_attacks = 0
 	var/points_from_research = 0
 	var/total_xeno_deaths = 0
-	var/total_human_deaths = 0
-	var/total_human_revives = 0
-	var/total_human_respawns = 0
+	var/list/total_human_deaths = list()
+	var/total_human_revives = list()
+	var/total_human_respawns = list()
 	var/total_xenos_created = 0
 	var/total_humans_created = 0
-	var/total_bullet_hits_on_humans = 0
+	var/list/total_bullet_hits_on_humans = list()
 	var/total_bullet_hits_on_marines = 0
 	var/total_bullet_hits_on_xenos = 0
 	var/total_larva_burst = 0

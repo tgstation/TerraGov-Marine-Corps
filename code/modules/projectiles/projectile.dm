@@ -1180,8 +1180,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return
 
 	if(proj.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
-		GLOB.round_statistics.total_bullet_hits_on_humans++
-		SSblackbox.record_feedback("tally", "round_statistics", 1, "total_bullet_hits_on_humans")
+		GLOB.round_statistics.total_bullet_hits_on_humans[faction]++
+		SSblackbox.record_feedback("tally", "round_statistics", 1, "total_bullet_hits_on_humans[faction]")
 
 
 /mob/living/carbon/xenomorph/bullet_act(obj/projectile/proj)
@@ -1405,8 +1405,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		firingMob.ff_check(damage, src)
 		log_ffattack("[key_name(firingMob)] shot [key_name(src)] with [proj] in [AREACOORD(T)].")
 		msg_admin_ff("[ADMIN_TPMONTY(firingMob)] shot [ADMIN_TPMONTY(src)] with [proj] in [ADMIN_VERBOSEJMP(T)].")
-		GLOB.round_statistics.total_bullet_hits_on_marines++
-		SSblackbox.record_feedback("tally", "round_statistics", 1, "total_bullet_hits_on_marines")
 
 
 /mob/living/carbon/xenomorph/bullet_message(obj/projectile/proj, feedback_flags, damage)
