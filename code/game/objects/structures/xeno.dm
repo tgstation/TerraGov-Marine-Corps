@@ -2,7 +2,7 @@
 /*
 * effect/alien
 */
-/obj/effect/alien
+/obj/alien
 	name = "alien thing"
 	desc = "theres something alien about this"
 	icon = 'icons/Xeno/Effects.dmi'
@@ -15,7 +15,7 @@
 	///Set this to true if this object isn't destroyed when the weeds under it is.
 	var/ignore_weed_destruction = FALSE
 
-/obj/effect/alien/Initialize()
+/obj/alien/Initialize()
 	. = ..()
 	if(!ignore_weed_destruction)
 		RegisterSignal(loc, COMSIG_TURF_WEED_REMOVED, .proc/weed_removed)
@@ -25,11 +25,11 @@
 	AddElement(/datum/element/connect_loc, connections)
 
 /// Destroy the alien effect when the weed it was on is destroyed
-/obj/effect/alien/proc/weed_removed()
+/obj/alien/proc/weed_removed()
 	SIGNAL_HANDLER
 	obj_destruction(damage_flag = "melee")
 
-/obj/effect/alien/attackby(obj/item/I, mob/user, params)
+/obj/alien/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(user.a_intent == INTENT_HARM) //Already handled at the parent level.
@@ -39,15 +39,15 @@
 		return I.attack_obj(src, user)
 
 
-/obj/effect/alien/proc/on_cross(datum/source, atom/movable/O, oldloc, oldlocs)
+/obj/alien/proc/on_cross(datum/source, atom/movable/O, oldloc, oldlocs)
 	SIGNAL_HANDLER
 	if(istype(O, /obj/vehicle/multitile/hitbox/cm_armored))
 		tank_collision(O)
 
-/obj/effect/alien/flamer_fire_act(burnlevel)
+/obj/alien/flamer_fire_act(burnlevel)
 	take_damage(burnlevel * 2, BURN, "fire")
 
-/obj/effect/alien/ex_act(severity)
+/obj/alien/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			take_damage(500)
@@ -56,7 +56,7 @@
 		if(EXPLODE_LIGHT)
 			take_damage((rand(50, 100)))
 
-/obj/effect/alien/effect_smoke(obj/effect/particle_effect/smoke/S)
+/obj/alien/effect_smoke(atom/movable/effect/particle_effect/smoke/S)
 	. = ..()
 	if(!.)
 		return
@@ -66,7 +66,7 @@
 /*
 * Resin
 */
-/obj/effect/alien/resin
+/obj/alien/resin
 	name = "resin"
 	desc = "Looks like some kind of slimy growth."
 	icon_state = "Resin1"
@@ -74,12 +74,12 @@
 	resistance_flags = XENO_DAMAGEABLE
 
 
-/obj/effect/alien/resin/attack_hand(mob/living/user)
+/obj/alien/resin/attack_hand(mob/living/user)
 	balloon_alert(user, "You only scrape at it")
 	return TRUE
 
 
-/obj/effect/alien/resin/sticky
+/obj/alien/resin/sticky
 	name = STICKY_RESIN
 	desc = "A layer of disgusting sticky slime."
 	icon_state = "sticky"
@@ -92,14 +92,14 @@
 
 	ignore_weed_destruction = TRUE
 
-/obj/effect/alien/resin/sticky/Initialize()
+/obj/alien/resin/sticky/Initialize()
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = .proc/slow_down_crosser
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
-/obj/effect/alien/resin/sticky/proc/slow_down_crosser(datum/source, atom/movable/crosser)
+/obj/alien/resin/sticky/proc/slow_down_crosser(datum/source, atom/movable/crosser)
 	SIGNAL_HANDLER
 	if(crosser.throwing || crosser.buckled)
 		return
@@ -122,7 +122,7 @@
 
 	victim.next_move_slowdown += slow_amt
 
-/obj/effect/alien/resin/sticky/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/obj/alien/resin/sticky/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
 		return FALSE
 
@@ -135,7 +135,7 @@
 	return ..()
 
 // Praetorian Sticky Resin spit uses this.
-/obj/effect/alien/resin/sticky/thin
+/obj/alien/resin/sticky/thin
 	name = "thin sticky resin"
 	desc = "A thin layer of disgusting sticky slime."
 	max_integrity = 6
@@ -158,8 +158,8 @@
 /obj/structure/mineral_door/resin/Initialize()
 	. = ..()
 
-	if(!locate(/obj/effect/alien/weeds) in loc)
-		new /obj/effect/alien/weeds(loc)
+	if(!locate(/obj/alien/weeds) in loc)
+		new /obj/alien/weeds(loc)
 	if(locate(/mob/living) in loc)	//If we build a door below ourselves, it starts open.
 		Open()
 

@@ -322,7 +322,7 @@
 
 /obj/item/reagent_containers/food/snacks/grown/tomato/throw_impact(atom/hit_atom)
 	..()
-	new/obj/effect/decal/cleanable/tomato_smudge(src.loc)
+	new/atom/movable/effect/decal/cleanable/tomato_smudge(src.loc)
 	src.visible_message(span_notice("The [src.name] has been squashed."),span_moderate("You hear a smack."))
 	qdel(src)
 
@@ -346,7 +346,7 @@
 
 /obj/item/reagent_containers/food/snacks/grown/bloodtomato/throw_impact(atom/hit_atom)
 	..()
-	new/obj/effect/decal/cleanable/blood/splatter(src.loc)
+	new/atom/movable/effect/decal/cleanable/blood/splatter(src.loc)
 	src.visible_message(span_notice("The [src.name] has been squashed."),span_moderate("You hear a smack."))
 	src.reagents.reaction(get_turf(hit_atom))
 	for(var/atom/A in get_turf(hit_atom))
@@ -371,7 +371,7 @@
 
 /obj/item/reagent_containers/food/snacks/grown/bluetomato/throw_impact(atom/hit_atom)
 	..()
-	new/obj/effect/decal/cleanable/blood/oil(src.loc)
+	new/atom/movable/effect/decal/cleanable/blood/oil(src.loc)
 	src.visible_message(span_notice("The [src.name] has been squashed."),span_moderate("You hear a smack."))
 	src.reagents.reaction(get_turf(hit_atom))
 	for(var/atom/A in get_turf(hit_atom))
@@ -519,7 +519,7 @@
 	var/list/turfs = new/list()
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	if(inner_teleport_radius < 1) //Wasn't potent enough, it just splats.
-		new/obj/effect/decal/cleanable/blood/oil(src.loc)
+		new/atom/movable/effect/decal/cleanable/blood/oil(src.loc)
 		src.visible_message(span_notice("The [src.name] has been squashed."),span_moderate("You hear a smack."))
 		qdel(src)
 		return
@@ -542,7 +542,7 @@
 		if(1) // Teleports the person who threw the tomato.
 			s.set_up(3, 1, M)
 			s.start()
-			new/obj/effect/decal/cleanable/molten_item(M.loc) //Leaves a pile of goo behind for dramatic effect.
+			new/atom/movable/effect/decal/cleanable/molten_item(M.loc) //Leaves a pile of goo behind for dramatic effect.
 			M.loc = picked //
 			sleep(1)
 			s.set_up(3, 1, M)
@@ -551,12 +551,12 @@
 			for(var/mob/A in get_turf(hit_atom))//For the mobs in the tile that was hit...
 				s.set_up(3, 1, A)
 				s.start()
-				new/obj/effect/decal/cleanable/molten_item(A.loc) //Leave a pile of goo behind for dramatic effect...
+				new/atom/movable/effect/decal/cleanable/molten_item(A.loc) //Leave a pile of goo behind for dramatic effect...
 				A.loc = picked//And teleport them to the chosen location.
 				sleep(1)
 				s.set_up(3, 1, A)
 				s.start()
-	new/obj/effect/decal/cleanable/blood/oil(src.loc)
+	new/atom/movable/effect/decal/cleanable/blood/oil(src.loc)
 	src.visible_message(span_notice("The [src.name] has been squashed, causing a distortion in space-time."),span_moderate("You hear a splat and a crackle."))
 	qdel(src)
 

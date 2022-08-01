@@ -5,12 +5,12 @@
 "ah" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/nw)
 "az" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 10
 	},
@@ -21,7 +21,7 @@
 "cj" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 4
 	},
@@ -36,7 +36,7 @@
 /turf/closed/wall/r_wall,
 /area/bigredv2/caves/northwest)
 "cZ" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
 	},
@@ -54,7 +54,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "dR" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "em" = (
 /turf/open/floor/plating,
@@ -68,24 +68,24 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
 	},
 /area/bigredv2/outside/nw)
 "ew" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/caves/northwest)
 "eJ" = (
 /obj/structure/fence,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 4
 	},
 /area/bigredv2/caves/west)
 "fD" = (
-/obj/effect/decal/sandedge{
+/atom/movable/effect/decal/sandedge{
 	dir = 4
 	},
 /obj/structure/fence,
@@ -100,7 +100,7 @@
 	},
 /area/bigredv2/outside/virology)
 "ge" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northwest)
 "gr" = (
@@ -109,7 +109,7 @@
 	},
 /area/bigredv2/caves/northwest)
 "gB" = (
-/obj/effect/landmark/excavation_site_spawner,
+/atom/movable/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "gP" = (
@@ -120,18 +120,18 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/west)
 "ir" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 4
 	},
 /area/bigredv2/outside/virology)
 "iN" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "jt" = (
-/obj/effect/decal/cleanable/blood,
+/atom/movable/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
 "kA" = (
@@ -144,8 +144,8 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/nw)
 "le" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/ai_node,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 10
 	},
@@ -163,7 +163,7 @@
 	},
 /area/bigredv2/outside/nw)
 "mu" = (
-/obj/effect/decal/sandedge,
+/atom/movable/effect/decal/sandedge,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 5
 	},
@@ -182,7 +182,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "ob" = (
@@ -201,22 +201,22 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/nw)
 "oH" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/west)
 "pc" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/virology)
 "pm" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/northwest)
 "pI" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 8
 	},
@@ -248,7 +248,7 @@
 	},
 /area/bigredv2/outside/nw)
 "sk" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/nw)
 "sJ" = (
@@ -265,7 +265,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "tb" = (
@@ -276,7 +276,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/bigredv2/outside/nw)
 "tS" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/nw)
 "uq" = (
@@ -294,7 +294,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northwest)
 "vb" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 4
 	},
@@ -305,7 +305,7 @@
 	},
 /area/bigredv2/outside/nw)
 "vK" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 4
 	},
@@ -327,17 +327,17 @@
 	},
 /area/bigredv2/outside/nw)
 "xF" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "xS" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 5
 	},
 /area/bigredv2/outside/nw)
 "xW" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northwest)
 "xZ" = (
@@ -386,7 +386,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/virology)
 "Cg" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 8
 	},
@@ -397,11 +397,11 @@
 	},
 /area/bigredv2/outside/virology)
 "Co" = (
-/obj/effect/decal/sandedge,
+/atom/movable/effect/decal/sandedge,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
 "CP" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 10
 	},
@@ -419,7 +419,7 @@
 	},
 /area/bigredv2/outside/nw)
 "Dm" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/virology)
 "Dt" = (
@@ -432,7 +432,7 @@
 "DA" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
 	},
@@ -442,17 +442,17 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "Fc" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/warning{
 	dir = 8
 	},
 /area/bigredv2/outside/nw)
 "FI" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
@@ -465,30 +465,30 @@
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/virology)
 "Go" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 9
 	},
 /area/bigredv2/outside/nw)
 "GC" = (
 /obj/structure/cable,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/nw)
 "GE" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+/atom/movable/effect/landmark/weed_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northwest)
 "GJ" = (
-/obj/effect/landmark/excavation_site_spawner,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/excavation_site_spawner,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "Ha" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/nw)
 "HC" = (
@@ -503,15 +503,15 @@
 /area/bigredv2/outside/nw)
 "JC" = (
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "JP" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
 "JR" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 5
 	},
@@ -523,15 +523,15 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/nw)
 "Kp" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/bigredv2/outside/nw)
 "KI" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
 "Lb" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/nw)
@@ -550,12 +550,12 @@
 	},
 /area/bigredv2/outside/nw)
 "MM" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/nw)
 "MX" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/nw)
 "NT" = (
@@ -569,13 +569,13 @@
 	},
 /area/bigredv2/outside/nw)
 "On" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 8
 	},
 /area/bigredv2/outside/nw)
 "Ot" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 1
 	},
@@ -590,7 +590,7 @@
 	},
 /area/bigredv2/outside/nw)
 "OM" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
 	},
@@ -601,11 +601,11 @@
 	},
 /area/bigredv2/outside/virology)
 "Pe" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "PL" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "Qg" = (
@@ -617,7 +617,7 @@
 	},
 /area/bigredv2/outside/virology)
 "QR" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
 "Ri" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -629,13 +629,13 @@
 	},
 /area/bigredv2/caves/west)
 "Sj" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
 	},
 /area/bigredv2/outside/nw)
 "SI" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/west)
 "Tb" = (
@@ -652,15 +652,15 @@
 	},
 /area/bigredv2/outside/virology)
 "TR" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /obj/structure/cable,
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/nw)
 "UG" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/landmark/weed_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 8
 	},
@@ -684,11 +684,11 @@
 /area/bigredv2/outside/nw)
 "Xr" = (
 /obj/machinery/light,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "Xv" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/west)
 "XM" = (
@@ -698,7 +698,7 @@
 	},
 /area/bigredv2/outside/nw)
 "XR" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 6
 	},
@@ -708,11 +708,11 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "Yw" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/virology)
 "YI" = (
@@ -722,7 +722,7 @@
 /area/bigredv2/outside/virology)
 "Zu" = (
 /obj/structure/cable,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "ZC" = (
 /obj/machinery/light{
@@ -731,13 +731,13 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "ZD" = (
-/obj/effect/decal/sandedge,
+/atom/movable/effect/decal/sandedge,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 9
 	},
 /area/bigredv2/outside/nw)
 "ZO" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/nw)
 

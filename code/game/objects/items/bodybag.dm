@@ -234,7 +234,7 @@
 			visible_message(span_danger("\The shockwave blows [name] apart!"))
 			qdel(src) //blown apart
 
-/obj/structure/closet/bodybag/proc/acidspray_act(datum/source, obj/effect/xenomorph/spray/acid_puddle)
+/obj/structure/closet/bodybag/proc/acidspray_act(datum/source, atom/movable/effect/xenomorph/spray/acid_puddle)
 	if(!opened && bodybag_occupant)
 
 		if(ishuman(bodybag_occupant))
@@ -244,7 +244,7 @@
 		to_chat(bodybag_occupant, span_danger("The sizzling acid forces us out of [name]!"))
 		open() //Get out
 
-/obj/structure/closet/bodybag/effect_smoke(obj/effect/particle_effect/smoke/S)
+/obj/structure/closet/bodybag/effect_smoke(atom/movable/effect/particle_effect/smoke/S)
 	. = ..()
 	if(!.)
 		return

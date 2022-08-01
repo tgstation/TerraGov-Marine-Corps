@@ -1087,7 +1087,7 @@ ENGINEERING
 
 /datum/supply_packs/engineering/teleporter
 	name = "Teleporter pads"
-	contains = list(/obj/effect/teleporter_linker)
+	contains = list(/atom/movable/effect/teleporter_linker)
 	cost = 50
 
 /*******************************************************************************

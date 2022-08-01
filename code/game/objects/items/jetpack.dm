@@ -101,7 +101,7 @@
 	change_fuel_indicator()
 	human_user.update_inv_back()
 	update_icon()
-	new /obj/effect/temp_visual/smoke(get_turf(human_user))
+	new /atom/movable/effect/temp_visual/smoke(get_turf(human_user))
 	human_user.fly_at(A, calculate_range(human_user), speed, hovering_time)
 	addtimer(CALLBACK(src,.proc/reset_flame, human_user), hovering_time)
 

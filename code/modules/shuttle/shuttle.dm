@@ -643,7 +643,7 @@
 		return FALSE
 	var/list/turfs = ripple_area(S1)
 	for(var/t in turfs)
-		ripples += new /obj/effect/abstract/ripple(t, animate_time)
+		ripples += new /atom/movable/effect/abstract/ripple(t, animate_time)
 	return TRUE
 
 /obj/docking_port/mobile/proc/remove_ripples()

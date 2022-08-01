@@ -33,7 +33,7 @@
 	},
 /area/bigredv2/outside/c)
 "v" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /obj/item/stack/sheet/wood,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)

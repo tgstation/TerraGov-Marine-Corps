@@ -76,7 +76,7 @@
 
 /mob/living/carbon/xenomorph/gib()
 
-	var/obj/effect/decal/remains/xeno/remains = new(get_turf(src))
+	var/atom/movable/effect/decal/remains/xeno/remains = new(get_turf(src))
 	remains.icon = icon
 	remains.pixel_x = pixel_x //For 2x2.
 
@@ -89,10 +89,10 @@
 	return ..()
 
 /mob/living/carbon/xenomorph/gib_animation()
-	new /obj/effect/overlay/temp/gib_animation/xeno(loc, 0, src, xeno_caste.gib_flick, icon)
+	new /atom/movable/effect/overlay/temp/gib_animation/xeno(loc, 0, src, xeno_caste.gib_flick, icon)
 
 /mob/living/carbon/xenomorph/spawn_gibs()
 	xgibs(get_turf(src))
 
 /mob/living/carbon/xenomorph/dust_animation()
-	new /obj/effect/overlay/temp/dust_animation(loc, 0, src, "dust-a")
+	new /atom/movable/effect/overlay/temp/dust_animation(loc, 0, src, "dust-a")

@@ -3,11 +3,11 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/se)
 "s" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/se)
 "I" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "L" = (
 /turf/open/floor/marking/asteroidwarning{
@@ -15,7 +15,7 @@
 	},
 /area/bigredv2/outside/se)
 "T" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/se)
 

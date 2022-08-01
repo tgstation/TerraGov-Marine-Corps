@@ -25,7 +25,7 @@ Redefine as needed.
 /atom/proc/attack_tk(mob/user)
 	if(user.incapacitated() || !tkMaxRangeCheck(user, src))
 		return FALSE
-	new /obj/effect/temp_visual/telekinesis(get_turf(src))
+	new /atom/movable/effect/temp_visual/telekinesis(get_turf(src))
 	user.UnarmedAttack(src, FALSE) // attack_hand, etc
 	add_fingerprint(user, "attack_tk")
 
@@ -204,7 +204,7 @@ Redefine as needed.
 /obj/item/tk_grab/proc/apply_focus_overlay()
 	if(!focus)
 		return
-	new /obj/effect/temp_visual/telekinesis(get_turf(focus))
+	new /atom/movable/effect/temp_visual/telekinesis(get_turf(focus))
 
 
 /obj/item/tk_grab/update_icon()

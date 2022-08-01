@@ -158,7 +158,7 @@
 	anchored = TRUE
 	use_power = NO_POWER_USE
 	var/on = FALSE
-	var/obj/effect/mist/mymist = null
+	var/atom/movable/effect/mist/mymist = null
 	var/ismist = FALSE //needs a var so we can make it linger~
 	/// freezing, normal, or boiling
 	var/watertemp = WATER_TEMP_NORMAL
@@ -176,7 +176,7 @@
 	AddElement(/datum/element/connect_loc, connections)
 
 
-/obj/effect/mist
+/atom/movable/effect/mist
 	name = "mist"
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "mist"
@@ -235,13 +235,13 @@
 			spawn(50)
 				if(src && on)
 					ismist = TRUE
-					mymist = new /obj/effect/mist(loc)
+					mymist = new /atom/movable/effect/mist(loc)
 		else
 			ismist = TRUE
-			mymist = new /obj/effect/mist(loc)
+			mymist = new /atom/movable/effect/mist(loc)
 	else if(ismist)
 		ismist = TRUE
-		mymist = new /obj/effect/mist(loc)
+		mymist = new /atom/movable/effect/mist(loc)
 		spawn(250)
 			if(src && !on)
 				qdel(mymist)
@@ -340,8 +340,8 @@
 	if(isturf(loc))
 		var/turf/tile = loc
 		loc.clean_blood()
-		for(var/obj/effect/E in tile)
-			if(istype(E,/obj/effect/rune) || istype(E,/obj/effect/decal/cleanable) || istype(E,/obj/effect/overlay))
+		for(var/atom/movable/effect/E in tile)
+			if(istype(E,/atom/movable/effect/rune) || istype(E,/atom/movable/effect/decal/cleanable) || istype(E,/atom/movable/effect/overlay))
 				qdel(E)
 
 /obj/machinery/shower/process()

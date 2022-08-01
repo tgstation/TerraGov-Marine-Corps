@@ -1,4 +1,4 @@
-/obj/effect/decal/cleanable/liquid_fuel
+/atom/movable/effect/decal/cleanable/liquid_fuel
 	name = "fuel puddle"
 	//Liquid fuel is used for things that used to rely on volatile fuels or phoron being contained to a couple tiles.
 	icon = 'icons/effects/effects.dmi'
@@ -15,7 +15,7 @@
 	var/f_color = "red"
 
 
-/obj/effect/decal/cleanable/liquid_fuel/Initialize(mapload, amt = 1, logs = TRUE, newDir)
+/atom/movable/effect/decal/cleanable/liquid_fuel/Initialize(mapload, amt = 1, logs = TRUE, newDir)
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = .proc/on_cross,
@@ -29,9 +29,9 @@
 	return INITIALIZE_HINT_LATELOAD
 
 
-/obj/effect/decal/cleanable/liquid_fuel/LateInitialize()
+/atom/movable/effect/decal/cleanable/liquid_fuel/LateInitialize()
 	. = ..()
-	for(var/obj/effect/decal/cleanable/liquid_fuel/other in loc)
+	for(var/atom/movable/effect/decal/cleanable/liquid_fuel/other in loc)
 		if(other == src || other.type != type)
 			continue
 		amount += other.amount
@@ -40,13 +40,13 @@
 	RegisterSignal(loc, COMSIG_TURF_THROW_ENDED_HERE, .proc/ignite_check_wrapper)
 
 ///called when someonething moves over the fuel
-/obj/effect/decal/cleanable/liquid_fuel/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs)
+/atom/movable/effect/decal/cleanable/liquid_fuel/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs)
 	SIGNAL_HANDLER
 	if(AM.throwing)
 		return	//If something lands on our turf, it's caught via signal instead
 	check_ignite(AM)
 
-/obj/effect/decal/cleanable/liquid_fuel/proc/fuel_spread()
+/atom/movable/effect/decal/cleanable/liquid_fuel/proc/fuel_spread()
 	//Allows liquid fuels to sometimes flow into other tiles.
 	if(amount < 5) //At least one unit per transfer
 		return
@@ -60,8 +60,8 @@
 		if(!S.CanPass(src, T) || !T.CanPass(src, S))
 			continue
 		var/other_found = FALSE
-		var/obj/effect/decal/cleanable/liquid_fuel/valid_target
-		for(var/obj/effect/decal/cleanable/liquid_fuel/other in T)
+		var/atom/movable/effect/decal/cleanable/liquid_fuel/valid_target
+		for(var/atom/movable/effect/decal/cleanable/liquid_fuel/other in T)
 			if(other.type != type)
 				continue
 			if(other.amount > amount * slice_per_transfer) //Only large transfers to avoid infinite loops.
@@ -81,29 +81,29 @@
 		successful_spread++
 	amount *= max(0, 1 - (successful_spread * slice_per_transfer))
 
-/obj/effect/decal/cleanable/liquid_fuel/attackby(obj/item/I, mob/user, params)
+/atom/movable/effect/decal/cleanable/liquid_fuel/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(I.damtype == BURN)
 		ignite_fuel(I)
 		log_attack("[key_name(user)] ignites [src] in fuel in [AREACOORD(user)]")
 
-/obj/effect/decal/cleanable/liquid_fuel/flamer_fire_act(burnlevel)
+/atom/movable/effect/decal/cleanable/liquid_fuel/flamer_fire_act(burnlevel)
 	. = ..()
 	ignite_fuel()
 
-/obj/effect/decal/cleanable/liquid_fuel/proc/ignite_fuel(igniter)
+/atom/movable/effect/decal/cleanable/liquid_fuel/proc/ignite_fuel(igniter)
 	if(igniter)
 		visible_message(span_warning("[igniter] ignites the spilled fuel!"))
 	new /obj/flamer_fire(loc, fire_lvl, burn_lvl, f_color)
 	var/turf/S = get_turf(src)
 	for(var/D in CARDINAL_DIRS)
 		var/turf/T = get_step(S, D)
-		for(var/obj/effect/decal/cleanable/liquid_fuel/other in T)
+		for(var/atom/movable/effect/decal/cleanable/liquid_fuel/other in T)
 			INVOKE_NEXT_TICK(other, .proc/ignite_fuel)	//Spread effect
 	qdel(src)
 
 ///Ignites when something hot enters our loc, either via crossed or signal wrapper
-/obj/effect/decal/cleanable/liquid_fuel/proc/check_ignite(atom/movable/igniter)
+/atom/movable/effect/decal/cleanable/liquid_fuel/proc/check_ignite(atom/movable/igniter)
 	if(isitem(igniter))
 		var/obj/item/ignitem = igniter
 		if(ignitem.damtype != BURN)
@@ -117,10 +117,10 @@
 	ignite_fuel(igniter)
 
 ///Wrapper for ignition via signals rather than from crossed
-/obj/effect/decal/cleanable/liquid_fuel/proc/ignite_check_wrapper(signal_source, atom/movable/igniter)
+/atom/movable/effect/decal/cleanable/liquid_fuel/proc/ignite_check_wrapper(signal_source, atom/movable/igniter)
 	SIGNAL_HANDLER
 	check_ignite(igniter)
 
-/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel
+/atom/movable/effect/decal/cleanable/liquid_fuel/flamethrower_fuel
 	icon_state = "mustard"
 	spread_fail_chance = 0 //percent

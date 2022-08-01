@@ -135,7 +135,7 @@
 
 /obj/item/tool/scythe/afterattack(atom/A, mob/user as mob, proximity)
 	if(!proximity) return
-	if(istype(A, /obj/effect/plantsegment))
-		for(var/obj/effect/plantsegment/B in orange(A,1))
+	if(istype(A, /atom/movable/effect/plantsegment))
+		for(var/atom/movable/effect/plantsegment/B in orange(A,1))
 			qdel(B)
 		qdel(A)

@@ -124,12 +124,12 @@
 
 
 ///Receive fire support laser notifications
-/mob/living/silicon/ai/proc/receive_laser_ob(datum/source, obj/effect/overlay/temp/laser_target/OB/incoming_laser)
+/mob/living/silicon/ai/proc/receive_laser_ob(datum/source, atom/movable/effect/overlay/temp/laser_target/OB/incoming_laser)
 	SIGNAL_HANDLER
 	to_chat(src, span_notice("Orbital Bombardment laser detected. Target: [AREACOORD_NO_Z(incoming_laser)]"))
 	playsound_local(src, 'sound/effects/binoctarget.ogg', 15)
 
-/mob/living/silicon/ai/proc/receive_laser_cas(datum/source, obj/effect/overlay/temp/laser_target/cas/incoming_laser)
+/mob/living/silicon/ai/proc/receive_laser_cas(datum/source, atom/movable/effect/overlay/temp/laser_target/cas/incoming_laser)
 	SIGNAL_HANDLER
 	to_chat(src, span_notice("CAS laser detected. Target: [AREACOORD_NO_Z(incoming_laser)]"))
 	playsound_local(src, 'sound/effects/binoctarget.ogg', 15)

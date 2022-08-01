@@ -393,9 +393,9 @@
 
 	var/turf/T = get_turf(X) //location of after image SFX
 	playsound(T, pick('sound/effects/throw.ogg','sound/effects/alien_tail_swipe1.ogg', 'sound/effects/alien_tail_swipe2.ogg'), 25, 1) //sound effects
-	var/obj/effect/temp_visual/xenomorph/afterimage/A
+	var/atom/movable/effect/temp_visual/xenomorph/afterimage/A
 	for(var/i=0 to 2) //number of after images
-		A = new /obj/effect/temp_visual/xenomorph/afterimage(T, owner) //Create the after image.
+		A = new /atom/movable/effect/temp_visual/xenomorph/afterimage(T, owner) //Create the after image.
 		A.pixel_x = pick(rand(X.pixel_x * 3, X.pixel_x * 1.5), rand(0, X.pixel_x * -1)) //Variation on the X position
 
 /datum/action/xeno_action/activable/snatch

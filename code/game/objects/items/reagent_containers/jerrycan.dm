@@ -20,7 +20,7 @@
 	if(!reagents.total_volume)
 		to_chat(user, span_warning("Theres no fuel left in [src]!"))
 		return
-	new /obj/effect/decal/cleanable/liquid_fuel(A, fuel_usage/2)
+	new /atom/movable/effect/decal/cleanable/liquid_fuel(A, fuel_usage/2)
 	reagents.remove_reagent(/datum/reagent/fuel, fuel_usage)
 	user.visible_message(span_notice("[user] splashes some fuel on \the [A]"), span_notice("You splash some fuel on [A]"))
 	log_attack("[key_name(user)] has splashed fuel on  [A] in [AREACOORD(user)]")
@@ -54,6 +54,6 @@
 	return ..()
 
 /obj/item/reagent_containers/jerrycan/attack_obj(obj/O, mob/living/user)
-	if(istype(O, /obj/effect/alien/weeds))
+	if(istype(O, /obj/alien/weeds))
 		return attack_turf(get_turf(O), user)
 	return ..()

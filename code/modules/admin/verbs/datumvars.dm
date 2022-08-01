@@ -105,7 +105,7 @@
 	for(var/type in types)
 		var/typename = "[type]"
 		var/static/list/TYPES_SHORTCUTS = list(
-			/obj/effect/decal/cleanable = "CLEANABLE",
+			/atom/movable/effect/decal/cleanable = "CLEANABLE",
 			/obj/item/radio/headset = "HEADSET",
 			/obj/item/reagent_containers/food/drinks = "DRINK", //longest paths comes first
 			/obj/item/reagent_containers/food = "FOOD",
@@ -113,7 +113,7 @@
 			/obj/item/organ = "ORGAN",
 			/obj/item = "ITEM",
 			/obj/machinery = "MACHINERY",
-			/obj/effect = "EFFECT",
+			/atom/movable/effect = "EFFECT",
 			/obj = "O",
 			/datum = "D",
 			/turf/open = "OPEN",

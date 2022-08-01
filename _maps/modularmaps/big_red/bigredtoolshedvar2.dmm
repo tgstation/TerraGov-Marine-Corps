@@ -10,8 +10,8 @@
 /area/bigredv2/outside/c)
 "b" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/toolbox,
+/atom/movable/effect/spawner/random/toolbox,
+/atom/movable/effect/spawner/random/toolbox,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -22,7 +22,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "d" = (
@@ -34,8 +34,8 @@
 /area/bigredv2/outside/c)
 "e" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/toolbox,
+/atom/movable/effect/spawner/random/toolbox,
+/atom/movable/effect/spawner/random/toolbox,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "f" = (
@@ -66,7 +66,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "m" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
 	},
@@ -79,13 +79,13 @@
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "o" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "q" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/toolbox,
+/atom/movable/effect/spawner/random/toolbox,
+/atom/movable/effect/spawner/random/toolbox,
 /obj/structure/cable,
 /obj/machinery/power/apc,
 /turf/open/floor,
@@ -109,8 +109,8 @@
 /area/bigredv2/outside/c)
 "v" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/toolbox,
+/atom/movable/effect/spawner/random/toolbox,
+/atom/movable/effect/spawner/random/toolbox,
 /obj/machinery/light,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
@@ -147,7 +147,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "J" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
@@ -159,7 +159,7 @@
 	dir = 9
 	},
 /obj/structure/cable,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 6
 	},
@@ -177,7 +177,7 @@
 	},
 /area/bigredv2/outside/c)
 "O" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/c)
 "P" = (
@@ -188,7 +188,7 @@
 	dir = 10
 	},
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "W" = (

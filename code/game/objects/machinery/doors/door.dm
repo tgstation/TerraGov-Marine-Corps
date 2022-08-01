@@ -65,7 +65,7 @@
 	var/turf/T = get_turf(src)
 	for(var/i = 2 to width)
 		T = get_step(T,dir)
-		fillers += new /obj/effect/opacifier(T, opacity)
+		fillers += new /atom/movable/effect/opacifier(T, opacity)
 
 /obj/machinery/door/Bumped(atom/AM)
 	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) || operating)
@@ -194,7 +194,7 @@
 	icon_state = "door0"
 	set_opacity(FALSE)
 	for(var/t in fillers)
-		var/obj/effect/opacifier/O = t
+		var/atom/movable/effect/opacifier/O = t
 		O.set_opacity(FALSE)
 	addtimer(CALLBACK(src, .proc/finish_open), openspeed)
 	return TRUE
@@ -227,7 +227,7 @@
 	if(visible && !glass)
 		set_opacity(TRUE)	//caaaaarn!
 		for(var/t in fillers)
-			var/obj/effect/opacifier/O = t
+			var/atom/movable/effect/opacifier/O = t
 			O.set_opacity(TRUE)
 	operating = FALSE
 

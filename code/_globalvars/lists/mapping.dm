@@ -22,7 +22,7 @@ GLOBAL_LIST_EMPTY(spawns_by_job)			//2d array of /datum/job => list(turfs)
 GLOBAL_LIST_EMPTY(landmarks_round_start)		//landmarks that require action at round start
 
 GLOBAL_LIST_EMPTY(map_items)
-GLOBAL_LIST_EMPTY(fog_blocker_locations)		//list of turfs marked by /obj/effect/landmark/lv624/fog_blocker
+GLOBAL_LIST_EMPTY(fog_blocker_locations)		//list of turfs marked by /atom/movable/effect/landmark/lv624/fog_blocker
 GLOBAL_LIST_EMPTY(xeno_spawn_protection_locations)
 GLOBAL_LIST_EMPTY(fog_blockers)
 

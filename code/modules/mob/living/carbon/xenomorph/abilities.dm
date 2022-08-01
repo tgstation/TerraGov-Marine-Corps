@@ -30,7 +30,7 @@
 	///the maximum range of the ability
 	var/max_range = 0
 	///The seleted type of weeds
-	var/obj/effect/alien/weeds/node/weed_type = /obj/effect/alien/weeds/node
+	var/obj/alien/weeds/node/weed_type = /obj/alien/weeds/node
 	///Whether automatic weeding is active
 	var/auto_weeding = FALSE
 	///The turf that was last weeded
@@ -90,7 +90,7 @@
 	if(weed_choice == AUTOMATIC_WEEDING)
 		toggle_auto_weeding()
 	else
-		for(var/obj/effect/alien/weeds/node/weed_type_possible AS in GLOB.weed_type_list)
+		for(var/obj/alien/weeds/node/weed_type_possible AS in GLOB.weed_type_list)
 			if(initial(weed_type_possible.name) == weed_choice)
 				weed_type = weed_type_possible
 				break
@@ -175,7 +175,7 @@
 	///List of buildable structures. Order corresponds with resin_images_list.
 	var/list/buildable_structures = list(
 		/turf/closed/wall/resin/regenerating,
-		/obj/effect/alien/resin/sticky,
+		/obj/alien/resin/sticky,
 		/obj/structure/mineral_door/resin,
 		)
 
@@ -226,7 +226,7 @@
 
 	var/build_resin_modifier = 1
 	switch(X.selected_resin)
-		if(/obj/effect/alien/resin/sticky)
+		if(/obj/alien/resin/sticky)
 			build_resin_modifier = 0.5
 		if(/obj/structure/mineral_door/resin)
 			build_resin_modifier = 2
@@ -248,9 +248,9 @@
 		to_chat(owner, span_warning("You cannot secrete resin without line of sight!"))
 		return fail_activate()
 
-	var/obj/effect/alien/weeds/alien_weeds = locate() in T
+	var/obj/alien/weeds/alien_weeds = locate() in T
 
-	for(var/obj/effect/forcefield/fog/F in range(1, X))
+	for(var/atom/movable/effect/forcefield/fog/F in range(1, X))
 		to_chat(X, span_warning("We can't build so close to the fog!"))
 		return fail_activate()
 
@@ -326,7 +326,7 @@
 		new_resin = new X.selected_resin(T)
 
 	switch(X.selected_resin)
-		if(/obj/effect/alien/resin/sticky)
+		if(/obj/alien/resin/sticky)
 			plasma_cost = initial(plasma_cost) / 3
 		if(/obj/structure/mineral_door/resin)
 			plasma_cost = initial(plasma_cost) * 3
@@ -444,8 +444,8 @@
 	var/mob/living/carbon/xenomorph/target = A
 
 	to_chat(X, span_notice("We start focusing our plasma towards [target]."))
-	new /obj/effect/temp_visual/transfer_plasma(get_turf(X)) //Cool SFX that confirms our source and our target
-	new /obj/effect/temp_visual/transfer_plasma(get_turf(target)) //Cool SFX that confirms our source and our target
+	new /atom/movable/effect/temp_visual/transfer_plasma(get_turf(X)) //Cool SFX that confirms our source and our target
+	new /atom/movable/effect/temp_visual/transfer_plasma(get_turf(target)) //Cool SFX that confirms our source and our target
 	playsound(X, "alien_drool", 25)
 
 	X.face_atom(target) //Face our target so we don't look silly
@@ -484,7 +484,7 @@
 	mechanics_text = "Cover an object with acid to slowly melt it. Takes a few seconds."
 	ability_name = "corrosive acid"
 	plasma_cost = 100
-	var/acid_type = /obj/effect/xenomorph/acid
+	var/acid_type = /atom/movable/effect/xenomorph/acid
 	keybind_signal = COMSIG_XENOABILITY_CORROSIVE_ACID
 	use_state_flags = XACT_USE_BUCKLED
 
@@ -508,7 +508,7 @@
 			return FALSE
 		if(istype(O, /obj/structure/window_frame))
 			var/obj/structure/window_frame/WF = O
-			if(WF.reinforced && acid_type != /obj/effect/xenomorph/acid/strong)
+			if(WF.reinforced && acid_type != /atom/movable/effect/xenomorph/acid/strong)
 				if(!silent)
 					to_chat(owner, span_warning("This [WF.name] is too tough to be melted by our weak acid."))
 				return FALSE
@@ -525,7 +525,7 @@
 					to_chat(owner, span_warning("[wall_target] is already weakened."))
 				return FALSE
 
-/obj/proc/acid_check(obj/effect/xenomorph/acid/new_acid)
+/obj/proc/acid_check(atom/movable/effect/xenomorph/acid/new_acid)
 	if(!new_acid)
 		return TRUE
 	if(!current_acid)
@@ -535,7 +535,7 @@
 		return FALSE
 	return TRUE
 
-/turf/proc/acid_check(obj/effect/xenomorph/acid/new_acid)
+/turf/proc/acid_check(atom/movable/effect/xenomorph/acid/new_acid)
 	if(!new_acid)
 		return TRUE
 	if(!current_acid)
@@ -570,7 +570,7 @@
 			if(1)
 				wait_time = 50
 			if(2)
-				if(acid_type != /obj/effect/xenomorph/acid/strong)
+				if(acid_type != /atom/movable/effect/xenomorph/acid/strong)
 					to_chat(X, span_warning("This [T.name] is too tough to be melted by our weak acid."))
 					return fail_activate()
 				wait_time = 100
@@ -587,7 +587,7 @@
 	if(!can_use_ability(A, TRUE))
 		return
 
-	var/obj/effect/xenomorph/acid/newacid = new acid_type(get_turf(A), A)
+	var/atom/movable/effect/xenomorph/acid/newacid = new acid_type(get_turf(A), A)
 
 	succeed_activate()
 
@@ -632,9 +632,9 @@
 	if(!O && !T)
 		return
 
-	var/obj/effect/xenomorph/acid/new_acid = acid_type
+	var/atom/movable/effect/xenomorph/acid/new_acid = acid_type
 
-	var/obj/effect/xenomorph/acid/current_acid
+	var/atom/movable/effect/xenomorph/acid/current_acid
 
 	if(T)
 		current_acid = T.current_acid
@@ -655,7 +655,7 @@
 /datum/action/xeno_action/activable/corrosive_acid/strong
 	name = "Corrosive Acid"
 	plasma_cost = 200
-	acid_type = /obj/effect/xenomorph/acid/strong
+	acid_type = /atom/movable/effect/xenomorph/acid/strong
 
 
 /datum/action/xeno_action/activable/spray_acid
@@ -683,11 +683,11 @@
 	return ..()
 
 /datum/action/xeno_action/activable/spray_acid/proc/acid_splat_turf(turf/T)
-	. = locate(/obj/effect/xenomorph/spray) in T
+	. = locate(/atom/movable/effect/xenomorph/spray) in T
 	if(!.)
 		var/mob/living/carbon/xenomorph/X = owner
 
-		. = new /obj/effect/xenomorph/spray(T, X.xeno_caste.acid_spray_duration, X.xeno_caste.acid_spray_damage, owner)
+		. = new /atom/movable/effect/xenomorph/spray(T, X.xeno_caste.acid_spray_duration, X.xeno_caste.acid_spray_damage, owner)
 
 		for(var/i in T)
 			var/atom/A = i
@@ -1007,7 +1007,7 @@
 	if(!xeno.loc_weeds_type)
 		return fail_activate()
 
-	new /obj/effect/alien/egg/hugger(current_turf, xeno.hivenumber)
+	new /obj/alien/egg/hugger(current_turf, xeno.hivenumber)
 	playsound(current_turf, 'sound/effects/splat.ogg', 15, 1)
 
 	succeed_activate()
@@ -1236,7 +1236,7 @@
 		if(!silent)
 			to_chat(X, span_warning("We already have something in our stomach, there's no way that will fit."))
 		return FALSE
-	for(var/obj/effect/forcefield/fog in range(1, X))
+	for(var/atom/movable/effect/forcefield/fog in range(1, X))
 		if(!silent)
 			to_chat(X, span_warning("We are too close to the fog."))
 		return FALSE

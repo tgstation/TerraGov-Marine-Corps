@@ -602,28 +602,28 @@ GLOBAL_LIST(cable_radial_layer_list)
 	machinery_layer = MACHINERY_LAYER_1
 	layer = WIRE_LAYER - 0.02 //Below all cables Disabled layers can lay over hub
 	color = "white"
-	var/obj/effect/node/machinery_node
-	var/obj/effect/node/layer1/cable_node_1
-	var/obj/effect/node/layer2/cable_node_2
-	var/obj/effect/node/layer3/cable_node_3
+	var/atom/movable/effect/node/machinery_node
+	var/atom/movable/effect/node/layer1/cable_node_1
+	var/atom/movable/effect/node/layer2/cable_node_2
+	var/atom/movable/effect/node/layer3/cable_node_3
 
-/obj/effect/node
+/atom/movable/effect/node
 	icon = 'icons/obj/power_cond/layer_cable.dmi'
 	icon_state = "l2-noconnection"
 	vis_flags = VIS_INHERIT_ID|VIS_INHERIT_PLANE|VIS_INHERIT_LAYER
 	color = "black"
 
-/obj/effect/node/layer1
+/atom/movable/effect/node/layer1
 	color = "red"
 	icon_state = "l1-1-2-4-8-node"
 	vis_flags = VIS_INHERIT_ID|VIS_INHERIT_PLANE|VIS_INHERIT_LAYER|VIS_UNDERLAY
 
-/obj/effect/node/layer2
+/atom/movable/effect/node/layer2
 	color = "yellow"
 	icon_state = "l2-1-2-4-8-node"
 	vis_flags = VIS_INHERIT_ID|VIS_INHERIT_PLANE|VIS_INHERIT_LAYER|VIS_UNDERLAY
 
-/obj/effect/node/layer3
+/atom/movable/effect/node/layer3
 	color = "blue"
 	icon_state = "l4-1-2-4-8-node"
 	vis_flags = VIS_INHERIT_ID|VIS_INHERIT_PLANE|VIS_INHERIT_LAYER|VIS_UNDERLAY
@@ -653,13 +653,13 @@ GLOBAL_LIST(cable_radial_layer_list)
 	if(!mapload)
 		auto_propagate_cut_cable(src)
 
-	machinery_node = new /obj/effect/node()
+	machinery_node = new /atom/movable/effect/node()
 	vis_contents += machinery_node
-	cable_node_1 = new /obj/effect/node/layer1()
+	cable_node_1 = new /atom/movable/effect/node/layer1()
 	vis_contents += cable_node_1
-	cable_node_2 = new /obj/effect/node/layer2()
+	cable_node_2 = new /atom/movable/effect/node/layer2()
 	vis_contents += cable_node_2
-	cable_node_3 = new /obj/effect/node/layer3()
+	cable_node_3 = new /atom/movable/effect/node/layer3()
 	vis_contents += cable_node_3
 	update_icon()
 

@@ -556,12 +556,12 @@
 
 		if(S.seed.spread == 1)
 			message_admins("[key_name(user)] has planted a creeper packet.")
-			var/obj/effect/plant_controller/creeper/PC = new(get_turf(src))
+			var/atom/movable/effect/plant_controller/creeper/PC = new(get_turf(src))
 			if(PC)
 				PC.seed = S.seed
 		else if(S.seed.spread == 2)
 			message_admins("[key_name(user)] has planted a spreading vine packet.")
-			var/obj/effect/plant_controller/PC = new(get_turf(src))
+			var/atom/movable/effect/plant_controller/PC = new(get_turf(src))
 			if(PC)
 				PC.seed = S.seed
 		else

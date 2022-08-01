@@ -3,7 +3,7 @@
 /turf/open/space/basic,
 /area/space)
 "ab" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/deathmatch)
 "ac" = (
 /obj/structure/largecrate/guns/russian,
@@ -26,11 +26,11 @@
 /turf/open/ground/coast/corner,
 /area/deathmatch)
 "ah" = (
-/obj/effect/landmark/deathmatch,
+/atom/movable/effect/landmark/deathmatch,
 /turf/open/ground/grass,
 /area/deathmatch)
 "ai" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/ground/grass,
 /area/deathmatch)
 "aj" = (
@@ -43,14 +43,14 @@
 /turf/open/ground/grass,
 /area/deathmatch)
 "al" = (
-/obj/effect/landmark/deathmatch,
+/atom/movable/effect/landmark/deathmatch,
 /turf/open/ground/river,
 /area/deathmatch)
 "am" = (
 /turf/closed/shuttle,
 /area/deathmatch)
 "an" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "ao" = (
@@ -92,11 +92,11 @@
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "aw" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/ground/river,
 /area/deathmatch)
 "ax" = (
-/obj/effect/decal/cleanable/blood,
+/atom/movable/effect/decal/cleanable/blood,
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "ay" = (
@@ -106,7 +106,7 @@
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "az" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "aA" = (
@@ -122,7 +122,7 @@
 	dir = 1;
 	icon_state = "pilot_chair"
 	},
-/obj/effect/landmark/deathmatch,
+/atom/movable/effect/landmark/deathmatch,
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "aD" = (
@@ -134,11 +134,11 @@
 "aE" = (
 /obj/structure/table,
 /obj/machinery/light,
-/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "aF" = (
-/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/atom/movable/effect/landmark/weapon_spawn/tier4_weapon_spawn,
 /turf/open/ground/river,
 /area/deathmatch)
 "aG" = (
@@ -179,12 +179,12 @@
 /area/deathmatch)
 "aO" = (
 /obj/structure/closet,
-/obj/effect/decal/cleanable/cobweb,
+/atom/movable/effect/decal/cleanable/cobweb,
 /turf/open/floor,
 /area/deathmatch)
 "aP" = (
 /obj/structure/table,
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor,
 /area/deathmatch)
 "aQ" = (
@@ -219,7 +219,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/landmark/deathmatch,
+/atom/movable/effect/landmark/deathmatch,
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "aW" = (
@@ -232,7 +232,7 @@
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "aX" = (
-/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "aY" = (
@@ -242,7 +242,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "aZ" = (
@@ -251,7 +251,7 @@
 /turf/open/floor,
 /area/deathmatch)
 "ba" = (
-/obj/effect/decal/cleanable/generic,
+/atom/movable/effect/decal/cleanable/generic,
 /turf/open/floor,
 /area/deathmatch)
 "bb" = (
@@ -266,7 +266,7 @@
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "bd" = (
-/obj/effect/landmark/deathmatch,
+/atom/movable/effect/landmark/deathmatch,
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "be" = (
@@ -279,11 +279,11 @@
 	},
 /area/deathmatch)
 "bg" = (
-/obj/effect/landmark/deathmatch,
+/atom/movable/effect/landmark/deathmatch,
 /turf/open/floor,
 /area/deathmatch)
 "bh" = (
-/obj/effect/decal/cleanable/blood/drip,
+/atom/movable/effect/decal/cleanable/blood/drip,
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "bi" = (
@@ -304,7 +304,7 @@
 	},
 /area/deathmatch)
 "bl" = (
-/obj/effect/decal/cleanable/blood/drip,
+/atom/movable/effect/decal/cleanable/blood/drip,
 /turf/open/ground/grass,
 /area/deathmatch)
 "bm" = (
@@ -320,7 +320,7 @@
 /turf/open/ground/river,
 /area/deathmatch)
 "bp" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/dmg1,
 /area/deathmatch)
 "bq" = (
@@ -386,7 +386,7 @@
 /turf/open/floor,
 /area/deathmatch)
 "bC" = (
-/obj/effect/decal/cleanable/blood/oil,
+/atom/movable/effect/decal/cleanable/blood/oil,
 /turf/open/floor,
 /area/deathmatch)
 "bD" = (
@@ -401,7 +401,7 @@
 /area/deathmatch)
 "bF" = (
 /obj/structure/table,
-/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor,
 /area/deathmatch)
 "bG" = (
@@ -427,7 +427,7 @@
 /turf/open/floor,
 /area/deathmatch)
 "bL" = (
-/obj/effect/decal/cleanable/blood/splatter,
+/atom/movable/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 8
 	},
@@ -473,11 +473,11 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
 	},
-/obj/effect/landmark/deathmatch,
+/atom/movable/effect/landmark/deathmatch,
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "bV" = (
-/obj/effect/decal/cleanable/blood/splatter,
+/atom/movable/effect/decal/cleanable/blood/splatter,
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "bW" = (
@@ -508,7 +508,7 @@
 /area/deathmatch)
 "ca" = (
 /obj/structure/rack,
-/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor,
 /area/deathmatch)
 "cb" = (
@@ -523,19 +523,19 @@
 /area/deathmatch)
 "cd" = (
 /obj/structure/rack,
-/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor,
 /area/deathmatch)
 "ce" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
 	},
-/obj/effect/landmark/deathmatch,
+/atom/movable/effect/landmark/deathmatch,
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "cf" = (
 /obj/structure/rack,
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor,
 /area/deathmatch)
 "cg" = (
@@ -570,7 +570,7 @@
 "cl" = (
 /obj/structure/table,
 /obj/machinery/light,
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor,
 /area/deathmatch)
 "cm" = (
@@ -578,7 +578,7 @@
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "cn" = (
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/ground/river,
 /area/deathmatch)
 "co" = (
@@ -594,7 +594,7 @@
 /turf/open/floor/plating/dmg3,
 /area/deathmatch)
 "do" = (
-/obj/effect/landmark/weapon_spawn/tier5_weapon_spawn,
+/atom/movable/effect/landmark/weapon_spawn/tier5_weapon_spawn,
 /turf/open/ground/river,
 /area/deathmatch)
 "dw" = (
@@ -604,21 +604,21 @@
 /area/deathmatch)
 "qa" = (
 /obj/structure/lattice,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/ground/grass,
 /area/deathmatch)
 "rB" = (
-/obj/effect/decal/cleanable/blood/drip,
-/obj/effect/ai_node,
+/atom/movable/effect/decal/cleanable/blood/drip,
+/atom/movable/effect/ai_node,
 /turf/open/ground/grass,
 /area/deathmatch)
 "PJ" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor,
 /area/deathmatch)
 "Sp" = (
 /obj/structure/flora/ausbushes/sparsegrass,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/ground/grass,
 /area/deathmatch)
 

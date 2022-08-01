@@ -25,7 +25,7 @@
 	var/exploded = FALSE
 	var/removal_stage = NUKE_STAGE_NONE
 	use_power = NO_POWER_USE
-	var/obj/effect/countdown/nuclearbomb/countdown
+	var/atom/movable/effect/countdown/nuclearbomb/countdown
 
 	var/has_auth
 	var/obj/item/disk/nuclear/red/r_auth

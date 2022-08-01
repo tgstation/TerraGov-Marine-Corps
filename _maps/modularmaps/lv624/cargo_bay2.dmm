@@ -98,7 +98,7 @@
 	},
 /area/lv624/lazarus/quartstorage)
 "mS" = (
-/obj/effect/landmark/excavation_site_spawner,
+/atom/movable/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/brown{
 	dir = 5
 	},
@@ -118,13 +118,13 @@
 	},
 /area/lv624/lazarus/quartstorage)
 "oA" = (
-/obj/effect/spawner/random/trash,
+/atom/movable/effect/spawner/random/trash,
 /turf/open/floor/tile/brown{
 	dir = 0
 	},
 /area/lv624/lazarus/quartstorage)
 "pl" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/neutral,
 /area/lv624/lazarus/quartstorage)
 "pF" = (
@@ -147,11 +147,11 @@
 /area/lv624/lazarus/quartstorage)
 "th" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/drink_alcohol_bottle,
+/atom/movable/effect/spawner/random/drink_alcohol_bottle,
 /turf/open/floor/tile/neutral,
 /area/lv624/lazarus/quartstorage)
 "tH" = (
-/obj/effect/spawner/random/trash,
+/atom/movable/effect/spawner/random/trash,
 /turf/open/floor/tile/brown{
 	dir = 4
 	},
@@ -223,17 +223,17 @@
 /turf/open/floor/tile/neutral,
 /area/lv624/lazarus/quartstorage)
 "Cx" = (
-/obj/effect/landmark/excavation_site_spawner,
+/atom/movable/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/neutral,
 /area/lv624/lazarus/quartstorage)
 "CF" = (
-/obj/effect/spawner/random/ammo,
+/atom/movable/effect/spawner/random/ammo,
 /turf/open/floor/tile/brown{
 	dir = 1
 	},
 /area/lv624/lazarus/quartstorage)
 "CG" = (
-/obj/effect/spawner/random/trash,
+/atom/movable/effect/spawner/random/trash,
 /turf/open/floor/tile/brown{
 	dir = 8
 	},
@@ -262,7 +262,7 @@
 	dir = 9
 	},
 /obj/structure/cable,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/neutral,
 /area/lv624/lazarus/quartstorage)
 "HO" = (
@@ -290,7 +290,7 @@
 "IF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/neutral,
 /area/lv624/lazarus/quartstorage)
 "IN" = (
@@ -300,7 +300,7 @@
 	},
 /area/lv624/lazarus/quartstorage)
 "Jl" = (
-/obj/effect/spawner/random/ammo,
+/atom/movable/effect/spawner/random/ammo,
 /turf/open/floor/tile/brown{
 	dir = 6
 	},
@@ -314,7 +314,7 @@
 /turf/open/floor/tile/neutral,
 /area/lv624/lazarus/quartstorage)
 "Kr" = (
-/obj/effect/landmark/excavation_site_spawner,
+/atom/movable/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/brown{
 	dir = 10
 	},
@@ -346,7 +346,7 @@
 	},
 /area/lv624/lazarus/quartstorage)
 "NH" = (
-/obj/effect/spawner/random/trash,
+/atom/movable/effect/spawner/random/trash,
 /turf/open/floor/tile/brown{
 	dir = 1
 	},
@@ -375,7 +375,7 @@
 /obj/item/stack/medical/heal_pack/advanced/bruise_pack{
 	amount = 3
 	},
-/obj/effect/spawner/random/sugary_snack,
+/atom/movable/effect/spawner/random/sugary_snack,
 /turf/open/floor/tile/neutral,
 /area/lv624/lazarus/quartstorage)
 "PP" = (
@@ -386,7 +386,7 @@
 /obj/structure/rack,
 /obj/item/reagent_containers/food/snacks/lollipop/combat,
 /obj/item/reagent_containers/food/snacks/lollipop/tramadol/combat,
-/obj/effect/spawner/random/tool,
+/atom/movable/effect/spawner/random/tool,
 /turf/open/floor/tile/neutral,
 /area/lv624/lazarus/quartstorage)
 "Qj" = (
@@ -422,7 +422,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/neutral,
 /area/lv624/lazarus/quartstorage)
 "VF" = (
@@ -465,8 +465,8 @@
 /area/lv624/lazarus/quartstorage)
 "YA" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/powercell,
-/obj/effect/spawner/random/outdoors_snacks,
+/atom/movable/effect/spawner/random/powercell,
+/atom/movable/effect/spawner/random/outdoors_snacks,
 /turf/open/floor/tile/neutral,
 /area/lv624/lazarus/quartstorage)
 "YT" = (

@@ -169,7 +169,7 @@
 #define COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZE "atom_init_success"
 #define COMSIG_ATOM_ORBIT_BEGIN "atom_orbit_begin"				//called when an atom starts orbiting another atom: (atom)
 #define COMSIG_ATOM_ORBIT_STOP "atom_orbit_stop"				//called when an atom stops orbiting another atom: (atom)
-#define COMSIG_ATOM_ACIDSPRAY_ACT "atom_acidspray_act"			//called when acid spray acts on an entity; associated with /acidspray_act(): (obj/effect/xenomorph/spray/acid_puddle)
+#define COMSIG_ATOM_ACIDSPRAY_ACT "atom_acidspray_act"			//called when acid spray acts on an entity; associated with /acidspray_act(): (atom/movable/effect/xenomorph/spray/acid_puddle)
 
 ///from base of atom/set_opacity(): (new_opacity)
 #define COMSIG_ATOM_SET_OPACITY "atom_set_opacity"
@@ -418,8 +418,8 @@
 	#define COMPONENT_NO_MUTE (1<<0)
 
 #define COMSIG_LIVING_ADD_VENTCRAWL "living_add_ventcrawl"
-#define COMSIG_LIVING_WEEDS_AT_LOC_CREATED "living_weeds_at_loc_created"	///from obj/effect/alien/weeds/Initialize()
-#define COMSIG_LIVING_WEEDS_ADJACENT_REMOVED "living_weeds_adjacent_removed"	///from obj/effect/alien/weeds/Destroy()
+#define COMSIG_LIVING_WEEDS_AT_LOC_CREATED "living_weeds_at_loc_created"	///from obj/alien/weeds/Initialize()
+#define COMSIG_LIVING_WEEDS_ADJACENT_REMOVED "living_weeds_adjacent_removed"	///from obj/alien/weeds/Destroy()
 
 //mob/living/carbon signals
 #define COMSIG_CARBON_SWAPPED_HANDS "carbon_swapped_hands"
@@ -745,6 +745,11 @@
 #define COMSIG_KB_AIMMODE "keybinding_aimmode"
 #define COMSIG_KB_FIREMODE "keybind_firemode"
 #define COMSIG_KB_GIVE "keybind_give"
+#define COMSIG_KB_MOVEORDER "keybind_moveorder"
+#define COMSIG_KB_HOLDORDER "keybind_holdorder"
+#define COMSIG_KB_FOCUSORDER "keybind_focusorder"
+#define COMSIG_KB_RALLYORDER "keybind_rallyorder"
+#define COMSIG_KB_SENDORDER "keybind_sendorder"
 
 // human modules signals for keybindings
 #define COMSIG_KB_VALI_CONFIGURE "keybinding_vali_configure"

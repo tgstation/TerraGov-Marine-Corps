@@ -25,11 +25,11 @@
 	///The beam will qdel if it's longer than this many tiles.
 	var/max_distance = 0
 	///the objects placed in the elements list
-	var/beam_type = /obj/effect/ebeam
+	var/beam_type = /atom/movable/effect/ebeam
 	///This is used as the visual_contents of beams, so you can apply one effect to this and the whole beam will look like that. never gets deleted on redrawing.
-	var/obj/effect/ebeam/visuals
+	var/atom/movable/effect/ebeam/visuals
 
-/datum/beam/New(beam_origin,beam_target,beam_icon='icons/effects/beam.dmi',beam_icon_state="b_beam",time=INFINITY,maxdistance=INFINITY,btype = /obj/effect/ebeam)
+/datum/beam/New(beam_origin,beam_target,beam_icon='icons/effects/beam.dmi',beam_icon_state="b_beam",time=INFINITY,maxdistance=INFINITY,btype = /atom/movable/effect/ebeam)
 	origin = beam_origin
 	target = beam_target
 	max_distance = maxdistance
@@ -92,7 +92,7 @@
 	for(N in 0 to length-1 step 32)//-1 as we want < not <=, but we want the speed of X in Y to Z and step X
 		if(QDELETED(src))
 			break
-		var/obj/effect/ebeam/X = new beam_type(origin_turf)
+		var/atom/movable/effect/ebeam/X = new beam_type(origin_turf)
 		X.owner = src
 		elements += X
 
@@ -133,12 +133,12 @@
 		X.pixel_y = Pixel_y
 		CHECK_TICK
 
-/obj/effect/ebeam
+/atom/movable/effect/ebeam
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	anchored = TRUE
 	var/datum/beam/owner
 
-/obj/effect/ebeam/Destroy()
+/atom/movable/effect/ebeam/Destroy()
 	owner = null
 	return ..()
 
@@ -155,7 +155,7 @@
  * maxdistance: how far the beam will go before stopping itself. Used mainly for two things: preventing lag if the beam may go in that direction and setting a range to abilities that use beams.
  * beam_type: The type of your custom beam. This is for adding other wacky stuff for your beam only. Most likely, you won't (and shouldn't) change it.
  */
-/atom/proc/beam(atom/BeamTarget,icon_state="b_beam",icon='icons/effects/beam.dmi',time = INFINITY,maxdistance = INFINITY,beam_type=/obj/effect/ebeam)
+/atom/proc/beam(atom/BeamTarget,icon_state="b_beam",icon='icons/effects/beam.dmi',time = INFINITY,maxdistance = INFINITY,beam_type=/atom/movable/effect/ebeam)
 	var/datum/beam/newbeam = new(src,BeamTarget,icon,icon_state,time,maxdistance,beam_type)
 	INVOKE_ASYNC(newbeam, /datum/beam/.proc/Start)
 	return newbeam

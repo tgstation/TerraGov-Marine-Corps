@@ -1,7 +1,7 @@
 /datum/action/xeno_action/activable/corrosive_acid/drone
 	name = "Corrosive Acid"
 	plasma_cost = 75
-	acid_type = /obj/effect/xenomorph/acid/weak
+	acid_type = /atom/movable/effect/xenomorph/acid/weak
 
 /datum/action/xeno_action/activable/transfer_plasma/drone
 	plasma_transfer_amount = PLASMA_TRANSFER_AMOUNT * 2
@@ -33,7 +33,7 @@
 
 	playsound(target, "alien_drool", 25)
 
-	new /obj/effect/temp_visual/telekinesis(get_turf(target))
+	new /atom/movable/effect/temp_visual/telekinesis(get_turf(target))
 	var/mob/living/carbon/xenomorph/patient = target
 	patient.salve_healing()
 

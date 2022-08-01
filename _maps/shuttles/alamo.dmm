@@ -66,14 +66,14 @@
 /turf/template_noop,
 /area/template_noop)
 "ap" = (
-/obj/effect/attach_point/weapon/dropship1{
+/atom/movable/effect/attach_point/weapon/dropship1{
 	dir = 1
 	},
 /obj/structure/dropship_piece/one/weapon/leftleft,
 /turf/template_noop,
 /area/shuttle/dropship/alamo)
 "aq" = (
-/obj/effect/attach_point/electronics/dropship1{
+/atom/movable/effect/attach_point/electronics/dropship1{
 	dir = 1
 	},
 /obj/structure/dropship_piece/one/weapon/leftright,
@@ -114,14 +114,14 @@
 	},
 /area/shuttle/dropship/alamo)
 "aw" = (
-/obj/effect/attach_point/electronics/dropship1{
+/atom/movable/effect/attach_point/electronics/dropship1{
 	dir = 1
 	},
 /obj/structure/dropship_piece/one/weapon/rightleft,
 /turf/template_noop,
 /area/shuttle/dropship/alamo)
 "ax" = (
-/obj/effect/attach_point/weapon/dropship1{
+/atom/movable/effect/attach_point/weapon/dropship1{
 	dir = 1
 	},
 /obj/structure/dropship_piece/one/weapon/rightright,
@@ -251,7 +251,7 @@
 	},
 /area/shuttle/dropship/alamo)
 "aX" = (
-/obj/effect/attach_point/weapon/dropship1{
+/atom/movable/effect/attach_point/weapon/dropship1{
 	dir = 8;
 	icon_state = "equip_base_l_wing"
 	},
@@ -274,7 +274,7 @@
 	},
 /area/shuttle/dropship/alamo)
 "bb" = (
-/obj/effect/attach_point/weapon/dropship1{
+/atom/movable/effect/attach_point/weapon/dropship1{
 	dir = 4;
 	icon_state = "equip_base_r_wing"
 	},
@@ -444,7 +444,7 @@
 	},
 /area/shuttle/dropship/alamo)
 "bI" = (
-/obj/effect/attach_point/crew_weapon/dropship1,
+/atom/movable/effect/attach_point/crew_weapon/dropship1,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "bJ" = (

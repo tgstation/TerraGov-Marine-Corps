@@ -12,7 +12,7 @@
 
 //To do: Allow corpses to appear mangled, bloody, etc. Allow customizing the bodies appearance (they're all bald and white right now).
 
-/obj/effect/landmark/corpsespawner
+/atom/movable/effect/landmark/corpsespawner
 	name = "Unknown"
 	icon_state = "skullmarker"
 	var/mobname = "Unknown"  //Unused now but it'd fuck up maps to remove it now
@@ -33,16 +33,16 @@
 	var/corpseidaccess = null //This is for access. See access.dm for which jobs give what access. Use CAPTAIN if you want it to be all access.
 	var/corpseidicon = null //For setting it to be a gold, silver, centcom etc ID
 
-/obj/effect/landmark/corpsespawner/Initialize()
+/atom/movable/effect/landmark/corpsespawner/Initialize()
 	. = ..()
 	GLOB.corpse_landmarks_list += src
 
-/obj/effect/landmark/corpsespawner/Destroy()
+/atom/movable/effect/landmark/corpsespawner/Destroy()
 	GLOB.corpse_landmarks_list -= src
 	return ..()
 
 /// Create the mob and delete the corpse spawner
-/obj/effect/landmark/corpsespawner/proc/create_mob(death_type)
+/atom/movable/effect/landmark/corpsespawner/proc/create_mob(death_type)
 	var/mob/living/carbon/human/victim = new(loc)
 	SSmobs.stop_processing(victim)
 	GLOB.round_statistics.total_humans_created-- //corpses don't count
@@ -71,7 +71,7 @@
 
 
 
-/obj/effect/landmark/corpsespawner/proc/equip_items_to_mob(mob/living/carbon/human/corpse)
+/atom/movable/effect/landmark/corpsespawner/proc/equip_items_to_mob(mob/living/carbon/human/corpse)
 	if(corpseuniform)
 		corpse.equip_to_slot_or_del(new corpseuniform(corpse), SLOT_W_UNIFORM)
 	if(corpsesuit)
@@ -119,7 +119,7 @@
 
 // I'll work on making a list of corpses people request for maps, or that I think will be commonly used. Syndicate operatives for example.
 
-/obj/effect/landmark/corpsespawner/syndicatesoldier
+/atom/movable/effect/landmark/corpsespawner/syndicatesoldier
 	name = "Syndicate Operative"
 	corpseuniform = /obj/item/clothing/under/syndicate
 	corpsesuit = /obj/item/clothing/suit/armor/vest
@@ -135,7 +135,7 @@
 
 
 
-/obj/effect/landmark/corpsespawner/syndicatecommando
+/atom/movable/effect/landmark/corpsespawner/syndicatecommando
 	name = "Syndicate Commando"
 	corpseuniform = /obj/item/clothing/under/syndicate
 	corpsesuit = /obj/item/clothing/suit/space/rig/syndi
@@ -152,7 +152,7 @@
 
 
 
-/obj/effect/landmark/corpsespawner/pirate
+/atom/movable/effect/landmark/corpsespawner/pirate
 	name = "Pirate"
 	corpseuniform = /obj/item/clothing/under/syndicate
 	corpsesuit = /obj/item/clothing/suit/armor/vest
@@ -165,7 +165,7 @@
 
 
 
-/obj/effect/landmark/corpsespawner/realpirate
+/atom/movable/effect/landmark/corpsespawner/realpirate
 	name = "Pirate"
 	corpseuniform = /obj/item/clothing/under/pirate
 	corpseshoes = /obj/item/clothing/shoes/jackboots
@@ -174,7 +174,7 @@
 
 
 
-/obj/effect/landmark/corpsespawner/realpirate/ranged
+/atom/movable/effect/landmark/corpsespawner/realpirate/ranged
 	name = "Pirate Gunner"
 	corpsesuit = /obj/item/clothing/suit/pirate
 	corpsehelmet = /obj/item/clothing/head/pirate
@@ -182,18 +182,18 @@
 
 
 
-/obj/effect/landmark/corpsespawner/russian
+/atom/movable/effect/landmark/corpsespawner/russian
 	name = "Russian"
 	corpseuniform = /obj/item/clothing/under/soviet
 	corpseshoes = /obj/item/clothing/shoes/jackboots
 	corpsehelmet = /obj/item/clothing/head/bearpelt
 
-/obj/effect/landmark/corpsespawner/russian/ranged
+/atom/movable/effect/landmark/corpsespawner/russian/ranged
 	corpsehelmet = /obj/item/clothing/head/ushanka
 
 ///////////Civilians//////////////////////
 
-/obj/effect/landmark/corpsespawner/prisoner
+/atom/movable/effect/landmark/corpsespawner/prisoner
 	name = "Prisoner"
 	corpseuniform = /obj/item/clothing/under/rank/prisoner
 	corpseshoes = /obj/item/clothing/shoes/orange
@@ -201,7 +201,7 @@
 	corpseidjob = "Prisoner"
 
 
-/obj/effect/landmark/corpsespawner/chef
+/atom/movable/effect/landmark/corpsespawner/chef
 	name = "Chef"
 	corpseuniform = /obj/item/clothing/under/rank/chef
 	corpsesuit = /obj/item/clothing/suit/chef/classic
@@ -213,7 +213,7 @@
 //	corpseidaccess = "Syndicate"
 
 
-/obj/effect/landmark/corpsespawner/doctor
+/atom/movable/effect/landmark/corpsespawner/doctor
 	name = "Doctor"
 	corpseuniform = /obj/item/clothing/under/colonist
 	corpsesuit = /obj/item/clothing/suit/storage/labcoat
@@ -224,7 +224,7 @@
 	corpseidjob = "Medical Doctor"
 //	corpseidaccess = "Medical Doctor"
 
-/obj/effect/landmark/corpsespawner/engineer
+/atom/movable/effect/landmark/corpsespawner/engineer
 	name = "Engineer"
 	corpseuniform = /obj/item/clothing/under/colonist
 	corpseback = /obj/item/storage/backpack/industrial
@@ -236,12 +236,12 @@
 	corpseidjob = "Station Engineer"
 //	corpseidaccess = "Station Engineer"
 
-/obj/effect/landmark/corpsespawner/engineer/rig
+/atom/movable/effect/landmark/corpsespawner/engineer/rig
 	corpsesuit = /obj/item/clothing/suit/space/rig/engineering
 	corpsemask = /obj/item/clothing/mask/breath
 	corpsehelmet = /obj/item/clothing/head/helmet/space/rig/engineering
 
-/obj/effect/landmark/corpsespawner/scientist
+/atom/movable/effect/landmark/corpsespawner/scientist
 	name = "Scientist"
 	corpseuniform = /obj/item/clothing/under/marine/officer/researcher
 	corpsesuit = /obj/item/clothing/suit/storage/labcoat
@@ -251,7 +251,7 @@
 	corpseidjob = "Scientist"
 //	corpseidaccess = "Scientist"
 
-/obj/effect/landmark/corpsespawner/miner
+/atom/movable/effect/landmark/corpsespawner/miner
 	corpseuniform = /obj/item/clothing/under/colonist
 	corpsegloves = /obj/item/clothing/gloves/black
 	corpseback = /obj/item/storage/backpack/industrial
@@ -260,17 +260,17 @@
 	corpseidjob = "Shaft Miner"
 //	corpseidaccess = "Shaft Miner"
 
-/obj/effect/landmark/corpsespawner/miner/rig
+/atom/movable/effect/landmark/corpsespawner/miner/rig
 	corpsesuit = /obj/item/clothing/suit/space/rig/mining
 	corpsemask = /obj/item/clothing/mask/breath
 	corpsehelmet = /obj/item/clothing/head/helmet/space/rig/mining
 
-/obj/effect/landmark/corpsespawner/security
+/atom/movable/effect/landmark/corpsespawner/security
 	corpseuniform = /obj/item/clothing/under/rank/security
 	corpseshoes = /obj/item/clothing/shoes/jackboots
 	corpsesuit = /obj/item/clothing/suit/armor/vest/security
 
-/obj/effect/landmark/corpsespawner/prison_security
+/atom/movable/effect/landmark/corpsespawner/prison_security
 	name = "Prison Guard"
 	corpseuniform = /obj/item/clothing/under/rank/security
 	corpseshoes = /obj/item/clothing/shoes/jackboots
@@ -281,7 +281,7 @@
 	corpseidjob = "Prison Guard"
 
 
-/obj/effect/landmark/corpsespawner/pmc
+/atom/movable/effect/landmark/corpsespawner/pmc
 	name = "Unknown PMC"
 	corpseuniform = /obj/item/clothing/under/marine/veteran/PMC
 	corpseshoes = /obj/item/clothing/shoes/jackboots
@@ -294,7 +294,7 @@
 	corpseradio = /obj/item/radio/headset/survivor
 	corpsesuit = /obj/item/clothing/suit/storage/marine/veteran/PMC
 
-/obj/effect/landmark/corpsespawner/colonist
+/atom/movable/effect/landmark/corpsespawner/colonist
 	name = "Colonist"
 	corpseuniform = /obj/item/clothing/under/colonist
 	corpseshoes = /obj/item/clothing/shoes/black
@@ -302,7 +302,7 @@
 
 /////////////////Officers//////////////////////
 
-/obj/effect/landmark/corpsespawner/bridgeofficer
+/atom/movable/effect/landmark/corpsespawner/bridgeofficer
 	name = "Staff Officer"
 	corpseuniform = /obj/item/clothing/under/rank/centcom_officer
 	corpsesuit = /obj/item/clothing/suit/armor/bulletproof
@@ -312,7 +312,7 @@
 	corpseidjob = "Staff Officer"
 	corpseidaccess = CAPTAIN
 
-/obj/effect/landmark/corpsespawner/commander
+/atom/movable/effect/landmark/corpsespawner/commander
 	name = "Commander"
 	corpseuniform = /obj/item/clothing/under/rank/centcom_commander
 	corpsesuit = /obj/item/clothing/suit/armor/bulletproof
@@ -326,7 +326,7 @@
 	corpseidjob = "Commander"
 	corpseidaccess = CAPTAIN
 
-/obj/effect/landmark/corpsespawner/PMC
+/atom/movable/effect/landmark/corpsespawner/PMC
 	name = "Private Security Officer"
 	corpseuniform = /obj/item/clothing/under/marine/veteran/PMC
 	corpsesuit = /obj/item/clothing/suit/armor/bulletproof
@@ -342,7 +342,7 @@
 
 /////////////////Marine//////////////////////
 
-/obj/effect/landmark/corpsespawner/marine
+/atom/movable/effect/landmark/corpsespawner/marine
 	name = "Marine"
 	corpseuniform = /obj/item/clothing/under/marine/standard
 	corpsesuit = /obj/item/clothing/suit/modular/xenonauten/light
@@ -353,7 +353,7 @@
 	corpseshoes = /obj/item/clothing/shoes/marine
 	corpsepocket1 = /obj/item/tool/lighter/zippo
 
-/obj/effect/landmark/corpsespawner/marine/engineer
+/atom/movable/effect/landmark/corpsespawner/marine/engineer
 	name = "Marine Engineer"
 	corpseuniform = /obj/item/clothing/under/marine/standard
 	corpsesuit = /obj/item/clothing/suit/modular/xenonauten/light
@@ -365,7 +365,7 @@
 	corpsebelt = /obj/item/storage/belt/utility/full
 	corpsepocket1 = /obj/item/flashlight
 
-/obj/effect/landmark/corpsespawner/marine/corpsman
+/atom/movable/effect/landmark/corpsespawner/marine/corpsman
 	name = "Marine Corpsman"
 	corpseuniform = /obj/item/clothing/under/marine/corpsman
 	corpsesuit = /obj/item/clothing/suit/modular/xenonauten/light

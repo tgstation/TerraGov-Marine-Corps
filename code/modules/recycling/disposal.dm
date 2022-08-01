@@ -1355,7 +1355,7 @@
 		client.perspective = MOB_PERSPECTIVE
 		client.eye = src
 
-/obj/effect/decal/cleanable/blood/gibs/pipe_eject(direction)
+/atom/movable/effect/decal/cleanable/blood/gibs/pipe_eject(direction)
 	var/list/dirs
 	if(direction)
 		dirs = list( direction, turn(direction, -45), turn(direction, 45))
@@ -1364,7 +1364,7 @@
 
 	streak(dirs)
 
-/obj/effect/decal/cleanable/blood/gibs/robot/pipe_eject(direction)
+/atom/movable/effect/decal/cleanable/blood/gibs/robot/pipe_eject(direction)
 	var/list/dirs
 	if(direction)
 		dirs = list( direction, turn(direction, -45), turn(direction, 45))

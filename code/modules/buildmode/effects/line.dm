@@ -1,9 +1,9 @@
-/obj/effect/buildmode_line
+/atom/movable/effect/buildmode_line
 	var/image/I
 	var/client/cl
 
 
-/obj/effect/buildmode_line/Initialize(mapload, client/C, atom/atom_a, atom/atom_b, linename)
+/atom/movable/effect/buildmode_line/Initialize(mapload, client/C, atom/atom_a, atom/atom_b, linename)
 	. = ..()
 	name = linename
 	abstract_move(get_turf(atom_a))
@@ -22,7 +22,7 @@
 	cl.images += I
 
 
-/obj/effect/buildmode_line/Destroy()
+/atom/movable/effect/buildmode_line/Destroy()
 	if(I)
 		if(istype(cl))
 			cl.images -= I

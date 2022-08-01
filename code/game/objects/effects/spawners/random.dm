@@ -1,4 +1,4 @@
-/obj/effect/spawner/random
+/atom/movable/effect/spawner/random
 	name = "Random Object"
 	desc = "This item type is used to spawn random objects at round-start"
 	icon = 'icons/effects/landmarks_static.dmi'
@@ -7,7 +7,7 @@
 
 
 // creates a new object and deletes itself
-/obj/effect/spawner/random/Initialize()
+/atom/movable/effect/spawner/random/Initialize()
 	. = ..()
 
 	if(!prob(spawn_nothing_percentage))
@@ -17,21 +17,21 @@
 
 
 /// this function should return a specific item to spawn
-/obj/effect/spawner/random/proc/item_to_spawn()
+/atom/movable/effect/spawner/random/proc/item_to_spawn()
 	return null
 
 
 /// creates the random item
-/obj/effect/spawner/random/proc/spawn_item()
+/atom/movable/effect/spawner/random/proc/spawn_item()
 	var/build_path = item_to_spawn()
 	return (new build_path(src.loc))
 
 
-/obj/effect/spawner/random/tool
+/atom/movable/effect/spawner/random/tool
 	name = "Random Tool"
 	icon_state = "random_tool"
 
-/obj/effect/spawner/random/tool/item_to_spawn()
+/atom/movable/effect/spawner/random/tool/item_to_spawn()
 	return pick(/obj/item/tool/screwdriver,\
 				/obj/item/tool/wirecutters,\
 				/obj/item/tool/weldingtool,\
@@ -40,23 +40,23 @@
 				/obj/item/flashlight)
 
 
-/obj/effect/spawner/random/technology_scanner
+/atom/movable/effect/spawner/random/technology_scanner
 	name = "Random Scanner"
 	desc = "This is a random technology scanner."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "atmos"
 
-/obj/effect/spawner/random/technology_scanner/item_to_spawn()
+/atom/movable/effect/spawner/random/technology_scanner/item_to_spawn()
 		return pick(prob(5);/obj/item/t_scanner,\
 					prob(2);/obj/item/radio,\
 					prob(5);/obj/item/analyzer)
 
 
-/obj/effect/spawner/random/powercell
+/atom/movable/effect/spawner/random/powercell
 	name = "Random Powercell"
 	icon_state = "random_cell"
 
-/obj/effect/spawner/random/powercell/item_to_spawn()
+/atom/movable/effect/spawner/random/powercell/item_to_spawn()
 		return pick(prob(10);/obj/item/cell/crap,\
 					prob(40);/obj/item/cell,\
 					prob(40);/obj/item/cell/high,\
@@ -64,51 +64,51 @@
 					prob(1);/obj/item/cell/hyper)
 
 
-/obj/effect/spawner/random/bomb_supply
+/atom/movable/effect/spawner/random/bomb_supply
 	name = "Bomb Supply"
 	icon_state = "random_scanner"
 
-/obj/effect/spawner/random/bomb_supply/item_to_spawn()
+/atom/movable/effect/spawner/random/bomb_supply/item_to_spawn()
 		return pick(/obj/item/assembly/igniter,\
 					/obj/item/assembly/prox_sensor,\
 					/obj/item/assembly/signaler,\
 					/obj/item/multitool)
 
 
-/obj/effect/spawner/random/toolbox
+/atom/movable/effect/spawner/random/toolbox
 	name = "Random Toolbox"
 	icon_state = "random_toolbox"
 
-/obj/effect/spawner/random/toolbox/item_to_spawn()
+/atom/movable/effect/spawner/random/toolbox/item_to_spawn()
 		return pick(prob(3);/obj/item/storage/toolbox/mechanical,\
 					prob(2);/obj/item/storage/toolbox/electrical,\
 					prob(1);/obj/item/storage/toolbox/emergency)
 
 
-/obj/effect/spawner/random/tech_supply
+/atom/movable/effect/spawner/random/tech_supply
 	name = "Random Tech Supply"
 	icon_state = "random_cell"
 	spawn_nothing_percentage = 50
 
-/obj/effect/spawner/random/tech_supply/item_to_spawn()
-		return pick(prob(3);/obj/effect/spawner/random/powercell,\
-					prob(2);/obj/effect/spawner/random/technology_scanner,\
+/atom/movable/effect/spawner/random/tech_supply/item_to_spawn()
+		return pick(prob(3);/atom/movable/effect/spawner/random/powercell,\
+					prob(2);/atom/movable/effect/spawner/random/technology_scanner,\
 					prob(1);/obj/item/packageWrap,\
-					prob(2);/obj/effect/spawner/random/bomb_supply,\
+					prob(2);/atom/movable/effect/spawner/random/bomb_supply,\
 					prob(1);/obj/item/tool/extinguisher,\
 					prob(1);/obj/item/clothing/gloves/fyellow,\
 					prob(3);/obj/item/stack/cable_coil,\
-					prob(2);/obj/effect/spawner/random/toolbox,\
+					prob(2);/atom/movable/effect/spawner/random/toolbox,\
 					prob(2);/obj/item/storage/belt/utility,\
-					prob(5);/obj/effect/spawner/random/tool)
+					prob(5);/atom/movable/effect/spawner/random/tool)
 
 
 ///All kinds of 'cans'. This include water bottles.
-/obj/effect/spawner/random/drink_cans
+/atom/movable/effect/spawner/random/drink_cans
 	name = "Random Drink Cans"
 	icon_state = "random_can"
 
-/obj/effect/spawner/random/drink_cans/item_to_spawn()
+/atom/movable/effect/spawner/random/drink_cans/item_to_spawn()
 		return pick(/obj/item/reagent_containers/food/drinks/cans/cola,\
 					/obj/item/reagent_containers/food/drinks/cans/waterbottle,\
 					/obj/item/reagent_containers/food/drinks/cans/beer,\
@@ -135,11 +135,11 @@
 
 
 ///Booze in a bottle. Glass. Classy.
-/obj/effect/spawner/random/drink_alcohol_bottle
+/atom/movable/effect/spawner/random/drink_alcohol_bottle
 	name = "Random Alcoholic Drink Bottle"
 	icon_state = "random_bottle"
 
-/obj/effect/spawner/random/drink_alcohol_bottle/item_to_spawn()
+/atom/movable/effect/spawner/random/drink_alcohol_bottle/item_to_spawn()
 		return pick(/obj/item/reagent_containers/food/drinks/bottle/gin,\
 					/obj/item/reagent_containers/food/drinks/bottle/whiskey,\
 					/obj/item/reagent_containers/food/drinks/bottle/sake,\
@@ -162,11 +162,11 @@
 					/obj/item/reagent_containers/food/drinks/bottle/pwine)
 
 ///Stuff that's more like candies and all. Stale the hunger or buy in a vending machine.
-/obj/effect/spawner/random/sugary_snack
+/atom/movable/effect/spawner/random/sugary_snack
 	name = "Random Sugary Snacks"
 	icon_state = "random_sugary"
 
-/obj/effect/spawner/random/sugary_snack/item_to_spawn()
+/atom/movable/effect/spawner/random/sugary_snack/item_to_spawn()
 		return pick(/obj/item/reagent_containers/food/snacks/donut,\
 					/obj/item/reagent_containers/food/snacks/donut/normal,\
 					/obj/item/reagent_containers/food/snacks/chocolatebar,\
@@ -200,11 +200,11 @@
 
 
 ///Stuff you might expect to eat in the street.
-/obj/effect/spawner/random/outdoors_snacks
+/atom/movable/effect/spawner/random/outdoors_snacks
 	name = "Random Outdoors snack"
 	icon_state = "random_outdoors_snack"
 
-/obj/effect/spawner/random/outdoors_snacks/item_to_spawn()
+/atom/movable/effect/spawner/random/outdoors_snacks/item_to_spawn()
 		return pick(/obj/item/reagent_containers/food/snacks/taco,\
 					/obj/item/reagent_containers/food/snacks/hotdog,\
 					/obj/item/reagent_containers/food/snacks/packaged_burrito,\
@@ -230,11 +230,11 @@
 
 
 ///All the trash.
-/obj/effect/spawner/random/trash
+/atom/movable/effect/spawner/random/trash
 	name = "Random trash"
 	icon_state = "random_trash"
 
-/obj/effect/spawner/random/trash/item_to_spawn()
+/atom/movable/effect/spawner/random/trash/item_to_spawn()
 		return pick(/obj/item/trash/raisins,\
 					/obj/item/trash/candy,\
 					/obj/item/trash/cheesie,\
@@ -266,11 +266,11 @@
 					/obj/item/trash/mre)
 
 ///random civilian clothing for flavor
-/obj/effect/spawner/random/clothing
+/atom/movable/effect/spawner/random/clothing
 	name = "Random clothing spawner"
 	icon_state = "random_clothes"
 
-/obj/effect/spawner/random/clothing/item_to_spawn()
+/atom/movable/effect/spawner/random/clothing/item_to_spawn()
 		return pick(/obj/item/clothing/suit/bio_suit,\
 					/obj/item/clothing/suit/bomber,\
 					/obj/item/clothing/suit/ianshirt,\
@@ -309,11 +309,11 @@
 
 
 ///random civilian hats for flavor
-/obj/effect/spawner/random/hats
+/atom/movable/effect/spawner/random/hats
 	name = "Random hat spawner"
 	icon_state = "random_hat"
 
-/obj/effect/spawner/random/hats/item_to_spawn()
+/atom/movable/effect/spawner/random/hats/item_to_spawn()
 		return pick(/obj/item/clothing/head/bandanna/red,\
 					/obj/item/clothing/head/beret,\
 					/obj/item/clothing/head/bomb_hood/security,\
@@ -353,11 +353,11 @@
 
 
 ///random kitchen items
-/obj/effect/spawner/random/kitchen
+/atom/movable/effect/spawner/random/kitchen
 	name = "Random kitchen utensil spawner"
 	icon_state = "random_utensil"
 
-/obj/effect/spawner/random/kitchen/item_to_spawn()
+/atom/movable/effect/spawner/random/kitchen/item_to_spawn()
 		return pick(/obj/item/tool/kitchen/utensil/fork,\
 					/obj/item/tool/kitchen/utensil/pfork,\
 					/obj/item/tool/kitchen/utensil/spoon,\
@@ -368,11 +368,11 @@
 					/obj/item/tool/kitchen/tray)
 
 ///random medical items
-/obj/effect/spawner/random/pillbottle
+/atom/movable/effect/spawner/random/pillbottle
 	name = "Random pill bottle spawner"
 	icon_state = "random_medicine"
 
-/obj/effect/spawner/random/pillbottle/item_to_spawn()
+/atom/movable/effect/spawner/random/pillbottle/item_to_spawn()
 		return pick(/obj/item/storage/pill_bottle/alkysine,\
 					/obj/item/storage/pill_bottle/imidazoline,\
 					/obj/item/storage/pill_bottle/bicaridine,\
@@ -382,11 +382,11 @@
 					/obj/item/storage/pill_bottle/dylovene,\
 					/obj/item/storage/pill_bottle/spaceacillin)
 
-/obj/effect/spawner/random/surgical
+/atom/movable/effect/spawner/random/surgical
 	name = "Random surgical instrument spawner"
 	icon_state = "random_surgical"
 
-/obj/effect/spawner/random/surgical/item_to_spawn()
+/atom/movable/effect/spawner/random/surgical/item_to_spawn()
 		return pick(/obj/item/tool/surgery/scalpel/manager,\
 					/obj/item/tool/surgery/scalpel,\
 					/obj/item/tool/surgery/hemostat,\
@@ -400,11 +400,11 @@
 					/obj/item/tool/surgery/FixOVein,\
 					/obj/item/stack/nanopaste)
 
-/obj/effect/spawner/random/organ
+/atom/movable/effect/spawner/random/organ
 	name = "Random surgical organ spawner"
 	icon_state = "random_organ"
 
-/obj/effect/spawner/random/organ/item_to_spawn()
+/atom/movable/effect/spawner/random/organ/item_to_spawn()
 		return pick(/obj/item/prop/organ/brain,\
 					/obj/item/prop/organ/heart,\
 					/obj/item/prop/organ/lungs,\
@@ -414,11 +414,11 @@
 					/obj/item/prop/organ/appendix)
 
 ///random cables
-/obj/effect/spawner/random/cable
+/atom/movable/effect/spawner/random/cable
 	name = "Random cable spawner"
 	icon_state = "random_cable"
 
-/obj/effect/spawner/random/cable/item_to_spawn()
+/atom/movable/effect/spawner/random/cable/item_to_spawn()
 		return pick(/obj/item/stack/cable_coil,\
 					/obj/item/stack/cable_coil/cut,\
 					/obj/item/stack/cable_coil/five,\
@@ -428,11 +428,11 @@
 ///BALLISTIC WEAPONS///
 
 ///random guns
-/obj/effect/spawner/random/gun //restricted to ballistic weapons available on the ship, no auto-9s here
+/atom/movable/effect/spawner/random/gun //restricted to ballistic weapons available on the ship, no auto-9s here
 	name = "Random ballistic ammunition spawner"
 	icon_state = "random_rifle"
 
-/obj/effect/spawner/random/gun/item_to_spawn()
+/atom/movable/effect/spawner/random/gun/item_to_spawn()
 		return pick(/obj/item/weapon/gun/rifle/standard_assaultrifle,\
 					/obj/item/weapon/gun/rifle/standard_carbine,\
 					/obj/item/weapon/gun/rifle/standard_skirmishrifle,\
@@ -460,11 +460,11 @@
 
 
 ///random shotguns
-/obj/effect/spawner/random/gun/shotgun
+/atom/movable/effect/spawner/random/gun/shotgun
 	name = "Random shotgun spawner"
 	icon_state = "random_shotgun"
 
-/obj/effect/spawner/random/gun/shotgun/item_to_spawn()
+/atom/movable/effect/spawner/random/gun/shotgun/item_to_spawn()
 		return pick(/obj/item/weapon/gun/shotgun/pump/lever/repeater,\
 					/obj/item/weapon/gun/shotgun/pump/bolt,\
 					/obj/item/weapon/gun/shotgun/pump/cmb,\
@@ -475,22 +475,22 @@
 
 
 ///random machineguns
-/obj/effect/spawner/random/gun/machineguns
+/atom/movable/effect/spawner/random/gun/machineguns
 	name = "Random machinegun spawner"
 	icon_state = "random_machinegun"
 
-/obj/effect/spawner/random/gun/machineguns/item_to_spawn()
+/atom/movable/effect/spawner/random/gun/machineguns/item_to_spawn()
 		return pick(/obj/item/weapon/gun/rifle/standard_lmg,\
 					/obj/item/weapon/gun/rifle/standard_gpmg,\
 					/obj/item/weapon/gun/standard_mmg)
 
 
 ///random rifles
-/obj/effect/spawner/random/gun/rifles
+/atom/movable/effect/spawner/random/gun/rifles
 	name = "Random rifle spawner"
 	icon_state = "random_rifle"
 
-/obj/effect/spawner/random/gun/rifles/item_to_spawn()
+/atom/movable/effect/spawner/random/gun/rifles/item_to_spawn()
 		return pick(/obj/item/weapon/gun/rifle/standard_assaultrifle,\
 					/obj/item/weapon/gun/rifle/standard_carbine,\
 					/obj/item/weapon/gun/rifle/standard_skirmishrifle,\
@@ -498,11 +498,11 @@
 
 
 ///random sidearms
-/obj/effect/spawner/random/gun/sidearms
+/atom/movable/effect/spawner/random/gun/sidearms
 	name = "Random sidearm spawner"
 	icon_state = "random_sidearm"
 
-/obj/effect/spawner/random/gun/sidearms/item_to_spawn()
+/atom/movable/effect/spawner/random/gun/sidearms/item_to_spawn()
 		return pick(/obj/item/weapon/gun/pistol/standard_pistol,\
 					/obj/item/weapon/gun/pistol/standard_heavypistol,\
 					/obj/item/weapon/gun/revolver/standard_revolver,\
@@ -512,11 +512,11 @@
 
 
 ///random melee weapons
-/obj/effect/spawner/random/melee
+/atom/movable/effect/spawner/random/melee
 	name = "Random melee weapons spawner"
 	icon_state = "random_melee"
 
-/obj/effect/spawner/random/melee/item_to_spawn()
+/atom/movable/effect/spawner/random/melee/item_to_spawn()
 		return pick(/obj/item/weapon/claymore/mercsword/machete,\
 					/obj/item/weapon/combat_knife,\
 					/obj/item/attachable/bayonetknife,\
@@ -532,11 +532,11 @@
 ///BALLISTIC WEAPON AMMO///
 
 ///random ammunition
-/obj/effect/spawner/random/ammo
+/atom/movable/effect/spawner/random/ammo
 	name = "Random ballistic ammunition spawner"
 	icon_state = "random_ammo"
 
-/obj/effect/spawner/random/ammo/item_to_spawn()
+/atom/movable/effect/spawner/random/ammo/item_to_spawn()
 		return pick(/obj/item/ammo_magazine/rifle/standard_assaultrifle,\
 					/obj/item/ammo_magazine/rifle/standard_carbine,\
 					/obj/item/ammo_magazine/rifle/standard_skirmishrifle,\
@@ -564,22 +564,22 @@
 ///for specific ranged weapon ammo spawners we don't spawn anything that marines couldn't get back on their ship
 
 ///random shotgun ammunition
-/obj/effect/spawner/random/ammo/shotgun
+/atom/movable/effect/spawner/random/ammo/shotgun
 	name = "Random shotgun ammunition spawner"
 	icon_state = "random_shotgun_ammo"
 
-/obj/effect/spawner/random/ammo/shotgun/item_to_spawn()
+/atom/movable/effect/spawner/random/ammo/shotgun/item_to_spawn()
 		return pick(/obj/item/ammo_magazine/shotgun/buckshot,\
 					/obj/item/ammo_magazine/shotgun/flechette,\
 					/obj/item/ammo_magazine/shotgun)
 
 
 ///random machinegun ammunition
-/obj/effect/spawner/random/ammo/machinegun
+/atom/movable/effect/spawner/random/ammo/machinegun
 	name = "Random machinegun ammunition spawner"
 	icon_state = "random_machinegun_ammo"
 
-/obj/effect/spawner/random/ammo/machinegun/item_to_spawn()
+/atom/movable/effect/spawner/random/ammo/machinegun/item_to_spawn()
 		return pick(/obj/item/ammo_magazine/standard_lmg,\
 					/obj/item/ammo_magazine/standard_gpmg,\
 					/obj/item/ammo_magazine/standard_mmg,\
@@ -587,11 +587,11 @@
 
 
 ///random rifle ammunition
-/obj/effect/spawner/random/ammo/rifle
+/atom/movable/effect/spawner/random/ammo/rifle
 	name = "Random rifle ammunition spawner"
 	icon_state = "random_rifle_ammo"
 
-/obj/effect/spawner/random/ammo/rifle/item_to_spawn()
+/atom/movable/effect/spawner/random/ammo/rifle/item_to_spawn()
 		return pick(/obj/item/ammo_magazine/rifle/standard_assaultrifle,\
 					/obj/item/ammo_magazine/rifle/standard_carbine,\
 					/obj/item/ammo_magazine/rifle/standard_skirmishrifle,\
@@ -599,11 +599,11 @@
 
 
 ///random sidearm ammunition
-/obj/effect/spawner/random/ammo/sidearm
+/atom/movable/effect/spawner/random/ammo/sidearm
 	name = "Random sidearm ammunition spawner"
 	icon_state = "random_sidearm_ammo"
 
-/obj/effect/spawner/random/ammo/sidearm/item_to_spawn()
+/atom/movable/effect/spawner/random/ammo/sidearm/item_to_spawn()
 		return pick(/obj/item/ammo_magazine/pistol/standard_pistol,\
 					/obj/item/ammo_magazine/pistol/standard_heavypistol,\
 					/obj/item/ammo_magazine/revolver/standard_revolver,\
@@ -615,7 +615,7 @@
 
 //Random spawners for multiple grouped items such as a gun and it's associated ammo
 
-/obj/effect/spawner/random_set
+/atom/movable/effect/spawner/random_set
 	name = "Random Object"
 	desc = "This item type is used to spawn random objects at round-start"
 	icon = 'icons/effects/landmarks_static.dmi'
@@ -628,7 +628,7 @@
 	var/list/option_list
 
 // creates a new set of objects and deletes itself
-/obj/effect/spawner/random_set/Initialize()
+/atom/movable/effect/spawner/random_set/Initialize()
 	. = ..()
 	if(!prob(spawn_nothing_percentage))
 		var/choice = rand(1, length(option_list)) //chooses an item on the option_list
@@ -641,7 +641,7 @@
 	return INITIALIZE_HINT_QDEL
 
 //restricted to ballistic weapons available on the ship, no auto-9s here
-/obj/effect/spawner/random_set/gun
+/atom/movable/effect/spawner/random_set/gun
 	name = "Random ballistic weapon set spawner"
 	icon_state = "random_rifle"
 
@@ -673,7 +673,7 @@
 	)
 
 //random rifles
-obj/effect/spawner/random_set/rifle
+atom/movable/effect/spawner/random_set/rifle
 	name = "Random rifle set spawner"
 	icon_state = "random_rifle"
 
@@ -685,7 +685,7 @@ obj/effect/spawner/random_set/rifle
 	)
 
 //random shotguns
-/obj/effect/spawner/random_set/shotgun
+/atom/movable/effect/spawner/random_set/shotgun
 	name = "Random shotgun set spawner"
 	icon_state = "random_shotgun"
 
@@ -699,7 +699,7 @@ obj/effect/spawner/random_set/rifle
 	)
 
 //random machineguns
-/obj/effect/spawner/random_set/machineguns
+/atom/movable/effect/spawner/random_set/machineguns
 	name = "Random machinegun set spawner"
 	icon_state = "random_machinegun"
 
@@ -709,7 +709,7 @@ obj/effect/spawner/random_set/rifle
 	)
 
 //random sidearms
-/obj/effect/spawner/random_set/sidearms
+/atom/movable/effect/spawner/random_set/sidearms
 	name = "Random sidearm set spawner"
 	icon_state = "random_sidearm"
 

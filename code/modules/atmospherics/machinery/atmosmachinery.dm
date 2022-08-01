@@ -285,7 +285,7 @@
 			else
 
 				// Check for impassable types
-				var/obj/effect/forcefield/fog/impassable = locate() in get_turf(target_move)
+				var/atom/movable/effect/forcefield/fog/impassable = locate() in get_turf(target_move)
 				if(impassable)
 					return
 

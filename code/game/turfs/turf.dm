@@ -37,7 +37,7 @@
 	// In the case of a list it is sorted from bottom layer to top.
 	// This shouldn't be modified directly, use the helper procs.
 	var/list/baseturfs = /turf/baseturf_bottom
-	var/obj/effect/xenomorph/acid/current_acid = null //If it has acid spewed on it
+	var/atom/movable/effect/xenomorph/acid/current_acid = null //If it has acid spewed on it
 
 	luminosity = 1
 
@@ -192,7 +192,7 @@
 			M.inertia_dir = 0
 	..()
 
-/turf/effect_smoke(obj/effect/particle_effect/smoke/S)
+/turf/effect_smoke(atom/movable/effect/particle_effect/smoke/S)
 	. = ..()
 	if(!.)
 		return
@@ -342,7 +342,7 @@
 
 /turf/proc/empty(turf_type=/turf/open/space, baseturf_type, list/ignore_typecache, flags)
 	// Remove all atoms except observers, landmarks, docking ports
-	var/static/list/ignored_atoms = typecacheof(list(/mob/dead, /obj/effect/landmark, /obj/docking_port))
+	var/static/list/ignored_atoms = typecacheof(list(/mob/dead, /atom/movable/effect/landmark, /obj/docking_port))
 	var/list/allowed_contents = typecache_filter_list_reverse(GetAllContentsIgnoring(ignore_typecache), ignored_atoms)
 	allowed_contents -= src
 	for(var/i in 1 to allowed_contents.len)
@@ -399,7 +399,7 @@
 /turf/proc/AddTracks(typepath,bloodDNA,comingdir,goingdir,bloodcolor="#A10808")
 	if(!can_bloody)
 		return
-	var/obj/effect/decal/cleanable/blood/tracks/tracks = locate(typepath) in src
+	var/atom/movable/effect/decal/cleanable/blood/tracks/tracks = locate(typepath) in src
 	if(!tracks)
 		tracks = new typepath(src)
 	tracks.AddTracks(bloodDNA,comingdir,goingdir,bloodcolor)
@@ -553,7 +553,7 @@
 				if(!silent)
 					to_chat(builder, span_warning("There is a little one here already. Best move it."))
 				return FALSE
-		if(istype(O, /obj/effect/alien/egg))
+		if(istype(O, /obj/alien/egg))
 			if(!silent)
 				to_chat(builder, span_warning("There's already an egg here."))
 			return FALSE
@@ -565,7 +565,7 @@
 			if(!silent)
 				to_chat(builder, span_warning("There is a plant growing here, destroying it would be a waste to the hive."))
 			return FALSE
-		if(istype(O, /obj/structure/mineral_door) || istype(O, /obj/structure/ladder) || istype(O, /obj/effect/alien/resin))
+		if(istype(O, /obj/structure/mineral_door) || istype(O, /obj/structure/ladder) || istype(O, /obj/alien/resin))
 			has_obstacle = TRUE
 			break
 		if(istype(O, /obj/structure/bed))
@@ -577,7 +577,7 @@
 			else if(istype(O, /obj/structure/bed/nest)) //We don't care about other beds/chairs/whatever the fuck.
 				has_obstacle = TRUE
 				break
-		if(istype(O, /obj/effect/alien/hivemindcore))
+		if(istype(O, /obj/alien/hivemindcore))
 			has_obstacle = TRUE
 			break
 
@@ -862,7 +862,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 
 
 /turf/proc/add_vomit_floor(mob/living/carbon/M, toxvomit = 0)
-	var/obj/effect/decal/cleanable/vomit/this = new /obj/effect/decal/cleanable/vomit(src)
+	var/atom/movable/effect/decal/cleanable/vomit/this = new /atom/movable/effect/decal/cleanable/vomit(src)
 
 	// Make toxins vomit look different
 	if(toxvomit)
@@ -918,7 +918,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	return ..()
 
 ///Change the turf current acid var
-/turf/proc/set_current_acid(obj/effect/xenomorph/acid/new_acid)
+/turf/proc/set_current_acid(atom/movable/effect/xenomorph/acid/new_acid)
 	if(current_acid)
 		UnregisterSignal(current_acid, COMSIG_PARENT_QDELETING)
 	current_acid = new_acid

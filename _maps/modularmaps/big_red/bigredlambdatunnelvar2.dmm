@@ -1,7 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/turf/closed/mineral/bigred,
-/area/bigredv2/caves/rock)
 "b" = (
 /obj/structure/table/reinforced,
 /obj/machinery/microwave,
@@ -19,16 +16,9 @@
 	dir = 10
 	},
 /area/bigredv2/caves/lambda_lab)
-"f" = (
-/obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/bigred,
+"i" = (
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
-"h" = (
-/obj/effect/decal/cleanable/vomit,
-/turf/open/floor/tile/darkgreen/darkgreen2/corner{
-	dir = 1
-	},
-/area/bigredv2/caves/lambda_lab)
 "j" = (
 /obj/structure/bed,
 /obj/item/bedsheet/medical,
@@ -36,6 +26,17 @@
 	dir = 9
 	},
 /area/bigredv2/caves/lambda_lab)
+"l" = (
+/atom/movable/effect/landmark/corpsespawner/doctor,
+/turf/open/floor/tile/darkgreen/darkgreen2/corner{
+	dir = 8
+	},
+/area/bigredv2/caves/lambda_lab)
+"n" = (
+/atom/movable/effect/landmark/weed_node,
+/atom/movable/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northeast)
 "v" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/northeast)
@@ -69,201 +70,200 @@
 	dir = 9
 	},
 /area/bigredv2/caves/lambda_lab)
-"T" = (
-/obj/effect/landmark/corpsespawner/doctor,
+"V" = (
+/atom/movable/effect/decal/cleanable/vomit,
 /turf/open/floor/tile/darkgreen/darkgreen2/corner{
-	dir = 8
+	dir = 1
 	},
 /area/bigredv2/caves/lambda_lab)
-"U" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast)
+"Z" = (
+/atom/movable/effect/landmark/lv624/fog_blocker,
+/turf/closed/mineral/smooth/bigred,
+/area/bigredv2/caves/rock)
 
 (1,1,1) = {"
 v
 c
 v
-a
-a
-a
+i
+i
+i
 "}
 (2,1,1) = {"
 c
-U
-a
-a
-a
-a
+n
+i
+i
+i
+i
 "}
 (3,1,1) = {"
 c
 c
-a
-a
-a
-a
+i
+i
+i
+i
 "}
 (4,1,1) = {"
 c
-a
-a
-a
-a
-a
+i
+i
+i
+i
+i
 "}
 (5,1,1) = {"
-a
-a
-a
-a
-a
-a
+i
+i
+i
+i
+i
+i
 "}
 (6,1,1) = {"
-a
-a
-a
-a
-a
-a
+i
+i
+i
+i
+i
+i
 "}
 (7,1,1) = {"
-a
-a
-a
-a
-a
-a
+i
+i
+i
+i
+i
+i
 "}
 (8,1,1) = {"
-a
-a
-a
-a
-a
-a
+i
+i
+i
+i
+i
+i
 "}
 (9,1,1) = {"
-a
-a
-a
-a
-a
-f
+i
+i
+i
+i
+i
+Z
 "}
 (10,1,1) = {"
-a
-a
-a
-a
-a
-f
+i
+i
+i
+i
+i
+Z
 "}
 (11,1,1) = {"
-a
-a
-a
-a
-a
-f
+i
+i
+i
+i
+i
+Z
 "}
 (12,1,1) = {"
-a
-a
-a
-a
-a
-f
+i
+i
+i
+i
+i
+Z
 "}
 (13,1,1) = {"
-a
-a
-a
-a
-a
-f
+i
+i
+i
+i
+i
+Z
 "}
 (14,1,1) = {"
-a
-a
-a
-a
-a
-f
+i
+i
+i
+i
+i
+Z
 "}
 (15,1,1) = {"
-a
-a
-a
-a
-a
-f
+i
+i
+i
+i
+i
+Z
 "}
 (16,1,1) = {"
-a
-a
-a
-a
-a
-f
+i
+i
+i
+i
+i
+Z
 "}
 (17,1,1) = {"
-a
-a
-a
-a
-a
-f
+i
+i
+i
+i
+i
+Z
 "}
 (18,1,1) = {"
-a
-a
-a
-a
-a
-f
+i
+i
+i
+i
+i
+Z
 "}
 (19,1,1) = {"
-a
-a
-a
-a
-a
-f
+i
+i
+i
+i
+i
+Z
 "}
 (20,1,1) = {"
-a
-a
-a
-a
-a
-f
+i
+i
+i
+i
+i
+Z
 "}
 (21,1,1) = {"
-a
-a
-a
-a
-a
-f
+i
+i
+i
+i
+i
+Z
 "}
 (22,1,1) = {"
 M
 M
 M
-a
-a
-f
+i
+i
+Z
 "}
 (23,1,1) = {"
 j
 B
 M
 M
-a
-f
+i
+Z
 "}
 (24,1,1) = {"
 S
@@ -271,13 +271,13 @@ e
 O
 M
 M
-f
+Z
 "}
 (25,1,1) = {"
-h
-T
+V
+l
 L
 b
 M
-f
+Z
 "}

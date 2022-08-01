@@ -32,7 +32,7 @@
 		if(!HAS_TRAIT(M, TRAIT_FLASHBANGIMMUNE))
 			bang(T, M)
 
-	new/obj/effect/particle_effect/smoke/flashbang(T)
+	new/atom/movable/effect/particle_effect/smoke/flashbang(T)
 	qdel(src)
 
 /// Added a new proc called 'bang' that takes a location and a person to be banged.

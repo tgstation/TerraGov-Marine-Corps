@@ -13,7 +13,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/internal_affairs)
 "bF" = (
-/obj/effect/spawner/random/toolbox,
+/atom/movable/effect/spawner/random/toolbox,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 8
 	},
@@ -40,7 +40,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/grass,
 /area/lv624/lazarus/internal_affairs)
 "eq" = (
@@ -146,7 +146,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
@@ -163,7 +163,7 @@
 /turf/open/floor/tile/blue/whitebluefull,
 /area/lv624/lazarus/internal_affairs)
 "mT" = (
-/obj/effect/landmark/excavation_site_spawner,
+/atom/movable/effect/landmark/excavation_site_spawner,
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "no" = (
@@ -187,7 +187,7 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "qp" = (
-/obj/effect/landmark/start/job/survivor,
+/atom/movable/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
@@ -207,7 +207,7 @@
 	},
 /area/lv624/lazarus/internal_affairs)
 "sS" = (
-/obj/effect/landmark/start/job/survivor,
+/atom/movable/effect/landmark/start/job/survivor,
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "tF" = (
@@ -215,7 +215,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
@@ -295,7 +295,7 @@
 	name = "Vault Access";
 	pixel_x = -25
 	},
-/obj/effect/landmark/excavation_site_spawner,
+/atom/movable/effect/landmark/excavation_site_spawner,
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "EF" = (
@@ -366,14 +366,14 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "Jr" = (
-/obj/effect/landmark/corpsespawner/bridgeofficer{
+/atom/movable/effect/landmark/corpsespawner/bridgeofficer{
 	corpseidjob = "Bridge Officer";
 	corpseuniform = /obj/item/clothing/under/waiter;
 	name = "Mr. Johnson Telovin"
 	},
 /obj/item/tool/crowbar,
-/obj/effect/decal/cleanable/blood,
-/obj/effect/decal/cleanable/blood,
+/atom/movable/effect/decal/cleanable/blood,
+/atom/movable/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/tile/blue/whiteblue{
@@ -460,7 +460,7 @@
 	dir = 10
 	},
 /obj/structure/cable,
-/obj/effect/landmark/excavation_site_spawner,
+/atom/movable/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 8
 	},
@@ -534,7 +534,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
 	},
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/lv624/lazarus/internal_affairs)
 "Vq" = (
@@ -598,7 +598,7 @@
 	dir = 4;
 	on = 1
 	},
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/lv624/lazarus/internal_affairs)
 "XP" = (

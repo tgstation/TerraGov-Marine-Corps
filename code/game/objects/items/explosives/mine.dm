@@ -23,7 +23,7 @@ Stepping directly on the mine will also blow it up
 	/// State of the mine. Will the mine explode or not
 	var/armed = FALSE
 	/// Tripwire holds reference to the tripwire obj that is used to trigger an explosion
-	var/obj/effect/mine_tripwire/tripwire
+	var/atom/movable/effect/mine_tripwire/tripwire
 
 /obj/item/explosive/mine/Initialize()
 	. = ..()
@@ -92,7 +92,7 @@ Stepping directly on the mine will also blow it up
 		setDir(user.dir)
 	else
 		setDir(pick(CARDINAL_ALL_DIRS))
-	tripwire = new /obj/effect/mine_tripwire(get_step(loc, dir))
+	tripwire = new /atom/movable/effect/mine_tripwire(get_step(loc, dir))
 	tripwire.linked_mine = src
 
 /// Supports diarming a mine
@@ -169,7 +169,7 @@ Stepping directly on the mine will also blow it up
 	qdel(src)
 
 /// This is a mine_tripwire that is basically used to extend the mine and capture bump movement further infront of the mine
-/obj/effect/mine_tripwire
+/atom/movable/effect/mine_tripwire
 	name = "claymore tripwire"
 	anchored = TRUE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
@@ -177,19 +177,19 @@ Stepping directly on the mine will also blow it up
 	resistance_flags = UNACIDABLE
 	var/obj/item/explosive/mine/linked_mine
 
-/obj/effect/mine_tripwire/Initialize()
+/atom/movable/effect/mine_tripwire/Initialize()
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = .proc/on_cross,
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
-/obj/effect/mine_tripwire/Destroy()
+/atom/movable/effect/mine_tripwire/Destroy()
 	linked_mine = null
 	return ..()
 
 /// When crossed the tripwire triggers the linked mine
-/obj/effect/mine_tripwire/proc/on_cross(datum/source, atom/A, oldloc, oldlocs)
+/atom/movable/effect/mine_tripwire/proc/on_cross(datum/source, atom/A, oldloc, oldlocs)
 	SIGNAL_HANDLER
 	if(!linked_mine)
 		qdel(src)

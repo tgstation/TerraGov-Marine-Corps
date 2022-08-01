@@ -28,10 +28,10 @@
 /turf/open/floor/mainship/plate,
 /area/shuttle/big_ert)
 "af" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin,
+/atom/movable/effect/decal/warning_stripes/thin,
 /obj/structure/cable,
 /obj/machinery/power/apc/hyper{
 	dir = 4
@@ -46,13 +46,13 @@
 /turf/open/floor/mainship/plate,
 /area/shuttle/big_ert)
 "ai" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "aj" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/mainship,
@@ -152,19 +152,19 @@
 /turf/open/floor/mainship/plate,
 /area/shuttle/big_ert)
 "aC" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "aD" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/mainship,
@@ -289,10 +289,10 @@
 /turf/open/floor/mainship/plate,
 /area/shuttle/big_ert)
 "aX" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/plating/mainship,
@@ -361,77 +361,77 @@
 /turf/open/floor/mainship/plate,
 /area/shuttle/big_ert)
 "bj" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bk" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bl" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bm" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin,
+/atom/movable/effect/decal/warning_stripes/thin,
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bn" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bo" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bp" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "br" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/plating/mainship,
@@ -444,7 +444,7 @@
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bt" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship/tcomms,
@@ -453,16 +453,16 @@
 /obj/structure/bed/chair/office/light{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bv" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship/tcomms,
@@ -473,10 +473,10 @@
 /turf/open/floor/mainship/plate,
 /area/shuttle/big_ert)
 "by" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
 /obj/structure/cable,
@@ -492,10 +492,10 @@
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bB" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/mainship,
@@ -507,38 +507,38 @@
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bD" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin,
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/light/small,
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bE" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin,
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bF" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bG" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin,
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/light/small{
@@ -553,19 +553,19 @@
 /obj/structure/bed/chair/office/light{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bJ" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin,
+/atom/movable/effect/decal/warning_stripes/thin,
 /turf/open/floor/mainship/tcomms,
 /area/shuttle/big_ert)
 "bK" = (
@@ -603,46 +603,46 @@
 /turf/open/floor/mainship/plate,
 /area/shuttle/big_ert)
 "bL" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin,
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bM" = (
-/obj/effect/decal/warning_stripes/thin,
+/atom/movable/effect/decal/warning_stripes/thin,
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bN" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bO" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bP" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin,
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/plating/mainship,
@@ -655,17 +655,17 @@
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bR" = (
-/obj/effect/decal/warning_stripes/thin,
+/atom/movable/effect/decal/warning_stripes/thin,
 /turf/open/floor/mainship/tcomms,
 /area/shuttle/big_ert)
 "bS" = (
 /obj/structure/bed/chair/office/light,
-/obj/effect/decal/warning_stripes/thin,
+/atom/movable/effect/decal/warning_stripes/thin,
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bT" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin,
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship/tcomms,
@@ -778,23 +778,23 @@
 /turf/open/floor/mainship/plate,
 /area/shuttle/big_ert)
 "ci" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin,
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "cj" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/plating/mainship,
@@ -846,17 +846,17 @@
 /turf/open/floor/mainship/plate,
 /area/shuttle/big_ert)
 "cs" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin,
+/atom/movable/effect/decal/warning_stripes/thin,
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "ct" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/atom/movable/effect/decal/warning_stripes/thin,
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "cu" = (
@@ -882,13 +882,13 @@
 /turf/open/floor/mainship/plate,
 /area/shuttle/big_ert)
 "cx" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/plating/mainship,

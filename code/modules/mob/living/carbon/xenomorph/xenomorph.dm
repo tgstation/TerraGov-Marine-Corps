@@ -396,7 +396,7 @@
 /// Handles logic for weeds nearby the xeno getting removed
 /mob/living/carbon/xenomorph/proc/handle_weeds_adjacent_removed(datum/source)
 	SIGNAL_HANDLER
-	var/obj/effect/alien/weeds/found_weed = locate(/obj/effect/alien/weeds) in loc
+	var/obj/alien/weeds/found_weed = locate(/obj/alien/weeds) in loc
 	if(!QDESTROYING(found_weed))
 		return
 	loc_weeds_type = null
@@ -404,5 +404,5 @@
 /// Handles logic for the xeno moving to a new weeds tile
 /mob/living/carbon/xenomorph/proc/handle_weeds_on_movement(datum/source)
 	SIGNAL_HANDLER
-	var/obj/effect/alien/weeds/found_weed = locate(/obj/effect/alien/weeds) in loc
+	var/obj/alien/weeds/found_weed = locate(/obj/alien/weeds) in loc
 	loc_weeds_type = found_weed?.type

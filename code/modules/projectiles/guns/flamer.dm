@@ -513,7 +513,7 @@
 	take_overall_damage(0, round(burnlevel*0.5)* fire_mod, updating_health = TRUE)
 	to_chat(src, span_danger("You are burned!"))
 
-/obj/flamer_fire/effect_smoke(obj/effect/particle_effect/smoke/S)
+/obj/flamer_fire/effect_smoke(atom/movable/effect/particle_effect/smoke/S)
 	. = ..()
 	if(!CHECK_BITFIELD(S.smoke_traits, SMOKE_EXTINGUISH)) //Fire suppressing smoke
 		return
