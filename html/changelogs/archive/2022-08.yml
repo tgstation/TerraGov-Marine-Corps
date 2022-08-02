@@ -1,0 +1,12 @@
+2022-08-01:
+  BraveMole:
+  - bugfix: Fix plural gender not able to chose gear
+  Lumipharon:
+  - balance: Slightly reduced the accuracy of volkite projectiles, and decreased the
+      damage of deflagration
+  - balance: Volkite weapons have higher damage falloff
+  - balance: Reduced the accurate range of the VX-33 Caliver and VX-42 Culverin
+  - balance: Reduced the magazine capacity of the VX-33 Caliver
+  - bugfix: gamemode votes should now work as expected in all cases.
+  novaepee:
+  - qol: Keybind for Move, Focus, Hold, Send, and Rally Order

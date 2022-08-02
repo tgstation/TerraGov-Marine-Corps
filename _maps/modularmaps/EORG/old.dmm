@@ -3,7 +3,7 @@
 /turf/open/space/basic,
 /area/space)
 "ab" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/deathmatch)
 "ac" = (
 /obj/structure/largecrate/guns/russian,

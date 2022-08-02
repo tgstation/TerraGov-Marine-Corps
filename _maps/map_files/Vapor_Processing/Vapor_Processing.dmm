@@ -1,13 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aa" = (
-/turf/closed/wall/indestructible/mineral,
-/area/space)
-"ab" = (
-/turf/closed/wall/indestructible/mineral,
-/area/lv624/ground/caves/west1)
-"ac" = (
-/turf/closed/wall/indestructible/mineral,
-/area/lv624/ground/caves/central2)
 "ad" = (
 /turf/open/floor,
 /area/shuttle/drop2/lz2)
@@ -16,9 +7,6 @@
 /area/maintenance/apmaint)
 "af" = (
 /turf/open/ground,
-/area/space)
-"ag" = (
-/turf/closed/mineral,
 /area/space)
 "ah" = (
 /turf/open/ground/grass/grass2,
@@ -346,16 +334,6 @@
 "bf" = (
 /turf/open/floor/grass,
 /area/lv624/ground/compound/n)
-"bg" = (
-/turf/closed/mineral,
-/area/lv624/ground/caves/west1)
-"bh" = (
-/turf/closed/mineral,
-/area/lv624/ground/caves/central2)
-"bi" = (
-/obj/effect/landmark/lv624/fog_blocker,
-/turf/open/floor/plating,
-/area/maintenance/apmaint)
 "bj" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1
@@ -366,13 +344,13 @@
 /obj/machinery/floodlight/colony,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/compound/n)
-"bl" = (
-/obj/effect/landmark/weed_node,
-/turf/open/ground,
-/area/lv624/ground/caves/central2)
 "bm" = (
 /turf/closed/gm/dense,
 /area/lv624/ground/compound/n)
+"bn" = (
+/obj/effect/landmark/weed_node,
+/turf/open/ground,
+/area/lv624/ground/caves/east1)
 "bo" = (
 /obj/structure/cargo_container/horizontal{
 	dir = 1
@@ -437,49 +415,7 @@
 "bB" = (
 /turf/open/ground,
 /area/lv624/ground/caves/central1)
-"bC" = (
-/turf/closed/mineral,
-/area/lv624/ground/caves/central1)
-"bD" = (
-/turf/closed/wall/indestructible/mineral,
-/area/lv624/ground/caves/central1)
 "bE" = (
-/turf/open/ground,
-/area/lv624/ground/caves/east1)
-"bF" = (
-/turf/closed/wall/indestructible/mineral,
-/area/lv624/ground/caves/east1)
-"bG" = (
-/turf/closed/mineral,
-/area/lv624/ground/caves/east1)
-"bH" = (
-/obj/effect/landmark/corpsespawner/scientist{
-	corpseback = null;
-	corpseshoes = /obj/item/clothing/shoes/black;
-	corpseuniform = /obj/item/clothing/under/colonist;
-	name = "Colonist Braxton Oxto"
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east1)
-"bI" = (
-/obj/effect/landmark/corpsespawner/miner{
-	corpseback = null;
-	corpseidjob = "Laborer";
-	name = "Colonist Kira Von"
-	},
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east1)
-"bJ" = (
-/obj/effect/landmark/corpsespawner/miner{
-	corpseback = null;
-	corpseidjob = "Laborer";
-	name = "Colonist Bren Foras"
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east1)
-"bK" = (
-/obj/effect/landmark/weed_node,
 /turf/open/ground,
 /area/lv624/ground/caves/east1)
 "bL" = (
@@ -533,11 +469,6 @@
 /obj/structure/largecrate/random,
 /turf/open/floor/prison/sterilewhite,
 /area/lv624/lazarus/fitness)
-"bT" = (
-/obj/machinery/floodlight/landing,
-/obj/effect/decal/warning_stripes,
-/turf/open/floor/mech_bay_recharge_floor,
-/area/shuttle/drop1/lz1)
 "bU" = (
 /obj/machinery/landinglight/ds1/delaytwo,
 /turf/open/floor/plating,
@@ -623,35 +554,15 @@
 /obj/structure/cable,
 /turf/closed/wall,
 /area/lv624/lazarus/hydroponics)
-"cp" = (
-/obj/machinery/door/airlock/colony,
-/turf/open/floor/plating,
-/area/maintenance/apmaint)
 "cq" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/plating,
 /area/maintenance/apmaint)
-"cr" = (
-/obj/effect/landmark/lv624/fog_blocker,
-/turf/open/ground,
-/area/lv624/ground/compound/n)
 "cs" = (
 /turf/open/ground,
 /area/lv624/ground/compound/n)
-"ct" = (
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/ground,
-/area/space)
-"cu" = (
-/obj/machinery/door/airlock/engineering,
-/turf/open/floor/prison/sterilewhite,
-/area/lv624/lazarus/fitness)
-"cv" = (
-/obj/effect/landmark/weed_node,
-/turf/open/ground,
-/area/space)
 "cx" = (
 /turf/open/floor/prison/sterilewhite,
 /area/lv624/lazarus/fitness)
@@ -707,10 +618,6 @@
 	},
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/compound/n)
-"cJ" = (
-/obj/effect/landmark/lv624/fog_blocker,
-/turf/open/ground/grass/grass2,
-/area/lv624/ground/compound/n)
 "cK" = (
 /obj/structure/largecrate/random,
 /obj/machinery/light,
@@ -749,10 +656,6 @@
 /area/shuttle/drop2/lz2)
 "cV" = (
 /turf/closed/wall,
-/area/lv624/lazarus/internal_affairs)
-"cW" = (
-/obj/machinery/door/airlock/glass_research,
-/turf/open/floor/plating,
 /area/lv624/lazarus/internal_affairs)
 "cX" = (
 /obj/machinery/atm,
@@ -844,10 +747,6 @@
 	},
 /turf/open/floor/wood,
 /area/shuttle/drop2/lz2)
-"dn" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/wood,
-/area/shuttle/drop2/lz2)
 "do" = (
 /turf/open/floor/wood,
 /area/shuttle/drop2/lz2)
@@ -908,19 +807,6 @@
 /obj/machinery/vending/cigarette,
 /turf/open/floor/wood,
 /area/shuttle/drop2/lz2)
-"dD" = (
-/obj/structure/bed/chair{
-	dir = 4
-	},
-/obj/effect/spawner/random/tech_supply,
-/turf/open/floor/wood,
-/area/shuttle/drop2/lz2)
-"dE" = (
-/obj/structure/table/mainship,
-/obj/item/toy/deck,
-/obj/effect/spawner/random/tech_supply,
-/turf/open/floor/wood,
-/area/shuttle/drop2/lz2)
 "dF" = (
 /obj/structure/table/reinforced/flipped{
 	dir = 1
@@ -929,16 +815,6 @@
 /turf/open/floor/marking/warning{
 	dir = 1
 	},
-/area/shuttle/drop2/lz2)
-"dG" = (
-/obj/structure/bed/chair{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/effect/spawner/random/tech_supply,
-/turf/open/floor/wood,
 /area/shuttle/drop2/lz2)
 "dI" = (
 /obj/structure/cable,
@@ -967,6 +843,14 @@
 	},
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/compound/n)
+"dR" = (
+/obj/effect/landmark/corpsespawner/miner{
+	corpseback = null;
+	corpseidjob = "Laborer";
+	name = "Colonist Bren Foras"
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/east1)
 "dT" = (
 /obj/structure/cable,
 /turf/closed/gm/dense,
@@ -984,10 +868,6 @@
 /area/lv624/ground/caves/central1)
 "dX" = (
 /turf/closed/wall,
-/area/medical/medbay2)
-"dY" = (
-/obj/machinery/door/airlock/glass,
-/turf/open/floor/plating,
 /area/medical/medbay2)
 "dZ" = (
 /turf/open/ground/grass/grass2,
@@ -1018,19 +898,6 @@
 	pixel_x = -5;
 	pixel_y = -5
 	},
-/turf/open/floor/tile/bar,
-/area/medical/medbay2)
-"eg" = (
-/obj/machinery/robotic_fabricator,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/tile/bar,
-/area/medical/medbay2)
-"eh" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/alarm,
-/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/bar,
 /area/medical/medbay2)
 "ei" = (
@@ -1078,10 +945,6 @@
 "eq" = (
 /turf/closed/gm/dense,
 /area/lv624/ground/compound/c)
-"er" = (
-/obj/effect/landmark/start/job/survivor,
-/turf/open/floor/grass,
-/area/lv624/ground/compound/c)
 "es" = (
 /obj/structure/cable,
 /turf/open/ground/grass/grass2,
@@ -1095,26 +958,10 @@
 "ev" = (
 /turf/open/floor/tile/white,
 /area/medical/medbay2)
-"ew" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/closet/bodybag/cryobag,
-/turf/open/floor/tile/bar,
-/area/medical/medbay2)
 "ex" = (
 /obj/structure/closet/bodybag/cryobag,
 /obj/structure/closet/bodybag/cryobag,
 /turf/open/floor/tile/bar,
-/area/medical/medbay2)
-"ey" = (
-/obj/structure/closet/bodybag/cryobag,
-/obj/effect/landmark/corpsespawner/miner/rig,
-/turf/open/floor/tile/bar,
-/area/medical/medbay2)
-"ez" = (
-/obj/item/alien_embryo,
-/obj/effect/decal/cleanable/blood,
-/obj/structure/cable,
-/turf/open/floor/tile/white,
 /area/medical/medbay2)
 "eA" = (
 /obj/structure/table,
@@ -1163,16 +1010,6 @@
 	dir = 8
 	},
 /turf/open/floor/tile/green/whitegreen,
-/area/medical/medbay2)
-"eH" = (
-/obj/machinery/optable,
-/obj/item/tank/anesthetic,
-/obj/item/clothing/mask/breath/medical,
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/open/floor/tile/bar,
 /area/medical/medbay2)
 "eI" = (
 /obj/machinery/iv_drip,
@@ -1275,6 +1112,10 @@
 /obj/structure/cable,
 /turf/open/floor/grass,
 /area/vapor_processing/west_compound)
+"fb" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/dmg3,
+/area/lv624/ground/compound/se)
 "fd" = (
 /obj/structure/cable,
 /turf/closed/wall,
@@ -1309,10 +1150,6 @@
 /obj/machinery/floodlight/colony,
 /turf/open/ground/grass/grass2,
 /area/vapor_processing/east_compound)
-"fm" = (
-/obj/machinery/door/airlock/multi_tile/medical,
-/turf/open/floor/tile/green/whitegreen,
-/area/medical/medbay2)
 "fn" = (
 /obj/structure/cable,
 /turf/closed/wall,
@@ -1353,15 +1190,6 @@
 	dir = 1
 	},
 /area/vapor_processing/cargo2)
-"fv" = (
-/obj/effect/landmark/corpsespawner/security{
-	corpsebelt = /obj/item/weapon/gun/revolver/cmb;
-	corpsesuit = /obj/item/clothing/suit/storage/CMB;
-	corpseuniform = /obj/item/clothing/under/CM_uniform;
-	name = "Marshal Logan Bills"
-	},
-/turf/open/floor/plating,
-/area/maintenance/apmaint)
 "fw" = (
 /obj/structure/closet/secure_closet/shiptech,
 /obj/machinery/light{
@@ -1377,28 +1205,12 @@
 	dir = 1
 	},
 /area/vapor_processing/cargo2)
-"fz" = (
-/turf/closed/wall/indestructible/mineral,
-/area/vapor_processing/caves/se)
-"fA" = (
-/turf/closed/mineral,
-/area/vapor_processing/caves/se)
 "fB" = (
 /turf/open/ground,
 /area/vapor_processing/caves/se)
 "fC" = (
 /turf/closed/wall,
 /area/lv624/lazarus/medbay)
-"fD" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 4
-	},
-/obj/effect/landmark/patrol_point{
-	id = "SOM_21";
-	name = "SOM exit point 21"
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "fE" = (
 /obj/structure/cable,
 /turf/closed/wall,
@@ -1407,6 +1219,16 @@
 /obj/structure/cable,
 /turf/closed/gm/dense,
 /area/vapor_processing/west_compound)
+"fJ" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
+	},
+/area/lv624/lazarus/comms)
+"fK" = (
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/maintenance/substation)
 "fL" = (
 /obj/machinery/power/smes/buildable,
 /obj/structure/cable,
@@ -1414,24 +1236,6 @@
 	dir = 1
 	},
 /area/lv624/lazarus/quartstorage)
-"fM" = (
-/obj/effect/landmark/corpsespawner/miner{
-	corpseback = null;
-	corpseidjob = "Laborer";
-	name = "Colonist Olgin Vekin"
-	},
-/turf/open/ground,
-/area/lv624/ground/caves/west1)
-"fN" = (
-/obj/machinery/door/airlock/glass_mining,
-/turf/open/floor/plating,
-/area/lv624/lazarus/quartstorage)
-"fO" = (
-/obj/machinery/door/airlock/glass_mining,
-/turf/open/floor/tile/whiteyellow/corner{
-	dir = 1
-	},
-/area/vapor_processing/cargo2)
 "fP" = (
 /turf/open/floor/tile/whiteyellow/corner{
 	dir = 1
@@ -1450,12 +1254,6 @@
 /obj/structure/cable,
 /turf/closed/wall,
 /area/lv624/lazarus/quart)
-"fW" = (
-/obj/machinery/door/airlock/glass_mining,
-/turf/open/floor/tile/whiteyellow/corner{
-	dir = 1
-	},
-/area/lv624/lazarus/quart)
 "fY" = (
 /turf/closed/wall,
 /area/lv624/lazarus/engineering)
@@ -1467,31 +1265,12 @@
 /obj/machinery/vending/MarineMed/Blood,
 /turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
-"gb" = (
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/tile/white,
-/area/lv624/lazarus/medbay)
-"gc" = (
-/obj/machinery/atmospherics/components/unary/cryo_cell,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/tile/white,
-/area/lv624/lazarus/medbay)
 "gd" = (
 /obj/machinery/atmospherics/components/unary/tank/oxygen,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/medbay)
 "ge" = (
 /obj/machinery/atmospherics/components/unary/cryo_cell,
-/turf/open/floor/tile/white,
-/area/lv624/lazarus/medbay)
-"gf" = (
-/obj/machinery/sleeper,
-/obj/effect/landmark/corpsespawner/prisoner,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/medbay)
 "gg" = (
@@ -1503,11 +1282,6 @@
 /area/lv624/lazarus/medbay)
 "gh" = (
 /obj/structure/closet/bodybag,
-/turf/open/floor/tile/white,
-/area/lv624/lazarus/medbay)
-"gi" = (
-/obj/machinery/sleeper,
-/obj/effect/landmark/corpsespawner/scientist,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/medbay)
 "gj" = (
@@ -1533,185 +1307,14 @@
 /obj/structure/closet/secure_closet/medical_doctor,
 /turf/open/floor/tile/green/whitegreen,
 /area/lv624/lazarus/medbay)
-"gp" = (
-/obj/effect/landmark/corpsespawner/scientist{
-	corpseback = null;
-	corpseshoes = /obj/item/clothing/shoes/black;
-	corpseuniform = /obj/item/clothing/under/colonist;
-	name = "Colonist Evan Kark"
+"go" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_11";
+	name = "TGMC exit point 11"
 	},
-/turf/open/floor/plating/ground/dirt,
-/area/space)
-"gq" = (
-/obj/effect/landmark/corpsespawner/doctor{
-	corpseback = null;
-	corpsegloves = /obj/item/clothing/gloves/latex;
-	corpseidjob = "Doctor";
-	name = "Colonist Drew Bellel"
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/space)
-"gr" = (
-/obj/effect/landmark/corpsespawner/security{
-	corpseuniform = /obj/item/clothing/under/colonist;
-	name = "Colonist Jac Mester"
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/space)
-"gs" = (
-/obj/effect/landmark/corpsespawner/scientist{
-	corpseback = null;
-	corpsehelmet = /obj/item/clothing/head/tgmccap/req;
-	corpseshoes = /obj/item/clothing/shoes/black;
-	corpseuniform = /obj/item/clothing/under/colonist;
-	name = "Colonist Lee Hesto"
-	},
-/obj/effect/landmark/weed_node,
-/turf/open/ground,
-/area/space)
-"gt" = (
-/obj/effect/landmark/corpsespawner/scientist{
-	corpseback = null;
-	corpseshoes = /obj/item/clothing/shoes/black;
-	corpseuniform = /obj/item/clothing/under/colonist;
-	name = "Colonist Ellis Bark"
-	},
-/turf/open/ground,
-/area/space)
-"gu" = (
-/obj/effect/landmark/corpsespawner/miner{
-	corpseback = null;
-	corpseidjob = "Laborer";
-	name = "Colonist Olgin Vekin"
-	},
-/turf/open/ground,
-/area/space)
-"gv" = (
-/obj/effect/landmark/corpsespawner/scientist{
-	corpseback = null;
-	corpseshoes = /obj/item/clothing/shoes/black;
-	corpseuniform = /obj/item/clothing/under/colonist;
-	name = "Colonist Chang Lin"
-	},
-/obj/item/weapon/gun/pistol/holdout,
-/turf/open/ground,
-/area/space)
-"gw" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/ground,
-/area/space)
-"gx" = (
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/ground,
-/area/space)
-"gy" = (
-/obj/effect/landmark/corpsespawner/engineer{
-	corpseback = /obj/item/storage/backpack;
-	corpseidjob = "Engineer";
-	corpseshoes = /obj/item/clothing/shoes/black;
-	name = "Colonist Wes Uvin"
-	},
-/turf/open/ground,
-/area/space)
-"gB" = (
-/obj/effect/landmark/corpsespawner/engineer{
-	corpseback = /obj/item/storage/backpack;
-	corpsehelmet = /obj/item/clothing/head/welding;
-	corpseidjob = "Engineer";
-	corpseshoes = /obj/item/clothing/shoes/black;
-	name = "Colonist Ted Jarka"
-	},
-/turf/open/ground,
-/area/space)
-"gC" = (
-/obj/effect/landmark/corpsespawner/engineer{
-	corpseback = /obj/item/storage/backpack;
-	corpseidjob = "Engineer";
-	corpseshoes = /obj/item/clothing/shoes/black;
-	name = "Colonist Everett Mison"
-	},
-/turf/open/ground,
-/area/space)
-"gD" = (
-/obj/effect/landmark/corpsespawner/doctor{
-	corpseback = null;
-	corpsegloves = /obj/item/clothing/gloves/latex;
-	corpseidjob = "Doctor";
-	name = "Colonist Ted Koso"
-	},
-/obj/effect/landmark/weed_node,
-/turf/open/ground,
-/area/space)
-"gF" = (
-/obj/effect/landmark/xeno_resin_door,
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/ground,
-/area/space)
-"gG" = (
-/obj/effect/landmark/corpsespawner/miner{
-	corpseback = /obj/item/storage/backpack;
-	corpsehelmet = /obj/item/clothing/head/flatcap;
-	corpseidjob = "Laborer";
-	name = "Colonist Terrin Yin"
-	},
-/turf/open/ground,
-/area/space)
-"gH" = (
-/obj/effect/landmark/xeno_resin_door,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/ground,
-/area/space)
+/turf/open/floor,
+/area/shuttle/drop2/lz2)
 "gI" = (
-/turf/open/floor/plating/ground/dirt,
-/area/space)
-"gJ" = (
-/obj/effect/landmark/corpsespawner/scientist{
-	corpseback = null;
-	corpseshoes = /obj/item/clothing/shoes/black;
-	corpseuniform = /obj/item/clothing/under/colonist;
-	name = "Colonist Marko Quin"
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/space)
-"gK" = (
-/obj/effect/landmark/corpsespawner/scientist{
-	corpseback = null;
-	corpsehelmet = /obj/item/clothing/head/flatcap;
-	corpseshoes = /obj/item/clothing/shoes/black;
-	corpseuniform = /obj/item/clothing/under/colonist;
-	name = "Colonist Jackson Martin"
-	},
-/turf/open/ground,
-/area/space)
-"gL" = (
-/obj/effect/landmark/corpsespawner/security{
-	corpsehelmet = /obj/item/clothing/head/tgmccap/req;
-	corpseuniform = /obj/item/clothing/under/colonist;
-	name = "Colonist Olin Berus"
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/space)
-"gM" = (
-/obj/effect/landmark/corpsespawner/security{
-	corpsebelt = /obj/item/weapon/gun/revolver/cmb;
-	corpsesuit = /obj/item/clothing/suit/storage/CMB;
-	corpseuniform = /obj/item/clothing/under/CM_uniform;
-	name = "Deputy Maxwell Ligis"
-	},
-/obj/item/weapon/gun/shotgun/pump/cmb,
-/turf/open/ground,
-/area/space)
-"gN" = (
-/obj/effect/landmark/corpsespawner/scientist{
-	corpseback = null;
-	corpsehelmet = /obj/item/clothing/head/soft/grey;
-	corpseshoes = /obj/item/clothing/shoes/black;
-	corpseuniform = /obj/item/clothing/under/colonist;
-	name = "Colonist Innio Morris"
-	},
 /turf/open/floor/plating/ground/dirt,
 /area/space)
 "gO" = (
@@ -1727,14 +1330,6 @@
 /obj/structure/largecrate/random,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
-"gR" = (
-/obj/effect/landmark/corpsespawner/security{
-	corpsehelmet = /obj/item/clothing/head/helmet/riot;
-	corpseuniform = /obj/item/clothing/under/colonist;
-	name = "Colonist Fors Ilin"
-	},
-/turf/open/ground,
-/area/space)
 "gS" = (
 /turf/open/floor/tile/whiteyellow/corner{
 	dir = 1
@@ -1746,14 +1341,6 @@
 	dir = 1
 	},
 /area/vapor_processing/cargo2)
-"gU" = (
-/obj/effect/landmark/corpsespawner/miner{
-	corpseback = /obj/item/storage/backpack;
-	corpseidjob = "Laborer";
-	name = "Colonist Roester Kalin"
-	},
-/turf/open/ground,
-/area/lv624/ground/caves/central2)
 "gV" = (
 /obj/structure/table/flipped,
 /obj/structure/cable,
@@ -1783,30 +1370,14 @@
 /obj/machinery/biogenerator,
 /turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
-"hb" = (
-/obj/machinery/power/apc/drained,
-/obj/structure/cable,
-/turf/open/floor/tile/green/whitegreen,
-/area/lv624/lazarus/medbay)
 "hc" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 5
 	},
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/medbay)
-"hd" = (
-/obj/machinery/atmospherics/pipe/manifold/general/visible,
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/tile/blue/whitebluefull,
-/area/lv624/lazarus/medbay)
 "he" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible,
-/turf/open/floor/tile/blue/whitebluefull,
-/area/lv624/lazarus/medbay)
-"hf" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 9
-	},
 /turf/open/floor/tile/blue/whitebluefull,
 /area/lv624/lazarus/medbay)
 "hg" = (
@@ -1819,25 +1390,6 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "hh" = (
-/turf/open/floor/tile/whiteyellow/full,
-/area/lv624/lazarus/quart)
-"hi" = (
-/obj/structure/rack,
-/obj/effect/landmark/itemspawner/butler,
-/turf/open/floor/tile/whiteyellow/full,
-/area/lv624/lazarus/quart)
-"hj" = (
-/obj/effect/landmark/corpsespawner/miner,
-/turf/open/ground,
-/area/lv624/ground/caves/west1)
-"hk" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/technology_scanner,
-/turf/open/floor/tile/whiteyellow/full,
-/area/lv624/lazarus/quart)
-"hl" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/tech_supply,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "hn" = (
@@ -1854,23 +1406,6 @@
 /obj/structure/closet/firecloset,
 /turf/open/floor/prison/yellow,
 /area/lv624/lazarus/engineering)
-"hq" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/prison/yellow/full,
-/area/lv624/lazarus/engineering)
-"hr" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/prison/yellow/full,
-/area/lv624/lazarus/engineering)
-"hs" = (
-/obj/machinery/bodyscanner,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/tile/white,
-/area/lv624/lazarus/medbay)
 "ht" = (
 /obj/machinery/body_scanconsole,
 /obj/machinery/light,
@@ -1940,10 +1475,6 @@
 /obj/machinery/autolathe,
 /turf/open/floor/prison/whitepurple,
 /area/lv624/lazarus/engineering)
-"hI" = (
-/obj/machinery/door/airlock/medical,
-/turf/open/floor/tile/green/whitegreen,
-/area/lv624/lazarus/medbay)
 "hJ" = (
 /obj/machinery/floodlight/colony,
 /turf/open/ground/grass/grass2,
@@ -1959,19 +1490,6 @@
 	},
 /turf/open/floor/tile/green/whitegreen,
 /area/medical/medbay2)
-"hM" = (
-/obj/effect/landmark/corpsespawner/miner{
-	corpseback = null;
-	corpseidjob = "Laborer";
-	name = "Colonist Kira Von"
-	},
-/turf/open/ground,
-/area/lv624/ground/caves/central1)
-"hN" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/toolbox,
-/turf/open/floor/tile/whiteyellow/full,
-/area/lv624/lazarus/quart)
 "hO" = (
 /turf/closed/wall,
 /area/vapor_processing/cargo3)
@@ -2002,31 +1520,6 @@
 	},
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
-"hV" = (
-/obj/structure/table/flipped,
-/obj/effect/spawner/random/tech_supply,
-/obj/machinery/power/apc/drained,
-/obj/structure/cable,
-/turf/open/floor/tile/whiteyellow/corner{
-	dir = 1
-	},
-/area/vapor_processing/cargo3)
-"hW" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/ground,
-/area/vapor_processing/east_compound)
-"hX" = (
-/obj/effect/landmark/corpsespawner/syndicatesoldier,
-/turf/open/ground,
-/area/lv624/ground/caves/east1)
-"hY" = (
-/obj/effect/landmark/corpsespawner/miner{
-	corpseback = null;
-	corpseidjob = "Laborer";
-	name = "Colonist Bren Foras"
-	},
-/turf/open/ground,
-/area/lv624/ground/caves/central1)
 "hZ" = (
 /obj/structure/largecrate,
 /turf/open/floor/tile/whiteyellow/corner{
@@ -2081,22 +1574,10 @@
 /obj/machinery/recharge_station,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
-"ij" = (
-/obj/structure/rack,
-/obj/machinery/light,
-/obj/effect/spawner/random/technology_scanner,
-/turf/open/floor/tile/whiteyellow/full,
-/area/lv624/lazarus/quart)
 "ik" = (
 /obj/machinery/autolathe,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
-"il" = (
-/obj/machinery/door/airlock/glass_mining,
-/turf/open/floor/tile/whiteyellow/corner{
-	dir = 1
-	},
-/area/vapor_processing/cargo3)
 "im" = (
 /turf/open/floor/tile/whiteyellow/corner{
 	dir = 1
@@ -2108,15 +1589,6 @@
 	},
 /turf/open/floor/prison/yellow,
 /area/lv624/lazarus/engineering)
-"io" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/ground,
-/area/lv624/ground/compound/n)
-"ip" = (
-/obj/machinery/door/airlock/glass,
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/plating,
-/area/medical/medbay2)
 "ir" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/prison/yellow/full,
@@ -2134,39 +1606,12 @@
 /obj/structure/closet/secure_closet/detective,
 /turf/open/floor/tile/red/redtaupe,
 /area/lv624/lazarus/security)
-"iv" = (
-/obj/effect/landmark/corpsespawner/doctor{
-	corpseback = null;
-	corpsegloves = /obj/item/clothing/gloves/latex;
-	corpseidjob = "Doctor";
-	name = "Colonist Drew Bellel"
-	},
-/turf/open/floor/tile/white,
-/area/medical/medbay2)
-"ix" = (
-/obj/effect/landmark/corpsespawner/miner{
-	corpseback = /obj/item/storage/backpack;
-	corpsehelmet = /obj/item/clothing/head/flatcap;
-	corpseidjob = "Laborer";
-	name = "Colonist Terrin Yin"
-	},
-/turf/open/ground,
-/area/lv624/ground/caves/east1)
 "iy" = (
 /obj/machinery/power/geothermal,
 /obj/structure/cable,
 /turf/open/floor/prison/yellow,
 /area/lv624/lazarus/engineering)
-"iz" = (
-/obj/structure/cable,
-/obj/machinery/power/terminal,
-/turf/open/floor/prison/yellow,
-/area/lv624/lazarus/engineering)
 "iB" = (
-/turf/closed/wall,
-/area/lv624/lazarus/canteen)
-"iC" = (
-/obj/machinery/vending/nanomed,
 /turf/closed/wall,
 /area/lv624/lazarus/canteen)
 "iD" = (
@@ -2175,33 +1620,6 @@
 	dir = 1
 	},
 /area/vapor_processing/cargo3)
-"iE" = (
-/obj/effect/landmark/corpsespawner/syndicatecommando,
-/turf/open/ground,
-/area/lv624/ground/caves/east1)
-"iF" = (
-/obj/effect/landmark/corpsespawner/doctor{
-	corpseback = null;
-	corpsegloves = /obj/item/clothing/gloves/latex;
-	name = "Colonist Ben Harris"
-	},
-/turf/open/floor/tile/green/whitegreen,
-/area/medical/medbay2)
-"iG" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/tile/green/whitegreen,
-/area/medical/medbay2)
-"iH" = (
-/obj/effect/landmark/corpsespawner/doctor,
-/turf/open/floor/tile/green/whitegreen,
-/area/medical/medbay2)
-"iI" = (
-/obj/structure/cable,
-/obj/effect/landmark/corpsespawner/engineer/rig,
-/turf/open/floor/tile/whiteyellow/corner{
-	dir = 1
-	},
-/area/lv624/lazarus/quartstorage)
 "iJ" = (
 /obj/structure/dispenser,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -2214,10 +1632,6 @@
 "iL" = (
 /turf/open/ground,
 /area/lv624/lazarus/quart)
-"iM" = (
-/obj/machinery/door/airlock/silver,
-/turf/open/floor/carpet,
-/area/lv624/lazarus/canteen)
 "iN" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/drained,
@@ -2257,14 +1671,6 @@
 	},
 /turf/open/floor/carpet,
 /area/lv624/lazarus/canteen)
-"iV" = (
-/obj/effect/landmark/start/job/survivor,
-/turf/open/ground,
-/area/vapor_processing/west_compound)
-"iW" = (
-/obj/machinery/vending/nanomed,
-/turf/closed/wall,
-/area/lv624/lazarus/comms)
 "iX" = (
 /turf/closed/wall,
 /area/lv624/lazarus/comms)
@@ -2307,10 +1713,6 @@
 /obj/structure/cable,
 /turf/open/floor/prison/yellow/full,
 /area/lv624/lazarus/engineering)
-"jg" = (
-/obj/structure/cable,
-/turf/open/floor/prison/yellow/full,
-/area/lv624/lazarus/engineering)
 "jh" = (
 /obj/structure/cable,
 /turf/open/floor/prison/whitepurple,
@@ -2339,10 +1741,6 @@
 /obj/machinery/vending/tool,
 /turf/open/floor/prison/yellow/full,
 /area/lv624/lazarus/engineering)
-"jm" = (
-/obj/machinery/door/airlock/multi_tile/security,
-/turf/open/floor/tile/red/redtaupe,
-/area/lv624/lazarus/security)
 "jn" = (
 /obj/structure/closet/secure_closet/bar,
 /turf/open/floor/carpet,
@@ -2385,15 +1783,6 @@
 	dir = 1
 	},
 /area/vapor_processing/cargo2)
-"jw" = (
-/obj/machinery/door/airlock/glass_mining,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 6
-	},
-/turf/open/floor/tile/whiteyellow/corner{
-	dir = 1
-	},
-/area/lv624/lazarus/quartstorage)
 "jx" = (
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 4
@@ -2466,10 +1855,6 @@
 	dir = 1
 	},
 /area/vapor_processing/cargo2)
-"jJ" = (
-/obj/effect/landmark/supplyspawner/food,
-/turf/open/floor/carpet,
-/area/lv624/lazarus/canteen)
 "jK" = (
 /obj/structure/table/flipped,
 /obj/item/reagent_containers/food/condiment/sugar,
@@ -2660,11 +2045,6 @@
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/lv624/lazarus/canteen)
-"kr" = (
-/obj/effect/decal/cleanable/blood,
-/obj/structure/cable,
-/turf/open/floor/wood,
-/area/lv624/lazarus/canteen)
 "ks" = (
 /obj/structure/cable,
 /turf/open/floor/wood,
@@ -2679,11 +2059,6 @@
 /obj/item/alien_embryo,
 /obj/structure/cable,
 /turf/open/floor/wood,
-/area/lv624/lazarus/canteen)
-"kv" = (
-/obj/effect/landmark/supplyspawner/food,
-/obj/structure/cable,
-/turf/open/floor/carpet,
 /area/lv624/lazarus/canteen)
 "kw" = (
 /obj/structure/table/flipped,
@@ -2715,33 +2090,11 @@
 /obj/machinery/vending/cigarette,
 /turf/open/floor/wood,
 /area/lv624/lazarus/canteen)
-"kD" = (
-/obj/structure/bed/chair{
-	dir = 4
-	},
-/obj/effect/spawner/random/tech_supply,
-/turf/open/floor/wood,
-/area/lv624/lazarus/canteen)
 "kE" = (
 /obj/structure/table/flipped,
 /obj/structure/cable,
 /turf/open/floor/prison/sterilewhite,
 /area/lv624/lazarus/fitness)
-"kF" = (
-/obj/structure/table/mainship,
-/obj/effect/spawner/random/tech_supply,
-/turf/open/floor/wood,
-/area/lv624/lazarus/canteen)
-"kG" = (
-/obj/structure/bed/chair{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/effect/spawner/random/tech_supply,
-/turf/open/floor/wood,
-/area/lv624/lazarus/canteen)
 "kH" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor/carpet,
@@ -2758,11 +2111,12 @@
 	dir = 4
 	},
 /area/lv624/lazarus/comms)
-"kL" = (
-/obj/machinery/door/airlock/engineering,
+"kM" = (
+/obj/item/alien_embryo,
+/obj/effect/decal/cleanable/blood,
 /obj/structure/cable,
-/turf/open/floor/prison/yellow,
-/area/lv624/lazarus/engineering)
+/turf/open/floor/tile/white,
+/area/medical/medbay2)
 "kN" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor/plating,
@@ -2828,20 +2182,12 @@
 "lj" = (
 /turf/open/ground,
 /area/lv624/ground/compound/se)
-"lk" = (
-/obj/effect/landmark/start/job/survivor,
-/turf/open/floor/grass,
-/area/lv624/ground/compound/se)
 "ll" = (
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/compound/se)
 "lm" = (
 /turf/closed/gm/dense,
 /area/lv624/ground/compound/se)
-"ln" = (
-/obj/effect/landmark/lv624/fog_blocker,
-/turf/open/ground,
-/area/lv624/ground/compound/sw)
 "lo" = (
 /obj/structure/table/flipped,
 /obj/machinery/computer/communications,
@@ -2849,15 +2195,6 @@
 	dir = 4
 	},
 /area/lv624/lazarus/comms)
-"lp" = (
-/obj/effect/landmark/corpsespawner/engineer{
-	corpseback = /obj/item/storage/backpack;
-	corpseidjob = "Engineer";
-	corpseshoes = /obj/item/clothing/shoes/black;
-	name = "Colonist Wes Uvin"
-	},
-/turf/open/floor/grass,
-/area/vapor_processing/east_compound)
 "lq" = (
 /obj/structure/largecrate/random,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -2882,10 +2219,6 @@
 /area/vapor_processing/cargo_maint_s)
 "lv" = (
 /turf/open/floor/plating,
-/area/vapor_processing/cargo_maint_s)
-"lw" = (
-/obj/machinery/vending/nanomed,
-/turf/closed/wall,
 /area/vapor_processing/cargo_maint_s)
 "lx" = (
 /obj/structure/ore_box,
@@ -2964,10 +2297,6 @@
 "lQ" = (
 /turf/open/floor,
 /area/storage/tools)
-"lR" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/tile/green/whitegreen,
-/area/lv624/lazarus/medbay)
 "lT" = (
 /turf/closed/wall,
 /area/lv624/lazarus/robotics)
@@ -2979,15 +2308,6 @@
 /obj/structure/cable,
 /turf/open/floor,
 /area/storage/tools)
-"lX" = (
-/obj/structure/table/flipped,
-/obj/effect/spawner/random/powercell,
-/turf/open/floor,
-/area/storage/tools)
-"lY" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/ground,
-/area/lv624/ground/compound/c)
 "lZ" = (
 /turf/open/floor,
 /area/lv624/lazarus/robotics)
@@ -2995,10 +2315,6 @@
 /obj/machinery/firealarm,
 /turf/open/floor,
 /area/lv624/lazarus/robotics)
-"mb" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison/yellow/full,
-/area/lv624/lazarus/engineering)
 "mc" = (
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
@@ -3017,11 +2333,6 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor,
-/area/storage/tools)
-"mg" = (
-/obj/structure/table/flipped,
-/obj/effect/spawner/random/tech_supply,
 /turf/open/floor,
 /area/storage/tools)
 "mi" = (
@@ -3092,10 +2403,6 @@
 /obj/machinery/vending/nanomed,
 /turf/closed/wall,
 /area/lv624/lazarus/robotics)
-"mz" = (
-/obj/machinery/door/airlock/multi_tile/research,
-/turf/open/floor,
-/area/lv624/lazarus/robotics)
 "mA" = (
 /obj/machinery/vending/robotics,
 /turf/open/floor,
@@ -3126,17 +2433,6 @@
 	},
 /turf/open/floor,
 /area/lv624/lazarus/research)
-"mH" = (
-/obj/effect/spawner/random/tool,
-/turf/open/floor,
-/area/lv624/lazarus/research)
-"mI" = (
-/obj/effect/landmark/start/job/survivor,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/prison/yellow,
-/area/lv624/lazarus/engineering)
 "mJ" = (
 /obj/machinery/light{
 	dir = 4
@@ -3147,19 +2443,10 @@
 /obj/structure/table/flipped,
 /turf/open/floor,
 /area/storage/tools)
-"mL" = (
-/obj/structure/table/flipped,
-/obj/effect/spawner/random/bomb_supply,
-/turf/open/floor,
-/area/storage/tools)
 "mM" = (
 /obj/machinery/vending/nanomed,
 /turf/closed/wall,
 /area/lv624/lazarus/research)
-"mN" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/grass,
-/area/lv624/ground/compound/c)
 "mO" = (
 /obj/structure/rack,
 /turf/open/floor/tile/whiteyellow/full,
@@ -3176,21 +2463,9 @@
 /obj/machinery/vending/tool,
 /turf/open/floor,
 /area/lv624/lazarus/research)
-"mS" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/tile/whiteyellow/full,
-/area/lv624/lazarus/quart)
 "mU" = (
 /obj/machinery/photocopier,
 /obj/structure/cable,
-/turf/open/floor,
-/area/lv624/lazarus/research)
-"mW" = (
-/obj/effect/spawner/random/toolbox,
-/obj/structure/table,
 /turf/open/floor,
 /area/lv624/lazarus/research)
 "mX" = (
@@ -3207,14 +2482,10 @@
 	},
 /turf/open/floor,
 /area/lv624/lazarus/research)
-"mZ" = (
-/obj/effect/spawner/random/toolbox,
-/obj/structure/table,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor,
-/area/lv624/lazarus/research)
+"na" = (
+/obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass,
+/turf/open/floor/tile/red/redtaupe,
+/area/lv624/lazarus/security)
 "nb" = (
 /obj/machinery/floodlight/colony,
 /turf/open/ground/grass/grass2,
@@ -3231,13 +2502,6 @@
 /obj/structure/cable,
 /turf/closed/wall,
 /area/maintenance/substation)
-"nf" = (
-/obj/machinery/door/poddoor/mainship{
-	id = "secure_blast";
-	name = "\improper Secure Armory Blast Door"
-	},
-/turf/open/floor,
-/area/storage/tools)
 "ng" = (
 /obj/machinery/door/poddoor/mainship{
 	id = "secure_blast";
@@ -3250,12 +2514,10 @@
 /obj/structure/cable,
 /turf/open/floor,
 /area/lv624/lazarus/research)
-"nl" = (
-/obj/effect/spawner/random/toolbox,
-/obj/structure/table,
-/obj/structure/cable,
-/turf/open/floor,
-/area/lv624/lazarus/research)
+"nj" = (
+/obj/effect/ai_node,
+/turf/open/floor/grass,
+/area/vapor_processing/caves/se)
 "nm" = (
 /obj/structure/cable,
 /turf/open/floor/grass,
@@ -3268,12 +2530,6 @@
 /obj/machinery/power/smes/buildable,
 /turf/open/floor,
 /area/maintenance/substation)
-"nq" = (
-/obj/effect/landmark/corpsespawner/engineer,
-/turf/open/floor/tile/whiteyellow/corner{
-	dir = 1
-	},
-/area/lv624/lazarus/quart)
 "nr" = (
 /obj/structure/table/flipped,
 /obj/item/rsf,
@@ -3317,18 +2573,14 @@
 	},
 /turf/open/floor,
 /area/maintenance/substation)
+"nA" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/ground,
+/area/lv624/ground/caves/central1)
 "nB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/closed/wall,
 /area/vapor_processing/cargo2)
-"nF" = (
-/obj/structure/table/flipped,
-/obj/effect/spawner/random/tech_supply,
-/obj/structure/cable,
-/turf/open/floor/tile/whiteyellow/corner{
-	dir = 1
-	},
-/area/vapor_processing/cargo3)
 "nH" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/drained{
@@ -3365,17 +2617,6 @@
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor,
 /area/lv624/lazarus/research)
-"nR" = (
-/obj/structure/bed,
-/turf/open/floor/wood,
-/area/crew_quarters/sleep/bedrooms)
-"nS" = (
-/obj/effect/landmark/start/job/survivor,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/sleep/bedrooms)
 "nT" = (
 /obj/structure/mineral_door/wood,
 /turf/open/floor/wood,
@@ -3388,19 +2629,18 @@
 /obj/structure/closet/firecloset,
 /turf/open/floor/wood,
 /area/crew_quarters/sleep/bedrooms)
+"nW" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
+	},
+/area/lv624/lazarus/comms)
 "nX" = (
 /obj/machinery/power/geothermal,
 /obj/structure/cable,
 /turf/open/floor,
 /area/maintenance/substation)
-"nZ" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 8;
-	on = 1
-	},
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/tile/whiteyellow/full,
-/area/lv624/lazarus/quart)
 "oa" = (
 /turf/open/floor/wood/broken,
 /area/crew_quarters/sleep/bedrooms)
@@ -3409,9 +2649,6 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/wood,
-/area/crew_quarters/sleep/bedrooms)
-"oe" = (
 /turf/open/floor/wood,
 /area/crew_quarters/sleep/bedrooms)
 "og" = (
@@ -3430,10 +2667,6 @@
 "oj" = (
 /turf/closed/wall/r_wall,
 /area/maintenance/substation)
-"ok" = (
-/obj/machinery/door/airlock/multi_tile/research,
-/turf/open/floor,
-/area/lv624/lazarus/research)
 "ol" = (
 /obj/structure/cable,
 /turf/open/floor/wood/broken,
@@ -3442,61 +2675,21 @@
 /obj/structure/mineral_door/wood,
 /turf/open/floor/wood/broken,
 /area/crew_quarters/sleep/bedrooms)
-"on" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/grass,
-/area/lv624/ground/compound/se)
-"oo" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/ground,
-/area/vapor_processing/caves/se)
-"op" = (
-/obj/effect/landmark/corpsespawner/scientist{
-	corpseback = null;
-	corpseshoes = /obj/item/clothing/shoes/black;
-	corpseuniform = /obj/item/clothing/under/colonist;
-	name = "Colonist Kegan Mills"
-	},
-/turf/open/ground,
-/area/vapor_processing/caves/se)
-"oq" = (
-/obj/effect/landmark/corpsespawner/security{
-	corpsebelt = /obj/item/weapon/gun/revolver/cmb;
-	corpsesuit = /obj/item/clothing/suit/storage/CMB;
-	corpseuniform = /obj/item/clothing/under/CM_uniform;
-	name = "Marshal Logan Bills"
-	},
-/obj/effect/landmark/weed_node,
-/turf/open/ground,
-/area/vapor_processing/caves/se)
-"or" = (
-/obj/effect/landmark/corpsespawner/scientist{
-	corpseback = null;
-	corpseshoes = /obj/item/clothing/shoes/black;
-	corpseuniform = /obj/item/clothing/under/colonist;
-	name = "Colonist Harry Trent"
-	},
-/turf/open/ground,
-/area/vapor_processing/caves/se)
 "ot" = (
 /obj/structure/cable,
 /turf/open/floor,
+/area/shuttle/drop1/lz1)
+"ov" = (
+/obj/machinery/landinglight/ds1/delaythree{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "ow" = (
 /obj/structure/table,
 /obj/structure/cable,
 /turf/open/floor,
-/area/maintenance/substation)
-"oy" = (
-/obj/machinery/colony_floodlight_switch{
-	pixel_y = 30
-	},
-/obj/effect/decal/warning_stripes{
-	pixel_y = 30
-	},
-/turf/open/floor/tile/dark,
 /area/maintenance/substation)
 "oz" = (
 /obj/machinery/recharger,
@@ -3510,10 +2703,6 @@
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/wood,
 /area/crew_quarters/sleep/bedrooms)
-"oC" = (
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/ground,
-/area/vapor_processing/caves/se)
 "oF" = (
 /obj/structure/table/flipped,
 /obj/item/radio,
@@ -3524,11 +2713,11 @@
 /obj/structure/cable,
 /turf/open/floor,
 /area/maintenance/substation)
-"oH" = (
-/obj/machinery/door/airlock/glass_engineering,
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison/yellow,
-/area/lv624/lazarus/engineering)
+"oI" = (
+/obj/machinery/bodyscanner,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/white,
+/area/lv624/lazarus/medbay)
 "oJ" = (
 /obj/structure/closet/secure_closet/personal,
 /obj/machinery/light{
@@ -3536,19 +2725,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/sleep/bedrooms)
-"oK" = (
-/obj/effect/landmark/xeno_resin_door,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/ground,
-/area/vapor_processing/caves/se)
-"oM" = (
-/obj/effect/landmark/corpsespawner/doctor{
-	corpseback = null;
-	corpsegloves = /obj/item/clothing/gloves/latex;
-	name = "Colonist Redo Koster"
-	},
-/turf/open/ground,
-/area/vapor_processing/caves/se)
 "oN" = (
 /obj/structure/cable,
 /obj/machinery/light{
@@ -3567,36 +2743,10 @@
 /obj/machinery/door/airlock/colony,
 /turf/open/floor/plating,
 /area/vapor_processing/cargo_maint_s)
-"oQ" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/tile/whiteyellow/full,
-/area/lv624/lazarus/quart)
-"oR" = (
-/obj/effect/landmark/start/job/survivor,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/wood/broken,
-/area/crew_quarters/sleep/bedrooms)
 "oS" = (
 /obj/structure/closet/secure_closet/personal,
 /turf/open/floor/wood,
 /area/crew_quarters/sleep/bedrooms)
-"oT" = (
-/obj/effect/landmark/xeno_resin_door,
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/ground,
-/area/vapor_processing/caves/se)
-"oU" = (
-/obj/effect/landmark/weed_node,
-/turf/open/ground,
-/area/vapor_processing/caves/se)
-"oV" = (
-/obj/item/weapon/gun/pistol/holdout,
-/obj/effect/landmark/weed_node,
-/turf/open/ground,
-/area/vapor_processing/caves/se)
 "oW" = (
 /obj/structure/cargo_container,
 /turf/open/floor,
@@ -3617,16 +2767,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/grass,
 /area/lv624/ground/compound/c)
-"pb" = (
-/obj/effect/landmark/corpsespawner/scientist{
-	corpseback = null;
-	corpsebelt = /obj/item/weapon/gun/pistol/holdout;
-	corpseshoes = /obj/item/clothing/shoes/black;
-	corpseuniform = /obj/item/clothing/under/colonist;
-	name = "Colonist Luther Yovin"
-	},
-/turf/open/ground,
-/area/vapor_processing/caves/se)
 "pc" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/drained{
@@ -3651,29 +2791,6 @@
 /obj/structure/cable,
 /turf/closed/wall/wood,
 /area/crew_quarters/sleep_male)
-"ph" = (
-/obj/effect/landmark/corpsespawner/doctor{
-	corpseback = null;
-	corpsegloves = /obj/item/clothing/gloves/latex;
-	name = "Colonist Ben Harris"
-	},
-/turf/open/ground,
-/area/vapor_processing/caves/se)
-"pi" = (
-/obj/effect/landmark/corpsespawner/doctor{
-	corpseback = null;
-	corpsegloves = /obj/item/clothing/gloves/latex;
-	name = "Colonist Mio Linno"
-	},
-/turf/open/ground,
-/area/vapor_processing/caves/se)
-"pj" = (
-/obj/effect/landmark/corpsespawner/security{
-	corpseuniform = /obj/item/clothing/under/colonist;
-	name = "Colonist Ethan Peser"
-	},
-/turf/open/ground,
-/area/vapor_processing/caves/se)
 "pk" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -3681,18 +2798,6 @@
 	},
 /turf/open/floor/prison/yellow,
 /area/lv624/lazarus/engineering)
-"pl" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/ground,
-/area/vapor_processing/west_compound)
-"pm" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/technology_scanner,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 5
-	},
-/turf/open/floor/tile/whiteyellow/full,
-/area/lv624/lazarus/quart)
 "pn" = (
 /obj/structure/table/flipped,
 /obj/item/reagent_containers/glass/beaker,
@@ -3709,14 +2814,6 @@
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
 /area/lv624/lazarus/canteen)
-"pq" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/bomb_supply,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/tile/whiteyellow/full,
-/area/lv624/lazarus/quart)
 "pr" = (
 /obj/machinery/washing_machine,
 /turf/open/floor/wood,
@@ -3774,12 +2871,6 @@
 	},
 /turf/open/floor/wood/broken,
 /area/crew_quarters/sleep_male)
-"pB" = (
-/obj/item/stool,
-/obj/item/reagent_containers/food/drinks/bottle/patron,
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/carpet,
-/area/lv624/lazarus/canteen)
 "pC" = (
 /turf/open/floor/wood,
 /area/crew_quarters/sleep_male)
@@ -3804,10 +2895,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/sleep_male)
-"pH" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/grass,
-/area/vapor_processing/south_compound)
 "pI" = (
 /obj/structure/closet/firecloset,
 /obj/machinery/light{
@@ -3824,10 +2911,6 @@
 "pK" = (
 /turf/closed/wall,
 /area/shuttle/drop1/lz1)
-"pL" = (
-/obj/effect/landmark/lv624/fog_blocker,
-/turf/open/ground/grass/grass2,
-/area/lv624/ground/compound/sw)
 "pN" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/wood,
@@ -3853,17 +2936,13 @@
 /obj/machinery/power/apc/drained,
 /turf/open/floor/wood,
 /area/shuttle/drop1/lz1)
-"pR" = (
-/obj/structure/window/reinforced{
+"pS" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/prison/yellow{
 	dir = 4
 	},
-/obj/structure/flora/pottedplant/twentytwo,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/cable,
-/turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
+/area/lv624/lazarus/engineering)
 "pT" = (
 /obj/structure/largecrate,
 /obj/structure/cable,
@@ -3876,15 +2955,7 @@
 	},
 /turf/open/floor/wood,
 /area/shuttle/drop1/lz1)
-"pX" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
 "pY" = (
-/turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
-"pZ" = (
-/obj/item/storage/backpack/satchel/med,
 /turf/open/floor/wood,
 /area/shuttle/drop1/lz1)
 "qa" = (
@@ -3903,19 +2974,6 @@
 /obj/machinery/vending/cigarette,
 /turf/open/floor/wood,
 /area/shuttle/drop1/lz1)
-"qf" = (
-/obj/structure/bed/chair{
-	dir = 4
-	},
-/obj/effect/spawner/random/tech_supply,
-/turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
-"qg" = (
-/obj/structure/table/mainship,
-/obj/item/toy/deck,
-/obj/effect/spawner/random/tech_supply,
-/turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
 "qh" = (
 /obj/machinery/computer/shuttle/shuttle_control,
 /obj/structure/table/reinforced/flipped{
@@ -3924,16 +2982,6 @@
 /turf/open/floor/marking/warning{
 	dir = 1
 	},
-/area/shuttle/drop1/lz1)
-"qi" = (
-/obj/structure/bed/chair{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/effect/spawner/random/tech_supply,
-/turf/open/floor/wood,
 /area/shuttle/drop1/lz1)
 "qk" = (
 /obj/structure/table/flipped,
@@ -4000,13 +3048,6 @@
 /obj/item/reagent_containers/food/drinks/bottle/bluecuracao,
 /turf/open/floor/carpet,
 /area/lv624/lazarus/canteen)
-"qv" = (
-/obj/structure/cable,
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison/yellow{
-	dir = 4
-	},
-/area/lv624/lazarus/engineering)
 "qw" = (
 /obj/item/stool,
 /turf/open/floor/carpet,
@@ -4026,13 +3067,6 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/grimy,
 /area/lv624/lazarus/internal_affairs)
-"qA" = (
-/obj/structure/table/mainship,
-/obj/item/toy/deck,
-/obj/effect/spawner/random/tech_supply,
-/obj/item/reagent_containers/food/drinks/bottle/whiskey,
-/turf/open/floor/wood,
-/area/lv624/lazarus/canteen)
 "qB" = (
 /obj/structure/cable,
 /obj/structure/window/framed/colony,
@@ -4076,14 +3110,6 @@
 /obj/structure/window/framed/wood,
 /turf/open/floor/wood,
 /area/crew_quarters/sleep/bedrooms)
-"qM" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/toolbox,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/tile/whiteyellow/full,
-/area/lv624/lazarus/quart)
 "qN" = (
 /obj/machinery/light{
 	dir = 8
@@ -4168,25 +3194,10 @@
 	},
 /turf/closed/wall,
 /area/lv624/lazarus/quart)
-"rd" = (
-/obj/machinery/door_control{
-	id = "secure_blast";
-	name = "Vault Access";
-	pixel_x = 25
-	},
-/turf/open/floor,
-/area/lv624/lazarus/research)
 "re" = (
 /obj/structure/cable,
 /turf/open/ground/grass/grass2,
 /area/vapor_processing/south_compound)
-"rg" = (
-/obj/machinery/door/poddoor/mainship{
-	id = "secure_blast";
-	name = "\improper Secure Armory Blast Door"
-	},
-/turf/open/floor,
-/area/lv624/lazarus/research)
 "rh" = (
 /obj/machinery/door/poddoor/mainship{
 	id = "secure_blast";
@@ -4287,27 +3298,15 @@
 	dir = 1
 	},
 /area/vapor_processing/cargo3)
-"rz" = (
-/obj/machinery/light{
-	dir = 8
+"ry" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
 	},
-/obj/effect/decal/cleanable/blood,
+/obj/machinery/door/airlock/glass,
 /turf/open/floor/tile/whiteyellow/corner{
 	dir = 1
 	},
-/area/vapor_processing/cargo3)
-"rA" = (
-/obj/effect/landmark/corpsespawner/engineer,
-/turf/open/floor/tile/whiteyellow/corner{
-	dir = 1
-	},
-/area/vapor_processing/cargo3)
-"rB" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/power/terminal,
-/turf/open/floor/prison/yellow,
-/area/lv624/lazarus/engineering)
+/area/lv624/lazarus/quartstorage)
 "rC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
@@ -4318,14 +3317,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison/yellow,
 /area/lv624/lazarus/engineering)
-"rE" = (
-/obj/effect/landmark/corpsespawner/doctor{
-	corpseback = null;
-	corpsegloves = /obj/item/clothing/gloves/latex;
-	name = "Colonist Mio Linno"
-	},
-/turf/open/floor/tile/red/redtaupe,
-/area/lv624/lazarus/security)
 "rF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
@@ -4457,18 +3448,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/closed/wall,
 /area/lv624/lazarus/engineering)
-"sa" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/carpet,
-/area/lv624/lazarus/canteen)
-"sb" = (
-/obj/effect/landmark/corpsespawner/chef{
-	corpsesuit = null;
-	corpseuniform = /obj/item/clothing/under/colonist;
-	name = "Colonist Jed Willis"
-	},
-/turf/open/floor/carpet,
-/area/lv624/lazarus/canteen)
 "sc" = (
 /obj/machinery/firealarm,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -4488,14 +3467,6 @@
 	dir = 4
 	},
 /area/lv624/lazarus/comms)
-"se" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 6
-	},
-/turf/open/floor/tile/blue/whiteblue{
-	dir = 4
-	},
-/area/lv624/lazarus/comms)
 "sf" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
@@ -4507,29 +3478,12 @@
 	dir = 4
 	},
 /area/lv624/lazarus/comms)
-"sg" = (
-/obj/structure/window/reinforced,
-/obj/effect/landmark/corpsespawner/chef,
-/turf/open/floor/carpet,
-/area/lv624/lazarus/canteen)
 "sh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 4
 	},
 /area/lv624/lazarus/comms)
-"si" = (
-/obj/effect/landmark/corpsespawner/engineer{
-	corpseback = /obj/item/storage/backpack;
-	corpsehelmet = /obj/item/clothing/head/welding;
-	corpseidjob = "Engineer";
-	corpseshoes = /obj/item/clothing/shoes/black;
-	name = "Colonist Ted Jarka"
-	},
-/turf/open/floor/tile/whiteyellow/corner{
-	dir = 1
-	},
-/area/vapor_processing/cargo3)
 "sj" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
@@ -4548,23 +3502,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison/yellow/full,
 /area/lv624/lazarus/engineering)
-"sm" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/landmark/corpsespawner/engineer{
-	corpseback = /obj/item/storage/backpack;
-	corpseidjob = "Engineer";
-	corpseshoes = /obj/item/clothing/shoes/black;
-	name = "Colonist Everett Mison"
-	},
-/turf/open/floor/prison/yellow/full,
-/area/lv624/lazarus/engineering)
-"sn" = (
-/obj/machinery/light,
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/carpet,
-/area/lv624/lazarus/canteen)
 "so" = (
 /obj/machinery/light{
 	dir = 8
@@ -4578,10 +3515,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/compound/c)
-"sq" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/ground,
-/area/lv624/ground/compound/sw)
 "sr" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -4600,20 +3533,6 @@
 	dir = 4
 	},
 /area/lv624/lazarus/comms)
-"st" = (
-/turf/open/floor/prison/yellow{
-	dir = 8
-	},
-/area/lv624/lazarus/engineering)
-"su" = (
-/obj/effect/landmark/corpsespawner/doctor{
-	corpseback = null;
-	corpsegloves = /obj/item/clothing/gloves/latex;
-	corpseidjob = "Doctor";
-	name = "Colonist Ted Koso"
-	},
-/turf/open/ground,
-/area/lv624/ground/compound/sw)
 "sv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/grass,
@@ -4627,15 +3546,6 @@
 	},
 /area/lv624/lazarus/comms)
 "sx" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/tile/blue/whiteblue{
-	dir = 4
-	},
-/area/lv624/lazarus/comms)
-"sy" = (
-/obj/machinery/computer/area_atmos,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -4713,43 +3623,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/grass,
 /area/vapor_processing/south_compound)
-"sH" = (
-/obj/effect/landmark/corpsespawner/security{
-	corpsehelmet = /obj/item/clothing/head/helmet/riot;
-	corpseuniform = /obj/item/clothing/under/colonist;
-	name = "Colonist Fors Ilin"
-	},
-/turf/open/floor/plating,
-/area/vapor_processing/cargo_maint_s)
-"sI" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 6
-	},
-/turf/open/floor,
-/area/storage/tools)
-"sJ" = (
-/obj/structure/table/flipped,
-/obj/effect/spawner/random/powercell,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 8;
-	on = 1
-	},
-/turf/open/floor,
-/area/storage/tools)
 "sK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor,
 /area/storage/tools)
-"sL" = (
-/obj/effect/landmark/corpsespawner/security{
-	corpseuniform = /obj/item/clothing/under/colonist;
-	name = "Colonist Ethan Peser"
-	},
-/turf/open/floor,
-/area/shuttle/drop1/lz1)
 "sM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/closed/wall,
@@ -4789,16 +3666,6 @@
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /turf/open/floor/scorched/two,
 /area/storage/tools)
-"sT" = (
-/obj/machinery/door/poddoor/mainship{
-	id = "secure_blast";
-	name = "\improper Secure Armory Blast Door"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor,
-/area/storage/tools)
 "sU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -4827,57 +3694,25 @@
 	},
 /turf/open/floor,
 /area/lv624/lazarus/research)
-"sY" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 8;
-	on = 1
-	},
-/turf/open/floor,
-/area/lv624/lazarus/research)
 "sZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor,
 /area/lv624/lazarus/research)
-"ta" = (
-/obj/effect/decal/cleanable/blood/oil,
-/turf/open/floor,
-/area/storage/tools)
-"tb" = (
-/obj/effect/decal/cleanable/blood/oil,
-/turf/open/floor,
-/area/lv624/lazarus/research)
-"tc" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor,
-/area/storage/tools)
-"td" = (
+"te" = (
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 8
+	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/decal/cleanable/blood/oil,
+/obj/effect/ai_node,
 /turf/open/floor,
-/area/storage/tools)
+/area/maintenance/substation)
 "tf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
 /turf/closed/wall,
 /area/lv624/lazarus/engineering)
-"tg" = (
-/obj/effect/landmark/corpsespawner/security{
-	corpseuniform = /obj/item/clothing/under/colonist;
-	name = "Colonist Jac Mester"
-	},
-/turf/open/floor/plating,
-/area/vapor_processing/cargo_maint_s)
-"th" = (
-/obj/structure/table/flipped,
-/obj/effect/spawner/random/bomb_supply,
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 8;
-	on = 1
-	},
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor,
-/area/storage/tools)
 "ti" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/ground/grass/grass2,
@@ -4896,19 +3731,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor,
 /area/maintenance/substation)
-"tm" = (
-/obj/effect/decal/cleanable/blood/oil,
-/turf/open/floor,
-/area/shuttle/drop1/lz1)
 "tn" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor,
-/area/maintenance/substation)
-"to" = (
-/obj/structure/cable,
-/obj/machinery/light{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor,
 /area/maintenance/substation)
@@ -4920,10 +3743,6 @@
 "tq" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/dmg3,
-/area/lv624/lazarus/research)
-"tr" = (
-/obj/effect/decal/cleanable/blood/gibs/xeno,
-/turf/open/floor/plating/dmg2,
 /area/lv624/lazarus/research)
 "ts" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -4938,23 +3757,7 @@
 	},
 /turf/open/floor/scorched/two,
 /area/lv624/lazarus/research)
-"tu" = (
-/obj/effect/decal/cleanable/blood/oil,
-/turf/open/floor/scorched/two,
-/area/lv624/lazarus/research)
 "tv" = (
-/turf/open/floor/plating/dmg3,
-/area/lv624/lazarus/research)
-"tw" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/plating/dmg1,
-/area/lv624/lazarus/research)
-"tx" = (
-/obj/machinery/door_control{
-	id = "secure_blast";
-	name = "Vault Access";
-	pixel_x = 25
-	},
 /turf/open/floor/plating/dmg3,
 /area/lv624/lazarus/research)
 "tz" = (
@@ -4963,42 +3766,26 @@
 "tA" = (
 /turf/open/floor/plating/dmg3,
 /area/lv624/ground/compound/se)
-"tB" = (
-/obj/effect/decal/cleanable/blood/oil,
-/turf/open/floor,
-/area/maintenance/substation)
 "tC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/closed/wall,
 /area/lv624/lazarus/research)
+"tD" = (
+/obj/effect/landmark/corpsespawner/scientist{
+	corpseback = null;
+	corpsehelmet = /obj/item/clothing/head/flatcap;
+	corpseshoes = /obj/item/clothing/shoes/black;
+	corpseuniform = /obj/item/clothing/under/colonist;
+	name = "Colonist Jackson Martin"
+	},
+/turf/open/ground,
+/area/space)
 "tE" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
 	},
 /turf/open/floor/plating/dmg2,
 /area/lv624/lazarus/research)
-"tF" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/plating/dmg3,
-/area/lv624/lazarus/research)
-"tG" = (
-/obj/machinery/light,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor,
-/area/lv624/lazarus/research)
-"tH" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor,
-/area/shuttle/drop1/lz1)
-"tI" = (
-/obj/structure/table,
-/obj/effect/spawner/random/tool,
-/turf/open/floor/prison/yellow,
-/area/lv624/lazarus/engineering)
 "tJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -5012,14 +3799,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/sleep/bedrooms)
-"tL" = (
-/obj/effect/spawner/random/toolbox,
-/obj/structure/table,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/sleep/bedrooms)
 "tM" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -5027,11 +3806,6 @@
 	},
 /turf/open/floor/wood/broken,
 /area/crew_quarters/sleep/bedrooms)
-"tN" = (
-/obj/machinery/light,
-/obj/effect/decal/cleanable/blood/gibs/xeno,
-/turf/open/floor/plating/dmg1,
-/area/lv624/lazarus/research)
 "tO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -5052,36 +3826,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/closed/wall/wood,
 /area/crew_quarters/sleep/bedrooms)
-"tS" = (
-/obj/effect/decal/cleanable/blood/xeno,
-/turf/open/floor,
-/area/maintenance/substation)
-"tT" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/decal/cleanable/blood/xtracks,
-/turf/open/floor,
-/area/maintenance/substation)
-"tU" = (
-/obj/structure/bed,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/wood,
-/area/crew_quarters/sleep/bedrooms)
-"tV" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/decal/cleanable/blood/xtracks,
-/turf/open/floor,
-/area/maintenance/substation)
-"tW" = (
-/obj/effect/spawner/random/toolbox,
-/obj/structure/table,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/sleep/bedrooms)
 "tX" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -5093,10 +3837,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/ground,
 /area/vapor_processing/south_compound)
-"tZ" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor,
-/area/lv624/lazarus/research)
 "ua" = (
 /obj/structure/closet/emcloset,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -5112,11 +3852,6 @@
 	},
 /turf/open/floor,
 /area/maintenance/substation)
-"uc" = (
-/obj/structure/bed,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/wood/broken,
-/area/crew_quarters/sleep/bedrooms)
 "ud" = (
 /obj/structure/closet/toolcloset,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -5124,18 +3859,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/sleep/bedrooms)
-"ue" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/landmark/corpsespawner/security{
-	corpsebelt = null;
-	corpsesuit = /obj/item/clothing/suit/storage/CMB;
-	corpseuniform = /obj/item/clothing/under/CM_uniform;
-	name = "Deputy Edgar Nogi"
-	},
-/turf/open/floor/plating,
-/area/vapor_processing/cargo_maint_s)
 "uf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -5154,24 +3877,10 @@
 	},
 /turf/closed/wall/wood,
 /area/crew_quarters/sleep_male)
-"ui" = (
-/obj/structure/table,
-/obj/effect/spawner/random/tech_supply,
-/obj/structure/cable,
-/turf/open/floor/prison/yellow,
-/area/lv624/lazarus/engineering)
 "uj" = (
 /obj/structure/table,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/sleep_male)
-"uk" = (
-/obj/effect/landmark/start/job/survivor,
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 8;
-	on = 1
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/sleep_male)
@@ -5182,62 +3891,21 @@
 	},
 /turf/open/floor/wood/broken,
 /area/crew_quarters/sleep/bedrooms)
-"um" = (
-/obj/structure/closet/emcloset,
-/obj/effect/landmark/corpsespawner/security{
-	corpsebelt = /obj/item/weapon/gun/revolver/cmb;
-	corpsesuit = /obj/item/clothing/suit/storage/CMB;
-	corpseuniform = /obj/item/clothing/under/CM_uniform;
-	name = "Deputy Maxwell Ligis"
-	},
-/turf/open/floor/plating,
-/area/vapor_processing/cargo_maint_s)
-"un" = (
-/turf/closed/wall/indestructible/mineral,
-/area/lv624/lazarus/fitness)
-"uq" = (
-/obj/structure/table,
-/obj/effect/spawner/random/toolbox,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 9
-	},
-/turf/open/floor/prison/yellow,
-/area/lv624/lazarus/engineering)
-"ur" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/ground,
-/area/lv624/ground/compound/se)
 "us" = (
 /obj/structure/closet/radiation,
 /obj/structure/cable,
 /turf/open/floor,
 /area/lv624/lazarus/research)
-"ut" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/scorched/two,
-/area/lv624/lazarus/research)
 "uu" = (
 /obj/structure/window_frame/wood,
 /turf/open/floor/wood,
 /area/crew_quarters/sleep/bedrooms)
-"uv" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/blood/gibs/xeno,
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor,
-/area/lv624/lazarus/research)
 "uw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /turf/open/floor/grass,
 /area/lv624/ground/compound/se)
-"ux" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/wood,
-/area/crew_quarters/sleep/bedrooms)
 "uy" = (
 /obj/structure/closet/emcloset,
 /obj/machinery/light,
@@ -5248,22 +3916,6 @@
 /obj/machinery/light,
 /turf/open/floor,
 /area/lv624/lazarus/research)
-"uA" = (
-/obj/structure/table,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/effect/spawner/random/toolbox,
-/turf/open/floor/wood/broken,
-/area/crew_quarters/sleep_male)
-"uB" = (
-/obj/structure/table,
-/obj/effect/spawner/random/toolbox,
-/turf/open/floor/wood,
-/area/crew_quarters/sleep_male)
 "uC" = (
 /obj/structure/table,
 /obj/structure/window/reinforced{
@@ -5275,13 +3927,6 @@
 /obj/structure/window_frame/wood,
 /turf/open/floor/wood,
 /area/crew_quarters/sleep_male)
-"uE" = (
-/obj/structure/bed/chair/wood/wings{
-	dir = 1
-	},
-/obj/machinery/door/window,
-/turf/open/floor/wood,
-/area/crew_quarters/sleep_male)
 "uF" = (
 /obj/structure/closet,
 /obj/item/tool/crowbar,
@@ -5291,14 +3936,6 @@
 	dir = 4
 	},
 /obj/machinery/light,
-/turf/open/floor/wood,
-/area/crew_quarters/sleep_male)
-"uG" = (
-/obj/structure/closet,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/effect/spawner/random/toolbox,
 /turf/open/floor/wood,
 /area/crew_quarters/sleep_male)
 "uI" = (
@@ -5316,49 +3953,343 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/sleep_male)
-"vB" = (
+"uM" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/mineral/smooth/indestructible,
+/area/lv624/ground/caves/central1)
+"uU" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/ground,
+/area/vapor_processing/west_compound)
+"uV" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/alarm,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/bar,
+/area/medical/medbay2)
+"vb" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison/sterilewhite,
+/area/lv624/lazarus/fitness)
+"vi" = (
+/obj/effect/landmark/corpsespawner/security{
+	corpseuniform = /obj/item/clothing/under/colonist;
+	name = "Colonist Jac Mester"
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/space)
+"vs" = (
+/obj/effect/landmark/dropship_start_location,
+/turf/open/ground,
+/area/lv624/ground/compound/c)
+"vt" = (
+/obj/machinery/optable,
+/obj/item/tank/anesthetic,
+/obj/item/clothing/mask/breath/medical,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/tile/bar,
+/area/medical/medbay2)
+"vw" = (
+/obj/effect/landmark/corpsespawner/syndicatecommando,
+/turf/open/ground,
+/area/lv624/ground/caves/east1)
+"vz" = (
+/obj/effect/decal/cleanable/blood/xtracks,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/decal/cleanable/blood/xtracks,
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/maintenance/substation)
+"vE" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/grass,
+/area/lv624/ground/compound/c)
+"vM" = (
+/obj/machinery/door/airlock/medical{
+	dir = 2
+	},
+/turf/open/floor/tile/green/whitegreen,
+/area/lv624/lazarus/medbay)
+"vT" = (
+/obj/effect/ai_node,
+/turf/open/ground,
+/area/lv624/lazarus/quart)
+"vV" = (
+/obj/effect/landmark/xeno_resin_door,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/ground,
-/area/lv624/ground/caves/central1)
-"vJ" = (
-/obj/effect/landmark/xeno_silo_spawn,
-/turf/open/ground,
-/area/lv624/ground/caves/central1)
+/area/space)
+"wf" = (
+/obj/machinery/door/poddoor/mainship{
+	id = "secure_blast";
+	name = "\improper Secure Armory Blast Door"
+	},
+/obj/effect/ai_node,
+/turf/open/floor/scorched/two,
+/area/lv624/lazarus/research)
+"wh" = (
+/obj/structure/table/flipped,
+/obj/effect/spawner/random/tech_supply,
+/obj/machinery/power/apc/drained,
+/obj/structure/cable,
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
+	},
+/area/vapor_processing/cargo3)
 "wi" = (
 /obj/structure/cable,
 /turf/open/floor/prison/yellow{
 	dir = 4
 	},
 /area/lv624/lazarus/engineering)
-"ww" = (
+"wj" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/decal/cleanable/blood/oil,
+/turf/open/floor,
+/area/storage/tools)
+"wk" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral,
-/area/vapor_processing/caves/se)
+/turf/open/ground,
+/area/lv624/ground/caves/east1)
+"wp" = (
+/obj/effect/ai_node,
+/turf/open/ground/grass/grass2,
+/area/lv624/ground/compound/n)
+"wC" = (
+/obj/structure/table/flipped,
+/obj/effect/spawner/random/powercell,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8;
+	on = 1
+	},
+/turf/open/floor,
+/area/storage/tools)
+"wD" = (
+/obj/effect/decal/cleanable/blood/oil,
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
+"wG" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_22";
+	name = "SOM exit point 22"
+	},
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
+"wL" = (
+/obj/machinery/atmospherics/pipe/manifold/general/visible,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/lv624/lazarus/medbay)
+"wM" = (
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
+"wX" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison/yellow,
+/area/lv624/lazarus/engineering)
+"wZ" = (
+/obj/effect/landmark/xeno_resin_door,
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/ground,
+/area/space)
 "xc" = (
 /obj/machinery/computer/nuke_disk_generator/red,
 /turf/open/floor/plating,
 /area/lv624/lazarus/hydroponics)
+"xg" = (
+/obj/effect/spawner/random/toolbox,
+/obj/structure/table,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/sleep/bedrooms)
 "xq" = (
 /obj/machinery/miner/damaged,
 /turf/open/floor/grass,
 /area/lv624/ground/compound/c)
-"ye" = (
+"xF" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/wood,
+/area/crew_quarters/sleep/bedrooms)
+"xG" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
+/turf/open/floor,
+/area/lv624/lazarus/research)
+"xH" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_23";
+	name = "SOM exit point 23"
+	},
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
+"xK" = (
+/obj/structure/cable,
+/obj/machinery/power/terminal,
+/obj/effect/ai_node,
+/turf/open/floor/prison/yellow,
+/area/lv624/lazarus/engineering)
+"xR" = (
+/obj/effect/decal/cleanable/blood,
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/lv624/lazarus/canteen)
+"xW" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/green/whitegreen,
+/area/medical/medbay2)
+"yb" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/wood,
+/area/shuttle/drop2/lz2)
+"yc" = (
+/obj/effect/ai_node,
+/turf/open/floor/grass,
+/area/lv624/ground/compound/se)
+"yg" = (
+/obj/machinery/door/airlock/glass,
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
+	},
+/area/lv624/lazarus/quart)
+"ys" = (
+/obj/structure/window/reinforced,
+/obj/effect/landmark/corpsespawner/chef,
+/turf/open/floor/carpet,
+/area/lv624/lazarus/canteen)
+"yv" = (
 /obj/effect/landmark/patrol_point{
 	id = "TGMC_23";
 	name = "TGMC exit point 23"
 	},
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/compound/se)
-"zj" = (
-/turf/closed/wall/indestructible/mineral,
+"yz" = (
+/obj/item/storage/backpack/satchel/med,
+/obj/effect/ai_node,
+/turf/open/floor/wood,
+/area/shuttle/drop1/lz1)
+"yD" = (
+/obj/machinery/door/airlock/glass,
+/turf/open/floor/plating,
+/area/lv624/lazarus/quartstorage)
+"yF" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/mineral/smooth,
+/area/lv624/ground/caves/west1)
+"yH" = (
+/obj/effect/landmark/start/job/survivor,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood/broken,
+/area/crew_quarters/sleep/bedrooms)
+"yS" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/scorched/two,
+/area/lv624/lazarus/research)
+"yT" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/mineral/smooth/indestructible,
+/area/lv624/ground/caves/east1)
+"za" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/shuttle/drop1/lz1)
+"zl" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/dmg3,
+/area/lv624/lazarus/research)
+"zo" = (
+/obj/effect/decal/cleanable/blood/oil,
+/obj/effect/decal/cleanable/blood/oil,
+/obj/effect/ai_node,
+/turf/open/floor/scorched/two,
+/area/lv624/lazarus/research)
+"zs" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/bodybag/cryobag,
+/turf/open/floor/tile/bar,
+/area/medical/medbay2)
+"zw" = (
+/obj/effect/landmark/corpsespawner/doctor{
+	corpseback = null;
+	corpsegloves = /obj/item/clothing/gloves/latex;
+	corpseidjob = "Doctor";
+	name = "Colonist Drew Bellel"
+	},
+/turf/open/floor/tile/white,
+/area/medical/medbay2)
+"zD" = (
+/obj/effect/ai_node,
+/turf/open/ground,
 /area/lv624/ground/compound/se)
+"zV" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating/dmg1,
+/area/lv624/lazarus/research)
+"zY" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/toolbox,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/tile/whiteyellow/full,
+/area/lv624/lazarus/quart)
+"Al" = (
+/obj/effect/ai_node,
+/turf/open/ground/grass/grass2,
+/area/vapor_processing/east_compound)
+"Az" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/ai_node,
+/turf/open/floor/tile/green/whitegreen,
+/area/medical/medbay2)
 "AB" = (
 /obj/structure/cable,
 /turf/open/floor/grass,
 /area/lv624/lazarus/quartstorage)
-"AG" = (
-/turf/closed/wall/indestructible/mineral,
-/area/vapor_processing/east_compound)
+"AH" = (
+/obj/effect/landmark/corpsespawner/doctor{
+	corpseback = null;
+	corpsegloves = /obj/item/clothing/gloves/latex;
+	corpseidjob = "Doctor";
+	name = "Colonist Drew Bellel"
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/space)
+"AO" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/prison/yellow,
+/area/lv624/lazarus/engineering)
+"AP" = (
+/obj/machinery/light,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/door_control{
+	id = "secure_blast";
+	name = "Vault Access"
+	},
+/turf/open/floor,
+/area/lv624/lazarus/research)
 "AS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/scorched/two,
@@ -5369,96 +4300,700 @@
 	},
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
-"Ca" = (
-/obj/effect/landmark/xeno_silo_spawn,
-/turf/open/ground,
-/area/vapor_processing/caves/se)
-"Cv" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_14";
-	name = "SOM exit point 14"
+"Bc" = (
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
+	dir = 2
+	},
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
+	},
+/area/vapor_processing/cargo2)
+"Be" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
+"Bg" = (
+/obj/machinery/door/airlock/glass_engineering{
+	dir = 2
+	},
+/turf/open/floor/prison/yellow,
+/area/lv624/lazarus/engineering)
+"Bi" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/prison/yellow/full,
+/area/lv624/lazarus/engineering)
+"Bj" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
 	},
 /turf/open/ground,
-/area/space)
-"CJ" = (
+/area/lv624/lazarus/quart)
+"Bk" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/ai_node,
+/turf/open/floor/carpet,
+/area/lv624/lazarus/canteen)
+"Bm" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/decal/cleanable/blood/xtracks,
+/turf/open/floor,
+/area/maintenance/substation)
+"Br" = (
+/obj/effect/ai_node,
+/turf/open/ground,
+/area/lv624/ground/compound/sw)
+"Bz" = (
+/obj/structure/bed,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/ai_node,
+/turf/open/floor/wood/broken,
+/area/crew_quarters/sleep/bedrooms)
+"BJ" = (
+/turf/closed/mineral/smooth,
+/area/lv624/ground/caves/east1)
+"BM" = (
+/obj/structure/table/mainship,
+/obj/item/toy/deck,
+/obj/effect/spawner/random/tech_supply,
+/turf/open/floor/wood,
+/area/shuttle/drop2/lz2)
+"BN" = (
+/obj/effect/ai_node,
+/turf/open/floor/grass,
+/area/lv624/ground/compound/n)
+"BP" = (
+/turf/closed/mineral/smooth/indestructible,
+/area/lv624/ground/caves/central1)
+"BQ" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/ai_node,
+/turf/open/ground,
+/area/lv624/ground/compound/se)
+"BZ" = (
 /obj/effect/landmark/patrol_point{
-	id = "TGMC_11";
-	name = "TGMC exit point 11"
+	id = "TGMC_24";
+	name = "TGMC exit point 24"
+	},
+/turf/open/floor/grass,
+/area/lv624/ground/compound/se)
+"Cb" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/obj/effect/spawner/random/tech_supply,
+/turf/open/floor/wood,
+/area/lv624/lazarus/canteen)
+"Cd" = (
+/obj/machinery/computer/area_atmos,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
+	},
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
+	},
+/area/lv624/lazarus/comms)
+"Cg" = (
+/obj/effect/ai_node,
+/turf/open/floor/carpet,
+/area/lv624/lazarus/canteen)
+"Cm" = (
+/obj/structure/bed,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/ai_node,
+/turf/open/floor/wood,
+/area/crew_quarters/sleep/bedrooms)
+"Co" = (
+/obj/machinery/door_control{
+	dir = 8;
+	id = "secure_blast";
+	name = "Vault Access"
 	},
 /turf/open/floor,
-/area/shuttle/drop2/lz2)
-"CU" = (
+/area/lv624/lazarus/research)
+"Cq" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/ground,
+/area/lv624/ground/compound/n)
+"Cz" = (
+/obj/item/weapon/gun/pistol/holdout,
+/obj/effect/landmark/weed_node,
+/turf/open/ground,
+/area/vapor_processing/caves/se)
+"CG" = (
+/obj/effect/landmark/corpsespawner/doctor{
+	corpseback = null;
+	corpsegloves = /obj/item/clothing/gloves/latex;
+	corpseidjob = "Doctor";
+	name = "Colonist Ted Koso"
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/ground,
+/area/space)
+"CH" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/bomb_supply,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/tile/whiteyellow/full,
+/area/lv624/lazarus/quart)
+"CO" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/wood/broken,
+/area/crew_quarters/sleep/bedrooms)
+"CW" = (
+/obj/machinery/landinglight/ds1/delaytwo{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/shuttle/drop1/lz1)
+"CY" = (
+/obj/effect/landmark/corpsespawner/engineer,
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
+	},
+/area/lv624/lazarus/quart)
+"Db" = (
+/obj/structure/table/mainship,
+/obj/item/toy/deck,
+/obj/effect/spawner/random/tech_supply,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey,
+/turf/open/floor/wood,
+/area/lv624/lazarus/canteen)
+"Dd" = (
+/obj/effect/landmark/supplyspawner/food,
+/turf/open/floor/carpet,
+/area/lv624/lazarus/canteen)
+"Di" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/lv624/lazarus/hydroponics)
+"Dl" = (
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/white,
+/area/lv624/lazarus/medbay)
+"Dr" = (
+/obj/effect/landmark/start/job/survivor,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/sleep/bedrooms)
+"DF" = (
+/obj/effect/spawner/random/toolbox,
+/obj/structure/table,
+/obj/structure/cable,
+/turf/open/floor,
+/area/lv624/lazarus/research)
+"DL" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/lv624/lazarus/research)
+"DN" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/ground,
 /area/space)
-"Ek" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_13";
-	name = "TGMC exit point 13"
+"DO" = (
+/obj/effect/spawner/random/toolbox,
+/obj/structure/table,
+/obj/machinery/light{
+	dir = 4
 	},
 /turf/open/floor,
-/area/shuttle/drop2/lz2)
+/area/lv624/lazarus/research)
+"DP" = (
+/obj/structure/cable,
+/obj/machinery/vending/nanomed,
+/turf/open/floor/plating,
+/area/vapor_processing/cargo_maint_s)
+"DQ" = (
+/obj/effect/landmark/xeno_resin_door,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/ground,
+/area/vapor_processing/caves/se)
+"DY" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/technology_scanner,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 5
+	},
+/turf/open/floor/tile/whiteyellow/full,
+/area/lv624/lazarus/quart)
+"Eb" = (
+/obj/machinery/robotic_fabricator,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/bar,
+/area/medical/medbay2)
+"Ec" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/obj/effect/landmark/lv624/fog_blocker,
+/obj/effect/ai_node,
+/turf/open/ground,
+/area/lv624/ground/compound/n)
+"Em" = (
+/obj/structure/cable,
+/obj/effect/landmark/corpsespawner/engineer/rig,
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
+	},
+/area/lv624/lazarus/quartstorage)
+"Ep" = (
+/obj/item/stool,
+/obj/item/reagent_containers/food/drinks/bottle/patron,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/carpet,
+/area/lv624/lazarus/canteen)
+"Eq" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/ground,
+/area/lv624/ground/compound/sw)
+"EC" = (
+/obj/machinery/door/airlock/multi_tile/mainship/engineering{
+	dir = 2
+	},
+/turf/open/floor/prison/sterilewhite,
+/area/lv624/lazarus/fitness)
+"ED" = (
+/obj/effect/landmark/corpsespawner/miner{
+	corpseback = null;
+	corpseidjob = "Laborer";
+	name = "Colonist Olgin Vekin"
+	},
+/turf/open/ground,
+/area/space)
+"EH" = (
+/obj/effect/ai_node,
+/turf/open/floor/wood,
+/area/crew_quarters/sleep/bedrooms)
+"EO" = (
+/obj/effect/ai_node,
+/turf/open/floor/grimy,
+/area/lv624/lazarus/internal_affairs)
+"EQ" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/mineral/smooth,
+/area/vapor_processing/caves/se)
+"ER" = (
+/obj/effect/ai_node,
+/turf/open/floor/scorched/two,
+/area/storage/tools)
+"ES" = (
+/obj/structure/table/flipped,
+/obj/effect/spawner/random/bomb_supply,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8;
+	on = 1
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor,
+/area/storage/tools)
+"Fa" = (
+/turf/closed/mineral/smooth,
+/area/lv624/ground/caves/west1)
+"Fd" = (
+/obj/structure/bed/chair/wood/wings{
+	dir = 1
+	},
+/obj/machinery/door/window,
+/obj/effect/ai_node,
+/turf/open/floor/wood,
+/area/crew_quarters/sleep_male)
+"Ff" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/carpet,
+/area/lv624/lazarus/canteen)
+"Fi" = (
+/obj/effect/landmark/corpsespawner/scientist{
+	corpseback = null;
+	corpseshoes = /obj/item/clothing/shoes/black;
+	corpseuniform = /obj/item/clothing/under/colonist;
+	name = "Colonist Evan Kark"
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/space)
+"Fl" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
+/turf/open/floor/tile/green/whitegreen,
+/area/medical/medbay2)
+"Fp" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison/yellow/full,
+/area/lv624/lazarus/engineering)
+"Fq" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/mineral/smooth,
+/area/lv624/ground/caves/central2)
+"Fu" = (
+/obj/effect/landmark/corpsespawner/security{
+	corpsebelt = /obj/item/weapon/gun/revolver/cmb;
+	corpsesuit = /obj/item/clothing/suit/storage/CMB;
+	corpseuniform = /obj/item/clothing/under/CM_uniform;
+	name = "Marshal Logan Bills"
+	},
+/turf/open/floor/plating,
+/area/maintenance/apmaint)
+"FC" = (
+/obj/machinery/door/airlock/glass,
+/turf/open/floor/carpet,
+/area/lv624/lazarus/canteen)
+"FG" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/open/ground/grass/grass2,
+/area/lv624/ground/compound/sw)
 "FJ" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/grass,
 /area/lv624/ground/compound/se)
-"Gn" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral,
-/area/lv624/ground/caves/central2)
-"GD" = (
+"FQ" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/maintenance/apmaint)
+"FS" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/ground,
+/area/vapor_processing/west_compound)
+"FX" = (
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/ground,
+/area/space)
+"FY" = (
+/obj/effect/ai_node,
+/turf/open/floor/wood,
+/area/crew_quarters/sleep_male)
+"FZ" = (
 /obj/effect/landmark/patrol_point{
-	id = "SOM_22";
-	name = "SOM exit point 22"
+	id = "SOM_11";
+	name = "SOM exit point 11"
 	},
+/turf/open/ground,
+/area/space)
+"Gh" = (
+/obj/machinery/door/poddoor/mainship{
+	id = "secure_blast";
+	name = "\improper Secure Armory Blast Door"
+	},
+/obj/effect/ai_node,
+/turf/open/floor/scorched/two,
+/area/storage/tools)
+"Gp" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8;
+	on = 1
+	},
+/obj/effect/ai_node,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/lv624/lazarus/research)
+"Gu" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/prison/yellow,
+/area/lv624/lazarus/engineering)
+"GC" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/technology_scanner,
+/turf/open/floor/tile/whiteyellow/full,
+/area/lv624/lazarus/quart)
+"GI" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/ground,
+/area/lv624/ground/caves/central1)
 "GM" = (
 /obj/machinery/miner/damaged,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/compound/n)
+"GO" = (
+/turf/closed/mineral/smooth,
+/area/vapor_processing/caves/se)
+"GR" = (
+/obj/effect/landmark/corpsespawner/chef{
+	corpsesuit = null;
+	corpseuniform = /obj/item/clothing/under/colonist;
+	name = "Colonist Jed Willis"
+	},
+/turf/open/floor/carpet,
+/area/lv624/lazarus/canteen)
+"GU" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/vapor_processing/cargo_maint_s)
 "GV" = (
 /obj/structure/cable,
 /turf/open/floor/grass,
 /area/lv624/ground/compound/c)
+"Hb" = (
+/obj/structure/rack,
+/obj/effect/landmark/itemspawner/butler,
+/turf/open/floor/tile/whiteyellow/full,
+/area/lv624/lazarus/quart)
+"Hc" = (
+/obj/effect/ai_node,
+/turf/open/ground,
+/area/lv624/ground/caves/east1)
+"Hd" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/prison/yellow{
+	dir = 4
+	},
+/area/lv624/lazarus/engineering)
+"Hm" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/prison/yellow,
+/area/lv624/lazarus/engineering)
+"HD" = (
+/obj/structure/closet/bodybag/cryobag,
+/obj/effect/landmark/corpsespawner/miner/rig,
+/turf/open/floor/tile/bar,
+/area/medical/medbay2)
+"HG" = (
+/obj/effect/landmark/corpsespawner/security{
+	corpsebelt = /obj/item/weapon/gun/revolver/cmb;
+	corpsesuit = /obj/item/clothing/suit/storage/CMB;
+	corpseuniform = /obj/item/clothing/under/CM_uniform;
+	name = "Deputy Maxwell Ligis"
+	},
+/obj/item/weapon/gun/shotgun/pump/cmb,
+/turf/open/ground,
+/area/space)
+"HY" = (
+/obj/effect/landmark/weed_node,
+/turf/open/ground,
+/area/space)
 "Ic" = (
 /turf/open/floor/grass,
 /area/lv624/lazarus/quartstorage)
-"It" = (
-/obj/effect/landmark/xeno_silo_spawn,
-/turf/open/ground,
-/area/space)
+"Ih" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
+	},
+/area/lv624/lazarus/quartstorage)
+"Ii" = (
+/turf/closed/mineral/smooth/indestructible,
+/area/lv624/ground/caves/west1)
 "Iu" = (
 /obj/machinery/computer/nuke_disk_generator/green,
 /turf/open/floor/prison/yellow/full,
 /area/lv624/lazarus/engineering)
-"Ja" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/door/airlock/engineering,
-/turf/open/floor/prison/yellow,
-/area/lv624/lazarus/engineering)
+"IH" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
+"IL" = (
+/obj/effect/landmark/corpsespawner/doctor{
+	corpseback = null;
+	corpsegloves = /obj/item/clothing/gloves/latex;
+	name = "Colonist Mio Linno"
+	},
+/turf/open/floor/tile/red/redtaupe,
+/area/lv624/lazarus/security)
+"IT" = (
+/turf/closed/mineral/smooth,
+/area/lv624/ground/caves/central2)
+"IU" = (
+/obj/effect/landmark/corpsespawner/doctor{
+	corpseback = null;
+	corpsegloves = /obj/item/clothing/gloves/latex;
+	corpseidjob = "Doctor";
+	name = "Colonist Ted Koso"
+	},
+/turf/open/ground,
+/area/lv624/ground/compound/sw)
+"Je" = (
+/obj/machinery/door/airlock/mainship/generic,
+/turf/open/floor/plating,
+/area/lv624/lazarus/internal_affairs)
 "Jh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /turf/open/floor/scorched/two,
 /area/storage/tools)
-"Jt" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/obj/effect/landmark/xeno_resin_wall,
+"Jo" = (
+/obj/structure/table/flipped,
+/obj/effect/spawner/random/tech_supply,
+/obj/structure/cable,
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
+	},
+/area/vapor_processing/cargo3)
+"Js" = (
+/obj/machinery/light,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/carpet,
+/area/lv624/lazarus/canteen)
+"Jv" = (
+/obj/effect/landmark/corpsespawner/scientist{
+	corpseback = null;
+	corpseshoes = /obj/item/clothing/shoes/black;
+	corpseuniform = /obj/item/clothing/under/colonist;
+	name = "Colonist Ellis Bark"
+	},
 /turf/open/ground,
-/area/vapor_processing/caves/se)
-"Jy" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/area/space)
+"Jz" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grass,
+/area/vapor_processing/south_compound)
+"JD" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/tech_supply,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/tile/whiteyellow/full,
+/area/lv624/lazarus/quart)
+"JL" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_13";
+	name = "SOM exit point 13"
+	},
+/turf/open/ground,
+/area/space)
+"JN" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8;
+	on = 1
+	},
+/obj/effect/landmark/nuke_spawn,
+/turf/open/floor/prison/yellow,
+/area/lv624/lazarus/engineering)
+"JO" = (
+/obj/effect/landmark/corpsespawner/miner{
+	corpseback = /obj/item/storage/backpack;
+	corpsehelmet = /obj/item/clothing/head/flatcap;
+	corpseidjob = "Laborer";
+	name = "Colonist Terrin Yin"
+	},
 /turf/open/ground,
 /area/lv624/ground/caves/east1)
+"Kh" = (
+/obj/machinery/door/airlock/glass_engineering,
+/obj/effect/ai_node,
+/turf/open/floor/prison/yellow,
+/area/lv624/lazarus/engineering)
+"Kj" = (
+/obj/effect/ai_node,
+/turf/open/floor/grass,
+/area/lv624/ground/compound/c)
+"Kl" = (
+/obj/effect/landmark/corpsespawner/miner{
+	corpseback = /obj/item/storage/backpack;
+	corpsehelmet = /obj/item/clothing/head/flatcap;
+	corpseidjob = "Laborer";
+	name = "Colonist Terrin Yin"
+	},
+/turf/open/ground,
+/area/space)
+"Kr" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_24";
+	name = "SOM exit point 24"
+	},
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
+"Ks" = (
+/obj/effect/decal/cleanable/blood/oil,
+/turf/open/floor/scorched/two,
+/area/lv624/lazarus/research)
+"KE" = (
+/turf/closed/mineral/smooth/indestructible,
+/area/vapor_processing/east_compound)
 "KH" = (
 /turf/open/ground,
 /area/lv624/lazarus/quartstorage)
-"Lt" = (
+"KK" = (
+/obj/effect/ai_node,
+/turf/open/ground/grass/grass2,
+/area/lv624/ground/compound/se)
+"KO" = (
+/obj/structure/table,
+/obj/effect/spawner/random/tool,
+/turf/open/floor/prison/yellow,
+/area/lv624/lazarus/engineering)
+"KQ" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/ground,
+/area/lv624/ground/caves/east1)
+"KS" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/ground,
+/area/lv624/ground/compound/c)
+"KV" = (
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/ground,
+/area/space)
+"Ld" = (
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/tech_supply,
+/turf/open/floor/wood,
+/area/lv624/lazarus/canteen)
+"Lg" = (
+/obj/structure/rack,
+/obj/machinery/light,
+/obj/effect/spawner/random/technology_scanner,
+/turf/open/floor/tile/whiteyellow/full,
+/area/lv624/lazarus/quart)
+"Li" = (
+/obj/structure/table,
+/obj/effect/spawner/random/toolbox,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/turf/open/floor/prison/yellow,
+/area/lv624/lazarus/engineering)
+"Lj" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/ai_node,
+/turf/open/ground,
+/area/vapor_processing/east_compound)
+"Lk" = (
+/obj/effect/landmark/corpsespawner/miner{
+	corpseback = null;
+	corpseidjob = "Laborer";
+	name = "Colonist Kira Von"
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/east1)
+"Ll" = (
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/shuttle/drop2/lz2)
+"Lm" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8;
+	on = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/prison/yellow,
+/area/lv624/lazarus/engineering)
+"Lu" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/east1)
 "Lv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -5468,250 +5003,1219 @@
 /obj/structure/cable,
 /turf/open/floor/prison/yellow,
 /area/lv624/lazarus/engineering)
-"Ml" = (
+"Lx" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 9
+	},
+/obj/effect/ai_node,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/lv624/lazarus/medbay)
+"LA" = (
+/obj/machinery/power/apc/drained,
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/green/whitegreen,
+/area/lv624/lazarus/medbay)
+"LH" = (
+/turf/closed/mineral/smooth/indestructible,
+/area/lv624/lazarus/fitness)
+"LJ" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
+/area/lv624/ground/caves/central1)
+"LP" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/open/floor/plating,
+/area/maintenance/apmaint)
+"LU" = (
+/obj/effect/landmark/corpsespawner/doctor{
+	corpseback = null;
+	corpsegloves = /obj/item/clothing/gloves/latex;
+	name = "Colonist Ben Harris"
+	},
+/turf/open/ground,
+/area/vapor_processing/caves/se)
+"Ma" = (
+/obj/machinery/floodlight/landing,
+/obj/effect/decal/warning_stripes,
+/turf/open/floor/mech_bay_recharge_floor,
+/area/shuttle/drop1/lz1)
+"Mg" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
+	},
+/area/vapor_processing/cargo2)
+"Mo" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/closed/wall,
+/area/lv624/lazarus/comms)
+"Mp" = (
+/obj/effect/landmark/corpsespawner/scientist{
+	corpseback = null;
+	corpsebelt = /obj/item/weapon/gun/pistol/holdout;
+	corpseshoes = /obj/item/clothing/shoes/black;
+	corpseuniform = /obj/item/clothing/under/colonist;
+	name = "Colonist Luther Yovin"
+	},
+/turf/open/ground,
+/area/vapor_processing/caves/se)
+"Mq" = (
+/obj/effect/landmark/corpsespawner/scientist{
+	corpseback = null;
+	corpseshoes = /obj/item/clothing/shoes/black;
+	corpseuniform = /obj/item/clothing/under/colonist;
+	name = "Colonist Braxton Oxto"
+	},
+/turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
+"Mv" = (
+/obj/effect/decal/cleanable/blood/oil,
+/turf/open/floor,
+/area/maintenance/substation)
+"Mw" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
+/turf/open/floor,
+/area/lv624/lazarus/robotics)
+"MB" = (
+/obj/effect/spawner/random/toolbox,
+/obj/structure/table,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/sleep/bedrooms)
 "MD" = (
 /obj/structure/window/framed/colony,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/lv624/ground/compound/se)
-"NF" = (
+"ME" = (
+/obj/structure/bed,
+/obj/effect/ai_node,
+/turf/open/floor/wood,
+/area/crew_quarters/sleep/bedrooms)
+"MM" = (
+/obj/effect/landmark/corpsespawner/miner{
+	corpseback = null;
+	corpseidjob = "Laborer";
+	name = "Colonist Kira Von"
+	},
+/turf/open/ground,
+/area/lv624/ground/caves/central1)
+"MN" = (
+/obj/machinery/sleeper,
+/obj/effect/landmark/corpsespawner/scientist,
+/turf/open/floor/tile/white,
+/area/lv624/lazarus/medbay)
+"MP" = (
+/obj/effect/landmark/xeno_resin_door,
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/ground,
+/area/vapor_processing/caves/se)
+"Nd" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/ground,
+/area/lv624/ground/compound/se)
+"Ng" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 2
+	},
+/turf/open/floor/plating,
+/area/lv624/lazarus/internal_affairs)
+"Nn" = (
+/obj/structure/closet,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/effect/spawner/random/toolbox,
+/turf/open/floor/wood,
+/area/crew_quarters/sleep_male)
+"Nt" = (
+/obj/structure/cable,
+/obj/machinery/vending/nanomed,
+/turf/open/floor/carpet,
+/area/lv624/lazarus/canteen)
+"Nv" = (
+/obj/effect/landmark/corpsespawner/scientist{
+	corpseback = null;
+	corpseshoes = /obj/item/clothing/shoes/black;
+	corpseuniform = /obj/item/clothing/under/colonist;
+	name = "Colonist Chang Lin"
+	},
+/obj/item/weapon/gun/pistol/holdout,
+/turf/open/ground,
+/area/space)
+"NG" = (
+/obj/effect/landmark/corpsespawner/doctor{
+	corpseback = null;
+	corpsegloves = /obj/item/clothing/gloves/latex;
+	name = "Colonist Ben Harris"
+	},
+/turf/open/floor/tile/green/whitegreen,
+/area/medical/medbay2)
+"NI" = (
+/obj/effect/landmark/corpsespawner/engineer{
+	corpseback = /obj/item/storage/backpack;
+	corpseidjob = "Engineer";
+	corpseshoes = /obj/item/clothing/shoes/black;
+	name = "Colonist Wes Uvin"
+	},
+/turf/open/ground,
+/area/space)
+"NK" = (
+/obj/effect/landmark/corpsespawner/scientist{
+	corpseback = null;
+	corpseshoes = /obj/item/clothing/shoes/black;
+	corpseuniform = /obj/item/clothing/under/colonist;
+	name = "Colonist Kegan Mills"
+	},
+/turf/open/ground,
+/area/vapor_processing/caves/se)
+"NP" = (
+/obj/effect/decal/cleanable/blood/xeno,
+/turf/open/floor,
+/area/maintenance/substation)
+"NS" = (
 /obj/effect/landmark/patrol_point{
 	id = "TGMC_14";
 	name = "TGMC exit point 14"
 	},
 /turf/open/floor,
 /area/shuttle/drop2/lz2)
-"NO" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_24";
-	name = "TGMC exit point 24"
-	},
-/turf/open/floor/grass,
-/area/lv624/ground/compound/se)
-"NZ" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_11";
-	name = "SOM exit point 11"
-	},
-/turf/open/ground,
-/area/space)
+"Oa" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/wood,
+/area/shuttle/drop1/lz1)
 "Oh" = (
 /obj/structure/cable,
 /turf/closed/wall,
 /area/lv624/ground/compound/c)
+"Oi" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
+	},
+/area/vapor_processing/cargo3)
+"Oq" = (
+/obj/effect/landmark/corpsespawner/engineer{
+	corpseback = /obj/item/storage/backpack;
+	corpseidjob = "Engineer";
+	corpseshoes = /obj/item/clothing/shoes/black;
+	name = "Colonist Wes Uvin"
+	},
+/turf/open/floor/grass,
+/area/vapor_processing/east_compound)
+"Or" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/open/ground,
+/area/lv624/ground/compound/sw)
+"Ou" = (
+/obj/effect/ai_node,
+/turf/open/ground,
+/area/space)
+"Ov" = (
+/obj/structure/window/framed/colony,
+/turf/open/floor/plating,
+/area/lv624/lazarus/medbay)
+"OA" = (
+/obj/machinery/colony_floodlight_switch{
+	pixel_y = 30
+	},
+/obj/effect/decal/warning_stripes{
+	pixel_y = 30
+	},
+/turf/open/floor/tile/dark,
+/area/maintenance/substation)
+"OB" = (
+/obj/machinery/light,
+/obj/effect/decal/cleanable/blood/gibs/xeno,
+/turf/open/floor/plating/dmg1,
+/area/lv624/lazarus/research)
+"OC" = (
+/obj/effect/landmark/corpsespawner/security{
+	corpseuniform = /obj/item/clothing/under/colonist;
+	name = "Colonist Jac Mester"
+	},
+/turf/open/floor/plating,
+/area/vapor_processing/cargo_maint_s)
 "OF" = (
 /obj/structure/window/framed/colony,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/vapor_processing/east_compound)
-"OP" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_21";
-	name = "TGMC exit point 21"
+"OH" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
 	},
-/turf/open/floor/grass,
-/area/lv624/ground/compound/se)
-"PB" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_23";
-	name = "SOM exit point 23"
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/lv624/lazarus/research)
+"OK" = (
+/obj/machinery/door/airlock/glass,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating,
+/area/medical/medbay2)
+"Pd" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/effect/spawner/random/tech_supply,
+/turf/open/floor/wood,
+/area/shuttle/drop2/lz2)
+"Pf" = (
+/obj/effect/ai_node,
+/turf/open/ground,
+/area/lv624/ground/compound/n)
+"Pi" = (
+/obj/effect/landmark/corpsespawner/scientist{
+	corpseback = null;
+	corpsehelmet = /obj/item/clothing/head/tgmccap/req;
+	corpseshoes = /obj/item/clothing/shoes/black;
+	corpseuniform = /obj/item/clothing/under/colonist;
+	name = "Colonist Lee Hesto"
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/ground,
+/area/space)
+"Pl" = (
+/obj/effect/decal/cleanable/blood/gibs/xeno,
+/turf/open/floor/plating/dmg2,
+/area/lv624/lazarus/research)
+"Pr" = (
+/turf/closed/mineral/smooth/indestructible,
+/area/lv624/ground/caves/central2)
+"Ps" = (
+/obj/machinery/sleeper,
+/obj/effect/landmark/corpsespawner/prisoner,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/tile/white,
+/area/lv624/lazarus/medbay)
+"Pt" = (
+/obj/effect/landmark/corpsespawner/security{
+	corpseuniform = /obj/item/clothing/under/colonist;
+	name = "Colonist Ethan Peser"
 	},
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
+"Pv" = (
+/obj/effect/landmark/corpsespawner/doctor{
+	corpseback = null;
+	corpsegloves = /obj/item/clothing/gloves/latex;
+	name = "Colonist Mio Linno"
+	},
+/turf/open/ground,
+/area/vapor_processing/caves/se)
+"Px" = (
+/obj/effect/ai_node,
+/turf/open/floor/grass,
+/area/vapor_processing/east_compound)
+"PD" = (
+/turf/closed/mineral/smooth,
+/area/lv624/ground/caves/central1)
+"PG" = (
+/turf/closed/mineral/smooth/indestructible,
+/area/space)
 "PI" = (
 /obj/machinery/miner/damaged,
 /turf/open/floor/grass,
 /area/vapor_processing/south_compound)
-"Qv" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/indestructible/mineral,
-/area/lv624/ground/caves/central1)
-"Sa" = (
+"PK" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/grass,
+/area/lv624/ground/compound/c)
+"PN" = (
+/obj/machinery/landinglight/ds1/delaytwo{
+	dir = 4
+	},
+/obj/effect/landmark/patrol_point{
+	id = "SOM_21";
+	name = "SOM exit point 21"
+	},
+/turf/open/floor/plating,
+/area/shuttle/drop1/lz1)
+"PP" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_14";
+	name = "SOM exit point 14"
+	},
+/turf/open/ground,
+/area/space)
+"PR" = (
+/obj/effect/landmark/supplyspawner/food,
+/obj/structure/cable,
+/turf/open/floor/carpet,
+/area/lv624/lazarus/canteen)
+"PX" = (
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/lv624/lazarus/robotics)
+"PZ" = (
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/storage/tools)
+"Qc" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
 	on = 1
 	},
-/obj/effect/landmark/nuke_spawn,
-/turf/open/floor/prison/yellow,
-/area/lv624/lazarus/engineering)
-"Sw" = (
-/obj/effect/landmark/dropship_start_location,
-/turf/open/ground,
-/area/lv624/ground/compound/c)
-"SJ" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
-"TZ" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_12";
-	name = "TGMC exit point 12"
+"Qj" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/open/ground/grass/grass2,
+/area/lv624/ground/compound/n)
+"Qm" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/ground,
+/area/vapor_processing/caves/se)
+"Qp" = (
+/obj/structure/bed/chair{
+	dir = 8
 	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/effect/spawner/random/tech_supply,
+/turf/open/floor/wood,
+/area/shuttle/drop1/lz1)
+"Qr" = (
+/obj/structure/table/flipped,
+/obj/effect/spawner/random/tech_supply,
 /turf/open/floor,
-/area/shuttle/drop2/lz2)
-"Ud" = (
+/area/storage/tools)
+"Qu" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/wood,
+/area/crew_quarters/sleep/bedrooms)
+"QD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/prison/yellow{
+	dir = 8
+	},
+/area/lv624/lazarus/engineering)
+"QK" = (
+/obj/effect/landmark/corpsespawner/security{
+	corpseuniform = /obj/item/clothing/under/colonist;
+	name = "Colonist Ethan Peser"
+	},
+/turf/open/ground,
+/area/vapor_processing/caves/se)
+"QQ" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/effect/spawner/random/tech_supply,
+/turf/open/floor/wood,
+/area/lv624/lazarus/canteen)
+"QS" = (
+/obj/effect/ai_node,
 /turf/open/floor/scorched/two,
 /area/lv624/lazarus/research)
-"UJ" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral,
-/area/lv624/ground/caves/central1)
-"UU" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_22";
-	name = "TGMC exit point 22"
-	},
-/turf/open/floor/grass,
-/area/lv624/ground/compound/se)
-"Va" = (
-/obj/machinery/miner/damaged/platinum,
+"QT" = (
+/obj/effect/decal/cleanable/blood/oil,
+/turf/open/floor,
+/area/storage/tools)
+"Rg" = (
+/obj/effect/landmark/xeno_resin_wall,
 /turf/open/ground,
-/area/lv624/ground/caves/central1)
-"VG" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_13";
-	name = "SOM exit point 13"
+/area/vapor_processing/caves/se)
+"Rh" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/obj/effect/spawner/random/tech_supply,
+/turf/open/floor/wood,
+/area/shuttle/drop1/lz1)
+"Rj" = (
+/obj/effect/landmark/corpsespawner/miner{
+	corpseback = /obj/item/storage/backpack;
+	corpseidjob = "Laborer";
+	name = "Colonist Roester Kalin"
+	},
+/obj/effect/landmark/corpsespawner/miner{
+	corpseback = /obj/item/storage/backpack;
+	corpseidjob = "Laborer";
+	name = "Colonist Roester Kalin"
+	},
+/obj/effect/ai_node,
+/turf/open/ground,
+/area/lv624/ground/caves/central2)
+"Rm" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/ground,
+/area/space)
+"Rz" = (
+/obj/machinery/atmospherics/components/unary/cryo_cell,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/white,
+/area/lv624/lazarus/medbay)
+"RB" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/power/terminal,
+/obj/effect/ai_node,
+/turf/open/floor/prison/yellow,
+/area/lv624/lazarus/engineering)
+"RD" = (
+/obj/effect/landmark/corpsespawner/engineer{
+	corpseback = /obj/item/storage/backpack;
+	corpsehelmet = /obj/item/clothing/head/welding;
+	corpseidjob = "Engineer";
+	corpseshoes = /obj/item/clothing/shoes/black;
+	name = "Colonist Ted Jarka"
 	},
 /turf/open/ground,
 /area/space)
-"Wo" = (
+"Sb" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/green/whitegreen,
+/area/lv624/lazarus/medbay)
+"Sd" = (
+/obj/effect/landmark/corpsespawner/security{
+	corpsehelmet = /obj/item/clothing/head/helmet/riot;
+	corpseuniform = /obj/item/clothing/under/colonist;
+	name = "Colonist Fors Ilin"
+	},
+/turf/open/ground,
+/area/space)
+"Sk" = (
+/obj/effect/landmark/corpsespawner/doctor,
+/turf/open/floor/tile/green/whitegreen,
+/area/medical/medbay2)
+"Sl" = (
+/obj/effect/ai_node,
+/turf/open/ground,
+/area/vapor_processing/west_compound)
+"So" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/storage/tools)
+"Sr" = (
 /obj/effect/landmark/patrol_point{
 	id = "SOM_12";
 	name = "SOM exit point 12"
 	},
 /turf/open/ground,
 /area/space)
+"St" = (
+/obj/effect/landmark/corpsespawner/miner,
+/turf/open/ground,
+/area/lv624/ground/caves/west1)
+"Sx" = (
+/turf/closed/mineral/smooth/indestructible,
+/area/vapor_processing/caves/se)
+"SB" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/ground/grass/grass2,
+/area/lv624/ground/compound/se)
+"SG" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/gibs/xeno,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor,
+/area/lv624/lazarus/research)
+"SH" = (
+/obj/effect/spawner/random/toolbox,
+/obj/structure/table,
+/turf/open/floor,
+/area/lv624/lazarus/research)
+"SJ" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/tile/whiteyellow/full,
+/area/lv624/lazarus/quart)
+"SP" = (
+/obj/effect/landmark/corpsespawner/miner{
+	corpseback = null;
+	corpseidjob = "Laborer";
+	name = "Colonist Bren Foras"
+	},
+/turf/open/ground,
+/area/lv624/ground/caves/central1)
+"SS" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/door/airlock/multi_tile/mainship/engineering,
+/turf/open/floor/prison/yellow,
+/area/lv624/lazarus/engineering)
+"SV" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_13";
+	name = "TGMC exit point 13"
+	},
+/turf/open/floor,
+/area/shuttle/drop2/lz2)
+"SW" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
+/obj/machinery/vending/nanomed,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
+	},
+/area/lv624/lazarus/comms)
+"SZ" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/maintenance/substation)
+"Tb" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/grass,
+/area/vapor_processing/south_compound)
+"Tc" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
+/obj/effect/ai_node,
+/turf/open/floor/prison/yellow,
+/area/lv624/lazarus/engineering)
+"Th" = (
+/obj/effect/landmark/start/job/survivor,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/landmark/start/job/survivor,
+/obj/effect/ai_node,
+/turf/open/floor/prison/yellow,
+/area/lv624/lazarus/engineering)
+"To" = (
+/obj/machinery/door/airlock/glass,
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
+	},
+/area/vapor_processing/cargo3)
+"Tt" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/ground,
+/area/space)
+"Tu" = (
+/obj/effect/ai_node,
+/turf/open/floor/grass,
+/area/vapor_processing/south_compound)
+"TD" = (
+/obj/effect/landmark/corpsespawner/scientist{
+	corpseback = null;
+	corpseshoes = /obj/item/clothing/shoes/black;
+	corpseuniform = /obj/item/clothing/under/colonist;
+	name = "Colonist Harry Trent"
+	},
+/turf/open/ground,
+/area/vapor_processing/caves/se)
+"TS" = (
+/obj/effect/landmark/corpsespawner/syndicatesoldier,
+/turf/open/ground,
+/area/lv624/ground/caves/east1)
+"TV" = (
+/obj/effect/landmark/weed_node,
+/turf/open/ground,
+/area/lv624/ground/caves/central2)
+"Ud" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/scorched/two,
+/area/lv624/lazarus/research)
+"Ue" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/obj/effect/landmark/lv624/fog_blocker,
+/obj/effect/ai_node,
+/turf/open/ground/grass/grass2,
+/area/lv624/ground/compound/n)
+"Um" = (
+/obj/structure/table/flipped,
+/obj/effect/spawner/random/powercell,
+/turf/open/floor,
+/area/storage/tools)
+"Uu" = (
+/obj/machinery/door/poddoor/mainship{
+	dir = 2;
+	id = "secure_blast";
+	name = "\improper Secure Armory Blast Door"
+	},
+/turf/open/floor,
+/area/lv624/lazarus/research)
+"Uw" = (
+/obj/effect/landmark/corpsespawner/security{
+	corpsehelmet = /obj/item/clothing/head/helmet/riot;
+	corpseuniform = /obj/item/clothing/under/colonist;
+	name = "Colonist Fors Ilin"
+	},
+/turf/open/floor/plating,
+/area/vapor_processing/cargo_maint_s)
+"UB" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison/whitepurple,
+/area/lv624/lazarus/engineering)
+"UC" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/ground,
+/area/vapor_processing/caves/se)
+"UD" = (
+/obj/effect/ai_node,
+/turf/open/ground,
+/area/lv624/ground/caves/central1)
+"UF" = (
+/obj/effect/landmark/corpsespawner/doctor{
+	corpseback = null;
+	corpsegloves = /obj/item/clothing/gloves/latex;
+	name = "Colonist Redo Koster"
+	},
+/turf/open/ground,
+/area/vapor_processing/caves/se)
+"UG" = (
+/obj/effect/landmark/corpsespawner/engineer{
+	corpseback = /obj/item/storage/backpack;
+	corpsehelmet = /obj/item/clothing/head/welding;
+	corpseidjob = "Engineer";
+	corpseshoes = /obj/item/clothing/shoes/black;
+	name = "Colonist Ted Jarka"
+	},
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
+	},
+/area/vapor_processing/cargo3)
+"UK" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/carpet,
+/area/lv624/lazarus/canteen)
+"UM" = (
+/obj/effect/ai_node,
+/turf/open/ground,
+/area/lv624/ground/compound/c)
+"UV" = (
+/obj/effect/ai_node,
+/turf/open/ground,
+/area/lv624/lazarus/quartstorage)
+"Va" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/ground,
+/area/lv624/ground/caves/central1)
+"Vd" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/red/redtaupe,
+/area/lv624/lazarus/security)
+"Ve" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile/green/whitegreen,
+/area/lv624/lazarus/medbay)
+"Vk" = (
+/obj/structure/table/flipped,
+/obj/effect/spawner/random/bomb_supply,
+/turf/open/floor,
+/area/storage/tools)
+"Vn" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/vapor_processing/cargo_maint_s)
+"Vu" = (
+/obj/effect/landmark/corpsespawner/security{
+	corpsehelmet = /obj/item/clothing/head/tgmccap/req;
+	corpseuniform = /obj/item/clothing/under/colonist;
+	name = "Colonist Olin Berus"
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/space)
+"Vy" = (
+/obj/effect/ai_node,
+/turf/open/ground,
+/area/lv624/ground/caves/west1)
+"VC" = (
+/obj/effect/landmark/start/job/survivor,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8;
+	on = 1
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/sleep_male)
+"VI" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/ai_node,
+/turf/open/floor/scorched/two,
+/area/lv624/lazarus/research)
+"VN" = (
+/obj/effect/ai_node,
+/turf/open/ground,
+/area/vapor_processing/east_compound)
+"VO" = (
+/obj/effect/landmark/corpsespawner/engineer{
+	corpseback = /obj/item/storage/backpack;
+	corpseidjob = "Engineer";
+	corpseshoes = /obj/item/clothing/shoes/black;
+	name = "Colonist Everett Mison"
+	},
+/obj/effect/landmark/corpsespawner/engineer{
+	corpseback = /obj/item/storage/backpack;
+	corpseidjob = "Engineer";
+	corpseshoes = /obj/item/clothing/shoes/black;
+	name = "Colonist Everett Mison"
+	},
+/obj/effect/ai_node,
+/turf/open/ground,
+/area/space)
+"VS" = (
+/obj/effect/landmark/corpsespawner/scientist{
+	corpseback = null;
+	corpseshoes = /obj/item/clothing/shoes/black;
+	corpseuniform = /obj/item/clothing/under/colonist;
+	name = "Colonist Marko Quin"
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/space)
+"VV" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/storage/tools)
+"VZ" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile/whiteyellow/full,
+/area/lv624/lazarus/quart)
+"We" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/toolbox,
+/turf/open/floor/tile/whiteyellow/full,
+/area/lv624/lazarus/quart)
+"Wf" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/obj/effect/spawner/random/tech_supply,
+/turf/open/floor/wood,
+/area/shuttle/drop2/lz2)
+"Wh" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/prison/yellow/full,
+/area/lv624/lazarus/engineering)
+"Wk" = (
+/obj/effect/spawner/random/tool,
+/turf/open/floor,
+/area/lv624/lazarus/research)
+"Wq" = (
+/turf/closed/mineral/smooth,
+/area/space)
+"Wt" = (
+/obj/machinery/door/airlock/glass,
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
+	},
+/area/vapor_processing/cargo2)
+"Wu" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor,
+/area/lv624/lazarus/research)
+"Ww" = (
+/turf/closed/mineral/smooth/indestructible,
+/area/lv624/ground/caves/east1)
+"Wz" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/prison/yellow/full,
+/area/lv624/lazarus/engineering)
+"WE" = (
+/obj/structure/table/mainship,
+/obj/item/toy/deck,
+/obj/effect/spawner/random/tech_supply,
+/turf/open/floor/wood,
+/area/shuttle/drop1/lz1)
+"WF" = (
+/obj/effect/ai_node,
+/turf/open/ground,
+/area/lv624/ground/caves/central2)
+"WG" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
+/turf/open/floor/plating,
+/area/medical/medbay2)
+"WI" = (
+/obj/effect/ai_node,
+/turf/open/ground,
+/area/vapor_processing/caves/se)
+"WL" = (
+/obj/effect/landmark/corpsespawner/scientist{
+	corpseback = null;
+	corpsehelmet = /obj/item/clothing/head/soft/grey;
+	corpseshoes = /obj/item/clothing/shoes/black;
+	corpseuniform = /obj/item/clothing/under/colonist;
+	name = "Colonist Innio Morris"
+	},
+/obj/effect/landmark/corpsespawner/scientist{
+	corpseback = null;
+	corpsehelmet = /obj/item/clothing/head/soft/grey;
+	corpseshoes = /obj/item/clothing/shoes/black;
+	corpseuniform = /obj/item/clothing/under/colonist;
+	name = "Colonist Innio Morris"
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/space)
+"WQ" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/grass,
+/area/lv624/ground/compound/se)
+"WR" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor,
+/area/storage/tools)
+"WS" = (
+/obj/effect/landmark/corpsespawner/security{
+	corpsebelt = /obj/item/weapon/gun/revolver/cmb;
+	corpsesuit = /obj/item/clothing/suit/storage/CMB;
+	corpseuniform = /obj/item/clothing/under/CM_uniform;
+	name = "Marshal Logan Bills"
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/ground,
+/area/vapor_processing/caves/se)
+"WV" = (
+/obj/effect/landmark/corpsespawner/engineer{
+	corpseback = /obj/item/storage/backpack;
+	corpseidjob = "Engineer";
+	corpseshoes = /obj/item/clothing/shoes/black;
+	name = "Colonist Everett Mison"
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/landmark/corpsespawner/engineer{
+	corpseback = /obj/item/storage/backpack;
+	corpseidjob = "Engineer";
+	corpseshoes = /obj/item/clothing/shoes/black;
+	name = "Colonist Everett Mison"
+	},
+/obj/effect/ai_node,
+/turf/open/floor/prison/yellow/full,
+/area/lv624/lazarus/engineering)
+"Xa" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/ground,
+/area/vapor_processing/caves/se)
 "Xd" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/whiteyellow/corner{
 	dir = 1
 	},
 /area/vapor_processing/cargo3)
-"Xw" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral,
-/area/lv624/ground/caves/west1)
-"XN" = (
+"Xh" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
+	},
+/area/vapor_processing/cargo3)
+"Xn" = (
 /obj/effect/landmark/patrol_point{
-	id = "SOM_24";
-	name = "SOM exit point 24"
+	id = "TGMC_22";
+	name = "TGMC exit point 22"
+	},
+/turf/open/floor/grass,
+/area/lv624/ground/compound/se)
+"Xv" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/flora/pottedplant/twentytwo,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/wood,
+/area/shuttle/drop1/lz1)
+"XB" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_21";
+	name = "TGMC exit point 21"
+	},
+/turf/open/floor/grass,
+/area/lv624/ground/compound/se)
+"XE" = (
+/obj/machinery/door/airlock/glass{
+	dir = 2
+	},
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
+	},
+/area/lv624/lazarus/quart)
+"XI" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grass,
+/area/lv624/ground/compound/se)
+"XS" = (
+/obj/machinery/door/airlock/glass_engineering,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/prison/yellow,
+/area/lv624/lazarus/engineering)
+"Yb" = (
+/obj/machinery/door/poddoor/mainship{
+	dir = 2;
+	id = "secure_blast";
+	name = "\improper Secure Armory Blast Door"
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/storage/tools)
+"Yf" = (
+/obj/structure/closet/emcloset,
+/obj/effect/landmark/corpsespawner/security{
+	corpsebelt = /obj/item/weapon/gun/revolver/cmb;
+	corpsesuit = /obj/item/clothing/suit/storage/CMB;
+	corpseuniform = /obj/item/clothing/under/CM_uniform;
+	name = "Deputy Maxwell Ligis"
+	},
+/turf/open/floor/plating,
+/area/vapor_processing/cargo_maint_s)
+"Yi" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/prison/yellow/full,
+/area/lv624/lazarus/engineering)
+"Yj" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/landmark/corpsespawner/security{
+	corpsebelt = null;
+	corpsesuit = /obj/item/clothing/suit/storage/CMB;
+	corpseuniform = /obj/item/clothing/under/CM_uniform;
+	name = "Deputy Edgar Nogi"
+	},
+/turf/open/floor/plating,
+/area/vapor_processing/cargo_maint_s)
+"Yo" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/dmg3,
+/area/lv624/lazarus/research)
+"YB" = (
+/obj/effect/landmark/weed_node,
+/turf/open/ground,
+/area/vapor_processing/caves/se)
+"YD" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/tech_supply,
+/turf/open/floor/tile/whiteyellow/full,
+/area/lv624/lazarus/quart)
+"YI" = (
+/obj/structure/table,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/effect/spawner/random/toolbox,
+/turf/open/floor/wood/broken,
+/area/crew_quarters/sleep_male)
+"YL" = (
+/obj/effect/landmark/corpsespawner/engineer,
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
+	},
+/area/vapor_processing/cargo3)
+"YO" = (
+/obj/structure/bed/chair/wood/wings{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/wood/broken,
+/area/crew_quarters/sleep_male)
+"YP" = (
+/obj/structure/table,
+/obj/effect/spawner/random/toolbox,
+/turf/open/floor/wood,
+/area/crew_quarters/sleep_male)
+"YT" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 2
+	},
+/turf/open/floor/carpet,
+/area/lv624/lazarus/canteen)
+"YY" = (
+/obj/structure/table,
+/obj/effect/spawner/random/tech_supply,
+/obj/structure/cable,
+/turf/open/floor/prison/yellow,
+/area/lv624/lazarus/engineering)
+"Za" = (
+/obj/effect/ai_node,
+/turf/open/ground/grass/grass2,
+/area/lv624/ground/compound/c)
+"Zr" = (
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/lv624/lazarus/research)
+"Zs" = (
+/obj/effect/ai_node,
+/turf/open/ground,
+/area/vapor_processing/south_compound)
+"ZA" = (
+/turf/closed/mineral/smooth/indestructible,
+/area/lv624/ground/compound/se)
+"ZH" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_12";
+	name = "TGMC exit point 12"
+	},
+/turf/open/floor,
+/area/shuttle/drop2/lz2)
 "ZJ" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/grass,
 /area/vapor_processing/east_compound)
+"ZO" = (
+/obj/effect/landmark/corpsespawner/miner{
+	corpseback = null;
+	corpseidjob = "Laborer";
+	name = "Colonist Olgin Vekin"
+	},
+/turf/open/ground,
+/area/lv624/ground/caves/west1)
+"ZR" = (
+/obj/effect/decal/cleanable/blood/oil,
+/turf/open/floor,
+/area/lv624/lazarus/research)
+"ZT" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/open/ground,
+/area/lv624/ground/compound/n)
+"ZX" = (
+/obj/effect/landmark/xeno_resin_door,
+/obj/effect/landmark/xeno_resin_door,
+/obj/effect/ai_node,
+/turf/open/ground,
+/area/space)
 
 (1,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
 "}
 (2,1,1) = {"
-aa
-CJ
+PG
+go
 ad
 ad
 ad
@@ -5747,28 +6251,28 @@ ae
 ae
 ae
 ah
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
 ki
 ki
 ki
@@ -5781,13 +6285,13 @@ lt
 mc
 mc
 mc
+wM
 mc
 mc
 mc
 mc
 mc
-mc
-mc
+wM
 mr
 mc
 mc
@@ -5802,23 +6306,23 @@ mc
 mc
 mc
 mc
-XN
+Kr
+mc
+wM
 mc
 mc
 mc
-mc
-mc
-mc
-aa
+wM
+PG
 "}
 (3,1,1) = {"
-aa
+PG
 ad
 av
 az
 av
 ad
-NF
+NS
 ad
 ad
 ad
@@ -5848,26 +6352,26 @@ cZ
 cH
 ba
 cZ
-cJ
+Qj
 ah
 ah
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
 hT
 hT
 hT
@@ -5902,19 +6406,19 @@ me
 mc
 me
 mc
+wM
 mc
 mc
-mc
-mc
+wM
 mr
 mc
 mc
 mc
 mc
-aa
+PG
 "}
 (4,1,1) = {"
-aa
+PG
 ad
 av
 ad
@@ -5943,33 +6447,33 @@ ad
 ad
 az
 ad
+Ll
 ad
 ad
-ad
 ba
 ba
 ba
 ba
-cJ
+Ue
 ah
 ah
 ah
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
 hT
 jD
 jU
@@ -5998,12 +6502,12 @@ mc
 mc
 mr
 mc
+wM
 mc
 mc
 mc
 mc
-mc
-mc
+wM
 me
 me
 mc
@@ -6011,12 +6515,22 @@ mc
 mc
 mc
 mc
-GD
+wG
 mc
-aa
+PG
 "}
 (5,1,1) = {"
-aa
+PG
+ad
+ad
+ad
+Ll
+ad
+ad
+ad
+ad
+ad
+Ll
 ad
 ad
 ad
@@ -6025,6 +6539,7 @@ ad
 ad
 ad
 ad
+Ll
 ad
 ad
 ad
@@ -6033,18 +6548,7 @@ ad
 ad
 ad
 ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
+Ll
 ad
 cQ
 cT
@@ -6056,22 +6560,22 @@ ah
 ah
 ah
 ah
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
 hT
 jE
 jV
@@ -6093,13 +6597,13 @@ mc
 mc
 ms
 mc
+wM
 mc
 mc
 mc
 mc
 mc
-mc
-mc
+wM
 ms
 mc
 mc
@@ -6115,14 +6619,14 @@ me
 me
 me
 mc
-aa
+PG
 "}
 (6,1,1) = {"
-aa
+PG
 ad
 ad
 ad
-Ek
+SV
 ai
 ap
 ap
@@ -6159,16 +6663,16 @@ ah
 ah
 ah
 ah
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
 hT
 if
 if
@@ -6190,7 +6694,7 @@ mc
 mc
 me
 mc
-bT
+Ma
 bY
 bY
 cc
@@ -6201,7 +6705,7 @@ cc
 cf
 ch
 bY
-bT
+Ma
 cf
 ch
 bY
@@ -6211,18 +6715,18 @@ ch
 bY
 cc
 cf
-fD
-bT
+PN
+Ma
 mc
 mc
 mc
 mc
-aa
+PG
 "}
 (7,1,1) = {"
-aa
+PG
 ad
-TZ
+ZH
 az
 ad
 aj
@@ -6253,8 +6757,8 @@ ad
 cS
 cT
 db
-dn
-dD
+yb
+Wf
 ae
 ah
 ah
@@ -6262,33 +6766,33 @@ ah
 ah
 ah
 ah
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+PG
+PG
+PG
+PG
+PG
+PG
+PG
 eK
 eK
 hT
 nr
+Vd
 it
 it
-it
-jm
-it
+na
+Vd
 it
 it
 it
 kN
 kQ
-ln
+Or
 lu
-lv
+Vn
 lv
 lu
-mc
+wM
 me
 mc
 mc
@@ -6314,15 +6818,15 @@ bZ
 bZ
 cd
 bZ
-cy
+ov
 mc
-PB
+xH
 mc
-mc
-aa
+wM
+PG
 "}
 (8,1,1) = {"
-aa
+PG
 ad
 ad
 az
@@ -6356,7 +6860,7 @@ ad
 cT
 dc
 do
-dE
+BM
 ae
 ah
 ah
@@ -6364,19 +6868,19 @@ ah
 ah
 ah
 ah
-aa
-aa
-aa
-aa
-aa
-aa
+PG
+PG
+PG
+PG
+PG
+PG
 eK
 eK
 eK
 hT
 og
 it
-rE
+IL
 it
 it
 it
@@ -6385,12 +6889,12 @@ jW
 it
 kO
 kQ
-ln
+Or
 lv
 lv
 lv
 lv
-sL
+Pt
 mc
 mc
 mc
@@ -6415,20 +6919,20 @@ bZ
 bZ
 bZ
 bZ
-bZ
+za
 cz
 pK
 pK
 pK
 pK
-aa
+PG
 "}
 (9,1,1) = {"
-aa
+PG
 ad
 az
 az
-ad
+Ll
 al
 aq
 aq
@@ -6467,10 +6971,10 @@ ah
 ah
 ah
 ah
-aa
-aa
-aa
-aa
+PG
+PG
+PG
+PG
 em
 em
 eK
@@ -6486,7 +6990,7 @@ jY
 qy
 kB
 hT
-su
+IU
 kQ
 lt
 lv
@@ -6523,13 +7027,13 @@ pK
 pN
 pW
 qe
-aa
+PG
 "}
 (10,1,1) = {"
-aa
+PG
 ad
 ad
-ad
+Ll
 ad
 am
 aq
@@ -6560,7 +7064,7 @@ ad
 cT
 de
 dq
-dG
+Pd
 ae
 ah
 ah
@@ -6623,12 +7127,12 @@ bZ
 cB
 pK
 pO
-pX
-qf
-aa
+Oa
+Rh
+PG
 "}
 (11,1,1) = {"
-aa
+PG
 ad
 ad
 ad
@@ -6656,7 +7160,7 @@ aq
 aq
 aq
 aX
-ad
+Ll
 ad
 cO
 ad
@@ -6668,7 +7172,7 @@ ah
 ah
 dX
 ec
-iv
+zw
 eD
 eD
 eV
@@ -6726,11 +7230,11 @@ cy
 pK
 pP
 pY
-qg
-aa
+WE
+PG
 "}
 (12,1,1) = {"
-aa
+PG
 ad
 az
 ad
@@ -6772,7 +7276,7 @@ dX
 ed
 ev
 ee
-iF
+NG
 ee
 dX
 eK
@@ -6827,12 +7331,12 @@ bZ
 cz
 pK
 pQ
-pZ
+yz
 qh
-aa
+PG
 "}
 (13,1,1) = {"
-aa
+PG
 ad
 az
 ad
@@ -6864,13 +7368,13 @@ ad
 cO
 ad
 ad
-cp
+cZ
 ba
 dv
-cp
-cr
+cZ
+ZT
 cs
-dY
+WG
 ee
 ee
 dX
@@ -6900,10 +7404,10 @@ lt
 lv
 lv
 lt
+wM
 mc
 mc
-mc
-mc
+wM
 bW
 bZ
 bZ
@@ -6928,13 +7432,13 @@ bZ
 bZ
 cA
 pK
-pR
+Xv
 qa
-qi
-aa
+Qp
+PG
 "}
 (14,1,1) = {"
-aa
+PG
 ad
 az
 ad
@@ -6966,15 +7470,15 @@ ad
 ad
 ad
 ad
-cp
+ba
 ba
 dv
-cp
-cr
-io
-ip
+ba
+Ec
+Cq
+OK
 ee
-ee
+xW
 eF
 eE
 eE
@@ -6993,13 +7497,13 @@ iB
 iB
 iB
 ka
-kr
-kD
+xR
+Cb
 iB
 ki
 ki
 lt
-sH
+Uw
 lv
 lt
 mc
@@ -7033,10 +7537,10 @@ mc
 ot
 me
 mc
-aa
+PG
 "}
 (15,1,1) = {"
-aa
+PG
 ad
 ad
 ad
@@ -7068,16 +7572,16 @@ ad
 ad
 ad
 ad
-cp
+ae
 ba
 dv
-cp
-cr
+ae
+ZT
 cs
-dY
+dX
 ee
 ee
-ee
+xW
 ee
 eX
 dX
@@ -7085,7 +7589,7 @@ fC
 fC
 ga
 ha
-hs
+oI
 fC
 eK
 em
@@ -7096,7 +7600,7 @@ jn
 qm
 kb
 ks
-qA
+Db
 pp
 ki
 ki
@@ -7132,16 +7636,16 @@ bZ
 bZ
 cy
 mc
-ot
+Be
 mc
 mc
-aa
+PG
 "}
 (16,1,1) = {"
-aa
+PG
 ad
 az
-ad
+Ll
 ad
 ak
 aq
@@ -7178,15 +7682,15 @@ dQ
 ah
 dX
 ef
-ew
+zs
 eG
-iG
+Az
 ee
-fm
+Fl
 ly
 ly
 ly
-ly
+Sb
 ht
 fC
 eK
@@ -7198,7 +7702,7 @@ jo
 qn
 kc
 kt
-kF
+Ld
 pp
 ki
 ki
@@ -7235,14 +7739,14 @@ bZ
 cz
 mc
 ot
+wM
 mc
-mc
-aa
+PG
 "}
 (17,1,1) = {"
-aa
+PG
 ad
-ad
+Ll
 ad
 ad
 ao
@@ -7279,17 +7783,17 @@ ae
 ah
 ah
 dX
-eg
+Eb
 ex
-eH
+vt
 ee
-iH
+Sk
 ee
 ly
 ly
 ly
 ly
-lR
+Ve
 fC
 eK
 em
@@ -7297,10 +7801,10 @@ eK
 eK
 iB
 jp
-sg
+ys
 kd
 ku
-kG
+QQ
 iB
 ki
 ki
@@ -7339,10 +7843,10 @@ mc
 ot
 mc
 mc
-aa
+PG
 "}
 (18,1,1) = {"
-aa
+PG
 ad
 ad
 ad
@@ -7370,18 +7874,18 @@ au
 ay
 aB
 ai
+Ll
 ad
-ad
-ad
+Ll
 ad
 ae
 dv
 dv
 ae
-ah
+wp
 ah
 dX
-eh
+uV
 ex
 eI
 ee
@@ -7390,16 +7894,16 @@ dX
 fE
 fE
 fE
-hb
-lR
-hI
+LA
+Ve
+vM
 eo
 eo
-eo
+Sl
 eo
 iB
 jq
-sa
+Ff
 jr
 iO
 iB
@@ -7414,7 +7918,7 @@ mc
 me
 mc
 mc
-bT
+Ma
 ca
 ca
 ce
@@ -7425,7 +7929,7 @@ ce
 cg
 cj
 ca
-bT
+Ma
 cg
 cj
 ca
@@ -7435,16 +7939,16 @@ cj
 ca
 ce
 cg
-cj
-bT
+CW
+Ma
 mc
 ot
 mc
 mc
-aa
+PG
 "}
 (19,1,1) = {"
-aa
+PG
 ad
 ad
 ad
@@ -7452,14 +7956,14 @@ ad
 ad
 ad
 ad
+Ll
 ad
 ad
 ad
 ad
 ad
 ad
-ad
-ad
+Ll
 ad
 ad
 ad
@@ -7484,26 +7988,26 @@ ah
 ah
 dX
 ei
-ey
+HD
 eJ
 eP
 eY
 dX
 fa
 fC
-gb
+Dl
 hc
 ly
 fC
 eK
 eK
 em
-eo
-iM
+Sl
+YT
+Cg
 jr
-jr
-jJ
-kv
+Dd
+PR
 iB
 kP
 kP
@@ -7515,7 +8019,7 @@ lt
 mc
 mc
 mc
-tH
+IH
 mc
 mc
 mc
@@ -7533,20 +8037,20 @@ mc
 mc
 mc
 oW
+wM
 mc
-mc
-tm
-mc
+wD
+wM
 mc
 mc
 mc
 pT
 mc
 mc
-aa
+PG
 "}
 (20,1,1) = {"
-aa
+PG
 ad
 ad
 av
@@ -7586,15 +8090,15 @@ ah
 ah
 dX
 ej
-ez
+kM
 eW
 eQ
 eZ
 fn
 fa
 fC
-gc
-hd
+Rz
+wL
 ly
 fC
 eK
@@ -7617,13 +8121,13 @@ lt
 mc
 mc
 mc
+wM
 mc
 mc
 mc
 mc
 mc
-mc
-mc
+wM
 mc
 mc
 me
@@ -7631,7 +8135,7 @@ me
 mc
 mr
 mc
-tm
+wD
 mc
 mc
 oX
@@ -7645,18 +8149,18 @@ mc
 pT
 mc
 mc
-aa
+PG
 "}
 (21,1,1) = {"
-aa
+PG
+ad
+Ll
 ad
 ad
+Ll
 ad
 ad
-ad
-ad
-ad
-ad
+Ll
 ad
 ad
 ad
@@ -7678,7 +8182,7 @@ az
 ad
 ad
 ad
-ad
+Ll
 ad
 ae
 aC
@@ -7711,7 +8215,7 @@ iO
 kH
 kQ
 kQ
-ln
+Or
 lu
 lv
 lv
@@ -7726,8 +8230,8 @@ me
 me
 me
 mc
-mc
-tm
+wM
+wD
 mc
 mc
 mc
@@ -7747,10 +8251,10 @@ me
 ot
 mc
 mc
-aa
+PG
 "}
 (22,1,1) = {"
-aa
+PG
 ad
 ad
 aN
@@ -7765,21 +8269,21 @@ ad
 aN
 ad
 ad
-ad
-ad
-ad
-ad
-aN
-ad
-ad
-ad
-ad
+Ll
 ad
 ad
 ad
 aN
 ad
+Ll
 ad
+ad
+ad
+ad
+Ll
+aN
+ad
+Ll
 ad
 ad
 ae
@@ -7798,30 +8302,30 @@ eK
 fa
 fC
 ge
-hf
+Lx
 ly
 fC
 eK
 em
 em
-iC
-iO
-sa
+iB
+Nt
+Bk
 jr
 jr
-iO
+UK
 jr
-sq
+Eq
 kQ
-ln
+Or
 lv
 lv
-lv
+Vn
 lv
 mc
 mc
 mc
-mc
+wM
 mc
 mc
 mc
@@ -7829,30 +8333,30 @@ mX
 mc
 mc
 mr
-mc
+wM
 mc
 mX
-mc
+wM
 mc
 mc
 ot
 ot
 oN
 ot
+Be
 ot
-ot
-ot
+Be
 ot
 pw
 oN
+Be
 ot
-ot
+wM
 mc
-mc
-aa
+PG
 "}
 (23,1,1) = {"
-aa
+PG
 ae
 ae
 ae
@@ -7872,9 +8376,9 @@ bs
 bs
 bs
 bs
-cp
-cp
-cp
+ae
+ba
+bj
 ae
 ae
 ba
@@ -7899,7 +8403,7 @@ eK
 eK
 fa
 fC
-gf
+Ps
 ly
 hu
 fC
@@ -7910,7 +8414,7 @@ iB
 iP
 jt
 pn
-pB
+Ep
 kx
 iB
 kQ
@@ -7942,25 +8446,25 @@ lt
 lt
 lt
 lt
-oP
-oP
-oP
+lt
+lv
+lK
 lt
 lt
 lv
 lK
 lt
 lt
-aa
+PG
 "}
 (24,1,1) = {"
-aa
+PG
 ae
 aC
-fv
+Fu
 ba
-bi
-bi
+LP
+LP
 ba
 ba
 ba
@@ -7990,7 +8494,7 @@ ba
 ba
 dv
 ae
-ah
+wp
 ah
 bm
 em
@@ -8025,11 +8529,11 @@ lv
 lv
 mt
 lv
-lv
+Vn
 mt
 lD
 lt
-tg
+OC
 lC
 lv
 lC
@@ -8051,28 +8555,28 @@ lt
 lC
 lv
 lv
-um
+Yf
 lt
-aa
+PG
 "}
 (25,1,1) = {"
-aa
+PG
 ae
 aE
 ba
 be
-ba
+FQ
 ba
 be
 ba
 ba
 ba
-ba
+FQ
 bu
 bu
 bu
 bu
-bu
+Di
 bu
 bN
 bs
@@ -8112,7 +8616,7 @@ eK
 em
 iB
 qk
-sb
+GR
 qq
 qw
 iO
@@ -8120,13 +8624,13 @@ iB
 ki
 ki
 ki
-lw
+lt
+DP
 lG
 lG
 lG
 lG
-lG
-lG
+GU
 lG
 lG
 lG
@@ -8146,7 +8650,7 @@ lB
 lv
 qF
 lt
-ue
+Yj
 lv
 lL
 lt
@@ -8155,10 +8659,10 @@ lv
 lv
 qb
 lt
-aa
+PG
 "}
 (26,1,1) = {"
-aa
+PG
 ae
 ae
 ae
@@ -8178,9 +8682,9 @@ bu
 bu
 bO
 bs
-cp
-cp
-cp
+ae
+ba
+bj
 ae
 ae
 ba
@@ -8205,7 +8709,7 @@ eK
 eK
 fa
 qC
-gi
+MN
 ly
 hx
 qC
@@ -8248,19 +8752,19 @@ lt
 oP
 lt
 lt
-oP
-oP
-oP
+lt
+lv
+lK
 lt
 lt
 lv
 lK
 lt
 lt
-aa
+PG
 "}
 (27,1,1) = {"
-aa
+PG
 ah
 ah
 ah
@@ -8280,21 +8784,21 @@ bA
 bL
 bP
 bs
-cr
-cr
-cr
+ZT
+ZT
+ZT
 ah
 cI
-cJ
-cJ
+Qj
+Ue
 cI
 ah
 ah
 ah
+wp
 ah
-ah
-cr
-cr
+ZT
+ZT
 cs
 ah
 bk
@@ -8330,8 +8834,8 @@ ki
 kY
 ki
 mu
-ln
-ln
+Or
+Or
 mu
 ki
 ki
@@ -8342,27 +8846,27 @@ kY
 ki
 ki
 kP
-ln
-ln
+Or
+Or
 kP
 kR
 kY
 ki
 kX
 ki
-ln
-ln
-ln
+Or
+Or
+Or
 ki
 pE
-pL
-pL
+FG
+FG
 pE
 ki
-aa
+PG
 "}
 (28,1,1) = {"
-aa
+PG
 ah
 ah
 ah
@@ -8383,7 +8887,7 @@ cm
 cm
 cm
 cs
-cs
+Pf
 cs
 ah
 ah
@@ -8410,7 +8914,7 @@ eK
 fa
 fC
 gk
-ly
+Sb
 hz
 fC
 eK
@@ -8421,7 +8925,7 @@ iU
 jr
 qt
 qw
-sn
+Js
 pp
 kR
 kX
@@ -8444,7 +8948,7 @@ kY
 ki
 ki
 kP
-kQ
+Br
 kQ
 kP
 kR
@@ -8461,11 +8965,11 @@ ki
 ki
 ki
 ki
-aa
+PG
 "}
 (29,1,1) = {"
-ab
-ab
+Ii
+Ii
 ah
 ah
 ah
@@ -8481,10 +8985,10 @@ bm
 ah
 ah
 ah
-ah
+wp
 ah
 jL
-cs
+Pf
 cs
 cs
 ah
@@ -8512,7 +9016,7 @@ eK
 fa
 fC
 gl
-lR
+Ve
 hA
 fC
 eK
@@ -8523,7 +9027,7 @@ pp
 pp
 pp
 iB
-iM
+FC
 iB
 kR
 ki
@@ -8562,12 +9066,12 @@ ki
 ki
 ki
 ki
-aa
-aa
+PG
+PG
 "}
 (30,1,1) = {"
-ab
-ab
+Ii
+Ii
 ah
 ah
 ah
@@ -8595,20 +9099,20 @@ ah
 bm
 ah
 ah
+wp
+cs
+Pf
 ah
 cs
+Pf
 cs
-ah
-cs
-cs
-cs
-cs
+Pf
 cs
 cs
 eo
 eo
 eo
-eo
+Sl
 eo
 em
 fa
@@ -8620,12 +9124,12 @@ fC
 eK
 eK
 eo
+Sl
+eo
+FS
 eo
 eo
-pl
-eo
-eo
-eo
+Sl
 eo
 kR
 kY
@@ -8636,7 +9140,7 @@ ki
 ki
 ki
 lH
-lQ
+PZ
 lQ
 lH
 ki
@@ -8664,13 +9168,13 @@ ki
 kY
 kY
 kX
-aa
-aa
+PG
+PG
 "}
 (31,1,1) = {"
-ab
-ab
-ab
+Ii
+Ii
+Ii
 ah
 ah
 ah
@@ -8688,15 +9192,15 @@ ah
 ah
 ah
 jL
+Pf
 cs
 cs
-cs
 ah
 ah
 ah
 ah
 ah
-ah
+wp
 ah
 cs
 ah
@@ -8723,12 +9227,12 @@ eK
 em
 eo
 eo
-iV
+uU
 eo
 eo
 eo
 eo
-eo
+Sl
 kR
 kR
 kR
@@ -8737,7 +9241,7 @@ kR
 kR
 kR
 lH
-mg
+Qr
 lQ
 lQ
 mK
@@ -8759,27 +9263,27 @@ ki
 ki
 ki
 kQ
-kQ
+Br
 kQ
 ki
 ki
 kY
 ki
 qc
-aa
-aa
+PG
+PG
 "}
 (32,1,1) = {"
-ab
-ab
-ab
-ab
+Ii
+Ii
+Ii
+Ii
+bf
+BN
 bf
 bf
 bf
-bf
-bf
-bf
+BN
 ah
 ah
 ah
@@ -8787,12 +9291,12 @@ ah
 ah
 ah
 ah
-ah
+wp
 bQ
 jM
-cu
-cu
-cu
+cx
+EC
+bQ
 bQ
 bQ
 bQ
@@ -8804,7 +9308,7 @@ ah
 cV
 cV
 cV
-cW
+Je
 cV
 cV
 cV
@@ -8818,7 +9322,7 @@ et
 GV
 fC
 fC
-fC
+Ov
 fC
 fC
 ep
@@ -8839,8 +9343,8 @@ ki
 ki
 lU
 mf
-mg
-tc
+Qr
+WR
 lQ
 mK
 mP
@@ -8852,7 +9356,7 @@ ki
 nd
 nv
 nx
-tB
+Mv
 nx
 nx
 ow
@@ -8868,14 +9372,14 @@ ki
 ki
 ki
 qc
-aa
-aa
+PG
+PG
 "}
 (33,1,1) = {"
-ab
-ab
-ab
-ab
+Ii
+Ii
+Ii
+Ii
 bf
 bf
 bf
@@ -8941,7 +9445,7 @@ ki
 lH
 lV
 lQ
-mg
+Qr
 lQ
 lQ
 mK
@@ -8969,19 +9473,19 @@ lg
 lg
 le
 le
-aa
-aa
-aa
+PG
+PG
+PG
 "}
 (34,1,1) = {"
-ab
-ab
-ab
-ab
+Ii
+Ii
+Ii
+Ii
 bb
 bb
-ab
-ab
+Ii
+Ii
 bf
 bf
 bf
@@ -8994,7 +9498,7 @@ ah
 bf
 bQ
 kn
-cx
+vb
 cx
 cx
 cF
@@ -9016,19 +9520,19 @@ cV
 ep
 eq
 eq
-eu
+UM
 eu
 ep
 GV
 ep
 ep
-ep
+Kj
 eu
 eu
 eu
 eu
 eu
-eu
+UM
 fk
 sc
 sh
@@ -9042,8 +9546,8 @@ sC
 lH
 lO
 lV
-mg
-mg
+Qr
+Qr
 lQ
 lQ
 mK
@@ -9056,7 +9560,7 @@ np
 nw
 nz
 oi
-oi
+SZ
 oi
 oi
 nz
@@ -9071,24 +9575,24 @@ lg
 lg
 le
 le
-aa
-aa
-aa
+PG
+PG
+PG
 "}
 (35,1,1) = {"
-ab
-ab
-ab
+Ii
+Ii
+Ii
 bb
 bb
 bb
-ab
-ab
-ab
+Ii
+Ii
+Ii
 bb
 bb
-ab
-ab
+Ii
+Ii
 bf
 bf
 ah
@@ -9097,7 +9601,7 @@ bf
 bQ
 kE
 cx
-cx
+vb
 cx
 cx
 cx
@@ -9105,17 +9609,17 @@ cx
 cx
 cs
 cs
+Pf
 cs
-cs
-cW
+Ng
 di
 dz
-dz
+EO
 dz
 dz
 dU
 cV
-er
+vE
 ep
 eq
 eu
@@ -9136,7 +9640,7 @@ sd
 jx
 jx
 jx
-jx
+fJ
 jQ
 jx
 sx
@@ -9146,21 +9650,21 @@ lP
 lV
 lV
 lV
+VV
 lV
 lV
 lV
-lV
-lV
+VV
 rr
 lU
 ne
 ne
 ne
 ne
-oi
+SZ
 nX
 nX
-tS
+NP
 nd
 nd
 nd
@@ -9173,25 +9677,25 @@ lg
 lg
 le
 le
-aa
-aa
-aa
+PG
+PG
+PG
 "}
 (36,1,1) = {"
-ab
-ab
+Ii
+Ii
+Vy
 bb
 bb
+Vy
+Ii
+Ii
+Ii
 bb
 bb
-ab
-ab
-ab
-bb
-bb
-ab
-ab
-ab
+Ii
+Ii
+Ii
 bf
 bf
 bm
@@ -9232,7 +9736,7 @@ hJ
 et
 et
 et
-eu
+UM
 ep
 iX
 jO
@@ -9241,10 +9745,10 @@ iX
 kJ
 kU
 lb
-sy
-iX
-lH
-sI
+Cd
+Mo
+sM
+sP
 sK
 sK
 sK
@@ -9252,19 +9756,19 @@ sP
 sK
 sK
 sK
-td
+wj
 sP
 sM
 tj
 tl
 tn
-to
+te
 tn
 tn
 tn
-tT
-tV
-tT
+Bm
+vz
+Bm
 ua
 nd
 le
@@ -9276,26 +9780,26 @@ le
 le
 le
 le
-aa
-aa
+PG
+PG
 "}
 (37,1,1) = {"
-ab
-ab
+Ii
+Ii
 bb
 bb
 bb
-ab
-ab
-ab
-ab
+Ii
+Ii
+Ii
+Ii
 bb
 bb
-fM
-ab
-ab
-ab
-ab
+ZO
+Ii
+Ii
+Ii
+Ii
 bm
 bf
 bQ
@@ -9333,7 +9837,7 @@ et
 et
 et
 ep
-er
+vE
 eu
 et
 ep
@@ -9346,16 +9850,16 @@ iX
 sz
 le
 lH
-sJ
-lX
-lX
-lX
-sQ
+wC
+Um
+Um
+Um
+So
 lQ
-mL
-mL
-mL
-th
+Vk
+Vk
+Vk
+ES
 lH
 nd
 qJ
@@ -9365,7 +9869,7 @@ nd
 nd
 nd
 oj
-oy
+OA
 nx
 ub
 nd
@@ -9378,26 +9882,26 @@ le
 le
 le
 le
-aa
-aa
+PG
+PG
 "}
 (38,1,1) = {"
-ab
-ab
+Ii
+Ii
 bb
 bb
-ab
-ab
-ab
-ab
+Ii
+Ii
+Ii
+Ii
 bb
 bb
 bb
-ab
-ab
-ab
-ab
-ab
+Ii
+Ii
+Ii
+Ii
+Ii
 bm
 bf
 bQ
@@ -9451,7 +9955,7 @@ le
 lH
 lQ
 lQ
-lQ
+PZ
 sQ
 lQ
 lQ
@@ -9470,43 +9974,43 @@ nN
 nx
 nx
 nd
-le
+Tu
 le
 lh
+Zs
 lh
-lh
 le
 le
 le
+Tu
 le
-le
-aa
-aa
+PG
+PG
 "}
 (39,1,1) = {"
-ab
-ab
+Ii
+Ii
 bb
 bb
-ab
-ab
-ab
-ab
-bb
-bb
-bb
-ab
-ab
-ab
+Ii
+Ii
+Ii
+Ii
 bb
 bb
 bb
-bf
+Ii
+Ii
+Ii
+bb
+Vy
+bb
+BN
 bQ
 bQ
-cu
-cu
-cu
+cx
+EC
+bQ
 bQ
 bQ
 bQ
@@ -9556,7 +10060,7 @@ mi
 lQ
 sQ
 lQ
-ta
+QT
 mP
 lH
 le
@@ -9564,14 +10068,14 @@ le
 le
 le
 nd
-oi
+SZ
 nx
 nx
 nx
 nx
-nx
+fK
 nd
-le
+Tu
 le
 le
 lh
@@ -9582,28 +10086,28 @@ le
 le
 le
 le
-aa
-aa
+PG
+PG
 "}
 (40,1,1) = {"
-ab
-ab
+Ii
+Ii
+Vy
+bb
+bb
+Vy
+bb
+bb
+bb
+Vy
+Ii
+Ii
+Ii
 bb
 bb
 bb
 bb
-bb
-bb
-bb
-bb
-ab
-ab
-ab
-bb
-bb
-bb
-bb
-ab
+Ii
 bf
 bf
 cs
@@ -9628,7 +10132,7 @@ dl
 es
 es
 GV
-ep
+Kj
 fd
 fq
 fL
@@ -9641,8 +10145,8 @@ hh
 mO
 fT
 eu
-iW
-se
+iX
+SW
 sh
 sh
 so
@@ -9667,12 +10171,12 @@ le
 le
 lg
 ne
-nx
+fK
 nx
 nx
 nx
 nd
-le
+Tu
 le
 le
 le
@@ -9684,12 +10188,12 @@ le
 le
 le
 le
-aa
-aa
+PG
+PG
 "}
 (41,1,1) = {"
-ab
-ab
+Ii
+Ii
 bb
 bb
 bb
@@ -9698,20 +10202,20 @@ bb
 bb
 bb
 bb
+Vy
 bb
 bb
 bb
 bb
+Vy
+Ii
+Ii
+Ii
+Ii
 bb
 bb
-ab
-ab
-ab
-ab
 bb
-bb
-bb
-ab
+Ii
 bm
 bm
 bm
@@ -9729,18 +10233,18 @@ ah
 ah
 et
 et
-ep
+Kj
 ep
 fd
 fr
 fs
 fT
 SJ
-hi
+Hb
 hh
 mO
 hh
-ij
+Lg
 fT
 eu
 iX
@@ -9748,7 +10252,7 @@ sf
 jQ
 jQ
 jQ
-jQ
+nW
 jQ
 jx
 jx
@@ -9787,17 +10291,17 @@ le
 le
 le
 le
-aa
+PG
 "}
 (42,1,1) = {"
-ab
-ab
-ab
+Ii
+Ii
+Ii
 bb
 bb
 bb
-bg
-bg
+Fa
+Fa
 bb
 bb
 bb
@@ -9805,44 +10309,44 @@ bb
 bb
 bb
 bb
-ab
-ab
-ab
-ab
-ab
+Ii
+Ii
+Ii
+Ii
+Ii
 bb
 bb
 bb
-ab
-ab
-ab
-ab
-ab
-ab
-bf
+Ii
+Ii
+Ii
+Ii
+Ii
+Ii
+BN
 bf
 bf
 ah
 ah
 ah
-bf
+BN
 bf
 ah
 ah
 et
-et
+Za
 fk
 fk
 fd
 eL
-jw
+ry
 kz
 lq
-mS
+JD
 AT
-pm
+DY
 hh
-hN
+We
 fT
 eu
 ep
@@ -9886,47 +10390,47 @@ lh
 le
 le
 lf
+Tu
 le
 le
-le
-aa
+PG
 "}
 (43,1,1) = {"
-ab
-ab
-ab
-ab
+Ii
+Ii
+Ii
+Ii
 bb
 bb
-bg
-bg
-bg
-bg
-bg
-bg
-bg
-ab
-ab
-ab
-ab
-ab
-ab
+Fa
+Fa
+Fa
+Fa
+Fa
+Fa
+Fa
+Ii
+Ii
+Ii
+Ii
+Ii
+Ii
 bb
 bb
+Vy
 bb
-bb
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
+Ii
+Ii
+Ii
+Ii
+Ii
+Ii
+Ii
+Ii
 bf
 bf
 bf
-ah
+wp
 bf
 bf
 ah
@@ -9940,9 +10444,9 @@ eS
 jy
 fT
 gQ
-hk
-nZ
-pq
+GC
+Qc
+CH
 hh
 ik
 fT
@@ -9989,45 +10493,45 @@ le
 le
 lf
 lf
+Tu
 le
-le
-aa
+PG
 "}
 (44,1,1) = {"
-ab
-ab
-ab
+Ii
+Ii
+Ii
 bb
 bb
 bb
-bg
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
+Fa
+Ii
+Ii
+Ii
+Ii
+Ii
+Ii
+Ii
+Ii
+Ii
+Ii
+Ii
 bb
 bb
+Vy
 bb
 bb
+Ii
+Ii
+Ii
+Ii
+Ii
+Ii
 bb
-ab
-ab
-ab
-ab
-ab
-ab
-bb
-bb
+Vy
 cs
 cs
-bf
+BN
 bk
 bf
 ah
@@ -10042,9 +10546,9 @@ fs
 fs
 fT
 gQ
-hl
-oQ
-qM
+YD
+VZ
+zY
 hh
 oh
 fT
@@ -10056,7 +10560,7 @@ ep
 ep
 ep
 ep
-pH
+Tb
 le
 le
 lf
@@ -10078,7 +10582,7 @@ mQ
 nO
 nO
 nO
-ut
+yS
 mo
 le
 le
@@ -10093,38 +10597,38 @@ le
 lf
 le
 le
-aa
+PG
 "}
 (45,1,1) = {"
-ab
-ab
+Ii
+Ii
+Vy
+bb
+bb
+Vy
+Fa
+Ii
+Ii
+Fa
+Fa
+Fa
+Fa
+Fa
+Fa
+Ii
+Ii
 bb
 bb
 bb
 bb
-bg
-ab
-ab
-bg
-bg
-bg
-bg
-bg
-bg
-ab
-ab
 bb
 bb
-bb
-bb
-bb
-bb
-ab
-ab
-ab
-ab
-ab
-ab
+Ii
+Ii
+Ii
+Ii
+Ii
+Ii
 bb
 bb
 bb
@@ -10139,12 +10643,12 @@ ep
 ep
 eL
 eT
-iI
+Em
 fs
-fs
-fW
+Ih
+XE
 gS
-nq
+CY
 gS
 rb
 gS
@@ -10165,7 +10669,7 @@ lf
 lf
 le
 lH
-mv
+ER
 Jh
 mv
 mv
@@ -10195,24 +10699,20 @@ le
 le
 le
 le
-aa
+PG
 "}
 (46,1,1) = {"
-ab
-ab
+Ii
+Ii
 bb
 bb
 bb
-bg
-ab
-ab
-bg
-bg
-bg
-bb
-bb
-bb
-bb
+Fa
+Ii
+Ii
+Fa
+Fa
+Fa
 bb
 bb
 bb
@@ -10220,16 +10720,20 @@ bb
 bb
 bb
 bb
-ab
-ab
-ab
-ab
-ab
 bb
 bb
 bb
 bb
-ab
+Ii
+Ii
+Ii
+Ii
+Ii
+bb
+bb
+bb
+bb
+Ii
 bf
 bf
 ah
@@ -10243,14 +10747,14 @@ eL
 eL
 fd
 eL
-fN
+yD
 fT
 fT
 fT
 fT
 rc
 fT
-fW
+yg
 fT
 eu
 et
@@ -10297,21 +10801,18 @@ le
 le
 le
 le
-aa
+PG
 "}
 (47,1,1) = {"
-ab
-ab
+Ii
+Ii
 bb
 bb
-bg
-bg
-ab
-bg
-bg
-bb
-bb
-bb
+Fa
+Fa
+Ii
+Fa
+Fa
 bb
 bb
 bb
@@ -10321,16 +10822,19 @@ bb
 bb
 bb
 bb
-ab
-bg
-bg
+bb
+bb
+bb
+Ii
+Fa
+Fa
+Vy
 bb
 bb
 bb
 bb
 bb
-bb
-bb
+Vy
 bm
 bf
 bf
@@ -10345,16 +10849,16 @@ Ic
 Ic
 AB
 KH
-KH
+UV
 iL
 iL
 iL
 iL
+Bj
 iL
+vT
 iL
-iL
-iL
-eu
+UM
 ep
 ep
 et
@@ -10386,53 +10890,53 @@ nO
 nO
 nO
 mo
-le
+Tu
 lh
 lh
 lh
 lh
+Zs
 lh
-lh
 le
 le
 le
 le
+Tu
 le
-le
-aa
+PG
 "}
 (48,1,1) = {"
-ab
-ab
+Ii
+Ii
 bb
 bb
-bg
-ab
-ab
-bg
-bb
-bb
-bb
-bb
+Fa
+Ii
+Ii
+Fa
+Vy
 bb
 bb
 bb
 bb
-bb
-bb
-bb
-bb
-bb
-ab
-bg
-bg
+Vy
 bb
 bb
 bb
 bb
 bb
-ab
-ab
+bb
+Vy
+Ii
+Fa
+Fa
+bb
+bb
+bb
+bb
+bb
+Ii
+Ii
 bm
 bm
 bf
@@ -10456,20 +10960,20 @@ rm
 eu
 eu
 eu
-lY
+KS
 ep
 ep
 ep
 et
 et
+Za
 et
-et
 le
 le
 le
 le
 le
-le
+Tu
 lH
 mv
 Jh
@@ -10483,7 +10987,7 @@ lg
 lg
 le
 mQ
-nO
+QS
 nO
 nO
 nO
@@ -10501,62 +11005,62 @@ le
 le
 le
 le
-aa
+PG
 "}
 (49,1,1) = {"
-ab
-ab
+Ii
+Ii
 bb
 bb
-bg
-ab
-bg
-bg
-bb
-bb
-bb
+Fa
+Ii
+Fa
+Fa
 bb
 bb
 bb
 bb
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-bg
-bg
 bb
 bb
-ab
-ab
-ab
-ab
-ab
+bb
+Ii
+Ii
+Ii
+Ii
+Ii
+Ii
+Ii
+Fa
+Fa
+bb
+bb
+Ii
+Ii
+Ii
+Ii
+Ii
 bm
 bm
-bf
+BN
 bf
 bf
 ah
 ah
 ah
 ep
-et
+Za
 et
 ep
 GV
 eu
-eu
+UM
 eu
 ep
-mN
+PK
 ep
 rp
 hO
-il
+To
 hO
 rF
 rY
@@ -10602,42 +11106,42 @@ le
 le
 le
 le
-aa
-aa
+PG
+PG
 "}
 (50,1,1) = {"
-ab
-ab
+Ii
+Ii
 bb
 bb
-bg
-bg
-bg
-bb
-bb
-bb
+Fa
+Fa
+Fa
 bb
 bb
 bb
-ab
-ab
-ab
-bg
-Xw
-Xw
-Xw
-Xw
-bg
-bg
-bg
 bb
 bb
-hj
 bb
-ab
-ab
-ab
-ab
+Ii
+Ii
+Ii
+Fa
+yF
+yF
+yF
+yF
+Fa
+Fa
+Fa
+Vy
+bb
+St
+Vy
+Ii
+Ii
+Ii
+Ii
 bm
 bm
 bm
@@ -10651,15 +11155,15 @@ et
 eq
 fh
 fj
-fO
+Wt
 fj
 fj
 fj
 ep
 rp
-hV
+wh
 im
-rz
+Xh
 rG
 iD
 jz
@@ -10704,46 +11208,46 @@ lg
 le
 le
 lf
-aa
-aa
+PG
+PG
 "}
 (51,1,1) = {"
-ab
-ab
+Ii
+Ii
 bb
 bb
 bb
-bg
-bg
-bb
-bb
-bb
-bb
-ab
-ab
-ab
-bg
-Xw
-Xw
+Fa
+Fa
 bb
 bb
 bb
 bb
-Xw
-Xw
-bg
+Ii
+Ii
+Ii
+Fa
+yF
+yF
 bb
 bb
 bb
 bb
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
+yF
+yF
+Fa
+bb
+bb
+bb
+bb
+Ii
+Ii
+Ii
+Ii
+Ii
+Ii
+Ii
+Ii
 bf
 ah
 ah
@@ -10759,13 +11263,13 @@ gT
 fj
 ep
 rp
-nF
+Jo
 im
 im
 rH
 im
 im
-si
+UG
 hO
 ep
 ep
@@ -10806,25 +11310,25 @@ lg
 le
 le
 lf
-aa
-aa
+PG
+PG
 "}
 (52,1,1) = {"
-ac
-ac
+Pr
+Pr
+WF
 bc
 bc
 bc
 bc
 bc
+WF
 bc
-bc
-bc
-ac
-ac
-bh
-bh
-Gn
+Pr
+Pr
+IT
+IT
+Fq
 bc
 bB
 bB
@@ -10833,22 +11337,22 @@ bB
 bB
 bB
 bB
-UJ
-bC
-bD
+LJ
+PD
+BP
 bB
 bB
 bB
-bD
-bD
-bD
-bD
-bD
-bD
-bD
-bD
-bD
-bD
+BP
+BP
+BP
+BP
+BP
+BP
+BP
+BP
+BP
+BP
 ep
 ep
 ep
@@ -10908,13 +11412,13 @@ lg
 le
 le
 lf
-aa
-aa
+PG
+PG
 "}
 (53,1,1) = {"
-ac
-ac
-ac
+Pr
+Pr
+Pr
 bc
 bc
 bc
@@ -10922,34 +11426,34 @@ bc
 bc
 bc
 bc
-ac
-bh
-bh
-Gn
-gU
+Pr
+IT
+IT
+Fq
+Rj
 bc
 bB
 bB
 bB
+UD
+bB
+bB
+UD
+LJ
+PD
+BP
 bB
 bB
 bB
 bB
-UJ
-bC
-bD
-bB
-bB
-bB
-bB
-bD
-bD
-bD
-bD
-bD
-bD
-bD
-bD
+BP
+BP
+BP
+BP
+BP
+BP
+BP
+BP
 dW
 ep
 ep
@@ -10957,31 +11461,31 @@ eq
 ep
 fh
 jv
-fQ
+Mg
 fQ
 gV
 fh
 GV
 hP
 rv
-im
-rA
+Oi
+YL
 rH
 im
 im
 im
 hO
 ep
+Za
 et
-et
 lg
 le
 lg
 lg
 le
-le
+Tu
 lH
-mv
+ER
 Jh
 mv
 mv
@@ -11003,55 +11507,55 @@ lh
 lh
 lg
 le
-ug
+Jz
 le
 le
 lg
 lg
 lf
 lf
-aa
-aa
+PG
+PG
 "}
 (54,1,1) = {"
-ac
-ac
-ac
-ac
-bh
-bh
+Pr
+Pr
+Pr
+Pr
+IT
+IT
 bc
 bc
 bc
 bc
-ac
-bh
-bh
-Gn
+Pr
+IT
+IT
+Fq
 bc
 bc
 bB
 bB
 bB
-vJ
+nA
 bB
 bB
 bB
 bB
-UJ
-bD
-bD
+LJ
+BP
+BP
+UD
 bB
-bB
-bB
-bD
-bD
-bD
-bD
-bD
-bD
-bD
-bD
+UD
+BP
+BP
+BP
+BP
+BP
+BP
+BP
+BP
 dZ
 et
 ep
@@ -11095,7 +11599,7 @@ le
 le
 le
 mQ
-ut
+VI
 nO
 nO
 nO
@@ -11111,25 +11615,25 @@ pf
 pf
 pf
 lf
-aa
-aa
-aa
+PG
+PG
+PG
 "}
 (55,1,1) = {"
-ac
-ac
-ac
-ac
-bh
-bh
+Pr
+Pr
+Pr
+Pr
+IT
+IT
 bc
 bc
 bc
 bc
-ac
-bh
-bh
-Gn
+Pr
+IT
+IT
+Fq
 bc
 bc
 bB
@@ -11140,20 +11644,20 @@ bB
 bB
 bB
 bB
-UJ
-bC
-bC
-bD
+LJ
+PD
+PD
+BP
 bB
 bB
+UD
 bB
-bB
-bD
-bD
-bD
-bD
-bD
-bD
+BP
+BP
+BP
+BP
+BP
+BP
 dZ
 et
 eq
@@ -11207,32 +11711,32 @@ lh
 lh
 le
 pf
-uA
-pt
+YI
+YO
 px
 uF
 pf
 lf
-aa
-aa
-aa
+PG
+PG
+PG
 "}
 (56,1,1) = {"
-ac
-ac
-ac
-ac
-bh
-bh
+Pr
+Pr
+Pr
+Pr
+IT
+IT
 bc
 bc
 bc
 bc
-ac
-bh
-bh
-bh
-Gn
+Pr
+IT
+IT
+IT
+Fq
 bc
 bB
 bB
@@ -11242,9 +11746,9 @@ bB
 bB
 bB
 bB
-UJ
-bC
-bD
+LJ
+PD
+BP
 bB
 bB
 bB
@@ -11252,9 +11756,9 @@ bB
 bB
 bB
 bB
-bD
-bD
-bD
+BP
+BP
+BP
 dV
 dV
 eq
@@ -11263,8 +11767,8 @@ eC
 eC
 fj
 fj
-fO
-fO
+fP
+Bc
 fj
 fj
 ep
@@ -11315,27 +11819,27 @@ py
 pG
 pf
 lf
-aa
-aa
-aa
+PG
+PG
+PG
 "}
 (57,1,1) = {"
-ac
-ac
-ac
-ac
-bh
-bh
+Pr
+Pr
+Pr
+Pr
+IT
+IT
 bc
 bc
+WF
 bc
-bc
-ac
-bh
-bh
-bh
-bh
-Gn
+Pr
+IT
+IT
+IT
+IT
+Fq
 bB
 bB
 bB
@@ -11343,9 +11847,9 @@ bB
 bB
 bB
 bB
-UJ
-bC
-bD
+LJ
+PD
+BP
 bB
 bB
 bB
@@ -11372,7 +11876,7 @@ ep
 ep
 hO
 hO
-il
+To
 hO
 rp
 hO
@@ -11406,53 +11910,53 @@ nO
 nO
 nO
 mo
-lh
+Zs
 lh
 lh
 le
 pf
-uk
+VC
 pu
 pz
-uG
+Nn
 pf
 lg
-aa
-aa
-aa
+PG
+PG
+PG
 "}
 (58,1,1) = {"
-ac
-ac
-ac
-ac
-bh
-bh
+Pr
+Pr
+Pr
+Pr
+IT
+IT
 bc
 bc
 bc
 bc
-ac
-bh
-bh
-bh
-bh
-bh
-UJ
-bC
+Pr
+IT
+IT
+IT
+IT
+IT
+LJ
+PD
 bB
 bB
 bB
 bB
-UJ
-bC
-bD
+LJ
+PD
+BP
+UD
 bB
 bB
 bB
 bB
-bB
-bB
+UD
 bB
 bB
 bB
@@ -11466,11 +11970,11 @@ eu
 eu
 eu
 eu
-lY
+KS
 eu
-lY
+KS
 eu
-lY
+KS
 eu
 eu
 eu
@@ -11490,93 +11994,93 @@ lh
 lh
 lh
 lh
-nf
+Yb
 mv
-sT
-nf
+Jh
 mv
-nf
+mv
+Yb
 lh
 lh
 lh
 lh
 lh
 lh
-rg
+Uu
 nO
-rg
-rg
 nO
-rg
+nO
+nO
+Uu
 lh
 lh
 lh
 le
 pf
-uB
+YP
 pv
 pA
 pG
 pf
 lg
-aa
-aa
-aa
+PG
+PG
+PG
 "}
 (59,1,1) = {"
-ac
-ac
-ac
-ac
-bh
-bh
+Pr
+Pr
+Pr
+Pr
+IT
+IT
 bc
 bc
 bc
 bc
 bc
-bh
-bh
-bh
+IT
+IT
+IT
 bc
 bc
-bC
-UJ
-vB
-vB
-UJ
-UJ
-bC
-bD
+PD
+LJ
+GI
+GI
+LJ
+LJ
+PD
+BP
 bB
 bB
 bB
 bB
 bB
 bB
-bD
+BP
+UD
 bB
 bB
 bB
 bB
+UD
 bB
 bB
-bB
-bB
+eu
+UM
 eu
 eu
 eu
 eu
+UM
 eu
 eu
 eu
 eu
+vs
 eu
-eu
-eu
-Sw
-eu
-eu
+UM
 eu
 rm
 eu
@@ -11584,54 +12088,54 @@ eu
 eu
 eu
 eu
+UM
 eu
-eu
 lh
 lh
+Zs
 lh
 lh
-lh
-lh
-nf
+Zs
+Yb
+ER
+Jh
 mv
-sT
-nf
 mv
-nf
+Yb
 lh
 lh
 lh
 lh
 lh
 lh
-rg
-tu
-rg
-rg
+Uu
+zo
 nO
-rg
-lh
+nO
+nO
+Uu
+Zs
 lh
 lh
 le
 pf
 uC
-uE
+Fd
 pz
 uI
 pf
 lg
-aa
-aa
-aa
+PG
+PG
+PG
 "}
 (60,1,1) = {"
-ac
-ac
-ac
-ac
-bh
-bh
+Pr
+Pr
+Pr
+Pr
+IT
+IT
 bc
 bc
 bc
@@ -11646,23 +12150,23 @@ bB
 bB
 bB
 bB
-bC
-bC
-bC
-bD
+PD
+PD
+PD
+BP
 bB
 bB
 bB
 bB
 bB
-bD
-bD
-bD
-bD
-bD
-bD
-bD
-bD
+BP
+BP
+BP
+BP
+BP
+BP
+BP
+BP
 dV
 ea
 eq
@@ -11677,9 +12181,9 @@ eu
 eu
 eu
 eu
-lY
+KS
 eu
-eu
+UM
 rm
 eu
 eu
@@ -11694,24 +12198,24 @@ lh
 lh
 lh
 lh
-nf
+Yb
 mv
-sT
-nf
+Jh
 mv
-nf
+mv
+Yb
 lh
 lh
 lh
 lh
 lh
 lh
-rg
+Uu
 nO
-rg
-rg
-tu
-rg
+nO
+nO
+Ks
+Uu
 lh
 lh
 lh
@@ -11719,21 +12223,21 @@ le
 pf
 po
 pu
-pC
+FY
 pJ
 pf
 lg
-aa
-aa
-aa
+PG
+PG
+PG
 "}
 (61,1,1) = {"
-ac
-ac
-ac
-ac
-bh
-bh
+Pr
+Pr
+Pr
+Pr
+IT
+IT
 bc
 bc
 bc
@@ -11748,27 +12252,27 @@ bB
 bB
 bB
 bB
-bC
-bC
-bD
+PD
+PD
+BP
 bB
 bB
 bB
 bB
 bB
-bD
-bC
-bD
-bD
-bD
-bD
-bD
-bD
-bD
+BP
+PD
+BP
+BP
+BP
+BP
+BP
+BP
+BP
 dW
 dW
 eq
-ep
+Kj
 eq
 eq
 eB
@@ -11822,21 +12326,23 @@ pg
 qQ
 pu
 pC
-pC
+FY
 pf
 lg
-aa
-aa
-aa
+PG
+PG
+PG
 "}
 (62,1,1) = {"
-ac
-ac
-ac
-ac
-bh
-bh
-bh
+Pr
+Pr
+Pr
+Pr
+IT
+IT
+IT
+bc
+WF
 bc
 bc
 bc
@@ -11844,30 +12350,28 @@ bc
 bc
 bc
 bc
-bc
-bc
+UD
+bB
+bB
+UD
 bB
 bB
 bB
 bB
 bB
+UD
 bB
-bB
-bB
-bB
-bB
-bB
-bD
-bC
-UJ
-bC
-bD
-bD
-bD
-bD
-bD
-bD
-bD
+BP
+PD
+LJ
+PD
+BP
+BP
+BP
+BP
+BP
+BP
+BP
 dW
 ep
 ep
@@ -11875,7 +12379,7 @@ ep
 ep
 eC
 eu
-lY
+KS
 eu
 et
 hn
@@ -11885,7 +12389,7 @@ ep
 fY
 fZ
 rM
-er
+vE
 ep
 et
 et
@@ -11899,7 +12403,7 @@ le
 le
 le
 lH
-ng
+Gh
 sR
 lH
 ng
@@ -11911,12 +12415,12 @@ re
 le
 le
 mQ
-rh
+wf
 mo
 mo
 rh
 mo
-le
+Tu
 le
 lg
 le
@@ -11927,18 +12431,18 @@ pf
 uJ
 pf
 lg
-aa
-aa
-aa
+PG
+PG
+PG
 "}
 (63,1,1) = {"
-ac
-ac
-ac
-ac
-bh
-bh
-bh
+Pr
+Pr
+Pr
+Pr
+IT
+IT
+IT
 bc
 bc
 bc
@@ -11958,19 +12462,19 @@ bB
 bB
 bB
 bB
-bD
-bC
-UJ
+BP
+PD
+LJ
 bB
-UJ
-bC
-bD
-bD
-bD
-bD
-bD
-bD
-bD
+LJ
+PD
+BP
+BP
+BP
+BP
+BP
+BP
+BP
 ep
 ep
 eu
@@ -12002,7 +12506,7 @@ le
 lT
 mj
 mw
-sU
+OH
 mw
 mw
 mj
@@ -12014,33 +12518,33 @@ mo
 mo
 us
 mw
-tv
+zl
 mw
 mw
 mj
 mo
-le
+Tu
 lg
 lg
 le
 le
 le
 lh
-lh
+Zs
 lg
 lg
 lg
-aa
-aa
+PG
+PG
 "}
 (64,1,1) = {"
-ac
-ac
-ac
-ac
-bh
-bh
-bh
+Pr
+Pr
+Pr
+Pr
+IT
+IT
+IT
 bc
 bc
 bc
@@ -12060,26 +12564,26 @@ bB
 bB
 bB
 bB
-bD
-UJ
-hM
+BP
+LJ
+MM
 bB
 bB
-UJ
-bC
-bD
-bD
-bD
-bD
-bD
-bD
+LJ
+PD
+BP
+BP
+BP
+BP
+BP
+BP
 bB
 bB
 bB
-bD
-bD
+BP
+BP
 eu
-eu
+UM
 eu
 eq
 et
@@ -12106,7 +12610,7 @@ mk
 mE
 sV
 mE
-tb
+ZR
 mQ
 mU
 mY
@@ -12117,12 +12621,12 @@ ny
 mQ
 tv
 mw
-tb
+ZR
 mw
 mo
 uy
 mo
-le
+Tu
 le
 lg
 lg
@@ -12132,17 +12636,17 @@ lh
 lg
 lg
 lg
-aa
-aa
+PG
+PG
 "}
 (65,1,1) = {"
-ac
-ac
-ac
-ac
-bh
-bh
-bh
+Pr
+Pr
+Pr
+Pr
+IT
+IT
+IT
 bc
 bc
 bc
@@ -12150,11 +12654,11 @@ bc
 bc
 bc
 bc
-ac
-ac
-bD
-bD
-bD
+Pr
+Pr
+BP
+BP
+BP
 bB
 Va
 bB
@@ -12162,25 +12666,25 @@ bB
 bB
 bB
 bB
-bD
-UJ
+BP
+LJ
 bB
 bB
 bB
 bB
-UJ
-bC
-bD
-bD
-bD
-bD
-bD
+LJ
+PD
+BP
+BP
+BP
+BP
+BP
 bB
 bB
-bD
-bD
-bD
-eu
+BP
+BP
+BP
+UM
 eu
 eu
 ep
@@ -12217,12 +12721,12 @@ mE
 mw
 mw
 nH
-tw
+zV
 tQ
-tN
+OB
 mo
 mw
-tZ
+Wu
 mo
 le
 le
@@ -12234,54 +12738,54 @@ lh
 lg
 lg
 lg
-aa
-aa
+PG
+PG
 "}
 (66,1,1) = {"
-ac
-ac
-ac
-ac
-bh
-bh
+Pr
+Pr
+Pr
+Pr
+IT
+IT
 bc
 bc
 bc
 bc
 bc
 bc
-ac
-ac
-ac
-bh
-bC
-bC
-bC
-bC
-bD
+Pr
+Pr
+Pr
+IT
+PD
+PD
+PD
+PD
+BP
 bB
 bB
 bB
 bB
 bB
 bB
-UJ
+LJ
 bB
 bB
 bB
+UD
 bB
+LJ
+BP
+SP
 bB
-UJ
-bD
-hY
+BP
+UD
 bB
-bD
-bB
-bB
-bB
-bD
-bD
-eu
+UD
+BP
+BP
+UM
 eu
 eu
 eu
@@ -12307,7 +12811,7 @@ li
 qG
 ma
 lZ
-mz
+Mw
 sX
 sZ
 sZ
@@ -12322,10 +12826,10 @@ tq
 tq
 tE
 tO
-ok
-tZ
+xG
+Wu
 mw
-ok
+xG
 lh
 lh
 lh
@@ -12336,53 +12840,53 @@ lh
 lg
 lg
 lg
-aa
-aa
+PG
+PG
 "}
 (67,1,1) = {"
-ac
-ac
-ac
-ac
-bh
-bh
+Pr
+Pr
+Pr
+Pr
+IT
+IT
 bc
 bc
 bc
 bc
-ac
-ac
-bh
-bh
-bh
-bh
-bC
-bC
-bC
-bC
-bC
-bD
+Pr
+Pr
+IT
+IT
+IT
+IT
+PD
+PD
+PD
+PD
+PD
+BP
 bB
 bB
 bB
 bB
 bB
 bB
-Qv
+uM
 bB
 bB
-vJ
-bB
-UJ
-bC
-bD
-bB
-bB
+nA
+UD
+LJ
+PD
+BP
 bB
 bB
-bD
-bD
-bD
+bB
+bB
+BP
+BP
+BP
 eO
 eO
 eO
@@ -12393,7 +12897,7 @@ fY
 hF
 gZ
 rC
-rB
+RB
 rQ
 jb
 qX
@@ -12407,106 +12911,106 @@ li
 li
 li
 qG
+PX
 lZ
 lZ
-lZ
-sY
-rd
+Gp
+Co
 mw
 mw
 mw
 mw
-tZ
-mE
+Wu
+DL
 mw
 mw
-tr
-tx
-tF
+Pl
+tv
+Yo
 tP
 mw
 mw
 mw
 mw
+Zs
 lh
 lh
 lh
 lh
 lh
-lh
-lh
+Zs
 nb
 lg
 lg
 lg
-aa
+PG
 "}
 (68,1,1) = {"
-ac
-ac
-ac
-ac
-bh
+Pr
+Pr
+Pr
+Pr
+IT
 bc
 bc
 bc
 bc
 bc
-ac
-bh
-bh
-bh
+Pr
+IT
+IT
+IT
 bc
 bc
 bB
 bB
 bB
-bC
-bC
-bC
-bD
+PD
+PD
+PD
+BP
+bB
+bB
+UD
+bB
+bB
+UD
+uM
 bB
 bB
 bB
+UD
+LJ
+BP
 bB
 bB
 bB
-Qv
-bB
-bB
-bB
-bB
-UJ
-bD
-bB
-bB
-bB
-bD
-bD
-bD
-bD
+BP
+BP
+BP
+BP
+VN
 eO
 eO
 eO
-eO
-fZ
+Bg
 gZ
-fZ
+Bg
 gZ
 gZ
-pk
+Lm
 iy
 rM
 jb
 gZ
-fZ
-gZ
-fZ
+Bg
+wX
+Bg
 eO
 eO
 li
 li
-li
+yc
 li
 lT
 lZ
@@ -12518,13 +13022,13 @@ mM
 qI
 mw
 mw
-tb
+ZR
 mE
 mw
 mw
 qI
 mo
-tG
+AP
 mo
 mo
 oz
@@ -12541,22 +13045,22 @@ lg
 lg
 lg
 lg
-aa
+PG
 "}
 (69,1,1) = {"
-ac
-ac
-ac
-ac
-bh
+Pr
+Pr
+Pr
+Pr
+IT
 bc
 bc
 bc
 bc
 bc
-ac
-bh
-bh
+Pr
+IT
+IT
 bc
 bc
 bc
@@ -12565,28 +13069,28 @@ bB
 bB
 bB
 bB
-bC
-bC
-bD
+PD
+PD
+BP
 bB
 bB
 bB
 bB
 bB
-Qv
+uM
 bB
 bB
 bB
 bB
 bB
-UJ
-bD
+LJ
+BP
 bB
 bB
-bD
-bD
-bD
-bD
+BP
+BP
+BP
+BP
 eO
 eO
 eO
@@ -12597,7 +13101,7 @@ fY
 hQ
 gZ
 gZ
-iz
+xK
 Lv
 jb
 qY
@@ -12615,20 +13119,20 @@ qo
 lT
 mA
 mw
-mH
-mH
+Wk
+Wk
 mo
-mW
-mZ
-mW
-nl
-mZ
-mW
+SH
+DO
+SH
+DF
+DO
+SH
 mo
 nQ
 sU
-mH
-mH
+Wk
+Wk
 mo
 uz
 mo
@@ -12643,22 +13147,22 @@ lg
 lg
 lg
 lg
-aa
+PG
 "}
 (70,1,1) = {"
-ac
-ac
-ac
-ac
-bh
+Pr
+Pr
+Pr
+Pr
+IT
 bc
 bc
 bc
 bc
-ac
-ac
-bh
-bh
+Pr
+Pr
+IT
+IT
 bc
 bc
 bc
@@ -12668,27 +13172,27 @@ bB
 bB
 bB
 bB
-bC
-bC
-bD
+PD
+PD
+BP
 bB
 bB
 bB
 bB
-bD
-Qv
+BP
+uM
 bB
 bB
 bB
 bB
-UJ
-bC
+LJ
+PD
 bB
 bB
 bB
-bD
-bD
-bD
+BP
+BP
+BP
 eO
 eO
 eO
@@ -12705,18 +13209,18 @@ jd
 fY
 eN
 fY
-eN
+Px
 eN
 eO
-lk
+WQ
 lj
-li
+yc
 li
 li
 lT
 mn
 mw
-mw
+Zr
 mw
 mw
 mR
@@ -12728,7 +13232,7 @@ mo
 mo
 nI
 tz
-uv
+SG
 tQ
 mw
 oA
@@ -12744,53 +13248,53 @@ lj
 ll
 ll
 ll
-aa
-aa
+PG
+PG
 "}
 (71,1,1) = {"
-ac
-ac
-ac
-ac
-bh
+Pr
+Pr
+Pr
+Pr
+IT
 bc
 bc
 bc
+WF
+Pr
+IT
+IT
 bc
-ac
-bh
-bh
-bc
-bc
+WF
 bc
 bz
 bE
 bE
 bE
+Hc
+bE
+bE
+bE
+BJ
+BJ
+Ww
 bE
 bE
 bE
 bE
-bG
-bG
-bF
+Ww
+yT
+wk
+wk
+Lu
+BJ
+BJ
+Ww
 bE
 bE
-bE
-bE
-bF
-Lt
-Jy
-Jy
-Ml
-bG
-bG
-bF
-bE
-bE
-bF
-bF
-bF
+Ww
+Ww
+Ww
 eO
 eO
 eO
@@ -12806,7 +13310,7 @@ rS
 je
 eN
 eN
-eN
+Px
 eN
 eN
 eN
@@ -12830,7 +13334,7 @@ ll
 ll
 mo
 tz
-tF
+Yo
 tz
 mo
 mo
@@ -12845,54 +13349,54 @@ lj
 lj
 ll
 ll
-aa
-aa
-aa
+PG
+PG
+PG
 "}
 (72,1,1) = {"
-ac
-ac
-ac
-ac
-bh
+Pr
+Pr
+Pr
+Pr
+IT
 bc
 bc
 bc
 bc
-ac
-bh
-bh
+Pr
+IT
+IT
 bc
 bc
-bl
+TV
 bc
 bE
 bE
 bE
-bK
+bn
 bE
 bE
 bE
-bG
-bG
-bF
+BJ
+BJ
+Ww
 bE
 bE
 bE
 bE
 bE
-bF
+Ww
 bE
 bE
-bG
-bG
-bG
-bF
+BJ
+BJ
+BJ
+Ww
+Hc
 bE
-bE
-bF
-bF
-bF
+Ww
+Ww
+Ww
 eO
 eO
 eO
@@ -12933,12 +13437,12 @@ ll
 ll
 tA
 uw
-tA
+fb
 li
 ll
 ll
 ll
-ll
+KK
 li
 lm
 lm
@@ -12947,23 +13451,23 @@ lj
 lj
 ll
 ll
-aa
-aa
-aa
+PG
+PG
+PG
 "}
 (73,1,1) = {"
-ac
-ac
-ac
-ac
-bh
+Pr
+Pr
+Pr
+Pr
+IT
 bc
 bc
 bc
 bc
-ac
-bh
-bh
+Pr
+IT
+IT
 bc
 bc
 bc
@@ -12976,25 +13480,25 @@ bE
 bE
 bE
 bE
-bG
-bF
-bF
+BJ
+Ww
+Ww
+bE
+bE
+Hc
 bE
 bE
 bE
 bE
+BJ
+BJ
+Ww
+Hc
 bE
 bE
-bE
-bG
-bG
-bF
-bE
-bE
-bE
-bF
-bF
-bF
+Ww
+Ww
+Ww
 eO
 eO
 eO
@@ -13010,27 +13514,27 @@ rT
 jf
 fY
 eN
+Al
 eM
 eM
 eM
-eM
+ll
+ll
+KK
 ll
 ll
 ll
 ll
 ll
 ll
-ll
-ll
-ll
-ll
+KK
 ll
 ll
 ll
 ll
 ll
 nn
-ll
+KK
 ll
 ll
 ll
@@ -13049,23 +13553,23 @@ lj
 lj
 ll
 ll
-aa
-aa
-aa
+PG
+PG
+PG
 "}
 (74,1,1) = {"
-ac
-ac
-ac
-ac
-bh
+Pr
+Pr
+Pr
+Pr
+IT
 bc
 bc
 bc
 bc
-ac
-bh
-bh
+Pr
+IT
+IT
 bc
 bc
 bc
@@ -13078,26 +13582,26 @@ bE
 bE
 bE
 bE
-bG
-bG
-bF
+BJ
+BJ
+Ww
+bE
+Hc
 bE
 bE
 bE
 bE
+Hc
+bE
+bE
+Ww
 bE
 bE
 bE
-bE
-bE
-bF
-bE
-bE
-bE
-bF
-bF
-bF
-eO
+Ww
+Ww
+Ww
+VN
 eO
 eO
 eU
@@ -13105,11 +13609,11 @@ eM
 eM
 fY
 fY
+Fp
 gY
-gY
-rC
+Tc
 rU
-jg
+Yi
 fY
 fY
 eN
@@ -13131,13 +13635,13 @@ li
 li
 li
 li
-nn
+SB
 ll
 li
 ll
 ll
 tJ
-ll
+KK
 ll
 ll
 li
@@ -13147,31 +13651,31 @@ li
 li
 ll
 ll
+zD
 lj
-lj
 ll
 ll
-aa
-un
-aa
+PG
+LH
+PG
 "}
 (75,1,1) = {"
-ac
-ac
-ac
-ac
-bh
+Pr
+Pr
+Pr
+Pr
+IT
 bc
 bc
 bc
 bc
-ac
-bh
-bh
+Pr
+IT
+IT
 bc
 bc
 bc
-bl
+TV
 bE
 bE
 bE
@@ -13179,10 +13683,10 @@ bE
 bE
 bE
 bE
-bG
-bG
-bG
-bF
+BJ
+BJ
+BJ
+Ww
 bE
 bE
 bE
@@ -13190,14 +13694,14 @@ bE
 bE
 bE
 bE
+Hc
 bE
 bE
-bE
-bE
-bF
-bF
-bF
-bF
+Hc
+Ww
+Ww
+Ww
+Ww
 eM
 eO
 eO
@@ -13212,7 +13716,7 @@ fY
 pk
 rM
 jh
-hG
+UB
 hF
 fY
 eN
@@ -13250,45 +13754,41 @@ qL
 uu
 nJ
 lj
-lj
+zD
 li
 ll
-aa
-un
-aa
+PG
+LH
+PG
 "}
 (76,1,1) = {"
-ac
-ac
-ac
-ac
-bh
+Pr
+Pr
+Pr
+Pr
+IT
 bc
-bl
-bc
-bc
-ac
-bh
-bh
+TV
 bc
 bc
+Pr
+IT
+IT
+bc
+WF
 bc
 bc
 bE
 bE
 bE
+Hc
 bE
 bE
-bE
-bG
-bG
-bG
-bG
-bF
-bE
-bE
-bE
-bE
+BJ
+BJ
+BJ
+BJ
+Ww
 bE
 bE
 bE
@@ -13297,19 +13797,23 @@ bE
 bE
 bE
 bE
-bF
-bF
+bE
+bE
+bE
+bE
+Ww
+Ww
 eM
 eU
 eO
 eO
 eO
-lp
+Oq
 fY
 fY
+UB
 hG
-hG
-hG
+UB
 fY
 gZ
 rM
@@ -13329,48 +13833,48 @@ ll
 ll
 li
 fY
-mI
+Th
 gZ
 gZ
 gZ
-ho
+AO
 fY
 nm
 ll
 li
 nJ
-nR
-tL
+ME
+xg
 tR
-tU
-tW
+Cm
+MB
 tR
-uc
+Bz
 ud
 tR
-tU
+Cm
 ul
 nJ
 lj
 lj
 li
 ll
-aa
-un
-aa
+PG
+LH
+PG
 "}
 (77,1,1) = {"
-ac
-ac
-ac
-ac
-bh
+Pr
+Pr
+Pr
+Pr
+IT
 bc
 bc
 bc
 bc
-ac
-ac
+Pr
+Pr
 bc
 bc
 bc
@@ -13381,19 +13885,19 @@ bE
 bE
 bE
 bE
-bG
-bG
-bG
-bG
-bG
-bF
-bF
+BJ
+BJ
+BJ
+BJ
+BJ
+Ww
+Ww
 bE
 bE
 bE
 bE
-bF
-bF
+Ww
+Ww
 bE
 bE
 bE
@@ -13408,7 +13912,7 @@ eO
 eO
 fY
 gY
-hq
+Wz
 hG
 hS
 id
@@ -13416,9 +13920,9 @@ fY
 gZ
 rM
 jj
+UB
 hG
-hG
-hq
+Wz
 gY
 fY
 OF
@@ -13432,71 +13936,71 @@ MD
 MD
 fY
 gZ
-tI
+KO
 pe
 tf
 gZ
 fY
 nm
-ll
+KK
 li
 nJ
-nS
+Dr
 tM
 nJ
-nS
+Dr
 tX
 nJ
-oR
+yH
 tX
 nJ
-oR
+yH
 tX
 nJ
 lj
 lj
 li
 ll
-aa
-aa
-aa
+PG
+PG
+PG
 "}
 (78,1,1) = {"
-ac
-ac
-ac
-ac
-bh
+Pr
+Pr
+Pr
+Pr
+IT
 bc
 bc
 bc
+WF
 bc
 bc
+TV
 bc
-bl
-bc
-bc
-ac
+WF
+Pr
 bc
 bE
 bE
 bE
-bG
-bG
-bG
-bG
-bG
-bG
-bG
-bG
-bF
+BJ
+BJ
+BJ
+BJ
+BJ
+BJ
+BJ
+BJ
+Ww
 bE
 bE
 bE
 bE
-bF
-bG
-bF
+Ww
+BJ
+Ww
 bE
 bE
 bE
@@ -13522,21 +14026,21 @@ rt
 sj
 sl
 sl
-Ja
-st
-st
-st
-st
-st
-st
-st
-st
-st
-Ja
+SS
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+SS
 rD
 rt
-uq
-Sa
+Li
+JN
 gZ
 fY
 nn
@@ -13559,84 +14063,84 @@ lj
 lj
 li
 ll
-aa
-aa
-aa
+PG
+PG
+PG
 "}
 (79,1,1) = {"
-ac
-ac
-ac
-ac
-bh
+Pr
+Pr
+Pr
+Pr
+IT
 bc
 bc
 bc
 bc
-bl
+TV
 bc
 bc
 bc
 bc
-ac
-ac
-bF
-bF
-bF
-bG
-bG
-bG
-bG
+Pr
+Pr
+Ww
+Ww
+Ww
+BJ
+BJ
+BJ
+BJ
 bE
-bG
-bG
-bG
-bF
-bE
-bE
-bE
-bF
-bG
-bG
-bG
-bF
+BJ
+BJ
+BJ
+Ww
 bE
 bE
+bE
+Ww
+BJ
+BJ
+BJ
+Ww
+bE
+Hc
 bE
 bE
 bE
 eO
 eO
-hW
+Lj
 eO
-eO
-fZ
+VN
+Bg
 gZ
-gZ
+wX
 pk
 gZ
 gZ
 gZ
-gZ
+wX
 rW
 jb
 jb
 sk
+Gu
 jb
 jb
-kL
 wi
 wi
 wi
+Hd
 wi
 wi
+pS
 wi
-qv
-wi
-wi
-kL
+Hd
 jb
-ui
+Gu
+YY
 je
 je
 jb
@@ -13645,65 +14149,65 @@ nm
 nn
 nn
 nK
+Qu
 nU
 nU
-nU
+CO
 ol
-ol
 nU
-nU
+Qu
 nU
 pc
-oe
+EH
 pr
 nJ
 lj
 lj
 li
 ll
-aa
-aa
-aa
+PG
+PG
+PG
 "}
 (80,1,1) = {"
-aa
-aa
-aa
-aa
-gx
-gx
-gx
-ct
-ct
-ct
-ct
-ct
-gx
-gx
-gx
-ag
-bG
-bG
-bF
-bG
-bG
+PG
+PG
+PG
+PG
+FX
+FX
+FX
+KV
+KV
+KV
+KV
+KV
+FX
+FX
+FX
+Wq
+BJ
+BJ
+Ww
+BJ
+BJ
 bE
 bE
 bE
 bE
-bG
-bG
-bF
+BJ
+BJ
+Ww
 bE
 bE
 bE
-bF
-bG
-bG
-bG
-bF
-bF
-bF
+Ww
+BJ
+BJ
+BJ
+Ww
+Ww
+Ww
 bE
 bE
 bE
@@ -13713,7 +14217,7 @@ eO
 eO
 eO
 fY
-mb
+Wh
 gY
 fY
 fY
@@ -13738,10 +14242,10 @@ qD
 qD
 fY
 mJ
+wX
 gZ
 gZ
-gZ
-mJ
+Hm
 fY
 li
 ll
@@ -13749,7 +14253,7 @@ ll
 nJ
 nV
 ob
-ux
+xF
 oa
 oB
 oJ
@@ -13764,59 +14268,59 @@ lj
 li
 ll
 li
-aa
-aa
+PG
+PG
 "}
 (81,1,1) = {"
-aa
-aa
-aa
-gp
-gx
+PG
+PG
+PG
+Fi
+FX
 bd
-gv
+Nv
 af
-gC
-gD
-gG
+VO
+CG
+Kl
 gI
-gJ
-gL
-gN
-gx
-bG
-bG
-bF
-bG
+VS
+Vu
+WL
+FX
+BJ
+BJ
+Ww
+BJ
 bE
 bE
 bE
 bE
 bE
-bG
-bF
-bF
+BJ
+Ww
+Ww
 bE
 bE
 bE
-bF
-bG
-bG
-bG
-bF
-bF
-bF
-bF
-bF
-bF
+Ww
+BJ
+BJ
+BJ
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
 eN
 eM
 fl
 eM
-eN
+Px
 fY
 gY
-hr
+Bi
 hG
 hH
 ie
@@ -13824,9 +14328,9 @@ fY
 gZ
 rM
 jk
+UB
 hG
-hG
-sm
+WV
 gY
 fY
 eN
@@ -13840,9 +14344,9 @@ ll
 li
 fY
 fY
-fZ
-fZ
-fZ
+fY
+Kh
+fY
 fY
 fY
 li
@@ -13866,62 +14370,62 @@ lj
 li
 ll
 li
-aa
-aa
+PG
+PG
 "}
 (82,1,1) = {"
-aa
-aa
-aa
-gq
-ct
+PG
+PG
+PG
+AH
+KV
 af
-gw
-CU
-CU
-CU
-CU
-CU
-CU
-CU
+Tt
+DN
+DN
+DN
+DN
+DN
+DN
+DN
 af
-gx
-bH
-bG
-bF
-bG
+FX
+Mq
+BJ
+Ww
+BJ
 bE
 bE
 bE
 bE
 bE
-bG
-bF
+BJ
+Ww
 bE
 bE
 bE
 bE
-bF
-bG
-bG
-bG
-bF
-bF
-bF
-bF
-bF
-bF
+Ww
+BJ
+BJ
+BJ
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
 eN
 eM
 eM
 eM
 eM
-eN
+Px
 fY
 fY
+UB
 hG
-hG
-hG
+UB
 fY
 rC
 rX
@@ -13943,7 +14447,7 @@ ll
 li
 li
 lj
-ur
+Nd
 lj
 li
 li
@@ -13968,52 +14472,52 @@ lj
 li
 ll
 li
-aa
-aa
+PG
+PG
 "}
 (83,1,1) = {"
-aa
-aa
-aa
-gr
-gx
+PG
+PG
+PG
+vi
+FX
 af
-CU
-af
-af
+DN
 af
 af
 af
 af
-CU
 af
-gx
-bI
-bG
-bF
+af
+DN
+af
+FX
+Lk
+BJ
+Ww
 bE
 bE
 bE
 bE
 bE
-bG
-bG
-bF
+BJ
+BJ
+Ww
 bE
 bE
+Hc
 bE
-bE
-bF
-bG
-bG
-bG
-bF
-bF
-bF
-bF
-bF
-bF
-bF
+Ww
+BJ
+BJ
+BJ
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
 eN
 eM
 eU
@@ -14028,16 +14532,16 @@ fY
 pk
 fY
 hG
-hG
+UB
 ra
 fY
-eN
+Px
 eN
 eM
 li
 ll
 ll
-ll
+KK
 lm
 li
 mp
@@ -14045,6 +14549,18 @@ ll
 ll
 li
 lj
+zD
+lj
+lj
+lj
+lj
+zD
+lj
+lj
+lj
+lj
+lj
+BQ
 lj
 lj
 lj
@@ -14054,69 +14570,57 @@ lj
 lj
 lj
 lj
-lj
-lj
-ur
-lj
-lj
-lj
-lj
-lj
-lj
-lj
-lj
-lj
-lj
+zD
 ll
-ll
+KK
 li
-aa
-aa
+PG
+PG
 "}
 (84,1,1) = {"
-aa
-aa
-aa
-ag
-gx
-gs
-CU
+PG
+PG
+PG
+Wq
+FX
+Pi
+DN
 af
 af
-cv
-It
+HY
+Rm
 af
 af
-gw
-af
-ct
-bJ
-bG
-bF
+Tt
+Ou
+ZX
+dR
+BJ
+Ww
 bE
 bE
 bE
-bK
+bn
 bE
-bG
-bF
-bE
-bE
+BJ
+Ww
 bE
 bE
 bE
-bF
-bG
-bG
-bG
-bG
-bF
-bF
-bF
-bF
-bF
-bF
-bF
+bE
+bE
+Ww
+BJ
+BJ
+BJ
+BJ
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
 eU
 eU
 eN
@@ -14125,11 +14629,11 @@ eN
 eN
 fY
 fY
+Fp
 gY
+wX
 gY
-gZ
-gY
-gY
+Fp
 fY
 fY
 eN
@@ -14146,8 +14650,8 @@ lm
 li
 ll
 ll
-ll
-ur
+KK
+Nd
 lj
 lj
 lj
@@ -14171,55 +14675,55 @@ lj
 ll
 ll
 ll
-aa
-aa
-aa
+PG
+PG
+PG
 "}
 (85,1,1) = {"
-aa
-aa
-aa
-ag
-gx
-gt
-CU
-CU
-CU
+PG
+PG
+PG
+Wq
+FX
+Jv
+DN
+DN
+DN
 af
 af
-CU
-CU
-CU
+DN
+DN
+DN
 af
-gx
-bK
+FX
+KQ
 bE
 bE
-bK
+bn
 bE
 cD
+Hc
+bE
+BJ
+Ww
 bE
 bE
-bG
-bF
 bE
 bE
-bE
-bE
-bF
-bF
-bG
-bG
-bG
-bG
-bG
-bF
-bF
-bF
-bF
-bF
-bF
-bF
+Ww
+Ww
+BJ
+BJ
+BJ
+BJ
+BJ
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
 eN
 eO
 eN
@@ -14241,7 +14745,7 @@ eM
 lm
 ll
 ll
-ll
+KK
 ll
 ll
 lm
@@ -14273,27 +14777,27 @@ ll
 ll
 ll
 ll
-aa
-aa
-aa
+PG
+PG
+PG
 "}
 (86,1,1) = {"
-aa
-aa
-aa
-ag
-gx
-gu
-gy
-gB
-CU
+PG
+PG
+PG
+Wq
+FX
+ED
+NI
+RD
+DN
 af
 af
-CU
-gK
-gM
-gR
-gx
+DN
+tD
+HG
+Sd
+FX
 bE
 bE
 bE
@@ -14301,28 +14805,28 @@ bE
 bE
 bE
 bE
-bG
-bG
-bF
+BJ
+BJ
+Ww
 bE
 bE
 bE
 bE
-bG
-bG
-bG
-hX
+BJ
+BJ
+BJ
+TS
 bE
-bG
-bG
-bF
-bF
-bF
-ix
+BJ
+BJ
+Ww
+Ww
+Ww
+JO
 bE
-bF
-bF
-bF
+Ww
+Ww
+Ww
 af
 eN
 eU
@@ -14331,18 +14835,18 @@ eN
 eN
 fY
 fY
-oH
+XS
 fY
 fY
 eN
 eN
 eU
-eM
+Al
 eU
 eM
 li
 li
-li
+yc
 ll
 ll
 ll
@@ -14350,7 +14854,7 @@ li
 ll
 ll
 ll
-ll
+KK
 li
 ll
 ll
@@ -14375,47 +14879,48 @@ ll
 ll
 ll
 ll
-aa
-aa
-aa
+PG
+PG
+PG
 "}
 (87,1,1) = {"
-aa
-aa
-aa
-ag
-gx
-gx
-gx
-gx
-CU
-gF
-gH
-CU
-gx
-gx
-gx
-gx
-bG
-bG
-bF
+PG
+PG
+PG
+Wq
+FX
+FX
+FX
+FX
+DN
+wZ
+vV
+DN
+FX
+FX
+FX
+FX
+BJ
+BJ
+Ww
 bE
 bE
 bE
 bE
-bG
-bF
-bE
-bE
-bE
-bE
-bE
-bF
+BJ
+Ww
 bE
 bE
 bE
 bE
 bE
+Ww
+bE
+bE
+bE
+bE
+bE
+Hc
 bE
 bE
 bE
@@ -14425,8 +14930,7 @@ bE
 bE
 bE
 bE
-bE
-eN
+Px
 eM
 eM
 eU
@@ -14478,35 +14982,35 @@ ll
 ll
 ll
 ll
-aa
-aa
+PG
+PG
 "}
 (88,1,1) = {"
-aa
-aa
-aa
+PG
+PG
+PG
 bd
-Wo
+Sr
 af
 af
-VG
-af
-af
-af
+JL
 af
 af
 af
 af
-ag
-bG
-bG
-bF
+af
+af
+af
+Wq
+BJ
+BJ
+Ww
 bE
 bE
 bE
-bG
-bG
-bF
+BJ
+BJ
+Ww
 bE
 bE
 bE
@@ -14560,13 +15064,13 @@ lm
 lm
 lm
 ll
+KK
 ll
 ll
 ll
 ll
 ll
-ll
-ll
+KK
 ll
 ll
 ll
@@ -14578,36 +15082,36 @@ lm
 lm
 ll
 ll
+KK
 ll
-ll
-aa
-aa
+PG
+PG
 "}
 (89,1,1) = {"
-aa
-aa
-aa
-af
-cv
-af
-af
-af
-af
-af
-cv
+PG
+PG
+PG
+Ou
+HY
 af
 af
 af
 af
+Ou
+HY
 af
-bG
-bG
-bF
-bF
-bF
-bF
-bG
-bF
+af
+af
+af
+Ou
+BJ
+BJ
+Ww
+Ww
+Ww
+Ww
+BJ
+Ww
 bE
 bE
 bE
@@ -14622,15 +15126,15 @@ bE
 bE
 bE
 bE
-bG
-bF
-bF
-bF
-bF
-bF
+BJ
+Ww
+Ww
+Ww
+Ww
+Ww
 fB
-fz
-fz
+Sx
+Sx
 eN
 eM
 eM
@@ -14643,7 +15147,7 @@ eU
 eU
 eM
 eM
-eM
+Al
 eU
 eU
 li
@@ -14656,39 +15160,39 @@ ll
 lm
 lm
 ll
-li
+yc
 ll
 ll
 ll
 ll
-ll
-ll
-lm
-lm
-ll
+KK
 ll
 lm
 lm
 ll
 ll
+lm
+lm
+KK
 ll
 ll
 ll
 ll
 ll
 ll
+KK
 lm
 lm
 lm
 lm
-ll
-aa
-aa
+KK
+PG
+PG
 "}
 (90,1,1) = {"
-aa
-aa
-aa
+PG
+PG
+PG
 af
 af
 af
@@ -14703,13 +15207,18 @@ af
 af
 af
 bE
-bG
-bG
-bG
-bG
-bF
-bF
-bF
+BJ
+BJ
+BJ
+BJ
+Ww
+Ww
+Ww
+Hc
+bE
+bE
+bE
+Hc
 bE
 bE
 bE
@@ -14719,32 +15228,27 @@ bE
 bE
 bE
 bE
-bE
-bE
-bE
-bE
-bE
-bG
-bG
-bF
-bF
-bF
-bF
-fz
-fz
-fz
-fz
+BJ
+BJ
+Ww
+Ww
+Ww
+Ww
+Sx
+Sx
+Sx
+Sx
 eN
 eM
 eM
 eM
 eN
-eO
+VN
 eN
 eN
 eN
 eM
-eM
+Al
 eU
 eU
 eN
@@ -14784,59 +15288,59 @@ ll
 ll
 lm
 ll
-ll
-aa
+KK
+PG
 "}
 (91,1,1) = {"
-aa
-aa
-aa
-aa
+PG
+PG
+PG
+PG
 af
-NZ
+FZ
 af
 af
-cv
+HY
 bd
 af
 af
-aa
-aa
+PG
+PG
 af
 af
 bE
 bE
-bG
-bG
-bG
-bF
+BJ
+BJ
+BJ
+Ww
 bE
 bE
 bE
 bE
-bF
+Ww
 bE
 bE
-bE
-bE
-bE
-bE
+Hc
 bE
 bE
 bE
 bE
 bE
-bG
-bG
-bG
-bF
-bF
-bF
-fz
-fz
-fz
-fz
-fz
+bE
+Hc
+bE
+BJ
+BJ
+BJ
+Ww
+Ww
+Ww
+Sx
+Sx
+Sx
+Sx
+Sx
 eN
 eM
 eM
@@ -14845,7 +15349,7 @@ eO
 eN
 eU
 eN
-eN
+Px
 eM
 eU
 eN
@@ -14887,25 +15391,37 @@ ll
 ll
 lm
 ll
-aa
+PG
 "}
 (92,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
+PG
+PG
+PG
+PG
+PG
+PG
 af
 af
 af
-af
-Cv
-aa
-aa
-aa
-aa
-af
+Ou
+PP
+PG
+PG
+PG
+PG
+Ou
+bE
+Hc
+bE
+bE
+bE
+bE
+bE
+bE
+Hc
+Ww
+BJ
+Ww
 bE
 bE
 bE
@@ -14915,35 +15431,23 @@ bE
 bE
 bE
 bE
-bF
-bG
-bF
 bE
 bE
-bE
-bE
-bE
-bE
-bE
-bE
-bE
-bE
-bE
-bG
-bG
-bG
-bF
-bF
-fz
-fz
-fz
-fz
-fz
-fz
+BJ
+BJ
+BJ
+Ww
+Ww
+Sx
+Sx
+Sx
+Sx
+Sx
+Sx
 eN
 eM
 eN
-eN
+Px
 eN
 eM
 eM
@@ -14962,19 +15466,19 @@ lm
 li
 lj
 lj
+KK
 ll
 ll
 ll
 ll
 ll
-ll
-ll
+KK
 ll
 ll
 ll
 lm
 ll
-on
+XI
 li
 li
 lj
@@ -14983,32 +15487,32 @@ ll
 ll
 ll
 ll
+KK
 ll
 ll
 ll
 ll
-ll
-ll
-aa
+KK
+PG
 "}
 (93,1,1) = {"
-aa
-aa
-aa
-aa
-ag
-ag
-aa
-aa
-aa
-ag
-ag
-ag
-ag
-ag
-ag
-aa
-bF
+PG
+PG
+PG
+PG
+Wq
+Wq
+PG
+PG
+PG
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+PG
+Ww
 bE
 bE
 bE
@@ -15016,10 +15520,10 @@ bE
 bE
 bE
 bE
-bF
-bG
-bG
-bF
+Ww
+BJ
+BJ
+Ww
 bE
 bE
 bE
@@ -15031,20 +15535,20 @@ bE
 bE
 bE
 bE
-bG
-bG
-bG
-bG
-bF
-fz
-fz
-fz
-fB
+BJ
+BJ
+BJ
+BJ
+Ww
+Sx
+Sx
+Sx
+WI
 fB
 fB
 fB
 eO
-eO
+VN
 eU
 eU
 eM
@@ -15077,51 +15581,51 @@ lm
 lm
 ll
 li
-li
+yc
 lj
 lj
 li
 ll
 ll
 ll
-ll
+KK
 lm
 lm
 ll
 ll
+KK
 ll
-ll
-aa
+PG
 "}
 (94,1,1) = {"
-aa
-aa
-aa
-aa
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-bG
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bG
-bG
-bG
-bF
+PG
+PG
+PG
+PG
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+BJ
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+BJ
+BJ
+BJ
+Ww
 bE
 bE
 bE
@@ -15133,13 +15637,13 @@ bE
 bE
 bE
 bE
-bG
-bG
-bG
-bG
-bG
-fz
-fz
+BJ
+BJ
+BJ
+BJ
+BJ
+Sx
+Sx
 fB
 fB
 fB
@@ -15151,14 +15655,14 @@ eU
 eN
 eM
 eM
-eM
+Al
 eN
 eN
 eN
 eN
 li
 lj
-lj
+zD
 li
 ll
 lm
@@ -15177,55 +15681,55 @@ ll
 li
 lm
 li
-oC
-oo
-Jt
-oK
-oT
-Jt
-Jt
-Jt
-oC
+Rg
+UC
+Xa
+DQ
+MP
+Xa
+Xa
+Xa
+Rg
 lm
 lm
-ye
+yv
 ll
 ll
 li
-NO
-aa
+BZ
+PG
 "}
 (95,1,1) = {"
-aa
-aa
-aa
-aa
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-bG
-bG
-bG
-bG
-bG
-bG
-bG
-bG
-bG
-bG
-bG
-bF
-bF
-bF
+PG
+PG
+PG
+PG
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+BJ
+BJ
+BJ
+BJ
+BJ
+BJ
+BJ
+BJ
+BJ
+BJ
+BJ
+Ww
+Ww
+Ww
 bE
 bE
 bE
@@ -15234,9 +15738,9 @@ bE
 bE
 bE
 bE
-bG
-bG
-iE
+BJ
+BJ
+vw
 bE
 bE
 bE
@@ -15245,10 +15749,10 @@ fB
 fB
 fB
 fB
-fz
-fz
-fz
-fz
+Sx
+Sx
+Sx
+Sx
 eN
 eN
 eM
@@ -15279,79 +15783,79 @@ ll
 li
 li
 li
-Jt
-op
-oC
+Xa
+NK
+Rg
 fB
 fB
 fB
-oC
-ph
-Jt
+Rg
+LU
+Xa
 ll
 ll
 ll
 li
 li
 li
-aa
-aa
+PG
+PG
 "}
 (96,1,1) = {"
-aa
-aa
-aa
-aa
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-bG
-bG
-bG
-bG
-bG
-bG
-bG
-bG
-bG
-bG
-bG
-bG
-bG
-bG
-bF
+PG
+PG
+PG
+PG
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+Wq
+BJ
+BJ
+BJ
+BJ
+BJ
+BJ
+BJ
+BJ
+BJ
+BJ
+BJ
+BJ
+BJ
+BJ
+Ww
 bE
 bE
 bE
 bE
 bE
+Hc
 bE
 bE
 bE
-bE
-bE
+Hc
 bE
 bE
 bE
 fB
 fB
 fB
-fB
-fz
-fz
-fz
-fz
-fz
-fz
+WI
+Sx
+Sx
+Sx
+Sx
+Sx
+Sx
 eN
 eM
 eM
@@ -15364,10 +15868,10 @@ lm
 li
 li
 li
-zj
-zj
-zj
-zj
+ZA
+ZA
+ZA
+ZA
 lj
 lj
 lj
@@ -15376,63 +15880,63 @@ lm
 lm
 li
 ll
+KK
 ll
-ll
 li
 li
 li
-Jt
-oq
-oC
+Xa
+WS
+Rg
 fB
-oU
-Ca
-oC
-oU
-Jt
-ll
+YB
+Qm
+Rg
+YB
+Xa
+KK
 li
 li
 li
 li
-li
-aa
-aa
+yc
+PG
+PG
 "}
 (97,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
 bE
 bE
 bE
@@ -15442,114 +15946,114 @@ bE
 bE
 bE
 bE
-bF
-bF
-fz
-fz
+Ww
+Ww
+Sx
+Sx
 fB
 fB
 fB
-fz
-fz
-fz
-fz
-fz
-fz
+Sx
+Sx
+Sx
+Sx
+Sx
+Sx
 eN
 eN
 eN
 eN
-AG
+KE
 eO
 eU
-zj
-zj
-zj
-zj
-fz
-fz
-fz
-fB
+ZA
+ZA
+ZA
+ZA
+Sx
+Sx
+Sx
+WI
 fB
 lj
-li
+yc
 lm
 ll
 li
 li
+KK
+li
+li
+Sx
+Sx
+Sx
+Xa
+TD
+Rg
+Rg
+Rg
+Rg
+Rg
+Pv
+Xa
 ll
 li
 li
-fz
-fz
-fz
-Jt
-or
-oC
-oC
-oC
-oC
-oC
-pi
-Jt
-ll
 li
-li
-li
-UU
-aa
-aa
-aa
+Xn
+PG
+PG
+PG
 "}
 (98,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-fz
-fz
-fz
-fB
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Sx
+Sx
+Sx
+WI
 fB
 fB
 fB
@@ -15559,8 +16063,8 @@ fB
 fB
 fB
 jC
+nj
 jC
-jC
 fB
 fB
 fB
@@ -15570,87 +16074,87 @@ fB
 fB
 fB
 fB
+WI
 fB
 fB
 fB
-fB
-fz
-jC
-jC
-jC
+Sx
 jC
 jC
 jC
-fz
-fz
-fz
-fz
-Jt
-oU
+jC
+jC
+jC
+Sx
+Sx
+Sx
+Sx
+Xa
+YB
 fB
-oM
-oV
-pb
+UF
+Cz
+Mp
 fB
-pj
-Jt
-OP
+QK
+Xa
+XB
 li
 li
-aa
-aa
-aa
-aa
-aa
+PG
+PG
+PG
+PG
+PG
 "}
 (99,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-fz
-fz
-fz
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Ww
+Sx
+Sx
+Sx
 fB
 fB
 fB
@@ -15675,135 +16179,135 @@ fB
 fB
 fB
 fB
-fz
-fz
-fz
+Sx
+Sx
+Sx
 jC
 jC
-fz
-fz
-fz
-fz
-fz
-fz
-fz
-oC
-Jt
-Jt
-Jt
-Jt
-Jt
-ww
-ww
-fA
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Sx
+Sx
+Sx
+Sx
+Sx
+Sx
+Sx
+Rg
+Xa
+Xa
+Xa
+Xa
+Xa
+EQ
+EQ
+GO
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
 "}
 (100,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
 "}

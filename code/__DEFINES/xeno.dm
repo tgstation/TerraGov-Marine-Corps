@@ -44,16 +44,16 @@
 
 //List of weed types
 GLOBAL_LIST_INIT(weed_type_list, typecacheof(list(
-		/obj/effect/alien/weeds/node,
-		/obj/effect/alien/weeds/node/sticky,
-		/obj/effect/alien/weeds/node/resting,
+		/obj/alien/weeds/node,
+		/obj/alien/weeds/node/sticky,
+		/obj/alien/weeds/node/resting,
 		)))
 
 //List of weeds with probability of spawning
 GLOBAL_LIST_INIT(weed_prob_list, list(
-		/obj/effect/alien/weeds/node = 80,
-		/obj/effect/alien/weeds/node/sticky = 5,
-		/obj/effect/alien/weeds/node/resting = 10,
+		/obj/alien/weeds/node = 80,
+		/obj/alien/weeds/node/sticky = 5,
+		/obj/alien/weeds/node/resting = 10,
 		))
 
 //List of weed images

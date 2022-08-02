@@ -33,11 +33,11 @@
 	. = ..()
 	var/weed_found
 	if(from_window_shatter)
-		for(var/obj/effect/alien/weeds/weedwall/window/W in loc)
+		for(var/obj/alien/weeds/weedwall/window/W in loc)
 			weed_found = TRUE
 			break
 	if(weed_found)
-		new /obj/effect/alien/weeds/weedwall/frame(loc) //after smoothing to get the correct junction value
+		new /obj/alien/weeds/weedwall/frame(loc) //after smoothing to get the correct junction value
 
 
 /obj/structure/window_frame/proc/update_nearby_icons()
@@ -49,10 +49,10 @@
 /obj/structure/window_frame/Destroy()
 	density = FALSE
 	update_nearby_icons()
-	var/obj/effect/alien/weeds/weedwall/window_wall_weeds = locate() in loc
+	var/obj/alien/weeds/weedwall/window_wall_weeds = locate() in loc
 	if(window_wall_weeds)
 		qdel(window_wall_weeds)
-		new /obj/effect/alien/weeds(loc)
+		new /obj/alien/weeds(loc)
 	return ..()
 
 /obj/structure/window_frame/attackby(obj/item/I, mob/user, params)

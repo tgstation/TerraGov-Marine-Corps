@@ -43,7 +43,7 @@
 		medics++
 		return
 
-	if(prob(75))
+	if(prob(65))
 		var/datum/job/J = SSjob.GetJobType(/datum/job/som/ert/veteran)
 		H.apply_assigned_role_to_spawn(J)
 		to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are a veteran of the Sons of Mars and are assigned to this fireteam to respond to the TGMC distress signal sent out nearby. Do them proud and kill all who stand in your teams way!")]</p>")
