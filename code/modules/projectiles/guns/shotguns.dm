@@ -221,6 +221,8 @@
 	scatter_unwielded = 10
 	recoil = 2
 	recoil_unwielded = 4
+	recoil_backtime_multiplier = 3
+	recoil_deviation = 35
 
 
 //-------------------------------------------------------
