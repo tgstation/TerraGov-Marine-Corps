@@ -59,7 +59,7 @@ GLOBAL_LIST_EMPTY(goal_nodes)
 		//Check all possible next atoms, create an atom path for all of them
 		switch(pathing_type)
 			if(NODE_PATHING)
-				var/atom/movable/effect/ai_node/current_node = current_atom
+				var/obj/effect/ai_node/current_node = current_atom
 				list_of_direction = current_node.adjacent_nodes
 			if(TILE_PATHING)
 				list_of_direction = GLOB.alldirs
@@ -67,7 +67,7 @@ GLOBAL_LIST_EMPTY(goal_nodes)
 		for(var/direction in list_of_direction)
 			switch(pathing_type)
 				if(NODE_PATHING)
-					var/atom/movable/effect/ai_node/current_node = current_atom
+					var/obj/effect/ai_node/current_node = current_atom
 					atom_to_check = current_node.adjacent_nodes[direction]
 				if(TILE_PATHING)
 					var/turf/turf_to_check = get_step(current_atom, direction)
@@ -92,12 +92,12 @@ GLOBAL_LIST_EMPTY(goal_nodes)
 	while(current_atom != starting_atom)
 		atoms_path += current_atom
 		#ifdef TESTING
-		new /atom/movable/effect/temp_visual/telekinesis(current_atom)
+		new /obj/effect/temp_visual/telekinesis(current_atom)
 		#endif
 		current_atom = paths_checked[current_atom].previous_atom
 	return atoms_path
 
-/atom/movable/effect/ai_node/goal
+/obj/effect/ai_node/goal
 	name = "AI goal"
 	invisibility = INVISIBILITY_OBSERVER
 	///The identifier of this ai goal
@@ -107,7 +107,7 @@ GLOBAL_LIST_EMPTY(goal_nodes)
 	///The image added to the creator screen
 	var/image/goal_image
 
-/atom/movable/effect/ai_node/goal/Initialize(loc, mob/creator)
+/obj/effect/ai_node/goal/Initialize(loc, mob/creator)
 	. = ..()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AI_GOAL_SET, identifier, src)
 	RegisterSignal(SSdcs, COMSIG_GLOB_AI_GOAL_SET, .proc/clean_goal_node)
@@ -124,26 +124,26 @@ GLOBAL_LIST_EMPTY(goal_nodes)
 	animate(pixel_y = pixel_y + 3, time = 7, loop = -1, easing = EASE_OUT)
 	creator.client.images += goal_image
 
-/atom/movable/effect/ai_node/goal/LateInitialize()
+/obj/effect/ai_node/goal/LateInitialize()
 	make_adjacents(TRUE)
 
-/atom/movable/effect/ai_node/goal/Destroy()
+/obj/effect/ai_node/goal/Destroy()
 	. = ..()
 	GLOB.goal_nodes -= identifier
 	if(creator)
 		creator.client.images -= goal_image
 
 ///Null creator to prevent harddel
-/atom/movable/effect/ai_node/goal/proc/clean_creator()
+/obj/effect/ai_node/goal/proc/clean_creator()
 	SIGNAL_HANDLER
 	creator.client.images -= goal_image
 	creator = null
 
 ///Delete this ai_node goal
-/atom/movable/effect/ai_node/goal/proc/clean_goal_node()
+/obj/effect/ai_node/goal/proc/clean_goal_node()
 	SIGNAL_HANDLER
 	qdel(src)
 
-/atom/movable/effect/ai_node/goal/zombie
+/obj/effect/ai_node/goal/zombie
 	name = "Ai zombie goal"
 	identifier = IDENTIFIER_ZOMBIE

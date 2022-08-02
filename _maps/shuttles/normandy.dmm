@@ -38,7 +38,7 @@
 	},
 /area/shuttle/dropship/normandy)
 "gA" = (
-/atom/movable/effect/attach_point/crew_weapon/dropship2,
+/obj/effect/attach_point/crew_weapon/dropship2,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/normandy)
 "hz" = (

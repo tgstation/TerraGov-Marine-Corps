@@ -19,10 +19,10 @@
 	var/temp = ""
 	var/list/holo_calls	//array of /datum/holocalls
 	var/datum/holocall/outgoing_call	//do not modify the datums only check and call the public procs
-	var/atom/movable/effect/overlay/holo_pad_hologram/replay_holo	//replay hologram
+	var/obj/effect/overlay/holo_pad_hologram/replay_holo	//replay hologram
 	var/static/force_answer_call = FALSE	//Calls will be automatically answered after a couple rings, here for debugging
 	var/static/list/holopads = list()
-	var/atom/movable/effect/overlay/holoray/ray
+	var/obj/effect/overlay/holoray/ray
 	var/ringing = FALSE
 	var/offset = FALSE
 	var/on_network = TRUE
@@ -242,7 +242,7 @@
 			to_chat(user, "[span_danger("ERROR:")] \black Image feed in progress.")
 			return
 
-		var/atom/movable/effect/overlay/holo_pad_hologram/Hologram = new(loc)//Spawn a blank effect at the location.
+		var/obj/effect/overlay/holo_pad_hologram/Hologram = new(loc)//Spawn a blank effect at the location.
 		if(AI)
 			Hologram.icon = AI.holo_icon
 		else	//make it like real life
@@ -306,9 +306,9 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	else
 		icon_state = "holopad0"
 
-/obj/machinery/holopad/proc/set_holo(mob/living/user, atom/movable/effect/overlay/holo_pad_hologram/h)
+/obj/machinery/holopad/proc/set_holo(mob/living/user, obj/effect/overlay/holo_pad_hologram/h)
 	LAZYSET(masters, user, h)
-	LAZYSET(holorays, user, new /atom/movable/effect/overlay/holoray(loc))
+	LAZYSET(holorays, user, new /obj/effect/overlay/holoray(loc))
 	var/mob/living/silicon/ai/AI = user
 	if(istype(AI))
 		AI.current = src
@@ -333,7 +333,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 
 //Try to transfer hologram to another pad that can project on T
 /obj/machinery/holopad/proc/transfer_to_nearby_pad(turf/T,mob/holo_owner)
-	var/atom/movable/effect/overlay/holo_pad_hologram/h = masters[holo_owner]
+	var/obj/effect/overlay/holo_pad_hologram/h = masters[holo_owner]
 	if(!h || h.HC) //Holocalls can't change source.
 		return FALSE
 	for(var/pad in holopads)
@@ -363,7 +363,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 
 /obj/machinery/holopad/proc/move_hologram(mob/living/user, turf/new_turf)
 	if(LAZYLEN(masters) && masters[user])
-		var/atom/movable/effect/overlay/holo_pad_hologram/holo = masters[user]
+		var/obj/effect/overlay/holo_pad_hologram/holo = masters[user]
 		var/transfered = FALSE
 		if(!validate_location(new_turf))
 			if(!transfer_to_nearby_pad(new_turf,user))
@@ -379,8 +379,8 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 
 
 /obj/machinery/holopad/proc/update_holoray(mob/living/user, turf/new_turf)
-	var/atom/movable/effect/overlay/holo_pad_hologram/holo = masters[user]
-	var/atom/movable/effect/overlay/holoray/ray = holorays[user]
+	var/obj/effect/overlay/holo_pad_hologram/holo = masters[user]
+	var/obj/effect/overlay/holoray/ray = holorays[user]
 	var/disty = holo.y - ray.y
 	var/distx = holo.x - ray.x
 	var/newangle
@@ -402,25 +402,25 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 		ray.transform = turn(M.Scale(1,sqrt(distx*distx+disty*disty)),newangle)
 
 
-/atom/movable/effect/overlay/holo_pad_hologram
+/obj/effect/overlay/holo_pad_hologram
 	var/mob/living/Impersonation
 	var/datum/holocall/HC
 
 
-/atom/movable/effect/overlay/holo_pad_hologram/Destroy()
+/obj/effect/overlay/holo_pad_hologram/Destroy()
 	Impersonation = null
 	if(!QDELETED(HC))
 		HC.Disconnect(HC.calling_holopad)
 	return ..()
 
 
-/atom/movable/effect/overlay/holo_pad_hologram/examine(mob/user)
+/obj/effect/overlay/holo_pad_hologram/examine(mob/user)
 	if(Impersonation)
 		return Impersonation.examine(user)
 	return ..()
 
 
-/atom/movable/effect/overlay/holoray
+/obj/effect/overlay/holoray
 	name = "holoray"
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "holoray"

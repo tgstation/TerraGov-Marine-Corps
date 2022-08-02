@@ -9,7 +9,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "m" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /obj/machinery/door/poddoor/shutters/mainship,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)

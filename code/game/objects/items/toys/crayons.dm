@@ -91,7 +91,7 @@
 	if(!instant && !do_after(user, 5 SECONDS, TRUE, target, BUSY_ICON_GENERIC))
 		return
 
-	new /atom/movable/effect/decal/cleanable/crayon(target, colour, shadeColour, drawtype)
+	new /obj/effect/decal/cleanable/crayon(target, colour, shadeColour, drawtype)
 	uses--
 	if(uses <= 0)
 		to_chat(user, span_warning("You used up your crayon!"))

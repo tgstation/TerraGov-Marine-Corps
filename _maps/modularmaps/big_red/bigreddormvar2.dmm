@@ -22,7 +22,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "aY" = (
@@ -30,7 +30,7 @@
 	dir = 1;
 	icon_state = "tube1"
 	},
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "bM" = (
@@ -40,7 +40,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "cC" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/item/trash/chunk,
 /turf/open/floor/grimy{
@@ -50,7 +50,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "eI" = (
@@ -61,7 +61,7 @@
 /area/bigredv2/outside/dorms)
 "gf" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "gU" = (
@@ -69,7 +69,7 @@
 /area/bigredv2/outside/dorms)
 "iV" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
-/atom/movable/effect/decal/cleanable/blood/gibs/limb,
+/obj/effect/decal/cleanable/blood/gibs/limb,
 /turf/open/floor/grimy{
 	},
 /area/bigredv2/outside/dorms)
@@ -78,7 +78,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "mn" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
@@ -94,7 +94,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "nU" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/structure/reagent_dispensers/beerkeg,
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
@@ -111,7 +111,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "pH" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "pR" = (
@@ -119,7 +119,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "rL" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
@@ -131,7 +131,7 @@
 	},
 /area/bigredv2/outside/dorms)
 "up" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/grimy{
 	},
 /area/bigredv2/outside/dorms)
@@ -191,7 +191,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "Ep" = (
@@ -221,7 +221,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "Gi" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/item/trash/chunk{
 	pixel_x = -3;
 	pixel_y = 4
@@ -238,7 +238,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "Hf" = (
-/atom/movable/effect/decal/cleanable/blood{
+/obj/effect/decal/cleanable/blood{
 	icon_state = "xgib4"
 	},
 /turf/open/floor/grimy{
@@ -251,7 +251,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "Ip" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "IE" = (
@@ -295,7 +295,7 @@
 	pixel_x = 3;
 	pixel_y = -4
 	},
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/grimy{
 	},
 /area/bigredv2/outside/dorms)
@@ -305,7 +305,7 @@
 /area/bigredv2/outside/dorms)
 "NO" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/grimy{
 	},
 /area/bigredv2/outside/dorms)
@@ -314,8 +314,8 @@
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "TK" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/item/trash/plate,
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
@@ -335,8 +335,8 @@
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "YD" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},

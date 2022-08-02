@@ -1,22 +1,22 @@
 /* Simple object type, calls a proc when "stepped" on by something */
 
-/atom/movable/effect/step_trigger
+/obj/effect/step_trigger
 	var/affect_ghosts = 0
 	var/stopper = 1 // stops throwers //todo does nothing due to connectloc
 	invisibility = INVISIBILITY_MAXIMUM // nope cant see this shit
 	anchored = TRUE
 
-/atom/movable/effect/step_trigger/Initialize()
+/obj/effect/step_trigger/Initialize()
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = .proc/on_cross,
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
-/atom/movable/effect/step_trigger/proc/Trigger(atom/movable/A)
+/obj/effect/step_trigger/proc/Trigger(atom/movable/A)
 	return 0
 
-/atom/movable/effect/step_trigger/proc/on_cross(datum/source, atom/movable/H, oldloc, oldlocs)
+/obj/effect/step_trigger/proc/on_cross(datum/source, atom/movable/H, oldloc, oldlocs)
 	SIGNAL_HANDLER
 	if(!H)
 		return
@@ -28,7 +28,7 @@
 
 /* Tosses things in a certain direction */
 
-/atom/movable/effect/step_trigger/thrower
+/obj/effect/step_trigger/thrower
 	var/direction = SOUTH // the direction of throw
 	var/tiles = 3	// if 0: forever until atom hits a stopper
 	var/immobilize = 1 // if nonzero: prevents mobs from moving while they're being flung
@@ -43,12 +43,12 @@
 
 		if(!istype(A,/obj) && !istype(A,/mob)) //mobs and objects only.
 			return
-		if(istype(A,/atom/movable/effect)) return
+		if(istype(A,/obj/effect)) return
 
 		var/atom/movable/AM = A
 		var/curtiles = 0
 		var/stopthrow = 0
-		for(var/atom/movable/effect/step_trigger/thrower/T in orange(2, src))
+		for(var/obj/effect/step_trigger/thrower/T in orange(2, src))
 			if(AM in T.affecting)
 				return
 
@@ -71,11 +71,11 @@
 
 			// Calculate if we should stop the process
 			if(!nostop)
-				for(var/atom/movable/effect/step_trigger/T in get_step(AM, direction))
+				for(var/obj/effect/step_trigger/T in get_step(AM, direction))
 					if(T.stopper && T != src)
 						stopthrow = 1
 			else
-				for(var/atom/movable/effect/step_trigger/teleporter/T in get_step(AM, direction))
+				for(var/obj/effect/step_trigger/teleporter/T in get_step(AM, direction))
 					if(T.stopper)
 						stopthrow = 1
 
@@ -96,11 +96,11 @@
 
 /* Stops things thrown by a thrower, doesn't do anything */
 
-/atom/movable/effect/step_trigger/stopper
+/obj/effect/step_trigger/stopper
 
 /* Instant teleporter */
 
-/atom/movable/effect/step_trigger/teleporter
+/obj/effect/step_trigger/teleporter
 	var/teleport_x = 0	// teleportation coordinates (if one is null, then no teleport!)
 	var/teleport_y = 0
 	var/teleport_z = 0
@@ -112,7 +112,7 @@
 		if(!istype(A,/obj) && !istype(A,/mob)) //mobs and objects only.
 			return
 
-		if(istype(A,/atom/movable/effect) || A.anchored)
+		if(istype(A,/obj/effect) || A.anchored)
 			return
 
 		if(teleport_x && teleport_y && teleport_z)
@@ -141,7 +141,7 @@
 
 /* Random teleporter, teleports atoms to locations ranging from teleport_x - teleport_x_offset, etc */
 
-/atom/movable/effect/step_trigger/teleporter/random
+/obj/effect/step_trigger/teleporter/random
 	icon_state = "shallnotpass"
 	var/teleport_x_offset = 0
 	var/teleport_y_offset = 0
@@ -149,12 +149,12 @@
 
 	Trigger(var/atom/movable/A)
 		if(istype(A, /obj)) //mobs and objects only.
-			if(istype(A, /atom/movable/effect)) return
+			if(istype(A, /obj/effect)) return
 			qdel(A)
 		else if(isliving(A)) //Hacked it up so it just deletes it
 			to_chat(A, span_danger("You get lost into the depths of space, never to be seen again."))
 			qdel(A)
 
-/atom/movable/effect/step_trigger/teleporter/random/Initialize(mapload)
+/obj/effect/step_trigger/teleporter/random/Initialize(mapload)
 	. = ..()
 	icon_state = ""

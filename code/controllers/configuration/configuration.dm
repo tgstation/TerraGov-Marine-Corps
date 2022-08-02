@@ -199,7 +199,7 @@
 
 /datum/controller/configuration/stat_entry()
 	if(!statclick)
-		statclick = new/atom/movable/effect/statclick/debug(null, "Debug", src)
+		statclick = new/obj/effect/statclick/debug(null, "Debug", src)
 	stat("[name]:", statclick)
 
 

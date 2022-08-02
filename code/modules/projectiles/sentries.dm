@@ -395,7 +395,7 @@
 	if(!path.len)
 		return FALSE
 	for(var/turf/T AS in path)
-		var/atom/movable/effect/particle_effect/smoke/smoke = locate() in T
+		var/obj/effect/particle_effect/smoke/smoke = locate() in T
 		if(smoke && smoke.opacity)
 			return FALSE
 

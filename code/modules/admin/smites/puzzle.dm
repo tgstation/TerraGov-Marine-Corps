@@ -8,7 +8,7 @@
 		to_chat(user, span_warning("Imprisonment failed!"), confidential = TRUE)
 
 
-/atom/movable/effect/sliding_puzzle
+/obj/effect/sliding_puzzle
 	name = "Sliding puzzle generator"
 	icon = 'icons/obj/items/toy.dmi' //mapping
 	icon_state = "waterballoon-e"
@@ -23,7 +23,7 @@
 	var/empty_tile_id //blank puzzle tile for swapping pieces around
 
 //Gets the turf where the tile with given id should be
-/atom/movable/effect/sliding_puzzle/proc/get_turf_for_id(id)
+/obj/effect/sliding_puzzle/proc/get_turf_for_id(id)
 	var/turf/center = get_turf(src)
 	switch(id)
 		if(1)
@@ -45,15 +45,15 @@
 		if(9)
 			return get_step(center,SOUTHEAST)
 
-/atom/movable/effect/sliding_puzzle/Initialize(mapload)
+/obj/effect/sliding_puzzle/Initialize(mapload)
 	..()
 	return INITIALIZE_HINT_LATELOAD
 
-/atom/movable/effect/sliding_puzzle/LateInitialize()
+/obj/effect/sliding_puzzle/LateInitialize()
 	if(auto_setup)
 		setup()
 
-/atom/movable/effect/sliding_puzzle/proc/check_setup_location()
+/obj/effect/sliding_puzzle/proc/check_setup_location()
 	for(var/id in 1 to 9)
 		var/turf/T = get_turf_for_id(id)
 		if(!T)
@@ -63,7 +63,7 @@
 	return TRUE
 
 
-/atom/movable/effect/sliding_puzzle/proc/validate()
+/obj/effect/sliding_puzzle/proc/validate()
 	if(finished)
 		return
 
@@ -81,7 +81,7 @@
 	//Ding ding
 	finish()
 
-/atom/movable/effect/sliding_puzzle/Destroy()
+/obj/effect/sliding_puzzle/Destroy()
 	if(LAZYLEN(elements))
 		for(var/obj/structure/puzzle_element/E AS in elements)
 			E.source = null
@@ -90,7 +90,7 @@
 
 #define COLLAPSE_DURATION 7
 
-/atom/movable/effect/sliding_puzzle/proc/finish()
+/obj/effect/sliding_puzzle/proc/finish()
 	finished = TRUE
 	for(var/mob/M in range(7,src))
 		shake_camera(M, COLLAPSE_DURATION , 1)
@@ -99,10 +99,10 @@
 
 	dispense_reward()
 
-/atom/movable/effect/sliding_puzzle/proc/dispense_reward() //spawns reward in the middle of solved puzzle
+/obj/effect/sliding_puzzle/proc/dispense_reward() //spawns reward in the middle of solved puzzle
 	new reward_type(get_turf(src))
 
-/atom/movable/effect/sliding_puzzle/proc/is_solvable()
+/obj/effect/sliding_puzzle/proc/is_solvable()
 	var/list/current_ordering = list()
 	for(var/obj/structure/puzzle_element/E AS in elements_in_order())
 		current_ordering += E.id
@@ -117,7 +117,7 @@
 	return swap_tally % 2 == 0
 
 //swap two tiles in same row
-/atom/movable/effect/sliding_puzzle/proc/make_solvable()
+/obj/effect/sliding_puzzle/proc/make_solvable()
 	var/first_tile_id = 1
 	var/other_tile_id = 2
 	if(empty_tile_id == 1 || empty_tile_id == 2) //Can't swap with empty one so just grab some in second row
@@ -144,17 +144,17 @@
 		return -1
 	return 0
 
-/atom/movable/effect/sliding_puzzle/proc/elements_in_order()
+/obj/effect/sliding_puzzle/proc/elements_in_order()
 	return sortTim(elements,cmp=/proc/cmp_xy_desc)
 
-/atom/movable/effect/sliding_puzzle/proc/get_base_icon()
+/obj/effect/sliding_puzzle/proc/get_base_icon()
 	var/icon/I = new('icons/obj/puzzle.dmi')
 	var/list/puzzles = icon_states(I)
 	var/puzzle_state = pick(puzzles)
 	var/icon/P = new('icons/obj/puzzle.dmi',puzzle_state)
 	return P
 
-/atom/movable/effect/sliding_puzzle/proc/setup() //setup the puzzle
+/obj/effect/sliding_puzzle/proc/setup() //setup the puzzle
 	//First we slice the 96x96 icon into 32x32 pieces
 	var/list/puzzle_pieces = list() //id -> icon list
 
@@ -212,7 +212,7 @@
 	anchored = FALSE
 	density = TRUE
 	var/id = 0
-	var/atom/movable/effect/sliding_puzzle/source
+	var/obj/effect/sliding_puzzle/source
 	var/icon/puzzle_icon
 
 /obj/structure/puzzle_element/Move(nloc, dir)
@@ -258,22 +258,22 @@
 	source.validate()
 
 //Admin abuse version so you can pick the icon before it sets up
-/atom/movable/effect/sliding_puzzle/admin
+/obj/effect/sliding_puzzle/admin
 	auto_setup = FALSE //false so we can set it up ourselves
 	var/icon/puzzle_icon
 	var/puzzle_state
 
-/atom/movable/effect/sliding_puzzle/admin/get_base_icon()
+/obj/effect/sliding_puzzle/admin/get_base_icon()
 	var/icon/I = new(puzzle_icon,puzzle_state)
 	return I
 
 //Prison cube version
-/atom/movable/effect/sliding_puzzle/prison
+/obj/effect/sliding_puzzle/prison
 	auto_setup = FALSE //This will be done by cube proc
 	var/mob/living/prisoner
 	element_type = /obj/structure/puzzle_element/prison
 
-/atom/movable/effect/sliding_puzzle/prison/get_base_icon()
+/obj/effect/sliding_puzzle/prison/get_base_icon()
 	if(!prisoner)
 		CRASH("Prison cube without prisoner")
 	prisoner.setDir(SOUTH)
@@ -281,14 +281,14 @@
 	I.Scale(96,96)
 	return I
 
-/atom/movable/effect/sliding_puzzle/prison/Destroy()
+/obj/effect/sliding_puzzle/prison/Destroy()
 	if(prisoner)
 		to_chat(prisoner,span_userdanger("With the cube broken by force, you can feel your body falling apart."))
 		prisoner.death()
 		qdel(prisoner)
 	. = ..()
 
-/atom/movable/effect/sliding_puzzle/prison/dispense_reward()
+/obj/effect/sliding_puzzle/prison/dispense_reward()
 	prisoner.forceMove(get_turf(src))
 	prisoner.notransform = FALSE
 	prisoner = null
@@ -302,7 +302,7 @@
 
 /proc/puzzle_imprison(mob/living/prisoner)
 	var/turf/T = get_turf(prisoner)
-	var/atom/movable/effect/sliding_puzzle/prison/cube = new(T)
+	var/obj/effect/sliding_puzzle/prison/cube = new(T)
 	if(!cube.check_setup_location())
 		qdel(cube)
 		return FALSE

@@ -398,11 +398,11 @@
 	icon_state = "mortar_ammo_flr"
 
 /obj/item/mortal_shell/flare/detonate(turf/T)
-	new /atom/movable/effect/mortar_flare(T)
+	new /obj/effect/mortar_flare(T)
 	playsound(T, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4)
 
 ///Name_swap of the CAS flare
-/atom/movable/effect/mortar_flare
+/obj/effect/mortar_flare
 	invisibility = INVISIBILITY_MAXIMUM
 	resistance_flags = RESIST_ALL
 	mouse_opacity = 0
@@ -411,7 +411,7 @@
 	light_power = 8
 	light_range = 12 //Way brighter than most lights
 
-/atom/movable/effect/mortar_flare/Initialize()
+/obj/effect/mortar_flare/Initialize()
 	. = ..()
 	var/turf/T = get_turf(src)
 	set_light(light_range, light_power)

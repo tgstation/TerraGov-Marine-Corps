@@ -33,10 +33,10 @@
 						H.track_blood--
 
 				if (bloodDNA && !locate(/obj/structure) in contents)
-					src.AddTracks(/atom/movable/effect/decal/cleanable/blood/tracks/footprints,bloodDNA,H.dir,0,bloodcolor) // Coming
+					src.AddTracks(/obj/effect/decal/cleanable/blood/tracks/footprints,bloodDNA,H.dir,0,bloodcolor) // Coming
 					var/turf/from = get_step(H,REVERSE_DIR(H.dir))
 					if(istype(from) && from)
-						from.AddTracks(/atom/movable/effect/decal/cleanable/blood/tracks/footprints,bloodDNA,0,H.dir,bloodcolor) // Going
+						from.AddTracks(/obj/effect/decal/cleanable/blood/tracks/footprints,bloodDNA,0,H.dir,bloodcolor) // Going
 
 					bloodDNA = null
 
@@ -103,7 +103,7 @@
 	..()
 	overlays += image("icon"='icons/misc/beach.dmi',"icon_state"="water2","layer"=MOB_LAYER+0.1)
 
-/atom/movable/effect/beach_overlay
+/obj/effect/beach_overlay
 	name = "beach_overlay"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	layer = RIVER_OVERLAY_LAYER

@@ -3,14 +3,14 @@
 		return TRUE
 	return FALSE
 
-/mob/living/carbon/effect_smoke(atom/movable/effect/particle_effect/smoke/S)
+/mob/living/carbon/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
 	if(!.)
 		return
 	if(!internal && !has_smoke_protection())
 		inhale_smoke(S)
 
-/mob/living/carbon/proc/inhale_smoke(atom/movable/effect/particle_effect/smoke/S)
+/mob/living/carbon/proc/inhale_smoke(obj/effect/particle_effect/smoke/S)
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_COUGH) && prob(30))
 		emote("cough")
 	else if(CHECK_BITFIELD(S.smoke_traits, SMOKE_GASP) && prob(30))
@@ -55,7 +55,7 @@
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CHEM))
 		S.pre_chem_effect(src)
 
-/mob/living/carbon/smoke_contact(atom/movable/effect/particle_effect/smoke/S)
+/mob/living/carbon/smoke_contact(obj/effect/particle_effect/smoke/S)
 	. = ..()
 	var/protection = .
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_NEURO) && (internal || has_smoke_protection())) //either inhaled or this.

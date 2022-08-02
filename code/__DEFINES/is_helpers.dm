@@ -213,7 +213,7 @@
 
 #define isAPC(A) (istype(A, /obj/machinery/power/apc))
 
-#define is_cleanable(A) (istype(A, /atom/movable/effect/decal/cleanable) || istype(A, /atom/movable/effect/rune)) //if something is cleanable
+#define is_cleanable(A) (istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/rune)) //if something is cleanable
 
 #define isvehicle(A) (istype(A, /obj/vehicle))
 
@@ -242,9 +242,9 @@
 
 #define istimer(O) (istype(O, /obj/item/assembly/timer))
 
-#define iseffect(O) (istype(O, /atom/movable/effect))
+#define iseffect(O) (istype(O, /obj/effect))
 
-#define isainode(O) (istype(O, /atom/movable/effect/ai_node))
+#define isainode(O) (istype(O, /obj/effect/ai_node))
 
 //Gamemode
 #define isdistressgamemode(O) (istype(O, /datum/game_mode/infestation/distress))

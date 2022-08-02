@@ -37,7 +37,7 @@
 /turf/open/floor/tile/blue/whitebluefull,
 /area/lv624/lazarus/medbay)
 "dA" = (
-/atom/movable/effect/spawner/random/kitchen,
+/obj/effect/spawner/random/kitchen,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/medbay)
 "dK" = (
@@ -55,7 +55,7 @@
 /turf/open/floor/tile/blue/whitebluefull,
 /area/lv624/lazarus/medbay)
 "fr" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/medbay)
 "fv" = (
@@ -100,8 +100,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/atom/movable/effect/ai_node,
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/medbay)
 "jh" = (
@@ -128,12 +128,12 @@
 /area/lv624/lazarus/medbay)
 "lC" = (
 /obj/structure/table,
-/atom/movable/effect/spawner/random/sugary_snack,
+/obj/effect/spawner/random/sugary_snack,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/lv624/lazarus/medbay)
 "lD" = (
-/atom/movable/effect/ai_node,
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/medbay)
 "lR" = (
@@ -223,7 +223,7 @@
 /area/lv624/lazarus/medbay)
 "sJ" = (
 /obj/structure/table,
-/atom/movable/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/ammo/shotgun,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 8
 	},
@@ -260,7 +260,7 @@
 	},
 /area/lv624/lazarus/medbay)
 "vC" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/medbay)
 "wm" = (
@@ -319,7 +319,7 @@
 /area/lv624/lazarus/medbay)
 "zF" = (
 /obj/structure/table,
-/atom/movable/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/ammo/shotgun,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 10
 	},
@@ -340,7 +340,7 @@
 	},
 /area/lv624/lazarus/medbay)
 "BK" = (
-/atom/movable/effect/spawner/random/clothing,
+/obj/effect/spawner/random/clothing,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/medbay)
 "BW" = (
@@ -367,8 +367,8 @@
 /area/lv624/lazarus/medbay)
 "Go" = (
 /obj/structure/table,
-/atom/movable/effect/spawner/random/ammo/shotgun,
-/atom/movable/effect/spawner/random/ammo/shotgun{
+/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/ammo/shotgun{
 	pixel_x = -2;
 	pixel_y = 10
 	},
@@ -405,7 +405,7 @@
 /area/lv624/lazarus/medbay)
 "Nv" = (
 /obj/structure/table,
-/atom/movable/effect/spawner/random/sugary_snack{
+/obj/effect/spawner/random/sugary_snack{
 	pixel_x = -2;
 	pixel_y = 2
 	},

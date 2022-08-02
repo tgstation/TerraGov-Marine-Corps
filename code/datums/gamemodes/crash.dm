@@ -81,7 +81,7 @@
 	for(var/i in GLOB.xeno_resin_silo_turfs)
 		new /obj/structure/xeno/silo(i)
 
-	for(var/atom/movable/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
+	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_mob(HEADBITE_DEATH)
 
 	for(var/i in GLOB.nuke_spawn_locs)
@@ -198,3 +198,14 @@
 		return //Things are balanced, no burrowed needed
 	xeno_job.add_job_positions(1)
 	xeno_hive.update_tier_limits()
+
+/datum/game_mode/infestation/crash/get_total_joblarvaworth(list/z_levels, count_flags)
+	. = 0
+
+	for(var/mob/living/carbon/human/H AS in GLOB.human_mob_list)
+		if(!H.job)
+			continue
+		if(isspaceturf(H.loc))
+			continue
+		. += H.job.jobworth[/datum/job/xenomorph]
+

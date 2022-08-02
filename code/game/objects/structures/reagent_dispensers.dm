@@ -43,11 +43,11 @@
 			qdel(src)
 		if(EXPLODE_HEAVY)
 			if (prob(50))
-				new /atom/movable/effect/particle_effect/water(loc)
+				new /obj/effect/particle_effect/water(loc)
 				qdel(src)
 		if(EXPLODE_LIGHT)
 			if (prob(5))
-				new /atom/movable/effect/particle_effect/water(loc)
+				new /obj/effect/particle_effect/water(loc)
 				qdel(src)
 
 
@@ -203,7 +203,7 @@
 
 	amount = min(amount, reagents.total_volume)
 	reagents.remove_reagent(/datum/reagent/fuel,amount)
-	new /atom/movable/effect/decal/cleanable/liquid_fuel(loc, amount, FALSE)
+	new /obj/effect/decal/cleanable/liquid_fuel(loc, amount, FALSE)
 	playsound(src, 'sound/effects/glob.ogg', 25, 1)
 
 

@@ -1,11 +1,11 @@
-/atom/movable/effect/decal/cleanable/crayon
+/obj/effect/decal/cleanable/crayon
 	name = "rune"
 	desc = "A rune drawn in crayon."
 	icon = 'icons/effects/crayondecal.dmi'
 	layer = ABOVE_TURF_LAYER
 	anchored = TRUE
 
-/atom/movable/effect/decal/cleanable/crayon/New(location, main = "#FFFFFF", shade = "#000000", type = "rune")
+/obj/effect/decal/cleanable/crayon/New(location, main = "#FFFFFF", shade = "#000000", type = "rune")
 	loc = location
 
 	name = type

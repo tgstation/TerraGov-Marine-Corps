@@ -11,14 +11,14 @@
 	dir = 8;
 	icon_state = "tube1"
 	},
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/southcheckpoint)
 "d" = (
 /obj/structure/table/mainship,
-/atom/movable/effect/spawner/random/tool,
+/obj/effect/spawner/random/tool,
 /turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/southcheckpoint)
@@ -40,13 +40,13 @@
 	},
 /area/bigredv2/outside/southcheckpoint)
 "h" = (
-/atom/movable/effect/decal/cleanable/blood,
-/atom/movable/effect/spawner/gibspawner/human,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/spawner/gibspawner/human,
 /turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/southcheckpoint)
 "j" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/southcheckpoint)
@@ -57,7 +57,7 @@
 /area/bigredv2/outside/southcheckpoint)
 "l" = (
 /obj/item/trash/sosjerky,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /turf/open/floor/tile/dark{
 	},
@@ -84,7 +84,7 @@
 /area/bigredv2/outside/southcheckpoint)
 "q" = (
 /obj/structure/rack,
-/atom/movable/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/toolbox,
 /turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/southcheckpoint)
@@ -95,7 +95,7 @@
 	},
 /area/bigredv2/outside/southcheckpoint)
 "t" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/southcheckpoint)
@@ -111,7 +111,7 @@
 /area/bigredv2/outside/southcheckpoint)
 "w" = (
 /obj/structure/table/mainship,
-/atom/movable/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/technology_scanner,
 /turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/southcheckpoint)
 "z" = (
@@ -166,7 +166,7 @@
 	},
 /area/bigredv2/outside/southcheckpoint)
 "O" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /turf/open/floor/tile/dark{
 	},

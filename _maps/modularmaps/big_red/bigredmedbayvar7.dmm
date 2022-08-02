@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
 	layer = 2.4
@@ -10,7 +10,7 @@
 	},
 /area/bigredv2/outside/medical)
 "aD" = (
-/atom/movable/effect/decal/cleanable/blood{
+/obj/effect/decal/cleanable/blood{
 	icon_state = "gib6";
 	},
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
@@ -22,7 +22,7 @@
 	},
 /area/bigredv2/outside/medical)
 "aJ" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
 	layer = 2.4
@@ -67,7 +67,7 @@
 	},
 /area/bigredv2/outside/medical)
 "br" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/item/tool/surgery/bonesetter,
 /turf/open/floor{
 	icon_state = "white"
@@ -77,7 +77,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
@@ -111,15 +111,15 @@
 /area/bigredv2/outside/medical)
 "co" = (
 /obj/structure/bed/chair,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/item/shard,
 /turf/open/floor{
 	icon_state = "white"
 	},
 /area/bigredv2/outside/medical)
 "cx" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
 	dir = 8;
 	icon_state = "damaged2"
@@ -127,7 +127,7 @@
 /area/bigredv2/outside/medical)
 "dd" = (
 /obj/structure/cable,
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "dk" = (
@@ -147,8 +147,8 @@
 	dir = 4;
 	layer = 2.4
 	},
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/item/stack/cable_coil{
 	amount = 1;
 	icon_state = "coil2"
@@ -160,7 +160,7 @@
 	},
 /area/bigredv2/outside/medical)
 "dB" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/machinery/door_control{
 	id = "Medical";
 	name = "Storm Shutters";
@@ -178,7 +178,7 @@
 	},
 /area/bigredv2/outside/medical)
 "dL" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
 "dT" = (
@@ -188,7 +188,7 @@
 /area/bigredv2/outside/c)
 "ea" = (
 /obj/structure/bed/roller,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -204,8 +204,8 @@
 /turf/open/floor/tile/blue/whiteblue,
 /area/bigredv2/outside/medical)
 "er" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood,
 /obj/item/stack/sheet/metal{
 	amount = 1
 	},
@@ -220,7 +220,7 @@
 	},
 /area/bigredv2/outside/medical)
 "ez" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
 "eD" = (
@@ -228,9 +228,9 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "eM" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/cleanable/blood,
-/atom/movable/effect/landmark/corpsespawner/PMC,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/landmark/corpsespawner/PMC,
 /turf/open/floor/plating{
 	icon_state = "platingdmg3"
 	},
@@ -245,7 +245,7 @@
 "fb" = (
 /obj/structure/sign/safety/medical{
 	},
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/item/clothing/head/surgery/blue,
 /turf/open/floor{
 	icon_state = "platingdmg1"
@@ -266,7 +266,7 @@
 	},
 /area/bigredv2/outside/medical)
 "fo" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/item/stack/sheet/metal{
 	amount = 1
 	},
@@ -306,7 +306,7 @@
 /area/bigredv2/outside/medical)
 "gH" = (
 /obj/machinery/sleep_console,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -317,7 +317,7 @@
 	},
 /area/bigredv2/outside/medical)
 "gR" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "gV" = (
@@ -353,7 +353,7 @@
 	},
 /area/bigredv2/outside/medical)
 "ht" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
 "hz" = (
@@ -370,7 +370,7 @@
 	},
 /area/bigredv2/outside/medical)
 "hD" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/machinery/alarm{
 	dir = 8
 	},
@@ -380,7 +380,7 @@
 /area/bigredv2/outside/medical)
 "hS" = (
 /obj/structure/table,
-/atom/movable/effect/spawner/random/bomb_supply,
+/obj/effect/spawner/random/bomb_supply,
 /obj/item/stack/sheet/metal{
 	amount = 1
 	},
@@ -403,8 +403,8 @@
 /area/bigredv2/outside/medical)
 "ip" = (
 /obj/machinery/optable,
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/landmark/corpsespawner,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/corpsespawner,
 /obj/item/reagent_containers/food/snacks/margheritaslice,
 /turf/open/floor{
 	icon_state = "white"
@@ -425,7 +425,7 @@
 /area/bigredv2/outside/medical)
 "iU" = (
 /obj/machinery/bodyscanner,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
 	icon_state = "platingdmg1"
 	},
@@ -449,7 +449,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
 	dir = 5;
 	icon_state = "whitebluefull";
@@ -462,15 +462,15 @@
 	},
 /area/bigredv2/outside/medical)
 "jz" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor{
 	icon_state = "white"
 	},
 /area/bigredv2/outside/medical)
 "jE" = (
-/atom/movable/effect/landmark/weed_node,
-/atom/movable/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/c)
 "jJ" = (
@@ -483,7 +483,7 @@
 	},
 /area/bigredv2/outside/medical)
 "jK" = (
-/atom/movable/effect/decal/cleanable/vomit,
+/obj/effect/decal/cleanable/vomit,
 /turf/open/floor{
 	icon_state = "platingdmg1"
 	},
@@ -499,7 +499,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "kQ" = (
-/atom/movable/effect/decal/cleanable/blood/gibs,
+/obj/effect/decal/cleanable/blood/gibs,
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	name = "\improper Medical Clinic"
 	},
@@ -515,7 +515,7 @@
 /area/bigredv2/outside/medical)
 "kX" = (
 /obj/structure/bed,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
 	dir = 4;
 	icon_state = "whitegreen";
@@ -531,7 +531,7 @@
 	},
 /area/bigredv2/outside/medical)
 "ll" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
 	dir = 8;
 	icon_state = "damaged4"
@@ -549,7 +549,7 @@
 	},
 /area/bigredv2/outside/medical)
 "mf" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/item/shard,
 /turf/open/floor{
 	icon_state = "white"
@@ -563,7 +563,7 @@
 	},
 /area/bigredv2/outside/medical)
 "mq" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /obj/item/trash/chips,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -594,8 +594,8 @@
 	},
 /area/bigredv2/outside/medical)
 "nx" = (
-/atom/movable/effect/decal/cleanable/blood,
-/atom/movable/effect/landmark/corpsespawner/PMC,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/landmark/corpsespawner/PMC,
 /turf/open/floor{
 	icon_state = "platingdmg1"
 	},
@@ -625,7 +625,7 @@
 /area/bigredv2/outside/medical)
 "oD" = (
 /obj/structure/bed/roller,
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor{
 	icon_state = "platingdmg1"
 	},
@@ -633,7 +633,7 @@
 "oV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "pr" = (
@@ -645,7 +645,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
 "pC" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
 	dir = 2;
 	icon_state = "whitegreen";
@@ -659,7 +659,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
 	dir = 1;
 	icon_state = "whitegreen";
@@ -689,8 +689,8 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
 "pQ" = (
-/atom/movable/effect/ai_node,
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "pU" = (
@@ -755,7 +755,7 @@
 	},
 /area/bigredv2/outside/medical)
 "qY" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor{
 	icon_state = "platingdmg1"
@@ -773,8 +773,8 @@
 	},
 /area/bigredv2/outside/medical)
 "rN" = (
-/atom/movable/effect/landmark/corpsespawner/doctor,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/landmark/corpsespawner/doctor,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -806,14 +806,14 @@
 	},
 /area/bigredv2/outside/medical)
 "so" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor{
 	dir = 8;
 	icon_state = "damaged2"
 	},
 /area/bigredv2/outside/medical)
 "sz" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor{
 	icon_state = "white"
@@ -871,20 +871,20 @@
 	},
 /area/bigredv2/outside/medical)
 "tE" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/item/clothing/gloves/latex,
 /turf/open/floor{
 	icon_state = "platingdmg1"
 	},
 /area/bigredv2/outside/medical)
 "tL" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "ug" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/item/ammo_casing/bullet,
 /turf/open/floor{
 	icon_state = "platingdmg1"
@@ -920,7 +920,7 @@
 /area/bigredv2/outside/medical)
 "vo" = (
 /obj/item/trash/chips,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor{
 	icon_state = "white"
@@ -949,7 +949,7 @@
 	},
 /area/bigredv2/outside/medical)
 "wd" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/machinery/light{
 	dir = 4;
 	icon_state = "tube1";
@@ -960,7 +960,7 @@
 	},
 /area/bigredv2/outside/medical)
 "wx" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/item/ammo_casing/shell,
 /turf/open/floor{
 	icon_state = "platingdmg1"
@@ -989,14 +989,14 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/c)
 "xc" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
 	dir = 2;
 	icon_state = "whitegreenfull";
 	},
 /area/bigredv2/outside/medical)
 "xi" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/medical)
@@ -1035,13 +1035,13 @@
 /area/bigredv2/outside/medical)
 "xT" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
 	icon_state = "white"
 	},
 /area/bigredv2/outside/medical)
 "xU" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/item/ammo_casing/shell,
 /turf/open/floor/plating{
 	icon_state = "panelscorched"
@@ -1059,7 +1059,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
 "yq" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
 	dir = 8;
 	icon_state = "damaged5"
@@ -1098,7 +1098,7 @@
 	},
 /area/bigredv2/outside/medical)
 "yW" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "yZ" = (
@@ -1144,7 +1144,7 @@
 	},
 /area/bigredv2/outside/medical)
 "zN" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /obj/item/reagent_containers/food/snacks/margheritaslice,
 /turf/open/floor{
 	icon_state = "white"
@@ -1158,14 +1158,14 @@
 /area/bigredv2/outside/medical)
 "zY" = (
 /obj/machinery/chem_master,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
 	dir = 8;
 	icon_state = "damaged4"
 	},
 /area/bigredv2/outside/medical)
 "zZ" = (
-/atom/movable/effect/spawner/gibspawner/human,
+/obj/effect/spawner/gibspawner/human,
 /turf/open/floor{
 	icon_state = "platingdmg1"
 	},
@@ -1181,7 +1181,7 @@
 	},
 /area/bigredv2/outside/medical)
 "Ai" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
 	dir = 4;
 	icon_state = "whitegreen";
@@ -1198,15 +1198,15 @@
 /area/bigredv2/outside/medical)
 "Ax" = (
 /obj/structure/bed/chair/office/light,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
 	icon_state = "white"
 	},
 /area/bigredv2/outside/medical)
 "AP" = (
 /obj/structure/cable,
-/atom/movable/effect/landmark/weed_node,
-/atom/movable/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
 "AS" = (
@@ -1219,7 +1219,7 @@
 	},
 /area/bigredv2/outside/medical)
 "AY" = (
-/atom/movable/effect/decal/cleanable/blood/gibs/body,
+/obj/effect/decal/cleanable/blood/gibs/body,
 /turf/open/floor{
 	dir = 8;
 	icon_state = "damaged2"
@@ -1289,7 +1289,7 @@
 	},
 /area/bigredv2/outside/medical)
 "BL" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor{
 	icon_state = "platingdmg1"
@@ -1338,7 +1338,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/item/ammo_casing/bullet,
 /turf/open/floor{
 	dir = 8;
@@ -1365,7 +1365,7 @@
 	},
 /area/bigredv2/outside/medical)
 "Di" = (
-/atom/movable/effect/decal/cleanable/vomit,
+/obj/effect/decal/cleanable/vomit,
 /turf/open/floor{
 	dir = 8;
 	icon_state = "damaged4"
@@ -1377,7 +1377,7 @@
 	},
 /area/bigredv2/outside/medical)
 "Dr" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
 	icon_state = "platingdmg1"
 	},
@@ -1408,13 +1408,13 @@
 	dir = 4;
 	layer = 2.4
 	},
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
 	icon_state = "platingdmg1"
 	},
 /area/bigredv2/outside/medical)
 "DR" = (
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
 "DU" = (
@@ -1423,18 +1423,18 @@
 	},
 /area/bigredv2/outside/medical)
 "Ea" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/item/stack/rods,
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
 "Eb" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
 	layer = 2.4
 	},
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -1453,7 +1453,7 @@
 	},
 /area/bigredv2/outside/medical)
 "EK" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/item/ammo_casing/bullet,
 /turf/open/floor{
 	dir = 8;
@@ -1478,9 +1478,9 @@
 	dir = 4;
 	layer = 2.4
 	},
-/atom/movable/effect/decal/cleanable/blood,
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/landmark/corpsespawner/PMC,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/corpsespawner/PMC,
 /turf/open/floor{
 	icon_state = "platingdmg1"
 	},
@@ -1490,7 +1490,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "Ff" = (
@@ -1516,7 +1516,7 @@
 	},
 /area/bigredv2/outside/medical)
 "FY" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor{
 	dir = 8;
@@ -1532,12 +1532,12 @@
 	},
 /area/bigredv2/outside/medical)
 "Gl" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/whiteblue,
 /area/bigredv2/outside/medical)
 "Gs" = (
 /obj/machinery/sleeper,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -1549,7 +1549,7 @@
 	},
 /area/bigredv2/outside/medical)
 "GE" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/item/shard,
 /turf/open/floor/plating{
 	icon_state = "platingdmg3"
@@ -1558,7 +1558,7 @@
 "GQ" = (
 /obj/structure/table,
 /obj/item/storage/box/masks,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
 	dir = 8;
 	icon_state = "damaged4"
@@ -1577,7 +1577,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
 	dir = 8;
 	icon_state = "damaged2"
@@ -1594,7 +1594,7 @@
 	},
 /area/bigredv2/outside/medical)
 "HT" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/c)
 "HU" = (
@@ -1604,7 +1604,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
 "HW" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating{
 	icon_state = "panelscorched"
 	},
@@ -1617,9 +1617,9 @@
 	},
 /area/bigredv2/outside/medical)
 "If" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/cleanable/blood,
-/atom/movable/effect/landmark/corpsespawner/PMC,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/landmark/corpsespawner/PMC,
 /turf/open/floor{
 	icon_state = "platingdmg1"
 	},
@@ -1633,7 +1633,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
 	dir = 2;
 	icon_state = "whitegreenfull";
@@ -1643,7 +1643,7 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
 	dir = 2;
 	icon_state = "whitegreenfull";
@@ -1658,22 +1658,22 @@
 /area/bigredv2/outside/medical)
 "IQ" = (
 /obj/machinery/bodyscanner,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
 	icon_state = "white"
 	},
 /area/bigredv2/outside/medical)
 "IR" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
-/atom/movable/effect/decal/cleanable/blood,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
 	dir = 1;
 	icon_state = "whitegreen";
 	},
 /area/bigredv2/outside/medical)
 "IV" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/item/tool/extinguisher,
 /turf/open/floor{
 	icon_state = "platingdmg1"
@@ -1694,7 +1694,7 @@
 	},
 /area/bigredv2/outside/medical)
 "JV" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/item/frame/table,
 /turf/open/floor{
 	dir = 8;
@@ -1706,7 +1706,7 @@
 /obj/structure/extinguisher_cabinet{
 	},
 /obj/item/storage/box/beakers,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
 	dir = 1;
 	icon_state = "whitepurplecorner";
@@ -1721,7 +1721,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
 "KT" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/item/ammo_casing/shell,
 /turf/open/floor/plating{
 	icon_state = "platingdmg3"
@@ -1734,8 +1734,8 @@
 	},
 /area/bigredv2/outside/medical)
 "Lc" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor{
 	icon_state = "platingdmg1"
 	},
@@ -1777,7 +1777,7 @@
 	dir = 4;
 	icon_state = "tube1";
 	},
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
 	dir = 2;
 	icon_state = "whitegreenfull";
@@ -1792,7 +1792,7 @@
 "Mh" = (
 /obj/structure/table,
 /obj/item/trash/burger,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/item/frame/table,
 /turf/open/floor{
 	dir = 9;
@@ -1824,7 +1824,7 @@
 	},
 /area/bigredv2/outside/medical)
 "MQ" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor{
 	dir = 2;
 	icon_state = "whitegreenfull";
@@ -1852,7 +1852,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/item/stack/cable_coil{
 	amount = 1;
 	icon_state = "coil2"
@@ -1862,7 +1862,7 @@
 	},
 /area/bigredv2/outside/medical)
 "Nu" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor{
 	dir = 8;
@@ -1891,7 +1891,7 @@
 	},
 /area/bigredv2/outside/medical)
 "Pg" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor{
 	icon_state = "platingdmg1"
 	},
@@ -1907,7 +1907,7 @@
 	},
 /area/bigredv2/outside/medical)
 "PF" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/item/ammo_casing/bullet,
 /turf/open/floor{
 	dir = 8;
@@ -1940,7 +1940,7 @@
 	},
 /area/bigredv2/outside/medical)
 "PT" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
 	dir = 8;
 	icon_state = "damaged3"
@@ -1954,7 +1954,7 @@
 	},
 /area/bigredv2/outside/medical)
 "Qs" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
 	dir = 8;
 	icon_state = "damaged2"
@@ -1976,7 +1976,7 @@
 	},
 /area/bigredv2/outside/medical)
 "QU" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor{
 	dir = 2;
@@ -1984,7 +1984,7 @@
 	},
 /area/bigredv2/outside/medical)
 "Rm" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -1996,14 +1996,14 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "Rv" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating{
 	icon_state = "platingdmg3"
 	},
 /area/bigredv2/outside/medical)
 "Rw" = (
 /obj/machinery/body_scanconsole,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
 	dir = 6;
 	icon_state = "whitegreen";
@@ -2019,7 +2019,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/atom/movable/effect/landmark/corpsespawner/doctor,
+/obj/effect/landmark/corpsespawner/doctor,
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -2029,14 +2029,14 @@
 /area/bigredv2/outside/medical)
 "Sa" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
 	icon_state = "platingdmg1"
 	},
 /area/bigredv2/outside/medical)
 "Sq" = (
 /obj/item/clothing/mask/breath/medical,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -2061,7 +2061,7 @@
 	},
 /area/bigredv2/outside/medical)
 "SC" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/item/frame/table,
 /turf/open/floor{
 	icon_state = "white"
@@ -2103,7 +2103,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
 	},
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -2144,7 +2144,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/item/stack/cable_coil{
 	amount = 1;
 	icon_state = "coil2"
@@ -2155,7 +2155,7 @@
 	},
 /area/bigredv2/outside/medical)
 "UB" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/item/explosive/grenade/chem_grenade/large,
 /turf/open/floor{
 	icon_state = "platingdmg1"
@@ -2198,8 +2198,8 @@
 	},
 /area/bigredv2/outside/medical)
 "Wf" = (
-/atom/movable/effect/decal/cleanable/blood,
-/atom/movable/effect/landmark/corpsespawner/PMC,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/landmark/corpsespawner/PMC,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor{
 	dir = 8;
@@ -2226,7 +2226,7 @@
 	},
 /area/bigredv2/outside/medical)
 "WC" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/item/frame/table,
 /turf/open/floor{
 	dir = 1;
@@ -2234,7 +2234,7 @@
 	},
 /area/bigredv2/outside/medical)
 "WM" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/item/shard,
 /turf/open/floor{
 	icon_state = "platingdmg1"
@@ -2245,7 +2245,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -2268,7 +2268,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/item/ammo_casing/shell,
 /turf/open/floor{
 	icon_state = "platingdmg1"
@@ -2284,7 +2284,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
 	icon_state = "platingdmg1"
 	},
@@ -2345,7 +2345,7 @@
 /obj/item/stack/sheet/metal{
 	amount = 1
 	},
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -2367,8 +2367,8 @@
 	},
 /area/bigredv2/outside/medical)
 "ZH" = (
-/atom/movable/effect/decal/cleanable/blood,
-/atom/movable/effect/landmark/corpsespawner/PMC,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/landmark/corpsespawner/PMC,
 /turf/open/floor/plating{
 	icon_state = "platingdmg3"
 	},

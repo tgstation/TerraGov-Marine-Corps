@@ -95,20 +95,20 @@
 	action_icon_state = "attack"
 	verb_name = "attack the enemy at"
 	arrow_type = /obj/screen/arrow/attack_order_arrow
-	visual_type = /atom/movable/effect/temp_visual/order/attack_order
+	visual_type = /obj/effect/temp_visual/order/attack_order
 
 /datum/action/innate/order/defend_order
 	name = "Send Defend Order"
 	action_icon_state = "defend"
 	verb_name = "defend our position in"
 	arrow_type = /obj/screen/arrow/defend_order_arrow
-	visual_type = /atom/movable/effect/temp_visual/order/defend_order
+	visual_type = /obj/effect/temp_visual/order/defend_order
 
 /datum/action/innate/order/retreat_order
 	name = "Send Retreat Order"
 	action_icon_state = "retreat"
 	verb_name = "retreat from"
-	visual_type = /atom/movable/effect/temp_visual/order/retreat_order
+	visual_type = /obj/effect/temp_visual/order/retreat_order
 
 /datum/action/innate/order/rally_order
 	name = "Send Rally Order"

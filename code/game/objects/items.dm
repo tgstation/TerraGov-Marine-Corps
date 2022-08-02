@@ -1036,7 +1036,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	for(var/a=0, a<7, a++)
 		spawn(0)
-			var/atom/movable/effect/particle_effect/water/W = new /atom/movable/effect/particle_effect/water( get_turf(user) )
+			var/obj/effect/particle_effect/water/W = new /obj/effect/particle_effect/water( get_turf(user) )
 			var/turf/my_target = pick(the_targets)
 			var/datum/reagents/R = new/datum/reagents(5)
 			if(!W)

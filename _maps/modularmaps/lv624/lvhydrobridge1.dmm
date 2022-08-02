@@ -7,12 +7,12 @@
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
 "d" = (
-/atom/movable/effect/landmark/weed_node,
-/atom/movable/effect/decal/riverdecal,
+/obj/effect/landmark/weed_node,
+/obj/effect/decal/riverdecal,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "e" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor,
@@ -23,7 +23,7 @@
 /area/lv624/ground/river2)
 "g" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/atom/movable/effect/decal/riverdecal/edge,
+/obj/effect/decal/riverdecal/edge,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "h" = (
@@ -31,26 +31,26 @@
 /turf/open/ground/river,
 /area/lv624/ground/river2)
 "i" = (
-/atom/movable/effect/decal/riverdecal,
+/obj/effect/decal/riverdecal,
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
 "j" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/atom/movable/effect/ai_node,
-/atom/movable/effect/decal/riverdecal,
+/obj/effect/ai_node,
+/obj/effect/decal/riverdecal,
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
 "k" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/atom/movable/effect/landmark/weed_node,
-/atom/movable/effect/decal/riverdecal,
+/obj/effect/landmark/weed_node,
+/obj/effect/decal/riverdecal,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "m" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/atom/movable/effect/decal/riverdecal,
+/obj/effect/decal/riverdecal,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "o" = (
@@ -70,37 +70,37 @@
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
 "s" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/atom/movable/effect/decal/riverdecal/edge,
+/obj/effect/decal/riverdecal/edge,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "u" = (
-/atom/movable/effect/landmark/weed_node,
-/atom/movable/effect/decal/riverdecal/edge{
+/obj/effect/landmark/weed_node,
+/obj/effect/decal/riverdecal/edge{
 	dir = 1
 	},
 /turf/open/floor,
 /area/lv624/ground/river2)
 "v" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor,
 /area/lv624/ground/river2)
 "w" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/atom/movable/effect/decal/riverdecal,
+/obj/effect/decal/riverdecal,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "x" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/atom/movable/effect/decal/riverdecal/edge{
+/obj/effect/decal/riverdecal/edge{
 	dir = 1
 	},
 /turf/open/floor,
@@ -110,7 +110,7 @@
 /turf/open/floor,
 /area/lv624/ground/river2)
 "A" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
@@ -133,8 +133,8 @@
 /turf/open/floor,
 /area/lv624/ground/river2)
 "E" = (
-/atom/movable/effect/landmark/weed_node,
-/atom/movable/effect/decal/riverdecal,
+/obj/effect/landmark/weed_node,
+/obj/effect/decal/riverdecal,
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
 "H" = (
@@ -144,7 +144,7 @@
 	},
 /area/lv624/ground/river2)
 "I" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "K" = (
@@ -162,7 +162,7 @@
 /turf/open/ground/river,
 /area/lv624/ground/river2)
 "N" = (
-/atom/movable/effect/decal/riverdecal/edge{
+/obj/effect/decal/riverdecal/edge{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -183,21 +183,21 @@
 /area/lv624/ground/river2)
 "R" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/atom/movable/effect/decal/riverdecal/edge{
+/obj/effect/decal/riverdecal/edge{
 	dir = 1
 	},
 /turf/open/floor,
 /area/lv624/ground/river2)
 "S" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/atom/movable/effect/decal/riverdecal,
+/obj/effect/decal/riverdecal,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "T" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/atom/movable/effect/decal/riverdecal/edge,
+/obj/effect/decal/riverdecal/edge,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "U" = (
@@ -207,11 +207,11 @@
 	},
 /area/lv624/ground/river2)
 "V" = (
-/atom/movable/effect/decal/riverdecal,
+/obj/effect/decal/riverdecal,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "W" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{

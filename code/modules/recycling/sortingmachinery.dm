@@ -373,7 +373,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 	return
 
 /obj/machinery/disposal/deliveryChute/Bumped(atom/movable/AM) //Go straight into the chute
-	if(istype(AM, /obj/projectile) || istype(AM, /atom/movable/effect))
+	if(istype(AM, /obj/projectile) || istype(AM, /obj/effect))
 		return
 	switch(dir)
 		if(NORTH)

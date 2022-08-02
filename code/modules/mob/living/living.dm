@@ -533,7 +533,7 @@
 	if(!smokecloaked)
 		return
 
-	var/atom/movable/effect/particle_effect/smoke/tactical/S = locate() in loc
+	var/obj/effect/particle_effect/smoke/tactical/S = locate() in loc
 	if(S)
 		return
 	else
@@ -678,7 +678,7 @@ below 100 is not dizzy
 		return FALSE
 	var/turf/our_tile = get_turf(src)
 	TIMER_COOLDOWN_START(src, COOLDOWN_POINT, 1 SECONDS)
-	var/obj/visual = new /atom/movable/effect/overlay/temp/point/big(our_tile, 0, invisibility)
+	var/obj/visual = new /obj/effect/overlay/temp/point/big(our_tile, 0, invisibility)
 	animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + A.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + A.pixel_y, time = 1.7, easing = EASE_OUT)
 	visible_message("<b>[src]</b> points to [A]")
 	return TRUE

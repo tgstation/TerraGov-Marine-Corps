@@ -1,4 +1,4 @@
-/atom/movable/effect/spawner/newbomb
+/obj/effect/spawner/newbomb
 	name = "bomb"
 	icon = 'icons/mob/screen/generic.dmi'
 	icon_state = "x"

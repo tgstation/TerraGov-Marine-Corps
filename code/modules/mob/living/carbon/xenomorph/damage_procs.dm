@@ -159,7 +159,7 @@
 
 	if(radius > 1 || prob(chance))
 
-		var/atom/movable/effect/decal/cleanable/blood/xeno/decal = locate(/atom/movable/effect/decal/cleanable/blood/xeno) in T
+		var/obj/effect/decal/cleanable/blood/xeno/decal = locate(/obj/effect/decal/cleanable/blood/xeno) in T
 
 		if(!decal) //Let's not stack blood, it just makes lagggggs.
 			add_splatter_floor(T) //Drop some on the ground first.

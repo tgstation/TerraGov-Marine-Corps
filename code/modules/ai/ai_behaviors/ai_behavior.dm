@@ -13,11 +13,11 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	///Prob chance of sidestepping (left or right) when distance maintained with target
 	var/sidestep_prob = 0
 	///Current node to use for calculating action states: this is the mob's node
-	var/atom/movable/effect/ai_node/current_node
+	var/obj/effect/ai_node/current_node
 	///The node goal of this ai
-	var/atom/movable/effect/ai_node/goal_node
+	var/obj/effect/ai_node/goal_node
 	///A list of nodes the ai should go to in order to go to goal_node
-	var/list/atom/movable/effect/ai_node/goal_nodes
+	var/list/obj/effect/ai_node/goal_nodes
 	///A list of turfs the ai should go in order to get to atom_to_walk_to
 	var/list/turf/turfs_in_path
 	///What the ai is doing right now
@@ -145,7 +145,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	if(ignore_current_node || !current_node) //We don't have a current node, let's find the closest in our LOS
 		var/closest_distance = MAX_NODE_RANGE //squared because we are using the cheap get dist
 		var/avoid_node = current_node
-		for(var/atom/movable/effect/ai_node/ai_node AS in GLOB.allnodes)
+		for(var/obj/effect/ai_node/ai_node AS in GLOB.allnodes)
 			if(ai_node == avoid_node)
 				continue
 			if(ai_node.z != mob_parent.z || get_dist(ai_node, mob_parent) >= closest_distance)
@@ -217,7 +217,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	return
 
 ///Set the goal node
-/datum/ai_behavior/proc/set_goal_node(datum/source, identifier, atom/movable/effect/ai_node/new_goal_node)
+/datum/ai_behavior/proc/set_goal_node(datum/source, identifier, obj/effect/ai_node/new_goal_node)
 	SIGNAL_HANDLER
 	if(src.identifier != identifier)
 		return

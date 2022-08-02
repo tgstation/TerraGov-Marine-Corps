@@ -11,7 +11,7 @@
 /turf/open/ground/coast/corner,
 /area/lv624/ground/river3)
 "aS" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -42,8 +42,8 @@
 /area/lv624/lazarus/sandtemple)
 "bU" = (
 /obj/structure/showcase/six,
-/atom/movable/effect/decal/sandytile,
-/atom/movable/effect/decal/sandytile,
+/obj/effect/decal/sandytile,
+/obj/effect/decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "cK" = (
@@ -52,14 +52,14 @@
 	},
 /area/lv624/lazarus/sandtemple)
 "cT" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand9)
 "dm" = (
 /obj/structure/platform_decoration,
-/atom/movable/effect/decal/sandytile,
-/atom/movable/effect/decal/sandytile,
-/atom/movable/effect/decal/grassdecal{
+/obj/effect/decal/sandytile,
+/obj/effect/decal/sandytile,
+/obj/effect/decal/grassdecal{
 	dir = 1
 	},
 /turf/open/floor/tile/whiteyellow/full,
@@ -79,7 +79,7 @@
 	},
 /area/lv624/lazarus/sandtemple)
 "fi" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand9)
 "gO" = (
@@ -118,16 +118,16 @@
 /obj/structure/platform_decoration{
 	dir = 1
 	},
-/atom/movable/effect/decal/sandytile,
-/atom/movable/effect/decal/grassdecal{
+/obj/effect/decal/sandytile,
+/obj/effect/decal/grassdecal{
 	dir = 1
 	},
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "ls" = (
-/atom/movable/effect/decal/sandytile,
-/atom/movable/effect/decal/sandytile,
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/decal/sandytile,
+/obj/effect/decal/sandytile,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "lD" = (
@@ -209,13 +209,13 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
 "td" = (
-/atom/movable/effect/decal/remains/xeno{
+/obj/effect/decal/remains/xeno{
 	pixel_x = -1;
 	pixel_y = 31
 	},
 /obj/structure/showcase,
-/atom/movable/effect/decal/sandytile,
-/atom/movable/effect/decal/sandytile,
+/obj/effect/decal/sandytile,
+/obj/effect/decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "tP" = (
@@ -229,17 +229,17 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand6)
 "um" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/ground/coast{
 	dir = 4;
 	icon_state = "beachcorner"
 	},
 /area/lv624/ground/sand6)
 "uu" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -253,7 +253,7 @@
 	},
 /area/lv624/ground/sand6)
 "uN" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand6)
 "uO" = (
@@ -263,7 +263,7 @@
 	},
 /area/lv624/ground/jungle8)
 "vU" = (
-/atom/movable/effect/decal/sandytile,
+/obj/effect/decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/sand6)
 "wv" = (
@@ -328,8 +328,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand9)
 "Bi" = (
-/atom/movable/effect/decal/sandytile,
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/decal/sandytile,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "Bo" = (
@@ -348,8 +348,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
 "CB" = (
-/atom/movable/effect/decal/sandytile,
-/atom/movable/effect/decal/grassdecal{
+/obj/effect/decal/sandytile,
+/obj/effect/decal/grassdecal{
 	dir = 1
 	},
 /turf/open/floor/tile/whiteyellow/full,
@@ -375,7 +375,7 @@
 	},
 /area/lv624/ground/river3)
 "ED" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /obj/structure/platform_decoration,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand9)
@@ -403,8 +403,8 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "Fc" = (
-/atom/movable/effect/decal/sandytile,
-/atom/movable/effect/decal/sandytile,
+/obj/effect/decal/sandytile,
+/obj/effect/decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "Fm" = (
@@ -427,11 +427,11 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
 "GT" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
 "Hq" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor,
@@ -459,11 +459,11 @@
 	},
 /area/lv624/ground/jungle8)
 "IU" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/atom/movable/effect/landmark/weed_node,
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/landmark/weed_node,
+/obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor,
@@ -473,7 +473,7 @@
 /turf/open/ground/coast,
 /area/lv624/ground/river3)
 "JI" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/ground/river,
 /area/lv624/ground/river3)
 "Kf" = (
@@ -519,12 +519,12 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
 "NU" = (
-/atom/movable/effect/decal/remains/xeno{
+/obj/effect/decal/remains/xeno{
 	pixel_x = 1;
 	pixel_y = 31
 	},
 /obj/structure/showcase,
-/atom/movable/effect/decal/sandytile,
+/obj/effect/decal/sandytile,
 /obj/structure/jungle/vines,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
@@ -539,12 +539,12 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand9)
 "Pb" = (
-/atom/movable/effect/decal/sandytile,
-/atom/movable/effect/ai_node,
+/obj/effect/decal/sandytile,
+/obj/effect/ai_node,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "Pw" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand3)
 "PR" = (
@@ -597,7 +597,7 @@
 /turf/open/floor/plating/ground/dirt/typeone,
 /area/lv624/lazarus/sandtemple)
 "Sq" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt/typetwo,
 /area/lv624/lazarus/sandtemple)
 "SL" = (
@@ -665,8 +665,8 @@
 	},
 /area/lv624/ground/river3)
 "Xp" = (
-/atom/movable/effect/decal/sandytile,
-/atom/movable/effect/decal/sandytile,
+/obj/effect/decal/sandytile,
+/obj/effect/decal/sandytile,
 /obj/structure/showcase/six,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
@@ -675,23 +675,23 @@
 /turf/open/ground/river,
 /area/lv624/ground/river3)
 "Ya" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
 "Yg" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand6)
 "YA" = (
 /obj/item/clothing/suit/armor/vest/admiral,
-/atom/movable/effect/decal/sandytile,
+/obj/effect/decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "YR" = (
 /turf/open/ground/coast,
 /area/lv624/ground/river3)
 "Zk" = (
-/atom/movable/effect/decal/sandytile,
+/obj/effect/decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "ZE" = (

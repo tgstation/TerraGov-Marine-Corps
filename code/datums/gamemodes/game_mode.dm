@@ -83,7 +83,7 @@
 	GLOB.balance.Initialize()
 
 	GLOB.landmarks_round_start = shuffle(GLOB.landmarks_round_start)
-	var/atom/movable/effect/landmark/L
+	var/obj/effect/landmark/L
 	while(GLOB.landmarks_round_start.len)
 		L = GLOB.landmarks_round_start[GLOB.landmarks_round_start.len]
 		GLOB.landmarks_round_start.len--
@@ -252,7 +252,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		while(GLOB.fog_blocker_locations.len)
 			T = GLOB.fog_blocker_locations[GLOB.fog_blocker_locations.len]
 			GLOB.fog_blocker_locations.len--
-			new /atom/movable/effect/forcefield/fog(T)
+			new /obj/effect/forcefield/fog(T)
 			stoplag()
 		addtimer(CALLBACK(src, .proc/remove_fog), FOG_DELAY_INTERVAL + SSticker.round_start_time + rand(-5 MINUTES, 5 MINUTES))
 
@@ -265,7 +265,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		while(GLOB.xeno_spawn_protection_locations.len)
 			T = GLOB.xeno_spawn_protection_locations[GLOB.xeno_spawn_protection_locations.len]
 			GLOB.xeno_spawn_protection_locations.len--
-			new /atom/movable/effect/forcefield/fog(T)
+			new /obj/effect/forcefield/fog(T)
 			stoplag()
 
 

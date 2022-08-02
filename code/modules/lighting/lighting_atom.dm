@@ -128,17 +128,17 @@
 		_duration = FLASH_LIGHT_DURATION,
 		_reset_lighting = TRUE,
 		_flash_times = 1)
-	new /atom/movable/effect/light_flash(get_turf(src), _range, _power, _color, _duration, _flash_times)
+	new /obj/effect/light_flash(get_turf(src), _range, _power, _color, _duration, _flash_times)
 
 
-/atom/movable/effect/light_flash/Initialize(mapload, _range = FLASH_LIGHT_RANGE, _power = FLASH_LIGHT_POWER, _color = LIGHT_COLOR_WHITE, _duration = FLASH_LIGHT_DURATION, _flash_times = 1)
+/obj/effect/light_flash/Initialize(mapload, _range = FLASH_LIGHT_RANGE, _power = FLASH_LIGHT_POWER, _color = LIGHT_COLOR_WHITE, _duration = FLASH_LIGHT_DURATION, _flash_times = 1)
 	light_range = _range
 	light_power = _power
 	light_color = _color
 	. = ..()
 	do_flashes(_flash_times, _duration)
 
-/atom/movable/effect/light_flash/proc/do_flashes(_flash_times, _duration)
+/obj/effect/light_flash/proc/do_flashes(_flash_times, _duration)
 	set waitfor = FALSE
 	for(var/i in 1 to _flash_times)
 		//Something bad happened

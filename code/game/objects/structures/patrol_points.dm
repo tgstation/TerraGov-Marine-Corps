@@ -9,7 +9,7 @@
 	///ID to link with associated exit point
 	var/id = null
 	///The linked exit point
-	var/atom/movable/effect/landmark/patrol_point/linked_point = null
+	var/obj/effect/landmark/patrol_point/linked_point = null
 
 /obj/structure/patrol_point/Initialize()
 	..()
@@ -22,7 +22,7 @@
 
 ///Links the patrol point to its associated exit point
 /obj/structure/patrol_point/proc/create_link()
-	for(var/atom/movable/effect/landmark/patrol_point/exit_point AS in GLOB.patrol_point_list)
+	for(var/obj/effect/landmark/patrol_point/exit_point AS in GLOB.patrol_point_list)
 		if(exit_point.id == id)
 			linked_point = exit_point
 			RegisterSignal(linked_point, COMSIG_PARENT_QDELETING, .proc/delete_link)

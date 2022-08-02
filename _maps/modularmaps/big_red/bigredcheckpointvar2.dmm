@@ -9,7 +9,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/se)
 "i" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/se)
 "I" = (
@@ -24,7 +24,7 @@
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "T" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /obj/machinery/door/poddoor/mainship{
 	dir = 8
 	},
