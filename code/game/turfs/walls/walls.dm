@@ -30,7 +30,7 @@
 
 	var/d_state = 0 //Normal walls are now as difficult to remove as reinforced walls
 
-	var/atom/movable/effect/acid_hole/acided_hole //the acid hole inside the wall
+	var/obj/effect/acid_hole/acided_hole //the acid hole inside the wall
 
 
 /turf/closed/wall/Initialize(mapload, ...)

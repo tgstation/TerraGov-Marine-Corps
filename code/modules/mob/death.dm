@@ -26,7 +26,7 @@
 
 
 /mob/proc/spawn_dust_remains()
-	new /atom/movable/effect/decal/cleanable/ash(loc)
+	new /obj/effect/decal/cleanable/ash(loc)
 
 /mob/proc/dust_animation()
 	return

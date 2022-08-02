@@ -140,7 +140,7 @@
 ///Handles behavior when attacking a mob
 /datum/component/harvester/proc/attack_async(datum/source, mob/living/target, mob/living/user, obj/item/weapon)
 	to_chat(user, span_rose("You prepare to stab <b>[target != user ? "[target]" : "yourself"]</b>!"))
-	new /atom/movable/effect/temp_visual/telekinesis(get_turf(target))
+	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	if((target != user) && do_after(user, 2 SECONDS, TRUE, target, BUSY_ICON_DANGER))
 		target.heal_overall_damage(12.5, 0, updating_health = TRUE)
 	else

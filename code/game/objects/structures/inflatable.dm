@@ -154,7 +154,7 @@
 	. = ..()
 	if(air_group)
 		return state
-	if(istype(mover, /atom/movable/effect/beam))
+	if(istype(mover, /obj/effect/beam))
 		return !opacity
 
 /obj/structure/inflatable/door/proc/TryToSwitchState(atom/user)

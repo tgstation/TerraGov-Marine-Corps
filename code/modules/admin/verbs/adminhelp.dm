@@ -14,10 +14,10 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	var/list/closed_tickets = list()
 	var/list/resolved_tickets = list()
 
-	var/atom/movable/effect/statclick/ticket_list/astatclick = new(null, null, AHELP_ACTIVE)
-	var/atom/movable/effect/statclick/ticket_list/dstatclick = new(null, null, AHELP_ACTIVE)
-	var/atom/movable/effect/statclick/ticket_list/cstatclick = new(null, null, AHELP_CLOSED)
-	var/atom/movable/effect/statclick/ticket_list/rstatclick = new(null, null, AHELP_RESOLVED)
+	var/obj/effect/statclick/ticket_list/astatclick = new(null, null, AHELP_ACTIVE)
+	var/obj/effect/statclick/ticket_list/dstatclick = new(null, null, AHELP_ACTIVE)
+	var/obj/effect/statclick/ticket_list/cstatclick = new(null, null, AHELP_CLOSED)
+	var/obj/effect/statclick/ticket_list/rstatclick = new(null, null, AHELP_RESOLVED)
 
 
 /datum/admin_help_tickets/Destroy()
@@ -194,16 +194,16 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 //TICKET LIST STATCLICK
 //
 
-/atom/movable/effect/statclick/ticket_list
+/obj/effect/statclick/ticket_list
 	var/current_state
 
 
-/atom/movable/effect/statclick/ticket_list/Initialize(mapload, name, state)
+/obj/effect/statclick/ticket_list/Initialize(mapload, name, state)
 	. = ..()
 	current_state = state
 
 
-/atom/movable/effect/statclick/ticket_list/Click()
+/obj/effect/statclick/ticket_list/Click()
 	GLOB.ahelp_tickets.BrowseTickets(current_state)
 
 
@@ -229,7 +229,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	var/list/_interactions	//use AddInteraction() or, preferably, admin_ticket_log()
 
-	var/atom/movable/effect/statclick/ahelp/statclick
+	var/obj/effect/statclick/ahelp/statclick
 
 	var/tier_cooldown
 
@@ -734,24 +734,24 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 // TICKET STATCLICK
 //
 
-/atom/movable/effect/statclick/ahelp
+/obj/effect/statclick/ahelp
 	var/datum/admin_help/ahelp_datum
 
 
-/atom/movable/effect/statclick/ahelp/Initialize(mapload, datum/admin_help/AH)
+/obj/effect/statclick/ahelp/Initialize(mapload, datum/admin_help/AH)
 	ahelp_datum = AH
 	. = ..()
 
 
-/atom/movable/effect/statclick/ahelp/update()
+/obj/effect/statclick/ahelp/update()
 	return ..(ahelp_datum.name)
 
 
-/atom/movable/effect/statclick/ahelp/Click()
+/obj/effect/statclick/ahelp/Click()
 	ahelp_datum?.TicketPanel()
 
 
-/atom/movable/effect/statclick/ahelp/Destroy()
+/obj/effect/statclick/ahelp/Destroy()
 	ahelp_datum = null
 	return ..()
 

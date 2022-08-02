@@ -229,7 +229,7 @@
 				if(user.get_inactive_held_item() == src)
 					user.dropItemToGround(src)
 
-				new /atom/movable/effect/decal/cleanable/ash(src.loc)
+				new /obj/effect/decal/cleanable/ash(src.loc)
 				qdel(src)
 
 			else

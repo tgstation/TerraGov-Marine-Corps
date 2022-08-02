@@ -3,7 +3,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/se)
 "s" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/se)
 "I" = (
@@ -15,7 +15,7 @@
 	},
 /area/bigredv2/outside/se)
 "T" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/se)
 

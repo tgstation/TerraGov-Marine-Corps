@@ -49,7 +49,7 @@
 	if(!WT.isOn())
 		return FALSE
 
-	for(var/atom/movable/effect/xenomorph/acid/A in loc)
+	for(var/obj/effect/xenomorph/acid/A in loc)
 		if(A.acid_t == src)
 			to_chat(user, "You can't get near that, it's melting!")
 			return TRUE

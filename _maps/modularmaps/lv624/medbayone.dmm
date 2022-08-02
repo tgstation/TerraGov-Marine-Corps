@@ -99,7 +99,7 @@
 /obj/item/tool/pen{
 	pixel_y = 7
 	},
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 2
 	},
@@ -137,7 +137,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 2
 	},
@@ -157,8 +157,8 @@
 	},
 /area/lv624/lazarus/medbay)
 "qf" = (
-/atom/movable/effect/ai_node,
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 2
 	},
@@ -217,7 +217,7 @@
 	},
 /area/lv624/lazarus/medbay)
 "rN" = (
-/atom/movable/effect/landmark/corpsespawner/doctor,
+/obj/effect/landmark/corpsespawner/doctor,
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 2
 	},
@@ -269,7 +269,7 @@
 /obj/machinery/door/window{
 	dir = 2
 	},
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 2
 	},
@@ -383,7 +383,7 @@
 	},
 /area/lv624/lazarus/medbay)
 "GT" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 2
 	},
@@ -403,8 +403,8 @@
 /area/lv624/lazarus/medbay)
 "IB" = (
 /obj/structure/bed/chair/wheelchair,
-/atom/movable/effect/landmark/weed_node,
-/atom/movable/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 2
 	},
@@ -432,7 +432,7 @@
 	},
 /area/lv624/lazarus/medbay)
 "KI" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 2
 	},
@@ -457,7 +457,7 @@
 	},
 /area/lv624/lazarus/medbay)
 "MQ" = (
-/atom/movable/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 2
 	},
@@ -474,8 +474,8 @@
 	},
 /area/lv624/lazarus/medbay)
 "NL" = (
-/atom/movable/effect/landmark/start/job/survivor,
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 2
 	},
@@ -609,8 +609,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/atom/movable/effect/ai_node,
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 2
 	},
@@ -639,8 +639,8 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/atom/movable/effect/ai_node,
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 5
 	},

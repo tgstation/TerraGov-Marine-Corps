@@ -326,7 +326,7 @@
 
 
 GLOBAL_LIST_INIT(sdql2_queries, GLOB.sdql2_queries || list())
-GLOBAL_DATUM_INIT(sdql2_vv_statobj, /atom/movable/effect/statclick/SDQL2_VV_all, new(null, "VIEW VARIABLES (all)", null))
+GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null, "VIEW VARIABLES (all)", null))
 
 
 /datum/SDQL2_query
@@ -357,8 +357,8 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /atom/movable/effect/statclick/SDQL2_VV_all,
 	var/obj_count_finished
 
 	//Statclick
-	var/atom/movable/effect/statclick/SDQL2_delete/delete_click
-	var/atom/movable/effect/statclick/SDQL2_action/action_click
+	var/obj/effect/statclick/SDQL2_delete/delete_click
+	var/obj/effect/statclick/SDQL2_action/action_click
 
 
 /datum/SDQL2_query/New(list/tree, SU = FALSE, admin_interact = TRUE, _options = SDQL2_OPTIONS_DEFAULT, finished_qdel = FALSE)
@@ -1316,19 +1316,19 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /atom/movable/effect/statclick/SDQL2_VV_all,
 	return istype(thing, /datum) || istype(thing, /client)
 
 
-/atom/movable/effect/statclick/SDQL2_delete/Click()
+/obj/effect/statclick/SDQL2_delete/Click()
 	var/datum/SDQL2_query/Q = target
 	Q.delete_click()
 
 
-/atom/movable/effect/statclick/SDQL2_action/Click()
+/obj/effect/statclick/SDQL2_action/Click()
 	var/datum/SDQL2_query/Q = target
 	Q.action_click()
 
 
-/atom/movable/effect/statclick/SDQL2_VV_all
+/obj/effect/statclick/SDQL2_VV_all
 	name = "VIEW VARIABLES"
 
 
-/atom/movable/effect/statclick/SDQL2_VV_all/Click()
+/obj/effect/statclick/SDQL2_VV_all/Click()
 	usr.client.debug_variables(GLOB.sdql2_queries)

@@ -95,7 +95,7 @@ SUBSYSTEM_DEF(explosions)
 		return
 
 	if(small_animation)
-		new /atom/movable/effect/temp_visual/explosion(epicenter)
+		new /obj/effect/temp_visual/explosion(epicenter)
 
 	if(isnull(flash_range))
 		flash_range = devastation_range
@@ -113,7 +113,7 @@ SUBSYSTEM_DEF(explosions)
 			message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [flame_range]) in [ADMIN_VERBOSEJMP(epicenter)]")
 
 	if(max_range >= 6 || heavy_impact_range)
-		new /atom/movable/effect/temp_visual/shockwave(epicenter, max_range)
+		new /obj/effect/temp_visual/shockwave(epicenter, max_range)
 	// Play sounds; we want sounds to be different depending on distance so we will manually do it ourselves.
 	// Stereo users will also hear the direction of the explosion!
 

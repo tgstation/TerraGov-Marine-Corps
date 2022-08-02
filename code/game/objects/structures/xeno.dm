@@ -56,7 +56,7 @@
 		if(EXPLODE_LIGHT)
 			take_damage((rand(50, 100)))
 
-/obj/alien/effect_smoke(atom/movable/effect/particle_effect/smoke/S)
+/obj/alien/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
 	if(!.)
 		return

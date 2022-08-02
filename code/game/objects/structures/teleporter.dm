@@ -159,11 +159,11 @@
 /obj/item/teleporter_kit/attack_self(mob/user)
 	do_unique_action(user)
 
-/atom/movable/effect/teleporter_linker
+/obj/effect/teleporter_linker
 	name = "\improper ASRS bluespace teleporters"
 	desc = "Two bluespace telepads for moving personnel and equipment across small distances to another prelinked teleporter."
 
-/atom/movable/effect/teleporter_linker/Initialize()
+/obj/effect/teleporter_linker/Initialize()
 	. = ..()
 	var/obj/item/teleporter_kit/teleporter_a = new(loc)
 	var/obj/item/teleporter_kit/teleporter_b = new(loc)

@@ -19,7 +19,7 @@
 //Variables declared to change how items in the launch bay are picked and launched. (Almost) all of these are changed in the ui_act proc
 //Some effect groups are choices, while other are booleans. This is because some effects can stack, while others dont (ex: you can stack explosion and quiet, but you cant stack ordered launch and random launch)
 /datum/centcom_podlauncher
-	var/static/list/ignored_atoms = typecacheof(list(null, /mob/dead, /atom/movable/effect/landmark, /obj/docking_port, /atom/movable/effect/particle_effect/sparks, /atom/movable/effect/DPtarget, /atom/movable/effect/supplypod_selector ))
+	var/static/list/ignored_atoms = typecacheof(list(null, /mob/dead, /obj/effect/landmark, /obj/docking_port, /obj/effect/particle_effect/sparks, /obj/effect/DPtarget, /obj/effect/supplypod_selector ))
 	var/turf/oldTurf //Keeps track of where the user was at if they use the "teleport to centcom" button, so they can go back
 	var/client/holder //client of whoever is using this datum
 	var/area/bay //What bay we're using to launch shit from.
@@ -36,7 +36,7 @@
 	var/list/orderedArea = list() //Contains an ordered list of turfs in an area (filled in the createOrderedArea() proc), read top-left to bottom-right. Used for the "ordered" launch mode (launchChoice = 1)
 	var/list/turf/acceptableTurfs = list() //Contians a list of turfs (in the "bay" area on centcom) that have items that can be launched. Taken from orderedArea
 	var/list/launchList = list() //Contains whatever is going to be put in the supplypod and fired. Taken from acceptableTurfs
-	var/atom/movable/effect/supplypod_selector/selector = new() //An effect used for keeping track of what item is going to be launched when in "ordered" mode (launchChoice = 1)
+	var/obj/effect/supplypod_selector/selector = new() //An effect used for keeping track of what item is going to be launched when in "ordered" mode (launchChoice = 1)
 	var/obj/structure/closet/supplypod/centcompod/temp_pod //The temporary pod that is modified by this datum, then cloned. The buildObject() clone of this pod is what is launched
 
 /datum/centcom_podlauncher/New(H)//H can either be a client or a mob due to byondcode(tm)
@@ -529,11 +529,11 @@
 	if (launchClone) //We arent launching the actual items from the bay, rather we are creating clones and launching those
 		for (var/atom/movable/O in launchList)
 			DuplicateObject(O).forceMove(toLaunch) //Duplicate each atom/movable in launchList and forceMove them into the supplypod
-		new /atom/movable/effect/DPtarget(A, toLaunch) //Create the DPTarget, which will eventually forceMove the temp_pod to it's location
+		new /obj/effect/DPtarget(A, toLaunch) //Create the DPTarget, which will eventually forceMove the temp_pod to it's location
 	else
 		for (var/atom/movable/O in launchList) //If we aren't cloning the objects, just go through the launchList
 			O.forceMove(toLaunch) //and forceMove any atom/moveable into the supplypod
-		new /atom/movable/effect/DPtarget(A, toLaunch) //Then, create the DPTarget effect, which will eventually forceMove the temp_pod to it's location
+		new /obj/effect/DPtarget(A, toLaunch) //Then, create the DPTarget effect, which will eventually forceMove the temp_pod to it's location
 	if (launchClone)
 		launchCounter++ //We only need to increment launchCounter if we are cloning objects.
 		//If we aren't cloning objects, taking and removing the first item each time from the acceptableTurfs list will inherently iterate through the list in order

@@ -2,14 +2,14 @@
 
 //the objects used by /datum/effect_system
 
-/atom/movable/effect/particle_effect
+/obj/effect/particle_effect
 	name = "effect"
 	icon = 'icons/effects/effects.dmi'
 	mouse_opacity = 0
 	flags_pass = PASSTABLE|PASSGRILLE|PASSMOB
 
 	//Fire
-/atom/movable/effect/particle_effect/fire  //Fire that ignites mobs and deletes itself after some time, but doesn't mess with atmos. Good fire flamethrowers and incendiary stuff.
+/obj/effect/particle_effect/fire  //Fire that ignites mobs and deletes itself after some time, but doesn't mess with atmos. Good fire flamethrowers and incendiary stuff.
 	name = "fire"
 	icon = 'icons/effects/fire.dmi'
 	icon_state = "3"
@@ -17,7 +17,7 @@
 	mouse_opacity = 0
 
 
-/atom/movable/effect/particle_effect/fire/Initialize(mapload, ...)
+/obj/effect/particle_effect/fire/Initialize(mapload, ...)
 	. = ..()
 
 	if(!isturf(loc))
@@ -44,28 +44,28 @@
 	for(var/turf/open/floor/plating/ground/snow/S in loc)//Snow
 		S.fire_act()
 
-/atom/movable/effect/particle_effect/fire/proc/on_cross(datum/source, mob/living/L, oldloc, oldlocs)
+/obj/effect/particle_effect/fire/proc/on_cross(datum/source, mob/living/L, oldloc, oldlocs)
 	SIGNAL_HANDLER
 	if(isliving(L))
 		L.fire_act()
 
 	//End fire
 
-/atom/movable/effect/particle_effect/water
+/obj/effect/particle_effect/water
 	name = "water"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "extinguish"
 	var/life = 15.0
 	mouse_opacity = 0
 
-/atom/movable/effect/particle_effect/water/Move(turf/newloc)
+/obj/effect/particle_effect/water/Move(turf/newloc)
 	if (--life < 1)
 		qdel(src)
 	if(newloc.density)
 		return FALSE
 	return ..()
 
-/atom/movable/effect/particle_effect/water/Bump(atom/A)
+/obj/effect/particle_effect/water/Bump(atom/A)
 	if(reagents)
 		reagents.reaction(A)
 	return ..()

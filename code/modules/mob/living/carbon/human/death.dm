@@ -22,7 +22,7 @@
 
 
 /mob/living/carbon/human/gib_animation()
-	new /atom/movable/effect/overlay/temp/gib_animation(loc, 0, src, species ? species.gibbed_anim : "gibbed-h")
+	new /obj/effect/overlay/temp/gib_animation(loc, 0, src, species ? species.gibbed_anim : "gibbed-h")
 
 /mob/living/carbon/human/spawn_gibs()
 	if(species)
@@ -36,11 +36,11 @@
 	if(species)
 		new species.remains_type(loc)
 	else
-		new /atom/movable/effect/decal/cleanable/ash(loc)
+		new /obj/effect/decal/cleanable/ash(loc)
 
 
 /mob/living/carbon/human/dust_animation()
-	new /atom/movable/effect/overlay/temp/dust_animation(loc, 0, src, "dust-h")
+	new /obj/effect/overlay/temp/dust_animation(loc, 0, src, "dust-h")
 
 
 /mob/living/carbon/human/death(gibbing, deathmessage, silent, special_death_message)

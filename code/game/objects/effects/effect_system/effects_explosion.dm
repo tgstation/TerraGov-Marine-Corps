@@ -1,17 +1,17 @@
-/atom/movable/effect/particle_effect/expl_particles
+/obj/effect/particle_effect/expl_particles
 	name = "fire"
 	icon_state = "explosion_particle"
 	opacity = TRUE
 	anchored = TRUE
 
-/atom/movable/effect/particle_effect/expl_particles/Initialize()
+/obj/effect/particle_effect/expl_particles/Initialize()
 	..()
 	return INITIALIZE_HINT_LATELOAD
 
-/atom/movable/effect/particle_effect/expl_particles/LateInitialize()
+/obj/effect/particle_effect/expl_particles/LateInitialize()
 	INVOKE_ASYNC(src, .proc/expl_particles_spread)
 
-/atom/movable/effect/particle_effect/proc/expl_particles_spread()
+/obj/effect/particle_effect/proc/expl_particles_spread()
 	var/direct = pick(GLOB.alldirs)
 	var/steps_amt = pick(1;25,2;50,3,4;200)
 	for(var/j in 1 to steps_amt)
@@ -24,9 +24,9 @@
 
 /datum/effect_system/expl_particles/start()
 	for(var/i in 1 to number)
-		new /atom/movable/effect/particle_effect/expl_particles(location)
+		new /obj/effect/particle_effect/expl_particles(location)
 
-/atom/movable/effect/explosion
+/obj/effect/explosion
 	name = "fire"
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "explosion"
@@ -36,7 +36,7 @@
 	pixel_x = -32
 	pixel_y = -32
 
-/atom/movable/effect/explosion/Initialize()
+/obj/effect/explosion/Initialize()
 	. = ..()
 	QDEL_IN(src, 1 SECONDS)
 
@@ -49,7 +49,7 @@
 		location = get_turf(loca)
 
 /datum/effect_system/explosion/start()
-	new/atom/movable/effect/explosion( location )
+	new/obj/effect/explosion( location )
 	var/datum/effect_system/expl_particles/P = new/datum/effect_system/expl_particles()
 	P.set_up(10, 0, location)
 	P.start()

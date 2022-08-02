@@ -18,7 +18,7 @@
 // ***************************************
 /mob/living/carbon/xenomorph/hunter/gib()
 
-	var/atom/movable/effect/decal/remains/xeno/remains = new(get_turf(src))
+	var/obj/effect/decal/remains/xeno/remains = new(get_turf(src))
 	remains.icon = icon
 	remains.pixel_x = pixel_x //For 2x2.
 
@@ -33,5 +33,5 @@
 	return I
 
 /mob/living/carbon/xenomorph/hunter/gib_animation()
-	new /atom/movable/effect/overlay/temp/gib_animation/xeno(loc, 0, src, "Hunter Gibbed", icon)
+	new /obj/effect/overlay/temp/gib_animation/xeno(loc, 0, src, "Hunter Gibbed", icon)
 

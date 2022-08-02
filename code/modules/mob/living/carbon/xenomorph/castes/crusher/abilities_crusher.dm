@@ -207,7 +207,7 @@
 	for(var/i=0 to get_dist(X, A))
 		if(i % 2)
 			playsound(X, "alien_charge", 50)
-			new /atom/movable/effect/temp_visual/xenomorph/afterimage(get_turf(X), X)
+			new /obj/effect/temp_visual/xenomorph/afterimage(get_turf(X), X)
 		X.Move(get_step(X, aimdir), aimdir)
 		aimdir = get_dir(X,A)
 	succeed_activate()

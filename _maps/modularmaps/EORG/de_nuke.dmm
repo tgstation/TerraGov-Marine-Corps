@@ -1,28 +1,28 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "ay" = (
-/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "bi" = (
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/deathmatch)
 "db" = (
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "dj" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "dl" = (
-/atom/movable/effect/decal/sandytile/sandyplating,
+/obj/effect/decal/sandytile/sandyplating,
 /turf/closed/wall,
 /area/deathmatch)
 "dB" = (
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "dD" = (
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 1
 	},
@@ -33,12 +33,12 @@
 	},
 /area/deathmatch)
 "hw" = (
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/deathmatch)
 "ix" = (
 /obj/structure/rack,
-/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "jb" = (
@@ -56,7 +56,7 @@
 	},
 /area/deathmatch)
 "jJ" = (
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 9
 	},
@@ -97,7 +97,7 @@
 /turf/closed/wall,
 /area/deathmatch)
 "oD" = (
-/atom/movable/effect/decal/cleanable/rune,
+/obj/effect/decal/cleanable/rune,
 /obj/item/explosive/plastique,
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
@@ -106,7 +106,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "pV" = (
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/deathmatch)
 "pX" = (
@@ -123,7 +123,7 @@
 	},
 /area/deathmatch)
 "sr" = (
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/deathmatch)
 "sw" = (
@@ -156,7 +156,7 @@
 	},
 /area/deathmatch)
 "vi" = (
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 6
 	},
@@ -180,13 +180,13 @@
 /obj/machinery/door/poddoor/railing{
 	dir = 1
 	},
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 1
 	},
 /area/deathmatch)
 "wI" = (
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "xu" = (
@@ -209,13 +209,13 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/deathmatch)
 "Ab" = (
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/plating/asteroidplating{
 	color = "#888888"
 	},
 /area/deathmatch)
 "Ax" = (
-/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "AF" = (
@@ -231,13 +231,13 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "De" = (
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/stairs/rampbottom{
 	dir = 4
 	},
 /area/deathmatch)
 "Do" = (
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/stairs/rampbottom{
 	dir = 8
 	},
@@ -247,14 +247,14 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "Fm" = (
-/atom/movable/effect/decal/cleanable/rune,
+/obj/effect/decal/cleanable/rune,
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "Fp" = (
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "Go" = (
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "GJ" = (
@@ -281,7 +281,7 @@
 /obj/machinery/door/poddoor/railing{
 	dir = 8
 	},
-/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 8
 	},
@@ -301,13 +301,13 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "LA" = (
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/stairs/rampbottom{
 	dir = 8
 	},
 /area/deathmatch)
 "LY" = (
-/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/stairs/rampbottom{
 	color = "#888888";
 	dir = 8
@@ -321,11 +321,11 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "My" = (
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "MV" = (
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "Pv" = (
@@ -347,7 +347,7 @@
 	},
 /area/deathmatch)
 "QE" = (
-/atom/movable/effect/landmark/weapon_spawn/tier5_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier5_weapon_spawn,
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/deathmatch)
 "QN" = (
@@ -372,7 +372,7 @@
 /area/deathmatch)
 "TU" = (
 /obj/structure/platform,
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "Uc" = (
@@ -398,7 +398,7 @@
 /turf/open/floor/plating,
 /area/deathmatch)
 "Wn" = (
-/atom/movable/effect/forcefield{
+/obj/effect/forcefield{
 	desc = "You can't get in. Heh.";
 	name = "Blocker"
 	},
@@ -425,7 +425,7 @@
 /obj/machinery/door/poddoor/railing{
 	dir = 2
 	},
-/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "YO" = (
@@ -434,7 +434,7 @@
 	},
 /area/deathmatch)
 "ZH" = (
-/atom/movable/effect/forcefield{
+/obj/effect/forcefield{
 	desc = "You can't get in. Heh.";
 	name = "Blocker"
 	},
@@ -442,7 +442,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "ZI" = (
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/deathmatch)
 "ZJ" = (
@@ -452,13 +452,13 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "ZO" = (
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/plating/asteroidplating{
 	color = "#888888"
 	},
 /area/deathmatch)
 "ZT" = (
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 8
 	},

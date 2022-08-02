@@ -1,9 +1,9 @@
-/atom/movable/effect/temp_visual/telekinesis
+/obj/effect/temp_visual/telekinesis
 	name = "telekinetic force"
 	icon_state = "empdisable"
 	duration = 0.5 SECONDS
 
-/atom/movable/effect/temp_visual/explosion
+/obj/effect/temp_visual/explosion
 	name = "explosion"
 	icon = 'icons/effects/explosion.dmi'
 	icon_state = "grenade"
@@ -11,14 +11,14 @@
 	pixel_x = -16
 
 //unsorted miscellaneous temporary visuals
-/atom/movable/effect/temp_visual/dir_setting/bloodsplatter
+/obj/effect/temp_visual/dir_setting/bloodsplatter
 	icon = 'icons/effects/blood.dmi'
 	duration = 0.5 SECONDS
 	randomdir = FALSE
 	layer = BELOW_MOB_LAYER
 	var/splatter_type = "splatter"
 
-/atom/movable/effect/temp_visual/dir_setting/bloodsplatter/Initialize(mapload, set_dir, blood_color)
+/obj/effect/temp_visual/dir_setting/bloodsplatter/Initialize(mapload, set_dir, blood_color)
 	if(!blood_color)
 		CRASH("Tried to create a blood splatter without a blood_color")
 
@@ -56,13 +56,13 @@
 			layer = ABOVE_MOB_LAYER
 	animate(src, pixel_x = target_pixel_x, pixel_y = target_pixel_y, alpha = 0, time = duration)
 
-/atom/movable/effect/temp_visual/transfer_plasma
+/obj/effect/temp_visual/transfer_plasma
 	name = "transfer plasma"
 	icon_state = "transfer_plasma"
 	duration = 0.5 SECONDS
 
 
-/atom/movable/effect/temp_visual/xenomorph/afterimage
+/obj/effect/temp_visual/xenomorph/afterimage
 	name = "afterimage"
 	layer = MOB_LAYER
 	alpha = 64 //Translucent
@@ -72,7 +72,7 @@
 	anchored = FALSE
 	animate_movement = SLIDE_STEPS
 
-/atom/movable/effect/temp_visual/xenomorph/afterimage/Initialize(mapload, atom/owner)
+/obj/effect/temp_visual/xenomorph/afterimage/Initialize(mapload, atom/owner)
 	. = ..()
 	appearance = owner.appearance
 	setDir(owner.dir)
@@ -80,20 +80,20 @@
 	layer = initial(layer)
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
-/atom/movable/effect/temp_visual/heavyimpact
+/obj/effect/temp_visual/heavyimpact
 	name = "heavy impact"
 	icon = 'icons/effects/heavyimpact.dmi'
 	icon_state = "heavyimpact"
 	duration = 13
 
-/atom/movable/effect/temp_visual/order
+/obj/effect/temp_visual/order
 	icon = 'icons/Marine/marine-items.dmi'
 	var/icon_state_on
 	hud_possible = list(SQUAD_HUD_TERRAGOV, SQUAD_HUD_REBEL, SQUAD_HUD_SOM)
 	duration = ORDER_DURATION
 	layer = TURF_LAYER
 
-/atom/movable/effect/temp_visual/order/Initialize(mapload, faction)
+/obj/effect/temp_visual/order/Initialize(mapload, faction)
 	. = ..()
 	prepare_huds()
 	var/hud_type
@@ -107,25 +107,25 @@
 	squad_hud.add_to_hud(src)
 	set_visuals(faction)
 
-/atom/movable/effect/temp_visual/order/attack_order
+/obj/effect/temp_visual/order/attack_order
 	name = "attack order"
 	icon_state_on = "attack"
 
-/atom/movable/effect/temp_visual/order/defend_order
+/obj/effect/temp_visual/order/defend_order
 	name = "defend order"
 	icon_state_on = "defend"
 
-/atom/movable/effect/temp_visual/order/retreat_order
+/obj/effect/temp_visual/order/retreat_order
 	name = "retreat order"
 	icon_state_on = "retreat"
 
-/atom/movable/effect/temp_visual/order/rally_order
+/obj/effect/temp_visual/order/rally_order
 	name = "rally order"
 	icon_state_on = "rally"
 	duration = RALLY_ORDER_DURATION
 
 ///Set visuals for the hud
-/atom/movable/effect/temp_visual/order/proc/set_visuals(faction)
+/obj/effect/temp_visual/order/proc/set_visuals(faction)
 	var/hud_type
 	if(faction == FACTION_TERRAGOV)
 		hud_type = DATA_HUD_SQUAD_TERRAGOV
@@ -140,51 +140,51 @@
 	holder.icon_state = icon_state_on
 	hud_list[hud_type] = holder
 
-/atom/movable/effect/temp_visual/healing
+/obj/effect/temp_visual/healing
 	name = "healing"
 	icon = 'icons/effects/progressicons.dmi'
 	icon_state = "busy_medical"
 	duration = 0.8 SECONDS
 
 
-/atom/movable/effect/temp_visual/alien_fruit_eaten
+/obj/effect/temp_visual/alien_fruit_eaten
 	name = "glitters"
 	icon_state = "shieldsparkles"
 	duration = 0.5 SECONDS
 
-/atom/movable/effect/temp_visual/smoke
+/obj/effect/temp_visual/smoke
 	name = "smoke"
 	icon = 'icons/obj/items/jetpack.dmi'
 	icon_state = "smoke"
 	duration = 1.2 SECONDS
 
-/atom/movable/effect/temp_visual/blink_portal
+/obj/effect/temp_visual/blink_portal
 	name = "blink portal"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "anom"
 	layer = ABOVE_LYING_MOB_LAYER
 	duration = 0.5 SECONDS
 
-/atom/movable/effect/temp_visual/banishment_portal
+/obj/effect/temp_visual/banishment_portal
 	name = "banishment portal"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "bhole3"
 	layer = ABOVE_LYING_MOB_LAYER
 	duration = WRAITH_BANISH_BASE_DURATION+1 //So we don't delete our contents early
 
-/atom/movable/effect/temp_visual/acid_splatter
+/obj/effect/temp_visual/acid_splatter
 	name = "acid_splatter"
 	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "splatter"
 	duration = 0.8 SECONDS
 
-/atom/movable/effect/temp_visual/acid_bath
+/obj/effect/temp_visual/acid_bath
 	name = "acid bath"
 	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "boiler_gas"
 	duration = 0.8 SECONDS
 
-/atom/movable/effect/temp_visual/wraith_warp
+/obj/effect/temp_visual/wraith_warp
 	icon = 'icons/effects/light_overlays/light_128.dmi'
 	icon_state = "light"
 	plane = GRAVITY_PULSE_PLANE
@@ -192,18 +192,18 @@
 	pixel_y = -48
 	duration = 8
 
-/atom/movable/effect/temp_visual/wraith_warp/Initialize()
+/obj/effect/temp_visual/wraith_warp/Initialize()
 	. = ..()
 	animate(src, time=duration, transform=matrix().Scale(0.1,0.1))
 
-/atom/movable/effect/temp_visual/shockwave
+/obj/effect/temp_visual/shockwave
 	icon = 'icons/effects/light_overlays/shockwave.dmi'
 	icon_state = "shockwave"
 	plane = GRAVITY_PULSE_PLANE
 	pixel_x = -496
 	pixel_y = -496
 
-/atom/movable/effect/temp_visual/shockwave/Initialize(mapload, radius)
+/obj/effect/temp_visual/shockwave/Initialize(mapload, radius)
 	. = ..()
 	deltimer(timerid)
 	timerid = QDEL_IN(src, 0.5 * radius)

@@ -10,7 +10,7 @@
 		message_admins("EMP with size ([heavy_range], [light_range]) in area [ADMIN_VERBOSEJMP(epicenter.loc)].")
 
 	if(heavy_range > 1)
-		new /atom/movable/effect/overlay/temp/emp_pulse (epicenter)
+		new /obj/effect/overlay/temp/emp_pulse (epicenter)
 
 	if(heavy_range > light_range)
 		light_range = heavy_range

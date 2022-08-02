@@ -13,7 +13,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "eh" = (
-/atom/movable/effect/decal/warning_stripes/thin,
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "gi" = (
@@ -35,7 +35,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "jb" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -53,20 +53,20 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "jV" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "kx" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "kz" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/tile/dark,
@@ -82,7 +82,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "mS" = (
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "mX" = (
@@ -102,13 +102,13 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "pl" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "pF" = (
@@ -121,7 +121,7 @@
 /turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage)
 "rF" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -138,13 +138,13 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "tH" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "vk" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -163,16 +163,16 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "yx" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/tile/dark,
@@ -193,14 +193,14 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "zv" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "Ad" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -208,22 +208,22 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "Bv" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "Cp" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "Ct" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -233,10 +233,10 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "Cx" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "CF" = (
@@ -245,7 +245,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "CG" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
@@ -265,7 +265,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
@@ -275,7 +275,7 @@
 	dir = 9
 	},
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "HO" = (
@@ -285,7 +285,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "HT" = (
-/atom/movable/effect/decal/warning_stripes/thin,
+/obj/effect/decal/warning_stripes/thin,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
@@ -309,11 +309,11 @@
 "IF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "Jl" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
 /obj/structure/cable,
@@ -326,8 +326,8 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "LK" = (
-/atom/movable/effect/decal/warning_stripes/thin,
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin,
+/obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
@@ -353,7 +353,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "NR" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
 /obj/structure/cable,
@@ -375,7 +375,7 @@
 /obj/item/stack/sheet/wood{
 	amount = 50
 	},
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "PY" = (
@@ -384,8 +384,8 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "Qj" = (
-/atom/movable/effect/decal/warning_stripes/thin,
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin,
+/obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -399,13 +399,13 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "RN" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "SB" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -414,21 +414,21 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "Vs" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "VF" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{

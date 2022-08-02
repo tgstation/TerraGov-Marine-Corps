@@ -3,7 +3,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/ne)
 "aW" = (
@@ -83,7 +83,7 @@
 	},
 /area/lv624/ground/jungle7)
 "fN" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/ne)
 "gZ" = (
@@ -106,7 +106,7 @@
 "iF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/jungle/vines,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/ne)
 "iO" = (
@@ -158,12 +158,12 @@
 /area/lv624/ground/jungle7)
 "oY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/ne)
 "qb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/ne)
 "qe" = (
@@ -172,7 +172,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "qj" = (
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "rd" = (
@@ -212,7 +212,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/ne)
 "vT" = (
@@ -240,7 +240,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/ne)
 "xw" = (
@@ -326,7 +326,7 @@
 	},
 /area/lv624/ground/jungle9)
 "Ci" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "CE" = (
@@ -412,7 +412,7 @@
 	},
 /area/lv624/ground/compound/ne)
 "Iy" = (
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
 "Jm" = (
@@ -572,7 +572,7 @@
 	},
 /area/lv624/ground/jungle9)
 "Wv" = (
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "Wz" = (
@@ -618,7 +618,7 @@
 	},
 /area/lv624/ground/jungle7)
 "YW" = (
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/ground/grass,
 /area/lv624/ground/compound/ne)
 "Zw" = (
