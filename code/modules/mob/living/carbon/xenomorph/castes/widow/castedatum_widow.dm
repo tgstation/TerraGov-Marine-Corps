@@ -176,5 +176,5 @@
 		/datum/action/xeno_action/burrow,
 		/datum/action/xeno_action/activable/leash_ball,
 		/datum/action/xeno_action/create_spiderling,
-		//primo ability goes here
+		/datum/action/xeno_action/spider_swarm,
 	)

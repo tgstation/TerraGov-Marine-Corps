@@ -259,10 +259,11 @@
  *
  * params is passed on here as the third arg
  */
+/*
 /mob/proc/UnarmedAttack(atom/A, has_proximity, params)
 	if(ismob(A))
 		changeNext_move(CLICK_CD_MELEE)
-
+*/
 
 /*
 	Ranged unarmed attack:
@@ -274,6 +275,18 @@
 */
 /mob/proc/RangedAttack(atom/A, params)
 	SEND_SIGNAL(src, COMSIG_MOB_ATTACK_RANGED, A, params)
+
+
+/*
+	Melee unramed attack:
+
+	Attempt by Zaro to make a mob/living unarmed attack signal
+*/
+
+/mob/proc/UnarmedAttack(atom/A, has_proximity, params)
+	if(ismob(A))
+		changeNext_move(CLICK_CD_MELEE)
+	SEND_SIGNAL(src, COMSIG_MOB_ATTACK_MELEE, A, has_proximity, params)
 
 
 /*

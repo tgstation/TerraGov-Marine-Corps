@@ -603,6 +603,7 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 	H.flags_pass |= PASSTABLE
 
 /datum/species/monkey/spec_unarmedattack(mob/living/carbon/human/user, atom/target)
+	. = .. ()
 	if(!iscarbon(target))
 		return FALSE
 	var/mob/living/carbon/victim = target

@@ -358,6 +358,7 @@
 	#define COMSIG_MOB_CLICK_CANCELED (1<<0)
 	#define COMSIG_MOB_CLICK_HANDLED (1<<1)
 #define COMSIG_MOB_ATTACK_RANGED "mob_attack_ranged"			//from base of mob/RangedAttack(): (atom/A, params)
+#define COMSIG_MOB_ATTACK_MELEE "mob_attack_melee"				//from base of mob/UnarmedAttack(): (atom/A, has_proximity, params)
 #define COMSIG_MOB_THROW "mob_throw"							//from base of /mob/throw_item(): (atom/target)
 ///from base of /mob/verb/examinate(): (atom/target)
 #define COMSIG_MOB_EXAMINATE "mob_examinate"
@@ -726,6 +727,7 @@
 #define COMSIG_XENOABILITY_WEB_SPIT "xenoability_web_spit"
 #define COMSIG_XENOABILITY_BURROW "xenoability_burrow"
 #define COMSIG_XENOABILITY_LEASH_BALL "xenoability_leash_ball"
+#define COMSIG_XENOABILITY_SPIDER_SWARM "xenoability_spider_swarm"
 
 // throw parry signals
 #define COMSIG_THROW_PARRY_CHECK "throw_parry_check"

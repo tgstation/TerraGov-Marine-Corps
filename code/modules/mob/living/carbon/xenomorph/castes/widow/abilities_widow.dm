@@ -174,6 +174,7 @@
 	span_xenonotice("We tear down \the [src]."))
 	playsound(src, "alien_resin_break", 25)
 	take_damage(max_integrity)
+
 // ***************************************
 // *********** Spiderling Section
 // ***************************************
@@ -210,15 +211,16 @@
 		gib()
 
 /// Proc for attacking whatever the spidermother attacks
-/mob/living/spiderling/UnarmedAttack(mob/living/carbon/human/target, mob/living/carbon/xenomorph/widow/spidermother)
-	/// This is here so that Spiderling attacks the same limb(s) as their spidermother does
-	var/datum/limb/affecting = target.get_xeno_slash_zone(spidermother)
+/mob/living/spiderling/UnarmedAttack(mob/living/carbon/human/target)
+	. = .. ()
+	if(!isliving(target))
+		return
 
 	do_attack_animation(target, ATTACK_EFFECT_REDSLASH)
 	playsound(loc, "alien_claw_flesh", 25, 1)
 	visible_message("\The [src] slashes [target]!")
 
-	target.apply_damage(spiderling_damage, BRUTE, affecting, 0, TRUE, TRUE, updating_health = TRUE)
+	target.apply_damage(spiderling_damage, BRUTE, ran_zone(), 0, TRUE, TRUE, updating_health = TRUE)
 	changeNext_move(10)
 
 /datum/action/xeno_action/create_spiderling
@@ -251,6 +253,9 @@
 
 /datum/ai_behavior/spiderling/New(loc, parent_to_assign, escorted_atom, can_heal = FALSE)
 	. = ..()
+	if(!isxeno(escorted_atom))
+		RegisterSignal(escorted_atom, COMSIG_MOB_ATTACK_MELEE, .proc/go_to_target)
+		return
 	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/go_to_target)
 
 /datum/ai_behavior/spiderling/proc/go_to_target(source, mob/living/target)
@@ -299,3 +304,28 @@
 			return
 
 	return ..()
+
+// ***************************************
+// *********** Spider Swarm
+// ***************************************
+/datum/action/xeno_action/spider_swarm
+	name = "spider_swarm" // change to in character name later
+	ability_name = "spider_swarm" // change to in character name later
+	mechanics_text = " Turn into a swarm of spiderlings "
+	action_icon_state = "ravage" // temporary until I get my own icons
+	plasma_cost = 1
+	cooldown_timer = 1 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_SPIDER_SWARM
+	/// how many spiderlings should spawn to replace widow
+	var/amount_of_spiderlings = 5
+
+/datum/action/xeno_action/spider_swarm/action_activate()
+	. = ..()
+	if(!do_after(owner, 3 SECONDS, TRUE, owner, BUSY_ICON_DANGER))
+		return fail_activate()
+	var/mob/living/spiderling/control_victim = new /mob/living/spiderling(get_turf(owner), owner)
+	owner.mind.transfer_to(control_victim)
+	owner.doMove(null)
+	new /mob/living/spiderling(control_victim.loc, control_victim)
+	succeed_activate()
+	add_cooldown()
