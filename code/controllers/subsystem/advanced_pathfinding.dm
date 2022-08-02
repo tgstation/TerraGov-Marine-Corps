@@ -2,7 +2,6 @@ SUBSYSTEM_DEF(advanced_pathfinding)
 	name = "Advanced_pathfinding"
 	priority = FIRE_PRIORITY_ADVANCED_PATHFINDING
 	wait = 1 SECONDS
-	flags = SS_NO_INIT
 	///List of ai_behaviour datum asking for a tile pathfinding
 	var/list/datum/ai_behavior/tile_pathfinding_to_do = list()
 	///List of ai_behaviour datum asking for a tile pathfinding
@@ -10,8 +9,10 @@ SUBSYSTEM_DEF(advanced_pathfinding)
 
 /datum/controller/subsystem/advanced_pathfinding/Initialize(start_timeofday)
 	. = ..()
-
-
+	var/list/nodes = list()
+	for(var/obj/effect/ai_node/ai_node AS in GLOB.all_nodes)
+		nodes += list(ai_node.serialize())
+	rustg_register_nodes(json_encode(nodes))
 
 /datum/controller/subsystem/advanced_pathfinding/fire()
 	for(var/datum/ai_behavior/ai_behavior AS in tile_pathfinding_to_do)
@@ -131,6 +132,7 @@ GLOBAL_LIST_EMPTY(goal_nodes)
 
 /obj/effect/ai_node/goal/LateInitialize()
 	make_adjacents(TRUE)
+	rustg_add_node(json_encode(serialize()))
 
 /obj/effect/ai_node/goal/Destroy()
 	. = ..()

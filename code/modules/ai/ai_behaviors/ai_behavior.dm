@@ -145,7 +145,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	if(ignore_current_node || !current_node) //We don't have a current node, let's find the closest in our LOS
 		var/closest_distance = MAX_NODE_RANGE //squared because we are using the cheap get dist
 		var/avoid_node = current_node
-		for(var/obj/effect/ai_node/ai_node AS in GLOB.allnodes)
+		for(var/obj/effect/ai_node/ai_node AS in GLOB.all_nodes)
 			if(ai_node == avoid_node)
 				continue
 			if(ai_node.z != mob_parent.z || get_dist(ai_node, mob_parent) >= closest_distance)
@@ -155,11 +155,11 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		if(current_node)
 			change_action(MOVING_TO_NODE, current_node)
 		return
-	if(goal_node && goal_node != current_node && SStime_track.time_dilation_avg < CONFIG_GET(number/ai_advanced_pathfinding_lag_time_dilation_threshold))
+	if(goal_node && goal_node != current_node)
 		if(!length(goal_nodes))
 			SSadvanced_pathfinding.node_pathfinding_to_do += src
 			return
-		current_node = goal_nodes[length(goal_nodes)]
+		current_node = GLOB.all_nodes[goal_nodes[length(goal_nodes)] + 1]
 		goal_nodes.len--
 	else
 		current_node = current_node.get_best_adj_node(list(NODE_LAST_VISITED = -1), identifier)
@@ -190,8 +190,11 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 /datum/ai_behavior/proc/look_for_node_path()
 	if(QDELETED(goal_node) || QDELETED(current_node))
 		return
-	goal_nodes = get_path(current_node, goal_node, NODE_PATHING)
-	if(!length(goal_nodes))
+	var/goal_nodes_serialized = rustg_astar_generate_path("[current_node.unique_id]", "[goal_node.unique_id]")
+	if(rustg_json_is_valid(goal_nodes_serialized))
+		goal_nodes = json_decode(goal_nodes_serialized)
+	else
+		goal_nodes = list()
 		current_node = null
 	look_for_next_node()
 

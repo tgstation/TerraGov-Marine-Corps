@@ -12,6 +12,8 @@
 	#else
 	invisibility = INVISIBILITY_ABSTRACT
 	#endif
+	/// static id counter for all nodes
+	var/static/id_counter = 0
 	/// A unique id for this node
 	var/unique_id
 	///Assoc list of adjacent landmark nodes by dir
@@ -25,12 +27,24 @@
 
 /obj/effect/ai_node/Initialize()
 	..()
-	GLOB.allnodes += src
-	unique_id = UNIQUEID;
+	GLOB.all_nodes += src
+	unique_id = id_counter++;
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/effect/ai_node/LateInitialize()
 	make_adjacents()
+
+/// Serialize nodes information
+/obj/effect/ai_node/proc/serialize()
+	. = list()
+	.["unique_id"] = unique_id
+	.["x"] = x
+	.["y"] = y
+	.["z"] = z
+	.["connected_nodes_id"] = list()
+	for(var/key in adjacent_nodes)
+		var/obj/effect/ai_node/connected_node = adjacent_nodes[key]
+		.["connected_nodes_id"] += connected_node.unique_id
 
 ///Adds to the specific weight of a specific identifier of this node
 /obj/effect/ai_node/proc/increment_weight(identifier, name, amount)
@@ -41,7 +55,8 @@
 	weights[identifier][name] = amount
 
 /obj/effect/ai_node/Destroy()
-	GLOB.allnodes -= src
+	GLOB.all_nodes[unique_id + 1] = null
+	rustg_remove_node(unique_id)
 	//Remove our reference to self from nearby adjacent node's adjacent nodes
 	for(var/direction AS in adjacent_nodes)
 		var/obj/effect/ai_node/node = adjacent_nodes[direction]
@@ -83,7 +98,7 @@
 
 ///Clears the adjacencies of src and repopulates it, it will consider nodes "adjacent" to src should it be less 15 turfs away
 /obj/effect/ai_node/proc/make_adjacents(bypass_diagonal_check = FALSE)
-	for(var/obj/effect/ai_node/node AS in GLOB.allnodes)
+	for(var/obj/effect/ai_node/node AS in GLOB.all_nodes)
 		if(node == src || node.z != z || get_dist(src, node) > MAX_NODE_RANGE || (!bypass_diagonal_check && !Adjacent(node) && ISDIAGONALDIR(get_dir(src, node))))
 			continue
 		if(get_dist(src, adjacent_nodes["[get_dir(src, node)]"]) < get_dist(src, node))
