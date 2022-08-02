@@ -289,17 +289,14 @@
 	apx += pixel_x //Update the absolute pixels with the offset.
 	apy += pixel_y
 
-	GLOB.round_statistics.total_projectiles_fired++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_projectiles_fired")
-
 	if(!ismob(firer)|| recursivity)
 		return
 	var/mob/mob_firer = firer
-	GLOB.round_statistics.total_bullets_fired[mob_firer.faction]++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_bullets_fired[mob_firer.faction]")
+	GLOB.round_statistics.total_projectiles_fired[mob_firer.faction]++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_projectiles_fired[mob_firer.faction]")
 	if(ammo.bonus_projectiles_amount)
-		GLOB.round_statistics.total_bullets_fired[mob_firer.faction] += ammo.bonus_projectiles_amount
-		SSblackbox.record_feedback("tally", "round_statistics", ammo.bonus_projectiles_amount, "total_bullets_fired[mob_firer.faction]")
+		GLOB.round_statistics.total_projectiles_fired[mob_firer.faction] += ammo.bonus_projectiles_amount
+		SSblackbox.record_feedback("tally", "round_statistics", ammo.bonus_projectiles_amount, "total_projectiles_fired[mob_firer.faction]")
 
 
 	//If we have the the right kind of ammo, we can fire several projectiles at once.
@@ -949,7 +946,17 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	else
 		bullet_message(proj, feedback_flags)
 
+	GLOB.round_statistics.total_projectile_hits[faction]++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_projectile_hits[faction]")
+
 	return TRUE
+
+/mob/living/carbon/xenomorph/bullet_act(obj/projectile/proj)
+	if(issamexenohive(proj.firer)) //Aliens won't be harming allied aliens.
+		bullet_ping(proj)
+		return
+
+	return ..()
 
 /obj/projectile/hitscan
 	///The icon of the laser beam that will be created
@@ -1175,30 +1182,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	UnregisterSignal(source, COMSIG_TURF_RESUME_PROJECTILE_MOVE)
 	projectile_batch_move(FALSE)
 	qdel(src)
-
-/mob/living/carbon/human/bullet_act(obj/projectile/proj)
-	. = ..()
-	if(!.)
-		return
-
-	if(proj.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
-		GLOB.round_statistics.total_bullet_hits_on_humans[faction]++
-		SSblackbox.record_feedback("tally", "round_statistics", 1, "total_bullet_hits_on_humans[faction]")
-
-
-/mob/living/carbon/xenomorph/bullet_act(obj/projectile/proj)
-	if(issamexenohive(proj.firer)) //Aliens won't be harming allied aliens.
-		bullet_ping(proj)
-		return
-
-	. = ..()
-	if(!.)
-		return
-
-	if(proj.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
-		GLOB.round_statistics.total_bullet_hits_on_xenos++
-		SSblackbox.record_feedback("tally", "round_statistics", 1, "total_bullet_hits_on_xenos")
-
 
 /mob/living/proc/embed_projectile_shrapnel(obj/projectile/proj)
 	var/obj/item/shard/shrapnel/shrap = new(get_turf(src), "[proj] shrapnel", " It looks like it was fired from [proj.shot_from ? proj.shot_from : "something unknown"].")

@@ -13,17 +13,16 @@ add [] around this to use it in text.
 GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 
 /datum/round_statistics
-	var/total_projectiles_fired = 0
-	var/list/total_bullets_fired = list()
+	var/list/total_projectiles_fired = list()
 	var/human_bump_attacks = 0
 	var/points_from_research = 0
 	var/total_xeno_deaths = 0
 	var/list/total_human_deaths = list()
 	var/list/total_human_revives = list()
-	var/list/total_human_respawns = list()
+	var/total_human_respawns = 0
 	var/total_xenos_created = 0
 	var/list/total_humans_created = list()
-	var/list/total_bullet_hits_on_humans = list()
+	var/list/total_projectile_hits = list()
 	var/total_bullet_hits_on_marines = 0
 	var/total_bullet_hits_on_xenos = 0
 	var/total_larva_burst = 0
