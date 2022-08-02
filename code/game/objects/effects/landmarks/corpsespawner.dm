@@ -45,8 +45,8 @@
 /obj/effect/landmark/corpsespawner/proc/create_mob(death_type)
 	var/mob/living/carbon/human/victim = new(loc)
 	SSmobs.stop_processing(victim)
-	GLOB.round_statistics.total_humans_created[faction]-- //corpses don't count
-	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_humans_created[faction]")
+	GLOB.round_statistics.total_humans_created[victim.faction]-- //corpses don't count
+	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_humans_created[victim.faction]")
 	victim.real_name = name
 	victim.death(silent = TRUE) //Kills the new mob
 	GLOB.dead_human_list -= victim

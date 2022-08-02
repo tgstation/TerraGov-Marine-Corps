@@ -269,12 +269,9 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 	var/list/dat = list({"[span_round_body("The end of round statistics are:")]<br>
 		<br>[GLOB.round_statistics.total_humans_created[FACTION_TERRAGOV]] TGMC personel deployed for the patrol, [GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV]] TGMC personel were killed, among which [GLOB.round_statistics.total_human_revives[FACTION_TERRAGOV]] were revived. For a [(GLOB.round_statistics.total_human_revives[FACTION_TERRAGOV] / max(GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV], 1)) * 100]% revival rate and a [((GLOB.round_statistics.total_humans_created[FACTION_TERRAGOV] + GLOB.round_statistics.total_human_revives[FACTION_TERRAGOV] - GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV]) / GLOB.round_statistics.total_humans_created[FACTION_TERRAGOV]) * 100]% survival rate.
 		<br>[GLOB.round_statistics.total_humans_created[FACTION_SOM]] SOM personel deployed for the patrol, [GLOB.round_statistics.total_human_deaths[FACTION_SOM]] SOM personel were killed, among which [GLOB.round_statistics.total_human_revives[FACTION_SOM]] were revived. For a [(GLOB.round_statistics.total_human_revives[FACTION_SOM] / max(GLOB.round_statistics.total_human_deaths[FACTION_SOM], 1)) * 100]% revival rate and a [((GLOB.round_statistics.total_humans_created[FACTION_SOM] + GLOB.round_statistics.total_human_revives[FACTION_SOM] - GLOB.round_statistics.total_human_deaths[FACTION_SOM]) / GLOB.round_statistics.total_humans_created[FACTION_SOM]) * 100]% survival rate.
-		<br>There were [GLOB.round_statistics.total_bullets_fired] total bullets fired.
+		<br>The TGMC fired [GLOB.round_statistics.total_bullets_fired[FACTION_TERRAGOV]] bullets. [GLOB.round_statistics.total_bullet_hits_on_humans[FACTION_SOM]] bullets managed to hit members of the SOM, for an accuracy of [(GLOB.round_statistics.total_bullet_hits_on_humans[FACTION_SOM] / max(GLOB.round_statistics.total_bullets_fired[FACTION_TERRAGOV], 1)) * 100]%!.
+		<br>The SOM fired [GLOB.round_statistics.total_bullets_fired[FACTION_SOM]] bullets. [GLOB.round_statistics.total_bullet_hits_on_humans[FACTION_TERRAGOV]] bullets managed to hit members of the TGMC, for an accuracy of [(GLOB.round_statistics.total_bullet_hits_on_humans[FACTION_TERRAGOV] / max(GLOB.round_statistics.total_bullets_fired[FACTION_SOM], 1)) * 100]%!.
 		"})
-	if(GLOB.round_statistics.total_bullet_hits_on_humans[FACTION_TERRAGOV])
-		dat += "[GLOB.round_statistics.total_bullet_hits_on_humans[FACTION_TERRAGOV]] bullets managed to hit members of the TGMC."
-	if(GLOB.round_statistics.total_bullet_hits_on_humans[FACTION_SOM])
-		dat += "[GLOB.round_statistics.total_bullet_hits_on_humans[FACTION_SOM]] bullets managed to hit members of the SOM."
 	if(GLOB.round_statistics.grenades_thrown)
 		dat += "[GLOB.round_statistics.grenades_thrown] grenades were detonated."
 	else
