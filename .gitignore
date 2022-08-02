@@ -28,10 +28,6 @@ tools/MapDaemon/logs/*.txt
 
 tools/BalanceTool/raw.json
 
-
-# Ignore compiled linux libs in the root folder, e.g. librust_g.so
-/*.so
-
 #extra map stuff
 /_maps/**/backup/
 /_maps/templates.dm
