@@ -294,7 +294,7 @@
 
 	if(!ismob(firer) || !(ammo.flags_ammo_behavior & AMMO_BALLISTIC) || recursivity)
 		return
-	var/mob_firer = firer
+	var/mob/mob_firer = firer
 	GLOB.round_statistics.total_bullets_fired[mob_firer.faction]++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_bullets_fired[mob_firer.faction]")
 	if(ammo.bonus_projectiles_amount)
