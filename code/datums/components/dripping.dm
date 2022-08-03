@@ -6,7 +6,7 @@
 	var/drip_counter
 	var/drip_limit
 	var/drip_ratio
-	var/dripped_type = /atom/movable/effect/decal/cleanable/blood/drip/tracking_fluid
+	var/dripped_type = /obj/effect/decal/cleanable/blood/drip/tracking_fluid
 
 
 /datum/component/dripping/Initialize(drip_mode = DRIP_ON_WALK, drip_limit, drip_ratio, dripped_type)
@@ -43,7 +43,7 @@
 		return
 	if(!(drip_counter % drip_ratio))
 		return
-	new /atom/movable/effect/decal/cleanable/blood/drip/tracking_fluid(dripper.loc)
+	new /obj/effect/decal/cleanable/blood/drip/tracking_fluid(dripper.loc)
 	if(++drip_counter > drip_limit)
 		qdel(src)
 
@@ -58,6 +58,6 @@
 	drip_counter += drip_ratio
 	if(!isturf(dripper.loc))
 		return
-	new /atom/movable/effect/decal/cleanable/blood/drip/tracking_fluid(dripper.loc)
+	new /obj/effect/decal/cleanable/blood/drip/tracking_fluid(dripper.loc)
 	if(world.time + drip_ratio > drip_limit)
 		qdel(src)

@@ -2,7 +2,7 @@
 	var/atom/host	//the atom we are tracking
 	var/atom/hasprox_receiver //the atom that will receive HasProximity calls.
 	var/atom/last_host_loc
-	var/list/checkers //list of /atom/movable/effect/abstract/proximity_checkers
+	var/list/checkers //list of /obj/effect/abstract/proximity_checkers
 	var/current_range
 	var/ignore_if_not_on_turf	//don't check turfs in range if the host's loc isn't a turf
 	var/wire = FALSE
@@ -64,7 +64,7 @@
 		loc_to_use = get_turf(loc_to_use)
 	if(!isturf(loc_to_use))	//only check the host's loc
 		if(range)
-			var/atom/movable/effect/abstract/proximity_checker/pc
+			var/obj/effect/abstract/proximity_checker/pc
 			if(old_checkers_len)
 				pc = checkers_local[old_checkers_len]
 				--checkers_local.len
@@ -82,7 +82,7 @@
 	//reuse what we can
 	for(var/I in 1 to old_checkers_len)
 		if(I <= old_checkers_used)
-			var/atom/movable/effect/abstract/proximity_checker/pc = checkers_local[I]
+			var/obj/effect/abstract/proximity_checker/pc = checkers_local[I]
 			pc.forceMove(turfs[I])
 		else
 			qdel(checkers_local[I])	//delete the leftovers
@@ -90,16 +90,16 @@
 	if(old_checkers_len < turfs_len)
 		//create what we lack
 		for(var/I in (old_checkers_used + 1) to turfs_len)
-			checkers_local += new /atom/movable/effect/abstract/proximity_checker(turfs[I], src)
+			checkers_local += new /obj/effect/abstract/proximity_checker(turfs[I], src)
 	else
 		checkers_local.Cut(old_checkers_used + 1, old_checkers_len)
 
-/atom/movable/effect/abstract/proximity_checker
+/obj/effect/abstract/proximity_checker
 	invisibility = INVISIBILITY_ABSTRACT
 	anchored = TRUE
 	var/datum/proximity_monitor/monitor
 
-/atom/movable/effect/abstract/proximity_checker/Initialize(mapload, datum/proximity_monitor/_monitor)
+/obj/effect/abstract/proximity_checker/Initialize(mapload, datum/proximity_monitor/_monitor)
 	. = ..()
 	if(!_monitor)
 		stack_trace("proximity_checker created without host")
@@ -111,10 +111,10 @@
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
-/atom/movable/effect/abstract/proximity_checker/Destroy()
+/obj/effect/abstract/proximity_checker/Destroy()
 	monitor = null
 	return ..()
 
-/atom/movable/effect/abstract/proximity_checker/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs)
+/obj/effect/abstract/proximity_checker/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs)
 	SIGNAL_HANDLER
 	monitor.hasprox_receiver.HasProximity(AM)

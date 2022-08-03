@@ -30,7 +30,7 @@
 /area/lv624/lazarus/robotics)
 "dj" = (
 /obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster,
-/atom/movable/effect/decal/cleanable/cobweb,
+/obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
 "ex" = (
@@ -121,7 +121,7 @@
 "oe" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -177,8 +177,8 @@
 	},
 /area/lv624/lazarus/robotics)
 "uR" = (
-/atom/movable/effect/landmark/start/job/survivor,
-/atom/movable/effect/ai_node,
+/obj/effect/landmark/start/job/survivor,
+/obj/effect/ai_node,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -215,7 +215,7 @@
 	},
 /area/lv624/lazarus/robotics)
 "zI" = (
-/atom/movable/effect/decal/cleanable/blood/oil,
+/obj/effect/decal/cleanable/blood/oil,
 /obj/item/stack/sheet/metal{
 	amount = 30;
 	pixel_x = 4;
@@ -291,11 +291,11 @@
 /turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "JD" = (
-/atom/movable/effect/decal/cleanable/blood/oil,
+/obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating/warning,
 /area/lv624/lazarus/robotics)
 "JN" = (
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
 "Ny" = (
@@ -331,7 +331,7 @@
 /turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "PQ" = (
-/atom/movable/effect/decal/remains/human,
+/obj/effect/decal/remains/human,
 /turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "Rv" = (
@@ -339,7 +339,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -372,13 +372,13 @@
 /turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "XO" = (
-/atom/movable/effect/decal/cleanable/blood/oil,
+/obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "Yr" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},

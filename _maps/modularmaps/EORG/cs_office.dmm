@@ -3,7 +3,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 1
 	},
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/stairs/rampbottom{
 	dir = 8
 	},
@@ -23,8 +23,8 @@
 /obj/structure/table/woodentable,
 /obj/structure/paper_bin,
 /obj/item/tool/pen,
-/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "ay" = (
@@ -48,14 +48,14 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/deathmatch)
 "bB" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},
 /area/deathmatch)
 "bC" = (
 /obj/structure/table/woodentable,
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},
@@ -81,9 +81,9 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/deathmatch)
 "co" = (
-/atom/movable/effect/landmark/weapon_spawn/tier5_weapon_spawn,
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weapon_spawn/tier5_weapon_spawn,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
 	},
@@ -92,16 +92,16 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/stairs,
 /area/deathmatch)
 "cA" = (
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/tile/dark/blue2,
 /area/deathmatch)
 "dg" = (
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},
@@ -119,7 +119,7 @@
 /area/deathmatch)
 "do" = (
 /obj/structure/fence,
-/atom/movable/effect/forcefield{
+/obj/effect/forcefield{
 	desc = "You can't get in. Heh.";
 	name = "Blocker"
 	},
@@ -135,7 +135,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},
@@ -147,7 +147,7 @@
 	},
 /area/deathmatch)
 "dY" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/blue2/corner{
 	dir = 8
 	},
@@ -158,13 +158,13 @@
 	},
 /area/deathmatch)
 "eq" = (
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
 	},
 /area/deathmatch)
 "eE" = (
-/atom/movable/effect/forcefield{
+/obj/effect/forcefield{
 	desc = "You can't get in. Heh.";
 	name = "Blocker"
 	},
@@ -174,7 +174,7 @@
 /obj/structure/table,
 /obj/structure/paper_bin,
 /obj/item/tool/pen,
-/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},
@@ -202,13 +202,13 @@
 /obj/structure/bed/chair/sofa/left{
 	dir = 4
 	},
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/tile/dark/blue2/corner{
 	dir = 1
 	},
 /area/deathmatch)
 "fK" = (
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "fZ" = (
@@ -218,14 +218,14 @@
 	},
 /area/deathmatch)
 "ga" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/arrival/corner{
 	dir = 1
 	},
 /area/deathmatch)
 "gn" = (
 /obj/structure/inflatable/popped,
-/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/tile/arrival{
 	dir = 4
 	},
@@ -238,18 +238,18 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/tile/cmo,
 /area/deathmatch)
 "gE" = (
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/deathmatch)
 "gJ" = (
 /obj/structure/table,
 /obj/structure/paper_bin,
 /obj/item/tool/pen,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "gM" = (
@@ -265,13 +265,13 @@
 "gX" = (
 /obj/structure/table/woodentable,
 /obj/item/radio,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},
 /area/deathmatch)
 "gY" = (
-/atom/movable/effect/forcefield{
+/obj/effect/forcefield{
 	desc = "You can't get in. Heh.";
 	name = "Blocker"
 	},
@@ -281,14 +281,14 @@
 /area/deathmatch)
 "hp" = (
 /obj/structure/reagent_dispensers/fueltank,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/stairs,
 /area/deathmatch)
 "hv" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/tile/dark/blue2/corner{
 	dir = 4
 	},
@@ -298,18 +298,18 @@
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "ia" = (
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
 /area/deathmatch)
 "ib" = (
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/tile/arrival,
 /area/deathmatch)
 "ih" = (
 /obj/structure/bed/chair/comfy/black,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
@@ -318,7 +318,7 @@
 /obj/structure/rack,
 /obj/item/stack/sheet/metal/large_stack,
 /obj/item/stack/sheet/metal/large_stack,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
@@ -383,7 +383,7 @@
 	},
 /area/deathmatch)
 "kj" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/arrival{
 	dir = 1
 	},
@@ -392,19 +392,19 @@
 /obj/structure/table/woodentable,
 /obj/structure/paper_bin,
 /obj/item/tool/pen,
-/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "ky" = (
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},
 /area/deathmatch)
 "kP" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/stairs/rampbottom{
 	dir = 1
 	},
@@ -428,7 +428,7 @@
 /area/deathmatch)
 "lf" = (
 /obj/structure/reagent_dispensers/fueltank,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/blue2,
 /area/deathmatch)
 "li" = (
@@ -442,12 +442,12 @@
 /turf/open/floor/stairs,
 /area/deathmatch)
 "lm" = (
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/stairs,
 /area/deathmatch)
 "ln" = (
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/tile/cmo,
 /area/deathmatch)
 "lv" = (
@@ -457,13 +457,13 @@
 	},
 /area/deathmatch)
 "lx" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/blue2/corner{
 	dir = 4
 	},
 /area/deathmatch)
 "lE" = (
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/plating,
 /area/deathmatch)
 "lH" = (
@@ -475,7 +475,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/blue2{
 	dir = 6
 	},
@@ -483,7 +483,7 @@
 "ml" = (
 /obj/structure/table/woodentable,
 /obj/machinery/recharger,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "mE" = (
@@ -498,7 +498,7 @@
 /turf/open/floor/plating/ground/snow/layer1,
 /area/deathmatch)
 "mO" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
@@ -508,13 +508,13 @@
 /turf/open/floor/tile/cmo,
 /area/deathmatch)
 "np" = (
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/tile/arrival{
 	dir = 5
 	},
 /area/deathmatch)
 "nJ" = (
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/tile/dark/blue2{
 	dir = 5
 	},
@@ -527,7 +527,7 @@
 	},
 /area/deathmatch)
 "nL" = (
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/tile/arrival{
 	dir = 1
 	},
@@ -565,8 +565,8 @@
 /area/deathmatch)
 "on" = (
 /obj/structure/inflatable/popped,
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/gray,
 /area/deathmatch)
 "ot" = (
@@ -579,13 +579,13 @@
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "oA" = (
-/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/tile/arrival{
 	dir = 1
 	},
 /area/deathmatch)
 "oP" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/arrival/corner,
 /area/deathmatch)
 "oU" = (
@@ -594,8 +594,8 @@
 	},
 /area/deathmatch)
 "pa" = (
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/arrival{
 	dir = 4
 	},
@@ -623,8 +623,8 @@
 /obj/structure/bed/chair/sofa/right{
 	dir = 1
 	},
-/atom/movable/effect/landmark/deathmatch,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/landmark/deathmatch,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/blue2,
 /area/deathmatch)
 "pM" = (
@@ -672,13 +672,13 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "qP" = (
 /obj/structure/largecrate/random,
 /obj/item/tool/crowbar,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/blue2{
 	dir = 10
 	},
@@ -696,7 +696,7 @@
 /area/deathmatch)
 "ri" = (
 /obj/structure/ore_box,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},
@@ -707,11 +707,11 @@
 /area/deathmatch)
 "ro" = (
 /obj/structure/inflatable/popped,
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/tile/dark/gray,
 /area/deathmatch)
 "rp" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/stairs,
 /area/deathmatch)
 "ru" = (
@@ -727,7 +727,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
@@ -743,14 +743,14 @@
 /turf/open/floor/plating/ground/snow/layer1,
 /area/deathmatch)
 "sa" = (
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/tile/dark/gray,
 /area/deathmatch)
 "sh" = (
 /obj/machinery/light{
 	dir = 8
 	},
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/stairs,
 /area/deathmatch)
 "ss" = (
@@ -760,14 +760,14 @@
 /turf/open/floor/plating/ground/snow/layer1,
 /area/deathmatch)
 "sw" = (
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/tile/dark/gray,
 /area/deathmatch)
 "sy" = (
 /obj/machinery/light{
 	dir = 8
 	},
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/tile/arrival{
 	dir = 8
 	},
@@ -788,7 +788,7 @@
 /obj/structure/platform_decoration{
 	dir = 8
 	},
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/deathmatch)
 "tn" = (
@@ -798,7 +798,7 @@
 /obj/structure/rack,
 /obj/item/stack/sheet/plasteel/large_stack,
 /obj/item/stack/sheet/plasteel/large_stack,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
@@ -811,7 +811,7 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/deathmatch)
 "tJ" = (
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/stairs,
 /area/deathmatch)
 "tO" = (
@@ -828,8 +828,8 @@
 /turf/open/floor/tile/cmo,
 /area/deathmatch)
 "uS" = (
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "uU" = (
@@ -864,7 +864,7 @@
 /turf/open/floor/tile/arrival,
 /area/deathmatch)
 "vA" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/arrival,
 /area/deathmatch)
 "vL" = (
@@ -876,7 +876,7 @@
 	},
 /area/deathmatch)
 "vM" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "vO" = (
@@ -885,7 +885,7 @@
 /area/deathmatch)
 "vQ" = (
 /obj/structure/closet/crate/freezer,
-/atom/movable/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
 /turf/open/floor/tile/cmo,
 /area/deathmatch)
 "vU" = (
@@ -897,15 +897,15 @@
 /obj/structure/bed/chair/sofa{
 	dir = 4
 	},
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "wn" = (
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/deathmatch)
 "wG" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/arrival/corner{
 	dir = 8
 	},
@@ -918,7 +918,7 @@
 "wN" = (
 /obj/structure/table/woodentable,
 /obj/item/radio,
-/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "wP" = (
@@ -936,7 +936,7 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "xr" = (
@@ -951,7 +951,7 @@
 /area/deathmatch)
 "xB" = (
 /obj/structure/fence,
-/atom/movable/effect/forcefield{
+/obj/effect/forcefield{
 	desc = "You can't get in. Heh.";
 	name = "Blocker"
 	},
@@ -961,7 +961,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	name = "\improper Recreation Area"
 	},
-/atom/movable/effect/forcefield{
+/obj/effect/forcefield{
 	desc = "You can't get in. Heh.";
 	name = "Blocker"
 	},
@@ -1022,7 +1022,7 @@
 	},
 /area/deathmatch)
 "yY" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/blue2,
 /area/deathmatch)
 "zd" = (
@@ -1036,7 +1036,7 @@
 	dir = 1
 	},
 /obj/structure/fence,
-/atom/movable/effect/forcefield{
+/obj/effect/forcefield{
 	desc = "You can't get in. Heh.";
 	name = "Blocker"
 	},
@@ -1046,11 +1046,11 @@
 /obj/structure/table,
 /obj/item/clipboard,
 /obj/item/tool/pen,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "zg" = (
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/tile/arrival{
 	dir = 1
 	},
@@ -1059,7 +1059,7 @@
 /obj/structure/bed/chair/sofa/left{
 	dir = 1
 	},
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/tile/dark/blue2{
 	dir = 6
 	},
@@ -1080,8 +1080,8 @@
 /obj/structure/bed/chair/sofa/right{
 	dir = 4
 	},
-/atom/movable/effect/landmark/deathmatch,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/landmark/deathmatch,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "zR" = (
@@ -1112,7 +1112,7 @@
 /obj/structure/bed/chair/sofa/left{
 	dir = 1
 	},
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/blue2{
 	dir = 6
 	},
@@ -1128,14 +1128,14 @@
 	},
 /area/deathmatch)
 "An" = (
-/atom/movable/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
 /turf/open/floor/tile/dark/blue2/corner,
 /area/deathmatch)
 "AH" = (
 /obj/machinery/light{
 	dir = 1
 	},
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
@@ -1144,7 +1144,7 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 4
 	},
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "AJ" = (
@@ -1174,7 +1174,7 @@
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "Bs" = (
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/tile/arrival{
 	dir = 4
 	},
@@ -1184,15 +1184,15 @@
 /turf/open/floor/tile/cmo,
 /area/deathmatch)
 "Bx" = (
-/atom/movable/effect/decal/remains/human,
+/obj/effect/decal/remains/human,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/deathmatch)
 "BA" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/blue2/corner,
 /area/deathmatch)
 "BR" = (
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/tile/dark/blue2/corner{
 	dir = 1
 	},
@@ -1206,16 +1206,16 @@
 "Cq" = (
 /obj/structure/table/woodentable,
 /obj/item/tool/hand_labeler,
-/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "CD" = (
 /obj/structure/bed/chair/office/dark,
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "CQ" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/deathmatch)
 "CT" = (
@@ -1228,7 +1228,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/arrival{
 	dir = 4
 	},
@@ -1238,7 +1238,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "DM" = (
@@ -1254,11 +1254,11 @@
 /obj/structure/bed/chair/sofa/right{
 	dir = 8
 	},
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "Eb" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/arrival{
 	dir = 4
 	},
@@ -1273,7 +1273,7 @@
 	},
 /area/deathmatch)
 "Eh" = (
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/tile/dark/blue2/corner{
 	dir = 4
 	},
@@ -1294,14 +1294,14 @@
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "Ev" = (
-/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/tile/dark/gray,
 /area/deathmatch)
 "Ez" = (
 /obj/machinery/light{
 	dir = 4
 	},
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/cmo,
 /area/deathmatch)
 "EB" = (
@@ -1314,7 +1314,7 @@
 /area/deathmatch)
 "EJ" = (
 /obj/structure/bed/stool,
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/tile/cmo,
 /area/deathmatch)
 "Fg" = (
@@ -1338,7 +1338,7 @@
 "FA" = (
 /obj/structure/largecrate/random,
 /obj/item/tool/crowbar,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "FT" = (
@@ -1348,28 +1348,28 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/deathmatch)
 "Gh" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/gray,
 /area/deathmatch)
 "Gz" = (
 /obj/structure/bed/chair/sofa/right{
 	dir = 1
 	},
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/tile/dark/blue2,
 /area/deathmatch)
 "GC" = (
 /obj/machinery/light{
 	dir = 8
 	},
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/arrival{
 	dir = 8
 	},
 /area/deathmatch)
 "GF" = (
-/atom/movable/effect/landmark/deathmatch,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/landmark/deathmatch,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "GK" = (
@@ -1389,7 +1389,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "GX" = (
@@ -1401,25 +1401,25 @@
 "Hg" = (
 /obj/structure/table/woodentable,
 /obj/item/flashlight/lamp,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "Hk" = (
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/plating,
 /area/deathmatch)
 "Hm" = (
-/atom/movable/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "HA" = (
-/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/tile/arrival{
 	dir = 4
 	},
 /area/deathmatch)
 "HB" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/stairs/rampbottom{
 	dir = 4
 	},
@@ -1428,7 +1428,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/stairs,
 /area/deathmatch)
 "Ij" = (
@@ -1436,7 +1436,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
 	},
@@ -1451,7 +1451,7 @@
 	},
 /area/deathmatch)
 "IQ" = (
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/deathmatch)
 "IV" = (
@@ -1483,13 +1483,13 @@
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "JG" = (
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/tile/dark/blue2/corner{
 	dir = 1
 	},
 /area/deathmatch)
 "Kn" = (
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/tile/arrival/corner{
 	dir = 4
 	},
@@ -1518,7 +1518,7 @@
 	},
 /area/deathmatch)
 "KD" = (
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/tile/dark/blue2{
 	dir = 6
 	},
@@ -1544,7 +1544,7 @@
 /turf/open/floor/tile/cmo,
 /area/deathmatch)
 "Le" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/stairs/rampbottom{
 	dir = 8
 	},
@@ -1573,7 +1573,7 @@
 /area/deathmatch)
 "Lw" = (
 /obj/structure/table/reinforced,
-/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/tile/cmo,
 /area/deathmatch)
 "LC" = (
@@ -1590,7 +1590,7 @@
 	},
 /area/deathmatch)
 "LW" = (
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/tile/cmo,
 /area/deathmatch)
 "LY" = (
@@ -1607,33 +1607,33 @@
 /area/deathmatch)
 "Md" = (
 /obj/structure/inflatable/popped,
-/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/deathmatch)
 "Mr" = (
 /turf/open/floor/plating,
 /area/deathmatch)
 "Mw" = (
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/gray,
 /area/deathmatch)
 "Mz" = (
 /obj/structure/table,
 /obj/item/flashlight/lamp,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "MF" = (
 /obj/structure/bed/chair/office/dark,
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},
 /area/deathmatch)
 "MH" = (
 /obj/structure/bed/stool,
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/tile/cmo,
 /area/deathmatch)
 "MW" = (
@@ -1643,25 +1643,25 @@
 	},
 /area/deathmatch)
 "MY" = (
-/atom/movable/effect/landmark/weapon_spawn/tier5_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier5_weapon_spawn,
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "Nk" = (
-/atom/movable/effect/landmark/deathmatch,
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/deathmatch,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/stairs,
 /area/deathmatch)
 "Nm" = (
 /turf/closed/wall/mainship/gray,
 /area/deathmatch)
 "Np" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/stairs/rampbottom{
 	dir = 1
 	},
 /area/deathmatch)
 "ND" = (
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/deathmatch)
 "NF" = (
@@ -1671,7 +1671,7 @@
 	},
 /area/deathmatch)
 "NM" = (
-/atom/movable/effect/landmark/weapon_spawn/tier5_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier5_weapon_spawn,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/deathmatch)
 "NN" = (
@@ -1685,14 +1685,14 @@
 	},
 /area/deathmatch)
 "Oh" = (
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/tile/arrival{
 	dir = 4
 	},
 /area/deathmatch)
 "Ot" = (
 /obj/machinery/vending/sovietsoda/nopower,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/blue2{
 	dir = 5
 	},
@@ -1716,15 +1716,15 @@
 /turf/open/floor/stairs,
 /area/deathmatch)
 "OU" = (
-/atom/movable/effect/landmark/deathmatch,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/landmark/deathmatch,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/gray,
 /area/deathmatch)
 "Po" = (
 /obj/structure/bed/chair/sofa/left{
 	dir = 4
 	},
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "Pq" = (
@@ -1733,7 +1733,7 @@
 	},
 /area/deathmatch)
 "Pt" = (
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "Px" = (
@@ -1772,7 +1772,7 @@
 /area/deathmatch)
 "PY" = (
 /obj/structure/closet/secure_closet/engineering_personal,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/blue2{
 	dir = 6
 	},
@@ -1787,8 +1787,8 @@
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "Qt" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/arrival,
 /area/deathmatch)
 "Qw" = (
@@ -1799,7 +1799,7 @@
 /area/deathmatch)
 "QF" = (
 /obj/structure/bed/chair/comfy/black,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "QK" = (
@@ -1811,7 +1811,7 @@
 /obj/structure/bed/chair/sofa/left{
 	dir = 8
 	},
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "QY" = (
@@ -1823,7 +1823,7 @@
 /obj/structure/platform{
 	dir = 4
 	},
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/stairs/rampbottom{
 	dir = 1
 	},
@@ -1848,13 +1848,13 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
 	},
 /area/deathmatch)
 "RQ" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/arrival{
 	dir = 8
 	},
@@ -1873,12 +1873,12 @@
 /obj/structure/table,
 /obj/item/tool/hand_labeler,
 /obj/machinery/light,
-/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/tile/dark/blue2,
 /area/deathmatch)
 "Sg" = (
 /obj/structure/table/woodentable,
-/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},
@@ -1886,11 +1886,11 @@
 "Sh" = (
 /obj/structure/table/woodentable,
 /obj/item/megaphone,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "Sr" = (
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/stairs,
 /area/deathmatch)
 "Sz" = (
@@ -1906,7 +1906,7 @@
 /area/deathmatch)
 "To" = (
 /obj/machinery/light,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/arrival{
 	dir = 8
 	},
@@ -1914,7 +1914,7 @@
 "Tp" = (
 /obj/structure/table/woodentable,
 /obj/item/camera,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "Ts" = (
@@ -1960,7 +1960,7 @@
 	},
 /area/deathmatch)
 "Uw" = (
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
 	},
@@ -1976,11 +1976,11 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 4
 	},
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "Vb" = (
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/tile/arrival{
 	dir = 4
 	},
@@ -1993,7 +1993,7 @@
 /area/deathmatch)
 "VM" = (
 /obj/structure/bed/chair/comfy/black,
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
 	},
@@ -2018,7 +2018,7 @@
 /area/deathmatch)
 "We" = (
 /obj/structure/inflatable,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/gray,
 /area/deathmatch)
 "Wl" = (
@@ -2057,17 +2057,17 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/deathmatch)
 "Xa" = (
 /obj/structure/inflatable/popped,
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/arrival,
 /area/deathmatch)
 "Xb" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/stairs/rampbottom,
 /area/deathmatch)
 "Xg" = (
@@ -2091,7 +2091,7 @@
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "Xq" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
 	},
@@ -2116,7 +2116,7 @@
 /area/deathmatch)
 "XI" = (
 /obj/structure/inflatable/popped,
-/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/tile/dark/gray,
 /area/deathmatch)
 "XK" = (
@@ -2137,7 +2137,7 @@
 	},
 /area/deathmatch)
 "Yb" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/arrival/corner{
 	dir = 4
 	},
@@ -2152,7 +2152,7 @@
 	},
 /area/deathmatch)
 "Yj" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/blue2/corner{
 	dir = 1
 	},
@@ -2166,18 +2166,18 @@
 	},
 /area/deathmatch)
 "Yu" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/cmo,
 /area/deathmatch)
 "YH" = (
 /obj/structure/platform{
 	dir = 4
 	},
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/stairs,
 /area/deathmatch)
 "YV" = (
-/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/stairs,
 /area/deathmatch)
 "Zb" = (
@@ -2190,23 +2190,23 @@
 /area/deathmatch)
 "Ze" = (
 /obj/structure/table,
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "Zf" = (
 /obj/structure/table,
 /obj/item/clipboard,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "Zh" = (
-/atom/movable/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
 /turf/open/floor/stairs,
 /area/deathmatch)
 "Zs" = (
 /obj/structure/table/woodentable,
 /obj/item/flashlight/lamp,
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
 "Zx" = (
@@ -2214,8 +2214,8 @@
 /turf/open/floor/tile/dark/gray,
 /area/deathmatch)
 "Zy" = (
-/atom/movable/effect/landmark/deathmatch,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/landmark/deathmatch,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/stairs,
 /area/deathmatch)
 "ZD" = (

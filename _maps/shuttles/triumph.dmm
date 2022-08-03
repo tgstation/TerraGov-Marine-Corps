@@ -66,14 +66,14 @@
 /turf/template_noop,
 /area/template_noop)
 "ap" = (
-/atom/movable/effect/attach_point/weapon/dropship3{
+/obj/effect/attach_point/weapon/dropship3{
 	dir = 1
 	},
 /obj/structure/dropship_piece/one/weapon/leftleft,
 /turf/template_noop,
 /area/shuttle/dropship/triumph)
 "aq" = (
-/atom/movable/effect/attach_point/electronics/dropship3{
+/obj/effect/attach_point/electronics/dropship3{
 	dir = 1
 	},
 /obj/structure/dropship_piece/one/weapon/leftright,
@@ -114,14 +114,14 @@
 	},
 /area/shuttle/dropship/triumph)
 "aw" = (
-/atom/movable/effect/attach_point/electronics/dropship3{
+/obj/effect/attach_point/electronics/dropship3{
 	dir = 1
 	},
 /obj/structure/dropship_piece/one/weapon/rightleft,
 /turf/template_noop,
 /area/shuttle/dropship/triumph)
 "ax" = (
-/atom/movable/effect/attach_point/weapon/dropship3{
+/obj/effect/attach_point/weapon/dropship3{
 	dir = 1
 	},
 /obj/structure/dropship_piece/one/weapon/rightright,
@@ -253,7 +253,7 @@
 	},
 /area/shuttle/dropship/triumph)
 "aX" = (
-/atom/movable/effect/attach_point/weapon/dropship3{
+/obj/effect/attach_point/weapon/dropship3{
 	dir = 8;
 	icon_state = "equip_base_l_wing"
 	},
@@ -276,7 +276,7 @@
 	},
 /area/shuttle/dropship/triumph)
 "bb" = (
-/atom/movable/effect/attach_point/weapon/dropship3{
+/obj/effect/attach_point/weapon/dropship3{
 	dir = 4;
 	icon_state = "equip_base_r_wing"
 	},
@@ -389,7 +389,7 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/triumph)
 "bw" = (
-/atom/movable/effect/attach_point/crew_weapon/dropship3,
+/obj/effect/attach_point/crew_weapon/dropship3,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/triumph)
 "bx" = (
@@ -437,7 +437,7 @@
 	},
 /area/shuttle/dropship/triumph)
 "bG" = (
-/atom/movable/effect/attach_point/fuel/dropship3,
+/obj/effect/attach_point/fuel/dropship3,
 /turf/closed/shuttle/dropship3/transparent{
 	icon_state = "28"
 	},
@@ -463,7 +463,7 @@
 	},
 /area/shuttle/dropship/triumph)
 "bL" = (
-/atom/movable/effect/attach_point/fuel/dropship3{
+/obj/effect/attach_point/fuel/dropship3{
 	pixel_x = -32
 	},
 /turf/closed/shuttle/dropship3/transparent{

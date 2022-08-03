@@ -1,4 +1,4 @@
-/atom/movable/effect/landmark
+/obj/effect/landmark
 	name = "landmark"
 	icon = 'icons/effects/landmarks_static.dmi'
 	icon_state = "x2"
@@ -8,21 +8,21 @@
 	invisibility = INVISIBILITY_ABSTRACT
 
 
-/atom/movable/effect/landmark/Initialize()
+/obj/effect/landmark/Initialize()
 	. = ..()
 	GLOB.landmarks_list += src
 
 
-/atom/movable/effect/landmark/Destroy()
+/obj/effect/landmark/Destroy()
 	GLOB.landmarks_list -= src
 	return ..()
 
 
-/atom/movable/effect/landmark/proc/after_round_start()
+/obj/effect/landmark/proc/after_round_start()
 	return
 
 
-/atom/movable/effect/landmark/start
+/obj/effect/landmark/start
 	name = "start"
 	icon = 'icons/mob/landmarks.dmi'
 	icon_state = "x"
@@ -32,175 +32,175 @@
 	var/used = FALSE
 
 
-/atom/movable/effect/landmark/start/Initialize()
+/obj/effect/landmark/start/Initialize()
 	GLOB.start_landmarks_list += src
 	. = ..()
 	if(name != "start")
 		tag = "start*[name]"
 
 
-/atom/movable/effect/landmark/start/Destroy()
+/obj/effect/landmark/start/Destroy()
 	GLOB.start_landmarks_list -= src
 	return ..()
 
 
-/atom/movable/effect/landmark/start/after_round_start()
+/obj/effect/landmark/start/after_round_start()
 	if(delete_after_roundstart)
 		qdel(src)
 
 
-/atom/movable/effect/landmark/newplayer_start/New() //This can't be Initialize() or players will start in a wrong loc at roundstart.
+/obj/effect/landmark/newplayer_start/New() //This can't be Initialize() or players will start in a wrong loc at roundstart.
 	GLOB.newplayer_start += src
 
 
-/atom/movable/effect/landmark/start/latejoin
+/obj/effect/landmark/start/latejoin
 	icon_state = "latejoin"
 
-/atom/movable/effect/landmark/start/latejoin/Initialize()
+/obj/effect/landmark/start/latejoin/Initialize()
 	. = ..()
 	GLOB.latejoin += loc
 	return INITIALIZE_HINT_QDEL
 
-/atom/movable/effect/landmark/start/latejoinrebel/Initialize()
+/obj/effect/landmark/start/latejoinrebel/Initialize()
 	. = ..()
 	GLOB.latejoinrebel += loc
 	return INITIALIZE_HINT_QDEL
 
-/atom/movable/effect/landmark/start/latejoinsom/Initialize()
+/obj/effect/landmark/start/latejoinsom/Initialize()
 	. = ..()
 	GLOB.latejoinsom += loc
 	return INITIALIZE_HINT_QDEL
 
-/atom/movable/effect/landmark/start/latejoin_gateway/Initialize()
+/obj/effect/landmark/start/latejoin_gateway/Initialize()
 	. = ..()
 	GLOB.latejoin_gateway += loc
 	return INITIALIZE_HINT_QDEL
 
-/atom/movable/effect/landmark/start/latejoin_cryo/Initialize()
+/obj/effect/landmark/start/latejoin_cryo/Initialize()
 	. = ..()
 	GLOB.latejoin_cryo += loc
 	return INITIALIZE_HINT_QDEL
 
 
-/atom/movable/effect/landmark/thunderdome/one
+/obj/effect/landmark/thunderdome/one
 	icon_state = "tdome_t1"
 
-/atom/movable/effect/landmark/thunderdome/one/Initialize()
+/obj/effect/landmark/thunderdome/one/Initialize()
 	. = ..()
 	GLOB.tdome1 += loc
 	return INITIALIZE_HINT_QDEL
 
-/atom/movable/effect/landmark/thunderdome/two
+/obj/effect/landmark/thunderdome/two
 	icon_state = "tdome_t2"
 
-/atom/movable/effect/landmark/thunderdome/two/Initialize()
+/obj/effect/landmark/thunderdome/two/Initialize()
 	. = ..()
 	GLOB.tdome2 += loc
 	return INITIALIZE_HINT_QDEL
 
-/atom/movable/effect/landmark/thunderdome/observe
+/obj/effect/landmark/thunderdome/observe
 	icon_state = "tdome_observer"
 
-/atom/movable/effect/landmark/thunderdome/observe/Initialize()
+/obj/effect/landmark/thunderdome/observe/Initialize()
 	. = ..()
 	return INITIALIZE_HINT_QDEL // unused
 
-/atom/movable/effect/landmark/thunderdome/admin
+/obj/effect/landmark/thunderdome/admin
 	icon_state = "tdome_admin"
 
-/atom/movable/effect/landmark/thunderdome/admin/Initialize()
+/obj/effect/landmark/thunderdome/admin/Initialize()
 	. = ..()
 	return INITIALIZE_HINT_QDEL // unused
 
-/atom/movable/effect/landmark/deathmatch/Initialize()
+/obj/effect/landmark/deathmatch/Initialize()
 	. = ..()
 	GLOB.deathmatch += loc
 	return INITIALIZE_HINT_QDEL
 
-/atom/movable/effect/landmark/distress
+/obj/effect/landmark/distress
 
-/atom/movable/effect/landmark/distress_item
+/obj/effect/landmark/distress_item
 
-/atom/movable/effect/landmark/weed_node
+/obj/effect/landmark/weed_node
 	name = "xeno weed node spawn landmark"
 	icon = 'icons/Xeno/weeds.dmi'
 	icon_state = "weednode"
 
-/atom/movable/effect/landmark/weed_node/Initialize()
+/obj/effect/landmark/weed_node/Initialize()
 	GLOB.xeno_weed_node_turfs += loc
 	. = ..()
 	return INITIALIZE_HINT_QDEL
 
-/atom/movable/effect/landmark/xeno_resin_door
+/obj/effect/landmark/xeno_resin_door
 	name = "xeno resin door spawn landmark"
 	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "resin"
 
-/atom/movable/effect/landmark/xeno_resin_door/Initialize()
+/obj/effect/landmark/xeno_resin_door/Initialize()
 	GLOB.xeno_resin_door_turfs += loc
 	. = ..()
 	return INITIALIZE_HINT_QDEL
 
-/atom/movable/effect/landmark/xeno_resin_wall
+/obj/effect/landmark/xeno_resin_wall
 	name = "xeno resin wall spawn landmark"
 	icon = 'icons/Xeno/structures.dmi'
 	icon_state = "resin0"
 
-/atom/movable/effect/landmark/xeno_resin_wall/Initialize()
+/obj/effect/landmark/xeno_resin_wall/Initialize()
 	GLOB.xeno_resin_wall_turfs += loc
 	..()
 	return INITIALIZE_HINT_QDEL
 
-/atom/movable/effect/landmark/xeno_silo_spawn
+/obj/effect/landmark/xeno_silo_spawn
 	name = "xeno silo spawn landmark"
 	icon = 'icons/Xeno/resin_silo.dmi'
 	icon_state = "weed_silo"
 
-/atom/movable/effect/landmark/xeno_silo_spawn/Initialize()
+/obj/effect/landmark/xeno_silo_spawn/Initialize()
 	GLOB.xeno_resin_silo_turfs += loc
 	. = ..()
 	return INITIALIZE_HINT_QDEL
 
-/atom/movable/effect/landmark/xeno_turret_spawn
+/obj/effect/landmark/xeno_turret_spawn
 	name = "xeno turret spawn landmark"
 	icon = 'icons/Xeno/acidturret.dmi'
 	icon_state = "acid_turret"
 
-/atom/movable/effect/landmark/xeno_turret_spawn/Initialize()
+/obj/effect/landmark/xeno_turret_spawn/Initialize()
 	GLOB.xeno_turret_turfs += loc
 	..()
 	return INITIALIZE_HINT_QDEL
 
 
-/atom/movable/effect/landmark/nuke_spawn
+/obj/effect/landmark/nuke_spawn
 	name = "nuke spawn landmark"
 	icon_state = "tdome_observer"
 
-/atom/movable/effect/landmark/nuke_spawn/Initialize()
+/obj/effect/landmark/nuke_spawn/Initialize()
 	GLOB.nuke_spawn_locs += loc
 	. = ..()
 	return INITIALIZE_HINT_QDEL
 
-/atom/movable/effect/landmark/dropship_start_location
+/obj/effect/landmark/dropship_start_location
 	name = "dropship_start_location"
 
-/atom/movable/effect/landmark/dropship_start_location/Initialize()
+/obj/effect/landmark/dropship_start_location/Initialize()
 	GLOB.minidropship_start_loc = loc
 	..()
 	return INITIALIZE_HINT_QDEL
 
-/atom/movable/effect/landmark/weapon_spawn
+/obj/effect/landmark/weapon_spawn
 	name = "Base Weapon Spawn"
 	icon_state = "x"
 	var/weapon_list = list()
 	var/weapon_to_spawn = null
 
-/atom/movable/effect/landmark/weapon_spawn/Initialize()
+/obj/effect/landmark/weapon_spawn/Initialize()
 	choose_weapon()
 	. = ..()
 	return INITIALIZE_HINT_QDEL
 
-/atom/movable/effect/landmark/weapon_spawn/proc/spawn_associated_ammo(obj/item/weapon/gun/gun_to_spawn)
+/obj/effect/landmark/weapon_spawn/proc/spawn_associated_ammo(obj/item/weapon/gun/gun_to_spawn)
 	//fuck you grenade launchers you snowflake pieces of shit
 	if(istype(gun_to_spawn, /obj/item/weapon/gun/grenade_launcher/multinade_launcher) || istype(gun_to_spawn, /obj/item/weapon/gun/grenade_launcher/single_shot))
 		new /obj/item/storage/box/visual/grenade/frag (get_turf(src))
@@ -225,7 +225,7 @@
 	for(var/i in 1 to 3) //hardcoded 3 mags.
 		new ammo_to_spawn (get_turf(src))
 
-/atom/movable/effect/landmark/weapon_spawn/proc/choose_weapon()
+/obj/effect/landmark/weapon_spawn/proc/choose_weapon()
 	weapon_to_spawn = pick(weapon_list)
 
 	weapon_to_spawn = new weapon_to_spawn (get_turf(src))
@@ -233,7 +233,7 @@
 	if(isgun(weapon_to_spawn))
 		spawn_associated_ammo(weapon_to_spawn)
 
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn
 	name = "Tier 1 Weapon Spawn"
 	icon_state = "weapon1"
 	weapon_list = list(
@@ -273,7 +273,7 @@
 		/obj/item/weapon/katana/samurai,
 	)
 
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn
 	name = "Tier 2 Weapon Spawn"
 	icon_state = "weapon2"
 	weapon_list = list(
@@ -301,7 +301,7 @@
 		/obj/item/weapon/twohanded/glaive,
 	)
 
-/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn
 	name = "Tier 3 Weapon Spawn"
 	icon_state = "weapon3"
 	weapon_list = list(
@@ -332,7 +332,7 @@
 		/obj/item/weapon/gun/rifle/tx11,
 	)
 
-/atom/movable/effect/landmark/weapon_spawn/tier4_weapon_spawn
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn
 	name = "Tier 4 Weapon Spawn"
 	icon_state = "weapon4"
 	weapon_list = list(
@@ -358,7 +358,7 @@
 		/obj/item/weapon/energy/axe,
 	)
 
-/atom/movable/effect/landmark/weapon_spawn/tier5_weapon_spawn
+/obj/effect/landmark/weapon_spawn/tier5_weapon_spawn
 	name = "Tier 5 Weapon Spawn"
 	icon_state = "weapon5"
 	weapon_list = list(
@@ -369,7 +369,7 @@
 		/obj/item/weapon/gun/energy/lasgun/pulse,
 	)
 
-/atom/movable/effect/landmark/weapon_spawn/tier6_weapon_spawn
+/obj/effect/landmark/weapon_spawn/tier6_weapon_spawn
 	name = "Tier meme Weapon Spawn"
 	icon_state = "weapon6"
 	weapon_list = list(	/obj/item/weapon/gun/pistol/chimp,
@@ -378,105 +378,105 @@
 						)
 
 //used to spawn a different dropship control console groundside for HvH mode
-/atom/movable/effect/landmark/dropship_console_spawn_lz1
+/obj/effect/landmark/dropship_console_spawn_lz1
 	name = "Dropship console spawn lz1"
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "shuttle"
 
-/atom/movable/effect/landmark/dropship_console_spawn_lz1/Initialize()
+/obj/effect/landmark/dropship_console_spawn_lz1/Initialize()
 	. = ..()
 	GLOB.lz1_shuttle_console_turfs_list += loc
 	return INITIALIZE_HINT_QDEL
 
-/atom/movable/effect/landmark/dropship_console_spawn_lz2
+/obj/effect/landmark/dropship_console_spawn_lz2
 	name = "Dropship console spawn lz1"
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "shuttle"
 
-/atom/movable/effect/landmark/dropship_console_spawn_lz2/Initialize()
+/obj/effect/landmark/dropship_console_spawn_lz2/Initialize()
 	. = ..()
 	GLOB.lz2_shuttle_console_turfs_list += loc
 	return INITIALIZE_HINT_QDEL
 
-/atom/movable/effect/landmark/fob_sentry
+/obj/effect/landmark/fob_sentry
 	name = "Fob sentry"
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "sentry"
 
-/atom/movable/effect/landmark/fob_sentry/Initialize()
+/obj/effect/landmark/fob_sentry/Initialize()
 	. = ..()
 	GLOB.fob_sentries_loc += loc
 	return INITIALIZE_HINT_QDEL
 
-/atom/movable/effect/landmark/fob_sentry_rebel
+/obj/effect/landmark/fob_sentry_rebel
 	name = "Rebel fob sentry"
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "sentry"
 
-/atom/movable/effect/landmark/fob_sentry_rebel/Initialize()
+/obj/effect/landmark/fob_sentry_rebel/Initialize()
 	. = ..()
 	GLOB.fob_sentries_rebel_loc += loc
 	return INITIALIZE_HINT_QDEL
 
-/atom/movable/effect/landmark/sensor_tower
+/obj/effect/landmark/sensor_tower
 	name = "Sensor tower"
 	icon = 'icons/obj/structures/sensor.dmi'
 	icon_state = "sensor"
 
-/atom/movable/effect/landmark/sensor_tower/Initialize()
+/obj/effect/landmark/sensor_tower/Initialize()
 	. = ..()
 	var/area/area_to_control = get_area(src)
 	area_to_control.set_to_contested()
 	GLOB.sensor_towers += loc
 	return INITIALIZE_HINT_QDEL
 
-/atom/movable/effect/landmark/valhalla_xeno_spawn_landmark_close
+/obj/effect/landmark/valhalla_xeno_spawn_landmark_close
 	name = "Valhalla xeno spawn"
 	icon = 'icons/effects/landmarks_static.dmi'
 	icon_state = "xeno_spawn_valhalla"
 
-/atom/movable/effect/landmark/valhalla_xeno_spawn_landmark_close/Initialize()
+/obj/effect/landmark/valhalla_xeno_spawn_landmark_close/Initialize()
 	. = ..()
 	GLOB.valhalla_xeno_spawn_landmark[CLOSE] = src
 
-/atom/movable/effect/landmark/valhalla_xeno_spawn_landmark_close_two
+/obj/effect/landmark/valhalla_xeno_spawn_landmark_close_two
 	name = "Valhalla xeno spawn"
 	icon = 'icons/effects/landmarks_static.dmi'
 	icon_state = "xeno_spawn_valhalla"
 
-/atom/movable/effect/landmark/valhalla_xeno_spawn_landmark_close_two/Initialize()
+/obj/effect/landmark/valhalla_xeno_spawn_landmark_close_two/Initialize()
 	. = ..()
 	GLOB.valhalla_xeno_spawn_landmark[CLOSE2] = src
 
-/atom/movable/effect/landmark/valhalla_xeno_spawn_landmark_far
+/obj/effect/landmark/valhalla_xeno_spawn_landmark_far
 	name = "Valhalla xeno spawn"
 	icon = 'icons/effects/landmarks_static.dmi'
 	icon_state = "xeno_spawn_valhalla"
 
-/atom/movable/effect/landmark/valhalla_xeno_spawn_landmark_far/Initialize()
+/obj/effect/landmark/valhalla_xeno_spawn_landmark_far/Initialize()
 	. = ..()
 	GLOB.valhalla_xeno_spawn_landmark[FAR] = src
 
-/atom/movable/effect/landmark/valhalla_xeno_spawn_landmark_far_two
+/obj/effect/landmark/valhalla_xeno_spawn_landmark_far_two
 	name = "Valhalla xeno spawn"
 	icon = 'icons/effects/landmarks_static.dmi'
 	icon_state = "xeno_spawn_valhalla"
 
-/atom/movable/effect/landmark/valhalla_xeno_spawn_landmark_far_two/Initialize()
+/obj/effect/landmark/valhalla_xeno_spawn_landmark_far_two/Initialize()
 	. = ..()
 	GLOB.valhalla_xeno_spawn_landmark[FAR2] = src
 
 //Combat patrol spawn in spots
-/atom/movable/effect/landmark/patrol_point
+/obj/effect/landmark/patrol_point
 	name = "Patrol exit point"
 	//ID to link with an associated start point
 	var/id = null
 
-/atom/movable/effect/landmark/patrol_point/Initialize()
+/obj/effect/landmark/patrol_point/Initialize()
 	. = ..()
 	//adds the exit points to the glob, and the start points link to them in lateinit
 	GLOB.patrol_point_list += src
 
-/atom/movable/effect/landmark/patrol_point/Destroy()
+/obj/effect/landmark/patrol_point/Destroy()
 	GLOB.patrol_point_list -= src
 	return ..()

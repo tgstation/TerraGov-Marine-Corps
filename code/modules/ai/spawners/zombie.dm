@@ -1,7 +1,7 @@
-/atom/movable/effect/ai_node/spawner/zombie
+/obj/effect/ai_node/spawner/zombie
 	name = "Zombie AI spawner"
 
-/atom/movable/effect/ai_node/spawner/zombie //BRAINS
+/obj/effect/ai_node/spawner/zombie //BRAINS
 	spawntypes = /mob/living/carbon/human/species/zombie/ai/patrol
 	spawnamount = 4
 	spawndelay = 10 SECONDS

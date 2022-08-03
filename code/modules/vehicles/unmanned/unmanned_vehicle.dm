@@ -45,7 +45,7 @@
 	/// Iff flags, to prevent friendly fire from sg and aiming marines
 	var/iff_signal = TGMC_LOYALIST_IFF
 	/// muzzleflash stuff
-	var/atom/movable/vis_atom/movable/effect/muzzle_flash/flash
+	var/atom/movable/vis_obj/effect/muzzle_flash/flash
 	COOLDOWN_DECLARE(fire_cooldown)
 
 /obj/vehicle/unmanned/Initialize()
@@ -53,7 +53,7 @@
 	ammo = GLOB.ammo_list[ammo]
 	name += " " + num2text(serial)
 	serial++
-	flash = new /atom/movable/vis_atom/movable/effect/muzzle_flash(src)
+	flash = new /atom/movable/vis_obj/effect/muzzle_flash(src)
 	GLOB.unmanned_vehicles += src
 	prepare_huds()
 	for(var/datum/atom_hud/squad/sentry_status_hud in GLOB.huds) //Add to the squad HUD
@@ -273,7 +273,7 @@
 /obj/vehicle/unmanned/fire_act()
 	take_damage(20, BURN, "fire")
 
-/obj/vehicle/unmanned/effect_smoke(atom/movable/effect/particle_effect/smoke/S)
+/obj/vehicle/unmanned/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
 		take_damage(20 * S.strength)

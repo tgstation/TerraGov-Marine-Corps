@@ -1,4 +1,4 @@
-/atom/movable/effect/acid_hole
+/obj/effect/acid_hole
 	name = "hole"
 	desc = "What could have done this? Something agile enough could probably climb through."
 	icon = 'icons/effects/new_acid.dmi'
@@ -8,7 +8,7 @@
 	layer = LOWER_ITEM_LAYER
 	var/turf/closed/wall/holed_wall
 
-/atom/movable/effect/acid_hole/Initialize()
+/obj/effect/acid_hole/Initialize()
 	. = ..()
 	if(iswallturf(loc))
 		var/turf/closed/wall/W = loc
@@ -21,7 +21,7 @@
 			setDir(SOUTH)
 
 
-/atom/movable/effect/acid_hole/Destroy()
+/obj/effect/acid_hole/Destroy()
 	if(holed_wall)
 		holed_wall.opacity = initial(holed_wall.opacity)
 		holed_wall.acided_hole = null
@@ -29,11 +29,11 @@
 	return ..()
 
 
-/atom/movable/effect/acid_hole/fire_act()
+/obj/effect/acid_hole/fire_act()
 	return
 
 
-/atom/movable/effect/acid_hole/MouseDrop_T(mob/M, mob/user)
+/obj/effect/acid_hole/MouseDrop_T(mob/M, mob/user)
 	if (!holed_wall)
 		return
 
@@ -41,7 +41,7 @@
 		use_wall_hole(user)
 
 
-/atom/movable/effect/acid_hole/specialclick(mob/living/carbon/user)
+/obj/effect/acid_hole/specialclick(mob/living/carbon/user)
 	if(!isxeno(user))
 		return
 	if(!user.CanReach(src))
@@ -52,7 +52,7 @@
 			return
 		use_wall_hole(user)
 
-/atom/movable/effect/acid_hole/proc/expand_hole(mob/living/carbon/xenomorph/user)
+/obj/effect/acid_hole/proc/expand_hole(mob/living/carbon/xenomorph/user)
 	if(user.do_actions || user.lying_angle)
 		return
 
@@ -61,7 +61,7 @@
 		holed_wall.take_damage(rand(2000,3500))
 		user.emote("roar")
 
-/atom/movable/effect/acid_hole/proc/use_wall_hole(mob/user)
+/obj/effect/acid_hole/proc/use_wall_hole(mob/user)
 
 	if(user.mob_size == MOB_SIZE_BIG || user.incapacitated() || user.lying_angle || user.buckled || user.anchored)
 		return
@@ -114,7 +114,7 @@
 
 
 //Throwing Shiet
-/atom/movable/effect/acid_hole/attackby(obj/item/I, mob/user, params)
+/obj/effect/acid_hole/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	var/mob_dir = get_dir(user, src)

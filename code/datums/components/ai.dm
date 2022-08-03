@@ -61,7 +61,7 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 		message_admins("Notice: An AI controller failed resume because there's already too many AI controllers existing.")
 		ai_behavior = null
 		return
-	for(var/atom/movable/effect/ai_node/node in range(7))
+	for(var/obj/effect/ai_node/node in range(7))
 		ai_behavior.current_node = node
 		break
 	//Iniatialise the behavior of the ai

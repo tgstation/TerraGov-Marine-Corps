@@ -388,14 +388,14 @@
 	vis_contents -= hover_overlays_cache[hovering]
 	hovering = choice
 
-	var/atom/movable/effect/overlay/zone_sel/overlay_object = hover_overlays_cache[choice]
+	var/obj/effect/overlay/zone_sel/overlay_object = hover_overlays_cache[choice]
 	if(!overlay_object)
 		overlay_object = new
 		overlay_object.icon_state = "[z_prefix][choice]"
 		hover_overlays_cache[choice] = overlay_object
 	vis_contents += overlay_object
 
-/atom/movable/effect/overlay/zone_sel
+/obj/effect/overlay/zone_sel
 	icon = 'icons/mob/screen/zone_sel.dmi'
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	alpha = 128

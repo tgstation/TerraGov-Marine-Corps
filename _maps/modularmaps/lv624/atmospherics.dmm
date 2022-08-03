@@ -1,7 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "at" = (
 /obj/machinery/computer/general_air_control,
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
@@ -12,14 +12,14 @@
 /area/lv624/lazarus/atmos)
 "aX" = (
 /obj/structure/cryofeed/right,
-/atom/movable/effect/decal/warning_stripes/thick{
+/obj/effect/decal/warning_stripes/thick{
 	dir = 10
 	},
 /turf/open/floor/engine{
 	},
 /area/lv624/lazarus/atmos)
 "cn" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -28,10 +28,10 @@
 /area/lv624/lazarus/atmos)
 "ct" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/engine{
 	},
 /area/lv624/lazarus/atmos)
@@ -67,7 +67,7 @@
 	},
 /obj/structure/table,
 /obj/item/storage/belt/utility/full,
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
@@ -86,7 +86,7 @@
 /area/lv624/lazarus/atmos)
 "ga" = (
 /obj/structure/cryofeed,
-/atom/movable/effect/decal/warning_stripes/thick{
+/obj/effect/decal/warning_stripes/thick{
 	dir = 6
 	},
 /turf/open/floor/engine{
@@ -97,7 +97,7 @@
 	dir = 10
 	},
 /obj/structure/cryofeed/right,
-/atom/movable/effect/decal/warning_stripes/thick{
+/obj/effect/decal/warning_stripes/thick{
 	dir = 10
 	},
 /turf/open/floor/engine{
@@ -108,7 +108,7 @@
 /obj/machinery/alarm{
 	dir = 4
 	},
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/engine{
@@ -137,7 +137,7 @@
 	},
 /area/lv624/lazarus/atmos)
 "kB" = (
-/atom/movable/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/toolbox,
 /turf/open/floor/tile/dark/brown2{
 	dir = 9
 	},
@@ -147,7 +147,7 @@
 	dir = 5
 	},
 /obj/machinery/computer3/server/rack,
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/engine{
@@ -159,7 +159,7 @@
 /area/lv624/lazarus/atmos)
 "mQ" = (
 /obj/structure/cryofeed,
-/atom/movable/effect/decal/warning_stripes{
+/obj/effect/decal/warning_stripes{
 	icon_state = "SW-in"
 	},
 /turf/open/floor/engine{
@@ -180,7 +180,7 @@
 	},
 /area/lv624/lazarus/atmos)
 "oO" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -194,14 +194,14 @@
 	},
 /area/lv624/lazarus/atmos)
 "pD" = (
-/atom/movable/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/technology_scanner,
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
 	},
 /area/lv624/lazarus/atmos)
 "qf" = (
 /obj/item/stool,
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
 "qq" = (
@@ -210,7 +210,7 @@
 /area/lv624/lazarus/atmos)
 "su" = (
 /obj/structure/cryofeed/right,
-/atom/movable/effect/decal/warning_stripes/thick{
+/obj/effect/decal/warning_stripes/thick{
 	dir = 9
 	},
 /turf/open/floor/engine{
@@ -226,7 +226,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
 "ut" = (
-/atom/movable/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood/drip,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
@@ -243,13 +243,13 @@
 	},
 /area/lv624/lazarus/atmos)
 "ww" = (
-/atom/movable/effect/spawner/random/tool,
+/obj/effect/spawner/random/tool,
 /turf/open/floor/tile/dark/brown2/corner{
 	dir = 8
 	},
 /area/lv624/lazarus/atmos)
 "wH" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -258,7 +258,7 @@
 /area/lv624/lazarus/atmos)
 "xU" = (
 /obj/machinery/light,
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -273,7 +273,7 @@
 	},
 /area/lv624/lazarus/atmos)
 "yj" = (
-/atom/movable/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/technology_scanner,
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
 	},
@@ -289,7 +289,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
 "za" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -297,16 +297,16 @@
 	},
 /area/lv624/lazarus/atmos)
 "zx" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/atom/movable/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
 	},
 /area/lv624/lazarus/atmos)
 "AF" = (
-/atom/movable/effect/spawner/random/tool,
+/obj/effect/spawner/random/tool,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
 "Bl" = (
@@ -320,7 +320,7 @@
 /area/lv624/lazarus/atmos)
 "BD" = (
 /obj/structure/cryofeed/right,
-/atom/movable/effect/decal/warning_stripes/linethick{
+/obj/effect/decal/warning_stripes/linethick{
 	dir = 8
 	},
 /turf/open/floor/engine{
@@ -346,7 +346,7 @@
 /obj/machinery/alarm{
 	dir = 8
 	},
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor/engine{
@@ -366,7 +366,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/atom/movable/effect/decal/remains/human,
+/obj/effect/decal/remains/human,
 /turf/open/floor/tile/dark/brown2,
 /area/lv624/lazarus/atmos)
 "DS" = (
@@ -376,9 +376,9 @@
 /area/lv624/lazarus/atmos)
 "DW" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
 "En" = (
@@ -389,12 +389,12 @@
 "Ep" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
 "EN" = (
 /obj/structure/cryofeed,
-/atom/movable/effect/decal/warning_stripes/linethick{
+/obj/effect/decal/warning_stripes/linethick{
 	dir = 4
 	},
 /turf/open/floor/engine{
@@ -423,14 +423,14 @@
 /obj/structure/cable,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
 "IT" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
 	},
-/atom/movable/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood/drip,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
@@ -441,17 +441,17 @@
 /area/lv624/lazarus/atmos)
 "Jy" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/engine{
 	},
 /area/lv624/lazarus/atmos)
 "Ke" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
 "Ks" = (
@@ -468,7 +468,7 @@
 	dir = 6
 	},
 /obj/structure/cryofeed,
-/atom/movable/effect/decal/warning_stripes/thick{
+/obj/effect/decal/warning_stripes/thick{
 	dir = 6
 	},
 /turf/open/floor/engine{
@@ -480,7 +480,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
 "Mh" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -489,7 +489,7 @@
 /area/lv624/lazarus/atmos)
 "MA" = (
 /obj/machinery/light,
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -497,7 +497,7 @@
 	},
 /area/lv624/lazarus/atmos)
 "Nt" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
 "NM" = (
@@ -508,13 +508,13 @@
 /area/lv624/lazarus/atmos)
 "OT" = (
 /obj/machinery/computer3/server,
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
 "PD" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -546,7 +546,7 @@
 /area/lv624/lazarus/atmos)
 "RH" = (
 /obj/item/clothing/mask/gas,
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
 "Sf" = (
@@ -568,7 +568,7 @@
 /area/lv624/lazarus/atmos)
 "TS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/atom/movable/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood/drip,
 /obj/structure/cable,
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
@@ -592,14 +592,14 @@
 	dir = 9
 	},
 /obj/machinery/computer3/server/rack,
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/engine{
 	},
 /area/lv624/lazarus/atmos)
 "Wh" = (
-/atom/movable/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
 /turf/open/floor/tile/dark/brown2{

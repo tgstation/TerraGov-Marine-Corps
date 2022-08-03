@@ -17,7 +17,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/grayscale/darkred,
 /area/bigredv2/outside/chapel)
 "hE" = (
@@ -25,7 +25,7 @@
 	dir = 8;
 	on = 1
 	},
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/grayscale/darkred,
 /area/bigredv2/outside/chapel)
 "hN" = (
@@ -35,7 +35,7 @@
 "im" = (
 /obj/structure/table/woodentable,
 /obj/item/radio/headset/survivor,
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/engine/cult,
 /area/bigredv2/outside/chapel)
 "je" = (
@@ -46,7 +46,7 @@
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/chapel)
 "le" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/chapel{
 	dir = 4
 	},
@@ -61,7 +61,7 @@
 /turf/open/floor/tile/chapel,
 /area/bigredv2/outside/chapel)
 "nQ" = (
-/atom/movable/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/job/survivor,
 /obj/structure/bed/chair/wood/wings{
 	dir = 8
 	},
@@ -77,7 +77,7 @@
 /obj/structure/bed/chair/wood/wings{
 	dir = 8
 	},
-/atom/movable/effect/decal/cleanable/ash,
+/obj/effect/decal/cleanable/ash,
 /turf/open/floor/tile/chapel{
 	dir = 8
 	},
@@ -99,7 +99,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/atom/movable/effect/decal/cleanable/blood/six{
+/obj/effect/decal/cleanable/blood/six{
 	dir = 4;
 	},
 /turf/open/floor/grayscale/darkred,
@@ -109,7 +109,7 @@
 	dir = 4;
 	on = 1
 	},
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /obj/item/clothing/head/cardborg,
 /turf/open/floor/engine/cult,
 /area/bigredv2/outside/chapel)
@@ -121,11 +121,11 @@
 /turf/open/floor/grayscale/darkred,
 /area/bigredv2/outside/chapel)
 "tb" = (
-/atom/movable/effect/decal/cleanable/blood/gibs/body,
+/obj/effect/decal/cleanable/blood/gibs/body,
 /turf/open/floor/engine/cult,
 /area/bigredv2/outside/chapel)
 "tX" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /obj/item/organ/heart,
 /turf/open/floor/engine/cult,
 /area/bigredv2/outside/chapel)
@@ -148,7 +148,7 @@
 "vg" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/structure/cable,
-/atom/movable/effect/decal/cleanable/blood/six{
+/obj/effect/decal/cleanable/blood/six{
 	dir = 4;
 	},
 /turf/open/floor/grayscale/darkred,
@@ -173,18 +173,18 @@
 /area/bigredv2/outside/chapel)
 "xk" = (
 /obj/structure/table/woodentable,
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /obj/item/tool/candle,
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/chapel)
 "xw" = (
 /obj/structure/cable,
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /obj/item/trash/candle,
 /turf/open/floor/grayscale/darkred,
 /area/bigredv2/outside/chapel)
 "zF" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/grayscale/darkred,
 /area/bigredv2/outside/chapel)
 "zI" = (
@@ -200,7 +200,7 @@
 	id = "Chapel";
 	name = "Storm Shutters"
 	},
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/engine/cult,
 /area/bigredv2/outside/chapel)
 "By" = (
@@ -215,11 +215,11 @@
 /obj/machinery/alarm{
 	dir = 1
 	},
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/grayscale/darkred,
 /area/bigredv2/outside/chapel)
 "CO" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/stairs/rampbottom,
 /area/bigredv2/outside/chapel)
 "De" = (
@@ -229,8 +229,8 @@
 /area/bigredv2/outside/chapel)
 "Dk" = (
 /obj/structure/table/woodentable,
-/atom/movable/effect/spawner/random/ammo,
-/atom/movable/effect/spawner/random/ammo,
+/obj/effect/spawner/random/ammo,
+/obj/effect/spawner/random/ammo,
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/chapel)
 "Ei" = (
@@ -242,7 +242,7 @@
 /turf/open/floor/engine/cult,
 /area/bigredv2/outside/chapel)
 "EZ" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /obj/item/tool/candle,
 /turf/open/floor/grayscale/darkred,
 /area/bigredv2/outside/chapel)
@@ -258,7 +258,7 @@
 /obj/structure/bed/chair/wood/wings{
 	dir = 8
 	},
-/atom/movable/effect/decal/cleanable/ash,
+/obj/effect/decal/cleanable/ash,
 /turf/open/floor/tile/chapel,
 /area/bigredv2/outside/chapel)
 "Lr" = (
@@ -270,7 +270,7 @@
 /obj/structure/bed/chair/wood/wings{
 	dir = 8
 	},
-/atom/movable/effect/decal/cleanable/ash,
+/obj/effect/decal/cleanable/ash,
 /turf/open/floor/tile/chapel{
 	dir = 4
 	},
@@ -303,9 +303,9 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/atom/movable/effect/landmark/weed_node,
-/atom/movable/effect/ai_node,
-/atom/movable/effect/decal/cleanable/blood/six{
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/obj/effect/decal/cleanable/blood/six{
 	dir = 1;
 	},
 /turf/open/floor/grayscale/darkred,
@@ -338,7 +338,7 @@
 /turf/open/floor/grayscale/darkred,
 /area/bigredv2/outside/chapel)
 "TZ" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/grayscale/darkred,
 /area/bigredv2/outside/chapel)
 "VH" = (
@@ -349,7 +349,7 @@
 /turf/open/floor/grayscale/darkred,
 /area/bigredv2/outside/chapel)
 "VS" = (
-/atom/movable/effect/decal/cleanable/blood/six{
+/obj/effect/decal/cleanable/blood/six{
 	dir = 1;
 	},
 /turf/open/floor/tile/chapel{
@@ -366,7 +366,7 @@
 /turf/open/floor/engine/cult,
 /area/bigredv2/outside/chapel)
 "XR" = (
-/atom/movable/effect/decal/cleanable/blood/six{
+/obj/effect/decal/cleanable/blood/six{
 	dir = 1;
 	},
 /turf/open/floor/tile/chapel{

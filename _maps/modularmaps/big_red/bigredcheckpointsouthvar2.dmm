@@ -6,7 +6,7 @@
 /turf/closed/wall/r_wall,
 /area/bigredv2/caves/rock)
 "R" = (
-/atom/movable/effect/landmark/lv624/fog_blocker,
+/obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/r_wall,
 /area/bigredv2/caves/rock)
 

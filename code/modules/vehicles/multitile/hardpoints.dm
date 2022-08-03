@@ -256,10 +256,10 @@ Currently only has the tank hardpoints
 	if(!T)
 		return
 	var/obj/vehicle/multitile/root/cm_armored/tank/C = owner
-	var/atom/movable/effect/overlay/temp/tank_laser/TL
+	var/obj/effect/overlay/temp/tank_laser/TL
 	if(C.is_zoomed)
 		delay = 20
-		TL = new /atom/movable/effect/overlay/temp/tank_laser (T)
+		TL = new /obj/effect/overlay/temp/tank_laser (T)
 
 	to_chat(usr, span_warning("Preparing to fire... keep the tank still for [delay * 0.1] seconds."))
 
@@ -415,10 +415,10 @@ Currently only has the tank hardpoints
 	if(!T)
 		return
 	var/obj/vehicle/multitile/root/cm_armored/tank/C = owner
-	var/atom/movable/effect/overlay/temp/tank_laser/TL
+	var/obj/effect/overlay/temp/tank_laser/TL
 	if(C.is_zoomed)
 		delay = 15
-		TL = new /atom/movable/effect/overlay/temp/tank_laser (T)
+		TL = new /obj/effect/overlay/temp/tank_laser (T)
 
 	to_chat(usr, span_warning("Preparing to fire... keep the tank still for [delay * 0.1] seconds."))
 

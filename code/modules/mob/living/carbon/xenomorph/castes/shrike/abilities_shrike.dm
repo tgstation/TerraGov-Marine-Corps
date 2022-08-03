@@ -24,7 +24,7 @@
 		return FALSE
 
 	playsound(caller,'sound/magic/invoke_general.ogg', 75, TRUE)
-	new /atom/movable/effect/temp_visual/telekinesis(get_turf(caller))
+	new /obj/effect/temp_visual/telekinesis(get_turf(caller))
 	caller.visible_message(span_xenowarning("A strange buzzing hum starts to emanate from \the [caller]!"), \
 	span_xenodanger("We call forth the larvas to rise from their slumber!"))
 
@@ -271,7 +271,7 @@
 	span_xenowarning("We feel a sudden soothing chill."))
 
 	playsound(target,'sound/effects/magic.ogg', 75, 1)
-	new /atom/movable/effect/temp_visual/telekinesis(get_turf(target))
+	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	var/mob/living/carbon/xenomorph/patient = target
 	patient.heal_wounds(SHRIKE_CURE_HEAL_MULTIPLIER)
 	if(patient.health > 0) //If they are not in crit after the heal, let's remove evil debuffs.
@@ -358,7 +358,7 @@
 	det_time = 20
 
 /obj/item/explosive/grenade/gravity/prime()
-	new /atom/movable/effect/overlay/temp/emp_pulse(loc)
+	new /obj/effect/overlay/temp/emp_pulse(loc)
 	playsound(loc, 'sound/effects/EMPulse.ogg', 50)
 	for(var/atom/movable/victim in view(3, loc))//yes this throws EVERYONE
 		if(victim.anchored)

@@ -10,3 +10,7 @@
   - bugfix: gamemode votes should now work as expected in all cases.
   novaepee:
   - qol: Keybind for Move, Focus, Hold, Send, and Rally Order
+2022-08-03:
+  Autisem:
+  - balance: Dead marines will not cap the xeno pop for crash
+  - balance: Xeno larva check will proc every 1 minut instead of 2 minuts for crash

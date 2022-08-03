@@ -22,16 +22,16 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "aU" = (
 /obj/structure/table,
-/atom/movable/effect/spawner/random/tool,
-/atom/movable/effect/spawner/random/tool,
-/atom/movable/effect/spawner/random/bomb_supply,
-/atom/movable/effect/spawner/random/bomb_supply,
+/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/bomb_supply,
+/obj/effect/spawner/random/bomb_supply,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "aV" = (
@@ -60,7 +60,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bH" = (
@@ -80,13 +80,13 @@
 /area/bigredv2/outside/cargo)
 "bR" = (
 /obj/structure/table,
-/atom/movable/effect/spawner/random/toolbox,
-/atom/movable/effect/spawner/random/tool,
+/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/tool,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bX" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/warning_stripes/box/empty,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/warning_stripes/box/empty,
 /obj/structure/cargo_container/gorg,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -100,8 +100,8 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/cargo)
 "cH" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "dq" = (
@@ -112,8 +112,8 @@
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/cargo)
 "dB" = (
-/atom/movable/effect/decal/warning_stripes/box/empty,
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "eS" = (
@@ -121,7 +121,7 @@
 /area/bigredv2/outside/engineering)
 "fe" = (
 /obj/structure/largecrate,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "fj" = (
@@ -136,16 +136,16 @@
 /area/bigredv2/outside/cargo)
 "hf" = (
 /obj/structure/table,
-/atom/movable/effect/spawner/random/bomb_supply,
-/atom/movable/effect/spawner/random/tool,
-/atom/movable/effect/spawner/random/tool,
+/obj/effect/spawner/random/bomb_supply,
+/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/tool,
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "hG" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -159,7 +159,7 @@
 /area/bigredv2/outside/cargo)
 "hT" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "iZ" = (
@@ -171,8 +171,8 @@
 "jd" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
-/atom/movable/effect/landmark/weed_node,
-/atom/movable/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "la" = (
@@ -191,8 +191,8 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/ai_node,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "lz" = (
@@ -200,7 +200,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "lA" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "lI" = (
@@ -255,26 +255,26 @@
 	id = "Cargonia";
 	name = "Storm Shutters"
 	},
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "ou" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/structure/largecrate/random/barrel,
 /turf/open/floor/marking/bot,
 /area/bigredv2/outside/cargo)
 "pt" = (
-/atom/movable/effect/decal/warning_stripes/box/empty,
+/obj/effect/decal/warning_stripes/box/empty,
 /obj/structure/cargo_container/gorg,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "pE" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "pF" = (
@@ -282,11 +282,11 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
 	},
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "pI" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/structure/largecrate/random,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -319,14 +319,14 @@
 "sR" = (
 /obj/item/flashlight,
 /obj/item/reagent_containers/spray/cleaner,
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "ts" = (
 /obj/structure/table,
-/atom/movable/effect/spawner/random/tech_supply,
-/atom/movable/effect/spawner/random/tool,
-/atom/movable/effect/spawner/random/tool,
+/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/tool,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "uf" = (
@@ -344,7 +344,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "vM" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
@@ -363,23 +363,23 @@
 /turf/open/floor/marking/bot,
 /area/bigredv2/outside/cargo)
 "wn" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "wz" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "wH" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "xy" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "xB" = (
@@ -404,7 +404,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "yP" = (
-/atom/movable/effect/decal/warning_stripes/box/empty,
+/obj/effect/decal/warning_stripes/box/empty,
 /obj/structure/cargo_container/gorg{
 	dir = 4
 	},
@@ -415,7 +415,7 @@
 	dir = 1;
 	on = 1
 	},
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "zT" = (
@@ -425,8 +425,8 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "BG" = (
-/atom/movable/effect/decal/cleanable/blood,
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "BJ" = (
@@ -467,11 +467,11 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "Eb" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/marking/loadingarea,
 /area/bigredv2/outside/cargo)
 "Et" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/bot,
 /area/bigredv2/outside/cargo)
 "EI" = (
@@ -486,15 +486,15 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "FA" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/warning_stripes/box/empty,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/warning_stripes/box/empty,
 /obj/structure/cargo_container/gorg{
 	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "FH" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/marking/delivery,
 /area/bigredv2/outside/cargo)
 "FX" = (
@@ -502,9 +502,9 @@
 /turf/open/floor/marking/bot,
 /area/bigredv2/outside/cargo)
 "Gu" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/item/megaphone,
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "GC" = (
@@ -518,8 +518,8 @@
 /area/bigredv2/outside/cargo)
 "Hu" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "Hw" = (
@@ -528,7 +528,7 @@
 /area/bigredv2/outside/cargo)
 "HW" = (
 /obj/structure/bed/chair/office/dark,
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "Ik" = (
@@ -542,21 +542,21 @@
 /turf/open/floor/marking/bot,
 /area/bigredv2/outside/cargo)
 "IE" = (
-/atom/movable/effect/decal/warning_stripes/box/small{
+/obj/effect/decal/warning_stripes/box/small{
 	dir = 4
 	},
-/atom/movable/effect/decal/warning_stripes/box/arrow{
+/obj/effect/decal/warning_stripes/box/arrow{
 	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "IF" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "IP" = (
 /obj/structure/table,
-/atom/movable/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/toolbox,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "Jd" = (
@@ -566,19 +566,19 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/cargo)
 "Je" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/crate/trashcart,
 /turf/open/floor/marking/bot,
 /area/bigredv2/outside/cargo)
 "Jf" = (
-/atom/movable/effect/spawner/random/tool,
+/obj/effect/spawner/random/tool,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "Jg" = (
 /obj/structure/table,
-/atom/movable/effect/spawner/random/bomb_supply,
-/atom/movable/effect/spawner/random/bomb_supply,
-/atom/movable/effect/spawner/random/tool,
+/obj/effect/spawner/random/bomb_supply,
+/obj/effect/spawner/random/bomb_supply,
+/obj/effect/spawner/random/tool,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "Ji" = (
@@ -587,18 +587,18 @@
 /area/bigredv2/outside/cargo)
 "Js" = (
 /obj/structure/table,
-/atom/movable/effect/spawner/random/ammo,
+/obj/effect/spawner/random/ammo,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "JL" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/ai_node,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "JU" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/ai_node,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "KD" = (
@@ -616,18 +616,18 @@
 /area/bigredv2/outside/cargo)
 "Mw" = (
 /obj/structure/closet/emcloset,
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "Op" = (
 /obj/structure/table,
-/atom/movable/effect/spawner/random/tool,
+/obj/effect/spawner/random/tool,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "Ov" = (
 /obj/structure/table,
-/atom/movable/effect/spawner/random/bomb_supply,
-/atom/movable/effect/spawner/random/bomb_supply,
+/obj/effect/spawner/random/bomb_supply,
+/obj/effect/spawner/random/bomb_supply,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "OL" = (
@@ -636,21 +636,21 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "Pf" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "PF" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
 /obj/structure/largecrate,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "Qn" = (
-/atom/movable/effect/landmark/corpsespawner/security{
+/obj/effect/landmark/corpsespawner/security{
 	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Ethan Peser"
 	},
@@ -666,7 +666,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "Sh" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
 	on = 1
@@ -674,21 +674,21 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "TG" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/item/tool/lighter/random,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "Ut" = (
-/atom/movable/effect/decal/warning_stripes/box/small{
+/obj/effect/decal/warning_stripes/box/small{
 	dir = 8
 	},
-/atom/movable/effect/decal/warning_stripes/box/arrow{
+/obj/effect/decal/warning_stripes/box/arrow{
 	dir = 8
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "VF" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/structure/cargo_container/green,
 /turf/open/floor/marking/bot,
 /area/bigredv2/outside/cargo)
@@ -700,8 +700,8 @@
 /turf/closed/wall,
 /area/bigredv2/outside/cargo)
 "Xm" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/ai_node,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -717,11 +717,11 @@
 /obj/structure/barricade/wooden{
 	dir = 8
 	},
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/marking/delivery,
 /area/bigredv2/outside/cargo)
 "ZE" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -729,11 +729,11 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "ZF" = (
-/atom/movable/effect/decal/warning_stripes/box/empty,
+/obj/effect/decal/warning_stripes/box/empty,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "ZT" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/structure/largecrate,
 /turf/open/floor/marking/bot,
 /area/bigredv2/outside/cargo)

@@ -8,7 +8,7 @@
 	},
 /area/lv624/ground/caves/central2)
 "aI" = (
-/atom/movable/effect/landmark/lv624/fog_blocker,
+/obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "aW" = (
@@ -21,58 +21,58 @@
 	},
 /area/lv624/ground/caves/central1)
 "bb" = (
-/atom/movable/effect/landmark/weed_node,
-/atom/movable/effect/decal/lvsanddecal/full,
-/atom/movable/effect/decal/lvsanddecal/full,
+/obj/effect/landmark/weed_node,
+/obj/effect/decal/lvsanddecal/full,
+/obj/effect/decal/lvsanddecal/full,
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central2)
 "bt" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/atom/movable/effect/landmark/weed_node,
-/atom/movable/effect/decal/lvsanddecal/full,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/weed_node,
+/obj/effect/decal/lvsanddecal/full,
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central2)
 "bD" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "cc" = (
-/atom/movable/effect/decal/cleanable/blood/drip,
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "cl" = (
-/atom/movable/effect/landmark/corpsespawner/security,
+/obj/effect/landmark/corpsespawner/security,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "cP" = (
 /obj/structure/rack/nometal,
 /obj/item/weapon/gun/pistol/vp70,
-/atom/movable/effect/spawner/random/gun/sidearms,
+/obj/effect/spawner/random/gun/sidearms,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "dj" = (
-/atom/movable/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central2)
 "ed" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "el" = (
-/atom/movable/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
 "eq" = (
 /obj/item/stack/sheet/metal/small_stack,
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "ew" = (
 /obj/structure/reagent_dispensers/wallmounted/peppertank,
 /obj/structure/rack/nometal,
-/atom/movable/effect/spawner/random/gun/sidearms,
+/obj/effect/spawner/random/gun/sidearms,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "eI" = (
@@ -90,7 +90,7 @@
 	},
 /area/lv624/ground/caves/central1)
 "eX" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall,
 /area/lv624/ground/caves/rock)
 "gk" = (
@@ -103,16 +103,16 @@
 	},
 /area/lv624/ground/caves/central2)
 "gA" = (
-/atom/movable/effect/decal/cleanable/blood/gibs/xeno/body,
+/obj/effect/decal/cleanable/blood/gibs/xeno/body,
 /obj/item/ammo_casing/bullet,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "gB" = (
 /turf/closed/wall,
 /area/lv624/ground/caves/central1)
 "ht" = (
-/atom/movable/effect/decal/tile/full/black,
+/obj/effect/decal/tile/full/black,
 /obj/item/resin_jelly,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
@@ -132,8 +132,8 @@
 /turf/open/ground/river,
 /area/lv624/ground/caves/central2)
 "ip" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/ai_node,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "ir" = (
@@ -143,17 +143,17 @@
 	},
 /area/lv624/ground/caves/central2)
 "iL" = (
-/atom/movable/effect/landmark/corpsespawner/security,
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/landmark/corpsespawner/security,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "iV" = (
-/atom/movable/effect/landmark/xeno_resin_door,
+/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
 "iW" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "jf" = (
@@ -161,12 +161,12 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "jx" = (
-/atom/movable/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/xeno_resin_wall,
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "jB" = (
-/atom/movable/effect/decal/tile/full/black,
+/obj/effect/decal/tile/full/black,
 /turf/closed/wall/r_wall,
 /area/lv624/ground/caves/central2)
 "ke" = (
@@ -184,34 +184,34 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "mi" = (
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "mx" = (
-/atom/movable/effect/landmark/xeno_resin_door,
-/atom/movable/effect/ai_node,
+/obj/effect/landmark/xeno_resin_door,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
 "mR" = (
-/atom/movable/effect/decal/lvsanddecal/full,
+/obj/effect/decal/lvsanddecal/full,
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central2)
 "os" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/structure/table/reinforced,
 /obj/item/flashlight/lamp,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "pD" = (
-/atom/movable/effect/ai_node,
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "pV" = (
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "qd" = (
-/atom/movable/effect/spawner/random/ammo/machinegun,
+/obj/effect/spawner/random/ammo/machinegun,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "qh" = (
@@ -224,7 +224,7 @@
 	},
 /area/lv624/ground/caves/central2)
 "qz" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/structure/table/reinforced,
 /obj/machinery/computer/security/wooden_tv,
 /turf/open/floor/dark2,
@@ -243,8 +243,8 @@
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "sl" = (
-/atom/movable/effect/decal/cleanable/blood/drip,
-/atom/movable/effect/spawner/random/ammo/machinegun,
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/spawner/random/ammo/machinegun,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "sp" = (
@@ -275,8 +275,8 @@
 	},
 /area/lv624/ground/caves/central2)
 "uw" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "uz" = (
@@ -290,15 +290,15 @@
 /turf/open/floor/plating,
 /area/lv624/ground/caves/central2)
 "uE" = (
-/atom/movable/effect/decal/tile/full/black,
+/obj/effect/decal/tile/full/black,
 /obj/machinery/door/airlock/mainship/secure{
 	dir = 1
 	},
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "vp" = (
-/atom/movable/effect/decal/tile/full/black,
-/atom/movable/effect/ai_node,
+/obj/effect/decal/tile/full/black,
+/obj/effect/ai_node,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "vI" = (
@@ -313,7 +313,7 @@
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "wN" = (
-/atom/movable/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "xw" = (
@@ -327,34 +327,34 @@
 /turf/open/floor/tile/dark,
 /area/lv624/ground/caves/central1)
 "yy" = (
-/atom/movable/effect/decal/lvsanddecal{
+/obj/effect/decal/lvsanddecal{
 	dir = 4
 	},
-/atom/movable/effect/decal/lvsanddecal{
+/obj/effect/decal/lvsanddecal{
 	dir = 8
 	},
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central2)
 "yA" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
 "za" = (
-/atom/movable/effect/decal/cleanable/blood/drip,
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/dmg2,
 /area/lv624/ground/caves/central2)
 "zu" = (
 /obj/structure/rack,
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/lv624/ground/caves/central1)
 "zx" = (
-/atom/movable/effect/landmark/weed_node,
-/atom/movable/effect/decal/lvsanddecal/full,
+/obj/effect/landmark/weed_node,
+/obj/effect/decal/lvsanddecal/full,
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central2)
 "zA" = (
@@ -366,7 +366,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -383,13 +383,13 @@
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "Ah" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/lv624/ground/caves/central1)
 "Ao" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/atom/movable/effect/decal/lvsanddecal/full,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/decal/lvsanddecal/full,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central2)
 "Au" = (
@@ -397,16 +397,16 @@
 /turf/open/ground/river,
 /area/lv624/ground/caves/central2)
 "AF" = (
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "Bi" = (
-/atom/movable/effect/decal/tile/full/black,
-/atom/movable/effect/landmark/xeno_silo_spawn,
+/obj/effect/decal/tile/full/black,
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "By" = (
-/atom/movable/effect/spawner/random/ammo,
+/obj/effect/spawner/random/ammo,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "BJ" = (
@@ -424,25 +424,25 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/lv624/ground/caves/central2)
 "Cp" = (
-/atom/movable/effect/decal/lvsanddecal/full,
-/atom/movable/effect/decal/lvsanddecal/full,
+/obj/effect/decal/lvsanddecal/full,
+/obj/effect/decal/lvsanddecal/full,
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central2)
 "Dd" = (
-/atom/movable/effect/decal/cleanable/blood/gibs/xeno/up,
+/obj/effect/decal/cleanable/blood/gibs/xeno/up,
 /obj/item/stack/sheet/metal/small_stack,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "Dn" = (
-/atom/movable/effect/landmark/corpsespawner/security,
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/landmark/corpsespawner/security,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "Dq" = (
-/atom/movable/effect/decal/lvsanddecal{
+/obj/effect/decal/lvsanddecal{
 	dir = 8
 	},
-/atom/movable/effect/decal/lvsanddecal/full,
+/obj/effect/decal/lvsanddecal/full,
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central2)
 "Dr" = (
@@ -450,21 +450,21 @@
 /turf/open/ground/river,
 /area/lv624/ground/caves/central2)
 "DE" = (
-/atom/movable/effect/decal/tile/full/black,
-/atom/movable/effect/landmark/xeno_resin_wall,
+/obj/effect/decal/tile/full/black,
+/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "DU" = (
-/atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/spawner/random/ammo/machinegun,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/random/ammo/machinegun,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "EZ" = (
-/atom/movable/effect/landmark/xeno_resin_door,
+/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central3)
 "Fb" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/item/shard,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
@@ -484,11 +484,11 @@
 /turf/closed/mineral/smooth,
 /area/lv624/ground/caves/central1)
 "GP" = (
-/atom/movable/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "Hb" = (
-/atom/movable/effect/spawner/random/gun/sidearms,
+/obj/effect/spawner/random/gun/sidearms,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "Ho" = (
@@ -505,7 +505,7 @@
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "HN" = (
-/atom/movable/effect/spawner/random/gun/rifles,
+/obj/effect/spawner/random/gun/rifles,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "IL" = (
@@ -513,30 +513,30 @@
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "IO" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/structure/table/reinforced,
 /obj/item/paper,
 /obj/item/tool/pen/red,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "Js" = (
-/atom/movable/effect/decal/lvsanddecal{
+/obj/effect/decal/lvsanddecal{
 	dir = 4
 	},
-/atom/movable/effect/decal/lvsanddecal/full,
+/obj/effect/decal/lvsanddecal/full,
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central2)
 "Ko" = (
-/atom/movable/effect/decal/cleanable/blood/gibs/xeno/limb,
+/obj/effect/decal/cleanable/blood/gibs/xeno/limb,
 /turf/open/floor/plating,
 /area/lv624/ground/caves/central2)
 "KG" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/atom/movable/effect/decal/lvsanddecal/full,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/decal/lvsanddecal/full,
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central2)
 "KP" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "KZ" = (
@@ -547,14 +547,14 @@
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "Lt" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "Lw" = (
 /turf/open/floor/plating/dmg3,
 /area/lv624/ground/caves/central2)
 "LC" = (
-/atom/movable/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plating/dmg1,
 /area/lv624/ground/caves/central2)
 "Mv" = (
@@ -570,8 +570,8 @@
 	},
 /area/lv624/ground/caves/central2)
 "MF" = (
-/atom/movable/effect/spawner/random/clothing,
-/atom/movable/effect/ai_node,
+/obj/effect/spawner/random/clothing,
+/obj/effect/ai_node,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "MK" = (
@@ -582,11 +582,11 @@
 /turf/closed/mineral/smooth/indestructible,
 /area/lv624/ground/caves/rock)
 "MN" = (
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "MX" = (
-/atom/movable/effect/decal/cleanable/blood/splatter/animated,
+/obj/effect/decal/cleanable/blood/splatter/animated,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
 	},
@@ -597,12 +597,12 @@
 	},
 /area/lv624/ground/caves/central2)
 "OX" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
 "Pl" = (
-/atom/movable/effect/ai_node,
-/atom/movable/effect/decal/lvsanddecal/full,
+/obj/effect/ai_node,
+/obj/effect/decal/lvsanddecal/full,
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central2)
 "PF" = (
@@ -613,7 +613,7 @@
 	},
 /area/lv624/ground/caves/central1)
 "PN" = (
-/atom/movable/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "Qi" = (
@@ -650,7 +650,7 @@
 "Ro" = (
 /obj/structure/rack,
 /obj/item/tool/shovel,
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -673,24 +673,24 @@
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "SC" = (
-/atom/movable/effect/landmark/corpsespawner/scientist,
-/atom/movable/effect/decal/cleanable/blood,
+/obj/effect/landmark/corpsespawner/scientist,
+/obj/effect/decal/cleanable/blood,
 /obj/structure/bed/chair/office/dark,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "SP" = (
 /obj/structure/table/reinforced,
-/atom/movable/effect/spawner/random/drink_alcohol_bottle,
-/atom/movable/effect/spawner/random/drink_alcohol_bottle,
+/obj/effect/spawner/random/drink_alcohol_bottle,
+/obj/effect/spawner/random/drink_alcohol_bottle,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "TZ" = (
-/atom/movable/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
 "Uc" = (
-/atom/movable/effect/landmark/corpsespawner/security,
-/atom/movable/effect/decal/cleanable/blood/drip,
+/obj/effect/landmark/corpsespawner/security,
+/obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "Ui" = (
@@ -706,41 +706,41 @@
 /turf/open/floor/plating,
 /area/lv624/ground/caves/central2)
 "UU" = (
-/atom/movable/effect/spawner/random/ammo/machinegun,
+/obj/effect/spawner/random/ammo/machinegun,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "UW" = (
 /turf/closed/wall/r_wall,
 /area/lv624/ground/caves/central1)
 "Vc" = (
-/atom/movable/effect/decal/tile/full/black,
+/obj/effect/decal/tile/full/black,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "Vq" = (
-/atom/movable/effect/decal/lvsanddecal{
+/obj/effect/decal/lvsanddecal{
 	dir = 4
 	},
-/atom/movable/effect/decal/lvsanddecal{
+/obj/effect/decal/lvsanddecal{
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central2)
 "VA" = (
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/structure/bed/chair/office/dark,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "VH" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "VS" = (
-/atom/movable/effect/landmark/lv624/fog_blocker,
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "WA" = (
-/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "WL" = (
@@ -750,20 +750,20 @@
 /turf/open/floor/plating,
 /area/lv624/ground/caves/central2)
 "WN" = (
-/atom/movable/effect/decal/tile/full/black,
-/atom/movable/effect/landmark/weed_node,
+/obj/effect/decal/tile/full/black,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "Xb" = (
-/atom/movable/effect/decal/lvsanddecal/full,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/lvsanddecal/full,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central2)
 "Xv" = (
-/atom/movable/effect/decal/lvsanddecal{
+/obj/effect/decal/lvsanddecal{
 	dir = 8
 	},
-/atom/movable/effect/decal/lvsanddecal{
+/obj/effect/decal/lvsanddecal{
 	dir = 4
 	},
 /turf/open/floor/plating/asteroidfloor,
@@ -785,15 +785,15 @@
 	},
 /area/lv624/ground/caves/central1)
 "YP" = (
-/atom/movable/effect/decal/lvsanddecal/full,
-/atom/movable/effect/decal/lvsanddecal/full,
-/atom/movable/effect/decal/cleanable/dirt,
+/obj/effect/decal/lvsanddecal/full,
+/obj/effect/decal/lvsanddecal/full,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central2)
 "Zo" = (
-/atom/movable/effect/landmark/corpsespawner/security,
-/atom/movable/effect/decal/cleanable/blood,
-/atom/movable/effect/ai_node,
+/obj/effect/landmark/corpsespawner/security,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/ai_node,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "Zt" = (
@@ -802,9 +802,9 @@
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "Zu" = (
-/atom/movable/effect/ai_node,
-/atom/movable/effect/decal/lvsanddecal/full,
-/atom/movable/effect/decal/lvsanddecal/full,
+/obj/effect/ai_node,
+/obj/effect/decal/lvsanddecal/full,
+/obj/effect/decal/lvsanddecal/full,
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central2)
 

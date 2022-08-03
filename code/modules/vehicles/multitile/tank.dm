@@ -22,26 +22,26 @@
 
 	req_access = list(ACCESS_MARINE_TANK)
 
-/atom/movable/effect/multitile_spawner/cm_armored/tank
+/obj/effect/multitile_spawner/cm_armored/tank
 
 	width = 3
 	height = 3
 	spawn_dir = EAST
 	var/list/spawn_hardpoints = list()
 
-/atom/movable/effect/multitile_spawner/cm_armored/tank/Initialize()
+/obj/effect/multitile_spawner/cm_armored/tank/Initialize()
 	. = ..()
 	return INITIALIZE_HINT_QDEL
 
 //Spawns a tank that has a bunch of broken hardpoints
-/atom/movable/effect/multitile_spawner/cm_armored/tank/decrepit
+/obj/effect/multitile_spawner/cm_armored/tank/decrepit
 	spawn_hardpoints = list(HDPT_PRIMARY = /obj/item/hardpoint/primary/cannon/broken,
 							HDPT_SECDGUN = /obj/item/hardpoint/secondary/m56cupola/broken,
 							HDPT_SUPPORT = /obj/item/hardpoint/support/smoke_launcher/broken,
 							HDPT_ARMOR = /obj/item/hardpoint/armor/ballistic/broken,
 							HDPT_TREADS = /obj/item/hardpoint/treads/standard/broken)
 
-/atom/movable/effect/multitile_spawner/cm_armored/tank/fixed
+/obj/effect/multitile_spawner/cm_armored/tank/fixed
 	spawn_hardpoints = list(HDPT_PRIMARY = /obj/item/hardpoint/primary/cannon,
 							HDPT_SECDGUN = /obj/item/hardpoint/secondary/m56cupola,
 							HDPT_SUPPORT = /obj/item/hardpoint/support/smoke_launcher,

@@ -1205,7 +1205,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 								L.put_in_hands(I)
 
 		if(pod)
-			new /atom/movable/effect/DPtarget(target, pod)
+			new /obj/effect/DPtarget(target, pod)
 
 		log_admin("[key_name(usr)] created [number] [english_list(paths)] at [AREACOORD(usr.loc)].")
 		message_admins("[ADMIN_TPMONTY(usr)] created [number] [english_list(paths)] at [ADMIN_VERBOSEJMP(usr.loc)].")

@@ -1,4 +1,4 @@
-/atom/movable/effect/spawner/modularmap
+/obj/effect/spawner/modularmap
 	name = "Modular map marker"
 	icon = 'icons/effects/landmarks_static.dmi'
 	icon_state = "random_map"
@@ -10,12 +10,12 @@
 	///How wide our spawner area is, used to catch mistakes in mapping
 	var/spawner_width = 0
 
-/atom/movable/effect/spawner/modularmap/Initialize(mapload)
+/obj/effect/spawner/modularmap/Initialize(mapload)
 	. = ..()
 	SSmodularmapping.markers += src
 
 ///Actually loads the modularmap: called by SSmodularmapping
-/atom/movable/effect/spawner/modularmap/proc/load_modularmap()
+/obj/effect/spawner/modularmap/proc/load_modularmap()
 	var/datum/map_template/modular/template
 	template = pick(SSmapping.modular_templates[mapid])
 	var/errored = FALSE
@@ -42,200 +42,200 @@
 /*********Types********/
 
 /*****Prison / Fiona penitentiary****/
-/atom/movable/effect/spawner/modularmap/prison/civressouth
+/obj/effect/spawner/modularmap/prison/civressouth
 	mapid = "southcivres"
 	spawner_width = 9
 	spawner_height = 11
 
 /************LV 624**********/
-/atom/movable/effect/spawner/modularmap/lv624/hydroroad
+/obj/effect/spawner/modularmap/lv624/hydroroad
 	mapid = "hydroroad"
 	spawner_height = 20
 	spawner_width = 20
 
-/atom/movable/effect/spawner/modularmap/lv624/domes
+/obj/effect/spawner/modularmap/lv624/domes
 	mapid = "lvdome"
 	spawner_height = 15
 	spawner_width = 15
 
-/atom/movable/effect/spawner/modularmap/lv624/medicaldome
+/obj/effect/spawner/modularmap/lv624/medicaldome
 	mapid = "lvmedicaldome"
 	spawner_height = 15
 	spawner_width = 15
 
-/atom/movable/effect/spawner/modularmap/lv624/largecentralcave
+/obj/effect/spawner/modularmap/lv624/largecentralcave
 	mapid = "lvcaveslakearea"
 	spawner_height = 33
 	spawner_width = 80
 
-/atom/movable/effect/spawner/modularmap/lv624/hydrobridge
+/obj/effect/spawner/modularmap/lv624/hydrobridge
 	mapid = "lvhydrobridge"
 	spawner_height = 10
 	spawner_width = 8
 
-/atom/movable/effect/spawner/modularmap/lv624/southsandtemple
+/obj/effect/spawner/modularmap/lv624/southsandtemple
 	mapid = "lvsouthsandtemple"
 	spawner_height = 24
 	spawner_width = 22
 
 /************BIG RED******/
-/atom/movable/effect/spawner/modularmap/bigred/operations //todo decrease y by one
+/obj/effect/spawner/modularmap/bigred/operations //todo decrease y by one
 	mapid = "broperations"
 	spawner_width = 29
 	spawner_height = 25
 
-/atom/movable/effect/spawner/modularmap/bigred/fence
+/obj/effect/spawner/modularmap/bigred/fence
 	mapid = "brfence"
 	spawner_width = 24
 	spawner_height = 8
 
-/atom/movable/effect/spawner/modularmap/bigred/medbay
+/obj/effect/spawner/modularmap/bigred/medbay
 	mapid = "brmedbay"
 	spawner_width = 33
 	spawner_height = 26
 
-/atom/movable/effect/spawner/modularmap/bigred/medbaypassage
+/obj/effect/spawner/modularmap/bigred/medbaypassage
 	mapid = "brmedbaypassage"
 	spawner_width = 6
 	spawner_height = 3
 
-/atom/movable/effect/spawner/modularmap/bigred/generalstore
+/obj/effect/spawner/modularmap/bigred/generalstore
 	mapid = "brgeneral"
 	spawner_width = 31
 	spawner_height = 14
 
-/atom/movable/effect/spawner/modularmap/bigred/chapel
+/obj/effect/spawner/modularmap/bigred/chapel
 	mapid = "brchapel"
 	spawner_width = 18
 	spawner_height = 9
 
-/atom/movable/effect/spawner/modularmap/bigred/eta
+/obj/effect/spawner/modularmap/bigred/eta
 	mapid = "breta"
 	spawner_width = 26
 	spawner_height = 24
 
-/atom/movable/effect/spawner/modularmap/bigred/lambdatunnel
+/obj/effect/spawner/modularmap/bigred/lambdatunnel
 	mapid = "brlambdatunnel"
 	spawner_width = 25
 	spawner_height = 6
 
-/atom/movable/effect/spawner/modularmap/bigred/lambdacave
+/obj/effect/spawner/modularmap/bigred/lambdacave
 	mapid = "brlambdacave"
 	spawner_width = 15
 	spawner_height = 15
 
-/atom/movable/effect/spawner/modularmap/bigred/dorms
+/obj/effect/spawner/modularmap/bigred/dorms
 	mapid = "brdorms"
 	spawner_width = 19
 	spawner_height = 7
 
-/atom/movable/effect/spawner/modularmap/bigred/cargo
+/obj/effect/spawner/modularmap/bigred/cargo
 	mapid = "brcargo"
 	spawner_width = 19
 	spawner_height = 19
 
-/atom/movable/effect/spawner/modularmap/bigred/engineering
+/obj/effect/spawner/modularmap/bigred/engineering
 	mapid = "brengineering"
 	spawner_width = 30
 	spawner_height = 27
 
-/atom/movable/effect/spawner/modularmap/bigred/atmos
+/obj/effect/spawner/modularmap/bigred/atmos
 	mapid = "bratmos"
 	spawner_width = 24
 	spawner_height = 25
 
-/atom/movable/effect/spawner/modularmap/bigred/cargoentry
+/obj/effect/spawner/modularmap/bigred/cargoentry
 	mapid = "brcargoentry"
 	spawner_width = 3
 	spawner_height = 5
 
-/atom/movable/effect/spawner/modularmap/bigred/northlambda
+/obj/effect/spawner/modularmap/bigred/northlambda
 	mapid = "brlambdatunnelnorth"
 	spawner_width = 65
 	spawner_height = 32
 
-/atom/movable/effect/spawner/modularmap/bigred/westeta
+/obj/effect/spawner/modularmap/bigred/westeta
 	mapid = "brsouthwesteta"
 	spawner_width = 61
 	spawner_height = 38
 
-/atom/movable/effect/spawner/modularmap/bigred/southeta
+/obj/effect/spawner/modularmap/bigred/southeta
 	mapid = "brsoutheta"
 	spawner_width = 23
 	spawner_height = 10
 
-/atom/movable/effect/spawner/modularmap/bigred/checkpointsouth
+/obj/effect/spawner/modularmap/bigred/checkpointsouth
 	mapid = "brcheckpointsouth"
 	spawner_width = 12
 	spawner_height = 10
 
-/atom/movable/effect/spawner/modularmap/bigred/checkpoint
+/obj/effect/spawner/modularmap/bigred/checkpoint
 	mapid = "brcheckpoint"
 	spawner_width = 4
 	spawner_height = 4
 
-/atom/movable/effect/spawner/modularmap/bigred/southwesteast
+/obj/effect/spawner/modularmap/bigred/southwesteast
 	mapid = "brsweast"
 	spawner_width = 44
 	spawner_height = 22
 
-/atom/movable/effect/spawner/modularmap/bigred/toolshed
+/obj/effect/spawner/modularmap/bigred/toolshed
 	mapid = "brtoolshed"
 	spawner_width = 16
 	spawner_height = 9
 
-/atom/movable/effect/spawner/modularmap/bigred/secorner
+/obj/effect/spawner/modularmap/bigred/secorner
 	mapid = "brsecorner"
 	spawner_width = 71
 	spawner_height = 67
 
-/atom/movable/effect/spawner/modularmap/bigred/swcorner
+/obj/effect/spawner/modularmap/bigred/swcorner
 	mapid = "brswcorner"
 	spawner_width = 41
 	spawner_height = 43
 
-/atom/movable/effect/spawner/modularmap/bigred/lambdalock
+/obj/effect/spawner/modularmap/bigred/lambdalock
 	mapid = "brlambdalock"
 	spawner_width = 1
 	spawner_height = 2
 
-/atom/movable/effect/spawner/modularmap/bigred/lambdatunnelsouth
+/obj/effect/spawner/modularmap/bigred/lambdatunnelsouth
 	mapid = "brlambdatunnelsouth"
 	spawner_width = 22
 	spawner_height = 11
 
-/atom/movable/effect/spawner/modularmap/bigred/library
+/obj/effect/spawner/modularmap/bigred/library
 	mapid = "brlibrary"
 	spawner_width = 11
 	spawner_height = 18
 
-/atom/movable/effect/spawner/modularmap/bigred/office
+/obj/effect/spawner/modularmap/bigred/office
 	mapid = "broffice"
 	spawner_width = 28
 	spawner_height = 23
 
-/atom/movable/effect/spawner/modularmap/bigred/east
+/obj/effect/spawner/modularmap/bigred/east
 	mapid = "breastcaves"
 	spawner_width = 66
 	spawner_height = 42
 
-/atom/movable/effect/spawner/modularmap/bigred/cargoarea
+/obj/effect/spawner/modularmap/bigred/cargoarea
 	mapid = "brcargoarea"
 	spawner_width = 54
 	spawner_height = 22
 
-/atom/movable/effect/spawner/modularmap/bigred/landingzonetwo
+/obj/effect/spawner/modularmap/bigred/landingzonetwo
 	mapid = "brlz2"
 	spawner_width = 43
 	spawner_height = 38
 
-/atom/movable/effect/spawner/modularmap/bigred/landingzoneone
+/obj/effect/spawner/modularmap/bigred/landingzoneone
 	mapid = "brlz1"
 	spawner_width = 85
 	spawner_height = 38
 
 /************EORG**********/
-/atom/movable/effect/spawner/modularmap/admin/eorg
+/obj/effect/spawner/modularmap/admin/eorg
 	mapid = "EORG"
 	spawner_height = 46
 	spawner_width = 46

@@ -17,9 +17,9 @@
 
 
 /turf/add_blood(b_color)
-	var/atom/movable/effect/decal/cleanable/blood/splatter/B = locate() in src
+	var/obj/effect/decal/cleanable/blood/splatter/B = locate() in src
 	if(!B)
-		B = new /atom/movable/effect/decal/cleanable/blood/splatter(src)
+		B = new /obj/effect/decal/cleanable/blood/splatter(src)
 		if(b_color)
 			B.basecolor = b_color
 			B.color = b_color

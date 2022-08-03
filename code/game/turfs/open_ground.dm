@@ -30,7 +30,7 @@
 	mediumxenofootstep = FOOTSTEP_WATER
 	heavyxenofootstep = FOOTSTEP_WATER
 
-/atom/movable/effect/river_overlay
+/obj/effect/river_overlay
 	name = "river_overlay"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	layer = RIVER_OVERLAY_LAYER
@@ -40,7 +40,7 @@
 /turf/open/ground/river/Initialize()
 	. = ..()
 	if(!has_catwalk)
-		var/atom/movable/effect/river_overlay/R = new(src)
+		var/obj/effect/river_overlay/R = new(src)
 		R.overlays += image("icon"='icons/turf/ground_map.dmi',"icon_state"="riverwater","layer"=RIVER_OVERLAY_LAYER)
 
 
@@ -86,7 +86,7 @@
 	. = ..()
 	if(has_catwalk)
 		return
-	var/atom/movable/effect/river_overlay/R = new(src)
+	var/obj/effect/river_overlay/R = new(src)
 	R.overlays += image("icon"='icons/effects/effects.dmi',"icon_state"="greenglow","layer"=RIVER_OVERLAY_LAYER)
 
 
@@ -124,7 +124,7 @@
 /turf/open/ground/riverdeep/Initialize()
 	. = ..()
 	if(!has_catwalk)
-		var/atom/movable/effect/river_overlay/R = new(src)
+		var/obj/effect/river_overlay/R = new(src)
 		R.overlays += image("icon"='icons/turf/ground_map.dmi',"icon_state"="water","layer"=RIVER_OVERLAY_LAYER)
 
 //Desert River

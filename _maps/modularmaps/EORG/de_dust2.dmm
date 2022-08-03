@@ -3,7 +3,7 @@
 /turf/closed/wall/desert/invincible,
 /area/deathmatch)
 "ak" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/tile,
 /area/deathmatch)
 "aL" = (
@@ -19,18 +19,18 @@
 /turf/open/floor/tile/dark,
 /area/deathmatch)
 "de" = (
-/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/industrial,
 /area/deathmatch)
 "ez" = (
 /turf/closed/desertdamrockwall,
 /area/deathmatch)
 "eB" = (
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/tile/dark,
 /area/deathmatch)
 "eX" = (
-/atom/movable/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "gA" = (
@@ -42,26 +42,26 @@
 /turf/open/floor/tile/yellow/full,
 /area/deathmatch)
 "ht" = (
-/atom/movable/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
 /turf/open/floor/tile,
 /area/deathmatch)
 "hH" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "hO" = (
-/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn,
-/atom/movable/effect/ai_node,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "ia" = (
-/atom/movable/effect/landmark/deathmatch,
-/atom/movable/effect/ai_node,
-/atom/movable/effect/ai_node,
+/obj/effect/landmark/deathmatch,
+/obj/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/industrial,
 /area/deathmatch)
 "if" = (
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/industrial,
 /area/deathmatch)
 "ir" = (
@@ -75,7 +75,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "jk" = (
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/tile,
 /area/deathmatch)
 "kz" = (
@@ -83,7 +83,7 @@
 /turf/open/floor/industrial,
 /area/deathmatch)
 "kE" = (
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/industrial,
 /area/deathmatch)
 "lK" = (
@@ -94,7 +94,7 @@
 /area/deathmatch)
 "md" = (
 /obj/structure/desertdam/decals/loose_sand_overlay/alt,
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/industrial,
 /area/deathmatch)
 "mE" = (
@@ -102,7 +102,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "nl" = (
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/industrial,
 /area/deathmatch)
 "nz" = (
@@ -116,8 +116,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "nM" = (
-/atom/movable/effect/landmark/deathmatch,
-/atom/movable/effect/ai_node,
+/obj/effect/landmark/deathmatch,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "nT" = (
@@ -160,14 +160,14 @@
 /turf/open/floor/tile,
 /area/deathmatch)
 "qR" = (
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/tile,
 /area/deathmatch)
 "qS" = (
 /obj/structure/platform_decoration{
 	dir = 8
 	},
-/atom/movable/effect/ai_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "qZ" = (
@@ -175,8 +175,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "ri" = (
-/atom/movable/effect/landmark/weapon_spawn/tier4_weapon_spawn,
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/tile,
 /area/deathmatch)
 "uf" = (
@@ -219,8 +219,8 @@
 /turf/open/floor/industrial,
 /area/deathmatch)
 "yY" = (
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "zg" = (
@@ -230,12 +230,12 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "AM" = (
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/tile,
 /area/deathmatch)
 "Ba" = (
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/tile/dark,
 /area/deathmatch)
 "BI" = (
@@ -264,8 +264,8 @@
 /turf/open/floor/tile/dark,
 /area/deathmatch)
 "DN" = (
-/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn,
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/tile/dark,
 /area/deathmatch)
 "DS" = (
@@ -278,7 +278,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "DV" = (
-/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "DZ" = (
@@ -289,7 +289,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "Gm" = (
-/atom/movable/effect/landmark/weapon_spawn/tier5_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier5_weapon_spawn,
 /turf/open/floor/industrial,
 /area/deathmatch)
 "Hh" = (
@@ -308,7 +308,7 @@
 /turf/open/floor/tile,
 /area/deathmatch)
 "HY" = (
-/atom/movable/effect/decal/cleanable/rune,
+/obj/effect/decal/cleanable/rune,
 /obj/item/explosive/plastique,
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
@@ -320,7 +320,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "Ii" = (
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "IH" = (
@@ -335,8 +335,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "Jg" = (
-/atom/movable/effect/landmark/weapon_spawn/tier3_weapon_spawn,
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "Jv" = (
@@ -348,7 +348,7 @@
 /turf/open/floor/tile,
 /area/deathmatch)
 "JF" = (
-/atom/movable/effect/landmark/weapon_spawn/tier5_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier5_weapon_spawn,
 /turf/open/floor/tile,
 /area/deathmatch)
 "Lq" = (
@@ -382,7 +382,7 @@
 /turf/open/floor/tile,
 /area/deathmatch)
 "Oi" = (
-/atom/movable/effect/decal/cleanable/rune,
+/obj/effect/decal/cleanable/rune,
 /obj/item/explosive/plastique,
 /turf/open/floor/tile,
 /area/deathmatch)
@@ -391,14 +391,14 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "Pf" = (
-/atom/movable/effect/landmark/weapon_spawn/tier5_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier5_weapon_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "Pr" = (
 /turf/open/floor/tile/yellow/full,
 /area/deathmatch)
 "PV" = (
-/atom/movable/effect/landmark/weapon_spawn/tier5_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier5_weapon_spawn,
 /turf/open/floor/tile/yellow/full,
 /area/deathmatch)
 "Qj" = (
@@ -418,7 +418,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "Si" = (
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "So" = (
@@ -453,8 +453,8 @@
 /turf/open/floor/industrial,
 /area/deathmatch)
 "Uq" = (
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "WT" = (
@@ -477,7 +477,7 @@
 /turf/open/floor/tile/yellow/full,
 /area/deathmatch)
 "Yj" = (
-/atom/movable/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
 /turf/open/floor/industrial,
 /area/deathmatch)
 "YD" = (
@@ -492,12 +492,12 @@
 /turf/open/floor/tile,
 /area/deathmatch)
 "Zr" = (
-/atom/movable/effect/landmark/weapon_spawn/tier1_weapon_spawn,
-/atom/movable/effect/landmark/deathmatch,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/landmark/deathmatch,
 /turf/open/floor/tile/dark,
 /area/deathmatch)
 "ZW" = (
-/atom/movable/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 

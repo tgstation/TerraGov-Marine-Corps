@@ -1,2 +1,2 @@
-/atom/movable/effect/spawner
+/obj/effect/spawner
 	name = "object spawner"

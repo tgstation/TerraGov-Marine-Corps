@@ -26,8 +26,8 @@
 	///The atom that we are attached to, does not need hard del protection as we are deleted with it
 	var/atom/attached_atom
 
-	///Reference to the holder /atom/movable/effect
-	var/atom/movable/effect/lighting_mask_holder/mask_holder
+	///Reference to the holder /obj/effect
+	var/obj/effect/lighting_mask_holder/mask_holder
 
 	///Prevents us from registering for update twice before SSlighting init
 	var/awaiting_update = FALSE

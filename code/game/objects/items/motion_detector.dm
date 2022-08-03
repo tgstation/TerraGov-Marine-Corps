@@ -1,14 +1,14 @@
 ///Remove the blip from the operator screen
-/atom/movable/effect/blip/proc/remove_blip(mob/operator)
+/obj/effect/blip/proc/remove_blip(mob/operator)
 	return
 
-/atom/movable/effect/blip/edge_blip
+/obj/effect/blip/edge_blip
 	icon = 'icons/Marine/marine-items.dmi'
 	plane = ABOVE_HUD_PLANE
 	/// A friendly/hostile identifier
 	var/identifier = MOTION_DETECTOR_HOSTILE
 
-/atom/movable/effect/blip/edge_blip/Initialize(mapload, identifier, mob/operator, screen_pos_x, screen_pos_y, direction = SOUTH)
+/obj/effect/blip/edge_blip/Initialize(mapload, identifier, mob/operator, screen_pos_x, screen_pos_y, direction = SOUTH)
 	. = ..()
 	if(!operator?.client)
 		return INITIALIZE_HINT_QDEL
@@ -19,18 +19,18 @@
 	update_icon()
 
 /// Remove the blip from the operator screen
-/atom/movable/effect/blip/edge_blip/remove_blip(mob/operator)
+/obj/effect/blip/edge_blip/remove_blip(mob/operator)
 	operator.client.screen -= src
 	qdel(src)
 
-/atom/movable/effect/blip/edge_blip/update_icon_state()
+/obj/effect/blip/edge_blip/update_icon_state()
 	icon_state = "edge_blip_[identifier]"
 
-/atom/movable/effect/blip/close_blip
+/obj/effect/blip/close_blip
 	plane = ABOVE_HUD_PLANE
 	var/image/blip_image
 
-/atom/movable/effect/blip/close_blip/Initialize(mapload, identifier, mob/operator)
+/obj/effect/blip/close_blip/Initialize(mapload, identifier, mob/operator)
 	. = ..()
 	if(!operator?.client)
 		return INITIALIZE_HINT_QDEL
@@ -39,11 +39,11 @@
 	operator.client.images += blip_image
 
 /// Remove the blip from the operator images
-/atom/movable/effect/blip/close_blip/remove_blip(mob/operator)
+/obj/effect/blip/close_blip/remove_blip(mob/operator)
 	operator.client?.images -= blip_image
 	qdel(src)
 
-/atom/movable/effect/blip/close_blip/Destroy()
+/obj/effect/blip/close_blip/Destroy()
 	blip_image = null
 	return ..()
 
@@ -62,7 +62,7 @@
 	///The range of this motion detector
 	var/range = 16
 	///The list of all the blips
-	var/list/atom/movable/effect/blip/blips_list = list()
+	var/list/obj/effect/blip/blips_list = list()
 
 /obj/item/attachable/motiondetector/Destroy()
 	clean_operator()
@@ -146,7 +146,7 @@
 /obj/item/attachable/motiondetector/proc/clean_blips()
 	if(!operator)//We already cleaned
 		return
-	for(var/atom/movable/effect/blip/blip AS in blips_list)
+	for(var/obj/effect/blip/blip AS in blips_list)
 		blip.remove_blip(operator)
 	blips_list.Cut()
 
@@ -177,6 +177,6 @@
 		dir = (dir ? dir == SOUTH ? SOUTHEAST : NORTHEAST : EAST)
 		screen_pos_x = viewX
 	if(dir)
-		blips_list += new /atom/movable/effect/blip/edge_blip(null, status, operator, screen_pos_x, screen_pos_y, dir)
+		blips_list += new /obj/effect/blip/edge_blip(null, status, operator, screen_pos_x, screen_pos_y, dir)
 		return
-	blips_list += new /atom/movable/effect/blip/close_blip(get_turf(target), status, operator)
+	blips_list += new /obj/effect/blip/close_blip(get_turf(target), status, operator)

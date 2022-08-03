@@ -25,7 +25,7 @@
 	///typepath for the mask type we are using
 	var/mask_type
 	///reference to the mask holder effect
-	var/atom/movable/effect/lighting_mask_holder/mask_holder
+	var/obj/effect/lighting_mask_holder/mask_holder
 	///reference to the mask contained within the mask_holder objects vis_contents
 	var/atom/movable/lighting_mask/our_mask
 

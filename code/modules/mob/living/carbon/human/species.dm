@@ -45,7 +45,7 @@
 	// Some species-specific gibbing data.
 	var/gibbed_anim = "gibbed-h"
 	var/dusted_anim = "dust-h"
-	var/remains_type = /atom/movable/effect/decal/remains/xeno
+	var/remains_type = /obj/effect/decal/remains/xeno
 	var/death_sound
 	var/death_message = "seizes up and falls limp, their eyes dead and lifeless..."
 
