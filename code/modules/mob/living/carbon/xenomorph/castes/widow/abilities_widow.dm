@@ -212,7 +212,6 @@
 
 /// Proc for attacking whatever the spidermother attacks
 /mob/living/spiderling/UnarmedAttack(mob/living/carbon/human/target)
-	. = .. ()
 	if(!isliving(target))
 		return
 
