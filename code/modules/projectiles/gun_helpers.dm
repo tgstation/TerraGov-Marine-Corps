@@ -690,7 +690,7 @@ should be alright.
 		///if your attached weapon has aim mode, stops it from aimming
 		if( (gunattachment) && (/datum/action/item_action/aim_mode in gunattachment.actions_types) )
 			REMOVE_TRAIT(gunattachment, TRAIT_GUN_IS_AIMING, GUN_TRAIT)
-			gunattachment:modify_fire_delay(-aim_fire_delay)
+			gunattachment.modify_fire_delay(-aim_fire_delay)
 		to_chat(user, span_notice("You cease aiming."))
 		return
 	if(!CHECK_BITFIELD(flags_item, WIELDED) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
