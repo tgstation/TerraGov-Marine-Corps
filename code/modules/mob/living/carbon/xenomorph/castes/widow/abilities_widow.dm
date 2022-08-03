@@ -58,7 +58,7 @@
 	X.throwpass = TRUE
 	burrowed = TRUE
 
-	for(var/mob/living/spiderling/kids in view(1, owner.loc))
+	for(var/mob/living/carbon/xenomorph/spiderling/kids in view(1, owner.loc))
 		RegisterSignal(kids, COMSIG_MOVABLE_MOVED, .proc/unburrow)
 		kids.alpha = 0
 		kids.mouse_opacity = 0
@@ -71,13 +71,6 @@
 
 /datum/action/xeno_action/burrow/proc/unburrow(mob/M)
 	SIGNAL_HANDLER
-	if(!isxeno(M))
-		M.alpha = 255
-		M.mouse_opacity = 255
-		M.density = TRUE
-		M.throwpass = FALSE
-		UnregisterSignal(M, COMSIG_MOVABLE_MOVED)
-		return
 	if(!burrowed)
 		return
 	var/mob/living/carbon/xenomorph/X = owner
@@ -179,49 +172,6 @@
 // *********** Spiderling Section
 // ***************************************
 
-/mob/living/spiderling
-	name = "Spiderling"
-	flags_pass = PASSXENO
-	icon = 'icons/Xeno/Effects.dmi'
-	icon_state = "spiderling"
-	/// Which hive this spiderling belongs to
-	var/hivenumber = XENO_HIVE_NORMAL
-	/// How much BRUTE damage the spiderling deals
-	var/spiderling_damage = 10
-
-/mob/living/spiderling/Initialize(mapload, mob/living/carbon/xenomorph/spidermother)
-	. = ..()
-	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/spiderling, spidermother)
-	hivenumber = spidermother.hivenumber
-
-/mob/living/spiderling/bullet_act(obj/projectile/proj)
-	if(proj.ammo.flags_ammo_behavior & AMMO_XENO)
-		return FALSE
-	return ..()
-
-/mob/living/spiderling/update_stat()
-	. = ..()
-	if(.)
-		return
-
-	if(stat == DEAD)
-		return
-
-	if(health <= 0)
-		gib()
-
-/// Proc for attacking whatever the spidermother attacks
-/mob/living/spiderling/UnarmedAttack(mob/living/carbon/human/target)
-	if(!isliving(target))
-		return
-
-	do_attack_animation(target, ATTACK_EFFECT_REDSLASH)
-	playsound(loc, "alien_claw_flesh", 25, 1)
-	visible_message("\The [src] slashes [target]!")
-
-	target.apply_damage(spiderling_damage, BRUTE, ran_zone(), 0, TRUE, TRUE, updating_health = TRUE)
-	changeNext_move(10)
-
 /datum/action/xeno_action/create_spiderling
 	name = "Birth Spiderling"
 	ability_name = "birth_spiderling"
@@ -237,72 +187,9 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	if(!do_after(X, 5 SECONDS, TRUE, X, BUSY_ICON_DANGER))
 		return fail_activate()
-	new /mob/living/spiderling(owner.loc, owner)
+	new /mob/living/carbon/xenomorph/spiderling(owner.loc, owner, owner)
 	succeed_activate()
 	add_cooldown()
-
-// ***************************************
-// *********** Spiderling AI Section
-// ***************************************
-/datum/ai_behavior/spiderling
-	target_distance = 1
-	base_action = ESCORTING_ATOM
-	///Necessary for turret detection and attack_xeno to work
-	var/status_flags = INCORPOREAL
-
-/datum/ai_behavior/spiderling/New(loc, parent_to_assign, escorted_atom, can_heal = FALSE)
-	. = ..()
-	if(!isxeno(escorted_atom))
-		RegisterSignal(escorted_atom, COMSIG_MOB_ATTACK_MELEE, .proc/go_to_target)
-		return
-	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/go_to_target)
-
-/datum/ai_behavior/spiderling/proc/go_to_target(source, mob/living/target)
-	SIGNAL_HANDLER
-	if(!isliving(target))
-		return
-	if(mob_parent.get_xeno_hivenumber() == target.get_xeno_hivenumber())
-		return
-	change_action(MOVING_TO_ATOM, target)
-
-///Signal handler to try to attack our target
-/datum/ai_behavior/spiderling/proc/attack_target(datum/source)
-	SIGNAL_HANDLER
-	if(world.time < mob_parent.next_move)
-		return
-	if(get_dist(atom_to_walk_to, mob_parent) > 1)
-		return
-	var/mob/living/victim = atom_to_walk_to
-	if(victim.stat != CONSCIOUS)
-		change_action(ESCORTING_ATOM, escorted_atom)
-		return
-	mob_parent.face_atom(atom_to_walk_to)
-	mob_parent.UnarmedAttack(atom_to_walk_to, mob_parent)
-
-/datum/ai_behavior/spiderling/look_for_new_state()
-	switch(current_action)
-		if(MOVING_TO_ATOM)
-			if(escorted_atom && get_dist(escorted_atom, mob_parent) > 3)
-				change_action(ESCORTING_ATOM, escorted_atom)
-				return
-
-/datum/ai_behavior/spiderling/register_action_signals(action_type)
-	if(action_type == MOVING_TO_ATOM)
-		RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, .proc/attack_target)
-		if(ishuman(atom_to_walk_to))
-			RegisterSignal(atom_to_walk_to, COMSIG_MOB_DEATH, /datum/ai_behavior.proc/change_action, ESCORTING_ATOM, escorted_atom)
-			return
-
-	return ..()
-
-/datum/ai_behavior/spiderling/unregister_action_signals(action_type)
-	if(action_type == MOVING_TO_ATOM)
-		UnregisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE)
-		if(ishuman(atom_to_walk_to))
-			UnregisterSignal(atom_to_walk_to, COMSIG_MOB_DEATH)
-			return
-
-	return ..()
 
 // ***************************************
 // *********** Spider Swarm
@@ -322,9 +209,9 @@
 	. = ..()
 	if(!do_after(owner, 3 SECONDS, TRUE, owner, BUSY_ICON_DANGER))
 		return fail_activate()
-	var/mob/living/spiderling/control_victim = new /mob/living/spiderling(get_turf(owner), owner)
+	var/mob/living/carbon/xenomorph/spiderling/control_victim = new /mob/living/carbon/xenomorph/spiderling(get_turf(owner), owner)
 	owner.mind.transfer_to(control_victim)
 	owner.doMove(null)
-	new /mob/living/spiderling(control_victim.loc, control_victim)
+	new /mob/living/carbon/xenomorph/spiderling(control_victim.loc, control_victim)
 	succeed_activate()
 	add_cooldown()

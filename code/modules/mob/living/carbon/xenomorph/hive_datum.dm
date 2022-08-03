@@ -370,6 +370,8 @@
 
 // helper function
 /datum/hive_status/proc/add_to_lists(mob/living/carbon/xenomorph/X)
+	if(X.xeno_caste.caste_flags & CASTE_IS_NOT_IN_LIST)
+		return
 	xenos_by_tier[X.tier] += X
 	xenos_by_upgrade[X.upgrade] += X
 	if(X.z)
@@ -1423,7 +1425,4 @@ to_chat will check for valid clients itself already so no need to double check f
 	return associated_hive.hivenumber
 
 /obj/structure/xeno/evotower/get_xeno_hivenumber()
-	return hivenumber
-
-/mob/living/spiderling/get_xeno_hivenumber()
 	return hivenumber
