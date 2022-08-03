@@ -113,7 +113,7 @@
 /// Signal handler to clean out user vars
 /obj/item/attachable/motiondetector/proc/clean_operator()
 	SIGNAL_HANDLER
-	if(operator.l_hand == src || operator.r_hand == src || operator.l_hand == loc || operator.r_hand == loc)
+	if(operator && (operator.l_hand == src || operator.r_hand == src || operator.l_hand == loc || operator.r_hand == loc))
 		return
 	STOP_PROCESSING(SSobj, src)
 	clean_blips()
