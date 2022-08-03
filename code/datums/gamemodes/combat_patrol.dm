@@ -22,9 +22,10 @@
 	var/game_timer
 	///The length of time until round ends.
 	var/max_game_time = 35 MINUTES
+	/// Timer used to calculate how long till next wave
+	var/wave_timer
 	///The length of time until next wave.
 	var/wave_timer_length = 5 MINUTES
-	var/wave_timer
 	///Whether the max game time has been reached
 	var/max_time_reached = FALSE
 	/// Time between two bioscan
