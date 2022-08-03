@@ -47,8 +47,6 @@
 	/// muzzleflash stuff
 	var/atom/movable/vis_atom/movable/effect/muzzle_flash/flash
 	COOLDOWN_DECLARE(fire_cooldown)
-	/// when next sound played
-	COOLDOWN_DECLARE(next_sound_play)
 
 /obj/vehicle/unmanned/Initialize()
 	. = ..()
@@ -120,15 +118,8 @@
 	if(user.incapacitated())
 		return FALSE
 
-	if(direction in GLOB.diagonals)
-		return FALSE
-
 	if(world.time < last_move_time + move_delay)
 		return
-
-	if(COOLDOWN_CHECK(src, next_sound_play))
-		COOLDOWN_START(src, next_sound_play, 20)
-		playsound(get_turf(src), 'sound/ambience/tank_driving.ogg', 50, TRUE)
 
 	return Move(get_step(src, direction))
 
