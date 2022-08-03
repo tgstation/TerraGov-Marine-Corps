@@ -743,8 +743,8 @@ TUNNEL
 
 /obj/structure/xeno/silo/LateInitialize()
 	. = ..()
-	if(!locate(/obj/effect/alien/weeds) in center_turf)
-		new /obj/effect/alien/weeds/node(center_turf)
+	if(!locate(/obj/alien/weeds) in center_turf)
+		new /obj/alien/weeds/node(center_turf)
 	associated_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	if(associated_hive)
 		RegisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), .proc/is_burrowed_larva_host)

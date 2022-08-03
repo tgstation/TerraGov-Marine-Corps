@@ -30,7 +30,7 @@
 	///the maximum range of the ability
 	var/max_range = 0
 	///The seleted type of weeds
-	var/obj/effect/alien/weeds/node/weed_type = /obj/effect/alien/weeds/node
+	var/obj/alien/weeds/node/weed_type = /obj/alien/weeds/node
 	///Whether automatic weeding is active
 	var/auto_weeding = FALSE
 	///The turf that was last weeded
@@ -90,7 +90,7 @@
 	if(weed_choice == AUTOMATIC_WEEDING)
 		toggle_auto_weeding()
 	else
-		for(var/obj/effect/alien/weeds/node/weed_type_possible AS in GLOB.weed_type_list)
+		for(var/obj/alien/weeds/node/weed_type_possible AS in GLOB.weed_type_list)
 			if(initial(weed_type_possible.name) == weed_choice)
 				weed_type = weed_type_possible
 				break
@@ -175,7 +175,7 @@
 	///List of buildable structures. Order corresponds with resin_images_list.
 	var/list/buildable_structures = list(
 		/turf/closed/wall/resin/regenerating,
-		/obj/effect/alien/resin/sticky,
+		/obj/alien/resin/sticky,
 		/obj/structure/mineral_door/resin,
 		)
 
@@ -226,7 +226,7 @@
 
 	var/build_resin_modifier = 1
 	switch(X.selected_resin)
-		if(/obj/effect/alien/resin/sticky)
+		if(/obj/alien/resin/sticky)
 			build_resin_modifier = 0.5
 		if(/obj/structure/mineral_door/resin)
 			build_resin_modifier = 2
@@ -248,7 +248,7 @@
 		to_chat(owner, span_warning("You cannot secrete resin without line of sight!"))
 		return fail_activate()
 
-	var/obj/effect/alien/weeds/alien_weeds = locate() in T
+	var/obj/alien/weeds/alien_weeds = locate() in T
 
 	for(var/obj/effect/forcefield/fog/F in range(1, X))
 		to_chat(X, span_warning("We can't build so close to the fog!"))
@@ -326,7 +326,7 @@
 		new_resin = new X.selected_resin(T)
 
 	switch(X.selected_resin)
-		if(/obj/effect/alien/resin/sticky)
+		if(/obj/alien/resin/sticky)
 			plasma_cost = initial(plasma_cost) / 3
 		if(/obj/structure/mineral_door/resin)
 			plasma_cost = initial(plasma_cost) * 3
@@ -1007,7 +1007,7 @@
 	if(!xeno.loc_weeds_type)
 		return fail_activate()
 
-	new /obj/effect/alien/egg/hugger(current_turf, xeno.hivenumber)
+	new /obj/alien/egg/hugger(current_turf, xeno.hivenumber)
 	playsound(current_turf, 'sound/effects/splat.ogg', 15, 1)
 
 	succeed_activate()

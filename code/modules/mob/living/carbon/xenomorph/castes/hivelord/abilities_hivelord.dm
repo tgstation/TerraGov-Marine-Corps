@@ -10,7 +10,7 @@
 	plasma_cost = 100
 	buildable_structures = list(
 		/turf/closed/wall/resin/regenerating/thick,
-		/obj/effect/alien/resin/sticky,
+		/obj/alien/resin/sticky,
 		/obj/structure/mineral_door/resin/thick,
 	)
 	///the maximum range of the ability

@@ -929,8 +929,6 @@
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/storage/helmet/som_leader,
-		/obj/item/armor_module/storage/helmet/som_vet,
 		/obj/item/armor_module/storage/helmet/som,
 		/obj/item/armor_module/armor/visor/marine,
 		/obj/item/armor_module/armor/badge,
@@ -946,12 +944,6 @@
 	current_variant = "black"
 	colorable_colors = list()
 
-/obj/item/clothing/head/modular/som/medic
-	starting_attachments = list(/obj/item/armor_module/storage/helmet/som_vet)
-
-/obj/item/clothing/head/modular/som/standard
-	starting_attachments = list(/obj/item/armor_module/storage/helmet/som)
-
 /obj/item/clothing/head/modular/som/welder
 	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/welding)
 
@@ -966,9 +958,3 @@
 	icon_state = "som_helmet"
 	item_state = "som_helmet"
 	soft_armor = list("melee" = 50, "bullet" = 75, "laser" = 65, "energy" = 65, "bomb" = 55, "bio" = 50, "rad" = 65, "fire" = 70, "acid" = 50)
-
-/obj/item/clothing/head/modular/som/veteran/leader
-	starting_attachments = list(/obj/item/armor_module/storage/helmet/som_leader)
-
-/obj/item/clothing/head/modular/som/veteran/vet
-	starting_attachments = list(/obj/item/armor_module/storage/helmet/som_vet)

@@ -656,7 +656,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return TRUE
 	if(proj.distance_travelled <= proj.ammo.barricade_clear_distance)
 		return FALSE
-	. = coverage //Hitchance.
+	var/hit_chance = coverage //base chance for the projectile to hit the object instead of bypassing it
 	if(flags_atom & ON_BORDER)
 		if(!(cardinal_move & REVERSE_DIR(dir))) //The bullet will only hit if the barricade and its movement are facing opposite directions.
 			if(!uncrossing)
@@ -665,15 +665,15 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		if (uncrossing)
 			return FALSE //you don't hit the cade from behind.
 	if(proj.ammo.flags_ammo_behavior & AMMO_SNIPER || proj.iff_signal || proj.ammo.flags_ammo_behavior & AMMO_ROCKET) //sniper, rockets and IFF rounds are better at getting past cover
-		. *= 0.8
+		hit_chance *= 0.8
 	if(!anchored)
-		. *= 0.5 //Half the protection from unaffixed structures.
+		hit_chance *= 0.5 //Half the protection from unaffixed structures.
 	///50% better protection when shooting from outside accurate range.
 	if(proj.distance_travelled > proj.ammo.accurate_range)
-		. *= 1.5
+		hit_chance *= 1.5
 ///Accuracy over 100 increases the chance of squeezing the bullet past the structure's uncovered areas.
-	. = min(. , . + 100 - proj.accuracy)
-	return prob(.)
+	hit_chance = min(hit_chance , hit_chance + 100 - proj.accuracy)
+	return prob(hit_chance)
 
 /obj/do_projectile_hit(obj/projectile/proj)
 	proj.ammo.on_hit_obj(src, proj)
@@ -709,7 +709,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 /obj/machinery/door/poddoor/railing/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	return src == proj.original_target
 
-/obj/effect/alien/egg/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+/obj/alien/egg/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	return src == proj.original_target
 
 /obj/structure/xeno/trap/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
@@ -734,8 +734,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return FALSE
 
 	//We want a temporary variable so accuracy doesn't change every time the bullet misses.
-	var/hit_chance
-	hit_chance += proj.accuracy
+	var/hit_chance = proj.accuracy
 	BULLET_DEBUG("Base accuracy is <b>[hit_chance]; scatter:[proj.scatter]; distance:[proj.distance_travelled]</b>")
 	if(proj.distance_travelled <= proj.ammo.accurate_range) //If bullet stays within max accurate range.
 		if(proj.distance_travelled <= proj.point_blank_range) //If bullet within point blank range, big accuracy buff.

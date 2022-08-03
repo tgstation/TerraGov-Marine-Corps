@@ -418,8 +418,8 @@
 	#define COMPONENT_NO_MUTE (1<<0)
 
 #define COMSIG_LIVING_ADD_VENTCRAWL "living_add_ventcrawl"
-#define COMSIG_LIVING_WEEDS_AT_LOC_CREATED "living_weeds_at_loc_created"	///from obj/effect/alien/weeds/Initialize()
-#define COMSIG_LIVING_WEEDS_ADJACENT_REMOVED "living_weeds_adjacent_removed"	///from obj/effect/alien/weeds/Destroy()
+#define COMSIG_LIVING_WEEDS_AT_LOC_CREATED "living_weeds_at_loc_created"	///from obj/alien/weeds/Initialize()
+#define COMSIG_LIVING_WEEDS_ADJACENT_REMOVED "living_weeds_adjacent_removed"	///from obj/alien/weeds/Destroy()
 
 //mob/living/carbon signals
 #define COMSIG_CARBON_SWAPPED_HANDS "carbon_swapped_hands"
@@ -745,6 +745,11 @@
 #define COMSIG_KB_AIMMODE "keybinding_aimmode"
 #define COMSIG_KB_FIREMODE "keybind_firemode"
 #define COMSIG_KB_GIVE "keybind_give"
+#define COMSIG_KB_MOVEORDER "keybind_moveorder"
+#define COMSIG_KB_HOLDORDER "keybind_holdorder"
+#define COMSIG_KB_FOCUSORDER "keybind_focusorder"
+#define COMSIG_KB_RALLYORDER "keybind_rallyorder"
+#define COMSIG_KB_SENDORDER "keybind_sendorder"
 
 // human modules signals for keybindings
 #define COMSIG_KB_VALI_CONFIGURE "keybinding_vali_configure"

@@ -83,7 +83,7 @@
 	if(resting) //Resting doubles sunder recovery
 		sunder_recov *= 2
 
-	if(ispath(loc_weeds_type, /obj/effect/alien/weeds/resting)) //Resting weeds double sunder recovery
+	if(ispath(loc_weeds_type, /obj/alien/weeds/resting)) //Resting weeds double sunder recovery
 		sunder_recov *= 2
 
 	if(recovery_aura)
