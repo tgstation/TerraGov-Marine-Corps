@@ -26,7 +26,7 @@
 	///Whether the max game time has been reached
 	var/max_time_reached = FALSE
 	/// Time between two bioscan
-	var/bioscan_interval = 5 MINUTES
+	var/bioscan_interval = 3 MINUTES
 
 /datum/game_mode/combat_patrol/post_setup()
 	. = ..()
@@ -78,7 +78,7 @@
 	var/datum/game_mode/combat_patrol/D = SSticker.mode
 	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/set_game_timer), SSticker.round_start_time + shutters_drop_time + 5 MINUTES) //game cannot end until at least 5 minutes after shutter drop
 	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/respawn_wave), SSticker.round_start_time + shutters_drop_time + 10 MINUTES) //first respawn wave is 10 minutes after shutters
-	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, SSticker.round_start_time + shutters_drop_time + 5 MINUTES)
+	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, SSticker.round_start_time + shutters_drop_time + bioscan_interval)
 
 ///round timer
 /datum/game_mode/combat_patrol/proc/set_game_timer()
