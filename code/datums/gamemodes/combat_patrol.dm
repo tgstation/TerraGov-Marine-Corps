@@ -5,7 +5,6 @@
 	flags_landmarks = MODE_LANDMARK_SPAWN_SPECIFIC_SHUTTLE_CONSOLE
 	shutters_drop_time = 5 MINUTES
 	flags_xeno_abilities = ABILITY_CRASH
-	respawn_time = 6 MINUTES
 	time_between_round = 0 HOURS
 	valid_job_types = list(
 		/datum/job/terragov/squad/engineer = 4,
