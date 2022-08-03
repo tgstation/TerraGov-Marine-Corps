@@ -22,9 +22,9 @@
 	var/game_timer
 	///The length of time until round ends.
 	var/max_game_time = 35 MINUTES
-	/// Timer used to calculate how long till next wave
+	/// Timer used to calculate how long till next respawn wave
 	var/wave_timer
-	///The length of time until next wave.
+	///The length of time until next respawn wave.
 	var/wave_timer_length = 5 MINUTES
 	///Whether the max game time has been reached
 	var/max_time_reached = FALSE
