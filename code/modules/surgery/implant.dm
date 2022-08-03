@@ -95,44 +95,6 @@
 	affected.createwound(CUT, 20)
 	affected.update_wounds()
 
-
-
-/datum/surgery_step/cavity/place_item
-	priority = 0 //Do NOT allow surgery items to go in here
-	allowed_tools = list(/obj/item = 100)
-
-	min_duration = 60
-	max_duration = 80
-
-/datum/surgery_step/cavity/place_item/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
-	if(..())
-		return !affected.hidden && affected.cavity && tool.w_class <= get_max_wclass(affected)
-
-/datum/surgery_step/cavity/place_item/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message(span_notice("[user] starts putting \the [tool] inside [target]'s [get_cavity(affected)] cavity."), \
-	span_notice("You start putting \the [tool] inside [target]'s [get_cavity(affected)] cavity.") )
-	target.custom_pain("The pain in your chest is living hell!",1)
-	..()
-
-/datum/surgery_step/cavity/place_item/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message(span_notice("[user] puts \the [tool] inside [target]'s [get_cavity(affected)] cavity."), \
-	span_notice("You put \the [tool] inside [target]'s [get_cavity(affected)] cavity."))
-	if(tool.w_class > get_max_wclass(affected)/2 && prob(50))
-		to_chat(user, span_warning("You tear some blood vessels trying to fit such a big object in this cavity."))
-		new /datum/wound/internal_bleeding(10, affected)
-		affected.owner.custom_pain("You feel something rip in your [affected.display_name]!", 1)
-	user.transferItemToLoc(tool, target)
-	affected.hidden = tool
-	affected.cavity = 0
-
-/datum/surgery_step/cavity/place_item/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message(span_warning("[user]'s hand slips, scraping tissue inside [target]'s [affected.display_name] with \the [tool]!"), \
-	span_warning("Your hand slips, scraping tissue inside [target]'s [affected.display_name] with \the [tool]!"))
-	affected.createwound(CUT, 20)
-	affected.update_wounds()
-
-
-
 //////////////////////////////////////////////////////////////////
 //					IMPLANT/ITEM REMOVAL SURGERY				//
 //////////////////////////////////////////////////////////////////
