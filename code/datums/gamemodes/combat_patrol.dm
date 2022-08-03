@@ -23,7 +23,8 @@
 	///The length of time until round ends.
 	var/max_game_time = 35 MINUTES
 	///The length of time until next wave.
-	var/wave_timer = 5 MINUTES
+	var/wave_timer_length = 5 MINUTES
+	var/wave_timer
 	///Whether the max game time has been reached
 	var/max_time_reached = FALSE
 	/// Time between two bioscan
@@ -78,7 +79,7 @@
 	//Starts the round timer when the game starts proper
 	var/datum/game_mode/combat_patrol/D = SSticker.mode
 	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/set_game_timer), SSticker.round_start_time + shutters_drop_time + 5 MINUTES) //game cannot end until at least 5 minutes after shutter drop
-	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/respawn_wave), SSticker.round_start_time + shutters_drop_time + 10 MINUTES) //first respawn wave is 10 minutes after shutters
+	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/respawn_wave), SSticker.round_start_time + shutters_drop_time + wave_timer_length) //first respawn wave is 5 minutes after shutters
 	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, SSticker.round_start_time + shutters_drop_time + bioscan_interval)
 
 ///round timer
@@ -100,6 +101,13 @@
 		return "[(eta / 60) % 60]:[add_leading(num2text(eta % 60), 2, "0")]"
 	else
 		return "Patrol finished"
+
+/datum/game_mode/combat_patrol/wave_countdown()
+	if(!wave_timer)
+		return
+	var/eta = timeleft(wave_timer) * 0.1
+	if(eta > 0)
+		return "[(eta / 60) % 60]:[add_leading(num2text(eta % 60), 2, "0")]"
 
 /datum/game_mode/combat_patrol/proc/set_game_end()
 	max_time_reached = TRUE
@@ -170,7 +178,7 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 ///Allows all the dead to respawn together
 /datum/game_mode/combat_patrol/proc/respawn_wave()
 	var/datum/game_mode/combat_patrol/D = SSticker.mode
-	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/respawn_wave), wave_timer)
+	D.wave_timer = addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/respawn_wave), wave_timer_length, TIMER_STOPPABLE)
 
 	for(var/i in GLOB.observer_list)
 		var/mob/dead/observer/M = i
