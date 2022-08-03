@@ -431,5 +431,5 @@
 	vehicle = _vehicle
 	RegisterSignal(vehicle, COMSIG_PARENT_QDELETING, .proc/clear_vehicle)
 	vehicle.on_link()
-	owner.AddComponent(/datum/component/remote_control, vehicle, vehicle.turret_type)
+	owner.AddComponent(/datum/component/remote_control, vehicle, vehicle.turret_type, vehicle.can_interact)
 	SEND_SIGNAL(owner, COMSIG_REMOTECONTROL_TOGGLE, owner)

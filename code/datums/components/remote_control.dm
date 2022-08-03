@@ -6,16 +6,20 @@
 	///whether the component is currently active or not
 	var/is_controlling = FALSE
 	///Callback to be run when user left clicks somewhere while remote controlling
+	var/datum/callback/ctrl_click_proc
+	///Callback to be run when user left clicks somewhere while remote controlling
 	var/datum/callback/left_click_proc
 	///Callback to be run when user right clicks somewhere while remote controlling
 	var/datum/callback/right_click_proc
 
 
-/datum/component/remote_control/Initialize(atom/movable/controlled, type)
+/datum/component/remote_control/Initialize(atom/movable/controlled, type, allow_interaction = FALSE)
 	. = ..()
 	if(!ismovableatom(controlled))
 		return COMPONENT_INCOMPATIBLE
 	src.controlled = controlled
+	if(allow_interaction)
+		ctrl_click_proc = CALLBACK(src, .proc/remote_interact)
 	update_left_clickproc(null, type)
 	RegisterSignal(controlled, COMSIG_UNMANNED_TURRET_UPDATED, .proc/update_left_clickproc)
 	RegisterSignal(controlled, COMSIG_UNMANNED_ABILITY_UPDATED, .proc/update_right_clickproc)
@@ -73,6 +77,14 @@
 		return
 	right_click_proc = null
 
+/datum/component/remote_control/proc/remote_interact(mob/user, atom/target, params)
+	if(!istype(target, /obj/structure/barricade/plasteel))
+		return
+	var/obj/structure/barricade/plasteel/cade = target
+	if(!controlled.Adjacent(cade))
+		return
+	cade.toggle_open()
+
 ///called when a shooty turret attempts to shoot by click
 /datum/component/remote_control/proc/uv_handle_click(mob/user, atom/target, params)
 	var/obj/vehicle/unmanned/T = controlled
@@ -100,6 +112,7 @@
 		newuser.balloon_alert(newuser, "The linked device is destroyed!")
 		controlled = null
 		return
+	controlled.become_hearing_sensitive()
 	SEND_SIGNAL(controlled, COMSIG_REMOTECONTROL_CHANGED, TRUE, newuser)
 	RegisterSignal(newuser, COMSIG_MOB_CLICKON, .proc/invoke)
 	RegisterSignal(newuser, COMSIG_MOB_LOGOUT, .proc/remote_control_off)
@@ -115,8 +128,10 @@
 	if(target == parent)
 		return NONE
 	var/list/modifiers = params2list(params)
-	if(modifiers["shift"] || modifiers["alt"] || modifiers["ctrl"])
+	if(modifiers["shift"] || modifiers["alt"])
 		return NONE
+	if(modifiers["ctrl"])
+		return ctrl_click_proc?.Invoke(source, target, params) ? COMSIG_MOB_CLICK_CANCELED : NONE
 	if(modifiers["left"])
 		return left_click_proc?.Invoke(source, target, params) ? COMSIG_MOB_CLICK_CANCELED : NONE
 	return right_click_proc?.Invoke(source, target, params) ? COMSIG_MOB_CLICK_CANCELED : NONE
@@ -127,6 +142,7 @@
 	SEND_SIGNAL(controlled, COMSIG_REMOTECONTROL_CHANGED, FALSE, user)
 	is_controlling = FALSE
 	user.set_remote_control(null)
+	REMOVE_TRAIT(controlled, TRAIT_HEARING_SENSITIVE, TRAIT_GENERIC)
 	UnregisterSignal(user, list(COMSIG_MOB_CLICKON, COMSIG_MOB_LOGOUT, COMSIG_RELAYED_SPEECH))
 	UnregisterSignal(parent, COMSIG_ITEM_DROPPED)
 	user = null

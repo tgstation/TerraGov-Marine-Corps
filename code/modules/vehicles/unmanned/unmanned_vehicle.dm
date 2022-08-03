@@ -20,6 +20,8 @@
 	var/turret_type
 	///Turret types we're allowed to attach
 	var/turret_pattern = PATTERN_TRACKED
+	/// If that vehicle can interact with cades
+	var/can_interact = FALSE
 	///Delay in byond ticks between weapon fires
 	var/fire_delay = 5
 	///Ammo remaining for the robot
@@ -42,11 +44,11 @@
 	var/unmanned_flags = OVERLAY_TURRET|HAS_LIGHTS|UNDERCARRIAGE
 	/// Iff flags, to prevent friendly fire from sg and aiming marines
 	var/iff_signal = TGMC_LOYALIST_IFF
+	/// muzzleflash stuff
+	var/atom/movable/vis_atom/movable/effect/muzzle_flash/flash
 	COOLDOWN_DECLARE(fire_cooldown)
 	/// when next sound played
 	COOLDOWN_DECLARE(next_sound_play)
-	/// muzzleflash stuff
-	var/atom/movable/vis_atom/movable/effect/muzzle_flash/flash
 
 /obj/vehicle/unmanned/Initialize()
 	. = ..()
