@@ -150,6 +150,12 @@
 	desc = "A box with round metal plates inside. Used to refill Outputters."
 	refill_type = /obj/item/factory_part/claymore
 
+/obj/item/factory_refill/smartgunner_rifle_box_refill
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Outputters."
+	refill_type = /obj/item/factory_part/smartgunner_rifle_box
+	refill_amount = 10
+
 /obj/item/factory_refill/smartgunner_minigun_box_refill
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Outputters."

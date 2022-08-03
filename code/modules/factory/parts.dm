@@ -155,6 +155,15 @@ GLOBAL_LIST_INIT(IFF_ammo, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CONSTRUCTOR, STEP_ICON_STATE = "bulletbox"),
 	))
 
+/obj/item/factory_part/smartgunner_rifle_box
+	name = "IFF bullet box"
+	desc = "A box with unfinished smart-rounds inside and empty drums inside"
+	result = /obj/item/ammo_magazine/packet/T25_rifle
+
+/obj/item/factory_part/smartgunner_rifle_box/Initialize()
+	. = ..()
+	recipe = GLOB.IFF_ammo
+
 /obj/item/factory_part/smartgunner_minigun_box
 	name = "IFF bullet box"
 	desc = "A box with unfinished smart-rounds inside"
