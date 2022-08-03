@@ -115,7 +115,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		return
 
 	occupant = user
-	RegisterSignal(occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING) .proc/exitpod)
+	RegisterSignal(occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING), .proc/exitpod)
 	user.forceMove(src)
 	userimg = image(user)
 	userimg.layer = DOOR_CLOSED_LAYER
