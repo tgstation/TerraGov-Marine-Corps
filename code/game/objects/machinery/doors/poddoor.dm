@@ -232,6 +232,7 @@
 	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
 	name = "Timed Emergency Shutters"
 	use_power = FALSE
+	resistance_flags = DROPSHIP_IMMUNE|RESIST_ALL
 
 
 /obj/machinery/door/poddoor/timed_late/Initialize()
