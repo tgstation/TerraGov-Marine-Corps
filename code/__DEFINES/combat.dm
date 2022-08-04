@@ -14,6 +14,24 @@
 #define ATTACK_EFFECT_REDSTAB "redstab"
 #define ATTACK_EFFECT_YELLOWPUNCH "yellowpunch"
 
+//Damage flag defines //
+/// Involves a melee attack or a thrown object.
+#define MELEE "melee"
+/// Involves a solid projectile.
+#define BULLET "bullet"
+/// Involves a laser.
+#define LASER "laser"
+/// Involves an EMP or energy-based projectile.
+#define ENERGY "energy"
+/// Involves a shockwave, usually from an explosion.
+#define BOMB "bomb"
+/// Involved in checking wheter a disease can infect or spread. Also involved in xeno neurotoxin.
+#define BIO "bio"
+/// Involves fire or temperature extremes.
+#define FIRE "fire"
+/// Involves corrosive substances.
+#define ACID "acid"
+
 //the define for visible message range in combat
 #define COMBAT_MESSAGE_RANGE 3
 #define DEFAULT_MESSAGE_RANGE 7
