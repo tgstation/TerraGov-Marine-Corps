@@ -314,7 +314,7 @@
 	. += number
 	if(!description_overlay)
 		return
-	var/mutable_appearance/desc= mutable_appearance()
+	var/mutable_appearance/desc = mutable_appearance()
 	desc.pixel_x += 18
 	desc.maptext = MAPTEXT(description_overlay)
 	. += desc
