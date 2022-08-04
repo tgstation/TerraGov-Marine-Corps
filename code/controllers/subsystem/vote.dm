@@ -144,17 +144,22 @@ SUBSYSTEM_DEF(vote)
 				deltimer(shipmap_timer_id)
 				var/datum/map_config/VM = config.maplist[SHIP_MAP]["Combat Patrol Base"]
 				SSmapping.changemap(VM, SHIP_MAP)
-			if(GLOB.master_mode != .)
-				SSticker.save_mode(.)
-				if(SSticker.HasRoundStarted())
-					restart = TRUE
-				else
-					var/datum/game_mode/current_gamemode = config.pick_mode(GLOB.master_mode)
-					GLOB.master_mode = .
-					if(current_gamemode.flags_round_type & MODE_SPECIFIC_SHIP_MAP)
-						addtimer(CALLBACK(src, .proc/initiate_vote, "shipmap", null, TRUE), 5 SECONDS)
-						SSticker.Reboot("Restarting server when valid ship map selected", CONFIG_GET(number/vote_period) + 15 SECONDS)
-						return
+			SSticker.save_mode(.) //changes the next game mode
+			if(GLOB.master_mode == .)
+				return
+			if(SSticker.HasRoundStarted())
+				restart = TRUE
+			else
+				var/datum/game_mode/current_gamemode = config.pick_mode(GLOB.master_mode)
+				var/datum/game_mode/new_gamemode = config.pick_mode(.)
+				GLOB.master_mode = . //changes the current gamemode
+				if(new_gamemode.flags_round_type & MODE_SPECIFIC_SHIP_MAP) //the new gamemode has a shipmap that is mode specific, restart to load it
+					SSticker.Reboot("Restarting server to load correct ship map", 10 SECONDS)
+					return
+				else if(current_gamemode.flags_round_type & MODE_SPECIFIC_SHIP_MAP) //the previous gamemode has a shipmap that is mode specific, so must be changed, then restarted to load the new one
+					addtimer(CALLBACK(src, .proc/initiate_vote, "shipmap", null, TRUE), 5 SECONDS)
+					SSticker.Reboot("Restarting server when valid ship map selected", CONFIG_GET(number/vote_period) + 15 SECONDS)
+					return
 		if("groundmap")
 			var/datum/map_config/VM = config.maplist[GROUND_MAP][.]
 			SSmapping.changemap(VM, GROUND_MAP)

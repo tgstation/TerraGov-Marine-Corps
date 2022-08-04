@@ -287,8 +287,10 @@
 
 	var/list/upgrades_bought = list()
 
-	///"Frenzy", "Warding", "Recovery". Defined in __DEFINES/xeno.dm
-	var/current_aura = null
+	///The aura we're currently emitted. Destroyed whenever we change or stop pheromones.
+	var/datum/aura_bearer/current_aura
+	/// If we're chosen as leader, this is the leader aura we emit.
+	var/datum/aura_bearer/leader_current_aura
 	///Passive plasma cost per tick for enabled personal (not leadership) pheromones.
 	var/pheromone_cost = 5
 	var/frenzy_aura = 0 //Strength of aura we are affected by. NOT THE ONE WE ARE EMITTING
@@ -304,7 +306,7 @@
 	var/zoom_turf = null
 
 	///Type of weeds the xeno is standing on, null when not on weeds
-	var/obj/effect/alien/weeds/loc_weeds_type
+	var/obj/alien/weeds/loc_weeds_type
 
 	var/attack_delay = 0 //Bonus or pen to time in between attacks. + makes slashes slower.
 	var/tier = XENO_TIER_ONE //This will track their "tier" to restrict/limit evolutions
@@ -326,12 +328,6 @@
 	//If they're not a xeno subtype it might crash or do weird things, like using human verb procs
 	//It should add them properly on New() and should reset/readd them on evolves
 	var/list/inherent_verbs = list()
-
-	//Lord forgive me for this horror, but Life code is awful
-	//These are tally vars, yep. Because resetting the aura value directly leads to fuckups
-	var/frenzy_new = 0
-	var/warding_new = 0
-	var/recovery_new = 0
 
 	///The xenomorph that this source is currently overwatching
 	var/mob/living/carbon/xenomorph/observed_xeno
@@ -358,10 +354,6 @@
 	// Defender vars
 	var/fortify = 0
 	var/crest_defense = 0
-
-	//Leader vars
-	var/leader_aura_strength = 0 //Pheromone strength inherited from Queen
-	var/leader_current_aura = "" //Pheromone type inherited from Queen
 
 	//Runner vars
 	var/savage = FALSE

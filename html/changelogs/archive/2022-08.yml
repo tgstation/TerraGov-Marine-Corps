@@ -1,0 +1,30 @@
+2022-08-01:
+  BraveMole:
+  - bugfix: Fix plural gender not able to chose gear
+  Lumipharon:
+  - balance: Slightly reduced the accuracy of volkite projectiles, and decreased the
+      damage of deflagration
+  - balance: Volkite weapons have higher damage falloff
+  - balance: Reduced the accurate range of the VX-33 Caliver and VX-42 Culverin
+  - balance: Reduced the magazine capacity of the VX-33 Caliver
+  - bugfix: gamemode votes should now work as expected in all cases.
+  novaepee:
+  - qol: Keybind for Move, Focus, Hold, Send, and Rally Order
+2022-08-03:
+  Autisem:
+  - balance: Dead marines will not cap the xeno pop for crash
+  - balance: Xeno larva check will proc every 1 minut instead of 2 minuts for crash
+2022-08-04:
+  Lauwma:
+  - rscadd: Adds back good old smoke grenades
+  Lumipharon:
+  - balance: Combat Patrol - bioscan occurs every 3 minutes instead of 5
+  - balance: Combat Patrol - max team player ratio changed to 1.1 from 1.2
+  - bugfix: fixes a projectile bug for a future version of byond
+  Vondiech:
+  - code_imp: turned long chain of else-if's in /mob/dead/observer/Topic(href, href_list)
+      into a switch
+  novaepee:
+  - rscadd: Give attack, defend, and retreat order to FC, SL, and aSL (also CO, SO,
+      CSE, RO, and CMO)
+  - balance: better coordination with marines, hopefully

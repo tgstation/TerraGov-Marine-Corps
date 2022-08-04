@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - bugfix: "Fix wraith unable to time shift self again after entering and existing crit whilst under the effect of time shift"

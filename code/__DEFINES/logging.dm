@@ -17,6 +17,7 @@
 #define LOG_LOOC (1<<15)
 #define LOG_XOOC (1<<16)
 #define LOG_MOOC (1<<17)
+#define LOG_MECHA (1<<18)
 
 
 //Individual logging panel pages

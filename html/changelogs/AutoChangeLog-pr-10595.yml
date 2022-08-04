@@ -1,0 +1,5 @@
+author: "QualityVan"
+delete-after: True
+changes: 
+  - refactor: "Anything can emit auras. both buff orders and pheromones use the same system, although in slightly different ways."
+  - rscadd: "Humans using overwatch computers can transmit buff orders through them."

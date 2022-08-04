@@ -1,0 +1,4 @@
+author: "XElectricX"
+delete-after: True
+changes: 
+  - bugfix: "Large object transparency no longer makes all tiles a multitile object occupies the only thing clickable."
