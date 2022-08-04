@@ -1,4 +1,0 @@
-author: "Vondiech"
-delete-after: True
-changes: 
-  - code_imp: "turned long chain of else-if's in /mob/dead/observer/Topic(href, href_list) into a switch"

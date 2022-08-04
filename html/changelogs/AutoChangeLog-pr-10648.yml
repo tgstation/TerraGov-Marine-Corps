@@ -1,5 +1,0 @@
-author: "novaepee"
-delete-after: True
-changes: 
-  - rscadd: "Give attack, defend, and retreat order to FC, SL, and aSL (also CO, SO, CSE, RO, and CMO)"
-  - balance: "better coordination with marines, hopefully"
