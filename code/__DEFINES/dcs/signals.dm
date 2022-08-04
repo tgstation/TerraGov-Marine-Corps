@@ -798,4 +798,5 @@
 #define COMSIG_DISABLE_BURST_FIRE "disable_burst_fire"
 
 //Signals for ais
-#define ESCORTING_ATOM_BEHAVIOUR_CHANGED "escorting_behaviour_changed"
+#define COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED "escorting_behaviour_changed"
+#define COMSIG_ESCORTED_ATOM_CHANGING "escorted_atom_changing"

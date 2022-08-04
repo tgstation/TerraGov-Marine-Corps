@@ -41,12 +41,12 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 
 /datum/ai_behavior/New(loc, mob/parent_to_assign, atom/escorted_atom)
 	..()
-	src.escorted_atom = escorted_atom
 	if(isnull(parent_to_assign))
 		stack_trace("An ai behavior was initialized without a parent to assign it to; destroying mind. Mind type: [type]")
 		qdel(src)
 		return
 	mob_parent = parent_to_assign
+	set_escorted_atom(null, escorted_atom)
 	//We always use the escorted atom as our reference point for looking for target. So if we don't have any escorted atom, we take ourselve as the reference
 	START_PROCESSING(SSprocessing, src)
 	if(is_offered_on_creation)
@@ -62,9 +62,9 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 ///Register ai behaviours
 /datum/ai_behavior/proc/start_ai()
 	if(escorted_atom)
-		set_escorted_atom(null, escorted_atom)
+		global_set_escorted_atom(null, escorted_atom)
 	else
-		RegisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY, .proc/set_escorted_atom)
+		RegisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY, .proc/global_set_escorted_atom)
 	RegisterSignal(SSdcs, COMSIG_GLOB_AI_GOAL_SET, .proc/set_goal_node)
 	goal_node = GLOB.goal_nodes[identifier]
 	RegisterSignal(goal_node, COMSIG_PARENT_QDELETING, .proc/clean_goal_node)
@@ -226,31 +226,35 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	goal_nodes = null
 	RegisterSignal(goal_node, COMSIG_PARENT_QDELETING, .proc/clean_goal_node)
 
-///Set the escorted atom
 /datum/ai_behavior/proc/set_escorted_atom(datum/source, atom/atom_to_escort)
+	SIGNAL_HANDLER
+	clean_escorted_atom()
+	escorted_atom = atom_to_escort
+	UnregisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY)
+	RegisterSignal(escorted_atom, COMSIG_ESCORTED_ATOM_CHANGING, .proc/set_escorted_atom)
+	RegisterSignal(escorted_atom, COMSIG_PARENT_QDELETING, .proc/clean_escorted_atom)
+	RegisterSignal(escorted_atom, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED, .proc/set_agressivity)
+	base_action = ESCORTING_ATOM
+	change_action(ESCORTING_ATOM, escorted_atom)
+
+///Set the escorted atom
+/datum/ai_behavior/proc/global_set_escorted_atom(datum/source, atom/atom_to_escort)
 	SIGNAL_HANDLER
 	if(!atom_to_escort || atom_to_escort.get_xeno_hivenumber() != mob_parent.get_xeno_hivenumber() || mob_parent.ckey)
 		return
 	if(get_dist(atom_to_escort, mob_parent) > target_distance)
 		return
-	INVOKE_ASYNC(mob_parent, /mob/living.proc/emote, "roar")
-	escorted_atom = atom_to_escort
-	RegisterSignal(escorted_atom, COMSIG_PARENT_QDELETING, .proc/clean_escorted_atom)
-	RegisterSignal(escorted_atom, ESCORTING_ATOM_BEHAVIOUR_CHANGED, .proc/set_agressivity)
-	base_action = ESCORTING_ATOM
-	change_action(ESCORTING_ATOM, escorted_atom)
-	UnregisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY)
+	set_escorted_atom(source, atom_to_escort)
 
 ///clean the escorted atom var to avoid harddels
 /datum/ai_behavior/proc/clean_escorted_atom()
 	SIGNAL_HANDLER
 	if(!escorted_atom)
 		return
-	UnregisterSignal(escorted_atom, COMSIG_PARENT_QDELETING)
-	UnregisterSignal(escorted_atom, ESCORTING_ATOM_BEHAVIOUR_CHANGED)
+	UnregisterSignal(escorted_atom, list(COMSIG_ESCORTED_ATOM_CHANGING ,COMSIG_PARENT_QDELETING, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED))
 	escorted_atom = null
 	base_action = initial(base_action)
-	RegisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY, .proc/set_escorted_atom)
+	RegisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY, .proc/global_set_escorted_atom)
 
 ///Set the target distance to be normal (initial) or very low (almost passive)
 /datum/ai_behavior/proc/set_agressivity(datum/source, should_be_agressive = TRUE)

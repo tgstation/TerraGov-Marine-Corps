@@ -178,18 +178,42 @@
 	mechanics_text = " Spawn a spiderling directly under you"
 	action_icon_state = "spawn_hugger" // temporary until I get my own icons
 	plasma_cost = 1 // increase later
-	cooldown_timer = 10 SECONDS
+	cooldown_timer = 1 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_LEASH_BALL
+	var/list/mob/living/carbon/xenomorph/spiderling/spiderlings
 
+/datum/action/xeno_action/create_spiderling/New(Target)
+	. = ..()
+	spiderlings = list()
 
 /datum/action/xeno_action/create_spiderling/action_activate()
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
-	if(!do_after(X, 5 SECONDS, TRUE, X, BUSY_ICON_DANGER))
+	if(!do_after(X, 0.5 SECONDS, TRUE, X, BUSY_ICON_DANGER))
 		return fail_activate()
-	new /mob/living/carbon/xenomorph/spiderling(owner.loc, owner, owner)
+
+	var/new_spiderling = new /mob/living/carbon/xenomorph/spiderling(owner.loc, owner, owner)
+	add_spiderling(new_spiderling)
 	succeed_activate()
 	add_cooldown()
+
+/datum/action/xeno_action/create_spiderling/proc/add_spiderling(mob/living/carbon/xenomorph/spiderling/new_spiderling)
+	RegisterSignal(new_spiderling, COMSIG_MOB_DEATH, .proc/remove_spiderling)
+	spiderlings += new_spiderling
+
+/datum/action/xeno_action/create_spiderling/proc/remove_spiderling(datum/source)
+	SIGNAL_HANDLER
+	spiderlings -= source
+	var/datum/action/xeno_action/spider_swarm/spider_swarm_action = owner.actions_by_path[/datum/action/xeno_action/spider_swarm]
+	if(!spider_swarm_action)
+		return
+	if (source != spider_swarm_action.current_controlling_spiderling)
+		return
+	var/next_spiderling = pick(spiderlings)
+	if(!next_spiderling)
+		spider_swarm_action.switch_to_mother()
+		return
+	spider_swarm_action.switch_to_next_spiderling(next_spiderling)
 
 // ***************************************
 // *********** Spider Swarm
@@ -202,16 +226,35 @@
 	plasma_cost = 1
 	cooldown_timer = 1 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_SPIDER_SWARM
+	/// The spiderling we are controlling right now
+	var/mob/living/carbon/xenomorph/spiderling/current_controlling_spiderling
 	/// how many spiderlings should spawn to replace widow
 	var/amount_of_spiderlings = 5
 
 /datum/action/xeno_action/spider_swarm/action_activate()
 	. = ..()
-	if(!do_after(owner, 3 SECONDS, TRUE, owner, BUSY_ICON_DANGER))
+	if(!do_after(owner, 0.5 SECONDS, TRUE, owner, BUSY_ICON_DANGER))
 		return fail_activate()
-	var/mob/living/carbon/xenomorph/spiderling/control_victim = new /mob/living/carbon/xenomorph/spiderling(get_turf(owner), owner)
-	owner.mind.transfer_to(control_victim)
+
+	current_controlling_spiderling = new /mob/living/carbon/xenomorph/spiderling(get_turf(owner), owner)
+
+	SEND_SIGNAL(owner, COMSIG_ESCORTED_ATOM_CHANGING, current_controlling_spiderling)
+
+	owner.mind.transfer_to(current_controlling_spiderling)
 	owner.doMove(null)
-	new /mob/living/carbon/xenomorph/spiderling(control_victim.loc, control_victim)
+	var/new_spiderling = new /mob/living/carbon/xenomorph/spiderling(current_controlling_spiderling.loc, current_controlling_spiderling)
+	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = owner.actions_by_path[/datum/action/xeno_action/create_spiderling]
+	create_spiderling_action.add_spiderling(new_spiderling)
+
 	succeed_activate()
 	add_cooldown()
+
+/datum/action/xeno_action/spider_swarm/proc/switch_to_next_spiderling(mob/living/carbon/xenomorph/spiderling/spiderling)
+	current_controlling_spiderling.mind.transfer_to(spiderling)
+	SEND_SIGNAL(current_controlling_spiderling, COMSIG_ESCORTED_ATOM_CHANGING, spiderling)
+	current_controlling_spiderling = spiderling
+
+/// Put the player back in widow
+/datum/action/xeno_action/spider_swarm/proc/switch_to_mother()
+	current_controlling_spiderling.mind.transfer_to(owner)
+	owner.doMove(get_turf(current_controlling_spiderling))

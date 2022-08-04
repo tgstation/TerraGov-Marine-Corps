@@ -71,7 +71,7 @@
 /datum/ai_behavior/spiderling/look_for_new_state()
 	switch(current_action)
 		if(MOVING_TO_ATOM)
-			if(escorted_atom && get_dist(escorted_atom, mob_parent) > 3)
+			if(escorted_atom && get_dist(escorted_atom, mob_parent) > 1)
 				change_action(ESCORTING_ATOM, escorted_atom)
 				return
 
@@ -92,15 +92,3 @@
 			return
 
 	return ..()
-
-/// Proc for attacking whatever the spidermother attacks
-/mob/living/carbon/xenomorph/spiderling/UnarmedAttack(mob/living/carbon/human/target)
-	if(!isliving(target))
-		return
-
-	do_attack_animation(target, ATTACK_EFFECT_REDSLASH)
-	playsound(loc, "alien_claw_flesh", 25, 1)
-	visible_message("\The [src] slashes [target]!")
-
-	target.apply_damage(melee_damage, BRUTE, ran_zone(), 0, TRUE, TRUE, updating_health = TRUE)
-	changeNext_move(-1)
