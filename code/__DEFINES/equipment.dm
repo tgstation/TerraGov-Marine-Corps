@@ -32,8 +32,6 @@
 #define BUMP_ATTACKABLE (1<<15)
 ///This atom will not be qdeled when a shuttle lands on it; it will just move onto the shuttle tile. It will stay on the ground when the shuttle takes off
 #define SHUTTLE_IMMUNE (1<<16)
-///If this atom has specific projectile_hit checks
-#define PROJ_HIT_SPECIFIC_CHECK	(1<<17)
 /// Should we use the initial icon for display? Mostly used by overlay only objects
 #define HTML_USE_INITAL_ICON_1 (1<<21)
 
