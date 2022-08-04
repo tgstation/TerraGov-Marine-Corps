@@ -184,7 +184,7 @@
 
 	if(!isnull(range))
 		proj_max_range = range
-	if(shooter)
+	if(shooter && !firer)
 		firer = shooter
 		permutated[firer] = TRUE //Don't hit the shooter
 	if(source)
