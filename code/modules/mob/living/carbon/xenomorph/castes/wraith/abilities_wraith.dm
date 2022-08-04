@@ -672,6 +672,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	targeted.remove_filter("prerewind_blur")
 	UnregisterSignal(targeted, COMSIG_MOVABLE_MOVED)
 	if(QDELETED(targeted) || targeted.stat != CONSCIOUS)
+		REMOVE_TRAIT(targeted, TRAIT_TIME_SHIFTED, XENO_TRAIT)
 		targeted = null
 		return
 	targeted.add_filter("rewind_blur", 1, radial_blur_filter(0.3))
