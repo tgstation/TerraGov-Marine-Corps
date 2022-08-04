@@ -222,6 +222,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	exitpod()
 
 /obj/structure/droppod/proc/exitpod(forced = FALSE)
+	SIGNAL_HANDLER
 	if(!occupant)
 		return
 	if(drop_state == DROPPOD_ACTIVE && !forced && occupant)
