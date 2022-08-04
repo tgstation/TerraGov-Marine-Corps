@@ -487,3 +487,32 @@
 	SIGNAL_HANDLER
 	beacon_datum = null
 
+/obj/item/armor_module/module/better_head_lamp
+	name = "Baldur Helmet System"
+	desc = "Designed for mounting on modular Helmet. When attached, this system will provide head lamps stronger than the power output of your modular armor's mounted flashlight. Be the light in the darkness."
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
+	icon_state = "lamp_head"
+	item_state = "lamp_head_a"
+	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
+	slot = ATTACHMENT_SLOT_HEAD_MODULE
+	prefered_slot = SLOT_HEAD
+	active = FALSE
+
+/obj/item/armor_module/module/better_head_lamp/on_detach(obj/item/detaching_from, mob/user)
+	parent.set_light_range(0)
+	parent.set_light_power(0)
+	parent.set_light_on(FALSE)
+
+/obj/item/armor_module/module/better_head_lamp/activate(mob/living/user)
+	. = ..()
+	if(active)
+		parent.set_light_range(0)
+		parent.set_light_power(0)
+		parent.set_light_on(FALSE)
+	else
+		playsound(src, 'sound/items/flashlight.ogg', 15, TRUE)
+		parent.set_light_range(9)
+		parent.set_light_power(2)
+		parent.set_light_on(TRUE)
+	active = !active
+	to_chat(user, span_notice("You toggle \the [src]. [active ? "enabling" : "disabling"] it."))
