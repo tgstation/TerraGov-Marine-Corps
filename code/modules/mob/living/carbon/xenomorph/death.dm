@@ -10,6 +10,8 @@
 
 
 /mob/living/carbon/xenomorph/on_death()
+	if(src.xeno_caste.caste_flags & CASTE_IS_NOT_IN_LIST)
+		return
 	GLOB.alive_xeno_list -= src
 	GLOB.dead_xeno_list += src
 

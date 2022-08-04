@@ -362,6 +362,8 @@
 /datum/hive_status/proc/add_xeno(mob/living/carbon/xenomorph/X) // should only be called by add_to_hive below
 	if(X.stat == DEAD)
 		dead_xenos += X
+	if(X.xeno_caste.caste_flags & CASTE_IS_NOT_IN_LIST)
+		return
 	else
 		add_to_lists(X)
 
@@ -388,6 +390,8 @@
 	return TRUE
 
 /mob/living/carbon/xenomorph/proc/add_to_hive(datum/hive_status/HS, force=FALSE)
+	if(src.xeno_caste.caste_flags & CASTE_IS_NOT_IN_LIST)
+		return
 	if(!force && hivenumber != XENO_HIVE_NONE)
 		CRASH("trying to do a dirty add_to_hive")
 
@@ -431,6 +435,8 @@
 
 // This is a special proc called only when a xeno is first created to set their hive and name properly
 /mob/living/carbon/xenomorph/proc/set_initial_hivenumber()
+	if(src.xeno_caste.caste_flags & CASTE_IS_NOT_IN_LIST)
+		return
 	add_to_hive_by_hivenumber(hivenumber, force=TRUE)
 
 // ***************************************
@@ -441,6 +447,8 @@
 		if(!dead_xenos.Remove(X))
 			stack_trace("failed to remove a dead xeno from hive status dead list, nothing was removed!?")
 			return FALSE
+	if(X.xeno_caste.caste_flags & CASTE_IS_NOT_IN_LIST)
+		return
 	else
 		remove_from_lists(X)
 
@@ -567,6 +575,8 @@
 
 /datum/hive_status/proc/on_xeno_revive(mob/living/carbon/xenomorph/X)
 	dead_xenos -= X
+	if(X.xeno_caste.caste_flags & CASTE_IS_NOT_IN_LIST)
+		return
 	add_to_lists(X)
 	return TRUE
 
