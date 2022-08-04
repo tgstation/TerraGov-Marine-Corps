@@ -86,6 +86,12 @@
 #define COMSIG_LIMB_DESTROYED "limb_destroyed"
 #define COMSIG_LIMB_UNDESTROYED "limb_undestroyed"
 
+// /datum/aura_bearer signals
+//From /datum/aura_bearer/New(), fires on the aura_bearer's emitter. Provides a list of aura types started.
+#define COMSIG_AURA_STARTED "aura_started"
+//From /datum/aura_bearer/stop_emitting(), fires on the aura_bearer's emitter. Provides a list of aura types finished.
+#define COMSIG_AURA_FINISHED "aura_finished"
+
 /// Admin helps
 /// From /datum/admin_help/RemoveActive().
 /// Fired when an adminhelp is made inactive either due to closing or resolving.

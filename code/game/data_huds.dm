@@ -445,18 +445,20 @@
 	if(stat != DEAD)
 		var/tempname = ""
 		if(frenzy_aura)
-			tempname += FRENZY
+			tempname += AURA_XENO_FRENZY
 		if(warding_aura)
-			tempname += WARDING
+			tempname += AURA_XENO_WARDING
 		if(recovery_aura)
-			tempname += RECOVERY
+			tempname += AURA_XENO_RECOVERY
 		if(tempname)
 			holder.icon_state = "hud[tempname]"
 
 		if(current_aura)
-			holder.overlays += image('icons/mob/hud.dmi', src, "hudaura[current_aura]")
+			for(var/aura_type in current_aura.aura_types)
+				holder.overlays += image('icons/mob/hud.dmi', src, "hudaura[aura_type]")
 		if(leader_current_aura)
-			holder.overlays += image('icons/mob/hud.dmi', src, "hudaura[leader_current_aura]")
+			for(var/aura_type in leader_current_aura.aura_types)
+				holder.overlays += image('icons/mob/hud.dmi', src, "hudaura[aura_type]")
 
 	hud_list[PHEROMONE_HUD] = holder
 
@@ -573,11 +575,11 @@
 			holder.icon_state = "hud[tempname]"
 
 		switch(command_aura)
-			if("move")
+			if(AURA_HUMAN_MOVE)
 				holder.overlays += image('icons/mob/hud.dmi', src, "hudmoveaura")
-			if("hold")
+			if(AURA_HUMAN_HOLD)
 				holder.overlays += image('icons/mob/hud.dmi', src, "hudholdaura")
-			if("focus")
+			if(AURA_HUMAN_FOCUS)
 				holder.overlays += image('icons/mob/hud.dmi', src, "hudfocusaura")
 
 	hud_list[ORDER_HUD] = holder
