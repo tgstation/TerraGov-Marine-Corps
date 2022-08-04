@@ -798,7 +798,6 @@
 	var/obj/projectile/newspit = new /obj/projectile(current_turf)
 	plasma_cost = X.ammo.spit_cost
 	newspit.generate_bullet(X.ammo, X.ammo.damage * SPIT_UPGRADE_BONUS(X))
-	newspit.permutated += X
 	newspit.def_zone = X.get_limbzone_target()
 	newspit.fire_at(current_target, X, null, X.ammo.max_range, X.ammo.shell_speed)
 
