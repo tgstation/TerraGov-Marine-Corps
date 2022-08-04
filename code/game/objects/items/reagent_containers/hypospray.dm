@@ -199,7 +199,7 @@
 	. = ..()
 	if(isturf(loc) || !description_overlay)
 		return
-	var/mutable_appearance/desc= mutable_appearance()
+	var/mutable_appearance/desc = mutable_appearance()
 	desc.pixel_x += 20
 	desc.maptext = MAPTEXT(description_overlay)
 	. += desc
