@@ -235,12 +235,15 @@
 		return
 	old_appearance = xenoowner.appearance
 	ADD_TRAIT(xenoowner, TRAIT_MOB_ICON_UPDATE_BLOCKED, STEALTH_TRAIT)
+	xenoowner.update_wounds()
 	return ..()
 
 /datum/action/xeno_action/stealth/disguise/cancel_stealth()
 	. = ..()
 	owner.appearance = old_appearance
 	REMOVE_TRAIT(owner, TRAIT_MOB_ICON_UPDATE_BLOCKED, STEALTH_TRAIT)
+	var/mob/living/carbon/xenomorph/xenoowner = owner
+	xenoowner.update_wounds()
 
 /datum/action/xeno_action/stealth/disguise/handle_stealth()
 	var/mob/living/carbon/xenomorph/xenoowner = owner
