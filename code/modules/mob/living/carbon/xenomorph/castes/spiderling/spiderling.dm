@@ -41,8 +41,6 @@
 /datum/ai_behavior/spiderling
 	target_distance = 1
 	base_action = ESCORTING_ATOM
-	///Necessary for turret detection and attack_xeno to work
-	var/status_flags = INCORPOREAL
 
 /datum/ai_behavior/spiderling/New(loc, parent_to_assign, escorted_atom, can_heal = FALSE)
 	. = ..()
@@ -105,4 +103,4 @@
 	visible_message("\The [src] slashes [target]!")
 
 	target.apply_damage(melee_damage, BRUTE, ran_zone(), 0, TRUE, TRUE, updating_health = TRUE)
-	changeNext_move(10)
+	changeNext_move(-1)
