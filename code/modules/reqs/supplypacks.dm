@@ -928,7 +928,7 @@ MEDICAL
 	name = "lemoline"
 	notes = "Contains 1 bottle of lemoline with 30 units each."
 	contains = list(
-		/obj/item/reagent_containers/glass/bottle/lemoline/doctor
+		/obj/item/reagent_containers/glass/bottle/lemoline/doctor,
 	)
 	cost = 8
 
