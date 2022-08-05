@@ -257,6 +257,23 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 
 /datum/game_mode/combat_patrol/declare_completion()
 	. = ..()
+	var/sound/win_track
+	switch(round_finished)
+		if(MODE_COMBAT_PATROL_SOM_MAJOR || MODE_COMBAT_PATROL_SOM_MINOR)
+			win_track = ('sound/theme/som_win.ogg')
+		if(MODE_COMBAT_PATROL_MARINE_MAJOR || MODE_COMBAT_PATROL_MARINE_MINOR)
+			win_track = pick('sound/theme/tgmc_win.ogg')
+		if(MODE_COMBAT_PATROL_DRAW)
+			win_track = pick('sound/theme/neutral_melancholy1.ogg')
+
+	for(var/i in GLOB.human_mob_list)
+		var/mob/M = i
+		SEND_SOUND(M, win_track)
+
+	for(var/i in GLOB.observer_list)
+		var/mob/dead/observer/M = i
+		SEND_SOUND(M, win_track)
+
 	to_chat(world, span_round_header("|[round_finished]|"))
 	to_chat(world, span_round_body("Thus ends the story of the brave men and women of both the TGMC and SOM, and their struggle on [SSmapping.configs[GROUND_MAP].map_name]."))
 
