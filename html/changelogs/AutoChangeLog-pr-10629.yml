@@ -1,4 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - code_imp: "Minor performance increase in projectile code"

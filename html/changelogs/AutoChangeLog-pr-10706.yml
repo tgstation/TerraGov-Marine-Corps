@@ -1,4 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - qol: "Drop pod ejects marine if the marine dies"

@@ -28,3 +28,40 @@
   - rscadd: Give attack, defend, and retreat order to FC, SL, and aSL (also CO, SO,
       CSE, RO, and CMO)
   - balance: better coordination with marines, hopefully
+2022-08-05:
+  BraveMole:
+  - bugfix: Fix inconsistent hugger activation on hit
+  - bugfix: Fix direction on pipe changing when tadpole is landing
+  - bugfix: Taking over synths gives them the wrong random name race format
+  - qol: Drop pod ejects marine if the marine dies
+  - qol: Add auto climbing
+  - balance: Prevent placing silo and other blessing's building near fob, outside
+      of weeds, etc.
+  - bugfix: Fix burst breaking gun in high lag situation
+  - bugfix: Fix spawned shotgun not able to shoot
+  - bugfix: Prevent corpse lunging
+  - bugfix: Fix wraith unable to time shift self again after entering and existing
+      crit whilst under the effect of time shift
+  - bugfix: Fix being able to vent out in dense object
+  - bugfix: Fix alamo being stuck shipside if you touched the console too late
+  - bugfix: Fix motion detector shutting down impromptly
+  - bugfix: Fix stagger not being applied with deployed gun
+  - bugfix: Set Xeno buffs admin verb is now in percentage
+  - bugfix: Fix disguised hunter still having wound overlay
+  - bugfix: Fix ai controlling doors groundside
+  - bugfix: Fix synth's getting human limbs after aheal
+  - bugfix: Cannot deploy via alt click menu
+  - bugfix: Fix fob drone placing cade diagonally
+  - bugfix: Fix corpse spawner being counted in statistic
+  - code_imp: Minor performance increase in projectile code
+  - bugfix: Prevent from spamming launch in tadpole
+  QualityVan:
+  - refactor: Anything can emit auras. both buff orders and pheromones use the same
+      system, although in slightly different ways.
+  - rscadd: Humans using overwatch computers can transmit buff orders through them.
+  XElectricX:
+  - bugfix: Large object transparency no longer makes all tiles a multitile object
+      occupies the only thing clickable.
+  goose4429:
+  - code_imp: Refactored vendor code for loadouts
+  - code_imp: Vendors now support several point categories

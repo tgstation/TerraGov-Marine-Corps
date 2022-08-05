@@ -1,5 +1,0 @@
-author: "goose4429"
-delete-after: True
-changes: 
-  - code_imp: "Refactored vendor code for loadouts"
-  - code_imp: "Vendors now support several point categories"
