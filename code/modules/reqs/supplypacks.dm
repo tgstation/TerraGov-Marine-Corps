@@ -926,12 +926,11 @@ MEDICAL
 
 /datum/supply_packs/medical/lemolime
 	name = "lemoline"
-	notes = "Contains 2 bottles of lemoline with 10 units each."
+	notes = "Contains 1 bottle of lemoline with 30 units each."
 	contains = list(
-		/obj/item/reagent_containers/glass/bottle/lemoline,
-		/obj/item/reagent_containers/glass/bottle/lemoline,
+		/obj/item/reagent_containers/glass/bottle/lemoline/doctor
 	)
-	cost = 5
+	cost = 8
 
 /datum/supply_packs/medical/advancedKits
 	name = "Advanced medical packs"
