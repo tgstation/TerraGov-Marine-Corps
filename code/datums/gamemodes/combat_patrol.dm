@@ -271,8 +271,8 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 		SEND_SOUND(M, win_track)
 
 	for(var/i in GLOB.observer_list)
-		var/mob/dead/observer/M = i
-		SEND_SOUND(M, win_track)
+		var/mob/M = i
+		SEND_SOUND(M, human_track)
 
 	to_chat(world, span_round_header("|[round_finished]|"))
 	to_chat(world, span_round_body("Thus ends the story of the brave men and women of both the TGMC and SOM, and their struggle on [SSmapping.configs[GROUND_MAP].map_name]."))
