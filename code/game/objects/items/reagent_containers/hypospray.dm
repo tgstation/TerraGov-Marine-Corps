@@ -431,7 +431,7 @@
 		/datum/reagent/medicine/meralyne = 30,
 		/datum/reagent/medicine/dermaline = 30,
 	)
-	description_overlay = "Md"
+	description_overlay = "MD"
 
 /obj/item/reagent_containers/hypospray/advanced/oxycodone
 	name = "oxycodone hypospray"
