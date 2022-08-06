@@ -1,0 +1,8 @@
+author: "tyeagg"
+delete-after: True
+changes: 
+  - rscadd: "rappel rope when entering map"
+  - qol: "screen alert for respawn waves and objective"
+  - balance: "respawn timer for patrol to 5 minutes"
+  - soundadd: "rappel and tadpole hover sound"
+  - imageadd: "rappel and patrol point"

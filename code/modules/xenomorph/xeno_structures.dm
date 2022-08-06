@@ -1072,7 +1072,6 @@ TUNNEL
 	face_atom(hostile)
 	var/obj/projectile/newshot = new(loc)
 	newshot.generate_bullet(ammo)
-	newshot.permutated += src
 	newshot.def_zone = pick(GLOB.base_miss_chance)
 	newshot.fire_at(hostile, src, null, ammo.max_range, ammo.shell_speed)
 	if(istype(ammo, /datum/ammo/xeno/hugger))

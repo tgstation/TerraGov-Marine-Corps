@@ -53,8 +53,14 @@
 
 	do_climb(target)
 
+/obj/structure/Bumped(atom/movable/AM)
+	. = ..()
+	if(!isliving(AM))
+		return
+	do_climb(AM)
+
 /obj/structure/proc/can_climb(mob/living/user)
-	if(!climbable || !can_interact(user))
+	if(!climbable || !can_interact(user) || user.do_actions)
 		return FALSE
 
 	var/turf/T = src.loc

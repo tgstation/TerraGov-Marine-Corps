@@ -145,97 +145,98 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	. = ..()
 	if(.)
 		return
-	if(href_list["reentercorpse"])
-		if(!isobserver(usr))
-			return
-		var/mob/dead/observer/A = usr
-		A.reenter_corpse()
+	switch(href_list[href])
+		if("reentercorpse")
+			if(!isobserver(usr))
+				return
+			var/mob/dead/observer/A = usr
+			A.reenter_corpse()
 
 
-	else if(href_list["track"])
-		var/mob/target = locate(href_list["track"]) in GLOB.mob_list
-		if(istype(target))
-			ManualFollow(target)
-			return
-		else
-			var/atom/movable/AM = locate(href_list["track"])
-			ManualFollow(AM)
-			return
-
-
-	else if(href_list["jump"])
-		var/x = text2num(href_list["x"])
-		var/y = text2num(href_list["y"])
-		var/z = text2num(href_list["z"])
-
-		if(x == 0 && y == 0 && z == 0)
-			return
-
-		var/turf/T = locate(x, y, z)
-		if(!T)
-			return
-
-		var/mob/dead/observer/A = usr
-		A.abstract_move(T)
-		return
-
-	else if(href_list["claim"])
-		var/mob/living/target = locate(href_list["claim"]) in GLOB.offered_mob_list
-		if(!istype(target))
-			to_chat(usr, span_warning("Invalid target."))
-			return
-
-		target.take_over(src)
-
-	else if(href_list["join_ert"])
-		if(!isobserver(usr))
-			return
-		var/mob/dead/observer/A = usr
-
-		A.JoinResponseTeam()
-		return
-
-	else if(href_list["join_larva"])
-		if(!isobserver(usr))
-			return
-		var/mob/dead/observer/ghost = usr
-
-		var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-		if(LAZYFIND(HS.candidate, ghost))
-			to_chat(ghost, span_warning("You are already in the queue to become a Xenomorph."))
-			return
-
-		switch(tgui_alert(ghost, "What would you like to do?", "Burrowed larva source available", list("Join as Larva", "Cancel"), 0))
-			if("Join as Larva")
-				SSticker.mode.attempt_to_join_as_larva(ghost)
-		return
-
-	else if(href_list["preference"])
-		if(!client?.prefs)
-			return
-		stack_trace("This code path is no longer valid, migrate this to new TGUI prefs")
-		return
-
-	else if(href_list["track_xeno_name"])
-		var/xeno_name = href_list["track_xeno_name"]
-		for(var/Y in GLOB.hive_datums[XENO_HIVE_NORMAL].get_all_xenos())
-			var/mob/living/carbon/xenomorph/X = Y
-			if(isnum(X.nicknumber))
-				if(num2text(X.nicknumber) != xeno_name)
-					continue
+		if("track")
+			var/mob/target = locate(href_list["track"]) in GLOB.mob_list
+			if(istype(target))
+				ManualFollow(target)
+				return
 			else
-				if(X.nicknumber != xeno_name)
-					continue
-			ManualFollow(X)
-			break
+				var/atom/movable/AM = locate(href_list["track"])
+				ManualFollow(AM)
+				return
 
-	else if(href_list["track_silo_number"])
-		var/silo_number = href_list["track_silo_number"]
-		for(var/obj/structure/xeno/silo/resin_silo AS in GLOB.xeno_resin_silos)
-			if(resin_silo.associated_hive == GLOB.hive_datums[XENO_HIVE_NORMAL] && num2text(resin_silo.number_silo) == silo_number)
-				var/mob/dead/observer/ghost = usr
-				ghost.abstract_move(resin_silo.loc)
+
+		if("jump")
+			var/x = text2num(href_list["x"])
+			var/y = text2num(href_list["y"])
+			var/z = text2num(href_list["z"])
+
+			if(x == 0 && y == 0 && z == 0)
+				return
+
+			var/turf/T = locate(x, y, z)
+			if(!T)
+				return
+
+			var/mob/dead/observer/A = usr
+			A.abstract_move(T)
+			return
+
+		if("claim")
+			var/mob/living/target = locate(href_list["claim"]) in GLOB.offered_mob_list
+			if(!istype(target))
+				to_chat(usr, span_warning("Invalid target."))
+				return
+
+			target.take_over(src)
+
+		if("join_ert")
+			if(!isobserver(usr))
+				return
+			var/mob/dead/observer/A = usr
+
+			A.JoinResponseTeam()
+			return
+
+		if("join_larva")
+			if(!isobserver(usr))
+				return
+			var/mob/dead/observer/ghost = usr
+
+			var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
+			if(LAZYFIND(HS.candidate, ghost))
+				to_chat(ghost, span_warning("You are already in the queue to become a Xenomorph."))
+				return
+
+			switch(tgui_alert(ghost, "What would you like to do?", "Burrowed larva source available", list("Join as Larva", "Cancel"), 0))
+				if("Join as Larva")
+					SSticker.mode.attempt_to_join_as_larva(ghost)
+			return
+
+		if("preference")
+			if(!client?.prefs)
+				return
+			stack_trace("This code path is no longer valid, migrate this to new TGUI prefs")
+			return
+
+		if("track_xeno_name")
+			var/xeno_name = href_list["track_xeno_name"]
+			for(var/Y in GLOB.hive_datums[XENO_HIVE_NORMAL].get_all_xenos())
+				var/mob/living/carbon/xenomorph/X = Y
+				if(isnum(X.nicknumber))
+					if(num2text(X.nicknumber) != xeno_name)
+						continue
+				else
+					if(X.nicknumber != xeno_name)
+						continue
+				ManualFollow(X)
 				break
+
+		if("track_silo_number")
+			var/silo_number = href_list["track_silo_number"]
+			for(var/obj/structure/xeno/silo/resin_silo AS in GLOB.xeno_resin_silos)
+				if(resin_silo.associated_hive == GLOB.hive_datums[XENO_HIVE_NORMAL] && num2text(resin_silo.number_silo) == silo_number)
+					var/mob/dead/observer/ghost = usr
+					ghost.abstract_move(resin_silo.loc)
+					break
 
 /mob/proc/ghostize(can_reenter_corpse = TRUE, aghosting = FALSE)
 	if(!key || isaghost(src))
@@ -361,6 +362,14 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			stat("Points needed to win:", mode.win_points_needed)
 			stat("Loyalists team points:", LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV) ? LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV) : 0)
 			stat("Rebels team points:", LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV_REBEL) ? LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV_REBEL) : 0)
+		//combat patrol timer
+		var/patrol_end_countdown = SSticker.mode?.game_end_countdown()
+		if(patrol_end_countdown)
+			stat("<b>Combat Patrol timer:</b>", patrol_end_countdown)
+		//respawn wave timer
+		var/patrol_wave_countdown = SSticker.mode?.wave_countdown()
+		if(patrol_wave_countdown)
+			stat("<b>Respawn wave timer:</b>", patrol_wave_countdown)
 
 
 /mob/dead/observer/verb/reenter_corpse()

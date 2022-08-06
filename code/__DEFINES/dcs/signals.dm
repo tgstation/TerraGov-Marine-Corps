@@ -86,6 +86,12 @@
 #define COMSIG_LIMB_DESTROYED "limb_destroyed"
 #define COMSIG_LIMB_UNDESTROYED "limb_undestroyed"
 
+// /datum/aura_bearer signals
+//From /datum/aura_bearer/New(), fires on the aura_bearer's emitter. Provides a list of aura types started.
+#define COMSIG_AURA_STARTED "aura_started"
+//From /datum/aura_bearer/stop_emitting(), fires on the aura_bearer's emitter. Provides a list of aura types finished.
+#define COMSIG_AURA_FINISHED "aura_finished"
+
 /// Admin helps
 /// From /datum/admin_help/RemoveActive().
 /// Fired when an adminhelp is made inactive either due to closing or resolving.
@@ -378,6 +384,14 @@
 #define COMSIG_MOB_ITEM_AFTERATTACK "mob_item_afterattack"		//from base of obj/item/afterattack(): (atom/target, mob/user, has_proximity, click_parameters)
 #define COMSIG_MOB_ITEM_AFTERATTACK_ALTERNATE "mob_item_afterattack_alternate" //from base of obj/item/afterattack_alternate(): (atom/target, mob/user, has_proximity, click_parameters)
 #define COMSIG_MOB_SAY "mob_say" 								// from /mob/living/say(): (proc args list)
+	// used to access COMSIG_MOB_SAY argslist
+	#define SPEECH_MESSAGE 1
+	// #define SPEECH_BUBBLE_TYPE 2
+	#define SPEECH_SPANS 3
+	// #define SPEECH_SANITIZE 4
+	#define SPEECH_LANGUAGE 5
+	/* #define SPEECH_IGNORE_SPAM 6
+	#define SPEECH_FORCED 7 */
 #define COMSIG_MOB_DEADSAY "mob_deadsay" 							// from /mob/living/say_dead(): (proc args list)
 	#define MOB_DEADSAY_SIGNAL_INTERCEPT (1<<0)
 #define COMSIG_MOB_LOGIN "mob_login"							//from /mob/Login(): ()
@@ -775,6 +789,20 @@
 #define COMSIG_SONG_START "song_start"
 ///sent to the instrument when a song stops playing
 #define COMSIG_SONG_END "song_end"
+
+// /obj/vehicle/sealed/mecha signals
+
+///sent from mecha action buttons to the mecha they're linked to
+#define COMSIG_MECHA_ACTION_TRIGGER "mecha_action_activate"
+
+///sent from clicking while you have no equipment selected. Sent before cooldown and adjacency checks, so you can use this for infinite range things if you want.
+#define COMSIG_MECHA_MELEE_CLICK "mecha_action_melee_click"
+	/// Prevents click from happening.
+	#define COMPONENT_CANCEL_MELEE_CLICK (1<<0)
+///sent from clicking while you have equipment selected.
+#define COMSIG_MECHA_EQUIPMENT_CLICK "mecha_action_equipment_click"
+	/// Prevents click from happening.
+	#define COMPONENT_CANCEL_EQUIPMENT_CLICK (1<<0)
 
 /*******Non-Signal Component Related Defines*******/
 

@@ -3,6 +3,10 @@
 	speech_span = SPAN_ROBOT
 	interaction_flags = INTERACT_OBJ_DEFAULT
 
+	///damage amount to deal when this obj is attacking something
+	var/force = 0
+	///damage type to deal when this obj is attacking something
+	var/damtype = BRUTE
 	var/list/materials
 
 	/// %-reduction-based armor.

@@ -107,6 +107,9 @@
 		return
 	var/health_thresholds
 	wound_overlay.layer = layer + 0.3
+	if(HAS_TRAIT(src, TRAIT_MOB_ICON_UPDATE_BLOCKED))
+		wound_overlay.icon_state = "none"
+		return
 	if(health > health_threshold_crit)
 		health_thresholds = CEILING((health * 4) / (maxHealth), 1) //From 1 to 4, in 25% chunks
 		if(health_thresholds > 3)
