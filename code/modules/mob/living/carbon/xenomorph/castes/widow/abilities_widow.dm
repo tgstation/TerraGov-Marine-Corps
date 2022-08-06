@@ -207,7 +207,7 @@
 	var/datum/action/xeno_action/spider_swarm/spider_swarm_action = owner.actions_by_path[/datum/action/xeno_action/spider_swarm]
 	if(!spider_swarm_action)
 		return
-	if (source != spider_swarm_action.current_controlling_spiderling)
+	if(source != spider_swarm_action.current_controlling_spiderling)
 		return
 	var/next_spiderling = pick(spiderlings)
 	if(!next_spiderling)
@@ -244,8 +244,9 @@
 	owner.doMove(null)
 	var/new_spiderling = new /mob/living/carbon/xenomorph/spiderling(current_controlling_spiderling.loc, current_controlling_spiderling)
 	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = owner.actions_by_path[/datum/action/xeno_action/create_spiderling]
-	create_spiderling_action.add_spiderling(new_spiderling)
 
+	create_spiderling_action.add_spiderling(new_spiderling)
+	create_spiderling_action.add_spiderling(current_controlling_spiderling)
 	succeed_activate()
 	add_cooldown()
 

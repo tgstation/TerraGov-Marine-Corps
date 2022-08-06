@@ -60,8 +60,6 @@
 
 	ADD_TRAIT(src, TRAIT_BATONIMMUNE, XENO_TRAIT)
 	ADD_TRAIT(src, TRAIT_FLASHBANGIMMUNE, XENO_TRAIT)
-	if(src.xeno_caste.caste_flags & CASTE_IS_NOT_IN_LIST)
-		return
 	hive.update_tier_limits()
 	if(CONFIG_GET(flag/xenos_on_strike))
 		replace_by_ai()
@@ -122,8 +120,6 @@
 
 
 /mob/living/carbon/xenomorph/proc/generate_nicknumber()
-	if(src.xeno_caste.caste_flags & CASTE_IS_NOT_IN_LIST)
-		return
 	//We don't have a nicknumber yet, assign one to stick with us
 	if(!nicknumber || nicknumber == "Undefined")
 		var/tempnumber = rand(1, 999)
@@ -137,8 +133,6 @@
 //Since Xenos change names like they change shoes, we need somewhere to hammer in all those legos
 //We set their name first, then update their real_name AND their mind name
 /mob/living/carbon/xenomorph/proc/generate_name()
-	if(src.xeno_caste.caste_flags & CASTE_IS_NOT_IN_LIST)
-		return
 	name = "[hive.prefix][xeno_caste.upgrade_name] [xeno_caste.display_name] ([nicknumber])"
 
 	//Update linked data so they show up properly
@@ -241,7 +235,6 @@
 /mob/living/carbon/xenomorph/Destroy()
 	if(mind) mind.name = name //Grabs the name when the xeno is getting deleted, to reference through hive status later.
 	if(is_zoomed) zoom_out()
-
 	GLOB.alive_xeno_list -= src
 	GLOB.xeno_mob_list -= src
 	GLOB.dead_xeno_list -= src

@@ -237,6 +237,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	base_action = ESCORTING_ATOM
 	change_action(ESCORTING_ATOM, escorted_atom)
 
+
 ///Set the escorted atom
 /datum/ai_behavior/proc/global_set_escorted_atom(datum/source, atom/atom_to_escort)
 	SIGNAL_HANDLER

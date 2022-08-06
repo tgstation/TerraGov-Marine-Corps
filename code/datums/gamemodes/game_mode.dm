@@ -324,8 +324,6 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 		if(isxeno(L))
 			var/mob/living/carbon/xenomorph/X = L
-			if(X.xeno_caste.caste_flags & CASTE_IS_NOT_IN_LIST)
-				return
 			X.transfer_to_hive(pick(XENO_HIVE_NORMAL, XENO_HIVE_CORRUPTED, XENO_HIVE_ALPHA, XENO_HIVE_BETA, XENO_HIVE_ZETA))
 
 		else if(ishuman(L))
