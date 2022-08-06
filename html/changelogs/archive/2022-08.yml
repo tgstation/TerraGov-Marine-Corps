@@ -65,3 +65,10 @@
   goose4429:
   - code_imp: Refactored vendor code for loadouts
   - code_imp: Vendors now support several point categories
+2022-08-06:
+  tyeagg:
+  - rscadd: rappel rope when entering map
+  - qol: screen alert for respawn waves and objective
+  - balance: respawn timer for patrol to 5 minutes
+  - soundadd: rappel and tadpole hover sound
+  - imageadd: rappel and patrol point
