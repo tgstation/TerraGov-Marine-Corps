@@ -1,0 +1,4 @@
+author: "QualityVan"
+delete-after: True
+changes: 
+  - bugfix: "Eggs work a little more the way they ought. Flaming them won't make the hugger hatch, for instance."
