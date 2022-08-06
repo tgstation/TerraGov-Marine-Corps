@@ -260,9 +260,9 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 	var/sound/win_track
 	switch(round_finished)
 		if(MODE_COMBAT_PATROL_SOM_MAJOR || MODE_COMBAT_PATROL_SOM_MINOR)
-			win_track = 'sound/theme/som_win.ogg'
+			win_track = pick('sound/theme/winning_triumph1.ogg', 'sound/theme/winning_triumph2.ogg')
 		if(MODE_COMBAT_PATROL_MARINE_MAJOR || MODE_COMBAT_PATROL_MARINE_MINOR)
-			win_track = 'sound/theme/tgmc_win.ogg'
+			win_track = pick('sound/theme/winning_triumph1.ogg', 'sound/theme/winning_triumph2.ogg')
 		if(MODE_COMBAT_PATROL_DRAW)
 			win_track = 'sound/theme/neutral_melancholy1.ogg'
 
