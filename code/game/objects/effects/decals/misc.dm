@@ -1,5 +1,5 @@
 
-// Used for spray that you spray at walls, tables, hydrovats etc
+// Used for spray that you spray at walls, tables, hydrovats etc.
 /obj/effect/decal/spraystill
 	density = FALSE
 	anchored = TRUE
@@ -99,7 +99,7 @@
 	color = "#8d498d"
 
 /obj/effect/decal/tile/corsatstraight/lightpurple
-	color = "#a33b94" 
+	color = "#a33b94"
 
 /obj/effect/decal/tile/corsatstraight/darkgreen
 	color = "#238623"
@@ -296,7 +296,7 @@
 /obj/effect/decal/tracks/human1/wet
 	color = "#626464"
 	alpha = 140
-	
+
 /obj/effect/decal/tracks/human2
 	icon = 'icons/effects/fluidtracks.dmi'
 	icon_state = "human2"

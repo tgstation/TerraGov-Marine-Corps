@@ -73,7 +73,7 @@
 			if(istype(O, /obj/structure/sign/poster))
 				var/obj/structure/sign/poster/P = O
 				P.roll_and_drop(src)
-			if(istype(O, /obj/effect/alien/weeds))
+			if(istype(O, /obj/alien/weeds))
 				qdel(O)
 
 

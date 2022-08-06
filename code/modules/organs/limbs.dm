@@ -660,6 +660,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 	else
 		set_limb_flags(LIMB_DESTROYED)
 
+	if(owner.species.species_flags & ROBOTIC_LIMBS)
+		limb_status |= LIMB_ROBOT
+
 	for(var/i in implants)
 		var/obj/item/embedded_thing = i
 		embedded_thing.unembed_ourself(TRUE)

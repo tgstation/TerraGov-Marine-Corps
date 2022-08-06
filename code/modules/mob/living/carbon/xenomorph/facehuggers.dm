@@ -310,7 +310,7 @@
 		return FALSE
 
 	if(isturf(loc))
-		var/obj/effect/alien/egg/hugger/E = locate() in loc
+		var/obj/alien/egg/hugger/E = locate() in loc
 		if(E?.insert_new_hugger(src))
 			return FALSE
 		var/obj/structure/xeno/trap/T = locate() in loc
@@ -765,7 +765,7 @@
 
 	for(var/turf/sticky_tile AS in RANGE_TURFS(1, loc))
 		if(!locate(/obj/effect/xenomorph/spray) in sticky_tile.contents)
-			new /obj/effect/alien/resin/sticky/thin(sticky_tile)
+			new /obj/alien/resin/sticky/thin(sticky_tile)
 
 	var/armor_block
 	for(var/mob/living/target in range(1, loc))

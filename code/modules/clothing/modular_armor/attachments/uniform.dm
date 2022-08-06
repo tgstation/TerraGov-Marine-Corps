@@ -37,22 +37,6 @@
 	icon_state = "vest_black"
 	storage = /obj/item/storage/internal/vest
 
-/obj/item/armor_module/storage/uniform/black_vest/som/Initialize()
-	. = ..()
-	new /obj/item/binoculars(storage)
-	new /obj/item/tool/crowbar/red(storage)
-	new /obj/item/radio(storage)
-	new /obj/item/tool/extinguisher/mini(storage)
-	new /obj/item/weapon/gun/pistol/standard_pocketpistol(storage)
-
-/obj/item/armor_module/storage/uniform/black_vest/som_vet/Initialize()
-	. = ..()
-	new /obj/item/tool/crowbar/red(storage)
-	new /obj/item/radio(storage)
-	new /obj/item/tool/extinguisher/mini(storage)
-	new /obj/item/ammo_magazine/handful/buckshot(storage)
-	new /obj/item/ammo_magazine/handful/buckshot(storage)
-
 /obj/item/storage/internal/vest
 	storage_slots = 5
 	max_w_class = WEIGHT_CLASS_SMALL
@@ -93,18 +77,6 @@
 		/obj/item/clothing/glasses/hud/health,
 		/obj/item/tweezers,
 	)
-
-/obj/item/armor_module/storage/uniform/white_vest/som
-	storage = /obj/item/storage/internal/white_vest
-
-/obj/item/armor_module/storage/uniform/white_vest/som/Initialize()
-	. = ..()
-	new /obj/item/roller(storage)
-	new /obj/item/bodybag/cryobag(storage)
-	new /obj/item/tweezers (storage)
-	new /obj/item/storage/pill_bottle/spaceacillin(storage)
-	new /obj/item/storage/pill_bottle/alkysine(storage)
-	new /obj/item/storage/pill_bottle/imidazoline(storage)
 
 /obj/item/armor_module/storage/uniform/surgery_webbing
 	name = "surgical webbing"

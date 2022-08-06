@@ -4,6 +4,7 @@ GLOBAL_LIST_EMPTY(marine_turrets)
 
 GLOBAL_LIST_EMPTY(droppod_list)
 GLOBAL_LIST_EMPTY(tank_list)
+GLOBAL_LIST_EMPTY(mechas_list)
 GLOBAL_LIST_EMPTY(head_list)
 GLOBAL_LIST_EMPTY(beacon_list)
 GLOBAL_LIST_EMPTY(id_card_list)

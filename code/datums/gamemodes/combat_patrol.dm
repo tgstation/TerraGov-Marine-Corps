@@ -5,7 +5,6 @@
 	flags_landmarks = MODE_LANDMARK_SPAWN_SPECIFIC_SHUTTLE_CONSOLE
 	shutters_drop_time = 5 MINUTES
 	flags_xeno_abilities = ABILITY_CRASH
-	respawn_time = 12 MINUTES
 	time_between_round = 0 HOURS
 	valid_job_types = list(
 		/datum/job/terragov/squad/engineer = 4,
@@ -23,10 +22,14 @@
 	var/game_timer
 	///The length of time until round ends.
 	var/max_game_time = 35 MINUTES
+	/// Timer used to calculate how long till next respawn wave
+	var/wave_timer
+	///The length of time until next respawn wave.
+	var/wave_timer_length = 5 MINUTES
 	///Whether the max game time has been reached
 	var/max_time_reached = FALSE
 	/// Time between two bioscan
-	var/bioscan_interval = 5 MINUTES
+	var/bioscan_interval = 3 MINUTES
 
 /datum/game_mode/combat_patrol/post_setup()
 	. = ..()
@@ -77,8 +80,8 @@
 	//Starts the round timer when the game starts proper
 	var/datum/game_mode/combat_patrol/D = SSticker.mode
 	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/set_game_timer), SSticker.round_start_time + shutters_drop_time + 5 MINUTES) //game cannot end until at least 5 minutes after shutter drop
-	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/respawn_wave), SSticker.round_start_time + shutters_drop_time + 10 MINUTES) //first respawn wave is 10 minutes after shutters
-	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, SSticker.round_start_time + shutters_drop_time + 5 MINUTES)
+	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/respawn_wave), SSticker.round_start_time + shutters_drop_time + wave_timer_length) //first respawn wave is 5 minutes after shutters
+	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, SSticker.round_start_time + shutters_drop_time + bioscan_interval)
 
 ///round timer
 /datum/game_mode/combat_patrol/proc/set_game_timer()
@@ -99,6 +102,13 @@
 		return "[(eta / 60) % 60]:[add_leading(num2text(eta % 60), 2, "0")]"
 	else
 		return "Patrol finished"
+
+/datum/game_mode/combat_patrol/wave_countdown()
+	if(!wave_timer)
+		return
+	var/eta = timeleft(wave_timer) * 0.1
+	if(eta > 0)
+		return "[(eta / 60) % 60]:[add_leading(num2text(eta % 60), 2, "0")]"
 
 /datum/game_mode/combat_patrol/proc/set_game_end()
 	max_time_reached = TRUE
@@ -169,12 +179,14 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 ///Allows all the dead to respawn together
 /datum/game_mode/combat_patrol/proc/respawn_wave()
 	var/datum/game_mode/combat_patrol/D = SSticker.mode
-	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/respawn_wave), 10 MINUTES)
+	D.wave_timer = addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/respawn_wave), wave_timer_length, TIMER_STOPPABLE)
 
 	for(var/i in GLOB.observer_list)
 		var/mob/dead/observer/M = i
 		GLOB.key_to_time_of_role_death[M.key] = 0
-		to_chat(M, span_danger("Reinforcements are gathering to join the fight, you can now respawn to join a fresh patrol!"))
+		M.playsound_local(M, 'sound/ambience/votestart.ogg', 75, 1)
+		M.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>RESPAWN WAVE AVAILABLE</u></span><br>" + "YOU CAN NOW RESPAWN.", /obj/screen/text/screen_text/command_order)
+		to_chat(M, "<br><font size='3'>[span_attack("Reinforcements are gathering to join the fight, you can now respawn to join a fresh patrol!")]</font><br>")
 
 ///checks how many marines and SOM are still alive
 /datum/game_mode/combat_patrol/proc/count_humans(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_GROUND)), count_flags)

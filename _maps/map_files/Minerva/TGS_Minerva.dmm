@@ -326,6 +326,7 @@
 "aZ" = (
 /obj/machinery/door/poddoor/mainship/ammo{
 	dir = 2;
+	id = "ammo1";
 	name = "\improper Heavy Ordinance Storage"
 	},
 /turf/open/floor/mainship/mono,
@@ -333,18 +334,20 @@
 "ba" = (
 /obj/machinery/door/poddoor/mainship/ammo{
 	dir = 2;
+	id = "ammo1";
 	name = "\improper Heavy Ordinance Storage"
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "bb" = (
-/obj/machinery/door/poddoor/mainship/ammo{
-	dir = 2;
-	name = "\improper Heavy Ordinance Storage"
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/door/poddoor/mainship/ammo{
+	dir = 2;
+	id = "ammo1";
+	name = "\improper Heavy Ordinance Storage"
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "bc" = (

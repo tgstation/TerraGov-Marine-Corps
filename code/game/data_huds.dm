@@ -445,18 +445,20 @@
 	if(stat != DEAD)
 		var/tempname = ""
 		if(frenzy_aura)
-			tempname += FRENZY
+			tempname += AURA_XENO_FRENZY
 		if(warding_aura)
-			tempname += WARDING
+			tempname += AURA_XENO_WARDING
 		if(recovery_aura)
-			tempname += RECOVERY
+			tempname += AURA_XENO_RECOVERY
 		if(tempname)
 			holder.icon_state = "hud[tempname]"
 
 		if(current_aura)
-			holder.overlays += image('icons/mob/hud.dmi', src, "hudaura[current_aura]")
+			for(var/aura_type in current_aura.aura_types)
+				holder.overlays += image('icons/mob/hud.dmi', src, "hudaura[aura_type]")
 		if(leader_current_aura)
-			holder.overlays += image('icons/mob/hud.dmi', src, "hudaura[leader_current_aura]")
+			for(var/aura_type in leader_current_aura.aura_types)
+				holder.overlays += image('icons/mob/hud.dmi', src, "hudaura[aura_type]")
 
 	hud_list[PHEROMONE_HUD] = holder
 
@@ -525,6 +527,8 @@
 		hud_type = SQUAD_HUD_REBEL
 	else if(faction == FACTION_SOM)
 		hud_type = SQUAD_HUD_SOM
+	else
+		return
 	var/image/holder = hud_list[hud_type]
 	holder.icon_state = ""
 	holder.overlays.Cut()
@@ -571,11 +575,11 @@
 			holder.icon_state = "hud[tempname]"
 
 		switch(command_aura)
-			if("move")
+			if(AURA_HUMAN_MOVE)
 				holder.overlays += image('icons/mob/hud.dmi', src, "hudmoveaura")
-			if("hold")
+			if(AURA_HUMAN_HOLD)
 				holder.overlays += image('icons/mob/hud.dmi', src, "hudholdaura")
-			if("focus")
+			if(AURA_HUMAN_FOCUS)
 				holder.overlays += image('icons/mob/hud.dmi', src, "hudfocusaura")
 
 	hud_list[ORDER_HUD] = holder
@@ -622,3 +626,43 @@
 
 	var/amount = round(current_rounds * 100 / max_rounds, 10)
 	holder.icon_state = "plasma[amount]"
+
+///Mecha health hud updates
+/obj/vehicle/sealed/mecha/proc/hud_set_mecha_health()
+	var/image/holder = hud_list[MACHINE_HEALTH_HUD]
+
+	if(!holder)
+		return
+
+	if(obj_integrity < 1)
+		holder.icon_state = "xenohealth0"
+		return
+
+	var/amount = round(obj_integrity * 100 / max_integrity, 10)
+	if(!amount)
+		amount = 1 //don't want the 'zero health' icon when we still have 4% of our health
+	holder.icon_state = "xenohealth[amount]"
+
+///Updates mecha battery
+/obj/vehicle/sealed/mecha/proc/hud_set_mecha_battery()
+	var/image/holder = hud_list[MACHINE_AMMO_HUD]
+
+	if(!holder)
+		return
+
+	if(!cell)
+		holder.icon_state = "plasma0"
+		return
+
+	var/amount = round(cell.charge * 100 / cell.maxcharge, 10)
+	holder.icon_state = "plasma[amount]"
+
+/obj/vehicle/sealed/mecha/proc/diag_hud_set_mechstat()
+	var/image/holder = hud_list[ORDER_HUD]
+	if(!holder)
+		return
+	var/icon/I = icon(icon, icon_state, dir)
+	holder.pixel_y = I.Height() - world.icon_size
+	if(internal_damage)
+		holder.icon_state = "hudwarn"
+	holder.icon_state = null

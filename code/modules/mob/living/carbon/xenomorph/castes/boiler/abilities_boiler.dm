@@ -88,7 +88,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		return
 	if(length(X.xeno_caste.spit_types) <= 2)	//If we only have two or less glob types, we just use default select anyways.
 		action_activate()
-		return 
+		return
 	INVOKE_ASYNC(src, .proc/select_glob_radial)
 
 /**
@@ -104,7 +104,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		if(!glob_image)
 			continue
 		available_globs[initial(glob_type.icon_key)] = glob_image
-			
+
 	var/glob_choice = show_radial_menu(owner, owner, available_globs, radius = 48)
 	if(!glob_choice)
 		return
@@ -231,7 +231,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 
 /mob/living/carbon/xenomorph/boiler/proc/set_bombard_pointer()
 	if(client)
-		client.mouse_pointer_icon = file("icons/mecha/mecha_mouse.dmi")
+		client.mouse_pointer_icon = 'icons/mecha/mecha_mouse.dmi'
 
 /mob/living/carbon/xenomorph/boiler/proc/reset_bombard_pointer()
 	if(client)
