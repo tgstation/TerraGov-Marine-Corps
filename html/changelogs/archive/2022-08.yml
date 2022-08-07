@@ -72,3 +72,11 @@
   - balance: respawn timer for patrol to 5 minutes
   - soundadd: rappel and tadpole hover sound
   - imageadd: rappel and patrol point
+2022-08-07:
+  BraveMole:
+  - bugfix: Fix climbing
+  Kuro020:
+  - bugfix: fixed the lever action mob sprite
+  QualityVan:
+  - bugfix: Eggs work a little more the way they ought. Flaming them won't make the
+      hugger hatch, for instance.
