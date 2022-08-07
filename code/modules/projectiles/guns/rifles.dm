@@ -644,6 +644,18 @@
 	name = "\improper MG-42 Kauser light machine gun"
 	desc = "The Kauser MG-42 is the TGMC's current standard non-IFF-capable LMG. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. It uses 10x24mm ammunition."
 	icon = 'icons/Marine/gun64.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+		slot_back_str = 'icons/mob/items_back_64.dmi',
+		slot_wear_suit_str = 'icons/mob/items_suit_slot_64.dmi',
+	)
+
+	worn_x_dimension = 64
+	worn_y_dimension = 32
+	inhand_x_dimension = 64
+	inhand_y_dimension = 32
+
 	icon_state = "t42"
 	item_state = "t42"
 	caliber = CALIBER_10X24_CASELESS //codex
