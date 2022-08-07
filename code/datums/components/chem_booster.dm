@@ -396,7 +396,7 @@
 		return
 
 	if((held_item.reagents.maximum_volume-held_item.reagents.total_volume) < volume)
-		wearer.balloon_alert(wearer, "Held beaker lacks required space for extraction.")
+		wearer.balloon_alert(wearer, "Held container lacks required space for extraction.")
 		return
 
 	wearer.balloon_alert(wearer, "You begin filling [held_item].")
