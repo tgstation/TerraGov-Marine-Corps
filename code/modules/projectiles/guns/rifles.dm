@@ -105,6 +105,7 @@
 /obj/item/weapon/gun/rifle/standard_assaultrifle
 	name = "\improper AR-12 K&H assault rifle"
 	desc = "The Keckler and Hoch AR-12 assault rifle used to be the TerraGov Marine Corps standard issue rifle before the AR-18 carbine replaced it. It is, however, still used widely despite that. The gun itself is very good at being used in most situations however it suffers in engagements at close quarters and is relatively hard to shoulder than some others. It uses 10x24mm caseless ammunition."
+	icon = 'icons/marine/gun64.dmi'
 	icon_state = "t12"
 	item_state = "t12"
 	fire_sound = "gun_t12"
@@ -123,8 +124,6 @@
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bipod,
-		/obj/item/attachable/stock/t12stock,
-		/obj/item/attachable/t12barrel,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/extended_barrel,
@@ -149,8 +148,7 @@
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
-	starting_attachment_types = list(/obj/item/attachable/stock/t12stock)
-	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 17,"rail_x" = 4, "rail_y" = 23, "under_x" = 17, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
+	attachable_offset = list("muzzle_x" = 47, "muzzle_y" = 17,"rail_x" = 22, "rail_y" = 20, "under_x" = 33, "under_y" = 10, "stock_x" = 0, "stock_y" = 13)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 2
@@ -168,13 +166,13 @@
 	placed_overlay_iconstate = "t12"
 
 /obj/item/weapon/gun/rifle/standard_assaultrifle/rifleman
-	starting_attachment_types = list(/obj/item/attachable/stock/t12stock, /obj/item/attachable/reddot, /obj/item/attachable/extended_barrel, /obj/item/weapon/gun/grenade_launcher/underslung)
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/extended_barrel, /obj/item/weapon/gun/grenade_launcher/underslung)
 
 /obj/item/weapon/gun/rifle/standard_assaultrifle/engineer
-	starting_attachment_types = list(/obj/item/attachable/stock/t12stock, /obj/item/attachable/magnetic_harness, /obj/item/attachable/extended_barrel, /obj/item/weapon/gun/flamer/mini_flamer)
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/extended_barrel, /obj/item/weapon/gun/flamer/mini_flamer)
 
 /obj/item/weapon/gun/rifle/standard_assaultrifle/medic
-	starting_attachment_types = list(/obj/item/attachable/stock/t12stock, /obj/item/attachable/magnetic_harness, /obj/item/attachable/extended_barrel, /obj/item/weapon/gun/grenade_launcher/underslung)
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/extended_barrel, /obj/item/weapon/gun/grenade_launcher/underslung)
 
 //-------------------------------------------------------
 //DMR-37 DMR
