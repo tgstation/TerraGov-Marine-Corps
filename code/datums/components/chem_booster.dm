@@ -229,9 +229,9 @@
 ///Handles turning on/off the processing part of the component, along with the negative effects related to this
 /datum/component/chem_booster/proc/on_off(datum/source)
 	SIGNAL_HANDLER
-	wearer.clear_fullscreen("degeneration")
 	if(boost_on)
 		STOP_PROCESSING(SSobj, src)
+		wearer.clear_fullscreen("degeneration")
 		var/necrotized_counter = FLOOR(min(world.time-processing_start, 20 SECONDS)/200 + (world.time-processing_start-20 SECONDS)/100, 1)
 		if(necrotized_counter >= 1)
 			for(var/X in shuffle(wearer.limbs))
