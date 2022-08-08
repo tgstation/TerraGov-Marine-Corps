@@ -142,11 +142,25 @@
 	flags_item_map_variant = null
 
 
-/obj/item/clothing/head/boonie
+/obj/item/clothing/head/booniehat
 	name = "Boonie Hat"
 	desc = "The pinnacle of tacticool technology."
 	icon_state = "booniehat"
 	item_state = "booniehat"
+	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 10, "bio" = 5, "rad" = 0, "fire" = 5, "acid" = 5)
+
+/obj/item/clothing/head/boonie/booniehatdg
+	name = "Dark Green Boonie Hat"
+	desc = "The pinnacle of tacticool technology."
+	icon_state = "booniehatdg"
+	item_state = "booniehatdg"
+	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 10, "bio" = 5, "rad" = 0, "fire" = 5, "acid" = 5)
+
+/obj/item/clothing/head/boonie/booniehattan
+	name = "Tan Boonie Hat"
+	desc = "The pinnacle of tacticool technology."
+	icon_state = "booniehattan"
+	item_state = "booniehattan"
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 10, "bio" = 5, "rad" = 0, "fire" = 5, "acid" = 5)
 
 /obj/item/clothing/head/slouch
