@@ -1,0 +1,5 @@
+author: "Araulius"
+delete-after: True
+changes: 
+  - balance: "Increased the amount of lemoline per crate from 10u to 30u"
+  - balance: "increased cost of lemoline crate from 5 points to 8 points"
