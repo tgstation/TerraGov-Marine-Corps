@@ -27,9 +27,7 @@
 				zoom_out()
 		update_progression()
 		update_evolving()
-		handle_aura_emiter()
 
-	handle_aura_receiver()
 	handle_living_sunder_updates()
 	handle_living_health_updates()
 	handle_living_plasma_updates()
@@ -50,6 +48,10 @@
 	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE) && on_fire) //Sanity check; have to be on fire to actually take the damage.
 		SEND_SIGNAL(src, COMSIG_XENOMORPH_FIRE_BURNING)
 		adjustFireLoss((fire_stacks + 3) * get_fire_resist())
+		if(current_aura)
+			current_aura.suppressed = TRUE
+		if(leader_current_aura)
+			leader_current_aura.suppressed = TRUE
 
 /mob/living/carbon/xenomorph/proc/handle_living_health_updates()
 	if(health < 0)
@@ -129,7 +131,7 @@
 	if(current_aura)
 		if(plasma_stored < pheromone_cost)
 			use_plasma(plasma_stored)
-			current_aura = null
+			QDEL_NULL(current_aura)
 			src.balloon_alert(src, "Stop emitting, no plasma")
 		else
 			use_plasma(pheromone_cost)
@@ -156,59 +158,22 @@
 	gain_plasma(plasma_mod[1])
 	hud_set_plasma() //update plasma amount on the plasma mob_hud
 
-/mob/living/carbon/xenomorph/proc/handle_aura_emiter()
-	//Rollercoaster of fucking stupid because Xeno life ticks aren't synchronised properly and values reset just after being applied
-	//At least it's more efficient since only Xenos with an aura do this, instead of all Xenos
-	//Basically, we use a special tally var so we don't reset the actual aura value before making sure they're not affected
+/mob/living/carbon/xenomorph/handle_received_auras()
 
-	if(!current_aura && !leader_current_aura) //Gotta be emitting some pheromones to actually do something
-		return
+	if(frenzy_aura != (received_auras[AURA_XENO_FRENZY] || 0))
+		set_frenzy_aura(received_auras[AURA_XENO_FRENZY] || 0)
 
-	if(on_fire) //Can't output pheromones if on fire
-		return
-
-	var/self_range = round(6 + xeno_caste.aura_strength * 2) //Range of pheros emitted by self selected pheromones
-	var/lead_range = round(6 + leader_aura_strength * 2) //Range of pheros granted by queen leadership
-	for(var/mob/living/carbon/xenomorph/xeno AS in hive.get_all_xenos())
-		if(z != xeno.z || xeno.on_fire)
-			continue
-		if(current_aura && get_dist(src, xeno) <= self_range)
-			switch(current_aura)
-				if(FRENZY)
-					if(xeno_caste.aura_strength > xeno.frenzy_new)
-						xeno.frenzy_new = xeno_caste.aura_strength
-				if(WARDING)
-					if(xeno_caste.aura_strength > xeno.warding_new)
-						xeno.warding_new = xeno_caste.aura_strength
-				if(RECOVERY)
-					if(xeno_caste.aura_strength > xeno.recovery_new)
-						xeno.recovery_new = xeno_caste.aura_strength
-		if(leader_current_aura && get_dist(src, xeno) <= lead_range)
-			switch(leader_current_aura)
-				if(FRENZY)
-					if(leader_aura_strength > xeno.frenzy_new)
-						xeno.frenzy_new = leader_aura_strength
-				if(WARDING)
-					if(leader_aura_strength > xeno.warding_new)
-						xeno.warding_new = leader_aura_strength
-				if(RECOVERY)
-					if(leader_aura_strength > xeno.recovery_new)
-						xeno.recovery_new = leader_aura_strength
-
-/mob/living/carbon/xenomorph/proc/handle_aura_receiver()
-	if(frenzy_aura != frenzy_new || warding_aura != warding_new || recovery_aura != recovery_new)
-		set_frenzy_aura(frenzy_new)
-		if(warding_aura != warding_new)
+	if(warding_aura != (received_auras[AURA_XENO_WARDING] || 0))
+		if(warding_aura) //If either the new or old warding is 0, we can skip adjusting armor for it.
 			soft_armor = soft_armor.modifyAllRatings(-warding_aura * 2.5)
-			warding_aura = warding_new
+		warding_aura = received_auras[AURA_XENO_WARDING] || 0
+		if(warding_aura)
 			soft_armor = soft_armor.modifyAllRatings(warding_aura * 2.5)
-		else
-			warding_aura = warding_new
-		recovery_aura = recovery_new
+
+	recovery_aura = received_auras[AURA_XENO_RECOVERY] || 0
+
 	hud_set_pheromone()
-	frenzy_new = 0
-	warding_new = 0
-	recovery_new = 0
+	..()
 
 /mob/living/carbon/xenomorph/handle_regular_hud_updates()
 	if(!client)

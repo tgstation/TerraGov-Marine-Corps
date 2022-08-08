@@ -37,7 +37,7 @@ GLOBAL_LIST_INIT(blocked_remotebuild_objs, typecacheof(list(/obj/machinery/compu
 
 
 /mob/camera/aiEye/remote/fobdrone/relaymove(mob/user, direct)
-	setDir(direct) //This camera eye is visible as a drone, and needs to keep the dir updated
+	setDir(closest_cardinal_dir(direct)) //This camera eye is visible as a drone, and needs to keep the dir updated
 	return ..()
 
 /mob/camera/aiEye/remote/fobdrone/update_remote_sight(mob/living/user)

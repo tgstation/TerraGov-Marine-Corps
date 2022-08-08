@@ -755,7 +755,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		to_chat(src, span_warning("You cannot give an order while muted."))
 		return
 
-	if(command_aura_cooldown > 0)
+	if(command_aura_cooldown)
 		to_chat(src, span_warning("You have recently given an order. Calm down."))
 		return
 
@@ -770,14 +770,16 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	else
 		command_aura = which
 
-	if(command_aura_cooldown > 0)
+	if(command_aura_cooldown)
 		to_chat(src, span_warning("You have recently given an order. Calm down."))
 		return
 
 	if(!(command_aura in command_aura_allowed))
 		return
-	command_aura_cooldown = 45 //40 ticks, or 90 seconds overall CD, 60 practical.
-	command_aura_tick = 15//15 ticks, or 30 seconds apprx.
+	var/aura_strength = skills.getRating("leadership") - 1
+	var/aura_target = pick_order_target()
+	SSaura.add_emitter(aura_target, command_aura, aura_strength + 4, aura_strength, 15, faction)
+
 	var/message = ""
 	switch(command_aura)
 		if("move")
@@ -795,8 +797,30 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			message = pick(";FOCUS FIRE!", ";PICK YOUR TARGETS!", ";CENTER MASS!", ";CONTROLLED BURSTS!", ";AIM YOUR SHOTS!", ";READY WEAPONS!", ";TAKE AIM!", ";LINE YOUR SIGHTS!", ";LOCK AND LOAD!", ";GET READY TO FIRE!")
 			say(message)
 			add_emote_overlay(focus)
+
+	if(aura_target != src)
+		command_aura = null //We aren't emitting personally, so we don't want the on-mob buff icon
+	else
+		RegisterSignal(src, COMSIG_AURA_FINISHED, .proc/end_command_aura)
+	command_aura_cooldown = addtimer(CALLBACK(src, .proc/end_command_aura_cooldown), 45 SECONDS)
+
 	update_action_buttons()
 
+///Choose what we're sending a buff order through
+/mob/living/carbon/human/proc/pick_order_target()
+	//If we're in overwatch, use the camera eye
+	if(istype(remote_control, /mob/camera/aiEye/remote/hud/overwatch))
+		return remote_control
+	return src
+
+/mob/living/carbon/human/proc/end_command_aura()
+	SIGNAL_HANDLER
+	UnregisterSignal(src, COMSIG_AURA_FINISHED)
+	command_aura = null
+
+/mob/living/carbon/human/proc/end_command_aura_cooldown()
+	command_aura_cooldown = null
+	update_action_buttons()
 
 /datum/action/skill/issue_order
 	name = "Issue Order"
@@ -816,26 +840,25 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	button.overlays.Cut()
 	button.overlays += image('icons/mob/order_icons.dmi', icon_state = "[order_type]")
 
-	if(human.command_aura_cooldown > 0)
+	if(human.command_aura_cooldown)
 		button.color = rgb(255,0,0,255)
 	else
 		button.color = rgb(255,255,255,255)
 
 /datum/action/skill/issue_order/move
 	name = "Issue Move Order"
-	order_type = "move"
+	order_type = AURA_HUMAN_MOVE
 	keybind_signal = COMSIG_KB_MOVEORDER
 
 /datum/action/skill/issue_order/hold
 	name = "Issue Hold Order"
-	order_type = "hold"
+	order_type = AURA_HUMAN_HOLD
 	keybind_signal = COMSIG_KB_HOLDORDER
 
 /datum/action/skill/issue_order/focus
 	name = "Issue Focus Order"
-	order_type = "focus"
+	order_type = AURA_HUMAN_FOCUS
 	keybind_signal = COMSIG_KB_FOCUSORDER
-
 
 
 /datum/action/skill/toggle_orders

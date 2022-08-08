@@ -10,3 +10,81 @@
   - bugfix: gamemode votes should now work as expected in all cases.
   novaepee:
   - qol: Keybind for Move, Focus, Hold, Send, and Rally Order
+2022-08-03:
+  Autisem:
+  - balance: Dead marines will not cap the xeno pop for crash
+  - balance: Xeno larva check will proc every 1 minut instead of 2 minuts for crash
+2022-08-04:
+  Lauwma:
+  - rscadd: Adds back good old smoke grenades
+  Lumipharon:
+  - balance: Combat Patrol - bioscan occurs every 3 minutes instead of 5
+  - balance: Combat Patrol - max team player ratio changed to 1.1 from 1.2
+  - bugfix: fixes a projectile bug for a future version of byond
+  Vondiech:
+  - code_imp: turned long chain of else-if's in /mob/dead/observer/Topic(href, href_list)
+      into a switch
+  novaepee:
+  - rscadd: Give attack, defend, and retreat order to FC, SL, and aSL (also CO, SO,
+      CSE, RO, and CMO)
+  - balance: better coordination with marines, hopefully
+2022-08-05:
+  BraveMole:
+  - bugfix: Fix inconsistent hugger activation on hit
+  - bugfix: Fix direction on pipe changing when tadpole is landing
+  - bugfix: Taking over synths gives them the wrong random name race format
+  - qol: Drop pod ejects marine if the marine dies
+  - qol: Add auto climbing
+  - balance: Prevent placing silo and other blessing's building near fob, outside
+      of weeds, etc.
+  - bugfix: Fix burst breaking gun in high lag situation
+  - bugfix: Fix spawned shotgun not able to shoot
+  - bugfix: Prevent corpse lunging
+  - bugfix: Fix wraith unable to time shift self again after entering and existing
+      crit whilst under the effect of time shift
+  - bugfix: Fix being able to vent out in dense object
+  - bugfix: Fix alamo being stuck shipside if you touched the console too late
+  - bugfix: Fix motion detector shutting down impromptly
+  - bugfix: Fix stagger not being applied with deployed gun
+  - bugfix: Set Xeno buffs admin verb is now in percentage
+  - bugfix: Fix disguised hunter still having wound overlay
+  - bugfix: Fix ai controlling doors groundside
+  - bugfix: Fix synth's getting human limbs after aheal
+  - bugfix: Cannot deploy via alt click menu
+  - bugfix: Fix fob drone placing cade diagonally
+  - bugfix: Fix corpse spawner being counted in statistic
+  - code_imp: Minor performance increase in projectile code
+  - bugfix: Prevent from spamming launch in tadpole
+  QualityVan:
+  - refactor: Anything can emit auras. both buff orders and pheromones use the same
+      system, although in slightly different ways.
+  - rscadd: Humans using overwatch computers can transmit buff orders through them.
+  XElectricX:
+  - bugfix: Large object transparency no longer makes all tiles a multitile object
+      occupies the only thing clickable.
+  goose4429:
+  - code_imp: Refactored vendor code for loadouts
+  - code_imp: Vendors now support several point categories
+2022-08-06:
+  tyeagg:
+  - rscadd: rappel rope when entering map
+  - qol: screen alert for respawn waves and objective
+  - balance: respawn timer for patrol to 5 minutes
+  - soundadd: rappel and tadpole hover sound
+  - imageadd: rappel and patrol point
+2022-08-07:
+  BraveMole:
+  - bugfix: Fix climbing
+  Kuro020:
+  - bugfix: fixed the lever action mob sprite
+  QualityVan:
+  - bugfix: Eggs work a little more the way they ought. Flaming them won't make the
+      hugger hatch, for instance.
+2022-08-08:
+  BraveMole:
+  - bugfix: Fix bonus projectile not having IFF
+  - bugfix: Fix sadar turret not shooting
+  - code_imp: Attachment icon no longer update every icon change
+  - bugfix: Fix being able to shoot in a tarp
+  - rscadd: Add overlay short description on hypospray and pill bottles
+  - bugfix: Fix tadpole able to crush shutters

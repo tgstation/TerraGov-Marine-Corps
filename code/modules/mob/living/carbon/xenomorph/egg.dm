@@ -3,6 +3,7 @@
 	density = FALSE
 	flags_atom = CRITICAL_ATOM
 	max_integrity = 80
+	integrity_failure = 20
 	///What maturity stage are we in
 	var/maturity_stage = 1
 	///Time between two maturity stages
@@ -22,6 +23,10 @@
 /obj/alien/egg/update_icon_state()
 	icon_state = initial(icon_state) + "[maturity_stage]"
 
+/obj/alien/egg/obj_break(damage_flag)
+	burst(TRUE)
+	return ..()
+
 ///Advance the maturity state by one, or set it to maturity
 /obj/alien/egg/proc/advance_maturity(maturity)
 	maturity_stage = maturity ? maturity : maturity_stage + 1
@@ -34,15 +39,18 @@
 	for(var/turf/turf_to_watch AS in filled_turfs(src, trigger_size, "circle", FALSE))
 		RegisterSignal(turf_to_watch, COMSIG_ATOM_ENTERED, .proc/enemy_crossed)
 
-///Bursts the egg.
-/obj/alien/egg/proc/burst(kill)
+///Bursts the egg. Return TRUE if it bursts successfully, FALSE if it fails for any reason.
+/obj/alien/egg/proc/burst(via_damage)
 	SHOULD_CALL_PARENT(TRUE)
-	if(kill)
+	if(maturity_stage != stage_ready_to_burst) //already popped, or not ready yet
+		return FALSE
+	if(via_damage)
 		advance_maturity(stage_ready_to_burst + 2)
 	else
 		advance_maturity(stage_ready_to_burst + 1)
 	for(var/turf/turf_to_watch AS in filled_turfs(src, trigger_size, "circle", FALSE))
 		UnregisterSignal(turf_to_watch, COMSIG_ATOM_ENTERED)
+	return TRUE
 
 ///Signal handler to check if the atom moving nearby is an enemy
 /obj/alien/egg/proc/enemy_crossed(datum/source, atom/movable/entered)
@@ -61,13 +69,13 @@
 	return TRUE
 
 /obj/alien/egg/flamer_fire_act(burnlevel)
-	burst(FALSE)
+	burst(TRUE)
 
 /obj/alien/egg/fire_act()
-	burst(FALSE)
+	burst(TRUE)
 
 /obj/alien/egg/ex_act(severity)
-	burst(FALSE)
+	burst(TRUE)
 
 /obj/alien/egg/hugger
 	desc = "It looks like a weird egg"
@@ -93,14 +101,15 @@
 		return
 	color = null
 
-/obj/alien/egg/hugger/burst(kill)
+/obj/alien/egg/hugger/burst(via_damage)
 	. = ..()
-	if(kill)
+	if(!.)
+		return
+	if(via_damage)
 		hugger_type = null
 		playsound(loc, "sound/effects/alien_egg_burst.ogg", 30)
 		flick("egg exploding", src)
 		return
-	advance_maturity(3)
 	playsound(src.loc, "sound/effects/alien_egg_move.ogg", 25)
 	flick("egg opening", src)
 	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type()
@@ -167,6 +176,7 @@
 	desc = "It looks like a weird egg"
 	name = "hugger egg"
 	icon_state = "egg_hugger"
+	integrity_failure = 75 //Highly responsive to poking
 	maturity_time = 15 SECONDS
 	maturity_stage = 2
 	stage_ready_to_burst = 2
@@ -176,10 +186,12 @@
 	///Bonus size for certain gasses
 	var/gas_size_bonus = 0
 
-/obj/alien/egg/gas/burst(kill)
-	..()
+/obj/alien/egg/gas/burst(via_damage)
+	. = ..()
+	if(!.)
+		return
 	var/spread = EGG_GAS_DEFAULT_SPREAD
-	if(kill) // Kill is more violent
+	if(via_damage) // More violent destruction, more gas.
 		playsound(loc, "sound/effects/alien_egg_burst.ogg", 30)
 		flick("egg exploding", src)
 		spread = EGG_GAS_KILL_SPREAD
@@ -187,7 +199,6 @@
 		playsound(src.loc, "sound/effects/alien_egg_move.ogg", 25)
 		flick("egg opening", src)
 	spread += gas_size_bonus
-	advance_maturity(4)
 
 	var/datum/effect_system/smoke_spread/xeno/NS = new gas_type(src)
 	NS.set_up(spread, get_turf(src))

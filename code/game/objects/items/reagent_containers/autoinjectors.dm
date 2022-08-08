@@ -11,7 +11,7 @@
 	volume = 30
 	list_reagents = list(/datum/reagent/consumable/sodiumchloride = 30)
 
-/obj/item/reagent_containers/hypospray/autoinjector/update_icon()
+/obj/item/reagent_containers/hypospray/autoinjector/update_icon_state()
 	if(!(reagents.total_volume) && is_drawable())
 		icon_state += "X"
 		name = "expended [name]" //So people can see what have been expended since we have smexy new sprites people aren't used too...
@@ -38,6 +38,7 @@
 	desc = "An autoinjector loaded with 3 doses of tricordrazine, a weak general use medicine for treating damage."
 	icon_state = "autoinjector-4"
 	list_reagents = list(/datum/reagent/medicine/tricordrazine = 30)
+	description_overlay = "Ti"
 
 /obj/item/reagent_containers/hypospray/autoinjector/combat
 	name = "combat autoinjector"
@@ -50,6 +51,7 @@
 		/datum/reagent/medicine/dylovene = 5,
 		/datum/reagent/medicine/tramadol = 5,
 	)
+	description_overlay = "Cb"
 
 /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced
 	name = "Advanced combat autoinjector"
@@ -61,12 +63,14 @@
 		/datum/reagent/medicine/dermaline = 10,
 		/datum/reagent/medicine/oxycodone = 10,
 	)
+	description_overlay = "Ca"
 
 /obj/item/reagent_containers/hypospray/autoinjector/quickclot
 	name = "quick-clot autoinjector"
 	desc = "An autoinjector loaded with three doses of quick-clot, a chemical designed to pause all bleeding. Renew doses as needed."
 	icon_state = "autoinjector-7"
 	list_reagents = list(/datum/reagent/medicine/quickclot = 30)
+	description_overlay = "Qk"
 
 /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus
 	name = "quick-clot plus autoinjector"
@@ -75,6 +79,7 @@
 	amount_per_transfer_from_this = 5
 	volume = 15
 	list_reagents = list(/datum/reagent/medicine/quickclotplus = 15)
+	description_overlay = "Qk+"
 
 /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus
 	name = "dexalin plus autoinjector"
@@ -83,6 +88,7 @@
 	amount_per_transfer_from_this = 1
 	volume = 3
 	list_reagents = list(/datum/reagent/medicine/dexalinplus = 3)
+	description_overlay = "Dx+"
 
 /obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin
 	name = "anesthetic autoinjector"
@@ -100,12 +106,14 @@
 	desc = "An auto-injector loaded with 3 doses of dylovene, an anti-toxin agent useful in cases of poisoning, overdoses and toxin build-up."
 	icon_state = "autoinjector-1"
 	list_reagents = list(/datum/reagent/medicine/dylovene = 30)
+	description_overlay = "Dy"
 
 /obj/item/reagent_containers/hypospray/autoinjector/tramadol
 	name = "tramadol autoinjector"
 	desc = "An auto-injector loaded with 3 doses of tramadol, an effective painkiller for normal wounds."
 	icon_state = "autoinjector-10"
 	list_reagents = list(/datum/reagent/medicine/tramadol = 30)
+	description_overlay = "Ta"
 
 /obj/item/reagent_containers/hypospray/autoinjector/oxycodone
 	name = "oxycodone autoinjector"
@@ -114,18 +122,21 @@
 	volume = 20
 	amount_per_transfer_from_this = 10
 	list_reagents = list(/datum/reagent/medicine/oxycodone = 20)
+	description_overlay = "Ox"
 
 /obj/item/reagent_containers/hypospray/autoinjector/kelotane
 	name = "kelotane autoinjector"
 	desc = "An auto-injector loaded with 3 doses of kelotane, a common burn medicine."
 	icon_state = "autoinjector-5"
 	list_reagents = list(/datum/reagent/medicine/kelotane = 30)
+	description_overlay = "Ke"
 
 /obj/item/reagent_containers/hypospray/autoinjector/bicaridine
 	name = "bicaridine autoinjector"
 	desc = "An auto-injector loaded with 3 doses of bicaridine, a common brute and circulatory damage medicine."
 	icon_state = "autoinjector-3"
 	list_reagents = list(/datum/reagent/medicine/bicaridine = 30)
+	description_overlay = "Bi"
 
 /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline
 	name = "inaprovaline autoinjector"
@@ -133,6 +144,7 @@
 	icon_state = "autoinjector-9"
 	amount_per_transfer_from_this = 15
 	list_reagents = list(/datum/reagent/medicine/inaprovaline = 30)
+	description_overlay = "In"
 
 /obj/item/reagent_containers/hypospray/autoinjector/dexalin
 	name = "dexalin autoinjector"
@@ -141,6 +153,7 @@
 	volume = 15
 	amount_per_transfer_from_this = 5
 	list_reagents = list(/datum/reagent/medicine/dexalin = 15)
+	description_overlay = "Dx"
 
 /obj/item/reagent_containers/hypospray/autoinjector/spaceacillin
 	name = "spaceacillin autoinjector"
@@ -149,6 +162,7 @@
 	volume = 15
 	amount_per_transfer_from_this = 5
 	list_reagents = list(/datum/reagent/medicine/spaceacillin = 15)
+	description_overlay = "Sp"
 
 /obj/item/reagent_containers/hypospray/autoinjector/alkysine
 	name = "alkysine autoinjector"
@@ -157,12 +171,14 @@
 	volume = 15
 	amount_per_transfer_from_this = 5
 	list_reagents = list(/datum/reagent/medicine/alkysine = 15)
+	description_overlay = "Al"
 
 /obj/item/reagent_containers/hypospray/autoinjector/imidazoline
 	name = "imidazoline autoinjector"
 	desc = "An auto-injector loaded with 3 doses of imidazoline, medicine for fixing eyesight."
 	icon_state = "autoinjector-5"
 	list_reagents = list(/datum/reagent/medicine/imidazoline = 30)
+	description_overlay = "Im"
 
 /obj/item/reagent_containers/hypospray/autoinjector/hypervene
 	name = "hypervene autoinjector"
@@ -171,6 +187,7 @@
 	amount_per_transfer_from_this = 3
 	volume = 9
 	list_reagents = list(/datum/reagent/hypervene = 9)
+	description_overlay = "Hy"
 
 /obj/item/reagent_containers/hypospray/autoinjector/virilyth //not accessible during normal play, only for valhalla
 	name = "virilyth autoinjector"
@@ -202,6 +219,7 @@
 		/datum/reagent/medicine/synaptizine = 3,
 		/datum/reagent/medicine/hyronalin = 6,
 	)
+	description_overlay = "Sy"
 
 /obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired
 	name = "expired synaptizine autoinjector"
@@ -213,6 +231,7 @@
 		/datum/reagent/medicine/synaptizine = 3,
 		/datum/reagent/medicine/hyronalin = 3,
 	)
+	description_overlay = "Sy-"
 
 /obj/item/reagent_containers/hypospray/autoinjector/neuraline
 	name = "neuraline autoinjector"
@@ -221,6 +240,7 @@
 	amount_per_transfer_from_this = 4
 	volume = 12
 	list_reagents = list(/datum/reagent/medicine/neuraline = 12)
+	description_overlay = "Ne"
 
 /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus
 	name = "peridaxon Plus autoinjector"
@@ -232,6 +252,7 @@
 		/datum/reagent/medicine/peridaxon_plus = 3,
 		/datum/reagent/medicine/hyronalin = 6,
 	)
+	description_overlay = "Pe+"
 
 /obj/item/reagent_containers/hypospray/autoinjector/russian_red
 	name = "Emergency autoinjector"
@@ -243,6 +264,7 @@
 		/datum/reagent/medicine/russian_red = 10,
 		/datum/reagent/medicine/ryetalyn = 5,
 	)
+	description_overlay = "Rr"
 
 /obj/item/reagent_containers/hypospray/autoinjector/polyhexanide
 	name = "polyhexanide autoinjector"

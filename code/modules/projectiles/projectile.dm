@@ -61,7 +61,6 @@
 	var/turf/original_target_turf = null // the original target's starting turf
 	var/atom/firer 		 = null // Who shot it
 
-	var/list/atom/permutated = list() // we've passed through these atoms, don't try to hit them again
 	var/list/atom/movable/uncross_scheduled = list() // List of border movable atoms to check for when exiting a turf.
 
 	var/damage = 0
@@ -120,7 +119,6 @@
 	ammo = null
 	shot_from = null
 	original_target = null
-	permutated = null
 	uncross_scheduled = null
 	original_target_turf = null
 	starting_turf = null
@@ -129,14 +127,11 @@
 
 /obj/projectile/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs) //A mob moving on a tile with a projectile is hit by it.
 	SIGNAL_HANDLER
-	if(permutated[AM]) //If we've already handled this atom, don't do it again.
-		return
 	if(AM.projectile_hit(src))
 		AM.do_projectile_hit(src)
 		if( (!(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE)) || (!(ismob(AM) && CHECK_BITFIELD(ammo.flags_ammo_behavior, AMMO_PASS_THROUGH_MOB))) )
 			qdel(src)
 			return
-	permutated[AM] = TRUE //Don't want to hit them again.
 
 
 /obj/projectile/effect_smoke(obj/effect/particle_effect/smoke/S)
@@ -184,12 +179,10 @@
 
 	if(!isnull(range))
 		proj_max_range = range
-	if(shooter)
+	if(shooter && !firer)
 		firer = shooter
-		permutated[firer] = TRUE //Don't hit the shooter
 	if(source)
 		shot_from = source
-	permutated[src] = TRUE
 	loc = loc_override
 	if(!isturf(loc))
 		forceMove(get_turf(src))
@@ -489,7 +482,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				if(HAS_TRAIT_FROM(turf_crossed_by, TRAIT_TURF_BULLET_MANIPULATION, PORTAL_TRAIT))
 					return
 				RegisterSignal(turf_crossed_by, COMSIG_TURF_RESUME_PROJECTILE_MOVE, .proc/resume_move)
-				permutated.Cut()
 				return PROJECTILE_FROZEN
 			if(turf_crossed_by == original_target_turf && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
 				last_processed_turf = turf_crossed_by
@@ -553,7 +545,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			if(HAS_TRAIT_FROM(next_turf, TRAIT_TURF_BULLET_MANIPULATION, PORTAL_TRAIT))
 				return
 			RegisterSignal(next_turf, COMSIG_TURF_RESUME_PROJECTILE_MOVE, .proc/resume_move)
-			permutated.Cut()
 			return PROJECTILE_FROZEN
 		if(next_turf == original_target_turf && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
 			ammo.on_hit_turf(next_turf, src)
@@ -606,9 +597,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				return TRUE
 
 	for(var/i in turf_to_scan)
-		if(permutated[i]) //If we've already handled this atom, don't do it again.
-			continue
-		permutated[i] = TRUE //Don't want to hit them again, no matter what the outcome.
 
 		var/atom/movable/thing_to_hit = i
 
@@ -656,7 +644,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return TRUE
 	if(proj.distance_travelled <= proj.ammo.barricade_clear_distance)
 		return FALSE
-	. = coverage //Hitchance.
+	var/hit_chance = coverage //base chance for the projectile to hit the object instead of bypassing it
 	if(flags_atom & ON_BORDER)
 		if(!(cardinal_move & REVERSE_DIR(dir))) //The bullet will only hit if the barricade and its movement are facing opposite directions.
 			if(!uncrossing)
@@ -665,15 +653,15 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		if (uncrossing)
 			return FALSE //you don't hit the cade from behind.
 	if(proj.ammo.flags_ammo_behavior & AMMO_SNIPER || proj.iff_signal || proj.ammo.flags_ammo_behavior & AMMO_ROCKET) //sniper, rockets and IFF rounds are better at getting past cover
-		. *= 0.8
+		hit_chance *= 0.8
 	if(!anchored)
-		. *= 0.5 //Half the protection from unaffixed structures.
+		hit_chance *= 0.5 //Half the protection from unaffixed structures.
 	///50% better protection when shooting from outside accurate range.
 	if(proj.distance_travelled > proj.ammo.accurate_range)
-		. *= 1.5
+		hit_chance *= 1.5
 ///Accuracy over 100 increases the chance of squeezing the bullet past the structure's uncovered areas.
-	. = min(. , . + 100 - proj.accuracy)
-	return prob(.)
+	hit_chance = min(hit_chance , hit_chance + 100 - proj.accuracy)
+	return prob(hit_chance)
 
 /obj/do_projectile_hit(obj/projectile/proj)
 	proj.ammo.on_hit_obj(src, proj)
@@ -719,6 +707,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	return src == proj.original_target
 
 /obj/vehicle/unmanned/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+	if(proj.firer == src)
+		return FALSE
 	if(iff_signal & proj.iff_signal)
 		proj.damage -= proj.damage*proj.damage_marine_falloff
 		return FALSE
@@ -728,14 +718,15 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 /mob/living/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	if(status_flags & INCORPOREAL)
 		return FALSE
+	if(proj.firer == src)
+		return FALSE
 	if(lying_angle && src != proj.original_target)
 		return FALSE
 	if((proj.ammo.flags_ammo_behavior & AMMO_XENO) && (isnestedhost(src) || stat == DEAD))
 		return FALSE
 
 	//We want a temporary variable so accuracy doesn't change every time the bullet misses.
-	var/hit_chance
-	hit_chance += proj.accuracy
+	var/hit_chance = proj.accuracy
 	BULLET_DEBUG("Base accuracy is <b>[hit_chance]; scatter:[proj.scatter]; distance:[proj.distance_travelled]</b>")
 	if(proj.distance_travelled <= proj.ammo.accurate_range) //If bullet stays within max accurate range.
 		if(proj.distance_travelled <= proj.point_blank_range) //If bullet within point blank range, big accuracy buff.
@@ -963,10 +954,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		proj_max_range = range
 	if(shooter)
 		firer = shooter
-		permutated[firer] = TRUE //Don't hit the shooter
 	if(source)
 		shot_from = source
-	permutated[src] = TRUE
 	loc = loc_override
 	if(!isturf(loc))
 		forceMove(get_turf(src))
@@ -997,7 +986,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	x_offset = round(sin(dir_angle), 0.01)
 	y_offset = round(cos(dir_angle), 0.01)
 	if(projectile_batch_move(!recursivity) == PROJECTILE_FROZEN)
-		permutated.Cut()
 		var/atom/movable/hitscan_projectile_effect/laser_effect = new /atom/movable/hitscan_projectile_effect(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 1.01, effect_icon)
 		RegisterSignal(loc, COMSIG_TURF_RESUME_PROJECTILE_MOVE, .proc/resume_move)
 		laser_effect.RegisterSignal(loc, COMSIG_TURF_RESUME_PROJECTILE_MOVE, /atom/movable/hitscan_projectile_effect.proc/remove_effect)
@@ -1282,8 +1270,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	var/list/mob_list = list() //Let's built a list of mobs on the bullet turf and grab one.
 	for(var/mob/possible_target in src)
-		if(proj.permutated[possible_target])
-			continue
 		mob_list += possible_target
 
 	if(!length(mob_list))

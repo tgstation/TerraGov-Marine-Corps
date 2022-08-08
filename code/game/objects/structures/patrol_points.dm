@@ -1,8 +1,8 @@
 /obj/structure/patrol_point
 	name = "Patrol start point"
 	desc = "A one way ticket to the combat zone."
-	icon = 'icons/obj/structures/structures.dmi'
-	icon_state = "ladder11"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "patrolpoint"
 	anchored = TRUE
 	resistance_flags = RESIST_ALL
 	layer = LADDER_LAYER
@@ -48,6 +48,10 @@
 	user.visible_message(span_notice("[user] goes through the [src]."),
 	span_notice("You walk through the [src]."))
 	user.trainteleport(linked_point.loc)
+	new /atom/movable/effect/rappel_rope(linked_point.loc)
+	user.playsound_local(user, "sound/effects/CIC_order.ogg", 10, 1)
+	user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>OVERWATCH</u></span><br>" + "CURRENT OBJECTIVE: ELIMINATE HOSTILE FORCES IN THE AO.", /obj/screen/text/screen_text/command_order)
+	update_icon()
 
 /obj/structure/patrol_point/attack_ghost(mob/dead/observer/user)
 	. = ..()
@@ -55,3 +59,27 @@
 		return
 
 	user.forceMove(get_turf(linked_point))
+
+/atom/movable/effect/rappel_rope
+	name = "rope"
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "rope"
+	layer = ABOVE_MOB_LAYER
+	anchored = TRUE
+	resistance_flags = RESIST_ALL
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
+/atom/movable/effect/rappel_rope/Initialize()
+	. = ..()
+	playsound(loc, 'sound/effects/rappel.ogg', 50, TRUE)
+	playsound(loc, 'sound/effects/tadpolehovering.ogg', 100, TRUE)
+	balloon_alert_to_viewers("You see a dropship fly overhead and begin dropping ropes!")
+	ropeanimation()
+
+/atom/movable/effect/rappel_rope/proc/ropeanimation()
+	flick("rope_deploy", src)
+	addtimer(CALLBACK(src, .proc/ropeanimation_stop), 2 SECONDS)
+
+/atom/movable/effect/rappel_rope/proc/ropeanimation_stop()
+	flick("rope_up", src)
+	QDEL_IN(src, 5)
