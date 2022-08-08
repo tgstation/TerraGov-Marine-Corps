@@ -613,7 +613,7 @@
 		/obj/item/attachable/shoulder_mount,
 	)
 
-	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 15,"rail_x" = 15, "rail_y" = 22, "under_x" = 34, "under_y" = 5, "stock_x" = 5, "stock_y" = 15)
+	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 15,"rail_x" = 15, "rail_y" = 22, "under_x" = 34, "under_y" = 5, "stock_x" = 13, "stock_y" = 15)
 
 	flags_item_map_variant = NONE
 
