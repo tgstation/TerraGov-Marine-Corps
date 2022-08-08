@@ -60,7 +60,7 @@
 	do_climb(AM)
 
 /obj/structure/proc/can_climb(mob/living/user)
-	if(!climbable || !can_interact(user) || user.do_actions)
+	if(!climbable || !can_interact(user))
 		return FALSE
 
 	var/turf/T = src.loc
@@ -115,7 +115,7 @@
 	return TRUE
 
 /obj/structure/proc/do_climb(mob/living/user)
-	if(!can_climb(user))
+	if(!can_climb(user) || user.do_actions)
 		return
 
 	user.visible_message(span_warning("[user] starts [flags_atom & ON_BORDER ? "leaping over":"climbing onto"] \the [src]!"))

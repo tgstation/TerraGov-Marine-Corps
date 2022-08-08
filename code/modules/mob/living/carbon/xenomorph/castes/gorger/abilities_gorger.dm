@@ -141,7 +141,7 @@
 		while((owner_xeno.health < owner_xeno.maxHealth || owner_xeno.overheal < owner_xeno.xeno_caste.overheal_max) &&do_after(owner_xeno, 2 SECONDS, TRUE, target_human, BUSY_ICON_HOSTILE))
 			overheal_gain = owner_xeno.heal_wounds(2.2)
 			adjustOverheal(owner_xeno, overheal_gain)
-			owner_xeno.adjust_sunder(-0.5)
+			owner_xeno.adjust_sunder(-2.5)
 		to_chat(owner_xeno, span_notice("We feel fully restored."))
 		return
 	owner_xeno.face_atom(target_human)

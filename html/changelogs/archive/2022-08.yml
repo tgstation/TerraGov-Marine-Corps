@@ -65,3 +65,26 @@
   goose4429:
   - code_imp: Refactored vendor code for loadouts
   - code_imp: Vendors now support several point categories
+2022-08-06:
+  tyeagg:
+  - rscadd: rappel rope when entering map
+  - qol: screen alert for respawn waves and objective
+  - balance: respawn timer for patrol to 5 minutes
+  - soundadd: rappel and tadpole hover sound
+  - imageadd: rappel and patrol point
+2022-08-07:
+  BraveMole:
+  - bugfix: Fix climbing
+  Kuro020:
+  - bugfix: fixed the lever action mob sprite
+  QualityVan:
+  - bugfix: Eggs work a little more the way they ought. Flaming them won't make the
+      hugger hatch, for instance.
+2022-08-08:
+  BraveMole:
+  - bugfix: Fix bonus projectile not having IFF
+  - bugfix: Fix sadar turret not shooting
+  - code_imp: Attachment icon no longer update every icon change
+  - bugfix: Fix being able to shoot in a tarp
+  - rscadd: Add overlay short description on hypospray and pill bottles
+  - bugfix: Fix tadpole able to crush shutters

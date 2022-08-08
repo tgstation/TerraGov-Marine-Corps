@@ -232,6 +232,7 @@
 	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
 	name = "Timed Emergency Shutters"
 	use_power = FALSE
+	resistance_flags = DROPSHIP_IMMUNE|RESIST_ALL
 
 
 /obj/machinery/door/poddoor/timed_late/Initialize()
@@ -242,7 +243,7 @@
 /obj/machinery/door/poddoor/timed_late/containment
 	name = "Containment shutters"
 	desc = "Safety shutters triggered by some kind of lockdown event."
-	resistance_flags = RESIST_ALL
+	resistance_flags = DROPSHIP_IMMUNE|RESIST_ALL
 	open_layer = UNDER_TURF_LAYER //No longer needs to be interacted with.
 	closed_layer = ABOVE_WINDOW_LAYER //Higher than usual, this is only around on the start of the round.
 	smoothing_behavior = NO_SMOOTHING
