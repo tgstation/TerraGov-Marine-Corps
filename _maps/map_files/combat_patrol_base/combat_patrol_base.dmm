@@ -322,14 +322,6 @@
 /obj/item/tool/hand_labeler,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base)
-"el" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plating/ground/concrete/lines{
-	dir = 8
-	},
-/area/mainship/patrol_base)
 "eo" = (
 /obj/structure/bed/chair/sofa/corsat/verticalsouth,
 /turf/open/floor/mainship/red{
@@ -364,7 +356,9 @@
 /obj/effect/decal/warning_stripes/box/arrow{
 	dir = 4
 	},
-/turf/open/floor/mainship/red,
+/turf/open/floor/mainship/red{
+	dir = 4
+	},
 /area/mainship/patrol_base/som)
 "fo" = (
 /obj/structure/shuttle/engine/heater{
@@ -1003,9 +997,6 @@
 	},
 /area/mainship/patrol_base/som)
 "pb" = (
-/obj/structure/bed/chair/nometal{
-	dir = 1
-	},
 /turf/open/floor/mainship/terragov/north{
 	dir = 5
 	},
@@ -1099,6 +1090,25 @@
 /obj/machinery/telecomms/server/presets/zulu,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
+"qp" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/turf/open/floor/mainship/office,
+/area/mainship/patrol_base/som)
 "qs" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/office,
@@ -1121,7 +1131,7 @@
 "qZ" = (
 /obj/machinery/quick_vendor/som,
 /obj/machinery/light,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
 "ra" = (
 /turf/open/floor/plating/ground/concrete/edge{
@@ -1259,14 +1269,6 @@
 /obj/item/attachable/magnetic_harness,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base)
-"sn" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/concrete/lines{
-	dir = 4
-	},
-/area/mainship/patrol_base)
 "ss" = (
 /obj/effect/landmark/start/job/squadengineer,
 /turf/open/floor/mainship/mono,
@@ -1310,6 +1312,11 @@
 	dir = 8
 	},
 /area/mainship/patrol_base)
+"sJ" = (
+/turf/open/floor/mainship/red{
+	dir = 9
+	},
+/area/mainship/patrol_base/som)
 "sM" = (
 /obj/structure/somcas{
 	icon_state = "12"
@@ -1372,12 +1379,6 @@
 /obj/machinery/telecomms/bus/preset_three/som,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
-"tA" = (
-/obj/structure/tachi_sign,
-/turf/open/floor/plating/ground/concrete/lines{
-	dir = 1
-	},
-/area/mainship/patrol_base/som)
 "tK" = (
 /obj/structure/window/framed/mainship/spaceworthy{
 	icon_state = "col_window6"
@@ -1619,12 +1620,6 @@
 /obj/effect/landmark/start/job/som/squadstandard,
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
-"wZ" = (
-/obj/effect/decal/warning_stripes/box,
-/turf/open/floor/mainship/red{
-	dir = 8
-	},
-/area/mainship/patrol_base/som)
 "xd" = (
 /obj/machinery/light{
 	dir = 4
@@ -1801,16 +1796,39 @@
 /obj/item/mortal_shell/howitzer/he,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/mainship/patrol_base/som)
-"zl" = (
-/obj/effect/decal/warning_stripes/box,
-/turf/open/floor/mainship/red{
-	dir = 4
-	},
-/area/mainship/patrol_base/som)
 "zo" = (
 /obj/structure/prop/mainship/doorblocker/patrol_base,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base)
+"zt" = (
+/obj/structure/window/framed/prison/reinforced/nonshutter_hull,
+/turf/open/floor/mainship/office,
+/area/mainship/patrol_base/som)
+"zL" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/turf/open/floor/mainship/red{
+	dir = 5
+	},
+/area/mainship/patrol_base/som)
 "zO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -1855,14 +1873,6 @@
 /obj/machinery/computer/general_air_control,
 /turf/open/floor/mainship/silver{
 	dir = 4
-	},
-/area/mainship/patrol_base/som)
-"Be" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/mainship/red{
-	dir = 9
 	},
 /area/mainship/patrol_base/som)
 "Bl" = (
@@ -1927,7 +1937,6 @@
 	},
 /area/mainship/patrol_base)
 "Ci" = (
-/obj/machinery/light,
 /turf/open/floor/mainship/red{
 	dir = 10
 	},
@@ -1999,11 +2008,6 @@
 	dir = 10
 	},
 /area/mainship/patrol_base)
-"Dq" = (
-/obj/effect/landmark/start/job/som/squadstandard,
-/obj/machinery/light,
-/turf/open/floor/mainship/office,
-/area/mainship/patrol_base/som)
 "DQ" = (
 /obj/machinery/light,
 /turf/open/floor/plating/ground/concrete/lines,
@@ -2080,10 +2084,6 @@
 	dir = 1
 	},
 /area/mainship/patrol_base/som)
-"EM" = (
-/obj/structure/window/framed/mainship/hull,
-/turf/open/floor/plating/ground/concrete,
-/area/mainship/patrol_base)
 "EO" = (
 /turf/closed/shuttle/ert{
 	icon_state = "stan9"
@@ -2222,7 +2222,6 @@
 	},
 /area/mainship/patrol_base)
 "HA" = (
-/obj/machinery/light,
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/belt/utility/full,
 /obj/item/storage/belt/utility/full,
@@ -2356,7 +2355,7 @@
 /turf/open/floor/mainship/silver,
 /area/mainship/patrol_base/som)
 "IH" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/mainship/patrol_base/som)
 "Jb" = (
 /obj/machinery/vending/marineFood,
@@ -2415,6 +2414,9 @@
 	},
 /turf/open/floor/plating/ground/snow/layer1,
 /area/mainship/patrol_base/som)
+"Jr" = (
+/turf/open/floor/mainship/red/full,
+/area/mainship/patrol_base/som)
 "Jw" = (
 /obj/machinery/telecomms/processor/preset_three/som,
 /turf/open/floor/mainship,
@@ -2431,7 +2433,7 @@
 /area/mainship/patrol_base/telecomms)
 "JI" = (
 /obj/machinery/door/poddoor/mainship/indestructible,
-/turf/open/space/basic,
+/turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "JJ" = (
 /turf/open/floor/mainship/red,
@@ -2540,6 +2542,10 @@
 /obj/machinery/telecomms/receiver/preset_right/som,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
+"LG" = (
+/obj/structure/tachi_sign,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/mainship/patrol_base/som)
 "LH" = (
 /obj/structure/prop/mainship/prop_tech{
 	dir = 1
@@ -2794,13 +2800,6 @@
 	},
 /turf/open/floor/mainship/som/se,
 /area/mainship/patrol_base/som)
-"OH" = (
-/obj/effect/landmark/start/job/som/squadstandard,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/mainship/office,
-/area/mainship/patrol_base/som)
 "OI" = (
 /obj/structure/shuttle/engine/propulsion{
 	opacity = 0
@@ -3051,6 +3050,14 @@
 /obj/machinery/telecomms/server/presets/command/som,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
+"Sd" = (
+/obj/effect/decal/warning_stripes/box/arrow{
+	dir = 1
+	},
+/turf/open/floor/mainship/red/corner{
+	dir = 4
+	},
+/area/mainship/patrol_base/som)
 "Sh" = (
 /obj/machinery/light{
 	dir = 8
@@ -3194,6 +3201,31 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/som)
+"Tm" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/turf/open/floor/mainship/red{
+	dir = 9
+	},
+/area/mainship/patrol_base/som)
 "Tx" = (
 /obj/machinery/door/poddoor/timed_late/containment,
 /turf/open/floor/plating/ground/concrete/lines,
@@ -3261,12 +3293,6 @@
 /obj/structure/prop/mainship/prop_tech,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base)
-"Un" = (
-/obj/structure/table/mainship/nometal,
-/turf/open/floor/mainship/red{
-	dir = 6
-	},
-/area/mainship/patrol_base/som)
 "Ut" = (
 /obj/machinery/door/poddoor/timed_late/containment,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -3301,6 +3327,10 @@
 	dir = 1
 	},
 /area/mainship/patrol_base)
+"UT" = (
+/obj/machinery/quick_vendor/som,
+/turf/open/floor/mainship/office,
+/area/mainship/patrol_base/som)
 "UU" = (
 /turf/open/floor/mainship/silver{
 	dir = 8
@@ -3314,7 +3344,6 @@
 /turf/open/floor/mainship/red/corner,
 /area/mainship/patrol_base)
 "Vc" = (
-/obj/structure/bed/chair/nometal,
 /turf/open/floor/mainship/terragov/north{
 	dir = 6
 	},
@@ -3389,7 +3418,7 @@
 /obj/structure/bed/chair/nometal{
 	dir = 1
 	},
-/turf/open/floor/mainship/research,
+/turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "Wg" = (
 /obj/structure/prop/mainship/prop_sominf{
@@ -3476,6 +3505,14 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
+"Xh" = (
+/obj/effect/decal/warning_stripes/box/arrow{
+	dir = 1
+	},
+/turf/open/floor/mainship/red/corner{
+	dir = 1
+	},
+/area/mainship/patrol_base/som)
 "Xn" = (
 /turf/closed/shuttle/ert{
 	icon_state = "stan20"
@@ -3500,7 +3537,7 @@
 /area/mainship/patrol_base)
 "XU" = (
 /obj/structure/bed/chair/nometal,
-/turf/open/floor/mainship/research,
+/turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "XV" = (
 /obj/structure/bed/chair/nometal{
@@ -3623,12 +3660,6 @@
 	dir = 1
 	},
 /area/mainship/patrol_base)
-"ZY" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
-/turf/open/floor/mainship/red{
-	dir = 4
-	},
-/area/mainship/patrol_base)
 
 (1,1,1) = {"
 bg
@@ -3646,7 +3677,6 @@ bg
 Sw
 Sw
 Sw
-Sw
 If
 If
 If
@@ -3682,6 +3712,7 @@ Sw
 If
 If
 If
+Sw
 Sw
 Sw
 Sw
@@ -3705,7 +3736,6 @@ GM
 Jw
 KR
 bg
-Sw
 Sw
 Sw
 Sw
@@ -3745,6 +3775,7 @@ If
 SR
 If
 If
+If
 IH
 IH
 IH
@@ -3767,7 +3798,6 @@ MB
 MB
 MB
 bg
-Sw
 Sw
 Sw
 Sw
@@ -3805,6 +3835,7 @@ cA
 OT
 OT
 EH
+Mv
 Sh
 If
 TS
@@ -3829,7 +3860,6 @@ MB
 MB
 MB
 bg
-Sw
 Sw
 Sw
 Sw
@@ -3867,6 +3897,7 @@ TL
 QU
 Mv
 Mv
+dx
 bZ
 If
 rq
@@ -3891,7 +3922,6 @@ MB
 MB
 MB
 bg
-Sw
 Sw
 Sw
 Sw
@@ -3928,6 +3958,7 @@ If
 If
 Cl
 TL
+TL
 bZ
 If
 If
@@ -3953,7 +3984,6 @@ MB
 MB
 MB
 bg
-Sw
 Sw
 Sw
 Sw
@@ -3992,6 +4022,7 @@ FL
 FL
 SR
 If
+If
 vC
 vC
 vC
@@ -4015,7 +4046,6 @@ HI
 JF
 Lz
 bg
-Sw
 Sw
 Sw
 Sw
@@ -4048,13 +4078,14 @@ cv
 cv
 wY
 wY
-Dq
-If
-Be
+wY
+Mv
+sJ
+iV
 iV
 Ci
-If
-OH
+Mv
+wY
 NG
 NG
 yI
@@ -4077,7 +4108,6 @@ bg
 bg
 bg
 bg
-Sw
 Sw
 Sw
 Sw
@@ -4114,6 +4144,7 @@ Mv
 qK
 mH
 Mv
+Mv
 JJ
 mg
 Mv
@@ -4139,7 +4170,6 @@ Ic
 KF
 Mq
 bg
-Sw
 Sw
 Sw
 Sw
@@ -4175,6 +4205,7 @@ Mv
 Mv
 qK
 MU
+Mv
 NP
 JJ
 mg
@@ -4201,7 +4232,6 @@ MB
 MB
 MB
 bg
-Sw
 Sw
 Sw
 Sw
@@ -4234,13 +4264,14 @@ yI
 yI
 NG
 NG
-Dq
-If
-LL
+wY
+Mv
+mH
+Mv
 Mv
 HA
-If
-OH
+Mv
+wY
 wY
 wY
 cv
@@ -4263,7 +4294,6 @@ MB
 MB
 MB
 bg
-Sw
 Sw
 Sw
 Sw
@@ -4300,6 +4330,7 @@ vC
 If
 mH
 Mv
+Mv
 Iq
 If
 vC
@@ -4325,7 +4356,6 @@ MB
 MB
 MB
 bg
-Sw
 Sw
 Sw
 Sw
@@ -4362,6 +4392,7 @@ If
 If
 Fq
 qs
+Mv
 Su
 If
 If
@@ -4387,7 +4418,6 @@ MB
 MB
 MB
 bg
-Sw
 Sw
 Sw
 Sw
@@ -4424,6 +4454,7 @@ Sr
 FL
 cd
 qs
+Mv
 kp
 If
 xw
@@ -4449,7 +4480,6 @@ Iu
 KI
 NF
 bg
-Sw
 Sw
 Sw
 Sw
@@ -4486,6 +4516,7 @@ Ck
 FL
 mH
 UL
+Mv
 UW
 If
 My
@@ -4511,7 +4542,6 @@ bg
 bg
 bg
 bg
-Sw
 Sw
 Sw
 Sw
@@ -4547,8 +4577,9 @@ ko
 Rs
 Yy
 mH
-dx
-Un
+Mv
+Mv
+UW
 If
 My
 Fk
@@ -4564,7 +4595,6 @@ IH
 dW
 dW
 dW
-Sw
 Sw
 Sw
 Sw
@@ -4609,8 +4639,9 @@ If
 If
 If
 MU
+dx
 eX
-If
+bZ
 If
 My
 Fk
@@ -4626,7 +4657,6 @@ IH
 dW
 RD
 dW
-Sw
 Sw
 Sw
 Sw
@@ -4669,17 +4699,18 @@ VE
 VE
 VE
 WA
-sv
+Tm
 mZ
+JJ
 Zk
 qZ
+If
 If
 mw
 Qn
 Qn
 Qn
 CT
-SD
 SD
 HN
 IH
@@ -4688,7 +4719,6 @@ IH
 dW
 dW
 dW
-Sw
 Sw
 Sw
 Sw
@@ -4725,17 +4755,18 @@ aQ
 JR
 My
 nk
-xr
-wZ
+SG
+qp
 SN
 SN
 SN
 SN
-mg
+mH
 Mv
+JJ
 Zk
-VE
-FL
+UT
+zt
 Nv
 Nv
 Nv
@@ -4747,7 +4778,6 @@ If
 IH
 "}
 (19,1,1) = {"
-Sw
 Sw
 Sw
 Sw
@@ -4789,19 +4819,20 @@ My
 Fk
 SG
 Zl
-SN
-SN
-SN
-SN
-mg
-Ks
-OG
-VE
-FL
+iV
+iV
+iV
+iV
+Xh
+Mv
+JJ
+Zk
+UT
+zt
 YH
 Mv
 Mv
-fy
+Mv
 ZC
 Fk
 Fk
@@ -4809,7 +4840,6 @@ If
 IH
 "}
 (20,1,1) = {"
-Sw
 Sw
 Sw
 Sw
@@ -4851,27 +4881,27 @@ My
 Fk
 SG
 Zl
-VE
-VE
-VE
-VE
-sv
-kM
-dI
-sv
+TL
+TL
+TL
+TL
+Sd
+Mv
+JJ
+Zk
+UT
 If
-No
-sd
-Wv
-If
-dt
+Mv
+Mv
+Mv
+Mv
+aH
 Fk
 Fk
 If
 IH
 "}
 (21,1,1) = {"
-Sw
 Sw
 Sw
 Sw
@@ -4909,31 +4939,31 @@ aQ
 aQ
 aQ
 JR
-tA
+My
 Fk
 SG
 Zl
-pB
-pB
-pB
-pB
-mg
-Oe
-ax
-VE
-FL
+SN
+SN
+SN
+SN
+mH
+Ks
+OG
+Zk
+UT
+If
 Mv
-nI
-lf
-jf
-HE
+Mv
+Mv
+fy
+aH
 Fk
 Fk
 If
 IH
 "}
 (22,1,1) = {"
-Sw
 Sw
 Sw
 Sw
@@ -4971,31 +5001,31 @@ aQ
 aQ
 aQ
 JR
-Md
-SD
+My
+Fk
+SG
 xr
-zl
-pB
-pB
-pB
-pB
-mg
-Mv
-MW
 VE
-FL
-Mv
-aH
+VE
+VE
+VE
+sv
+kM
+dI
+Jr
+sv
+If
+No
+sd
+Wv
+If
+dt
 Fk
 Fk
-Fk
-mU
-Fk
-Ea
+If
 IH
 "}
 (23,1,1) = {"
-Sw
 Sw
 Sw
 Sw
@@ -5032,25 +5062,26 @@ Ao
 aQ
 aQ
 Ao
-Ol
 JR
-bD
-If
-If
-VE
-VE
-VE
-Rc
-sv
-TL
+My
+Fk
+SG
+Zl
+pB
+pB
+pB
+pB
+mH
+Oe
+ax
 MW
-qZ
-If
-hp
-aH
-Fk
-Fk
-Fk
+UT
+zt
+Mv
+nI
+lf
+jf
+HE
 Fk
 Fk
 Ea
@@ -5084,7 +5115,6 @@ Sw
 Sw
 Sw
 Sw
-Sw
 If
 If
 If
@@ -5094,32 +5124,32 @@ If
 LS
 LS
 If
-IH
-iu
-tu
-IH
-If
-FL
-FL
-FL
-If
-FL
-FL
-FL
-If
-If
+JR
+My
+Fk
+SG
+Zl
+iV
+iV
+iV
+iV
+Xh
+Mv
+JJ
+MW
+UT
+zt
+Mv
+aH
 Fk
 Fk
 Fk
-Fk
-Fk
-Fk
+mU
 Fk
 Ea
 IH
 "}
 (25,1,1) = {"
-Sw
 Sw
 Sw
 Sw
@@ -5156,32 +5186,32 @@ El
 ak
 mS
 If
-TW
-GO
-JR
-JR
-JR
-rq
-VY
-VY
-dC
-KL
-Ol
-Wg
-TS
-If
-If
+LG
+My
 Fk
-Df
-Fk
-Df
+SG
+Zl
+TL
+TL
+TL
+TL
+Sd
+Mv
+JJ
+MW
+UT
+Mv
 Fk
 Fk
-If
+Fk
+Fk
+Fk
+Fk
+Fk
+Ea
 IH
 "}
 (26,1,1) = {"
-Sw
 Sw
 Sw
 Sw
@@ -5218,32 +5248,32 @@ Fk
 Pz
 Fk
 If
-sW
-zj
 JR
-RC
-JR
-al
-Ub
-rj
-pT
-cU
-pT
-pT
-pT
-oZ
-If
-If
-If
-If
-If
-If
-If
-If
+Md
+SD
+SG
+qp
+pB
+pB
+pB
+pB
+mH
+Mv
+JJ
+MW
+UT
+Mv
+Fk
+Fk
+Fk
+Fk
+Fk
+Fk
+Fk
+Ea
 IH
 "}
 (27,1,1) = {"
-Sw
 Sw
 Sw
 Sw
@@ -5279,33 +5309,33 @@ Fk
 ak
 ak
 Fk
+LS
+Ol
+JR
+bD
 If
-zj
-zj
-JR
-JR
-JR
-JR
-BF
-wN
-st
-aV
-gL
+If
+VE
+VE
+VE
+Rc
+zL
+TL
+bZ
+MW
+qZ
+If
+hp
+aH
 Fk
 Fk
-nk
-pT
-pT
-pT
-pT
-pT
-pT
-pT
-IH
+Fk
+Fk
+Fk
+Ea
 IH
 "}
 (28,1,1) = {"
-Sw
 Sw
 Sw
 Sw
@@ -5342,32 +5372,32 @@ Fi
 Fk
 SO
 If
-zj
-JR
-JR
-JR
-JR
-JR
-My
-Ud
-lq
-Sm
-Im
-sh
-MM
-Ta
-Fk
-Fk
-Fk
-Fk
-Fk
-Fk
-Fk
 IH
-Sw
+iu
+tu
+IH
+If
+FL
+FL
+FL
+If
+FL
+FL
+FL
+If
+If
+If
+Fk
+Fk
+Fk
+Fk
+Fk
+Fk
+Fk
+If
+IH
 "}
 (29,1,1) = {"
-Sw
 Sw
 Sw
 Sw
@@ -5404,32 +5434,32 @@ gR
 Fk
 wM
 If
-yN
+TW
+GO
 JR
-RC
 JR
-RC
 JR
-Lf
-Qd
-Cs
-kQ
-KC
-sM
-ep
-Oa
+rq
+VY
+VY
+dC
+KL
+Ol
+Wg
+TS
+TS
+If
+If
+Fk
+Df
+Fk
+Df
 Fk
 Fk
-Fk
-Fk
-Fk
-Fk
-Fk
+If
 IH
-Sw
 "}
 (30,1,1) = {"
-Sw
 Sw
 Sw
 Sw
@@ -5466,29 +5496,30 @@ ZU
 VL
 ZU
 If
-Ox
+sW
+zj
 JR
+RC
 JR
-JR
-JR
-JR
-My
-aN
-uS
-Gn
-ib
-We
-vU
-hT
-Fk
-Fk
-Fk
-Fk
-Fk
-Fk
-Fk
+al
+Ub
+rj
+pT
+cU
+pT
+pT
+pT
+pT
+oZ
+If
+If
+If
+If
+If
+If
+If
+If
 IH
-Sw
 "}
 (31,1,1) = {"
 Sw
@@ -5521,13 +5552,260 @@ Sw
 Sw
 Sw
 Sw
+If
+If
+If
+If
+If
+If
+zj
+zj
+JR
+JR
+JR
+JR
+BF
+wN
+st
+aV
+gL
+Fk
+Fk
+Fk
+nk
+pT
+pT
+pT
+pT
+pT
+pT
+pT
+IH
+IH
+"}
+(32,1,1) = {"
 Sw
-If
-If
-If
-If
-If
-If
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+IH
+zj
+JR
+JR
+JR
+JR
+JR
+My
+Ud
+lq
+Sm
+Im
+sh
+MM
+Ta
+Fk
+Fk
+Fk
+Fk
+Fk
+Fk
+Fk
+Fk
+IH
+Sw
+"}
+(33,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+IH
+yN
+JR
+RC
+JR
+RC
+JR
+Lf
+Qd
+Cs
+kQ
+KC
+sM
+ep
+Oa
+Fk
+Fk
+Fk
+Fk
+Fk
+Fk
+Fk
+Fk
+IH
+Sw
+"}
+(34,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+IH
+Ox
+JR
+JR
+JR
+JR
+JR
+My
+aN
+uS
+Gn
+ib
+We
+vU
+hT
+Fk
+Fk
+Fk
+Fk
+Fk
+Fk
+Fk
+Fk
+IH
+Sw
+"}
+(35,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+IH
 JR
 JR
 JR
@@ -5541,6 +5819,7 @@ ni
 dX
 Fk
 Fk
+Fk
 UC
 SD
 SD
@@ -5552,8 +5831,7 @@ SD
 IH
 Sw
 "}
-(32,1,1) = {"
-Sw
+(36,1,1) = {"
 Sw
 Sw
 Sw
@@ -5603,6 +5881,7 @@ wB
 Fk
 Fk
 Fk
+Fk
 fz
 Fk
 Fk
@@ -5614,8 +5893,7 @@ IH
 IH
 Sw
 "}
-(33,1,1) = {"
-Sw
+(37,1,1) = {"
 Sw
 Sw
 Sw
@@ -5665,259 +5943,12 @@ SD
 SD
 SD
 SD
+SD
 NB
 Fk
 Fk
 Fk
 IH
-Sw
-Sw
-Sw
-Sw
-Sw
-"}
-(34,1,1) = {"
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-IH
-IH
-IH
-IH
-IH
-IH
-IH
-IH
-IH
-IH
-IH
-IH
-IH
-Sw
-Sw
-Sw
-Sw
-Sw
-"}
-(35,1,1) = {"
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-"}
-(36,1,1) = {"
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-"}
-(37,1,1) = {"
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
 Sw
 Sw
 Sw
@@ -5966,20 +5997,20 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
+IH
+IH
+IH
+IH
+IH
+IH
+IH
+IH
+IH
+IH
+IH
+IH
+IH
+IH
 Sw
 Sw
 Sw
@@ -8532,7 +8563,7 @@ Sw
 Sw
 Sw
 Sw
-jh
+Sw
 Sw
 SY
 oP
@@ -8591,10 +8622,10 @@ Sw
 Sw
 "}
 (81,1,1) = {"
-pz
-pg
-fQ
-OI
+Sw
+Sw
+Sw
+jh
 Sw
 SY
 oP
@@ -8653,25 +8684,25 @@ Sw
 Sw
 "}
 (82,1,1) = {"
-pg
+pz
 pg
 fQ
-fQ
+OI
 Sw
 SY
 oP
 Uw
-ST
-ST
-ZY
+kA
+kA
+Ih
 gk
 nz
 ZX
 we
 WX
-nR
-nR
-nR
+kA
+kA
+kA
 Uw
 cT
 uz
@@ -8715,6 +8746,68 @@ Sw
 Sw
 "}
 (83,1,1) = {"
+pg
+pg
+fQ
+fQ
+Sw
+SY
+oP
+Uw
+ST
+ST
+ST
+WX
+pb
+Rr
+Vc
+WX
+nR
+nR
+nR
+Uw
+kA
+uz
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+am
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(84,1,1) = {"
 Pe
 Pe
 OF
@@ -8727,9 +8820,9 @@ fZ
 fZ
 fZ
 ej
-pb
-Rr
-Vc
+Wf
+kA
+XU
 ej
 fZ
 fZ
@@ -8776,7 +8869,7 @@ Sw
 Sw
 Sw
 "}
-(84,1,1) = {"
+(85,1,1) = {"
 pz
 Pe
 OF
@@ -8790,7 +8883,7 @@ fZ
 fZ
 ej
 Wf
-eT
+kA
 XU
 ej
 fZ
@@ -8801,74 +8894,12 @@ jI
 uz
 ac
 jp
-sn
+ch
 ch
 ch
 ch
 ch
 au
-Fw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-"}
-(85,1,1) = {"
-Sw
-Sw
-Sw
-Sw
-Sw
-SY
-oP
-Uw
-rF
-rF
-pS
-gk
-Xr
-Kz
-Xr
-WX
-tq
-tq
-tq
-EM
-kA
-VH
-Uj
-DQ
-Fw
-IE
-kA
-Fw
-Fw
-Fw
 Fw
 Sw
 Sw
@@ -8909,18 +8940,80 @@ Sw
 SY
 oP
 Uw
-bI
-bI
-bI
+rF
+rF
+pS
+gk
+Xr
+eT
+Xr
+WX
+tq
+tq
+tq
+Uw
+kA
+VH
+Uj
+yp
+PK
+kA
+kA
+Fw
+Fw
+Fw
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(87,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+SY
+oP
+Uw
+kA
+kA
+kA
 uR
 Xr
-TO
+Kz
 Xr
 uR
-rH
-rH
-rH
-EM
+kA
+kA
+kA
+Uw
 kA
 uz
 ac
@@ -8962,7 +9055,69 @@ Sw
 Sw
 Sw
 "}
-(87,1,1) = {"
+(88,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+SY
+oP
+Uw
+bI
+bI
+bI
+WX
+Xr
+TO
+Xr
+WX
+rH
+rH
+rH
+Uw
+kA
+uz
+ac
+yp
+JB
+kA
+kA
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+"}
+(89,1,1) = {"
 Sw
 Sw
 Sw
@@ -8987,7 +9142,7 @@ kA
 uz
 ac
 ra
-el
+Ee
 Ee
 XE
 Fw
@@ -9024,7 +9179,7 @@ Sw
 Sw
 Sw
 "}
-(88,1,1) = {"
+(90,1,1) = {"
 Sw
 Sw
 Sw
@@ -9086,7 +9241,7 @@ Sw
 Sw
 Sw
 "}
-(89,1,1) = {"
+(91,1,1) = {"
 Sw
 Sw
 Sw
@@ -9148,7 +9303,7 @@ Sw
 Sw
 Sw
 "}
-(90,1,1) = {"
+(92,1,1) = {"
 Sw
 Sw
 Sw
@@ -9210,7 +9365,7 @@ Sw
 Sw
 Sw
 "}
-(91,1,1) = {"
+(93,1,1) = {"
 Sw
 Sw
 Sw
@@ -9272,7 +9427,7 @@ Sw
 Sw
 Sw
 "}
-(92,1,1) = {"
+(94,1,1) = {"
 Sw
 Sw
 Sw
@@ -9334,7 +9489,7 @@ Sw
 Sw
 Sw
 "}
-(93,1,1) = {"
+(95,1,1) = {"
 Sw
 Sw
 Sw
@@ -9396,7 +9551,7 @@ Sw
 Sw
 Sw
 "}
-(94,1,1) = {"
+(96,1,1) = {"
 Sw
 Sw
 Sw
@@ -9458,7 +9613,7 @@ Sw
 Sw
 Sw
 "}
-(95,1,1) = {"
+(97,1,1) = {"
 Sw
 Sw
 Sw
@@ -9520,7 +9675,7 @@ Sw
 Sw
 Sw
 "}
-(96,1,1) = {"
+(98,1,1) = {"
 Sw
 Sw
 Sw
@@ -9582,7 +9737,7 @@ Sw
 Sw
 Sw
 "}
-(97,1,1) = {"
+(99,1,1) = {"
 Sw
 Sw
 Fw
@@ -9644,7 +9799,7 @@ Sw
 Sw
 Sw
 "}
-(98,1,1) = {"
+(100,1,1) = {"
 Sw
 Sw
 Fw
@@ -9706,7 +9861,7 @@ Sw
 Sw
 Sw
 "}
-(99,1,1) = {"
+(101,1,1) = {"
 Sw
 Sw
 Fw
@@ -9768,7 +9923,7 @@ Sw
 Sw
 Sw
 "}
-(100,1,1) = {"
+(102,1,1) = {"
 Sw
 Sw
 Fw
@@ -9830,7 +9985,7 @@ Sw
 Sw
 Sw
 "}
-(101,1,1) = {"
+(103,1,1) = {"
 Sw
 Sw
 Fw
@@ -9892,7 +10047,7 @@ Sw
 Sw
 Sw
 "}
-(102,1,1) = {"
+(104,1,1) = {"
 Sw
 Sw
 Fw
@@ -9954,7 +10109,7 @@ Sw
 Sw
 Sw
 "}
-(103,1,1) = {"
+(105,1,1) = {"
 Sw
 Sw
 Fw
@@ -10016,7 +10171,7 @@ Sw
 Sw
 Sw
 "}
-(104,1,1) = {"
+(106,1,1) = {"
 Sw
 Sw
 Fw
@@ -10078,7 +10233,7 @@ Sw
 Sw
 Sw
 "}
-(105,1,1) = {"
+(107,1,1) = {"
 Sw
 Sw
 Fw
@@ -10140,7 +10295,7 @@ Sw
 Sw
 Sw
 "}
-(106,1,1) = {"
+(108,1,1) = {"
 Sw
 Sw
 Fw
@@ -10202,7 +10357,7 @@ Sw
 Sw
 Sw
 "}
-(107,1,1) = {"
+(109,1,1) = {"
 Sw
 Sw
 Fw
@@ -10264,7 +10419,7 @@ Sw
 Sw
 Sw
 "}
-(108,1,1) = {"
+(110,1,1) = {"
 Sw
 Sw
 Fw
@@ -10326,7 +10481,7 @@ Sw
 Sw
 Sw
 "}
-(109,1,1) = {"
+(111,1,1) = {"
 Sw
 Sw
 Fw
@@ -10388,7 +10543,7 @@ Sw
 Sw
 Sw
 "}
-(110,1,1) = {"
+(112,1,1) = {"
 Sw
 Sw
 Fw
@@ -10450,7 +10605,7 @@ Sw
 Sw
 Sw
 "}
-(111,1,1) = {"
+(113,1,1) = {"
 Sw
 Sw
 Fw
@@ -10512,7 +10667,7 @@ Sw
 Sw
 Sw
 "}
-(112,1,1) = {"
+(114,1,1) = {"
 Sw
 Sw
 Fw
@@ -10574,147 +10729,23 @@ Sw
 Sw
 Sw
 "}
-(113,1,1) = {"
-Sw
-Sw
-Sw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-"}
-(114,1,1) = {"
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-"}
 (115,1,1) = {"
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
 Sw
 Sw
 Sw
