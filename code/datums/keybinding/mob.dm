@@ -339,3 +339,16 @@
 	full_name = "Toggle minimap"
 	description = "Toggle the minimap screen"
 	keybind_signal = COMSIG_KB_TOGGLE_MINIMAP
+
+/datum/keybinding/mob/toggle_self_harm
+	name = "toggle_self_harm"
+	full_name = "Toggle self harm"
+	description = "Toggle being able to hit yourself"
+	keybind_signal = COMSIG_KB_SELFHARM
+
+/datum/keybinding/mob/toggle_self_harm/down(client/user)
+	. = ..()
+	if (.)
+		return
+	user.mob.do_self_harm = !user.mob.do_self_harm
+	user.mob.balloon_alert(user.mob, "You can [user.mob.do_self_harm ? "now" : "no longer"] hit yourself.")

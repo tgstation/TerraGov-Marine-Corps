@@ -93,3 +93,6 @@
 	var/has_unlimited_silicon_privilege = 0
 	///The faction this mob belongs to
 	var/faction = FACTION_NEUTRAL
+
+	// Whether or not the mob can hit themselves.
+	var/do_self_harm = TRUE
