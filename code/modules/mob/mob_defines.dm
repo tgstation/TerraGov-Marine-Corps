@@ -17,6 +17,7 @@
 	var/a_intent = INTENT_HELP
 	var/m_intent = MOVE_INTENT_RUN
 	var/in_throw_mode = FALSE
+	var/do_self_harm = TRUE // Whether or not the mob can hit themselves.
 	var/notransform = FALSE
 	var/list/observers //The list of people observing this mob.
 	var/list/speak_emote = list("says") // Verbs used when speaking instead of the default ones.
@@ -93,6 +94,3 @@
 	var/has_unlimited_silicon_privilege = 0
 	///The faction this mob belongs to
 	var/faction = FACTION_NEUTRAL
-
-	// Whether or not the mob can hit themselves.
-	var/do_self_harm = TRUE
