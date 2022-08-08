@@ -351,4 +351,4 @@
 	if (.)
 		return
 	user.mob.do_self_harm = !user.mob.do_self_harm
-	user.mob.balloon_alert(user.mob, "You can [user.mob.do_self_harm ? "now" : "no longer"] hit yourself.")
+	user.mob.balloon_alert(user.mob, "You can [user.mob.do_self_harm ? "now" : "no longer"] hit yourself")
