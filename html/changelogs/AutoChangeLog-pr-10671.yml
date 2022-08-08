@@ -1,4 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - code_imp: "Attachment icon no longer update every icon change"
