@@ -9,6 +9,8 @@ SUBSYSTEM_DEF(ru_items)
 		/obj/item/ammo_magazine/smg/vector = -1,
 		/obj/item/ammo_magazine/packet/acp_smg = -1,
 		/obj/item/weapon/gun/revolver/standard_revolver/coltrifle = -1,
+		/obj/item/ammo_magazine/revolver/rifle = -1,
+		/obj/item/ammo_magazine/packet/long_special = -1,
 	)
 
 	var/list/items_val = list(
@@ -17,6 +19,8 @@ SUBSYSTEM_DEF(ru_items)
 		/obj/item/ammo_magazine/packet/acp_smg = -1,
 		/obj/item/weapon/twohanded/glaive/harvester = -1,
 		/obj/item/weapon/gun/revolver/standard_revolver/coltrifle = -1,
+		/obj/item/ammo_magazine/revolver/rifle = -1,
+		/obj/item/ammo_magazine/packet/long_special = -1,
 		/obj/item/clothing/head/helmet/marine/robot/advanced/acid = -1,
 		/obj/item/clothing/suit/storage/marine/robot/advanced/acid = -1,
 		/obj/item/clothing/head/helmet/marine/robot/advanced/physical = -1,
@@ -57,22 +61,29 @@ SUBSYSTEM_DEF(ru_items)
 	icon_state = "coltrifle"
 	item_state = "coltrifle"
 	fire_animation = "coltrifle_fire"
+	fire_sound = 'sound/weapons/guns/fire/mateba.ogg'
 	gun_skill_category = GUN_SKILL_RIFLES
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
-	damage_mult = 1.1
+	caliber = CALIBER_44LS
+	max_chamber_items = 8
+	default_ammo_type = /obj/item/ammo_magazine/revolver/rifle
+	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/rifle)
 	force = 20
 
-	scatter = 0
-	scatter_unwielded = 5
+	scatter = 3
+	recoil = 3
+	scatter_unwielded = 10
+	recoil_unwielded = 6
+	recoil_backtime_multiplier = 2
+	recoil_deviation = 360 //real party
 
-	fire_delay = 0.2 SECONDS
+	fire_delay = 0.25 SECONDS
+	aim_fire_delay = 0.25 SECONDS
 	upper_akimbo_accuracy = 6
 	lower_akimbo_accuracy = 3
 	akimbo_additional_delay = 1
-
-	recoil = 0
-	recoil_unwielded = 0
+	aim_slowdown = 0.3
 
 	attachable_allowed = list(
 		/obj/item/attachable/magnetic_harness,
@@ -82,6 +93,36 @@ SUBSYSTEM_DEF(ru_items)
 		/obj/item/attachable/bayonetknife,
 	)
 	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 21,"rail_x" = 24, "rail_y" = 22)
+
+/obj/item/ammo_magazine/revolver/rifle
+	name = "\improper M1855 speed loader (.44LS)"
+	desc = "A speed loader for the M1855, with special design to make it possible to speedload a rifle. Longer version of .44 Magnum, with uranium-neodimium core."
+	default_ammo = /datum/ammo/bullet/revolver/rifle
+	caliber = CALIBER_44LS
+	max_rounds = 8
+	icon_state = "44LS"
+
+/obj/item/ammo_magazine/packet/long_special
+	name = "box of .44 Long Special"
+	desc = "A box containing 40 rounds of .44 Long Special."
+	icon_state = "44LSbox"
+	default_ammo = /datum/ammo/bullet/revolver/rifle
+	caliber = CALIBER_44LS
+	current_rounds = 40
+	max_rounds = 40
+
+/datum/ammo/bullet/revolver/rifle
+	name = ".44 Long Special bullet"
+	hud_state = "revolver_impact"
+	handful_amount = 8
+	damage = 60
+	penetration = 30
+	sundering = 3
+	damage_falloff = 0
+	shell_speed = 3.5
+
+/datum/ammo/bullet/revolver/highimpact/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, knockback = 2, shake = 1)
 
 ///////////////////////////////////////////////////////////////////////
 ////////////////////////  T25, old version .///////////////////////////
