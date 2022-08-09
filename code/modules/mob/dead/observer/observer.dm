@@ -142,29 +142,22 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 
 /mob/dead/observer/Topic(href, href_list)
-	. = ..()
-	if(.)
-		return
-	switch(href_list[href])
-		if("reentercorpse")
+	..()
+	if(usr == src)
+		if(href_list["reentercorpse"])
 			if(!isobserver(usr))
 				return
 			var/mob/dead/observer/A = usr
 			A.reenter_corpse()
 
 
-		if("track")
-			var/mob/target = locate(href_list["track"]) in GLOB.mob_list
-			if(istype(target))
+		if(href_list["track"])
+			var/atom/movable/target = locate(href_list["track"])
+			if(istype(target) && (target != src))
 				ManualFollow(target)
 				return
-			else
-				var/atom/movable/AM = locate(href_list["track"])
-				ManualFollow(AM)
-				return
 
-
-		if("jump")
+		if(href_list["jump"])
 			var/x = text2num(href_list["x"])
 			var/y = text2num(href_list["y"])
 			var/z = text2num(href_list["z"])
@@ -180,7 +173,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			A.abstract_move(T)
 			return
 
-		if("claim")
+		if(href_list["claim"])
 			var/mob/living/target = locate(href_list["claim"]) in GLOB.offered_mob_list
 			if(!istype(target))
 				to_chat(usr, span_warning("Invalid target."))
@@ -188,7 +181,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 			target.take_over(src)
 
-		if("join_ert")
+		if(href_list["join_ert"])
 			if(!isobserver(usr))
 				return
 			var/mob/dead/observer/A = usr
@@ -196,7 +189,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			A.JoinResponseTeam()
 			return
 
-		if("join_larva")
+		if(href_list["join_larva"])
 			if(!isobserver(usr))
 				return
 			var/mob/dead/observer/ghost = usr
@@ -211,13 +204,13 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 					SSticker.mode.attempt_to_join_as_larva(ghost)
 			return
 
-		if("preference")
+		if(href_list["preference"])
 			if(!client?.prefs)
 				return
 			stack_trace("This code path is no longer valid, migrate this to new TGUI prefs")
 			return
 
-		if("track_xeno_name")
+		if(href_list["track_xeno_name"])
 			var/xeno_name = href_list["track_xeno_name"]
 			for(var/Y in GLOB.hive_datums[XENO_HIVE_NORMAL].get_all_xenos())
 				var/mob/living/carbon/xenomorph/X = Y
@@ -230,7 +223,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 				ManualFollow(X)
 				break
 
-		if("track_silo_number")
+		if(href_list["track_silo_number"])
 			var/silo_number = href_list["track_silo_number"]
 			for(var/obj/structure/xeno/silo/resin_silo AS in GLOB.xeno_resin_silos)
 				if(resin_silo.associated_hive == GLOB.hive_datums[XENO_HIVE_NORMAL] && num2text(resin_silo.number_silo) == silo_number)
