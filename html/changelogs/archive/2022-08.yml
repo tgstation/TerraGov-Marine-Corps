@@ -88,3 +88,13 @@
   - bugfix: Fix being able to shoot in a tarp
   - rscadd: Add overlay short description on hypospray and pill bottles
   - bugfix: Fix tadpole able to crush shutters
+2022-08-09:
+  Araulius:
+  - balance: Increased the amount of lemoline per crate from 10u to 30u
+  - balance: increased cost of lemoline crate from 5 points to 8 points
+  Lumipharon:
+  - rscadd: Added some HvH specific end of round stats for Combat Patrol, projectiles
+      are counted instead of just bullets
+  - code_imp: tidied up end of round stats
+  Moraetea:
+  - balance: Increasing sunder recovery during Gorger drain ability
