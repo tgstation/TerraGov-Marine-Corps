@@ -1443,15 +1443,6 @@
 	dir = 1
 	},
 /area/mainship/patrol_base)
-"uR" = (
-/obj/structure/bed/chair/nometal{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/patrol_base)
 "uS" = (
 /obj/structure/somcas/wingtip/wing9,
 /turf/open/floor/plating/ground/concrete,
@@ -1718,6 +1709,15 @@
 "xQ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/patrol_base)
+"yf" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/bed/chair/nometal{
+	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base)
@@ -9003,11 +9003,11 @@ Uw
 kA
 kA
 kA
-uR
+WX
 Xr
 Kz
 Xr
-uR
+WX
 kA
 kA
 kA
@@ -9065,11 +9065,11 @@ Uw
 bI
 bI
 bI
-WX
+yf
 Xr
 TO
 Xr
-WX
+yf
 rH
 rH
 rH
