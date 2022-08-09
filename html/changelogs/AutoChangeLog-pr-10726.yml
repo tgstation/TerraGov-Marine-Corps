@@ -1,0 +1,6 @@
+author: "RikuTheKiller"
+delete-after: True
+changes: 
+  - rscdel: "removed useless vali messages"
+  - rscdel: "removed redundant check for volume amount"
+  - spellcheck: "changed the exact wording on some of the vali balloon messages"
