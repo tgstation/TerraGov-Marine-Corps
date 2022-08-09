@@ -25,7 +25,9 @@
 		CRASH("[internal_item] was attempted to be deployed within the type /obj/machinery/deployable/mounted without being a gun]")
 
 	var/obj/item/weapon/gun/new_gun = internal_item
-
+	for(var/obj/item/ammo_magazine/ammo_magazine in new_gun.chamber_items)
+		if(CHECK_BITFIELD(new_gun.get_flags_magazine_features(ammo_magazine), MAGAZINE_WORN))	//Start process() if it was deployed already connected
+			START_PROCESSING(SSobj, src)
 	new_gun.set_gun_user(null)
 
 /obj/machinery/deployable/mounted/Destroy()
@@ -87,6 +89,9 @@
 	gun.reload(ammo_magazine, user)
 	update_icon_state()
 
+	if(CHECK_BITFIELD(gun.get_flags_magazine_features(ammo_magazine), MAGAZINE_WORN))	//Start process() if a backpack magazine has been connected
+		START_PROCESSING(SSobj, src)
+
 	REMOVE_TRAIT(src, TRAIT_GUN_RELOADING, GUN_TRAIT)
 
 	if(!CHECK_BITFIELD(gun.reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
@@ -140,6 +145,18 @@
 
 	gun.set_gun_user(operator)
 
+/obj/machinery/deployable/mounted/process()
+	var/obj/item/weapon/gun/gun = internal_item
+	for(var/obj/item/ammo_magazine/ammo_magazine in gun.chamber_items)
+		if(!CHECK_BITFIELD(gun.get_flags_magazine_features(ammo_magazine), MAGAZINE_WORN))
+			STOP_PROCESSING(SSobj, src)	//If the gun no longer has a backpack magazine, no need to do it anymore
+			return
+		if(!(get_dist(src, ammo_magazine) <= 1))
+			gun.drop_connected_mag(src)
+			visible_message("[src]'s ammo has been disconnected.")
+			update_icon()
+			STOP_PROCESSING(SSobj, src)
+			return
 
 ///Begins the Firing Process, does custom checks before calling the guns start_fire()
 /obj/machinery/deployable/mounted/proc/start_fire(datum/source, atom/object, turf/location, control, params)

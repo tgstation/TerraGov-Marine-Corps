@@ -332,6 +332,7 @@
 
 
 /obj/machinery/deployable/mounted/sentry/process()
+	. = ..()
 	update_icon()
 	if(!scan())
 		var/obj/item/weapon/gun/gun = internal_item
