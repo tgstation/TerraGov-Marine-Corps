@@ -1013,7 +1013,6 @@
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/lasersight,
-		/obj/item/attachable/t42barrel,
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/mini,
