@@ -12,6 +12,8 @@
 	GLOB.alive_human_list += src
 	LAZYADD(GLOB.humans_by_zlevel["[z]"], src)
 	RegisterSignal(src, COMSIG_MOVABLE_Z_CHANGED, .proc/human_z_changed)
+	GLOB.round_statistics.total_humans_created++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_humans_created")
 
 	var/datum/action/skill/toggle_orders/toggle_orders_action = new
 	toggle_orders_action.give_action(src)

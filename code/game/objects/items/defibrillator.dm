@@ -279,8 +279,8 @@
 	H.updatehealth() //One more time, so it doesn't show the target as dead on HUDs
 	H.dead_ticks = 0 //We reset the DNR time
 	REMOVE_TRAIT(H, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
-	GLOB.round_statistics.total_human_revives[H.faction]++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_human_revives[H.faction]")
+	GLOB.round_statistics.total_human_revives++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_human_revives")
 	to_chat(H, span_notice("You suddenly feel a spark and your consciousness returns, dragging you back to the mortal plane."))
 
 	if(CHECK_BITFIELD(H.status_flags, XENO_HOST))
