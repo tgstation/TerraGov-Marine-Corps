@@ -489,27 +489,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	damage_mod = -0.15
 	gun_firemode_list_mod = list(GUN_FIREMODE_AUTOMATIC)
 
-/obj/item/attachable/t42barrel
-	name = "MG-42 barrel"
-	desc = "The standard barrel on the MG-42. CANNOT BE REMOVED."
-	slot = ATTACHMENT_SLOT_MUZZLE
-	icon_state = "t42barrel"
-	flags_attach_features = NONE
-
-/obj/item/attachable/t18barrel
-	name = "AR-18 barrel"
-	desc = "The standard barrel on the AR-18. CANNOT BE REMOVED."
-	slot = ATTACHMENT_SLOT_MUZZLE
-	icon_state = "t18barrel"
-	flags_attach_features = NONE
-
-/obj/item/attachable/t12barrel
-	name = "AR-12 barrel"
-	desc = "The standard barrel on the AR-12. CANNOT BE REMOVED."
-	slot = ATTACHMENT_SLOT_MUZZLE
-	icon_state = "t12barrel"
-	flags_attach_features = NONE
-
 /obj/item/attachable/sgbarrel
 	name = "SG-29 barrel"
 	icon_state = "sg29barrel"
@@ -969,31 +948,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_x = 41
 	pixel_shift_y = 10
 
-/obj/item/attachable/stock/t18stock
-	name = "\improper AR-18 stock"
-	desc = "A specialized stock for the AR-18."
-	icon_state = "t18stock"
-	pixel_shift_x = 32
-	pixel_shift_y = 13
-
 /obj/item/attachable/stock/tl127stock
 	name = "\improper SR-127 stock"
 	desc = "A irremovable SR-127 sniper rifle stock."
 	icon_state = "tl127stock"
-	pixel_shift_x = 32
-	pixel_shift_y = 13
-
-/obj/item/attachable/stock/t12stock
-	name = "\improper AR-12 stock"
-	desc = "A specialized stock for the AR-12."
-	icon_state = "t12stock"
-	pixel_shift_x = 32
-	pixel_shift_y = 13
-
-/obj/item/attachable/stock/t42stock
-	name = "\improper MG-42 stock"
-	desc = "A specialized stock for the MG-42."
-	icon_state = "t42stock"
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 
