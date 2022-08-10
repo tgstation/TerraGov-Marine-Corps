@@ -6,7 +6,7 @@ source dependencies.sh
 cd ~
 git clone https://github.com/tgstation/rust-g.git
 cd rust-g
-git checkout origin pull/113/head:pathfinder
+git fetch origin pull/113/head:pathfinder
 sudo dpkg --add-architecture i386
 sudo apt update
 sudo apt-get install g++-multilib zlib1g-dev:i386 libssl-dev:i386
