@@ -84,7 +84,6 @@
 /obj/item/weapon/gun/smg/standard_smg
 	name = "\improper SMG-90 submachinegun"
 	desc = "The SMG-90 is the TerraGov Marine Corps standard issue SMG. Its known for it's compact size and ease of use inside the field. It's usually carried by troops who want a lightweight firearm to rush with. It uses 10x20mm caseless rounds."
-	icon = 'icons/Marine/gun64.dmi'
 	fire_sound = 'sound/weapons/guns/fire/t90.ogg'
 	icon_state = "t90"
 	item_state = "t90"
@@ -113,7 +112,7 @@
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
-	attachable_offset = list("muzzle_x" = 38, "muzzle_y" = 16,"rail_x" = 24, "rail_y" = 23, "under_x" = 30, "under_y" = 8, "stock_x" = 24, "stock_y" = 10)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 15,"rail_x" = 22, "rail_y" = 22, "under_x" = 17, "under_y" = 15, "stock_x" = 24, "stock_y" = 10)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 0.55

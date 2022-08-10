@@ -587,7 +587,6 @@
 /obj/item/weapon/gun/shotgun/pump/t35
 	name = "\improper SH-35 pump shotgun"
 	desc = "The Terran Armories SH-35 is the shotgun used by the TerraGov Marine Corps. It's used as a close quarters tool when someone wants something more suited for close range than most people, or as an odd sidearm on your back for emergencies. Uses 12 gauge shells.\n<b>Requires a pump, which is the Unique Action key.</b>"
-	icon = 'icons/Marine/gun64.dmi'
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon_state = "t35"
 	item_state = "t35"
@@ -613,7 +612,7 @@
 		/obj/item/attachable/shoulder_mount,
 	)
 
-	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 15,"rail_x" = 15, "rail_y" = 22, "under_x" = 34, "under_y" = 5, "stock_x" = 9, "stock_y" = 15)
+	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 20, "under_x" = 21, "under_y" = 12, "stock_x" = 20, "stock_y" = 16)
 
 	flags_item_map_variant = NONE
 
