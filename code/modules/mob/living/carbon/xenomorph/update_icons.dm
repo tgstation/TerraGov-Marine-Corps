@@ -89,7 +89,7 @@
 		fire_overlay.icon_state = ""
 		return
 	fire_overlay.layer = layer + 0.4
-	if((!initial(pixel_y) || lying_angle) && !resting && !IsSleeping())
+	if(mob_size!= MOB_SIZE_BIG || ((!initial(pixel_y) || lying_angle) && !resting && !IsSleeping()))
 		fire_overlay.icon_state = "alien_fire"
 	else
 		fire_overlay.icon_state = "alien_fire_lying"
@@ -152,3 +152,6 @@
 
 /atom/movable/vis_obj/xeno_wounds/fire_overlay
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
+
+/atom/movable/vis_obj/xeno_wounds/fire_overlay/small
+	icon = 'icons/Xeno/Effects.dmi'

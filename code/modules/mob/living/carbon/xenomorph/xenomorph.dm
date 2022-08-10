@@ -38,7 +38,7 @@
 	wound_overlay = new(null, src)
 	vis_contents += wound_overlay
 
-	fire_overlay = new(null, src)
+	fire_overlay = mob_size == MOB_SIZE_BIG ? new(null, src) : new /atom/movable/vis_obj/xeno_wounds/fire_overlay/small(null, src)
 	vis_contents += fire_overlay
 
 	set_initial_hivenumber()
