@@ -7,8 +7,8 @@ cd ~
 git clone https://github.com/tgstation/rust-g.git
 cd rust-g
 sudo dpkg --add-architecture i386
-sudo apt update || true
-sudo apt install -o APT::Immediate-Configure=false libssl1.1:i386
+sudo apt update
+sudo apt-get install zlib1g-dev:i386 libssl-dev:i386
 rustup target add i686-unknown-linux-gnu
 cargo build --release --target i686-unknown-linux-gnu
 mkdir -p ~/.byond/bin
