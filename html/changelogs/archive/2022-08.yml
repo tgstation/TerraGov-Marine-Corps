@@ -98,3 +98,18 @@
   - code_imp: tidied up end of round stats
   Moraetea:
   - balance: Increasing sunder recovery during Gorger drain ability
+2022-08-10:
+  RikuTheKiller:
+  - rscdel: removed useless vali messages
+  - rscdel: removed redundant check for volume amount
+  - spellcheck: changed the exact wording on some of the vali balloon messages
+  Xsdew:
+  - imageadd: 'Re sprites for the following: AR-18, AR-12, SMG-90, P-14, SH-35, MG-42.'
+  - imagedel: Unused sprites of those weapons were removed.
+  - code_imp: added code to allow for the new sprites to be used, with the MG-42 getting
+      the first big mob icon sprite.
+  mc-oofert:
+  - bugfix: You can no longer get out of the condor while it is flying so you dont
+      kill yourself
+  tyeagg:
+  - bugfix: wave respawns not working

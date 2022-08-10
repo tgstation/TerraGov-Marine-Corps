@@ -80,7 +80,7 @@
 	//Starts the round timer when the game starts proper
 	var/datum/game_mode/combat_patrol/D = SSticker.mode
 	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/set_game_timer), SSticker.round_start_time + shutters_drop_time + 5 MINUTES) //game cannot end until at least 5 minutes after shutter drop
-	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/respawn_wave), SSticker.round_start_time + shutters_drop_time + wave_timer_length) //first respawn wave is 5 minutes after shutters
+	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/respawn_wave), SSticker.round_start_time + shutters_drop_time) //starts wave respawn on shutter drop and begins timer
 	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, SSticker.round_start_time + shutters_drop_time + bioscan_interval)
 
 ///round timer
@@ -183,7 +183,7 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 
 	for(var/i in GLOB.observer_list)
 		var/mob/dead/observer/M = i
-		GLOB.key_to_time_of_role_death[M.key] = 0
+		GLOB.key_to_time_of_role_death[M.key] -= respawn_time
 		M.playsound_local(M, 'sound/ambience/votestart.ogg', 75, 1)
 		M.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>RESPAWN WAVE AVAILABLE</u></span><br>" + "YOU CAN NOW RESPAWN.", /obj/screen/text/screen_text/command_order)
 		to_chat(M, "<br><font size='3'>[span_attack("Reinforcements are gathering to join the fight, you can now respawn to join a fresh patrol!")]</font><br>")
