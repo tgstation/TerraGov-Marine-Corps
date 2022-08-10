@@ -77,6 +77,7 @@
 		return
 	right_click_proc = null
 
+/// called by control click, allow to interact with the target 
 /datum/component/remote_control/proc/remote_interact(mob/user, atom/target, params)
 	if(!istype(target, /obj/structure/barricade/plasteel))
 		return
