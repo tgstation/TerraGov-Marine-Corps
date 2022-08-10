@@ -72,9 +72,9 @@ There are several things that need to be remembered:
 /mob/living/carbon/human/apply_overlay(cache_index)
 	var/list/to_add = list()
 	SEND_SIGNAL(src, COMSIG_HUMAN_APPLY_OVERLAY, cache_index, to_add)
-	var/image/I = overlays_standing[cache_index]
-	if(I)
-		to_add += I
+	var/mutable_appearance/MA = overlays_standing[cache_index]
+	if(MA)
+		to_add += MA
 	overlays += to_add
 
 /mob/living/carbon/human/remove_overlay(cache_index)
@@ -86,14 +86,20 @@ There are several things that need to be remembered:
 	overlays -= to_remove
 
 /mob/living/carbon/human/apply_underlay(cache_index)
-	var/image/I = underlays_standing[cache_index]
-	if(I)
-		underlays += I
+	var/list/to_add = list()
+	SEND_SIGNAL(src, COMSIG_HUMAN_APPLY_UNDERLAY, cache_index, to_add)
+	var/mutable_appearance/MA = underlays_standing[cache_index]
+	if(MA)
+		to_add += MA
+	overlays += to_add
 
 /mob/living/carbon/human/remove_underlay(cache_index)
+	var/list/to_remove = list()
+	SEND_SIGNAL(src, COMSIG_HUMAN_REMOVE_UNDERLAY, cache_index, to_remove)
 	if(underlays_standing[cache_index])
-		underlays -= underlays_standing[cache_index]
+		to_remove -= underlays_standing[cache_index]
 		underlays_standing[cache_index] = null
+	overlays -= to_remove
 
 GLOBAL_LIST_EMPTY(damage_icon_parts)
 ///fetches the damage icon part, and caches it if it made a new one
@@ -138,9 +144,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 	previous_damage_appearance = damage_appearance
 
-	var/icon/standing = new('icons/mob/dam_human.dmi', "00")
-
-	var/image/standing_image = image("icon" = standing, "layer" = -DAMAGE_LAYER)
+	var/mutable_appearance/standing_appearance = mutable_appearance(icon = 'icons/mob/dam_human.dmi', icon_state = "00", layer = -DAMAGE_LAYER)
 
 	// blend the individual damage states with our icons
 	for(var/o in limbs)
@@ -152,9 +156,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 		var/icon/DI = get_damage_icon_part(limb_to_update.damage_state, limb_to_update.icon_name)
 
-		standing_image.overlays += DI
+		standing_appearance.overlays += DI
 
-	overlays_standing[DAMAGE_LAYER]	= standing_image
+	overlays_standing[DAMAGE_LAYER]	= standing_appearance
 
 	apply_overlay(DAMAGE_LAYER)
 
@@ -507,6 +511,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 /mob/living/carbon/human/update_inv_s_store()
 	remove_overlay(SUIT_STORE_LAYER)
+	//remove_underlay(SUIT_STORE_UNDERLAYER)
 	if(!s_store)
 		return
 
@@ -515,7 +520,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		client.screen += s_store
 
 	overlays_standing[SUIT_STORE_LAYER] = s_store.make_worn_icon(species_type = species.name, slot_name = slot_s_store_str, default_icon = 'icons/mob/suit_slot.dmi', default_layer = SUIT_STORE_LAYER)
+	//underlays_standing[SUIT_STORE_UNDERLAYER] = s_store.make_worn_icon_underlay(species.name, slot_s_store_str, FALSE, null, SUIT_STORE_UNDERLAYER)
 	apply_overlay(SUIT_STORE_LAYER)
+	//apply_underlay(SUIT_STORE_UNDERLAYER)
 
 
 
@@ -591,6 +598,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 /mob/living/carbon/human/update_inv_back()
 	remove_overlay(BACK_LAYER)
+	//remove_underlay(BACK_UNDERLAYER)
 	if(!back)
 		return
 	if(client && hud_used?.hud_shown)
@@ -598,8 +606,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		client.screen += back
 
 	overlays_standing[BACK_LAYER] = back.make_worn_icon(species_type = species.name, slot_name = slot_back_str, default_icon = 'icons/mob/back.dmi', default_layer = BACK_LAYER)
-
+	//underlays_standing[BACK_LAYER] = back.make_worn_icon_underlay(species_type = species.name, slot_name = slot_back_str, default_icon = 'icons/mob/back_underlay.dmi', default_layer = BACK_UNDERLAYER)
 	apply_overlay(BACK_LAYER)
+	//apply_underlay(BACK_UNDERLAYER)
 
 
 /mob/living/carbon/human/update_inv_handcuffed()

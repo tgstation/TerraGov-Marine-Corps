@@ -768,7 +768,6 @@
 	desc = "A standard M10 Pattern Helmet with attach points. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
 	icon = 'icons/mob/modular/m10.dmi'
 	icon_state = "helmet_icon"
-	icon_override = null
 	item_state = "helmet"
 	item_state_worn = TRUE
 	item_state_slots = null

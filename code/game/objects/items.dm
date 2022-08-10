@@ -88,7 +88,9 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 
 	/// Species-specific sprites, concept stolen from Paradise//vg/. Ex: sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/backpack.dmi') If index term exists and icon_override is not set, this sprite sheet will be used.
-	var/list/sprite_sheets = null
+	var/list/sprite_sheets
+	///Same as sprite_sheets but for underlayers
+	var/list/sprite_sheets_underlay
 
 	//** These specify item/icon overrides for _slots_
 
@@ -96,6 +98,8 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	var/list/item_state_slots
 	///>LazyList< Used to specify the icon file to be used when the item is worn in a certain slot. icon_override or sprite_sheets are set they will take precendence over this, assuming they apply to the slot in question.
 	var/list/item_icons
+	///>LazyList< Used to specify the icon file to be used when the item is worn in a certain slot for its UNDERLAYER. icon_override or sprite_sheets_underlay are set they will take precendence over this, assuming they apply to the slot in question.
+	var/list/item_icons_underlay
 	///specific layer for on-mob icon.
 	var/worn_layer
 	///tells if the item shall use item_state for non-inhands, needed due to some items using item_state only for inhands and not worn.
@@ -110,12 +114,8 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	var/inhand_x_dimension = 32
 	///Same as for [worn_y_dimension][/obj/item/var/worn_y_dimension] but for inhands.
 	var/inhand_y_dimension = 32
-	/// Worn overlay will be shifted by this along x axis
-	var/worn_x_offset = 0
 	/// Worn overlay will be shifted by this along y axis
 	var/worn_y_offset = 0
-	///Worn nhand overlay will be shifted by this along x axis
-	var/inhand_x_offset = 0
 	///Worn inhand overlay will be shifted by this along y axis
 	var/inhand_y_offset = 0
 
@@ -1182,27 +1182,17 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	var/state2use = get_worn_icon_state(slot_name = slot_name, inhands = inhands)
 	var/layer2use = !inhands && worn_layer ? -worn_layer : -default_layer
 
-	//Snowflakey inhand icons in a specific slot
-	if(inhands && iconfile2use == icon_override)
-		switch(slot_name)
-			if(slot_r_hand_str)
-				state2use += "_r"
-			if(slot_l_hand_str)
-				state2use += "_l"
-
 	//testing("[src] (\ref[src]) - Slot: [slot_name], Inhands: [inhands], Worn Icon:[iconfile2use], Worn State:[state2use], Worn Layer:[layer2use]")
 
 	var/mutable_appearance/standing = mutable_appearance(iconfile2use, state2use, layer2use)
+
 
 	//Apply any special features
 	if(!inhands)
 		apply_custom(standing)		//image overrideable proc to customize the onmob icon.
 		apply_blood(standing)			//Some items show blood when bloodied.
-		apply_accessories(standing)		//Some items sport accessories like webbings or ties.
 
 	standing = center_image(standing, inhands ? inhand_x_dimension : worn_x_dimension, inhands ? inhand_y_dimension : worn_y_dimension)
-
-	standing.pixel_x += inhands ? inhand_x_offset : worn_x_offset
 	standing.pixel_y += inhands ? inhand_y_offset : worn_y_offset
 	standing.alpha = alpha
 	standing.color = color
@@ -1210,28 +1200,55 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	//Return our icon
 	return standing
 
+/obj/item/proc/make_worn_icon_underlay(species_type, slot_name, inhands, default_icon, default_layer)
+	var/iconfile2use = get_worn_icon_file_underlay(species_type = species_type, slot_name = slot_name, default_icon = default_icon, inhands = inhands)
+	var/state2use = get_worn_icon_state(slot_name = slot_name, inhands = inhands)
+	var/layer2use = !inhands && worn_layer ? -worn_layer : -default_layer
+
+	var/mutable_appearance/standing_underlay = mutable_appearance(iconfile2use, state2use, layer2use)
+	standing_underlay = center_image(standing_underlay, inhands ? inhand_x_dimension : worn_x_dimension, inhands ? inhand_y_dimension : worn_y_dimension)
+	standing_underlay.pixel_y += inhands ? inhand_y_offset : worn_y_offset
+	standing_underlay.alpha = alpha
+	standing_underlay.color = color
+
+	return standing_underlay
+
 ///gets what icon dmi file shall be used for the on-mob sprite
 /obj/item/proc/get_worn_icon_file(species_type,slot_name,default_icon,inhands)
 
-	//1: icon_override var
-	if(icon_override)
-		return icon_override
-
-	//2: species-specific sprite sheets.
+	//1: species-specific sprite sheets.
 	. = LAZYACCESS(sprite_sheets, species_type)
 	if(. && !inhands)
 		return
 
-	//3: slot-specific sprite sheets
+	//2: slot-specific sprite sheets
 	. = LAZYACCESS(item_icons, slot_name)
 	if(.)
 		return
 
-	//5: provided default_icon
+	//3: provided default_icon
 	if(default_icon)
 		return default_icon
 
-	//6: give error
+	//4: give error
+	CRASH("[src] dind't manage to find a icon file for worn onmob icon.")
+
+/obj/item/proc/get_worn_icon_file_underlay(species_type, slot_name, default_icon, inhands)
+	//1: species-specific sprite sheets.
+	. = LAZYACCESS(sprite_sheets_underlay, species_type)
+	if(. && !inhands)
+		return
+
+	//2: slot-specific sprite sheets
+	. = LAZYACCESS(item_icons_underlay, slot_name)
+	if(.)
+		return
+
+	//3: provided default_icon
+	if(default_icon)
+		return default_icon
+
+	//4: give error
 	CRASH("[src] dind't manage to find a icon file for worn onmob icon.")
 
 ///Returns the state that should be used for the on-mob icon
@@ -1251,7 +1268,24 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	if(icon_state)
 		return icon_state
 
-///applies any custom thing to the sprite, caled by make_worn_icon().
+///Returns the state that should be used for the on-mob icon
+/obj/item/proc/get_worn_icon_state_underlay(slot_name, inhands)
+
+	//1: slot-specific sprite sheets
+	. = LAZYACCESS(item_state_slots, slot_name)
+	if(.)
+		return
+
+	//2: item_state variable, some items use it for worn sprite, others for inhands.
+	if(inhands || item_state_worn)
+		if(item_state)
+			return item_state
+
+	//3: icon_state variable
+	if(icon_state)
+		return icon_state
+
+///applies any custom thing to the sprite, caled by make_worn_icon()
 /obj/item/proc/apply_custom(mutable_appearance/standing)
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_APPLY_CUSTOM_OVERLAY, standing)
@@ -1261,6 +1295,12 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/proc/apply_blood(mutable_appearance/standing)
 	return standing
 
-///applies any accessory the item may have, called by make_worn_icon().
-/obj/item/proc/apply_accessories(mutable_appearance/standing)
-	return standing
+///applies any custom thing to the sprite, caled by make_worn_icon_underlay(), standing underlay can be null
+/obj/item/proc/apply_custom_underlay(mutable_appearance/standing_underlay)
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, COMSIG_ITEM_APPLY_CUSTOM_UNDERLAY, standing_underlay)
+	return standing_underlay
+
+///applies blood on the item, called by make_worn_icon_underlay().
+/obj/item/proc/apply_blood_underlay(mutable_appearance/standing_underlay)
+	return standing_underlay

@@ -255,7 +255,8 @@
 #define COMSIG_UNMANNED_ABILITY_UPDATED "unmanned_ability_update"
 
 // /obj/item signals
-#define COMSIG_ITEM_APPLY_CUSTOM_OVERLAY "item_apply_custom_overlay" //from base of obj/item/apply_custom(): (/image/standing)
+#define COMSIG_ITEM_APPLY_CUSTOM_OVERLAY "item_apply_custom_overlay" //from base of obj/item/apply_custom(): (/mutable_appearance/standing)
+#define COMSIG_ITEM_APPLY_CUSTOM_UNDERLAY "item_apply_custom_underlay"//from base of obj/item/apply_custom_underlay(): (/mutable_appearance/standing)
 #define COMSIG_ITEM_ATTACK "item_attack"						//from base of obj/item/attack(): (/mob/living/target, /mob/living/user)
 #define COMSIG_ITEM_ATTACK_ALTERNATE "item_attack_alt"			//from base of obj/item/attack_alternate(): (/mob/living/target, /mob/living/user)
 #define COMSIG_ITEM_ATTACK_SELF "item_attack_self"				//from base of obj/item/attack_self(): (/mob)
@@ -447,6 +448,10 @@
 #define COMSIG_HUMAN_APPLY_OVERLAY "human_overlay_applied"
 ///from [/mob/living/carbon/human/proc/remove_overlay]: (cache_index, list/overlays_to_remove)
 #define COMSIG_HUMAN_REMOVE_OVERLAY "human_overlay_removed"
+///from [/mob/living/carbon/human/proc/apply_underlay]: (cache_index, list/underlays_to_add)
+#define COMSIG_HUMAN_APPLY_UNDERLAY "human_underlay_applied"
+///from [/mob/living/carbon/human/proc/remove_undelay]: (cache_index, list/underlays_to_remove)
+#define COMSIG_HUMAN_REMOVE_UNDERLAY "human_underlay_removed"
 
 #define COMSIG_HUMAN_SET_UNDEFIBBABLE "human_set_undefibbable"
 
