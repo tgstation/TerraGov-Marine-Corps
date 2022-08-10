@@ -28,7 +28,7 @@
 /obj/effect/ai_node/Initialize()
 	..()
 	GLOB.all_nodes += src
-	unique_id = id_counter++;
+	unique_id = id_counter++
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/effect/ai_node/LateInitialize()
