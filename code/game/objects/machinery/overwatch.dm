@@ -810,13 +810,6 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	command_aura_cooldown = null
 	update_action_buttons()
 
-/mob/living/carbon/human/update_aura_overlay()
-	var/image/holder = hud_list[ORDER_HUD]
-	holder.overlays.Cut()
-	for(var/aura_type in command_aura_allowed)
-		if(emitted_auras.Find(aura_type))
-			holder.overlays += image('icons/mob/hud.dmi', src, "hud[aura_type]aura")
-
 /datum/action/skill/issue_order
 	name = "Issue Order"
 	skill_name = "leadership"
