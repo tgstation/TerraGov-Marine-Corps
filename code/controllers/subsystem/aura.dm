@@ -26,13 +26,13 @@ SUBSYSTEM_DEF(aura)
 	///List containing aura varieties as strings - see AURA entries in _DEFINES/mobs.dm
 	var/list/aura_types
 	///How far from our center we apply
-	var/range
+	var/range = 0
 	///Multiplier to aura effectiveness
-	var/strength
+	var/strength = 0
 	///How many subsystem fires we have left, negative means infinite duration
-	var/duration
+	var/duration = 1
 	///Aura is only applied to mobs in this faction
-	var/faction
+	var/faction = FACTION_NEUTRAL
 	///List of aura defines that mean we care about humans
 	var/static/list/human_auras = list(AURA_HUMAN_MOVE, AURA_HUMAN_HOLD, AURA_HUMAN_FOCUS)
 	///Whether we care about humans - at least one relevant aura is enough if we have multiple.

@@ -561,7 +561,6 @@
 
 /mob/living/carbon/human/proc/hud_set_order()
 	var/image/holder = hud_list[ORDER_HUD]
-	holder.overlays.Cut()
 	holder.icon_state = "hudblank"
 	if(stat != DEAD)
 		var/tempname = ""
@@ -574,13 +573,6 @@
 		if(tempname)
 			holder.icon_state = "hud[tempname]"
 
-		switch(command_aura)
-			if(AURA_HUMAN_MOVE)
-				holder.overlays += image('icons/mob/hud.dmi', src, "hudmoveaura")
-			if(AURA_HUMAN_HOLD)
-				holder.overlays += image('icons/mob/hud.dmi', src, "hudholdaura")
-			if(AURA_HUMAN_FOCUS)
-				holder.overlays += image('icons/mob/hud.dmi', src, "hudfocusaura")
 
 	hud_list[ORDER_HUD] = holder
 
