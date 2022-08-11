@@ -48,6 +48,7 @@
 
 ///Bring however we represent emitted auras up to date. Implemented for human and xenomorph.
 /mob/living/proc/update_aura_overlay()
+	return
 
 /mob/living/proc/handle_organs()
 	reagent_shock_modifier = 0
