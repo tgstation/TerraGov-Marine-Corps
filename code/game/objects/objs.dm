@@ -2,6 +2,7 @@
 	animate_movement = SLIDE_STEPS
 	speech_span = SPAN_ROBOT
 	interaction_flags = INTERACT_OBJ_DEFAULT
+	resistance_flags = NONE
 
 	///damage amount to deal when this obj is attacking something
 	var/force = 0
@@ -38,6 +39,7 @@
 
 	///odds of a projectile hitting the object, if throwpass is true and the object is dense
 	var/coverage = 50
+
 /obj/Initialize()
 	. = ..()
 	if(islist(soft_armor))
