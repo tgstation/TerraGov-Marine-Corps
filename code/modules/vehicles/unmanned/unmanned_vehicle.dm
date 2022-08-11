@@ -20,6 +20,8 @@
 	var/turret_type
 	///Turret types we're allowed to attach
 	var/turret_pattern = PATTERN_TRACKED
+	/// If that vehicle can interact with cades
+	var/can_interact = FALSE
 	///Delay in byond ticks between weapon fires
 	var/fire_delay = 5
 	///Ammo remaining for the robot
@@ -42,11 +44,9 @@
 	var/unmanned_flags = OVERLAY_TURRET|HAS_LIGHTS|UNDERCARRIAGE
 	/// Iff flags, to prevent friendly fire from sg and aiming marines
 	var/iff_signal = TGMC_LOYALIST_IFF
-	COOLDOWN_DECLARE(fire_cooldown)
-	/// when next sound played
-	COOLDOWN_DECLARE(next_sound_play)
 	/// muzzleflash stuff
 	var/atom/movable/vis_obj/effect/muzzle_flash/flash
+	COOLDOWN_DECLARE(fire_cooldown)
 
 /obj/vehicle/unmanned/Initialize()
 	. = ..()
@@ -118,15 +118,8 @@
 	if(user.incapacitated())
 		return FALSE
 
-	if(direction in GLOB.diagonals)
-		return FALSE
-
 	if(world.time < last_move_time + move_delay)
 		return
-
-	if(COOLDOWN_CHECK(src, next_sound_play))
-		COOLDOWN_START(src, next_sound_play, 20)
-		playsound(get_turf(src), 'sound/ambience/tank_driving.ogg', 50, TRUE)
 
 	return Move(get_step(src, direction))
 
