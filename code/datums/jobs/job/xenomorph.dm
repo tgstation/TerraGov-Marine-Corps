@@ -50,6 +50,8 @@
 
 /datum/job/xenomorph/after_spawn(mob/living/carbon/xenomorph/xeno, mob/M, latejoin)
 	. = ..()
+	if(xeno.xeno_caste.caste_flags & CASTE_IS_NOT_IN_LIST)
+		return
 	SSminimaps.add_marker(xeno, xeno.z, hud_flags = MINIMAP_FLAG_XENO, iconstate = xeno.xeno_caste.minimap_icon)
 
 /datum/job/xenomorph/queen

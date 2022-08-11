@@ -209,7 +209,11 @@
 		return
 	if(source != spider_swarm_action.current_controlling_spiderling)
 		return
-	var/next_spiderling = pick(spiderlings)
+	var/next_spiderling
+	if(spiderlings.len >= 1)
+		next_spiderling = pick(spiderlings)
+	else if(spiderlings.len <= 0)
+		next_spiderling = null
 	if(!next_spiderling)
 		spider_swarm_action.switch_to_mother()
 		return
@@ -257,5 +261,6 @@
 
 /// Put the player back in widow
 /datum/action/xeno_action/spider_swarm/proc/switch_to_mother()
-	current_controlling_spiderling.mind.transfer_to(owner)
 	owner.doMove(get_turf(current_controlling_spiderling))
+	current_controlling_spiderling.mind.transfer_to(owner)
+
