@@ -600,7 +600,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	for(var/atom/movable/thing_to_hit in turf_to_scan)
 
-		if(!PROJECTILE_HIT_CHECK(thing_to_hit, src, null, FALSE))
+		if(!PROJECTILE_HIT_CHECK(thing_to_hit, src, cardinal_move, FALSE))
 			continue
 
 		thing_to_hit.do_projectile_hit(src)
