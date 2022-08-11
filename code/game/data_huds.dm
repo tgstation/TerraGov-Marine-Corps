@@ -440,7 +440,6 @@
 	var/image/holder = hud_list[PHEROMONE_HUD]
 	if(!holder)
 		return
-	holder.overlays.Cut()
 	holder.icon_state = "hudblank"
 	if(stat != DEAD)
 		var/tempname = ""
@@ -453,15 +452,19 @@
 		if(tempname)
 			holder.icon_state = "hud[tempname]"
 
-		if(current_aura)
-			for(var/aura_type in current_aura.aura_types)
-				holder.overlays += image('icons/mob/hud.dmi', src, "hudaura[aura_type]")
-		if(leader_current_aura)
-			for(var/aura_type in leader_current_aura.aura_types)
-				holder.overlays += image('icons/mob/hud.dmi', src, "hudaura[aura_type]")
-
 	hud_list[PHEROMONE_HUD] = holder
 
+//Only called when an aura is added or removed
+/mob/living/carbon/xenomorph/update_aura_overlay()
+	var/image/holder = hud_list[PHEROMONE_HUD]
+	if(!holder)
+		return
+	holder.overlays.Cut()
+	if(stat == DEAD)
+		return
+	for(var/aura_type in GLOB.pheromone_images_list)
+		if(emitted_auras.Find(aura_type))
+			holder.overlays += image('icons/mob/hud.dmi', src, "hudaura[aura_type]")
 
 /mob/living/carbon/xenomorph/proc/hud_set_queen_overwatch()
 	var/image/holder = hud_list[QUEEN_OVERWATCH_HUD]
@@ -561,7 +564,6 @@
 
 /mob/living/carbon/human/proc/hud_set_order()
 	var/image/holder = hud_list[ORDER_HUD]
-	holder.overlays.Cut()
 	holder.icon_state = "hudblank"
 	if(stat != DEAD)
 		var/tempname = ""
@@ -574,15 +576,16 @@
 		if(tempname)
 			holder.icon_state = "hud[tempname]"
 
-		switch(command_aura)
-			if(AURA_HUMAN_MOVE)
-				holder.overlays += image('icons/mob/hud.dmi', src, "hudmoveaura")
-			if(AURA_HUMAN_HOLD)
-				holder.overlays += image('icons/mob/hud.dmi', src, "hudholdaura")
-			if(AURA_HUMAN_FOCUS)
-				holder.overlays += image('icons/mob/hud.dmi', src, "hudfocusaura")
 
 	hud_list[ORDER_HUD] = holder
+
+//Only called when an aura is added or removed
+/mob/living/carbon/human/update_aura_overlay()
+	var/image/holder = hud_list[ORDER_HUD]
+	holder.overlays.Cut()
+	for(var/aura_type in command_aura_allowed)
+		if(emitted_auras.Find(aura_type))
+			holder.overlays += image('icons/mob/hud.dmi', src, "hud[aura_type]aura")
 
 ///Makes sentry health visible
 /obj/proc/hud_set_machine_health()
