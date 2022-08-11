@@ -255,8 +255,8 @@
 	add_cooldown()
 
 /datum/action/xeno_action/spider_swarm/proc/switch_to_next_spiderling(mob/living/carbon/xenomorph/spiderling/spiderling)
-	current_controlling_spiderling.mind.transfer_to(spiderling)
 	SEND_SIGNAL(current_controlling_spiderling, COMSIG_ESCORTED_ATOM_CHANGING, spiderling)
+	current_controlling_spiderling.mind.transfer_to(spiderling)
 	current_controlling_spiderling = spiderling
 
 /// Put the player back in widow
