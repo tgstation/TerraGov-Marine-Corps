@@ -113,3 +113,10 @@
       kill yourself
   tyeagg:
   - bugfix: wave respawns not working
+2022-08-11:
+  Losenis:
+  - rscadd: Synths can now have hair.
+  Lumipharon:
+  - bugfix: fixed ghost projectiles
+  iLikeMemes:
+  - qol: Corrected researcher's lemoline bottle description.
