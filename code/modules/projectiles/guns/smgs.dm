@@ -113,7 +113,7 @@
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
-	attachable_offset = list("muzzle_x" = 38, "muzzle_y" = 16,"rail_x" = 24, "rail_y" = 23, "under_x" = 30, "under_y" = 8, "stock_x" = 24, "stock_y" = 10)
+	attachable_offset = list("muzzle_x" = 37, "muzzle_y" = 16,"rail_x" = 24, "rail_y" = 22, "under_x" = 30, "under_y" = 9, "stock_x" = 24, "stock_y" = 10)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 0.55
