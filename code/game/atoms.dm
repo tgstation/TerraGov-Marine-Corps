@@ -14,7 +14,7 @@
 	var/flags_pass = NONE
 	var/throwpass = FALSE
 
-	var/resistance_flags = NONE
+	var/resistance_flags = NONE | PROJECTILE_IMMUNE
 
 	var/germ_level = GERM_LEVEL_AMBIENT // The higher the germ level, the more germ on the atom.
 
