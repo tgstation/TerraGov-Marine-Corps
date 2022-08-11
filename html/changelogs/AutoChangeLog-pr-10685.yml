@@ -1,0 +1,7 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - bugfix: "Controlling a remote vehicle as an ai remove static"
+  - bugfix: "You can hear again through a remote controlled vehicle"
+  - qol: "Remote controlled vehicle can move diagonally"
+  - qol: "You can open cades with droids with control click"
