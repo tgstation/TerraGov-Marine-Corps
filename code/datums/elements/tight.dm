@@ -9,7 +9,7 @@
 	. = ..()
 	RegisterSignal(target, COMSIG_MOVABLE_MOVED, .proc/wall_speed)
 
-/datum/element/plasma_on_attacked/Detach(datum/source, force)
+/datum/element/wall_speedup/Detach(datum/source, force)
 	. = ..()
 	UnregisterSignal(source)
 
