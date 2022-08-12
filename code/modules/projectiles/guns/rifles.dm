@@ -71,7 +71,7 @@
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
-	attachable_offset = list("muzzle_x" = 47, "muzzle_y" = 17,"rail_x" = 18, "rail_y" = 25, "under_x" = 32, "under_y" = 12, "stock_x" = 0, "stock_y" = 13)
+	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 17,"rail_x" = 18, "rail_y" = 24, "under_x" = 31, "under_y" = 12, "stock_x" = 0, "stock_y" = 13)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 2
@@ -148,7 +148,7 @@
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
-	attachable_offset = list("muzzle_x" = 47, "muzzle_y" = 17,"rail_x" = 22, "rail_y" = 20, "under_x" = 33, "under_y" = 10, "stock_x" = 0, "stock_y" = 13)
+	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 20, "under_x" = 31, "under_y" = 10, "stock_x" = 0, "stock_y" = 13)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 2
