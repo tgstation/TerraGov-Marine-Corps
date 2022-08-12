@@ -1,5 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - bugfix: "Fix wrong flag on shouldermount, causing gun to cycle too much"
-  - bugfix: "Prevent shoulder-mount duel weapon firing"
