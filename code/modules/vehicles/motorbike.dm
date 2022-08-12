@@ -11,6 +11,8 @@
 	flags_atom = PREVENT_CONTENTS_EXPLOSION
 	key_type = null
 	integrity_failure = 0.5
+	throwpass = TRUE
+	coverage = 30	//It's just a bike, not hard to shoot over
 	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL|BUCKLE_NEEDS_HAND
 	///Internal motorbick storage object
 	var/obj/item/storage/internal/motorbike_pack/motor_pack = /obj/item/storage/internal/motorbike_pack
@@ -195,8 +197,7 @@
 /obj/vehicle/ridden/motorbike/projectile_hit(obj/projectile/P)
 	if(!buckled_mobs)
 		return ..()
-	var/mob/buckled_mob = pick(buckled_mobs)
-	return buckled_mob.projectile_hit(P)
+	return FALSE
 
 /obj/vehicle/ridden/motorbike/obj_destruction()
 	explosion(src, light_impact_range = 2, flash_range = 0)
