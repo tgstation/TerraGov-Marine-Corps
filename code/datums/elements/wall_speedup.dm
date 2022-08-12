@@ -3,7 +3,7 @@
 	element_flags = ELEMENT_BESPOKE
 	id_arg_index = 2
 	///The amount of speed gained by being inbetween walls
-	var/wall_speed_amount = 1
+	var/wall_speed_amount = 5
 
 /datum/element/wall_speedup/Attach(datum/target, wall_speed_amount)
 	if(!isliving(target))
@@ -14,13 +14,13 @@
 
 /datum/element/wall_speedup/Detach(datum/source, force)
 	. = ..()
-	UnregisterSignal(source)
+	UnregisterSignal(source, COMSIG_MOVABLE_MOVED)
 
+/// Here we check to see if polar opposite directions are closed turfs, if they are then we move faster
 /datum/element/wall_speedup/proc/wall_speed(datum/source, atom/oldloc)
 	SIGNAL_HANDLER
 	var/mob/living/fast = source
-	var/static/list/dirs_to_check = list(NORTH, EAST, SOUTH, WEST, SOUTHEAST, NORTHWEST, SOUTHWEST, NORTHEAST)
-	for(var/direction in dirs_to_check)
+	for(var/direction in GLOB.alldirs)
 		if(!isclosedturf(get_step(fast, direction)))
 			continue
 		if(!isclosedturf(get_step(fast, REVERSE_DIR(direction))))

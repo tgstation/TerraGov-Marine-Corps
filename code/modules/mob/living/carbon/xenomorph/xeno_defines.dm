@@ -352,9 +352,6 @@
 	// Gorger vars
 	var/overheal = 0
 
-	// Widow vars
-	var/burrowed = FALSE
-
 	// Warrior vars
 	var/agility = 0		// 0 - upright, 1 - all fours
 
