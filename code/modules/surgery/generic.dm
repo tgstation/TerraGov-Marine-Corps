@@ -291,7 +291,7 @@
 	if(affected.has_external_wound())//limb has treatable damage
 		return TRUE
 	to_chat(user, span_notice("[target]'s [affected.display_name] has no external injuries.") )
-	return SPECIAL_SURGERY_INVALID
+	return SURGERY_INVALID
 
 /datum/surgery_step/generic/repair/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_notice("[user] is beginning to suture the wounds on [target]'s [affected.display_name].")  , \
