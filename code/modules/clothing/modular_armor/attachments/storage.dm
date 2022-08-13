@@ -24,7 +24,7 @@
 
 /obj/item/armor_module/storage/Destroy()
 	if(storage)
-		for(var/obj/item/all_items as anything in storage.contents)
+		for(var/obj/item/all_items AS in storage.contents)
 			storage.remove_from_storage(all_items, get_turf(src))
 		QDEL_NULL(storage)
 	return ..()
