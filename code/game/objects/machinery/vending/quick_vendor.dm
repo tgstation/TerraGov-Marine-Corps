@@ -27,6 +27,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		/datum/outfit/quick/tgmc/leader/standard_carbine,
 		/datum/outfit/quick/tgmc/leader/combat_rifle,
 		/datum/outfit/quick/tgmc/leader/auto_shotgun,
+		/datum/outfit/quick/tgmc/leader/standard_laserrifle,
 		/datum/outfit/quick/som/marine/standard_assaultrifle,
 		/datum/outfit/quick/som/marine/scout,
 		/datum/outfit/quick/som/marine/shotgunner,
