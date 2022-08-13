@@ -132,3 +132,8 @@
   - code_imp: Cleanup from aura refactor
   RikuTheKiller:
   - rscadd: new keybind for toggling self-harm, defaults to on
+2022-08-13:
+  BraveMole:
+  - rscadd: Set default client fps to 60
+  Xsdew:
+  - imageadd: Further refinements to the AR12, AR18, SMG90, and SH35 sprites.
