@@ -23,8 +23,11 @@
 	storage = new storage(src)
 
 /obj/item/armor_module/storage/Destroy()
-	. = ..()
-	QDEL_NULL(storage)
+	if(storage)
+		for(var/obj/item/all_items as anything in storage.contents)
+			storage.remove_from_storage(all_items, get_turf(src))
+		QDEL_NULL(storage)
+	return ..()
 
 /obj/item/armor_module/storage/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
@@ -35,6 +38,8 @@
 	storage.master_item = parent
 
 /obj/item/armor_module/storage/on_detach(obj/item/detaching_from, mob/user)
+	for(var/obj/item/all_items as anything in storage.contents)
+		storage.remove_from_storage(all_items, get_turf(src))
 	time_to_equip = initial(time_to_equip)
 	time_to_unequip = initial(time_to_unequip)
 	UnregisterSignal(parent, list(COMSIG_ATOM_ATTACK_HAND, COMSIG_PARENT_ATTACKBY))
@@ -86,7 +91,7 @@
 	name = "General Purpose Storage module"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Certainly not as specialised as any other storage modules, but definitely able to hold some larger things, like binoculars, maps, and motion detectors."
 	icon_state = "mod_general_bag"
-	storage =  /obj/item/storage/internal/modular/general
+	storage = /obj/item/storage/internal/modular/general
 
 /obj/item/storage/internal/modular/general
 	max_storage_space = 6
@@ -107,7 +112,7 @@
 	name = "Magazine Storage module"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Holds some magazines. Don’t expect to fit specialist munitions or LMG drums in, but you can get some good mileage. Looks like it might slow you down a bit."
 	icon_state = "mod_mag_bag"
-	storage =  /obj/item/storage/internal/modular/ammo_mag
+	storage = /obj/item/storage/internal/modular/ammo_mag
 	slowdown = 0.1
 
 /obj/item/armor_module/storage/ammo_mag/freelancer/Initialize()
