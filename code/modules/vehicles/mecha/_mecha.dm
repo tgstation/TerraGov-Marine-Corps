@@ -56,7 +56,7 @@
 	///Whether the mechs maintenance protocols are on or off
 	var/construction_state = MECHA_LOCKED
 	///Contains flags for the mecha
-	var/mecha_flags = ADDING_ACCESS_POSSIBLE | CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS | MMI_COMPATIBLE
+	var/mecha_flags = ADDING_ACCESS_POSSIBLE | CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS
 	///Stores the DNA enzymes of a carbon so tht only they can access the mech
 	var/dna_lock
 	///Spark effects are handled by this datum
@@ -346,7 +346,7 @@
 	set_mouse_pointer()
 
 ///Updates the values given by scanning module and capacitor tier, called when a part is removed or inserted.
-/obj/vehicle/sealed/mecha/proc/update_part_values() 
+/obj/vehicle/sealed/mecha/proc/update_part_values()
 	if(scanmod)
 		normal_step_energy_drain = 20 - (5 * scanmod.rating) //10 is normal, so on lowest part its worse, on second its ok and on higher its real good up to 0 on best
 		step_energy_drain = normal_step_energy_drain

@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes: 
-  - rscadd: "Added some HvH specific end of round stats for Combat Patrol, projectiles are counted instead of just bullets"
-  - code_imp: "tidied up end of round stats"

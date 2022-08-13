@@ -88,3 +88,52 @@
   - bugfix: Fix being able to shoot in a tarp
   - rscadd: Add overlay short description on hypospray and pill bottles
   - bugfix: Fix tadpole able to crush shutters
+2022-08-09:
+  Araulius:
+  - balance: Increased the amount of lemoline per crate from 10u to 30u
+  - balance: increased cost of lemoline crate from 5 points to 8 points
+  Lumipharon:
+  - rscadd: Added some HvH specific end of round stats for Combat Patrol, projectiles
+      are counted instead of just bullets
+  - code_imp: tidied up end of round stats
+  Moraetea:
+  - balance: Increasing sunder recovery during Gorger drain ability
+2022-08-10:
+  RikuTheKiller:
+  - rscdel: removed useless vali messages
+  - rscdel: removed redundant check for volume amount
+  - spellcheck: changed the exact wording on some of the vali balloon messages
+  Xsdew:
+  - imageadd: 'Re sprites for the following: AR-18, AR-12, SMG-90, P-14, SH-35, MG-42.'
+  - imagedel: Unused sprites of those weapons were removed.
+  - code_imp: added code to allow for the new sprites to be used, with the MG-42 getting
+      the first big mob icon sprite.
+  mc-oofert:
+  - bugfix: You can no longer get out of the condor while it is flying so you dont
+      kill yourself
+  tyeagg:
+  - bugfix: wave respawns not working
+2022-08-11:
+  Losenis:
+  - rscadd: Synths can now have hair.
+  Lumipharon:
+  - bugfix: fixed ghost projectiles
+  iLikeMemes:
+  - qol: Corrected researcher's lemoline bottle description.
+2022-08-12:
+  BraveMole:
+  - bugfix: Controlling a remote vehicle as an ai remove static
+  - bugfix: You can hear again through a remote controlled vehicle
+  - qol: Remote controlled vehicle can move diagonally
+  - qol: You can open cades with droids with control click
+  - bugfix: Fix wrong flag on shouldermount, causing gun to cycle too much
+  - bugfix: Prevent shoulder-mount duel weapon firing
+  QualityVan:
+  - code_imp: Cleanup from aura refactor
+  RikuTheKiller:
+  - rscadd: new keybind for toggling self-harm, defaults to on
+2022-08-13:
+  BraveMole:
+  - rscadd: Set default client fps to 60
+  Xsdew:
+  - imageadd: Further refinements to the AR12, AR18, SMG90, and SH35 sprites.

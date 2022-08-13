@@ -1045,7 +1045,7 @@
 
 	toggle_open(null, user)
 
-/obj/structure/barricade/plasteel/proc/toggle_open(state, mob/living/user)
+/obj/structure/barricade/plasteel/proc/toggle_open(state, atom/user)
 	if(state == closed)
 		return
 	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)

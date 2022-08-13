@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - bugfix: "Fix xeno fire overlay not changing dir when the xeno is turning"
