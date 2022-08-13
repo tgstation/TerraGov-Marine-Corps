@@ -264,7 +264,7 @@
 	desc = "TerraGov Marine Corps' experimental High Point-Singularity 'Harvester' spear. An advanced weapon that trades sheer force for the ability to apply a variety of debilitating effects when loaded with certain reagents. Activate after loading to prime a single use of an effect. It also harvests substances from alien lifeforms it strikes when connected to the Vali system."
 	icon_state = "vali_spear"
 	item_state = "vali_spear"
-	force = 30
+	force = 32
 	force_wielded = 60
 	throwforce = 60
 	flags_item = DRAINS_XENO | TWOHANDED
