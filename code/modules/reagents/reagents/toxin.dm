@@ -467,25 +467,23 @@
 	description = "A debilitating nerve toxin. Impedes motor control in high doses. Causes progressive loss of mobility over time."
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
-	custom_metabolism = REAGENTS_METABOLISM * 3
+	custom_metabolism = REAGENTS_METABOLISM * 2
 	overdose_threshold = 10000 //Overdosing for neuro is what happens when you run out of stamina to avoid its oxy and toxin damage
 	scannable = TRUE
-	purge_list = list(/datum/reagent/medicine/bicaridine, /datum/reagent/medicine/kelotane, /datum/reagent/medicine/tramadol, /datum/reagent/medicine/tricordrazine)
-	purge_rate = 1
 	toxpwr = 0
 
 /datum/reagent/toxin/xeno_neurotoxin/on_mob_life(mob/living/L, metabolism)
 	var/power
 	switch(current_cycle)
-		if(1 to 15)
-			power = (3*effect_str) //While stamina loss is going, stamina regen apparently doesn't happen, so I can keep this smaller.
+		if(1 to 20)
+			power = (2*effect_str) //While stamina loss is going, stamina regen apparently doesn't happen, so I can keep this smaller.
 			L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
-		if(16 to 35)
+		if(21 to 45)
 			power = (6*effect_str)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_HEAVY
 			L.jitter(4) //Shows that things are bad
-		if(36 to INFINITY)
-			power = (10*effect_str)
+		if(46 to INFINITY)
+			power = (15*effect_str)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_HEAVY
 			L.jitter(8) //Shows that things are *really* bad
 
