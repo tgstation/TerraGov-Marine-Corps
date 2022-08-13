@@ -80,7 +80,7 @@
 	//Starts the round timer when the game starts proper
 	var/datum/game_mode/combat_patrol/D = SSticker.mode
 	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/set_game_timer), SSticker.round_start_time + shutters_drop_time + 5 MINUTES) //game cannot end until at least 5 minutes after shutter drop
-	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/respawn_wave), SSticker.round_start_time + shutters_drop_time + wave_timer_length) //first respawn wave is 5 minutes after shutters
+	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/respawn_wave), SSticker.round_start_time + shutters_drop_time) //starts wave respawn on shutter drop and begins timer
 	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, SSticker.round_start_time + shutters_drop_time + bioscan_interval)
 
 ///round timer
@@ -183,7 +183,7 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 
 	for(var/i in GLOB.observer_list)
 		var/mob/dead/observer/M = i
-		GLOB.key_to_time_of_role_death[M.key] = 0
+		GLOB.key_to_time_of_role_death[M.key] -= respawn_time
 		M.playsound_local(M, 'sound/ambience/votestart.ogg', 75, 1)
 		M.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>RESPAWN WAVE AVAILABLE</u></span><br>" + "YOU CAN NOW RESPAWN.", /obj/screen/text/screen_text/command_order)
 		to_chat(M, "<br><font size='3'>[span_attack("Reinforcements are gathering to join the fight, you can now respawn to join a fresh patrol!")]</font><br>")
@@ -272,7 +272,45 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 	to_chat(world, span_round_header("|[round_finished]|"))
 	to_chat(world, span_round_body("Thus ends the story of the brave men and women of both the TGMC and SOM, and their struggle on [SSmapping.configs[GROUND_MAP].map_name]."))
 
-	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal xenos spawned: [GLOB.round_statistics.total_xenos_created]\nTotal humans spawned: [GLOB.round_statistics.total_humans_created]")
+	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal TGMC spawned: [GLOB.round_statistics.total_humans_created[FACTION_TERRAGOV]]\nTotal SOM spawned: [GLOB.round_statistics.total_humans_created[FACTION_SOM]]")
 
 	announce_medal_awards()
 	announce_round_stats()
+
+/datum/game_mode/combat_patrol/announce_round_stats()
+	//sets up some stats which are added if applicable
+	var/tgmc_survival_stat
+	var/som_survival_stat
+	var/tgmc_accuracy_stat
+	var/som_accuracy_stat
+
+	if(GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV])
+		if(GLOB.round_statistics.total_human_revives[FACTION_TERRAGOV])
+			tgmc_survival_stat = "[GLOB.round_statistics.total_human_revives[FACTION_TERRAGOV]] were revived, for a [(GLOB.round_statistics.total_human_revives[FACTION_TERRAGOV] / max(GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV], 1)) * 100]% revival rate and a [((GLOB.round_statistics.total_humans_created[FACTION_TERRAGOV] + GLOB.round_statistics.total_human_revives[FACTION_TERRAGOV] - GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV]) / GLOB.round_statistics.total_humans_created[FACTION_TERRAGOV]) * 100]% survival rate."
+		else
+			tgmc_survival_stat = "None were revived, for a [(GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV] / GLOB.round_statistics.total_humans_created[FACTION_TERRAGOV]) * 100]% survival rate."
+	if(GLOB.round_statistics.total_human_deaths[FACTION_SOM])
+		if(GLOB.round_statistics.total_human_revives[FACTION_SOM])
+			som_survival_stat = "[GLOB.round_statistics.total_human_revives[FACTION_SOM]] were revived, for a [(GLOB.round_statistics.total_human_revives[FACTION_SOM] / max(GLOB.round_statistics.total_human_deaths[FACTION_SOM], 1)) * 100]% revival rate and a [((GLOB.round_statistics.total_humans_created[FACTION_SOM] + GLOB.round_statistics.total_human_revives[FACTION_SOM] - GLOB.round_statistics.total_human_deaths[FACTION_SOM]) / GLOB.round_statistics.total_humans_created[FACTION_SOM]) * 100]% survival rate."
+		else
+			som_survival_stat = "None were revived, for a [(GLOB.round_statistics.total_human_deaths[FACTION_SOM] / GLOB.round_statistics.total_humans_created[FACTION_SOM]) * 100]% survival rate."
+	if(GLOB.round_statistics.total_projectile_hits[FACTION_SOM] && GLOB.round_statistics.total_projectiles_fired[FACTION_TERRAGOV])
+		tgmc_accuracy_stat = ", for an accuracy of [(GLOB.round_statistics.total_projectile_hits[FACTION_SOM] / GLOB.round_statistics.total_projectiles_fired[FACTION_TERRAGOV]) * 100]%!."
+	if(GLOB.round_statistics.total_projectile_hits[FACTION_TERRAGOV] && GLOB.round_statistics.total_projectiles_fired[FACTION_SOM])
+		tgmc_accuracy_stat = ", for an accuracy of [(GLOB.round_statistics.total_projectile_hits[FACTION_TERRAGOV] / GLOB.round_statistics.total_projectiles_fired[FACTION_SOM]) * 100]%!."
+
+	var/list/dat = list({"[span_round_body("The end of round statistics are:")]<br>
+		<br>[GLOB.round_statistics.total_humans_created[FACTION_TERRAGOV]] TGMC personel deployed for the patrol, and [GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV] ? GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV] : "no"] TGMC personel were killed. [tgmc_survival_stat ? tgmc_survival_stat : ""]
+		<br>[GLOB.round_statistics.total_humans_created[FACTION_SOM]] SOM personel deployed for the patrol, and [GLOB.round_statistics.total_human_deaths[FACTION_SOM] ? GLOB.round_statistics.total_human_deaths[FACTION_SOM] : "no"] SOM personel were killed. [som_survival_stat ? som_survival_stat : ""]
+		<br>The TGMC fired [GLOB.round_statistics.total_projectiles_fired[FACTION_TERRAGOV] ? GLOB.round_statistics.total_projectiles_fired[FACTION_TERRAGOV] : "no"] projectiles. [GLOB.round_statistics.total_projectile_hits[FACTION_SOM] ? GLOB.round_statistics.total_projectile_hits[FACTION_SOM] : "No"] projectiles managed to hit members of the SOM[tgmc_accuracy_stat ? tgmc_accuracy_stat : "."]
+		<br>The SOM fired [GLOB.round_statistics.total_projectiles_fired[FACTION_SOM] ? GLOB.round_statistics.total_projectiles_fired[FACTION_SOM] : "no"] projectiles. [GLOB.round_statistics.total_projectile_hits[FACTION_TERRAGOV] ? GLOB.round_statistics.total_projectile_hits[FACTION_TERRAGOV] : "No"] projectiles managed to hit members of the TGMC[som_accuracy_stat ? som_accuracy_stat : "."]
+		"})
+	if(GLOB.round_statistics.grenades_thrown)
+		dat += "[GLOB.round_statistics.grenades_thrown] grenades were detonated."
+	else
+		dat += "No grenades exploded."
+
+	var/output = jointext(dat, "<br>")
+	for(var/mob/player in GLOB.player_list)
+		if(player?.client?.prefs?.toggles_chat & CHAT_STATISTICS)
+			to_chat(player, output)

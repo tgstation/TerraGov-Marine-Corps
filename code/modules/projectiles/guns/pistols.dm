@@ -45,6 +45,7 @@
 /obj/item/weapon/gun/pistol/standard_pistol
 	name = "\improper P-14 pistol"
 	desc = "The P-14, produced by Terran Armories. A reliable sidearm that loads 9x19mm Parabellum Auto munitions. Capable of mounting a limited amount of attachments, and firing at a respectable rate of fire, often as fast as you can pull the trigger. Takes 14-round 9mm magazines."
+	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "tp14"
 	item_state = "tp14"
 	caliber = CALIBER_9X19 //codex
@@ -54,7 +55,7 @@
 	default_ammo_type = /obj/item/ammo_magazine/pistol/standard_pistol
 	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/standard_pistol)
 
-	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 23, "under_x" = 19, "under_y" = 13, "stock_x" = 21, "stock_y" = 17)
+	attachable_offset = list("muzzle_x" = 22, "muzzle_y" = 18,"rail_x" = 13, "rail_y" = 22, "under_x" = 19, "under_y" = 10, "stock_x" = 21, "stock_y" = 17)
 
 	fire_delay = 0.15 SECONDS
 	accuracy_mult = 1.1

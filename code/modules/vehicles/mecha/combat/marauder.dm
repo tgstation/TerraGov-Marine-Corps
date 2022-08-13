@@ -8,7 +8,7 @@
 	soft_armor = list(MELEE = 50, BULLET = 55, LASER = 40, ENERGY = 30, BOMB = 30, BIO = 0, FIRE = 100, ACID = 100)
 	max_temperature = 60000
 	wreckage = /obj/structure/mecha_wreckage/marauder
-	mecha_flags = CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS | MMI_COMPATIBLE
+	mecha_flags = CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS
 	mech_type = EXOSUIT_MODULE_COMBAT
 	force = 45
 	max_equip_by_category = list(

@@ -740,7 +740,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 //This is perhaps one of the weirdest places imaginable to put it, but it's a leadership skill, so
 
-/mob/living/carbon/human/verb/issue_order(which as null|text)
+/mob/living/carbon/human/verb/issue_order(command_aura as null|text)
 	set hidden = TRUE
 
 	if(skills.getRating("leadership") < SKILL_LEAD_TRAINED)
@@ -759,16 +759,13 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		to_chat(src, span_warning("You have recently given an order. Calm down."))
 		return
 
-	if(!which)
-		var/choice = tgui_input_list(src, "Choose an order", items = command_aura_allowed + "help")
-		if(choice == "help")
+	if(!command_aura)
+		command_aura = tgui_input_list(src, "Choose an order", items = command_aura_allowed + "help")
+		if(command_aura == "help")
 			to_chat(src, span_notice("<br>Orders give a buff to nearby soldiers for a short period of time, followed by a cooldown, as follows:<br><B>Move</B> - Increased mobility and chance to dodge projectiles.<br><B>Hold</B> - Increased resistance to pain and combat wounds.<br><B>Focus</B> - Increased gun accuracy and effective range.<br>"))
 			return
-		if(!choice)
+		if(!command_aura)
 			return
-		command_aura = choice
-	else
-		command_aura = which
 
 	if(command_aura_cooldown)
 		to_chat(src, span_warning("You have recently given an order. Calm down."))
@@ -798,10 +795,6 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			say(message)
 			add_emote_overlay(focus)
 
-	if(aura_target != src)
-		command_aura = null //We aren't emitting personally, so we don't want the on-mob buff icon
-	else
-		RegisterSignal(src, COMSIG_AURA_FINISHED, .proc/end_command_aura)
 	command_aura_cooldown = addtimer(CALLBACK(src, .proc/end_command_aura_cooldown), 45 SECONDS)
 
 	update_action_buttons()
@@ -812,11 +805,6 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	if(istype(remote_control, /mob/camera/aiEye/remote/hud/overwatch))
 		return remote_control
 	return src
-
-/mob/living/carbon/human/proc/end_command_aura()
-	SIGNAL_HANDLER
-	UnregisterSignal(src, COMSIG_AURA_FINISHED)
-	command_aura = null
 
 /mob/living/carbon/human/proc/end_command_aura_cooldown()
 	command_aura_cooldown = null

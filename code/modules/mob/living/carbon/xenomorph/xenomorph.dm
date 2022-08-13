@@ -38,6 +38,9 @@
 	wound_overlay = new(null, src)
 	vis_contents += wound_overlay
 
+	fire_overlay = mob_size == MOB_SIZE_BIG ? new(null, src) : new /atom/movable/vis_obj/xeno_wounds/fire_overlay/small(null, src)
+	vis_contents += fire_overlay
+
 	set_initial_hivenumber()
 
 	generate_nicknumber()
@@ -245,7 +248,9 @@
 	hive_placeholder.update_tier_limits() //Update our tier limits.
 
 	vis_contents -= wound_overlay
+	vis_contents -= fire_overlay
 	QDEL_NULL(wound_overlay)
+	QDEL_NULL(fire_overlay)
 	return ..()
 
 
