@@ -243,11 +243,15 @@
 	force_wielded = 75
 	throwforce = 75
 	throw_speed = 3
-	reach = 2
+	reach = 1
 	edge = 1
 	sharp = IS_SHARP_ITEM_SIMPLE
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "stabbed", "jabbed", "torn", "gored")
+
+/obj/item/weapon/twohanded/spear/toggle_wielded(user, new_value)
+	. = ..()
+	reach = new_value ? 2 : 1 //Makes spears have longer reach while wielded.
 
 /obj/item/weapon/twohanded/spear/tactical
 	name = "M-23 spear"
