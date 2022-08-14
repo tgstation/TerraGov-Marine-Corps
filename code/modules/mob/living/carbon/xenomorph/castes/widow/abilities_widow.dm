@@ -124,35 +124,42 @@
 	/// How much more integrity aoe_leash gains per caught marine, it is preferable that max_integrity is this var * 8.
 	var/integrity_increase = 240
 	/// List of beams to be removed on obj_destruction
-	var/list/beams
+	var/list/obj/effect/ebeam/beams
+	/// Beam var
+	var/obj/effect/ebeam/beam
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 
 /// Humans caught get beamed and registered for proc/check_dist, aoe_leash also gains increased integrity for each caught human
-/obj/structure/xeno/aoe_leash/Initialize(mapload, atom/A)
+/obj/structure/xeno/aoe_leash/Initialize(mapload)
 	. = ..()
-	var/mob/living/carbon/human/victims
-	for(victims in view(leash_radius, loc))
-		beam(victims, "beam_heavy", 'icons/obj/items/projectiles.dmi', INFINITY, INFINITY)
-		RegisterSignal(victims, COMSIG_MOVABLE_MOVED, .proc/check_dist)
+	var/list/obj/effect/ebeam/beams = list()
+	for(var/mob/living/carbon/human/victim in view(leash_radius, loc))
+		beam = (beam(victim, "beam_heavy", 'icons/obj/items/projectiles.dmi', INFINITY, INFINITY))
+		beams += beam
+		RegisterSignal(victim, COMSIG_MOVABLE_MOVED, .proc/check_dist)
 		obj_integrity = obj_integrity + integrity_increase
 		if(obj_integrity > max_integrity)
 			obj_integrity = max_integrity
+	if(!beams)
+		return INITIALIZE_HINT_QDEL
 
-
+/// To remove beams after the leash_ball is destroyed
 /obj/structure/xeno/aoe_leash/obj_destruction()
 	. = ..()
-	for(var/obj/effect/ebeam/beam in view(leash_radius, loc))
-		beam.Destroy(beam)
+	if(!beams)
+		return
+	for(beam in beams)
+		qdel(beam)
 
 /// Humans caught in the aoe_leash will be pulled back if they leave it's radius
-/obj/structure/xeno/aoe_leash/proc/check_dist(datum/leash_victims, atom/oldloc)
+/obj/structure/xeno/aoe_leash/proc/check_dist(datum/leash_victim, atom/oldloc)
 	SIGNAL_HANDLER
-	var/mob/living/carbon/human/victim = leash_victims
-	var/distance = get_dist(victim, loc)
-	if(distance >= leash_radius)
+	var/mob/living/carbon/human/victim = leash_victim
+	if(get_dist(victim, oldloc) >= leash_radius)
 		victim.Move(oldloc)
 
+/// This is so that xenos can remove leash balls
 /obj/structure/xeno/aoe_leash/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
 		return
@@ -160,7 +167,7 @@
 	span_xenonotice("We start to tear down \the [src]."))
 	if(!do_after(X, 2 SECONDS, TRUE, X, BUSY_ICON_GENERIC))
 		return
-	if(!istype(src)) // Prevent jumping to other turfs if do_after completes with the wall already gone
+	if(!istype(src))
 		return
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	X.visible_message(span_xenonotice("\The [X] tears down \the [src]!"), \
@@ -180,7 +187,10 @@
 	plasma_cost = 1 // increase later
 	cooldown_timer = 1 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_LEASH_BALL
+	/// List of all our spiderlings
 	var/list/mob/living/carbon/xenomorph/spiderling/spiderlings
+	/// Max amount of spiderligns
+	var/max_spiderlings = 5
 
 /datum/action/xeno_action/create_spiderling/New(Target)
 	. = ..()
@@ -188,10 +198,13 @@
 
 /datum/action/xeno_action/create_spiderling/action_activate()
 	. = ..()
+	if(spiderlings.len >= max_spiderlings)
+		owner.visible_message(span_notice("We have reached the maximum amount of spiderlings"))
+		return fail_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(!do_after(X, 0.5 SECONDS, TRUE, X, BUSY_ICON_DANGER))
 		return fail_activate()
-
+	/// This creates and stores the spiderling so we can reassign the owner for spider swarm and cap how many spiderlings you can have at once
 	var/new_spiderling = new /mob/living/carbon/xenomorph/spiderling(owner.loc, owner, owner)
 	add_spiderling(new_spiderling)
 	succeed_activate()
@@ -233,7 +246,7 @@
 	/// The spiderling we are controlling right now
 	var/mob/living/carbon/xenomorph/spiderling/current_controlling_spiderling
 	/// how many spiderlings should spawn to replace widow
-	var/amount_of_spiderlings = 5
+	var/amount_of_spiderlings = 3
 
 /datum/action/xeno_action/spider_swarm/action_activate()
 	. = ..()
