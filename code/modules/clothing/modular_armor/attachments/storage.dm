@@ -38,8 +38,6 @@
 	storage.master_item = parent
 
 /obj/item/armor_module/storage/on_detach(obj/item/detaching_from, mob/user)
-	for(var/obj/item/all_items AS in storage.contents)
-		storage.remove_from_storage(all_items, get_turf(src))
 	time_to_equip = initial(time_to_equip)
 	time_to_unequip = initial(time_to_unequip)
 	UnregisterSignal(parent, list(COMSIG_ATOM_ATTACK_HAND, COMSIG_PARENT_ATTACKBY))
