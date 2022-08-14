@@ -135,6 +135,9 @@
 /obj/item/weapon/gun/smg/standard_smg/nonstandard
 	starting_attachment_types = list(/obj/item/attachable/reddot)
 
+/obj/item/weapon/gun/smg/standard_smg/tactical
+	starting_attachment_types = list(/obj/item/attachable/compensator, /obj/item/attachable/reddot, /obj/item/attachable/lasersight)
+
 //-------------------------------------------------------
 //M-25 SMG
 
