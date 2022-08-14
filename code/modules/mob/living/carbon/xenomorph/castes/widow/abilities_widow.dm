@@ -196,6 +196,7 @@
 	. = ..()
 	spiderlings = list()
 
+/// The action to create spiderlings
 /datum/action/xeno_action/create_spiderling/action_activate()
 	. = ..()
 	if(spiderlings.len >= max_spiderlings)
