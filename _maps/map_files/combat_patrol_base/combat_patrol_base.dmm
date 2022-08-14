@@ -214,6 +214,13 @@
 	dir = 10
 	},
 /area/mainship/patrol_base)
+"dr" = (
+/obj/effect/decal/warning_stripes/box/empty,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base/som)
 "dt" = (
 /obj/structure/platform/metalplatform{
 	dir = 1
@@ -519,6 +526,14 @@
 "hq" = (
 /obj/structure/prop/mainship/doorblocker/patrol_base/wide_left,
 /turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base/som)
+"hr" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 4
+	},
 /area/mainship/patrol_base/som)
 "hI" = (
 /obj/machinery/cic_maptable/som_maptable,
@@ -1301,6 +1316,10 @@
 	dir = 8
 	},
 /area/mainship/patrol_base)
+"sG" = (
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/patrol_base/som)
 "sJ" = (
 /turf/open/floor/mainship/red{
 	dir = 9
@@ -4119,8 +4138,8 @@ Qx
 YY
 ah
 KB
-Fk
-Fk
+zO
+zO
 rn
 ZW
 EF
@@ -4181,8 +4200,8 @@ ZW
 ah
 EO
 SK
-Fk
-Fk
+zO
+zO
 fo
 Pr
 ZW
@@ -4243,8 +4262,8 @@ kb
 rN
 KB
 wT
-rM
-rM
+dr
+dr
 wT
 rn
 kb
@@ -4305,8 +4324,8 @@ aP
 aP
 RA
 Fk
-rM
-rM
+dr
+dr
 Fk
 aX
 aP
@@ -4367,8 +4386,8 @@ SD
 SD
 SD
 SD
-SD
-SD
+hr
+hr
 SD
 SD
 SD
@@ -4429,8 +4448,8 @@ OT
 ZQ
 OT
 OT
-ZQ
-ZQ
+sG
+sG
 OT
 OT
 OT
@@ -5198,9 +5217,9 @@ Mv
 JJ
 MW
 UT
+If
 Mv
-Fk
-Fk
+aH
 Fk
 Fk
 Fk
@@ -5260,9 +5279,9 @@ Mv
 JJ
 MW
 UT
+If
 Mv
-Fk
-Fk
+aH
 Fk
 Fk
 Fk
