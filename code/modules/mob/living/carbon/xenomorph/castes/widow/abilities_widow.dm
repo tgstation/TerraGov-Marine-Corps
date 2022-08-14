@@ -1,6 +1,10 @@
 // ***************************************
-// *********** Web Spit
+// *********** Vars that more than 1 ability need
 // ***************************************
+/// List of all our spiderlings
+var/list/mob/living/carbon/xenomorph/spiderling/spiderlings
+
+
 /datum/action/xeno_action/activable/web_spit
 	name = "Web Spit"
 	ability_name = "Web Spit"
@@ -22,64 +26,6 @@
 	newspit.def_zone = X.get_limbzone_target()
 
 	newspit.fire_at(target, X, null, newspit.ammo.max_range)
-	succeed_activate()
-	add_cooldown()
-
-// ***************************************
-// *********** Burrow
-// ***************************************
-
-/datum/action/xeno_action/burrow
-	name = "Burrow"
-	ability_name = "Burrow"
-	mechanics_text = " Burrow into the ground to hide in plain sight "
-	action_icon_state = "savage_on" //temporary until I get my own icons
-	plasma_cost = 1
-	cooldown_timer = 1 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_BURROW
-	/// This is to prevent crashing by registering the same signal twice
-	var/burrowed = FALSE
-
-/datum/action/xeno_action/burrow/action_activate()
-	. = ..()
-	if(burrowed)
-		return
-
-	var/mob/living/carbon/xenomorph/X = owner
-
-	to_chat(X, span_xenowarning("We start burrowing into the ground"))
-	if(!do_after(X, 1 SECONDS, TRUE, target, BUSY_ICON_DANGER))
-		return fail_activate()
-	to_chat(X, span_xenowarning("We have burrowed ourselves, we are hidden from the enemy"))
-
-	X.alpha = 0
-	X.mouse_opacity = 0
-	X.density = FALSE
-	X.throwpass = TRUE
-	burrowed = TRUE
-
-	for(var/mob/living/carbon/xenomorph/spiderling/kids in view(1, owner.loc))
-		RegisterSignal(kids, COMSIG_MOVABLE_MOVED, .proc/unburrow)
-		kids.alpha = 0
-		kids.mouse_opacity = 0
-		kids.density = FALSE
-		kids.throwpass = TRUE
-
-	RegisterSignal(X, COMSIG_MOVABLE_MOVED, .proc/unburrow)
-	succeed_activate()
-	add_cooldown()
-
-/datum/action/xeno_action/burrow/proc/unburrow(mob/M)
-	SIGNAL_HANDLER
-	if(!burrowed)
-		return
-	var/mob/living/carbon/xenomorph/X = owner
-	X.alpha = 255
-	X.mouse_opacity = 255
-	X.density = TRUE
-	X.throwpass = FALSE
-	burrowed = FALSE
-	UnregisterSignal(X, COMSIG_MOVABLE_MOVED)
 	succeed_activate()
 	add_cooldown()
 
@@ -187,8 +133,6 @@
 	plasma_cost = 1 // increase later
 	cooldown_timer = 1 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_LEASH_BALL
-	/// List of all our spiderlings
-	var/list/mob/living/carbon/xenomorph/spiderling/spiderlings
 	/// Max amount of spiderligns
 	var/max_spiderlings = 5
 
@@ -278,3 +222,68 @@
 	owner.doMove(get_turf(current_controlling_spiderling))
 	current_controlling_spiderling.mind.transfer_to(owner)
 
+// ***************************************
+// *********** Burrow
+// ***************************************
+
+/datum/action/xeno_action/burrow
+	name = "Burrow"
+	ability_name = "Burrow"
+	mechanics_text = " Burrow into the ground to hide in plain sight "
+	action_icon_state = "savage_on" //temporary until I get my own icons
+	plasma_cost = 1
+	cooldown_timer = 1 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_BURROW
+	/// This is to prevent crashing by registering the same signal twice
+	var/burrowed = FALSE
+
+/datum/action/xeno_action/burrow/action_activate()
+	. = ..()
+	if(burrowed)
+		return
+
+	var/mob/living/carbon/xenomorph/X = owner
+
+	to_chat(X, span_xenowarning("We start burrowing into the ground"))
+	if(!do_after(X, 1 SECONDS, TRUE, target, BUSY_ICON_DANGER))
+		return fail_activate()
+	to_chat(X, span_xenowarning("We have burrowed ourselves, we are hidden from the enemy"))
+
+	X.alpha = 0
+	X.mouse_opacity = 0
+	X.density = FALSE
+	X.throwpass = TRUE
+	burrowed = TRUE
+
+	for(var/mob/living/carbon/xenomorph/spiderling/spiderling in spiderlings)
+		RegisterSignal(spiderling, COMSIG_MOVABLE_MOVED, .proc/unburrow)
+		spiderling.alpha = 0
+		spiderling.mouse_opacity = 0
+		spiderling.density = FALSE
+		spiderling.throwpass = TRUE
+
+	RegisterSignal(X, COMSIG_MOVABLE_MOVED, .proc/unburrow)
+	succeed_activate()
+	add_cooldown()
+
+/datum/action/xeno_action/burrow/proc/unburrow(mob/M)
+	SIGNAL_HANDLER
+	if(!isxenowidow(M))
+		var/mob/living/carbon/xenomorph/spiderling/S = M
+		UnregisterSignal(S, COMSIG_MOVABLE_MOVED)
+		S.alpha = 255
+		S.mouse_opacity = 255
+		S.density = TRUE
+		S.throwpass = FALSE
+		return
+	if(!burrowed)
+		return
+	var/mob/living/carbon/xenomorph/X = M
+	X.alpha = 255
+	X.mouse_opacity = 255
+	X.density = TRUE
+	X.throwpass = FALSE
+	burrowed = FALSE
+	UnregisterSignal(X, COMSIG_MOVABLE_MOVED)
+	succeed_activate()
+	add_cooldown()
