@@ -1255,6 +1255,10 @@
 			/obj/item/storage/pouch/document = -1,
 		),
 		"Headwear" = list(
+			/obj/item/clothing/head/squadhb/ = -1,
+			/obj/item/clothing/head/squadhb/b = -1,
+			/obj/item/clothing/head/squadhb/c = -1,
+			/obj/item/clothing/head/squadhb/d = -1,
 			/obj/item/clothing/head/slouch = -1,
 			/obj/item/clothing/head/headband/red = -1,
 			/obj/item/clothing/head/headband/rambo = -1,

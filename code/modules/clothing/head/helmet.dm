@@ -221,7 +221,11 @@
 						/obj/item/clothing/glasses/mgoggles/prescription = "goggles",
 						/obj/item/clothing/glasses/hud/medgoggles = "goggles",
 						/obj/item/clothing/glasses/hud/medgoggles/prescription = "goggles",
-						/obj/item/clothing/head/hairflower = "flower_pin")
+						/obj/item/clothing/head/hairflower = "flower_pin",
+						/obj/item/clothing/head/squadhb,
+						/obj/item/clothing/head/squadhb/b,
+						/obj/item/clothing/head/squadhb/c,
+						/obj/item/clothing/head/squadhb/d)
 
 /obj/item/storage/internal/marinehelmet
 	storage_slots = 2
