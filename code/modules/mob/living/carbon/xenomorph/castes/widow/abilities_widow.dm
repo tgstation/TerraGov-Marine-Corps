@@ -190,23 +190,25 @@
 
 /datum/action/xeno_action/spider_swarm/action_activate()
 	. = ..()
-	if(!do_after(owner, 0.5 SECONDS, TRUE, owner, BUSY_ICON_DANGER))
+	if(!do_after(owner, 3 SECONDS, TRUE, owner, BUSY_ICON_DANGER))
 		return fail_activate()
-
+	/// We store the spiderling that we want to posses in order to make the other spiderlings follow it
 	current_controlling_spiderling = new /mob/living/carbon/xenomorph/spiderling(get_turf(owner), owner)
-
 	SEND_SIGNAL(owner, COMSIG_ESCORTED_ATOM_CHANGING, current_controlling_spiderling)
-
 	owner.mind.transfer_to(current_controlling_spiderling)
 	owner.doMove(null)
-	var/new_spiderling = new /mob/living/carbon/xenomorph/spiderling(current_controlling_spiderling.loc, current_controlling_spiderling)
+	/// We want to access the spiderlings list and therefore have this
 	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = owner.actions_by_path[/datum/action/xeno_action/create_spiderling]
 
+	var/new_spiderling = new /mob/living/carbon/xenomorph/spiderling(current_controlling_spiderling.loc, current_controlling_spiderling)
+	/// here we add the created spiderligns to the list
 	create_spiderling_action.add_spiderling(new_spiderling)
 	create_spiderling_action.add_spiderling(current_controlling_spiderling)
+	spider_swarm_created_spiderlings++
+
 	succeed_activate()
 	add_cooldown()
-
+/// This happens whenever the spiderling that we control dies and there are spiderlings left to control
 /datum/action/xeno_action/spider_swarm/proc/switch_to_next_spiderling(mob/living/carbon/xenomorph/spiderling/spiderling)
 	SEND_SIGNAL(current_controlling_spiderling, COMSIG_ESCORTED_ATOM_CHANGING, spiderling)
 	current_controlling_spiderling.mind.transfer_to(spiderling)
@@ -238,31 +240,34 @@
 		return
 
 	var/mob/living/carbon/xenomorph/X = owner
+	/// We need the list of spiderlings so that we can burrow them
 	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = owner.actions_by_path[/datum/action/xeno_action/create_spiderling]
 	to_chat(X, span_xenowarning("We start burrowing into the ground"))
-	if(!do_after(X, 1 SECONDS, TRUE, target, BUSY_ICON_DANGER))
+	if(!do_after(X, 3 SECONDS, TRUE, target, BUSY_ICON_DANGER))
 		return fail_activate()
 	to_chat(X, span_xenowarning("We have burrowed ourselves, we are hidden from the enemy"))
-
+	/// This is the burrow code for Widow
 	X.alpha = 0
 	X.mouse_opacity = 0
 	X.density = FALSE
 	X.throwpass = TRUE
 	burrowed = TRUE
-
+	/// Here we make every single spiderling that we have also burrow and assign a signal so that they unburrow too
 	for(var/mob/living/carbon/xenomorph/spiderling/spiderling in create_spiderling_action.spiderlings)
+		/// Here we register them for the signal and burrow them
 		RegisterSignal(spiderling, COMSIG_MOVABLE_MOVED, .proc/unburrow)
 		spiderling.alpha = 0
 		spiderling.mouse_opacity = 0
 		spiderling.density = FALSE
 		spiderling.throwpass = TRUE
-
+	/// This signal ensures that widow will also unborrow
 	RegisterSignal(X, COMSIG_MOVABLE_MOVED, .proc/unburrow)
 	succeed_activate()
 	add_cooldown()
 
 /datum/action/xeno_action/burrow/proc/unburrow(mob/M)
 	SIGNAL_HANDLER
+	/// This is here so that spiderlings unburrow without mixing vars
 	if(!isxenowidow(M))
 		var/mob/living/carbon/xenomorph/spiderling/S = M
 		UnregisterSignal(S, COMSIG_MOVABLE_MOVED)
@@ -271,8 +276,10 @@
 		S.density = TRUE
 		S.throwpass = FALSE
 		return
+	/// We check if we're already unburrowed
 	if(!burrowed)
 		return
+	/// This unburrows widow
 	var/mob/living/carbon/xenomorph/X = M
 	X.alpha = 255
 	X.mouse_opacity = 255
