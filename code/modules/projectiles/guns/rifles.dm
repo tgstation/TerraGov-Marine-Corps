@@ -1542,6 +1542,14 @@
 		/obj/item/attachable/gyro,
 	)
 
+/obj/item/weapon/gun/rifle/tx55/combat_patrol //no scope for HvH
+	starting_attachment_types = list(
+		/obj/item/weapon/gun/rifle/tx54/mini,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/verticalgrip,
+	)
+
 //-------------------------------------------------------
 // V-31 SOM rifle
 
