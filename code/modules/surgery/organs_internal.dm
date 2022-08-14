@@ -4,7 +4,9 @@
 	blood_level = 1
 
 /datum/surgery_step/internal/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
-	return affected.surgery_open_stage == (affected.encased ? 3 : 2)
+	if(affected.surgery_open_stage == (affected.encased ? 3 : 2))
+		return SURGERY_CAN_USE
+	return SURGERY_CANNOT_USE
 
 //////////////////////////////////////////////////////////////////
 //					ALIEN EMBRYO SURGERY						//
@@ -73,10 +75,11 @@
 /datum/surgery_step/internal/fix_organ/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
 	if(..())
 		if(affected.body_part == HEAD)//brain and eye damage is fixed by a separate surgery
-			return 0
+			return SURGERY_CANNOT_USE
 		for(var/datum/internal_organ/I in affected.internal_organs)
 			if(I.damage > 0 && I.robotic != ORGAN_ROBOT)
-				return 1
+				return SURGERY_CAN_USE
+	return SURGERY_CANNOT_USE
 
 
 /datum/surgery_step/internal/fix_organ/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
@@ -128,10 +131,11 @@
 /datum/surgery_step/internal/fix_organ_robotic/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
 	if(..())
 		if(affected.body_part == HEAD)//brain and eye damage is fixed by a separate surgery
-			return 0
+			return SURGERY_CANNOT_USE
 		for(var/datum/internal_organ/I in affected.internal_organs)
 			if(I.damage > 0 && I.robotic == ORGAN_ROBOT)
-				return 1
+				return SURGERY_CAN_USE
+	return SURGERY_CANNOT_USE
 
 /datum/surgery_step/internal/fix_organ_robotic/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	for(var/datum/internal_organ/I in affected.internal_organs)
