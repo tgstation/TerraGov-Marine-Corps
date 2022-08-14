@@ -129,11 +129,11 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 			to_chat(user, span_warning("You can't operate on the patient's [affected.display_name] while it's already being operated on."))
 			return TRUE
 
-		var/possible = surgery_step.can_use(user, M, user.zone_selected, tool, affected)
-		if(!possible)
-			continue
-		if(possible == SURGERY_INVALID)
-			return TRUE
+		switch(surgery_step.can_use(user, M, user.zone_selected, tool, affected))
+			if(SURGERY_CANNOT_USE)
+				continue
+			if(SURGERY_INVALID)
+				return TRUE
 
 		if(user.skills.getRating("surgery") < SKILL_SURGERY_PROFESSIONAL)
 			user.visible_message(span_notice("[user] fumbles around figuring out how to operate [M]."),
