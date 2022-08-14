@@ -2618,9 +2618,15 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/xeno/acid/web/leash_ball/on_hit_turf(turf/T, obj/projectile/proj)
 	. = ..()
 	new /obj/structure/xeno/aoe_leash(get_turf(T))
+
 /datum/ammo/xeno/acid/web/leash_ball/on_hit_mob(mob/victim, obj/projectile/proj)
 	. = ..()
 	new /obj/structure/xeno/aoe_leash(get_turf(victim))
+
+/datum/ammo/xeno/acid/web/leash_ball/on_hit_obj(obj/O, obj/projectile/proj)
+	. = ..()
+	new /obj/structure/xeno/aoe_leash(get_turf(O))
+
 /*
 //================================================
 					Misc Ammo

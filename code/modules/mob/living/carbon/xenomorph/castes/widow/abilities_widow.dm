@@ -1,10 +1,3 @@
-// ***************************************
-// *********** Vars that more than 1 ability need
-// ***************************************
-/// List of all our spiderlings
-var/list/mob/living/carbon/xenomorph/spiderling/spiderlings
-
-
 /datum/action/xeno_action/activable/web_spit
 	name = "Web Spit"
 	ability_name = "Web Spit"
@@ -133,6 +126,8 @@ var/list/mob/living/carbon/xenomorph/spiderling/spiderlings
 	plasma_cost = 1 // increase later
 	cooldown_timer = 1 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_LEASH_BALL
+	/// List of all our spiderlings
+	var/list/mob/living/carbon/xenomorph/spiderling/spiderlings
 	/// Max amount of spiderligns
 	var/max_spiderlings = 5
 
@@ -243,7 +238,7 @@ var/list/mob/living/carbon/xenomorph/spiderling/spiderlings
 		return
 
 	var/mob/living/carbon/xenomorph/X = owner
-
+	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = owner.actions_by_path[/datum/action/xeno_action/create_spiderling]
 	to_chat(X, span_xenowarning("We start burrowing into the ground"))
 	if(!do_after(X, 1 SECONDS, TRUE, target, BUSY_ICON_DANGER))
 		return fail_activate()
@@ -255,7 +250,7 @@ var/list/mob/living/carbon/xenomorph/spiderling/spiderlings
 	X.throwpass = TRUE
 	burrowed = TRUE
 
-	for(var/mob/living/carbon/xenomorph/spiderling/spiderling in spiderlings)
+	for(var/mob/living/carbon/xenomorph/spiderling/spiderling in create_spiderling_action.spiderlings)
 		RegisterSignal(spiderling, COMSIG_MOVABLE_MOVED, .proc/unburrow)
 		spiderling.alpha = 0
 		spiderling.mouse_opacity = 0
