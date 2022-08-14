@@ -29,6 +29,10 @@
 	if(health <= 0)
 		death(FALSE, null, TRUE)
 
+/mob/living/carbon/xenomorph/on_death()
+	. = ..()
+	death_cry()
+	return
 
 // ***************************************
 // *********** Spiderling AI Section
