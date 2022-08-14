@@ -790,12 +790,9 @@
 	if(!species.has_organ["eyes"]) return 2//No eyes, can't hurt them.
 
 	var/datum/internal_organ/eyes/I = internal_organs_by_name["eyes"]
-	if(I)
-		if(I.cut_away)
-			return 2
-		if(I.robotic == ORGAN_ROBOT)
-			return 2
-	else
+	if(!I)
+		return 2
+	if(I.robotic == ORGAN_ROBOT)
 		return 2
 
 	if(istype(head, /obj/item/clothing))

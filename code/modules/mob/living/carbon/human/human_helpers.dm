@@ -187,7 +187,7 @@
 /mob/living/carbon/human/has_eyes()
 	if(internal_organs_by_name["eyes"])
 		var/datum/internal_organ/eyes = internal_organs_by_name["eyes"]
-		if(eyes && istype(eyes) && !eyes.cut_away)
+		if(eyes && istype(eyes))
 			return 1
 	return 0
 
