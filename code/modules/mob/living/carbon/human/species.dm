@@ -516,7 +516,7 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 	return TRUE
 
 
-/datum/species/early_synthetic //cosmetic differences only
+/datum/species/early_synthetic // Worse at medical, better at engineering.
 	name = "Early Synthetic"
 	name_plural = "Early Synthetics"
 	icobase = 'icons/mob/human_races/r_synthetic.dmi'

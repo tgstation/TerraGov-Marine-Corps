@@ -246,7 +246,7 @@
 
 
 /mob/living/silicon/ai/proc/camera_visibility(mob/camera/aiEye/moved_eye)
-	GLOB.cameranet.visibility(moved_eye, client, all_eyes, TRUE)
+	GLOB.cameranet.visibility(moved_eye, client, all_eyes, moved_eye.use_static)
 
 
 /mob/living/silicon/ai/proc/can_see(atom/A)
@@ -411,6 +411,8 @@
 	ai.controlling = TRUE
 
 	var/mob/camera/aiEye/hud/eyeobj = ai.eyeobj
+	eyeobj.use_static = FALSE
+	ai.camera_visibility(eyeobj)
 	eyeobj.loc = ai.loc
 
 /// Signal handler to clear vehicle and stop remote control
@@ -420,11 +422,14 @@
 	vehicle.on_unlink()
 	vehicle = null
 	var/mob/living/silicon/ai/ai = owner
+	var/mob/camera/aiEye/hud/eyeobj = ai.eyeobj
+	eyeobj.use_static = TRUE
+	ai.camera_visibility(eyeobj)
 	ai.controlling = FALSE
 
 /datum/action/control_vehicle/proc/link_with_vehicle(obj/vehicle/unmanned/_vehicle)
 	vehicle = _vehicle
 	RegisterSignal(vehicle, COMSIG_PARENT_QDELETING, .proc/clear_vehicle)
 	vehicle.on_link()
-	owner.AddComponent(/datum/component/remote_control, vehicle, vehicle.turret_type)
+	owner.AddComponent(/datum/component/remote_control, vehicle, vehicle.turret_type, vehicle.can_interact)
 	SEND_SIGNAL(owner, COMSIG_REMOTECONTROL_TOGGLE, owner)

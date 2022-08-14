@@ -5,6 +5,7 @@
 	move_delay = 3
 	max_integrity = 150
 	turret_pattern = PATTERN_DROID
+	can_interact = TRUE
 	gunnoise = 'sound/weapons/guns/fire/laser.ogg'
 	spawn_equipped_type = /obj/item/uav_turret/droid
 	unmanned_flags = HAS_LIGHTS|OVERLAY_TURRET

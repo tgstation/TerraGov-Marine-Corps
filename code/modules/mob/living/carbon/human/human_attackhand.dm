@@ -83,6 +83,8 @@
 
 		if(INTENT_HARM)
 			// See if they can attack, and which attacks to use.
+			if(H == src && !H.do_self_harm)
+				return FALSE
 			var/datum/unarmed_attack/attack = H.species.unarmed
 			if(!attack.is_usable(H))
 				attack = H.species.secondary_unarmed
