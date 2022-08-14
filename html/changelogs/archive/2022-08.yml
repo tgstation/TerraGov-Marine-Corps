@@ -137,3 +137,7 @@
   - rscadd: Set default client fps to 60
   Xsdew:
   - imageadd: Further refinements to the AR12, AR18, SMG90, and SH35 sprites.
+2022-08-14:
+  BraveMole:
+  - bugfix: Fix xeno fire overlay not changing dir when the xeno is turning
+  - bugfix: Fix medscanner being counted as surgery tool
