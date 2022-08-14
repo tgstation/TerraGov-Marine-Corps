@@ -7,6 +7,7 @@
 
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE
+	wound_type = "widow"
 
 
 	// *** Melee Attacks *** //

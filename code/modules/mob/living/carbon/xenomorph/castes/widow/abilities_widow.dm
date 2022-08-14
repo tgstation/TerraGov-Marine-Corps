@@ -204,7 +204,7 @@
 	/// here we add the created spiderligns to the list
 	create_spiderling_action.add_spiderling(new_spiderling)
 	create_spiderling_action.add_spiderling(current_controlling_spiderling)
-	spider_swarm_created_spiderlings++
+
 
 	succeed_activate()
 	add_cooldown()
