@@ -14,6 +14,7 @@ SUBSYSTEM_DEF(advanced_pathfinding)
 		nodes += list(ai_node.serialize())
 	rustg_register_nodes_astar(json_encode(nodes))
 
+#ifdef TESTING
 #define BENCHMARK_LOOP while(world.timeofday < end_time)
 #define BENCHMARK_RESET end_time = world.timeofday + duration
 
@@ -43,9 +44,7 @@ SUBSYSTEM_DEF(advanced_pathfinding)
 
 	message_admins("Average number of iterations for dm pathfinding in one sec : [dm_iterations/run_number]")
 	message_admins("Average number of iterations for rust pathfinding in one sec : [rust_iterations/run_number]")
-
-
-
+#endif //TESTING
 
 /datum/controller/subsystem/advanced_pathfinding/fire()
 	for(var/datum/ai_behavior/ai_behavior AS in tile_pathfinding_to_do)
