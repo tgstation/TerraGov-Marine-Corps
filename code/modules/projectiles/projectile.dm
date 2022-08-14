@@ -22,7 +22,7 @@
 
 #define DAMAGE_REDUCTION_COEFFICIENT(armor) (0.1/((armor*armor*0.0001)+0.1)) //Armor offers diminishing returns.
 
-#define PROJECTILE_HIT_CHECK(thing_to_hit, projectile, cardinal_move, uncrossing) (!(thing_to_hit.resistance_flags & PROJECTILE_IMMUNE) && thing_to_hit.density && thing_to_hit.projectile_hit(projectile, cardinal_move, uncrossing))
+#define PROJECTILE_HIT_CHECK(thing_to_hit, projectile, cardinal_move, uncrossing) (!(thing_to_hit.resistance_flags & PROJECTILE_IMMUNE) && thing_to_hit.projectile_hit(projectile, cardinal_move, uncrossing))
 
 //The actual bullet objects.
 /obj/projectile
@@ -636,6 +636,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 
 /obj/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+	if(!density && !(obj_flags & PROJ_IGNORE_DENSITY)) //structure is passable
+		return FALSE
 	if(src == proj.original_target) //clicking on the structure itself hits the structure
 		return TRUE
 	if(!throwpass)
