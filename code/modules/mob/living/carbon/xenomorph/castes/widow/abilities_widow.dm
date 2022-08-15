@@ -124,13 +124,9 @@
 	cooldown_timer = 1 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_LEASH_BALL
 	/// List of all our spiderlings
-	var/list/mob/living/carbon/xenomorph/spiderling/spiderlings
+	var/list/mob/living/carbon/xenomorph/spiderling/spiderlings = list()
 	/// Max amount of spiderligns
 	var/max_spiderlings = 5
-
-/datum/action/xeno_action/create_spiderling/New(Target)
-	. = ..()
-	spiderlings = list()
 
 /// The action to create spiderlings
 /datum/action/xeno_action/create_spiderling/action_activate()
