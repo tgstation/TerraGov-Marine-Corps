@@ -141,3 +141,6 @@
   BraveMole:
   - bugfix: Fix xeno fire overlay not changing dir when the xeno is turning
   - bugfix: Fix medscanner being counted as surgery tool
+2022-08-15:
+  Lumipharon:
+  - bugfix: Fix some Combat Patrol end of round stats
