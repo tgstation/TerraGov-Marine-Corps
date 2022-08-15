@@ -81,7 +81,6 @@
 		RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, .proc/attack_target)
 		if(ishuman(atom_to_walk_to))
 			RegisterSignal(atom_to_walk_to, COMSIG_MOB_DEATH, /datum/ai_behavior.proc/change_action, ESCORTING_ATOM, escorted_atom)
-
 	return ..()
 
 /datum/ai_behavior/spiderling/unregister_action_signals(action_type)
