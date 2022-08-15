@@ -206,6 +206,7 @@
 
 	succeed_activate()
 	add_cooldown()
+
 /// This happens whenever the spiderling that we control dies and there are spiderlings left to control
 /datum/action/xeno_action/spider_swarm/proc/switch_to_next_spiderling(mob/living/carbon/xenomorph/spiderling/spiderling)
 	SEND_SIGNAL(current_controlling_spiderling, COMSIG_ESCORTED_ATOM_CHANGING, spiderling)
