@@ -1316,6 +1316,13 @@
 	aim_slowdown = 0.5
 	damage_falloff_mult = 0.5
 
+/obj/item/weapon/gun/rifle/standard_skirmishrifle/standard
+	starting_attachment_types = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/weapon/gun/grenade_launcher/underslung,
+	)
+
 //-------------------------------------------------------
 //AF-51B MACHINEcarbine
 
@@ -1540,6 +1547,14 @@
 		/obj/item/attachable/scope/optical,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/gyro,
+	)
+
+/obj/item/weapon/gun/rifle/tx55/combat_patrol //no scope for HvH
+	starting_attachment_types = list(
+		/obj/item/weapon/gun/rifle/tx54/mini,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/verticalgrip,
 	)
 
 //-------------------------------------------------------
