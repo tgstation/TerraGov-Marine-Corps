@@ -90,7 +90,6 @@
 /datum/xeno_caste/widow/elder
 	upgrade_name = "Elder"
 	caste_desc = " Starting to look very scary now "
-
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
