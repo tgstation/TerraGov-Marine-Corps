@@ -132,7 +132,7 @@
 	if(!signal || !on)
 		return
 
-	if(signal.source.z != z)
+	if(!(signal.source.loc.z == z || signal.source.z == z))
 		return
 
 	if(signal.data["code"] != code)
