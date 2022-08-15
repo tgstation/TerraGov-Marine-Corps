@@ -60,7 +60,6 @@
 
 /datum/xeno_caste/widow/young
 	upgrade_name = "Young"
-
 	upgrade = XENO_UPGRADE_ZERO
 
 /datum/xeno_caste/widow/mature
