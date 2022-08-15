@@ -2567,7 +2567,6 @@ datum/ammo/bullet/revolver/tp44
 	hugger_type = /obj/item/clothing/mask/facehugger/combat/acid
 
 /// For Widows Web Spit Ability
-
 /datum/ammo/xeno/acid/web
 	icon_state = "neurotoxin"
 	damage_type = STAMINA
