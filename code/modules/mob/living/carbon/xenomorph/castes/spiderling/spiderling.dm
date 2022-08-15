@@ -89,6 +89,4 @@
 		UnregisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE)
 		if(ishuman(atom_to_walk_to))
 			UnregisterSignal(atom_to_walk_to, COMSIG_MOB_DEATH)
-
-
 	return ..()
