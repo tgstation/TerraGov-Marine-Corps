@@ -21,11 +21,11 @@
 	issue_order_hold.give_action(src)
 	var/datum/action/skill/issue_order/focus/issue_order_focus = new
 	issue_order_focus.give_action(src)
-	var/datum/action/innate/order/attack_order/send_attack_order = new
+	var/datum/action/innate/order/attack_order/personal/send_attack_order = new
 	send_attack_order.give_action(src)
-	var/datum/action/innate/order/defend_order/send_defend_order = new
+	var/datum/action/innate/order/defend_order/personal/send_defend_order = new
 	send_defend_order.give_action(src)
-	var/datum/action/innate/order/retreat_order/send_retreat_order = new
+	var/datum/action/innate/order/retreat_order/personal/send_retreat_order = new
 	send_retreat_order.give_action(src)
 	var/datum/action/innate/order/rally_order/send_rally_order = new
 	send_rally_order.give_action(src)
