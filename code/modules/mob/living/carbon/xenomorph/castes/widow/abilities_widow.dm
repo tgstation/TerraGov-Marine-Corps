@@ -54,7 +54,6 @@
 	icon_state = "boiler_gas2" // temp
 	desc = "Looks very sticky"
 	destroy_sound = "alien_resin_break"
-	obj_integrity = 0
 	max_integrity = 1920
 	/// Radius for how far the leash should affect humans and how far away they may walk
 	var/leash_radius = 5
