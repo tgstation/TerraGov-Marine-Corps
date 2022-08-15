@@ -178,6 +178,12 @@
 
 /datum/wires/proc/attach_assembly(color, obj/item/assembly/S)
 	if(istype(S) && S.attachable && !is_attached(color))
+		if(skill < SKILL_ENGINEER_ENGI)
+			user.visible_message(span_notice("[usr] fumbles around figuring out the wiring."),
+			span_notice("You fumble around figuring out the wiring."))
+			if(!do_after(user, 2 SECONDS * (SKILL_ENGINEER_ENGI - skill), TRUE, holder, BUSY_ICON_UNSKILLED) || is_cut(wire))
+				return
+
 		assemblies[color] = S
 		S.forceMove(holder)
 		S.connected = src
@@ -188,6 +194,13 @@
 	var/obj/item/assembly/S = get_attached(color)
 	if(!istype(S))
 		return
+
+	if(skill < SKILL_ENGINEER_ENGI)
+		user.visible_message(span_notice("[usr] fumbles around figuring out the wiring."),
+		span_notice("You fumble around figuring out the wiring."))
+		if(!do_after(user, 2 SECONDS * (SKILL_ENGINEER_ENGI - skill), TRUE, holder, BUSY_ICON_UNSKILLED) || is_cut(wire))
+			return
+
 	assemblies -= color
 	S.connected = null
 	S.forceMove(get_turf(S))
