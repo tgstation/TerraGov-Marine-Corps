@@ -397,7 +397,7 @@
 		/obj/item/attachable/motiondetector,
 	)
 
-	attachable_offset = list("muzzle_x" = 36, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 22, "under_x" = 31, "under_y" = 15, "stock_x" = 24, "stock_y" = 10)
+	attachable_offset = list("muzzle_x" = 38, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 22, "under_x" = 31, "under_y" = 15, "stock_x" = 24, "stock_y" = 10)
 
 	fire_delay = 0.15 SECONDS
 	aim_slowdown = 0.15
