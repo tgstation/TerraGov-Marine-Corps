@@ -698,6 +698,7 @@
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/reddot,
 	)
 	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 18,"rail_x" = 26, "rail_y" = 22, "under_x" = 14, "under_y" = 16, "stock_x" = 14, "stock_y" = 16)
 
