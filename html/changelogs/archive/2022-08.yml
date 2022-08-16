@@ -144,3 +144,12 @@
 2022-08-15:
   Lumipharon:
   - bugfix: Fix some Combat Patrol end of round stats
+2022-08-16:
+  Lumipharon:
+  - rscadd: 'Combat Patrol: Added laser rifle and AR-55 loadouts to TGMC SL''s'
+  - rscadd: 'Combat Patrol: Added SMG-90, laser carbine and AR-21 loadouts to TGMC
+      medics'
+  - rscadd: 'Combat Patrol: Added AR-21 loadout to TGMC marines'
+  - balance: 'Combat Patrol: Removed the two AP mags from the V-21 scout loadout,
+      removed quantity limit on SG-85 loadout, added more C4 to TGMC demo engi loadout'
+  - bugfix: 'Combat Patrol: Added missing ammo for SH-15 medic loadout'
