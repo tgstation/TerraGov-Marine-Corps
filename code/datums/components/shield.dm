@@ -207,14 +207,19 @@
 			return prob(50 - round(incoming_damage / 3))
 		if(COMBAT_MELEE_ATTACK, COMBAT_PROJ_ATTACK)
 			var/absorbing_damage = incoming_damage * cover.getRating(damage_type) * 0.01 * status_cover_modifier  //Determine cover ratio; this is the % of damage we actually intercept.
-			absorbing_damage = max(0, absorbing_damage - hard_armor.getRating(damage_type)) //We apply hard armor *first* _not_ *after* soft armor
-			if(!absorbing_damage)
+			if(!absorbing_damage)	//This should be checked before we get to damage calculations!
 				return incoming_damage //We are transparent to this kind of damage.
-			. = incoming_damage - absorbing_damage
+			var/calculated_damage = max(0, absorbing_damage - hard_armor.getRating(damage_type)) //We apply hard armor *first* _not_ *after* soft armor
+			if(incoming_damage != absorbing_damage)	//If only part of the damage is being reduced, use the formula below
+				. = abs((calculated_damage ? calculated_damage : absorbing_damage) - incoming_damage)	//If calculated_damage is 0, then use what got absorbed for the math
+			else
+				. = calculated_damage
 			absorbing_damage *= (100 - soft_armor.getRating(damage_type)) * 0.01 //Now apply soft armor
-			if(absorbing_damage <= 0)
-				if(!silent)
-					to_chat(affected, span_avoidharm("\The [parent_item.name] [. ? "softens" : "soaks"] the damage!"))
+			if(COMBAT_MELEE_ATTACK && !silent && !calculated_damage)	//If you block all or what was absorbed of a melee attack
+				affected.visible_message(span_avoidharm("[affected] [. ? "negated most of the attack" : "performed a flawless block"]!"), span_avoidharm("You [. ? "blocked most of the damage" : "blocked the attack"]!"))
+			if(!.)	//If damage is nullified to the user, user gets told so
+				if(!silent && COMBAT_PROJ_ATTACK)	//No need to spam another message if you already got from being melee'ed
+					to_chat(affected, span_avoidharm("\The [parent_item.name] absorbs the damage!"))
 				return
 			if(transfer_damage_cb)
 				return transfer_damage_cb.Invoke(absorbing_damage, ., silent)
