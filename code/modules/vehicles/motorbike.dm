@@ -194,11 +194,6 @@
 	smoke.set_up(0, src)
 	smoke.start()
 
-/obj/vehicle/ridden/motorbike/projectile_hit(obj/projectile/P)
-	if(!buckled_mobs)
-		return ..()
-	return FALSE
-
 /obj/vehicle/ridden/motorbike/obj_destruction()
 	explosion(src, light_impact_range = 2, flash_range = 0)
 	return ..()
