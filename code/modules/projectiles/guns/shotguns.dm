@@ -371,15 +371,16 @@
 
 /obj/item/weapon/gun/shotgun/double/martini
 	name = "\improper Martini Henry lever action rifle"
-	desc = "A lever action with room for a single round of .557/440 ball. Perfect for any kind of hunt, be it elephant or xeno."
+	desc = "A lever action with room for two rounds of .557/440 balls. Perfect for any kind of hunt, be it elephant or xeno."
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "martini"
 	item_state = "martini"
 	shell_eject_animation = "martini_flick"
 	caliber = CALIBER_557 //codex
+	load_method = SINGLE_CASING //codex
 	muzzle_flash_lum = 7
-	max_chamber_items = 1 //codex
+	max_chamber_items = 2 //codex
 	ammo_datum_type = /datum/ammo/bullet/sniper/martini
 	default_ammo_type = /datum/ammo/bullet/sniper/martini
 	gun_skill_category = GUN_SKILL_RIFLES
