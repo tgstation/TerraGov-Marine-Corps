@@ -1,0 +1,5 @@
+author: "XElectricX"
+delete-after: True
+changes: 
+  - balance: "Motorbikes no longer act as barriers and can be shot over."
+  - bugfix: "Hitting riders on motorbikes is now consistent."
