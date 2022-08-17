@@ -477,7 +477,7 @@
 	var/datum/action/xeno_action/mirage/mirage_action = X.actions_by_path[/datum/action/xeno_action/mirage]
 	if(!mirage_action?.illusions)
 		to_chat(X, span_xenowarning("We have no illusions to swap with!"))
-		return FALSE
+		return
 	var/turf/current_turf = get_turf(X)
 	X.forceMove(get_turf(mirage_action.illusions[1].loc))
 	mirage_action.illusions[1].forceMove(current_turf)
