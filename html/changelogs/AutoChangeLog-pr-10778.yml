@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes: 
+  - bugfix: "fixed SOM shoes sometimes going invisible"
