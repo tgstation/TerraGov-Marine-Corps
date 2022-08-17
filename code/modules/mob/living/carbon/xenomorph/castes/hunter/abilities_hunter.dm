@@ -216,7 +216,7 @@
 
 /datum/action/xeno_action/stealth/disguise
 	name = "Disguise"
-	mechanics_text = "Disguise yourself as the enemy. Uses plasma to move."
+	mechanics_text = "Disguise yourself as the enemy. Uses plasma to move. Select your disguise with Hunter's Mark."
 	///the regular appearance of the hunter
 	var/old_appearance
 
