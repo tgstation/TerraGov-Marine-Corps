@@ -168,7 +168,7 @@ The Grenade Launchers
 /obj/item/weapon/gun/grenade_launcher/underslung/mpi
 	icon_state = "grenade_mpi"
 	flags_attach_features = NONE
-	default_ammo_type = /obj/item/explosive/stick //no marine equipment here
+	default_ammo_type = /obj/item/explosive/grenade/stick //no marine equipment here
 
 /obj/item/weapon/gun/grenade_launcher/single_shot
 	name = "\improper GL-81 grenade launcher"
