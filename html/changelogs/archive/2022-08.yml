@@ -153,3 +153,13 @@
   - balance: 'Combat Patrol: Removed the two AP mags from the V-21 scout loadout,
       removed quantity limit on SG-85 loadout, added more C4 to TGMC demo engi loadout'
   - bugfix: 'Combat Patrol: Added missing ammo for SH-15 medic loadout'
+2022-08-17:
+  QualityVan:
+  - bugfix: Dead xenos stop emitting pheromones
+  Targeting Computer 9.6:
+  - bugfix: fixed some missing or misplaced cameras, firelocks, lights, apcs, holopads
+      and wires on POS.
+  breadhunt:
+  - bugfix: Attaching stuff like signalers, voice sensors and the like to wires will
+      now actually pulse them instead of runtiming
+  - balance: Possible engi heaven
