@@ -101,10 +101,13 @@
 	arrow_type = /obj/screen/arrow/attack_order_arrow
 	visual_type = /obj/effect/temp_visual/order/attack_order
 
-/datum/action/innate/order/attack_order/should_show()
+//These 'personal' subtypes are the ones not used by overwatch; like what SL or FC gets
+/datum/action/innate/order/attack_order/personal
+
+/datum/action/innate/order/attack_order/personal/should_show()
 	return owner.skills.getRating(skill_name) >= skill_min
 
-/datum/action/innate/order/attack_order/action_activate()
+/datum/action/innate/order/attack_order/personal/action_activate()
 	var/mob/living/carbon/human/human = owner
 	if(send_order(human, human.assigned_squad, human.faction))
 		var/message = pick(";MARINES, FIGHT! SHOOT! KILL!!", ";BLAST THEM!", ";MAKE THEM EAT LEAD!", ";END THEM!", ";ATTACK HERE!", ";CHARGE!", ";RUN THEM OVER!")
@@ -117,10 +120,12 @@
 	arrow_type = /obj/screen/arrow/defend_order_arrow
 	visual_type = /obj/effect/temp_visual/order/defend_order
 
-/datum/action/innate/order/defend_order/should_show()
+/datum/action/innate/order/defend_order/personal
+
+/datum/action/innate/order/defend_order/personal/should_show()
 	return owner.skills.getRating(skill_name) >= skill_min
 
-/datum/action/innate/order/defend_order/action_activate()
+/datum/action/innate/order/defend_order/personal/action_activate()
 	var/mob/living/carbon/human/human = owner
 	if(send_order(human, human.assigned_squad, human.faction))
 		var/message = pick(";DUCK AND COVER!", ";HOLD THE LINE!", ";HOLD POSITION!", ";STAND YOUR GROUND!", ";STAND AND FIGHT!", ";TAKE COVER!", ";COVER THE AREA!", ";BRACE FOR COVER!", ";BRACE!", ";INCOMING!", ";DON'T PUSH! STAY HERE!")
@@ -132,10 +137,12 @@
 	verb_name = "retreat from"
 	visual_type = /obj/effect/temp_visual/order/retreat_order
 
-/datum/action/innate/order/retreat_order/should_show()
+/datum/action/innate/order/retreat_order/personal
+
+/datum/action/innate/order/retreat_order/personal/should_show()
 	return owner.skills.getRating(skill_name) >= skill_min
 
-/datum/action/innate/order/retreat_order/action_activate()
+/datum/action/innate/order/retreat_order/personal/action_activate()
 	var/mob/living/carbon/human/human = owner
 	if(send_order(human, human.assigned_squad, human.faction))
 		var/message = pick(";RETREAT! RETREAT!", ";GET OUT OF HERE!", ";DON'T DIE HERE! RUN!", ";RUN! RUN FOR YOUR LIFE!", ";DISENGAGE! I REPEAT, DISENGAGE!", ";GIVE UP GROUND! GIVE IT UP!")
