@@ -1,0 +1,4 @@
+author: "breadhunt"
+delete-after: True
+changes: 
+  - bugfix: "Overwatch markers now work again"
