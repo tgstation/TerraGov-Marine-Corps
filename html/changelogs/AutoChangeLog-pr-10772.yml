@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes: 
+  - rscadd: "Added one CAS radio key to the tactical binoculars crate."
