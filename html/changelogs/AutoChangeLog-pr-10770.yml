@@ -1,4 +1,0 @@
-author: "Targeting Computer 9.6"
-delete-after: True
-changes: 
-  - bugfix: "fixed some missing or misplaced cameras, firelocks, lights, apcs, holopads and wires on POS."

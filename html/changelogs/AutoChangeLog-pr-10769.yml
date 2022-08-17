@@ -1,5 +1,0 @@
-author: "breadhunt"
-delete-after: True
-changes: 
-  - bugfix: "Attaching stuff like signalers, voice sensors and the like to wires will now actually pulse them instead of runtiming"
-  - balance: "Possible engi heaven"
