@@ -712,6 +712,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return FALSE
 	return TRUE
 
+/obj/vehicle/ridden/motorbike/projectile_hit(obj/projectile/P)
+	if(!buckled_mobs)
+		return ..()
+	var/mob/buckled_mob = pick(buckled_mobs)
+	return src == buckled_mob
 
 /mob/living/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	if(status_flags & INCORPOREAL)
