@@ -1,0 +1,4 @@
+author: "breadhunt"
+delete-after: True
+changes: 
+  - bugfix: "Detpacks now work when a signaler is in your hand again, instead of only working on the floor"
