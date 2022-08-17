@@ -165,6 +165,11 @@ The Grenade Launchers
 /obj/item/weapon/gun/grenade_launcher/underslung/invisible
 	flags_attach_features = NONE
 
+/obj/item/weapon/gun/grenade_launcher/underslung/mpi
+	icon_state = "grenade_mpi"
+	flags_attach_features = NONE
+	default_ammo_type = /obj/item/explosive/stick //no marine equipment here
+
 /obj/item/weapon/gun/grenade_launcher/single_shot
 	name = "\improper GL-81 grenade launcher"
 	desc = "A lightweight, single-shot grenade launcher used by the TerraGov Marine Corps for area denial and big explosions."

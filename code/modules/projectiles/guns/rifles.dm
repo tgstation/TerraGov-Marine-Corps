@@ -498,7 +498,7 @@
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 1, "rail_y" = 20, "under_x" = 24, "under_y" = 13, "stock_x" = 0, "stock_y" = 12)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 18,"rail_x" = 1, "rail_y" = 20, "under_x" = 14, "under_y" = 14, "stock_x" = 0, "stock_y" = 12)
 	starting_attachment_types = list(/obj/item/attachable/stock/mpi_km)
 	force = 20
 
@@ -508,6 +508,28 @@
 	wield_delay = 0.8 SECONDS
 
 	placed_overlay_iconstate = "ak47"
+
+/obj/item/weapon/gun/rifle/mpi_km/grenadier //built in UGL
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/stock/mpi_km,
+		/obj/item/attachable/shoulder_mount,
+		/obj/item/weapon/gun/grenade_launcher/underslung/mpi,
+	)
+	starting_attachment_types = list(
+		/obj/item/attachable/stock/mpi_km,
+		/obj/item/weapon/gun/grenade_launcher/underslung/mpi,
+	)
+
+/obj/item/weapon/gun/rifle/mpi_km/grenadier/magharness
+	starting_attachment_types = list(
+		/obj/item/attachable/stock/mpi_km,
+		/obj/item/weapon/gun/grenade_launcher/underslung/mpi,
+		/obj/item/attachable/magnetic_harness,
+	)
 
 //-------------------------------------------------------
 //M16 RIFLE
