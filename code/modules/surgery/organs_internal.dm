@@ -341,7 +341,7 @@
 
 	if(!target.species)
 		to_chat(user, span_warning("You have no idea what species this person is. Report this on the bug tracker."))
-		return SPECIAL_SURGERY_INVALID
+		return SURGERY_INVALID
 
 	var/o_is = (O.gender == PLURAL) ? "are"   : "is"
 	var/o_a =  (O.gender == PLURAL) ? ""      : "a "
@@ -351,22 +351,22 @@
 
 		if(!O.obj_integrity)
 			to_chat(user, span_warning("\The [O.organ_tag] [o_is] in no state to be implanted."))
-			return SPECIAL_SURGERY_INVALID
+			return SURGERY_INVALID
 
 		if(!target.internal_organs_by_name[O.organ_tag])
 			organ_missing = 1
 		else
 			to_chat(user, span_warning("\The [target] already has [o_a][O.organ_tag]."))
-			return SPECIAL_SURGERY_INVALID
+			return SURGERY_INVALID
 
 		if(O.organ_data && affected.name == O.organ_data.parent_limb)
 			organ_compatible = 1
 		else
 			to_chat(user, span_warning("\The [O.organ_tag] [o_do] normally go in \the [affected.display_name]."))
-			return SPECIAL_SURGERY_INVALID
+			return SURGERY_INVALID
 	else
 		to_chat(user, span_warning("You're pretty sure [target.species.name_plural] don't normally have [o_a][O.organ_tag]."))
-		return SPECIAL_SURGERY_INVALID
+		return SURGERY_INVALID
 
 	return ..() && organ_missing && organ_compatible
 

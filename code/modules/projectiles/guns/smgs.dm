@@ -135,6 +135,9 @@
 /obj/item/weapon/gun/smg/standard_smg/nonstandard
 	starting_attachment_types = list(/obj/item/attachable/reddot)
 
+/obj/item/weapon/gun/smg/standard_smg/tactical
+	starting_attachment_types = list(/obj/item/attachable/compensator, /obj/item/attachable/reddot, /obj/item/attachable/lasersight)
+
 //-------------------------------------------------------
 //M-25 SMG
 
@@ -397,7 +400,7 @@
 		/obj/item/attachable/motiondetector,
 	)
 
-	attachable_offset = list("muzzle_x" = 36, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 22, "under_x" = 31, "under_y" = 15, "stock_x" = 24, "stock_y" = 10)
+	attachable_offset = list("muzzle_x" = 38, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 22, "under_x" = 31, "under_y" = 15, "stock_x" = 24, "stock_y" = 10)
 
 	fire_delay = 0.15 SECONDS
 	aim_slowdown = 0.15
