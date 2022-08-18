@@ -65,7 +65,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	else
 		RegisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY, .proc/set_escorted_atom)
 	RegisterSignal(SSdcs, COMSIG_GLOB_AI_GOAL_SET, .proc/set_goal_node)
-	goal_node = GLOB.goal_nodes[identifier]
+	set_goal_node(null, null, GLOB.goal_nodes[identifier])
 	RegisterSignal(goal_node, COMSIG_PARENT_QDELETING, .proc/clean_goal_node)
 	late_initialize()
 
@@ -88,7 +88,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 ///Cleans up signals related to the action and element(s)
 /datum/ai_behavior/proc/cleanup_current_action(next_action)
 	if(current_action == MOVING_TO_NODE && next_action != MOVING_TO_NODE)
-		current_node = null
+		set_current_node(null)
 	if(current_action == ESCORTING_ATOM && next_action != ESCORTING_ATOM)
 		clean_escorted_atom()
 	unregister_action_signals(current_action)
@@ -141,16 +141,18 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 ///Try to find a node to go to. If ignore_current_node is true, we will just find the closest current_node, and not the current_node best adjacent node
 /datum/ai_behavior/proc/look_for_next_node(ignore_current_node = TRUE, should_reset_goal_nodes = FALSE)
 	if(should_reset_goal_nodes)
-		goal_nodes = null
+		set_current_node(null)
 	if(ignore_current_node || !current_node) //We don't have a current node, let's find the closest in our LOS
 		var/closest_distance = MAX_NODE_RANGE //squared because we are using the cheap get dist
 		var/avoid_node = current_node
 		for(var/obj/effect/ai_node/ai_node AS in GLOB.all_nodes)
+			if(!ai_node)
+				continue
 			if(ai_node == avoid_node)
 				continue
 			if(ai_node.z != mob_parent.z || get_dist(ai_node, mob_parent) >= closest_distance)
 				continue
-			current_node = ai_node
+			set_current_node(ai_node)
 			closest_distance = get_dist(ai_node, mob_parent)
 		if(current_node)
 			change_action(MOVING_TO_NODE, current_node)
@@ -159,12 +161,23 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		if(!length(goal_nodes))
 			SSadvanced_pathfinding.node_pathfinding_to_do += src
 			return
-		current_node = GLOB.all_nodes[goal_nodes[length(goal_nodes)] + 1]
+		set_current_node(GLOB.all_nodes[goal_nodes[length(goal_nodes)] + 1])
 		goal_nodes.len--
 	else
-		current_node = current_node.get_best_adj_node(list(NODE_LAST_VISITED = -1), identifier)
+		set_current_node(current_node.get_best_adj_node(list(NODE_LAST_VISITED = -1), identifier))
+	if(!current_node)
+		addtimer(CALLBACK(src, .proc/look_for_next_node), 1 SECONDS)// Shouldn't happen unless you spam goal nodes
+		return
 	current_node.set_weight(identifier, NODE_LAST_VISITED, world.time)
 	change_action(MOVING_TO_NODE, current_node)
+
+///Set the current node to next_node
+/datum/ai_behavior/proc/set_current_node(obj/effect/ai_node/next_node)
+	if(current_node)
+		UnregisterSignal(current_node, COMSIG_PARENT_QDELETING)
+	if(next_node)
+		RegisterSignal(current_node, COMSIG_PARENT_QDELETING, .proc/look_for_next_node)
+	current_node = next_node
 
 ///Signal handler when the ai is blocked by an obstacle
 /datum/ai_behavior/proc/deal_with_obstacle(datum/source, direction)
@@ -191,11 +204,12 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	if(QDELETED(goal_node) || QDELETED(current_node))
 		return
 	var/goal_nodes_serialized = rustg_generate_path_astar("[current_node.unique_id]", "[goal_node.unique_id]")
+	message_admins("Generate nodes path: [goal_nodes_serialized]")
 	if(rustg_json_is_valid(goal_nodes_serialized))
 		goal_nodes = json_decode(goal_nodes_serialized)
 	else
 		goal_nodes = list()
-		current_node = null
+		set_current_node(null)
 	look_for_next_node()
 
 ///Signal handler when we reached our current tile goal
@@ -222,7 +236,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 ///Set the goal node
 /datum/ai_behavior/proc/set_goal_node(datum/source, identifier, obj/effect/ai_node/new_goal_node)
 	SIGNAL_HANDLER
-	if(src.identifier != identifier)
+	if(identifier && src.identifier != identifier)
 		return
 	if(goal_node)
 		UnregisterSignal(goal_node, COMSIG_PARENT_QDELETING)

@@ -33,6 +33,8 @@
 
 /obj/effect/ai_node/LateInitialize()
 	make_adjacents()
+	if(SSadvanced_pathfinding.initialized)
+		message_admins("Adding nodes [rustg_add_node_astar(json_encode(serialize()))]")
 
 /// Serialize nodes information
 /obj/effect/ai_node/proc/serialize()
@@ -98,8 +100,9 @@
 
 ///Clears the adjacencies of src and repopulates it, it will consider nodes "adjacent" to src should it be less 15 turfs away
 /obj/effect/ai_node/proc/make_adjacents(bypass_diagonal_check = FALSE)
+	adjacent_nodes = list()
 	for(var/obj/effect/ai_node/node AS in GLOB.all_nodes)
-		if(node == src || node.z != z || get_dist(src, node) > MAX_NODE_RANGE || (!bypass_diagonal_check && !Adjacent(node) && ISDIAGONALDIR(get_dir(src, node))))
+		if(!node || node == src || node.z != z || get_dist(src, node) > MAX_NODE_RANGE || (!bypass_diagonal_check && !Adjacent(node) && ISDIAGONALDIR(get_dir(src, node))))
 			continue
 		if(get_dist(src, adjacent_nodes["[get_dir(src, node)]"]) < get_dist(src, node))
 			continue

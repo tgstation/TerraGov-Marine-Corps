@@ -12,7 +12,7 @@ SUBSYSTEM_DEF(advanced_pathfinding)
 	var/list/nodes = list()
 	for(var/obj/effect/ai_node/ai_node AS in GLOB.all_nodes)
 		nodes += list(ai_node.serialize())
-	rustg_register_nodes_astar(json_encode(nodes))
+	message_admins("Registering nodes : [rustg_register_nodes_astar(json_encode(nodes))]")
 
 #ifdef TESTING
 #define BENCHMARK_LOOP while(world.timeofday < end_time)
@@ -164,7 +164,7 @@ GLOBAL_LIST_EMPTY(goal_nodes)
 
 /obj/effect/ai_node/goal/LateInitialize()
 	make_adjacents(TRUE)
-	rustg_add_node_astar(json_encode(serialize()))
+	message_admins("Adding nodes [rustg_add_node_astar(json_encode(serialize()))]")
 
 /obj/effect/ai_node/goal/Destroy()
 	. = ..()
