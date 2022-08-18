@@ -6,7 +6,7 @@
 	name = "Rest"
 	action_icon_state = "resting"
 	mechanics_text = "Rest on weeds to regenerate health and plasma."
-	use_state_flags = XACT_USE_LYING|XACT_USE_CRESTED|XACT_USE_AGILITY|XACT_USE_CLOSEDTURF
+	use_state_flags = XACT_USE_LYING|XACT_USE_CRESTED|XACT_USE_AGILITY|XACT_USE_CLOSEDTURF|XACT_USE_STAGGERED|XACT_USE_INCAP
 	keybind_signal = COMSIG_XENOABILITY_REST
 
 /datum/action/xeno_action/xeno_resting/action_activate()
