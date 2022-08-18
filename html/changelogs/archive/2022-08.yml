@@ -163,3 +163,17 @@
   - bugfix: Attaching stuff like signalers, voice sensors and the like to wires will
       now actually pulse them instead of runtiming
   - balance: Possible engi heaven
+2022-08-18:
+  Lumipharon:
+  - bugfix: fixed SOM shoes sometimes going invisible
+  - balance: Added some more attachments to the V-31 and V-51
+  - imageadd: added some alt sprites for certain attachments on SOM weapons
+  XElectricX:
+  - balance: Motorbikes no longer act as barriers and can be shot over.
+  - bugfix: Hitting riders on motorbikes is now consistent.
+  breadhunt:
+  - bugfix: Detpacks now work when a signaler is in your hand again, instead of only
+      working on the floor
+  - bugfix: Overwatch markers now work again
+  lbnesquik:
+  - rscadd: Added one CAS radio key to the tactical binoculars crate.
