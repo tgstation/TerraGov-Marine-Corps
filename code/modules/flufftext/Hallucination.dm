@@ -1,10 +1,12 @@
 #define HAL_LINES_FILE "hallucinations.json"
 
 GLOBAL_LIST_INIT(hallucination_list, list(
-	/datum/hallucination/sounds = 100,
-	/datum/hallucination/chat = 50,
-	/datum/hallucination/battle = 20,
-	/datum/hallucination/xeno_attack = 8,
+	/datum/hallucination/sounds = 72,
+	/datum/hallucination/chat = 15,
+	/datum/hallucination/battle = 10,
+	/datum/hallucination/xeno_attack_vent_runner = 1,
+	/datum/hallucination/death = 1,
+	/datum/hallucination/queen_screech = 1,
 ))
 
 
@@ -20,7 +22,9 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	var/halpick = pickweight(GLOB.hallucination_list)
 	new halpick(src, FALSE)
 
-	next_hallucination = world.time + rand(10 SECONDS, 60 SECONDS)
+	var/min_wait_time = max(12 SECONDS - (hallucination/10) SECONDS, 6 SECONDS)
+	var/max_wait_time = max(36 SECONDS - (hallucination/5) SECONDS, 18 SECONDS)
+	next_hallucination = world.time + rand(min_wait_time, max_wait_time)
 
 /mob/living/carbon/proc/set_screwyhud(hud_type)
 	hal_screwyhud = hud_type
@@ -131,27 +135,27 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	active = FALSE
 	return ..()
 
-/obj/effect/hallucination/simple/xeno
+/obj/effect/hallucination/simple/xeno_vent
 	name = "Mature Runner"
 	desc = "A small red alien that looks like it could run fairly quickly..."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Runner Walking"
 
-/obj/effect/hallucination/simple/xeno/Initialize(mapload, mob/living/carbon/T)
+/obj/effect/hallucination/simple/xeno_vent/Initialize(mapload, mob/living/carbon/T)
 	. = ..()
 	name = "Mature Runner ([rand(100, 999)])"
 
-/obj/effect/hallucination/simple/xeno/throw_impact(atom/hit_atom, speed)
+/obj/effect/hallucination/simple/xeno_vent/throw_impact(atom/hit_atom, speed)
 	if(hit_atom == target && target.stat != DEAD)
 		target.Paralyze(3 SECONDS, TRUE, TRUE)
 		target.visible_message(span_danger("[target] flails around wildly."),span_xenowarning("\The [src] pounces at [target]!"))
 
-/datum/hallucination/xeno_attack
+/datum/hallucination/xeno_attack_vent_runner
 	//Xeno crawls from nearby vent,jumps at you, and goes back in
 	var/obj/machinery/atmospherics/components/unary/vent_pump/pump = null
-	var/obj/effect/hallucination/simple/xeno/xeno = null
+	var/obj/effect/hallucination/simple/xeno_vent/xeno = null
 
-/datum/hallucination/xeno_attack/New(mob/living/carbon/C, forced = TRUE)
+/datum/hallucination/xeno_attack_vent_runner/New(mob/living/carbon/C, forced = TRUE)
 	set waitfor = FALSE
 	..()
 	for(var/obj/machinery/atmospherics/components/unary/vent_pump/U in orange(3, target))
@@ -270,8 +274,9 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	set waitfor = FALSE
 	..()
 	var/turf/source = random_far_turf()
+	var/possible_sound_list = list()
 	if(!sound_type)
-		sound_type = pick("airlock pry", "hugged", "glass step", "grill hit", "weed placed", "gunshots")
+		sound_type = pick("airlock pry", "hugged", "glass step", "grill hit", "weed placed", "gunshots", "b18", "queen message", "queen died", "larba", "moth", "xeno talk", "xeno roar", "xeno hiss", "xeno help", "gasp", "pain", "random ambient", "clown", "OB", "ERT", "shutters", "powerloss", "revive", "nade")
 	//Strange audio
 	switch(sound_type)
 		if("airlock pry")
@@ -291,14 +296,104 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			sleep(1 SECONDS)
 			target.playsound_local(source, get_sfx("[pick("male", "female")]_hugged"), 35, TRUE)
 		if("weed placed")
-			target.playsound_local(source, get_sfx("alien_resin_build"), 35, TRUE)
+			for(var/i in 1 to rand(3, 5))
+				target.playsound_local(source, get_sfx("alien_resin_build"), 35, TRUE)
+				sleep(rand(0.5 SECONDS, 1.3 SECONDS))
 		if("gunshots")
 			target.playsound_local(source, get_sfx("alien_resin_build"), 35, TRUE)
 			for(var/i in 1 to rand(5, 10))
 				target.playsound_local(source, get_sfx("ballistic_hit"), 35, TRUE)
 				sleep(rand(CLICK_CD_RANGE, CLICK_CD_RANGE + 6))
+		if("b18")
+			possible_sound_list = list(
+				'sound/voice/ib_detected.ogg',
+				'sound/voice/b18_fracture.ogg',
+			)
+			target.playsound_local(source, 'sound/voice/b18_activate.ogg', 35, TRUE)
+			sleep(rand(10 SECONDS, 25 SECONDS))
+			target.playsound_local(source, pick(possible_sound_list), 35, TRUE)
+		if("queen message")
+			target.playsound_local(source, get_sfx("queen_distant"), 35, TRUE)
+		if("queen died")
+			target.playsound_local(source, 'sound/voice/alien_queen_died.ogg', 35, TRUE)
+		if("larba")
+			target.playsound_local(source, get_sfx("alien_roar_larva"), 35, TRUE)
+		if("moth")
+			target.playsound_local(source, 'sound/voice/moth_scream.ogg',, 35, TRUE)
+		if("xeno talk")
+			target.playsound_local(source, get_sfx("alien_talk"), 35, TRUE)
+		if("xeno roar")
+			target.playsound_local(source, get_sfx("alien_roar"), 35, TRUE)
+		if("xeno hiss")
+			target.playsound_local(source, get_sfx("alien_hiss_expanded"), 35, TRUE)
+		if("xeno help")
+			possible_sound_list = list(
+				"alien_help",
+				"alien_death",
+			)
+			target.playsound_local(source, get_sfx(pick(possible_sound_list)), 35, TRUE)
+		if("xeno spit")
+			for(var/i in 1 to rand(3, 6))
+				target.playsound_local(source, get_sfx("alien_spit"), 35, TRUE)
+				sleep(rand(0.8 SECONDS, 1.2 SECONDS,))
+		if("gasp")
+			possible_sound_list = list(
+				"female_gasp",
+				"male_gasp",
+			)
+			target.playsound_local(source, get_sfx(pick(possible_sound_list)), 35, TRUE)
+		if("pain")
+			possible_sound_list = list(
+				"female_scream",
+				"female_pain",
+				"male_scream",
+				"male_pain",
+			)
+			target.playsound_local(source, get_sfx(pick(possible_sound_list)), 35, TRUE)
+		if("random ambient")
+			possible_sound_list = list(
+				"shatter",
+				"sparks",
+				"rustle",
+			)
+			target.playsound_local(source, get_sfx(pick(possible_sound_list)), 35, TRUE)
+		if("clown")
+			possible_sound_list = list(
+				"female_scream",
+				"male_scream",
+			)
+			for(var/i in 1 to rand(3, 8))
+				target.playsound_local(source, get_sfx("clownstep"), 35, TRUE)
+				sleep(1 SECONDS)
+			target.playsound_local(source, get_sfx(pick(possible_sound_list)), 35, TRUE)
+		if("OB")
+			target.playsound_local(source, get_sfx("OB"), 35, TRUE)
+		if("ERT")
+			target.playsound_local(source, get_sfx("morse"), 35, TRUE)
+		if("shutters")
+			target.playsound_local(source, get_sfx("shutters"), 35, TRUE)
+		if("powerloss")
+			target.playsound_local(source, get_sfx("powerloss"), 35, TRUE)
+		if("revive")
+			target.playsound_local(source, get_sfx("revive"), 35, TRUE)
+		if("nade")
+			target.playsound_local(source, get_sfx("nade_prime"), 35, TRUE)
+	qdel(src)
+
+
+/datum/hallucination/queen_screech
+
+/datum/hallucination/queen_screech/New(mob/living/carbon/C, forced = TRUE)
+	set waitfor = FALSE
+	..()
+
+	playsound(C.loc, 'sound/voice/alien_queen_screech.ogg', 75, 0)
+	to_chat(src, span_danger("An ear-splitting guttural roar tears through your mind and makes your world convulse!"))
+	C.Stun(1 SECONDS)
+	C.Paralyze(1 SECONDS)
 
 	qdel(src)
+
 
 /datum/hallucination/death
 
@@ -306,7 +401,8 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	set waitfor = FALSE
 	..()
 	target.set_screwyhud(SCREWYHUD_DEAD)
-	target.Sleeping(30 SECONDS)
+	var/delay_time = rand(5 SECONDS, 7 SECONDS)
+	target.Sleeping(15 SECONDS)
 	if(prob(50))
 		var/mob/fakemob
 		var/list/dead_people = list()
@@ -317,9 +413,9 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		else
 			fakemob = target //ever been so lonely you had to haunt yourself?
 		if(fakemob)
-			sleep(rand(20, 50))
+			sleep(delay_time)
 			to_chat(target, span_deadsay("<b>DEAD: [fakemob.name]</b> says, \"[pick("rip","why did i just drop dead?","hey [target.real_name]","git gud","you too?","did we get the [pick("nuke", "blue disk", "red disk", "green disk", "yellow disk")]?","i[prob(50)?" fucking":""] hate [pick("runners", "queens", "shrikes", "xenos", "this", "myself", "admins", "you")]")]\""))
-	sleep(rand(7 SECONDS, 9 SECONDS))
+	sleep(15 SECONDS - delay_time)
 	target.set_screwyhud(SCREWYHUD_NONE)
 	target.SetSleeping(0)
 	qdel(src)

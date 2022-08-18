@@ -160,7 +160,7 @@
 
 /obj/item/reagent_containers/pill/inaprovaline
 	pill_desc = "An inaprovaline pill. Used to stabilize patients."
-	list_reagents = list(/datum/reagent/medicine/inaprovaline = 30)
+	list_reagents = list(/datum/reagent/medicine/inaprovaline = 15)
 	pill_id = 10
 
 /obj/item/reagent_containers/pill/dexalin
