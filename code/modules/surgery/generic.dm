@@ -9,18 +9,18 @@
 
 /datum/surgery_step/generic/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
 	if(target_zone == "eyes" || target_zone == "mouth") //There are specific steps for eye surgery and face surgery
-		return 0
+		return SURGERY_CANNOT_USE
 	if(!affected)
-		return 0
+		return SURGERY_CANNOT_USE
 	if(affected.limb_status & LIMB_DESTROYED)
-		return 0
+		return SURGERY_CANNOT_USE
 	if(!isnull(open_step) && affected.surgery_open_stage != open_step)
-		return 0
+		return SURGERY_CANNOT_USE
 	if(target_zone == "head" && target.species && (target.species.species_flags & (IS_SYNTHETIC|ROBOTIC_LIMBS)))
-		return 1
+		return SURGERY_CAN_USE
 	if(affected.limb_status & LIMB_ROBOT)
-		return 0
-	return 1
+		return SURGERY_CANNOT_USE
+	return SURGERY_CAN_USE
 
 
 /datum/surgery_step/generic/incision_manager
@@ -161,7 +161,9 @@
 
 /datum/surgery_step/generic/clamp_bleeders/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
 	if(..())
-		return affected.surgery_open_stage && (affected.limb_status & LIMB_BLEEDING)
+		if(affected.surgery_open_stage && !(affected.limb_status & LIMB_WOUND_CLAMPED))
+			return SURGERY_CAN_USE
+	return SURGERY_CANNOT_USE
 
 /datum/surgery_step/generic/clamp_bleeders/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_notice("[user] starts clamping bleeders in [target]'s [affected.display_name] with \the [tool]."), \
@@ -249,7 +251,9 @@
 
 /datum/surgery_step/generic/cauterize/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
 	if(..())
-		return affected.surgery_open_stage == 1 || affected.surgery_open_stage == 2
+		if(affected.surgery_open_stage == 1 || affected.surgery_open_stage == 2)
+			return SURGERY_CAN_USE
+	return SURGERY_CANNOT_USE
 
 /datum/surgery_step/generic/cauterize/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_notice("[user] is beginning to cauterize the incision on [target]'s [affected.display_name] with \the [tool].") , \
@@ -287,9 +291,9 @@
 
 /datum/surgery_step/generic/repair/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
 	if(!..())
-		return FALSE
+		return SURGERY_CANNOT_USE
 	if(affected.has_external_wound())//limb has treatable damage
-		return TRUE
+		return SURGERY_CAN_USE
 	to_chat(user, span_notice("[target]'s [affected.display_name] has no external injuries.") )
 	return SURGERY_INVALID
 

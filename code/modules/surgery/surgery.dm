@@ -49,7 +49,7 @@ GLOBAL_LIST_EMPTY(surgery_steps)
 
 //Checks whether this step can be applied with the given user and target
 /datum/surgery_step/proc/can_use(mob/living/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/limb/affected, only_checks)
-	return 0
+	return SURGERY_CANNOT_USE
 
 //Does stuff to begin the step, usually just printing messages. Moved germs transfering and bloodying here too
 /datum/surgery_step/proc/begin_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
@@ -114,9 +114,10 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 	if(!istype(M))
 		return FALSE
 	if(user.a_intent == INTENT_HARM) //Check for Hippocratic Oath
-		return TRUE
+		return FALSE
 	if(user.do_actions) //already doing an action
 		return TRUE
+
 	for(var/datum/surgery_step/surgery_step AS in GLOB.surgery_steps)
 		//Check if tool is right or close enough, and the target mob valid, and if this step is possible
 		if(!surgery_step.tool_quality(tool) || !surgery_step.is_valid_target(M))
@@ -127,11 +128,13 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 		if(affected.in_surgery_op) //two surgeons can't work on same limb at same time
 			to_chat(user, span_warning("You can't operate on the patient's [affected.display_name] while it's already being operated on."))
 			return TRUE
+
 		switch(surgery_step.can_use(user, M, user.zone_selected, tool, affected))
 			if(SURGERY_CANNOT_USE)
 				continue
 			if(SURGERY_INVALID)
 				return TRUE
+
 		if(user.skills.getRating("surgery") < SKILL_SURGERY_PROFESSIONAL)
 			user.visible_message(span_notice("[user] fumbles around figuring out how to operate [M]."),
 			span_notice("You fumble around figuring out how to operate [M]."))
@@ -159,7 +162,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 					multipler += 0.45
 			if(M.shock_stage > 100) //Being near to unconsious is good in this case
 				multipler += 0.25
-		if(issynth(M))
+		if(issynth(user))
 			multipler = 1
 
 		//calculate step duration
@@ -167,8 +170,10 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 
 		//Multiply tool success rate with multipler
 		if(do_mob(user, M, step_duration, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(user, /mob.proc/break_do_after_checks, null, null, user.zone_selected)) && prob(surgery_step.tool_quality(tool) * CLAMP01(multipler)))
-			if(surgery_step.can_use(user, M, user.zone_selected, tool, affected, TRUE)) //to check nothing changed during the do_mob
+			if(surgery_step.can_use(user, M, user.zone_selected, tool, affected, TRUE) == SURGERY_CAN_USE) //to check nothing changed during the do_mob
 				surgery_step.end_step(user, M, user.zone_selected, tool, affected) //Finish successfully
+			else
+				to_chat(user, span_warning("For some reason the surgery you were doing stopped being possible."))
 
 		else if((tool in user.contents) && user.Adjacent(M)) //Or
 			if(M.stat == CONSCIOUS) //If not on anesthetics or not unconsious, warn player
