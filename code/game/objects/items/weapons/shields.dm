@@ -98,7 +98,7 @@
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to repair [src]."),
 		span_notice("You fumble around figuring out how to repair [src]."))
-		var/fumbling_time = 3 SECONDS * ( SKILL_ENGINEER_METAL - user.skills.getRating("engineer") )
+		var/fumbling_time = 4 SECONDS * ( SKILL_ENGINEER_METAL - user.skills.getRating("engineer") )
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_BUILD))
 			return TRUE
 
@@ -106,7 +106,7 @@
 	span_notice("You begin repairing [src]."))
 	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 
-	if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
+	if(!do_after(user, 4 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
 		return TRUE
 
 	if(obj_integrity <= (max_integrity - integrity_failure) * 0.2 || obj_integrity == max_integrity)
@@ -118,7 +118,7 @@
 
 	user.visible_message(span_notice("[user] finishes repairing [src]."),
 	span_notice("You finish repairing [src]."))
-	repair_damage((src.max_integrity-src.integrity_failure) * 0.25)
+	repair_damage((src.max_integrity-src.integrity_failure) * 0.2)
 	update_icon()
 	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 	return TRUE
