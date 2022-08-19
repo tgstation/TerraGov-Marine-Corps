@@ -124,8 +124,7 @@
 /area/thonus/indoors/a_block/admin)
 "adw" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	name = "\improper Corporation Dome";
-	req_access_txt = "100"
+	name = "\improper Corporation Dome"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/mainship/stripesquare,
@@ -3908,8 +3907,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 8;
 	locked = 1;
-	name = "\improper Wildcatters Office";
-	panel_open = 1
+	name = "\improper Wildcatters Office"
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/thonus/indoors/a_block/dorms)
@@ -4222,9 +4220,7 @@
 "cKP" = (
 /obj/machinery/door/airlock/mainship/engineering{
 	dir = 1;
-	name = "\improper Workshop Storage";
-	req_access_txt = "100";
-	req_one_access = null
+	name = "\improper Workshop Storage"
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/thonus/indoors/a_block/corpo)
@@ -4605,9 +4601,7 @@
 /turf/open/floor/prison,
 /area/thonus/outdoors/colony_streets/central_streets)
 "dae" = (
-/obj/structure/bed{
-	can_buckle = 0
-	},
+/obj/structure/bed,
 /obj/item/clothing/mask/facehugger{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
@@ -5739,8 +5733,6 @@
 	armor_bomb = 10;
 	armor_bullet = 20;
 	armor_internaldamage = 20;
-	armor_laser = 15;
-	armor_melee = 20;
 	armor_rad = 10;
 	desc = "A headset typically found in use by radio-operators and officers. This one bears a purple stripe down its side.";
 	name = "\improper personalized USCM headset"
@@ -6326,17 +6318,14 @@
 /area/thonus/indoors/a_block/kitchen)
 "eiD" = (
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4
 	},
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 1;
 	pixel_y = 3
 	},
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 2;
 	pixel_y = 6
@@ -7155,17 +7144,14 @@
 /area/thonus/outdoors/colony_streets/central_streets)
 "eKh" = (
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4
 	},
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 1;
 	pixel_y = 3
 	},
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 2;
 	pixel_y = 6
@@ -7250,9 +7236,7 @@
 /turf/open/floor/prison/whitegreenfull2,
 /area/thonus/indoors/b_block/hydro)
 "eMQ" = (
-/obj/item/weapon/gun/rifle/m41a{
-	current_mag = null
-	},
+/obj/item/weapon/gun/rifle/m41a,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/thonus/outdoors/w_rockies)
 "eNq" = (
@@ -7887,8 +7871,7 @@
 "flF" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	locked = 1;
-	name = "\improper Corporation Dome";
-	req_access_txt = "100"
+	name = "\improper Corporation Dome"
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/thonus/indoors/a_block/corpo)
@@ -8257,7 +8240,6 @@
 /obj/effect/decal/cleanable/blood/drip,
 /obj/item/clothing/head/helmet/marine/scout{
 	armor_bullet = 5;
-	armor_melee = 15;
 	desc = "A custom helmet designed for USCM Scouts. Looks like this one has seen some action.";
 	name = "\improper Battered M3-S light helmet";
 	pixel_x = -8;
@@ -8486,8 +8468,7 @@
 /obj/machinery/door/airlock/mainship/medical{
 	dir = 2;
 	locked = 1;
-	name = "Medical Airlock";
-	req_one_access = null
+	name = "Medical Airlock"
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/thonus/indoors/a_block/medical)
@@ -9223,9 +9204,7 @@
 	layer = 3.3;
 	pixel_y = 4
 	},
-/obj/structure/bed{
-	can_buckle = 0
-	},
+/obj/structure/bed,
 /obj/structure/bed{
 	buckling_y = 13;
 	layer = 3.5;
@@ -9240,9 +9219,7 @@
 /turf/open/floor/prison/plate,
 /area/thonus/indoors/c_block/mining)
 "giI" = (
-/obj/structure/bed/chair/wood/normal{
-	can_buckle = 0
-	},
+/obj/structure/bed/chair/wood/normal,
 /turf/open/floor/prison,
 /area/thonus/indoors/c_block/casino)
 "giT" = (
@@ -10069,8 +10046,7 @@
 /area/thonus/indoors/a_block/bridges/dorms_fitness)
 "gOI" = (
 /obj/machinery/door/airlock/mainship/engineering{
-	name = "\improper Cargo Bay Storage";
-	req_one_access = null
+	name = "\improper Cargo Bay Storage"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -11958,8 +11934,7 @@
 /obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 1;
 	name = "\improper Chunk 'N Dump";
-	req_access = null;
-	req_one_access = null
+	req_access = null
 	},
 /obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/tile/dark2,
@@ -13381,9 +13356,7 @@
 	layer = 3.3;
 	pixel_y = 4
 	},
-/obj/structure/bed{
-	can_buckle = 0
-	},
+/obj/structure/bed,
 /obj/structure/bed{
 	buckling_y = 13;
 	layer = 3.5;
@@ -14333,9 +14306,7 @@
 /area/thonus/indoors/a_block/dorm_north)
 "jyK" = (
 /obj/structure/closet/crate/ammo,
-/obj/item/weapon/gun/rifle/tx11{
-	current_mag = null
-	},
+/obj/item/weapon/gun/rifle/tx11,
 /turf/open/shuttle/dropship{
 	icon_state = "rasputin15"
 	},
@@ -14615,9 +14586,7 @@
 	layer = 3.3;
 	pixel_y = 4
 	},
-/obj/structure/bed{
-	can_buckle = 0
-	},
+/obj/structure/bed,
 /obj/structure/bed{
 	buckling_y = 13;
 	layer = 3.5;
@@ -15757,9 +15726,7 @@
 /area/thonus/outdoors/colony_streets/north_east_street)
 "kxV" = (
 /obj/machinery/door/airlock/mainship/medical{
-	name = "Medical Laboratory Operating Theatre";
-	req_access_txt = "100";
-	req_one_access = null
+	name = "Medical Laboratory Operating Theatre"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -16070,9 +16037,7 @@
 	layer = 3.3;
 	pixel_y = 4
 	},
-/obj/structure/bed{
-	can_buckle = 0
-	},
+/obj/structure/bed,
 /obj/structure/bed{
 	buckling_y = 13;
 	layer = 3.5;
@@ -16608,9 +16573,7 @@
 	pixel_x = -4;
 	pixel_y = 10
 	},
-/obj/item/weapon/gun/pistol/m1911{
-	current_mag = null
-	},
+/obj/item/weapon/gun/pistol/m1911,
 /obj/item/ammo_magazine/pistol/m1911{
 	current_rounds = 4
 	},
@@ -18436,8 +18399,7 @@
 /area/thonus/indoors/a_block/garden)
 "mhK" = (
 /obj/machinery/door/airlock/mainship/engineering{
-	name = "\improper Cargo Bay Break Room";
-	req_one_access = null
+	name = "\improper Cargo Bay Break Room"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -18785,8 +18747,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 8;
 	locked = 1;
-	name = "\improper Wildcatters Office";
-	panel_open = 1
+	name = "\improper Wildcatters Office"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/mainship/stripesquare,
@@ -19068,9 +19029,7 @@
 /turf/open/floor/plating,
 /area/thonus/landing_zone_forecon/UD6_Typhoon)
 "mEY" = (
-/obj/structure/bed{
-	can_buckle = 0
-	},
+/obj/structure/bed,
 /obj/item/bedsheet/brown{
 	layer = 3.1
 	},
@@ -19330,8 +19289,7 @@
 /area/thonus/indoors/c_block/casino)
 "mLS" = (
 /obj/machinery/door/airlock/mainship/engineering{
-	name = "\improper Cargo Bay Quartermaster";
-	req_one_access = null
+	name = "\improper Cargo Bay Quartermaster"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -20761,7 +20719,6 @@
 /turf/open/floor/prison/plate,
 /area/thonus/outdoors/colony_streets/south_street)
 "nEU" = (
-/turf/closed/mineral/smooth/snowrock/indestructible,
 /area/thonus/outdoors/rock)
 "nFX" = (
 /obj/effect/ai_node,
@@ -22851,17 +22808,14 @@
 /area/thonus/landing_zone_forecon/UD6_Typhoon)
 "oUr" = (
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4
 	},
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 1;
 	pixel_y = 3
 	},
 /obj/structure/bed/chair{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 2;
 	pixel_y = 6
@@ -23405,9 +23359,7 @@
 /area/thonus/indoors/a_block/dorms)
 "pot" = (
 /obj/machinery/door/airlock/mainship/medical{
-	name = "Medical Laboratory Operating Theatre";
-	req_access_txt = "100";
-	req_one_access = null
+	name = "Medical Laboratory Operating Theatre"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -24204,8 +24156,7 @@
 /area/thonus/indoors/a_block/dorm_north)
 "pPF" = (
 /obj/structure/closet/secure_closet{
-	name = "secure evidence locker";
-	req_access_txt = "3"
+	name = "secure evidence locker"
 	},
 /turf/open/floor/prison,
 /area/thonus/indoors/a_block/security)
@@ -25128,9 +25079,7 @@
 /area/thonus/indoors/a_block/dorms)
 "qxL" = (
 /obj/structure/table/mainship,
-/obj/item/weapon/gun/rifle/tx11{
-	current_mag = null
-	},
+/obj/item/weapon/gun/rifle/tx11,
 /turf/open/floor/prison/blue/plate{
 	dir = 1
 	},
@@ -25507,14 +25456,12 @@
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
 	id = "map_corpo";
-	indestructible = 1;
 	name = "Emergency Blast Door";
 	use_power = 0
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
 	id = "map_corpo2";
-	indestructible = 1;
 	name = "Emergency Blast Door";
 	use_power = 0
 	},
@@ -25565,8 +25512,7 @@
 /area/thonus/indoors/a_block/admin)
 "qPz" = (
 /obj/machinery/door/airlock/mainship/maint{
-	dir = 1;
-	req_one_access_txt = "100"
+	dir = 1
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/thonus/outdoors/rock)
@@ -25697,9 +25643,7 @@
 	},
 /area/thonus/outdoors/colony_streets/central_streets)
 "qSD" = (
-/obj/item/weapon/gun/pistol/m1911{
-	current_mag = null
-	},
+/obj/item/weapon/gun/pistol/m1911,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/thonus/outdoors/w_rockies)
 "qSI" = (
@@ -27242,9 +27186,7 @@
 	layer = 3.3;
 	pixel_y = 4
 	},
-/obj/structure/bed{
-	can_buckle = 0
-	},
+/obj/structure/bed,
 /obj/structure/bed{
 	buckling_y = 13;
 	layer = 3.5;
@@ -28200,8 +28142,7 @@
 /area/thonus/indoors/a_block/dorms)
 "sFX" = (
 /obj/machinery/door/airlock/mainship/maint{
-	dir = 1;
-	req_one_access_txt = "100"
+	dir = 1
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/thonus/indoors/c_block/mining)
@@ -29421,9 +29362,7 @@
 /area/thonus/outdoors/colony_streets/north_west_street)
 "txg" = (
 /obj/machinery/door/airlock/mainship/engineering{
-	name = "\improper Workshop Storage";
-	req_access_txt = "100";
-	req_one_access = null
+	name = "\improper Workshop Storage"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -30063,8 +30002,7 @@
 /area/thonus/indoors/a_block/dorms)
 "tSy" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	name = "\improper Corporation Dome";
-	req_access_txt = "100"
+	name = "\improper Corporation Dome"
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/thonus/indoors/a_block/corpo)
@@ -30617,8 +30555,7 @@
 /obj/machinery/door/airlock/mainship/medical{
 	dir = 2;
 	locked = 1;
-	name = "Medical Airlock";
-	req_one_access = null
+	name = "Medical Airlock"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -32000,9 +31937,7 @@
 /obj/structure/inflatable{
 	dir = 1
 	},
-/obj/item/weapon/gun/rifle/m41a{
-	current_mag = null
-	},
+/obj/item/weapon/gun/rifle/m41a,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/thonus/outdoors/w_rockies)
 "vfr" = (
@@ -33130,8 +33065,7 @@
 "vVo" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
-	name = "\improper Corporation Office";
-	req_access_txt = "100"
+	name = "\improper Corporation Office"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -33727,9 +33661,7 @@
 	layer = 3.3;
 	pixel_y = 4
 	},
-/obj/structure/bed{
-	can_buckle = 0
-	},
+/obj/structure/bed,
 /obj/structure/bed{
 	buckling_y = 13;
 	layer = 3.5;
