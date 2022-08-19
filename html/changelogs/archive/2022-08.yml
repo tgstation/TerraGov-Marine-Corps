@@ -177,3 +177,8 @@
   - bugfix: Overwatch markers now work again
   lbnesquik:
   - rscadd: Added one CAS radio key to the tactical binoculars crate.
+2022-08-19:
+  QualityVan:
+  - bugfix: Surgeries work
+  collinlunn:
+  - bugfix: Hunter's Disguise description tells you how to select a target.
