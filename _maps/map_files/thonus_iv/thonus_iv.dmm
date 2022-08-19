@@ -2503,6 +2503,10 @@
 /obj/machinery/computer3/server/rack,
 /turf/open/floor/podhatch/floor,
 /area/thonus/indoors/c_block/mining)
+"bDf" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/thonus/outdoors/colony_streets/south_west_street)
 "bDo" = (
 /obj/structure/rack,
 /obj/item/tool/pickaxe,
@@ -2822,6 +2826,10 @@
 "bNG" = (
 /turf/closed/wall,
 /area/thonus/indoors/c_block/mining)
+"bNS" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
+/area/thonus/outdoors/colony_streets/north_street)
 "bOx" = (
 /obj/structure/platform_decoration{
 	dir = 1
@@ -5729,6 +5737,11 @@
 "dMC" = (
 /obj/structure/table/mainship,
 /obj/item/clothing/head/headset{
+	armor_bio = 20;
+	armor_bomb = 10;
+	armor_bullet = 20;
+	armor_internaldamage = 20;
+	armor_rad = 10;
 	desc = "A headset typically found in use by radio-operators and officers. This one bears a purple stripe down its side.";
 	name = "\improper personalized USCM headset"
 	},
@@ -6287,6 +6300,13 @@
 	icon_state = "rasputin15"
 	},
 /area/thonus/landing_zone_forecon/UD6_Typhoon)
+"ehL" = (
+/obj/structure/prop/mainship/thonus/smallwire{
+	dir = 4
+	},
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/thonus/outdoors/colony_streets/south_street)
 "ehN" = (
 /obj/structure/platform{
 	dir = 1
@@ -8234,6 +8254,7 @@
 "fAg" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/item/clothing/head/helmet/marine/scout{
+	armor_bullet = 5;
 	desc = "A custom helmet designed for USCM Scouts. Looks like this one has seen some action.";
 	name = "\improper Battered M3-S light helmet";
 	pixel_x = -8;
@@ -9330,6 +9351,7 @@
 "glW" = (
 /obj/structure/table/mainship,
 /obj/item/clothing/head/helmet/marine/grenadier{
+	armor_bullet = 10;
 	desc = "Pairs with the M3-G4 heavy grenadier plating. A distant cousin of the experimental B18 defensive helmet. Decorated with a blue stripe the large hole in the side of this helmet somewhat limits its protection.";
 	name = "\improper damaged M3-G4 grenadier helmet"
 	},
@@ -10361,6 +10383,15 @@
 	},
 /turf/open/floor/prison/whitegreen/full,
 /area/thonus/indoors/a_block/medical)
+"gZw" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/tile/yellow/patch,
+/area/thonus/indoors/a_block/corpo)
 "gZP" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/tool,
@@ -13403,6 +13434,11 @@
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/thonus/indoors/a_block/bridges/garden_bridge)
+"iYf" = (
+/obj/structure/cable,
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/prison,
+/area/thonus/indoors/b_block/hydro)
 "iYp" = (
 /turf/open/floor/prison,
 /area/thonus/indoors/lone_buildings/outdoor_bot)
@@ -14351,6 +14387,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/thonus/outdoors/colony_streets/south_west_street)
+"jCf" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/prison,
+/area/thonus/indoors/c_block/mining)
 "jCl" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
@@ -14694,6 +14735,14 @@
 "jNv" = (
 /turf/open/floor/tile/yellow/patch,
 /area/thonus/indoors/a_block/corpo)
+"jNy" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/thonus/indoors/c_block/mining)
 "jNH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -15302,6 +15351,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/thonus/indoors/b_block/bridge)
+"khd" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/thonus/outdoors/colony_streets/east_central_street)
 "khl" = (
 /obj/effect/spawner/gibspawner/xeno,
 /obj/machinery/light{
@@ -18015,6 +18068,10 @@
 /obj/structure/closet/crate/trashcart,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/thonus/outdoors/colony_streets/north_street)
+"lTo" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/prison,
+/area/thonus/indoors/c_block/garage)
 "lTR" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -20064,6 +20121,10 @@
 	dir = 1
 	},
 /area/thonus/indoors/a_block/admin)
+"nkP" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/prison,
+/area/thonus/indoors/a_block/security)
 "nkQ" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -20667,6 +20728,10 @@
 	dir = 9
 	},
 /area/thonus/indoors/a_block/dorm_north)
+"nDs" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/tile/yellow/patch,
+/area/thonus/indoors/a_block/corpo)
 "nDv" = (
 /obj/machinery/light{
 	dir = 8
@@ -24707,6 +24772,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/thonus/outdoors/colony_streets/north_east_street)
+"qiY" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/prison,
+/area/thonus/indoors/a_block/kitchen)
 "qje" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -26575,6 +26644,7 @@
 /obj/item/flashlight/lamp/green{
 	pixel_y = -16
 	},
+/obj/docking_port/stationary/crashmode,
 /turf/open/floor/prison/whitegreenfull2,
 /area/thonus/indoors/lone_buildings/spaceport)
 "rCj" = (
@@ -28620,6 +28690,10 @@
 	dir = 9
 	},
 /area/thonus/indoors/b_block/bridge)
+"sXn" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/thonus/outdoors/colony_streets/central_streets)
 "sXJ" = (
 /obj/machinery/light{
 	dir = 8
@@ -31959,6 +32033,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/thonus/caves/west_caves)
+"vgW" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/thonus/indoors/c_block/mining)
 "vhh" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -33174,6 +33253,16 @@
 	dir = 8
 	},
 /area/thonus/outdoors/colony_streets/central_streets)
+"vZp" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
+	},
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/prison,
+/area/thonus/indoors/a_block/garden)
 "vZI" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -33383,6 +33472,10 @@
 /obj/structure/platform,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/thonus/outdoors/colony_streets/north_street)
+"wem" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/thonus/outdoors/colony_streets/east_central_street)
 "weO" = (
 /obj/structure/table/fancywoodentable,
 /obj/item/storage/pill_bottle/happy{
@@ -34035,6 +34128,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/thonus/outdoors/colony_streets/south_east_street)
+"wDB" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating,
+/area/thonus/indoors/c_block/cargo)
 "wDY" = (
 /obj/structure/closet/athletic_mixed,
 /turf/open/floor/prison/whitepurple/full{
@@ -34251,6 +34351,10 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/thonus/indoors/a_block/admin)
+"wME" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/prison,
+/area/thonus/indoors/c_block/casino)
 "wMG" = (
 /obj/machinery/light{
 	pixel_x = 16
@@ -35041,6 +35145,10 @@
 	},
 /turf/open/floor/plating/ground/snow/layer2,
 /area/thonus/outdoors/colony_streets/south_street)
+"xoD" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/thonus/indoors/b_block/bar)
 "xoN" = (
 /obj/structure/platform,
 /obj/structure/platform{
@@ -35250,6 +35358,10 @@
 	},
 /turf/open/floor/plating,
 /area/thonus/indoors/c_block/garage)
+"xxV" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/thonus/outdoors/colony_streets/south_street)
 "xyn" = (
 /obj/structure/barricade/wooden{
 	dir = 1;
@@ -45826,7 +45938,7 @@ pGD
 hwp
 tLo
 qth
-oqi
+xoD
 uvU
 jFf
 bcE
@@ -48769,7 +48881,7 @@ nQr
 nQr
 nQr
 nQr
-nQr
+bDf
 nQr
 nQr
 sRr
@@ -48978,7 +49090,7 @@ pxm
 vWp
 ucR
 nQr
-nQr
+bDf
 nQr
 nQr
 nQr
@@ -52275,7 +52387,7 @@ bpm
 bpm
 fpZ
 bpm
-bpm
+iYf
 bpm
 iLf
 cBU
@@ -53863,7 +53975,7 @@ kYH
 kYH
 dam
 iFE
-iFE
+ehL
 iFE
 rwY
 kYH
@@ -55575,7 +55687,7 @@ aNH
 xAE
 bLJ
 bLJ
-bLJ
+sXn
 bLJ
 bLJ
 bLJ
@@ -55960,7 +56072,7 @@ gWj
 vCy
 qfd
 qfd
-jNv
+nDs
 nta
 jbT
 qBX
@@ -56454,7 +56566,7 @@ qdW
 mun
 cKY
 fVp
-whe
+qiY
 pAo
 emp
 coe
@@ -56540,7 +56652,7 @@ ifX
 agV
 bNG
 xPM
-icS
+jNy
 xPM
 bNG
 bNG
@@ -56670,7 +56782,7 @@ coe
 xkb
 sId
 whe
-whe
+qiY
 eic
 smL
 khQ
@@ -57193,7 +57305,7 @@ kYH
 kYH
 kYH
 kYH
-kYH
+xxV
 kYH
 ibe
 ibe
@@ -57517,7 +57629,7 @@ jNv
 qBX
 qAQ
 mYH
-nta
+gZw
 mYH
 qNe
 kNt
@@ -57551,7 +57663,7 @@ wLJ
 pwt
 djq
 gbX
-hqk
+nkP
 tqX
 gVN
 coe
@@ -59063,7 +59175,7 @@ snX
 mFH
 qMY
 bgi
-vFI
+bNS
 jpk
 jpk
 rCy
@@ -59104,7 +59216,7 @@ gbX
 hqk
 rhY
 hqk
-hqk
+nkP
 ylm
 hqk
 nwE
@@ -60306,7 +60418,7 @@ foi
 foi
 ofg
 nmn
-mYq
+jCf
 wLc
 wLc
 sGe
@@ -60906,7 +61018,7 @@ sbs
 uJA
 sbs
 sbs
-afM
+khd
 gvF
 uJA
 iNN
@@ -61160,7 +61272,7 @@ dcv
 dcv
 dcv
 dcv
-azK
+wDB
 dcv
 dcv
 dcv
@@ -61581,7 +61693,7 @@ rKN
 cLq
 unV
 saY
-saY
+wME
 saY
 sAU
 sAU
@@ -63184,7 +63296,7 @@ xyz
 wgt
 itm
 aFr
-dNo
+vgW
 wgt
 wgt
 dNo
@@ -63786,14 +63898,14 @@ afM
 xiD
 xiD
 sbs
-sbs
+wem
 sbs
 sbs
 sbs
 uJA
 uJA
 sbs
-sbs
+wem
 sbs
 eYc
 mzU
@@ -64654,7 +64766,7 @@ vuR
 yba
 hBG
 jrb
-qAq
+vZp
 uGK
 yba
 kWz
@@ -68244,7 +68356,7 @@ uOF
 hoF
 uAI
 kaV
-kaV
+lTo
 kaV
 kaV
 xTq
