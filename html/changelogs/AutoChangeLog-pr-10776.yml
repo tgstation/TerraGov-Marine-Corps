@@ -1,0 +1,5 @@
+author: "QualityVan"
+delete-after: True
+changes: 
+  - rscadd: "High-pen bullets deal more damage to shields"
+  - bugfix: "Shield hard armor reduces damage instead of increasing it"
