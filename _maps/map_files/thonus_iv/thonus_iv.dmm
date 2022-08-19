@@ -5729,11 +5729,6 @@
 "dMC" = (
 /obj/structure/table/mainship,
 /obj/item/clothing/head/headset{
-	armor_bio = 20;
-	armor_bomb = 10;
-	armor_bullet = 20;
-	armor_internaldamage = 20;
-	armor_rad = 10;
 	desc = "A headset typically found in use by radio-operators and officers. This one bears a purple stripe down its side.";
 	name = "\improper personalized USCM headset"
 	},
@@ -8239,7 +8234,6 @@
 "fAg" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/item/clothing/head/helmet/marine/scout{
-	armor_bullet = 5;
 	desc = "A custom helmet designed for USCM Scouts. Looks like this one has seen some action.";
 	name = "\improper Battered M3-S light helmet";
 	pixel_x = -8;
@@ -9336,7 +9330,6 @@
 "glW" = (
 /obj/structure/table/mainship,
 /obj/item/clothing/head/helmet/marine/grenadier{
-	armor_bullet = 10;
 	desc = "Pairs with the M3-G4 heavy grenadier plating. A distant cousin of the experimental B18 defensive helmet. Decorated with a blue stripe the large hole in the side of this helmet somewhat limits its protection.";
 	name = "\improper damaged M3-G4 grenadier helmet"
 	},
