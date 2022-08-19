@@ -1,0 +1,13 @@
+{
+    "map_name": "Thonus IV",
+    "map_path": "map_files/thonus_iv",
+    "map_file": "thonus_iv.dmm",
+    "environment_traits": {
+        "COLD": true
+    },
+    "armor": "ice",
+	"announce_text": "Our comms array has detected an automated emergency signal broadcasting over a frequency reserved for the highest level of emergencies. The message was traced to the northern reaches of the research colony Thonus IV. The ship is moving into the sector with thrusters at max throttle. TGMC, get briefed and then move out!",
+	"traits":[{
+		"weather_snowstorm": true
+	}]
+}

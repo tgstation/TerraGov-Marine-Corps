@@ -59,3 +59,7 @@ endmap
 map orion_outpost
 	maxplayers 40
 endmap
+
+map thonus_iv
+	minplayers 50
+endmap

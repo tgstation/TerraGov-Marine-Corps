@@ -21,6 +21,7 @@
 		#include "map_files\Orion_Military_Outpost\orionoutpost.dmm"
 		#include "map_files\Twin_Pillars\Twin_Pillars.dmm"
 		#include "map_files\Minerva\TGS_Minerva.dmm"
+		#include "map_files\thonus_iv\thonus_iv.dmm"
 		#ifdef CIBUILDING
 			#include "templates.dm"
 		#endif

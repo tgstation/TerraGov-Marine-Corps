@@ -1070,3 +1070,144 @@
 
 /obj/structure/prop/vehicle/apc/decoration/emptyfuelcell
 	icon_state = "emptyfuelcell"
+
+/obj/structure/prop/mainship/thonus/propplaceholder
+	name = "prop placeholder"
+	desc = "Somebody fucked up, ping the map creator on Discord with the location of this object."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "placeholderprop"
+
+/obj/structure/prop/mainship/thonus/smallwire
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "small_wire"
+
+/obj/structure/prop/mainship/thonus/lightstick
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "lightstick_spoke1"
+
+/obj/structure/prop/mainship/thonus/planterbox
+	name = "plant box"
+	desc = "A metallic box used for holding growing plants, this one is empty."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "planter_box_empty"
+	layer = BELOW_OBJ_LAYER
+
+/obj/structure/prop/mainship/thonus/planterboxsoil
+	name = "plant box"
+	desc = "A metallic box used for holding growing plants, this one is filled with soil."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "planter_box_soil"
+	layer = BELOW_OBJ_LAYER
+
+/obj/structure/prop/mainship/thonus/planterboxsoilgrid
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "soil_grid"
+	layer = BELOW_OBJ_LAYER
+
+/obj/structure/prop/mainship/thonus/propserver
+	name = "colony research server"
+	desc = "This machine sits quietly, you can see a warning light faintly shining on its diagnostic panel."
+	icon = 'icons/obj/machines/telecomms.dmi'
+	icon_state = "comm_server_off"
+
+/obj/structure/prop/mainship/thonus/propserveralt
+	name = "colony research server"
+	desc = "This machine sits quietly, you can see a warning light faintly shining on its diagnostic panel."
+	icon = 'icons/obj/machines/research.dmi'
+	icon_state = "server_alt"
+
+/obj/structure/prop/mainship/thonus/barrier
+	name = "security barrier"
+	desc = "A deployable barrier used by security forces to cordone off an area."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "barrier0"
+
+/obj/structure/prop/mainship/thonus/heavycablenode
+	name = "heavy cable node"
+	desc = "A heavy cable node used for linking high performance cables between buildings."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "node"
+	density = FALSE
+
+/obj/structure/prop/mainship/thonus/powerconnector
+	name = "heavy cable power connector"
+	desc = "A heavy cable node used for connecting high performance cables between buildings."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "powerconnector"
+	layer = ATMOS_PIPE_LAYER
+	density = FALSE
+
+/obj/structure/prop/mainship/thonus/powerccable
+	name = "heavy cable wiring"
+	desc = "A heavy cable wire used rapid data transfer between buildings."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "powercableheavy"
+	layer = ATMOS_PIPE_LAYER
+	density = FALSE
+
+/obj/structure/prop/mainship/thonus/powercconnectortwoside
+	name = "heavy cable wiring"
+	desc = "A heavy cable wire used rapid data transfer between buildings."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "powerconnectortwoside"
+	layer = ATMOS_PIPE_LAYER
+	density = FALSE
+
+/obj/structure/prop/mainship/thonus/powercconnectortwosidealt
+	name = "heavy cable wiring"
+	desc = "A heavy cable wire used rapid data transfer between buildings."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "powerconnectortwosidealt"
+	layer = ATMOS_PIPE_LAYER
+	density = FALSE
+
+/obj/structure/prop/mainship/thonus/powercconnectorthreeside
+	name = "heavy cable wiring"
+	desc = "A heavy cable wire used rapid data transfer between buildings."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "powerconnectorthreeside"
+	layer = ATMOS_PIPE_LAYER
+	density = FALSE
+
+/obj/structure/prop/mainship/thonus/powercconnectorfourside
+	name = "heavy cable wiring"
+	desc = "A heavy cable wire used rapid data transfer between buildings."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "powerconnectorfourside"
+	layer = ATMOS_PIPE_LAYER
+	density = FALSE
+
+/obj/structure/prop/mainship/thonus/rails
+	name = "minecart rails"
+	desc = "Metal rails used for guiding a minecart."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "rail"
+	layer = BELOW_TABLE_LAYER
+	density = FALSE
+
+/obj/structure/prop/mainship/thonus/railbumper
+	name = "minecart rail bumper"
+	desc = "A metal bumper designed to catch out of control minecarts."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "rail_bumpers"
+	layer = BELOW_TABLE_LAYER
+	density = FALSE
+
+/obj/structure/prop/mainship/thonus/register
+	name = "register"
+	desc = "An antique cash register, it accepts only hard currency, not spacecredits."
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "register_static"
+	density = FALSE
+
+/obj/structure/prop/mainship/thonus/propladder
+	name = "ladder"
+	desc = "The ladder sways precariously, its connection to the upper floor severed by a large chunk of sharp metal."
+	icon = 'icons/obj/structures/structures.dmi'
+	icon_state = "ladder11"
+
+/obj/structure/prop/mainship/thonus/miner
+	name = "miner"
+	desc = "The machine stands inert, waiting for the command to begin extracting natural resources from the earth below."
+	icon = 'icons/Marine/mainship_props96.dmi'
+	icon_state = "thumper"
