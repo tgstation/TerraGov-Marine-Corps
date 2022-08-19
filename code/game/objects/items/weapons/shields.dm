@@ -36,17 +36,17 @@
 	. = ..()
 	var/health_status = (obj_integrity-integrity_failure) * 100 / (max_integrity-integrity_failure)
 	if(integrity_failure && obj_integrity <= integrity_failure)
-		. += span_notice("It's completely broken with gaping holes everywhere!")
+		. += span_notice("It's completely broken, with gaping holes everywhere!")
 		return
 	switch(health_status)
 		if(0 to 20)
-			. += span_notice("It's falling apart, you can barely even hold it.")
+			. += span_notice("It's falling apart under its own weight!")
 		if(20 to 40)
-			. += span_notice("It's caving in and cracked all throughout.")
+			. += span_notice("It's barely holding its shape.")
 		if(40 to 60)
-			. += span_notice("It's holding up, but it's taken quite the beating.")
+			. += span_notice("It's still holding up.")
 		if(60 to 80)
-			. += span_notice("It's alright, with a few scratches here and there.")
+			. += span_notice("It's slightly damaged.")
 		if(80 to 100)
 			. += span_notice("It's in perfect condition.")
 
@@ -59,10 +59,10 @@
 			return
 
 		if(metal_sheets.get_amount() < 1)
-			to_chat(user, span_warning("You need one metal sheet to repair the base of [src]."))
+			to_chat(user, span_warning("You need one metal sheet to restore the structural integrity of [src]."))
 			return
 
-		visible_message(span_notice("[user] begins to repair the base of [src]."))
+		visible_message(span_notice("[user] begins to restore the structural integrity of [src]."))
 
 		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
 			return
@@ -71,7 +71,7 @@
 			return
 
 		repair_damage(max_integrity * 0.2)
-		visible_message(span_notice("[user] repairs the base of [src]."))
+		visible_message(span_notice("[user] restores the structural integrity of [src]."))
 
 
 /obj/item/weapon/shield/riot/welder_act(mob/living/user, obj/item/I)
@@ -88,7 +88,7 @@
 		return TRUE
 
 	if(obj_integrity <= (max_integrity - integrity_failure) * 0.2)
-		to_chat(user, span_warning("[src] has sustained too much structural damage and needs more metal plates to be repaired."))
+		to_chat(user, span_warning("[src] has sustained too much structural damage and needs additional metal for repairs."))
 		return TRUE
 
 	if(obj_integrity == max_integrity)
@@ -102,8 +102,8 @@
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_BUILD))
 			return TRUE
 
-	user.visible_message(span_notice("[user] begins repairing damage to [src]."),
-	span_notice("You begin repairing the damage to [src]."))
+	user.visible_message(span_notice("[user] begins repairing [src]."),
+	span_notice("You begin repairing [src]."))
 	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 
 	if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
@@ -113,12 +113,12 @@
 		return TRUE
 
 	if(!WT.remove_fuel(2, user))
-		to_chat(user, span_warning("Not enough fuel to finish the task."))
+		to_chat(user, span_warning("Not enough fuel to finish the repairs."))
 		return TRUE
 
-	user.visible_message(span_notice("[user] repairs some damage on [src]."),
-	span_notice("You repair [src]."))
-	repair_damage(40)
+	user.visible_message(span_notice("[user] finishes repairing [src]."),
+	span_notice("You finish repairing [src]."))
+	repair_damage((src.max_integrity-src.integrity_failure) * 0.25)
 	update_icon()
 	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 	return TRUE
