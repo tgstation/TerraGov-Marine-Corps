@@ -182,3 +182,10 @@
   - bugfix: Surgeries work
   collinlunn:
   - bugfix: Hunter's Disguise description tells you how to select a target.
+2022-08-20:
+  QualityVan:
+  - rscadd: High-pen bullets deal more damage to shields
+  - bugfix: Shield hard armor reduces damage instead of increasing it
+  - bugfix: Radial medical will only need to choose limb once for surgery
+  lbnesquik:
+  - bugfix: fixed a wrong line about time regarding drops.
