@@ -21,6 +21,12 @@
 	dir = 10
 	},
 /area/outpost/science/xenobiology)
+"ag" = (
+/obj/effect/landmark/sensor_tower_patrol_b,
+/turf/open/floor/tile/dark/purple2{
+	dir = 1
+	},
+/area/outpost/science)
 "ah" = (
 /obj/structure/closet/secure_closet/marshal,
 /turf/open/floor/tile/dark/red2{
@@ -1223,6 +1229,10 @@
 	dir = 5
 	},
 /area/outpost/hallway/east)
+"ge" = (
+/obj/effect/landmark/sensor_tower_patrol_e,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/outpost/yard/east)
 "gf" = (
 /obj/machinery/door/airlock/multi_tile/mainship/engineering/glass,
 /turf/open/floor/tile/dark2,
@@ -1281,6 +1291,13 @@
 	},
 /turf/open/floor/tile/dark,
 /area/outpost/medbay/chemistry)
+"gs" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/sensor_tower_patrol_c,
+/turf/open/floor/tile/dark,
+/area/outpost/brig/gear_room)
 "gt" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -7138,6 +7155,13 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/mineral/smooth/bigred,
 /area/outpost/caves/south_west)
+"Hb" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/sensor_tower_patrol_d,
+/turf/open/floor/tile/dark2,
+/area/outpost/cargo)
 "Hc" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/outpost/lz1)
@@ -7836,6 +7860,12 @@
 	dir = 9
 	},
 /area/outpost/science/xenobiology)
+"Ks" = (
+/obj/effect/landmark/sensor_tower_patrol_a,
+/turf/open/floor/tile/dark/blue2{
+	dir = 6
+	},
+/area/outpost/medbay)
 "Kt" = (
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
@@ -18713,7 +18743,7 @@ bq
 Ee
 td
 Gv
-fM
+Ks
 Zs
 Us
 LR
@@ -19281,7 +19311,7 @@ Jc
 Jc
 Jc
 pw
-Xj
+Hb
 zC
 jx
 Aa
@@ -23332,7 +23362,7 @@ qA
 NU
 IF
 bL
-FI
+ag
 ZF
 ry
 bD
@@ -26264,7 +26294,7 @@ jr
 OO
 Cq
 QL
-QL
+ge
 QL
 QL
 cM
@@ -26509,7 +26539,7 @@ cf
 CB
 Nq
 KW
-cf
+gs
 vb
 Nq
 uh

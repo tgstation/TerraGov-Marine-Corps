@@ -100,6 +100,10 @@
 		if(patrol_end_countdown)
 			stat("<b>Combat Patrol timer:</b>", patrol_end_countdown)
 
+		var/patrol_towers = SSticker.mode.sensors_activated
+		if(patrol_towers)
+			stat("<b>Activated Sensor Towers:</b>", patrol_towers)
+
 		if(internal)
 			stat("Internal Atmosphere Info", internal.name)
 			stat("Tank Pressure", internal.pressure)

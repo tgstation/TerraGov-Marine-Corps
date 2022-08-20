@@ -430,6 +430,56 @@
 	GLOB.sensor_towers += loc
 	return INITIALIZE_HINT_QDEL
 
+/obj/effect/landmark/sensor_tower_patrol_a
+	name = "Sensor tower"
+	icon = 'icons/obj/structures/sensor.dmi'
+	icon_state = "sensor_loyalist"
+
+/obj/effect/landmark/sensor_tower_patrol_a/Initialize()
+	. = ..()
+	GLOB.sensor_towers_patrol_a += loc
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/sensor_tower_patrol_b
+	name = "Sensor tower"
+	icon = 'icons/obj/structures/sensor.dmi'
+	icon_state = "sensor_loyalist"
+
+/obj/effect/landmark/sensor_tower_patrol_b/Initialize()
+	. = ..()
+	GLOB.sensor_towers_patrol_b += loc
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/sensor_tower_patrol_c
+	name = "Sensor tower"
+	icon = 'icons/obj/structures/sensor.dmi'
+	icon_state = "sensor_loyalist"
+
+/obj/effect/landmark/sensor_tower_patrol_c/Initialize()
+	. = ..()
+	GLOB.sensor_towers_patrol_c += loc
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/sensor_tower_patrol_d
+	name = "Sensor tower"
+	icon = 'icons/obj/structures/sensor.dmi'
+	icon_state = "sensor_loyalist"
+
+/obj/effect/landmark/sensor_tower_patrol_d/Initialize()
+	. = ..()
+	GLOB.sensor_towers_patrol_d += loc
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/sensor_tower_patrol_e
+	name = "Sensor tower"
+	icon = 'icons/obj/structures/sensor.dmi'
+	icon_state = "sensor_loyalist"
+
+/obj/effect/landmark/sensor_tower_patrol_e/Initialize()
+	. = ..()
+	GLOB.sensor_towers_patrol_e += loc
+	return INITIALIZE_HINT_QDEL
+
 /obj/effect/landmark/valhalla_xeno_spawn_landmark_close
 	name = "Valhalla xeno spawn"
 	icon = 'icons/effects/landmarks_static.dmi'

@@ -61,3 +61,98 @@
 			SSminimaps.remove_marker(src)
 			SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "neutral_zone")
 
+/obj/structure/sensor_tower_patrol
+	name = "alpha sensor tower"
+	desc = "A tall tower with a sensor array at the top and a control box at the bottom. Has a lengthy activation process involving 5 phases."
+	icon = 'icons/obj/structures/sensor.dmi'
+	icon_state = "sensor_loyalist"
+	obj_flags = NONE
+	density = TRUE
+	layer = BELOW_OBJ_LAYER
+	resistance_flags = RESIST_ALL
+	var/current_timer
+	var/generate_time = 1 SECONDS
+	var/total_segments = 5 // total number of times the hack is required
+	var/activate_time = 1 SECONDS // time to start the hack
+	var/completed_segments = 0 // what segment we are on, (once this hits total, disk is printed)
+	var/id = 1
+
+/obj/structure/sensor_tower_patrol/Initialize()
+	. = ..()
+	GLOB.zones_to_control += src
+	update_icon()
+
+/obj/structure/sensor_tower_patrol/attack_hand(mob/living/user)
+	if(!ishuman(user))
+		return
+	if(user.do_actions)
+		user.balloon_alert(user, "You are already doing something!")
+		return
+	if(user.faction != FACTION_TERRAGOV)
+		balloon_alert(user, "Only terragov can do the objective, defend this!")
+		return
+	if(!(SSticker.mode?.flags_round_type & MODE_TWO_HUMAN_FACTIONS))
+		to_chat(user, span_warning("There is nothing to do with [src]"))
+		return
+	if(completed_segments >= total_segments)
+		balloon_alert(user, "[src] is already fully activated!")
+		return
+	if(current_timer)
+		balloon_alert(user, "[src] is currently activating!")
+		return
+	balloon_alert_to_viewers("[user] starts to activate [src]!")
+	if(!do_after(user, activate_time, TRUE, src))
+		return
+	balloon_alert_to_viewers("[user] actiavtes [src]!")
+	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
+		human.playsound_local(human, "sound/effects/CIC_order.ogg", 10, 1)
+		human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>OVERWATCH</u></span><br>" + "[src] is being activated.", /obj/screen/text/screen_text/command_order)
+	current_timer = addtimer(CALLBACK(src, .proc/complete_segment), generate_time, TIMER_STOPPABLE)
+	update_icon()
+
+/obj/structure/sensor_tower_patrol/proc/complete_segment()
+	playsound(src, 'sound/machines/ping.ogg', 25, 1)
+	current_timer = null
+	completed_segments += 1
+
+	if(completed_segments == total_segments)
+		balloon_alert_to_viewers("[src] has finished activation!")
+		for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
+			human.playsound_local(human, "sound/effects/CIC_order.ogg", 10, 1)
+			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>OVERWATCH</u></span><br>" + "[src] is fully activated.", /obj/screen/text/screen_text/command_order)
+		SSticker.mode.sensors_activated += 1
+		return
+
+	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
+		human.playsound_local(human, "sound/effects/CIC_order.ogg", 10, 1)
+		human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>OVERWATCH</u></span><br>" + "[src] has finished phase [completed_segments] of activation.", /obj/screen/text/screen_text/command_order)
+	balloon_alert_to_viewers("[src] has finished phase [completed_segments] of activation!")
+	update_icon()
+
+/obj/structure/sensor_tower_patrol/update_icon()
+	. = ..()
+	update_control_minimap_icon()
+
+/obj/structure/sensor_tower_patrol/proc/update_control_minimap_icon()
+	SSminimaps.remove_marker(src)
+	SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "relay_[id][current_timer ? "_on" : "_off"]")
+
+/obj/structure/sensor_tower_patrol/Destroy()
+	GLOB.zones_to_control -= src
+	return ..()
+
+/obj/structure/sensor_tower_patrol/bravo
+	name = "bravo sensor tower"
+	id = 2
+
+/obj/structure/sensor_tower_patrol/charlie
+	name = "charlie sensor tower"
+	id = 3
+
+/obj/structure/sensor_tower_patrol/delta
+	name = "delta sensor tower"
+	id = 4
+
+/obj/structure/sensor_tower_patrol/echo
+	name = "echo sensor tower"
+	id = 5
