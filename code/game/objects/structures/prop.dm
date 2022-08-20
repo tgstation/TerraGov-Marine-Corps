@@ -569,7 +569,7 @@
 
 /obj/item/prop/dogtag/random/Initialize()
 	. = ..()
-	name = get_random_name(pick(MALE, FEMALE))
+	name = GLOB.namepool[/datum/namepool].get_random_name(pick(MALE, FEMALE))
 
 ///BROKEN MARINE VENDOR PROPS
 
