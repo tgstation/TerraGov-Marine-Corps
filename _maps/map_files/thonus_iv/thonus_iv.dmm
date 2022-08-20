@@ -369,12 +369,7 @@
 	},
 /area/thonus/indoors/a_block/dorms)
 "akT" = (
-/obj/item/prop{
-	desc = "Some used gauze.";
-	dir = 9;
-	name = "dirty bandages";
-	pixel_x = -2
-	},
+/obj/item/stack/medical/heal_pack/gauze,
 /turf/open/floor/prison,
 /area/thonus/indoors/a_block/admin)
 "alh" = (
@@ -458,7 +453,7 @@
 /turf/closed/mineral/smooth/snowrock,
 /area/thonus/landing_zone_2)
 "aoE" = (
-/obj/structure/cargo_container{
+/obj/structure/cargo_container/gorg{
 	dir = 4
 	},
 /turf/open/floor/prison/plate,
@@ -1387,10 +1382,11 @@
 /turf/open/floor/prison,
 /area/thonus/indoors/c_block/cargo)
 "aSf" = (
-/obj/structure/cable,
 /obj/effect/ai_node,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/thonus/landing_zone_1)
+/turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
+	dir = 5
+	},
+/area/thonus/outdoors/colony_streets/north_east_street)
 "aSG" = (
 /obj/structure/platform_decoration{
 	dir = 8
@@ -1647,12 +1643,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/prop{
-	desc = "Some used gauze.";
-	dir = 1;
-	name = "dirty bandages";
-	pixel_x = -2
-	},
+/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
 /turf/open/floor/prison/blue/plate{
 	dir = 1
 	},
@@ -2178,6 +2169,12 @@
 	},
 /turf/open/floor/prison/whitegreen/full,
 /area/thonus/indoors/a_block/fitness)
+"bsT" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison/whitepurple/full{
+	dir = 4
+	},
+/area/thonus/indoors/a_block/dorm_north)
 "btm" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -2500,15 +2497,13 @@
 	},
 /area/thonus/indoors/a_block/dorms)
 "bEA" = (
-/obj/item/prop{
-	desc = "Holy shit";
-	name = "left arm";
-	pixel_x = -4;
-	pixel_y = 10
-	},
 /obj/item/weapon/gun/pistol/m1911,
 /obj/item/ammo_magazine/pistol/m1911{
 	current_rounds = 4
+	},
+/obj/item/limb/l_arm{
+	pixel_x = -4;
+	pixel_y = 10
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/thonus/outdoors/colony_streets/north_east_street)
@@ -3014,8 +3009,8 @@
 /turf/open/floor/prison/whitegreenfull2,
 /area/thonus/indoors/a_block/fitness)
 "bUi" = (
-/obj/structure/window/framed/colony,
 /obj/item/shard,
+/obj/structure/window_frame/colony,
 /turf/open/floor/plating,
 /area/thonus/indoors/a_block/corpo)
 "bUL" = (
@@ -3163,6 +3158,11 @@
 "caM" = (
 /turf/open/floor/prison/whitegreen/full,
 /area/thonus/indoors/a_block/medical)
+"caS" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor/prison,
+/area/thonus/indoors/a_block/dorm_north)
 "cbj" = (
 /obj/structure/barricade/wooden{
 	dir = 1
@@ -3330,13 +3330,7 @@
 /turf/closed/wall/r_wall/unmeltable,
 /area/thonus/outdoors/rock)
 "cgV" = (
-/obj/item/prop{
-	desc = "Some used gauze.";
-	dir = 9;
-	name = "dirty bandages";
-	pixel_x = -2;
-	pixel_y = -5
-	},
+/obj/item/stack/medical/heal_pack/gauze,
 /turf/open/floor/prison/blue{
 	dir = 8
 	},
@@ -4197,7 +4191,7 @@
 /area/thonus/caves/west_caves)
 "cIp" = (
 /obj/structure/table/reinforced/prison,
-/obj/item/prop{
+/obj/item/reagent_containers/jerrycan{
 	desc = "A jerry can. In space! Or maybe a colony.";
 	item_state = "caution";
 	name = "fuel can";
@@ -4205,6 +4199,13 @@
 	},
 /obj/item/ashtray/bronze{
 	pixel_y = -5
+	},
+/obj/item/reagent_containers/jerrycan{
+	desc = "A jerry can. In space! Or maybe a colony.";
+	item_state = "caution";
+	name = "fuel can";
+	pixel_x = 2;
+	pixel_y = 3
 	},
 /turf/open/floor/prison/darkbrown/full,
 /area/thonus/indoors/c_block/garage)
@@ -4756,6 +4757,12 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
 /area/thonus/outdoors/colony_streets/windbreaker/observation)
+"cZU" = (
+/obj/structure/cargo_container/ch_red{
+	dir = 1
+	},
+/turf/open/floor/prison/darkred/full,
+/area/thonus/outdoors/colony_streets/north_street)
 "dag" = (
 /obj/structure/closet/crate,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -5002,6 +5009,11 @@
 /obj/structure/girder,
 /turf/open/floor/plating,
 /area/thonus/indoors/a_block/admin)
+"dhr" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor/prison,
+/area/thonus/outdoors/colony_streets/north_west_street)
 "dhx" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -5842,6 +5854,7 @@
 	},
 /obj/structure/cable,
 /obj/structure/cable,
+/obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/thonus/indoors/a_block/admin)
 "dII" = (
@@ -7609,7 +7622,7 @@
 	},
 /area/thonus/outdoors/colony_streets/central_streets)
 "eLH" = (
-/obj/structure/cargo_container{
+/obj/structure/cargo_container/ch_green{
 	dir = 4
 	},
 /turf/open/floor/prison/plate,
@@ -8996,6 +9009,8 @@
 	dir = 5;
 	name = "bedroll"
 	},
+/obj/effect/decal/cleanable/blood,
+/obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/prison,
 /area/thonus/indoors/a_block/admin)
 "fNW" = (
@@ -9266,6 +9281,10 @@
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/thonus/outdoors/colony_streets/north_west_street)
+"fWE" = (
+/obj/structure/window_frame/colony,
+/turf/open/floor/plating,
+/area/thonus/indoors/a_block/dorms)
 "fWH" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/prison/darkbrown/full,
@@ -9894,9 +9913,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/thonus/outdoors/colony_streets/south_street)
 "goV" = (
-/obj/structure/cargo_container{
-	layer = 3.2
-	},
+/obj/structure/cargo_container/gorg,
 /turf/open/floor/prison/plate,
 /area/thonus/outdoors/colony_streets/north_west_street)
 "gpd" = (
@@ -10180,8 +10197,9 @@
 /turf/open/floor/prison,
 /area/thonus/indoors/c_block/garage)
 "gzM" = (
-/obj/structure/cargo_container{
-	dir = 4
+/obj/structure/cargo_container/ch_green{
+	dir = 4;
+	pixel_y = 4
 	},
 /turf/open/floor/prison/darkred/full,
 /area/thonus/outdoors/colony_streets/north_street)
@@ -11034,11 +11052,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/thonus/outdoors/colony_streets/north_west_street)
 "hcf" = (
-/obj/item/prop{
-	desc = "Some used gauze.";
-	dir = 5;
-	name = "dirty bandages"
-	},
+/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
 /turf/open/floor/prison,
 /area/thonus/indoors/a_block/admin)
 "hcv" = (
@@ -11374,8 +11388,8 @@
 /turf/open/floor/prison/whitegreenfull2,
 /area/thonus/indoors/b_block/bridge)
 "hlu" = (
-/obj/structure/window/framed/colony,
 /obj/item/stack/rods,
+/obj/structure/window_frame/colony,
 /turf/open/floor/plating,
 /area/thonus/indoors/a_block/kitchen)
 "hlS" = (
@@ -11653,7 +11667,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
 /area/thonus/outdoors/colony_streets/central_streets)
 "hwJ" = (
-/obj/structure/cargo_container{
+/obj/structure/cargo_container/ch_green{
 	dir = 1
 	},
 /turf/open/floor/prison/plate,
@@ -12191,6 +12205,12 @@
 /obj/item/reagent_containers/food/snacks/cheesyfries,
 /turf/open/floor/prison/sterilewhite,
 /area/thonus/indoors/lone_buildings/chunk)
+"hRj" = (
+/obj/structure/cargo_container/gorg{
+	dir = 4
+	},
+/turf/open/floor/prison/plate,
+/area/thonus/outdoors/colony_streets/north_west_street)
 "hRx" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/components/unary/vent_pump,
@@ -13149,12 +13169,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/plate,
 /area/thonus/outdoors/colony_streets/north_west_street)
-"isu" = (
-/obj/structure/cargo_container{
-	layer = 3.1
-	},
-/turf/open/floor/prison/plate,
-/area/thonus/outdoors/colony_streets/north_street)
 "isF" = (
 /obj/machinery/light{
 	dir = 1
@@ -13284,8 +13298,8 @@
 	},
 /area/thonus/outdoors/colony_streets/east_central_street)
 "iwQ" = (
-/obj/structure/window/framed/colony,
 /obj/item/stack/sheet/metal,
+/obj/structure/window_frame/colony,
 /turf/open/floor/plating,
 /area/thonus/indoors/a_block/dorms)
 "ixc" = (
@@ -13623,6 +13637,7 @@
 	},
 /obj/effect/landmark/start/job/survivor,
 /obj/structure/cable,
+/obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/prison,
 /area/thonus/indoors/a_block/admin)
 "iIK" = (
@@ -13824,6 +13839,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/thonus/indoors/b_block/bridge)
+"iNR" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/prison,
+/area/thonus/indoors/a_block/dorm_north)
 "iNZ" = (
 /obj/machinery/power/apc/drained,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -14291,8 +14313,8 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/thonus/outdoors/n_rockies)
 "jfk" = (
-/obj/structure/window/framed/colony,
 /obj/item/shard,
+/obj/structure/window_frame/colony,
 /turf/open/floor/plating,
 /area/thonus/indoors/a_block/hallway)
 "jfU" = (
@@ -14476,7 +14498,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/thonus/indoors/c_block/cargo)
 "jnF" = (
-/obj/structure/window/framed/colony,
+/obj/structure/window_frame/colony,
 /turf/open/floor/plating,
 /area/thonus/indoors/a_block/admin)
 "jnP" = (
@@ -15483,8 +15505,8 @@
 /turf/open/floor/prison,
 /area/thonus/indoors/c_block/garage)
 "jVI" = (
-/obj/structure/window/framed/colony,
 /obj/item/shard,
+/obj/structure/window_frame/colony,
 /turf/open/floor/plating,
 /area/thonus/indoors/a_block/kitchen)
 "jVJ" = (
@@ -16971,11 +16993,7 @@
 /area/thonus/indoors/c_block/cargo)
 "kYx" = (
 /obj/structure/table/mainship,
-/obj/item/prop{
-	desc = "A ThinkPad Systems Game-Bro Handheld (TSGBH, shortened). It can play chess, checkers, tri-d chess, and it also runs Byond! Except this one is out of batteries.";
-	item_state = "scrapbook";
-	name = "portable game kit"
-	},
+/obj/item/toy/bikehorn/rubberducky,
 /turf/open/floor/prison/whitegreenfull2,
 /area/thonus/indoors/a_block/fitness)
 "kYJ" = (
@@ -17627,6 +17645,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/thonus/indoors/a_block/dorm_north)
 "lty" = (
@@ -18736,6 +18755,12 @@
 	},
 /turf/open/floor/prison/whitegreen/full,
 /area/thonus/indoors/a_block/fitness)
+"mdh" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
+	dir = 6
+	},
+/area/thonus/outdoors/colony_streets/north_east_street)
 "mdj" = (
 /obj/structure/girder/displaced,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
@@ -18798,6 +18823,12 @@
 /obj/structure/table/mainship,
 /turf/open/floor/prison,
 /area/thonus/indoors/b_block/hydro)
+"mfX" = (
+/obj/structure/cargo_container/red{
+	dir = 1
+	},
+/turf/open/floor/prison/darkred/full,
+/area/thonus/outdoors/colony_streets/north_street)
 "mgP" = (
 /obj/structure/closet/crate,
 /turf/open/floor/prison/plate,
@@ -19179,6 +19210,11 @@
 	dir = 4
 	},
 /area/thonus/outdoors/colony_streets/south_street)
+"mpK" = (
+/obj/structure/platform,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/thonus/landing_zone_1)
 "mpV" = (
 /obj/structure/platform,
 /obj/effect/decal/warning_stripes/thin{
@@ -20188,6 +20224,10 @@
 	dir = 6
 	},
 /area/thonus/indoors/a_block/hallway)
+"nct" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/thonus/landing_zone_1)
 "ncu" = (
 /turf/open/floor/tile/dark2,
 /area/thonus/outdoors/rock)
@@ -20279,8 +20319,10 @@
 /turf/open/floor/plating/platebotc,
 /area/thonus/indoors/b_block/bridge)
 "neF" = (
-/obj/structure/cargo_container,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cargo_container/ch_green{
+	pixel_y = 4
+	},
 /turf/open/floor/prison/darkred/full,
 /area/thonus/outdoors/colony_streets/north_street)
 "neI" = (
@@ -20603,8 +20645,8 @@
 /turf/open/floor/plating/ground/snow/layer1,
 /area/thonus/landing_zone_2)
 "npG" = (
-/obj/structure/window/framed/colony,
 /obj/item/stack/rods,
+/obj/structure/window_frame/colony,
 /turf/open/floor/plating,
 /area/thonus/indoors/a_block/hallway)
 "npN" = (
@@ -20663,7 +20705,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/thonus/outdoors/colony_streets/central_streets)
 "nsn" = (
-/obj/structure/cargo_container,
+/obj/structure/cargo_container/ch_green,
 /turf/open/floor/prison/plate,
 /area/thonus/outdoors/colony_streets/north_west_street)
 "nsv" = (
@@ -20732,7 +20774,7 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/thonus/outdoors/colony_streets/east_central_street)
 "ntI" = (
-/obj/structure/window/framed/colony,
+/obj/structure/window_frame/colony,
 /turf/open/floor/plating,
 /area/thonus/indoors/c_block/mining)
 "ntJ" = (
@@ -21710,9 +21752,7 @@
 	},
 /area/thonus/outdoors/colony_streets/north_east_street)
 "oab" = (
-/obj/structure/cargo_container{
-	layer = 3.2
-	},
+/obj/structure/cargo_container/gorg,
 /turf/open/floor/prison/plate,
 /area/thonus/outdoors/colony_streets/north_street)
 "oao" = (
@@ -21918,11 +21958,7 @@
 /area/thonus/indoors/a_block/dorms)
 "ogl" = (
 /obj/structure/table/mainship,
-/obj/item/prop{
-	desc = "A ThinkPad Systems Game-Bro Handheld (TSGBH, shortened). It can play chess, checkers, tri-d chess, and it also runs Byond! Except this one is out of batteries.";
-	item_state = "scrapbook";
-	name = "portable game kit"
-	},
+/obj/item/clothing/head/collectable/tophat,
 /turf/open/floor/prison/whitegreenfull2,
 /area/thonus/indoors/lone_buildings/spaceport)
 "ogw" = (
@@ -22539,7 +22575,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/thonus/indoors/c_block/mining)
 "oEb" = (
-/obj/item/prop{
+/obj/item/reagent_containers/jerrycan{
 	desc = "A jerry can. In space! Or maybe a colony.";
 	item_state = "caution";
 	layer = 3.1;
@@ -22900,8 +22936,8 @@
 	},
 /area/thonus/indoors/c_block/mining)
 "oPI" = (
-/obj/structure/window/framed/colony,
 /obj/item/shard,
+/obj/structure/window_frame/colony,
 /turf/open/floor/plating,
 /area/thonus/indoors/a_block/admin)
 "oPL" = (
@@ -23690,6 +23726,16 @@
 /obj/structure/girder/displaced,
 /turf/open/floor/plating,
 /area/thonus/indoors/a_block/dorms)
+"pkT" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
+/area/thonus/outdoors/colony_streets/south_west_street)
 "pli" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
@@ -23740,12 +23786,10 @@
 /turf/open/floor/prison,
 /area/thonus/indoors/c_block/casino)
 "pnI" = (
-/obj/structure/ore_box,
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 2
-	},
-/turf/open/floor/plating/ground/snow/layer2,
-/area/thonus/outdoors/colony_streets/south_east_street)
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/thonus/outdoors/colony_streets/north_street)
 "pnQ" = (
 /obj/structure/stairs/seamless/platform{
 	dir = 1
@@ -25067,7 +25111,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/thonus/outdoors/colony_streets/north_street)
 "qcj" = (
-/obj/item/prop,
+/obj/item/prop/dogtag/pfcjim,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/thonus/outdoors/w_rockies)
 "qcF" = (
@@ -25338,6 +25382,11 @@
 	dir = 1
 	},
 /area/thonus/outdoors/colony_streets/north_east_street)
+"qlC" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/thonus/landing_zone_1)
 "qlT" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/prison/greenblue{
@@ -25407,7 +25456,7 @@
 /turf/open/floor/prison/darkpurple/full,
 /area/thonus/outdoors/colony_streets/north_west_street)
 "qna" = (
-/obj/structure/window/framed/colony,
+/obj/structure/window_frame/colony,
 /turf/open/floor/plating,
 /area/thonus/indoors/a_block/kitchen)
 "qnp" = (
@@ -26043,7 +26092,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/thonus/indoors/a_block/bridges/corpo)
 "qKj" = (
-/obj/structure/window/framed/colony,
+/obj/structure/window_frame/colony,
 /turf/open/floor/plating,
 /area/thonus/indoors/a_block/hallway)
 "qKl" = (
@@ -27324,17 +27373,14 @@
 	},
 /area/thonus/indoors/a_block/hallway)
 "rtW" = (
-/obj/item/prop{
-	desc = "Holy shit";
-	dir = 8;
-	name = "human head";
-	pixel_x = -7;
-	pixel_y = -5
-	},
 /obj/item/clothing/head/collectable/tophat{
 	layer = 3.1;
 	pixel_x = -7;
 	pixel_y = 5
+	},
+/obj/item/limb/head{
+	pixel_x = -7;
+	pixel_y = -11
 	},
 /turf/open/floor/prison,
 /area/thonus/indoors/c_block/casino)
@@ -28567,6 +28613,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/thonus/indoors/a_block/dorms)
+"slg" = (
+/obj/structure/cargo_container/ch_red{
+	dir = 4
+	},
+/turf/open/floor/prison/darkred/full,
+/area/thonus/outdoors/colony_streets/north_street)
 "sly" = (
 /obj/structure/window/reinforced{
 	dir = 4;
@@ -29269,13 +29321,6 @@
 /area/thonus/indoors/a_block/dorms)
 "sDS" = (
 /obj/structure/reagent_dispensers/fueltank,
-/obj/item/prop{
-	desc = "A jerry can. In space! Or maybe a colony.";
-	item_state = "caution";
-	name = "fuel can";
-	pixel_x = -1;
-	pixel_y = 11
-	},
 /turf/open/floor/prison/darkbrown/full,
 /area/thonus/indoors/c_block/garage)
 "sEe" = (
@@ -29649,6 +29694,13 @@
 "sPY" = (
 /turf/open/floor/plating/ground/snow/layer0,
 /area/thonus/outdoors/nw_rockies)
+"sQf" = (
+/obj/structure/stairs/seamless{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
+/area/thonus/outdoors/colony_streets/east_central_street)
 "sQj" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -30319,6 +30371,11 @@
 /obj/effect/spawner/gibspawner/xeno,
 /turf/open/floor/prison/blue,
 /area/thonus/indoors/a_block/admin)
+"tlV" = (
+/obj/structure/platform,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
+/area/thonus/outdoors/colony_streets/east_central_street)
 "tme" = (
 /obj/structure/largecrate/random/barrel/red,
 /turf/open/floor/plating,
@@ -30649,6 +30706,12 @@
 	dir = 1
 	},
 /area/thonus/indoors/a_block/hallway)
+"txr" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
+	dir = 4
+	},
+/area/thonus/outdoors/colony_streets/east_central_street)
 "txw" = (
 /obj/structure/girder/displaced,
 /turf/open/floor/prison,
@@ -31167,6 +31230,10 @@
 /obj/structure/prop/vehicle/crane,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/thonus/outdoors/colony_streets/south_east_street)
+"tQK" = (
+/obj/structure/cargo_container/ch_red,
+/turf/open/floor/prison/darkred/full,
+/area/thonus/outdoors/colony_streets/north_street)
 "tQN" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -32745,6 +32812,10 @@
 /obj/item/tool/pen/blue,
 /turf/open/floor/prison/darkbrown/full,
 /area/thonus/indoors/c_block/casino)
+"uVf" = (
+/obj/structure/window_frame/colony,
+/turf/open/floor/plating,
+/area/thonus/indoors/c_block/casino)
 "uVj" = (
 /turf/open/floor/carpet,
 /area/thonus/indoors/c_block/casino)
@@ -33990,7 +34061,7 @@
 /turf/open/floor/wood,
 /area/thonus/indoors/b_block/bar)
 "vIq" = (
-/obj/structure/prop/vehicle/truck,
+/obj/structure/prop/vehicle/crawler,
 /turf/open/floor/prison,
 /area/thonus/outdoors/colony_streets/north_street)
 "vIE" = (
@@ -35467,6 +35538,12 @@
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/thonus/outdoors/colony_streets/north_street)
+"wHl" = (
+/obj/structure/cargo_container/red{
+	dir = 4
+	},
+/turf/open/floor/prison/darkred/full,
+/area/thonus/outdoors/colony_streets/north_street)
 "wHB" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
@@ -35767,6 +35844,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/thonus/outdoors/colony_streets/central_streets)
+"wRY" = (
+/obj/structure/window_frame/colony,
+/turf/open/floor/plating,
+/area/thonus/indoors/b_block/bar)
 "wSr" = (
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
 /obj/structure/cable,
@@ -35776,6 +35857,7 @@
 "wSK" = (
 /obj/structure/stairs/seamless,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/thonus/outdoors/colony_streets/north_west_street)
 "wTr" = (
@@ -35876,10 +35958,9 @@
 /area/thonus/indoors/c_block/mining)
 "wVG" = (
 /obj/structure/table/reinforced/prison,
-/obj/item/prop{
-	desc = "A ThinkPad Systems Game-Bro Handheld (TSGBH, shortened). It can play chess, checkers, tri-d chess, and it also runs Byond! Except this one is out of batteries.";
-	item_state = "scrapbook";
-	name = "portable game kit"
+/obj/item/clothing/head/collectable/hardhat{
+	pixel_x = -1;
+	pixel_y = 5
 	},
 /turf/open/floor/carpet,
 /area/thonus/indoors/c_block/garage)
@@ -35922,6 +36003,10 @@
 "wYz" = (
 /obj/structure/table/mainship,
 /obj/item/toy/bikehorn,
+/obj/item/toy/plush/rouny{
+	pixel_x = -1;
+	pixel_y = 5
+	},
 /turf/open/floor/prison/whitegreenfull2,
 /area/thonus/indoors/a_block/fitness)
 "wYJ" = (
@@ -36445,7 +36530,7 @@
 /turf/open/floor/plating/ground/snow/layer1,
 /area/thonus/outdoors/w_rockies)
 "xtM" = (
-/obj/structure/cargo_container,
+/obj/structure/cargo_container/red,
 /turf/open/floor/prison/darkred/full,
 /area/thonus/outdoors/colony_streets/north_street)
 "xtY" = (
@@ -36704,8 +36789,9 @@
 	},
 /area/thonus/indoors/a_block/dorm_north)
 "xEe" = (
-/obj/structure/cargo_container{
-	dir = 1
+/obj/structure/cargo_container/ch_green{
+	dir = 1;
+	pixel_y = 4
 	},
 /turf/open/floor/prison/darkred/full,
 /area/thonus/outdoors/colony_streets/north_street)
@@ -36878,7 +36964,10 @@
 /area/thonus/outdoors/colony_streets/central_streets)
 "xIN" = (
 /obj/structure/table/mainship,
-/obj/item/prop,
+/obj/item/prop/dogtag{
+	desc = "This dogtag seems stained with phoron and looks like it's been through a lot.";
+	name = "Nolan Basinger's dog tag"
+	},
 /turf/open/floor/prison/blue/plate{
 	dir = 1
 	},
@@ -37073,11 +37162,9 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/thonus/landing_zone_1)
 "xOI" = (
-/obj/item/prop{
-	desc = "Some used gauze.";
-	dir = 4;
-	name = "dirty bandages";
-	pixel_x = -2
+/obj/item/stack/medical/heal_pack/advanced/bruise_pack{
+	pixel_x = -3;
+	pixel_y = -5
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/thonus/indoors/a_block/admin)
@@ -37170,7 +37257,7 @@
 /turf/open/floor/prison,
 /area/thonus/indoors/a_block/kitchen)
 "xQR" = (
-/obj/structure/prop/vehicle/truck,
+/obj/structure/prop/vehicle/crawler,
 /turf/open/floor/prison/darkred/full,
 /area/thonus/outdoors/colony_streets/north_street)
 "xQT" = (
@@ -37746,8 +37833,8 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/thonus/outdoors/colony_streets/north_street)
 "yjB" = (
-/obj/structure/window/framed/colony,
 /obj/item/stack/rods,
+/obj/structure/window_frame/colony,
 /turf/open/floor/plating,
 /area/thonus/indoors/a_block/admin)
 "yjN" = (
@@ -38878,7 +38965,7 @@ ndb
 ndb
 fsz
 fsz
-wOd
+lIC
 wOd
 wOd
 wOd
@@ -39099,7 +39186,7 @@ nvd
 ndb
 hbX
 wOd
-wOd
+lIC
 wOd
 wOd
 wOd
@@ -39543,7 +39630,7 @@ nvd
 gEI
 wOd
 wOd
-wOd
+lIC
 fsz
 fsz
 wOd
@@ -43360,7 +43447,7 @@ nsK
 cgS
 rCM
 cmF
-dOs
+cmF
 cmF
 cmF
 rCM
@@ -46428,17 +46515,17 @@ ndb
 oas
 tRY
 cxJ
-qOE
+nct
 gve
 pHY
 mqM
 wOd
 wOd
+lIC
 wOd
 wOd
 wOd
-wOd
-csz
+qlC
 wOd
 wOd
 wOd
@@ -46449,7 +46536,7 @@ mKv
 wOd
 siX
 wOd
-cyL
+mpK
 fuw
 owa
 cWi
@@ -46893,7 +46980,7 @@ wOd
 wOd
 wDw
 wOd
-cyL
+mpK
 fuw
 dWk
 gve
@@ -47326,7 +47413,7 @@ ngP
 oas
 wOd
 wOd
-aSf
+csz
 wOd
 oas
 ngP
@@ -47709,7 +47796,7 @@ sWl
 iKW
 hoS
 gVv
-gVv
+kds
 vaN
 aeE
 gHP
@@ -48214,6 +48301,7 @@ qOV
 pwy
 tqi
 tqi
+jqs
 vYQ
 vYQ
 vYQ
@@ -48222,14 +48310,13 @@ vYQ
 vYQ
 vYQ
 vYQ
-vYQ
-vYQ
+jqs
 vYQ
 vYQ
 vYQ
 tqi
 tqi
-tqi
+mMH
 tqi
 tqi
 tqi
@@ -48651,7 +48738,7 @@ tqi
 tqi
 tqi
 tqi
-tqi
+mMH
 ndb
 ndb
 ndb
@@ -48874,7 +48961,7 @@ pfm
 pfm
 xma
 tqi
-wKz
+qOV
 ndb
 qOV
 tqi
@@ -49097,8 +49184,8 @@ gZd
 qes
 xma
 tqi
-mMH
 tqi
+mMH
 tqi
 tqi
 tqi
@@ -49317,9 +49404,9 @@ hXS
 oRO
 gZd
 gZd
-qes
+pkT
 xma
-tqi
+mMH
 tqi
 ndb
 tqi
@@ -50835,7 +50922,7 @@ vpI
 rLw
 ekD
 iWq
-lCJ
+wRY
 jph
 nSf
 iuJ
@@ -52106,7 +52193,7 @@ scv
 xMA
 vaE
 tXO
-uxt
+fWE
 odg
 odg
 rmA
@@ -52999,7 +53086,7 @@ crx
 dnH
 yfp
 msx
-uxt
+fWE
 msx
 yfp
 sir
@@ -53676,7 +53763,7 @@ tYp
 nju
 rdf
 nGK
-nGK
+qSH
 mOi
 fOW
 aVM
@@ -54002,7 +54089,7 @@ dym
 jGE
 hNU
 piP
-lMU
+uFK
 jTv
 ndb
 ndb
@@ -55452,7 +55539,7 @@ iiB
 kTM
 eqI
 nGK
-ivd
+dhr
 pCG
 fOW
 aVM
@@ -55653,7 +55740,7 @@ uew
 aIj
 wtN
 eLH
-eLH
+hRj
 wtN
 knI
 vaE
@@ -55839,7 +55926,7 @@ oJT
 oJT
 oJT
 rCM
-uYy
+xKP
 uYy
 jlM
 jlM
@@ -55849,7 +55936,7 @@ jlM
 jlM
 iJc
 jlM
-nwP
+pnI
 jlM
 jlM
 nwP
@@ -56539,7 +56626,7 @@ jlM
 trM
 jlM
 vdC
-xEe
+mfX
 awU
 awU
 xpN
@@ -56727,7 +56814,7 @@ oJT
 oJT
 oJT
 rCM
-uYy
+xKP
 uYy
 pKS
 pKS
@@ -56761,7 +56848,7 @@ jlM
 jlM
 jlM
 vdC
-gzM
+wHl
 jdx
 jdx
 jdx
@@ -58725,7 +58812,7 @@ oJT
 oJT
 cBH
 ojq
-uYy
+xKP
 uYy
 pKS
 pKS
@@ -58946,7 +59033,7 @@ oJT
 oJT
 oJT
 rCM
-uYy
+xKP
 uYy
 uYy
 uYy
@@ -59425,10 +59512,10 @@ jlM
 bBz
 vdC
 jdx
-isu
+oab
 rip
 awU
-xtM
+tQK
 cuS
 nwP
 dpw
@@ -59650,7 +59737,7 @@ jdx
 aoE
 sFl
 awU
-xEe
+cZU
 cuS
 jlM
 drE
@@ -59872,7 +59959,7 @@ jdx
 awU
 bBO
 awU
-gzM
+slg
 cuS
 jlM
 jlM
@@ -60722,7 +60809,7 @@ oJT
 oJT
 rCM
 uYy
-uYy
+xKP
 xsk
 cZN
 luT
@@ -62498,7 +62585,7 @@ oJT
 oJT
 tHl
 daB
-uYy
+xKP
 uYy
 uYy
 pKS
@@ -63484,7 +63571,7 @@ avE
 roA
 mQy
 ipk
-dhe
+uVf
 sct
 qTQ
 etr
@@ -63627,7 +63714,7 @@ kMz
 ihl
 uJV
 vNb
-oZU
+bsT
 uJV
 ihl
 oZU
@@ -63706,7 +63793,7 @@ tRg
 iLp
 lvU
 lgr
-dhe
+uVf
 sct
 etr
 etr
@@ -63842,9 +63929,9 @@ xTh
 ihl
 ihl
 dTt
-oZU
+bsT
 uDz
-sBU
+iNR
 icj
 lqR
 uJV
@@ -64274,7 +64361,7 @@ oJT
 oJT
 oJT
 rCM
-uYy
+xKP
 uYy
 uYy
 uYy
@@ -64515,7 +64602,7 @@ mQe
 mUy
 wui
 cNP
-hUQ
+caS
 oZU
 rln
 oZU
@@ -64564,13 +64651,13 @@ vnz
 kXC
 fRP
 loO
-tzW
+cFC
 eux
 jZM
 jZM
 eux
 jIb
-jIb
+jaT
 jIb
 jIb
 bvM
@@ -64954,7 +65041,7 @@ svG
 xUH
 uDz
 uDz
-uDz
+sxh
 oZU
 lqR
 ihl
@@ -65175,7 +65262,7 @@ ihl
 ihl
 qxs
 oZU
-uDz
+sxh
 hUQ
 oZU
 lqR
@@ -65403,7 +65490,7 @@ hcS
 ihl
 uJV
 gSK
-oZU
+bsT
 uJV
 ihl
 oZU
@@ -66845,7 +66932,7 @@ oMs
 lrX
 sQJ
 sQU
-pnI
+fXy
 arf
 qsl
 nzX
@@ -68570,7 +68657,7 @@ xHX
 mhj
 koG
 mWb
-eux
+jcI
 eux
 jZM
 hGp
@@ -68591,7 +68678,7 @@ lkT
 lkT
 lkT
 bzY
-heL
+rdG
 pmD
 ubR
 ltL
@@ -68814,7 +68901,7 @@ hjw
 hjw
 euX
 eVM
-nnJ
+tlV
 xcj
 xcj
 ubE
@@ -69390,9 +69477,9 @@ baa
 tyz
 tyz
 tyz
-xxR
+aSf
 krt
-srQ
+mdh
 ilb
 ilb
 xxR
@@ -69413,7 +69500,7 @@ ilb
 ilb
 vby
 ilb
-ilb
+juQ
 ilb
 ilb
 vrt
@@ -69480,7 +69567,7 @@ ijt
 dtS
 sLU
 egA
-xJz
+sQf
 azA
 qsS
 mXX
@@ -69493,7 +69580,7 @@ eWY
 eWY
 eWY
 uGS
-eWY
+udO
 eWY
 eWY
 eWY
@@ -70140,7 +70227,7 @@ hjw
 ouZ
 lnv
 ijt
-ijt
+ipN
 ijt
 dtS
 oKe
@@ -70812,7 +70899,7 @@ nsE
 lvh
 edH
 heL
-nnJ
+tlV
 xcj
 xcj
 qMn
@@ -70967,7 +71054,7 @@ inP
 jbZ
 ilb
 ilb
-ilb
+juQ
 ilb
 tyz
 tyz
@@ -71694,7 +71781,7 @@ pED
 pED
 oYq
 pED
-pED
+rga
 byj
 pED
 pED
@@ -73397,7 +73484,7 @@ fHM
 wtu
 wtu
 wtu
-wtu
+kMm
 wtu
 kMm
 hqB
@@ -73910,7 +73997,7 @@ mrh
 mrh
 mrh
 mrh
-mrh
+eDl
 mrh
 mrh
 mrh
@@ -74334,18 +74421,18 @@ xHR
 kpb
 kpb
 kpb
-kpb
+txr
 kpb
 kpb
 kpb
 kpb
 dVL
 jIb
-jIb
+jaT
 eux
 jZM
 eux
-jIb
+jaT
 vMO
 hsx
 hjw
@@ -74507,7 +74594,7 @@ fZD
 fZD
 fZD
 fZD
-fZD
+lBH
 fZD
 lBH
 fZD
@@ -74576,7 +74663,7 @@ kpb
 kpb
 kpb
 snC
-snC
+qPo
 snC
 snC
 eVp
@@ -75222,7 +75309,7 @@ qRY
 bGh
 ilb
 ilb
-jaT
+jIb
 jIb
 jIb
 jIb
@@ -75230,7 +75317,7 @@ jIb
 jIb
 jZM
 eux
-jcI
+eux
 eux
 gpA
 jIb
@@ -76110,7 +76197,7 @@ ilb
 ilb
 ilb
 ilb
-ilb
+juQ
 ndb
 ndb
 ndb

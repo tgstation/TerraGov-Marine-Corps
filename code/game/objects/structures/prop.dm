@@ -486,11 +486,6 @@
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "hangarbox"
 
-/obj/item/prop/aimodule
-	name = "AI module"
-	desc = "An AI Module for programming laws to an AI."
-	icon_state = "std_mod"
-
 /obj/item/prop/organ
 	name = "organ"
 	desc = "It looks like it probably just plopped out. It's too decayed to be reinserted in a patient."
@@ -525,6 +520,11 @@
 	name = "liver"
 	icon_state = "liver"
 
+/obj/item/prop/aimodule
+	name = "AI module"
+	desc = "An AI Module for programming laws to an AI."
+	icon_state = "std_mod"
+
 /obj/item/prop/aimodule/Initialize(mapload)
 	. = ..()
 	name = pick("'Safeguard' AI Module'",
@@ -554,6 +554,22 @@
 				"'Peacekeeper' Core AI Module",
 				"'H.O.G.A.N.' Core AI Module",
 	)
+
+/obj/item/prop/dogtag
+	name = "John Doe" //generic name
+	desc = "The remains of a marine long dead, you hope they found peace."
+	icon = 'icons/obj/items/card.dmi'
+	icon_state = "dogtag"
+
+/obj/item/prop/dogtag/pfcjim
+	name = "PFC Jim's dog tag"
+	desc = "Whoever PFC Jim is, you hope made it out alive."
+	icon = 'icons/obj/items/card.dmi'
+	icon_state = "dogtag"
+
+/obj/item/prop/dogtag/random/Initialize()
+	. = ..()
+	name = get_random_name(pick(MALE, FEMALE))
 
 ///BROKEN MARINE VENDOR PROPS
 
