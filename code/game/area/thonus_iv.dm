@@ -327,6 +327,8 @@
 /area/thonus/outdoors/rock
 	name = "Enclosed Area"
 	icon_state = "transparent"
+	outside = FALSE
+	ceiling = CEILING_DEEP_UNDERGROUND
 
 //ATMOS
 /area/thonus/atmos
@@ -378,17 +380,17 @@
 	name = "Atmospheric Processor - Filtration System"
 	icon_state = "mechbay"
 
+/area/thonus/caves
+	outside = FALSE
+	ceiling = CEILING_DEEP_UNDERGROUND
 /area/thonus/caves/west_caves
 	name = "Western Caves"
 	icon_state = "yellow"
-	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 /area/thonus/caves/central_caves
 	name = "Central Caves"
 	icon_state = "purple"
-	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 /area/thonus/caves/east_caves
 	name = "Eastern Caves"
 	icon_state = "blue-red"
-	ceiling = CEILING_DEEP_UNDERGROUND_METAL
