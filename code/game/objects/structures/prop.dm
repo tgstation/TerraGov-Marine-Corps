@@ -1080,10 +1080,12 @@
 /obj/structure/prop/mainship/thonus/smallwire
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "small_wire"
+	density = FALSE
 
 /obj/structure/prop/mainship/thonus/lightstick
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "lightstick_spoke1"
+	density = FALSE
 
 /obj/structure/prop/mainship/thonus/planterbox
 	name = "plant box"
