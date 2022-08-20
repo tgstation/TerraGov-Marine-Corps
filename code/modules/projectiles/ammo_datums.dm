@@ -1767,7 +1767,7 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/rocket/atgun_shell/apcr/on_hit_mob(mob/M, obj/projectile/P)
 	drop_nade(get_turf(M))
 	P.proj_max_range -= 5
-	staggerstun(M, P, max_range = 20, stagger = 0.5, slowdown = 0.5, knockback = 2, shake = 1,  hard_size_threshold = 3)
+	staggerstun(M, P, max_range = 20, stagger = 0.5, slowdown = 0.5, shake = 1,  hard_size_threshold = 3)
 
 /datum/ammo/rocket/atgun_shell/apcr/on_hit_obj(obj/O, obj/projectile/P)
 	P.proj_max_range -= 5
