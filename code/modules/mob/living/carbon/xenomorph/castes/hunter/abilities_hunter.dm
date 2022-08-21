@@ -466,7 +466,6 @@
 				illusions += new /mob/illusion/xeno(owner.loc, owner, null, illusion_life_time)
 	addtimer(CALLBACK(src, .proc/clean_illusions), illusion_life_time)
 
-
 /// Clean up the illusions list
 /datum/action/xeno_action/mirage/proc/clean_illusions()
 	illusions = list()
