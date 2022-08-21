@@ -551,6 +551,13 @@
 	. = ..()
 	AddElement(/datum/element/windowshutter)
 
+/obj/structure/window/framed/prison/reinforced/nonshutter_hull
+	name = "hull window"
+	desc = "A glass window with a special rod matrice inside a wall frame. This one was made out of exotic materials to prevent hull breaches. No way to get through here."
+	damageable = FALSE
+	deconstructable = FALSE
+	resistance_flags = RESIST_ALL
+
 // dont even ask
 /obj/structure/window/framed/prison/reinforced/hull/tyson
 	icon_state = "col_window0"

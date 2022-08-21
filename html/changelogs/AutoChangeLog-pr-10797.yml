@@ -1,0 +1,4 @@
+author: "novaepee"
+delete-after: True
+changes: 
+  - rscdel: "remove reinforced windows in prep to free roomba"

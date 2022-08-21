@@ -6,9 +6,12 @@
 
 /datum/surgery_step/necro/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
 	if(target_zone == "mouth" || target_zone == "eyes")
-		return 0
+		return SURGERY_CANNOT_USE
 
-	return affected.surgery_open_stage == 2 && (affected.limb_status & LIMB_NECROTIZED) && affected.necro_surgery_stage == necro_step
+	if(affected.surgery_open_stage == 2 && (affected.limb_status & LIMB_NECROTIZED) && affected.necro_surgery_stage == necro_step)
+		return SURGERY_CAN_USE
+
+	return SURGERY_CANNOT_USE
 
 
 /datum/surgery_step/necro/fix_dead_tissue //Debridement

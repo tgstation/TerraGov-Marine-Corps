@@ -1,0 +1,13 @@
+author: "tyeagg"
+delete-after: True
+changes: 
+  - rscadd: "reworked combat patrol base maps"
+  - soundadd: "added radio chatter sounds for a radio prop"
+  - imageadd: "added entry point for combat patrol"
+  - imageadd: "added  som cas plane"
+  - imageadd: "added  som prop mech"
+  - imageadd: "added  new platform sprites"
+  - imageadd: "added  som flag turfs"
+  - imageadd: "added gives bunk beds bed sheets"
+  - imageadd: "added tachi base sign"
+  - imageadd: "added prop npcs"

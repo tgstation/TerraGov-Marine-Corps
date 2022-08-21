@@ -195,6 +195,23 @@
 /turf/open/floor/mainship/terragov/north
 	icon_state = "logo_directional_north"
 
+/turf/open/floor/mainship/som
+	icon_state = "somn"
+
+/turf/open/floor/mainship/som/nw
+	icon_state = "somnw"
+
+/turf/open/floor/mainship/som/ne
+	icon_state = "somne"
+
+/turf/open/floor/mainship/som/s
+	icon_state = "soms"
+
+/turf/open/floor/mainship/som/se
+	icon_state = "somse"
+
+/turf/open/floor/mainship/som/sw
+	icon_state = "somsw"
 
 // RESEARCH STUFF
 

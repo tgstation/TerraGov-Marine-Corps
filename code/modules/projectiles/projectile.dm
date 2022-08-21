@@ -712,6 +712,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return FALSE
 	return TRUE
 
+/obj/vehicle/ridden/motorbike/projectile_hit(obj/projectile/P)
+	if(!buckled_mobs)
+		return ..()
+	var/mob/buckled_mob = pick(buckled_mobs)
+	return src == buckled_mob
 
 /mob/living/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	if(status_flags & INCORPOREAL)
@@ -863,7 +868,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(!damage)
 		return
 
-	damage = check_shields(COMBAT_PROJ_ATTACK, damage, proj.ammo.armor_type)
+	damage = check_shields(COMBAT_PROJ_ATTACK, damage, proj.ammo.armor_type, FALSE, proj.penetration)
 	if(!damage)
 		proj.ammo.on_shield_block(src, proj)
 		bullet_ping(proj)

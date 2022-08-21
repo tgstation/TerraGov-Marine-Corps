@@ -144,3 +144,52 @@
 2022-08-15:
   Lumipharon:
   - bugfix: Fix some Combat Patrol end of round stats
+2022-08-16:
+  Lumipharon:
+  - rscadd: 'Combat Patrol: Added laser rifle and AR-55 loadouts to TGMC SL''s'
+  - rscadd: 'Combat Patrol: Added SMG-90, laser carbine and AR-21 loadouts to TGMC
+      medics'
+  - rscadd: 'Combat Patrol: Added AR-21 loadout to TGMC marines'
+  - balance: 'Combat Patrol: Removed the two AP mags from the V-21 scout loadout,
+      removed quantity limit on SG-85 loadout, added more C4 to TGMC demo engi loadout'
+  - bugfix: 'Combat Patrol: Added missing ammo for SH-15 medic loadout'
+2022-08-17:
+  QualityVan:
+  - bugfix: Dead xenos stop emitting pheromones
+  Targeting Computer 9.6:
+  - bugfix: fixed some missing or misplaced cameras, firelocks, lights, apcs, holopads
+      and wires on POS.
+  breadhunt:
+  - bugfix: Attaching stuff like signalers, voice sensors and the like to wires will
+      now actually pulse them instead of runtiming
+  - balance: Possible engi heaven
+2022-08-18:
+  Lumipharon:
+  - bugfix: fixed SOM shoes sometimes going invisible
+  - balance: Added some more attachments to the V-31 and V-51
+  - imageadd: added some alt sprites for certain attachments on SOM weapons
+  XElectricX:
+  - balance: Motorbikes no longer act as barriers and can be shot over.
+  - bugfix: Hitting riders on motorbikes is now consistent.
+  breadhunt:
+  - bugfix: Detpacks now work when a signaler is in your hand again, instead of only
+      working on the floor
+  - bugfix: Overwatch markers now work again
+  lbnesquik:
+  - rscadd: Added one CAS radio key to the tactical binoculars crate.
+2022-08-19:
+  QualityVan:
+  - bugfix: Surgeries work
+  collinlunn:
+  - bugfix: Hunter's Disguise description tells you how to select a target.
+2022-08-20:
+  QualityVan:
+  - rscadd: High-pen bullets deal more damage to shields
+  - bugfix: Shield hard armor reduces damage instead of increasing it
+  - bugfix: Radial medical will only need to choose limb once for surgery
+  lbnesquik:
+  - bugfix: fixed a wrong line about time regarding drops.
+2022-08-21:
+  collinlunn:
+  - bugfix: The bluespace teleporter's description now tells you how to remove the
+      cell.

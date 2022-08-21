@@ -58,7 +58,10 @@ OPERATIONS
 
 /datum/supply_packs/operations/binoculars_tatical
 	name = "tactical binoculars crate"
-	contains = list(/obj/item/binoculars/tactical)
+	contains = list(
+		/obj/item/binoculars/tactical,
+		/obj/item/encryptionkey/cas,
+	)
 	cost = 30
 	available_against_xeno_only = TRUE
 
