@@ -23,6 +23,8 @@
 #define RESIN_WALL "resin wall"
 #define STICKY_RESIN "sticky resin"
 #define RESIN_DOOR "resin door"
+#define GROWTH_WALL "growth wall"
+#define GROWTH_DOOR "growth door"
 
 //Xeno reagents defines
 #define DEFILER_NEUROTOXIN "Neurotoxin"
