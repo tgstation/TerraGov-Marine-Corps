@@ -1,4 +1,0 @@
-author: "collinlunn"
-delete-after: True
-changes: 
-  - bugfix: "The bluespace teleporter's description now tells you how to remove the cell."

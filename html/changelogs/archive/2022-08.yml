@@ -189,3 +189,7 @@
   - bugfix: Radial medical will only need to choose limb once for surgery
   lbnesquik:
   - bugfix: fixed a wrong line about time regarding drops.
+2022-08-21:
+  collinlunn:
+  - bugfix: The bluespace teleporter's description now tells you how to remove the
+      cell.
