@@ -34,7 +34,7 @@
 /obj/effect/ai_node/LateInitialize()
 	make_adjacents()
 	if(SSadvanced_pathfinding.initialized)
-		message_admins("Adding nodes [rustg_add_node_astar(json_encode(serialize()))]")
+		rustg_add_node_astar(json_encode(serialize()))
 
 /// Serialize nodes information
 /obj/effect/ai_node/proc/serialize()
