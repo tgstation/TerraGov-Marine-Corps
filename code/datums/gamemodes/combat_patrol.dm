@@ -30,7 +30,6 @@
 	var/max_time_reached = FALSE
 	/// Time between two bioscan
 	var/bioscan_interval = 3 MINUTES
-	sensors_needed = 1
 
 /datum/game_mode/combat_patrol/post_setup()
 	. = ..()
@@ -45,16 +44,6 @@
 			if(CEILING_DEEP_UNDERGROUND to CEILING_DEEP_UNDERGROUND_METAL)
 				area_to_lit.set_base_lighting(COLOR_WHITE, 25)
 	GLOB.join_as_robot_allowed = FALSE
-	for(var/turf/T AS in GLOB.sensor_towers_patrol_a)
-		new /obj/structure/sensor_tower_patrol(T)
-	for(var/turf/T AS in GLOB.sensor_towers_patrol_b)
-		new /obj/structure/sensor_tower_patrol/bravo(T)
-	for(var/turf/T AS in GLOB.sensor_towers_patrol_c)
-		new /obj/structure/sensor_tower_patrol/charlie(T)
-	for(var/turf/T AS in GLOB.sensor_towers_patrol_d)
-		new /obj/structure/sensor_tower_patrol/delta(T)
-	for(var/turf/T AS in GLOB.sensor_towers_patrol_e)
-		new /obj/structure/sensor_tower_patrol/echo(T)
 
 /datum/game_mode/combat_patrol/scale_roles()
 	. = ..()
@@ -90,7 +79,7 @@
 	. = ..()
 	//Starts the round timer when the game starts proper
 	var/datum/game_mode/combat_patrol/D = SSticker.mode
-	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/set_game_timer), SSticker.round_start_time + shutters_drop_time) //game cannot end until at least 5 minutes after shutter drop
+	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/set_game_timer), SSticker.round_start_time + shutters_drop_time + 5 MINUTES) //game cannot end until at least 5 minutes after shutter drop
 	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/respawn_wave), SSticker.round_start_time + shutters_drop_time) //starts wave respawn on shutter drop and begins timer
 	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, SSticker.round_start_time + shutters_drop_time + bioscan_interval)
 
@@ -235,11 +224,48 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 	if(round_finished)
 		return TRUE
 
-	if(sensors_activated >= sensors_needed)
-		message_admins("Round finished: [MODE_COMBAT_PATROL_MARINE_MAJOR]")
+	if(SSmonitor.gamestate != GROUNDSIDE || !game_timer)
+		return
 
+	///pulls the number of marines and SOM, both dead and alive
+	var/list/player_list = count_humans(count_flags = COUNT_IGNORE_ALIVE_SSD)
+	var/num_som = length(player_list[1])
+	var/num_tgmc = length(player_list[2])
+	var/num_dead_som = length(player_list[3])
+	var/num_dead_marines = length(player_list[4])
+
+	if(num_tgmc && num_som && !max_time_reached)
+		return //fighting is ongoing
+
+	//major victor for wiping out the enemy, or draw if both sides wiped simultaneously somehow
+	if(!num_tgmc)
+		if(!num_som)
+			message_admins("Round finished: [MODE_COMBAT_PATROL_DRAW]") //everyone died at the same time, no one wins
+			round_finished = MODE_COMBAT_PATROL_DRAW
+			return TRUE
+		message_admins("Round finished: [MODE_COMBAT_PATROL_SOM_MAJOR]") //SOM wiped out ALL the marines, SOM major victory
+		round_finished = MODE_COMBAT_PATROL_SOM_MAJOR
+		return TRUE
+
+	if(!num_som)
+		message_admins("Round finished: [MODE_COMBAT_PATROL_MARINE_MAJOR]") //Marines wiped out ALL the SOM, marine major victory
 		round_finished = MODE_COMBAT_PATROL_MARINE_MAJOR
 		return TRUE
+
+	//minor victories for more kills or draw for equal kills
+	if(num_dead_marines > num_dead_som)
+		message_admins("Round finished: [MODE_COMBAT_PATROL_SOM_MINOR]") //The SOM inflicted greater casualties on the marines, SOM minor victory
+		round_finished = MODE_COMBAT_PATROL_SOM_MINOR
+		return TRUE
+	if(num_dead_som > num_dead_marines)
+		message_admins("Round finished: [MODE_COMBAT_PATROL_MARINE_MINOR]") //The marines inflicted greater casualties on the SOM, marine minor victory
+		round_finished = MODE_COMBAT_PATROL_MARINE_MINOR
+		return TRUE
+
+	message_admins("Round finished: [MODE_COMBAT_PATROL_DRAW]") //equal number of kills, or any other edge cases
+	round_finished = MODE_COMBAT_PATROL_DRAW
+	return TRUE
+
 
 /datum/game_mode/combat_patrol/declare_completion()
 	. = ..()

@@ -4591,6 +4591,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/effect/landmark/sensor_tower_patrol_a,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 9
 	},
@@ -25185,6 +25186,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/substation/smes)
+"dCR" = (
+/obj/effect/landmark/sensor_tower_patrol_e,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/underground/maintenance/central)
 "dDP" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -25922,6 +25927,10 @@
 /obj/effect/spawner/random/toolbox,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/surface/excavation/storage)
+"fhi" = (
+/obj/effect/landmark/sensor_tower_patrol_b,
+/turf/open/floor/tile/white,
+/area/ice_colony/surface/clinic/treatment)
 "fiR" = (
 /obj/effect/turf_underlay/icefloor,
 /turf/closed/ice/thin/end{
@@ -26378,6 +26387,10 @@
 	icon_state = "swall_f5"
 	},
 /area/ice_colony/surface/hangar/beta)
+"goM" = (
+/obj/effect/landmark/sensor_tower_patrol_d,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/research)
 "goZ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -32910,6 +32923,10 @@
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/southwest)
+"tfC" = (
+/obj/effect/landmark/sensor_tower_patrol_c,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/ice_colony/exterior/surface/clearing/north)
 "tgt" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/bomb_supply,
@@ -46340,7 +46357,7 @@ aRd
 aRT
 gLv
 wPl
-cQF
+goM
 cQF
 mvA
 aUX
@@ -50226,7 +50243,7 @@ nqu
 qGt
 qGt
 qGt
-qGt
+dCR
 qGt
 qGt
 qGt
@@ -54788,7 +54805,7 @@ ary
 aEr
 aqe
 aER
-gvW
+fhi
 xLJ
 aHr
 aHO
@@ -67251,7 +67268,7 @@ xCs
 wkf
 wkf
 wkf
-wkf
+tfC
 wkf
 amq
 amO

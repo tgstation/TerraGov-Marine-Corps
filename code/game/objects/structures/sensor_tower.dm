@@ -63,7 +63,7 @@
 
 /obj/structure/sensor_tower_patrol
 	name = "alpha sensor tower"
-	desc = "A tall tower with a sensor array at the top and a control box at the bottom. Has a lengthy activation process involving 5 phases."
+	desc = "A tall tower with a sensor array at the top and a control box at the bottom. Has a lengthy activation process with 3 phases."
 	icon = 'icons/obj/structures/sensor.dmi'
 	icon_state = "sensor_loyalist"
 	obj_flags = NONE
@@ -71,11 +71,16 @@
 	layer = BELOW_OBJ_LAYER
 	resistance_flags = RESIST_ALL
 	var/current_timer
-	var/generate_time = 1 SECONDS
-	var/total_segments = 5 // total number of times the hack is required
-	var/activate_time = 1 SECONDS // time to start the hack
-	var/completed_segments = 0 // what segment we are on, (once this hits total, disk is printed)
+	var/generate_time = 50 SECONDS
+	var/total_segments = 3 // total number of times the activation is required
+	var/activate_time = 5 SECONDS // time to start the activation
+	var/deactivate_time = 10 SECONDS // time to stop the activation proccess
+	var/completed_segments = 0 // what segment we are on, (once this hits total, sensor tower segment is finished)
 	var/id = 1
+	var/activated = FALSE // if all segments are finished
+	var/datum/aura_bearer/current_aura
+	var/aura_strength = 3
+	var/aura_range = 8
 
 /obj/structure/sensor_tower_patrol/Initialize()
 	. = ..()
@@ -89,7 +94,17 @@
 		user.balloon_alert(user, "You are already doing something!")
 		return
 	if(user.faction != FACTION_TERRAGOV)
-		balloon_alert(user, "Only terragov can do the objective, defend this!")
+		balloon_alert(user, "Only TerraGov can do the objective, defend this!")
+		if(current_timer)
+			if(!do_after(user, deactivate_time, TRUE, src))
+				return
+			current_timer = null
+			balloon_alert(user, "You stop the activation process!")
+			update_icon()
+			QDEL_NULL(current_aura)
+			for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
+				human.playsound_local(human, "sound/effects/CIC_order.ogg", 10, 1)
+				human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>OVERWATCH</u></span><br>" + "[src] activation process has been stopped.", /obj/screen/text/screen_text/command_order)
 		return
 	if(!(SSticker.mode?.flags_round_type & MODE_TWO_HUMAN_FACTIONS))
 		to_chat(user, span_warning("There is nothing to do with [src]"))
@@ -103,16 +118,18 @@
 	balloon_alert_to_viewers("[user] starts to activate [src]!")
 	if(!do_after(user, activate_time, TRUE, src))
 		return
-	balloon_alert_to_viewers("[user] actiavtes [src]!")
+	balloon_alert_to_viewers("[user] activates [src]!")
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		human.playsound_local(human, "sound/effects/CIC_order.ogg", 10, 1)
 		human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>OVERWATCH</u></span><br>" + "[src] is being activated.", /obj/screen/text/screen_text/command_order)
 	current_timer = addtimer(CALLBACK(src, .proc/complete_segment), generate_time, TIMER_STOPPABLE)
+	current_aura = SSaura.add_emitter(src, AURA_HUMAN_HOLD, aura_range, aura_strength, -1, FACTION_TERRAGOV)
 	update_icon()
 
 /obj/structure/sensor_tower_patrol/proc/complete_segment()
 	playsound(src, 'sound/machines/ping.ogg', 25, 1)
 	current_timer = null
+	QDEL_NULL(current_aura)
 	completed_segments += 1
 
 	if(completed_segments == total_segments)
@@ -135,7 +152,10 @@
 
 /obj/structure/sensor_tower_patrol/proc/update_control_minimap_icon()
 	SSminimaps.remove_marker(src)
-	SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "relay_[id][current_timer ? "_on" : "_off"]")
+	if(activated)
+		SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "relay_[id]_on_full")
+	else
+		SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "relay_[id][current_timer ? "_on" : "_off"]")
 
 /obj/structure/sensor_tower_patrol/Destroy()
 	GLOB.zones_to_control -= src

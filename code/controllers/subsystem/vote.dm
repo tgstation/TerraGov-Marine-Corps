@@ -140,7 +140,7 @@ SUBSYSTEM_DEF(vote)
 				deltimer(shipmap_timer_id)
 				var/datum/map_config/VM = config.maplist[SHIP_MAP]["Twin Pillars"]
 				SSmapping.changemap(VM, SHIP_MAP)
-			else if(. == "Combat Patrol")
+			else if(. == "Combat Patrol" || . == "Sensor Capture")
 				deltimer(shipmap_timer_id)
 				var/datum/map_config/VM = config.maplist[SHIP_MAP]["Combat Patrol Base"]
 				SSmapping.changemap(VM, SHIP_MAP)

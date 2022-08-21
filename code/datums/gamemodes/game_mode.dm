@@ -26,9 +26,9 @@
 	var/win_points_needed = 0
 	///The points per faction, assoc list
 	var/list/points_per_faction
-	///How many activated sensor towers do you need to win in combat patrol
+	///How many activated sensor towers do you need to win in sensor capture
 	var/sensors_needed = 0
-	///The amount of activated sensor towers in combat patrol
+	///The amount of activated sensor towers in sensor capture
 	var/sensors_activated = 0
 	/// When are the shutters dropping
 	var/shutters_drop_time = 30 MINUTES

@@ -98,11 +98,7 @@
 		//combat patrol timer
 		var/patrol_end_countdown = SSticker.mode?.game_end_countdown()
 		if(patrol_end_countdown)
-			stat("<b>Combat Patrol timer:</b>", patrol_end_countdown)
-
-		var/patrol_towers = SSticker.mode.sensors_activated
-		if(patrol_towers)
-			stat("<b>Activated Sensor Towers:</b>", patrol_towers)
+			stat("<b>Round End timer:</b>", patrol_end_countdown)
 
 		if(internal)
 			stat("Internal Atmosphere Info", internal.name)
@@ -126,6 +122,9 @@
 			stat("Points needed to win:", mode.win_points_needed)
 			stat("Loyalists team points:", LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV) ? LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV) : 0)
 			stat("Rebels team points:", LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV_REBEL) ? LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV_REBEL) : 0)
+		var/patrol_towers = SSticker.mode.sensors_activated
+		if(mode.flags_round_type & MODE_SENSOR)
+			stat("<b>Activated Sensor Towers:</b>", patrol_towers)
 
 /mob/living/carbon/human/ex_act(severity)
 	if(status_flags & GODMODE)

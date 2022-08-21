@@ -8917,6 +8917,12 @@
 	dir = 8
 	},
 /area/bigredv2/caves/lambda_lab)
+"fbd" = (
+/obj/effect/landmark/sensor_tower_patrol_a,
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 4
+	},
+/area/bigredv2/outside/marshal_office)
 "fbn" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -9884,6 +9890,12 @@
 /obj/docking_port/stationary/crashmode,
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/engineering)
+"hEE" = (
+/obj/effect/landmark/sensor_tower_patrol_c,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/bigredv2/outside/virology)
 "hFi" = (
 /obj/item/stack/sheet/metal,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -11752,6 +11764,7 @@
 "nkx" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/sensor_tower_patrol_e,
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},
@@ -13133,6 +13146,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
+"ryl" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/effect/landmark/sensor_tower_patrol_d,
+/turf/open/floor,
+/area/bigredv2/outside/filtration_plant)
 "ryP" = (
 /obj/structure/table,
 /obj/effect/spawner/random/toolbox,
@@ -15297,6 +15315,10 @@
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/lambda_lab)
+"xJV" = (
+/obj/effect/landmark/sensor_tower_patrol_b,
+/turf/open/floor/wood,
+/area/bigredv2/outside/bar)
 "xKo" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/start/job/xenomorph,
@@ -20853,7 +20875,7 @@ aaa
 aaa
 aIc
 aJh
-aJh
+hEE
 aJh
 aJh
 aMz
@@ -34926,7 +34948,7 @@ afS
 ajJ
 mRD
 acp
-agz
+fbd
 rOr
 duy
 vRL
@@ -38266,7 +38288,7 @@ boX
 bpo
 xTt
 bqp
-uWz
+ryl
 wOO
 nRv
 ykK
@@ -41037,7 +41059,7 @@ fLz
 aKv
 lBl
 hBm
-aEO
+xJV
 aEQ
 aOS
 aGI
