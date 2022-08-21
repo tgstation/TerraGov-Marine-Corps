@@ -425,30 +425,33 @@
 	ability_name = "mirage"
 	plasma_cost = 50
 	keybind_signal = COMSIG_XENOABILITY_MIRAGE
-	cooldown_timer = 40 SECONDS
+	cooldown_timer = 30 SECONDS
 	///How long will the illusions live
 	var/illusion_life_time = 10 SECONDS
 	///How many illusions are created
 	var/illusion_count = 3
-	///If illusions are currently active
-	var/illusions_active = FALSE 
 	/// List of illusions
 	var/list/mob/illusion/illusions = list()
+	/// If swap has been used during the current set of illusions
+	var/swap_used = FALSE
 
 /datum/action/xeno_action/mirage/remove_action()
 	clean_illusions()
 	return ..()
 
+/datum/action/xeno_action/mirage/can_use_action(silent = FALSE, override_flags)
+	. = ..()
+	if(swap_used)
+		if(!silent)
+			to_chat(owner, span_xenowarning("We already swapped with an illusion!"))
+		return FALSE
+
 /datum/action/xeno_action/mirage/action_activate()
 	succeed_activate()
-	if (!illusions_active)
+	if (!illusions.len)
 		spawn_illusions()
-		illusions_active = TRUE
-		//Deactivates illusions_active and sets cooldown if swap not used
-		addtimer(CALLBACK(src, .proc/clean_illusions), illusion_life_time) 
 	else
 		swap()
-		add_cooldown()
 
 /// Spawns a set of illusions around the hunter
 /datum/action/xeno_action/mirage/proc/spawn_illusions()
@@ -461,23 +464,27 @@
 		if(INTENT_HELP, INTENT_GRAB, INTENT_DISARM) //Disperse
 			for(var/i in 1 to illusion_count)
 				illusions += new /mob/illusion/xeno(owner.loc, owner, null, illusion_life_time)
+	addtimer(CALLBACK(src, .proc/clean_illusions), illusion_life_time)
 
 
 /// Clean up the illusions list
 /datum/action/xeno_action/mirage/proc/clean_illusions()
 	illusions = list()
-	illusions_active = FALSE
-	if (action_cooldown_check())
-		add_cooldown()
+	add_cooldown()
+	swap_used = FALSE
 
 /// Swap places of hunter and an illusion
 /datum/action/xeno_action/mirage/proc/swap()
+	swap_used = TRUE
 	var/mob/living/carbon/xenomorph/X = owner
-	X.playsound_local(X, 'sound/effects/swap.ogg', 10, 0, 1)
-	var/datum/action/xeno_action/mirage/mirage_action = X.actions_by_path[/datum/action/xeno_action/mirage]
-	if(!mirage_action?.illusions)
+
+	if(!illusions.len)
 		to_chat(X, span_xenowarning("We have no illusions to swap with!"))
 		return
+
+	X.playsound_local(X, 'sound/effects/swap.ogg', 10, 0, 1)
 	var/turf/current_turf = get_turf(X)
-	X.forceMove(get_turf(mirage_action.illusions[1].loc))
-	mirage_action.illusions[1].forceMove(current_turf)
+
+	var/mob/selected_illusion = illusions[1]
+	X.forceMove(get_turf(selected_illusion.loc))
+	selected_illusion.forceMove(current_turf)
