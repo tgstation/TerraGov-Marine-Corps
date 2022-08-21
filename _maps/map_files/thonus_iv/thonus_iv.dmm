@@ -57,7 +57,7 @@
 /turf/open/floor/mainship/black/full,
 /area/thonus/caves/west_caves)
 "aaS" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -185,7 +185,7 @@
 /turf/open/floor/prison,
 /area/thonus/outdoors/colony_streets/central_streets)
 "adF" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -311,6 +311,10 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/mainship/stripesquare,
 /area/thonus/indoors/lone_buildings/storage_blocks)
+"ahI" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/turf/closed/mineral/smooth/snowrock,
+/area/thonus/landing_zone_2)
 "ahJ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/item/stack/sheet/wood,
@@ -992,6 +996,12 @@
 	},
 /turf/open/floor/prison/darkbrown/full,
 /area/thonus/indoors/c_block/garage)
+"aGI" = (
+/obj/structure/cargo_container/gorg{
+	dir = 4
+	},
+/turf/open/floor/prison/plate,
+/area/thonus/outdoors/colony_streets/north_west_street)
 "aGQ" = (
 /obj/structure/platform{
 	dir = 8
@@ -1440,6 +1450,11 @@
 	},
 /turf/open/floor/prison/darkbrown/full,
 /area/thonus/landing_zone_2)
+"aUs" = (
+/obj/structure/cable,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/turf/open/floor/prison,
+/area/thonus/indoors/c_block/mining)
 "aVe" = (
 /turf/open/shuttle/dropship{
 	icon_state = "rasputin4"
@@ -1533,7 +1548,7 @@
 	pixel_x = 11;
 	pixel_y = 16
 	},
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -1764,7 +1779,7 @@
 	pixel_x = 1;
 	pixel_y = -8
 	},
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	pixel_x = -9;
@@ -2487,7 +2502,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/thonus/outdoors/w_rockies)
 "bEv" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -3098,7 +3113,7 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/thonus/outdoors/w_rockies)
 "bYk" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -3186,7 +3201,7 @@
 /turf/open/floor/wood,
 /area/thonus/indoors/b_block/bar)
 "cbI" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -3506,7 +3521,7 @@
 /turf/open/floor/plating,
 /area/thonus/landing_zone_2)
 "cnG" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -3764,7 +3779,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/thonus/indoors/b_block/hydro)
 "cxJ" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -4757,12 +4772,6 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
 /area/thonus/outdoors/colony_streets/windbreaker/observation)
-"cZU" = (
-/obj/structure/cargo_container/ch_red{
-	dir = 1
-	},
-/turf/open/floor/prison/darkred/full,
-/area/thonus/outdoors/colony_streets/north_street)
 "dag" = (
 /obj/structure/closet/crate,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -4793,7 +4802,7 @@
 /turf/open/floor/prison,
 /area/thonus/outdoors/colony_streets/north_east_street)
 "daX" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -5551,7 +5560,7 @@
 /turf/open/floor/plating/ground/mars/random,
 /area/thonus/indoors/b_block/bridge)
 "dys" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -5696,7 +5705,7 @@
 	},
 /area/thonus/outdoors/colony_streets/north_east_street)
 "dDG" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -5903,7 +5912,7 @@
 	pixel_x = 3;
 	pixel_y = -5
 	},
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	pixel_x = -17;
@@ -6187,7 +6196,7 @@
 /obj/item/reagent_containers/food/snacks/tofubreadslice{
 	pixel_x = -7
 	},
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -6314,7 +6323,7 @@
 /obj/structure/bed/chair{
 	dir = 8
 	},
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -6343,7 +6352,6 @@
 /turf/open/floor/wood,
 /area/thonus/indoors/a_block/fitness)
 "dYh" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/thonus/landing_zone_2)
 "dYl" = (
@@ -6460,7 +6468,7 @@
 	pixel_x = 10;
 	pixel_y = -3
 	},
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -6500,7 +6508,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
 /area/thonus/outdoors/colony_streets/central_streets)
 "ebE" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	layer = 3;
 	name = "????";
@@ -6605,7 +6613,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/thonus/outdoors/colony_streets/east_central_street)
 "edJ" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -6679,7 +6687,7 @@
 "efC" = (
 /obj/structure/table/mainship,
 /obj/item/trash/plate,
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -6760,7 +6768,7 @@
 	},
 /area/thonus/indoors/a_block/dorms)
 "ehl" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -6806,7 +6814,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/thonus/indoors/c_block/garage)
 "emD" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -6909,7 +6917,7 @@
 	},
 /area/thonus/landing_zone_forecon/UD6_Tornado)
 "eqE" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -7306,7 +7314,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/thonus/indoors/a_block/hallway)
 "eCC" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	pixel_x = 5;
@@ -7665,8 +7673,8 @@
 /area/thonus/indoors/a_block/kitchen)
 "eNo" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/open/floor/plating/ground/snow/layer1,
-/area/thonus/landing_zone_2)
+/turf/closed/wall,
+/area/thonus/indoors/c_block/mining)
 "eNH" = (
 /obj/structure/filingcabinet{
 	pixel_x = -8;
@@ -8593,7 +8601,7 @@
 /turf/open/floor/prison,
 /area/thonus/landing_zone_1)
 "fwd" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -8727,6 +8735,12 @@
 /obj/structure/barricade/metal,
 /turf/open/floor/prison/sterilewhite/full,
 /area/thonus/indoors/a_block/corpo)
+"fBw" = (
+/obj/structure/cargo_container/ch_red{
+	dir = 4
+	},
+/turf/open/floor/prison/darkred/full,
+/area/thonus/outdoors/colony_streets/north_street)
 "fBC" = (
 /turf/closed/wall/r_wall,
 /area/thonus/landing_zone_2)
@@ -8784,7 +8798,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/thonus/indoors/b_block/bridge)
 "fDv" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -8984,7 +8998,7 @@
 /turf/open/floor/prison,
 /area/thonus/outdoors/colony_streets/windbreaker/observation)
 "fMQ" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -9138,7 +9152,7 @@
 /turf/open/floor/prison/plate,
 /area/thonus/outdoors/colony_streets/north_west_street)
 "fSN" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -10123,7 +10137,7 @@
 	},
 /area/thonus/outdoors/colony_streets/north_west_street)
 "gwP" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -10171,7 +10185,7 @@
 /area/thonus/landing_zone_forecon/UD6_Typhoon)
 "gyJ" = (
 /obj/structure/bed/stool,
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -10263,6 +10277,11 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/thonus/indoors/a_block/hallway)
+"gBm" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/start/job/xenomorph,
+/turf/open/floor/mainship/black/full,
+/area/thonus/caves/west_caves)
 "gBD" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -10270,7 +10289,7 @@
 /turf/open/floor/prison,
 /area/thonus/indoors/b_block/hydro)
 "gBG" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -10289,7 +10308,7 @@
 /turf/open/floor/prison,
 /area/thonus/indoors/a_block/hallway)
 "gCI" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -10360,7 +10379,7 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -10516,7 +10535,7 @@
 /area/thonus/indoors/c_block/cargo)
 "gJD" = (
 /obj/structure/bed,
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -10546,7 +10565,7 @@
 /obj/structure/bed/chair/comfy{
 	dir = 4
 	},
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -10607,7 +10626,7 @@
 /turf/open/floor/carpet,
 /area/thonus/indoors/b_block/bar)
 "gLl" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -11490,7 +11509,7 @@
 /turf/open/floor/wood,
 /area/thonus/indoors/c_block/casino)
 "hqy" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -11547,7 +11566,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/thonus/outdoors/colony_streets/central_streets)
 "hsw" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -11849,6 +11868,10 @@
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/thonus/caves/central_caves)
+"hDe" = (
+/obj/structure/cargo_container/ch_red,
+/turf/open/floor/prison/darkred/full,
+/area/thonus/outdoors/colony_streets/north_street)
 "hDu" = (
 /turf/open/ground/river,
 /area/thonus/indoors/a_block/fitness)
@@ -11879,6 +11902,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/thonus/indoors/a_block/executive)
+"hDO" = (
+/obj/structure/cargo_container/red{
+	dir = 1
+	},
+/turf/open/floor/prison/darkred/full,
+/area/thonus/outdoors/colony_streets/north_street)
 "hEl" = (
 /obj/structure/curtain/temple,
 /turf/open/floor/prison/plate,
@@ -12042,6 +12071,12 @@
 /obj/structure/table/reinforced/prison,
 /turf/open/floor/prison/sterilewhite,
 /area/thonus/indoors/a_block/medical)
+"hMy" = (
+/obj/structure/cargo_container/red{
+	dir = 4
+	},
+/turf/open/floor/prison/darkred/full,
+/area/thonus/outdoors/colony_streets/north_street)
 "hMN" = (
 /obj/structure/bed{
 	layer = 2.7;
@@ -12205,12 +12240,6 @@
 /obj/item/reagent_containers/food/snacks/cheesyfries,
 /turf/open/floor/prison/sterilewhite,
 /area/thonus/indoors/lone_buildings/chunk)
-"hRj" = (
-/obj/structure/cargo_container/gorg{
-	dir = 4
-	},
-/turf/open/floor/prison/plate,
-/area/thonus/outdoors/colony_streets/north_west_street)
 "hRx" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/components/unary/vent_pump,
@@ -12541,7 +12570,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/thonus/outdoors/colony_streets/south_east_street)
 "hZT" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -14153,7 +14182,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/thonus/outdoors/colony_streets/north_street)
 "jaw" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -14426,7 +14455,7 @@
 /area/thonus/landing_zone_forecon/UD6_Tornado)
 "jkK" = (
 /obj/effect/decal/cleanable/blood,
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -15055,7 +15084,7 @@
 	pixel_x = 8;
 	pixel_y = -4
 	},
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	pixel_x = -9;
@@ -15077,7 +15106,7 @@
 	layer = 2.6;
 	pixel_y = 25
 	},
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -15534,7 +15563,7 @@
 /turf/open/floor/prison/cleanmarked,
 /area/thonus/indoors/lone_buildings/storage_blocks)
 "jXi" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -16411,7 +16440,7 @@
 /turf/open/floor/plating/ground/snow/layer1,
 /area/thonus/outdoors/colony_streets/north_street)
 "kEl" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	pixel_x = -1;
@@ -16715,7 +16744,7 @@
 	},
 /area/thonus/outdoors/colony_streets/north_street)
 "kMO" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -17055,7 +17084,7 @@
 /turf/open/floor/prison,
 /area/thonus/indoors/c_block/mining)
 "lar" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -17398,7 +17427,7 @@
 /area/thonus/indoors/a_block/dorms)
 "lkR" = (
 /obj/structure/bed/chair,
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -17573,7 +17602,7 @@
 /obj/structure/toilet{
 	dir = 4
 	},
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -18201,7 +18230,7 @@
 /turf/open/floor/plating/ground/snow/layer1,
 /area/thonus/outdoors/colony_streets/south_east_street)
 "lLt" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -18330,7 +18359,7 @@
 	},
 /area/thonus/landing_zone_forecon/UD6_Tornado)
 "lQW" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -18396,7 +18425,7 @@
 /obj/structure/bed/chair{
 	dir = 8
 	},
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -18648,7 +18677,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -18823,12 +18852,6 @@
 /obj/structure/table/mainship,
 /turf/open/floor/prison,
 /area/thonus/indoors/b_block/hydro)
-"mfX" = (
-/obj/structure/cargo_container/red{
-	dir = 1
-	},
-/turf/open/floor/prison/darkred/full,
-/area/thonus/outdoors/colony_streets/north_street)
 "mgP" = (
 /obj/structure/closet/crate,
 /turf/open/floor/prison/plate,
@@ -19295,6 +19318,12 @@
 "msI" = (
 /turf/closed/wall,
 /area/thonus/indoors/lone_buildings/engineering)
+"mth" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 2
+	},
+/turf/closed/wall,
+/area/thonus/indoors/c_block/mining)
 "mtu" = (
 /obj/effect/landmark/patrol_point{
 	id = "SOM_21";
@@ -19686,7 +19715,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/thonus/indoors/c_block/garage)
 "mIG" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -19703,7 +19732,7 @@
 /obj/structure/toilet{
 	pixel_y = 16
 	},
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -19824,11 +19853,10 @@
 	},
 /area/thonus/indoors/b_block/hydro)
 "mNI" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 2
-	},
-/turf/open/floor/plating/ground/snow/layer1,
-/area/thonus/landing_zone_2)
+/obj/structure/largecrate/random,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/turf/open/floor/prison/darkbrown/full,
+/area/thonus/indoors/c_block/mining)
 "mNK" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -19857,7 +19885,7 @@
 /turf/open/floor/plating,
 /area/thonus/indoors/a_block/kitchen)
 "mOy" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -20985,7 +21013,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -21345,6 +21373,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/prison,
 /area/thonus/indoors/c_block/mining)
 "nLz" = (
@@ -21353,7 +21382,7 @@
 	pixel_x = -10;
 	pixel_y = 6
 	},
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	pixel_y = -11;
@@ -21637,7 +21666,7 @@
 /obj/structure/bed/chair/comfy{
 	dir = 8
 	},
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -22109,7 +22138,7 @@
 	},
 /area/thonus/indoors/a_block/dorm_north)
 "omp" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -22452,7 +22481,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/thonus/indoors/b_block/hydro)
 "oAR" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -23449,7 +23478,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/thonus/outdoors/rock)
 "pdM" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -23457,7 +23486,7 @@
 /turf/open/floor/plating/heatinggrate,
 /area/thonus/indoors/a_block/bridges/garden_bridge)
 "ped" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -23487,6 +23516,10 @@
 	dir = 10
 	},
 /area/thonus/outdoors/rock)
+"peC" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/turf/open/floor/prison/darkbrown/full,
+/area/thonus/indoors/c_block/mining)
 "peR" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -23904,7 +23937,7 @@
 /turf/open/floor/prison,
 /area/thonus/indoors/a_block/dorms)
 "prU" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -23956,7 +23989,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/thonus/outdoors/colony_streets/south_street)
 "pum" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -24153,7 +24186,7 @@
 /area/thonus/outdoors/colony_streets/north_west_street)
 "pzT" = (
 /obj/structure/table/mainship,
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -25078,7 +25111,7 @@
 /turf/open/floor/mainship/black/full,
 /area/thonus/caves/west_caves)
 "qba" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -25136,7 +25169,7 @@
 	},
 /area/thonus/outdoors/colony_streets/central_streets)
 "qdK" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	layer = 3;
 	name = "????";
@@ -25195,7 +25228,7 @@
 /turf/open/floor/tile/dark2,
 /area/thonus/outdoors/rock)
 "qft" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -25693,7 +25726,7 @@
 /turf/open/floor/prison,
 /area/thonus/indoors/a_block/kitchen)
 "qxc" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -26643,7 +26676,7 @@
 	name = "synthethic potted plant";
 	pixel_y = 14
 	},
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -26795,7 +26828,7 @@
 /obj/item/bedsheet/brown{
 	layer = 3.1
 	},
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -26897,7 +26930,7 @@
 /turf/open/floor/prison/kitchen,
 /area/thonus/indoors/a_block/kitchen)
 "reV" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -27027,7 +27060,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/thonus/indoors/a_block/dorms)
 "riC" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	layer = 3;
 	name = "????";
@@ -27883,7 +27916,7 @@
 	dir = 8;
 	pixel_y = 4
 	},
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -28032,7 +28065,7 @@
 /turf/open/floor/prison,
 /area/thonus/indoors/c_block/casino)
 "rQw" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -28166,7 +28199,7 @@
 	},
 /area/thonus/outdoors/colony_streets/central_streets)
 "rVR" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -28464,7 +28497,7 @@
 	},
 /area/thonus/indoors/a_block/admin)
 "sgK" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -28490,7 +28523,7 @@
 /turf/open/floor/prison,
 /area/thonus/indoors/c_block/mining)
 "shI" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -28613,12 +28646,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/thonus/indoors/a_block/dorms)
-"slg" = (
-/obj/structure/cargo_container/ch_red{
-	dir = 4
-	},
-/turf/open/floor/prison/darkred/full,
-/area/thonus/outdoors/colony_streets/north_street)
 "sly" = (
 /obj/structure/window/reinforced{
 	dir = 4;
@@ -28805,7 +28832,7 @@
 /turf/open/floor/prison,
 /area/thonus/indoors/lone_buildings/spaceport)
 "srs" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	layer = 3;
 	name = "????";
@@ -29825,7 +29852,7 @@
 /area/thonus/indoors/c_block/cargo)
 "sUi" = (
 /obj/structure/table/mainship,
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -30345,9 +30372,7 @@
 	},
 /area/thonus/indoors/a_block/dorms)
 "tkX" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 2
-	},
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/thonus/landing_zone_2)
 "tlr" = (
@@ -30894,7 +30919,7 @@
 /turf/open/floor/prison/whitegreenfull2,
 /area/thonus/indoors/a_block/bridges/dorms_fitness)
 "tCZ" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -31104,7 +31129,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/thonus/outdoors/colony_streets/south_east_street)
 "tMb" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	layer = 3;
 	name = "????";
@@ -31230,10 +31255,6 @@
 /obj/structure/prop/vehicle/crane,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/thonus/outdoors/colony_streets/south_east_street)
-"tQK" = (
-/obj/structure/cargo_container/ch_red,
-/turf/open/floor/prison/darkred/full,
-/area/thonus/outdoors/colony_streets/north_street)
 "tQN" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -31343,7 +31364,7 @@
 /turf/open/floor/prison,
 /area/thonus/landing_zone_forecon/landing_zone_4)
 "tTF" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -31829,7 +31850,7 @@
 /turf/open/floor/wood,
 /area/thonus/indoors/a_block/executive)
 "ukR" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -32225,7 +32246,7 @@
 /area/thonus/indoors/lone_buildings/engineering)
 "uCW" = (
 /obj/structure/bed/chair,
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -32543,7 +32564,7 @@
 /obj/structure/bed/chair{
 	dir = 8
 	},
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -32978,10 +32999,9 @@
 /turf/open/floor/prison/darkred/full,
 /area/thonus/indoors/a_block/security)
 "vap" = (
-/obj/structure/cable,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/thonus/landing_zone_2)
+/turf/open/floor/prison,
+/area/thonus/indoors/c_block/mining)
 "vaq" = (
 /obj/effect/decal/warning_stripes/thick/corner,
 /turf/open/floor/plating,
@@ -33178,7 +33198,7 @@
 /obj/structure/bed/chair/comfy{
 	dir = 4
 	},
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -33210,15 +33230,16 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/thonus/outdoors/colony_streets/central_streets)
 "vhR" = (
+/obj/structure/ore_box,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/thonus/landing_zone_2)
+/turf/open/floor/prison/darkbrown/full,
+/area/thonus/indoors/c_block/mining)
 "vhV" = (
 /obj/structure/prop/mainship/thonus/propserver,
 /turf/open/floor/mainship/black/full,
 /area/thonus/caves/west_caves)
 "vib" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -33255,7 +33276,7 @@
 /turf/open/floor/prison,
 /area/thonus/outdoors/colony_streets/north_west_street)
 "vjl" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -33837,7 +33858,7 @@
 /area/thonus/outdoors/colony_streets/central_streets)
 "vBF" = (
 /obj/structure/bed/roller,
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -34561,7 +34582,7 @@
 /turf/open/floor/plating,
 /area/thonus/indoors/c_block/cargo)
 "wbj" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	pixel_x = 3;
@@ -35262,7 +35283,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/thonus/outdoors/colony_streets/south_east_street)
 "wxm" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -35537,12 +35558,6 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/snow/layer0,
-/area/thonus/outdoors/colony_streets/north_street)
-"wHl" = (
-/obj/structure/cargo_container/red{
-	dir = 4
-	},
-/turf/open/floor/prison/darkred/full,
 /area/thonus/outdoors/colony_streets/north_street)
 "wHB" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -35889,7 +35904,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/thonus/outdoors/colony_streets/south_east_street)
 "wUn" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -37001,9 +37016,31 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/thonus/outdoors/colony_streets/east_central_street)
 "xJD" = (
+/obj/structure/window/reinforced{
+	dir = 4;
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8;
+	layer = 3.3;
+	pixel_y = 4
+	},
+/obj/structure/bed,
+/obj/structure/bed{
+	buckling_y = 13;
+	layer = 3.5;
+	pixel_y = 13
+	},
+/obj/item/bedsheet/brown{
+	pixel_y = 13
+	},
+/obj/item/bedsheet/brown{
+	layer = 3.1
+	},
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/closed/mineral/smooth/snowrock,
-/area/thonus/outdoors/colony_streets/south_east_street)
+/turf/open/floor/prison/plate,
+/area/thonus/indoors/c_block/mining)
 "xJK" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/warning_stripes/thin{
@@ -37074,6 +37111,12 @@
 /obj/structure/rack,
 /turf/open/floor/plating,
 /area/thonus/indoors/c_block/garage)
+"xLD" = (
+/obj/structure/cargo_container/ch_red{
+	dir = 1
+	},
+/turf/open/floor/prison/darkred/full,
+/area/thonus/outdoors/colony_streets/north_street)
 "xLY" = (
 /obj/item/tool/wirecutters,
 /turf/open/floor/prison,
@@ -37169,7 +37212,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/thonus/indoors/a_block/admin)
 "xOJ" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -37330,7 +37373,7 @@
 	},
 /area/thonus/indoors/a_block/medical)
 "xST" = (
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -37812,7 +37855,7 @@
 /obj/structure/bed/chair{
 	dir = 8
 	},
-/obj/item/clothing/mask/facehugger{
+/obj/item/clothing/mask/facehugger/dead{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
 	name = "????";
 	stat = 2
@@ -39025,7 +39068,7 @@ yiB
 yiB
 lmN
 oco
-lmN
+gEt
 qaM
 lmN
 yiB
@@ -39244,7 +39287,7 @@ qRm
 lmN
 lmN
 oIn
-lmN
+gEt
 lmN
 lmN
 jrq
@@ -39910,7 +39953,7 @@ twP
 lmN
 lmN
 lmN
-oIn
+gBm
 dQm
 lmN
 lmN
@@ -40131,7 +40174,7 @@ yiB
 twP
 dmh
 lmN
-oIn
+gBm
 yiB
 oco
 yiB
@@ -40812,8 +40855,8 @@ sFe
 yiB
 uXf
 yiB
-yiB
-lmN
+lsX
+gEt
 lmN
 nff
 bAh
@@ -41013,7 +41056,7 @@ cmF
 cmF
 ojq
 lmN
-lmN
+gEt
 yiB
 uXf
 yiB
@@ -41234,7 +41277,7 @@ cmF
 cmF
 cmF
 lmN
-lmN
+gEt
 myy
 yiB
 uXf
@@ -41901,7 +41944,7 @@ ojq
 yiB
 gEt
 vMT
-lmN
+gEt
 yiB
 uXf
 lmN
@@ -41922,7 +41965,7 @@ gbt
 yiB
 uXf
 lmN
-lmN
+gEt
 yiB
 yiB
 lmN
@@ -42120,7 +42163,7 @@ cmF
 rCM
 ibl
 yiB
-lmN
+gEt
 lmN
 lmN
 myy
@@ -42128,12 +42171,12 @@ lmN
 uXf
 yiB
 sUt
-xRj
-xRj
+qlb
+qlb
 xRj
 sSr
 xRj
-xRj
+qlb
 xRj
 qlb
 xRj
@@ -42145,7 +42188,7 @@ yiB
 uXf
 dQm
 cAW
-lmN
+gEt
 lmN
 uXf
 uXf
@@ -42353,7 +42396,7 @@ par
 xRj
 xRj
 xRj
-xRj
+qlb
 lMM
 xRj
 qlb
@@ -44791,7 +44834,7 @@ lmN
 mOQ
 uXf
 jAG
-lmN
+gEt
 qhP
 yiB
 lmN
@@ -44801,11 +44844,11 @@ lmN
 gEt
 rPc
 uXf
-lmN
+gEt
 dQm
 lmN
 lmN
-lmN
+gEt
 lmN
 qhP
 lmN
@@ -45913,7 +45956,7 @@ bvh
 kuB
 lmN
 lmN
-lmN
+gEt
 yiB
 lmN
 dQm
@@ -46127,7 +46170,7 @@ dQm
 lmN
 yiB
 lmN
-lmN
+gEt
 yiB
 dQm
 oIn
@@ -46138,7 +46181,7 @@ dQm
 lmN
 yiB
 lmN
-lmN
+gEt
 lmN
 uXf
 uXf
@@ -46345,17 +46388,17 @@ lmN
 yiB
 uXf
 rSK
-lmN
+gEt
 oIn
 dkT
 yiB
 rSK
 lmN
-lmN
+gEt
 lmN
 bvh
 uXf
-lmN
+gEt
 lmN
 yiB
 dmh
@@ -55740,7 +55783,7 @@ uew
 aIj
 wtN
 eLH
-hRj
+aGI
 wtN
 knI
 vaE
@@ -56626,7 +56669,7 @@ jlM
 trM
 jlM
 vdC
-mfX
+hDO
 awU
 awU
 xpN
@@ -56848,7 +56891,7 @@ jlM
 jlM
 jlM
 vdC
-wHl
+hMy
 jdx
 jdx
 jdx
@@ -59515,7 +59558,7 @@ jdx
 oab
 rip
 awU
-tQK
+hDe
 cuS
 nwP
 dpw
@@ -59737,7 +59780,7 @@ jdx
 aoE
 sFl
 awU
-cZU
+xLD
 cuS
 jlM
 drE
@@ -59959,7 +60002,7 @@ jdx
 awU
 bBO
 awU
-slg
+fBw
 cuS
 jlM
 jlM
@@ -65828,26 +65871,26 @@ pOG
 eWY
 eWY
 eWY
-eWY
-ndb
-ndb
-ndb
-ndb
-ndb
-pPX
-fWH
-xEZ
-xEZ
-xEZ
-aXD
-pPX
-gpx
-xEZ
-gpx
+xNw
+gEI
+gEI
+gEI
+gEI
+gEI
+eNo
+mNI
+vap
+vap
+vap
+vhR
+eNo
+xJD
+vap
+xJD
 nLw
-gpx
-xEZ
-gpx
+xJD
+vap
+xJD
 pPX
 ndb
 pPX
@@ -66050,7 +66093,7 @@ pOG
 eWY
 udO
 eWY
-eWY
+aBZ
 ndb
 ndb
 ndb
@@ -66069,7 +66112,7 @@ pPX
 pQm
 pPX
 pPX
-pPX
+mth
 pPX
 ndb
 pPX
@@ -66273,25 +66316,25 @@ xNw
 xNw
 xNw
 xNw
-xJD
-gEI
-gEI
-gEI
-gEI
-gEI
+ncH
+ndb
+ndb
+ndb
+ndb
+ndb
 dYh
 dYh
 dYh
 dYh
 dYh
-gEI
-gEI
-gEI
-eNo
-eNo
-gEI
-gEI
-gEI
+ndb
+ndb
+ndb
+npE
+npE
+ndb
+ndb
+nvd
 ndb
 ndb
 pPX
@@ -68956,21 +68999,21 @@ xmm
 nvl
 npE
 tkX
-aom
-pPX
-pPX
-kci
-fgn
-kci
-pPX
-pPX
-ndb
-ndb
-ndb
-ndb
-ndb
-ndb
-ndb
+ahI
+eNo
+eNo
+peC
+aUs
+peC
+eNo
+eNo
+gEI
+gEI
+gEI
+gEI
+gEI
+gEI
+nvd
 nsK
 "}
 (141,1,1) = {"
@@ -69177,7 +69220,7 @@ wNI
 xmm
 xmm
 wNI
-mNI
+npE
 aom
 aom
 pPX
@@ -69192,7 +69235,7 @@ ndb
 ndb
 ndb
 ndb
-ndb
+nvd
 nsK
 "}
 (142,1,1) = {"
@@ -69399,21 +69442,21 @@ bGr
 bGr
 bGr
 npE
-eNo
-eNo
-eNo
-eNo
-vhR
-vap
-vhR
-vhR
-vhR
-gEI
-gEI
-gEI
-gEI
-gEI
-gEI
+npE
+npE
+npE
+npE
+jDt
+wGi
+jDt
+jDt
+jDt
+ndb
+ndb
+ndb
+ndb
+ndb
+ndb
 nvd
 nsK
 "}
@@ -73040,7 +73083,7 @@ tIE
 wtu
 wtu
 wtu
-wtu
+kMm
 wtu
 kMm
 aVe
