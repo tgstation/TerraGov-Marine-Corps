@@ -9412,9 +9412,6 @@
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
-"aWG" = (
-/turf/open/floor/prison,
-/area/sulaco/hallway/lower_main_hall)
 "aWQ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -11835,15 +11832,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/evac)
-"dty" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/open/floor/prison/green/full,
-/area/sulaco/marine)
 "dtI" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
@@ -13844,15 +13832,6 @@
 	dir = 1
 	},
 /area/sulaco/medbay)
-"gtD" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/open/floor/prison/green/full,
-/area/sulaco/marine)
 "guu" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -44741,7 +44720,7 @@ aLf
 knr
 xJd
 rtA
-gtD
+aLk
 vhq
 aLf
 aQh
@@ -44998,7 +44977,7 @@ pBP
 pgQ
 xJd
 qyL
-dty
+aLk
 sQd
 euR
 aPg
@@ -45255,7 +45234,7 @@ aLf
 hlP
 qzc
 rtA
-dty
+aLk
 sQd
 euR
 aFa
@@ -45512,7 +45491,7 @@ aLf
 oHm
 aeW
 cSb
-dty
+aLk
 xHY
 euR
 wol
@@ -45769,7 +45748,7 @@ aLf
 vax
 qzc
 wYX
-dty
+aLk
 sQd
 euR
 vTH
@@ -46026,7 +46005,7 @@ pbD
 dmj
 mmI
 oJO
-dty
+aLk
 mAk
 euR
 qXN
@@ -46283,7 +46262,7 @@ aLG
 dmj
 aLG
 xla
-dty
+aLk
 lGX
 uRT
 aFa
@@ -46540,7 +46519,7 @@ xJd
 dmj
 xJd
 wYX
-dty
+aLk
 mAk
 euR
 fRw
@@ -46797,7 +46776,7 @@ aLf
 tex
 xJd
 wYX
-dty
+aLk
 mAk
 aLf
 qXN
@@ -47054,7 +47033,7 @@ aLf
 bHs
 xJd
 avL
-dty
+aLk
 mAk
 aLf
 vTH
@@ -47311,7 +47290,7 @@ aLf
 oSV
 xJd
 avL
-dty
+aLk
 mAk
 aLf
 xPE
@@ -47568,7 +47547,7 @@ aLf
 oSV
 xJd
 avL
-dty
+aLk
 uSw
 aLf
 eDY
@@ -47825,7 +47804,7 @@ gxf
 oSV
 xJd
 wYX
-dty
+aLk
 mAk
 aLf
 xMz
@@ -49623,7 +49602,7 @@ anq
 ajp
 oQN
 aPP
-aWG
+pIP
 eDG
 mDu
 mDu
@@ -49878,9 +49857,9 @@ alk
 alk
 dZI
 hCz
-aWG
+pIP
 xKR
-aWG
+pIP
 vHb
 vHb
 vHb
@@ -50137,7 +50116,7 @@ qBu
 uyf
 hbH
 xKR
-aWG
+pIP
 vHb
 rDx
 hzC
@@ -50392,7 +50371,7 @@ alk
 aqh
 arC
 hCz
-aWG
+pIP
 xKR
 dAv
 aam
@@ -50908,7 +50887,7 @@ and
 hFf
 xWt
 xKR
-aWG
+pIP
 aam
 aaP
 aeu
@@ -51422,7 +51401,7 @@ uJU
 hFf
 xWt
 tkS
-aWG
+pIP
 aam
 aaS
 abB
@@ -51679,7 +51658,7 @@ alm
 two
 aTg
 aVH
-aWG
+pIP
 aam
 kvF
 aam
@@ -51936,7 +51915,7 @@ uJU
 bkk
 xWt
 xKR
-aWG
+pIP
 aam
 abb
 abC
@@ -52705,9 +52684,9 @@ alx
 vSd
 jSM
 xMC
-aWG
+pIP
 xKR
-aWG
+pIP
 uPy
 aaq
 abJ
@@ -52962,9 +52941,9 @@ alx
 lIE
 jSM
 xMC
-aWG
+pIP
 xKR
-aWG
+pIP
 uPy
 aas
 aaE
@@ -53219,9 +53198,9 @@ alx
 vSd
 jSM
 xMC
-aWG
+pIP
 tvS
-aWG
+pIP
 aan
 aav
 aax
@@ -53733,7 +53712,7 @@ mdt
 vSd
 jSM
 xMC
-aWG
+pIP
 kKG
 uXi
 aaJ
@@ -54504,7 +54483,7 @@ tMH
 xWz
 uiN
 erP
-aWG
+pIP
 wXV
 uXi
 aaJ
@@ -54763,7 +54742,7 @@ alZ
 dMU
 bsi
 leD
-aWG
+pIP
 eqh
 iHS
 akM
@@ -55020,7 +54999,7 @@ xWz
 wVV
 pQL
 tkS
-aWG
+pIP
 eqh
 gGv
 qSR
@@ -55277,7 +55256,7 @@ vmY
 ewD
 ygz
 tfi
-aWG
+pIP
 eqh
 gtp
 mgi
@@ -55532,9 +55511,9 @@ eMd
 fqG
 asv
 erP
-aWG
+pIP
 wXV
-aWG
+pIP
 eqh
 kjK
 adf
@@ -56303,7 +56282,7 @@ mbw
 tCl
 rwy
 omu
-aWG
+pIP
 xKR
 kXj
 aaJ
@@ -56560,9 +56539,9 @@ fMR
 jtC
 jtC
 hOC
-aWG
+pIP
 xKR
-aWG
+pIP
 xua
 fVo
 tPL
@@ -56817,9 +56796,9 @@ jWd
 jtC
 jtC
 hOC
-aWG
+pIP
 vmi
-aWG
+pIP
 bXW
 fVo
 gUn
@@ -57074,9 +57053,9 @@ cPQ
 jtC
 jtC
 aGy
-aWG
+pIP
 xKR
-aWG
+pIP
 pIP
 fVo
 xzB
@@ -57333,7 +57312,7 @@ jtC
 iJX
 vhN
 xKR
-aWG
+pIP
 aaQ
 aaQ
 aaQ
@@ -57588,9 +57567,9 @@ wLv
 jtC
 jtC
 hOC
-aWG
+pIP
 xKR
-aWG
+pIP
 aaQ
 adR
 act
@@ -58361,7 +58340,7 @@ omu
 omu
 aWQ
 aXE
-aWG
+pIP
 aaQ
 aaQ
 aaQ
@@ -58618,7 +58597,7 @@ aJR
 aWa
 aTi
 xHE
-aWG
+pIP
 aZf
 aVY
 baQ
@@ -58875,7 +58854,7 @@ aJR
 aWb
 aTi
 tvk
-aWG
+pIP
 aZg
 aVY
 kYl
@@ -59132,7 +59111,7 @@ tNu
 aSB
 hlq
 xHE
-aWG
+pIP
 aZh
 kVT
 cIs
@@ -59646,7 +59625,7 @@ aJR
 aWe
 aWS
 aTD
-aWG
+pIP
 aZj
 aVY
 cqb
