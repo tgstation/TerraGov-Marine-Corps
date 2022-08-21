@@ -1262,3 +1262,32 @@
 	desc = "The machine stands inert, waiting for the command to begin extracting natural resources from the earth below."
 	icon = 'icons/Marine/mainship_props96.dmi'
 	icon_state = "thumper"
+
+/obj/structure/prop/radio_prop
+	name = "radio"
+	desc = "A standard military radio."
+	icon = 'icons/obj/items/radio.dmi'
+	icon_state = "beacon"
+	var/datum/looping_sound/radio/chatter_loop
+
+/obj/structure/prop/radio_prop/Initialize(mapload, ...)
+	. = ..()
+	chatter_loop = new(null, FALSE)
+	chatter_loop.start(src)
+
+/obj/structure/prop/radio_prop/Destroy()
+	QDEL_NULL(chatter_loop)
+	return ..()
+
+/obj/structure/prop/vehicle/som_mech
+	name = "Marauder assault mech"
+	desc = "A heavily armed mech used by the SOM to spearhead an assault, this one seems to be non-functional."
+	icon = 'icons/Marine/mech_prop.dmi'
+	icon_state = "som_mech"
+	density = TRUE
+	coverage = 70
+	bound_width = 32
+	pixel_x = -15
+	pixel_y = -15
+	resistance_flags = RESIST_ALL
+	layer = ABOVE_MOB_LAYER
