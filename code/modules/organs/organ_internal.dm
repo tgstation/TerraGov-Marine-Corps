@@ -243,17 +243,45 @@
 	removed_type = /obj/item/organ/kidneys
 	robotic_type = /obj/item/organ/kidneys/prosthetic
 	organ_id = ORGAN_KIDNEYS
-	///How much reagents can we have inside without side effects
-	var/max_reagents = 90
-	///How much it gets worse when kidneys are damaged
-	var/max_reagents_decrease = 30
-	var/overdosed = FALSE
+	///Tracks the number of reagent/medicine datums we currently have
+	var/current_medicine_count = 0
+	///How many drugs we can take before they overwhelm us. Decreases with damage
+	var/current_medicine_cap = 5
+	///Whether we were over cap the last time we checked.
+	var/old_overflow = FALSE
+	///Total medicines added since last tick
+	var/new_medicines = 0
+	///Total medicines removed since last tick
+	var/removed_medicines = 0
+
+/datum/internal_organ/kidneys/New(mob/living/carbon/carbon_mob)
+	. = ..()
+	RegisterSignal(carbon_mob.reagents, COMSIG_NEW_REAGENT_ADD, .proc/owner_added_reagent)
+	RegisterSignal(carbon_mob.reagents, COMSIG_REAGENT_DELETING, .proc/owner_removed_reagent)
+
+/datum/internal_organ/kidneys/clean_owner()
+	UnregisterSignal(owner.reagents, list(COMSIG_NEW_REAGENT_ADD, COMSIG_REAGENT_DELETING))
+	return ..()
+
+///Signaled proc. Check if the added reagent was under reagent/medicine. If so, increment medicine counter and potentially notify owner.
+/datum/internal_organ/kidneys/proc/owner_added_reagent(datum/source, reagent_type, amount)
+	SIGNAL_HANDLER
+	if(!ispath(reagent_type, /datum/reagent/medicine))
+		return
+	new_medicines++
+
+///Signaled proc. Check if the removed reagent was under reagent/medicine. If so, decrement medicine counter and potentially notify owner.
+/datum/internal_organ/kidneys/proc/owner_removed_reagent(datum/source, reagent_type)
+	SIGNAL_HANDLER
+	if(!ispath(reagent_type, /datum/reagent/medicine))
+		return
+	removed_medicines++
 
 /datum/internal_organ/kidneys/set_organ_status()
 	. = ..()
 	if(!.)
 		return
-	max_reagents = initial(max_reagents) - max_reagents_decrease * organ_status
+	current_medicine_cap = initial(current_medicine_cap) - 2 * organ_status
 
 /datum/internal_organ/kidneys/process()
 	..()
@@ -263,18 +291,25 @@
 	if(owner.bodytemperature <= 170) //No sense worrying about a chem cap if we're in cryo anyway. Still need to clear tick counts.
 		bypass = TRUE
 
-	if(owner.reagents.total_volume < max_reagents || bypass)
-		if(overdosed)
+	current_medicine_count += new_medicines //We want to include medicines that were individually both added and removed this tick
+	var/overflow = current_medicine_count - current_medicine_cap //This catches any case where a reagent was added with volume below its metabolism
+	current_medicine_count -= removed_medicines //Otherwise, you can microdose infinite chems without kidneys complaining
+
+	new_medicines = 0
+	removed_medicines = 0
+
+	if(overflow < 1 || bypass)
+		if(old_overflow)
 			to_chat(owner, span_notice("You don't feel as overwhelmed by all the drugs any more."))
-			overdosed = FALSE
+			old_overflow = FALSE
 		return
 
-	if(!overdosed)
+	if(!old_overflow)
 		to_chat(owner, span_warning("All the different drugs in you are starting to make you feel off..."))
-		overdosed = TRUE
+		old_overflow = TRUE
 
-	owner.hallucination += 2 + (owner.reagents.total_volume-max_reagents)/15
-	if(prob((owner.reagents.total_volume-max_reagents) * (organ_status + 1) * 0.66))
+	owner.set_drugginess(3)
+	if(prob(overflow * (organ_status + 1) * 10))
 		owner.Confused(2 SECONDS * (organ_status + 1))
 
 /datum/internal_organ/kidneys/prosthetic
