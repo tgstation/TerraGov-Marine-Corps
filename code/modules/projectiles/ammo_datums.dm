@@ -2567,7 +2567,7 @@ datum/ammo/bullet/revolver/tp44
 	hugger_type = /obj/item/clothing/mask/facehugger/combat/acid
 
 /// For Widows Web Spit Ability
-/datum/ammo/xeno/acid/web
+/datum/ammo/xeno/web
 	icon_state = "neurotoxin"
 	damage_type = STAMINA
 	added_spit_delay = 0 //used to make cooldown of the different spits vary.
@@ -2591,7 +2591,7 @@ datum/ammo/bullet/revolver/tp44
 	///List for bodyparts that upon being hit cause the target to become ensnared
 	var/list/snare_list = list(BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_L_FOOT, BODY_ZONE_PRECISE_R_FOOT)
 
-/datum/ammo/xeno/acid/web/on_hit_mob(mob/victim, obj/projectile/proj)
+/datum/ammo/xeno/web/on_hit_mob(mob/victim, obj/projectile/proj)
 	. = ..()
 	if(!ishuman(victim))
 		return
@@ -2603,26 +2603,27 @@ datum/ammo/bullet/revolver/tp44
 	if(proj.def_zone in snare_list)
 		human_victim.Immobilize(hit_immobilize)
 
-/datum/ammo/xeno/acid/web/leash_ball
+/datum/ammo/xeno/leash_ball
 	icon_state = "boiler_gas2" // temp
 	ping = "ping_x"
 	damage_type = STAMINA
+	damage = 0
 	spit_cost = 5
 	armor_type = "bio"
-	shell_speed = 1
+	shell_speed = 1.5
 	accuracy = 40
 	accurate_range = 15
 	max_range = 15
 
-/datum/ammo/xeno/acid/web/leash_ball/on_hit_turf(turf/T, obj/projectile/proj)
+/datum/ammo/xeno/leash_ball/on_hit_turf(turf/T, obj/projectile/proj)
 	. = ..()
 	new /obj/structure/xeno/aoe_leash(get_turf(T))
 
-/datum/ammo/xeno/acid/web/leash_ball/on_hit_mob(mob/victim, obj/projectile/proj)
+/datum/ammo/xeno/leash_ball/on_hit_mob(mob/victim, obj/projectile/proj)
 	. = ..()
 	new /obj/structure/xeno/aoe_leash(get_turf(victim))
 
-/datum/ammo/xeno/acid/web/leash_ball/on_hit_obj(obj/O, obj/projectile/proj)
+/datum/ammo/xeno/leash_ball/on_hit_obj(obj/O, obj/projectile/proj)
 	. = ..()
 	new /obj/structure/xeno/aoe_leash(get_turf(O))
 

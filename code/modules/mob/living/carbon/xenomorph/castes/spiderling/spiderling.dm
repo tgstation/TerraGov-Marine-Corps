@@ -1,7 +1,7 @@
 /mob/living/carbon/xenomorph/spiderling
 	caste_base_type = /mob/living/carbon/xenomorph/spiderling
 	name = "Spiderling"
-	desc = "Smoll spoder" // will change later
+	desc = "smoll spoder" // will change later
 	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "spiderling walking"
 	health = 200

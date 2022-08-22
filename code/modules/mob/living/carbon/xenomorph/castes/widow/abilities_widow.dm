@@ -2,14 +2,14 @@
 	name = "Web Spit"
 	ability_name = "Web Spit"
 	mechanics_text = "We spit a stretchy web at our prey"
-	action_icon_state = "toggle_bomb0" // temporary until I get my own icons
+	action_icon_state = "web_spit"
 	plasma_cost = 1
 	cooldown_timer = 5 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_WEB_SPIT
 
 /datum/action/xeno_action/activable/web_spit/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/X = owner
-	var/datum/ammo/xeno/acid/web/web_spit = GLOB.ammo_list[/datum/ammo/xeno/acid/web]
+	var/datum/ammo/xeno/web/web_spit = GLOB.ammo_list[/datum/ammo/xeno/web]
 	var/obj/projectile/newspit = new /obj/projectile(get_turf(X))
 
 	newspit.generate_bullet(web_spit, web_spit.damage * SPIT_UPGRADE_BONUS(X))
@@ -28,7 +28,7 @@
 	name = "leash_ball" // change to in character name later
 	ability_name = "leash_ball" // change to in character name later
 	mechanics_text = " Spit a huge ball of web that snares groups of marines "
-	action_icon_state = "scatter_spit" // temporary until I get my own icons
+	action_icon_state = "leash_ball"
 	plasma_cost = 1
 	cooldown_timer = 1 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_LEASH_BALL
@@ -40,7 +40,7 @@
 	if(!do_after(X, 1 SECONDS, TRUE, X, BUSY_ICON_DANGER)) // currently here for balance prediction, shooting a 5x5 AoE snare is pretty insane even for T3 imo
 		return fail_activate()
 
-	var/datum/ammo/xeno/acid/web/leash_ball = GLOB.ammo_list[/datum/ammo/xeno/acid/web/leash_ball]
+	var/datum/ammo/xeno/leash_ball = GLOB.ammo_list[/datum/ammo/xeno/leash_ball]
 	var/obj/projectile/newspit = new /obj/projectile(get_turf(X))
 
 	newspit.generate_bullet(leash_ball)
@@ -61,8 +61,6 @@
 	var/integrity_increase = 240
 	/// List of beams to be removed on obj_destruction
 	var/list/obj/effect/ebeam/beams
-	/// Beam var
-	var/obj/effect/ebeam/beam
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 
@@ -71,9 +69,8 @@
 	. = ..()
 	var/list/obj/effect/ebeam/beams = list()
 	for(var/mob/living/carbon/human/victim in view(leash_radius, loc))
-		beam = (beam(victim, "beam_heavy", 'icons/obj/items/projectiles.dmi', INFINITY, INFINITY))
-		beams += beam
-		RegisterSignal(victim, COMSIG_MOVABLE_MOVED, .proc/check_dist)
+		beams += (beam(victim, "beam_web", 'icons/effects/beam.dmi', INFINITY, INFINITY))
+		RegisterSignal(victim, COMSIG_MOVABLE_MOVED, .proc/check_dist, leashball)
 		obj_integrity = obj_integrity + integrity_increase
 		if(obj_integrity > max_integrity)
 			obj_integrity = max_integrity
@@ -83,17 +80,17 @@
 /// To remove beams after the leash_ball is destroyed
 /obj/structure/xeno/aoe_leash/obj_destruction()
 	. = ..()
-	if(!beams)
-		return
-	for(beam in beams)
-		qdel(beam)
+//	if(!beams)
+//		return
+//	for(beam in beams)
+//		QDEL_LIST(beam)
 
 /// Humans caught in the aoe_leash will be pulled back if they leave it's radius
 /obj/structure/xeno/aoe_leash/proc/check_dist(datum/leash_victim, atom/oldloc)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/human/victim = leash_victim
 	if(get_dist(victim, oldloc) >= leash_radius)
-		victim.Move(oldloc)
+		victim.doMove(oldloc)
 
 /// This is so that xenos can remove leash balls
 /obj/structure/xeno/aoe_leash/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
@@ -102,8 +99,6 @@
 	X.visible_message(span_xenonotice("\The [X] starts tearing down \the [src]!"), \
 	span_xenonotice("We start to tear down \the [src]."))
 	if(!do_after(X, 2 SECONDS, TRUE, X, BUSY_ICON_GENERIC))
-		return
-	if(!istype(src))
 		return
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	X.visible_message(span_xenonotice("\The [X] tears down \the [src]!"), \
@@ -119,7 +114,7 @@
 	name = "Birth Spiderling"
 	ability_name = "birth_spiderling"
 	mechanics_text = " Spawn a spiderling directly under you"
-	action_icon_state = "spawn_hugger" // temporary until I get my own icons
+	action_icon_state = "spawn_spiderling"
 	plasma_cost = 1 // increase later
 	cooldown_timer = 1 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_LEASH_BALL
@@ -143,10 +138,12 @@
 	succeed_activate()
 	add_cooldown()
 
+/// Adds spiderlings to spiderling list and registers them for death so we can remove them later
 /datum/action/xeno_action/create_spiderling/proc/add_spiderling(mob/living/carbon/xenomorph/spiderling/new_spiderling)
 	RegisterSignal(new_spiderling, COMSIG_MOB_DEATH, .proc/remove_spiderling)
 	spiderlings += new_spiderling
 
+/// Removes spiderling from spiderling list and unregisters death signal
 /datum/action/xeno_action/create_spiderling/proc/remove_spiderling(datum/source)
 	SIGNAL_HANDLER
 	spiderlings -= source
@@ -172,7 +169,7 @@
 	name = "spider_swarm" // change to in character name later
 	ability_name = "spider_swarm" // change to in character name later
 	mechanics_text = " Turn into a swarm of spiderlings "
-	action_icon_state = "ravage" // temporary until I get my own icons
+	action_icon_state = "spider_swarm"
 	plasma_cost = 1
 	cooldown_timer = 1 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_SPIDER_SWARM
@@ -210,7 +207,7 @@
 
 /// Put the player back in widow
 /datum/action/xeno_action/spider_swarm/proc/switch_to_mother()
-	owner.doMove(get_turf(current_controlling_spiderling))
+	owner.forceMove(get_turf(current_controlling_spiderling))
 	current_controlling_spiderling.mind.transfer_to(owner)
 
 // ***************************************
@@ -221,7 +218,7 @@
 	name = "Burrow"
 	ability_name = "Burrow"
 	mechanics_text = " Burrow into the ground to hide in plain sight "
-	action_icon_state = "savage_on" //temporary until I get my own icons
+	action_icon_state = "burrow"
 	plasma_cost = 1
 	cooldown_timer = 1 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_BURROW

@@ -1,6 +1,6 @@
 /datum/xeno_caste/spiderling
-	caste_name = "Spiderling"
-	display_name = "Spiderling"
+	caste_name = "spiderling"
+	display_name = "spiderling"
 	upgrade_name = ""
 	caste_desc = ""
 	wound_type = ""
