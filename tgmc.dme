@@ -488,7 +488,6 @@
 #include "code\game\area\icecolony.dm"
 #include "code\game\area\icy_caves.dm"
 #include "code\game\area\lv624.dm"
-#include "code\game\area\magmoor_digsite.dm"
 #include "code\game\area\mainship.dm"
 #include "code\game\area\orion_outpost.dm"
 #include "code\game\area\port_hamburg.dm"

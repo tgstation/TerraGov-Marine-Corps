@@ -52,10 +52,6 @@ endmap
 map whiskey_outpost_v2
 endmap
 
-map magmoor_digsite_iv
-	minplayers 20
-endmap
-
 map orion_outpost
 	maxplayers 40
 endmap
