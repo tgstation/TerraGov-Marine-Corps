@@ -124,6 +124,10 @@
 		human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>OVERWATCH</u></span><br>" + "[src] is being activated.", /obj/screen/text/screen_text/command_order)
 	current_timer = addtimer(CALLBACK(src, .proc/complete_segment), generate_time, TIMER_STOPPABLE)
 	current_aura = SSaura.add_emitter(src, AURA_HUMAN_HOLD, aura_range, aura_strength, -1, FACTION_TERRAGOV)
+	var/added_time = 3 MINUTES //how much time is added to the game end timer after a phase is finished
+	var/datum/game_mode/combat_patrol/sensor_capture/D = SSticker.mode
+	var/current_time = timeleft(D.game_timer)
+	D.game_timer = addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/set_game_end), current_time + added_time, TIMER_STOPPABLE)
 	update_icon()
 
 /obj/structure/sensor_tower_patrol/proc/complete_segment()

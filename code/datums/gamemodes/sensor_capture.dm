@@ -3,7 +3,7 @@
 	config_tag = "Sensor Capture"
 	flags_round_type = MODE_LZ_SHUTTERS|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_SOM_OPFOR|MODE_SPECIFIC_SHIP_MAP|MODE_SENSOR
 	wave_timer_length = 2 MINUTES
-	shutters_drop_time = 2 MINUTES
+	max_game_time = 10 MINUTES
 	sensors_needed = 5
 
 /datum/game_mode/combat_patrol/sensor_capture/post_setup()
@@ -30,6 +30,13 @@
 	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/set_game_timer), SSticker.round_start_time + shutters_drop_time) //game end timer will start ticking down on shutter drop
 	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/respawn_wave), SSticker.round_start_time + shutters_drop_time) //starts wave respawn on shutter drop and begins timer
 	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, SSticker.round_start_time + shutters_drop_time + bioscan_interval)
+
+/datum/game_mode/combat_patrol/sensor_capture/set_game_end()
+	var/datum/game_mode/combat_patrol/D = SSticker.mode
+	var/current_time = timeleft(D.game_timer)
+	if(current_time > 0)
+		return
+	max_time_reached = TRUE
 
 //End game checks
 /datum/game_mode/combat_patrol/sensor_capture/check_finished()
