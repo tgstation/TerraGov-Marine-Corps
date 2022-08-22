@@ -1060,7 +1060,7 @@ datum/ammo/bullet/revolver/tp44
 	handful_amount = 5
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	damage = 120
-	penetration = 10
+	penetration = 20
 	sundering = 10
 
 /datum/ammo/bullet/sniper/martini/on_hit_mob(mob/M, obj/projectile/P)
