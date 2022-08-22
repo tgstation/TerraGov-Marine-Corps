@@ -118,7 +118,7 @@
 
 	user.visible_message(span_notice("[user] finishes repairing [src]."),
 	span_notice("You finish repairing [src]."))
-	repair_damage((src.max_integrity-src.integrity_failure) * 0.2)
+	repair_damage((max_integrity-integrity_failure) * 0.2)
 	update_icon()
 	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 	return TRUE
