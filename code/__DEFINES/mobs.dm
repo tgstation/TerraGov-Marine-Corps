@@ -766,6 +766,9 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 
 #define HUMAN_CARRY_SLOWDOWN 0.35
 
+//Limb damage speed modifiers
+#define SLOWDOWN_LEG_BROKEN 0.2
+#define SLOWDOWN_FOOT_BROKEN 0.05
 
 // =============================
 // Hallucinations - health hud screws for carbon mobs

@@ -891,6 +891,20 @@ Note that amputating the affected organ does in fact remove the infection from t
 /datum/limb/proc/is_malfunctioning()
 	return ((limb_status & LIMB_ROBOT) && (get_damage() > min_broken_damage))
 
+
+//For legs and feet
+/datum/limb/proc/is_broken()
+	if (is leg)
+		owner.add_movespeed_modifier(MOVESPEED_ID_LEG_BROKEN, TRUE, 0, NONE, TRUE, SLOWDOWN_LEG_BROKEN)
+	if (is hand)
+		owner.add_movespeed_modifier(MOVESPEED_ID_FOOT_BROKEN, TRUE, 0, NONE, TRUE, SLOWDOWN_FOOT_BROKEN)
+/datum/limb/proc/is_malfunctioning()
+	if (is leg)
+		owner.add_movespeed_modifier(MOVESPEED_ID_LEG_BROKEN, TRUE, 0, NONE, TRUE, SLOWDOWN_LEG_BROKEN)
+	if (is hand)
+		owner.add_movespeed_modifier(MOVESPEED_ID_FOOT_BROKEN, TRUE, 0, NONE, TRUE, SLOWDOWN_FOOT_BROKEN)
+
+
 //for arms and hands
 /datum/limb/proc/process_grasp(obj/item/c_hand, hand_name)
 	if (!c_hand)
