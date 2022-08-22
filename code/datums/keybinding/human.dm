@@ -121,3 +121,21 @@
 	full_name = "Send Order"
 	description = "Order marines a certain message"
 	keybind_signal = COMSIG_KB_SENDORDER
+
+/datum/keybinding/human/attack_order
+	name = "attack_order"
+	full_name = "Issue Attack Order"
+	description = "Order and rally marines to attack"
+	keybind_signal = COMSIG_KB_ATTACKORDER
+
+/datum/keybinding/human/defend_order
+	name = "defend_order"
+	full_name = "Issue Hold Order"
+	description = "Order and rally marines to defend"
+	keybind_signal = COMSIG_KB_DEFENDORDER
+
+/datum/keybinding/human/retreat_order
+	name = "hold_order"
+	full_name = "Issue Hold Order"
+	description = "Order and rally marines to retreat"
+	keybind_signal = COMSIG_KB_RETREATORDER
