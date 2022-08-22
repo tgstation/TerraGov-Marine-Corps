@@ -130,12 +130,12 @@
 
 /datum/keybinding/human/defend_order
 	name = "defend_order"
-	full_name = "Issue Hold Order"
+	full_name = "Issue Defend Order"
 	description = "Order and rally marines to defend"
 	keybind_signal = COMSIG_KB_DEFENDORDER
 
 /datum/keybinding/human/retreat_order
-	name = "hold_order"
-	full_name = "Issue Hold Order"
+	name = "retreat_order"
+	full_name = "Issue Retreat Order"
 	description = "Order and rally marines to retreat"
 	keybind_signal = COMSIG_KB_RETREATORDER
