@@ -731,8 +731,8 @@ datum/ammo/bullet/revolver/tp44
 	shell_speed = 3
 	max_range = 15
 	damage = 100
-	penetration = 20
-	sundering = 15
+	penetration = 15
+	sundering = 5
 
 /datum/ammo/bullet/shotgun/slug/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, weaken = 1, stagger = 2, knockback = 1, slowdown = 2)
@@ -764,7 +764,7 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_SUNDERING
 	max_range = 15
 	damage = 70
-	penetration = 15
+	penetration = 10
 	sundering = 2
 	bullet_color = COLOR_TAN_ORANGE
 
