@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - code_imp: "Made projectile maybe less expansive performance wise"
