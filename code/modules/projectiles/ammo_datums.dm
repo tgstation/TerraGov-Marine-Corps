@@ -1072,6 +1072,7 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "sniper_heavy_crude_nitro"
 	handful_amount = 5
 	damage = 60
+	penetration = 20
 	sundering = 45
 
 /datum/ammo/bullet/sniper/martini/nitro/on_hit_mob(mob/M, obj/projectile/P)
