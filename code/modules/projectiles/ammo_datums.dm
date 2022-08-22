@@ -1073,7 +1073,7 @@ datum/ammo/bullet/revolver/tp44
 	handful_amount = 5
 	damage = 60
 	penetration = 20
-	sundering = 45
+	sundering = 35
 
 /datum/ammo/bullet/sniper/martini/nitro/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, weaken = 1, stagger = 1, knockback = 2, slowdown = 0.5, max_range = 5)
