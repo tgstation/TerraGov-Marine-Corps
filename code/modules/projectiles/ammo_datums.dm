@@ -1072,7 +1072,7 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "sniper_heavy_crude_nitro"
 	handful_amount = 5
 	damage = 60
-	sundering = 35
+	sundering = 45
 
 /datum/ammo/bullet/sniper/martini/nitro/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, weaken = 1, stagger = 1, knockback = 2, slowdown = 0.5, max_range = 5)
