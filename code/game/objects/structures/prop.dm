@@ -1120,67 +1120,67 @@
 /obj/structure/prop/vehicle/apc/decoration/emptyfuelcell
 	icon_state = "emptyfuelcell"
 
-/obj/structure/prop/mainship/thonus/propplaceholder
+/obj/structure/prop/mainship/gelida/propplaceholder
 	name = "prop placeholder"
 	desc = "Somebody fucked up, ping the map creator on Discord with the location of this object."
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "placeholderprop"
 
-/obj/structure/prop/mainship/thonus/smallwire
+/obj/structure/prop/mainship/gelida/smallwire
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "small_wire"
 	density = FALSE
 
-/obj/structure/prop/mainship/thonus/lightstick
+/obj/structure/prop/mainship/gelida/lightstick
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "lightstick_spoke1"
 	density = FALSE
 
-/obj/structure/prop/mainship/thonus/planterbox
+/obj/structure/prop/mainship/gelida/planterbox
 	name = "plant box"
 	desc = "A metallic box used for holding growing plants, this one is empty."
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "planter_box_empty"
 	layer = BELOW_OBJ_LAYER
 
-/obj/structure/prop/mainship/thonus/planterboxsoil
+/obj/structure/prop/mainship/gelida/planterboxsoil
 	name = "plant box"
 	desc = "A metallic box used for holding growing plants, this one is filled with soil."
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "planter_box_soil"
 	layer = BELOW_OBJ_LAYER
 
-/obj/structure/prop/mainship/thonus/planterboxsoilgrid
+/obj/structure/prop/mainship/gelida/planterboxsoilgrid
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "soil_grid"
 	layer = BELOW_OBJ_LAYER
 
-/obj/structure/prop/mainship/thonus/propserver
+/obj/structure/prop/mainship/gelida/propserver
 	name = "colony research server"
 	desc = "This machine sits quietly, you can see a warning light faintly shining on its diagnostic panel."
 	icon = 'icons/obj/machines/telecomms.dmi'
 	icon_state = "comm_server_off"
 
-/obj/structure/prop/mainship/thonus/propserveralt
+/obj/structure/prop/mainship/gelida/propserveralt
 	name = "colony research server"
 	desc = "This machine sits quietly, you can see a warning light faintly shining on its diagnostic panel."
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "server_alt"
 
-/obj/structure/prop/mainship/thonus/barrier
+/obj/structure/prop/mainship/gelida/barrier
 	name = "security barrier"
 	desc = "A deployable barrier used by security forces to cordone off an area."
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "barrier0"
 
-/obj/structure/prop/mainship/thonus/heavycablenode
+/obj/structure/prop/mainship/gelida/heavycablenode
 	name = "heavy cable node"
 	desc = "A heavy cable node used for linking high performance cables between buildings."
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "node"
 	density = FALSE
 
-/obj/structure/prop/mainship/thonus/powerconnector
+/obj/structure/prop/mainship/gelida/powerconnector
 	name = "heavy cable power connector"
 	desc = "A heavy cable node used for connecting high performance cables between buildings."
 	icon = 'icons/Marine/mainship_props.dmi'
@@ -1188,7 +1188,7 @@
 	layer = ATMOS_PIPE_LAYER
 	density = FALSE
 
-/obj/structure/prop/mainship/thonus/powerccable
+/obj/structure/prop/mainship/gelida/powerccable
 	name = "heavy cable wiring"
 	desc = "A heavy cable wire used rapid data transfer between buildings."
 	icon = 'icons/Marine/mainship_props.dmi'
@@ -1196,7 +1196,7 @@
 	layer = ATMOS_PIPE_LAYER
 	density = FALSE
 
-/obj/structure/prop/mainship/thonus/powercconnectortwoside
+/obj/structure/prop/mainship/gelida/powercconnectortwoside
 	name = "heavy cable wiring"
 	desc = "A heavy cable wire used rapid data transfer between buildings."
 	icon = 'icons/Marine/mainship_props.dmi'
@@ -1204,7 +1204,7 @@
 	layer = ATMOS_PIPE_LAYER
 	density = FALSE
 
-/obj/structure/prop/mainship/thonus/powercconnectortwosidealt
+/obj/structure/prop/mainship/gelida/powercconnectortwosidealt
 	name = "heavy cable wiring"
 	desc = "A heavy cable wire used rapid data transfer between buildings."
 	icon = 'icons/Marine/mainship_props.dmi'
@@ -1212,7 +1212,7 @@
 	layer = ATMOS_PIPE_LAYER
 	density = FALSE
 
-/obj/structure/prop/mainship/thonus/powercconnectorthreeside
+/obj/structure/prop/mainship/gelida/powercconnectorthreeside
 	name = "heavy cable wiring"
 	desc = "A heavy cable wire used rapid data transfer between buildings."
 	icon = 'icons/Marine/mainship_props.dmi'
@@ -1220,7 +1220,7 @@
 	layer = ATMOS_PIPE_LAYER
 	density = FALSE
 
-/obj/structure/prop/mainship/thonus/powercconnectorfourside
+/obj/structure/prop/mainship/gelida/powercconnectorfourside
 	name = "heavy cable wiring"
 	desc = "A heavy cable wire used rapid data transfer between buildings."
 	icon = 'icons/Marine/mainship_props.dmi'
@@ -1228,7 +1228,7 @@
 	layer = ATMOS_PIPE_LAYER
 	density = FALSE
 
-/obj/structure/prop/mainship/thonus/rails
+/obj/structure/prop/mainship/gelida/rails
 	name = "minecart rails"
 	desc = "Metal rails used for guiding a minecart."
 	icon = 'icons/Marine/mainship_props.dmi'
@@ -1236,7 +1236,7 @@
 	layer = BELOW_TABLE_LAYER
 	density = FALSE
 
-/obj/structure/prop/mainship/thonus/railbumper
+/obj/structure/prop/mainship/gelida/railbumper
 	name = "minecart rail bumper"
 	desc = "A metal bumper designed to catch out of control minecarts."
 	icon = 'icons/Marine/mainship_props.dmi'
@@ -1244,20 +1244,20 @@
 	layer = BELOW_TABLE_LAYER
 	density = FALSE
 
-/obj/structure/prop/mainship/thonus/register
+/obj/structure/prop/mainship/gelida/register
 	name = "register"
 	desc = "An antique cash register, it accepts only hard currency, not spacecredits."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "register_static"
 	density = FALSE
 
-/obj/structure/prop/mainship/thonus/propladder
+/obj/structure/prop/mainship/gelida/propladder
 	name = "ladder"
 	desc = "The ladder sways precariously, its connection to the upper floor severed by a large chunk of sharp metal."
 	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "ladder11"
 
-/obj/structure/prop/mainship/thonus/miner
+/obj/structure/prop/mainship/gelida/miner
 	name = "miner"
 	desc = "The machine stands inert, waiting for the command to begin extracting natural resources from the earth below."
 	icon = 'icons/Marine/mainship_props96.dmi'
