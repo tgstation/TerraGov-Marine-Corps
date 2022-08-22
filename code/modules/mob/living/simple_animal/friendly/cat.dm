@@ -160,9 +160,3 @@
 	if(loc == user)
 		return
 	qdel(src)
-
-/obj/item/clothing/head/cat/martin
-	name = "Martin"
-	desc = "Requisition's very own caracal. They put a lot of pressure on that neck . . ."
-	icon_state = "martin"
-	var/mob/living/simple_animal/cat/martin
