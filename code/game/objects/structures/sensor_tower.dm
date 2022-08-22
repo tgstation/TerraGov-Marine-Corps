@@ -161,10 +161,6 @@
 	else
 		SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "relay_[id][current_timer ? "_on" : "_off"]")
 
-/obj/structure/sensor_tower_patrol/Destroy()
-	GLOB.zones_to_control -= src
-	return ..()
-
 /obj/structure/sensor_tower_patrol/bravo
 	name = "bravo sensor tower"
 	id = 2
