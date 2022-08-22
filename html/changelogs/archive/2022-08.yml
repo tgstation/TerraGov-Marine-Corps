@@ -193,3 +193,27 @@
   collinlunn:
   - bugfix: The bluespace teleporter's description now tells you how to remove the
       cell.
+2022-08-22:
+  Lumipharon:
+  - rscadd: 'Combat patrol: Added a BR-8 loadout to TGMC marines, limited to two per
+      game'
+  - rscadd: 'Combat patrol: Added a MPI_KM with UBL loadout to SOM marine, engie and
+      medic'
+  - rscadd: 'Combat patrol: Added spaceacillin to TGMC medics'
+  lbnesquik:
+  - rscadd: Added mortar & howitzers shots to end round.
+  mc-oofert:
+  - rscadd: Added another set of railing to the ASRS so crates dont get spaced
+  novaepee:
+  - rscdel: remove reinforced windows in prep to free roomba
+  tyeagg:
+  - rscadd: reworked combat patrol base maps
+  - soundadd: added radio chatter sounds for a radio prop
+  - imageadd: added entry point for combat patrol
+  - imageadd: added  som cas plane
+  - imageadd: added  som prop mech
+  - imageadd: added  new platform sprites
+  - imageadd: added  som flag turfs
+  - imageadd: added gives bunk beds bed sheets
+  - imageadd: added tachi base sign
+  - imageadd: added prop npcs

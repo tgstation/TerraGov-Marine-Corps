@@ -1,6 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes: 
-  - rscadd: "Combat patrol: Added a BR-8 loadout to TGMC marines, limited to two per game"
-  - rscadd: "Combat patrol: Added a MPI_KM with UBL loadout to SOM marine, engie and medic"
-  - rscadd: "Combat patrol: Added spaceacillin to TGMC medics"
