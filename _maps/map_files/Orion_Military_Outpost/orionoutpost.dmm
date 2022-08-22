@@ -3676,6 +3676,7 @@
 /turf/open/ground/grasspatch/grassyellow,
 /area/orion_outpost/ground/outpostse)
 "sG" = (
+/obj/effect/landmark/sensor_tower_patrol_a,
 /turf/open/floor/mainship/terragov/north{
 	dir = 1
 	},
@@ -6213,6 +6214,10 @@
 	},
 /turf/open/ground/river,
 /area/orion_outpost/ground/river/riverside_south)
+"Gk" = (
+/obj/effect/landmark/sensor_tower_patrol_e,
+/turf/open/floor/mainship/mono,
+/area/orion_outpost/surface/building/tadpolepad)
 "Gl" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -6967,6 +6972,10 @@
 	dir = 4
 	},
 /area/orion_outpost/surface/building/medbay)
+"Kh" = (
+/obj/effect/landmark/sensor_tower_patrol_c,
+/turf/open/floor/mainship/mono,
+/area/orion_outpost/surface/building/command)
 "Ki" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -9582,6 +9591,10 @@
 /obj/machinery/atmospherics/components/unary/tank/air,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/tadpolepad)
+"Xr" = (
+/obj/effect/landmark/sensor_tower_patrol_b,
+/turf/open/floor/mainship/mono,
+/area/orion_outpost/surface/building/cargo)
 "Xt" = (
 /obj/machinery/light{
 	dir = 4
@@ -9831,6 +9844,7 @@
 /turf/open/ground/grasspatch/grassyellow,
 /area/orion_outpost/ground/outpostsw)
 "YC" = (
+/obj/effect/landmark/sensor_tower_patrol_d,
 /turf/open/floor/mainship/terragov/north,
 /area/orion_outpost/surface/building/prep)
 "YE" = (
@@ -18592,7 +18606,7 @@ Qw
 Qw
 ae
 NA
-Qw
+Xr
 Qw
 Qw
 Uw
@@ -22622,7 +22636,7 @@ Tm
 TD
 iS
 yz
-qT
+Gk
 qT
 qT
 IX
@@ -23253,7 +23267,7 @@ Fl
 lj
 xm
 hw
-XQ
+Kh
 XQ
 vq
 Zd

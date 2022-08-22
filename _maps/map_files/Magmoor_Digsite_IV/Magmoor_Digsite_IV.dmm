@@ -2431,6 +2431,10 @@
 	dir = 4
 	},
 /area/magmoor/cargo/storage/secure/south)
+"ckj" = (
+/obj/effect/landmark/sensor_tower_patrol_c,
+/turf/open/floor/mainship/mono,
+/area/magmoor/cargo/processing/south)
 "cko" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -9262,6 +9266,10 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/central)
+"gKT" = (
+/obj/effect/landmark/sensor_tower_patrol_e,
+/turf/open/floor/mainship/sterile/dark,
+/area/magmoor/medical/treatment)
 "gKY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -16635,6 +16643,10 @@
 	dir = 1
 	},
 /area/magmoor/cave/central)
+"lWN" = (
+/obj/effect/landmark/sensor_tower_patrol_a,
+/turf/open/floor/carpet,
+/area/magmoor/command/conference)
 "lXD" = (
 /obj/structure/closet/walllocker/hydrant/extinguisher,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -23608,6 +23620,10 @@
 	dir = 4
 	},
 /area/magmoor/compound/north)
+"qLo" = (
+/obj/effect/landmark/sensor_tower_patrol_d,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/magmoor/cave/south)
 "qLH" = (
 /turf/open/lavaland/basalt/cave{
 	dir = 8
@@ -35962,6 +35978,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
+/obj/effect/landmark/sensor_tower_patrol_b,
 /turf/open/floor/mainship/mono,
 /area/magmoor/cargo/processing)
 "ydQ" = (
@@ -50658,7 +50675,7 @@ nxX
 vBP
 xdO
 fRk
-fRk
+ckj
 kMJ
 tyq
 eaO
@@ -55933,7 +55950,7 @@ lTN
 lTN
 lTN
 lTN
-lTN
+qLo
 lTN
 qjG
 xXo
@@ -61092,7 +61109,7 @@ vbg
 qWb
 tlb
 wyb
-gpU
+lWN
 rCm
 rCm
 gpU
@@ -62185,7 +62202,7 @@ ekC
 gBh
 hAH
 fiT
-hAH
+gKT
 fEK
 glB
 hAH

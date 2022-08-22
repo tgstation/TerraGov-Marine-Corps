@@ -23875,6 +23875,11 @@
 	dir = 4
 	},
 /area/desert_dam/building/medical/virology_isolation)
+"cLZ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/sensor_tower_patrol_e,
+/turf/open/floor/prison/kitchen,
+/area/desert_dam/building/cafeteria/cafeteria)
 "cMb" = (
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/building/medical/virology_wing)
@@ -32058,6 +32063,7 @@
 "eZH" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/landmark/sensor_tower_patrol_a,
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/building/administration/hallway)
 "fah" = (
@@ -60849,6 +60855,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/south_valley_dam)
+"vql" = (
+/obj/effect/landmark/sensor_tower_patrol_b,
+/turf/open/floor/prison/bright_clean/two,
+/area/desert_dam/interior/lab_northeast/east_lab_biology)
 "vqq" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -62301,6 +62311,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/interior/dam_interior/control_room)
+"weR" = (
+/obj/effect/landmark/sensor_tower_patrol_d,
+/turf/open/floor/prison/whitegreen,
+/area/desert_dam/building/medical/treatment_room)
 "weT" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -64862,6 +64876,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/cafeteria/loading)
+"xBF" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/sensor_tower_patrol_c,
+/turf/open/floor/prison/darkred,
+/area/desert_dam/building/security/southern_hallway)
 "xBO" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -75679,7 +75698,7 @@ bFp
 aYd
 bFi
 aQm
-twr
+xBF
 lJV
 bDI
 btZ
@@ -104464,7 +104483,7 @@ cyk
 cEF
 oyT
 fRl
-cHc
+weR
 eRP
 cIH
 cJG
@@ -110180,7 +110199,7 @@ gbq
 amo
 gbq
 qKx
-alI
+vql
 ajY
 sAE
 afP
@@ -112223,7 +112242,7 @@ dcw
 dUt
 rWr
 rWr
-rWr
+cLZ
 lId
 sMg
 phA

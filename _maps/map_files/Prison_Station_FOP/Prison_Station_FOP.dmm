@@ -5263,6 +5263,7 @@
 /area/prison/security/checkpoint/maxsec_highsec)
 "aru" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/landmark/sensor_tower_patrol_a,
 /turf/open/floor/prison,
 /area/prison/security/checkpoint/maxsec_highsec)
 "arv" = (
@@ -43019,6 +43020,10 @@
 "iMr" = (
 /turf/open/floor/carpet,
 /area/prison/command/quarters)
+"iNx" = (
+/obj/effect/landmark/sensor_tower_patrol_d,
+/turf/open/floor/plating/platebot,
+/area/prison/pirate)
 "iNO" = (
 /turf/open/floor/prison/darkyellow{
 	dir = 1
@@ -44060,6 +44065,10 @@
 /obj/structure/bed,
 /turf/open/floor/prison/cellstripe,
 /area/prison/cellblock/protective)
+"lHZ" = (
+/obj/effect/landmark/sensor_tower_patrol_b,
+/turf/open/floor/prison/bright_clean,
+/area/prison/yard)
 "lJG" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/cleanmarked,
@@ -47406,6 +47415,10 @@
 	},
 /turf/open/floor/prison/darkred/full,
 /area/prison/security/monitoring/maxsec/panopticon)
+"uuz" = (
+/obj/effect/landmark/sensor_tower_patrol_e,
+/turf/open/floor/plating,
+/area/prison/engineering/atmos)
 "uva" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -47776,6 +47789,10 @@
 	},
 /turf/open/ground/grass,
 /area/prison/residential/central)
+"vvo" = (
+/obj/effect/landmark/sensor_tower_patrol_c,
+/turf/open/floor/prison,
+/area/prison/hangar_storage/main)
 "vvI" = (
 /obj/structure/barricade/wooden{
 	dir = 8
@@ -71589,7 +71606,7 @@ cir
 lZe
 ckl
 lZe
-lED
+iNx
 lED
 cnI
 cmS
@@ -86705,7 +86722,7 @@ eOr
 bqq
 eOr
 bnz
-eOr
+lHZ
 aFz
 bny
 bjj
@@ -96247,7 +96264,7 @@ bQj
 bRH
 bTo
 bUK
-bWk
+uuz
 aRW
 bZc
 bRM
@@ -102096,7 +102113,7 @@ aFW
 aHk
 aIo
 aIp
-mBn
+vvo
 aIp
 aIo
 aMy

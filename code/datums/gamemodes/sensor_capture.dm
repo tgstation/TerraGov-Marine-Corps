@@ -3,7 +3,7 @@
 	config_tag = "Sensor Capture"
 	flags_round_type = MODE_LZ_SHUTTERS|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_SOM_OPFOR|MODE_SPECIFIC_SHIP_MAP|MODE_SENSOR
 	wave_timer_length = 2 MINUTES
-	max_game_time = 10 MINUTES
+	max_game_time = 15 MINUTES
 	sensors_needed = 5
 
 /datum/game_mode/combat_patrol/sensor_capture/post_setup()

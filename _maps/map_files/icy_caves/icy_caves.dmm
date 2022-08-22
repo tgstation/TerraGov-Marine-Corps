@@ -1206,6 +1206,10 @@
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/south)
+"fK" = (
+/obj/effect/landmark/sensor_tower_patrol_d,
+/turf/open/floor/prison/bright_clean/two,
+/area/icy_caves/caves/northwestmonorail)
 "fP" = (
 /obj/effect/landmark/patrol_point{
 	id = "SOM_13";
@@ -1258,6 +1262,10 @@
 "gB" = (
 /turf/open/floor/tile/dark/brown2,
 /area/icy_caves/outpost/refinery)
+"gC" = (
+/obj/effect/landmark/sensor_tower_patrol_a,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/medbay)
 "gF" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -2123,6 +2131,11 @@
 	dir = 4
 	},
 /area/icy_caves/caves/weapon_vault)
+"le" = (
+/obj/item/ammo_casing,
+/obj/effect/landmark/sensor_tower_patrol_b,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/security)
 "lg" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -3356,6 +3369,10 @@
 	dir = 8
 	},
 /area/icy_caves/outpost/LZ2)
+"qM" = (
+/obj/effect/landmark/sensor_tower_patrol_c,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/south)
 "qN" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
@@ -3926,6 +3943,10 @@
 /obj/structure/largecrate/supply/supplies/coifs,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ2)
+"sZ" = (
+/obj/effect/landmark/sensor_tower_patrol_e,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/engineering)
 "tb" = (
 /obj/structure/sink,
 /obj/machinery/light{
@@ -13527,7 +13548,7 @@ bW
 bW
 nw
 gP
-yi
+fK
 yi
 yi
 EP
@@ -20497,7 +20518,7 @@ Ai
 sg
 uR
 RK
-Kp
+gC
 rW
 Kp
 Ai
@@ -20612,7 +20633,7 @@ Td
 Td
 Td
 Td
-Td
+qM
 UX
 Td
 Td
@@ -24879,7 +24900,7 @@ VQ
 Jz
 Ie
 Ie
-LU
+le
 Kh
 yR
 Zo
@@ -25797,7 +25818,7 @@ YZ
 ro
 rO
 si
-si
+sZ
 Rq
 oS
 Jo
