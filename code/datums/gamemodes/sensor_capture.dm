@@ -21,7 +21,7 @@
 
 /datum/game_mode/combat_patrol/sensor_capture/announce()
 	to_chat(world, "<b>The current game mode is - Sensor Capture!</b>")
-	to_chat(world, "<b>The SOM have launched an invasion to this sector. TerraGov and SOM forces fight over the extrasolar communication sensor towers.</b>")
+	to_chat(world, "<b>The SOM have launched an invasion to this sector. TerraGov and SOM forces fight over the sensor towers around the sector.</b>")
 
 /datum/game_mode/combat_patrol/sensor_capture/setup_blockers()
 	. = ..()
