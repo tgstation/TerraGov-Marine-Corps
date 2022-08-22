@@ -1067,8 +1067,9 @@ datum/ammo/bullet/revolver/tp44
 	staggerstun(M, P, weaken = 1, stagger = 1, knockback = 2, slowdown = 0.5, max_range = 5)
 
 /datum/ammo/bullet/sniper/martini/nitro
-	name = "nitro express heavy sniper bullet"
-	handful_icon_state = "nitro express heavy sniper bullet"
+	name = "nitro express crude heavy sniper bullet"
+	handful_icon_state = "nitro express crude heavy sniper bullet"
+	hud_state = "sniper_heavy_crude_nitro"
 	handful_amount = 5
 	damage = 60
 	sundering = 35

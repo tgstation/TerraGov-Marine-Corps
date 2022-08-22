@@ -85,7 +85,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 /obj/item/ammo_magazine/rifle/martini/nitro
 	name = "box of .557 nitro express rifle rounds"
 	desc = "A box filled with nitro express rifle bullets."
-	default_ammo = /datum/ammo/bullet/sniper/martini/sniper_nitro
+	default_ammo = /datum/ammo/bullet/sniper/martini/nitro
 
 /obj/item/ammo_magazine/pistol/derringer
 	name = "box of .40 rimfire pistol rounds"

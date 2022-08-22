@@ -378,6 +378,7 @@
 	item_state = "martini"
 	shell_eject_animation = "martini_flick"
 	caliber = CALIBER_557 //codex
+	load_method = SINGLE_CASING //codex
 	muzzle_flash_lum = 7
 	max_chamber_items = 1 //codex
 	ammo_datum_type = /datum/ammo/bullet/sniper/martini
