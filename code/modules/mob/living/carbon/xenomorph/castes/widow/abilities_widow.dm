@@ -247,7 +247,7 @@
 	X.throwpass = TRUE
 	X.widow_burrowed = TRUE
 	/// Here we make every single spiderling that we have also burrow and assign a signal so that they unburrow too
-	for(var/mob/living/carbon/xenomorph/spiderling/spiderling in create_spiderling_action.spiderlings)
+	for(var/mob/living/carbon/xenomorph/spiderling/spiderling AS in create_spiderling_action.spiderlings)
 		/// Here we register them for the signal and burrow them
 		RegisterSignal(spiderling, COMSIG_MOVABLE_MOVED, .proc/unburrow)
 		spiderling.alpha = 0
