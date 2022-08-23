@@ -968,18 +968,6 @@
 	new /obj/item/ammo_magazine/shotgun/buckshot(src)
 	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_gun)
 
-
-/obj/item/storage/belt/gun/pistol/m4a3/officer/Initialize()
-	. = ..()
-	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/rt3(src)
-	new /obj/item/ammo_magazine/pistol/hp(src)
-	new /obj/item/ammo_magazine/pistol/hp(src)
-	new /obj/item/ammo_magazine/pistol/ap(src)
-	new /obj/item/ammo_magazine/pistol/ap(src)
-	new /obj/item/ammo_magazine/pistol/ap(src)
-	new /obj/item/ammo_magazine/pistol/ap(src)
-	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_gun)
-
 /obj/item/storage/belt/gun/pistol/smart_pistol
 	name = "\improper SP-13 holster rig"
 	desc = "A holster belt, which holds SP-13 smartpistol and magazines for it."
