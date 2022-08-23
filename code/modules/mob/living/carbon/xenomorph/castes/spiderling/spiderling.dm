@@ -14,6 +14,12 @@
 	pull_speed = -2
 	flags_pass = PASSXENO
 
+/// This is for projectiles to ignore spiderling if its burrowed
+/mob/living/carbon/xenomorph/spiderling/projectile_hit()
+	if(spiderling_burrowed)
+		return
+	return ..()
+
 /mob/living/carbon/xenomorph/spiderling/Initialize(mapload, mob/living/carbon/xenomorph/spidermother)
 	. = ..()
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/spiderling, spidermother)

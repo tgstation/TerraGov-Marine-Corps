@@ -355,6 +355,12 @@
 	// Warrior vars
 	var/agility = 0		// 0 - upright, 1 - all fours
 
+	// Spiderling vars
+	var/spiderling_burrowed = 0 //0 unburrowed, 1 - burrowed
+
+	// Widow vars
+	var/widow_burrowed = 0 //0 unburrowed, 1 - burrowed
+
 	// Defender vars
 	var/fortify = 0
 	var/crest_defense = 0
