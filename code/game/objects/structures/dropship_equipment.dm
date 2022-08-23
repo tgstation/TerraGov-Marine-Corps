@@ -483,7 +483,7 @@
 	desc = "A box that deploys a modified M56D crewserved machine gun. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
 	equip_category = DROPSHIP_CREW_WEAPON
 	icon_state = "mg_system"
-	point_cost = 300
+	point_cost = 190
 	///machine type for the internal gun and for checking if the gun is deployed
 	var/obj/machinery/deployable/mounted/deployed_mg
 
@@ -524,7 +524,7 @@
 	desc = "A box that deploys a modified MG-2005 crewserved minigun. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
 	equip_category = DROPSHIP_CREW_WEAPON
 	icon_state = "minigun_system"
-	point_cost = 0 //this removes it from the fabricator
+	point_cost = 300
 	///machine type for the internal gun and for checking if the gun is deployed
 	var/obj/machinery/deployable/mounted/deployed_minigun
 
@@ -565,7 +565,7 @@
 	desc = "A box that deploys a modified ATR-22 crewserved dualcannon. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
 	equip_category = DROPSHIP_CREW_WEAPON
 	icon_state = "ac_system"
-	point_cost = 0 //this removes it from the fabricator
+	point_cost = 225
 	///machine type for the internal gun and for checking if the gun is deployed
 	var/obj/machinery/deployable/mounted/deployed_dualcannon
 
@@ -606,7 +606,7 @@
 	desc = "A box that deploys a modified TE-9001 crewserved heavylaser. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
 	equip_category = DROPSHIP_CREW_WEAPON
 	icon_state = "hl_system"
-	point_cost = 0 //this removes it from the fabricator
+	point_cost = 375
 	///machine type for the internal gun and for checking if the gun is deployed
 	var/obj/machinery/deployable/mounted/deployed_heavylaser
 
@@ -647,7 +647,7 @@
 	desc = "A box that deploys a modified RR-15 crewserved recoilless rifle. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
 	equip_category = DROPSHIP_CREW_WEAPON
 	icon_state = "rr_system"
-	point_cost = 0 //this removes it from the fabricator
+	point_cost = 675
 	///machine type for the internal gun and for checking if the gun is deployed
 	var/obj/machinery/deployable/mounted/deployed_heavyrr
 
