@@ -25,8 +25,8 @@
 // ***************************************
 
 /datum/action/xeno_action/activable/leash_ball
-	name = "leash_ball" // change to in character name later
-	ability_name = "leash_ball" // change to in character name later
+	name = "Leash Ball"
+	ability_name = "Leash Ball"
 	mechanics_text = " Spit a huge ball of web that snares groups of marines "
 	action_icon_state = "leash_ball"
 	plasma_cost = 1
@@ -171,8 +171,8 @@
 // *********** Spider Swarm
 // ***************************************
 /datum/action/xeno_action/spider_swarm
-	name = "spider_swarm" // change to in character name later
-	ability_name = "spider_swarm" // change to in character name later
+	name = "Spider Swarm"
+	ability_name = "Spider Swarm"
 	mechanics_text = " Turn into a swarm of spiderlings "
 	action_icon_state = "spider_swarm"
 	plasma_cost = 1
@@ -181,7 +181,7 @@
 	/// The spiderling we are controlling right now
 	var/mob/living/carbon/xenomorph/spiderling/current_controlling_spiderling
 	/// how many spiderlings should spawn to replace widow
-	var/amount_of_spiderlings = 3
+	var/amount_of_spiderlings = 2
 
 /datum/action/xeno_action/spider_swarm/action_activate()
 	. = ..()
@@ -195,12 +195,12 @@
 	/// We want to access the spiderlings list and therefore have this
 	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = owner.actions_by_path[/datum/action/xeno_action/create_spiderling]
 
-	var/mob/living/carbon/xenomorph/spiderling/new_spiderling = new /mob/living/carbon/xenomorph/spiderling(current_controlling_spiderling.loc, current_controlling_spiderling)
-	/// here we add the created spiderligns to the list
-	create_spiderling_action.add_spiderling(new_spiderling)
+	for(var/spawned_spiderlings = 0, spawned_spiderlings < amount_of_spiderlings, spawned_spiderlings++)
+		var/mob/living/carbon/xenomorph/spiderling/new_spiderling = new /mob/living/carbon/xenomorph/spiderling(current_controlling_spiderling.loc, current_controlling_spiderling)
+		/// here we add the created spiderligns to the list
+		create_spiderling_action.add_spiderling(new_spiderling)
+
 	create_spiderling_action.add_spiderling(current_controlling_spiderling)
-
-
 	succeed_activate()
 	add_cooldown()
 
@@ -259,6 +259,7 @@
 	succeed_activate()
 	add_cooldown()
 
+/// Called whenever either spiderling or widow move after having burrowed
 /datum/action/xeno_action/burrow/proc/unburrow(mob/M)
 	SIGNAL_HANDLER
 	/// This is here so that spiderlings unburrow without mixing vars
@@ -279,7 +280,6 @@
 	if(!X.widow_burrowed)
 		return
 	/// This unburrows widow
-
 	X.alpha = 255
 	X.mouse_opacity = initial(X.mouse_opacity)
 	X.density = TRUE
