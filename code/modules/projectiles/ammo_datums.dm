@@ -2568,8 +2568,11 @@ datum/ammo/bullet/revolver/tp44
 
 /// For Widows Web Spit Ability
 /datum/ammo/xeno/web
-	icon_state = "neurotoxin"
+	icon_state = "web_spit"
 	damage_type = STAMINA
+	bullet_color = COLOR_WHITE
+	flags_ammo_behavior = AMMO_SKIPS_ALIENS
+	ping = null
 	added_spit_delay = 0 //used to make cooldown of the different spits vary.
 	spit_cost = 5
 	//icon_state = "" need to create my own
@@ -2578,7 +2581,7 @@ datum/ammo/bullet/revolver/tp44
 	armor_type = "bio"
 	shell_speed = 1
 	accuracy = 40
-	accurate_range = 15
+	accurate_range = 10
 	max_range = 15
 	///Blind duration
 	var/hit_eye_blind = 5 SECONDS
@@ -2607,12 +2610,14 @@ datum/ammo/bullet/revolver/tp44
 	icon_state = "widow_snareball"
 	ping = "ping_x"
 	damage_type = STAMINA
+	flags_ammo_behavior = AMMO_SKIPS_ALIENS
+	ping = null
 	damage = 0
 	armor_type = "bio"
 	shell_speed = 1.5
 	accuracy = 40
 	accurate_range = 15
-	max_range = 15
+	max_range = 8
 
 /datum/ammo/leash_ball/on_hit_turf(turf/T, obj/projectile/proj)
 	. = ..()
