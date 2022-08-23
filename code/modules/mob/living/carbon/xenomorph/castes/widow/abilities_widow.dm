@@ -227,6 +227,7 @@
 	plasma_cost = 1
 	cooldown_timer = 1 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_BURROW
+
 /datum/action/xeno_action/burrow/action_activate()
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
