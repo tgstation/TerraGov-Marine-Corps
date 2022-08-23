@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes: 
+  - bugfix: "Fixed lighting not updating in modular map areas during Combat Patrol"
+  - balance: "Combat Patrol: Increased the light level of deep caves"
