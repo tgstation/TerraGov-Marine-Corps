@@ -40,7 +40,7 @@
 	if(!do_after(X, 1 SECONDS, TRUE, X, BUSY_ICON_DANGER)) // currently here for balance prediction, shooting a 5x5 AoE snare is pretty insane even for T3 imo
 		return fail_activate()
 
-	var/datum/ammo/xeno/leash_ball = GLOB.ammo_list[/datum/ammo/xeno/leash_ball]
+	var/datum/ammo/leash_ball = GLOB.ammo_list[/datum/ammo/leash_ball]
 	var/obj/projectile/newspit = new /obj/projectile(get_turf(X))
 
 	newspit.generate_bullet(leash_ball)
@@ -50,8 +50,8 @@
 
 /obj/structure/xeno/aoe_leash
 	name = "Snaring Web"
-	icon = 'icons/obj/items/projectiles.dmi' // temp ?
-	icon_state = "boiler_gas2" // temp
+	icon = 'icons/Xeno/Effects.dmi'
+	icon_state = "aoe_leash"
 	desc = "Looks very sticky"
 	destroy_sound = "alien_resin_break"
 	max_integrity = 1920
@@ -60,37 +60,42 @@
 	/// How much more integrity aoe_leash gains per caught marine, it is preferable that max_integrity is this var * 8.
 	var/integrity_increase = 240
 	/// List of beams to be removed on obj_destruction
-	var/list/obj/effect/ebeam/beams
+	var/list/obj/effect/ebeam/beams = list()
+	/// List of victims to unregister aoe_leash is destroyed
+	var/list/mob/living/carbon/human/leash_victims = list()
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 
 /// Humans caught get beamed and registered for proc/check_dist, aoe_leash also gains increased integrity for each caught human
 /obj/structure/xeno/aoe_leash/Initialize(mapload)
 	. = ..()
-	var/list/obj/effect/ebeam/beams = list()
 	for(var/mob/living/carbon/human/victim in view(leash_radius, loc))
 		beams += (beam(victim, "beam_web", 'icons/effects/beam.dmi', INFINITY, INFINITY))
-		RegisterSignal(victim, COMSIG_MOVABLE_MOVED, .proc/check_dist, leashball)
+		leash_victims += victim
+		RegisterSignal(victim, COMSIG_MOVABLE_MOVED, .proc/check_dist)
 		obj_integrity = obj_integrity + integrity_increase
 		if(obj_integrity > max_integrity)
-			obj_integrity = max_integrity
-	if(!beams)
+			obj_integrity = min(obj_integrity + integrity_increase, max_integrity)
+	if(!length(beams))
 		return INITIALIZE_HINT_QDEL
 
-/// To remove beams after the leash_ball is destroyed
+/// To remove beams after the leash_ball is destroyed and also unregister all victims
 /obj/structure/xeno/aoe_leash/obj_destruction()
 	. = ..()
-//	if(!beams)
-//		return
-//	for(beam in beams)
-//		QDEL_LIST(beam)
+	for(var/mob/living/carbon/human/victim in leash_victims)
+		UnregisterSignal(victim, COMSIG_MOVABLE_MOVED)
+	leash_victims = list()
+	if(!length(beams))
+		return
+	QDEL_LIST(beams)
+
 
 /// Humans caught in the aoe_leash will be pulled back if they leave it's radius
 /obj/structure/xeno/aoe_leash/proc/check_dist(datum/leash_victim, atom/oldloc)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/human/victim = leash_victim
-	if(get_dist(victim, oldloc) >= leash_radius)
-		victim.doMove(oldloc)
+	if(get_dist(victim, src) >= leash_radius)
+		victim.forceMove(oldloc)
 
 /// This is so that xenos can remove leash balls
 /obj/structure/xeno/aoe_leash/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
@@ -98,7 +103,7 @@
 		return
 	X.visible_message(span_xenonotice("\The [X] starts tearing down \the [src]!"), \
 	span_xenonotice("We start to tear down \the [src]."))
-	if(!do_after(X, 2 SECONDS, TRUE, X, BUSY_ICON_GENERIC))
+	if(!do_after(X, 1 SECONDS, TRUE, X, BUSY_ICON_GENERIC))
 		return
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	X.visible_message(span_xenonotice("\The [X] tears down \the [src]!"), \
@@ -126,7 +131,7 @@
 /// The action to create spiderlings
 /datum/action/xeno_action/create_spiderling/action_activate()
 	. = ..()
-	if(spiderlings.len >= max_spiderlings)
+	if(length(spiderlings) >= max_spiderlings)
 		owner.visible_message(span_notice("We have reached the maximum amount of spiderlings"))
 		return fail_activate()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -153,9 +158,9 @@
 	if(source != spider_swarm_action.current_controlling_spiderling)
 		return
 	var/next_spiderling
-	if(spiderlings.len >= 1)
+	if(length(spiderlings) >= 1)
 		next_spiderling = pick(spiderlings)
-	else if(spiderlings.len <= 0)
+	else if(length(spiderlings) <= 0)
 		next_spiderling = null
 	if(!next_spiderling)
 		spider_swarm_action.switch_to_mother()
@@ -183,14 +188,14 @@
 	if(!do_after(owner, 3 SECONDS, TRUE, owner, BUSY_ICON_DANGER))
 		return fail_activate()
 	/// We store the spiderling that we want to posses in order to make the other spiderlings follow it
-	current_controlling_spiderling = new /mob/living/carbon/xenomorph/spiderling(get_turf(owner), owner)
+	current_controlling_spiderling = new(get_turf(owner), owner)
 	SEND_SIGNAL(owner, COMSIG_ESCORTED_ATOM_CHANGING, current_controlling_spiderling)
 	owner.mind.transfer_to(current_controlling_spiderling)
 	owner.doMove(null)
 	/// We want to access the spiderlings list and therefore have this
 	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = owner.actions_by_path[/datum/action/xeno_action/create_spiderling]
 
-	var/new_spiderling = new /mob/living/carbon/xenomorph/spiderling(current_controlling_spiderling.loc, current_controlling_spiderling)
+	var/mob/living/carbon/xenomorph/spiderling/new_spiderling = new /mob/living/carbon/xenomorph/spiderling(current_controlling_spiderling.loc, current_controlling_spiderling)
 	/// here we add the created spiderligns to the list
 	create_spiderling_action.add_spiderling(new_spiderling)
 	create_spiderling_action.add_spiderling(current_controlling_spiderling)
@@ -239,7 +244,7 @@
 	to_chat(X, span_xenowarning("We have burrowed ourselves, we are hidden from the enemy"))
 	/// This is the burrow code for Widow
 	X.alpha = 0
-	X.mouse_opacity = 0
+	X.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	X.density = FALSE
 	X.throwpass = TRUE
 	burrowed = TRUE
@@ -248,7 +253,7 @@
 		/// Here we register them for the signal and burrow them
 		RegisterSignal(spiderling, COMSIG_MOVABLE_MOVED, .proc/unburrow)
 		spiderling.alpha = 0
-		spiderling.mouse_opacity = 0
+		spiderling.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 		spiderling.density = FALSE
 		spiderling.throwpass = TRUE
 	/// This signal ensures that widow will also unborrow
@@ -263,7 +268,7 @@
 		var/mob/living/carbon/xenomorph/spiderling/S = M
 		UnregisterSignal(S, COMSIG_MOVABLE_MOVED)
 		S.alpha = 255
-		S.mouse_opacity = 255
+		S.mouse_opacity = initial(S.mouse_opacity)
 		S.density = TRUE
 		S.throwpass = FALSE
 		return
@@ -273,7 +278,7 @@
 	/// This unburrows widow
 	var/mob/living/carbon/xenomorph/X = M
 	X.alpha = 255
-	X.mouse_opacity = 255
+	X.mouse_opacity = initial(X.mouse_opacity)
 	X.density = TRUE
 	X.throwpass = FALSE
 	burrowed = FALSE

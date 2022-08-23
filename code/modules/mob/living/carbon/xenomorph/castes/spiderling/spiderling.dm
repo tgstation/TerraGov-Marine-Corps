@@ -1,9 +1,9 @@
 /mob/living/carbon/xenomorph/spiderling
 	caste_base_type = /mob/living/carbon/xenomorph/spiderling
 	name = "Spiderling"
-	desc = "smoll spoder" // will change later
+	desc = "Spawn of Widow"
 	icon = 'icons/Xeno/Effects.dmi'
-	icon_state = "spiderling walking"
+	icon_state = "Spiderling Running"
 	health = 200
 	maxHealth = 200
 	plasma_stored = 200

@@ -2603,27 +2603,26 @@ datum/ammo/bullet/revolver/tp44
 	if(proj.def_zone in snare_list)
 		human_victim.Immobilize(hit_immobilize)
 
-/datum/ammo/xeno/leash_ball
-	icon_state = "boiler_gas2" // temp
+/datum/ammo/leash_ball
+	icon_state = "widow_snareball"
 	ping = "ping_x"
 	damage_type = STAMINA
 	damage = 0
-	spit_cost = 5
 	armor_type = "bio"
 	shell_speed = 1.5
 	accuracy = 40
 	accurate_range = 15
 	max_range = 15
 
-/datum/ammo/xeno/leash_ball/on_hit_turf(turf/T, obj/projectile/proj)
+/datum/ammo/leash_ball/on_hit_turf(turf/T, obj/projectile/proj)
 	. = ..()
 	new /obj/structure/xeno/aoe_leash(get_turf(T))
 
-/datum/ammo/xeno/leash_ball/on_hit_mob(mob/victim, obj/projectile/proj)
+/datum/ammo/leash_ball/on_hit_mob(mob/victim, obj/projectile/proj)
 	. = ..()
 	new /obj/structure/xeno/aoe_leash(get_turf(victim))
 
-/datum/ammo/xeno/leash_ball/on_hit_obj(obj/O, obj/projectile/proj)
+/datum/ammo/leash_ball/on_hit_obj(obj/O, obj/projectile/proj)
 	. = ..()
 	new /obj/structure/xeno/aoe_leash(get_turf(O))
 
