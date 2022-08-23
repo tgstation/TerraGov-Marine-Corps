@@ -126,7 +126,7 @@
 	var/datum/game_mode/combat_patrol/sensor_capture/D = SSticker.mode
 	var/current_time = timeleft(D.game_timer)
 	D.game_timer = addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/set_game_end), current_time + 5 MINUTES, TIMER_STOPPABLE)
-	activated = true
+	activated = TRUE
 	update_icon()
 
 /obj/structure/sensor_tower_patrol/update_icon()
