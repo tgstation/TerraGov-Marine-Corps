@@ -114,6 +114,7 @@
 
 	log_game("[key_name(src)] made a vocal announcement with the following message: [message].")
 	log_talk(message, LOG_SAY, tag="VOX Announcement")
+	to_chat(src, span_notice("The following vocal announcement has been made: [message]."))
 
 	for(var/word in words) //play vox sounds to the rest of our zlevel
 		play_vox_word(word, src.z, null)
