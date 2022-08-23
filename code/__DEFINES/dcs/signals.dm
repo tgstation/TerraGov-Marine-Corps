@@ -765,6 +765,10 @@
 #define COMSIG_KB_FOCUSORDER "keybind_focusorder"
 #define COMSIG_KB_RALLYORDER "keybind_rallyorder"
 #define COMSIG_KB_SENDORDER "keybind_sendorder"
+#define COMSIG_KB_ATTACKORDER "keybind_attackorder"
+#define COMSIG_KB_DEFENDORDER "keybind_defendorder"
+#define COMSIG_KB_RETREATORDER "keybind_retreatorder"
+
 
 // human modules signals for keybindings
 #define COMSIG_KB_VALI_CONFIGURE "keybinding_vali_configure"

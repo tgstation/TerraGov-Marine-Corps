@@ -103,6 +103,7 @@
 
 //These 'personal' subtypes are the ones not used by overwatch; like what SL or FC gets
 /datum/action/innate/order/attack_order/personal
+	keybind_signal = COMSIG_KB_ATTACKORDER
 
 /datum/action/innate/order/attack_order/personal/should_show()
 	return owner.skills.getRating(skill_name) >= skill_min
@@ -121,6 +122,7 @@
 	visual_type = /obj/effect/temp_visual/order/defend_order
 
 /datum/action/innate/order/defend_order/personal
+	keybind_signal = COMSIG_KB_DEFENDORDER
 
 /datum/action/innate/order/defend_order/personal/should_show()
 	return owner.skills.getRating(skill_name) >= skill_min
@@ -138,6 +140,7 @@
 	visual_type = /obj/effect/temp_visual/order/retreat_order
 
 /datum/action/innate/order/retreat_order/personal
+	keybind_signal = COMSIG_KB_RETREATORDER
 
 /datum/action/innate/order/retreat_order/personal/should_show()
 	return owner.skills.getRating(skill_name) >= skill_min
