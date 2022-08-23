@@ -44,7 +44,7 @@
 ///Make sure that the code compiles with AI_VOX undefined
 #ifdef AI_VOX
 ///cooldown between vox announcements, divide by 10 to get the time in seconds
-#define VOX_DELAY 600
+#define VOX_DELAY 400
 /mob/living/silicon/ai/proc/announcement_help() //displays a list of available vox words for the user to make sentences with, players can click the words to hear a preview of how they sound
 
 	if(incapacitated())
