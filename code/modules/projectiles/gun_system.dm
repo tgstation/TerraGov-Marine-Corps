@@ -1227,9 +1227,9 @@
 			object_to_insert = new default_ammo_type(src)
 		if(!reload(object_to_insert, null, TRUE))
 			qdel(object_to_insert)
-	cycle()
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN))
 		ENABLE_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED)
+		cycle()
 	update_icon()
 
 ///Handles unloading. Called on attackhand. Draws the chamber_items out first, then in_chamber
