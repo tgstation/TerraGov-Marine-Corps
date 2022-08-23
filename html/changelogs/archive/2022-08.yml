@@ -217,3 +217,12 @@
   - imageadd: added gives bunk beds bed sheets
   - imageadd: added tachi base sign
   - imageadd: added prop npcs
+2022-08-23:
+  BraveMole:
+  - code_imp: Made projectile maybe less expansive performance wise
+  Lumipharon:
+  - qol: 'Combat Patrol: Made some loadout descriptions clearer'
+  RikuTheKiller:
+  - balance: All shields now repair based on a percentage (20%)
+  - bugfix: Shield integrity messages now display correctly
+  - spellcheck: Changed wording in a lot of shield messages

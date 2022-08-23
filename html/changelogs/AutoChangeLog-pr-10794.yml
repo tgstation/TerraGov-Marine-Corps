@@ -1,6 +1,0 @@
-author: "RikuTheKiller"
-delete-after: True
-changes: 
-  - balance: "All shields now repair based on a percentage (20%)"
-  - bugfix: "Shield integrity messages now display correctly"
-  - spellcheck: "Changed wording in a lot of shield messages"
