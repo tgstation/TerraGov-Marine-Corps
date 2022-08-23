@@ -22,8 +22,9 @@
 	. = ..()
 	if(istype(SSticker.mode, /datum/game_mode/combat_patrol))
 		if(SSticker.mode.flags_round_type & MODE_SENSOR)
-			to_chat(M, span_highdanger("Your platoon has orders to defend this ao's sensor towers and prevent them from reactivation by TerraGov forces until heavy reeinforcement arrives. High Command considers the successful prevention of the reactivation of the sensor towers a major victory"))
-		to_chat(M, span_highdanger("Your platoon has orders to patrol a remote territory illegally claimed by TerraGov imperialists. Intel suggests TGMC units are similarly trying to press their claims by force. Work with your team and eliminate all TGMC you encounter while preserving your own strength! High Command considers wiping out all enemies a major victory, or inflicting more casualties a minor victory."))
+			to_chat(M, span_highdanger("Your platoon has orders to defend sensor towers in the AO and prevent them from reactivation by TerraGov forces until heavy reeinforcement arrives. High Command considers the successful prevention of the reactivation of the sensor towers a major victory"))
+		else
+			to_chat(M, span_highdanger("Your platoon has orders to patrol a remote territory illegally claimed by TerraGov imperialists. Intel suggests TGMC units are similarly trying to press their claims by force. Work with your team and eliminate all TGMC you encounter while preserving your own strength! High Command considers wiping out all enemies a major victory, or inflicting more casualties a minor victory."))
 		return
 
 /datum/job/som/squad/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)

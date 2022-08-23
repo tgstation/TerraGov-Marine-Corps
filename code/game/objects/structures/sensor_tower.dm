@@ -71,20 +71,15 @@
 	layer = BELOW_OBJ_LAYER
 	resistance_flags = RESIST_ALL
 	var/current_timer
-	var/generate_time = 50 SECONDS
-	var/total_segments = 3 // total number of times the activation is required
+	var/generate_time = 150 SECONDS
 	var/activate_time = 5 SECONDS // time to start the activation
 	var/deactivate_time = 10 SECONDS // time to stop the activation proccess
 	var/completed_segments = 0 // what segment we are on, (once this hits total, sensor tower segment is finished)
 	var/id = 1
 	var/activated = FALSE // if all segments are finished
-	var/datum/aura_bearer/current_aura
-	var/aura_strength = 3
-	var/aura_range = 8
 
 /obj/structure/sensor_tower_patrol/Initialize()
 	. = ..()
-	GLOB.zones_to_control += src
 	update_icon()
 
 /obj/structure/sensor_tower_patrol/attack_hand(mob/living/user)
@@ -94,22 +89,18 @@
 		user.balloon_alert(user, "You are already doing something!")
 		return
 	if(user.faction != FACTION_TERRAGOV)
-		balloon_alert(user, "Only TerraGov can do the objective, defend this!")
 		if(current_timer)
 			if(!do_after(user, deactivate_time, TRUE, src))
 				return
 			current_timer = null
 			balloon_alert(user, "You stop the activation process!")
 			update_icon()
-			QDEL_NULL(current_aura)
 			for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 				human.playsound_local(human, "sound/effects/CIC_order.ogg", 10, 1)
 				human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>OVERWATCH</u></span><br>" + "[src] activation process has been stopped.", /obj/screen/text/screen_text/command_order)
+		balloon_alert(user, "Only TerraGov can activate the objective, defend this!")
 		return
-	if(!(SSticker.mode?.flags_round_type & MODE_TWO_HUMAN_FACTIONS))
-		to_chat(user, span_warning("There is nothing to do with [src]"))
-		return
-	if(completed_segments >= total_segments)
+	if(activated)
 		balloon_alert(user, "[src] is already fully activated!")
 		return
 	if(current_timer)
@@ -122,32 +113,20 @@
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		human.playsound_local(human, "sound/effects/CIC_order.ogg", 10, 1)
 		human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>OVERWATCH</u></span><br>" + "[src] is being activated.", /obj/screen/text/screen_text/command_order)
-	current_timer = addtimer(CALLBACK(src, .proc/complete_segment), generate_time, TIMER_STOPPABLE)
-	current_aura = SSaura.add_emitter(src, AURA_HUMAN_HOLD, aura_range, aura_strength, -1, FACTION_TERRAGOV)
-	var/added_time = 3 MINUTES //how much time is added to the game end timer after a phase is finished
-	var/datum/game_mode/combat_patrol/sensor_capture/D = SSticker.mode
-	var/current_time = timeleft(D.game_timer)
-	D.game_timer = addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/set_game_end), current_time + added_time, TIMER_STOPPABLE)
-	update_icon()
+	current_timer = addtimer(CALLBACK(src, .proc/finish_activation), generate_time, TIMER_STOPPABLE)
 
-/obj/structure/sensor_tower_patrol/proc/complete_segment()
+/obj/structure/sensor_tower_patrol/proc/finish_activation()
 	playsound(src, 'sound/machines/ping.ogg', 25, 1)
 	current_timer = null
-	QDEL_NULL(current_aura)
-	completed_segments += 1
-
-	if(completed_segments == total_segments)
-		balloon_alert_to_viewers("[src] has finished activation!")
-		for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
-			human.playsound_local(human, "sound/effects/CIC_order.ogg", 10, 1)
-			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>OVERWATCH</u></span><br>" + "[src] is fully activated.", /obj/screen/text/screen_text/command_order)
-		SSticker.mode.sensors_activated += 1
-		return
-
+	balloon_alert_to_viewers("[src] has finished activation!")
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		human.playsound_local(human, "sound/effects/CIC_order.ogg", 10, 1)
-		human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>OVERWATCH</u></span><br>" + "[src] has finished phase [completed_segments] of activation.", /obj/screen/text/screen_text/command_order)
-	balloon_alert_to_viewers("[src] has finished phase [completed_segments] of activation!")
+		human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>OVERWATCH</u></span><br>" + "[src] is fully activated.", /obj/screen/text/screen_text/command_order)
+	SSticker.mode.sensors_activated += 1
+	var/datum/game_mode/combat_patrol/sensor_capture/D = SSticker.mode
+	var/current_time = timeleft(D.game_timer)
+	D.game_timer = addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/set_game_end), current_time + 5 MINUTES, TIMER_STOPPABLE)
+	activated = true
 	update_icon()
 
 /obj/structure/sensor_tower_patrol/update_icon()
