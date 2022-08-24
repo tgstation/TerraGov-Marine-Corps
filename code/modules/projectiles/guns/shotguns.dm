@@ -314,7 +314,6 @@
 	starting_attachment_types = list(
 		/obj/item/attachable/stock/irremoveable/pal12,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/bayonet,
 	)
 
 //------------------------------------------------------
