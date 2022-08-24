@@ -355,12 +355,6 @@
 	// Warrior vars
 	var/agility = 0		// 0 - upright, 1 - all fours
 
-	// Spiderling vars
-	var/spiderling_burrowed = 0 //0 unburrowed, 1 - burrowed
-
-	// Widow vars
-	var/widow_burrowed = 0 //0 unburrowed, 1 - burrowed
-
 	// Defender vars
 	var/fortify = 0
 	var/crest_defense = 0
@@ -395,3 +389,38 @@
 	var/is_a_rouny = FALSE
 
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)
+
+	///Var to see if we are burrowed
+	var/burrowed = FALSE
+
+/// Burrow code for xenomorphs
+/datum/xeno_caste/proc/burrow(mob/living/carbon/xenomorph/xenomorph)
+	SIGNAL_HANDLER
+	if(!xenomorph.burrowed)
+		to_chat(xenomorph, span_xenowarning("We start burrowing into the ground"))
+		if(!do_after(xenomorph, 3 SECONDS, TRUE, null, BUSY_ICON_DANGER))
+			return
+		to_chat(xenomorph, span_xenowarning("We have burrowed ourselves, we are hidden from the enemy"))
+		// This part here actually burrows the xenos
+		xenomorph.alpha = 0
+		xenomorph.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+		xenomorph.density = FALSE
+		xenomorph.throwpass = TRUE
+		xenomorph.burrowed = TRUE
+		// We register for movement so that we can unburrow
+		RegisterSignal(xenomorph, COMSIG_MOVABLE_MOVED, .proc/burrow)
+		return
+
+	else if(xenomorph.burrowed)
+		UnregisterSignal(xenomorph, COMSIG_MOVABLE_MOVED)
+		xenomorph.alpha = 255
+		xenomorph.mouse_opacity = initial(xenomorph.mouse_opacity)
+		xenomorph.density = TRUE
+		xenomorph.throwpass = FALSE
+		xenomorph.burrowed = FALSE
+
+/// This is for projectiles to ignore the xeno if they are burrowed
+/mob/living/carbon/xenomorph/projectile_hit()
+	if(burrowed)
+		return
+	return ..()
