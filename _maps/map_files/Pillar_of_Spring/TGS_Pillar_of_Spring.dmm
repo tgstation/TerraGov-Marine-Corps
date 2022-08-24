@@ -2215,7 +2215,7 @@
 "gK" = (
 /obj/structure/target_stake,
 /obj/item/target,
-/obj/item/clothing/suit/storage/militia,
+/obj/item/clothing/suit/storage/faction/militia,
 /turf/open/floor/plating/mainship/striped{
 	dir = 8
 	},
@@ -4399,7 +4399,7 @@
 	},
 /obj/structure/target_stake,
 /obj/item/target,
-/obj/item/clothing/suit/storage/militia,
+/obj/item/clothing/suit/storage/faction/militia,
 /turf/open/floor/plating/mainship/striped{
 	dir = 4
 	},
@@ -13163,7 +13163,7 @@
 "Mg" = (
 /obj/structure/target_stake,
 /obj/item/target,
-/obj/item/clothing/suit/storage/militia,
+/obj/item/clothing/suit/storage/faction/militia,
 /obj/machinery/light/mainship{
 	dir = 1
 	},
@@ -14342,7 +14342,7 @@
 "Pv" = (
 /obj/structure/target_stake,
 /obj/item/target,
-/obj/item/clothing/suit/storage/militia,
+/obj/item/clothing/suit/storage/faction/militia,
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/firing_range)
 "Pw" = (
