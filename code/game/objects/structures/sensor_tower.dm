@@ -65,7 +65,7 @@
 	name = "alpha sensor tower"
 	desc = "A tall tower with a sensor array at the top and a control box at the bottom. Has a lengthy activation process with 3 phases."
 	icon = 'icons/obj/structures/sensor.dmi'
-	icon_state = "sensor_loyalist"
+	icon_state = "sensor"
 	obj_flags = NONE
 	density = TRUE
 	layer = BELOW_OBJ_LAYER
@@ -74,13 +74,18 @@
 	var/generate_time = 150 SECONDS
 	var/activate_time = 5 SECONDS // time to start the activation
 	var/deactivate_time = 10 SECONDS // time to stop the activation proccess
-	var/completed_segments = 0 // what segment we are on, (once this hits total, sensor tower segment is finished)
 	var/id = 1
 	var/activated = FALSE // if all segments are finished
 
 /obj/structure/sensor_tower_patrol/Initialize()
 	. = ..()
 	update_icon()
+	GLOB.zones_to_control += src
+
+/obj/structure/sensor_tower_patrol/update_icon_state()
+	icon_state = initial(icon_state)
+	if(current_timer || activated)
+		icon_state += "_loyalist"
 
 /obj/structure/sensor_tower_patrol/attack_hand(mob/living/user)
 	if(!ishuman(user))
@@ -90,15 +95,15 @@
 		return
 	if(user.faction != FACTION_TERRAGOV)
 		if(current_timer)
+			balloon_alert(user, "You begin to stop the activation process!")
 			if(!do_after(user, deactivate_time, TRUE, src))
 				return
-			current_timer = null
 			balloon_alert(user, "You stop the activation process!")
-			update_icon()
-			for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
-				human.playsound_local(human, "sound/effects/CIC_order.ogg", 10, 1)
-				human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>OVERWATCH</u></span><br>" + "[src] activation process has been stopped.", /obj/screen/text/screen_text/command_order)
-		balloon_alert(user, "Only TerraGov can activate the objective, defend this!")
+			deactivate()
+		else if(activated)
+			balloon_alert(user, "This sensor tower is already fully activated, you cannot deactivate it!")
+		else
+			balloon_alert(user, "This sensor tower is not activated yet, don't let it be activated!")
 		return
 	if(activated)
 		balloon_alert(user, "[src] is already fully activated!")
@@ -110,12 +115,18 @@
 	if(!do_after(user, activate_time, TRUE, src))
 		return
 	balloon_alert_to_viewers("[user] activates [src]!")
+	begin_activation()
+
+/obj/structure/sensor_tower_patrol/proc/begin_activation()
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		human.playsound_local(human, "sound/effects/CIC_order.ogg", 10, 1)
 		human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>OVERWATCH</u></span><br>" + "[src] is being activated.", /obj/screen/text/screen_text/command_order)
 	current_timer = addtimer(CALLBACK(src, .proc/finish_activation), generate_time, TIMER_STOPPABLE)
+	update_icon()
 
 /obj/structure/sensor_tower_patrol/proc/finish_activation()
+	if(timeleft(current_timer) > 0)
+		return
 	playsound(src, 'sound/machines/ping.ogg', 25, 1)
 	current_timer = null
 	balloon_alert_to_viewers("[src] has finished activation!")
@@ -127,6 +138,13 @@
 	var/current_time = timeleft(D.game_timer)
 	D.game_timer = addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/set_game_end), current_time + 5 MINUTES, TIMER_STOPPABLE)
 	activated = TRUE
+	update_icon()
+
+/obj/structure/sensor_tower_patrol/proc/deactivate()
+	current_timer = null
+	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
+		human.playsound_local(human, "sound/effects/CIC_order.ogg", 10, 1)
+		human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>OVERWATCH</u></span><br>" + "[src] activation process has been stopped.", /obj/screen/text/screen_text/command_order)
 	update_icon()
 
 /obj/structure/sensor_tower_patrol/update_icon()
