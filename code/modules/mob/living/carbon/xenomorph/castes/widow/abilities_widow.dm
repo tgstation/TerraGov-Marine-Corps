@@ -231,66 +231,12 @@
 /datum/action/xeno_action/burrow/action_activate()
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
-	if(X.widow_burrowed)
-		return
-
 	/// We need the list of spiderlings so that we can burrow them
 	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = owner.actions_by_path[/datum/action/xeno_action/create_spiderling]
-	to_chat(X, span_xenowarning("We start burrowing into the ground"))
-	if(!do_after(X, 3 SECONDS, TRUE, target, BUSY_ICON_DANGER))
-		return fail_activate()
-	to_chat(X, span_xenowarning("We have burrowed ourselves, we are hidden from the enemy"))
-	/// This is the burrow code for Widow
-	X.alpha = 0
-	X.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	X.density = FALSE
-	X.throwpass = TRUE
-	X.widow_burrowed = TRUE
 	/// Here we make every single spiderling that we have also burrow and assign a signal so that they unburrow too
 	for(var/mob/living/carbon/xenomorph/spiderling/spiderling AS in create_spiderling_action.spiderlings)
-		/// Here we register them for the signal and burrow them
-		RegisterSignal(spiderling, COMSIG_MOVABLE_MOVED, .proc/unburrow)
-		spiderling.alpha = 0
-		spiderling.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-		spiderling.density = FALSE
-		spiderling.throwpass = TRUE
-		spiderling.spiderling_burrowed = TRUE
-	/// This signal ensures that widow will also unborrow
-	RegisterSignal(X, COMSIG_MOVABLE_MOVED, .proc/unburrow)
+		/// Here we trigger the burrow proc, the registering happens there
+		spiderling.xeno_caste.burrow(spiderling)
+	X.xeno_caste.burrow(X)
 	succeed_activate()
 	add_cooldown()
-
-/// Called whenever either spiderling or widow move after having burrowed
-/datum/action/xeno_action/burrow/proc/unburrow(mob/M)
-	SIGNAL_HANDLER
-	/// This is here so that spiderlings unburrow without mixing vars
-	if(!isxenowidow(M))
-		var/mob/living/carbon/xenomorph/spiderling/S = M
-		if(!S.spiderling_burrowed)
-			return
-		UnregisterSignal(S, COMSIG_MOVABLE_MOVED)
-		S.alpha = 255
-		S.mouse_opacity = initial(S.mouse_opacity)
-		S.density = TRUE
-		S.throwpass = FALSE
-		S.spiderling_burrowed = FALSE
-		return
-
-	var/mob/living/carbon/xenomorph/X = M
-	/// We check if we're already unburrowed
-	if(!X.widow_burrowed)
-		return
-	/// This unburrows widow
-	X.alpha = 255
-	X.mouse_opacity = initial(X.mouse_opacity)
-	X.density = TRUE
-	X.throwpass = FALSE
-	X.widow_burrowed = FALSE
-	UnregisterSignal(X, COMSIG_MOVABLE_MOVED)
-	succeed_activate()
-	add_cooldown()
-/// This is for projectiles to ignore widow if its burrowed
-/mob/living/carbon/xenomorph/widow/projectile_hit()
-	if(widow_burrowed)
-		return
-	return ..()

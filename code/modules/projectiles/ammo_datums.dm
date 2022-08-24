@@ -2601,9 +2601,9 @@ datum/ammo/bullet/revolver/tp44
 	var/mob/living/carbon/human/human_victim = victim
 	if(proj.def_zone == BODY_ZONE_HEAD)
 		human_victim.blind_eyes(hit_eye_blind)
-	if(proj.def_zone in weaken_list)
+	else if(proj.def_zone in weaken_list)
 		human_victim.apply_effect(hit_weaken, WEAKEN)
-	if(proj.def_zone in snare_list)
+	else if(proj.def_zone in snare_list)
 		human_victim.Immobilize(hit_immobilize)
 
 /datum/ammo/leash_ball
