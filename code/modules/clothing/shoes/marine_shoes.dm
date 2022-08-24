@@ -163,3 +163,12 @@
 	desc = "As sturdy as they are old fashioned these will keep your ankles from snake bites on any planet. These cannot store anything, but has extra fashion with those unneeded spurs on their heels."
 	icon_state = "cboots"
 	item_state = "cboots"
+
+/obj/item/clothing/shoes/marine/clf
+	name = "\improper frontier boots"
+	desc = "A pair of well worn boots, commonly seen on most outer colonies."
+	icon_state = "boots"
+	item_state = "boots"
+
+/obj/item/clothing/shoes/marine/clf/full
+	pockets = /obj/item/storage/internal/shoes/boot_knife/full

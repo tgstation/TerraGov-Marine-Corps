@@ -509,6 +509,13 @@
 
 	placed_overlay_iconstate = "ak47"
 
+/obj/item/weapon/gun/rifle/mpi_km/standard
+	starting_attachment_types = list(
+		/obj/item/attachable/stock/mpi_km,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/bayonet,
+	)
+
 /obj/item/weapon/gun/rifle/mpi_km/grenadier //built in UGL
 	desc = "A cheap and robust rifle, sometimes better known as an 'AK'. Chambers 7.62x39mm. This one has a built in underbarrel grenade launcher, and looks pretty old but well looked after."
 	attachable_allowed = list(
