@@ -49,6 +49,9 @@
 		return TRUE
 	if(installed_equipment || clamp.loaded != loaded_equipment)
 		return TRUE
+	if(loaded_equipment.attempt_attach(ship_tag))
+		to_chat(user, span_warning("Error, baby."))
+		return TRUE
 	to_chat(user, span_notice("You install [loaded_equipment] on [src]."))
 	loaded_equipment.forceMove(loc)
 	clamp.loaded = null
@@ -284,6 +287,10 @@
 /obj/structure/dropship_equipment/beforeShuttleMove(turf/newT, rotation, move_mode, obj/docking_port/mobile/moving_dock)
 	. = ..()
 	on_launch()
+
+//things to do when you try to attach the equipment
+/obj/structure/dropship_equipment/proc/attempt_attach()
+	return FALSE
 
 /obj/structure/dropship_equipment/proc/update_equipment()
 	return
@@ -1003,6 +1010,12 @@
 	icon_state = "table2-idle"
 	point_cost = 70
 	var/fuel_content = 0
+
+/obj/structure/dropship_equipment/fuel_tank/attempt_attach(tag)
+	if(tag == SHUTTLE_CAS_DOCK)
+		for(var/obj/docking_port/mobile/marine_dropship/casplane/S in SSshuttle.dropships)
+			if(/obj/structure/dropship_equipment/fuel_tank in S.equipments)
+				return TRUE
 
 /obj/structure/dropship_equipment/fuel_tank/update_equipment()
 	. = ..()
