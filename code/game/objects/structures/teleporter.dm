@@ -123,7 +123,7 @@
 
 /obj/item/teleporter_kit
 	name = "\improper ASRS Bluespace teleporter"
-	desc = "A bluespace telepad for moving personnel and equipment across small distances to another prelinked teleporter. Ctrl+Click on a tile to deploy, use a wrench to undeploy."
+	desc = "A bluespace telepad for moving personnel and equipment across small distances to another prelinked teleporter. Ctrl+Click on a tile to deploy, use a wrench to undeploy, use a crowbar to remove the power cell."
 	icon = 'icons/Marine/teleporter.dmi'
 	icon_state = "teleporter"
 

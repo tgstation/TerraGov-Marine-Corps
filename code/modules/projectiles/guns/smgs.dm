@@ -78,6 +78,9 @@
 /obj/item/weapon/gun/smg/standard_machinepistol/vgrip //cutest looking gun setup in the game
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/verticalgrip)
 
+/obj/item/weapon/gun/smg/standard_machinepistol/scanner
+	starting_attachment_types = list(/obj/item/attachable/motiondetector, /obj/item/attachable/compensator, /obj/item/attachable/lasersight)
+
 //-------------------------------------------------------
 // War is hell. Not glorious.
 

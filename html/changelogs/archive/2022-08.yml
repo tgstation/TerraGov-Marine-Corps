@@ -177,3 +177,61 @@
   - bugfix: Overwatch markers now work again
   lbnesquik:
   - rscadd: Added one CAS radio key to the tactical binoculars crate.
+2022-08-19:
+  QualityVan:
+  - bugfix: Surgeries work
+  collinlunn:
+  - bugfix: Hunter's Disguise description tells you how to select a target.
+2022-08-20:
+  QualityVan:
+  - rscadd: High-pen bullets deal more damage to shields
+  - bugfix: Shield hard armor reduces damage instead of increasing it
+  - bugfix: Radial medical will only need to choose limb once for surgery
+  lbnesquik:
+  - bugfix: fixed a wrong line about time regarding drops.
+2022-08-21:
+  collinlunn:
+  - bugfix: The bluespace teleporter's description now tells you how to remove the
+      cell.
+2022-08-22:
+  Lumipharon:
+  - rscadd: 'Combat patrol: Added a BR-8 loadout to TGMC marines, limited to two per
+      game'
+  - rscadd: 'Combat patrol: Added a MPI_KM with UBL loadout to SOM marine, engie and
+      medic'
+  - rscadd: 'Combat patrol: Added spaceacillin to TGMC medics'
+  lbnesquik:
+  - rscadd: Added mortar & howitzers shots to end round.
+  mc-oofert:
+  - rscadd: Added another set of railing to the ASRS so crates dont get spaced
+  novaepee:
+  - rscdel: remove reinforced windows in prep to free roomba
+  tyeagg:
+  - rscadd: reworked combat patrol base maps
+  - soundadd: added radio chatter sounds for a radio prop
+  - imageadd: added entry point for combat patrol
+  - imageadd: added  som cas plane
+  - imageadd: added  som prop mech
+  - imageadd: added  new platform sprites
+  - imageadd: added  som flag turfs
+  - imageadd: added gives bunk beds bed sheets
+  - imageadd: added tachi base sign
+  - imageadd: added prop npcs
+2022-08-23:
+  BraveMole:
+  - code_imp: Made projectile maybe less expansive performance wise
+  Lumipharon:
+  - qol: 'Combat Patrol: Made some loadout descriptions clearer'
+  RikuTheKiller:
+  - balance: All shields now repair based on a percentage (20%)
+  - bugfix: Shield integrity messages now display correctly
+  - spellcheck: Changed wording in a lot of shield messages
+2022-08-24:
+  Lumipharon:
+  - bugfix: Fixed lighting not updating in modular map areas during Combat Patrol
+  - balance: 'Combat Patrol: Increased the light level of deep caves'
+  - bugfix: Voting a different shipmap during Combat Patrol is correctly disabled
+  - bugfix: fixed SO's spawning with belts loaded twice
+  novaepee:
+  - rscadd: Keybinds for Attack, Defend, and Retreat orders
+  - qol: easier to coordinate as FC or SL
