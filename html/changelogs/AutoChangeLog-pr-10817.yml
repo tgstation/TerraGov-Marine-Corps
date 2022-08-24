@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes: 
-  - bugfix: "fixed SO's spawning with belts loaded twice"

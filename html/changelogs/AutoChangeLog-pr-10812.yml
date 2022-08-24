@@ -1,5 +1,0 @@
-author: "novaepee"
-delete-after: True
-changes: 
-  - rscadd: "Keybinds for Attack, Defend, and Retreat orders"
-  - qol: "easier to coordinate as FC or SL"

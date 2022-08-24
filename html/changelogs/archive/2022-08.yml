@@ -226,3 +226,12 @@
   - balance: All shields now repair based on a percentage (20%)
   - bugfix: Shield integrity messages now display correctly
   - spellcheck: Changed wording in a lot of shield messages
+2022-08-24:
+  Lumipharon:
+  - bugfix: Fixed lighting not updating in modular map areas during Combat Patrol
+  - balance: 'Combat Patrol: Increased the light level of deep caves'
+  - bugfix: Voting a different shipmap during Combat Patrol is correctly disabled
+  - bugfix: fixed SO's spawning with belts loaded twice
+  novaepee:
+  - rscadd: Keybinds for Attack, Defend, and Retreat orders
+  - qol: easier to coordinate as FC or SL
