@@ -452,3 +452,9 @@
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/magnetic_harness,
 	)
+
+/obj/item/weapon/gun/smg/som/basic
+	starting_attachment_types = list(
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/magnetic_harness,
+	)
