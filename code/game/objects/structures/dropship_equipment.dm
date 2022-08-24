@@ -994,3 +994,30 @@
 	deployed_table.layer = ABOVE_OBJ_LAYER + 0.01 //make sure its directly ABOVE the layer
 	deployed_table.loc = loc
 	icon_state = "table2-idle"
+
+/obj/structure/dropship_equipment/fuel_tank
+	name = "Condor external tank"
+	desc = "A fuel tank. It roughly doubles the condor internal capacity. You need a powerloader to lift it."
+	equip_category = DROPSHIP_WEAPON
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "table2-idle"
+	point_cost = 100
+	var/fuel_content = 0
+
+/obj/structure/dropship_equipment/fuel_tank/update_equipment()
+	. = ..()
+
+	for(var/obj/docking_port/mobile/marine_dropship/casplane/S in SSshuttle.dropships)
+		if(S.id == SHUTTLE_CAS_DOCK)
+			if(!ship_base)
+				if(S.fuel_left > 40)
+					fuel_content = S.fuel_left - 40
+				S.fuel_left = 40
+				S.fuel_max = 40
+				break
+
+			S.fuel_max = 80
+			S.fuel_left = S.fuel_left + fuel_content
+			break
+
+	update_icon()
