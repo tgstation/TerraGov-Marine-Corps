@@ -1001,7 +1001,7 @@
 	equip_category = DROPSHIP_WEAPON
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "table2-idle"
-	point_cost = 100
+	point_cost = 70
 	var/fuel_content = 0
 
 /obj/structure/dropship_equipment/fuel_tank/update_equipment()
