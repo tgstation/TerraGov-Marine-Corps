@@ -962,7 +962,7 @@
 		/obj/item/weapon/gun/flamer/mini_flamer/unremovable,
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/magnetic_harness,
-		)
+	)
 
 /obj/item/weapon/gun/rifle/type71/commando
 	name = "\improper Type 73 'Commando' pulse carbine"
