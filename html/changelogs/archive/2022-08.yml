@@ -235,3 +235,12 @@
   novaepee:
   - rscadd: Keybinds for Attack, Defend, and Retreat orders
   - qol: easier to coordinate as FC or SL
+2022-08-25:
+  Lumipharon:
+  - bugfix: fixed the V-31 spawning with only one round loaded in rail launcher attachment
+  - bugfix: Certain guns will no longer spawn with a missing round
+  - qol: Made radio chatter and rappeling quieter in Combat Patrol
+  lbnesquik:
+  - bugfix: fixed more weird ground markings, lights, cameras & firelocks.
+  - bugfix: fixed map oddities on the sulaco regarding firelocks, lights, apc's and
+      fire alarms. Again
