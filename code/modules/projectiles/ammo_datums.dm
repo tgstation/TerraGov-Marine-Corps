@@ -1694,15 +1694,7 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/rocket/recoilless/heat //placeholder/adminbus for now
 	name = "HEAT shell"
-	icon_state = "shell"
 	hud_state = "shell_heat"
-	hud_state_empty = "shell_empty"
-	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
-	armor_type = "bomb"
-	damage_falloff = 0
-	shell_speed = 2
-	accurate_range = 20
-	max_range = 30
 	damage = 175
 	penetration = 100
 	sundering = 100
@@ -1712,21 +1704,16 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/rocket/recoilless/light
 	name = "light explosive shell"
-	icon_state = "shell"
 	hud_state = "shell_le"
-	hud_state_empty = "shell_empty"
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING //We want this to specifically go farther than onscreen range.
-	armor_type = "bomb"
-	damage_falloff = 0
-	shell_speed = 3
 	accurate_range = 15
 	max_range = 20
 	damage = 75
-	penetration = 50
+	penetration = 25
 	sundering = 25
 
 /datum/ammo/rocket/recoilless/light/drop_nade(turf/T)
-	explosion(T, 0, 1, 8, 5)
+	explosion(T, 0, 1, 8, 3)
 
 /datum/ammo/rocket/oneuse
 	name = "explosive rocket"
