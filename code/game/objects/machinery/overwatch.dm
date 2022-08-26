@@ -48,6 +48,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	var/datum/action/innate/order/defend_order/send_defend_order
 	///datum used when sending a rally order
 	var/datum/action/innate/order/rally_order/send_rally_order
+
 /obj/machinery/computer/camera_advanced/overwatch/Initialize()
 	. = ..()
 	send_attack_order = new

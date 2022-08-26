@@ -93,6 +93,8 @@
 		hud_type = DATA_HUD_SQUAD_REBEL
 	else if(faction == FACTION_SOM)
 		hud_type = DATA_HUD_SQUAD_SOM
+	else
+		return
 	var/datum/atom_hud/squad/squad_hud = GLOB.huds[hud_type]
 	if(!squad_hud.hudusers[src])
 		return

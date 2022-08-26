@@ -104,20 +104,20 @@
 		hud_type = DATA_HUD_SQUAD_REBEL
 	else if(faction == FACTION_SOM)
 		hud_type = DATA_HUD_SQUAD_SOM
+	else
+		return
 	if(hud_type == DATA_HUD_SQUAD_TERRAGOV)
 		marker_flags = MINIMAP_FLAG_MARINE
 	else if(hud_type == DATA_HUD_SQUAD_REBEL)
 		marker_flags = MINIMAP_FLAG_MARINE_REBEL
 	else if(hud_type == DATA_HUD_SQUAD_SOM)
 		marker_flags = MINIMAP_FLAG_MARINE_SOM
+	else
+		return
 	var/datum/atom_hud/squad/squad_hud = GLOB.huds[hud_type]
 	squad_hud.add_to_hud(src)
 	SSminimaps.add_marker(src, src.z, marker_flags, icon_state_on)
 	set_visuals(faction)
-
-/obj/effect/temp_visual/order/Destroy()
-	SSminimaps.remove_marker(src)
-	return ..()
 
 /obj/effect/temp_visual/order/attack_order
 	name = "attack order"
@@ -145,6 +145,8 @@
 		hud_type = SQUAD_HUD_REBEL
 	else if(faction == FACTION_SOM)
 		hud_type = SQUAD_HUD_SOM
+	else
+		return
 	var/image/holder = hud_list[hud_type]
 	if(!holder)
 		return
