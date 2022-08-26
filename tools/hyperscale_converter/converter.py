@@ -34,7 +34,7 @@ for key in layers.keys() :
 	pixelmap = newImage.load()
 	for i in range(len(pixelList)) :
 		pixel = pixelList[i]
-		pixelmap[pixel[0], pixel[1]] = key
+		pixelmap[pixel[0], pixel[1]] = 255
 	newpath = (os.path.dirname(__file__) + "\\output\\" + str(key) + ".png").replace('\\', '/')
 	newImage.save(newpath)
 print("Successfully split file into " + str(len(layers.keys())) + " sprites.")
