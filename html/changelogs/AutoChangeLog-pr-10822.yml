@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes: 
+  - balance: "Lowered vox cooldown from 60s to 40s"
