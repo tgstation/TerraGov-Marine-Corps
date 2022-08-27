@@ -1,0 +1,4 @@
+author: "collinlunn"
+delete-after: True
+changes: 
+  - qol: "Hunter's Swap is no longer activated with a separate ability, reactivate Mirage to trigger it."
