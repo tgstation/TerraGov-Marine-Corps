@@ -235,3 +235,22 @@
   novaepee:
   - rscadd: Keybinds for Attack, Defend, and Retreat orders
   - qol: easier to coordinate as FC or SL
+2022-08-25:
+  Lumipharon:
+  - bugfix: fixed the V-31 spawning with only one round loaded in rail launcher attachment
+  - bugfix: Certain guns will no longer spawn with a missing round
+  - qol: Made radio chatter and rappeling quieter in Combat Patrol
+  lbnesquik:
+  - bugfix: fixed more weird ground markings, lights, cameras & firelocks.
+  - bugfix: fixed map oddities on the sulaco regarding firelocks, lights, apc's and
+      fire alarms. Again
+2022-08-27:
+  Lumipharon:
+  - rscadd: Added SOM ballistic weapons to the seasonal rotation
+  QualityVan:
+  - bugfix: Prevented replacing unremovable attachments
+  lbnesquik:
+  - qol: made the AI able to read what it sent into the vox system
+  - balance: Lowered vox cooldown from 60s to 40s
+  - bugfix: fixed some floating and other nonsensical cameras on minerva
+  - code_imp: removed an useless argument in mortar/binocs code
