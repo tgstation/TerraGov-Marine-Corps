@@ -1709,12 +1709,17 @@ datum/ammo/bullet/revolver/tp44
 	accurate_range = 15
 	max_range = 20
 	damage = 75
-	penetration = 25
+	penetration = 50
 	sundering = 25
 
 /datum/ammo/rocket/recoilless/light/drop_nade(turf/T)
-	explosion(T, 0, 1, 8, 3)
+	explosion(T, 0, 1, 8, 5)
 
+/datum/ammo/rocket/recoilless/light/low_impact
+	penetration = 15
+
+/datum/ammo/rocket/recoilless/light/low_impact/drop_nade(turf/T)
+	explosion(T, 0, 1, 8, 3)
 /datum/ammo/rocket/oneuse
 	name = "explosive rocket"
 	damage = 100

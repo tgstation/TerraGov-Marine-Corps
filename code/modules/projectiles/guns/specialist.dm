@@ -723,8 +723,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	recoil = 3
 	scatter = -100
 
-/obj/item/weapon/gun/launcher/rocket/recoillessrifle/light
-	default_ammo_type = /obj/item/ammo_magazine/rocket/recoilless/light
+/obj/item/weapon/gun/launcher/rocket/recoillessrifle/low_impact
+	default_ammo_type = /obj/item/ammo_magazine/rocket/recoilless/low_impact
 
 //-------------------------------------------------------
 //Disposable RPG
