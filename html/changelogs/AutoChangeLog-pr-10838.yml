@@ -1,0 +1,4 @@
+author: "DeltaFire15"
+delete-after: True
+changes: 
+  - bugfix: "The stagger immunity trait should now work properly."
