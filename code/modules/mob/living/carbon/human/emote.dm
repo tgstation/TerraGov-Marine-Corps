@@ -83,8 +83,6 @@
 		return
 	if(user.species.coughs[user.gender])
 		return user.species.coughs[user.gender]
-	if(user.species.coughs[NEUTER])
-		return user.species.coughs[NEUTER]
 
 
 /datum/emote/living/carbon/human/cry
@@ -137,8 +135,6 @@
 		return
 	if(user.species.gasps[user.gender])
 		return user.species.gasps[user.gender]
-	if(user.species.gasps[NEUTER])
-		return user.species.gasps[NEUTER]
 
 /datum/emote/living/carbon/human/giggle
 	key = "giggle"
@@ -466,8 +462,6 @@
 		return
 	if(user.species.screams[user.gender])
 		return user.species.screams[user.gender]
-	if(user.species.screams[NEUTER])
-		return user.species.screams[NEUTER]
 
 
 /datum/emote/living/carbon/human/scream/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
@@ -513,8 +507,7 @@
 		return
 	if(user.species.paincries[user.gender])
 		return user.species.paincries[user.gender]
-	if(user.species.paincries[NEUTER])
-		return user.species.paincries[NEUTER]
+
 
 
 /datum/emote/living/carbon/human/pain/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
@@ -537,8 +530,7 @@
 		return
 	if(user.species.goredcries[user.gender])
 		return user.species.goredcries[user.gender]
-	if(user.species.goredcries[NEUTER])
-		return user.species.goredcries[NEUTER]
+
 
 
 /datum/emote/living/carbon/human/gored/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
@@ -562,8 +554,7 @@
 		return
 	if(user.species.burstscreams[user.gender])
 		return user.species.burstscreams[user.gender]
-	if(user.species.burstscreams[NEUTER])
-		return user.species.burstscreams[NEUTER]
+
 
 
 /datum/emote/living/carbon/human/burstscream/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)

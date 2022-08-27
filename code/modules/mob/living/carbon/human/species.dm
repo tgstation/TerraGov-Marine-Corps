@@ -431,10 +431,10 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 	has_organ = list()
 
 
-	screams = list(NEUTER = "robot_scream")
-	paincries = list(NEUTER = "robot_pain")
-	goredcries = list(NEUTER = "robot_scream")
-	warcries = list(NEUTER = "robot_warcry")
+	screams = list(MALE = "robot_scream", FEMALE = "robot_scream", NEUTER = "robot_scream")
+	paincries = list(MALE = "robot_pain", FEMALE = "robot_pain", NEUTER = "robot_pain")
+	goredcries = list(MALE = "robot_scream", FEMALE = "robot_scream", NEUTER = "robot_scream")
+	warcries = list(MALE = "robot_warcry", FEMALE = "robot_warcry", NEUTER = "robot_warcry")
 	death_message = "shudders violently whilst spitting out error text before collapsing, their visual sensor darkening..."
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 	joinable_roundstart = TRUE
