@@ -416,7 +416,7 @@
 
 	else if(xenomorph.burrowed)
 		UnregisterSignal(xenomorph, COMSIG_MOVABLE_MOVED)
-		xenomorph.alpha = 255
+		xenomorph.icon_state = initial(icon_state)
 		xenomorph.mouse_opacity = initial(xenomorph.mouse_opacity)
 		xenomorph.density = TRUE
 		xenomorph.throwpass = FALSE
@@ -426,12 +426,12 @@
 	if(!do_after(xenomorph, 3 SECONDS, TRUE, null, BUSY_ICON_DANGER))
 		return
 	to_chat(xenomorph, span_xenowarning("We have burrowed ourselves, we are hidden from the enemy"))
-	// This part here actually burrows the xenos
-	xenomorph.alpha = 60 // temp untill I get burrowed sprite
+	// This part here actually burrows the xeno
 	xenomorph.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	xenomorph.density = FALSE
 	xenomorph.throwpass = TRUE
 	xenomorph.burrowed = TRUE
+	xenomorph.icon_state = "[xeno_caste.caste_name] Burrowed"
 	// We register for movement so that we can unburrow
 	RegisterSignal(xenomorph, COMSIG_MOVABLE_MOVED, .proc/xeno_burrow)
 
