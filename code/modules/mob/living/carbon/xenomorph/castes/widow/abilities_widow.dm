@@ -191,7 +191,7 @@
 	current_controlling_spiderling = new(get_turf(owner), owner)
 	SEND_SIGNAL(owner, COMSIG_ESCORTED_ATOM_CHANGING, current_controlling_spiderling)
 	owner.mind.transfer_to(current_controlling_spiderling)
-	owner.doMove(null)
+	owner.forceMove(null)
 	/// We want to access the spiderlings list and therefore have this
 	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = owner.actions_by_path[/datum/action/xeno_action/create_spiderling]
 
@@ -236,7 +236,7 @@
 	/// Here we make every single spiderling that we have also burrow and assign a signal so that they unburrow too
 	for(var/mob/living/carbon/xenomorph/spiderling/spiderling AS in create_spiderling_action.spiderlings)
 		/// Here we trigger the burrow proc, the registering happens there
-		spiderling.xeno_caste.burrow(spiderling)
-	X.xeno_caste.burrow(X)
+		spiderling.xeno_burrow(spiderling)
+	X.xeno_burrow(X)
 	succeed_activate()
 	add_cooldown()

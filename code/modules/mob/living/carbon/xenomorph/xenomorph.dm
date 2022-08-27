@@ -405,3 +405,38 @@
 	SIGNAL_HANDLER
 	var/obj/effect/alien/weeds/found_weed = locate(/obj/effect/alien/weeds) in loc
 	loc_weeds_type = found_weed?.type
+
+/// Burrow code for xenomorphs
+/mob/living/carbon/xenomorph/proc/xeno_burrow(mob/living/carbon/xenomorph/xenomorph)
+	SIGNAL_HANDLER
+	if(!xenomorph.burrowed)
+		to_chat(xenomorph, span_xenowarning("We start burrowing into the ground"))
+		INVOKE_ASYNC(xenomorph, .proc/xeno_burrow_doafter, xenomorph)
+		return
+
+	else if(xenomorph.burrowed)
+		UnregisterSignal(xenomorph, COMSIG_MOVABLE_MOVED)
+		xenomorph.alpha = 255
+		xenomorph.mouse_opacity = initial(xenomorph.mouse_opacity)
+		xenomorph.density = TRUE
+		xenomorph.throwpass = FALSE
+		xenomorph.burrowed = FALSE
+
+/mob/living/carbon/xenomorph/proc/xeno_burrow_doafter(mob/living/carbon/xenomorph/xenomorph)
+	if(!do_after(xenomorph, 3 SECONDS, TRUE, null, BUSY_ICON_DANGER))
+		return
+	to_chat(xenomorph, span_xenowarning("We have burrowed ourselves, we are hidden from the enemy"))
+	// This part here actually burrows the xenos
+	xenomorph.alpha = 60 // temp untill I get burrowed sprite
+	xenomorph.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	xenomorph.density = FALSE
+	xenomorph.throwpass = TRUE
+	xenomorph.burrowed = TRUE
+	// We register for movement so that we can unburrow
+	RegisterSignal(xenomorph, COMSIG_MOVABLE_MOVED, .proc/xeno_burrow)
+
+/// This is for projectiles to ignore the xeno if they are burrowed
+/mob/living/carbon/xenomorph/projectile_hit()
+	if(burrowed)
+		return
+	return ..()
