@@ -3,8 +3,8 @@
 	ability_name = "Web Spit"
 	mechanics_text = "We spit a stretchy web at our prey"
 	action_icon_state = "web_spit"
-	plasma_cost = 1
-	cooldown_timer = 5 SECONDS
+	plasma_cost = 125
+	cooldown_timer = 10 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_WEB_SPIT
 
 /datum/action/xeno_action/activable/web_spit/use_ability(atom/target)
@@ -29,8 +29,8 @@
 	ability_name = "Leash Ball"
 	mechanics_text = " Spit a huge ball of web that snares groups of marines "
 	action_icon_state = "leash_ball"
-	plasma_cost = 1
-	cooldown_timer = 1 SECONDS
+	plasma_cost = 250
+	cooldown_timer = 20 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_LEASH_BALL
 
 /datum/action/xeno_action/activable/leash_ball/use_ability(atom/A)
@@ -120,8 +120,8 @@
 	ability_name = "birth_spiderling"
 	mechanics_text = " Spawn a spiderling directly under you"
 	action_icon_state = "spawn_spiderling"
-	plasma_cost = 1 // increase later
-	cooldown_timer = 1 SECONDS
+	plasma_cost = 100
+	cooldown_timer = 15 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_LEASH_BALL
 	/// List of all our spiderlings
 	var/list/mob/living/carbon/xenomorph/spiderling/spiderlings = list()
@@ -175,8 +175,8 @@
 	ability_name = "Spider Swarm"
 	mechanics_text = " Turn into a swarm of spiderlings "
 	action_icon_state = "spider_swarm"
-	plasma_cost = 1
-	cooldown_timer = 1 SECONDS
+	plasma_cost = 500
+	cooldown_timer = 60 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_SPIDER_SWARM
 	/// The spiderling we are controlling right now
 	var/mob/living/carbon/xenomorph/spiderling/current_controlling_spiderling
@@ -224,8 +224,8 @@
 	ability_name = "Burrow"
 	mechanics_text = " Burrow into the ground to hide in plain sight "
 	action_icon_state = "burrow"
-	plasma_cost = 1
-	cooldown_timer = 1 SECONDS
+	plasma_cost = 100
+	cooldown_timer = 4 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_BURROW
 
 /datum/action/xeno_action/burrow/action_activate()
