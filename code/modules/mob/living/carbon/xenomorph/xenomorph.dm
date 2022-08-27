@@ -440,3 +440,8 @@
 	if(burrowed)
 		return
 	return ..()
+
+/mob/living/carbon/xenomorph/fire_act()
+	if(burrowed)
+		return
+	return ..()
