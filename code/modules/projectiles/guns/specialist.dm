@@ -698,6 +698,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/rocket/recoilless,
 		/obj/item/ammo_magazine/rocket/recoilless/light,
+		/obj/item/ammo_magazine/rocket/recoilless/low_impact,
 		/obj/item/ammo_magazine/rocket/recoilless/heat,
 	)
 	flags_equip_slot = NONE

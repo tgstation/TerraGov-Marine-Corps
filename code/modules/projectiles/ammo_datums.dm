@@ -1715,11 +1715,19 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/rocket/recoilless/light/drop_nade(turf/T)
 	explosion(T, 0, 1, 8, 5)
 
-/datum/ammo/rocket/recoilless/light/low_impact
+/datum/ammo/rocket/recoilless/low_impact
+	name = "low impact explosive shell"
+	hud_state = "shell_le"
+	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING //We want this to specifically go farther than onscreen range.
+	accurate_range = 15
+	max_range = 20
+	damage = 75
 	penetration = 15
+	sundering = 25
 
-/datum/ammo/rocket/recoilless/light/low_impact/drop_nade(turf/T)
+/datum/ammo/rocket/recoilless/low_impact/drop_nade(turf/T)
 	explosion(T, 0, 1, 8, 3)
+
 /datum/ammo/rocket/oneuse
 	name = "explosive rocket"
 	damage = 100

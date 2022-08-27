@@ -169,11 +169,11 @@
 	default_ammo = /datum/ammo/rocket/recoilless/light
 	reload_delay = 10
 
-/obj/item/ammo_magazine/rocket/recoilless/low impact
+/obj/item/ammo_magazine/rocket/recoilless/low_impact
 	name = "\improper 67mm light-explosive shell"
 	desc = "A light explosive shell for the RL-160 recoilless rifle. Causes a light explosion over a large area but low impact damage. Can go farther than other shells of its type due to the light payload. Requires specialized storage to carry."
 	icon_state = "shell_le"
-	default_ammo = /datum/ammo/rocket/recoilless/light/low_impact
+	default_ammo = /datum/ammo/rocket/recoilless/low_impact
 	reload_delay = 10
 
 /obj/item/ammo_magazine/rocket/recoilless/heat
