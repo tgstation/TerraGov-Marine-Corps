@@ -517,7 +517,6 @@
 		return user.species.paincries[NEUTER]
 
 
-
 /datum/emote/living/carbon/human/pain/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
 	. = ..()
 	if(!.)
