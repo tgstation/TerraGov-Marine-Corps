@@ -160,8 +160,8 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 			return NORTHWEST
 
 
-
-/proc/LinkBlocked(turf/A, turf/B)
+///Returns true if the path from A to B is blocked. Checks both paths where the direction is diagonal
+/proc/LinkBlocked(turf/A, turf/B, bypass_window = FALSE, projectile = FALSE)
 	if(isnull(A) || isnull(B))
 		return TRUE
 	var/adir = get_dir(A, B)
@@ -176,27 +176,27 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 			return FALSE
 		return TRUE
 
-	if(DirBlocked(A, adir))
+	if(DirBlocked(A, adir, bypass_window, projectile))
 		return TRUE
-	if(DirBlocked(B, rdir))
+	if(DirBlocked(B, rdir, bypass_window, projectile))
 		return TRUE
 	return FALSE
 
-
-/proc/DirBlocked(turf/loc, direction)
+///Checks if moving in a direction is blocked
+/proc/DirBlocked(turf/loc, direction, bypass_window = FALSE, projectile = FALSE)
 	for(var/obj/structure/window/D in loc)
-		if(!D.density)
+		if(!D.density || bypass_window) //if the window is not dense, or we want to ignore windows, for example lasers
 			continue
 		if(D.is_full_window())
 			return TRUE
-		if(D.dir == direction)
+		if(D.dir == direction) //border edge windows only block movement in that direction
 			return TRUE
 
 	for(var/obj/machinery/door/D in loc)
-		if(!D.density)
+		if(!D.density) //the door is open
 			continue
 		if(istype(D, /obj/machinery/door/window))
-			if(D.dir == direction)
+			if(D.dir == direction && !bypass_window) //border edge windoors only block movement in that direction
 				return TRUE
 		else
 			return TRUE	// it's a real, air blocking door
@@ -204,17 +204,25 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 		if(D.density)
 			return TRUE
 	for(var/obj/structure/barricade/B in loc)
-		if(!B.density)
+		if(!B.density || projectile) //anything that behaves like a projectile can travel over a barricade
 			continue
 		if(B.dir == direction)
 			return TRUE
 	return FALSE
 
-
+///Returns true if any object on a turf is both dense and not a window
 /proc/TurfBlockedNonWindow(turf/loc)
 	for(var/obj/O in loc)
 		if(O.density && !istype(O, /obj/structure/window))
 			return TRUE
+	return FALSE
+
+///Returns true if a turf should be blocked to a theoretical projectile
+/proc/turf_blocked_projectile(turf/loc, direction, bypass_window = FALSE)
+	for(var/obj/O in loc)
+		if(!O.density || O.throwpass || (istype(O, /obj/structure/window) && bypass_window) || (O.flags_atom & ON_BORDER && O.dir != direction))
+			continue
+		return TRUE
 	return FALSE
 
 
@@ -1211,3 +1219,60 @@ will handle it, but:
 		. += location
 
 GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))
+
+
+///angle cone test
+/**
+ *	Generates a cone shape. Any other checks should be handled with the resulting list. Can work with up to 359 degrees
+ *	Variables:
+ *	center - where the cone begins, or center of a circle drawn with this
+ *	max_row_count - how many rows are checked
+ *	starting_row - from how far should the turfs start getting included in the cone
+ *	cone_width - big the angle of the cone is
+ *	cone_direction - at what angle should the cone be made, relative to the game board's orientation
+ *	blocked - whether the cone should take into consideration solid walls
+ */
+/proc/generate_true_cone(atom/center, max_row_count = 10, starting_row = 1, cone_width = 60, cone_direction = 0, blocked = TRUE)
+	var/right_angle = cone_direction + cone_width/2
+	var/left_angle = cone_direction - cone_width/2
+
+	//These are needed because degrees need to be from 0 to 359 for the checks to function
+	if(right_angle >= 360)
+		right_angle -= 360
+
+	if(left_angle < 0)
+		left_angle += 360
+
+	///the 3 directions in the direction on the cone that will be checked TODO clean this up
+	var/list/cardinals = GLOB.alldirs
+
+	//cardinals -= REVERSE_DIR(angle2dir(cone_direction))
+	///turfs that are checked whether the cone can continue further from them
+	var/list/turfs_to_check = list(get_turf(center))
+	var/list/cone_turfs = list()
+
+	for(var/r in 1 to max_row_count)
+		if(r > 2)
+			cardinals = GLOB.cardinals
+		for(var/X in turfs_to_check) //checks the inital turf, then afterwards checks every turf that is added to cone_turfs
+			var/turf/trf = X
+			for(var/direction in cardinals)
+				var/turf/T = get_step(trf, direction) //checks all turfs around X
+				if(cone_turfs.Find(T)) //if it's already in the list, ignore it
+					continue
+				if(get_dist(center, T) < starting_row) //if it's before the starting row, ignore it. Doesn't fucking work currently
+					continue
+				var/turf_angle = Get_Angle(center, T)
+				if(right_angle > left_angle && (turf_angle > right_angle || turf_angle < left_angle)) //in the specified angle
+					continue
+				if(turf_angle > right_angle && turf_angle < left_angle) //in the specified angle
+					continue
+				if(blocked)
+					if(T.density || LinkBlocked(trf, T) || turf_blocked_projectile(T, REVERSE_DIR(direction))) //if turf is dense || XXX || if any object on the turf is dense and not a window
+						continue
+				cone_turfs += T
+				turfs_to_check += T
+			turfs_to_check -= trf
+	return	cone_turfs
+
+//Get_Angle

@@ -69,6 +69,8 @@
 	var/lit_overlay_offset_y = 0
 	///Damage multiplier for mobs caught in the initial stream of fire.
 	var/mob_flame_damage_mod = 2
+	//var for testing
+	var/cone_angle = 55
 
 /obj/item/weapon/gun/flamer/Initialize()
 	. = ..()
@@ -150,9 +152,11 @@
 			path_to_target -= start_location
 			recursive_flame_straight(1, old_turfs, path_to_target, range, current_target)
 		if(FLAMER_STREAM_CONE)
-			var/dir_to_target = get_dir(start_location, current_target)
-			if(ISDIAGONALDIR(dir_to_target))
-				range /= 2
+			//direction in degrees
+			var/dir_to_target = Get_Angle(src, target)
+			//var/dir_to_target = get_dir(start_location, current_target)
+			//if(ISDIAGONALDIR(dir_to_target))
+			//	range /= 2
 			recursive_flame_cone(1, old_turfs, dir_to_target, range, current_target)
 		if(FLAMER_STREAM_RANGED)
 			return ..()
@@ -188,28 +192,9 @@
 	if(RECURSIVE_CHECK(old_turfs, range, current_target, iteration))
 		return
 
-
-	var/list/turf/turfs_to_ignite = list()
-	var/list/turf/turfs_skip_old = list()
-	var/turf/new_turf = get_step(old_turfs[1], dir_to_target)
-
-	turfs_to_ignite += new_turf //Adds the turf in front of the old turf.
-	for(var/turf/old_turf AS in old_turfs)
-		new_turf = get_step(old_turf, dir_to_target)
-		if(!(get_step(new_turf, turn(dir_to_target, 90)) in turfs_to_ignite)) //Adds the turf on the sides of the old turf if they arent already in the turfs_to_ignite list.
-			turfs_to_ignite += get_step(new_turf, turn(dir_to_target, 90))
-		if(!(get_step(new_turf, REVERSE_DIR(turn(dir_to_target, 90))) in turfs_to_ignite))
-			turfs_to_ignite += get_step(new_turf, REVERSE_DIR(turn(dir_to_target, 90)))
-		if(ISDIAGONALDIR(dir_to_target)) ///Fills in the blanks for a diagonal burn.
-			if(!(get_step(new_turf, turn(dir_to_target, 135)) in turfs_skip_old))
-				turfs_skip_old += get_step(new_turf, turn(dir_to_target, 135))
-			if(!(get_step(new_turf, turn(dir_to_target, 225)) in turfs_skip_old))
-				turfs_skip_old += get_step(new_turf, turn(dir_to_target, 225))
-	burn_list(turfs_skip_old)
-	if(!burn_list(turfs_to_ignite))
-		return
-	iteration++
-	addtimer(CALLBACK(src, .proc/recursive_flame_cone, iteration, turfs_to_ignite, dir_to_target, range, current_target), flame_spread_time)
+	//2 for second row, to test and see if this is 2 past the centre, or 2 including centre
+	var/list/turf/turfs_to_ignite = generate_true_cone(get_turf(src), range, 0, cone_angle, dir_to_target)
+	burn_list(turfs_to_ignite)
 
 #undef RECURSIVE_CHECK
 
@@ -220,7 +205,7 @@
 			turfs_to_burn -= turf_to_check
 			continue
 		for(var/obj/object in turf_to_check)
-			if(!object.density || object.throwpass || istype(object, /obj/structure/mineral_door/resin) || istype(object, /obj/structure/xeno) || istype(object, /obj/machinery/deployable) || istype(object, /obj/vehicle))
+			if(!object.density || object.throwpass || istype(object, /obj/structure/mineral_door/resin) || istype(object, /obj/structure/xeno) || istype(object, /obj/machinery/deployable) || istype(object, /obj/vehicle) || (object.flags_atom & ON_BORDER && object.dir != get_dir(object, src)))
 				continue
 			turfs_to_burn -= turf_to_check
 
