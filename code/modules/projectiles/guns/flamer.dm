@@ -177,6 +177,8 @@
 	var/list/turf/turfs_to_ignite = list()
 	if(iteration > length(path_to_target))
 		return
+	if(iteration > 1 && LinkBlocked(path_to_target[iteration - 1], path_to_target[iteration])) //checks if it's actually possible to get to the next tile in the line
+		return
 	turfs_to_ignite += path_to_target[iteration]
 	if(!burn_list(turfs_to_ignite))
 		return
