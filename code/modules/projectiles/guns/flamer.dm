@@ -193,8 +193,18 @@
 		return
 
 	//2 for second row, to test and see if this is 2 past the centre, or 2 including centre
-	var/list/turf/turfs_to_ignite = generate_true_cone(get_turf(src), range, 0, cone_angle, dir_to_target)
+	var/list/turf/turfs_to_ignite = list()
+	if(iteration > flame_max_range)
+		return
+	turfs_to_ignite += generate_true_cone(get_turf(src), iteration, 0, cone_angle, dir_to_target)
+	generate_true_cone(get_turf(src), range, 0, cone_angle, dir_to_target)
+	for(var/turf/turf in turfs_to_ignite)
+		if(turf in old_turfs)
+			turfs_to_ignite -= turf
 	burn_list(turfs_to_ignite)
+	iteration++
+	old_turfs += turfs_to_ignite
+	addtimer(CALLBACK(src, .proc/recursive_flame_cone, iteration, old_turfs, dir_to_target, range, current_target), flame_spread_time)
 
 #undef RECURSIVE_CHECK
 
