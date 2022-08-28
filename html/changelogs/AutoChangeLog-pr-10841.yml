@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes: 
-  - bugfix: "fixed a vote bug when changing gamemode from Combat Patrol"

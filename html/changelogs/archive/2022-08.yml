@@ -254,3 +254,18 @@
   - balance: Lowered vox cooldown from 60s to 40s
   - bugfix: fixed some floating and other nonsensical cameras on minerva
   - code_imp: removed an useless argument in mortar/binocs code
+2022-08-28:
+  DeltaFire15:
+  - bugfix: The stagger immunity trait should now work properly.
+  Lumipharon:
+  - bugfix: It is no longer possible to hide turrets under barricades
+  - imageadd: Added and fixed up MPI_KM mob sprites
+  - bugfix: SOM squad preferences actually work
+  - bugfix: fixed a vote bug when changing gamemode from Combat Patrol
+  - bugfix: Actually fixed SOM boot mob sprites
+  - bugfix: fixed projectiles going through fog
+  QualityVan:
+  - code_imp: Cleaned up reagent scanner/mass spectrometers.
+  collinlunn:
+  - qol: Hunter's Swap is no longer activated with a separate ability, reactivate
+      Mirage to trigger it.
