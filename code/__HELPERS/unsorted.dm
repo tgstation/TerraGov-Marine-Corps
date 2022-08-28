@@ -160,12 +160,22 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 			return NORTHWEST
 
 
-///Returns true if the path from A to B is blocked. Checks both paths where the direction is diagonal
+/**
+ *	Returns true if the path from A to B is blocked. Checks both paths where the direction is diagonal
+ *	Variables:
+ *	bypass_window - whether it will go through transparent windows like lasers
+ *	projectile - whether throwpass will be checked to ignore dense objects like projectiles
+ *	bypass_xeno - whether to bypass dense xeno structures like flamers
+ */
 /proc/LinkBlocked(turf/A, turf/B, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE)
 	if(isnull(A) || isnull(B))
 		return TRUE
 	var/adir = get_dir(A, B)
 	var/rdir = get_dir(B, A)
+	if(istype(B, /turf/closed/wall/resin) && !bypass_xeno)
+		return TRUE
+	if(B.density)
+		return TRUE
 	if(adir & (adir - 1))//is diagonal direction
 		var/turf/iStep = get_step(A, adir & (NORTH|SOUTH))
 		if((!iStep.density || (istype(iStep, /turf/closed/wall/resin) && bypass_xeno)) && !LinkBlocked(A, iStep, bypass_window, projectile, bypass_xeno) && !LinkBlocked(iStep, B, bypass_window, projectile, bypass_xeno))
@@ -1209,7 +1219,6 @@ will handle it, but:
 GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))
 
 
-///angle cone test
 /**
  *	Generates a cone shape. Any other checks should be handled with the resulting list. Can work with up to 359 degrees
  *	Variables:
@@ -1219,6 +1228,9 @@ GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))
  *	cone_width - big the angle of the cone is
  *	cone_direction - at what angle should the cone be made, relative to the game board's orientation
  *	blocked - whether the cone should take into consideration solid walls
+ *	bypass_window - whether it will go through transparent windows like lasers
+ *	projectile - whether throwpass will be checked to ignore dense objects like projectiles
+ *	bypass_xeno - whether to bypass dense xeno structures like flamers
  */
 /proc/generate_true_cone(atom/center, max_row_count = 10, starting_row = 1, cone_width = 60, cone_direction = 0, blocked = TRUE, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE)
 	var/right_angle = cone_direction + cone_width/2
@@ -1231,11 +1243,7 @@ GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))
 	if(left_angle < 0)
 		left_angle += 360
 
-	///the 3 directions in the direction on the cone that will be checked TODO clean this up
 	var/list/cardinals = GLOB.alldirs
-
-	//cardinals -= REVERSE_DIR(angle2dir(cone_direction))
-	///turfs that are checked whether the cone can continue further from them
 	var/list/turfs_to_check = list(get_turf(center))
 	var/list/cone_turfs = list()
 
@@ -1246,21 +1254,22 @@ GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))
 			var/turf/trf = X
 			for(var/direction in cardinals)
 				var/turf/T = get_step(trf, direction) //checks all turfs around X
-				if(cone_turfs.Find(T)) //if it's already in the list, ignore it
-					continue
-				if(get_dist(center, T) < starting_row) //if it's before the starting row, ignore it. Doesn't fucking work currently
+				if(cone_turfs.Find(T))
 					continue
 				var/turf_angle = Get_Angle(center, T)
-				if(right_angle > left_angle && (turf_angle > right_angle || turf_angle < left_angle)) //in the specified angle
+				if(right_angle > left_angle && (turf_angle > right_angle || turf_angle < left_angle))
 					continue
-				if(turf_angle > right_angle && turf_angle < left_angle) //in the specified angle
+				if(turf_angle > right_angle && turf_angle < left_angle)
 					continue
 				if(blocked)
-					if(LinkBlocked(trf, T, bypass_window, projectile, bypass_xeno) || turf_blocked_projectile(T, REVERSE_DIR(direction))) //if turf is dense || XXX || if any object on the turf is dense and not a window
+					if(T.density || LinkBlocked(trf, T, bypass_window, projectile, bypass_xeno) || turf_blocked_projectile(T, REVERSE_DIR(direction)))
 						continue
 				cone_turfs += T
 				turfs_to_check += T
 			turfs_to_check -= trf
+		for(var/turf/checked_turf in cone_turfs)
+			if(get_dist(center, checked_turf) < starting_row) //if its before the starting row, ignore it.
+				cone_turfs -= checked_turf
 	return	cone_turfs
 
 //Get_Angle
