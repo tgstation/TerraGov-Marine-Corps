@@ -172,9 +172,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 		return TRUE
 	var/adir = get_dir(A, B)
 	var/rdir = get_dir(B, A)
-	if(istype(B, /turf/closed/wall/resin) && !bypass_xeno)
-		return TRUE
-	if(B.density)
+	if(B.density && (!istype(B, /turf/closed/wall/resin) || !bypass_xeno))
 		return TRUE
 	if(adir & (adir - 1))//is diagonal direction
 		var/turf/iStep = get_step(A, adir & (NORTH|SOUTH))
@@ -214,15 +212,6 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 		if(O.density && !istype(O, /obj/structure/window))
 			return TRUE
 	return FALSE
-
-///Returns true if a turf should be blocked to a theoretical projectile
-/proc/turf_blocked_projectile(turf/loc, direction, bypass_window = FALSE)
-	for(var/obj/O in loc)
-		if(!O.density || O.throwpass || (istype(O, /obj/structure/window) && bypass_window) || (O.flags_atom & ON_BORDER && O.dir != direction))
-			continue
-		return TRUE
-	return FALSE
-
 
 //Returns whether or not a player is a guest using their ckey as an input
 /proc/IsGuestKey(key)
@@ -1216,9 +1205,6 @@ will handle it, but:
 	if(location && include_turf) //At this point, only the turf is left, provided it exists.
 		. += location
 
-GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))
-
-
 /**
  *	Generates a cone shape. Any other checks should be handled with the resulting list. Can work with up to 359 degrees
  *	Variables:
@@ -1262,7 +1248,7 @@ GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))
 				if(turf_angle > right_angle && turf_angle < left_angle)
 					continue
 				if(blocked)
-					if(T.density || LinkBlocked(trf, T, bypass_window, projectile, bypass_xeno) || turf_blocked_projectile(T, REVERSE_DIR(direction)))
+					if(LinkBlocked(trf, T, bypass_window, projectile, bypass_xeno))
 						continue
 				cone_turfs += T
 				turfs_to_check += T
@@ -1272,4 +1258,4 @@ GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))
 				cone_turfs -= checked_turf
 	return	cone_turfs
 
-//Get_Angle
+GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))
