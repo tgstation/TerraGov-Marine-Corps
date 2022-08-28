@@ -177,7 +177,7 @@
 	var/list/turf/turfs_to_ignite = list()
 	if(iteration > length(path_to_target))
 		return
-	if(iteration > 1 && LinkBlocked(path_to_target[iteration - 1], path_to_target[iteration])) //checks if it's actually possible to get to the next tile in the line
+	if(iteration > 1 && LinkBlocked(path_to_target[iteration - 1], path_to_target[iteration], projectile = TRUE, bypass_xeno = TRUE)) //checks if it's actually possible to get to the next tile in the line
 		return
 	turfs_to_ignite += path_to_target[iteration]
 	if(!burn_list(turfs_to_ignite))
@@ -194,15 +194,14 @@
 	if(RECURSIVE_CHECK(old_turfs, range, current_target, iteration))
 		return
 
-	//2 for second row, to test and see if this is 2 past the centre, or 2 including centre
 	var/list/turf/turfs_to_ignite = list()
-	if(iteration > flame_max_range)
+	if(iteration > flame_max_range) //we've reached max range
 		return
-	turfs_to_ignite += generate_true_cone(get_turf(src), iteration, 0, cone_angle, dir_to_target)
-	generate_true_cone(get_turf(src), range, 0, cone_angle, dir_to_target)
+	turfs_to_ignite += generate_true_cone(get_turf(src), iteration, 0, cone_angle, dir_to_target, projectile = TRUE, bypass_xeno = TRUE)
+	//generate_true_cone(get_turf(src), range, 0, cone_angle, dir_to_target, projectile = TRUE, bypass_xeno = TRUE)
 	for(var/turf/turf in turfs_to_ignite)
 		if(turf in old_turfs)
-			turfs_to_ignite -= turf
+			turfs_to_ignite -= turf //we've already ignited this turf
 	burn_list(turfs_to_ignite)
 	iteration++
 	old_turfs += turfs_to_ignite
@@ -216,10 +215,10 @@
 		if((turf_to_check.density && !istype(turf_to_check, /turf/closed/wall/resin)) || isspaceturf(turf_to_check))
 			turfs_to_burn -= turf_to_check
 			continue
-		for(var/obj/object in turf_to_check)
-			if(!object.density || object.throwpass || istype(object, /obj/structure/mineral_door/resin) || istype(object, /obj/structure/xeno) || istype(object, /obj/machinery/deployable) || istype(object, /obj/vehicle) || (object.flags_atom & ON_BORDER && object.dir != get_dir(object, src)))
-				continue
-			turfs_to_burn -= turf_to_check
+		//for(var/obj/object in turf_to_check)
+		//	if(!object.density || object.throwpass || istype(object, /obj/structure/mineral_door/resin) || istype(object, /obj/structure/xeno) || istype(object, /obj/machinery/deployable) || istype(object, /obj/vehicle) || (object.flags_atom & ON_BORDER && object.dir != get_dir(object, src)))
+		//		continue
+		//	turfs_to_burn -= turf_to_check
 
 	if(!length(turfs_to_burn) || !length(chamber_items))
 		return FALSE

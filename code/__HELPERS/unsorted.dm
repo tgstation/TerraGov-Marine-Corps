@@ -161,53 +161,41 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 
 
 ///Returns true if the path from A to B is blocked. Checks both paths where the direction is diagonal
-/proc/LinkBlocked(turf/A, turf/B, bypass_window = FALSE, projectile = FALSE)
+/proc/LinkBlocked(turf/A, turf/B, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE)
 	if(isnull(A) || isnull(B))
 		return TRUE
 	var/adir = get_dir(A, B)
 	var/rdir = get_dir(B, A)
 	if(adir & (adir - 1))//is diagonal direction
 		var/turf/iStep = get_step(A, adir & (NORTH|SOUTH))
-		if(!iStep.density && !LinkBlocked(A, iStep) && !LinkBlocked(iStep, B))
+		if((!iStep.density || (istype(iStep, /turf/closed/wall/resin) && bypass_xeno)) && !LinkBlocked(A, iStep, bypass_window, projectile, bypass_xeno) && !LinkBlocked(iStep, B, bypass_window, projectile, bypass_xeno))
 			return FALSE
 
 		var/turf/pStep = get_step(A,adir & (EAST|WEST))
-		if(!pStep.density && !LinkBlocked(A, pStep) && !LinkBlocked(pStep, B))
+		if((!pStep.density || (istype(pStep, /turf/closed/wall/resin) && bypass_xeno)) && !LinkBlocked(A, pStep, bypass_window, projectile, bypass_xeno) && !LinkBlocked(pStep, B, bypass_window, projectile, bypass_xeno))
 			return FALSE
 		return TRUE
 
-	if(DirBlocked(A, adir, bypass_window, projectile))
+	if(DirBlocked(A, adir, bypass_window, projectile, bypass_xeno))
 		return TRUE
-	if(DirBlocked(B, rdir, bypass_window, projectile))
+	if(DirBlocked(B, rdir, bypass_window, projectile, bypass_xeno))
 		return TRUE
 	return FALSE
 
 ///Checks if moving in a direction is blocked
-/proc/DirBlocked(turf/loc, direction, bypass_window = FALSE, projectile = FALSE)
-	for(var/obj/structure/window/D in loc)
-		if(!D.density || bypass_window) //if the window is not dense, or we want to ignore windows, for example lasers
+/proc/DirBlocked(turf/loc, direction, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE)
+	for(var/obj/object in loc)
+		if(!object.density)
 			continue
-		if(D.is_full_window())
-			return TRUE
-		if(D.dir == direction) //border edge windows only block movement in that direction
-			return TRUE
-
-	for(var/obj/machinery/door/D in loc)
-		if(!D.density) //the door is open
+		if(object.throwpass && projectile) //projectiles can bypass dense objects with throwpass
 			continue
-		if(istype(D, /obj/machinery/door/window))
-			if(D.dir == direction && !bypass_window) //border edge windoors only block movement in that direction
-				return TRUE
-		else
-			return TRUE	// it's a real, air blocking door
-	for(var/obj/structure/mineral_door/D in loc)
-		if(D.density)
-			return TRUE
-	for(var/obj/structure/barricade/B in loc)
-		if(!B.density || projectile) //anything that behaves like a projectile can travel over a barricade
+		if((istype(object, /obj/structure/mineral_door/resin) || istype(object, /obj/structure/xeno)) && bypass_xeno) //xeno objects are bypassed by flamers
 			continue
-		if(B.dir == direction)
-			return TRUE
+		if((istype(object, /obj/machinery/door/window) || istype(object, /obj/structure/window)) && bypass_window) //windows are bypassed energy weapons
+			continue
+		if(object.flags_atom & ON_BORDER && object.dir != direction)
+			continue
+		return TRUE
 	return FALSE
 
 ///Returns true if any object on a turf is both dense and not a window
@@ -1232,7 +1220,7 @@ GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))
  *	cone_direction - at what angle should the cone be made, relative to the game board's orientation
  *	blocked - whether the cone should take into consideration solid walls
  */
-/proc/generate_true_cone(atom/center, max_row_count = 10, starting_row = 1, cone_width = 60, cone_direction = 0, blocked = TRUE)
+/proc/generate_true_cone(atom/center, max_row_count = 10, starting_row = 1, cone_width = 60, cone_direction = 0, blocked = TRUE, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE)
 	var/right_angle = cone_direction + cone_width/2
 	var/left_angle = cone_direction - cone_width/2
 
@@ -1268,7 +1256,7 @@ GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))
 				if(turf_angle > right_angle && turf_angle < left_angle) //in the specified angle
 					continue
 				if(blocked)
-					if(T.density || LinkBlocked(trf, T) || turf_blocked_projectile(T, REVERSE_DIR(direction))) //if turf is dense || XXX || if any object on the turf is dense and not a window
+					if(LinkBlocked(trf, T, bypass_window, projectile, bypass_xeno) || turf_blocked_projectile(T, REVERSE_DIR(direction))) //if turf is dense || XXX || if any object on the turf is dense and not a window
 						continue
 				cone_turfs += T
 				turfs_to_check += T
