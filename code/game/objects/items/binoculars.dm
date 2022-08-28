@@ -27,7 +27,7 @@
 
 /obj/item/binoculars/tactical
 	name = "tactical binoculars"
-	desc = "A pair of binoculars, with a laser targeting function. Alt+Click or unique action to toggle mode. Ctrl+Click when using to target something. Shift+Click to get coordinates. Ctrl+Shift+Click to fire OB when lasing in OB mode"
+	desc = "A pair of binoculars, with a laser targeting function. Unique action to toggle mode. Alt+Click to change selected linked mortar. Ctrl+Click when using to target something. Shift+Click to get coordinates. Ctrl+Shift+Click to fire OB when lasing in OB mode"
 	var/laser_cooldown = 0
 	var/cooldown_duration = 200 //20 seconds
 	var/obj/effect/overlay/temp/laser_target/laser
@@ -39,7 +39,9 @@
 	///Last stored turf targetted by rangefinders
 	var/turf/targetturf
 	///Linked mortar for remote targeting.
-	var/list/linked_mortars = list()
+	var/list/obj/machinery/deployable/mortar/linked_mortars = list()
+	/// Selected mortar index
+	var/selected_mortar = 1
 
 /obj/item/binoculars/tactical/Initialize()
 	. = ..()
@@ -64,6 +66,7 @@
 	. += span_notice("Use on a mortar to link it for remote targeting.")
 	if(linked_mortars.len)
 		. += span_notice("They are currently linked to [linked_mortars.len] mortar(s).")
+		. += span_notice("They are currently set to mortar [selected_mortar].")
 		return
 	. += span_notice("They are not linked to a mortar.")
 
@@ -124,7 +127,13 @@
 
 /obj/item/binoculars/tactical/AltClick(mob/user)
 	. = ..()
-	toggle_mode(user)
+	if(!linked_mortars.len)
+		return
+	selected_mortar += 1
+	if(selected_mortar > linked_mortars.len)
+		selected_mortar = 1
+	var/obj/mortar = linked_mortars[selected_mortar]
+	to_chat(user, span_notice("NOW SENDING COORDINATES TO MORTAR [selected_mortar] AT: LONGITUDE [mortar.x]. LATITUDE [mortar.y]."))
 
 /obj/item/binoculars/tactical/verb/toggle_mode(mob/user)
 	set category = "Object"
@@ -227,11 +236,13 @@
 			if(!linked_mortars.len)
 				to_chat(user, span_notice("No linked mortars found."))
 				return
+			if(linked_mortars.len < selected_mortar)
+				selected_mortar = 1 /// incase through some variable-edit or qdel tomfoolery something screws up
 			targetturf = TU
-			to_chat(user, span_notice("COORDINATES TARGETED: LONGITUDE [targetturf.x]. LATITUDE [targetturf.y]."))
+			to_chat(user, span_notice("COORDINATES TARGETED BY MORTAR [selected_mortar]: LONGITUDE [targetturf.x]. LATITUDE [targetturf.y]."))
 			playsound(src, 'sound/effects/binoctarget.ogg', 35)
-			for(var/obj/machinery/deployable/mortar/mortar in linked_mortars)
-				mortar.recieve_target(TU,user)
+			var/obj/machinery/deployable/mortar/mortar = linked_mortars[selected_mortar] /// typecasted lists STILL dont help in the slightest
+			mortar.recieve_target(TU,user)
 			return
 		if(MODE_RAILGUN)
 			to_chat(user, span_notice("ACQUIRING TARGET. RAILGUN TRIANGULATING. DON'T MOVE."))
