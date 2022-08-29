@@ -154,13 +154,11 @@
 		if(FLAMER_STREAM_CONE)
 			//direction in degrees
 			var/dir_to_target = Get_Angle(src, target)
-			recursive_flame_cone(1, old_turfs, dir_to_target, range, current_target)
+			var/list/turf/turfs_to_ignite = generate_true_cone(get_turf(src), range, 1, cone_angle, dir_to_target, projectile = TRUE, bypass_xeno = TRUE)
+			recursive_flame_cone(1, turfs_to_ignite, dir_to_target, range, current_target, get_turf(src))
 		if(FLAMER_STREAM_RANGED)
 			return ..()
 	return TRUE
-
-#define RECURSIVE_CHECK(old_turfs, range, current_target, iteration) (!length(old_turfs) || iteration > range || !current_target || (current_target in old_turfs))
-
 
 ///Flames recursively a straight path.
 /obj/item/weapon/gun/flamer/proc/recursive_flame_straight(iteration, list/turf/old_turfs, list/turf/path_to_target, range, current_target)
@@ -168,7 +166,8 @@
 		light_pilot(FALSE)
 		return
 
-	if(RECURSIVE_CHECK(old_turfs, range, current_target, iteration))
+	//recursive checks
+	if(!length(old_turfs) || iteration > range || !current_target || (current_target in old_turfs))
 		return
 
 	var/list/turf/turfs_to_ignite = list()
@@ -187,27 +186,22 @@
 	addtimer(CALLBACK(src, .proc/recursive_flame_straight, iteration, turfs_to_ignite, path_to_target, range, current_target), flame_spread_time)
 
 ///Flames recursively a cone.
-/obj/item/weapon/gun/flamer/proc/recursive_flame_cone(iteration, list/turf/old_turfs, dir_to_target, range, current_target)
+/obj/item/weapon/gun/flamer/proc/recursive_flame_cone(iteration, list/turf/turfs_to_ignite, dir_to_target, range, current_target, turf/flame_source)
 	if(!rounds)
 		light_pilot(FALSE)
 		return
-
-	if(RECURSIVE_CHECK(old_turfs, range, current_target, iteration))
+	//recursive checks
+	if(iteration > range || !current_target)
 		return
 
-	var/list/turf/turfs_to_ignite = list()
-	if(iteration > flame_max_range) //we've reached max range
-		return
-	turfs_to_ignite += generate_true_cone(get_turf(src), iteration, 1, cone_angle, dir_to_target, projectile = TRUE, bypass_xeno = TRUE)
+	var/list/turf/turfs_by_iteration = list()
 	for(var/turf/turf in turfs_to_ignite)
-		if(turf in old_turfs)
-			turfs_to_ignite -= turf //we've already ignited this turf
-	burn_list(turfs_to_ignite)
-	iteration++
-	old_turfs += turfs_to_ignite
-	addtimer(CALLBACK(src, .proc/recursive_flame_cone, iteration, old_turfs, dir_to_target, range, current_target), flame_spread_time)
+		if(get_dist(turf, flame_source) == iteration)
+			turfs_by_iteration += turf
 
-#undef RECURSIVE_CHECK
+	burn_list(turfs_by_iteration)
+	iteration++
+	addtimer(CALLBACK(src, .proc/recursive_flame_cone, iteration, turfs_to_ignite, dir_to_target, range, current_target, flame_source), flame_spread_time)
 
 ///Checks and lights the turfs in turfs_to_burn
 /obj/item/weapon/gun/flamer/proc/burn_list(list/turf/turfs_to_burn)
