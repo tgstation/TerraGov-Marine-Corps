@@ -1521,6 +1521,14 @@
 
 /obj/item/weapon/gun/proc/gun_on_cooldown(mob/user)
 	var/added_delay = fire_delay
+
+	for(var/obj/item/weapon/gun/G in user.contents)
+		if(!(world.time >= G.last_fired + G.fire_delay))
+			return TRUE
+	for(var/obj/item/weapon/gun/G in get_turf(user))
+		if(!(world.time >= G.last_fired + G.fire_delay))
+			return TRUE
+
 	if(user)
 		if(!user.skills.getRating("firearms")) //no training in any firearms
 			added_delay += 3 //untrained humans fire more slowly.
@@ -1532,6 +1540,7 @@
 				if(GUN_SKILL_SMARTGUN)
 					if(user.skills.getRating(gun_skill_category) < 0)
 						added_delay -= 2 * user.skills.getRating(gun_skill_category)
+
 	var/delay = last_fired + added_delay
 	if(gun_firemode == GUN_FIREMODE_BURSTFIRE)
 		delay += extra_delay
