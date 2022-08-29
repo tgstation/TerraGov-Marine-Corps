@@ -125,13 +125,21 @@
 	else
 		. += "binoculars_laser"
 
+/obj/item/binoculars/tactical/proc/check_mortar_index()
+	if(!linked_mortars)
+		return
+	if(!linked_mortars.len)
+		selected_mortar = 1 // set back to default but it still wont fire because no mortars and thats good
+		return
+	if(selected_mortar > linked_mortars.len)
+		selected_mortar = 1
+
 /obj/item/binoculars/tactical/AltClick(mob/user)
 	. = ..()
 	if(!linked_mortars.len)
 		return
 	selected_mortar += 1
-	if(selected_mortar > linked_mortars.len)
-		selected_mortar = 1
+	check_mortar_index()
 	var/obj/mortar = linked_mortars[selected_mortar]
 	to_chat(user, span_notice("NOW SENDING COORDINATES TO MORTAR [selected_mortar] AT: LONGITUDE [mortar.x]. LATITUDE [mortar.y]."))
 
@@ -236,8 +244,7 @@
 			if(!linked_mortars.len)
 				to_chat(user, span_notice("No linked mortars found."))
 				return
-			if(linked_mortars.len < selected_mortar)
-				selected_mortar = 1 /// incase through some variable-edit or qdel tomfoolery something screws up
+			check_mortar_index() // incase varedit screws something up
 			targetturf = TU
 			to_chat(user, span_notice("COORDINATES TARGETED BY MORTAR [selected_mortar]: LONGITUDE [targetturf.x]. LATITUDE [targetturf.y]."))
 			playsound(src, 'sound/effects/binoctarget.ogg', 35)
@@ -317,6 +324,7 @@
 /obj/item/binoculars/tactical/proc/clean_refs(datum/source)
 	SIGNAL_HANDLER
 	linked_mortars -= source
+	check_mortar_index()
 	say("NOTICE: connection lost with linked mortar.")
 
 /obj/item/binoculars/tactical/scout
