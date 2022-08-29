@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes: 
+  - balance: "Having a single broken leg or foot can now trigger falling over instead of needing 2 or more breaks"
+  - balance: "Falling over due to a broken leg or foot now only stuns for 1 second instead of 3"
