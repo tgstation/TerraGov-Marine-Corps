@@ -139,3 +139,6 @@
 
 	/// This is the cooldown on suffering additional effects for when we exhaust all stamina
 	COOLDOWN_DECLARE(last_stamina_exhaustion)
+
+	var/lastgundelay //This is the time after which the next gun can be fired in world time.
+	var/lastgun //This is a reference to the last gun that the mob fired.

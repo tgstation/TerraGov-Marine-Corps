@@ -33,20 +33,6 @@
 	placed_overlay_iconstate = "shotgun"
 
 
-/obj/item/weapon/gun/shotgun/do_fire() //Handles recoil punishments for juggling.
-	. = ..()
-	var/mob/living/carbon/human/wielder = gun_user
-	if (wielder.lastshotgun != src && wielder.lastshotgun != wielder.get_inactive_held_item() && world.time < wielder.lastshotguntime + wielder.lastshotgundelay) //Does punishment for juggling in the form of recoil damage.
-		var/zone = wielder.hand ? "l_arm" : "r_arm"
-		var/datum/limb/limb = wielder.get_limb(zone)
-		to_chat(wielder, span_userdanger("Your arm is torn by the recoil!"))
-		wielder.apply_damage(20, BRUTE, zone)
-		if (limb.get_damage() >= limb.max_damage)
-			limb.droplimb(0)
-	wielder.lastshotguntime = world.time
-	wielder.lastshotgundelay = fire_delay
-	wielder.lastshotgun = src
-
 //-------------------------------------------------------
 //TACTICAL SHOTGUN
 

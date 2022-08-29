@@ -128,10 +128,3 @@
 
 	/// This is the cooldown on suffering additional effects for when shock gets high
 	COOLDOWN_DECLARE(last_shock_effect)
-
-///This shows when the human last fired a shotgun.
-	var/lastshotguntime
-///If the human fires a different shotgun before this amount of time has passed, it gets recoil damage. Saved for if the previously fired shotgun is gone.
-	var/lastshotgundelay
-///This is a reference to the last shotgun that the human fired.
-	var/lastshotgun
