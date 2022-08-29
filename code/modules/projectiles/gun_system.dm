@@ -745,7 +745,7 @@
 		return
 
 	last_fired = world.time
-	if(!(flags_gun_features & GUN_IS_ATTACHMENT))
+	if(!(flags_gun_features & GUN_ATTACHMENT_FIRE_ONLY))
 		gun_user.last_gun_fire_delay = world.time + fire_delay
 	SEND_SIGNAL(src, COMSIG_MOB_GUN_FIRED, target, src)
 
@@ -1538,7 +1538,7 @@
 	if(gun_firemode == GUN_FIREMODE_BURSTFIRE)
 		delay += extra_delay
 
-	if(world.time >= delay && world.time >= user.last_gun_fire_delay)
+	if(world.time >= delay && ((flags_gun_features & GUN_ATTACHMENT_FIRE_ONLY) ? TRUE : world.time >= user.last_gun_fire_delay))
 		return FALSE
 
 	if(world.time % 3 && !user?.client?.prefs.mute_self_combat_messages)
