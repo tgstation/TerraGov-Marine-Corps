@@ -108,7 +108,7 @@
 	///The "point blank" range of the projectile. Inside this range the projectile gets a bonus to hit
 	var/point_blank_range = 0
 	/// List of atoms already hit by that projectile. Will only matter for projectiles capable of passing through multiple atoms
-	var/list/atom/hit_atoms
+	var/list/atom/hit_atoms = list()
 
 /obj/projectile/Initialize()
 	. = ..()
