@@ -438,9 +438,3 @@
 	message_admins(src)
 	// We register for movement so that we unburrow if bombed
 	RegisterSignal(src, COMSIG_MOVABLE_MOVED, .proc/xeno_burrow)
-
-/// This is for projectiles to ignore the xeno if they are burrowed
-/mob/living/carbon/xenomorph/projectile_hit()
-	if(burrowed)
-		return
-	return ..()
