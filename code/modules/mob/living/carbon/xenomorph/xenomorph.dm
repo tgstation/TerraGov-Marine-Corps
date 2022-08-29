@@ -422,6 +422,7 @@
 		density = TRUE
 		throwpass = FALSE
 		burrowed = FALSE
+		canmove = TRUE
 
 /mob/living/carbon/xenomorph/proc/xeno_burrow_doafter()
 	if(!do_after(src, 3 SECONDS, TRUE, null, BUSY_ICON_DANGER))
@@ -435,5 +436,6 @@
 	icon_state = "[xeno_caste.caste_name] Burrowed"
 	// Here we prevent the xeno from moving or attacking or using abilities untill they unburrow by clicking the ability
 	fire_resist_modifier -= 20
+	canmove = FALSE
 	// We register for movement so that we unburrow if bombed
 	RegisterSignal(src, COMSIG_MOVABLE_MOVED, .proc/xeno_burrow)
