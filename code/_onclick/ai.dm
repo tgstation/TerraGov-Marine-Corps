@@ -192,7 +192,7 @@
 	if(!user.linked_artillery)
 		to_chat(user, span_notice("No linked mortar found."))
 		return
-	to_chat(user, span_notice("Remote targeting set by [user]. COORDINATES: X:[src.x] Y:[src.y]"))
+	to_chat(user, span_notice("Remote targeting set by [user]. COORDINATES: X:[x] Y:[y]"))
 	user.linked_artillery.recieve_target(src,user)
 
 
