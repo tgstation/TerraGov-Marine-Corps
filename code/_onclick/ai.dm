@@ -191,5 +191,5 @@
 		TD.move_camera_by_click()
 
 /turf/AICtrlClick(mob/living/silicon/ai/user)
-	to_chat(user, span_notice("Coordinates of selected turf at [src.loc]. COORDINATES: X:[src.x] Y:[src.y]"))
+	to_chat(user, span_notice("Coordinates of selected turf at [loc]. COORDINATES: X:[x] Y:[y]"))
 	
