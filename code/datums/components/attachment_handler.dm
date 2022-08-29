@@ -173,15 +173,13 @@
 		to_chat(user, span_warning("You cannot attach [attachment] to [parent]!"))
 		return FALSE
 
-	var/obj/item/current_attachment_in_slot = slots[SLOT]
-
-	if(!current_attachment_in_slot) //If the slot is empty theres room.
+	if(!slots[slot]) //If the slot is empty theres room.
 		return TRUE
 
 	var/list/current_attachment_data = attachment_data_by_slot[slot]
 
 	if(!CHECK_BITFIELD(current_attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_REMOVABLE)) //If the slots attachment is unremovable.
-		to_chat(user, span_warning("You cannot remove [current_attachment_in_slot] from [parent] to make room for [attachment]!"))
+		to_chat(user, span_warning("You cannot remove [slots[slot]] from [parent] to make room for [attachment]!"))
 		return FALSE
 
 	return TRUE //Removal of a current attachment is done in finish_handle_attachment.

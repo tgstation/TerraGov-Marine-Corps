@@ -744,7 +744,7 @@
 	flags_gun_features = GUN_IS_ATTACHMENT|GUN_AMMO_COUNTER|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
 	flags_attach_features = NONE
 	slot = ATTACHMENT_SLOT_STOCK
-	default_ammo_type = /obj/item/ammo_magazine/handful/micro_grenade
+	default_ammo_type = /datum/ammo/bullet/micro_rail/airburst
 	caliber = CALIBER_10G_RAIL
 	type_of_casings = null
 
