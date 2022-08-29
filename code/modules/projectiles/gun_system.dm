@@ -745,8 +745,7 @@
 		return
 
 	last_fired = world.time
-	if(!dual_wield)
-		gun_user.last_gun_fire_delay = world.time + fire_delay
+	gun_user.last_gun_fire_delay = world.time + fire_delay
 	SEND_SIGNAL(src, COMSIG_MOB_GUN_FIRED, target, src)
 
 	if(!max_chamber_items)
@@ -770,6 +769,7 @@
 		var/obj/item/weapon/gun/inactive_gun = gun_user.get_inactive_held_item()
 		if(inactive_gun.rounds && !(inactive_gun.flags_gun_features & GUN_WIELDED_FIRING_ONLY))
 			inactive_gun.last_fired = max(world.time - fire_delay * (1 - akimbo_additional_delay), inactive_gun.last_fired)
+			gun_user.last_gun_fire_delay = max(world.time - fire_delay * (1 - akimbo_additional_delay), inactive_gun.last_fired)
 			gun_user.swap_hand()
 	return TRUE
 
