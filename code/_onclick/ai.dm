@@ -189,11 +189,10 @@
 		TD.move_camera_by_click()
 
 /turf/AIShiftClick(mob/living/silicon/ai/user)
-	var/turf/T = get_turf(src)
 	if(!user.linked_artillery)
 		to_chat(user, span_notice("No linked mortar found."))
 		return
-	to_chat(user, span_notice("Remote targeting set by [user]. COORDINATES: X:[T.x] Y:[T.y]"))
-	user.linked_artillery.recieve_target(T,user)
+	to_chat(user, span_notice("Remote targeting set by [user]. COORDINATES: X:[src.x] Y:[src.y]"))
+	user.linked_artillery.recieve_target(src,user)
 
 
