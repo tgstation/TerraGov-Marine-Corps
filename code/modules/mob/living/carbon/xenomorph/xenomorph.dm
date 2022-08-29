@@ -415,8 +415,8 @@
 		return
 
 	else if(burrowed)
-		REMOVE_TRAIT(src, TRAIT_NON_FLAMMABLE, src)
 		UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
+		fire_resist_modifier += 20
 		icon_state = initial(icon_state)
 		mouse_opacity = initial(mouse_opacity)
 		density = TRUE
@@ -434,7 +434,6 @@
 	burrowed = TRUE
 	icon_state = "[xeno_caste.caste_name] Burrowed"
 	// Here we prevent the xeno from moving or attacking or using abilities untill they unburrow by clicking the ability
-	ADD_TRAIT(src, TRAIT_NON_FLAMMABLE, src)
-	message_admins(src)
+	fire_resist_modifier -= 20
 	// We register for movement so that we unburrow if bombed
 	RegisterSignal(src, COMSIG_MOVABLE_MOVED, .proc/xeno_burrow)
