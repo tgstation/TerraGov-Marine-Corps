@@ -95,3 +95,5 @@
 	var/has_unlimited_silicon_privilege = 0
 	///The faction this mob belongs to
 	var/faction = FACTION_NEUTRAL
+	/// The world.time of the moment we fired our last gun + the delay to the next shot of the gun we fired
+	var/last_gun_fire_delay
