@@ -321,6 +321,7 @@
 
 /obj/item/clothing/under/colonist/webbing
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+
 /obj/item/clothing/under/CM_uniform
 	name = "colonial marshal uniform"
 	desc = "A blue shirt and tan trousers - the official uniform for a Colonial Marshal."
