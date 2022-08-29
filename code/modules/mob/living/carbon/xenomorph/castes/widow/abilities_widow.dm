@@ -236,7 +236,7 @@
 	/// Here we make every single spiderling that we have also burrow and assign a signal so that they unburrow too
 	for(var/mob/living/carbon/xenomorph/spiderling/spiderling AS in create_spiderling_action.spiderlings)
 		/// Here we trigger the burrow proc, the registering happens there
-		spiderling.xeno_burrow(spiderling)
-	X.xeno_burrow(X)
+		spiderling.xeno_burrow()
+	X.xeno_burrow()
 	succeed_activate()
 	add_cooldown()

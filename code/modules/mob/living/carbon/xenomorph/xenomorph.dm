@@ -407,41 +407,40 @@
 	loc_weeds_type = found_weed?.type
 
 /// Burrow code for xenomorphs
-/mob/living/carbon/xenomorph/proc/xeno_burrow(mob/living/carbon/xenomorph/xenomorph)
+/mob/living/carbon/xenomorph/proc/xeno_burrow()
 	SIGNAL_HANDLER
-	if(!xenomorph.burrowed)
-		to_chat(xenomorph, span_xenowarning("We start burrowing into the ground"))
-		INVOKE_ASYNC(xenomorph, .proc/xeno_burrow_doafter, xenomorph)
+	if(!burrowed)
+		to_chat(src, span_xenowarning("We start burrowing into the ground"))
+		INVOKE_ASYNC(src, .proc/xeno_burrow_doafter, src)
 		return
 
-	else if(xenomorph.burrowed)
-		UnregisterSignal(xenomorph, COMSIG_MOVABLE_MOVED)
-		xenomorph.icon_state = initial(icon_state)
-		xenomorph.mouse_opacity = initial(xenomorph.mouse_opacity)
-		xenomorph.density = TRUE
-		xenomorph.throwpass = FALSE
-		xenomorph.burrowed = FALSE
+	else if(burrowed)
+		REMOVE_TRAIT(src, TRAIT_NON_FLAMMABLE, src)
+		UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
+		icon_state = initial(icon_state)
+		mouse_opacity = initial(mouse_opacity)
+		density = TRUE
+		throwpass = FALSE
+		burrowed = FALSE
 
-/mob/living/carbon/xenomorph/proc/xeno_burrow_doafter(mob/living/carbon/xenomorph/xenomorph)
-	if(!do_after(xenomorph, 3 SECONDS, TRUE, null, BUSY_ICON_DANGER))
+/mob/living/carbon/xenomorph/proc/xeno_burrow_doafter()
+	if(!do_after(src, 3 SECONDS, TRUE, null, BUSY_ICON_DANGER))
 		return
-	to_chat(xenomorph, span_xenowarning("We have burrowed ourselves, we are hidden from the enemy"))
+	to_chat(src, span_xenowarning("We have burrowed ourselves, we are hidden from the enemy"))
 	// This part here actually burrows the xeno
-	xenomorph.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	xenomorph.density = FALSE
-	xenomorph.throwpass = TRUE
-	xenomorph.burrowed = TRUE
-	xenomorph.icon_state = "[xeno_caste.caste_name] Burrowed"
-	// We register for movement so that we can unburrow
-	RegisterSignal(xenomorph, COMSIG_MOVABLE_MOVED, .proc/xeno_burrow)
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	density = FALSE
+	throwpass = TRUE
+	burrowed = TRUE
+	icon_state = "[xeno_caste.caste_name] Burrowed"
+	// Here we prevent the xeno from moving or attacking or using abilities untill they unburrow by clicking the ability
+	ADD_TRAIT(src, TRAIT_NON_FLAMMABLE, src)
+	message_admins(src)
+	// We register for movement so that we unburrow if bombed
+	RegisterSignal(src, COMSIG_MOVABLE_MOVED, .proc/xeno_burrow)
 
 /// This is for projectiles to ignore the xeno if they are burrowed
 /mob/living/carbon/xenomorph/projectile_hit()
-	if(burrowed)
-		return
-	return ..()
-
-/mob/living/carbon/xenomorph/fire_act()
 	if(burrowed)
 		return
 	return ..()
