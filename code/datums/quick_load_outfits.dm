@@ -256,10 +256,10 @@
 
 /datum/outfit/quick/tgmc/marine/auto_shotgun
 	name = "SH-15 shocktrooper"
-	desc = "The perfect blend of damage and fire speed. Equipped with an SH-15 autoshotgun, heavy armor reinforced with a 'Tyr' module, and plenty of grenades and ammunition. Excellent single shot damage and a great rate of fire for a shotgun, only limited by a small magazine size."
+	desc = "Shock assault class. Equipped with an SH-15 autoshotgun, heavy armor reinforced with a Mk.II 'Tyr' module for superior protection, and plenty of grenades and ammunition. Excellent single shot damage and a great rate of fire for a shotgun, only limited by a small magazine size."
 
 	head = /obj/item/clothing/head/modular/marine/m10x/tyr
-	wear_suit = /obj/item/clothing/suit/modular/xenonauten/heavy/tyr_one
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two
 	suit_store = /obj/item/weapon/gun/rifle/standard_autoshotgun/standard
 
 /datum/outfit/quick/tgmc/marine/auto_shotgun/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
