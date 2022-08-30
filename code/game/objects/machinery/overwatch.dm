@@ -46,12 +46,15 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	var/datum/action/innate/order/retreat_order/send_retreat_order
 	///datum used when sending a defend order
 	var/datum/action/innate/order/defend_order/send_defend_order
+	///datum used when sending a rally order
+	var/datum/action/innate/order/rally_order/send_rally_order
 
 /obj/machinery/computer/camera_advanced/overwatch/Initialize()
 	. = ..()
 	send_attack_order = new
 	send_defend_order = new
 	send_retreat_order = new
+	send_rally_order = new
 
 /obj/machinery/computer/camera_advanced/overwatch/give_actions(mob/living/user)
 	. = ..()
@@ -67,6 +70,10 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		send_retreat_order.target = user
 		send_retreat_order.give_action(user)
 		actions += send_retreat_order
+	if(send_rally_order)
+		send_rally_order.target = user
+		send_rally_order.give_action(user)
+		actions += send_rally_order
 
 /obj/machinery/computer/camera_advanced/overwatch/main
 	icon_state = "overwatch_main"

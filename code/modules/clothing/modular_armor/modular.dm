@@ -324,6 +324,8 @@
 /obj/item/clothing/suit/modular/xenonauten/heavy/tyr_one
 	starting_attachments = list(/obj/item/armor_module/module/tyr_extra_armor/mark1)
 
+/obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two
+	starting_attachments = list(/obj/item/armor_module/module/tyr_extra_armor)
 /** Core helmet module */
 /obj/item/clothing/head/modular
 	name = "Jaeger Pattern Helmet"
