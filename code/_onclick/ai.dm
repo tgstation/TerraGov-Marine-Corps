@@ -164,6 +164,8 @@
 		alarm()
 
 
+/* Turf */
+
 //
 // Override TurfAdjacent for AltClicking
 //
@@ -196,3 +198,7 @@
 	user.linked_artillery.recieve_target(src,user)
 
 
+
+/turf/AICtrlClick(mob/living/silicon/ai/user)
+	to_chat(user, span_notice("Coordinates of selected turf at [loc]. COORDINATES: X:[x] Y:[y]"))
+	

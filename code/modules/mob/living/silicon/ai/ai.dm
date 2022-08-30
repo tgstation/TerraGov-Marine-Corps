@@ -91,6 +91,7 @@
 	var/datum/action/innate/order/attack_order/send_attack_order = new
 	var/datum/action/innate/order/defend_order/send_defend_order = new
 	var/datum/action/innate/order/retreat_order/send_retreat_order = new
+	var/datum/action/innate/order/rally_order/send_rally_order = new
 	var/datum/action/control_vehicle/control = new
 	var/datum/action/minimap/ai/mini = new
 	send_attack_order.target = src
@@ -99,6 +100,8 @@
 	send_defend_order.give_action(src)
 	send_retreat_order.target = src
 	send_retreat_order.give_action(src)
+	send_rally_order.target = src
+	send_rally_order.give_action(src)
 	control.give_action(src)
 	mini.give_action(src)
 

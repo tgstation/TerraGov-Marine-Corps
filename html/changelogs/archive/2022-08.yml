@@ -244,3 +244,44 @@
   - bugfix: fixed more weird ground markings, lights, cameras & firelocks.
   - bugfix: fixed map oddities on the sulaco regarding firelocks, lights, apc's and
       fire alarms. Again
+2022-08-27:
+  Lumipharon:
+  - rscadd: Added SOM ballistic weapons to the seasonal rotation
+  QualityVan:
+  - bugfix: Prevented replacing unremovable attachments
+  lbnesquik:
+  - qol: made the AI able to read what it sent into the vox system
+  - balance: Lowered vox cooldown from 60s to 40s
+  - bugfix: fixed some floating and other nonsensical cameras on minerva
+  - code_imp: removed an useless argument in mortar/binocs code
+2022-08-28:
+  DeltaFire15:
+  - bugfix: The stagger immunity trait should now work properly.
+  Lumipharon:
+  - bugfix: It is no longer possible to hide turrets under barricades
+  - imageadd: Added and fixed up MPI_KM mob sprites
+  - bugfix: SOM squad preferences actually work
+  - bugfix: fixed a vote bug when changing gamemode from Combat Patrol
+  - bugfix: Actually fixed SOM boot mob sprites
+  - bugfix: fixed projectiles going through fog
+  QualityVan:
+  - code_imp: Cleaned up reagent scanner/mass spectrometers.
+  collinlunn:
+  - qol: Hunter's Swap is no longer activated with a separate ability, reactivate
+      Mirage to trigger it.
+2022-08-30:
+  Calyxman:
+  - bugfix: 'TGMC''s Diversity-IT joint team has fixed something: Combat robots who
+      are non-binary or do not care about genders can now scream and shout inspirational
+      cries AND BE HEARD!'
+  Lumipharon:
+  - balance: Having a single broken leg or foot can now trigger falling over instead
+      of needing 2 or more breaks
+  - balance: Falling over due to a broken leg or foot now only stuns for 1 second
+      instead of 3
+  lbnesquik:
+  - rscadd: Gave the AI the ability to Ctrl-click turfs to get their coordinates.
+  tyeagg:
+  - qol: you can use rally order in overwatch computers and ai
+  - bugfix: order arrows not appearing and runtiming
+  - imageadd: defend and rally arrow pointer and minimap icons for orders

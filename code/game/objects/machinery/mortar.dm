@@ -260,7 +260,7 @@
 	to_chat(user, "<span class='notice'>You disconnect the [binocs] from their linked mortar.")
 
 ///Proc called by tactical binoculars to send targeting information.
-/obj/machinery/deployable/mortar/proc/recieve_target(turf/T, binocs, mob/user)
+/obj/machinery/deployable/mortar/proc/recieve_target(turf/T, mob/user)
 	coords["targ_x"] = T.x
 	coords["targ_y"] = T.y
 	say("Remote targeting set by [user]. COORDINATES: X:[coords["targ_x"]] Y:[coords["targ_y"]] OFFSET: X:[coords["dial_x"]] Y:[coords["dial_y"]]")
