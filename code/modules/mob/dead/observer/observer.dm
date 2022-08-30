@@ -910,10 +910,9 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		new_fallen.regenerate_icons()
 
 	log_game("[key_name(usr)] has joined Valhalla.")
+	client.prefs.copy_to(new_fallen)
 	mind.transfer_to(new_fallen, TRUE)
 	valhalla_job.after_spawn(new_fallen)
-
-
 
 /mob/dead/observer/reset_perspective(atom/A)
 	clean_observetarget()
