@@ -44,9 +44,6 @@
 	GLOB.unmanned_vehicles -= src
 	QDEL_NULL(flash)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_UNMANNED_COORDINATES)
-	UnregisterSignal(beacon_datum, COMSIG_PARENT_QDELETING)
-	QDEL_NULL(beacon_datum)
-
 
 ///stealth droid, like the normal droid but with stealthing ability on rclick
 /obj/vehicle/unmanned/droid/scout
