@@ -8,6 +8,7 @@
 	var/dropmetal = TRUE
 	resistance_flags = XENO_DAMAGEABLE
 	max_integrity = 40
+	soft_armor = list("melee" = 0, "bullet" = 60, "laser" = 60, "energy" = 60, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	hit_sound = 'sound/effects/woodhit.ogg'
 	var/spawn_type
 	var/spawn_amount
