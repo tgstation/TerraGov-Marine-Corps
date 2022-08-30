@@ -581,7 +581,7 @@
 	name = "Jaeger Pattern Infantry Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Infantry markings."
 	icon_state = "infantry_helmet"
-	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
+	soft_armor = list("melee" = 50, "bullet" = 70, "laser" = 70, "energy" = 60, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 60)
 	accuracy_mod = 0
 	greyscale_config = /datum/greyscale_config/modularhelmet
 	attachments_allowed = list(
@@ -821,14 +821,14 @@
 /obj/item/clothing/head/modular/marine/m10x/leader
 	name = "\improper M11X pattern leader helmet"
 	desc = "A slightly fancier helmet for marine leaders. This one has cushioning to project your fragile brain."
-	soft_armor = list("melee" = 75, "bullet" = 65, "laser" = 55, "energy" = 55, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
+	soft_armor = list("melee" = 75, "bullet" = 75, "laser" = 75, "energy" = 65, "bomb" = 55, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 60)
 
 //SOM modular armour
 
 /obj/item/clothing/suit/modular/som
 	name = "\improper SOM light battle armor"
 	desc = "The M-21 battle armor is typically used by SOM light infantry, or other specialists that require more mobility at the cost of some protection. Provides good protection without minor impairment to the users mobility. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
-	soft_armor = list("melee" = 45, "bullet" = 70, "laser" = 60, "energy" = 60, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 45)
+	soft_armor = list("melee" = 45, "bullet" = 70, "laser" = 60, "energy" = 60, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 	icon_state = "som_medium"
 	item_state = "som_medium"
 	slowdown = 0.5
@@ -880,7 +880,7 @@
 /obj/item/clothing/suit/modular/som/heavy
 	name = "\improper SOM heavy battle armor"
 	desc = "A standard suit of M-31 heavy duty combat armor worn by SOM shock troops. Provides excellent protection however it does reduce mobility somewhat. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
-	soft_armor = list("melee" = 50, "bullet" = 75, "laser" = 65, "energy" = 65, "bomb" = 55, "bio" = 50, "rad" = 65, "fire" = 60, "acid" = 50)
+	soft_armor = list("melee" = 50, "bullet" = 75, "laser" = 65, "energy" = 65, "bomb" = 50, "bio" = 50, "rad" = 65, "fire" = 60, "acid" = 55)
 	icon_state = "som_heavy"
 	item_state = "som_heavy"
 	slowdown = 0.7
@@ -888,7 +888,7 @@
 /obj/item/clothing/suit/modular/som/heavy/leader
 	name = "\improper SOM Gorgon pattern assault armor"
 	desc = "A bulky suit of heavy combat armor, the M-35 'Gorgon' armour provides the user with superior protection without severely impacting mobility. Typically seen on SOM leaders or their most elite combat units due to the significant construction and maintenance requirements. You'll need serious firepower to punch through this. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
-	soft_armor = list("melee" = 60, "bullet" = 80, "laser" = 70, "energy" = 70, "bomb" = 65, "bio" = 55, "rad" = 70, "fire" = 70, "acid" = 55)
+	soft_armor = list("melee" = 60, "bullet" = 80, "laser" = 70, "energy" = 70, "bomb" = 60, "bio" = 55, "rad" = 70, "fire" = 65, "acid" = 55)
 	icon_state = "som_leader"
 	item_state = "som_leader"
 
@@ -914,7 +914,7 @@
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	icon_state = "som_helmet"
 	item_state = "som_helmet"
-	soft_armor = list("melee" = 45, "bullet" = 70, "laser" = 60, "energy" = 60, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 45)
+	soft_armor = list("melee" = 45, "bullet" = 70, "laser" = 60, "energy" = 60, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 	accuracy_mod = 0
 	greyscale_config = null
 	greyscale_colors = null
@@ -957,4 +957,4 @@
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	icon_state = "som_helmet"
 	item_state = "som_helmet"
-	soft_armor = list("melee" = 50, "bullet" = 75, "laser" = 65, "energy" = 65, "bomb" = 55, "bio" = 50, "rad" = 65, "fire" = 70, "acid" = 50)
+	soft_armor = list("melee" = 50, "bullet" = 75, "laser" = 65, "energy" = 65, "bomb" = 50, "bio" = 50, "rad" = 65, "fire" = 60, "acid" = 55)
