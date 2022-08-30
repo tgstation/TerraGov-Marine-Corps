@@ -125,6 +125,7 @@
 	else
 		. += "binoculars_laser"
 
+/// Proc that when called checks if the selected mortar isnt out of list bounds and if it is, resets to 1
 /obj/item/binoculars/tactical/proc/check_mortar_index()
 	if(!linked_mortars)
 		return
@@ -248,7 +249,7 @@
 			targetturf = TU
 			to_chat(user, span_notice("COORDINATES TARGETED BY MORTAR [selected_mortar]: LONGITUDE [targetturf.x]. LATITUDE [targetturf.y]."))
 			playsound(src, 'sound/effects/binoctarget.ogg', 35)
-			var/obj/machinery/deployable/mortar/mortar = linked_mortars[selected_mortar] /// typecasted lists STILL dont help in the slightest
+			var/obj/machinery/deployable/mortar/mortar = linked_mortars[selected_mortar]
 			mortar.recieve_target(TU,user)
 			return
 		if(MODE_RAILGUN)
