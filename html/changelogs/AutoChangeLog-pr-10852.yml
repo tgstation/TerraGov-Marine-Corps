@@ -1,0 +1,4 @@
+author: "Xsdew"
+delete-after: True
+changes: 
+  - rscadd: "You are required to start wielding the SH39 before being able to fire it again."
