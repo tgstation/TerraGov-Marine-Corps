@@ -34,8 +34,6 @@
 		playsound(src, 'sound/machines/drone/droneoff.ogg', 70)
 		STOP_PROCESSING(SSslowprocess, src)
 		user.clear_fullscreen("machine", 5)
-		// for(var/datum/action/antenna/Y in user.actions)
-		// 	Y.remove_action(src)
 		antenna.remove_action(user)
 		UnregisterSignal(SSdcs, COMSIG_GLOB_UNMANNED_COORDINATES)
 
