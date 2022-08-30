@@ -338,7 +338,7 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_ACCESSORY)
 
 /datum/outfit/job/clf/leader/mpi_km
-	suit_store = /obj/item/weapon/gun/rifle/mpi_km/grenadier/magharness
+	suit_store = /obj/item/weapon/gun/rifle/mpi_km/grenadier
 	belt = /obj/item/storage/belt/marine/som
 
 /datum/outfit/job/clf/leader/mpi_km/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
