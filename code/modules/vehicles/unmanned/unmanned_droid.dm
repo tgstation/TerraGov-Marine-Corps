@@ -11,7 +11,7 @@
 	unmanned_flags = HAS_LIGHTS|OVERLAY_TURRET
 	/// Reference to the datum used by the supply drop console
 	var/datum/supply_beacon/beacon_datum
-
+	var/datum/action/antenna/antenna = new
 
 /obj/vehicle/unmanned/droid/process() //play beepy noise every 5 seconds for effect while active
 	if(prob(90))
@@ -28,14 +28,14 @@
 		playsound(src, 'sound/machines/drone/weapons_engaged.ogg', 70)
 		START_PROCESSING(SSslowprocess, src)
 		user.overlay_fullscreen("machine", /obj/screen/fullscreen/machine)
-		var/datum/action/antenna/antenna = new
 		antenna.give_action(user)
 		RegisterSignal(SSdcs, COMSIG_GLOB_UNMANNED_COORDINATES, .proc/activate_antenna)
 	else
 		playsound(src, 'sound/machines/drone/droneoff.ogg', 70)
 		STOP_PROCESSING(SSslowprocess, src)
 		user.clear_fullscreen("machine", 5)
-		var/datum/action/antenna/antenna = new
+		// for(var/datum/action/antenna/Y in user.actions)
+		// 	Y.remove_action(src)
 		antenna.remove_action(user)
 		UnregisterSignal(SSdcs, COMSIG_GLOB_UNMANNED_COORDINATES)
 
