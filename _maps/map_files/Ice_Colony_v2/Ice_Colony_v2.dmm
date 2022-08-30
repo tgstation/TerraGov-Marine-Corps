@@ -4953,6 +4953,7 @@
 /obj/structure/table,
 /obj/item/analyzer,
 /obj/item/encryptionkey,
+/obj/structure/sign/safety/hazard,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
 	},
@@ -30520,6 +30521,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southeast)
+"oGU" = (
+/obj/structure/sign/botany,
+/turf/closed/wall/r_wall,
+/area/ice_colony/surface/hydroponics/lobby)
 "oHh" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -32343,6 +32348,9 @@
 	dir = 9
 	},
 /area/ice_colony/surface/command)
+"scV" = (
+/turf/closed/wall,
+/area/ice_colony/surface/hydroponics/lobby)
 "sdv" = (
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/canteen)
@@ -32917,6 +32925,10 @@
 	dir = 6
 	},
 /area/ice_colony/surface/substation)
+"tgM" = (
+/obj/structure/sign/safety/hazard,
+/turf/open/floor/plating/icefloor/warnplate,
+/area/ice_colony/exterior/surface/landing_pad2)
 "thY" = (
 /obj/effect/turf_underlay/icefloor,
 /turf/closed/ice/thin/intersection,
@@ -38846,8 +38858,8 @@ dWh
 acl
 rmf
 qDA
-sQr
-pZF
+tgM
+aBi
 fDb
 pBf
 aaR
@@ -39695,7 +39707,7 @@ doh
 qrf
 qrf
 ayq
-pZF
+aBi
 fDb
 duN
 xMo
@@ -43057,9 +43069,9 @@ aaa
 bSw
 aae
 aai
+pZF
+pZF
 aBi
-pZF
-pZF
 aBi
 aBi
 aBi
@@ -48405,8 +48417,8 @@ mqj
 mqj
 mqj
 mqj
-asn
-aQn
+oGU
+scV
 avi
 avS
 aQn
