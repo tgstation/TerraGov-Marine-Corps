@@ -1188,7 +1188,7 @@
 	name = "MPI_KM Infantryman"
 	desc = "A call back to an earlier time. Equipped with an MPI_KM assault rifle, with under barrel grenade launcher and a large supply of grenades. An old weapon that was a common sight during the original Martian rebellion, the MPI's good stopping power, reliability and a healthy dose of nostalgia means it is still seen in use by some among the SOM despite its age."
 
-	suit_store = /obj/item/weapon/gun/rifle/mpi_km/grenadier/magharness
+	suit_store = /obj/item/weapon/gun/rifle/mpi_km/grenadier
 
 /datum/outfit/quick/som/marine/mpi/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -1378,9 +1378,9 @@
 
 /datum/outfit/quick/som/engineer/mpi
 	name = "MPI-KM Engineer"
-	desc = "Battlefield engineer; building up and tearing down. Equipped with an MPI_KM assault rifle with under barrel grenade launcher, medium armor, a deployable COPE sentry and a selection of explosives. Has a variety of supplies and equipment to build, repair or apply demolitions in the field. A valuable support asset to a well rounded combat force. An old weapon that was a common sight during the original Martian rebellion, the MPI's good stopping power, reliability and a healthy dose of nostalgia means it is still seen in use by some among the SOM despite its age."
+	desc = "Battlefield engineer; building up and tearing down. Equipped with an MPI_KM assault rifle, medium armor, a deployable COPE sentry and a selection of explosives. Has a variety of supplies and equipment to build, repair or apply demolitions in the field. A valuable support asset to a well rounded combat force. An old weapon that was a common sight during the original Martian rebellion, the MPI's good stopping power, reliability and a healthy dose of nostalgia means it is still seen in use by some among the SOM despite its age."
 
-	suit_store = /obj/item/weapon/gun/rifle/mpi_km/grenadier/magharness
+	suit_store = /obj/item/weapon/gun/rifle/mpi_km/magharness
 
 /datum/outfit/quick/som/engineer/mpi/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -1402,7 +1402,7 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/satrapine, SLOT_IN_ACCESSORY)
 
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km, SLOT_IN_BELT)
@@ -1574,9 +1574,9 @@
 
 /datum/outfit/quick/som/medic/mpi
 	name = "MPI_KM Medic"
-	desc = "Keeping your buddies alive and in the fight. Equipped with an MPI_KM assault rifle with under barrel grenade launcher, medium armor and a good selection of grenades. Packs a large amount of medical supplies, the squad medic is vital to maintaining combat viability. An old weapon that was a common sight during the original Martian rebellion, the MPI's good stopping power, reliability and a healthy dose of nostalgia means it is still seen in use by some among the SOM despite its age."
+	desc = "Keeping your buddies alive and in the fight. Equipped with an MPI_KM assault rifle, medium armor and a good selection of grenades. Packs a large amount of medical supplies, the squad medic is vital to maintaining combat viability. An old weapon that was a common sight during the original Martian rebellion, the MPI's good stopping power, reliability and a healthy dose of nostalgia means it is still seen in use by some among the SOM despite its age."
 
-	suit_store = /obj/item/weapon/gun/rifle/mpi_km/grenadier/magharness
+	suit_store = /obj/item/weapon/gun/rifle/mpi_km/magharness
 
 /datum/outfit/quick/som/medic/mpi/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -1586,7 +1586,7 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/upp, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/oxycodone, SLOT_IN_BACKPACK)
@@ -1774,7 +1774,7 @@
 	name = "MPI_KM Veteran"
 	desc = "Heavily armed and armored SOM elite, with a taste for nostalgia. Equipped with an MPI_KM assault rifle, with under barrel grenade launcher and a large supply of grenades. An old weapon that was a common sight during the original Martian rebellion, the MPI's good stopping power, reliability and a healthy dose of nostalgia means it is still seen in use by some among the SOM despite its age."
 
-	suit_store = /obj/item/weapon/gun/rifle/mpi_km/grenadier/magharness
+	suit_store = /obj/item/weapon/gun/rifle/mpi_km/grenadier
 
 /datum/outfit/quick/som/veteran/mpi/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -1911,7 +1911,7 @@
 	name = "MPI_KM Veteran"
 	desc = "For the leader with a taste for nostalgia. Equipped with an MPI_KM assault rifle, with under barrel grenade launcher, Gorgon heavy armor with 'Valkyrie' autodoctor module and a large supply of grenades. An old weapon that was a common sight during the original Martian rebellion, the MPI's good stopping power, reliability and a healthy dose of nostalgia means it is still seen in use by some among the SOM despite its age."
 
-	suit_store = /obj/item/weapon/gun/rifle/mpi_km/grenadier/magharness
+	suit_store = /obj/item/weapon/gun/rifle/mpi_km/grenadier
 
 /datum/outfit/quick/som/squad_leader/mpi/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
