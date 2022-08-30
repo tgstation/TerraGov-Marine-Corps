@@ -8933,7 +8933,7 @@
 /area/ice_colony/surface/research)
 "aQn" = (
 /obj/structure/sign/botany,
-/turf/closed/wall,
+/turf/closed/wall/r_wall,
 /area/ice_colony/surface/hydroponics/lobby)
 "aQo" = (
 /obj/item/reagent_containers/food/drinks/cans/beer,
@@ -29264,6 +29264,9 @@
 	dir = 6
 	},
 /area/ice_colony/exterior/surface/taxiway)
+"mfG" = (
+/turf/closed/wall,
+/area/ice_colony/surface/hydroponics/lobby)
 "mgF" = (
 /turf/closed/ice/thin/end{
 	dir = 4
@@ -30521,10 +30524,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southeast)
-"oGU" = (
-/obj/structure/sign/botany,
-/turf/closed/wall/r_wall,
-/area/ice_colony/surface/hydroponics/lobby)
 "oHh" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -32348,9 +32347,6 @@
 	dir = 9
 	},
 /area/ice_colony/surface/command)
-"scV" = (
-/turf/closed/wall,
-/area/ice_colony/surface/hydroponics/lobby)
 "sdv" = (
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/canteen)
@@ -32925,10 +32921,6 @@
 	dir = 6
 	},
 /area/ice_colony/surface/substation)
-"tgM" = (
-/obj/structure/sign/safety/hazard,
-/turf/open/floor/plating/icefloor/warnplate,
-/area/ice_colony/exterior/surface/landing_pad2)
 "thY" = (
 /obj/effect/turf_underlay/icefloor,
 /turf/closed/ice/thin/intersection,
@@ -34833,6 +34825,10 @@
 	dir = 6
 	},
 /area/ice_colony/surface/hangar/alpha)
+"xdf" = (
+/obj/structure/sign/safety/hazard,
+/turf/open/floor/plating/icefloor/warnplate,
+/area/ice_colony/exterior/surface/landing_pad2)
 "xeb" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -35351,6 +35347,12 @@
 	dir = 6
 	},
 /area/ice_colony/surface/hangar/beta)
+"yez" = (
+/obj/structure/sign/botany{
+	dir = 1
+	},
+/turf/closed/wall/r_wall,
+/area/ice_colony/surface/hydroponics/lobby)
 "yeX" = (
 /obj/effect/turf_overlay/icerock{
 	dir = 4
@@ -38858,7 +38860,7 @@ dWh
 acl
 rmf
 qDA
-tgM
+xdf
 aBi
 fDb
 pBf
@@ -48417,12 +48419,12 @@ mqj
 mqj
 mqj
 mqj
-oGU
-scV
+aQn
+mfG
 avi
 avS
-aQn
-asn
+mfG
+yez
 mqj
 mqj
 wkf
