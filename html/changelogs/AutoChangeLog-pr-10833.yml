@@ -1,4 +1,0 @@
-author: "lbnesquik"
-delete-after: True
-changes: 
-  - rscadd: "Gave the AI the ability to Ctrl-click turfs to get their coordinates."
