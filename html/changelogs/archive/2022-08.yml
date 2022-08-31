@@ -285,3 +285,11 @@
   - qol: you can use rally order in overwatch computers and ai
   - bugfix: order arrows not appearing and runtiming
   - imageadd: defend and rally arrow pointer and minimap icons for orders
+2022-08-31:
+  Lumipharon:
+  - rscadd: 'Combat Patrol: Added a new AR-18 scout loadout for TGMC marines, and
+      MPI_KM loadouts for SOM veterans and SL''s'
+  - balance: 'Combat Patrol: Several  tweaks and changes to various loadouts'
+  Xsdew:
+  - rscadd: You are required to start wielding the SH39 before being able to fire
+      it again.
