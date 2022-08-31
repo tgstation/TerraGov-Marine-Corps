@@ -365,7 +365,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 	gun_skill_category = GUN_SKILL_FIREARMS
-	attachable_offset = list("muzzle_x" = 44, "muzzle_y" = 18,"rail_x" = 16, "rail_y" = 25, "under_x" = 27, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
+	attachable_offset = list("muzzle_x" = 44, "muzzle_y" = 18,"rail_x" = 18, "rail_y" = 24, "under_x" = 31, "under_y" = 15, "stock_x" = 24, "stock_y" = 13)
 
 
 	fire_delay = 0.4 SECONDS
@@ -374,6 +374,12 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	scatter = -3
 	recoil = 2
 
+/obj/item/weapon/gun/rifle/tx8/scout
+	starting_attachment_types = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/verticalgrip,
+	)
 
 //-------------------------------------------------------
 // MINIGUN
@@ -451,8 +457,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	recoil_unwielded = 4
 	damage_falloff_mult = 0.5
 
-/obj/item/weapon/gun/minigun/smart_minigun/magharness
-	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
+/obj/item/weapon/gun/minigun/smart_minigun/motion_detector
+	starting_attachment_types = list(/obj/item/attachable/motiondetector)
 
 // PEPPERBALL GUN
 

@@ -22,6 +22,34 @@
 	handle_slowdown()
 	handle_stagger()
 
+	handle_received_auras()
+
+///Adjusts our stats based on the auras we've received and care about, then cleans out the list for next tick.
+/mob/living/proc/handle_received_auras()
+	received_auras.Cut() //Living, of course, doesn't care about any
+
+///Update what auras we'll receive this life tick if it's either new or stronger than current. aura_type as AURA_ define, strength as number.
+/mob/living/proc/receive_aura(aura_type, strength)
+	if(received_auras[aura_type] > strength)
+		return
+	received_auras[aura_type] = strength
+
+///Add a list of auras to our current emitted, update self as needed
+/mob/living/proc/add_emitted_auras(source, aura_list)
+	SIGNAL_HANDLER
+	emitted_auras += aura_list
+	update_aura_overlay()
+
+///Remove a list of auras from our current emitted, update self as needed
+/mob/living/proc/remove_emitted_auras(source, aura_list)
+	SIGNAL_HANDLER
+	emitted_auras -= aura_list
+	update_aura_overlay()
+
+///Bring however we represent emitted auras up to date. Implemented for human and xenomorph.
+/mob/living/proc/update_aura_overlay()
+	return
+
 /mob/living/proc/handle_organs()
 	reagent_shock_modifier = 0
 	reagent_pain_modifier = 0
@@ -79,6 +107,10 @@
 	set_armor_datum()
 	AddElement(/datum/element/gesture)
 	stamina_regen_modifiers = list()
+	received_auras = list()
+	emitted_auras = list()
+	RegisterSignal(src, COMSIG_AURA_STARTED, .proc/add_emitted_auras)
+	RegisterSignal(src, COMSIG_AURA_FINISHED, .proc/remove_emitted_auras)
 
 /mob/living/Destroy()
 	for(var/i in embedded_objects)

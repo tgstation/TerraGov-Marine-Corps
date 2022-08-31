@@ -421,9 +421,6 @@
 		playsound(user, "alien_roar", 50)
 		priority_announce("Alamo lockdown protocol compromised. Interference preventing remote control", "Dropship Lock Alert")
 		return FALSE
-	if(D.hijack_state == HIJACK_STATE_CALLED_DOWN)
-		to_chat(user, span_warning("The bird's mind is already tampered with!"))
-		return FALSE
 	if(D.mode != SHUTTLE_IDLE && D.mode != SHUTTLE_RECHARGING)
 		to_chat(user, span_warning("The bird's mind is currently active. We need to wait until it's more vulnerable..."))
 		return FALSE

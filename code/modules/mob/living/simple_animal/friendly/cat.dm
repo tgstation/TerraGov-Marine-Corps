@@ -160,4 +160,3 @@
 	if(loc == user)
 		return
 	qdel(src)
-

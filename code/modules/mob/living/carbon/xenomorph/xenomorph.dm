@@ -38,6 +38,9 @@
 	wound_overlay = new(null, src)
 	vis_contents += wound_overlay
 
+	fire_overlay = mob_size == MOB_SIZE_BIG ? new(null, src) : new /atom/movable/vis_obj/xeno_wounds/fire_overlay/small(null, src)
+	vis_contents += fire_overlay
+
 	set_initial_hivenumber()
 
 	generate_nicknumber()
@@ -244,7 +247,9 @@
 	hive_placeholder.update_tier_limits() //Update our tier limits.
 
 	vis_contents -= wound_overlay
+	vis_contents -= fire_overlay
 	QDEL_NULL(wound_overlay)
+	QDEL_NULL(fire_overlay)
 	return ..()
 
 
@@ -395,7 +400,7 @@
 /// Handles logic for weeds nearby the xeno getting removed
 /mob/living/carbon/xenomorph/proc/handle_weeds_adjacent_removed(datum/source)
 	SIGNAL_HANDLER
-	var/obj/effect/alien/weeds/found_weed = locate(/obj/effect/alien/weeds) in loc
+	var/obj/alien/weeds/found_weed = locate(/obj/alien/weeds) in loc
 	if(!QDESTROYING(found_weed))
 		return
 	loc_weeds_type = null
@@ -403,7 +408,7 @@
 /// Handles logic for the xeno moving to a new weeds tile
 /mob/living/carbon/xenomorph/proc/handle_weeds_on_movement(datum/source)
 	SIGNAL_HANDLER
-	var/obj/effect/alien/weeds/found_weed = locate(/obj/effect/alien/weeds) in loc
+	var/obj/alien/weeds/found_weed = locate(/obj/alien/weeds) in loc
 	loc_weeds_type = found_weed?.type
 
 /// Burrow code for xenomorphs

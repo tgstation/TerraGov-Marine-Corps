@@ -48,7 +48,6 @@
 
 	///Whether someone is currently doing surgery on this limb
 	var/in_surgery_op = FALSE
-	var/surgery_organ //name of the organ currently being surgically worked on (detach/remove/etc)
 
 	var/encased       // Needs to be opened with a saw to access the organs.
 
@@ -660,6 +659,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 	else
 		set_limb_flags(LIMB_DESTROYED)
 
+	if(owner.species.species_flags & ROBOTIC_LIMBS)
+		limb_status |= LIMB_ROBOT
+
 	for(var/i in implants)
 		var/obj/item/embedded_thing = i
 		embedded_thing.unembed_ourself(TRUE)
@@ -950,7 +952,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 	bone_repair_stage = 0
 	limb_replacement_stage = 0
 	necro_surgery_stage = 0
-	surgery_organ = null
 	cavity = 0
 
 

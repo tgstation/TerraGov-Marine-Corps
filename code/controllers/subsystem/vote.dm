@@ -140,12 +140,26 @@ SUBSYSTEM_DEF(vote)
 				deltimer(shipmap_timer_id)
 				var/datum/map_config/VM = config.maplist[SHIP_MAP]["Twin Pillars"]
 				SSmapping.changemap(VM, SHIP_MAP)
-			if(GLOB.master_mode != .)
-				SSticker.save_mode(.)
-				if(SSticker.HasRoundStarted())
-					restart = TRUE
-				else
-					GLOB.master_mode = .
+			else if(. == "Combat Patrol")
+				deltimer(shipmap_timer_id)
+				var/datum/map_config/VM = config.maplist[SHIP_MAP]["Combat Patrol Base"]
+				SSmapping.changemap(VM, SHIP_MAP)
+			SSticker.save_mode(.) //changes the next game mode
+			if(GLOB.master_mode == .)
+				return
+			if(SSticker.HasRoundStarted())
+				restart = TRUE
+			else
+				var/datum/game_mode/current_gamemode = config.pick_mode(GLOB.master_mode)
+				var/datum/game_mode/new_gamemode = config.pick_mode(.)
+				GLOB.master_mode = . //changes the current gamemode
+				if(new_gamemode.flags_round_type & MODE_SPECIFIC_SHIP_MAP) //the new gamemode has a shipmap that is mode specific, restart to load it
+					SSticker.Reboot("Restarting server to load correct ship map", 10 SECONDS)
+					return
+				else if(current_gamemode.flags_round_type & MODE_SPECIFIC_SHIP_MAP) //the previous gamemode has a shipmap that is mode specific, so must be changed, then restarted to load the new one
+					addtimer(CALLBACK(src, .proc/initiate_vote, "shipmap", null, TRUE), 5 SECONDS)
+					SSticker.Reboot("Restarting server when valid ship map selected", CONFIG_GET(number/vote_period) + 15 SECONDS)
+					return
 		if("groundmap")
 			var/datum/map_config/VM = config.maplist[GROUND_MAP][.]
 			SSmapping.changemap(VM, GROUND_MAP)
@@ -184,6 +198,8 @@ SUBSYSTEM_DEF(vote)
 	if(list_of_votes.Find(vote))
 		list_of_votes.Remove(vote)
 		choices[choices[vote]]--
+		if(!multiple_vote && voted.Find(usr.ckey))
+			voted -= usr.ckey
 		return
 
 	choices[choices[vote]]++
@@ -227,6 +243,8 @@ SUBSYSTEM_DEF(vote)
 						continue
 					if(istype(mode, /datum/game_mode/civil_war) && SSticker.current_state < GAME_STATE_PLAYING && SSmapping.configs[SHIP_MAP].map_name != MAP_TWIN_PILLARS)
 						continue
+					if(istype(mode, /datum/game_mode/combat_patrol) && SSticker.current_state < GAME_STATE_PLAYING && SSmapping.configs[SHIP_MAP].map_name != MAP_COMBAT_PATROL_BASE)
+						continue
 					if(players > mode.maximum_players)
 						continue
 					if(players < mode.required_players)
@@ -258,6 +276,10 @@ SUBSYSTEM_DEF(vote)
 				multiple_vote = TRUE
 				if(!lower_admin && SSmapping.shipmap_voted)
 					to_chat(usr, span_warning("The next ship map has already been selected."))
+					return FALSE
+				var/datum/game_mode/next_gamemode = config.pick_mode(trim(file2text("data/mode.txt")))
+				if(next_gamemode.flags_round_type & MODE_SPECIFIC_SHIP_MAP)
+					to_chat(usr, span_warning("No other valid maps for [next_gamemode.name]."))
 					return FALSE
 				var/list/maps = list()
 				if(!config.maplist)

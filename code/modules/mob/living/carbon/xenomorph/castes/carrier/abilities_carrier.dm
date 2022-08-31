@@ -81,10 +81,10 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	if(!cooldown_id)
 		X.dropItemToGround(F)
 		playsound(X, 'sound/effects/throw.ogg', 30, TRUE)
-		F.throw_at(A, CARRIER_HUGGER_THROW_DISTANCE, CARRIER_HUGGER_THROW_SPEED)
 		F.stat = CONSCIOUS //Hugger is conscious
 		F.leaping = FALSE //Hugger is not leaping
 		F.facehugger_register_source(X) //Set us as the source
+		F.throw_at(A, CARRIER_HUGGER_THROW_DISTANCE, CARRIER_HUGGER_THROW_SPEED)
 		X.visible_message(span_xenowarning("\The [X] throws something towards \the [A]!"), \
 		span_xenowarning("We throw a facehugger towards \the [A]!"))
 		add_cooldown()

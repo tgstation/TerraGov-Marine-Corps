@@ -136,9 +136,19 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	if(!buildloc)
 		return FALSE
 
-	if(buildloc.density)
+	if(!buildloc.is_weedable())
 		if(!silent)
-			to_chat(buyer, span_xenowarning("You cannot build in a dense location!"))
+			to_chat(buyer, span_warning("We can't do that here."))
+		return FALSE
+
+	var/obj/alien/weeds/alien_weeds = locate() in buildloc
+
+	if(!alien_weeds)
+		if(!silent)
+			to_chat(buyer, span_warning("We can only shape on weeds. We must find some resin before we start building!"))
+		return FALSE
+
+	if(!buildloc.check_alien_construction(buyer, silent) || !buildloc.check_disallow_alien_fortification(buyer, silent))
 		return FALSE
 
 /datum/hive_upgrade/building/on_buy(mob/living/carbon/xenomorph/buyer)

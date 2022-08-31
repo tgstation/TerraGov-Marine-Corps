@@ -23,7 +23,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	materials = list(/datum/material/metal = 1000)
 	attack_verb = list("shoved", "bashed")
-	soft_armor = list("melee" = 40, "bullet" = 20, "laser" = 0, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 0, "acid" = 0)
+	soft_armor = list("melee" = 40, "bullet" = 20, "laser" = 0, "energy" = 70, "bomb" = 0, "bio" = 100, "rad" = 70, "fire" = 0, "acid" = 0)
 	hard_armor = list("melee" = 5, "bullet" = 5, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	hit_sound = 'sound/effects/grillehit.ogg'
 	destroy_sound = 'sound/effects/glassbr3.ogg'
@@ -34,21 +34,21 @@
 
 /obj/item/weapon/shield/riot/examine(mob/user, distance, infix, suffix)
 	. = ..()
-	var/health_status = (obj_integrity * 100) / (max_integrity-integrity_failure)
+	var/health_status = (obj_integrity-integrity_failure) * 100 / (max_integrity-integrity_failure)
 	if(integrity_failure && obj_integrity <= integrity_failure)
-		. += span_notice("It's broken, it won't protect anymore.")
+		. += span_notice("It's completely broken, with gaping holes everywhere!")
 		return
 	switch(health_status)
 		if(0 to 20)
-			. += span_notice("It's falling appart, will not be able to withstand much further damage.")
+			. += span_notice("It's falling apart under its own weight!")
 		if(20 to 40)
-			. += span_notice("It has cracked edges and dents.")
+			. += span_notice("It's barely holding its shape.")
 		if(40 to 60)
-			. += span_notice("It appears damaged, but still sturdy.")
+			. += span_notice("It's still holding up.")
 		if(60 to 80)
-			. += span_notice("It appears in decent condition, with some damage marks.")
+			. += span_notice("It's slightly damaged.")
 		if(80 to 100)
-			. += span_notice("It appears in perfect condition.")
+			. += span_notice("It's in perfect condition.")
 
 /obj/item/weapon/shield/riot/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -59,10 +59,10 @@
 			return
 
 		if(metal_sheets.get_amount() < 1)
-			to_chat(user, span_warning("You need one metal sheet to repair the base of [src]."))
+			to_chat(user, span_warning("You need one metal sheet to restore the structural integrity of [src]."))
 			return
 
-		visible_message(span_notice("[user] begins to repair the base of [src]."))
+		visible_message(span_notice("[user] begins to restore the structural integrity of [src]."))
 
 		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
 			return
@@ -71,7 +71,7 @@
 			return
 
 		repair_damage(max_integrity * 0.2)
-		visible_message(span_notice("[user] repairs the base of [src]."))
+		visible_message(span_notice("[user] restores the structural integrity of [src]."))
 
 
 /obj/item/weapon/shield/riot/welder_act(mob/living/user, obj/item/I)
@@ -88,7 +88,7 @@
 		return TRUE
 
 	if(obj_integrity <= (max_integrity - integrity_failure) * 0.2)
-		to_chat(user, span_warning("[src] has sustained too much structural damage and needs more metal plates to be repaired."))
+		to_chat(user, span_warning("[src] has sustained too much structural damage and needs additional metal for repairs."))
 		return TRUE
 
 	if(obj_integrity == max_integrity)
@@ -98,27 +98,27 @@
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to repair [src]."),
 		span_notice("You fumble around figuring out how to repair [src]."))
-		var/fumbling_time = 3 SECONDS * ( SKILL_ENGINEER_METAL - user.skills.getRating("engineer") )
+		var/fumbling_time = 4 SECONDS * ( SKILL_ENGINEER_METAL - user.skills.getRating("engineer") )
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_BUILD))
 			return TRUE
 
-	user.visible_message(span_notice("[user] begins repairing damage to [src]."),
-	span_notice("You begin repairing the damage to [src]."))
+	user.visible_message(span_notice("[user] begins repairing [src]."),
+	span_notice("You begin repairing [src]."))
 	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 
-	if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
+	if(!do_after(user, 4 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
 		return TRUE
 
 	if(obj_integrity <= (max_integrity - integrity_failure) * 0.2 || obj_integrity == max_integrity)
 		return TRUE
 
 	if(!WT.remove_fuel(2, user))
-		to_chat(user, span_warning("Not enough fuel to finish the task."))
+		to_chat(user, span_warning("Not enough fuel to finish the repairs."))
 		return TRUE
 
-	user.visible_message(span_notice("[user] repairs some damage on [src]."),
-	span_notice("You repair [src]."))
-	repair_damage(40)
+	user.visible_message(span_notice("[user] finishes repairing [src]."),
+	span_notice("You finish repairing [src]."))
+	repair_damage((max_integrity-integrity_failure) * 0.2)
 	update_icon()
 	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 	return TRUE
@@ -139,7 +139,7 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	max_integrity = 400
 	integrity_failure = 100
-	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 0, "energy" = 100, "bomb" = 15, "bio" = 50, "rad" = 0, "fire" = 0, "acid" = 35)
+	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 20, "energy" = 70, "bomb" = 15, "bio" = 50, "rad" = 0, "fire" = 0, "acid" = 35)
 	hard_armor = list("melee" = 0, "bullet" = 5, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	force = 20
 	slowdown = 0.5

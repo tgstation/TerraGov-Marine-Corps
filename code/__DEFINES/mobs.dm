@@ -223,7 +223,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define BRAIN_DAMAGE_DEATH 200
 
 ///////////////SURGERY DEFINES///////////////
-#define SPECIAL_SURGERY_INVALID "special_surgery_invalid"
+#define SURGERY_CANNOT_USE 0
+#define SURGERY_CAN_USE 1
+#define SURGERY_INVALID 2
 
 #define NECRO_TREAT_MIN_DURATION 40
 #define NECRO_TREAT_MAX_DURATION 60
@@ -714,6 +716,11 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CHARLIE_SQUAD_REBEL "charlie_squad_rebel"
 #define DELTA_SQUAD_REBEL "delta_squad_rebel"
 
+#define ZULU_SQUAD "zulu_squad"
+#define YANKEE_SQUAD "yankee_squad"
+#define XRAY_SQUAD "xray_squad"
+#define WHISKEY_SQUAD "whiskey_squad"
+
 #define TYPING_INDICATOR_LIFETIME 3 SECONDS	//Grace period after which typing indicator disappears regardless of text in chatbar.
 
 
@@ -790,3 +797,14 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 #define TIER_THREE_MATURE_THRESHOLD 500
 #define TIER_THREE_ELDER_THRESHOLD 1000
 #define TIER_THREE_ANCIENT_THRESHOLD 100
+
+
+// Pheromones and buff orders
+
+#define AURA_XENO_RECOVERY "Recovery"
+#define AURA_XENO_WARDING "Warding"
+#define AURA_XENO_FRENZY "Frenzy"
+
+#define AURA_HUMAN_MOVE "move"
+#define AURA_HUMAN_HOLD "hold"
+#define AURA_HUMAN_FOCUS "focus"

@@ -1,6 +1,9 @@
 //The Marine mortar, the T-50S Mortar
 //Works like a contemporary crew weapon mortar
 
+#define TALLY_MORTAR  1
+#define TALLY_HOWITZER 2
+
 /obj/machinery/deployable/mortar
 
 	anchored = TRUE
@@ -39,8 +42,10 @@
 		/obj/item/mortal_shell/plasmaloss,
 	)
 
-
 	use_power = NO_POWER_USE
+
+	///Used for round stats
+	var/tally_type = TALLY_MORTAR 
 
 /obj/machinery/deployable/mortar/attack_hand(mob/living/user)
 	. = ..()
@@ -210,6 +215,13 @@
 		flick(icon_state + "_fire", src)
 		mortar_shell.forceMove(src)
 
+		if(tally_type == TALLY_MORTAR)
+			GLOB.round_statistics.howitzer_shells_fired++
+			SSblackbox.record_feedback("tally", "round_statistics", 1, "howitzer_shells_fired")		
+		else if(tally_type == TALLY_HOWITZER)
+			GLOB.round_statistics.mortar_shells_fired++
+			SSblackbox.record_feedback("tally", "round_statistics", 1, "mortar_shells_fired")		
+
 		var/turf/G = get_turf(src)
 		G.ceiling_debris_check(2)
 
@@ -229,7 +241,7 @@
 	to_chat(user, "<span class='notice'>You disconnect the [binocs] from their linked mortar.")
 
 ///Proc called by tactical binoculars to send targeting information.
-/obj/machinery/deployable/mortar/proc/recieve_target(turf/T, binocs, mob/user)
+/obj/machinery/deployable/mortar/proc/recieve_target(turf/T, mob/user)
 	coords["targ_x"] = T.x
 	coords["targ_y"] = T.y
 	say("Remote targeting set by [user]. COORDINATES: X:[coords["targ_x"]] Y:[coords["targ_y"]] OFFSET: X:[coords["dial_x"]] Y:[coords["dial_y"]]")
@@ -311,6 +323,7 @@
 		/obj/item/mortal_shell/howitzer/plasmaloss,
 		/obj/item/mortal_shell/flare,
 	)
+	tally_type = TALLY_HOWITZER
 
 /obj/machinery/deployable/mortar/howitzer/attack_hand_alternate(mob/living/user)
 	if(!Adjacent(user) || user.lying_angle || user.incapacitated() || !ishuman(user))
@@ -588,3 +601,6 @@
 	new /obj/item/encryptionkey/cas(src)
 	new /obj/item/encryptionkey/cas(src)
 	new /obj/item/encryptionkey/cas(src)
+
+#undef TALLY_MORTAR
+#undef TALLY_HOWITZER
