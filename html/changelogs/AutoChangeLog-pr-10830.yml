@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes: 
+  - rscadd: "Added a low impact shell for the RR, with less direct hit damage and blind range"
+  - balance: "Combat Patrol: RR loadout only has low impact RR shells"
