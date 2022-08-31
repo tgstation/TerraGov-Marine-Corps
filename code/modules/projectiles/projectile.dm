@@ -654,8 +654,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			return FALSE //you don't hit the cade from behind.
 	if(proj.ammo.flags_ammo_behavior & AMMO_SNIPER || proj.iff_signal || proj.ammo.flags_ammo_behavior & AMMO_ROCKET) //sniper, rockets and IFF rounds are better at getting past cover
 		hit_chance *= 0.8
-	if(!anchored)
-		hit_chance *= 0.5 //Half the protection from unaffixed structures.
 	///50% better protection when shooting from outside accurate range.
 	if(proj.distance_travelled > proj.ammo.accurate_range)
 		hit_chance *= 1.5
@@ -733,6 +731,20 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	//We want a temporary variable so accuracy doesn't change every time the bullet misses.
 	var/hit_chance = proj.accuracy
 	BULLET_DEBUG("Base accuracy is <b>[hit_chance]; scatter:[proj.scatter]; distance:[proj.distance_travelled]</b>")
+
+	hit_chance += (mob_size - 1) * 20 //You're easy to hit when you're swoll, hard to hit when you're a manlet
+
+	///Is the shooter a living mob. Defined before the check as used later as well
+	var/mob/living/shooter_living
+	if(isliving(proj.firer))
+		shooter_living = proj.firer
+		if(shooter_living.faction == faction)
+			hit_chance = round(hit_chance*0.85) //You (presumably) aren't trying to shoot your friends
+		var/obj/item/shot_source = proj.shot_from
+		if(!line_of_sight(shooter_living, src, 9) && (!istype(shot_source) || !shot_source.zoom)) //if you can't draw LOS within 9 tiles (to accomodate wide screen), AND the source was either not zoomed or not an item(like a xeno)
+			BULLET_DEBUG("Can't see target ([round(hit_chance*0.8)]).")
+			hit_chance = round(hit_chance*0.8) //Can't see the target (Opaque thing between shooter and target), or out of view range
+
 	if(proj.distance_travelled <= proj.ammo.accurate_range) //If bullet stays within max accurate range.
 		if(proj.distance_travelled <= proj.point_blank_range) //If bullet within point blank range, big accuracy buff.
 			BULLET_DEBUG("Point blank range (+30)")
@@ -744,10 +756,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	else
 		BULLET_DEBUG("Too far (+[((proj.distance_travelled - proj.ammo.accurate_range )* 5)])")
 		hit_chance -= ((proj.distance_travelled - proj.ammo.accurate_range )* 5) //Every tile travelled past accurate_range reduces accuracy
-
-	hit_chance = max(5, hit_chance) //default hit chance after range factors is at least 5%.
-
-	hit_chance += (mob_size - 1) * 20 //You're easy to hit when you're swoll, hard to hit when you're a manlet
 
 	BULLET_DEBUG("Hit zone penalty (-[GLOB.base_miss_chance[proj.def_zone]]) ([proj.def_zone])")
 	hit_chance -= GLOB.base_miss_chance[proj.def_zone] //Reduce accuracy based on body part targeted.
@@ -764,28 +772,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		BULLET_DEBUG("Moving (*[evasion_bonus]).")
 		hit_chance = round(hit_chance * evasion_bonus)
 
-	///Is the shooter a living mob. Defined before the check as used later as well
-	var/mob/living/shooter_living
-	if(isliving(proj.firer))
-		shooter_living = proj.firer
-		if(shooter_living.faction == faction)
-			hit_chance = round(hit_chance*0.85) //You (presumably) aren't trying to shoot your friends
-		var/obj/item/shot_source = proj.shot_from
-		if(!line_of_sight(shooter_living, src, 9) && (!istype(shot_source) || !shot_source.zoom)) //if you can't draw LOS within 9 tiles (to accomodate wide screen), AND the source was either not zoomed or not an item(like a xeno)
-			BULLET_DEBUG("Can't see target ([round(hit_chance*0.8)]).")
-			hit_chance = round(hit_chance*0.8) //Can't see the target (Opaque thing between shooter and target), or out of view range
-		if(ishuman(proj.firer))
-			var/mob/living/carbon/human/shooter_human = proj.firer
-			BULLET_DEBUG("Traumatic shock (-[round(min(20, shooter_human.traumatic_shock * 0.2))]).")
-			hit_chance -= round(min(20, shooter_human.traumatic_shock * 0.2)) //Chance to hit declines with pain, being reduced by 0.3% per point of pain.
-			if(shooter_human.marksman_aura)
-				BULLET_DEBUG("marksman_aura (+[10 + max(5, shooter_human.marksman_aura * 5)]).")
-				hit_chance += 10 + max(5, shooter_human.marksman_aura * 5) //Accuracy bonus from active focus order
+	hit_chance = max(5, hit_chance) //It's never impossible to hit
 
 	BULLET_DEBUG("Final accuracy is <b>[hit_chance]</b>")
-
-	if(hit_chance <= 0) //If by now the sum is zero or negative, we won't be hitting at all.
-		return FALSE
 
 	var/hit_roll = rand(0, 99) //Our randomly generated roll
 
