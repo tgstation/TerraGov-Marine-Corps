@@ -1,5 +1,5 @@
 /obj/structure/sign
-	icon = 'icons/obj/decals.dmi'
+	icon = 'icons/obj/decals_arrow.dmi'
 	anchored = TRUE
 	opacity = FALSE
 	density = FALSE
@@ -8,6 +8,7 @@
 
 /obj/structure/sign/Initialize()
 	. = ..()
+	icon = 'icons/obj/decals.dmi'
 	if(!directional) //if not directional do not initialize to a x or y offset
 		return
 	switch(dir)
@@ -383,7 +384,7 @@
 
 /obj/structure/sign/safety/
 	name = "sign"
-	icon = 'icons/obj/safety_signs.dmi'
+	icon = 'icons/obj/safety_signs_arrow.dmi'
 	desc = "A sign warning of a particular hazard"
 	anchored = TRUE
 	opacity = FALSE
@@ -534,7 +535,9 @@
 	desc = "A sign notifying the presence of a intercomm system."
 	icon_state = "sign_intercomm"
 
-
+/obj/structure/sign/safety/Initialize()
+	. = ..()
+	icon = 'icons/obj/safety_signs.dmi'
 
 //Marine signs
 

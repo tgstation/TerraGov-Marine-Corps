@@ -553,9 +553,9 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "bQ" = (
-/obj/structure/sign/pods,
-/turf/closed/wall/mainship,
-/area/mainship/hallways/hangar)
+/obj/structure/sign/nosmoking_2,
+/turf/closed/wall/mainship/white,
+/area/mainship/medical/lower_medical)
 "bR" = (
 /obj/machinery/door/poddoor/shutters/mainship/selfdestruct,
 /turf/closed/wall/mainship,
@@ -2423,6 +2423,7 @@
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/maint,
 /obj/machinery/door/firedoor/mainship,
+/obj/structure/sign/pods,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar/droppod)
 "hr" = (
@@ -2722,12 +2723,14 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engine_core)
 "if" = (
+/obj/structure/mirror,
+/obj/machinery/light/mainship{
+	dir = 1
+	},
 /obj/structure/sign/poster{
 	dir = 1
 	},
-/turf/open/floor/mainship/black{
-	dir = 9
-	},
+/turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
 "ii" = (
 /obj/structure/flora/pottedplant/twentyone,
@@ -10791,10 +10794,6 @@
 	},
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
-"Gb" = (
-/obj/structure/sign/nosmoking_2,
-/turf/closed/wall/mainship/white,
-/area/mainship/medical/lower_medical)
 "Gc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -43920,8 +43919,8 @@ ap
 mS
 ia
 bd
+bQ
 bd
-Gb
 Eb
 Tl
 pp
@@ -44148,7 +44147,7 @@ cg
 da
 Ur
 hp
-bQ
+az
 ap
 ap
 fR
@@ -51656,7 +51655,7 @@ RB
 CG
 FF
 qC
-ZS
+if
 Rg
 Ef
 Wz
@@ -52418,7 +52417,7 @@ Uz
 RJ
 Kk
 NU
-if
+BY
 eI
 IX
 JN
