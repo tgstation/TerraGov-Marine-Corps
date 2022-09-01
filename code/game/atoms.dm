@@ -12,7 +12,7 @@
 	var/list/blood_DNA
 
 	var/flags_pass = NONE
-	///whether projectiles and the like can bypass this atom even if its dense
+	///whether projectiles and the like can bypass this atom even if it is dense
 	var/throwpass = FALSE
 
 	var/resistance_flags = PROJECTILE_IMMUNE
