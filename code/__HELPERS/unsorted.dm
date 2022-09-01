@@ -1233,27 +1233,25 @@ will handle it, but:
 	var/list/turfs_to_check = list(get_turf(center))
 	var/list/cone_turfs = list()
 
-	for(var/r in 1 to max_row_count)
-		if(r > 2)
+	for(var/row in 1 to max_row_count)
+		if(row > 2)
 			cardinals = GLOB.cardinals
-		for(var/X in turfs_to_check) //checks the inital turf, then afterwards checks every turf that is added to cone_turfs
-			var/turf/trf = X
-			for(var/direction in cardinals)
-				var/turf/T = get_step(trf, direction) //checks all turfs around X
-				if(cone_turfs.Find(T))
+		for(var/turf/old_turf AS in turfs_to_check) //checks the inital turf, then afterwards checks every turf that is added to cone_turfs
+			for(var/direction AS in cardinals)
+				var/turf/turf_to_check = get_step(old_turf, direction) //checks all turfs around X
+				if(cone_turfs.Find(turf_to_check))
 					continue
-				var/turf_angle = Get_Angle(center, T)
+				var/turf_angle = Get_Angle(center, turf_to_check)
 				if(right_angle > left_angle && (turf_angle > right_angle || turf_angle < left_angle))
 					continue
 				if(turf_angle > right_angle && turf_angle < left_angle)
 					continue
-				if(blocked)
-					if(LinkBlocked(trf, T, bypass_window, projectile, bypass_xeno))
-						continue
-				cone_turfs += T
-				turfs_to_check += T
-			turfs_to_check -= trf
-		for(var/turf/checked_turf in cone_turfs)
+				if(blocked && LinkBlocked(old_turf, turf_to_check, bypass_window, projectile, bypass_xeno))
+					continue
+				cone_turfs += turf_to_check
+				turfs_to_check += turf_to_check
+			turfs_to_check -= old_turf
+		for(var/turf/checked_turf AS in cone_turfs)
 			if(get_dist(center, checked_turf) < starting_row) //if its before the starting row, ignore it.
 				cone_turfs -= checked_turf
 	return	cone_turfs

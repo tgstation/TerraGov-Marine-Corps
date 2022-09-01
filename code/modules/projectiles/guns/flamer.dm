@@ -195,7 +195,7 @@
 		return
 
 	var/list/turf/turfs_by_iteration = list()
-	for(var/turf/turf in turfs_to_ignite)
+	for(var/turf/turf AS in turfs_to_ignite)
 		if(get_dist(turf, flame_source) == iteration)
 			turfs_by_iteration += turf
 
