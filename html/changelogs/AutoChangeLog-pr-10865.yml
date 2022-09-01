@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes: 
+  - qol: "Added a camera to the tadpole, like alamo."
