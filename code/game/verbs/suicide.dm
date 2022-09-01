@@ -11,8 +11,6 @@
 		to_chat(src, "You can't commit suicide before the game starts!")
 		return
 
-
-
 	if (suiciding)
 		to_chat(src, "You're already committing suicide! Be patient!")
 		return
@@ -23,11 +21,13 @@
 		if(!canmove || restrained())	//just while I finish up the new 'fun' suiciding verb. This is to prevent metagaming via suicide
 			to_chat(src, "You can't commit suicide whilst restrained! ((You can type Ghost instead however.))")
 			return
-		suiciding = 1
 		var/obj/item/held_item = get_active_held_item()
 		if(held_item)
 			var/damagetype = held_item.suicide_act(src)
-			if(damagetype)
+			if(!damagetype)	//Check if the item has suicide_act, because doing this as a separate check makes it run twice resulting in 2 suicide messages
+				to_chat(src, span_notice("You're going to have to do it the old fashioned way."))
+			else
+				suiciding = TRUE
 				var/damage_mod = 1
 				switch(damagetype) //Sorry about the magic numbers.
 								//brute = 1, burn = 2, tox = 4, oxy = 8
@@ -65,15 +65,10 @@
 					adjustOxyLoss(max(175 - getToxLoss() - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
 
 				updatehealth()
-				return
 
-
-		visible_message(pick(span_danger("[src] is attempting to bite [p_their()] tongue off! It looks like [p_theyre()] trying to commit suicide."), \
-							span_danger("[src] is jamming [p_their()] thumbs into [p_their()] eye sockets! It looks like [p_theyre()] trying to commit suicide."), \
-							span_danger("[src] is twisting [p_their()] own neck! It looks like [p_theyre()] trying to commit suicide."), \
-							span_danger("[src] is holding [p_their()] breath! It looks like [p_theyre()] trying to commit suicide.")))
-		adjustOxyLoss(max(175 - getToxLoss() - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
-		updatehealth()
+				suiciding = FALSE	//Should have been set to FALSE because if you were revived or healed, you could not suicide again
+		else	//What happens if you have no item
+			to_chat(src, span_notice("What are you going to do? Hold your breath?"))
 
 /mob/living/brain/verb/suicide()
 	set hidden = 1
