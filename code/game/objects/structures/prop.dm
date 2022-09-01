@@ -1127,11 +1127,15 @@
 	icon_state = "placeholderprop"
 
 /obj/structure/prop/mainship/gelida/smallwire
+	name = "small wire"
+	desc = "A small patch of wiring used for cordoning off areas."
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "small_wire"
 	density = FALSE
 
 /obj/structure/prop/mainship/gelida/lightstick
+	name = "light stick"
+	desc = "A post with an empty bulb at the top, used for lighting areas of dense snow."
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "lightstick_spoke1"
 	density = FALSE
