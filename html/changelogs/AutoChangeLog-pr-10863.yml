@@ -1,5 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes: 
-  - qol: "Signs now have directional signs on them to keep mappers from being confused."
-  - bugfix: "Patched some signs that would defy gravity and hang out in midair."

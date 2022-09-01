@@ -1,0 +1,12 @@
+2022-09-01:
+  Lumipharon:
+  - balance: Targetting hands when shooting has a higher accuracy malus
+  - code_imp: Some tweaks to projectile accuracy and hit code
+  - rscadd: Added a low impact shell for the RR, with less direct hit damage and blind
+      range
+  - balance: 'Combat Patrol: RR loadout only has low impact RR shells'
+  RipGrayson:
+  - qol: Signs now have directional signs on them to keep mappers from being confused.
+  - bugfix: Patched some signs that would defy gravity and hang out in midair.
+  lbnesquik:
+  - qol: Added a camera to the tadpole, like alamo.
