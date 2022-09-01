@@ -12,12 +12,6 @@
 		return
 
 
-	if(!mind?.bypass_ff)
-		message_admins("[ADMIN_TPMONTY(usr)] has tried to suicide using the suicide verb, but they were not permitted due to not being an antagonist.")
-		to_chat(src, "Suicide is easy! Just attack yourself with a gun, while targeting your mouth.")
-		to_chat(src, "Please don't do so flippantly! If you want to just leave the round, enter a hypersleep bed.")
-		return
-
 
 	if (suiciding)
 		to_chat(src, "You're already committing suicide! Be patient!")
