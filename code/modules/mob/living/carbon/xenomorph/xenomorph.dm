@@ -439,6 +439,7 @@
 	throwpass = TRUE
 	burrowed = TRUE
 	icon_state = "[xeno_caste.caste_name] Burrowed"
+	wound_overlay.icon_state = "none"
 	// Here we prevent the xeno from moving or attacking or using abilities untill they unburrow by clicking the ability
 	fire_resist_modifier -= 20
 	canmove = FALSE
