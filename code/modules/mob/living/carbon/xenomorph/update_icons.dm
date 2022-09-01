@@ -90,6 +90,9 @@
 	if(!on_fire)
 		fire_overlay.icon_state = ""
 		return
+	if(burrowed)
+		fire_overlay.icon_state = ""
+		return
 	fire_overlay.layer = layer + 0.4
 	if(mob_size!= MOB_SIZE_BIG || ((!initial(pixel_y) || lying_angle) && !resting && !IsSleeping()))
 		fire_overlay.icon_state = "alien_fire"
@@ -104,7 +107,7 @@
 		return
 	var/health_thresholds
 	wound_overlay.layer = layer + 0.3
-	if(HAS_TRAIT(src, TRAIT_MOB_ICON_UPDATE_BLOCKED))
+	if(HAS_TRAIT(src, TRAIT_MOB_ICON_UPDATE_BLOCKED) || burrowed)
 		wound_overlay.icon_state = "none"
 		return
 	if(health > health_threshold_crit)
