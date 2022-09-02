@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes: 
+  - balance: "Increased the durability of some map objects and structures against guns"
+  - balance: "Hydro trays provide slightly better cover"
