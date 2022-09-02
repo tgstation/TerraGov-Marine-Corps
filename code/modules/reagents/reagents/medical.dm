@@ -1340,3 +1340,65 @@
 		if (21 to INFINITY)
 			L.jitter(5)
 	return ..()
+
+/datum/reagent/medicine/curine
+	name = "Curine"
+	description = "A chemical that rapidly solidifies while not under pressure. The resulting solid is restorative, but also highly volatile unless in the presence of liquid curine."
+	color = "#a00000"
+	custom_metabolism = REAGENTS_METABOLISM * 0.5
+	scannable = TRUE
+	taste_description = "sweetness, with a metallic aftertaste"
+	overdose_threshold = REAGENTS_OVERDOSE * 0.5
+
+/datum/reagent/medicine/curine/on_mob_life(mob/living/L, metabolism)
+	var/remaining_heal = min(volume*10, 20*effect_str)
+	var/amount = 0
+	if(L.getBruteLoss(TRUE) && remaining_heal)
+		amount = min(remaining_heal, L.getBruteLoss())
+		L.reagents.remove_reagent(/datum/reagent/medicine/curine, amount*0.1)
+		L.reagents.add_reagent(/datum/reagent/solidcurine, amount*0.1)
+		L.heal_overall_damage(amount, 0)
+		remaining_heal -= amount
+		to_chat(L, span_notice("Your cuts and bruises fill in with elastic material!"))
+	if(L.getFireLoss(TRUE) && remaining_heal)
+		amount = min(remaining_heal, L.getFireLoss())
+		L.reagents.remove_reagent(/datum/reagent/medicine/curine, amount*0.1)
+		L.reagents.add_reagent(/datum/reagent/solidcurine, amount*0.1)
+		L.heal_overall_damage(0, amount)
+		to_chat(L, span_notice("Your burns get covered up by an elastic layer!"))
+	if (volume)
+		return ..()
+
+/datum/reagent/medicine/curine/on_mob_delete(mob/living/L, metabolism)
+	var/amount = L.reagents.get_reagent_amount(/datum/reagent/solidcurine)
+	if (amount)
+		var/message
+		switch(amount)
+			if(0 to 2)
+				message = span_danger("The elastic material on your body melts away, revealing some burns.")
+			if(2 to 5)
+				message = span_userdanger("The elastic material on your body burns away painfully!")
+			else
+				message = span_userdanger("The elastic material on your body combusts violently!")
+		to_chat(L, message)
+		var/mob/living/carbon/human/target = L
+		var/list/datum/limb/target_limbs = target.get_damageable_limbs()
+		for(var/datum/limb/i in target_limbs)
+			L.apply_damage(amount*10/target_limbs.len, BURN, i.name)
+		L.reagents.remove_reagent(/datum/reagent/solidcurine, amount)
+
+/datum/reagent/medicine/curine/overdose_process(mob/living/L, metabolism) //Prevents you from just infinitely soaking damage for free by giving you extreme toxin damage.
+	L.adjustToxLoss(10*effect_str)
+
+/datum/reagent/solidcurine
+	name = "Solidified Curine"
+	description = "Solidified curine that remains highly elastic. Has restorative properties, but is highly volatile unless liquid curine is present."
+	reagent_state = SOLID
+	color = "#a00000"
+	custom_metabolism = 0
+	scannable = TRUE
+	taste_description = "sourness"
+
+/datum/reagent/solidcurine/on_mob_life(mob/living/L, metabolism)
+	if(!L.reagents.has_reagent(/datum/reagent/medicine/curine))
+		L.reagents.remove_reagent(/datum/reagent/solidcurine, volume)
