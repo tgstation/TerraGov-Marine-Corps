@@ -10,3 +10,7 @@
   - bugfix: Patched some signs that would defy gravity and hang out in midair.
   lbnesquik:
   - qol: Added a camera to the tadpole, like alamo.
+2022-09-02:
+  Lumipharon:
+  - rscadd: The CLF now carry a much larger variety of equipment
+  - balance: Improved the performance of the Skorpion SMG
