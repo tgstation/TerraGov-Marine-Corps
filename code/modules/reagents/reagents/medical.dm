@@ -1391,8 +1391,8 @@
 	L.adjustToxLoss(10*effect_str)
 
 /datum/reagent/solidcurine
-	name = "Solidified Curine"
-	description = "Solidified curine that remains highly elastic. Has restorative properties, but is highly volatile unless liquid curine is present."
+	name = "Solid Curine"
+	description = "A solid form of curine that remains highly elastic. Has restorative properties, but is highly volatile unless liquid curine is present."
 	reagent_state = SOLID
 	color = "#a00000"
 	custom_metabolism = 0
