@@ -1353,14 +1353,14 @@
 /datum/reagent/medicine/curine/on_mob_life(mob/living/L, metabolism)
 	var/remaining_heal = min(volume*10, 20*effect_str)
 	var/amount = 0
-	if(L.getBruteLoss(TRUE) && remaining_heal)
+	if(L.getBruteLoss(TRUE) >= 1 && remaining_heal)
 		amount = min(remaining_heal, L.getBruteLoss())
 		L.reagents.remove_reagent(/datum/reagent/medicine/curine, amount*0.1)
 		L.reagents.add_reagent(/datum/reagent/solidcurine, amount*0.1)
 		L.heal_overall_damage(amount, 0)
 		remaining_heal -= amount
 		to_chat(L, span_notice("Your cuts and bruises fill in with elastic material!"))
-	if(L.getFireLoss(TRUE) && remaining_heal)
+	if(L.getFireLoss(TRUE) >= 1 && remaining_heal)
 		amount = min(remaining_heal, L.getFireLoss())
 		L.reagents.remove_reagent(/datum/reagent/medicine/curine, amount*0.1)
 		L.reagents.add_reagent(/datum/reagent/solidcurine, amount*0.1)
