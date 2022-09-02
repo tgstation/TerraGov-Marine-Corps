@@ -1554,7 +1554,7 @@ datum/ammo/bullet/revolver/tp44
 	ping = null //no bounce off.
 	sound_bounce	= "rocket_bounce"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
-	armor_type = "bomb"
+	armor_type = BULLET
 	damage_falloff = 0
 	shell_speed = 2
 	accuracy = 40
@@ -1680,7 +1680,6 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "shell_he"
 	hud_state_empty = "shell_empty"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
-	armor_type = "bomb"
 	damage_falloff = 0
 	shell_speed = 2
 	accurate_range = 20
