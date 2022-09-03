@@ -1345,7 +1345,7 @@
 	name = "Capronine"
 	description = "A chemical that rapidly consumes itself to heal wounds. Causes immense burning when leaving the body."
 	color = "#dada00"
-	custom_metabolism = 0 //Handles metabolism on it's own since it's based off of the inefficiency variable. Actual metabolism is 0.2u/cycle times inefficiency.
+	custom_metabolism = REAGENTS_METABOLISM*0.5 //Changes constantly since it's based off of the inefficiency variable. Actual metabolism is 0.1u/cycle times inefficiency.
 	scannable = TRUE
 	taste_description = "sweetness, with a metallic aftertaste"
 	overdose_threshold = REAGENTS_OVERDOSE * 0.5
@@ -1372,7 +1372,7 @@
 		L.heal_overall_damage(0, amount)
 		to_chat(L, span_notice("Your burns are disappearing!"))
 	if (volume)
-		L.reagents.remove_reagent(/datum/reagent/medicine/capronine, REAGENTS_METABOLISM*0.5*inefficiency*effect_str)
+		custom_metabolism = REAGENTS_METABOLISM*0.5*inefficiency
 		return ..()
 
 /datum/reagent/medicine/capronine/on_mob_delete(mob/living/L, metabolism)
