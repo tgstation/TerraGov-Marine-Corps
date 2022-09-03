@@ -83,7 +83,7 @@
 	. = ..()
 	for(var/mob/living/carbon/human/victim in leash_victims)
 		UnregisterSignal(victim, COMSIG_MOVABLE_MOVED)
-	leash_victims = list()
+	leash_victims = null
 	if(!length(beams))
 		return
 	QDEL_LIST(beams)
