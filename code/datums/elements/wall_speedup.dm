@@ -20,7 +20,7 @@
 /datum/element/wall_speedup/proc/wall_speed(datum/source, atom/oldloc)
 	SIGNAL_HANDLER
 	var/mob/living/fast = source
-	for(var/direction in GLOB.alldirs)
+	for(var/direction in GLOB.halfdirs)
 		if(!isclosedturf(get_step(fast, direction)))
 			continue
 		if(!isclosedturf(get_step(fast, REVERSE_DIR(direction))))
