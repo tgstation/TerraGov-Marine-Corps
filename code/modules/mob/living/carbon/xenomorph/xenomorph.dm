@@ -418,7 +418,6 @@
 		to_chat(src, span_xenowarning("We start burrowing into the ground"))
 		INVOKE_ASYNC(src, .proc/xeno_burrow_doafter, src)
 		return
-// This unburrows the xeno
 	else if(burrowed)
 		UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
 		fire_resist_modifier += 20
