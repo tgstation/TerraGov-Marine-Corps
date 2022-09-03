@@ -1362,17 +1362,17 @@
 	if(L.getBruteLoss(TRUE) >= 1 && remaining_heal)
 		amount = min(remaining_heal, L.getBruteLoss())
 		damage_stored += amount
-		to_remove += amount*0.1*inefficiency
+		to_remove += amount*0.1
 		L.heal_overall_damage(amount, 0)
 		remaining_heal -= amount
 		to_chat(L, span_notice("Your cuts and bruises are disappearing!"))
 	if(L.getFireLoss(TRUE) >= 1 && remaining_heal)
 		amount = min(remaining_heal, L.getFireLoss())
 		damage_stored += amount
-		to_remove += amount*0.1*inefficiency
+		to_remove += amount*0.1
 		L.heal_overall_damage(0, amount)
 		to_chat(L, span_notice("Your burns are disappearing!"))
-	L.reagents.remove_reagent(/datum/reagent/medicine/capronine, to_remove*0.5*inefficiency*L.metabolism_efficiency)
+	L.reagents.remove_reagent(/datum/reagent/medicine/capronine, to_remove*inefficiency*L.metabolism_efficiency)
 	if (volume)
 		return ..()
 
