@@ -1432,7 +1432,7 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 3
 	damage_falloff = 1
 
-/datum/ammo/micro_rail_spread/on_hit_mob(mob/M, obj/projectile/proj)
+/datum/ammo/bullet/micro_rail_spread/on_hit_mob(mob/M, obj/projectile/proj)
 	staggerstun(M, proj, max_range = 5, stagger = 0.5, slowdown = 0.5, shake = 0)
 
 /datum/ammo/bullet/micro_rail_spread/incendiary
@@ -1443,7 +1443,7 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 1.5
 	max_range = 6
 
-/datum/ammo/micro_rail_spread/incendiary/on_hit_mob(mob/M, obj/projectile/proj)
+/datum/ammo/bullet/micro_rail_spread/incendiary/on_hit_mob(mob/M, obj/projectile/proj)
 	staggerstun(M, proj, max_range = 5, stagger = 0.2, slowdown = 0.2, shake = 0)
 
 /datum/ammo/bullet/micro_rail_spread/incendiary/drop_flame(turf/T)
