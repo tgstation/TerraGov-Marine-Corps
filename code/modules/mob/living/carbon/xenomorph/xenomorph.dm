@@ -418,7 +418,6 @@
 		to_chat(src, span_xenowarning("We start burrowing into the ground"))
 		INVOKE_ASYNC(src, .proc/xeno_burrow_doafter, src)
 		return
-// This unburrows the xeno
 	else if(burrowed)
 		UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
 		fire_resist_modifier += 20
@@ -429,6 +428,7 @@
 		burrowed = FALSE
 		canmove = TRUE
 		REMOVE_TRAIT(src, TRAIT_HANDS_BLOCKED, src)
+
 /// Called by xeno_burrow only when burrowing
 /mob/living/carbon/xenomorph/proc/xeno_burrow_doafter()
 	if(!do_after(src, 3 SECONDS, TRUE, null, BUSY_ICON_DANGER))
