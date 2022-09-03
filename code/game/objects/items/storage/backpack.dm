@@ -339,7 +339,7 @@
 
 /obj/item/storage/backpack/marine/tech
 	name = "\improper TGMC technician backpack"
-	desc = "The standard-issue backpack worn by TGMC technicians. Specially equipped to hold sentry gun and M56D emplacement parts."
+	desc = "The standard-issue backpack worn by TGMC technicians. Specially equipped to hold sentry gun and HSG-102 emplacement parts."
 	icon_state = "marinepackt"
 	bypass_w_limit = list(
 		/obj/item/weapon/gun/sentry/big_sentry,
