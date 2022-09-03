@@ -98,6 +98,9 @@
 
 	var/resting = FALSE
 
+	var/can_crawl = FALSE	//If this kind of mob can crawl while lying down or not
+	var/crawl_speed = 8	//Multiplicative; see on_floored_trait_gain in init_signals.dm
+
 	var/list/icon/pipes_shown = list()
 	var/is_ventcrawling
 

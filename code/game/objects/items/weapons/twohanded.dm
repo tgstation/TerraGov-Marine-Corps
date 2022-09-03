@@ -21,7 +21,9 @@
 /obj/item/proc/wield(mob/user)
 	if(!(flags_item & TWOHANDED) || flags_item & WIELDED)
 		return FALSE
-
+	if(user.lying_angle)	//Can't wield if you're lying down
+		to_chat(user, span_warning("You have to stand up first!"))
+		return FALSE
 	var/obj/item/offhand = user.get_inactive_held_item()
 	if(offhand)
 		if(offhand == user.r_hand)

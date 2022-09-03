@@ -46,8 +46,6 @@
 	W.do_pickup_animation(src)
 	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
 		return FALSE
-	if(lying_angle)
-		return FALSE
 	if(!istype(W))
 		return FALSE
 	if(!l_hand)
@@ -73,8 +71,6 @@
 /mob/proc/put_in_r_hand(obj/item/W)
 	W.do_pickup_animation(src)
 	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
-		return FALSE
-	if(lying_angle)
 		return FALSE
 	if(!istype(W))
 		return FALSE

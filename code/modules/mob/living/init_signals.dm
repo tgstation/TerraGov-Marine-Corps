@@ -58,15 +58,14 @@
 		set_lying_angle(buckled.buckle_lying) //Might not actually be laying down, like with chairs, but the rest of the logic applies.
 	else if(!lying_angle)
 		set_lying_angle(pick(90, 270))
-	set_canmove(FALSE)
+	add_movespeed_modifier(MOVESPEED_ID_CRAWLING, TRUE, 0, NONE, TRUE, crawl_speed)
 
 ///Called when TRAIT_FLOORED is removed from the mob.
 /mob/living/proc/on_floored_trait_loss(datum/source)
 	SIGNAL_HANDLER
 	if(lying_angle)
 		set_lying_angle(0)
-	if(!HAS_TRAIT(src, TRAIT_IMMOBILE))
-		set_canmove(TRUE)
+	remove_movespeed_modifier(MOVESPEED_ID_CRAWLING)
 
 
 ///Called when TRAIT_LEGLESS is added to the mob.
@@ -77,5 +76,5 @@
 ///Called when TRAIT_LEGLESS is removed from the mob.
 /mob/living/proc/on_immobile_trait_loss(datum/source)
 	SIGNAL_HANDLER
-	if(!HAS_TRAIT(src, TRAIT_FLOORED))
+	if(!HAS_TRAIT(src, TRAIT_FLOORED) || can_crawl)
 		set_canmove(TRUE)

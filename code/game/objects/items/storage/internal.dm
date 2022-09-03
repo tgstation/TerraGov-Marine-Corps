@@ -37,7 +37,7 @@
 	if(!ishuman(user))
 		return FALSE
 
-	if(user.lying_angle || user.incapacitated()) //Can't use your inventory when lying
+	if(user.incapacitated())
 		return FALSE
 
 	if(istype(user.loc, /obj/vehicle/multitile/root/cm_armored)) //Stops inventory actions in a mech/tank
@@ -91,10 +91,6 @@
 //Returns 1 if the master item's parent's attack_hand() should be called, 0 otherwise.
 //It's strange, but no other way of doing it without the ability to call another proc's parent, really.
 /obj/item/storage/internal/proc/handle_attack_hand(mob/user)
-
-	if(user.lying_angle)
-		return FALSE
-
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.l_store == master_item && !H.get_active_held_item())	//Prevents opening if it's in a pocket.

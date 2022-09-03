@@ -9,6 +9,7 @@
 	melee_damage = 5
 	m_intent = MOVE_INTENT_WALK
 	buckle_flags = CAN_BE_BUCKLED|CAN_BUCKLE
+	can_crawl = TRUE
 
 	hud_type = /datum/hud/human
 

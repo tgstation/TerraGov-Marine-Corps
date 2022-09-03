@@ -54,8 +54,6 @@
 	if(!ishuman(usr))
 		return
 
-	if(usr.lying_angle)
-		return
 
 	if(istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
 		return
