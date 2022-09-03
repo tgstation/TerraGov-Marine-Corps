@@ -414,6 +414,8 @@
 /// Burrow code for xenomorphs
 /mob/living/carbon/xenomorph/proc/xeno_burrow()
 	SIGNAL_HANDLER
+	if(!isxenowidow(src) || !isxenospiderling(src))
+		return
 	if(!burrowed)
 		to_chat(src, span_xenowarning("We start burrowing into the ground"))
 		INVOKE_ASYNC(src, .proc/xeno_burrow_doafter, src)
