@@ -1358,7 +1358,7 @@
 	var/remaining_heal = min(volume*10, 20*effect_str)
 	var/amount = 0
 	var/inefficiency = min(1, damage_stored*0.05)
-	var/to_remove = 0
+	var/to_remove = REAGENTS_METABOLISM * 0.5
 	if(L.getBruteLoss(TRUE) >= 1 && remaining_heal)
 		amount = min(remaining_heal, L.getBruteLoss())
 		damage_stored += amount
@@ -1372,7 +1372,7 @@
 		to_remove += amount*0.1*inefficiency
 		L.heal_overall_damage(0, amount)
 		to_chat(L, span_notice("Your burns are disappearing!"))
-	L.reagents.remove_reagent(/datum/reagent/medicine/capronine, REAGENTS_METABOLISM*0.5*inefficiency*L.metabolism_efficiency)
+	L.reagents.remove_reagent(/datum/reagent/medicine/capronine, to_remove*0.5*inefficiency*L.metabolism_efficiency)
 	if (volume)
 		return ..()
 
