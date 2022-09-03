@@ -103,7 +103,6 @@
 #define isxenohivemind(A) (istype(A, /mob/living/carbon/xenomorph/hivemind))
 #define isxenowraith(A) (istype(A, /mob/living/carbon/xenomorph/wraith))
 #define isxenowidow(A) (istype(A, /mob/living/carbon/xenomorph/widow))
-#define isxenospiderling(A) (istype(A, /mob/living/carbon/xenomorph/spiderling))
 
 //Silicon mobs
 #define issilicon(A) (istype(A, /mob/living/silicon))
