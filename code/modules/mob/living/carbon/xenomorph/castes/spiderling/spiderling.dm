@@ -69,10 +69,9 @@
 
 /// Check if escorted_atom moves away from the spiderling while it's attacking something, this is to always keep them close to escorted_atom
 /datum/ai_behavior/spiderling/look_for_new_state()
-	switch(current_action)
-		if(MOVING_TO_ATOM)
-			if(escorted_atom && get_dist(escorted_atom, mob_parent) > 1)
-				change_action(ESCORTING_ATOM, escorted_atom)
+	if(action_type == MOVING_TO_ATOM)
+		if(escorted_atom && get_dist(escorted_atom, mob_parent) > 1)
+			change_action(ESCORTING_ATOM, escorted_atom)
 
 /// Check so that we dont keep attacking our target beyond it's death
 /datum/ai_behavior/spiderling/register_action_signals(action_type)
