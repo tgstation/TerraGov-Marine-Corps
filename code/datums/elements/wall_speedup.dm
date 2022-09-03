@@ -3,7 +3,7 @@
 	element_flags = ELEMENT_BESPOKE
 	id_arg_index = 2
 	///The amount of speed gained by being inbetween walls
-	var/wall_speed_amount = 5
+	var/wall_speed_amount = 1
 
 /datum/element/wall_speedup/Attach(datum/target, wall_speed_amount)
 	if(!isliving(target))
