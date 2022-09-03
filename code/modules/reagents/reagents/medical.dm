@@ -1350,6 +1350,9 @@
 	taste_description = "sweetness, with a metallic aftertaste"
 	overdose_threshold = REAGENTS_OVERDOSE * 0.4
 
+/datum/reagent/medicine/curine/on_mob_add(mob/living/L, metabolism)
+	to_chat(L, span_userdanger("Your wounds are rapidly disappearing!"))
+
 /datum/reagent/medicine/curine/on_mob_life(mob/living/L, metabolism)
 	var/remaining_heal = min(volume*10, 20*effect_str)
 	var/amount = 0
@@ -1359,13 +1362,13 @@
 		L.reagents.add_reagent(/datum/reagent/solidcurine, amount*0.1)
 		L.heal_overall_damage(amount, 0)
 		remaining_heal -= amount
-		to_chat(L, span_notice("Your cuts and bruises fill in with elastic material!"))
+		to_chat(L, span_notice("Your cuts and bruises are getting filled in!"))
 	if(L.getFireLoss(TRUE) >= 1 && remaining_heal)
 		amount = min(remaining_heal, L.getFireLoss())
 		L.reagents.remove_reagent(/datum/reagent/medicine/curine, amount*0.1)
 		L.reagents.add_reagent(/datum/reagent/solidcurine, amount*0.1)
 		L.heal_overall_damage(0, amount)
-		to_chat(L, span_notice("Your burns get covered up by an elastic layer!"))
+		to_chat(L, span_notice("Your burns are getting covered up!"))
 	if (volume)
 		return ..()
 
