@@ -1351,7 +1351,7 @@
 	overdose_threshold = REAGENTS_OVERDOSE * 0.4
 
 /datum/reagent/medicine/curine/on_mob_add(mob/living/L, metabolism)
-	to_chat(L, span_userdanger("Your wounds are rapidly disappearing!"))
+	to_chat(L, span_userdanger("Your wounds start to seemingly disappear!"))
 
 /datum/reagent/medicine/curine/on_mob_life(mob/living/L, metabolism)
 	var/remaining_heal = min(volume*10, 20*effect_str)
@@ -1362,7 +1362,7 @@
 		L.reagents.add_reagent(/datum/reagent/solidcurine, amount*0.1)
 		L.heal_overall_damage(amount, 0)
 		remaining_heal -= amount
-		to_chat(L, span_notice("Your cuts and bruises are getting filled in!"))
+		to_chat(L, span_notice("Your cuts and bruises are disappearing!"))
 	if(L.getFireLoss(TRUE) >= 1 && remaining_heal)
 		amount = min(remaining_heal, L.getFireLoss())
 		L.reagents.remove_reagent(/datum/reagent/medicine/curine, amount*0.1)
