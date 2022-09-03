@@ -419,7 +419,7 @@
 	aim_slowdown = 0.15
 	wield_delay = 0.4 SECONDS
 
-	accuracy_mult = 1.2
+	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.9
 
 	recoil = 0
@@ -433,7 +433,7 @@
 	extra_delay = 0.1 SECONDS
 	autoburst_delay = 0.1 SECONDS //this makes it fuller auto
 	burst_accuracy_mult = 0.7
-	burst_scatter_mult = 9
+	burst_scatter_mult = 15
 
 	akimbo_additional_delay = 0.7
 	upper_akimbo_accuracy = 5
