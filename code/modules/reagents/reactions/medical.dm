@@ -226,4 +226,4 @@
 /datum/chemical_reaction/curine
 	name = "Curine"
 	results = list(/datum/reagent/medicine/curine = 5)
-	required_reagents = list(/datum/reagent/medicine/dermaline = 2, /datum/reagent/medicine/bicaridine = 2, /datum/reagent/medicine/lemoline = 1)
+	required_reagents = list(/datum/reagent/medicine/kelotane = 1, /datum/reagent/medicine/bicaridine = 1, /datum/reagent/medicine/quickclot = 1, /datum/reagent/medicine/paracetamol = 2)
