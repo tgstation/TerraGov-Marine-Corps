@@ -1378,11 +1378,11 @@
 		var/message
 		switch(amount)
 			if(0 to 2)
-				message = span_danger("The elastic material on your body melts away, revealing some burns.")
+				message = span_danger("A few burns appear on your skin.")
 			if(2 to 5)
-				message = span_userdanger("The elastic material on your body burns away painfully!")
+				message = span_userdanger("Small burns appear everywhere on your body!")
 			else
-				message = span_userdanger("The elastic material on your body combusts violently!")
+				message = span_userdanger("Your entire body burns in agony!")
 		to_chat(L, message)
 		var/mob/living/carbon/human/target = L
 		var/list/datum/limb/target_limbs = target.get_damageable_limbs()
