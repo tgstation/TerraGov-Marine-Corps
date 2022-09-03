@@ -986,6 +986,7 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/isotonic = 30,
 			/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 10,
 			/obj/item/reagent_containers/hypospray/autoinjector/medicalnanites = 20,
+			/obj/item/reagent_containers/hypospray/autoinjector/capronine = 5,
 		),
 		"Heal Pack" = list(
 			/obj/item/stack/medical/heal_pack/gauze = -1,
@@ -1030,6 +1031,7 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/isotonic = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/quickclot = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/medicalnanites = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/capronine = -1,
 		),
 		"Heal Pack" = list(
 			/obj/item/stack/medical/heal_pack/gauze = -1,

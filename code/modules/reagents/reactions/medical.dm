@@ -226,4 +226,4 @@
 /datum/chemical_reaction/capronine
 	name = "Capronine"
 	results = list(/datum/reagent/medicine/capronine = 5)
-	required_reagents = list(/datum/reagent/medicine/quickclot = 2, /datum/reagent/medicine/paracetamol = 2, /datum/reagent/medicine/lemoline = 1)
+	required_reagents = list(/datum/reagent/medicine/quickclot = 1, /datum/reagent/medicine/paracetamol = 2, /datum/reagent/chlorine = 1, /datum/reagent/lithium = 1)

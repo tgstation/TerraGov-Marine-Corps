@@ -311,6 +311,13 @@
 	volume = 1
 	list_reagents = list(/datum/reagent/medicine/research/medicalnanites = 1)
 
+/obj/item/reagent_containers/hypospray/autoinjector/capronine
+	name = "capronine autoinjector"
+	desc = "An auto-injector loaded with 2 doses of capronine, a rapid wound healing chemical that often causes extreme burns when leaving the body."
+	icon_state = "autoinjector-3"
+	amount_per_transfer_from_this = 15
+	list_reagents = list(/datum/reagent/medicine/capronine = 30)
+
 /obj/item/reagent_containers/hypospray/autoinjector/pain //made for debugging
 	name = "liquid pain autoinjector"
 	desc = "An auto-injector loaded with liquid pain. Ow."
