@@ -740,6 +740,7 @@
 #define COMSIG_XENOABILITY_WEB_SPIT "xenoability_web_spit"
 #define COMSIG_XENOABILITY_BURROW "xenoability_burrow"
 #define COMSIG_XENOABILITY_LEASH_BALL "xenoability_leash_ball"
+#define COMSIG_XENOABILITY_CREATE_SPIDERLING "xenoability_create_spiderling"
 #define COMSIG_XENOABILITY_SPIDER_SWARM "xenoability_spider_swarm"
 
 // throw parry signals
