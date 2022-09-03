@@ -230,7 +230,7 @@
 			targetturf = TU
 			to_chat(user, span_notice("COORDINATES TARGETED: LONGITUDE [targetturf.x]. LATITUDE [targetturf.y]."))
 			playsound(src, 'sound/effects/binoctarget.ogg', 35)
-			linked_mortar.recieve_target(TU,src,user)
+			linked_mortar.recieve_target(TU,user)
 			return
 		if(MODE_RAILGUN)
 			to_chat(user, span_notice("ACQUIRING TARGET. RAILGUN TRIANGULATING. DON'T MOVE."))

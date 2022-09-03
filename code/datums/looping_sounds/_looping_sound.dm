@@ -31,7 +31,9 @@
 	var/max_loops
 	///(bool) If true plays directly to provided atoms instead of from them
 	var/direct = FALSE
-	var/extra_range = 0
+	///Range the sound will travel
+	var/range = 0
+	///The rate the volume falls off. Higher = volume drops slower
 	var/falloff
 
 	///(bool) Whether this datum is currently going through the subsystem on a loop
@@ -101,7 +103,7 @@
 		if(direct)
 			SEND_SOUND(thing, S)
 		else
-			playsound(thing, S, volume, vary, extra_range, falloff)
+			playsound(thing, S, volume, vary, range, falloff)
 
 /**
  * Picks and returns soundfile

@@ -58,7 +58,10 @@ OPERATIONS
 
 /datum/supply_packs/operations/binoculars_tatical
 	name = "tactical binoculars crate"
-	contains = list(/obj/item/binoculars/tactical)
+	contains = list(
+		/obj/item/binoculars/tactical,
+		/obj/item/encryptionkey/cas,
+	)
 	cost = 30
 	available_against_xeno_only = TRUE
 
@@ -926,9 +929,11 @@ MEDICAL
 
 /datum/supply_packs/medical/lemolime
 	name = "lemoline"
-	notes = "Contains 1 bottle of lemoline with 10 units."
-	contains = list(/obj/item/reagent_containers/glass/bottle/lemoline)
-	cost = 5
+	notes = "Contains 1 bottle of lemoline with 30 units each."
+	contains = list(
+		/obj/item/reagent_containers/glass/bottle/lemoline/doctor,
+	)
+	cost = 8
 
 /datum/supply_packs/medical/advancedKits
 	name = "Advanced medical packs"

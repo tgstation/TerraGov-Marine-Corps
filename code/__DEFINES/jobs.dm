@@ -83,6 +83,13 @@
 #define REBEL_SQUAD_VATGROWN "Rebel Squad VatGrown"
 #define REBEL_SILICON_AI "Rebel AI"
 
+//SOM - very placeholder for now
+#define SOM_SQUAD_LEADER "SOM Squad Leader"
+#define SOM_SQUAD_CORPSMAN "SOM Squad Medic"
+#define SOM_SQUAD_ENGINEER "SOM Squad Engineer"
+#define SOM_SQUAD_VETERAN "SOM Squad Veteran"
+#define SOM_SQUAD_MARINE "SOM Squad Standard"
+
 #define JOB_CAT_COMMAND "Command"
 #define JOB_CAT_SILICON "Silicon"
 #define JOB_CAT_REQUISITIONS "Requisitions"
@@ -153,6 +160,8 @@ GLOBAL_LIST_INIT(jobs_fallen_all, typecacheof(list(/datum/job/fallen)))
 #define SMARTIE_POINTS_HIGH 3
 #define SYNTH_POINTS_REGULAR 1
 
+#define VETERAN_POINTS_REGULAR 1
+
 #define MARINE_SPAWN_ORIGIN "xenos from marine spawn"
 #define PSY_DRAIN_ORIGIN "xenos from psy drained bodies"
 #define COCOON_ORIGIN "xenos from cocoon that reached its endlife"
@@ -160,7 +169,9 @@ GLOBAL_LIST_INIT(jobs_fallen_all, typecacheof(list(/datum/job/fallen)))
 
 #define SQUAD_MAX_POSITIONS(total_positions) CEILING(total_positions / length(SSjob.active_squads), 1)
 
-/// How many points a marine can spend in job specific vendors
-#define MARINE_TOTAL_BUY_POINTS		45
+/// How many points a marine can spend in job specific vendors by default
+#define DEFAULT_TOTAL_BUY_POINTS 45
+/// How many points a medic can spend on pills
+#define MEDIC_TOTAL_BUY_POINTS 45
 /// How many points an engineer can spend
 #define ENGINEER_TOTAL_BUY_POINTS 75

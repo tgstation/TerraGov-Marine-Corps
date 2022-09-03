@@ -200,14 +200,14 @@
 /datum/action/xeno_action/activable/inject_egg_neurogas/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/Defiler/X = owner
 
-	if(istype(A, /obj/effect/alien/egg/gas))
+	if(istype(A, /obj/alien/egg/gas))
 		A.balloon_alert(X, "Egg already injected")
 		return fail_activate()
 
-	if(!istype(A, /obj/effect/alien/egg/hugger))
+	if(!istype(A, /obj/alien/egg/hugger))
 		return fail_activate()
 
-	var/obj/effect/alien/egg/alien_egg = A
+	var/obj/alien/egg/alien_egg = A
 	if(alien_egg.maturity_stage != alien_egg.stage_ready_to_burst)
 		alien_egg.balloon_alert(X, "Egg not mature")
 		return fail_activate()
@@ -224,7 +224,7 @@
 	succeed_activate()
 	add_cooldown()
 
-	var/obj/effect/alien/egg/gas/newegg = new(A.loc, X.hivenumber)
+	var/obj/alien/egg/gas/newegg = new(A.loc, X.hivenumber)
 	switch(X.selected_reagent)
 		if(/datum/reagent/toxin/xeno_neurotoxin)
 			newegg.gas_type = /datum/effect_system/smoke_spread/xeno/neuro/medium

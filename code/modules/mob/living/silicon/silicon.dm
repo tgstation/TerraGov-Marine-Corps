@@ -143,7 +143,12 @@
 			H = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
 			HUD_nbr = 2
 		if("Squad HUD")
-			H = GLOB.huds[faction == FACTION_TERRAGOV ? DATA_HUD_SQUAD_TERRAGOV :DATA_HUD_SQUAD_REBEL]
+			if(GLOB.huds[faction] == FACTION_TERRAGOV)
+				H = DATA_HUD_SQUAD_TERRAGOV
+			else if(GLOB.huds[faction] == FACTION_TERRAGOV_REBEL)
+				H = DATA_HUD_SQUAD_REBEL
+			else if(GLOB.huds[faction] == FACTION_SOM)
+				H = DATA_HUD_SQUAD_SOM
 			HUD_nbr = 3
 		else
 			return

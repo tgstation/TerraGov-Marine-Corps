@@ -88,6 +88,7 @@
 	var/datum/action/innate/order/attack_order/send_attack_order = new
 	var/datum/action/innate/order/defend_order/send_defend_order = new
 	var/datum/action/innate/order/retreat_order/send_retreat_order = new
+	var/datum/action/innate/order/rally_order/send_rally_order = new
 	var/datum/action/control_vehicle/control = new
 	var/datum/action/minimap/ai/mini = new
 	send_attack_order.target = src
@@ -96,6 +97,8 @@
 	send_defend_order.give_action(src)
 	send_retreat_order.target = src
 	send_retreat_order.give_action(src)
+	send_rally_order.target = src
+	send_rally_order.give_action(src)
 	control.give_action(src)
 	mini.give_action(src)
 
@@ -246,7 +249,7 @@
 
 
 /mob/living/silicon/ai/proc/camera_visibility(mob/camera/aiEye/moved_eye)
-	GLOB.cameranet.visibility(moved_eye, client, all_eyes, TRUE)
+	GLOB.cameranet.visibility(moved_eye, client, all_eyes, moved_eye.use_static)
 
 
 /mob/living/silicon/ai/proc/can_see(atom/A)
@@ -411,6 +414,8 @@
 	ai.controlling = TRUE
 
 	var/mob/camera/aiEye/hud/eyeobj = ai.eyeobj
+	eyeobj.use_static = FALSE
+	ai.camera_visibility(eyeobj)
 	eyeobj.loc = ai.loc
 
 /// Signal handler to clear vehicle and stop remote control
@@ -420,11 +425,14 @@
 	vehicle.on_unlink()
 	vehicle = null
 	var/mob/living/silicon/ai/ai = owner
+	var/mob/camera/aiEye/hud/eyeobj = ai.eyeobj
+	eyeobj.use_static = TRUE
+	ai.camera_visibility(eyeobj)
 	ai.controlling = FALSE
 
 /datum/action/control_vehicle/proc/link_with_vehicle(obj/vehicle/unmanned/_vehicle)
 	vehicle = _vehicle
 	RegisterSignal(vehicle, COMSIG_PARENT_QDELETING, .proc/clear_vehicle)
 	vehicle.on_link()
-	owner.AddComponent(/datum/component/remote_control, vehicle, vehicle.turret_type)
+	owner.AddComponent(/datum/component/remote_control, vehicle, vehicle.turret_type, vehicle.can_interact)
 	SEND_SIGNAL(owner, COMSIG_REMOTECONTROL_TOGGLE, owner)

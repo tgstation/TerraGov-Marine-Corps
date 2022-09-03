@@ -13,17 +13,21 @@ add [] around this to use it in text.
 GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 
 /datum/round_statistics
-	var/total_projectiles_fired = 0
-	var/total_bullets_fired = 0
+	///All projectiles fired during the round, listed by faction
+	var/list/total_projectiles_fired = list()
 	var/human_bump_attacks = 0
 	var/points_from_research = 0
 	var/total_xeno_deaths = 0
-	var/total_human_deaths = 0
-	var/total_human_revives = 0
+	///All human deaths during the round, listed by faction
+	var/list/total_human_deaths = list()
+	///All human revives during the round, listed by faction
+	var/list/total_human_revives = list()
 	var/total_human_respawns = 0
 	var/total_xenos_created = 0
-	var/total_humans_created = 0
-	var/total_bullet_hits_on_humans = 0
+	///All humans created during the round, listed by faction. Occurs at job spawn to capture faction
+	var/list/total_humans_created = list()
+	///All projectiles hit during the round, listed by faction
+	var/list/total_projectile_hits = list()
 	var/total_bullet_hits_on_marines = 0
 	var/total_bullet_hits_on_xenos = 0
 	var/total_larva_burst = 0
@@ -52,6 +56,8 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/weeds_planted = 0
 	var/weeds_destroyed = 0
 	var/grenades_thrown = 0
+	var/mortar_shells_fired = 0
+	var/howitzer_shells_fired = 0
 	var/queen_screech = 0
 	var/now_pregnant = 0
 	var/sentinel_neurotoxin_stings = 0

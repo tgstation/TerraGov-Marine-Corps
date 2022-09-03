@@ -597,6 +597,13 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	var/dy = abs(B.y - A.y)
 	return get_dir(A, B) & (rand() * (dx+dy) < dy ? 3 : 12)
 
+/// If given a diagonal dir, return a corresponding cardinal dir. East/west preferred
+/proc/closest_cardinal_dir(dir)
+	if(!(dir & (dir-1)))
+		return dir
+	if(dir & EAST)
+		return EAST
+	return WEST
 
 //Returns the 2 dirs perpendicular to the arg
 /proc/get_perpen_dir(dir)

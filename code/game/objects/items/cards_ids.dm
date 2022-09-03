@@ -81,9 +81,12 @@
 	var/blood_type = "\[UNSET\]"
 
 	///How many points you can use to buy items
-	var/marine_points = MARINE_TOTAL_BUY_POINTS
-	///What category of items can you buy
-	var/marine_buy_flags = MARINE_CAN_BUY_ALL
+	var/marine_points = list()
+
+	///What category of items can you buy - used for armor and poucehs
+	var/marine_buy_choices = list()
+
+	var/can_buy_loadout = TRUE
 
 	//alt titles are handled a bit weirdly in order to unobtrusively integrate into existing ID system
 	var/assignment = null	//can be alt title or the actual job
@@ -98,6 +101,7 @@
 
 /obj/item/card/id/Initialize()
 	. = ..()
+	marine_buy_choices = GLOB.marine_selector_cats.Copy() //by default you can buy the whole list
 	if(!ishuman(loc))
 		return
 	var/mob/living/carbon/human/H = loc
@@ -246,8 +250,34 @@
 	iff_signal = TGMC_LOYALIST_IFF
 	var/dogtag_taken = FALSE
 
+// Vendor points for job override
+/obj/item/card/id/dogtag/smartgun
+	marine_points = list(
+		CAT_SGSUP = DEFAULT_TOTAL_BUY_POINTS,
+	)
+
 /obj/item/card/id/dogtag/engineer
-	marine_points = ENGINEER_TOTAL_BUY_POINTS
+	marine_points = list(
+		CAT_ENGSUP = ENGINEER_TOTAL_BUY_POINTS,
+	)
+
+/obj/item/card/id/dogtag/leader
+	marine_points = list(
+		CAT_LEDSUP = DEFAULT_TOTAL_BUY_POINTS,
+	)
+
+/obj/item/card/id/dogtag/corpsman
+	marine_points = list(
+		CAT_MEDSUP = MEDIC_TOTAL_BUY_POINTS,
+	)
+
+/obj/item/card/id/dogtag/full
+	marine_points = list(
+		CAT_SGSUP = DEFAULT_TOTAL_BUY_POINTS,
+		CAT_ENGSUP = ENGINEER_TOTAL_BUY_POINTS,
+		CAT_LEDSUP = DEFAULT_TOTAL_BUY_POINTS,
+		CAT_MEDSUP = MEDIC_TOTAL_BUY_POINTS,
+	)
 
 /obj/item/card/id/dogtag/som
 	name = "\improper Sons of Mars dogtag"

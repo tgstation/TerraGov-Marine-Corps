@@ -8,13 +8,14 @@
 
 /datum/surgery_step/head/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
 	if(!affected)
-		return 0
+		return SURGERY_CANNOT_USE
 	if(!(affected.limb_status & LIMB_DESTROYED))
-		return 0
+		return SURGERY_CANNOT_USE
 	if(affected.body_part != HEAD)
-		return 0
+		return SURGERY_CANNOT_USE
 	if(affected.limb_replacement_stage == reattach_step)
-		return 1
+		return SURGERY_CAN_USE
+	return SURGERY_CANNOT_USE
 
 /datum/surgery_step/head/peel
 	allowed_tools = list(
@@ -159,7 +160,8 @@
 /datum/surgery_step/head/attach/can_use(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
 	if(..())
 		if(affected.limb_status & LIMB_AMPUTATED)
-			return 1
+			return SURGERY_CAN_USE
+	return SURGERY_CANNOT_USE
 
 /datum/surgery_step/head/attach/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_notice("[user] starts attaching [tool] to [target]'s reshaped neck."), \

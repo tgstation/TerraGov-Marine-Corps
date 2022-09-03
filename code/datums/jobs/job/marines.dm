@@ -246,7 +246,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	name = SQUAD_CORPSMAN
 	jobtype = /datum/job/terragov/squad/corpsman
 
-	id = /obj/item/card/id/dogtag
+	id = /obj/item/card/id/dogtag/corpsman
 	back = /obj/item/storage/backpack/marine/corpsman
 
 /datum/outfit/job/marine/corpsman/rebel
@@ -358,7 +358,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	name = SQUAD_SMARTGUNNER
 	jobtype = /datum/job/terragov/squad/smartgunner
 
-	id = /obj/item/card/id/dogtag
+	id = /obj/item/card/id/dogtag/smartgun
 	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/job/marine/smartgunner/rebel
@@ -481,7 +481,7 @@ You are also in charge of communicating with command and letting them know about
 	name = SQUAD_LEADER
 	jobtype = /datum/job/terragov/squad/leader
 
-	id = /obj/item/card/id/dogtag
+	id = /obj/item/card/id/dogtag/leader
 	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/job/marine/leader/rebel
