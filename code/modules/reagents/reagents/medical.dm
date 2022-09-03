@@ -1348,7 +1348,7 @@
 	custom_metabolism = REAGENTS_METABOLISM * 0.5
 	scannable = TRUE
 	taste_description = "sweetness, with a metallic aftertaste"
-	overdose_threshold = REAGENTS_OVERDOSE * 0.5
+	overdose_threshold = REAGENTS_OVERDOSE * 0.4
 
 /datum/reagent/medicine/curine/on_mob_life(mob/living/L, metabolism)
 	var/remaining_heal = min(volume*10, 20*effect_str)
