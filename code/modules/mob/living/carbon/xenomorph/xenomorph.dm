@@ -418,7 +418,7 @@
 		to_chat(src, span_xenowarning("We start burrowing into the ground"))
 		INVOKE_ASYNC(src, .proc/xeno_burrow_doafter, src)
 		return
-
+// This unburrows the xeno
 	else if(burrowed)
 		UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
 		fire_resist_modifier += 20
@@ -428,7 +428,8 @@
 		throwpass = FALSE
 		burrowed = FALSE
 		canmove = TRUE
-
+		REMOVE_TRAIT(src, TRAIT_HANDS_BLOCKED, src)
+/// Called by xeno_burrow only when burrowing
 /mob/living/carbon/xenomorph/proc/xeno_burrow_doafter()
 	if(!do_after(src, 3 SECONDS, TRUE, null, BUSY_ICON_DANGER))
 		return
@@ -438,10 +439,11 @@
 	density = FALSE
 	throwpass = TRUE
 	burrowed = TRUE
-	icon_state = "[xeno_caste.caste_name] Burrowed"
-	wound_overlay.icon_state = "none"
+	icon_state = "[xeno_caste.caste_name] Burrowed" // We set it here so we dont wait for life
+	wound_overlay.icon_state = "none" // We set it here so we dont wait for life
 	// Here we prevent the xeno from moving or attacking or using abilities untill they unburrow by clicking the ability
-	fire_resist_modifier -= 20
+	fire_resist_modifier -= 20 // This makes the xeno immune to fire while burrowed, even if burning beforehand
 	canmove = FALSE
+	ADD_TRAIT(src, TRAIT_HANDS_BLOCKED, src)
 	// We register for movement so that we unburrow if bombed
 	RegisterSignal(src, COMSIG_MOVABLE_MOVED, .proc/xeno_burrow)
