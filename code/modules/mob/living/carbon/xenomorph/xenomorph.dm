@@ -429,6 +429,7 @@
 		burrowed = FALSE
 		canmove = TRUE
 		REMOVE_TRAIT(src, TRAIT_HANDS_BLOCKED, src)
+
 /// Called by xeno_burrow only when burrowing
 /mob/living/carbon/xenomorph/proc/xeno_burrow_doafter()
 	if(!do_after(src, 3 SECONDS, TRUE, null, BUSY_ICON_DANGER))
