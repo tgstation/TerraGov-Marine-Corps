@@ -1379,9 +1379,9 @@
 	if (damage_stored)
 		var/message
 		switch(damage_stored)
-			if(0 to 2)
+			if(0 to 20)
 				message = span_danger("You feel something burning under your skin.")
-			if(2 to 5)
+			if(20 to 50)
 				message = span_userdanger("You feel intense burning all over your body!")
 			else
 				message = span_userdanger("Your entire body is burning up from the inside!")
