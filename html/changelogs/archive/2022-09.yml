@@ -14,3 +14,8 @@
   Lumipharon:
   - rscadd: The CLF now carry a much larger variety of equipment
   - balance: Improved the performance of the Skorpion SMG
+2022-09-03:
+  Lumipharon:
+  - balance: Increased the durability of some map objects and structures against guns
+  - balance: Hydro trays provide slightly better cover
+  - bugfix: MG-27 actually uses 10x27mm rounds as described
