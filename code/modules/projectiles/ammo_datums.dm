@@ -1308,7 +1308,7 @@ datum/ammo/bullet/revolver/tp44
 	name = "Shrapnel"
 	icon_state = "flechette"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOB
-	accuracy_var_low = 15
+	accuracy_var_low = 5
 	accuracy_var_high = 5
 	max_range = 4
 	damage = 20
@@ -1316,8 +1316,8 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 3
 	damage_falloff = 0
 
-/datum/ammo/tx54_spread/on_hit_mob(mob/M, obj/projectile/proj)
-	staggerstun(M, proj, max_range = 3, stagger = 0.1, slowdown = 0.1, shake = 0)
+/datum/ammo/bullet/tx54_spread/on_hit_mob(mob/M, obj/projectile/proj)
+	staggerstun(M, proj, max_range = 3, stagger = 0.3, slowdown = 0.3, shake = 0)
 
 /datum/ammo/bullet/tx54_spread/incendiary
 	name = "incendiary flechette"
@@ -1325,6 +1325,9 @@ datum/ammo/bullet/revolver/tp44
 	damage = 15
 	penetration = 10
 	sundering = 1.5
+
+/datum/ammo/bullet/tx54_spread/incendiary/on_hit_mob(mob/M, obj/projectile/proj)
+	return
 
 /datum/ammo/bullet/tx54_spread/incendiary/drop_flame(turf/T)
 	if(!istype(T))
