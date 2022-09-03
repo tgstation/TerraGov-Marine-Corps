@@ -1371,8 +1371,9 @@
 		L.reagents.remove_reagent(/datum/reagent/medicine/capronine, amount*0.1*inefficiency)
 		L.heal_overall_damage(0, amount)
 		to_chat(L, span_notice("Your burns are disappearing!"))
-	L.reagents.remove_reagent(/datum/reagent/medicine/capronine, REAGENTS_METABOLISM*0.5*inefficiency*effect_str)
-	return ..()
+	if (volume)
+		L.reagents.remove_reagent(/datum/reagent/medicine/capronine, REAGENTS_METABOLISM*0.5*inefficiency*effect_str)
+		return ..()
 
 /datum/reagent/medicine/capronine/on_mob_delete(mob/living/L, metabolism)
 	if (damage_stored)
