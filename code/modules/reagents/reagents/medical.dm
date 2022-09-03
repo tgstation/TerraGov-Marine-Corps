@@ -1341,67 +1341,54 @@
 			L.jitter(5)
 	return ..()
 
-/datum/reagent/medicine/curine
-	name = "Curine"
-	description = "A chemical that rapidly solidifies while not under pressure. The resulting solid is restorative, but also highly volatile unless in the presence of liquid curine."
-	color = "#a00000"
+/datum/reagent/medicine/capronine
+	name = "Capronine"
+	description = "A chemical that rapidly consumes itself to heal wounds. Causes immense burning when leaving the body."
+	color = "#dada00"
 	custom_metabolism = REAGENTS_METABOLISM * 0.5
 	scannable = TRUE
 	taste_description = "sweetness, with a metallic aftertaste"
-	overdose_threshold = REAGENTS_OVERDOSE * 0.4
+	overdose_threshold = REAGENTS_OVERDOSE * 0.5
+	var/damage_stored = 0
 
-/datum/reagent/medicine/curine/on_mob_add(mob/living/L, metabolism)
-	to_chat(L, span_userdanger("Your wounds start to seemingly disappear!"))
+/datum/reagent/medicine/capronine/on_mob_add(mob/living/L, metabolism)
+	to_chat(L, span_userdanger("Your wounds are rapidly disappearing!"))
 
-/datum/reagent/medicine/curine/on_mob_life(mob/living/L, metabolism)
+/datum/reagent/medicine/capronine/on_mob_life(mob/living/L, metabolism)
 	var/remaining_heal = min(volume*10, 20*effect_str)
 	var/amount = 0
+	var/inefficiency = min(1, damage_stored*0.02)
 	if(L.getBruteLoss(TRUE) >= 1 && remaining_heal)
 		amount = min(remaining_heal, L.getBruteLoss())
-		L.reagents.remove_reagent(/datum/reagent/medicine/curine, amount*0.1)
-		L.reagents.add_reagent(/datum/reagent/solidcurine, amount*0.1)
+		damage_stored += amount
+		L.reagents.remove_reagent(/datum/reagent/medicine/capronine, amount*0.1*inefficiency)
 		L.heal_overall_damage(amount, 0)
 		remaining_heal -= amount
 		to_chat(L, span_notice("Your cuts and bruises are disappearing!"))
 	if(L.getFireLoss(TRUE) >= 1 && remaining_heal)
 		amount = min(remaining_heal, L.getFireLoss())
-		L.reagents.remove_reagent(/datum/reagent/medicine/curine, amount*0.1)
-		L.reagents.add_reagent(/datum/reagent/solidcurine, amount*0.1)
+		damage_stored += amount
+		L.reagents.remove_reagent(/datum/reagent/medicine/capronine, amount*0.1*inefficiency)
 		L.heal_overall_damage(0, amount)
-		to_chat(L, span_notice("Your burns are getting covered up!"))
+		to_chat(L, span_notice("Your burns are disappearing!"))
 	if (volume)
 		return ..()
 
-/datum/reagent/medicine/curine/on_mob_delete(mob/living/L, metabolism)
-	var/amount = L.reagents.get_reagent_amount(/datum/reagent/solidcurine)
-	if (amount)
+/datum/reagent/medicine/capronine/on_mob_delete(mob/living/L, metabolism)
+	if (damage_stored)
 		var/message
-		switch(amount)
+		switch(damage_stored)
 			if(0 to 2)
-				message = span_danger("A few burns appear on your skin.")
+				message = span_danger("You feel something burning under your skin.")
 			if(2 to 5)
-				message = span_userdanger("Small burns appear everywhere on your body!")
+				message = span_userdanger("You feel intense burning all over your body!")
 			else
-				message = span_userdanger("Your entire body burns in agony!")
+				message = span_userdanger("Your entire body is burning up from the inside!")
 		to_chat(L, message)
 		var/mob/living/carbon/human/target = L
 		var/list/datum/limb/target_limbs = target.get_damageable_limbs()
 		for(var/datum/limb/i in target_limbs)
-			L.apply_damage(amount*10/target_limbs.len, BURN, i.name)
-		L.reagents.remove_reagent(/datum/reagent/solidcurine, amount)
+			L.apply_damage(damage_stored/target_limbs.len, BURN, i.name)
 
-/datum/reagent/medicine/curine/overdose_process(mob/living/L, metabolism) //Prevents you from just infinitely soaking damage for free by giving you extreme toxin damage.
+/datum/reagent/medicine/capronine/overdose_process(mob/living/L, metabolism) //Prevents you from just infinitely soaking damage for free by giving you insane toxin damage.
 	L.adjustToxLoss(10*effect_str)
-
-/datum/reagent/solidcurine
-	name = "Solid Curine"
-	description = "A solid form of curine that remains highly elastic. Has restorative properties, but is highly volatile unless liquid curine is present."
-	reagent_state = SOLID
-	color = "#a00000"
-	custom_metabolism = 0
-	scannable = TRUE
-	taste_description = "sourness"
-
-/datum/reagent/solidcurine/on_mob_life(mob/living/L, metabolism)
-	if(!L.reagents.has_reagent(/datum/reagent/medicine/curine))
-		L.reagents.remove_reagent(/datum/reagent/solidcurine, volume)
