@@ -137,7 +137,7 @@
 	if(!do_after(X, 0.5 SECONDS, TRUE, X, BUSY_ICON_DANGER))
 		return fail_activate()
 	/// This creates and stores the spiderling so we can reassign the owner for spider swarm and cap how many spiderlings you can have at once
-	var/new_spiderling = new /mob/living/carbon/xenomorph/spiderling(owner.loc, owner, owner)
+	var/mob/living/carbon/xenomorph/spiderling/new_spiderling = new /mob/living/carbon/xenomorph/spiderling(owner.loc, owner, owner)
 	add_spiderling(new_spiderling)
 	succeed_activate()
 	add_cooldown()
@@ -156,7 +156,7 @@
 		return
 	if(source != spider_swarm_action.current_controlling_spiderling)
 		return
-	var/next_spiderling
+	var/mob/living/carbon/xenomorph/spiderling/next_spiderling
 	if(length(spiderlings) >= 1)
 		next_spiderling = pick(spiderlings)
 	else if(length(spiderlings) <= 0)

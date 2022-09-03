@@ -58,7 +58,7 @@
 	SIGNAL_HANDLER
 	if(world.time < mob_parent.next_move)
 		return
-	if(get_dist(atom_to_walk_to, mob_parent) > 1)
+	if(Adjacent(atom_to_walk_to))
 		return
 	var/mob/living/victim = atom_to_walk_to
 	if(victim.stat != CONSCIOUS)
