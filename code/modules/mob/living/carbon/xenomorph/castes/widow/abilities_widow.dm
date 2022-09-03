@@ -81,7 +81,7 @@
 /// To remove beams after the leash_ball is destroyed and also unregister all victims
 /obj/structure/xeno/aoe_leash/obj_destruction()
 	. = ..()
-	for(var/mob/living/carbon/human/victim in leash_victims)
+	for(var/mob/living/carbon/human/victim AS in leash_victims)
 		UnregisterSignal(victim, COMSIG_MOVABLE_MOVED)
 	leash_victims = null
 	if(!length(beams))
