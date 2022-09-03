@@ -190,7 +190,7 @@
 	current_controlling_spiderling = new(get_turf(owner), owner)
 	SEND_SIGNAL(owner, COMSIG_ESCORTED_ATOM_CHANGING, current_controlling_spiderling)
 	owner.mind.transfer_to(current_controlling_spiderling)
-	owner.forceMove(null)
+	owner.moveToNullspace()
 	/// We want to access the spiderlings list and therefore have this
 	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = owner.actions_by_path[/datum/action/xeno_action/create_spiderling]
 

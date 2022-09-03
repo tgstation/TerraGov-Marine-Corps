@@ -24,7 +24,7 @@
 	max_health = 150
 
 	// *** Flags *** //
-	caste_flags = CASTE_DO_NOT_ALERT_LOW_LIFE|CASTE_IS_A_MINION|CASTE_IS_NOT_IN_LIST
+	caste_flags = CASTE_DO_NOT_ALERT_LOW_LIFE|CASTE_NOT_IN_BIOSCAN
 	can_flags = CASTE_CAN_BURROW
 
 	// *** Defense *** //
