@@ -444,23 +444,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			client.prefs.save_preferences()
 			to_chat(src, span_boldnotice("[hud_choice] [ghost_orderhud ? "Enabled" : "Disabled"]"))
 
-///Toggles the ghost healthscanner on or off
-/mob/dead/observer/verb/toggle_healthscanner()
-	set category = "Ghost"
-	set name = "Toggle Health Scanner"
-	set desc = "Click on a human to do a ghost health scan"
-
-	ghost_healthscan = !ghost_healthscan
-	balloon_alert(src, "[ghost_healthscan ? "Enabled" : "Disabled"] health scan.")
-
-	if(ghost_healthscan)
-		RegisterSignal(src, COMSIG_OBSERVER_CLICKON, .proc/healthscan)
-		START_PROCESSING(SSobj, healthscanner)
-	else
-		UnregisterSignal(src, COMSIG_OBSERVER_CLICKON)
-		STOP_PROCESSING(SSobj, healthscanner)
-
-
 /mob/dead/observer/verb/teleport(area/A in GLOB.sorted_areas)
 	set category = "Ghost"
 	set name = "Teleport"
@@ -937,7 +920,17 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	mind.transfer_to(new_fallen, TRUE)
 	valhalla_job.after_spawn(new_fallen)
 
+///Toggles the ghost healthscanner on or off
+/mob/dead/observer/proc/toggle_healthscanner()
 
+	ghost_healthscan = !ghost_healthscan
+
+	if(ghost_healthscan)
+		RegisterSignal(src, COMSIG_OBSERVER_CLICKON, .proc/healthscan)
+		START_PROCESSING(SSobj, healthscanner)
+	else
+		UnregisterSignal(src, COMSIG_OBSERVER_CLICKON)
+		STOP_PROCESSING(SSobj, healthscanner)
 
 /mob/dead/observer/reset_perspective(atom/A)
 	clean_observetarget()

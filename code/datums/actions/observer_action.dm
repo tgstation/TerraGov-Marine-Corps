@@ -91,3 +91,18 @@
 		return
 	var/mob/living/carbon/human/H = new_mob
 	H.fully_replace_character_name(H.real_name, H.species.random_name(H.gender))
+
+/datum/action/observer_action/toggle_healthscanner
+	name = "Toggle health scanner"
+	action_icon_state = "toggle_healthscanner_off"
+
+/datum/action/observer_action/toggle_healthscanner/action_activate()
+	var/mob/dead/observer/dead_owner = owner
+	dead_owner.toggle_healthscanner()
+	if(dead_owner.ghost_healthscan)
+		action_icon_state = "toggle_healthscanner_on"
+		add_selected_frame()
+	else
+		remove_selected_frame()
+		action_icon_state = "toggle_healthscanner_off"
+	update_button_icon()

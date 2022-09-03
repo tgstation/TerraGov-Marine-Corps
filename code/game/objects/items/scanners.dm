@@ -97,9 +97,8 @@ REAGENT SCANNER
 		to_chat(user, span_warning("[src] can't make sense of this creature!"))
 		return
 	to_chat(user, span_notice("[user] has analyzed [M]'s vitals."))
-	patient = M
 	current_user = user
-	scan_target(patient)
+	scan_target(M)
 	if(user.skills.getRating("medical") < upper_skill_threshold)
 		return
 	START_PROCESSING(SSobj, src)
@@ -107,17 +106,40 @@ REAGENT SCANNER
 /obj/item/healthanalyzer/proc/scan_target(mob/living/carbon/target)
 	if(!target || !iscarbon(target) || isxeno(target))
 		return
-	patient = target
+	set_patient(target)
 	ui_interact(current_user)
 	update_static_data(current_user)
 
 /obj/item/healthanalyzer/ui_state(mob/user)
 	return GLOB.not_incapacitated_state
 
+/// Sets the target to scan. FALSE = patient is null, TRUE = patient exists
+/obj/item/healthanalyzer/proc/set_patient(mob/living/carbon/target)
+
+	reset_patient()
+	patient = target
+	RegisterSignal(patient, COMSIG_PARENT_QDELETING, .proc/on_patient_qdel) // Recursive call to clear patient ref
+
+/// Resets the target for the health analyzer
+/obj/item/healthanalyzer/proc/reset_patient(datum/source)
+
+	if(!patient)
+		return
+
+	UnregisterSignal(patient, COMSIG_PARENT_QDELETING)
+	patient = null
+
+/obj/item/healthanalyzer/proc/on_patient_qdel()
+	SIGNAL_HANDLER
+
+	reset_patient()
+	SStgui.close_uis(src)
+
+
 /obj/item/healthanalyzer/process()
-	if(get_turf(src) != get_turf(current_user) || get_dist(get_turf(current_user), get_turf(patient)) > track_distance || patient == current_user)
+	if(!patient || get_turf(src) != get_turf(current_user) || get_dist(get_turf(current_user), get_turf(patient)) > track_distance || patient == current_user)
 		STOP_PROCESSING(SSobj, src)
-		patient = null
+		reset_patient()
 		current_user = null
 		return
 	update_static_data(current_user)
@@ -127,7 +149,7 @@ REAGENT SCANNER
 	if(get_turf(src) == get_turf(user)) //If you drop it or it enters a bag on the user.
 		return
 	STOP_PROCESSING(SSobj, src)
-	patient = null
+	reset_patient()
 	current_user = null
 
 /obj/item/healthanalyzer/ui_interact(mob/user, datum/tgui/ui)
