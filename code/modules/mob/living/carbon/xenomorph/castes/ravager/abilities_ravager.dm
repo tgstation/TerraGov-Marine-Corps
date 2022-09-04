@@ -97,6 +97,21 @@
 	playsound(owner, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
 	return ..()
 
+/datum/action/xeno_action/activable/ravage/can_use_ability(atom/A, silent, override_flags)
+	if(!..())
+		return FALSE
+	var/mob/living/carbon/xenomorph/ravager/X = owner
+	var/sweep_range = 1
+	var/list/L = orange(sweep_range, X) // Not actually the fruit
+	var/target_facing
+	for(var/mob/living/carbon/human/H in L)
+		target_facing = get_dir(X, H)
+		if(target_facing != X.dir && target_facing != turn(X.dir,45) && target_facing != turn(X.dir,-45) ) //Have to be actually facing the target
+			return TRUE // just need ONE to be facing
+	to_chat(X, span_notice("There is nobody to ravage infront of you!"))
+	return FALSE
+
+
 /datum/action/xeno_action/activable/ravage/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/ravager/X = owner
 
