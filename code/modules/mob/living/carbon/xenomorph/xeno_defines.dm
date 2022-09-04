@@ -385,3 +385,4 @@
 
 	///Var to see if we are burrowed
 	var/burrowed = FALSE
+
