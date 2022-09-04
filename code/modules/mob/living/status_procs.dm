@@ -745,3 +745,47 @@
 	else if(amount > 0)
 		M = apply_status_effect(STATUS_EFFECT_MUTED, amount)
 	return M
+
+///////////////////////////////// Rad new //////////////////////////////////
+/mob/living/proc/is_irradiated() //If we're irradiated
+	return has_status_effect(STATUS_EFFECT_IRRADIATED)
+
+/mob/living/proc/amount_irradiated() //How many deciseconds remain in our irradiated status effect
+	var/datum/status_effect/irradiated/P = is_irradiated(FALSE)
+	if(P)
+		return P.duration - world.time
+	return 0
+
+/mob/living/proc/irradiate(amount, ignore_canstun = FALSE) //Can't go below remaining duration
+	if(status_flags & GODMODE)
+		return
+	var/datum/status_effect/irradiated/P = is_irradiated(FALSE)
+	if(P)
+		P.duration = max(world.time + amount, P.duration)
+	else if(amount > 0)
+		P = apply_status_effect(STATUS_EFFECT_IRRADIATED, amount)
+	return P
+
+/mob/living/proc/set_radiation(amount, ignore_canstun = FALSE) //Sets remaining duration
+	if(status_flags & GODMODE)
+		return
+	var/datum/status_effect/irradiated/P = is_irradiated(FALSE)
+	if(amount <= 0)
+		if(P)
+			qdel(P)
+	else
+		if(P)
+			P.duration = world.time + amount
+		else
+			P = apply_status_effect(STATUS_EFFECT_IRRADIATED, amount)
+	return P
+
+/mob/living/proc/adjust_radiation(amount, ignore_canstun = FALSE) //Adds to remaining duration
+	if(status_flags & GODMODE)
+		return
+	var/datum/status_effect/irradiated/P = is_irradiated(FALSE)
+	if(P)
+		P.duration += amount
+	else if(amount > 0)
+		P = apply_status_effect(STATUS_EFFECT_IRRADIATED, amount)
+	return P

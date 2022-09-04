@@ -284,3 +284,44 @@
 /datum/status_effect/spacefreeze/tick()
 	owner.adjustFireLoss(40)
 
+///irradiated mob
+/datum/status_effect/irradiated
+	id = "irradiated"
+	status_type = STATUS_EFFECT_REFRESH
+	tick_interval = 20
+	alert_type = /obj/screen/alert/status_effect/irradiated
+	var/mob/living/carbon/carbon_owner
+
+/datum/status_effect/irradiated/on_creation(mob/living/new_owner, set_duration)
+	if(isnum(set_duration))
+		duration = set_duration
+	. = ..()
+	if(.)
+		if(iscarbon(owner))
+			carbon_owner = owner
+
+/datum/status_effect/irradiated/Destroy()
+	carbon_owner = null
+	return ..()
+
+/datum/status_effect/irradiated/tick()
+	var/mob/living/living_owner = owner
+	//Roulette of bad things
+	if(prob(15))
+		living_owner.adjustCloneLoss(2)
+		to_chat(living_owner, span_warning("You feel like you're burning from the inside!"))
+	else
+		living_owner.adjustToxLoss(3)
+	if(prob(15))
+		living_owner.adjust_Losebreath(5)
+	if(prob(15))
+		living_owner.vomit
+	if(carbon_owner && prob(15))
+		var/datum/internal_organ/organ = pick(carbon_owner.internal_organs)
+		if(organ)
+			organ.take_damage(5)
+
+/obj/screen/alert/status_effect/irradiated
+	name = "Irradiated"
+	desc = "You've been irradiated! The effects of the radiation will continue to harm you until purged from your system."
+	icon_state = "asleep"

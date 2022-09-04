@@ -139,4 +139,5 @@
 	victim.adjust_stagger(effective_strength)
 	victim.add_slowdown(effective_strength)
 	victim.blur_eyes(effective_strength) //adds a visual indicator that you've just been irradiated
-	to_chat(victim, span_warning("You body tingles as you suddenly feel weak!"))
+	victim.adjust_radiation(effective_strength * 20) //duration is in deciseconds
+	to_chat(victim, span_warning("Your body tingles, you suddenly feel weak!"))
