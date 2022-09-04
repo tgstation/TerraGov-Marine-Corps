@@ -12,7 +12,6 @@
 
 	// *** Melee Attacks *** //
 	melee_damage = 7
-	attack_delay = 3
 
 	// *** Speed *** //
 	speed = -0.2
