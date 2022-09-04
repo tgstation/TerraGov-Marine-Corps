@@ -115,11 +115,16 @@
 /obj/item/explosive/grenade/rad/prime()
 	var/turf/impact_turf = get_turf(src)
 	playsound(impact_turf, 'sound/effects/portal_opening.ogg', 50, 1)
-	//for(var/obj/structure/closet/L in dview(7, impact_turf))
-	//	if(locate(/mob/living/carbon/, L))
-	//		for(var/mob/living/carbon/M in L)
-	//			irradiate(M, get_dist(L, impact_turf))
-
+	//A locker won't protect you
+	for(var/obj/structure/closet/closet in dview(outer_range, impact_turf))
+		if(locate(/mob/living/carbon/, closet))
+			for(var/mob/living/carbon/victim in closet)
+				var/strength
+				if(get_dist(victim, impact_turf) <= inner_range)
+					strength = rad_strength
+				else
+					strength = rad_strength * 0.6
+				irradiate(victim, strength)
 
 	for(var/mob/living/victim in dview(outer_range, impact_turf))
 		var/strength
@@ -131,13 +136,14 @@
 
 	qdel(src)
 
+///Applies the actual effects of the rad grenade
 /obj/item/explosive/grenade/rad/proc/irradiate(mob/living/victim, strength)
 	var/rad_penetration = (100 - victim.get_soft_armor(RAD)) / 100
 	var/effective_strength = strength * rad_penetration //strength with rad armor taken into account
 	victim.adjustCloneLoss(effective_strength)
 	victim.adjustStaminaLoss(effective_strength * 7)
-	victim.adjust_stagger(effective_strength)
-	victim.add_slowdown(effective_strength)
+	victim.adjust_stagger(effective_strength / 2)
+	victim.add_slowdown(effective_strength / 2)
 	victim.blur_eyes(effective_strength) //adds a visual indicator that you've just been irradiated
-	victim.adjust_radiation(effective_strength * 20) //duration is in deciseconds
-	to_chat(victim, span_warning("Your body tingles, you suddenly feel weak!"))
+	victim.adjust_radiation(effective_strength * 20) //Radiation status effect, duration is in deciseconds
+	to_chat(victim, span_warning("Your body tingles as you suddenly feel the strength drain from your body!"))
