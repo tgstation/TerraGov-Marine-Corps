@@ -101,14 +101,18 @@
 	if(!..())
 		return FALSE
 	var/mob/living/carbon/xenomorph/ravager/X = owner
+	var/facing_dir = X.get_facing_direction(A) // this prevents false-positives , since the actual ravage forces you to face the clicked atom(which can miss if you click behind you while having people infront)
 	var/sweep_range = 1
 	var/list/L = orange(sweep_range, X) // Not actually the fruit
 	var/target_facing
 	for(var/mob/living/carbon/human/H in L)
 		target_facing = get_dir(X, H)
-		if(target_facing != X.dir && target_facing != turn(X.dir,45) && target_facing != turn(X.dir,-45) ) //Have to be actually facing the target
-			return TRUE // just need ONE to be facing
-	to_chat(X, span_notice("There is nobody to ravage infront of you!"))
+		if(H.stat == DEAD || isnestedhost(H))
+			continue
+		if(target_facing != facing_dir && target_facing != turn(facing_dir,45) && target_facing != turn(facing_dir,-45) ) //Have to be actually facing the target
+			continue
+		return TRUE
+	X.balloon_alert(X, "There is nobody to ravage infront of you!")
 	return FALSE
 
 

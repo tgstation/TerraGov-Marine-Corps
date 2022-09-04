@@ -975,6 +975,35 @@
 		else
 			setDir(WEST)
 
+// This is face_atom, but instead of changing the dir it just returns the dir the original proc would
+// used for checking ravager's ability to ravage without actually forcing them to face the atom.
+/atom/movable/proc/get_facing_direction(atom/A)
+	if(!A || !x || !y || !A.x || !A.y)
+		return
+	var/dx = A.x - x
+	var/dy = A.y - y
+	if(!dx && !dy) // Wall items are graphically shifted but on the floor
+		if(A.pixel_y > 16)
+			return NORTH
+		else if(A.pixel_y < -16)
+			return SOUTH
+		else if(A.pixel_x > 16)
+			return EAST
+		else if(A.pixel_x < -16)
+			return WEST
+		return
+
+	if(abs(dx) < abs(dy))
+		if(dy > 0)
+			return NORTH
+		else
+			return SOUTH
+	else
+		if(dx > 0)
+			return EAST
+		else
+			return WEST
+
 /mob/face_atom(atom/A)
 	if(buckled || stat != CONSCIOUS)
 		return
