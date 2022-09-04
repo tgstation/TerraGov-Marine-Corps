@@ -261,8 +261,6 @@ obj/item/alienjar
 
 /obj/structures/win/proc/on_cross(datum/source, atom/movable/mover, oldloc)
 	SIGNAL_HANDLER
-	if(!istype(mover, /obj/machinery/roomba))
-		return
 	for(var/mob/living/carbon/xenomorph/sister AS in GLOB.alive_xeno_list)
 		explosion(sister, 1, 1, 1, small_animation = TRUE)
 		sister.gib()
@@ -272,8 +270,6 @@ obj/item/alienjar
 
 /obj/structures/win/winxeno/on_cross(datum/source, atom/movable/mover, oldloc)
 	SIGNAL_HANDLER
-	if(!istype(mover, /obj/machinery/roomba))
-		return
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		explosion(human, 1, 1, 1, small_animation = TRUE)
 		human.gib()
