@@ -59,3 +59,8 @@ endmap
 map orion_outpost
 	maxplayers 40
 endmap
+
+map roomba_race
+	minplayers 1
+	voteweight 100
+endmap

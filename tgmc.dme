@@ -12,6 +12,7 @@
 // BEGIN_INCLUDE
 #include "_maps\_basemap.dm"
 #include "_maps\map_files\generic\Admin_Level.dmm"
+#include "_maps\map_files\roomba_race\roomba_race.dmm"
 #include "code\_compile_options.dm"
 #include "code\world.dm"
 #include "code\__DEFINES\__game.dm"
@@ -494,6 +495,7 @@
 #include "code\game\area\port_hamburg.dm"
 #include "code\game\area\prison.dm"
 #include "code\game\area\research_outpost.dm"
+#include "code\game\area\roombarace.dm"
 #include "code\game\area\sulaco.dm"
 #include "code\game\area\valhallastation.dm"
 #include "code\game\area\vaporprocessing.dm"
