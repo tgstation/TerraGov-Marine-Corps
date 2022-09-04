@@ -243,3 +243,37 @@ obj/item/alienjar
 	desc = "Plastic flaps for transporting supplies."
 	obj_flags = null
 	resistance_flags = XENO_DAMAGEABLE
+
+/obj/structures/win
+	name = "win"
+	desc = "marine win."
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "winner"
+	resistance_flags = RESIST_ALL|BANISH_IMMUNE
+	anchored = TRUE
+
+/obj/structures/win/Initialize()
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
+/obj/structures/win/proc/on_cross(datum/source, atom/movable/mover, oldloc)
+	SIGNAL_HANDLER
+	if(!istype(mover, /obj/machinery/roomba))
+		return
+	for(var/mob/living/carbon/xenomorph/sister AS in GLOB.alive_xeno_list)
+		explosion(sister, 1, 1, 1, small_animation = TRUE)
+		sister.gib()
+
+/obj/structures/win/winxeno
+	desc = "xeno win."
+
+/obj/structures/win/winxeno/on_cross(datum/source, atom/movable/mover, oldloc)
+	SIGNAL_HANDLER
+	if(!istype(mover, /obj/machinery/roomba))
+		return
+	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
+		explosion(human, 1, 1, 1, small_animation = TRUE)
+		human.gib()
