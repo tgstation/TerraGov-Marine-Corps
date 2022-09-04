@@ -151,6 +151,7 @@ GLOBAL_LIST_INIT(all_xeno_types, list(
 	/mob/living/carbon/xenomorph/widow/elder,
 	/mob/living/carbon/xenomorph/widow/ancient,
 	/mob/living/carbon/xenomorph/widow/primordial,
+	/mob/living/carbon/xenomorph/spiderling,
 	))
 GLOBAL_LIST_INIT(xeno_types_tier_one, list(/mob/living/carbon/xenomorph/runner, /mob/living/carbon/xenomorph/drone, /mob/living/carbon/xenomorph/sentinel, /mob/living/carbon/xenomorph/defender))
 GLOBAL_LIST_INIT(xeno_types_tier_two, list(/mob/living/carbon/xenomorph/hunter, /mob/living/carbon/xenomorph/warrior, /mob/living/carbon/xenomorph/spitter, /mob/living/carbon/xenomorph/hivelord, /mob/living/carbon/xenomorph/carrier, /mob/living/carbon/xenomorph/bull, /mob/living/carbon/xenomorph/wraith))
