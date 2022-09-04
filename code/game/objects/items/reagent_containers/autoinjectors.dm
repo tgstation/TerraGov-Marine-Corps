@@ -314,7 +314,7 @@
 /obj/item/reagent_containers/hypospray/autoinjector/capronine
 	name = "capronine autoinjector"
 	desc = "An auto-injector loaded with 2 doses of capronine, a rapid wound healing chemical that often causes extreme burns when leaving the body."
-	icon_state = "autoinjector-3"
+	icon_state = "AngelLight"
 	amount_per_transfer_from_this = 15
 	list_reagents = list(/datum/reagent/medicine/capronine = 30)
 
