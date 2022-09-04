@@ -315,7 +315,7 @@
 	if(prob(15))
 		living_owner.adjust_Losebreath(5)
 	if(prob(15))
-		living_owner.vomit
+		living_owner.vomit()
 	if(carbon_owner && prob(15))
 		var/datum/internal_organ/organ = pick(carbon_owner.internal_organs)
 		if(organ)
@@ -324,4 +324,4 @@
 /obj/screen/alert/status_effect/irradiated
 	name = "Irradiated"
 	desc = "You've been irradiated! The effects of the radiation will continue to harm you until purged from your system."
-	icon_state = "asleep"
+	icon_state = "radiation"
