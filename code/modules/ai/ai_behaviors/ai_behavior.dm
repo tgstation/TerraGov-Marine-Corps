@@ -160,9 +160,10 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 			change_action(MOVING_TO_NODE, current_node)
 		return
 	if(goal_node && goal_node != current_node)
-		if(!length(goal_nodes) && !registered_for_node_pathfinding)
-			SSadvanced_pathfinding.node_pathfinding_to_do += src
-			registered_for_node_pathfinding = TRUE
+		if(!length(goal_nodes))
+			if(!registered_for_node_pathfinding)
+				SSadvanced_pathfinding.node_pathfinding_to_do += src
+				registered_for_node_pathfinding = TRUE
 			return
 		set_current_node(GLOB.all_nodes[goal_nodes[length(goal_nodes)] + 1])
 		goal_nodes.len--

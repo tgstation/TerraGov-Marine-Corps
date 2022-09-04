@@ -55,6 +55,7 @@ SUBSYSTEM_DEF(advanced_pathfinding)
 	for(var/datum/ai_behavior/ai_behavior AS in node_pathfinding_to_do)
 		ai_behavior.look_for_node_path()
 		node_pathfinding_to_do -= ai_behavior
+		ai_behavior.registered_for_node_pathfinding = FALSE
 		if (MC_TICK_CHECK)
 			return
 
