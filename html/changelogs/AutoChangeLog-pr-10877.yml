@@ -1,0 +1,6 @@
+author: "tyeagg"
+delete-after: True
+changes: 
+  - balance: "orbit system simplified to only have 3 orbits"
+  - balance: "time it takes for orbit to change to 3 minutes"
+  - balance: "time it takes to change orbit at roundstart from 30 minutes to 10 minutes"
