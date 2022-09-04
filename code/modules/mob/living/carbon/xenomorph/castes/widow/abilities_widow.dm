@@ -54,6 +54,8 @@
 	desc = "Looks very sticky"
 	destroy_sound = "alien_resin_break"
 	max_integrity = 1920
+	layer = ABOVE_ALL_MOB_LAYER
+	anchored = TRUE
 	/// Radius for how far the leash should affect humans and how far away they may walk
 	var/leash_radius = 5
 	/// How much more integrity aoe_leash gains per caught marine, it is preferable that max_integrity is this var * 8.
@@ -62,8 +64,6 @@
 	var/list/obj/effect/ebeam/beams = list()
 	/// List of victims to unregister aoe_leash is destroyed
 	var/list/mob/living/carbon/human/leash_victims = list()
-	layer = ABOVE_ALL_MOB_LAYER
-	anchored = TRUE
 
 /// Humans caught get beamed and registered for proc/check_dist, aoe_leash also gains increased integrity for each caught human
 /obj/structure/xeno/aoe_leash/Initialize(mapload)
