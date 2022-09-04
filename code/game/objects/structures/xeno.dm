@@ -144,6 +144,7 @@
 	smoothing_behavior = CARDINAL_SMOOTHING
 	smoothing_groups = SMOOTH_XENO_STRUCTURES
 	var/close_delay = 10 SECONDS
+	soft_armor = list("melee" = 0, "bullet" = 60, "laser" = 60, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
 /obj/structure/mineral_door/resin/Initialize()
 	. = ..()
