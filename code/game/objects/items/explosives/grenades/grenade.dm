@@ -92,3 +92,51 @@
 		return
 	walk(src, null, null)
 	return
+
+
+////RAD GRENADE - TOTALLY RAD MAN
+
+/obj/item/explosive/grenade/rad
+	name = "\improper V-40 rad grenade"
+	desc = "Rad grenades release an extremely potent but short lived burst of radiation, debilitating organic life and frying electronics in a moderate radius. After the initial detonation, the radioactive effects linger for a time. Handle with extreme care."
+	icon_state = "grenade" //placeholder
+	item_state = "grenade" //placeholder
+	icon_state_mini = "grenade_red" //placeholder
+	det_time =  40 //default
+	arm_sound = 'sound/weapons/armbomb.ogg' //placeholder
+	hud_state = "grenade_he" //placeholder
+	///The range for the grenade's full effect
+	var/inner_range = 4
+	///The range range for the grenade's weak effect
+	var/outer_range = 7
+	///The potency of the grenade
+	var/rad_strength = 20
+
+/obj/item/explosive/grenade/rad/prime()
+	var/turf/impact_turf = get_turf(src)
+	playsound(impact_turf, 'sound/effects/portal_opening.ogg', 50, 1)
+	//for(var/obj/structure/closet/L in dview(7, impact_turf))
+	//	if(locate(/mob/living/carbon/, L))
+	//		for(var/mob/living/carbon/M in L)
+	//			irradiate(M, get_dist(L, impact_turf))
+
+
+	for(var/mob/living/victim in dview(outer_range, impact_turf))
+		var/strength
+		if(get_dist(victim, impact_turf) <= inner_range)
+			strength = rad_strength
+		else
+			strength = rad_strength * 0.6
+		irradiate(victim, strength)
+
+	qdel(src)
+
+/obj/item/explosive/grenade/rad/proc/irradiate(mob/living/victim, strength)
+	var/rad_penetration = (100 - victim.get_soft_armor(RAD)) / 100
+	var/effective_strength = strength * rad_penetration //strength with rad armor taken into account
+	victim.adjustCloneLoss(effective_strength)
+	victim.adjustStaminaLoss(effective_strength * 7)
+	victim.adjust_stagger(effective_strength)
+	victim.add_slowdown(effective_strength)
+	victim.blur_eyes(effective_strength) //adds a visual indicator that you've just been irradiated
+	to_chat(victim, span_warning("You body tingles as you suddenly feel weak!"))
