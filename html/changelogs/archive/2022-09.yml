@@ -19,3 +19,9 @@
   - balance: Increased the durability of some map objects and structures against guns
   - balance: Hydro trays provide slightly better cover
   - bugfix: MG-27 actually uses 10x27mm rounds as described
+2022-09-04:
+  BraveMole:
+  - bugfix: Fix piercing projectile hitting the same atom multiple times
+  novaepee:
+  - qol: delete a girder in Big Red LZ1 and move crate in LV624 to let marines using
+      FOB drone not suffer
