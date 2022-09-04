@@ -411,6 +411,8 @@
 	var/obj/alien/weeds/found_weed = locate(/obj/alien/weeds) in loc
 	loc_weeds_type = found_weed?.type
 
+#define BURROW_FIRE_RESIST_MODIFIER 20
+
 /// Burrow code for xenomorphs
 /mob/living/carbon/xenomorph/proc/xeno_burrow()
 	SIGNAL_HANDLER
@@ -430,8 +432,6 @@
 		burrowed = FALSE
 		canmove = TRUE
 		REMOVE_TRAIT(src, TRAIT_HANDS_BLOCKED, src)
-
-#define BURROW_FIRE_RESIST_MODIFIER 20
 
 /// Called by xeno_burrow only when burrowing
 /mob/living/carbon/xenomorph/proc/xeno_burrow_doafter()
