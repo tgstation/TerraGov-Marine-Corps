@@ -159,3 +159,6 @@
 		if(sucker.flags_item & NO_VACUUM)
 			continue
 		qdel(sucker)
+
+/obj/machinery/roomba/indestructible
+	resistance_flags = RESIST_ALL|BANISH_IMMUNE

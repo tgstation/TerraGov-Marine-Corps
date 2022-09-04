@@ -63,11 +63,11 @@
 /turf/open/floor/plating/ground/concrete,
 /area/centcom/roomba_race)
 "hH" = (
-/obj/machinery/roomba/valhalla,
 /obj/structure/window/reinforced/viewing{
 	dir = 4
 	},
 /obj/structure/window/reinforced/viewing,
+/obj/machinery/roomba/indestructible,
 /turf/open/space/basic,
 /area/centcom/roomba_race/race_area)
 "iP" = (
@@ -203,7 +203,6 @@
 /turf/open/space/basic,
 /area/space)
 "Ac" = (
-/obj/machinery/roomba/valhalla,
 /obj/structure/window/reinforced/viewing{
 	dir = 4
 	},
@@ -211,6 +210,7 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced/viewing,
+/obj/machinery/roomba/indestructible,
 /turf/open/space/basic,
 /area/centcom/roomba_race/race_area)
 "BD" = (

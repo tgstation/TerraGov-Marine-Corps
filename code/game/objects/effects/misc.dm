@@ -241,6 +241,7 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "smoke"
 	resistance_flags = RESIST_ALL|BANISH_IMMUNE
+	anchored = TRUE
 
 /obj/effect/win/Initialize()
 	. = ..()
@@ -249,7 +250,7 @@
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
-/obj/effect/win/proc/on_cross(datum/source, atom/movable/mover, oldloc, oldlocs)
+/obj/effect/win/proc/on_cross(datum/source, atom/movable/mover, oldloc)
 	SIGNAL_HANDLER
 	if(!istype(mover, /obj/machinery/roomba))
 		return
@@ -260,7 +261,7 @@
 /obj/effect/win/winxeno
 	desc = "xeno win."
 
-/obj/effect/win/winxeno/on_cross(datum/source, atom/movable/mover, oldloc, oldlocs)
+/obj/effect/win/winxeno/on_cross(datum/source, atom/movable/mover, oldloc)
 	SIGNAL_HANDLER
 	if(!istype(mover, /obj/machinery/roomba))
 		return
