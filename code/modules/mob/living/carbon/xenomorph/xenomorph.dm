@@ -16,17 +16,15 @@
 	add_abilities()
 	create_reagents(1000)
 	gender = NEUTER
-	// To prevent this xeno from counting in bioscan
-	if(!(src.xeno_caste.caste_flags & CASTE_NOT_IN_BIOSCAN))
-		switch(stat)
-			if(CONSCIOUS)
-				GLOB.alive_xeno_list += src
-				see_in_dark = xeno_caste.conscious_see_in_dark
-			if(UNCONSCIOUS)
-				GLOB.alive_xeno_list += src
-				see_in_dark = xeno_caste.unconscious_see_in_dark
-			if(DEAD)
-				see_in_dark = xeno_caste.unconscious_see_in_dark
+	switch(stat)
+		if(CONSCIOUS)
+			GLOB.alive_xeno_list += src
+			see_in_dark = xeno_caste.conscious_see_in_dark
+		if(UNCONSCIOUS)
+			GLOB.alive_xeno_list += src
+			see_in_dark = xeno_caste.unconscious_see_in_dark
+		if(DEAD)
+			see_in_dark = xeno_caste.unconscious_see_in_dark
 
 	GLOB.xeno_mob_list += src
 	GLOB.round_statistics.total_xenos_created++

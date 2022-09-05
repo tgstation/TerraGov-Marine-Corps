@@ -372,8 +372,6 @@
 /datum/hive_status/proc/add_to_lists(mob/living/carbon/xenomorph/X)
 	xenos_by_tier[X.tier] += X
 	xenos_by_upgrade[X.upgrade] += X
-	if(X.xeno_caste.caste_flags & CASTE_NOT_IN_BIOSCAN)
-		return
 	if(X.z)
 		LAZYADD(xenos_by_zlevel["[X.z]"], X)
 	RegisterSignal(X, COMSIG_MOVABLE_Z_CHANGED, .proc/xeno_z_changed)
@@ -450,8 +448,6 @@
 // helper function
 /datum/hive_status/proc/remove_from_lists(mob/living/carbon/xenomorph/X)
 	// Remove() returns 1 if it removes an element from a list
-	if(X.xeno_caste.caste_flags & CASTE_NOT_IN_BIOSCAN)
-		return
 
 	if(!xenos_by_tier[X.tier].Remove(X))
 		stack_trace("failed to remove a xeno from hive status tier list, nothing was removed!?")
@@ -479,8 +475,6 @@
 	return TRUE
 
 /mob/living/carbon/xenomorph/proc/remove_from_hive()
-	if(src.xeno_caste.caste_flags & CASTE_NOT_IN_BIOSCAN)
-		return
 	if(!istype(hive))
 		CRASH("tried to remove a xeno from a hive that didnt have a hive to be removed from")
 
