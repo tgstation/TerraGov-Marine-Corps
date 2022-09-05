@@ -25,3 +25,14 @@
   novaepee:
   - qol: delete a girder in Big Red LZ1 and move crate in LV624 to let marines using
       FOB drone not suffer
+2022-09-05:
+  Lumipharon:
+  - rscadd: Adds some tips of the round for HvH
+  - balance: Marine helmets now consistantly provide the same armour as heavy armour,
+      with MX11 helmets a little better against projectiles
+  - balance: SOM armour tweaked slightly to be more consistant, with shoes and gloves
+      now having the same armour as marine versions
+  tyeagg:
+  - balance: orbit system simplified to only have 3 orbits
+  - balance: time it takes for orbit to change to 3 minutes
+  - balance: time it takes to change orbit at roundstart from 30 minutes to 10 minutes
