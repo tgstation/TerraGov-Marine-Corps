@@ -39,7 +39,7 @@
 	if(!do_after(X, 1 SECONDS, TRUE, X, BUSY_ICON_DANGER))
 		return fail_activate()
 
-	var/datum/ammo/leash_ball = GLOB.ammo_list[/datum/ammo/leash_ball]
+	var/datum/ammo/xeno/leash_ball = GLOB.ammo_list[/datum/ammo/xeno/leash_ball]
 	var/obj/projectile/newspit = new /obj/projectile(get_turf(X))
 
 	newspit.generate_bullet(leash_ball)

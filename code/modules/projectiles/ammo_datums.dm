@@ -2782,12 +2782,12 @@ datum/ammo/bullet/revolver/tp44
 	accuracy = 40
 	accurate_range = 10
 	max_range = 15
-	///Blind duration
-	var/hit_eye_blind = 5 SECONDS
-	///Snare duration
-	var/hit_immobilize = 3 SECONDS
-	///Weaken duration
-	var/hit_weaken = 2 SECONDS
+	///Blind effect
+	var/hit_eye_blind = 1
+	///Snare effect
+	var/hit_immobilize = 10
+	///Weaken effect
+	var/hit_weaken = 1
 	///List for bodyparts that upon being hit cause the target to become weakened
 	var/list/weaken_list = list(BODY_ZONE_CHEST, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND)
 	///List for bodyparts that upon being hit cause the target to become ensnared
@@ -2803,9 +2803,9 @@ datum/ammo/bullet/revolver/tp44
 	else if(proj.def_zone in weaken_list)
 		human_victim.apply_effect(hit_weaken, WEAKEN)
 	else if(proj.def_zone in snare_list)
-		human_victim.Immobilize(hit_immobilize)
+		human_victim.Immobilize(hit_immobilize, TRUE)
 
-/datum/ammo/leash_ball
+/datum/ammo/xeno/leash_ball
 	icon_state = "widow_snareball"
 	ping = "ping_x"
 	damage_type = STAMINA
@@ -2818,15 +2818,15 @@ datum/ammo/bullet/revolver/tp44
 	accurate_range = 15
 	max_range = 8
 
-/datum/ammo/leash_ball/on_hit_turf(turf/T, obj/projectile/proj)
+/datum/ammo/xeno/leash_ball/on_hit_turf(turf/T, obj/projectile/proj)
 	. = ..()
 	new /obj/structure/xeno/aoe_leash(get_turf(T))
 
-/datum/ammo/leash_ball/on_hit_mob(mob/victim, obj/projectile/proj)
+/datum/ammo/xeno/leash_ball/on_hit_mob(mob/victim, obj/projectile/proj)
 	. = ..()
 	new /obj/structure/xeno/aoe_leash(get_turf(victim))
 
-/datum/ammo/leash_ball/on_hit_obj(obj/O, obj/projectile/proj)
+/datum/ammo/xeno/leash_ball/on_hit_obj(obj/O, obj/projectile/proj)
 	. = ..()
 	new /obj/structure/xeno/aoe_leash(get_turf(O))
 
