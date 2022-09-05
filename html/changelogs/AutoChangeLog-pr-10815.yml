@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes: 
-  - bugfix: "Certain guns will no longer spawn with a missing round"

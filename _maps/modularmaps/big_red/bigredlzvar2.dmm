@@ -424,10 +424,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
-"kG" = (
-/obj/structure/girder/displaced,
-/turf/open/floor/plating/dmg3,
-/area/bigredv2/outside/space_port)
 "kM" = (
 /obj/machinery/light{
 	dir = 4
@@ -3701,7 +3697,7 @@ UH
 UH
 UH
 UH
-kG
+Yc
 ii
 fe
 lh

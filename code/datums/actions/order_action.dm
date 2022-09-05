@@ -58,11 +58,11 @@
 	addtimer(CALLBACK(owner, /mob/proc/update_all_icons_orders), ORDER_COOLDOWN)
 	if(squad)
 		for(var/mob/living/carbon/human/marine AS in squad.marines_list)
-			marine.receive_order(target, arrow_type, verb_name)
+			marine.receive_order(target, arrow_type, verb_name, faction)
 		return TRUE
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		if(human.faction == faction)
-			human.receive_order(target, arrow_type, verb_name)
+			human.receive_order(target, arrow_type, verb_name, faction)
 	return TRUE
 
 ///Update all icons of orders action of the mob
@@ -77,7 +77,7 @@
  * arrow_type : what kind of visual arrow will be spawned on the marine
  * verb_name : a word / sentence to describe the order
  */
-/mob/living/carbon/human/proc/receive_order(atom/target, arrow_type, verb_name = "rally")
+/mob/living/carbon/human/proc/receive_order(atom/target, arrow_type, verb_name = "rally", faction)
 	if(!target || !arrow_type)
 		return
 	if(!(job.job_flags & JOB_FLAG_CAN_SEE_ORDERS))
@@ -86,7 +86,16 @@
 		return
 	if(target == src)
 		return
-	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
+	var/hud_type
+	if(faction == FACTION_TERRAGOV)
+		hud_type = DATA_HUD_SQUAD_TERRAGOV
+	else if(faction == FACTION_TERRAGOV_REBEL)
+		hud_type = DATA_HUD_SQUAD_REBEL
+	else if(faction == FACTION_SOM)
+		hud_type = DATA_HUD_SQUAD_SOM
+	else
+		return
+	var/datum/atom_hud/squad/squad_hud = GLOB.huds[hud_type]
 	if(!squad_hud.hudusers[src])
 		return
 	var/obj/screen/arrow/arrow_hud = new arrow_type
@@ -156,12 +165,15 @@
 	action_icon_state = "rally"
 	verb_name = "rally to"
 	arrow_type = /obj/screen/arrow/rally_order_arrow
+	visual_type = /obj/effect/temp_visual/order/rally_order
+
+/datum/action/innate/order/rally_order/personal
 	keybind_signal = COMSIG_KB_RALLYORDER
 
-/datum/action/innate/order/rally_order/should_show()
+/datum/action/innate/order/rally_order/personal/should_show()
 	return owner.skills.getRating(skill_name) >= skill_min
 
-/datum/action/innate/order/rally_order/action_activate()
+/datum/action/innate/order/rally_order/personal/action_activate()
 	var/mob/living/carbon/human/human = owner
 	if(send_order(human, human.assigned_squad, human.faction))
 		var/message = pick(";TO ME MY MEN!", ";REGROUP TO ME!", ";FOLLOW MY LEAD!", ";RALLY ON ME!", ";FORWARD!")

@@ -131,10 +131,6 @@
 "ds" = (
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
-"dv" = (
-/obj/structure/girder/displaced,
-/turf/open/floor/plating/dmg3,
-/area/bigredv2/outside/space_port)
 "dz" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 1
@@ -3777,7 +3773,7 @@ gp
 ee
 Rc
 Rc
-dv
+bY
 Fk
 km
 Kh

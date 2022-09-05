@@ -1,0 +1,38 @@
+2022-09-01:
+  Lumipharon:
+  - balance: Targetting hands when shooting has a higher accuracy malus
+  - code_imp: Some tweaks to projectile accuracy and hit code
+  - rscadd: Added a low impact shell for the RR, with less direct hit damage and blind
+      range
+  - balance: 'Combat Patrol: RR loadout only has low impact RR shells'
+  RipGrayson:
+  - qol: Signs now have directional signs on them to keep mappers from being confused.
+  - bugfix: Patched some signs that would defy gravity and hang out in midair.
+  lbnesquik:
+  - qol: Added a camera to the tadpole, like alamo.
+2022-09-02:
+  Lumipharon:
+  - rscadd: The CLF now carry a much larger variety of equipment
+  - balance: Improved the performance of the Skorpion SMG
+2022-09-03:
+  Lumipharon:
+  - balance: Increased the durability of some map objects and structures against guns
+  - balance: Hydro trays provide slightly better cover
+  - bugfix: MG-27 actually uses 10x27mm rounds as described
+2022-09-04:
+  BraveMole:
+  - bugfix: Fix piercing projectile hitting the same atom multiple times
+  novaepee:
+  - qol: delete a girder in Big Red LZ1 and move crate in LV624 to let marines using
+      FOB drone not suffer
+2022-09-05:
+  Lumipharon:
+  - rscadd: Adds some tips of the round for HvH
+  - balance: Marine helmets now consistantly provide the same armour as heavy armour,
+      with MX11 helmets a little better against projectiles
+  - balance: SOM armour tweaked slightly to be more consistant, with shoes and gloves
+      now having the same armour as marine versions
+  tyeagg:
+  - balance: orbit system simplified to only have 3 orbits
+  - balance: time it takes for orbit to change to 3 minutes
+  - balance: time it takes to change orbit at roundstart from 30 minutes to 10 minutes

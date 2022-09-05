@@ -71,8 +71,8 @@
 
 /atom/movable/effect/rappel_rope/Initialize()
 	. = ..()
-	playsound(loc, 'sound/effects/rappel.ogg', 50, TRUE)
-	playsound(loc, 'sound/effects/tadpolehovering.ogg', 100, TRUE)
+	playsound(loc, 'sound/effects/rappel.ogg', 50, TRUE, falloff = 2)
+	playsound(loc, 'sound/effects/tadpolehovering.ogg', 100, TRUE, falloff = 2.5)
 	balloon_alert_to_viewers("You see a dropship fly overhead and begin dropping ropes!")
 	ropeanimation()
 
