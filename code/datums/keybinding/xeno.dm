@@ -666,6 +666,33 @@
 	description = "Pick what type of plant to sow."
 	keybind_signal = COMSIG_XENOABILITY_CHOOSE_PLANT
 
+/datum/keybinding/xeno/burrow
+	name = "burrow"
+	full_name = "Widow : Burrow"
+	description = "Burrow into the ground"
+	keybind_signal = COMSIG_XENOABILITY_BURROW
+/datum/keybinding/xeno/web_spit
+	name = "Leash Ball"
+	full_name = "Drone : Choose plant"
+	description = "Spits web that has different effects depending on where it hits"
+	keybind_signal = COMSIG_XENOABILITY_WEB_SPIT
+/datum/keybinding/xeno/leash_ball
+	name = "Leash Ball"
+	full_name = "Widow : Leash Ball"
+	description = "Spit a huge ball of web that snares groups of marines"
+	keybind_signal = COMSIG_XENOABILITY_LEASH_BALL
+/datum/keybinding/xeno/create_spiderling
+	name = "Birth Spiderling"
+	full_name = "Widow : Birth Spiderling"
+	description = "Lay a spiderling egg under yourself"
+	keybind_signal = COMSIG_XENOABILITY_CREATE_SPIDERLING
+
+/datum/keybinding/xeno/spider_swarm
+	name = "Spider Swarm"
+	full_name = "Widow : Spider Swarm"
+	description = "Turn into a swarm of spiderlings"
+	keybind_signal = COMSIG_XENOABILITY_SPIDER_SWARM
+
 /datum/keybinding/xeno/vent/down(client/user)
 	. = ..()
 	if(!isxeno(user.mob))

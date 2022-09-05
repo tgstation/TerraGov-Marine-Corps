@@ -95,6 +95,7 @@
 	var/mob/living/carbon/human/victim = leash_victim
 	if(get_dist(victim, src) >= leash_radius)
 		victim.forceMove(oldloc)
+		return
 
 /// This is so that xenos can remove leash balls
 /obj/structure/xeno/aoe_leash/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
@@ -117,11 +118,11 @@
 /datum/action/xeno_action/create_spiderling
 	name = "Birth Spiderling"
 	ability_name = "birth_spiderling"
-	mechanics_text = " Spawn a spiderling directly under you"
+	mechanics_text = " Lay a spiderling egg under yourself"
 	action_icon_state = "spawn_spiderling"
 	plasma_cost = 100
 	cooldown_timer = 15 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_LEASH_BALL
+	keybind_signal = COMSIG_XENOABILITY_CREATE_SPIDERLING
 	/// List of all our spiderlings
 	var/list/mob/living/carbon/xenomorph/spiderling/spiderlings = list()
 	/// Max amount of spiderligns
