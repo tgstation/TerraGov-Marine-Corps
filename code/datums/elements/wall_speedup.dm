@@ -4,6 +4,8 @@
 	id_arg_index = 2
 	///The amount of speed gained by being inbetween walls
 	var/wall_speed_amount = 1
+	///Half of all directions
+	var/list/halfdirs = list(NORTH, NORTHEAST, EAST, SOUTHEAST)
 
 /datum/element/wall_speedup/Attach(datum/target, wall_speed_amount)
 	if(!isliving(target))
@@ -20,10 +22,11 @@
 /datum/element/wall_speedup/proc/wall_speed(datum/source, atom/oldloc)
 	SIGNAL_HANDLER
 	var/mob/living/fast = source
-	for(var/direction in GLOB.halfdirs)
+	for(var/direction in halfdirs)
 		if(!isclosedturf(get_step(fast, direction)))
 			continue
 		if(!isclosedturf(get_step(fast, REVERSE_DIR(direction))))
 			continue
 		fast.next_move_slowdown -= wall_speed_amount
+		message_admins(fast.next_move_slowdown)
 		break

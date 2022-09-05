@@ -695,7 +695,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 //Widow Defines
 
-#define WIDOW_SPEED_BONUS 7
+#define WIDOW_SPEED_BONUS 1
 
 //misc
 
