@@ -60,7 +60,7 @@
 		set_lying_angle(pick(90, 270))
 	if(!can_crawl)
 		set_canmove(FALSE)
-		add_movespeed_modifier(MOVESPEED_ID_CRAWLING, TRUE, 0, NONE, TRUE, crawl_speed)
+	add_movespeed_modifier(MOVESPEED_ID_CRAWLING, TRUE, 0, NONE, TRUE, crawl_speed)
 
 ///Called when TRAIT_FLOORED is removed from the mob.
 /mob/living/proc/on_floored_trait_loss(datum/source)
@@ -69,7 +69,7 @@
 		set_lying_angle(0)
 	if(!can_crawl)
 		set_canmove(TRUE)
-		remove_movespeed_modifier(MOVESPEED_ID_CRAWLING)
+	remove_movespeed_modifier(MOVESPEED_ID_CRAWLING)
 
 
 ///Called when TRAIT_LEGLESS is added to the mob.
