@@ -152,6 +152,7 @@
 				return FALSE
 	var/atom/firstbump
 	var/mob/lying_mob
+	var/mob/living_lying_mob
 	for(var/i in contents)
 		if(QDELETED(mover))
 			return FALSE //We were deleted, do not attempt to proceed with movement.
@@ -164,6 +165,12 @@
 			continue
 		if(ismob(thing))
 			lying_mob = thing	//Using this instead of firstbump for simplicity; I tried other methods, it gets messy
+		if(lying_mob)
+			if(lying_mob.lying_angle)
+				if(lying_mob.stat == DEAD)	//If dead, repeat loop for the next mob
+					continue
+				else
+					living_lying_mob = lying_mob	//This var serves to remember the last not-dead mob in this loop
 		if(thing.Cross(mover))
 			continue
 		var/signalreturn = SEND_SIGNAL(mover, COMSIG_MOVABLE_PREBUMP_MOVABLE, thing)
@@ -181,9 +188,9 @@
 		return FALSE
 	if(firstbump)
 		return mover.Bump(firstbump)
-	if(lying_mob)	//The way this works is if there is a mob on the ground, you slash them but still return TRUE so you can cross into the tile
-		if(lying_mob.lying_angle)
-			SEND_SIGNAL(mover, COMSIG_MOVABLE_BUMP, lying_mob)
+	if(living_lying_mob)	//The way this works is if there is a mob on the ground, you slash them but still return TRUE so you can cross into the tile
+		if(living_lying_mob.lying_angle)
+			SEND_SIGNAL(mover, COMSIG_MOVABLE_BUMP, living_lying_mob)
 	return TRUE
 
 
