@@ -151,6 +151,7 @@
 				mover.Bump(src)
 				return FALSE
 	var/atom/firstbump
+	var/mob/lying_mob
 	for(var/i in contents)
 		if(QDELETED(mover))
 			return FALSE //We were deleted, do not attempt to proceed with movement.
@@ -161,6 +162,8 @@
 			continue
 		if(thing.status_flags & INCORPOREAL)
 			continue
+		if(ismob(thing))
+			lying_mob = thing	//Using this instead of firstbump for simplicity; I tried other methods, it gets messy
 		if(thing.Cross(mover))
 			continue
 		var/signalreturn = SEND_SIGNAL(mover, COMSIG_MOVABLE_PREBUMP_MOVABLE, thing)
@@ -178,6 +181,9 @@
 		return FALSE
 	if(firstbump)
 		return mover.Bump(firstbump)
+	if(lying_mob)	//The way this works is if there is a mob on the ground, you slash them but still return TRUE so you can cross into the tile
+		if(lying_mob.lying_angle)
+			SEND_SIGNAL(mover, COMSIG_MOVABLE_BUMP, lying_mob)
 	return TRUE
 
 
