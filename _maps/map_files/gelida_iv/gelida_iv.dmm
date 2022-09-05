@@ -311,7 +311,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/lone_buildings/storage_blocks)
 "ahI" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/mineral/smooth/snowrock,
 /area/gelida/landing_zone_2)
 "ahJ" = (
@@ -789,6 +789,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/east_central_street)
+"ayZ" = (
+/obj/structure/platform_decoration{
+	dir = 1
+	},
+/turf/closed/mineral/smooth/snowrock,
+/area/gelida/outdoors/rock)
 "azo" = (
 /obj/machinery/light{
 	dir = 8
@@ -890,8 +896,8 @@
 	},
 /area/gelida/landing_zone_forecon/landing_zone_4)
 "aBZ" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 2
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 1
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_east_street)
@@ -1458,7 +1464,7 @@
 /area/gelida/landing_zone_2)
 "aUs" = (
 /obj/structure/cable,
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/mining)
 "aVe" = (
@@ -7858,7 +7864,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/kitchen)
 "eNo" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/wall,
 /area/gelida/indoors/c_block/mining)
 "eNH" = (
@@ -9525,8 +9531,8 @@
 /turf/open/floor/plating/heatinggrate,
 /area/gelida/indoors/a_block/bridges/garden_bridge)
 "fXy" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 2
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 1
 	},
 /turf/open/floor/plating/ground/fakesnow/alt,
 /area/gelida/outdoors/colony_streets/south_east_street)
@@ -9727,8 +9733,8 @@
 /obj/structure/prop/mainship/gelida/smallwire{
 	dir = 8
 	},
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 2
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 1
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_east_street)
@@ -12140,6 +12146,10 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating,
 /area/gelida/caves/west_caves)
+"hCY" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/closed/mineral/smooth/snowrock,
+/area/gelida/outdoors/rock)
 "hDd" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/ice,
@@ -18420,7 +18430,9 @@
 /obj/structure/platform_decoration{
 	dir = 1
 	},
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 1
+	},
 /turf/closed/mineral/smooth/snowrock,
 /area/gelida/outdoors/rock)
 "lGm" = (
@@ -19714,8 +19726,8 @@
 /turf/closed/wall,
 /area/gelida/indoors/lone_buildings/engineering)
 "mth" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 2
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 1
 	},
 /turf/closed/wall,
 /area/gelida/indoors/c_block/mining)
@@ -20258,7 +20270,7 @@
 /area/gelida/indoors/b_block/hydro)
 "mNI" = (
 /obj/structure/largecrate/random,
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
 "mNK" = (
@@ -20847,6 +20859,34 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/b_block/bridge)
+"ngv" = (
+/obj/structure/window/reinforced{
+	dir = 4;
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8;
+	layer = 3.3;
+	pixel_y = 4
+	},
+/obj/structure/bed,
+/obj/structure/bed{
+	buckling_y = 13;
+	layer = 3.5;
+	pixel_y = 13
+	},
+/obj/item/bedsheet/brown{
+	pixel_y = 13
+	},
+/obj/item/bedsheet/brown{
+	layer = 3.1
+	},
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 1
+	},
+/turf/open/floor/prison/plate,
+/area/gelida/indoors/c_block/mining)
 "ngw" = (
 /obj/structure/platform_decoration{
 	dir = 8
@@ -21564,8 +21604,8 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorms)
 "nFr" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 2
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 1
 	},
 /turf/closed/mineral/smooth/snowrock,
 /area/gelida/landing_zone_2)
@@ -21806,7 +21846,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/mining)
 "nLz" = (
@@ -23976,7 +24016,7 @@
 	},
 /area/gelida/outdoors/rock)
 "peC" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
 "peR" = (
@@ -28299,11 +28339,11 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "rIi" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 2
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 1
 	},
 /turf/closed/mineral/smooth/snowrock,
-/area/gelida/outdoors/colony_streets/south_east_street)
+/area/gelida/outdoors/rock)
 "rIo" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/blue,
@@ -28483,8 +28523,8 @@
 /turf/open/floor/plating/ground/ice,
 /area/gelida/caves/west_caves)
 "rOn" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 2
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 1
 	},
 /turf/open/floor/plating/ground/fakesnow,
 /area/gelida/outdoors/colony_streets/south_east_street)
@@ -30878,7 +30918,9 @@
 	},
 /area/gelida/indoors/a_block/dorms)
 "tkX" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/fakesnow/alt,
 /area/gelida/landing_zone_2)
 "tlr" = (
@@ -31150,7 +31192,7 @@
 /area/gelida/indoors/b_block/bar)
 "tuc" = (
 /obj/structure/prop/mainship/gelida/smallwire,
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "tud" = (
@@ -33561,7 +33603,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/security)
 "vap" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/mining)
 "vaq" = (
@@ -33794,7 +33836,7 @@
 /area/gelida/outdoors/colony_streets/central_streets)
 "vhR" = (
 /obj/structure/ore_box,
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
 "vhV" = (
@@ -35870,8 +35912,8 @@
 /area/gelida/outdoors/n_rockies)
 "wwL" = (
 /obj/structure/platform_decoration,
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 2
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 1
 	},
 /turf/closed/mineral/smooth/snowrock,
 /area/gelida/outdoors/rock)
@@ -37694,7 +37736,7 @@
 /obj/item/bedsheet/brown{
 	layer = 3.1
 	},
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/c_block/mining)
 "xJK" = (
@@ -37815,7 +37857,7 @@
 /turf/open/floor/plating/platebot,
 /area/gelida/indoors/c_block/cargo)
 "xNw" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "xNI" = (
@@ -66543,12 +66585,12 @@ pOG
 eWY
 eWY
 eWY
-xNw
-gEI
-gEI
-gEI
-gEI
-gEI
+aBZ
+hCY
+hCY
+hCY
+hCY
+hCY
 eNo
 mNI
 vap
@@ -66562,7 +66604,7 @@ xJD
 nLw
 xJD
 vap
-xJD
+ngv
 pPX
 ndb
 pPX
@@ -66981,13 +67023,13 @@ erf
 uGS
 eWY
 eWY
-xNw
+aBZ
 xNw
 tuc
 xNw
 xNw
 xNw
-xNw
+aBZ
 ncH
 ndb
 ndb
@@ -67006,7 +67048,7 @@ npE
 npE
 ndb
 ndb
-nvd
+rIi
 ndb
 ndb
 pPX
@@ -67228,7 +67270,7 @@ npE
 xmm
 ndb
 ndb
-nvd
+rIi
 ndb
 wLK
 pPX
@@ -67450,7 +67492,7 @@ xmm
 xmm
 ndb
 ndb
-nvd
+rIi
 ndb
 wsP
 iOO
@@ -67672,7 +67714,7 @@ xmm
 ndb
 ndb
 ndb
-nvd
+rIi
 ndb
 wsP
 iOO
@@ -67894,7 +67936,7 @@ ndb
 ndb
 ndb
 ndb
-nvd
+rIi
 ndb
 wsP
 dhv
@@ -68116,7 +68158,7 @@ ndb
 ndb
 ndb
 ndb
-nvd
+rIi
 ndb
 wsP
 wAp
@@ -68338,7 +68380,7 @@ ndb
 ndb
 ndb
 ndb
-nvd
+rIi
 ndb
 wsP
 pPX
@@ -68560,7 +68602,7 @@ gdq
 ndb
 ndb
 ndb
-nvd
+rIi
 ndb
 pPX
 pPX
@@ -68782,7 +68824,7 @@ xmm
 ndb
 ndb
 ndb
-nvd
+rIi
 ndb
 pPX
 iup
@@ -69004,7 +69046,7 @@ xmm
 npE
 npE
 aom
-nvd
+rIi
 ndb
 pPX
 mFF
@@ -69679,13 +69721,13 @@ aUs
 peC
 eNo
 eNo
-gEI
-gEI
-gEI
-gEI
-gEI
-gEI
-nvd
+hCY
+hCY
+hCY
+hCY
+hCY
+hCY
+rIi
 nsK
 "}
 (141,1,1) = {"
@@ -69907,7 +69949,7 @@ ndb
 ndb
 ndb
 ndb
-nvd
+rIi
 nsK
 "}
 (142,1,1) = {"
@@ -70129,7 +70171,7 @@ ndb
 ndb
 ndb
 ndb
-nvd
+rIi
 nsK
 "}
 (143,1,1) = {"
@@ -70351,7 +70393,7 @@ ndb
 ndb
 ndb
 ndb
-nvd
+rIi
 nsK
 "}
 (144,1,1) = {"
@@ -70573,7 +70615,7 @@ ndb
 ndb
 ndb
 ndb
-nvd
+rIi
 nsK
 "}
 (145,1,1) = {"
@@ -70795,7 +70837,7 @@ jDt
 ndb
 ndb
 ndb
-nvd
+rIi
 nsK
 "}
 (146,1,1) = {"
@@ -71017,7 +71059,7 @@ pcI
 ndb
 ndb
 ndb
-nvd
+rIi
 nsK
 "}
 (147,1,1) = {"
@@ -71239,7 +71281,7 @@ jDt
 bGu
 jDt
 ndb
-nvd
+rIi
 nsK
 "}
 (148,1,1) = {"
@@ -71461,7 +71503,7 @@ mDb
 jDt
 ndb
 ndb
-nvd
+rIi
 nsK
 "}
 (149,1,1) = {"
@@ -71683,7 +71725,7 @@ mDb
 jDt
 jDt
 ndb
-nvd
+rIi
 nsK
 "}
 (150,1,1) = {"
@@ -71905,7 +71947,7 @@ mDb
 jDt
 jDt
 ndb
-nvd
+rIi
 nsK
 "}
 (151,1,1) = {"
@@ -72127,7 +72169,7 @@ pcI
 sgt
 jDt
 ndb
-nvd
+rIi
 nsK
 "}
 (152,1,1) = {"
@@ -72349,7 +72391,7 @@ jDt
 jDt
 jDt
 ndb
-nvd
+rIi
 nsK
 "}
 (153,1,1) = {"
@@ -72571,7 +72613,7 @@ jDt
 jDt
 jDt
 ndb
-nvd
+rIi
 nsK
 "}
 (154,1,1) = {"
@@ -72753,7 +72795,7 @@ eWY
 eWY
 eWY
 xNw
-aBZ
+xNw
 arf
 kqs
 wcd
@@ -72793,7 +72835,7 @@ jDt
 jDt
 jDt
 ndb
-nvd
+rIi
 nsK
 "}
 (155,1,1) = {"
@@ -72974,7 +73016,7 @@ eWY
 eWY
 eWY
 eWY
-nvd
+rIi
 ndb
 fBC
 fBC
@@ -73015,7 +73057,7 @@ jDt
 jDt
 npE
 ndb
-nvd
+rIi
 nsK
 "}
 (156,1,1) = {"
@@ -73196,7 +73238,7 @@ eWY
 eWY
 eWY
 ndb
-nvd
+rIi
 ndb
 ndb
 ndb
@@ -73237,7 +73279,7 @@ jDt
 npE
 npE
 ndb
-nvd
+rIi
 nsK
 "}
 (157,1,1) = {"
@@ -73418,7 +73460,7 @@ ndb
 eWY
 ndb
 ndb
-nvd
+rIi
 tjQ
 ndb
 ndb
@@ -73459,7 +73501,7 @@ jDt
 jDt
 npE
 ndb
-nvd
+rIi
 nsK
 "}
 (158,1,1) = {"
@@ -73681,7 +73723,7 @@ jDt
 jDt
 jDt
 ndb
-nvd
+rIi
 nsK
 "}
 (159,1,1) = {"
@@ -73862,7 +73904,7 @@ uGS
 ndb
 ndb
 ndb
-nvd
+rIi
 rkR
 rkR
 azo
@@ -73903,7 +73945,7 @@ jDt
 jDt
 jDt
 ndb
-nvd
+rIi
 nsK
 "}
 (160,1,1) = {"
@@ -74084,7 +74126,7 @@ uGS
 ndb
 ndb
 ndb
-nvd
+rIi
 rkR
 oXo
 snU
@@ -74125,7 +74167,7 @@ pcI
 jDt
 jDt
 ndb
-nvd
+rIi
 nsK
 "}
 (161,1,1) = {"
@@ -74306,7 +74348,7 @@ ndb
 ndb
 ndb
 ndb
-nvd
+rIi
 rkR
 vbK
 hfv
@@ -74347,7 +74389,7 @@ jDt
 jDt
 jDt
 ndb
-nvd
+rIi
 nsK
 "}
 (162,1,1) = {"
@@ -74528,7 +74570,7 @@ ndb
 ndb
 ndb
 ndb
-nvd
+rIi
 rkR
 oXo
 kOW
@@ -74569,7 +74611,7 @@ jDt
 jDt
 jDt
 ndb
-nvd
+rIi
 nsK
 "}
 (163,1,1) = {"
@@ -74750,7 +74792,7 @@ ndb
 ndb
 ndb
 ndb
-nvd
+rIi
 rkR
 rkR
 thQ
@@ -74791,7 +74833,7 @@ jDt
 jDt
 jDt
 ndb
-nvd
+rIi
 nsK
 "}
 (164,1,1) = {"
@@ -74973,7 +75015,7 @@ ndb
 ndb
 ndb
 lFR
-rIi
+ncH
 rkR
 rkR
 rkR
@@ -75013,7 +75055,7 @@ jDt
 jDt
 jDt
 ndb
-nvd
+rIi
 nsK
 "}
 (165,1,1) = {"
@@ -75194,8 +75236,8 @@ ndb
 ndb
 ndb
 ndb
-ndb
-skx
+rIi
+ayZ
 ndb
 ndb
 ndb
@@ -75235,7 +75277,7 @@ jDt
 jDt
 jDt
 ndb
-nvd
+rIi
 nsK
 "}
 (166,1,1) = {"
@@ -75416,8 +75458,8 @@ ndb
 ndb
 ndb
 ndb
+rIi
 ndb
-nvd
 ndb
 ndb
 ndb
@@ -75457,7 +75499,7 @@ jDt
 jDt
 npE
 ndb
-nvd
+rIi
 nsK
 "}
 (167,1,1) = {"
@@ -75638,8 +75680,8 @@ ndb
 ndb
 ndb
 ndb
+rIi
 ndb
-nvd
 ndb
 ndb
 ndb
@@ -75679,7 +75721,7 @@ jDt
 jDt
 npE
 ndb
-nvd
+rIi
 nsK
 "}
 (168,1,1) = {"
@@ -75860,8 +75902,8 @@ ndb
 ndb
 ndb
 ndb
+rIi
 ndb
-nvd
 ndb
 ndb
 ndb
@@ -75901,7 +75943,7 @@ jDt
 npE
 ndb
 ndb
-nvd
+rIi
 nsK
 "}
 (169,1,1) = {"
@@ -76082,8 +76124,8 @@ ndb
 ndb
 ndb
 ndb
+rIi
 ndb
-nvd
 ndb
 ndb
 ndb
@@ -76123,7 +76165,7 @@ pcI
 npE
 ndb
 ndb
-nvd
+rIi
 nsK
 "}
 (170,1,1) = {"
@@ -76304,8 +76346,8 @@ ndb
 ndb
 ndb
 ndb
+rIi
 ndb
-nvd
 ndb
 ndb
 ndb
@@ -76345,7 +76387,7 @@ jDt
 npE
 ndb
 ndb
-nvd
+rIi
 nsK
 "}
 (171,1,1) = {"
@@ -76526,8 +76568,8 @@ ndb
 ndb
 ndb
 ndb
+rIi
 ndb
-nvd
 ndb
 ndb
 ndb
@@ -76567,7 +76609,7 @@ jDt
 xmm
 ndb
 ndb
-nvd
+rIi
 nsK
 "}
 (172,1,1) = {"
@@ -76748,8 +76790,8 @@ ndb
 ndb
 ndb
 ndb
+rIi
 ndb
-nvd
 ndb
 ndb
 ndb
@@ -76789,7 +76831,7 @@ ndb
 ndb
 ndb
 ndb
-nvd
+rIi
 nsK
 "}
 (173,1,1) = {"
@@ -76970,8 +77012,8 @@ ndb
 ndb
 ndb
 ndb
+rIi
 ndb
-nvd
 ndb
 ndb
 ndb
@@ -77011,7 +77053,7 @@ ndb
 ndb
 ndb
 ndb
-nvd
+rIi
 nsK
 "}
 (174,1,1) = {"
@@ -77192,48 +77234,48 @@ ndb
 ndb
 ndb
 ndb
-ndb
-gEI
-gEI
-gEI
-gEI
-gEI
-gEI
-gEI
-gEI
-gEI
-gEI
-gEI
-gEI
-gEI
-gEI
-gEI
-gEI
-gEI
-gEI
-gEI
-gEI
-gEI
-gEI
-gEI
-gEI
-gEI
-gEI
-gEI
-gEI
-gEI
-gEI
-gEI
-gEI
-gEI
-gEI
-gEI
-gEI
-gEI
-gEI
-gEI
-gEI
-nvd
+hCY
+hCY
+hCY
+hCY
+hCY
+hCY
+hCY
+hCY
+hCY
+hCY
+hCY
+hCY
+hCY
+hCY
+hCY
+hCY
+hCY
+hCY
+hCY
+hCY
+hCY
+hCY
+hCY
+hCY
+hCY
+hCY
+hCY
+hCY
+hCY
+hCY
+hCY
+hCY
+hCY
+hCY
+hCY
+hCY
+hCY
+hCY
+hCY
+hCY
+hCY
+rIi
 nsK
 "}
 (175,1,1) = {"
