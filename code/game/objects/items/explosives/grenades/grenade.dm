@@ -99,8 +99,8 @@
 /obj/item/explosive/grenade/rad
 	name = "\improper V-40 rad grenade"
 	desc = "Rad grenades release an extremely potent but short lived burst of radiation, debilitating organic life and frying electronics in a moderate radius. After the initial detonation, the radioactive effects linger for a time. Handle with extreme care."
-	icon_state = "grenade" //placeholder
-	item_state = "grenade" //placeholder
+	icon_state = "grenade_rad" //placeholder
+	item_state = "grenade_rad" //placeholder
 	icon_state_mini = "grenade_red" //placeholder
 	det_time =  40 //default
 	arm_sound = 'sound/weapons/armbomb.ogg' //placeholder
@@ -111,12 +111,14 @@
 	var/outer_range = 7
 	///The potency of the grenade
 	var/rad_strength = 20
+	///geiger counter sound loop
+	var/datum/looping_sound/geiger/geiger_counter
 
 /obj/item/explosive/grenade/rad/prime()
 	var/turf/impact_turf = get_turf(src)
 	playsound(impact_turf, 'sound/effects/portal_opening.ogg', 50, 1)
 	//A locker won't protect you
-	for(var/obj/structure/closet/closet in dview(outer_range, impact_turf))
+	for(var/obj/structure/closet/closet in get_hear(outer_range, impact_turf))
 		if(locate(/mob/living/carbon/, closet))
 			for(var/mob/living/carbon/victim in closet)
 				var/strength
@@ -126,13 +128,17 @@
 					strength = rad_strength * 0.6
 				irradiate(victim, strength)
 
-	for(var/mob/living/victim in dview(outer_range, impact_turf))
+	for(var/mob/living/victim in get_hear(outer_range, impact_turf))
 		var/strength
+		geiger_counter = new(null, FALSE)
 		if(get_dist(victim, impact_turf) <= inner_range)
 			strength = rad_strength
+			geiger_counter.severity = 3
 		else
 			strength = rad_strength * 0.6
+			geiger_counter.severity = 2
 		irradiate(victim, strength)
+		geiger_counter.start(victim)
 
 	qdel(src)
 
