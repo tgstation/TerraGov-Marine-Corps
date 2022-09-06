@@ -2613,7 +2613,7 @@
 "bay" = (
 /obj/structure/target_stake,
 /obj/item/target,
-/obj/item/clothing/suit/storage/militia,
+/obj/item/clothing/suit/storage/faction/militia,
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/firing_range)
 "baB" = (
@@ -11180,11 +11180,6 @@
 	dir = 8
 	},
 /area/mainship/command/cic)
-"hit" = (
-/turf/open/floor/mainship/green{
-	dir = 8
-	},
-/area/mainship/squads/req)
 "hiF" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window{
@@ -60527,7 +60522,7 @@ abX
 seG
 seG
 kzX
-hit
+acj
 vaF
 seG
 otD
@@ -61296,11 +61291,11 @@ bGj
 bnF
 abz
 iWe
-hit
-hit
-hit
-hit
-hit
+acj
+acj
+acj
+acj
+acj
 iWe
 bnF
 bnF
@@ -62831,9 +62826,9 @@ aWH
 aLX
 bjV
 biu
-hit
-hit
-hit
+acj
+acj
+acj
 sPW
 bpF
 bMF
@@ -62845,11 +62840,11 @@ xhL
 xhL
 bAK
 qNt
-hit
-hit
+acj
+acj
 acl
 qqs
-hit
+acj
 ruj
 hIv
 ruj

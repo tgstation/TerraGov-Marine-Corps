@@ -1,4 +1,0 @@
-author: "lbnesquik"
-delete-after: True
-changes: 
-  - bugfix: "fixed map oddities on the sulaco regarding firelocks, lights, apc's and fire alarms. Again"
