@@ -105,7 +105,7 @@
 "u" = (
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
 /obj/machinery/camera/autoname/mainship,
-/turf/open/floor/mainship/orange,
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/minidropship)
 "v" = (
 /obj/machinery/door/poddoor/shutters/transit{
