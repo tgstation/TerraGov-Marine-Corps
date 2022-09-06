@@ -36,3 +36,10 @@
   - balance: orbit system simplified to only have 3 orbits
   - balance: time it takes for orbit to change to 3 minutes
   - balance: time it takes to change orbit at roundstart from 30 minutes to 10 minutes
+2022-09-06:
+  MLGTASTICa:
+  - balance: Defender crest-defense now provides stagger immunity while active.
+  RikuTheKiller:
+  - bugfix: AI can now use the FOB building console again
+  ivanmixo:
+  - qol: You are now your character when spawned into vallhalla
