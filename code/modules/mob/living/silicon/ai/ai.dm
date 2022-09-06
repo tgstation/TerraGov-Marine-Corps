@@ -1,4 +1,4 @@
-#define MAX_COMMAND_MESSAGE_LEN 300
+#define MAX_COMMAND_MESSAGE_LGTH 300
 
 ///This elevator serves me alone. I have complete control over this entire level. With cameras as my eyes and nodes as my hands, I rule here, insect.
 /mob/living/silicon/ai
@@ -459,7 +459,7 @@
 /datum/action/innate/squad_message/action_activate()
 	if(!can_use_action())
 		return
-	var/text = stripped_input(owner, "Maximum message length [MAX_COMMAND_MESSAGE_LEN]", "Send message to squad", max_length = MAX_COMMAND_MESSAGE_LEN)
+	var/text = stripped_input(owner, "Maximum message length [MAX_COMMAND_MESSAGE_LGTH]", "Send message to squad", max_length = MAX_COMMAND_MESSAGE_LGTH)
 	if(!text)
 		return
 	if(CHAT_FILTER_CHECK(text))
