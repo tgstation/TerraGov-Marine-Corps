@@ -7501,16 +7501,6 @@
 /turf/open/floor/wood,
 /area/gelida/indoors/a_block/executive)
 "eEq" = (
-/obj/structure/window/reinforced{
-	dir = 4;
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	layer = 3.3;
-	pixel_y = 4
-	},
 /obj/structure/bed,
 /obj/structure/bed{
 	buckling_y = 13;
@@ -7726,16 +7716,6 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/c_block/mining)
 "eJR" = (
-/obj/structure/window/reinforced{
-	dir = 4;
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	layer = 3.3;
-	pixel_y = 4
-	},
 /obj/structure/bed,
 /obj/structure/bed{
 	buckling_y = 13;
@@ -10158,16 +10138,6 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorms)
 "gpx" = (
-/obj/structure/window/reinforced{
-	dir = 4;
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	layer = 3.3;
-	pixel_y = 4
-	},
 /obj/structure/bed,
 /obj/structure/bed{
 	buckling_y = 13;
@@ -12639,16 +12609,6 @@
 	},
 /area/gelida/outdoors/colony_streets/central_streets)
 "hUm" = (
-/obj/structure/window/reinforced{
-	dir = 4;
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	layer = 3.3;
-	pixel_y = 4
-	},
 /obj/structure/bed,
 /obj/structure/bed{
 	buckling_y = 13;
@@ -18496,16 +18456,6 @@
 	},
 /area/gelida/landing_zone_forecon/UD6_Typhoon)
 "lIA" = (
-/obj/structure/window/reinforced{
-	dir = 4;
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	layer = 3.3;
-	pixel_y = 4
-	},
 /obj/structure/bed,
 /obj/structure/bed{
 	buckling_y = 13;
@@ -20860,16 +20810,6 @@
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/b_block/bridge)
 "ngv" = (
-/obj/structure/window/reinforced{
-	dir = 4;
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	layer = 3.3;
-	pixel_y = 4
-	},
 /obj/structure/bed,
 /obj/structure/bed{
 	buckling_y = 13;
@@ -27328,16 +27268,6 @@
 /turf/open/floor/carpet,
 /area/gelida/indoors/a_block/executive)
 "rcO" = (
-/obj/structure/window/reinforced{
-	dir = 4;
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	layer = 3.3;
-	pixel_y = 4
-	},
 /obj/structure/bed,
 /obj/structure/bed{
 	buckling_y = 13;
@@ -29178,16 +29108,6 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorms)
 "sly" = (
-/obj/structure/window/reinforced{
-	dir = 4;
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	layer = 3.3;
-	pixel_y = 4
-	},
 /obj/structure/bed,
 /obj/structure/bed{
 	buckling_y = 13;
@@ -33107,16 +33027,6 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/garden)
 "uJV" = (
-/obj/structure/window/reinforced{
-	dir = 4;
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	layer = 3.3;
-	pixel_y = 4
-	},
 /obj/structure/bed,
 /obj/structure/bed{
 	buckling_y = 13;
@@ -37714,16 +37624,6 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/east_central_street)
 "xJD" = (
-/obj/structure/window/reinforced{
-	dir = 4;
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	layer = 3.3;
-	pixel_y = 4
-	},
 /obj/structure/bed,
 /obj/structure/bed{
 	buckling_y = 13;
