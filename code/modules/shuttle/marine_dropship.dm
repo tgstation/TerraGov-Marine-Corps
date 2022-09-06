@@ -960,7 +960,7 @@
 	icon_state = "blue_rear_rc"
 
 /obj/structure/dropship_piece/tadpole/cockpit
-	desc = "The nose part of the tadpole, able to be destroyed."
+	desc = "The nose part of the tadpole, able to be destroyed and fired over."
 	max_integrity = 500
 	resistance_flags = XENO_DAMAGEABLE | DROPSHIP_IMMUNE
 	opacity = FALSE
