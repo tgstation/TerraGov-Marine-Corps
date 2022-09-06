@@ -672,8 +672,8 @@
 	description = "Burrow into the ground"
 	keybind_signal = COMSIG_XENOABILITY_BURROW
 /datum/keybinding/xeno/web_spit
-	name = "Leash Ball"
-	full_name = "Drone : Choose plant"
+	name = "Web Spit"
+	full_name = "Widow : Web Spit"
 	description = "Spits web that has different effects depending on where it hits"
 	keybind_signal = COMSIG_XENOABILITY_WEB_SPIT
 /datum/keybinding/xeno/leash_ball
