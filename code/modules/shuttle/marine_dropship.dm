@@ -964,7 +964,7 @@
 	max_integrity = 500
 	resistance_flags = XENO_DAMAGEABLE | DROPSHIP_IMMUNE
 	opacity = FALSE
-	layer = LOWER_ITEM_LAYER
+	layer = BELOW_OBJ_LAYER
 
 /obj/structure/dropship_piece/tadpole/cockpit/left
 	icon_state = "blue_cockpit_fl"

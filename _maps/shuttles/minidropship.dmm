@@ -131,7 +131,8 @@
 "B" = (
 /obj/structure/dropship_piece/tadpole/engine{
 	pixel_x = -23;
-	dir = 1
+	dir = 1;
+	pixel_y = -14
 	},
 /turf/closed/shuttle/tadpole{
 	icon_state = "52"
@@ -141,7 +142,8 @@
 /obj/machinery/telecomms/relay/preset/telecomms/onboard,
 /obj/structure/dropship_piece/tadpole/engine{
 	pixel_x = 23;
-	dir = 1
+	dir = 1;
+	pixel_y = -14
 	},
 /turf/closed/shuttle/tadpole{
 	icon_state = "54"
