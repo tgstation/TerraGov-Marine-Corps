@@ -1,3 +1,6 @@
+///This is the buffer between a limbs max_damage and severing threshold.
+#define DELIMB_BUFFER 25
+
 /****************************************************
 				EXTERNAL ORGANS
 ****************************************************/
@@ -13,7 +16,7 @@
 	var/brute_dam = 0
 	///burn damage this limb has taken as a part
 	var/burn_dam = 0
-	///Max damage the limb can take before being destroyed
+	///Max damage the limb can take, the limb sever threshold is this minus DELIMB_BUFFER
 	var/max_damage = 0
 	var/max_size = 0
 	var/last_dam = -1
@@ -83,6 +86,7 @@
 		RegisterSignal(owner, COMSIG_PARENT_QDELETING, .proc/clean_owner)
 	soft_armor = getArmor()
 	hard_armor = getArmor()
+	max_damage += DELIMB_BUFFER
 	return ..()
 
 /datum/limb/Destroy()
@@ -264,7 +268,7 @@
 		if(updating_health)
 			owner.updatehealth()
 		return update_icon()
-	if(CONFIG_GET(flag/limbs_can_break) && brute_dam >= max_damage * CONFIG_GET(number/organ_health_multiplier))
+	if(CONFIG_GET(flag/limbs_can_break) && brute_dam >= (max_damage - DELIMB_BUFFER) * CONFIG_GET(number/organ_health_multiplier))
 		droplimb() //Reached max damage threshold through brute damage, that limb is going bye bye
 		if(!(owner.species && (owner.species.species_flags & NO_PAIN)))
 			owner.emote("scream")
