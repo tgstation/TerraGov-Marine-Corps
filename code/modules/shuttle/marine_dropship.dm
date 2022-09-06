@@ -950,6 +950,49 @@
 	icon_state = "blue_fl"
 
 
+/obj/structure/dropship_piece/tadpole
+	name = "\improper Tadpole"
+
+/obj/structure/dropship_piece/tadpole/rearleft
+	icon_state = "blue_rear_lc"
+
+/obj/structure/dropship_piece/tadpole/rearright
+	icon_state = "blue_rear_rc"
+
+/obj/structure/dropship_piece/tadpole/cockpit
+	desc = "The nose part of the tadpole, able to be destroyed."
+	max_integrity = 500
+	resistance_flags = XENO_DAMAGEABLE | DROPSHIP_IMMUNE
+	opacity = FALSE
+	layer = LOWER_ITEM_LAYER
+
+/obj/structure/dropship_piece/tadpole/cockpit/left
+	icon_state = "blue_cockpit_fl"
+
+/obj/structure/dropship_piece/tadpole/cockpit/right
+	icon_state = "blue_cockpit_fr"
+
+
+/obj/structure/dropship_piece/tadpole/cockpit/window
+	icon = 'icons/turf/dropship2.dmi'
+	icon_state = "1"
+
+/obj/structure/dropship_piece/tadpole/engine
+	icon_state = "tadpole_engine"
+	density = FALSE
+	opacity = FALSE
+
+/obj/structure/dropship_piece/tadpole/tadpole_nose
+	icon_state = "blue_front"
+	opacity = FALSE
+	density = FALSE
+
+/obj/structure/dropship_piece/tadpole/tadpole_nose/right
+	icon_state = "blue_fr"
+
+/obj/structure/dropship_piece/tadpole/tadpole_nose/left
+	icon_state = "blue_fl"
+
 /obj/structure/dropship_piece/two/cockpit/left
 	icon_state = "blue_cockpit_fl"
 
