@@ -2785,7 +2785,7 @@ datum/ammo/bullet/revolver/tp44
 	///Blind effect
 	var/hit_eye_blind = 1
 	///Snare effect
-	var/hit_immobilize = 10
+	var/hit_immobilize = 10 SECONDS
 	///Weaken effect
 	var/hit_weaken = 1
 	///List for bodyparts that upon being hit cause the target to become weakened
@@ -2810,6 +2810,7 @@ datum/ammo/bullet/revolver/tp44
 	ping = "ping_x"
 	damage_type = STAMINA
 	flags_ammo_behavior = AMMO_SKIPS_ALIENS
+	bullet_color = COLOR_WHITE
 	ping = null
 	damage = 0
 	armor_type = "bio"
