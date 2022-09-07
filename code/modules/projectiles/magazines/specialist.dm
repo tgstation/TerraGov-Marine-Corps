@@ -178,9 +178,27 @@
 
 /obj/item/ammo_magazine/rocket/recoilless/heat
 	name = "\improper 67mm HEAT shell"
-	desc = "A high explosive-anti tank shell for the RL-160 recoilless rifle. Causes a medium explosion over a small area after impacting. Requires specialized storage to carry."
+	desc = "A high explosive-anti tank shell for the RL-160 recoilless rifle. Fires a penetrating shot with no explosion, Will do moderate damage to all types of enemies, but does not sunder their armor. Requires specialized storage to carry."
 	icon_state = "shell_heat"
 	default_ammo = /datum/ammo/rocket/recoilless/heat
+
+/obj/item/ammo_magazine/rocket/recoilless/smoke
+	name = "\improper 67mm Chemical (Smoke) shell"
+	desc = "A chemical shell for the RL-160 recoilless rifle. Fires a low velocity shell for close quarters application of chemical gas, friendlies will be able to easily dodge it due to low velocity. This warhead contains thick concealing smoke. Requires specialized storage to carry."
+	icon_state = "shell_smoke"
+	default_ammo = /datum/ammo/rocket/recoilless/chemical
+
+/obj/item/ammo_magazine/rocket/recoilless/cloak
+	name = "\improper 67mm Chemical (Cloak) shell"
+	desc = "A chemical shell for the RL-160 recoilless rifle. Fires a low velocity shell for close quarters application of chemical gas, friendlies will be able to easily dodge it due to low velocity. This warhead contains advanced cloaking smoke. Requires specialized storage to carry."
+	icon_state = "shell_cloak"
+	default_ammo = /datum/ammo/rocket/recoilless/chemical/cloak
+
+/obj/item/ammo_magazine/rocket/recoilless/plasmaloss
+	name = "\improper 67mm Chemical (Tanglefoot) shell"
+	desc = "A chemical shell for the RL-160 recoilless rifle. Fires a low velocity shell for close quarters application of chemical gas, friendlies will be able to easily dodge it due to low velocity. This warhead contains advanced cloaking smoke. Requires specialized storage to carry."
+	icon_state = "shell_tanglefoot"
+	default_ammo = /datum/ammo/rocket/recoilless/chemical/plasmaloss
 
 
 //-------------------------------------------------------

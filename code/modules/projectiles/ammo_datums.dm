@@ -1692,15 +1692,15 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/rocket/recoilless/drop_nade(turf/T)
 	explosion(T, 0, 3, 4, 5)
 
-/datum/ammo/rocket/recoilless/heat //placeholder/adminbus for now
+/datum/ammo/rocket/recoilless/heat
 	name = "HEAT shell"
 	hud_state = "shell_heat"
-	damage = 175
+	damage = 200
 	penetration = 100
-	sundering = 100
+	sundering = 0
 
 /datum/ammo/rocket/recoilless/heat/drop_nade(turf/T)
-	explosion(T, 0, 2, 3, 5)
+	explosion(T, flash_range = 1)
 
 /datum/ammo/rocket/recoilless/light
 	name = "light explosive shell"
@@ -1714,6 +1714,36 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/rocket/recoilless/light/drop_nade(turf/T)
 	explosion(T, 0, 1, 8, 5)
+
+/datum/ammo/rocket/recoilless/chemical
+	name = "low velocity chemical shell"
+	hud_state = "shell_le"
+	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING|AMMO_IFF //We want this to specifically go farther than onscreen range and pass through friendlies.
+	accurate_range = 21
+	max_range = 21
+	damage = 10
+	penetration = 0
+	sundering = 0
+	/// Smoke type created when projectile detonates.
+	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/bad
+	/// Radius this smoke will encompass on detonation.
+	var/smokeradius = 7
+
+/datum/ammo/smoke_burst/drop_nade(turf/T)
+	var/datum/effect_system/smoke_spread/smoke = new smoketype()
+	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
+	smoke.set_up(smokeradius, T, rand(5,9))
+	smoke.start()
+
+/datum/ammo/rocket/recoilless/chemical/cloak
+	name = "low velocity chemical shell"
+	hud_state = "shell_cloak"
+	smoketype = /datum/effect_system/smoke_spread/tactical
+
+/datum/ammo/rocket/recoilless/chemical/plasmaloss
+	name = "low velocity chemical shell"
+	hud_state = "shell_tanglefoot"
+	smoketype = /datum/effect_system/smoke_spread/plasmaloss
 
 /datum/ammo/rocket/recoilless/low_impact
 	name = "low impact explosive shell"
