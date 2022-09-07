@@ -176,6 +176,8 @@
 	var/atom/movable/pullee = pulling
 	if(!moving_from_pull)
 		check_pulling()
+	if(SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_MOVE, newloc, direction) & COMPONENT_MOVABLE_BLOCK_PRE_MOVE)
+		return FALSE
 	if(!loc || !newloc || loc == newloc)
 		return FALSE
 

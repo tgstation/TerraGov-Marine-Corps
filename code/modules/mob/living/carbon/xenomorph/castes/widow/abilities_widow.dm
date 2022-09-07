@@ -54,12 +54,15 @@
 	desc = "Looks very sticky"
 	destroy_sound = "alien_resin_break"
 	max_integrity = 1920
+	obj_integrity = 0
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
+	throwpass = FALSE
+	density = TRUE
 	/// Radius for how far the leash should affect humans and how far away they may walk
 	var/leash_radius = 5
 	/// How much more integrity aoe_leash gains per caught marine, it is preferable that max_integrity is this var * 8.
-	var/integrity_increase = 240
+	var/integrity_increase = 120
 	/// List of beams to be removed on obj_destruction
 	var/list/obj/effect/ebeam/beams = list()
 	/// List of victims to unregister aoe_leash is destroyed
@@ -71,7 +74,7 @@
 	for(var/mob/living/carbon/human/victim in view(leash_radius, loc))
 		beams += (beam(victim, "beam_web", 'icons/effects/beam.dmi', INFINITY, INFINITY))
 		leash_victims += victim
-		RegisterSignal(victim, COMSIG_MOVABLE_MOVED, .proc/check_dist)
+		RegisterSignal(victim, COMSIG_MOVABLE_PRE_MOVE, .proc/check_dist)
 		obj_integrity = obj_integrity + integrity_increase
 		if(obj_integrity > max_integrity)
 			obj_integrity = min(obj_integrity + integrity_increase, max_integrity)
@@ -82,20 +85,33 @@
 /obj/structure/xeno/aoe_leash/obj_destruction()
 	. = ..()
 	for(var/mob/living/carbon/human/victim AS in leash_victims)
-		UnregisterSignal(victim, COMSIG_MOVABLE_MOVED)
+		UnregisterSignal(victim, COMSIG_MOVABLE_PRE_MOVE)
 	leash_victims = null
 	if(!length(beams))
 		return
 	QDEL_LIST(beams)
 
+/// Allow flamers to actually destroy the aoe_leash
+/obj/structure/xeno/aoe_leash/fire_act()
+	take_damage(max_integrity)
+
+/obj/structure/xeno/aoe_leash/bullet_act(obj/projectile/P)
+	take_damage(P.damage * 10)
+
+/obj/structure/xeno/aoe_leash/welder_act(mob/living/user, obj/item/I)
+	take_damage(max_integrity / 2)
+
+/obj/structure/xeno/aoe_leash/weld_cut_act(mob/living/user, obj/item/I)
+	take_damage(max_integrity / 2)
+
+/obj/structure/xeno/aoe_leash/ex_act(severity)
+	take_damage(max_integrity)
 
 /// Humans caught in the aoe_leash will be pulled back if they leave it's radius
-/obj/structure/xeno/aoe_leash/proc/check_dist(datum/leash_victim, atom/oldloc)
+/obj/structure/xeno/aoe_leash/proc/check_dist(datum/leash_victim, atom/newloc)
 	SIGNAL_HANDLER
-	var/mob/living/carbon/human/victim = leash_victim
-	if(get_dist(victim, src) >= leash_radius)
-		victim.forceMove(oldloc)
-		return
+	if(get_dist(newloc, src) >= leash_radius)
+		return COMPONENT_MOVABLE_BLOCK_PRE_MOVE
 
 /// This is so that xenos can remove leash balls
 /obj/structure/xeno/aoe_leash/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
