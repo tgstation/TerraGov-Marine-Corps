@@ -716,7 +716,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	attachable_allowed = list(
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/mini,
-		/obj/item/attachable/scope,
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/shoulder_mount,
 	)
