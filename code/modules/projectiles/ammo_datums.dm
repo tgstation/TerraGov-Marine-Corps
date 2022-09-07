@@ -1729,11 +1729,12 @@ datum/ammo/bullet/revolver/tp44
 	/// Radius this smoke will encompass on detonation.
 	var/smokeradius = 7
 
-/datum/ammo/smoke_burst/drop_nade(turf/T)
+/datum/ammo/rocket/recoilless/chemical/drop_nade(turf/T)
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
 	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
 	smoke.set_up(smokeradius, T, rand(5,9))
 	smoke.start()
+	explosion(T, flash_range = 1)
 
 /datum/ammo/rocket/recoilless/chemical/cloak
 	name = "low velocity chemical shell"
