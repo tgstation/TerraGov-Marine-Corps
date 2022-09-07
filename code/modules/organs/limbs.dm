@@ -266,7 +266,7 @@
 		if(updating_health)
 			owner.updatehealth()
 		return update_icon()
-	if(CONFIG_GET(flag/limbs_can_break) && brute_dam >= max_damage * LIMB_MAX_DAMAGE_SEVER_RATIO && CONFIG_GET(number/organ_health_multiplier))
+	if(CONFIG_GET(flag/limbs_can_break) && brute_dam >= max_damage * LIMB_MAX_DAMAGE_SEVER_RATIO * CONFIG_GET(number/organ_health_multiplier))
 		droplimb() //If the limb's at its max damage and takes any brute, it severs
 		if(!(owner.species && (owner.species.species_flags & NO_PAIN)))
 			owner.emote("scream")
