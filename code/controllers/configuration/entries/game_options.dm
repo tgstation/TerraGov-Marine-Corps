@@ -55,9 +55,6 @@
 	config_entry_value = 0
 	integer = FALSE
 
-/datum/config_entry/number/organ_health_multiplier
-	config_entry_value = 1
-
 /datum/config_entry/number/organ_regeneration_multiplier
 	config_entry_value = 1
 
