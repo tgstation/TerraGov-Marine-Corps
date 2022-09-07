@@ -269,7 +269,7 @@
 			owner.updatehealth()
 		return update_icon()
 	if(CONFIG_GET(flag/limbs_can_break) && brute_dam >= (max_damage - DELIMB_BUFFER) * CONFIG_GET(number/organ_health_multiplier))
-		droplimb() //Reached max damage threshold through brute damage, that limb is going bye bye
+		droplimb() //Reached limb severing threshold, that limb is going bye bye
 		if(!(owner.species && (owner.species.species_flags & NO_PAIN)))
 			owner.emote("scream")
 		return
