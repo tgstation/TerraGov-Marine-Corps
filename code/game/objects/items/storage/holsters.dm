@@ -146,6 +146,12 @@
 	var/obj/item/new_item = new /obj/item/weapon/gun/launcher/rocket/recoillessrifle/low_impact(src)
 	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
 
+/obj/item/storage/holster/backholster/rpg/gun/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/rocket/recoilless/low_impact(src)
+	var/obj/item/new_item = new /obj/item/weapon/gun/launcher/rocket/recoillessrifle(src)
+	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
+
 //one slot holsters
 
 ///swords

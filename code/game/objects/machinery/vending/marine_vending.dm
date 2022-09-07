@@ -120,7 +120,6 @@
 			/obj/item/weapon/gun/flamer/big_flamer/marinestandard = 4,
 			/obj/item/ammo_magazine/flamer_tank/large = 30,
 			/obj/item/ammo_magazine/flamer_tank/backtank = 4,
-			/obj/item/storage/holster/backholster/rpg/full = 2,
 			/obj/item/jetpack_marine = 3,
 		),
 		"Heavy Weapons" = list(
@@ -131,6 +130,12 @@
 			/obj/item/storage/box/tl102 = 1,
 			/obj/item/weapon/gun/heavymachinegun = 1,
 			/obj/item/ammo_magazine/heavymachinegun = 10,
+			/obj/item/storage/holster/backholster/rpg/gun = 2,
+			/obj/item/ammo_magazine/rocket/recoilless = 8,
+			/obj/item/ammo_magazine/rocket/recoilless/light = 8,
+			/obj/item/ammo_magazine/rocket/recoilless/heat = 16,
+			/obj/item/ammo_magazine/rocket/recoilless/cloak = 16,
+			/obj/item/ammo_magazine/rocket/recoilless/smoke = 16,
 		),
 		"Attachments" = list(
 			/obj/item/attachable/bayonet = -1,

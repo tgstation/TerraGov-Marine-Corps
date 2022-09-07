@@ -259,6 +259,30 @@ WEAPONS
 	cost = 3
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/weapons/shell_heat
+	name = "RL-160 HEAT shell"
+	contains = list(/obj/item/ammo_magazine/rocket/recoilless/light)
+	cost = 3
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/weapons/shell_smoke
+	name = "RL-160 RR Smoke shell"
+	contains = list(/obj/item/ammo_magazine/rocket/recoilless/smoke)
+	cost = 3
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/weapons/shell_smoke
+	name = "RL-160 RR Cloak shell"
+	contains = list(/obj/item/ammo_magazine/rocket/recoilless/cloak)
+	cost = 3
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/weapons/shell_smoke
+	name = "RL-160 RR Tanglefoot shell"
+	contains = list(/obj/item/ammo_magazine/rocket/recoilless/plasmaloss)
+	cost = 3
+	available_against_xeno_only = TRUE
+
 /datum/supply_packs/weapons/railgun
 	name = "SR-220 Railgun"
 	contains = list(/obj/item/weapon/gun/rifle/railgun)
