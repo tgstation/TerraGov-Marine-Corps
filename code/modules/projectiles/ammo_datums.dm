@@ -2785,7 +2785,7 @@ datum/ammo/bullet/revolver/tp44
 	///Blind effect
 	var/hit_eye_blind = 1
 	///Snare effect
-	var/hit_immobilize = 10 SECONDS
+	var/hit_immobilize = 2 SECONDS
 	///Weaken effect
 	var/hit_weaken = 1
 	///List for bodyparts that upon being hit cause the target to become weakened
