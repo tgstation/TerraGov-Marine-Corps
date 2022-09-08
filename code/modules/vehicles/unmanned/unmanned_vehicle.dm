@@ -100,7 +100,7 @@
 /obj/vehicle/unmanned/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	if(current_rounds > 0)
-		. += "It has [current_rounds] ammo left."
+		. += "It has [current_rounds] shots left."
 	switch(turret_type)
 		if(TURRET_TYPE_LIGHT)
 			. += "It is equipped with a light weapon system. It uses [turret_path.magazine_type]"
