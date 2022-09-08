@@ -91,21 +91,8 @@
 		return
 	QDEL_LIST(beams)
 
-/// Allow flamers to actually destroy the aoe_leash
-/obj/structure/xeno/aoe_leash/fire_act()
-	take_damage(max_integrity)
-
 /obj/structure/xeno/aoe_leash/bullet_act(obj/projectile/P)
 	take_damage(P.damage * 10)
-
-/obj/structure/xeno/aoe_leash/welder_act(mob/living/user, obj/item/I)
-	take_damage(max_integrity / 2)
-
-/obj/structure/xeno/aoe_leash/weld_cut_act(mob/living/user, obj/item/I)
-	take_damage(max_integrity / 2)
-
-/obj/structure/xeno/aoe_leash/ex_act(severity)
-	take_damage(max_integrity)
 
 /// Humans caught in the aoe_leash will be pulled back if they leave it's radius
 /obj/structure/xeno/aoe_leash/proc/check_dist(datum/leash_victim, atom/newloc)
