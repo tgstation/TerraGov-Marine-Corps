@@ -217,6 +217,9 @@
 /datum/action/xeno_action/spider_swarm/proc/switch_to_mother()
 	owner.forceMove(get_turf(current_controlling_spiderling))
 	current_controlling_spiderling.mind.transfer_to(owner)
+	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = owner.actions_by_path[/datum/action/xeno_action/create_spiderling]
+	for(var/mob/living/carbon/xenomorph/spiderling/spiderlings_to_kill in create_spiderling_action.spiderlings)
+		spiderlings_to_kill.death(FALSE, "", TRUE)
 
 // ***************************************
 // *********** Burrow
