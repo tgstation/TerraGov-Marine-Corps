@@ -99,7 +99,7 @@
 
 /obj/vehicle/unmanned/examine(mob/user, distance, infix, suffix)
 	. = ..()
-	if(current_rounds)
+	if(current_rounds > 0)
 		. += "It has [current_rounds] ammo left."
 	switch(turret_type)
 		if(TURRET_TYPE_LIGHT)
@@ -157,17 +157,25 @@
 	return
 
 ///Try to reload the turret of our vehicule
-/obj/vehicle/unmanned/proc/reload_turret(obj/item/ammo_magazine/ammo, mob/user)
-	if(!ispath(ammo.type, initial(turret_path.magazine_type)))
+/obj/vehicle/unmanned/proc/reload_turret(obj/item/ammo_magazine/reload_ammo, mob/user)
+	if(!ispath(reload_ammo.type, initial(turret_path.magazine_type)))
 		to_chat(user, span_warning("This is not the right ammo!"))
 		return
-	user.visible_message(span_notice("[user] starts to reload [src] with [ammo]."), span_notice("You start to reload [src] with [ammo]."))
+	if(max_rounds == current_rounds)
+		to_chat(user, span_warning("The [src] ammo storage is already full!"))
+		return
+	user.visible_message(span_notice("[user] starts to reload [src] with [reload_ammo]."), span_notice("You start to reload [src] with [reload_ammo]."))
 	if(!do_after(user, 3 SECONDS, TRUE, src))
 		return
-	user.visible_message(span_notice("[user] reloads [src] with [ammo]."), span_notice("You reload [src] with [ammo]."))
-	current_rounds = min(current_rounds + ammo.current_rounds, max_rounds)
+	current_rounds = current_rounds + reload_ammo.current_rounds
+	if(current_rounds > max_rounds)
+		var/extra_rounds = current_rounds - max_rounds
+		reload_ammo.current_rounds = extra_rounds
+		current_rounds = max_rounds
+	user.visible_message(span_notice("[user] reloads [src] with [reload_ammo]."), span_notice("You reload [src] with [reload_ammo]. It now has [current_rounds] shots left out of a maximum of [max_rounds]."))
 	playsound(loc, 'sound/weapons/guns/interact/smartgun_unload.ogg', 25, 1)
-	qdel(ammo)
+	if(reload_ammo.current_rounds < 1)
+		qdel(reload_ammo)
 
 /// Try to equip a turret on the vehicle
 /obj/vehicle/unmanned/proc/equip_turret(obj/item/I, mob/user)
