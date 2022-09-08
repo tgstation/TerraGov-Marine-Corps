@@ -263,6 +263,21 @@
 	max_storage_space = 15
 	max_w_class = WEIGHT_CLASS_NORMAL
 
+/obj/item/armor_module/storage/grenade
+	name = "Grenade Storage module"
+	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Can hold a respectable amount of grenades."
+	icon_state = "mod_grenade_harness"
+	storage =  /obj/item/storage/internal/modular/grenade
+
+/obj/item/storage/internal/modular/grenade
+	max_storage_space = 12
+	storage_slots = 6
+	max_w_class = WEIGHT_CLASS_SMALL
+	can_hold = list(
+		/obj/item/explosive/grenade,
+		/obj/item/reagent_containers/food/drinks/cans,
+	)
+
 /obj/item/armor_module/storage/helmet
 	name = "Jaeger Pattern helmet storage"
 	desc = "A small set of bands and straps to allow easy storage of small items."
