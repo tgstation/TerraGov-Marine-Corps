@@ -1,6 +1,6 @@
 /obj/vehicle/unmanned/droid
 	name = "XN-43-H combat droid"
-	desc = "A prototype combat droid, first deployed as a prototype to fight the xeno menace in the frontier sytems."
+	desc = "A prototype combat droid, first deployed as a prototype to fight the xeno menace in the frontier sytems. Uses 11x35mm ammo."
 	icon_state = "droidcombat"
 	move_delay = 3
 	max_integrity = 150

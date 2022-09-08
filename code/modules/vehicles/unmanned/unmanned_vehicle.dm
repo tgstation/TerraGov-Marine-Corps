@@ -99,8 +99,17 @@
 
 /obj/vehicle/unmanned/examine(mob/user, distance, infix, suffix)
 	. = ..()
-	if(ishuman(user))
+	if(current_rounds)
 		. += "It has [current_rounds] ammo left."
+	switch(turret_type)
+		if(TURRET_TYPE_LIGHT)
+			. += "It is equipped with a light weapon system. It uses [turret_path.magazine_type]"
+		if(TURRET_TYPE_HEAVY)
+			. += "It is equipped with a heavy weapon system. It uses [turret_path.magazine_type]"
+		if(TURRET_TYPE_EXPLOSIVE)
+			. += "It is equipped with an explosive weapon system. It uses [turret_path.magazine_type]"
+		if(TURRET_TYPE_DROIDLASER)
+			. += "It is equipped with a droid weapon system. It uses [turret_path.magazine_type]"
 
 /obj/vehicle/unmanned/attackby(obj/item/I, mob/user, params)
 	. = ..()
