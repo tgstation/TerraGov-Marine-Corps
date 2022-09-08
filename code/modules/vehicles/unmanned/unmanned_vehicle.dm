@@ -103,13 +103,13 @@
 		. += "It has [current_rounds] shots left."
 	switch(turret_type)
 		if(TURRET_TYPE_LIGHT)
-			. += "It is equipped with a light weapon system. It uses [turret_path.magazine_type]"
+			. += "It is equipped with a light weapon system. It uses 11x35mm ammo."
 		if(TURRET_TYPE_HEAVY)
-			. += "It is equipped with a heavy weapon system. It uses [turret_path.magazine_type]"
+			. += "It is equipped with a heavy weapon system. It uses 12x40mm ammo."
 		if(TURRET_TYPE_EXPLOSIVE)
-			. += "It is equipped with an explosive weapon system. It uses [turret_path.magazine_type]"
+			. += "It is equipped with an explosive weapon system. "
 		if(TURRET_TYPE_DROIDLASER)
-			. += "It is equipped with a droid weapon system. It uses [turret_path.magazine_type]"
+			. += "It is equipped with a droid weapon system. It uses 11x35mm ammo."
 
 /obj/vehicle/unmanned/attackby(obj/item/I, mob/user, params)
 	. = ..()
