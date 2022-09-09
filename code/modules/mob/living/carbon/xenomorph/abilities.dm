@@ -146,9 +146,9 @@
 
 /datum/action/xeno_action/activable/plant_weeds/ranged/can_use_ability(atom/A, silent = FALSE, override_flags)
 	var/area/area = get_area(A)
-	if(area.flags_area & MARINE_BASE)
+	if(area.flags_area & MARINE_BASE && SSmonitor.gamestate == SHUTTERS_CLOSED)
 		if(!silent)
-			to_chat(owner, span_xenowarning("You cannot weed here!"))
+			to_chat(owner, span_xenowarning("You cannot plant weeds here yet!"))
 		return FALSE
 	if(!line_of_sight(owner, get_turf(A)))
 		to_chat(owner, span_warning("You cannot plant weeds without line of sight!"))
