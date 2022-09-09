@@ -177,3 +177,119 @@
   - bugfix: Overwatch markers now work again
   lbnesquik:
   - rscadd: Added one CAS radio key to the tactical binoculars crate.
+2022-08-19:
+  QualityVan:
+  - bugfix: Surgeries work
+  collinlunn:
+  - bugfix: Hunter's Disguise description tells you how to select a target.
+2022-08-20:
+  QualityVan:
+  - rscadd: High-pen bullets deal more damage to shields
+  - bugfix: Shield hard armor reduces damage instead of increasing it
+  - bugfix: Radial medical will only need to choose limb once for surgery
+  lbnesquik:
+  - bugfix: fixed a wrong line about time regarding drops.
+2022-08-21:
+  collinlunn:
+  - bugfix: The bluespace teleporter's description now tells you how to remove the
+      cell.
+2022-08-22:
+  Lumipharon:
+  - rscadd: 'Combat patrol: Added a BR-8 loadout to TGMC marines, limited to two per
+      game'
+  - rscadd: 'Combat patrol: Added a MPI_KM with UBL loadout to SOM marine, engie and
+      medic'
+  - rscadd: 'Combat patrol: Added spaceacillin to TGMC medics'
+  lbnesquik:
+  - rscadd: Added mortar & howitzers shots to end round.
+  mc-oofert:
+  - rscadd: Added another set of railing to the ASRS so crates dont get spaced
+  novaepee:
+  - rscdel: remove reinforced windows in prep to free roomba
+  tyeagg:
+  - rscadd: reworked combat patrol base maps
+  - soundadd: added radio chatter sounds for a radio prop
+  - imageadd: added entry point for combat patrol
+  - imageadd: added  som cas plane
+  - imageadd: added  som prop mech
+  - imageadd: added  new platform sprites
+  - imageadd: added  som flag turfs
+  - imageadd: added gives bunk beds bed sheets
+  - imageadd: added tachi base sign
+  - imageadd: added prop npcs
+2022-08-23:
+  BraveMole:
+  - code_imp: Made projectile maybe less expansive performance wise
+  Lumipharon:
+  - qol: 'Combat Patrol: Made some loadout descriptions clearer'
+  RikuTheKiller:
+  - balance: All shields now repair based on a percentage (20%)
+  - bugfix: Shield integrity messages now display correctly
+  - spellcheck: Changed wording in a lot of shield messages
+2022-08-24:
+  Lumipharon:
+  - bugfix: Fixed lighting not updating in modular map areas during Combat Patrol
+  - balance: 'Combat Patrol: Increased the light level of deep caves'
+  - bugfix: Voting a different shipmap during Combat Patrol is correctly disabled
+  - bugfix: fixed SO's spawning with belts loaded twice
+  novaepee:
+  - rscadd: Keybinds for Attack, Defend, and Retreat orders
+  - qol: easier to coordinate as FC or SL
+2022-08-25:
+  Lumipharon:
+  - bugfix: fixed the V-31 spawning with only one round loaded in rail launcher attachment
+  - bugfix: Certain guns will no longer spawn with a missing round
+  - qol: Made radio chatter and rappeling quieter in Combat Patrol
+  lbnesquik:
+  - bugfix: fixed more weird ground markings, lights, cameras & firelocks.
+  - bugfix: fixed map oddities on the sulaco regarding firelocks, lights, apc's and
+      fire alarms. Again
+2022-08-27:
+  Lumipharon:
+  - rscadd: Added SOM ballistic weapons to the seasonal rotation
+  QualityVan:
+  - bugfix: Prevented replacing unremovable attachments
+  lbnesquik:
+  - qol: made the AI able to read what it sent into the vox system
+  - balance: Lowered vox cooldown from 60s to 40s
+  - bugfix: fixed some floating and other nonsensical cameras on minerva
+  - code_imp: removed an useless argument in mortar/binocs code
+2022-08-28:
+  DeltaFire15:
+  - bugfix: The stagger immunity trait should now work properly.
+  Lumipharon:
+  - bugfix: It is no longer possible to hide turrets under barricades
+  - imageadd: Added and fixed up MPI_KM mob sprites
+  - bugfix: SOM squad preferences actually work
+  - bugfix: fixed a vote bug when changing gamemode from Combat Patrol
+  - bugfix: Actually fixed SOM boot mob sprites
+  - bugfix: fixed projectiles going through fog
+  QualityVan:
+  - code_imp: Cleaned up reagent scanner/mass spectrometers.
+  collinlunn:
+  - qol: Hunter's Swap is no longer activated with a separate ability, reactivate
+      Mirage to trigger it.
+2022-08-30:
+  Calyxman:
+  - bugfix: 'TGMC''s Diversity-IT joint team has fixed something: Combat robots who
+      are non-binary or do not care about genders can now scream and shout inspirational
+      cries AND BE HEARD!'
+  Lumipharon:
+  - balance: Having a single broken leg or foot can now trigger falling over instead
+      of needing 2 or more breaks
+  - balance: Falling over due to a broken leg or foot now only stuns for 1 second
+      instead of 3
+  lbnesquik:
+  - rscadd: Gave the AI the ability to Ctrl-click turfs to get their coordinates.
+  tyeagg:
+  - qol: you can use rally order in overwatch computers and ai
+  - bugfix: order arrows not appearing and runtiming
+  - imageadd: defend and rally arrow pointer and minimap icons for orders
+2022-08-31:
+  Lumipharon:
+  - rscadd: 'Combat Patrol: Added a new AR-18 scout loadout for TGMC marines, and
+      MPI_KM loadouts for SOM veterans and SL''s'
+  - balance: 'Combat Patrol: Several  tweaks and changes to various loadouts'
+  Xsdew:
+  - rscadd: You are required to start wielding the SH39 before being able to fire
+      it again.

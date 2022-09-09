@@ -206,8 +206,7 @@
 
 	var/list/temp_chem = list()
 	for(var/datum/reagent/R in reagents.reagent_list)
-		temp_chem += R.type
-		temp_chem[R.type] = R.volume
+		temp_chem[R.name] = R.volume
 	data["trace_chem"] = list2params(temp_chem)
 
 	O.reagents.add_reagent(/datum/reagent/blood, amount, data)

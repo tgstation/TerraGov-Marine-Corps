@@ -18,6 +18,7 @@
 	icon_state = "facehugger"
 	item_state = "facehugger"
 	w_class = WEIGHT_CLASS_TINY //Note: can be picked up by aliens unlike most other items of w_class below 4
+	resistance_flags = NONE
 	flags_inventory = COVEREYES|ALLOWINTERNALS|COVERMOUTH
 	flags_armor_protection = FACE|EYES
 	flags_atom = CRITICAL_ATOM

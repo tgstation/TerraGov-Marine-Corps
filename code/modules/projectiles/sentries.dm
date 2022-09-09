@@ -1,7 +1,6 @@
 /obj/machinery/deployable/mounted/sentry
 
 	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
-	layer = ABOVE_MOB_LAYER
 	use_power = 0
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_LEADER)
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)

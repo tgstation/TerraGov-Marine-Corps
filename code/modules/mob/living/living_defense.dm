@@ -250,7 +250,7 @@
 		S.reagents?.reaction(src, TOUCH, S.fraction)
 	return protection
 
-/mob/living/proc/check_shields(attack_type, damage, damage_type = "melee", silent)
+/mob/living/proc/check_shields(attack_type, damage, damage_type = "melee", silent, penetration = 0)
 	if(!damage)
 		stack_trace("check_shields called without a damage value")
 		return 0
@@ -261,7 +261,7 @@
 		sortTim(affecting_shields, /proc/cmp_numeric_dsc, associative = TRUE)
 	for(var/shield in affecting_shields)
 		var/datum/callback/shield_check = shield
-		. = shield_check.Invoke(attack_type, ., damage_type, silent)
+		. = shield_check.Invoke(attack_type, ., damage_type, silent, penetration)
 		if(!.)
 			break
 

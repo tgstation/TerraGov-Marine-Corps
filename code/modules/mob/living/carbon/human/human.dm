@@ -27,7 +27,7 @@
 	send_defend_order.give_action(src)
 	var/datum/action/innate/order/retreat_order/personal/send_retreat_order = new
 	send_retreat_order.give_action(src)
-	var/datum/action/innate/order/rally_order/send_rally_order = new
+	var/datum/action/innate/order/rally_order/personal/send_rally_order = new
 	send_rally_order.give_action(src)
 	var/datum/action/innate/message_squad/screen_orders = new
 	screen_orders.give_action(src)
@@ -792,12 +792,9 @@
 	if(!species.has_organ["eyes"]) return 2//No eyes, can't hurt them.
 
 	var/datum/internal_organ/eyes/I = internal_organs_by_name["eyes"]
-	if(I)
-		if(I.cut_away)
-			return 2
-		if(I.robotic == ORGAN_ROBOT)
-			return 2
-	else
+	if(!I)
+		return 2
+	if(I.robotic == ORGAN_ROBOT)
 		return 2
 
 	if(istype(head, /obj/item/clothing))

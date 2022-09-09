@@ -275,7 +275,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 /datum/game_mode/proc/grant_eord_respawn(datum/dcs, mob/source)
 	SIGNAL_HANDLER
-	source.verbs += /mob/proc/eord_respawn
+	source.verbs |= /mob/proc/eord_respawn
 
 /datum/game_mode/proc/end_of_round_deathmatch()
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_LOGIN, .proc/grant_eord_respawn) // New mobs can now respawn into EORD
@@ -289,6 +289,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 	for(var/i in GLOB.player_list)
 		var/mob/M = i
+		M.verbs |= /mob/proc/eord_respawn
 		if(isnewplayer(M))
 			continue
 		if(!(M.client?.prefs?.be_special & BE_DEATHMATCH))
@@ -403,6 +404,10 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		dat += "[GLOB.round_statistics.grenades_thrown] total grenades exploding."
 	else
 		dat += "No grenades exploded."
+	if(GLOB.round_statistics.mortar_shells_fired)
+		dat += "[GLOB.round_statistics.mortar_shells_fired] mortar shells were fired."
+	if(GLOB.round_statistics.howitzer_shells_fired)
+		dat += "[GLOB.round_statistics.howitzer_shells_fired] howitzer shells were fired."
 	if(GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV])
 		dat += "[GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV]] people were killed, among which [GLOB.round_statistics.total_human_revives[FACTION_TERRAGOV]] were revived and [GLOB.round_statistics.total_human_respawns] respawned. For a [(GLOB.round_statistics.total_human_revives[FACTION_TERRAGOV] / max(GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV], 1)) * 100]% revival rate and a [(GLOB.round_statistics.total_human_respawns / max(GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV], 1)) * 100]% respawn rate."
 	if(SSevacuation.human_escaped)

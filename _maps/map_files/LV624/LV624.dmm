@@ -13175,11 +13175,6 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/spaceport2)
-"mLK" = (
-/obj/structure/largecrate/random,
-/obj/effect/ai_node,
-/turf/open/floor,
-/area/lv624/lazarus/spaceport2)
 "mMU" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
@@ -37918,7 +37913,7 @@ tSf
 rOf
 fcJ
 vvX
-vvX
+mON
 mON
 mON
 vvX
@@ -38448,7 +38443,7 @@ kdu
 tSf
 rOf
 vvX
-mLK
+tFj
 vvX
 vvX
 lEg

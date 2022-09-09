@@ -904,17 +904,16 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		return
 	var/mob/living/carbon/human/new_fallen = new(pick(GLOB.spawns_by_job[/datum/job/fallen]))
 	valhalla_job = SSjob.GetJobType(valhalla_job)
-	new_fallen.apply_assigned_role_to_spawn(valhalla_job)
 	if(valhalla_job.outfit)
 		new_fallen.delete_equipment(TRUE)
 		new_fallen.equipOutfit(valhalla_job.outfit, FALSE)
 		new_fallen.regenerate_icons()
 
 	log_game("[key_name(usr)] has joined Valhalla.")
+	client.prefs.copy_to(new_fallen)
+	new_fallen.apply_assigned_role_to_spawn(valhalla_job)
 	mind.transfer_to(new_fallen, TRUE)
 	valhalla_job.after_spawn(new_fallen)
-
-
 
 /mob/dead/observer/reset_perspective(atom/A)
 	clean_observetarget()

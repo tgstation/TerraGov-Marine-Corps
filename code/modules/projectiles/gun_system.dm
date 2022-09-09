@@ -1214,6 +1214,7 @@
 				qdel(thing_to_reload) //If the item doesnt suceed in reloading, we dont want to keep it around.
 			if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN))
 				ENABLE_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED)
+				cycle()
 			update_icon()
 			return
 	for(var/i in 0 to max_chamber_items)
@@ -1227,9 +1228,9 @@
 			object_to_insert = new default_ammo_type(src)
 		if(!reload(object_to_insert, null, TRUE))
 			qdel(object_to_insert)
-	cycle()
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN))
 		ENABLE_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED)
+		cycle()
 	update_icon()
 
 ///Handles unloading. Called on attackhand. Draws the chamber_items out first, then in_chamber
@@ -1637,12 +1638,14 @@
 				var/datum/status_effect/stacking/gun_skill/debuff = living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_DEBUFF)
 				gun_scatter += debuff.stacks
 
+		if(ishuman(user))
+			var/mob/living/carbon/human/shooter_human = user
+			gun_accuracy_mod -= round(min(20, (shooter_human.shock_stage * 0.2))) //Accuracy declines with pain, being reduced by 0.2% per point of pain.
+			if(shooter_human.marksman_aura)
+				gun_accuracy_mod += 10 + max(5, shooter_human.marksman_aura * 5) //Accuracy bonus from active focus order
+
 	projectile_to_fire.accuracy = round((projectile_to_fire.accuracy * gun_accuracy_mult) + gun_accuracy_mod) // Apply gun accuracy multiplier to projectile accuracy
 	projectile_to_fire.scatter += gun_scatter					//Add gun scatter value to projectile's scatter value
-
-
-
-
 
 /obj/item/weapon/gun/proc/get_scatter(starting_scatter, mob/user)
 	. = starting_scatter //projectile_to_fire.scatter

@@ -1160,6 +1160,7 @@
 			/obj/item/armor_module/storage/engineering = -1,
 			/obj/item/armor_module/storage/medical = -1,
 			/obj/item/armor_module/storage/injector = -1,
+			/obj/item/armor_module/storage/grenade = -1,
 			/obj/item/armor_module/module/welding = -1,
 			/obj/item/armor_module/module/binoculars = -1,
 			/obj/item/armor_module/module/tyr_head = -1,
