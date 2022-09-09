@@ -286,6 +286,6 @@ obj/item/alienjar
 	SIGNAL_HANDLER
 	if(!istype(mover, /obj/machinery/roomba))
 		return
-		for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
+	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		explosion(human, 1, 1, 1, small_animation = TRUE)
-	human.gib()
+		human.gib()
