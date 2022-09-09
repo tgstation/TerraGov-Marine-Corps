@@ -50,19 +50,10 @@
 	dir = 1
 	},
 /area/shuttle/minidropship)
-"h" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 8
-	},
-/turf/open/shuttle/dropship/three,
-/area/shuttle/minidropship)
 "j" = (
 /obj/machinery/door_control{
 	id = "minidropship_podlock";
 	name = "inner door-control"
-	},
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 8
 	},
 /turf/open/shuttle/dropship/three,
 /area/shuttle/minidropship)
@@ -92,9 +83,6 @@
 /area/shuttle/minidropship)
 "r" = (
 /obj/machinery/vending/nanomed/tadpolemed{
-	dir = 4
-	},
-/obj/structure/bed/chair/dropship/passenger{
 	dir = 4
 	},
 /turf/open/shuttle/dropship/three,
@@ -171,9 +159,6 @@
 /obj/structure/closet/walllocker/hydrant/extinguisher{
 	dir = 8
 	},
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 8
-	},
 /turf/open/shuttle/dropship/three,
 /area/shuttle/minidropship)
 "K" = (
@@ -234,9 +219,6 @@
 /turf/template_noop,
 /area/shuttle/minidropship)
 "V" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 4
-	},
 /turf/open/shuttle/dropship/three,
 /area/shuttle/minidropship)
 "Y" = (
@@ -294,7 +276,7 @@ E
 a
 D
 j
-h
+V
 I
 v
 E
