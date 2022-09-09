@@ -234,6 +234,26 @@
 /obj/item/ammo_magazine/internal/launcher/rocket/m57a4/ds
 	default_ammo = /datum/ammo/rocket/wp/quad/ds
 
+/obj/item/ammo_magazine/rocket/som
+	name = "\improper 84mm light-explosive rocket"
+	desc = "A light explosive rocket for the V-71 rocket launcher. Causes a light explosion over a large area but low impact damage."
+	icon_state = "shell_le"
+	default_ammo = /datum/ammo/rocket/som
+	reload_delay = 2 SECONDS
+
+/obj/item/ammo_magazine/rocket/som/rad
+	name = "\improper 84mm  irrad rocket"
+	desc = "A irrad rocket for the V-71 rocket launcher. Releases a devastating milisecond burst of radiation, debilitating anything caught in the blast radius."
+	icon_state = "shell_le"
+	default_ammo = /datum/ammo/rocket/som/rad
+
+/obj/item/ammo_magazine/rocket/som/incendiary
+	name = "\improper 84mm incendiary rocket"
+	desc = "An incendiary rocket for the V-71 rocket launcher. Releases a moderate incendiary payload, burning anything caught in the blast radius."
+	icon_state = "shell_le"
+	default_ammo = /datum/ammo/rocket/wp/quad
+
+
 // railgun
 
 /obj/item/ammo_magazine/railgun

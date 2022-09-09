@@ -1734,6 +1734,59 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 100
 	sundering = 100
 
+/datum/ammo/rocket/som
+	name = "low impact missile"
+	hud_state = "shell_le"
+	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING
+	accurate_range = 15
+	max_range = 20
+	damage = 60
+	penetration = 10
+	sundering = 20
+
+/datum/ammo/rocket/som/drop_nade(turf/T)
+	explosion(T, 0, 2, 7, 2)
+
+/datum/ammo/rocket/som/rad
+	name = "low impact missile"
+	hud_state = "shell_le"
+	///Base strength of the rad effects
+	var/rad_strength = 30
+	///Range for the maximum rad effects
+	var/inner_range = 3
+	///Range for the moderate rad effects
+	var/mid_range = 5
+	///Range for the minimal rad effects
+	var/outer_range = 8
+
+/datum/ammo/rocket/som/rad/drop_nade(turf/T)
+	for(var/mob/living/victim in get_hear(outer_range, T))
+		var/strength
+		//geiger_counter = new(null, FALSE)
+		if(get_dist(victim, T) <= inner_range)
+			strength = rad_strength
+			//geiger_counter.severity = 4
+		else if(get_dist(victim, T) <= mid_range)
+			strength = rad_strength * 0.7
+			//geiger_counter.severity = 3
+		else
+			strength = rad_strength * 0.3
+			//geiger_counter.severity = 2
+		irradiate(victim, strength)
+		//geiger_counter.start(victim)
+	explosion(T, 0, 0, 3, 0)
+
+/datum/ammo/rocket/som/rad/proc/irradiate(mob/living/victim, strength)
+	var/rad_penetration = (100 - victim.get_soft_armor(RAD)) / 100
+	var/effective_strength = strength * rad_penetration //strength with rad armor taken into account
+	victim.adjustCloneLoss(effective_strength)
+	victim.adjustStaminaLoss(effective_strength * 7)
+	victim.adjust_stagger(effective_strength / 2)
+	victim.add_slowdown(effective_strength / 2)
+	victim.blur_eyes(effective_strength) //adds a visual indicator that you've just been irradiated
+	victim.adjust_radiation(effective_strength * 20) //Radiation status effect, duration is in deciseconds
+	to_chat(victim, span_warning("Your body tingles as you suddenly feel the strength drain from your body!"))
+
 /datum/ammo/rocket/atgun_shell
 	name = "high explosive ballistic cap shell"
 	icon_state = "atgun"
