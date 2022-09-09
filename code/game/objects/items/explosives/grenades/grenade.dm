@@ -117,16 +117,6 @@
 /obj/item/explosive/grenade/rad/prime()
 	var/turf/impact_turf = get_turf(src)
 	playsound(impact_turf, 'sound/effects/portal_opening.ogg', 50, 1)
-	//A locker won't protect you
-	for(var/obj/structure/closet/closet in get_hear(outer_range, impact_turf))
-		if(locate(/mob/living/carbon/, closet))
-			for(var/mob/living/carbon/victim in closet)
-				var/strength
-				if(get_dist(victim, impact_turf) <= inner_range)
-					strength = rad_strength
-				else
-					strength = rad_strength * 0.6
-				irradiate(victim, strength)
 
 	for(var/mob/living/victim in get_hear(outer_range, impact_turf))
 		var/strength
