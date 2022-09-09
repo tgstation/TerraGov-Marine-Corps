@@ -441,7 +441,6 @@
 	owner.AddComponent(/datum/component/remote_control, vehicle, vehicle.turret_type, vehicle.can_interact)
 	SEND_SIGNAL(owner, COMSIG_REMOTECONTROL_TOGGLE, owner)
 
-//This is the exact same code as command_alert
 /datum/action/innate/squad_message
 	name = "Send Order"
 	action_icon_state = "screen_order_marine"
@@ -474,5 +473,4 @@
 	deadchat_broadcast(" has sent the command order \"[text]\"", owner, owner)
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		if(human.faction == owner.faction)
-		// to_chat(owner, span_warning("[GLOB.alive_human_list]"))
 			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>ORDERS UPDATED:</u></span><br>" + text, /obj/screen/text/screen_text/command_order)
