@@ -43,3 +43,15 @@
   - bugfix: AI can now use the FOB building console again
   ivanmixo:
   - qol: You are now your character when spawned into vallhalla
+2022-09-09:
+  Lumipharon:
+  - rscadd: Added a grenade jaeger storage module with a 6 slot capacity
+  RipGrayson:
+  - bugfix: The hangar lockdown in PoS now works again
+  - bugfix: Medbay disposals on PoS should function properly now without spitting
+      objects out mid-transit.
+  ivanmixo:
+  - qol: You can now respawn into EORD no matter your pref for it
+  - bugfix: Fixed the valhalla loadout vendor not working
+  lbnesquik:
+  - bugfix: Prevent xenos from hearing Vox on shipside

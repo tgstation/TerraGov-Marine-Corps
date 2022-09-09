@@ -1,4 +1,0 @@
-author: "lbnesquik"
-delete-after: True
-changes: 
-  - bugfix: "Prevent xenos from hearing Vox on shipside"

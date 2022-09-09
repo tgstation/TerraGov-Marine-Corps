@@ -1,5 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes: 
-  - bugfix: "The hangar lockdown in PoS now works again"
-  - bugfix: "Medbay disposals on PoS should function properly now without spitting objects out mid-transit."
