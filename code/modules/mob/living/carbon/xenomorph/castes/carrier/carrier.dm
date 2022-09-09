@@ -17,24 +17,23 @@
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 	)
 
+/mob/living/carbon/xenomorph/carrier/proc/try_drop_all_huggers()
+	if(!huggers)
+		return
+
+	visible_message(span_xenowarning("A chittering mass of tiny aliens is trying to escape [src]!"))
+	while(huggers > 0)
+		var/obj/item/clothing/mask/facehugger/F = new selected_hugger_type(get_turf(src))
+		step_away(F,src,1)
+		addtimer(CALLBACK(F, /obj/item/clothing/mask/facehugger.proc/go_active, TRUE), F.jump_cooldown)
+		huggers--
+
 // ***************************************
 // *********** Death
 // ***************************************
 /mob/living/carbon/xenomorph/carrier/on_death()
 	. = ..()
-	if(!huggers)
-		return
-
-	visible_message(span_xenowarning("A chittering mass of tiny aliens is trying to escape [src]!"))
-	while(huggers > FLOOR(huggers * 0.5,1)) //Half our huggers will avenge us!
-
-		var/obj/item/clothing/mask/facehugger/F = new selected_hugger_type(get_turf(src))
-		step_away(F,src,1)
-		addtimer(CALLBACK(F, /obj/item/clothing/mask/facehugger.proc/go_active, TRUE), F.jump_cooldown)
-
-		huggers--
-
-
+	try_drop_all_huggers()
 
 // ***************************************
 // *********** Life overrides

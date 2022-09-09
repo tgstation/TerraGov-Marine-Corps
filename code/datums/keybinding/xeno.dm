@@ -191,6 +191,12 @@
 	description = "Prompt a wheel to choose which hugger you will deploy with the Throw Hugger ability."
 	keybind_signal = COMSIG_XENOABILITY_CHOOSE_HUGGER
 
+/datum/keybinding/xeno/drop_all_hugger
+	name = "drop_all_hugger"
+	full_name = "Carrier: Drop All Facehugger"
+	description = "Drop all stored huggers in a fit of panic. Uses all remaining plasma!"
+	keybind_signal = COMSIG_XENOABILITY_DROP_ALL_HUGGER
+
 /datum/keybinding/xeno/stomp
 	name = "stomp"
 	full_name = "Crusher: Stomp"

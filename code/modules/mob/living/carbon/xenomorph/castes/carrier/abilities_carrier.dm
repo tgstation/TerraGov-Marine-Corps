@@ -177,6 +177,34 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	succeed_activate()
 	add_cooldown()
 
+// ***************************************
+// *********** Drop all hugger, panic button
+// ***************************************
+/datum/action/xeno_action/carrier_panic
+	name = "Drop All Facehugger"
+	action_icon_state = "carrier_panic"
+	mechanics_text = "Drop all stored huggers in a fit of panic. Uses all remaining plasma!"
+	plasma_cost = 10
+	cooldown_timer = 50 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_DROP_ALL_HUGGER
+	use_state_flags = XACT_USE_LYING
+
+/datum/action/xeno_action/carrier_panic/can_use_action(silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	var/mob/living/carbon/xenomorph/carrier/X = owner
+	if(X.huggers < 1)
+		if(!silent)
+			to_chat(X, span_xenowarning("We do not have any young ones to drop!"))
+		return FALSE
+
+/datum/action/xeno_action/carrier_panic/action_activate()
+	var/mob/living/carbon/xenomorph/carrier/X = owner
+
+	X.try_drop_all_huggers()
+	succeed_activate(INFINITY) //Consume all remaining plasma
+	add_cooldown()
 
 // ***************************************
 // *********** Choose Hugger Type
