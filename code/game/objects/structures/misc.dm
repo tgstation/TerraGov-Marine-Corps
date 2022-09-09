@@ -264,7 +264,6 @@ obj/item/alienjar
 	if(!istype(mover, /obj/machinery/roomba))
 		return
 	for(var/mob/living/carbon/xenomorph/sister AS in GLOB.alive_xeno_list)
-		explosion(get_turf(sister), 1, 1, 1, small_animation = TRUE)
 		sister.gib()
 
 /obj/structures/win/winxeno
@@ -275,5 +274,4 @@ obj/item/alienjar
 	if(!istype(mover, /obj/machinery/roomba))
 		return
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
-		explosion(get_turf(human), 1, 1, 1, small_animation = TRUE)
 		human.gib()
