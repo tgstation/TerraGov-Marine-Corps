@@ -86,7 +86,6 @@
 		RegisterSignal(owner, COMSIG_PARENT_QDELETING, .proc/clean_owner)
 	soft_armor = getArmor()
 	hard_armor = getArmor()
-	max_damage += DELIMB_BUFFER
 	return ..()
 
 /datum/limb/Destroy()
@@ -1014,7 +1013,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "l_arm"
 	display_name = "left arm"
 	icon_name = "l_arm"
-	max_damage = 125
+	max_damage = 125 + DELIMB_BUFFER
 	min_broken_damage = 50
 	body_part = ARM_LEFT
 	cover_index = 7
@@ -1027,7 +1026,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "l_leg"
 	display_name = "left leg"
 	icon_name = "l_leg"
-	max_damage = 100
+	max_damage = 100 + DELIMB_BUFFER
 	min_broken_damage = 50
 	body_part = LEG_LEFT
 	cover_index = 14
@@ -1037,7 +1036,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "r_arm"
 	display_name = "right arm"
 	icon_name = "r_arm"
-	max_damage = 125
+	max_damage = 125 + DELIMB_BUFFER
 	min_broken_damage = 50
 	body_part = ARM_RIGHT
 	cover_index = 7
@@ -1050,7 +1049,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "r_leg"
 	display_name = "right leg"
 	icon_name = "r_leg"
-	max_damage = 100
+	max_damage = 100 + DELIMB_BUFFER
 	min_broken_damage = 50
 	body_part = LEG_RIGHT
 	cover_index = 14
@@ -1060,7 +1059,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "l_foot"
 	display_name = "left foot"
 	icon_name = "l_foot"
-	max_damage = 75
+	max_damage = 75 + DELIMB_BUFFER
 	min_broken_damage = 37
 	body_part = FOOT_LEFT
 	cover_index = 4
@@ -1070,7 +1069,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "r_foot"
 	display_name = "right foot"
 	icon_name = "r_foot"
-	max_damage = 75
+	max_damage = 75 + DELIMB_BUFFER
 	min_broken_damage = 37
 	body_part = FOOT_RIGHT
 	cover_index = 4
@@ -1080,7 +1079,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "r_hand"
 	display_name = "right hand"
 	icon_name = "r_hand"
-	max_damage = 75
+	max_damage = 75 + DELIMB_BUFFER
 	min_broken_damage = 37
 	body_part = HAND_RIGHT
 	cover_index = 2
@@ -1093,7 +1092,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "l_hand"
 	display_name = "left hand"
 	icon_name = "l_hand"
-	max_damage = 75
+	max_damage = 75 + DELIMB_BUFFER
 	min_broken_damage = 37
 	body_part = HAND_LEFT
 	cover_index = 2
@@ -1106,7 +1105,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "head"
 	icon_name = "head"
 	display_name = "head"
-	max_damage = 100
+	max_damage = 100 + DELIMB_BUFFER
 	min_broken_damage = 40
 	body_part = HEAD
 	vital = TRUE
