@@ -264,28 +264,17 @@ obj/item/alienjar
 	if(!istype(mover, /obj/machinery/roomba))
 		return
 	for(var/mob/living/carbon/xenomorph/sister AS in GLOB.alive_xeno_list)
-		explosion(sister, 1, 1, 1, small_animation = TRUE)
+		explosion(get_turf(sister), 1, 1, 1, small_animation = TRUE)
 		sister.gib()
 
-/obj/structures/winxeno
+/obj/structures/win/winxeno
 	name = "win xeno"
-	desc = "xenp win."
-	icon = 'icons/obj/objects.dmi'
-	icon_state = "winner"
-	resistance_flags = RESIST_ALL|BANISH_IMMUNE
-	anchored = TRUE
+	desc = "xeno win."
 
-/obj/structures/winxeno/Initialize()
-	. = ..()
-	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
-	)
-	AddElement(/datum/element/connect_loc, connections)
-
-/obj/structures/winxeno/proc/on_cross(datum/source, atom/movable/mover, oldloc)
+/obj/structures/win/winxeno/on_cross(datum/source, atom/movable/mover, oldloc)
 	SIGNAL_HANDLER
 	if(!istype(mover, /obj/machinery/roomba))
 		return
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
-		explosion(human, 1, 1, 1, small_animation = TRUE)
+		explosion(get_turf(human), 1, 1, 1, small_animation = TRUE)
 		human.gib()
