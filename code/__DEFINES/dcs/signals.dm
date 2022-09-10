@@ -254,6 +254,7 @@
 #define COMSIG_UNMANNED_TURRET_UPDATED "unmanned_turret_update" /// from /obj/vehicle/unmanned/attackby: (newtype)
 #define COMSIG_UNMANNED_ABILITY_UPDATED "unmanned_ability_update"
 #define COMSIG_GLOB_UNMANNED_COORDINATES "unmanned_coordinates"
+#define COMSIG_UNMANNED_COORDINATES "unmanned_coordinates"
 
 // /obj/item signals
 #define COMSIG_ITEM_APPLY_CUSTOM_OVERLAY "item_apply_custom_overlay" //from base of obj/item/apply_custom(): (/image/standing)

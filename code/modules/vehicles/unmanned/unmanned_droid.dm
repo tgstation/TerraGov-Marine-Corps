@@ -29,19 +29,20 @@
 		START_PROCESSING(SSslowprocess, src)
 		user.overlay_fullscreen("machine", /obj/screen/fullscreen/machine)
 		antenna.give_action(user)
-		RegisterSignal(SSdcs, COMSIG_GLOB_UNMANNED_COORDINATES, .proc/activate_antenna)
+		RegisterSignal(user, COMSIG_UNMANNED_COORDINATES, .proc/activate_antenna)
 	else
 		playsound(src, 'sound/machines/drone/droneoff.ogg', 70)
 		STOP_PROCESSING(SSslowprocess, src)
 		user.clear_fullscreen("machine", 5)
 		antenna.remove_action(user)
-		UnregisterSignal(SSdcs, COMSIG_GLOB_UNMANNED_COORDINATES)
+		UnregisterSignal(user, COMSIG_UNMANNED_COORDINATES)
 
-/obj/vehicle/unmanned/Destroy()
+/obj/vehicle/unmanned/droid/Destroy(datum/source, mob/user)
 	. = ..()
 	GLOB.unmanned_vehicles -= src
-	QDEL_NULL(flash)
-	UnregisterSignal(SSdcs, COMSIG_GLOB_UNMANNED_COORDINATES)
+	user.clear_fullscreen("machine", 5)
+	antenna.remove_action(user)
+	UnregisterSignal(user, COMSIG_UNMANNED_COORDINATES)
 
 ///stealth droid, like the normal droid but with stealthing ability on rclick
 /obj/vehicle/unmanned/droid/scout
@@ -99,7 +100,6 @@
 ///Proc used for the supply link feature, activate to appear as an antenna
 /obj/vehicle/unmanned/droid/proc/activate_antenna(datum/source, mob/user)
 	SIGNAL_HANDLER
-	var/turf/location = get_turf(src)
 
 	for(var/mob/temp_user AS in client_mobs_in_contents)
 		user = temp_user
@@ -125,4 +125,4 @@
 	action_icon_state = "rally_minions"
 
 /datum/action/antenna/action_activate()
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_UNMANNED_COORDINATES)
+	SEND_SIGNAL(owner, COMSIG_UNMANNED_COORDINATES)
