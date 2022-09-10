@@ -1496,7 +1496,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	///Modifier for burn level of attached flamer. Percentage based.
 	var/burn_level_mod = 1
 	///Modifier for burn time of attached flamer. Percentage based.
-	var/burn_time_mod = 0.8
+	var/burn_time_mod = 1
 	///Range modifier of attached flamer. Numerically based.
 	var/range_modifier = 0
 	///Damage multiplier for mobs caught in the initial stream of fire of the attached flamer.
@@ -1535,6 +1535,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	range_modifier = 0
 	pixel_shift_y = 17
 	stream_type = FLAMER_STREAM_CONE
+	burn_time_mod = 0.8
 
 ///Funny red wide nozzle that can fill entire screens with flames. Admeme only.
 /obj/item/attachable/flamer_nozzle/wide/red
