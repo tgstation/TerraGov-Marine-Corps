@@ -267,7 +267,7 @@ obj/item/alienjar
 
 /obj/structures/win/proc/kaboom()
 	for(var/mob/living/carbon/xenomorph/sister AS in GLOB.alive_xeno_list)
-		explosion(sister, 1, 1, 1, small_animation = TRUE)
+		explosion(get_turf(sister), 1, 1, 1, small_animation = TRUE)
 		sister.gib()
 
 /obj/structures/winxeno
