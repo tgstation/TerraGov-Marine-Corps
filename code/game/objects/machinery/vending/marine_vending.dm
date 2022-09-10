@@ -1476,6 +1476,14 @@
 			/obj/item/ammo_magazine/rifle/type71 = -1,
 			/obj/item/weapon/gun/rifle/alf_machinecarbine = -1,
 			/obj/item/ammo_magazine/rifle/alf_machinecarbine = -1,
+			/obj/item/weapon/gun/rifle/som = -1,
+			/obj/item/ammo_magazine/rifle/som = -1,
+			/obj/item/ammo_magazine/handful/micro_grenade = -1,
+			/obj/item/ammo_magazine/handful/micro_grenade/cluster = -1,
+			/obj/item/ammo_magazine/handful/micro_grenade/smoke_burst = -1,
+			/obj/item/weapon/gun/smg/som = -1,
+			/obj/item/ammo_magazine/smg/som = -1,
+			/obj/item/weapon/gun/shotgun/som = -1,
 		)
 	)
 
