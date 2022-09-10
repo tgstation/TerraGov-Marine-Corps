@@ -1496,7 +1496,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	///Modifier for burn level of attached flamer. Percentage based.
 	var/burn_level_mod = 1
 	///Modifier for burn time of attached flamer. Percentage based.
-	var/burn_time_mod = 1
+	var/burn_time_mod = 0.8
 	///Range modifier of attached flamer. Numerically based.
 	var/range_modifier = 0
 	///Damage multiplier for mobs caught in the initial stream of fire of the attached flamer.
@@ -1532,7 +1532,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "spray flamer nozzle"
 	desc = "This specialized nozzle sprays the flames of an attached flamer in a much more broad way than the standard nozzle. It serves for wide area denial as opposed to offensive directional flaming."
 	icon_state = "flame_wide"
-	range_modifier = -3
+	range_modifier = 0
 	pixel_shift_y = 17
 	stream_type = FLAMER_STREAM_CONE
 
