@@ -1152,6 +1152,17 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
+"dw" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/camera/autoname/mainship,
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/engineering_workshop)
 "dx" = (
 /obj/structure/bed/chair/wood/wings,
 /turf/open/floor/plating/plating_catwalk,
@@ -3304,11 +3315,6 @@
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship,
 /area/mainship/living/numbertwobunks)
-"jx" = (
-/obj/structure/cable,
-/obj/machinery/door/airlock/mainship/ai/glass,
-/turf/open/floor/mainship/mono,
-/area/mainship/command/airoom)
 "jy" = (
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
@@ -7053,17 +7059,6 @@
 /obj/machinery/suit_storage_unit/carbon_unit,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_umbilical)
-"uH" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/camera/autoname/mainship,
-/turf/open/floor/mainship/mono,
-/area/mainship/engineering/engineering_workshop)
 "uI" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
@@ -7313,6 +7308,7 @@
 /area/mainship/command/cic)
 "vw" = (
 /obj/machinery/door/airlock/mainship/ai/glass,
+/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "vx" = (
@@ -7410,9 +7406,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/telecomms)
 "vO" = (
-/obj/machinery/light/mainship,
-/turf/open/floor/mainship/tcomms,
-/area/mainship/command/airoom)
+/obj/machinery/holopad,
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/mainship/command/cic)
 "vP" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -11637,6 +11634,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_umbilical)
 "HL" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/mainship{
+	dir = 4
+	},
 /turf/open/floor/mainship/cargo,
 /area/mainship/command/cic)
 "HM" = (
@@ -11648,7 +11649,9 @@
 /obj/item/storage/pouch/medkit/firstaid,
 /obj/item/tool/taperoll/engineering,
 /obj/machinery/power/apc/mainship,
-/obj/structure/cable,
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "HN" = (
@@ -11798,7 +11801,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "If" = (
-/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/command/cic)
 "Ih" = (
@@ -13883,6 +13885,7 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "NI" = (
@@ -14237,10 +14240,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/starboard_hallway)
 "OE" = (
-/obj/machinery/power/apc/mainship/hardened{
-	dir = 8
-	},
-/obj/structure/cable,
+/obj/machinery/light/mainship,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/airoom)
 "OF" = (
@@ -14806,6 +14806,11 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engineering)
+"Qq" = (
+/obj/structure/cable,
+/obj/machinery/door/airlock/mainship/ai/glass,
+/turf/open/floor/mainship/mono,
+/area/mainship/command/airoom)
 "Qr" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
@@ -15113,6 +15118,13 @@
 /obj/machinery/status_display,
 /turf/closed/wall/mainship,
 /area/mainship/living/grunt_rnr)
+"Rl" = (
+/obj/machinery/power/apc/mainship/hardened{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/mainship/tcomms,
+/area/mainship/command/airoom)
 "Rm" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -17140,6 +17152,7 @@
 /area/mainship/squads/req)
 "WT" = (
 /obj/effect/landmark/start/job/synthetic,
+/obj/structure/cable,
 /turf/open/floor/mainship/cargo,
 /area/mainship/command/cic)
 "WU" = (
@@ -49209,7 +49222,7 @@ OS
 OS
 OS
 OS
-uH
+dw
 yx
 zl
 OQ
@@ -49464,7 +49477,7 @@ SA
 OS
 wZ
 xI
-vO
+OE
 OS
 zs
 yx
@@ -49722,7 +49735,7 @@ OS
 xa
 xJ
 vM
-jx
+Qq
 dl
 yx
 zn
@@ -49969,7 +49982,7 @@ GA
 Cr
 xD
 mI
-Qz
+vO
 NH
 xD
 SA
@@ -49978,7 +49991,7 @@ FM
 OS
 xb
 XC
-OE
+Rl
 OS
 zs
 yx
