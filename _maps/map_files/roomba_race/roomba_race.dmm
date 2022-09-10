@@ -247,6 +247,11 @@
 	},
 /turf/open/space/basic,
 /area/centcom/roomba_race/race_area)
+"Fb" = (
+/obj/structure/table/reinforced,
+/obj/effect/landmark/dropship_console_spawn_lz1,
+/turf/open/floor/plating/ground/concrete,
+/area/centcom/roomba_race)
 "GU" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/centcom/roomba_race/race_area)
@@ -3249,7 +3254,7 @@ pg
 pg
 pg
 pg
-pg
+Fb
 iP
 "}
 (34,1,1) = {"
