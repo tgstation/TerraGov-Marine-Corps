@@ -436,6 +436,14 @@
 		/obj/item/attachable/motiondetector,
 	)
 
+/obj/item/weapon/gun/smg/som/veteran
+	default_ammo_type = /obj/item/ammo_magazine/smg/som/ap
+	starting_attachment_types = list(
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/reddot,
+	)
+
 /obj/item/weapon/gun/smg/som/support
 	starting_attachment_types = list(
 		/obj/item/attachable/verticalgrip,
