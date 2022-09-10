@@ -76,6 +76,8 @@
 		/obj/item/roller,
 		/obj/item/clothing/glasses/hud/health,
 		/obj/item/tweezers,
+		/obj/item/defibrillator,
+		/obj/item/whistle
 	)
 
 /obj/item/armor_module/storage/uniform/surgery_webbing
