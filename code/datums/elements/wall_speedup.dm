@@ -5,7 +5,7 @@
 	///The amount of speed gained by being inbetween walls
 	var/wall_speed_amount = 1
 	///Half of all directions
-	var/list/halfdirs = list(NORTH, NORTHEAST, EAST, SOUTHEAST)
+	var/static/list/halfdirs = list(NORTH, NORTHEAST, EAST, SOUTHEAST)
 
 /datum/element/wall_speedup/Attach(datum/target, wall_speed_amount)
 	if(!isliving(target))

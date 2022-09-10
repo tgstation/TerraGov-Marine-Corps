@@ -671,16 +671,19 @@
 	full_name = "Widow : Burrow"
 	description = "Burrow into the ground"
 	keybind_signal = COMSIG_XENOABILITY_BURROW
+
 /datum/keybinding/xeno/web_spit
 	name = "Web Spit"
 	full_name = "Widow : Web Spit"
 	description = "Spits web that has different effects depending on where it hits"
 	keybind_signal = COMSIG_XENOABILITY_WEB_SPIT
+
 /datum/keybinding/xeno/leash_ball
 	name = "Leash Ball"
 	full_name = "Widow : Leash Ball"
 	description = "Spit a huge ball of web that snares groups of marines"
 	keybind_signal = COMSIG_XENOABILITY_LEASH_BALL
+
 /datum/keybinding/xeno/create_spiderling
 	name = "Birth Spiderling"
 	full_name = "Widow : Birth Spiderling"
