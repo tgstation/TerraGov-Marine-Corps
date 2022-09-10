@@ -76,7 +76,6 @@
 		/obj/item/roller,
 		/obj/item/clothing/glasses/hud/health,
 		/obj/item/tweezers,
-		/obj/item/defibrillator,
 		/obj/item/whistle
 	)
 
