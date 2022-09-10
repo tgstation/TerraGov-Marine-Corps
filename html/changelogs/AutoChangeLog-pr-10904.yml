@@ -1,0 +1,8 @@
+author: "lbnesquik"
+delete-after: True
+changes: 
+  - qol: "Improved Droids and UV's examine to show more accurate ammo counts"
+  - qol: "improved UV's crates names to make their names more useful"
+  - qol: "Added caliber information to UV's, relative to their current weapon type."
+  - bugfix: "Made UV ammo work closer to regular magazines. No more ammo wasting."
+  - bugfix: "Couple of typos related to UV ammo"
