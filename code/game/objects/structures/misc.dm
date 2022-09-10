@@ -280,7 +280,7 @@ obj/item/alienjar
 		return
 	INVOKE_ASYNC(src, .proc/kaboom)
 
-/obj/structures/win/kaboom()
+/obj/structures/win/winxeno/kaboom()
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		explosion(get_turf(human), 1, 1, 1, small_animation = TRUE)
 		human.gib()
