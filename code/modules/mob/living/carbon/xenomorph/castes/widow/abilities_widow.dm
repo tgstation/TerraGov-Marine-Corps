@@ -189,8 +189,11 @@
 	/// We store the spiderling that we want to posses in order to make the other spiderlings follow it
 	current_controlling_spiderling = new(get_turf(owner), owner)
 	SEND_SIGNAL(owner, COMSIG_ESCORTED_ATOM_CHANGING, current_controlling_spiderling)
+	var/datum/action/xeno_action/return_to_mother/new_action = new
+	new_action.mother = owner
+	new_action.give_action(current_controlling_spiderling)
 	owner.mind.transfer_to(current_controlling_spiderling)
-	owner.moveToNullspace()
+	new /obj/structure/xeno/widow_pod(get_turf(owner), owner)
 	/// We want to access the spiderlings list and therefore have this
 	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = owner.actions_by_path[/datum/action/xeno_action/create_spiderling]
 
@@ -206,16 +209,57 @@
 /// This happens whenever the spiderling that we control dies and there are spiderlings left to control
 /datum/action/xeno_action/spider_swarm/proc/switch_to_next_spiderling(mob/living/carbon/xenomorph/spiderling/spiderling)
 	SEND_SIGNAL(current_controlling_spiderling, COMSIG_ESCORTED_ATOM_CHANGING, spiderling)
+	var/datum/action/xeno_action/return_to_mother/new_action = new
+	new_action.mother = owner
+	new_action.give_action(spiderling)
 	current_controlling_spiderling.mind.transfer_to(spiderling)
 	current_controlling_spiderling = spiderling
 
 /// Put the player back in widow
 /datum/action/xeno_action/spider_swarm/proc/switch_to_mother()
-	owner.forceMove(get_turf(current_controlling_spiderling))
 	current_controlling_spiderling.mind.transfer_to(owner)
 	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = owner.actions_by_path[/datum/action/xeno_action/create_spiderling]
 	for(var/mob/living/carbon/xenomorph/spiderling/spiderlings_to_kill AS in create_spiderling_action.spiderlings)
 		spiderlings_to_kill.death(FALSE, "", TRUE)
+
+/// This ability is being given to spiderlings so we can always return to widow
+/datum/action/xeno_action/return_to_mother
+	name = "Return to Widow"
+	ability_name = "Return to Widow"
+	mechanics_text = " Return to Widow"
+	action_icon_state = "spider_swarm"
+	plasma_cost = 0
+	// Ref to widow
+	var/mob/living/carbon/xenomorph/widow/mother
+
+/datum/action/xeno_action/return_to_mother/action_activate()
+	. = ..()
+	owner.mind.transfer_to(mother)
+	qdel(src)
+
+///Pod for spiderswarm that widow goes into
+/obj/structure/xeno/widow_pod
+	name = "Widow Pod"
+	icon = 'icons/Xeno/king_pod.dmi'
+	icon_state = "widow_pod"
+	desc = " There seems to be something inside of it.. "
+	destroy_sound = "alien_resin_break"
+	max_integrity = 1
+	layer = ABOVE_ALL_MOB_LAYER
+	anchored = TRUE
+	throwpass = FALSE
+	density = TRUE
+	/// The widow thats stored inside
+	var/mob/living/carbon/xenomorph/widow/stored_widow
+
+/obj/structure/xeno/widow_pod/Initialize(mapload, mob/living/carbon/xenomorph/widow/X)
+	. = ..()
+	stored_widow = X
+	stored_widow.forceMove(src)
+
+/obj/structure/xeno/widow_pod/obj_destruction()
+	. = ..()
+	stored_widow.forceMove(get_turf(src))
 
 // ***************************************
 // *********** Burrow
