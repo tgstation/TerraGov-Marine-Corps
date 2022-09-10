@@ -263,8 +263,11 @@ obj/item/alienjar
 	SIGNAL_HANDLER
 	if(!istype(mover, /obj/machinery/roomba))
 		return
+	INVOKE_ASYNC(src, .proc/kaboom)
+
+/obj/structures/win/proc/kaboom()
 	for(var/mob/living/carbon/xenomorph/sister AS in GLOB.alive_xeno_list)
-		explosion(get_turf(sister), 1, 1, 1, small_animation = TRUE)
+		explosion(sister, 1, 1, 1, small_animation = TRUE)
 		sister.gib()
 
 /obj/structures/win/winxeno
@@ -275,6 +278,9 @@ obj/item/alienjar
 	SIGNAL_HANDLER
 	if(!istype(mover, /obj/machinery/roomba))
 		return
+	INVOKE_ASYNC(src, .proc/kaboom)
+
+/obj/structures/win/kaboom()
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		explosion(get_turf(human), 1, 1, 1, small_animation = TRUE)
 		human.gib()
