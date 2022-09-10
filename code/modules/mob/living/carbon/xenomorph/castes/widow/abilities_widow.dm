@@ -53,7 +53,7 @@
 	icon_state = "aoe_leash"
 	desc = "Looks very sticky"
 	destroy_sound = "alien_resin_break"
-	max_integrity = 1920
+	max_integrity = 960
 	obj_integrity = 0
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
@@ -75,9 +75,7 @@
 		beams += (beam(victim, "beam_web", 'icons/effects/beam.dmi', INFINITY, INFINITY))
 		leash_victims += victim
 		RegisterSignal(victim, COMSIG_MOVABLE_PRE_MOVE, .proc/check_dist)
-		obj_integrity = obj_integrity + integrity_increase
-		if(obj_integrity > max_integrity)
-			obj_integrity = min(obj_integrity + integrity_increase, max_integrity)
+		obj_integrity = min(obj_integrity + integrity_increase, max_integrity)
 	if(!length(beams))
 		return INITIALIZE_HINT_QDEL
 
