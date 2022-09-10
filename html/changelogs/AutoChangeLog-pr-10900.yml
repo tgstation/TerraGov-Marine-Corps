@@ -1,0 +1,5 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - rscadd: "Added 3 new chemical shells to RR (Smoke/HEAT/CloakSmoke/Tanglefoot). Tanglefoot is req only plasmaloss gas, Smoke/Cloak Smoke are smoke grenades of their respective types, these chemical shells are IFF and do not deal any noticeable damage."
+  - rscadd: "HEAT rounds to RR, these are direct fire shells with no falloff, explosion or armor check. It does a flat 200 damage to whatever it hits."
