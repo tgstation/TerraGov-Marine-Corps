@@ -9,7 +9,6 @@
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "widow"
 
-
 	// *** Melee Attacks *** //
 	melee_damage = 7
 
@@ -35,7 +34,8 @@
 	// *** Defense *** //
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 0, "bio" = 5, "rad" = 5, "fire" = 0, "acid" = 5)
 
-	// *** Ranged Attack *** //
+	// *** Widow Abilities *** //
+	max_spiderlings = 2
 
 	// *** Abilities *** ///
 	actions = list(
@@ -84,7 +84,8 @@
 	// *** Defense *** //
 	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 0, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
 
-	// *** Ranged Attack *** //
+	// *** Widow Abilities *** //
+	max_spiderlings = 3
 
 /datum/xeno_caste/widow/elder
 	upgrade_name = "Elder"
@@ -110,7 +111,8 @@
 	// *** Defense *** //
 	soft_armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = 0, "bio" = 7, "rad" = 7, "fire" = 10, "acid" = 7)
 
-	// *** Ranged Attack *** //
+	// *** Widow Abilities *** //
+	max_spiderlings = 4
 
 /datum/xeno_caste/widow/ancient
 	upgrade_name = "Ancient"
@@ -137,7 +139,8 @@
 	// *** Defense *** //
 	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 0, "bio" = 10, "rad" = 10, "fire" = 15, "acid" = 10)
 
-	// *** Ranged Attack *** //
+	// *** Widow Abilities *** //
+	max_spiderlings = 5
 
 /datum/xeno_caste/widow/primordial
 	upgrade_name = "Primordial"
@@ -160,8 +163,6 @@
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 0, "bio" = 10, "rad" = 10, "fire" = 20, "acid" = 10)
-
-	// *** Ranged Attack *** //
 
 	// *** Abilities *** ///
 	actions = list(

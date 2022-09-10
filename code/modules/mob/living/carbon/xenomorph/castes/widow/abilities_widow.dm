@@ -128,16 +128,14 @@
 	keybind_signal = COMSIG_XENOABILITY_CREATE_SPIDERLING
 	/// List of all our spiderlings
 	var/list/mob/living/carbon/xenomorph/spiderling/spiderlings = list()
-	/// Max amount of spiderligns
-	var/max_spiderlings = 5
 
 /// The action to create spiderlings
 /datum/action/xeno_action/create_spiderling/action_activate()
 	. = ..()
-	if(length(spiderlings) >= max_spiderlings)
+	var/mob/living/carbon/xenomorph/X = owner
+	if(length(spiderlings) >= X.xeno_caste.max_spiderlings)
 		owner.visible_message(span_notice("We have reached the maximum amount of spiderlings"))
 		return fail_activate()
-	var/mob/living/carbon/xenomorph/X = owner
 	if(!do_after(X, 0.5 SECONDS, TRUE, X, BUSY_ICON_DANGER))
 		return fail_activate()
 	/// This creates and stores the spiderling so we can reassign the owner for spider swarm and cap how many spiderlings you can have at once
