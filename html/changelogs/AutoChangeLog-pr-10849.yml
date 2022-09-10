@@ -1,0 +1,4 @@
+author: "QualityVan"
+delete-after: True
+changes: 
+  - balance: "You need 20-30 burn damage on a limb in order for it to be immune to getting chopped off, instead of any at all."
