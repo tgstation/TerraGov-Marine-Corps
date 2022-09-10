@@ -1656,6 +1656,15 @@
 		/obj/item/attachable/reddot,
 	)
 
+/obj/item/weapon/gun/rifle/som/veteran
+	default_ammo_type = /obj/item/ammo_magazine/rifle/som/ap
+	starting_attachment_types = list(
+		/obj/item/weapon/gun/shotgun/micro_grenade,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/reddot,
+	)
+
 /obj/item/weapon/gun/rifle/som/mag_harness
 	starting_attachment_types = list(
 		/obj/item/weapon/gun/shotgun/micro_grenade,
