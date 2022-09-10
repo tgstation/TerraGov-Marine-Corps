@@ -189,6 +189,15 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	keybind_signal = COMSIG_XENOABILITY_DROP_ALL_HUGGER
 	use_state_flags = XACT_USE_LYING
 
+/datum/action/xeno_action/carrier_panic/give_action(mob/living/L)
+	. = ..()
+	RegisterSignal(owner, COMSIG_MOB_DEATH, .proc/action_activate)
+
+/datum/action/xeno_action/carrier_panic/remove_action(mob/living/L)
+	UnregisterSignal(owner, COMSIG_MOB_DEATH)
+	return ..()
+
+
 /datum/action/xeno_action/carrier_panic/can_use_action(silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
@@ -202,7 +211,15 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 /datum/action/xeno_action/carrier_panic/action_activate()
 	var/mob/living/carbon/xenomorph/carrier/X = owner
 
-	X.try_drop_all_huggers()
+	if(!X.huggers)
+		return
+
+	X.visible_message(span_xenowarning("A chittering mass of tiny aliens is trying to escape [X]!"))
+	while(X.huggers > 0)
+		var/obj/item/clothing/mask/facehugger/F = new X.selected_hugger_type(get_turf(X))
+		step_away(F,X,1)
+		addtimer(CALLBACK(F, /obj/item/clothing/mask/facehugger.proc/go_active, TRUE), F.jump_cooldown)
+		X.huggers--
 	succeed_activate(INFINITY) //Consume all remaining plasma
 	add_cooldown()
 
