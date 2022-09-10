@@ -138,7 +138,7 @@
 
 /obj/item/ammo_magazine/smg/som/incendiary
 	name = "\improper V-21 incendiary submachinegun magazine (10x20mm)"
-	desc = "A 10x20mm caseless submachinegun magazine, loaded in armor piercing rounds."
+	desc = "A 10x20mm caseless submachinegun magazine, loaded in incendiary rounds."
 	icon_state = "v21_incend"
 	default_ammo = /datum/ammo/bullet/smg/incendiary
 	icon_state_mini = "mag_smg_green"
