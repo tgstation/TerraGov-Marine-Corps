@@ -181,7 +181,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 // *********** Drop all hugger, panic button
 // ***************************************
 /datum/action/xeno_action/carrier_panic
-	name = "Drop All Facehugger"
+	name = "Drop All Facehuggers"
 	action_icon_state = "carrier_panic"
 	mechanics_text = "Drop all stored huggers in a fit of panic. Uses all remaining plasma!"
 	plasma_cost = 10
