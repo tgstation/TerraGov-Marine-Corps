@@ -71,7 +71,7 @@
 	reload_delay = 0
 
 /obj/item/cell/lasgun/volkite/small
-	name = "\improper high capacity volkite energy cell"
+	name = "\improper compact volkite energy cell"
 	desc = "A specialized compact battery used to power the smallest volkite weaponry."
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "volkite_small"
