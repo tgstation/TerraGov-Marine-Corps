@@ -99,11 +99,10 @@
 //For supply beacon purposes
 /obj/vehicle/unmanned/droid/proc/activate_antenna(datum/source, mob/user)
 	SIGNAL_HANDLER
-	playsound(src, 'sound/effects/pred_cloakoff.ogg', 60, TRUE)
 	var/turf/location = get_turf(src)
 
-	for(var/mob/fake_user AS in client_mobs_in_contents)
-		user = fake_user
+	for(var/mob/temp_user AS in client_mobs_in_contents)
+		user = temp_user
 
 	if(beacon_datum)
 		UnregisterSignal(beacon_datum, COMSIG_PARENT_QDELETING)
