@@ -96,7 +96,7 @@
 	alpha = initial(alpha)
 	TIMER_COOLDOWN_START(src, COOLDOWN_DRONE_CLOAK, 12 SECONDS)
 
-///For supply beacon purposes
+///Proc used for the supply link feature, activate to appear as an antenna
 /obj/vehicle/unmanned/droid/proc/activate_antenna(datum/source, mob/user)
 	SIGNAL_HANDLER
 	var/turf/location = get_turf(src)
