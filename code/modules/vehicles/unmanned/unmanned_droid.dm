@@ -114,7 +114,7 @@
 		return FALSE
 	beacon_datum = new /datum/supply_beacon(user.name, src.loc, user.faction, 4 MINUTES)
 	RegisterSignal(beacon_datum, COMSIG_PARENT_QDELETING, .proc/clean_beacon_datum)
-	user.show_message(span_notice("The [src] beeps and states, \"Your current coordinates were registered by the supply console. LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(src)]\""))
+	user.show_message(span_notice("The [src] beeps and states, \"Your current coordinates were registered by the supply console. LONGITUDE [loc.x]. LATITUDE [loc.y]. Area ID: [get_area(src)]\""))
 
 /obj/vehicle/unmanned/droid/proc/clean_beacon_datum()
 	SIGNAL_HANDLER
