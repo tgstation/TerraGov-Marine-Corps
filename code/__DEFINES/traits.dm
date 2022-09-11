@@ -109,6 +109,7 @@
 #define TRAIT_FOOD_GRILLED "food_grilled"
 
 //mob traits
+#define TRAIT_BURROWED "burrowed" // Burrows the xeno
 #define TRAIT_KNOCKEDOUT "knockedout" //Forces the user to stay unconscious.
 #define TRAIT_INCAPACITATED "incapacitated"
 #define TRAIT_FLOORED "floored" //User is forced to the ground on a prone position.

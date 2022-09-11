@@ -386,7 +386,3 @@
 	var/is_a_rouny = FALSE
 
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)
-
-	///Var to see if we are burrowed
-	var/burrowed = FALSE
-

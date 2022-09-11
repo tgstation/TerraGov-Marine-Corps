@@ -414,21 +414,19 @@
 /// Burrow code for xenomorphs
 /mob/living/carbon/xenomorph/proc/xeno_burrow()
 	SIGNAL_HANDLER
-	if(!(src.xeno_caste.can_flags & CASTE_CAN_BURROW))
-		return
-	if(!burrowed)
+	if(!HAS_TRAIT(src, TRAIT_BURROWED))
 		to_chat(src, span_xenowarning("We start burrowing into the ground"))
 		INVOKE_ASYNC(src, .proc/xeno_burrow_doafter, src)
 		return
-	if(burrowed)
+	if(HAS_TRAIT(src, TRAIT_BURROWED))
 		UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
 		fire_resist_modifier += BURROW_FIRE_RESIST_MODIFIER
 		icon_state = initial(icon_state)
 		mouse_opacity = initial(mouse_opacity)
 		density = TRUE
 		throwpass = FALSE
-		burrowed = FALSE
 		canmove = TRUE
+		REMOVE_TRAIT(src, TRAIT_BURROWED, src)
 		REMOVE_TRAIT(src, TRAIT_HANDS_BLOCKED, src)
 
 /// Called by xeno_burrow only when burrowing
@@ -440,7 +438,7 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	density = FALSE
 	throwpass = TRUE
-	burrowed = TRUE
+	ADD_TRAIT(src, TRAIT_BURROWED, src)
 	icon_state = "[xeno_caste.caste_name] Burrowed" // We set it here so we dont wait for life
 	wound_overlay.icon_state = "none" // We set it here so we dont wait for life
 	// Here we prevent the xeno from moving or attacking or using abilities untill they unburrow by clicking the ability

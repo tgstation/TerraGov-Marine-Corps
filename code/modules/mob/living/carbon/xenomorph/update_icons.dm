@@ -20,7 +20,7 @@
 		return
 	if(stat == DEAD)
 		icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Dead"
-	else if(burrowed)
+	else if(HAS_TRAIT(src, TRAIT_BURROWED))
 		icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Burrowed"
 	else if(lying_angle)
 		if((resting || IsSleeping()) && (!IsParalyzed() && !IsUnconscious() && health > 0))
@@ -90,7 +90,7 @@
 	if(!on_fire)
 		fire_overlay.icon_state = ""
 		return
-	if(burrowed)
+	if(HAS_TRAIT(src, TRAIT_BURROWED))
 		fire_overlay.icon_state = ""
 		return
 	fire_overlay.layer = layer + 0.4
@@ -107,7 +107,7 @@
 		return
 	var/health_thresholds
 	wound_overlay.layer = layer + 0.3
-	if(HAS_TRAIT(src, TRAIT_MOB_ICON_UPDATE_BLOCKED) || burrowed)
+	if(HAS_TRAIT(src, TRAIT_MOB_ICON_UPDATE_BLOCKED) && HAS_TRAIT(src, TRAIT_BURROWED))
 		wound_overlay.icon_state = "none"
 		return
 	if(health > health_threshold_crit)

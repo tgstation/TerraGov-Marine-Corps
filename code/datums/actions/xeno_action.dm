@@ -94,7 +94,7 @@
 			X.balloon_alert(X, "Cannot in agility mode")
 		return FALSE
 
-	if(!(flags_to_check & XACT_USE_BURROWED) && X.burrowed)
+	if(!(flags_to_check & XACT_USE_BURROWED) && HAS_TRAIT(X, TRAIT_BURROWED))
 		if(!silent)
 			X.balloon_alert(X, "Cannot while burrowed")
 		return FALSE
