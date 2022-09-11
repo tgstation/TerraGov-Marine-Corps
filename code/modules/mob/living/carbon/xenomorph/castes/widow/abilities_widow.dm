@@ -146,6 +146,8 @@
 /datum/action/xeno_action/create_spiderling/proc/add_spiderling(mob/living/carbon/xenomorph/spiderling/new_spiderling)
 	RegisterSignal(new_spiderling, COMSIG_MOB_DEATH, .proc/remove_spiderling)
 	spiderlings += new_spiderling
+	new_spiderling.pixel_x = rand(-8, 8)
+	new_spiderling.pixel_y = rand(-8, 8)
 
 /// Removes spiderling from spiderling list and unregisters death signal
 /datum/action/xeno_action/create_spiderling/proc/remove_spiderling(datum/source)
@@ -241,7 +243,7 @@
 	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = mother.actions_by_path[/datum/action/xeno_action/create_spiderling]
 	create_spiderling_action.spiderlings -= owner
 	spider_swarm_action.switch_to_mother()
-	qdel(owner)
+	owner.death(FALSE, "", TRUE)
 
 ///Pod for spiderswarm that widow goes into
 /obj/structure/xeno/widow_pod
