@@ -177,11 +177,11 @@
 		to_chat(user, span_notice("You loosen the strap of [src] around your hand!"))
 
 /obj/item/weapon/shield/riot/marine/som
-	name = "\improper S-144 defensive shield"
-	desc = "A robust, heavy shield designed to be shot instead of the person holding it. This one has a SOM flag emblazoned on the front. Alt click to tighten the strap."
+	name = "\improper S-144 boarding shield"
+	desc = "A robust, heavy shield designed to be shot instead of the person holding it. Commonly employed by the SOM during boarding actions and other close quarter combat scenarios. This one has a SOM flag emblazoned on the front. Alt click to tighten the strap."
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "som_shield"
-	soft_armor = list("melee" = 35, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 15, "bio" = 50, "rad" = 0, "fire" = 0, "acid" = 35)
+	soft_armor = list("melee" = 35, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 30, "bio" = 50, "rad" = 0, "fire" = 0, "acid" = 15)
 
 /obj/item/weapon/shield/energy
 	name = "energy combat shield"
