@@ -208,7 +208,6 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	if(QDELETED(goal_node) || QDELETED(current_node))
 		return
 	var/goal_nodes_serialized = rustg_generate_path_astar("[current_node.unique_id]", "[goal_node.unique_id]")
-	message_admins("Generate nodes path: [goal_nodes_serialized]")
 	if(rustg_json_is_valid(goal_nodes_serialized))
 		goal_nodes = json_decode(goal_nodes_serialized)
 	else
