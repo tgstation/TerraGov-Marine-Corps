@@ -108,7 +108,7 @@
 		QDEL_NULL(beacon_datum)
 		to_chat(user, (span_warning("The [src] beeps and states, \"Your last position is no longer accessible by the supply console")))
 		return
-	if(!is_ground_level(src.z))
+	if(!is_ground_level(z))
 		to_chat(user, span_warning("You have to be on the planet to use this or it won't transmit."))
 		return FALSE
 	beacon_datum = new /datum/supply_beacon(user.name, src.loc, user.faction, 4 MINUTES)
