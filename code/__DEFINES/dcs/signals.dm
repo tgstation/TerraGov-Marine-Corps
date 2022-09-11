@@ -81,6 +81,9 @@
 #define COMSIG_AUTOFIRE_SHOT "autofire_shot"
 	#define COMPONENT_AUTOFIRE_SHOT_SUCCESS (1<<0)
 #define ELEMENT_CLOSE_SHUTTER_LINKED "close_shutter_linked"
+#define COMSIG_HEALTHSCAN_AUTOSCAN_STARTED "healthscan_autoscan_started"
+#define COMSIG_HEALTHSCAN_AUTOSCAN_STOPPED "healthscan_autoscan_stopped"
+
 
 // /datum/limb signals
 #define COMSIG_LIMB_DESTROYED "limb_destroyed"

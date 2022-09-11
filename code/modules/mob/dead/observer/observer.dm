@@ -41,7 +41,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	///A weakref to the original corpse of the observer
 	var/datum/weakref/can_reenter_corpse
 	///Internal health scanner that ghosts can use via the "Toggle Health Scanner" verb in the ghost tab.
-	var/obj/item/healthanalyzer/ghost/healthscanner
+	var/datum/component/healthscan/healthscan
 	var/started_as_observer //This variable is set to 1 when you enter the game as an observer.
 							//If you died in the game and are a ghsot - this will remain as null.
 							//Note that this is not a reliable way to determine if admins started as observers, since they change mobs a lot.
@@ -75,7 +75,9 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	updateallghostimages()
 
-	healthscanner = new()
+	healthscan = AddComponent(/datum/component/healthscan)
+	healthscan.healthscan_flags = HEALTHSCAN_AUTOUPDATE_SELFSCAN
+	healthscan.set_owner(src)
 
 	var/turf/T
 	var/mob/body = loc
@@ -852,16 +854,13 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	observetarget = null
 
 ///Perform a ghost health scan on target mob
-/mob/dead/observer/proc/healthscan(mob/user, mob/living/carbon/target)
+/mob/dead/observer/proc/ghost_health_scan(mob/user, mob/living/carbon/target)
 	SIGNAL_HANDLER
 
-	if(!ghost_healthscan || !iscarbon(target) || isxeno(target) || !healthscanner)
+	if(!ghost_healthscan || !healthscan)
 		return
 
-	if(!healthscanner.current_user)
-		healthscanner.current_user = src
-
-	INVOKE_ASYNC(healthscanner, /obj/item/healthanalyzer.proc/scan_target, target)
+	INVOKE_ASYNC(healthscan, /datum/component/healthscan/.proc/scan_target, target)
 
 
 /mob/dead/observer/verb/dnr()
@@ -926,11 +925,11 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	ghost_healthscan = !ghost_healthscan
 
 	if(ghost_healthscan)
-		RegisterSignal(src, COMSIG_OBSERVER_CLICKON, .proc/healthscan)
-		START_PROCESSING(SSobj, healthscanner)
+		RegisterSignal(src, COMSIG_OBSERVER_CLICKON, .proc/ghost_health_scan)
+		healthscan.start_autoupdate()
 	else
 		UnregisterSignal(src, COMSIG_OBSERVER_CLICKON)
-		STOP_PROCESSING(SSobj, healthscanner)
+		healthscan.stop_autoupdate()
 
 /mob/dead/observer/reset_perspective(atom/A)
 	clean_observetarget()

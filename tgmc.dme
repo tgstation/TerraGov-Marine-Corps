@@ -332,6 +332,7 @@
 #include "code\datums\components\footstep.dm"
 #include "code\datums\components\grillable.dm"
 #include "code\datums\components\harvester.dm"
+#include "code\datums\components\healthscan.dm"
 #include "code\datums\components\largeobjecttransparency.dm"
 #include "code\datums\components\mobile_power.dm"
 #include "code\datums\components\orbiter.dm"

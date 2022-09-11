@@ -67,21 +67,31 @@ REAGENT SCANNER
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 5
 	throw_range = 10
+	var/datum/component/healthscan/healthscan
 	///Skill required to bypass the fumble time.
 	var/skill_threshold = SKILL_MEDICAL_PRACTICED
-	///Skill required to have the scanner auto refresh
-	var/upper_skill_threshold = SKILL_MEDICAL_PRACTICED
-	///Current mob being tracked by the scanner
-	var/mob/living/carbon/patient
-	///Current user of the scanner
-	var/mob/living/carbon/current_user
-	///Distance the current_user can be away from the patient and still get health data.
-	var/track_distance = 3
+
+/obj/item/healthanalyzer/Initialize()
+	. = ..()
+	setup_healthscan_component()
+	 // We always want a healthscan component otherwise things get fucky.
 
 /obj/item/healthanalyzer/Destroy()
 	. = ..()
-	patient = null
-	current_user = null
+	qdel(healthscan)
+	healthscan = null
+
+/obj/item/healthanalyzer/process()
+	if(get_turf(src) != get_turf(healthscan.owner))
+		healthscan.stop_autoupdate()
+		healthscan.reset_owner()
+		return
+
+/obj/item/healthanalyzer/pickup(mob/user)
+	. = ..()
+	if(user != healthscan.owner)
+		healthscan.stop_autoupdate()
+		healthscan.set_owner(user)
 
 /obj/item/healthanalyzer/attack(mob/living/carbon/M, mob/living/user)
 	. = ..()
@@ -97,198 +107,34 @@ REAGENT SCANNER
 		to_chat(user, span_warning("[src] can't make sense of this creature!"))
 		return
 	to_chat(user, span_notice("[user] has analyzed [M]'s vitals."))
-	current_user = user
-	scan_target(M)
-	if(user.skills.getRating("medical") < upper_skill_threshold)
-		return
+	healthscan.scan_target(M)
+
+/// Setup for the healthscan component
+/obj/item/healthanalyzer/proc/setup_healthscan_component()
+	SIGNAL_HANDLER
+	if(healthscan)
+		UnregisterSignal(healthscan, COMSIG_HEALTHSCAN_AUTOSCAN_STARTED)
+		UnregisterSignal(healthscan, COMSIG_HEALTHSCAN_AUTOSCAN_STOPPED)
+		UnregisterSignal(healthscan, COMSIG_COMPONENT_REMOVING)
+		qdel(healthscan)
+		healthscan = null
+	healthscan = AddComponent(/datum/component/healthscan)
+	RegisterSignal(healthscan, COMSIG_HEALTHSCAN_AUTOSCAN_STARTED, .proc/start_autoupdate)
+	RegisterSignal(healthscan, COMSIG_HEALTHSCAN_AUTOSCAN_STOPPED, .proc/stop_autoupdate)
+	RegisterSignal(healthscan, COMSIG_COMPONENT_REMOVING, .proc/setup_healthscan_component)
+
+/obj/item/healthanalyzer/proc/start_autoupdate()
+	SIGNAL_HANDLER
 	START_PROCESSING(SSobj, src)
 
-/obj/item/healthanalyzer/proc/scan_target(mob/living/carbon/target)
-	if(!target || !iscarbon(target) || isxeno(target))
-		return
-	set_patient(target)
-	ui_interact(current_user)
-	update_static_data(current_user)
-
-/obj/item/healthanalyzer/ui_state(mob/user)
-	return GLOB.not_incapacitated_state
-
-/// Sets the target to scan. FALSE = patient is null, TRUE = patient exists
-/obj/item/healthanalyzer/proc/set_patient(mob/living/carbon/target)
-
-	reset_patient()
-	patient = target
-	RegisterSignal(patient, COMSIG_PARENT_QDELETING, .proc/on_patient_qdel) // Recursive call to clear patient ref
-
-/// Resets the target for the health analyzer
-/obj/item/healthanalyzer/proc/reset_patient(datum/source)
-
-	if(!patient)
-		return
-
-	UnregisterSignal(patient, COMSIG_PARENT_QDELETING)
-	patient = null
-
-/obj/item/healthanalyzer/proc/on_patient_qdel()
+/obj/item/healthanalyzer/proc/stop_autoupdate()
 	SIGNAL_HANDLER
-
-	reset_patient()
-	SStgui.close_uis(src)
-
-
-/obj/item/healthanalyzer/process()
-	if(!patient || get_turf(src) != get_turf(current_user) || get_dist(get_turf(current_user), get_turf(patient)) > track_distance || patient == current_user)
-		STOP_PROCESSING(SSobj, src)
-		reset_patient()
-		current_user = null
-		return
-	update_static_data(current_user)
-
-/obj/item/healthanalyzer/removed_from_inventory(mob/user)
-	. = ..()
-	if(get_turf(src) == get_turf(user)) //If you drop it or it enters a bag on the user.
-		return
 	STOP_PROCESSING(SSobj, src)
-	reset_patient()
-	current_user = null
-
-/obj/item/healthanalyzer/ui_interact(mob/user, datum/tgui/ui)
-	. = ..()
-	ui = SStgui.try_update_ui(user, src, ui)
-	if(!ui)
-		ui = new(user, src, "MedScanner", "Medical Scanner")
-		ui.open()
-
-/obj/item/healthanalyzer/ui_static_data(mob/user)
-	var/list/data = list(
-		"patient" = patient.name,
-		"dead" = (patient.stat == DEAD || HAS_TRAIT(patient, TRAIT_FAKEDEATH)),
-		"health" = patient.health,
-		"total_brute" = round(patient.getBruteLoss()),
-		"total_burn" = round(patient.getFireLoss()),
-		"toxin" = round(patient.getToxLoss()),
-		"oxy" = round(patient.getOxyLoss()),
-		"clone" = round(patient.getCloneLoss()),
-
-		"revivable" = patient.getBruteLoss() + patient.getFireLoss() + patient.getToxLoss() + patient.getOxyLoss() + patient.getCloneLoss() <= 200,
-
-		"blood_type" = patient.blood_type,
-		"blood_amount" = patient.blood_volume,
-
-		"hugged" = (locate(/obj/item/alien_embryo) in patient)
-	)
-	data["has_unknown_chemicals"] = FALSE
-	var/list/chemicals_lists = list()
-	for(var/datum/reagent/reagent AS in patient.reagents.reagent_list)
-		if(!reagent.scannable)
-			data["has_unknown_chemicals"] = TRUE
-			continue
-		chemicals_lists["[reagent.name]"] = list(
-			"name" = reagent.name,
-			"amount" = round(reagent.volume, 0.1),
-			"od" = reagent.overdosed,
-			"dangerous" = reagent.overdosed || istype(reagent, /datum/reagent/toxin)
-		)
-	data["has_chemicals"] = length(patient.reagents.reagent_list)
-	data["chemicals_lists"] = chemicals_lists
-
-	var/list/limb_data_lists = list()
-	if(ishuman(patient))
-		var/mob/living/carbon/human/human_patient = patient
-		var/infection_message
-		var/infected = 0
-		var/internal_bleeding
-
-		var/unknown_implants = 0
-		for(var/datum/limb/limb AS in human_patient.limbs)
-			if(!internal_bleeding)
-				for(var/datum/wound/wound in limb.wounds)
-					if(!istype(wound, /datum/wound/internal_bleeding))
-						continue
-					internal_bleeding = TRUE
-					break
-			if(infected < 2 && limb.limb_status & LIMB_NECROTIZED)
-				infection_message = "Subject's [limb.display_name] has necrotized. Surgery required."
-				infected = 2
-			if(infected < 1 && limb.germ_level > INFECTION_LEVEL_ONE)
-				infection_message = "Infection detected in subject's [limb.display_name]. Antibiotics recommended."
-				infected = 1
-
-			if(limb.hidden)
-				unknown_implants++
-			var/implant = FALSE
-			if(length(limb.implants))
-				for(var/I in limb.implants)
-					if(is_type_in_list(I, GLOB.known_implants))
-						continue
-					unknown_implants++
-					implant = TRUE
-
-			if(!limb.brute_dam && !limb.burn_dam && !CHECK_BITFIELD(limb.limb_status, LIMB_DESTROYED) && !CHECK_BITFIELD(limb.limb_status, LIMB_BROKEN) && !CHECK_BITFIELD(limb.limb_status, LIMB_BLEEDING) && !implant)
-				continue
-			var/list/current_list = list(
-				"name" = limb.display_name,
-				"brute" = round(limb.brute_dam),
-				"burn" = round(limb.burn_dam),
-				"bandaged" = limb.is_bandaged(),
-				"salved" = limb.is_salved(),
-				"missing" = CHECK_BITFIELD(limb.limb_status, LIMB_DESTROYED),
-				"limb_status" = null,
-				"bleeding" = CHECK_BITFIELD(limb.limb_status, LIMB_BLEEDING),
-				"open_incision" = limb.surgery_open_stage,
-				"infected" = infected,
-				"implant" = implant
-			)
-			var/limb_status = ""
-			if(CHECK_BITFIELD(limb.limb_status, LIMB_BROKEN) && !CHECK_BITFIELD(limb.limb_status, LIMB_STABILIZED) && !CHECK_BITFIELD(limb.limb_status, LIMB_SPLINTED))
-				limb_status = "Fracture"
-			else if(CHECK_BITFIELD(limb.limb_status, LIMB_STABILIZED))
-				limb_status = "Stabilized"
-			else if(CHECK_BITFIELD(limb.limb_status, LIMB_SPLINTED))
-				limb_status = "Splinted"
-			current_list["limb_status"] = limb_status
-			limb_data_lists["[limb.name]"] = current_list
-		data["limb_data_lists"] = limb_data_lists
-		data["limbs_damaged"] = length(limb_data_lists)
-		data["internal_bleeding"] = internal_bleeding
-		data["infection"] = infection_message
-		data["body_temperature"] = "[round(human_patient.bodytemperature*1.8-459.67, 0.1)] degrees F ([round(human_patient.bodytemperature-T0C, 0.1)] degrees C)"
-		data["pulse"] = "[human_patient.get_pulse(GETPULSE_TOOL)] bpm"
-		data["implants"] = unknown_implants
-		var/damaged_organs = list()
-		for(var/datum/internal_organ/organ AS in human_patient.internal_organs)
-			if(organ.organ_status == ORGAN_HEALTHY)
-				continue
-			var/current_organ = list(
-				"name" = organ.name,
-				"status" = organ.organ_status == ORGAN_BRUISED ? "Bruised" : "Broken",
-				"damage" = organ.damage
-			)
-			damaged_organs += list(current_organ)
-		data["damaged_organs"] = damaged_organs
-
-	if(patient.has_brain() && patient.stat != DEAD && ishuman(patient))
-		if(!patient.key)
-			data["ssd"] = "No soul detected." // they ghosted
-		else if(!patient.client)
-			data["ssd"] = "SSD detected." // SSD
-
-	return data
 
 /obj/item/healthanalyzer/integrated
 	name = "\improper HF2 integrated health analyzer"
 	desc = "A body scanner able to distinguish vital signs of the subject. This model has been integrated into another object, and is simpler to use."
 	skill_threshold = SKILL_MEDICAL_UNTRAINED
-
-/obj/item/healthanalyzer/ghost
-	name = "\improper Ghost health analyzer"
-	skill_threshold = SKILL_MEDICAL_UNTRAINED
-
-/obj/item/healthanalyzer/ghost/process()
-	update_static_data(current_user)
-
-/obj/item/healthanalyzer/ghost/ui_state(mob/user)
-	return GLOB.observer_state
 
 /obj/item/analyzer
 	desc = "A hand-held environmental scanner which reports current gas levels."

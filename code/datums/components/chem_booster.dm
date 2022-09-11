@@ -34,7 +34,7 @@
 		/datum/action/suit_autodoc/scan = .proc/scan_user
 	)
 	///Instant analyzer for the chemsuit
-	var/obj/item/healthanalyzer/integrated/analyzer
+	var/datum/component/healthscan/healthscan
 	///Determines whether the suit is on
 	var/boost_on = FALSE
 	///Stores the current effect strength
@@ -89,7 +89,8 @@
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 	update_boost(boost_tier1)
-	analyzer = new
+	healthscan = AddComponent(/datum/component/healthscan, NONE)
+	healthscan.healthscan_flags = NONE
 	meds_beaker = new
 	setup_reagent_info()
 	var/list/new_actions = list()
@@ -102,7 +103,7 @@
 /datum/component/chem_booster/Destroy(force, silent)
 	for(var/action in component_actions)
 		QDEL_NULL(action)
-	QDEL_NULL(analyzer)
+	QDEL_NULL(healthscan)
 	QDEL_NULL(meds_beaker)
 	wearer = null
 	return ..()
@@ -163,6 +164,8 @@
 
 	wearer.overlays -= resource_overlay
 	wearer = null
+	healthscan.reset_target()
+	healthscan.reset_owner()
 
 ///Sets up actions and vars when the suit is equipped
 /datum/component/chem_booster/proc/equipped(datum/source, mob/equipper, slot)
@@ -175,6 +178,8 @@
 		current_action.give_action(wearer)
 
 	wearer.overlays += resource_overlay
+	healthscan.set_target(wearer)
+	healthscan.set_owner(wearer)
 	update_resource(0)
 
 /datum/component/chem_booster/process()
@@ -306,7 +311,7 @@
 ///Used to scan the person
 /datum/component/chem_booster/proc/scan_user(datum/source)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(analyzer, /obj/item/healthanalyzer/.proc/attack, wearer, wearer, TRUE)
+	INVOKE_ASYNC(healthscan, /datum/component/healthscan/.proc/scan_target)
 
 /datum/component/chem_booster/proc/vali_connect(datum/source)
 	SIGNAL_HANDLER
