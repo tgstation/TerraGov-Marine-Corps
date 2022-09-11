@@ -964,14 +964,7 @@
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	icon_state = "som_helmet"
 	item_state = "som_helmet"
-<<<<<<< HEAD
-	soft_armor = list("melee" = 50, "bullet" = 75, "laser" = 65, "energy" = 65, "bomb" = 55, "bio" = 50, "rad" = 65, "fire" = 70, "acid" = 50)
-
-/obj/item/clothing/head/modular/som/veteran/lorica
-	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/tyr_head/som)
-=======
 	soft_armor = list("melee" = 50, "bullet" = 75, "laser" = 65, "energy" = 65, "bomb" = 50, "bio" = 50, "rad" = 65, "fire" = 60, "acid" = 55)
->>>>>>> c0186aea46bc38d854fbff127babd0b5a5ee0066
 
 /obj/item/clothing/head/modular/som/veteran/lorica
 	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/tyr_head/som)
