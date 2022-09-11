@@ -1,6 +1,0 @@
-author: "maikilangiolo"
-delete-after: True
-changes: 
-  - qol: "SOM seasonals are now in the seasonal vendor"
-  - qol: "seasonals condensed into 4 guns for more choice and faster rotation"
-  - rscadd: "the old V10 shotgun made his way into the seasonals"

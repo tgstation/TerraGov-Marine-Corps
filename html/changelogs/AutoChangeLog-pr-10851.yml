@@ -1,6 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes: 
-  - balance: "Changed the AOE calculation for the wide flamer nozzle to be more useful"
-  - bugfix: "fixed flamers not igniting tiles with border objects like barricades or windoors in suitable cases"
-  - refactor: "refactored some flamer and cone code"

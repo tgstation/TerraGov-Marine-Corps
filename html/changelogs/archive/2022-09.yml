@@ -55,3 +55,42 @@
   - bugfix: Fixed the valhalla loadout vendor not working
   lbnesquik:
   - bugfix: Prevent xenos from hearing Vox on shipside
+2022-09-11:
+  Lumipharon:
+  - balance: V-21 wielded accuracy reduced slightly, and fuller auto scatter increased
+  - balance: Increased the stagger and slow of V-31 microgrenades slightly, and improved
+      the damage and radius of cluster grenade bomblets
+  - balance: Changed the AOE calculation for the wide flamer nozzle to be more useful
+  - bugfix: fixed flamers not igniting tiles with border objects like barricades or
+      windoors in suitable cases
+  - refactor: refactored some flamer and cone code
+  - balance: Improved GL-54 airburst stagger and slow slightly, removed it entirely
+      from incendiary
+  Pariah919:
+  - rscadd: Added 3 new chemical shells to RR (Smoke/HEAT/CloakSmoke/Tanglefoot).
+      Tanglefoot is req only plasmaloss gas, Smoke/Cloak Smoke are smoke grenades
+      of their respective types, these chemical shells are IFF and do not deal any
+      noticeable damage.
+  - rscadd: HEAT rounds to RR, these are direct fire shells with no falloff, explosion
+      or armor check. It does a flat 200 damage to whatever it hits.
+  QualityVan:
+  - balance: You need 20-30 burn damage on a limb in order for it to be immune to
+      getting chopped off, instead of any at all.
+  - bugfix: Wraith can't banish weeds/resin
+  Xsdew:
+  - imageadd: Once again changed the Sprites of the AR12, AR18, MG42, P14, SMG90,
+      and SH35. Sprites by Kuro.
+  lbnesquik:
+  - qol: Improved Droids and UV's examine to show more accurate ammo counts
+  - qol: improved UV's crates names to make their names more useful
+  - qol: Added caliber information to UV's, relative to their current weapon type.
+  - bugfix: Made UV ammo work closer to regular magazines. No more ammo wasting.
+  - bugfix: Couple of typos related to UV ammo
+  - spellcheck: fixed a typo on the mint protein bars
+  - balance: Lowered Plasma cutter damage
+  maikilangiolo:
+  - qol: SOM seasonals are now in the seasonal vendor
+  - qol: seasonals condensed into 4 guns for more choice and faster rotation
+  - rscadd: the old V10 shotgun made his way into the seasonals
+  mc-oofert:
+  - rscadd: Rangefinder/Tactical Binoculars can now link to multiple mortars
