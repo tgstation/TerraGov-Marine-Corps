@@ -12,6 +12,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		/datum/outfit/quick/tgmc/marine/alf_shocktrooper,
 		/datum/outfit/quick/tgmc/marine/standard_machinegunner,
 		/datum/outfit/quick/tgmc/marine/medium_machinegunner,
+		/datum/outfit/quick/tgmc/marine/pyro,
 		/datum/outfit/quick/tgmc/marine/standard_shotgun,
 		/datum/outfit/quick/tgmc/marine/standard_lasercarbine,
 		/datum/outfit/quick/tgmc/marine/light_carbine,
