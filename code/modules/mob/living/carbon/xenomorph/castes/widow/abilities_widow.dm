@@ -151,7 +151,8 @@
 /datum/action/xeno_action/create_spiderling/proc/remove_spiderling(datum/source)
 	SIGNAL_HANDLER
 	spiderlings -= source
-	var/datum/action/xeno_action/spider_swarm/spider_swarm_action = owner.actions_by_path[/datum/action/xeno_action/spider_swarm]
+	var/mob/living/carbon/xenomorph/widow/X = owner
+	var/datum/action/xeno_action/spider_swarm/spider_swarm_action = X.actions_by_path[/datum/action/xeno_action/spider_swarm]
 	if(!spider_swarm_action)
 		return
 	if(source != spider_swarm_action.current_controlling_spiderling)
@@ -234,8 +235,8 @@
 
 /datum/action/xeno_action/return_to_mother/action_activate()
 	. = ..()
-	owner.mind.transfer_to(mother)
-	qdel(src)
+	var/datum/action/xeno_action/spider_swarm/spider_swarm_action = mother.actions_by_path[/datum/action/xeno_action/spider_swarm]
+	spider_swarm_action.switch_to_mother()
 
 ///Pod for spiderswarm that widow goes into
 /obj/structure/xeno/widow_pod
@@ -252,14 +253,22 @@
 	/// The widow thats stored inside
 	var/mob/living/carbon/xenomorph/widow/stored_widow
 
+/// Here we set and put widow inside of the pod
 /obj/structure/xeno/widow_pod/Initialize(mapload, mob/living/carbon/xenomorph/widow/X)
 	. = ..()
 	stored_widow = X
 	stored_widow.forceMove(src)
+	RegisterSignal(stored_widow, COMSIG_LIVING_DO_RESIST, .proc/take_pod_damage)
 
+/// Here we take out widow from pod
 /obj/structure/xeno/widow_pod/obj_destruction()
-	. = ..()
 	stored_widow.forceMove(get_turf(src))
+	UnregisterSignal(stored_widow, COMSIG_LIVING_DO_RESIST)
+	. = ..()
+
+/// This will be called when widow resists inside of the pod
+/obj/structure/xeno/widow_pod/proc/take_pod_damage()
+	take_damage(max_integrity)
 
 // ***************************************
 // *********** Burrow
