@@ -115,6 +115,7 @@
 	RegisterSignal(beacon_datum, COMSIG_PARENT_QDELETING, .proc/clean_beacon_datum)
 	user.show_message(span_notice("The [src] beeps and states, \"Your current coordinates were registered by the supply console. LONGITUDE [loc.x]. LATITUDE [loc.y]. Area ID: [get_area(src)]\""))
 
+//removes the beacon when we delete the droid
 /obj/vehicle/unmanned/droid/proc/clean_beacon_datum()
 	SIGNAL_HANDLER
 	beacon_datum = null
