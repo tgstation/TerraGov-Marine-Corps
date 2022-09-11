@@ -235,8 +235,13 @@
 
 /datum/action/xeno_action/return_to_mother/action_activate()
 	. = ..()
+	UnregisterSignal(owner, COMSIG_MOB_DEATH)
 	var/datum/action/xeno_action/spider_swarm/spider_swarm_action = mother.actions_by_path[/datum/action/xeno_action/spider_swarm]
+	spider_swarm_action.current_controlling_spiderling = owner
+	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = mother.actions_by_path[/datum/action/xeno_action/create_spiderling]
+	create_spiderling_action.spiderlings -= owner
 	spider_swarm_action.switch_to_mother()
+	qdel(owner)
 
 ///Pod for spiderswarm that widow goes into
 /obj/structure/xeno/widow_pod
