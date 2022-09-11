@@ -10,7 +10,7 @@
 			if ("torso", "chest")
 				return "[ethnicity]_torso_[get_gender_name(gender)]"
 
-			if ("head", "synthetic head")
+			if ("head")
 				return "[ethnicity]_head_[get_gender_name(gender)]"
 
 			if ("groin")
@@ -50,7 +50,7 @@
 			if ("chest")
 				return "[limb_name]_[get_gender_name(gender)]"
 
-			if ("head", "synthetic head", "robotic head")
+			if ("head")
 				return "head_[get_gender_name(gender)]"
 
 			if ("groin")

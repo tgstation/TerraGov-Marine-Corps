@@ -123,11 +123,9 @@
 
 //synthetic head, allowing brain mob inside to talk
 /obj/item/limb/head/synth
-	name = "synthetic head"
 	brain_item_type = null
 	braindeath_on_decap = 0
 
 /obj/item/limb/head/robotic
-	name = "robotic head"
 	brain_item_type = null
 	braindeath_on_decap = 0
