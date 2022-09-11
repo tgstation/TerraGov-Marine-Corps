@@ -567,7 +567,7 @@
 	quantity = 2
 
 	suit_store = /obj/item/weapon/gun/rifle/standard_carbine/engineer
-	back = /obj/item/storage/holster/backholster/rpg/full
+	back = /obj/item/storage/holster/backholster/rpg/low_impact
 
 /datum/outfit/quick/tgmc/engineer/rrengineer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()

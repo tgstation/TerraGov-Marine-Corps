@@ -133,11 +133,10 @@
 	///If there is no single listener, broadcast to everyone in the same z level
 		if(!only_listener)
 			///Play voice for all mobs in the z level
-			for(var/mob/M in GLOB.player_list)
+			var/list/receivers = (GLOB.alive_human_list + GLOB.ai_list + GLOB.observer_list)
+			for(var/mob/M in receivers)
 				if(!isdeaf(M))
-					var/turf/T = get_turf(M)
-					if(T.z == z_level)
-						SEND_SOUND(M, voice)
+					SEND_SOUND(M, voice)
 		else
 			SEND_SOUND(only_listener, voice)
 		return TRUE

@@ -266,6 +266,12 @@
 	recoil_unwielded = 4
 	aim_slowdown = 0.45
 
+/obj/item/weapon/gun/shotgun/pump/standard
+	starting_attachment_types = list(
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/bayonet,
+	)
+
 //-------------------------------------------------------
 //A shotgun, how quaint.
 /obj/item/weapon/gun/shotgun/pump/cmb
@@ -303,6 +309,12 @@
 	recoil_unwielded = 0
 	cock_delay = 12
 	aim_slowdown = 0.4
+
+/obj/item/weapon/gun/shotgun/pump/cmb/mag_harness
+	starting_attachment_types = list(
+		/obj/item/attachable/stock/irremoveable/pal12,
+		/obj/item/attachable/magnetic_harness,
+	)
 
 //------------------------------------------------------
 //A hacky bolt action rifle. in here for the "pump" or bolt working action.
