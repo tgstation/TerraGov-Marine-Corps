@@ -426,6 +426,7 @@
 		density = TRUE
 		throwpass = FALSE
 		canmove = TRUE
+		REMOVE_TRAIT(src, TRAIT_MOB_ICON_UPDATE_BLOCKED, src)
 		REMOVE_TRAIT(src, TRAIT_BURROWED, src)
 		REMOVE_TRAIT(src, TRAIT_HANDS_BLOCKED, src)
 
@@ -438,12 +439,14 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	density = FALSE
 	throwpass = TRUE
-	ADD_TRAIT(src, TRAIT_BURROWED, src)
 	icon_state = "[xeno_caste.caste_name] Burrowed" // We set it here so we dont wait for life
-	wound_overlay.icon_state = "none" // We set it here so we dont wait for life
+	wound_overlay.icon_state = "" // We set it here so we dont wait for life
+	fire_overlay.icon_state = "" // We set it here so we dont wait for life
 	// Here we prevent the xeno from moving or attacking or using abilities untill they unburrow by clicking the ability
 	fire_resist_modifier -= BURROW_FIRE_RESIST_MODIFIER // This makes the xeno immune to fire while burrowed, even if burning beforehand
 	canmove = FALSE
+	ADD_TRAIT(src, TRAIT_MOB_ICON_UPDATE_BLOCKED, src)
+	ADD_TRAIT(src, TRAIT_BURROWED, src)
 	ADD_TRAIT(src, TRAIT_HANDS_BLOCKED, src)
 	// We register for movement so that we unburrow if bombed
 	RegisterSignal(src, COMSIG_MOVABLE_MOVED, .proc/xeno_burrow)
