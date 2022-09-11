@@ -214,7 +214,7 @@
 	else
 		//If we can't inflict the full amount of damage, spread the damage in other ways
 		//How much damage can we actually cause?
-		var/can_inflict = max_damage * CONFIG_GET(number/organ_health_multiplier) - (brute_dam + burn_dam)
+		var/can_inflict = max_damage - (brute_dam + burn_dam)
 		var/remain_brute = brute
 		var/remain_burn = burn
 		if(can_inflict)
@@ -266,7 +266,7 @@
 		if(updating_health)
 			owner.updatehealth()
 		return update_icon()
-	if(CONFIG_GET(flag/limbs_can_break) && brute_dam >= max_damage * LIMB_MAX_DAMAGE_SEVER_RATIO * CONFIG_GET(number/organ_health_multiplier))
+	if(CONFIG_GET(flag/limbs_can_break) && brute_dam >= max_damage * LIMB_MAX_DAMAGE_SEVER_RATIO)
 		droplimb()
 		if(!(owner.species && (owner.species.species_flags & NO_PAIN)))
 			owner.emote("scream")
@@ -382,7 +382,7 @@
 		update_wounds()
 
 	//Bone fractures
-	if(CONFIG_GET(flag/bones_can_break) && brute_dam > min_broken_damage * CONFIG_GET(number/organ_health_multiplier) && !(limb_status & LIMB_ROBOT))
+	if(CONFIG_GET(flag/bones_can_break) && brute_dam > min_broken_damage && !(limb_status & LIMB_ROBOT))
 		fracture()
 
 	//Infections
