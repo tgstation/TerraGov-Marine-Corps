@@ -176,6 +176,8 @@
 	playsound(loc, 'sound/weapons/guns/interact/smartgun_unload.ogg', 25, 1)
 	if(reload_ammo.current_rounds < 1)
 		qdel(reload_ammo)
+	update_icon()
+	hud_set_uav_ammo()
 
 /// Try to equip a turret on the vehicle
 /obj/vehicle/unmanned/proc/equip_turret(obj/item/I, mob/user)
