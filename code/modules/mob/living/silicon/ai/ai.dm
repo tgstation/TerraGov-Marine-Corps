@@ -393,7 +393,6 @@
 /mob/living/silicon/ai/proc/associate_artillery(mortar)
 	if(linked_artillery)
 		UnregisterSignal(linked_artillery, COMSIG_PARENT_QDELETING)
-	if(linked_artillery == mortar)
 		linked_artillery = null
 		return FALSE
 	linked_artillery = mortar
@@ -405,7 +404,7 @@
 	SIGNAL_HANDLER
 	linked_artillery.unset_targeter()
 	linked_artillery = null
-	to_chat(src, span_notice("NOTICE: connection closed with linked mortar."))
+	to_chat(src, span_notice("NOTICE: Connection closed with linked mortar."))
 
 /datum/action/control_vehicle
 	name = "Select vehicle to control"

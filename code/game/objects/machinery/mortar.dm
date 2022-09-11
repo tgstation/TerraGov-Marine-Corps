@@ -239,17 +239,21 @@
 		addtimer(CALLBACK(src, .proc/detonate_shell, T, mortar_shell), travel_time + 45)//This should always be 45 ticks!
 
 	if(istype(I, /obj/item/ai_target_beacon))
-		for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
-			if(!AI)
-				to_chat(user, span_notice("There is no AI to associate with."))
-				return
-			to_chat(user, span_notice("You attach the [I], allowing for remote targeting."))
-			to_chat(AI, span_notice("[src] has been linked to your systems, allowing for remote targeting."))
-			user.transferItemToLoc(I, src)
-			AI.associate_artillery(src)
-			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-			ai_targeter = I
+		if(!GLOB.ai_list)
+			to_chat(user, span_notice("There is no AI to associate with."))
 			return
+		var/mob/living/silicon/ai/AI
+		
+		AI = tgui_input_list(usr, "Which AI would you like to associate this gun with?", null, GLOB.ai_list)
+		if(!AI)
+			return
+		to_chat(user, span_notice("You attach the [I], allowing for remote targeting."))
+		to_chat(AI, span_notice("NOTICE - [src] has been linked to your systems, allowing for remote targeting. Use shift click to set a target."))
+		user.transferItemToLoc(I, src)
+		AI.associate_artillery(src)
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+		ai_targeter = I
+		return
 	if(!istype(I, /obj/item/binoculars/tactical))
 		return
 	var/obj/item/binoculars/tactical/binocs = I
@@ -282,7 +286,7 @@
 
 /obj/machinery/deployable/mortar/proc/unset_targeter()
 	say("Linked AI spotter has relinquished targeting privileges. Ejecting targeting device.")
-	ai_targeter.loc = src.loc
+	ai_targeter.loc = get_turf(src)
 	ai_targeter = null
 	
 

@@ -194,7 +194,12 @@
 	if(!user.linked_artillery)
 		to_chat(user, span_notice("No linked mortar found."))
 		return
-	to_chat(user, span_notice("Remote targeting set by [user]. COORDINATES: X:[x] Y:[y]"))
+	
+	var/area/A = get_area(src)
+	if(istype(A) && A.ceiling >= CEILING_UNDERGROUND)
+		to_chat(user, span_warning("You cannot hit the target. It is probably underground."))
+		return
+	to_chat(user, span_notice("Sending targeting information to [linked_artillery]. COORDINATES: X:[x] Y:[y]"))
 	user.linked_artillery.recieve_target(src,user)
 
 
