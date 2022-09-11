@@ -547,7 +547,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	attachable_allowed = list(
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/mini,
-		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/shoulder_mount,
 	)
 
@@ -622,7 +621,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	general_codex_key = "explosive weapons"
 	attachable_allowed = list(
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
@@ -659,7 +657,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rocket/m57a4/ds, /obj/item/ammo_magazine/rocket/m57a4)
 	aim_slowdown = 2.75
 	attachable_allowed = list(
-		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/shoulder_mount,
 	)
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
@@ -715,7 +712,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	attachable_allowed = list(
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/mini,
-		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/shoulder_mount,
 	)
 
