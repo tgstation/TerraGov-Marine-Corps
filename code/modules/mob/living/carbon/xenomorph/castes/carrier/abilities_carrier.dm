@@ -191,12 +191,16 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 
 /datum/action/xeno_action/carrier_panic/give_action(mob/living/L)
 	. = ..()
-	RegisterSignal(owner, COMSIG_MOB_DEATH, .proc/action_activate)
+	RegisterSignal(owner, COMSIG_MOB_DEATH, .proc/do_activate)
 
 /datum/action/xeno_action/carrier_panic/remove_action(mob/living/L)
 	UnregisterSignal(owner, COMSIG_MOB_DEATH)
 	return ..()
 
+/// Helper proc to allow action acitvation via signal
+/datum/action/xeno_action/carrier_panic/proc/do_activate()
+	SIGNAL_HANDLER
+	action_activate()
 
 /datum/action/xeno_action/carrier_panic/can_use_action(silent = FALSE, override_flags)
 	. = ..()
