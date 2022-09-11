@@ -414,7 +414,7 @@
 		/obj/item/attachable/stock/t84stock,
 		/obj/item/attachable/hydro_cannon,
 		/obj/item/attachable/magnetic_harness,
-		)
+	)
 
 /turf/proc/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
 	//extinguish any flame present
