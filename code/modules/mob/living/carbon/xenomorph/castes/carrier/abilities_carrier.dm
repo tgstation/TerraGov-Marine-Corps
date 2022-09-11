@@ -197,10 +197,10 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	UnregisterSignal(owner, COMSIG_MOB_DEATH)
 	return ..()
 
-/// Helper proc to allow action acitvation via signal
+/// Helper proc for action acitvation via signal
 /datum/action/xeno_action/carrier_panic/proc/do_activate()
 	SIGNAL_HANDLER
-	action_activate()
+	INVOKE_ASYNC(src, .proc/action_activate)
 
 /datum/action/xeno_action/carrier_panic/can_use_action(silent = FALSE, override_flags)
 	. = ..()
@@ -213,17 +213,17 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 		return FALSE
 
 /datum/action/xeno_action/carrier_panic/action_activate()
-	var/mob/living/carbon/xenomorph/carrier/X = owner
+	var/mob/living/carbon/xenomorph/carrier/xeno_carrier = owner
 
-	if(!X.huggers)
+	if(!xeno_carrier.huggers)
 		return
 
-	X.visible_message(span_xenowarning("A chittering mass of tiny aliens is trying to escape [X]!"))
-	while(X.huggers > 0)
-		var/obj/item/clothing/mask/facehugger/F = new X.selected_hugger_type(get_turf(X))
-		step_away(F,X,1)
-		addtimer(CALLBACK(F, /obj/item/clothing/mask/facehugger.proc/go_active, TRUE), F.jump_cooldown)
-		X.huggers--
+	xeno_carrier.visible_message(span_xenowarning("A chittering mass of tiny aliens is trying to escape [xeno_carrier]!"))
+	while(xeno_carrier.huggers > 0)
+		var/obj/item/clothing/mask/facehugger/new_hugger = new xeno_carrier.selected_hugger_type(get_turf(xeno_carrier))
+		step_away(new_hugger, xeno_carrier, 1)
+		addtimer(CALLBACK(new_hugger, /obj/item/clothing/mask/facehugger.proc/go_active, TRUE), new_hugger.jump_cooldown)
+		xeno_carrier.huggers--
 	succeed_activate(INFINITY) //Consume all remaining plasma
 	add_cooldown()
 
