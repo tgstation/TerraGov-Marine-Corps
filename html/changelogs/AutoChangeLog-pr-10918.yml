@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes: 
+  - qol: "Swapped the AI and Synth rooms on POS"
