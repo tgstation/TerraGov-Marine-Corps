@@ -9,7 +9,6 @@
 	gunnoise = 'sound/weapons/guns/fire/laser.ogg'
 	spawn_equipped_type = /obj/item/uav_turret/droid
 	unmanned_flags = HAS_LIGHTS|OVERLAY_TURRET
-	/// Reference to the datum used by the supply drop console
 	var/datum/supply_beacon/beacon_datum
 	var/datum/action/antenna/antenna = new
 
