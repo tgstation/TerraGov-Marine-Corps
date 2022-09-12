@@ -1,4 +1,0 @@
-author: "lbnesquik"
-delete-after: True
-changes: 
-  - rscadd: "Add req points from mining to round end stats"

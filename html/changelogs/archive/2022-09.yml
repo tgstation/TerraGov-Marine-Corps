@@ -94,3 +94,9 @@
   - rscadd: the old V10 shotgun made his way into the seasonals
   mc-oofert:
   - rscadd: Rangefinder/Tactical Binoculars can now link to multiple mortars
+2022-09-12:
+  QualityVan:
+  - config: Removed config numbers organ_health_multiplier and organ_regeneration_multiplier
+  lbnesquik:
+  - rscadd: Add req points from mining to round end stats
+  - qol: Swapped the AI and Synth rooms on POS

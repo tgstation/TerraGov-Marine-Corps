@@ -1,4 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes: 
-  - config: "Removed config numbers organ_health_multiplier and organ_regeneration_multiplier"
