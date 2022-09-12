@@ -191,5 +191,9 @@
 		TD.move_camera_by_click()
 
 /turf/AICtrlClick(mob/living/silicon/ai/user)
-	to_chat(user, span_notice("Coordinates of selected turf at [loc]. COORDINATES: X:[x] Y:[y]"))
-	
+	var/message = "Coordinates of selected turf at [loc]. COORDINATES: X:[x] Y:[y]"
+	var/area/A = get_area(src)
+	if(istype(A) && A.ceiling >= CEILING_UNDERGROUND)
+		message += " It is underground."
+	to_chat(user, span_notice(message))
+
