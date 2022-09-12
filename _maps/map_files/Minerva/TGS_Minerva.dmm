@@ -8319,7 +8319,6 @@
 	id = "reqaccess2";
 	name = "Requisitions Access"
 	},
-/obj/effect/landmark/start/job/shiptech,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "Ba" = (
@@ -13981,7 +13980,6 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
-/obj/effect/landmark/start/job/shiptech,
 /turf/open/floor/mainship/orange{
 	dir = 6
 	},

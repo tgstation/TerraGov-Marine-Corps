@@ -782,7 +782,6 @@
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "adA" = (
-/obj/effect/landmark/start/job/shiptech,
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/engineering/engineering_workshop)
@@ -859,7 +858,6 @@
 /area/mainship/engineering/engineering_workshop)
 "adN" = (
 /obj/structure/bed/chair/office/light,
-/obj/effect/landmark/start/job/shiptech,
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
@@ -1111,7 +1109,6 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
 "afj" = (
-/obj/effect/landmark/start/job/shiptech,
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/mainship,
@@ -1262,7 +1259,6 @@
 /turf/open/floor/mainship,
 /area/mainship/command/telecomms)
 "afU" = (
-/obj/effect/landmark/start/job/shiptech,
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
 "afX" = (

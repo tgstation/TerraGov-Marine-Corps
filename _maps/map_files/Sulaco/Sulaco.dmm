@@ -24167,7 +24167,6 @@
 /turf/open/floor/carpet,
 /area/sulaco/liaison/quarters)
 "uCU" = (
-/obj/effect/landmark/start/job/shiptech,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
@@ -24389,7 +24388,6 @@
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "uTC" = (
-/obj/effect/landmark/start/job/shiptech,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
 	dir = 8
@@ -25808,7 +25806,6 @@
 /turf/open/floor/prison/kitchen,
 /area/sulaco/cafeteria/kitchen)
 "wWE" = (
-/obj/effect/landmark/start/job/shiptech,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,

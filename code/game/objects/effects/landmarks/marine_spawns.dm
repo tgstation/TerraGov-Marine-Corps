@@ -30,10 +30,6 @@
 	icon_state = "RO"
 	job = /datum/job/terragov/requisitions/officer
 
-/obj/effect/landmark/start/job/shiptech
-	icon_state = "SE"
-	job = /datum/job/terragov/engineering/tech
-
 /obj/effect/landmark/start/job/cmo
 	icon_state = "CMO"
 	job = /datum/job/terragov/medical/professor
@@ -99,9 +95,6 @@
 
 /obj/effect/landmark/start/job/requisitionsofficer/rebel
 	job = /datum/job/terragov/requisitions/officer/rebel
-
-/obj/effect/landmark/start/job/shiptech/rebel
-	job = /datum/job/terragov/engineering/tech/rebel
 
 /obj/effect/landmark/start/job/cmo/rebel
 	job = /datum/job/terragov/medical/professor/rebel

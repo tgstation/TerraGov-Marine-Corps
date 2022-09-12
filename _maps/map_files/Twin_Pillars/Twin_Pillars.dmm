@@ -5747,7 +5747,6 @@
 /area/mainship/hallways/aft_hallway)
 "foP" = (
 /obj/structure/bed/chair/office/light,
-/obj/effect/landmark/start/job/shiptech,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engine_monitoring)
@@ -10872,7 +10871,6 @@
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic/rebel)
 "jUN" = (
-/obj/effect/landmark/start/job/shiptech,
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
@@ -23311,7 +23309,6 @@
 /area/mainship/engineering/port_atmos/rebel)
 "uBV" = (
 /obj/structure/bed/chair,
-/obj/effect/landmark/start/job/shiptech,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "uBZ" = (

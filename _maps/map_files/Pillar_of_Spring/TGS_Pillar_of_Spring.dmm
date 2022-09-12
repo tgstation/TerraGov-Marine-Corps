@@ -2550,7 +2550,6 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "hL" = (
-/obj/effect/landmark/start/job/shiptech,
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
@@ -8575,7 +8574,6 @@
 /area/mainship/hallways/starboard_umbilical)
 "zI" = (
 /obj/structure/bed/chair/office/light,
-/obj/effect/landmark/start/job/shiptech,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engine_monitoring)
@@ -8713,7 +8711,6 @@
 /area/mainship/engineering/engineering_workshop)
 "Ag" = (
 /obj/structure/bed/chair/nometal,
-/obj/effect/landmark/start/job/shiptech,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "Ah" = (

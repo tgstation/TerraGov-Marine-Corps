@@ -1700,7 +1700,6 @@
 /turf/open/floor/prison,
 /area/whiskey_outpost)
 "ii" = (
-/obj/effect/landmark/start/job/shiptech,
 /turf/open/floor,
 /area/whiskey_outpost)
 "ij" = (
@@ -6628,7 +6627,6 @@
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/south)
 "KD" = (
-/obj/effect/landmark/start/job/shiptech,
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/whiskey_outpost)

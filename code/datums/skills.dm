@@ -406,12 +406,6 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	powerloader = SKILL_POWERLOADER_MASTER
 	police = SKILL_POLICE_MP
 
-/datum/skills/st
-	name = SHIP_TECH
-	engineer = SKILL_ENGINEER_MASTER
-	construction = SKILL_CONSTRUCTION_MASTER
-	powerloader = SKILL_POWERLOADER_MASTER
-
 /datum/skills/pmc
 	name = "PMC Private"
 	construction = SKILL_CONSTRUCTION_METAL
