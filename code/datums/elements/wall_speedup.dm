@@ -28,5 +28,4 @@
 		if(!isclosedturf(get_step(fast, REVERSE_DIR(direction))))
 			continue
 		fast.next_move_slowdown -= wall_speed_amount
-		message_admins(fast.next_move_slowdown)
 		break
