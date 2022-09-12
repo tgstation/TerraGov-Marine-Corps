@@ -1,0 +1,69 @@
+{
+	"": [
+		{
+			"type": "icon_state",
+			"icon_state": "primary_leg_1",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "primary_leg_2",
+			"blend_mode": "overlay",
+			"color_ids": [ 2 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "primary_leg_3",
+			"blend_mode": "overlay",
+			"color_ids": [ 3 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "primary_leg_4",
+			"blend_mode": "overlay",
+			"color_ids": [ 4 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "primary_leg_5",
+			"blend_mode": "overlay",
+			"color_ids": [ 5 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "secondary_leg_1",
+			"blend_mode": "overlay",
+			"color_ids": [ 6 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "secondary_leg_2",
+			"blend_mode": "overlay",
+			"color_ids": [ 7 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "secondary_leg_3",
+			"blend_mode": "overlay",
+			"color_ids": [ 8 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "secondary_leg_4",
+			"blend_mode": "overlay",
+			"color_ids": [ 9 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "secondary_leg_5",
+			"blend_mode": "overlay",
+			"color_ids": [ 10 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "uncolorable_leg",
+			"blend_mode": "overlay"
+		}
+	]
+}
