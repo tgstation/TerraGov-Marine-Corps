@@ -10,7 +10,11 @@
 	spawn_equipped_type = /obj/item/uav_turret/droid
 	unmanned_flags = HAS_LIGHTS|OVERLAY_TURRET
 	var/datum/supply_beacon/beacon_datum
-	var/datum/action/antenna/antenna = new
+	var/datum/action/antenna/antenna
+
+/obj/vehicle/unmanned/droid/Initialize()
+	. = ..()
+	antenna = new
 
 /obj/vehicle/unmanned/droid/process() //play beepy noise every 5 seconds for effect while active
 	if(prob(90))
