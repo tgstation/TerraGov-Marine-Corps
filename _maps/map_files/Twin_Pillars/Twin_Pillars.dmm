@@ -15667,7 +15667,6 @@
 /area/mainship/hallways/aft_hallway)
 "oiF" = (
 /obj/structure/bed/chair,
-/obj/effect/landmark/start/job/shiptech/rebel,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop/rebel)
 "oiJ" = (
@@ -19892,7 +19891,6 @@
 /turf/open/floor/mainship,
 /area/mainship/engineering/ce_room/rebel)
 "rGH" = (
-/obj/effect/landmark/start/job/shiptech/rebel,
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
@@ -20312,7 +20310,6 @@
 /area/mainship/engineering/engineering_workshop)
 "scC" = (
 /obj/structure/bed/chair/office/light,
-/obj/effect/landmark/start/job/shiptech/rebel,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engine_monitoring/rebel)
