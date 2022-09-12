@@ -40,7 +40,7 @@
 		return fail_activate()
 
 	var/datum/ammo/xeno/leash_ball = GLOB.ammo_list[/datum/ammo/xeno/leash_ball]
-	var/obj/projectile/newspit = new /obj/projectile(get_turf(X))
+	var/obj/projectile/newspit = new (get_turf(X))
 
 	newspit.generate_bullet(leash_ball)
 	newspit.fire_at(target, X, null, newspit.ammo.max_range)
