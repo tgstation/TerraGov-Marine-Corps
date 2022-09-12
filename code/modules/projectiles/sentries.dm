@@ -449,6 +449,7 @@
 		gun.accuracy_mult += 0.15
 		gun.scatter -= 10
 
+///Checks the users faction against turret IFF, used to stop hostile factions from interacting with turrets in ways they shouldn't.
 /obj/machinery/deployable/mounted/sentry/proc/match_iff(mob/user)
 	if(!user)
 		return TRUE
