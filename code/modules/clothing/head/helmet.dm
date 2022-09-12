@@ -221,6 +221,8 @@
 						/obj/item/clothing/glasses/mgoggles/prescription = "goggles",
 						/obj/item/clothing/glasses/hud/medgoggles = "goggles",
 						/obj/item/clothing/glasses/hud/medgoggles/prescription = "goggles",
+						/obj/item/clothing/glasses/night/optgoggles = "goggles",
+						/obj/item/clothing/glasses/night/optgoggles/prescription = "goggles",
 						/obj/item/clothing/head/hairflower = "flower_pin")
 
 /obj/item/storage/internal/marinehelmet
