@@ -100,7 +100,7 @@
 	icon_state = "lorica_armor"
 	item_state = "lorica_armor_a"
 	attachment_layer = COLLAR_LAYER
-	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 15, "energy" = 15, "bomb" = 15, "bio" = 5, "rad" = 5, "fire" = 10, "acid" = 5)
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 5, FIRE = 10, ACID = 5)
 	slowdown = 0.2
 	slot = ATTACHMENT_SLOT_MODULE
 	variants_by_parent_type = null
@@ -121,7 +121,7 @@
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "lorica_head"
 	item_state = "lorica_head_a"
-	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 15, "energy" = 15, "bomb" = 15, "bio" = 5, "rad" = 5, "fire" = 10, "acid" = 5)
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 5, FIRE = 10, ACID = 5)
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 	variants_by_parent_type = list()
 

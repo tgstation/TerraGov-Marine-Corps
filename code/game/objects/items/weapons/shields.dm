@@ -181,7 +181,7 @@
 	desc = "A robust, heavy shield designed to be shot instead of the person holding it. Commonly employed by the SOM during boarding actions and other close quarter combat scenarios. This one has a SOM flag emblazoned on the front. Alt click to tighten the strap."
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "som_shield"
-	soft_armor = list("melee" = 35, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 30, "bio" = 50, "rad" = 0, "fire" = 0, "acid" = 15)
+	soft_armor = list(MELEE = 35, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 30, BIO = 50, FIRE = 0, ACID = 15)
 
 /obj/item/weapon/shield/energy
 	name = "energy combat shield"
