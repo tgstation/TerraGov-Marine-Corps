@@ -104,16 +104,15 @@
 /obj/vehicle/unmanned/droid/proc/activate_antenna(datum/source, mob/user)
 	SIGNAL_HANDLER
 
-	for(var/mob/temp_user AS in client_mobs_in_contents)
-		user = temp_user
+	user = source
 
 	if(beacon_datum)
 		UnregisterSignal(beacon_datum, COMSIG_PARENT_QDELETING)
 		QDEL_NULL(beacon_datum)
-		to_chat(user, (span_warning("The [src] beeps and states, \"Your last position is no longer accessible by the supply console")))
+		to_chat(source, (span_warning("The [src] beeps and states, \"Your last position is no longer accessible by the supply console")))
 		return
 	if(!is_ground_level(z))
-		to_chat(user, span_warning("You have to be on the planet to use this or it won't transmit."))
+		to_chat(source, span_warning("You have to be on the planet to use this or it won't transmit."))
 		return FALSE
 	beacon_datum = new /datum/supply_beacon(user.name, src.loc, user.faction, 4 MINUTES)
 	RegisterSignal(beacon_datum, COMSIG_PARENT_QDELETING, .proc/clean_beacon_datum)
