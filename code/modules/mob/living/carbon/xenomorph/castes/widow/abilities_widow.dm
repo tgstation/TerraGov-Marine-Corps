@@ -72,6 +72,8 @@
 /obj/structure/xeno/aoe_leash/Initialize(mapload)
 	. = ..()
 	for(var/mob/living/carbon/human/victim in view(leash_radius, loc))
+		if(victim.stat == DEAD || UNCONSCIOUS)
+			break
 		beams += (beam(victim, "beam_web", 'icons/effects/beam.dmi', INFINITY, INFINITY))
 		leash_victims += victim
 		RegisterSignal(victim, COMSIG_MOVABLE_PRE_MOVE, .proc/check_dist)
@@ -85,8 +87,6 @@
 	for(var/mob/living/carbon/human/victim AS in leash_victims)
 		UnregisterSignal(victim, COMSIG_MOVABLE_PRE_MOVE)
 	leash_victims = null
-	if(!length(beams))
-		return
 	QDEL_LIST(beams)
 
 /obj/structure/xeno/aoe_leash/bullet_act(obj/projectile/P)
