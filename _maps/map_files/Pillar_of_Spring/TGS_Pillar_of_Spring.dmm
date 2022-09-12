@@ -11648,7 +11648,6 @@
 /obj/item/tool/shovel/etool,
 /obj/item/storage/pouch/medkit/firstaid,
 /obj/item/tool/taperoll/engineering,
-/obj/machinery/power/apc/mainship,
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
