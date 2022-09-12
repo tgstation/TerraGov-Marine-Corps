@@ -10,7 +10,7 @@
 	wound_type = "widow"
 
 	// *** Melee Attacks *** //
-	melee_damage = 7
+	melee_damage = 16
 
 	// *** Speed *** //
 	speed = -0.2
@@ -93,7 +93,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 10
+	melee_damage = 16
 
 	// *** Speed *** //
 	speed = -0.4
@@ -121,7 +121,7 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 12
+	melee_damage = 18
 
 	// *** Speed *** //
 	speed = -0.5
@@ -149,7 +149,7 @@
 	upgrade = XENO_UPGRADE_FOUR
 
 	// *** Melee Attacks *** //
-	melee_damage = 15
+	melee_damage = 18
 
 	// *** Speed *** //
 	speed = -0.6
