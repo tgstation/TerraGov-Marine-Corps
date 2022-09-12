@@ -1,0 +1,4 @@
+author: "novaepee"
+delete-after: True
+changes: 
+  - rscdel: "Remove unused APC in synth room that drain CIC of its power"
