@@ -25,7 +25,6 @@
 		/obj/item/attachable/bayonetknife,
 		/obj/item/stack/throwing_knife,
 		/obj/item/storage/box/MRE,
-		/obj/item/reagent_containers/hypospray/autoinjector
 	)
 
 /obj/item/clothing/shoes/marine/Initialize()

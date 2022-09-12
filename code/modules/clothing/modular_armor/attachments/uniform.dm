@@ -77,7 +77,7 @@
 		/obj/item/clothing/glasses/hud/health,
 		/obj/item/tweezers,
 		/obj/item/tool/surgery/solderingtool,
-		/obj/item/whistle
+		/obj/item/whistle,
 	)
 
 /obj/item/armor_module/storage/uniform/surgery_webbing
