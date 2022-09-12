@@ -18,6 +18,7 @@ SUBSYSTEM_DEF(advanced_pathfinding)
 #define BENCHMARK_LOOP while(world.timeofday < end_time)
 #define BENCHMARK_RESET end_time = world.timeofday + duration
 
+/// Run a benchmark comparing dm pathfinding with rust one. Will freeze server for 2 * run_number seconds
 /datum/controller/subsystem/advanced_pathfinding/proc/benchmark(run_number)
 	var/duration = 1 SECONDS
 	var/end_time = world.timeofday + duration
