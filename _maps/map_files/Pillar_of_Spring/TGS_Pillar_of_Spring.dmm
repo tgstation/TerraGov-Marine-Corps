@@ -686,6 +686,10 @@
 	},
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
+"ck" = (
+/obj/structure/closet/fireaxecabinet,
+/turf/closed/wall/mainship,
+/area/mainship/engineering/ce_room)
 "cl" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -51280,7 +51284,7 @@ oD
 OM
 OM
 Uy
-OM
+ck
 Aw
 Sw
 jR
