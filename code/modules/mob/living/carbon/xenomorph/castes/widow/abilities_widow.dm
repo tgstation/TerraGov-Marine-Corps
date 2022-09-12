@@ -243,7 +243,7 @@
 	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = mother.actions_by_path[/datum/action/xeno_action/create_spiderling]
 	create_spiderling_action.spiderlings -= owner
 	spider_swarm_action.switch_to_mother()
-	owner.death(FALSE, "", TRUE)
+	owner.death(FALSE, silent=TRUE)
 
 ///Pod for spiderswarm that widow goes into
 /obj/structure/xeno/widow_pod
