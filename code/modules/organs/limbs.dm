@@ -691,12 +691,11 @@ Note that amputating the affected organ does in fact remove the infection from t
 	reset_limb_surgeries()
 
 	var/obj/organ	//Dropped limb object
-	var/mob/living/carbon/human/H
 	switch(body_part)
 		if(HEAD)
-			if(issynth(H)) //special head for synth to allow brainmob to talk without an MMI
+			if(issynth(owner)) //special head for synth to allow brainmob to talk without an MMI
 				organ = new /obj/item/limb/head/synth(owner.loc, owner)
-			else if(isrobot(H))
+			else if(isrobot(owner))
 				organ = new /obj/item/limb/head/robotic(owner.loc, owner)
 			else
 				organ = new /obj/item/limb/head(owner.loc, owner)
