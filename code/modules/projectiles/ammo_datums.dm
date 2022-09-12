@@ -2820,17 +2820,31 @@ datum/ammo/bullet/revolver/tp44
 	max_range = 8
 
 /datum/ammo/xeno/leash_ball/on_hit_turf(turf/T, obj/projectile/proj)
-	. = ..()
-	new /obj/structure/xeno/aoe_leash(get_turf(T))
+	if(!T)
+		T = get_turf(proj)
+
+	if(isclosedturf(T))
+		T = get_turf(get_step(T, turn(proj.dir, 180))) //If the turf is closed, we instead drop in the location just prior to the turf
+
+	drop_leashball(T)
 
 /datum/ammo/xeno/leash_ball/on_hit_mob(mob/victim, obj/projectile/proj)
-	. = ..()
-	new /obj/structure/xeno/aoe_leash(get_turf(victim))
+	drop_leashball(get_turf(victim))
 
 /datum/ammo/xeno/leash_ball/on_hit_obj(obj/O, obj/projectile/proj)
-	. = ..()
-	new /obj/structure/xeno/aoe_leash(get_turf(O))
+	var/turf/T = get_turf(O)
+	if(!T)
+		T = get_turf(proj)
 
+	if(O.density && !(O.flags_atom & ON_BORDER))
+		T = get_turf(get_step(T, turn(proj.dir, 180))) //If the object is dense and not a border object like barricades, we instead drop in the location just prior to the target
+
+	drop_leashball(T)
+
+/datum/ammo/xeno/leash_ball/proc/drop_leashball(turf/T)
+	if(T.density)
+		return
+	new /obj/structure/xeno/aoe_leash(get_turf(T))
 /*
 //================================================
 					Misc Ammo

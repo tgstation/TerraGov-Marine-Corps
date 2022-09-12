@@ -117,6 +117,7 @@
 #define TRAIT_IS_RESURRECTING "resurrecting"
 #define TRAIT_PSY_LINKED "psy_linked"
 #define TRAIT_TIME_SHIFTED "time_shifted"
+#define TRAIT_LEASHED "leashed"
 /// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).
 #define TRAIT_HANDS_BLOCKED "handsblocked"
 #define TRAIT_STUNIMMUNE "stun_immunity"

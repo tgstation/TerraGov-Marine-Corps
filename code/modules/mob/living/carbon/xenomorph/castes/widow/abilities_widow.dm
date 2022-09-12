@@ -29,7 +29,7 @@
 	mechanics_text = " Spit a huge ball of web that snares groups of marines "
 	action_icon_state = "leash_ball"
 	plasma_cost = 250
-	cooldown_timer = 20 SECONDS
+	cooldown_timer = 1 SECONDS // set back to 20 after testing
 	keybind_signal = COMSIG_XENOABILITY_LEASH_BALL
 
 /datum/action/xeno_action/activable/leash_ball/use_ability(atom/A)
@@ -38,7 +38,6 @@
 	X.face_atom(target)
 	if(!do_after(X, 1 SECONDS, TRUE, X, BUSY_ICON_DANGER))
 		return fail_activate()
-
 	var/datum/ammo/xeno/leash_ball = GLOB.ammo_list[/datum/ammo/xeno/leash_ball]
 	var/obj/projectile/newspit = new (get_turf(X))
 
@@ -53,16 +52,13 @@
 	icon_state = "aoe_leash"
 	desc = "Looks very sticky"
 	destroy_sound = "alien_resin_break"
-	max_integrity = 960
-	obj_integrity = 0
+	max_integrity = 50
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	throwpass = FALSE
 	density = TRUE
 	/// Radius for how far the leash should affect humans and how far away they may walk
 	var/leash_radius = 5
-	/// How much more integrity aoe_leash gains per caught marine, it is preferable that max_integrity is this var * 8.
-	var/integrity_increase = 120
 	/// List of beams to be removed on obj_destruction
 	var/list/obj/effect/ebeam/beams = list()
 	/// List of victims to unregister aoe_leash is destroyed
@@ -72,12 +68,14 @@
 /obj/structure/xeno/aoe_leash/Initialize(mapload)
 	. = ..()
 	for(var/mob/living/carbon/human/victim in view(leash_radius, loc))
-		if(victim.stat == DEAD || UNCONSCIOUS)
+		if(victim.stat == DEAD) /// Add || CONSCIOUS after testing
 			break
-		beams += (beam(victim, "beam_web", 'icons/effects/beam.dmi', INFINITY, INFINITY))
+		if(HAS_TRAIT(victim, TRAIT_LEASHED))
+			break
+		ADD_TRAIT(victim, TRAIT_LEASHED, src)
+		beams += beam(victim, "beam_web", 'icons/effects/beam.dmi', INFINITY, INFINITY)
 		leash_victims += victim
 		RegisterSignal(victim, COMSIG_MOVABLE_PRE_MOVE, .proc/check_dist)
-		obj_integrity = min(obj_integrity + integrity_increase, max_integrity)
 	if(!length(beams))
 		return INITIALIZE_HINT_QDEL
 
@@ -86,11 +84,9 @@
 	. = ..()
 	for(var/mob/living/carbon/human/victim AS in leash_victims)
 		UnregisterSignal(victim, COMSIG_MOVABLE_PRE_MOVE)
+		REMOVE_TRAIT(victim, TRAIT_LEASHED, src)
 	leash_victims = null
 	QDEL_LIST(beams)
-
-/obj/structure/xeno/aoe_leash/bullet_act(obj/projectile/P)
-	take_damage(P.damage * 10)
 
 /// Humans caught in the aoe_leash will be pulled back if they leave it's radius
 /obj/structure/xeno/aoe_leash/proc/check_dist(datum/leash_victim, atom/newloc)
@@ -137,7 +133,7 @@
 	if(!do_after(X, 0.5 SECONDS, TRUE, X, BUSY_ICON_DANGER))
 		return fail_activate()
 	/// This creates and stores the spiderling so we can reassign the owner for spider swarm and cap how many spiderlings you can have at once
-	var/mob/living/carbon/xenomorph/spiderling/new_spiderling = new /mob/living/carbon/xenomorph/spiderling(owner.loc, owner, owner)
+	var/mob/living/carbon/xenomorph/spiderling/new_spiderling = new(owner.loc, owner, owner)
 	add_spiderling(new_spiderling)
 	succeed_activate()
 	add_cooldown()

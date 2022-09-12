@@ -506,7 +506,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_IS_BUILDER (1<<10) //whether we are classified as a builder caste
 #define CASTE_IS_A_MINION (1<<11) //That's a dumb ai
 #define CASTE_PLASMADRAIN_IMMUNE (1<<12)
-#define CASTE_NOT_IN_BIOSCAN (1<<13) // xenos with this flag aren't registererd towards bioscan
+#define CASTE_NOT_IN_BIOSCAN (1<<13) // xenos with this flag aren't registered towards bioscan
 
 #define CASTE_CAN_HOLD_FACEHUGGERS (1<<0)
 #define CASTE_CAN_VENT_CRAWL (1<<1)
