@@ -71,6 +71,12 @@
 	parent.max_heat_protection_temperature -= FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	return ..()
 
+/obj/item/armor_module/module/fire_proof/som
+	name = "\improper Hades Incendiary Insulation System"
+	desc = "Designed for mounting on modular SOM armor. Provides excellent resistance to fire and prevents combustion. As it is not a sealed system, it does not completely protect the user from the heat of fire. Will impact mobility."
+	icon_state = "mod_fire_som"
+	item_state = "mod_fire_som_a"
+	variants_by_parent_type = list()
 
 /**
  * Extra armor module

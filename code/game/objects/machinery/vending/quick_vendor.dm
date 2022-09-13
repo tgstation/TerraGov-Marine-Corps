@@ -39,6 +39,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		/datum/outfit/quick/som/marine/mpi,
 		/datum/outfit/quick/som/marine/scout,
 		/datum/outfit/quick/som/marine/shotgunner,
+		/datum/outfit/quick/som/marine/pyro,
 		/datum/outfit/quick/som/marine/charger,
 		/datum/outfit/quick/som/engineer/standard_assaultrifle,
 		/datum/outfit/quick/som/engineer/mpi,

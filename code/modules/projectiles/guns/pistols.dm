@@ -584,13 +584,21 @@
 	accuracy_mult_unwielded = 0.95
 	recoil = -2
 	aim_slowdown = 0.1
-	scatter = 0
+	scatter = -1
 	scatter_unwielded = 4
 
 /obj/item/weapon/gun/pistol/som/standard
 	starting_attachment_types = list(
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/reddot,
+	)
+
+/obj/item/weapon/gun/pistol/som/burst
+	default_ammo_type = /obj/item/ammo_magazine/pistol/som/extended
+	starting_attachment_types = list(
+		/obj/item/attachable/burstfire_assembly,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/lace,
 	)
 
 //-------------------------------------------------------

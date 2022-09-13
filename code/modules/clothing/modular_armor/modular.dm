@@ -840,7 +840,7 @@
 	attachments_allowed = list(
 		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/module/valkyrie_autodoc,
-		/obj/item/armor_module/module/fire_proof,
+		/obj/item/armor_module/module/fire_proof/som,
 		/obj/item/armor_module/module/tyr_extra_armor,
 		/obj/item/armor_module/module/tyr_extra_armor/mark1,
 		/obj/item/armor_module/module/mimir_environment_protection,
@@ -889,6 +889,13 @@
 	icon_state = "som_heavy"
 	item_state = "som_heavy"
 	slowdown = 0.7
+
+/obj/item/clothing/suit/modular/som/heavy/pyro
+	starting_attachments = list(
+		/obj/item/armor_module/module/fire_proof/som,
+		/obj/item/armor_module/storage/general,
+	)
+
 
 /obj/item/clothing/suit/modular/som/heavy/leader
 	name = "\improper SOM Gorgon pattern assault armor"

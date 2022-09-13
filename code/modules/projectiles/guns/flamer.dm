@@ -266,6 +266,18 @@
 	icon_state = "m240"
 	item_state = "m240"
 
+/obj/item/weapon/gun/flamer/som
+	name = "\improper V-62 incinerator"
+	desc = "The V-62 is a deadly weapon employed in close quarter combat, favoured as much for the terror it inspires as the actual damage it inflicts. It has good range for a flamer, but lacks the integrated extinguisher of its TGMC equivalent."
+	icon_state = "m240"
+	item_state = "m240"
+	flame_max_range = 8
+	cone_angle = 45
+	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle/wide)
+
+/obj/item/weapon/gun/flamer/som/mag_harness
+	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle/wide, /obj/item/attachable/magnetic_harness)
+
 /obj/item/weapon/gun/flamer/mini_flamer
 	name = "mini flamethrower"
 	desc = "A weapon-mounted refillable flamethrower attachment.\nIt is designed for short bursts."
