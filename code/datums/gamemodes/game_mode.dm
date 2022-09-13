@@ -271,7 +271,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 /datum/game_mode/proc/grant_eord_respawn(datum/dcs, mob/source)
 	SIGNAL_HANDLER
-	source.verbs += /mob/proc/eord_respawn
+	source.verbs |= /mob/proc/eord_respawn
 
 /datum/game_mode/proc/end_of_round_deathmatch()
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_LOGIN, .proc/grant_eord_respawn) // New mobs can now respawn into EORD
@@ -285,6 +285,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 	for(var/i in GLOB.player_list)
 		var/mob/M = i
+		M.verbs |= /mob/proc/eord_respawn
 		if(isnewplayer(M))
 			continue
 		if(!(M.client?.prefs?.be_special & BE_DEATHMATCH))
@@ -459,6 +460,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		dat += "[GLOB.round_statistics.larva_from_marine_spawning] larvas came from marine spawning."
 	if(GLOB.round_statistics.larva_from_siloing_body)
 		dat += "[GLOB.round_statistics.larva_from_siloing_body] larvas came from siloing bodies."
+	if(GLOB.round_statistics.points_from_mining)
+		dat += "[GLOB.round_statistics.points_from_mining] requisitions points gained from mining."
 	if(GLOB.round_statistics.points_from_research)
 		dat += "[GLOB.round_statistics.points_from_research] requisitions points gained from research."
 	if(length(GLOB.round_statistics.req_items_produced))

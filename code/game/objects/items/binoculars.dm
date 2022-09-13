@@ -27,7 +27,7 @@
 
 /obj/item/binoculars/tactical
 	name = "tactical binoculars"
-	desc = "A pair of binoculars, with a laser targeting function. Alt+Click or unique action to toggle mode. Ctrl+Click when using to target something. Shift+Click to get coordinates. Ctrl+Shift+Click to fire OB when lasing in OB mode"
+	desc = "A pair of binoculars, with a laser targeting function. Unique action to toggle mode. Alt+Click to change selected linked mortar. Ctrl+Click when using to target something. Shift+Click to get coordinates. Ctrl+Shift+Click to fire OB when lasing in OB mode"
 	var/laser_cooldown = 0
 	var/cooldown_duration = 200 //20 seconds
 	var/obj/effect/overlay/temp/laser_target/laser
@@ -39,7 +39,9 @@
 	///Last stored turf targetted by rangefinders
 	var/turf/targetturf
 	///Linked mortar for remote targeting.
-	var/obj/machinery/deployable/mortar/linked_mortar
+	var/list/obj/machinery/deployable/mortar/linked_mortars = list()
+	/// Selected mortar index
+	var/selected_mortar = 1
 
 /obj/item/binoculars/tactical/Initialize()
 	. = ..()
@@ -62,8 +64,9 @@
 		if(MODE_ORBITAL)
 			. += span_notice("They are currently set to orbital bombardment mode.")
 	. += span_notice("Use on a mortar to link it for remote targeting.")
-	if(linked_mortar)
-		. += span_notice("They are currently linked to a mortar.")
+	if(linked_mortars.len)
+		. += span_notice("They are currently linked to [linked_mortars.len] mortar(s).")
+		. += span_notice("They are currently set to mortar [selected_mortar].")
 		return
 	. += span_notice("They are not linked to a mortar.")
 
@@ -122,9 +125,24 @@
 	else
 		. += "binoculars_laser"
 
+/// Proc that when called checks if the selected mortar isnt out of list bounds and if it is, resets to 1
+/obj/item/binoculars/tactical/proc/check_mortar_index()
+	if(!linked_mortars)
+		return
+	if(!linked_mortars.len)
+		selected_mortar = 1 // set back to default but it still wont fire because no mortars and thats good
+		return
+	if(selected_mortar > linked_mortars.len)
+		selected_mortar = 1
+
 /obj/item/binoculars/tactical/AltClick(mob/user)
 	. = ..()
-	toggle_mode(user)
+	if(!linked_mortars.len)
+		return
+	selected_mortar += 1
+	check_mortar_index()
+	var/obj/mortar = linked_mortars[selected_mortar]
+	to_chat(user, span_notice("NOW SENDING COORDINATES TO MORTAR [selected_mortar] AT: LONGITUDE [mortar.x]. LATITUDE [mortar.y]."))
 
 /obj/item/binoculars/tactical/verb/toggle_mode(mob/user)
 	set category = "Object"
@@ -224,13 +242,15 @@
 					QDEL_NULL(laser)
 					break
 		if(MODE_RANGE_FINDER)
-			if(!linked_mortar)
-				to_chat(user, span_notice("No linked mortar found."))
+			if(!linked_mortars.len)
+				to_chat(user, span_notice("No linked mortars found."))
 				return
+			check_mortar_index() // incase varedit screws something up
 			targetturf = TU
-			to_chat(user, span_notice("COORDINATES TARGETED: LONGITUDE [targetturf.x]. LATITUDE [targetturf.y]."))
+			to_chat(user, span_notice("COORDINATES TARGETED BY MORTAR [selected_mortar]: LONGITUDE [targetturf.x]. LATITUDE [targetturf.y]."))
 			playsound(src, 'sound/effects/binoctarget.ogg', 35)
-			linked_mortar.recieve_target(TU,user)
+			var/obj/machinery/deployable/mortar/mortar = linked_mortars[selected_mortar]
+			mortar.recieve_target(TU,user)
 			return
 		if(MODE_RAILGUN)
 			to_chat(user, span_notice("ACQUIRING TARGET. RAILGUN TRIANGULATING. DON'T MOVE."))
@@ -293,19 +313,19 @@
 
 ///Sets or unsets the binocs linked mortar.
 /obj/item/binoculars/tactical/proc/set_mortar(mortar)
-	if(linked_mortar)
-		UnregisterSignal(linked_mortar, COMSIG_PARENT_QDELETING)
-	if(linked_mortar == mortar)
-		linked_mortar = null
+	if(mortar in linked_mortars)
+		UnregisterSignal(mortar, COMSIG_PARENT_QDELETING)
+		linked_mortars -= mortar
 		return FALSE
-	linked_mortar = mortar
-	RegisterSignal(linked_mortar, COMSIG_PARENT_QDELETING, .proc/clean_refs)
+	linked_mortars += mortar
+	RegisterSignal(mortar, COMSIG_PARENT_QDELETING, .proc/clean_refs)
 	return TRUE
 
 ///Proc called when linked_mortar is deleted.
-/obj/item/binoculars/tactical/proc/clean_refs()
+/obj/item/binoculars/tactical/proc/clean_refs(datum/source)
 	SIGNAL_HANDLER
-	linked_mortar = null
+	linked_mortars -= source
+	check_mortar_index()
 	say("NOTICE: connection lost with linked mortar.")
 
 /obj/item/binoculars/tactical/scout

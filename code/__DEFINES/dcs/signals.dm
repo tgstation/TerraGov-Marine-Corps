@@ -642,6 +642,7 @@
 #define COMSIG_XENOABILITY_SPAWN_HUGGER "xenoability_spawn_hugger"
 #define COMSIG_XENOABILITY_SWITCH_HUGGER "xenoability_switch_hugger"
 #define COMSIG_XENOABILITY_CHOOSE_HUGGER "xenoability_choose_hugger"
+#define COMSIG_XENOABILITY_DROP_ALL_HUGGER "xenoability_drop_all_hugger"
 
 #define COMSIG_XENOABILITY_STOMP "xenoability_stomp"
 #define COMSIG_XENOABILITY_TOGGLE_CHARGE "xenoability_toggle_charge"

@@ -1006,7 +1006,7 @@
 "DU" = (
 /obj/structure/target_stake,
 /obj/item/target,
-/obj/item/clothing/suit/storage/militia,
+/obj/item/clothing/suit/storage/faction/militia,
 /obj/effect/decal/sandedge/corner,
 /turf/open/floor/plating/mainship,
 /area/bigredv2/caves/southeast)
@@ -1475,7 +1475,7 @@
 "Rq" = (
 /obj/structure/target_stake,
 /obj/item/target,
-/obj/item/clothing/suit/storage/militia,
+/obj/item/clothing/suit/storage/faction/militia,
 /turf/open/floor/plating/mainship,
 /area/bigredv2/caves/southeast)
 "RA" = (

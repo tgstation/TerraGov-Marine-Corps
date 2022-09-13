@@ -165,22 +165,40 @@
 /obj/item/ammo_magazine/rocket/recoilless/light
 	name = "\improper 67mm light-explosive shell"
 	desc = "A light explosive shell for the RL-160 recoilless rifle. Causes a light explosion over a large area. Can go farther than other shells of its type due to the light payload. Requires specialized storage to carry."
-	caliber = CALIBER_67MM
 	icon_state = "shell_le"
-	w_class = WEIGHT_CLASS_BULKY
-	max_rounds = 1
 	default_ammo = /datum/ammo/rocket/recoilless/light
+	reload_delay = 10
+
+/obj/item/ammo_magazine/rocket/recoilless/low_impact
+	name = "\improper 67mm light-explosive shell"
+	desc = "A light explosive shell for the RL-160 recoilless rifle. Causes a light explosion over a large area but low impact damage. Can go farther than other shells of its type due to the light payload. Requires specialized storage to carry."
+	icon_state = "shell_le"
+	default_ammo = /datum/ammo/rocket/recoilless/low_impact
 	reload_delay = 10
 
 /obj/item/ammo_magazine/rocket/recoilless/heat
 	name = "\improper 67mm HEAT shell"
-	desc = "A high explosive-anti tank shell for the RL-160 recoilless rifle. Causes a medium explosion over a small area after impacting. Requires specialized storage to carry."
-	caliber = CALIBER_67MM
+	desc = "A high explosive-anti tank shell for the RL-160 recoilless rifle. Fires a penetrating shot with no explosion. It will do moderate damage to all types of enemies, but does not sunder their armor. Requires specialized storage to carry."
 	icon_state = "shell_heat"
-	w_class = WEIGHT_CLASS_BULKY
-	max_rounds = 1
 	default_ammo = /datum/ammo/rocket/recoilless/heat
-	reload_delay = 30
+
+/obj/item/ammo_magazine/rocket/recoilless/smoke
+	name = "\improper 67mm Chemical (Smoke) shell"
+	desc = "A chemical shell for the RL-160 recoilless rifle. Fires a low velocity shell for close quarters application of chemical gas, friendlies will be able to easily dodge it due to low velocity. This warhead contains thick concealing smoke. Requires specialized storage to carry."
+	icon_state = "shell_smoke"
+	default_ammo = /datum/ammo/rocket/recoilless/chemical
+
+/obj/item/ammo_magazine/rocket/recoilless/cloak
+	name = "\improper 67mm Chemical (Cloak) shell"
+	desc = "A chemical shell for the RL-160 recoilless rifle. Fires a low velocity shell for close quarters application of chemical gas, friendlies will be able to easily dodge it due to low velocity. This warhead contains advanced cloaking smoke. Requires specialized storage to carry."
+	icon_state = "shell_cloak"
+	default_ammo = /datum/ammo/rocket/recoilless/chemical/cloak
+
+/obj/item/ammo_magazine/rocket/recoilless/plasmaloss
+	name = "\improper 67mm Chemical (Tanglefoot) shell"
+	desc = "A chemical shell for the RL-160 recoilless rifle. Fires a low velocity shell for close quarters application of chemical gas, friendlies will be able to easily dodge it due to low velocity. This warhead contains plasma-draining Tanglefoot smoke. Requires specialized storage to carry."
+	icon_state = "shell_tanglefoot"
+	default_ammo = /datum/ammo/rocket/recoilless/chemical/plasmaloss
 
 
 //-------------------------------------------------------

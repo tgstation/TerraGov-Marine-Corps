@@ -71,7 +71,7 @@
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
-	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 17,"rail_x" = 18, "rail_y" = 24, "under_x" = 31, "under_y" = 12, "stock_x" = 0, "stock_y" = 13)
+	attachable_offset = list("muzzle_x" = 40, "muzzle_y" = 16,"rail_x" = 23, "rail_y" = 20, "under_x" = 29, "under_y" = 12, "stock_x" = 0, "stock_y" = 13)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 2
@@ -92,6 +92,9 @@
 
 /obj/item/weapon/gun/rifle/standard_carbine/standard
 	starting_attachment_types = list(/obj/item/weapon/gun/grenade_launcher/underslung, /obj/item/attachable/reddot, /obj/item/attachable/extended_barrel)
+
+/obj/item/weapon/gun/rifle/standard_carbine/scout
+	starting_attachment_types = list(/obj/item/weapon/gun/grenade_launcher/underslung, /obj/item/attachable/motiondetector, /obj/item/attachable/extended_barrel)
 
 /obj/item/weapon/gun/rifle/standard_carbine/engineer
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/lasersight)
@@ -148,7 +151,7 @@
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
-	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 20, "under_x" = 31, "under_y" = 10, "stock_x" = 0, "stock_y" = 13)
+	attachable_offset = list("muzzle_x" = 48, "muzzle_y" = 17,"rail_x" = 22, "rail_y" = 20, "under_x" = 35, "under_y" = 11, "stock_x" = 0, "stock_y" = 13)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 2
@@ -494,6 +497,7 @@
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
+		/obj/item/weapon/gun/grenade_launcher/underslung/mpi, //alt sprite, unremovable
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
@@ -509,23 +513,21 @@
 
 	placed_overlay_iconstate = "ak47"
 
-/obj/item/weapon/gun/rifle/mpi_km/grenadier //built in UGL
-	desc = "A cheap and robust rifle, sometimes better known as an 'AK'. Chambers 7.62x39mm. This one has a built in underbarrel grenade launcher, and looks pretty old but well looked after."
-	attachable_allowed = list(
-		/obj/item/attachable/bayonet,
-		/obj/item/attachable/flashlight,
-		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/buildasentry,
-		/obj/item/attachable/stock/mpi_km,
-		/obj/item/attachable/shoulder_mount,
-		/obj/item/weapon/gun/grenade_launcher/underslung/mpi,
-	)
+/obj/item/weapon/gun/rifle/mpi_km/magharness
 	starting_attachment_types = list(
 		/obj/item/attachable/stock/mpi_km,
-		/obj/item/weapon/gun/grenade_launcher/underslung/mpi,
+		/obj/item/attachable/magnetic_harness,
 	)
 
-/obj/item/weapon/gun/rifle/mpi_km/grenadier/magharness
+/obj/item/weapon/gun/rifle/mpi_km/standard
+	starting_attachment_types = list(
+		/obj/item/attachable/stock/mpi_km,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/bayonet,
+	)
+
+/obj/item/weapon/gun/rifle/mpi_km/grenadier //built in UGL
+	desc = "A cheap and robust rifle, sometimes better known as an 'AK'. Chambers 7.62x39mm. This one has a built in underbarrel grenade launcher, and looks pretty old but well looked after."
 	starting_attachment_types = list(
 		/obj/item/attachable/stock/mpi_km,
 		/obj/item/weapon/gun/grenade_launcher/underslung/mpi,
@@ -719,7 +721,7 @@
 	flags_gun_features = GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
-	attachable_offset = list("muzzle_x" = 47, "muzzle_y" = 17,"rail_x" = 27, "rail_y" = 20, "under_x" = 34, "under_y" = 12, "stock_x" = 0, "stock_y" = 13)
+	attachable_offset = list("muzzle_x" = 49, "muzzle_y" = 16,"rail_x" = 20, "rail_y" = 19, "under_x" = 24, "under_y" = 9, "stock_x" = 0, "stock_y" = 13)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.2 SECONDS
 	aim_speed_modifier = 5
@@ -933,7 +935,29 @@
 	name = "\improper Type 71 pulse rifle"
 	desc = " This appears to be a less common variant of the usual Type 71, with an undermounted flamethrower and improved iron sights."
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 20, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/scope/marine,
+		/obj/item/weapon/gun/flamer/mini_flamer/unremovable,
+	)
 	starting_attachment_types = list(/obj/item/weapon/gun/flamer/mini_flamer/unremovable)
+
+/obj/item/weapon/gun/rifle/type71/flamer/standard
+	starting_attachment_types = list(
+		/obj/item/weapon/gun/flamer/mini_flamer/unremovable,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/magnetic_harness,
+	)
 
 /obj/item/weapon/gun/rifle/type71/commando
 	name = "\improper Type 73 'Commando' pulse carbine"
@@ -994,7 +1018,7 @@
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY //Its a shotgun type weapon effectively, most shotgun type weapons shouldn't be able to point blank 1 handed.
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 	starting_attachment_types = list(/obj/item/attachable/stock/tx15)
-	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 16,"rail_x" = 12, "rail_y" = 17, "under_x" = 24, "under_y" = 11, "stock_x" = 26, "stock_y" = 13)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 16,"rail_x" = 12, "rail_y" = 17, "under_x" = 20, "under_y" = 13, "stock_x" = 26, "stock_y" = 13)
 	gun_skill_category = GUN_SKILL_SHOTGUNS
 
 	fire_delay = 1 SECONDS
@@ -1377,7 +1401,7 @@
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
-	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 16,"rail_x" = 10, "rail_y" = 19, "under_x" = 18, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
+	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 16,"rail_x" = 10, "rail_y" = 19, "under_x" = 21, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
 
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.1 SECONDS
@@ -1395,6 +1419,13 @@
 	starting_attachment_types = list(
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/bayonet,
+	)
+
+/obj/item/weapon/gun/rifle/alf_machinecarbine/assault
+	starting_attachment_types = list(
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/verticalgrip,
 	)
 
 //-------------------------------------------------------
@@ -1654,10 +1685,26 @@
 		/obj/item/attachable/reddot,
 	)
 
+/obj/item/weapon/gun/rifle/som/veteran
+	default_ammo_type = /obj/item/ammo_magazine/rifle/som/ap
+	starting_attachment_types = list(
+		/obj/item/weapon/gun/shotgun/micro_grenade,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/reddot,
+	)
+
 /obj/item/weapon/gun/rifle/som/mag_harness
 	starting_attachment_types = list(
 		/obj/item/weapon/gun/shotgun/micro_grenade,
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/extended_barrel,
+	)
+
+/obj/item/weapon/gun/rifle/som/basic //export model
+	starting_attachment_types = list(
+		/obj/item/weapon/gun/shotgun/micro_grenade,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/bayonet,
 	)

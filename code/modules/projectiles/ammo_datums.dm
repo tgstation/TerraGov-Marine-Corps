@@ -1308,7 +1308,7 @@ datum/ammo/bullet/revolver/tp44
 	name = "Shrapnel"
 	icon_state = "flechette"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOB
-	accuracy_var_low = 15
+	accuracy_var_low = 5
 	accuracy_var_high = 5
 	max_range = 4
 	damage = 20
@@ -1316,8 +1316,8 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 3
 	damage_falloff = 0
 
-/datum/ammo/tx54_spread/on_hit_mob(mob/M, obj/projectile/proj)
-	staggerstun(M, proj, max_range = 3, stagger = 0.1, slowdown = 0.1, shake = 0)
+/datum/ammo/bullet/tx54_spread/on_hit_mob(mob/M, obj/projectile/proj)
+	staggerstun(M, proj, max_range = 3, stagger = 0.3, slowdown = 0.3, shake = 0)
 
 /datum/ammo/bullet/tx54_spread/incendiary
 	name = "incendiary flechette"
@@ -1325,6 +1325,9 @@ datum/ammo/bullet/revolver/tp44
 	damage = 15
 	penetration = 10
 	sundering = 1.5
+
+/datum/ammo/bullet/tx54_spread/incendiary/on_hit_mob(mob/M, obj/projectile/proj)
+	return
 
 /datum/ammo/bullet/tx54_spread/incendiary/drop_flame(turf/T)
 	if(!istype(T))
@@ -1424,7 +1427,7 @@ datum/ammo/bullet/revolver/tp44
 	name = "Shrapnel"
 	icon_state = "flechette"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOB
-	accuracy_var_low = 15
+	accuracy_var_low = 5
 	accuracy_var_high = 5
 	max_range = 7
 	damage = 20
@@ -1432,8 +1435,8 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 3
 	damage_falloff = 1
 
-/datum/ammo/micro_rail_spread/on_hit_mob(mob/M, obj/projectile/proj)
-	staggerstun(M, proj, max_range = 5, stagger = 0.3, slowdown = 0.3, shake = 0)
+/datum/ammo/bullet/micro_rail_spread/on_hit_mob(mob/M, obj/projectile/proj)
+	staggerstun(M, proj, max_range = 5, stagger = 0.5, slowdown = 0.5, shake = 0)
 
 /datum/ammo/bullet/micro_rail_spread/incendiary
 	name = "incendiary flechette"
@@ -1443,8 +1446,8 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 1.5
 	max_range = 6
 
-/datum/ammo/micro_rail_spread/incendiary/on_hit_mob(mob/M, obj/projectile/proj)
-	staggerstun(M, proj, max_range = 5, stagger = 0.1, slowdown = 0.1, shake = 0)
+/datum/ammo/bullet/micro_rail_spread/incendiary/on_hit_mob(mob/M, obj/projectile/proj)
+	staggerstun(M, proj, max_range = 5, stagger = 0.2, slowdown = 0.2, shake = 0)
 
 /datum/ammo/bullet/micro_rail_spread/incendiary/drop_flame(turf/T)
 	if(!istype(T))
@@ -1478,13 +1481,13 @@ datum/ammo/bullet/revolver/tp44
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
 	smoke.set_up(0, T, rand(1,2))
 	smoke.start()
-	for(var/mob/living/carbon/victim in range(1, T))
+	for(var/mob/living/carbon/victim in range(2, T))
 		victim.visible_message(span_danger("[victim] is hit by the bomblet blast!"),
 			isxeno(victim) ? span_xenodanger("We are hit by the bomblet blast!") : span_highdanger("you are hit by the bomblet blast!"))
 		var/armor_block = victim.get_soft_armor("bomb")
-		victim.apply_damage(10, BRUTE, null, armor_block, updating_health = FALSE)
-		victim.apply_damage(10, BURN, null, armor_block, updating_health = TRUE)
-		staggerstun(victim, P, stagger = 0.5, slowdown = 0.5)
+		victim.apply_damage(15, BRUTE, null, armor_block, updating_health = FALSE)
+		victim.apply_damage(15, BURN, null, armor_block, updating_health = TRUE)
+		staggerstun(victim, P, stagger = 1, slowdown = 1)
 
 /datum/ammo/micro_rail_cluster/on_leave_turf(turf/T, atom/firer, obj/projectile/proj)
 	///chance to detonate early, scales with distance and capped, to avoid lots of immediate detonations, and nothing reach max range respectively.
@@ -1692,33 +1695,20 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/rocket/recoilless/drop_nade(turf/T)
 	explosion(T, 0, 3, 4, 5)
 
-/datum/ammo/rocket/recoilless/heat //placeholder/adminbus for now
+/datum/ammo/rocket/recoilless/heat
 	name = "HEAT shell"
-	icon_state = "shell"
 	hud_state = "shell_heat"
-	hud_state_empty = "shell_empty"
-	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
-	armor_type = "bomb"
-	damage_falloff = 0
-	shell_speed = 2
-	accurate_range = 20
-	max_range = 30
-	damage = 175
+	damage = 200
 	penetration = 100
-	sundering = 100
+	sundering = 0
 
 /datum/ammo/rocket/recoilless/heat/drop_nade(turf/T)
-	explosion(T, 0, 2, 3, 5)
+	explosion(T, flash_range = 1)
 
 /datum/ammo/rocket/recoilless/light
 	name = "light explosive shell"
-	icon_state = "shell"
 	hud_state = "shell_le"
-	hud_state_empty = "shell_empty"
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING //We want this to specifically go farther than onscreen range.
-	armor_type = "bomb"
-	damage_falloff = 0
-	shell_speed = 3
 	accurate_range = 15
 	max_range = 20
 	damage = 75
@@ -1727,6 +1717,50 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/rocket/recoilless/light/drop_nade(turf/T)
 	explosion(T, 0, 1, 8, 5)
+
+/datum/ammo/rocket/recoilless/chemical
+	name = "low velocity chemical shell"
+	hud_state = "shell_le"
+	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING|AMMO_IFF //We want this to specifically go farther than onscreen range and pass through friendlies.
+	accurate_range = 21
+	max_range = 21
+	damage = 10
+	penetration = 0
+	sundering = 0
+	/// Smoke type created when projectile detonates.
+	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/bad
+	/// Radius this smoke will encompass on detonation.
+	var/smokeradius = 7
+
+/datum/ammo/rocket/recoilless/chemical/drop_nade(turf/T)
+	var/datum/effect_system/smoke_spread/smoke = new smoketype()
+	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
+	smoke.set_up(smokeradius, T, rand(5,9))
+	smoke.start()
+	explosion(T, flash_range = 1)
+
+/datum/ammo/rocket/recoilless/chemical/cloak
+	name = "low velocity chemical shell"
+	hud_state = "shell_cloak"
+	smoketype = /datum/effect_system/smoke_spread/tactical
+
+/datum/ammo/rocket/recoilless/chemical/plasmaloss
+	name = "low velocity chemical shell"
+	hud_state = "shell_tanglefoot"
+	smoketype = /datum/effect_system/smoke_spread/plasmaloss
+
+/datum/ammo/rocket/recoilless/low_impact
+	name = "low impact explosive shell"
+	hud_state = "shell_le"
+	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING //We want this to specifically go farther than onscreen range.
+	accurate_range = 15
+	max_range = 20
+	damage = 75
+	penetration = 15
+	sundering = 25
+
+/datum/ammo/rocket/recoilless/low_impact/drop_nade(turf/T)
+	explosion(T, 0, 1, 8, 3)
 
 /datum/ammo/rocket/oneuse
 	name = "explosive rocket"
