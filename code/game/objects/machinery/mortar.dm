@@ -47,6 +47,7 @@
 	///Used for round stats
 	var/tally_type = TALLY_MORTAR 
 
+	///Used for remote targeting by AI
 	var/obj/item/ai_target_beacon/ai_targeter
 
 /obj/machinery/deployable/mortar/examine(mob/user)
@@ -286,7 +287,7 @@
 
 /obj/machinery/deployable/mortar/proc/unset_targeter()
 	say("Linked AI spotter has relinquished targeting privileges. Ejecting targeting device.")
-	ai_targeter.loc = get_turf(src)
+	ai_targeter.forceMove(src)
 	ai_targeter = null
 	
 
