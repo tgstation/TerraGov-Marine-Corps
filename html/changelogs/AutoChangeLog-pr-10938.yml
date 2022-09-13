@@ -1,0 +1,4 @@
+author: "AzonStarfall"
+delete-after: True
+changes: 
+  - bugfix: "Fixes supply drop console delay message."

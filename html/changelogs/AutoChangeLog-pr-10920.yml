@@ -1,0 +1,8 @@
+author: "Lumipharon"
+delete-after: True
+changes: 
+  - rscadd: "Combat Patrol: Added some more SOM loadouts and gear"
+  - rscadd: "Combat Patrol: Added a flamethrower loadout to marines"
+  - balance: "Slight buffs to the volkite charger as it was under performing relative to the caliver"
+  - balance: "Combat Patrol: Shocktrooper loadout now uses the ALF-51B"
+  - bugfix: "Couple of minor typo fixes"

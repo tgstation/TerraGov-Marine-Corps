@@ -1532,9 +1532,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "spray flamer nozzle"
 	desc = "This specialized nozzle sprays the flames of an attached flamer in a much more broad way than the standard nozzle. It serves for wide area denial as opposed to offensive directional flaming."
 	icon_state = "flame_wide"
-	range_modifier = -3
+	range_modifier = 0
 	pixel_shift_y = 17
 	stream_type = FLAMER_STREAM_CONE
+	burn_time_mod = 0.8
 
 ///Funny red wide nozzle that can fill entire screens with flames. Admeme only.
 /obj/item/attachable/flamer_nozzle/wide/red

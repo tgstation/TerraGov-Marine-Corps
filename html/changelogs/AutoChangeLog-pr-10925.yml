@@ -1,0 +1,7 @@
+author: "RipGrayson"
+delete-after: True
+changes: 
+  - balance: "Chigusa now has some more prebuilt resin structures on Chigusa"
+  - balance: "Chigusa LZs are slightly bigger so marines can build fortifications more easily."
+  - bugfix: "Chigusa LZ1 now has a proper building exclusion zone again."
+  - bugfix: "Removed the duplicate blue disk generator in Chigusa."
