@@ -14807,7 +14807,9 @@
 /area/mainship/engineering/lower_engineering)
 "Qq" = (
 /obj/structure/cable,
-/obj/machinery/door/airlock/mainship/ai/glass,
+/obj/machinery/door/airlock/mainship/ai{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/airoom)
 "Qr" = (
