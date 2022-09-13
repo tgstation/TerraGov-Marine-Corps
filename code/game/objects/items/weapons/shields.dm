@@ -124,7 +124,7 @@
 	return TRUE
 
 /obj/item/weapon/shield/riot/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/weapon/baton) && world.time >= cooldown)
+	if(istype(I, /obj/item/weapon) && world.time >= cooldown)
 		user.visible_message(span_warning("[user] bashes [src] with [I]!"))
 		playsound(user.loc, 'sound/effects/shieldbash.ogg', 25, 1)
 		cooldown = world.time + 2.5 SECONDS
