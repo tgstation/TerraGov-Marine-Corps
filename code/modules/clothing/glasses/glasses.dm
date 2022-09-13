@@ -180,6 +180,19 @@
 			qdel(I)
 			qdel(src)
 			user.put_in_hands(S)
+	if(istype(I, /obj/item/clothing/glasses/meson/enggoggles))
+		if(prescription)
+			var/obj/item/clothing/glasses/meson/enggoggles/prescription/P = new
+			to_chat(user, span_notice("You fasten the optical meson scanner to the inside of the goggles."))
+			qdel(I)
+			qdel(src)
+			user.put_in_hands(P)
+		else
+			var/obj/item/clothing/glasses/meson/enggoggles/S = new
+			to_chat(user, span_notice("You fasten the optical meson scanner to the inside of the goggles."))
+			qdel(I)
+			qdel(src)
+			user.put_in_hands(S)
 
 		update_icon(user)
 
