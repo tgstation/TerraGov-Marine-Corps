@@ -140,7 +140,7 @@
 
 /// Adds spiderlings to spiderling list and registers them for death so we can remove them later
 /datum/action/xeno_action/create_spiderling/proc/add_spiderling(mob/living/carbon/xenomorph/spiderling/new_spiderling)
-	RegisterSignal(new_spiderling, COMSIG_MOB_DEATH, .proc/remove_spiderling)
+	RegisterSignal(new_spiderling, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING), .proc/remove_spiderling)
 	spiderlings += new_spiderling
 	new_spiderling.pixel_x = rand(-8, 8)
 	new_spiderling.pixel_y = rand(-8, 8)
@@ -149,6 +149,7 @@
 /datum/action/xeno_action/create_spiderling/proc/remove_spiderling(datum/source)
 	SIGNAL_HANDLER
 	spiderlings -= source
+	UnregisterSignal(source, COMSIG_PARENT_QDELETING)
 	var/mob/living/carbon/xenomorph/widow/X = owner
 	var/datum/action/xeno_action/spider_swarm/spider_swarm_action = X.actions_by_path[/datum/action/xeno_action/spider_swarm]
 	if(!spider_swarm_action)
@@ -158,7 +159,7 @@
 	var/mob/living/carbon/xenomorph/spiderling/next_spiderling
 	if(length(spiderlings) >= 1)
 		next_spiderling = pick(spiderlings)
-	else if(length(spiderlings) <= 0)
+	else
 		next_spiderling = null
 	if(!next_spiderling)
 		spider_swarm_action.switch_to_mother()
@@ -196,8 +197,8 @@
 	/// We want to access the spiderlings list and therefore have this
 	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = owner.actions_by_path[/datum/action/xeno_action/create_spiderling]
 
-	for(var/spawned_spiderlings = 0, spawned_spiderlings < amount_of_spiderlings, spawned_spiderlings++)
-		var/mob/living/carbon/xenomorph/spiderling/new_spiderling = new /mob/living/carbon/xenomorph/spiderling(current_controlling_spiderling.loc, current_controlling_spiderling)
+	for(var/spawned_spiderlings = 0 to amount_of_spiderlings)
+		var/mob/living/carbon/xenomorph/spiderling/new_spiderling = new (current_controlling_spiderling.loc, current_controlling_spiderling)
 		/// here we add the created spiderligns to the list
 		create_spiderling_action.add_spiderling(new_spiderling)
 
@@ -233,7 +234,7 @@
 
 /datum/action/xeno_action/return_to_mother/action_activate()
 	. = ..()
-	UnregisterSignal(owner, COMSIG_MOB_DEATH)
+	UnregisterSignal(owner, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING))
 	var/datum/action/xeno_action/spider_swarm/spider_swarm_action = mother.actions_by_path[/datum/action/xeno_action/spider_swarm]
 	spider_swarm_action.current_controlling_spiderling = owner
 	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = mother.actions_by_path[/datum/action/xeno_action/create_spiderling]
