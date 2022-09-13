@@ -9,6 +9,7 @@
 	gunnoise = 'sound/weapons/guns/fire/laser.ogg'
 	spawn_equipped_type = /obj/item/uav_turret/droid
 	unmanned_flags = HAS_LIGHTS|OVERLAY_TURRET
+	///Existing signal for Supply console.
 	var/datum/supply_beacon/beacon_datum
 	var/datum/action/antenna/antenna
 
@@ -42,7 +43,6 @@
 
 /obj/vehicle/unmanned/droid/Destroy(datum/source, mob/user)
 	. = ..()
-	GLOB.unmanned_vehicles -= src
 	user.clear_fullscreen("machine", 5)
 	antenna.remove_action(user)
 	UnregisterSignal(user, COMSIG_UNMANNED_COORDINATES)
