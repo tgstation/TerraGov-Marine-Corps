@@ -83,7 +83,7 @@
 			if(!isliving(usr))
 				return
 			var/mob/living/user = usr
-			if(!ismarinecommandjob(user.job))
+			if(!ismarinecommandjob(user.job) || isAI(user))
 				to_chat(usr, span_notice("You don't have the necessary clearance to cancel the emergency destruct system."))
 				return
 			if(SSevacuation.cancel_self_destruct())
