@@ -439,9 +439,10 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	density = FALSE
 	throwpass = TRUE
-	icon_state = "[xeno_caste.caste_name] Burrowed" // We set it here so we dont wait for life
-	wound_overlay.icon_state = "" // We set it here so we dont wait for life
-	fire_overlay.icon_state = "" // We set it here so we dont wait for life
+	// Update here without waiting for life
+	icon_state = "[xeno_caste.caste_name] Burrowed"
+	wound_overlay.icon_state = ""
+	fire_overlay.icon_state = ""
 	// Here we prevent the xeno from moving or attacking or using abilities untill they unburrow by clicking the ability
 	fire_resist_modifier -= BURROW_FIRE_RESIST_MODIFIER // This makes the xeno immune to fire while burrowed, even if burning beforehand
 	ADD_TRAIT(src, TRAIT_IMMOBILE, WIDOW_BURROW_TRAIT)
