@@ -328,6 +328,10 @@
 
 /obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two
 	starting_attachments = list(/obj/item/armor_module/module/tyr_extra_armor)
+
+/obj/item/clothing/suit/modular/xenonauten/heavy/surt
+	starting_attachments = list(/obj/item/armor_module/module/fire_proof, /obj/item/armor_module/storage/general)
+
 /** Core helmet module */
 /obj/item/clothing/head/modular
 	name = "Jaeger Pattern Helmet"
@@ -841,8 +845,7 @@
 		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/module/valkyrie_autodoc,
 		/obj/item/armor_module/module/fire_proof,
-		/obj/item/armor_module/module/tyr_extra_armor,
-		/obj/item/armor_module/module/tyr_extra_armor/mark1,
+		/obj/item/armor_module/module/tyr_extra_armor/som,
 		/obj/item/armor_module/module/mimir_environment_protection,
 		/obj/item/armor_module/module/mimir_environment_protection/mark1,
 		/obj/item/armor_module/module/hlin_explosive_armor,
@@ -890,6 +893,9 @@
 	item_state = "som_heavy"
 	slowdown = 0.7
 
+/obj/item/clothing/suit/modular/som/heavy/lorica
+	starting_attachments = list(/obj/item/armor_module/module/tyr_extra_armor/som)
+
 /obj/item/clothing/suit/modular/som/heavy/leader
 	name = "\improper SOM Gorgon pattern assault armor"
 	desc = "A bulky suit of heavy combat armor, the M-35 'Gorgon' armour provides the user with superior protection without severely impacting mobility. Typically seen on SOM leaders or their most elite combat units due to the significant construction and maintenance requirements. You'll need serious firepower to punch through this. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
@@ -926,7 +932,7 @@
 
 	flags_armor_protection = HEAD|FACE|EYES
 	attachments_allowed = list(
-		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/tyr_head/som,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
 		/obj/item/armor_module/module/welding,
@@ -963,3 +969,6 @@
 	icon_state = "som_helmet"
 	item_state = "som_helmet"
 	soft_armor = list("melee" = 50, "bullet" = 75, "laser" = 65, "energy" = 65, "bomb" = 50, "bio" = 50, "rad" = 65, "fire" = 60, "acid" = 55)
+
+/obj/item/clothing/head/modular/som/veteran/lorica
+	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/tyr_head/som)
