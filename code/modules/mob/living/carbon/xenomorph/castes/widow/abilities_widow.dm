@@ -131,7 +131,7 @@
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(length(spiderlings) >= X.xeno_caste.max_spiderlings)
-		owner.visible_message(span_notice("We have reached the maximum amount of spiderlings"))
+		to_chat(owner, span_notice("We have reached the maximum amount of spiderlings"))
 		return fail_activate()
 	if(!do_after(X, 0.5 SECONDS, TRUE, X, BUSY_ICON_DANGER))
 		return fail_activate()
