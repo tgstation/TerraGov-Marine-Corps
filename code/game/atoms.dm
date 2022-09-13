@@ -12,9 +12,10 @@
 	var/list/blood_DNA
 
 	var/flags_pass = NONE
+	///whether items can be thrown past, or projectiles can fire past this atom.
 	var/throwpass = FALSE
 
-	var/resistance_flags = NONE
+	var/resistance_flags = PROJECTILE_IMMUNE
 
 	var/germ_level = GERM_LEVEL_AMBIENT // The higher the germ level, the more germ on the atom.
 

@@ -58,7 +58,10 @@ OPERATIONS
 
 /datum/supply_packs/operations/binoculars_tatical
 	name = "tactical binoculars crate"
-	contains = list(/obj/item/binoculars/tactical)
+	contains = list(
+		/obj/item/binoculars/tactical,
+		/obj/item/encryptionkey/cas,
+	)
 	cost = 30
 	available_against_xeno_only = TRUE
 
@@ -253,6 +256,30 @@ WEAPONS
 /datum/supply_packs/weapons/shell_le
 	name = "RL-160 RR LE shell"
 	contains = list(/obj/item/ammo_magazine/rocket/recoilless/light)
+	cost = 3
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/weapons/shell_heat
+	name = "RL-160 HEAT shell"
+	contains = list(/obj/item/ammo_magazine/rocket/recoilless/heat)
+	cost = 3
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/weapons/shell_smoke
+	name = "RL-160 RR Smoke shell"
+	contains = list(/obj/item/ammo_magazine/rocket/recoilless/smoke)
+	cost = 3
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/weapons/shell_smoke
+	name = "RL-160 RR Cloak shell"
+	contains = list(/obj/item/ammo_magazine/rocket/recoilless/cloak)
+	cost = 3
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/weapons/shell_smoke
+	name = "RL-160 RR Tanglefoot shell"
+	contains = list(/obj/item/ammo_magazine/rocket/recoilless/plasmaloss)
 	cost = 3
 	available_against_xeno_only = TRUE
 
@@ -1434,17 +1461,17 @@ VEHICLES
 	containertype = /obj/structure/closet/crate/weapon
 
 /datum/supply_packs/vehicles/light_uv
-	name = "Light unmanned vehicle"
+	name = "Light unmanned vehicle - Iguana"
 	contains = list(/obj/vehicle/unmanned)
 	cost = 30
 
 /datum/supply_packs/vehicles/medium_uv
-	name = "Medium unmanned vehicle"
+	name = "Medium unmanned vehicle - Gecko"
 	contains = list(/obj/vehicle/unmanned/medium)
 	cost = 50
 
 /datum/supply_packs/vehicles/heavy_uv
-	name = "Heavy unmanned vehicle"
+	name = "Heavy unmanned vehicle - Komodo"
 	contains = list(/obj/vehicle/unmanned/heavy)
 	cost = 70
 
@@ -1461,13 +1488,13 @@ VEHICLES
 	containertype = /obj/structure/closet/crate/weapon
 
 /datum/supply_packs/vehicles/uv_light_ammo
-	name = "Light UV ammo"
+	name = "Light UV ammo - 11x35mm"
 	contains = list(/obj/item/ammo_magazine/box11x35mm)
 	cost = 3
 	containertype = /obj/structure/closet/crate/ammo
 
 /datum/supply_packs/vehicles/uv_heavy_ammo
-	name = "Heavy UV ammo"
+	name = "Heavy UV ammo - 12x40mm"
 	contains = list(/obj/item/ammo_magazine/box12x40mm)
 	cost = 3
 	containertype = /obj/structure/closet/crate/ammo

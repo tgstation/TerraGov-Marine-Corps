@@ -78,6 +78,9 @@
 /obj/item/weapon/gun/smg/standard_machinepistol/vgrip //cutest looking gun setup in the game
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/verticalgrip)
 
+/obj/item/weapon/gun/smg/standard_machinepistol/scanner
+	starting_attachment_types = list(/obj/item/attachable/motiondetector, /obj/item/attachable/compensator, /obj/item/attachable/lasersight)
+
 //-------------------------------------------------------
 // War is hell. Not glorious.
 
@@ -134,6 +137,9 @@
 
 /obj/item/weapon/gun/smg/standard_smg/nonstandard
 	starting_attachment_types = list(/obj/item/attachable/reddot)
+
+/obj/item/weapon/gun/smg/standard_smg/tactical
+	starting_attachment_types = list(/obj/item/attachable/compensator, /obj/item/attachable/reddot, /obj/item/attachable/lasersight)
 
 //-------------------------------------------------------
 //M-25 SMG
@@ -266,6 +272,7 @@
 	item_state = "skorpion"
 	caliber = CALIBER_32ACP //codex
 	max_shells = 20 //codex
+	flags_equip_slot = ITEM_SLOT_BELT
 	fire_sound = 'sound/weapons/guns/fire/skorpion.ogg'
 	unload_sound = 'sound/weapons/guns/interact/skorpion_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/skorpion_reload.ogg'
@@ -274,12 +281,17 @@
 	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/skorpion)
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 22, "under_x" = 23, "under_y" = 15, "stock_x" = 23, "stock_y" = 15)
 
-	burst_delay = 0.2 SECONDS
+	burst_delay = 0.1 SECONDS
 	accuracy_mult = 1.1
-	accuracy_mult_unwielded = 0.8
-	scatter_unwielded = 8
-	fire_delay = 0.15 SECONDS
+	accuracy_mult_unwielded = 0.9
+	scatter = 2
+	scatter_unwielded = 6
+	fire_delay = 0.1 SECONDS
 	aim_slowdown = 0.3
+	wield_delay = 0.3 SECONDS
+
+/obj/item/weapon/gun/smg/skorpion/mag_harness
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
 
 //-------------------------------------------------------
 //PPSH //Based on the PPSh-41.
@@ -355,7 +367,7 @@
 	cocked_sound = 'sound/weapons/guns/interact/uzi_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/smg/uzi
 	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/uzi, /obj/item/ammo_magazine/smg/uzi/extended)
-	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 27, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
 
 	fire_delay = 0.15 SECONDS
 	burst_amount = 4
@@ -364,6 +376,10 @@
 	scatter_unwielded = 4
 	aim_slowdown = 0.15
 	wield_delay = 0.2 SECONDS
+
+/obj/item/weapon/gun/smg/uzi/mag_harness
+	default_ammo_type = /obj/item/ammo_magazine/smg/uzi/extended
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
 
 //-------------------------------------------------------
 // SOM SMG
@@ -397,13 +413,13 @@
 		/obj/item/attachable/motiondetector,
 	)
 
-	attachable_offset = list("muzzle_x" = 36, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 22, "under_x" = 31, "under_y" = 15, "stock_x" = 24, "stock_y" = 10)
+	attachable_offset = list("muzzle_x" = 38, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 22, "under_x" = 31, "under_y" = 15, "stock_x" = 24, "stock_y" = 10)
 
 	fire_delay = 0.15 SECONDS
 	aim_slowdown = 0.15
 	wield_delay = 0.4 SECONDS
 
-	accuracy_mult = 1.2
+	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.9
 
 	recoil = 0
@@ -417,7 +433,7 @@
 	extra_delay = 0.1 SECONDS
 	autoburst_delay = 0.1 SECONDS //this makes it fuller auto
 	burst_accuracy_mult = 0.7
-	burst_scatter_mult = 9
+	burst_scatter_mult = 15
 
 	akimbo_additional_delay = 0.7
 	upper_akimbo_accuracy = 5
@@ -434,5 +450,11 @@
 	starting_attachment_types = list(
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/compensator,
+		/obj/item/attachable/magnetic_harness,
+	)
+
+/obj/item/weapon/gun/smg/som/basic
+	starting_attachment_types = list(
+		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/magnetic_harness,
 	)

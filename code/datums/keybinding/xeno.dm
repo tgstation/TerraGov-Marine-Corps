@@ -359,12 +359,6 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_STEALTH
 
-/datum/keybinding/xeno/swap
-	name = "swap"
-	full_name = "Hunter: Swap"
-	description = ""
-	keybind_signal = COMSIG_XENOABILITY_SWAP
-
 /datum/keybinding/xeno/mirage
 	name = "mirage"
 	full_name = "Hunter: Mirage"

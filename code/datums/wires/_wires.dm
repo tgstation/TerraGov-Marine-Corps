@@ -154,13 +154,13 @@
 /datum/wires/proc/pulse(wire, mob/user)
 	if(is_cut(wire))
 		return
-
-	var/skill = user.skills.getRating("engineer")
-	if(skill < SKILL_ENGINEER_ENGI)
-		user.visible_message(span_notice("[usr] fumbles around figuring out the wiring."),
-		span_notice("You fumble around figuring out the wiring."))
-		if(!do_after(user, 2 SECONDS * (SKILL_ENGINEER_ENGI - skill), TRUE, holder, BUSY_ICON_UNSKILLED) || is_cut(wire))
-			return
+	if(user) //Signalers skip pulse delay
+		var/skill = user.skills.getRating("engineer")
+		if(skill < SKILL_ENGINEER_ENGI)
+			user.visible_message(span_notice("[usr] fumbles around figuring out the wiring."),
+			span_notice("You fumble around figuring out the wiring."))
+			if(!do_after(user, 2 SECONDS * (SKILL_ENGINEER_ENGI - skill), TRUE, holder, BUSY_ICON_UNSKILLED) || is_cut(wire))
+				return
 
 	on_pulse(wire, user)
 
@@ -188,6 +188,7 @@
 	var/obj/item/assembly/S = get_attached(color)
 	if(!istype(S))
 		return
+
 	assemblies -= color
 	S.connected = null
 	S.forceMove(get_turf(S))

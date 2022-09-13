@@ -80,7 +80,7 @@
 	icon_state = "t39"
 	item_state = "t39"
 	fire_sound = 'sound/weapons/guns/fire/shotgun_automatic.ogg'
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -266,6 +266,12 @@
 	recoil_unwielded = 4
 	aim_slowdown = 0.45
 
+/obj/item/weapon/gun/shotgun/pump/standard
+	starting_attachment_types = list(
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/bayonet,
+	)
+
 //-------------------------------------------------------
 //A shotgun, how quaint.
 /obj/item/weapon/gun/shotgun/pump/cmb
@@ -303,6 +309,12 @@
 	recoil_unwielded = 0
 	cock_delay = 12
 	aim_slowdown = 0.4
+
+/obj/item/weapon/gun/shotgun/pump/cmb/mag_harness
+	starting_attachment_types = list(
+		/obj/item/attachable/stock/irremoveable/pal12,
+		/obj/item/attachable/magnetic_harness,
+	)
 
 //------------------------------------------------------
 //A hacky bolt action rifle. in here for the "pump" or bolt working action.
@@ -694,11 +706,13 @@
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/compensator,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/reddot,
 	)
-	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 19,"rail_x" = 26, "rail_y" = 22, "under_x" = 14, "under_y" = 16, "stock_x" = 14, "stock_y" = 16)
+	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 18,"rail_x" = 26, "rail_y" = 22, "under_x" = 14, "under_y" = 16, "stock_x" = 14, "stock_y" = 16)
 
 	fire_delay = 1.8 SECONDS
 	accuracy_mult = 1.15
@@ -730,7 +744,7 @@
 	flags_gun_features = GUN_IS_ATTACHMENT|GUN_AMMO_COUNTER|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
 	flags_attach_features = NONE
 	slot = ATTACHMENT_SLOT_STOCK
-	default_ammo_type = /obj/item/ammo_magazine/handful/micro_grenade
+	default_ammo_type = /datum/ammo/bullet/micro_rail/airburst
 	caliber = CALIBER_10G_RAIL
 	type_of_casings = null
 

@@ -15,7 +15,9 @@
 	max_duration = HEMOSTAT_REMOVE_MAX_DURATION
 
 /datum/surgery_step/implant_removal/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
-	return affected.surgery_open_stage >= 2
+	if(affected.surgery_open_stage >= 2)
+		return SURGERY_CAN_USE
+	return SURGERY_CANNOT_USE
 
 /datum/surgery_step/implant_removal/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_notice("[user] starts poking around inside the incision on [target]'s [affected.display_name] with \the [tool]."), \

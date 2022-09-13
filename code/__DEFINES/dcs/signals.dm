@@ -470,7 +470,6 @@
 #define COMSIG_WARRIOR_USED_GRAPPLE_TOSS "warrior_used_grapple_toss"
 
 #define COMSIG_XENOABILITY_HUNTER_MARK "xenoability_hunter_mark"
-#define COMSIG_XENOABILITY_SWAP "xenoability_swap"
 #define COMSIG_XENOABILITY_PSYCHIC_TRACE "xenoability_psychic_trace"
 
 #define COMSIG_XENOMORPH_PLASMA_REGEN "xenomorph_plasma_regen"
@@ -765,6 +764,10 @@
 #define COMSIG_KB_FOCUSORDER "keybind_focusorder"
 #define COMSIG_KB_RALLYORDER "keybind_rallyorder"
 #define COMSIG_KB_SENDORDER "keybind_sendorder"
+#define COMSIG_KB_ATTACKORDER "keybind_attackorder"
+#define COMSIG_KB_DEFENDORDER "keybind_defendorder"
+#define COMSIG_KB_RETREATORDER "keybind_retreatorder"
+
 
 // human modules signals for keybindings
 #define COMSIG_KB_VALI_CONFIGURE "keybinding_vali_configure"
