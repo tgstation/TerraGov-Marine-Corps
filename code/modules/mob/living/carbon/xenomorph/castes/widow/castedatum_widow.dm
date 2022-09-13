@@ -167,6 +167,9 @@
 	// *** Defense *** //
 	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 10, "rad" = 10, FIRE = 20, ACID = 10)
 
+	// *** Widow Abilities *** //
+	max_spiderlings = 5
+
 	// *** Abilities *** ///
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
