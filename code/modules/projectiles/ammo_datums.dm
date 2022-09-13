@@ -2768,18 +2768,13 @@ datum/ammo/bullet/revolver/tp44
 /// For Widows Web Spit Ability
 /datum/ammo/xeno/web
 	icon_state = "web_spit"
+	sound_hit = "snap"
+	sound_bounce = "alien_resin_build3"
 	damage_type = STAMINA
 	bullet_color = COLOR_WHITE
 	flags_ammo_behavior = AMMO_SKIPS_ALIENS
 	ping = null
-	added_spit_delay = 0 //used to make cooldown of the different spits vary.
-	spit_cost = 5
-	//icon_state = "" need to create my own
-	sound_hit = "snap" // temp but I might keep it as currently no xeno causes this sound and that will alert nearby ungas that Widow has spit on someone
-	sound_bounce = "alien_resin_build3"
-	armor_type = "bio"
-	shell_speed = 1
-	accuracy = 40
+	armor_type = BIO
 	accurate_range = 10
 	max_range = 15
 	///For how long the victim will be blinded
@@ -2813,10 +2808,9 @@ datum/ammo/bullet/revolver/tp44
 	bullet_color = COLOR_WHITE
 	ping = null
 	damage = 0
-	armor_type = "bio"
+	armor_type = BIO
 	shell_speed = 1.5
-	accuracy = 40
-	accurate_range = 15
+	accurate_range = 8
 	max_range = 8
 
 /datum/ammo/xeno/leash_ball/on_hit_turf(turf/T, obj/projectile/proj)
