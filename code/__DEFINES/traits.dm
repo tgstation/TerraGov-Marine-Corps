@@ -101,6 +101,7 @@
 #define OPTABLE_TRAIT "optable"
 #define TIMESHIFT_TRAIT "timeshift"
 #define BRAIN_TRAIT "brain"
+#define WIDOW_BURROW_TRAIT "widow_burrow_trait"
 /// Trait from a reagent of the given name
 #define REAGENT_TRAIT(reagent) reagent.name
 /// inherited from riding vehicles

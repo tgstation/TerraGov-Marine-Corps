@@ -425,10 +425,10 @@
 		mouse_opacity = initial(mouse_opacity)
 		density = TRUE
 		throwpass = FALSE
-		canmove = TRUE
-		REMOVE_TRAIT(src, TRAIT_MOB_ICON_UPDATE_BLOCKED, src)
-		REMOVE_TRAIT(src, TRAIT_BURROWED, src)
-		REMOVE_TRAIT(src, TRAIT_HANDS_BLOCKED, src)
+		REMOVE_TRAIT(src, TRAIT_IMMOBILE, WIDOW_BURROW_TRAIT)
+		REMOVE_TRAIT(src, TRAIT_MOB_ICON_UPDATE_BLOCKED, WIDOW_BURROW_TRAIT)
+		REMOVE_TRAIT(src, TRAIT_BURROWED, WIDOW_BURROW_TRAIT)
+		REMOVE_TRAIT(src, TRAIT_HANDS_BLOCKED, WIDOW_BURROW_TRAIT)
 
 /// Called by xeno_burrow only when burrowing
 /mob/living/carbon/xenomorph/proc/xeno_burrow_doafter()
@@ -444,9 +444,9 @@
 	fire_overlay.icon_state = "" // We set it here so we dont wait for life
 	// Here we prevent the xeno from moving or attacking or using abilities untill they unburrow by clicking the ability
 	fire_resist_modifier -= BURROW_FIRE_RESIST_MODIFIER // This makes the xeno immune to fire while burrowed, even if burning beforehand
-	canmove = FALSE
-	ADD_TRAIT(src, TRAIT_MOB_ICON_UPDATE_BLOCKED, src)
-	ADD_TRAIT(src, TRAIT_BURROWED, src)
-	ADD_TRAIT(src, TRAIT_HANDS_BLOCKED, src)
+	ADD_TRAIT(src, TRAIT_IMMOBILE, WIDOW_BURROW_TRAIT)
+	ADD_TRAIT(src, TRAIT_MOB_ICON_UPDATE_BLOCKED, WIDOW_BURROW_TRAIT)
+	ADD_TRAIT(src, TRAIT_BURROWED, WIDOW_BURROW_TRAIT)
+	ADD_TRAIT(src, TRAIT_HANDS_BLOCKED, WIDOW_BURROW_TRAIT)
 	// We register for movement so that we unburrow if bombed
 	RegisterSignal(src, COMSIG_MOVABLE_MOVED, .proc/xeno_burrow)
