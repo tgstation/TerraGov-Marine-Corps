@@ -2782,11 +2782,11 @@ datum/ammo/bullet/revolver/tp44
 	accuracy = 40
 	accurate_range = 10
 	max_range = 15
-	///Blind effect
+	///For how long the victim will be blinded
 	var/hit_eye_blind = 1
-	///Snare effect
+	///How long the victim will be snared for
 	var/hit_immobilize = 2 SECONDS
-	///Weaken effect
+	///How long the victim will be KO'd
 	var/hit_weaken = 1
 	///List for bodyparts that upon being hit cause the target to become weakened
 	var/list/weaken_list = list(BODY_ZONE_CHEST, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND)
