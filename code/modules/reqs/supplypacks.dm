@@ -643,9 +643,9 @@ EXPLOSIVES
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/explosives/ai_target_module
-	name = "AI targeting module"
+	name = "AI artillery targeting module"
 	contains = list(/obj/item/ai_target_beacon)
-	cost = 50
+	cost = 10
 	available_against_xeno_only = TRUE
 
 /*******************************************************************************
