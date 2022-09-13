@@ -4,8 +4,8 @@
 	desc = "Spawn of Widow"
 	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "Spiderling Running"
-	health = 200
-	maxHealth = 200
+	health = 250
+	maxHealth = 250
 	plasma_stored = 200
 	pixel_x = 0
 	old_x = 0
