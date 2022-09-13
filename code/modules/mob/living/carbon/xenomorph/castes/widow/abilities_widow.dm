@@ -57,6 +57,8 @@
 	anchored = TRUE
 	throwpass = FALSE
 	density = TRUE
+	/// How long the leash ball lasts untill it dies
+	var/leash_life = 10 SECONDS
 	/// Radius for how far the leash should affect humans and how far away they may walk
 	var/leash_radius = 5
 	/// List of beams to be removed on obj_destruction
@@ -78,15 +80,16 @@
 		RegisterSignal(victim, COMSIG_MOVABLE_PRE_MOVE, .proc/check_dist)
 	if(!length(beams))
 		return INITIALIZE_HINT_QDEL
+	QDEL_IN(src, leash_life)
 
 /// To remove beams after the leash_ball is destroyed and also unregister all victims
-/obj/structure/xeno/aoe_leash/obj_destruction()
-	. = ..()
+/obj/structure/xeno/aoe_leash/Destroy()
 	for(var/mob/living/carbon/human/victim AS in leash_victims)
 		UnregisterSignal(victim, COMSIG_MOVABLE_PRE_MOVE)
 		REMOVE_TRAIT(victim, TRAIT_LEASHED, src)
 	leash_victims = null
 	QDEL_LIST(beams)
+	return ..()
 
 /// Humans caught in the aoe_leash will be pulled back if they leave it's radius
 /obj/structure/xeno/aoe_leash/proc/check_dist(datum/leash_victim, atom/newloc)
@@ -254,20 +257,18 @@
 	anchored = TRUE
 	throwpass = FALSE
 	density = TRUE
-	/// The widow thats stored inside
-	var/mob/living/carbon/xenomorph/widow/stored_widow
 
 /// Here we set and put widow inside of the pod
-/obj/structure/xeno/widow_pod/Initialize(mapload, mob/living/carbon/xenomorph/widow/X)
+/obj/structure/xeno/widow_pod/Initialize(mapload, mob/living/carbon/xenomorph/widow/stored_widow)
 	. = ..()
-	stored_widow = X
 	stored_widow.forceMove(src)
 	RegisterSignal(stored_widow, COMSIG_LIVING_DO_RESIST, .proc/take_pod_damage)
 
 /// Here we take out widow from pod
 /obj/structure/xeno/widow_pod/obj_destruction()
-	stored_widow.forceMove(get_turf(src))
-	UnregisterSignal(stored_widow, COMSIG_LIVING_DO_RESIST)
+	for(var/mob/living/carbon/xenomorph/widow/evicted AS in src)
+		evicted.forceMove(get_turf(src))
+		UnregisterSignal(evicted, COMSIG_LIVING_DO_RESIST)
 	return ..()
 
 /// This will be called when widow resists inside of the pod
