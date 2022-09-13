@@ -34,6 +34,9 @@
 	// *** Defense *** //
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 0, BIO = 5, FIRE = 0, ACID = 5)
 
+	// *** Minimap Icon *** //
+	minimap_icon = "widow"
+
 	// *** Widow Abilities *** //
 	max_spiderlings = 2
 
