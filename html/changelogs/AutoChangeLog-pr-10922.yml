@@ -1,5 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes: 
-  - bugfix: "Synth heads can be reattached"
-  - bugfix: "Heads have their proper hair and name and aren't invisible sometimes"

@@ -1,5 +1,0 @@
-author: "Wayland-Smithy & novaepee"
-delete-after: True
-changes: 
-  - rscadd: "Added new carrier ability: Drop all facehuggers"
-  - bugfix: "Fixed useless loop condition in hugger drop on death code and moved it into the action"
