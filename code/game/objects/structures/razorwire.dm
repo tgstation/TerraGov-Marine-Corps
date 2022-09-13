@@ -108,7 +108,7 @@
 /obj/structure/razorwire/proc/razorwire_untangle(mob/living/entangled)
 	SIGNAL_HANDLER
 	if((entangled.flags_pass & PASSSMALLSTRUCT) || entangled.status_flags & INCORPOREAL)
-		return
+		return FALSE
 	entangled.next_move_slowdown += RAZORWIRE_SLOWDOWN //big slowdown
 	do_razorwire_untangle(entangled)
 	visible_message(span_danger("[entangled] disentangles from [src]!"))
@@ -137,7 +137,9 @@
 
 /obj/structure/razorwire/Destroy()
 	for(var/i in entangled_list)
-		do_razorwire_untangle(i)
+		// sanity incase their flags_pass get changed while in barbed wire (wraith) and they're not liable to be untangled with damage
+		if(!razorwire_untangle(i))
+			do_razorwire_untangle(i)
 	return ..()
 
 
