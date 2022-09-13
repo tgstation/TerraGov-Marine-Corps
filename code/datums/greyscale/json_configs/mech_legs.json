@@ -62,7 +62,7 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "uncolorable_leg",
+			"icon_state": "leg_uncolorable",
 			"blend_mode": "overlay"
 		}
 	]

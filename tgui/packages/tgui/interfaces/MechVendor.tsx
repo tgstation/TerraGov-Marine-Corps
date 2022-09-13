@@ -11,6 +11,7 @@ import {
   ByondUi,
   ColorBox,
   Collapsible,
+  Input,
 } from '../components';
 import { Window } from '../layouts';
 
@@ -85,26 +86,19 @@ export const MechVendor = (props, context) => {
         </Modal>
       ) : null}
       <Window.Content>
-        <Section lineHeight={1.75}>
-          <Tabs fill>
-            <Stack wrap="wrap">
-              {tabs.map((tabname) => {
-                return (
-                  <Stack.Item
-                    m={0.5}
-                    grow={tabname.length}
-                    basis={'content'}
-                    key={tabname}>
-                    <Tabs.Tab
-                      selected={tabname === selectedTab}
-                      fontSize="110%"
-                      onClick={() => setSelectedTab(tabname)}>
-                      {tabname}
-                    </Tabs.Tab>
-                  </Stack.Item>
-                );
-              })}
-            </Stack>
+        <Section lineHeight={1.75} textAlign="center">
+          <Tabs fluid >
+            {tabs.map((tabname) => {
+              return (
+                <Tabs.Tab
+                  key={tabname}
+                  selected={tabname === selectedTab}
+                  fontSize="130%"
+                  onClick={() => setSelectedTab(tabname)}>
+                  {tabname}
+                </Tabs.Tab>
+              );
+            })}
           </Tabs>
           <Divider />
         </Section>
@@ -208,15 +202,37 @@ const MechAssembly = (props, context) => {
             <BodypartPicker displayingpart="CHEST" />
           </Stack.Item>
           <Stack.Item>
-            <ByondUi
-              height="240px"
-              width="200px"
-              params={{
-                id: mech_view_east,
-                zoom: 5,
-                type: 'map',
-              }}
+            <Input
+              fluid
+              placeholder={'Mech name'}
+              value={selected_name}
+              onChange={(e, value) => act('set_name', { new_name: value })}
             />
+          </Stack.Item>
+          <Stack.Item>
+            <Section title={"Mech parameters"}>
+              <Collapsible color={"transparent"} title={"Integrity: " + 2}>
+                <Box maxWidth={"160px"}>Determines maximum integrity of mecha.</Box>
+              </Collapsible>
+              <Collapsible color={"transparent"} title={"L scatter angle: " + 2}>
+                <Box maxWidth={"160px"}>Scatter angle for left arm.</Box>
+              </Collapsible>
+              <Collapsible color={"transparent"} title={"R scatter angle: " + 2}>
+                <Box maxWidth={"160px"}>Scatter angle for right arm.</Box>
+              </Collapsible>
+              <Collapsible color={"transparent"} title={"Slowdown: " + 2}>
+                <Box maxWidth={"160px"}>Determines how fast mecha is compared to base.</Box>
+              </Collapsible>
+              <Collapsible color={"transparent"} title={"Accuracy: " + 2}>
+                <Box maxWidth={"160px"}>Determines likeliness of mecha to hit at long ranges.</Box>
+              </Collapsible>
+              <Collapsible color={"transparent"} title={"Bomb Armor: " + 2}>
+                <Box maxWidth={"160px"}>Determines maximum integrity of mecha.</Box>
+              </Collapsible>
+              <Collapsible color={"transparent"} title={"Light range: " + 2}>
+                <Box maxWidth={"160px"}>Light strength.</Box>
+              </Collapsible>
+            </Section>
           </Stack.Item>
         </Stack>
       </Stack.Item>
@@ -297,15 +313,32 @@ const MechAssembly = (props, context) => {
             <BodypartPicker displayingpart="LEG" />
           </Stack.Item>
           <Stack.Item>
-            <ByondUi
-              height="240px"
-              width="200px"
-              params={{
-                id: mech_view_west,
-                zoom: 5,
-                type: 'map',
-              }}
-            />
+            <Section title={"Mech armor"}>
+              <Collapsible color={"transparent"} title={"Melee Armor: " + 2 + "%"}>
+                <Box maxWidth={"160px"}>Determines maximum integrity of mecha.</Box>
+              </Collapsible>
+              <Collapsible color={"transparent"} title={"Bullet Armor: " + 2 + "%"}>
+                <Box maxWidth={"160px"}>Determines maximum integrity of mecha.</Box>
+              </Collapsible>
+              <Collapsible color={"transparent"} title={"Laser Armor: " + 2 + "%"}>
+                <Box maxWidth={"160px"}>Determines maximum integrity of mecha.</Box>
+              </Collapsible>
+              <Collapsible color={"transparent"} title={"Energy Armor: " + 2 + "%"}>
+                <Box maxWidth={"160px"}>Determines maximum integrity of mecha.</Box>
+              </Collapsible>
+              <Collapsible color={"transparent"} title={"Bomb Armor: " + 2 + "%"}>
+                <Box maxWidth={"160px"}>Determines maximum integrity of mecha.</Box>
+              </Collapsible>
+              <Collapsible color={"transparent"} title={"Bio Armor: " + 2 + "%"}>
+                <Box maxWidth={"160px"}>Determines maximum integrity of mecha.</Box>
+              </Collapsible>
+              <Collapsible color={"transparent"} title={"Fire Armor: " + 2 + "%"}>
+                <Box maxWidth={"160px"}>Determines maximum integrity of mecha.</Box>
+              </Collapsible>
+              <Collapsible color={"transparent"} title={"Acid Armor: " + 2 + "%"}>
+                <Box maxWidth={"160px"}>Determines maximum integrity of mecha.</Box>
+              </Collapsible>
+            </Section>
           </Stack.Item>
         </Stack>
       </Stack.Item>

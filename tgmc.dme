@@ -1761,6 +1761,7 @@
 #include "code\modules\vehicles\mecha\combat\phazon.dm"
 #include "code\modules\vehicles\mecha\combat\savannah_ivanov.dm"
 #include "code\modules\vehicles\mecha\combat\greyscale\greyscale.dm"
+#include "code\modules\vehicles\mecha\combat\greyscale\greyscale_constructor.dm"
 #include "code\modules\vehicles\mecha\combat\greyscale\greyscale_limbs.dm"
 #include "code\modules\vehicles\mecha\equipment\mecha_equipment.dm"
 #include "code\modules\vehicles\mecha\equipment\tools\mining_tools.dm"

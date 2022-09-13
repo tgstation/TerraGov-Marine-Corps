@@ -38,7 +38,7 @@
 	var/obj/item/mecha_parts/mecha_equipment/weapon/right_gun = equip_by_category[MECHA_R_ARM]
 	var/obj/item/mecha_parts/mecha_equipment/weapon/left_gun = equip_by_category[MECHA_L_ARM]
 	if(right_gun)
-		. += image(right_gun.icon, right_gun.icon_state)
+		. += image(right_gun.icon, right_gun.icon_state) // tivi todo just use appearance?
 	if(left_gun)
 		. += image(left_gun.icon, left_gun.icon_state)
 
