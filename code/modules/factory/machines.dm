@@ -33,7 +33,7 @@
 /obj/machinery/factory/wrench_act(mob/living/user, obj/item/I)
 	anchored = !anchored
 	balloon_alert(user, "[anchored ? "" : "un"]anchored")
-	wrenchy_tool.play_tool_sound(src, 75)
+	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 
 /obj/machinery/factory/screwdriver_act(mob/living/user, obj/item/I)
 	setDir(turn(dir, 90))
