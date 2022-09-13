@@ -1,6 +1,6 @@
 /datum/emergency_call/special_forces
 	name = "Local System Special Forces"
-	base_probability = 15
+	base_probability = 20
 	alignement_factor = -1
 
 /datum/emergency_call/special_forces/print_backstory(mob/living/carbon/human/H)
