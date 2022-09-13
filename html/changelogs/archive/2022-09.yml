@@ -94,3 +94,23 @@
   - rscadd: the old V10 shotgun made his way into the seasonals
   mc-oofert:
   - rscadd: Rangefinder/Tactical Binoculars can now link to multiple mortars
+2022-09-12:
+  QualityVan:
+  - config: Removed config numbers organ_health_multiplier and organ_regeneration_multiplier
+  lbnesquik:
+  - rscadd: Add req points from mining to round end stats
+  - qol: Swapped the AI and Synth rooms on POS
+2022-09-13:
+  BraveMole:
+  - code_imp: Improve performance of pathfinder
+  QualityVan:
+  - bugfix: Synth heads can be reattached
+  - bugfix: Heads have their proper hair and name and aren't invisible sometimes
+  Wayland-Smithy & novaepee:
+  - rscadd: 'Added new carrier ability: Drop all facehuggers'
+  - bugfix: Fixed useless loop condition in hugger drop on death code and moved it
+      into the action
+  lbnesquik:
+  - qol: made it clear when a turf is underground or not
+  novaepee:
+  - rscdel: Remove unused APC in synth room that drain CIC of its power

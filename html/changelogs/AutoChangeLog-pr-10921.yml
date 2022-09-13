@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes: 
+  - bugfix: "X fuel tanks no longer convert ordinary fuel to X fuel"
