@@ -1,7 +1,7 @@
 /mob/living/carbon/xenomorph/widow
 	caste_base_type = /mob/living/carbon/xenomorph/widow
 	name = "Widow"
-	desc = "Nothing here for now, skitter away"
+	desc = "A large arachnid xeno, godspeed"
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Widow Walking"
 	health = 200
