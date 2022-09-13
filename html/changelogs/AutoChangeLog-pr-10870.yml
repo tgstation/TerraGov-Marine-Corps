@@ -1,0 +1,5 @@
+author: "nova_epee and crow"
+delete-after: True
+changes: 
+  - imageadd: "new sprites for brute kit, burn kit, and surgery membrane"
+  - rscdel: "useless sprites that never been used for brute and burn kit"
