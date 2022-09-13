@@ -268,7 +268,7 @@
 /obj/structure/xeno/widow_pod/obj_destruction()
 	stored_widow.forceMove(get_turf(src))
 	UnregisterSignal(stored_widow, COMSIG_LIVING_DO_RESIST)
-	. = ..()
+	return ..()
 
 /// This will be called when widow resists inside of the pod
 /obj/structure/xeno/widow_pod/proc/take_pod_damage()
