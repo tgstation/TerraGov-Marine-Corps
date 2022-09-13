@@ -20,7 +20,7 @@ SUBSYSTEM_DEF(pathfinder)
 			continue
 
 		//Okay it can actually physically move, but has it moved too recently?
-		if(world.time <= (mob_to_process.last_move_time + mob_to_process.cached_multiplicative_slowdown + mob_to_process.next_move_slowdown) || mob_to_process.do_actions)
+		if(world.time <= (mob_to_process.last_move_time + mob_to_process.cached_multiplicative_slowdown + mob_to_process.next_move_slowdown))
 			continue
 		mob_to_process.next_move_slowdown = 0
 		var/step_dir
@@ -49,6 +49,8 @@ SUBSYSTEM_DEF(pathfinder)
 			step_dir = get_dir(mob_to_process, pathfinding_datum.atom_to_walk_to)
 		var/turf/next_turf = get_step(mob_to_process, step_dir)
 		if(next_turf.flags_atom & AI_BLOCKED || (!mob_to_process.Move(next_turf, step_dir) && !(SEND_SIGNAL(mob_to_process, COMSIG_OBSTRUCTED_MOVE, step_dir) & COMSIG_OBSTACLE_DEALT_WITH)))
+			if(world.time == mob_to_process.last_move_time)
+				continue
 			step_dir = pick(LeftAndRightOfDir(step_dir))
 			next_turf = get_step(mob_to_process, step_dir)
 			if(next_turf.flags_atom & AI_BLOCKED)
