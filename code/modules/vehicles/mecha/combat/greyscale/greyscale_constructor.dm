@@ -1,3 +1,23 @@
+/obj/screen/mech_builder_view
+	name = "Mech preview"
+	del_on_map_removal = FALSE
+	layer = OBJ_LAYER
+	plane = GAME_PLANE
+	///list of plane masters to apply to owners
+	var/list/plane_masters = list()
+
+/obj/screen/mech_builder_view/Initialize(mapload)
+	. = ..()
+	assigned_map = "mech_preview_[REF(src)]"
+	set_position(1, 1)
+	for(var/plane_master_type in subtypesof(/obj/screen/plane_master) - /obj/screen/plane_master/blackness)
+		var/obj/screen/plane_master/plane_master = new plane_master_type()
+		plane_master.screen_loc = "[assigned_map]:CENTER"
+		plane_masters += plane_master
+
+/obj/screen/mech_builder_view/Destroy()
+	QDEL_LIST(plane_masters)
+	return ..()
 
 /obj/machinery/computer/mech_builder
 	name = "mech computer"
@@ -136,27 +156,6 @@
 	var/currently_assembling = FALSE
 	///list of stat data that will be sent to the UI
 	var/list/current_stats
-
-/obj/screen/mech_builder_view
-	name = "Mech preview"
-	del_on_map_removal = FALSE
-	layer = OBJ_LAYER
-	plane = GAME_PLANE
-	///list of plane masters to apply to owners
-	var/list/plane_masters = list()
-
-/obj/screen/mech_builder_view/Initialize(mapload)
-	. = ..()
-	assigned_map = "mech_preview_[REF(src)]"
-	set_position(1, 1)
-	for(var/plane_master_type in subtypesof(/obj/screen/plane_master) - /obj/screen/plane_master/blackness)
-		var/obj/screen/plane_master/plane_master = new plane_master_type()
-		plane_master.screen_loc = "[assigned_map]:CENTER"
-		plane_masters += plane_master
-
-/obj/screen/mech_builder_view/Destroy()
-	QDEL_LIST(plane_masters)
-	return ..()
 
 /obj/machinery/computer/mech_builder/Initialize()
 	. = ..()
@@ -333,40 +332,3 @@
 		if(slot == MECH_GREY_HEAD)
 			new_overlays += icon2appearance(SSgreyscale.GetColoredIconByType(initial(typepath.visor_config), default_visor))
 	mech_view.overlays = new_overlays
-
-///helper that converts greyscale mech slots and types into typepaths
-/proc/get_mech_limb(slot, mech_type)
-	switch(slot)
-		if(MECH_GREY_HEAD)
-			switch(mech_type)
-				if(MECH_RECON)
-					return /datum/mech_limb/head/recon
-				if(MECH_ASSAULT)
-					return /datum/mech_limb/head/assault
-				if(MECH_VANGUARD)
-					return /datum/mech_limb/head/vanguard
-		if(MECH_GREY_L_ARM, MECH_GREY_R_ARM)
-			switch(mech_type)
-				if(MECH_RECON)
-					return /datum/mech_limb/arm/recon
-				if(MECH_ASSAULT)
-					return /datum/mech_limb/arm/assault
-				if(MECH_VANGUARD)
-					return /datum/mech_limb/arm/vanguard
-		if(MECH_GREY_TORSO)
-			switch(mech_type)
-				if(MECH_RECON)
-					return /datum/mech_limb/torso/recon
-				if(MECH_ASSAULT)
-					return /datum/mech_limb/torso/assault
-				if(MECH_VANGUARD)
-					return /datum/mech_limb/torso/vanguard
-		if(MECH_GREY_LEGS)
-			switch(mech_type)
-				if(MECH_RECON)
-					return /datum/mech_limb/legs/recon
-				if(MECH_ASSAULT)
-					return /datum/mech_limb/legs/assault
-				if(MECH_VANGUARD)
-					return /datum/mech_limb/legs/vanguard
-	CRASH("Error getting mech type: [slot], [mech_type]")

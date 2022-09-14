@@ -85,62 +85,9 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 /datum/mech_limb/proc/get_overlays()
 	return icon2appearance(overlay_icon)
 
-/datum/mech_limb/arm
-	health_mod = 200
-	/// Amount scatter is modified by when this arm shoots
-	var/scatter_mod = 0
-	///which slot this arm is equipped to when it is attached
-	var/arm_slot
 
-/datum/mech_limb/arm/attach(obj/vehicle/sealed/mecha/combat/greyscale/attached, slot)
-	arm_slot = slot
-	return ..()
 
-/datum/mech_limb/arm/detach(obj/vehicle/sealed/mecha/combat/greyscale/attached, slot)
-	arm_slot = null
-	return ..()
-
-/datum/mech_limb/arm/get_overlays()
-	if(arm_slot == MECH_GREY_R_ARM)
-		return image(overlay_icon, icon_state = "right")
-	return image(overlay_icon, icon_state = "left")
-
-/datum/mech_limb/arm/recon
-	health_mod = 250
-	scatter_mod = -10
-	slowdown_mod = 0.2
-	greyscale_type = /datum/greyscale_config/mech_recon/arms
-
-/datum/mech_limb/arm/assault
-	health_mod = 500
-	scatter_mod = -17
-	slowdown_mod = 0.3
-	greyscale_type = /datum/greyscale_config/mech_assault/arms
-
-/datum/mech_limb/arm/vanguard
-	health_mod = 750
-	scatter_mod = -25
-	slowdown_mod = 0.4
-	greyscale_type = /datum/greyscale_config/mech_vanguard/arms
-
-/datum/mech_limb/legs
-	health_mod = 300
-
-/datum/mech_limb/legs/recon
-	health_mod = 500
-	slowdown_mod = -0.7
-	greyscale_type = /datum/greyscale_config/mech_recon/legs
-
-/datum/mech_limb/legs/assault
-	health_mod = 750
-	slowdown_mod = -0.3
-	greyscale_type = /datum/greyscale_config/mech_assault/legs
-
-/datum/mech_limb/legs/vanguard
-	health_mod = 1000
-	slowdown_mod = 0.1
-	greyscale_type = /datum/greyscale_config/mech_vanguard/legs
-
+///MECH HEAD
 /datum/mech_limb/head
 	health_mod = 200
 	/// greyscale config datum for the visor
@@ -189,6 +136,7 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 	greyscale_type = /datum/greyscale_config/mech_vanguard/head
 	visor_config = /datum/greyscale_config/mech_vanguard/visor
 
+
 /datum/mech_limb/torso
 	health_mod = 600
 	/// cell typepath to place into the mech when this torso is attached
@@ -219,3 +167,63 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 	slowdown_mod = 1.1
 	cell_type = /obj/item/cell/mecha/large
 	greyscale_type = /datum/greyscale_config/mech_vanguard/torso
+
+
+//MECH ARMS
+/datum/mech_limb/arm
+	health_mod = 200
+	/// Amount scatter is modified by when this arm shoots
+	var/scatter_mod = 0
+	///which slot this arm is equipped to when it is attached
+	var/arm_slot
+
+/datum/mech_limb/arm/attach(obj/vehicle/sealed/mecha/combat/greyscale/attached, slot)
+	arm_slot = slot
+	return ..()
+
+/datum/mech_limb/arm/detach(obj/vehicle/sealed/mecha/combat/greyscale/attached, slot)
+	arm_slot = null
+	return ..()
+
+/datum/mech_limb/arm/get_overlays()
+	if(arm_slot == MECH_GREY_R_ARM)
+		return image(overlay_icon, icon_state = "right")
+	return image(overlay_icon, icon_state = "left")
+
+/datum/mech_limb/arm/recon
+	health_mod = 250
+	scatter_mod = -10
+	slowdown_mod = 0.2
+	greyscale_type = /datum/greyscale_config/mech_recon/arms
+
+/datum/mech_limb/arm/assault
+	health_mod = 500
+	scatter_mod = -17
+	slowdown_mod = 0.3
+	greyscale_type = /datum/greyscale_config/mech_assault/arms
+
+/datum/mech_limb/arm/vanguard
+	health_mod = 750
+	scatter_mod = -25
+	slowdown_mod = 0.4
+	greyscale_type = /datum/greyscale_config/mech_vanguard/arms
+
+
+//MECH LEGS
+/datum/mech_limb/legs
+	health_mod = 300
+
+/datum/mech_limb/legs/recon
+	health_mod = 500
+	slowdown_mod = -0.7
+	greyscale_type = /datum/greyscale_config/mech_recon/legs
+
+/datum/mech_limb/legs/assault
+	health_mod = 750
+	slowdown_mod = -0.3
+	greyscale_type = /datum/greyscale_config/mech_assault/legs
+
+/datum/mech_limb/legs/vanguard
+	health_mod = 1000
+	slowdown_mod = 0.1
+	greyscale_type = /datum/greyscale_config/mech_vanguard/legs
