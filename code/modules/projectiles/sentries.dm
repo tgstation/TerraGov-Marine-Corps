@@ -121,10 +121,16 @@
 	set_on(TRUE)
 
 /obj/machinery/deployable/mounted/sentry/reload(mob/user, ammo_magazine)
+	if(!match_iff(user)) //You can't pull the ammo out of hostile turrets
+		to_chat(user, span_notice("Access denied."))
+		return
 	. = ..()
 	update_static_data(user)
 
 /obj/machinery/deployable/mounted/sentry/interact(mob/user, manual_mode = FALSE)
+	if(!match_iff(user)) //You can't mess with hostile turrets
+		to_chat(user, span_notice("Access denied."))
+		return
 	var/obj/item/weapon/gun/gun = internal_item
 	if(manual_mode)
 		return ..()
@@ -433,14 +439,23 @@
 		distance = buffer_distance
 		return nearby_target
 
-
 /obj/machinery/deployable/mounted/sentry/disassemble(mob/user)
+	if(!match_iff(user)) //You can't steal other faction's turrets
+		to_chat(user, span_notice("Access denied."))
+		return
 	. = ..()
 	var/obj/item/weapon/gun/gun = internal_item
 	if(CHECK_BITFIELD(gun.turret_flags, TURRET_INACCURATE))
 		gun.accuracy_mult += 0.15
 		gun.scatter -= 10
 
+///Checks the users faction against turret IFF, used to stop hostile factions from interacting with turrets in ways they shouldn't.
+/obj/machinery/deployable/mounted/sentry/proc/match_iff(mob/user)
+	if(!user)
+		return TRUE
+	if((GLOB.faction_to_iff[user.faction] != iff_signal) && iff_signal) //You can't steal other faction's turrets
+		return FALSE
+	return TRUE
 
 /obj/machinery/deployable/mounted/sentry/buildasentry
 	name = "broken build-a-sentry"
@@ -473,6 +488,9 @@
 	var/obj/item/item = internal_item
 	if(CHECK_BITFIELD(item.flags_item, DEPLOYED_NO_PICKUP))
 		to_chat(user, span_notice("[src] is anchored in place and cannot be disassembled."))
+		return
+	if(!match_iff(user)) //You can't steal other faction's turrets
+		to_chat(user, span_notice("Access denied."))
 		return
 	operator?.unset_interaction()
 
