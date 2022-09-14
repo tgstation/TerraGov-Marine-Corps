@@ -786,8 +786,6 @@
 #define COMSIG_OBSTRUCTED_MOVE "unable_to_step_towards_thing" //Tried to step in a direction and there was a obstruction
 	#define COMSIG_OBSTACLE_DEALT_WITH (1<<0)
 
-#define COMSIG_PATHFINDER_SET_ATOM_TO_WALK_TO "set_atom_to_walk_to"
-
 // /datum/song signals
 
 ///sent to the instrument when a song starts playing
