@@ -30,6 +30,22 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	///Determines the amount of pixels to move the icon state for the overlay. in the y direction
 	var/pixel_shift_y = 16
 
+
+	greyscale_config = null
+	greyscale_colors = GUN_PALETTE_TAN
+	///List of palettes a greyscaled attachment is allowed to use for its furniture
+	var/list/colorable_colors = list(
+		"Tan" = GUN_PALETTE_TAN,
+		"Red" = GUN_PALETTE_RED,
+		"Dark Red" = GUN_PALETTE_DARK_RED,
+		"Pink" = GUN_PALETTE_PINK,
+		"Silver" = GUN_PALETTE_SILVER,
+		"Drab" = GUN_PALETTE_DRAB,
+		"Black" = GUN_PALETTE_BLACK,
+		"Brown" = GUN_PALETTE_BROWN,
+		"Gun Metal Blue" = GUN_PALETTE_BLUE,
+	)
+
 	flags_atom = CONDUCT
 	materials = list(/datum/material/metal = 100)
 	w_class = WEIGHT_CLASS_SMALL
@@ -139,6 +155,28 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/Initialize()
 	. = ..()
 	AddElement(/datum/element/attachment, slot, icon, .proc/on_attach, .proc/on_detach, .proc/activate, .proc/can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, attach_skill, attach_skill_upper_threshold, attach_sound)
+
+/obj/item/attachable/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(!istype(I, /obj/item/facepaint))
+		return
+	if(isnull(greyscale_config))
+		to_chat(user, span_warning("[src] cannot be colored."))
+		return
+	var/obj/item/facepaint/paint = I
+	if(paint.uses < 1)
+		to_chat(user, span_warning("\the [paint] is out of color!"))
+		return
+
+	var/new_color = tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)
+	new_color = colorable_colors[new_color]
+
+	if(!new_color || !do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+		return
+
+	set_greyscale_colors(new_color)
+	paint.uses--
+	update_icon()
 
 ///Called when the attachment is attached to something. If it is a gun it will update the guns stats.
 /obj/item/attachable/proc/on_attach(attaching_item, mob/user)
@@ -978,12 +1016,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/stock/t35stock
 	name = "\improper SH-35 stock"
 	desc = "A non-standard heavy stock for the SH-35 shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too."
-	flags_attach_features = ATTACH_REMOVABLE
+	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON
 	wield_delay_mod = 0.2 SECONDS
 	icon_state = "t35stock"
 	accuracy_mod = 0.15
 	recoil_mod = -3
 	scatter_mod = -2
+	greyscale_config = /datum/greyscale_config/gun_attachment
 
 /obj/item/attachable/stock/t39stock
 	name = "\improper SH-39 stock"

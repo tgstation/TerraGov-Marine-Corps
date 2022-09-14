@@ -243,3 +243,114 @@
 /datum/greyscale_config/projectile
 	json_config = 'code/datums/greyscale/json_configs/projectiles.json'
 	icon_file = 'icons/obj/items/projectiles.dmi'
+
+
+
+///Guns
+/datum/greyscale_config/gun
+	icon_file = 'icons/Marine/gun_greyscale/t12/t12.dmi'
+	json_config = 'code/datums/greyscale/json_configs/gun.json'
+
+/datum/greyscale_config/gun/worn
+	icon_file = 'icons/Marine/gun_greyscale/t12/back.dmi'
+	json_config = 'code/datums/greyscale/json_configs/gun_worn.json'
+
+/datum/greyscale_config/gun/worn/suit
+	icon_file = 'icons/Marine/gun_greyscale/t12/suit.dmi'
+
+/datum/greyscale_config/gun/worn/l_hand
+	icon_file = 'icons/Marine/gun_greyscale/t12/left_hand.dmi'
+	json_config = 'code/datums/greyscale/json_configs/gun_held.json'
+
+/datum/greyscale_config/gun/worn/r_hand
+	icon_file = 'icons/Marine/gun_greyscale/t12/right_hand.dmi'
+	json_config = 'code/datums/greyscale/json_configs/gun_held.json'
+
+//T18
+
+/datum/greyscale_config/gun/t18
+	icon_file = 'icons/Marine/gun_greyscale/t18/t18.dmi'
+
+/datum/greyscale_config/gun/worn/t18
+	icon_file = 'icons/Marine/gun_greyscale/t18/back.dmi'
+
+/datum/greyscale_config/gun/worn/suit/t18
+	icon_file = 'icons/Marine/gun_greyscale/t18/suit.dmi'
+
+/datum/greyscale_config/gun/worn/l_hand/t18
+	icon_file = 'icons/Marine/gun_greyscale/t18/left_hand.dmi'
+
+/datum/greyscale_config/gun/worn/r_hand/t18
+	icon_file = 'icons/Marine/gun_greyscale/t18/right_hand.dmi'
+
+//T42
+/datum/greyscale_config/gun/t42
+	icon_file = 'icons/Marine/gun_greyscale/t42/t42.dmi'
+
+/datum/greyscale_config/gun/worn/t42
+	icon_file = 'icons/Marine/gun_greyscale/t42/back.dmi'
+
+/datum/greyscale_config/gun/worn/suit/t42
+	icon_file = 'icons/Marine/gun_greyscale/t42/suit.dmi'
+
+/datum/greyscale_config/gun/worn/l_hand/t42
+	icon_file = 'icons/Marine/gun_greyscale/t42/left_hand.dmi'
+
+/datum/greyscale_config/gun/worn/r_hand/t42
+	icon_file = 'icons/Marine/gun_greyscale/t42/right_hand.dmi'
+
+//T14
+
+/datum/greyscale_config/gun/t14
+	icon_file = 'icons/Marine/gun_greyscale/t14/t14.dmi'
+
+/datum/greyscale_config/gun/t14/l_hand
+	icon_file = 'icons/Marine/gun_greyscale/t14/left_hand.dmi'
+	json_config = 'code/datums/greyscale/json_configs/gun_held.json'
+
+/datum/greyscale_config/gun/t14/r_hand
+	icon_file = 'icons/Marine/gun_greyscale/t14/right_hand.dmi'
+	json_config = 'code/datums/greyscale/json_configs/gun_held.json'
+
+
+//T90
+
+/datum/greyscale_config/gun/t90
+	icon_file = 'icons/Marine/gun_greyscale/t90/t90.dmi'
+
+/datum/greyscale_config/gun/worn/t90
+	icon_file = 'icons/Marine/gun_greyscale/t90/back.dmi'
+
+/datum/greyscale_config/gun/worn/suit/t90
+	icon_file = 'icons/Marine/gun_greyscale/t90/suit.dmi'
+
+/datum/greyscale_config/gun/worn/l_hand/t90
+	icon_file = 'icons/Marine/gun_greyscale/t90/left_hand.dmi'
+
+/datum/greyscale_config/gun/worn/r_hand/t90
+	icon_file = 'icons/Marine/gun_greyscale/t90/right_hand.dmi'
+
+//T35
+
+/datum/greyscale_config/gun/t35
+	icon_file = 'icons/Marine/gun_greyscale/t35/t35.dmi'
+
+/datum/greyscale_config/gun/worn/t35
+	icon_file = 'icons/Marine/gun_greyscale/t35/back.dmi'
+
+/datum/greyscale_config/gun/worn/suit/t35
+	icon_file = 'icons/Marine/gun_greyscale/t35/suit.dmi'
+
+/datum/greyscale_config/gun/worn/l_hand/t35
+	icon_file = 'icons/Marine/gun_greyscale/t35/left_hand.dmi'
+
+/datum/greyscale_config/gun/worn/r_hand/t35
+	icon_file = 'icons/Marine/gun_greyscale/t35/right_hand.dmi'
+
+
+
+
+///Gun attachments
+/datum/greyscale_config/gun_attachment
+	icon_file = 'icons/Marine/gun_attachments_greyscale/t35_stock.dmi'
+	json_config = 'code/datums/greyscale/json_configs/gun_attachment.json'

@@ -26,6 +26,29 @@
 
 /obj/item/weapon/gun/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(istype(I, /obj/item/facepaint))
+		if(isnull(greyscale_config))
+			to_chat(user, span_warning("[src] cannot be colored."))
+			return
+		var/obj/item/facepaint/paint = I
+		if(paint.uses < 1)
+			to_chat(user, span_warning("\the [paint] is out of color!"))
+			return
+
+		var/new_color = tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)
+		new_color = colorable_colors[new_color]
+
+		if(!new_color || !do_after(user, 1 SECONDS, TRUE, master_gun ? master_gun : src, BUSY_ICON_GENERIC))
+			return
+
+		set_greyscale_colors(new_color)
+		paint.uses--
+		update_icon()
+		master_gun?.update_icon()
+		if(istype(loc, /mob/living/carbon/human))
+			var/mob/living/carbon/human/holder = loc
+			holder.regenerate_icons()
+		return
 	if(user.get_inactive_held_item() != src || istype(I, /obj/item/attachable) || isgun(I))
 		return
 	reload(I, user)
