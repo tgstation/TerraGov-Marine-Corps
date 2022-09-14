@@ -203,8 +203,8 @@ Stepping directly on the mine will also blow it up
 
 	if(linked_mine && isliving(A))
 		var/mob/living/unlucky_person = A
-		// Don't trigger for dead xenos
-		if(isxeno(unlucky_person) && unlucky_person.stat == DEAD)
+		// Don't trigger for dead people
+		if(unlucky_person.stat == DEAD)
 			return
 		linked_mine.trip_mine(A)
 
