@@ -1217,9 +1217,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	//1: icon_override var
 	if(icon_override)
 		return icon_override
-	var/icon
+
 	//2: species-specific sprite sheets.
-	icon = LAZYACCESS(sprite_sheets, species_type)
+	var/icon = LAZYACCESS(sprite_sheets, species_type)
 	if(icon && !inhands)
 		return icon
 
