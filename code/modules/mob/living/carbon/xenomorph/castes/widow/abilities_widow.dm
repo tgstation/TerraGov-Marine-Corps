@@ -29,7 +29,7 @@
 	mechanics_text = " Spit a huge ball of web that snares groups of marines "
 	action_icon_state = "leash_ball"
 	plasma_cost = 250
-	cooldown_timer = 1 SECONDS // set back to 20 after testing
+	cooldown_timer = 20 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_LEASH_BALL
 
 /datum/action/xeno_action/activable/leash_ball/use_ability(atom/A)
@@ -196,6 +196,7 @@
 	new_action.mother = owner
 	new_action.give_action(current_controlling_spiderling)
 	owner.mind.transfer_to(current_controlling_spiderling)
+	ADD_TRAIT(owner, TRAIT_POSSESSING, WIDOW_ABILITY_TRAIT)
 	new /obj/structure/xeno/widow_pod(get_turf(owner), owner)
 	/// We want to access the spiderlings list and therefore have this
 	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = owner.actions_by_path[/datum/action/xeno_action/create_spiderling]
@@ -224,6 +225,7 @@
 	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = owner.actions_by_path[/datum/action/xeno_action/create_spiderling]
 	for(var/mob/living/carbon/xenomorph/spiderling/spiderlings_to_kill AS in create_spiderling_action.spiderlings)
 		spiderlings_to_kill.death(FALSE, "", TRUE)
+	REMOVE_TRAIT(owner, TRAIT_POSSESSING, WIDOW_ABILITY_TRAIT)
 
 /// This ability is being given to spiderlings so we can always return to widow
 /datum/action/xeno_action/return_to_mother
@@ -257,6 +259,8 @@
 	anchored = TRUE
 	throwpass = FALSE
 	density = TRUE
+	pixel_y = -8
+	pixel_x = -16
 
 /// Here we set and put widow inside of the pod
 /obj/structure/xeno/widow_pod/Initialize(mapload, mob/living/carbon/xenomorph/widow/stored_widow)

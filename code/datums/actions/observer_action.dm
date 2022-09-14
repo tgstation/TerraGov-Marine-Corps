@@ -73,6 +73,10 @@
 		to_chat(owner, span_warning("You cannot join if the mob is dead."))
 		return FALSE
 
+	if(HAS_TRAIT(new_mob, TRAIT_POSSESSING))
+		to_chat(owner, span_warning("That mob is currently possessing a different mob"))
+		return FALSE
+
 	if(new_mob.client)
 		to_chat(owner, span_warning("That mob has been occupied."))
 		return FALSE
