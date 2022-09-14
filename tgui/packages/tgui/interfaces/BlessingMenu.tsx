@@ -51,8 +51,8 @@ export const BlessingMenu = (props, context) => {
             <Section
               lineHeight={1.75}
               textAlign="center">
-              <Tabs fill>
-                <Stack fill
+              <Tabs>
+                <Stack
                   wrap="wrap">
                   {categories.map(categoryname => {
                     return (
@@ -60,7 +60,6 @@ export const BlessingMenu = (props, context) => {
                         m={0.5}
                         grow={categoryname.length}
                         basis="content"
-                        fill
                         key={categoryname}>
                         <Tabs.Tab
                           icon={categoryIcons[categoryname]}
