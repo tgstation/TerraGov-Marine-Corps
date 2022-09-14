@@ -1593,9 +1593,9 @@ FACTORY
 	contains = list(/obj/machinery/factory/reconstructor)
 	cost = 5
 
-/datum/supply_packs/factory/outputter
+/datum/supply_packs/factory/unboxer
 	name = "Industrial Unboxer"
-	contains = list(/obj/machinery/outputter)
+	contains = list(/obj/machinery/unboxer)
 	cost = 5
 
 /datum/supply_packs/factory/phosphosrefill
