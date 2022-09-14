@@ -240,7 +240,7 @@
 		addtimer(CALLBACK(src, .proc/detonate_shell, T, mortar_shell), travel_time + 45)//This should always be 45 ticks!
 
 	if(istype(I, /obj/item/ai_target_beacon))
-		if(!GLOB.ai_list)
+		if(!GLOB.ai_list.len)
 			to_chat(user, span_notice("There is no AI to associate with."))
 			return
 		
@@ -276,18 +276,15 @@
 	qdel(mortar_shell)
 	firing = FALSE
 
+///Prompt for the AI to unlink itself.
 /obj/machinery/deployable/mortar/attack_ai(mob/living/silicon/ai/user)
-	if(user.linked_artillery == src)
-		switch(tgui_alert(usr, "This artillery piece is linked to you. Do you want to unlink yourself from it?", "Artillery Targeting", list("Yes", "No")))
-			if("Yes")
-				user.clean_artillery_refs()
-			if("No")
-				return
+	if (user.linked_artillery == src && tgui_alert(usr, "This artillery piece is linked to you. Do you want to unlink yourself from it?", "Artillery Targeting", list("Yes", "No")) == "Yes")
+		user.clean_artillery_refs()
 
 ///Unlinking the AI from this mortar
 /obj/machinery/deployable/mortar/proc/unset_targeter()
 	say("Linked AI spotter has relinquished targeting privileges. Ejecting targeting device.")
-	ai_targeter.forceMove(src)
+	ai_targeter.forceMove(src.loc)
 	ai_targeter = null
 	
 
