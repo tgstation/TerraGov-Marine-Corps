@@ -13,4 +13,4 @@
 	for(var/path AS in subtypesof(/datum/map_template)-exceptions)
 		var/datum/map_template/instance = new path
 		if(!fexists(instance.mappath))
-			TEST_FAIL("[path] has an invalid mappath ([instance.mappath])")
+			Fail("[path] has an invalid mappath ([instance.mappath])")

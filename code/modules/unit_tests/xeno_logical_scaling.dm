@@ -5,12 +5,12 @@
 		var/typepath = initial(caste.caste_type_path)
 		var/upgrade = initial(caste.upgrade)
 		if(isnull(typepath))
-			TEST_FAIL("[i] has a null caste_type_path")
+			Fail("[i] has a null caste_type_path")
 			continue
 		if(upgrade == "basetype")
 			continue
 		if(isnull(upgrade))
-			TEST_FAIL("[i] has a null upgrade")
+			Fail("[i] has a null upgrade")
 			continue
 		if(!("[typepath]" in by_xeno))
 			by_xeno["[typepath]"] = list()
@@ -35,10 +35,10 @@
 			// Check for values that are should grow with each level
 			for(var/stat in greater_test_vars)
 				if(caste.vars[stat] < greater_test_vars[stat])
-					TEST_FAIL("Invalid stats on [xenopath]. It's [stat]@[upgradepath] has [caste.vars[stat]] compared to base value of [greater_test_vars[stat]] (expected greater)")
+					Fail("Invalid stats on [xenopath]. It's [stat]@[upgradepath] has [caste.vars[stat]] compared to base value of [greater_test_vars[stat]] (expected greater)")
 				greater_test_vars[stat] = caste.vars[stat]
 			// Test for values that are should shrink with each level
 			for(var/stat in lesser_test_vars)
 				if(caste.vars[stat] > lesser_test_vars[stat])
-					TEST_FAIL("Invalid stats on [xenopath]. It's [stat]@[XENO_UPGRADE_ZERO] has [caste.vars[stat]] compared to base value of [lesser_test_vars[stat]] (expected lower)")
+					Fail("Invalid stats on [xenopath]. It's [stat]@[XENO_UPGRADE_ZERO] has [caste.vars[stat]] compared to base value of [lesser_test_vars[stat]] (expected lower)")
 				lesser_test_vars[stat] = caste.vars[stat]
