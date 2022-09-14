@@ -390,6 +390,7 @@
 		reset_perspective()
 	remote_control = controlled
 
+/// Called for associating the AI with artillery
 /mob/living/silicon/ai/proc/associate_artillery(mortar)
 	if(linked_artillery)
 		UnregisterSignal(linked_artillery, COMSIG_PARENT_QDELETING)

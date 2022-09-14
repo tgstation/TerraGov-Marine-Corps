@@ -243,9 +243,8 @@
 		if(!GLOB.ai_list)
 			to_chat(user, span_notice("There is no AI to associate with."))
 			return
-		var/mob/living/silicon/ai/AI
 		
-		AI = tgui_input_list(usr, "Which AI would you like to associate this gun with?", null, GLOB.ai_list)
+		var/mob/living/silicon/ai/AI = tgui_input_list(usr, "Which AI would you like to associate this gun with?", null, GLOB.ai_list)
 		if(!AI)
 			return
 		to_chat(user, span_notice("You attach the [I], allowing for remote targeting."))
@@ -254,7 +253,7 @@
 		AI.associate_artillery(src)
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		ai_targeter = I
-		return
+
 	if(!istype(I, /obj/item/binoculars/tactical))
 		return
 	var/obj/item/binoculars/tactical/binocs = I
@@ -285,6 +284,7 @@
 			if("No")
 				return
 
+///Unlinking the AI from this mortar
 /obj/machinery/deployable/mortar/proc/unset_targeter()
 	say("Linked AI spotter has relinquished targeting privileges. Ejecting targeting device.")
 	ai_targeter.forceMove(src)
