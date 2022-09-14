@@ -11,6 +11,7 @@
 	unmanned_flags = HAS_LIGHTS|OVERLAY_TURRET
 	///Existing signal for Supply console.
 	var/datum/supply_beacon/beacon_datum
+	// Action to activate suppply antenna. 
 	var/datum/action/antenna/antenna
 
 /obj/vehicle/unmanned/droid/Initialize()
@@ -42,10 +43,10 @@
 		UnregisterSignal(user, COMSIG_UNMANNED_COORDINATES)
 
 /obj/vehicle/unmanned/droid/Destroy(datum/source, mob/user)
-	. = ..()
 	user.clear_fullscreen("machine", 5)
 	antenna.remove_action(user)
 	UnregisterSignal(user, COMSIG_UNMANNED_COORDINATES)
+	return ..()
 
 ///stealth droid, like the normal droid but with stealthing ability on rclick
 /obj/vehicle/unmanned/droid/scout
