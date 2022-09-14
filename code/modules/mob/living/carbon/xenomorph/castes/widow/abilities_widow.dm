@@ -292,16 +292,59 @@
 	cooldown_timer = 4 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_BURROW
 	use_state_flags = XACT_USE_BURROWED
+	#define BURROW_FIRE_RESIST_MODIFIER 20
 
 /datum/action/xeno_action/burrow/action_activate()
 	. = ..()
-	var/mob/living/carbon/xenomorph/X = owner
 	/// We need the list of spiderlings so that we can burrow them
 	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = owner.actions_by_path[/datum/action/xeno_action/create_spiderling]
 	/// Here we make every single spiderling that we have also burrow and assign a signal so that they unburrow too
-	for(var/mob/living/carbon/xenomorph/spiderling/spiderling AS in create_spiderling_action.spiderlings)
+	for(var/mob/living/carbon/xenomorph/spiderling/spiderling AS in create_spiderling_action.?.spiderlings)
 		/// Here we trigger the burrow proc, the registering happens there
-		spiderling.xeno_burrow()
-	X.xeno_burrow()
+		var/datum/action/xeno_action/burrow/spiderling_burrow = spiderling.actions_by_path[/datum/action/xeno_action/burrow]
+		spiderling_burrow.xeno_burrow()
+	xeno_burrow()
 	succeed_activate()
 	add_cooldown()
+
+/// Burrow code for xenomorphs
+/datum/action/xeno_action/burrow/proc/xeno_burrow()
+	var/mob/living/carbon/xenomorph/X = owner
+	SIGNAL_HANDLER
+	if(!HAS_TRAIT(X, TRAIT_BURROWED))
+		to_chat(X, span_xenowarning("We start burrowing into the ground"))
+		INVOKE_ASYNC(src, .proc/xeno_burrow_doafter)
+		return
+	UnregisterSignal(X, COMSIG_MOVABLE_MOVED)
+	X.fire_resist_modifier += BURROW_FIRE_RESIST_MODIFIER
+	X.icon_state = initial(X.icon_state)
+	X.mouse_opacity = initial(X.mouse_opacity)
+	X.density = TRUE
+	X.throwpass = FALSE
+	REMOVE_TRAIT(X, TRAIT_IMMOBILE, WIDOW_ABILITY_TRAIT)
+	REMOVE_TRAIT(X, TRAIT_MOB_ICON_UPDATE_BLOCKED, WIDOW_ABILITY_TRAIT)
+	REMOVE_TRAIT(X, TRAIT_BURROWED, WIDOW_ABILITY_TRAIT)
+	REMOVE_TRAIT(X, TRAIT_HANDS_BLOCKED, WIDOW_ABILITY_TRAIT)
+
+/// Called by xeno_burrow only when burrowing
+/datum/action/xeno_action/burrow/proc/xeno_burrow_doafter()
+	var/mob/living/carbon/xenomorph/X = owner
+	if(!do_after(X, 3 SECONDS, TRUE, null, BUSY_ICON_DANGER))
+		return
+	to_chat(X, span_xenowarning("We have burrowed ourselves, we are hidden from the enemy"))
+	// This part here actually burrows the xeno
+	X.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	X.density = FALSE
+	X.throwpass = TRUE
+	// Update here without waiting for life
+	X.icon_state = "[X.xeno_caste.caste_name] Burrowed"
+	X.wound_overlay.icon_state = ""
+	X.fire_overlay.icon_state = ""
+	// Here we prevent the xeno from moving or attacking or using abilities untill they unburrow by clicking the ability
+	X.fire_resist_modifier -= BURROW_FIRE_RESIST_MODIFIER // This makes the xeno immune to fire while burrowed, even if burning beforehand
+	ADD_TRAIT(X, TRAIT_IMMOBILE, WIDOW_ABILITY_TRAIT)
+	ADD_TRAIT(X, TRAIT_MOB_ICON_UPDATE_BLOCKED, WIDOW_ABILITY_TRAIT)
+	ADD_TRAIT(X, TRAIT_BURROWED, WIDOW_ABILITY_TRAIT)
+	ADD_TRAIT(X, TRAIT_HANDS_BLOCKED, WIDOW_ABILITY_TRAIT)
+	// We register for movement so that we unburrow if bombed
+	RegisterSignal(X, COMSIG_MOVABLE_MOVED, .proc/xeno_burrow)
