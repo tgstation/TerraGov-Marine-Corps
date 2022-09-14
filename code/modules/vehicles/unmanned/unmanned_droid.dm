@@ -9,9 +9,9 @@
 	gunnoise = 'sound/weapons/guns/fire/laser.ogg'
 	spawn_equipped_type = /obj/item/uav_turret/droid
 	unmanned_flags = HAS_LIGHTS|OVERLAY_TURRET
-	///Existing signal for Supply console.
+	/// Existing signal for Supply console.
 	var/datum/supply_beacon/beacon_datum
-	// Action to activate suppply antenna. 
+	/// Action to activate suppply antenna. 
 	var/datum/action/antenna/antenna
 
 /obj/vehicle/unmanned/droid/Initialize()
