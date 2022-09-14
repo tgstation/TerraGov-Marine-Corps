@@ -57,6 +57,9 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 	SIGNAL_HANDLER
 	if(!ai_behavior || QDELETED(parent))
 		return
+	var/mob/living/living_parent = parent
+	if(living_parent.stat == DEAD)
+		return
 	if((length(GLOB.ai_instances_active) + 1) >= AI_INSTANCE_HARDCAP)
 		message_admins("Notice: An AI controller failed resume because there's already too many AI controllers existing.")
 		ai_behavior = null
