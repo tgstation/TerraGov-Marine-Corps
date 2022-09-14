@@ -114,3 +114,30 @@
   - qol: made it clear when a turf is underground or not
   novaepee:
   - rscdel: Remove unused APC in synth room that drain CIC of its power
+2022-09-14:
+  AzonStarfall:
+  - qol: Moves the V1 Thermal Dampening Tarp to the Marine Armaments Vendor, Specialized
+      tab.
+  - bugfix: Fixes supply drop console delay message.
+  Lumipharon:
+  - rscadd: 'Combat Patrol: Added some more SOM loadouts and gear'
+  - rscadd: 'Combat Patrol: Added a flamethrower loadout to marines'
+  - balance: Slight buffs to the volkite charger as it was under performing relative
+      to the caliver
+  - balance: 'Combat Patrol: Shocktrooper loadout now uses the ALF-51B'
+  - bugfix: Couple of minor typo fixes
+  - bugfix: X fuel tanks no longer convert ordinary fuel to X fuel
+  - rscadd: You can now bash your shield with any weapon, not just batons
+  RipGrayson:
+  - balance: Chigusa now has some more prebuilt resin structures on Chigusa
+  - balance: Chigusa LZs are slightly bigger so marines can build fortifications more
+      easily.
+  - bugfix: Chigusa LZ1 now has a proper building exclusion zone again.
+  - bugfix: Removed the duplicate blue disk generator in Chigusa.
+  lbnesquik:
+  - qol: Wrenching noise for wrenching req factory machines
+  - bugfix: fix unmanned droids not having their ammo counter update until they were
+      fired.
+  nova_epee and crow:
+  - imageadd: new sprites for brute kit, burn kit, and surgery membrane
+  - rscdel: useless sprites that never been used for brute and burn kit
