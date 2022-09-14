@@ -167,7 +167,7 @@
 			qdel(I)
 			qdel(src)
 			user.put_in_hands(S)
-	if(istype(I, /obj/item/clothing/glasses/night/imager_goggles))
+	else if(istype(I, /obj/item/clothing/glasses/night/imager_goggles))
 		if(prescription)
 			var/obj/item/clothing/glasses/night/optgoggles/prescription/P = new
 			to_chat(user, span_notice("You fasten the optical imaging scanner to the inside of the goggles."))
@@ -180,7 +180,7 @@
 			qdel(I)
 			qdel(src)
 			user.put_in_hands(S)
-	if(istype(I, /obj/item/clothing/glasses/meson))
+	else if(istype(I, /obj/item/clothing/glasses/meson))
 		if(prescription)
 			var/obj/item/clothing/glasses/meson/enggoggles/prescription/P = new
 			to_chat(user, span_notice("You fasten the optical meson scanner to the inside of the goggles."))
