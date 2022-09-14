@@ -794,9 +794,9 @@
 		AM.onTransitZ(old_z,new_z)
 
 
-/atom/movable/proc/safe_throw_at(atom/target, range, speed, mob/thrower, spin = TRUE)
-	//if((force < (move_resist * MOVE_FORCE_THROW_RATIO)) || (move_resist == INFINITY))
-	//	return
+/atom/movable/proc/safe_throw_at(atom/target, range, speed, mob/thrower, spin = TRUE, force = MOVE_FORCE_STRONG)
+	if((force < (move_resist * MOVE_FORCE_THROW_RATIO)) || (move_resist == INFINITY))
+		return
 	return throw_at(target, range, speed, thrower, spin)
 
 
