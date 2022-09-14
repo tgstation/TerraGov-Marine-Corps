@@ -12,7 +12,7 @@
 		return
 	var/mob/living/carbon/human/human_spawn = C
 	if(!(human_spawn.species.species_flags & ROBOTIC_LIMBS))
-		human_spawn.set_nutrition(250))
+		human_spawn.set_nutrition(250)
 	if(!human_spawn.assigned_squad)
 		CRASH("after_spawn called for a marine without an assigned_squad")
 	to_chat(M, {"\nYou have been assigned to: <b><font size=3 color=[human_spawn.assigned_squad.color]>[lowertext(human_spawn.assigned_squad.name)] squad</font></b>.
