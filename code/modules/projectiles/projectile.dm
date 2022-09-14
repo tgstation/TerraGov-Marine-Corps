@@ -1324,7 +1324,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		rotate.Turn(angle)
 		I.transform = rotate
 		add_overlay(I)
-		addtimer(CALLBACK(src, .proc/cut_overlay, I), 3, TIMER_CLIENT_TIME)
+		addtimer(CALLBACK(src, .proc/cut_overlay, I), 3, TIMER_CLIENT_TIME, SSbullet_ping)
 
 
 
