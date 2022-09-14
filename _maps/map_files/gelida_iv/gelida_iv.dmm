@@ -7787,10 +7787,10 @@
 /turf/open/floor/mainship/black/full,
 /area/gelida/caves/west_caves)
 "eLB" = (
-/obj/vehicle/sealed/mecha/working/ripley{
+/obj/structure/cable,
+/obj/vehicle/ridden/powerloader{
 	dir = 8
 	},
-/obj/structure/cable,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorm_north)
 "eLD" = (
@@ -17166,7 +17166,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "kQh" = (
-/obj/vehicle/sealed/mecha/working/ripley{
+/obj/vehicle/ridden/powerloader{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/snow/layer0,
