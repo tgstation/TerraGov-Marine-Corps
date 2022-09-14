@@ -93,7 +93,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 /datum/ai_behavior/proc/cleanup_current_action(next_action)
 	if(current_action == MOVING_TO_NODE && next_action != MOVING_TO_NODE)
 		set_current_node(null)
-	if(current_action == ESCORTING_ATOM && next_action != ESCORTING_ATOM)
+	if(current_action == ESCORTING_ATOM && next_action != ESCORTING_ATOM && next_action != MOVING_TO_ATOM)
 		clean_escorted_atom()
 	unregister_action_signals(current_action)
 

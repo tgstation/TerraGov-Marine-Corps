@@ -1,0 +1,5 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - bugfix: "Fix ais seemingly teleporting"
+  - bugfix: "Dead ai moving too much"
