@@ -1,0 +1,6 @@
+author: "RipGrayson"
+delete-after: True
+changes: 
+  - rscadd: "Added Gelida IV, a new map based off of CM's WIP LV522 map."
+  - imageadd: "Created some new icons for use in Gelida IV."
+  - imageadd: "Ported a handful of new icons for use in Gelida IV, mostly from CM."
