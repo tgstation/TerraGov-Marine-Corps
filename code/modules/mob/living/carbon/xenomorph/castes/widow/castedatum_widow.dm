@@ -155,17 +155,17 @@
 	melee_damage = 18
 
 	// *** Speed *** //
-	speed = -0.6
+	speed = -0.5
 
 	// *** Plasma *** //
-	plasma_max = 625
-	plasma_gain = 60
+	plasma_max = 600
+	plasma_gain = 55
 
 	// *** Health *** //
-	max_health = 500
+	max_health = 450
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 10, "rad" = 10, FIRE = 20, ACID = 10)
+	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 10, "rad" = 10, FIRE = 15, ACID = 10)
 
 	// *** Widow Abilities *** //
 	max_spiderlings = 5
