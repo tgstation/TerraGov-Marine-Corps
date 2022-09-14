@@ -2,6 +2,7 @@
 	name = "Should not be visible"
 	icon_state = "greyscale"
 	layer = ABOVE_ALL_MOB_LAYER
+	mech_type = EXOSUIT_MODULE_GREYSCALE
 	pixel_x = -16
 	move_delay = 3 // tivi todo: polish, mechs too fast
 	/// keyed list. values are types at init, otherwise instances of mecha limbs, order is layer order as well
