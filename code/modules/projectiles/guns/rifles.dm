@@ -29,7 +29,7 @@
 	name = "\improper AR-18 Kauser carbine"
 	desc = "The Kauser and Hoch AR-18 carbine is one of the standard rifles used by the TerraGov Marine Corps. It's commonly used by people who prefer greater mobility in combat, like scouts and other light infantry. Uses 10x24mm caseless ammunition."
 	icon = 'icons/Marine/gun64.dmi'
-	icon_state = "loaded"
+	icon_state = GUN_ICONSTATE_LOADED
 	item_state = "t18"
 	item_icons = list(
 		slot_l_hand_str = /datum/greyscale_config/gun/worn/l_hand/t18,
@@ -117,7 +117,7 @@
 	name = "\improper AR-12 K&H assault rifle"
 	desc = "The Keckler and Hoch AR-12 assault rifle used to be the TerraGov Marine Corps standard issue rifle before the AR-18 carbine replaced it. It is, however, still used widely despite that. The gun itself is very good at being used in most situations however it suffers in engagements at close quarters and is relatively hard to shoulder than some others. It uses 10x24mm caseless ammunition."
 	icon = 'icons/marine/gun64.dmi'
-	icon_state = "loaded"
+	icon_state = GUN_ICONSTATE_LOADED
 	item_state = "t12"
 	item_icons = list(
 		slot_l_hand_str = /datum/greyscale_config/gun/worn/l_hand,
@@ -696,7 +696,7 @@
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
 
-	icon_state = "loaded"
+	icon_state = GUN_ICONSTATE_LOADED
 	item_state = "t42"
 	caliber = CALIBER_10X24_CASELESS //codex
 	max_shells = 120 //codex

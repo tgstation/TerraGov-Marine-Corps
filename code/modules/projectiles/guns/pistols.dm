@@ -46,7 +46,7 @@
 	name = "\improper P-14 pistol"
 	desc = "The P-14, produced by Terran Armories. A reliable sidearm that loads 9x19mm Parabellum Auto munitions. Capable of mounting a limited amount of attachments, and firing at a respectable rate of fire, often as fast as you can pull the trigger. Takes 14-round 9mm magazines."
 	icon = 'icons/Marine/gun64.dmi'
-	icon_state = "loaded"
+	icon_state = GUN_ICONSTATE_LOADED
 	item_state = "tp14"
 	item_icons = list(
 		slot_l_hand_str = /datum/greyscale_config/gun/t14/l_hand,
