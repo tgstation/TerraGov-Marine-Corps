@@ -131,7 +131,7 @@
 	//current selected name for the mech
 	var/selected_name = "TGMC Combat Mech"
 	///reference to the mech screen object
-	var/obj/screen/mech_builder_view/mech_view // tivi todo might need to be movable
+	var/obj/screen/mech_builder_view/mech_view
 	///bool if the mech is currently assembling, stops Ui actions
 	var/currently_assembling = FALSE
 	///list of stat data that will be sent to the UI
@@ -185,7 +185,6 @@
 	data["mech_view"] = mech_view.assigned_map
 	data["colors"] = available_colors
 	data["visor_colors"] = available_visor_colors
-	data["bodypart_names"] = GLOB.mech_bodytypes
 	return data
 
 /obj/machinery/computer/mech_builder/ui_data(mob/user)
@@ -278,7 +277,7 @@
 	for(var/slot in selected_primary)
 		var/limb_type = get_mech_limb(slot, selected_variants[slot])
 		var/datum/mech_limb/limb = new limb_type()
-		limb.update_colors(selected_primary[slot], selected_secondary[slot], selected_visor) // tivi todo visor colors
+		limb.update_colors(selected_primary[slot], selected_secondary[slot], selected_visor)
 		limb.attach(mech, slot)
 	currently_assembling = FALSE
 
@@ -291,14 +290,17 @@
 	var/list/datum/mech_limb/limbs = list()
 	for(var/slot in selected_variants)
 		var/path = get_mech_limb(slot, selected_variants[slot])
-		limbs[slot] = new path()
+		limbs[slot] = new path(TRUE)
 	var/datum/mech_limb/head/head_limb = limbs[MECH_GREY_HEAD]
-	var/accuracy_mod = head_limb.accuracy_mod
-	var/light_mod = head_limb.light_range
+	data["accuracy"] = head_limb.accuracy_mod
+	data["light_mod"]= head_limb.light_range
 	var/datum/mech_limb/arm/arm_limb = limbs[MECH_GREY_L_ARM]
-	var/left_scatter = arm_limb.scatter_mod
+	data["left_scatter"] = arm_limb.scatter_mod
 	arm_limb = limbs[MECH_GREY_R_ARM]
-	var/right_scatter = arm_limb.scatter_mod
+	data["right_scatter"] = arm_limb.scatter_mod
+	var/datum/mech_limb/torso/torso_limb = limbs[MECH_GREY_TORSO]
+	var/obj/item/cell/cell_type = torso_limb.cell_type
+	data["power_max"] = initial(cell_type.maxcharge)
 
 	var/health = 0
 	var/slowdown = 0

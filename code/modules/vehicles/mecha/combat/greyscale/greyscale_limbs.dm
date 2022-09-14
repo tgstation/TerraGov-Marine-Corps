@@ -2,12 +2,10 @@
 GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 
 /datum/mech_limb
-	///category that this limb will be displayed in
-	var/category = "NONE" // tivi todo del
 	///when attached the mechs health is modified by this amount
 	var/health_mod = 0
 	///when attached the mechs armor is modified by this amount
-	var/list/soft_armor_mod = list(MELEE = 20, BULLET = 10, LASER = 0, ENERGY = 0, BOMB = 10, BIO = 0, FIRE = 100, ACID = 100)
+	var/list/soft_armor_mod = list(MELEE = 5, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 0, FIRE = 20, ACID = 5)
 	///when attached the mechs slowdown is modified by this amount
 	var/slowdown_mod = 0
 	///typepath for greyscale icon generation
@@ -17,9 +15,11 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 	///overlay icon to generate
 	var/icon/overlay_icon
 
-/datum/mech_limb/New()
+/datum/mech_limb/New(noload)
 	..()
-	update_colors(arglist(colors)) // tivi todo
+	if(noload)
+		return
+	update_colors(arglist(colors))
 
 
 /datum/mech_limb/proc/update_colors(color_one, color_two, ...)
@@ -50,7 +50,7 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 	SHOULD_CALL_PARENT(TRUE)
 	if(!slot)
 		CRASH("attaching with no slot")
-	if(istype(attached.limbs[slot], /datum/mech_limb)) // tivi todo exact type
+	if(istype(attached.limbs[slot], /datum/mech_limb))
 		attached.limbs[slot].detach(attached)
 	attached.limbs[slot] = src
 	attached.max_integrity += health_mod
@@ -87,7 +87,9 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 
 /datum/mech_limb/arm
 	health_mod = 200
+	/// Amount scatter is modified by when this arm shoots
 	var/scatter_mod = 0
+	///which slot this arm is equipped to when it is attached
 	var/arm_slot
 
 /datum/mech_limb/arm/attach(obj/vehicle/sealed/mecha/combat/greyscale/attached, slot)
@@ -104,31 +106,50 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 	return image(overlay_icon, icon_state = "left")
 
 /datum/mech_limb/arm/recon
+	health_mod = 250
+	scatter_mod = -10
+	slowdown_mod = 0.2
 	greyscale_type = /datum/greyscale_config/mech_recon/arms
 
 /datum/mech_limb/arm/assault
+	health_mod = 500
+	scatter_mod = -17
+	slowdown_mod = 0.3
 	greyscale_type = /datum/greyscale_config/mech_assault/arms
 
 /datum/mech_limb/arm/vanguard
+	health_mod = 750
+	scatter_mod = -25
+	slowdown_mod = 0.4
 	greyscale_type = /datum/greyscale_config/mech_vanguard/arms
 
 /datum/mech_limb/legs
 	health_mod = 300
 
 /datum/mech_limb/legs/recon
+	health_mod = 500
+	slowdown_mod = -0.7
 	greyscale_type = /datum/greyscale_config/mech_recon/legs
 
 /datum/mech_limb/legs/assault
+	health_mod = 750
+	slowdown_mod = -0.3
 	greyscale_type = /datum/greyscale_config/mech_assault/legs
 
 /datum/mech_limb/legs/vanguard
+	health_mod = 1000
+	slowdown_mod = 0.1
 	greyscale_type = /datum/greyscale_config/mech_vanguard/legs
 
 /datum/mech_limb/head
 	health_mod = 200
+	/// greyscale config datum for the visor
 	var/visor_config
+	///amount accuracy is modified by
 	var/accuracy_mod
+	///generated visor icon for us to use when updating icon
 	var/icon/visor_icon
+	///light range we set on the mech
 	var/light_range = 5
 
 /datum/mech_limb/head/attach(obj/vehicle/sealed/mecha/combat/greyscale/attached, slot)
@@ -147,25 +168,54 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 	return list(icon2appearance(overlay_icon), icon2appearance(visor_icon), emissive_appearance(visor_icon))
 
 /datum/mech_limb/head/recon
+	health_mod = 250
+	accuracy_mod = 0.3
+	slowdown_mod = 0.2
+	light_range = 7
 	greyscale_type = /datum/greyscale_config/mech_recon/head
 	visor_config = /datum/greyscale_config/mech_recon/visor
 
 /datum/mech_limb/head/assault
+	health_mod = 500
+	accuracy_mod = 0.4
+	slowdown_mod = 0.3
 	greyscale_type = /datum/greyscale_config/mech_assault/head
 	visor_config = /datum/greyscale_config/mech_assault/visor
 
 /datum/mech_limb/head/vanguard
+	health_mod = 750
+	accuracy_mod = 0.5
+	slowdown_mod = 0.4
 	greyscale_type = /datum/greyscale_config/mech_vanguard/head
 	visor_config = /datum/greyscale_config/mech_vanguard/visor
 
 /datum/mech_limb/torso
 	health_mod = 600
+	/// cell typepath to place into the mech when this torso is attached
+	var/cell_type = /obj/item/cell/mecha
+
+/datum/mech_limb/torso/attach(obj/vehicle/sealed/mecha/combat/greyscale/attached, slot)
+	. = ..()
+	attached.add_cell(new cell_type)
+
+/datum/mech_limb/torso/detach(obj/vehicle/sealed/mecha/combat/greyscale/detached)
+	. = ..()
+	detached.add_cell() //replaces with a standard high cap that does not have built in recharge
 
 /datum/mech_limb/torso/recon
+	health_mod = 250
+	slowdown_mod = 0.4
+	cell_type = /obj/item/cell/mecha
 	greyscale_type = /datum/greyscale_config/mech_recon/torso
 
 /datum/mech_limb/torso/assault
+	health_mod = 500
+	slowdown_mod = 0.7
+	cell_type = /obj/item/cell/mecha/medium
 	greyscale_type = /datum/greyscale_config/mech_assault/torso
 
 /datum/mech_limb/torso/vanguard
+	health_mod = 750
+	slowdown_mod = 1.1
+	cell_type = /obj/item/cell/mecha/large
 	greyscale_type = /datum/greyscale_config/mech_vanguard/torso

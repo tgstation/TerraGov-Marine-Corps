@@ -26,16 +26,25 @@ const partdefinetofluff = {
 
 type MechVendData = {
   mech_view: string;
-  mech_view_east: string;
-  mech_view_west: string;
   colors: ColorData;
   visor_colors: ColorData;
-  bodypart_names: string[];
   selected_primary: SimpleStringList;
   selected_secondary: SimpleStringList;
   selected_visor: string;
   selected_variants: SimpleStringList;
   selected_name: string;
+  current_stats: MechStatData,
+};
+
+type MechStatData = {
+  accuracy: number;
+  light_mod: number;
+  left_scatter: number;
+  right_scatter: number;
+  health: number;
+  slowdown: number;
+  armor: string[],
+  power_max: number,
 };
 
 type BodypartPickerData = {
@@ -55,22 +64,7 @@ type SimpleStringList = {
 };
 
 export const MechVendor = (props, context) => {
-  const { act, data } = useBackend<MechVendData>(context);
-
-  const {
-    mech_view,
-    colors,
-    visor_colors,
-    bodypart_names,
-    selected_primary,
-    selected_secondary,
-    selected_visor,
-    selected_variants,
-    selected_name,
-  } = data;
-
-  const [showDesc, setShowDesc] = useLocalState(context, 'showDesc', null); // tivi todo keep or del
-
+  const [showDesc, setShowDesc] = useLocalState(context, 'showDesc', null); // tivi todo for weapons tab
   const [selectedTab, setSelectedTab] = useLocalState(
     context,
     'selectedTab',
@@ -109,7 +103,6 @@ export const MechVendor = (props, context) => {
 };
 
 const ColorDisplayRow = (props: ColorDisplayData, context) => {
-  const { act, data } = useBackend<MechVendData>(context);
   const { shown_colors } = props;
   let splitted = shown_colors.split('#').map((item) => '#' + item);
   splitted.shift();
@@ -128,10 +121,6 @@ const BodypartPicker = (props: BodypartPickerData, context) => {
   const { act, data } = useBackend<MechVendData>(context);
   const { displayingpart } = props;
   const {
-    mech_view,
-    colors,
-    visor_colors,
-    bodypart_names,
     selected_primary,
     selected_secondary,
     selected_visor,
@@ -174,16 +163,9 @@ const MechAssembly = (props, context) => {
   const { act, data } = useBackend<MechVendData>(context);
   const {
     mech_view,
-    mech_view_east,
-    mech_view_west,
-    colors,
-    visor_colors,
-    bodypart_names,
-    selected_primary,
-    selected_secondary,
-    selected_visor,
     selected_variants,
     selected_name,
+    current_stats,
   } = data;
   const [selectedBodypart, setSelectedBodypart] = useLocalState(
     context,
@@ -211,25 +193,25 @@ const MechAssembly = (props, context) => {
           </Stack.Item>
           <Stack.Item>
             <Section title={"Mech parameters"}>
-              <Collapsible color={"transparent"} title={"Integrity: " + 2}>
+              <Collapsible color={"transparent"} title={"Integrity: " + current_stats.health}>
                 <Box maxWidth={"160px"}>Determines maximum integrity of mecha.</Box>
               </Collapsible>
-              <Collapsible color={"transparent"} title={"L scatter angle: " + 2}>
+              <Collapsible color={"transparent"} title={"L scatter angle: " + current_stats.left_scatter+ "°"}>
                 <Box maxWidth={"160px"}>Scatter angle for left arm.</Box>
               </Collapsible>
-              <Collapsible color={"transparent"} title={"R scatter angle: " + 2}>
+              <Collapsible color={"transparent"} title={"R scatter angle: " + current_stats.right_scatter + "°"}>
                 <Box maxWidth={"160px"}>Scatter angle for right arm.</Box>
               </Collapsible>
-              <Collapsible color={"transparent"} title={"Slowdown: " + 2}>
+              <Collapsible color={"transparent"} title={"Slowdown: " + current_stats.slowdown}>
                 <Box maxWidth={"160px"}>Determines how fast mecha is compared to base.</Box>
               </Collapsible>
-              <Collapsible color={"transparent"} title={"Accuracy: " + 2}>
+              <Collapsible color={"transparent"} title={"Extra Accuracy: " + (current_stats.accuracy*100) + "%"}>
                 <Box maxWidth={"160px"}>Determines likeliness of mecha to hit at long ranges.</Box>
               </Collapsible>
-              <Collapsible color={"transparent"} title={"Bomb Armor: " + 2}>
-                <Box maxWidth={"160px"}>Determines maximum integrity of mecha.</Box>
+              <Collapsible color={"transparent"} title={"Power capacity: " + current_stats.power_max}>
+                <Box maxWidth={"160px"}>Determines maximum mecha power.</Box>
               </Collapsible>
-              <Collapsible color={"transparent"} title={"Light range: " + 2}>
+              <Collapsible color={"transparent"} title={"Light range: " + current_stats.light_mod}>
                 <Box maxWidth={"160px"}>Light strength.</Box>
               </Collapsible>
             </Section>
@@ -298,7 +280,7 @@ const MechAssembly = (props, context) => {
               mt={2}
               color={'red'}
               textAlign={'center'}
-              fontSize="150%"
+              fontSize="170%"
               onClick={() => act('assemble')}
             />
           </Stack.Item>
@@ -314,29 +296,29 @@ const MechAssembly = (props, context) => {
           </Stack.Item>
           <Stack.Item>
             <Section title={"Mech armor"}>
-              <Collapsible color={"transparent"} title={"Melee Armor: " + 2 + "%"}>
+              <Collapsible color={"transparent"} title={"Melee Armor: " + current_stats.armor["melee"] + "%"}>
                 <Box maxWidth={"160px"}>Determines maximum integrity of mecha.</Box>
               </Collapsible>
-              <Collapsible color={"transparent"} title={"Bullet Armor: " + 2 + "%"}>
-                <Box maxWidth={"160px"}>Determines maximum integrity of mecha.</Box>
+              <Collapsible color={"transparent"} title={"Bullet Armor: " + current_stats.armor["melee"] + "%"}>
+                <Box maxWidth={"160px"}>Bullet protection.</Box>
               </Collapsible>
-              <Collapsible color={"transparent"} title={"Laser Armor: " + 2 + "%"}>
-                <Box maxWidth={"160px"}>Determines maximum integrity of mecha.</Box>
+              <Collapsible color={"transparent"} title={"Laser Armor: " + current_stats.armor["laser"] + "%"}>
+                <Box maxWidth={"160px"}>Laser protection.</Box>
               </Collapsible>
-              <Collapsible color={"transparent"} title={"Energy Armor: " + 2 + "%"}>
-                <Box maxWidth={"160px"}>Determines maximum integrity of mecha.</Box>
+              <Collapsible color={"transparent"} title={"Energy Armor: " + current_stats.armor["energy"] + "%"}>
+                <Box maxWidth={"160px"}>Protection against SOM weapons.</Box>
               </Collapsible>
-              <Collapsible color={"transparent"} title={"Bomb Armor: " + 2 + "%"}>
-                <Box maxWidth={"160px"}>Determines maximum integrity of mecha.</Box>
+              <Collapsible color={"transparent"} title={"Bomb Armor: " + current_stats.armor["bomb"] + "%"}>
+                <Box maxWidth={"160px"}>Explosion protection.</Box>
               </Collapsible>
-              <Collapsible color={"transparent"} title={"Bio Armor: " + 2 + "%"}>
-                <Box maxWidth={"160px"}>Determines maximum integrity of mecha.</Box>
+              <Collapsible color={"transparent"} title={"Bio Armor: " + current_stats.armor["bio"] + "%"}>
+                <Box maxWidth={"160px"}>Protection against chemical attacks.</Box>
               </Collapsible>
-              <Collapsible color={"transparent"} title={"Fire Armor: " + 2 + "%"}>
-                <Box maxWidth={"160px"}>Determines maximum integrity of mecha.</Box>
+              <Collapsible color={"transparent"} title={"Fire Armor: " + current_stats.armor["fire"] + "%"}>
+                <Box maxWidth={"160px"}>Protection against incendiary weapons.</Box>
               </Collapsible>
-              <Collapsible color={"transparent"} title={"Acid Armor: " + 2 + "%"}>
-                <Box maxWidth={"160px"}>Determines maximum integrity of mecha.</Box>
+              <Collapsible color={"transparent"} title={"Acid Armor: " + current_stats.armor["acid"] + "%"}>
+                <Box maxWidth={"160px"}>Xeno acid protection.</Box>
               </Collapsible>
             </Section>
           </Stack.Item>
@@ -363,15 +345,9 @@ const ColorSelector = (props, context) => {
   const { act, data } = useBackend<MechVendData>(context);
   // tivi todo prop type
   const {
-    mech_view,
-    colors,
-    visor_colors,
-    bodypart_names,
     selected_primary,
     selected_secondary,
     selected_visor,
-    selected_variants,
-    selected_name,
   } = data;
   const { type, listtoshow } = props;
   const [selectedBodypart, setSelectedBodypart] = useLocalState(
@@ -421,7 +397,6 @@ const ColorSelector = (props, context) => {
 
 const MechWeapons = (props, context) => {
   const { act, data } = useBackend<MechVendData>(context);
-
   const [showDesc, setShowDesc] = useLocalState<String | null>(
     context,
     'showDesc',
@@ -437,7 +412,6 @@ const PanelContent = (props, context) => {
     'selectedTab',
     tabs[0]
   );
-
   {
     switch (selectedTab) {
       case 'Mecha Assembly':
