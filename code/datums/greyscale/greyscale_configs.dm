@@ -247,6 +247,7 @@
 
 
 ///Guns
+//AR-12
 /datum/greyscale_config/gun
 	icon_file = 'icons/Marine/gun_greyscale/t12/t12.dmi'
 	json_config = 'code/datums/greyscale/json_configs/gun.json'
@@ -266,7 +267,7 @@
 	icon_file = 'icons/Marine/gun_greyscale/t12/right_hand.dmi'
 	json_config = 'code/datums/greyscale/json_configs/gun_held.json'
 
-//T18
+//AR-18
 
 /datum/greyscale_config/gun/t18
 	icon_file = 'icons/Marine/gun_greyscale/t18/t18.dmi'
@@ -283,7 +284,7 @@
 /datum/greyscale_config/gun/worn/r_hand/t18
 	icon_file = 'icons/Marine/gun_greyscale/t18/right_hand.dmi'
 
-//T42
+//MG-42
 /datum/greyscale_config/gun/t42
 	icon_file = 'icons/Marine/gun_greyscale/t42/t42.dmi'
 
@@ -299,7 +300,7 @@
 /datum/greyscale_config/gun/worn/r_hand/t42
 	icon_file = 'icons/Marine/gun_greyscale/t42/right_hand.dmi'
 
-//T14
+//P-14
 
 /datum/greyscale_config/gun/t14
 	icon_file = 'icons/Marine/gun_greyscale/t14/t14.dmi'
@@ -313,7 +314,7 @@
 	json_config = 'code/datums/greyscale/json_configs/gun_held.json'
 
 
-//T90
+//SMG-90
 
 /datum/greyscale_config/gun/t90
 	icon_file = 'icons/Marine/gun_greyscale/t90/t90.dmi'
@@ -330,7 +331,7 @@
 /datum/greyscale_config/gun/worn/r_hand/t90
 	icon_file = 'icons/Marine/gun_greyscale/t90/right_hand.dmi'
 
-//T35
+//SG-35
 
 /datum/greyscale_config/gun/t35
 	icon_file = 'icons/Marine/gun_greyscale/t35/t35.dmi'
