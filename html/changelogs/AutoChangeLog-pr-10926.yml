@@ -1,4 +1,0 @@
-author: "lbnesquik"
-delete-after: True
-changes: 
-  - bugfix: "fix unmanned droids not having their ammo counter update until they were fired."
