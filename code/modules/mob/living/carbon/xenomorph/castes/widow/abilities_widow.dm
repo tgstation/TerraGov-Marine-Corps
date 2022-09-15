@@ -153,7 +153,7 @@
 	SIGNAL_HANDLER
 	spiderlings -= source
 	UnregisterSignal(source, COMSIG_PARENT_QDELETING)
-	var/mob/living/carbon/xenomorph/widow/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	var/datum/action/xeno_action/spider_swarm/spider_swarm_action = X.actions_by_path[/datum/action/xeno_action/spider_swarm]
 	if(!spider_swarm_action)
 		return
@@ -162,8 +162,6 @@
 	var/mob/living/carbon/xenomorph/spiderling/next_spiderling
 	if(length(spiderlings) >= 1)
 		next_spiderling = pick(spiderlings)
-	else
-		next_spiderling = null
 	if(!next_spiderling)
 		spider_swarm_action.switch_to_mother()
 		return
@@ -299,7 +297,7 @@
 	/// We need the list of spiderlings so that we can burrow them
 	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = owner.actions_by_path[/datum/action/xeno_action/create_spiderling]
 	/// Here we make every single spiderling that we have also burrow and assign a signal so that they unburrow too
-	for(var/mob/living/carbon/xenomorph/spiderling/spiderling AS in create_spiderling_action.?.spiderlings)
+	for(var/mob/living/carbon/xenomorph/spiderling/spiderling AS in create_spiderling_action?.spiderlings)
 		/// Here we trigger the burrow proc, the registering happens there
 		var/datum/action/xeno_action/burrow/spiderling_burrow = spiderling.actions_by_path[/datum/action/xeno_action/burrow]
 		spiderling_burrow.xeno_burrow()
