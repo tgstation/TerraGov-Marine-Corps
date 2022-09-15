@@ -385,7 +385,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 // MINIGUN
 
 /obj/item/weapon/gun/minigun
-	name = "\improper MG-100 Minigun"
+	name = "\improper MG-100 Vindicator Minigun"
 	desc = "A six barreled rotary machine gun, The ultimate in man-portable firepower, capable of laying down high velocity armor piercing rounds this thing will no doubt pack a punch.. If you don't kill all your friends with it, you can use the stablizing system of the Powerpack to fire aimed fire, but you'll move incredibly slowly."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "minigun"
@@ -699,6 +699,9 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/ammo_magazine/rocket/recoilless,
 		/obj/item/ammo_magazine/rocket/recoilless/light,
 		/obj/item/ammo_magazine/rocket/recoilless/low_impact,
+		/obj/item/ammo_magazine/rocket/recoilless/smoke,
+		/obj/item/ammo_magazine/rocket/recoilless/cloak,
+		/obj/item/ammo_magazine/rocket/recoilless/plasmaloss,
 		/obj/item/ammo_magazine/rocket/recoilless/heat,
 	)
 	flags_equip_slot = NONE

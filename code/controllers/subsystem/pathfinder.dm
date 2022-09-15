@@ -20,7 +20,7 @@ SUBSYSTEM_DEF(pathfinder)
 			continue
 
 		//Okay it can actually physically move, but has it moved too recently?
-		if(world.time <= (mob_to_process.last_move_time + mob_to_process.cached_multiplicative_slowdown + mob_to_process.next_move_slowdown) || mob_to_process.do_actions)
+		if(world.time <= (mob_to_process.last_move_time + mob_to_process.cached_multiplicative_slowdown + mob_to_process.next_move_slowdown))
 			continue
 		mob_to_process.next_move_slowdown = 0
 		var/step_dir

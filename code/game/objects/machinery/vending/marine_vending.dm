@@ -120,8 +120,8 @@
 			/obj/item/weapon/gun/flamer/big_flamer/marinestandard = 4,
 			/obj/item/ammo_magazine/flamer_tank/large = 30,
 			/obj/item/ammo_magazine/flamer_tank/backtank = 4,
-			/obj/item/storage/holster/backholster/rpg/full = 2,
 			/obj/item/jetpack_marine = 3,
+			/obj/item/bodybag/tarp = 10,
 		),
 		"Heavy Weapons" = list(
 			/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
@@ -131,6 +131,12 @@
 			/obj/item/storage/box/tl102 = 1,
 			/obj/item/weapon/gun/heavymachinegun = 1,
 			/obj/item/ammo_magazine/heavymachinegun = 10,
+			/obj/item/storage/holster/backholster/rpg/full = 2,
+			/obj/item/ammo_magazine/rocket/recoilless = 4,
+			/obj/item/ammo_magazine/rocket/recoilless/light = 4,
+			/obj/item/ammo_magazine/rocket/recoilless/heat = 16,
+			/obj/item/ammo_magazine/rocket/recoilless/cloak = 16,
+			/obj/item/ammo_magazine/rocket/recoilless/smoke = 16,
 		),
 		"Attachments" = list(
 			/obj/item/attachable/bayonet = -1,
@@ -785,7 +791,6 @@
 			/obj/item/ammo_magazine/rocket/sadar = 3,
 			/obj/item/ammo_magazine/minigun_powerpack = 2,
 			/obj/item/ammo_magazine/shotgun/mbx900 = 2,
-			/obj/item/bodybag/tarp = 10,
 			/obj/item/explosive/plastique = 5,
 			/obj/item/fulton_extraction_pack = 2,
 			/obj/item/clothing/suit/storage/marine/harness/boomvest = 20,
@@ -806,7 +811,7 @@
 			/obj/machinery/factory/flatter = 1,
 			/obj/machinery/factory/former = 1,
 			/obj/machinery/factory/reconstructor = 1,
-			/obj/machinery/outputter = 1,
+			/obj/machinery/unboxer = 1,
 		),
 		"Grenade Boxes" = list(
 			/obj/item/storage/box/visual/grenade/frag = 2,
@@ -1160,6 +1165,7 @@
 			/obj/item/armor_module/storage/engineering = -1,
 			/obj/item/armor_module/storage/medical = -1,
 			/obj/item/armor_module/storage/injector = -1,
+			/obj/item/armor_module/storage/grenade = -1,
 			/obj/item/armor_module/module/welding = -1,
 			/obj/item/armor_module/module/binoculars = -1,
 			/obj/item/armor_module/module/tyr_head = -1,
@@ -1475,6 +1481,14 @@
 			/obj/item/ammo_magazine/rifle/type71 = -1,
 			/obj/item/weapon/gun/rifle/alf_machinecarbine = -1,
 			/obj/item/ammo_magazine/rifle/alf_machinecarbine = -1,
+			/obj/item/weapon/gun/rifle/som = -1,
+			/obj/item/ammo_magazine/rifle/som = -1,
+			/obj/item/ammo_magazine/handful/micro_grenade = -1,
+			/obj/item/ammo_magazine/handful/micro_grenade/cluster = -1,
+			/obj/item/ammo_magazine/handful/micro_grenade/smoke_burst = -1,
+			/obj/item/weapon/gun/smg/som = -1,
+			/obj/item/ammo_magazine/smg/som = -1,
+			/obj/item/weapon/gun/shotgun/som = -1,
 		)
 	)
 
