@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes: 
-  - bugfix: "You can no longer disassemble, remove the ammo from, or use the interface of a hostile turret."

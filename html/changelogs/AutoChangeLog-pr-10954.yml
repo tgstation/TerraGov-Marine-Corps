@@ -1,4 +1,4 @@
 author: "Lumipharon"
 delete-after: True
 changes: 
-  - refactor: "refactored looping sounds"
+  - code_imp: "minor looping_sounds bugfix"

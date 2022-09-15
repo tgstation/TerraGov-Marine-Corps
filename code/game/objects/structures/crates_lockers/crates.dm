@@ -335,8 +335,12 @@
 /obj/structure/closet/crate/miningcar
 	desc = "A mining car. This one doesn't work on rails, but has to be dragged."
 	name = "Mining car (not for rails)"
-	icon_state = "miningcar"
+	icon_state = "closed_mcart"
 	density = TRUE
-	icon_opened = "miningcaropen"
-	icon_closed = "miningcar"
+	icon_opened = "open_mcart"
+	icon_closed = "closed_mcart"
 
+/obj/structure/closet/crate/miningcar/stripe
+	icon_state = "closed_mcart_y"
+	icon_opened = "open_mcart_y"
+	icon_closed = "closed_mcart_y"

@@ -1,0 +1,4 @@
+author: "AzonStarfall"
+delete-after: True
+changes: 
+  - qol: "Marines and SOM no longer have randomized hunger on spawn"
