@@ -297,7 +297,7 @@
 	/// We need the list of spiderlings so that we can burrow them
 	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = owner.actions_by_path[/datum/action/xeno_action/create_spiderling]
 	if(!create_spiderling_action)
-		var/datum/action/xeno_action/return_to_mother/A = owner.actions_by_path[/datum/action/xeno_action/return_to_mother]
+		var/datum/action/xeno_action/return_to_mother/ability_ref = owner.actions_by_path[/datum/action/xeno_action/return_to_mother]
 		var/mob/living/carbon/xenomorph/widow/mother = A.mother
 		create_spiderling_action = mother.actions_by_path[/datum/action/xeno_action/create_spiderling]
 	/// Here we make every single spiderling that we have also burrow and assign a signal so that they unburrow too
