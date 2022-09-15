@@ -250,7 +250,7 @@
 	name = "Widow Pod"
 	icon = 'icons/Xeno/king_pod.dmi'
 	icon_state = "widow_pod"
-	desc = " There seems to be something inside of it.. "
+	desc = "There seems to be something inside of it..."
 	destroy_sound = "alien_resin_break"
 	max_integrity = 1
 	layer = ABOVE_ALL_MOB_LAYER
