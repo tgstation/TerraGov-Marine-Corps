@@ -28,5 +28,5 @@ mode Civil War
 endmode
 
 mode Combat Patrol
-	requiredplayers 0
+	requiredplayers 1
 endmode
