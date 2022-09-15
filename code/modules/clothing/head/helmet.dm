@@ -221,11 +221,12 @@
 						/obj/item/clothing/glasses/mgoggles/prescription = "goggles",
 						/obj/item/clothing/glasses/hud/medgoggles = "goggles",
 						/obj/item/clothing/glasses/hud/medgoggles/prescription = "goggles",
-						/obj/item/clothing/glasses/night/optgoggles = "goggles",
-						/obj/item/clothing/glasses/night/optgoggles/prescription = "goggles",
-						/obj/item/clothing/glasses/meson/enggoggles = "goggles",
-						/obj/item/clothing/glasses/meson/enggoggles/prescription = "goggles",
-						/obj/item/clothing/head/hairflower = "flower_pin")
+						/obj/item/clothing/glasses/night/optgoggles = "optgoggles",
+						/obj/item/clothing/glasses/night/optgoggles/prescription = "optgoggles",
+						/obj/item/clothing/glasses/meson/enggoggles = "enggoggles",
+						/obj/item/clothing/glasses/meson/enggoggles/prescription = "enggoggles",
+						/obj/item/clothing/head/hairflower = "flower_pin"
+						)
 
 /obj/item/storage/internal/marinehelmet
 	storage_slots = 2
