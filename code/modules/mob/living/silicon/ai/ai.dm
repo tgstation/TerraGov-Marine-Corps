@@ -353,8 +353,14 @@
 
 		stat("Current supply points:", "[round(SSpoints.supply_points[FACTION_TERRAGOV])]")
 
+		stat("Current dropship points:", "[round(SSpoints.dropship_points)]")
+
 		stat("Current alert level:", "[GLOB.marine_main_ship.get_security_level()]")
 
+		var/Ship[] = SSticker.mode.count_humans_and_xenos()
+		var/ShipMarines[] = Ship[1]
+	
+		stat("Number of living marines:", "[ShipMarines]")
 
 
 /mob/living/silicon/ai/fully_replace_character_name(oldname, newname)
