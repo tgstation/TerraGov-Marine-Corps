@@ -141,3 +141,20 @@
   nova_epee and crow:
   - imageadd: new sprites for brute kit, burn kit, and surgery membrane
   - rscdel: useless sprites that never been used for brute and burn kit
+2022-09-15:
+  BraveMole:
+  - bugfix: Fix ais seemingly teleporting
+  - bugfix: Dead ai moving too much
+  Lumipharon:
+  - bugfix: You can no longer disassemble, remove the ammo from, or use the interface
+      of a hostile turret.
+  - refactor: refactored looping sounds
+  RipGrayson:
+  - rscadd: Added Gelida IV, a new map based off of CM's WIP LV522 map.
+  - imageadd: Created some new icons for use in Gelida IV.
+  - imageadd: Ported a handful of new icons for use in Gelida IV, mostly from CM.
+  lbnesquik:
+  - qol: Made the AI unable to hear vending ads.
+  - qol: Rename minigun to MG-100 Vindicator, a conflation of MG 100 and MIC-A7 Vindicator
+  - qol: Added name & area to supply beacons
+  - bugfix: fixed the req factory saying Outputter instead of Unboxer
