@@ -231,6 +231,37 @@
 	throw_speed = 2
 	throw_range = 8
 
+/obj/item/weapon/karambit
+	name = "\improper karambit"
+	icon = 'icons/obj/items/weapons.dmi'
+	icon_state = "karambit"
+	item_state = "karambit"
+	desc = "A small high quality knife with a curved blade, good for slashing and hooking. This one has a mottled red finish."
+	flags_atom = CONDUCT
+	sharp = IS_SHARP_ITEM_ACCURATE
+	materials = list(/datum/material/metal = 200)
+	force = 30
+	w_class = WEIGHT_CLASS_SMALL
+	throwforce = 20
+	throw_speed = 3
+	throw_range = 6
+	attack_speed = 8
+	hitsound = 'sound/weapons/slash.ogg'
+	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut", "hooked")
+
+/obj/item/weapon/karambit/fade
+	name = "\improper karambit"
+	icon = 'icons/obj/items/weapons.dmi'
+	icon_state = "karambit_fade"
+	item_state = "karambit_fade"
+	desc = "A small high quality knife with a curved blade, good for slashing and hooking. This one has been painted by airbrushing transparent paints that fade together over a chrome base coat."
+
+/obj/item/weapon/karambit/case_hardened
+	name = "\improper karambit"
+	icon = 'icons/obj/items/weapons.dmi'
+	icon_state = "karambit_case_hardened"
+	item_state = "karambit_case_hardened"
+	desc = "A small high quality knife with a curved blade, good for slashing and hooking. This one has been color case-hardened through the application of wood charcoal at high temperatures."
 
 /obj/item/stack/throwing_knife
 	name ="\improper M11 throwing knife"
