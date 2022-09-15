@@ -286,8 +286,8 @@
 	ability_name = "Burrow"
 	mechanics_text = " Burrow into the ground to hide in plain sight "
 	action_icon_state = "burrow"
-	plasma_cost = 100
-	cooldown_timer = 4 SECONDS
+	plasma_cost = 0
+	cooldown_timer = 20 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_BURROW
 	use_state_flags = XACT_USE_BURROWED
 	#define BURROW_FIRE_RESIST_MODIFIER 20
@@ -296,6 +296,10 @@
 	. = ..()
 	/// We need the list of spiderlings so that we can burrow them
 	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = owner.actions_by_path[/datum/action/xeno_action/create_spiderling]
+	if(!create_spiderling_action)
+		var/datum/action/xeno_action/return_to_mother/A = owner.actions_by_path[/datum/action/xeno_action/return_to_mother]
+		var/mob/living/carbon/xenomorph/widow/mother = A.mother
+		create_spiderling_action = mother.actions_by_path[/datum/action/xeno_action/create_spiderling]
 	/// Here we make every single spiderling that we have also burrow and assign a signal so that they unburrow too
 	for(var/mob/living/carbon/xenomorph/spiderling/spiderling AS in create_spiderling_action?.spiderlings)
 		/// Here we trigger the burrow proc, the registering happens there
