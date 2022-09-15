@@ -126,7 +126,7 @@
 
 /datum/action/antenna
 	name = "Use Antenna"
-	action_icon_state = "rally_minions"
+	action_icon_state = "signal_transmit"
 
 /datum/action/antenna/action_activate()
 	SEND_SIGNAL(owner, COMSIG_UNMANNED_COORDINATES)
