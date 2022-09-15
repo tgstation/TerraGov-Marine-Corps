@@ -408,7 +408,13 @@
 		user.hud_used.update_ammo_hud(user, src)
 		return
 
-
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/wide
+	starting_attachment_types = list(
+		/obj/item/attachable/flamer_nozzle/wide,
+		/obj/item/attachable/stock/t84stock,
+		/obj/item/attachable/hydro_cannon,
+		/obj/item/attachable/magnetic_harness,
+	)
 
 /turf/proc/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
 	//extinguish any flame present

@@ -1401,7 +1401,7 @@
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
-	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 16,"rail_x" = 10, "rail_y" = 19, "under_x" = 18, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
+	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 16,"rail_x" = 10, "rail_y" = 19, "under_x" = 21, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
 
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.1 SECONDS
@@ -1419,6 +1419,13 @@
 	starting_attachment_types = list(
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/bayonet,
+	)
+
+/obj/item/weapon/gun/rifle/alf_machinecarbine/assault
+	starting_attachment_types = list(
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/verticalgrip,
 	)
 
 //-------------------------------------------------------
@@ -1671,6 +1678,15 @@
 	damage_falloff_mult = 0.7
 
 /obj/item/weapon/gun/rifle/som/standard
+	starting_attachment_types = list(
+		/obj/item/weapon/gun/shotgun/micro_grenade,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/reddot,
+	)
+
+/obj/item/weapon/gun/rifle/som/veteran
+	default_ammo_type = /obj/item/ammo_magazine/rifle/som/ap
 	starting_attachment_types = list(
 		/obj/item/weapon/gun/shotgun/micro_grenade,
 		/obj/item/attachable/verticalgrip,
