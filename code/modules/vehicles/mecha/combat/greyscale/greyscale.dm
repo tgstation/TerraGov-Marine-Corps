@@ -30,7 +30,7 @@
 
 /obj/vehicle/sealed/mecha/combat/greyscale/update_overlays()
 	. = ..()
-	for(var/key in limbs) // tivi todo typepath runtime below
+	for(var/key in limbs)
 		if(!istype(limbs[key], /datum/mech_limb))
 			continue
 		var/datum/mech_limb/limb = limbs[key]
