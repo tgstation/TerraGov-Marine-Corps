@@ -471,7 +471,6 @@
 #define COMSIG_WARRIOR_USED_GRAPPLE_TOSS "warrior_used_grapple_toss"
 
 #define COMSIG_XENOABILITY_HUNTER_MARK "xenoability_hunter_mark"
-#define COMSIG_XENOABILITY_SWAP "xenoability_swap"
 #define COMSIG_XENOABILITY_PSYCHIC_TRACE "xenoability_psychic_trace"
 
 #define COMSIG_XENOMORPH_PLASMA_REGEN "xenomorph_plasma_regen"
@@ -642,6 +641,7 @@
 #define COMSIG_XENOABILITY_SPAWN_HUGGER "xenoability_spawn_hugger"
 #define COMSIG_XENOABILITY_SWITCH_HUGGER "xenoability_switch_hugger"
 #define COMSIG_XENOABILITY_CHOOSE_HUGGER "xenoability_choose_hugger"
+#define COMSIG_XENOABILITY_DROP_ALL_HUGGER "xenoability_drop_all_hugger"
 
 #define COMSIG_XENOABILITY_STOMP "xenoability_stomp"
 #define COMSIG_XENOABILITY_TOGGLE_CHARGE "xenoability_toggle_charge"

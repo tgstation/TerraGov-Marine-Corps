@@ -713,7 +713,7 @@
 
 
 //this one is for CLF
-/obj/item/clothing/suit/storage/militia
+/obj/item/clothing/suit/storage/faction/militia
 	name = "\improper colonial militia hauberk"
 	desc = "The hauberk of a colonist militia member, created from boiled leather and some modern armored plates. While primitive compared to most modern suits of armor, it gives the wearer almost perfect mobility, which suits the needs of the local colonists. "
 	icon = 'icons/obj/clothing/cm_suits.dmi'

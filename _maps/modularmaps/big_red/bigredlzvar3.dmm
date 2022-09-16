@@ -24,10 +24,6 @@
 	dir = 1
 	},
 /area/bigredv2/outside/space_port)
-"aF" = (
-/obj/structure/girder/displaced,
-/turf/open/floor/plating/dmg3,
-/area/bigredv2/outside/space_port)
 "aI" = (
 /obj/machinery/landinglight/ds1/delaytwo{
 	dir = 4
@@ -3808,7 +3804,7 @@ iu
 iu
 iu
 iu
-aF
+oJ
 im
 ut
 Dc
