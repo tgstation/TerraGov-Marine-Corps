@@ -314,7 +314,6 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	pilot = SKILL_PILOT_TRAINED
 	police = SKILL_POLICE_MP
 	powerloader = SKILL_POWERLOADER_MASTER
-	large_vehicle = SKILL_LARGE_VEHICLE_TRAINED
 
 /datum/skills/synthetic
 	name = SYNTHETIC
@@ -344,7 +343,6 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	pistols = SKILL_PISTOLS_TRAINED
 	police = SKILL_POLICE_MP
 	powerloader = SKILL_POWERLOADER_MASTER
-	large_vehicle = SKILL_LARGE_VEHICLE_TRAINED
 
 /datum/skills/captain
 	name = CAPTAIN
@@ -390,6 +388,13 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	pilot = SKILL_PILOT_TRAINED
 	powerloader = SKILL_POWERLOADER_PRO
 	leadership = SKILL_LEAD_TRAINED
+
+/datum/skills/mech_pilot
+	name = MECH_PILOT
+	engineer = SKILL_ENGINEER_ENGI
+	powerloader = SKILL_POWERLOADER_PRO
+	leadership = SKILL_LEAD_TRAINED
+	large_vehicle = SKILL_LARGE_VEHICLE_TRAINED // tivi todo greyscale add hard check
 
 /datum/skills/ce
 	name = CHIEF_SHIP_ENGINEER
