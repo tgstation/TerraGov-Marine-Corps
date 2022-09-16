@@ -450,6 +450,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				newmob = M.change_mob_type(/mob/living/carbon/human/species/vatborn, location, null, delmob)
 			if("vatgrown")
 				newmob = M.change_mob_type(/mob/living/carbon/human/species/vatgrown, location, null, delmob)
+			if("combat_robot")
+				newmob = M.change_mob_type(/mob/living/carbon/human/species/robot, location, null, delmob)
 			if("SKELETON")
 				newmob = M.change_mob_type(/mob/living/carbon/human/species/skeleton, location, null, delmob)
 			if("monkey")
