@@ -31,6 +31,7 @@
 	RegisterSignal(parent, list(COMSIG_GUN_AUTOFIREDELAY_MODIFIED, COMSIG_XENO_AUTOFIREDELAY_MODIFIED), .proc/modify_fire_shot_delay)
 	RegisterSignal(parent, COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED, .proc/modify_burst_shots_to_fire)
 	RegisterSignal(parent, COMSIG_GUN_BURST_SHOT_DELAY_MODIFIED, .proc/modify_burstfire_shot_delay)
+	RegisterSignal(parent, COMSIG_GUN_AUTO_BURST_SHOT_DELAY_MODIFIED, .proc/modify_autoburstfire_shot_delay)
 	RegisterSignal(parent, list(COMSIG_GUN_FIRE, COMSIG_XENO_FIRE), .proc/initiate_shot)
 	RegisterSignal(parent, list(COMSIG_GUN_STOP_FIRE, COMSIG_XENO_STOP_FIRE), .proc/stop_firing)
 
@@ -68,6 +69,11 @@
 /datum/component/automatedfire/autofire/proc/modify_burstfire_shot_delay(datum/source, _burstfire_shot_delay)
 	SIGNAL_HANDLER
 	burstfire_shot_delay = _burstfire_shot_delay
+
+///Setter for burst shot delay
+/datum/component/automatedfire/autofire/proc/modify_autoburstfire_shot_delay(datum/source, _burstfire_shot_delay)
+	SIGNAL_HANDLER
+	auto_burst_fire_shot_delay = _burstfire_shot_delay
 
 ///Insert the component in the bucket system if it was not in already
 /datum/component/automatedfire/autofire/proc/initiate_shot()

@@ -326,6 +326,7 @@
 #define COMSIG_GUN_AUTOFIREDELAY_MODIFIED "gun_firedelay_modified"
 #define COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED "gun_burstamount_modified"
 #define COMSIG_GUN_BURST_SHOT_DELAY_MODIFIED "gun_burstdelay_modified"
+#define COMSIG_GUN_AUTO_BURST_SHOT_DELAY_MODIFIED "gun_auto_burstdelay_modified"
 #define COMSIG_GUN_USER_UNSET "gun_user_unset"
 #define COMSIG_GUN_USER_SET "gun_user_set"
 #define COMSIG_MOB_GUN_FIRED "mob_gun_fired"
