@@ -687,7 +687,7 @@
 /datum/keybinding/xeno/leash_ball
 	name = "Leash Ball"
 	full_name = "Widow: Leash Ball"
-	description = "Spit a huge ball of web that snares groups of marines"
+	description = "Spit a huge web ball of web that snares groups of targets for a brief while."
 	keybind_signal = COMSIG_XENOABILITY_LEASH_BALL
 
 /datum/keybinding/xeno/create_spiderling
