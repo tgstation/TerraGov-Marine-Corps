@@ -681,7 +681,7 @@
 /datum/keybinding/xeno/web_spit
 	name = "Web Spit"
 	full_name = "Widow: Web Spit"
-	description = "Spits web that has different effects depending on where it hits"
+	description = "Spit web at your target. Hitting the target will impede their functions depending on their hit location."
 	keybind_signal = COMSIG_XENOABILITY_WEB_SPIT
 
 /datum/keybinding/xeno/leash_ball
