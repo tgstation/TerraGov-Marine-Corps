@@ -699,7 +699,7 @@
 /datum/keybinding/xeno/spider_swarm
 	name = "Spider Swarm"
 	full_name = "Widow: Spider Swarm"
-	description = "Turn into a swarm of spiderlings"
+	description = "Give birth to three spiders, you turn into an immobile pod in the process."
 	keybind_signal = COMSIG_XENOABILITY_SPIDER_SWARM
 
 /datum/keybinding/xeno/vent/down(client/user)
