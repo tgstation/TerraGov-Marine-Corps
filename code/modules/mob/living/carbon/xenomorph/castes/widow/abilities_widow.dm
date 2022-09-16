@@ -173,7 +173,7 @@
 /datum/action/xeno_action/spider_swarm
 	name = "Spider Swarm"
 	ability_name = "Spider Swarm"
-	mechanics_text = " Turn into a swarm of spiderlings "
+	mechanics_text = "Mold yourself into an immobile pod, but in exchange, you give birth to 3 spiders in which one you can control. These spiders bypass the 5 spider limit."
 	action_icon_state = "spider_swarm"
 	plasma_cost = 500
 	cooldown_timer = 60 SECONDS
