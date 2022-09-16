@@ -2,7 +2,7 @@
 	caste_name = "Widow"
 	display_name = "Widow"
 	upgrade_name = ""
-	caste_desc = " A spider xenomoroph, horrible"
+	caste_desc = "You don't think you've seen a tarantula this big before"
 	caste_type_path = /mob/living/carbon/xenomorph/widow
 
 	tier = XENO_TIER_THREE
@@ -67,7 +67,7 @@
 
 /datum/xeno_caste/widow/mature
 	upgrade_name = "Mature"
-	caste_desc = " More threatening spider xeno"
+	caste_desc = "So this is what the fly in a spider's web feels like"
 
 	upgrade = XENO_UPGRADE_ONE
 
@@ -92,7 +92,7 @@
 
 /datum/xeno_caste/widow/elder
 	upgrade_name = "Elder"
-	caste_desc = " Starting to look very scary now "
+	caste_desc = "And they said Arachnophobia was irrational"
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
@@ -119,8 +119,8 @@
 
 /datum/xeno_caste/widow/ancient
 	upgrade_name = "Ancient"
-	caste_desc = " A fully grown xenomorph spider "
-	ancient_message = "We feel faster and stronger"
+	caste_desc = "Like a spider web that you walk into, it won't be easy to get rid of it's owner."
+	ancient_message = "By our hand is the fabric of life weaved and by our hand shall it be undone."
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
@@ -147,8 +147,8 @@
 
 /datum/xeno_caste/widow/primordial
 	upgrade_name = "Primordial"
-	caste_desc = " A fully grown and evolved spider xenomorph, menacing "
-	primordial_message = "We are the swarm that is approaching"
+	caste_desc = "At times, life is just like a web. You fall, and a spider called accident, at the center, takes you to hell."
+	primordial_message = "We weave the threads of fate that our victims life hangs from"
 	upgrade = XENO_UPGRADE_FOUR
 
 	// *** Melee Attacks *** //

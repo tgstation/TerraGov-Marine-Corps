@@ -290,7 +290,6 @@
 	cooldown_timer = 20 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_BURROW
 	use_state_flags = XACT_USE_BURROWED
-	#define BURROW_FIRE_RESIST_MODIFIER 20
 
 /datum/action/xeno_action/burrow/action_activate()
 	. = ..()
