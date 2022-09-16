@@ -1426,6 +1426,66 @@ Imports
 	contains = list(/obj/item/clothing/head/strawhat)
 	cost = 1
 
+/datum/supply_packs/loot_box
+	name = "What could be inside?"
+	contains = list(/obj/effect/loot_box)
+	cost = 100
+
+/obj/effect/loot_box
+	name = "\improper randomised loot"
+	desc = "Randomly selected item."
+	var/list/legendary_list = list(
+		/obj/item/weapon/karambit,
+		/obj/item/weapon/karambit/fade,
+		/obj/item/weapon/karambit/case_hardened,
+	)
+	var/list/rare_list = list(
+		/obj/vehicle/ridden/motorbike,
+		/obj/vehicle/unmanned,
+	)
+	var/list/uncommon_list = list(
+		/obj/item/weapon/gun/pistol/vp78,
+		/obj/item/weapon/gun/rifle/m16,
+	)
+	var/list/common_list = list(
+		/obj/item/clothing/head/strawhat,
+		/obj/item/storage/bag/trash,
+	)
+
+/obj/effect/loot_box/Initialize()
+	. = ..()
+	var/list/weights = list(10, 20, 30, 40)
+	var/list/choices = list(legendary_list, rare_list, uncommon_list, common_list)
+
+	var/loot_class = weightedprob(choices, weights)
+	var/loot_pick = pick(loot_class)
+	new loot_pick(loc)
+	qdel(src)
+
+
+/obj/effect/loot_box/proc/weightedprob(choices[], weights[])
+    if(!choices || !weights) return null
+
+    //Build a range of weights
+    var/max_num = 0
+    for(var/X in weights) if(isnum(X)) max_num += X
+
+    //Now roll in the range.
+    var/weighted_num = rand(1,max_num)
+
+    var/running_total, i
+
+    //Loop through all possible choices
+    for(i = 1; i <= choices.len; i++)
+        if(i > weights.len) return null
+
+        running_total += weights[i]
+
+        //Once the current step is less than the roll,
+        // we have our winner.
+        if(weighted_num <= running_total)
+            return choices[i]
+
 
 /*******************************************************************************
 VEHICLES
