@@ -23,10 +23,6 @@
 	mouse_opacity = initial(mouse_opacity)
 	..()
 
-
-
-
-
 /obj/item/storage/belt/champion
 	name = "championship belt"
 	desc = "Proves to the world that you are the strongest!"
@@ -37,14 +33,8 @@
 		/obj/item/clothing/mask/luchador,
 	)
 
-
-
-
-
-
 /*============================//MARINE BELTS\\==================================
 =======================================================================*/
-
 
 /obj/item/storage/belt/utility
 	name = "\improper M276 pattern toolbelt rig" //Carn: utility belt is nicer, but it bamboozles the text parsing.
@@ -104,7 +94,7 @@
 		/obj/item/storage/syringe_case,
 		/obj/item/reagent_containers/hypospray/autoinjector,
 		/obj/item/stack/medical,
-		/obj/item/tool/surgery/solderingtool
+		/obj/item/tool/surgery/solderingtool,
 	)
 
 /obj/item/storage/belt/lifesaver/full/Initialize()  //The belt, with all it's magic inside!
