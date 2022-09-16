@@ -74,7 +74,7 @@
 		return FALSE
 
 	if(HAS_TRAIT(new_mob, TRAIT_POSSESSING))
-		to_chat(owner, span_warning("That mob is currently possessing a different mob"))
+		to_chat(owner, span_warning("That mob is currently possessing a different mob."))
 		return FALSE
 
 	if(new_mob.client)

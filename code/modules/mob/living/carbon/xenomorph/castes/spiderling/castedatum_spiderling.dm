@@ -2,7 +2,7 @@
 	caste_name = "spiderling"
 	display_name = "spiderling"
 	upgrade_name = ""
-	caste_desc = ""
+	caste_desc = "An anthropod xenomorph without any qualms to obey their widow, even if it will never grow up and will face death."
 	wound_type = ""
 
 	caste_type_path = /mob/living/carbon/xenomorph/spiderling
