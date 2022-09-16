@@ -1,0 +1,4 @@
+author: "hyper2snyper"
+delete-after: True
+changes: 
+  - bugfix: "Fixes the attachment icons updating when attached."
