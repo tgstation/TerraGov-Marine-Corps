@@ -182,6 +182,13 @@
 	light_range = 8
 	pockets = /obj/item/storage/internal/suit/leader
 
+/obj/item/clothing/suit/storage/marine/mech_pilot
+	name = "\improper PAS-13 pattern mech pilot armor"
+	desc = "A somewhat sparsely armored but robust armored vest, still in use despite the rise of exoskeleton armor due to ease of use and manufacturing. While the suit is a bit more encumbering to wear with the mech pilot uniform, it offers the them a degree of protection that they otherwise do not enjoy outside their mech."
+	icon_state = "mech_pilot_suit"
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+	soft_armor = list(MELEE = 45, BULLET = 55, LASER = 55, ENERGY = 20, BOMB = 45, BIO = 30, FIRE = 25, ACID = 35)
+
 /obj/item/storage/internal/suit/leader
 	storage_slots = 3
 	max_storage_space = 12

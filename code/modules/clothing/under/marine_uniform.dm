@@ -133,6 +133,11 @@
 	icon_state = "marine_tanker"
 	flags_item_map_variant = (ITEM_ICE_VARIANT)
 
+/obj/item/clothing/under/marine/officer/mech
+	name = "mech pilot uniform"
+	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented uniform worn by mech pilots. Not as impressive as a titanium robot but good enough."
+	icon_state = "marine_mech_pilot"
+
 /obj/item/clothing/under/marine/officer/bridge
 	name = "staff officer uniform"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented staff officer uniform. Do the navy proud."
