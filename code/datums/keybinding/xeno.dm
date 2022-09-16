@@ -675,31 +675,31 @@
 /datum/keybinding/xeno/burrow
 	name = "burrow"
 	full_name = "Widow: Burrow"
-	description = "Burrow into the ground"
+	description = "Dig to the ground, making you invisible."
 	keybind_signal = COMSIG_XENOABILITY_BURROW
 
 /datum/keybinding/xeno/web_spit
 	name = "Web Spit"
 	full_name = "Widow: Web Spit"
-	description = "Spits web that has different effects depending on where it hits"
+	description = "Spit web at your target. Hitting the target will impede their functions depending on their hit location."
 	keybind_signal = COMSIG_XENOABILITY_WEB_SPIT
 
 /datum/keybinding/xeno/leash_ball
 	name = "Leash Ball"
 	full_name = "Widow: Leash Ball"
-	description = "Spit a huge ball of web that snares groups of marines"
+	description = "Spit a huge web ball of web that snares groups of targets for a brief while."
 	keybind_signal = COMSIG_XENOABILITY_LEASH_BALL
 
 /datum/keybinding/xeno/create_spiderling
 	name = "Birth Spiderling"
 	full_name = "Widow: Birth Spiderling"
-	description = "Lay a spiderling egg under yourself"
+	description = "Give birth to a spiderling after a short charge-up."
 	keybind_signal = COMSIG_XENOABILITY_CREATE_SPIDERLING
 
 /datum/keybinding/xeno/spider_swarm
 	name = "Spider Swarm"
 	full_name = "Widow: Spider Swarm"
-	description = "Turn into a swarm of spiderlings"
+	description = "Give birth to three spiders, you turn into an immobile pod in the process."
 	keybind_signal = COMSIG_XENOABILITY_SPIDER_SWARM
 
 /datum/keybinding/xeno/vent/down(client/user)

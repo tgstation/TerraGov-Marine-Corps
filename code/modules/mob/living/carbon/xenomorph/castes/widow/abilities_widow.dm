@@ -131,7 +131,7 @@
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(length(spiderlings) >= X.xeno_caste.max_spiderlings)
-		to_chat(owner, span_notice("We have reached the maximum amount of spiderlings"))
+		to_chat(owner, span_notice("We have reached the maximum amount of spiderlings!"))
 		return fail_activate()
 	if(!do_after(X, 0.5 SECONDS, TRUE, X, BUSY_ICON_DANGER))
 		return fail_activate()
@@ -173,7 +173,7 @@
 /datum/action/xeno_action/spider_swarm
 	name = "Spider Swarm"
 	ability_name = "Spider Swarm"
-	mechanics_text = " Turn into a swarm of spiderlings "
+	mechanics_text = "Mold yourself into an immobile pod, but in exchange, you give birth to 3 spiders in which one you can control. These spiders bypass the 5 spider limit."
 	action_icon_state = "spider_swarm"
 	plasma_cost = 500
 	cooldown_timer = 60 SECONDS
@@ -229,7 +229,7 @@
 /datum/action/xeno_action/return_to_mother
 	name = "Return to Widow"
 	ability_name = "Return to Widow"
-	mechanics_text = " Return to Widow"
+	mechanics_text = "Return control to the Widow. This action will kill ALL of your active spiderlings. Resist while in the pod to break free."
 	action_icon_state = "spider_swarm"
 	plasma_cost = 0
 	// Ref to widow
@@ -284,7 +284,7 @@
 /datum/action/xeno_action/burrow
 	name = "Burrow"
 	ability_name = "Burrow"
-	mechanics_text = " Burrow into the ground to hide in plain sight "
+	mechanics_text = "Burrow into the ground, allowing you and your active spiderlings to hide in plain sight. You cannot use abilities, attack nor move while burrowed. Use the ability again to unburrow if you're already burrowed."
 	action_icon_state = "burrow"
 	plasma_cost = 0
 	cooldown_timer = 20 SECONDS
@@ -313,7 +313,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	SIGNAL_HANDLER
 	if(!HAS_TRAIT(X, TRAIT_BURROWED))
-		to_chat(X, span_xenowarning("We start burrowing into the ground"))
+		to_chat(X, span_xenowarning("We start burrowing into the ground..."))
 		INVOKE_ASYNC(src, .proc/xeno_burrow_doafter)
 		return
 	UnregisterSignal(X, COMSIG_MOVABLE_MOVED)
@@ -332,7 +332,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	if(!do_after(X, 3 SECONDS, TRUE, null, BUSY_ICON_DANGER))
 		return
-	to_chat(X, span_xenowarning("We have burrowed ourselves, we are hidden from the enemy"))
+	to_chat(X, span_xenowarning("We are now burrowed, hidden in plain sight and ready to strike."))
 	// This part here actually burrows the xeno
 	X.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	X.density = FALSE
