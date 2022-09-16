@@ -284,7 +284,7 @@
 /datum/action/xeno_action/burrow
 	name = "Burrow"
 	ability_name = "Burrow"
-	mechanics_text = " Burrow into the ground to hide in plain sight "
+	mechanics_text = "Burrow into the ground, allowing you and your active spiderlings to hide in plain sight. You cannot use abilities, attack nor move while burrowed. Use the ability again to unburrow if you're already burrowed."
 	action_icon_state = "burrow"
 	plasma_cost = 0
 	cooldown_timer = 20 SECONDS
