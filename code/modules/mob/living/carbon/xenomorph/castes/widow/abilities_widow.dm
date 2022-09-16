@@ -229,7 +229,7 @@
 /datum/action/xeno_action/return_to_mother
 	name = "Return to Widow"
 	ability_name = "Return to Widow"
-	mechanics_text = " Return to Widow"
+	mechanics_text = "Return control to the Widow. This action will kill ALL of your active spiderlings. Resist while in the pod to break free."
 	action_icon_state = "spider_swarm"
 	plasma_cost = 0
 	// Ref to widow
