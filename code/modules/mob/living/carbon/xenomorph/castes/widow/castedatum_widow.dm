@@ -45,7 +45,6 @@
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/activable/cocoon,
-		/datum/action/xeno_action/activable/plant_weeds,
 		/datum/action/xeno_action/activable/web_spit,
 		/datum/action/xeno_action/burrow,
 		/datum/action/xeno_action/activable/leash_ball,
