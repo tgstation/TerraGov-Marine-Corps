@@ -333,7 +333,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	if(!do_after(X, 3 SECONDS, TRUE, null, BUSY_ICON_DANGER))
 		return
-	to_chat(X, span_xenowarning("We have burrowed ourselves, we are hidden from the enemy"))
+	to_chat(X, span_xenowarning("We are now burrowed, hidden in plain sight and ready to strike."))
 	// This part here actually burrows the xeno
 	X.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	X.density = FALSE
