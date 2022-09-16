@@ -693,7 +693,7 @@
 /datum/keybinding/xeno/create_spiderling
 	name = "Birth Spiderling"
 	full_name = "Widow: Birth Spiderling"
-	description = "Lay a spiderling egg under yourself"
+	description = "Give birth to a spiderling after a short charge-up."
 	keybind_signal = COMSIG_XENOABILITY_CREATE_SPIDERLING
 
 /datum/keybinding/xeno/spider_swarm
