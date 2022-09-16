@@ -421,10 +421,6 @@ Make the TGMC proud!"})
 	gloves = /obj/item/clothing/gloves/marine
 	back = /obj/item/storage/backpack/marine/satchel
 
-/datum/outfit/job/command/fieldcommander/rebel
-	jobtype = /datum/job/terragov/command/fieldcommander/rebel
-	ears = /obj/item/radio/headset/mainship/mcom/rebel
-
 /datum/job/terragov/engineering
 	job_category = JOB_CAT_ENGINEERING
 	selection_color = "#fff5cc"
