@@ -314,7 +314,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	SIGNAL_HANDLER
 	if(!HAS_TRAIT(X, TRAIT_BURROWED))
-		to_chat(X, span_xenowarning("We start burrowing into the ground"))
+		to_chat(X, span_xenowarning("We start burrowing into the ground..."))
 		INVOKE_ASYNC(src, .proc/xeno_burrow_doafter)
 		return
 	UnregisterSignal(X, COMSIG_MOVABLE_MOVED)
