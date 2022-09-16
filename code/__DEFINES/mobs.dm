@@ -693,7 +693,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define LARVA_VENT_CRAWL_TIME 1 SECONDS //Larva can crawl into vents fast
 
 //Widow Defines
-#define WIDOW_SPEED_BONUS 1
+#define WIDOW_SPEED_BONUS 1 // How much faster widow moves while she has wall_speedup element
+#define BURROW_FIRE_RESIST_MODIFIER 20 // How much fire resistance widow and spiderlings have while burrowed
 
 //misc
 
