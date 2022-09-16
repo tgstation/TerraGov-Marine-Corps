@@ -70,10 +70,10 @@
 	SIGNAL_HANDLER
 	burstfire_shot_delay = _burstfire_shot_delay
 
-///Setter for burst shot delay
-/datum/component/automatedfire/autofire/proc/modify_autoburstfire_shot_delay(datum/source, _burstfire_shot_delay)
+///Setter for autoburst shot delay
+/datum/component/automatedfire/autofire/proc/modify_autoburstfire_shot_delay(datum/source, _auto_burst_fire_shot_delay)
 	SIGNAL_HANDLER
-	auto_burst_fire_shot_delay = _burstfire_shot_delay
+	auto_burst_fire_shot_delay = _auto_burst_fire_shot_delay
 
 ///Insert the component in the bucket system if it was not in already
 /datum/component/automatedfire/autofire/proc/initiate_shot()
