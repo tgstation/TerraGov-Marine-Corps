@@ -675,7 +675,7 @@
 /datum/keybinding/xeno/burrow
 	name = "burrow"
 	full_name = "Widow: Burrow"
-	description = "Burrow into the ground"
+	description = "Dig to the ground, making you invisible."
 	keybind_signal = COMSIG_XENOABILITY_BURROW
 
 /datum/keybinding/xeno/web_spit
