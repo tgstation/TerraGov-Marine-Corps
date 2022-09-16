@@ -99,6 +99,7 @@
 
 ///Hard reset the autofire, happens when the shooter fall/is thrown, at the end of a burst or when it runs out of ammunition
 /datum/component/automatedfire/autofire/proc/hard_reset()
+	callback_reset_fire.Invoke() //resets the gun
 	shots_fired = 0
 	have_to_reset_at_burst_end = FALSE
 	if(bursting)
