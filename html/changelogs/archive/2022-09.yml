@@ -158,3 +158,13 @@
   - qol: Rename minigun to MG-100 Vindicator, a conflation of MG 100 and MIC-A7 Vindicator
   - qol: Added name & area to supply beacons
   - bugfix: fixed the req factory saying Outputter instead of Unboxer
+2022-09-16:
+  AzonStarfall:
+  - rscadd: Adds craftable Optical Imager Ballistic Goggles
+  - qol: Marines and SOM no longer have randomized hunger on spawn
+  Lewdcifer:
+  - bugfix: Trauma kit sprite should now appear correctly.
+  Lumipharon:
+  - code_imp: minor looping_sounds bugfix
+  tyeagg:
+  - rscdel: removed opacity from explosion particles
