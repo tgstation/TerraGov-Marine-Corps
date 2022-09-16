@@ -50,7 +50,7 @@
 	name = "Snaring Web"
 	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "aoe_leash"
-	desc = "Looks very sticky"
+	desc = "Sticky and icky. Destroy it when you are stuck!"
 	destroy_sound = "alien_resin_break"
 	max_integrity = 50
 	layer = ABOVE_ALL_MOB_LAYER
