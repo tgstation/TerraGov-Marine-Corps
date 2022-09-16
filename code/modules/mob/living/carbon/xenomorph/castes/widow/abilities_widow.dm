@@ -50,7 +50,7 @@
 	name = "Snaring Web"
 	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "aoe_leash"
-	desc = "Looks very sticky"
+	desc = "Sticky and icky. Destroy it when you are stuck!"
 	destroy_sound = "alien_resin_break"
 	max_integrity = 50
 	layer = ABOVE_ALL_MOB_LAYER
@@ -118,7 +118,7 @@
 /datum/action/xeno_action/create_spiderling
 	name = "Birth Spiderling"
 	ability_name = "birth_spiderling"
-	mechanics_text = " Lay a spiderling egg under yourself"
+	mechanics_text = "Give birth to a spiderling after a short charge-up. The spiderlings will follow you until death. You can only deploy 5 spiderlings at one time."
 	action_icon_state = "spawn_spiderling"
 	plasma_cost = 100
 	cooldown_timer = 15 SECONDS
