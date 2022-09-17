@@ -53,9 +53,9 @@
 					E.germ_level++
 
 	//Hard to stay upright
-	if(leg_tally > 1 && prob(2.5 * leg_tally))
+	if(leg_tally > 0 && prob(2.5 * leg_tally))
 		if(!(species.species_flags & NO_PAIN))
 			emote("pain")
 		visible_message(span_warning("[src] collapses to the ground!"),	\
 			span_danger("Your legs give out from under you!"))
-		Knockdown(3 SECONDS)
+		Knockdown(1 SECONDS)

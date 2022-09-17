@@ -115,7 +115,10 @@
 	storage_slots = 5
 	max_w_class = 4
 	access_delay = 0.5 SECONDS
-	holsterable_allowed = list(/obj/item/weapon/gun/launcher/rocket/recoillessrifle,)
+	holsterable_allowed = list(
+		/obj/item/weapon/gun/launcher/rocket/recoillessrifle,
+		/obj/item/weapon/gun/launcher/rocket/recoillessrifle/low_impact,
+	)
 	bypass_w_limit = list(/obj/item/weapon/gun/launcher/rocket/recoillessrifle,)
 	///only one RR per bag
 	storage_type_limits = list(/obj/item/weapon/gun/launcher/rocket/recoillessrifle = 1,)
@@ -132,6 +135,15 @@
 	new /obj/item/ammo_magazine/rocket/recoilless(src)
 	new /obj/item/ammo_magazine/rocket/recoilless(src)
 	var/obj/item/new_item = new /obj/item/weapon/gun/launcher/rocket/recoillessrifle(src)
+	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
+
+/obj/item/storage/holster/backholster/rpg/low_impact/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/rocket/recoilless/low_impact(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/low_impact(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/low_impact(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/low_impact(src)
+	var/obj/item/new_item = new /obj/item/weapon/gun/launcher/rocket/recoillessrifle/low_impact(src)
 	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
 
 //one slot holsters

@@ -93,15 +93,37 @@
 	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 	slowdown = 0.4
 
+/obj/item/armor_module/module/tyr_extra_armor/som
+	name = "\improper Lorica Armor Reinforcement"
+	desc = "Designed for mounting on modular SOM armor. A substantial amount of additional armor plating designed to grant the user extra protection against all forms of damage. Will definitely impact mobility."
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
+	icon_state = "lorica_armor"
+	item_state = "lorica_armor_a"
+	attachment_layer = COLLAR_LAYER
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 5, FIRE = 10, ACID = 5)
+	slowdown = 0.2
+	slot = ATTACHMENT_SLOT_MODULE
+	variants_by_parent_type = null
+
 /obj/item/armor_module/module/tyr_head
 	name = "Tyr Helmet System"
-	desc = "Designed for mounting on a modular Helmet. When attached, this system provides substantial resistance to most damaging hazards, ranging from xeno slashes to friendly fire incidents."
+	desc = "Designed for mounting on a modular helmet. When attached, this system provides substantial resistance to most damaging hazards, ranging from xeno slashes to friendly fire incidents."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "tyr_head"
 	item_state = "tyr_head_a"
 	soft_armor = list("melee" = 15, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 	variants_by_parent_type = list(/obj/item/clothing/head/modular/marine/m10x = "tyr_head_xn", /obj/item/clothing/head/modular/marine/m10x/leader = "tyr_head_xn")
+
+/obj/item/armor_module/module/tyr_head/som
+	name = "Lorica Helmet System"
+	desc = "Designed for mounting on a modular SOM helmet. Substantial additional armor improves protection against all damage."
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
+	icon_state = "lorica_head"
+	item_state = "lorica_head_a"
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 5, FIRE = 10, ACID = 5)
+	slot = ATTACHMENT_SLOT_HEAD_MODULE
+	variants_by_parent_type = list()
 
 /**
  * Environment protecttion module
