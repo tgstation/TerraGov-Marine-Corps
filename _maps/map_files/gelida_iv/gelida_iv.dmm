@@ -10600,13 +10600,13 @@
 /area/gelida/outdoors/colony_streets/south_west_street)
 "gHe" = (
 /obj/machinery/button/door/open_only/landing_zone/lz2,
-/obj/structure/window/reinforced/extratoughened{
+/obj/structure/window/reinforced/tinted{
 	dir = 4
 	},
-/obj/structure/window/reinforced/extratoughened{
+/obj/structure/window/reinforced/tinted{
 	dir = 8
 	},
-/obj/structure/window/reinforced/toughened,
+/obj/structure/window/reinforced,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/landing_zone_1)
 "gHj" = (
@@ -12985,11 +12985,11 @@
 /obj/machinery/button/door/open_only/landing_zone{
 	dir = 8
 	},
-/obj/structure/window/reinforced/extratoughened,
-/obj/structure/window/reinforced/extratoughened{
+/obj/structure/window/reinforced/tinted,
+/obj/structure/window/reinforced/tinted{
 	dir = 1
 	},
-/obj/structure/window/reinforced/toughened{
+/obj/structure/window/reinforced{
 	dir = 8
 	},
 /turf/open/floor/prison/darkbrown/full,
