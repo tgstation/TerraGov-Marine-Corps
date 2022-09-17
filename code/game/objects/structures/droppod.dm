@@ -172,6 +172,8 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	var/turf/target = locate(target_x, target_y, 2)
 	log_game("[key_name(user)] launched pod [src] at [AREACOORD(target)]")
 	deadchat_broadcast(" has been launched", src, turf_target = target)
+	for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
+		to_chat(AI, span_notice("[user] has launched [src] towards [target]"))
 	reserved_area = SSmapping.RequestBlockReservation(3,3)
 
 	drop_state = DROPPOD_ACTIVE

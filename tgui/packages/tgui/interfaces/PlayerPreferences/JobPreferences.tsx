@@ -43,6 +43,7 @@ export const JobPreferences = (props, context) => {
     'Squad Corpsman',
     'Squad Smartgunner',
     'Squad Leader',
+    'Mech Pilot', // not really a marine job but creating empty space in the support section is lame
   ];
   const somJobs = [
     'SOM Squad Standard',

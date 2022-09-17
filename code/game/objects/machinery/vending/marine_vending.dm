@@ -121,6 +121,7 @@
 			/obj/item/ammo_magazine/flamer_tank/large = 30,
 			/obj/item/ammo_magazine/flamer_tank/backtank = 4,
 			/obj/item/jetpack_marine = 3,
+			/obj/item/bodybag/tarp = 10,
 		),
 		"Heavy Weapons" = list(
 			/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
@@ -790,7 +791,6 @@
 			/obj/item/ammo_magazine/rocket/sadar = 3,
 			/obj/item/ammo_magazine/minigun_powerpack = 2,
 			/obj/item/ammo_magazine/shotgun/mbx900 = 2,
-			/obj/item/bodybag/tarp = 10,
 			/obj/item/explosive/plastique = 5,
 			/obj/item/fulton_extraction_pack = 2,
 			/obj/item/clothing/suit/storage/marine/harness/boomvest = 20,
@@ -811,7 +811,7 @@
 			/obj/machinery/factory/flatter = 1,
 			/obj/machinery/factory/former = 1,
 			/obj/machinery/factory/reconstructor = 1,
-			/obj/machinery/outputter = 1,
+			/obj/machinery/unboxer = 1,
 		),
 		"Grenade Boxes" = list(
 			/obj/item/storage/box/visual/grenade/frag = 2,

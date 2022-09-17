@@ -417,7 +417,7 @@ WEAPONS
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/specminigun
-	name = "MIC-A7 Vindicator Minigun"
+	name = "MG-100 Vindicator Minigun"
 	contains = list(/obj/item/weapon/gun/minigun)
 	cost = MINIGUN_PRICE
 
@@ -1593,9 +1593,9 @@ FACTORY
 	contains = list(/obj/machinery/factory/reconstructor)
 	cost = 5
 
-/datum/supply_packs/factory/outputter
+/datum/supply_packs/factory/unboxer
 	name = "Industrial Unboxer"
-	contains = list(/obj/machinery/outputter)
+	contains = list(/obj/machinery/unboxer)
 	cost = 5
 
 /datum/supply_packs/factory/phosphosrefill

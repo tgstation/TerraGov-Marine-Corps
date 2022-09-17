@@ -114,3 +114,84 @@
   - qol: made it clear when a turf is underground or not
   novaepee:
   - rscdel: Remove unused APC in synth room that drain CIC of its power
+2022-09-14:
+  AzonStarfall:
+  - qol: Moves the V1 Thermal Dampening Tarp to the Marine Armaments Vendor, Specialized
+      tab.
+  - bugfix: Fixes supply drop console delay message.
+  Lumipharon:
+  - rscadd: 'Combat Patrol: Added some more SOM loadouts and gear'
+  - rscadd: 'Combat Patrol: Added a flamethrower loadout to marines'
+  - balance: Slight buffs to the volkite charger as it was under performing relative
+      to the caliver
+  - balance: 'Combat Patrol: Shocktrooper loadout now uses the ALF-51B'
+  - bugfix: Couple of minor typo fixes
+  - bugfix: X fuel tanks no longer convert ordinary fuel to X fuel
+  - rscadd: You can now bash your shield with any weapon, not just batons
+  RipGrayson:
+  - balance: Chigusa now has some more prebuilt resin structures on Chigusa
+  - balance: Chigusa LZs are slightly bigger so marines can build fortifications more
+      easily.
+  - bugfix: Chigusa LZ1 now has a proper building exclusion zone again.
+  - bugfix: Removed the duplicate blue disk generator in Chigusa.
+  lbnesquik:
+  - qol: Wrenching noise for wrenching req factory machines
+  - bugfix: fix unmanned droids not having their ammo counter update until they were
+      fired.
+  nova_epee and crow:
+  - imageadd: new sprites for brute kit, burn kit, and surgery membrane
+  - rscdel: useless sprites that never been used for brute and burn kit
+2022-09-15:
+  BraveMole:
+  - bugfix: Fix ais seemingly teleporting
+  - bugfix: Dead ai moving too much
+  Lumipharon:
+  - bugfix: You can no longer disassemble, remove the ammo from, or use the interface
+      of a hostile turret.
+  - refactor: refactored looping sounds
+  RipGrayson:
+  - rscadd: Added Gelida IV, a new map based off of CM's WIP LV522 map.
+  - imageadd: Created some new icons for use in Gelida IV.
+  - imageadd: Ported a handful of new icons for use in Gelida IV, mostly from CM.
+  lbnesquik:
+  - qol: Made the AI unable to hear vending ads.
+  - qol: Rename minigun to MG-100 Vindicator, a conflation of MG 100 and MIC-A7 Vindicator
+  - qol: Added name & area to supply beacons
+  - bugfix: fixed the req factory saying Outputter instead of Unboxer
+2022-09-16:
+  AzonStarfall:
+  - rscadd: Adds craftable Optical Imager Ballistic Goggles
+  - qol: Marines and SOM no longer have randomized hunger on spawn
+  Lewdcifer:
+  - bugfix: Trauma kit sprite should now appear correctly.
+  Lumipharon:
+  - code_imp: minor looping_sounds bugfix
+  tyeagg:
+  - rscdel: removed opacity from explosion particles
+2022-09-17:
+  567Turtle:
+  - balance: you can now hold a whistle and a soldering tool in the white webbing
+      vest, as well as an injector in your boots
+  BraveMole:
+  - balance: Minions moves faster
+  - code_imp: Minions movement are way less laggy
+  Lewdcifer:
+  - rscdel: Removed SoM seasonals.
+  Lumipharon:
+  - bugfix: The Local System Special Forces has been dragged out of the warp, and
+      can now appear as an ERT once more
+  MLGTASTICa:
+  - balance: Reduced the default rocket subtype flash range from 5 to 2
+  - balance: Reduced RR rocket flash range from 5 to 2
+  - balance: Reduced the LRR rocket flash range from 5 to 1 balance:Reduced the low
+      impact RR rocket flash range from 3 to 2
+  - balance: Anti-personnel landmines no longer get triggered by dead mobs
+  TiviPlus:
+  - rscadd: Added MP role
+  - code_imp: Optimised some loading
+  hyper2snyper:
+  - bugfix: Fixes the attachment icons updating when attached.
+  lbnesquik:
+  - rscadd: Made it so droids can be used as supply beacons.
+  - rscadd: Added the Fire Axe to Pillar of Spring
+  - qol: Gave the AI a notification for drop pod usage.

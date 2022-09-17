@@ -686,6 +686,10 @@
 	},
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
+"ck" = (
+/obj/structure/closet/fireaxecabinet,
+/turf/closed/wall/mainship,
+/area/mainship/engineering/ce_room)
 "cl" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -14807,7 +14811,9 @@
 /area/mainship/engineering/lower_engineering)
 "Qq" = (
 /obj/structure/cable,
-/obj/machinery/door/airlock/mainship/ai/glass,
+/obj/machinery/door/airlock/mainship/ai{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/airoom)
 "Qr" = (
@@ -51280,7 +51286,7 @@ oD
 OM
 OM
 Uy
-OM
+ck
 Aw
 Sw
 jR

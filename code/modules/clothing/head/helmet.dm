@@ -221,7 +221,12 @@
 						/obj/item/clothing/glasses/mgoggles/prescription = "goggles",
 						/obj/item/clothing/glasses/hud/medgoggles = "goggles",
 						/obj/item/clothing/glasses/hud/medgoggles/prescription = "goggles",
-						/obj/item/clothing/head/hairflower = "flower_pin")
+						/obj/item/clothing/glasses/night/optgoggles = "optgoggles",
+						/obj/item/clothing/glasses/night/optgoggles/prescription = "optgoggles",
+						/obj/item/clothing/glasses/meson/enggoggles = "enggoggles",
+						/obj/item/clothing/glasses/meson/enggoggles/prescription = "enggoggles",
+						/obj/item/clothing/head/hairflower = "flower_pin"
+						)
 
 /obj/item/storage/internal/marinehelmet
 	storage_slots = 2
@@ -405,10 +410,15 @@ obj/item/clothing/head/helmet/marine/pilot/green
 	icon_state = "tanker_helmet"
 	soft_armor = list("melee" = 65, "bullet" = 65, "laser" = 35, "energy" = 45, "bomb" = 30, "bio" = 45, "rad" = 15, "fire" = 45, "acid" = 45)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDETOPHAIR
 	flags_marine_helmet = NONE
 	flags_item_map_variant = (ITEM_ICE_VARIANT)
+
+/obj/item/clothing/head/helmet/marine/mech_pilot
+	name = "\improper M12C pattern neurolink helmet"
+	icon_state = "mech_pilot_helmet"
+	desc = "A lightweight helmet with a small port in the back. Offers lower response times for TGMC mech pilots by integrating them directly into their mech suit's systems, though it certainly doesn't make them smarter."
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/head/helmet/marine/riot
 	name = "M8 riot helmet"

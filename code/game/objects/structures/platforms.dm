@@ -18,6 +18,11 @@
 	obj_integrity = 1000	//Ditto
 	max_integrity = 1000	//Ditto
 
+/obj/structure/platform/gelida
+	climb_delay = 10 //halved time because on gelida platforms are everywhere
+	obj_integrity = 200 //ditto
+	max_integrity = 200	//ditto
+
 /obj/structure/platform/Initialize()
 	. = ..()
 	var/image/I = image(icon, src, "platform_overlay", LADDER_LAYER, dir)//ladder layer puts us just above weeds.
