@@ -70,3 +70,22 @@
 	darkness_view = 2
 	toggleable = TRUE
 	actions_types = list(/datum/action/item_action/toggle)
+
+/obj/item/clothing/glasses/night/optgoggles
+	name = "\improper Optical imager ballistic goggles"
+	desc = "Standard issue TGMC goggles. This pair has been fitted with an internal optical imaging scanner."
+	icon_state = "optgoggles"
+	item_state = "optgoggles"
+	deactive_state = "degoggles_optgoggles"
+	darkness_view = 2
+	toggleable = TRUE
+	actions_types = list(/datum/action/item_action/toggle)
+	species_exception = list(/datum/species/robot)
+	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/glasses.dmi')
+	flags_equip_slot = ITEM_SLOT_EYES
+	goggles = TRUE
+
+/obj/item/clothing/glasses/night/optgoggles/prescription
+	name = "\improper Optical imager prescription ballistic goggles"
+	desc = "Standard issue TGMC prescription goggles. This pair has been fitted with an internal optical imaging scanner."
+	prescription = TRUE

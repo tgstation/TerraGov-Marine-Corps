@@ -146,7 +146,7 @@
 #define GUN_SKILL_HEAVY_WEAPONS "heavy_weapons"
 #define GUN_SKILL_SMARTGUN "smartgun"
 
-//multitile vehicle skills
+//multitile and mech vehicle skills
 #define SKILL_LARGE_VEHICLE_DEFAULT 0
 #define SKILL_LARGE_VEHICLE_TRAINED 1
 
