@@ -242,10 +242,8 @@
 			var/obj/item/cell/cell_type = torso_limb.cell_type
 			current_stats["power_max"] = initial(cell_type.maxcharge)
 
-	current_stats["health"] -= old_limb.health_mod
-	current_stats["health"] += new_limb.health_mod
-	current_stats["slowdown"] -= old_limb.slowdown_mod
-	current_stats["slowdown"] += new_limb.slowdown_mod
+	current_stats["health"] = current_stats["health"] - old_limb.health_mod + new_limb.health_mod
+	current_stats["slowdown"] = current_stats["slowdown"] - old_limb.slowdown_mod + new_limb.slowdown_mod
 	for(var/armor_type in old_limb.soft_armor_mod)
 		current_stats["armor"][armor_type] -= old_limb.soft_armor_mod[armor_type]
 	for(var/armor_type in new_limb.soft_armor_mod)
