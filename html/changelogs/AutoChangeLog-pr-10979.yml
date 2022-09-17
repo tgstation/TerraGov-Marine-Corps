@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes: 
+  - bugfix: "Autoburst now respects akimbo extra fire delay modifiers"
+  - bugfix: "Fixed a bug that could cause guns to retain akimbo modifiers when no longer akimbo in specific cirumstances"
