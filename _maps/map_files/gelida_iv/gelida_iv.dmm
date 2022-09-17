@@ -442,7 +442,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
 "aof" = (
-/obj/structure/prop/vehicle/truck{
+/obj/structure/prop/vehicle/truck/destructible{
 	dir = 8;
 	layer = 3.2
 	},
@@ -1499,7 +1499,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorms)
 "aWS" = (
-/obj/structure/prop/vehicle/van{
+/obj/structure/prop/vehicle/van/destructible{
 	layer = 3.1
 	},
 /turf/open/floor/plating,
@@ -2785,7 +2785,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/gelida/indoors/a_block/security)
 "bLJ" = (
-/obj/structure/prop/vehicle/truck,
+/obj/structure/prop/vehicle/truck/destructible,
 /turf/open/floor/plating/ground/fakesnow/alt,
 /area/gelida/outdoors/colony_streets/south_street)
 "bMh" = (
@@ -5490,7 +5490,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorms)
 "dtu" = (
-/obj/structure/prop/vehicle/truck{
+/obj/structure/prop/vehicle/truck/destructible{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -5894,7 +5894,7 @@
 /turf/open/floor/plating,
 /area/gelida/indoors/a_block/bridges/garden_bridge)
 "dGU" = (
-/obj/structure/prop/vehicle/crane/cranecargo,
+/obj/structure/prop/vehicle/crane/cranecargo/destructible,
 /turf/open/floor/prison,
 /area/gelida/indoors/lone_buildings/storage_blocks)
 "dHe" = (
@@ -6607,7 +6607,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/landing_zone_2)
 "ebK" = (
-/obj/structure/prop/vehicle/truck,
+/obj/structure/prop/vehicle/truck/destructible,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 1
 	},
@@ -7261,7 +7261,7 @@
 	},
 /area/gelida/indoors/a_block/dorm_north)
 "ewh" = (
-/obj/structure/prop/vehicle/crane,
+/obj/structure/prop/vehicle/crane/destructible,
 /obj/structure/platform/gelida,
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/garage)
@@ -8063,7 +8063,7 @@
 /turf/open/floor/tile/dark2,
 /area/gelida/indoors/c_block/mining)
 "eVp" = (
-/obj/structure/prop/vehicle/truck{
+/obj/structure/prop/vehicle/truck/destructible{
 	layer = 3.1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -10099,7 +10099,7 @@
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/c_block/mining)
 "gpA" = (
-/obj/structure/prop/vehicle/truck,
+/obj/structure/prop/vehicle/truck/destructible,
 /turf/open/floor/plating/ground/fakesnow/alt,
 /area/gelida/outdoors/colony_streets/east_central_street)
 "gpR" = (
@@ -11334,7 +11334,7 @@
 /area/gelida/landing_zone_2)
 "hfD" = (
 /obj/item/stack/sheet/metal,
-/obj/structure/prop/vehicle/truck{
+/obj/structure/prop/vehicle/truck/destructible{
 	dir = 8;
 	layer = 3.2
 	},
@@ -11343,7 +11343,7 @@
 	},
 /area/gelida/outdoors/colony_streets/east_central_street)
 "hfL" = (
-/obj/structure/prop/vehicle/truck{
+/obj/structure/prop/vehicle/truck/destructible{
 	dir = 8;
 	layer = 3.1;
 	pixel_x = 6;
@@ -11591,7 +11591,7 @@
 /turf/open/floor/prison/sterilewhite/full,
 /area/gelida/indoors/a_block/medical)
 "hmd" = (
-/obj/structure/prop/vehicle/truck,
+/obj/structure/prop/vehicle/truck/destructible,
 /turf/open/floor/plating/ground/fakesnow,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "hmm" = (
@@ -13689,7 +13689,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
 "iBR" = (
-/obj/structure/prop/vehicle/truck{
+/obj/structure/prop/vehicle/truck/destructible{
 	dir = 8;
 	layer = 3.1;
 	pixel_x = 5;
@@ -14250,7 +14250,7 @@
 /turf/closed/wall,
 /area/gelida/indoors/a_block/kitchen)
 "iVJ" = (
-/obj/structure/prop/vehicle/truck{
+/obj/structure/prop/vehicle/truck/destructible{
 	layer = 3.1
 	},
 /turf/open/floor/prison,
@@ -14598,7 +14598,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/casino)
 "jhc" = (
-/obj/structure/prop/vehicle/truck{
+/obj/structure/prop/vehicle/truck/destructible{
 	dir = 8;
 	layer = 3.1;
 	pixel_x = 6;
@@ -15392,7 +15392,7 @@
 /turf/open/floor/prison/cleanmarked,
 /area/gelida/indoors/lone_buildings/storage_blocks)
 "jMq" = (
-/obj/structure/prop/vehicle/truck{
+/obj/structure/prop/vehicle/truck/destructible{
 	dir = 8;
 	layer = 3.1
 	},
@@ -15979,7 +15979,7 @@
 	},
 /area/gelida/landing_zone_forecon/UD6_Typhoon)
 "kdQ" = (
-/obj/structure/prop/vehicle/truck/truckcargo,
+/obj/structure/prop/vehicle/truck/truckcargo/destructible,
 /turf/open/floor/plating/ground/fakesnow,
 /area/gelida/landing_zone_2)
 "kdS" = (
@@ -16746,7 +16746,7 @@
 /obj/structure/fakeplatform{
 	dir = 1
 	},
-/obj/structure/prop/vehicle/truck{
+/obj/structure/prop/vehicle/truck/destructible{
 	layer = 3.1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
@@ -20963,7 +20963,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/dorms)
 "nrX" = (
-/obj/structure/prop/vehicle/truck{
+/obj/structure/prop/vehicle/truck/destructible{
 	layer = 3.2
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -21618,7 +21618,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/mining)
 "nLz" = (
-/obj/structure/prop/vehicle/crane{
+/obj/structure/prop/vehicle/crane/destructible{
 	dir = 1;
 	pixel_x = -10;
 	pixel_y = 6
@@ -24325,7 +24325,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
 /area/gelida/outdoors/colony_streets/central_streets)
 "pxr" = (
-/obj/structure/prop/vehicle/truck,
+/obj/structure/prop/vehicle/truck/destructible,
 /turf/open/floor/plating,
 /area/gelida/caves/west_caves)
 "pxX" = (
@@ -25726,7 +25726,7 @@
 /turf/closed/ice_rock/eastWall,
 /area/gelida/outdoors/rock)
 "qol" = (
-/obj/structure/prop/vehicle/truck,
+/obj/structure/prop/vehicle/truck/destructible,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/w_rockies)
 "qoG" = (
@@ -27371,7 +27371,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/east_central_street)
 "rlW" = (
-/obj/structure/prop/vehicle/crane,
+/obj/structure/prop/vehicle/crane/destructible,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "rmn" = (
@@ -27898,7 +27898,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/c_block/mining)
 "rFx" = (
-/obj/structure/prop/vehicle/truck,
+/obj/structure/prop/vehicle/truck/destructible,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "rFU" = (
@@ -30651,7 +30651,7 @@
 /turf/open/floor/plating/ground/fakesnow,
 /area/gelida/outdoors/colony_streets/south_west_street)
 "tpP" = (
-/obj/structure/prop/vehicle/truck{
+/obj/structure/prop/vehicle/truck/destructible{
 	dir = 8;
 	layer = 3.1
 	},
@@ -31366,7 +31366,7 @@
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/a_block/fitness)
 "tQB" = (
-/obj/structure/prop/vehicle/crane,
+/obj/structure/prop/vehicle/crane/destructible,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "tQN" = (
@@ -32004,7 +32004,7 @@
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/a_block/admin)
 "ulW" = (
-/obj/structure/prop/vehicle/truck{
+/obj/structure/prop/vehicle/truck/destructible{
 	dir = 8;
 	layer = 3.2
 	},
@@ -32191,7 +32191,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/indoors/a_block/medical)
 "usn" = (
-/obj/structure/prop/vehicle/truck{
+/obj/structure/prop/vehicle/truck/destructible{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -33100,7 +33100,7 @@
 	},
 /area/gelida/indoors/a_block/hallway)
 "uZC" = (
-/obj/structure/prop/vehicle/truck{
+/obj/structure/prop/vehicle/truck/destructible{
 	layer = 3.1
 	},
 /turf/open/floor/plating,
@@ -34228,7 +34228,7 @@
 /turf/open/floor/wood,
 /area/gelida/indoors/b_block/bar)
 "vIq" = (
-/obj/structure/prop/vehicle/crawler,
+/obj/structure/prop/vehicle/crawler/destructible,
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/north_street)
 "vIE" = (
@@ -34893,7 +34893,7 @@
 /turf/open/floor/prison/sterilewhite/full,
 /area/gelida/indoors/a_block/medical)
 "wfe" = (
-/obj/structure/prop/vehicle/truck{
+/obj/structure/prop/vehicle/truck/destructible{
 	layer = 3.1
 	},
 /turf/open/floor/prison/darkbrown/full,
@@ -37460,7 +37460,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/kitchen)
 "xQR" = (
-/obj/structure/prop/vehicle/crawler,
+/obj/structure/prop/vehicle/crawler/destructible,
 /turf/open/floor/prison/darkred/full,
 /area/gelida/outdoors/colony_streets/north_street)
 "xQT" = (
@@ -37499,7 +37499,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
 "xRD" = (
-/obj/structure/prop/vehicle/crane,
+/obj/structure/prop/vehicle/crane/destructible,
 /obj/effect/spawner/random/toolbox{
 	pixel_y = 16
 	},
@@ -37596,7 +37596,7 @@
 	},
 /area/gelida/landing_zone_forecon/UD6_Typhoon)
 "xUg" = (
-/obj/structure/prop/vehicle/crane/cranecargo,
+/obj/structure/prop/vehicle/crane/cranecargo/destructible,
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "xUp" = (
@@ -37941,7 +37941,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/east_central_street)
 "ygI" = (
-/obj/structure/prop/vehicle/crane{
+/obj/structure/prop/vehicle/crane/destructible{
 	dir = 1
 	},
 /turf/open/floor/prison,
