@@ -221,7 +221,6 @@
 
 ///updates the current_stats data for the UI
 /obj/machinery/computer/mech_builder/proc/update_stats(selected_part, old_bodytype, new_bodytype)
-	var/list/datum/mech_limb/limbs = list()
 	var/old_type = get_mech_limb(selected_part, old_bodytype)
 	var/new_type = get_mech_limb(selected_part, new_bodytype)
 	var/datum/mech_limb/old_limb = new old_type(TRUE)
