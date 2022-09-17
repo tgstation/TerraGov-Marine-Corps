@@ -6,6 +6,9 @@
 
 /mob/living/carbon/xenomorph/Initialize(mapload)
 	setup_verbs()
+	if(mob_size == MOB_SIZE_BIG)
+		move_resist = MOVE_FORCE_EXTREMELY_STRONG
+		move_force = MOVE_FORCE_EXTREMELY_STRONG
 	. = ..()
 
 	set_datum()
