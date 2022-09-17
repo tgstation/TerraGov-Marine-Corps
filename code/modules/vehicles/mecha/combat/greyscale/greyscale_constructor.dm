@@ -69,7 +69,34 @@
 	. = ..()
 	mech_view = new
 	update_ui_view()
-	update_stats()
+	current_stats = list()
+	var/list/datum/mech_limb/limbs = list()
+	for(var/slot in selected_variants)
+		var/path = get_mech_limb(slot, selected_variants[slot])
+		limbs[slot] = new path(TRUE)
+	var/datum/mech_limb/head/head_limb = limbs[MECH_GREY_HEAD]
+	current_stats["accuracy"] = head_limb.accuracy_mod
+	current_stats["light_mod"]= head_limb.light_range
+	var/datum/mech_limb/arm/arm_limb = limbs[MECH_GREY_L_ARM]
+	current_stats["left_scatter"] = arm_limb.scatter_mod
+	arm_limb = limbs[MECH_GREY_R_ARM]
+	current_stats["right_scatter"] = arm_limb.scatter_mod
+	var/datum/mech_limb/torso/torso_limb = limbs[MECH_GREY_TORSO]
+	var/obj/item/cell/cell_type = torso_limb.cell_type
+	current_stats["power_max"] = initial(cell_type.maxcharge)
+
+	var/health = 0
+	var/slowdown = 0
+	var/list/armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	for(var/key in limbs)
+		var/datum/mech_limb/limb = limbs[key]
+		health += limb.health_mod
+		slowdown += limb.slowdown_mod
+		for(var/armor_type in limb.soft_armor_mod)
+			armor[armor_type] += limb.soft_armor_mod[armor_type]
+	current_stats["health"] = health
+	current_stats["slowdown"] = slowdown
+	current_stats["armor"] = armor
 
 /obj/machinery/computer/mech_builder/ui_interact(mob/user, datum/tgui/ui)
 	if(currently_assembling)
@@ -147,9 +174,10 @@
 			var/new_bodytype = params["new_bodytype"]
 			if(!(new_bodytype in GLOB.mech_bodytypes))
 				return FALSE
+			var/old_bodytype = selected_variants[selected_part]
 			selected_variants[selected_part] = new_bodytype
 			update_ui_view()
-			update_stats()
+			update_stats(selected_part, old_bodytype, new_bodytype)
 			return TRUE
 
 		if("set_name")
@@ -192,36 +220,36 @@
 	animate(mech, time=4 SECONDS, pixel_y=initial(mech.pixel_y), easing=SINE_EASING|EASE_OUT)
 
 ///updates the current_stats data for the UI
-/obj/machinery/computer/mech_builder/proc/update_stats()
-	var/list/data = list()
+/obj/machinery/computer/mech_builder/proc/update_stats(selected_part, old_bodytype, new_bodytype)
 	var/list/datum/mech_limb/limbs = list()
-	for(var/slot in selected_variants)
-		var/path = get_mech_limb(slot, selected_variants[slot])
-		limbs[slot] = new path(TRUE)
-	var/datum/mech_limb/head/head_limb = limbs[MECH_GREY_HEAD]
-	data["accuracy"] = head_limb.accuracy_mod
-	data["light_mod"]= head_limb.light_range
-	var/datum/mech_limb/arm/arm_limb = limbs[MECH_GREY_L_ARM]
-	data["left_scatter"] = arm_limb.scatter_mod
-	arm_limb = limbs[MECH_GREY_R_ARM]
-	data["right_scatter"] = arm_limb.scatter_mod
-	var/datum/mech_limb/torso/torso_limb = limbs[MECH_GREY_TORSO]
-	var/obj/item/cell/cell_type = torso_limb.cell_type
-	data["power_max"] = initial(cell_type.maxcharge)
+	var/old_type = get_mech_limb(selected_part, old_bodytype)
+	var/new_type = get_mech_limb(selected_part, new_bodytype)
+	var/datum/mech_limb/old_limb = new old_type(TRUE)
+	var/datum/mech_limb/new_limb = new new_type(TRUE)
+	switch(selected_part)
+		if(MECH_GREY_HEAD)
+			var/datum/mech_limb/head/head_limb = new_limb
+			current_stats["accuracy"] = head_limb.accuracy_mod
+			current_stats["light_mod"]= head_limb.light_range
+		if(MECH_GREY_L_ARM)
+			var/datum/mech_limb/arm/arm_limb = new_limb
+			current_stats["left_scatter"] = arm_limb.scatter_mod
+		if(MECH_GREY_R_ARM)
+			var/datum/mech_limb/arm/arm_limb = new_limb
+			current_stats["right_scatter"] = arm_limb.scatter_mod
+		if(MECH_GREY_TORSO)
+			var/datum/mech_limb/torso/torso_limb = new_limb
+			var/obj/item/cell/cell_type = torso_limb.cell_type
+			current_stats["power_max"] = initial(cell_type.maxcharge)
 
-	var/health = 0
-	var/slowdown = 0
-	var/list/armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
-	for(var/key in limbs)
-		var/datum/mech_limb/limb = limbs[key]
-		health += limb.health_mod
-		slowdown += limb.slowdown_mod
-		for(var/armor_type in limb.soft_armor_mod)
-			armor[armor_type] += limb.soft_armor_mod[armor_type]
-	data["health"] = health
-	data["slowdown"] = slowdown
-	data["armor"] = armor
-	current_stats = data
+	current_stats["health"] -= old_limb.health_mod
+	current_stats["health"] += new_limb.health_mod
+	current_stats["slowdown"] -= old_limb.slowdown_mod
+	current_stats["slowdown"] += new_limb.slowdown_mod
+	for(var/armor_type in old_limb.soft_armor_mod)
+		current_stats["armor"][armor_type] -= old_limb.soft_armor_mod[armor_type]
+	for(var/armor_type in new_limb.soft_armor_mod)
+		current_stats["armor"][armor_type] += new_limb.soft_armor_mod[armor_type]
 
 ///Updates the displayed mech preview dummy in the UI
 /obj/machinery/computer/mech_builder/proc/update_ui_view()
