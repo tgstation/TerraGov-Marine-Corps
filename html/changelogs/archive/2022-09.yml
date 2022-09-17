@@ -168,3 +168,30 @@
   - code_imp: minor looping_sounds bugfix
   tyeagg:
   - rscdel: removed opacity from explosion particles
+2022-09-17:
+  567Turtle:
+  - balance: you can now hold a whistle and a soldering tool in the white webbing
+      vest, as well as an injector in your boots
+  BraveMole:
+  - balance: Minions moves faster
+  - code_imp: Minions movement are way less laggy
+  Lewdcifer:
+  - rscdel: Removed SoM seasonals.
+  Lumipharon:
+  - bugfix: The Local System Special Forces has been dragged out of the warp, and
+      can now appear as an ERT once more
+  MLGTASTICa:
+  - balance: Reduced the default rocket subtype flash range from 5 to 2
+  - balance: Reduced RR rocket flash range from 5 to 2
+  - balance: Reduced the LRR rocket flash range from 5 to 1 balance:Reduced the low
+      impact RR rocket flash range from 3 to 2
+  - balance: Anti-personnel landmines no longer get triggered by dead mobs
+  TiviPlus:
+  - rscadd: Added MP role
+  - code_imp: Optimised some loading
+  hyper2snyper:
+  - bugfix: Fixes the attachment icons updating when attached.
+  lbnesquik:
+  - rscadd: Made it so droids can be used as supply beacons.
+  - rscadd: Added the Fire Axe to Pillar of Spring
+  - qol: Gave the AI a notification for drop pod usage.
