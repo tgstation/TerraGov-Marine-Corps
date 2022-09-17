@@ -483,6 +483,7 @@
 		<a href='?src=[ref];transform=wraith;mob=[REF(M)]'>Wraith</a>
 		<br> Alien Tier 3:
 		<a href='?src=[ref];transform=ravager;mob=[REF(M)]'>Ravager</a> |
+		<a href='?src=[ref];transform=widow;mob=[REF(M)]'>Widow</a> |
 		<a href='?src=[ref];transform=praetorian;mob=[REF(M)]'>Praetorian</a> |
 		<a href='?src=[ref];transform=boiler;mob=[REF(M)]'>Boiler</a> |
 		<a href='?src=[ref];transform=defiler;mob=[REF(M)]'>Defiler</a> |
