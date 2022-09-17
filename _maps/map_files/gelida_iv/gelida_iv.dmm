@@ -4201,6 +4201,9 @@
 /obj/structure/stairs/seamless{
 	dir = 4
 	},
+/obj/structure/platform_decoration{
+	dir = 4
+	},
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/mining)
 "cHh" = (
@@ -12185,6 +12188,15 @@
 	},
 /turf/open/floor/prison/cleanmarked,
 /area/gelida/indoors/lone_buildings/storage_blocks)
+"hGT" = (
+/obj/structure/stairs/seamless{
+	dir = 4
+	},
+/obj/structure/platform_decoration{
+	dir = 1
+	},
+/turf/open/floor/prison,
+/area/gelida/indoors/c_block/mining)
 "hHY" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
@@ -48341,7 +48353,7 @@ oJT
 oJT
 oJT
 rCM
-eue
+tzc
 uew
 uew
 kZp
@@ -51448,8 +51460,8 @@ atX
 bJh
 axk
 atX
-nAJ
-eue
+atX
+tzc
 eue
 bPS
 rrz
@@ -51671,7 +51683,7 @@ bLc
 axk
 atX
 nAJ
-eue
+tzc
 eue
 tzc
 rrz
@@ -60251,7 +60263,7 @@ nIN
 pPX
 vjI
 cHg
-cHg
+hGT
 mKd
 wqK
 xJa
