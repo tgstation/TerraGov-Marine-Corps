@@ -12,7 +12,7 @@
 	tier = XENO_TIER_MINION
 	upgrade = XENO_UPGRADE_BASETYPE
 	pull_speed = -2
-	flags_pass = PASSXENO
+	flags_pass = PASSXENO | PASSTABLE
 
 /mob/living/carbon/xenomorph/spiderling/Initialize(mapload, mob/living/carbon/xenomorph/spidermother)
 	. = ..()
