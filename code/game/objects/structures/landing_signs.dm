@@ -53,3 +53,12 @@
 	bound_width = 64
 	density = TRUE
 	coverage = 15
+
+/obj/structure/roci_sign
+	name = "Rocinante landing sign"
+	desc = "A large sign that reads 'Rocinante Base', with a flag of the SOM and a trespass warning."
+	icon = 'icons/obj/landing_signs.dmi'
+	icon_state = "roci_sign"
+	bound_width = 64
+	density = TRUE
+	coverage = 15
