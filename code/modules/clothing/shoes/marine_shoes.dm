@@ -144,11 +144,9 @@
 	desc = "Shoes with origins dating back to the old mining colonies. These were made for more than just walking."
 	icon_state = "som"
 	item_state = "som"
-	soft_armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 20, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 25)
 
-/obj/item/clothing/shoes/marine/som/knife/Initialize()
-	. = ..()
-	new /obj/item/weapon/combat_knife(pockets)
+/obj/item/clothing/shoes/marine/som/knife
+	pockets = /obj/item/storage/internal/shoes/boot_knife/full
 
 /obj/item/clothing/shoes/sectoid
 	name = "psionic field"
@@ -164,3 +162,12 @@
 	desc = "As sturdy as they are old fashioned these will keep your ankles from snake bites on any planet. These cannot store anything, but has extra fashion with those unneeded spurs on their heels."
 	icon_state = "cboots"
 	item_state = "cboots"
+
+/obj/item/clothing/shoes/marine/clf
+	name = "\improper frontier boots"
+	desc = "A pair of well worn boots, commonly seen on most outer colonies."
+	icon_state = "boots"
+	item_state = "boots"
+
+/obj/item/clothing/shoes/marine/clf/full
+	pockets = /obj/item/storage/internal/shoes/boot_knife/full
