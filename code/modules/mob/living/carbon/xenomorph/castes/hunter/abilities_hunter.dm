@@ -38,7 +38,10 @@
 	if(stealth)
 		cancel_stealth()
 		return TRUE
-
+	if(HAS_TRAIT_FROM(owner, TRAIT_TURRET_HIDDEN, STEALTH_TRAIT))   // stops stealth and disguise from stacking
+		owner.balloon_alert(owner, "already in a form of stealth!")
+		REMOVE_TRAIT(owner, TRAIT_MOB_ICON_UPDATE_BLOCKED, STEALTH_TRAIT)
+		return
 	succeed_activate()
 	to_chat(owner, "<span class='xenodanger'>We vanish into the shadows...</span>")
 	last_stealth = world.time
