@@ -50,7 +50,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 /obj/structure/droppod/Destroy()
 	if(occupant)
-		exitpod(occupant, TRUE)
+		exitpod(TRUE)
 	userimg = null
 	QDEL_NULL(reserved_area)
 	GLOB.droppod_list -= src
@@ -77,7 +77,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		if("launch")
 			launchpod(occupant)
 		if("exitpod")
-			exitpod(occupant)
+			exitpod()
 
 
 /obj/structure/droppod/ui_data(mob/user)
@@ -115,6 +115,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		return
 
 	occupant = user
+	RegisterSignal(occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING), .proc/exitpod)
 	user.forceMove(src)
 	userimg = image(user)
 	userimg.layer = DOOR_CLOSED_LAYER
@@ -171,6 +172,8 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	var/turf/target = locate(target_x, target_y, 2)
 	log_game("[key_name(user)] launched pod [src] at [AREACOORD(target)]")
 	deadchat_broadcast(" has been launched", src, turf_target = target)
+	for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
+		to_chat(AI, span_notice("[user] has launched [src] towards [target]"))
 	reserved_area = SSmapping.RequestBlockReservation(3,3)
 
 	drop_state = DROPPOD_ACTIVE
@@ -218,15 +221,17 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 /obj/structure/droppod/proc/completedrop(mob/user)
 	icon_state = "singlepod_open"
 	drop_state = DROPPOD_LANDED
-	exitpod(user)
+	exitpod()
 
-/obj/structure/droppod/proc/exitpod(mob/user, forced = FALSE)
+/obj/structure/droppod/proc/exitpod(forced = FALSE)
+	SIGNAL_HANDLER
 	if(!occupant)
 		return
-	if(drop_state == DROPPOD_ACTIVE && !forced)
-		to_chat(user, span_warning("You can't get out while the pod is in transit!"))
+	if(drop_state == DROPPOD_ACTIVE && !forced && occupant)
+		to_chat(occupant, span_warning("You can't get out while the pod is in transit!"))
 		return
-	occupant.forceMove(get_turf(src))
+	occupant?.forceMove(get_turf(src))
+	UnregisterSignal(occupant, COMSIG_MOB_DEATH)
 	occupant = null
 	userimg = null
 	cut_overlays()

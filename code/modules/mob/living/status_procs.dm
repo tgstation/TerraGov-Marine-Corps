@@ -627,7 +627,7 @@
 
 ///Where the magic happens. Actually applies stagger stacks.
 /mob/living/proc/adjust_stagger(amount, ignore_canstun = FALSE, capped = 0)
-	if(stagger > 0 && HAS_TRAIT(src, TRAIT_STAGGERIMMUNE))
+	if(amount > 0 && HAS_TRAIT(src, TRAIT_STAGGERIMMUNE))
 		return
 
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_STUN, amount, ignore_canstun) & COMPONENT_NO_STUN) //Stun immunity also provides immunity to its lesser cousin stagger

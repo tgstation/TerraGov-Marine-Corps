@@ -83,11 +83,11 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/multiplicator_buff_wanted = tgui_input_number(usr, "Input the factor that will multiply xeno stat", "1 is normal stat, 2 is doubling health, regen and melee attack")
+	var/multiplicator_buff_wanted = tgui_input_number(usr, "Input the factor in percentage that will multiply xeno stat", "100 is normal stat, 200 is doubling health, regen and melee attack")
 
 	if(!multiplicator_buff_wanted)
 		return
-	GLOB.xeno_stat_multiplicator_buff = multiplicator_buff_wanted
+	GLOB.xeno_stat_multiplicator_buff = (multiplicator_buff_wanted / 100)
 	SSmonitor.is_automatic_balance_on = FALSE
 	SSmonitor.apply_balance_changes()
 

@@ -440,26 +440,31 @@
 	var/image/holder = hud_list[PHEROMONE_HUD]
 	if(!holder)
 		return
-	holder.overlays.Cut()
 	holder.icon_state = "hudblank"
 	if(stat != DEAD)
 		var/tempname = ""
 		if(frenzy_aura)
-			tempname += FRENZY
+			tempname += AURA_XENO_FRENZY
 		if(warding_aura)
-			tempname += WARDING
+			tempname += AURA_XENO_WARDING
 		if(recovery_aura)
-			tempname += RECOVERY
+			tempname += AURA_XENO_RECOVERY
 		if(tempname)
 			holder.icon_state = "hud[tempname]"
 
-		if(current_aura)
-			holder.overlays += image('icons/mob/hud.dmi', src, "hudaura[current_aura]")
-		if(leader_current_aura)
-			holder.overlays += image('icons/mob/hud.dmi', src, "hudaura[leader_current_aura]")
-
 	hud_list[PHEROMONE_HUD] = holder
 
+//Only called when an aura is added or removed
+/mob/living/carbon/xenomorph/update_aura_overlay()
+	var/image/holder = hud_list[PHEROMONE_HUD]
+	if(!holder)
+		return
+	holder.overlays.Cut()
+	if(stat == DEAD)
+		return
+	for(var/aura_type in GLOB.pheromone_images_list)
+		if(emitted_auras.Find(aura_type))
+			holder.overlays += image('icons/mob/hud.dmi', src, "hudaura[aura_type]")
 
 /mob/living/carbon/xenomorph/proc/hud_set_queen_overwatch()
 	var/image/holder = hud_list[QUEEN_OVERWATCH_HUD]
@@ -559,7 +564,6 @@
 
 /mob/living/carbon/human/proc/hud_set_order()
 	var/image/holder = hud_list[ORDER_HUD]
-	holder.overlays.Cut()
 	holder.icon_state = "hudblank"
 	if(stat != DEAD)
 		var/tempname = ""
@@ -572,15 +576,16 @@
 		if(tempname)
 			holder.icon_state = "hud[tempname]"
 
-		switch(command_aura)
-			if("move")
-				holder.overlays += image('icons/mob/hud.dmi', src, "hudmoveaura")
-			if("hold")
-				holder.overlays += image('icons/mob/hud.dmi', src, "hudholdaura")
-			if("focus")
-				holder.overlays += image('icons/mob/hud.dmi', src, "hudfocusaura")
 
 	hud_list[ORDER_HUD] = holder
+
+//Only called when an aura is added or removed
+/mob/living/carbon/human/update_aura_overlay()
+	var/image/holder = hud_list[ORDER_HUD]
+	holder.overlays.Cut()
+	for(var/aura_type in command_aura_allowed)
+		if(emitted_auras.Find(aura_type))
+			holder.overlays += image('icons/mob/hud.dmi', src, "hud[aura_type]aura")
 
 ///Makes sentry health visible
 /obj/proc/hud_set_machine_health()
@@ -624,3 +629,43 @@
 
 	var/amount = round(current_rounds * 100 / max_rounds, 10)
 	holder.icon_state = "plasma[amount]"
+
+///Mecha health hud updates
+/obj/vehicle/sealed/mecha/proc/hud_set_mecha_health()
+	var/image/holder = hud_list[MACHINE_HEALTH_HUD]
+
+	if(!holder)
+		return
+
+	if(obj_integrity < 1)
+		holder.icon_state = "xenohealth0"
+		return
+
+	var/amount = round(obj_integrity * 100 / max_integrity, 10)
+	if(!amount)
+		amount = 1 //don't want the 'zero health' icon when we still have 4% of our health
+	holder.icon_state = "xenohealth[amount]"
+
+///Updates mecha battery
+/obj/vehicle/sealed/mecha/proc/hud_set_mecha_battery()
+	var/image/holder = hud_list[MACHINE_AMMO_HUD]
+
+	if(!holder)
+		return
+
+	if(!cell)
+		holder.icon_state = "plasma0"
+		return
+
+	var/amount = round(cell.charge * 100 / cell.maxcharge, 10)
+	holder.icon_state = "plasma[amount]"
+
+/obj/vehicle/sealed/mecha/proc/diag_hud_set_mechstat()
+	var/image/holder = hud_list[ORDER_HUD]
+	if(!holder)
+		return
+	var/icon/I = icon(icon, icon_state, dir)
+	holder.pixel_y = I.Height() - world.icon_size
+	if(internal_damage)
+		holder.icon_state = "hudwarn"
+	holder.icon_state = null

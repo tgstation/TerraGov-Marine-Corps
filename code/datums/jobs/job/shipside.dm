@@ -120,7 +120,7 @@ Godspeed, captain! And remember, you are not above the law."})
 		<b>You answer to the</b> Captain<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
 		<b>Gamemode Availability</b>: Crash, Distress<br /><br /><br />
-		<b>Duty</b>: Lead your platoon on the field. Take advantage of the military staff and assets you will need for the mission, keep good relations between command and the marines. Assis the captain if available.
+		<b>Duty</b>: Lead your platoon on the field. Take advantage of the military staff and assets you will need for the mission, keep good relations between command and the marines. Assist the captain if available.
 	"}
 	minimap_icon = "fieldcommander"
 
@@ -353,6 +353,73 @@ Though you are a warrant officer, your authority is limited to the dropship and 
 	jobtype = /datum/job/terragov/command/pilot/rebel
 	ears = /obj/item/radio/headset/mainship/mcom/rebel
 
+//Mech pilot
+/datum/job/terragov/command/mech_pilot
+	title = MECH_PILOT
+	req_admin_notify = TRUE
+	paygrade = "E8E"
+	comm_title = "MCH"
+	total_positions = 1
+	skills_type = /datum/skills/mech_pilot
+	access = list(ACCESS_MARINE_WO, ACCESS_MARINE_PREP, ACCESS_MARINE_MECH, ACCESS_CIVILIAN_PUBLIC)
+	minimal_access = list(ACCESS_MARINE_WO, ACCESS_MARINE_PREP, ACCESS_MARINE_MECH, ACCESS_CIVILIAN_PUBLIC, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
+	display_order = JOB_DISPLAY_ORDER_MECH_PILOT
+	outfit = /datum/outfit/job/command/mech_pilot
+	exp_requirements = XP_REQ_EXPERT
+	exp_type = EXP_TYPE_REGULAR_ALL
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	jobworth = list(
+		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
+		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+	)
+	html_description = {"
+		<b>Difficulty</b>:Very Hard<br /><br />
+		<b>You answer to the</b> acting Command Staff<br /><br />
+		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Gamemode Availability</b>: Distress<br /><br /><br />
+		<b>Duty</b>: Act as the spearhead of the operation
+	"}
+	minimap_icon = "mech_pilot"
+
+/datum/job/terragov/command/mech_pilot/radio_help_message(mob/M)
+	. = ..()
+	to_chat(M, {"You are charged with overseeing the operation on the ground, and are the highest-ranked deployed marine.
+Your duties are to ensure marines hold when ordered, and push when they are cowering behind barricades.
+Do not ask your men to do anything you would not do side by side with them.
+Make the TGMC proud!"})
+
+/datum/job/terragov/command/mech_pilot/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 1500) //starting
+			new_human.wear_id.paygrade = "E8E"
+		if(1500 to 7500) // 25 hrs
+			new_human.wear_id.paygrade = "E9"
+		if(7501 to INFINITY) // 125 hrs
+			new_human.wear_id.paygrade = "E9E"
+
+
+/datum/outfit/job/command/mech_pilot
+	name = MECH_PILOT
+	jobtype = /datum/job/terragov/command/mech_pilot
+
+	id = /obj/item/card/id/dogtag
+	belt = /obj/item/storage/belt/utility/full
+	glasses = /obj/item/clothing/glasses/welding
+	ears = /obj/item/radio/headset/mainship/mcom
+	w_uniform = /obj/item/clothing/under/marine/officer/mech
+	wear_suit = /obj/item/clothing/suit/storage/marine/mech_pilot
+	head = /obj/item/clothing/head/helmet/marine/mech_pilot
+	shoes = /obj/item/clothing/shoes/marine/full
+	gloves = /obj/item/clothing/gloves/marine
+	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/job/terragov/engineering
 	job_category = JOB_CAT_ENGINEERING

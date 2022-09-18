@@ -31,12 +31,12 @@
 
 /obj/item/ammo_magazine/standard_mmg
 	name = "MG-27 box magazine (10x27m Caseless)"
-	desc = "A box of 100 10x25mm caseless rounds for the MG-27 medium machinegun."
+	desc = "A box of 100 10x27mm caseless rounds for the MG-27 medium machinegun."
 	w_class = WEIGHT_CLASS_NORMAL
 	icon = 'icons/Marine/marine-mmg.dmi'
 	icon_state = "mag"
 	flags_magazine = NONE
-	caliber = CALIBER_10X25_CASELESS
+	caliber = CALIBER_10x27_CASELESS
 	max_rounds = 100
 	default_ammo = /datum/ammo/bullet/rifle/heavy
 	reload_delay = 1 SECONDS

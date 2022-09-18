@@ -1,6 +1,6 @@
 #define DEBUG_STAGGER_SLOWDOWN 0
 
-GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/facehugger, /obj/effect/alien/egg, /obj/structure/mineral_door, /obj/effect/alien/resin, /obj/structure/bed/nest))) //For sticky/acid spit
+GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/facehugger, /obj/alien/egg, /obj/structure/mineral_door, /obj/alien/resin, /obj/structure/bed/nest))) //For sticky/acid spit
 
 /datum/ammo
 	var/name 		= "generic bullet"
@@ -229,13 +229,17 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			new_proj.generate_bullet(src)
 		new_proj.accuracy = round(new_proj.accuracy * main_proj.accuracy/initial(main_proj.accuracy)) //if the gun changes the accuracy of the main projectile, it also affects the bonus ones.
 
+		if(isgun(source))
+			var/obj/item/weapon/gun/gun = source
+			gun.apply_gun_modifiers(new_proj, target, shooter)
+
 		//Scatter here is how many degrees extra stuff deviate from the main projectile, first two the same amount, one to each side, and from then on the extra pellets keep widening the arc.
 		var/new_angle = angle + (main_proj.ammo.bonus_projectiles_scatter * ((i % 2) ? (-(i + 1) * 0.5) : (i * 0.5)))
 		if(new_angle < 0)
 			new_angle += 360
 		else if(new_angle > 360)
 			new_angle -= 360
-		new_proj.fire_at(shooter.Adjacent(target) ? target : null, main_proj.loc, source, range, speed, new_angle, TRUE) //Angle-based fire. No target.
+		new_proj.fire_at(shooter.Adjacent(target) ? target : null, main_proj.firer, source, range, speed, new_angle, TRUE) //Angle-based fire. No target.
 
 /// A variant of Fire_bonus_projectiles without fixed scatter and no link between gun and bonus_projectile accuracy
 /datum/ammo/proc/fire_directionalburst(obj/projectile/main_proj, atom/shooter, atom/source, range, speed, angle, target)
@@ -1304,7 +1308,7 @@ datum/ammo/bullet/revolver/tp44
 	name = "Shrapnel"
 	icon_state = "flechette"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOB
-	accuracy_var_low = 15
+	accuracy_var_low = 5
 	accuracy_var_high = 5
 	max_range = 4
 	damage = 20
@@ -1312,8 +1316,8 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 3
 	damage_falloff = 0
 
-/datum/ammo/tx54_spread/on_hit_mob(mob/M, obj/projectile/proj)
-	staggerstun(M, proj, max_range = 3, stagger = 0.1, slowdown = 0.1, shake = 0)
+/datum/ammo/bullet/tx54_spread/on_hit_mob(mob/M, obj/projectile/proj)
+	staggerstun(M, proj, max_range = 3, stagger = 0.3, slowdown = 0.3, shake = 0)
 
 /datum/ammo/bullet/tx54_spread/incendiary
 	name = "incendiary flechette"
@@ -1321,6 +1325,9 @@ datum/ammo/bullet/revolver/tp44
 	damage = 15
 	penetration = 10
 	sundering = 1.5
+
+/datum/ammo/bullet/tx54_spread/incendiary/on_hit_mob(mob/M, obj/projectile/proj)
+	return
 
 /datum/ammo/bullet/tx54_spread/incendiary/drop_flame(turf/T)
 	if(!istype(T))
@@ -1420,7 +1427,7 @@ datum/ammo/bullet/revolver/tp44
 	name = "Shrapnel"
 	icon_state = "flechette"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOB
-	accuracy_var_low = 15
+	accuracy_var_low = 5
 	accuracy_var_high = 5
 	max_range = 7
 	damage = 20
@@ -1428,8 +1435,8 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 3
 	damage_falloff = 1
 
-/datum/ammo/micro_rail_spread/on_hit_mob(mob/M, obj/projectile/proj)
-	staggerstun(M, proj, max_range = 5, stagger = 0.3, slowdown = 0.3, shake = 0)
+/datum/ammo/bullet/micro_rail_spread/on_hit_mob(mob/M, obj/projectile/proj)
+	staggerstun(M, proj, max_range = 5, stagger = 0.5, slowdown = 0.5, shake = 0)
 
 /datum/ammo/bullet/micro_rail_spread/incendiary
 	name = "incendiary flechette"
@@ -1439,8 +1446,8 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 1.5
 	max_range = 6
 
-/datum/ammo/micro_rail_spread/incendiary/on_hit_mob(mob/M, obj/projectile/proj)
-	staggerstun(M, proj, max_range = 5, stagger = 0.1, slowdown = 0.1, shake = 0)
+/datum/ammo/bullet/micro_rail_spread/incendiary/on_hit_mob(mob/M, obj/projectile/proj)
+	staggerstun(M, proj, max_range = 5, stagger = 0.2, slowdown = 0.2, shake = 0)
 
 /datum/ammo/bullet/micro_rail_spread/incendiary/drop_flame(turf/T)
 	if(!istype(T))
@@ -1474,13 +1481,13 @@ datum/ammo/bullet/revolver/tp44
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
 	smoke.set_up(0, T, rand(1,2))
 	smoke.start()
-	for(var/mob/living/carbon/victim in range(1, T))
+	for(var/mob/living/carbon/victim in range(2, T))
 		victim.visible_message(span_danger("[victim] is hit by the bomblet blast!"),
 			isxeno(victim) ? span_xenodanger("We are hit by the bomblet blast!") : span_highdanger("you are hit by the bomblet blast!"))
 		var/armor_block = victim.get_soft_armor("bomb")
-		victim.apply_damage(10, BRUTE, null, armor_block, updating_health = FALSE)
-		victim.apply_damage(10, BURN, null, armor_block, updating_health = TRUE)
-		staggerstun(victim, P, stagger = 0.5, slowdown = 0.5)
+		victim.apply_damage(15, BRUTE, null, armor_block, updating_health = FALSE)
+		victim.apply_damage(15, BURN, null, armor_block, updating_health = TRUE)
+		staggerstun(victim, P, stagger = 1, slowdown = 1)
 
 /datum/ammo/micro_rail_cluster/on_leave_turf(turf/T, atom/firer, obj/projectile/proj)
 	///chance to detonate early, scales with distance and capped, to avoid lots of immediate detonations, and nothing reach max range respectively.
@@ -1562,7 +1569,7 @@ datum/ammo/bullet/revolver/tp44
 	bullet_color = LIGHT_COLOR_FIRE
 
 /datum/ammo/rocket/drop_nade(turf/T)
-	explosion(T, 0, 4, 6, 5)
+	explosion(T, 0, 4, 6, 2)
 
 /datum/ammo/rocket/on_hit_mob(mob/M, obj/projectile/P)
 	drop_nade(get_turf(M))
@@ -1686,35 +1693,22 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 50
 
 /datum/ammo/rocket/recoilless/drop_nade(turf/T)
-	explosion(T, 0, 3, 4, 5)
+	explosion(T, 0, 3, 4, 2)
 
-/datum/ammo/rocket/recoilless/heat //placeholder/adminbus for now
+/datum/ammo/rocket/recoilless/heat
 	name = "HEAT shell"
-	icon_state = "shell"
 	hud_state = "shell_heat"
-	hud_state_empty = "shell_empty"
-	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
-	armor_type = "bomb"
-	damage_falloff = 0
-	shell_speed = 2
-	accurate_range = 20
-	max_range = 30
-	damage = 175
+	damage = 200
 	penetration = 100
-	sundering = 100
+	sundering = 0
 
 /datum/ammo/rocket/recoilless/heat/drop_nade(turf/T)
-	explosion(T, 0, 2, 3, 5)
+	explosion(T, flash_range = 1)
 
 /datum/ammo/rocket/recoilless/light
 	name = "light explosive shell"
-	icon_state = "shell"
 	hud_state = "shell_le"
-	hud_state_empty = "shell_empty"
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING //We want this to specifically go farther than onscreen range.
-	armor_type = "bomb"
-	damage_falloff = 0
-	shell_speed = 3
 	accurate_range = 15
 	max_range = 20
 	damage = 75
@@ -1722,7 +1716,51 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 25
 
 /datum/ammo/rocket/recoilless/light/drop_nade(turf/T)
-	explosion(T, 0, 1, 8, 5)
+	explosion(T, 0, 1, 8, 1)
+
+/datum/ammo/rocket/recoilless/chemical
+	name = "low velocity chemical shell"
+	hud_state = "shell_le"
+	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING|AMMO_IFF //We want this to specifically go farther than onscreen range and pass through friendlies.
+	accurate_range = 21
+	max_range = 21
+	damage = 10
+	penetration = 0
+	sundering = 0
+	/// Smoke type created when projectile detonates.
+	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/bad
+	/// Radius this smoke will encompass on detonation.
+	var/smokeradius = 7
+
+/datum/ammo/rocket/recoilless/chemical/drop_nade(turf/T)
+	var/datum/effect_system/smoke_spread/smoke = new smoketype()
+	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
+	smoke.set_up(smokeradius, T, rand(5,9))
+	smoke.start()
+	explosion(T, flash_range = 1)
+
+/datum/ammo/rocket/recoilless/chemical/cloak
+	name = "low velocity chemical shell"
+	hud_state = "shell_cloak"
+	smoketype = /datum/effect_system/smoke_spread/tactical
+
+/datum/ammo/rocket/recoilless/chemical/plasmaloss
+	name = "low velocity chemical shell"
+	hud_state = "shell_tanglefoot"
+	smoketype = /datum/effect_system/smoke_spread/plasmaloss
+
+/datum/ammo/rocket/recoilless/low_impact
+	name = "low impact explosive shell"
+	hud_state = "shell_le"
+	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING //We want this to specifically go farther than onscreen range.
+	accurate_range = 15
+	max_range = 20
+	damage = 75
+	penetration = 15
+	sundering = 25
+
+/datum/ammo/rocket/recoilless/low_impact/drop_nade(turf/T)
+	explosion(T, 0, 1, 8, 2)
 
 /datum/ammo/rocket/oneuse
 	name = "explosive rocket"
@@ -2190,11 +2228,12 @@ datum/ammo/bullet/revolver/tp44
 	shell_speed = 4
 	accuracy_var_low = 5
 	accuracy_var_high = 5
+	accuracy = 5
 	point_blank_range = 2
 	damage = 20
 	penetration = 10
 	sundering = 2
-	fire_burst_damage = 20
+	fire_burst_damage = 15
 
 	//inherited, could use some changes
 	ping = "ping_s"
@@ -2207,17 +2246,17 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/energy/volkite/medium
 	max_range = 25
-	accurate_range = 15
+	accurate_range = 12
 	damage = 30
 	accuracy_var_low = 3
 	accuracy_var_high = 3
-	fire_burst_damage = 25
+	fire_burst_damage = 20
 
 /datum/ammo/energy/volkite/heavy
 	max_range = 35
-	accurate_range = 18
+	accurate_range = 12
 	damage = 25
-	fire_burst_damage = 25
+	fire_burst_damage = 20
 
 /datum/ammo/energy/volkite/light
 	max_range = 25
@@ -2427,7 +2466,7 @@ datum/ammo/bullet/revolver/tp44
 		if(is_type_in_typecache(O, GLOB.no_sticky_resin))
 			return
 
-	new /obj/effect/alien/resin/sticky(T)
+	new /obj/alien/resin/sticky(T)
 
 /datum/ammo/xeno/sticky/turret
 	max_range = 9

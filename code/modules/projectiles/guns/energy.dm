@@ -844,7 +844,7 @@
 	wield_delay = 0.4 SECONDS
 	wield_penalty = 0.2 SECONDS
 
-	damage_falloff_mult = 0.25
+	damage_falloff_mult = 0.9
 	fire_delay = 0.2 SECONDS
 	mode_list = list()
 
@@ -869,7 +869,6 @@
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.9
 	recoil_unwielded = 0
-	damage_falloff_mult = 0.5
 	movement_acc_penalty_mult = 2
 	aim_slowdown = 0.1
 
@@ -894,11 +893,11 @@
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 13,"rail_x" = 6, "rail_y" = 20, "under_x" = 26, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
 	scatter = 3
+	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.9
-	scatter_unwielded = 10
+	scatter_unwielded = 8
 	recoil_unwielded = 1
-	damage_falloff_mult = 0.9
-	movement_acc_penalty_mult = 4
+	movement_acc_penalty_mult = 3
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/magharness
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
@@ -919,7 +918,7 @@
 	item_state = "caliver"
 	ammo_level_icon = "caliver"
 	fire_sound = 'sound/weapons/guns/fire/volkite_3.ogg'
-	max_shots = 50
+	max_shots = 40
 	ammo_datum_type = /datum/ammo/energy/volkite/medium
 	rounds_per_shot = 36
 	default_ammo_type = /obj/item/cell/lasgun/volkite/highcap
@@ -943,6 +942,7 @@
 	attachable_offset = list("muzzle_x" = 38, "muzzle_y" = 13,"rail_x" = 6, "rail_y" = 20, "under_x" = 33, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
 	accuracy_mult = 1.1
 	aim_slowdown = 0.65
+	damage_falloff_mult = 0.6
 	wield_delay	= 0.7 SECONDS
 	fire_delay = 0.25 SECONDS
 
@@ -982,6 +982,7 @@
 	accuracy_mult_unwielded = 0.4
 	scatter_unwielded = 35
 	recoil_unwielded = 5
+	damage_falloff_mult = 0.5
 	movement_acc_penalty_mult = 6
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin/magharness

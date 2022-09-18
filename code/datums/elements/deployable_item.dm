@@ -47,6 +47,8 @@
 ///Wrapper for proc/finish_deploy
 /datum/element/deployable_item/proc/deploy(mob/user, atom/object, turf/location, control, params)
 	SIGNAL_HANDLER
+	if(!isturf(location))
+		return
 	var/obj/item/item_in_active_hand = user.get_active_held_item()
 	if(!istype(item_in_active_hand, deployable_type))
 		return

@@ -940,7 +940,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "ZD" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 
 (1,1,1) = {"

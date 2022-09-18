@@ -1,8 +1,9 @@
-/obj/effect/alien/egg
+/obj/alien/egg
 	name = "theoretical egg"
 	density = FALSE
 	flags_atom = CRITICAL_ATOM
 	max_integrity = 80
+	integrity_failure = 20
 	///What maturity stage are we in
 	var/maturity_stage = 1
 	///Time between two maturity stages
@@ -14,16 +15,20 @@
 	///How far will targets trigger the burst
 	var/trigger_size = 0
 
-/obj/effect/alien/egg/Initialize(mapload, hivenumber)
+/obj/alien/egg/Initialize(mapload, hivenumber)
 	. = ..()
 	src.hivenumber = hivenumber
 	advance_maturity(maturity_stage)
 
-/obj/effect/alien/egg/update_icon_state()
+/obj/alien/egg/update_icon_state()
 	icon_state = initial(icon_state) + "[maturity_stage]"
 
+/obj/alien/egg/obj_break(damage_flag)
+	burst(TRUE)
+	return ..()
+
 ///Advance the maturity state by one, or set it to maturity
-/obj/effect/alien/egg/proc/advance_maturity(maturity)
+/obj/alien/egg/proc/advance_maturity(maturity)
 	maturity_stage = maturity ? maturity : maturity_stage + 1
 	update_icon()
 	if(maturity_stage < stage_ready_to_burst)
@@ -34,18 +39,21 @@
 	for(var/turf/turf_to_watch AS in filled_turfs(src, trigger_size, "circle", FALSE))
 		RegisterSignal(turf_to_watch, COMSIG_ATOM_ENTERED, .proc/enemy_crossed)
 
-///Bursts the egg.
-/obj/effect/alien/egg/proc/burst(kill)
+///Bursts the egg. Return TRUE if it bursts successfully, FALSE if it fails for any reason.
+/obj/alien/egg/proc/burst(via_damage)
 	SHOULD_CALL_PARENT(TRUE)
-	if(kill)
+	if(maturity_stage != stage_ready_to_burst) //already popped, or not ready yet
+		return FALSE
+	if(via_damage)
 		advance_maturity(stage_ready_to_burst + 2)
 	else
 		advance_maturity(stage_ready_to_burst + 1)
 	for(var/turf/turf_to_watch AS in filled_turfs(src, trigger_size, "circle", FALSE))
 		UnregisterSignal(turf_to_watch, COMSIG_ATOM_ENTERED)
+	return TRUE
 
 ///Signal handler to check if the atom moving nearby is an enemy
-/obj/effect/alien/egg/proc/enemy_crossed(datum/source, atom/movable/entered)
+/obj/alien/egg/proc/enemy_crossed(datum/source, atom/movable/entered)
 	SIGNAL_HANDLER
 	if(!iscarbon(entered))
 		return
@@ -53,23 +61,23 @@
 		return
 	burst()
 
-/obj/effect/alien/egg/proc/should_proc_burst(mob/living/carbon/carbon_mover)
+/obj/alien/egg/proc/should_proc_burst(mob/living/carbon/carbon_mover)
 	if(issamexenohive(carbon_mover))
 		return FALSE
 	if(carbon_mover.stat == DEAD)
 		return FALSE
 	return TRUE
 
-/obj/effect/alien/egg/flamer_fire_act(burnlevel)
-	burst(FALSE)
+/obj/alien/egg/flamer_fire_act(burnlevel)
+	burst(TRUE)
 
-/obj/effect/alien/egg/fire_act()
-	burst(FALSE)
+/obj/alien/egg/fire_act()
+	burst(TRUE)
 
-/obj/effect/alien/egg/ex_act(severity)
-	burst(FALSE)
+/obj/alien/egg/ex_act(severity)
+	burst(TRUE)
 
-/obj/effect/alien/egg/hugger
+/obj/alien/egg/hugger
 	desc = "It looks like a weird egg"
 	name = "hugger egg"
 	icon_state = "egg_hugger"
@@ -82,7 +90,7 @@
 	///What type of hugger are produced here
 	var/hugger_type = /obj/item/clothing/mask/facehugger
 
-/obj/effect/alien/egg/hugger/update_icon_state()
+/obj/alien/egg/hugger/update_icon_state()
 	. = ..()
 	overlays.Cut()
 	if(on_fire)
@@ -93,14 +101,15 @@
 		return
 	color = null
 
-/obj/effect/alien/egg/hugger/burst(kill)
+/obj/alien/egg/hugger/burst(via_damage)
 	. = ..()
-	if(kill)
+	if(!.)
+		return
+	if(via_damage)
 		hugger_type = null
 		playsound(loc, "sound/effects/alien_egg_burst.ogg", 30)
 		flick("egg exploding", src)
 		return
-	advance_maturity(3)
 	playsound(src.loc, "sound/effects/alien_egg_move.ogg", 25)
 	flick("egg opening", src)
 	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type()
@@ -108,7 +117,7 @@
 	addtimer(CALLBACK(hugger, /atom/movable.proc/forceMove, loc), 1 SECONDS)
 	hugger.go_active()
 
-/obj/effect/alien/egg/hugger/attack_alien(mob/living/carbon/xenomorph/xenomorph, damage_amount = xenomorph.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/obj/alien/egg/hugger/attack_alien(mob/living/carbon/xenomorph/xenomorph, damage_amount = xenomorph.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(xenomorph.status_flags & INCORPOREAL)
 		return FALSE
 
@@ -133,7 +142,7 @@
 			playsound(loc, "alien_resin_break", 25)
 			qdel(src)
 
-/obj/effect/alien/egg/hugger/attackby(obj/item/I, mob/user, params)
+/obj/alien/egg/hugger/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(!istype(I, /obj/item/clothing/mask/facehugger))
@@ -141,7 +150,7 @@
 	return insert_new_hugger(I, user)
 
 ///Try to insert a new hugger into the egg
-/obj/effect/alien/egg/hugger/proc/insert_new_hugger(obj/item/clothing/mask/facehugger/facehugger, mob/user)
+/obj/alien/egg/hugger/proc/insert_new_hugger(obj/item/clothing/mask/facehugger/facehugger, mob/user)
 	if(facehugger.stat == DEAD)
 		if(user)
 			to_chat(user, span_xenowarning("This child is dead."))
@@ -163,10 +172,11 @@
 	advance_maturity(stage_ready_to_burst)
 	return TRUE
 
-/obj/effect/alien/egg/gas
+/obj/alien/egg/gas
 	desc = "It looks like a weird egg"
 	name = "hugger egg"
 	icon_state = "egg_hugger"
+	integrity_failure = 75 //Highly responsive to poking
 	maturity_time = 15 SECONDS
 	maturity_stage = 2
 	stage_ready_to_burst = 2
@@ -176,10 +186,12 @@
 	///Bonus size for certain gasses
 	var/gas_size_bonus = 0
 
-/obj/effect/alien/egg/gas/burst(kill)
-	..()
+/obj/alien/egg/gas/burst(via_damage)
+	. = ..()
+	if(!.)
+		return
 	var/spread = EGG_GAS_DEFAULT_SPREAD
-	if(kill) // Kill is more violent
+	if(via_damage) // More violent destruction, more gas.
 		playsound(loc, "sound/effects/alien_egg_burst.ogg", 30)
 		flick("egg exploding", src)
 		spread = EGG_GAS_KILL_SPREAD
@@ -187,13 +199,12 @@
 		playsound(src.loc, "sound/effects/alien_egg_move.ogg", 25)
 		flick("egg opening", src)
 	spread += gas_size_bonus
-	advance_maturity(4)
 
 	var/datum/effect_system/smoke_spread/xeno/NS = new gas_type(src)
 	NS.set_up(spread, get_turf(src))
 	NS.start()
 
-/obj/effect/alien/egg/gas/attack_alien(mob/living/carbon/xenomorph/xenomorph, damage_amount = xenomorph.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/obj/alien/egg/gas/attack_alien(mob/living/carbon/xenomorph/xenomorph, damage_amount = xenomorph.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(maturity_stage > stage_ready_to_burst)
 		xenomorph.visible_message(span_xenonotice("\The [xenomorph] clears the hatched egg."), \
 		span_xenonotice("We clear the broken egg."))

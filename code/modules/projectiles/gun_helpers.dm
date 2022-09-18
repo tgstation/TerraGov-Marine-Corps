@@ -627,6 +627,10 @@ should be alright.
 	burst_delay += value
 	SEND_SIGNAL(src, COMSIG_GUN_BURST_SHOT_DELAY_MODIFIED, burst_delay)
 
+/obj/item/weapon/gun/proc/modify_auto_burst_delay(value, mob/user)
+	autoburst_delay += value
+	SEND_SIGNAL(src, COMSIG_GUN_AUTO_BURST_SHOT_DELAY_MODIFIED, autoburst_delay)
+
 /obj/item/weapon/gun/proc/modify_burst_amount(value, mob/user)
 	burst_amount += value
 	SEND_SIGNAL(src, COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED, burst_amount)
@@ -690,7 +694,7 @@ should be alright.
 		///if your attached weapon has aim mode, stops it from aimming
 		if( (gunattachment) && (/datum/action/item_action/aim_mode in gunattachment.actions_types) )
 			REMOVE_TRAIT(gunattachment, TRAIT_GUN_IS_AIMING, GUN_TRAIT)
-			gunattachment:modify_fire_delay(-aim_fire_delay)
+			gunattachment.modify_fire_delay(-aim_fire_delay)
 		to_chat(user, span_notice("You cease aiming."))
 		return
 	if(!CHECK_BITFIELD(flags_item, WIELDED) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))

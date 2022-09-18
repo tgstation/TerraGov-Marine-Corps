@@ -79,6 +79,7 @@ LOG_ATTACK
 LOG_HREFS
 LOG_RUNTIME
 LOG_MANIFEST
+# LOG_MECHA
 
 ## Gameplay options
 
@@ -212,7 +213,7 @@ IS_AUTOMATIC_BALANCE_ON
 ##  15x15 would be the standard square view. 21x15 is what goonstation uses for widescreen.
 ##  Setting this to something different from DEFAULT_VIEW_SQUARE will enable widescreen toggles
 ##	Do note that changing this value will affect the title screen. The title screen will have to be updated manually if this is changed.
-DEFAULT_VIEW 15x15
+DEFAULT_VIEW 19x15
 
 ##Default view size, in tiles. Should *always* be square.
 ## The alternative square viewport size if you're using a widescreen view size
@@ -228,5 +229,4 @@ DEFAULT_VIEW_SQUARE 15x15
 ## Uncomment if you think xenos are struggling against marines
 #XENOS_ON_STRIKE
 
-AI_ADVANCED_PATHFINDING_LAG_TIME_DILATION_THRESHOLD 10
 AI_ANTI_STUCK_LAG_TIME_DILATION_THRESHOLD 20

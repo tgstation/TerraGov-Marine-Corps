@@ -80,7 +80,7 @@
 	icon_state = "t39"
 	item_state = "t39"
 	fire_sound = 'sound/weapons/guns/fire/shotgun_automatic.ogg'
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -266,6 +266,12 @@
 	recoil_unwielded = 4
 	aim_slowdown = 0.45
 
+/obj/item/weapon/gun/shotgun/pump/standard
+	starting_attachment_types = list(
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/bayonet,
+	)
+
 //-------------------------------------------------------
 //A shotgun, how quaint.
 /obj/item/weapon/gun/shotgun/pump/cmb
@@ -303,6 +309,12 @@
 	recoil_unwielded = 0
 	cock_delay = 12
 	aim_slowdown = 0.4
+
+/obj/item/weapon/gun/shotgun/pump/cmb/mag_harness
+	starting_attachment_types = list(
+		/obj/item/attachable/stock/irremoveable/pal12,
+		/obj/item/attachable/magnetic_harness,
+	)
 
 //------------------------------------------------------
 //A hacky bolt action rifle. in here for the "pump" or bolt working action.
@@ -459,8 +471,9 @@
 /obj/item/weapon/gun/shotgun/pump/lever
 	name = "lever action rifle"
 	desc = "A .44 magnum lever action rifle with side loading port. It has a low fire rate, but it packs quite a punch in hunting."
+	icon = 'icons/obj/items/gun.dmi'
 	icon_state = "mares_leg"
-	item_state = "mbx900"
+	item_state = "mares_leg"
 	fire_sound = 'sound/weapons/guns/fire/leveraction.ogg'//I like how this one sounds.
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
@@ -586,6 +599,7 @@
 /obj/item/weapon/gun/shotgun/pump/t35
 	name = "\improper SH-35 pump shotgun"
 	desc = "The Terran Armories SH-35 is the shotgun used by the TerraGov Marine Corps. It's used as a close quarters tool when someone wants something more suited for close range than most people, or as an odd sidearm on your back for emergencies. Uses 12 gauge shells.\n<b>Requires a pump, which is the Unique Action key.</b>"
+	icon = 'icons/Marine/gun64.dmi'
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon_state = "t35"
 	item_state = "t35"
@@ -611,7 +625,7 @@
 		/obj/item/attachable/shoulder_mount,
 	)
 
-	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 20, "under_x" = 21, "under_y" = 12, "stock_x" = 20, "stock_y" = 16)
+	attachable_offset = list("muzzle_x" = 35, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 20, "under_x" = 23, "under_y" = 8, "stock_x" = 7, "stock_y" = 12)
 
 	flags_item_map_variant = NONE
 
@@ -692,11 +706,13 @@
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/compensator,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/reddot,
 	)
-	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 19,"rail_x" = 26, "rail_y" = 22, "under_x" = 14, "under_y" = 16, "stock_x" = 14, "stock_y" = 16)
+	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 18,"rail_x" = 26, "rail_y" = 22, "under_x" = 14, "under_y" = 16, "stock_x" = 14, "stock_y" = 16)
 
 	fire_delay = 1.8 SECONDS
 	accuracy_mult = 1.15
@@ -728,7 +744,7 @@
 	flags_gun_features = GUN_IS_ATTACHMENT|GUN_AMMO_COUNTER|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
 	flags_attach_features = NONE
 	slot = ATTACHMENT_SLOT_STOCK
-	default_ammo_type = /obj/item/ammo_magazine/handful/micro_grenade
+	default_ammo_type = /datum/ammo/bullet/micro_rail/airburst
 	caliber = CALIBER_10G_RAIL
 	type_of_casings = null
 

@@ -75,7 +75,7 @@
 	SSshuttle.ert_shuttles += src
 	for(var/t in return_turfs())
 		var/turf/T = t
-		for(var/obj/O in T.GetAllContents())
+		for(var/atom/movable/O in T.GetAllContents())
 			if(istype(O, /obj/effect/landmark/distress))
 				mob_spawns += O
 			else if(istype(O, /obj/effect/landmark/distress_item))

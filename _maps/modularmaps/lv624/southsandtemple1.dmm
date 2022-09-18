@@ -443,7 +443,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/river3)
 "HW" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "Is" = (
 /obj/structure/platform,
@@ -657,7 +657,7 @@
 /area/lv624/ground/sand6)
 "WD" = (
 /obj/structure/jungle/vines,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/sand6)
 "WO" = (
 /turf/open/ground/coast{

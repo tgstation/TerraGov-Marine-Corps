@@ -36,3 +36,6 @@
 	name = "Athena tactical map console"
 	desc = "A map that display the planetside AO, specialized in revealing potential areas to drop pod. This is especially useful to see where the frontlines and marines are at so that anyone droppodding can decide where to land. Pray that your land nav skills are robust to not get lost!"
 	icon_state = "droppodtable"
+
+/obj/machinery/cic_maptable/som_maptable
+	allowed_flags = MINIMAP_FLAG_MARINE_SOM

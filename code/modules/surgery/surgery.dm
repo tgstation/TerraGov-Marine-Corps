@@ -49,7 +49,7 @@ GLOBAL_LIST_EMPTY(surgery_steps)
 
 //Checks whether this step can be applied with the given user and target
 /datum/surgery_step/proc/can_use(mob/living/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/limb/affected, only_checks)
-	return 0
+	return SURGERY_CANNOT_USE
 
 //Does stuff to begin the step, usually just printing messages. Moved germs transfering and bloodying here too
 /datum/surgery_step/proc/begin_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
@@ -112,81 +112,82 @@ proc/spread_germs_to_organ(datum/limb/E, mob/living/carbon/human/user)
 
 proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 	if(!istype(M))
-		return 0
+		return FALSE
 	if(user.a_intent == INTENT_HARM) //Check for Hippocratic Oath
-		return 0
+		return FALSE
 	if(user.do_actions) //already doing an action
-		return 1
-	if(user.skills.getRating("surgery") < SKILL_SURGERY_PROFESSIONAL)
-		user.visible_message(span_notice("[user] fumbles around figuring out how to operate [M]."),
-		span_notice("You fumble around figuring out how to operate [M]."))
-		var/fumbling_time = max(0,SKILL_TASK_FORMIDABLE - ( 8 SECONDS * user.skills.getRating("surgery") )) // 20 secs non-trained, 12 amateur, 4 trained, 0 prof
-		if(fumbling_time && !do_after(user, fumbling_time, TRUE, M, BUSY_ICON_UNSKILLED))
-			return
+		return TRUE
+
 	var/datum/limb/affected = user.client.prefs.toggles_gameplay & RADIAL_MEDICAL ? radial_medical(M, user) : M.get_limb(user.zone_selected)
-	if(!affected)
-		return TRUE
-	if(affected.in_surgery_op) //two surgeons can't work on same limb at same time
-		to_chat(user, span_warning("You can't operate on the patient's [affected.display_name] while it's already being operated on."))
-		return TRUE
-
-	for(var/i in GLOB.surgery_steps)
-		var/datum/surgery_step/S = i
+	for(var/datum/surgery_step/surgery_step AS in GLOB.surgery_steps)
 		//Check if tool is right or close enough, and the target mob valid, and if this step is possible
-		if(S.tool_quality(tool) && S.is_valid_target(M))
-			var/step_is_valid = S.can_use(user, M, user.zone_selected, tool, affected)
-			if(step_is_valid)
-				if(step_is_valid == SPECIAL_SURGERY_INVALID) //This is a failure that already has a message for failing.
-					return 1
-				affected.in_surgery_op = TRUE
-				S.begin_step(user, M, user.zone_selected, tool, affected) //Start on it
-				//We had proper tools! (or RNG smiled.) and user did not move or change hands.
+		if(!surgery_step.tool_quality(tool) || !surgery_step.is_valid_target(M))
+			continue
+		if(!affected)
+			return TRUE
+		if(affected.in_surgery_op) //two surgeons can't work on same limb at same time
+			to_chat(user, span_warning("You can't operate on the patient's [affected.display_name] while it's already being operated on."))
+			return TRUE
 
-				//Success multiplers!
-				var/multipler = 1 //1 = 100%
-				if(locate(/obj/structure/bed/roller, M.loc))
-					multipler -= 0.10
-				else if(locate(/obj/structure/table/, M.loc))
-					multipler -= 0.20
-				if(M.stat == CONSCIOUS)//If not on anesthetics or not unconsious
-					multipler -= 0.5
-					switch(M.reagent_pain_modifier)
-						if(PAIN_REDUCTION_MEDIUM to PAIN_REDUCTION_HEAVY)
-							multipler += 0.15
-						if(PAIN_REDUCTION_HEAVY to PAIN_REDUCTION_VERY_HEAVY)
-							multipler += 0.25
-						if(PAIN_REDUCTION_VERY_HEAVY to INFINITY)
-							multipler += 0.45
-					if(M.shock_stage > 100) //Being near to unconsious is good in this case
-						multipler += 0.25
-				if(issynth(M))
-					multipler = 1
+		switch(surgery_step.can_use(user, M, user.zone_selected, tool, affected))
+			if(SURGERY_CANNOT_USE)
+				continue
+			if(SURGERY_INVALID)
+				return TRUE
 
-				//calculate step duration
-				var/step_duration = max(0.5 SECONDS, rand(S.min_duration, S.max_duration) - 1 SECONDS * user.skills.getRating("surgery"))
+		if(user.skills.getRating("surgery") < SKILL_SURGERY_PROFESSIONAL)
+			user.visible_message(span_notice("[user] fumbles around figuring out how to operate [M]."),
+			span_notice("You fumble around figuring out how to operate [M]."))
+			var/fumbling_time = max(0, SKILL_TASK_FORMIDABLE - ( 8 SECONDS * user.skills.getRating("surgery") )) // 20 secs non-trained, 12 amateur, 4 trained, 0 prof
+			if(fumbling_time && !do_after(user, fumbling_time, TRUE, M, BUSY_ICON_UNSKILLED))
+				return TRUE
 
-				//Multiply tool success rate with multipler
-				if(do_mob(user, M, step_duration, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(user, /mob.proc/break_do_after_checks, null, null, user.zone_selected)) && prob(S.tool_quality(tool) * CLAMP01(multipler)))
-					if(S.can_use(user, M, user.zone_selected, tool, affected, TRUE)) //to check nothing changed during the do_mob
-						S.end_step(user, M, user.zone_selected, tool, affected) //Finish successfully
+		affected.in_surgery_op = TRUE
+		surgery_step.begin_step(user, M, user.zone_selected, tool, affected) //Start on it
 
-				else if((tool in user.contents) && user.Adjacent(M)) //Or
-					if(M.stat == CONSCIOUS) //If not on anesthetics or not unconsious, warn player
-						if(ishuman(M))
-							var/mob/living/carbon/human/H = M
-							if(!(H.species.species_flags & NO_PAIN))
-								M.emote("pain")
-						to_chat(user, span_danger("[M] moved during the surgery! Use anesthetics!"))
-					S.fail_step(user, M, user.zone_selected, tool, affected) //Malpractice
-				else //This failing silently was a pain.
-					to_chat(user, span_warning("You must remain close to your patient to conduct surgery."))
-				affected.in_surgery_op = FALSE
-				return 1				   //Don't want to do weapony things after surgery
+		//Success multiplers!
+		var/multipler = 1 //1 = 100%
+		if(locate(/obj/structure/bed/roller, M.loc))
+			multipler -= 0.10
+		else if(locate(/obj/structure/table/, M.loc))
+			multipler -= 0.20
+		if(M.stat == CONSCIOUS)//If not on anesthetics or not unconsious
+			multipler -= 0.5
+			switch(M.reagent_pain_modifier)
+				if(PAIN_REDUCTION_MEDIUM to PAIN_REDUCTION_HEAVY)
+					multipler += 0.15
+				if(PAIN_REDUCTION_HEAVY to PAIN_REDUCTION_VERY_HEAVY)
+					multipler += 0.25
+				if(PAIN_REDUCTION_VERY_HEAVY to INFINITY)
+					multipler += 0.45
+			if(M.shock_stage > 100) //Being near to unconsious is good in this case
+				multipler += 0.25
+		if(issynth(user))
+			multipler = 1
 
-	if(user.a_intent == INTENT_HELP)
-		to_chat(user, span_warning("You can't see any useful way to use \the [tool] on [M]."))
-		return 1
-	return 0
+		//calculate step duration
+		var/step_duration = max(0.5 SECONDS, rand(surgery_step.min_duration, surgery_step.max_duration) - 1 SECONDS * user.skills.getRating("surgery"))
+
+		//Multiply tool success rate with multipler
+		if(do_mob(user, M, step_duration, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(user, /mob.proc/break_do_after_checks, null, null, user.zone_selected)) && prob(surgery_step.tool_quality(tool) * CLAMP01(multipler)))
+			if(surgery_step.can_use(user, M, user.zone_selected, tool, affected, TRUE) == SURGERY_CAN_USE) //to check nothing changed during the do_mob
+				surgery_step.end_step(user, M, user.zone_selected, tool, affected) //Finish successfully
+			else
+				to_chat(user, span_warning("For some reason the surgery you were doing stopped being possible."))
+
+		else if((tool in user.contents) && user.Adjacent(M)) //Or
+			if(M.stat == CONSCIOUS) //If not on anesthetics or not unconsious, warn player
+				if(ishuman(M))
+					var/mob/living/carbon/human/H = M
+					if(!(H.species.species_flags & NO_PAIN))
+						M.emote("pain")
+				to_chat(user, span_danger("[M] moved during the surgery! Use anesthetics!"))
+			surgery_step.fail_step(user, M, user.zone_selected, tool, affected) //Malpractice
+		else //This failing silently was a pain.
+			to_chat(user, span_warning("You must remain close to your patient to conduct surgery."))
+		affected.in_surgery_op = FALSE
+		return TRUE			   //Don't want to do weapony things after surgery
+
 
 //Comb Sort. This works apparently, so we're keeping it that way
 /proc/sort_surgeries()

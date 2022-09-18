@@ -29,6 +29,12 @@
 /obj/item/ammo_magazine/flamer_tank/afterattack(obj/target, mob/user , flag) //refuel at fueltanks when we run out of ammo.
 
 	if(istype(target, /obj/structure/reagent_dispensers/fueltank) && get_dist(user,target) <= 1)
+		if(default_ammo != /datum/ammo/flamethrower)
+			to_chat(user, span_warning("Not the right kind of fuel!"))
+			return ..()
+		if(current_rounds >= max_rounds)
+			to_chat(user, span_warning("[src] is already full."))
+			return ..()
 		var/obj/structure/reagent_dispensers/fueltank/FT = target
 		if(FT.reagents.total_volume == 0)
 			to_chat(user, span_warning("Out of fuel!"))
