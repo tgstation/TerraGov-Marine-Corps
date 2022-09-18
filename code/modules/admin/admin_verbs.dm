@@ -91,7 +91,7 @@
 	SSmonitor.is_automatic_balance_on = FALSE
 	SSmonitor.apply_balance_changes()
 
-	var/logging = "[usr.ckey] has multiplied all health, melee damage and regen of xeno by [multiplicator_buff_wanted * 100]%"
+	var/logging = "[usr.ckey] has multiplied all health, melee damage and regen of xeno by [multiplicator_buff_wanted]%"
 	log_admin(logging)
 	message_admins(logging)
 
