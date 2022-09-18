@@ -793,9 +793,10 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	wield_delay = 1 SECONDS
 	aim_slowdown = 1
 	attachable_allowed = list()
-	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
-	reload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
-	unload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/rpg_load.ogg'
+	unload_sound = 'sound/weapons/guns/interact/rpg_load.ogg'
+	fire_sound = "rpg_fire"
+
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
 	windup_delay = 0.6 SECONDS
