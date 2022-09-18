@@ -775,9 +775,10 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	icon_state = "[icon_state]_extended"
 
+//SOM RPG
 /obj/item/weapon/gun/launcher/rocket/som
 	name = "\improper V-71 rocket launcher"
-	desc = "The V-71 is a man portable rocket launcher employed by the SOM. It is capable of firing a wide variety of 84mm rockets to provide excellent tactical flexibility."
+	desc = "The V-71 is a man portable rocket propelled grenade launcher employed by the SOM. It's design has changed little over centuries and is light weight and cheap to manufacture, while capable of firing a wide variety of 84mm rockets to provide excellent tactical flexibility."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "rpg"
 	item_state = "rpg"
@@ -802,7 +803,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
 	windup_delay = 0.6 SECONDS
-	recoil = 3
+	recoil = 2
 	scatter = -1
 	movement_acc_penalty_mult = 5 //You shouldn't fire this on the move
 
