@@ -28,7 +28,7 @@
 	deevolves_to = list(/mob/living/carbon/xenomorph/hunter, /mob/living/carbon/xenomorph/carrier)
 
 	// *** Flags *** //
-	caste_flags = CASTE_ACID_BLOOD|CASTE_EVOLUTION_ALLOWED
+	caste_flags = CASTE_EVOLUTION_ALLOWED
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_BECOME_KING|CASTE_CAN_VENT_CRAWL
 
 	// *** Defense *** //
@@ -111,7 +111,7 @@
 	upgrade_threshold = TIER_THREE_ELDER_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 13, BIO = 7, "rad" = 7, FIRE = 10, ACID = 7)
+	soft_armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 1, BIO = 7, "rad" = 7, FIRE = 10, ACID = 7)
 
 	// *** Widow Abilities *** //
 	max_spiderlings = 4
