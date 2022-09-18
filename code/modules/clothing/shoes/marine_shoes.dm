@@ -150,9 +150,6 @@
 	. = ..()
 	new /obj/item/weapon/combat_knife(pockets)
 
-/obj/item/clothing/shoes/marine/som/wornoutsom
-	soft_armor = list("melee" = 25, "bullet" = 15, "laser" = 5, "energy" = 5, "bomb" = 5, "bio" = 5, "rad" = 0, "fire" = 5, "acid" = 20)
-
 /obj/item/clothing/shoes/sectoid
 	name = "psionic field"
 	desc = "A field of invisible energy, it protects the wearer but prevents any clothing from being worn."

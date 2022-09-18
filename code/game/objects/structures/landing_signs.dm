@@ -44,12 +44,3 @@
 /obj/structure/dam_sign/damaged
 	desc = "A large sign that reads 'Chigusa mining col-', with the rest being obscured by what looks to be tried blood, and damage."
 	icon_state = "dam_sign"
-
-/obj/structure/roci_sign
-	name = "Rocinante landing sign"
-	desc = "A large sign that reads 'Rocinante Base', with a flag of the SOM and a trespass warning."
-	icon = 'icons/obj/landing_signs.dmi'
-	icon_state = "roci_sign"
-	bound_width = 64
-	density = TRUE
-	coverage = 15
