@@ -306,7 +306,6 @@
 		spiderling_burrow.xeno_burrow()
 	xeno_burrow()
 	succeed_activate()
-	add_cooldown()
 
 /// Burrow code for xenomorphs
 /datum/action/xeno_action/burrow/proc/xeno_burrow()
@@ -326,6 +325,7 @@
 	REMOVE_TRAIT(X, TRAIT_MOB_ICON_UPDATE_BLOCKED, WIDOW_ABILITY_TRAIT)
 	REMOVE_TRAIT(X, TRAIT_BURROWED, WIDOW_ABILITY_TRAIT)
 	REMOVE_TRAIT(X, TRAIT_HANDS_BLOCKED, WIDOW_ABILITY_TRAIT)
+	add_cooldown()
 
 /// Called by xeno_burrow only when burrowing
 /datum/action/xeno_action/burrow/proc/xeno_burrow_doafter()
