@@ -195,3 +195,12 @@
   - rscadd: Made it so droids can be used as supply beacons.
   - rscadd: Added the Fire Axe to Pillar of Spring
   - qol: Gave the AI a notification for drop pod usage.
+2022-09-18:
+  Lumipharon:
+  - bugfix: Autoburst now respects akimbo extra fire delay modifiers
+  - bugfix: Fixed a bug that could cause guns to retain akimbo modifiers when no longer
+      akimbo in specific cirumstances
+  Naaanii:
+  - admin: adds Gorger to the admin player panel tab
+  lbnesquik:
+  - rscadd: Added a device which allows the AI to remotely target artillery pieces.
