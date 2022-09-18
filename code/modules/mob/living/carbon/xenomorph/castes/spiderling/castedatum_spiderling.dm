@@ -21,7 +21,7 @@
 	plasma_gain = 1
 
 	// *** Health *** //
-	max_health = 75
+	max_health = 125
 
 	// *** Flags *** //
 	caste_flags = CASTE_NOT_IN_BIOSCAN|CASTE_DO_NOT_ANNOUNCE_DEATH|CASTE_DO_NOT_ALERT_LOW_LIFE
@@ -30,7 +30,7 @@
 	minimap_icon = "spiderling"
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 14, BULLET = 5, LASER = 5, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 14, BULLET = 0, LASER = 5, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 	actions = list(
 		/datum/action/xeno_action/burrow
