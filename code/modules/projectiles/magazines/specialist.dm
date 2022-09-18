@@ -255,21 +255,24 @@
 /obj/item/ammo_magazine/rocket/som
 	name = "\improper 84mm light-explosive rocket"
 	desc = "A light explosive rocket for the V-71 rocket launcher. Causes a light explosion over a large area but low impact damage."
-	icon_state = "shell_le"
+	icon_state = "rpg_rocket_le"
 	default_ammo = /datum/ammo/rocket/som
 	reload_delay = 2 SECONDS
+	bonus_overlay = "rpg_rocket_le"
 
 /obj/item/ammo_magazine/rocket/som/rad
 	name = "\improper 84mm  irrad rocket"
 	desc = "A irrad rocket for the V-71 rocket launcher. Releases a devastating milisecond burst of radiation, debilitating anything caught in the blast radius."
-	icon_state = "shell_le"
+	icon_state = "rpg_rocket"
 	default_ammo = /datum/ammo/rocket/som/rad
+	bonus_overlay = "rpg_rocket"
 
 /obj/item/ammo_magazine/rocket/som/incendiary
 	name = "\improper 84mm incendiary rocket"
 	desc = "An incendiary rocket for the V-71 rocket launcher. Releases a moderate incendiary payload, burning anything caught in the blast radius."
-	icon_state = "shell_le"
+	icon_state = "rpg_rocket_heat"
 	default_ammo = /datum/ammo/rocket/wp/quad
+	bonus_overlay = "rpg_rocket_heat"
 
 
 // railgun
