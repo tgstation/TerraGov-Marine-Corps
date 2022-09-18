@@ -1636,12 +1636,24 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 75
 	max_range = 20
 	sundering = 100
+	//The radius for the non explosion effects
+	var/effect_radius = 3
 
-/datum/ammo/rocket/wp/drop_nade(turf/T, radius = 3)
+/datum/ammo/rocket/wp/drop_nade(turf/T)
 	if(!T || !isturf(T))
 		return
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
-	flame_radius(radius, T, 27, 27, 27, 17)
+	flame_radius(effect_radius, T, 27, 27, 27, 17)
+
+//on proj turf so the effects don't get stuck in walls
+/datum/ammo/rocket/on_hit_obj(obj/O, obj/projectile/P)
+	drop_nade(get_turf(P))
+
+/datum/ammo/rocket/on_hit_turf(turf/T, obj/projectile/P)
+	drop_nade(get_turf(P))
+
+/datum/ammo/rocket/do_at_max_range(obj/projectile/P)
+	drop_nade(get_turf(P))
 
 /datum/ammo/rocket/wp/quad
 	name = "thermobaric rocket"
@@ -1658,15 +1670,19 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/rocket/wp/quad/set_smoke()
 	smoke_system = new /datum/effect_system/smoke_spread/phosphorus()
 
-/datum/ammo/rocket/wp/quad/drop_nade(turf/T, atom/firer, range = 3, radius = 3)
+/datum/ammo/rocket/wp/quad/drop_nade(turf/T)
 	set_smoke()
-	smoke_system.set_up(range, T)
+	smoke_system.set_up(effect_radius, T)
 	smoke_system.start()
 	smoke_system = null
 	T.visible_message(span_danger("The rocket explodes into white gas!") )
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
-	flame_radius(radius, T, 27, 27, 27, 17)
+	flame_radius(effect_radius, T, 27, 27, 27, 17)
 
+/datum/ammo/rocket/wp/quad/som
+	name = "white phosphorous RPG"
+	hud_state = "rpg_fire"
+	flags_ammo_behavior = AMMO_ROCKET
 
 /datum/ammo/rocket/wp/quad/ds
 	name = "super thermobaric rocket"
@@ -1769,8 +1785,8 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 100
 
 /datum/ammo/rocket/som
-	name = "low impact missile"
-	hud_state = "shell_le"
+	name = "low impact RPG"
+	hud_state = "rpg_le"
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING
 	accurate_range = 15
 	max_range = 20
@@ -1781,9 +1797,27 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/rocket/som/drop_nade(turf/T)
 	explosion(T, 0, 2, 7, 2)
 
+/datum/ammo/rocket/som/thermobaric
+	name = "thermobaric RPG"
+	hud_state = "rpg_thermobaric"
+	damage = 30
+
+/datum/ammo/rocket/som/thermobaric/drop_nade(turf/T)
+	explosion(T, 0, 4, 5, 4, 4)
+
+/datum/ammo/rocket/som/heat //Anti tank, or mech
+	name = "HEAT RPG"
+	hud_state = "rpg_heat"
+	damage = 200
+	penetration = 100
+	sundering = 0
+
+/datum/ammo/rocket/som/heat/drop_nade(turf/T)
+	explosion(T, flash_range = 1)
+
 /datum/ammo/rocket/som/rad
-	name = "low impact missile"
-	hud_state = "shell_le"
+	name = "irrad RPG"
+	hud_state = "rpg_rad"
 	///Base strength of the rad effects
 	var/rad_strength = 30
 	///Range for the maximum rad effects
@@ -1792,22 +1826,24 @@ datum/ammo/bullet/revolver/tp44
 	var/mid_range = 5
 	///Range for the minimal rad effects
 	var/outer_range = 8
+	///geiger counter sound loop
+	var/datum/looping_sound/geiger/geiger_counter
 
 /datum/ammo/rocket/som/rad/drop_nade(turf/T)
 	for(var/mob/living/victim in get_hear(outer_range, T))
 		var/strength
-		//geiger_counter = new(null, FALSE)
+		geiger_counter = new(null, FALSE)
 		if(get_dist(victim, T) <= inner_range)
 			strength = rad_strength
-			//geiger_counter.severity = 4
+			geiger_counter.severity = 4
 		else if(get_dist(victim, T) <= mid_range)
 			strength = rad_strength * 0.7
-			//geiger_counter.severity = 3
+			geiger_counter.severity = 3
 		else
 			strength = rad_strength * 0.3
-			//geiger_counter.severity = 2
+			geiger_counter.severity = 2
 		irradiate(victim, strength)
-		//geiger_counter.start(victim)
+		geiger_counter.start(victim)
 	explosion(T, 0, 0, 3, 0)
 
 /datum/ammo/rocket/som/rad/proc/irradiate(mob/living/victim, strength)

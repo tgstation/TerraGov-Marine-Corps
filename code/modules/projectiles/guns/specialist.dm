@@ -789,6 +789,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/ammo_magazine/rocket/som,
 		/obj/item/ammo_magazine/rocket/som/rad,
 		/obj/item/ammo_magazine/rocket/som/incendiary,
+		/obj/item/ammo_magazine/rocket/som/heat,
+		/obj/item/ammo_magazine/rocket/som/thermobaric,
 	)
 	wield_delay = 1 SECONDS
 	aim_slowdown = 1
