@@ -1645,16 +1645,6 @@ datum/ammo/bullet/revolver/tp44
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
 	flame_radius(effect_radius, T, 27, 27, 27, 17)
 
-//on proj turf so the effects don't get stuck in walls
-/datum/ammo/rocket/on_hit_obj(obj/O, obj/projectile/P)
-	drop_nade(get_turf(P))
-
-/datum/ammo/rocket/on_hit_turf(turf/T, obj/projectile/P)
-	drop_nade(get_turf(P))
-
-/datum/ammo/rocket/do_at_max_range(obj/projectile/P)
-	drop_nade(get_turf(P))
-
 /datum/ammo/rocket/wp/quad
 	name = "thermobaric rocket"
 	hud_state = "rocket_thermobaric"

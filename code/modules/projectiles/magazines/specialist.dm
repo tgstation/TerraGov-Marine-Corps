@@ -264,30 +264,30 @@
 /obj/item/ammo_magazine/rocket/som/heat
 	name = "\improper 84mm HEAT RPG"
 	desc = "A high explosive anti armor warhead for the V-71 rocket launcher. Designed to punch through the toughest armor."
-	icon_state = "rpg_rocket_le" //placeholder
+	icon_state = "rpg_rocket_heat"
 	default_ammo = /datum/ammo/rocket/som/heat
-	bonus_overlay = "rpg_rocket_le" //placeholder
+	bonus_overlay = "rpg_rocket_heat"
 
 /obj/item/ammo_magazine/rocket/som/thermobaric
 	name = "\improper 84mm thermobaric RPG"
 	desc = "A thermobaric warhead for the V-71 rocket launcher. Causes a powerful fuel air explosion over a moderate area."
-	icon_state = "rpg_rocket_le" //placeholder
+	icon_state = "rpg_rocket_thermobaric"
 	default_ammo = /datum/ammo/rocket/som/thermobaric
-	bonus_overlay = "rpg_rocket_le" //placeholder
+	bonus_overlay = "rpg_rocket_thermobaric"
 
 /obj/item/ammo_magazine/rocket/som/rad
 	name = "\improper 84mm  irrad RPG"
 	desc = "A irrad warhead for the V-71 rocket launcher. Releases a devastating milisecond burst of radiation, debilitating anything caught in the blast radius."
-	icon_state = "rpg_rocket"
+	icon_state = "rpg_rocket_rad"
 	default_ammo = /datum/ammo/rocket/som/rad
-	bonus_overlay = "rpg_rocket"
+	bonus_overlay = "rpg_rocket_rad"
 
 /obj/item/ammo_magazine/rocket/som/incendiary
 	name = "\improper 84mm incendiary RPG"
 	desc = "An incendiary warhead for the V-71 rocket launcher. Releases a white phosphorus payload, burning anything in a moderate blast radius."
-	icon_state = "rpg_rocket_heat"
+	icon_state = "rpg_rocket_incendiary"
 	default_ammo = /datum/ammo/rocket/wp/quad/som
-	bonus_overlay = "rpg_rocket_heat"
+	bonus_overlay = "rpg_rocket_incendiary"
 
 
 // railgun
