@@ -2838,7 +2838,7 @@ datum/ammo/bullet/revolver/tp44
 	icon_state = "widow_snareball"
 	ping = "ping_x"
 	damage_type = STAMINA
-	flags_ammo_behavior = AMMO_SKIPS_ALIENS | AMMO_EXPLOSIVE | AMMO_XENO
+	flags_ammo_behavior = AMMO_SKIPS_ALIENS | AMMO_EXPLOSIVE
 	bullet_color = COLOR_WHITE
 	ping = null
 	damage = 0
