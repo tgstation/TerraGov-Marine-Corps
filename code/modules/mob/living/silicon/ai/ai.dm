@@ -360,7 +360,7 @@
 		var/Ship[] = SSticker.mode.count_humans_and_xenos()
 		var/ShipMarines[] = Ship[1]
 	
-		stat("Number of living marines:", "[ShipMarines]")
+		stat("Number of living marines:", "[SSticker.mode.count_humans_and_xenos()[1]")
 
 
 /mob/living/silicon/ai/fully_replace_character_name(oldname, newname)
