@@ -40,7 +40,6 @@
 		return TRUE
 	if(HAS_TRAIT_FROM(owner, TRAIT_TURRET_HIDDEN, STEALTH_TRAIT))   // stops stealth and disguise from stacking
 		owner.balloon_alert(owner, "already in a form of stealth!")
-		REMOVE_TRAIT(owner, TRAIT_MOB_ICON_UPDATE_BLOCKED, STEALTH_TRAIT)
 		return
 	succeed_activate()
 	to_chat(owner, "<span class='xenodanger'>We vanish into the shadows...</span>")
@@ -229,7 +228,9 @@
 		return TRUE
 	var/mob/living/carbon/xenomorph/xenoowner = owner
 	var/datum/action/xeno_action/activable/hunter_mark/mark = xenoowner.actions_by_path[/datum/action/xeno_action/activable/hunter_mark]
-
+	if(HAS_TRAIT_FROM(owner, TRAIT_TURRET_HIDDEN, STEALTH_TRAIT))   // stops stealth and disguise from stacking
+		owner.balloon_alert(owner, "already in a form of stealth!")
+		return
 	if(!mark.marked_target)
 		to_chat(owner, span_warning("We have no target to disguise into!"))
 		return
