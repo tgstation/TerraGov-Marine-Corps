@@ -121,6 +121,7 @@
 	if(!spawn_spot)
 		CRASH("CreateEye() called without a spawn_spot designated")
 	eyeobj = new /mob/camera/aiEye/remote/fobdrone(get_turf(spawn_spot))
+	eyeobj.move_delay = 1 SECONDS
 	eyeobj.origin = src
 
 /obj/machinery/computer/camera_advanced/remote_fob/attackby(obj/item/attackingitem, mob/user, params)
@@ -178,6 +179,8 @@
 		eject_plasteel_action.give_action(user)
 		actions += eject_plasteel_action
 
+	RegisterSignal(user, COMSIG_CLICK, .proc/drone_face)
+
 	eyeobj.invisibility = 0
 
 /obj/machinery/computer/camera_advanced/remote_fob/remove_eye_control(mob/living/user)
@@ -185,6 +188,7 @@
 	eyeobj.invisibility = INVISIBILITY_ABSTRACT
 	eyeobj.eye_initialized = FALSE
 	eyeobj.unregister_facedir_signals(user)
+	UnregisterSignal(user, COMSIG_CLICK)
 	return ..()
 
 /obj/machinery/computer/camera_advanced/remote_fob/check_eye(mob/living/user)
@@ -193,3 +197,8 @@
 		user.unset_interaction()
 		return
 	return ..()
+
+// Lets players click a tile while controlling to face it.
+/obj/machinery/computer/camera_advanced/remote_fob/proc/drone_face(atom/location)
+	SIGNAL_HANDLER
+	eyeobj.facedir(get_dir(eyeobj, location))
