@@ -209,7 +209,7 @@
 	var/tiles_moved = 0 // Tiles moved in 1 direction , used for smart acceleration
 	var/max_tile_acceleration = 8 // a limit to how far acceleration can go
 	var/cooldown = 0
-	var/acceleration = FALSE
+	var/acceleration = TRUE
 	var/mob/living/eye_user = null
 	var/obj/machinery/origin
 	var/eye_initialized = 0

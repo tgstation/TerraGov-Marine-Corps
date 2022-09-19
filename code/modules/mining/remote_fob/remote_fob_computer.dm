@@ -122,6 +122,7 @@
 		CRASH("CreateEye() called without a spawn_spot designated")
 	eyeobj = new /mob/camera/aiEye/remote/fobdrone(get_turf(spawn_spot))
 	eyeobj.move_delay = 0.2 SECONDS
+	eyeobj.acceleration = FALSE
 	eyeobj.origin = src
 
 /obj/machinery/computer/camera_advanced/remote_fob/attackby(obj/item/attackingitem, mob/user, params)
