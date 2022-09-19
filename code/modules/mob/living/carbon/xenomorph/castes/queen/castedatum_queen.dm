@@ -63,6 +63,7 @@
 		/datum/action/xeno_action/pheromones/emit_recovery,
 		/datum/action/xeno_action/pheromones/emit_warding,
 		/datum/action/xeno_action/pheromones/emit_frenzy,
+		/datum/action/xeno_action/activable/queen_slap,
 		/datum/action/xeno_action/toggle_queen_zoom,
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/set_xeno_lead,

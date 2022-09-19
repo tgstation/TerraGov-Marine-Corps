@@ -691,6 +691,7 @@
 #define COMSIG_XENOABILITY_QUEEN_HEAL "xenoability_queen_heal"
 #define COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA "xenoability_queen_give_plasma"
 #define COMSIG_XENOABILITY_QUEEN_HIVE_MESSAGE "xenoability_queen_hive_message"
+#define COMSIG_XENOABILITY_QUEEN_SLAP "xenoability_queen_slap"
 #define COMSIG_XENOABILITY_DEEVOLVE "xenoability_deevolve"
 
 #define COMSIG_XENOABILITY_LAY_HIVEMIND "xenoability_lay_hivemind"

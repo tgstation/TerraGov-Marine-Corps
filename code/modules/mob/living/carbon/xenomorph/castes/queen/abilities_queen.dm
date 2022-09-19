@@ -210,6 +210,54 @@
 	if(overwatch_active)
 		stop_overwatch()
 
+// ***************************************
+//************ Queen slap ****************
+//****************************************
+
+/datum/action/xeno_action/activable/queen_slap
+	name = "Slap"
+	action_icon_state = "toggle_queen_zoom"
+	mechanics_text = "Slap a nearby human, damaging their head,deafening them and giving them confusion"
+	plasma_cost = 50
+	cooldown_timer = 20 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_QUEEN_SLAP
+
+/datum/action/xeno_action/activable/queen_slap/on_cooldown_finish()
+	to_chat(owner, span_warning("We feel our palm recover from the impact. We are ready to slap with all our might once again"))
+	return ..()
+
+/datum/action/xeno_action/activable/queen_slap/use_ability(atom/A)
+	if(!ishuman(A))
+		owner.balloon_alert(owner, "You can only slap humans!")
+		return
+	var/mob/living/carbon/human/the_slapped = A
+	if(A.stat == DEAD)
+		return
+	succeed_activate()
+	add_cooldown()
+
+	var/mob/living/carbon/human/the_slapped = A
+	playsound(owner.loc, 'sound/voice/alien_queen_screech.ogg', 75, 0)
+	owner.visible_message("[owner] slaps [A] with all their might")
+	to_chat(the_slapped, "[owner] slaps you!")
+	the_slapped.apply_damage(30, BRUTE, BODY_ZONE_HEAD, get_soft_armor(MELEE, BODY_ZONE_HEAD))
+	the_slapped.apply_damage(60, STAMINA)
+	the_slapped.adjust_ear_damage(10 SECONDS)
+
+/datum/action/xeno_action/activable/screech/ai_should_start_consider()
+	return TRUE
+
+/datum/action/xeno_action/activable/screech/ai_should_use(atom/target)
+	if(!iscarbon(target))
+		return FALSE
+	if(get_dist(target, owner) > 4)
+		return FALSE
+	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
+		return FALSE
+	return TRUE
+
 
 // ***************************************
 // *********** Queen zoom

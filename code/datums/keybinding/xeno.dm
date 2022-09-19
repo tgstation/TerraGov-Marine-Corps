@@ -426,6 +426,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_SCREECH
 
+/datum/keybinding/xeno/queen_slap
+	name = "slap"
+	full_name = "Queen: Slap"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_QUEEN_SLAP
+
 /datum/keybinding/xeno/toggle_queen_zoom
 	name = "toggle_queen_zoom"
 	full_name = "Queen: Toggle Zoom"
