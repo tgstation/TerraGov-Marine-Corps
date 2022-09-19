@@ -153,7 +153,6 @@
 	update_control_minimap_icon()
 
 /obj/structure/sensor_tower_patrol/proc/update_control_minimap_icon()
-	SSminimaps.remove_marker(src)
 	if(activated)
 		SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "relay_[id]_on_full")
 	else
