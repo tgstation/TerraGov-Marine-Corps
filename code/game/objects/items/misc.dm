@@ -161,3 +161,9 @@
 	desc = "A small computer that can automate mining wells, reducing the need for oversight."
 	icon_state = "mining_drill_automaticdisplay"
 	uptype = "mining computer"
+
+/obj/item/ai_target_beacon
+	name = "AI linked remote targeter"
+	desc = "A small set of servos and gears, coupled to a battery, antenna and circuitry. Attach it to a mortar to allow a shipborne AI to remotely target it."
+	icon = 'icons/obj/items/items.dmi'
+	icon_state = "modkit"

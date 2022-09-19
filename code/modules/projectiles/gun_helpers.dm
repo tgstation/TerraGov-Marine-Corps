@@ -627,6 +627,10 @@ should be alright.
 	burst_delay += value
 	SEND_SIGNAL(src, COMSIG_GUN_BURST_SHOT_DELAY_MODIFIED, burst_delay)
 
+/obj/item/weapon/gun/proc/modify_auto_burst_delay(value, mob/user)
+	autoburst_delay += value
+	SEND_SIGNAL(src, COMSIG_GUN_AUTO_BURST_SHOT_DELAY_MODIFIED, autoburst_delay)
+
 /obj/item/weapon/gun/proc/modify_burst_amount(value, mob/user)
 	burst_amount += value
 	SEND_SIGNAL(src, COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED, burst_amount)
