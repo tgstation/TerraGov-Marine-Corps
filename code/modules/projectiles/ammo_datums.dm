@@ -1355,12 +1355,12 @@ datum/ammo/bullet/revolver/tp44
 	drop_nade(get_turf(O))
 
 /datum/ammo/tx54/he/on_hit_turf(turf/T, obj/projectile/P)
-	drop_nade(T)
+	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	drop_nade(target)
 
 /datum/ammo/tx54/he/do_at_max_range(turf/T, obj/projectile/P)
-	if(isclosedturf(T))
-		drop_nade(get_turf(P))
-	drop_nade(T)
+	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	drop_nade(target)
 
 //10-gauge Micro rail shells - aka micronades
 /datum/ammo/bullet/micro_rail
@@ -1503,12 +1503,12 @@ datum/ammo/bullet/revolver/tp44
 	detonate(get_turf(O), P)
 
 /datum/ammo/micro_rail_cluster/on_hit_turf(turf/T, obj/projectile/P)
-	detonate(T, P)
+	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	detonate(target, P)
 
 /datum/ammo/micro_rail_cluster/do_at_max_range(turf/T, obj/projectile/P)
-	if(isclosedturf(T))
-		detonate(get_turf(P), P)
-	detonate(T, P)
+	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	detonate(target, P)
 
 /datum/ammo/smoke_burst
 	name = "micro smoke canister"
@@ -1541,12 +1541,12 @@ datum/ammo/bullet/revolver/tp44
 	drop_nade(get_turf(O))
 
 /datum/ammo/smoke_burst/on_hit_turf(turf/T, obj/projectile/P)
-	drop_nade(T)
+	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	drop_nade(target)
 
 /datum/ammo/smoke_burst/do_at_max_range(turf/T, obj/projectile/P)
-	if(isclosedturf(T))
-		drop_nade(get_turf(P))
-	drop_nade(T)
+	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	drop_nade(target)
 
 /*
 //================================================
@@ -1583,12 +1583,12 @@ datum/ammo/bullet/revolver/tp44
 	drop_nade(get_turf(O))
 
 /datum/ammo/rocket/on_hit_turf(turf/T, obj/projectile/P)
-	drop_nade(T)
+	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	drop_nade(target)
 
 /datum/ammo/rocket/do_at_max_range(turf/T, obj/projectile/P)
-	if(isclosedturf(T))
-		drop_nade(get_turf(P))
-	drop_nade(T)
+	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	drop_nade(target)
 
 /datum/ammo/rocket/ap
 	name = "anti-armor rocket"
@@ -1790,7 +1790,7 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/rocket/atgun_shell/drop_nade(turf/T)
 	explosion(T, 0, 2, 3, 2)
 
-/datum/ammo/rocket/atgun_shell/on_hit_turf(turf/T, obj/projectile/P)
+/datum/ammo/rocket/atgun_shell/on_hit_turf(turf/T, obj/projectile/P) //no explosion every time it hits a turf
 	P.proj_max_range -= 10
 
 /datum/ammo/rocket/atgun_shell/apcr
@@ -1828,7 +1828,9 @@ datum/ammo/bullet/revolver/tp44
 	explosion(T, 0, 3, 5, 0)
 
 /datum/ammo/rocket/atgun_shell/he/on_hit_turf(turf/T, obj/projectile/P)
-	drop_nade(T)
+	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	drop_nade(target)
+
 /*
 //================================================
 					Energy Ammo
@@ -2158,12 +2160,12 @@ datum/ammo/bullet/revolver/tp44
 	drop_nade(get_turf(O))
 
 /datum/ammo/energy/lasgun/marine/heavy_laser/on_hit_turf(turf/T, obj/projectile/P)
-	drop_nade(T)
+	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	drop_nade(target)
 
 /datum/ammo/energy/lasgun/marine/heavy_laser/do_at_max_range(turf/T, obj/projectile/P)
-	if(isclosedturf(T))
-		drop_nade(get_turf(P))
-	drop_nade(T)
+	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	drop_nade(target)
 
 // Plasma //
 
@@ -2360,29 +2362,18 @@ datum/ammo/bullet/revolver/tp44
 
 	return ..()
 
-/datum/ammo/xeno/toxin/on_hit_obj(obj/O,obj/projectile/P)
+/datum/ammo/xeno/toxin/on_hit_obj(obj/O, obj/projectile/P)
 	var/turf/T = get_turf(O)
-	if(!T)
-		T = get_turf(P)
+	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	drop_neuro_smoke(target)
 
-	if(O.density && !(O.flags_atom & ON_BORDER))
-		T = get_turf(get_step(T, turn(P.dir, 180))) //If the object is dense and not a border object like barricades, we instead drop in the location just prior to the target
-
-	drop_neuro_smoke(T)
-
-/datum/ammo/xeno/toxin/on_hit_turf(turf/T,obj/projectile/P)
-	if(!T)
-		T = get_turf(P)
-
-	if(isclosedturf(T))
-		T = get_turf(get_step(T, turn(P.dir, 180))) //If the turf is closed, we instead drop in the location just prior to the turf
-
-	drop_neuro_smoke(T)
+/datum/ammo/xeno/toxin/on_hit_turf(turf/T, obj/projectile/P)
+	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	drop_neuro_smoke(target)
 
 /datum/ammo/xeno/toxin/do_at_max_range(turf/T, obj/projectile/P)
-	if(isclosedturf(T))
-		drop_neuro_smoke(get_turf(P))
-	drop_neuro_smoke(T)
+	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	drop_neuro_smoke(target)
 
 /datum/ammo/xeno/toxin/set_smoke()
 	smoke_system = new /datum/effect_system/smoke_spread/xeno/neuro/light()
@@ -2448,7 +2439,7 @@ datum/ammo/bullet/revolver/tp44
 	slowdown_stacks = 3
 
 
-/datum/ammo/xeno/sticky/on_hit_mob(mob/M,obj/projectile/P)
+/datum/ammo/xeno/sticky/on_hit_mob(mob/M, obj/projectile/P)
 	drop_resin(get_turf(M))
 	if(istype(M,/mob/living/carbon))
 		var/mob/living/carbon/C = M
@@ -2458,29 +2449,18 @@ datum/ammo/bullet/revolver/tp44
 		C.add_slowdown(slowdown_stacks) //slow em down
 
 
-/datum/ammo/xeno/sticky/on_hit_obj(obj/O,obj/projectile/P)
+/datum/ammo/xeno/sticky/on_hit_obj(obj/O, obj/projectile/P)
 	var/turf/T = get_turf(O)
-	if(!T)
-		T = get_turf(P)
+	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	drop_resin(target)
 
-	if(O.density && !(O.flags_atom & ON_BORDER))
-		T = get_turf(get_step(T, turn(P.dir, 180))) //If the object is dense and not a border object like barricades, we instead drop in the location just prior to the target
-
-	drop_resin(T)
-
-/datum/ammo/xeno/sticky/on_hit_turf(turf/T,obj/projectile/P)
-	if(!T)
-		T = get_turf(P)
-
-	if(isclosedturf(T))
-		T = get_turf(get_step(T, turn(P.dir, 180))) //If the turf is closed, we instead drop in the location just prior to the turf
-
-	drop_resin(T)
+/datum/ammo/xeno/sticky/on_hit_turf(turf/T, obj/projectile/P)
+	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	drop_resin(target)
 
 /datum/ammo/xeno/sticky/do_at_max_range(turf/T, obj/projectile/P)
-	if(isclosedturf(T))
-		drop_resin(get_turf(P))
-	drop_resin(T)
+	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	drop_resin(target)
 
 /datum/ammo/xeno/sticky/proc/drop_resin(turf/T)
 	if(T.density)
@@ -2547,34 +2527,22 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/xeno/acid/heavy/on_hit_mob(mob/M,obj/projectile/P)
 	var/turf/T = get_turf(M)
-	if(!T)
-		T = get_turf(P)
-	drop_nade(T)
+	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	drop_nade(target)
 
 /datum/ammo/xeno/acid/heavy/on_hit_obj(obj/O,obj/projectile/P)
 	var/turf/T = get_turf(O)
-	if(!T)
-		T = get_turf(P)
-
-	if(O.density && !(O.flags_atom & ON_BORDER))
-		T = get_turf(get_step(T, turn(P.dir, 180))) //If the object is dense and not a border object like barricades, we instead drop in the location just prior to the target
-
-	drop_nade(T)
+	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	drop_nade(target)
 
 
 /datum/ammo/xeno/acid/heavy/on_hit_turf(turf/T,obj/projectile/P)
-	if(!T)
-		T = get_turf(P)
-
-	if(isclosedturf(T))
-		T = get_turf(get_step(T, turn(P.dir, 180))) //If the turf is closed, we instead drop in the location just prior to the turf
-
-	drop_nade(T)
+	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	drop_nade(target)
 
 /datum/ammo/xeno/acid/heavy/do_at_max_range(turf/T, obj/projectile/P)
-	if(isclosedturf(T))
-		drop_nade(get_turf(P))
-	drop_nade(T)
+	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	drop_nade(target)
 
 /datum/ammo/xeno/acid/drop_nade(turf/T) //Leaves behind an acid pool; defaults to 1-3 seconds.
 	if(T.density)
@@ -2685,16 +2653,17 @@ datum/ammo/bullet/revolver/tp44
 	carbon_victim.reagents.add_reagent_list(spit_reagents) //transfer reagents
 
 /datum/ammo/xeno/boiler_gas/on_hit_obj(obj/O, obj/projectile/P)
-	drop_nade(get_turf(P), P.firer)
+	var/turf/T = get_turf(O)
+	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	drop_nade(target, P.firer)
 
 /datum/ammo/xeno/boiler_gas/on_hit_turf(turf/T, obj/projectile/P)
 	var/target = (T.density && isturf(P.loc)) ? P.loc : T
 	drop_nade(target, P.firer) //we don't want the gas globs to land on dense turfs, they block smoke expansion.
 
 /datum/ammo/xeno/boiler_gas/do_at_max_range(turf/T, obj/projectile/P)
-	if(isclosedturf(T))
-		drop_nade(get_turf(P), P.firer)
-	drop_nade(T, P.firer)
+	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	drop_nade(target, P.firer)
 
 /datum/ammo/xeno/boiler_gas/set_smoke()
 	smoke_system = new /datum/effect_system/smoke_spread/xeno/neuro()
@@ -2811,10 +2780,7 @@ datum/ammo/bullet/revolver/tp44
 	hugger.go_idle()
 
 /datum/ammo/xeno/hugger/do_at_max_range(turf/T, obj/projectile/P)
-	var/target
-	if(isclosedturf(T))
-		target = (get_turf(P))
-	target = T
+	var/target = (T.density && isturf(P.loc)) ? P.loc : T
 	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(target)
 	hugger.go_idle()
 
@@ -2900,19 +2866,19 @@ datum/ammo/bullet/revolver/tp44
 		return
 	T.ignite(burntime, burnlevel, fire_color)
 
-/datum/ammo/flamethrower/on_hit_mob(mob/M,obj/projectile/P)
+/datum/ammo/flamethrower/on_hit_mob(mob/M, obj/projectile/P)
 	drop_flame(get_turf(M))
 
-/datum/ammo/flamethrower/on_hit_obj(obj/O,obj/projectile/P)
+/datum/ammo/flamethrower/on_hit_obj(obj/O, obj/projectile/P)
 	drop_flame(get_turf(O))
 
-/datum/ammo/flamethrower/on_hit_turf(turf/T,obj/projectile/P)
-	drop_flame(get_turf(T))
+/datum/ammo/flamethrower/on_hit_turf(turf/T, obj/projectile/P)
+	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	drop_flame(target)
 
 /datum/ammo/flamethrower/do_at_max_range(turf/T, obj/projectile/P)
-	if(isclosedturf(T))
-		drop_flame(get_turf(P))
-	drop_flame(T)
+	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	drop_flame(target)
 
 /datum/ammo/flamethrower/tank_flamer/drop_flame(turf/T)
 	if(!istype(T))
@@ -2967,12 +2933,12 @@ datum/ammo/bullet/revolver/tp44
 	drop_nade(get_turf(P))
 
 /datum/ammo/grenade_container/on_hit_turf(turf/T,obj/projectile/P)
-	drop_nade(get_turf(P))
+	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	drop_nade(target)
 
 /datum/ammo/grenade_container/do_at_max_range(turf/T, obj/projectile/P)
-	if(isclosedturf(T))
-		drop_nade(get_turf(P))
-	drop_nade(T)
+	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	drop_nade(target)
 
 /datum/ammo/grenade_container/drop_nade(turf/T)
 	var/obj/item/explosive/grenade/G = new nade_type(T)
