@@ -697,6 +697,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define WIDOW_SPEED_BONUS 1 // How much faster widow moves while she has wall_speedup element
 #define BURROW_FIRE_RESIST_MODIFIER 20 // How much fire resistance widow and spiderlings have while burrowed
 
+//Spiderling defines
+#define TIME_TO_DISSOLVE 5 SECONDS
+
 //misc
 
 #define STANDARD_SLOWDOWN_REGEN 0.3

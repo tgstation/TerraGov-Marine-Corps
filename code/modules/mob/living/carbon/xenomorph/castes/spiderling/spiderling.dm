@@ -27,11 +27,11 @@
 		return
 
 	if(health <= 0)
-		death(FALSE, null, TRUE)
+		Dissolve()
 
-/mob/living/carbon/xenomorph/on_death()
-	. = ..()
-	death_cry()
+// This will QDEL the spiderling but also animate them " dissolving "
+/mob/living/carbon/xenomorph/spiderling/proc/Dissolve()
+	QDEL_IN(src, TIME_TO_DISSOLVE)
 
 // ***************************************
 // *********** Spiderling AI Section
