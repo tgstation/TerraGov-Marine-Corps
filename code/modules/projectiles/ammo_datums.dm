@@ -2873,12 +2873,10 @@ datum/ammo/bullet/revolver/tp44
 	drop_flame(get_turf(O))
 
 /datum/ammo/flamethrower/on_hit_turf(turf/T, obj/projectile/P)
-	var/target = (T.density && isturf(P.loc)) ? P.loc : T
-	drop_flame(target)
+	drop_flame(get_turf(T))
 
 /datum/ammo/flamethrower/do_at_max_range(turf/T, obj/projectile/P)
-	var/target = (T.density && isturf(P.loc)) ? P.loc : T
-	drop_flame(target)
+	drop_flame(get_turf(T))
 
 /datum/ammo/flamethrower/tank_flamer/drop_flame(turf/T)
 	if(!istype(T))
