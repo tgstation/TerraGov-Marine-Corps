@@ -8,16 +8,8 @@
 
 /datum/game_mode/combat_patrol/sensor_capture/post_setup()
 	. = ..()
-	for(var/turf/T AS in GLOB.sensor_towers_patrol_a)
+	for(var/turf/T AS in GLOB.sensor_towers_patrol)
 		new /obj/structure/sensor_tower_patrol(T)
-	for(var/turf/T AS in GLOB.sensor_towers_patrol_b)
-		new /obj/structure/sensor_tower_patrol/bravo(T)
-	for(var/turf/T AS in GLOB.sensor_towers_patrol_c)
-		new /obj/structure/sensor_tower_patrol/charlie(T)
-	for(var/turf/T AS in GLOB.sensor_towers_patrol_d)
-		new /obj/structure/sensor_tower_patrol/delta(T)
-	for(var/turf/T AS in GLOB.sensor_towers_patrol_e)
-		new /obj/structure/sensor_tower_patrol/echo(T)
 
 /datum/game_mode/combat_patrol/sensor_capture/announce()
 	to_chat(world, "<b>The current game mode is - Sensor Capture!</b>")

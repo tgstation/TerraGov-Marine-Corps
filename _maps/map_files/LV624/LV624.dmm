@@ -5372,6 +5372,10 @@
 "dIO" = (
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/lv624/ground/jungle10)
+"dIP" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor,
+/area/lv624/ground/sand5)
 "dJq" = (
 /obj/effect/spawner/random/melee,
 /turf/open/floor/plating/ground/dirt,
@@ -5422,10 +5426,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
-"dMc" = (
-/obj/effect/landmark/sensor_tower_patrol_e,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/sandtemple)
 "dMe" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
@@ -7991,6 +7991,12 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand4)
+"gQI" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/tile/green/greentaupe{
+	dir = 1
+	},
+/area/lv624/lazarus/hydroponics)
 "gQM" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/plating/ground/dirt,
@@ -8608,7 +8614,7 @@
 "hGr" = (
 /obj/item/ammo_casing,
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
-/obj/effect/landmark/sensor_tower_patrol_c,
+/obj/effect/landmark/sensor_tower_patrol,
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/main_hall)
 "hGA" = (
@@ -11133,12 +11139,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
-"kye" = (
-/obj/effect/landmark/sensor_tower_patrol_b,
-/turf/open/floor/tile/green/greentaupe{
-	dir = 1
-	},
-/area/lv624/lazarus/hydroponics)
 "kyg" = (
 /obj/structure/table,
 /obj/item/folder,
@@ -11607,6 +11607,12 @@
 "kYj" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/lv624/ground/compound/n)
+"kYm" = (
+/obj/effect/decal/sandytile,
+/obj/effect/decal/sandytile,
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/tile/whiteyellow/full,
+/area/lv624/lazarus/sandtemple)
 "kYv" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
@@ -12716,10 +12722,6 @@
 	},
 /turf/open/ground/grass,
 /area/lv624/ground/jungle5)
-"mkn" = (
-/obj/effect/landmark/sensor_tower_patrol_d,
-/turf/open/floor,
-/area/lv624/ground/sand2)
 "mkp" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -17289,6 +17291,11 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
+"rCJ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/wood,
+/area/lv624/lazarus/bar)
 "rCL" = (
 /obj/item/stack/medical/heal_pack/advanced/bruise_pack,
 /obj/effect/landmark/weed_node,
@@ -18483,10 +18490,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/grass,
 /area/lv624/lazarus/main_hall)
-"tbI" = (
-/obj/effect/landmark/sensor_tower_patrol_a,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle10)
 "tbP" = (
 /turf/closed/wall,
 /area/lv624/ground/jungle2)
@@ -26920,7 +26923,7 @@ ibj
 mde
 ezO
 fSS
-ezO
+rCJ
 qJM
 ezO
 pGD
@@ -27107,7 +27110,7 @@ rxW
 aRD
 mmx
 ecj
-tbI
+xLz
 xLz
 qpS
 ubU
@@ -47965,7 +47968,7 @@ bny
 bVh
 bVh
 bqx
-rcz
+gQI
 rcz
 uVd
 uVd
@@ -48494,7 +48497,7 @@ rcz
 uON
 bcA
 rcz
-kye
+rcz
 brD
 czI
 biS
@@ -50753,7 +50756,7 @@ oZj
 aut
 axO
 aAt
-mkn
+axO
 axO
 aCL
 axO
@@ -51442,7 +51445,7 @@ aib
 aut
 amN
 anI
-aut
+dIP
 aut
 bDG
 aen
@@ -57827,7 +57830,7 @@ tyv
 rRZ
 nor
 aEc
-dMc
+bsq
 hDt
 tyv
 dgO
@@ -58710,7 +58713,7 @@ qfl
 oRZ
 jNf
 bOl
-jQc
+kYm
 jNf
 bOl
 fnP

@@ -23875,11 +23875,6 @@
 	dir = 4
 	},
 /area/desert_dam/building/medical/virology_isolation)
-"cLZ" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/sensor_tower_patrol_e,
-/turf/open/floor/prison/kitchen,
-/area/desert_dam/building/cafeteria/cafeteria)
 "cMb" = (
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/building/medical/virology_wing)
@@ -30423,6 +30418,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/water_treatment_one/hallway)
+"edV" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/prison,
+/area/desert_dam/interior/dam_interior/primary_tool_storage)
 "eec" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -32063,7 +32063,6 @@
 "eZH" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/sensor_tower_patrol_a,
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/building/administration/hallway)
 "fah" = (
@@ -37942,6 +37941,12 @@
 /obj/effect/decal/medical_decals/doc/four,
 /turf/open/floor/tile/white,
 /area/desert_dam/building/medical/garage)
+"itu" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/prison/whitegreen,
+/area/desert_dam/building/medical/north_wing_hallway)
 "itw" = (
 /obj/structure/cable,
 /obj/machinery/light{
@@ -38252,6 +38257,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/east_wing_hallway)
+"iDl" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/prison/whitegreen/full,
+/area/desert_dam/interior/east_engineering)
 "iDC" = (
 /obj/structure/toilet,
 /obj/structure/cable,
@@ -50704,6 +50714,10 @@
 /obj/structure/flora/desert/grass/six,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_hydro)
+"pFs" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/prison/bright_clean,
+/area/desert_dam/building/hydroponics/hydroponics)
 "pFu" = (
 /obj/effect/landmark/start/job/xenomorph,
 /obj/effect/landmark/weed_node,
@@ -60856,7 +60870,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/south_valley_dam)
 "vql" = (
-/obj/effect/landmark/sensor_tower_patrol_b,
+/obj/effect/landmark/sensor_tower_patrol,
 /turf/open/floor/prison/bright_clean/two,
 /area/desert_dam/interior/lab_northeast/east_lab_biology)
 "vqq" = (
@@ -62311,10 +62325,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/interior/dam_interior/control_room)
-"weR" = (
-/obj/effect/landmark/sensor_tower_patrol_d,
-/turf/open/floor/prison/whitegreen,
-/area/desert_dam/building/medical/treatment_room)
 "weT" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -64876,11 +64886,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/cafeteria/loading)
-"xBF" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/sensor_tower_patrol_c,
-/turf/open/floor/prison/darkred,
-/area/desert_dam/building/security/southern_hallway)
 "xBO" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -75698,7 +75703,7 @@ bFp
 aYd
 bFi
 aQm
-xBF
+twr
 lJV
 bDI
 btZ
@@ -84303,7 +84308,7 @@ uFz
 dDD
 fms
 imv
-mBx
+edV
 tgV
 bHc
 kaa
@@ -91881,7 +91886,7 @@ kxi
 mOO
 daK
 daK
-daK
+pFs
 fsK
 daK
 qbG
@@ -104483,7 +104488,7 @@ cyk
 cEF
 oyT
 fRl
-weR
+cHc
 eRP
 cIH
 cJG
@@ -105402,7 +105407,7 @@ cjy
 cjy
 yiG
 fSC
-uZc
+itu
 crM
 ctY
 cvb
@@ -112242,7 +112247,7 @@ dcw
 dUt
 rWr
 rWr
-cLZ
+rWr
 lId
 sMg
 phA
@@ -115465,7 +115470,7 @@ lFE
 vFr
 vuf
 mJQ
-xjh
+iDl
 vuf
 iXH
 maE

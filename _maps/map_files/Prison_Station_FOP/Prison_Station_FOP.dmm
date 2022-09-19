@@ -5263,7 +5263,6 @@
 /area/prison/security/checkpoint/maxsec_highsec)
 "aru" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/sensor_tower_patrol_a,
 /turf/open/floor/prison,
 /area/prison/security/checkpoint/maxsec_highsec)
 "arv" = (
@@ -40983,6 +40982,10 @@
 /obj/machinery/light/small,
 /turf/open/floor/wood/broken,
 /area/prison/residential/south)
+"cGe" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/ground/grass,
+/area/prison/residential/north)
 "cIe" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -42677,6 +42680,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/prison/cellblock/highsec/south/south)
+"hPH" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/prison/sterilewhite,
+/area/prison/medbay)
 "hQE" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -43020,10 +43027,6 @@
 "iMr" = (
 /turf/open/floor/carpet,
 /area/prison/command/quarters)
-"iNx" = (
-/obj/effect/landmark/sensor_tower_patrol_d,
-/turf/open/floor/plating/platebot,
-/area/prison/pirate)
 "iNO" = (
 /turf/open/floor/prison/darkyellow{
 	dir = 1
@@ -44065,10 +44068,6 @@
 /obj/structure/bed,
 /turf/open/floor/prison/cellstripe,
 /area/prison/cellblock/protective)
-"lHZ" = (
-/obj/effect/landmark/sensor_tower_patrol_b,
-/turf/open/floor/prison/bright_clean,
-/area/prison/yard)
 "lJG" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/cleanmarked,
@@ -46089,6 +46088,11 @@
 "raF" = (
 /turf/open/floor/wood/broken,
 /area/prison/parole/protective_custody)
+"raQ" = (
+/obj/effect/decal/cleanable/blood/gibs,
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/prison/bright_clean/two,
+/area/prison/yard)
 "rbs" = (
 /obj/machinery/door/airlock/multi_tile/mainship/maint/free_access{
 	dir = 1
@@ -47415,10 +47419,6 @@
 	},
 /turf/open/floor/prison/darkred/full,
 /area/prison/security/monitoring/maxsec/panopticon)
-"uuz" = (
-/obj/effect/landmark/sensor_tower_patrol_e,
-/turf/open/floor/plating,
-/area/prison/engineering/atmos)
 "uva" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -47789,10 +47789,6 @@
 	},
 /turf/open/ground/grass,
 /area/prison/residential/central)
-"vvo" = (
-/obj/effect/landmark/sensor_tower_patrol_c,
-/turf/open/floor/prison,
-/area/prison/hangar_storage/main)
 "vvI" = (
 /obj/structure/barricade/wooden{
 	dir = 8
@@ -48067,6 +48063,10 @@
 /obj/effect/landmark/fob_sentry_rebel,
 /turf/open/floor/prison/bright_clean,
 /area/prison/hallway/entrance)
+"wfX" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/plating,
+/area/prison/engineering)
 "wfY" = (
 /obj/structure/cable,
 /turf/open/floor/prison/bright_clean,
@@ -48261,6 +48261,10 @@
 	dir = 4
 	},
 /area/prison/monorail/west)
+"wHf" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/prison/plate,
+/area/prison/cellblock/mediumsec/south)
 "wHm" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/bright_clean,
@@ -57904,7 +57908,7 @@ aab
 avm
 aFY
 aHM
-aHM
+cGe
 aLd
 avN
 aHr
@@ -71606,7 +71610,7 @@ cir
 lZe
 ckl
 lZe
-iNx
+lED
 lED
 cnI
 cmS
@@ -82925,7 +82929,7 @@ wiD
 ccV
 csH
 cvA
-cvA
+wHf
 ctT
 cuY
 cvE
@@ -86207,7 +86211,7 @@ mng
 eOr
 hwj
 bjj
-bny
+raQ
 yaF
 bpG
 kAY
@@ -86722,7 +86726,7 @@ eOr
 bqq
 eOr
 bnz
-lHZ
+eOr
 aFz
 bny
 bjj
@@ -87450,7 +87454,7 @@ gDz
 gDz
 gDz
 gDz
-gDz
+hPH
 gDz
 gDz
 axZ
@@ -93441,7 +93445,7 @@ bVY
 bXz
 ejV
 bYu
-ejV
+wfX
 ejV
 cej
 bRC
@@ -96264,7 +96268,7 @@ bQj
 bRH
 bTo
 bUK
-uuz
+bWk
 aRW
 bZc
 bRM
@@ -102113,7 +102117,7 @@ aFW
 aHk
 aIo
 aIp
-vvo
+mBn
 aIp
 aIo
 aMy

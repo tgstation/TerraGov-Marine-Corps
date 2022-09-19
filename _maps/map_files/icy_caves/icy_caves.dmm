@@ -1207,7 +1207,7 @@
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/south)
 "fK" = (
-/obj/effect/landmark/sensor_tower_patrol_d,
+/obj/effect/landmark/sensor_tower_patrol,
 /turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
 "fP" = (
@@ -1263,7 +1263,7 @@
 /turf/open/floor/tile/dark/brown2,
 /area/icy_caves/outpost/refinery)
 "gC" = (
-/obj/effect/landmark/sensor_tower_patrol_a,
+/obj/effect/landmark/sensor_tower_patrol,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/medbay)
 "gF" = (
@@ -2131,11 +2131,6 @@
 	dir = 4
 	},
 /area/icy_caves/caves/weapon_vault)
-"le" = (
-/obj/item/ammo_casing,
-/obj/effect/landmark/sensor_tower_patrol_b,
-/turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security)
 "lg" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -2844,6 +2839,10 @@
 "ot" = (
 /turf/closed/ice/junction,
 /area/icy_caves/caves/rock)
+"ou" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/east)
 "ow" = (
 /turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/outpost/outside/center)
@@ -3369,10 +3368,6 @@
 	dir = 8
 	},
 /area/icy_caves/outpost/LZ2)
-"qM" = (
-/obj/effect/landmark/sensor_tower_patrol_c,
-/turf/open/floor/tile/dark,
-/area/icy_caves/caves/south)
 "qN" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
@@ -3943,10 +3938,6 @@
 /obj/structure/largecrate/supply/supplies/coifs,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ2)
-"sZ" = (
-/obj/effect/landmark/sensor_tower_patrol_e,
-/turf/open/floor/tile/dark,
-/area/icy_caves/outpost/engineering)
 "tb" = (
 /obj/structure/sink,
 /obj/machinery/light{
@@ -7620,6 +7611,10 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/closed/wall/r_wall,
 /area/icy_caves/outpost/LZ2)
+"Jb" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/security)
 "Jc" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -8831,6 +8826,10 @@
 	},
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/garage)
+"Oi" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/plating/mainship,
+/area/icy_caves/caves/crashed_ship)
 "Oj" = (
 /obj/structure/bed/chair/comfy{
 	dir = 1
@@ -20633,7 +20632,7 @@ Td
 Td
 Td
 Td
-qM
+Td
 UX
 Td
 Td
@@ -24899,8 +24898,8 @@ my
 VQ
 Jz
 Ie
-Ie
-le
+Jb
+LU
 Kh
 yR
 Zo
@@ -25818,7 +25817,7 @@ YZ
 ro
 rO
 si
-sZ
+si
 Rq
 oS
 Jo
@@ -27501,7 +27500,7 @@ ST
 YT
 YT
 eK
-YT
+ou
 YT
 RU
 RU
@@ -28213,7 +28212,7 @@ oW
 RN
 aw
 sH
-sH
+Oi
 nS
 Xr
 SR

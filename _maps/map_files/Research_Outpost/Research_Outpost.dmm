@@ -22,7 +22,7 @@
 	},
 /area/outpost/science/xenobiology)
 "ag" = (
-/obj/effect/landmark/sensor_tower_patrol_b,
+/obj/effect/landmark/sensor_tower_patrol,
 /turf/open/floor/tile/dark/purple2{
 	dir = 1
 	},
@@ -1229,10 +1229,6 @@
 	dir = 5
 	},
 /area/outpost/hallway/east)
-"ge" = (
-/obj/effect/landmark/sensor_tower_patrol_e,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/outpost/yard/east)
 "gf" = (
 /obj/machinery/door/airlock/multi_tile/mainship/engineering/glass,
 /turf/open/floor/tile/dark2,
@@ -1291,13 +1287,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/outpost/medbay/chemistry)
-"gs" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/effect/landmark/sensor_tower_patrol_c,
-/turf/open/floor/tile/dark,
-/area/outpost/brig/gear_room)
 "gt" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -2905,6 +2894,10 @@
 "nB" = (
 /turf/open/floor/plating/dmg2,
 /area/outpost/hallway/south_east)
+"nC" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/outpost/yard/east)
 "nE" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump,
@@ -5350,6 +5343,10 @@
 "ys" = (
 /turf/closed/wall/r_wall,
 /area/outpost/cargo/engineering)
+"yu" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/tile/dark2,
+/area/outpost/cargo)
 "yw" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -7155,13 +7152,6 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/mineral/smooth/bigred,
 /area/outpost/caves/south_west)
-"Hb" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/effect/landmark/sensor_tower_patrol_d,
-/turf/open/floor/tile/dark2,
-/area/outpost/cargo)
 "Hc" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/outpost/lz1)
@@ -7861,7 +7851,7 @@
 	},
 /area/outpost/science/xenobiology)
 "Ks" = (
-/obj/effect/landmark/sensor_tower_patrol_a,
+/obj/effect/landmark/sensor_tower_patrol,
 /turf/open/floor/tile/dark/blue2{
 	dir = 6
 	},
@@ -11213,6 +11203,12 @@
 	dir = 1
 	},
 /area/outpost/hallway/south_east)
+"Zg" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
+	},
+/area/outpost/yard/south)
 "Zj" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -19309,9 +19305,9 @@ Pk
 Pq
 Jc
 Jc
-Jc
+yu
 pw
-Hb
+Xj
 zC
 jx
 Aa
@@ -22339,7 +22335,7 @@ ZK
 ZK
 fG
 mN
-wj
+Zg
 Mb
 mN
 yW
@@ -26294,7 +26290,7 @@ jr
 OO
 Cq
 QL
-ge
+QL
 QL
 QL
 cM
@@ -26539,7 +26535,7 @@ cf
 CB
 Nq
 KW
-gs
+cf
 vb
 Nq
 uh
@@ -26560,7 +26556,7 @@ Xp
 QL
 QL
 QL
-QL
+nC
 QL
 QL
 QL
