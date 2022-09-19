@@ -205,7 +205,7 @@
 /mob/camera/aiEye/remote
 	name = "Inactive Camera Eye"
 	ai_detector_visible = FALSE
-	var/move_delay = 1 SECONDS // 1 second moving delay.
+	var/move_delay = 0.2 SECONDS// quite fast
 	var/tiles_moved = 0 // Tiles moved in 1 direction , used for smart acceleration
 	var/max_tile_acceleration = 8 // a limit to how far acceleration can go
 	var/cooldown = 0
