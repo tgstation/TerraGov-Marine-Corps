@@ -369,7 +369,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		var/patrol_wave_countdown = SSticker.mode?.wave_countdown()
 		if(patrol_wave_countdown)
 			stat("<b>Respawn wave timer:</b>", patrol_wave_countdown)
-		if(mode.flags_round_type & MODE_SENSOR)
+		if(issensorcapturegamemode(SSticker.mode))
 			stat("<b>Activated Sensor Towers:</b>", SSticker.mode.sensors_activated)
 
 /mob/dead/observer/verb/reenter_corpse()

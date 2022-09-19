@@ -51,7 +51,7 @@
 	new /atom/movable/effect/rappel_rope(linked_point.loc)
 	user.playsound_local(user, "sound/effects/CIC_order.ogg", 10, 1)
 	var/message
-	if(SSticker.mode?.flags_round_type & MODE_SENSOR)
+	if(issensorcapturegamemode(SSticker.mode))
 		if(user.faction == FACTION_TERRAGOV)
 			message = "CURRENT OBJECTIVE: REACTIVATE ALL SENSOR TOWERS."
 		else

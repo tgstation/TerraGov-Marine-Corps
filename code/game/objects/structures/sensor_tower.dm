@@ -62,7 +62,7 @@
 			SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "neutral_zone")
 
 /obj/structure/sensor_tower_patrol
-	name = "alpha sensor tower"
+	name = "sensor tower"
 	desc = "A tall tower with a sensor array at the top and a control box at the bottom. Has a lengthy activation process with 3 phases."
 	icon = 'icons/obj/structures/sensor.dmi'
 	icon_state = "sensor"
@@ -74,13 +74,14 @@
 	var/generate_time = 150 SECONDS
 	var/activate_time = 5 SECONDS // time to start the activation
 	var/deactivate_time = 10 SECONDS // time to stop the activation proccess
-	var/id = 1
+	var/static/id = 1
 	var/activated = FALSE // if all segments are finished
 
 /obj/structure/sensor_tower_patrol/Initialize()
 	. = ..()
 	update_icon()
-	GLOB.zones_to_control += src
+	name += " " + num2text(serial)
+	id++
 
 /obj/structure/sensor_tower_patrol/update_icon_state()
 	icon_state = initial(icon_state)
@@ -157,19 +158,3 @@
 		SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "relay_[id]_on_full")
 	else
 		SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "relay_[id][current_timer ? "_on" : "_off"]")
-
-/obj/structure/sensor_tower_patrol/bravo
-	name = "bravo sensor tower"
-	id = 2
-
-/obj/structure/sensor_tower_patrol/charlie
-	name = "charlie sensor tower"
-	id = 3
-
-/obj/structure/sensor_tower_patrol/delta
-	name = "delta sensor tower"
-	id = 4
-
-/obj/structure/sensor_tower_patrol/echo
-	name = "echo sensor tower"
-	id = 5

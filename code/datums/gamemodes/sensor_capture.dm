@@ -1,10 +1,10 @@
+#define SENSORS_NEEDED 5
+
 /datum/game_mode/combat_patrol/sensor_capture
 	name = "Sensor Capture"
 	config_tag = "Sensor Capture"
-	flags_round_type = MODE_LZ_SHUTTERS|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_SOM_OPFOR|MODE_SPECIFIC_SHIP_MAP|MODE_SENSOR
 	wave_timer_length = 2 MINUTES
 	max_game_time = 10 MINUTES
-	sensors_needed = 5
 
 /datum/game_mode/combat_patrol/sensor_capture/post_setup()
 	. = ..()
@@ -42,7 +42,7 @@
 		round_finished = MODE_COMBAT_PATROL_SOM_MAJOR
 		return TRUE
 
-	if(sensors_activated >= sensors_needed)
+	if(sensors_activated >= SENSORS_NEEDED)
 		message_admins("Round finished: [MODE_COMBAT_PATROL_MARINE_MAJOR]")
 		round_finished = MODE_COMBAT_PATROL_MARINE_MAJOR
 		return TRUE
