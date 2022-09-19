@@ -69,6 +69,8 @@
 	var/lit_overlay_offset_y = 0
 	///Damage multiplier for mobs caught in the initial stream of fire.
 	var/mob_flame_damage_mod = 2
+	///how wide of a cone the flamethrower produces on wide mode.
+	var/cone_angle = 55
 
 /obj/item/weapon/gun/flamer/Initialize()
 	. = ..()
@@ -150,16 +152,13 @@
 			path_to_target -= start_location
 			recursive_flame_straight(1, old_turfs, path_to_target, range, current_target)
 		if(FLAMER_STREAM_CONE)
-			var/dir_to_target = get_dir(start_location, current_target)
-			if(ISDIAGONALDIR(dir_to_target))
-				range /= 2
-			recursive_flame_cone(1, old_turfs, dir_to_target, range, current_target)
+			//direction in degrees
+			var/dir_to_target = Get_Angle(src, target)
+			var/list/turf/turfs_to_ignite = generate_true_cone(get_turf(src), range, 1, cone_angle, dir_to_target, projectile = TRUE, bypass_xeno = TRUE)
+			recursive_flame_cone(1, turfs_to_ignite, dir_to_target, range, current_target, get_turf(src))
 		if(FLAMER_STREAM_RANGED)
 			return ..()
 	return TRUE
-
-#define RECURSIVE_CHECK(old_turfs, range, current_target, iteration) (!length(old_turfs) || iteration > range || !current_target || (current_target in old_turfs))
-
 
 ///Flames recursively a straight path.
 /obj/item/weapon/gun/flamer/proc/recursive_flame_straight(iteration, list/turf/old_turfs, list/turf/path_to_target, range, current_target)
@@ -167,11 +166,18 @@
 		light_pilot(FALSE)
 		return
 
-	if(RECURSIVE_CHECK(old_turfs, range, current_target, iteration))
+	//recursive checks
+	if(!length(old_turfs) || iteration > range || !current_target || (current_target in old_turfs))
 		return
 
 	var/list/turf/turfs_to_ignite = list()
 	if(iteration > length(path_to_target))
+		return
+	var/turf/turf_to_check = get_turf(src)
+	if(iteration > 1)
+		turf_to_check = path_to_target[iteration - 1]
+
+	if(LinkBlocked(turf_to_check, path_to_target[iteration], projectile = TRUE, bypass_xeno = TRUE)) //checks if it's actually possible to get to the next tile in the line
 		return
 	turfs_to_ignite += path_to_target[iteration]
 	if(!burn_list(turfs_to_ignite))
@@ -180,50 +186,25 @@
 	addtimer(CALLBACK(src, .proc/recursive_flame_straight, iteration, turfs_to_ignite, path_to_target, range, current_target), flame_spread_time)
 
 ///Flames recursively a cone.
-/obj/item/weapon/gun/flamer/proc/recursive_flame_cone(iteration, list/turf/old_turfs, dir_to_target, range, current_target)
+/obj/item/weapon/gun/flamer/proc/recursive_flame_cone(iteration, list/turf/turfs_to_ignite, dir_to_target, range, current_target, turf/flame_source)
 	if(!rounds)
 		light_pilot(FALSE)
 		return
-
-	if(RECURSIVE_CHECK(old_turfs, range, current_target, iteration))
+	//recursive checks
+	if(iteration > range || !current_target)
 		return
 
+	var/list/turf/turfs_by_iteration = list()
+	for(var/turf/turf AS in turfs_to_ignite)
+		if(get_dist(turf, flame_source) == iteration)
+			turfs_by_iteration += turf
 
-	var/list/turf/turfs_to_ignite = list()
-	var/list/turf/turfs_skip_old = list()
-	var/turf/new_turf = get_step(old_turfs[1], dir_to_target)
-
-	turfs_to_ignite += new_turf //Adds the turf in front of the old turf.
-	for(var/turf/old_turf AS in old_turfs)
-		new_turf = get_step(old_turf, dir_to_target)
-		if(!(get_step(new_turf, turn(dir_to_target, 90)) in turfs_to_ignite)) //Adds the turf on the sides of the old turf if they arent already in the turfs_to_ignite list.
-			turfs_to_ignite += get_step(new_turf, turn(dir_to_target, 90))
-		if(!(get_step(new_turf, REVERSE_DIR(turn(dir_to_target, 90))) in turfs_to_ignite))
-			turfs_to_ignite += get_step(new_turf, REVERSE_DIR(turn(dir_to_target, 90)))
-		if(ISDIAGONALDIR(dir_to_target)) ///Fills in the blanks for a diagonal burn.
-			if(!(get_step(new_turf, turn(dir_to_target, 135)) in turfs_skip_old))
-				turfs_skip_old += get_step(new_turf, turn(dir_to_target, 135))
-			if(!(get_step(new_turf, turn(dir_to_target, 225)) in turfs_skip_old))
-				turfs_skip_old += get_step(new_turf, turn(dir_to_target, 225))
-	burn_list(turfs_skip_old)
-	if(!burn_list(turfs_to_ignite))
-		return
+	burn_list(turfs_by_iteration)
 	iteration++
-	addtimer(CALLBACK(src, .proc/recursive_flame_cone, iteration, turfs_to_ignite, dir_to_target, range, current_target), flame_spread_time)
-
-#undef RECURSIVE_CHECK
+	addtimer(CALLBACK(src, .proc/recursive_flame_cone, iteration, turfs_to_ignite, dir_to_target, range, current_target, flame_source), flame_spread_time)
 
 ///Checks and lights the turfs in turfs_to_burn
 /obj/item/weapon/gun/flamer/proc/burn_list(list/turf/turfs_to_burn)
-	for(var/turf/turf_to_check AS in turfs_to_burn)
-		if((turf_to_check.density && !istype(turf_to_check, /turf/closed/wall/resin)) || isspaceturf(turf_to_check))
-			turfs_to_burn -= turf_to_check
-			continue
-		for(var/obj/object in turf_to_check)
-			if(!object.density || object.throwpass || istype(object, /obj/structure/mineral_door/resin) || istype(object, /obj/structure/xeno) || istype(object, /obj/machinery/deployable) || istype(object, /obj/vehicle))
-				continue
-			turfs_to_burn -= turf_to_check
-
 	if(!length(turfs_to_burn) || !length(chamber_items))
 		return FALSE
 
@@ -427,7 +408,13 @@
 		user.hud_used.update_ammo_hud(user, src)
 		return
 
-
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/wide
+	starting_attachment_types = list(
+		/obj/item/attachable/flamer_nozzle/wide,
+		/obj/item/attachable/stock/t84stock,
+		/obj/item/attachable/hydro_cannon,
+		/obj/item/attachable/magnetic_harness,
+	)
 
 /turf/proc/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
 	//extinguish any flame present

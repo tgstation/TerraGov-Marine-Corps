@@ -3188,7 +3188,7 @@
 /turf/open/floor/mainship,
 /area/whiskey_outpost)
 "pb" = (
-/obj/machinery/outputter{
+/obj/machinery/unboxer{
 	anchored = 1
 	},
 /turf/open/floor/prison,

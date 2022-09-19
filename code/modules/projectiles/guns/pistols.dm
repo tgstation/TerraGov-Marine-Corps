@@ -55,7 +55,7 @@
 	default_ammo_type = /obj/item/ammo_magazine/pistol/standard_pistol
 	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/standard_pistol)
 
-	attachable_offset = list("muzzle_x" = 22, "muzzle_y" = 18,"rail_x" = 13, "rail_y" = 22, "under_x" = 19, "under_y" = 10, "stock_x" = 21, "stock_y" = 17)
+	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 23, "under_x" = 24, "under_y" = 14, "stock_x" = 21, "stock_y" = 17)
 
 	fire_delay = 0.15 SECONDS
 	accuracy_mult = 1.1

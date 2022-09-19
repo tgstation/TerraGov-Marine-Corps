@@ -177,6 +177,55 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	succeed_activate()
 	add_cooldown()
 
+// ***************************************
+// *********** Drop all hugger, panic button
+// ***************************************
+/datum/action/xeno_action/carrier_panic
+	name = "Drop All Facehuggers"
+	action_icon_state = "carrier_panic"
+	mechanics_text = "Drop all stored huggers in a fit of panic. Uses all remaining plasma!"
+	plasma_cost = 10
+	cooldown_timer = 50 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_DROP_ALL_HUGGER
+	use_state_flags = XACT_USE_LYING
+
+/datum/action/xeno_action/carrier_panic/give_action(mob/living/L)
+	. = ..()
+	RegisterSignal(owner, COMSIG_MOB_DEATH, .proc/do_activate)
+
+/datum/action/xeno_action/carrier_panic/remove_action(mob/living/L)
+	UnregisterSignal(owner, COMSIG_MOB_DEATH)
+	return ..()
+
+/// Helper proc for action acitvation via signal
+/datum/action/xeno_action/carrier_panic/proc/do_activate()
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, .proc/action_activate)
+
+/datum/action/xeno_action/carrier_panic/can_use_action(silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	var/mob/living/carbon/xenomorph/carrier/X = owner
+	if(X.huggers < 1)
+		if(!silent)
+			to_chat(X, span_xenowarning("We do not have any young ones to drop!"))
+		return FALSE
+
+/datum/action/xeno_action/carrier_panic/action_activate()
+	var/mob/living/carbon/xenomorph/carrier/xeno_carrier = owner
+
+	if(!xeno_carrier.huggers)
+		return
+
+	xeno_carrier.visible_message(span_xenowarning("A chittering mass of tiny aliens is trying to escape [xeno_carrier]!"))
+	while(xeno_carrier.huggers > 0)
+		var/obj/item/clothing/mask/facehugger/new_hugger = new xeno_carrier.selected_hugger_type(get_turf(xeno_carrier))
+		step_away(new_hugger, xeno_carrier, 1)
+		addtimer(CALLBACK(new_hugger, /obj/item/clothing/mask/facehugger.proc/go_active, TRUE), new_hugger.jump_cooldown)
+		xeno_carrier.huggers--
+	succeed_activate(INFINITY) //Consume all remaining plasma
+	add_cooldown()
 
 // ***************************************
 // *********** Choose Hugger Type

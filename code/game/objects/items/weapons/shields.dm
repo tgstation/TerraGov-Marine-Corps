@@ -124,7 +124,7 @@
 	return TRUE
 
 /obj/item/weapon/shield/riot/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/weapon/baton) && world.time >= cooldown)
+	if(istype(I, /obj/item/weapon) && world.time >= cooldown)
 		user.visible_message(span_warning("[user] bashes [src] with [I]!"))
 		playsound(user.loc, 'sound/effects/shieldbash.ogg', 25, 1)
 		cooldown = world.time + 2.5 SECONDS
@@ -175,6 +175,13 @@
 		to_chat(user, span_warning("You tighten the strap of [src] around your hand!"))
 	else
 		to_chat(user, span_notice("You loosen the strap of [src] around your hand!"))
+
+/obj/item/weapon/shield/riot/marine/som
+	name = "\improper S-144 boarding shield"
+	desc = "A robust, heavy shield designed to be shot instead of the person holding it. Commonly employed by the SOM during boarding actions and other close quarter combat scenarios. This one has a SOM flag emblazoned on the front. Alt click to tighten the strap."
+	icon = 'icons/obj/items/weapons.dmi'
+	icon_state = "som_shield"
+	soft_armor = list(MELEE = 35, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 30, BIO = 50, FIRE = 0, ACID = 15)
 
 /obj/item/weapon/shield/energy
 	name = "energy combat shield"

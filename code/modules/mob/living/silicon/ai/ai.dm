@@ -1,3 +1,5 @@
+#define MAX_COMMAND_MESSAGE_LGTH 300
+
 ///This elevator serves me alone. I have complete control over this entire level. With cameras as my eyes and nodes as my hands, I rule here, insect.
 /mob/living/silicon/ai
 	name = "ARES v3.2"
@@ -49,6 +51,9 @@
 	var/datum/action/innate/order/current_order
 	/// If it is currently controlling an object
 	var/controlling = FALSE
+	
+	///Linked artillery for remote targeting.
+	var/obj/machinery/deployable/mortar/linked_artillery
 
 
 /mob/living/silicon/ai/Initialize(mapload, ...)
@@ -91,6 +96,7 @@
 	var/datum/action/innate/order/rally_order/send_rally_order = new
 	var/datum/action/control_vehicle/control = new
 	var/datum/action/minimap/ai/mini = new
+	var/datum/action/innate/squad_message/squad_message = new
 	send_attack_order.target = src
 	send_attack_order.give_action(src)
 	send_defend_order.target = src
@@ -100,6 +106,7 @@
 	send_rally_order.target = src
 	send_rally_order.give_action(src)
 	control.give_action(src)
+	squad_message.give_action(src)
 	mini.give_action(src)
 
 /mob/living/silicon/ai/Destroy()
@@ -387,6 +394,22 @@
 		reset_perspective()
 	remote_control = controlled
 
+///Called for associating the AI with artillery
+/mob/living/silicon/ai/proc/associate_artillery(mortar)
+	if(linked_artillery)
+		UnregisterSignal(linked_artillery, COMSIG_PARENT_QDELETING)
+		linked_artillery = null
+		return FALSE
+	linked_artillery = mortar
+	RegisterSignal(linked_artillery, COMSIG_PARENT_QDELETING, .proc/clean_artillery_refs)
+	return TRUE
+
+///Proc called when linked_mortar is deleted.
+/mob/living/silicon/ai/proc/clean_artillery_refs()
+	SIGNAL_HANDLER
+	linked_artillery.unset_targeter()
+	linked_artillery = null
+	to_chat(src, span_notice("NOTICE: Connection closed with linked mortar."))
 
 /datum/action/control_vehicle
 	name = "Select vehicle to control"
@@ -436,3 +459,37 @@
 	vehicle.on_link()
 	owner.AddComponent(/datum/component/remote_control, vehicle, vehicle.turret_type, vehicle.can_interact)
 	SEND_SIGNAL(owner, COMSIG_REMOTECONTROL_TOGGLE, owner)
+
+/datum/action/innate/squad_message
+	name = "Send Order"
+	action_icon_state = "screen_order_marine"
+	keybind_signal = COMSIG_KB_SENDORDER
+
+/datum/action/innate/squad_message/can_use_action()
+	. = ..()
+	if(owner.stat)
+		to_chat(owner, span_warning("You cannot give orders in your current state."))
+		return FALSE
+	if(TIMER_COOLDOWN_CHECK(owner, COOLDOWN_HUD_ORDER))
+		to_chat(owner, span_warning("Your last order was too recent."))
+		return FALSE
+
+/datum/action/innate/squad_message/action_activate()
+	if(!can_use_action())
+		return
+	var/text = stripped_input(owner, "Maximum message length [MAX_COMMAND_MESSAGE_LGTH]", "Send message to squad", max_length = MAX_COMMAND_MESSAGE_LGTH)
+	if(!text)
+		return
+	if(CHAT_FILTER_CHECK(text))
+		to_chat(owner, span_warning("That message contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[text]\"</span>"))
+		SSblackbox.record_feedback(FEEDBACK_TALLY, "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
+		return
+	if(!can_use_action())
+		return
+	owner.playsound_local(owner, "sound/effects/CIC_order.ogg", 10, 1)
+	TIMER_COOLDOWN_START(owner, COOLDOWN_HUD_ORDER, ORDER_COOLDOWN)
+	log_game("[key_name(owner)] has broadcasted the hud message [text] at [AREACOORD(owner)]")
+	deadchat_broadcast(" has sent the command order \"[text]\"", owner, owner)
+	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
+		if(human.faction == owner.faction)
+			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>ORDERS UPDATED:</u></span><br>" + text, /obj/screen/text/screen_text/command_order)
