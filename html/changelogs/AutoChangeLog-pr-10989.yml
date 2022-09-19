@@ -1,0 +1,4 @@
+author: "Naaanii"
+delete-after: True
+changes: 
+  - admin: "adds Combat Robot to admin player panel"
