@@ -80,7 +80,7 @@
 /obj/structure/sensor_tower_patrol/Initialize()
 	. = ..()
 	update_icon()
-	name += " " + num2text(serial)
+	name += " " + num2text(id)
 	id++
 
 /obj/structure/sensor_tower_patrol/update_icon_state()
