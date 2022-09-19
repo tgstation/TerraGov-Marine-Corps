@@ -314,9 +314,6 @@
 	max_integrity = 300
 	reinf = TRUE
 
-/obj/structure/window/reinforced/altwindow
-	icon_state = "window_alt"
-
 //For the sulaco and POS AI core.
 /obj/structure/window/reinforced/extratoughened
 	name = "protective AI glass"

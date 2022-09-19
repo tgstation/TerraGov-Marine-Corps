@@ -22,15 +22,6 @@
 	base_state = "leftsecure"
 	max_integrity = 100
 
-/obj/machinery/door/window/windoor_alt
-	icon_state = "left_alt"
-	base_state = "left_alt"
-
-
-/obj/machinery/door/window/secure/windoor_secure_alt
-	icon_state = "leftsecure_alt"
-	base_state = "leftsecure_alt"
-
 /obj/machinery/door/window/Initialize(mapload, set_dir)
 	. = ..()
 	if(set_dir)
@@ -210,18 +201,10 @@
 	icon_state = "right"
 	base_state = "right"
 
-/obj/machinery/door/window/right/right_alt
-	icon_state = "right_alt"
-	base_state = "right_alt"
-
 // Secure Doors
 /obj/machinery/door/window/secure/right
 	icon_state = "rightsecure"
 	base_state = "rightsecure"
-
-/obj/machinery/door/window/secure/right/right_secure_alt
-	icon_state = "rightsecure_alt"
-	base_state = "rightsecure_alt"
 
 // Main ship brig doors
 /obj/machinery/door/window/secure/brig

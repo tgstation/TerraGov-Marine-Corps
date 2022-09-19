@@ -382,50 +382,27 @@
 /////////////////SOM//////////////////////
 
 /obj/effect/landmark/corpsespawner/som
-	name = "SOM Grunt"
+	name = "SOM Infantry"
 	corpseuniform = /obj/item/clothing/under/som
-	corpsesuit = /obj/item/clothing/suit/modular/som/wornoutsom
+	corpsesuit = /obj/item/clothing/suit/modular/som
 	corpseback = /obj/item/storage/backpack/satchel/som
 	corpsemask = /obj/item/clothing/mask/gas/tactical/coif
-	corpsehelmet = /obj/item/clothing/head/modular/som/standard/wornoutsom
-	corpsegloves = /obj/item/clothing/gloves/marine/som/wornoutsom
-	corpseshoes = /obj/item/clothing/shoes/marine/som/wornoutsom
+	corpsehelmet = /obj/item/clothing/head/modular/som/standard
+	corpsegloves = /obj/item/clothing/gloves/marine/som
+	corpseshoes = /obj/item/clothing/shoes/marine/som
 	corpsebelt = /obj/item/storage/belt/marine/som
 	corpsepocket1 = /obj/item/storage/pouch/firstaid/som
 
 /obj/effect/landmark/corpsespawner/som/corpsman
 	name = "SOM Corpsman"
 	corpseuniform = /obj/item/clothing/under/som/medic
-	corpsesuit = /obj/item/clothing/suit/modular/som/wornoutsom
+	corpsesuit = /obj/item/clothing/suit/modular/som
 	corpseback = /obj/item/storage/backpack/satchel/som
 	corpsemask = /obj/item/clothing/mask/gas/tactical/coif
-	corpsehelmet = /obj/item/clothing/head/modular/som/standard/wornoutsom
-	corpsegloves = /obj/item/clothing/gloves/marine/som/wornoutsom
-	corpseshoes = /obj/item/clothing/shoes/marine/som/wornoutsom
+	corpsehelmet = /obj/item/clothing/head/modular/som/standard
+	corpsegloves = /obj/item/clothing/gloves/marine/som
+	corpseshoes = /obj/item/clothing/shoes/marine/som
 	corpsebelt = /obj/item/storage/belt/lifesaver/som
-	corpsepocket1 = /obj/item/storage/pouch/firstaid/som
-
-/obj/effect/landmark/corpsespawner/somvc
-	name = "SOM Vehicle Crewman"
-	corpseuniform = /obj/item/clothing/under/som
-	corpsesuit = /obj/item/clothing/suit/modular/som/wornoutsom
-	corpsemask = /obj/item/clothing/mask/gas/tactical/coif
-	corpsehelmet = /obj/item/clothing/head/tgmcberet/red
-	corpsegloves = /obj/item/clothing/gloves/marine/som/wornoutsom
-	corpseshoes = /obj/item/clothing/shoes/marine/som/wornoutsom
-	corpsebelt = /obj/item/storage/holster/m25/full
-	corpsepocket1 = /obj/item/storage/pouch/firstaid/som
-
-/obj/effect/landmark/corpsespawner/sompo
-	name = "SOM Pilot Officer"
-	corpseuniform = /obj/item/clothing/under/marine/officer/pilot
-	corpsesuit = /obj/item/clothing/suit/modular/som/wornoutsom
-	corpsehelmet = /obj/item/clothing/head/helmet/marine/pilot/green
-	corpseglasses =/obj/item/clothing/glasses/sunglasses/aviator
-	corpsemask = /obj/item/clothing/mask/gas
-	corpsegloves = /obj/item/clothing/gloves/marine/som/wornoutsom
-	corpseshoes = /obj/item/clothing/shoes/marine/som/wornoutsom
-	corpsebelt = /obj/item/storage/holster/m25/full
 	corpsepocket1 = /obj/item/storage/pouch/firstaid/som
 
 /obj/effect/landmark/corpsespawner/somscientist
