@@ -197,9 +197,6 @@
 
 	return turfs_impacted
 
-/obj/structure/ship_ammo/examine(mob/user)
-	to_chat(user, "Moving this will require some sort of lifter.")
-
 ///////////////
 
 //30mm gun
