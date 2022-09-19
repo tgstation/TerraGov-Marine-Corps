@@ -533,7 +533,7 @@
 			. += span_notice("Use Ctrl-Click on a tile to deploy.")
 		return
 	if(!CHECK_BITFIELD(flags_item, DEPLOYED_NO_ROTATE))
-		. += span_notice("Right Click on a nearby tile to aim rotate towards it.")
+		. += span_notice("Left or Right Click on a nearby tile to aim towards it.")
 		return
 	. += span_notice("Click-Drag to yourself to undeploy.")
 	. += span_notice("Alt-Click to unload.")
