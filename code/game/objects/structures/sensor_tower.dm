@@ -75,13 +75,15 @@
 	var/activate_time = 5 SECONDS // time to start the activation
 	var/deactivate_time = 10 SECONDS // time to stop the activation proccess
 	var/static/id = 1
+	var/towerid
 	var/activated = FALSE // if all segments are finished
 
 /obj/structure/sensor_tower_patrol/Initialize()
 	. = ..()
-	update_icon()
 	name += " " + num2text(id)
+	towerid = id
 	id++
+	update_icon()
 
 /obj/structure/sensor_tower_patrol/update_icon_state()
 	icon_state = initial(icon_state)
@@ -154,6 +156,6 @@
 
 /obj/structure/sensor_tower_patrol/proc/update_control_minimap_icon()
 	if(activated)
-		SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "relay_[id]_on_full")
+		SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "relay_[towerid]_on_full")
 	else
-		SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "relay_[id][current_timer ? "_on" : "_off"]")
+		SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "relay_[towerid][current_timer ? "_on" : "_off"]")
