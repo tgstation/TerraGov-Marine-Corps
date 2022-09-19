@@ -1355,11 +1355,11 @@ datum/ammo/bullet/revolver/tp44
 	drop_nade(get_turf(O))
 
 /datum/ammo/tx54/he/on_hit_turf(turf/T, obj/projectile/P)
-	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	var/target = T.density ? P.loc : T
 	drop_nade(target)
 
 /datum/ammo/tx54/he/do_at_max_range(turf/T, obj/projectile/P)
-	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	var/target = T.density ? P.loc : T
 	drop_nade(target)
 
 //10-gauge Micro rail shells - aka micronades
@@ -1503,11 +1503,11 @@ datum/ammo/bullet/revolver/tp44
 	detonate(get_turf(P), P)
 
 /datum/ammo/micro_rail_cluster/on_hit_turf(turf/T, obj/projectile/P)
-	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	var/target = T.density ? P.loc : T
 	detonate(target, P)
 
 /datum/ammo/micro_rail_cluster/do_at_max_range(turf/T, obj/projectile/P)
-	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	var/target = T.density ? P.loc : T
 	detonate(target, P)
 
 /datum/ammo/smoke_burst
@@ -1541,11 +1541,11 @@ datum/ammo/bullet/revolver/tp44
 	drop_nade(get_turf(P))
 
 /datum/ammo/smoke_burst/on_hit_turf(turf/T, obj/projectile/P)
-	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	var/target = T.density ? P.loc : T
 	drop_nade(target)
 
 /datum/ammo/smoke_burst/do_at_max_range(turf/T, obj/projectile/P)
-	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	var/target = T.density ? P.loc : T
 	drop_nade(target)
 
 /*
@@ -1583,11 +1583,11 @@ datum/ammo/bullet/revolver/tp44
 	drop_nade(get_turf(O))
 
 /datum/ammo/rocket/on_hit_turf(turf/T, obj/projectile/P)
-	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	var/target = T.density ? P.loc : T
 	drop_nade(target)
 
 /datum/ammo/rocket/do_at_max_range(turf/T, obj/projectile/P)
-	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	var/target = T.density ? P.loc : T
 	drop_nade(target)
 
 /datum/ammo/rocket/ap
@@ -1828,7 +1828,7 @@ datum/ammo/bullet/revolver/tp44
 	explosion(T, 0, 3, 5, 0)
 
 /datum/ammo/rocket/atgun_shell/he/on_hit_turf(turf/T, obj/projectile/P)
-	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	var/target = T.density ? P.loc : T
 	drop_nade(target)
 
 /*
@@ -2160,11 +2160,11 @@ datum/ammo/bullet/revolver/tp44
 	drop_nade(get_turf(O))
 
 /datum/ammo/energy/lasgun/marine/heavy_laser/on_hit_turf(turf/T, obj/projectile/P)
-	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	var/target = T.density ? P.loc : T
 	drop_nade(target)
 
 /datum/ammo/energy/lasgun/marine/heavy_laser/do_at_max_range(turf/T, obj/projectile/P)
-	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	var/target = T.density ? P.loc : T
 	drop_nade(target)
 
 // Plasma //
@@ -2364,15 +2364,15 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/xeno/toxin/on_hit_obj(obj/O, obj/projectile/P)
 	var/turf/T = get_turf(O)
-	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	var/target = T.density ? P.loc : T
 	drop_neuro_smoke(target)
 
 /datum/ammo/xeno/toxin/on_hit_turf(turf/T, obj/projectile/P)
-	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	var/target = T.density ? P.loc : T
 	drop_neuro_smoke(target)
 
 /datum/ammo/xeno/toxin/do_at_max_range(turf/T, obj/projectile/P)
-	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	var/target = T.density ? P.loc : T
 	drop_neuro_smoke(target)
 
 /datum/ammo/xeno/toxin/set_smoke()
@@ -2451,15 +2451,15 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/xeno/sticky/on_hit_obj(obj/O, obj/projectile/P)
 	var/turf/T = get_turf(O)
-	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	var/target = T.density ? P.loc : T
 	drop_resin(target)
 
 /datum/ammo/xeno/sticky/on_hit_turf(turf/T, obj/projectile/P)
-	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	var/target = T.density ? P.loc : T
 	drop_resin(target)
 
 /datum/ammo/xeno/sticky/do_at_max_range(turf/T, obj/projectile/P)
-	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	var/target = T.density ? P.loc : T
 	drop_resin(target)
 
 /datum/ammo/xeno/sticky/proc/drop_resin(turf/T)
@@ -2527,21 +2527,21 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/xeno/acid/heavy/on_hit_mob(mob/M,obj/projectile/P)
 	var/turf/T = get_turf(M)
-	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	var/target = T.density ? P.loc : T
 	drop_nade(target)
 
 /datum/ammo/xeno/acid/heavy/on_hit_obj(obj/O,obj/projectile/P)
 	var/turf/T = get_turf(O)
-	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	var/target = T.density ? P.loc : T
 	drop_nade(target)
 
 
 /datum/ammo/xeno/acid/heavy/on_hit_turf(turf/T,obj/projectile/P)
-	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	var/target = T.density ? P.loc : T
 	drop_nade(target)
 
 /datum/ammo/xeno/acid/heavy/do_at_max_range(turf/T, obj/projectile/P)
-	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	var/target = T.density ? P.loc : T
 	drop_nade(target)
 
 /datum/ammo/xeno/acid/drop_nade(turf/T) //Leaves behind an acid pool; defaults to 1-3 seconds.
@@ -2654,15 +2654,15 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/xeno/boiler_gas/on_hit_obj(obj/O, obj/projectile/P)
 	var/turf/T = get_turf(O)
-	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	var/target = T.density ? P.loc : T
 	drop_nade(target, P.firer)
 
 /datum/ammo/xeno/boiler_gas/on_hit_turf(turf/T, obj/projectile/P)
-	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	var/target = T.density ? P.loc : T
 	drop_nade(target, P.firer) //we don't want the gas globs to land on dense turfs, they block smoke expansion.
 
 /datum/ammo/xeno/boiler_gas/do_at_max_range(turf/T, obj/projectile/P)
-	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	var/target = T.density ? P.loc : T
 	drop_nade(target, P.firer)
 
 /datum/ammo/xeno/boiler_gas/set_smoke()
@@ -2775,12 +2775,12 @@ datum/ammo/bullet/revolver/tp44
 	hugger.go_idle()
 
 /datum/ammo/xeno/hugger/on_hit_turf(turf/T, obj/projectile/P)
-	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	var/target = T.density ? P.loc : T
 	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(target)
 	hugger.go_idle()
 
 /datum/ammo/xeno/hugger/do_at_max_range(turf/T, obj/projectile/P)
-	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	var/target = T.density ? P.loc : T
 	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(target)
 	hugger.go_idle()
 
@@ -2931,11 +2931,11 @@ datum/ammo/bullet/revolver/tp44
 	drop_nade(get_turf(P))
 
 /datum/ammo/grenade_container/on_hit_turf(turf/T,obj/projectile/P)
-	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	var/target = T.density ? P.loc : T
 	drop_nade(target)
 
 /datum/ammo/grenade_container/do_at_max_range(turf/T, obj/projectile/P)
-	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	var/target = T.density ? P.loc : T
 	drop_nade(target)
 
 /datum/ammo/grenade_container/drop_nade(turf/T)
