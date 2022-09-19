@@ -51,6 +51,9 @@
 	var/datum/action/innate/order/current_order
 	/// If it is currently controlling an object
 	var/controlling = FALSE
+	
+	///Linked artillery for remote targeting.
+	var/obj/machinery/deployable/mortar/linked_artillery
 
 
 /mob/living/silicon/ai/Initialize(mapload, ...)
@@ -391,6 +394,22 @@
 		reset_perspective()
 	remote_control = controlled
 
+///Called for associating the AI with artillery
+/mob/living/silicon/ai/proc/associate_artillery(mortar)
+	if(linked_artillery)
+		UnregisterSignal(linked_artillery, COMSIG_PARENT_QDELETING)
+		linked_artillery = null
+		return FALSE
+	linked_artillery = mortar
+	RegisterSignal(linked_artillery, COMSIG_PARENT_QDELETING, .proc/clean_artillery_refs)
+	return TRUE
+
+///Proc called when linked_mortar is deleted.
+/mob/living/silicon/ai/proc/clean_artillery_refs()
+	SIGNAL_HANDLER
+	linked_artillery.unset_targeter()
+	linked_artillery = null
+	to_chat(src, span_notice("NOTICE: Connection closed with linked mortar."))
 
 /datum/action/control_vehicle
 	name = "Select vehicle to control"
