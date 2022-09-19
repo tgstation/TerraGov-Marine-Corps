@@ -1,4 +1,0 @@
-author: "lbnesquik"
-delete-after: True
-changes: 
-  - rscadd: "Added a device which allows the AI to remotely target artillery pieces."
