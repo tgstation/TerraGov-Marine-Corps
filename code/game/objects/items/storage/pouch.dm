@@ -68,6 +68,9 @@
 	icon_state = "general_som"
 	draw_mode = 1
 
+/obj/item/storage/pouch/general/large/som
+	desc = "A general purpose pouch used to carry small items used during mining."
+	icon_state = "large_drop_som"
 
 /obj/item/storage/pouch/bayonet
 	name = "bayonet sheath"
@@ -124,6 +127,15 @@
 		/obj/item/storage/pill_bottle,
 	)
 
+/obj/item/storage/pouch/firstaid/combat_patrol/Initialize()
+	. = ..()
+	new /obj/item/reagent_containers/hypospray/autoinjector/bicaridine(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/kelotane(src)
+	new /obj/item/storage/pill_bottle/packet/tramadol(src)
+	new /obj/item/storage/pill_bottle/packet/tricordrazine(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
+
 /obj/item/storage/pouch/firstaid/som
 	name = "mining first aid pouch"
 	desc = "A basic first aid pouch originally used by miners due to dangerous working conditions on the mining colonies. This one is marked as belonging to the SOM."
@@ -138,6 +150,14 @@
 	new /obj/item/stack/medical/splint(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
 
+/obj/item/storage/pouch/firstaid/som/combat_patrol/Initialize()
+	. = ..()
+	new /obj/item/reagent_containers/hypospray/autoinjector/bicaridine(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/kelotane(src)
+	new /obj/item/storage/pill_bottle/packet/tramadol(src)
+	new /obj/item/storage/pill_bottle/packet/tricordrazine(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
 
 /obj/item/storage/pouch/pistol
 	name = "sidearm pouch"
@@ -148,6 +168,7 @@
 		/obj/item/weapon/gun/pistol,
 		/obj/item/weapon/gun/revolver,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta,
 	)
 	draw_mode = 1
 
@@ -158,6 +179,10 @@
 /obj/item/storage/pouch/pistol/rt3/Initialize()
 	. = ..()
 	new /obj/item/weapon/gun/pistol/rt3(src)
+
+/obj/item/storage/pouch/pistol/som
+	desc = "It can contain a pistol or revolver. Useful for emergencies, and made out of stylish leather in the old SOM tradition."
+	icon_state = "pistol_som"
 
 //// MAGAZINE POUCHES /////
 
@@ -195,6 +220,10 @@
 /obj/item/storage/pouch/magazine/large/t19full
 	fill_type = /obj/item/ammo_magazine/smg/standard_smg
 	fill_number = 3
+
+/obj/item/storage/pouch/magazine/large/som
+	desc = "This pouch can contain three ammo magazines. Made with traditional SOM leather."
+	icon_state = "mag_som"
 
 /obj/item/storage/pouch/magazine/pistol
 	name = "pistol magazine pouch"
@@ -329,6 +358,38 @@
 	fill_type = /obj/item/explosive/grenade
 	fill_number = 4
 
+/obj/item/storage/pouch/grenade/combat_patrol/Initialize()
+	. = ..()
+	new /obj/item/explosive/grenade/smokebomb(src)
+	new /obj/item/explosive/grenade/smokebomb(src)
+	new /obj/item/explosive/grenade/smokebomb/acid(src)
+	new /obj/item/explosive/grenade/smokebomb/neuro(src)
+	new /obj/item/explosive/grenade/flashbang/stun(src)
+	new /obj/item/explosive/grenade/flashbang/stun(src)
+
+
+/obj/item/storage/pouch/grenade/som
+	desc = "It can contain grenades. This one looks to be made out of traditional SOM leather."
+	icon_state = "grenade_som"
+
+/obj/item/storage/pouch/grenade/som/combat_patrol/Initialize()
+	. = ..()
+	new /obj/item/explosive/grenade/smokebomb(src)
+	new /obj/item/explosive/grenade/smokebomb(src)
+	new /obj/item/explosive/grenade/smokebomb/satrapine(src)
+	new /obj/item/explosive/grenade/smokebomb/satrapine(src)
+	new /obj/item/explosive/grenade/flashbang/stun(src)
+	new /obj/item/explosive/grenade/flashbang/stun(src)
+
+/obj/item/storage/pouch/grenade/som/ert/Initialize()
+	. = ..()
+	new /obj/item/explosive/grenade/smokebomb(src)
+	new /obj/item/explosive/grenade/smokebomb(src)
+	new /obj/item/explosive/grenade/smokebomb/satrapine(src)
+	new /obj/item/explosive/grenade/smokebomb/satrapine(src)
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/stick(src)
+
 /obj/item/storage/pouch/medkit
 	name = "medkit pouch"
 	desc = "A standard use medkit pouch that can contain all kinds of medical supplies and equipment."
@@ -371,6 +432,10 @@
 	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
 	new /obj/item/reagent_containers/hypospray/advanced/meraderm(src)
 
+/obj/item/storage/pouch/medkit/som
+	desc = "A standard use medkit pouch that can contain all kinds of medical supplies and equipment. Made with traditional SOM leather."
+	icon_state = "medkit_som"
+
 /obj/item/storage/pouch/medical_injectors
 	name = "medical injector pouch"
 	desc = "A specialized medical pouch that can only hold auto-injectors."
@@ -394,9 +459,8 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/russian_red (src)
 
 /obj/item/storage/pouch/medical_injectors/som
-	name = "mining first aid pouch"
-	desc = "A basic first aid pouch originally used by miners due to dangerous working conditions on the mining colonies. This one is marked as belonging to the SOM."
-	icon_state = "firstaid_som"
+	desc = "A specialized medical pouch that can only hold auto-injectors. This one looks to be made out of traditional SOM leather."
+	icon_state = "firstaid_injector_som"
 
 /obj/item/storage/pouch/medical_injectors/som/Initialize()
 	. = ..()
@@ -599,6 +663,10 @@
 	new /obj/item/stack/sheet/metal/large_stack (src)
 	new /obj/item/stack/sheet/plasteel/medium_stack (src)
 
+/obj/item/storage/pouch/construction/som
+	desc = "It's designed to hold construction materials - glass/metal sheets, metal rods, barbed wire, cable coil, and empty sandbags. It also has a hook for an entrenching tool. Made with traditional SOM leather."
+	icon_state = "construction_som"
+
 /obj/item/storage/pouch/tools
 	name = "tools pouch"
 	desc = "It's designed to hold maintenance tools - screwdriver, wrench, cable coil, etc. It also has a hook for an entrenching tool."
@@ -618,6 +686,18 @@
 	)
 
 /obj/item/storage/pouch/tools/full/Initialize()
+	. = ..()
+	new /obj/item/tool/screwdriver (src)
+	new /obj/item/tool/wirecutters (src)
+	new /obj/item/tool/weldingtool (src)
+	new /obj/item/tool/wrench (src)
+	new /obj/item/tool/crowbar (src)
+
+/obj/item/storage/pouch/tools/som
+	desc = "It's designed to hold maintenance tools - screwdriver, wrench, cable coil, etc. It also has a hook for an entrenching tool. Made with traditional SOM leather."
+	icon_state = "tools_som"
+
+/obj/item/storage/pouch/tools/som/full/Initialize()
 	. = ..()
 	new /obj/item/tool/screwdriver (src)
 	new /obj/item/tool/wirecutters (src)
@@ -663,3 +743,7 @@
 			return TRUE
 
 	return ..()
+
+/obj/item/storage/pouch/shotgun/som
+	desc = "A pouch specialized for holding shotgun ammo. Made with traditional SOM leather."
+	icon_state = "shotshells_som"

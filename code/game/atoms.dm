@@ -12,9 +12,10 @@
 	var/list/blood_DNA
 
 	var/flags_pass = NONE
+	///whether items can be thrown past, or projectiles can fire past this atom.
 	var/throwpass = FALSE
 
-	var/resistance_flags = NONE
+	var/resistance_flags = PROJECTILE_IMMUNE
 
 	var/germ_level = GERM_LEVEL_AMBIENT // The higher the germ level, the more germ on the atom.
 
@@ -462,6 +463,8 @@ directive is properly returned.
 			log_admin_private_asay(log_text)
 		if(LOG_GAME)
 			log_game(log_text)
+		if(LOG_MECHA)
+			log_mecha(log_text)
 		else
 			stack_trace("Invalid individual logging type: [message_type]. Defaulting to [LOG_GAME] (LOG_GAME).")
 			log_game(log_text)

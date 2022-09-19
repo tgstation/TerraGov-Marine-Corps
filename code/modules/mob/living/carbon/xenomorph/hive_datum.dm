@@ -1389,7 +1389,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /atom/proc/get_xeno_hivenumber()
 	return FALSE
 
-/obj/effect/alien/egg/get_xeno_hivenumber()
+/obj/alien/egg/get_xeno_hivenumber()
 	return hivenumber
 
 /obj/structure/xeno/trap/get_xeno_hivenumber()

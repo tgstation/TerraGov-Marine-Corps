@@ -116,3 +116,44 @@
   - bugfix: You won't get sent to zoom hell for zooming while you zoom.
   Wayland-Smithy:
   - balance: Untangle from razorwire via resist no longer applies a slowdown.
+2022-07-28:
+  Arctrooper8:
+  - rscdel: TerraGov Tech Vendor
+  - qol: Reorganized Automated Weapons Vendors, adding new tabs such as Melee and
+      Heavy Weapons. (Nothing removed)
+  - balance: Crash specific Automated Weapons Vendor lacking Heavy weapons tab and
+      RPG.
+  - imagedel: TerraGov Tech Vendor
+  - bugfix: Reverts Arithrazine to it's old form
+  Lumipharon:
+  - rscadd: Combat Patrol - a new gamemode pitting the TGMC vs SOM in a TDM
+  - rscadd: Fleshed out the SOM as a proper faction, with their own squads and related
+      features
+  - rscadd: A variety of new SOM weaponry has been introduced to flesh out their gear
+      options
+  - balance: Volkite weapons have been tuned down slightly
+  - balance: SOM armour has been tuned down slightly
+  - bugfix: Marine shield no longer has 100 energy armor
+  - bugfix: Volkite deflagrate correctly takes damage fall off into account
+  - bugfix: Volkite deflagrate soft CC max range fixed
+  TheOneAndMightyRed:
+  - qol: Added a new button to restock all loose items ontop of a vending machine's
+      turf.
+  - bugfix: Lasgun field charger now updates their charge meter icon state properly.
+  - bugfix: Vending machines no longer save you from active grenades
+  nova_epee, Benjamin Carmine:
+  - imageadd: new spitter sprites!
+  nova_epee, Ghost_Guts | sleepy eyed robot, and Foster:
+  - imageadd: added two title arts and change two preexisting title arts
+2022-07-30:
+  RipGrayson:
+  - bugfix: The Canterbury can no longer land on the red disk generator in LV.
+  - imageadd: Created new wall sprites for Big Red.
+  - code_imp: Changed typepaths for smooth mineral walls so they aren't scattered
+      across the multiple areas.
+  novaepee:
+  - bugfix: Fix off-set of spitter sprites
+2022-07-31:
+  Lumipharon:
+  - bugfix: Vote ballot stuffing has been fixed
+  - rscadd: SOM ERT now have access to more recent SOM equipment

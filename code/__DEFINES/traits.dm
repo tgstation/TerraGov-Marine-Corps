@@ -87,6 +87,7 @@
 #define BUCKLE_TRAIT "buckle"
 #define THROW_TRAIT "throw"
 #define FORTIFY_TRAIT "fortify" //Defender fortify ability.
+#define CREST_DEFENSE_TRAIT "crestdefense"
 #define TRAIT_STASIS "stasis"//Subject to the stasis effect
 #define ENDURE_TRAIT "endure" //Ravager Endure ability.
 #define RAGE_TRAIT "rage" //Ravager Rage ability.

@@ -1291,6 +1291,7 @@
 	},
 /turf/open/floor/carpet/side{
 	dir = 6;
+	
 	},
 /area/mainship/living/commandbunks/rebel)
 "blQ" = (
@@ -1392,7 +1393,6 @@
 	},
 /area/mainship/medical/operating_room_one)
 "brK" = (
-/obj/machinery/vending/shared_vending/marine_engi/loyalist,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "brO" = (
@@ -1646,6 +1646,7 @@
 /area/mainship/hallways/starboard_umbilical/rebel)
 "bHp" = (
 /turf/open/floor/carpet/side{
+	
 	},
 /area/mainship/living/commandbunks/rebel)
 "bHz" = (
@@ -2462,6 +2463,7 @@
 /mob/living/simple_animal/cat/Jones,
 /turf/open/floor/carpet/side{
 	dir = 1;
+	
 	},
 /area/mainship/living/commandbunks)
 "coE" = (
@@ -2704,9 +2706,6 @@
 /obj/structure/filingcabinet,
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks/rebel)
-"cAG" = (
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
 "cBe" = (
 /obj/machinery/door/airlock/mainship/maint/rebel,
 /obj/structure/disposalpipe/segment{
@@ -3466,6 +3465,7 @@
 	},
 /turf/open/floor/carpet/side{
 	dir = 6;
+	
 	},
 /area/mainship/living/commandbunks)
 "dmZ" = (
@@ -4707,6 +4707,7 @@
 "etY" = (
 /turf/open/floor/carpet/side{
 	dir = 10;
+	
 	},
 /area/mainship/command/corporateliaison/rebel)
 "euh" = (
@@ -5230,6 +5231,7 @@
 "eSN" = (
 /turf/open/floor/carpet/side{
 	dir = 9;
+	
 	},
 /area/mainship/living/numbertwobunks/rebel)
 "eSW" = (
@@ -5791,6 +5793,7 @@
 /obj/effect/landmark/start/job/fieldcommander/rebel,
 /turf/open/floor/carpet/side{
 	dir = 6;
+	
 	},
 /area/mainship/living/numbertwobunks/rebel)
 "fqv" = (
@@ -6532,7 +6535,7 @@
 "fTr" = (
 /obj/structure/target_stake,
 /obj/item/target,
-/obj/item/clothing/suit/storage/militia,
+/obj/item/clothing/suit/storage/faction/militia,
 /turf/open/floor/plating/mainship/striped{
 	dir = 8
 	},
@@ -6560,7 +6563,7 @@
 "fUL" = (
 /obj/structure/target_stake,
 /obj/item/target,
-/obj/item/clothing/suit/storage/militia,
+/obj/item/clothing/suit/storage/faction/militia,
 /turf/open/floor/plating/mainship/striped{
 	dir = 8
 	},
@@ -6636,7 +6639,7 @@
 	},
 /obj/structure/target_stake,
 /obj/item/target,
-/obj/item/clothing/suit/storage/militia,
+/obj/item/clothing/suit/storage/faction/militia,
 /turf/open/floor/plating/mainship/striped{
 	dir = 4
 	},
@@ -6686,7 +6689,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "gaB" = (
-/obj/machinery/vending/shared_vending/marine_engi/rebel,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req/rebel)
 "gaY" = (
@@ -8563,6 +8565,7 @@
 /obj/item/armor_module/storage/uniform/holster,
 /turf/open/floor/carpet/side{
 	dir = 9;
+	
 	},
 /area/mainship/command/corporateliaison/rebel)
 "hMr" = (
@@ -9048,7 +9051,7 @@
 	},
 /obj/structure/target_stake,
 /obj/item/target,
-/obj/item/clothing/suit/storage/militia,
+/obj/item/clothing/suit/storage/faction/militia,
 /turf/open/floor/plating/mainship/striped{
 	dir = 4
 	},
@@ -9537,6 +9540,7 @@
 /obj/structure/bed/fancy,
 /turf/open/floor/carpet/side{
 	dir = 1;
+	
 	},
 /area/mainship/command/corporateliaison)
 "iIp" = (
@@ -10084,6 +10088,7 @@
 /obj/item/camera_film,
 /turf/open/floor/carpet/side{
 	dir = 5;
+	
 	},
 /area/mainship/command/corporateliaison)
 "jmw" = (
@@ -10572,6 +10577,7 @@
 /obj/structure/closet/secure_closet/captain,
 /turf/open/floor/carpet/side{
 	dir = 9;
+	
 	},
 /area/mainship/living/commandbunks)
 "jKq" = (
@@ -11006,6 +11012,7 @@
 /obj/structure/bed/fancy,
 /turf/open/floor/carpet/side{
 	dir = 1;
+	
 	},
 /area/mainship/command/corporateliaison/rebel)
 "jYJ" = (
@@ -11151,6 +11158,7 @@
 	},
 /turf/open/floor/carpet/side{
 	dir = 5;
+	
 	},
 /area/mainship/living/numbertwobunks)
 "kdC" = (
@@ -11544,6 +11552,7 @@
 /obj/item/reagent_containers/food/drinks/flask/barflask,
 /turf/open/floor/carpet/side{
 	dir = 5;
+	
 	},
 /area/mainship/living/commandbunks)
 "kzB" = (
@@ -12382,6 +12391,7 @@
 /obj/machinery/marine_selector/clothes/commander/rebel,
 /turf/open/floor/carpet/side{
 	dir = 10;
+	
 	},
 /area/mainship/living/numbertwobunks/rebel)
 "lfU" = (
@@ -13249,6 +13259,7 @@
 /area/mainship/engineering/engineering_workshop)
 "lVv" = (
 /turf/open/floor/carpet/side{
+	
 	},
 /area/mainship/command/corporateliaison)
 "lWH" = (
@@ -13896,6 +13907,7 @@
 /obj/item/armor_module/storage/uniform/holster,
 /turf/open/floor/carpet/side{
 	dir = 9;
+	
 	},
 /area/mainship/command/corporateliaison)
 "mAg" = (
@@ -13904,6 +13916,7 @@
 /obj/item/reagent_containers/food/drinks/flask/barflask,
 /turf/open/floor/carpet/side{
 	dir = 5;
+	
 	},
 /area/mainship/living/commandbunks/rebel)
 "mAk" = (
@@ -14610,6 +14623,7 @@
 /area/mainship/medical/medical_science/rebel)
 "nif" = (
 /turf/closed/wall/mainship{
+	
 	},
 /area/mainship/hull/lower_hull/rebel)
 "nij" = (
@@ -15064,6 +15078,7 @@
 "nFu" = (
 /turf/open/floor/carpet/side{
 	dir = 10;
+	
 	},
 /area/mainship/living/commandbunks/rebel)
 "nFC" = (
@@ -15758,6 +15773,7 @@
 /obj/item/camera_film,
 /turf/open/floor/carpet/side{
 	dir = 5;
+	
 	},
 /area/mainship/command/corporateliaison/rebel)
 "okn" = (
@@ -16214,6 +16230,7 @@
 	},
 /turf/open/floor/carpet/side{
 	dir = 6;
+	
 	},
 /area/mainship/command/corporateliaison)
 "oBU" = (
@@ -16358,7 +16375,7 @@
 "oGY" = (
 /obj/structure/target_stake,
 /obj/item/target,
-/obj/item/clothing/suit/storage/militia,
+/obj/item/clothing/suit/storage/faction/militia,
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/firing_range)
 "oHd" = (
@@ -17376,6 +17393,7 @@
 /area/mainship/squads/req)
 "pzl" = (
 /turf/open/floor/carpet/side{
+	
 	},
 /area/mainship/living/commandbunks)
 "pzO" = (
@@ -18494,6 +18512,7 @@
 "qxS" = (
 /turf/open/floor/carpet/side{
 	dir = 10;
+	
 	},
 /area/mainship/command/corporateliaison)
 "qya" = (
@@ -18578,6 +18597,7 @@
 /obj/structure/closet/secure_closet/captain,
 /turf/open/floor/carpet/side{
 	dir = 9;
+	
 	},
 /area/mainship/living/commandbunks/rebel)
 "qAt" = (
@@ -18727,6 +18747,7 @@
 "qGU" = (
 /turf/open/floor/carpet/side{
 	dir = 10;
+	
 	},
 /area/mainship/living/commandbunks)
 "qHc" = (
@@ -19045,12 +19066,14 @@
 /mob/living/simple_animal/cat/Jones,
 /turf/open/floor/carpet/side{
 	dir = 1;
+	
 	},
 /area/mainship/living/commandbunks/rebel)
 "qUU" = (
 /obj/machinery/marine_selector/clothes/commander/loyalist,
 /turf/open/floor/carpet/side{
 	dir = 10;
+	
 	},
 /area/mainship/living/numbertwobunks)
 "qVc" = (
@@ -22060,6 +22083,7 @@
 	},
 /turf/open/floor/carpet/side{
 	dir = 5;
+	
 	},
 /area/mainship/living/numbertwobunks/rebel)
 "tAA" = (
@@ -22675,6 +22699,7 @@
 /area/mainship/hallways/port_umbilical)
 "ucm" = (
 /turf/closed/wall/mainship{
+	
 	},
 /area/mainship/hull/lower_hull)
 "ucI" = (
@@ -22870,6 +22895,7 @@
 	},
 /turf/open/floor/carpet/side{
 	dir = 6;
+	
 	},
 /area/mainship/command/corporateliaison/rebel)
 "ujw" = (
@@ -23765,6 +23791,7 @@
 "vaQ" = (
 /turf/open/floor/carpet/side{
 	dir = 9;
+	
 	},
 /area/mainship/living/numbertwobunks)
 "vaU" = (
@@ -25331,7 +25358,7 @@
 "wsN" = (
 /obj/structure/target_stake,
 /obj/item/target,
-/obj/item/clothing/suit/storage/militia,
+/obj/item/clothing/suit/storage/faction/militia,
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/firing_range/rebel)
 "wsV" = (
@@ -26344,6 +26371,7 @@
 /obj/effect/landmark/start/job/fieldcommander,
 /turf/open/floor/carpet/side{
 	dir = 6;
+	
 	},
 /area/mainship/living/numbertwobunks)
 "xkW" = (
@@ -26592,9 +26620,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/shipboard/starboard_missiles)
-"xxw" = (
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req/rebel)
 "xxC" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -26923,6 +26948,7 @@
 /area/mainship/command/telecomms/rebel)
 "xKf" = (
 /turf/open/floor/carpet/side{
+	
 	},
 /area/mainship/command/corporateliaison/rebel)
 "xKy" = (
@@ -41058,7 +41084,7 @@ kPU
 aXf
 xef
 vEY
-xxw
+gaB
 gaB
 wPF
 ltd
@@ -41315,13 +41341,13 @@ fuL
 vZK
 xef
 vEY
-xxw
+gaB
 qse
 wPF
 yar
 sqY
-xxw
-xxw
+gaB
+gaB
 gyJ
 rri
 tZC
@@ -41572,7 +41598,7 @@ fuL
 vZK
 xef
 vEY
-xxw
+gaB
 rFR
 wPF
 lEP
@@ -41581,8 +41607,8 @@ xGz
 xGz
 xGz
 dDx
-xxw
-xxw
+gaB
+gaB
 gqM
 uhK
 uNx
@@ -41834,8 +41860,8 @@ wPF
 vID
 sPV
 uUp
-xxw
-xxw
+gaB
+gaB
 kNc
 eee
 eee
@@ -42086,17 +42112,17 @@ pHE
 tYj
 iUC
 vEY
-xxw
+gaB
 rvg
 ddo
 rGH
-xxw
-xxw
-xxw
-xxw
-xxw
-xxw
-xxw
+gaB
+gaB
+gaB
+gaB
+gaB
+gaB
+gaB
 gqM
 mxT
 uNx
@@ -42106,7 +42132,7 @@ uNx
 uNx
 mWO
 yaI
-xxw
+gaB
 mmh
 xHM
 kkC
@@ -42343,17 +42369,17 @@ xef
 xef
 xef
 vEY
-xxw
+gaB
 ueS
 bee
-xxw
-xxw
-xxw
+gaB
+gaB
+gaB
 eys
-xxw
-xxw
-xxw
-xxw
+gaB
+gaB
+gaB
+gaB
 gqM
 uhK
 uNx
@@ -42600,10 +42626,10 @@ vEY
 vEY
 vEY
 vEY
-xxw
+gaB
 ueS
 bee
-xxw
+gaB
 aQA
 kDf
 arP
@@ -42857,17 +42883,17 @@ xef
 xef
 xef
 vEY
-xxw
+gaB
 ueS
 bee
-xxw
-xxw
-xxw
-xxw
-xxw
-xxw
-xxw
-xxw
+gaB
+gaB
+gaB
+gaB
+gaB
+gaB
+gaB
+gaB
 eAu
 bUt
 ied
@@ -43114,7 +43140,7 @@ xQf
 xQf
 xef
 vEY
-xxw
+gaB
 ueS
 bee
 nMf
@@ -43371,8 +43397,8 @@ gOj
 xQf
 xef
 vEY
-xxw
-xxw
+gaB
+gaB
 wPF
 rza
 wnW
@@ -81797,7 +81823,7 @@ jLQ
 lAa
 ezL
 wzm
-cAG
+brK
 brK
 kDn
 pys
@@ -82054,13 +82080,13 @@ haO
 eqB
 ezL
 wzm
-cAG
+brK
 vbJ
 kDn
 qVs
 jMD
-cAG
-cAG
+brK
+brK
 gGv
 neu
 pRz
@@ -82311,7 +82337,7 @@ haO
 eqB
 ezL
 wzm
-cAG
+brK
 tIc
 kDn
 tfV
@@ -82320,8 +82346,8 @@ vAx
 vAx
 vAx
 bAP
-cAG
-cAG
+brK
+brK
 hgR
 kcM
 tfj
@@ -82573,8 +82599,8 @@ kDn
 pMP
 rnV
 oKR
-cAG
-cAG
+brK
+brK
 nEt
 ipi
 ipi
@@ -82825,17 +82851,17 @@ gax
 sRB
 oOg
 wzm
-cAG
+brK
 pSn
 rtq
 jUN
-cAG
-cAG
-cAG
-cAG
-cAG
-cAG
-cAG
+brK
+brK
+brK
+brK
+brK
+brK
+brK
 hgR
 mRz
 tfj
@@ -82845,7 +82871,7 @@ tfj
 tfj
 itS
 qHL
-cAG
+brK
 wCF
 tFj
 luB
@@ -83082,17 +83108,17 @@ ezL
 ezL
 ezL
 wzm
-cAG
+brK
 adN
 lnz
-cAG
-cAG
-cAG
+brK
+brK
+brK
 cit
-cAG
-cAG
-cAG
-cAG
+brK
+brK
+brK
+brK
 hgR
 kcM
 tfj
@@ -83339,10 +83365,10 @@ wzm
 wzm
 wzm
 wzm
-cAG
+brK
 adN
 lnz
-cAG
+brK
 pfY
 gYU
 uDk
@@ -83596,17 +83622,17 @@ ezL
 ezL
 ezL
 wzm
-cAG
+brK
 adN
 lnz
-cAG
-cAG
-cAG
-cAG
-cAG
-cAG
-cAG
-cAG
+brK
+brK
+brK
+brK
+brK
+brK
+brK
+brK
 wZm
 hwz
 lnQ
@@ -83853,7 +83879,7 @@ hxi
 hxi
 ezL
 wzm
-cAG
+brK
 adN
 lnz
 vNQ
@@ -84110,8 +84136,8 @@ mXY
 hxi
 ezL
 wzm
-cAG
-cAG
+brK
+brK
 kDn
 stT
 hkU

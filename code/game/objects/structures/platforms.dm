@@ -18,6 +18,11 @@
 	obj_integrity = 1000	//Ditto
 	max_integrity = 1000	//Ditto
 
+/obj/structure/platform/gelida
+	climb_delay = 10 //halved time because on gelida platforms are everywhere
+	obj_integrity = 200 //ditto
+	max_integrity = 200	//ditto
+
 /obj/structure/platform/Initialize()
 	. = ..()
 	var/image/I = image(icon, src, "platform_overlay", LADDER_LAYER, dir)//ladder layer puts us just above weeds.
@@ -81,3 +86,31 @@ obj/structure/platform_decoration
 			layer = ABOVE_MOB_LAYER
 		if (SOUTHWEST)
 			layer = ABOVE_MOB_LAYER
+
+/obj/structure/platform/rockcliff
+	icon_state = "rockcliff"
+	name = "rock cliff"
+	desc = "A collection of stones and rocks that form a steep cliff, it looks climbable."
+
+/obj/structure/platform_decoration/rockcliff_deco
+	icon_state = "rockcliff_deco"
+	name = "rock cliff"
+	desc = "A collection of stones and rocks that form a steep cliff, it looks climbable."
+
+/obj/structure/platform/rockcliff/icycliff
+	icon_state = "icerock"
+
+/obj/structure/platform_decoration/rockcliff_deco/icycliff_deco
+	icon_state = "icerock_deco"
+
+/obj/structure/platform/metalplatform
+	icon_state = "metalplatform"
+
+/obj/structure/platform_decoration/metalplatform_deco
+	icon_state = "metalplatform_deco"
+
+/obj/structure/platform/platform2
+	icon_state = "platform2"
+
+/obj/structure/platform_decoration/platform2_deco
+	icon_state = "platform2_deco"

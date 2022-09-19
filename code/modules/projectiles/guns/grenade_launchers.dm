@@ -34,6 +34,9 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/smokebomb,
 		/obj/item/explosive/grenade/smokebomb/cloak,
 		/obj/item/explosive/grenade/smokebomb/drain,
+		/obj/item/explosive/grenade/smokebomb/neuro,
+		/obj/item/explosive/grenade/smokebomb/acid,
+		/obj/item/explosive/grenade/smokebomb/satrapine,
 		/obj/item/explosive/grenade/phosphorus,
 		/obj/item/explosive/grenade/phosphorus/upp,
 		/obj/item/explosive/grenade/impact,
@@ -47,6 +50,7 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/chem_grenade/razorburn_large,
 		/obj/item/explosive/grenade/chem_grenade/incendiary,
 		/obj/item/explosive/grenade/chem_grenade/teargas,
+		/obj/item/explosive/grenade/flashbang/stun,
 	)
 	reciever_flags = NONE
 
@@ -144,18 +148,27 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/smokebomb,
 		/obj/item/explosive/grenade/smokebomb/cloak,
 		/obj/item/explosive/grenade/smokebomb/drain,
+		/obj/item/explosive/grenade/smokebomb/neuro,
+		/obj/item/explosive/grenade/smokebomb/acid,
+		/obj/item/explosive/grenade/smokebomb/satrapine,
 		/obj/item/explosive/grenade/phosphorus,
 		/obj/item/explosive/grenade/phosphorus/upp,
 		/obj/item/explosive/grenade/flare,
 		/obj/item/explosive/grenade/flare/cas,
 		/obj/item/explosive/grenade/impact,
 		/obj/item/explosive/grenade/sticky,
+		/obj/item/explosive/grenade/flashbang/stun,
 	)
 
 	wield_delay_mod	= 0.2 SECONDS
 
 /obj/item/weapon/gun/grenade_launcher/underslung/invisible
 	flags_attach_features = NONE
+
+/obj/item/weapon/gun/grenade_launcher/underslung/mpi
+	icon_state = "grenade_mpi"
+	flags_attach_features = NONE
+	default_ammo_type = /obj/item/explosive/grenade/stick //no marine equipment here
 
 /obj/item/weapon/gun/grenade_launcher/single_shot
 	name = "\improper GL-81 grenade launcher"

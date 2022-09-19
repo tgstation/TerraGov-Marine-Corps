@@ -229,6 +229,7 @@
 	. = ..()
 	set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(-10, -3), TEXT_SOUTH = list(-11, 6), TEXT_EAST = list(-21, 4), TEXT_WEST = list(4, 4)))
 	set_riding_offsets(/mob/living/carbon/xenomorph/runner, list(TEXT_NORTH = list(-16, 9), TEXT_SOUTH = list(-16, 17), TEXT_EAST = list(-21, 7), TEXT_WEST = list(-6, 7)))
+	set_riding_offsets(/mob/living/carbon/xenomorph/larva, list(TEXT_NORTH = list(3, 6), TEXT_SOUTH = list(0, 16), TEXT_EAST = list(-2, 10), TEXT_WEST = list(0, 10)))
 	set_vehicle_dir_layer(SOUTH, ABOVE_MOB_LAYER)
 	set_vehicle_dir_layer(NORTH, ABOVE_LYING_MOB_LAYER)
 	set_vehicle_dir_layer(EAST, ABOVE_LYING_MOB_LAYER)

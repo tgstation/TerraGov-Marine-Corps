@@ -9,8 +9,9 @@
 	var/open_case_step
 
 /datum/surgery_step/open_encased/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
-	if(affected.limb_status & LIMB_DESTROYED) return 0
-	return affected.encased && affected.surgery_open_stage == open_case_step
+	if(affected.encased && affected.surgery_open_stage == open_case_step)
+		return SURGERY_CAN_USE
+	return SURGERY_CANNOT_USE
 
 
 /datum/surgery_step/open_encased/saw

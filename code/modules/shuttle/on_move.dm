@@ -39,7 +39,9 @@ All ShuttleMove procs go here
 		if(ismovable(thing))
 			var/atom/movable/movable_thing = thing
 			if(movable_thing.flags_atom & SHUTTLE_IMMUNE)
-				movable_thing.forceMove(src)
+				var/old_dir = movable_thing.dir
+				movable_thing.abstract_move(src)
+				movable_thing.setDir(old_dir)
 				movable_thing.invisibility = INVISIBILITY_ABSTRACT
 				continue
 			qdel(thing)

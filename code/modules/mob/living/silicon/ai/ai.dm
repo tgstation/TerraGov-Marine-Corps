@@ -1,3 +1,5 @@
+#define MAX_COMMAND_MESSAGE_LGTH 300
+
 ///This elevator serves me alone. I have complete control over this entire level. With cameras as my eyes and nodes as my hands, I rule here, insect.
 /mob/living/silicon/ai
 	name = "ARES v3.2"
@@ -88,15 +90,20 @@
 	var/datum/action/innate/order/attack_order/send_attack_order = new
 	var/datum/action/innate/order/defend_order/send_defend_order = new
 	var/datum/action/innate/order/retreat_order/send_retreat_order = new
+	var/datum/action/innate/order/rally_order/send_rally_order = new
 	var/datum/action/control_vehicle/control = new
 	var/datum/action/minimap/ai/mini = new
+	var/datum/action/innate/squad_message/squad_message = new
 	send_attack_order.target = src
 	send_attack_order.give_action(src)
 	send_defend_order.target = src
 	send_defend_order.give_action(src)
 	send_retreat_order.target = src
 	send_retreat_order.give_action(src)
+	send_rally_order.target = src
+	send_rally_order.give_action(src)
 	control.give_action(src)
+	squad_message.give_action(src)
 	mini.give_action(src)
 
 /mob/living/silicon/ai/Destroy()
@@ -246,7 +253,7 @@
 
 
 /mob/living/silicon/ai/proc/camera_visibility(mob/camera/aiEye/moved_eye)
-	GLOB.cameranet.visibility(moved_eye, client, all_eyes, TRUE)
+	GLOB.cameranet.visibility(moved_eye, client, all_eyes, moved_eye.use_static)
 
 
 /mob/living/silicon/ai/proc/can_see(atom/A)
@@ -411,6 +418,8 @@
 	ai.controlling = TRUE
 
 	var/mob/camera/aiEye/hud/eyeobj = ai.eyeobj
+	eyeobj.use_static = FALSE
+	ai.camera_visibility(eyeobj)
 	eyeobj.loc = ai.loc
 
 /// Signal handler to clear vehicle and stop remote control
@@ -420,11 +429,48 @@
 	vehicle.on_unlink()
 	vehicle = null
 	var/mob/living/silicon/ai/ai = owner
+	var/mob/camera/aiEye/hud/eyeobj = ai.eyeobj
+	eyeobj.use_static = TRUE
+	ai.camera_visibility(eyeobj)
 	ai.controlling = FALSE
 
 /datum/action/control_vehicle/proc/link_with_vehicle(obj/vehicle/unmanned/_vehicle)
 	vehicle = _vehicle
 	RegisterSignal(vehicle, COMSIG_PARENT_QDELETING, .proc/clear_vehicle)
 	vehicle.on_link()
-	owner.AddComponent(/datum/component/remote_control, vehicle, vehicle.turret_type)
+	owner.AddComponent(/datum/component/remote_control, vehicle, vehicle.turret_type, vehicle.can_interact)
 	SEND_SIGNAL(owner, COMSIG_REMOTECONTROL_TOGGLE, owner)
+
+/datum/action/innate/squad_message
+	name = "Send Order"
+	action_icon_state = "screen_order_marine"
+	keybind_signal = COMSIG_KB_SENDORDER
+
+/datum/action/innate/squad_message/can_use_action()
+	. = ..()
+	if(owner.stat)
+		to_chat(owner, span_warning("You cannot give orders in your current state."))
+		return FALSE
+	if(TIMER_COOLDOWN_CHECK(owner, COOLDOWN_HUD_ORDER))
+		to_chat(owner, span_warning("Your last order was too recent."))
+		return FALSE
+
+/datum/action/innate/squad_message/action_activate()
+	if(!can_use_action())
+		return
+	var/text = stripped_input(owner, "Maximum message length [MAX_COMMAND_MESSAGE_LGTH]", "Send message to squad", max_length = MAX_COMMAND_MESSAGE_LGTH)
+	if(!text)
+		return
+	if(CHAT_FILTER_CHECK(text))
+		to_chat(owner, span_warning("That message contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[text]\"</span>"))
+		SSblackbox.record_feedback(FEEDBACK_TALLY, "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
+		return
+	if(!can_use_action())
+		return
+	owner.playsound_local(owner, "sound/effects/CIC_order.ogg", 10, 1)
+	TIMER_COOLDOWN_START(owner, COOLDOWN_HUD_ORDER, ORDER_COOLDOWN)
+	log_game("[key_name(owner)] has broadcasted the hud message [text] at [AREACOORD(owner)]")
+	deadchat_broadcast(" has sent the command order \"[text]\"", owner, owner)
+	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
+		if(human.faction == owner.faction)
+			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>ORDERS UPDATED:</u></span><br>" + text, /obj/screen/text/screen_text/command_order)

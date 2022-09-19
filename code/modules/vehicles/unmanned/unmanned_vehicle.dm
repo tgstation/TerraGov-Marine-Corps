@@ -20,6 +20,8 @@
 	var/turret_type
 	///Turret types we're allowed to attach
 	var/turret_pattern = PATTERN_TRACKED
+	/// If that vehicle can interact with cades
+	var/can_interact = FALSE
 	///Delay in byond ticks between weapon fires
 	var/fire_delay = 5
 	///Ammo remaining for the robot
@@ -42,11 +44,9 @@
 	var/unmanned_flags = OVERLAY_TURRET|HAS_LIGHTS|UNDERCARRIAGE
 	/// Iff flags, to prevent friendly fire from sg and aiming marines
 	var/iff_signal = TGMC_LOYALIST_IFF
-	COOLDOWN_DECLARE(fire_cooldown)
-	/// when next sound played
-	COOLDOWN_DECLARE(next_sound_play)
 	/// muzzleflash stuff
 	var/atom/movable/vis_obj/effect/muzzle_flash/flash
+	COOLDOWN_DECLARE(fire_cooldown)
 
 /obj/vehicle/unmanned/Initialize()
 	. = ..()
@@ -99,8 +99,17 @@
 
 /obj/vehicle/unmanned/examine(mob/user, distance, infix, suffix)
 	. = ..()
-	if(ishuman(user))
-		. += "It has [current_rounds] ammo left."
+	if(current_rounds > 0)
+		. += "It has [current_rounds] shots left."
+	switch(turret_type)
+		if(TURRET_TYPE_LIGHT)
+			. += "It is equipped with a light weapon system. It uses 11x35mm ammo."
+		if(TURRET_TYPE_HEAVY)
+			. += "It is equipped with a heavy weapon system. It uses 12x40mm ammo."
+		if(TURRET_TYPE_EXPLOSIVE)
+			. += "It is equipped with an explosive weapon system. "
+		if(TURRET_TYPE_DROIDLASER)
+			. += "It is equipped with a droid weapon system. It uses 11x35mm ammo."
 
 /obj/vehicle/unmanned/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -118,15 +127,8 @@
 	if(user.incapacitated())
 		return FALSE
 
-	if(direction in GLOB.diagonals)
-		return FALSE
-
 	if(world.time < last_move_time + move_delay)
 		return
-
-	if(COOLDOWN_CHECK(src, next_sound_play))
-		COOLDOWN_START(src, next_sound_play, 20)
-		playsound(get_turf(src), 'sound/ambience/tank_driving.ogg', 50, TRUE)
 
 	return Move(get_step(src, direction))
 
@@ -155,17 +157,27 @@
 	return
 
 ///Try to reload the turret of our vehicule
-/obj/vehicle/unmanned/proc/reload_turret(obj/item/ammo_magazine/ammo, mob/user)
-	if(!ispath(ammo.type, initial(turret_path.magazine_type)))
+/obj/vehicle/unmanned/proc/reload_turret(obj/item/ammo_magazine/reload_ammo, mob/user)
+	if(!ispath(reload_ammo.type, initial(turret_path.magazine_type)))
 		to_chat(user, span_warning("This is not the right ammo!"))
 		return
-	user.visible_message(span_notice("[user] starts to reload [src] with [ammo]."), span_notice("You start to reload [src] with [ammo]."))
+	if(max_rounds == current_rounds)
+		to_chat(user, span_warning("The [src] ammo storage is already full!"))
+		return
+	user.visible_message(span_notice("[user] starts to reload [src] with [reload_ammo]."), span_notice("You start to reload [src] with [reload_ammo]."))
 	if(!do_after(user, 3 SECONDS, TRUE, src))
 		return
-	user.visible_message(span_notice("[user] reloads [src] with [ammo]."), span_notice("You reload [src] with [ammo]."))
-	current_rounds = min(current_rounds + ammo.current_rounds, max_rounds)
+	current_rounds = current_rounds + reload_ammo.current_rounds
+	if(current_rounds > max_rounds)
+		var/extra_rounds = current_rounds - max_rounds
+		reload_ammo.current_rounds = extra_rounds
+		current_rounds = max_rounds
+	user.visible_message(span_notice("[user] reloads [src] with [reload_ammo]."), span_notice("You reload [src] with [reload_ammo]. It now has [current_rounds] shots left out of a maximum of [max_rounds]."))
 	playsound(loc, 'sound/weapons/guns/interact/smartgun_unload.ogg', 25, 1)
-	qdel(ammo)
+	if(reload_ammo.current_rounds < 1)
+		qdel(reload_ammo)
+	update_icon()
+	hud_set_uav_ammo()
 
 /// Try to equip a turret on the vehicle
 /obj/vehicle/unmanned/proc/equip_turret(obj/item/I, mob/user)

@@ -94,6 +94,11 @@
 			X.balloon_alert(X, "Cannot in agility mode")
 		return FALSE
 
+	if(!(flags_to_check & XACT_USE_BURROWED) && X.burrowed)
+		if(!silent)
+			X.balloon_alert(X, "Cannot while burrowed")
+		return FALSE
+
 	if(!(flags_to_check & XACT_IGNORE_PLASMA) && X.plasma_stored < plasma_cost)
 		if(!silent)
 			X.balloon_alert(X, "Need [plasma_cost - X.plasma_stored] more plasma")

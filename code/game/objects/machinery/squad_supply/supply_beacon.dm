@@ -48,7 +48,7 @@
 	H.transferItemToLoc(src, H.loc)
 	beacon_cam = BC
 	message_admins("[ADMIN_TPMONTY(usr)] set up an orbital strike beacon.")
-	name = "transmitting orbital beacon"
+	name = "transmitting orbital beacon - [get_area(src)] - [H]"
 	activated = TRUE
 	anchored = TRUE
 	w_class = 10

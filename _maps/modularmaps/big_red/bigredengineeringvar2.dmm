@@ -667,7 +667,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "LF" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "LM" = (
 /obj/structure/reagent_dispensers/fueltank,

@@ -384,6 +384,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	accuracy_unwielded_mod = 0.1
 	scatter_mod = -1
 	size_mod = 1
+	variants_by_parent_type = list(/obj/item/weapon/gun/rifle/som = "ebarrel_big", /obj/item/weapon/gun/smg/som = "ebarrel_big")
 
 
 /obj/item/attachable/heavy_barrel
@@ -405,6 +406,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	recoil_mod = -2
 	scatter_unwielded_mod = -3
 	recoil_unwielded_mod = -2
+	variants_by_parent_type = list(/obj/item/weapon/gun/rifle/som = "comp_big", /obj/item/weapon/gun/smg/som = "comp_big", /obj/item/weapon/gun/shotgun/som = "comp_big")
+
 
 /obj/item/attachable/sniperbarrel
 	name = "sniper barrel"
@@ -489,27 +492,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	damage_mod = -0.15
 	gun_firemode_list_mod = list(GUN_FIREMODE_AUTOMATIC)
 
-/obj/item/attachable/t42barrel
-	name = "MG-42 barrel"
-	desc = "The standard barrel on the MG-42. CANNOT BE REMOVED."
-	slot = ATTACHMENT_SLOT_MUZZLE
-	icon_state = "t42barrel"
-	flags_attach_features = NONE
-
-/obj/item/attachable/t18barrel
-	name = "AR-18 barrel"
-	desc = "The standard barrel on the AR-18. CANNOT BE REMOVED."
-	slot = ATTACHMENT_SLOT_MUZZLE
-	icon_state = "t18barrel"
-	flags_attach_features = NONE
-
-/obj/item/attachable/t12barrel
-	name = "AR-12 barrel"
-	desc = "The standard barrel on the AR-12. CANNOT BE REMOVED."
-	slot = ATTACHMENT_SLOT_MUZZLE
-	icon_state = "t12barrel"
-	flags_attach_features = NONE
-
 /obj/item/attachable/sgbarrel
 	name = "SG-29 barrel"
 	icon_state = "sg29barrel"
@@ -527,6 +509,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	accuracy_mod = 0.15
 	accuracy_unwielded_mod = 0.1
 	aim_mode_delay_mod = -0.5
+	variants_by_parent_type = list(/obj/item/weapon/gun/rifle/som = "", /obj/item/weapon/gun/shotgun/som = "")
 
 /obj/item/attachable/m16sight
 	name = "M16 iron sights"
@@ -815,6 +798,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	zoom_slowdown = 0.3
 	zoom_tile_offset = 5
 	zoom_viewsize = 0
+	variants_by_parent_type = list(/obj/item/weapon/gun/rifle/som = "")
 
 /obj/item/attachable/scope/mini/tx11
 	name = "AR-11 mini rail scope"
@@ -969,31 +953,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_x = 41
 	pixel_shift_y = 10
 
-/obj/item/attachable/stock/t18stock
-	name = "\improper AR-18 stock"
-	desc = "A specialized stock for the AR-18."
-	icon_state = "t18stock"
-	pixel_shift_x = 32
-	pixel_shift_y = 13
-
 /obj/item/attachable/stock/tl127stock
 	name = "\improper SR-127 stock"
 	desc = "A irremovable SR-127 sniper rifle stock."
 	icon_state = "tl127stock"
-	pixel_shift_x = 32
-	pixel_shift_y = 13
-
-/obj/item/attachable/stock/t12stock
-	name = "\improper AR-12 stock"
-	desc = "A specialized stock for the AR-12."
-	icon_state = "t12stock"
-	pixel_shift_x = 32
-	pixel_shift_y = 13
-
-/obj/item/attachable/stock/t42stock
-	name = "\improper MG-42 stock"
-	desc = "A specialized stock for the MG-42."
-	icon_state = "t42stock"
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 
@@ -1471,10 +1434,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	if(source.Adjacent(object))
 		return
 	var/mob/living/user = master_gun.gun_user
-	var/active_hand = user.get_active_held_item()
-	var/inactive_hand = user.get_inactive_held_item()
 	if(user.stat != CONSCIOUS || user.lying_angle || LAZYACCESS(user.do_actions, src) || !user.dextrous || (!CHECK_BITFIELD(master_gun.flags_gun_features, GUN_ALLOW_SYNTHETIC) && !CONFIG_GET(flag/allow_synthetic_gun_use) && issynth(user)))
 		return
+	var/active_hand = user.get_active_held_item()
+	var/inactive_hand = user.get_inactive_held_item()
 	for(var/item_blacklisted in in_hand_items_blacklist)
 		if(!istype(active_hand, item_blacklisted) && !istype(inactive_hand, item_blacklisted))
 			continue
@@ -1504,9 +1467,17 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 ///Performs the unique action after firing and checks to see if the user is still able to fire.
 /obj/item/attachable/shoulder_mount/proc/after_fire(datum/source, atom/target, obj/item/weapon/gun/fired_gun)
 	SIGNAL_HANDLER
-	if(CHECK_BITFIELD(master_gun.flags_gun_features, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
+	if(CHECK_BITFIELD(master_gun.reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
 		INVOKE_ASYNC(master_gun, /obj/item/weapon/gun.proc/do_unique_action, master_gun.gun_user)
 	var/mob/living/user = master_gun.gun_user
+	var/active_hand = user.get_active_held_item()
+	var/inactive_hand = user.get_inactive_held_item()
+	for(var/item_blacklisted in in_hand_items_blacklist)
+		if(!istype(active_hand, item_blacklisted) && !istype(inactive_hand, item_blacklisted))
+			continue
+		to_chat(user, span_warning("[src] beeps. Guns or shields in your hands are interfering with its targetting. Stopping fire."))
+		master_gun.stop_fire()
+		return
 	if(user.stat == CONSCIOUS && !user.lying_angle && !LAZYACCESS(user.do_actions, src) && user.dextrous && (CHECK_BITFIELD(master_gun.flags_gun_features, GUN_ALLOW_SYNTHETIC) || CONFIG_GET(flag/allow_synthetic_gun_use) || !issynth(user)))
 		return
 	master_gun.stop_fire()
@@ -1561,9 +1532,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "spray flamer nozzle"
 	desc = "This specialized nozzle sprays the flames of an attached flamer in a much more broad way than the standard nozzle. It serves for wide area denial as opposed to offensive directional flaming."
 	icon_state = "flame_wide"
-	range_modifier = -3
+	range_modifier = 0
 	pixel_shift_y = 17
 	stream_type = FLAMER_STREAM_CONE
+	burn_time_mod = 0.8
 
 ///Funny red wide nozzle that can fill entire screens with flames. Admeme only.
 /obj/item/attachable/flamer_nozzle/wide/red

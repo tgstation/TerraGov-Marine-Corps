@@ -59,3 +59,7 @@ endmap
 map orion_outpost
 	maxplayers 40
 endmap
+
+map gelida_iv
+	minplayers 50
+endmap

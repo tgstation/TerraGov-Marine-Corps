@@ -383,7 +383,7 @@
 			L.apply_damage(rand(throwforce*0.75,throwforce*1.25), BURN, target_zone, armor_block, updating_health = TRUE) //Do more damage if launched from a proper launcher and active
 
 	// Flares instantly burn out nodes when thrown at them.
-	var/obj/effect/alien/weeds/node/N = locate() in loc
+	var/obj/alien/weeds/node/N = locate() in loc
 	if(N)
 		qdel(N)
 		turn_off()

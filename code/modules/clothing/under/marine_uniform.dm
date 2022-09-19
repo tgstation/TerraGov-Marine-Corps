@@ -133,6 +133,11 @@
 	icon_state = "marine_tanker"
 	flags_item_map_variant = (ITEM_ICE_VARIANT)
 
+/obj/item/clothing/under/marine/officer/mech
+	name = "mech pilot uniform"
+	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented uniform worn by mech pilots. Not as impressive as a titanium robot but good enough."
+	icon_state = "marine_mech_pilot"
+
 /obj/item/clothing/under/marine/officer/bridge
 	name = "staff officer uniform"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented staff officer uniform. Do the navy proud."
@@ -319,13 +324,15 @@
 	icon_state = "colonist"
 	has_sensor = 2
 
+/obj/item/clothing/under/colonist/webbing
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+
 /obj/item/clothing/under/CM_uniform
 	name = "colonial marshal uniform"
 	desc = "A blue shirt and tan trousers - the official uniform for a Colonial Marshal."
 	icon_state = "marshal"
 	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	has_sensor = 2
-
 
 /obj/item/clothing/under/liaison_suit
 	name = "liaison's tan suit"
@@ -376,7 +383,7 @@
 
 /obj/item/clothing/under/som
 	name = "\improper SoM uniform"
-	desc = "A heavily modified mining uniform based off the ones used by mining colonies."
+	desc = "The standard uniform of SOM military personnel. Its design shows a clear lineage from mining uniforms used in the old mining colonies."
 	icon_state = "som_uniform"
 	item_state = "som_uniform"
 	has_sensor = FALSE
@@ -387,51 +394,30 @@
 
 /obj/item/clothing/under/som/medic
 	name = "\improper SoM medical uniform"
-	desc = "A heavily modified mining uniform based off the ones used by mining colonies. Has medical markings."
+	desc = "The standard uniform of SOM military personnel. Its design shows a clear lineage from mining uniforms used in the old mining colonies. This one has medical markings."
 	icon_state = "som_uniform_medic"
 	item_state = "som_uniform_medic"
 
 /obj/item/clothing/under/som/medic/vest
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)
 
-//to be replaced
-/obj/item/clothing/under/som/medic/white_vest
-	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest/som)
-
 /obj/item/clothing/under/som/veteran
 	name = "\improper SoM veteran uniform"
-	desc = "A heavily modified mining uniform based off the ones used by mining colonies. Seems to have more care and wear on it."
+	desc = "The standard uniform of SOM military personnel. Its design shows a clear lineage from mining uniforms used in the old mining colonies. This one has markings indicating specialist status."
 	icon_state = "som_uniform_veteran"
 	item_state = "som_uniform_veteran"
 
 /obj/item/clothing/under/som/veteran/webbing
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/brown_vest)
 
-//below to be replaced
-/obj/item/clothing/under/som/veteran/highpower
-	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster/highpower)
-
-/obj/item/clothing/under/som/veteran/webbing
-	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest/som)
-
-/obj/item/clothing/under/som/veteran/webbing_vet
-	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest/som_vet)
-
 /obj/item/clothing/under/som/leader
 	name = "\improper SoM leader uniform"
-	desc = "A heavily modified mining uniform based off the ones used by mining colonies. Seems to have more care and wear on it."
+	desc = "The standard uniform of SOM military personnel. Its design shows a clear lineage from mining uniforms used in the old mining colonies. This one has leadership markings."
 	icon_state = "som_uniform_leader"
 	item_state = "som_uniform_leader"
 
 /obj/item/clothing/under/som/leader/webbing
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/brown_vest)
-
-//to be replaced
-/obj/item/clothing/under/som/leader/highpower
-	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster/highpower)
-
-/obj/item/clothing/under/som/leader/webbing
-	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest/som)
 
 /obj/item/clothing/under/sectoid
 	name = "psionic field"

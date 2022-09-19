@@ -23,10 +23,6 @@
 	mouse_opacity = initial(mouse_opacity)
 	..()
 
-
-
-
-
 /obj/item/storage/belt/champion
 	name = "championship belt"
 	desc = "Proves to the world that you are the strongest!"
@@ -37,14 +33,8 @@
 		/obj/item/clothing/mask/luchador,
 	)
 
-
-
-
-
-
 /*============================//MARINE BELTS\\==================================
 =======================================================================*/
-
 
 /obj/item/storage/belt/utility
 	name = "\improper M276 pattern toolbelt rig" //Carn: utility belt is nicer, but it bamboozles the text parsing.
@@ -104,6 +94,7 @@
 		/obj/item/storage/syringe_case,
 		/obj/item/reagent_containers/hypospray/autoinjector,
 		/obj/item/stack/medical,
+		/obj/item/tool/surgery/solderingtool,
 	)
 
 /obj/item/storage/belt/lifesaver/full/Initialize()  //The belt, with all it's magic inside!
@@ -133,11 +124,11 @@
 /obj/item/storage/belt/lifesaver/full/upp
 	name ="\improper Type 41 pattern lifesaver bag"
 	desc = "The Type 41 load rig is the standard-issue LBE of the UPP military. This configuration mounts a satchel filled with a range of injectors and light medical supplies, common among medics and partisans."
-	icon_state = "medicalbag_u"
-	item_state = "medicbag_u"
+	icon_state = "medicbag_upp"
+	item_state = "medicbag_upp"
 
 
-/obj/item/storage/belt/lifesaver/som/
+/obj/item/storage/belt/lifesaver/som
 	name = "\improper S17 lifesaver bag"
 	desc = "A belt with heavy origins from the belt used by paramedics and doctors in the old mining colonies."
 	icon_state = "medicbag_som"
@@ -482,6 +473,10 @@
 
 	return ..()
 
+/obj/item/storage/belt/shotgun/som
+	desc = "An ammunition belt designed to hold shotgun shells or individual bullets. Made with traditional SOM leather."
+	icon_state = "shotgunbelt_som"
+
 /obj/item/storage/belt/shotgun/martini
 	name = "martini henry ammo belt"
 	desc = "A belt good enough for holding all your .577/400 ball rounds."
@@ -565,7 +560,7 @@
 /obj/item/storage/belt/grenade
 	name="\improper M276 pattern M40 HEDP rig"
 	desc="The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is designed to carry bulk quantities of M40 HEDP Grenades."
-	icon_state="grenadebelt" // temp
+	icon_state="grenadebelt"
 	item_state="grenadebelt"
 	w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 9
@@ -573,6 +568,10 @@
 	max_storage_space = 27
 	can_hold = list(/obj/item/explosive/grenade)
 
+/obj/item/storage/belt/grenade/som
+	name="\improper S16 pattern grenade rig"
+	desc="A simple harness system available in many configurations. This version is designed to carry bulk quantities of grenades."
+	icon_state="grenadebelt_som"
 
 /obj/item/storage/belt/grenade/standard/Initialize()
 	. = ..()
@@ -792,7 +791,7 @@
 
 /obj/item/storage/belt/gun/pistol/m4a3/som
 	name = "\improper S19 holster rig"
-	desc = "A belt with origins to old colony security holster rigs."
+	desc = "A belt with origins dating back to old colony security holster rigs."
 	icon_state = "som_belt_pistol"
 	item_state = "som_belt_pistol"
 
@@ -958,18 +957,6 @@
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/shotgun/double/marine(src)
 	new /obj/item/ammo_magazine/shotgun/buckshot(src)
-	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_gun)
-
-
-/obj/item/storage/belt/gun/pistol/m4a3/officer/Initialize()
-	. = ..()
-	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/rt3(src)
-	new /obj/item/ammo_magazine/pistol/hp(src)
-	new /obj/item/ammo_magazine/pistol/hp(src)
-	new /obj/item/ammo_magazine/pistol/ap(src)
-	new /obj/item/ammo_magazine/pistol/ap(src)
-	new /obj/item/ammo_magazine/pistol/ap(src)
-	new /obj/item/ammo_magazine/pistol/ap(src)
 	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_gun)
 
 /obj/item/storage/belt/gun/pistol/smart_pistol

@@ -47,7 +47,7 @@
 	pixel_y = 1;
 	icon_state = "Med2"
 	},
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "bU" = (
 /obj/structure/showcase/six,
@@ -241,7 +241,7 @@
 	pixel_y = 1;
 	icon_state = "Hvy2"
 	},
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "ue" = (
 /obj/structure/platform{
@@ -286,7 +286,7 @@
 	pixel_y = 1;
 	icon_state = "Hvy3"
 	},
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "vU" = (
 /obj/effect/decal/sandytile,
@@ -336,7 +336,7 @@
 	pixel_y = 1;
 	icon_state = "Light1"
 	},
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "zx" = (
 /turf/closed/gm/dense,
@@ -382,7 +382,7 @@
 /obj/structure/jungle/vines{
 	pixel_y = 1
 	},
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "BP" = (
 /obj/structure/platform{
@@ -454,7 +454,7 @@
 	pixel_y = 1;
 	icon_state = "Hvy1"
 	},
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "Gj" = (
 /obj/structure/stairs/seamless{
@@ -487,7 +487,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/river3)
 "HW" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "Is" = (
 /obj/structure/platform,
@@ -529,7 +529,7 @@
 /obj/structure/jungle/vines{
 	pixel_y = 1
 	},
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "JI" = (
 /obj/effect/ai_node,
@@ -742,7 +742,7 @@
 /area/lv624/ground/sand6)
 "WD" = (
 /obj/structure/jungle/vines,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "WO" = (
 /obj/effect/decal/sandytile,
@@ -772,7 +772,7 @@
 	pixel_y = 1;
 	icon_state = "Hvy2"
 	},
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "Yg" = (
 /obj/effect/ai_node,

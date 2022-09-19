@@ -17,8 +17,9 @@
 
 /datum/surgery_step/fix_vein/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
 	if(affected.surgery_open_stage >= 2)
-		for(var/datum/wound/internal_bleeding/W in affected.wounds)
-			return TRUE
+		if(locate(/datum/wound/internal_bleeding) in affected.wounds)
+			return SURGERY_CAN_USE
+	return SURGERY_CANNOT_USE
 
 /datum/surgery_step/fix_vein/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_notice("[user] starts patching the damaged vein in [target]'s [affected.display_name] with \the [tool].") , \

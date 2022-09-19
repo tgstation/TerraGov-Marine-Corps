@@ -38,6 +38,9 @@
 	wound_overlay = new(null, src)
 	vis_contents += wound_overlay
 
+	fire_overlay = mob_size == MOB_SIZE_BIG ? new(null, src) : new /atom/movable/vis_obj/xeno_wounds/fire_overlay/small(null, src)
+	vis_contents += fire_overlay
+
 	set_initial_hivenumber()
 
 	generate_nicknumber()
@@ -235,7 +238,6 @@
 /mob/living/carbon/xenomorph/Destroy()
 	if(mind) mind.name = name //Grabs the name when the xeno is getting deleted, to reference through hive status later.
 	if(is_zoomed) zoom_out()
-
 	GLOB.alive_xeno_list -= src
 	GLOB.xeno_mob_list -= src
 	GLOB.dead_xeno_list -= src
@@ -245,7 +247,9 @@
 	hive_placeholder.update_tier_limits() //Update our tier limits.
 
 	vis_contents -= wound_overlay
+	vis_contents -= fire_overlay
 	QDEL_NULL(wound_overlay)
+	QDEL_NULL(fire_overlay)
 	return ..()
 
 
@@ -396,7 +400,7 @@
 /// Handles logic for weeds nearby the xeno getting removed
 /mob/living/carbon/xenomorph/proc/handle_weeds_adjacent_removed(datum/source)
 	SIGNAL_HANDLER
-	var/obj/effect/alien/weeds/found_weed = locate(/obj/effect/alien/weeds) in loc
+	var/obj/alien/weeds/found_weed = locate(/obj/alien/weeds) in loc
 	if(!QDESTROYING(found_weed))
 		return
 	loc_weeds_type = null
@@ -404,5 +408,40 @@
 /// Handles logic for the xeno moving to a new weeds tile
 /mob/living/carbon/xenomorph/proc/handle_weeds_on_movement(datum/source)
 	SIGNAL_HANDLER
-	var/obj/effect/alien/weeds/found_weed = locate(/obj/effect/alien/weeds) in loc
+	var/obj/alien/weeds/found_weed = locate(/obj/alien/weeds) in loc
 	loc_weeds_type = found_weed?.type
+
+/// Burrow code for xenomorphs
+/mob/living/carbon/xenomorph/proc/xeno_burrow()
+	SIGNAL_HANDLER
+	if(!burrowed)
+		to_chat(src, span_xenowarning("We start burrowing into the ground"))
+		INVOKE_ASYNC(src, .proc/xeno_burrow_doafter, src)
+		return
+
+	else if(burrowed)
+		UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
+		fire_resist_modifier += 20
+		icon_state = initial(icon_state)
+		mouse_opacity = initial(mouse_opacity)
+		density = TRUE
+		throwpass = FALSE
+		burrowed = FALSE
+		canmove = TRUE
+
+/mob/living/carbon/xenomorph/proc/xeno_burrow_doafter()
+	if(!do_after(src, 3 SECONDS, TRUE, null, BUSY_ICON_DANGER))
+		return
+	to_chat(src, span_xenowarning("We have burrowed ourselves, we are hidden from the enemy"))
+	// This part here actually burrows the xeno
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	density = FALSE
+	throwpass = TRUE
+	burrowed = TRUE
+	icon_state = "[xeno_caste.caste_name] Burrowed"
+	wound_overlay.icon_state = "none"
+	// Here we prevent the xeno from moving or attacking or using abilities untill they unburrow by clicking the ability
+	fire_resist_modifier -= 20
+	canmove = FALSE
+	// We register for movement so that we unburrow if bombed
+	RegisterSignal(src, COMSIG_MOVABLE_MOVED, .proc/xeno_burrow)
