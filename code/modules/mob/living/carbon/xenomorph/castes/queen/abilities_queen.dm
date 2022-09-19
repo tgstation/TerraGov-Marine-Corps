@@ -216,7 +216,7 @@
 
 /datum/action/xeno_action/activable/queen_slap
 	name = "Slap"
-	action_icon_state = "toggle_queen_zoom"
+	action_icon_state = "queen_slap"
 	mechanics_text = "Slap a nearby human, damaging their head,deafening them and giving them confusion"
 	plasma_cost = 50
 	cooldown_timer = 20 SECONDS
@@ -226,31 +226,49 @@
 	to_chat(owner, span_warning("We feel our palm recover from the impact. We are ready to slap with all our might once again"))
 	return ..()
 
+/datum/action/xeno_action/activable/queen_slap/can_use_ability(atom/A, silent, override_flags)
+	if(!..())
+		return FALSE
+	if(get_dist(owner, A) > 1)
+		return FALSE
+	if(!ishuman(A) || !isxeno(A))
+		owner.balloon_alert(owner, "You can only slap humans or xenomorphs!")
+		return FALSE
+
 /datum/action/xeno_action/activable/queen_slap/use_ability(atom/A)
-	if(!ishuman(A))
-		owner.balloon_alert(owner, "You can only slap humans!")
-		return
-	var/mob/living/carbon/human/the_slapped = A
-	if(A.stat == DEAD)
-		return
+	if(ishuman(A))
+		var/mob/living/carbon/human/the_slapped = A
+		if(the_slapped.stat == DEAD)
+			return
+		owner.visible_message(span_danger("[owner] slaps [A] with all their might"))
+		to_chat(the_slapped, span_danger("[owner] slaps you!"))
+		the_slapped.apply_damage(30, BRUTE, BODY_ZONE_HEAD, the_slapped.get_soft_armor(MELEE, BODY_ZONE_HEAD))
+		the_slapped.apply_damage(60, STAMINA)
+		the_slapped.adjust_ear_damage(10)
+		the_slapped.adjust_stagger(4)
+		the_slapped.adjustDrowsyness(3)
+	if(isxeno(A))
+		var/mob/living/carbon/xenomorph/the_naughty = A
+		var/mob/living/carbon/xenomorph/the_queen = owner
+		if(A.get_xeno_hivenumber() == the_queen.get_xeno_hivenumber())
+			// let her slap her own incase she is being body-blocked
+			to_chat(the_naughty, span_notice("[the_queen] slaps us,making us permit the passing of other sisters!"))
+			the_naughty.a_intent_change(INTENT_HELP)
+		else
+			to_chat(the_naughty, span_danger("[the_queen] from the other hive slaps us, greatly weakening us!"))
+			the_naughty.apply_damage(80, BRUTE)
+	playsound(owner.loc, 'sound/weapons/queen_slap.ogg', 75, 0)
 	succeed_activate()
 	add_cooldown()
 
-	var/mob/living/carbon/human/the_slapped = A
-	playsound(owner.loc, 'sound/voice/alien_queen_screech.ogg', 75, 0)
-	owner.visible_message("[owner] slaps [A] with all their might")
-	to_chat(the_slapped, "[owner] slaps you!")
-	the_slapped.apply_damage(30, BRUTE, BODY_ZONE_HEAD, get_soft_armor(MELEE, BODY_ZONE_HEAD))
-	the_slapped.apply_damage(60, STAMINA)
-	the_slapped.adjust_ear_damage(10 SECONDS)
 
 /datum/action/xeno_action/activable/screech/ai_should_start_consider()
 	return TRUE
 
 /datum/action/xeno_action/activable/screech/ai_should_use(atom/target)
-	if(!iscarbon(target))
+	if(!ishuman(target))
 		return FALSE
-	if(get_dist(target, owner) > 4)
+	if(get_dist(target, owner) > 1)
 		return FALSE
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return FALSE
