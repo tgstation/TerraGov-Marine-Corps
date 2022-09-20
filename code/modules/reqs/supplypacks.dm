@@ -524,6 +524,11 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/xray)
 	cost = 40
 
+/datum/supply_packs/weapons/laser_powerpack
+	name = "TE-PK10 powerpack"
+	contains = list(/obj/item/cell/lasgun/volkite/powerpack/energy)
+	cost = 10
+
 /datum/supply_packs/weapons/rocketsledge
 	name = "Rocket Sledge"
 	contains = list(/obj/item/weapon/twohanded/rocketsledge)

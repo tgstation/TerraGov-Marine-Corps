@@ -160,3 +160,11 @@
 		D.update_icon()
 	else
 		to_chat(user, span_warning("This cell is already at maximum charge!"))
+
+/obj/item/cell/lasgun/volkite/powerpack/energy
+	name = "\improper TE-PK10 powerpack"
+	desc = "A heavy reinforced backpack with an array of ultradensity energy cells, linked to a miniature radioisotope thermoelectric generator for continuous power generation. Used to power Energy Weapons. Click drag cells to the powerpack to recharge."
+	icon = 'icons/obj/items/storage/storage.dmi'
+	icon_state = "laser_powerpack"
+	charge_overlay = "laser_back"
+	maxcharge = 1500

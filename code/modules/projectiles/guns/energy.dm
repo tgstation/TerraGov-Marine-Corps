@@ -347,7 +347,7 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
 	default_ammo_type = /obj/item/cell/lasgun/lasrifle
-	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle)
+	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle,  /obj/item/cell/lasgun/volkite/powerpack/energy)
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_SHOWS_AMMO_REMAINING
 	muzzle_flash_color = COLOR_TESLA_BLUE
 	ammo_level_icon = "tesla"
@@ -401,6 +401,7 @@
 	max_shots = 50 //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
 	ammo_diff = null
+	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle,  /obj/item/cell/lasgun/volkite/powerpack/energy)
 	rounds_per_shot = 12
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
@@ -477,6 +478,7 @@
 	max_shots = 30 //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/pistol
 	ammo_diff = null
+	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle,  /obj/item/cell/lasgun/volkite/powerpack/energy)
 	rounds_per_shot = 20
 	gun_firemode = GUN_FIREMODE_SEMIAUTO
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
@@ -553,6 +555,7 @@
 	load_method = CELL //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
 	ammo_diff = null
+	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle,  /obj/item/cell/lasgun/volkite/powerpack/energy)
 	rounds_per_shot = 15
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
@@ -633,6 +636,7 @@
 	max_shots = 12 //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/sniper
 	ammo_diff = null
+	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle,  /obj/item/cell/lasgun/volkite/powerpack/energy)
 	rounds_per_shot = 50
 	damage_falloff_mult = 0
 	gun_firemode = GUN_FIREMODE_SEMIAUTO
@@ -699,10 +703,11 @@
 	icon_state = "tem"
 	item_state = "tem"
 	w_class = WEIGHT_CLASS_BULKY
-	max_shots = 150 //codex stuff
+	max_shots = 100 //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser
 	ammo_diff = null
-	rounds_per_shot = 4
+	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle,  /obj/item/cell/lasgun/volkite/powerpack/energy)
+	rounds_per_shot = 6
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	ammo_level_icon = "te"
@@ -739,7 +744,7 @@
 	)
 
 /datum/lasrifle/base/energy_mg_mode/standard
-	rounds_per_shot = 4
+	rounds_per_shot = 6
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser
 	fire_delay = 0.2 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Standard.ogg'
@@ -750,7 +755,7 @@
 /datum/lasrifle/base/energy_mg_mode/standard/efficiency
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser/efficiency
 	fire_delay = 0.15 SECONDS
-	rounds_per_shot = 3
+	rounds_per_shot = 5
 	message_to_user = "You set the machine laser's charge mode to efficiency mode."
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/xray
