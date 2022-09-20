@@ -2829,10 +2829,13 @@ datum/ammo/bullet/revolver/tp44
 	var/mob/living/carbon/human/human_victim = victim
 	if(proj.def_zone == BODY_ZONE_HEAD)
 		human_victim.blind_eyes(hit_eye_blind)
+		to_chat(human_victim, span_highdanger("The web blinds you!"))
 	else if(proj.def_zone in weaken_list)
 		human_victim.apply_effect(hit_weaken, WEAKEN)
+		to_chat(human_victim, span_highdanger("The web knocks you down!"))
 	else if(proj.def_zone in snare_list)
 		human_victim.Immobilize(hit_immobilize, TRUE)
+		to_chat(human_victim, span_highdanger("The web snares you!"))
 
 /datum/ammo/xeno/leash_ball
 	icon_state = "widow_snareball"
