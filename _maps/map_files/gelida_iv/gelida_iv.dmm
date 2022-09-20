@@ -4012,7 +4012,7 @@
 /obj/structure/platform_decoration{
 	dir = 4
 	},
-/turf/open/floor/plating/ground/fakesnow/alt,
+/turf/closed/mineral/smooth/snowrock,
 /area/gelida/outdoors/colony_streets/south_west_street)
 "cBH" = (
 /obj/effect/turf_overlay/icerock,
@@ -4984,7 +4984,7 @@
 /obj/structure/platform_decoration{
 	dir = 10
 	},
-/turf/open/floor/plating/ground/snow/layer0,
+/turf/closed/mineral/smooth/snowrock,
 /area/gelida/outdoors/colony_streets/south_west_street)
 "ddH" = (
 /obj/effect/ai_node,
@@ -10596,7 +10596,7 @@
 /obj/structure/platform_decoration{
 	dir = 5
 	},
-/turf/open/floor/plating/ground/fakesnow,
+/turf/closed/mineral/smooth/snowrock,
 /area/gelida/outdoors/colony_streets/south_west_street)
 "gHe" = (
 /obj/machinery/button/door/open_only/landing_zone/lz2,
@@ -13841,7 +13841,7 @@
 	dir = 4
 	},
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/open/floor/plating/ground/snow/layer0,
+/turf/closed/mineral/smooth/snowrock,
 /area/gelida/outdoors/colony_streets/south_west_street)
 "iHW" = (
 /obj/structure/stairs/cornerdark/seamless{
@@ -26532,6 +26532,10 @@
 	},
 /turf/open/floor/carpet,
 /area/gelida/indoors/a_block/executive)
+"qPl" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/turf/closed/mineral/smooth/snowrock,
+/area/gelida/outdoors/colony_streets/south_west_street)
 "qPo" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -31498,9 +31502,9 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/casino)
 "tTV" = (
-/obj/structure/window/framed/colony/reinforced/hull,
-/turf/open/floor/plating,
-/area/gelida/landing_zone_1)
+/obj/structure/cable,
+/turf/closed/mineral/smooth/snowrock,
+/area/gelida/outdoors/colony_streets/south_west_street)
 "tTZ" = (
 /obj/structure/table/mainship,
 /obj/item/tool/pen/blue{
@@ -31640,6 +31644,9 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/gelida/indoors/b_block/bridge)
+"tYJ" = (
+/turf/closed/mineral/smooth/snowrock,
+/area/gelida/outdoors/colony_streets/south_west_street)
 "tZa" = (
 /obj/effect/ai_node,
 /turf/open/floor/prison,
@@ -35002,7 +35009,7 @@
 	dir = 1
 	},
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/open/floor/plating/ground/snow/layer0,
+/turf/closed/mineral/smooth/snowrock,
 /area/gelida/outdoors/colony_streets/south_west_street)
 "wjs" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -35984,7 +35991,7 @@
 	dir = 8
 	},
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/open/floor/plating/ground/snow/layer0,
+/turf/closed/mineral/smooth/snowrock,
 /area/gelida/outdoors/colony_streets/south_west_street)
 "wQL" = (
 /turf/open/floor/prison/cellstripe{
@@ -47843,7 +47850,7 @@ wTN
 mEP
 lIB
 nSm
-wTN
+ngP
 wTN
 ndb
 ndb
@@ -48062,10 +48069,10 @@ gEI
 skx
 ddD
 wTN
-tTV
-tTV
-tTV
-wTN
+fuw
+fuw
+fuw
+ngP
 gGM
 cBE
 ndb
@@ -48289,7 +48296,7 @@ wQK
 wQK
 wQK
 iHP
-oHe
+qPl
 gEI
 gEI
 gEI
@@ -48504,13 +48511,13 @@ vYQ
 jqs
 vYQ
 vYQ
-vYQ
-tqi
-tqi
+tTV
+tYJ
+tYJ
 mMH
 tqi
-tqi
-tqi
+tYJ
+tYJ
 ndb
 ndb
 ndb
@@ -48732,7 +48739,7 @@ tqi
 tqi
 tqi
 tqi
-tqi
+tYJ
 ndb
 ndb
 ndb
