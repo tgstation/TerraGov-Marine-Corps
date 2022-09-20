@@ -204,3 +204,14 @@
   - admin: adds Gorger to the admin player panel tab
   lbnesquik:
   - rscadd: Added a device which allows the AI to remotely target artillery pieces.
+2022-09-20:
+  BraveMole:
+  - bugfix: Fix ai not stopping when controlled by a player
+  - bugfix: Fix letter overlay on medical items bug out in storage slots
+  Lumipharon:
+  - bugfix: Cluster and smoke cluster micronades can no longer hit things past solid
+      objects
+  MiniMeatwad:
+  - admin: Set-Xeno-Buffs verb percentage logging now accurate.
+  Naaanii:
+  - admin: adds Combat Robot to admin player panel

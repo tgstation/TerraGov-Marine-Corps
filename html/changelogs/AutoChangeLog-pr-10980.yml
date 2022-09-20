@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes: 
-  - bugfix: "Cluster and smoke cluster micronades can no longer hit things past solid objects"
