@@ -91,13 +91,7 @@
 
 /obj/effect/attach_point/weapon/minidropship
 	ship_tag = SHUTTLE_TADPOLE
-	icon_state = "equip_base"
-
-/obj/effect/attach_point/weapon/minidropship/pointing_east
-	dir = 4
-
-/obj/effect/attach_point/weapon/minidropship/pointing_west
-	dir = 8
+	pixel_y = 32
 
 /obj/effect/attach_point/crew_weapon
 	name = "rear attach point"
