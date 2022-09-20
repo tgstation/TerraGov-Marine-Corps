@@ -387,7 +387,7 @@
 	corpsesuit = /obj/item/clothing/suit/modular/som
 	corpseback = /obj/item/storage/backpack/satchel/som
 	corpsemask = /obj/item/clothing/mask/gas/tactical/coif
-	corpsehelmet = /obj/item/clothing/head/modular/som/standard
+	corpsehelmet = /obj/item/clothing/head/modular/som
 	corpsegloves = /obj/item/clothing/gloves/marine/som
 	corpseshoes = /obj/item/clothing/shoes/marine/som
 	corpsebelt = /obj/item/storage/belt/marine/som
@@ -399,7 +399,7 @@
 	corpsesuit = /obj/item/clothing/suit/modular/som
 	corpseback = /obj/item/storage/backpack/satchel/som
 	corpsemask = /obj/item/clothing/mask/gas/tactical/coif
-	corpsehelmet = /obj/item/clothing/head/modular/som/standard
+	corpsehelmet = /obj/item/clothing/head/modular/som
 	corpsegloves = /obj/item/clothing/gloves/marine/som
 	corpseshoes = /obj/item/clothing/shoes/marine/som
 	corpsebelt = /obj/item/storage/belt/lifesaver/som
