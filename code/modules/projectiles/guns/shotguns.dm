@@ -694,7 +694,7 @@
 
 /obj/item/weapon/gun/shotgun/som
 	name = "\improper V-51 combat shotgun"
-	desc = "The V-51 is the main shotgun utilised by the Sons of Mars. Slower firing than some other semi automatic shotguns, but packs more of a kick."
+	desc = "The V-51 is the main shotgun utilised by the Sons of Mars. Slower firing than some other semi automatic shotguns, but packs more of a kick with the availability of a burst fire mode."
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon_state = "v51"
 	icon = 'icons/Marine/gun64.dmi'
@@ -714,6 +714,10 @@
 	)
 	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 18,"rail_x" = 26, "rail_y" = 22, "under_x" = 14, "under_y" = 16, "stock_x" = 14, "stock_y" = 16)
 
+	burst_amount = 2
+	burst_delay = 0.8 SECONDS
+	extra_delay = 2.1 SECONDS
+	burst_scatter_mult = 2 // 2x4=8
 	fire_delay = 1.8 SECONDS
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.6
