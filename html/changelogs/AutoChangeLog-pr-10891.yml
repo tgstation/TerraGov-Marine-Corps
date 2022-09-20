@@ -1,0 +1,5 @@
+author: "tyeagg"
+delete-after: True
+changes: 
+  - rscadd: "tadpole remap"
+  - balance: "you can now fire over tadpole window and easier to remove"
