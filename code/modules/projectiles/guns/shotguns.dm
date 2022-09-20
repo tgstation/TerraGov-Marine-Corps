@@ -699,7 +699,10 @@
 	icon_state = "v51"
 	icon = 'icons/Marine/gun64.dmi'
 	item_state = "v51"
-	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
+	fire_sound = "shotgun_som"
+	dry_fire_sound = 'sound/weapons/guns/fire/v51_empty.ogg'
+	reload_sound = 'sound/weapons/guns/interact/v51_load.ogg'
+	hand_reload_sound = 'sound/weapons/guns/interact/v51_load.ogg'
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	max_chamber_items = 9
