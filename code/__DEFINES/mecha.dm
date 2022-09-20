@@ -67,6 +67,8 @@
 #define EXOSUIT_MODULE_PHAZON (1<<5)
 /// Module is compatible with Savannah Exosuit models
 #define EXOSUIT_MODULE_SAVANNAH (1<<6)
+/// Module is compatible with Greyscale Exosuit models
+#define EXOSUIT_MODULE_GREYSCALE (1<<7)
 
 /// Module is compatible with "Working" Exosuit models - Ripley and Clarke
 #define EXOSUIT_MODULE_WORKING EXOSUIT_MODULE_RIPLEY
@@ -74,3 +76,21 @@
 #define EXOSUIT_MODULE_COMBAT EXOSUIT_MODULE_GYGAX | EXOSUIT_MODULE_HONK | EXOSUIT_MODULE_DURAND | EXOSUIT_MODULE_PHAZON | EXOSUIT_MODULE_SAVANNAH
 /// Module is compatible with "Medical" Exosuit modelsm - Odysseus
 #define EXOSUIT_MODULE_MEDICAL EXOSUIT_MODULE_ODYSSEUS
+
+/**
+ * greyscale mech shenanigans
+ */
+#define MECH_VANGUARD "Vanguard"
+#define MECH_RECON "Recon"
+#define MECH_ASSAULT "Assault"
+
+#define MECH_GREY_R_ARM "R_ARM"
+#define MECH_GREY_L_ARM "L_ARM"
+#define MECH_GREY_LEGS "LEG"
+#define MECH_GREY_TORSO "CHEST"
+#define MECH_GREY_HEAD "HEAD"
+
+//Defaults for mech palettes and the palette shown in the UI
+#define MECH_GREY_PRIMARY_DEFAULT ARMOR_PALETTE_DRAB
+#define MECH_GREY_SECONDARY_DEFAULT ARMOR_PALETTE_BLACK
+#define MECH_GREY_VISOR_DEFAULT VISOR_PALETTE_GOLD
