@@ -33,7 +33,7 @@
 
 
 /datum/proc/stack_trace(msg)
-	CRASH(msg)
+d	CRASH(msg)
 
 
 GLOBAL_REAL_VAR(list/stack_trace_storage)
