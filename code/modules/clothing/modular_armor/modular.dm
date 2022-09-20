@@ -846,8 +846,7 @@
 		/obj/item/armor_module/module/valkyrie_autodoc,
 		/obj/item/armor_module/module/fire_proof/som,
 		/obj/item/armor_module/module/tyr_extra_armor/som,
-		/obj/item/armor_module/module/mimir_environment_protection,
-		/obj/item/armor_module/module/mimir_environment_protection/mark1,
+		/obj/item/armor_module/module/mimir_environment_protection/som,
 		/obj/item/armor_module/module/hlin_explosive_armor,
 		/obj/item/armor_module/module/ballistic_armor,
 		/obj/item/armor_module/module/chemsystem,
@@ -902,6 +901,9 @@
 /obj/item/clothing/suit/modular/som/heavy/lorica
 	starting_attachments = list(/obj/item/armor_module/module/tyr_extra_armor/som)
 
+/obj/item/clothing/suit/modular/som/heavy/mithridatius
+	starting_attachments = list(/obj/item/armor_module/module/mimir_environment_protection/som)
+
 /obj/item/clothing/suit/modular/som/heavy/leader
 	name = "\improper SOM Gorgon pattern assault armor"
 	desc = "A bulky suit of heavy combat armor, the M-35 'Gorgon' armour provides the user with superior protection without severely impacting mobility. Typically seen on SOM leaders or their most elite combat units due to the significant construction and maintenance requirements. You'll need serious firepower to punch through this. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
@@ -939,8 +941,7 @@
 	flags_armor_protection = HEAD|FACE|EYES
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head/som,
-		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
-		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/som,
 		/obj/item/armor_module/module/welding,
 		/obj/item/armor_module/module/welding/superior,
 		/obj/item/armor_module/module/binoculars,
@@ -963,6 +964,9 @@
 
 /obj/item/clothing/head/modular/som/welder
 	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/welding)
+
+/obj/item/clothing/head/modular/som/mithridatius
+	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/som)
 
 /obj/item/clothing/head/modular/som/veteran
 	name = "\improper SOM veteran helmet"

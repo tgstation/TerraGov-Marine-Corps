@@ -171,6 +171,15 @@
 	soft_armor = list("bio" = 15, "rad" = 10, "acid" = 15)
 	slowdown = 0.2
 
+//SOM version
+/obj/item/armor_module/module/mimir_environment_protection/som
+	name = "\improper Mithridatius Hostile Environment System"
+	desc = "Designed for mounting on modular SOM armor. This module appears to be designed to protect the user from the effects of radiological attacks, although also provides improved resistance against other environmental threats such as acid and gas. Pairing this with a Mithridatius helmet module and mask will make the user impervious to gas clouds. Will impact mobility."
+	icon_state = "mithridatius"
+	item_state = "mithridatius_a"
+	soft_armor = list("bio" = 25, "rad" = 50, "acid" = 20)
+	variants_by_parent_type = list()
+
 /obj/item/armor_module/module/mimir_environment_protection/mimir_helmet
 	name = "Mark 2 Mimir Environmental Helmet System"
 	desc = "Designed for mounting on a modular helmet. This newer model provides great resistance to acid, biological, and even radiological attacks. Pairing this with a Mimir suit module and mask will make the user impervious to xeno gas clouds."
@@ -185,6 +194,15 @@
 	name = "Mark 1 Mimir Environmental Helmet System"
 	desc = "Designed for mounting on a modular helmet. This older model provides minor resistance to acid and biological attacks. Pairing this with a Mimir suit module and mask will make the user impervious to xeno gas clouds."
 	soft_armor = list("bio" = 15, "acid" = 15)
+
+//SOM version
+/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/som
+	name = "Mithridatius Helmet System"
+	desc = "Designed for mounting on a modular SOM helmet. This module appears to be designed to protect the user from the effects of radiological attacks, although also provides improved resistance against other environmental threats such as acid and gas. Pairing this with a Mithridatius suit module and mask will make the user impervious to gas clouds."
+	icon_state = "mithridatius_head"
+	item_state = "mithridatius_head_a"
+	soft_armor = list("bio" = 25, "rad" = 50, "acid" = 20)
+	variants_by_parent_type = list()
 
 //Explosive defense armor
 /obj/item/armor_module/module/hlin_explosive_armor

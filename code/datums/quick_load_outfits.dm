@@ -2017,9 +2017,11 @@
 
 /datum/outfit/quick/som/veteran/rocket_man
 	name = "V-71 rocket Veteran"
-	desc = "War crimes have never been so easy. Equipped with a V-71 RPG and both incendiary and rad warheads, as well as a V-21 submachine gun, heavy armor, and rad grenades. Designed to inspire fear in the enemy and cripple them with deadly incendiary and radiological effects, providing excellent anti infantry support."
+	desc = "War crimes have never been so easy. Equipped with a V-71 RPG and both incendiary and rad warheads, as well as a V-21 submachine gun, heavy armor with a 'Mithridatius' environmental protection system, and rad grenades. Designed to inspire fear in the enemy and cripple them with deadly incendiary and radiological effects, providing excellent anti infantry support."
 	quantity = 2
 
+	head = /obj/item/clothing/head/modular/som/mithridatius
+	wear_suit = /obj/item/clothing/suit/modular/som/heavy/mithridatius
 	suit_store = /obj/item/weapon/gun/smg/som/support
 	back = /obj/item/storage/holster/backholster/rpg/som/war_crimes
 	l_store = /obj/item/storage/pouch/grenade/som
