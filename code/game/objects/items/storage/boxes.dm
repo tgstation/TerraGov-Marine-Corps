@@ -1058,7 +1058,7 @@
 
 /obj/item/storage/box/visual/magazine/compact/heavymachinegun
 	name = "HMG-08 drum box"
-	desc = "A box specifically designed to hold a large amount ofHMG-08 drum."
+	desc = "A box specifically designed to hold a large amount of HMG-08 drum."
 	storage_slots = 30
 	closed_overlay = "mag_box_small_overlay_mg08"
 	can_hold = list(
