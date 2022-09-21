@@ -275,13 +275,12 @@
 	if(cooldown > world.time)
 		return
 	acceleration = ((cooldown + move_delay * 5) > world.time) ? acceleration : 0
-	cooldown = world.time +	move_delay
-	cooldown -= acceleration ? tiles_moved * (move_delay / 10) : 0
+	cooldown = world.time +	move_delay - acceleration ? tiles_moved * (move_delay / 10) : 0
 	var/turf/T = get_turf(get_step(src, direct))
 	// check for dir change , if we changed then remove all acceleration
 	if(get_dir(src, T) != dir)
 		tiles_moved = 0
-	tiles_moved = tiles_moved < max_tile_acceleration ? tiles_moved++ : tiles_moved
+	tiles_moved = min(tiles_moved++, max_tile_acceleration)
 	setLoc(T)
 
 
