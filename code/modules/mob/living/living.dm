@@ -380,11 +380,11 @@
 			if(L.pulledby == src && a_intent == INTENT_GRAB)
 				mob_swap_mode = SWAPPING
 			//restrained people act if they were on 'help' intent to prevent a person being pulled from being seperated from their puller
-			else if((L.restrained() || L.a_intent == INTENT_HELP) && (restrained() || a_intent == INTENT_HELP) && L.mob_size < MOB_SIZE_XENO)
+			else if((L.restrained() || L.a_intent == INTENT_HELP) && (restrained() || a_intent == INTENT_HELP) && L.move_force < MOVE_FORCE_VERY_STRONG)
 				mob_swap_mode = SWAPPING
 			else if(get_xeno_hivenumber() == L.get_xeno_hivenumber() && (L.flags_pass & PASSXENO || flags_pass & PASSXENO))
 				mob_swap_mode = PHASING
-			else if((mob_size >= MOB_SIZE_XENO || mob_size > L.mob_size) && a_intent == INTENT_HELP) //Larger mobs can shove aside smaller ones. Xenos can always shove xenos
+			else if((move_resist >= MOVE_FORCE_VERY_STRONG || move_resist > L.move_force) && a_intent == INTENT_HELP) //Larger mobs can shove aside smaller ones. Xenos can always shove xenos
 				mob_swap_mode = SWAPPING
 			if(mob_swap_mode)
 				//switch our position with L
@@ -432,7 +432,7 @@
 
 
 //Called when we want to push an atom/movable
-/mob/living/proc/PushAM(atom/movable/AM)
+/mob/living/proc/PushAM(atom/movable/AM, force = move_force)
 	if(AM.anchored)
 		return
 	if(now_pushing)
@@ -452,6 +452,25 @@
 	// a fallback.
 	if(!dir_to_target)
 		dir_to_target = dir
+
+	var/push_anchored = FALSE
+	if((AM.move_resist * MOVE_FORCE_CRUSH_RATIO) <= force)
+		if(move_crush(AM, move_force, dir_to_target))
+			push_anchored = TRUE
+	if((AM.move_resist * MOVE_FORCE_FORCEPUSH_RATIO) <= force) //trigger move_crush and/or force_push regardless of if we can push it normally
+		if(force_push(AM, move_force, dir_to_target, push_anchored))
+			push_anchored = TRUE
+	if(ismob(AM))
+		var/mob/mob_to_push = AM
+		var/atom/movable/mob_buckle = mob_to_push.buckled
+		// If we can't pull them because of what they're buckled to, make sure we can push the thing they're buckled to instead.
+		// If neither are true, we're not pushing anymore.
+		if(mob_buckle && (mob_buckle.buckle_flags & BUCKLE_PREVENTS_PULL || (force < (mob_buckle.move_resist * MOVE_FORCE_PUSH_RATIO))))
+			now_pushing = FALSE
+			return
+	if((AM.anchored && !push_anchored) || (force < (AM.move_resist * MOVE_FORCE_PUSH_RATIO)))
+		now_pushing = FALSE
+		return
 
 	if(istype(AM, /obj/structure/window))
 		var/obj/structure/window/W = AM
