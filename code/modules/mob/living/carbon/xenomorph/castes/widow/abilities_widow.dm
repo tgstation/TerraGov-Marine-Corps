@@ -271,8 +271,9 @@
 /obj/structure/xeno/widow_pod/obj_destruction()
 	for(var/mob/living/carbon/xenomorph/widow/evicted AS in src)
 		evicted.forceMove(get_turf(src))
-		var/datum/action/xeno_action/spider_swarm/spider_swarm_action = evicted.actions_by_path[/datum/action/xeno_action/spider_swarm]
-		spider_swarm_action.switch_to_mother()
+		if(!(evicted.mind))
+			var/datum/action/xeno_action/spider_swarm/spider_swarm_action = evicted.actions_by_path[/datum/action/xeno_action/spider_swarm]
+			spider_swarm_action.switch_to_mother()
 		UnregisterSignal(evicted, COMSIG_LIVING_DO_RESIST)
 	return ..()
 
