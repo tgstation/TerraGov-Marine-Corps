@@ -243,6 +243,8 @@
 			. = size ? "LCPL " : "Lance Corporal"
 		if("E3E")
 			. = size ? "SCPL " : "Section Corporal" //Anachronistic if we're going by common US ranks, above E3 but below E4.
+		if("E3N")
+			. = size ? "SN " : "Seaman" //corpmen's first rank since they are sailors, not marines
 		if("E4")
 			. = size ? "CPL " : "Corporal"
 		if("E5")

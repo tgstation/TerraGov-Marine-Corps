@@ -296,11 +296,11 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 		return
 	switch(playtime_mins)
 		if(0 to 1500) // starting
-			new_human.wear_id.paygrade = "E3"
+			new_human.wear_id.paygrade = "E3N"
 		if(1501 to 6000) // 25 hrs
-			new_human.wear_id.paygrade = "E4"
+			new_human.wear_id.paygrade = "PO3"
 		if(6001 to INFINITY) // 100 hrs
-			new_human.wear_id.paygrade = "E5"
+			new_human.wear_id.paygrade = "PO2"
 
 //Squad Smartgunner
 /datum/job/terragov/squad/smartgunner
