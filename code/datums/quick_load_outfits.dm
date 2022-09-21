@@ -1307,7 +1307,6 @@
 
 /datum/outfit/quick/som/marine/pyro
 	name = "V-62 Flamethrower operator"
-	//placeholder
 	desc = "Smells like victory. Equipped with an V-62 incinerator and wide nozzle, V-11 equipped for rapid burst fire, heavy armor upgraded with a 'Hades' fireproof module, and a backtank of fuel. Has better than average range and can quickly burn down large areas. It suffers from significant slowdown, lacks an integrated extinguisher, and undisciplined use can result in rapidly consuming all available fuel."
 
 	wear_suit = /obj/item/clothing/suit/modular/som/heavy/pyro
