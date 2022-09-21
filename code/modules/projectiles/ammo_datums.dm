@@ -1481,7 +1481,7 @@ datum/ammo/bullet/revolver/tp44
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
 	smoke.set_up(0, T, rand(1,2))
 	smoke.start()
-	for(var/mob/living/carbon/victim in range(2, T))
+	for(var/mob/living/carbon/victim in get_hear(2, T))
 		victim.visible_message(span_danger("[victim] is hit by the bomblet blast!"),
 			isxeno(victim) ? span_xenodanger("We are hit by the bomblet blast!") : span_highdanger("you are hit by the bomblet blast!"))
 		var/armor_block = victim.get_soft_armor("bomb")
@@ -1496,13 +1496,13 @@ datum/ammo/bullet/revolver/tp44
 		proj.proj_max_range = proj.distance_travelled
 
 /datum/ammo/micro_rail_cluster/on_hit_mob(mob/M, obj/projectile/P)
-	detonate(get_turf(M), P)
+	detonate(get_turf(P), P)
 
 /datum/ammo/micro_rail_cluster/on_hit_obj(obj/O, obj/projectile/P)
-	detonate(get_turf(O), P)
+	detonate(get_turf(P), P)
 
 /datum/ammo/micro_rail_cluster/on_hit_turf(turf/T, obj/projectile/P)
-	detonate(T, P)
+	detonate(get_turf(P), P)
 
 /datum/ammo/micro_rail_cluster/do_at_max_range(obj/projectile/P)
 	detonate(get_turf(P), P)
@@ -1532,13 +1532,13 @@ datum/ammo/bullet/revolver/tp44
 	smoke.start()
 
 /datum/ammo/smoke_burst/on_hit_mob(mob/M, obj/projectile/P)
-	drop_nade(get_turf(M))
+	drop_nade(get_turf(P))
 
 /datum/ammo/smoke_burst/on_hit_obj(obj/O, obj/projectile/P)
-	drop_nade(get_turf(O))
+	drop_nade(get_turf(P))
 
 /datum/ammo/smoke_burst/on_hit_turf(turf/T, obj/projectile/P)
-	drop_nade(T)
+	drop_nade(get_turf(P))
 
 /datum/ammo/smoke_burst/do_at_max_range(obj/projectile/P)
 	drop_nade(get_turf(P))
