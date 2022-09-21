@@ -223,7 +223,7 @@
 	current_controlling_spiderling.mind.transfer_to(owner)
 	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = owner.actions_by_path[/datum/action/xeno_action/create_spiderling]
 	for(var/mob/living/carbon/xenomorph/spiderling/spiderlings_to_kill AS in create_spiderling_action.spiderlings)
-		spiderlings_to_kill.death(FALSE, "", TRUE)
+		spiderlings_to_kill.death(FALSE, silent = TRUE)
 	REMOVE_TRAIT(owner, TRAIT_POSSESSING, WIDOW_ABILITY_TRAIT)
 
 /// This ability is being given to spiderlings so we can always return to widow
@@ -352,3 +352,16 @@
 	ADD_TRAIT(X, TRAIT_HANDS_BLOCKED, WIDOW_ABILITY_TRAIT)
 	// We register for movement so that we unburrow if bombed
 	RegisterSignal(X, COMSIG_MOVABLE_MOVED, .proc/xeno_burrow)
+
+// ***************************************
+// *********** Attach Spiderlings
+// ***************************************
+/datum/action/xeno_action/attach_spiderlings
+	name = "Attach Spiderlings"
+	ability_name = "Attach Spiderlings"
+	mechanics_text = "Attach your current spiderlings to you "
+	action_icon_state = "burrow"
+	plasma_cost = 0
+	cooldown_timer = 0 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_BURROW
+	use_state_flags = XACT_USE_BURROWED

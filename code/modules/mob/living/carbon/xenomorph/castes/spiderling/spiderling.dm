@@ -28,7 +28,11 @@
 		return
 
 	if(health <= 0)
-		Dissolve()
+		death(FALSE, silent = TRUE)
+
+/mob/living/carbon/xenomorph/spiderling/on_death()
+	Dissolve()
+	return ..()
 
 // This will QDEL the spiderling but also animate them " dissolving "
 /mob/living/carbon/xenomorph/spiderling/proc/Dissolve()
