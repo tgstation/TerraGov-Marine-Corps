@@ -1054,8 +1054,8 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/threes = length(xenos_by_tier[XENO_TIER_THREE])
 	var/fours = length(xenos_by_tier[XENO_TIER_FOUR])
 
-	tier3_xeno_limit = max(threes, FLOOR((zeros + ones + twos + fours) / 3 + 1, 1))
-	tier2_xeno_limit = max(twos, zeros + ones + fours + 1 - threes)
+	tier3_xeno_limit = max(threes, FLOOR((zeros + ones + twos + fours + evotowers.length) / 3 + 1, 1))
+	tier2_xeno_limit = max(twos, zeros + ones + fours + evotowers.length + 1 - threes)
 
 // ***************************************
 // *********** Corrupted Xenos
