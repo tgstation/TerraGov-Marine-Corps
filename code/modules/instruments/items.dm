@@ -9,6 +9,7 @@
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/instruments_lefthand.dmi',
 		slot_r_hand_str = 'icons/mob/instruments_righthand.dmi',
+		slot_s_store_str = 'icons/mob/instruments_back.dmi',
 		)
 	/// Our song datum.
 	var/datum/song/handheld/song
