@@ -267,7 +267,7 @@
 /obj/structure/xeno/widow_pod/Initialize(mapload, mob/living/carbon/xenomorph/widow/stored_widow)
 	. = ..()
 	stored_widow.forceMove(src)
-	RegisterSignal(stored_widow, COMSIG_LIVING_DO_RESIST, .proc/take_pod_damage)
+	RegisterSignal(stored_widow, COMSIG_MOB_LOGIN, .proc/take_pod_damage)
 
 /// Here we take out widow from pod
 /obj/structure/xeno/widow_pod/obj_destruction()
