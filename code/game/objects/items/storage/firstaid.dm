@@ -315,7 +315,7 @@
 	if(!description_overlay)
 		return
 	var/mutable_appearance/desc = mutable_appearance()
-	desc.pixel_x += 18
+	desc.pixel_x += 16
 	desc.maptext = MAPTEXT(description_overlay)
 	. += desc
 

@@ -5,6 +5,8 @@
 	var/last_move = null
 	var/last_move_time = 0
 	var/anchored = FALSE
+	///How much the atom tries to push things out its way
+	var/move_force = MOVE_FORCE_DEFAULT
 	///How much the atom resists being thrown or moved.
 	var/move_resist = MOVE_RESIST_DEFAULT
 	var/drag_delay = 3 //delay (in deciseconds) added to mob's move_delay when pulling it.
@@ -792,9 +794,9 @@
 		AM.onTransitZ(old_z,new_z)
 
 
-/atom/movable/proc/safe_throw_at(atom/target, range, speed, mob/thrower, spin = TRUE)
-	//if((force < (move_resist * MOVE_FORCE_THROW_RATIO)) || (move_resist == INFINITY))
-	//	return
+/atom/movable/proc/safe_throw_at(atom/target, range, speed, mob/thrower, spin = TRUE, force = MOVE_FORCE_STRONG)
+	if((force < (move_resist * MOVE_FORCE_THROW_RATIO)) || (move_resist == INFINITY))
+		return
 	return throw_at(target, range, speed, thrower, spin)
 
 
@@ -1040,6 +1042,25 @@
 		return
 	DISABLE_BITFIELD(flags_pass, HOVERING)
 
+///returns bool for if we want to get forcepushed
+/atom/movable/proc/force_pushed(atom/movable/pusher, force = MOVE_FORCE_DEFAULT, direction)
+	return FALSE
+
+///returns bool for if we want to get handle forcepushing, return is bool if we can move an anchored obj
+/atom/movable/proc/force_push(atom/movable/pushed_atom, force = move_force, direction, silent = FALSE)
+	. = pushed_atom.force_pushed(src, force, direction)
+	if(!silent && .)
+		visible_message(span_warning("[src] forcefully pushes against [pushed_atom]!"), span_warning("You forcefully push against [pushed_atom]!"))
+
+///returns bool for if we want to get handle move crushing, return is bool if we can move an anchored obj
+/atom/movable/proc/move_crush(atom/movable/crushed_atom, force = move_force, direction, silent = FALSE)
+	. = crushed_atom.move_crushed(src, force, direction)
+	if(!silent && .)
+		visible_message(span_danger("[src] crushes past [crushed_atom]!"), span_danger("You crush [crushed_atom]!"))
+
+///returns bool for if we want to get crushed
+/atom/movable/proc/move_crushed(atom/movable/pusher, force = MOVE_FORCE_DEFAULT, direction)
+	return FALSE
 
 /atom/movable/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()

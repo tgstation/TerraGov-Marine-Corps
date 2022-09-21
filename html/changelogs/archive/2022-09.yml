@@ -204,3 +204,46 @@
   - admin: adds Gorger to the admin player panel tab
   lbnesquik:
   - rscadd: Added a device which allows the AI to remotely target artillery pieces.
+2022-09-20:
+  BraveMole:
+  - bugfix: Fix ai not stopping when controlled by a player
+  - bugfix: Fix letter overlay on medical items bug out in storage slots
+  Lumipharon:
+  - bugfix: Cluster and smoke cluster micronades can no longer hit things past solid
+      objects
+  MiniMeatwad:
+  - admin: Set-Xeno-Buffs verb percentage logging now accurate.
+  Naaanii:
+  - admin: adds Combat Robot to admin player panel
+2022-09-21:
+  Lewdcifer:
+  - balance: Resin door build time and plasma costs reduced (same as resin walls).
+  Lumipharon:
+  - soundadd: Updates some sounds for the V-51
+  RipGrayson:
+  - balance: Most of Gelida's platforms are now decorative and do not require climbing.
+  - balance: Most of Gelida's platforms do not block shots or projectiles.
+  - balance: The remaining platforms on Gelida that function normally have drastically
+      reduced health.
+  - balance: Gelida caves has been slightly expanded south.
+  - balance: Gelida caves now has a number of new exits and entrances to keep xenos
+      from being bottled up as easily.
+  - balance: Some potential crusher and boiler lanes on Gelida have been cleared of
+      rocks.
+  - balance: Most windows on Gelida are now regular instead of reinforced.
+  - balance: Most structures on Gelida no longer have random r-walls at irregular
+      junctions.
+  - balance: Some platforms have been slightly rearranged.
+  - balance: The Gelida vehicle roadblocks are now destructible.
+  - balance: Gelida lockdown shutters are no longer protected by lockdown glass.
+  - bugfix: Fixed an lone section of AI nodes on Gelida where minions could potentially
+      have to detour a long way to reach their destination.
+  - imageadd: Ported a number of legacy sprites from CM.
+  - imageadd: Resprited the nuke, check the PR itself for proper credit.
+  - imagedel: Removed a number of legacy sprites that were 1 dimensional and awful.
+  TiviPlus:
+  - code_imp: Added push priorities
+  tyeagg:
+  - balance: burst fire som shotgun
+  - rscadd: tadpole remap
+  - balance: you can now fire over tadpole window and easier to remove
