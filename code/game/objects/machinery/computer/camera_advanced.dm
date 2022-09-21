@@ -205,8 +205,11 @@
 /mob/camera/aiEye/remote
 	name = "Inactive Camera Eye"
 	ai_detector_visible = FALSE
+	/// The delay applied after moving to a tile.
 	var/move_delay = 0.1 SECONDS// quite fast
+	/// Internal variable used to keep track of the amount of tiles we have moved in the same direction
 	var/tiles_moved = 0 // Tiles moved in 1 direction , used for smart acceleration
+	/// Limits tiles_moved to this value.
 	var/max_tile_acceleration = 8 // a limit to how far acceleration can go
 	var/cooldown = 0
 	var/acceleration = TRUE
@@ -271,15 +274,14 @@
 		CA.tracking_target = null
 	if(cooldown > world.time)
 		return
+	acceleration = ((cooldown + move_delay * 5) > world.time) ? acceleration : 0
 	cooldown = world.time +	move_delay
-	if(acceleration)
-		cooldown -= tiles_moved * (move_delay/10)
+	cooldown -= acceleration ? tiles_moved * (move_delay / 10) : 0
 	var/turf/T = get_turf(get_step(src, direct))
 	// check for dir change , if we changed then remove all acceleration
 	if(get_dir(src, T) != dir)
 		tiles_moved = 0
-	if(tiles_moved < max_tile_acceleration)
-		tiles_moved++
+	tiles_moved = tiles_moved < max_tile_acceleration ? tiles_moved++ : tiles_moved
 	setLoc(T)
 
 

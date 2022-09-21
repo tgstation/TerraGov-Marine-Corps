@@ -36,3 +36,6 @@
 
 //The amount of materials you get from a sheet of mineral like iron/diamond/glass etc
 #define MINERAL_MATERIAL_AMOUNT 2000
+
+// The movement delay of the drone used to built FOBS
+#define FOBDRONE_MOVEDELAY 0.2 SECONDS
