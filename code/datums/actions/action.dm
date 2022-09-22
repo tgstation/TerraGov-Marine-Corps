@@ -36,6 +36,7 @@
 	if(desc)
 		button.desc = desc
 	maptext_image = mutable_appearance()
+	maptext_image.layer = 25 // +1 above the one of empowered/selected frames
 
 /datum/action/Destroy()
 	if(owner)
@@ -74,6 +75,7 @@
 		button.color = rgb(255, 255, 255, 255)
 	else
 		button.color = rgb(128, 0, 0, 128)
+
 
 	return TRUE
 
