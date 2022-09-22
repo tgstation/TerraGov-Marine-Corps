@@ -383,27 +383,16 @@
 
 /obj/effect/landmark/corpsespawner/som
 	name = "SOM Infantry"
-	corpseuniform = /obj/item/clothing/under/som
+	corpseuniform = /obj/item/clothing/under/som/webbing
 	corpsesuit = /obj/item/clothing/suit/modular/som
 	corpseback = /obj/item/storage/backpack/satchel/som
-	corpsemask = /obj/item/clothing/mask/gas/tactical/coif
+	corpsemask = /obj/item/clothing/mask/gas
 	corpsehelmet = /obj/item/clothing/head/modular/som
 	corpsegloves = /obj/item/clothing/gloves/marine/som
-	corpseshoes = /obj/item/clothing/shoes/marine/som
-	corpsebelt = /obj/item/storage/belt/marine/som
-	corpsepocket1 = /obj/item/storage/pouch/firstaid/som
-
-/obj/effect/landmark/corpsespawner/som/corpsman
-	name = "SOM Corpsman"
-	corpseuniform = /obj/item/clothing/under/som/medic
-	corpsesuit = /obj/item/clothing/suit/modular/som
-	corpseback = /obj/item/storage/backpack/satchel/som
-	corpsemask = /obj/item/clothing/mask/gas/tactical/coif
-	corpsehelmet = /obj/item/clothing/head/modular/som
-	corpsegloves = /obj/item/clothing/gloves/marine/som
-	corpseshoes = /obj/item/clothing/shoes/marine/som
-	corpsebelt = /obj/item/storage/belt/lifesaver/som
-	corpsepocket1 = /obj/item/storage/pouch/firstaid/som
+	corpseshoes = /obj/item/clothing/shoes/marine/som/knife
+	corpsebelt = /obj/item/storage/belt/marine/som/mpi
+	corpsepocket1 = /obj/item/storage/pouch/firstaid/som/combat_patrol
+	corpsepocket2 = /obj/item/storage/pouch/grenade/som/combat_patrol
 
 /obj/effect/landmark/corpsespawner/somscientist
 	name = "Scientist"
