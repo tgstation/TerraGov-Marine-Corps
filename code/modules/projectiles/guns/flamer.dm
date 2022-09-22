@@ -55,8 +55,8 @@
 	var/flame_max_range = 6
 	///Max resin wall penetration in tiles.
 	var/flame_max_wall_pen = 3
-	///Max resin wall penetration for wide nozzle
-	var/flame_max_wall_pen_wide = 8
+	///After how many total resin walls the flame wont proceed further
+	var/flame_max_wall_pen_wide = 9
 	///Travel speed of the flames in seconds.
 	var/flame_spread_time = 0.1 SECONDS
 	///Gun based modifier for burn level. Percentage based.
