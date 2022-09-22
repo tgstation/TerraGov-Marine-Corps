@@ -361,6 +361,7 @@
 #include "code\datums\elements\deployable_item.dm"
 #include "code\datums\elements\egrill_element.dm"
 #include "code\datums\elements\gestures.dm"
+#include "code\datums\elements\keybinding_update.dm"
 #include "code\datums\elements\light_blocking.dm"
 #include "code\datums\elements\limb_support.dm"
 #include "code\datums\elements\plasma_on_attack.dm"

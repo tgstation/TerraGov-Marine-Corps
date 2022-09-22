@@ -8,6 +8,7 @@
 	var/action_icon_state = "default"
 	var/background_icon = 'icons/mob/actions.dmi'
 	var/background_icon_state = "template"
+	var/mutable_appearance/maptext_image
 	var/static/atom/movable/vis_obj/action/selected_frame/selected_frame = new
 	var/static/atom/movable/vis_obj/action/empowered_frame/empowered_frame = new //Got lazy and didn't make a child, ask tivi for a better solution.
 	///Main keybind signal for the action
@@ -34,6 +35,7 @@
 	button.name = name
 	if(desc)
 		button.desc = desc
+	maptext_image = mutable_appearance()
 
 /datum/action/Destroy()
 	if(owner)
@@ -49,6 +51,10 @@
 /datum/action/proc/should_show()
 	return TRUE
 
+/datum/action/proc/update_map_text(key_string)
+	maptext_image.maptext = key_string
+	update_button_icon()
+
 /datum/action/proc/update_button_icon()
 	if(!button)
 		return
@@ -59,6 +65,7 @@
 	if(action_icon && action_icon_state)
 		button.cut_overlays(TRUE)
 		button.add_overlay(mutable_appearance(action_icon, action_icon_state))
+		button.add_overlay(maptext_image)
 
 	if(background_icon_state)
 		button.icon_state = background_icon_state
@@ -120,6 +127,10 @@
 	owner.actions_by_path[type] = src
 	if(keybind_signal)
 		RegisterSignal(owner, keybind_signal, .proc/keybind_activation)
+		var/datum/keybinding/our_kb = GLOB.keybindings_by_signal[keybind_signal]
+		if(M.client && our_kb)
+			update_map_text(our_kb.get_keys_formatted(M.client))
+
 	if(alternate_keybind_signal)
 		RegisterSignal(owner, alternate_keybind_signal, .proc/alternate_action_activate)
 	SEND_SIGNAL(M, ACTION_GIVEN)

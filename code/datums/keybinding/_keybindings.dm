@@ -21,3 +21,22 @@
 /datum/keybinding/proc/intercept_mouse_special(datum/source)
 	SIGNAL_HANDLER
 	return COMSIG_MOB_CLICK_CANCELED
+
+// returns the keys formatted in KEY1+KEY2 if theres multiple from the specified client for this keybinding datum
+/datum/keybinding/proc/get_keys_formatted(client/user)
+	if(!user)
+		return ""
+	var/datum/preferences/user_prefs = GLOB.preferences_datums[user.ckey]
+	if(!user_prefs)
+		return ""
+	for(var/key in user_prefs.key_bindings)
+		if(name in user_prefs.key_bindings[key])
+			. = "[key]"
+	message_admins("formatted keys returned [.]")
+
+	/*
+	. = ""
+
+	for(var/key in hotkey_keys)
+		. += length(.) ? "+[key]" : "[key]"
+	*/

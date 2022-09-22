@@ -169,13 +169,19 @@
 		button.color = "#f0b400c8" // rgb(240,180,0,200)
 	else
 		button.color = "#ffffffff" // rgb(255,255,255,255)
-
+	// remove and re-add to update it
+	button.overlays -= maptext_image
+	button.overlays += maptext_image
 
 /datum/action/xeno_action/activable/Destroy()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.selected_ability == src)
 		deselect()
 	return ..()
+
+/datum/action/xeno_action/update_map_text(key_string)
+	maptext_image.maptext = key_string
+	update_button_icon()
 
 /datum/action/xeno_action/activable/alternate_action_activate()
 	INVOKE_ASYNC(src, .proc/action_activate)
