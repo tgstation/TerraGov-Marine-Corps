@@ -238,7 +238,6 @@
 	if(!(left == (angle-1)) && !(right == (angle+1)))
 		to_chat(operator, span_warning(" [src] cannot be rotated so violently."))
 		return FALSE
-	var/turf/move_to = get_step(src, REVERSE_DIR(angle))
 	var/mob/living/carbon/human/user = operator
 
 	var/obj/item/attachable/scope/current_scope
@@ -251,10 +250,6 @@
 			continue
 		scope.zoom_item_turnoff(operator, operator)
 		current_scope = scope
-
-	if(!operator.Move(move_to))
-		to_chat(operator, "You cannot rotate [src] that way.")
-		return FALSE
 
 	setDir(angle)
 	user.set_interaction(src)
