@@ -71,6 +71,7 @@
 	movement_acc_penalty_mult = 2
 	upper_akimbo_accuracy = 5
 	lower_akimbo_accuracy = 3
+	autoburst_delay = 5
 
 /obj/item/weapon/gun/smg/standard_machinepistol/compact
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/compensator, /obj/item/attachable/lasersight)
