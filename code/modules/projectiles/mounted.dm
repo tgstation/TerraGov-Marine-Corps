@@ -148,7 +148,7 @@
 	user_old_y = user.pixel_y
 	update_pixels(user, TRUE)
 
-/obj/machinery/deployable/mounted/proc/update_pixels(mob/user, var/mounting)
+/obj/machinery/deployable/mounted/proc/update_pixels(mob/user, mounting)
 	if(mounting)
 		var/diff_x = 0
 		var/diff_y = 0
