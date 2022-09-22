@@ -391,6 +391,13 @@
 /obj/structure/largecrate/random/barrel/green,
 /turf/open/floor/wood,
 /area/deathmatch)
+"to" = (
+/obj/structure/table/gamblingtable,
+/obj/effect/spawner/random/plushie{
+	spawn_nothing_percentage = 95
+	},
+/turf/open/floor/wood,
+/area/deathmatch)
 "tq" = (
 /obj/effect/landmark/deathmatch,
 /turf/open/floor/wood,
@@ -1024,6 +1031,9 @@
 /area/deathmatch)
 "Tz" = (
 /obj/structure/closet/cabinet,
+/obj/effect/spawner/random/plushie{
+	spawn_nothing_percentage = 95
+	},
 /turf/open/floor/wood,
 /area/deathmatch)
 "Un" = (
@@ -1825,7 +1835,7 @@ yM
 Gp
 BK
 BK
-ua
+to
 DA
 ua
 ua

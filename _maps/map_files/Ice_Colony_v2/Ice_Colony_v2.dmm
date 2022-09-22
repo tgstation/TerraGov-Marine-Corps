@@ -17064,6 +17064,7 @@
 	pixel_y = -1
 	},
 /obj/item/tool/pen/blue,
+/obj/effect/spawner/random/plushie,
 /turf/open/floor/wood,
 /area/ice_colony/underground/security/detective)
 "bzr" = (
@@ -29283,6 +29284,11 @@
 	dir = 4
 	},
 /area/ice_colony/surface/engineering)
+"mhA" = (
+/obj/structure/bed,
+/obj/effect/spawner/random/plushie,
+/turf/open/floor/wood,
+/area/ice_colony/surface/dorms)
 "mhW" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/shotgun/pump/cmb,
@@ -34007,6 +34013,14 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/ice_nw)
+"vru" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1;
+	name = "\improper Colony Dormitory Unit"
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/wood,
+/area/ice_colony/surface/dorms)
 "vry" = (
 /obj/effect/turf_underlay/icefloor,
 /turf/closed/ice/thin/corner{
@@ -56892,7 +56906,7 @@ aqq
 aqP
 aqZ
 vDc
-arF
+vru
 arQ
 mpz
 asu
@@ -57107,7 +57121,7 @@ arw
 arE
 aAI
 mds
-ast
+mhA
 arE
 ast
 arQ

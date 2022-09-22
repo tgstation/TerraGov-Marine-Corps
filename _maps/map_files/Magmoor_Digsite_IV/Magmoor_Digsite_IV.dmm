@@ -8692,6 +8692,7 @@
 /obj/structure/table/mainship,
 /obj/item/book/manual/medical_diagnostics_manual,
 /obj/structure/cable,
+/obj/effect/spawner/random/plushie,
 /turf/open/floor/wood,
 /area/magmoor/medical/cmo)
 "gkG" = (
@@ -22461,6 +22462,9 @@
 /area/magmoor/security/storage)
 "pXQ" = (
 /mob/living/simple_animal/shade,
+/obj/effect/spawner/random/plushie{
+	spawn_nothing_percentage = 50
+	},
 /turf/open/floor/cult,
 /area/magmoor/volcano)
 "pXX" = (
@@ -31273,6 +31277,7 @@
 /obj/structure/table/woodentable{
 	flipped = 1
 	},
+/obj/effect/spawner/random/plushie,
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
 "vvW" = (

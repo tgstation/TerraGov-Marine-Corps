@@ -563,7 +563,7 @@
 	},
 /area/gelida/indoors/a_block/dorms)
 "ast" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/structure/window/framed/colony,
 /turf/open/floor/plating,
 /area/gelida/indoors/lone_buildings/chunk)
 "asu" = (
@@ -6511,6 +6511,7 @@
 /obj/item/bedsheet/brown{
 	layer = 3.1
 	},
+/obj/effect/spawner/random/plushie,
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/a_block/hallway)
 "dZy" = (
@@ -7364,9 +7365,11 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/c_block/mining)
 "eAh" = (
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/plating,
-/area/gelida/indoors/a_block/fitness)
+/obj/effect/acid_hole{
+	dir = 4
+	},
+/turf/closed/wall,
+/area/gelida/indoors/a_block/dorms)
 "eAs" = (
 /obj/machinery/floodlight,
 /turf/open/floor/prison/cleanmarked,
@@ -9726,9 +9729,9 @@
 /turf/open/floor/prison/darkyellow/full,
 /area/gelida/indoors/lone_buildings/engineering)
 "geX" = (
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/plating,
-/area/gelida/indoors/b_block/bar)
+/obj/structure/curtain/temple,
+/turf/open/floor/mainship/stripesquare,
+/area/gelida/indoors/c_block/garage)
 "gfh" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
@@ -11131,7 +11134,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/indoors/a_block/medical)
 "gZd" = (
-/turf/closed/wall/r_wall,
+/turf/closed/wall,
 /area/gelida/indoors/lone_buildings/outdoor_bot)
 "gZo" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -11632,9 +11635,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/b_block/bridge)
-"hnp" = (
-/turf/closed/wall/r_wall,
-/area/gelida/indoors/a_block/security)
 "hnw" = (
 /obj/machinery/door_control{
 	dir = 1;
@@ -11940,11 +11940,6 @@
 	},
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/mining)
-"hzw" = (
-/obj/structure/window/framed/colony/reinforced,
-/obj/structure/curtain/temple,
-/turf/open/floor/plating,
-/area/gelida/indoors/c_block/casino)
 "hzH" = (
 /obj/machinery/light,
 /turf/open/floor/prison,
@@ -12958,8 +12953,8 @@
 /turf/open/ground/river,
 /area/gelida/indoors/a_block/fitness)
 "igB" = (
-/obj/structure/window_frame/colony/reinforced,
 /obj/item/stack/rods,
+/obj/structure/window_frame/colony,
 /turf/open/floor/plating,
 /area/gelida/indoors/lone_buildings/engineering)
 "igD" = (
@@ -13495,10 +13490,6 @@
 /obj/machinery/disposal,
 /turf/open/floor/prison/whitegreen/full,
 /area/gelida/indoors/a_block/medical)
-"iwa" = (
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/plating,
-/area/gelida/indoors/a_block/bridges/corpo)
 "iwn" = (
 /obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Mining Equipment"
@@ -14433,7 +14424,9 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/east_central_street)
 "jaU" = (
-/obj/structure/sign/securearea,
+/obj/structure/sign/securearea{
+	dir = 1
+	},
 /turf/open/floor/mainship/black/full,
 /area/gelida/caves/west_caves)
 "jbg" = (
@@ -17243,9 +17236,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/dorms)
-"kXC" = (
-/turf/closed/wall/r_wall,
-/area/gelida/indoors/a_block/bridges/op_centre)
 "kYj" = (
 /obj/machinery/conveyor/inverted{
 	dir = 9
@@ -18525,9 +18515,6 @@
 	dir = 4
 	},
 /area/gelida/indoors/b_block/hydro)
-"lNC" = (
-/turf/closed/wall/r_wall,
-/area/gelida/indoors/a_block/executive)
 "lOf" = (
 /obj/structure/bed/chair/comfy,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -19025,10 +19012,6 @@
 /obj/item/clothing/head/beret/eng,
 /turf/open/floor/prison,
 /area/gelida/indoors/lone_buildings/engineering)
-"mdD" = (
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/plating,
-/area/gelida/indoors/c_block/cargo)
 "mec" = (
 /obj/structure/stairs/seamless{
 	dir = 8
@@ -19538,9 +19521,6 @@
 /obj/item/weapon/gun/revolver/cmb,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/kitchen)
-"msx" = (
-/turf/closed/wall/r_wall,
-/area/gelida/indoors/a_block/dorms)
 "msI" = (
 /turf/closed/wall,
 /area/gelida/indoors/lone_buildings/engineering)
@@ -20187,8 +20167,8 @@
 /turf/open/floor/wood,
 /area/gelida/indoors/b_block/bar)
 "mRF" = (
-/obj/structure/window/framed/colony/reinforced,
 /obj/structure/curtain/medical,
+/obj/structure/window/framed/colony,
 /turf/open/floor/plating,
 /area/gelida/indoors/a_block/medical)
 "mRH" = (
@@ -22676,7 +22656,9 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
 /area/gelida/outdoors/colony_streets/south_west_street)
 "oya" = (
-/obj/structure/sign/securearea,
+/obj/structure/sign/securearea{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/gelida/caves/west_caves)
 "oyd" = (
@@ -25171,7 +25153,7 @@
 	},
 /area/gelida/indoors/c_block/mining)
 "pWH" = (
-/obj/structure/window_frame/colony/reinforced,
+/obj/structure/window_frame/colony,
 /turf/open/floor/plating,
 /area/gelida/indoors/lone_buildings/engineering)
 "pWU" = (
@@ -26914,9 +26896,6 @@
 /obj/effect/decal/warning_stripes/nscenter,
 /turf/open/floor/wood,
 /area/gelida/indoors/a_block/fitness)
-"qZP" = (
-/turf/closed/wall/r_wall,
-/area/gelida/indoors/c_block/cargo)
 "raK" = (
 /obj/structure/platform_decoration{
 	dir = 8
@@ -29715,9 +29694,9 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/casino)
 "sLU" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/structure/window/framed/colony,
 /obj/structure/curtain/temple,
-/turf/open/floor/plating,
+/turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/c_block/garage)
 "sLZ" = (
 /mob/living/simple_animal/cat/kitten{
@@ -30632,9 +30611,8 @@
 /turf/open/floor/plating/ground/fakesnow,
 /area/gelida/landing_zone_1)
 "tnR" = (
-/obj/structure/window/framed/colony/reinforced,
 /obj/structure/curtain/temple,
-/turf/open/floor/plating,
+/turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/executive)
 "tod" = (
 /obj/machinery/conveyor{
@@ -31074,7 +31052,7 @@
 /turf/open/floor/wood,
 /area/gelida/indoors/c_block/casino)
 "tFQ" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/structure/window/framed/colony,
 /turf/open/floor/plating,
 /area/gelida/indoors/lone_buildings/engineering)
 "tFU" = (
@@ -31172,10 +31150,6 @@
 	icon_state = "rasputin6"
 	},
 /area/gelida/landing_zone_forecon/UD6_Typhoon)
-"tIH" = (
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/plating,
-/area/gelida/indoors/c_block/garage)
 "tIP" = (
 /obj/structure/platform_decoration{
 	dir = 8
@@ -34485,9 +34459,6 @@
 /obj/item/stack/sheet/metal,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/security)
-"vRn" = (
-/turf/closed/wall/r_wall,
-/area/gelida/indoors/c_block/casino)
 "vSd" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
@@ -34827,11 +34798,6 @@
 "wdk" = (
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/lone_buildings/storage_blocks)
-"wdm" = (
-/obj/structure/platform_decoration,
-/obj/structure/fakeplatform,
-/turf/open/floor/plating,
-/area/gelida/indoors/c_block/cargo)
 "wdq" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -35770,9 +35736,6 @@
 /obj/item/storage/bag/ore,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
-"wJv" = (
-/turf/closed/wall/r_wall,
-/area/gelida/indoors/lone_buildings/chunk)
 "wJx" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/yellow/patch,
@@ -36196,9 +36159,8 @@
 "wYz" = (
 /obj/structure/table/mainship,
 /obj/item/toy/bikehorn,
-/obj/item/toy/plush/rouny{
-	pixel_x = -1;
-	pixel_y = 5
+/obj/effect/spawner/random/plushie{
+	pixel_y = 3
 	},
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/a_block/fitness)
@@ -37881,10 +37843,6 @@
 /obj/structure/stairs/cornerdark/seamless,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/north_east_street)
-"ydm" = (
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/plating,
-/area/gelida/indoors/a_block/dorms)
 "ydo" = (
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/security)
@@ -45525,7 +45483,7 @@ eue
 tzc
 tzc
 kTM
-msx
+yfp
 abN
 crR
 rku
@@ -45534,7 +45492,7 @@ idv
 ivp
 rku
 qum
-msx
+yfp
 xOl
 aWa
 vaN
@@ -46201,12 +46159,12 @@ lMo
 bfK
 pWW
 yfp
-msx
+yfp
 uxt
 uxt
 uxt
 uxt
-msx
+yfp
 yfp
 aLL
 tkC
@@ -46416,10 +46374,10 @@ wdq
 yfp
 yfp
 yfp
-msx
+yfp
 pAx
 dOS
-msx
+yfp
 yfp
 yfp
 yfp
@@ -46636,7 +46594,7 @@ nFn
 nFn
 oCf
 oCf
-ydm
+uxt
 eHl
 dBO
 qjO
@@ -47080,7 +47038,7 @@ nFn
 nFn
 nFn
 pzg
-ydm
+uxt
 odg
 ikv
 qjO
@@ -48370,7 +48328,7 @@ vPO
 oDn
 vWC
 ams
-eAh
+jDy
 bpw
 ams
 sKa
@@ -48378,7 +48336,7 @@ hjk
 sKa
 ams
 wYz
-eAh
+jDy
 ams
 sKa
 joQ
@@ -48593,13 +48551,13 @@ oDn
 vWC
 cYd
 vPO
-eAh
+jDy
 bbn
 ixd
 rHj
-eAh
+jDy
 xjC
-eAh
+jDy
 vPO
 hCr
 bqU
@@ -49480,7 +49438,7 @@ vPO
 hCr
 oqk
 asK
-eAh
+jDy
 igF
 ams
 gnv
@@ -49488,7 +49446,7 @@ uiI
 sKa
 ams
 oIK
-eAh
+jDy
 oDn
 gCI
 ams
@@ -49727,7 +49685,7 @@ wtT
 cHi
 hJe
 vjp
-msx
+yfp
 pBL
 wUn
 odg
@@ -50667,7 +50625,7 @@ uhx
 lCJ
 iiu
 bNU
-geX
+lCJ
 soH
 etI
 xvn
@@ -51064,6 +51022,7 @@ yfp
 yfp
 yfp
 yfp
+eAh
 yfp
 yfp
 yfp
@@ -51071,8 +51030,7 @@ yfp
 yfp
 yfp
 yfp
-yfp
-yfp
+eAh
 yfp
 yfp
 yfp
@@ -51321,7 +51279,7 @@ hRI
 bQW
 wPD
 wPD
-msx
+yfp
 wQe
 vaN
 vaN
@@ -51742,7 +51700,7 @@ qGN
 qGN
 vIE
 odg
-ydm
+uxt
 odg
 ikv
 myO
@@ -52408,14 +52366,14 @@ llu
 llu
 ghj
 xlV
-ydm
+uxt
 odg
 akm
 qjO
 mjO
 xAf
 hqy
-ydm
+uxt
 odg
 ghj
 ghj
@@ -52423,7 +52381,7 @@ dYx
 ghj
 oNd
 arM
-ydm
+uxt
 gQV
 ghj
 oYe
@@ -53376,7 +53334,7 @@ tqM
 piP
 hnW
 jTv
-uak
+jTv
 aal
 aAZ
 aAZ
@@ -54930,7 +54888,7 @@ hNU
 dzV
 bCz
 jTv
-uak
+jTv
 lqN
 jib
 jib
@@ -55144,7 +55102,7 @@ vky
 dvV
 tGe
 noN
-uak
+jTv
 jTv
 xyN
 roG
@@ -55540,7 +55498,7 @@ iyQ
 xEi
 iyQ
 mzH
-wJv
+lAA
 uSj
 vaN
 vaN
@@ -56626,7 +56584,7 @@ twk
 haP
 haP
 haP
-hnp
+haP
 iVD
 iVD
 mzM
@@ -57059,8 +57017,8 @@ haP
 haP
 fMY
 haP
-mvy
-mvy
+qWi
+qWi
 haP
 haP
 oRP
@@ -57965,7 +57923,7 @@ uQL
 eNj
 eNj
 ndG
-aEa
+iVD
 itl
 fCJ
 eXm
@@ -58853,7 +58811,7 @@ iAV
 eNj
 tpQ
 kqQ
-aEa
+iVD
 fRn
 eNj
 sQv
@@ -59110,11 +59068,11 @@ oVG
 nIU
 qiJ
 nIU
-qZP
+sOb
 kLa
 nIU
-wdm
-qZP
+uRI
+sOb
 sJs
 sJs
 sOb
@@ -59332,11 +59290,11 @@ rdU
 bKF
 war
 awe
-qZP
+sOb
 dbq
 mec
 bBA
-qZP
+sOb
 sJs
 sJs
 sOb
@@ -59554,11 +59512,11 @@ sOb
 qCr
 sOb
 sOb
-qZP
+sOb
 sTK
-mdD
+pJy
 tQi
-qZP
+sOb
 oao
 oao
 sOb
@@ -59806,14 +59764,14 @@ vky
 dvV
 lqf
 noN
-uak
+jTv
 jTv
 dqk
 sdy
 chr
 blP
 jTv
-uak
+jTv
 cxg
 xUp
 sdU
@@ -60008,14 +59966,14 @@ etr
 rFU
 qfM
 sOb
-qZP
+sOb
 nIU
 nIU
 nIU
 nIU
 nIU
 nIU
-qZP
+sOb
 vDe
 etr
 etr
@@ -61569,7 +61527,7 @@ tRC
 tRC
 tRC
 tRC
-qZP
+sOb
 qmh
 etr
 etr
@@ -62143,22 +62101,22 @@ lJJ
 jbr
 lJJ
 lTA
-iwa
-iwa
-iwa
-iwa
+lJJ
+lJJ
+lJJ
+lJJ
 lTA
 lTA
-iwa
-iwa
-iwa
-iwa
+lJJ
+lJJ
+lJJ
+lJJ
 lTA
 lTA
-iwa
-iwa
-iwa
-iwa
+lJJ
+lJJ
+lJJ
+lJJ
 lTA
 lTA
 haP
@@ -62859,7 +62817,7 @@ neN
 neN
 nDe
 iZI
-bZP
+gfh
 lgS
 jIb
 eux
@@ -63253,22 +63211,22 @@ lJJ
 cYD
 lJJ
 lTA
-iwa
-iwa
-iwa
-iwa
+lJJ
+lJJ
+lJJ
+lJJ
 lTA
 lTA
-iwa
-iwa
-iwa
-iwa
+lJJ
+lJJ
+lJJ
+lJJ
 lTA
 lTA
-iwa
-iwa
-iwa
-iwa
+lJJ
+lJJ
+lJJ
+lJJ
 lTA
 lTA
 haP
@@ -64153,7 +64111,7 @@ rkP
 xDF
 dtZ
 nTQ
-lNC
+wsa
 nRJ
 ilb
 ilb
@@ -64426,8 +64384,8 @@ jIb
 gKW
 xvC
 xvC
-hzw
-hzw
+pWb
+pWb
 xvC
 xvC
 xvC
@@ -64437,7 +64395,7 @@ pli
 xvC
 xvC
 xvC
-vRn
+xvC
 xvC
 nij
 vPi
@@ -64846,7 +64804,7 @@ oYR
 iiC
 jpP
 vnz
-kXC
+snA
 fRP
 loO
 cFC
@@ -65041,7 +64999,7 @@ lWb
 jJQ
 eEm
 gob
-lNC
+wsa
 oyj
 ilb
 juQ
@@ -65089,7 +65047,7 @@ jZM
 jIb
 jaT
 gKW
-hzw
+pWb
 sOJ
 etn
 etn
@@ -65311,7 +65269,7 @@ jZM
 jIb
 jIb
 gKW
-hzw
+pWb
 sOJ
 swV
 qNE
@@ -65512,7 +65470,7 @@ cuK
 uQP
 kxB
 dxk
-kXC
+snA
 eFj
 mjh
 tzW
@@ -65533,7 +65491,7 @@ jIb
 vfo
 jIb
 gKW
-hzw
+pWb
 sOJ
 fkv
 qUZ
@@ -65755,7 +65713,7 @@ jIb
 jIb
 ayL
 gKW
-hzw
+pWb
 sOJ
 tww
 qju
@@ -66643,7 +66601,7 @@ eux
 jIb
 jaT
 gKW
-hzw
+pWb
 sOJ
 hnd
 vJV
@@ -66865,7 +66823,7 @@ eux
 jIb
 eux
 gKW
-hzw
+pWb
 gce
 sWW
 gTM
@@ -67087,7 +67045,7 @@ eux
 eux
 jZM
 gKW
-hzw
+pWb
 vyd
 uVj
 uVj
@@ -67309,7 +67267,7 @@ jZM
 jZM
 eux
 gKW
-hzw
+pWb
 bOU
 uVj
 hnd
@@ -67978,8 +67936,8 @@ gKW
 hsx
 xvC
 xvC
-hzw
-hzw
+pWb
+pWb
 xvC
 xvC
 xvC
@@ -68433,7 +68391,7 @@ heL
 xvC
 xvC
 xvC
-vRn
+xvC
 xvC
 xcj
 etu
@@ -69031,11 +68989,11 @@ wsa
 wsa
 wsa
 wsa
-lNC
+wsa
 tnR
 tnR
 tnR
-lNC
+wsa
 wsa
 dtN
 tbN
@@ -69265,7 +69223,7 @@ ilb
 ilb
 iHf
 poj
-xBf
+oBG
 gyb
 dmn
 oBG
@@ -69985,7 +69943,7 @@ eHf
 ijt
 ijt
 dtS
-sLU
+geX
 egA
 rmB
 xcj
@@ -70207,7 +70165,7 @@ ijt
 ijt
 ykZ
 dtS
-sLU
+geX
 egA
 nnJ
 xcj
@@ -70376,8 +70334,8 @@ ilb
 kFi
 poj
 poj
-xBf
-xBf
+oBG
+oBG
 poj
 poj
 hsf
@@ -70868,7 +70826,7 @@ hjw
 hjw
 hjw
 hTH
-tIH
+lAq
 xFA
 hjw
 hjw
@@ -71088,11 +71046,11 @@ lvh
 lvh
 lvh
 eWZ
-tIH
+lAq
 sxT
 ijt
 dtS
-tIH
+lAq
 nsE
 lvh
 edH
@@ -71310,11 +71268,11 @@ lkT
 lkT
 lkT
 lYt
-tIH
+lAq
 sxT
 ijt
 dtS
-tIH
+lAq
 euX
 lkT
 lkT
@@ -71534,7 +71492,7 @@ hjw
 hjw
 hjw
 hTH
-tIH
+lAq
 xFA
 hjw
 hjw

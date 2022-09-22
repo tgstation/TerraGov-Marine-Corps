@@ -1113,6 +1113,9 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/random/plushie{
+	spawn_nothing_percentage = 95
+	},
 /turf/open/floor/tile/dark/blue2{
 	dir = 6
 	},
@@ -2025,6 +2028,9 @@
 /obj/structure/table,
 /obj/item/stack/sheet/cardboard{
 	amount = 50
+	},
+/obj/effect/spawner/random/plushie{
+	spawn_nothing_percentage = 95
 	},
 /turf/open/floor/tile/dark/blue2{
 	dir = 4

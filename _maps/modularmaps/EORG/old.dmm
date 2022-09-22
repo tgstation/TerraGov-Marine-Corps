@@ -77,8 +77,8 @@
 /turf/closed/wall,
 /area/deathmatch)
 "at" = (
-/obj/structure/window/shuttle,
 /obj/structure/grille,
+/obj/structure/window/framed/prison/reinforced/hull/tyson/reinforced,
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "au" = (
@@ -228,6 +228,9 @@
 	},
 /obj/machinery/light{
 	dir = 8
+	},
+/obj/effect/spawner/random/plushie{
+	spawn_nothing_percentage = 95
 	},
 /turf/open/shuttle/brig,
 /area/deathmatch)
@@ -451,8 +454,8 @@
 /turf/open/floor,
 /area/deathmatch)
 "bQ" = (
-/obj/structure/window/shuttle,
 /obj/structure/grille,
+/obj/structure/window/framed/prison/reinforced/hull/tyson/reinforced,
 /turf/open/floor/plating,
 /area/deathmatch)
 "bR" = (
@@ -602,6 +605,9 @@
 	dir = 4
 	},
 /area/deathmatch)
+"fY" = (
+/turf/closed/wall/sulaco,
+/area/deathmatch)
 "qa" = (
 /obj/structure/lattice,
 /obj/effect/ai_node,
@@ -611,6 +617,14 @@
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/ai_node,
 /turf/open/ground/grass,
+/area/deathmatch)
+"Ab" = (
+/obj/structure/bed,
+/obj/item/bedsheet,
+/obj/effect/spawner/random/plushie{
+	spawn_nothing_percentage = 95
+	},
+/turf/open/floor,
 /area/deathmatch)
 "PJ" = (
 /obj/effect/ai_node,
@@ -1068,7 +1082,7 @@ aR
 bT
 bT
 bT
-aZ
+Ab
 PJ
 bT
 bT
@@ -2115,15 +2129,15 @@ ab
 bu
 ai
 bu
-am
-am
-am
-am
+fY
+fY
+fY
+fY
 aL
 aL
-am
-am
-am
+fY
+fY
+fY
 bu
 bu
 bu
@@ -2162,18 +2176,18 @@ aa
 ab
 bu
 bu
-am
-am
+fY
+fY
 av
-am
+fY
 aH
 aB
 aB
 aB
 av
-am
-am
-am
+fY
+fY
+fY
 bt
 bu
 bu
@@ -2183,15 +2197,15 @@ bu
 bu
 bu
 bu
-am
-am
+fY
+fY
 ao
-am
+fY
 aL
 aL
-am
-am
-am
+fY
+fY
+fY
 bu
 bu
 au
@@ -2210,11 +2224,11 @@ aa
 ab
 bu
 bu
-am
+fY
 av
 aB
-am
-am
+fY
+fY
 aM
 aB
 ax
@@ -2230,8 +2244,8 @@ bu
 bl
 bu
 bt
-am
-am
+fY
+fY
 av
 av
 aX
@@ -2239,8 +2253,8 @@ aB
 bA
 aB
 av
-am
-am
+fY
+fY
 bu
 bu
 bu
@@ -2268,7 +2282,7 @@ aV
 ay
 az
 bt
-am
+fY
 cy
 bt
 bu
@@ -2288,7 +2302,7 @@ az
 aB
 aB
 ch
-am
+fY
 bu
 bu
 bu
@@ -2306,14 +2320,14 @@ aa
 ab
 bu
 bu
-am
-am
+fY
+fY
 aC
 aE
-am
-am
-am
-am
+fY
+fY
+fY
+fY
 bc
 aB
 bz
@@ -2327,7 +2341,7 @@ bu
 bt
 bt
 bH
-am
+fY
 aB
 ay
 bU
@@ -2384,7 +2398,7 @@ am
 am
 bc
 aB
-am
+fY
 bu
 bu
 bu
@@ -2402,11 +2416,11 @@ aa
 ab
 bu
 bu
-am
+fY
 ay
 aB
-am
-am
+fY
+fY
 aN
 aB
 aB
@@ -2423,7 +2437,7 @@ bt
 bt
 bz
 bI
-am
+fY
 aB
 av
 av
@@ -2450,16 +2464,16 @@ aa
 ab
 bu
 bu
-am
-am
+fY
+fY
 ay
-am
+fY
 aH
 aB
 aX
 aB
 ay
-am
+fY
 bt
 bt
 bt
@@ -2480,7 +2494,7 @@ az
 aB
 aB
 ci
-am
+fY
 bu
 bu
 bu
@@ -2499,15 +2513,15 @@ ab
 bu
 bu
 bu
-am
-am
-am
-am
+fY
+fY
+fY
+fY
 aL
 aL
-am
-am
-am
+fY
+fY
+fY
 bt
 bu
 bu
@@ -2516,10 +2530,10 @@ bu
 bu
 bu
 bu
-am
-am
-am
-am
+fY
+fY
+fY
+fY
 ay
 ay
 aB
@@ -2527,8 +2541,8 @@ aB
 aB
 aB
 ay
-am
-am
+fY
+fY
 bu
 bu
 bu
@@ -2567,15 +2581,15 @@ bu
 bu
 bu
 bu
-am
-am
+fY
+fY
 bQ
-am
+fY
 aL
 aL
-am
-am
-am
+fY
+fY
+fY
 bu
 bu
 bu

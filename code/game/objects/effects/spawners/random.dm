@@ -721,3 +721,19 @@ obj/effect/spawner/random_set/rifle
 		list(/obj/item/weapon/gun/pistol/standard_pocketpistol, /obj/item/ammo_magazine/pistol/standard_pocketpistol, /obj/item/ammo_magazine/pistol/standard_pocketpistol, /obj/item/ammo_magazine/pistol/standard_pocketpistol,),
 		list(/obj/item/weapon/gun/pistol/vp70, /obj/item/ammo_magazine/pistol/vp70, /obj/item/ammo_magazine/pistol/vp70, /obj/item/ammo_magazine/pistol/vp70,),
 	)
+
+//random plushie spawner
+/obj/effect/spawner/random/plushie
+	name = "Random plush spawner"
+	icon_state = "random_plush"
+	spawn_nothing_percentage = 85
+
+/obj/effect/spawner/random/plushie/item_to_spawn()
+		return pick(/obj/item/toy/plush/moth,\
+					/obj/item/toy/plush/rouny,\
+					/obj/item/toy/plush/therapy_blue,\
+					/obj/item/toy/plush/therapy_green,\
+					/obj/item/toy/plush/therapy_yellow,\
+					/obj/item/toy/plush/therapy_orange,\
+					/obj/item/toy/plush/therapy_red,\
+					/obj/item/toy/plush/therapy_purple)

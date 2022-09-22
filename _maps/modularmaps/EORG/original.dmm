@@ -620,6 +620,9 @@
 /area/deathmatch)
 "cv" = (
 /obj/structure/table/reinforced/prison,
+/obj/effect/spawner/random/plushie{
+	spawn_nothing_percentage = 99
+	},
 /turf/open/floor/tile/bar,
 /area/deathmatch)
 "cw" = (
@@ -739,7 +742,13 @@
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "cT" = (
-/turf/open/floor/mainship/mono,
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/effect/spawner/random/plushie{
+	spawn_nothing_percentage = 99
+	},
+/turf/open/shuttle/dropship/floor,
 /area/deathmatch)
 "cU" = (
 /obj/structure/platform{
@@ -2059,12 +2068,12 @@ ci
 ci
 cM
 as
-cT
-cT
-cT
-cT
-cT
-cT
+ez
+ez
+ez
+ez
+ez
+ez
 as
 dz
 xX
@@ -2154,14 +2163,14 @@ cx
 fI
 ce
 va
-cT
-cT
+ez
+ez
 KI
 df
-cT
-cT
-cT
-cT
+ez
+ez
+ez
+ez
 dA
 ae
 ce
@@ -2202,14 +2211,14 @@ fI
 fI
 fI
 cN
-cT
+ez
 cY
 cY
 cY
 cY
 cY
 cY
-cT
+ez
 dA
 fI
 fI
@@ -2252,10 +2261,10 @@ ca
 cO
 as
 cS
-cT
-cT
-cT
-cT
+ez
+ez
+ez
+ez
 cS
 as
 dz
@@ -2313,7 +2322,7 @@ an
 Tu
 TP
 ef
-cT
+ez
 ew
 TP
 TP
@@ -2361,7 +2370,7 @@ TP
 ao
 TP
 eg
-cT
+ez
 ex
 bT
 TP
@@ -2409,7 +2418,7 @@ TP
 ap
 dV
 eh
-cT
+ez
 ey
 eD
 bT
@@ -2456,9 +2465,9 @@ TP
 TP
 aq
 dW
-cT
-cT
-cT
+ez
+ez
+ez
 eE
 tf
 TP
@@ -2504,7 +2513,7 @@ aH
 TP
 VE
 dX
-cT
+ez
 er
 ez
 eF
@@ -2552,9 +2561,9 @@ TP
 TP
 ap
 dY
-cT
-cT
-cT
+ez
+ez
+ez
 eG
 TP
 TP
@@ -3211,7 +3220,7 @@ bP
 bU
 aR
 aR
-bP
+cT
 aR
 di
 dm

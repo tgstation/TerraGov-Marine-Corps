@@ -508,6 +508,13 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/deathmatch)
+"gE" = (
+/obj/structure/table/reinforced/prison,
+/obj/effect/spawner/random/plushie{
+	spawn_nothing_percentage = 95
+	},
+/turf/open/floor/mainship/mono,
+/area/deathmatch)
 "hr" = (
 /obj/structure/bed/chair,
 /turf/open/floor/wood,
@@ -992,6 +999,9 @@
 /obj/item/reagent_containers/food/snacks/grown/poppy{
 	pixel_x = 4;
 	pixel_y = 4
+	},
+/obj/effect/spawner/random/plushie{
+	spawn_nothing_percentage = 50
 	},
 /turf/open/floor/grass,
 /area/deathmatch)
@@ -2001,7 +2011,7 @@ HL
 aH
 Zu
 ue
-Yy
+gE
 aB
 ca
 HL
