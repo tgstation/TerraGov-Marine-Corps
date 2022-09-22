@@ -204,8 +204,10 @@
 	var/list/turf/turfs_by_iteration = list()
 	for(var/turf/turf AS in turfs_to_ignite)
 		if(get_dist(turf, flame_source) == iteration)
-			if(turf.density && istype(turf, /turf/closed/wall/resin)) // preventing flamers from going through more than 2 layers of resin wall
+			//Checks if turf is resin wall
+			if(turf.density && istype(turf, /turf/closed/wall/resin))
 				walls_penetrated_wide -= 1
+			//Check to ensure that we dont burn more walls than specified
 			if(walls_penetrated_wide <= 0)
 				break
 			turfs_by_iteration += turf
