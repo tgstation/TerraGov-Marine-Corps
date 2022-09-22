@@ -363,7 +363,7 @@
 	name = "Attach Spiderlings"
 	ability_name = "Attach Spiderlings"
 	mechanics_text = "Attach your current spiderlings to you "
-	action_icon_state = "burrow" // temp
+	action_icon_state = "attach_spiderling"
 	plasma_cost = 0
 	cooldown_timer = 0 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_ATTACH_SPIDERLINGS
