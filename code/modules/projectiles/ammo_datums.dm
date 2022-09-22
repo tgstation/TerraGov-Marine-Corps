@@ -2190,39 +2190,30 @@ datum/ammo/bullet/revolver/tp44
 	///Fire color
 	var/fire_color = "green"
 
-/datum/ammo/energy/plasma_pistol/on_hit_turf(turf/T, obj/projectile/proj)
+/datum/ammo/energy/plasma_pistol/proc/drop_fire(atom/target, obj/projectile/proj)
+	var/turf/target_turf = get_turf(target)
 	var/burn_mod = 1
-	if(istype(T, /turf/closed/wall))
+	if(istype(target_turf, /turf/closed/wall))
 		burn_mod = 3
-	T.ignite(heat, burn_damage * burn_mod, fire_color)
-	for(var/mob/living/mob_caught in T)
-		if(mob_caught.stat == DEAD)
+	target_turf.ignite(heat, burn_damage * burn_mod, fire_color)
+
+	for(var/mob/living/mob_caught in target_turf)
+		if(mob_caught.stat == DEAD || mob_caught == target)
 			continue
 		mob_caught.adjust_fire_stacks(burn_damage)
 		mob_caught.IgniteMob()
+
+/datum/ammo/energy/plasma_pistol/on_hit_turf(turf/T, obj/projectile/proj)
+	drop_fire(T, proj)
 
 /datum/ammo/energy/plasma_pistol/on_hit_mob(mob/M, obj/projectile/proj)
-	var/turf/target = get_turf(M)
-	if(!target)
-		target = get_turf(proj)
-	target.ignite(heat, burn_damage, fire_color)
+	drop_fire(M, proj)
 
 /datum/ammo/energy/plasma_pistol/on_hit_obj(obj/O, obj/projectile/proj)
-	var/turf/target = get_turf(O)
-	if(!target)
-		target = get_turf(proj)
-	target.ignite(heat, burn_damage, fire_color)
+	drop_fire(O, proj)
 
 /datum/ammo/energy/plasma_pistol/do_at_max_range(turf/T, obj/projectile/proj)
-	var/burn_mod = 1
-	if(istype(T, /turf/closed/wall))
-		burn_mod = 3
-	T.ignite(heat, burn_damage * burn_mod, fire_color)
-	for(var/mob/living/mob_caught in T)
-		if(mob_caught.stat == DEAD)
-			continue
-		mob_caught.adjust_fire_stacks(burn_damage)
-		mob_caught.IgniteMob()
+	drop_fire(T, proj)
 
 //volkite
 
