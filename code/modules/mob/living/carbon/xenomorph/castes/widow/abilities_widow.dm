@@ -52,7 +52,7 @@
 	icon_state = "aoe_leash"
 	desc = "Sticky and icky. Destroy it when you are stuck!"
 	destroy_sound = "alien_resin_break"
-	max_integrity = 50
+	max_integrity = 25
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	throwpass = FALSE
