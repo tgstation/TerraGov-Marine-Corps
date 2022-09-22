@@ -2,7 +2,7 @@
 	caste_name = "Widow"
 	display_name = "Widow"
 	upgrade_name = ""
-	caste_desc = "You don't think you've seen a tarantula this big before"
+	caste_desc = "You don't think you've seen a tarantula this giant before."
 	caste_type_path = /mob/living/carbon/xenomorph/widow
 
 	tier = XENO_TIER_THREE
@@ -50,6 +50,7 @@
 		/datum/action/xeno_action/activable/leash_ball,
 		/datum/action/xeno_action/create_spiderling,
 		/datum/action/xeno_action/lay_egg,
+		/datum/action/xeno_action/attach_spiderlings,
 	)
 
 /datum/xeno_caste/widow/on_caste_applied(mob/xenomorph)
@@ -60,13 +61,21 @@
 	. = ..()
 	xenomorph.RemoveElement(/datum/element/wall_speedup, WIDOW_SPEED_BONUS)
 
+/datum/xeno_caste/widow/on_caste_applied(mob/xenomorph)
+	. = ..()
+	xenomorph.AddElement(/datum/element/ridable, /datum/component/riding/creature/widow)
+
+/datum/xeno_caste/widow/on_caste_removed(mob/xenomorph)
+	. = ..()
+	xenomorph.RemoveElement(/datum/element/ridable, /datum/component/riding/creature/widow)
+
 /datum/xeno_caste/widow/young
 	upgrade_name = "Young"
 	upgrade = XENO_UPGRADE_ZERO
 
 /datum/xeno_caste/widow/mature
 	upgrade_name = "Mature"
-	caste_desc = "So this is what the fly in a spider's web feels like"
+	caste_desc = "So this is what a fly in a spider's web feels like."
 
 	upgrade = XENO_UPGRADE_ONE
 
@@ -91,7 +100,7 @@
 
 /datum/xeno_caste/widow/elder
 	upgrade_name = "Elder"
-	caste_desc = "And they said Arachnophobia was irrational"
+	caste_desc = "And they said Arachnophobia was irrational..."
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
@@ -147,7 +156,7 @@
 /datum/xeno_caste/widow/primordial
 	upgrade_name = "Primordial"
 	caste_desc = "At times, life is just like a web. You fall, and a spider called accident, at the center, takes you to hell."
-	primordial_message = "We weave the threads of fate that our victims life hangs from"
+	primordial_message = "We weave the threads of fate that our victims life hangs from."
 	upgrade = XENO_UPGRADE_FOUR
 
 	// *** Melee Attacks *** //
@@ -179,5 +188,6 @@
 		/datum/action/xeno_action/activable/leash_ball,
 		/datum/action/xeno_action/create_spiderling,
 		/datum/action/xeno_action/lay_egg,
+		/datum/action/xeno_action/attach_spiderlings,
 		/datum/action/xeno_action/spider_swarm,
 	)

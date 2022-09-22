@@ -363,8 +363,39 @@
 	name = "Attach Spiderlings"
 	ability_name = "Attach Spiderlings"
 	mechanics_text = "Attach your current spiderlings to you "
-	action_icon_state = "burrow"
+	action_icon_state = "burrow" // temp
 	plasma_cost = 0
 	cooldown_timer = 0 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_BURROW
-	use_state_flags = XACT_USE_BURROWED
+	keybind_signal = COMSIG_XENOABILITY_ATTACH_SPIDERLINGS
+	// the attached spiderlings
+	var/list/mob/living/carbon/xenomorph/spiderling/attached_spiderlings = list()
+	// how many times we attempt to attach adjacent spiderligns
+	var/attach_attempts = 5
+
+/datum/action/xeno_action/attach_spiderlings/action_activate()
+	. = ..()
+	var/mob/living/carbon/xenomorph/widow/X = owner
+	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = owner.actions_by_path[/datum/action/xeno_action/create_spiderling]
+	if(!(length(create_spiderling_action.spiderlings)))
+		X.balloon_alert(X, "No spiderlings to attach")
+		return fail_activate()
+	var/list/mob/living/carbon/xenomorph/spiderling/remaining_spiderlings = create_spiderling_action.spiderlings.Copy()
+	grab_spiderlings(remaining_spiderlings, attach_attempts)
+	succeed_activate()
+
+// this proc scoops up adjacent spiderlings and then calls ride_widow on them
+/datum/action/xeno_action/attach_spiderlings/proc/grab_spiderlings(list/mob/living/carbon/xenomorph/spiderling/remaining_list, number_of_attempts_left)
+	var/mob/living/carbon/xenomorph/widow/X = owner
+	if(number_of_attempts_left <= 0)
+		return
+	for(var/mob/living/carbon/xenomorph/spiderling/remaining_spiderling AS in remaining_list)
+		if(!X.Adjacent(remaining_spiderling))
+			continue
+		remaining_list -= remaining_spiderling
+		ride_widow(remaining_spiderling, X)
+	addtimer(CALLBACK(src, .proc/grab_spiderlings, remaining_list, number_of_attempts_left - 1), 1)
+
+// this proc makes the spiderlings ride widow
+/datum/action/xeno_action/attach_spiderlings/proc/ride_widow(mob/living/carbon/xenomorph/spiderling/piggy, mob/living/carbon/xenomorph/widow/back)
+	back.buckle_mob(piggy,TRUE, TRUE, 90, 1, 0)
+	ADD_TRAIT(piggy, TRAIT_IMMOBILE, WIDOW_ABILITY_TRAIT)

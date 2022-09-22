@@ -274,3 +274,38 @@
 		. = riding_offsets["[mob_type]"]
 	else if(riding_offsets["[RIDING_OFFSET_ALL]"])
 		. = riding_offsets["[RIDING_OFFSET_ALL]"]
+
+/datum/component/riding/creature/widow
+	can_be_driven = FALSE
+
+/datum/component/riding/creature/widow/handle_specials()
+	. = ..()
+	set_riding_offsets(1, list(TEXT_NORTH = list(-16, 9), TEXT_SOUTH = list(-16, 17), TEXT_EAST = list(-21, 7), TEXT_WEST = list(-6, 7)))
+	set_riding_offsets(2, list(TEXT_NORTH = list(16, 16), TEXT_SOUTH = list(16, 17), TEXT_EAST = list(21, 7), TEXT_WEST = list(6, 7)))
+	set_riding_offsets(3, list(TEXT_NORTH = list(8, 8), TEXT_SOUTH = list(-8, 21), TEXT_EAST = list(14, 11), TEXT_WEST = list(0, 2)))
+	set_riding_offsets(4, list(TEXT_NORTH = list(-8, 16), TEXT_SOUTH = list(-16, 13), TEXT_EAST = list(-21, 2), TEXT_WEST = list(6, 11)))
+	set_riding_offsets(5, list(TEXT_NORTH = list(8, 8), TEXT_SOUTH = list(8, 12), TEXT_EAST = list(21, 2), TEXT_WEST = list(-6, 11)))
+	set_vehicle_dir_layer(SOUTH, ABOVE_MOB_LAYER)
+	set_vehicle_dir_layer(NORTH, ABOVE_LYING_MOB_LAYER)
+	set_vehicle_dir_layer(EAST, ABOVE_LYING_MOB_LAYER)
+	set_vehicle_dir_layer(WEST, ABOVE_LYING_MOB_LAYER)
+
+/datum/component/riding/creature/widow/Initialize(mob/living/riding_mob, force = FALSE, check_loc, lying_buckle, hands_needed, target_hands_needed, silent)
+	. = ..()
+	riding_mob.density = FALSE
+
+/datum/component/riding/creature/widow/RegisterWithParent()
+	. = ..()
+	RegisterSignal(parent, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/check_widow_attack)
+
+/datum/component/riding/creature/widow/vehicle_mob_unbuckle(datum/source, mob/living/former_rider, force = FALSE)
+	unequip_buckle_inhands(parent)
+	former_rider.density = TRUE
+	return ..()
+
+/// If the widow gets knocked over, force the riding rounys off and see if someone got hurt
+/datum/component/riding/creature/widow/proc/check_widow_attack(mob/living/carbon/xenomorph/widow/carrying_widow)
+	SIGNAL_HANDLER
+	for(var/mob/living/rider AS in carrying_widow.buckled_mobs)
+		carrying_widow.unbuckle_mob(rider)
+		REMOVE_TRAIT(rider, TRAIT_IMMOBILE, WIDOW_ABILITY_TRAIT)
