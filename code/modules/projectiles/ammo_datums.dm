@@ -204,11 +204,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		victim.apply_damage(fire_burst_damage, BURN, null, armor_block, updating_health = TRUE) //Placeholder damage, will be a ammo var
 
 		staggerstun(victim, proj, 30, stagger = 0.5, slowdown = 0.5, shake = 0)
-
-		var/living_hard_armor = victim.hard_armor.getRating("fire")
-		if(victim.get_fire_resist() > 0 && living_hard_armor < 100) //won't ignite fully fireproof mobs
-			victim.adjust_fire_stacks(CEILING(5 - (living_hard_armor * 0.1), 1))
-			victim.IgniteMob()
+		victim.adjust_fire_stacks(5)
+		victim.IgniteMob()
 
 
 /datum/ammo/proc/fire_bonus_projectiles(obj/projectile/main_proj, atom/shooter, atom/source, range, speed, angle, target)

@@ -913,13 +913,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				damage = max(0, damage - (damage * living_soft_armor * 0.01))
 
 	if(proj.ammo.flags_ammo_behavior & AMMO_INCENDIARY)
-		//We are checking the total distributed mob's armor now, not just the limb.
-		//Fire mod represents our fire resistance, while hard armor represents certain armor's resistance to burning material sticking to it.
-		var/fire_mod = get_fire_resist()
-		var/fire_hard_armor = get_hard_armor("fire", BODY_ZONE_CHEST)
-		if(fire_mod > 0 && fire_hard_armor < 100) //If the modifier is not bigger than zero or the hard armor is 100 then the armor fully absorbs this effect.
-			adjust_fire_stacks(CEILING(proj.ammo.incendiary_strength * fire_mod * ((100- fire_hard_armor) * 0.01), 1)) //We could add an ammo fire strength in time, as a variable.
-			IgniteMob()
+		adjust_fire_stacks(proj.ammo.incendiary_strength)
+		if(IgniteMob())
 			feedback_flags |= (BULLET_FEEDBACK_FIRE|BULLET_FEEDBACK_SCREAM)
 
 	if(proj.ammo.flags_ammo_behavior & AMMO_SUNDERING)
