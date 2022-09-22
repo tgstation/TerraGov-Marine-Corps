@@ -22,7 +22,7 @@
 	SIGNAL_HANDLER
 	return COMSIG_MOB_CLICK_CANCELED
 
-// returns the keys formatted in KEY1+KEY2 if theres multiple from the specified client for this keybinding datum
+// returns the keys that the keybinding is currently triggered by
 /datum/keybinding/proc/get_keys_formatted(client/user)
 	if(!user)
 		return ""
@@ -32,11 +32,4 @@
 	for(var/key in user_prefs.key_bindings)
 		if(name in user_prefs.key_bindings[key])
 			. = "[key]"
-	message_admins("formatted keys returned [.]")
 
-	/*
-	. = ""
-
-	for(var/key in hotkey_keys)
-		. += length(.) ? "+[key]" : "[key]"
-	*/
