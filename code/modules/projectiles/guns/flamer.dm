@@ -54,7 +54,7 @@
 	///Max range of the flamer in tiles.
 	var/flame_max_range = 6
 	///Max resin wall penetration in tiles.
-	var/flame_max_wall_pen = 2
+	var/flame_max_wall_pen = 3
 	///Max resin wall penetration for wide nozzle
 	var/flame_max_wall_pen_wide = 8
 	///Travel speed of the flames in seconds.
