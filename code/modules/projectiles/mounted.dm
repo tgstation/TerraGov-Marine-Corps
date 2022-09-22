@@ -176,11 +176,6 @@
 
 	var/obj/item/weapon/gun/gun = internal_item
 
-	if(object == src) //Clicking the gun gets off of it.
-		var/mob/living/carbon/human/user = source
-		user.unset_interaction()
-		return
-
 	var/target = get_turf_on_clickcatcher(object, operator, params)
 
 	if(!can_fire(target))
