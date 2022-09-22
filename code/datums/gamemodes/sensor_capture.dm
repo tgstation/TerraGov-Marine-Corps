@@ -5,6 +5,8 @@
 	config_tag = "Sensor Capture"
 	wave_timer_length = 2 MINUTES
 	max_game_time = 10 MINUTES
+	///The amount of activated sensor towers in sensor capture
+	var/sensors_activated = 0
 
 /datum/game_mode/combat_patrol/sensor_capture/post_setup()
 	. = ..()

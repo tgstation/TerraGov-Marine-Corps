@@ -70,16 +70,23 @@
 	density = TRUE
 	layer = BELOW_OBJ_LAYER
 	resistance_flags = RESIST_ALL
+	///The timer for when the sensor tower activates
 	var/current_timer
-	var/generate_time = 150 SECONDS
-	var/activate_time = 5 SECONDS // time to start the activation
-	var/deactivate_time = 10 SECONDS // time to stop the activation proccess
+	///Time it takes for the sensor tower to fully activate
+	var/generate_time = 200 SECONDS
+	///Time it takes to start the activation
+	var/activate_time = 5 SECONDS
+	///Time it takes to stop the activation
+	var/deactivate_time = 10 SECONDS
+	///Count amount of sensor towers existing
 	var/static/id = 1
+	///The id for the tower when it initializes, used for minimap icon
 	var/towerid
-	var/activated = FALSE // if all segments are finished
+	///True if the sensor tower has finished activation, used for minimap icon and preventing deactivation
+	var/activated = FALSE
 
 /obj/structure/sensor_tower_patrol/Initialize()
-	. = ..()
+	..()
 	name += " " + num2text(id)
 	towerid = id
 	id++
@@ -109,17 +116,18 @@
 			balloon_alert(user, "This sensor tower is not activated yet, don't let it be activated!")
 		return
 	if(activated)
-		balloon_alert(user, "[src] is already fully activated!")
+		balloon_alert(user, "This sensor tower is already fully activated!")
 		return
 	if(current_timer)
-		balloon_alert(user, "[src] is currently activating!")
+		balloon_alert(user, "This sensor tower is currently activating!")
 		return
-	balloon_alert_to_viewers("[user] starts to activate [src]!")
+	balloon_alert_to_viewers("You start to activate this sensor tower!")
 	if(!do_after(user, activate_time, TRUE, src))
 		return
-	balloon_alert_to_viewers("[user] activates [src]!")
+	balloon_alert_to_viewers("You activate this sensor tower!")
 	begin_activation()
 
+///Starts timer and sends an alert
 /obj/structure/sensor_tower_patrol/proc/begin_activation()
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		human.playsound_local(human, "sound/effects/CIC_order.ogg", 10, 1)
@@ -127,8 +135,11 @@
 	current_timer = addtimer(CALLBACK(src, .proc/finish_activation), generate_time, TIMER_STOPPABLE)
 	update_icon()
 
+///When timer ends add a point to the point pool in sensor capture, increase game timer, and send an alert
 /obj/structure/sensor_tower_patrol/proc/finish_activation()
-	if(timeleft(current_timer) > 0)
+	if(!current_timer)
+		return
+	if(activated)
 		return
 	playsound(src, 'sound/machines/ping.ogg', 25, 1)
 	current_timer = null
@@ -136,13 +147,14 @@
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		human.playsound_local(human, "sound/effects/CIC_order.ogg", 10, 1)
 		human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>OVERWATCH</u></span><br>" + "[src] is fully activated.", /obj/screen/text/screen_text/command_order)
-	SSticker.mode.sensors_activated += 1
-	var/datum/game_mode/combat_patrol/sensor_capture/D = SSticker.mode
-	var/current_time = timeleft(D.game_timer)
-	D.game_timer = addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/set_game_end), current_time + 10 MINUTES, TIMER_STOPPABLE)
+	var/datum/game_mode/combat_patrol/sensor_capture/mode = SSticker.mode
+	mode.sensors_activated += 1
+	var/current_time = timeleft(mode.game_timer)
+	mode.game_timer = addtimer(CALLBACK(mode, /datum/game_mode/combat_patrol.proc/set_game_end), current_time + 10 MINUTES, TIMER_STOPPABLE)
 	activated = TRUE
 	update_icon()
 
+///Stops timer if activating and sends an alert
 /obj/structure/sensor_tower_patrol/proc/deactivate()
 	current_timer = null
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)

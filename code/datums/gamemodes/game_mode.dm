@@ -26,8 +26,6 @@
 	var/win_points_needed = 0
 	///The points per faction, assoc list
 	var/list/points_per_faction
-	///The amount of activated sensor towers in sensor capture
-	var/sensors_activated = 0
 	/// When are the shutters dropping
 	var/shutters_drop_time = 30 MINUTES
 	///Time before becoming a zombie when going undefibbable
