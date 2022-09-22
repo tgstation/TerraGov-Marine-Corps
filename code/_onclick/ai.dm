@@ -190,24 +190,37 @@
 	else if(down)
 		TD.move_camera_by_click()
 
-/turf/AIShiftClick(mob/living/silicon/ai/user)
+
+///AI Aiming. This is sending info to a linked mortar/howi
+/atom/proc/ai_artillery_aim(mob/living/silicon/ai/user, target)
 	if(!user.linked_artillery)
 		to_chat(user, span_notice("No linked mortar found."))
 		return
 	
-	var/area/A = get_area(src)
+	var/area/A = get_area(target)
 	if(istype(A) && A.ceiling >= CEILING_UNDERGROUND)
 		to_chat(user, span_warning("You cannot hit the target. It is probably underground."))
 		return
 	to_chat(user, span_notice("Sending targeting information to [user.linked_artillery]. COORDINATES: X:[x] Y:[y]"))
-	user.linked_artillery.recieve_target(src,user)
+	user.linked_artillery.recieve_target(target, user)
+
+/turf/AIShiftClick(mob/living/silicon/ai/user)
+	ai_artillery_aim(user, src)
+
+/obj/alien/weeds/AIShiftClick(mob/living/silicon/ai/user)
+	ai_artillery_aim(user, src)
 
 
-
-/turf/AICtrlClick(mob/living/silicon/ai/user)
-	var/message = "Rangefinding of selected turf at [loc]. COORDINATES: X:[x] Y:[y]"
+///AI coordinates acquisition. They just grab the coordinates. I'd like having them in the clipboard, but I doubt byond can do it. 
+/atom/proc/ai_rangefinder(mob/living/silicon/ai/user, target)
 	var/area/A = get_area(src)
+	var/message = "Rangefinding of selected turf at [A]. COORDINATES: X:[x] Y:[y]"
 	if(istype(A) && A.ceiling >= CEILING_UNDERGROUND)
 		message += " It is underground."
 	to_chat(user, span_notice(message))
 
+/turf/AICtrlClick(mob/living/silicon/ai/user)
+	ai_rangefinder(user, src)
+
+/obj/alien/weeds/AICtrlClick(mob/living/silicon/ai/user)
+	ai_rangefinder(user, src)
