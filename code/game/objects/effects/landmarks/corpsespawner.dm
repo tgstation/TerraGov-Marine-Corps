@@ -18,6 +18,7 @@
 	var/mobname = "Unknown"  //Unused now but it'd fuck up maps to remove it now
 	var/corpseuniform = null //Set this to an object path to have the slot filled with said object on the corpse.
 	var/corpsesuit = null
+	var/corpsesuitstorage = null
 	var/corpseshoes = null
 	var/corpsegloves = null
 	var/corpseradio = null
@@ -78,6 +79,8 @@
 		corpse.equip_to_slot_or_del(new corpseuniform(corpse), SLOT_W_UNIFORM)
 	if(corpsesuit)
 		corpse.equip_to_slot_or_del(new corpsesuit(corpse), SLOT_WEAR_SUIT)
+	if(corpsesuitstorage)
+		corpse.equip_to_slot_or_del(new corpsesuitstorage(corpse), SLOT_S_STORE)
 	if(corpseshoes)
 		corpse.equip_to_slot_or_del(new corpseshoes(corpse), SLOT_SHOES)
 	if(corpsegloves)
@@ -385,6 +388,7 @@
 	name = "SOM Infantry"
 	corpseuniform = /obj/item/clothing/under/som/webbing
 	corpsesuit = /obj/item/clothing/suit/modular/som
+	corpsesuitstorage = /obj/item/weapon/gun/rifle/mpi_km/grenadier
 	corpseback = /obj/item/storage/backpack/satchel/som
 	corpsemask = /obj/item/clothing/mask/gas
 	corpsehelmet = /obj/item/clothing/head/modular/som
