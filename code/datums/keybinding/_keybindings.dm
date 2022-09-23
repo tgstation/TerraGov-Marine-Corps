@@ -22,7 +22,7 @@
 	SIGNAL_HANDLER
 	return COMSIG_MOB_CLICK_CANCELED
 
-// returns the keys that the keybinding is currently triggered by
+/// returns the keys that the keybinding is currently triggered by
 /datum/keybinding/proc/get_keys_formatted(client/user)
 	if(!user)
 		return ""

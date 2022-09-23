@@ -8,6 +8,7 @@
 	var/action_icon_state = "default"
 	var/background_icon = 'icons/mob/actions.dmi'
 	var/background_icon_state = "template"
+	/// A mutable_appeareance holding the maptext to show above the action, created in new()
 	var/mutable_appearance/maptext_image
 	var/static/atom/movable/vis_obj/action/selected_frame/selected_frame = new
 	var/static/atom/movable/vis_obj/action/empowered_frame/empowered_frame = new //Got lazy and didn't make a child, ask tivi for a better solution.
@@ -52,6 +53,7 @@
 /datum/action/proc/should_show()
 	return TRUE
 
+/// A handler used to update the maptext and show the change immediately.
 /datum/action/proc/update_map_text(key_string)
 	maptext_image.maptext = key_string
 	update_button_icon()

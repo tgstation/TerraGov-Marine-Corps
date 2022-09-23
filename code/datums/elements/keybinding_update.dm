@@ -14,6 +14,7 @@
 	UnregisterSignal(source, COMSIG_MOB_LOGIN)
 	. = ..()
 
+/// Checks all actions on the mob to see if they match the keybind_signal and updates the trigger key.
 /datum/element/proc/on_keybinding_change(mob/current_mob, datum/keybinding/changed_bind)
 	SIGNAL_HANDLER
 	if(!changed_bind)
@@ -30,6 +31,7 @@
 			user_action.update_map_text(changed_bind.get_keys_formatted(binder_client))
 			break
 
+/// Triggered when a client enters/gets admin-dragged into a mob. Necesarry since keybindings are done using individual client preferences.
 /datum/element/proc/on_client_change(mob/current_mob)
 	SIGNAL_HANDLER
 	if(!current_mob)
