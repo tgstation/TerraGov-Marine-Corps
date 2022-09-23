@@ -284,6 +284,12 @@
 	flame_max_range = 8
 	cone_angle = 45
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle/wide)
+	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/large/som
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/flamer_tank/large/som,
+		/obj/item/ammo_magazine/flamer_tank/backtank,
+		/obj/item/ammo_magazine/flamer_tank/backtank/X,
+	)
 
 /obj/item/weapon/gun/flamer/som/mag_harness
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle/wide, /obj/item/attachable/magnetic_harness)
