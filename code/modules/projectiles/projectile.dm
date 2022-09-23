@@ -490,7 +490,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				return PROJECTILE_FROZEN
 			if(turf_crossed_by == original_target_turf && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
 				last_processed_turf = turf_crossed_by
-				ammo.on_hit_turf(turf_crossed_by, src)
+				ammo.do_at_max_range(turf_crossed_by, src)
 				if(border_escaped_through & (NORTH|SOUTH))
 					x_pixel_dist_travelled += pixel_moves_until_crossing_x_border * x_offset
 					y_pixel_dist_travelled += pixel_moves_until_crossing_x_border * y_offset
@@ -555,11 +555,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			RegisterSignal(next_turf, COMSIG_TURF_RESUME_PROJECTILE_MOVE, .proc/resume_move)
 			return PROJECTILE_FROZEN
 		if(next_turf == original_target_turf && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
-			ammo.on_hit_turf(next_turf, src)
+			ammo.do_at_max_range(next_turf, src)
 			end_of_movement = i
 			break
 		if(distance_travelled >= proj_max_range)
-			ammo.do_at_max_range(src)
+			ammo.do_at_max_range(next_turf, src)
 			end_of_movement = i
 			break
 
@@ -1092,7 +1092,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				break
 			if(turf_crossed_by == original_target_turf && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
 				last_processed_turf = turf_crossed_by
-				ammo.on_hit_turf(turf_crossed_by, src)
+				ammo.do_at_max_range(turf_crossed_by, src)
 				end_of_movement = TRUE
 				break
 			if(HAS_TRAIT(turf_crossed_by, TRAIT_TURF_BULLET_MANIPULATION))
@@ -1140,11 +1140,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			end_of_movement = TRUE
 			break
 		if(next_turf == original_target_turf && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
-			ammo.on_hit_turf(next_turf, src)
+			ammo.do_at_max_range(next_turf, src)
 			end_of_movement = TRUE
 			break
 		if(distance_travelled >= proj_max_range)
-			ammo.do_at_max_range(src)
+			ammo.do_at_max_range(next_turf, src)
 			end_of_movement = TRUE
 			break
 		if(HAS_TRAIT(next_turf, TRAIT_TURF_BULLET_MANIPULATION))
