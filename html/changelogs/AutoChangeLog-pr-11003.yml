@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes: 
+  - refactor: "refactored some projectile on hit code"
+  - bugfix: "Certain projectile hit effects will no longer incorrectly trigger on the wrong or dense turfs"
