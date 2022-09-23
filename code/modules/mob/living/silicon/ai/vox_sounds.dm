@@ -6,7 +6,7 @@
 // (([a-zA-Z,.]+)\.ogg)
 
 // For vim
-// :%s/\(\(.*\)\.ogg\)/"\2" = 'sound/vox/sound\/vox_fem\/\1'/g
+// :%s/\(\(.*\)\.ogg\)/"\2" = 'sound\/vox_fem\/\1',/g
 GLOBAL_LIST_INIT(vox_sounds, list("!assblastusa" = 'sound/vox/!assblastusa.ogg'
 		"!apcdestroyed" = 'sound/vox/apcdestroyed.ogg'
 		"!bloop" = 'sound/vox/!bloop.ogg'
