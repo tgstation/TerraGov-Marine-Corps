@@ -1182,7 +1182,7 @@ TUNNEL
 
 /obj/structure/xeno/pherotower/Initialize(mapload, hivenum)
 	. = ..()
-	GLOB.hive_datums[hivenum].evotowers += src
+	GLOB.hive_datums[hivenum].pherotowers += src
 
 //Pheromone towers start off with recovery.
 	current_aura = SSaura.add_emitter(src, AURA_XENO_RECOVERY, aura_range, aura_strength, -1, FACTION_XENO)
