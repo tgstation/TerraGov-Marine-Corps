@@ -23,6 +23,7 @@
 	/// What is allowed to be equipped in suit storage
 	allowed = list(
 		/obj/item/weapon/gun,
+		/obj/item/instrument,
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/holster/blade,
 		/obj/item/weapon/claymore,

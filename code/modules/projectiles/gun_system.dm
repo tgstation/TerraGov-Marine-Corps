@@ -223,7 +223,7 @@
 	var/burst_delay = 0.1 SECONDS
 	///When burst-firing, this number is extra time before the weapon can fire again. Depends on number of rounds fired.
 	var/extra_delay	= 0
-	///when autobursting, this is the amount of extra (extra) time before the weapon fires again. If no amount is specified, defaults to x2 fire_delay
+	///when autobursting, this is the total amount of time before the weapon fires again. If no amount is specified, defaults to fire_delay + extra_delay
 	var/autoburst_delay = 0
 
 	///Slowdown for wielding
@@ -343,7 +343,8 @@
 	base_gun_icon = icon_state
 
 	update_force_list() //This gives the gun some unique verbs for attacking.
-
+	if(!autoburst_delay)
+		autoburst_delay = (fire_delay + extra_delay)
 	setup_firemodes()
 	AddComponent(/datum/component/automatedfire/autofire, fire_delay, autoburst_delay, burst_delay, burst_amount, gun_firemode, CALLBACK(src, .proc/set_bursting), CALLBACK(src, .proc/reset_fire), CALLBACK(src, .proc/Fire)) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
 	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachable_allowed, attachable_offset, starting_attachment_types, null, CALLBACK(src, .proc/on_attachment_attach), CALLBACK(src, .proc/on_attachment_detach), attachment_overlays)

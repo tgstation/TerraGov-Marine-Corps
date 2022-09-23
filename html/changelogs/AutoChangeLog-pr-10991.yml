@@ -1,4 +1,4 @@
 author: "TiviPlus"
 delete-after: True
 changes: 
-  - code_imp: "Added push priorities"
+  - bugfix: "fixed a suit icon"

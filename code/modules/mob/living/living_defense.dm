@@ -126,7 +126,7 @@
 
 /mob/living/carbon/human/IgniteMob()
 	. = ..()
-	if(.)
+	if(on_fire == TRUE)
 		if(!stat && !(species.species_flags & NO_PAIN))
 			emote("scream")
 
