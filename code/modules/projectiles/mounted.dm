@@ -142,11 +142,13 @@
 		action.give_action(operator)
 
 	gun.set_gun_user(operator)
-	user.forceMove(loc)
-	user.setDir(dir)
-	user_old_x = user.pixel_x
-	user_old_y = user.pixel_y
-	update_pixels(user, TRUE)
+	operator.forceMove(loc)
+	operator.setDir(dir)
+	user_old_x = operator.pixel_x
+	user_old_y = operator.pixel_y
+	update_pixels(operator, TRUE)
+	operator.anchored = TRUE
+	density = FALSE
 
 /obj/machinery/deployable/mounted/proc/update_pixels(mob/user, mounting)
 	if(mounting)
@@ -288,6 +290,8 @@
 	update_pixels(user, FALSE)
 	user_old_x = 0
 	user_old_y = 0
+	user.anchored = FALSE
+	density = TRUE
 
 ///makes sure you can see and or use the gun
 /obj/machinery/deployable/mounted/check_eye(mob/user)
