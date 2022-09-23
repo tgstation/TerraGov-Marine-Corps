@@ -206,11 +206,11 @@
 	name = "Inactive Camera Eye"
 	ai_detector_visible = FALSE
 	/// The delay applied after moving to a tile.
-	var/move_delay = 0.1 SECONDS// quite fast
+	var/move_delay = 0.1 SECONDS
 	/// Internal variable used to keep track of the amount of tiles we have moved in the same direction
-	var/tiles_moved = 0 // Tiles moved in 1 direction , used for smart acceleration
+	var/tiles_moved = 0
 	/// Limits tiles_moved to this value.
-	var/max_tile_acceleration = 8 // a limit to how far acceleration can go
+	var/max_tile_acceleration = 8
 	var/cooldown = 0
 	var/acceleration = TRUE
 	var/mob/living/eye_user = null

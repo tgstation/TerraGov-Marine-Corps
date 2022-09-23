@@ -197,7 +197,7 @@
 		return
 	return ..()
 
-// Lets players click a tile while controlling to face it.
+/// Lets players click a tile while controlling to face it.
 /obj/machinery/computer/camera_advanced/remote_fob/proc/on_controller_click(datum/source, atom/target, turf/location, control, params)
 	SIGNAL_HANDLER
 	eyeobj.facedir(get_dir(eyeobj, target))
