@@ -1164,7 +1164,7 @@ TUNNEL
 			take_damage(300)
 
 /obj/structure/xeno/pherotower
-	name = "Pheromone Tower"
+	name = "Pheromone tower"
 	desc = "A resin formation that looks like a small pillar. A faint, weird smell can be perceived from it."
 	icon = 'icons/Xeno/1x1building.dmi'
 	icon_state = "recoverytower"
