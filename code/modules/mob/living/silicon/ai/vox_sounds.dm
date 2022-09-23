@@ -1560,5 +1560,5 @@ GLOBAL_LIST_INIT(vox_sounds, list("!assblastusa" = 'sound/vox/!assblastusa.ogg'
 		"zeta" = 'sound/vox/zeta.ogg'
 		"zombie" = 'sound/vox/zombie.ogg'
 		"zone" = 'sound/vox/zone.ogg'
-		"zulu" = 'sound/vox/zulu.ogg'sound/vox/))
+		"zulu" = 'sound/vox/zulu.ogg'))
 #endif
