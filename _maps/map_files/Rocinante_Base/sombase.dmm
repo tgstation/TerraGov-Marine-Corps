@@ -8645,12 +8645,6 @@
 	},
 /turf/open/floor/mainship/sterile/white,
 /area/rocinante_Base/surface/building/administration)
-"ngl" = (
-/obj/structure/platform_decoration/rockcliff_deco,
-/turf/open/floor/plating/ground/concrete/lines{
-	dir = 5
-	},
-/area/rocinante_Base/ground/base_nw)
 "ngp" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/mainship/mono,
@@ -12268,10 +12262,6 @@
 	dir = 1
 	},
 /area/rocinante_Base/surface/building/complex_hall_e)
-"stG" = (
-/obj/structure/platform_decoration/rockcliff_deco,
-/turf/closed/wall/mainship/gray,
-/area/rocinante_Base/ground/base_nw)
 "stQ" = (
 /obj/structure/bed,
 /obj/item/bedsheet/red,
@@ -27069,9 +27059,9 @@ cBH
 cBH
 cBH
 ucc
-ngl
-cWV
-cWV
+xEm
+hUI
+hUI
 cWV
 biB
 hUI
@@ -27220,8 +27210,8 @@ cBH
 cBH
 cBH
 cBH
-stG
-byl
+ucc
+tbG
 tbG
 tbG
 tbG
@@ -27372,7 +27362,7 @@ cBH
 cBH
 cBH
 cBH
-guf
+ucc
 tbG
 tbG
 tbG
