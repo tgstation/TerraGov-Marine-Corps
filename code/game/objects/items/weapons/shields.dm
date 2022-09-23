@@ -6,7 +6,7 @@
 	set_shield()
 
 /obj/item/weapon/shield/proc/set_shield()
-	AddComponent(/datum/component/shield, SHIELD_PARENT_INTEGRITY, shield_cover = list("melee" = 80, "bullet" = 60, "laser" = 60, "energy" = 60, "bomb" = 80, "bio" = 30, "rad" = 0, "fire" = 70, "acid" = 80))
+	AddComponent(/datum/component/shield, SHIELD_PARENT_INTEGRITY, shield_cover = list(MELEE = 80, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 80, BIO = 30, FIRE = 70, ACID = 80))
 
 /obj/item/weapon/shield/riot
 	name = "riot shield"
