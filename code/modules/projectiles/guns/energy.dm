@@ -707,7 +707,7 @@
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser
 	ammo_diff = null
 	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle,  /obj/item/cell/lasgun/volkite/powerpack/energy)
-	rounds_per_shot = 6
+	rounds_per_shot = 4
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	ammo_level_icon = "te"
@@ -744,7 +744,7 @@
 	)
 
 /datum/lasrifle/base/energy_mg_mode/standard
-	rounds_per_shot = 6
+	rounds_per_shot = 4
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser
 	fire_delay = 0.2 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Standard.ogg'
@@ -755,7 +755,7 @@
 /datum/lasrifle/base/energy_mg_mode/standard/efficiency
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser/efficiency
 	fire_delay = 0.15 SECONDS
-	rounds_per_shot = 5
+	rounds_per_shot = 3
 	message_to_user = "You set the machine laser's charge mode to efficiency mode."
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/xray

@@ -167,4 +167,5 @@
 	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "laser_powerpack"
 	charge_overlay = "laser_back"
-	maxcharge = 1500
+	maxcharge = 2500
+	charge_amount = 10
