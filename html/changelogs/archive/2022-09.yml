@@ -247,3 +247,17 @@
   - balance: burst fire som shotgun
   - rscadd: tadpole remap
   - balance: you can now fire over tadpole window and easier to remove
+2022-09-23:
+  BraveMole:
+  - bugfix: Fix some items map text overflowing on the right
+  Lumipharon:
+  - bugfix: Fixed guns without a specific autoburst_delay value not respecting akimbo_extra_delay
+  - balance: Autoburst now default to the same delay manual burst has, instead of
+      double the semi auto delay
+  - balance: CLF team leaders have been put through a leadership course and can now
+      issue orders
+  novaepee, Jackie | Sayori:
+  - rscadd: Instruments in suit storage
+  - imageadd: mob sprites for instruments
+  tyeagg:
+  - bugfix: you can now build in tadpole again

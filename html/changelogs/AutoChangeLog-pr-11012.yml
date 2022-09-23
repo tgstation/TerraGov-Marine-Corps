@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes: 
-  - bugfix: "Fixed guns without a specific autoburst_delay value not respecting akimbo_extra_delay"
-  - balance: "Autoburst now default to the same delay manual burst has, instead of double the semi auto delay"
