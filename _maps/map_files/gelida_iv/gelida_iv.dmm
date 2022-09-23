@@ -22062,7 +22062,7 @@
 /area/gelida/indoors/a_block/garden)
 "obT" = (
 /obj/structure/sign/nosmoking_2{
-	pixel_y = 28
+	dir = 1
 	},
 /obj/structure/rack/nometal,
 /turf/open/floor/prison/darkbrown/full,
@@ -24005,6 +24005,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/casino)
+"pma" = (
+/obj/effect/acid_hole{
+	dir = 4
+	},
+/turf/closed/wall,
+/area/gelida/indoors/a_block/dorm_north)
 "pml" = (
 /obj/item/stack/sheet/metal,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
@@ -34342,6 +34348,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_street)
+"vNz" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/prison/whitepurple/full{
+	dir = 4
+	},
+/area/gelida/indoors/a_block/bridges/corpo)
 "vNA" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/structure/cable,
@@ -62530,7 +62542,7 @@ wzw
 wzw
 qMB
 iKo
-rkQ
+vNz
 sXG
 wId
 wId
@@ -65863,7 +65875,7 @@ ihl
 ihl
 ihl
 ihl
-ihl
+pma
 ihl
 ihl
 oZU
