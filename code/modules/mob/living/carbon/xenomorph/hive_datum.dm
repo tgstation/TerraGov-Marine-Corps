@@ -19,6 +19,8 @@
 	var/list/obj/structure/xeno/evotower/evotowers = list()
 	///list of upgrade towers
 	var/list/obj/structure/xeno/maturitytower/maturitytowers = list()
+	///list of phero towers
+	var/list/obj/structure/xeno/pherotower/pherotowers = list()
 	var/tier3_xeno_limit
 	var/tier2_xeno_limit
 	///Queue of all observer wanting to join xeno side

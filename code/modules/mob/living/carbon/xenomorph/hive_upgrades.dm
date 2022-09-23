@@ -208,6 +208,14 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	flags_upgrade = ABILITY_DISTRESS
 	building_type = /obj/structure/xeno/maturitytower
 
+/datum/hive_upgrade/building/pherotower
+	name = "Pheromone Tower"
+	desc = "Constructs a tower that emanates a selectable type of pheromone."
+	psypoint_cost = 200
+	icon = "pherotower"
+	flags_upgrade = ABILITY_DISTRESS
+	building_type = /obj/structure/xeno/pherotower
+
 /datum/hive_upgrade/building/spawner
 	name = "Spawner"
 	desc = "Constructs a spawner that generates ai xenos over time"
