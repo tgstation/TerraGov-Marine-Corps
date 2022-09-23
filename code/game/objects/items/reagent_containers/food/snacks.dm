@@ -641,7 +641,7 @@
 	icon_state = "xenomeat"
 	filling_color = "#43DE18"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3)
-	tastes = list("meat" = 1, "acid" = 1)
+	tastes = list("meat" = 1, ACID = 1)
 	bitesize = 6
 
 /obj/item/reagent_containers/food/snacks/meatball
@@ -771,7 +771,7 @@
 	filling_color = "#43DE18"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 8)
 	bitesize = 2
-	tastes = list("bun" = 4, "acid" = 4)
+	tastes = list("bun" = 4, ACID = 4)
 
 /obj/item/reagent_containers/food/snacks/clownburger
 	name = "Clown Burger"
@@ -930,7 +930,7 @@
 	trash = /obj/item/trash/plate
 	filling_color = "#43DE18"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 10)
-	tastes = list("pie" = 1, "meat" = 1, "acid" = 1)
+	tastes = list("pie" = 1, "meat" = 1, ACID = 1)
 	bitesize = 2
 
 /obj/item/reagent_containers/food/snacks/wingfangchu
@@ -1811,7 +1811,7 @@
 	slice_path = /obj/item/reagent_containers/food/snacks/xenomeatbreadslice
 	list_reagents = list(/datum/reagent/consumable/nutriment = 30)
 	filling_color = "#8AFF75"
-	tastes = list("bread" = 10, "acid" = 10)
+	tastes = list("bread" = 10, ACID = 10)
 
 
 /obj/item/reagent_containers/food/snacks/xenomeatbreadslice
@@ -1821,7 +1821,7 @@
 	trash = /obj/item/trash/plate
 	filling_color = "#8AFF75"
 	bitesize = 2
-	tastes = list("bread" = 10, "acid" = 10)
+	tastes = list("bread" = 10, ACID = 10)
 
 /obj/item/reagent_containers/food/snacks/sliceable/bananabread
 	name = "Banana-nut bread"

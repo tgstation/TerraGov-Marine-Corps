@@ -212,7 +212,7 @@ GLOBAL_LIST_INIT(ghost_forms, list("Default" = GHOST_DEFAULT_FORM, "Ghost Ian 1"
 							"Cyan" = "ghost_cyan", "Dark Blue" = "ghost_dblue", "Dark Red" = "ghost_dred", "Dark Green" = "ghost_dgreen", \
 							"Dark Cyan" = "ghost_dcyan", "Grey" = "ghost_grey", "Dark Yellow" = "ghost_dyellow", "Dark Pink" = "ghost_dpink",\
 							"Purple" = "ghost_purpleswirl", "Funky" = "ghost_funkypurp", "Transparent Pink" = "ghost_pinksherbert", "Blaze it" = "ghost_blazeit",\
-							"Mellow" = "ghost_mellow", "Rainbow" = "ghost_rainbow", "Camo" = "ghost_camo", "Fire" = "ghost_fire", "Cat" = "catghost"))
+							"Mellow" = "ghost_mellow", "Rainbow" = "ghost_rainbow", "Camo" = "ghost_camo", FIRE = "ghost_fire", "Cat" = "catghost"))
 
 
 /client/proc/pick_form()
