@@ -6,6 +6,7 @@
 	name = "backpack"
 	desc = "You wear this on your back and put items into it."
 	icon_state = "backpack"
+	item_state = "backpack"
 	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/backpack.dmi')
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BACK	//ERROOOOO
