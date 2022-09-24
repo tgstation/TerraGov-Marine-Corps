@@ -12,7 +12,7 @@
 /datum/element/keybinding_update/Detach(datum/source, force)
 	UnregisterSignal(source, COMSIG_MOB_KEYBINDINGS_UPDATED)
 	UnregisterSignal(source, COMSIG_MOB_LOGIN)
-	. = ..()
+	return ..()
 
 /// Checks all actions on the mob to see if they match the keybind_signal and updates the trigger key.
 /datum/element/proc/on_keybinding_change(mob/current_mob, datum/keybinding/changed_bind)

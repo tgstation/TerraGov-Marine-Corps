@@ -31,5 +31,5 @@
 		return ""
 	for(var/key in user_prefs.key_bindings)
 		if(name in user_prefs.key_bindings[key])
-			. = "[key]"
+			return "[key]"
 
