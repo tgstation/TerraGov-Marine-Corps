@@ -1177,15 +1177,15 @@ TUNNEL
 	var/datum/aura_bearer/current_aura
 	///Strength of pheromones given by this tower.
 	var/aura_strength = 5
-	///Range (in tiles) of the pheromones given by this tower.
-	var/aura_range = 22
+	///Radius (in tiles) of the pheromones given by this tower.
+	var/aura_radius = 22
 
 /obj/structure/xeno/pherotower/Initialize(mapload, hivenum)
 	. = ..()
 	GLOB.hive_datums[hivenum].pherotowers += src
 
 //Pheromone towers start off with recovery.
-	current_aura = SSaura.add_emitter(src, AURA_XENO_RECOVERY, aura_range, aura_strength, -1, FACTION_XENO)
+	current_aura = SSaura.add_emitter(src, AURA_XENO_RECOVERY, aura_radius, aura_strength, -1, FACTION_XENO)
 	playsound(src, "alien_drool", 25)
 	update_icon()
 
