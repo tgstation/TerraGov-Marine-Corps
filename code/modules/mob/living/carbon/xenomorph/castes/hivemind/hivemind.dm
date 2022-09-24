@@ -32,7 +32,7 @@
 	hud_type = /datum/hud/hivemind
 	hud_possible = list(PLASMA_HUD, HEALTH_HUD_XENO, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD)
 	///The core of our hivemind
-	var/obj/alien/hivemindcore/core
+	var/obj/structure/xeno/hivemindcore/core
 	///The minimum health we can have
 	var/minimum_health = -300
 
@@ -303,21 +303,21 @@
 
 // =================
 // hivemind core
-/obj/alien/hivemindcore
+/obj/structure/xeno/hivemindcore
 	name = "hivemind core"
 	desc = "A very weird, pulsating node. This looks almost alive."
 	max_integrity = 600
 	icon = 'icons/Xeno/weeds.dmi'
 	icon_state = "weed_hivemind4"
 	var/mob/living/carbon/xenomorph/hivemind/parent
-	ignore_weed_destruction = TRUE
+	xeno_structure_flags = CRITICAL_STRUCTURE
 
-/obj/alien/hivemindcore/Initialize(mapload)
+/obj/structure/xeno/hivemindcore/Initialize(mapload)
 	. = ..()
 	new /obj/alien/weeds/node(loc)
 	set_light(7, 5, LIGHT_COLOR_PURPLE)
 
-/obj/alien/hivemindcore/Destroy()
+/obj/structure/xeno/hivemindcore/Destroy()
 	if(isnull(parent))
 		return ..()
 	parent.playsound_local(parent, get_sfx("alien_help"), 30, TRUE)
@@ -334,7 +334,7 @@
 
 //hivemind cores
 
-/obj/alien/hivemindcore/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/obj/structure/xeno/hivemindcore/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(isxenoqueen(X))
 		var/choice = tgui_alert(X, "Are you sure you want to destroy the hivemind?", "Destroy hivemind", list("Yes", "Cancel"))
 		if(choice == "Yes")
@@ -344,7 +344,7 @@
 	X.visible_message(span_danger("[X] nudges its head against [src]."), \
 	span_danger("You nudge your head against [src]."))
 
-/obj/alien/hivemindcore/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armour_penetration)
+/obj/structure/xeno/hivemindcore/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armour_penetration)
 	. = ..()
 	if(isnull(parent))
 		return
