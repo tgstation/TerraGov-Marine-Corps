@@ -13889,8 +13889,7 @@
 /obj/structure/table/woodentable,
 /obj/item/storage/bible,
 /obj/item/reagent_containers/food/drinks/flask/barflask,
-/obj/effect/spawner/random/plushie{
-	spawn_nothing_percentage = 90
+/obj/effect/spawner/random/plushie/nospawnninety{
 	},
 /turf/open/floor/carpet/side{
 	dir = 5
@@ -27266,8 +27265,7 @@
 /obj/item/tool/hand_labeler,
 /obj/item/tool/stamp/denied,
 /obj/item/tool/stamp/qm,
-/obj/effect/spawner/random/plushie{
-	spawn_nothing_percentage = 99
+/obj/effect/spawner/random/plushie/nospawnninetynine{
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req/rebel)

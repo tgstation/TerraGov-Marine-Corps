@@ -229,8 +229,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/spawner/random/plushie{
-	spawn_nothing_percentage = 95
+/obj/effect/spawner/random/plushie/nospawnninetyfive{
 	},
 /turf/open/shuttle/brig,
 /area/deathmatch)
@@ -621,8 +620,7 @@
 "Ab" = (
 /obj/structure/bed,
 /obj/item/bedsheet,
-/obj/effect/spawner/random/plushie{
-	spawn_nothing_percentage = 95
+/obj/effect/spawner/random/plushie/nospawnninetyfive{
 	},
 /turf/open/floor,
 /area/deathmatch)

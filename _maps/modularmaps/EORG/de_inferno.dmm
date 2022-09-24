@@ -707,8 +707,7 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "jG" = (
-/obj/effect/spawner/random/plushie{
-	spawn_nothing_percentage = 95
+/obj/effect/spawner/random/plushie/nospawnninetyfive{
 	},
 /turf/open/floor/wood,
 /area/deathmatch)
@@ -869,8 +868,7 @@
 "sp" = (
 /obj/structure/table/gamblingtable,
 /obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
-/obj/effect/spawner/random/plushie{
-	spawn_nothing_percentage = 95
+/obj/effect/spawner/random/plushie/nospawnninetyfive{
 	},
 /turf/open/floor/wood,
 /area/deathmatch)

@@ -34,8 +34,7 @@
 /area/deathmatch)
 "fF" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/plushie{
-	spawn_nothing_percentage = 95
+/obj/effect/spawner/random/plushie/nospawnninetyfive{
 	},
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
@@ -442,8 +441,7 @@
 /area/deathmatch)
 "ZA" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/plushie{
-	spawn_nothing_percentage = 95
+/obj/effect/spawner/random/plushie/nospawnninetyfive{
 	},
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)

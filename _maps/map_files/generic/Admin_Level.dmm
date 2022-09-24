@@ -11889,8 +11889,7 @@
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla/engine/engineering)
 "pUh" = (
-/obj/effect/spawner/random/plushie{
-	spawn_nothing_percentage = 99
+/obj/effect/spawner/random/plushie/nospawnninetynine{
 	},
 /turf/open/floor/gcircuit,
 /area/centcom/valhalla/ai_monitored/storage/secure)
@@ -13097,9 +13096,8 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/obj/effect/spawner/random/plushie{
+/obj/effect/spawner/random/plushie/nospawnninetynine{
 	pixel_y = -3;
-	spawn_nothing_percentage = 99
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig/interiorcavern)
@@ -13187,8 +13185,7 @@
 /area/centcom/valhalla/chapel/main)
 "rsf" = (
 /obj/structure/table,
-/obj/effect/spawner/random/plushie{
-	spawn_nothing_percentage = 95
+/obj/effect/spawner/random/plushie/nospawnninetyfive{
 	},
 /turf/open/floor/tile/neutral/full,
 /area/centcom/valhalla/crew_quarters)

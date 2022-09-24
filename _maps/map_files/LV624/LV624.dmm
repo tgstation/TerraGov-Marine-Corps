@@ -11444,8 +11444,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "kQL" = (
-/obj/effect/spawner/random/plushie{
-	spawn_nothing_percentage = 95
+/obj/effect/spawner/random/plushie/nospawnninetyfive{
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central4)

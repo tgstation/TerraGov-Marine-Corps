@@ -728,6 +728,17 @@ obj/effect/spawner/random_set/rifle
 	icon_state = "random_plush"
 	spawn_nothing_percentage = 85
 
+/obj/effect/spawner/random/plushie/fiftyfifty
+
+/obj/effect/spawner/random/plushie/nospawnninety
+	spawn_nothing_percentage = 90
+
+/obj/effect/spawner/random/plushie/nospawnninetyfive
+	spawn_nothing_percentage = 95
+
+/obj/effect/spawner/random/plushie/nospawnninetynine
+	spawn_nothing_percentage = 99
+
 /obj/effect/spawner/random/plushie/item_to_spawn()
 		return pick(/obj/item/toy/plush/moth,\
 					/obj/item/toy/plush/rouny,\

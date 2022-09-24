@@ -620,8 +620,7 @@
 /area/deathmatch)
 "cv" = (
 /obj/structure/table/reinforced/prison,
-/obj/effect/spawner/random/plushie{
-	spawn_nothing_percentage = 99
+/obj/effect/spawner/random/plushie/nospawnninetynine{
 	},
 /turf/open/floor/tile/bar,
 /area/deathmatch)
@@ -745,8 +744,7 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
 	},
-/obj/effect/spawner/random/plushie{
-	spawn_nothing_percentage = 99
+/obj/effect/spawner/random/plushie/nospawnninetynine{
 	},
 /turf/open/shuttle/dropship/floor,
 /area/deathmatch)

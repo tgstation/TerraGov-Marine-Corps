@@ -5687,8 +5687,7 @@
 /area/sulaco/briefing)
 "aBB" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/plushie{
-	spawn_nothing_percentage = 95
+/obj/effect/spawner/random/plushie/nospawnninetyfive{
 	},
 /turf/open/floor/prison,
 /area/sulaco/briefing)
@@ -21187,8 +21186,7 @@
 /area/space)
 "qDX" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/plushie{
-	spawn_nothing_percentage = 95
+/obj/effect/spawner/random/plushie/nospawnninetyfive{
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria)

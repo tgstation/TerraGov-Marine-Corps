@@ -45,8 +45,7 @@
 /area/deathmatch)
 "hy" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/plushie{
-	spawn_nothing_percentage = 95
+/obj/effect/spawner/random/plushie/nospawnninetyfive{
 	},
 /turf/open/floor/wood,
 /area/deathmatch)
@@ -289,8 +288,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "EV" = (
-/obj/effect/spawner/random/plushie{
-	spawn_nothing_percentage = 99
+/obj/effect/spawner/random/plushie/nospawnninetynine{
 	},
 /turf/open/floor/plating/asteroidplating{
 	color = "#888888"

@@ -22462,8 +22462,7 @@
 /area/magmoor/security/storage)
 "pXQ" = (
 /mob/living/simple_animal/shade,
-/obj/effect/spawner/random/plushie{
-	spawn_nothing_percentage = 50
+/obj/effect/spawner/random/plushie/fiftyfifty{
 	},
 /turf/open/floor/cult,
 /area/magmoor/volcano)
