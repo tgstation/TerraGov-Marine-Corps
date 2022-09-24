@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes: 
-  - bugfix: "Fire stacks will no longer check fire armour twice in some instances"
-  - refactor: "Slight clean up to incendiary ammo code"

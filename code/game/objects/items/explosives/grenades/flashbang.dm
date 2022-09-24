@@ -2,7 +2,7 @@
 	name = "flashbang"
 	desc = "A grenade sometimes used by police, civilian or military, to stun targets with a flash, then a bang. May cause hearing loss, and induce feelings of overwhelming rage in victims."
 	icon_state = "flashbang2"
-	item_state = "flashbang"
+	item_state = "flashbang2"
 	arm_sound = 'sound/weapons/armbombpin.ogg'
 	///This is a cluster weapon, or part of one
 	var/banglet = FALSE
@@ -168,7 +168,7 @@
 	name = "\improper stun grenade"
 	desc = "A grenade designed to disorientate the senses of anyone caught in the blast radius with a blinding flash of light and viciously loud noise. Repeated use can cause deafness."
 	icon_state = "flashbang2"
-	item_state = "flashbang"
+	item_state = "flashbang2"
 	arm_sound = 'sound/weapons/armbombpin.ogg'
 	inner_range = 3
 	mp_only = FALSE
