@@ -1,0 +1,7 @@
+author: "MLGTASTICa"
+delete-after: True
+changes: 
+  - qol: "Slowed down the FOB Drone, gave it bubble alerts and fixed double .remaining messages"
+  - qol: "Drones now face the direction of any turf you click."
+  - code_imp: "Rewrote the remote AI eye code to support more configurable move_delays"
+  - code_imp: "Rewrote the remote AI eye acceleration , it now gets removed on direction change."
