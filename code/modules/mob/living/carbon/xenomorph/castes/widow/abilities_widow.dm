@@ -161,7 +161,7 @@
 	if(source != spider_swarm_action.current_controlling_spiderling)
 		return
 	var/mob/living/carbon/xenomorph/spiderling/next_spiderling
-	if(length(spiderlings) >= 1)
+	if(length(spiderlings))
 		next_spiderling = pick(spiderlings)
 	if(!next_spiderling)
 		spider_swarm_action.switch_to_mother()
