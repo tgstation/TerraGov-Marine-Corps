@@ -54,6 +54,8 @@
 	SIGNAL_HANDLER
 	if(!isliving(target))
 		return
+	if(target.stat != CONSCIOUS)
+		return
 	if(mob_parent.get_xeno_hivenumber() == target.get_xeno_hivenumber())
 		return
 	change_action(MOVING_TO_ATOM, target)

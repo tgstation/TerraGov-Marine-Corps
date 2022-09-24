@@ -1,6 +1,6 @@
 /datum/xeno_caste/spiderling
-	caste_name = "Spiderling"
-	display_name = "Spiderling"
+	caste_name = "spiderling"
+	display_name = "spiderling"
 	upgrade_name = ""
 	caste_desc = "An anthropod xenomorph without any qualms to obey their widow, even if it will never grow up and will face death."
 	wound_type = ""
