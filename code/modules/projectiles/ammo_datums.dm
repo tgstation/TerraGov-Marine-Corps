@@ -1805,7 +1805,7 @@ datum/ammo/bullet/revolver/tp44
 	name = "irrad RPG"
 	hud_state = "rpg_rad"
 	///Base strength of the rad effects
-	var/rad_strength = 30
+	var/rad_strength = 25
 	///Range for the maximum rad effects
 	var/inner_range = 3
 	///Range for the moderate rad effects
@@ -1834,7 +1834,7 @@ datum/ammo/bullet/revolver/tp44
 	explosion(T, 0, 0, 3, 0)
 
 /datum/ammo/rocket/som/rad/proc/irradiate(mob/living/victim, strength)
-	var/rad_penetration = (100 - victim.get_soft_armor(RAD)) / 100
+	var/rad_penetration = max((100 - victim.get_soft_armor(BIO)) / 100, 0.25)
 	var/effective_strength = strength * rad_penetration //strength with rad armor taken into account
 	victim.adjustCloneLoss(effective_strength)
 	victim.adjustStaminaLoss(effective_strength * 7)
