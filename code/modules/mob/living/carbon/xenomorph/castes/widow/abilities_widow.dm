@@ -1,7 +1,7 @@
 /datum/action/xeno_action/activable/web_spit
 	name = "Web Spit"
 	ability_name = "Web Spit"
-	mechanics_text = "We spit a stretchy web at our prey"
+	mechanics_text = "Spit a web to your target, this causes different effects depending on where you hit. Spitting the head causes the target to be temporarily blind, body and arms will cause the target to be weakened, and legs will snare the target for a brief while."
 	action_icon_state = "web_spit"
 	plasma_cost = 125
 	cooldown_timer = 10 SECONDS
@@ -26,7 +26,7 @@
 /datum/action/xeno_action/activable/leash_ball
 	name = "Leash Ball"
 	ability_name = "Leash Ball"
-	mechanics_text = " Spit a huge ball of web that snares groups of marines "
+	mechanics_text = "Spit a huge web ball that snares groups of targets for a brief while."
 	action_icon_state = "leash_ball"
 	plasma_cost = 250
 	cooldown_timer = 20 SECONDS
