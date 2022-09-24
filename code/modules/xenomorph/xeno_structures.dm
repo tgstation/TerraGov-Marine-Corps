@@ -1204,7 +1204,7 @@ TUNNEL
 		return
 
 	QDEL_NULL(current_aura)
-	current_aura = SSaura.add_emitter(src, phero_choice, aura_range, aura_strength, -1, FACTION_XENO)
+	current_aura = SSaura.add_emitter(src, phero_choice, aura_radius, aura_strength, -1, FACTION_XENO)
 	balloon_alert(X, "[phero_choice]")
 	playsound(src, "alien_drool", 25)
 	update_icon()
