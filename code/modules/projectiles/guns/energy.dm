@@ -151,9 +151,9 @@
 	ammo_datum_type = /datum/ammo/energy/lasgun/M43
 	default_ammo_type = /obj/item/cell/lasgun/M43
 	allowed_ammo_types = list(
-	/obj/item/cell/lasgun/M43/highcap,
-	/obj/item/cell/lasgun/M43,
-	/obj/item/cell/lasgun/M43/recharger,
+		/obj/item/cell/lasgun/M43/highcap,
+		/obj/item/cell/lasgun/M43,
+		/obj/item/cell/lasgun/M43/recharger,
 	)
 
 	ammo_diff = null
