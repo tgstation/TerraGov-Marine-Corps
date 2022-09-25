@@ -19,6 +19,8 @@
 	var/list/obj/structure/xeno/evotower/evotowers = list()
 	///list of upgrade towers
 	var/list/obj/structure/xeno/maturitytower/maturitytowers = list()
+	///list of phero towers
+	var/list/obj/structure/xeno/pherotower/pherotowers = list()
 	var/tier3_xeno_limit
 	var/tier2_xeno_limit
 	///Queue of all observer wanting to join xeno side
@@ -103,6 +105,9 @@
 		.["hive_structures"] += list(get_structure_packet(tower))
 	// Evolution towers (if they're ever built)
 	for(var/obj/structure/xeno/evotower/tower AS in GLOB.hive_datums[hivenumber].evotowers)
+		.["hive_structures"] += list(get_structure_packet(tower))
+	// Pheromone towers
+	for(var/obj/structure/xeno/pherotower/tower AS in GLOB.hive_datums[hivenumber].pherotowers)
 		.["hive_structures"] += list(get_structure_packet(tower))
 	// Spawners
 	for(var/obj/structure/xeno/spawner/spawner AS in GLOB.xeno_spawner)
