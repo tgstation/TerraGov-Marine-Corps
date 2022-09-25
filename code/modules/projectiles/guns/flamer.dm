@@ -282,7 +282,7 @@
 	lit_overlay_icon_state = "v62_lit"
 	lit_overlay_offset_x = 0
 	flame_max_range = 8
-	cone_angle = 45
+	cone_angle = 40
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle/wide)
 	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/large/som
 	allowed_ammo_types = list(
