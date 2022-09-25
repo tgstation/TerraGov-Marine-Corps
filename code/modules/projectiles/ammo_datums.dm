@@ -2805,11 +2805,11 @@ datum/ammo/bullet/revolver/tp44
 	sound_hit = "snap"
 	sound_bounce = "alien_resin_build3"
 	damage_type = STAMINA
-	bullet_color = COLOR_WHITE
+	bullet_color = COLOR_PURPLE
 	flags_ammo_behavior = AMMO_SKIPS_ALIENS
 	ping = null
 	armor_type = BIO
-	accurate_range = 10
+	accurate_range = 15
 	max_range = 15
 	///For how long the victim will be blinded
 	var/hit_eye_blind = 1
@@ -2826,6 +2826,7 @@ datum/ammo/bullet/revolver/tp44
 	. = ..()
 	if(!ishuman(victim))
 		return
+	playsound(get_turf(victim), sound(get_sfx("snap")), 30, falloff = 5)
 	var/mob/living/carbon/human/human_victim = victim
 	if(proj.def_zone == BODY_ZONE_HEAD)
 		human_victim.blind_eyes(hit_eye_blind)
@@ -2842,7 +2843,7 @@ datum/ammo/bullet/revolver/tp44
 	ping = "ping_x"
 	damage_type = STAMINA
 	flags_ammo_behavior = AMMO_SKIPS_ALIENS | AMMO_EXPLOSIVE
-	bullet_color = COLOR_WHITE
+	bullet_color = COLOR_PURPLE
 	ping = null
 	damage = 0
 	armor_type = BIO

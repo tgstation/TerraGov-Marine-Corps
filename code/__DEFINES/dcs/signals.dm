@@ -748,6 +748,7 @@
 #define COMSIG_XENOABILITY_CREATE_SPIDERLING "xenoability_create_spiderling"
 #define COMSIG_XENOABILITY_SPIDER_SWARM "xenoability_spider_swarm"
 #define COMSIG_XENOABILITY_ATTACH_SPIDERLINGS "xenoability_attach_spiderlings"
+#define COMSIG_XENOABILITY_WEB_HOOK "xenoability_web_hook"
 
 // throw parry signals
 #define COMSIG_THROW_PARRY_CHECK "throw_parry_check"

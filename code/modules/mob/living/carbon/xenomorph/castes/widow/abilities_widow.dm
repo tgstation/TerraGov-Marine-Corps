@@ -243,6 +243,9 @@
 /datum/action/xeno_action/attach_spiderlings/action_activate()
 	. = ..()
 	var/mob/living/carbon/xenomorph/widow/X = owner
+	if(X.buckled_mobs)
+		drop_spiderlings()
+		return
 	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = owner.actions_by_path[/datum/action/xeno_action/create_spiderling]
 	if(!(length(create_spiderling_action.spiderlings)))
 		X.balloon_alert(X, "No spiderlings to attach")
@@ -267,3 +270,25 @@
 /datum/action/xeno_action/attach_spiderlings/proc/ride_widow(mob/living/carbon/xenomorph/spiderling/piggy, mob/living/carbon/xenomorph/widow/back)
 	back.buckle_mob(piggy,TRUE, TRUE, 90, 1, 0)
 	ADD_TRAIT(piggy, TRAIT_IMMOBILE, WIDOW_ABILITY_TRAIT)
+
+// Drops spiderlings
+/datum/action/xeno_action/attach_spiderlings/proc/drop_spiderlings()
+	var/mob/living/carbon/xenomorph/widow/X = owner
+	X.unbuckle_all_mobs(TRUE)
+
+// ***************************************
+// *********** Web Hook
+// ***************************************
+/datum/action/xeno_action/activable/web_hook
+	name = "Web Hook"
+	ability_name = "Web Hook"
+	mechanics_text = "Shoot out a web and pull it to traverse forward"
+	action_icon_state = "attach_spiderling" //
+	plasma_cost = 0
+	cooldown_timer = 0 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_WEB_HOOK
+	//ref to beam for web hook
+	var/datum/beam/hook
+
+/datum/action/xeno_action/activable/web_hook/use_ability(atom/A)
+	. = ..()
