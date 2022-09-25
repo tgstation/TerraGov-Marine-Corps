@@ -195,7 +195,7 @@ SUBSYSTEM_DEF(evacuation)
 		var/mob/M = x
 		if(isobserver(M))
 			continue
-		if(M.z == z_level)
+		if(M.z == I.z)
 			shake_camera(M, 110, 4)
 
 	if(ship_intact)
