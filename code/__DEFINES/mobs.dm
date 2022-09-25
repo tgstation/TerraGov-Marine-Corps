@@ -485,6 +485,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define XENO_SILO_DAMAGE_POINTER_DURATION 10 SECONDS //How long the alert directional pointer lasts when silos are damaged
 #define XENO_SILO_DETECTION_COOLDOWN 1 MINUTES
 #define XENO_SILO_DETECTION_RANGE 10//How far silos can detect hostiles
+#define XENO_HIVEMIND_DETECTION_RANGE 10 //How far out (in tiles) can the hivemind detect hostiles
+#define XENO_HIVEMIND_DETECTION_COOLDOWN 1 MINUTES
 
 #define XENO_PARALYZE_NORMALIZATION_MULTIPLIER 5 //Multiplies an input to normalize xeno paralyze duration times.
 #define XENO_STUN_NORMALIZATION_MULTIPLIER 2 //Multiplies an input to normalize xeno stun duration times.

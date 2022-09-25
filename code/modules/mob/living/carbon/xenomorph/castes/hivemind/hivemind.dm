@@ -311,11 +311,18 @@
 	icon_state = "weed_hivemind4"
 	var/mob/living/carbon/xenomorph/hivemind/parent
 	ignore_weed_destruction = TRUE
+	///The cooldown of the alert hivemind gets when a hostile is near it's core
+	COOLDOWN_DECLARE(hivemind_proxy_alert_cooldown)
+	///The hive this core belongs to
+	var/datum/hive_status/associated_hive
 
 /obj/alien/hivemindcore/Initialize(mapload)
 	. = ..()
 	new /obj/alien/weeds/node(loc)
 	set_light(7, 5, LIGHT_COLOR_PURPLE)
+	for(var/turfs in RANGE_TURFS(XENO_HIVEMIND_DETECTION_RANGE, src))
+		RegisterSignal(turfs, COMSIG_ATOM_ENTERED, .proc/hivemind_proxy_alert)
+	associated_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 
 /obj/alien/hivemindcore/Destroy()
 	if(isnull(parent))
@@ -356,3 +363,24 @@
 			to_chat(parent, span_xenodanger("Your core is under attack, and low on health!"))
 		if(76 to INFINITY)
 			to_chat(parent, span_xenodanger("Your core is under attack!"))
+
+/obj/alien/hivemindcore/proc/hivemind_proxy_alert(datum/source, atom/movable/hostile, direction)
+	SIGNAL_HANDLER
+	if(!COOLDOWN_CHECK(src, hivemind_proxy_alert_cooldown)) //Proxy alert triggered too recently; abort
+		return
+
+	if(!isliving(hostile))
+		return
+
+	var/mob/living/living_triggerer = hostile
+	if(living_triggerer.stat == DEAD) //We don't care about the dead
+		return
+
+	if(isxeno(hostile))
+		var/mob/living/carbon/xenomorph/X = hostile
+		if(X.hive == associated_hive) //Trigger proxy alert only for hostile xenos
+			return
+
+	to_chat(parent, span_alertalien("Our [src.name] has detected a nearby hostile [hostile] at [get_area(hostile)] (X: [hostile.x], Y: [hostile.y])."))
+	SEND_SOUND(parent, 'sound/voice/alien_help1.ogg')
+	COOLDOWN_START(src, hivemind_proxy_alert_cooldown, XENO_HIVEMIND_DETECTION_COOLDOWN) //set the cooldown.
