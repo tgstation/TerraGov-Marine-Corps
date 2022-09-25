@@ -6976,12 +6976,13 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand4)
 "fLY" = (
-/obj/structure/jungle/vines,
-/obj/effect/ai_node,
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 2
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
 	},
-/turf/open/ground/grass,
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle3)
 "fMv" = (
 /obj/structure/jungle/plantbot1/alien,
@@ -8468,6 +8469,11 @@
 /obj/effect/ai_node,
 /turf/open/floor,
 /area/lv624/ground/sand2)
+"hwx" = (
+/obj/item/ammo_casing,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/sand7)
 "hxa" = (
 /turf/open/floor/bcircuit/off,
 /area/lv624/lazarus/sandtemple)
@@ -11662,6 +11668,11 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
+"lhQ" = (
+/obj/structure/jungle/vines,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirtgrassborder,
+/area/lv624/ground/jungle3)
 "lhZ" = (
 /obj/structure/foamedmetal,
 /turf/open/ground/grass/grass2,
@@ -13597,6 +13608,13 @@
 	dir = 4
 	},
 /area/lv624/ground/jungle5)
+"nsJ" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
+/area/lv624/ground/jungle6)
 "ntl" = (
 /obj/structure/rack,
 /obj/item/stack/medical/heal_pack/advanced/bruise_pack,
@@ -15176,6 +15194,10 @@
 	dir = 4
 	},
 /area/lv624/ground/jungle10)
+"psp" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/lv624/ground/river1)
 "psJ" = (
 /obj/structure/window_frame/colony/reinforced,
 /turf/open/floor/plating,
@@ -18507,6 +18529,7 @@
 /area/lv624/lazarus/sandtemple)
 "tlk" = (
 /obj/structure/jungle/vines,
+/obj/effect/ai_node,
 /turf/open/floor/plating/dmg1,
 /area/lv624/ground/river1)
 "tlr" = (
@@ -19518,7 +19541,6 @@
 /area/lv624/ground/river1)
 "upO" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/effect/ai_node,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
@@ -22259,6 +22281,12 @@
 	dir = 1
 	},
 /area/lv624/ground/jungle1)
+"xvz" = (
+/obj/structure/catwalk,
+/obj/effect/decal/riverdecal,
+/obj/effect/ai_node,
+/turf/open/ground/river,
+/area/lv624/ground/river1)
 "xvY" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -26166,7 +26194,7 @@ cAu
 cAu
 qof
 bNu
-nVk
+xvz
 ybg
 are
 kBt
@@ -27047,7 +27075,7 @@ lSR
 lSR
 cAu
 cAu
-cAu
+xrX
 cAu
 cAu
 tZS
@@ -28103,7 +28131,7 @@ cAu
 cAu
 cAu
 cAu
-cAu
+xrX
 cAu
 cAu
 cAu
@@ -28312,7 +28340,7 @@ xLz
 xLz
 xLz
 xLz
-xLz
+wWk
 rtU
 xLz
 xvY
@@ -28452,7 +28480,7 @@ cAu
 cAu
 kwk
 cAu
-cAu
+xrX
 cAu
 cAu
 cAu
@@ -28484,7 +28512,7 @@ xLz
 xLz
 dFf
 rtU
-xLz
+wWk
 dFf
 xLz
 rtU
@@ -28655,7 +28683,7 @@ llU
 dpe
 xLz
 xLz
-xLz
+wWk
 xLz
 xLz
 xLz
@@ -28976,7 +29004,7 @@ cAu
 cAu
 aWb
 cAu
-cAu
+xrX
 cAu
 kwk
 cAu
@@ -28990,7 +29018,7 @@ cAu
 cAu
 cAu
 cAu
-cAu
+xrX
 cAu
 cAu
 gsZ
@@ -29020,7 +29048,7 @@ bYr
 wnj
 wUU
 wnj
-wnj
+otJ
 wnj
 wnj
 uUv
@@ -29145,11 +29173,11 @@ alB
 gKr
 cAu
 gsZ
+xrX
 cAu
 cAu
 cAu
-cAu
-cAu
+xrX
 cAu
 cAu
 cAu
@@ -29336,7 +29364,7 @@ cAu
 cAu
 cAu
 cAu
-cAu
+xrX
 cAu
 cAu
 cAu
@@ -29539,7 +29567,7 @@ gBt
 qpS
 dpe
 xLz
-xLz
+wWk
 xLz
 xvY
 wnj
@@ -29866,7 +29894,7 @@ cAu
 cAu
 cAu
 blH
-blH
+hwx
 cAu
 cAu
 cAu
@@ -29905,7 +29933,7 @@ mOs
 mOs
 mOs
 mKd
-ePq
+nsJ
 sVv
 eSF
 mOs
@@ -29924,13 +29952,13 @@ yiV
 eyo
 yiV
 yiV
-yiV
+fCG
 flD
 sVv
 eSF
 gMO
 xFL
-xFL
+qHh
 xFL
 gRt
 bch
@@ -30037,7 +30065,7 @@ evp
 evp
 evp
 cAu
-cAu
+xrX
 cAu
 syU
 frw
@@ -30053,7 +30081,7 @@ frw
 frw
 eBw
 cAu
-cAu
+xrX
 gsZ
 cAu
 mFi
@@ -30207,7 +30235,7 @@ cTi
 lSR
 cAu
 cAu
-cAu
+xrX
 evp
 evp
 evp
@@ -30595,13 +30623,13 @@ odE
 wFb
 fxm
 odE
-odE
+psp
 odE
 xHS
 vqK
 pCF
 nny
-nny
+lEk
 nny
 aWH
 avd
@@ -30629,7 +30657,7 @@ yiV
 yiV
 yiV
 yiV
-yiV
+fCG
 oZt
 yiV
 hlK
@@ -30760,7 +30788,7 @@ hRy
 nlg
 hRy
 wdN
-cAu
+xrX
 cAu
 gsZ
 cAu
@@ -30923,7 +30951,7 @@ evp
 evp
 cAu
 cAu
-cAu
+xrX
 wjP
 jnE
 nlg
@@ -31268,7 +31296,7 @@ evp
 cTi
 lSR
 cAu
-cAu
+xrX
 evp
 evp
 evp
@@ -31978,14 +32006,14 @@ lSR
 cAu
 cAu
 cAu
-cAu
+xrX
 cAu
 evp
 evp
 evp
 cAu
 cAu
-cAu
+xrX
 biV
 hRy
 jnE
@@ -32355,7 +32383,7 @@ cAu
 cAu
 cAu
 cAu
-cAu
+xrX
 cAu
 cAu
 tZS
@@ -32513,7 +32541,7 @@ cAu
 cAu
 cAu
 cAu
-cAu
+xrX
 cAu
 aWy
 cAu
@@ -32523,7 +32551,7 @@ cAu
 cAu
 cAu
 cAu
-cAu
+xrX
 blH
 blH
 cAu
@@ -32694,7 +32722,7 @@ gsZ
 cAu
 cAu
 gsZ
-cAu
+xrX
 cAu
 cAu
 cAu
@@ -32882,7 +32910,7 @@ cAu
 cAu
 gsZ
 cAu
-cAu
+xrX
 cAu
 cAu
 cAu
@@ -33116,7 +33144,7 @@ xFL
 xFL
 xFL
 xFL
-xFL
+qHh
 xFL
 fjU
 xFL
@@ -33241,7 +33269,7 @@ cAu
 cAu
 cAu
 cAu
-cAu
+xrX
 cAu
 tZS
 are
@@ -34480,7 +34508,7 @@ gKr
 gKr
 gKr
 cAu
-cAu
+xrX
 gsZ
 cAu
 cAu
@@ -35959,7 +35987,7 @@ bch
 qVt
 str
 xFL
-xFL
+qHh
 xFL
 gRt
 bch
@@ -36497,8 +36525,8 @@ xOT
 xOT
 xOT
 xOT
-bch
-bch
+mQx
+mQx
 fIY
 psZ
 "}
@@ -37560,7 +37588,7 @@ xOT
 xOT
 xOT
 xOT
-bch
+mQx
 cUt
 psZ
 "}
@@ -37896,8 +37924,8 @@ uvP
 tSf
 mOs
 bch
-fLY
-hfr
+gLd
+lhQ
 aiv
 xOT
 xOT
@@ -38621,8 +38649,8 @@ xOT
 xOT
 xOT
 xOT
-bch
-bch
+mQx
+mQx
 mOs
 psZ
 "}
@@ -38959,7 +38987,7 @@ rhp
 rhp
 rhp
 upO
-bch
+mQx
 diR
 mIe
 bck
@@ -38972,10 +39000,10 @@ nAu
 xFL
 gRt
 bch
-bch
+mQx
 cQj
 bch
-bch
+mQx
 mOs
 mOs
 psZ
@@ -39667,8 +39695,8 @@ pJt
 xVF
 wor
 uGM
-bch
-bch
+mQx
+mQx
 bch
 bch
 bch
@@ -39853,11 +39881,11 @@ bch
 bch
 gMO
 xFL
-rGj
+fLY
 xFL
 gRt
 bch
-bch
+mQx
 bch
 mOs
 mOs

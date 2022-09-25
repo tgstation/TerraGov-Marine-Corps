@@ -369,6 +369,9 @@
 	icon_state = "hydro"
 	ceiling = CEILING_GLASS
 
+/area/lv624/lazarus/hydroponics/aux
+	name = "\improper Auxillary Hydroponics"
+
 /area/lv624/lazarus/bar
 	name = "\improper Bar"
 	icon_state = "kitchen"
