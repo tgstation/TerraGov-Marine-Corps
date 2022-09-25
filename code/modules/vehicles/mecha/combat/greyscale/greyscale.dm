@@ -5,6 +5,7 @@
 	mech_type = EXOSUIT_MODULE_GREYSCALE
 	pixel_x = -16
 	move_delay = 3 // tivi todo: polish, mechs too fast
+	max_equip_by_category = MECH_GREYSCALE_MAX_EQUIP
 	/// keyed list. values are types at init, otherwise instances of mecha limbs, order is layer order as well
 	var/list/datum/mech_limb/limbs = list(
 		MECH_GREY_TORSO = null,
@@ -38,9 +39,9 @@
 	var/obj/item/mecha_parts/mecha_equipment/weapon/right_gun = equip_by_category[MECHA_R_ARM]
 	var/obj/item/mecha_parts/mecha_equipment/weapon/left_gun = equip_by_category[MECHA_L_ARM]
 	if(right_gun)
-		. += image(right_gun.icon, right_gun.icon_state) // tivi todo weapons can just use appearance?
+		. += image('icons/mecha/mech_gun_overlays.dmi', right_gun.icon_state + "_right", pixel_x=-32)
 	if(left_gun)
-		. += image(left_gun.icon, left_gun.icon_state)
+		. += image('icons/mecha/mech_gun_overlays.dmi', left_gun.icon_state + "_left", pixel_x=-32)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/recon
 	name = "Recon Mecha"

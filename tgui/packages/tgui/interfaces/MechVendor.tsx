@@ -1,5 +1,6 @@
 import { useBackend, useLocalState } from '../backend';
 import { capitalize } from 'common/string';
+import { classes } from 'common/react';
 import {
   Button,
   Section,
@@ -12,9 +13,10 @@ import {
   ColorBox,
   Collapsible,
   Input,
+  LabeledList,
 } from '../components';
 import { Window } from '../layouts';
-
+// tivi todo split this file
 const tabs = ['Mecha Assembly', 'Weapons'];
 const partdefinetofluff = {
   'CHEST': 'Torso',
@@ -23,17 +25,88 @@ const partdefinetofluff = {
   'R_ARM': 'Right arm',
   'LEG': 'Legs',
 };
+const MECHA_UTILITY = "mecha_utility";
+const MECHA_POWER = "mecha_power";
+const MECHA_ARMOR = "mecha_armor";
 
 type MechVendData = {
   mech_view: string;
   colors: ColorData;
   visor_colors: ColorData;
+  equip_max: MaxEquip;
   selected_primary: SimpleStringList;
   selected_secondary: SimpleStringList;
   selected_visor: string;
   selected_variants: SimpleStringList;
   selected_name: string;
   current_stats: MechStatData,
+  all_equipment: AllEquipment,
+  selected_equipment: SelectedEquip,
+};
+
+type MaxEquip = {
+  [key: string]: number;
+};
+
+type AllEquipment = {
+  weapons: MechWeapon[];
+  ammo: MechAmmo[];
+  armor: MechArmor[];
+  utility: MechUtility[];
+  power: MechPower[],
+};
+
+type MechWeapon = {
+  type: string;
+  name: string;
+  desc: string;
+  icon_state: string;
+  health: number;
+  firerate: number;
+  burst_count: number;
+  scatter: number;
+  slowdown: number;
+  damage: number|null,
+  armor_pierce: number|null,
+  projectiles: number|null,
+  cache_max: number|null,
+  ammo_type: string|null,
+};
+
+type MechAmmo = {
+  type: string;
+  name: string;
+  icon_state: string;
+  ammo_count: string;
+  ammo_type: string|null,
+};
+
+type MechArmor = {
+  type: string;
+  name: string;
+  desc: string;
+  slowdown: number;
+};
+
+type MechUtility = {
+  type: string;
+  name: string;
+  desc: string;
+  energy_drain: number;
+};
+
+type MechPower = {
+  type: string;
+  name: string;
+  desc: string;
+};
+
+type SelectedEquip = {
+  mecha_l_arm: string;
+  mecha_r_arm: string;
+  mecha_utility: string[],
+  mecha_power: string[],
+  mecha_armor: string[],
 };
 
 type MechStatData = {
@@ -64,7 +137,11 @@ type SimpleStringList = {
 };
 
 export const MechVendor = (props, context) => {
-  const [showDesc, setShowDesc] = useLocalState(context, 'showDesc', null); // tivi todo for weapons tab
+  const [showDesc, setShowDesc] = useLocalState<MechWeapon | null>(
+    context,
+    'showDesc',
+    null
+  );
   const [selectedTab, setSelectedTab] = useLocalState(
     context,
     'selectedTab',
@@ -73,10 +150,48 @@ export const MechVendor = (props, context) => {
 
   return (
     <Window title={'Mecha Assembler'}>
-      {showDesc ? ( // tivi todo for weapons
-        <Modal width="400px">
-          <Box>{showDesc}</Box>
-          <Button content="Dismiss" onClick={() => setShowDesc(null)} />
+      {showDesc ? (
+        <Modal width="500px">
+          <Section title={showDesc.name} buttons={<Button content="Dismiss" onClick={() => setShowDesc(null)} />}>
+            <Stack>
+              <Stack.Item>
+                <Box
+                  className={classes(['mech_builder64x32', showDesc.icon_state])}
+                  ml={5}
+                  mr={20}
+                  mt={3}
+                  mb={9}
+                  style={{
+                    'transform': 'scale(3) translate(20%, 20%)',
+                  }}
+                />
+                <LabeledList>
+                  <LabeledList.Item label={"Max Integrity"}>
+                    {showDesc.health}
+                  </LabeledList.Item>
+                  <LabeledList.Item label={"Fire rate"}>
+                    {showDesc.firerate*10} per second
+                  </LabeledList.Item>
+                  {showDesc.burst_count? <LabeledList.Item label={"Burst amount"}>{showDesc.burst_count}</LabeledList.Item>
+                    : null}
+                  {showDesc.damage? <LabeledList.Item label={"Damage"}>{showDesc.damage}</LabeledList.Item>
+                    : null}
+                  {showDesc.armor_pierce ? <LabeledList.Item label={"Piercing"}>{showDesc.armor_pierce}</LabeledList.Item>
+                    : null}
+                  {showDesc.projectiles? <LabeledList.Item label={"Magazine size"}>{showDesc.projectiles}</LabeledList.Item>
+                    : null}
+                  {showDesc.cache_max? <LabeledList.Item label={"Ammo storage size"}>{showDesc.cache_max}</LabeledList.Item>
+                    : null}
+                  {showDesc.scatter? <LabeledList.Item label={"Scatter"}>{showDesc.scatter}°</LabeledList.Item>
+                    : null}
+                  <LabeledList.Item label={"Slowdown"}>{showDesc.slowdown}</LabeledList.Item>
+                </LabeledList>
+              </Stack.Item>
+              <Stack.Item>
+                <Box ml={-38}>{showDesc.desc + (showDesc.ammo_type ? " Loaded with: " + showDesc.ammo_type + ".": "")}</Box>
+              </Stack.Item>
+            </Stack>
+          </Section>
         </Modal>
       ) : null}
       <Window.Content>
@@ -157,7 +272,6 @@ const BodypartPicker = (props: BodypartPickerData, context) => {
     </Section>
   );
 };
-// tivi todo make mech name choosable?
 
 const MechAssembly = (props, context) => {
   const { act, data } = useBackend<MechVendData>(context);
@@ -166,12 +280,22 @@ const MechAssembly = (props, context) => {
     selected_variants,
     selected_name,
     current_stats,
+    all_equipment,
+    selected_equipment,
   } = data;
   const [selectedBodypart, setSelectedBodypart] = useLocalState(
     context,
     'selectedBodypart',
     'none'
   );
+
+  const left_weapon = all_equipment.weapons
+    .find(o => o.type === selected_equipment.mecha_l_arm);
+  const right_weapon = all_equipment.weapons
+    .find(o => o.type === selected_equipment.mecha_r_arm);
+
+  const left_weapon_scatter = right_weapon ? right_weapon.scatter : 0;
+  const right_weapon_scatter = right_weapon ? right_weapon.scatter : 0;
 
   return (
     <Stack>
@@ -196,10 +320,10 @@ const MechAssembly = (props, context) => {
               <Collapsible color={"transparent"} title={"Integrity: " + current_stats.health}>
                 <Box maxWidth={"160px"}>Determines maximum integrity of mecha.</Box>
               </Collapsible>
-              <Collapsible color={"transparent"} title={"L scatter angle: " + current_stats.left_scatter+ "°"}>
+              <Collapsible color={"transparent"} title={"L scatter angle: " + (current_stats.left_scatter + left_weapon_scatter) + "°"}>
                 <Box maxWidth={"160px"}>Scatter angle for left arm.</Box>
               </Collapsible>
-              <Collapsible color={"transparent"} title={"R scatter angle: " + current_stats.right_scatter + "°"}>
+              <Collapsible color={"transparent"} title={"R scatter angle: " + (current_stats.right_scatter + right_weapon_scatter) + "°"}>
                 <Box maxWidth={"160px"}>Scatter angle for right arm.</Box>
               </Collapsible>
               <Collapsible color={"transparent"} title={"Slowdown: " + current_stats.slowdown}>
@@ -343,7 +467,6 @@ const MechAssembly = (props, context) => {
 
 const ColorSelector = (props, context) => {
   const { act, data } = useBackend<MechVendData>(context);
-  // tivi todo prop type
   const {
     selected_primary,
     selected_secondary,
@@ -392,18 +515,284 @@ const ColorSelector = (props, context) => {
     </Section>
   );
 };
-// tivi todo make mech name choosable?
 
-
-const MechWeapons = (props, context) => {
+const SelectedEquipment = (props, context) => {
   const { act, data } = useBackend<MechVendData>(context);
-  const [showDesc, setShowDesc] = useLocalState<String | null>(
+  const {
+    equip_max,
+    all_equipment,
+    selected_equipment,
+  } = data;
+  const [showDesc, setShowDesc] = useLocalState<MechWeapon | null>(
     context,
     'showDesc',
     null
   );
+  const selected_left = all_equipment.weapons
+    .find(o => o.type === selected_equipment.mecha_l_arm);
+  const selected_right = all_equipment.weapons
+    .find(o => o.type === selected_equipment.mecha_r_arm);
 
-  return <Section title={'You are currently assembling your mech'} />;
+  let utility_modules = selected_equipment.mecha_utility
+    .map(type => all_equipment.utility.find(o => o.type === type))
+    .filter((x): x is MechUtility => x !== undefined);
+
+  const power_modules = selected_equipment.mecha_power
+    .map(type => all_equipment.power.find(o => o.type === type))
+    .filter((x): x is MechPower => x !== undefined);
+
+  const armor_modules = selected_equipment.mecha_armor
+    .map(type => all_equipment.armor.find(o => o.type === type))
+    .filter((x): x is MechArmor => x !== undefined);
+
+  return (
+    <Stack vertical fill>
+      <Stack.Item>
+        <Stack>
+          <Stack.Item>
+            <Section title={selected_left ? selected_left.name.split(" ")[0] : "None"} width={"145px"} buttons={
+              <Button icon="minus" color="red" onClick={() => act('remove_weapon', { is_right_weapon: 0 })} />
+            }>
+              <Box
+                className={classes(['mech_builder64x32', selected_left ? selected_left.icon_state : "assaultrifle"])}
+                ml={3}
+                mt={3}
+                mb={4}
+                style={{
+                  'transform': 'scale(2) translate(10%, 10%)',
+                }}
+              />
+            </Section>
+          </Stack.Item>
+          <Stack.Item>
+            <Section title={selected_right ? selected_right.name.split(" ")[0] : "None"} width={"145px"} buttons={
+              <Button icon="minus" color="red" onClick={() => act('remove_weapon', { is_right_weapon: 1 })} />
+            }>
+              <Box
+                className={classes(['mech_builder64x32', selected_right ? selected_right.icon_state : "assaultrifle"])}
+                ml={3}
+                mt={3}
+                mb={4}
+                style={{
+                  'transform': 'scale(2) translate(10%, 10%)',
+                }}
+              />
+            </Section>
+          </Stack.Item>
+        </Stack>
+      </Stack.Item>
+      <Stack.Item>
+        <Section maxWidth={"300px"} title={"Utility (" + utility_modules.length + "/" + equip_max[MECHA_UTILITY] + ")"} >
+          {utility_modules.map(module => (
+            <Collapsible
+              key={module.type}
+              title={module.name}
+              buttons={(
+                <Button icon="minus" color="red" onClick={() => act('remove_utility', { type: module.type })} />
+              )}>
+              <Section title={"Description"}>
+                {module.desc} Has an energy drain of {module.energy_drain}.
+              </Section>
+            </Collapsible>
+          ))}
+        </Section>
+      </Stack.Item>
+      <Stack.Item>
+        <Section maxWidth={"300px"} title={"Power (" + power_modules.length + "/" + equip_max[MECHA_POWER] + ")"}>
+          {power_modules.map(module => (
+            <Collapsible
+              key={module.type}
+              title={module.name}
+              buttons={(
+                <Button icon="minus" color="red" onClick={() => act('remove_power', { type: module.type })} />
+              )}>
+              <Section title={"Description"}>
+                {module.desc}
+              </Section>
+            </Collapsible>
+          ))}
+        </Section>
+      </Stack.Item>
+      <Stack.Item>
+        <Section maxWidth={"300px"} title={"Armor (" + armor_modules.length + "/" + equip_max[MECHA_ARMOR] + ")"}>
+          {armor_modules.map(module => (
+            <Collapsible
+              key={module.type}
+              title={module.name}
+              buttons={(
+                <Button icon="minus" color="red" onClick={() => act('remove_armor', { type: module.type })} />
+              )}>
+              <Section title={"Description"}>
+                {module.desc} Has an slowdown drain of {module.slowdown}.
+              </Section>
+            </Collapsible>
+          ))}
+        </Section>
+      </Stack.Item>
+    </Stack>
+  );
+};
+
+const WeaponModuleList = (props, context) => {
+  const { act, data } = useBackend<MechVendData>(context);
+  const { listtoshow } = props;
+  const [showDesc, setShowDesc] = useLocalState<MechWeapon | null>(
+    context,
+    'showDesc',
+    null
+  );
+  const {
+    all_equipment,
+    selected_equipment,
+  } = data;
+  return (
+    <Section title={"Weapon modules"}>
+      {listtoshow.map(module => {
+        const ammoobject = all_equipment.ammo
+          .find(o => o.ammo_type === module.ammo_type);
+        return (
+          <Collapsible
+            key={module.type}
+            title={module.name}
+            buttons={(
+              <>
+                <Button
+                  selected={module.type === selected_equipment.mecha_l_arm}
+                  onClick={() => act('add_weapon', { type: module.type, is_right_weapon: 0 })}>
+                  Left
+                </Button>
+                <Button
+                  selected={module.type === selected_equipment.mecha_r_arm}
+                  onClick={() => act('add_weapon', { type: module.type, is_right_weapon: 1 })}>
+                  Right
+                </Button>
+                <Button
+                  icon="question"
+                  onClick={() => setShowDesc(module)} />
+              </>
+            )}>
+            <Section title={ammoobject ? ammoobject.name : "No ammo available"}>
+              {ammoobject ? (
+                <Stack>
+                  <Stack.Item>
+                    <Stack vertical>
+                      <Stack.Item>
+                        <Box className={classes(['mech_ammo32x32', ammoobject.icon_state])} ml={1.5} mt={1.5} mb={3} style={{ 'transform': 'scale(2) translate(10%, 10%)' }} />
+                      </Stack.Item>
+                      <Stack.Item>
+                        <Button
+                          mr={1.5}
+                          ml={1.5}
+                          content="Vend"
+                          onClick={() => act('vend_ammo', { type: ammoobject.type })} />
+                      </Stack.Item>
+                    </Stack>
+                  </Stack.Item>
+                  <Stack.Item>
+                    Contains: {ammoobject.ammo_count}
+                    x {ammoobject.ammo_type}
+                  </Stack.Item>
+                </Stack>)
+                : null }
+            </Section>
+          </Collapsible>
+        );
+      })}
+    </Section>
+  );
+};
+
+const MechWeapons = (props, context) => {
+  const { act, data } = useBackend<MechVendData>(context);
+  const [showDesc, setShowDesc] = useLocalState<MechWeapon | null>(
+    context,
+    'showDesc',
+    null
+  );
+  const {
+    all_equipment,
+    selected_equipment,
+    equip_max,
+  } = data;
+  const midway = Math.ceil(all_equipment.weapons.length/2);
+  const firstweapons = all_equipment.weapons.slice(0, midway);
+  const secondweapons= all_equipment.weapons.slice(midway);
+  return (
+    <Stack>
+      <Stack.Item>
+        <SelectedEquipment />
+      </Stack.Item>
+      <Stack.Item>
+        <WeaponModuleList listtoshow={firstweapons} />
+      </Stack.Item>
+      <Stack.Item>
+        <WeaponModuleList listtoshow={secondweapons} />
+      </Stack.Item>
+      <Stack.Item>
+        <Section title={"Power modules"}>
+          {all_equipment.power.map(module => (
+            <Collapsible
+              key={module.type}
+              title={module.name}
+              buttons={(
+                <Button
+                  disabled={selected_equipment.mecha_power.length
+                    >= equip_max[MECHA_POWER]}
+                  onClick={() => act('add_power', { type: module.type })}>
+                  Add
+                </Button>
+              )}>
+              <Section title={"Ammo"}>
+                {module.desc}
+              </Section>
+            </Collapsible>
+          ))}
+        </Section>
+      </Stack.Item>
+      <Stack.Item>
+        <Section title={"Armor modules"}>
+          {all_equipment.armor.map(module => (
+            <Collapsible
+              key={module.type}
+              title={module.name}
+              buttons={(
+                <Button
+                  disabled={selected_equipment.mecha_armor.length
+                    >= equip_max[MECHA_ARMOR]}
+                  onClick={() => act('add_armor', { type: module.type })}>
+                  Add
+                </Button>
+              )}>
+              <Section title={"Description"}>
+                {module.desc}
+              </Section>
+            </Collapsible>
+          ))}
+        </Section>
+      </Stack.Item>
+      <Stack.Item>
+        <Section title={"Utility modules"}>
+          {all_equipment.utility.map(module => (
+            <Collapsible
+              key={module.type}
+              title={module.name}
+              buttons={(
+                <Button
+                  disabled={selected_equipment.mecha_utility.length
+                    >= equip_max[MECHA_UTILITY]}
+                  onClick={() => act('add_utility', { type: module.type })}>
+                  Add
+                </Button>
+              )}>
+              <Section title={"Description"}>
+                {module.desc}
+              </Section>
+            </Collapsible>
+          ))}
+        </Section>
+      </Stack.Item>
+    </Stack>
+  );
 };
 
 const PanelContent = (props, context) => {

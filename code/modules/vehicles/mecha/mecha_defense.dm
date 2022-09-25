@@ -310,7 +310,11 @@
 			gun.projectiles_cache = gun.projectiles_cache + reload_box.rounds
 		playsound(get_turf(user),reload_box.load_audio,50,TRUE)
 		to_chat(user, span_notice("You add [reload_box.rounds] [reload_box.ammo_type][reload_box.rounds > 1?"s":""] to the [gun.name]"))
+		if(reload_box.qdel_on_empty)
+			qdel(reload_box)
+			return TRUE
 		reload_box.rounds = 0
+		reload_box.update_icon()
 		return TRUE
 	if(!fail_chat_override)
 		if(found_gun)

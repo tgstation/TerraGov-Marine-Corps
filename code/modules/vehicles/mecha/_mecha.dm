@@ -447,7 +447,7 @@
 	hud_set_mecha_battery()
 
 ///Called when a driver clicks somewhere. Handles everything like equipment, punches, etc.
-/obj/vehicle/sealed/mecha/proc/on_mouseclick(mob/user, atom/target, list/modifiers)
+/obj/vehicle/sealed/mecha/proc/on_mouseclick(mob/user, atom/target, turf/location, control, list/modifiers)
 	SIGNAL_HANDLER
 	modifiers = params2list(modifiers) //tgmc added
 	if(LAZYACCESS(modifiers, MIDDLE_CLICK))
