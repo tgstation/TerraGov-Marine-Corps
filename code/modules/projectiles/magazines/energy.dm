@@ -24,7 +24,7 @@
 
 /obj/item/cell/lasgun/M43/highcap// Large battery
 	name = "\improper M43 highcap lasgun battery"
-	desc = "An advanced, ultrahigh capacity battery used to power the M43 lasgun; has sixty percent more charge capacity than standard laspacks."
+	desc = "An advanced, ultrahigh capacity battery used to power the M43 lasgun; has 220 percent charge capacity of standard laspacks."
 	charge_overlay = "m43_e"
 	icon_state = "m43_e"
 	maxcharge = 1600
@@ -38,6 +38,14 @@
 	self_recharge = TRUE
 	charge_amount = 25 // 10%, 1 shot
 	charge_delay = 2 SECONDS
+
+/obj/item/cell/lasgun/M43/recharger// Selfrechargeable battery
+	name = "\improper M43-R lasgun battery"
+	desc = "An advanced, selfrechargeable version of high density battery used to power the M43 lasgun."
+	self_recharge = TRUE
+	charge_amount = 25 // 10%, 2 shots
+	charge_delay = 2 SECONDS
+
 
 /obj/item/cell/lasgun/M43/practice
 	name = "\improper M43-P lasgun battery"
