@@ -269,7 +269,6 @@
 // this proc makes the spiderlings ride widow
 /datum/action/xeno_action/attach_spiderlings/proc/ride_widow(mob/living/carbon/xenomorph/spiderling/piggy, mob/living/carbon/xenomorph/widow/back)
 	back.buckle_mob(piggy,TRUE, TRUE, 90, 1, 0)
-	ADD_TRAIT(piggy, TRAIT_IMMOBILE, WIDOW_ABILITY_TRAIT)
 
 // Drops spiderlings
 /datum/action/xeno_action/attach_spiderlings/proc/drop_spiderlings()
