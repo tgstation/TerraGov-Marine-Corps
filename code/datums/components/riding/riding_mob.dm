@@ -295,7 +295,9 @@
 	riding_mob.density = FALSE
 
 /datum/component/riding/creature/widow/RegisterWithParent()
-	. = ..()
+	RegisterSignal(parent, COMSIG_ATOM_DIR_CHANGE, .proc/vehicle_turned)
+	RegisterSignal(parent, COMSIG_MOVABLE_UNBUCKLE, .proc/vehicle_mob_unbuckle)
+	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/vehicle_moved)
 	RegisterSignal(parent, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/check_widow_attack)
 
 /datum/component/riding/creature/widow/vehicle_mob_unbuckle(datum/source, mob/living/former_rider, force = FALSE)
