@@ -146,9 +146,16 @@
 	force = 20 //Large and hefty! Includes stock bonus.
 	icon_state = "m43"
 	item_state = "m43"
-	max_shots = 50 //codex stuff
+	max_shots = 30 //codex stuff
 	load_method = CELL //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/M43
+	default_ammo_type = /obj/item/cell/lasgun/M43
+	allowed_ammo_types = list(
+	/obj/item/cell/lasgun/M43/highcap,
+	/obj/item/cell/lasgun/M43,
+	/obj/item/cell/lasgun/M43/recharger,
+	)
+
 	ammo_diff = null
 	rounds_per_shot = ENERGY_STANDARD_AMMO_COST
 	attachable_allowed = list(
@@ -170,10 +177,21 @@
 		/obj/item/attachable/efflens,
 		/obj/item/attachable/pulselens,
 		/obj/item/attachable/stock/lasgun,
+		/obj/item/attachable/scope/marine,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/attachable/motiondetector,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
+		/obj/item/weapon/gun/grenade_launcher/underslung,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_SHOWS_AMMO_REMAINING
-	starting_attachment_types = list(/obj/item/attachable/stock/lasgun)
+	starting_attachment_types = list(
+	/obj/item/attachable/stock/lasgun,
+	/obj/item/attachable/pulselens,
+	)
+
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
 	ammo_level_icon = "m43"
 	accuracy_mult_unwielded = 0.5 //Heavy and unwieldy; you don't one hand this.
