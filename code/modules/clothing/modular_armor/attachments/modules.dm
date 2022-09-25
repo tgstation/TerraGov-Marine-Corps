@@ -177,7 +177,7 @@
 	desc = "Designed for mounting on modular SOM armor. This module appears to be designed to protect the user from the effects of radiological attacks, although also provides improved resistance against other environmental threats such as acid and gas. Pairing this with a Mithridatius helmet module and mask will make the user impervious to gas clouds. Will impact mobility."
 	icon_state = "mithridatius"
 	item_state = "mithridatius_a"
-	soft_armor = list("bio" = 25, "rad" = 50, "acid" = 20)
+	soft_armor = list(BIO = 25, ACID = 20)
 	variants_by_parent_type = list()
 
 /obj/item/armor_module/module/mimir_environment_protection/mimir_helmet
@@ -201,7 +201,7 @@
 	desc = "Designed for mounting on a modular SOM helmet. This module appears to be designed to protect the user from the effects of radiological attacks, although also provides improved resistance against other environmental threats such as acid and gas. Pairing this with a Mithridatius suit module and mask will make the user impervious to gas clouds."
 	icon_state = "mithridatius_head"
 	item_state = "mithridatius_head_a"
-	soft_armor = list("bio" = 25, "rad" = 50, "acid" = 20)
+	soft_armor = list(BIO = 25, ACID = 20)
 	variants_by_parent_type = list()
 
 //Explosive defense armor

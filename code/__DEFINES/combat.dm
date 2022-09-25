@@ -27,8 +27,6 @@
 #define BOMB "bomb"
 /// Involved in checking whether a disease can infect or spread. Also involved in xeno neurotoxin.
 #define BIO "bio"
-/// Involves radiation.
-#define RAD "rad"
 /// Involves fire or temperature extremes.
 #define FIRE "fire"
 /// Involves corrosive substances.
