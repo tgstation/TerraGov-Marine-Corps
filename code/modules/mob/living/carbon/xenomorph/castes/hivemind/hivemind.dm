@@ -381,6 +381,6 @@
 		if(X.hive == associated_hive) //Trigger proxy alert only for hostile xenos
 			return
 
-	to_chat(parent, span_alertalien("Our [src.name] has detected a nearby hostile [hostile] at [get_area(hostile)] (X: [hostile.x], Y: [hostile.y])."))
+	to_chat(parent, span_xenoannounce("Our [src.name] has detected a nearby hostile [hostile] at [get_area(hostile)] (X: [hostile.x], Y: [hostile.y])."))
 	SEND_SOUND(parent, 'sound/voice/alien_help1.ogg')
 	COOLDOWN_START(src, hivemind_proxy_alert_cooldown, XENO_HIVEMIND_DETECTION_COOLDOWN) //set the cooldown.
