@@ -1776,11 +1776,24 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING
 	accurate_range = 15
 	max_range = 20
+	damage = 80
+	penetration = 20
+	sundering = 20
+
+/datum/ammo/rocket/som/drop_nade(turf/T)
+	explosion(T, 0, 3, 6, 2)
+
+/datum/ammo/rocket/som/light
+	name = "low impact RPG"
+	hud_state = "rpg_le"
+	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING
+	accurate_range = 15
+	max_range = 20
 	damage = 60
 	penetration = 10
 	sundering = 20
 
-/datum/ammo/rocket/som/drop_nade(turf/T)
+/datum/ammo/rocket/som/light/drop_nade(turf/T)
 	explosion(T, 0, 2, 7, 2)
 
 /datum/ammo/rocket/som/thermobaric

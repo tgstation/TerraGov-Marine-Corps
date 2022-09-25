@@ -788,6 +788,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	default_ammo_type = /obj/item/ammo_magazine/rocket/som
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/rocket/som,
+		/obj/item/ammo_magazine/rocket/som/light,
 		/obj/item/ammo_magazine/rocket/som/rad,
 		/obj/item/ammo_magazine/rocket/som/incendiary,
 		/obj/item/ammo_magazine/rocket/som/heat,

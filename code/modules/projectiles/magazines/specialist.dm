@@ -255,10 +255,18 @@
 //SOM RPG
 /obj/item/ammo_magazine/rocket/som
 	name = "\improper 84mm light-explosive RPG"
-	desc = "A light explosive warhead for the V-71 rocket launcher. Causes a light explosion over a large area but low impact damage."
+	desc = "A high explosive warhead for the V-71 rocket launcher. Causes a strong explosion over a respectable area."
 	icon_state = "rpg_rocket_le"
 	default_ammo = /datum/ammo/rocket/som
 	reload_delay = 2 SECONDS
+	bonus_overlay = "rpg_rocket"
+
+/obj/item/ammo_magazine/rocket/som/light
+	name = "\improper 84mm light-explosive RPG"
+	desc = "A light explosive warhead for the V-71 rocket launcher. Causes a light explosion over a large area but low impact damage."
+	icon_state = "rpg_rocket_le"
+	default_ammo = /datum/ammo/rocket/som/light
+	reload_delay = 1 SECONDS
 	bonus_overlay = "rpg_rocket_le"
 
 /obj/item/ammo_magazine/rocket/som/heat
