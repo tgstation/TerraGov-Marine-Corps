@@ -301,7 +301,6 @@
 /datum/component/riding/creature/widow/vehicle_mob_unbuckle(datum/source, mob/living/former_rider, force = FALSE)
 	unequip_buckle_inhands(parent)
 	former_rider.density = initial(former_rider.density)
-	REMOVE_TRAIT(former_rider, TRAIT_IMMOBILE, WIDOW_ABILITY_TRAIT)
 	return ..()
 
 /// If the widow gets knocked over, force the riding rounys off and see if someone got hurt
