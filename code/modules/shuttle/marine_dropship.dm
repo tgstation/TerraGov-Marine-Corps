@@ -156,6 +156,8 @@
 	var/time_between_cycle = 0
 	///The timer to launch the dropship in automatic mode
 	var/cycle_timer
+	///If first landing is false intro sequence wont play
+	var/first_landing = TRUE
 
 /obj/docking_port/mobile/marine_dropship/register()
 	. = ..()
@@ -167,6 +169,12 @@
 		return
 	// pull the shuttle from datum/source, and state info from the shuttle itself
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DROPSHIP_TRANSIT)
+	if(first_landing)
+		for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
+			if(human.faction != FACTION_TERRAGOV)
+				return
+			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OPERATION BALD SLAUGHTER</u></span><br>" + "AFTER ACTION PLAYBACK<br>" + "Long Range Patrol Rapid Response Platoon<br>" + "[human.job.title], [human]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]", /obj/screen/text/screen_text/command_order/intro)
+		first_landing = FALSE
 
 /obj/docking_port/mobile/marine_dropship/proc/lockdown_all()
 	lockdown_airlocks("rear")

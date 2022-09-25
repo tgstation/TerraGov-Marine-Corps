@@ -12,6 +12,13 @@
 	style_open = "<span class='maptext' style=font-size:20pt;text-align:center valign='top'>"
 	style_close = "</span>"
 
+/obj/screen/text/screen_text/command_order/intro
+	maptext_y = 32
+	letters_per_update = 1
+	screen_loc = "WEST:6,1:5"
+	style_open = "<span class='maptext' style=font-size:20pt;text-align:left valign='top'>"
+	layer = ABOVE_HUD_LAYER
+
 /datum/action/innate/message_squad
 	name = "Send Order"
 	action_icon_state = "screen_order_marine"
