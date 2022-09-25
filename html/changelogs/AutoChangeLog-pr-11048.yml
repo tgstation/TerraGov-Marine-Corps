@@ -1,0 +1,5 @@
+author: "tyeagg"
+delete-after: True
+changes: 
+  - qol: "bigger minimap icons for disks and orders"
+  - imageadd: "big minimap icons"
