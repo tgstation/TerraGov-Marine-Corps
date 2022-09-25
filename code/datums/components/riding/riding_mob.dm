@@ -294,6 +294,7 @@
 	. = ..()
 	riding_mob.density = FALSE
 
+// If we call parent here , we get registered for COMSIG_MOVABLE_BUMP, and when we do bump, there will be a bad index runtime
 /datum/component/riding/creature/widow/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_ATOM_DIR_CHANGE, .proc/vehicle_turned)
 	RegisterSignal(parent, COMSIG_MOVABLE_UNBUCKLE, .proc/vehicle_mob_unbuckle)
