@@ -314,9 +314,10 @@
 	. += number
 	if(!description_overlay)
 		return
-	var/mutable_appearance/desc = mutable_appearance()
-	desc.pixel_x += 16
+	var/mutable_appearance/desc = mutable_appearance('icons/misc/12x12.dmi')
+	desc.pixel_x = 16
 	desc.maptext = MAPTEXT(description_overlay)
+	desc.maptext_width = 16
 	. += desc
 
 /obj/item/storage/pill_bottle/equipped(mob/user, slot)
