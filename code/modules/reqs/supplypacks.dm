@@ -363,6 +363,26 @@ WEAPONS
 	cost = 5
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/weapons/m43_h
+	name = "M43-H Highcapacity cell"
+	contains = list(/obj/item/cell/lasgun/M43/highcap)
+	cost = 1
+
+/datum/supply_packs/weapons/m43_r
+	name = "M43-R Selfrechargeable cell"
+	contains = list(/obj/item/cell/lasgun/M43/recharger)
+	cost = 5
+
+/datum/supply_packs/weapons/heatlens
+	name = "M43 Heatlense attachment"
+	contains = list(/obj/item/attachable/heatlens)
+	cost = 10
+
+/datum/supply_packs/weapons/focuslens
+	name = "M43 Focuslense attachment"
+	contains = list(/obj/item/attachable/focuslens)
+	cost = 10
+
 /datum/supply_packs/weapons/zx76
 	name = "ZX-76 Twin-Barrled Burst Shotgun"
 	contains = list(/obj/item/weapon/gun/shotgun/zx76)
