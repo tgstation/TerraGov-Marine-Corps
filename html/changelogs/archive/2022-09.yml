@@ -279,3 +279,14 @@
   - balance: Xenos can't buckle other people to stuff if they aren't conscious.
   TiviPlus:
   - bugfix: fixed a suit icon
+2022-09-25:
+  Lumipharon:
+  - imageadd: Updated riot and metal riot shield mob sprites
+  - imageadd: added mob sprites for grenades, COPE sentries and marine bags
+  MLGTASTICa:
+  - qol: Slowed down the FOB Drone, gave it bubble alerts and fixed double .remaining
+      messages
+  - qol: Drones now face the direction of any turf you click.
+  - code_imp: Rewrote the remote AI eye code to support more configurable move_delays
+  - code_imp: Rewrote the remote AI eye acceleration , it now gets removed on direction
+      change.
