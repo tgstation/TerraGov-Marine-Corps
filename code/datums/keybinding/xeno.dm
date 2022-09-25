@@ -696,11 +696,17 @@
 	description = "Give birth to a spiderling after a short charge-up."
 	keybind_signal = COMSIG_XENOABILITY_CREATE_SPIDERLING
 
-/datum/keybinding/xeno/spider_swarm
-	name = "Spider Swarm"
-	full_name = "Widow: Spider Swarm"
-	description = "Give birth to three spiders, you turn into an immobile pod in the process."
-	keybind_signal = COMSIG_XENOABILITY_SPIDER_SWARM
+/datum/keybinding/xeno/attach_spiderlings
+	name = "Attach Spiderlings"
+	full_name = "Widow: Attach Spiderlings"
+	description = "Scoop up and carry your spawn with you."
+	keybind_signal = COMSIG_XENOABILITY_ATTACH_SPIDERLINGS
+
+/datum/keybinding/xeno/web_hook
+	name = "Web Hook"
+	full_name = "Widow: Web Hook"
+	description = "Shoot a strong web and pull yourself towards whatever it hits."
+	keybind_signal = COMSIG_XENOABILITY_WEB_HOOK
 
 /datum/keybinding/xeno/vent/down(client/user)
 	. = ..()
