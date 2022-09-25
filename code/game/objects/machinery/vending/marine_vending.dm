@@ -29,6 +29,9 @@
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla = 2,
+			/obj/item/cell/lasgun/M43 = -1,
+			/obj/item/cell/lasgun/M43/highcap = 20,
+			/obj/item/weapon/gun/energy/lasgun/M43 = -1,
 		),
 		"SMGs" = list(
 			/obj/item/weapon/gun/smg/standard_smg = -1,
@@ -168,6 +171,8 @@
 			/obj/item/attachable/flamer_nozzle/long = -1,
 			/obj/item/attachable/stock/t19stock = -1,
 			/obj/item/attachable/stock/t35stock = -1,
+			/obj/item/attachable/efflens = -1,
+			/obj/item/attachable/widelens = -1,
 		),
 		"Boxes" = list(
 			/obj/item/ammo_magazine/packet/p9mm = -1,
