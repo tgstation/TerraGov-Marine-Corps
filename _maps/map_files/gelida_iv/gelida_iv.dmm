@@ -494,7 +494,9 @@
 "apq" = (
 /obj/structure/closet,
 /obj/machinery/power/apc/drained,
-/obj/structure/cable,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
 	},
@@ -2266,12 +2268,20 @@
 	},
 /area/gelida/indoors/a_block/admin)
 "bvb" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump{
+/obj/structure/bed/chair{
 	dir = 4
 	},
+/obj/structure/bed/chair{
+	dir = 4;
+	pixel_x = 1;
+	pixel_y = 3
+	},
+/obj/structure/bed/chair{
+	dir = 4;
+	pixel_x = 2;
+	pixel_y = 6
+	},
+/obj/machinery/power/apc/drained,
 /obj/structure/cable,
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
@@ -9368,7 +9378,6 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
 	},
-/obj/structure/cable,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorms)
@@ -17639,12 +17648,9 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/c_block/cargo)
 "lkM" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
 /obj/structure/cable,
-/turf/open/floor/prison/whitepurple/full{
-	dir = 4
+/turf/open/floor/prison/darkpurple{
+	dir = 1
 	},
 /area/gelida/indoors/a_block/dorms)
 "lkR" = (
@@ -22792,7 +22798,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/structure/cable,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/whitepurple/full{
 	dir = 4
@@ -47701,7 +47706,7 @@ tkC
 kpE
 yfp
 apq
-bvb
+qGg
 yfp
 ujy
 mlX
@@ -47923,7 +47928,7 @@ bxz
 pEB
 yfp
 pBL
-lkM
+tkC
 yfp
 pBL
 kWO
@@ -48589,7 +48594,7 @@ hrO
 nsm
 gyo
 gyo
-qjO
+oNd
 eHl
 wUn
 oNd
@@ -49488,8 +49493,8 @@ yfp
 yfp
 yfp
 yfp
-eHl
-ikv
+bvb
+lkM
 myO
 qGN
 ocv
