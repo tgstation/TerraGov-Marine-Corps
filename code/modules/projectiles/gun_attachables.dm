@@ -34,17 +34,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	greyscale_config = null
 	greyscale_colors = GUN_PALETTE_TAN
 	///List of palettes a greyscaled attachment is allowed to use for its furniture
-	var/list/colorable_colors = list(
-		"Tan" = GUN_PALETTE_TAN,
-		"Red" = GUN_PALETTE_RED,
-		"Dark Red" = GUN_PALETTE_DARK_RED,
-		"Pink" = GUN_PALETTE_PINK,
-		"Silver" = GUN_PALETTE_SILVER,
-		"Drab" = GUN_PALETTE_DRAB,
-		"Black" = GUN_PALETTE_BLACK,
-		"Brown" = GUN_PALETTE_BROWN,
-		"Gun Metal Blue" = GUN_PALETTE_BLUE,
-	)
+	var/list/colorable_colors = GUN_PALETTE_LIST
 
 	flags_atom = CONDUCT
 	materials = list(/datum/material/metal = 100)
@@ -165,7 +155,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		return
 	var/obj/item/facepaint/paint = I
 	if(paint.uses < 1)
-		to_chat(user, span_warning("\the [paint] is out of color!"))
+		balloon_alert(user, "\the [paint] is out of color!")
 		return
 
 	var/new_color = tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)

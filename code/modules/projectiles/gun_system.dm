@@ -28,17 +28,7 @@
 	greyscale_config = null
 	greyscale_colors = GUN_PALETTE_TAN
 	///List of palettes a greyscaled gun is allowed to use for its furniture
-	var/list/colorable_colors = list(
-		"Tan" = GUN_PALETTE_TAN,
-		"Red" = GUN_PALETTE_RED,
-		"Dark Red" = GUN_PALETTE_DARK_RED,
-		"Pink" = GUN_PALETTE_PINK,
-		"Silver" = GUN_PALETTE_SILVER,
-		"Drab" = GUN_PALETTE_DRAB,
-		"Black" = GUN_PALETTE_BLACK,
-		"Brown" = GUN_PALETTE_BROWN,
-		"Gun Metal Blue" = GUN_PALETTE_BLUE,
-	)
+	var/list/colorable_colors = GUN_PALETTE_LIST
 
 /*
  *  Muzzle Vars

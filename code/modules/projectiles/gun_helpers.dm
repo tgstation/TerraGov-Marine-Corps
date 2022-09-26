@@ -32,7 +32,7 @@
 			return
 		var/obj/item/facepaint/paint = I
 		if(paint.uses < 1)
-			to_chat(user, span_warning("\the [paint] is out of color!"))
+			balloon_alert(user, "\the [paint] is out of color!")
 			return
 
 		var/new_color = tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)
@@ -45,7 +45,7 @@
 		paint.uses--
 		update_icon()
 		master_gun?.update_icon()
-		if(istype(loc, /mob/living/carbon/human))
+		if(ishuman(loc))
 			var/mob/living/carbon/human/holder = loc
 			holder.regenerate_icons()
 		return
