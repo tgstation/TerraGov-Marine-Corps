@@ -240,7 +240,7 @@
 	icon_file = 'icons/obj/items/ammo.dmi'
 
 ///PROJECTILES
-/datum/greyscale_config/projectileW
+/datum/greyscale_config/projectile
 	json_config = 'code/datums/greyscale/json_configs/projectiles.json'
 	icon_file = 'icons/obj/items/projectiles.dmi'
 
@@ -304,6 +304,7 @@
 
 /datum/greyscale_config/gun/t14
 	icon_file = 'icons/Marine/gun_greyscale/t14/t14.dmi'
+	json_config = 'code/datums/greyscale/json_configs/gun_with_belt.json'
 
 /datum/greyscale_config/gun/t14/l_hand
 	icon_file = 'icons/Marine/gun_greyscale/t14/left_hand.dmi'
@@ -355,6 +356,7 @@
 /datum/greyscale_config/gun_attachment
 	icon_file = 'icons/Marine/gun_attachments_greyscale/t35_stock.dmi'
 	json_config = 'code/datums/greyscale/json_configs/gun_attachment.json'
+
 /*
  * MECHS
  */
