@@ -1178,7 +1178,7 @@ TUNNEL
 	///Strength of pheromones given by this tower.
 	var/aura_strength = 5
 	///Radius (in tiles) of the pheromones given by this tower.
-	var/aura_radius = 22
+	var/aura_radius = 50
 
 /obj/structure/xeno/pherotower/Initialize(mapload, hivenum)
 	. = ..()
