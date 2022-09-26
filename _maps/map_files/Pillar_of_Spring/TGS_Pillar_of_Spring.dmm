@@ -12482,6 +12482,7 @@
 	},
 /obj/machinery/firealarm,
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/mainship/orange{
 	dir = 5
 	},
@@ -45454,7 +45455,7 @@ zV
 Ab
 zV
 zC
-dF
+ew
 ad
 rc
 rc
@@ -46225,7 +46226,7 @@ zD
 LL
 Qx
 ie
-cu
+eQ
 ad
 rc
 rc
