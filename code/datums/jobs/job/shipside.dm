@@ -1135,7 +1135,7 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 	job_category = JOB_CAT_SILICON
 	req_admin_notify = TRUE
 	comm_title = "AI"
-	paygrade = "test"
+	paygrade = ""
 	total_positions = 1
 	selection_color = "#92c255"
 	supervisors = "your laws and the human crew"
