@@ -504,9 +504,9 @@
 	if(CHECK_BITFIELD(flags_gun_features, GUN_SHOWS_AMMO_REMAINING))
 		var/remaining_rounds = (rounds <= 0) ? 0 : CEILING((rounds / max((length(chamber_items) ? max_rounds : max_shells), 1)) * 100, 25)
 		if(CHECK_BITFIELD(flags_item, WIELDED))
-			item_state = !greyscale_config ? "[initial(icon_state)]_[cell_charge]_w" : "wielded"
+			item_state = !greyscale_config ? "[initial(icon_state)]_[remaining_rounds]_w" : "wielded"
 		else
-			item_state = !greyscale_config ? "[initial(icon_state)]_[cell_charge]" : ""
+			item_state = !greyscale_config ? "[initial(icon_state)]_[remaining_rounds]" : ""
 	else if(CHECK_BITFIELD(flags_gun_features, GUN_SHOWS_LOADED))
 		if(CHECK_BITFIELD(flags_item, WIELDED))
 			item_state = !greyscale_config ? "[initial(icon_state)]_[rounds ? 100 : 0]_w" : "wielded" //100 and 0 used to be consistant with GUN_SHOWS_AMMO_REMAINING
