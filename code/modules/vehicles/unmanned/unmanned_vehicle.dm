@@ -285,6 +285,7 @@
 		span_xenodanger("We smash [src] with a devastating punch!"), visible_message_flags = COMBAT_MESSAGE)
 	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)
 	Shake(4, 4, 2 SECONDS)
+	return TRUE
 
 /obj/vehicle/unmanned/flamer_fire_act(burnlevel)
 	take_damage(burnlevel / 2, BURN, "fire")

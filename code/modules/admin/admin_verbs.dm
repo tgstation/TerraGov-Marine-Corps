@@ -78,7 +78,7 @@
 /datum/admins/proc/set_xeno_stat_buffs()
 	set category = "Debug"
 	set name = "Set Xeno Buffs"
-	set desc = "Allows you to change stats on all xeno. It is a multiplicator buff, so input 1 to put back everything to normal"
+	set desc = "Allows you to change stats for all xenos. It is a multiplicator buff, so input 100 to put everything back to normal"
 
 	if(!check_rights(R_FUN))
 		return
@@ -91,7 +91,7 @@
 	SSmonitor.is_automatic_balance_on = FALSE
 	SSmonitor.apply_balance_changes()
 
-	var/logging = "[usr.ckey] has multiplied all health, melee damage and regen of xeno by [multiplicator_buff_wanted * 100]%"
+	var/logging = "[usr.ckey] has multiplied all health, melee damage and regen of xeno by [multiplicator_buff_wanted]%"
 	log_admin(logging)
 	message_admins(logging)
 
