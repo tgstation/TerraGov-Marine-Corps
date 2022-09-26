@@ -1184,7 +1184,7 @@ TUNNEL
 
 /obj/structure/xeno/pherotower/Initialize(mapload, hivenum)
 	. = ..()
-	GLOB.xeno_phero_towers += src
+	GLOB.hive_datums[hivenumber].pherotowers += src
 	hivenumber = hivenum
 
 //Pheromone towers start off with recovery.
@@ -1200,7 +1200,7 @@ TUNNEL
 			take_damage(300)
 
 /obj/structure/xeno/pherotower/Destroy()
-	GLOB.xeno_phero_towers -= src
+	GLOB.hive_datums[hivenumber].pherotowers -= src
 	return ..()
 
 // Clicking on the tower brings up a radial menu that allows you to select the type of pheromone that this tower will emit.

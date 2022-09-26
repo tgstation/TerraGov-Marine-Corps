@@ -107,7 +107,7 @@
 	for(var/obj/structure/xeno/evotower/tower AS in GLOB.hive_datums[hivenumber].evotowers)
 		.["hive_structures"] += list(get_structure_packet(tower))
 	// Pheromone towers
-	for(var/obj/structure/xeno/pherotower/tower AS in GLOB.xeno_phero_towers)
+	for(var/obj/structure/xeno/pherotower/tower AS in GLOB.hive_datums[hivenumber].pherotowers)
 		.["hive_structures"] += list(get_structure_packet(tower))
 	// Spawners
 	for(var/obj/structure/xeno/spawner/spawner AS in GLOB.xeno_spawner)
