@@ -207,9 +207,13 @@
 	name = "\improper Combat Information Center Blast Door"
 	id = "cic_lockdown_rebel"
 
-/obj/machinery/door/poddooor/mainship/hangar
+/obj/machinery/door/poddoor/mainship/hangar
 	name = "\improper Hangar Lockdown"
 	id = "hangar_lockdown"
+
+/obj/machinery/door/poddoor/mainship/hangar/second
+	name = "\improper Hangar Shutters"
+	id = "hangar_shutters"
 
 /obj/machinery/door/poddoor/mainship/umbilical
 	name = "Umbilical Airlock"

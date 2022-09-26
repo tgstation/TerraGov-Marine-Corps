@@ -15660,7 +15660,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/telecomms)
 "Xh" = (
-/obj/machinery/computer/telecomms/monitor,
+/obj/machinery/computer/telecomms/monitor/preset,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/telecomms)
 "Xi" = (
@@ -16280,7 +16280,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
 "Zh" = (
-/obj/machinery/computer/telecomms/server,
+/obj/machinery/computer/telecomms/server/preset,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/telecomms)
 "Zj" = (

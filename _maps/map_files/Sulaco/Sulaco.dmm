@@ -9988,7 +9988,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/sulaco/telecomms)
 "bbX" = (
-/obj/machinery/computer/telecomms/monitor,
+/obj/machinery/computer/telecomms/monitor/preset,
 /turf/open/floor/prison,
 /area/sulaco/telecomms/office)
 "bbY" = (
@@ -10094,6 +10094,7 @@
 /area/sulaco/telecomms)
 "bdf" = (
 /obj/machinery/computer/telecomms/server,
+/obj/machinery/computer/telecomms/server/preset,
 /turf/open/floor/prison,
 /area/sulaco/telecomms/office)
 "bdg" = (
