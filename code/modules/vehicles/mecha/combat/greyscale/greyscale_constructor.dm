@@ -18,6 +18,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 				"burst_count" = initial(type.burst_amount),
 				"scatter" = initial(type.variance),
 				"slowdown" = initial(type.slowdown),
+				"burst_amount" = initial(type.burst_amount)
 			)
 			var/datum/ammo/ammotype = initial(type.ammotype)
 			if(ispath(ammotype, /datum/ammo))
@@ -368,11 +369,13 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 		limb.attach(mech, slot)
 	currently_assembling = FALSE
 	if(selected_equipment[MECHA_L_ARM])
-		var/obj/item/mecha_parts/mecha_equipment/weapon/new_gun = new selected_equipment[MECHA_L_ARM]
+		var/new_type = selected_equipment[MECHA_L_ARM]
+		var/obj/item/mecha_parts/mecha_equipment/weapon/new_gun = new new_type
 		new_gun.attach(mech)
 	if(selected_equipment[MECHA_R_ARM])
-		var/obj/item/mecha_parts/mecha_equipment/weapon/new_gun = new selected_equipment[MECHA_L_ARM]
-		new_gun.attach(mech)
+		var/new_type = selected_equipment[MECHA_R_ARM]
+		var/obj/item/mecha_parts/mecha_equipment/weapon/new_gun = new new_type
+		new_gun.attach(mech, TRUE)
 	for(var/equipment in (selected_equipment[MECHA_POWER]|selected_equipment[MECHA_ARMOR]|selected_equipment[MECHA_UTILITY]))
 		var/obj/item/mecha_parts/mecha_equipment/new_equip = new equipment
 		new_equip.attach(mech)

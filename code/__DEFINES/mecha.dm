@@ -55,9 +55,9 @@
 
 #define MECHA_AMMO_GREY_LMG "30mm LMG bullet"
 #define MECHA_AMMO_RIFLE "Rocket-assisted rifle bullet"
-#define MECHA_AMMO_BURSTRIFLE "Rocket-assisted burstrifle bullet"
+#define MECHA_AMMO_BURSTRIFLE "Rocket-assisted burst bullet"
 #define MECHA_AMMO_SHOTGUN "Large buckshot shell"
-#define MECHA_AMMO_LIGHTCANNON "Autocannon fragmentation shell"
+#define MECHA_AMMO_LIGHTCANNON "Autocannon shrapnel shell"
 #define MECHA_AMMO_HEAVYCANNON "APFSDS tank shell"
 #define MECHA_AMMO_SMG "Large SMG bullet"
 #define MECHA_AMMO_BURSTPISTOL "Heavy burstpistol bullet"

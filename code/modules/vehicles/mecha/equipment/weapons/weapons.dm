@@ -266,7 +266,7 @@
 	if(!.)
 		return
 	projectiles--
-	if(projectiles < 0)
+	if(projectiles > 0)
 		return
 	playsound(src, 'sound/weapons/guns/misc/empty_alarm.ogg', 25, 1)
 
@@ -345,7 +345,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/action(mob/source, atom/target, list/modifiers)
 	if(!action_checks(target))
 		return
-	var/dir_target_diff = get_between_angles(Get_Angle(chassis, current_target), dir2angle(chassis.dir))
+	var/dir_target_diff = get_between_angles(Get_Angle(chassis, target), dir2angle(chassis.dir))
 	if(dir_target_diff > (MECH_FIRE_CONE_ALLOWED / 2))
 		return TRUE
 	var/obj/O = new ammotype(chassis.loc)

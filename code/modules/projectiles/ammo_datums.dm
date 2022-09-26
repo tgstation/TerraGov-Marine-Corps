@@ -253,9 +253,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		var/obj/projectile/new_proj = new proj_type(main_proj.loc, effect_icon)
 		if(bonus_projectiles_type)
 			new_proj.generate_bullet(bonus_projectiles_type)
-			var/obj/item/weapon/gun/g = source
-			if(source) //Check for the source so we don't runtime if we have bonus projectiles from a non-gun source like a Spitter
-				new_proj.damage *= g.damage_mult //Bonus or reduced damage based on damage modifiers on the gun.
+			var/obj/item/weapon/gun/gun = source
+			if(istype(gun)) //Check for the source so we don't runtime if we have bonus projectiles from a non-gun source like a Spitter
+				new_proj.damage *= gun.damage_mult //Bonus or reduced damage based on damage modifiers on the gun.
 		else //If no bonus type is defined then the extra projectiles are the same as the main one.
 			new_proj.generate_bullet(src)
 

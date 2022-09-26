@@ -66,6 +66,7 @@ type MechWeapon = {
   burst_count: number;
   scatter: number;
   slowdown: number;
+  burst_amount: number,
   damage: number|null,
   armor_pierce: number|null,
   projectiles: number|null,
@@ -183,6 +184,8 @@ export const MechVendor = (props, context) => {
                   {showDesc.cache_max? <LabeledList.Item label={"Ammo storage size"}>{showDesc.cache_max}</LabeledList.Item>
                     : null}
                   {showDesc.scatter? <LabeledList.Item label={"Scatter"}>{showDesc.scatter}°</LabeledList.Item>
+                    : null}
+                  {showDesc.burst_amount? <LabeledList.Item label={"Burst count"}>{showDesc.burst_amount}</LabeledList.Item>
                     : null}
                   <LabeledList.Item label={"Slowdown"}>{showDesc.slowdown}</LabeledList.Item>
                 </LabeledList>
