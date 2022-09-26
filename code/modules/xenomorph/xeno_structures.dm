@@ -1168,8 +1168,8 @@ TUNNEL
 	desc = "A resin formation that looks like a small pillar. A faint, weird smell can be perceived from it."
 	icon = 'icons/Xeno/1x1building.dmi'
 	icon_state = "recoverytower"
-	bound_width = 64
-	bound_height = 64
+	bound_width = 32
+	bound_height = 32
 	obj_integrity = 400
 	max_integrity = 400
 	xeno_structure_flags = CRITICAL_STRUCTURE
@@ -1195,6 +1195,10 @@ TUNNEL
 			take_damage(500)
 		if(EXPLODE_LIGHT)
 			take_damage(300)
+
+/obj/structure/xeno/pherotower/Destroy()
+	GLOB.hive_datums[hivenumber].pherotowers -= src
+	return ..()
 
 // Clicking on the tower brings up a radial menu that allows you to select the type of pheromone that this tower will emit.
 /obj/structure/xeno/pherotower/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)

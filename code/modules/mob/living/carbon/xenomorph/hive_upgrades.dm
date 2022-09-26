@@ -216,6 +216,52 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	flags_upgrade = ABILITY_DISTRESS
 	building_type = /obj/structure/xeno/pherotower
 
+/datum/hive_upgrade/building/pherotower/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
+	. = ..()
+	if(!.)
+		return
+	var/turf/T = get_turf(buyer)
+	var/mob/living/carbon/xenomorph/blocker = locate() in T
+	if(blocker && blocker != buyer && blocker.stat != DEAD)
+		if(!silent)
+			to_chat(buyer, span_xenowarning("You cannot build with [blocker] in the way!"))
+		return FALSE
+
+	if(!T.is_weedable())
+		return FALSE
+
+	if(!buyer.loc_weeds_type)
+		if(!silent)
+			to_chat(buyer, span_xenowarning("No weeds here!"))
+		return FALSE
+
+	if(!T.check_alien_construction(buyer, silent = silent, planned_building = /obj/structure/xeno/xeno_turret) || !T.check_disallow_alien_fortification(buyer))
+		return FALSE
+
+//Prevent towers from overlapping.
+	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets)
+		if(get_dist(turret, buyer) < 50)
+			if(!silent)
+				to_chat(buyer, span_xenowarning("Another pheromone tower is too close!"))
+			return FALSE
+
+	return TRUE
+
+/datum/hive_upgrade/building/pherotower/on_buy(mob/living/carbon/xenomorph/buyer)
+	if(!do_after(buyer, build_time, TRUE, buyer, BUSY_ICON_BUILD))
+		return FALSE
+
+	if(!can_buy(buyer, FALSE))
+		return FALSE
+
+	to_chat(buyer, span_xenowarning("We build a new pheromone tower, spending [psypoint_cost] psychic points in the process."))
+	new turret_type(get_turf(buyer), buyer.hivenumber)
+
+	log_game("[buyer] built a pheromone tower in [AREACOORD(buyer)], spending [psypoint_cost] psy points in the process.")
+	xeno_message("[buyer] has built a new pheromone tower at [get_area(buyer)]!", "xenoannounce", 5, buyer.hivenumber)
+
+	return ..()
+
 /datum/hive_upgrade/building/spawner
 	name = "Spawner"
 	desc = "Constructs a spawner that generates ai xenos over time"
