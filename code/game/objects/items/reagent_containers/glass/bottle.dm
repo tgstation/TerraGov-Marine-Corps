@@ -172,7 +172,7 @@
 	name = "\improper Oxycodone bottle"
 	desc = "A very small bottle. Contains Oxycodone - Used as an Extreme Painkiller."
 	icon_state = "bottle2"
-	volume = 10
+	volume = 60
 	list_reagents = list(/datum/reagent/medicine/oxycodone = 60)
 
 /obj/item/reagent_containers/glass/bottle/hypervene
