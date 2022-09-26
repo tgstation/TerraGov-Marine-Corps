@@ -290,3 +290,13 @@
   - code_imp: Rewrote the remote AI eye code to support more configurable move_delays
   - code_imp: Rewrote the remote AI eye acceleration , it now gets removed on direction
       change.
+2022-09-26:
+  Lewdcifer:
+  - rscadd: Adds the Pheromone Tower to the game, alongside its related sprites.
+  Lumipharon:
+  - bugfix: medical item description text will no longer spill into the next storage
+      slot
+  - balance: Increased MP-19 akimbo penalties
+  tyeagg:
+  - qol: bigger minimap icons for disks and orders
+  - imageadd: big minimap icons

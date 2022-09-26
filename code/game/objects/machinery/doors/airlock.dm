@@ -2,7 +2,7 @@
 	name = "\improper Airlock"
 	icon = 'icons/obj/doors/Doorint.dmi'
 	icon_state = "door_closed"
-	soft_armor = list("melee" = 20, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 100, "acid" = 0)
+	soft_armor = list(MELEE = 20, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, "rad" = 0, FIRE = 100, ACID = 0)
 	power_channel = ENVIRON
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5

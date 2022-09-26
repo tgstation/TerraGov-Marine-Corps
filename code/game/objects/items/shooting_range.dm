@@ -30,7 +30,7 @@
 	density = TRUE
 	flags_atom = CONDUCT
 	max_integrity = 15000 //important that what the marines are shooting at doesn't break, we don't make it invulnerable because we still need to plasma cutter it sometimes
-	soft_armor = list("melee" = 80, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 120, "bio" = 100, "rad" = 0, "fire" = 100, "acid" = 0)
+	soft_armor = list(MELEE = 80, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 120, BIO = 100, "rad" = 0, FIRE = 100, ACID = 0)
 	///ungas need to actually hit this
 	coverage = 90
 

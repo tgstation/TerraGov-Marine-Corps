@@ -1205,9 +1205,7 @@
 	desc = "You can't get in. Heh.";
 	name = "Blocker"
 	},
-/turf/closed/wall/wood{
-	soft_armor = list("melee" = 1000, "bullet" = 1000, "laser" = 1000, "energy" = 1000, "bomb" = 1000, "bio" = 1000, "rad" = 1000, "fire" = 1000, "acid" = 1000)
-	},
+/turf/closed/wall/wood,
 /area/deathmatch)
 "Jf" = (
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,

@@ -687,7 +687,10 @@
 		sure that we don't have to do any extra calculations.
 		*/
 		playsound(src,drawSound, 15, 1)
-		gun_underlay = image(icon, src, current_gun.icon_state)
+		if(current_gun.greyscale_config && current_gun.greyscale_colors)
+			gun_underlay = image(SSgreyscale.GetColoredIconByType(current_gun.greyscale_config, current_gun.greyscale_colors), current_gun.rounds ? "belt" : "belt_empty")
+		else
+			gun_underlay = image(icon, src, current_gun.icon_state)
 		icon_state += "_g"
 		item_state = icon_state
 		underlays += gun_underlay
