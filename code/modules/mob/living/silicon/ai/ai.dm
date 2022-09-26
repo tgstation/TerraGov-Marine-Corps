@@ -117,6 +117,7 @@
 	UnregisterSignal(src, COMSIG_MOB_CLICK_ALT)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_SHUTTLE_TAKEOFF)
 	return ..()
 
 ///Print order visual to all marines squad hud and give them an arrow to follow the waypoint
