@@ -19,9 +19,10 @@
 	max_integrity = 1000	//Ditto
 
 /obj/structure/platform/gelida
-	climb_delay = 10 //halved time because on gelida platforms are everywhere
-	obj_integrity = 200 //ditto
-	max_integrity = 200	//ditto
+	coverage = 0
+	climb_delay = 5 //halved time because on gelida platforms are everywhere
+	obj_integrity = 50 //ditto
+	max_integrity = 50	//ditto
 
 /obj/structure/platform/Initialize()
 	. = ..()
@@ -114,3 +115,32 @@ obj/structure/platform_decoration
 
 /obj/structure/platform_decoration/platform2_deco
 	icon_state = "platform2_deco"
+
+/obj/structure/fakeplatform
+	name = "platform"
+	desc = "A square metal surface resting on four legs."
+	icon = 'icons/obj/structures/platforms.dmi'
+	icon_state = "platform"
+	anchored = TRUE
+	density = FALSE //no density these platforms are for looks not for climbing
+	coverage = 0
+	layer = OBJ_LAYER
+	climb_delay = 20 //Leaping a barricade is universally much faster than clumsily climbing on a table or rack
+	resistance_flags = XENO_DAMAGEABLE	//TEMP PATCH UNTIL XENO AI PATHFINDING IS BETTER, SET THIS TO INDESTRUCTIBLE ONCE IT IS - Tivi
+	obj_integrity = 50	//Ditto
+	max_integrity = 50	//Ditto
+
+/obj/structure/fakeplatform/Initialize()
+	. = ..()
+	var/image/I = image(icon, src, "platform_overlay", LADDER_LAYER, dir)//ladder layer puts us just above weeds.
+	switch(dir)
+		if(SOUTH)
+			layer = ABOVE_MOB_LAYER
+			I.pixel_y = -16
+		if(NORTH)
+			I.pixel_y = 16
+		if(EAST)
+			I.pixel_x = 16
+		if(WEST)
+			I.pixel_x = -16
+	overlays += I
