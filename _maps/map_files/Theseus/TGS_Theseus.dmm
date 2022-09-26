@@ -1930,6 +1930,8 @@
 /area/mainship/command/self_destruct)
 "aBc" = (
 /obj/machinery/self_destruct/console,
+/obj/effect/spawner/random/plushie/nospawnninety{
+	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "aBe" = (
@@ -18702,6 +18704,8 @@
 /area/mainship/living/cafeteria_starboard)
 "uBZ" = (
 /obj/machinery/autodoc,
+/obj/effect/spawner/random/plushie/nospawnninetyfive{
+	},
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/lower_medical)
 "uDw" = (

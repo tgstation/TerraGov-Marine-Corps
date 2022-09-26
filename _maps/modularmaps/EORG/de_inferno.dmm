@@ -706,6 +706,11 @@
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/wood,
 /area/deathmatch)
+"jG" = (
+/obj/effect/spawner/random/plushie/nospawnninetyfive{
+	},
+/turf/open/floor/wood,
+/area/deathmatch)
 "kb" = (
 /obj/structure/cargo_container/hd,
 /turf/open/floor/plating/asteroidplating,
@@ -859,6 +864,13 @@
 /turf/open/floor/stairs/rampbottom{
 	dir = 4
 	},
+/area/deathmatch)
+"sp" = (
+/obj/structure/table/gamblingtable,
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/obj/effect/spawner/random/plushie/nospawnninetyfive{
+	},
+/turf/open/floor/wood,
 /area/deathmatch)
 "sU" = (
 /obj/effect/forcefield{
@@ -2125,7 +2137,7 @@ Zd
 tr
 bb
 kJ
-rO
+sp
 tr
 tr
 eM
@@ -2181,7 +2193,7 @@ fI
 fI
 dG
 wN
-tr
+jG
 tr
 MF
 IZ

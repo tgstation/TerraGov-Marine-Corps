@@ -5687,6 +5687,8 @@
 /area/sulaco/briefing)
 "aBB" = (
 /obj/structure/table/mainship,
+/obj/effect/spawner/random/plushie/nospawnninetyfive{
+	},
 /turf/open/floor/prison,
 /area/sulaco/briefing)
 "aBC" = (
@@ -21182,6 +21184,12 @@
 "qDO" = (
 /turf/open/floor/mainship_hull/gray/dir,
 /area/space)
+"qDX" = (
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/plushie/nospawnninetyfive{
+	},
+/turf/open/floor/prison/sterilewhite,
+/area/sulaco/cafeteria)
 "qFe" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -46925,7 +46933,7 @@ anw
 eHj
 aKD
 ptE
-xXL
+qDX
 mnO
 aJy
 aLf

@@ -4879,6 +4879,10 @@
 	dir = 1
 	},
 /area/mainship/hallways/hangar)
+"od" = (
+/obj/effect/spawner/random/plushie/nospawnninetyfive,
+/turf/open/floor/plating,
+/area/mainship/squads/req)
 "oe" = (
 /obj/machinery/firealarm,
 /obj/structure/reagent_dispensers/fueltank,
@@ -9489,6 +9493,7 @@
 "BL" = (
 /obj/item/reagent_containers/food/snacks/grown/poppy,
 /obj/item/clothing/head/modular/marine,
+/obj/effect/spawner/random/plushie,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cafeteria_starboard)
 "BM" = (
@@ -13669,6 +13674,7 @@
 /obj/structure/table/woodentable,
 /obj/item/storage/bible,
 /obj/item/reagent_containers/food/drinks/flask/barflask,
+/obj/effect/spawner/random/plushie/nospawnninetynine,
 /turf/open/floor/carpet/side{
 	dir = 5
 	},
@@ -49948,7 +49954,7 @@ mp
 nY
 Yy
 Yy
-Yy
+od
 Yy
 Yy
 qJ

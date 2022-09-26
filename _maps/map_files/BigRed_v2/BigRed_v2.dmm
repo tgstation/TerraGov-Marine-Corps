@@ -2116,6 +2116,10 @@
 "ara" = (
 /obj/structure/table/woodentable,
 /obj/item/flashlight/lamp,
+/obj/effect/spawner/random/plushie{
+	pixel_x = -5;
+	pixel_y = -4
+	},
 /turf/open/floor/elevatorshaft,
 /area/bigredv2/caves/lambda_lab)
 "arc" = (
@@ -7588,6 +7592,7 @@
 	},
 /obj/structure/closet/cabinet,
 /obj/item/clothing/tie/armband,
+/obj/effect/spawner/random/plushie,
 /turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDs" = (
