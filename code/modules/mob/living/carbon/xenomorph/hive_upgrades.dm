@@ -127,12 +127,16 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	category = "Buildings"
 	///The type of building created
 	var/building_type
+	///The location to spawn the building at. Southwest of the xeno by default.
+	var/building_loc = SOUTHWEST
+	///Building time, in seconds. 10 by default.
+	var/building_time = 10 SECONDS
 
 /datum/hive_upgrade/building/can_buy(mob/living/carbon/xenomorph/buyer, silent)
 	. = ..()
 	if(!.)
 		return
-	var/turf/buildloc = get_step(buyer, SOUTHWEST)
+	var/turf/buildloc = get_step(buyer, building_loc)
 	if(!buildloc)
 		return FALSE
 
@@ -152,13 +156,13 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 		return FALSE
 
 /datum/hive_upgrade/building/on_buy(mob/living/carbon/xenomorph/buyer)
-	if(!do_after(buyer, 10 SECONDS, TRUE, buyer, BUSY_ICON_BUILD))
+	if(!do_after(buyer, building_time, TRUE, buyer, BUSY_ICON_BUILD))
 		return FALSE
 
 	if(!can_buy(buyer, FALSE))
 		return FALSE
 
-	var/turf/buildloc = get_step(buyer, SOUTHWEST)
+	var/turf/buildloc = get_step(buyer, building_loc)
 
 	var/atom/built = new building_type(buildloc, buyer.hivenumber)
 	to_chat(buyer, span_notice("We build \a [built] for [psypoint_cost] psy points."))
@@ -179,7 +183,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	if(!.)
 		return
 
-	var/turf/buildloc = get_step(buyer, SOUTHWEST)
+	var/turf/buildloc = get_step(buyer, building_loc)
 	if(!buildloc)
 		return FALSE
 
@@ -216,43 +220,8 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	icon = "pherotower"
 	flags_upgrade = ABILITY_DISTRESS
 	building_type = /obj/structure/xeno/pherotower
-
-/datum/hive_upgrade/building/pherotower/can_buy(mob/living/carbon/xenomorph/buyer, silent)
-	. = ..()
-	if(!.)
-		return
-	var/turf/buildloc = get_turf(buyer)
-	if(!buildloc)
-		return FALSE
-
-	if(!buildloc.is_weedable())
-		if(!silent)
-			to_chat(buyer, span_warning("We can't do that here."))
-		return FALSE
-
-	var/obj/alien/weeds/alien_weeds = locate() in buildloc
-
-	if(!alien_weeds)
-		if(!silent)
-			to_chat(buyer, span_warning("We can only shape on weeds. We must find some resin before we start building!"))
-		return FALSE
-
-	if(!buildloc.check_alien_construction(buyer, silent) || !buildloc.check_disallow_alien_fortification(buyer, silent))
-		return FALSE
-
-/datum/hive_upgrade/building/pherotower/on_buy(mob/living/carbon/xenomorph/buyer)
-	if(!do_after(buyer, 5 SECONDS, TRUE, buyer, BUSY_ICON_BUILD))
-		return FALSE
-
-	if(!can_buy(buyer, FALSE))
-		return FALSE
-
-	var/atom/built = new building_type(get_turf(buyer), buyer.hivenumber)
-	to_chat(buyer, span_notice("We build \a [built] for [psypoint_cost] psy points."))
-	log_game("[buyer] has built \a [built] in [AREACOORD(buyer)], spending [psypoint_cost] psy points in the process")
-	xeno_message("[buyer] has built \a [built] at [get_area(buyer)]!", "xenoannounce", 5, buyer.hivenumber)
-
-	return ..()
+	building_loc = 0 //This results in spawning the structure under the user.
+	building_time = 5 SECONDS
 
 /datum/hive_upgrade/building/spawner
 	name = "Spawner"
