@@ -23689,12 +23689,7 @@
 /obj/item/tool/pen,
 /obj/item/explosive/grenade/chem_grenade/metalfoam,
 /obj/item/explosive/grenade/chem_grenade/metalfoam,
-/obj/item/clothing/head/welding{
-	desc = "A head-mounted face cover designed to protect the wearer completely from space-arc eye. This one appears reinforced to better protect the cranium. Rumored to have been made to thwart the efforts of sneaky Runers and hunters. A small inscription reads: 'D.C'";
-	flags_armor_features = 16;
-	name = "Modified welding helmet";
-	soft_armor = list("melee"=15,"bullet"=0,"laser"=0,"energy"=0,"bomb"=0,"bio"=0,"rad"=0,"fire"=0,"acid"=0)
-	},
+/obj/item/clothing/head/welding,
 /obj/item/storage/briefcase/inflatable,
 /turf/open/floor/prison/darkyellow{
 	dir = 1
