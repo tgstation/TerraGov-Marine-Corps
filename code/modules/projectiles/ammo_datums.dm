@@ -1791,7 +1791,6 @@ datum/ammo/bullet/revolver/tp44
 	max_range = 20
 	damage = 60
 	penetration = 10
-	sundering = 20
 
 /datum/ammo/rocket/som/light/drop_nade(turf/T)
 	explosion(T, 0, 2, 7, 2)
@@ -1817,6 +1816,8 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/rocket/som/rad
 	name = "irrad RPG"
 	hud_state = "rpg_rad"
+	damage = 50
+	penetration = 10
 	///Base strength of the rad effects
 	var/rad_strength = 25
 	///Range for the maximum rad effects
