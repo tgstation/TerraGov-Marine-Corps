@@ -8517,6 +8517,7 @@
 /obj/machinery/firealarm{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/engineering/lower_engine_monitoring)
 "yR" = (

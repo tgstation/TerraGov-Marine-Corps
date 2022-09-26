@@ -12,9 +12,7 @@
 /obj/structure/dropship_piece/tadpole/cockpit/right{
 	dir = 1
 	},
-/turf/open/floor/mainship_hull/dir{
-	dir = 5
-	},
+/turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "b" = (
 /obj/structure/dropship_piece/two/weapon/leftleft{
@@ -55,7 +53,7 @@
 	id = "minidropship_podlock";
 	name = "inner door-control"
 	},
-/turf/open/shuttle/dropship/three,
+/turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "n" = (
 /obj/structure/dropship_piece/tadpole/tadpole_nose{
@@ -66,9 +64,7 @@
 	icon_state = "109";
 	dir = 1
 	},
-/turf/open/floor/mainship_hull/dir{
-	dir = 1
-	},
+/turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "p" = (
 /obj/structure/barricade/plasteel{
@@ -79,21 +75,21 @@
 	},
 /obj/machinery/door/poddoor/shutters/transit,
 /obj/machinery/light,
-/turf/open/shuttle/dropship/floor,
+/turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "r" = (
 /obj/machinery/vending/nanomed/tadpolemed{
 	dir = 4
 	},
-/turf/open/shuttle/dropship/three,
+/turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "s" = (
-/turf/open/shuttle/dropship/floor,
+/turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "u" = (
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
 /obj/machinery/camera/autoname/mainship,
-/turf/open/shuttle/dropship/floor,
+/turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "v" = (
 /obj/machinery/door/poddoor/shutters/transit{
@@ -104,7 +100,7 @@
 	id = "minidropship_podlock"
 	},
 /obj/structure/barricade/plasteel,
-/turf/open/shuttle/dropship/three,
+/turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "y" = (
 /obj/structure/barricade/plasteel{
@@ -115,7 +111,7 @@
 	},
 /obj/machinery/door/poddoor/shutters/transit,
 /obj/machinery/light,
-/turf/open/shuttle/dropship/floor,
+/turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "B" = (
 /obj/structure/dropship_piece/tadpole/engine{
@@ -143,7 +139,7 @@
 	icon_state = "106";
 	dir = 1
 	},
-/turf/open/shuttle/dropship/three,
+/turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "E" = (
 /turf/template_noop,
@@ -153,20 +149,20 @@
 /obj/structure/bed/chair/dropship/pilot{
 	dir = 1
 	},
-/turf/open/shuttle/dropship/floor,
+/turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "I" = (
 /obj/structure/closet/walllocker/hydrant/extinguisher{
 	dir = 8
 	},
-/turf/open/shuttle/dropship/three,
+/turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "K" = (
 /obj/structure/dropship_piece/tadpole/cockpit/window{
 	icon_state = "105";
 	dir = 1
 	},
-/turf/open/shuttle/dropship/three,
+/turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "L" = (
 /obj/structure/dropship_piece/tadpole/rearleft{
@@ -185,7 +181,18 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/shuttle/dropship/floor,
+/turf/open/floor/mainship/mono,
+/area/shuttle/minidropship)
+"Q" = (
+/obj/machinery/door/poddoor/shutters/transit{
+	dir = 2
+	},
+/obj/machinery/door/poddoor/mainship/open{
+	dir = 2;
+	id = "minidropship_podlock"
+	},
+/obj/structure/barricade/plasteel,
+/turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "S" = (
 /obj/structure/dropship_piece/tadpole/tadpole_nose/left{
@@ -195,9 +202,7 @@
 /obj/structure/dropship_piece/tadpole/cockpit/left{
 	dir = 1
 	},
-/turf/open/floor/mainship_hull/dir{
-	dir = 9
-	},
+/turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "T" = (
 /obj/structure/barricade/plasteel{
@@ -210,7 +215,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/shuttle/dropship/floor,
+/turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "U" = (
 /obj/structure/dropship_piece/tadpole/rearright{
@@ -219,11 +224,11 @@
 /turf/template_noop,
 /area/shuttle/minidropship)
 "V" = (
-/turf/open/shuttle/dropship/three,
+/turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "Y" = (
 /obj/effect/attach_point/crew_weapon/minidropship,
-/turf/open/shuttle/dropship/floor,
+/turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 
 (1,1,1) = {"
@@ -267,7 +272,7 @@ u
 F
 Y
 s
-v
+Q
 E
 "}
 (5,1,1) = {"

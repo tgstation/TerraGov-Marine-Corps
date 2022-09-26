@@ -38,7 +38,7 @@
 	GLOB.nuke_list += src
 	countdown = new(src)
 	name = "[initial(name)] ([UNIQUEID])"
-	SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "nuke")
+	SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "nuke", 'icons/UI_icons/map_blips_large.dmi')
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/disable_on_hijack)
 
 
