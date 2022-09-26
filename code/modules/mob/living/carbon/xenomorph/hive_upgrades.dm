@@ -298,6 +298,14 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	if(!T.check_alien_construction(buyer, silent = silent, planned_building = /obj/structure/xeno/xeno_turret) || !T.check_disallow_alien_fortification(buyer))
 		return FALSE
 
+	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets)
+		if(get_dist(turret, buyer) < 6)
+			if(!silent)
+				to_chat(buyer, span_xenowarning("Another turret is too close!"))
+			return FALSE
+
+	return TRUE
+
 /datum/hive_upgrade/defence/turret/on_buy(mob/living/carbon/xenomorph/buyer)
 	if(!do_after(buyer, build_time, TRUE, buyer, BUSY_ICON_BUILD))
 		return FALSE
