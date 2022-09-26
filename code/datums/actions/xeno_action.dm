@@ -180,7 +180,7 @@
 	return ..()
 
 /datum/action/xeno_action/update_map_text(key_string)
-	maptext_image.maptext = key_string
+	maptext_image.maptext = MAPTEXT(key_string)
 	update_button_icon()
 
 /datum/action/xeno_action/activable/alternate_action_activate()

@@ -55,7 +55,7 @@
 
 /// A handler used to update the maptext and show the change immediately.
 /datum/action/proc/update_map_text(key_string)
-	maptext_image.maptext = key_string
+	maptext_image.maptext = MAPTEXT(key_string)
 	update_button_icon()
 
 /datum/action/proc/update_button_icon()
