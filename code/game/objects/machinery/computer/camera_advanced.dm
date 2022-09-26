@@ -205,9 +205,14 @@
 /mob/camera/aiEye/remote
 	name = "Inactive Camera Eye"
 	ai_detector_visible = FALSE
-	var/sprint = 10 //This number is not doing anything if it's not a multiple of 20
+	/// The delay applied after moving to a tile.
+	var/move_delay = 0.1 SECONDS
+	/// Internal variable used to keep track of the amount of tiles we have moved in the same direction
+	var/tiles_moved = 0
+	/// Limits tiles_moved to this value.
+	var/max_tile_acceleration = 8
 	var/cooldown = 0
-	var/acceleration = FALSE
+	var/acceleration = TRUE
 	var/mob/living/eye_user = null
 	var/obj/machinery/origin
 	var/eye_initialized = 0
@@ -242,6 +247,7 @@
 		return
 	if(T.z != z && use_static)
 		GLOB.cameranet.visibility(src, GetViewerClient(), null, use_static)
+	dir = get_dir(src, target)
 	abstract_move(T)
 	if(use_static)
 		GLOB.cameranet.visibility(src, GetViewerClient(), null, use_static)
@@ -263,27 +269,19 @@
 
 
 /mob/camera/aiEye/remote/relaymove(mob/user, direct)
-	var/initial = initial(sprint)
-	var/max_sprint = 50
-
 	if(istype(origin, /obj/machinery/computer/camera_advanced))
 		var/obj/machinery/computer/camera_advanced/CA = origin
 		CA.tracking_target = null
-
-	if(cooldown && cooldown < world.timeofday) // 3 seconds
-		sprint = initial
-
-	for(var/i = 0; i < max(sprint, initial); i += 20)
-		var/turf/T = get_turf(get_step(src, direct))
-		if(T)
-			setLoc(T)
-
-	cooldown = world.timeofday + 0.5 SECONDS
-	if(acceleration)
-		sprint = min(sprint + 0.5, max_sprint)
-	else
-		sprint = initial
-
+	if(cooldown > world.time)
+		return
+	tiles_moved = ((cooldown + move_delay * 5) > world.time) ? 0 : tiles_moved
+	cooldown = world.time + move_delay * (1 - acceleration * tiles_moved / 10)
+	var/turf/T = get_turf(get_step(src, direct))
+	// check for dir change , if we changed then remove all acceleration
+	if(get_dir(src, T) != dir)
+		tiles_moved = 0
+	tiles_moved = min(tiles_moved++, max_tile_acceleration)
+	setLoc(T)
 
 
 //Version of remote eye that's added to marine HUD. Not visible to xenos but visible to marines

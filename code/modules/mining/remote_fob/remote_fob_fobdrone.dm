@@ -14,6 +14,8 @@ GLOBAL_LIST_INIT(blocked_remotebuild_objs, typecacheof(list(/obj/machinery/compu
 	light_range = 6
 	light_power = 4
 	light_on = TRUE
+	move_delay = 0.2 SECONDS
+	acceleration = FALSE
 
 	var/area/starting_area
 	var/turf/spawnloc
