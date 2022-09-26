@@ -2999,6 +2999,11 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/flamethrower/tank_flamer/drop_flame(turf/T)
 	if(!istype(T))
 		return
+	flame_radius(1, T)
+
+/datum/ammo/flamethrower/mech_flamer/drop_flame(turf/T)
+	if(!istype(T))
+		return
 	flame_radius(2, T)
 
 /datum/ammo/flamethrower/blue

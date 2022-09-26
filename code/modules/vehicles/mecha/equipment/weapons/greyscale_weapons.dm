@@ -1,6 +1,15 @@
-//naming scheme is greek titans btw
-// tivi todo extend comments
-// tivi todo mech droppod is gaia
+/*!
+ * Greyscale mech equipment file
+ *
+ * Basically all equipment that you can add onto a mech should go here
+ * naming scheme is [Greek titan/titan relative] + [weapon type]
+ * when setting variance remember that it's negatively modified by the arm it's attached to
+ * note that weapon vars are not the same as guns
+ * Notably:
+ * No autoburst var, uses basic var instead
+ * only one firemode
+ * equip_cooldown gets overriden unless propjectile is thrown
+ */
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/pistol
 	name = "\improper Cottus pistol"
@@ -8,13 +17,12 @@
 	desc = "The smallest weapon, it packs a small punch, but allows the pilot higher mobility."
 	icon_state = "pistol"
 	fire_sound = 'sound/mecha/weapons/mech_pistol.ogg'
-	muzzle_iconstate = "muzzle_flash_medium"
+	muzzle_iconstate = "muzzle_flash_light"
 	flash_offsets = list(
 		MECHA_R_ARM = list("N" = list(36,30), "S" = list(-2,16), "E" = list(44,16), "W" = list(-13,36)),
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,16), "E" = list(44,36), "W" = list(-13,16)),
 	)
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
-	equip_cooldown = 10
 	ammotype = /datum/ammo/bullet/pistol/mech
 	projectiles = 20
 	projectiles_cache = 400
@@ -32,7 +40,7 @@
 	desc = "The smallest burstfiring weapon. Offers higher mobility and accuracy than larger weapons but reduced damage."
 	icon_state = "burstpistol"
 	fire_sound = 'sound/mecha/weapons/mech_pistol.ogg'
-	muzzle_iconstate = "muzzle_flash_medium"
+	muzzle_iconstate = "muzzle_flash_light"
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	flash_offsets = list(
 		MECHA_R_ARM = list("N" = list(36,30), "S" = list(-2,8), "E" = list(52,8), "W" = list(-21,28)),
@@ -44,7 +52,7 @@
 	projectiles_cache_max = 820
 	variance = 15
 	slowdown = 0.1
-	projectile_delay = 0.15 SECONDS
+	projectile_delay = 0.6 SECONDS
 	burst_amount = 3
 	projectile_burst_delay = 0.1 SECONDS
 	harmful = TRUE
@@ -55,7 +63,7 @@
 	name = "\improper Coeus submachine gun"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	desc = "As the smallest autofiring weapon offers improved mobility but less firepower than most of it's larger cousins."
-	muzzle_iconstate = "muzzle_flash_medium"
+	muzzle_iconstate = "muzzle_flash_light"
 	icon_state = "smg"
 	fire_sound = 'sound/mecha/weapons/mech_smg.ogg'
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
@@ -77,7 +85,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/burstrifle
 	name = "\improper Tethys burst rifle"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
-	desc = "Medium-sized burstfire weapon. Similar to the Cronus assault rifle, but burstfires."// tivi todo checkif true
+	desc = "Medium-sized burstfire weapon. Similar to the Cronus assault rifle, but burstfires."
 	icon_state = "burstrifle"
 	fire_sound = 'sound/mecha/weapons/mech_rifle.ogg'
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
@@ -90,7 +98,7 @@
 	projectiles_cache = 360
 	projectiles_cache_max = 360
 	variance = 15
-	projectile_delay = 0.25 SECONDS
+	projectile_delay = 0.6 SECONDS
 	burst_amount = 3
 	projectile_burst_delay = 0.1 SECONDS
 	slowdown = 0.25
@@ -217,7 +225,7 @@
 	ammotype = /datum/ammo/energy/lasgun/marine/mech/burst
 	energy_drain = 10
 	variance = 0
-	projectile_delay = 2
+	projectile_delay = 0.6 SECONDS
 	burst_amount = 4
 	projectile_burst_delay = 0.1 SECONDS
 	slowdown = 0.4
@@ -282,7 +290,7 @@
 	variance = 35
 	projectile_delay = 2
 	slowdown = 0.7
-	windup_delay = 1 SECONDS
+	windup_delay = 0.5 SECONDS
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_MINIGUN
 	fire_mode = GUN_FIREMODE_AUTOMATIC
@@ -306,7 +314,7 @@
 	slowdown = 0.6
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_SNIPER
-	fire_mode = GUN_FIREMODE_SEMIAUTO // tivi todo check if good
+	fire_mode = GUN_FIREMODE_SEMIAUTO
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/grenadelauncher
 	name = "\improper Hyperion grenade launcher"
@@ -339,17 +347,21 @@
 	desc = "A specialized flamer for mounting on mechs. Bad mobility, but the napalm more than makes up for it."
 	icon_state = "flamer"
 	fire_sound = 'sound/mecha/weapons/mech_flamer.ogg'
+	flash_offsets = list(
+		MECHA_R_ARM = list("N" = list(36,30), "S" = list(-2,-11), "E" = list(77,3), "W" = list(-47,23)),
+		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,-11), "E" = list(77,23), "W" = list(-47,3)),
+	)
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
-	ammotype = /datum/ammo/flamethrower // same ammo as normal flamer
+	ammotype = /datum/ammo/flamethrower/mech_flamer
 	projectiles = 20
 	projectiles_cache = 20 // low ammo counts so player cant just spam fire while rushing infinitely
 	projectiles_cache_max = 20
 	variance = 0
-	projectile_delay = 2
+	projectile_delay = 2 SECONDS
 	slowdown = 0.4
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_FLAMER
-	fire_mode = GUN_FIREMODE_SEMIAUTO // tivi todo recursive_flame_straight and has muzzle flash
+	fire_mode = GUN_FIREMODE_SEMIAUTO
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/rpg
 	name = "\improper Iapetus missile pod"

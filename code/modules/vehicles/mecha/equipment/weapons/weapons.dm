@@ -79,10 +79,15 @@
 		return
 	RegisterSignal(source, COMSIG_MOB_MOUSEUP, .proc/stop_fire)
 	RegisterSignal(source, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
-	SEND_SIGNAL(src, COMSIG_XENO_FIRE)
+	SEND_SIGNAL(src, COMSIG_MECH_FIRE)
 	source?.client?.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
 
-/obj/item/mecha_parts/mecha_equipment/weapon/proc/set_bursting() // tivi todo make burst trait so bursts dont layerr
+/obj/item/mecha_parts/mecha_equipment/weapon/proc/set_bursting(bursting)
+	if(bursting)
+		ADD_TRAIT(src, TRAIT_GUN_BURST_FIRING, VEHICLE_TRAIT)
+		return
+	REMOVE_TRAIT(src, TRAIT_GUN_BURST_FIRING, VEHICLE_TRAIT)
+
 ///Changes the current target.
 /obj/item/mecha_parts/mecha_equipment/weapon/proc/change_target(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
 	SIGNAL_HANDLER
@@ -109,9 +114,9 @@
 		is_this_hand = TRUE
 	if(!is_this_hand)
 		return
-	source?.client?.mouse_pointer_icon = chassis.mouse_pointer
-	SEND_SIGNAL(src, COMSIG_XENO_STOP_FIRE)
-
+	SEND_SIGNAL(src, COMSIG_MECH_STOP_FIRE)
+	if(!HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
+		reset_fire()
 	UnregisterSignal(source, list(COMSIG_MOB_MOUSEDRAG, COMSIG_MOB_MOUSEUP))
 
 ///Cleans the current target in case of Hardel
@@ -121,10 +126,10 @@
 
 ///Resets the autofire component.
 /obj/item/mecha_parts/mecha_equipment/weapon/proc/reset_fire()
-	set_target(null)
-	current_firer = null
 	windup_checked = WEAPON_WINDUP_NOT_CHECKED
 	current_firer?.client?.mouse_pointer_icon = chassis.mouse_pointer
+	set_target(null)
+	current_firer = null
 
 ///does any effects and changes to the projectile when it is fired
 /obj/item/mecha_parts/mecha_equipment/weapon/proc/apply_weapon_modifiers(obj/projectile/projectile_to_fire, mob/firer)
@@ -132,7 +137,8 @@
 	if(istype(chassis, /obj/vehicle/sealed/mecha/combat/greyscale))
 		var/obj/vehicle/sealed/mecha/combat/greyscale/grey = chassis
 		var/datum/mech_limb/head/head = grey.limbs[MECH_GREY_HEAD]
-		projectile_to_fire.accuracy += head?.accuracy_mod // tivi todo is this correct as decimal or should be 100
+		if(head)
+			projectile_to_fire.accuracy *= head.accuracy_mod
 		var/datum/mech_limb/arm/holding
 		if(grey.equip_by_category[MECHA_R_ARM] == src)
 			holding = grey.limbs[MECH_GREY_R_ARM]
@@ -150,7 +156,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/weapon/proc/fire()
 	if(!action_checks(current_target, TRUE))
-		return FALSE // tivi todo make sure you cant use 2 guns of same type, adnd that cant fire with 0 projectiles
+		return FALSE
 	var/dir_target_diff = get_between_angles(Get_Angle(chassis, current_target), dir2angle(chassis.dir))
 	if(dir_target_diff > (MECH_FIRE_CONE_ALLOWED / 2))
 		return TRUE
@@ -184,7 +190,7 @@
 		if(NORTH)
 			muzzle_flash.layer = initial(muzzle_flash.layer)
 		if(SOUTH, EAST, WEST)
-			muzzle_flash.layer = ABOVE_ALL_MOB_LAYER+0.01 // tivi todo check after layer fix
+			muzzle_flash.layer = ABOVE_ALL_MOB_LAYER+0.01
 	muzzle_flash.transform = null
 	muzzle_flash.transform = turn(muzzle_flash.transform, firing_angle)
 	chassis.vis_contents += muzzle_flash
@@ -257,7 +263,12 @@
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/fire()
 	. = ..()
+	if(!.)
+		return
 	projectiles--
+	if(projectiles < 0)
+		return
+	playsound(src, 'sound/weapons/guns/misc/empty_alarm.ogg', 25, 1)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/carbine
 	name = "\improper FNX-99 \"Hades\" Carbine"
@@ -334,6 +345,9 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/action(mob/source, atom/target, list/modifiers)
 	if(!action_checks(target))
 		return
+	var/dir_target_diff = get_between_angles(Get_Angle(chassis, current_target), dir2angle(chassis.dir))
+	if(dir_target_diff > (MECH_FIRE_CONE_ALLOWED / 2))
+		return TRUE
 	var/obj/O = new ammotype(chassis.loc)
 	playsound(chassis, fire_sound, 50, TRUE)
 	log_message("Launched a [O] from [src], targeting [target].", LOG_MECHA)
