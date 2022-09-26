@@ -221,7 +221,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	. = ..()
 	if(!.)
 		return
-	var/turf/buildloc = get_step(buyer, 0)
+	var/turf/buildloc = get_turf(buyer)
 	if(!buildloc)
 		return FALSE
 
@@ -241,7 +241,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 		return FALSE
 
 	for(var/obj/structure/xeno/pherotower/tower AS in GLOB.xeno_phero_towers)
-		if(get_dist(tower, buyer) < 50)
+		if(get_dist(tower, buyer) < 32)
 			to_chat(buyer, span_xenowarning("Another pheromone tower is too close!"))
 			return FALSE
 
