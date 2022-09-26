@@ -100,11 +100,11 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 
 ///Clean every signal on the ai_behavior
 /datum/ai_behavior/proc/cleanup_signals()
+	cleanup_current_action()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_AI_GOAL_SET)
 	if(goal_node)
 		UnregisterSignal(goal_node, COMSIG_PARENT_QDELETING)
-	cleanup_current_action()
 
 ///Cleanup old state vars, start the movement towards our new target
 /datum/ai_behavior/proc/change_action(next_action, atom/next_target, special_distance_to_maintain)
