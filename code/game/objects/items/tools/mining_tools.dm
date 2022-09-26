@@ -309,3 +309,43 @@
 	cut_apart(user, O.name, O)
 	qdel(O)
 	return TRUE
+
+/obj/item/tool/pickaxe/plasmacutter/throw_at(atom/target, range, speed, thrower)
+	if( harness_check(thrower) )
+		to_chat(usr, span_warning("\The [src] clanks on the ground."))
+	else
+		return ..()
+
+/obj/item/tool/pickaxe/plasmacutter/dropped(mob/user)
+	. = ..()
+
+	harness_check(user)
+
+/obj/item/tool/pickaxe/plasmacutter/proc/harness_check(mob/user)
+	if(!ishuman(user))
+		return FALSE
+	var/mob/living/carbon/human/owner = user
+	var/obj/item/B = owner.belt	//if they don't have a magharness, are they wearing a harness belt?
+	if(!istype(B, /obj/item/belt_harness))
+		return FALSE
+	var/obj/item/I = owner.wear_suit
+	if(!is_type_in_list(I, list(/obj/item/clothing/suit/storage, /obj/item/clothing/suit/armor, /obj/item/clothing/suit/modular)))
+		return FALSE
+	addtimer(CALLBACK(src, .proc/harness_return, user), 0.3 SECONDS, TIMER_UNIQUE)
+	return TRUE
+
+/obj/item/tool/pickaxe/plasmacutter/proc/harness_return(mob/living/carbon/human/user)
+	if(!isturf(loc) || QDELETED(user) || !isnull(user.s_store) && !isnull(user.back))
+		return
+
+	user.equip_to_slot_if_possible(src, SLOT_S_STORE, warning = FALSE)
+	if(user.s_store == src)
+		var/obj/item/I = user.wear_suit
+		to_chat(user, span_warning("[src] snaps into place on [I]."))
+		user.update_inv_s_store()
+		return
+
+	user.equip_to_slot_if_possible(src, SLOT_BACK, warning = FALSE)
+	if(user.back == src)
+		to_chat(user, span_warning("[src] snaps into place on your back."))
+	user.update_inv_back()
