@@ -85,9 +85,9 @@
 
 	RegisterSignal(src, COMSIG_MOB_CLICK_ALT, .proc/send_order)
 	RegisterSignal(src, COMSIG_ORDER_SELECTED, .proc/set_order)
+
 	RegisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED, .proc/receive_laser_ob)
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED, .proc/receive_laser_cas)
-
 	RegisterSignal(SSdcs, COMSIG_GLOB_SHUTTLE_TAKEOFF, .proc/shuttle_takeoff_notification)
 
 	var/datum/action/innate/order/attack_order/send_attack_order = new
@@ -115,6 +115,7 @@
 	QDEL_NULL(track)
 	UnregisterSignal(src, COMSIG_ORDER_SELECTED)
 	UnregisterSignal(src, COMSIG_MOB_CLICK_ALT)
+
 	UnregisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_SHUTTLE_TAKEOFF)
