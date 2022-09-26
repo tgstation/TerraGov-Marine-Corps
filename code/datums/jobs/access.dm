@@ -361,5 +361,11 @@
 			. = size ? "Mk.II " : "Mark II"
 		if("Mk.I")
 			. = size ? "Mk.I " : "Mark I"
+		if("Gn.I")
+			. = size ? "Gn.I " : "Generation I"
+		if("Gn.II")
+			. = size ? "Gn.II " : "Generation II"
+		if("Gn.III")
+			. = size ? "Gn.III " : "Generation III"
 		else
 			. = paygrade + " " //custom paygrade

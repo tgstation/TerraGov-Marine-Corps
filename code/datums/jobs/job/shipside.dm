@@ -1174,15 +1174,15 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 	. = ..()
 	var/mob/living/silicon/ai/new_ai = new_mob
 	var/playtime_mins = user?.client?.get_exp(title)
-	if(!playtime_mins || playtime_mins < 1 )
-		return
+	// if(!playtime_mins || playtime_mins < 1 )
+	// 	return
 	switch(playtime_mins)
 		if(0 to 600) //up to 10 hours
-			new_ai.job.paygrade = "MkI"
+			new_ai.job.paygrade = "Gn.I"
 		if(601 to 3000) // 10 to 50 hrs
-			new_ai.job.paygrade = "MkII"
+			new_ai.job.paygrade = "Gn.II"
 		if(3001 to INFINITY) // more than 50 hrs
-			new_ai.job.paygrade = "MkIII"
+			new_ai.job.paygrade = "Gn.III"
 
 /datum/job/terragov/silicon/ai/get_special_name(client/preference_source)
 	return preference_source.prefs.ai_name
