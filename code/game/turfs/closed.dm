@@ -394,6 +394,11 @@
 /turf/closed/shuttle/dropship2/transparent
 	opacity = FALSE
 
+/turf/closed/shuttle/tadpole
+	name = "\improper Tadpole"
+	icon = 'icons/turf/dropship2.dmi'
+	icon_state = "1"
+	plane = GAME_PLANE
 
 /turf/closed/shuttle/escapepod
 	name = "wall"
