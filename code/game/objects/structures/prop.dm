@@ -511,6 +511,51 @@
 	icon_state =  "pump_on"
 	layer = GAS_PUMP_LAYER
 
+/obj/structure/prop/mainship/halfbuilt_mech
+	name = "half-assembled mech"
+	desc = "A half-assembled mech. It's missing limbs and the maintenance ports are open. You probably shouldn't screw with it."
+	icon_state = ""
+	pixel_x = -16
+	/// selected parts you want displayed. remove parts if you dont want them
+	var/selected_parts = list(
+		MECH_GREY_TORSO = MECH_ASSAULT,
+		MECH_GREY_LEGS = MECH_ASSAULT,
+		MECH_GREY_L_ARM = MECH_ASSAULT,
+	)
+
+/obj/structure/prop/mainship/halfbuilt_mech/Initialize()
+	. = ..()
+	var/default_colors = MECH_GREY_PRIMARY_DEFAULT + MECH_GREY_SECONDARY_DEFAULT
+	var/default_visor = MECH_GREY_VISOR_DEFAULT
+	var/new_overlays = list()
+	for(var/slot in selected_parts)
+		var/datum/mech_limb/head/typepath = get_mech_limb(slot, selected_parts[slot])
+		if(slot == MECH_GREY_L_ARM || slot == MECH_GREY_R_ARM)
+			var/iconstate = "left"
+			if(slot == MECH_GREY_R_ARM)
+				iconstate = "right"
+			new_overlays += iconstate2appearance(SSgreyscale.GetColoredIconByType(initial(typepath.greyscale_type), default_colors), iconstate)
+			continue
+		new_overlays += icon2appearance(SSgreyscale.GetColoredIconByType(initial(typepath.greyscale_type), default_colors))
+		if(slot == MECH_GREY_HEAD)
+			new_overlays += icon2appearance(SSgreyscale.GetColoredIconByType(initial(typepath.visor_config), default_visor))
+	overlays = new_overlays
+
+/obj/structure/prop/mainship/halfbuilt_mech/legs
+	desc = "Leg."
+	selected_parts = list(
+		MECH_GREY_LEGS = MECH_RECON,
+	)
+
+/obj/structure/prop/mainship/halfbuilt_mech/vanguard
+	selected_parts = list(
+		MECH_GREY_TORSO = MECH_VANGUARD,
+		MECH_GREY_HEAD = MECH_VANGUARD,
+		MECH_GREY_LEGS = MECH_VANGUARD,
+		MECH_GREY_L_ARM = MECH_VANGUARD,
+	)
+
+
 //items props
 
 /obj/item/prop
