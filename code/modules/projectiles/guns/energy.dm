@@ -703,7 +703,7 @@
 	icon_state = "tem"
 	item_state = "tem"
 	w_class = WEIGHT_CLASS_BULKY
-	max_shots = 100 //codex stuff
+	max_shots = 150 //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser
 	ammo_diff = null
 	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle,  /obj/item/cell/lasgun/volkite/powerpack/energy)
