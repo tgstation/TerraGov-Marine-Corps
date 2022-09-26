@@ -127,6 +127,19 @@ GLOBAL_LIST_INIT(freqtospan, list(
 			return ""
 
 		return "[get_paygrades(J.paygrade, TRUE, gender)] "
+	else if(isAI(speaker))
+		var/mob/living/silicon/ai/AI = speaker
+
+		var/paygrade = AI.get_paygrade()
+		if(paygrade)
+			return "[paygrade]"
+
+		var/datum/job/J = AI.job
+		if(!istype(J))
+			return ""
+
+		return "[get_paygrades(J.paygrade, TRUE, NEUTER)] "
+
 	else
 		return ""
 

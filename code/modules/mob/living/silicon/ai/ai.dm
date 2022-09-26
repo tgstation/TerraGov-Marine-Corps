@@ -363,6 +363,9 @@
 		stat("Number of living marines:", "[SSticker.mode.count_humans_and_xenos()[1]]")
 
 
+/mob/living/silicon/ai/get_paygrade(size = 1)
+	return get_paygrades(job.paygrade, size, gender)
+
 /mob/living/silicon/ai/fully_replace_character_name(oldname, newname)
 	. = ..()
 

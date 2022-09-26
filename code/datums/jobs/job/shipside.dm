@@ -1135,6 +1135,7 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 	job_category = JOB_CAT_SILICON
 	req_admin_notify = TRUE
 	comm_title = "AI"
+	paygrade = "test"
 	total_positions = 1
 	selection_color = "#92c255"
 	supervisors = "your laws and the human crew"
@@ -1166,6 +1167,22 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
 	)
 
+
+
+
+/datum/job/terragov/silicon/ai/after_spawn(mob/living/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	var/mob/living/silicon/ai/new_ai = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 600) //up to 10 hours
+			new_ai.job.paygrade = "MkI"
+		if(601 to 3000) // 10 to 50 hrs
+			new_ai.job.paygrade = "MkII"
+		if(3001 to INFINITY) // more than 50 hrs
+			new_ai.job.paygrade = "MkIII"
 
 /datum/job/terragov/silicon/ai/get_special_name(client/preference_source)
 	return preference_source.prefs.ai_name
