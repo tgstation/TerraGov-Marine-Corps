@@ -399,12 +399,11 @@ Make the TGMC proud!"})
 		return
 	switch(playtime_mins)
 		if(0 to 1500) //starting
-			new_human.wear_id.paygrade = "E8E"
+			new_human.wear_id.paygrade = "E2"
 		if(1500 to 7500) // 25 hrs
-			new_human.wear_id.paygrade = "E9"
+			new_human.wear_id.paygrade = "E3"
 		if(7501 to INFINITY) // 125 hrs
-			new_human.wear_id.paygrade = "E9E"
-
+			new_human.wear_id.paygrade = "E4"
 
 /datum/outfit/job/command/mech_pilot
 	name = MECH_PILOT
