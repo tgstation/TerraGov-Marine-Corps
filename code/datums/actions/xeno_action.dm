@@ -170,8 +170,8 @@
 	else
 		button.color = "#ffffffff" // rgb(255,255,255,255)
 	// remove and re-add to update it
-	button.overlays -= maptext_image
-	button.overlays += maptext_image
+	button.cut_overlay(list(maptext_image))
+	button.add_overlay(list(maptext_image))
 
 /datum/action/xeno_action/activable/Destroy()
 	var/mob/living/carbon/xenomorph/X = owner

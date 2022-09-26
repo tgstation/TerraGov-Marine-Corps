@@ -37,7 +37,7 @@
 	if(desc)
 		button.desc = desc
 	maptext_image = mutable_appearance()
-	maptext_image.layer = 25 // +1 above the one of empowered/selected frames
+	maptext_image.layer = HUD_LAYER + 1 // +1 above the one of empowered/selected frames
 
 /datum/action/Destroy()
 	if(owner)
