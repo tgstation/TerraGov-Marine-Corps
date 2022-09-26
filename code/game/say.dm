@@ -138,7 +138,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 		if(!istype(J))
 			return ""
 
-		return "[get_paygrades(J.paygrade, TRUE, NEUTER)] "
+		return "[get_paygrades(J.paygrade, TRUE, gender)] "
 
 	else
 		return ""
