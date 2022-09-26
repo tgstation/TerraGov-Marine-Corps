@@ -48,6 +48,14 @@
 /turf/closed/mineral/smooth/indestructible
 	resistance_flags = RESIST_ALL
 
+/turf/closed/mineral/smooth/snowrock
+	icon = 'icons/turf/walls/snowwall.dmi'
+	icon_state = "snowwall-0-0-0-0"
+	walltype = "snowwall"
+
+/turf/closed/mineral/smooth/snowrock/indestructible
+	resistance_flags = RESIST_ALL
+
 /turf/closed/mineral/smooth/bigred
 	icon = 'icons/turf/walls/redwall.dmi'
 	icon_state = "red_wall-0-0-0-0"
@@ -386,6 +394,11 @@
 /turf/closed/shuttle/dropship2/transparent
 	opacity = FALSE
 
+/turf/closed/shuttle/tadpole
+	name = "\improper Tadpole"
+	icon = 'icons/turf/dropship2.dmi'
+	icon_state = "1"
+	plane = GAME_PLANE
 
 /turf/closed/shuttle/escapepod
 	name = "wall"

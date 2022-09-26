@@ -47,6 +47,14 @@
 	///Used for round stats
 	var/tally_type = TALLY_MORTAR 
 
+	///Used for remote targeting by AI
+	var/obj/item/ai_target_beacon/ai_targeter
+
+/obj/machinery/deployable/mortar/examine(mob/user)
+	. = ..()
+	if(ai_targeter)
+		. += span_notice("They have an AI linked targeting device on.")
+
 /obj/machinery/deployable/mortar/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
@@ -231,6 +239,21 @@
 		addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, T, fall_sound, 50, 1), travel_time)
 		addtimer(CALLBACK(src, .proc/detonate_shell, T, mortar_shell), travel_time + 45)//This should always be 45 ticks!
 
+	if(istype(I, /obj/item/ai_target_beacon))
+		if(!GLOB.ai_list.len)
+			to_chat(user, span_notice("There is no AI to associate with."))
+			return
+		
+		var/mob/living/silicon/ai/AI = tgui_input_list(usr, "Which AI would you like to associate this gun with?", null, GLOB.ai_list)
+		if(!AI)
+			return
+		to_chat(user, span_notice("You attach the [I], allowing for remote targeting."))
+		to_chat(AI, span_notice("NOTICE - [src] has been linked to your systems, allowing for remote targeting. Use shift click to set a target."))
+		user.transferItemToLoc(I, src)
+		AI.associate_artillery(src)
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+		ai_targeter = I
+
 	if(!istype(I, /obj/item/binoculars/tactical))
 		return
 	var/obj/item/binoculars/tactical/binocs = I
@@ -252,6 +275,18 @@
 	mortar_shell.detonate(target)
 	qdel(mortar_shell)
 	firing = FALSE
+
+///Prompt for the AI to unlink itself.
+/obj/machinery/deployable/mortar/attack_ai(mob/living/silicon/ai/user)
+	if (user.linked_artillery == src && tgui_alert(usr, "This artillery piece is linked to you. Do you want to unlink yourself from it?", "Artillery Targeting", list("Yes", "No")) == "Yes")
+		user.clean_artillery_refs()
+
+///Unlinking the AI from this mortar
+/obj/machinery/deployable/mortar/proc/unset_targeter()
+	say("Linked AI spotter has relinquished targeting privileges. Ejecting targeting device.")
+	ai_targeter.forceMove(src.loc)
+	ai_targeter = null
+	
 
 /obj/machinery/deployable/mortar/attack_hand_alternate(mob/living/user)
 	if(!Adjacent(user) || user.lying_angle || user.incapacitated() || !ishuman(user))

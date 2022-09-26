@@ -32,7 +32,6 @@ SUBSYSTEM_DEF(persistence)
 		/datum/season_datum/weapons/guns/rifle_seasonal_two,
 		/datum/season_datum/weapons/guns/copsandrobbers_seasonal,
 		/datum/season_datum/weapons/guns/shotgun_seasonal,
-		/datum/season_datum/weapons/guns/som_seasonal,
 		)
 	)
 	///The saved list of custom outfits names
@@ -270,18 +269,3 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/weapon/gun/shotgun/pump = -1,
 		/obj/item/weapon/gun/shotgun/pump/cmb = -1,
 		)
-
-/datum/season_datum/weapons/guns/som_seasonal
-	name = "SOM weapons"
-	description = "The ballistic weaponry of the SOM. Feel like a rebel."
-	item_list = list(
-		/obj/item/weapon/gun/rifle/som = -1,
-		/obj/item/ammo_magazine/rifle/som = -1,
-		/obj/item/ammo_magazine/handful/micro_grenade = -1,
-		/obj/item/ammo_magazine/handful/micro_grenade/cluster = -1,
-		/obj/item/ammo_magazine/handful/micro_grenade/smoke_burst = -1,
-		/obj/item/weapon/gun/smg/som = -1,
-		/obj/item/ammo_magazine/smg/som = -1,
-		/obj/item/weapon/gun/shotgun/som = -1,
-		)
-

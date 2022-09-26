@@ -38,8 +38,10 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	var/minimum_health = 0
 	///If the mob attached to the ai is offered on xeno creation
 	var/is_offered_on_creation = FALSE
-	///Are we waiting for pathfinding
+	///Are we waiting for advanced pathfinding
 	var/registered_for_node_pathfinding = FALSE
+	///Are we already registered for normal pathfinding
+	var/registered_for_move = FALSE
 
 /datum/ai_behavior/New(loc, mob/parent_to_assign, atom/escorted_atom)
 	..()
@@ -91,18 +93,17 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 /datum/ai_behavior/proc/cleanup_current_action(next_action)
 	if(current_action == MOVING_TO_NODE && next_action != MOVING_TO_NODE)
 		set_current_node(null)
-	if(current_action == ESCORTING_ATOM && next_action != ESCORTING_ATOM)
+	if(current_action == ESCORTING_ATOM && next_action != ESCORTING_ATOM && next_action != MOVING_TO_ATOM)
 		clean_escorted_atom()
 	unregister_action_signals(current_action)
-	SSpathfinder.remove_from_pathfinding(mob_parent)
 
 ///Clean every signal on the ai_behavior
 /datum/ai_behavior/proc/cleanup_signals()
+	cleanup_current_action()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_AI_GOAL_SET)
 	if(goal_node)
 		UnregisterSignal(goal_node, COMSIG_PARENT_QDELETING)
-	cleanup_current_action()
 
 ///Cleanup old state vars, start the movement towards our new target
 /datum/ai_behavior/proc/change_action(next_action, atom/next_target, special_distance_to_maintain)
@@ -133,7 +134,9 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		distance_to_maintain = isnull(special_distance_to_maintain) ? initial(distance_to_maintain) : special_distance_to_maintain
 	if(next_target)
 		atom_to_walk_to = next_target
-		SSpathfinder.add_to_pathfinding(mob_parent, atom_to_walk_to, distance_to_maintain, sidestep_prob)
+		if(!registered_for_move)
+			INVOKE_ASYNC(src, .proc/scheduled_move)
+
 	register_action_signals(current_action)
 	if(current_action == MOVING_TO_SAFETY)
 		mob_parent.a_intent = INTENT_HELP
@@ -222,7 +225,9 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		cleanup_current_action()
 		late_initialize()
 		return
-	SEND_SIGNAL(mob_parent, COMSIG_PATHFINDER_SET_ATOM_TO_WALK_TO, turfs_in_path[length(turfs_in_path)])
+	atom_to_walk_to = turfs_in_path[length(turfs_in_path)]
+	if(!registered_for_move)
+		INVOKE_ASYNC(src, .proc/scheduled_move)
 	turfs_in_path.len--
 	return COMSIG_MAINTAIN_POSITION
 
@@ -310,3 +315,56 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 		if(FOLLOWING_PATH)
 			UnregisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE)
 			deltimer(anti_stuck_timer)
+
+/// Move the ai and schedule the next move
+/datum/ai_behavior/proc/scheduled_move()
+	if(!atom_to_walk_to)
+		registered_for_move = FALSE
+		return
+	ai_do_move()
+	var/next_move = mob_parent.cached_multiplicative_slowdown + mob_parent.next_move_slowdown
+	if(next_move <= 0)
+		next_move = 1
+	addtimer(CALLBACK(src, .proc/scheduled_move), next_move, NONE, SSpathfinder)
+	registered_for_move = TRUE
+
+/// Moves the ai toward its atom_to_walk_to
+/datum/ai_behavior/proc/ai_do_move()
+	if(!mob_parent?.canmove || mob_parent.do_actions)
+		return
+
+	mob_parent.next_move_slowdown = 0
+	var/step_dir
+	if(get_dist(mob_parent, atom_to_walk_to) == distance_to_maintain)
+		if(SEND_SIGNAL(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE) & COMSIG_MAINTAIN_POSITION)
+			return
+		if(!get_dir(mob_parent, atom_to_walk_to)) //We're right on top, move out of it
+			step_dir = pick(CARDINAL_ALL_DIRS)
+			var/turf/next_turf = get_step(mob_parent, step_dir)
+			if(!(next_turf.flags_atom & AI_BLOCKED) && !mob_parent.Move(get_step(mob_parent, step_dir), step_dir))
+				SEND_SIGNAL(mob_parent, COMSIG_OBSTRUCTED_MOVE, step_dir)
+			else if(ISDIAGONALDIR(step_dir))
+				mob_parent.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_parent.cached_multiplicative_slowdown //Not perfect but good enough
+			return
+		if(prob(sidestep_prob))
+			step_dir = pick(LeftAndRightOfDir(get_dir(mob_parent, atom_to_walk_to)))
+			var/turf/next_turf = get_step(mob_parent, step_dir)
+			if(!(next_turf.flags_atom & AI_BLOCKED) && !mob_parent.Move(get_step(mob_parent, step_dir), step_dir))
+				SEND_SIGNAL(mob_parent, COMSIG_OBSTRUCTED_MOVE, step_dir)
+			else if(ISDIAGONALDIR(step_dir))
+				mob_parent.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_parent.cached_multiplicative_slowdown
+		return
+	if(get_dist(mob_parent, atom_to_walk_to) < distance_to_maintain) //We're too close, back it up
+		step_dir = get_dir(atom_to_walk_to, mob_parent)
+	else
+		step_dir = get_dir(mob_parent, atom_to_walk_to)
+	var/turf/next_turf = get_step(mob_parent, step_dir)
+	if(next_turf.flags_atom & AI_BLOCKED || (!mob_parent.Move(next_turf, step_dir) && !(SEND_SIGNAL(mob_parent, COMSIG_OBSTRUCTED_MOVE, step_dir) & COMSIG_OBSTACLE_DEALT_WITH)))
+		step_dir = pick(LeftAndRightOfDir(step_dir))
+		next_turf = get_step(mob_parent, step_dir)
+		if(next_turf.flags_atom & AI_BLOCKED)
+			return
+		if(mob_parent.Move(get_step(mob_parent, step_dir), step_dir) && ISDIAGONALDIR(step_dir))
+			mob_parent.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_parent.cached_multiplicative_slowdown
+	else if(ISDIAGONALDIR(step_dir))
+		mob_parent.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_parent.cached_multiplicative_slowdown
