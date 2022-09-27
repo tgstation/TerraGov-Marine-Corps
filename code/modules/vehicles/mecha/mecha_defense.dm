@@ -248,32 +248,6 @@
 			visual_effect_icon = ATTACK_EFFECT_MECHTOXIN
 	..()
 
-/obj/vehicle/sealed/mecha/obj_destruction(damage_amount, damage_type, damage_flag)
-	if(wreckage)
-		var/mob/living/silicon/ai/AI
-		for(var/crew in occupants)
-			if(isAI(crew))
-				if(AI)
-					var/mob/living/silicon/ai/unlucky_ais = crew
-					unlucky_ais.gib()
-					continue
-				AI = crew
-		var/obj/structure/mecha_wreckage/WR = new wreckage(loc, AI)
-		for(var/obj/item/mecha_parts/mecha_equipment/E in flat_equipment)
-			if(E.detachable && prob(30))
-				WR.crowbar_salvage += E
-				E.detach(WR) //detaches from src into WR
-				E.activated = TRUE
-			else
-				E.detach(loc)
-				qdel(E)
-		if(cell)
-			WR.crowbar_salvage += cell
-			cell.forceMove(WR)
-			cell.charge = rand(0, cell.charge)
-			cell = null
-	return ..()
-
 /obj/vehicle/sealed/mecha/proc/ammo_resupply(obj/item/mecha_ammo/reload_box, mob/user,fail_chat_override = FALSE)
 	if(!reload_box.rounds)
 		if(!fail_chat_override)
