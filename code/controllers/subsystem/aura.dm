@@ -11,9 +11,13 @@ SUBSYSTEM_DEF(aura)
 	var/stage = 1
 
 /datum/controller/subsystem/aura/fire(resumed)
+	var/current_resume = FALSE
+	if(resumed)
+		current_resume = TRUE
 	if(stage == 1)
-		if(!resumed)
+		if(!current_resume)
 			current_cache = active_auras.Copy()
+		current_resume = FALSE
 		while(current_cache.len)
 			var/datum/aura_bearer/bearer = current_cache[current_cache.len]
 			current_cache.len--
@@ -24,8 +28,9 @@ SUBSYSTEM_DEF(aura)
 				return
 		stage = 2
 	if(stage == 2)
-		if(!resumed)
+		if(!current_resume)
 			current_cache = GLOB.xeno_mob_list.Copy()
+		current_resume = FALSE
 		while(current_cache.len)
 			var/mob/living/carbon/xenomorph/xeno = current_cache[current_cache.len]
 			current_cache.len--
@@ -36,8 +41,9 @@ SUBSYSTEM_DEF(aura)
 				return
 		stage = 3
 	if(stage == 3)
-		if(!resumed)
+		if(!current_resume)
 			current_cache = GLOB.human_mob_list.Copy()
+		current_resume = FALSE
 		while(current_cache.len)
 			var/mob/living/carbon/human/human = current_cache[current_cache.len]
 			current_cache.len--
