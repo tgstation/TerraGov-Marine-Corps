@@ -7664,6 +7664,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_hallway)
 "xe" = (
+/obj/machinery/door/airlock/mainship/generic/mech_pilot/bunk,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
 "xf" = (
@@ -8941,6 +8942,8 @@
 /area/mainship/living/bridgebunks)
 "Bk" = (
 /obj/structure/bed/bunkbed,
+/obj/effect/landmark/start/job/mechpilot,
+/obj/effect/landmark/start/job/mechpilot,
 /turf/open/floor/wood,
 /area/mainship/living/tankerbunks)
 "Bl" = (
