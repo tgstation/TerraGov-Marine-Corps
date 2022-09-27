@@ -2552,6 +2552,17 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engineering)
+"hR" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable,
+/obj/machinery/door/firedoor/mainship{
+	dir = 2;
+	id = "hangar_lockdown"
+	},
+/turf/open/floor/mainship/stripesquare,
+/area/mainship/hallways/starboard_hallway)
 "hS" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -4660,7 +4671,7 @@
 /turf/open/floor/mainship/green/corner{
 	dir = 1
 	},
-/area/mainship/hallways/hangar)
+/area/mainship/hallways/aft_hallway)
 "od" = (
 /obj/effect/spawner/random/plushie/nospawnninetyfive,
 /turf/open/floor/plating,
@@ -5490,16 +5501,11 @@
 /turf/closed/wall/mainship,
 /area/mainship/squads/general)
 "qD" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/cable,
-/obj/machinery/door/firedoor/mainship{
-	dir = 2;
-	id = "hangar_lockdown"
+/obj/machinery/firealarm,
+/turf/open/floor/mainship/black{
+	dir = 1
 	},
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/mainship/stripesquare,
-/area/mainship/hallways/aft_hallway)
+/area/mainship/living/pilotbunks)
 "qE" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -5866,12 +5872,13 @@
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
 "rL" = (
-/obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor/mainship{
-	dir = 2
+	dir = 2;
+	id = "hangar_lockdown"
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/aft_hallway)
@@ -6592,6 +6599,12 @@
 /obj/machinery/computer/ordercomp,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
+"tP" = (
+/obj/machinery/firealarm{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/aft_hallway)
 "tQ" = (
 /obj/machinery/status_display,
 /obj/effect/soundplayer,
@@ -8765,6 +8778,12 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
+"AK" = (
+/obj/machinery/firealarm{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/starboard_hallway)
 "AL" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/clipboard{
@@ -9114,6 +9133,13 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
+"BL" = (
+/obj/machinery/door/firedoor/mainship{
+	dir = 2;
+	id = "hangar_lockdown"
+	},
+/turf/open/floor/mainship/stripesquare,
+/area/mainship/hallways/starboard_hallway)
 "BM" = (
 /obj/structure/barricade/metal{
 	dir = 1
@@ -47254,7 +47280,7 @@ rF
 oC
 rF
 FC
-wb
+rF
 rF
 rF
 rF
@@ -47511,7 +47537,7 @@ JL
 JL
 wR
 JL
-rL
+JL
 JL
 JL
 JL
@@ -47768,7 +47794,7 @@ rF
 rF
 XG
 rF
-wb
+rF
 FB
 rF
 rF
@@ -50841,12 +50867,12 @@ Jd
 uA
 oc
 Qy
-ze
+rF
 rF
 rF
 IT
-rF
-rF
+ze
+tP
 FC
 rF
 RO
@@ -50854,7 +50880,7 @@ rF
 rF
 jy
 jy
-Fx
+BL
 jy
 jy
 jy
@@ -51098,11 +51124,11 @@ TA
 Yc
 tM
 in
-qD
+IP
 TA
 Yc
 Yc
-Yc
+rL
 Yc
 Yc
 TA
@@ -51111,7 +51137,7 @@ Yc
 yv
 xj
 RB
-RB
+hR
 OD
 wQ
 RB
@@ -51354,12 +51380,12 @@ XG
 rF
 Ui
 Xf
-FB
-ze
+rF
+rF
 IT
 rF
 mq
-rF
+ze
 rF
 rF
 rF
@@ -51368,12 +51394,12 @@ rF
 Iw
 jy
 FJ
-BG
+BL
 kL
 jy
 FJ
-jy
-jy
+BG
+AK
 YN
 jy
 qC
@@ -51869,7 +51895,7 @@ nV
 td
 CW
 Ws
-Yq
+qD
 XY
 Qh
 fj
