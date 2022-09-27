@@ -115,7 +115,7 @@
 		if(console.metal_remaining <= 1)
 			fobdrone.balloon_alert(owner, "Not enough material for razor-wiring")
 			return
-
+		cade.wire()
 		console.metal_remaining -=2
 		fobdrone.balloon_alert(owner, "Barricade placed with wiring. [console.plasteel_remaining] plasteel sheets, [console.metal_remaining] metal sheets remaining.")
 		return
