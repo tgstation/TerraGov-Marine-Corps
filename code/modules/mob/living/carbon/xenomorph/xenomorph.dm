@@ -274,8 +274,8 @@
 		if(L.stat == DEAD && (SSticker.mode?.flags_round_type & MODE_DEAD_GRAB_FORBIDDEN)) //Can't drag dead human bodies in distress
 			to_chat(usr,span_xenowarning("This looks gross, better not touch it."))
 			return FALSE
-	do_attack_animation(L, ATTACK_EFFECT_GRAB)
-	pull_speed += XENO_DEADHUMAN_DRAG_SLOWDOWN
+		do_attack_animation(L, ATTACK_EFFECT_GRAB)
+		pull_speed += XENO_DEADHUMAN_DRAG_SLOWDOWN
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_GRAB)
 	return ..()
 
