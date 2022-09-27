@@ -384,7 +384,7 @@ Though you are a warrant officer, your authority is limited to the dropship and 
 
 /datum/job/terragov/command/mech_pilot/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"\nYou are operator of a very expensive and valueable Mech, and are trained to use it well.
+	to_chat(M, {"\nYou are the operator of a very expensive and valuable Mech, and are trained and expected to use it in the field of combat.
 You can serve your Division in a variety of roles, so choose carefully."})
 
 /datum/job/terragov/command/mech_pilot/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
