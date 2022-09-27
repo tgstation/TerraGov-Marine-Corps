@@ -261,8 +261,8 @@
 	return FALSE
 
 /mob/living/carbon/xenomorph/start_pulling(atom/movable/AM, suppress_message = TRUE, bypass_crit_delay = FALSE)
-	if(!do_after(src, AM.drag_windup, TRUE, AM, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE))
-		return //A do_after is called, for items with a drag wind-up.
+	if(!isliving(AM))
+		return FALSE
 	if(!Adjacent(AM)) //Logic!
 		return FALSE
 	if(status_flags & INCORPOREAL || AM.status_flags & INCORPOREAL) //Incorporeal things can't grab or be grabbed.
