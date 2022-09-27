@@ -17,8 +17,10 @@
 	var/datum/action/minimap/xeno/mini = new
 	mini.give_action(src)
 	add_abilities()
+
 	create_reagents(1000)
 	gender = NEUTER
+
 	switch(stat)
 		if(CONSCIOUS)
 			GLOB.alive_xeno_list += src
@@ -239,6 +241,7 @@
 /mob/living/carbon/xenomorph/Destroy()
 	if(mind) mind.name = name //Grabs the name when the xeno is getting deleted, to reference through hive status later.
 	if(is_zoomed) zoom_out()
+
 	GLOB.alive_xeno_list -= src
 	GLOB.xeno_mob_list -= src
 	GLOB.dead_xeno_list -= src

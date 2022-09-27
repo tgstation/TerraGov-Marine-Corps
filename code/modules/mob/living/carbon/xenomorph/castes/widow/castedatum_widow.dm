@@ -56,17 +56,11 @@
 /datum/xeno_caste/widow/on_caste_applied(mob/xenomorph)
 	. = ..()
 	xenomorph.AddElement(/datum/element/wall_speedup, WIDOW_SPEED_BONUS)
-
-/datum/xeno_caste/widow/on_caste_removed(mob/xenomorph)
-	. = ..()
-	xenomorph.RemoveElement(/datum/element/wall_speedup, WIDOW_SPEED_BONUS)
-
-/datum/xeno_caste/widow/on_caste_applied(mob/xenomorph)
-	. = ..()
 	xenomorph.AddElement(/datum/element/ridable, /datum/component/riding/creature/widow)
 
 /datum/xeno_caste/widow/on_caste_removed(mob/xenomorph)
 	. = ..()
+	xenomorph.RemoveElement(/datum/element/wall_speedup, WIDOW_SPEED_BONUS)
 	xenomorph.RemoveElement(/datum/element/ridable, /datum/component/riding/creature/widow)
 
 /datum/xeno_caste/widow/young

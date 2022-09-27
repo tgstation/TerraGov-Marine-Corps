@@ -244,11 +244,12 @@
 	. = ..()
 	var/mob/living/carbon/xenomorph/widow/X = owner
 	if(X.buckled_mobs)
-		drop_spiderlings()
+		/// yeet off all spiderlings if we are carrying any
+		X.unbuckle_all_mobs(TRUE)
 		return
 	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = owner.actions_by_path[/datum/action/xeno_action/create_spiderling]
 	if(!(length(create_spiderling_action.spiderlings)))
-		X.balloon_alert(X, "No spiderlings to attach")
+		X.balloon_alert(X, "No spiderlings")
 		return fail_activate()
 	var/list/mob/living/carbon/xenomorph/spiderling/remaining_spiderlings = create_spiderling_action.spiderlings.Copy()
 	grab_spiderlings(remaining_spiderlings, attach_attempts)
@@ -263,17 +264,8 @@
 		if(!X.Adjacent(remaining_spiderling))
 			continue
 		remaining_list -= remaining_spiderling
-		ride_widow(remaining_spiderling, X)
+		X.buckle_mob(remaining_spiderling, TRUE, TRUE, 90, 1,0)
 	addtimer(CALLBACK(src, .proc/grab_spiderlings, remaining_list, number_of_attempts_left - 1), 1)
-
-// this proc makes the spiderlings ride widow
-/datum/action/xeno_action/attach_spiderlings/proc/ride_widow(mob/living/carbon/xenomorph/spiderling/piggy, mob/living/carbon/xenomorph/widow/back)
-	back.buckle_mob(piggy,TRUE, TRUE, 90, 1, 0)
-
-// Drops spiderlings
-/datum/action/xeno_action/attach_spiderlings/proc/drop_spiderlings()
-	var/mob/living/carbon/xenomorph/widow/X = owner
-	X.unbuckle_all_mobs(TRUE)
 
 // ***************************************
 // *********** Web Hook
@@ -318,17 +310,17 @@
 	succeed_activate()
 	add_cooldown()
 
+/// This throws widow wherever the web_hook landed, distance is dependant on if the web_hook hit a wall or just ground
 /datum/action/xeno_action/activable/web_hook/proc/drag_widow(datum/source, turf/t)
 	SIGNAL_HANDLER
 	QDEL_NULL(web_beam)
 	var/throw_turf = get_turf(t)
-	if(full_distance == TRUE)
+	if(full_distance)
 		owner.throw_at(throw_turf, WIDOW_WEB_HOOK_RANGE, 1, owner)
 	else
 		throw_turf = get_turf(source)
 		var/throw_distance = (get_dist(throw_turf, owner) / 2)
 		owner.throw_at(throw_turf, throw_distance, 1, owner)
-		message_admins(throw_distance)
 	qdel(source)
 	RegisterSignal(owner, COMSIG_MOVABLE_POST_THROW, .proc/delete_beam)
 
