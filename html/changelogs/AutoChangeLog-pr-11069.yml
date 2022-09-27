@@ -1,0 +1,4 @@
+author: "MLGTASTICa"
+delete-after: True
+changes: 
+  - bugfix: "Fixed plasteel cades not being wired by LZ drones."
