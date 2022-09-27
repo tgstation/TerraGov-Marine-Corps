@@ -7,6 +7,7 @@ SUBSYSTEM_DEF(aura)
 	var/list/active_auras = list() //We can't use a normal subsystem processing list because as soon as an aura_bearer leaves the list it needs to die
 
 /datum/controller/subsystem/aura/fire(resumed)
+	end_phero_pulses()
 	for(var/datum/aura_bearer/bearer AS in active_auras)
 		bearer.process()
 
@@ -18,6 +19,13 @@ SUBSYSTEM_DEF(aura)
 		return
 	. =  new /datum/aura_bearer(center, type, range, strength, duration, faction)
 	active_auras += .
+
+/datum/controller/subsystem/aura/proc/end_phero_pulses()
+	for(var/mob/living/carbon/xenomorph/xeno AS in GLOB.xeno_mob_list)
+		xeno.finish_aura_cycle()
+	for(var/mob/living/carbon/human/human AS in GLOB.human_mob_list)
+		human.finish_aura_cycle()
+
 
 ///The thing that actually pushes out auras to nearby mobs.
 /datum/aura_bearer

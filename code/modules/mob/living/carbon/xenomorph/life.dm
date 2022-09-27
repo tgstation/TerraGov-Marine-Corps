@@ -158,7 +158,7 @@
 	gain_plasma(plasma_mod[1])
 	hud_set_plasma() //update plasma amount on the plasma mob_hud
 
-/mob/living/carbon/xenomorph/handle_received_auras()
+/mob/living/carbon/xenomorph/finish_aura_cycle()
 
 	if(frenzy_aura != (received_auras[AURA_XENO_FRENZY] || 0))
 		set_frenzy_aura(received_auras[AURA_XENO_FRENZY] || 0)
