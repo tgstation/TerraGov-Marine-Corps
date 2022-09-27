@@ -185,7 +185,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	action_icon_state = "carrier_panic"
 	mechanics_text = "Drop all stored huggers in a fit of panic. Uses all remaining plasma!"
 	plasma_cost = 10
-	cooldown_timer = 50 SECONDS
+	cooldown_timer =180 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_DROP_ALL_HUGGER
 	use_state_flags = XACT_USE_LYING
 
@@ -207,7 +207,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	if(!.)
 		return FALSE
 	var/mob/living/carbon/xenomorph/carrier/X = owner
-	if(X.health > (X.maxHealth * 0.25))
+	if(X.health > (X.maxHealth * 0.4))
 		if(!silent)
 			to_chat(X, span_xenowarning("We are not injured enough to panic yet!"))
 		return FALSE
