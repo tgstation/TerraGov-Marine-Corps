@@ -1,0 +1,7 @@
+author: "Lewdcifer"
+delete-after: True
+changes: 
+  - balance: "Pheromone tower cost 100 > 150, range 22 > 32, building time 10 > 5 seconds."
+  - bugfix: "Pheromone towers now allow building around it."
+  - bugfix: "Pheromone towers will now spawn under the xenomorph rather than southwest of it."
+  - bugfix: "Pheromone towers will now delete correctly."
