@@ -261,6 +261,8 @@
 	return FALSE
 
 /mob/living/carbon/xenomorph/start_pulling(atom/movable/AM, suppress_message = TRUE, bypass_crit_delay = FALSE)
+	if(!do_after(src, AM.drag_windup, TRUE, AM, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE))
+		return //A do_after is called, for items with a drag wind-up.
 	if(!Adjacent(AM)) //Logic!
 		return FALSE
 	if(status_flags & INCORPOREAL || AM.status_flags & INCORPOREAL) //Incorporeal things can't grab or be grabbed.
@@ -272,9 +274,11 @@
 		if(L.stat == DEAD) //Can't drag dead human bodies.
 			to_chat(usr,span_xenowarning("This looks gross, better not touch it."))
 			return FALSE
-		do_attack_animation(L, ATTACK_EFFECT_GRAB)
-		pull_speed += XENO_DEADHUMAN_DRAG_SLOWDOWN
+
+	do_attack_animation(L, ATTACK_EFFECT_GRAB)
+	pull_speed += XENO_DEADHUMAN_DRAG_SLOWDOWN
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_GRAB)
+
 	return ..()
 
 /mob/living/carbon/xenomorph/stop_pulling()
