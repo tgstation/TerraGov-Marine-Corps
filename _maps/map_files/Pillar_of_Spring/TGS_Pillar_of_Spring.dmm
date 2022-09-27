@@ -2552,10 +2552,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engineering)
-"hR" = (
-/obj/effect/soundplayer,
-/turf/open/floor/plating,
-/area/mainship/squads/req)
 "hS" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -7590,12 +7586,11 @@
 /turf/open/floor/mainship,
 /area/mainship/command/self_destruct)
 "wU" = (
-/obj/machinery/door/airlock/multi_tile/mainship/research{
-	dir = 2;
-	name = "Research Wing"
-	},
 /obj/machinery/door/firedoor/multi_tile{
 	dir = 1
+	},
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
+	dir = 2
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
@@ -9116,12 +9111,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
-"BL" = (
-/obj/item/reagent_containers/food/snacks/grown/poppy,
-/obj/item/clothing/head/modular/marine,
-/obj/effect/spawner/random/plushie,
-/turf/open/floor/mainship/mono,
-/area/mainship/living/cafeteria_starboard)
 "BM" = (
 /obj/structure/barricade/metal{
 	dir = 1
