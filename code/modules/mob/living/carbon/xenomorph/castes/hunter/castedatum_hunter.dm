@@ -179,6 +179,7 @@
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/activable/pounce/hunter,
+		/datum/action/xeno_action/stealth,
 		/datum/action/xeno_action/stealth/disguise,
 		/datum/action/xeno_action/activable/hunter_mark,
 		/datum/action/xeno_action/psychic_trace,

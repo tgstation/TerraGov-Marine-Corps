@@ -365,6 +365,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_STEALTH
 
+/datum/keybinding/xeno/toggle_disguise
+	name = "toggle_disguise"
+	full_name = "Hunter: Toggle Disguise"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_TOGGLE_DISGUISE
+
 /datum/keybinding/xeno/mirage
 	name = "mirage"
 	full_name = "Hunter: Mirage"
