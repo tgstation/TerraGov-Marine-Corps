@@ -9302,7 +9302,9 @@
 /turf/closed/wall,
 /area/centcom/valhalla/crew_quarters/toilet)
 "mxw" = (
-/obj/machinery/nuclearbomb,
+/obj/machinery/nuclearbomb{
+	dir = 8
+	},
 /turf/open/floor/gcircuit,
 /area/centcom/valhalla/ai_monitored/storage/secure)
 "mxM" = (
@@ -11886,6 +11888,11 @@
 	},
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla/engine/engineering)
+"pUh" = (
+/obj/effect/spawner/random/plushie/nospawnninetynine{
+	},
+/turf/open/floor/gcircuit,
+/area/centcom/valhalla/ai_monitored/storage/secure)
 "pUr" = (
 /obj/effect/decal/tile/pink{
 	dir = 4
@@ -13089,6 +13096,9 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
+/obj/effect/spawner/random/plushie/nospawnninetynine{
+	pixel_y = -3;
+	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "rlZ" = (
@@ -13175,6 +13185,8 @@
 /area/centcom/valhalla/chapel/main)
 "rsf" = (
 /obj/structure/table,
+/obj/effect/spawner/random/plushie/nospawnninetyfive{
+	},
 /turf/open/floor/tile/neutral/full,
 /area/centcom/valhalla/crew_quarters)
 "rsu" = (
@@ -30339,7 +30351,7 @@ cYi
 bls
 mxw
 eiq
-vFL
+pUh
 fHG
 gtc
 hiw

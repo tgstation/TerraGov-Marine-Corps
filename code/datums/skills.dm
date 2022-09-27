@@ -441,6 +441,13 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	leadership = SKILL_LEAD_EXPERT
 	medical = SKILL_MEDICAL_NOVICE
 	surgery = SKILL_SURGERY_AMATEUR
+
+/datum/skills/sl/clf
+	name = "CLF leader"
+	construction = SKILL_CONSTRUCTION_METAL
+	engineer = SKILL_ENGINEER_METAL
+	leadership = SKILL_LEAD_TRAINED
+
 /datum/skills/sl/upp
 	name = "UPP Leader"
 	firearms = SKILL_FIREARMS_TRAINED

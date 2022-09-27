@@ -42,7 +42,9 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/normandy)
 "hz" = (
-/obj/structure/dropship_piece/two/cockpit/right,
+/obj/structure/dropship_piece/two/cockpit/right{
+	dir = 1
+	},
 /turf/template_noop,
 /area/shuttle/dropship/normandy)
 "iq" = (
@@ -148,11 +150,14 @@
 /area/shuttle/dropship/normandy)
 "xX" = (
 /turf/closed/shuttle/dropship2/transparent{
-	icon_state = "109"
+	icon_state = "109";
+	dir = 1
 	},
 /area/shuttle/dropship/normandy)
 "yx" = (
-/obj/structure/dropship_piece/two/corner/rearleft,
+/obj/structure/dropship_piece/two/corner/rearleft{
+	dir = 1
+	},
 /turf/template_noop,
 /area/shuttle/dropship/normandy)
 "yT" = (
@@ -161,7 +166,9 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/normandy)
 "zF" = (
-/obj/structure/dropship_piece/two/front/left,
+/obj/structure/dropship_piece/two/front/left{
+	dir = 1
+	},
 /turf/template_noop,
 /area/shuttle/dropship/normandy)
 "AM" = (
@@ -257,15 +264,21 @@
 	},
 /area/shuttle/dropship/normandy)
 "Ph" = (
-/obj/structure/dropship_piece/two/front/right,
+/obj/structure/dropship_piece/two/front/right{
+	dir = 1
+	},
 /turf/template_noop,
 /area/shuttle/dropship/normandy)
 "Qh" = (
-/obj/structure/dropship_piece/two/front,
+/obj/structure/dropship_piece/two/front{
+	dir = 1
+	},
 /turf/template_noop,
 /area/shuttle/dropship/normandy)
 "QN" = (
-/obj/structure/dropship_piece/two/corner/rearright,
+/obj/structure/dropship_piece/two/corner/rearright{
+	dir = 1
+	},
 /turf/template_noop,
 /area/shuttle/dropship/normandy)
 "Rq" = (
@@ -289,17 +302,21 @@
 /turf/open/shuttle/dropship/three,
 /area/shuttle/dropship/normandy)
 "Tb" = (
-/obj/structure/dropship_piece/two/cockpit/left,
+/obj/structure/dropship_piece/two/cockpit/left{
+	dir = 1
+	},
 /turf/template_noop,
 /area/shuttle/dropship/normandy)
 "Wg" = (
 /turf/closed/shuttle/dropship2{
-	icon_state = "103"
+	icon_state = "103";
+	dir = 1
 	},
 /area/shuttle/dropship/normandy)
 "Wk" = (
 /turf/closed/shuttle/dropship2{
-	icon_state = "104"
+	icon_state = "104";
+	dir = 1
 	},
 /area/shuttle/dropship/normandy)
 "XK" = (
@@ -373,7 +390,7 @@ yx
 zF
 Tb
 Fn
-cK
+Js
 rG
 oB
 eY
@@ -403,7 +420,7 @@ lI
 Ph
 hz
 pB
-Js
+cK
 mf
 cW
 eY

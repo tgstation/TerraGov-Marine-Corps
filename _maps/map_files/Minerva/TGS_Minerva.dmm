@@ -4288,6 +4288,12 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/pilotbunks)
+"ob" = (
+/obj/structure/table/mainship/nometal,
+/obj/effect/spawner/random/plushie/nospawnninety{
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/hallways/starboard_hallway)
 "oc" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -6536,6 +6542,8 @@
 /area/mainship/medical/lounge)
 "vE" = (
 /obj/structure/table/woodentable,
+/obj/effect/spawner/random/plushie/nospawnninety{
+	},
 /turf/open/floor/wood,
 /area/mainship/medical/lounge)
 "vF" = (
@@ -25288,7 +25296,7 @@ vi
 vi
 sP
 vg
-Ld
+ob
 yA
 Of
 Eo
