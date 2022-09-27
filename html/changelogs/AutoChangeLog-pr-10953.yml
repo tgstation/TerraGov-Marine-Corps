@@ -1,5 +1,0 @@
-author: "hyper2snyper"
-delete-after: True
-changes: 
-  - rscadd: "The newly sprited primaries are now colorable with facepaint. Included: AR12, AR18, SMG90, P14, SH35, LMG42"
-  - rscadd: "Support for colorable attachments, SH-35 stock now colorable like the gun itself."

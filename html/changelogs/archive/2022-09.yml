@@ -300,3 +300,20 @@
   tyeagg:
   - qol: bigger minimap icons for disks and orders
   - imageadd: big minimap icons
+2022-09-27:
+  RipGrayson:
+  - rscadd: Added in two random rouny spawners per map.
+  - balance: Several useless reinforced windows on Gelida have been removed.
+  - balance: Removed the extra metal stacks from Gelida.
+  - balance: Removed an easily defensible miner from Gelida.
+  - balance: Removed a rogue B17 helmet from Gelida.
+  - bugfix: Added a missing Gelida shutter.
+  - bugfix: The morgue trays on two BR medbay modules now can be accessed normally.
+  - imageadd: Ported a new icon for dogtags.
+  Zar000:
+  - bugfix: define better than string
+  hyper2snyper:
+  - rscadd: 'The newly sprited primaries are now colorable with facepaint. Included:
+      AR12, AR18, SMG90, P14, SH35, LMG42'
+  - rscadd: Support for colorable attachments, SH-35 stock now colorable like the
+      gun itself.
