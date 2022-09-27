@@ -284,7 +284,7 @@
 	for(var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/gun in flat_equipment)
 		ammo_needed = 0
 
-		if(!istype(gun, /obj/item/mecha_parts/mecha_equipment/weapon/ballistic) && gun.ammo_type == reload_box.ammo_type)
+		if(gun.ammo_type != reload_box.ammo_type)
 			continue
 		found_gun = TRUE
 		if(reload_box.direct_load)
