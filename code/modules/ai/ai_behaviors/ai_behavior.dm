@@ -265,7 +265,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	base_action = ESCORTING_ATOM
 	change_action(ESCORTING_ATOM, escorted_atom)
 
-
+///This needs proper AUTODOC, help / Zaro
 /datum/ai_behavior/proc/global_set_escorted_atom(datum/source, atom/atom_to_escort)
 	SIGNAL_HANDLER
 	if(!atom_to_escort || atom_to_escort.get_xeno_hivenumber() != mob_parent.get_xeno_hivenumber() || mob_parent.ckey)
