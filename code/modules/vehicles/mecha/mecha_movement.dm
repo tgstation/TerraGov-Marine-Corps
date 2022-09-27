@@ -73,11 +73,6 @@
 	if(!allow_diagonal_movement && ISDIAGONALDIR(direction))
 		return TRUE
 
-	//tgmc start
-	if(direction == REVERSE_DIR(dir))
-		direction = turn(direction, pick(90, -90))
-	//tgmc end
-
 	var/keyheld = FALSE
 	if(strafe)
 		for(var/mob/driver AS in return_drivers())
@@ -87,6 +82,10 @@
 
 	//if we're not facing the way we're going rotate us
 	if(dir != direction && !strafe || forcerotate || keyheld)
+		//tgmc start
+		if(direction == REVERSE_DIR(dir) && !forcerotate)
+			direction = turn(direction, pick(90, -90))
+		//tgmc end
 		if(dir != direction && !(mecha_flags & QUIET_TURNS) && !step_silent)
 			playsound(src,turnsound,40,TRUE)
 		setDir(direction)
