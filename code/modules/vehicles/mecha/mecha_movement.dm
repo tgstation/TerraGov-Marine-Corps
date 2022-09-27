@@ -73,6 +73,11 @@
 	if(!allow_diagonal_movement && ISDIAGONALDIR(direction))
 		return TRUE
 
+	//tgmc start
+	if(direction == REVERSE_DIR(dir))
+		direction = turn(direction, pick(90, -90))
+	//tgmc end
+
 	var/keyheld = FALSE
 	if(strafe)
 		for(var/mob/driver AS in return_drivers())
