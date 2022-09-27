@@ -7,7 +7,7 @@ SUBSYSTEM_DEF(aura)
 	var/list/active_auras = list() //We can't use a normal subsystem processing list because as soon as an aura_bearer leaves the list it needs to die
 
 /datum/controller/subsystem/aura/fire(resumed)
-	end_phero_pulses()
+	finish_aura_cycles()
 	for(var/datum/aura_bearer/bearer AS in active_auras)
 		bearer.process()
 
@@ -20,7 +20,11 @@ SUBSYSTEM_DEF(aura)
 	. =  new /datum/aura_bearer(center, type, range, strength, duration, faction)
 	active_auras += .
 
-/datum/controller/subsystem/aura/proc/end_phero_pulses()
+/**
+ * Iterates through all mobs which may have been affected by auras and completes their aura cycles which applies effects and clears received auras afterwards.
+ * Does act on all humans / xenos instead of the more constrained lists applying auras works on due to the possibility of mobs having changed z, died, done weird things, and so on.
+**/
+/datum/controller/subsystem/aura/proc/finish_aura_cycles()
 	for(var/mob/living/carbon/xenomorph/xeno AS in GLOB.xeno_mob_list)
 		xeno.finish_aura_cycle()
 	for(var/mob/living/carbon/human/human AS in GLOB.human_mob_list)
