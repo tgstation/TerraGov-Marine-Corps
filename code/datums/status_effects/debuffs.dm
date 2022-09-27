@@ -290,6 +290,7 @@
 	status_type = STATUS_EFFECT_REFRESH
 	tick_interval = 20
 	alert_type = /obj/screen/alert/status_effect/irradiated
+	///Some effects only apply to carbons
 	var/mob/living/carbon/carbon_owner
 
 /datum/status_effect/irradiated/on_creation(mob/living/new_owner, set_duration)

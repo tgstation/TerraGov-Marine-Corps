@@ -35,6 +35,7 @@
 	volume = 20
 	max_loops = 5
 	direct = TRUE
+	///how loud and angry the geiger counter will sound
 	var/severity = 1
 
 /datum/looping_sound/geiger/get_sound(starttime)
