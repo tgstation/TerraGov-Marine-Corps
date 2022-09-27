@@ -156,8 +156,8 @@
 		/obj/item/weapon/gun/launcher/rocket/som,
 		/obj/item/weapon/gun/launcher/rocket/som/rad,
 	)
-	bypass_w_limit = list(/obj/item/weapon/gun/launcher/rocket/som,)
-	storage_type_limits = list(/obj/item/weapon/gun/launcher/rocket/som = 1,)
+	bypass_w_limit = list(/obj/item/weapon/gun/launcher/rocket/som)
+	storage_type_limits = list(/obj/item/weapon/gun/launcher/rocket/som = 1)
 	can_hold = list(
 		/obj/item/ammo_magazine/rocket,
 		/obj/item/weapon/gun/launcher/rocket/som,
