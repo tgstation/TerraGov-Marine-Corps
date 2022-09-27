@@ -280,7 +280,7 @@
 	keybind_signal = COMSIG_XENOABILITY_WEB_HOOK
 	//ref to beam for web hook
 	var/datum/beam/web_beam
-	//Do we go full or half?
+	//Do travel the full distnace or half?
 	var/full_distance = TRUE
 
 /datum/action/xeno_action/activable/web_hook/can_use_ability(atom/A)
@@ -306,7 +306,7 @@
 	var/atom/movable/web_hook/web_hook = new (get_turf(owner))
 	web_beam = owner.beam(web_hook,"beam_web",'icons/effects/beam.dmi')
 	RegisterSignal(web_hook, list(COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_IMPACT), .proc/drag_widow)
-	web_hook.throw_at(A, WIDOW_WEB_HOOK_RANGE * 1.5, 3, owner, FALSE) //Too hard to hit if just TENTACLE_ABILITY_RANGE
+	web_hook.throw_at(A, WIDOW_WEB_HOOK_RANGE, 3, owner, FALSE)
 	succeed_activate()
 	add_cooldown()
 
@@ -324,12 +324,13 @@
 	qdel(source)
 	RegisterSignal(owner, COMSIG_MOVABLE_POST_THROW, .proc/delete_beam)
 
-///signal handler to delete tetacle after we are done draggging owner along
+///signal handler to delete the web_hook after we are done draggging owner along
 /datum/action/xeno_action/activable/web_hook/proc/delete_beam(datum/source)
 	SIGNAL_HANDLER
 	UnregisterSignal(source, COMSIG_MOVABLE_POST_THROW)
 	QDEL_NULL(web_beam)
 
+/// Our web hook that we throw
 /atom/movable/web_hook
 	name = "You can't see this"
 	invisibility = INVISIBILITY_ABSTRACT
