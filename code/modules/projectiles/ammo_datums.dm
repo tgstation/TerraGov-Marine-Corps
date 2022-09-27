@@ -253,8 +253,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		var/obj/projectile/new_proj = new proj_type(main_proj.loc, effect_icon)
 		if(bonus_projectiles_type)
 			new_proj.generate_bullet(bonus_projectiles_type)
-			var/obj/item/weapon/gun/gun = source
-			if(istype(gun)) //Check for the source so we don't runtime if we have bonus projectiles from a non-gun source like a Spitter
+			if(isgun(source)) //Check for the source so we don't runtime if we have bonus projectiles from a non-gun source like a Spitter
+				var/obj/item/weapon/gun/gun = source
 				new_proj.damage *= gun.damage_mult //Bonus or reduced damage based on damage modifiers on the gun.
 		else //If no bonus type is defined then the extra projectiles are the same as the main one.
 			new_proj.generate_bullet(src)
@@ -1246,7 +1246,7 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 2.5
 
 /datum/ammo/bullet/minigun/mech
-	name = "40mm minigun bullet"
+	name = "vulcan bullet"
 	damage = 30
 	penetration = 20
 	sundering = 0.5
@@ -2255,7 +2255,7 @@ datum/ammo/bullet/revolver/tp44
 	drop_nade(get_turf(P))
 
 /datum/ammo/energy/lasgun/marine/mech
-	name = "super-heavy laser bolt"
+	name = "superheated laser bolt"
 	damage = 40
 	penetration = 20
 	sundering = 1
@@ -2268,7 +2268,7 @@ datum/ammo/bullet/revolver/tp44
 	damage_falloff = 0.6
 
 /datum/ammo/energy/lasgun/marine/mech/smg
-	name = "super-heavy pulsed laser bolt"
+	name = "superheated pulsed laser bolt"
 	damage = 35
 	penetration = 15
 
@@ -2999,12 +2999,12 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/flamethrower/tank_flamer/drop_flame(turf/T)
 	if(!istype(T))
 		return
-	flame_radius(1, T)
+	flame_radius(2, T)
 
 /datum/ammo/flamethrower/mech_flamer/drop_flame(turf/T)
 	if(!istype(T))
 		return
-	flame_radius(2, T)
+	flame_radius(1, T)
 
 /datum/ammo/flamethrower/blue
 	name = "blue flame"

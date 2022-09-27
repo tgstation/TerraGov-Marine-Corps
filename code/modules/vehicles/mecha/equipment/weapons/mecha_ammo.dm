@@ -138,7 +138,7 @@
 	qdel_on_empty = TRUE
 
 /obj/item/mecha_ammo/vendable/smg
-	name = "box of smg bullets"
+	name = "box of SMG bullets"
 	desc = "A box of normal SMG bullets, but bigger!"
 	icon_state = "smg_ammo"
 	rounds = 120
@@ -168,8 +168,8 @@
 	qdel_on_empty = TRUE
 
 /obj/item/mecha_ammo/vendable/minigun
-	name = "box of minigun bullets"
-	desc = "Unfortunately for you, every bullet that comes out of the minigun must also be loaded into it."
+	name = "box of vulcan cannon bullets"
+	desc = "Unfortunately for you, every bullet that comes out of the vulcan cannon must also be loaded into it."
 	icon_state = "minigun_ammo"
 	rounds = 200
 	ammo_type = MECHA_AMMO_MINIGUN

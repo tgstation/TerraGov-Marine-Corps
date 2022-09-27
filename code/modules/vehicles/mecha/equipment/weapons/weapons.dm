@@ -4,8 +4,8 @@
 	equipment_slot = MECHA_WEAPON
 	destroy_sound = 'sound/mecha/weapdestr.ogg'
 	mech_flags = EXOSUIT_MODULE_COMBAT
-	/// ammo datum or object typepath
-	var/ammotype
+	/// ammo datum/object typepath
+	var/datum/ammo/ammotype
 	///sound file to play when this weapon you know, fires
 	var/fire_sound
 	///current tracked target for fire(), updated when user drags
@@ -41,8 +41,6 @@
 	var/burst_amount = 0
 	///fire mode to use for autofire
 	var/fire_mode = GUN_FIREMODE_AUTOMATIC
-	///Bool if this gun is a hitscan weapon
-	var/hitscan = FALSE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/Initialize(mapload)
 	. = ..()
@@ -149,11 +147,12 @@
 	if(projectile_to_fire.ammo.flags_ammo_behavior & AMMO_IFF)
 		var/iff_signal
 		if(ishuman(firer))
-			var/mob/living/carbon/human/_firer = firer
-			var/obj/item/card/id/id = _firer.get_idcard()
+			var/mob/living/carbon/human/human_firer = firer
+			var/obj/item/card/id/id = human_firer.get_idcard()
 			iff_signal = id?.iff_signal
 		projectile_to_fire.iff_signal = iff_signal
 
+///actually executes firing when autofire asks for it, returns TRUE to keep firing FALSE to stop
 /obj/item/mecha_parts/mecha_equipment/weapon/proc/fire()
 	if(!action_checks(current_target, TRUE))
 		return FALSE
@@ -161,7 +160,7 @@
 	if(dir_target_diff > (MECH_FIRE_CONE_ALLOWED / 2))
 		return TRUE
 
-	var/type_to_spawn = hitscan ? /obj/projectile/hitscan : /obj/projectile
+	var/type_to_spawn = (initial(ammotype.flags_ammo_behavior) & AMMO_HITSCAN) ? /obj/projectile/hitscan : /obj/projectile ? /obj/projectile/hitscan : /obj/projectile
 	var/obj/projectile/projectile_to_fire = new type_to_spawn(get_turf(src))
 	projectile_to_fire.generate_bullet(GLOB.ammo_list[ammotype])
 

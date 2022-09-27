@@ -1,5 +1,6 @@
 GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 
+///generates the static list data containig all printable mech equipment modules for greyscale
 /proc/generate_greyscale_weapons_data()
 	. = list("weapons" = list(), "ammo" = list(), "armor" = list(), "utility" = list(), "power" = list())
 	for(var/obj/item/mecha_parts/mecha_equipment/weapon/type AS in subtypesof(/obj/item/mecha_parts/mecha_equipment))
@@ -7,51 +8,52 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 			continue
 		if(initial(type.mech_flags) == ALL)
 			continue
-		if(initial(type.equipment_slot) == MECHA_WEAPON)
-			var/list/weapon_representation = list(
-				"type" = type,
-				"name" = initial(type.name),
-				"desc" = initial(type.desc),
-				"icon_state" = initial(type.icon_state),
-				"health" = initial(type.max_integrity),
-				"firerate" = initial(type.projectile_delay),
-				"burst_count" = initial(type.burst_amount),
-				"scatter" = initial(type.variance),
-				"slowdown" = initial(type.slowdown),
-				"burst_amount" = initial(type.burst_amount)
-			)
-			var/datum/ammo/ammotype = initial(type.ammotype)
-			if(ispath(ammotype, /datum/ammo))
-				weapon_representation["damage"] = initial(ammotype.damage)
-				weapon_representation["armor_pierce"] = initial(ammotype.penetration)
-			if(ispath(type, /obj/item/mecha_parts/mecha_equipment/weapon/ballistic))
-				var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/ballistic_type = type
-				weapon_representation["projectiles"] = initial(ballistic_type.projectiles)
-				weapon_representation["cache_max"] = initial(ballistic_type.projectiles_cache_max)
-				weapon_representation["ammo_type"] = initial(ballistic_type.ammo_type)
-			.["weapons"] += list(weapon_representation)
-		else if(initial(type.equipment_slot) == MECHA_ARMOR)
-			.["armor"] += list(list(
-				"type" = type,
-				"name" = initial(type.name),
-				"desc" = initial(type.desc),
-				"slowdown" = initial(type.slowdown),
-			))
-		else if(initial(type.equipment_slot) == MECHA_UTILITY)
-			.["utility"] += list(list(
-				"type" = type,
-				"name" = initial(type.name),
-				"desc" = initial(type.desc),
-				"energy_drain" = initial(type.energy_drain),
-			))
-		else if(initial(type.equipment_slot) == MECHA_POWER)
-			.["power"] += list(list(
-				"type" = type,
-				"name" = initial(type.name),
-				"desc" = initial(type.desc),
-			))
-		else
-			stack_trace("equipment_slot not set for [type]")
+		switch(initial(type.equipment_slot))
+			if(MECHA_WEAPON)
+				var/list/weapon_representation = list(
+					"type" = type,
+					"name" = initial(type.name),
+					"desc" = initial(type.desc),
+					"icon_state" = initial(type.icon_state),
+					"health" = initial(type.max_integrity),
+					"firerate" = initial(type.projectile_delay),
+					"burst_count" = initial(type.burst_amount),
+					"scatter" = initial(type.variance),
+					"slowdown" = initial(type.slowdown),
+					"burst_amount" = initial(type.burst_amount)
+				)
+				var/datum/ammo/ammotype = initial(type.ammotype)
+				if(ispath(ammotype, /datum/ammo))
+					weapon_representation["damage"] = initial(ammotype.damage)
+					weapon_representation["armor_pierce"] = initial(ammotype.penetration)
+				if(ispath(type, /obj/item/mecha_parts/mecha_equipment/weapon/ballistic))
+					var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/ballistic_type = type
+					weapon_representation["projectiles"] = initial(ballistic_type.projectiles)
+					weapon_representation["cache_max"] = initial(ballistic_type.projectiles_cache_max)
+					weapon_representation["ammo_type"] = initial(ballistic_type.ammo_type)
+				.["weapons"] += list(weapon_representation)
+			if(MECHA_ARMOR)
+				.["armor"] += list(list(
+					"type" = type,
+					"name" = initial(type.name),
+					"desc" = initial(type.desc),
+					"slowdown" = initial(type.slowdown),
+				))
+			if(MECHA_UTILITY)
+				.["utility"] += list(list(
+					"type" = type,
+					"name" = initial(type.name),
+					"desc" = initial(type.desc),
+					"energy_drain" = initial(type.energy_drain),
+				))
+			if(MECHA_POWER)
+				.["power"] += list(list(
+					"type" = type,
+					"name" = initial(type.name),
+					"desc" = initial(type.desc),
+				))
+			else
+				stack_trace("equipment_slot not set for [type]")
 	for(var/obj/item/mecha_ammo/vendable/ammo AS in subtypesof(/obj/item/mecha_ammo/vendable))
 		.["ammo"] += list(list(
 			"type" = ammo,
@@ -116,7 +118,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 		MECH_GREY_R_ARM = MECH_ASSAULT,
 		MECH_GREY_L_ARM = MECH_ASSAULT,
 	)
-	/// Currently selected equipment, maxes are determined by
+	/// Currently selected equipment, maxes are determined by equipment_max
 	var/selected_equipment = list(
 		MECHA_L_ARM = null,
 		MECHA_R_ARM = null,
@@ -124,6 +126,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 		MECHA_POWER = list(),
 		MECHA_ARMOR = list(),
 	)
+	///List of max equipment that we're allowed to attach while using this console
 	var/equipment_max = MECH_GREYSCALE_MAX_EQUIP
 	///reference to the mech screen object
 	var/obj/screen/mech_builder_view/mech_view

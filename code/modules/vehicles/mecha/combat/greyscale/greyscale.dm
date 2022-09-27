@@ -39,28 +39,35 @@
 /obj/vehicle/sealed/mecha/combat/greyscale/update_overlays()
 	. = ..()
 	var/list/render_order
-	if(dir & (EAST|SOUTH))
-		render_order = list(MECH_GREY_TORSO, MECH_GREY_HEAD, MECH_GREY_LEGS, MECH_GREY_L_ARM, MECH_GREY_R_ARM)
-	else
-		render_order = list(MECH_GREY_TORSO, MECH_GREY_HEAD, MECH_GREY_LEGS, MECH_GREY_R_ARM, MECH_GREY_L_ARM)
+	//spriter bs requires this code
+	switch(dir)
+		if(EAST)
+			render_order = list(MECH_GREY_TORSO, MECH_GREY_HEAD, MECH_GREY_LEGS, MECH_GREY_L_ARM, MECHA_L_ARM, MECH_GREY_R_ARM, MECHA_R_ARM)
+		if(WEST)
+			render_order = list(MECH_GREY_TORSO, MECH_GREY_HEAD, MECH_GREY_LEGS, MECH_GREY_R_ARM, MECHA_R_ARM, MECH_GREY_L_ARM, MECHA_L_ARM)
+		else
+			render_order = list(MECH_GREY_TORSO, MECH_GREY_HEAD, MECH_GREY_LEGS, MECH_GREY_R_ARM, MECH_GREY_L_ARM, MECHA_L_ARM, MECHA_R_ARM)
+
 	for(var/key in render_order)
+		if(key == MECHA_R_ARM)
+			var/obj/item/mecha_parts/mecha_equipment/weapon/right_gun = equip_by_category[MECHA_R_ARM]
+			if(right_gun)
+				. += image('icons/mecha/mech_gun_overlays.dmi', right_gun.icon_state + "_right", pixel_x=-32)
+			continue
+		if(key == MECHA_L_ARM)
+			var/obj/item/mecha_parts/mecha_equipment/weapon/left_gun = equip_by_category[MECHA_L_ARM]
+			if(left_gun)
+				. += image('icons/mecha/mech_gun_overlays.dmi', left_gun.icon_state + "_left", pixel_x=-32)
+			continue
+
 		if(!istype(limbs[key], /datum/mech_limb))
 			continue
 		var/datum/mech_limb/limb = limbs[key]
 		. += limb.get_overlays()
-		if(key == MECH_GREY_L_ARM)// tivi todo dont work on some L face
-			var/obj/item/mecha_parts/mecha_equipment/weapon/right_gun = equip_by_category[MECHA_R_ARM]
-			if(right_gun)
-				. += image('icons/mecha/mech_gun_overlays.dmi', right_gun.icon_state + "_right", pixel_x=-32)
-		else if(key == MECH_GREY_R_ARM)
-			var/obj/item/mecha_parts/mecha_equipment/weapon/left_gun = equip_by_category[MECHA_L_ARM]
-			if(left_gun)
-				. += image('icons/mecha/mech_gun_overlays.dmi', left_gun.icon_state + "_left", pixel_x=-32)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/setDir(newdir)
 	. = ..()
-	if(dir & (EAST|WEST))
-		update_icon() //when available pass UPDATE_OVERLAYS since this is just for layering order
+	update_icon() //when available pass UPDATE_OVERLAYS since this is just for layering order
 
 /obj/vehicle/sealed/mecha/combat/greyscale/recon
 	name = "Recon Mecha"

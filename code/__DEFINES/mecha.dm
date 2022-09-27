@@ -63,7 +63,7 @@
 #define MECHA_AMMO_BURSTPISTOL "Heavy burstpistol bullet"
 #define MECHA_AMMO_PISTOL "Heavy pistol bullet"
 #define MECHA_AMMO_RPG "High explosive missile"
-#define MECHA_AMMO_MINIGUN "40mm Minigun bullet"
+#define MECHA_AMMO_MINIGUN "Vulcan bullet"
 #define MECHA_AMMO_SNIPER "Anti-tank bullet"
 #define MECHA_AMMO_GRENADE "Frag grenade"
 #define MECHA_AMMO_FLAMER "Napalm"

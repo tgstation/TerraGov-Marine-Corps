@@ -14,7 +14,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/pistol
 	name = "\improper Cottus pistol"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
-	desc = "The smallest weapon, it packs a small punch, but allows the pilot higher mobility."
+	desc = "The smallest weapon available to mechs. It packs a small punch, but allows the mech to achieve higher mobility."
 	icon_state = "pistol"
 	fire_sound = 'sound/mecha/weapons/mech_pistol.ogg'
 	muzzle_iconstate = "muzzle_flash_light"
@@ -37,7 +37,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/burstpistol
 	name = "\improper Crius burst pistol"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
-	desc = "The smallest burstfiring weapon. Offers higher mobility and accuracy than larger weapons but reduced damage."
+	desc = "A burstfiring weapon fitted for mechs. Offers higher mobility and accuracy than larger weapons, but reduced damage."
 	icon_state = "burstpistol"
 	fire_sound = 'sound/mecha/weapons/mech_pistol.ogg'
 	muzzle_iconstate = "muzzle_flash_light"
@@ -62,7 +62,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/smg
 	name = "\improper Coeus submachine gun"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
-	desc = "As the smallest autofiring weapon offers improved mobility but less firepower than most of it's larger cousins."
+	desc = "As the smallest autofiring weapon, it offers improved mobility but less firepower than most of it's larger cousins."
 	muzzle_iconstate = "muzzle_flash_light"
 	icon_state = "smg"
 	fire_sound = 'sound/mecha/weapons/mech_smg.ogg'
@@ -85,7 +85,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/burstrifle
 	name = "\improper Tethys burst rifle"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
-	desc = "Medium-sized burstfire weapon. Similar to the Cronus assault rifle, but burstfires."
+	desc = "Medium-sized mech assault weapon. Similar to the Cronus assault rifle, but fires in bursts."
 	icon_state = "burstrifle"
 	fire_sound = 'sound/mecha/weapons/mech_rifle.ogg'
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
@@ -144,16 +144,16 @@
 	projectiles_cache = 50
 	projectiles_cache_max = 50
 	variance = 6
-	projectile_delay = 2
+	projectile_delay = 1.5 SECONDS
 	slowdown = 0.3
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_SHOTGUN
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/greyscale_lmg
-	name = "\improper Briareus lmg"
+	name = "\improper Briareus LMG"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
-	desc = "A massive hulk of metal that fires base-bleed LMG rounds. Like the standard LMG, but bigger and better."
+	desc = "A massive hulk of metal that fires base-bleed LMG rounds. Like the standard LMG, but bigger, better and heavier."
 	icon_state = "lmg"
 	fire_sound = 'sound/mecha/weapons/mech_lmg.ogg'
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
@@ -175,7 +175,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/light_cannon
 	name = "\improper Leto light autocannon"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
-	desc = "A drum-fed autocannon that fires fragmentary rounds that burst in a frontal cone when the bullet impacts. Extra effective against grouped enemies."
+	desc = "A drum-fed autocannon that fires fragmentation rounds that burst in a frontal cone when the bullet impacts. Extra effective against clusters of enemies."
 	icon_state = "lightcannon"
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	flash_offsets = list(
@@ -210,7 +210,6 @@
 	slowdown = 0.4
 	harmful = TRUE
 	fire_mode = GUN_FIREMODE_AUTOMATIC
-	hitscan = TRUE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_projector
 	name = "\improper Gyges laser projector"
@@ -231,10 +230,9 @@
 	slowdown = 0.4
 	harmful = TRUE
 	fire_mode = GUN_FIREMODE_AUTOBURST
-	hitscan = TRUE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_smg
-	name = "\improper Mnemosyne laser smg"
+	name = "\improper Mnemosyne laser SMG"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	desc = "Standard mech laser SMG. Does not require amnmo refills and shoots highly accurate lasers that immediately hit, but deals slightly less damage compared to similar weapons. More mobile than the laser rifle."
 	icon_state = "lasersmg"
@@ -250,7 +248,6 @@
 	slowdown = 0.2
 	harmful = TRUE
 	fire_mode = GUN_FIREMODE_AUTOMATIC
-	hitscan = TRUE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/heavy_cannon
 	name = "\improper Themis heavy cannon"
@@ -274,7 +271,7 @@
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/minigun
-	name = "\improper Rhea minigun"
+	name = "\improper Rhea vulcan cannon"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	desc = "Mobility isn't needed when you can just hide behind a hail of bullets! Requires windup before firing."
 	icon_state = "minigun"
@@ -344,7 +341,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/flamethrower
 	name = "\improper Helios flamethrower"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
-	desc = "A specialized flamer for mounting on mechs. Bad mobility, but the napalm more than makes up for it."
+	desc = "A specialized flamer for mounting on mechs. Bad mobility, but the additional napalm more than makes up for it."
 	icon_state = "flamer"
 	fire_sound = 'sound/mecha/weapons/mech_flamer.ogg'
 	flash_offsets = list(
@@ -366,7 +363,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/rpg
 	name = "\improper Iapetus missile pod"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
-	desc = "A mech missile pod. Does not hold a lot of spare ammo and requires frequent external refills, but hey, exploding missile!"
+	desc = "A mech missile pod. Does not hold a lot of spare ammo and requires frequent external refills. But hey, exploding missiles all the way!"
 	icon_state = "rpg"
 	flash_offsets = list(
 		MECHA_R_ARM = list("N" = list(36,48), "S" = list(-1,1), "E" = list(56,20), "W" = list(-26,36)),

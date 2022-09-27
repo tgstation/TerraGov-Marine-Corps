@@ -1,6 +1,6 @@
 /obj/item/mecha_parts/mecha_equipment/armor/melee
 	name = "melee armor booster"
-	desc = "Boosts exosuit armor against melee attacks"
+	desc = "Boosts exosuit armor against melee attacks."
 	icon_state = "mecha_abooster_ccw"
 	iconstate_name = "melee"
 	protect_name = "Melee Armor"
@@ -9,7 +9,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/armor/acid
 	name = "acid armor booster"
-	desc = "Boosts exosuit armor against melee attacks"
+	desc = "Boosts exosuit armor against acid attacks."
 	icon_state = "mecha_abooster_ccw"
 	iconstate_name = "melee"
 	protect_name = "Melee Armor"
@@ -18,7 +18,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/armor/explosive
 	name = "explosive armor booster"
-	desc = "Boosts exosuit armor against melee attacks"
+	desc = "Boosts exosuit armor against explosions."
 	icon_state = "mecha_abooster_ccw"
 	iconstate_name = "melee"
 	protect_name = "Melee Armor"

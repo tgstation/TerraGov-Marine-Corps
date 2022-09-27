@@ -162,8 +162,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 ///returns degrees between two angles
 /proc/get_between_angles(degree_one, degree_two)
 	var/angle = abs(degree_one - degree_two) % 360
-	angle = angle> 180 ? 360 - angle : angle
-	return angle
+	return angle > 180 ? 360 - angle : angle
 
 /**
  *	Returns true if the path from A to B is blocked. Checks both paths where the direction is diagonal
