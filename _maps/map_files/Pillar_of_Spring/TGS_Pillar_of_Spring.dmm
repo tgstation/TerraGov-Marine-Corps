@@ -1582,6 +1582,17 @@
 /obj/structure/closet/bodybag,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
+"eX" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable,
+/obj/machinery/door/firedoor/mainship{
+	dir = 2;
+	id = "hangar_lockdown"
+	},
+/turf/open/floor/mainship/stripesquare,
+/area/mainship/hallways/starboard_hallway)
 "eZ" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -1688,6 +1699,17 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"fr" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/firedoor/mainship{
+	dir = 2;
+	id = "hangar_lockdown"
+	},
+/turf/open/floor/mainship/stripesquare,
+/area/mainship/hallways/aft_hallway)
 "ft" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -2552,17 +2574,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engineering)
-"hR" = (
-/obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/cable,
-/obj/machinery/door/firedoor/mainship{
-	dir = 2;
-	id = "hangar_lockdown"
-	},
-/turf/open/floor/mainship/stripesquare,
-/area/mainship/hallways/starboard_hallway)
 "hS" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -5069,6 +5080,13 @@
 /obj/item/clothing/mask/gas,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
+"pm" = (
+/obj/machinery/door/firedoor/mainship{
+	dir = 2;
+	id = "hangar_lockdown"
+	},
+/turf/open/floor/mainship/stripesquare,
+/area/mainship/hallways/starboard_hallway)
 "pn" = (
 /obj/structure/rack,
 /obj/item/tool/wrench,
@@ -5872,16 +5890,10 @@
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
 "rL" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/disposalpipe/segment,
-/obj/machinery/door/firedoor/mainship{
-	dir = 2;
-	id = "hangar_lockdown"
-	},
+/obj/machinery/door/firedoor/mainship,
 /turf/open/floor/mainship/stripesquare,
-/area/mainship/hallways/aft_hallway)
+/area/mainship/living/pilotbunks)
 "rM" = (
 /obj/machinery/door/airlock/mainship/generic/bathroom{
 	dir = 1
@@ -6599,12 +6611,6 @@
 /obj/machinery/computer/ordercomp,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
-"tP" = (
-/obj/machinery/firealarm{
-	dir = 4
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/aft_hallway)
 "tQ" = (
 /obj/machinery/status_display,
 /obj/effect/soundplayer,
@@ -8778,12 +8784,6 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
-"AK" = (
-/obj/machinery/firealarm{
-	dir = 8
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_hallway)
 "AL" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/clipboard{
@@ -9133,13 +9133,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
-"BL" = (
-/obj/machinery/door/firedoor/mainship{
-	dir = 2;
-	id = "hangar_lockdown"
-	},
-/turf/open/floor/mainship/stripesquare,
-/area/mainship/hallways/starboard_hallway)
 "BM" = (
 /obj/structure/barricade/metal{
 	dir = 1
@@ -12766,6 +12759,12 @@
 	dir = 4
 	},
 /area/mainship/medical/operating_room_one)
+"LH" = (
+/obj/machinery/firealarm{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/starboard_hallway)
 "LI" = (
 /obj/item/reagent_containers/food/snacks/grown/poppy,
 /obj/item/paper/memorial,
@@ -15258,6 +15257,12 @@
 /obj/item/weapon/gun/rifle/standard_carbine,
 /turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/firing_range)
+"SZ" = (
+/obj/machinery/firealarm{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/aft_hallway)
 "Ta" = (
 /obj/machinery/marine_selector/clothes,
 /obj/structure/window/reinforced,
@@ -50872,7 +50877,7 @@ rF
 rF
 IT
 ze
-tP
+SZ
 FC
 rF
 RO
@@ -50880,7 +50885,7 @@ rF
 rF
 jy
 jy
-BL
+pm
 jy
 jy
 jy
@@ -51128,7 +51133,7 @@ IP
 TA
 Yc
 Yc
-rL
+fr
 Yc
 Yc
 TA
@@ -51137,7 +51142,7 @@ Yc
 yv
 xj
 RB
-hR
+eX
 OD
 wQ
 RB
@@ -51394,12 +51399,12 @@ rF
 Iw
 jy
 FJ
-BL
+pm
 kL
 jy
 FJ
 BG
-AK
+LH
 YN
 jy
 qC
@@ -53437,9 +53442,9 @@ Ws
 Vg
 AV
 AV
-Yq
-XY
-Qh
+VO
+rL
+VO
 fj
 My
 Fe
