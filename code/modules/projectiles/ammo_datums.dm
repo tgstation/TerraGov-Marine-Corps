@@ -2826,8 +2826,8 @@ datum/ammo/bullet/revolver/tp44
 
 	drop_leashball(T)
 
-/datum/ammo/xeno/leash_ball/do_at_max_range(obj/projectile/proj)
-	drop_leashball(get_turf(proj))
+/datum/ammo/xeno/leash_ball/do_at_max_range(turf/T, obj/projectile/proj)
+	drop_leashball(T.density ? proj.loc : T)
 
 
 /// This spawns a leash ball and checks if the turf is dense before doing so
