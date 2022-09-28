@@ -209,7 +209,7 @@
 	if(deployable_item)
 		AddElement(/datum/element/deployable_item, deployable_item, type, deploy_time, undeploy_time)
 
-/obj/item/weapon/shield/proc/set_shield()
+/obj/item/weapon/shield/riot/marine/deployable/set_shield()
 	AddComponent(/datum/component/shield, SHIELD_PARENT_INTEGRITY, shield_cover = list(MELEE = 40, BULLET = 35, LASER = 35, ENERGY = 35, BOMB = 40, BIO = 15, FIRE = 30, ACID = 35))
 
 /obj/item/weapon/shield/energy

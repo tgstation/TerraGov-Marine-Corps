@@ -1164,6 +1164,7 @@
 /obj/structure/barricade/deployable
 	icon_state = "folding_0"
 	max_integrity = 300
+	coverage = 100
 	barricade_type = "folding"
 	can_wire = TRUE
 	is_wired = FALSE
