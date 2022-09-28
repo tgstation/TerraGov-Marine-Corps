@@ -1,4 +1,5 @@
 GLOBAL_LIST_EMPTY_TYPED(namepool, /datum/namepool)
+GLOBAL_LIST_EMPTY_TYPED(operation_namepool, /datum/operation_namepool)
 
 /datum/namepool
 	var/firstname_male_pool = "names/first_male"
@@ -71,3 +72,15 @@ GLOBAL_LIST_EMPTY_TYPED(namepool, /datum/namepool)
 /datum/namepool/robotic/get_random_name(gender = MALE)
 	. = pick(SSstrings.get_list_from_file(firstname_female_pool))
 	. += "-[rand(1,999)]" //pathfinder-738 or such
+
+/datum/operation_namepool
+	var/list/operation_titles = "names/operation_title"
+	var/list/operation_prefixes = "names/operation_prefix"
+	var/list/operation_postfixes = "names/operation_postfix"
+	var/operation_name
+
+/datum/operation_namepool/proc/get_random_name()
+	operation_name = pick(SSstrings.get_list_from_file(operation_titles))
+	operation_name += " [pick(SSstrings.get_list_from_file(operation_prefixes))]"
+	operation_name += "-[pick(SSstrings.get_list_from_file(operation_postfixes))]"
+	return uppertext(operation_name)

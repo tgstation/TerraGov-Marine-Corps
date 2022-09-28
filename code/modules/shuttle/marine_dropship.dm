@@ -157,7 +157,7 @@
 	///The timer to launch the dropship in automatic mode
 	var/cycle_timer
 	///If first landing is false intro sequence wont play
-	var/first_landing = TRUE
+	var/static/first_landing = TRUE
 
 /obj/docking_port/mobile/marine_dropship/register()
 	. = ..()
@@ -173,7 +173,7 @@
 		for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 			if(human.faction != FACTION_TERRAGOV)
 				return
-			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OPERATION BALD SLAUGHTER</u></span><br>" + "AFTER ACTION PLAYBACK<br>" + "Long Range Patrol Rapid Response Platoon<br>" + "[human.job.title], [human]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]", /obj/screen/text/screen_text/command_order/intro)
+			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[GLOB.operation_namepool[/datum/operation_namepool].get_random_name()]</u></span><br>" + "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Long Range Patrol Rapid Response Platoon<br>" + "[human.job.title], [human]", /obj/screen/text/screen_text/command_order/intro)
 		first_landing = FALSE
 
 /obj/docking_port/mobile/marine_dropship/proc/lockdown_all()

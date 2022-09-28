@@ -81,7 +81,16 @@
 	var/datum/game_mode/combat_patrol/D = SSticker.mode
 	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/set_game_timer), SSticker.round_start_time + shutters_drop_time + 5 MINUTES) //game cannot end until at least 5 minutes after shutter drop
 	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/respawn_wave), SSticker.round_start_time + shutters_drop_time) //starts wave respawn on shutter drop and begins timer
+	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/intro_sequence), SSticker.round_start_time + shutters_drop_time - 10 SECONDS) //starts intro sequence 10 seconds before shutter drop
 	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, SSticker.round_start_time + shutters_drop_time + bioscan_interval)
+
+///intro sequence
+/datum/game_mode/combat_patrol/proc/intro_sequence()
+	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
+		if(human.faction == FACTION_TERRAGOV)
+			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[GLOB.operation_namepool[/datum/operation_namepool].get_random_name()]</u></span><br>" + "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "[SSmapping.configs[GROUND_MAP].map_name] Territorial Defense Force Platoon<br>" + "[human.job.title], [human]<br>", /obj/screen/text/screen_text/command_order/intro)
+		else
+			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[GLOB.operation_namepool[/datum/operation_namepool].get_random_name()]</u></span><br>" + "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Shokk Infantry Platoon<br>" + "[human.job.title], [human]<br>", /obj/screen/text/screen_text/command_order/intro)
 
 ///round timer
 /datum/game_mode/combat_patrol/proc/set_game_timer()
