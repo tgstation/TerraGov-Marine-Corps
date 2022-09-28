@@ -300,3 +300,44 @@
   tyeagg:
   - qol: bigger minimap icons for disks and orders
   - imageadd: big minimap icons
+2022-09-27:
+  RipGrayson:
+  - rscadd: Added in two random rouny spawners per map.
+  - balance: Several useless reinforced windows on Gelida have been removed.
+  - balance: Removed the extra metal stacks from Gelida.
+  - balance: Removed an easily defensible miner from Gelida.
+  - balance: Removed a rogue B17 helmet from Gelida.
+  - bugfix: Added a missing Gelida shutter.
+  - bugfix: The morgue trays on two BR medbay modules now can be accessed normally.
+  - imageadd: Ported a new icon for dogtags.
+  Zar000:
+  - bugfix: define better than string
+  hyper2snyper:
+  - rscadd: 'The newly sprited primaries are now colorable with facepaint. Included:
+      AR12, AR18, SMG90, P14, SH35, LMG42'
+  - rscadd: Support for colorable attachments, SH-35 stock now colorable like the
+      gun itself.
+2022-09-28:
+  Jalopkomit18:
+  - qol: Oxycodone bottle capacity changed to 60u
+  Lewdcifer:
+  - balance: Pheromone tower cost 100 > 150, range 22 > 32, building time 10 > 5 seconds.
+  - bugfix: Pheromone towers now allow building around it.
+  - bugfix: Pheromone towers will now spawn under the xenomorph rather than southwest
+      of it.
+  - bugfix: Pheromone towers will now delete correctly.
+  MLGTASTICa:
+  - bugfix: Fixed plasteel cades not being wired by LZ drones.
+  Naaanii:
+  - balance: Increased Howie HE and Incen shell prices to 4
+  - balance: Increased Howie Tfoot and WP shell prices to 6
+  RipGrayson:
+  - imageadd: The nuke has been partially resprited to be less saturated and more
+      detailed.
+  - imagedel: The green nuke sprites have been deleted.
+  - imagedel: New style vests are back to what they were.
+  - soundadd: Added quite a few new voice lines for AI.
+  - sounddel: Removed some old voice lines that weren't likely to be used.
+  iLikeMemes:
+  - rscadd: Primo hunters get to use stealth again, but not at the same time as disguise.
+  - qol: added seperate keybinds for disguise and stealth

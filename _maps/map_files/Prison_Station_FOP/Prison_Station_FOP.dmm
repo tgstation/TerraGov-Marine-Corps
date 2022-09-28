@@ -1654,6 +1654,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
+/obj/effect/spawner/random/plushie,
 /turf/open/floor/prison,
 /area/prison/research/secret/containment)
 "agL" = (
@@ -47219,6 +47220,11 @@
 	},
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/north)
+"tVE" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/random/plushie,
+/turf/open/floor/wood,
+/area/prison/parole/protective_custody)
 "tWb" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating,
@@ -95489,7 +95495,7 @@ chH
 ciU
 cjL
 cjL
-cjL
+tVE
 clr
 cjL
 ciU

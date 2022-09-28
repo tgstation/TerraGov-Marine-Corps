@@ -1168,21 +1168,24 @@ TUNNEL
 	desc = "A resin formation that looks like a small pillar. A faint, weird smell can be perceived from it."
 	icon = 'icons/Xeno/1x1building.dmi'
 	icon_state = "recoverytower"
-	bound_width = 64
-	bound_height = 64
+	bound_width = 32
+	bound_height = 32
 	obj_integrity = 400
 	max_integrity = 400
 	xeno_structure_flags = CRITICAL_STRUCTURE
+	///This pheromone tower's faction number.
+	var/hivenumber = XENO_HIVE_NORMAL
 	///The type of pheromone currently being emitted.
 	var/datum/aura_bearer/current_aura
 	///Strength of pheromones given by this tower.
 	var/aura_strength = 5
 	///Radius (in tiles) of the pheromones given by this tower.
-	var/aura_radius = 22
+	var/aura_radius = 32
 
 /obj/structure/xeno/pherotower/Initialize(mapload, hivenum)
 	. = ..()
-	GLOB.hive_datums[hivenum].pherotowers += src
+	GLOB.hive_datums[hivenumber].pherotowers += src
+	hivenumber = hivenum
 
 //Pheromone towers start off with recovery.
 	current_aura = SSaura.add_emitter(src, AURA_XENO_RECOVERY, aura_radius, aura_strength, -1, FACTION_XENO)
@@ -1195,6 +1198,10 @@ TUNNEL
 			take_damage(500)
 		if(EXPLODE_LIGHT)
 			take_damage(300)
+
+/obj/structure/xeno/pherotower/Destroy()
+	GLOB.hive_datums[hivenumber].pherotowers -= src
+	return ..()
 
 // Clicking on the tower brings up a radial menu that allows you to select the type of pheromone that this tower will emit.
 /obj/structure/xeno/pherotower/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)

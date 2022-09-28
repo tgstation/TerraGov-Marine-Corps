@@ -1052,6 +1052,7 @@
 /area/mainship/shipboard/port_point_defense)
 "adD" = (
 /obj/machinery/telecomms/server/presets/charlie,
+/obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
 "adF" = (
@@ -1930,6 +1931,8 @@
 /area/mainship/command/self_destruct)
 "aBc" = (
 /obj/machinery/self_destruct/console,
+/obj/effect/spawner/random/plushie/nospawnninety{
+	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "aBe" = (
@@ -2633,6 +2636,7 @@
 /area/mainship/living/commandbunks)
 "baN" = (
 /obj/machinery/telecomms/server/presets/cas,
+/obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
 "baO" = (
@@ -3134,7 +3138,8 @@
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "bgf" = (
-/obj/machinery/computer/telecomms/server,
+/obj/machinery/camera/autoname/mainship,
+/obj/machinery/computer/telecomms/server/preset,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/telecomms)
 "bgu" = (
@@ -3574,7 +3579,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bkb" = (
-/obj/machinery/computer/telecomms/monitor,
+/obj/machinery/computer/telecomms/monitor/preset,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/telecomms)
 "bkc" = (
@@ -3980,6 +3985,7 @@
 /obj/item/folder/black,
 /obj/structure/paper_bin,
 /obj/item/tool/pen,
+/obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/mainship/engineering/ce_room)
 "blm" = (
@@ -6099,6 +6105,7 @@
 /area/mainship/engineering/lower_engineering)
 "bHG" = (
 /obj/machinery/power/monitor,
+/obj/structure/cable,
 /turf/open/floor/mainship/orange,
 /area/mainship/engineering/lower_engineering)
 "bHH" = (
@@ -10591,6 +10598,7 @@
 "gbk" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/power/monitor,
+/obj/structure/cable,
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
@@ -10664,6 +10672,7 @@
 /area/mainship/living/cafeteria_starboard)
 "ggr" = (
 /obj/structure/bed/chair/office/dark,
+/obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/mainship/engineering/ce_room)
 "ghz" = (
@@ -18702,6 +18711,8 @@
 /area/mainship/living/cafeteria_starboard)
 "uBZ" = (
 /obj/machinery/autodoc,
+/obj/effect/spawner/random/plushie/nospawnninetyfive{
+	},
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/lower_medical)
 "uDw" = (

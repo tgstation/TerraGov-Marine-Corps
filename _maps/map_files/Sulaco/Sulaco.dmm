@@ -5687,6 +5687,8 @@
 /area/sulaco/briefing)
 "aBB" = (
 /obj/structure/table/mainship,
+/obj/effect/spawner/random/plushie/nospawnninetyfive{
+	},
 /turf/open/floor/prison,
 /area/sulaco/briefing)
 "aBC" = (
@@ -9988,7 +9990,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/sulaco/telecomms)
 "bbX" = (
-/obj/machinery/computer/telecomms/monitor,
+/obj/machinery/computer/telecomms/monitor/preset,
 /turf/open/floor/prison,
 /area/sulaco/telecomms/office)
 "bbY" = (
@@ -10094,6 +10096,7 @@
 /area/sulaco/telecomms)
 "bdf" = (
 /obj/machinery/computer/telecomms/server,
+/obj/machinery/computer/telecomms/server/preset,
 /turf/open/floor/prison,
 /area/sulaco/telecomms/office)
 "bdg" = (
@@ -21182,6 +21185,12 @@
 "qDO" = (
 /turf/open/floor/mainship_hull/gray/dir,
 /area/space)
+"qDX" = (
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/plushie/nospawnninetyfive{
+	},
+/turf/open/floor/prison/sterilewhite,
+/area/sulaco/cafeteria)
 "qFe" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -46925,7 +46934,7 @@ anw
 eHj
 aKD
 ptE
-xXL
+qDX
 mnO
 aJy
 aLf
