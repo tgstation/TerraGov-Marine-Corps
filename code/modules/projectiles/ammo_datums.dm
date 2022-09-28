@@ -2818,13 +2818,9 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/xeno/leash_ball/on_hit_obj(obj/O, obj/projectile/proj)
 	var/turf/T = get_turf(O)
-	if(!T)
+	if(T.density || (O.density && !O.throwpass))
 		T = get_turf(proj)
-
-	if(O.density && !(O.flags_atom & ON_BORDER))
-		T = get_turf(get_step(T, turn(proj.dir, 180))) //If the object is dense and not a border object like barricades, we instead drop in the location just prior to the target
-
-	drop_leashball(T)
+	drop_leashball(T.density ? proj.loc : T, P.firer)
 
 /datum/ammo/xeno/leash_ball/do_at_max_range(turf/T, obj/projectile/proj)
 	drop_leashball(T.density ? proj.loc : T)
