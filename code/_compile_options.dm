@@ -27,7 +27,7 @@
 
 //Update this whenever you need to take advantage of more recent byond features
 #define MIN_COMPILER_VERSION 514
-#define MIN_COMPILER_BUILD 1584
+#define MIN_COMPILER_BUILD 1585
 #ifndef SPACEMAN_DMM
 #if DM_VERSION < MIN_COMPILER_VERSION || DM_BUILD < MIN_COMPILER_BUILD
 //Don't forget to update this part
