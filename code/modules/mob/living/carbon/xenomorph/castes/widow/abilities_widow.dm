@@ -70,18 +70,34 @@
 /// Humans caught get beamed and registered for proc/check_dist, aoe_leash also gains increased integrity for each caught human
 /obj/structure/xeno/aoe_leash/Initialize(mapload)
 	. = ..()
-	for(var/mob/living/carbon/human/victim in view(leash_radius, loc))
+	for(var/mob/living/carbon/human/victim in GLOB.humans_by_zlevel["[z]"])
+		if(get_dist(src, victim) > leash_radius)
+			continue
 		if(victim.stat == DEAD) /// Add || CONSCIOUS after testing
-			break
+			continue
 		if(HAS_TRAIT(victim, TRAIT_LEASHED))
-			break
-		ADD_TRAIT(victim, TRAIT_LEASHED, src)
-		beams += beam(victim, "beam_web", 'icons/effects/beam.dmi', INFINITY, INFINITY)
+			continue
+		if(!check_path(src, victim, projectile = TRUE))
+			continue
 		leash_victims += victim
-		RegisterSignal(victim, COMSIG_MOVABLE_PRE_MOVE, .proc/check_dist)
+	for(var/mob/living/carbon/human/snared_victim AS in leash_victims)
+		ADD_TRAIT(snared_victim, TRAIT_LEASHED, src)
+		beams += beam(snared_victim, "beam_web", 'icons/effects/beam.dmi', INFINITY, INFINITY)
+		RegisterSignal(snared_victim, COMSIG_MOVABLE_PRE_MOVE, .proc/check_dist)
 	if(!length(beams))
 		return INITIALIZE_HINT_QDEL
 	QDEL_IN(src, leash_life)
+
+/proc/check_path(atom/start, atom/end, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE)
+	var/list/path_to_target = getline(start, end)
+	var/line_count = 1
+	for(var/path_turf in path_to_target)
+		if(line_count == length(path_to_target))
+			break
+		if(LinkBlocked(path_to_target[line_count], path_to_target[line_count + 1], bypass_window, projectile, bypass_xeno))
+			return FALSE
+		line_count ++
+	return TRUE
 
 /// To remove beams after the leash_ball is destroyed and also unregister all victims
 /obj/structure/xeno/aoe_leash/Destroy()
