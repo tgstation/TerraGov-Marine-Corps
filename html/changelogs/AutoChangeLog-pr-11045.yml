@@ -1,5 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes: 
-  - soundadd: "Added quite a few new voice lines for AI."
-  - sounddel: "Removed some old voice lines that weren't likely to be used."

@@ -1,6 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes: 
-  - imageadd: "The nuke has been partially resprited to be less saturated and more detailed."
-  - imagedel: "The green nuke sprites have been deleted."
-  - imagedel: "New style vests are back to what they were."
