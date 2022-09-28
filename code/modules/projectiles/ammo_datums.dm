@@ -2828,8 +2828,6 @@ datum/ammo/bullet/revolver/tp44
 
 /// This spawns a leash ball and checks if the turf is dense before doing so
 /datum/ammo/xeno/leash_ball/proc/drop_leashball(turf/T)
-	if(T.density)
-		return
 	new /obj/structure/xeno/aoe_leash(get_turf(T))
 /*
 //================================================
