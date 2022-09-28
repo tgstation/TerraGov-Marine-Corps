@@ -33,6 +33,8 @@
 		"SMGs" = list(
 			/obj/item/weapon/gun/smg/standard_smg = -1,
 			/obj/item/ammo_magazine/smg/standard_smg = -1,
+			/obj/item/weapon/gun/smg/m25 = -1,
+			/obj/item/ammo_magazine/smg/m25 = -1,
 			/obj/item/weapon/gun/smg/standard_machinepistol = -1,
 			/obj/item/ammo_magazine/smg/standard_machinepistol = -1,
 		),
@@ -1235,6 +1237,8 @@
 			/obj/item/storage/belt/sparepouch = -1,
 			/obj/item/storage/belt/gun/pistol/standard_pistol = -1,
 			/obj/item/storage/belt/gun/revolver/standard_revolver = -1,
+			/obj/item/storage/holster/t19 = -1,
+			/obj/item/storage/holster/m25 = -1,
 			/obj/item/storage/holster/blade/machete/full = -1,
 			/obj/item/storage/holster/blade/machete/full_harvester = -1,
 			/obj/item/storage/belt/utility/full =-1,
