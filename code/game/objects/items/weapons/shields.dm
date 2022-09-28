@@ -190,8 +190,10 @@
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "folding_shield"
 	flags_equip_slot = ITEM_SLOT_BACK
+	w_class = WEIGHT_CLASS_NORMAL
 	max_integrity = 300
 	integrity_failure = 50
+	slowdown = 0.3
 	///The item this deploys into
 	var/deployable_item = /obj/structure/barricade/deployable
 	///Time to deploy
