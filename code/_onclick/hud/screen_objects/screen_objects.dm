@@ -3,7 +3,7 @@
 	icon = 'icons/mob/screen/generic.dmi'
 	layer = HUD_LAYER
 	plane = HUD_PLANE
-	resistance_flags = RESIST_ALL
+	resistance_flags = RESIST_ALL | PROJECTILE_IMMUNE
 	appearance_flags = APPEARANCE_UI
 	var/obj/master //A reference to the object in the slot. Grabs or items, generally.
 	var/datum/hud/hud // A reference to the owner HUD, if any./obj/screen
@@ -494,8 +494,8 @@
 	if(!isliving(usr))
 		return
 	var/mob/living/living_user = usr
-	if(living_user.getStaminaLoss() < 0 && living_user.max_stamina_buffer)
-		living_user.balloon_alert(living_user, "Stamina buffer:[(-living_user.getStaminaLoss() * 100 / living_user.max_stamina_buffer)]%")
+	if(living_user.getStaminaLoss() < 0 && living_user.max_stamina)
+		living_user.balloon_alert(living_user, "Stamina buffer:[(-living_user.getStaminaLoss() * 100 / living_user.max_stamina)]%")
 		return
 	living_user.balloon_alert(living_user, "You have [living_user.getStaminaLoss()] stamina loss")
 

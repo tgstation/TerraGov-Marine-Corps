@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "b" = (
 /obj/structure/cable,
@@ -13,15 +13,13 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
-/turf/open/floor{
-	icon_state = "dark"
+/turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/southcheckpoint)
 "d" = (
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/tool,
-/turf/open/floor{
-	icon_state = "dark"
+/turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/southcheckpoint)
 "e" = (
@@ -32,54 +30,48 @@
 	name = "\improper Checkpoint Office"
 	},
 /obj/structure/cable,
-/turf/open/floor{
-	icon_state = "dark"
+/turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/southcheckpoint)
 "f" = (
 /obj/item/radio,
 /obj/structure/table/mainship,
-/turf/open/floor{
-	icon_state = "dark"
+/turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/southcheckpoint)
 "h" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/spawner/gibspawner/human,
-/turf/open/floor{
-	icon_state = "dark"
+/turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/southcheckpoint)
 "j" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "dark"
+/turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/southcheckpoint)
 "k" = (
 /obj/structure/filingcabinet,
 /obj/structure/cable,
-/turf/open/floor/gcircuit,
+/turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/southcheckpoint)
 "l" = (
 /obj/item/trash/sosjerky,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
-/turf/open/floor{
-	icon_state = "dark"
+/turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/southcheckpoint)
 "m" = (
 /obj/structure/table/mainship,
-/turf/open/floor/gcircuit,
+/turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/southcheckpoint)
 "n" = (
 /obj/machinery/door/airlock/mainship/security/glass{
 	dir = 1;
 	name = "\improper Checkpoint Office"
 	},
-/turf/open/floor{
-	icon_state = "dark"
+/turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/southcheckpoint)
 "o" = (
@@ -87,53 +79,47 @@
 /obj/machinery/computer/secure_data{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "dark"
+/turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/southcheckpoint)
 "q" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/toolbox,
-/turf/open/floor{
-	icon_state = "dark"
+/turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/southcheckpoint)
 "s" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/metal/small_stack,
-/turf/open/floor{
-	icon_state = "dark"
+/turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/southcheckpoint)
 "t" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	icon_state = "dark"
+/turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/southcheckpoint)
 "u" = (
 /obj/structure/inflatable,
-/turf/open/floor/gcircuit,
+/turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/southcheckpoint)
 "v" = (
 /obj/structure/rack,
 /obj/item/storage/firstaid,
-/turf/open/floor{
-	icon_state = "dark"
+/turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/southcheckpoint)
 "w" = (
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/technology_scanner,
-/turf/open/floor/gcircuit,
+/turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/southcheckpoint)
 "z" = (
 /obj/machinery/power/apc{
 	start_charge = 0
 	},
 /obj/structure/cable,
-/turf/open/floor{
-	icon_state = "dark"
+/turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/southcheckpoint)
 "A" = (
@@ -141,13 +127,12 @@
 /obj/machinery/computer/security/wooden_tv{
 	dir = 8
 	},
-/turf/open/floor/gcircuit,
+/turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/southcheckpoint)
 "B" = (
 /obj/structure/table/mainship,
 /obj/item/restraints/handcuffs,
-/turf/open/floor{
-	icon_state = "dark"
+/turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/southcheckpoint)
 "E" = (
@@ -155,21 +140,19 @@
 	dir = 4;
 	icon_state = "officechair_white"
 	},
-/turf/open/floor{
-	icon_state = "dark"
+/turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/southcheckpoint)
 "F" = (
 /obj/structure/largecrate,
-/turf/open/floor{
-	icon_state = "dark"
+/turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/southcheckpoint)
 "G" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/southcheckpoint)
 "H" = (
-/turf/open/floor/gcircuit,
+/turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/southcheckpoint)
 "I" = (
 /obj/structure/window/framed/colony/reinforced,
@@ -179,15 +162,13 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "dark"
+/turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/southcheckpoint)
 "O" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
-/turf/open/floor{
-	icon_state = "dark"
+/turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/southcheckpoint)
 "P" = (
@@ -197,42 +178,37 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "dark"
+/turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/southcheckpoint)
 "Q" = (
 /obj/structure/largecrate,
-/turf/open/floor/gcircuit,
+/turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/southcheckpoint)
 "R" = (
 /obj/structure/table/mainship,
 /obj/item/ashtray/bronze,
 /obj/item/trash/cigbutt/cigarbutt,
-/turf/open/floor/gcircuit,
+/turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/southcheckpoint)
 "S" = (
 /obj/structure/table/mainship,
 /obj/item/attachable/motiondetector,
-/turf/open/floor{
-	icon_state = "dark"
+/turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/southcheckpoint)
 "T" = (
 /obj/structure/cable,
-/turf/open/floor{
-	icon_state = "dark"
+/turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/southcheckpoint)
 "U" = (
-/turf/open/floor{
-	icon_state = "dark"
+/turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/southcheckpoint)
 "W" = (
 /obj/structure/window/framed/colony/reinforced,
-/turf/open/floor{
-	icon_state = "dark"
+/turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/southcheckpoint)
 "X" = (
@@ -241,13 +217,12 @@
 	icon_state = "tube1"
 	},
 /obj/machinery/vending/security,
-/turf/open/floor{
-	icon_state = "dark"
+/turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/southcheckpoint)
 "Y" = (
 /obj/structure/closet/secure_closet/marshal,
-/turf/open/floor/gcircuit,
+/turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/southcheckpoint)
 
 (1,1,1) = {"

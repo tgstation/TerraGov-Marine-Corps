@@ -285,7 +285,6 @@
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bipod,
-		/obj/item/attachable/stock/t12stock,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/extended_barrel,
@@ -375,8 +374,8 @@
 	toggle_item_bump_attack(user, FALSE)
 
 /obj/item/weapon/twohanded/rocketsledge/examine(mob/user)
-	..()
-	to_chat(user, "It contains [reagents.get_reagent_amount(/datum/reagent/fuel)]/[max_fuel] units of fuel!")
+	. = ..()
+	. += "It contains [reagents.get_reagent_amount(/datum/reagent/fuel)]/[max_fuel] units of fuel!"
 
 /obj/item/weapon/twohanded/rocketsledge/wield(mob/user)
 	. = ..()

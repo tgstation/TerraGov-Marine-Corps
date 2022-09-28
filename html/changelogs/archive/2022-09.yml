@@ -1,0 +1,343 @@
+2022-09-01:
+  Lumipharon:
+  - balance: Targetting hands when shooting has a higher accuracy malus
+  - code_imp: Some tweaks to projectile accuracy and hit code
+  - rscadd: Added a low impact shell for the RR, with less direct hit damage and blind
+      range
+  - balance: 'Combat Patrol: RR loadout only has low impact RR shells'
+  RipGrayson:
+  - qol: Signs now have directional signs on them to keep mappers from being confused.
+  - bugfix: Patched some signs that would defy gravity and hang out in midair.
+  lbnesquik:
+  - qol: Added a camera to the tadpole, like alamo.
+2022-09-02:
+  Lumipharon:
+  - rscadd: The CLF now carry a much larger variety of equipment
+  - balance: Improved the performance of the Skorpion SMG
+2022-09-03:
+  Lumipharon:
+  - balance: Increased the durability of some map objects and structures against guns
+  - balance: Hydro trays provide slightly better cover
+  - bugfix: MG-27 actually uses 10x27mm rounds as described
+2022-09-04:
+  BraveMole:
+  - bugfix: Fix piercing projectile hitting the same atom multiple times
+  novaepee:
+  - qol: delete a girder in Big Red LZ1 and move crate in LV624 to let marines using
+      FOB drone not suffer
+2022-09-05:
+  Lumipharon:
+  - rscadd: Adds some tips of the round for HvH
+  - balance: Marine helmets now consistantly provide the same armour as heavy armour,
+      with MX11 helmets a little better against projectiles
+  - balance: SOM armour tweaked slightly to be more consistant, with shoes and gloves
+      now having the same armour as marine versions
+  tyeagg:
+  - balance: orbit system simplified to only have 3 orbits
+  - balance: time it takes for orbit to change to 3 minutes
+  - balance: time it takes to change orbit at roundstart from 30 minutes to 10 minutes
+2022-09-06:
+  MLGTASTICa:
+  - balance: Defender crest-defense now provides stagger immunity while active.
+  RikuTheKiller:
+  - bugfix: AI can now use the FOB building console again
+  ivanmixo:
+  - qol: You are now your character when spawned into vallhalla
+2022-09-09:
+  Lumipharon:
+  - rscadd: Added a grenade jaeger storage module with a 6 slot capacity
+  RipGrayson:
+  - bugfix: The hangar lockdown in PoS now works again
+  - bugfix: Medbay disposals on PoS should function properly now without spitting
+      objects out mid-transit.
+  ivanmixo:
+  - qol: You can now respawn into EORD no matter your pref for it
+  - bugfix: Fixed the valhalla loadout vendor not working
+  lbnesquik:
+  - bugfix: Prevent xenos from hearing Vox on shipside
+2022-09-11:
+  Lumipharon:
+  - balance: V-21 wielded accuracy reduced slightly, and fuller auto scatter increased
+  - balance: Increased the stagger and slow of V-31 microgrenades slightly, and improved
+      the damage and radius of cluster grenade bomblets
+  - balance: Changed the AOE calculation for the wide flamer nozzle to be more useful
+  - bugfix: fixed flamers not igniting tiles with border objects like barricades or
+      windoors in suitable cases
+  - refactor: refactored some flamer and cone code
+  - balance: Improved GL-54 airburst stagger and slow slightly, removed it entirely
+      from incendiary
+  Pariah919:
+  - rscadd: Added 3 new chemical shells to RR (Smoke/HEAT/CloakSmoke/Tanglefoot).
+      Tanglefoot is req only plasmaloss gas, Smoke/Cloak Smoke are smoke grenades
+      of their respective types, these chemical shells are IFF and do not deal any
+      noticeable damage.
+  - rscadd: HEAT rounds to RR, these are direct fire shells with no falloff, explosion
+      or armor check. It does a flat 200 damage to whatever it hits.
+  QualityVan:
+  - balance: You need 20-30 burn damage on a limb in order for it to be immune to
+      getting chopped off, instead of any at all.
+  - bugfix: Wraith can't banish weeds/resin
+  Xsdew:
+  - imageadd: Once again changed the Sprites of the AR12, AR18, MG42, P14, SMG90,
+      and SH35. Sprites by Kuro.
+  lbnesquik:
+  - qol: Improved Droids and UV's examine to show more accurate ammo counts
+  - qol: improved UV's crates names to make their names more useful
+  - qol: Added caliber information to UV's, relative to their current weapon type.
+  - bugfix: Made UV ammo work closer to regular magazines. No more ammo wasting.
+  - bugfix: Couple of typos related to UV ammo
+  - spellcheck: fixed a typo on the mint protein bars
+  - balance: Lowered Plasma cutter damage
+  maikilangiolo:
+  - qol: SOM seasonals are now in the seasonal vendor
+  - qol: seasonals condensed into 4 guns for more choice and faster rotation
+  - rscadd: the old V10 shotgun made his way into the seasonals
+  mc-oofert:
+  - rscadd: Rangefinder/Tactical Binoculars can now link to multiple mortars
+2022-09-12:
+  QualityVan:
+  - config: Removed config numbers organ_health_multiplier and organ_regeneration_multiplier
+  lbnesquik:
+  - rscadd: Add req points from mining to round end stats
+  - qol: Swapped the AI and Synth rooms on POS
+2022-09-13:
+  BraveMole:
+  - code_imp: Improve performance of pathfinder
+  QualityVan:
+  - bugfix: Synth heads can be reattached
+  - bugfix: Heads have their proper hair and name and aren't invisible sometimes
+  Wayland-Smithy & novaepee:
+  - rscadd: 'Added new carrier ability: Drop all facehuggers'
+  - bugfix: Fixed useless loop condition in hugger drop on death code and moved it
+      into the action
+  lbnesquik:
+  - qol: made it clear when a turf is underground or not
+  novaepee:
+  - rscdel: Remove unused APC in synth room that drain CIC of its power
+2022-09-14:
+  AzonStarfall:
+  - qol: Moves the V1 Thermal Dampening Tarp to the Marine Armaments Vendor, Specialized
+      tab.
+  - bugfix: Fixes supply drop console delay message.
+  Lumipharon:
+  - rscadd: 'Combat Patrol: Added some more SOM loadouts and gear'
+  - rscadd: 'Combat Patrol: Added a flamethrower loadout to marines'
+  - balance: Slight buffs to the volkite charger as it was under performing relative
+      to the caliver
+  - balance: 'Combat Patrol: Shocktrooper loadout now uses the ALF-51B'
+  - bugfix: Couple of minor typo fixes
+  - bugfix: X fuel tanks no longer convert ordinary fuel to X fuel
+  - rscadd: You can now bash your shield with any weapon, not just batons
+  RipGrayson:
+  - balance: Chigusa now has some more prebuilt resin structures on Chigusa
+  - balance: Chigusa LZs are slightly bigger so marines can build fortifications more
+      easily.
+  - bugfix: Chigusa LZ1 now has a proper building exclusion zone again.
+  - bugfix: Removed the duplicate blue disk generator in Chigusa.
+  lbnesquik:
+  - qol: Wrenching noise for wrenching req factory machines
+  - bugfix: fix unmanned droids not having their ammo counter update until they were
+      fired.
+  nova_epee and crow:
+  - imageadd: new sprites for brute kit, burn kit, and surgery membrane
+  - rscdel: useless sprites that never been used for brute and burn kit
+2022-09-15:
+  BraveMole:
+  - bugfix: Fix ais seemingly teleporting
+  - bugfix: Dead ai moving too much
+  Lumipharon:
+  - bugfix: You can no longer disassemble, remove the ammo from, or use the interface
+      of a hostile turret.
+  - refactor: refactored looping sounds
+  RipGrayson:
+  - rscadd: Added Gelida IV, a new map based off of CM's WIP LV522 map.
+  - imageadd: Created some new icons for use in Gelida IV.
+  - imageadd: Ported a handful of new icons for use in Gelida IV, mostly from CM.
+  lbnesquik:
+  - qol: Made the AI unable to hear vending ads.
+  - qol: Rename minigun to MG-100 Vindicator, a conflation of MG 100 and MIC-A7 Vindicator
+  - qol: Added name & area to supply beacons
+  - bugfix: fixed the req factory saying Outputter instead of Unboxer
+2022-09-16:
+  AzonStarfall:
+  - rscadd: Adds craftable Optical Imager Ballistic Goggles
+  - qol: Marines and SOM no longer have randomized hunger on spawn
+  Lewdcifer:
+  - bugfix: Trauma kit sprite should now appear correctly.
+  Lumipharon:
+  - code_imp: minor looping_sounds bugfix
+  tyeagg:
+  - rscdel: removed opacity from explosion particles
+2022-09-17:
+  567Turtle:
+  - balance: you can now hold a whistle and a soldering tool in the white webbing
+      vest, as well as an injector in your boots
+  BraveMole:
+  - balance: Minions moves faster
+  - code_imp: Minions movement are way less laggy
+  Lewdcifer:
+  - rscdel: Removed SoM seasonals.
+  Lumipharon:
+  - bugfix: The Local System Special Forces has been dragged out of the warp, and
+      can now appear as an ERT once more
+  MLGTASTICa:
+  - balance: Reduced the default rocket subtype flash range from 5 to 2
+  - balance: Reduced RR rocket flash range from 5 to 2
+  - balance: Reduced the LRR rocket flash range from 5 to 1 balance:Reduced the low
+      impact RR rocket flash range from 3 to 2
+  - balance: Anti-personnel landmines no longer get triggered by dead mobs
+  TiviPlus:
+  - rscadd: Added MP role
+  - code_imp: Optimised some loading
+  hyper2snyper:
+  - bugfix: Fixes the attachment icons updating when attached.
+  lbnesquik:
+  - rscadd: Made it so droids can be used as supply beacons.
+  - rscadd: Added the Fire Axe to Pillar of Spring
+  - qol: Gave the AI a notification for drop pod usage.
+2022-09-18:
+  Lumipharon:
+  - bugfix: Autoburst now respects akimbo extra fire delay modifiers
+  - bugfix: Fixed a bug that could cause guns to retain akimbo modifiers when no longer
+      akimbo in specific cirumstances
+  Naaanii:
+  - admin: adds Gorger to the admin player panel tab
+  lbnesquik:
+  - rscadd: Added a device which allows the AI to remotely target artillery pieces.
+2022-09-20:
+  BraveMole:
+  - bugfix: Fix ai not stopping when controlled by a player
+  - bugfix: Fix letter overlay on medical items bug out in storage slots
+  Lumipharon:
+  - bugfix: Cluster and smoke cluster micronades can no longer hit things past solid
+      objects
+  MiniMeatwad:
+  - admin: Set-Xeno-Buffs verb percentage logging now accurate.
+  Naaanii:
+  - admin: adds Combat Robot to admin player panel
+2022-09-21:
+  Lewdcifer:
+  - balance: Resin door build time and plasma costs reduced (same as resin walls).
+  Lumipharon:
+  - soundadd: Updates some sounds for the V-51
+  RipGrayson:
+  - balance: Most of Gelida's platforms are now decorative and do not require climbing.
+  - balance: Most of Gelida's platforms do not block shots or projectiles.
+  - balance: The remaining platforms on Gelida that function normally have drastically
+      reduced health.
+  - balance: Gelida caves has been slightly expanded south.
+  - balance: Gelida caves now has a number of new exits and entrances to keep xenos
+      from being bottled up as easily.
+  - balance: Some potential crusher and boiler lanes on Gelida have been cleared of
+      rocks.
+  - balance: Most windows on Gelida are now regular instead of reinforced.
+  - balance: Most structures on Gelida no longer have random r-walls at irregular
+      junctions.
+  - balance: Some platforms have been slightly rearranged.
+  - balance: The Gelida vehicle roadblocks are now destructible.
+  - balance: Gelida lockdown shutters are no longer protected by lockdown glass.
+  - bugfix: Fixed an lone section of AI nodes on Gelida where minions could potentially
+      have to detour a long way to reach their destination.
+  - imageadd: Ported a number of legacy sprites from CM.
+  - imageadd: Resprited the nuke, check the PR itself for proper credit.
+  - imagedel: Removed a number of legacy sprites that were 1 dimensional and awful.
+  TiviPlus:
+  - code_imp: Added push priorities
+  tyeagg:
+  - balance: burst fire som shotgun
+  - rscadd: tadpole remap
+  - balance: you can now fire over tadpole window and easier to remove
+2022-09-23:
+  BraveMole:
+  - bugfix: Fix some items map text overflowing on the right
+  Lumipharon:
+  - bugfix: Fixed guns without a specific autoburst_delay value not respecting akimbo_extra_delay
+  - balance: Autoburst now default to the same delay manual burst has, instead of
+      double the semi auto delay
+  - balance: CLF team leaders have been put through a leadership course and can now
+      issue orders
+  novaepee, Jackie | Sayori:
+  - rscadd: Instruments in suit storage
+  - imageadd: mob sprites for instruments
+  tyeagg:
+  - bugfix: you can now build in tadpole again
+2022-09-24:
+  Lumipharon:
+  - bugfix: Fire stacks will no longer check fire armour twice in some instances
+  - refactor: Slight clean up to incendiary ammo code
+  - balance: Carrier panic drop can only be used at 25% health or less
+  - refactor: refactored some projectile on hit code
+  - bugfix: Certain projectile hit effects will no longer incorrectly trigger on the
+      wrong or dense turfs
+  - balance: Reduced the percentage of damage absorbed by shields for bullet, lasers,
+      energy and fire
+  - bugfix: Warriors can no longer infinitely punch unmanned vehicles
+  MLGTASTICa:
+  - balance: Evolution towers now multiply xeno count by 20% for each tower, increasing
+      T3 and T2 slots.
+  QualityVan:
+  - balance: Xenos can't buckle other people to stuff if they aren't conscious.
+  TiviPlus:
+  - bugfix: fixed a suit icon
+2022-09-25:
+  Lumipharon:
+  - imageadd: Updated riot and metal riot shield mob sprites
+  - imageadd: added mob sprites for grenades, COPE sentries and marine bags
+  MLGTASTICa:
+  - qol: Slowed down the FOB Drone, gave it bubble alerts and fixed double .remaining
+      messages
+  - qol: Drones now face the direction of any turf you click.
+  - code_imp: Rewrote the remote AI eye code to support more configurable move_delays
+  - code_imp: Rewrote the remote AI eye acceleration , it now gets removed on direction
+      change.
+2022-09-26:
+  Lewdcifer:
+  - rscadd: Adds the Pheromone Tower to the game, alongside its related sprites.
+  Lumipharon:
+  - bugfix: medical item description text will no longer spill into the next storage
+      slot
+  - balance: Increased MP-19 akimbo penalties
+  tyeagg:
+  - qol: bigger minimap icons for disks and orders
+  - imageadd: big minimap icons
+2022-09-27:
+  RipGrayson:
+  - rscadd: Added in two random rouny spawners per map.
+  - balance: Several useless reinforced windows on Gelida have been removed.
+  - balance: Removed the extra metal stacks from Gelida.
+  - balance: Removed an easily defensible miner from Gelida.
+  - balance: Removed a rogue B17 helmet from Gelida.
+  - bugfix: Added a missing Gelida shutter.
+  - bugfix: The morgue trays on two BR medbay modules now can be accessed normally.
+  - imageadd: Ported a new icon for dogtags.
+  Zar000:
+  - bugfix: define better than string
+  hyper2snyper:
+  - rscadd: 'The newly sprited primaries are now colorable with facepaint. Included:
+      AR12, AR18, SMG90, P14, SH35, LMG42'
+  - rscadd: Support for colorable attachments, SH-35 stock now colorable like the
+      gun itself.
+2022-09-28:
+  Jalopkomit18:
+  - qol: Oxycodone bottle capacity changed to 60u
+  Lewdcifer:
+  - balance: Pheromone tower cost 100 > 150, range 22 > 32, building time 10 > 5 seconds.
+  - bugfix: Pheromone towers now allow building around it.
+  - bugfix: Pheromone towers will now spawn under the xenomorph rather than southwest
+      of it.
+  - bugfix: Pheromone towers will now delete correctly.
+  MLGTASTICa:
+  - bugfix: Fixed plasteel cades not being wired by LZ drones.
+  Naaanii:
+  - balance: Increased Howie HE and Incen shell prices to 4
+  - balance: Increased Howie Tfoot and WP shell prices to 6
+  RipGrayson:
+  - imageadd: The nuke has been partially resprited to be less saturated and more
+      detailed.
+  - imagedel: The green nuke sprites have been deleted.
+  - imagedel: New style vests are back to what they were.
+  - soundadd: Added quite a few new voice lines for AI.
+  - sounddel: Removed some old voice lines that weren't likely to be used.
+  iLikeMemes:
+  - rscadd: Primo hunters get to use stealth again, but not at the same time as disguise.
+  - qol: added seperate keybinds for disguise and stealth

@@ -62,7 +62,8 @@
 
 	do_sparks(5, TRUE, src)
 	playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
-	COOLDOWN_START(kit, teleport_cooldown, 20 SECONDS)
+	COOLDOWN_START(kit, teleport_cooldown, 2 SECONDS)
+	COOLDOWN_START(linked_kit, teleport_cooldown, 2 SECONDS)
 	if(powered())
 		use_power(TELEPORTING_COST * 200)
 	else
@@ -122,14 +123,13 @@
 
 /obj/item/teleporter_kit
 	name = "\improper ASRS Bluespace teleporter"
-	desc = "A bluespace telepad for moving personnel and equipment across small distances to another prelinked teleporter. Ctrl+Click to deploy."
+	desc = "A bluespace telepad for moving personnel and equipment across small distances to another prelinked teleporter. Ctrl+Click on a tile to deploy, use a wrench to undeploy, use a crowbar to remove the power cell."
 	icon = 'icons/Marine/teleporter.dmi'
 	icon_state = "teleporter"
 
 	max_integrity = 200
 	flags_item = IS_DEPLOYABLE|DEPLOYED_WRENCH_DISASSEMBLE
 
-	resistance_flags = RESIST_ALL
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BACK
 	///The linked teleporter
@@ -140,7 +140,7 @@
 
 /obj/item/teleporter_kit/Initialize()
 	. = ..()
-	AddElement(/datum/element/deployable_item, /obj/machinery/deployable/teleporter, 2 SECONDS)
+	AddElement(/datum/element/deployable_item, /obj/machinery/deployable/teleporter, type, 2 SECONDS)
 	cell = new /obj/item/cell/high(src)
 
 /obj/item/teleporter_kit/Destroy()

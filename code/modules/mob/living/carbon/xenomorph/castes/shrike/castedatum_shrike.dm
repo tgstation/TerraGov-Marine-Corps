@@ -31,22 +31,23 @@
 	deevolves_to = /mob/living/carbon/xenomorph/drone
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_IS_INTELLIGENT|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_CORRUPT_GENERATOR|CASTE_IS_STRONG
-
+	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_IS_INTELLIGENT|CASTE_IS_STRONG
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
+	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_CORRUPT_GENERATOR
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_2, "bio" = 10, "rad" = 10, "fire" = 30, "acid" = 10)
+	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 20, BIO = 10, "rad" = 10, FIRE = 30, ACID = 10)
 
 	// *** Pheromones *** //
 	aura_strength = 2 //The Shrike's aura is decent.
-	aura_allowed = list("frenzy", "warding", "recovery")
 
+	// *** Minimap Icon *** //
 	minimap_icon = "xenoshrike"
 
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/activable/cocoon,
 		/datum/action/xeno_action/activable/plant_weeds,
@@ -60,7 +61,10 @@
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/activable/psychic_fling,
 		/datum/action/xeno_action/activable/unrelenting_force,
-		/datum/action/xeno_action/toggle_pheromones,
+		/datum/action/xeno_action/pheromones,
+		/datum/action/xeno_action/pheromones/emit_recovery,
+		/datum/action/xeno_action/pheromones/emit_warding,
+		/datum/action/xeno_action/pheromones/emit_frenzy,
 		/datum/action/xeno_action/rally_hive,
 		/datum/action/xeno_action/rally_minion,
 		/datum/action/xeno_action/set_agressivity,
@@ -92,7 +96,7 @@
 	upgrade_threshold = TIER_TWO_MATURE_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_2, "bio" = 15, "rad" = 15, "fire" = 35, "acid" = 15)
+	soft_armor = list(MELEE = 35, BULLET = 35, LASER = 35, ENERGY = 35, BOMB = 20, BIO = 15, "rad" = 15, FIRE = 35, ACID = 15)
 
 	// *** Pheromones *** //
 	aura_strength = 2.5
@@ -120,7 +124,7 @@
 	upgrade_threshold = TIER_TWO_ELDER_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_2, "bio" = 18, "rad" = 18, "fire" = 40, "acid" = 18)
+	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 20, BIO = 18, "rad" = 18, FIRE = 40, ACID = 18)
 
 	// *** Pheromones *** //
 	aura_strength = 2.8
@@ -148,7 +152,7 @@
 	upgrade_threshold = TIER_TWO_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 45, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_2, "bio" = 23, "rad" = 23, "fire" = 45, "acid" = 20)
+	soft_armor = list(MELEE = 45, BULLET = 45, LASER = 45, ENERGY = 45, BOMB = 20, BIO = 23, "rad" = 23, FIRE = 45, ACID = 20)
 
 	// *** Pheromones *** //
 	aura_strength = 3
@@ -172,13 +176,14 @@
 	// *** Health *** //
 	max_health = 400
 	// *** Defense *** //
-	soft_armor = list("melee" = 45, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_2, "bio" = 23, "rad" = 23, "fire" = 45, "acid" = 20)
+	soft_armor = list(MELEE = 45, BULLET = 45, LASER = 45, ENERGY = 45, BOMB = 20, BIO = 23, "rad" = 23, FIRE = 45, ACID = 20)
 
 	// *** Pheromones *** //
 	aura_strength = 3
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/activable/cocoon,
 		/datum/action/xeno_action/activable/plant_weeds,
@@ -192,7 +197,10 @@
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/activable/psychic_fling,
 		/datum/action/xeno_action/activable/unrelenting_force,
-		/datum/action/xeno_action/toggle_pheromones,
+		/datum/action/xeno_action/pheromones,
+		/datum/action/xeno_action/pheromones/emit_recovery,
+		/datum/action/xeno_action/pheromones/emit_warding,
+		/datum/action/xeno_action/pheromones/emit_frenzy,
 		/datum/action/xeno_action/rally_hive,
 		/datum/action/xeno_action/rally_minion,
 		/datum/action/xeno_action/set_agressivity,

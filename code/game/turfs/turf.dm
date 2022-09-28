@@ -481,24 +481,23 @@
 					new /obj/item/stack/sheet/metal(pick(turfs))
 					new /obj/item/ore(pick(turfs))
 
-/turf/proc/ceiling_desc(mob/user)
+/turf/proc/ceiling_desc()
 	var/area/A = get_area(src)
 	switch(A.ceiling)
 		if(CEILING_NONE)
-			to_chat(user, "It is in the open.")
+			return "It is in the open."
 		if(CEILING_GLASS)
-			to_chat(user, "The ceiling above is glass.")
+			return "The ceiling above is glass."
 		if(CEILING_METAL)
-			to_chat(user, "The ceiling above is metal.")
+			return "The ceiling above is metal."
 		if(CEILING_UNDERGROUND)
-			to_chat(user, "It is underground. The cavern roof lies above.")
+			return "It is underground. The cavern roof lies above."
 		if(CEILING_UNDERGROUND_METAL)
-			to_chat(user, "It is underground. The ceiling above is metal.")
+			return "It is underground. The ceiling above is metal."
 		if(CEILING_DEEP_UNDERGROUND)
-			to_chat(user, "It is deep underground. The cavern roof lies above.")
+			return "It is deep underground. The cavern roof lies above."
 		if(CEILING_DEEP_UNDERGROUND_METAL)
-			to_chat(user, "It is deep underground. The ceiling above is metal.")
-
+			return "It is deep underground. The ceiling above is metal."
 
 
 /turf/proc/wet_floor()
@@ -554,7 +553,7 @@
 				if(!silent)
 					to_chat(builder, span_warning("There is a little one here already. Best move it."))
 				return FALSE
-		if(istype(O, /obj/effect/alien/egg))
+		if(istype(O, /obj/alien/egg))
 			if(!silent)
 				to_chat(builder, span_warning("There's already an egg here."))
 			return FALSE
@@ -566,7 +565,7 @@
 			if(!silent)
 				to_chat(builder, span_warning("There is a plant growing here, destroying it would be a waste to the hive."))
 			return FALSE
-		if(istype(O, /obj/structure/mineral_door) || istype(O, /obj/structure/ladder) || istype(O, /obj/effect/alien/resin))
+		if(istype(O, /obj/structure/mineral_door) || istype(O, /obj/structure/ladder) || istype(O, /obj/alien/resin))
 			has_obstacle = TRUE
 			break
 		if(istype(O, /obj/structure/bed))
@@ -578,7 +577,7 @@
 			else if(istype(O, /obj/structure/bed/nest)) //We don't care about other beds/chairs/whatever the fuck.
 				has_obstacle = TRUE
 				break
-		if(istype(O, /obj/effect/alien/hivemindcore))
+		if(istype(O, /obj/alien/hivemindcore))
 			has_obstacle = TRUE
 			break
 
@@ -930,3 +929,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	SIGNAL_HANDLER
 	current_acid = null
 
+/turf/balloon_alert_perform(mob/viewer, text)
+	// Balloon alerts occuring on turf objects result in mass spam of alerts.
+	// Thus, no more balloon alerts for turfs.
+	return

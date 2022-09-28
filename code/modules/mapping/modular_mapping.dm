@@ -162,6 +162,62 @@
 	template_height = 15
 	keepcentered = TRUE
 
+/datum/map_template/modular/lv624/lvhydrobridgeone
+	name = "LV Hydro Bridge One"
+	mappath = "_maps/modularmaps/lv624/lvhydrobridge1.dmm"
+	modular_id = "lvhydrobridge"
+	template_width = 8
+	template_height = 10
+
+/datum/map_template/modular/lv624/lvhydrobridgetwo
+	name = "LV Hydro Bridge Two"
+	mappath = "_maps/modularmaps/lv624/lvhydrobridge2.dmm"
+	modular_id = "lvhydrobridge"
+	template_width = 8
+	template_height = 10
+
+/datum/map_template/modular/lv624/lvhydrobridgethree
+	name = "LV Hydro Bridge Three"
+	mappath = "_maps/modularmaps/lv624/lvhydrobridge3.dmm"
+	modular_id = "lvhydrobridge"
+	template_width = 8
+	template_height = 10
+
+/datum/map_template/modular/lv624/lvhydrobridgefour
+	name = "LV Hydro Bridge Four"
+	mappath = "_maps/modularmaps/lv624/lvhydrobridge4.dmm"
+	modular_id = "lvhydrobridge"
+	template_width = 8
+	template_height = 10
+
+/datum/map_template/modular/lv624/southsandtempleone
+	name = "LV South Sand Temple One"
+	mappath = "_maps/modularmaps/lv624/southsandtemple1.dmm"
+	modular_id = "lvsouthsandtemple"
+	template_width = 22
+	template_height = 24
+
+/datum/map_template/modular/lv624/southsandtempletwo
+	name = "LV South Sand Temple Two"
+	mappath = "_maps/modularmaps/lv624/southsandtemple2.dmm"
+	modular_id = "lvsouthsandtemple"
+	template_width = 22
+	template_height = 24
+
+/datum/map_template/modular/lv624/southsandtemplethree
+	name = "LV South Sand Temple Three"
+	mappath = "_maps/modularmaps/lv624/southsandtemple3.dmm"
+	modular_id = "lvsouthsandtemple"
+	template_width = 22
+	template_height = 24
+
+/datum/map_template/modular/lv624/southsandtemplefour
+	name = "LV South Sand Temple Four"
+	mappath = "_maps/modularmaps/lv624/southsandtemple4.dmm"
+	modular_id = "lvsouthsandtemple"
+	template_width = 22
+	template_height = 24
+
 /datum/map_template/modular/lv624/dome_atmos
 	name = "LV atmos dome"
 	mappath = "_maps/modularmaps/lv624/atmospherics.dmm"
@@ -379,6 +435,20 @@
 	template_width = 85
 	template_height = 38
 
+/datum/map_template/modular/bigred/lz1seven
+	name = "Big red landing zone one"
+	mappath = "_maps/modularmaps/big_red/bigredlzvar7.dmm"
+	modular_id = "brlz1"
+	template_width = 85
+	template_height = 38
+
+/datum/map_template/modular/bigred/lz1eight
+	name = "Big red landing zone one"
+	mappath = "_maps/modularmaps/big_red/bigredlzvar8.dmm"
+	modular_id = "brlz1"
+	template_width = 85
+	template_height = 38
+
 /datum/map_template/modular/bigred/lz2one
 	name = "Big red landing zone two"
 	mappath = "_maps/modularmaps/big_red/bigredlz2var1.dmm"
@@ -494,6 +564,20 @@
 /datum/map_template/modular/bigred/atmosfour
 	name = "Big red atmos"
 	mappath = "_maps/modularmaps/big_red/bigredatmosvar4.dmm"
+	modular_id = "bratmos"
+	template_width = 24
+	template_height = 25
+
+/datum/map_template/modular/bigred/atmosfive
+	name = "Big red atmos"
+	mappath = "_maps/modularmaps/big_red/bigredatmosvar5.dmm"
+	modular_id = "bratmos"
+	template_width = 24
+	template_height = 25
+
+/datum/map_template/modular/bigred/atmossix
+	name = "Big red atmos"
+	mappath = "_maps/modularmaps/big_red/bigredatmosvar6.dmm"
 	modular_id = "bratmos"
 	template_width = 24
 	template_height = 25

@@ -1,13 +1,20 @@
 /obj/item/explosive/grenade/flashbang
 	name = "flashbang"
+	desc = "A grenade sometimes used by police, civilian or military, to stun targets with a flash, then a bang. May cause hearing loss, and induce feelings of overwhelming rage in victims."
 	icon_state = "flashbang2"
-	item_state = "flashbang"
+	item_state = "flashbang2"
 	arm_sound = 'sound/weapons/armbombpin.ogg'
-	var/banglet = 0
-
+	///This is a cluster weapon, or part of one
+	var/banglet = FALSE
+	///The range where the maximum effects are applied
+	var/inner_range = 2
+	///The range where the moderate effects are applied
+	var/outer_range = 5
+	///Whether this grenade requires skill to use
+	var/mp_only = TRUE
 
 /obj/item/explosive/grenade/flashbang/attack_self(mob/user)
-	if(user.skills.getRating("police") < SKILL_POLICE_MP)
+	if(mp_only && (user.skills.getRating("police") < SKILL_POLICE_MP))
 		to_chat(user, span_warning("You don't seem to know how to use [src]..."))
 		return
 	..()
@@ -25,12 +32,11 @@
 		if(!HAS_TRAIT(M, TRAIT_FLASHBANGIMMUNE))
 			bang(T, M)
 
-
-
 	new/obj/effect/particle_effect/smoke/flashbang(T)
 	qdel(src)
 
-/obj/item/explosive/grenade/flashbang/proc/bang(turf/T , mob/living/carbon/M)						// Added a new proc called 'bang' that takes a location and a person to be banged.
+/// Added a new proc called 'bang' that takes a location and a person to be banged.
+/obj/item/explosive/grenade/flashbang/proc/bang(turf/T , mob/living/carbon/M)
 	to_chat(M, span_danger("BANG"))
 	playsound(src.loc, 'sound/effects/bang.ogg', 50, 1)
 
@@ -44,53 +50,55 @@
 			if(istype(H.head, /obj/item/clothing/head/helmet/riot))
 				ear_safety += 2
 
-//Flashing everyone
+	if(get_dist(M, T) <= inner_range) //do we need these loc checks?
+		inner_effect(T,M,ear_safety)
+	else if(get_dist(M, T) <= outer_range)
+		outer_effect(T,M,ear_safety)
+	else
+		max_range_effect(T,M,ear_safety)
+
+	base_effect(T,M,ear_safety) //done afterwards as it contains the eye/ear damage checks
+
+///The effects applied to all mobs in range
+/obj/item/explosive/grenade/flashbang/proc/base_effect(turf/T , mob/living/carbon/M, ear_safety)
 	if(M.flash_act())
 		M.Stun(40)
 		M.Paralyze(20 SECONDS)
 
-
-
-//Now applying sound
-	if((get_dist(M, T) <= 2 || src.loc == M.loc || src.loc == M))
-		if(ear_safety > 0)
-			M.Stun(40)
-			M.Paralyze(20)
-		else
-			M.Stun(20 SECONDS)
-			M.Paralyze(60)
-			if ((prob(14) || (M == src.loc && prob(70))))
-				M.adjust_ear_damage(rand(1, 10))
-			else
-				M.adjust_ear_damage(rand(0, 5), 15)
-
-	else if(get_dist(M, T) <= 5)
-		if(!ear_safety)
-			M.Stun(16 SECONDS)
-			M.adjust_ear_damage(rand(0, 3), 10)
-
-	else if(!ear_safety)
-		M.Stun(80)
-		M.adjust_ear_damage(rand(0, 1), 5)
-
-//This really should be in mob not every check
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
-		if (E && E.damage >= E.min_bruised_damage)
-			to_chat(M, span_warning("Your eyes start to burn badly!"))
-			if(!banglet && !(istype(src , /obj/item/explosive/grenade/flashbang/clusterbang)))
-				if (E.damage >= E.min_broken_damage)
-					to_chat(M, span_warning("You can't see anything!"))
-	if (M.ear_damage >= 15)
+	if(M.ear_damage >= 15)
 		to_chat(M, span_warning("Your ears start to ring badly!"))
-		if(!banglet && !(istype(src , /obj/item/explosive/grenade/flashbang/clusterbang)))
+		if(!banglet)
 			if (prob(M.ear_damage - 10 + 5))
 				to_chat(M, span_warning("You can't hear anything!"))
 				M.disabilities |= DEAF
 	else
-		if (M.ear_damage >= 5)
+		if(M.ear_damage >= 5)
 			to_chat(M, span_warning("Your ears start to ring!"))
+
+///The effects applied to mobs in the inner_range
+/obj/item/explosive/grenade/flashbang/proc/inner_effect(turf/T , mob/living/carbon/M, ear_safety)
+	if(ear_safety > 0)
+		M.Stun(40)
+		M.Paralyze(20)
+	else
+		M.Stun(20 SECONDS)
+		M.Paralyze(60)
+		if((prob(14) || (M == src.loc && prob(70))))
+			M.adjust_ear_damage(rand(1, 10),15)
+		else
+			M.adjust_ear_damage(rand(0, 5),10)
+
+///The effects applied to mobs in the outer_range
+/obj/item/explosive/grenade/flashbang/proc/outer_effect(turf/T , mob/living/carbon/M, ear_safety)
+	if(!ear_safety)
+		M.Stun(16 SECONDS)
+		M.adjust_ear_damage(rand(0, 3),8)
+
+///The effects applied to mobs outside of outer_range
+/obj/item/explosive/grenade/flashbang/proc/max_range_effect(turf/T , mob/living/carbon/M, ear_safety)
+	if(!ear_safety)
+		M.Stun(80)
+		M.adjust_ear_damage(rand(0, 1),6)
 
 
 /obj/item/explosive/grenade/flashbang/clusterbang//Created by Polymorph, fixed by Sieve
@@ -153,3 +161,57 @@
 	var/temploc = loc
 	walk_away(src,temploc,stepdist)
 	addtimer(CALLBACK(src, .proc/prime), rand(1.5,6) SECONDS)
+
+
+//Slows and staggers instead of hardstunning, balanced for HvH
+/obj/item/explosive/grenade/flashbang/stun
+	name = "\improper stun grenade"
+	desc = "A grenade designed to disorientate the senses of anyone caught in the blast radius with a blinding flash of light and viciously loud noise. Repeated use can cause deafness."
+	icon_state = "flashbang2"
+	item_state = "flashbang2"
+	arm_sound = 'sound/weapons/armbombpin.ogg'
+	inner_range = 3
+	mp_only = FALSE
+
+/obj/item/explosive/grenade/flashbang/stun/base_effect(turf/T , mob/living/carbon/M, ear_safety)
+	if(M.ear_damage >= 15)
+		to_chat(M, span_warning("Your ears start to ring badly!"))
+		if(prob(M.ear_damage - 15)) //You have to eat a lot of stun grenades to risk permanently deafening you
+			to_chat(M, span_warning("You can't hear anything!"))
+			M.disabilities |= DEAF
+	else
+		if(M.ear_damage >= 5)
+			to_chat(M, span_warning("Your ears start to ring!"))
+
+/obj/item/explosive/grenade/flashbang/stun/inner_effect(turf/T , mob/living/carbon/M, ear_safety)
+	if(M.flash_act(duration = 10))
+		M.blur_eyes(7)
+
+	if(ear_safety > 0)
+		M.adjust_stagger(3)
+		M.add_slowdown(3)
+	else
+		M.adjust_stagger(6)
+		M.add_slowdown(6)
+		if((prob(14) || (M == src.loc && prob(70))))
+			M.adjust_ear_damage(rand(1, 10),15)
+		else
+			M.adjust_ear_damage(rand(0, 5),10)
+
+/obj/item/explosive/grenade/flashbang/stun/outer_effect(turf/T , mob/living/carbon/M, ear_safety)
+	if(M.flash_act(duration = 10))
+		M.blur_eyes(6)
+
+	if(!ear_safety)
+		M.adjust_stagger(4)
+		M.add_slowdown(4)
+		M.adjust_ear_damage(rand(0, 3),8)
+
+/obj/item/explosive/grenade/flashbang/stun/max_range_effect(turf/T , mob/living/carbon/M, ear_safety)
+	if(M.flash_act(duration = 5))
+		M.blur_eyes(4)
+
+	if(!ear_safety)
+		M.adjust_stagger(2)
+		M.add_slowdown(2)
+		M.adjust_ear_damage(rand(0, 1),6)

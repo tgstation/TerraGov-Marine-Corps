@@ -44,13 +44,6 @@
 #define ishuman(A) (istype(A, /mob/living/carbon/human))
 
 //Human sub-species
-#define ishorror(H) (is_species(H, datum/species/spook))
-#define isunathi(H) (is_species(H, /datum/species/unathi))
-#define istajaran(H) (is_species(H, /datum/species/tajaran))
-#define isskrell(H) (is_species(H, /datum/species/skrell))
-#define isvox(H) (is_species(H, /datum/species/vox))
-#define isvoxarmalis(H) (is_species(H, /datum/species/vox/armalis))
-#define isIPC(H) (is_species(H, /datum/species/machine))
 #define isrobot(H) (is_species(H, /datum/species/robot))
 #define issynth(H) (is_species(H, /datum/species/synthetic) || is_species(H, /datum/species/early_synthetic))
 #define isspeciessynthetic(H) (H.species.species_flags & IS_SYNTHETIC)
@@ -66,15 +59,16 @@
 #define isnaera(H) (is_species(H, /datum/species/monkey/naera))
 #define isyiren(H) (is_species(H, /datum/species/monkey/yiren))
 
-
 //Job/role helpers
 #define ismarinefaction(H) (H.faction == "TerraGov")
 #define isterragovjob(J) (istype(J, /datum/job/terragov))
 #define ismedicaljob(J) (istype(J, /datum/job/terragov/medical))
 #define isengineeringjob(J) (istype(J, /datum/job/terragov/engineering))
 #define ismarinejob(J) (istype(J, /datum/job/terragov/squad))
+#define issommarinejob(J) (istype(J, /datum/job/som/squad))
 #define ismarinespecjob(J) (istype(J, /datum/job/terragov/squad/specialist))
 #define ismarineleaderjob(J) (istype(J, /datum/job/terragov/squad/leader))
+#define issommarineleaderjob(J) (istype(J, /datum/job/som/squad/leader))
 #define ismarinecommandjob(J) (istype(J, /datum/job/terragov/command))
 #define ismarinecaptainjob(J) (istype(J, /datum/job/terragov/command/captain))
 #define iscorporateliaisonjob(J) (istype(J, /datum/job/terragov/civilian/liaison))
@@ -161,6 +155,10 @@
 
 #define isgun(A) (istype(A, /obj/item/weapon/gun))
 
+#define isammomagazine(A) (istype(A, /obj/item/ammo_magazine))
+
+#define isgrenade(A) (istype(A, /obj/item/explosive/grenade))
+
 #define isstorage(A) (istype(A, /obj/item/storage))
 
 #define isitemstack(A) (istype(A, /obj/item/stack))
@@ -199,6 +197,8 @@
 
 #define iscrowbar(I) (istype(I, /obj/item/tool/crowbar))
 
+#define iscell(I) (istype(I, /obj/item/cell))
+
 #define isfactorypart(I) (istype(I, /obj/item/factory_part))
 
 #define isfactoryrefill(I) (istype(I, /obj/item/factory_refill))
@@ -216,6 +216,8 @@
 #define is_cleanable(A) (istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/rune)) //if something is cleanable
 
 #define isvehicle(A) (istype(A, /obj/vehicle))
+
+#define ismecha(A) (istype(A, /obj/vehicle/sealed/mecha))
 
 #define isorgan(A) (istype(A, /datum/limb))
 
@@ -251,6 +253,7 @@
 #define ishuntgamemode(O) (istype(O, /datum/game_mode/infestation/hunt))
 #define iscrashgamemode(O) (istype(O, /datum/game_mode/infestation/crash))
 #define isinfestationgamemode(O) (istype(O, /datum/game_mode/infestation))
+#define iscombatpatrolgamemode(O) (istype(O, /datum/game_mode/combat_patrol))
 
 #define isxenoresearcharea(A) (istype(A, /area/mainship/medical/medical_science))
 

@@ -22,6 +22,7 @@
 
 	/// Used by headgear mostly to affect accuracy
 	var/accuracy_mod = 0
+	flags_inventory = NOQUICKEQUIP
 
 /obj/item/clothing/Initialize()
 	. = ..()
@@ -58,16 +59,16 @@
 /obj/item/clothing/proc/update_clothing_icon()
 	return
 
-/obj/item/clothing/apply_blood(image/standing)
+/obj/item/clothing/apply_blood(mutable_appearance/standing)
 	if(blood_overlay && blood_sprite_state)
-		var/image/bloodsies	= image(icon = 'icons/effects/blood.dmi', icon_state = blood_sprite_state)
+		var/image/bloodsies	= mutable_appearance('icons/effects/blood.dmi', blood_sprite_state)
 		bloodsies.color	= blood_color
 		standing.add_overlay(bloodsies)
 
-/obj/item/clothing/suit/apply_blood(image/standing)
+/obj/item/clothing/suit/apply_blood(mutable_appearance/standing)
 	if(blood_overlay && blood_sprite_state)
 		blood_sprite_state = "[blood_overlay_type]blood"
-		var/image/bloodsies	= image(icon = 'icons/effects/blood.dmi', icon_state = blood_sprite_state)
+		var/image/bloodsies	= mutable_appearance('icons/effects/blood.dmi', blood_sprite_state)
 		bloodsies.color = blood_color
 		standing.add_overlay(bloodsies)
 
@@ -91,6 +92,11 @@
 	item_state = "earmuffs"
 	flags_equip_slot = ITEM_SLOT_EARS
 
+/obj/item/clothing/ears/earmuffs/green
+	icon_state = "earmuffs2"
+
+/obj/item/clothing/ears/earmuffs/gold
+	icon_state = "earmuffs3"
 
 ///////////////////////////////////////////////////////////////////////
 //Suit
@@ -99,7 +105,7 @@
 	name = "suit"
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 	allowed = list(/obj/item/tank/emergency_oxygen)
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, "rad" = 0, FIRE = 0, ACID = 0)
 	flags_equip_slot = ITEM_SLOT_OCLOTHING
 	siemens_coefficient = 0.9
 	w_class = WEIGHT_CLASS_NORMAL
@@ -107,7 +113,6 @@
 	attachments_allowed = list(/obj/item/armor_module/armor/badge)
 	var/supporting_limbs = NONE
 	var/blood_overlay_type = "suit"
-	var/fire_resist = T0C + 100
 	var/shield_state = "shield-blue"
 
 	// Strength of the armor light used by [proc/set_light()]
@@ -160,7 +165,6 @@
 	flags_armor_protection = HANDS
 	flags_equip_slot = ITEM_SLOT_GLOVES
 	attack_verb = list("challenged")
-	sprite_sheets = list("Vox" = 'icons/mob/species/vox/gloves.dmi')
 
 
 /obj/item/clothing/gloves/update_clothing_icon()
@@ -207,7 +211,6 @@
 	icon = 'icons/obj/clothing/masks.dmi'
 	flags_equip_slot = ITEM_SLOT_MASK
 	flags_armor_protection = FACE|EYES
-	sprite_sheets = list("Vox" = 'icons/mob/species/vox/masks.dmi')
 	blood_sprite_state = "maskblood"
 	var/anti_hug = 0
 	var/toggleable = FALSE
@@ -217,16 +220,6 @@
 	if (ismob(src.loc))
 		var/mob/M = src.loc
 		M.update_inv_wear_mask()
-
-
-//some gas masks modify the air that you breathe in.
-/obj/item/clothing/mask/proc/filter_air(list/air_info)
-	if(flags_inventory & ALLOWREBREATH)
-		air_info[2] = T20C //heats/cools air to be breathable
-
-	return air_info
-
-
 
 ////////////////////////////////////////////////////////////////////////
 //Shoes
@@ -241,7 +234,6 @@
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN
 	blood_sprite_state = "shoeblood"
-	sprite_sheets = list("Vox" = 'icons/mob/species/vox/shoes.dmi')
 
 
 /obj/item/clothing/shoes/update_clothing_icon()

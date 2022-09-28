@@ -31,13 +31,12 @@
 	var/max_loops
 	///(bool) If true plays directly to provided atoms instead of from them
 	var/direct = FALSE
-	var/extra_range = 0
+	///Range the sound will travel
+	var/range = 0
+	///The rate the volume falls off. Higher = volume drops slower
 	var/falloff
-
-	///(bool) Whether this datum is currently going through the subsystem on a loop
-	var/looping = FALSE
-	///(num) Next sceduled time for the sound to be played, used in subsystem fire to scedule
-	var/nextlooptime = 0
+	/// The ID of the timer that's used to loop the sounds.
+	var/timer_id
 	///(num) world.time when the datum started looping
 	var/start_time = 0
 
@@ -61,28 +60,34 @@
 /datum/looping_sound/proc/start(atom/add_thing)
 	if(add_thing)
 		output_atoms |= add_thing
-	if(looping)
+	if(timer_id)
 		return
-	looping = TRUE
 	on_start()
 
 ///Performs checks for ending looping and optinally removes an atom from output_atoms, then calls [/datum/looping_sound/proc/on_stop()]
 /datum/looping_sound/proc/stop(atom/remove_thing)
 	if(remove_thing)
 		output_atoms -= remove_thing
-	if(!looping)
+	if(!timer_id)
 		return
-	looping = FALSE
-	SSloopingsounds.looping_sound_queue -= src
 	on_stop()
+	deltimer(timer_id, SSsound_loops)
+	timer_id = null
 
-///Performs checks for sound loop; returns TRUE to rescedule for another loop and FALSE to stop looping.
-/datum/looping_sound/proc/sound_loop()
+/**
+ * A simple proc handling the looping of the sound itself.
+ *
+ * Arguments:
+ * * start_time - The time at which the `mid_sounds` started being played (so we know when to stop looping).
+ */
+/datum/looping_sound/proc/sound_loop(start_time)
 	if(max_loops && world.time >= start_time + mid_length * max_loops)
-		return FALSE
+		stop()
+		return
 	if(!chance || prob(chance))
 		play(get_sound(start_time))
-	return TRUE
+	if(!timer_id)
+		timer_id = addtimer(CALLBACK(src, .proc/sound_loop, world.time), mid_length, TIMER_CLIENT_TIME | TIMER_STOPPABLE | TIMER_LOOP, SSsound_loops)
 
 /**
  * Plays a sound file to our output_atoms
@@ -101,7 +106,7 @@
 		if(direct)
 			SEND_SOUND(thing, S)
 		else
-			playsound(thing, S, volume, vary, extra_range, falloff)
+			playsound(thing, S, volume, vary, range, falloff)
 
 /**
  * Picks and returns soundfile
@@ -124,9 +129,7 @@
 	if(start_sound)
 		play(start_sound, start_volume)
 		start_wait = start_length
-	nextlooptime = REALTIMEOFDAY + start_wait
-	start_time = nextlooptime
-	BINARY_INSERT(src, SSloopingsounds.looping_sound_queue, /datum/looping_sound, src, nextlooptime, COMPARE_KEY)
+	addtimer(CALLBACK(src, .proc/sound_loop, world.time), start_wait, TIMER_CLIENT_TIME, SSsound_loops)
 
 /**
  * Called on loop end

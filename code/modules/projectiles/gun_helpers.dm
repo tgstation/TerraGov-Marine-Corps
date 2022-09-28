@@ -8,7 +8,7 @@
 /obj/item/weapon/gun/attack_hand(mob/living/user)
 	if(user.get_inactive_held_item() != src)
 		return ..()
-	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
+	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN_EJECTS))
 		do_unique_action(user, TRUE)
 		return
 	unload(user)
@@ -26,6 +26,29 @@
 
 /obj/item/weapon/gun/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(istype(I, /obj/item/facepaint))
+		if(isnull(greyscale_config))
+			to_chat(user, span_warning("[src] cannot be colored."))
+			return
+		var/obj/item/facepaint/paint = I
+		if(paint.uses < 1)
+			balloon_alert(user, "\the [paint] is out of color!")
+			return
+
+		var/new_color = tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)
+		new_color = colorable_colors[new_color]
+
+		if(!new_color || !do_after(user, 1 SECONDS, TRUE, master_gun ? master_gun : src, BUSY_ICON_GENERIC))
+			return
+
+		set_greyscale_colors(new_color)
+		paint.uses--
+		update_icon()
+		master_gun?.update_icon()
+		if(ishuman(loc))
+			var/mob/living/carbon/human/holder = loc
+			holder.regenerate_icons()
+		return
 	if(user.get_inactive_held_item() != src || istype(I, /obj/item/attachable) || isgun(I))
 		return
 	reload(I, user)
@@ -627,6 +650,10 @@ should be alright.
 	burst_delay += value
 	SEND_SIGNAL(src, COMSIG_GUN_BURST_SHOT_DELAY_MODIFIED, burst_delay)
 
+/obj/item/weapon/gun/proc/modify_auto_burst_delay(value, mob/user)
+	autoburst_delay += value
+	SEND_SIGNAL(src, COMSIG_GUN_AUTO_BURST_SHOT_DELAY_MODIFIED, autoburst_delay)
+
 /obj/item/weapon/gun/proc/modify_burst_amount(value, mob/user)
 	burst_amount += value
 	SEND_SIGNAL(src, COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED, burst_amount)
@@ -681,11 +708,16 @@ should be alright.
 
 /obj/item/weapon/gun/proc/toggle_aim_mode(mob/living/carbon/human/user)
 	var/static/image/aim_mode_visual = image('icons/mob/hud.dmi', null, "aim_mode")
+
 	if(HAS_TRAIT(src, TRAIT_GUN_IS_AIMING))
 		user.overlays -= aim_mode_visual
 		REMOVE_TRAIT(src, TRAIT_GUN_IS_AIMING, GUN_TRAIT)
 		user.remove_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN)
 		modify_fire_delay(-aim_fire_delay)
+		///if your attached weapon has aim mode, stops it from aimming
+		if( (gunattachment) && (/datum/action/item_action/aim_mode in gunattachment.actions_types) )
+			REMOVE_TRAIT(gunattachment, TRAIT_GUN_IS_AIMING, GUN_TRAIT)
+			gunattachment.modify_fire_delay(-aim_fire_delay)
 		to_chat(user, span_notice("You cease aiming."))
 		return
 	if(!CHECK_BITFIELD(flags_item, WIELDED) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
@@ -709,6 +741,10 @@ should be alright.
 	ADD_TRAIT(src, TRAIT_GUN_IS_AIMING, GUN_TRAIT)
 	user.add_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN, TRUE, 0, NONE, TRUE, aim_speed_modifier)
 	modify_fire_delay(aim_fire_delay)
+	///if your attached weapon has aim mode, makes it aim
+	if( (gunattachment) && (/datum/action/item_action/aim_mode in gunattachment.actions_types) )
+		ADD_TRAIT(gunattachment, TRAIT_GUN_IS_AIMING, GUN_TRAIT)
+		gunattachment:modify_fire_delay(aim_fire_delay)
 	to_chat(user, span_notice("You line up your aim, allowing you to shoot past allies.</b>"))
 
 /// Signal handler to activate the rail attachement of that gun if it's in our active hand

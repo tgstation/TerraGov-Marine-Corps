@@ -2,7 +2,7 @@
 	name = "security camera"
 	desc = "It's used to monitor rooms."
 	icon = 'icons/obj/machines/monitors.dmi'
-	icon_state = "camera"
+	icon_state = "camera_icon"
 	use_power = ACTIVE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 10
@@ -23,6 +23,7 @@
 
 /obj/machinery/camera/Initialize(mapload, newDir)
 	. = ..()
+	icon_state = "camera"
 
 	if(newDir)
 		setDir(newDir)
@@ -66,13 +67,13 @@
 	. = ..()
 
 	if(!status)
-		to_chat(user, span_info("It's currently deactivated."))
+		. += span_info("It's currently deactivated.")
 		if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN) && powered())
-			to_chat(user, span_notice("You'll need to open its maintenance panel with a <b>screwdriver</b> to turn it back on."))
+			. += span_notice("You'll need to open its maintenance panel with a <b>screwdriver</b> to turn it back on.")
 	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-		to_chat(user, span_info("Its maintenance panel is currently open."))
+		. += span_info("Its maintenance panel is currently open.")
 		if(!status && powered())
-			to_chat(user, span_info("It can reactivated with a <b>screwdriver</b>."))
+			. += span_info("It can reactivated with a <b>screwdriver</b>.")
 
 
 /obj/machinery/camera/proc/setViewRange(num = 7)
@@ -284,7 +285,7 @@
 			if(cam == src)
 				return
 	if(on)
-		set_light(AI_CAMERA_LUMINOSITY)
+		set_light(AI_CAMERA_LUMINOSITY, AI_CAMERA_LUMINOSITY)
 	else
 		set_light(0)
 
@@ -390,3 +391,15 @@
 
 /obj/machinery/camera/autoname/lz_camera/update_icon()
 	return
+
+//Thunderdome cameras
+/obj/machinery/camera/autoname/thunderdome
+	name = "thunderdome camera"
+	network = list("thunder")
+	resistance_flags = RESIST_ALL
+
+//Special invisible cameras, to get even better angles without looking ugly
+/obj/machinery/camera/autoname/thunderdome/hidden
+
+/obj/machinery/camera/autoname/thunderdome/hidden/update_icon()
+	icon_state = "nothing"

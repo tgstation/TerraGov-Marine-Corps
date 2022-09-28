@@ -179,7 +179,7 @@
 	icon_state = "asleep"
 
 //CONFUSED
-/datum/status_effect/confused
+/datum/status_effect/incapacitating/confused
 	id = "confused"
 	alert_type = /obj/screen/alert/status_effect/confused
 
@@ -202,7 +202,7 @@
 /datum/status_effect/plasmadrain/tick()
 	var/mob/living/carbon/xenomorph/xenoowner = owner
 	if(xenoowner.plasma_stored >= 0)
-		var/remove_plasma_amount = xenoowner.xeno_caste.plasma_max / 17
+		var/remove_plasma_amount = xenoowner.xeno_caste.plasma_max / 10
 		xenoowner.plasma_stored -= remove_plasma_amount
 		if(xenoowner.plasma_stored <= 0)
 			xenoowner.plasma_stored = 0

@@ -83,6 +83,12 @@
 			to_chat(owner, span_xenodanger("We can't [name] at that!"))
 		return FALSE
 
+	var/mob/living/living_target = A
+	if(living_target.stat == DEAD)
+		if(!silent)
+			to_chat(owner, span_xenodanger("We can't [name] at that!"))
+		return FALSE
+
 /datum/action/xeno_action/activable/lunge/ai_should_start_consider()
 	return TRUE
 
@@ -399,7 +405,7 @@
 	add_cooldown()
 
 /atom/proc/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone)
-	return
+	return TRUE
 
 /obj/machinery/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone) //Break open the machine
 	X.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
@@ -483,9 +489,9 @@
 			L.remove_limb_flags(LIMB_SPLINTED)
 			to_chat(src, span_danger("The splint on your [L.display_name] comes apart!"))
 
-		L.take_damage_limb(damage, 0, FALSE, FALSE, run_armor_check(target_zone))
+		L.take_damage_limb(damage, 0, FALSE, FALSE, get_soft_armor("melee", target_zone))
 	else
-		apply_damage(damage, BRUTE, target_zone, run_armor_check(target_zone))
+		apply_damage(damage, BRUTE, target_zone, get_soft_armor("melee", target_zone))
 
 	if(push)
 		var/facing = get_dir(X, src)
@@ -556,7 +562,8 @@
 	if(!target.punch_act(X, damage, target_zone, push = FALSE, punch_description = "precise", stagger_stacks = 3, slowdown_stacks = 6))
 		return fail_activate()
 	if(X.empower())
-		target.overlay_fullscreen_timer(3 SECONDS, 10, "jab", /obj/screen/fullscreen/flash) //Would prefer if it was extremely distorted, but bluriness doesn't make the cut.
+		target.blind_eyes(3)
+		target.blur_eyes(6)
 		to_chat(target, span_highdanger("The concussion from the [X]'s blow blinds us!"))
 		target.Confused(3 SECONDS) //Does literally nothing for now, will have to re-add confusion code.
 	GLOB.round_statistics.warrior_punches++

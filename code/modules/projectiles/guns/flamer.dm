@@ -38,7 +38,7 @@
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_DO_NOT_EMPTY_ROUNDS_AFTER_FIRE
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23, "flamer_nozzle_x" = 33, "flamer_nozzle_y" = 20)
-	fire_delay = 4
+	fire_delay = 2 SECONDS
 
 	placed_overlay_iconstate = "flamer"
 
@@ -69,6 +69,8 @@
 	var/lit_overlay_offset_y = 0
 	///Damage multiplier for mobs caught in the initial stream of fire.
 	var/mob_flame_damage_mod = 2
+	///how wide of a cone the flamethrower produces on wide mode.
+	var/cone_angle = 55
 
 /obj/item/weapon/gun/flamer/Initialize()
 	. = ..()
@@ -92,9 +94,6 @@
 	. = ..()
 	if(!.)
 		return
-	var/obj/item/ammo_magazine/magazine = new_mag
-	var/datum/ammo/flamethrower/flamer_ammo = magazine.default_ammo
-	fire_delay = initial(flamer_ammo.fire_delay)
 	if(attachments_by_slot[ATTACHMENT_SLOT_FLAMER_NOZZLE])
 		light_pilot(TRUE)
 	gun_user?.hud_used.update_ammo_hud(gun_user, src)
@@ -103,7 +102,6 @@
 	. = ..()
 	if(!.)
 		return
-	fire_delay = initial(fire_delay)
 	light_pilot(FALSE)
 	gun_user?.hud_used.update_ammo_hud(gun_user, src)
 
@@ -154,14 +152,13 @@
 			path_to_target -= start_location
 			recursive_flame_straight(1, old_turfs, path_to_target, range, current_target)
 		if(FLAMER_STREAM_CONE)
-			var/dir_to_target = get_dir(start_location, current_target)
-			if(ISDIAGONALDIR(dir_to_target))
-				range /= 2
-			recursive_flame_cone(1, old_turfs, dir_to_target, range, current_target)
+			//direction in degrees
+			var/dir_to_target = Get_Angle(src, target)
+			var/list/turf/turfs_to_ignite = generate_true_cone(get_turf(src), range, 1, cone_angle, dir_to_target, projectile = TRUE, bypass_xeno = TRUE)
+			recursive_flame_cone(1, turfs_to_ignite, dir_to_target, range, current_target, get_turf(src))
+		if(FLAMER_STREAM_RANGED)
+			return ..()
 	return TRUE
-
-#define RECURSIVE_CHECK(old_turfs, range, current_target, iteration) (!length(old_turfs) || iteration > range || !current_target || (current_target in old_turfs))
-
 
 ///Flames recursively a straight path.
 /obj/item/weapon/gun/flamer/proc/recursive_flame_straight(iteration, list/turf/old_turfs, list/turf/path_to_target, range, current_target)
@@ -169,11 +166,18 @@
 		light_pilot(FALSE)
 		return
 
-	if(RECURSIVE_CHECK(old_turfs, range, current_target, iteration))
+	//recursive checks
+	if(!length(old_turfs) || iteration > range || !current_target || (current_target in old_turfs))
 		return
 
 	var/list/turf/turfs_to_ignite = list()
 	if(iteration > length(path_to_target))
+		return
+	var/turf/turf_to_check = get_turf(src)
+	if(iteration > 1)
+		turf_to_check = path_to_target[iteration - 1]
+
+	if(LinkBlocked(turf_to_check, path_to_target[iteration], projectile = TRUE, bypass_xeno = TRUE)) //checks if it's actually possible to get to the next tile in the line
 		return
 	turfs_to_ignite += path_to_target[iteration]
 	if(!burn_list(turfs_to_ignite))
@@ -182,50 +186,25 @@
 	addtimer(CALLBACK(src, .proc/recursive_flame_straight, iteration, turfs_to_ignite, path_to_target, range, current_target), flame_spread_time)
 
 ///Flames recursively a cone.
-/obj/item/weapon/gun/flamer/proc/recursive_flame_cone(iteration, list/turf/old_turfs, dir_to_target, range, current_target)
+/obj/item/weapon/gun/flamer/proc/recursive_flame_cone(iteration, list/turf/turfs_to_ignite, dir_to_target, range, current_target, turf/flame_source)
 	if(!rounds)
 		light_pilot(FALSE)
 		return
-
-	if(RECURSIVE_CHECK(old_turfs, range, current_target, iteration))
+	//recursive checks
+	if(iteration > range || !current_target)
 		return
 
+	var/list/turf/turfs_by_iteration = list()
+	for(var/turf/turf AS in turfs_to_ignite)
+		if(get_dist(turf, flame_source) == iteration)
+			turfs_by_iteration += turf
 
-	var/list/turf/turfs_to_ignite = list()
-	var/list/turf/turfs_skip_old = list()
-	var/turf/new_turf = get_step(old_turfs[1], dir_to_target)
-
-	turfs_to_ignite += new_turf //Adds the turf in front of the old turf.
-	for(var/turf/old_turf AS in old_turfs)
-		new_turf = get_step(old_turf, dir_to_target)
-		if(!(get_step(new_turf, turn(dir_to_target, 90)) in turfs_to_ignite)) //Adds the turf on the sides of the old turf if they arent already in the turfs_to_ignite list.
-			turfs_to_ignite += get_step(new_turf, turn(dir_to_target, 90))
-		if(!(get_step(new_turf, REVERSE_DIR(turn(dir_to_target, 90))) in turfs_to_ignite))
-			turfs_to_ignite += get_step(new_turf, REVERSE_DIR(turn(dir_to_target, 90)))
-		if(ISDIAGONALDIR(dir_to_target)) ///Fills in the blanks for a diagonal burn.
-			if(!(get_step(new_turf, turn(dir_to_target, 135)) in turfs_skip_old))
-				turfs_skip_old += get_step(new_turf, turn(dir_to_target, 135))
-			if(!(get_step(new_turf, turn(dir_to_target, 225)) in turfs_skip_old))
-				turfs_skip_old += get_step(new_turf, turn(dir_to_target, 225))
-	burn_list(turfs_skip_old)
-	if(!burn_list(turfs_to_ignite))
-		return
+	burn_list(turfs_by_iteration)
 	iteration++
-	addtimer(CALLBACK(src, .proc/recursive_flame_cone, iteration, turfs_to_ignite, dir_to_target, range, current_target), flame_spread_time)
-
-#undef RECURSIVE_CHECK
+	addtimer(CALLBACK(src, .proc/recursive_flame_cone, iteration, turfs_to_ignite, dir_to_target, range, current_target, flame_source), flame_spread_time)
 
 ///Checks and lights the turfs in turfs_to_burn
 /obj/item/weapon/gun/flamer/proc/burn_list(list/turf/turfs_to_burn)
-	for(var/turf/turf_to_check AS in turfs_to_burn)
-		if((turf_to_check.density && !istype(turf_to_check, /turf/closed/wall/resin)) || isspaceturf(turf_to_check))
-			turfs_to_burn -= turf_to_check
-			continue
-		for(var/obj/object in turf_to_check)
-			if(!object.density || object.throwpass || istype(object, /obj/structure/mineral_door/resin) || istype(object, /obj/structure/xeno))
-				continue
-			turfs_to_burn -= turf_to_check
-
 	if(!length(turfs_to_burn) || !length(chamber_items))
 		return FALSE
 
@@ -248,28 +227,18 @@
 /obj/item/weapon/gun/flamer/proc/flame_turf(turf/turf_to_ignite, mob/living/user, burn_time, burn_level, fire_color = "red")
 	turf_to_ignite.ignite(burn_time, burn_level, fire_color)
 
-	// Melt a single layer of snow
-	if(istype(turf_to_ignite, /turf/open/floor/plating/ground/snow))
-		var/turf/open/floor/plating/ground/snow/snow_turf = turf_to_ignite
-		if(snow_turf.slayer > 0)
-			snow_turf.slayer -= 1
-			snow_turf.update_icon(1, 0)
-
-	for(var/obj/structure/jungle/vines/vines in turf_to_ignite)
-		QDEL_NULL(vines)
-
 	var/fire_mod
 	for(var/mob/living/mob_caught in turf_to_ignite) //Deal bonus damage if someone's caught directly in initial stream
 		if(mob_caught.stat == DEAD)
 			continue
 
-		fire_mod = 1
+		fire_mod = mob_caught.get_fire_resist()
 
 		if(isxeno(mob_caught))
 			var/mob/living/carbon/xenomorph/xeno_caught = mob_caught
 			if(CHECK_BITFIELD(xeno_caught.xeno_caste.caste_flags, CASTE_FIRE_IMMUNE))
 				continue
-			fire_mod = xeno_caught.get_fire_resist()
+
 		else if(ishuman(mob_caught))
 			var/mob/living/carbon/human/human_caught = mob_caught
 			if(user)
@@ -284,7 +253,7 @@
 			if(human_caught.hard_armor.getRating("fire") >= 100)
 				continue
 
-		mob_caught.take_overall_damage_armored(rand(burn_level, (burn_level * mob_flame_damage_mod)) * fire_mod, BURN, "fire", updating_health = TRUE) // Make it so its the amount of heat or twice it for the initial blast.
+		mob_caught.take_overall_damage(0, rand(burn_level, (burn_level * mob_flame_damage_mod)) * fire_mod, updating_health = TRUE) // Make it so its the amount of heat or twice it for the initial blast.
 		mob_caught.adjust_fire_stacks(rand(5, (burn_level * mob_flame_damage_mod)))
 		mob_caught.IgniteMob()
 
@@ -292,8 +261,8 @@
 		to_chat(mob_caught, isxeno(mob_caught) ? span_xenodanger(burn_message) : span_highdanger(burn_message))
 
 /obj/item/weapon/gun/flamer/big_flamer
-	name = "\improper M240A1 incinerator unit"
-	desc = "The M240A1 has proven to be one of the most effective weapons at clearing out soft-targets. This is a weapon to be feared and respected as it is quite deadly."
+	name = "\improper FL-240 incinerator unit"
+	desc = "The FL-240 has proven to be one of the most effective weapons at clearing out soft-targets. This is a weapon to be feared and respected as it is quite deadly."
 	icon_state = "m240"
 	item_state = "m240"
 
@@ -325,15 +294,18 @@
 	pixel_shift_y = 18
 
 	mob_flame_damage_mod = 1
+	burn_level_mod = 0.6
 	flame_max_range = 4
+
+	wield_delay_mod	= 0.2 SECONDS
 
 /obj/item/weapon/gun/flamer/mini_flamer/unremovable
 	flags_attach_features = NONE
 
 
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard
-	name = "\improper TL-84 flamethrower"
-	desc = "The TL-84 flamethrower is the current standard issue flamethrower of the TGMC, and is used for area control and urban combat. Use unique action to use hydro cannon"
+	name = "\improper FL-84 flamethrower"
+	desc = "The FL-84 flamethrower is the current standard issue flamethrower of the TGMC, and is used for area control and urban combat. Use unique action to use hydro cannon"
 	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/large
 	icon_state = "tl84"
 	item_state = "tl84"
@@ -348,6 +320,7 @@
 		/obj/item/attachable/hydro_cannon,
 		/obj/item/attachable/flamer_nozzle,
 		/obj/item/attachable/flamer_nozzle/wide,
+		/obj/item/attachable/flamer_nozzle/long,
 	)
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle, /obj/item/attachable/stock/t84stock, /obj/item/attachable/hydro_cannon)
 	var/last_use
@@ -435,7 +408,13 @@
 		user.hud_used.update_ammo_hud(user, src)
 		return
 
-
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/wide
+	starting_attachment_types = list(
+		/obj/item/attachable/flamer_nozzle/wide,
+		/obj/item/attachable/stock/t84stock,
+		/obj/item/attachable/hydro_cannon,
+		/obj/item/attachable/magnetic_harness,
+	)
 
 /turf/proc/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
 	//extinguish any flame present
@@ -444,6 +423,15 @@
 		qdel(F)
 
 	new /obj/flamer_fire(src, fire_lvl, burn_lvl, f_color, fire_stacks, fire_damage)
+
+	for(var/obj/structure/jungle/vines/vines in src)
+		QDEL_NULL(vines)
+
+/turf/open/floor/plating/ground/snow/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
+	if(slayer > 0)
+		slayer -= 1
+		update_icon(1, 0)
+	return ..()
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //Time to redo part of abby's code.
@@ -492,6 +480,7 @@
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
+
 /obj/flamer_fire/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
@@ -507,7 +496,8 @@
 	if(!CHECK_BITFIELD(flags_pass, PASSFIRE)) //Pass fire allow to cross fire without being ignited
 		adjust_fire_stacks(burnlevel) //Make it possible to light them on fire later.
 		IgniteMob()
-	take_overall_damage_armored(round(burnlevel*0.5)* fire_mod, BURN, "fire", updating_health = TRUE)
+	fire_mod *= get_fire_resist()
+	take_overall_damage(0, round(burnlevel*0.5)* fire_mod, updating_health = TRUE)
 	to_chat(src, span_danger("You are burned!"))
 
 /obj/flamer_fire/effect_smoke(obj/effect/particle_effect/smoke/S)
@@ -532,7 +522,6 @@
 /mob/living/carbon/xenomorph/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
 	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
-	fire_mod = get_fire_resist()
 	return ..()
 
 
@@ -571,7 +560,7 @@
 		qdel(src)
 		return
 
-	T.flamer_fire_act(burnlevel, firelevel)
+	T.flamer_fire_act(burnlevel)
 
 	var/j = 0
 	for(var/i in T)
@@ -580,14 +569,17 @@
 		var/atom/A = i
 		if(QDELETED(A)) //The destruction by fire of one atom may destroy others in the same turf.
 			continue
-		A.flamer_fire_act(burnlevel, firelevel)
+		A.flamer_fire_act(burnlevel)
 
 	firelevel -= 2 //reduce the intensity by 2 per tick
 
 
 // override this proc to give different idling-on-fire effects
-/mob/living/flamer_fire_act(burnlevel, firelevel)
+/mob/living/flamer_fire_act(burnlevel)
 	if(!burnlevel)
+		return
+	var/fire_mod = get_fire_resist()
+	if(fire_mod <= 0)
 		return
 	if(status_flags & (INCORPOREAL|GODMODE)) //Ignore incorporeal/invul targets
 		return
@@ -596,22 +588,22 @@
 		adjustFireLoss(rand(0, burnlevel * 0.25)) //Does small burn damage to a person wearing one of the suits.
 		return
 	adjust_fire_stacks(burnlevel) //If i stand in the fire i deserve all of this. Also Napalm stacks quickly.
+	burnlevel *= fire_mod //Fire stack adjustment is handled in the stacks themselves so this is modified afterwards.
 	IgniteMob()
-	adjustFireLoss(rand(10 , burnlevel)) //Including the fire should be way stronger.
+	adjustFireLoss(min(burnlevel, rand(10 , burnlevel))) //Including the fire should be way stronger.
 	to_chat(src, span_warning("You are burned!"))
 
 
-/mob/living/carbon/xenomorph/flamer_fire_act(burnlevel, firelevel)
+/mob/living/carbon/xenomorph/flamer_fire_act(burnlevel)
 	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
-	burnlevel *= get_fire_resist()
 	. = ..()
 	updatehealth()
 
-/mob/living/carbon/xenomorph/queen/flamer_fire_act(burnlevel, firelevel)
+/mob/living/carbon/xenomorph/queen/flamer_fire_act(burnlevel)
 	to_chat(src, span_xenowarning("Our extra-thick exoskeleton protects us from the flames."))
 
-/mob/living/carbon/xenomorph/ravager/flamer_fire_act(burnlevel, firelevel)
+/mob/living/carbon/xenomorph/ravager/flamer_fire_act(burnlevel)
 	if(stat)
 		return
 	plasma_stored = xeno_caste.plasma_max

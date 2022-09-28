@@ -29,18 +29,17 @@
 
 /obj/item/detpack/examine(mob/user)
 	. = ..()
-	var/list/details = list()
 	if(on)
-		details +=("It's turned on.")
+		. += "It's turned on."
 	if(timer)
-		details +=("Its timer has [timer] seconds left.")
+		. += "Its timer has [timer] seconds left."
 	if(det_mode)
-		details +=("It appears set to demolition mode.")
+		. += "It appears set to demolition mode."
 	else
-		details +=("It appears set to breaching mode.")
+		. += "It appears set to breaching mode."
+
 	if(armed)
-		details +=("<b>It is armed!</b>")
-	to_chat(user, span_warning("[details.Join(" ")]"))
+		. += "<b>It is armed!</b>"
 
 
 /obj/item/detpack/Destroy()
@@ -131,6 +130,10 @@
 
 /obj/item/detpack/receive_signal(datum/signal/signal)
 	if(!signal || !on)
+		return
+
+	var/turf/location = get_turf(signal.source)
+	if(location.z != z)
 		return
 
 	if(signal.data["code"] != code)

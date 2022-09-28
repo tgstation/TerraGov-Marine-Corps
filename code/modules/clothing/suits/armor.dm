@@ -36,13 +36,13 @@
 	blood_overlay_type = "armor"
 	permeability_coefficient = 0.8
 	flags_armor_protection = CHEST
-	soft_armor = list("melee" = 20, "bullet" = 30, "laser" = 25, "energy" = 10, "bomb" = 15, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
+	soft_armor = list(MELEE = 20, BULLET = 30, LASER = 25, ENERGY = 10, BOMB = 15, BIO = 0, "rad" = 0, FIRE = 10, ACID = 10)
 	allowed = list (
 		/obj/item/flashlight,
 		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
 		/obj/item/attachable/bayonetknife,
-		/obj/item/storage/large_holster/blade
+		/obj/item/storage/holster/blade
 	)
 
 
@@ -81,7 +81,7 @@
 	icon_state = "armor_reflec"
 	item_state = "armor_reflec"
 	blood_overlay_type = "armor"
-	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 80, "energy" = 50, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 80, ENERGY = 50, BOMB = 0, BIO = 0, "rad" = 0, FIRE = 50, ACID = 50)
 	siemens_coefficient = 0
 
 /obj/item/clothing/suit/armor/bulletproof
@@ -91,8 +91,8 @@
 	item_state = "bulletproof"
 	blood_overlay_type = "armor"
 	flags_armor_protection = CHEST
-	soft_armor = list("melee" = 30, "bullet" = 55, "laser" = 0, "energy" = 0, "bomb" = 30, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 15)
-	hard_armor = list("melee" = 0, "bullet" = 20, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 5)
+	soft_armor = list(MELEE = 30, BULLET = 55, LASER = 0, ENERGY = 0, BOMB = 30, BIO = 0, "rad" = 0, FIRE = 0, ACID = 15)
+	hard_armor = list(MELEE = 0, BULLET = 20, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, "rad" = 0, FIRE = 0, ACID = 5)
 	siemens_coefficient = 0.7
 	permeability_coefficient = 0.9
 	time_to_unequip = 20
@@ -100,7 +100,7 @@
 	allowed = list(
 		/obj/item/weapon/gun/,
 		/obj/item/flashlight,
-		/obj/item/storage/large_holster/blade,
+		/obj/item/storage/holster/blade,
 		/obj/item/storage/belt/gun/pistol/m4a3,
 		/obj/item/storage/belt/gun/m44,
 	)
@@ -112,7 +112,7 @@
 	item_state = "swat"
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
 	slowdown = 1.2
-	soft_armor = list("melee" = 65, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
+	soft_armor = list(MELEE = 65, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, "rad" = 0, FIRE = 10, ACID = 10)
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEJUMPSUIT
 	flags_item = SYNTH_RESTRICTED
@@ -120,12 +120,6 @@
 	permeability_coefficient = 0.7
 	time_to_unequip = 20
 	time_to_equip = 20
-
-/obj/item/clothing/suit/armor/riot/marine
-	name = "\improper M5 riot control armor"
-	desc = "A heavily modified suit of M2 MP Armor used to supress riots from buckethead marines. Slows you down a lot."
-	icon_state = "riot"
-	item_state = "swat"
 
 /obj/item/clothing/suit/armor/swat
 	name = "swat suit"
@@ -137,7 +131,7 @@
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS
 	allowed = list(/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/baton,/obj/item/restraints/handcuffs,/obj/item/tank/emergency_oxygen)
 	slowdown = 1
-	soft_armor = list("melee" = 50, "bullet" = 60, "laser" = 50, "energy" = 25, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 25, "acid" = 25)
+	soft_armor = list(MELEE = 50, BULLET = 60, LASER = 50, ENERGY = 25, BOMB = 50, BIO = 100, "rad" = 100, FIRE = 25, ACID = 25)
 	flags_inventory = BLOCKSHARPOBJ|NOPRESSUREDMAGE
 	flags_item = SYNTH_RESTRICTED
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
@@ -165,7 +159,7 @@
 	blood_overlay_type = "armor"
 	flags_armor_protection = CHEST|GROIN
 	flags_item = SYNTH_RESTRICTED
-	soft_armor = list("melee" = 50, "bullet" = 15, "laser" = 50, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
+	soft_armor = list(MELEE = 50, BULLET = 15, LASER = 50, ENERGY = 10, BOMB = 25, BIO = 0, "rad" = 0, FIRE = 10, ACID = 10)
 
 
 //Reactive armor
@@ -177,7 +171,7 @@
 	blood_overlay_type = "armor"
 	slowdown = 1
 	flags_atom = CONDUCT
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, "rad" = 0, FIRE = 0, ACID = 0)
 
 /obj/item/clothing/suit/armor/reactive/Initialize()
 	. = ..()
@@ -195,7 +189,7 @@
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	flags_item = SYNTH_RESTRICTED
 	slowdown = 0
-	soft_armor = list("melee" = 50, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = 50, "bio" = 40, "rad" = 0, "fire" = 50, "acid" = 50)
+	soft_armor = list(MELEE = 50, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 50, BIO = 40, "rad" = 0, FIRE = 50, ACID = 50)
 	siemens_coefficient = 0.7
 
 
@@ -206,13 +200,13 @@
 	icon_state = "shield-blue"
 	flags_item = NODROP|DELONDROP
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	soft_armor = list("melee" = 55, "bullet" = 55, "laser" = 35, "energy" = 20, "bomb" = 40, "bio" = 40, "rad" = 10, "fire" = 40, "acid" = 40)
+	soft_armor = list(MELEE = 55, BULLET = 55, LASER = 35, ENERGY = 20, BOMB = 40, BIO = 40, "rad" = 10, FIRE = 40, ACID = 40)
 	allowed = list()//how would you put a gun onto a field of energy?
 
 /obj/item/clothing/suit/armor/sectoid/shield
 	name = "powerful psionic field"
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	soft_armor = list("melee" = 55, "bullet" = 55, "laser" = 35, "energy" = 20, "bomb" = 40, "bio" = 40, "rad" = 10, "fire" = 40, "acid" = 40)
+	soft_armor = list(MELEE = 55, BULLET = 55, LASER = 35, ENERGY = 20, BOMB = 40, BIO = 40, "rad" = 10, FIRE = 40, ACID = 40)
 
 /obj/item/clothing/suit/armor/sectoid/shield/Initialize()
 	. = ..()
@@ -275,7 +269,7 @@
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
 	flags_item = SYNTH_RESTRICTED
 	slowdown = 1
-	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 40, "bomb" = 20, "bio" = 0, "rad" = 0, "fire" = 40, "acid" = 40)
+	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 40, BOMB = 20, BIO = 0, "rad" = 0, FIRE = 40, ACID = 40)
 	siemens_coefficient = 0.7
 
 
@@ -319,7 +313,7 @@
 	icon_state = "ertarmor_cmd"
 	item_state = "ertarmor_cmd"
 	flags_item = SYNTH_RESTRICTED
-	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 40, "bomb" = 20, "bio" = 0, "rad" = 0, "fire" = 40, "acid" = 40)
+	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 40, BOMB = 20, BIO = 0, "rad" = 0, FIRE = 40, ACID = 40)
 
 //Captain
 /obj/item/clothing/suit/armor/vest/ert/command
@@ -355,7 +349,7 @@
 	item_state = "hos"
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 	flags_item = SYNTH_RESTRICTED
-	soft_armor = list("melee" = 65, "bullet" = 30, "laser" = 50, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
+	soft_armor = list(MELEE = 65, BULLET = 30, LASER = 50, ENERGY = 10, BOMB = 25, BIO = 0, "rad" = 0, FIRE = 10, ACID = 10)
 	flags_inventory = NONE
 	flags_inv_hide = HIDEJUMPSUIT
 	siemens_coefficient = 0.6

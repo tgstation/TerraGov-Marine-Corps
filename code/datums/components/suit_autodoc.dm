@@ -140,9 +140,8 @@
 /**
 	Hook into the examine of the parent to show additional information about the suit_autodoc
 */
-/datum/component/suit_autodoc/proc/examine(datum/source, mob/user)
+/datum/component/suit_autodoc/proc/examine(datum/source, mob/user, list/details)
 	SIGNAL_HANDLER
-	var/details
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CHEM_BURN))
 		details += "Its burn treatment injector is currently refilling.</br>"
 
@@ -157,9 +156,6 @@
 
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CHEM_PAIN))
 		details += "Its painkiller injector is currently refilling.</br>"
-
-	if(details)
-		to_chat(user, span_danger("[details]"))
 
 
 /**
@@ -359,7 +355,6 @@
 	<BR>
 	<B>Integrated Health Analyzer:</B><BR>
 	<A href='byond://?src=[REF(src)];analyzer=1'>Scan Wearer</A><BR>
-	<A href='byond://?src=[REF(src)];toggle_mode=1'>Turn Scanner HUD Mode: [analyzer.hud_mode ? "Off" : "On"]</A><BR>
 	<BR>
 	<B>Damage Trigger Threshold (Max [SUIT_AUTODOC_DAM_MAX], Min [SUIT_AUTODOC_DAM_MIN]):</B><BR>
 	<A href='byond://?src=[REF(src)];automed_damage=-50'>-50</A>
@@ -409,13 +404,6 @@
 
 	else if(href_list["analyzer"]) //Integrated scanner
 		analyzer.attack(wearer, wearer, TRUE)
-
-	else if(href_list["toggle_mode"]) //Integrated scanner
-		analyzer.hud_mode = !analyzer.hud_mode
-		if(analyzer.hud_mode)
-			wearer.balloon_alert(wearer, "The scanner now shows results on the hud")
-		else
-			wearer.balloon_alert(wearer, "The scanner no longer shows results on the hud")
 
 	else if(href_list["automed_damage"])
 		damage_threshold += text2num(href_list["automed_damage"])

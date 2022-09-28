@@ -124,7 +124,7 @@
 	if(!supply_beacon)
 		return
 	for(var/obj/C in supply_pad.loc)
-		if(is_type_in_typecache(C, GLOB.supply_drops) && !C.anchored) //Can only send vendors, crates and large crates
+		if(is_type_in_typecache(C, GLOB.supply_drops) && !C.anchored) //Can only send vendors, crates, unmanned vehicles and large crates
 			supplies.Add(C)
 		if(supplies.len > MAX_SUPPLY_DROPS)
 			break
@@ -156,17 +156,17 @@
 
 ///Make the supplies teleport
 /obj/machinery/computer/supplydrop_console/proc/fire_supplydrop(list/supplies, x_offset, y_offset)
-	if(QDELETED(supply_beacon))
-		visible_message("[icon2html(supply_pad, usr)] [span_warning("Launch aborted! Supply beacon signal lost.")]")
-		return
-
 	for(var/obj/C in supplies)
 		if(QDELETED(C))
 			supplies.Remove(C)
 			continue
 		if(C.loc != supply_pad.loc) //Crate no longer on pad somehow, abort.
 			supplies.Remove(C)
-			C.anchored = FALSE
+		C.anchored = FALSE //We need to un-anchor the crate after we're finished, even if it fails to send
+
+	if(QDELETED(supply_beacon))
+		visible_message("[icon2html(supply_pad, usr)] [span_warning("Launch aborted! Supply beacon signal lost.")]")
+		return
 
 	if(!supplies.len)
 		visible_message("[icon2html(supply_pad, usr)] [span_warning("Launch aborted! No deployable object detected on the drop pad.")]")
@@ -176,7 +176,6 @@
 	playsound(supply_beacon.drop_location,'sound/effects/phasein.ogg', 50, TRUE)
 	playsound(supply_pad.loc,'sound/effects/phasein.ogg', 50, TRUE)
 	for(var/obj/C in supplies)
-		C.anchored = FALSE
 		var/turf/TC = locate(supply_beacon.drop_location.x + x_offset, supply_beacon.drop_location.y + y_offset, supply_beacon.drop_location.z)
 		C.forceMove(TC)
-	supply_pad.visible_message("[icon2html(supply_pad, viewers(src))] [span_boldnotice("Supply drop teleported! Another launch will be available in one minute.")]")
+	supply_pad.visible_message("[icon2html(supply_pad, viewers(src))] [span_boldnotice("Supply drop teleported! Another launch will be available in [launch_cooldown/10] seconds.")]")

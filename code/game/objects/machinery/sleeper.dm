@@ -62,7 +62,7 @@
 	else
 		var/mob/living/occupant = connected.occupant
 		dat += "<font color='#487553'><B>Occupant Statistics:</B></FONT><BR>"
-		if (occupant)
+		if(occupant)
 			var/t1
 			dat += text("<B>Name: [occupant.name]</B><BR>")
 			switch(occupant.stat)
@@ -75,6 +75,16 @@
 				else
 			dat += text("[]\tHealth %: [] ([])</FONT><BR>", (occupant.health > 50 ? "<font color='#487553'>" : "<font color='#b54646'>"), occupant.health, t1)
 			if(ishuman(occupant))
+				if(connected.filtering)
+					dat += "<A href='?src=\ref[src];togglefilter=1'>Stop Dialysis</A><BR>"
+				else
+					dat += "<HR><A href='?src=\ref[src];togglefilter=1'>Start Dialysis</A><BR>"
+				if(connected.stasis)
+					dat += "<HR><A href='?src=\ref[src];togglestasis=1'>Deactivate Cryostasis</A><BR><HR>"
+				else
+					dat += "<HR><A href='?src=\ref[src];togglestasis=1'>Activate Cryostasis</A><BR><HR>"
+			else
+				dat += "<HR>Dialysis Disabled - Non-human present.<BR><HR>"
 				var/mob/living/carbon/human/patient = occupant
 				var/pulse = patient.handle_pulse()
 				dat += text("[]\t-Pulse, bpm: []</FONT><BR>", (pulse == PULSE_NONE || pulse == PULSE_THREADY ? "<font color='#b54646'>" : "<font color='#487553'>"), patient.get_pulse(GETPULSE_TOOL))
@@ -89,28 +99,9 @@
 					dat += " <a href ='?src=\ref[src];chemical=[chemical];amount=[amount]'>[amount] units</a>"
 				dat += "<br>"
 			dat += "<A href='?src=\ref[src];refresh=1'>Refresh Meter Readings</A><BR>"
-			if(connected.beaker)
-				dat += "<HR><A href='?src=\ref[src];removebeaker=1'>Remove Beaker</A><BR>"
-				if(ishuman(occupant))
-					if(connected.filtering)
-						dat += "<A href='?src=\ref[src];togglefilter=1'>Stop Dialysis</A><BR>"
-						dat += "Output Beaker has [connected.beaker.reagents.maximum_volume - connected.beaker.reagents.total_volume] units of free space remaining<BR><HR>"
-					else
-						dat += "<HR><A href='?src=\ref[src];togglefilter=1'>Start Dialysis</A><BR>"
-						dat += "Output Beaker has [connected.beaker.reagents.maximum_volume - connected.beaker.reagents.total_volume] units of free space remaining<BR><HR>"
-					if(connected.stasis)
-						dat += "<HR><A href='?src=\ref[src];togglestasis=1'>Deactivate Cryostasis</A><BR><HR>"
-					else
-						dat += "<HR><A href='?src=\ref[src];togglestasis=1'>Activate Cryostasis</A><BR><HR>"
-				else
-					dat += "<HR>Dialysis Disabled - Non-human present.<BR><HR>"
-
-			else
-				dat += "<HR>No Dialysis Output Beaker is present.<BR><HR>"
 			dat += "<HR><A href='?src=\ref[src];ejectify=1'>Eject Patient</A>"
 		else
 			dat += "The sleeper is empty."
-
 	var/datum/browser/popup = new(user, "sleeper", "<div align='center'>Sleeper Console</div>", 400, 670)
 	popup.set_content(dat)
 	popup.open()
@@ -123,16 +114,16 @@
 
 	if(href_list["chemical"] && connected && connected.occupant)
 		var/datum/reagent/R = text2path(href_list["chemical"])
-		if (connected.occupant.stat == DEAD)
+		if(connected.occupant.stat == DEAD)
 			to_chat(usr, span_warning("This person has no life for to preserve anymore."))
+		else if(ismonkey(connected.occupant))
+			to_chat(usr, span_scanner("Unknown biological subject detected, chemical injection not available. Please contact a licensed supplier for further assistance."))	
 		else if(!(R in connected.available_chemicals))
 			message_admins("[ADMIN_TPMONTY(usr)] has tried to inject an invalid chem with the sleeper. Looks like an exploit attempt, or a bug.")
 		else
 			var/amount = text2num(href_list["amount"])
 			if(amount == 5 || amount == 10)
 				connected.inject_chemical(usr, R, amount)
-	if (href_list["removebeaker"])
-		connected.remove_beaker()
 	if (href_list["togglefilter"])
 		connected.toggle_filter()
 	if (href_list["togglestasis"])
@@ -166,7 +157,6 @@
 	var/mob/living/carbon/human/occupant = null
 	var/available_chemicals = list(/datum/reagent/medicine/inaprovaline = "Inaprovaline", /datum/reagent/toxin/sleeptoxin = "Soporific", /datum/reagent/medicine/paracetamol = "Paracetamol", /datum/reagent/medicine/bicaridine = "Bicaridine", /datum/reagent/medicine/kelotane = "Kelotane", /datum/reagent/medicine/dylovene = "Dylovene", /datum/reagent/medicine/dexalin = "Dexalin", /datum/reagent/medicine/tricordrazine = "Tricordrazine", /datum/reagent/medicine/spaceacillin = "Spaceacillin")
 	var/amounts = list(5, 10)
-	var/obj/item/reagent_containers/glass/beaker = null
 	var/filtering = FALSE
 	var/stasis = FALSE
 	var/obj/machinery/sleep_console/connected
@@ -178,7 +168,6 @@
 
 /obj/machinery/sleeper/Initialize()
 	. = ..()
-	beaker = new /obj/item/reagent_containers/glass/beaker/large()
 	if(orient == "RIGHT")
 		icon_state = "sleeper_0-r"
 	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, .proc/shuttle_crush)
@@ -226,16 +215,16 @@
 	if(filtering)
 		feedback += " Dialysis is active."
 	if(!hasHUD(user,"medical"))
-		to_chat(user, span_notice("It contains: [occupant].[feedback]"))
+		. += span_notice("It contains: [occupant].[feedback]")
 		return
 	var/mob/living/carbon/human/H = occupant
 	for(var/datum/data/record/R in GLOB.datacore.medical)
 		if (!R.fields["name"] == H.real_name)
 			continue
 		if(!(R.fields["last_scan_time"]))
-			to_chat(user, "<span class = 'deptradio'>No scan report on record</span>\n")
+			. += span_deptradio("No scan report on record")
 		else
-			to_chat(user, "<span class = 'deptradio'><a href='?src=\ref[src];scanreport=1'>It contains [occupant]: Scan from [R.fields["last_scan_time"]].[feedback]</a></span>\n")
+			. += span_deptradio("<a href='?src=\ref[src];scanreport=1'>It contains [occupant]: Scan from [R.fields["last_scan_time"]].[feedback]</a>")
 		break
 
 /obj/machinery/sleeper/Topic(href, href_list)
@@ -261,11 +250,6 @@
 			popup.open(FALSE)
 		break
 
-
-/obj/machinery/sleeper/handle_atom_del(atom/movable/AM)
-	if(AM == beaker)
-		beaker = null
-
 /obj/machinery/sleeper/process()
 	if (machine_stat & (NOPOWER|BROKEN))
 		if(occupant)
@@ -279,10 +263,8 @@
 	occupant?.adjustOxyLoss(-occupant.getOxyLoss()) // keep them breathing, pretend they get IV dexalinplus
 
 	if(filtering)
-		if(beaker)
-			if(beaker.reagents.total_volume < beaker.reagents.maximum_volume)
-				for(var/datum/reagent/x in occupant.reagents.reagent_list)
-					occupant.reagents.trans_to(beaker, 10)
+		for(var/datum/reagent/x in occupant.reagents.reagent_list)
+			occupant.reagents.remove_reagent(x.type, 10)
 
 
 	updateUsrDialog()
@@ -290,19 +272,6 @@
 
 /obj/machinery/sleeper/attackby(obj/item/I, mob/user, params)
 	. = ..()
-
-	if(istype(I, /obj/item/reagent_containers/glass))
-		if(beaker)
-			to_chat(user, span_warning("The sleeper has a beaker already."))
-			return
-
-		if(!user.transferItemToLoc(I, src))
-			return
-
-		beaker = I
-		user.visible_message("[user] adds \a [I] to \the [src]!", "You add \a [I] to \the [src]!")
-		updateUsrDialog()
-		return
 
 	if(istype(I, /obj/item/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out.
 		var/obj/item/healthanalyzer/J = I
@@ -369,6 +338,10 @@
 	if(!occupant)
 		filtering = 0
 		return
+	if(ismonkey(occupant))
+		to_chat(usr, span_scanner("Unknown biological subject detected, dialysis not available. Please contact a licensed supplier for further assistance."))
+		filtering = 0
+		return
 	if(filtering)
 		filtering = FALSE
 	else
@@ -432,10 +405,6 @@
 		to_chat(user, text("[]\t -Burn Severity %: []</font>", (occupant.getFireLoss() < 60 ? "<font color='#487553'> " : "<font color='#b54646'> "), occupant.getFireLoss()))
 		to_chat(user, span_notice("Expected time till occupant can safely awake: (note: If health is below 20% these times are inaccurate)"))
 		to_chat(user, span_notice("\t [occupant.AmountUnconscious() * 0.1] second\s (if around 1 or 2 the sleeper is keeping them asleep.)"))
-		if(beaker)
-			to_chat(user, span_notice("\t Dialysis Output Beaker has [beaker.reagents.maximum_volume - beaker.reagents.total_volume] of free space remaining."))
-		else
-			to_chat(user, span_notice("No Dialysis Output Beaker loaded."))
 	else
 		to_chat(user, span_notice("There is no one inside!"))
 
@@ -450,7 +419,7 @@
 	if(!do_after(X, 2 SECONDS))
 		return
 	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
-	go_out()	
+	go_out()
 
 /obj/machinery/sleeper/verb/eject()
 	set name = "Eject Sleeper"
@@ -461,18 +430,6 @@
 		return
 
 	go_out()
-
-
-/obj/machinery/sleeper/verb/remove_beaker()
-	set name = "Remove Beaker"
-	set category = "Object"
-	set src in oview(1)
-	if(usr.stat != 0)
-		return
-	if(beaker)
-		filtering = FALSE
-		beaker.loc = usr.loc
-		beaker = null
 
 /obj/machinery/sleeper/relaymove(mob/user)
 	if(user.incapacitated(TRUE))

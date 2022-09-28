@@ -42,7 +42,7 @@
 		return INITIALIZE_HINT_QDEL
 
 	GLOB.nuke_disk_generators += src
-
+	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/set_broken)
 
 /obj/machinery/computer/nuke_disk_generator/Destroy()
 	GLOB.nuke_disk_generators -= src
@@ -158,7 +158,7 @@
 
 /obj/machinery/computer/nuke_disk_generator/red/Initialize()
 	. = ..()
-	SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "red_disk")
+	SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "red_disk", 'icons/UI_icons/map_blips_large.dmi')
 
 /obj/machinery/computer/nuke_disk_generator/green
 	name = "green nuke disk generator"
@@ -167,7 +167,7 @@
 
 /obj/machinery/computer/nuke_disk_generator/green/Initialize()
 	. = ..()
-	SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "green_disk")
+	SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "green_disk", 'icons/UI_icons/map_blips_large.dmi')
 
 /obj/machinery/computer/nuke_disk_generator/blue
 	name = "blue nuke disk generator"
@@ -176,4 +176,4 @@
 
 /obj/machinery/computer/nuke_disk_generator/blue/Initialize()
 	. = ..()
-	SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "blue_disk")
+	SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "blue_disk", 'icons/UI_icons/map_blips_large.dmi')

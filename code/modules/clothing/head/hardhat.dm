@@ -3,7 +3,7 @@
 	desc = "A piece of headgear used in dangerous working conditions to protect the head. Comes with a built-in flashlight."
 	icon_state = "hardhat0_yellow"
 	item_state = "hardhat0_yellow"
-	soft_armor = list("melee" = 30, "bullet" = 5, "laser" = 20, "energy" = 10, "bomb" = 20, "bio" = 10, "rad" = 20, "fire" = 10, "acid" = 10)
+	soft_armor = list(MELEE = 30, BULLET = 5, LASER = 20, ENERGY = 10, BOMB = 20, BIO = 10, "rad" = 20, FIRE = 10, ACID = 10)
 	actions_types = list(/datum/action/item_action/toggle)
 	siemens_coefficient = 0.9
 	flags_inventory = BLOCKSHARPOBJ
@@ -37,6 +37,13 @@
 	update_action_button_icons()
 	update_icon()
 
+/obj/item/clothing/head/hardhat/attack_alien(mob/living/carbon/xenomorph/X, isrightclick = FALSE)
+	if(turn_light(X, FALSE) != CHECKS_PASSED)
+		return
+	playsound(loc, "alien_claw_metal", 25, 1)
+	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+	to_chat(X, span_warning("We disable the metal thing's lights.") )
+
 /obj/item/clothing/head/hardhat/update_icon()
 	. = ..()
 	icon_state = "hardhat[light_on]_[hardhat_color]"
@@ -68,4 +75,4 @@
 /obj/item/clothing/head/hardhat/rugged
 	name = "rugged hard hat"
 	desc = "A piece of headgear used in dangerous working conditions to protect the head. Comes with a built-in flashlight. Looks rather robust."
-	soft_armor = list("melee" = 50, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = 50, "bio" = 40, "rad" = 0, "fire" = 50, "acid" = 50)
+	soft_armor = list(MELEE = 50, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 50, BIO = 40, "rad" = 0, FIRE = 50, ACID = 50)

@@ -148,10 +148,10 @@
 		"items" = items,
 		"message" = message,
 		"preferences" = list(),
-		"title" = title
+		"title" = title,
+		"large_buttons" = user.client.prefs.tgui_input_big_buttons,
+		"swapped_buttons" = user.client.prefs.tgui_input_buttons_swap,
 	)
-	.["preferences"]["large_buttons"] = user.client.prefs.tgui_input_big_buttons
-	.["preferences"]["swapped_buttons"] = user.client.prefs.tgui_input_buttons_swap
 
 /datum/tgui_list_input/ui_data(mob/user)
 	. = list()
@@ -167,11 +167,12 @@
 			if (!(params["entry"] in items))
 				return
 			set_choice(items_map[params["entry"]])
+			closed = TRUE
 			SStgui.close_uis(src)
 			return TRUE
 		if("cancel")
-			SStgui.close_uis(src)
 			closed = TRUE
+			SStgui.close_uis(src)
 			return TRUE
 
 /datum/tgui_list_input/proc/set_choice(choice)

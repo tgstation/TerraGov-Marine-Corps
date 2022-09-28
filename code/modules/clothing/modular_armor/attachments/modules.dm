@@ -82,7 +82,7 @@
 	icon_state = "mod_armor"
 	item_state = "mod_armor_a"
 	attachment_layer = COLLAR_LAYER
-	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 15, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
+	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 15, "rad" = 15, FIRE = 15, ACID = 15)
 	slowdown = 0.3
 	slot = ATTACHMENT_SLOT_MODULE
 	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_armor_xn", /obj/item/clothing/suit/modular/xenonauten/heavy = "mod_armor_xn", /obj/item/clothing/suit/modular/xenonauten/light = "mod_armor_xn")
@@ -90,18 +90,40 @@
 /obj/item/armor_module/module/tyr_extra_armor/mark1
 	name = "\improper Mark 1 Tyr Armor Reinforcement"
 	desc = "Designed for mounting on modular armor. A substantial amount of additional armor plating designed to grant the user extra protection against threats, ranging from xeno slashes to friendly fire incidents. This older version has worse protection. Will greatly impact mobility."
-	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 10, "rad" = 10, FIRE = 10, ACID = 10)
 	slowdown = 0.4
+
+/obj/item/armor_module/module/tyr_extra_armor/som
+	name = "\improper Lorica Armor Reinforcement"
+	desc = "Designed for mounting on modular SOM armor. A substantial amount of additional armor plating designed to grant the user extra protection against all forms of damage. Will definitely impact mobility."
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
+	icon_state = "lorica_armor"
+	item_state = "lorica_armor_a"
+	attachment_layer = COLLAR_LAYER
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 5, FIRE = 10, ACID = 5)
+	slowdown = 0.2
+	slot = ATTACHMENT_SLOT_MODULE
+	variants_by_parent_type = null
 
 /obj/item/armor_module/module/tyr_head
 	name = "Tyr Helmet System"
-	desc = "Designed for mounting on a modular Helmet. When attached, this system provides substantial resistance to most damaging hazards, ranging from xeno slashes to friendly fire incidents."
+	desc = "Designed for mounting on a modular helmet. When attached, this system provides substantial resistance to most damaging hazards, ranging from xeno slashes to friendly fire incidents."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "tyr_head"
 	item_state = "tyr_head_a"
-	soft_armor = list("melee" = 15, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+	soft_armor = list(MELEE = 15, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 10, "rad" = 10, FIRE = 10, ACID = 10)
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 	variants_by_parent_type = list(/obj/item/clothing/head/modular/marine/m10x = "tyr_head_xn", /obj/item/clothing/head/modular/marine/m10x/leader = "tyr_head_xn")
+
+/obj/item/armor_module/module/tyr_head/som
+	name = "Lorica Helmet System"
+	desc = "Designed for mounting on a modular SOM helmet. Substantial additional armor improves protection against all damage."
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
+	icon_state = "lorica_head"
+	item_state = "lorica_head_a"
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 5, FIRE = 10, ACID = 5)
+	slot = ATTACHMENT_SLOT_HEAD_MODULE
+	variants_by_parent_type = list()
 
 /**
  * Environment protecttion module
@@ -112,7 +134,7 @@
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_biohazard"
 	item_state = "mod_biohazard_a"
-	soft_armor = list("bio" = 40, "rad" = 50, "acid" = 30)
+	soft_armor = list("bio" = 40, "rad" = 50, ACID = 30)
 	slowdown = 0.2
 	slot = ATTACHMENT_SLOT_MODULE
 	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_biohazard_xn", /obj/item/clothing/suit/modular/xenonauten/light = "mod_biohazard_xn", /obj/item/clothing/suit/modular/xenonauten/heavy = "mod_biohazard_xn")
@@ -140,7 +162,7 @@
 	desc = "Designed for mounting on modular armor. This older model provides minor resistance to acid, biological, and radiological attacks. Pairing this with a Mimir helmet module and mask will make the user impervious to xeno gas clouds. Will impact mobility."
 	icon_state = "mod_biohazard"
 	item_state = "mod_biohazard_a"
-	soft_armor = list("bio" = 15, "rad" = 10, "acid" = 15)
+	soft_armor = list("bio" = 15, "rad" = 10, ACID = 15)
 	slowdown = 0.2
 
 /obj/item/armor_module/module/mimir_environment_protection/mimir_helmet
@@ -148,7 +170,7 @@
 	desc = "Designed for mounting on a modular helmet. This newer model provides great resistance to acid, biological, and even radiological attacks. Pairing this with a Mimir suit module and mask will make the user impervious to xeno gas clouds."
 	icon_state = "mimir_head"
 	item_state = "mimir_head_a"
-	soft_armor = list("bio" = 40, "rad" = 50, "acid" = 30)
+	soft_armor = list("bio" = 40, "rad" = 50, ACID = 30)
 	slowdown = 0
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 	variants_by_parent_type = list(/obj/item/clothing/head/modular/marine/m10x = "mimir_head_xn", /obj/item/clothing/head/modular/marine/m10x/leader = "mimir_head_xn")
@@ -156,7 +178,7 @@
 /obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1 //gas protection
 	name = "Mark 1 Mimir Environmental Helmet System"
 	desc = "Designed for mounting on a modular helmet. This older model provides minor resistance to acid and biological attacks. Pairing this with a Mimir suit module and mask will make the user impervious to xeno gas clouds."
-	soft_armor = list("bio" = 15, "acid" = 15)
+	soft_armor = list("bio" = 15, ACID = 15)
 
 //Explosive defense armor
 /obj/item/armor_module/module/hlin_explosive_armor
@@ -179,7 +201,7 @@
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_ff"
 	item_state = "mod_ff_a"
-	soft_armor = list("melee" = 0, "bullet" = 40, "laser" = 40, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list(MELEE = 0, BULLET = 40, LASER = 40, ENERGY = 0, BOMB = 0, BIO = 0, "rad" = 0, FIRE = 0, ACID = 0)
 	slowdown = 0.2
 	slot = ATTACHMENT_SLOT_MODULE
 	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_ff_xn", /obj/item/clothing/suit/modular/xenonauten/light = "mod_ff_xn", /obj/item/clothing/suit/modular/xenonauten/heavy = "mod_ff_xn")
@@ -201,6 +223,162 @@
 	chemsystem.RemoveComponent()
 	return ..()
 
+
+/obj/item/armor_module/module/eshield
+	name = "Arrowhead Energy Shield System"
+	desc = "A brand new innovation in armor systems, this module creates a shield around the user that is capable of negating all damage. If it sustains too much it will deactivate, and leave the user vulnerable."
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
+	icon_state = "mod_eshield"
+	item_state = "mod_eshield_a"
+	slot = ATTACHMENT_SLOT_MODULE
+	slowdown = 0.2
+	soft_armor = list(MELEE = -10, BULLET = -5, LASER = 0, ENERGY = 0, BOMB = 0, BIO = -5, "rad" = 0, FIRE = 0, ACID = -5)
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_eshield_xn", /obj/item/clothing/suit/modular/xenonauten/light = "mod_eshield_xn", /obj/item/clothing/suit/modular/xenonauten/heavy = "mod_eshield_xn")
+
+	///Current shield Health
+	var/shield_health = 0
+	///Maximum shield Health
+	var/max_shield_health = 40
+	///Amount to recharge per tick, processes once every two seconds.
+	var/recharge_rate = 10
+
+	///Spark system used to generate sparks when the armor takes damage
+	var/datum/effect_system/spark_spread/spark_system
+
+	///Shield color when the shield is 0 - 33% full
+	var/shield_color_low = COLOR_MAROON
+	///Shield color when the shield is 33 - 66% full
+	var/shield_color_mid = COLOR_MOSTLY_PURE_RED
+	///Shield color when the shield is 66% to full
+	var/shield_color_full = COLOR_BLUE_LIGHT
+	///Current shield color
+	var/current_color
+	///Delay it takes to start recharging again after the shield has been damaged.
+	var/damaged_shield_cooldown = 10 SECONDS
+	///Holds id for a timer which triggers recharge start. Null if not currently delayed.
+	var/recharge_timer
+
+
+/obj/item/armor_module/module/eshield/Initialize()
+	. = ..()
+	spark_system = new()
+	spark_system.set_up(5, 0, src)
+	spark_system.attach(src)
+
+/obj/item/armor_module/module/eshield/Destroy()
+	QDEL_NULL(spark_system)
+	return ..()
+
+/obj/item/armor_module/module/eshield/on_attach(obj/item/attaching_to, mob/user)
+	. = ..()
+	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/handle_equip)
+	RegisterSignal(parent, COMSIG_ITEM_UNEQUIPPED, .proc/handle_unequip)
+	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/parent_examine)
+
+
+/obj/item/armor_module/module/eshield/on_detach(obj/item/detaching_from, mob/user)
+	UnregisterSignal(parent, list(COMSIG_ITEM_UNEQUIPPED, COMSIG_ITEM_EQUIPPED, COMSIG_PARENT_EXAMINE))
+	return ..()
+
+///Called to give extra info on parent examine.
+/obj/item/armor_module/module/eshield/proc/parent_examine(datum/source, mob/examiner)
+	SIGNAL_HANDLER
+	to_chat(examiner, span_notice("Recharge Rate: [recharge_rate/2] health per second\nCurrent Shield Health: [shield_health]\nMaximum Shield Health: [max_shield_health]\n"))
+	if(!recharge_timer)
+		return
+	to_chat(examiner, span_warning("Charging is delayed! It will start recharging again in [timeleft(recharge_timer) / 10] seconds!"))
+
+///Handles starting the shield when the parent is equiped to the correct slot.
+/obj/item/armor_module/module/eshield/proc/handle_equip(datum/source, mob/equipper, slot)
+	SIGNAL_HANDLER
+	if(slot != SLOT_WEAR_SUIT || !isliving(equipper))
+		return
+	if(!recharge_timer)
+		START_PROCESSING(SSobj, src)
+		playsound(equipper, 'sound/items/eshield_recharge.ogg', 40)
+
+	RegisterSignal(equipper, COMSIG_LIVING_SHIELDCALL, .proc/handle_shield)
+
+///Handles removing the shield when the parent is unequipped
+/obj/item/armor_module/module/eshield/proc/handle_unequip(datum/source, mob/unequipper, slot)
+	SIGNAL_HANDLER
+	if(slot != SLOT_WEAR_SUIT || !isliving(unequipper))
+		return
+	UnregisterSignal(unequipper, COMSIG_LIVING_SHIELDCALL)
+	STOP_PROCESSING(SSobj, src)
+	unequipper.remove_filter("eshield")
+	shield_health = 0
+
+///Adds the correct proc callback to the shield list for intercepting damage.
+/obj/item/armor_module/module/eshield/proc/handle_shield(datum/source, list/affecting_shields, dam_type)
+	SIGNAL_HANDLER
+	if(!shield_health)
+		return
+	affecting_shields += CALLBACK(src, .proc/intercept_damage)
+
+///Handles the interception of damage.
+/obj/item/armor_module/module/eshield/proc/intercept_damage(attack_type, incoming_damage, damage_type, silent)
+	if(attack_type == COMBAT_TOUCH_ATTACK) //Touch attack so runners can pounce
+		return incoming_damage
+	STOP_PROCESSING(SSobj, src)
+	deltimer(recharge_timer)
+	var/shield_left = shield_health - incoming_damage
+	var/mob/living/affected = parent.loc
+	affected.remove_filter("eshield")
+	if(shield_left > 0)
+		shield_health = shield_left
+		switch(shield_left / max_shield_health)
+			if(0 to 0.33)
+				affected.add_filter("eshield", 1, outline_filter(1, shield_color_low))
+			if(0.33 to 0.66)
+				affected.add_filter("eshield", 1, outline_filter(1, shield_color_mid))
+			if(0.66 to 1)
+				affected.add_filter("eshield", 1, outline_filter(1, shield_color_full))
+		spark_system.start()
+	else
+		shield_health = 0
+		recharge_timer = addtimer(CALLBACK(src, .proc/begin_recharge), damaged_shield_cooldown + 1, TIMER_STOPPABLE) //Gives it a little extra time for the cooldown.
+		return -shield_left
+	recharge_timer = addtimer(CALLBACK(src, .proc/begin_recharge), damaged_shield_cooldown, TIMER_STOPPABLE)
+	return 0
+
+///Starts the shield recharging after it has been broken.
+/obj/item/armor_module/module/eshield/proc/begin_recharge()
+	recharge_timer = null
+	if(!ishuman(parent.loc))
+		return
+	var/mob/living/carbon/human/wearer = parent.loc
+	if(wearer.wear_suit != parent)
+		return
+	playsound(wearer, 'sound/items/eshield_recharge.ogg', 40)
+	START_PROCESSING(SSobj, src)
+
+
+/obj/item/armor_module/module/eshield/process()
+	shield_health = min(shield_health + recharge_rate, max_shield_health)
+	if(shield_health == max_shield_health) //Once health is full, we don't need to process until the next time we take damage.
+		STOP_PROCESSING(SSobj, src)
+		return
+	var/new_color
+	switch(shield_health/max_shield_health)
+		if(0 to 0.2)
+			playsound(parent.loc, 'sound/items/eshield_down.ogg', 40)
+			new_color = (shield_color_low != current_color) ? shield_color_low : null
+		if(0.2 to 0.6)
+			new_color = (shield_color_mid != current_color) ? shield_color_mid : null
+		if(0.6 to 1)
+			new_color = (shield_color_full != current_color) ? shield_color_full : null
+	if(!new_color)
+		return
+	var/mob/living/affected = parent.loc
+	affected.remove_filter("eshield")
+	affected.add_filter("eshield", 1, outline_filter(1, new_color))
+
+//original Martian design, donutsteel
+/obj/item/armor_module/module/eshield/som
+	name = "Aegis Energy Dispersion Module"
+	desc = "A sophisticated shielding unit, designed to disperse the energy of incoming impacts, rendering them harmless to the user. If it sustains too much it will deactivate, and leave the user vulnerable. It is unclear if this was a purely  SOM designed module, or whether it was reverse engineered from the TGMC's 'Arrowhead' shield system which was developed around the same time."
+
 /**
  *   Helmet Modules
 */
@@ -211,7 +389,7 @@
 	icon_state = "welding_head"
 	item_state = "welding_head_a"
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/head/modular/marine/m10x = "welding_head_xn", /obj/item/clothing/head/modular/marine/m10x/leader = "welding_head_xn")
+	variants_by_parent_type = list(/obj/item/clothing/head/modular/marine/m10x = "welding_head_xn", /obj/item/clothing/head/modular/marine/m10x/leader = "welding_head_xn", /obj/item/clothing/head/modular/som/welder = "welding_head_som")
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	active = FALSE
 	prefered_slot = SLOT_HEAD
@@ -255,7 +433,7 @@
 	icon_state = "welding_head"
 	item_state = "welding_head_a"
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/head/modular/marine/m10x = "welding_head_superior_xn", /obj/item/clothing/head/modular/marine/m10x/leader = "welding_head_superior_xn")
+	variants_by_parent_type = list(/obj/item/clothing/head/modular/marine/m10x = "welding_head_superior_xn", /obj/item/clothing/head/modular/marine/m10x/leader = "welding_head_superior_xn", /obj/item/clothing/head/modular/som/welder = "welding_head_som")
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	active = FALSE
 	prefered_slot = SLOT_HEAD
@@ -280,7 +458,9 @@
 
 /obj/item/armor_module/module/binoculars/activate(mob/living/user)
 	zoom(user)
-	active = !active
+	if(active == zoom) //Zooming failed for some reason and didn't change
+		return
+	active = zoom
 	to_chat(user, span_notice("You toggle \the [src]. [active ? "enabling" : "disabling"] it."))
 	icon_state = initial(icon_state) + "[active ? "_active" : ""]"
 	item_state = icon_state + "_a"

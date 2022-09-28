@@ -79,7 +79,7 @@
 #define STASIS_BAG_TRAIT "stasis_bag"
 #define SPECIES_TRAIT "species" // /datum/species innate trait
 #define CRYOPOD_TRAIT "cryopod"
-#define TRAIT_XENO "xeno"
+#define XENO_TRAIT "xeno"
 #define ARMOR_TRAIT "armor"
 #define STAT_TRAIT "stat"
 #define NECKGRAB_TRAIT "neckgrab"
@@ -87,6 +87,7 @@
 #define BUCKLE_TRAIT "buckle"
 #define THROW_TRAIT "throw"
 #define FORTIFY_TRAIT "fortify" //Defender fortify ability.
+#define CREST_DEFENSE_TRAIT "crestdefense"
 #define TRAIT_STASIS "stasis"//Subject to the stasis effect
 #define ENDURE_TRAIT "endure" //Ravager Endure ability.
 #define RAGE_TRAIT "rage" //Ravager Rage ability.
@@ -96,6 +97,12 @@
 #define GUN_TRAIT "gun" //Traits related to guns
 #define ZOMBIE_TRAIT "zombie"
 #define BULLET_ACT_TRAIT "bullet act" //Traits related to projectiles
+#define PORTAL_TRAIT "portal"
+#define OPTABLE_TRAIT "optable"
+#define TIMESHIFT_TRAIT "timeshift"
+#define BRAIN_TRAIT "brain"
+/// Trait from a reagent of the given name
+#define REAGENT_TRAIT(reagent) reagent.name
 /// inherited from riding vehicles
 #define VEHICLE_TRAIT "vehicle"
 
@@ -109,6 +116,7 @@
 #define TRAIT_IMMOBILE "immobile" //User is unable to move by its own volition.
 #define TRAIT_IS_RESURRECTING "resurrecting"
 #define TRAIT_PSY_LINKED "psy_linked"
+#define TRAIT_TIME_SHIFTED "time_shifted"
 /// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).
 #define TRAIT_HANDS_BLOCKED "handsblocked"
 #define TRAIT_STUNIMMUNE "stun_immunity"
@@ -130,10 +138,13 @@
 #define TRAIT_TURRET_HIDDEN "turret_hidden" //target gets passed over by turrets choosing a victim
 #define TRAIT_MOB_ICON_UPDATE_BLOCKED "icon_blocked" //target should not update its icon_state
 #define TRAIT_HEARING_SENSITIVE "hearing_sensitive" //target is hearing sensitive
+#define TRAIT_DROOLING "drooling" //target is drooling
 ///Prevent mob from being ignited due to IgniteMob()
 #define TRAIT_NON_FLAMMABLE "non-flammable"
 /// Prevents mob from riding mobs when buckled onto something
 #define TRAIT_CANT_RIDE "cant_ride"
+///Prevents humans from gaining oxyloss in their handle_breath()
+#define TRAIT_IGNORE_SUFFOCATION "ignore_suffocation"
 //All the traits for guns
 #define TRAIT_GUN_SAFETY "safety"
 #define TRAIT_GUN_FLASHLIGHT_ON "light_on"
@@ -141,10 +152,11 @@
 #define TRAIT_GUN_IS_AIMING "aiming"
 #define TRAIT_GUN_BURST_FIRING "burst_firing"
 #define TRAIT_GUN_SILENCED "silenced"
+#define TRAIT_GUN_RELOADING "reloading"
 
 // item traits
 #define TRAIT_T_RAY_VISIBLE "t-ray-visible" // Visible on t-ray scanners if the atom/var/level == 1
 // turf traits
-#define TRAIT_TURF_FREEZE_BULLET "freeze_bullet" //Stop projectiles on this tiles
+#define TRAIT_TURF_BULLET_MANIPULATION "bullet_manipulation" //This tile is doing something to projectile
 // projectile traits
 #define TRAIT_PROJ_HIT_SOMETHING "hit_something" //If projectile hit something on its path

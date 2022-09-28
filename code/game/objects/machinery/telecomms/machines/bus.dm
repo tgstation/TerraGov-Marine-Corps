@@ -74,6 +74,14 @@
 	freq_listening = list(FREQ_COMMON)
 	autolinkers = list("processor4", "common")
 
+//proper cicbackup bus
+/obj/machinery/telecomms/bus/preset_four/cicbackup
+	on = 0
+	id = "Backup Bus 4"
+	network = "tcommsat"
+	freq_listening = list(FREQ_COMMON)
+	autolinkers = list("processor4", "common")
+
 /obj/machinery/telecomms/bus/preset_one/rebel
 	id = "Bus 1 rebel"
 	freq_listening = list(FREQ_COMMAND_REBEL, FREQ_CAS_REBEL, FREQ_MEDICAL_REBEL, FREQ_ENGINEERING_REBEL, FREQ_REQUISITIONS_REBEL)
@@ -88,6 +96,22 @@
 	id = "Bus 4 rebel"
 	freq_listening = list(FREQ_COMMON_REBEL)
 	autolinkers = list("processor4_rebel", "common_rebel")
+
+//SOM
+/obj/machinery/telecomms/bus/preset_one/som
+	id = "Bus 1 som"
+	freq_listening = list(FREQ_COMMAND_SOM, FREQ_MEDICAL_SOM, FREQ_ENGINEERING_SOM) //No need for extra channels at this stage
+	autolinkers = list("processor1_som", "command_som", "medical_som", "engineering_som")
+
+/obj/machinery/telecomms/bus/preset_three/som
+	id = "Bus 3 som"
+	freq_listening = list(FREQ_ZULU, FREQ_YANKEE, FREQ_XRAY, FREQ_WHISKEY)
+	autolinkers = list("processor3_som", "zulu", "yankee", "xray", "whiskey")
+
+/obj/machinery/telecomms/bus/preset_four/som
+	id = "Bus 4 som"
+	freq_listening = list(FREQ_SOM) //same channel as SOM ert
+	autolinkers = list("processor4_som", "common_som")
 
 
 /obj/machinery/telecomms/bus/preset_four/Initialize()

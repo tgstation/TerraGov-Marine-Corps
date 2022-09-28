@@ -34,9 +34,13 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/smokebomb,
 		/obj/item/explosive/grenade/smokebomb/cloak,
 		/obj/item/explosive/grenade/smokebomb/drain,
+		/obj/item/explosive/grenade/smokebomb/neuro,
+		/obj/item/explosive/grenade/smokebomb/acid,
+		/obj/item/explosive/grenade/smokebomb/satrapine,
 		/obj/item/explosive/grenade/phosphorus,
 		/obj/item/explosive/grenade/phosphorus/upp,
 		/obj/item/explosive/grenade/impact,
+		/obj/item/explosive/grenade/sticky,
 		/obj/item/explosive/grenade/flare,
 		/obj/item/explosive/grenade/flare/cas,
 		/obj/item/explosive/grenade/chem_grenade,
@@ -46,6 +50,7 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/chem_grenade/razorburn_large,
 		/obj/item/explosive/grenade/chem_grenade/incendiary,
 		/obj/item/explosive/grenade/chem_grenade/teargas,
+		/obj/item/explosive/grenade/flashbang/stun,
 	)
 	reciever_flags = NONE
 
@@ -87,11 +92,11 @@ The Grenade Launchers
 	return list(grenade.hud_state, grenade.hud_state_empty)
 
 //-------------------------------------------------------
-//T-70 Grenade Launcher.
+//GL-70 Grenade Launcher.
 
 /obj/item/weapon/gun/grenade_launcher/multinade_launcher
-	name = "\improper T-70 grenade launcher"
-	desc = "The T-70 is the standard grenade launcher used by the TerraGov Marine Corps for area denial and big explosions."
+	name = "\improper GL-70 grenade launcher"
+	desc = "The GL-70 is the standard grenade launcher used by the TerraGov Marine Corps for area denial and big explosions."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t70"
 	item_state = "t70"
@@ -143,18 +148,30 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/smokebomb,
 		/obj/item/explosive/grenade/smokebomb/cloak,
 		/obj/item/explosive/grenade/smokebomb/drain,
+		/obj/item/explosive/grenade/smokebomb/neuro,
+		/obj/item/explosive/grenade/smokebomb/acid,
+		/obj/item/explosive/grenade/smokebomb/satrapine,
 		/obj/item/explosive/grenade/phosphorus,
 		/obj/item/explosive/grenade/phosphorus/upp,
 		/obj/item/explosive/grenade/flare,
 		/obj/item/explosive/grenade/flare/cas,
 		/obj/item/explosive/grenade/impact,
+		/obj/item/explosive/grenade/sticky,
+		/obj/item/explosive/grenade/flashbang/stun,
 	)
+
+	wield_delay_mod	= 0.2 SECONDS
 
 /obj/item/weapon/gun/grenade_launcher/underslung/invisible
 	flags_attach_features = NONE
 
+/obj/item/weapon/gun/grenade_launcher/underslung/mpi
+	icon_state = "grenade_mpi"
+	flags_attach_features = NONE
+	default_ammo_type = /obj/item/explosive/grenade/stick //no marine equipment here
+
 /obj/item/weapon/gun/grenade_launcher/single_shot
-	name = "\improper T-81 grenade launcher"
+	name = "\improper GL-81 grenade launcher"
 	desc = "A lightweight, single-shot grenade launcher used by the TerraGov Marine Corps for area denial and big explosions."
 	icon_state = "m81"
 	item_state = "m81"
@@ -171,7 +188,7 @@ The Grenade Launchers
 
 
 /obj/item/weapon/gun/grenade_launcher/single_shot/riot
-	name = "\improper M81 riot grenade launcher"
+	name = "\improper GL-81 riot grenade launcher"
 	desc = "A lightweight, single-shot grenade launcher to launch tear gas grenades. Used by Nanotrasen security during riots."
 	default_ammo_type = null
 	allowed_ammo_types = list(/obj/item/explosive/grenade/chem_grenade)

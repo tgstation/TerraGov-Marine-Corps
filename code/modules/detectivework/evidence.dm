@@ -95,7 +95,7 @@
 
 /obj/item/evidencebag/examine(mob/user)
 	. = ..()
-	stored_item?.examine(user)
+	. += stored_item?.examine(user)
 
 /obj/item/storage/box/evidence
 	name = "evidence bag box"

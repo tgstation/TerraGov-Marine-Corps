@@ -35,9 +35,9 @@
 	if(!ishuman(user))
 		return
 	if(fuel_left == 0)
-		to_chat(user, "The fuel gauge beeps out, it has no fuel left")
+		. += "The fuel gauge is beeping, it has no fuel left!"
 	else
-		to_chat(user, "The fuel gauge meter indicate it has [fuel_left/FUEL_USE] uses left")
+		. += "The fuel gauge meter indicates it has [fuel_left/FUEL_USE] uses left."
 
 /obj/item/jetpack_marine/equipped(mob/user, slot)
 	. = ..()
@@ -51,7 +51,7 @@
 	UnregisterSignal(user, list(COMSIG_MOB_CLICK_ALT_RIGHT, COMSIG_MOB_MIDDLE_CLICK))
 	UnregisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE)
 	selected = FALSE
-	actions.Cut()
+	LAZYCLEARLIST(actions)
 
 /obj/item/jetpack_marine/ui_action_click(mob/user, datum/action/item_action/action)
 	if(selected)
@@ -89,6 +89,9 @@
 
 ///Make the user fly toward the target atom
 /obj/item/jetpack_marine/proc/use_jetpack(atom/A, mob/living/carbon/human/human_user)
+	if(human_user.buckled)
+		balloon_alert(human_user, "Cannot fly while buckled")
+		return
 	if(!do_after(user = human_user, delay = 0.3 SECONDS, needhand = FALSE, target = A, ignore_turf_checks = TRUE))
 		return
 	TIMER_COOLDOWN_START(src, COOLDOWN_JETPACK, JETPACK_COOLDOWN_TIME)
@@ -141,10 +144,10 @@
 		else
 			. += image('icons/obj/items/jetpack.dmi', src, "+jetpackempty")
 
-/obj/item/jetpack_marine/apply_custom(image/standing)
+/obj/item/jetpack_marine/apply_custom(mutable_appearance/standing)
 	. = ..()
 	if(lit)
-		standing.overlays += image('icons/mob/back.dmi',src,"+jetpack_lit")
+		standing.overlays += mutable_appearance('icons/mob/back.dmi',"+jetpack_lit")
 
 ///Manage the fuel indicator overlay
 /obj/item/jetpack_marine/proc/change_fuel_indicator()

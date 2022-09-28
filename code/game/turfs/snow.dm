@@ -70,7 +70,7 @@
 		L.y = y
 		L.pixel_x += rand(-5,5)
 		L.pixel_y += rand(-5,5)
-		L.set_light(2)
+		L.set_light(2,1)
 		playsound(user, 'sound/weapons/genhit.ogg', 25, 1)
 
 
@@ -165,7 +165,7 @@
 	return ..()
 
 //Fire act; fire now melts snow as it should; fire beats ice
-/turf/open/floor/plating/ground/snow/flamer_fire_act(burnlevel, firelevel)
+/turf/open/floor/plating/ground/snow/flamer_fire_act(burnlevel)
 
 	if(!slayer || !burnlevel) //Don't bother if there's no snow to melt or if there's no burn stacks
 		return

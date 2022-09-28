@@ -2,7 +2,12 @@
 	animate_movement = SLIDE_STEPS
 	speech_span = SPAN_ROBOT
 	interaction_flags = INTERACT_OBJ_DEFAULT
+	resistance_flags = NONE
 
+	///damage amount to deal when this obj is attacking something
+	var/force = 0
+	///damage type to deal when this obj is attacking something
+	var/damtype = BRUTE
 	var/list/materials
 
 	/// %-reduction-based armor.
@@ -31,6 +36,9 @@
 
 	///Optimization for dynamic explosion block values, for things whose explosion block is dependent on certain conditions.
 	var/real_explosion_block
+
+	///odds of a projectile hitting the object, if throwpass is true and the object is dense
+	var/coverage = 50
 
 /obj/Initialize()
 	. = ..()

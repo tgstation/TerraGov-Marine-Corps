@@ -173,13 +173,16 @@
 			playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
 			user.visible_message(span_notice("[user] starts welding [src]'s internal damage."),
 			span_notice("You start welding [src]'s internal damage."))
+			add_overlay(GLOB.welding_sparks)
 			if(do_after(user, 200, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 				if(buildstate != FUSION_ENGINE_HEAVY_DAMAGE || is_on)
+					cut_overlay(GLOB.welding_sparks)
 					return FALSE
 				playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 				buildstate = FUSION_ENGINE_MEDIUM_DAMAGE
 				user.visible_message(span_notice("[user] welds [src]'s internal damage."),
 				span_notice("You weld [src]'s internal damage."))
+				cut_overlay(GLOB.welding_sparks)
 				update_icon()
 				return TRUE
 		else
@@ -255,41 +258,41 @@
 
 
 /obj/machinery/power/fusion_engine/examine(mob/user)
-	..()
+	. = ..()
 	if(ishuman(user))
 		if(buildstate != FUSION_ENGINE_NO_DAMAGE)
-			to_chat(user, span_info("It's broken."))
+			. += span_info("It's broken.")
 			switch(buildstate)
 				if(FUSION_ENGINE_HEAVY_DAMAGE)
-					to_chat(user, span_info("Use a blowtorch, then wirecutters, then wrench to repair it."))
+					. += span_info("Use a blowtorch, then wirecutters, then wrench to repair it.")
 				if(FUSION_ENGINE_MEDIUM_DAMAGE)
-					to_chat(user, span_info("Use a wirecutters, then wrench to repair it."))
+					. += span_info("Use a wirecutters, then wrench to repair it.")
 				if(FUSION_ENGINE_LIGHT_DAMAGE)
-					to_chat(user, span_info("Use a wrench to repair it."))
+					. += span_info("Use a wrench to repair it.")
 			return FALSE
 
 		if(!is_on)
-			to_chat(user, span_info("It looks offline."))
+			. += span_info("It looks offline.")
 		else
-			to_chat(user, span_info("The power gauge reads: [power_gen_percent]%"))
+			. += span_info("The power gauge reads: [power_gen_percent]%")
 		if(fusion_cell)
-			to_chat(user, span_info("You can see a fuel cell in the receptacle."))
+			. += span_info("You can see a fuel cell in the receptacle.")
 			if(user.skills.getRating("engineer") >= SKILL_ENGINEER_MASTER)
 				switch(fusion_cell.fuel_amount)
 					if(0 to 10)
-						to_chat(user, span_danger("The fuel cell is critically low."))
+						. += span_danger("The fuel cell is critically low.")
 					if(11 to 25)
-						to_chat(user, span_warning("The fuel cell is running low."))
+						. += span_warning("The fuel cell is running low.")
 					if(26 to 50)
-						to_chat(user, span_info("The fuel cell is a little under halfway."))
+						. += span_info("The fuel cell is a little under halfway.")
 					if(51 to 75)
-						to_chat(user, span_info("The fuel cell is a little above halfway."))
+						. += span_info("The fuel cell is a little above halfway.")
 					if(76 to 99)
-						to_chat(user, span_info("The fuel cell is nearly full."))
+						. += span_info("The fuel cell is nearly full.")
 					if(100)
-						to_chat(user, span_info("The fuel cell is full."))
+						. += span_info("The fuel cell is full.")
 		else
-			to_chat(user, span_info("There is no fuel cell in the receptacle."))
+			. += span_info("There is no fuel cell in the receptacle.")
 
 /obj/machinery/power/fusion_engine/update_icon()
 	switch(buildstate)
@@ -324,7 +327,7 @@
 #undef FUSION_ENGINE_MEDIUM_DAMAGE
 #undef FUSION_ENGINE_HEAVY_DAMAGE
 
-//FUEL CELL
+//FUEL CELL // todo for gods sake no camelcase
 /obj/item/fuelCell
 	name = "\improper WL-6 universal fuel cell"
 	icon = 'icons/Marine/shuttle-parts.dmi'
@@ -368,9 +371,9 @@
 			icon_state = "cell-full"
 
 /obj/item/fuelCell/examine(mob/user)
-	..()
+	. = ..()
 	if(ishuman(user))
-		to_chat(user, "The fuel indicator reads: [get_fuel_percent()]%")
+		. += "The fuel indicator reads: [get_fuel_percent()]%"
 
 /obj/item/fuelCell/proc/get_fuel_percent()
 	return round(100*fuel_amount/max_fuel_amount)

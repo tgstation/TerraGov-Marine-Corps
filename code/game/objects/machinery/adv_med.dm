@@ -9,6 +9,7 @@
 	icon_state = "body_scanner_0"
 	density = TRUE
 	anchored = TRUE
+	coverage = 20
 
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 60
@@ -130,7 +131,7 @@
 	if(!do_after(X, 2 SECONDS))
 		return
 	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
-	go_out()	
+	go_out()
 
 /obj/machinery/bodyscanner/ex_act(severity)
 	switch(severity)
@@ -226,16 +227,16 @@
 	if(!occupant)
 		return
 	if(!hasHUD(user,"medical"))
-		to_chat(user, span_notice("It contains: [occupant]."))
+		. += span_notice("It contains: [occupant].")
 		return
 	var/mob/living/carbon/human/H = occupant
 	for(var/datum/data/record/R in GLOB.datacore.medical) //Again, for consistency with other medical machines/devices
 		if (!R.fields["name"] == H.real_name)
 			continue
 		if(!(R.fields["last_scan_time"]))
-			to_chat(user, "<span class = 'deptradio'>No scan report on record</span>\n")
+			. += span_deptradio("No scan report on record")
 		else
-			to_chat(user, "<span class = 'deptradio'><a href='?src=\ref[src];scanreport=1'>It contains [occupant]: Scan from [R.fields["last_scan_time"]].</a></span>\n")
+			. += span_deptradio("<a href='?src=\ref[src];scanreport=1'>It contains [occupant]: Scan from [R.fields["last_scan_time"]].</a>")
 		break
 
 

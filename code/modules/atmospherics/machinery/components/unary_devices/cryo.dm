@@ -6,10 +6,11 @@
 	icon_state = "cell-off"
 	density = TRUE
 	max_integrity = 350
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 30, "acid" = 30)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 100, BOMB = 0, BIO = 100, "rad" = 100, FIRE = 30, ACID = 30)
 	layer = ABOVE_WINDOW_LAYER
 	pipe_flags = PIPING_ONE_PER_TURF|PIPING_DEFAULT_LAYER_ONLY
 	interaction_flags = INTERACT_MACHINE_TGUI
+	can_see_pipes = FALSE
 
 	var/autoeject = FALSE
 	var/release_notice = FALSE
@@ -53,23 +54,18 @@
 		return
 	if(occupant.stat == DEAD)
 		return
-	if(occupant.health > (occupant.maxHealth - 2) && autoeject) //release the patient automatically when at, or near full health
+	if(!occupant.getBruteLoss(TRUE) && !occupant.getFireLoss(TRUE) && !occupant.getCloneLoss() && autoeject) //release the patient automatically when brute and burn are handled on non-robotic limbs
 		go_out(TRUE)
 		return
-	occupant.bodytemperature = 100 //Temp fix for broken atmos
-	occupant.set_stat(UNCONSCIOUS)
-	if(occupant.bodytemperature < T0C)
-		occupant.Paralyze(20 SECONDS)
-		if(occupant.getOxyLoss())
-			occupant.adjustOxyLoss(-1)
+	occupant.bodytemperature = 100 //Atmos is long gone, we'll just set temp directly.
+	occupant.Sleeping(20 SECONDS)
 
-		//severe damage should heal waaay slower without proper chemicals
-		if(occupant.bodytemperature < 225)
-			if (occupant.getToxLoss())
-				occupant.adjustToxLoss(max(-1, -20/occupant.getToxLoss()))
-			var/heal_brute = occupant.getBruteLoss() ? min(1, 20/occupant.getBruteLoss()) : 0
-			var/heal_fire = occupant.getFireLoss() ? min(1, 20/occupant.getFireLoss()) : 0
-			occupant.heal_limb_damage(heal_brute, heal_fire, updating_health = TRUE)
+	//You'll heal slowly just from being in an active pod, but chemicals speed it up.
+	if(occupant.getOxyLoss())
+		occupant.adjustOxyLoss(-1)
+	if (occupant.getToxLoss())
+		occupant.adjustToxLoss(-1)
+	occupant.heal_limb_damage(1, 1, updating_health = TRUE)
 	var/has_cryo = occupant.reagents.get_reagent_amount(/datum/reagent/medicine/cryoxadone) >= 1
 	var/has_clonexa = occupant.reagents.get_reagent_amount(/datum/reagent/medicine/clonexadone) >= 1
 	var/has_cryo_medicine = has_cryo || has_clonexa
@@ -92,9 +88,16 @@
 	conduction_coefficient = initial(conduction_coefficient) * C
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/examine(mob/user) //this is leaving out everything but efficiency since they follow the same idea of "better beaker, better results"
-	..()
+	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		to_chat(user, "<span class='notice'>The status display reads: Efficiency at <b>[efficiency*100]%</b>.<span>")
+		. +=  span_notice("The status display reads: Efficiency at <b>[efficiency*100]%</b>.")
+	if(occupant)
+		if(on)
+			. += "Someone's inside [src]!"
+		else
+			. += "You can barely make out a form floating in [src]."
+	else
+		. += "[src] seems empty."
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/Destroy()
 	QDEL_NULL(radio)
@@ -119,7 +122,7 @@
 	if(occupant)
 		icon_state = "cell-occupied"
 		return
-	icon_state = "cell-on"	
+	icon_state = "cell-on"
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/proc/run_anim(anim_up, image/occupant_overlay)
 	if(!on || !occupant || !is_operational())
@@ -210,20 +213,16 @@
 		return
 	go_out()
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/examine(mob/user)
-	..()
-	if(occupant)
-		if(on)
-			to_chat(user, "Someone's inside [src]!")
-		else
-			to_chat(user, "You can barely make out a form floating in [src].")
-	else
-		to_chat(user, "[src] seems empty.")
-
 /obj/machinery/atmospherics/components/unary/cryo_cell/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(istype(I, /obj/item/reagent_containers/glass))
+
+		for(var/datum/reagent/X in I.reagents.reagent_list)
+			if(X.medbayblacklist)
+				to_chat(user, span_warning("The cryo cell's automatic safety features beep softly, they must have detected a harmful substance in the beaker."))
+				return
+
 		if(beaker)
 			to_chat(user, span_warning("A beaker is already loaded into the machine."))
 			return
@@ -234,7 +233,9 @@
 
 		beaker =  I
 
+
 		var/reagentnames = ""
+
 		for(var/datum/reagent/R in beaker.reagents.reagent_list)
 			reagentnames += ", [R.name]"
 
@@ -309,7 +310,6 @@
 	if(M.health > -100 && (M.health < 0 || M.IsSleeping()))
 		to_chat(M, span_boldnotice("You feel a cold liquid surround you. Your skin starts to freeze up."))
 	occupant = M
-//	M.metabslow = 1
 	update_icon()
 	return TRUE
 
@@ -435,9 +435,6 @@
 /obj/machinery/atmospherics/components/unary/cryo_cell/can_crawl_through()
 	return // can't ventcrawl in or out of cryo.
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/can_see_pipes()
-	return 0 // you can't see the pipe network when inside a cryo cell.
-
 /obj/machinery/atmospherics/components/unary/cryo_cell/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 	if(!occupant)
 		to_chat(X, span_xenowarning("There is nothing of interest in there."))
@@ -449,7 +446,7 @@
 	if(!do_after(X, 2 SECONDS))
 		return
 	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
-	go_out()	
+	go_out()
 
 
 #undef CRYOMOBS

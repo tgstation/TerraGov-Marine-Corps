@@ -294,24 +294,24 @@
 	. = ..()
 	switch(girder_state)
 		if(GIRDER_BROKEN)
-			to_chat(user, "It's broken, but can be mended by applying a metal plate then welding it together. Or scrapped for metal by wrenching it loose.")
+			. += "It's broken, but can be mended by applying a metal plate then welding it together. Or scrapped for metal by wrenching it loose."
 		if(GIRDER_BROKEN_PATCHED)
-			to_chat(user, "It's broken, but can be mended by welding it. Or scrapped by cutting out the metal plate with a wirecutter.")
+			. += "It's broken, but can be mended by welding it. Or scrapped by cutting out the metal plate with a wirecutter."
 		if(GIRDER_NORMAL)
 			if(anchored)
-				to_chat(user, "To start building the wall, add a two sheets of metal or fifteen of plasteel plate to the girder. To unanchor it, use a crowbar.")
+				. += "To start building the wall, add a two sheets of metal or fifteen of plasteel plate to the girder. To unanchor it, use a crowbar."
 			else
-				to_chat(user, "To anchor it, wrench it down. Do disassemble it, use a screwdriver.")
+				. += "To anchor it, wrench it down. Do disassemble it, use a screwdriver."
 		if(GIRDER_BUILDING1_LOOSE)
-			to_chat(user, "To continue building the wall, secure the inner plate layer with a screwdriver. To deconstruct it, pry it off with a crowbar.")
+			. += "To continue building the wall, secure the inner plate layer with a screwdriver. To deconstruct it, pry it off with a crowbar."
 		if(GIRDER_BUILDING1_SECURED)
-			to_chat(user, "To continue building the wall, secure the inner plate layer by welding. To deconstruct it, use a screwdriver.")
+			. += "To continue building the wall, secure the inner plate layer by welding. To deconstruct it, use a screwdriver."
 		if(GIRDER_BUILDING1_WELDED)
-			to_chat(user, "To continue building the wall, add [reinforcement == GIRDER_REINF_PLASTEEL ? "fifteen sheets of plasteel" : "two sheets of metal"] plates to the outer plate layer. To deconstruct it, use wirecutters.")
+			. += "To continue building the wall, add [reinforcement == GIRDER_REINF_PLASTEEL ? "fifteen sheets of plasteel" : "two sheets of metal"] plates to the outer plate layer. To deconstruct it, use wirecutters."
 		if(GIRDER_BUILDING2_LOOSE)
-			to_chat(user, "To continue building the wall, secure the outer plate layer with a screwdriver. To deconstruct it, pry it off with a crowbar.")
+			. += "To continue building the wall, secure the outer plate layer with a screwdriver. To deconstruct it, pry it off with a crowbar."
 		if(GIRDER_BUILDING2_SECURED)
-			to_chat(user, "To finish building the wall, secure the outer plate layer by welding. To begin deconstructing it, use a screwdriver.")
+			. += "To finish building the wall, secure the outer plate layer by welding. To begin deconstructing it, use a screwdriver."
 
 
 /obj/structure/girder/obj_break()

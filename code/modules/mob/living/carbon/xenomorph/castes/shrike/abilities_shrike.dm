@@ -307,7 +307,8 @@
 			to_chat(owner, span_warning("We can't do that here."))
 		return FALSE
 
-	if(!(locate(/obj/effect/alien/weeds) in T))
+	var/mob/living/carbon/xenomorph/owner_xeno = owner
+	if(!owner_xeno.loc_weeds_type)
 		if(!silent)
 			to_chat(owner, span_warning("We can only shape on weeds. We must find some resin before we start building!"))
 		return FALSE

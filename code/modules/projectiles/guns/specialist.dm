@@ -24,8 +24,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 //Pow! Headshot
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial
-	name = "\improper T-26 scoped rifle"
-	desc = "The T-26 is an IFF capable sniper rifle which is mostly used by long range marksmen. It excels in long-range combat situations and support sniping. It has a laser designator installed, and the scope itself has IFF integrated into it. Uses specialized 10x28 caseless rounds made to work with the guns odd IFF-scope system.  \nIt has an integrated Target Marker and a Laser Targeting system.\n\"Peace Through Superior Firepower\"."
+	name = "\improper SR-26 scoped rifle"
+	desc = "The SR-26 is an IFF capable sniper rifle which is mostly used by long range marksmen. It excels in long-range combat situations and support sniping. It has a laser designator installed, and the scope itself has IFF integrated into it. Uses specialized 10x28 caseless rounds made to work with the guns odd IFF-scope system.  \nIt has an integrated Target Marker and a Laser Targeting system.\n\"Peace Through Superior Firepower\"."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t26"
 	item_state = "t26"
@@ -63,9 +63,10 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 	fire_delay = 2.5 SECONDS
 	burst_amount = 1
-	accuracy_mult = 1.50
+	accuracy_mult = 1.1
 	recoil = 2
 	scatter = 0
+	movement_acc_penalty_mult = 8
 
 	placed_overlay_iconstate = "antimat"
 
@@ -225,7 +226,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 
 /obj/item/weapon/gun/rifle/sniper/elite
-	name = "\improper M42C anti-tank sniper rifle"
+	name = "\improper SR-42 anti-tank sniper rifle"
 	desc = "A high end mag-rail heavy sniper rifle from Nanotrasen chambered in the heaviest ammo available, 10x99mm Caseless."
 	icon_state = "m42c"
 	item_state = "m42c"
@@ -254,10 +255,11 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	starting_attachment_types = list(/obj/item/attachable/scope/pmc, /obj/item/attachable/sniperbarrel)
 
 	fire_delay = 1.5 SECONDS
-	accuracy_mult = 1.50
+	accuracy_mult = 1.2
 	scatter = 3
 	recoil = 5
 	burst_amount = 1
+	movement_acc_penalty_mult = 7
 
 
 /obj/item/weapon/gun/rifle/sniper/elite/simulate_recoil(total_recoil = 0, mob/user)
@@ -272,7 +274,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 //SVD //Based on the Dragunov sniper rifle.
 
 /obj/item/weapon/gun/rifle/sniper/svd
-	name = "\improper SVD Dragunov-033 sniper rifle"
+	name = "\improper SR-33 Dragunov sniper rifle"
 	desc = "A semiautomatic sniper rifle, famed for it's marksmanship, and is built from the ground up for it. Fires 7.62x54mmR rounds."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "svd"
@@ -305,18 +307,19 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 	fire_delay = 1.2 SECONDS
 	burst_amount = 1
-	accuracy_mult = 0.95
+	accuracy_mult = 1
 	scatter = -5
 	recoil = -1
 	wield_delay = 1.8 SECONDS
+	movement_acc_penalty_mult = 6
 
 
 
-//Based off the XM-8. TX-8 rifle
+//Based off the XM-8. BR-8 rifle
 
 /obj/item/weapon/gun/rifle/tx8
-	name = "\improper TX-8 scout rifle"
-	desc ="The TX-8 is a light specialized scout rifle, mostly used by light infantry and scouts. It's designed to be useable at all ranges by being very adaptable to different situations due to the ability to use different ammo types. Has IFF.  Takes specialized overpressured 10x28mm rounds."
+	name = "\improper BR-8 scout rifle"
+	desc ="The BR-8 is a light specialized scout rifle, mostly used by light infantry and scouts. It's designed to be useable at all ranges by being very adaptable to different situations due to the ability to use different ammo types. Has IFF.  Takes specialized overpressured 10x28mm rounds."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "tx8"
 	item_state = "tx8"
@@ -362,21 +365,27 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 	gun_skill_category = GUN_SKILL_FIREARMS
-	attachable_offset = list("muzzle_x" = 44, "muzzle_y" = 18,"rail_x" = 16, "rail_y" = 25, "under_x" = 27, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
+	attachable_offset = list("muzzle_x" = 44, "muzzle_y" = 18,"rail_x" = 18, "rail_y" = 24, "under_x" = 31, "under_y" = 15, "stock_x" = 24, "stock_y" = 13)
 
 
 	fire_delay = 0.4 SECONDS
 	burst_amount = 1
-	accuracy_mult = 1.4
+	accuracy_mult = 1.2
 	scatter = -3
 	recoil = 2
 
+/obj/item/weapon/gun/rifle/tx8/scout
+	starting_attachment_types = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/verticalgrip,
+	)
 
 //-------------------------------------------------------
 // MINIGUN
 
 /obj/item/weapon/gun/minigun
-	name = "\improper T-100 Minigun"
+	name = "\improper MG-100 Vindicator Minigun"
 	desc = "A six barreled rotary machine gun, The ultimate in man-portable firepower, capable of laying down high velocity armor piercing rounds this thing will no doubt pack a punch.. If you don't kill all your friends with it, you can use the stablizing system of the Powerpack to fire aimed fire, but you'll move incredibly slowly."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "minigun"
@@ -411,6 +420,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	recoil = 2
 	recoil_unwielded = 4
 	damage_falloff_mult = 0.5
+	movement_acc_penalty_mult = 4
 
 /obj/item/weapon/gun/minigun/Initialize()
 	. = ..()
@@ -421,14 +431,43 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	return ..()
 
 
+// SG minigun
+
+/obj/item/weapon/gun/minigun/smart_minigun
+	name = "\improper SG-85 smart handheld gatling gun"
+	desc = "A true monster of providing supportive suppresing fire, the SG-85 is the TGMC's newest IFF-capable weapon. Boasting a higher firerate than any other handheld weapon. It is chambered in 10x26 caseless."
+	icon_state = "minigun_sg"
+	item_state = "minigun_sg"
+	fire_animation = "minigun_sg_fire"
+	max_shells = 1000 //codex
+	caliber = CALIBER_10x26_CASELESS //codex
+	allowed_ammo_types = list(/obj/item/ammo_magazine/minigun_powerpack/smartgun)
+	wield_delay = 1.5 SECONDS
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_IFF
+	gun_skill_category = GUN_SKILL_SMARTGUN
+	attachable_allowed = list(/obj/item/attachable/flashlight, /obj/item/attachable/magnetic_harness, /obj/item/attachable/motiondetector)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 19, "rail_y" = 29, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12) //Only has rail attachments so only the rail variables are properly aligned
+	aim_slowdown = 1.5
+	actions_types = list()
+
+	fire_delay = 0.1 SECONDS
+	windup_delay = 0.7 SECONDS
+	scatter = -5
+	recoil = 0
+	recoil_unwielded = 4
+	damage_falloff_mult = 0.5
+
+/obj/item/weapon/gun/minigun/smart_minigun/motion_detector
+	starting_attachment_types = list(/obj/item/attachable/motiondetector)
+
 // PEPPERBALL GUN
 
 //-------------------------------------------------------
-//TLLL-12
+//PB-12
 
 /obj/item/weapon/gun/rifle/pepperball
-	name = "\improper TLLL-12 pepperball gun"
-	desc = "The TLLL-12 is ostensibly riot control device used by the TGMC in spiffy colors, working through a SAN ball that sends a short acting neutralizing chemical to knock out it's target, or weaken them. Guranteed to work on just about everything. Uses SAN Ball Holders as magazines."
+	name = "\improper PB-12 pepperball gun"
+	desc = "The PB-12 is ostensibly riot control device used by the TGMC in spiffy colors, working through a SAN ball that sends a short acting neutralizing chemical to knock out it's target, or weaken them. Guranteed to work on just about everything. Uses SAN Ball Holders as magazines."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "pepperball"
 	item_state = "pepperball"
@@ -443,14 +482,18 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	attachable_allowed = list(
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/shoulder_mount,
+		/obj/item/attachable/magnetic_harness,
 	) // One
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.15 SECONDS
+	aim_speed_modifier = 0.5
 
 	flags_gun_features = GUN_AMMO_COUNTER
 
 	fire_delay = 0.1 SECONDS
 	burst_amount = 1
-	accuracy_mult = 1.75
+	accuracy_mult = 1
 	recoil = 0
 	accuracy_mult_unwielded = 0.75
 	scatter = -1
@@ -461,7 +504,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 /obj/item/weapon/gun/rifle/pepperball/pepperball_mini
 	name = "mini pepperball gun"
-	desc = "An attachable version of the TLLL-12 pepperball gun. It has a smaller magazine size and has a slower rate of fire."
+	desc = "An attachable version of the PB-12 pepperball gun. It has a smaller magazine size and has a slower rate of fire."
 	icon_state = "pepperball_mini"
 	slot = ATTACHMENT_SLOT_UNDER
 	max_shells = 20
@@ -469,6 +512,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/pepperball/pepperball_mini)
 	force = 5
 	attachable_allowed = list()
+	actions_types = list()
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	flags_gun_features = GUN_IS_ATTACHMENT | GUN_WIELDED_FIRING_ONLY | GUN_ATTACHMENT_FIRE_ONLY | GUN_AMMO_COUNTER
 	fire_delay = 0.2 SECONDS
@@ -477,12 +521,14 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	pixel_shift_x = 18
 	pixel_shift_y = 16
 
+	wield_delay_mod	= 0.2 SECONDS
+
 //-------------------------------------------------------
 //M5 RPG
 
 /obj/item/weapon/gun/launcher/rocket
-	name = "\improper M-5 rocket launcher"
-	desc = "The M-5 is the primary anti-armor used around the galaxy. Used to take out light-tanks and enemy structures, the M-5 rocket launcher is a dangerous weapon with a variety of combat uses. Uses a variety of 84mm rockets."
+	name = "\improper RL-5 rocket launcher"
+	desc = "The RL-5 is the primary anti-armor used around the galaxy. Used to take out light-tanks and enemy structures, the RL-5 rocket launcher is a dangerous weapon with a variety of combat uses. Uses a variety of 84mm rockets."
 	icon_state = "m5"
 	item_state = "m5"
 	max_shells = 1 //codex
@@ -518,6 +564,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	windup_delay = 0.4 SECONDS
 	///the smoke effect after firing
 	var/datum/effect_system/smoke_spread/smoke
+	///removes backblast damage if false
+	var/backblastdamage = TRUE
 
 /obj/item/weapon/gun/launcher/rocket/Initialize(mapload, spawn_empty)
 	. = ..()
@@ -535,6 +583,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	var/turf/backblast_loc = get_step(blast_source, thrown_dir)
 	smoke.set_up(0, backblast_loc)
 	smoke.start()
+	if(!backblastdamage)
+		return
 	for(var/mob/living/carbon/victim in backblast_loc)
 		if(victim.lying_angle || victim.stat == DEAD) //Have to be standing up to get the fun stuff
 			continue
@@ -545,13 +595,14 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 
 //-------------------------------------------------------
-//T-152 RPG
+//RL-152 RPG
 
 /obj/item/weapon/gun/launcher/rocket/sadar
-	name = "\improper T-152 rocket launcher"
-	desc = "The T-152 is the primary anti-armor weapon of the TGMC. Used to take out light-tanks and enemy structures, the T-152 rocket launcher is a dangerous weapon with a variety of combat uses. Uses a variety of 84mm rockets."
+	name = "\improper RL-152 sadar rocket launcher"
+	desc = "The RL-152 is the primary anti-armor weapon of the TGMC. Used to take out light-tanks and enemy structures, the RL-152 rocket launcher is a dangerous weapon with a variety of combat uses. Uses a variety of 84mm rockets."
 	icon_state = "m5"
 	item_state = "m5"
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
 	max_shells = 1 //codex
 	caliber = CALIBER_84MM //codex
 	load_method = SINGLE_CASING //codex
@@ -571,13 +622,11 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	general_codex_key = "explosive weapons"
 	attachable_allowed = list(
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_skill_category = GUN_SKILL_FIREARMS
-	starting_attachment_types = list(/obj/item/attachable/scope/mini)
 	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
 	unload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
@@ -599,8 +648,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 //M5 RPG'S MEAN FUCKING COUSIN
 
 /obj/item/weapon/gun/launcher/rocket/m57a4
-	name = "\improper M57A4 quad thermobaric launcher"
-	desc = "The M57A4 is posssibly the most destructive man-portable weapon ever made. It is a 4-barreled missile launcher capable of burst-firing 4 thermobaric missiles. Enough said."
+	name = "\improper RL-57A quad thermobaric launcher"
+	desc = "The RL-57A is posssibly the most destructive man-portable weapon ever made. It is a 4-barreled missile launcher capable of burst-firing 4 thermobaric missiles. Enough said."
 	icon_state = "m57a4"
 	item_state = "m57a4"
 	max_shells = 4 //codex
@@ -624,8 +673,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	placed_overlay_iconstate = "thermo"
 
 /obj/item/weapon/gun/launcher/rocket/m57a4/t57
-	name = "\improper T-57 quad thermobaric launcher"
-	desc = "The T-57 is posssibly the most awful man portable weapon. It is a 4-barreled missile launcher capable of burst-firing 4 thermobaric missiles with nearly no force to the rocket. Enough said."
+	name = "\improper RL-57 quad thermobaric launcher"
+	desc = "The RL-57 is posssibly the most awful man portable weapon. It is a 4-barreled missile launcher capable of burst-firing 4 thermobaric missiles with nearly no force to the rocket. Enough said."
 	icon_state = "t57"
 	item_state = "t57"
 	default_ammo_type = /obj/item/ammo_magazine/rocket/m57a4
@@ -633,11 +682,11 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 
 //-------------------------------------------------------
-//T-160 Recoilless Rifle. Its effectively an RPG codewise.
+//RL-160 Recoilless Rifle. Its effectively an RPG codewise.
 
 /obj/item/weapon/gun/launcher/rocket/recoillessrifle
-	name = "\improper T-160 recoilless rifle"
-	desc = "The T-160 recoilless rifle is a long range explosive ordanance device used by the TGMC used to fire explosive shells at far distances. Uses a variety of 67mm shells designed for various purposes."
+	name = "\improper RL-160 recoilless rifle"
+	desc = "The RL-160 recoilless rifle is a long range explosive ordanance device used by the TGMC used to fire explosive shells at far distances. Uses a variety of 67mm shells designed for various purposes."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t160"
 	item_state = "t160"
@@ -649,6 +698,10 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/rocket/recoilless,
 		/obj/item/ammo_magazine/rocket/recoilless/light,
+		/obj/item/ammo_magazine/rocket/recoilless/low_impact,
+		/obj/item/ammo_magazine/rocket/recoilless/smoke,
+		/obj/item/ammo_magazine/rocket/recoilless/cloak,
+		/obj/item/ammo_magazine/rocket/recoilless/plasmaloss,
 		/obj/item/ammo_magazine/rocket/recoilless/heat,
 	)
 	flags_equip_slot = NONE
@@ -674,23 +727,30 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	recoil = 3
 	scatter = -100
 
+/obj/item/weapon/gun/launcher/rocket/recoillessrifle/low_impact
+	default_ammo_type = /obj/item/ammo_magazine/rocket/recoilless/low_impact
+
 //-------------------------------------------------------
 //Disposable RPG
 
 /obj/item/weapon/gun/launcher/rocket/oneuse
-	name = "\improper T-72 disposable rocket launcher"
-	desc = "This is the premier disposable rocket launcher used throughout the galaxy, it cannot be reloaded or unloaded on the field. This one fires an 84mm explosive rocket."
+	name = "\improper RL-72 disposable rocket launcher"
+	desc = "This is the premier disposable rocket launcher used throughout the galaxy, it cannot be reloaded or unloaded on the field. This one fires an 84mm explosive rocket. Spacebar to shorten or extend it to make it storeable or fireable, respectively."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t72"
 	item_state = "t72"
 	max_shells = 1 //codex
 	caliber = CALIBER_84MM //codex
 	load_method = SINGLE_CASING //codex
+	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo_type = /obj/item/ammo_magazine/rocket/oneuse
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rocket/oneuse)
 	reciever_flags = AMMO_RECIEVER_CLOSED|AMMO_RECIEVER_MAGAZINES
 	flags_equip_slot = ITEM_SLOT_BELT
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY
 	attachable_allowed = list(/obj/item/attachable/magnetic_harness)
+	/// Indicates extension state of the launcher. True: Fireable and unable to fit in storage. False: Able to fit in storage but must be extended to fire.
+	var/extended = FALSE
 
 	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
@@ -700,12 +760,27 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	recoil = 3
 	scatter = -100
 
+// Do a short windup, swap the extension status of the rocket if successful, then swap the flags.
+/obj/item/weapon/gun/launcher/rocket/oneuse/unique_action(mob/living/user)
+	playsound(user, 'sound/weapons/guns/misc/oneuse_deploy.ogg', 25, 1)
+	if(!do_after(user, 20, TRUE, src, BUSY_ICON_DANGER))
+		return
+	extended = !extended
+	if(!extended)
+		w_class = WEIGHT_CLASS_NORMAL
+		flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY
+		icon_state = initial(icon_state)
+		return
+	w_class = WEIGHT_CLASS_BULKY
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	icon_state = "[icon_state]_extended"
+
 //-------------------------------------------------------
-//TX-220 Railgun
+//SR-220 Railgun
 
 /obj/item/weapon/gun/rifle/railgun
-	name = "\improper TX-220 railgun"
-	desc = "The TX-220 is a specialized heavy duty railgun made to shred through hard armor to allow for follow up attacks. Uses specialized canisters to reload."
+	name = "\improper RG-220 railgun"
+	desc = "The RG-220 is a specialized heavy duty railgun made to shred through hard armor to allow for follow up attacks. Uses specialized canisters to reload."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "railgun"
 	item_state = "railgun"
@@ -717,9 +792,13 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	unload_sound = 'sound/weapons/guns/interact/sniper_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/sniper_reload.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/railgun
-	allowed_ammo_types = list(/obj/item/ammo_magazine/railgun)
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/railgun,
+		/obj/item/ammo_magazine/railgun/smart,
+		/obj/item/ammo_magazine/railgun/hvap,
+	)
 	force = 40
-	wield_delay = 1.75 SECONDS //You're not quick drawing this.
+	wield_delay = 1 SECONDS //You're not quick drawing this.
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	attachable_allowed = list(
 		/obj/item/attachable/magnetic_harness,
@@ -732,3 +811,5 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	burst_amount = 1
 	accuracy_mult = 2
 	recoil = 0
+	scatter = 0
+	movement_acc_penalty_mult = 6

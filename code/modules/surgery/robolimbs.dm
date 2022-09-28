@@ -9,16 +9,16 @@
 
 /datum/surgery_step/limb/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
 	if(!affected)
-		return 0
+		return SURGERY_CANNOT_USE
 	if(!(affected.limb_status & LIMB_DESTROYED))
-		return 0
+		return SURGERY_CANNOT_USE
 	if(affected.parent && (affected.parent.limb_status & LIMB_DESTROYED))//parent limb is destroyed
-		return 0
+		return SURGERY_CANNOT_USE
 	if(affected.limb_replacement_stage != limb_step)
-		return 0
+		return SURGERY_CANNOT_USE
 	if(affected.body_part == HEAD) //head has its own steps
-		return 0
-	return 1
+		return SURGERY_CANNOT_USE
+	return SURGERY_CAN_USE
 
 /datum/surgery_step/limb/cut
 	allowed_tools = list(
@@ -34,11 +34,13 @@
 /datum/surgery_step/limb/cut/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_notice("[user] starts cutting away flesh where [target]'s [affected.display_name] used to be with \the [tool]."), \
 	span_notice("You start cutting away flesh where [target]'s [affected.display_name] used to be with \the [tool]."))
+	target.balloon_alert_to_viewers("Cutting...")
 	..()
 
 /datum/surgery_step/limb/cut/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_notice("[user] cuts away flesh where [target]'s [affected.display_name] used to be with \the [tool]."),	\
 	span_notice("You cut away flesh where [target]'s [affected.display_name] used to be with \the [tool]."))
+	target.balloon_alert_to_viewers("Success")
 	affected.limb_replacement_stage = 1
 
 /datum/surgery_step/limb/cut/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
@@ -46,6 +48,7 @@
 		affected = affected.parent
 		user.visible_message(span_warning("[user]'s hand slips, cutting [target]'s [affected.display_name] open!"), \
 		span_warning("Your hand slips, cutting [target]'s [affected.display_name] open!"))
+		target.balloon_alert_to_viewers("Slipped!")
 		affected.createwound(CUT, 10)
 		affected.update_wounds()
 
@@ -65,11 +68,13 @@
 /datum/surgery_step/limb/mend/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_notice("[user] is beginning to reposition flesh and nerve endings where where [target]'s [affected.display_name] used to be with [tool]."), \
 	span_notice("You start repositioning flesh and nerve endings where [target]'s [affected.display_name] used to be with [tool]."))
+	target.balloon_alert_to_viewers("Repositioning...")
 	..()
 
 /datum/surgery_step/limb/mend/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_notice("[user] has finished repositioning flesh and nerve endings where [target]'s [affected.display_name] used to be with [tool]."),	\
 	span_notice("You have finished repositioning flesh and nerve endings where [target]'s [affected.display_name] used to be with [tool]."))
+	target.balloon_alert_to_viewers("Success")
 	affected.limb_replacement_stage = 2
 
 /datum/surgery_step/limb/mend/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
@@ -77,6 +82,7 @@
 		affected = affected.parent
 		user.visible_message(span_warning("[user]'s hand slips, tearing flesh on [target]'s [affected.display_name]!"), \
 		span_warning("Your hand slips, tearing flesh on [target]'s [affected.display_name]!"))
+		target.balloon_alert_to_viewers("Slipped!")
 		target.apply_damage(10, BRUTE, affected, 0, TRUE, updating_health = TRUE)
 
 
@@ -95,11 +101,13 @@
 /datum/surgery_step/limb/prepare/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_notice("[user] starts adjusting the area around [target]'s [affected.display_name] with \the [tool]."), \
 	span_notice("You start adjusting the area around [target]'s [affected.display_name] with \the [tool]."))
+	target.balloon_alert_to_viewers("Adjusting...")
 	..()
 
 /datum/surgery_step/limb/prepare/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_notice("[user] has finished adjusting the area around [target]'s [affected.display_name] with \the [tool]."),	\
 	span_notice("You have finished adjusting the area around [target]'s [affected.display_name] with \the [tool]."))
+	target.balloon_alert_to_viewers("Success")
 	affected.add_limb_flags(LIMB_AMPUTATED)
 	affected.setAmputatedTree()
 	affected.limb_replacement_stage = 0
@@ -109,6 +117,7 @@
 		affected = affected.parent
 		user.visible_message(span_warning("[user]'s hand slips, searing [target]'s [affected.display_name]!"), \
 		span_warning("Your hand slips, searing [target]'s [affected.display_name]!"))
+		target.balloon_alert_to_viewers("Slipped!")
 		target.apply_damage(10, BURN, affected, updating_health = TRUE)
 
 
@@ -124,16 +133,20 @@
 		var/obj/item/robot_parts/p = tool
 		if(p.part)
 			if(!(target_zone in p.part))
-				return 0
-		return affected.limb_status & LIMB_AMPUTATED
+				return SURGERY_CANNOT_USE
+		if(affected.limb_status & LIMB_AMPUTATED)
+			return SURGERY_CAN_USE
+	return SURGERY_CANNOT_USE
 
 /datum/surgery_step/limb/attach/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_notice("[user] starts attaching \the [tool] where [target]'s [affected.display_name] used to be."), \
 	span_notice("You start attaching \the [tool] where [target]'s [affected.display_name] used to be."))
+	target.balloon_alert_to_viewers("Attaching...")
 
 /datum/surgery_step/limb/attach/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_notice("[user] has attached \the [tool] where [target]'s [affected.display_name] used to be."),	\
 	span_notice("You have attached \the [tool] where [target]'s [affected.display_name] used to be."))
+	target.balloon_alert_to_viewers("Success")
 
 	//Update our dear victim to have a limb again
 	affected.robotize()
@@ -149,4 +162,5 @@
 /datum/surgery_step/limb/attach/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_warning("[user]'s hand slips, damaging connectors on [target]'s [affected.display_name]!"), \
 	span_warning("Your hand slips, damaging connectors on [target]'s [affected.display_name]!"))
+	target.balloon_alert_to_viewers("Slipped!")
 	target.apply_damage(10, BRUTE, affected, 0, TRUE, updating_health = TRUE)

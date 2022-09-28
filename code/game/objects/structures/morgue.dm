@@ -13,6 +13,7 @@
 	var/tray_path = /obj/structure/morgue_tray
 	var/morgue_open = 0
 	anchored = TRUE
+	coverage = 20
 
 /obj/structure/morgue/Initialize()
 	. = ..()

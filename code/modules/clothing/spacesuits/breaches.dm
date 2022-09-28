@@ -211,7 +211,7 @@ GLOBAL_LIST_INIT(breach_burn_descriptors, list(
 
 
 /obj/item/clothing/suit/space/examine(mob/user)
-	..()
+	. = ..()
 	if(can_breach && breaches && breaches.len)
 		for(var/datum/breach/B in breaches)
-			to_chat(user, "<span class = 'danger'>It has \a [B.descriptor].</span>")
+			. += span_danger("It has \a [B.descriptor].")

@@ -264,3 +264,92 @@
   - code_imp: keybinds are easily assignable to all actions now
   - qol: adds keybind to vali configure action, moves connecting a weapon from the
       configure menu to its own action
+2022-03-26:
+  Lumipharon:
+  - refactor: Coverage now works - window frames and other obstacles can actually
+      block bullets, certain objects no longer always block bullets
+  - balance: Snipers, rockets and IFF weapons no longer completely ignore cover
+  - balance: Slightly buffed window frame HP, in particular reinforced window frames
+  - balance: Flipped tables now actually block bullets better than non flipped tables
+  - bugfix: Jaeger storage modules are bulky, and no longer fit in other jaeger storage
+      modules.
+  RipGrayson:
+  - bugfix: You can now use a plasmacutter to remove target stakes.
+  - rscadd: New marine corpse spawners for use by mappers.
+  - balance: The crashed Canterbury variation in Big Red no longer has indestructible
+      walls.
+  - bugfix: Fixed an incorrect area in Big Red causing weather to look weird.
+  novaepee:
+  - rscadd: Add fire extinguishers in Alamo
+2022-03-27:
+  Arctrooper8/RipGrayson:
+  - soundadd: 'New marine defib sound: AI voice telling you to revive followed by
+      defib warble.'
+  Lumipharon:
+  - bugfix: Boiler gas cloud no longer scales in size past Ancient
+  - rscadd: 'Adds the GL-54, a magazine fed grenade launcher utilising 20mm airbursting
+      grenades remove: Impact grenades are no longer available roundstart'
+  - bugfix: grenades fired from weapons no longer always point north mid flight
+  RipGrayson:
+  - qol: Icy Caves power cables are no longer concealed under walls.
+  - balance: The ship in Icy Caves NW complex is now slightly more open.
+  - balance: Adjusted fog in Icy Caves monorail area to better match the room it's
+      in.
+  - balance: The weapon vault area in Icy Caves now starts locked.
+  - balance: Removed a large amount of groundside explosive crates in Icy Caves.
+  - bugfix: NE monorail complex on Icy Caves no longer has weather.
+  - bugfix: Fixed an unpowered APC in Icy Caves monorail complex.
+  - bugfix: Fixed a misplaced APC in Icy Caves LZ1.
+  - bugfix: Altered spawn protection fog in north Icy Caves so that it can no longer
+      be bypassed with a plasma cutter.
+  - bugfix: Replaced a spawner in Icy Caves that could spawn admin weapons like Auto-9s.
+  - imageadd: Ported a set of 2x1 CM doors to be used in Icy Caves.
+  hyper2snyper:
+  - bugfix: Fixes magazines deleting themselves when emptied by hand.
+  novaepee:
+  - balance: T18, T12, and Tx11 burst firerates have all been nerfed with burst fire
+      delay of 0.05 seconds. Don't worry, slap on BFA, and you're good. MJP will balance
+      BFA to make sure you have your funny brr
+2022-03-29:
+  Lefunny:
+  - balance: Larval Hugger burst time from 13 minutes to 7/8
+  - balance: Larval hugger stam damage from 100% marine stam to 50%
+  novaepee, foster:
+  - imageadd: add 5 brand new title painting!
+2022-03-30:
+  DeltaFire15:
+  - bugfix: Groundside corrupted gens should not have their point production break
+      anymore.
+  - bugfix: APHE only explodes when it hits something that stops its movement, not
+      when passing through walls on its way there.
+  RipGrayson:
+  - rscadd: Added a system to blacklist chemicals from being used in medbay.
+  - balance: Razorburn nanites are now a blacklisted chemical.
+  - balance: You can no longer use the sleeper to give monkeys dialysis.
+  - balance: Dead mobs no longer accumulate smoke or foam reagents.
+2022-03-31:
+  BraveMole:
+  - balance: Harversting drone primo flowers doesn't destroy them
+  Lumipharon:
+  - rscadd: Freelancers in the sector have been reported wielding a wider variety
+      of weapons
+  - code_imp: Support added for jobs to have multiple outfits to randomly select from
+  Wayland-Smithy:
+  - bugfix: Fixed Crusher Primo Rapid Advance not granting full charge or applying
+      do_crush effects.
+  - bugfix: Fixed a rare case of Rapid Advance causing signal registration errors.
+  - spellcheck: Fixed Rapid Advance evolution menu description.
+  goose4429:
+  - refactor: Refactored xeno explosion damage procs
+  - balance: Slowdown from light explosions on weak benos reduced from 4 to 3 to be
+      in line with other cases
+  - balance: Stagger is now always 2 less than slowdown with xeno explosions
+  novaepee:
+  - rscadd: All FCDR bunks now have at least a loadout vendor in all shipside maps
+      except Sulaco
+  - bugfix: poster positions in Minerva and PoS
+  - balance: All shipsides shall spawn with the following:, 6 30mm ammo crates, 2
+      banshees, 2 keepers, 2 widowmakers, 4 mini rockets, 2 GAU-21 30 mm cannons,
+      2 rocket pods, 2 minirocket pods
+  - code_imp: update map contribution page to ensure that other contributors can read
+      good practices on map PRs

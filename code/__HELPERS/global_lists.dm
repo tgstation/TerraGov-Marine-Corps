@@ -1,4 +1,4 @@
-#define ALLTIPS (SSstrings.get_list_from_file("tips/marine") + SSstrings.get_list_from_file("tips/xeno") + SSstrings.get_list_from_file("tips/meme") + SSstrings.get_list_from_file("tips/meta"))
+#define ALLTIPS (SSstrings.get_list_from_file("tips/marine") + SSstrings.get_list_from_file("tips/xeno") + SSstrings.get_list_from_file("tips/meme") + SSstrings.get_list_from_file("tips/meta") + SSstrings.get_list_from_file("tips/HvH"))
 
 #define SYNTH_TYPES list("Synthetic","Early Synthetic")
 
@@ -40,11 +40,6 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 		var/datum/ethnicity/E = new path()
 		GLOB.ethnicities_list[E.name] = E
 
-	// Body Type - Initialise all /datum/body_type into a list indexed by body_type name
-	for(var/path in subtypesof(/datum/body_type))
-		var/datum/body_type/B = new path()
-		GLOB.body_types_list[B.name] = B
-
 	// Surgery Steps - Initialize all /datum/surgery_step into a list
 	for(var/T in subtypesof(/datum/surgery_step))
 		var/datum/surgery_step/S = new T
@@ -79,6 +74,31 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 		var/datum/hive_status/HS = new H
 		GLOB.hive_datums[HS.hivenumber] = HS
 
+	// Initializes static ui data used by all hive status UI
+	var/list/per_tier_counter = list()
+	for(var/caste_type_path AS in GLOB.xeno_caste_datums)
+		var/datum/xeno_caste/caste = GLOB.xeno_caste_datums[caste_type_path][XENO_UPGRADE_BASETYPE]
+		var/type_path = initial(caste.caste_type_path)
+
+		GLOB.hive_ui_caste_index[type_path] = GLOB.hive_ui_static_data.len //Starts from 0.
+
+		var/icon/xeno_minimap = icon('icons/UI_icons/map_blips.dmi', initial(caste.minimap_icon))
+		var/tier = initial(caste.tier)
+		if(tier == XENO_TIER_MINION)
+			continue
+		if(isnull(per_tier_counter[tier]))
+			per_tier_counter[tier] = 0
+
+		GLOB.hive_ui_static_data += list(list(
+			"name" = initial(caste.caste_name),
+			"is_queen" = type_path == /mob/living/carbon/xenomorph/queen,
+			"minimap" = icon2base64(xeno_minimap),
+			"sort_mod" = per_tier_counter[tier]++,
+			"tier" = GLOB.tier_as_number[tier],
+			"is_unique" = tier == XENO_TIER_FOUR, //TODO: Make this check a flag after caste flag refactoring is merged.
+			"can_transfer_plasma" = CHECK_BITFIELD(initial(caste.can_flags), CASTE_CAN_BE_GIVEN_PLASMA),
+			"evolution_max" = initial(caste.evolution_threshold)
+		))
 
 	for(var/L in subtypesof(/datum/language))
 		var/datum/language/language = L

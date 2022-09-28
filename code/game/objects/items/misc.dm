@@ -24,7 +24,7 @@
 
 /obj/item/clock/examine(mob/user, distance, infix, suffix)
 	. = ..()
-	to_chat(user, "The [src] reads: [GLOB.current_date_string] - [stationTimestamp()]")
+	. += "The [src] reads: [GLOB.current_date_string] - [stationTimestamp()]"
 
 /obj/item/bananapeel
 	name = "banana peel"
@@ -150,14 +150,20 @@
 	icon = 'icons/obj/items/card.dmi'
 	icon_state = "centcom"
 	///This is the number of points this thing has to give.
-	var/extra_points = 100
+	var/extra_points = 150
 
 /obj/item/dropship_points_voucher/examine(mob/user)
 	. = ..()
-	to_chat(user, "It contains [extra_points] points.")
+	. += "It contains [extra_points] points."
 
 /obj/item/minerupgrade/automatic
 	name = "mining computer"
 	desc = "A small computer that can automate mining wells, reducing the need for oversight."
 	icon_state = "mining_drill_automaticdisplay"
 	uptype = "mining computer"
+
+/obj/item/ai_target_beacon
+	name = "AI linked remote targeter"
+	desc = "A small set of servos and gears, coupled to a battery, antenna and circuitry. Attach it to a mortar to allow a shipborne AI to remotely target it."
+	icon = 'icons/obj/items/items.dmi'
+	icon_state = "modkit"

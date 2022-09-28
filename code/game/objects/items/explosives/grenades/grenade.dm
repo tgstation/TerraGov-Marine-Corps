@@ -83,7 +83,7 @@
 	explosion(loc, light_impact_range = src.light_impact_range, small_animation = TRUE)
 	qdel(src)
 
-/obj/item/explosive/grenade/flamer_fire_act()
+/obj/item/explosive/grenade/flamer_fire_act(burnlevel)
 	activate()
 
 /obj/item/explosive/grenade/attack_hand(mob/living/user)

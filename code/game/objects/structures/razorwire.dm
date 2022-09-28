@@ -8,6 +8,7 @@
 	anchored = TRUE
 	layer = ABOVE_OBJ_LAYER
 	throwpass = TRUE	//You can throw objects over this
+	coverage = 5
 	climbable = TRUE
 	resistance_flags = XENO_DAMAGEABLE
 	var/list/entangled_list
@@ -60,7 +61,7 @@
 	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
 	var/armor_block = null
 	var/def_zone = ran_zone()
-	armor_block = M.run_armor_check(def_zone, "melee")
+	armor_block = M.get_soft_armor("melee", def_zone)
 	M.apply_damage(RAZORWIRE_BASE_DAMAGE, BRUTE, def_zone, armor_block, TRUE, updating_health = TRUE)
 	razorwire_tangle(M)
 
@@ -108,12 +109,11 @@
 	SIGNAL_HANDLER
 	if((entangled.flags_pass & PASSSMALLSTRUCT) || entangled.status_flags & INCORPOREAL)
 		return
-	entangled.next_move_slowdown += RAZORWIRE_SLOWDOWN //big slowdown
 	do_razorwire_untangle(entangled)
 	visible_message(span_danger("[entangled] disentangles from [src]!"))
 	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, TRUE)
 	var/def_zone = ran_zone()
-	var/armor_block = entangled.run_armor_check(def_zone, "melee")
+	var/armor_block = entangled.get_soft_armor("melee", def_zone)
 	entangled.apply_damage(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_MED, BRUTE, def_zone, armor_block, TRUE, updating_health = TRUE) //Apply damage as we tear free
 	return TRUE
 

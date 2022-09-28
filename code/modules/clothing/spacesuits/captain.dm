@@ -5,7 +5,7 @@
 	item_state = "capspacehelmet"
 	desc = "A special helmet designed for work in a hazardous, low-pressure environment. Only for the most fashionable of military figureheads."
 	permeability_coefficient = 0.01
-	soft_armor = list("melee" = 40, "bullet" = 50, "laser" = 50, "energy" = 25, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 25, "acid" = 25)
+	soft_armor = list(MELEE = 40, BULLET = 50, LASER = 50, ENERGY = 25, BOMB = 50, BIO = 100, "rad" = 50, FIRE = 25, ACID = 25)
 
 //Captain's space suit This is not the proper path but I don't currently know enough about how this all works to mess with it.
 /obj/item/clothing/suit/armor/captain
@@ -19,9 +19,9 @@
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS
 	allowed = list(/obj/item/tank/emergency_oxygen, /obj/item/flashlight,/obj/item/weapon/gun, /obj/item/ammo_magazine, /obj/item/weapon/baton,/obj/item/restraints/handcuffs)
 	slowdown = 1.5
-	soft_armor = list("melee" = 40, "bullet" = 50, "laser" = 50, "energy" = 25, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 25, "acid" = 25)
+	soft_armor = list(MELEE = 40, BULLET = 50, LASER = 50, ENERGY = 25, BOMB = 50, BIO = 100, "rad" = 50, FIRE = 25, ACID = 25)
 	flags_inventory = NOPRESSUREDMAGE
-	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
+	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	flags_cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.7

@@ -3,7 +3,6 @@
 	name = "glasses"
 	icon = 'icons/obj/clothing/glasses.dmi'
 	w_class = WEIGHT_CLASS_SMALL
-	sprite_sheets = list("Vox" = 'icons/mob/species/vox/eyes.dmi')
 	var/prescription = FALSE
 	var/toggleable = FALSE
 	active = TRUE
@@ -141,9 +140,10 @@
 	desc = "Standard issue TGMC goggles. Mostly used to decorate one's helmet."
 	icon_state = "mgoggles"
 	item_state = "mgoggles"
-	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 0, "energy" = 15, "bomb" = 35, "bio" = 10, "rad" = 10, "fire" = 30, "acid" = 30)
+	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 0, ENERGY = 15, BOMB = 35, BIO = 10, "rad" = 10, FIRE = 30, ACID = 30)
 	flags_equip_slot = ITEM_SLOT_EYES|ITEM_SLOT_MASK
 	goggles = TRUE
+	w_class = WEIGHT_CLASS_TINY
 
 
 /obj/item/clothing/glasses/mgoggles/prescription
@@ -164,6 +164,32 @@
 		else
 			var/obj/item/clothing/glasses/hud/medgoggles/S = new
 			to_chat(user, span_notice("You fasten the medical hud projector to the inside of the goggles."))
+			qdel(I)
+			qdel(src)
+			user.put_in_hands(S)
+	else if(istype(I, /obj/item/clothing/glasses/night/imager_goggles))
+		if(prescription)
+			var/obj/item/clothing/glasses/night/optgoggles/prescription/P = new
+			to_chat(user, span_notice("You fasten the optical imaging scanner to the inside of the goggles."))
+			qdel(I)
+			qdel(src)
+			user.put_in_hands(P)
+		else
+			var/obj/item/clothing/glasses/night/optgoggles/S = new
+			to_chat(user, span_notice("You fasten the optical imaging scanner to the inside of the goggles."))
+			qdel(I)
+			qdel(src)
+			user.put_in_hands(S)
+	else if(istype(I, /obj/item/clothing/glasses/meson))
+		if(prescription)
+			var/obj/item/clothing/glasses/meson/enggoggles/prescription/P = new
+			to_chat(user, span_notice("You fasten the optical meson scanner to the inside of the goggles."))
+			qdel(I)
+			qdel(src)
+			user.put_in_hands(P)
+		else
+			var/obj/item/clothing/glasses/meson/enggoggles/S = new
+			to_chat(user, span_notice("You fasten the optical meson scanner to the inside of the goggles."))
 			qdel(I)
 			qdel(src)
 			user.put_in_hands(S)

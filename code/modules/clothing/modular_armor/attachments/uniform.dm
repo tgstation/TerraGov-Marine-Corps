@@ -22,7 +22,7 @@
 		/obj/item/ammo_magazine/smg,
 		/obj/item/ammo_magazine/sniper,
 		/obj/item/cell/lasgun,
-		/obj/item/tool/solderingtool,
+		/obj/item/tool/surgery/solderingtool,
 	)
 	cant_hold = list(
 		/obj/item/stack/razorwire,
@@ -60,57 +60,12 @@
 	storage = /obj/item/storage/internal/white_vest
 
 /obj/item/storage/internal/white_vest
-	storage_slots = 12
-	max_storage_space = 24
 	max_w_class = WEIGHT_CLASS_BULKY
-
-	can_hold = list(
-		/obj/item/stack/medical,
-		/obj/item/stack/nanopaste,
-	)
-
-/obj/item/armor_module/storage/uniform/white_vest/surgery
-	name = "surgical vest"
-	desc = "A clean white Nylon vest with large pockets specially designed for holding surgical supplies."
-	icon_state = "vest_white"
-	storage = /obj/item/storage/internal/white_vest/surgery
-
-/obj/item/storage/internal/white_vest/surgery
-	can_hold = list(
-		/obj/item/tool/surgery,
-		/obj/item/stack/nanopaste,
-		/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-		/obj/item/tweezers,
-	)
-
-
-/obj/item/storage/internal/white_vest/surgery/Initialize()
-	. = ..()
-	new /obj/item/tool/surgery/scalpel/manager(src)
-	new /obj/item/tool/surgery/scalpel(src)
-	new /obj/item/tool/surgery/hemostat(src)
-	new /obj/item/tool/surgery/retractor(src)
-	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
-	new /obj/item/tool/surgery/cautery(src)
-	new /obj/item/tool/surgery/circular_saw(src)
-	new /obj/item/tool/surgery/suture(src)
-	new /obj/item/tool/surgery/bonegel(src)
-	new /obj/item/tool/surgery/bonesetter(src)
-	new /obj/item/tool/surgery/FixOVein(src)
-	new /obj/item/stack/nanopaste(src)
-
-
-/obj/item/armor_module/storage/uniform/white_vest/medic
-	name = "corpsman webbing"
-	desc = "A clean white Nylon vest with large pockets specially designed for holding common medical supplies."
-	storage = /obj/item/storage/internal/white_vest/medic
-
-/obj/item/storage/internal/white_vest/medic
 	storage_slots = 6 //one more than the brown webbing but you lose out on being able to hold non-medic stuff
+	max_storage_space = 24
 	can_hold = list(
 		/obj/item/stack/medical,
 		/obj/item/healthanalyzer,
-		/obj/item/reagent_containers/dropper,
 		/obj/item/reagent_containers/glass/beaker,
 		/obj/item/reagent_containers/glass/bottle,
 		/obj/item/reagent_containers/pill,
@@ -121,29 +76,38 @@
 		/obj/item/roller,
 		/obj/item/clothing/glasses/hud/health,
 		/obj/item/tweezers,
+		/obj/item/tool/surgery/solderingtool,
+		/obj/item/whistle,
 	)
 
-/obj/item/armor_module/storage/uniform/knifeharness
-	name = "decorated harness"
-	desc = "A heavily decorated harness of sinew and leather with two knife-loops."
-	icon_state = "unathiharness2"
-	storage = /obj/item/storage/internal/knifeharness
+/obj/item/armor_module/storage/uniform/surgery_webbing
+	name = "surgical webbing"
+	desc = "A clean white Nylon webbing composed of many straps and pockets to hold surgical tools."
+	icon_state = "webbing_white"
+	storage = /obj/item/storage/internal/surgery_webbing
 
-/obj/item/storage/internal/knifeharness
-	storage_slots = 2
-	max_storage_space = 4
+/obj/item/storage/internal/surgery_webbing
+	storage_slots = 12
+	max_storage_space = 24
 	can_hold = list(
-		/obj/item/weapon/unathiknife,
-		/obj/item/tool/kitchen/utensil/knife,
-		/obj/item/tool/kitchen/utensil/pknife,
-		/obj/item/tool/kitchen/knife,
-		/obj/item/tool/kitchen/knife/ritual,
+		/obj/item/tool/surgery,
+		/obj/item/stack/nanopaste,
+		/obj/item/tweezers,
 	)
 
-/obj/item/armor_module/storage/uniform/knifeharness/Initialize()
+/obj/item/storage/internal/surgery_webbing/Initialize()
 	. = ..()
-	new /obj/item/weapon/unathiknife(storage)
-	new /obj/item/weapon/unathiknife(storage)
+	new /obj/item/tool/surgery/scalpel/manager(src)
+	new /obj/item/tool/surgery/scalpel(src)
+	new /obj/item/tool/surgery/hemostat(src)
+	new /obj/item/tool/surgery/retractor(src)
+	new /obj/item/tool/surgery/cautery(src)
+	new /obj/item/tool/surgery/circular_saw(src)
+	new /obj/item/tool/surgery/surgical_membrane(src)
+	new /obj/item/tool/surgery/bonegel(src)
+	new /obj/item/tool/surgery/bonesetter(src)
+	new /obj/item/tool/surgery/FixOVein(src)
+	new /obj/item/tool/surgery/suture(src)
 
 /obj/item/armor_module/storage/uniform/holster
 	name = "shoulder holster"
@@ -156,6 +120,14 @@
 /obj/item/armor_module/storage/uniform/holster/freelancer/Initialize()
 	. = ..()
 	new /obj/item/weapon/gun/pistol/g22(storage)
+
+/obj/item/armor_module/storage/uniform/holster/vp/Initialize()
+	. = ..()
+	new /obj/item/weapon/gun/pistol/vp70(storage)
+
+/obj/item/armor_module/storage/uniform/holster/highpower/Initialize()
+	. = ..()
+	new /obj/item/weapon/gun/pistol/highpower(storage)
 
 /obj/item/storage/internal/holster
 	storage_slots = 1

@@ -72,13 +72,12 @@
 /obj/machinery/marine_selector/ui_static_data(mob/user)
 	. = list()
 	.["displayed_records"] = list()
+
 	for(var/c in categories)
 		.["displayed_records"][c] = list()
 
 	.["vendor_name"] = name
 	.["show_points"] = use_points
-	var/obj/item/card/id/ID = user.get_idcard()
-	.["total_marine_points"] = ID ? initial(ID.marine_points) : 0
 
 
 	for(var/i in listed_products)
@@ -94,17 +93,23 @@
 	. = list()
 
 	var/obj/item/card/id/I = user.get_idcard()
-	.["current_m_points"] = I?.marine_points || 0
-	var/buy_flags = I?.marine_buy_flags || NONE
-
+	var/buy_choices = I?.marine_buy_choices
+	var/obj/item/card/id/dogtag/full/ptscheck = new /obj/item/card/id/dogtag/full
 
 	.["cats"] = list()
-	for(var/i in GLOB.marine_selector_cats)
-		.["cats"][i] = list("remaining" = 0, "total" = 0)
-		for(var/flag in GLOB.marine_selector_cats[i])
-			.["cats"][i]["total"]++
-			if(buy_flags & flag)
-				.["cats"][i]["remaining"]++
+	for(var/cat in GLOB.marine_selector_cats)
+		.["cats"][cat] = list(
+			"remaining" = buy_choices[cat],
+			"total" = GLOB.marine_selector_cats[cat],
+			"choice" = "choice",
+			)
+
+	for(var/cat in I?.marine_points)
+		.["cats"][cat] = list(
+			"remaining_points" = I?.marine_points[cat],
+			"total_points" = ptscheck?.marine_points[cat],
+			"choice" = "points",
+			)
 
 /obj/machinery/marine_selector/ui_act(action, list/params)
 	. = ..()
@@ -122,6 +127,7 @@
 			var/obj/item/card/id/I = usr.get_idcard()
 
 			var/list/L = listed_products[idx]
+			var/item_category = L[1]
 			var/cost = L[3]
 
 			if(SSticker.mode?.flags_round_type & MODE_HUMAN_ONLY && is_type_in_typecache(idx, GLOB.hvh_restricted_items_list))
@@ -130,7 +136,7 @@
 					flick(icon_deny, src)
 				return
 
-			if(use_points && I.marine_points < cost)
+			if(use_points && (item_category in I.marine_points) && I.marine_points[item_category] < cost)
 				to_chat(usr, span_warning("Not enough points."))
 				if(icon_deny)
 					flick(icon_deny, src)
@@ -142,27 +148,14 @@
 				if(icon_deny)
 					flick(icon_deny, src)
 				return
-			var/bitf = NONE
-			var/list/C = GLOB.marine_selector_cats[L[1]]
-			for(var/i in C)
-				bitf |= i
-			if(bitf)
-				if(I.marine_buy_flags & bitf)
-					if(bitf == (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH))
-						if(I.marine_buy_flags & MARINE_CAN_BUY_R_POUCH)
-							I.marine_buy_flags &= ~MARINE_CAN_BUY_R_POUCH
-						else
-							I.marine_buy_flags &= ~MARINE_CAN_BUY_L_POUCH
-					else if(bitf == (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2))
-						if(I.marine_buy_flags & MARINE_CAN_BUY_ATTACHMENT)
-							I.marine_buy_flags &= ~MARINE_CAN_BUY_ATTACHMENT
-						else
-							I.marine_buy_flags &= ~MARINE_CAN_BUY_ATTACHMENT2
-					else
-						I.marine_buy_flags &= ~bitf
+
+			if(item_category in I.marine_buy_choices)
+				if(I.marine_buy_choices[item_category] && GLOB.marine_selector_cats[item_category])
+					I.marine_buy_choices[item_category] -= 1
 				else
-					to_chat(usr, span_warning("You can't buy things from this category anymore."))
-					return
+					if(cost == 0)
+						to_chat(usr, span_warning("You can't buy things from this category anymore."))
+						return
 
 			var/obj/item/vended_item
 
@@ -171,15 +164,15 @@
 			else
 				vended_item = new idx(loc)
 
-			if(istype(vended_item)) // in case of spawning /obj
-				usr.put_in_any_hand_if_possible(vended_item, warning = FALSE)
+			if(istype(vended_item) && usr.put_in_any_hand_if_possible(vended_item, warning = FALSE))
+				vended_item.pickup(usr)
 
 			if(icon_vend)
 				flick(icon_vend, src)
 
 			use_power(active_power_usage)
 
-			if(bitf == MARINE_CAN_BUY_UNIFORM && !issynth(usr))
+			if(item_category == CAT_STD && !issynth(usr))
 				var/mob/living/carbon/human/H = usr
 				if(!istype(H.job, /datum/job/terragov/command/fieldcommander))
 					var/headset_type = H.faction == FACTION_TERRAGOV ? /obj/item/radio/headset/mainship/marine : /obj/item/radio/headset/mainship/marine/rebel
@@ -189,8 +182,8 @@
 					if(istype(H.job, /datum/job/terragov/squad/leader))
 						new /obj/item/hud_tablet(loc, vendor_role, H.assigned_squad)
 
-			if(use_points)
-				I.marine_points -= cost
+			if(use_points && (item_category in I.marine_points))
+				I.marine_points[item_category] -= cost
 			. = TRUE
 
 	updateUsrDialog()
@@ -200,24 +193,24 @@
 	desc = "An automated closet hooked up to a colossal storage unit of standard-issue uniform and armor."
 	icon_state = "marineuniform"
 	vendor_role = /datum/job/terragov/squad/standard
+	use_points = TRUE
 	categories = list(
-		CAT_STD = list(MARINE_CAN_BUY_UNIFORM),
-		CAT_GLA = list(MARINE_CAN_BUY_GLASSES),
-		CAT_HEL = list(MARINE_CAN_BUY_HELMET),
-		CAT_AMR = list(MARINE_CAN_BUY_ARMOR),
-		CAT_BAK = list(MARINE_CAN_BUY_BACKPACK),
-		CAT_WEB = list(MARINE_CAN_BUY_WEBBING),
-		CAT_BEL = list(MARINE_CAN_BUY_BELT),
-		CAT_POU = list(MARINE_CAN_BUY_R_POUCH,MARINE_CAN_BUY_L_POUCH),
-		CAT_ATT = list(MARINE_CAN_BUY_ATTACHMENT,MARINE_CAN_BUY_ATTACHMENT2),
-		CAT_MOD = list(MARINE_CAN_BUY_MODULE),
-		CAT_ARMMOD = list(MARINE_CAN_BUY_ARMORMOD),
-		CAT_MAS = list(MARINE_CAN_BUY_MASK),
+		CAT_STD = 1,
+		CAT_GLA = 1,
+		CAT_HEL = 1,
+		CAT_AMR = 1,
+		CAT_BAK = 1,
+		CAT_WEB = 1,
+		CAT_BEL = 1,
+		CAT_POU = 2,
+		CAT_MOD = 1,
+		CAT_ARMMOD = 1,
+		CAT_MAS = 1,
 	)
 
 /obj/machinery/marine_selector/clothes/Initialize()
 	. = ..()
-	listed_products = GLOB.marine_clothes_listed_products
+	listed_products = GLOB.marine_clothes_listed_products + GLOB.marine_gear_listed_products
 
 /obj/machinery/marine_selector/clothes/loyalist
 	faction = FACTION_TERRAGOV
@@ -425,10 +418,11 @@
 		/obj/effect/essentials_set/xenonauten_heavy/leader = list(CAT_AMR, "Xenonauten heavy armor kit", 0, "orange"),
 		/obj/item/storage/backpack/marine/satchel = list(CAT_BAK, "Satchel", 0, "black"),
 		/obj/item/storage/backpack/marine/standard = list(CAT_BAK, "Backpack", 0, "black"),
-		/obj/item/storage/large_holster/blade/machete/full = list(CAT_BAK, "Machete scabbard", 0, "black"),
+		/obj/item/storage/holster/blade/machete/full = list(CAT_BAK, "Machete scabbard", 0, "black"),
 		/obj/item/armor_module/storage/uniform/black_vest = list(CAT_WEB, "Tactical black vest", 0, "black"),
 		/obj/item/armor_module/storage/uniform/webbing = list(CAT_WEB, "Tactical webbing", 0, "black"),
 		/obj/item/armor_module/storage/uniform/holster = list(CAT_WEB, "Shoulder handgun holster", 0, "black"),
+		/obj/item/storage/belt/gun/pistol/m4a3/fieldcommander = list(CAT_BEL, "1911-custom belt", 0, "black"),
 		/obj/item/storage/belt/marine = list(CAT_BEL, "Standard ammo belt", 0, "black"),
 		/obj/item/storage/belt/shotgun = list(CAT_BEL, "Shotgun ammo belt", 0, "black"),
 		/obj/item/storage/belt/knifepouch = list(CAT_BEL, "Knives belt", 0, "black"),
@@ -439,18 +433,18 @@
 		/obj/item/armor_module/module/welding = list(CAT_HEL, "Jaeger welding module", 0, "orange"),
 		/obj/item/armor_module/module/binoculars =  list(CAT_HEL, "Jaeger binoculars module", 0, "orange"),
 		/obj/item/armor_module/module/antenna = list(CAT_HEL, "Jaeger Antenna module", 0, "orange"),
-		/obj/item/clothing/head/headband/red = list(CAT_HEL, "FC Headband", 0, "black"),
 		/obj/item/clothing/head/tgmcberet/fc = list(CAT_HEL, "FC Beret", 0, "black"),
 		/obj/item/armor_module/storage/medical = list(CAT_MOD, "Medical Storage Module", 0, "black"),
+		/obj/item/armor_module/storage/injector = list(CAT_MOD, "Injector Storage Module", 0, "black"),
 		/obj/item/armor_module/storage/general = list(CAT_MOD, "General Purpose Storage Module", 0, "black"),
 		/obj/item/armor_module/storage/engineering = list(CAT_MOD, "Engineering Storage Module", 0, "black"),
+		/obj/item/armor_module/storage/grenade = list(CAT_MOD, "Grenade Storage Module", 0, "black"),
 		/obj/item/storage/pouch/shotgun = list(CAT_POU, "Shotgun shell pouch", 0, "black"),
 		/obj/item/storage/pouch/general/large = list(CAT_POU, "General pouch", 0, "black"),
 		/obj/item/storage/pouch/magazine/large = list(CAT_POU, "Magazine pouch", 0, "black"),
 		/obj/item/storage/pouch/flare/full = list(CAT_POU, "Flare pouch", 0, "black"),
-		/obj/item/storage/pouch/firstaid/injectors/full = list(CAT_POU, "Combat injector pouch", 0,"orange"),
-		/obj/item/storage/pouch/firstaid/full = list(CAT_POU, "Firstaid pouch", 0, "orange"),
-		/obj/item/storage/pouch/medkit = list(CAT_POU, "Medkit pouch", 0, "black"),
+		/obj/item/storage/pouch/medical_injectors/firstaid = list(CAT_POU, "Combat injector pouch", 0,"orange"),
+		/obj/item/storage/pouch/medkit/firstaid = list(CAT_POU, "Firstaid pouch", 0, "orange"),
 		/obj/item/storage/pouch/tools/full = list(CAT_POU, "Tool pouch (tools included)", 0, "black"),
 		/obj/item/storage/pouch/grenade/slightlyfull = list(CAT_POU, "Grenade pouch (grenades included)", 0,"black"),
 		/obj/item/storage/pouch/construction/full = list(CAT_POU, "Construction pouch (materials included)", 0, "black"),
@@ -462,6 +456,7 @@
 		/obj/effect/essentials_set/tyr = list(CAT_ARMMOD, "Mark 1 Tyr extra armor set", 0,"black"),
 		/obj/item/armor_module/module/better_shoulder_lamp = list(CAT_ARMMOD, "Baldur light armor module", 0,"black"),
 		/obj/effect/essentials_set/vali = list(CAT_ARMMOD, "Vali chemical enhancement set", 0,"black"),
+		/obj/item/armor_module/module/eshield = list(CAT_ARMMOD, "Arrowhead Energy Shield System", 0 , "black"),
 		/obj/item/clothing/mask/gas = list(CAT_MAS, "Transparent gas mask", 0,"black"),
 		/obj/item/clothing/mask/gas/tactical = list(CAT_MAS, "Tactical gas mask", 0,"black"),
 		/obj/item/clothing/mask/gas/tactical/coif = list(CAT_MAS, "Tactical coifed gas mask", 0,"black"),
@@ -499,12 +494,6 @@
 	desc = "An automated equipment rack hooked up to a colossal storage unit."
 	icon_state = "marinearmory"
 	use_points = TRUE
-	listed_products = list(
-		/obj/item/attachable/verticalgrip = list(CAT_ATT, "Vertical Grip", 0, "black"),
-		/obj/item/attachable/reddot = list(CAT_ATT, "Red-dot sight", 0, "black"),
-		/obj/item/attachable/compensator = list(CAT_ATT, "Recoil Compensator", 0, "black"),
-		/obj/item/attachable/lasersight = list(CAT_ATT, "Laser Sight", 0, "black")
-	)
 
 /obj/machinery/marine_selector/gear/medic
 	name = "NEXUS Automated Medical Equipment Rack"
@@ -698,7 +687,7 @@
 		/obj/item/cell/high,
 		/obj/item/lightreplacer,
 		/obj/item/circuitboard/apc,
-		/obj/item/tool/solderingtool,
+		/obj/item/tool/surgery/solderingtool,
 	)
 
 /obj/effect/essentials_set/leader
@@ -750,8 +739,7 @@
 		/obj/item/bodybag/cryobag,
 		/obj/item/reagent_containers/hypospray/advanced/oxycodone,
 		/obj/item/tweezers,
-		/obj/item/tool/solderingtool,
-		/obj/item/tool/pickaxe/plasmacutter,
+		/obj/item/tool/surgery/solderingtool,
 	)
 
 /obj/effect/essentials_set/white_dress
@@ -914,7 +902,7 @@
 	desc = "A set of specialized gear for close-quarters combat and enhanced chemical effectiveness."
 	spawned_gear_list = list(
 		/obj/item/armor_module/module/chemsystem,
-		/obj/item/storage/large_holster/blade/machete/full_harvester,
+		/obj/item/storage/holster/blade/machete/full_harvester,
 		/obj/item/paper/chemsystem,
 	)
 
@@ -932,22 +920,8 @@
 		/obj/item/stack/cable_coil/twentyfive,
 	)
 
-
-#undef MARINE_CAN_BUY_UNIFORM
-#undef MARINE_CAN_BUY_SHOES
-#undef MARINE_CAN_BUY_HELMET
-#undef MARINE_CAN_BUY_ARMOR
-#undef MARINE_CAN_BUY_GLOVES
-#undef MARINE_CAN_BUY_EAR
-#undef MARINE_CAN_BUY_BACKPACK
-#undef MARINE_CAN_BUY_R_POUCH
-#undef MARINE_CAN_BUY_L_POUCH
-#undef MARINE_CAN_BUY_BELT
-#undef MARINE_CAN_BUY_GLASSES
-#undef MARINE_CAN_BUY_MASK
-#undef MARINE_CAN_BUY_ESSENTIALS
-
-#undef MARINE_CAN_BUY_ALL
-#undef MARINE_TOTAL_BUY_POINTS
+#undef DEFAULT_TOTAL_BUY_POINTS
+#undef MEDIC_TOTAL_BUY_POINTS
+#undef ENGINEER_TOTAL_BUY_POINTS
 #undef SQUAD_LOCK
 #undef JOB_LOCK

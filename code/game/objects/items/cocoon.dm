@@ -35,7 +35,7 @@
 /obj/structure/cocoon/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	if(anchored && victim && ishuman(user))
-		to_chat(user, span_notice("There seems to be someone inside it. You think you can open it with a sharp object."))
+		. += span_notice("There seems to be someone inside it. You think you can open it with a sharp object.")
 
 /obj/structure/cocoon/process()
 	var/psych_points_output = COCOON_PSY_POINTS_REWARD_MIN + ((HIGH_PLAYER_POP - SSmonitor.maximum_connected_players_count) / HIGH_PLAYER_POP * (COCOON_PSY_POINTS_REWARD_MAX - COCOON_PSY_POINTS_REWARD_MIN))
@@ -63,6 +63,8 @@
 	if(must_release_victim)
 		var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 		xeno_job.add_job_points(larva_point_reward)
+		var/datum/hive_status/hive_status = GLOB.hive_datums[hivenumber]
+		hive_status.update_tier_limits()
 		GLOB.round_statistics.larva_from_cocoon += larva_point_reward / xeno_job.job_points_needed
 		release_victim()
 	update_icon()

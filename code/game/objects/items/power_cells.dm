@@ -17,6 +17,8 @@
 	var/charge_amount = 25 // How much power to give, if self_recharge is true.  The number is in absolute cell charge, as it gets divided by CELLRATE later.
 	var/last_use = 0 // A tracker for use in self-charging
 	var/charge_delay = 0 // How long it takes for the cell to start recharging after last use
+	///used to track what set of overlays to use to display charge level
+	var/charge_overlay = "cell"
 	materials = list(/datum/material/metal = 700, /datum/material/glass = 50)
 
 /obj/item/cell/suicide_act(mob/user)
@@ -96,7 +98,7 @@
 
 /obj/item/cell/rtg/small
 	name = "recharger cell"
-	desc = "This is a miniature radioisotope generator that can fit into plasma cutters or APC's, but not laser-based weapory. The needed shielding lowers the maximum capacity significantly."
+	desc = "This is a miniature radioisotope generator that can fit into APC's, but not laser-based weapory. The needed shielding lowers the maximum capacity significantly."
 	icon = 'icons/obj/items/stock_parts.dmi'
 	icon_state = "capacitor"
 	item_state = "capacitor"
@@ -104,10 +106,18 @@
 	self_recharge = TRUE
 	charge_amount = 25
 	charge_delay = 2 SECONDS //One hit on a resin thingy every 8 seconds, or one actual wall every 80 seconds.
-	
+
+/obj/item/cell/rtg/plasma_cutter
+	name = "plasma cutter cell"
+	desc = "You shouldn't be seeing this"
+	maxcharge = 7500
+	self_recharge = TRUE
+	charge_amount = 25
+	charge_delay = 2 SECONDS //One hit on a resin thingy every 8 seconds, or one actual wall every 80 seconds.
+
 /obj/item/cell/rtg/large
 	name = "large recharger cell"
-	desc = "This is a radioisotope generator that can fit into plasma cutters or APC's, but not laser-based weapory. It is too hot to be easily stored and cannot be handcharged."
+	desc = "This is a radioisotope generator that can fit into APC's, but not laser-based weapory. It is too hot to be easily stored and cannot be handcharged."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "trashmelt"
 	item_state = "trashmelt"
@@ -116,3 +126,24 @@
 	self_recharge = TRUE
 	charge_amount = 50
 	charge_delay = 2 SECONDS //One hit on a resin thingy every 4 seconds, or one actual wall every 40 seconds.
+
+/obj/item/cell/mecha
+	name = "small radiotope cell"
+	desc = "A large twisting piece of metal that acts as the power core of a mecha. You probably shouldn't lick it, despite the blue glow."
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "trashmelt"
+	item_state = "trashmelt"
+	w_class = WEIGHT_CLASS_HUGE
+	self_recharge = TRUE
+	maxcharge = 1000
+	charge_amount = 30
+
+/obj/item/cell/mecha/medium
+	name = "medium radiotope cell"
+	maxcharge = 1250
+	charge_amount = 40
+
+/obj/item/cell/mecha/large
+	name = "large radiotope cell"
+	maxcharge = 1500
+	charge_amount = 50

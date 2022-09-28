@@ -8,6 +8,7 @@
 #define JOB_DISPLAY_ORDER_EXECUTIVE_OFFICER 4
 #define JOB_DISPLAY_ORDER_STAFF_OFFICER 5
 #define JOB_DISPLAY_ORDER_PILOT_OFFICER 6
+#define JOB_DISPLAY_ORDER_MECH_PILOT 7
 #define JOB_DISPLAY_ORDER_CORPORATE_LIAISON 8
 #define JOB_DISPLAY_ORDER_SYNTHETIC 9
 #define JOB_DISPLAY_ORDER_AI 10
@@ -45,6 +46,7 @@
 #define FIELD_COMMANDER "Field Commander"
 #define STAFF_OFFICER "Staff Officer"
 #define PILOT_OFFICER "Pilot Officer"
+#define MECH_PILOT "Mech Pilot"
 #define REQUISITIONS_OFFICER "Requisitions Officer"
 #define CHIEF_SHIP_ENGINEER "Chief Ship Engineer"
 #define CHIEF_MEDICAL_OFFICER "Chief Medical Officer"
@@ -83,6 +85,13 @@
 #define REBEL_SQUAD_VATGROWN "Rebel Squad VatGrown"
 #define REBEL_SILICON_AI "Rebel AI"
 
+//SOM - very placeholder for now
+#define SOM_SQUAD_LEADER "SOM Squad Leader"
+#define SOM_SQUAD_CORPSMAN "SOM Squad Medic"
+#define SOM_SQUAD_ENGINEER "SOM Squad Engineer"
+#define SOM_SQUAD_VETERAN "SOM Squad Veteran"
+#define SOM_SQUAD_MARINE "SOM Squad Standard"
+
 #define JOB_CAT_COMMAND "Command"
 #define JOB_CAT_SILICON "Silicon"
 #define JOB_CAT_REQUISITIONS "Requisitions"
@@ -96,13 +105,13 @@
 #define JOB_COMM_TITLE_SQUAD_LEADER "SL"
 
 GLOBAL_LIST_EMPTY(jobs_command)
-GLOBAL_LIST_INIT(jobs_officers, list(CAPTAIN, FIELD_COMMANDER, STAFF_OFFICER, PILOT_OFFICER, CORPORATE_LIAISON, SYNTHETIC, SILICON_AI))
+GLOBAL_LIST_INIT(jobs_officers, list(CAPTAIN, FIELD_COMMANDER, STAFF_OFFICER, PILOT_OFFICER, MECH_PILOT, CORPORATE_LIAISON, SYNTHETIC, SILICON_AI))
 GLOBAL_LIST_INIT(jobs_support, list(PILOT_OFFICER, REQUISITIONS_OFFICER, SYNTHETIC, SILICON_AI))
 GLOBAL_LIST_INIT(jobs_engineering, list(CHIEF_SHIP_ENGINEER, SHIP_TECH))
 GLOBAL_LIST_INIT(jobs_requisitions, list(REQUISITIONS_OFFICER))
 GLOBAL_LIST_INIT(jobs_medical, list(CHIEF_MEDICAL_OFFICER, MEDICAL_DOCTOR, MEDICAL_RESEARCHER))
 GLOBAL_LIST_INIT(jobs_marines, list(SQUAD_LEADER, SQUAD_SMARTGUNNER, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_MARINE))
-GLOBAL_LIST_INIT(jobs_regular_all, list(CAPTAIN, FIELD_COMMANDER, STAFF_OFFICER, PILOT_OFFICER, REQUISITIONS_OFFICER, CHIEF_SHIP_ENGINEER, \
+GLOBAL_LIST_INIT(jobs_regular_all, list(CAPTAIN, FIELD_COMMANDER, STAFF_OFFICER, PILOT_OFFICER, MECH_PILOT, REQUISITIONS_OFFICER, CHIEF_SHIP_ENGINEER, \
 CHIEF_MEDICAL_OFFICER, SYNTHETIC, SILICON_AI, CORPORATE_LIAISON, SHIP_TECH, \
 MEDICAL_DOCTOR, MEDICAL_RESEARCHER, SQUAD_LEADER, SQUAD_SMARTGUNNER, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_MARINE))
 GLOBAL_LIST_INIT(jobs_fallen_all, typecacheof(list(/datum/job/fallen)))
@@ -153,6 +162,8 @@ GLOBAL_LIST_INIT(jobs_fallen_all, typecacheof(list(/datum/job/fallen)))
 #define SMARTIE_POINTS_HIGH 3
 #define SYNTH_POINTS_REGULAR 1
 
+#define VETERAN_POINTS_REGULAR 1
+
 #define MARINE_SPAWN_ORIGIN "xenos from marine spawn"
 #define PSY_DRAIN_ORIGIN "xenos from psy drained bodies"
 #define COCOON_ORIGIN "xenos from cocoon that reached its endlife"
@@ -160,7 +171,9 @@ GLOBAL_LIST_INIT(jobs_fallen_all, typecacheof(list(/datum/job/fallen)))
 
 #define SQUAD_MAX_POSITIONS(total_positions) CEILING(total_positions / length(SSjob.active_squads), 1)
 
-/// How many points a marine can spend in job specific vendors
-#define MARINE_TOTAL_BUY_POINTS		45
+/// How many points a marine can spend in job specific vendors by default
+#define DEFAULT_TOTAL_BUY_POINTS 45
+/// How many points a medic can spend on pills
+#define MEDIC_TOTAL_BUY_POINTS 45
 /// How many points an engineer can spend
 #define ENGINEER_TOTAL_BUY_POINTS 75

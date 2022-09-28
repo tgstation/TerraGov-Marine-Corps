@@ -6,22 +6,12 @@
 	if(!species)
 		set_species()
 
-	var/datum/reagents/R
-	if(species.species_flags & NO_CHEM_METABOLIZATION)
-		R = new /datum/reagents(0)
-	else
-		R = new /datum/reagents(1000)
-	reagents = R
-	R.my_atom = src
-
 	. = ..()
 
 	GLOB.human_mob_list += src
 	GLOB.alive_human_list += src
 	LAZYADD(GLOB.humans_by_zlevel["[z]"], src)
 	RegisterSignal(src, COMSIG_MOVABLE_Z_CHANGED, .proc/human_z_changed)
-	GLOB.round_statistics.total_humans_created++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_humans_created")
 
 	var/datum/action/skill/toggle_orders/toggle_orders_action = new
 	toggle_orders_action.give_action(src)
@@ -31,10 +21,17 @@
 	issue_order_hold.give_action(src)
 	var/datum/action/skill/issue_order/focus/issue_order_focus = new
 	issue_order_focus.give_action(src)
-	var/datum/action/innate/order/rally_order/send_rally_order = new
+	var/datum/action/innate/order/attack_order/personal/send_attack_order = new
+	send_attack_order.give_action(src)
+	var/datum/action/innate/order/defend_order/personal/send_defend_order = new
+	send_defend_order.give_action(src)
+	var/datum/action/innate/order/retreat_order/personal/send_retreat_order = new
+	send_retreat_order.give_action(src)
+	var/datum/action/innate/order/rally_order/personal/send_rally_order = new
 	send_rally_order.give_action(src)
 	var/datum/action/innate/message_squad/screen_orders = new
 	screen_orders.give_action(src)
+
 
 	//makes order hud visible
 	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_ORDER]
@@ -43,7 +40,8 @@
 	randomize_appearance()
 
 	RegisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, .proc/acid_spray_entered)
-	RegisterSignal(src, list(COMSIG_KB_QUICKEQUIP, COMSIG_CLICK_QUICKEQUIP), .proc/do_quick_equip)
+	RegisterSignal(src, list(COMSIG_KB_QUICKEQUIP, COMSIG_CLICK_QUICKEQUIP), .proc/async_do_quick_equip)
+	RegisterSignal(src, COMSIG_KB_QUICKEQUIPALT, .proc/async_do_quick_equip_alt)
 	RegisterSignal(src, COMSIG_KB_UNIQUEACTION, .proc/do_unique_action)
 	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, .proc/fireman_carry_grabbed) // Fireman carry
 	RegisterSignal(src, COMSIG_KB_GIVE, .proc/give_signal_handler)
@@ -97,6 +95,11 @@
 		if(eta_status)
 			stat("Evacuation in:", eta_status)
 
+		//combat patrol timer
+		var/patrol_end_countdown = SSticker.mode?.game_end_countdown()
+		if(patrol_end_countdown)
+			stat("<b>Combat Patrol timer:</b>", patrol_end_countdown)
+
 		if(internal)
 			stat("Internal Atmosphere Info", internal.name)
 			stat("Tank Pressure", internal.pressure)
@@ -126,7 +129,7 @@
 
 	var/b_loss = 0
 	var/f_loss = 0
-	var/armor = getarmor(null, "bomb") * 0.01
+	var/armor = get_soft_armor("bomb") * 0.01 //Gets average bomb armor over all limbs.
 
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
@@ -177,7 +180,7 @@
 		var/damage = M.melee_damage
 		var/dam_zone = pick("chest", "l_hand", "r_hand", "l_leg", "r_leg")
 		var/datum/limb/affecting = get_limb(ran_zone(dam_zone))
-		var/armor = run_armor_check(affecting, "melee")
+		var/armor = get_soft_armor("melee", affecting)
 		apply_damage(damage, BRUTE, affecting, armor, updating_health = TRUE)
 
 /mob/living/carbon/human/show_inv(mob/living/user)
@@ -787,12 +790,9 @@
 	if(!species.has_organ["eyes"]) return 2//No eyes, can't hurt them.
 
 	var/datum/internal_organ/eyes/I = internal_organs_by_name["eyes"]
-	if(I)
-		if(I.cut_away)
-			return 2
-		if(I.robotic == ORGAN_ROBOT)
-			return 2
-	else
+	if(!I)
+		return 2
+	if(I.robotic == ORGAN_ROBOT)
 		return 2
 
 	if(istype(head, /obj/item/clothing))
@@ -831,12 +831,12 @@
 
 /mob/living/carbon/human/proc/is_lung_ruptured()
 	var/datum/internal_organ/lungs/L = internal_organs_by_name["lungs"]
-	return L && L.is_bruised()
+	return L?.organ_status == ORGAN_BRUISED
 
 /mob/living/carbon/human/proc/rupture_lung()
 	var/datum/internal_organ/lungs/L = internal_organs_by_name["lungs"]
 
-	if(L && !L.is_bruised())
+	if(L?.organ_status == ORGAN_BRUISED)
 		src.custom_pain("You feel a stabbing pain in your chest!", 1)
 		L.damage = L.min_bruised_damage
 
@@ -916,6 +916,14 @@
 		//additional things to change when we're no longer that species
 		oldspecies.post_species_loss(src)
 
+	var/datum/reagents/R
+	if(species.species_flags & NO_CHEM_METABOLIZATION)
+		R = new /datum/reagents(0)
+	else
+		R = new /datum/reagents(1000)
+	reagents = R
+	R.my_atom = src
+
 	species.create_organs(src)
 
 	dextrous = species.has_fine_manipulation
@@ -947,8 +955,9 @@
 
 	if(!(species.species_flags & NO_STAMINA))
 		AddComponent(/datum/component/stamina_behavior)
-		max_stamina_buffer = species.max_stamina_buffer
-		setStaminaLoss(-max_stamina_buffer)
+		max_stamina = species.max_stamina
+		max_stamina_buffer = max_stamina
+		setStaminaLoss(-max_stamina)
 
 	add_movespeed_modifier(MOVESPEED_ID_SPECIES, TRUE, 0, NONE, TRUE, species.slowdown)
 	species.on_species_gain(src, oldspecies) //todo move most of the stuff in this proc to here
@@ -1130,7 +1139,6 @@
 			b_eyes = 0
 
 	ethnicity = random_ethnicity()
-	body_type = random_body_type()
 
 	age = rand(17, 55)
 

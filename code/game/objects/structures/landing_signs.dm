@@ -6,6 +6,7 @@
 	bound_width = 64
 	bound_height = 64
 	density = TRUE
+	coverage = 15
 
 /obj/structure/solaris_sign
 	name = "Solaris Ridge Sign"
@@ -38,7 +39,17 @@
 	icon_state = "dam_sign"
 	bound_width = 64
 	density = TRUE
+	coverage = 15
 
 /obj/structure/dam_sign/damaged
 	desc = "A large sign that reads 'Chigusa mining col-', with the rest being obscured by what looks to be tried blood, and damage."
 	icon_state = "dam_sign"
+
+/obj/structure/tachi_sign
+	name = "Tachi Base sign"
+	desc = "A large sign that reads 'Tachi Base located at the planet of Ceres V' with a flag of the Sons of Mars."
+	icon = 'icons/obj/landing_signs.dmi'
+	icon_state = "tachi_sign"
+	bound_width = 64
+	density = TRUE
+	coverage = 15

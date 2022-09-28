@@ -6,11 +6,13 @@
 	desc = "An all-terrain vehicle built for traversing rough terrain with ease. \"TGMC CAVALRY\" is stamped on the side of the engine."
 	icon_state = "motorbike"
 	max_integrity = 300
-	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 0, "bomb" = 30, "fire" = 60, "acid" = 60)
+	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 0, BOMB = 30, FIRE = 60, ACID = 60)
 	resistance_flags = XENO_DAMAGEABLE
 	flags_atom = PREVENT_CONTENTS_EXPLOSION
 	key_type = null
 	integrity_failure = 0.5
+	throwpass = TRUE
+	coverage = 30	//It's just a bike, not hard to shoot over
 	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL|BUCKLE_NEEDS_HAND
 	///Internal motorbick storage object
 	var/obj/item/storage/internal/motorbike_pack/motor_pack = /obj/item/storage/internal/motorbike_pack
@@ -35,8 +37,8 @@
 	. = ..()
 	if(!ishuman(user))
 		return
-	to_chat(user, "To access internal storage click with an empty hand or drag the bike onto self.")
-	to_chat(user, "The fuel gauge on the bike reads \"[fuel_count/fuel_max*100]%\"")
+	. += "To access internal storage click with an empty hand or drag the bike onto self."
+	. += "The fuel gauge on the bike reads \"[fuel_count/fuel_max*100]%\""
 
 /obj/vehicle/ridden/motorbike/post_buckle_mob(mob/living/M)
 	add_overlay(motorbike_cover)
@@ -191,12 +193,6 @@
 	var/datum/effect_system/smoke_spread/smoke = new
 	smoke.set_up(0, src)
 	smoke.start()
-
-/obj/vehicle/ridden/motorbike/projectile_hit(obj/projectile/P)
-	if(!buckled_mobs)
-		return ..()
-	var/mob/buckled_mob = pick(buckled_mobs)
-	return buckled_mob.projectile_hit(P)
 
 /obj/vehicle/ridden/motorbike/obj_destruction()
 	explosion(src, light_impact_range = 2, flash_range = 0)

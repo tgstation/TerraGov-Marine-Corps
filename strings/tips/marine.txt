@@ -87,7 +87,7 @@ As a corpsman, remember to bring extra kelotane or dermaline to heal burn damage
 As a corpsman, hypervene is useful. Use it to purge deadly neurotoxins and larva boosting growth hormones.
 The B18 armor from Requisitions has an built-in medical system. The Valkyrie Automedical Armor System can do the same for the XM-02 Combat Exoskeleton.
 The V1 tarp (available from Requisitions) can be stealted once you covered yourself with it.
-The TL-84 flamethrower has an inbuilt fire extinguisher as an attachment.
+The FL-84 flamethrower has an inbuilt fire extinguisher as an attachment.
 As the PO, pay attention to the radio! Who knows if someone needs immediate surgery or evacuation until their fate becomes worse?
 As the Captain, you have a unique Mateba revolver that takes a chunk of a target's healthpool down. However, you are important for completing the mission, so do not participate in active combat using the Mateba!
 Even if a patient dies a second after being successfully revived by a defibrillator, this resets the time it takes for them to become permanently brain dead.

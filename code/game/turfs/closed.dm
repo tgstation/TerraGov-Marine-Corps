@@ -14,11 +14,10 @@
 
 /turf/closed/mineral
 	name = "rock"
-	icon = 'icons/turf/ground_map.dmi'
-	icon_state = "lvwall-0-0-0-0"
-	walltype = "lvwall"
-	smoothing_behavior = DIAGONAL_SMOOTHING
-	smoothing_groups = SMOOTH_MINERAL_STRUCTURES
+	icon = 'icons/turf/walls.dmi'
+	icon_state = "rock"
+	smoothing_behavior = NONE
+	smoothing_groups = NONE
 	open_turf_type = /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor
 
 /turf/closed/mineral/Initialize(mapload)
@@ -38,6 +37,33 @@
 					rock_side.pixel_x -= world.icon_size
 			overlays += rock_side
 
+/turf/closed/mineral/smooth
+	name = "rock"
+	icon = 'icons/turf/walls/lvwall.dmi'
+	icon_state = "lvwall-0-0-0-0"
+	walltype = "lvwall"
+	smoothing_behavior = DIAGONAL_SMOOTHING
+	smoothing_groups = SMOOTH_MINERAL_STRUCTURES
+
+/turf/closed/mineral/smooth/indestructible
+	resistance_flags = RESIST_ALL
+
+/turf/closed/mineral/smooth/snowrock
+	icon = 'icons/turf/walls/snowwall.dmi'
+	icon_state = "snowwall-0-0-0-0"
+	walltype = "snowwall"
+
+/turf/closed/mineral/smooth/snowrock/indestructible
+	resistance_flags = RESIST_ALL
+
+/turf/closed/mineral/smooth/bigred
+	icon = 'icons/turf/walls/redwall.dmi'
+	icon_state = "red_wall-0-0-0-0"
+	walltype = "red_wall"
+
+/turf/closed/mineral/smooth/bigred/indestructible
+	resistance_flags = RESIST_ALL
+
 /turf/closed/mineral/bigred
 	name = "rock"
 	icon = 'icons/turf/walls.dmi'
@@ -47,8 +73,8 @@
 
 /turf/closed/mineral/indestructible
 	name = "impenetrable rock"
-	icon_state = "lvwall-0-0-0-0"
-	walltype = "lvwall"
+	icon = 'icons/turf/walls.dmi'
+	icon_state = "rock_dark"
 	smoothing_behavior = DIAGONAL_SMOOTHING
 	smoothing_groups = SMOOTH_MINERAL_STRUCTURES
 	resistance_flags = RESIST_ALL
@@ -68,18 +94,16 @@
 	icon_state = "jungletree"
 	desc = "Some thick jungle trees."
 
-
 	//Not yet
 /turf/closed/gm/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			ChangeTurf(/turf/open/ground/grass)
 
-
 /turf/closed/gm/dense
 	name = "dense jungle wall"
 	resistance_flags = PLASMACUTTER_IMMUNE
-	
+
 //desertdam rock
 /turf/closed/desertdamrockwall
 	name = "rockwall"
@@ -93,6 +117,11 @@
 
 /turf/closed/desertdamrockwall/invincible
 	resistance_flags = RESIST_ALL
+
+/turf/closed/desertdamrockwall/invincible/perimeter
+	name = "wall"
+	icon_state = "pwall"
+	icon = 'icons/turf/shuttle.dmi'
 
 //lava rock
 /turf/closed/brock
@@ -365,6 +394,11 @@
 /turf/closed/shuttle/dropship2/transparent
 	opacity = FALSE
 
+/turf/closed/shuttle/tadpole
+	name = "\improper Tadpole"
+	icon = 'icons/turf/dropship2.dmi'
+	icon_state = "1"
+	plane = GAME_PLANE
 
 /turf/closed/shuttle/escapepod
 	name = "wall"

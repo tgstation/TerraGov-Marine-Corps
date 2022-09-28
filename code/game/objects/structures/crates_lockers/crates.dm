@@ -178,6 +178,36 @@
 	icon_opened = "open_explosives"
 	icon_closed = "closed_explosives"
 
+/obj/structure/closet/crate/explosives/whiskeyoutpost/Initialize()
+	. = ..()
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/upp(src)
+	new /obj/item/explosive/grenade/upp(src)
+	new /obj/item/explosive/grenade/upp(src)
+	new /obj/item/explosive/grenade/phosphorus/upp(src)
+	new /obj/item/explosive/grenade/phosphorus/upp(src)
+	new /obj/item/explosive/grenade/phosphorus/upp(src)
+	new /obj/item/explosive/grenade/phosphorus/upp(src)
+
+/obj/structure/closet/crate/explosives/whiskeyoutposttwo/Initialize()
+	. = ..()
+	new /obj/structure/closet/crate/explosives(src)
+	new /obj/item/storage/box/visual/grenade/razorburn(src)
+	new /obj/item/storage/box/visual/grenade/razorburn(src)
+	new /obj/item/storage/box/visual/grenade/M15(src)
+	new /obj/item/storage/box/visual/grenade/phosphorus(src)
+	new /obj/item/explosive/grenade/incendiary/molotov(src)
+	new /obj/item/explosive/grenade/incendiary/molotov(src)
+
 /obj/structure/closet/crate/freezer
 	name = "freezer crate"
 	desc = "A freezer crate."
@@ -305,8 +335,12 @@
 /obj/structure/closet/crate/miningcar
 	desc = "A mining car. This one doesn't work on rails, but has to be dragged."
 	name = "Mining car (not for rails)"
-	icon_state = "miningcar"
+	icon_state = "closed_mcart"
 	density = TRUE
-	icon_opened = "miningcaropen"
-	icon_closed = "miningcar"
+	icon_opened = "open_mcart"
+	icon_closed = "closed_mcart"
 
+/obj/structure/closet/crate/miningcar/stripe
+	icon_state = "closed_mcart_y"
+	icon_opened = "open_mcart_y"
+	icon_closed = "closed_mcart_y"

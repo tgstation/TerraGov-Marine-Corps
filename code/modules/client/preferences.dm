@@ -40,7 +40,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/show_typing = TRUE
 	var/windowflashing = TRUE
-	var/clientfps = 0
+	var/clientfps = 60
 
 	// Custom Keybindings
 	var/list/key_bindings = null
@@ -55,7 +55,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/list/chem_macros = list()
 
 	//Synthetic specific preferences
-	var/synthetic_name = "David"
+	var/synthetic_name = "Undefined"
 	var/synthetic_type = "Synthetic"
 
 	//Xenomorph specific preferences
@@ -71,11 +71,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/age = 20
 	var/species = "Human"
 	var/ethnicity = "Western"
-	var/body_type = "Mesomorphic (Average)"
 	var/good_eyesight = TRUE
 	var/preferred_squad = "None"
+	///Your preferred squad, when playing SOM
+	var/preferred_squad_som = "None"
 	var/alternate_option = RETURN_TO_LOBBY
 	var/preferred_slot = SLOT_S_STORE
+	var/preferred_slot_alt = SLOT_BACK
 	var/list/gear
 	var/list/job_preferences = list()
 
@@ -110,9 +112,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/moth_wings = "Plain"
 
 	//Lore
-	var/citizenship = "TerraGov"
+	var/citizenship = "Earth Born"
 	var/religion = "None"
-	var/nanotrasen_relation = "Neutral"
 	var/flavor_text = ""
 	var/med_record = ""
 	var/sec_record = ""

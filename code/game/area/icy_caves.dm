@@ -3,17 +3,17 @@
 	outside = FALSE
 
 /area/icy_caves/caves/
-	name ="Caves"
+	name = "Caves"
 	icon_state = "away4"
 	ceiling = CEILING_UNDERGROUND
 
 /area/icy_caves/caves/northern
-	name ="Northern Caves"
+	name = "Northern Caves"
 	icon_state = "cave"
 	ceiling = CEILING_DEEP_UNDERGROUND
 
 /area/icy_caves/caves/crashed_ship
-	name ="Crashed Ship"
+	name = "Crashed Ship"
 	icon_state = "red"
 	ceiling = CEILING_DEEP_UNDERGROUND
 
@@ -21,6 +21,23 @@
 	name = "Chapel of Nar'Sie"
 	icon_state = "icy_chapel"
 	ceiling = CEILING_DEEP_UNDERGROUND
+
+/area/icy_caves/caves/northwestmonorail
+	name = "Northwestern Monorail Station"
+	icon_state = "purple"
+	ceiling = CEILING_DEEP_UNDERGROUND
+
+/area/icy_caves/caves/northwestmonorail/breakroom
+	name = "Northwestern Monorail Station Break Room"
+
+/area/icy_caves/caves/northwestmonorail/hallway
+	name = "Northwestern Monorail Station Hallway"
+
+/area/icy_caves/caves/northwestmonorail/morgue
+	name = "Northwestern Monorail Station Morgue"
+
+/area/icy_caves/caves/northwestmonorail/medbay
+	name = "Northwestern Monorail Station Medbay"
 
 /area/icy_caves/caves/underground_cafeteria
 	name = "Underground Cafeteria"
@@ -43,32 +60,36 @@
 	ceiling = CEILING_DEEP_UNDERGROUND
 
 /area/icy_caves/caves/south
-	name ="Southern Caves"
+	name = "Southern Caves"
 	icon_state = "cave"
 
 /area/icy_caves/caves/east
-	name ="Eastern Caves"
+	name = "Eastern Caves"
 	icon_state = "cave"
 
 /area/icy_caves/caves/west
-	name ="Western Caves"
+	name = "Western Caves"
 	icon_state = "cave"
 
+/area/icy_caves/caves/rock
+	name = "Enclosed Area"
+	icon_state = "transparent"
+
 /area/icy_caves/outpost/
-	name ="Outpost"
+	name = "Outpost"
 	icon_state = "Sleep"
 	ceiling = CEILING_METAL
 
 /area/icy_caves/outpost/dorms
-	name ="Dormitories"
+	name = "Dormitories"
 	icon_state = "Sleep"
 
 /area/icy_caves/outpost/engineering
-	name ="Engineering"
+	name = "Engineering"
 	icon_state = "engine_smes"
 
 /area/icy_caves/outpost/garage
-	name ="Garage"
+	name = "Garage"
 	icon_state = "garage"
 
 /area/icy_caves/outpost/medbay

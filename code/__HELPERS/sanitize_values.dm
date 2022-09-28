@@ -79,13 +79,6 @@
 	return default
 
 
-/proc/sanitize_body_type(body_type, default = "Mesomorphic (Average)")
-	if(body_type in GLOB.body_types_list)
-		return body_type
-
-	return default
-
-
 /proc/sanitize_hexcolor(color, desired_format = 3, include_crunch = FALSE, default = "#000000")
 	var/crunch = include_crunch ? "#" : ""
 	if(!istext(color))

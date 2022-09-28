@@ -8,7 +8,7 @@
 #define WEED_SLOWDOWN 2
 
 // base weed type
-/obj/effect/alien/weeds
+/obj/alien/weeds
 	name = "weeds"
 	desc = "A layer of oozy slime, it feels slick, but not as slick for you to slip."
 	icon = 'icons/Xeno/weeds.dmi'
@@ -20,7 +20,7 @@
 	max_integrity = 25
 	ignore_weed_destruction = TRUE
 
-	var/obj/effect/alien/weeds/node/parent_node
+	var/obj/alien/weeds/node/parent_node
 	///The color variant of the sprite
 	var/color_variant = SPEED_COLOR
 	///The healing buff when resting on this weed
@@ -28,12 +28,12 @@
 	///If these weeds are not destroyed but just swapped
 	var/swapped = FALSE
 
-/obj/effect/alien/weeds/deconstruct(disassembled = TRUE)
+/obj/alien/weeds/deconstruct(disassembled = TRUE)
 	GLOB.round_statistics.weeds_destroyed++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "weeds_destroyed")
 	return ..()
 
-/obj/effect/alien/weeds/Initialize(mapload, obj/effect/alien/weeds/node/node, swapped = FALSE)
+/obj/alien/weeds/Initialize(mapload, obj/alien/weeds/node/node, swapped = FALSE)
 	. = ..()
 
 	if(!isnull(node))
@@ -44,8 +44,10 @@
 	AddElement(/datum/element/accelerate_on_crossed)
 	if(!swapped)
 		update_neighbours()
+	for(var/mob/living/living_mob in loc.contents)
+		SEND_SIGNAL(living_mob, COMSIG_LIVING_WEEDS_AT_LOC_CREATED, src)
 
-/obj/effect/alien/weeds/Destroy()
+/obj/alien/weeds/Destroy()
 	parent_node = null
 	if(swapped)
 		return ..()
@@ -55,13 +57,13 @@
 	INVOKE_NEXT_TICK(src, .proc/update_neighbours, loc)
 	return ..()
 
-/obj/effect/alien/weeds/examine(mob/user)
-	..()
+/obj/alien/weeds/examine(mob/user)
+	. = ..()
 	var/turf/T = get_turf(src)
 	if(isfloorturf(T))
-		T.ceiling_desc(user)
+		. += T.ceiling_desc()
 
-/obj/effect/alien/weeds/proc/update_neighbours(turf/U)
+/obj/alien/weeds/proc/update_neighbours(turf/U)
 	if(!U)
 		U = loc
 	if(istype(U))
@@ -71,17 +73,17 @@
 			if (!istype(T))
 				continue
 
-			var/obj/effect/alien/weeds/W = locate() in T
+			var/obj/alien/weeds/W = locate() in T
 			if(W)
 				W.update_icon()
 
 ///Check if we have a parent node, if not, qdel ourselve
-/obj/effect/alien/weeds/proc/check_for_parent_node()
+/obj/alien/weeds/proc/check_for_parent_node()
 	if(parent_node)
 		return
 	qdel(src)
 
-/obj/effect/alien/weeds/update_icon_state()
+/obj/alien/weeds/update_icon_state()
 	. = ..()
 	var/my_dir = 0
 	for (var/check_dir in GLOB.cardinals)
@@ -92,7 +94,7 @@
 		if(istype(check, /turf/closed/wall/resin))
 			my_dir |= check_dir
 
-		else if (locate(/obj/effect/alien/weeds) in check)
+		else if (locate(/obj/alien/weeds) in check)
 			my_dir |= check_dir
 
 	if (my_dir == 15) //weeds in all four directions
@@ -104,32 +106,32 @@
 	icon_state += color_variant
 
 ///Set the parent_node to node
-/obj/effect/alien/weeds/proc/set_parent_node(atom/node)
+/obj/alien/weeds/proc/set_parent_node(atom/node)
 	if(parent_node)
 		UnregisterSignal(parent_node, COMSIG_PARENT_QDELETING)
 	parent_node = node
 	RegisterSignal(parent_node, COMSIG_PARENT_QDELETING, .proc/clean_parent_node)
 
 ///Clean the parent node var
-/obj/effect/alien/weeds/proc/clean_parent_node()
+/obj/alien/weeds/proc/clean_parent_node()
 	SIGNAL_HANDLER
 	if(!parent_node.swapped)
 		SSweeds_decay.decaying_list += src
 	parent_node = null
 
-/obj/effect/alien/weeds/sticky
+/obj/alien/weeds/sticky
 	name = "sticky weeds"
 	desc = "A layer of disgusting sticky slime, it feels like it's going to slow your movement down."
 	color_variant = STICKY_COLOR
 
-/obj/effect/alien/weeds/sticky/Initialize(mapload, obj/effect/alien/weeds/node/node)
+/obj/alien/weeds/sticky/Initialize(mapload, obj/alien/weeds/node/node)
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = .proc/slow_down_crosser
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
-/obj/effect/alien/weeds/sticky/proc/slow_down_crosser(datum/source, atom/movable/crosser)
+/obj/alien/weeds/sticky/proc/slow_down_crosser(datum/source, atom/movable/crosser)
 	SIGNAL_HANDLER
 	if(crosser.throwing || crosser.buckled)
 		return
@@ -158,7 +160,7 @@
 	victim.next_move_slowdown += WEED_SLOWDOWN
 
 
-/obj/effect/alien/weeds/resting
+/obj/alien/weeds/resting
 	name = "resting weeds"
 	desc = "This looks almost comfortable."
 	color_variant = RESTING_COLOR
@@ -166,41 +168,41 @@
 
 // =================
 // weed wall
-/obj/effect/alien/weeds/weedwall
+/obj/alien/weeds/weedwall
 	layer = RESIN_STRUCTURE_LAYER
 	plane = GAME_PLANE
 	icon_state = "weedwall"
 
-/obj/effect/alien/weeds/weedwall/update_icon_state()
+/obj/alien/weeds/weedwall/update_icon_state()
 	var/turf/closed/wall/W = loc
 	icon_state = W.junctiontype ? "weedwall[W.junctiontype]" : initial(icon_state)
 	icon_state += color_variant
 
 // =================
 // windowed weed wall
-/obj/effect/alien/weeds/weedwall/window
+/obj/alien/weeds/weedwall/window
 	layer = ABOVE_TABLE_LAYER
 
-/obj/effect/alien/weeds/weedwall/window/update_icon_state()
+/obj/alien/weeds/weedwall/window/update_icon_state()
 	var/obj/structure/window/framed/F = locate() in loc
 	icon_state = F?.junction ? "weedwall[F.junction]" : initial(icon_state)
 	icon_state += color_variant
 
-/obj/effect/alien/weeds/weedwall/window/MouseDrop_T(atom/dropping, mob/user)
+/obj/alien/weeds/weedwall/window/MouseDrop_T(atom/dropping, mob/user)
 	var/obj/structure/window/framed/F = locate() in loc
 	if(!F)
 		return ..()
 	return F.MouseDrop_T(dropping, user)
 
-/obj/effect/alien/weeds/weedwall/frame
+/obj/alien/weeds/weedwall/frame
 	layer = ABOVE_TABLE_LAYER
 
-/obj/effect/alien/weeds/weedwall/frame/update_icon_state()
+/obj/alien/weeds/weedwall/frame/update_icon_state()
 	var/obj/structure/window_frame/WF = locate() in loc
 	icon_state = WF?.junction ? "weedframe[WF.junction]" : initial(icon_state)
 	icon_state += color_variant
 
-/obj/effect/alien/weeds/weedwall/frame/MouseDrop_T(atom/dropping, mob/user)
+/obj/alien/weeds/weedwall/frame/MouseDrop_T(atom/dropping, mob/user)
 	var/obj/structure/window_frame/WF = locate() in loc
 	if(!WF)
 		return ..()
@@ -209,7 +211,7 @@
 
 // =================
 // weed node - grows other weeds
-/obj/effect/alien/weeds/node
+/obj/alien/weeds/node
 	name = WEED
 	desc = "A weird, pulsating purple node."
 	max_integrity = 60
@@ -219,13 +221,13 @@
 	/// How far this node can spread weeds
 	var/node_range = 2
 	/// What type of weeds this node spreads
-	var/obj/effect/alien/weeds/weed_type = /obj/effect/alien/weeds
+	var/obj/alien/weeds/weed_type = /obj/alien/weeds
 	///The plasma cost multiplier for this node
 	var/plasma_cost_mult = 1
 
-/obj/effect/alien/weeds/node/Initialize(mapload, obj/effect/alien/weeds/node/node)
+/obj/alien/weeds/node/Initialize(mapload, obj/alien/weeds/node/node)
 	var/swapped = FALSE
-	for(var/obj/effect/alien/weeds/W in loc)
+	for(var/obj/alien/weeds/W in loc)
 		if(W != src)
 			W.swapped = TRUE
 			swapped = TRUE
@@ -238,31 +240,31 @@
 	SSweeds.add_node(src)
 	swapped = FALSE
 
-/obj/effect/alien/weeds/node/set_parent_node(atom/node)
-	CRASH("set_parent_node was called on a /obj/effect/alien/weeds/node, node are not supposed to have node themselves")
+/obj/alien/weeds/node/set_parent_node(atom/node)
+	CRASH("set_parent_node was called on a /obj/alien/weeds/node, node are not supposed to have node themselves")
 
-/obj/effect/alien/weeds/node/update_overlays()
+/obj/alien/weeds/node/update_overlays()
 	. = ..()
 	overlays.Cut()
 	overlays += node_icon
 
 //Sticky weed node
-/obj/effect/alien/weeds/node/sticky
+/obj/alien/weeds/node/sticky
 	name = STICKY_WEED
 	desc = "A weird, pulsating red node."
-	weed_type = /obj/effect/alien/weeds/sticky
+	weed_type = /obj/alien/weeds/sticky
 	color_variant = STICKY_COLOR
 	node_icon = "weednodegreen"
 	plasma_cost_mult = 3
 
-/obj/effect/alien/weeds/node/sticky/Initialize(mapload, obj/effect/alien/weeds/node/node)
+/obj/alien/weeds/node/sticky/Initialize(mapload, obj/alien/weeds/node/node)
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = .proc/slow_down_crosser
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
-/obj/effect/alien/weeds/node/sticky/proc/slow_down_crosser(datum/source, atom/movable/crosser)
+/obj/alien/weeds/node/sticky/proc/slow_down_crosser(datum/source, atom/movable/crosser)
 	SIGNAL_HANDLER
 	if(crosser.throwing || crosser.buckled)
 		return
@@ -286,10 +288,10 @@
 	victim.next_move_slowdown += WEED_SLOWDOWN
 
 //Resting weed node
-/obj/effect/alien/weeds/node/resting
+/obj/alien/weeds/node/resting
 	name = RESTING_WEED
 	desc = "A weird, pulsating white node."
-	weed_type = /obj/effect/alien/weeds/resting
+	weed_type = /obj/alien/weeds/resting
 	color_variant = RESTING_COLOR
 	node_icon = "weednodewhite"
 	resting_buff = RESTING_BUFF

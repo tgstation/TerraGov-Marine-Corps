@@ -22,6 +22,34 @@
 	handle_slowdown()
 	handle_stagger()
 
+	handle_received_auras()
+
+///Adjusts our stats based on the auras we've received and care about, then cleans out the list for next tick.
+/mob/living/proc/handle_received_auras()
+	received_auras.Cut() //Living, of course, doesn't care about any
+
+///Update what auras we'll receive this life tick if it's either new or stronger than current. aura_type as AURA_ define, strength as number.
+/mob/living/proc/receive_aura(aura_type, strength)
+	if(received_auras[aura_type] > strength)
+		return
+	received_auras[aura_type] = strength
+
+///Add a list of auras to our current emitted, update self as needed
+/mob/living/proc/add_emitted_auras(source, aura_list)
+	SIGNAL_HANDLER
+	emitted_auras += aura_list
+	update_aura_overlay()
+
+///Remove a list of auras from our current emitted, update self as needed
+/mob/living/proc/remove_emitted_auras(source, aura_list)
+	SIGNAL_HANDLER
+	emitted_auras -= aura_list
+	update_aura_overlay()
+
+///Bring however we represent emitted auras up to date. Implemented for human and xenomorph.
+/mob/living/proc/update_aura_overlay()
+	return
+
 /mob/living/proc/handle_organs()
 	reagent_shock_modifier = 0
 	reagent_pain_modifier = 0
@@ -46,9 +74,9 @@
 	if(world.time < last_staminaloss_dmg + 3 SECONDS)
 		return
 	if(staminaloss > 0)
-		adjustStaminaLoss(-maxHealth * 0.2, TRUE, FALSE)
+		adjustStaminaLoss(-maxHealth * 0.2 * stamina_regen_multiplier, TRUE, FALSE)
 	else if(staminaloss > -max_stamina_buffer)
-		adjustStaminaLoss(-max_stamina_buffer * 0.08, TRUE, FALSE)
+		adjustStaminaLoss(-max_stamina * 0.08 * stamina_regen_multiplier, TRUE, FALSE)
 
 
 /mob/living/proc/handle_regular_hud_updates()
@@ -78,6 +106,11 @@
 
 	set_armor_datum()
 	AddElement(/datum/element/gesture)
+	stamina_regen_modifiers = list()
+	received_auras = list()
+	emitted_auras = list()
+	RegisterSignal(src, COMSIG_AURA_STARTED, .proc/add_emitted_auras)
+	RegisterSignal(src, COMSIG_AURA_FINISHED, .proc/remove_emitted_auras)
 
 /mob/living/Destroy()
 	for(var/i in embedded_objects)
@@ -343,9 +376,9 @@
 			if(L.pulledby == src && a_intent == INTENT_GRAB)
 				mob_swap = TRUE
 			//restrained people act if they were on 'help' intent to prevent a person being pulled from being seperated from their puller
-			else if((L.restrained() || L.a_intent == INTENT_HELP) && (restrained() || a_intent == INTENT_HELP) && L.mob_size < MOB_SIZE_XENO)
+			else if((L.restrained() || L.a_intent == INTENT_HELP) && (restrained() || a_intent == INTENT_HELP) && L.move_force < MOVE_FORCE_VERY_STRONG)
 				mob_swap = TRUE
-			else if((mob_size >= MOB_SIZE_XENO || mob_size > L.mob_size) && a_intent == INTENT_HELP) //Larger mobs can shove aside smaller ones. Xenos can always shove xenos
+			else if((move_resist >= MOVE_FORCE_VERY_STRONG || move_resist > L.move_force) && a_intent == INTENT_HELP) //Larger mobs can shove aside smaller ones. Xenos can always shove xenos
 				mob_swap = TRUE
 			if(mob_swap)
 				//switch our position with L
@@ -393,14 +426,14 @@
 
 
 //Called when we want to push an atom/movable
-/mob/living/proc/PushAM(atom/movable/AM)
+/mob/living/proc/PushAM(atom/movable/AM, force = move_force)
 	if(AM.anchored)
 		return
 	if(now_pushing)
 		return
 	if(moving_diagonally) // No pushing in diagonal move
 		return
-	if(!client && (mob_size < MOB_SIZE_SMALL))
+	if(!client)
 		return
 	now_pushing = TRUE
 	var/dir_to_target = get_dir(src, AM)
@@ -413,6 +446,25 @@
 	// a fallback.
 	if(!dir_to_target)
 		dir_to_target = dir
+
+	var/push_anchored = FALSE
+	if((AM.move_resist * MOVE_FORCE_CRUSH_RATIO) <= force)
+		if(move_crush(AM, move_force, dir_to_target))
+			push_anchored = TRUE
+	if((AM.move_resist * MOVE_FORCE_FORCEPUSH_RATIO) <= force) //trigger move_crush and/or force_push regardless of if we can push it normally
+		if(force_push(AM, move_force, dir_to_target, push_anchored))
+			push_anchored = TRUE
+	if(ismob(AM))
+		var/mob/mob_to_push = AM
+		var/atom/movable/mob_buckle = mob_to_push.buckled
+		// If we can't pull them because of what they're buckled to, make sure we can push the thing they're buckled to instead.
+		// If neither are true, we're not pushing anymore.
+		if(mob_buckle && (mob_buckle.buckle_flags & BUCKLE_PREVENTS_PULL || (force < (mob_buckle.move_resist * MOVE_FORCE_PUSH_RATIO))))
+			now_pushing = FALSE
+			return
+	if((AM.anchored && !push_anchored) || (force < (AM.move_resist * MOVE_FORCE_PUSH_RATIO)))
+		now_pushing = FALSE
+		return
 
 	if(istype(AM, /obj/structure/window))
 		var/obj/structure/window/W = AM
@@ -461,12 +513,12 @@
 /mob/living/proc/get_permeability_protection()
 	return LIVING_PERM_COEFF
 
-/mob/proc/flash_act(intensity = 1, bypass_checks, type = /obj/screen/fullscreen/flash)
+/mob/proc/flash_act(intensity = 1, bypass_checks, type = /obj/screen/fullscreen/flash, duration)
 	return
 
-/mob/living/carbon/flash_act(intensity = 1, bypass_checks, type = /obj/screen/fullscreen/flash)
+/mob/living/carbon/flash_act(intensity = 1, bypass_checks, type = /obj/screen/fullscreen/flash, duration = 40)
 	if( bypass_checks || (get_eye_protection() < intensity && !(disabilities & BLIND)) )
-		overlay_fullscreen_timer(40, 20, "flash", type)
+		overlay_fullscreen_timer(duration, 20, "flash", type)
 		return TRUE
 
 /mob/living/proc/disable_lights(armor = TRUE, guns = TRUE, flares = TRUE, misc = TRUE, sparks = FALSE, silent = FALSE)
@@ -634,6 +686,8 @@ below 100 is not dizzy
 		return
 
 	update_sight()
+	if (stat == DEAD)
+		animate(client, pixel_x = 0, pixel_y = 0)
 	if(client.eye && client.eye != src)
 		var/atom/AT = client.eye
 		AT.get_remote_view_fullscreens(src)
@@ -641,6 +695,10 @@ below 100 is not dizzy
 		clear_fullscreen("remote_view", 0)
 	update_pipe_vision()
 
+/mob/living/update_sight()
+	if(SSticker.current_state == GAME_STATE_FINISHED && !is_centcom_level(z)) //Reveal ghosts to remaining survivors
+		see_invisible = SEE_INVISIBLE_OBSERVER
+	return ..()
 
 /mob/living/proc/can_track(mob/living/user)
 	//basic fast checks go first. When overriding this proc, I recommend calling ..() at the end.

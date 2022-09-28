@@ -36,6 +36,7 @@
 	hud_set_plasma()
 	med_hud_set_health()
 	hud_set_sunder()
+	hud_set_firestacks()
 
 /mob/living/carbon/xenomorph/regenerate_icons()
 	..()
@@ -84,19 +85,14 @@
 	apply_temp_overlay(X_SUIT_LAYER, 1.2 SECONDS)
 
 /mob/living/carbon/xenomorph/update_fire()
-	remove_overlay(X_FIRE_LAYER)
-	if(on_fire)
-		var/image/I
-		if(mob_size == MOB_SIZE_BIG)
-			if((!initial(pixel_y) || lying_angle) && !resting && !IsSleeping())
-				I = image("icon"='icons/Xeno/2x2_Xenos.dmi', "icon_state"="alien_fire", "layer"=-X_FIRE_LAYER)
-			else
-				I = image("icon"='icons/Xeno/2x2_Xenos.dmi', "icon_state"="alien_fire_lying", "layer"=-X_FIRE_LAYER)
-		else
-			I = image("icon"='icons/Xeno/Effects.dmi', "icon_state"="alien_fire", "layer"=-X_FIRE_LAYER)
-
-		overlays_standing[X_FIRE_LAYER] = I
-		apply_overlay(X_FIRE_LAYER)
+	if(!on_fire)
+		fire_overlay.icon_state = ""
+		return
+	fire_overlay.layer = layer + 0.4
+	if(mob_size!= MOB_SIZE_BIG || ((!initial(pixel_y) || lying_angle) && !resting && !IsSleeping()))
+		fire_overlay.icon_state = "alien_fire"
+	else
+		fire_overlay.icon_state = "alien_fire_lying"
 
 /mob/living/carbon/xenomorph/proc/apply_alpha_channel(image/I)
 	return I
@@ -106,6 +102,9 @@
 		return
 	var/health_thresholds
 	wound_overlay.layer = layer + 0.3
+	if(HAS_TRAIT(src, TRAIT_MOB_ICON_UPDATE_BLOCKED))
+		wound_overlay.icon_state = "none"
+		return
 	if(health > health_threshold_crit)
 		health_thresholds = CEILING((health * 4) / (maxHealth), 1) //From 1 to 4, in 25% chunks
 		if(health_thresholds > 3)
@@ -153,3 +152,9 @@
 	SIGNAL_HANDLER
 	if(newdir != dir)
 		dir = newdir
+
+/atom/movable/vis_obj/xeno_wounds/fire_overlay
+	icon = 'icons/Xeno/2x2_Xenos.dmi'
+
+/atom/movable/vis_obj/xeno_wounds/fire_overlay/small
+	icon = 'icons/Xeno/Effects.dmi'

@@ -28,6 +28,7 @@
 									/datum/job/spatial_agent/galaxy_red,
 									/datum/job/spatial_agent/galaxy_blue,
 									/datum/job/spatial_agent/xeno_suit,
+									/datum/job/spatial_agent/marine_officer,
 									)
 
 /mob/camera/imaginary_friend/Login()
@@ -135,6 +136,8 @@
 	H = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
 	med_squad_mobhud ? H.add_hud_to(src) : H.remove_hud_from(src)
 	H = GLOB.huds[DATA_HUD_SQUAD_REBEL]
+	med_squad_mobhud ? H.add_hud_to(src) : H.remove_hud_from(src)
+	H = GLOB.huds[DATA_HUD_SQUAD_SOM]
 	med_squad_mobhud ? H.add_hud_to(src) : H.remove_hud_from(src)
 	to_chat(src, span_notice("You have [med_squad_mobhud ? "enabled" : "disabled"] the Human Status HUD."))
 

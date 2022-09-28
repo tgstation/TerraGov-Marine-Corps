@@ -14,7 +14,7 @@
 	desc = "A suit that protects against fire and heat."
 	icon_state = "fire"
 	item_state = "fire_suit"
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 0)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, "rad" = 0, FIRE = 90, ACID = 0)
 	w_class = WEIGHT_CLASS_BULKY//bulky item
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.50
@@ -23,7 +23,7 @@
 	allowed = list(/obj/item/flashlight,/obj/item/tank/emergency_oxygen,/obj/item/tool/extinguisher)
 	slowdown = 1.0
 	flags_inventory = NOPRESSUREDMAGE
-	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
+	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	flags_heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	flags_cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
@@ -49,7 +49,7 @@
 	name = "bomb hood"
 	desc = "Use in case of bomb."
 	icon_state = "bombsuit"
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 100, BIO = 0, "rad" = 0, FIRE = 0, ACID = 0)
 	flags_inventory = COVEREYES|COVERMOUTH
 	flags_inv_hide = HIDEFACE|HIDEMASK|HIDEEARS|HIDEALLHAIR
 	flags_armor_protection = HEAD|FACE|EYES
@@ -65,8 +65,8 @@
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	slowdown = 2
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
-	flags_inv_hide = HIDEJUMPSUIT|HIDETAIL
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 100, BIO = 0, "rad" = 0, FIRE = 0, ACID = 0)
+	flags_inv_hide = HIDEJUMPSUIT
 	flags_heat_protection = CHEST|GROIN
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0
@@ -93,7 +93,7 @@
 	flags_inventory = COVEREYES|COVERMOUTH
 	flags_inv_hide = HIDEFACE|HIDEMASK|HIDEEARS|HIDEALLHAIR
 	flags_armor_protection = HEAD|FACE|EYES
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 60, "rad" = 100, "fire" = 0, "acid" = 0)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 60, "rad" = 100, FIRE = 0, ACID = 0)
 
 
 /obj/item/clothing/suit/radiation
@@ -107,5 +107,5 @@
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS|HANDS|FEET
 	allowed = list(/obj/item/flashlight,/obj/item/tank/emergency_oxygen,/obj/item/clothing/head/radiation,/obj/item/clothing/mask/gas)
 	slowdown = 1.5
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 60, "rad" = 100, "fire" = 0, "acid" = 0)
-	flags_inv_hide = HIDEJUMPSUIT|HIDETAIL
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 60, "rad" = 100, FIRE = 0, ACID = 0)
+	flags_inv_hide = HIDEJUMPSUIT

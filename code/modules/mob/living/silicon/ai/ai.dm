@@ -1,3 +1,5 @@
+#define MAX_COMMAND_MESSAGE_LGTH 300
+
 ///This elevator serves me alone. I have complete control over this entire level. With cameras as my eyes and nodes as my hands, I rule here, insect.
 /mob/living/silicon/ai
 	name = "ARES v3.2"
@@ -17,7 +19,7 @@
 	var/list/available_networks = list("marinemainship", "marine", "dropship1", "dropship2")
 	var/obj/machinery/camera/current
 
-	var/mob/camera/aiEye/eyeobj
+	var/mob/camera/aiEye/hud/eyeobj
 	var/sprint = 10
 	var/cooldown = 0
 	var/acceleration = FALSE
@@ -49,6 +51,9 @@
 	var/datum/action/innate/order/current_order
 	/// If it is currently controlling an object
 	var/controlling = FALSE
+	
+	///Linked artillery for remote targeting.
+	var/obj/machinery/deployable/mortar/linked_artillery
 
 
 /mob/living/silicon/ai/Initialize(mapload, ...)
@@ -80,23 +85,28 @@
 
 	RegisterSignal(src, COMSIG_MOB_CLICK_ALT, .proc/send_order)
 	RegisterSignal(src, COMSIG_ORDER_SELECTED, .proc/set_order)
+
 	RegisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED, .proc/receive_laser_ob)
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED, .proc/receive_laser_cas)
-
 	RegisterSignal(SSdcs, COMSIG_GLOB_SHUTTLE_TAKEOFF, .proc/shuttle_takeoff_notification)
 
 	var/datum/action/innate/order/attack_order/send_attack_order = new
 	var/datum/action/innate/order/defend_order/send_defend_order = new
 	var/datum/action/innate/order/retreat_order/send_retreat_order = new
+	var/datum/action/innate/order/rally_order/send_rally_order = new
 	var/datum/action/control_vehicle/control = new
 	var/datum/action/minimap/ai/mini = new
+	var/datum/action/innate/squad_message/squad_message = new
 	send_attack_order.target = src
 	send_attack_order.give_action(src)
 	send_defend_order.target = src
 	send_defend_order.give_action(src)
 	send_retreat_order.target = src
 	send_retreat_order.give_action(src)
+	send_rally_order.target = src
+	send_rally_order.give_action(src)
 	control.give_action(src)
+	squad_message.give_action(src)
 	mini.give_action(src)
 
 /mob/living/silicon/ai/Destroy()
@@ -105,8 +115,10 @@
 	QDEL_NULL(track)
 	UnregisterSignal(src, COMSIG_ORDER_SELECTED)
 	UnregisterSignal(src, COMSIG_MOB_CLICK_ALT)
+
 	UnregisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_SHUTTLE_TAKEOFF)
 	return ..()
 
 ///Print order visual to all marines squad hud and give them an arrow to follow the waypoint
@@ -246,7 +258,7 @@
 
 
 /mob/living/silicon/ai/proc/camera_visibility(mob/camera/aiEye/moved_eye)
-	GLOB.cameranet.visibility(moved_eye, client, all_eyes, TRUE)
+	GLOB.cameranet.visibility(moved_eye, client, all_eyes, moved_eye.use_static)
 
 
 /mob/living/silicon/ai/proc/can_see(atom/A)
@@ -346,8 +358,11 @@
 
 		stat("Current supply points:", "[round(SSpoints.supply_points[FACTION_TERRAGOV])]")
 
-		stat("Current alert level:", "[GLOB.marine_main_ship.get_security_level()]")
+		stat("Current dropship points:", "[round(SSpoints.dropship_points)]")
 
+		stat("Current alert level:", "[GLOB.marine_main_ship.get_security_level()]")
+	
+		stat("Number of living marines:", "[SSticker.mode.count_humans_and_xenos()[1]]")
 
 
 /mob/living/silicon/ai/fully_replace_character_name(oldname, newname)
@@ -384,6 +399,22 @@
 		reset_perspective()
 	remote_control = controlled
 
+///Called for associating the AI with artillery
+/mob/living/silicon/ai/proc/associate_artillery(mortar)
+	if(linked_artillery)
+		UnregisterSignal(linked_artillery, COMSIG_PARENT_QDELETING)
+		linked_artillery = null
+		return FALSE
+	linked_artillery = mortar
+	RegisterSignal(linked_artillery, COMSIG_PARENT_QDELETING, .proc/clean_artillery_refs)
+	return TRUE
+
+///Proc called when linked_mortar is deleted.
+/mob/living/silicon/ai/proc/clean_artillery_refs()
+	SIGNAL_HANDLER
+	linked_artillery.unset_targeter()
+	linked_artillery = null
+	to_chat(src, span_notice("NOTICE: Connection closed with linked mortar."))
 
 /datum/action/control_vehicle
 	name = "Select vehicle to control"
@@ -410,6 +441,11 @@
 	link_with_vehicle(new_vehicle)
 	ai.controlling = TRUE
 
+	var/mob/camera/aiEye/hud/eyeobj = ai.eyeobj
+	eyeobj.use_static = FALSE
+	ai.camera_visibility(eyeobj)
+	eyeobj.loc = ai.loc
+
 /// Signal handler to clear vehicle and stop remote control
 /datum/action/control_vehicle/proc/clear_vehicle()
 	SIGNAL_HANDLER
@@ -417,11 +453,48 @@
 	vehicle.on_unlink()
 	vehicle = null
 	var/mob/living/silicon/ai/ai = owner
+	var/mob/camera/aiEye/hud/eyeobj = ai.eyeobj
+	eyeobj.use_static = TRUE
+	ai.camera_visibility(eyeobj)
 	ai.controlling = FALSE
 
 /datum/action/control_vehicle/proc/link_with_vehicle(obj/vehicle/unmanned/_vehicle)
 	vehicle = _vehicle
 	RegisterSignal(vehicle, COMSIG_PARENT_QDELETING, .proc/clear_vehicle)
 	vehicle.on_link()
-	owner.AddComponent(/datum/component/remote_control, vehicle, vehicle.turret_type)
+	owner.AddComponent(/datum/component/remote_control, vehicle, vehicle.turret_type, vehicle.can_interact)
 	SEND_SIGNAL(owner, COMSIG_REMOTECONTROL_TOGGLE, owner)
+
+/datum/action/innate/squad_message
+	name = "Send Order"
+	action_icon_state = "screen_order_marine"
+	keybind_signal = COMSIG_KB_SENDORDER
+
+/datum/action/innate/squad_message/can_use_action()
+	. = ..()
+	if(owner.stat)
+		to_chat(owner, span_warning("You cannot give orders in your current state."))
+		return FALSE
+	if(TIMER_COOLDOWN_CHECK(owner, COOLDOWN_HUD_ORDER))
+		to_chat(owner, span_warning("Your last order was too recent."))
+		return FALSE
+
+/datum/action/innate/squad_message/action_activate()
+	if(!can_use_action())
+		return
+	var/text = stripped_input(owner, "Maximum message length [MAX_COMMAND_MESSAGE_LGTH]", "Send message to squad", max_length = MAX_COMMAND_MESSAGE_LGTH)
+	if(!text)
+		return
+	if(CHAT_FILTER_CHECK(text))
+		to_chat(owner, span_warning("That message contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[text]\"</span>"))
+		SSblackbox.record_feedback(FEEDBACK_TALLY, "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
+		return
+	if(!can_use_action())
+		return
+	owner.playsound_local(owner, "sound/effects/CIC_order.ogg", 10, 1)
+	TIMER_COOLDOWN_START(owner, COOLDOWN_HUD_ORDER, ORDER_COOLDOWN)
+	log_game("[key_name(owner)] has broadcasted the hud message [text] at [AREACOORD(owner)]")
+	deadchat_broadcast(" has sent the command order \"[text]\"", owner, owner)
+	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
+		if(human.faction == owner.faction)
+			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>ORDERS UPDATED:</u></span><br>" + text, /obj/screen/text/screen_text/command_order)

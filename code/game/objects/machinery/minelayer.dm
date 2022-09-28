@@ -11,7 +11,7 @@
 
 /obj/item/minelayer/Initialize()
 	. = ..()
-	AddElement(/datum/element/deployable_item, /obj/machinery/deployable/minelayer, 1 SECONDS)
+	AddElement(/datum/element/deployable_item, /obj/machinery/deployable/minelayer, type, 1 SECONDS)
 
 /obj/machinery/deployable/minelayer
 	anchored = TRUE
@@ -84,4 +84,4 @@
 
 /obj/machinery/deployable/minelayer/examine(mob/user)
 	. = ..()
-	to_chat(user, span_info("[src] currently has [stored_amount]/[max_amount] stored mines."))
+	. += span_info("[src] currently has [stored_amount]/[max_amount] stored mines.")

@@ -9,7 +9,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 5
-	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 70)
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 100, "rad" = 100, FIRE = 90, ACID = 70)
 	var/id = null
 	var/next_activate = 0
 
@@ -119,6 +119,11 @@
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_DROPSHIP_REBEL)
 	/// Has the shutters alarm been played?
 	var/alarm_played = FALSE
+
+/obj/machinery/button/door/open_only/landing_zone/Initialize(mapload)
+	. = ..()
+	var/area/area = get_area(src)
+	area.flags_area |= MARINE_BASE
 
 /obj/machinery/button/door/open_only/landing_zone/attack_hand(mob/living/user)
 	if((machine_stat & (NOPOWER|BROKEN)))

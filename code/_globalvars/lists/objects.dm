@@ -4,11 +4,13 @@ GLOBAL_LIST_EMPTY(marine_turrets)
 
 GLOBAL_LIST_EMPTY(droppod_list)
 GLOBAL_LIST_EMPTY(tank_list)
+GLOBAL_LIST_EMPTY(mechas_list)
 GLOBAL_LIST_EMPTY(head_list)
 GLOBAL_LIST_EMPTY(beacon_list)
 GLOBAL_LIST_EMPTY(id_card_list)
 GLOBAL_LIST_EMPTY(disposal_list)
 GLOBAL_LIST_EMPTY(ladder_list)
+GLOBAL_LIST_EMPTY(patrol_point_list)
 GLOBAL_LIST_EMPTY(brig_closets)
 GLOBAL_LIST_EMPTY(supply_pad_list)
 GLOBAL_LIST_EMPTY(supply_beacon)
@@ -16,6 +18,8 @@ GLOBAL_LIST_EMPTY(supply_beacon)
 GLOBAL_LIST_EMPTY(xeno_tunnels)						//list of all /obj/structure/xeno/tunnel
 GLOBAL_LIST_EMPTY(machines)					        //NOTE: this is a list of ALL machines now. The processing machines list is SSmachine.processing !
 GLOBAL_LIST_EMPTY(faxmachines)
+GLOBAL_LIST_EMPTY(mainship_lights)					//list of mainship lights, used for altering intensity and color during red and delta security levels
+GLOBAL_LIST_EMPTY(ship_alarms)						//list of shipside alarm effects used for delta level alert sirens
 GLOBAL_LIST_EMPTY(intel_computers)					//All the intel computers for the random events
 GLOBAL_LIST_EMPTY(nuke_disk_generators)
 GLOBAL_LIST_EMPTY(nuke_list)						//list of all /obj/machinery/nuclearbomb
@@ -59,7 +63,8 @@ GLOBAL_LIST_EMPTY(unmanned_vehicles)
 GLOBAL_LIST_INIT(supply_drops, typecacheof(list(
 	/obj/structure/closet/crate,
 	/obj/structure/largecrate/supply,
-	/obj/machinery/vending)))
+	/obj/machinery/vending,
+	/obj/vehicle/unmanned)))
 
 //hypersleep related
 GLOBAL_LIST_EMPTY(cryoed_item_list)
@@ -71,7 +76,6 @@ GLOBAL_LIST_INIT(do_not_preserve, typecacheof(list(
 	/obj/item/clothing/head/tgmcberet,
 	/obj/item/clothing/head/headband,
 	/obj/item/clothing/head/headset,
-	/obj/item/clothing/head/tgmcbandanna,
 	/obj/item/clothing/gloves/black,
 	/obj/item/weapon/baton,
 	/obj/item/weapon/gun/energy/taser,
@@ -85,7 +89,6 @@ GLOBAL_LIST_INIT(do_not_preserve, typecacheof(list(
 
 GLOBAL_LIST_INIT(do_not_preserve_empty, typecacheof(list(
 	/obj/item/storage/backpack/marine/satchel,
-	/obj/item/storage/belt/security/MP,
 	/obj/item/storage/backpack/marine/satchel/corpsman,
 	/obj/item/storage/backpack/marine/satchel/tech,
 	/obj/item/storage/backpack/marine/standard), only_root_path = TRUE))

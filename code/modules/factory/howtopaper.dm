@@ -6,38 +6,34 @@
 	after which you can place both items on the ground by clicking with them. Remove them from the ground by using a crowbar.<br>
 	<br>
 	With your starter kit, all machines can be anchored and unanchored by using a wrench on them, and rotated with a screwdriver, where the direction can be seen with the small arrow on the bottom left of the front of the machine.
-	Outputters must be refilled with refill kits and clicked with an empty hand to be turned on but all other machines just need to be anchored to work.
+	Unboxers must be refilled with refill kits and clicked with an empty hand to be turned on but all other machines just need to be anchored to work.
 	Machines will always output in the direction they are facing and input from the opposite direction.<br>
 	<br>
 	RECIPES:<br>
 	WP GRENADE:<br>
-	OUTPUTTER -> CUTTER -> HEATER -> FORMER<br>
+	UNBOXER -> CUTTER -> HEATER -> FORMER<br>
 	<br>
 	M15 GRENADE:<br>
-	OUTPUTTER -> CUTTER -> FORMER<br>
+	UNBOXER -> CUTTER -> FORMER<br>
 	<br>
 	PIZZA:<br>
-	OUTPUTTER -> CUTTER -> HEATER<br>
+	UNBOXER -> CUTTER -> HEATER<br>
 	<br>
 	ALL SADAR AMMO TYPES:<br>
-	OUTPUTTER -> CUTTER -> HEATER -> FLATTER -> ATOMIC RECONSTRUCTOR<br>
+	UNBOXER -> CUTTER -> HEATER -> FLATTER -> ATOMIC RECONSTRUCTOR<br>
 	<br>
 	ALL RECOILLESS RIFLE AMMO TYPES:<br>
-	OUTPUTTER -> CUTTER -> HEATER -> ATOMIC RECONSTRUCTOR<br>
+	UNBOXER -> CUTTER -> HEATER -> ATOMIC RECONSTRUCTOR<br>
 	<br>
 	CLAYMORE:<br>
-	OUTPUTTER -> ATOMIC RECONSTRUCTOR -> FORMER<br>
+	UNBOXER -> ATOMIC RECONSTRUCTOR -> FORMER<br>
 	<br>
 	ALL IFF AMMO:<br>
-	OUTPUTTER -> CUTTER -> ATOMIC RECONSTRUCTOR<br>
+	UNBOXER -> CUTTER -> ATOMIC RECONSTRUCTOR<br>
 	<br>
 	MATEBA SPEEDLOADER:<br>
-	OUTPUTTER -> CUTTER -> FLATTER<br>
+	UNBOXER -> CUTTER -> FLATTER<br>
 	<br>
 	RAILGUN MAGAZINE:<br>
-	OUTPUTTER -> CUTTER -> FLATTER -> ATOMIC RECONSTRUCTOR<br>
-	<br>
-	TX-8 SCOUT RIFLE MAGAZINE:<br>
-	OUTPUTTER -> CUTTER -> HEATER -> FORMER<br>
-	<br>
+	UNBOXER -> CUTTER -> FLATTER -> ATOMIC RECONSTRUCTOR<br>
 	"}

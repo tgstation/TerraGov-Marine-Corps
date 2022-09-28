@@ -23,9 +23,9 @@
 
 /obj/structure/bed/chair/janicart/examine(mob/user)
 	. = ..()
-	to_chat(user, "This [callme] contains [reagents.total_volume] unit\s of water!")
+	. += "This [callme] contains [reagents.total_volume] unit\s of water!"
 	if(mybag)
-		to_chat(user, "\A [mybag] is hanging on the [callme].")
+		. += "\A [mybag] is hanging on the [callme]."
 
 
 /obj/structure/bed/chair/janicart/attackby(obj/item/I, mob/user, params)

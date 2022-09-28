@@ -58,7 +58,7 @@
 		playsound(T, footstep_sounds, volume)
 		return
 	var/turf_footstep
-	if(locate(/obj/effect/alien/weeds) in T)
+	if(locate(/obj/alien/weeds) in T)
 		turf_footstep = FOOTSTEP_RESIN
 	else switch(footstep_type)
 		if(FOOTSTEP_XENO_MEDIUM)
@@ -82,7 +82,7 @@
 	var/turf/open/T = prepare_step()
 	if(!T)
 		return
-	if(locate(/obj/effect/alien/weeds) in T)
+	if(locate(/obj/alien/weeds) in T)
 		playsound(T, pick(GLOB.barefootstep[FOOTSTEP_RESIN][1]),
 			GLOB.barefootstep[FOOTSTEP_RESIN][2] * volume,
 			TRUE,

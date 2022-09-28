@@ -45,6 +45,16 @@
 #define COOLDOWN_GAS_BREATH "cooldown_gas_breath"
 #define COOLDOWN_SIGNALLER_SEND "cooldown_signaller_send"
 #define COOLDOWN_BIKE_FUEL_MESSAGE "cooldown_bikee_fuel_message"
+#define COOLDOWN_WRAITH_PORTAL_TELEPORTED "cooldown_wraith_portal_teleported"
+
+//Mecha cooldowns
+#define COOLDOWN_MECHA_MESSAGE "mecha_message"
+#define COOLDOWN_MECHA_EQUIPMENT(type) ("mecha_equip_[type]")
+#define COOLDOWN_MECHA_ARMOR "mecha_armor"
+#define COOLDOWN_MECHA_MELEE_ATTACK "mecha_melee"
+#define COOLDOWN_MECHA_SMOKE "mecha_smoke"
+#define COOLDOWN_MECHA_SKYFALL "mecha_skyfall"
+#define COOLDOWN_MECHA_MISSILE_STRIKE "mecha_missile_strike"
 
 //// COOLDOWN SYSTEMS
 /*

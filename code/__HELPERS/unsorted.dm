@@ -160,63 +160,58 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 			return NORTHWEST
 
 
-
-/proc/LinkBlocked(turf/A, turf/B)
+/**
+ *	Returns true if the path from A to B is blocked. Checks both paths where the direction is diagonal
+ *	Variables:
+ *	bypass_window - whether it will go through transparent windows like lasers
+ *	projectile - whether throwpass will be checked to ignore dense objects like projectiles
+ *	bypass_xeno - whether to bypass dense xeno structures like flamers
+ */
+/proc/LinkBlocked(turf/A, turf/B, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE)
 	if(isnull(A) || isnull(B))
 		return TRUE
 	var/adir = get_dir(A, B)
 	var/rdir = get_dir(B, A)
+	if(B.density && (!istype(B, /turf/closed/wall/resin) || !bypass_xeno))
+		return TRUE
 	if(adir & (adir - 1))//is diagonal direction
 		var/turf/iStep = get_step(A, adir & (NORTH|SOUTH))
-		if(!iStep.density && !LinkBlocked(A, iStep) && !LinkBlocked(iStep, B))
+		if((!iStep.density || (istype(iStep, /turf/closed/wall/resin) && bypass_xeno)) && !LinkBlocked(A, iStep, bypass_window, projectile, bypass_xeno) && !LinkBlocked(iStep, B, bypass_window, projectile, bypass_xeno))
 			return FALSE
 
 		var/turf/pStep = get_step(A,adir & (EAST|WEST))
-		if(!pStep.density && !LinkBlocked(A, pStep) && !LinkBlocked(pStep, B))
+		if((!pStep.density || (istype(pStep, /turf/closed/wall/resin) && bypass_xeno)) && !LinkBlocked(A, pStep, bypass_window, projectile, bypass_xeno) && !LinkBlocked(pStep, B, bypass_window, projectile, bypass_xeno))
 			return FALSE
 		return TRUE
 
-	if(DirBlocked(A, adir))
+	if(DirBlocked(A, adir, bypass_window, projectile, bypass_xeno))
 		return TRUE
-	if(DirBlocked(B, rdir))
+	if(DirBlocked(B, rdir, bypass_window, projectile, bypass_xeno))
 		return TRUE
 	return FALSE
 
-
-/proc/DirBlocked(turf/loc, direction)
-	for(var/obj/structure/window/D in loc)
-		if(!D.density)
+///Checks if moving in a direction is blocked
+/proc/DirBlocked(turf/loc, direction, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE)
+	for(var/obj/object in loc)
+		if(!object.density)
 			continue
-		if(D.is_full_window())
-			return TRUE
-		if(D.dir == direction)
-			return TRUE
-
-	for(var/obj/machinery/door/D in loc)
-		if(!D.density)
+		if(object.throwpass && projectile) //projectiles can bypass dense objects with throwpass
 			continue
-		if(istype(D, /obj/machinery/door/window))
-			if(D.dir == direction)
-				return TRUE
-		else
-			return TRUE	// it's a real, air blocking door
-	for(var/obj/structure/mineral_door/D in loc)
-		if(D.density)
-			return TRUE
-	for(var/obj/structure/barricade/B in loc)
-		if(!B.density)
+		if((istype(object, /obj/structure/mineral_door/resin) || istype(object, /obj/structure/xeno)) && bypass_xeno) //xeno objects are bypassed by flamers
 			continue
-		if(B.dir == direction)
-			return TRUE
+		if((istype(object, /obj/machinery/door/window) || istype(object, /obj/structure/window)) && bypass_window) //windows are bypassed energy weapons
+			continue
+		if(object.flags_atom & ON_BORDER && object.dir != direction)
+			continue
+		return TRUE
 	return FALSE
 
-
+///Returns true if any object on a turf is both dense and not a window
 /proc/TurfBlockedNonWindow(turf/loc)
 	for(var/obj/O in loc)
 		if(O.density && !istype(O, /obj/structure/window))
 			return TRUE
 	return FALSE
-
 
 //Returns whether or not a player is a guest using their ckey as an input
 /proc/IsGuestKey(key)
@@ -597,6 +592,13 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	var/dy = abs(B.y - A.y)
 	return get_dir(A, B) & (rand() * (dx+dy) < dy ? 3 : 12)
 
+/// If given a diagonal dir, return a corresponding cardinal dir. East/west preferred
+/proc/closest_cardinal_dir(dir)
+	if(!(dir & (dir-1)))
+		return dir
+	if(dir & EAST)
+		return EAST
+	return WEST
 
 //Returns the 2 dirs perpendicular to the arg
 /proc/get_perpen_dir(dir)
@@ -614,32 +616,25 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 
 
 /proc/parse_zone(zone)
-	if(zone == "r_hand")
-		return "right hand"
-	else if (zone == "l_hand")
-		return "left hand"
-	else if (zone == "l_arm")
-		return "left arm"
-	else if (zone == "r_arm")
-		return "right arm"
-	else if (zone == "l_leg")
-		return "left leg"
-	else if (zone == "r_leg")
-		return "right leg"
-	else if (zone == "l_foot")
-		return "left foot"
-	else if (zone == "r_foot")
-		return "right foot"
-	else if (zone == "l_hand")
-		return "left hand"
-	else if (zone == "r_hand")
-		return "right hand"
-	else if (zone == "l_foot")
-		return "left foot"
-	else if (zone == "r_foot")
-		return "right foot"
-	else
-		return zone
+	switch(zone)
+		if("r_hand")
+			return "right hand"
+		if ("l_hand")
+			return "left hand"
+		if ("l_arm")
+			return "left arm"
+		if ("r_arm")
+			return "right arm"
+		if ("l_leg")
+			return "left leg"
+		if ("r_leg")
+			return "right leg"
+		if ("l_foot")
+			return "left foot"
+		if ("r_foot")
+			return "right foot"
+		else
+			return zone
 
 
 //Quick type checks for some tools
@@ -778,10 +773,26 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 
 	return FALSE
 
-
 /proc/format_text(text)
 	return replacetext(replacetext(text,"\proper ",""),"\improper ","")
 
+///Returns a string based on the weight class define used as argument
+/proc/weight_class_to_text(w_class)
+	switch(w_class)
+		if(WEIGHT_CLASS_TINY)
+			. = "tiny"
+		if(WEIGHT_CLASS_SMALL)
+			. = "small"
+		if(WEIGHT_CLASS_NORMAL)
+			. = "normal-sized"
+		if(WEIGHT_CLASS_BULKY)
+			. = "bulky"
+		if(WEIGHT_CLASS_HUGE)
+			. = "huge"
+		if(WEIGHT_CLASS_GIGANTIC)
+			. = "gigantic"
+		else
+			. = ""
 
 //Reasonably Optimized Bresenham's Line Drawing
 /proc/getline(atom/start, atom/end)
@@ -1193,5 +1204,56 @@ will handle it, but:
 		location = location.loc
 	if(location && include_turf) //At this point, only the turf is left, provided it exists.
 		. += location
+
+/**
+ *	Generates a cone shape. Any other checks should be handled with the resulting list. Can work with up to 359 degrees
+ *	Variables:
+ *	center - where the cone begins, or center of a circle drawn with this
+ *	max_row_count - how many rows are checked
+ *	starting_row - from how far should the turfs start getting included in the cone
+ *	cone_width - big the angle of the cone is
+ *	cone_direction - at what angle should the cone be made, relative to the game board's orientation
+ *	blocked - whether the cone should take into consideration solid walls
+ *	bypass_window - whether it will go through transparent windows like lasers
+ *	projectile - whether throwpass will be checked to ignore dense objects like projectiles
+ *	bypass_xeno - whether to bypass dense xeno structures like flamers
+ */
+/proc/generate_true_cone(atom/center, max_row_count = 10, starting_row = 1, cone_width = 60, cone_direction = 0, blocked = TRUE, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE)
+	var/right_angle = cone_direction + cone_width/2
+	var/left_angle = cone_direction - cone_width/2
+
+	//These are needed because degrees need to be from 0 to 359 for the checks to function
+	if(right_angle >= 360)
+		right_angle -= 360
+
+	if(left_angle < 0)
+		left_angle += 360
+
+	var/list/cardinals = GLOB.alldirs
+	var/list/turfs_to_check = list(get_turf(center))
+	var/list/cone_turfs = list()
+
+	for(var/row in 1 to max_row_count)
+		if(row > 2)
+			cardinals = GLOB.cardinals
+		for(var/turf/old_turf AS in turfs_to_check) //checks the inital turf, then afterwards checks every turf that is added to cone_turfs
+			for(var/direction AS in cardinals)
+				var/turf/turf_to_check = get_step(old_turf, direction) //checks all turfs around X
+				if(cone_turfs.Find(turf_to_check))
+					continue
+				var/turf_angle = Get_Angle(center, turf_to_check)
+				if(right_angle > left_angle && (turf_angle > right_angle || turf_angle < left_angle))
+					continue
+				if(turf_angle > right_angle && turf_angle < left_angle)
+					continue
+				if(blocked && LinkBlocked(old_turf, turf_to_check, bypass_window, projectile, bypass_xeno))
+					continue
+				cone_turfs += turf_to_check
+				turfs_to_check += turf_to_check
+			turfs_to_check -= old_turf
+		for(var/turf/checked_turf AS in cone_turfs)
+			if(get_dist(center, checked_turf) < starting_row) //if its before the starting row, ignore it.
+				cone_turfs -= checked_turf
+	return	cone_turfs
 
 GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))

@@ -27,12 +27,13 @@
 
 /obj/machinery/factory/examine(mob/user, distance, infix, suffix)
 	. = ..()
-	to_chat(user, "It is currently facing [dir2text(dir)] and [anchored ? "" : "un"]secured.")
-	to_chat(user, "Processes one package every [cooldown_time*10] seconds.")
+	. += "It is currently facing [dir2text(dir)] and [anchored ? "" : "un"]secured."
+	. += "Processes one package every [cooldown_time*10] seconds."
 
 /obj/machinery/factory/wrench_act(mob/living/user, obj/item/I)
 	anchored = !anchored
 	balloon_alert(user, "[anchored ? "" : "un"]anchored")
+	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 
 /obj/machinery/factory/screwdriver_act(mob/living/user, obj/item/I)
 	setDir(turn(dir, 90))

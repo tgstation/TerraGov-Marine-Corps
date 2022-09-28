@@ -2,6 +2,7 @@
 /mob/camera
 	name = "camera mob"
 	density = FALSE
+	move_force = INFINITY
 	move_resist = INFINITY
 	resistance_flags = RESIST_ALL
 	status_flags = GODMODE | INCORPOREAL

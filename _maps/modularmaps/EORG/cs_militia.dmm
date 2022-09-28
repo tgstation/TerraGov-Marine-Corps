@@ -4,9 +4,7 @@
 /area/deathmatch)
 "bl" = (
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
-/obj/structure/flora/desert/grass{
-	icon_state = "lightgrass_3"
-	},
+/obj/structure/flora/desert/grass/three,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "bP" = (
@@ -45,14 +43,18 @@
 	color = "#888888"
 	},
 /area/deathmatch)
+"hy" = (
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/plushie/nospawnninetyfive{
+	},
+/turf/open/floor/wood,
+/area/deathmatch)
 "iq" = (
 /obj/structure/closet/secure_closet/freezer,
 /turf/open/floor/wood,
 /area/deathmatch)
 "jg" = (
-/obj/structure/flora/desert/grass{
-	icon_state = "lightgrass_7"
-	},
+/obj/structure/flora/desert/grass/seven,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "kv" = (
@@ -79,9 +81,7 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "oE" = (
-/obj/structure/flora/desert/cactus/multiple{
-	icon_state = "cacti_11"
-	},
+/obj/structure/flora/desert/cactus/multiple/eleven,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "pl" = (
@@ -185,15 +185,11 @@
 	},
 /area/deathmatch)
 "xg" = (
-/obj/structure/flora/desert/grass{
-	icon_state = "lightgrass_3"
-	},
+/obj/structure/flora/desert/grass/three,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "xp" = (
-/obj/structure/flora/desert/grass{
-	icon_state = "lightgrass_7"
-	},
+/obj/structure/flora/desert/grass/seven,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/deathmatch)
 "xA" = (
@@ -290,6 +286,13 @@
 	pixel_y = 8
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
+/area/deathmatch)
+"EV" = (
+/obj/effect/spawner/random/plushie/nospawnninetynine{
+	},
+/turf/open/floor/plating/asteroidplating{
+	color = "#888888"
+	},
 /area/deathmatch)
 "Gk" = (
 /obj/effect/landmark/deathmatch,
@@ -421,9 +424,7 @@
 /area/deathmatch)
 "Vo" = (
 /obj/effect/landmark/deathmatch,
-/obj/structure/flora/desert/grass{
-	icon_state = "lightgrass_3"
-	},
+/obj/structure/flora/desert/grass/three,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "Vq" = (
@@ -939,7 +940,7 @@ uR
 uR
 dg
 QI
-Pa
+hy
 YH
 LT
 LT
@@ -1154,7 +1155,7 @@ WV
 WV
 hw
 WV
-WV
+EV
 WV
 WV
 WC

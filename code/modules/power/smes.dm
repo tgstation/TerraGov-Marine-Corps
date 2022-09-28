@@ -32,11 +32,11 @@
 	var/obj/machinery/power/terminal/terminal
 
 /obj/machinery/power/smes/examine(user)
-	..()
+	. = ..()
 	if(!terminal)
-		to_chat(user, span_warning("This SMES has no power terminal!"))
+		. += span_warning("This SMES has no power terminal!")
 	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-		to_chat(user, span_notice("The maintenance hatch is open."))
+		. += span_notice("The maintenance hatch is open.")
 
 /obj/machinery/power/smes/Initialize()
 	. = ..()

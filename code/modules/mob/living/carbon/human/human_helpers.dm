@@ -4,67 +4,40 @@
 		g = "f"
 	return g
 
-/proc/get_limb_icon_name(datum/species/S, body_type, gender, limb_name, ethnicity)
-	if(S.name == "Human")
+/proc/get_limb_icon_name(datum/species/S, gender, limb_name, ethnicity)
+	if(S.name == "Human" || S.name == "Synthetic")
 		switch(limb_name)
-			if ("torso")
-				return "[ethnicity]_torso_[body_type]_[get_gender_name(gender)]"
-
-			if ("chest")
-				return "[ethnicity]_torso_[body_type]_[get_gender_name(gender)]"
+			if ("torso", "chest")
+				return "[ethnicity]_torso_[get_gender_name(gender)]"
 
 			if ("head")
-				return "[ethnicity]_[limb_name]_[get_gender_name(gender)]"
+				return "[ethnicity]_head_[get_gender_name(gender)]"
 
 			if ("groin")
-				return "[ethnicity]_[limb_name]_[get_gender_name(gender)]"
+				return "[ethnicity]_groin_[get_gender_name(gender)]"
 
-			if ("r_arm")
+			if ("r_arm", "right arm")
 				return "[ethnicity]_right_arm"
 
-			if ("right arm")
-				return "[ethnicity]_right_arm"
-
-			if ("l_arm")
+			if ("l_arm", "left arm")
 				return "[ethnicity]_left_arm"
 
-			if ("left arm")
-				return "[ethnicity]_left_arm"
-
-			if ("r_leg")
+			if ("r_leg", "right leg")
 				return "[ethnicity]_right_leg"
 
-			if ("right leg")
-				return "[ethnicity]_right_leg"
-
-			if ("l_leg")
+			if ("l_leg", "left leg")
 				return "[ethnicity]_left_leg"
 
-			if ("left leg")
-				return "[ethnicity]_left_leg"
-
-			if ("r_hand")
+			if ("r_hand", "right hand")
 				return "[ethnicity]_right_hand"
 
-			if ("right hand")
-				return "[ethnicity]_right_hand"
-
-			if ("l_hand")
+			if ("l_hand", "left hand")
 				return "[ethnicity]_left_hand"
 
-			if ("left hand")
-				return "[ethnicity]_left_hand"
-
-			if ("r_foot")
+			if ("r_foot", "right foot")
 				return "[ethnicity]_right_foot"
 
-			if ("right foot")
-				return "[ethnicity]_right_foot"
-
-			if ("l_foot")
-				return "[ethnicity]_left_foot"
-
-			if ("left foot")
+			if ("l_foot", "left foot")
 				return "[ethnicity]_left_foot"
 
 			else
@@ -78,9 +51,6 @@
 				return "[limb_name]_[get_gender_name(gender)]"
 
 			if ("head")
-				return "[limb_name]_[get_gender_name(gender)]"
-
-			if ("synthetic head")
 				return "head_[get_gender_name(gender)]"
 
 			if ("groin")
@@ -138,23 +108,16 @@
 
 /mob/living/carbon/human/proc/set_limb_icons()
 	var/datum/ethnicity/E = GLOB.ethnicities_list[ethnicity]
-	var/datum/body_type/B = GLOB.body_types_list[body_type]
 
 	var/e_icon
-	var/b_icon
 
 	if (!E)
 		e_icon = "western"
 	else
 		e_icon = E.icon_name
 
-	if (!B)
-		b_icon = "mesomorphic"
-	else
-		b_icon = B.icon_name
-
 	for(var/datum/limb/L in limbs)
-		L.icon_name = get_limb_icon_name(species, b_icon, gender, L.display_name, e_icon)
+		L.icon_name = get_limb_icon_name(species, gender, L.display_name, e_icon)
 
 /mob/living/carbon/human/get_reagent_tags()
 	. = ..()
@@ -194,7 +157,7 @@
 /mob/living/carbon/human/has_eyes()
 	if(internal_organs_by_name["eyes"])
 		var/datum/internal_organ/eyes = internal_organs_by_name["eyes"]
-		if(eyes && istype(eyes) && !eyes.cut_away)
+		if(eyes && istype(eyes))
 			return 1
 	return 0
 

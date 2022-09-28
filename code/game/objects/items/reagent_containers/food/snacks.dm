@@ -130,22 +130,22 @@
 	return ..()
 
 /obj/item/reagent_containers/food/snacks/examine(mob/user)
-	..()
+	. = ..()
 	if (!(user in range(0)) && user != loc)
 		return
 	if (bitecount==0)
 		return
 	else if (bitecount==1)
-		to_chat(user, span_notice("\The [src] was bitten by someone!"))
+		. += span_notice("\The [src] was bitten by someone!")
 	else if (bitecount<=3)
-		to_chat(user, span_notice("\The [src] was bitten [bitecount] times!"))
+		. += span_notice("\The [src] was bitten [bitecount] times!")
 	else
-		to_chat(user, span_notice("\The [src] was bitten multiple times!"))
+		. += span_notice("\The [src] was bitten multiple times!")
 
 /obj/item/reagent_containers/food/snacks/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/tool/kitchen/utensil))
+	if(istype(I, /obj/item/tool/kitchen/utensil)) //todo early return
 		var/obj/item/tool/kitchen/utensil/U = I
 
 		if(!U.reagents)
@@ -1306,7 +1306,7 @@
 /obj/item/reagent_containers/food/snacks/monkeycube/examine(mob/user)
 	. = ..()
 	if(package)
-		to_chat(user, "It is wrapped in waterproof cellophane. Maybe using it in your hand would tear it off?")
+		. += "It is wrapped in waterproof cellophane. Maybe using it in your hand would tear it off?"
 
 /obj/item/reagent_containers/food/snacks/monkeycube/afterattack(obj/O, mob/user, proximity)
 	if(!proximity)
@@ -2905,7 +2905,7 @@
 
 /obj/item/reagent_containers/food/snacks/lollipop/combat
 	name = "Commed-pop"
-	desc = "A lolipop devised to heal wounds overtime, with a slower amount of reagent use. Can be eaten or put in the mask slot"
+	desc = "A lolipop devised to heal wounds overtime by mixing sugar with bicard and kelotane, with a slower amount of reagent use. Can be eaten or put in the mask slot"
 	list_reagents = list(/datum/reagent/consumable/sugar = 1, /datum/reagent/medicine/bicaridine = 5, /datum/reagent/medicine/kelotane = 5)
 
 /obj/item/reagent_containers/food/snacks/lollipop/tricord

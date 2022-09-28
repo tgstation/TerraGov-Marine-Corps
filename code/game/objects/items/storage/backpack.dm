@@ -6,6 +6,7 @@
 	name = "backpack"
 	desc = "You wear this on your back and put items into it."
 	icon_state = "backpack"
+	item_state = "backpack"
 	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/backpack.dmi')
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BACK	//ERROOOOO
@@ -113,6 +114,7 @@
 	name = "industrial backpack"
 	desc = "It's a tough backpack for the daily grind of station life."
 	icon_state = "engiepack"
+	item_state = "engiepack"
 
 /obj/item/storage/backpack/toxins
 	name = "laboratory backpack"
@@ -154,6 +156,12 @@
 /obj/item/storage/backpack/satchel/withwallet/Initialize(mapload, ...)
 	. = ..()
 	new /obj/item/storage/wallet/random( src )
+
+
+/obj/item/storage/backpack/satchel/som
+	name = "mining satchel"
+	desc = "A satchel with origins dating back to the mining colonies."
+	icon_state = "som_satchel"
 
 /obj/item/storage/backpack/satchel/norm
 	name = "satchel"
@@ -247,6 +255,7 @@
 	name = "\improper lightweight IMP backpack"
 	desc = "The standard-issue pack of the TGMC forces. Designed to slug gear into the battlefield."
 	icon_state = "marinepack"
+	item_state = "marinepack"
 
 /obj/item/storage/backpack/marine/standard
 	name = "\improper lightweight IMP backpack"
@@ -256,6 +265,7 @@
 	name = "\improper TGMC corpsman backpack"
 	desc = "The standard-issue backpack worn by TGMC corpsmen. You can recharge defibrillators by plugging them in."
 	icon_state = "marinepackm"
+	item_state = "marinepackm"
 	var/obj/item/cell/high/cell //Starts with a high capacity energy cell.
 	var/icon_skin
 
@@ -284,9 +294,9 @@
 /obj/item/storage/backpack/marine/corpsman/examine(mob/user)
 	. = ..()
 	if(cell)
-		to_chat(user, span_notice("Its defibrillator recharge unit has a loaded power cell and its readout counter is active. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
+		. += span_notice("Its defibrillator recharge unit has a loaded power cell and its readout counter is active. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>")
 	else
-		to_chat(user, span_warning("Its defibrillator recharge unit does not have a power cell installed!"))
+		. += span_warning("Its defibrillator recharge unit does not have a power cell installed!")
 
 /obj/item/storage/backpack/marine/corpsman/update_icon_state()
 	icon_state = icon_skin
@@ -335,6 +345,7 @@
 	name = "\improper TGMC technician backpack"
 	desc = "The standard-issue backpack worn by TGMC technicians. Specially equipped to hold sentry gun and M56D emplacement parts."
 	icon_state = "marinepackt"
+	item_state = "marinepackt"
 	bypass_w_limit = list(
 		/obj/item/weapon/gun/sentry/big_sentry,
 		/obj/item/weapon/gun/sentry/mini,
@@ -352,6 +363,7 @@
 	name = "\improper TGMC satchel"
 	desc = "A heavy-duty satchel carried by some TGMC soldiers and support personnel."
 	icon_state = "marinesat"
+	item_state = "marinesat"
 	storage_slots = null
 	max_storage_space = 15
 	access_delay = 0
@@ -578,7 +590,7 @@
 	if(camo_active)
 		details +=("It's currently active.</br>")
 
-	to_chat(user, span_warning("[details.Join(" ")]"))
+	. += span_warning("[details.Join(" ")]")
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/item_action_slot_check(mob/user, slot)
 	if(!ishuman(user))
@@ -666,6 +678,7 @@
 	name = "\improper TGMC technician welderpack"
 	desc = "A specialized backpack worn by TGMC technicians. It carries a fueltank for quick welder refueling and use,"
 	icon_state = "engineerpack"
+	item_state = "engineerpack"
 	var/max_fuel = 260
 	storage_slots = null
 	max_storage_space = 15
@@ -736,7 +749,7 @@
 
 /obj/item/storage/backpack/marine/engineerpack/examine(mob/user)
 	. = ..()
-	to_chat(user, "[reagents.total_volume] units of fuel left!")
+	. += "[reagents.total_volume] units of fuel left!"
 
 
 /obj/item/storage/backpack/lightpack
@@ -766,14 +779,3 @@
 	desc = "A rucksack with origins dating back to the mining colonies."
 	icon_state = "som_lightpack"
 	item_state = "som_lightpack"
-
-/obj/item/storage/backpack/rpg
-	name = "\improper TGMC rocket bag"
-	desc = "This backpack can hold 5 67mm shells or 80mm rockets."
-	icon_state = "marine_rocket"
-	item_state = "marine_rocket"
-	w_class = WEIGHT_CLASS_HUGE
-	storage_slots = 5 //It can hold 5 rockets.
-	max_storage_space = 21
-	max_w_class = 4
-	can_hold = list(/obj/item/ammo_magazine/rocket)

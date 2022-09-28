@@ -41,8 +41,10 @@
 #include "binary_insert.dm"
 #include "component_tests.dm"
 #include "connect_loc.dm"
+#include "dcs_get_id_from_elements.dm"
 #include "initialize_sanity.dm"
 #include "keybinding_init.dm"
+#include "map_templates.dm"
 #include "spawn_guns.dm"
 #include "spawn_humans.dm"
 #include "spawn_xenos.dm"
@@ -57,5 +59,5 @@
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
 #undef TEST_ASSERT_NOTEQUAL
-#undef TEST_FOCUS
+//#undef TEST_FOCUS
 #endif

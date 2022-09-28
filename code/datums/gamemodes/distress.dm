@@ -50,17 +50,14 @@
 	if(round_finished)
 		return
 	if(round_stage == INFESTATION_MARINE_CRASHING)
-		round_finished = MODE_INFESTATION_X_MINOR
+		round_finished = MODE_INFESTATION_M_MINOR
 		return
 	round_finished = MODE_INFESTATION_M_MAJOR
 
 
 /datum/game_mode/infestation/distress/get_hivemind_collapse_countdown()
-	if(!orphan_hive_timer)
-		return
-	var/eta = timeleft(orphan_hive_timer) * 0.1
-	if(eta > 0)
-		return "[(eta / 60) % 60]:[add_leading(num2text(eta % 60), 2, "0")]"
+	var/eta = timeleft(orphan_hive_timer) MILLISECONDS
+	return !isnull(eta) ? round(eta) : 0
 
 
 /datum/game_mode/infestation/distress/siloless_hive_collapse()
@@ -74,8 +71,5 @@
 
 
 /datum/game_mode/infestation/distress/get_siloless_collapse_countdown()
-	if(!siloless_hive_timer)
-		return 0
-	var/eta = timeleft(siloless_hive_timer) * 0.1
-	if(eta > 0)
-		return "[(eta / 60) % 60]:[add_leading(num2text(eta % 60), 2, "0")]"
+	var/eta = timeleft(siloless_hive_timer) MILLISECONDS
+	return !isnull(eta) ? round(eta) : 0

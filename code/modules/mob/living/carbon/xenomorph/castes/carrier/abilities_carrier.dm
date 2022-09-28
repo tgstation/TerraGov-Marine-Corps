@@ -81,10 +81,10 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	if(!cooldown_id)
 		X.dropItemToGround(F)
 		playsound(X, 'sound/effects/throw.ogg', 30, TRUE)
-		F.throw_at(A, CARRIER_HUGGER_THROW_DISTANCE, CARRIER_HUGGER_THROW_SPEED)
 		F.stat = CONSCIOUS //Hugger is conscious
 		F.leaping = FALSE //Hugger is not leaping
 		F.facehugger_register_source(X) //Set us as the source
+		F.throw_at(A, CARRIER_HUGGER_THROW_DISTANCE, CARRIER_HUGGER_THROW_SPEED)
 		X.visible_message(span_xenowarning("\The [X] throws something towards \the [A]!"), \
 		span_xenowarning("We throw a facehugger towards \the [A]!"))
 		add_cooldown()
@@ -121,7 +121,8 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 			to_chat(owner, span_warning("We can't do that here."))
 		return FALSE
 
-	if(!(locate(/obj/effect/alien/weeds) in T))
+	var/mob/living/carbon/xenomorph/owner_xeno = owner
+	if(!owner_xeno.loc_weeds_type)
 		if(!silent)
 			to_chat(owner, span_warning("We can only shape on weeds. We must find some resin before we start building!"))
 		return FALSE
@@ -176,6 +177,59 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	succeed_activate()
 	add_cooldown()
 
+// ***************************************
+// *********** Drop all hugger, panic button
+// ***************************************
+/datum/action/xeno_action/carrier_panic
+	name = "Drop All Facehuggers"
+	action_icon_state = "carrier_panic"
+	mechanics_text = "Drop all stored huggers in a fit of panic. Uses all remaining plasma!"
+	plasma_cost = 10
+	cooldown_timer = 50 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_DROP_ALL_HUGGER
+	use_state_flags = XACT_USE_LYING
+
+/datum/action/xeno_action/carrier_panic/give_action(mob/living/L)
+	. = ..()
+	RegisterSignal(owner, COMSIG_MOB_DEATH, .proc/do_activate)
+
+/datum/action/xeno_action/carrier_panic/remove_action(mob/living/L)
+	UnregisterSignal(owner, COMSIG_MOB_DEATH)
+	return ..()
+
+/// Helper proc for action acitvation via signal
+/datum/action/xeno_action/carrier_panic/proc/do_activate()
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, .proc/action_activate)
+
+/datum/action/xeno_action/carrier_panic/can_use_action(silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	var/mob/living/carbon/xenomorph/carrier/X = owner
+	if(X.health > (X.maxHealth * 0.25))
+		if(!silent)
+			to_chat(X, span_xenowarning("We are not injured enough to panic yet!"))
+		return FALSE
+	if(X.huggers < 1)
+		if(!silent)
+			to_chat(X, span_xenowarning("We do not have any young ones to drop!"))
+		return FALSE
+
+/datum/action/xeno_action/carrier_panic/action_activate()
+	var/mob/living/carbon/xenomorph/carrier/xeno_carrier = owner
+
+	if(!xeno_carrier.huggers)
+		return
+
+	xeno_carrier.visible_message(span_xenowarning("A chittering mass of tiny aliens is trying to escape [xeno_carrier]!"))
+	while(xeno_carrier.huggers > 0)
+		var/obj/item/clothing/mask/facehugger/new_hugger = new xeno_carrier.selected_hugger_type(get_turf(xeno_carrier))
+		step_away(new_hugger, xeno_carrier, 1)
+		addtimer(CALLBACK(new_hugger, /obj/item/clothing/mask/facehugger.proc/go_active, TRUE), new_hugger.jump_cooldown)
+		xeno_carrier.huggers--
+	succeed_activate(INFINITY) //Consume all remaining plasma
+	add_cooldown()
 
 // ***************************************
 // *********** Choose Hugger Type
@@ -247,9 +301,8 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	if(!T.is_weedable())
 		return FALSE
 
-	var/obj/effect/alien/weeds/alien_weeds = locate() in T
-
-	if(!alien_weeds)
+	var/mob/living/carbon/xenomorph/owner_xeno = owner
+	if(!owner_xeno.loc_weeds_type)
 		if(!silent)
 			to_chat(owner, span_xenowarning("No weeds here!"))
 		return FALSE
@@ -269,7 +322,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 
 	if(!can_use_action())
 		return FALSE
-	
+
 	var/mob/living/carbon/xenomorph/carrier/X = owner
 	var/obj/structure/xeno/xeno_turret/hugger_turret/turret = new (get_turf(owner), X.hivenumber)
 	turret.ammo = GLOB.ammo_list[GLOB.hugger_to_ammo[X.selected_hugger_type]]

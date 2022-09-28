@@ -5,6 +5,7 @@
 	desc = "A stand with the empty body of a cyborg bolted to it."
 	density = TRUE
 	anchored = TRUE
+	coverage = 15
 
 /obj/structure/showcase/two
 	icon_state = "showcase_2"
@@ -56,6 +57,7 @@
 	icon_state = "mopbucket"
 	anchored = FALSE
 	resistance_flags = XENO_DAMAGEABLE
+	max_integrity = 40
 	var/amount_per_transfer_from_this = 5 //Shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
 
 /obj/structure/mopbucket/Initialize()
@@ -63,8 +65,8 @@
 	create_reagents(100, OPENCONTAINER)
 
 /obj/structure/mopbucket/examine(mob/user)
-	..()
-	to_chat(user, "It contains [reagents.total_volume] unit\s of water!")
+	. = ..()
+	. += "It contains [reagents.total_volume] unit\s of water!"
 
 /obj/structure/mopbucket/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -203,6 +205,7 @@ obj/item/alienjar
 	anchored = TRUE
 	layer = MOB_LAYER
 	resistance_flags = XENO_DAMAGEABLE
+	max_integrity = 100
 
 /obj/structure/plasticflaps/CanAllowThrough(atom/A, turf/T)
 	. = ..()

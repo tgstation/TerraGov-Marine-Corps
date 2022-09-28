@@ -45,13 +45,15 @@
 /obj/effect/landmark/corpsespawner/proc/create_mob(death_type)
 	var/mob/living/carbon/human/victim = new(loc)
 	SSmobs.stop_processing(victim)
-	GLOB.round_statistics.total_humans_created-- //corpses don't count
-	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_humans_created")
+	GLOB.round_statistics.total_humans_created[victim.faction]-- //corpses don't count
+	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_humans_created[victim.faction]")
 	victim.real_name = name
 	victim.death(silent = TRUE) //Kills the new mob
 	GLOB.dead_human_list -= victim
 	GLOB.dead_mob_list -= victim
 	GLOB.mob_list -= victim
+	GLOB.round_statistics.total_human_deaths[victim.faction]--
+	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_human_deaths[victim.faction]")
 	victim.timeofdeath = -CONFIG_GET(number/revive_grace_period)
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	ADD_TRAIT(victim, TRAIT_UNDEFIBBABLE, TRAIT_UNDEFIBBABLE)
@@ -339,3 +341,40 @@
 	corpseid = 1
 	corpseidjob = "Private Security Officer"
 	corpseidaccess = "101"
+
+/////////////////Marine//////////////////////
+
+/obj/effect/landmark/corpsespawner/marine
+	name = "Marine"
+	corpseuniform = /obj/item/clothing/under/marine/standard
+	corpsesuit = /obj/item/clothing/suit/modular/xenonauten/light
+	corpseback = /obj/item/storage/backpack/satchel
+	corpsemask = /obj/item/clothing/mask/rebreather
+	corpsehelmet = /obj/item/clothing/head/modular/marine/m10x
+	corpsegloves = /obj/item/clothing/gloves/marine
+	corpseshoes = /obj/item/clothing/shoes/marine
+	corpsepocket1 = /obj/item/tool/lighter/zippo
+
+/obj/effect/landmark/corpsespawner/marine/engineer
+	name = "Marine Engineer"
+	corpseuniform = /obj/item/clothing/under/marine/standard
+	corpsesuit = /obj/item/clothing/suit/modular/xenonauten/light
+	corpseback = /obj/item/storage/backpack/marine/engineerpack
+	corpsemask = /obj/item/clothing/mask/gas/tactical
+	corpsehelmet = /obj/item/clothing/head/beret/eng
+	corpsegloves = /obj/item/clothing/gloves/marine/insulated
+	corpseshoes = /obj/item/clothing/shoes/marine
+	corpsebelt = /obj/item/storage/belt/utility/full
+	corpsepocket1 = /obj/item/flashlight
+
+/obj/effect/landmark/corpsespawner/marine/corpsman
+	name = "Marine Corpsman"
+	corpseuniform = /obj/item/clothing/under/marine/corpsman
+	corpsesuit = /obj/item/clothing/suit/modular/xenonauten/light
+	corpseback = /obj/item/storage/backpack/corpsman
+	corpsemask = /obj/item/clothing/mask/gas
+	corpsehelmet = /obj/item/clothing/head/helmet/marine/corpsman
+	corpsegloves = /obj/item/clothing/gloves/latex
+	corpseshoes = /obj/item/clothing/shoes/marine
+	corpsepocket1 = /obj/item/tweezers
+	corpsepocket2 = /obj/item/clothing/glasses/meson

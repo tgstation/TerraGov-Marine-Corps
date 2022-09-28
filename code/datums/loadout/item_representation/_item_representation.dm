@@ -8,11 +8,16 @@
 	var/obj/item/item_type
 	/// If it's allowed to bypass the vendor check
 	var/bypass_vendor_check = FALSE
+	/// If the item is able to be greyscaled, saves the colors
+	var/greyscale_colors
 
 /datum/item_representation/New(obj/item/item_to_copy)
 	if(!item_to_copy)
 		return
 	item_type = item_to_copy.type
+	if(!item_to_copy.greyscale_config)
+		return
+	greyscale_colors = item_to_copy.greyscale_colors
 
 /**
  * This will attempt to instantiate an object.
@@ -31,6 +36,11 @@
 		to_chat(user, span_warning("[item_type] in your loadout is an invalid item, it has probably been changed or removed."))
 		return
 	var/obj/item/item = new item_type(master)
+
+	if(greyscale_colors)
+		item.set_greyscale_colors(greyscale_colors)
+		item.update_icon()
+
 	return item
 
 /**
@@ -38,7 +48,11 @@
  */
 /datum/item_representation/proc/get_tgui_data()
 	var/list/tgui_data = list()
-	var/icon/icon_to_convert = icon(initial(item_type.icon), initial(item_type.icon_state), SOUTH)
+	var/icon/icon_to_convert
+	if(greyscale_colors)
+		icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(item_type.greyscale_config), greyscale_colors), initial(item_type.icon_state), dir = SOUTH)
+	else
+		icon_to_convert = icon(initial(item_type.icon), initial(item_type.icon_state), SOUTH)
 	tgui_data["icons"] = list(list(
 				"icon" = icon2base64(icon_to_convert),
 				"translateX" = NO_OFFSET,
@@ -84,11 +98,16 @@
 	var/obj/item/storage/storage = .
 	var/list/obj/item/starting_items = list()
 	for(var/obj/item/I AS in storage.contents)
-		starting_items[I.type] = starting_items[I.type] + 1
+		starting_items[I.type] = starting_items[I.type] + get_item_stack_number(I)
 	storage.delete_contents()
 	for(var/datum/item_representation/item_representation AS in contents)
 		if(!item_representation.bypass_vendor_check && starting_items[item_representation.item_type] > 0)
-			starting_items[item_representation.type] = starting_items[item_representation.item_type] - 1
+			var/amount_to_remove = get_item_stack_representation_amount(item_representation)
+			if(starting_items[item_representation.item_type] < amount_to_remove)
+				amount_to_remove = starting_items[item_representation.item_type]
+				var/datum/item_representation/stack/stack_representation = item_representation
+				stack_representation.amount = amount_to_remove
+			starting_items[item_representation.item_type] = starting_items[item_representation.item_type] - amount_to_remove
 			item_representation.bypass_vendor_check = TRUE
 		var/obj/item/item_to_insert = item_representation.instantiate_object(seller, null, user)
 		if(!item_to_insert)

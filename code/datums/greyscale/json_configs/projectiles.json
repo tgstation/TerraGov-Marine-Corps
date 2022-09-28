@@ -1,0 +1,10 @@
+{
+	"20mm_flight": [
+		{
+			"type": "icon_state",
+			"icon_state": "20mm_nade",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		}
+	]
+}

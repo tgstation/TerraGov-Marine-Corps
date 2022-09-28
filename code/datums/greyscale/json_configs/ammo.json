@@ -1,0 +1,41 @@
+{
+	"tx54_airburst": [
+		{
+			"type": "icon_state",
+			"icon_state": "tx54_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "tx54_grey",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		}
+	],
+	"tx54_airburst_e": [
+		{
+			"type": "icon_state",
+			"icon_state": "tx54_e_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "tx54_e_grey",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		}
+	],
+	"20mm_airburst": [
+		{
+			"type": "icon_state",
+			"icon_state": "20mm_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "20mm_grey",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		}
+	]
+}

@@ -5,6 +5,8 @@
 	var/last_move = null
 	var/last_move_time = 0
 	var/anchored = FALSE
+	///How much the atom tries to push things out its way
+	var/move_force = MOVE_FORCE_DEFAULT
 	///How much the atom resists being thrown or moved.
 	var/move_resist = MOVE_RESIST_DEFAULT
 	var/drag_delay = 3 //delay (in deciseconds) added to mob's move_delay when pulling it.
@@ -112,7 +114,7 @@
 
 	if(smoothing_behavior && isturf(old_loc))
 		smooth_neighbors(old_loc)
-	
+
 	invisibility = INVISIBILITY_ABSTRACT
 
 	pulledby?.stop_pulling()
@@ -209,7 +211,7 @@
 			return
 		if(!(flags_atom & DIRLOCK))
 			setDir(direction)
-	
+
 	var/enter_return_value = newloc.Enter(src)
 	if(!(enter_return_value & TURF_CAN_ENTER))
 		if(can_pass_diagonally && !(enter_return_value & TURF_ENTER_ALREADY_MOVED))
@@ -433,7 +435,10 @@
 	SEND_SIGNAL(src, COMSIG_MOVABLE_IMPACT, hit_atom)
 
 
-//decided whether a movable atom being thrown can pass through the turf it is in.
+/**
+ * This proc decides whether a thrown object can pass a turf it is in and checks for throw impacts, aswell as possible parrying things.
+ * Normally returns nothing / null, except when parried in which case it returns whatever parried it.
+**/
 /atom/movable/proc/hit_check(speed, flying = FALSE)
 	if(!throwing)
 		return
@@ -444,6 +449,9 @@
 			var/mob/living/L = A
 			if((!L.density || L.throwpass) && !(SEND_SIGNAL(A, COMSIG_LIVING_PRE_THROW_IMPACT, src) & COMPONENT_PRE_THROW_IMPACT_HIT))
 				continue
+			if(SEND_SIGNAL(A, COMSIG_THROW_PARRY_CHECK, src))	//If parried, do not continue checking the turf and immediately return.
+				playsound(A, 'sound/weapons/alien_claw_block.ogg', 40, TRUE, 7, 4)
+				return A
 			throw_impact(A, speed)
 		if(isobj(A) && A.density && !(A.flags_atom & ON_BORDER) && (!A.throwpass || iscarbon(src)) && !flying)
 			throw_impact(A, speed)
@@ -460,13 +468,13 @@
 	if(!flying)
 		set_throwing(TRUE)
 		src.thrower = thrower
-	
+
 	var/originally_dir_locked = flags_atom & DIRLOCK
 	if(!originally_dir_locked)
 		setDir(get_dir(src, target))
 		flags_atom |= DIRLOCK
-	
 
+	var/atom/parrier	//If something parried the throw, this is set and prevents default throw ending in favor of triggering another throw back to its source.
 	throw_source = get_turf(src)	//store the origin turf
 
 	var/dist_x = abs(target.x - x)
@@ -494,7 +502,10 @@
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
 				Move(step)
-				hit_check(speed)
+				var/hit_check_return = hit_check(speed)
+				if(hit_check_return)
+					parrier = hit_check_return
+					break
 				error += dist_x
 				dist_travelled++
 				dist_since_sleep++
@@ -506,7 +517,10 @@
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
 				Move(step)
-				hit_check(speed)
+				var/hit_check_return = hit_check(speed)
+				if(hit_check_return)
+					parrier = hit_check_return
+					break
 				error -= dist_y
 				dist_travelled++
 				dist_since_sleep++
@@ -522,7 +536,10 @@
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
 				Move(step)
-				hit_check(speed)
+				var/hit_check_return = hit_check(speed)
+				if(hit_check_return)
+					parrier = hit_check_return
+					break
 				error += dist_y
 				dist_travelled++
 				dist_since_sleep++
@@ -534,7 +551,10 @@
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
 				Move(step)
-				hit_check(speed)
+				var/hit_check_return = hit_check(speed)
+				if(hit_check_return)
+					parrier = hit_check_return
+					break
 				error -= dist_x
 				dist_travelled++
 				dist_since_sleep++
@@ -545,6 +565,9 @@
 	//done throwing, either because it hit something or it finished moving
 	if(!originally_dir_locked)
 		flags_atom &= ~DIRLOCK
+	if(parrier)
+		INVOKE_NEXT_TICK(src, .proc/throw_at, (thrower && thrower != src) ? thrower : throw_source, range, max(1, speed/2), parrier, spin, flying)
+		return	//Do not trigger final turf impact nor throw end comsigs as it returns back to its source and should be treated as a single throw.
 	if(isobj(src) && throwing)
 		throw_impact(get_turf(src), speed)
 	if(loc)
@@ -567,12 +590,6 @@
 		last_move = buckled_mob.last_move
 		return FALSE
 	return TRUE
-
-
-//called when a mob tries to breathe while inside us.
-/atom/movable/proc/handle_internal_lifeform(mob/lifeform_inside_me)
-	. = return_air()
-
 
 /atom/movable/proc/check_blocked_turf(turf/target)
 	if(target.density)
@@ -777,9 +794,9 @@
 		AM.onTransitZ(old_z,new_z)
 
 
-/atom/movable/proc/safe_throw_at(atom/target, range, speed, mob/thrower, spin = TRUE)
-	//if((force < (move_resist * MOVE_FORCE_THROW_RATIO)) || (move_resist == INFINITY))
-	//	return
+/atom/movable/proc/safe_throw_at(atom/target, range, speed, mob/thrower, spin = TRUE, force = MOVE_FORCE_STRONG)
+	if((force < (move_resist * MOVE_FORCE_THROW_RATIO)) || (move_resist == INFINITY))
+		return
 	return throw_at(target, range, speed, thrower, spin)
 
 
@@ -879,6 +896,8 @@
 	if(anchored || throwing)
 		return FALSE
 	if(buckled && buckle_flags & BUCKLE_PREVENTS_PULL)
+		return FALSE
+	if(status_flags & INCORPOREAL) //Incorporeal things can't be grabbed.
 		return FALSE
 	return TRUE
 
@@ -1023,6 +1042,25 @@
 		return
 	DISABLE_BITFIELD(flags_pass, HOVERING)
 
+///returns bool for if we want to get forcepushed
+/atom/movable/proc/force_pushed(atom/movable/pusher, force = MOVE_FORCE_DEFAULT, direction)
+	return FALSE
+
+///returns bool for if we want to get handle forcepushing, return is bool if we can move an anchored obj
+/atom/movable/proc/force_push(atom/movable/pushed_atom, force = move_force, direction, silent = FALSE)
+	. = pushed_atom.force_pushed(src, force, direction)
+	if(!silent && .)
+		visible_message(span_warning("[src] forcefully pushes against [pushed_atom]!"), span_warning("You forcefully push against [pushed_atom]!"))
+
+///returns bool for if we want to get handle move crushing, return is bool if we can move an anchored obj
+/atom/movable/proc/move_crush(atom/movable/crushed_atom, force = move_force, direction, silent = FALSE)
+	. = crushed_atom.move_crushed(src, force, direction)
+	if(!silent && .)
+		visible_message(span_danger("[src] crushes past [crushed_atom]!"), span_danger("You crush [crushed_atom]!"))
+
+///returns bool for if we want to get crushed
+/atom/movable/proc/move_crushed(atom/movable/pusher, force = MOVE_FORCE_DEFAULT, direction)
+	return FALSE
 
 /atom/movable/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()

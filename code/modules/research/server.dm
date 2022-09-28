@@ -21,3 +21,6 @@
 
 /obj/machinery/r_n_d/server/core
 	name = "Core R&D Server"
+
+/obj/machinery/r_n_d/server/core/alt
+	icon_state = "server_alt"

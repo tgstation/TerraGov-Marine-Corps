@@ -1,7 +1,7 @@
 
 /mob/living/carbon/xenomorph/proc/upgrade_xeno(newlevel, silent = FALSE)
-	if(!(newlevel in (GLOB.xenoupgradetiers - XENO_UPGRADE_BASETYPE - XENO_UPGRADE_INVALID)))
-		return // smelly badmins
+	if(!(newlevel in (GLOB.xenoupgradetiers - XENO_UPGRADE_INVALID)))
+		return
 	hive.upgrade_xeno(src, upgrade, newlevel)
 	upgrade = newlevel
 	upgrade_stored = 0
@@ -12,18 +12,25 @@
 	set_datum(FALSE)
 	var/selected_ability_type = selected_ability?.type
 
-	for(var/check_existing_actions in xeno_abilities) //Remove xenos actions we shouldn't have
-		var/datum/action/xeno_action/existing_action_path = check_existing_actions
-		if(!locate(existing_action_path) in xeno_caste.actions)
-			existing_action_path.remove_action(src)
+	var/list/datum/action/xeno_action/actions_already_added = xeno_abilities
+	xeno_abilities = list()
 
-	for(var/check_new_actions in xeno_caste.actions) //Give the xenos actions we don't currently have
-		var/datum/action/xeno_action/new_action_path = check_new_actions
-		if(!locate(new_action_path) in xeno_abilities)
-			var/datum/action/xeno_action/action = new new_action_path()
-			if(SSticker.mode.flags_xeno_abilities & action.gamemode_flags)
-				action.give_action(src)
+	for(var/allowed_action_path in xeno_caste.actions)
+		var/found = FALSE
+		for(var/datum/action/xeno_action/action_already_added AS in actions_already_added)
+			if(action_already_added.type == allowed_action_path)
+				xeno_abilities.Add(action_already_added)
+				actions_already_added.Remove(action_already_added)
+				found = TRUE
+				break
+		if(found)
+			continue
+		var/datum/action/xeno_action/action = new allowed_action_path()
+		if(SSticker.mode.flags_xeno_abilities & action.gamemode_flags)
+			action.give_action(src)
 
+	for(var/datum/action/xeno_action/action_already_added AS in actions_already_added)
+		action_already_added.remove_action(src)
 
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE)
 	if(selected_ability_type)

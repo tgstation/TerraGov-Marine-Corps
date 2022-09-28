@@ -28,17 +28,12 @@
 	icon_state = "x"
 	anchored = TRUE
 	layer = MOB_LAYER
-	var/jobspawn_override = FALSE
 	var/delete_after_roundstart = TRUE
 	var/used = FALSE
 
 
 /obj/effect/landmark/start/Initialize()
 	GLOB.start_landmarks_list += src
-	if(jobspawn_override)
-		if(!GLOB.jobspawn_overrides[name])
-			GLOB.jobspawn_overrides[name] = list()
-		GLOB.jobspawn_overrides[name] += src
 	. = ..()
 	if(name != "start")
 		tag = "start*[name]"
@@ -46,8 +41,6 @@
 
 /obj/effect/landmark/start/Destroy()
 	GLOB.start_landmarks_list -= src
-	if(jobspawn_override)
-		GLOB.jobspawn_overrides[name] -= src
 	return ..()
 
 
@@ -71,6 +64,11 @@
 /obj/effect/landmark/start/latejoinrebel/Initialize()
 	. = ..()
 	GLOB.latejoinrebel += loc
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/start/latejoinsom/Initialize()
+	. = ..()
+	GLOB.latejoinsom += loc
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/start/latejoin_gateway/Initialize()
@@ -240,7 +238,7 @@
 	icon_state = "weapon1"
 	weapon_list = list(
 		/obj/item/weapon/gun/energy/lasgun/M43/practice,
-		/obj/item/weapon/gun/energy/lasgun/tesla,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla,
 		/obj/item/weapon/gun/grenade_launcher/single_shot/flare,
 		/obj/item/weapon/gun/pistol/standard_pistol,
 		/obj/item/weapon/gun/pistol/standard_pocketpistol,
@@ -266,7 +264,6 @@
 		/obj/item/weapon/combat_knife,
 		/obj/item/weapon/combat_knife/upp,
 		/obj/item/stack/throwing_knife,
-		/obj/item/weapon/unathiknife,
 		/obj/item/weapon/chainofcommand,
 		/obj/item/weapon/broken_bottle,
 		/obj/item/weapon/baseballbat,
@@ -286,7 +283,7 @@
 		/obj/item/weapon/gun/pistol/m1911/custom,
 		/obj/item/weapon/gun/revolver/mateba,
 		/obj/item/weapon/gun/revolver/mateba/notmarine,
-		/obj/item/weapon/gun/revolver/mateba/captain,
+		/obj/item/weapon/gun/revolver/mateba/custom,
 		/obj/item/weapon/gun/smg/standard_machinepistol,
 		/obj/item/weapon/gun/smg/standard_smg,
 		/obj/item/weapon/gun/smg/m25,
@@ -468,3 +465,18 @@
 /obj/effect/landmark/valhalla_xeno_spawn_landmark_far_two/Initialize()
 	. = ..()
 	GLOB.valhalla_xeno_spawn_landmark[FAR2] = src
+
+//Combat patrol spawn in spots
+/obj/effect/landmark/patrol_point
+	name = "Patrol exit point"
+	//ID to link with an associated start point
+	var/id = null
+
+/obj/effect/landmark/patrol_point/Initialize()
+	. = ..()
+	//adds the exit points to the glob, and the start points link to them in lateinit
+	GLOB.patrol_point_list += src
+
+/obj/effect/landmark/patrol_point/Destroy()
+	GLOB.patrol_point_list -= src
+	return ..()

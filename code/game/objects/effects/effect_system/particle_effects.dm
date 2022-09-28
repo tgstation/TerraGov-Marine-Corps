@@ -31,13 +31,13 @@
 	AddElement(/datum/element/connect_loc, connections)
 
 	setDir(pick(GLOB.cardinals))
-	set_light(3)
+	set_light(1, 3)
 
 	for(var/mob/living/L in loc)//Mobs
 		L.fire_act()
-	for(var/obj/effect/alien/weeds/W in loc)//Weeds
+	for(var/obj/alien/weeds/W in loc)//Weeds
 		W.fire_act()
-	for(var/obj/effect/alien/egg/E in loc)//Eggs
+	for(var/obj/alien/egg/E in loc)//Eggs
 		E.fire_act()
 	for(var/obj/structure/bed/nest/N in loc)//Nests
 		N.fire_act()

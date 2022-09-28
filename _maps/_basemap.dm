@@ -18,8 +18,10 @@
 		#include "map_files\Sulaco\Sulaco.dmm"
 		#include "map_files\Research_Outpost\Research_Outpost.dmm"
 		#include "map_files\Magmoor_Digsite_IV\Magmoor_Digsite_IV.dmm"
+		#include "map_files\Orion_Military_Outpost\orionoutpost.dmm"
 		#include "map_files\Twin_Pillars\Twin_Pillars.dmm"
 		#include "map_files\Minerva\TGS_Minerva.dmm"
+		#include "map_files\gelida_iv\gelida_iv.dmm"
 		#ifdef CIBUILDING
 			#include "templates.dm"
 		#endif

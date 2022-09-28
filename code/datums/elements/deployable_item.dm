@@ -6,14 +6,17 @@
 	var/deploy_time = 0
 	///Time it takes for the parent to be undeployed.
 	var/undeploy_time = 0
-	///Typath that the item deploys into. Can be anything but an item so far. The preffered type is /obj/machinery/deployable since it was built for this.
+	///Typepath that the item deploys into. Can be anything but an item so far. The preffered type is /obj/machinery/deployable since it was built for this.
 	var/obj/deploy_type
+	///Typepath of the object this element is attached too
+	var/obj/deployable_type
 
-/datum/element/deployable_item/Attach(datum/target, _deploy_type, _deploy_time, _undeploy_time)
+/datum/element/deployable_item/Attach(datum/target, _deploy_type, _deployable_type, _deploy_time, _undeploy_time)
 	. = ..()
 	if(!isitem(target))
 		return ELEMENT_INCOMPATIBLE
 	deploy_type = _deploy_type
+	deployable_type = _deployable_type
 	deploy_time = _deploy_time
 	undeploy_time = _undeploy_time
 
@@ -44,8 +47,10 @@
 ///Wrapper for proc/finish_deploy
 /datum/element/deployable_item/proc/deploy(mob/user, atom/object, turf/location, control, params)
 	SIGNAL_HANDLER
+	if(!isturf(location))
+		return
 	var/obj/item/item_in_active_hand = user.get_active_held_item()
-	if(!(item_in_active_hand?.flags_item & IS_DEPLOYABLE))
+	if(!istype(item_in_active_hand, deployable_type))
 		return
 	var/list/modifiers = params2list(params)
 	if(!modifiers["ctrl"] || modifiers["right"] || get_turf(user) == location || !(user.Adjacent(object)) || !location)
@@ -64,20 +69,24 @@
 			return
 
 		if(item_to_deploy.check_blocked_turf(location))
-			user.balloon_alert(user, "There is insufficient room to deploy [item_to_deploy]!")
+			location.balloon_alert(user, "No room to deploy")
 			return
 		if(user.do_actions)
 			user.balloon_alert(user, "You are already doing something!")
 			return
 		user.balloon_alert(user, "You start deploying...")
+		user.setDir(get_dir(user, location)) //Face towards deploy location for ease of deploy.
+		var/newdir = user.dir //Save direction before the doafter for ease of deploy
 		if(!do_after(user, deploy_time, TRUE, item_to_deploy, BUSY_ICON_BUILD))
 			return
-
+		if(item_to_deploy.check_blocked_turf(location))
+			location.balloon_alert(user, "No room to deploy")
+			return
 		user.temporarilyRemoveItemFromInventory(item_to_deploy)
 
 		item_to_deploy.UnregisterSignal(user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE,  COMSIG_MOB_CLICK_RIGHT)) //This unregisters Signals related to guns, its for safety
 
-		direction_to_deploy = user.dir
+		direction_to_deploy = newdir
 
 	else
 		if(!direction)

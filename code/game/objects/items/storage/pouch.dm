@@ -18,8 +18,8 @@
 			new fill_type(src)
 
 /obj/item/storage/pouch/examine(mob/user)
-	..()
-	to_chat(user, "Can be worn by attaching it to a pocket.")
+	. = ..()
+	. += "Can be worn by attaching it to a pocket."
 
 
 /obj/item/storage/pouch/equipped(mob/user, slot)
@@ -68,6 +68,9 @@
 	icon_state = "general_som"
 	draw_mode = 1
 
+/obj/item/storage/pouch/general/large/som
+	desc = "A general purpose pouch used to carry small items used during mining."
+	icon_state = "large_drop_som"
 
 /obj/item/storage/pouch/bayonet
 	name = "bayonet sheath"
@@ -113,7 +116,6 @@
 	new /obj/item/stack/sheet/plasteel(src, 15)
 	new /obj/item/tool/weldingtool(src)
 
-
 /obj/item/storage/pouch/firstaid
 	name = "first-aid pouch"
 	desc = "Standard marine first-aid pouch. It can contain autoinjectors, sets of pills, and bandages."
@@ -125,10 +127,21 @@
 		/obj/item/storage/pill_bottle,
 	)
 
-/obj/item/storage/pouch/firstaid/full
-	desc = "Standard marine first-aid pouch. Contains basic pills, splints, and an emergency injector."
+/obj/item/storage/pouch/firstaid/combat_patrol/Initialize()
+	. = ..()
+	new /obj/item/reagent_containers/hypospray/autoinjector/bicaridine(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/kelotane(src)
+	new /obj/item/storage/pill_bottle/packet/tramadol(src)
+	new /obj/item/storage/pill_bottle/packet/tricordrazine(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
 
-/obj/item/storage/pouch/firstaid/full/Initialize()
+/obj/item/storage/pouch/firstaid/som
+	name = "mining first aid pouch"
+	desc = "A basic first aid pouch originally used by miners due to dangerous working conditions on the mining colonies. This one is marked as belonging to the SOM."
+	icon_state = "firstaid_som"
+
+/obj/item/storage/pouch/firstaid/som/full/Initialize()
 	. = ..()
 	new /obj/item/storage/pill_bottle/packet/bicaridine(src)
 	new /obj/item/storage/pill_bottle/packet/kelotane(src)
@@ -137,51 +150,14 @@
 	new /obj/item/stack/medical/splint(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
 
-
-/obj/item/storage/pouch/firstaid/injectors
-	name = "combat injector pouch"
-	desc = "Standard marine first-aid combat injector pouch. Specialized to store only autoinjectors."
-	icon_state = "firstaid_injector"
-	can_hold = list(/obj/item/reagent_containers/hypospray/autoinjector)
-
-/obj/item/storage/pouch/firstaid/injectors/full
-	desc = "Standard marine first-aid combat injector pouch. Specialized to store only autoinjectors. Contains 3 combat autoinjectors, an oxycodone injector, and a stimulant injector."
-
-/obj/item/storage/pouch/firstaid/injectors/full/Initialize()
+/obj/item/storage/pouch/firstaid/som/combat_patrol/Initialize()
 	. = ..()
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat (src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat (src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat (src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/oxycodone (src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/russian_red (src)
-
-
-/obj/item/storage/pouch/firstaid/som
-	name = "mining first aid pouch"
-	desc = "A basic first aid pouch used by miners due to dangerous working conditions on the mining colonies."
-	icon_state = "firstaid_som"
-	storage_slots = 5
-	can_hold = list(
-		/obj/item/stack/medical/heal_pack/ointment,
-		/obj/item/reagent_containers/hypospray/autoinjector,
-		/obj/item/stack/medical/heal_pack/gauze,
-		/obj/item/storage/pill_bottle/packet/tricordrazine,
-		/obj/item/stack/medical/splint,
-	)
-
-
-/obj/item/storage/pouch/firstaid/som/full
-	desc = "A basic first aid pouch used by miners due to dangerous working conditions on the mining colonies. Contains the necessary items already."
-
-
-/obj/item/storage/pouch/firstaid/som/full/Initialize()
-	. = ..()
-	new /obj/item/stack/medical/heal_pack/ointment(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/tramadol(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine(src)
-	new /obj/item/stack/medical/heal_pack/gauze(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/bicaridine(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/kelotane(src)
+	new /obj/item/storage/pill_bottle/packet/tramadol(src)
+	new /obj/item/storage/pill_bottle/packet/tricordrazine(src)
 	new /obj/item/stack/medical/splint(src)
-
+	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
 
 /obj/item/storage/pouch/pistol
 	name = "sidearm pouch"
@@ -192,6 +168,7 @@
 		/obj/item/weapon/gun/pistol,
 		/obj/item/weapon/gun/revolver,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta,
 	)
 	draw_mode = 1
 
@@ -202,6 +179,10 @@
 /obj/item/storage/pouch/pistol/rt3/Initialize()
 	. = ..()
 	new /obj/item/weapon/gun/pistol/rt3(src)
+
+/obj/item/storage/pouch/pistol/som
+	desc = "It can contain a pistol or revolver. Useful for emergencies, and made out of stylish leather in the old SOM tradition."
+	icon_state = "pistol_som"
 
 //// MAGAZINE POUCHES /////
 
@@ -240,6 +221,10 @@
 	fill_type = /obj/item/ammo_magazine/smg/standard_smg
 	fill_number = 3
 
+/obj/item/storage/pouch/magazine/large/som
+	desc = "This pouch can contain three ammo magazines. Made with traditional SOM leather."
+	icon_state = "mag_som"
+
 /obj/item/storage/pouch/magazine/pistol
 	name = "pistol magazine pouch"
 	desc = "It can contain pistol and revolver ammo magazines."
@@ -251,6 +236,7 @@
 		/obj/item/ammo_magazine/pistol,
 		/obj/item/ammo_magazine/revolver,
 		/obj/item/ammo_magazine/smg/standard_machinepistol,
+		/obj/item/ammo_magazine/rifle/pepperball/pepperball_mini,
 	)
 
 /obj/item/storage/pouch/magazine/pistol/large
@@ -372,126 +358,41 @@
 	fill_type = /obj/item/explosive/grenade
 	fill_number = 4
 
-/obj/item/storage/pouch/medical
-	name = "medical pouch"
-	desc = "It can contain small medical supplies."
-	icon_state = "medical"
-	storage_slots = 3
-
-	can_hold = list(
-		/obj/item/healthanalyzer,
-		/obj/item/reagent_containers/dropper,
-		/obj/item/reagent_containers/pill,
-		/obj/item/reagent_containers/glass/bottle,
-		/obj/item/reagent_containers/syringe,
-		/obj/item/storage/pill_bottle,
-		/obj/item/stack/medical,
-		/obj/item/flashlight/pen,
-		/obj/item/storage/pill_bottle/packet,
-		/obj/item/reagent_containers/hypospray,
-	)
-
-/obj/item/storage/pouch/medical/full/Initialize()
+/obj/item/storage/pouch/grenade/combat_patrol/Initialize()
 	. = ..()
-	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
-	new /obj/item/stack/medical/splint(src)
+	new /obj/item/explosive/grenade/smokebomb(src)
+	new /obj/item/explosive/grenade/smokebomb(src)
+	new /obj/item/explosive/grenade/smokebomb/acid(src)
+	new /obj/item/explosive/grenade/smokebomb/neuro(src)
+	new /obj/item/explosive/grenade/flashbang/stun(src)
+	new /obj/item/explosive/grenade/flashbang/stun(src)
 
-/obj/item/storage/pouch/medical/equippedcorpsman/Initialize()
+
+/obj/item/storage/pouch/grenade/som
+	desc = "It can contain grenades. This one looks to be made out of traditional SOM leather."
+	icon_state = "grenade_som"
+
+/obj/item/storage/pouch/grenade/som/combat_patrol/Initialize()
 	. = ..()
-	new /obj/item/storage/pill_bottle/bicaridine(src)
-	new /obj/item/storage/pill_bottle/kelotane(src)
-	new /obj/item/healthanalyzer(src)
+	new /obj/item/explosive/grenade/smokebomb(src)
+	new /obj/item/explosive/grenade/smokebomb(src)
+	new /obj/item/explosive/grenade/smokebomb/satrapine(src)
+	new /obj/item/explosive/grenade/smokebomb/satrapine(src)
+	new /obj/item/explosive/grenade/flashbang/stun(src)
+	new /obj/item/explosive/grenade/flashbang/stun(src)
 
-/obj/item/storage/pouch/autoinjector
-	name = "auto-injector pouch"
-	desc = "A pouch specifically for auto-injectors."
-	icon_state = "autoinjector"
-	storage_slots = 8
-	max_storage_space = 14
-	can_hold = list(
-		/obj/item/reagent_containers/hypospray/autoinjector,
-	)
-
-/obj/item/storage/pouch/autoinjector/full/Initialize() //synth autoinjector pouch gets a bunch of specialized chems, considering it's trivial for them to get general healing meds.
+/obj/item/storage/pouch/grenade/som/ert/Initialize()
 	. = ..()
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/isotonic(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/polyhexanide(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin(src)
-
-/obj/item/storage/pouch/med_lolipops
-	name = "medical pouch"
-	desc = "It's able to contain boxes of lolipops, nothing else."
-	icon_state = "medical"
-	storage_slots = 3
-
-	can_hold = list(/obj/item/storage/box/combat_lolipop,)
-
-/obj/item/storage/pouch/med_lolipops/full/Initialize()
-	. = ..()
-	new /obj/item/storage/box/combat_lolipop(src)
-	new /obj/item/storage/box/combat_lolipop/tricord(src)
-	new /obj/item/storage/box/combat_lolipop/tramadol(src)
-
-/obj/item/storage/pouch/autoinjector/advanced
-	name = "auto-injector pouch"
-	desc = "A pouch specifically for auto-injectors. This one comes pre-loaded with goodies!"
-	icon_state = "autoinjector"
-	storage_slots = 8
-	max_storage_space = 14
-	can_hold = list(
-		/obj/item/reagent_containers/hypospray/autoinjector,
-	)
-
-/obj/item/storage/pouch/autoinjector/advanced/full/Initialize() //corpsman autoinjector pouch gets upgraded, but more general chems.
-	. = ..()
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/isotonic(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
-
-/obj/item/storage/pouch/syringe
-	name = "syringe pouch"
-	desc = "It can contain syringes."
-	icon_state = "syringe"
-	storage_slots = 5
-	max_storage_space = 10
-	can_hold = list(/obj/item/reagent_containers/syringe)
-
-/obj/item/storage/pouch/hypospray
-	name = "hypospray pouch"
-	desc = "It can contain hyposprays and autoinjectors."
-	icon_state = "syringe"
-	storage_slots = 3
-	can_hold = list(/obj/item/reagent_containers/hypospray)
-
-
-/obj/item/storage/pouch/hypospray/corps
-	name = "Corps hypospray pouch"
-	desc = "It can contain hyposprays and autoinjectors, this one has a Terragov corpsman logo on its back."
-	icon_state = "syringe"
-	storage_slots = 4
-	can_hold = list(/obj/item/reagent_containers/hypospray)
-
-/obj/item/storage/pouch/hypospray/corps/full/Initialize()
-	. = ..()
-	new /obj/item/reagent_containers/hypospray/advanced/combat_advanced(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
+	new /obj/item/explosive/grenade/smokebomb(src)
+	new /obj/item/explosive/grenade/smokebomb(src)
+	new /obj/item/explosive/grenade/smokebomb/satrapine(src)
+	new /obj/item/explosive/grenade/smokebomb/satrapine(src)
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/stick(src)
 
 /obj/item/storage/pouch/medkit
 	name = "medkit pouch"
-	desc = "A standard use medkit pouch that can contain all kinds of stuff."
+	desc = "A standard use medkit pouch that can contain all kinds of medical supplies and equipment."
 	icon_state = "medkit"
 	w_class = WEIGHT_CLASS_BULKY //does not fit in backpack
 	max_w_class = 4
@@ -504,30 +405,124 @@
 		/obj/item/reagent_containers/syringe,
 		/obj/item/storage/pill_bottle,
 		/obj/item/stack/medical,
-		/obj/item/flashlight/pen,
 		/obj/item/storage/pill_bottle/packet,
 		/obj/item/reagent_containers/hypospray,
 	)
 
-/obj/item/storage/pouch/medkit/full/Initialize()
-	. = ..()
-	new /obj/item/healthanalyzer(src)
-	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
-	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
-	new /obj/item/stack/medical/splint(src)
-	new /obj/item/stack/medical/splint(src)
+/obj/item/storage/pouch/medkit/firstaid
+	desc = "Standard marine first-aid pouch. Contains basic pills, splints, and a stabilizing injector."
 
-/obj/item/storage/pouch/medkit/equippedcorpsman/Initialize()
+/obj/item/storage/pouch/medkit/firstaid/Initialize()
 	. = ..()
-	new /obj/item/healthanalyzer(src)
-	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
-	new /obj/item/storage/pill_bottle/bicaridine(src)
-	new /obj/item/storage/pill_bottle/kelotane(src)
-	new /obj/item/storage/pill_bottle/tramadol(src)
+	new /obj/item/storage/pill_bottle/packet/bicaridine(src)
+	new /obj/item/storage/pill_bottle/packet/kelotane(src)
+	new /obj/item/storage/pill_bottle/packet/tramadol(src)
+	new /obj/item/storage/pill_bottle/packet/tricordrazine(src)
+	new /obj/item/storage/pill_bottle/packet/dylovene(src)
 	new /obj/item/stack/medical/splint(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
+
+/obj/item/storage/pouch/medkit/medic/Initialize()
+	. = ..()
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/reagent_containers/hypospray/advanced/meraderm(src)
+
+/obj/item/storage/pouch/medkit/som
+	desc = "A standard use medkit pouch that can contain all kinds of medical supplies and equipment. Made with traditional SOM leather."
+	icon_state = "medkit_som"
+
+/obj/item/storage/pouch/medical_injectors
+	name = "medical injector pouch"
+	desc = "A specialized medical pouch that can only hold auto-injectors."
+	icon_state = "firstaid_injector"
+	storage_slots = 8
+	max_storage_space = 14
+	can_hold = list(/obj/item/reagent_containers/hypospray/autoinjector)
+
+/obj/item/storage/pouch/medical_injectors/firstaid
+	desc = "Standard marine first-aid injector pouch. Specialized to store only auto-injectors. Contains basic injectors, a stabilizing injector, stimulant injector, and an emergency injector."
+
+/obj/item/storage/pouch/medical_injectors/firstaid/Initialize()
+	. = ..()
+	new /obj/item/reagent_containers/hypospray/autoinjector/bicaridine (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/kelotane (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/tramadol (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/dylovene (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/russian_red (src)
+
+/obj/item/storage/pouch/medical_injectors/som
+	desc = "A specialized medical pouch that can only hold auto-injectors. This one looks to be made out of traditional SOM leather."
+	icon_state = "firstaid_injector_som"
+
+/obj/item/storage/pouch/medical_injectors/som/Initialize()
+	. = ..()
+	new /obj/item/reagent_containers/hypospray/autoinjector/bicaridine (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/kelotane (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/tramadol (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/dylovene (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/russian_red (src)
+
+/obj/item/storage/pouch/medical_injectors/medic/Initialize() //corpsman autoinjector pouch gets upgraded, but more general chems.
+	. = ..()
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
+
+/obj/item/storage/pouch/med_lolipops
+	name = "medical lolipop pouch"
+	desc = "A small medical pouch with three seperate pockets to sort your medical lollipops."
+	icon_state = "medlolly"
+	storage_slots = 3
+
+	can_hold = list(/obj/item/storage/box/combat_lolipop,)
+
+/obj/item/storage/pouch/med_lolipops/Initialize()
+	. = ..()
+	new /obj/item/storage/box/combat_lolipop(src)
+	new /obj/item/storage/box/combat_lolipop/tricord(src)
+	new /obj/item/storage/box/combat_lolipop/tramadol(src)
+
+/obj/item/storage/pouch/surgery
+	name = "surgery tools pouch"
+	desc = "An eye catching white medical pouch capable of holding all your surgical tools."
+	icon_state = "surgery"
+	storage_slots = 12
+	max_storage_space = 24
+	can_hold = list(
+		/obj/item/tool/surgery,
+		/obj/item/stack/nanopaste,
+		/obj/item/tweezers,
+	)
+
+/obj/item/storage/pouch/surgery/Initialize()
+	. = ..()
+	new /obj/item/tool/surgery/scalpel/manager(src)
+	new /obj/item/tool/surgery/scalpel(src)
+	new /obj/item/tool/surgery/hemostat(src)
+	new /obj/item/tool/surgery/retractor(src)
+	new /obj/item/tool/surgery/cautery(src)
+	new /obj/item/tool/surgery/circular_saw(src)
+	new /obj/item/tool/surgery/surgical_membrane(src)
+	new /obj/item/tool/surgery/bonegel(src)
+	new /obj/item/tool/surgery/bonesetter(src)
+	new /obj/item/tool/surgery/FixOVein(src)
+	new /obj/item/tool/surgery/suture(src)
 
 /obj/item/storage/pouch/document
 	name = "document pouch"
@@ -668,6 +663,10 @@
 	new /obj/item/stack/sheet/metal/large_stack (src)
 	new /obj/item/stack/sheet/plasteel/medium_stack (src)
 
+/obj/item/storage/pouch/construction/som
+	desc = "It's designed to hold construction materials - glass/metal sheets, metal rods, barbed wire, cable coil, and empty sandbags. It also has a hook for an entrenching tool. Made with traditional SOM leather."
+	icon_state = "construction_som"
+
 /obj/item/storage/pouch/tools
 	name = "tools pouch"
 	desc = "It's designed to hold maintenance tools - screwdriver, wrench, cable coil, etc. It also has a hook for an entrenching tool."
@@ -687,6 +686,18 @@
 	)
 
 /obj/item/storage/pouch/tools/full/Initialize()
+	. = ..()
+	new /obj/item/tool/screwdriver (src)
+	new /obj/item/tool/wirecutters (src)
+	new /obj/item/tool/weldingtool (src)
+	new /obj/item/tool/wrench (src)
+	new /obj/item/tool/crowbar (src)
+
+/obj/item/storage/pouch/tools/som
+	desc = "It's designed to hold maintenance tools - screwdriver, wrench, cable coil, etc. It also has a hook for an entrenching tool. Made with traditional SOM leather."
+	icon_state = "tools_som"
+
+/obj/item/storage/pouch/tools/som/full/Initialize()
 	. = ..()
 	new /obj/item/tool/screwdriver (src)
 	new /obj/item/tool/wirecutters (src)
@@ -732,3 +743,7 @@
 			return TRUE
 
 	return ..()
+
+/obj/item/storage/pouch/shotgun/som
+	desc = "A pouch specialized for holding shotgun ammo. Made with traditional SOM leather."
+	icon_state = "shotshells_som"

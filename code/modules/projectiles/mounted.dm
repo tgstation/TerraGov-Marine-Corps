@@ -4,7 +4,7 @@
 	anchored = TRUE
 	resistance_flags = XENO_DAMAGEABLE
 	density = TRUE
-	layer = ABOVE_MOB_LAYER
+	layer = TANK_BARREL_LAYER
 	use_power = FALSE
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 
@@ -47,6 +47,13 @@
 	var/obj/item/weapon/gun/internal_gun = internal_item
 	internal_gun.do_unique_action(internal_gun, user)
 
+/obj/machinery/deployable/mounted/attackby_alternate(obj/item/I, mob/user, params)
+	. = ..()
+	if(!ishuman(user))
+		return
+	var/obj/item/weapon/gun/internal_gun = internal_item
+	internal_gun.attackby_alternate(I, user, params)
+
 /obj/machinery/deployable/mounted/attackby(obj/item/I, mob/user, params) //This handles reloading the gun, if its in acid cant touch it.
 	. = ..()
 
@@ -62,6 +69,16 @@
 
 ///Reloads the internal_item
 /obj/machinery/deployable/mounted/proc/reload(mob/user, ammo_magazine)
+	if(HAS_TRAIT(src, TRAIT_GUN_RELOADING))
+		to_chat(user, span_warning("The weapon is already being reloaded!"))
+		return
+
+	if(user.do_actions)
+		to_chat(user, span_warning("You are busy doing something else!"))
+		return
+
+	ADD_TRAIT(src, TRAIT_GUN_RELOADING, GUN_TRAIT)
+
 	var/obj/item/weapon/gun/gun = internal_item
 	if(length(gun.chamber_items))
 		gun.unload(user)
@@ -70,9 +87,12 @@
 	gun.reload(ammo_magazine, user)
 	update_icon_state()
 
+	REMOVE_TRAIT(src, TRAIT_GUN_RELOADING, GUN_TRAIT)
+
 	if(!CHECK_BITFIELD(gun.reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
 		return
 	gun.do_unique_action(gun, user)
+
 
 
 ///This is called when a user tries to operate the gun
@@ -192,6 +212,17 @@
 	var/turf/move_to = get_step(src, REVERSE_DIR(angle))
 	var/mob/living/carbon/human/user = operator
 
+	var/obj/item/attachable/scope/current_scope
+	for(var/key in gun.attachments_by_slot)
+		var/obj/item/attachable = gun.attachments_by_slot[key]
+		if(!attachable || !istype(attachable, /obj/item/attachable/scope))
+			continue
+		var/obj/item/attachable/scope/scope = attachable
+		if(!scope.zoom)
+			continue
+		scope.zoom_item_turnoff(operator, operator)
+		current_scope = scope
+
 	if(!operator.Move(move_to))
 		to_chat(operator, "You cannot rotate [src] that way.")
 		return FALSE
@@ -200,6 +231,10 @@
 	user.set_interaction(src)
 	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 	operator.visible_message("[operator] rotates the [src].","You rotate the [src].")
+
+	if(current_scope && current_scope.deployed_scope_rezoom)
+		INVOKE_ASYNC(current_scope, /obj/item/attachable/scope.proc/activate, operator)
+
 	return FALSE
 
 
@@ -219,9 +254,7 @@
 
 	for(var/key in gun.attachments_by_slot)
 		var/obj/item/attachable = gun.attachments_by_slot[key]
-		if(!attachable)
-			continue
-		if(!istype(attachable, /obj/item/attachable/scope))
+		if(!attachable || !istype(attachable, /obj/item/attachable/scope))
 			continue
 		var/obj/item/attachable/scope/scope = attachable
 		if(!scope.zoom)
@@ -237,3 +270,19 @@
 /obj/machinery/deployable/mounted/check_eye(mob/user)
 	if(user.lying_angle || !Adjacent(user) || user.incapacitated() || !user.client)
 		user.unset_interaction()
+
+//Deployable guns that can be moved.
+/obj/machinery/deployable/mounted/moveable
+	anchored = FALSE
+
+/// Can be anchored and unanchored from the ground by Alt Right Click.
+/obj/machinery/deployable/mounted/moveable/AltRightClick(mob/living/user)
+	if(!Adjacent(user) || user.lying_angle || user.incapacitated() || !ishuman(user))
+		return
+
+	if(!anchored)
+		anchored = TRUE
+		to_chat(user, span_warning("You have anchored the gun to the ground. It may not be moved."))
+	else
+		anchored = FALSE
+		to_chat(user, span_warning("You unanchored the gun from the gruond. It may be moved."))

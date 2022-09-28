@@ -4,7 +4,7 @@
  * Used mostly be xenomorphs
  */
 /turf/closed/wall/resin
-	name = "resin wall"
+	name = RESIN_WALL
 	desc = "Weird slime solidified into a wall."
 	icon = 'icons/Xeno/structures.dmi'
 	icon_state = "resin0"
@@ -13,7 +13,7 @@
 	layer = RESIN_STRUCTURE_LAYER
 	smoothing_behavior = CARDINAL_SMOOTHING
 	smoothing_groups = SMOOTH_XENO_STRUCTURES
-	soft_armor = list("melee" = 0, "bullet" = 60, "laser" = 60, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list(MELEE = 0, BULLET = 60, LASER = 60, ENERGY = 0, BOMB = 0, BIO = 0, "rad" = 0, FIRE = 0, ACID = 0)
 
 
 /turf/closed/wall/resin/Initialize()
@@ -21,8 +21,8 @@
 	return INITIALIZE_HINT_LATELOAD
 
 
-/turf/closed/wall/resin/flamer_fire_act()
-	take_damage(25, BURN, "fire")
+/turf/closed/wall/resin/flamer_fire_act(burnlevel)
+	take_damage(burnlevel * 1.25, BURN, "fire")
 
 
 /turf/closed/wall/resin/proc/thicken()
