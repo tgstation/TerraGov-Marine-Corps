@@ -2810,35 +2810,24 @@ datum/ammo/bullet/revolver/tp44
 	max_range = 8
 
 /datum/ammo/xeno/leash_ball/on_hit_turf(turf/T, obj/projectile/proj)
-	if(!T)
-		T = get_turf(proj)
-
-	if(isclosedturf(T))
-		T = get_turf(get_step(T, turn(proj.dir, 180))) //If the turf is closed, we instead drop in the location just prior to the turf
-
-	drop_leashball(T)
+	drop_leashball(T.density ? proj.loc : T)
 
 /datum/ammo/xeno/leash_ball/on_hit_mob(mob/victim, obj/projectile/proj)
-	drop_leashball(get_turf(victim))
+	var/turf/T = get_turf(victim)
+	drop_leashball(T.density ? proj.loc : T, P.firer)
 
 /datum/ammo/xeno/leash_ball/on_hit_obj(obj/O, obj/projectile/proj)
 	var/turf/T = get_turf(O)
-	if(!T)
+	if(T.density || (O.density && !O.throwpass))
 		T = get_turf(proj)
+	drop_leashball(T.density ? proj.loc : T, P.firer)
 
-	if(O.density && !(O.flags_atom & ON_BORDER))
-		T = get_turf(get_step(T, turn(proj.dir, 180))) //If the object is dense and not a border object like barricades, we instead drop in the location just prior to the target
-
-	drop_leashball(T)
-
-/datum/ammo/xeno/leash_ball/do_at_max_range(obj/projectile/proj)
-	drop_leashball(get_turf(proj))
+/datum/ammo/xeno/leash_ball/do_at_max_range(turf/T, obj/projectile/proj)
+	drop_leashball(T.density ? proj.loc : T)
 
 
 /// This spawns a leash ball and checks if the turf is dense before doing so
 /datum/ammo/xeno/leash_ball/proc/drop_leashball(turf/T)
-	if(T.density)
-		return
 	new /obj/structure/xeno/aoe_leash(get_turf(T))
 /*
 //================================================
