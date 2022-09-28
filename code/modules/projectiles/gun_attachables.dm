@@ -1495,7 +1495,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		to_chat(user, span_warning("[src] beeps. Guns or shields in your hands are interfering with its targetting. Stopping fire."))
 		master_gun.stop_fire()
 		return
-	if(user.incapacitated()  && !user.lying_angle && !LAZYACCESS(user.do_actions, src) && user.dextrous && (CHECK_BITFIELD(master_gun.flags_gun_features, GUN_ALLOW_SYNTHETIC) || CONFIG_GET(flag/allow_synthetic_gun_use) || !issynth(user)))
+	if(!user.incapacitated() && !user.lying_angle && !LAZYACCESS(user.do_actions, src) && user.dextrous && (CHECK_BITFIELD(master_gun.flags_gun_features, GUN_ALLOW_SYNTHETIC) || CONFIG_GET(flag/allow_synthetic_gun_use) || !issynth(user)))
 		return
 	master_gun.stop_fire()
 
