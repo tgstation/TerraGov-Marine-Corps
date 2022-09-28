@@ -17,7 +17,8 @@
 	letters_per_update = 1
 	screen_loc = "WEST:6,1:5"
 	style_open = "<span class='maptext' style=font-size:20pt;text-align:left valign='top'>"
-	layer = ABOVE_HUD_LAYER
+	layer = INTRO_LAYER
+	plane = INTRO_PLANE
 
 /datum/action/innate/message_squad
 	name = "Send Order"
