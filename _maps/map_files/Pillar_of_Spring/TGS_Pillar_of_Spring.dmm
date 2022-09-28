@@ -174,9 +174,16 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "aC" = (
-/obj/machinery/landinglight/ds1/delaythree,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
+/obj/machinery/door/poddoor/shutters/mainship/open/hangar{
+	dir = 2
+	},
+/turf/open/floor/stairs/rampbottom{
+	dir = 1
+	},
+/area/mainship/medical/lower_medical)
 "aD" = (
 /obj/item/paper/crumpled{
 	pixel_x = -4;
@@ -535,9 +542,6 @@
 	dir = 8
 	},
 /area/mainship/hallways/hangar)
-"bM" = (
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar/droppod)
 "bN" = (
 /obj/effect/ai_node,
 /obj/effect/decal/warning_stripes/thin{
@@ -663,10 +667,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "ci" = (
-/obj/structure/cable,
-/obj/effect/ai_node,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/hangar)
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/general)
 "cj" = (
 /obj/structure/ship_ammo/minirocket,
 /turf/open/floor/mainship/cargo,
@@ -1256,11 +1258,11 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/smartgunner,
 /obj/effect/decal/warning_stripes/box/small{
 	dir = 1
 	},
 /obj/effect/decal/warning_stripes/box/small,
+/obj/effect/decal/warning_stripes/leader,
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
@@ -1564,18 +1566,12 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "eR" = (
-/obj/effect/step_trigger/teleporter/random{
-	affect_ghosts = 1;
-	name = "tele_ground1";
-	teleport_x = 180;
-	teleport_x_offset = 200;
-	teleport_y = 50;
-	teleport_y_offset = 80;
-	teleport_z = 1;
-	teleport_z_offset = 1
+/obj/item/clothing/head/warning_cone,
+/obj/machinery/landinglight/ds1{
+	dir = 4
 	},
-/turf/open/space/basic,
-/area/space)
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "eS" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -1688,11 +1684,12 @@
 /turf/open/floor/plating,
 /area/mainship/engineering/port_atmos)
 "fl" = (
-/obj/structure/cable,
-/turf/open/floor/mainship/cargo/arrow{
-	dir = 1
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8;
+	on = 1
 	},
-/area/mainship/hallways/hangar/droppod)
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/general)
 "fn" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -1994,8 +1991,11 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "ge" = (
-/turf/closed/wall/mainship,
-/area/mainship/living/briefing)
+/obj/machinery/landinglight/ds1{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "gf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -2057,10 +2057,13 @@
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/hangar)
 "gq" = (
-/obj/item/clothing/head/warning_cone,
-/obj/machinery/landinglight/ds1{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
+/obj/machinery/landinglight/ds2/delayone{
+	dir = 4
+	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "gr" = (
@@ -2090,9 +2093,11 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "gu" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/machinery/light/mainship{
+	dir = 1
+	},
 /turf/closed/wall/mainship,
-/area/mainship/hallways/hangar)
+/area/mainship/hallways/hangar/droppod)
 "gv" = (
 /obj/machinery/vending/snack,
 /turf/open/floor/mainship,
@@ -2133,20 +2138,18 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/command/airoom)
 "gB" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/effect/step_trigger/teleporter/random{
+	affect_ghosts = 1;
+	name = "tele_ground1";
+	teleport_x = 180;
+	teleport_x_offset = 200;
+	teleport_y = 50;
+	teleport_y_offset = 80;
+	teleport_z = 1;
+	teleport_z_offset = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/medical/medical_science)
+/turf/open/space/basic,
+/area/space)
 "gC" = (
 /obj/structure/cable,
 /obj/machinery/door_control/mainship/droppod{
@@ -2470,20 +2473,15 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "hy" = (
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/general)
+/obj/effect/decal/warning_stripes/thin,
+/turf/closed/wall/mainship,
+/area/mainship/hallways/hangar)
 "hA" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/grass,
 /area/mainship/shipboard/firing_range)
 "hB" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/machinery/landinglight/ds2/delayone{
-	dir = 4
-	},
-/obj/effect/ai_node,
+/obj/machinery/landinglight/ds1/delaythree,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "hC" = (
@@ -3498,6 +3496,11 @@
 /obj/item/tool/pen,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
+"kt" = (
+/turf/open/floor/stairs/rampbottom{
+	dir = 1
+	},
+/area/mainship/hallways/hangar)
 "ku" = (
 /obj/structure/bed/chair/nometal,
 /turf/open/floor/wood,
@@ -3674,7 +3677,20 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "lb" = (
-)
+/obj/structure/cable,
+/obj/structure/cable,
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/medical/medical_science)
 "lc" = (
 /obj/machinery/computer/general_air_control/large_tank_control{
 	frequency = 1443;
@@ -4227,11 +4243,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
 "mK" = (
-/obj/machinery/landinglight/ds1{
-	dir = 4
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
+)
 "mL" = (
 /obj/machinery/photocopier,
 /obj/machinery/light/mainship,
@@ -4647,6 +4659,10 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/grunt_rnr)
+"nT" = (
+/obj/machinery/status_display,
+/turf/closed/wall/mainship,
+/area/mainship/command/telecomms)
 "nU" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship{
@@ -4851,12 +4867,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
-"ow" = (
-/obj/machinery/light/mainship{
-	dir = 1
-	},
-/turf/closed/wall/mainship,
-/area/mainship/hallways/hangar/droppod)
 "oy" = (
 /obj/machinery/light/mainship{
 	dir = 1
@@ -5217,9 +5227,11 @@
 	},
 /area/mainship/command/cic)
 "pC" = (
-/obj/machinery/computer/navigation,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_hallway)
+/obj/structure/cable,
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 1
+	},
+/area/mainship/hallways/hangar/droppod)
 "pD" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 1
@@ -7142,8 +7154,9 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "vB" = (
-/obj/machinery/landinglight/ds1/delayone,
-/turf/open/floor/mainship/mono,
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "vC" = (
 /obj/machinery/vending/engineering,
@@ -9271,6 +9284,9 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_hallway)
+"BV" = (
+/turf/closed/wall/mainship,
+/area/mainship/living/briefing)
 "BW" = (
 /obj/effect/decal/cleanable/blood,
 /obj/structure/closet/bodybag,
@@ -9767,10 +9783,9 @@
 /turf/open/floor/wood,
 /area/mainship/living/cryo_cells)
 "Dq" = (
-/turf/open/floor/stairs/rampbottom{
-	dir = 1
-	},
-/area/mainship/hallways/hangar)
+/obj/machinery/computer/navigation,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/starboard_hallway)
 "Dr" = (
 /obj/machinery/bodyscanner{
 	dir = 8
@@ -11225,16 +11240,9 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "Hu" = (
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
-	},
-/obj/machinery/door/poddoor/shutters/mainship/open/hangar{
-	dir = 2
-	},
-/turf/open/floor/stairs/rampbottom{
-	dir = 1
-	},
-/area/mainship/medical/lower_medical)
+/obj/machinery/landinglight/ds1/delayone,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "Hv" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
@@ -15170,9 +15178,8 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "St" = (
-/obj/machinery/status_display,
-/turf/closed/wall/mainship,
-/area/mainship/command/telecomms)
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar/droppod)
 "Su" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
@@ -16424,13 +16431,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
-"VZ" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 8;
-	on = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/general)
 "Wa" = (
 /obj/item/ammo_casing,
 /turf/open/floor/grass,
@@ -17993,9 +17993,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (2,1,1) = {"
 aa
@@ -18253,9 +18253,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (3,1,1) = {"
 aa
@@ -18513,9 +18513,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (4,1,1) = {"
 aa
@@ -18773,9 +18773,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (5,1,1) = {"
 aa
@@ -19033,9 +19033,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (6,1,1) = {"
 aa
@@ -19293,9 +19293,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (7,1,1) = {"
 aa
@@ -19553,9 +19553,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (8,1,1) = {"
 aa
@@ -19813,9 +19813,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (9,1,1) = {"
 aa
@@ -20073,9 +20073,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (10,1,1) = {"
 aa
@@ -20333,9 +20333,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (11,1,1) = {"
 aa
@@ -20593,9 +20593,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (12,1,1) = {"
 aa
@@ -20853,9 +20853,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (13,1,1) = {"
 aa
@@ -21113,9 +21113,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (14,1,1) = {"
 aa
@@ -21373,9 +21373,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (15,1,1) = {"
 aa
@@ -21633,9 +21633,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (16,1,1) = {"
 aa
@@ -21893,9 +21893,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (17,1,1) = {"
 aa
@@ -22153,9 +22153,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (18,1,1) = {"
 aa
@@ -22413,9 +22413,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (19,1,1) = {"
 aa
@@ -22673,9 +22673,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (20,1,1) = {"
 aa
@@ -22933,9 +22933,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (21,1,1) = {"
 aa
@@ -23193,9 +23193,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (22,1,1) = {"
 aa
@@ -23453,9 +23453,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (23,1,1) = {"
 aa
@@ -23713,9 +23713,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (24,1,1) = {"
 aa
@@ -23973,9 +23973,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (25,1,1) = {"
 aa
@@ -24233,9 +24233,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (26,1,1) = {"
 aa
@@ -24493,9 +24493,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (27,1,1) = {"
 aa
@@ -24753,9 +24753,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (28,1,1) = {"
 aa
@@ -25013,9 +25013,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (29,1,1) = {"
 aa
@@ -25273,9 +25273,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (30,1,1) = {"
 aa
@@ -25533,9 +25533,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (31,1,1) = {"
 aa
@@ -25793,9 +25793,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (32,1,1) = {"
 aa
@@ -26053,9 +26053,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (33,1,1) = {"
 aa
@@ -26313,9 +26313,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (34,1,1) = {"
 aa
@@ -26573,9 +26573,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (35,1,1) = {"
 aa
@@ -26833,9 +26833,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (36,1,1) = {"
 aa
@@ -27093,9 +27093,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (37,1,1) = {"
 aa
@@ -27353,9 +27353,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (38,1,1) = {"
 aa
@@ -27613,9 +27613,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (39,1,1) = {"
 aa
@@ -27873,9 +27873,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (40,1,1) = {"
 aa
@@ -28133,9 +28133,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (41,1,1) = {"
 aa
@@ -28393,9 +28393,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (42,1,1) = {"
 aa
@@ -28653,9 +28653,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (43,1,1) = {"
 aa
@@ -28913,9 +28913,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (44,1,1) = {"
 aa
@@ -29173,9 +29173,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (45,1,1) = {"
 aa
@@ -29433,9 +29433,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (46,1,1) = {"
 aa
@@ -29693,9 +29693,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (47,1,1) = {"
 aa
@@ -29953,9 +29953,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (48,1,1) = {"
 aa
@@ -30213,9 +30213,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (49,1,1) = {"
 aa
@@ -30473,9 +30473,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (50,1,1) = {"
 aa
@@ -30733,9 +30733,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (51,1,1) = {"
 aa
@@ -30993,9 +30993,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (52,1,1) = {"
 aa
@@ -31253,9 +31253,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (53,1,1) = {"
 aa
@@ -31513,9 +31513,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (54,1,1) = {"
 aa
@@ -31773,9 +31773,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (55,1,1) = {"
 aa
@@ -32033,9 +32033,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (56,1,1) = {"
 aa
@@ -32293,9 +32293,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (57,1,1) = {"
 aa
@@ -32553,9 +32553,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (58,1,1) = {"
 aa
@@ -32813,9 +32813,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (59,1,1) = {"
 aa
@@ -33073,9 +33073,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (60,1,1) = {"
 aa
@@ -33333,9 +33333,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (61,1,1) = {"
 aa
@@ -33593,9 +33593,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (62,1,1) = {"
 aa
@@ -33853,9 +33853,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (63,1,1) = {"
 aa
@@ -34113,9 +34113,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (64,1,1) = {"
 aa
@@ -34373,9 +34373,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (65,1,1) = {"
 aa
@@ -34633,9 +34633,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (66,1,1) = {"
 aa
@@ -34893,9 +34893,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (67,1,1) = {"
 aa
@@ -35153,9 +35153,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (68,1,1) = {"
 aa
@@ -35413,9 +35413,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (69,1,1) = {"
 aa
@@ -35673,9 +35673,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (70,1,1) = {"
 aa
@@ -35933,9 +35933,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (71,1,1) = {"
 aa
@@ -36193,9 +36193,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (72,1,1) = {"
 aa
@@ -36453,9 +36453,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (73,1,1) = {"
 aa
@@ -36713,9 +36713,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (74,1,1) = {"
 aa
@@ -36973,9 +36973,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (75,1,1) = {"
 aa
@@ -37233,9 +37233,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (76,1,1) = {"
 aa
@@ -37493,9 +37493,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (77,1,1) = {"
 aa
@@ -37753,9 +37753,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (78,1,1) = {"
 aa
@@ -38013,9 +38013,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (79,1,1) = {"
 aa
@@ -38273,9 +38273,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (80,1,1) = {"
 aa
@@ -38533,9 +38533,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (81,1,1) = {"
 aa
@@ -38793,9 +38793,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (82,1,1) = {"
 aa
@@ -39053,9 +39053,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (83,1,1) = {"
 aa
@@ -39313,9 +39313,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (84,1,1) = {"
 aa
@@ -39573,9 +39573,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (85,1,1) = {"
 aa
@@ -39833,9 +39833,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (86,1,1) = {"
 aa
@@ -40093,9 +40093,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (87,1,1) = {"
 aa
@@ -40353,9 +40353,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (88,1,1) = {"
 aa
@@ -40613,9 +40613,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (89,1,1) = {"
 aa
@@ -40873,9 +40873,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (90,1,1) = {"
 aa
@@ -41133,9 +41133,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (91,1,1) = {"
 aa
@@ -41393,9 +41393,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (92,1,1) = {"
 aa
@@ -41653,9 +41653,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (93,1,1) = {"
 aa
@@ -41913,9 +41913,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (94,1,1) = {"
 aa
@@ -42173,9 +42173,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (95,1,1) = {"
 aa
@@ -42273,7 +42273,7 @@ rc
 Fd
 ch
 ZX
-gB
+lb
 UJ
 Ne
 UJ
@@ -42433,9 +42433,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (96,1,1) = {"
 aa
@@ -42693,9 +42693,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (97,1,1) = {"
 aa
@@ -42953,9 +42953,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (98,1,1) = {"
 aa
@@ -43068,7 +43068,7 @@ Az
 Sn
 aY
 aY
-Hu
+aC
 bd
 XU
 Fu
@@ -43213,9 +43213,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (99,1,1) = {"
 aa
@@ -43472,10 +43472,10 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
-lb
+mK
+mK
+mK
+mK
 "}
 (100,1,1) = {"
 aa
@@ -43733,9 +43733,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (101,1,1) = {"
 aa
@@ -44067,9 +44067,9 @@ Ur
 Ur
 ap
 ap
-mK
-mK
-gq
+ge
+ge
+eR
 dR
 dR
 kG
@@ -44322,7 +44322,7 @@ ae
 eC
 fS
 bS
-ci
+vB
 dr
 kB
 ap
@@ -44513,9 +44513,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (104,1,1) = {"
 aa
@@ -44586,7 +44586,7 @@ ct
 iB
 fD
 xo
-aC
+hB
 bh
 bh
 fd
@@ -44669,7 +44669,7 @@ lG
 mV
 wm
 QX
-St
+nT
 SA
 Vu
 SA
@@ -44846,7 +44846,7 @@ ex
 bS
 ap
 CB
-aC
+hB
 Zd
 Zd
 eJ
@@ -45293,9 +45293,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (107,1,1) = {"
 aa
@@ -45359,14 +45359,14 @@ lX
 lX
 lX
 lX
-fl
-ow
+pC
+gu
 az
 ex
 az
 ap
 CB
-vB
+Hu
 XJ
 bh
 bh
@@ -45479,7 +45479,7 @@ aa
 aa
 aa
 aa
-eR
+gB
 fI
 fI
 fI
@@ -45552,10 +45552,10 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
-lb
+mK
+mK
+mK
+mK
 "}
 (108,1,1) = {"
 aa
@@ -45619,14 +45619,14 @@ lX
 lX
 lX
 lX
-fl
-bM
+pC
+St
 az
 ex
-gu
+hy
 ap
 CB
-vB
+Hu
 XJ
 bh
 bh
@@ -45739,7 +45739,7 @@ aa
 aa
 fI
 fI
-eR
+gB
 fI
 fI
 fI
@@ -45810,12 +45810,12 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
-lb
-lb
-lb
+mK
+mK
+mK
+mK
+mK
+mK
 "}
 (109,1,1) = {"
 aa
@@ -45999,7 +45999,7 @@ fI
 fI
 fI
 fI
-eR
+gB
 fI
 aa
 aa
@@ -46332,10 +46332,10 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
-lb
+mK
+mK
+mK
+mK
 "}
 (111,1,1) = {"
 aa
@@ -46593,9 +46593,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (112,1,1) = {"
 aa
@@ -46853,9 +46853,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (113,1,1) = {"
 aa
@@ -47113,9 +47113,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (114,1,1) = {"
 aa
@@ -47373,9 +47373,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (115,1,1) = {"
 aa
@@ -47633,9 +47633,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (116,1,1) = {"
 aa
@@ -47893,9 +47893,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (117,1,1) = {"
 aa
@@ -48153,9 +48153,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (118,1,1) = {"
 aa
@@ -48413,9 +48413,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (119,1,1) = {"
 aa
@@ -48502,7 +48502,7 @@ ap
 ap
 ap
 WG
-ge
+BV
 jJ
 kO
 UX
@@ -48673,9 +48673,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (120,1,1) = {"
 aa
@@ -48759,7 +48759,7 @@ kP
 UB
 cr
 kP
-hB
+gq
 RW
 dJ
 tQ
@@ -48933,9 +48933,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (121,1,1) = {"
 aa
@@ -49193,9 +49193,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (122,1,1) = {"
 aa
@@ -49453,9 +49453,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (123,1,1) = {"
 aa
@@ -49713,9 +49713,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (124,1,1) = {"
 aa
@@ -49973,9 +49973,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (125,1,1) = {"
 aa
@@ -50233,9 +50233,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (126,1,1) = {"
 aa
@@ -50381,7 +50381,7 @@ jy
 Fx
 cN
 PE
-pC
+Dq
 mX
 tZ
 xD
@@ -50419,7 +50419,7 @@ fI
 fI
 fI
 fI
-eR
+gB
 aa
 aa
 fI
@@ -50495,7 +50495,7 @@ aa
 aa
 aa
 aa
-lb
+mK
 "}
 (127,1,1) = {"
 aa
@@ -50753,9 +50753,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (128,1,1) = {"
 aa
@@ -51013,9 +51013,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (129,1,1) = {"
 aa
@@ -51102,7 +51102,7 @@ bh
 bh
 XJ
 sH
-ge
+BV
 jJ
 kO
 Yk
@@ -51273,9 +51273,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (130,1,1) = {"
 aa
@@ -51342,7 +51342,7 @@ dK
 fv
 go
 bS
-ci
+vB
 bS
 ap
 jp
@@ -51533,9 +51533,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (131,1,1) = {"
 aa
@@ -51601,7 +51601,7 @@ lr
 ap
 aF
 go
-Dq
+kt
 fn
 rI
 ap
@@ -51676,9 +51676,9 @@ qC
 Ef
 dP
 qC
-hy
-hy
-VZ
+ci
+ci
+fl
 BG
 jy
 io
@@ -52053,9 +52053,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (133,1,1) = {"
 aa
@@ -52313,9 +52313,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (134,1,1) = {"
 aa
@@ -52573,9 +52573,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (135,1,1) = {"
 aa
@@ -52833,9 +52833,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (136,1,1) = {"
 aa
@@ -53093,9 +53093,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (137,1,1) = {"
 aa
@@ -53353,9 +53353,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (138,1,1) = {"
 aa
@@ -53613,9 +53613,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (139,1,1) = {"
 aa
@@ -53873,9 +53873,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (140,1,1) = {"
 aa
@@ -54133,9 +54133,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (141,1,1) = {"
 aa
@@ -54393,9 +54393,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (142,1,1) = {"
 aa
@@ -54653,9 +54653,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (143,1,1) = {"
 aa
@@ -54913,9 +54913,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (144,1,1) = {"
 aa
@@ -55173,9 +55173,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (145,1,1) = {"
 aa
@@ -55433,9 +55433,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (146,1,1) = {"
 aa
@@ -55693,9 +55693,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (147,1,1) = {"
 aa
@@ -55953,9 +55953,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (148,1,1) = {"
 aa
@@ -56213,9 +56213,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (149,1,1) = {"
 aa
@@ -56473,9 +56473,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (150,1,1) = {"
 aa
@@ -56733,9 +56733,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (151,1,1) = {"
 aa
@@ -56993,9 +56993,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (152,1,1) = {"
 aa
@@ -57253,9 +57253,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (153,1,1) = {"
 aa
@@ -57513,9 +57513,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (154,1,1) = {"
 aa
@@ -57773,9 +57773,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (155,1,1) = {"
 aa
@@ -58033,9 +58033,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (156,1,1) = {"
 aa
@@ -58293,9 +58293,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (157,1,1) = {"
 aa
@@ -58553,9 +58553,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (158,1,1) = {"
 aa
@@ -58813,9 +58813,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (159,1,1) = {"
 aa
@@ -59073,9 +59073,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (160,1,1) = {"
 aa
@@ -59333,9 +59333,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (161,1,1) = {"
 aa
@@ -59593,9 +59593,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (162,1,1) = {"
 aa
@@ -59853,9 +59853,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (163,1,1) = {"
 aa
@@ -60113,9 +60113,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (164,1,1) = {"
 aa
@@ -60373,9 +60373,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (165,1,1) = {"
 aa
@@ -60633,9 +60633,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (166,1,1) = {"
 aa
@@ -60893,9 +60893,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (167,1,1) = {"
 aa
@@ -61153,9 +61153,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (168,1,1) = {"
 aa
@@ -61413,9 +61413,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (169,1,1) = {"
 aa
@@ -61673,9 +61673,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (170,1,1) = {"
 aa
@@ -61933,9 +61933,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (171,1,1) = {"
 aa
@@ -62193,9 +62193,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (172,1,1) = {"
 aa
@@ -62453,9 +62453,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (173,1,1) = {"
 aa
@@ -62713,9 +62713,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (174,1,1) = {"
 aa
@@ -62973,9 +62973,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (175,1,1) = {"
 aa
@@ -63233,9 +63233,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (176,1,1) = {"
 aa
@@ -63493,9 +63493,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (177,1,1) = {"
 aa
@@ -63753,9 +63753,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (178,1,1) = {"
 aa
@@ -64013,9 +64013,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (179,1,1) = {"
 aa
@@ -64273,9 +64273,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (180,1,1) = {"
 aa
@@ -64533,9 +64533,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (181,1,1) = {"
 aa
@@ -64793,9 +64793,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (182,1,1) = {"
 aa
@@ -65053,9 +65053,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (183,1,1) = {"
 aa
@@ -65313,9 +65313,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (184,1,1) = {"
 aa
@@ -65573,9 +65573,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (185,1,1) = {"
 aa
@@ -65833,9 +65833,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (186,1,1) = {"
 aa
@@ -66093,9 +66093,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (187,1,1) = {"
 aa
@@ -66353,9 +66353,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (188,1,1) = {"
 aa
@@ -66613,9 +66613,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (189,1,1) = {"
 aa
@@ -66873,9 +66873,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (190,1,1) = {"
 aa
@@ -67133,9 +67133,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (191,1,1) = {"
 aa
@@ -67393,9 +67393,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (192,1,1) = {"
 aa
@@ -67653,9 +67653,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (193,1,1) = {"
 aa
@@ -67913,9 +67913,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (194,1,1) = {"
 aa
@@ -68173,9 +68173,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (195,1,1) = {"
 aa
@@ -68433,9 +68433,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (196,1,1) = {"
 aa
@@ -68693,9 +68693,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (197,1,1) = {"
 aa
@@ -68953,9 +68953,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (198,1,1) = {"
 aa
@@ -69213,9 +69213,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (199,1,1) = {"
 aa
@@ -69473,9 +69473,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (200,1,1) = {"
 aa
@@ -69733,9 +69733,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (201,1,1) = {"
 aa
@@ -69993,9 +69993,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (202,1,1) = {"
 aa
@@ -70253,9 +70253,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (203,1,1) = {"
 aa
@@ -70513,9 +70513,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (204,1,1) = {"
 aa
@@ -70773,9 +70773,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (205,1,1) = {"
 aa
@@ -71033,9 +71033,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (206,1,1) = {"
 aa
@@ -71293,9 +71293,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (207,1,1) = {"
 aa
@@ -71553,9 +71553,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (208,1,1) = {"
 aa
@@ -71813,9 +71813,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (209,1,1) = {"
 aa
@@ -72073,9 +72073,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (210,1,1) = {"
 aa
@@ -72333,9 +72333,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (211,1,1) = {"
 aa
@@ -72593,9 +72593,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (212,1,1) = {"
 aa
@@ -72853,9 +72853,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (213,1,1) = {"
 aa
@@ -73113,9 +73113,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (214,1,1) = {"
 aa
@@ -73373,9 +73373,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (215,1,1) = {"
 aa
@@ -73633,9 +73633,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (216,1,1) = {"
 aa
@@ -73893,9 +73893,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (217,1,1) = {"
 aa
@@ -74153,9 +74153,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (218,1,1) = {"
 aa
@@ -74413,9 +74413,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (219,1,1) = {"
 aa
@@ -74673,9 +74673,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (220,1,1) = {"
 aa
@@ -74933,9 +74933,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (221,1,1) = {"
 aa
@@ -75193,9 +75193,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (222,1,1) = {"
 aa
@@ -75453,9 +75453,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (223,1,1) = {"
 aa
@@ -75713,9 +75713,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (224,1,1) = {"
 aa
@@ -75973,9 +75973,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (225,1,1) = {"
 aa
@@ -76233,9 +76233,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (226,1,1) = {"
 aa
@@ -76493,9 +76493,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (227,1,1) = {"
 aa
@@ -76753,9 +76753,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (228,1,1) = {"
 aa
@@ -77013,9 +77013,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (229,1,1) = {"
 aa
@@ -77273,9 +77273,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (230,1,1) = {"
 aa
@@ -77533,9 +77533,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (231,1,1) = {"
 aa
@@ -77793,9 +77793,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (232,1,1) = {"
 aa
@@ -78053,9 +78053,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (233,1,1) = {"
 aa
@@ -78313,9 +78313,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (234,1,1) = {"
 aa
@@ -78573,9 +78573,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (235,1,1) = {"
 aa
@@ -78833,9 +78833,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (236,1,1) = {"
 aa
@@ -79093,9 +79093,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (237,1,1) = {"
 aa
@@ -79353,9 +79353,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (238,1,1) = {"
 aa
@@ -79613,9 +79613,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (239,1,1) = {"
 aa
@@ -79873,9 +79873,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (240,1,1) = {"
 aa
@@ -80133,9 +80133,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (241,1,1) = {"
 aa
@@ -80393,9 +80393,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (242,1,1) = {"
 aa
@@ -80653,9 +80653,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (243,1,1) = {"
 aa
@@ -80913,9 +80913,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (244,1,1) = {"
 aa
@@ -81173,9 +81173,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (245,1,1) = {"
 aa
@@ -81433,9 +81433,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (246,1,1) = {"
 aa
@@ -81693,9 +81693,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (247,1,1) = {"
 aa
@@ -81953,9 +81953,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (248,1,1) = {"
 aa
@@ -82213,9 +82213,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (249,1,1) = {"
 aa
@@ -82473,9 +82473,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (250,1,1) = {"
 aa
@@ -82733,9 +82733,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (251,1,1) = {"
 aa
@@ -82993,9 +82993,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (252,1,1) = {"
 aa
@@ -83253,9 +83253,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (253,1,1) = {"
 aa
@@ -83513,9 +83513,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (254,1,1) = {"
 aa
@@ -83773,9 +83773,9 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
 (255,1,1) = {"
 aa
@@ -84033,7 +84033,7 @@ aa
 aa
 aa
 aa
-lb
-lb
-lb
+mK
+mK
+mK
 "}
