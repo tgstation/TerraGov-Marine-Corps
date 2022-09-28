@@ -74,7 +74,7 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	max_integrity = 200
 	integrity_failure = 50
-	var/deployed_item = /obj/structure/barricade/deployable
+	var/deployable_item = /obj/structure/barricade/deployable
 	var/deploy_time = 1 SECONDS
 	var/undeploy_time = 1 SECONDS
 	var/is_wired = FALSE
@@ -83,5 +83,5 @@
 
 /obj/item/weapon/shield/riot/marine/deployable/Initialize()
 	. = ..()
-	if(deployed_item)
-		AddElement(/datum/element/deployable_item, deployed_item, deploy_time, undeploy_time)
+	if(deployable_item)
+		AddElement(/datum/element/deployable_item, deployable_item, type, deploy_time, undeploy_time)
