@@ -703,6 +703,11 @@ ARMOR
 	contains = list(/obj/item/weapon/shield/riot/marine)
 	cost = 10
 
+/datum/supply_packs/armor/marine_shield/deployable
+	name = "TL-182 Deployable Shield"
+	contains = list(/obj/item/weapon/shield/riot/marine/deployable)
+	cost = 3
+
 /datum/supply_packs/armor/b18
 	name = "B18 Armor Set"
 	contains = list(
