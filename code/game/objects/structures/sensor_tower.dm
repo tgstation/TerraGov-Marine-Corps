@@ -86,7 +86,7 @@
 	var/activated = FALSE
 
 /obj/structure/sensor_tower_patrol/Initialize()
-	..()
+	. = ..()
 	name += " " + num2text(id)
 	towerid = id
 	id++
@@ -166,6 +166,7 @@
 	. = ..()
 	update_control_minimap_icon()
 
+///Update minimap icon of tower if its deactivated, activated , and fully activated
 /obj/structure/sensor_tower_patrol/proc/update_control_minimap_icon()
 	if(activated)
 		SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "relay_[towerid]_on_full")
