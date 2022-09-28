@@ -1826,13 +1826,12 @@ datum/ammo/bullet/revolver/tp44
 	var/mid_range = 5
 	///Range for the minimal rad effects
 	var/outer_range = 8
-	///geiger counter sound loop
-	var/datum/looping_sound/geiger/geiger_counter
 
 /datum/ammo/rocket/som/rad/drop_nade(turf/T)
 	playsound(T, 'sound/effects/portal_opening.ogg', 50, 1)
 	for(var/mob/living/victim in get_hear(outer_range, T))
 		var/strength
+		var/datum/looping_sound/geiger/geiger_counter
 		geiger_counter = new(null, FALSE)
 		if(get_dist(victim, T) <= inner_range)
 			strength = rad_strength

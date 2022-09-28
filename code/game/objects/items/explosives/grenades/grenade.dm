@@ -111,8 +111,6 @@
 	var/outer_range = 7
 	///The potency of the grenade
 	var/rad_strength = 20
-	///geiger counter sound loop
-	var/datum/looping_sound/geiger/geiger_counter
 
 /obj/item/explosive/grenade/rad/prime()
 	var/turf/impact_turf = get_turf(src)
@@ -120,6 +118,7 @@
 
 	for(var/mob/living/victim in get_hear(outer_range, impact_turf))
 		var/strength
+		var/datum/looping_sound/geiger/geiger_counter
 		geiger_counter = new(null, FALSE)
 		if(get_dist(victim, impact_turf) <= inner_range)
 			strength = rad_strength
