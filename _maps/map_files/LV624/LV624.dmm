@@ -6254,10 +6254,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/lv624/lazarus/captain)
-"eRR" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/open/space/basic,
-/area/lv624/ground/caves/rock)
 "eSl" = (
 /obj/item/analyzer,
 /turf/open/floor/plating/ground/dirt,
@@ -33845,7 +33841,7 @@ xgZ
 gJI
 gaO
 xnA
-eRR
+jLv
 rhp
 jro
 bch
