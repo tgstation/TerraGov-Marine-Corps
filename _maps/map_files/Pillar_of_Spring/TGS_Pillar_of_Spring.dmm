@@ -174,9 +174,16 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "aC" = (
-/obj/machinery/computer/crew,
-/turf/open/floor/mainship/sterile/side,
-/area/mainship/medical/lower_medical)
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
+/obj/machinery/door/poddoor/shutters/mainship/open/hangar{
+	dir = 2
+	},
+/turf/open/floor/stairs/rampbottom{
+	dir = 1
+	},
+/area/mainship/hallways/hangar)
 "aD" = (
 /obj/item/paper/crumpled{
 	pixel_x = -4;
@@ -654,7 +661,35 @@
 	dir = 4;
 	on = 1
 	},
-/turf/open/floor/mainship/mono,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/machinery/camera/autoname/mainship{
+	dir = 1
+	},
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 1
+	},
+/area/mainship/hallways/hangar/droppod)
+"ch" = (
+/obj/structure/cable,
+/obj/structure/cable,
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/lower_hull)
+"ci" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "cj" = (
 /obj/structure/ship_ammo/minirocket,
@@ -2218,17 +2253,13 @@
 /turf/open/floor/mainship/red/full,
 /area/mainship/command/cic)
 "gQ" = (
-/obj/machinery/door_control/mainship/ammo{
+/obj/structure/droppod,
+/obj/structure/dropprop,
+/obj/machinery/light/mainship{
 	dir = 8
 	},
-/obj/machinery/door/firedoor/mainship{
-	dir = 2;
-	id = "hangar_lockdown"
-	},
-/turf/open/floor/stairs/rampbottom{
-	dir = 1
-	},
-/area/mainship/hallways/hangar)
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar/droppod)
 "gR" = (
 /obj/machinery/door/poddoor/mainship,
 /turf/open/floor/mainship/stripesquare,
@@ -2405,6 +2436,14 @@
 	dir = 1
 	},
 /area/mainship/medical/chemistry)
+"hq" = (
+/obj/structure/droppod,
+/obj/structure/dropprop,
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar/droppod)
 "ht" = (
 /obj/structure/toilet{
 	dir = 8
@@ -3664,8 +3703,9 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "lb" = (
-/obj/effect/attach_point/weapon/dropship1,
-/turf/open/floor/plating,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "lc" = (
 /obj/machinery/computer/general_air_control/large_tank_control{
@@ -4158,6 +4198,9 @@
 "mA" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/keycard_auth,
+/obj/item/radio{
+	pixel_x = 6
+	},
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
@@ -4316,7 +4359,7 @@
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "mZ" = (
-/obj/machinery/computer/telecomms/monitor,
+/obj/machinery/computer/telecomms/monitor/preset,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/telecomms)
 "na" = (
@@ -5714,7 +5757,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "rf" = (
-/obj/machinery/computer/telecomms/server,
+/obj/machinery/computer/telecomms/server/preset,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/telecomms)
 "rg" = (
@@ -7084,16 +7127,21 @@
 	pixel_x = -4;
 	pixel_y = 9
 	},
-/obj/machinery/door_control/old/cic/hangar{
-	pixel_x = -4;
-	pixel_y = 2
-	},
 /obj/machinery/door_control/old/cic/armory{
 	pixel_x = -4;
 	pixel_y = -5
 	},
 /obj/machinery/light/mainship,
-/obj/item/radio,
+/obj/machinery/door_control/old/cic/hangar_shutters{
+	pixel_x = -4;
+	pixel_y = 2
+	},
+/obj/machinery/door_control/old/medbay{
+	id = "Medbay";
+	name = "Medbay Lockdown";
+	pixel_x = 6;
+	pixel_y = -5
+	},
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
 "vw" = (
@@ -9130,6 +9178,11 @@
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/living/grunt_rnr)
+"BB" = (
+/obj/structure/cable,
+/obj/machinery/camera/autoname/mainship,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/hangar)
 "BC" = (
 /obj/machinery/firealarm{
 	dir = 8
@@ -10967,11 +11020,14 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
 	},
-/obj/structure/cable,
-/obj/structure/cable,
-/obj/effect/ai_node,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 6
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
+"GV" = (
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
+/obj/machinery/door/poddoor/shutters/mainship/open/hangar{
+	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
@@ -13215,6 +13271,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
+"MO" = (
+/obj/machinery/door_control/mainship/droppod,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "MP" = (
 /obj/machinery/iv_drip,
 /turf/open/floor/mainship/sterile/dark,
@@ -13515,7 +13575,6 @@
 /area/mainship/hallways/aft_hallway)
 "NG" = (
 /obj/structure/table/woodentable,
-/obj/structure/paper_bin,
 /obj/item/clipboard{
 	pixel_x = -6;
 	pixel_y = 2
@@ -14309,6 +14368,10 @@
 /obj/item/reagent_containers/food/snacks/cheeseburger,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
+"Qa" = (
+/obj/item/radio/intercom/general,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "Qa" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -15725,13 +15788,24 @@
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
-/area/mainship/command/self_destruct)
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 4
+	},
+/area/mainship/hallways/hangar/droppod)
 "Ue" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
 /obj/effect/landmark/start/job/cmo,
 /obj/machinery/light/mainship,
+/obj/machinery/door_control/old/medbay{
+	id = "Medbay";
+	name = "Medbay Lockdown";
+	pixel_x = 25
+	},
 /turf/open/floor/wood,
 /area/mainship/medical/medical_science)
 "Uf" = (
@@ -42942,8 +43016,7 @@ cu
 Wf
 lX
 lX
-lX
-lX
+gQ
 lX
 lX
 gq
@@ -43207,11 +43280,11 @@ Wf
 cb
 az
 ap
-ap
+YU
 ml
 ap
-bs
 ap
+YU
 ap
 ap
 ap
@@ -43464,6 +43537,9 @@ gq
 ex
 az
 Ur
+ha
+az
+MO
 ap
 jr
 ap
@@ -43719,6 +43795,9 @@ er
 fP
 gq
 cg
+Ur
+Ur
+hp
 az
 ap
 ap
@@ -44236,7 +44315,10 @@ ct
 iB
 fD
 xo
-hU
+rD
+lb
+go
+fd
 bh
 bh
 fd
@@ -44493,7 +44575,10 @@ ex
 bS
 ap
 CB
-VG
+aC
+ap
+Zx
+eJ
 Zd
 Zd
 eJ
@@ -45000,15 +45085,15 @@ lX
 lX
 lX
 lX
-eR
-ge
-gq
-eN
-Tz
-ap
-CB
-vh
-XJ
+da
+Ur
+Ur
+hG
+az
+Tp
+Zx
+uZ
+ZA
 bh
 bh
 bh
@@ -45257,12 +45342,9 @@ lX
 lX
 lX
 lX
-eR
-fM
-gq
-ex
-az
-hB
+dX
+Tz
+Ur
 CB
 hU
 XJ
@@ -45518,8 +45600,11 @@ fh
 gg
 gq
 ex
+Ud
+Ur
+BB
 az
-ap
+Qa
 CB
 VG
 XJ
@@ -45769,8 +45854,7 @@ aq
 Wf
 lX
 lX
-lX
-lX
+hq
 lX
 lX
 gq
@@ -49629,7 +49713,7 @@ aB
 ap
 gl
 az
-ex
+BB
 az
 iy
 jn
@@ -49883,8 +49967,10 @@ bz
 an
 aX
 an
-fl
-kB
+ak
+an
+aO
+bV
 az
 ex
 az
@@ -51172,7 +51258,10 @@ aF
 go
 gQ
 fn
-hy
+rI
+VG
+Yb
+QD
 ap
 ap
 QD

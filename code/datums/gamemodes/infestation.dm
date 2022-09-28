@@ -302,7 +302,8 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		var/mob/M = x
 		if(isobserver(M) || isnewplayer(M))
 			continue
-		shake_camera(M, 110, 4)
+		if(M.z == z_level)
+			shake_camera(M, 110, 4)
 
 	var/datum/cinematic/crash_nuke/C = /datum/cinematic/crash_nuke
 	var/nuketime = initial(C.runtime) + initial(C.cleanup_time)
