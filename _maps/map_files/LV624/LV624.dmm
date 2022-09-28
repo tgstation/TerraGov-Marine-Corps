@@ -22630,10 +22630,6 @@
 "xOT" = (
 /turf/open/space/basic,
 /area/lv624/lazarus/internal_affairs)
-"xPn" = (
-/obj/machinery/computer/nuke_disk_generator/blue,
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/engineering)
 "xPG" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -47033,7 +47029,7 @@ xFy
 iVO
 agv
 jNQ
-xPn
+sTw
 tch
 aEp
 kWA
