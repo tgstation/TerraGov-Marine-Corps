@@ -168,4 +168,5 @@
 	icon_state = "laser_powerpack"
 	charge_overlay = "laser_back"
 	maxcharge = 2500
-	charge_amount = 10
+	charge_amount = 5
+	self_recharge = FALSE
