@@ -1163,13 +1163,13 @@
 
 /obj/structure/barricade/deployable
 	icon_state = "folding_0"
-	max_integrity = 200
+	max_integrity = 300
 	barricade_type = "folding"
-	///Whether this barricade has damaged states ///gotta make this part work, then can remove
-	can_change_dmg_state = TRUE
 	can_wire = TRUE
 	is_wired = FALSE
+	///Whether this item can be deployed or undeployed
 	var/flags_item = IS_DEPLOYABLE
+	///What it deploys into
 	var/obj/item/weapon/shield/riot/marine/deployable/internal_item
 
 /obj/structure/barricade/deployable/Initialize(mapload, _internal_item, deployer)
