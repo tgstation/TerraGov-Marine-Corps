@@ -2814,13 +2814,13 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/xeno/leash_ball/on_hit_mob(mob/victim, obj/projectile/proj)
 	var/turf/T = get_turf(victim)
-	drop_leashball(T.density ? proj.loc : T, P.firer)
+	drop_leashball(T.density ? proj.loc : T, proj.firer)
 
 /datum/ammo/xeno/leash_ball/on_hit_obj(obj/O, obj/projectile/proj)
 	var/turf/T = get_turf(O)
 	if(T.density || (O.density && !O.throwpass))
 		T = get_turf(proj)
-	drop_leashball(T.density ? proj.loc : T, P.firer)
+	drop_leashball(T.density ? proj.loc : T, proj.firer)
 
 /datum/ammo/xeno/leash_ball/do_at_max_range(turf/T, obj/projectile/proj)
 	drop_leashball(T.density ? proj.loc : T)

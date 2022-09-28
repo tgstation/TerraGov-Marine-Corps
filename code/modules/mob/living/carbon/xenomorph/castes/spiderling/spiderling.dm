@@ -31,12 +31,10 @@
 		death(FALSE, silent = TRUE)
 
 /mob/living/carbon/xenomorph/spiderling/on_death()
-	Dissolve()
+	///We QDEL them as cleanup and preventing them from being sold
+	QDEL_IN(src, TIME_TO_DISSOLVE)
 	return ..()
 
-// This will QDEL the spiderling but also animate them " dissolving "
-/mob/living/carbon/xenomorph/spiderling/proc/Dissolve()
-	QDEL_IN(src, TIME_TO_DISSOLVE)
 
 // ***************************************
 // *********** Spiderling AI Section

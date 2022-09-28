@@ -199,46 +199,42 @@
 
 /// Burrow code for xenomorphs
 /datum/action/xeno_action/burrow/proc/xeno_burrow()
-	var/mob/living/carbon/xenomorph/X = owner
 	SIGNAL_HANDLER
+	var/mob/living/carbon/xenomorph/X = owner
 	if(!HAS_TRAIT(X, TRAIT_BURROWED))
 		to_chat(X, span_xenowarning("We start burrowing into the ground..."))
 		INVOKE_ASYNC(src, .proc/xeno_burrow_doafter)
 		return
-	UnregisterSignal(X, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(X, COMSIG_XENOMORPH_TAKING_DAMAGE)
 	X.fire_resist_modifier += BURROW_FIRE_RESIST_MODIFIER
-	X.icon_state = initial(X.icon_state)
 	X.mouse_opacity = initial(X.mouse_opacity)
 	X.density = TRUE
 	X.throwpass = FALSE
 	REMOVE_TRAIT(X, TRAIT_IMMOBILE, WIDOW_ABILITY_TRAIT)
-	REMOVE_TRAIT(X, TRAIT_MOB_ICON_UPDATE_BLOCKED, WIDOW_ABILITY_TRAIT)
 	REMOVE_TRAIT(X, TRAIT_BURROWED, WIDOW_ABILITY_TRAIT)
 	REMOVE_TRAIT(X, TRAIT_HANDS_BLOCKED, WIDOW_ABILITY_TRAIT)
+	X.update_icons()
 	add_cooldown()
 
 /// Called by xeno_burrow only when burrowing
 /datum/action/xeno_action/burrow/proc/xeno_burrow_doafter()
-	var/mob/living/carbon/xenomorph/X = owner
-	if(!do_after(X, 3 SECONDS, TRUE, null, BUSY_ICON_DANGER))
+	if(!do_after(owner, 3 SECONDS, TRUE, null, BUSY_ICON_DANGER))
 		return
-	to_chat(X, span_xenowarning("We are now burrowed, hidden in plain sight and ready to strike."))
+	to_chat(owner, span_xenowarning("We are now burrowed, hidden in plain sight and ready to strike."))
 	// This part here actually burrows the xeno
-	X.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	X.density = FALSE
-	X.throwpass = TRUE
-	// Update here without waiting for life
-	X.icon_state = "[X.xeno_caste.caste_name] Burrowed"
-	X.wound_overlay.icon_state = ""
-	X.fire_overlay.icon_state = ""
+	owner.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	owner.density = FALSE
+	owner.throwpass = TRUE
 	// Here we prevent the xeno from moving or attacking or using abilities untill they unburrow by clicking the ability
-	X.fire_resist_modifier -= BURROW_FIRE_RESIST_MODIFIER // This makes the xeno immune to fire while burrowed, even if burning beforehand
-	ADD_TRAIT(X, TRAIT_IMMOBILE, WIDOW_ABILITY_TRAIT)
-	ADD_TRAIT(X, TRAIT_MOB_ICON_UPDATE_BLOCKED, WIDOW_ABILITY_TRAIT)
-	ADD_TRAIT(X, TRAIT_BURROWED, WIDOW_ABILITY_TRAIT)
-	ADD_TRAIT(X, TRAIT_HANDS_BLOCKED, WIDOW_ABILITY_TRAIT)
+	ADD_TRAIT(owner, TRAIT_IMMOBILE, WIDOW_ABILITY_TRAIT)
+	ADD_TRAIT(owner, TRAIT_BURROWED, WIDOW_ABILITY_TRAIT)
+	ADD_TRAIT(owner, TRAIT_HANDS_BLOCKED, WIDOW_ABILITY_TRAIT)
 	// We register for movement so that we unburrow if bombed
-	RegisterSignal(X, COMSIG_MOVABLE_MOVED, .proc/xeno_burrow)
+	var/mob/living/carbon/xenomorph/X = owner
+	X.fire_resist_modifier -= BURROW_FIRE_RESIST_MODIFIER // This makes the xeno immune to fire while burrowed, even if burning beforehand
+	// Update here without waiting for life
+	X.update_icons()
+	RegisterSignal(X, COMSIG_XENOMORPH_TAKING_DAMAGE, .proc/xeno_burrow)
 
 // ***************************************
 // *********** Attach Spiderlings
@@ -251,19 +247,19 @@
 	plasma_cost = 0
 	cooldown_timer = 0 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_ATTACH_SPIDERLINGS
-	// the attached spiderlings
+	///the attached spiderlings
 	var/list/mob/living/carbon/xenomorph/spiderling/attached_spiderlings = list()
-	// how many times we attempt to attach adjacent spiderligns
+	///how many times we attempt to attach adjacent spiderligns
 	var/attach_attempts = 5
 
 /datum/action/xeno_action/attach_spiderlings/action_activate()
 	. = ..()
-	var/mob/living/carbon/xenomorph/widow/X = owner
-	if(X.buckled_mobs)
+	if(owner.buckled_mobs)
 		/// yeet off all spiderlings if we are carrying any
-		X.unbuckle_all_mobs(TRUE)
+		owner.unbuckle_all_mobs(TRUE)
 		return
-	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = owner.actions_by_path[/datum/action/xeno_action/create_spiderling]
+	var/mob/living/carbon/xenomorph/widow/X = owner
+	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = X.actions_by_path[/datum/action/xeno_action/create_spiderling]
 	if(!(length(create_spiderling_action.spiderlings)))
 		X.balloon_alert(X, "No spiderlings")
 		return fail_activate()
@@ -271,16 +267,15 @@
 	grab_spiderlings(remaining_spiderlings, attach_attempts)
 	succeed_activate()
 
-// this proc scoops up adjacent spiderlings and then calls ride_widow on them
+/// this proc scoops up adjacent spiderlings and then calls ride_widow on them
 /datum/action/xeno_action/attach_spiderlings/proc/grab_spiderlings(list/mob/living/carbon/xenomorph/spiderling/remaining_list, number_of_attempts_left)
-	var/mob/living/carbon/xenomorph/widow/X = owner
 	if(number_of_attempts_left <= 0)
 		return
 	for(var/mob/living/carbon/xenomorph/spiderling/remaining_spiderling AS in remaining_list)
-		if(!X.Adjacent(remaining_spiderling))
+		if(!owner.Adjacent(remaining_spiderling))
 			continue
 		remaining_list -= remaining_spiderling
-		X.buckle_mob(remaining_spiderling, TRUE, TRUE, 90, 1,0)
+		owner.buckle_mob(remaining_spiderling, TRUE, TRUE, 90, 1,0)
 	addtimer(CALLBACK(src, .proc/grab_spiderlings, remaining_list, number_of_attempts_left - 1), 1)
 
 // ***************************************
