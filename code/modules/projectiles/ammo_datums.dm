@@ -2810,13 +2810,7 @@ datum/ammo/bullet/revolver/tp44
 	max_range = 8
 
 /datum/ammo/xeno/leash_ball/on_hit_turf(turf/T, obj/projectile/proj)
-	if(!T)
-		T = get_turf(proj)
-
-	if(isclosedturf(T))
-		T = get_turf(get_step(T, turn(proj.dir, 180))) //If the turf is closed, we instead drop in the location just prior to the turf
-
-	drop_leashball(T)
+	drop_leashball(T.density ? proj.loc : T)
 
 /datum/ammo/xeno/leash_ball/on_hit_mob(mob/victim, obj/projectile/proj)
 	drop_leashball(get_turf(victim))
