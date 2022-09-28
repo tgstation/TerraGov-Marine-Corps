@@ -193,6 +193,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	max_integrity = 300
 	integrity_failure = 50
+	soft_armor = list(MELEE = 35, BULLET = 30, LASER = 20, ENERGY = 40, BOMB = 25, BIO = 50, "rad" = 0, FIRE = 0, ACID = 30)
 	slowdown = 0.3
 	///The item this deploys into
 	var/deployable_item = /obj/structure/barricade/deployable

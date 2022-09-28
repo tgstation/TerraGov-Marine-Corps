@@ -1168,6 +1168,7 @@
 	barricade_type = "folding"
 	can_wire = TRUE
 	is_wired = FALSE
+	soft_armor = list(MELEE = 35, BULLET = 30, LASER = 20, ENERGY = 40, BOMB = 25, BIO = 100, "rad" = 0, FIRE = 100, ACID = 30)
 	///Whether this item can be deployed or undeployed
 	var/flags_item = IS_DEPLOYABLE
 	///What it deploys into
