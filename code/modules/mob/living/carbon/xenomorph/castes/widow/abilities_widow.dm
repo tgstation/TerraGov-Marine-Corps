@@ -286,8 +286,8 @@
 	ability_name = "Web Hook"
 	mechanics_text = "Shoot out a web and pull it to traverse forward"
 	action_icon_state = "web_hook"
-	plasma_cost = 50
-	cooldown_timer = 20 SECONDS
+	plasma_cost = 1 // 50
+	cooldown_timer = 1 SECONDS // 20
 	keybind_signal = COMSIG_XENOABILITY_WEB_HOOK
 	//ref to beam for web hook
 	var/datum/beam/web_beam
@@ -296,6 +296,8 @@
 
 /datum/action/xeno_action/activable/web_hook/can_use_ability(atom/A)
 	. = ..()
+	if(!.)
+		return
 	if(isliving(A))
 		return FALSE
 	if(!isturf(A))
@@ -303,15 +305,16 @@
 	var/turf/current = get_turf(owner)
 	var/turf/target_turf = get_turf(A)
 	if(get_dist(current, target_turf) > WIDOW_WEB_HOOK_RANGE)
-		return FALSE
+		full_distance = FALSE
+		return TRUE
 	current = get_step_towards(current, target_turf)
 	while((current != target_turf))
+		current = get_step_towards(current, target_turf)
 		if(current.density)
 			full_distance = TRUE
-			return TRUE
-		current = get_step_towards(current, target_turf)
-	if(!current.density)
-		full_distance = FALSE
+		return TRUE
+	if(!target_turf.density)
+			full_distance = FALSE
 
 /datum/action/xeno_action/activable/web_hook/use_ability(atom/A)
 	var/atom/movable/web_hook/web_hook = new (get_turf(owner))
@@ -325,13 +328,10 @@
 /datum/action/xeno_action/activable/web_hook/proc/drag_widow(datum/source, turf/t)
 	SIGNAL_HANDLER
 	QDEL_NULL(web_beam)
-	var/throw_turf = get_turf(t)
 	if(full_distance)
-		owner.throw_at(throw_turf, WIDOW_WEB_HOOK_RANGE, 1, owner)
+		owner.throw_at(t, WIDOW_WEB_HOOK_RANGE, 1, owner)
 	else
-		throw_turf = get_turf(source)
-		var/throw_distance = (get_dist(throw_turf, owner) / 2)
-		owner.throw_at(throw_turf, throw_distance, 1, owner)
+		owner.throw_at(get_turf(source), WIDOW_WEB_HOOK_RANGE / 2, 1, owner)
 	qdel(source)
 	RegisterSignal(owner, COMSIG_MOVABLE_POST_THROW, .proc/delete_beam)
 
