@@ -2813,7 +2813,8 @@ datum/ammo/bullet/revolver/tp44
 	drop_leashball(T.density ? proj.loc : T)
 
 /datum/ammo/xeno/leash_ball/on_hit_mob(mob/victim, obj/projectile/proj)
-	drop_leashball(get_turf(victim))
+	var/turf/T = get_turf(victim)
+	drop_leashball(T.density ? proj.loc : T, P.firer)
 
 /datum/ammo/xeno/leash_ball/on_hit_obj(obj/O, obj/projectile/proj)
 	var/turf/T = get_turf(O)
