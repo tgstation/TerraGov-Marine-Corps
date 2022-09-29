@@ -1,9 +1,9 @@
-/* This is just a file holding numerical defines for reference retrieval on /action datums
-ideally you should never override the base list , and just add onto its length
-The noting system for these is
-VREF_[DATA_TYPE]_[WHAT_IS_IT_USED_FOR]
-
-*/
+/*!
+ * This is just a file holding numerical defines for reference retrieval on /action datums
+ * ideally you should never override the base list , and just add onto its length
+ * The noting system for these is
+ * VREF_[DATA_TYPE]_[WHAT_IS_IT_USED_FOR]
+ */
 
 // Base /datum/action visual references. All subdatums should have these
 /// A define for accesing the mutable appearance of the linked obj. Holds a reference of the objects appearance
