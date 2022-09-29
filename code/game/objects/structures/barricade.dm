@@ -1209,7 +1209,7 @@
 		return
 	disassemble(user)
 
-obj/structure/barricade/deployable/wire()
+/obj/structure/barricade/deployable/wire()
 	. = ..()
 	//makes the shield item wired as well
 	internal_item.is_wired = TRUE
