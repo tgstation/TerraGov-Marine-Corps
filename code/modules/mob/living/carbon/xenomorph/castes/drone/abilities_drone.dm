@@ -96,8 +96,7 @@
 
 /datum/action/xeno_action/sow/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner
-	button.overlays.Cut()
-	button.overlays += image('icons/mob/actions.dmi', button, initial(X.selected_plant.name))
+	action_icon_state = initial(X.selected_plant.name)
 	return ..()
 
 ///Shows a radial menu to pick the plant they wish to put down when they use the ability

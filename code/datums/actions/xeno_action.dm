@@ -2,6 +2,7 @@
 // Action defines end at 5.
 #define VREF_MUTABLE_EMPOWERED_FRAME 6
 #define VREF_IMAGE_XENO_CLOCK 7
+#define VREF_MUTABLE_RAV_LEECH 8
 
 /datum/action/xeno_action
 	var/plasma_cost = 0
@@ -25,7 +26,7 @@
 	empowered_appearence.layer = HUD_LAYER
 	cooldown_image.pixel_y = 7
 	cooldown_image.appearance_flags = RESET_COLOR|RESET_ALPHA
-	visual_references.len = visual_references.len + 2
+	visual_references.len += 2
 	visual_references[VREF_IMAGE_XENO_CLOCK] = cooldown_image
 	visual_references[VREF_MUTABLE_EMPOWERED_FRAME] = empowered_appearence
 

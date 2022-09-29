@@ -259,8 +259,7 @@
 /datum/action/xeno_action/select_reagent/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner
 	var/atom/A = X.selected_reagent
-	button.overlays.Cut()
-	button.overlays += image('icons/mob/actions.dmi', button, initial(A.name))
+	action_icon_state = initial(A.name)
 	return ..()
 
 /datum/action/xeno_action/select_reagent/action_activate()

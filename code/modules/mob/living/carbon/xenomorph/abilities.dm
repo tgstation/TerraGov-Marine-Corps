@@ -1078,8 +1078,7 @@
 	update_button_icon()
 
 /datum/action/xeno_action/set_agressivity/update_button_icon()
-	button.overlays.Cut()
-	button.overlays += image('icons/mob/actions.dmi', button, minions_agressive ? "minion_agressive" : "minion_passive")
+	action_icon_state = minions_agressive ? "minion_agressive" : "minion_passive"
 	return ..()
 
 /////////////////////////////////////////////////////////////////////////////////////////////

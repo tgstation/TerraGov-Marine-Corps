@@ -7,7 +7,7 @@
 	 */
 	var/obj/item/holder_item
 	/// Defines wheter we overlay the image of the obj we are linked to
-	var/get_obj_image = TRUE
+	var/use_obj_appeareance = TRUE
 
 /datum/action/item_action/New(Target, obj/item/holder)
 	. = ..()
@@ -35,7 +35,7 @@
 	return TRUE
 
 /datum/action/item_action/update_button_icon()
-	if(get_obj_image)
+	if(use_obj_appeareance)
 		if(visual_references[VREF_MUTABLE_LINKED_OBJ])
 			button.cut_overlay(visual_references[VREF_MUTABLE_LINKED_OBJ])
 		var/obj/item/I = target
@@ -45,7 +45,7 @@
 	else if(visual_references[VREF_MUTABLE_LINKED_OBJ])
 		button.cut_overlay(visual_references[VREF_MUTABLE_LINKED_OBJ])
 		visual_references[VREF_MUTABLE_LINKED_OBJ] = null
-	..()
+	return ..()
 
 /datum/action/item_action/toggle/New(Target)
 	. = ..()
@@ -71,7 +71,7 @@
 /datum/action/item_action/firemode
 	var/action_firemode
 	var/obj/item/weapon/gun/holder_gun
-	get_obj_image = FALSE
+	use_obj_appeareance = FALSE
 
 
 /datum/action/item_action/firemode/New()
@@ -100,12 +100,12 @@
 			firemode_string += "burst_auto"
 	action_icon_state = firemode_string
 	action_firemode = holder_gun.gun_firemode
-	..()
+	return ..()
 
 /datum/action/item_action/aim_mode
 	name = "Take Aim"
 	action_icon_state = "aim_mode"
-	get_obj_image = FALSE
+	use_obj_appeareance = FALSE
 
 /datum/action/item_action/aim_mode/give_action(mob/M)
 	. = ..()
@@ -123,7 +123,7 @@
 /datum/action/item_action/toggle_hydro
 	/// This references the TL84 flamer
 	var/obj/item/weapon/gun/flamer/big_flamer/marinestandard/holder_flamer
-	get_obj_image = FALSE
+	use_obj_appeareance = FALSE
 
 /datum/action/item_action/toggle_hydro/New()
 	. = ..()
@@ -136,7 +136,7 @@
 		action_icon_state = "TL_84_Water"
 	else
 		action_icon_state = "TL_84_Flame"
-	..()
+	return ..()
 
 ///Signal handler for when the hydro cannon is activated
 /datum/action/item_action/toggle_hydro/proc/update_toggle_button_icon()

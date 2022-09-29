@@ -442,16 +442,22 @@
 	///list of mob = timer_key of mobs we are actively leeching
 	var/mob/living/last_leeched
 
+/datum/action/xeno_action/vampirism/New(Target)
+	..()
+	visual_references.len++
+	var/mutable_appearance/leech_appeareace = mutable_appearance()
+	leech_appeareace.layer = ABOVE_HUD_LAYER
+	visual_references[VREF_MUTABLE_RAV_LEECH] = leech_appeareace
+
 /datum/action/xeno_action/vampirism/update_button_icon()
-	button.overlays.Cut()
 	var/mob/living/carbon/xenomorph/xeno = owner
-	if(xeno.vampirism)
-		button.overlays += image('icons/mob/actions.dmi', button, "neuroclaws_on")
-	else
-		button.overlays += image('icons/mob/actions.dmi', button, "neuroclaws_off")
-	var/mutable_appearance/number = mutable_appearance()
+	action_icon_state = xeno.vampirism ? "neuroclaws_on" : "neuroclaws_off"
+	button.cut_overlay(visual_references[VREF_MUTABLE_RAV_LEECH])
+	var/mutable_appearance/number = visual_references[VREF_MUTABLE_RAV_LEECH]
 	number.maptext = MAPTEXT("[leech_count]")
-	button.overlays += number
+	visual_references[VREF_MUTABLE_RAV_LEECH] = number
+	button.add_overlay(visual_references[VREF_MUTABLE_RAV_LEECH])
+	..()
 
 /datum/action/xeno_action/vampirism/give_action(mob/living/L)
 	. = ..()

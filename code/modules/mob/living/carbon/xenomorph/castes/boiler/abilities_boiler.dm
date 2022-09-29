@@ -116,9 +116,8 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 
 /datum/action/xeno_action/toggle_bomb/update_button_icon()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
-	button.overlays.Cut()
 	var/datum/ammo/xeno/boiler_gas/boiler_glob = X.ammo	//Should be safe as this always selects a ammo.
-	button.overlays += image('icons/mob/actions.dmi', button, boiler_glob.icon_key)
+	action_icon_state = boiler_glob.icon_key
 	return ..()
 
 // ***************************************
@@ -128,6 +127,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 /datum/action/xeno_action/create_boiler_bomb
 	name = "Create bomb"
 	action_icon_state = "toggle_bomb0" //to be changed
+	action_icon = 'icons/xeno/actions_boiler_glob.dmi'
 	mechanics_text = "Creates a Boiler Bombard of the type currently selected."
 	plasma_cost = 200
 	use_state_flags = XACT_USE_BUSY|XACT_USE_LYING
@@ -157,9 +157,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 
 /datum/action/xeno_action/create_boiler_bomb/update_button_icon()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
-	button.overlays.Cut()
-	//the bit where the ammo counter sprite updates.
-	button.overlays += image('icons/xeno/actions_boiler_glob.dmi', button, "bomb_count_[X.corrosive_ammo][X.neuro_ammo]")
+	action_icon_state = "bomb_count_[X.corrosive_ammo][X.neuro_ammo]"
 	return ..()
 
 // ***************************************

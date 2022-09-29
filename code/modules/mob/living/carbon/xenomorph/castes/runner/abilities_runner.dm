@@ -24,11 +24,7 @@
 
 /datum/action/xeno_action/toggle_savage/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner
-	button.overlays.Cut()
-	if(X.savage)
-		button.overlays += image('icons/mob/actions.dmi', button, "savage_off")
-	else
-		button.overlays += image('icons/mob/actions.dmi', button, "savage_on")
+	action_icon_state = X.savage ? "savage_off" : "savage_on"
 	return ..()
 
 /mob/living/carbon/xenomorph/proc/Savage(mob/living/carbon/M)

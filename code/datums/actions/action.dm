@@ -1,9 +1,4 @@
-#define VREF_MUTABLE_LINKED_OBJ 1
-#define VREF_MUTABLE_ACTION_STATE 2
-#define VREF_MUTABLE_MAPTEXT 3
-#define VREF_MUTABLE_SELECTED_FRAME 4
-// added ontop everything else
-#define VREF_IMAGE_ONTOP 5
+
 /datum/action
 	var/name = "Generic Action"
 	var/desc
@@ -96,7 +91,7 @@
 
 	return TRUE
 
-// A proc called on update button action for  additional visuals beyond the very base
+/// A proc called on update button action for  additional visuals beyond the very base
 /datum/action/proc/handle_button_status_visuals()
 	if(can_use_action())
 		button.color = rgb(255, 255, 255, 255)

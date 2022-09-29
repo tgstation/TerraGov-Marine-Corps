@@ -820,6 +820,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 /datum/action/skill/issue_order
 	name = "Issue Order"
 	skill_name = "leadership"
+	action_icon = 'icons/mob/order_icons.dmi'
 	skill_min = SKILL_LEAD_TRAINED
 	var/order_type = null
 
@@ -832,9 +833,13 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	var/mob/living/carbon/human/human = owner
 	if(!istype(human))
 		return
-	button.overlays.Cut()
-	button.overlays += image('icons/mob/order_icons.dmi', icon_state = "[order_type]")
+	action_icon_state = "[order_type]"
+	..()
 
+/datum/action/skill/issue_order/handle_button_status_visuals()
+	var/mob/living/carbon/human/human = owner
+	if(!istype(human))
+		return
 	if(human.command_aura_cooldown)
 		button.color = rgb(255,0,0,255)
 	else
