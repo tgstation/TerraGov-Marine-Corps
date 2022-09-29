@@ -310,8 +310,6 @@
 		owner.balloon_alert(owner, "Too far")
 		return FALSE
 	current = get_step_towards(current, target_turf)
-	while((current != target_turf))
-		current = get_step_towards(current, target_turf)
 
 /datum/action/xeno_action/activable/web_hook/use_ability(atom/A)
 	var/atom/movable/web_hook/web_hook = new (get_turf(owner))
@@ -322,13 +320,13 @@
 	add_cooldown()
 
 /// This throws widow wherever the web_hook landed, distance is dependant on if the web_hook hit a wall or just ground
-/datum/action/xeno_action/activable/web_hook/proc/drag_widow(datum/source, turf/t)
+/datum/action/xeno_action/activable/web_hook/proc/drag_widow(datum/source, turf/target_turf)
 	SIGNAL_HANDLER
 	QDEL_NULL(web_beam)
-	if(t)
-		owner.throw_at(t, WIDOW_WEB_HOOK_RANGE, WIDOW_WEB_HOOK_SPEED, owner, FALSE)
+	if(target_turf)
+		owner.throw_at(target_turf, WIDOW_WEB_HOOK_RANGE, WIDOW_WEB_HOOK_SPEED, owner, FALSE)
 	else
-		/// we throw widow half the distance if she hits the floor
+		// we throw widow half the distance if she hits the floor
 		owner.throw_at(get_turf(source), WIDOW_WEB_HOOK_RANGE / 2, WIDOW_WEB_HOOK_SPEED, owner, FALSE)
 	qdel(source)
 	RegisterSignal(owner, COMSIG_MOVABLE_POST_THROW, .proc/delete_beam)

@@ -19,22 +19,10 @@
 	. = ..()
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/spiderling, spidermother)
 
-/mob/living/carbon/xenomorph/spiderling/update_stat()
-	. = ..()
-	if(.)
-		return
-
-	if(stat == DEAD)
-		return
-
-	if(health <= 0)
-		death(FALSE, silent = TRUE)
-
 /mob/living/carbon/xenomorph/spiderling/on_death()
 	///We QDEL them as cleanup and preventing them from being sold
 	QDEL_IN(src, TIME_TO_DISSOLVE)
 	return ..()
-
 
 // ***************************************
 // *********** Spiderling AI Section
