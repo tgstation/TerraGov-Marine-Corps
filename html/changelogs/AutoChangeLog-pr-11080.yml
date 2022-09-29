@@ -1,0 +1,6 @@
+author: "DeltaFire15"
+delete-after: True
+changes: 
+  - bugfix: "Pheromones (And orders) should no longer \"flicker\" at high TD, remaining consistant instead."
+  - bugfix: "Xenos can no longer receive pheromones when on fire."
+  - refactor: "SSauras now includes MC_CHECK_TICK to prevent it from eating too much of the MC's time."
