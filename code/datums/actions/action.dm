@@ -1,10 +1,9 @@
 #define VREF_IMAGE_LINKED_OBJ 1
 #define VREF_MUTABLE_ACTION_STATE 2
 #define VREF_MUTABLE_MAPTEXT 3
-// used by firemodes to show the current firemode
-// also used by lights to show wheter they are on
-#define VREF_IMAGE_SELECTED 4
-
+#define VREF_MUTABLE_SELECTED_FRAME 4
+// added ontop everything else
+#define VREF_IMAGE_ONTOP 5
 /datum/action
 	var/name = "Generic Action"
 	var/desc
@@ -16,9 +15,13 @@
 	var/background_icon = 'icons/mob/actions.dmi'
 	var/background_icon_state = "template"
 	// holds a set of misc visual references to use with the overlay API
-	var/list/visual_references = list()
-	var/static/atom/movable/vis_obj/action/selected_frame/selected_frame = new
-	var/static/atom/movable/vis_obj/action/empowered_frame/empowered_frame = new //Got lazy and didn't make a child, ask tivi for a better solution.
+	var/list/visual_references = list(
+		VREF_IMAGE_LINKED_OBJ = null,
+		VREF_MUTABLE_ACTION_STATE = null,
+		VREF_MUTABLE_MAPTEXT = null,
+		VREF_MUTABLE_SELECTED_FRAME = null,
+		VREF_IMAGE_ONTOP = null
+	)
 	///Main keybind signal for the action
 	var/keybind_signal
 	///Alternative keybind signal, to use the action differently
@@ -38,15 +41,18 @@
 		IMG.pixel_x = 0
 		IMG.pixel_y = 0
 		visual_references[VREF_IMAGE_LINKED_OBJ] = IMG
-		button.add_overlay(list(img))
+		button.add_overlay(list(IMG))
 	button.icon = icon(background_icon, background_icon_state)
 	button.source_action = src
 	button.name = name
 	if(desc)
 		button.desc = desc
 	var/mutable_appearance/maptext_appearence = mutable_appearance()
-	temporary_ma.layer = HUD_LAYER + 1 // above selected/empowered frame
+	maptext_appearence.layer = ABOVE_HUD_LAYER // above selected/empowered frame
 	visual_references[VREF_MUTABLE_MAPTEXT] = maptext_appearence
+	var/mutable_appearance/selected_appeareance = mutable_appearance('icons/mob/actions.dmi', "selected_frame")
+	selected_appeareance.layer = HUD_LAYER
+	visual_references[VREF_MUTABLE_SELECTED_FRAME] = selected_appeareance
 
 /datum/action/Destroy()
 	if(owner)
@@ -67,6 +73,7 @@
 	// The cutting needs to be done /BEFORE/ the string maptext gets changed
 	// Since byond internally recognizes it as a different image, and doesn't cut it properly
 	button.cut_overlay(list(visual_references[VREF_MUTABLE_MAPTEXT]))
+	var/image/maptext_image = visual_references[VREF_MUTABLE_MAPTEXT]
 	maptext_image.maptext = MAPTEXT(key_string)
 	button.add_overlay(list(visual_references[VREF_MUTABLE_MAPTEXT]))
 
@@ -79,18 +86,25 @@
 
 	if(action_icon && action_icon_state)
 		button.cut_overlay(list(visual_references[VREF_MUTABLE_ACTION_STATE]))
-		visual_references[VREF_MUTABLE_ACTION_STATE] = mutable_appearance(action_icon, action_icon_state)
+		var/mutable_appearance/action_appearence = mutable_appearance(action_icon, action_icon_state)
+		action_appearence.layer = HUD_LAYER
+		visual_references[VREF_MUTABLE_ACTION_STATE] = action_appearence
 		button.add_overlay(list(visual_references[VREF_MUTABLE_ACTION_STATE]))
 	if(background_icon_state)
 		button.icon_state = background_icon_state
 
+	handle_button_status_visuals()
+
+
+	return TRUE
+
+// A proc called on update button action for  additional visuals beyond the very base
+/datum/action/proc/handle_button_status_visuals()
 	if(can_use_action())
 		button.color = rgb(255, 255, 255, 255)
 	else
 		button.color = rgb(128, 0, 0, 128)
 
-
-	return TRUE
 
 /datum/action/proc/action_activate()
 	if(SEND_SIGNAL(src, COMSIG_ACTION_TRIGGER) & COMPONENT_ACTION_BLOCK_TRIGGER)
@@ -113,17 +127,10 @@
 	return
 
 /datum/action/proc/add_selected_frame()
-	button.vis_contents += selected_frame
+	button.add_overlay(list(visual_references[VREF_MUTABLE_SELECTED_FRAME]))
 
 /datum/action/proc/remove_selected_frame()
-	button.vis_contents -= selected_frame
-
-///Adds an outline around the ability button
-/datum/action/proc/add_empowered_frame()
-	button.vis_contents += empowered_frame
-
-/datum/action/proc/remove_empowered_frame()
-	button.vis_contents -= empowered_frame
+	button.cut_overlay(list(visual_references[VREF_MUTABLE_SELECTED_FRAME]))
 
 /datum/action/proc/can_use_action()
 	if(!QDELETED(owner))

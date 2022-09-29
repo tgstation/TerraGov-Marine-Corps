@@ -8,25 +8,6 @@
 	plane = HUD_PLANE
 	icon = 'icons/mob/actions.dmi'
 
-
-/atom/movable/vis_obj/action/selected_frame
-	icon_state = "selected_frame"
-
-/atom/movable/vis_obj/action/empowered_frame
-	icon_state = "borders_center"
-
-/atom/movable/vis_obj/action/fmode_single
-	icon_state = "fmode_single"
-
-/atom/movable/vis_obj/action/fmode_burst
-	icon_state = "fmode_burst"
-
-/atom/movable/vis_obj/action/fmode_single_auto
-	icon_state = "fmode_single_auto"
-
-/atom/movable/vis_obj/action/fmode_burst_auto
-	icon_state = "fmode_burst_auto"
-
 /atom/movable/vis_obj/effect/muzzle_flash
 	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "muzzle_flash"
