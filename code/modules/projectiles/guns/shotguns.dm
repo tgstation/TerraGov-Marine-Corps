@@ -377,6 +377,8 @@
 
 	placed_overlay_iconstate = "wood"
 
+/obj/item/weapon/gun/shotgun/pump/bolt/unscoped
+	starting_attachment_types = list(/obj/item/attachable/stock/mosin)
 
 //***********************************************************
 // Martini Henry
