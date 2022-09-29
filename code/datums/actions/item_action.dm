@@ -37,14 +37,14 @@
 /datum/action/item_action/update_button_icon()
 	if(get_obj_image)
 		if(visual_references[VREF_IMAGE_LINKED_OBJ])
-			button.cut_overlay(list(visual_references[VREF_IMAGE_LINKED_OBJ]))
+			button.cut_overlay(visual_references[VREF_IMAGE_LINKED_OBJ])
 		var/obj/item/I = target
 		var/image/item_image = image(I.icon, button, I.icon_state, ABOVE_HUD_LAYER)
 		item_image.plane = ABOVE_HUD_PLANE
 		visual_references[VREF_IMAGE_LINKED_OBJ] = item_image
 		button.add_overlay(list(item_image))
 	else if(visual_references[VREF_IMAGE_LINKED_OBJ])
-		button.cut_overlay(list(visual_references[VREF_IMAGE_LINKED_OBJ]))
+		button.cut_overlay(visual_references[VREF_IMAGE_LINKED_OBJ])
 		visual_references[VREF_IMAGE_LINKED_OBJ] = null
 	..()
 
@@ -54,16 +54,16 @@
 	button.name = name
 
 /datum/action/item_action/toggle/suit_toggle/update_button_icon()
-	. = ..()
-	if(visual_references[VREF_IMAGE_ONTOP])
-		button.cut_overlay(list(visual_references[VREF_IMAGE_ONTOP]))
+	..()
 	if(!holder_item.light_on)
+		if(visual_references[VREF_IMAGE_ONTOP])
+			button.cut_overlay(visual_references[VREF_IMAGE_ONTOP])
+			visual_references[VREF_IMAGE_ONTOP] = null
 		return
-	var/image/light_image = image('icons/Marine/marine-weapons.dmi', src, "active")
-	light_image.layer = ABOVE_HUD_LAYER
-	light_image.plane = HUD_PLANE
-	visual_references[VREF_IMAGE_ONTOP] = light_image
-	button.add_overlay(list(visual_references[VREF_IMAGE_ONTOP]))
+	if(!visual_references[VREF_IMAGE_ONTOP])
+		var/image/light_image = image('icons/Marine/marine-weapons.dmi', src, "active", ABOVE_HUD_LAYER)
+		visual_references[VREF_IMAGE_ONTOP] = light_image
+		button.add_overlay(visual_references[VREF_IMAGE_ONTOP])
 
 /datum/action/item_action/toggle/motion_detector/action_activate()
 	. = ..()

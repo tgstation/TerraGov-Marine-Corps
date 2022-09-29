@@ -125,10 +125,12 @@
 /datum/action/xeno_action/activable/plant_weeds/update_button_icon()
 	action_icon_state = initial(weed_type.name)
 	if(auto_weeding)
-		visual_references[VREF_IMAGE_ONTOP] = image('icons/mob/actions.dmi', icon_state = "repeating")
-		button.add_overlay(list(visual_references[VREF_IMAGE_ONTOP]))
+		if(!visual_references[VREF_IMAGE_ONTOP])
+			visual_references[VREF_IMAGE_ONTOP] = image('icons/mob/actions.dmi', icon_state = "repeating")
+			button.add_overlay(visual_references[VREF_IMAGE_ONTOP])
 	else if(visual_references[VREF_IMAGE_ONTOP])
-		button.cut_overlay(list(visual_references[VREF_IMAGE_ONTOP]))
+		button.cut_overlay(visual_references[VREF_IMAGE_ONTOP])
+		visual_references[VREF_IMAGE_ONTOP] = null
 	..()
 
 //AI stuff

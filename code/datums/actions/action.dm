@@ -53,6 +53,9 @@
 	var/mutable_appearance/selected_appeareance = mutable_appearance('icons/mob/actions.dmi', "selected_frame")
 	selected_appeareance.layer = HUD_LAYER
 	visual_references[VREF_MUTABLE_SELECTED_FRAME] = selected_appeareance
+	var/mutable_appearance/action_appearence =	mutable_appearance(action_icon, action_icon_state)
+	action_appearence.layer = HUD_LAYER
+	visual_references[VREF_MUTABLE_ACTION_STATE] = action_appearence
 
 /datum/action/Destroy()
 	if(owner)
@@ -72,10 +75,10 @@
 /datum/action/proc/update_map_text(key_string)
 	// The cutting needs to be done /BEFORE/ the string maptext gets changed
 	// Since byond internally recognizes it as a different image, and doesn't cut it properly
-	button.cut_overlay(list(visual_references[VREF_MUTABLE_MAPTEXT]))
+	button.cut_overlay(visual_references[VREF_MUTABLE_MAPTEXT])
 	var/image/maptext_image = visual_references[VREF_MUTABLE_MAPTEXT]
 	maptext_image.maptext = MAPTEXT(key_string)
-	button.add_overlay(list(visual_references[VREF_MUTABLE_MAPTEXT]))
+	button.add_overlay(visual_references[VREF_MUTABLE_MAPTEXT])
 
 /datum/action/proc/update_button_icon()
 	if(!button)
@@ -85,13 +88,12 @@
 	button.desc = desc
 
 	if(action_icon && action_icon_state)
-		button.cut_overlay(list(visual_references[VREF_MUTABLE_ACTION_STATE]))
+		button.cut_overlay(visual_references[VREF_MUTABLE_ACTION_STATE])
 		var/mutable_appearance/action_appearence = visual_references[VREF_MUTABLE_ACTION_STATE]
 		action_appearence.icon = action_icon
 		action_appearence.icon_state = action_icon_state
-		action_appearence.layer = HUD_LAYER
 		//visual_references[VREF_MUTABLE_ACTION_STATE] = action_appearence
-		button.add_overlay(list(visual_references[VREF_MUTABLE_ACTION_STATE]))
+		button.add_overlay(visual_references[VREF_MUTABLE_ACTION_STATE])
 	if(background_icon_state)
 		button.icon_state = background_icon_state
 
@@ -129,10 +131,10 @@
 	return
 
 /datum/action/proc/add_selected_frame()
-	button.add_overlay(list(visual_references[VREF_MUTABLE_SELECTED_FRAME]))
+	button.add_overlay(visual_references[VREF_MUTABLE_SELECTED_FRAME])
 
 /datum/action/proc/remove_selected_frame()
-	button.cut_overlay(list(visual_references[VREF_MUTABLE_SELECTED_FRAME]))
+	button.cut_overlay(visual_references[VREF_MUTABLE_SELECTED_FRAME])
 
 /datum/action/proc/can_use_action()
 	if(!QDELETED(owner))

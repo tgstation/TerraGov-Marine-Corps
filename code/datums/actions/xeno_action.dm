@@ -48,10 +48,10 @@
 
 ///Adds an outline around the ability button
 /datum/action/xeno_action/proc/add_empowered_frame()
-	button.cut_overlay(list(visual_references[VREF_MUTABLE_EMPOWERED_FRAME]))
+	button.cut_overlay(visual_references[VREF_MUTABLE_EMPOWERED_FRAME])
 
 /datum/action/xeno_action/proc/remove_empowered_frame()
-	button.add_overlay(list(visual_references[VREF_MUTABLE_EMPOWERED_FRAME]))
+	button.add_overlay(visual_references[VREF_MUTABLE_EMPOWERED_FRAME])
 
 /datum/action/xeno_action/can_use_action(silent = FALSE, override_flags)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -161,7 +161,7 @@
 		return
 	last_use = world.time
 	cooldown_id = addtimer(CALLBACK(src, .proc/on_cooldown_finish), cooldown_length, TIMER_STOPPABLE)
-	button.add_overlay(list(visual_references[VREF_IMAGE_XENO_CLOCK]))
+	button.add_overlay(visual_references[VREF_IMAGE_XENO_CLOCK])
 
 
 /datum/action/xeno_action/proc/cooldown_remaining()
@@ -173,7 +173,7 @@
 	cooldown_id = null
 	if(!button)
 		CRASH("no button object on finishing xeno action cooldown")
-	button.cut_overlay(list(visual_references[VREF_IMAGE_XENO_CLOCK]))
+	button.cut_overlay(visual_references[VREF_IMAGE_XENO_CLOCK])
 
 /datum/action/xeno_action/handle_button_status_visuals()
 	if(!can_use_action(TRUE, XACT_IGNORE_COOLDOWN))
