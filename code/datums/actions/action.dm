@@ -86,9 +86,11 @@
 
 	if(action_icon && action_icon_state)
 		button.cut_overlay(list(visual_references[VREF_MUTABLE_ACTION_STATE]))
-		var/mutable_appearance/action_appearence = mutable_appearance(action_icon, action_icon_state)
+		var/mutable_appearance/action_appearence = visual_references[VREF_MUTABLE_ACTION_STATE]
+		action_appearence.icon = action_icon
+		action_appearence.icon_state = action_icon_state
 		action_appearence.layer = HUD_LAYER
-		visual_references[VREF_MUTABLE_ACTION_STATE] = action_appearence
+		//visual_references[VREF_MUTABLE_ACTION_STATE] = action_appearence
 		button.add_overlay(list(visual_references[VREF_MUTABLE_ACTION_STATE]))
 	if(background_icon_state)
 		button.icon_state = background_icon_state

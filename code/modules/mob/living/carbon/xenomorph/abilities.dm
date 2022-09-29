@@ -123,11 +123,13 @@
 	plant_weeds(owner)
 
 /datum/action/xeno_action/activable/plant_weeds/update_button_icon()
-	button.overlays.Cut()
+	action_icon_state = initial(weed_type.name)
 	if(auto_weeding)
-		button.overlays += image('icons/mob/actions.dmi', icon_state = "repeating")
-	button.overlays += image('icons/mob/actions.dmi', button, initial(weed_type.name))
-	return ..()
+		visual_references[VREF_IMAGE_ONTOP] = image('icons/mob/actions.dmi', icon_state = "repeating")
+		button.add_overlay(list(visual_references[VREF_IMAGE_ONTOP]))
+	else if(visual_references[VREF_IMAGE_ONTOP])
+		button.cut_overlay(list(visual_references[VREF_IMAGE_ONTOP]))
+	..()
 
 //AI stuff
 /datum/action/xeno_action/activable/plant_weeds/ai_should_start_consider()
@@ -182,9 +184,8 @@
 /datum/action/xeno_action/activable/secrete_resin/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner
 	var/atom/A = X.selected_resin
-	button.overlays.Cut()
-	button.overlays += image('icons/mob/actions.dmi', button, initial(A.name))
-	return ..()
+	action_icon_state = initial(A.name)
+	..()
 
 /datum/action/xeno_action/activable/secrete_resin/action_activate()
 	//Left click on the secrete resin button opens up radial menu (new type of changing structures).
@@ -713,9 +714,8 @@
 
 /datum/action/xeno_action/activable/xeno_spit/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner
-	button.overlays.Cut()
+	action_icon_state = "shift_spit_[X.ammo.icon_state]"
 	..()
-	button.overlays += image('icons/mob/actions.dmi', button, "shift_spit_[X.ammo.icon_state]")
 
 /datum/action/xeno_action/activable/xeno_spit/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
