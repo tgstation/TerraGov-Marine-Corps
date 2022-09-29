@@ -11,7 +11,7 @@
 	var/background_icon_state = "template"
 	// holds a set of misc visual references to use with the overlay API
 	var/list/visual_references = list(
-		VREF_MUTABLE_LINKED_OBJ = null,
+		VREF_APPEARANCE_LINKED_OBJ = null,
 		VREF_MUTABLE_ACTION_STATE = null,
 		VREF_MUTABLE_MAPTEXT = null,
 		VREF_MUTABLE_SELECTED_FRAME = null,
@@ -29,7 +29,7 @@
 	if(isobj(target))
 		var/obj/target_obj = target
 		var/mutable_appearance/obj_appeareance = target_obj.appearance
-		visual_references[VREF_MUTABLE_LINKED_OBJ] = obj_appeareance
+		visual_references[VREF_APPEARANCE_LINKED_OBJ] = obj_appeareance
 		button.add_overlay(obj_appeareance)
 	button.icon = icon(background_icon, background_icon_state)
 	button.source_action = src
@@ -81,7 +81,6 @@
 		var/mutable_appearance/action_appearence = visual_references[VREF_MUTABLE_ACTION_STATE]
 		action_appearence.icon = action_icon
 		action_appearence.icon_state = action_icon_state
-		//visual_references[VREF_MUTABLE_ACTION_STATE] = action_appearence
 		button.add_overlay(visual_references[VREF_MUTABLE_ACTION_STATE])
 	if(background_icon_state)
 		button.icon_state = background_icon_state

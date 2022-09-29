@@ -21,7 +21,6 @@
 	empowered_appearence.layer = HUD_LAYER
 	cooldown_image.pixel_y = 7
 	cooldown_image.appearance_flags = RESET_COLOR|RESET_ALPHA
-	visual_references.len += 2
 	visual_references[VREF_IMAGE_XENO_CLOCK] = cooldown_image
 	visual_references[VREF_MUTABLE_EMPOWERED_FRAME] = empowered_appearence
 

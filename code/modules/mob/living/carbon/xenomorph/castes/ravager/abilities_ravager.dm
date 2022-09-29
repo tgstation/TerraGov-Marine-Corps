@@ -444,7 +444,6 @@
 
 /datum/action/xeno_action/vampirism/New(Target)
 	..()
-	visual_references.len++
 	var/mutable_appearance/leech_appeareace = mutable_appearance()
 	leech_appeareace.layer = ABOVE_HUD_LAYER
 	visual_references[VREF_MUTABLE_RAV_LEECH] = leech_appeareace

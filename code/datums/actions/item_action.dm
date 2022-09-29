@@ -36,15 +36,15 @@
 
 /datum/action/item_action/update_button_icon()
 	if(use_obj_appeareance)
-		if(visual_references[VREF_MUTABLE_LINKED_OBJ])
-			button.cut_overlay(visual_references[VREF_MUTABLE_LINKED_OBJ])
+		if(visual_references[VREF_APPEARANCE_LINKED_OBJ])
+			button.cut_overlay(visual_references[VREF_APPEARANCE_LINKED_OBJ])
 		var/obj/item/I = target
-		var/mutable_appearance/item_image = I.appearance
-		visual_references[VREF_MUTABLE_LINKED_OBJ] = item_image
+		var/item_image = I.appearance
+		visual_references[VREF_APPEARANCE_LINKED_OBJ] = item_image
 		button.add_overlay(list(item_image))
-	else if(visual_references[VREF_MUTABLE_LINKED_OBJ])
-		button.cut_overlay(visual_references[VREF_MUTABLE_LINKED_OBJ])
-		visual_references[VREF_MUTABLE_LINKED_OBJ] = null
+	else if(visual_references[VREF_APPEARANCE_LINKED_OBJ])
+		button.cut_overlay(visual_references[VREF_APPEARANCE_LINKED_OBJ])
+		visual_references[VREF_APPEARANCE_LINKED_OBJ] = null
 	return ..()
 
 /datum/action/item_action/toggle/New(Target)
