@@ -1,4 +1,4 @@
-#define VREF_IMAGE_LINKED_OBJ 1
+#define VREF_MUTABLE_LINKED_OBJ 1
 #define VREF_MUTABLE_ACTION_STATE 2
 #define VREF_MUTABLE_MAPTEXT 3
 #define VREF_MUTABLE_SELECTED_FRAME 4
@@ -16,7 +16,7 @@
 	var/background_icon_state = "template"
 	// holds a set of misc visual references to use with the overlay API
 	var/list/visual_references = list(
-		VREF_IMAGE_LINKED_OBJ = null,
+		VREF_MUTABLE_LINKED_OBJ = null,
 		VREF_MUTABLE_ACTION_STATE = null,
 		VREF_MUTABLE_MAPTEXT = null,
 		VREF_MUTABLE_SELECTED_FRAME = null,
@@ -33,15 +33,9 @@
 	button = new
 	if(isobj(target))
 		var/obj/target_obj = target
-		var/image/IMG
-		if(ispath(target_obj))
-			IMG = image(initial(target_obj.icon), button, initial(target_obj.icon_state))
-		else
-			IMG = image(target_obj.icon, button, target_obj.icon_state)
-		IMG.pixel_x = 0
-		IMG.pixel_y = 0
-		visual_references[VREF_IMAGE_LINKED_OBJ] = IMG
-		button.add_overlay(list(IMG))
+		var/mutable_appearance/obj_appeareance = target_obj.appearance
+		visual_references[VREF_MUTABLE_LINKED_OBJ] = obj_appeareance
+		button.add_overlay(obj_appeareance)
 	button.icon = icon(background_icon, background_icon_state)
 	button.source_action = src
 	button.name = name
