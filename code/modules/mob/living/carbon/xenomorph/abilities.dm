@@ -131,7 +131,7 @@
 	else if(visual_references[VREF_IMAGE_ONTOP])
 		button.cut_overlay(visual_references[VREF_IMAGE_ONTOP])
 		visual_references[VREF_IMAGE_ONTOP] = null
-	..()
+	return ..()
 
 //AI stuff
 /datum/action/xeno_action/activable/plant_weeds/ai_should_start_consider()
