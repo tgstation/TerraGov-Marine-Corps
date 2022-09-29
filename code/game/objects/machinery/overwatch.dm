@@ -834,7 +834,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	if(!istype(human))
 		return
 	action_icon_state = "[order_type]"
-	..()
+	return ..()
 
 /datum/action/skill/issue_order/handle_button_status_visuals()
 	var/mob/living/carbon/human/human = owner

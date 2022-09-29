@@ -131,7 +131,7 @@
 	else if(visual_references[VREF_IMAGE_ONTOP])
 		button.cut_overlay(visual_references[VREF_IMAGE_ONTOP])
 		visual_references[VREF_IMAGE_ONTOP] = null
-	..()
+	return ..()
 
 //AI stuff
 /datum/action/xeno_action/activable/plant_weeds/ai_should_start_consider()
@@ -187,7 +187,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	var/atom/A = X.selected_resin
 	action_icon_state = initial(A.name)
-	..()
+	return ..()
 
 /datum/action/xeno_action/activable/secrete_resin/action_activate()
 	//Left click on the secrete resin button opens up radial menu (new type of changing structures).
@@ -717,7 +717,7 @@
 /datum/action/xeno_action/activable/xeno_spit/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner
 	action_icon_state = "shift_spit_[X.ammo.icon_state]"
-	..()
+	return ..()
 
 /datum/action/xeno_action/activable/xeno_spit/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
