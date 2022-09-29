@@ -1,9 +1,4 @@
 
-// Action defines end at 5.
-#define VREF_MUTABLE_EMPOWERED_FRAME 6
-#define VREF_IMAGE_XENO_CLOCK 7
-#define VREF_MUTABLE_RAV_LEECH 8
-
 /datum/action/xeno_action
 	var/plasma_cost = 0
 	var/mechanics_text = "This ability not found in codex." //codex. If you are going to add an explanation for an ability. don't use stats, give a very brief explanation of how to use it.
