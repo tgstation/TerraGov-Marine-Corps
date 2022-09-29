@@ -457,7 +457,7 @@
 	number.maptext = MAPTEXT("[leech_count]")
 	visual_references[VREF_MUTABLE_RAV_LEECH] = number
 	button.add_overlay(visual_references[VREF_MUTABLE_RAV_LEECH])
-	..()
+	return ..()
 
 /datum/action/xeno_action/vampirism/give_action(mob/living/L)
 	. = ..()
