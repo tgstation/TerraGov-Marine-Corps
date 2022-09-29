@@ -195,6 +195,7 @@
 	integrity_failure = 50
 	soft_armor = list(MELEE = 35, BULLET = 30, LASER = 20, ENERGY = 40, BOMB = 25, BIO = 50, "rad" = 0, FIRE = 0, ACID = 30)
 	slowdown = 0.3
+	flags_item = IS_DEPLOYABLE
 	///The item this deploys into
 	var/deployable_item = /obj/structure/barricade/deployable
 	///Time to deploy
@@ -203,7 +204,6 @@
 	var/undeploy_time = 1 SECONDS
 	///Whether it is wired
 	var/is_wired = FALSE
-	flags_item = IS_DEPLOYABLE
 
 /obj/item/weapon/shield/riot/marine/deployable/Initialize()
 	. = ..()
