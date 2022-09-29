@@ -27,6 +27,8 @@
 		return
 	var/client/binder_client = current_mob.client
 	for(var/datum/action/user_action AS in current_mob.actions)
+		if(!binder_client)
+			break
 		if(user_action.keybind_signal == changed_bind.keybind_signal)
 			user_action.update_map_text(changed_bind.get_keys_formatted(binder_client))
 			break
@@ -46,7 +48,7 @@
 		if(!keybind)
 			continue
 		if(!calling_client)
-			continue
+			break
 		user_action.update_map_text(keybind.get_keys_formatted(calling_client))
 
 

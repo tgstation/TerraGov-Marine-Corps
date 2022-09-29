@@ -1,3 +1,10 @@
+#define VREF_IMAGE_LINKED_OBJ 1
+#define VREF_MUTABLE_ACTION_STATE 2
+#define VREF_MUTABLE_MAPTEXT 3
+// used by firemodes to show the current firemode
+// also used by lights to show wheter they are on
+#define VREF_IMAGE_SELECTED 4
+
 /datum/action
 	var/name = "Generic Action"
 	var/desc
@@ -8,8 +15,8 @@
 	var/action_icon_state = "default"
 	var/background_icon = 'icons/mob/actions.dmi'
 	var/background_icon_state = "template"
-	/// A mutable_appeareance holding the maptext to show above the action, created in new()
-	var/mutable_appearance/maptext_image
+	// holds a set of misc visual references to use with the overlay API
+	var/list/visual_references = list()
 	var/static/atom/movable/vis_obj/action/selected_frame/selected_frame = new
 	var/static/atom/movable/vis_obj/action/empowered_frame/empowered_frame = new //Got lazy and didn't make a child, ask tivi for a better solution.
 	///Main keybind signal for the action
@@ -30,14 +37,16 @@
 			IMG = image(target_obj.icon, button, target_obj.icon_state)
 		IMG.pixel_x = 0
 		IMG.pixel_y = 0
-		button.overlays += IMG
+		visual_references[VREF_IMAGE_LINKED_OBJ] = IMG
+		button.add_overlay(list(img))
 	button.icon = icon(background_icon, background_icon_state)
 	button.source_action = src
 	button.name = name
 	if(desc)
 		button.desc = desc
-	maptext_image = mutable_appearance()
-	maptext_image.layer = HUD_LAYER + 1 // +1 above the one of empowered/selected frames
+	var/mutable_appearance/maptext_appearence = mutable_appearance()
+	temporary_ma.layer = HUD_LAYER + 1 // above selected/empowered frame
+	visual_references[VREF_MUTABLE_MAPTEXT] = maptext_appearence
 
 /datum/action/Destroy()
 	if(owner)
@@ -55,8 +64,11 @@
 
 /// A handler used to update the maptext and show the change immediately.
 /datum/action/proc/update_map_text(key_string)
+	// The cutting needs to be done /BEFORE/ the string maptext gets changed
+	// Since byond internally recognizes it as a different image, and doesn't cut it properly
+	button.cut_overlay(list(visual_references[VREF_MUTABLE_MAPTEXT]))
 	maptext_image.maptext = MAPTEXT(key_string)
-	update_button_icon()
+	button.add_overlay(list(visual_references[VREF_MUTABLE_MAPTEXT]))
 
 /datum/action/proc/update_button_icon()
 	if(!button)
@@ -66,10 +78,9 @@
 	button.desc = desc
 
 	if(action_icon && action_icon_state)
-		button.cut_overlays(TRUE)
-		button.add_overlay(mutable_appearance(action_icon, action_icon_state))
-		button.add_overlay(maptext_image)
-
+		button.cut_overlay(list(visual_references[VREF_MUTABLE_ACTION_STATE]))
+		visual_references[VREF_MUTABLE_ACTION_STATE] = mutable_appearance(action_icon, action_icon_state)
+		button.add_overlay(list(visual_references[VREF_MUTABLE_ACTION_STATE]))
 	if(background_icon_state)
 		button.icon_state = background_icon_state
 

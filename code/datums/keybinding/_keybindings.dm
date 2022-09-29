@@ -32,17 +32,3 @@
 	for(var/key in user_prefs.key_bindings)
 		if(name in user_prefs.key_bindings[key])
 			return "[key]"
-	// We didn't manage to retrieve a key the conventional way.
-	// It is possible for other binds to use the same signal , so we check for that here..
-	// and then retrieve their KEYS and claim as ours
-	/*
-	for(var/possible_key in user_prefs.key_bindings)
-		var/list/list_ref = user_prefs.key_bindings[possible_key]
-		for(var/possible_bind in list_ref)
-			var/datum/keybinding/bind = GLOB.keybindings_by_name[possible_bind]
-			if(bind)
-				if(bind.keybind_signal == keybind_signal)
-					return bind.get_keys_formatted(user)
-	*/
-
-

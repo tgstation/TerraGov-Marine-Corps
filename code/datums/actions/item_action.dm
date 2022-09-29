@@ -33,16 +33,13 @@
 	return TRUE
 
 /datum/action/item_action/update_button_icon()
-	button.overlays.Cut()
+	button.cut_overlay(list(visual_references[VREF_IMAGE_LINKED_OBJ]))
 	var/obj/item/I = target
-	var/old_layer = I.layer
-	var/old_plane = I.plane
-	I.layer = ABOVE_HUD_LAYER
-	I.plane = ABOVE_HUD_PLANE
-	button.overlays += I
-	I.layer = old_layer
-	I.plane = old_plane
-
+	var/image/item_image = image(I.icon, button, I.icon_state, ABOVE_HUD_LAYER)
+	item_image.plane = ABOVE_HUD_PLANE
+	visual_references[VREF_IMAGE_LINKED_OBJ] = item_image
+	button.add_overlay(list(item_image))
+	..()
 
 /datum/action/item_action/toggle/New(Target)
 	. = ..()
@@ -51,9 +48,12 @@
 
 /datum/action/item_action/toggle/suit_toggle/update_button_icon()
 	. = ..()
+	if(visual_references[VREF_IMAGE_SELECTED])
+		button.cut_overlay(list(visual_references[VREF_IMAGE_SELECTED]))
 	if(!holder_item.light_on)
 		return
-	button.overlays += image('icons/Marine/marine-weapons.dmi', src, "active")
+	visual_references[VREF_IMAGE_SELECTED] = image('icons/Marine/marine-weapons.dmi', src, "active")
+	button.add_overlay(list(visual_references[VREF_IMAGE_SELECTED]))
 
 /datum/action/item_action/toggle/motion_detector/action_activate()
 	. = ..()
@@ -79,21 +79,24 @@
 /datum/action/item_action/firemode/update_button_icon()
 	if(holder_gun.gun_firemode == action_firemode)
 		return
-	button.vis_contents -= current_action_vis_obj
+	if(visual_references[VREF_IMAGE_SELECTED])
+		button.cut_overlay(list(visual_references[VREF_IMAGE_SELECTED]))
+	var/firemode_string = "fmode_"
 	switch(holder_gun.gun_firemode)
 		if(GUN_FIREMODE_SEMIAUTO)
 			button.name = "Semi-Automatic Firemode"
-			current_action_vis_obj = semiauto
+			firemode_string += "single"
 		if(GUN_FIREMODE_BURSTFIRE)
 			button.name = "Burst Firemode"
-			current_action_vis_obj = burstfire
+			firemode_string += "burst"
 		if(GUN_FIREMODE_AUTOMATIC)
 			button.name = "Automatic Firemode"
-			current_action_vis_obj = fullauto
+			firemode_string += "single_auto"
 		if(GUN_FIREMODE_AUTOBURST)
 			button.name = "Automatic Burst Firemode"
-			current_action_vis_obj = autoburst
-	button.vis_contents += current_action_vis_obj
+			firemode_string += "burst_auto"
+	visual_references[VREF_IMAGE_SELECTED] = image(action_icon, button, firemode_string, ABOVE_HUD_LAYER)
+	button.add_overlay(visual_references[VREF_IMAGE_SELECTED])
 	action_firemode = holder_gun.gun_firemode
 
 /datum/action/item_action/aim_mode
