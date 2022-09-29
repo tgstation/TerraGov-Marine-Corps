@@ -291,24 +291,24 @@
 	keybind_signal = COMSIG_XENOABILITY_WEB_HOOK
 	//ref to beam for web hook
 	var/datum/beam/web_beam
-	//Do travel the full distnace or half?
-	var/full_distance = TRUE
 
 /datum/action/xeno_action/activable/web_hook/can_use_ability(atom/A)
 	. = ..()
 	if(!.)
 		return
 	if(isliving(A))
+		owner.balloon_alert(owner, "We can't attach to that")
 		return FALSE
 	if(!isturf(A))
 		return FALSE
 	if(get_dist(owner, A) <= WIDOW_WEB_HOOK_MIN_RANGE)
+		owner.balloon_alert(owner, "Too close")
 		return FALSE
 	var/turf/current = get_turf(owner)
 	var/turf/target_turf = get_turf(A)
 	if(get_dist(current, target_turf) > WIDOW_WEB_HOOK_RANGE)
-		full_distance = FALSE
-		return TRUE
+		owner.balloon_alert(owner, "Too far")
+		return FALSE
 	current = get_step_towards(current, target_turf)
 	while((current != target_turf))
 		current = get_step_towards(current, target_turf)
