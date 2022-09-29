@@ -133,7 +133,7 @@
 	SIGNAL_HANDLER
 	if(!lunge_target.Adjacent(source))
 		return
-	lunge_grab(source, lunge_target)
+	INVOKE_ASYNC(src, .proc/lunge_grab, source, lunge_target)
 
 ///Do a last check to see if we can grab the target, and then clean up after the throw. Handles an in-place lunge.
 /datum/action/xeno_action/activable/lunge/proc/finish_lunge(datum/source)
