@@ -22,10 +22,11 @@
 
 /obj/item/explosive/grenade/flashbang/prime()
 	var/turf/T = get_turf(src)
+	playsound(T, 'sound/effects/bang.ogg', 50, 1)
 	for(var/obj/structure/closet/L in get_hear(7, T))
 		if(locate(/mob/living/carbon/, L))
 			for(var/mob/living/carbon/M in L)
-				bang(get_turf(src), M)
+				bang(T, M)
 
 
 	for(var/mob/living/carbon/M in get_hear(7, T))
@@ -38,7 +39,6 @@
 /// Added a new proc called 'bang' that takes a location and a person to be banged.
 /obj/item/explosive/grenade/flashbang/proc/bang(turf/T , mob/living/carbon/M)
 	to_chat(M, span_danger("BANG"))
-	playsound(src.loc, 'sound/effects/bang.ogg', 50, 1)
 
 //Checking for protections
 	var/ear_safety = 0
