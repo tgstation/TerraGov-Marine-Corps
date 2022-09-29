@@ -286,8 +286,8 @@
 	ability_name = "Web Hook"
 	mechanics_text = "Shoot out a web and pull it to traverse forward"
 	action_icon_state = "web_hook"
-	plasma_cost = 1 // 50
-	cooldown_timer = 1 SECONDS // 20
+	plasma_cost = 200
+	cooldown_timer = 20 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_WEB_HOOK
 	//ref to beam for web hook
 	var/datum/beam/web_beam
@@ -302,6 +302,8 @@
 		return FALSE
 	if(!isturf(A))
 		return FALSE
+	if(get_dist(owner, A) <= WIDOW_WEB_HOOK_MIN_RANGE)
+		return FALSE
 	var/turf/current = get_turf(owner)
 	var/turf/target_turf = get_turf(A)
 	if(get_dist(current, target_turf) > WIDOW_WEB_HOOK_RANGE)
@@ -310,16 +312,11 @@
 	current = get_step_towards(current, target_turf)
 	while((current != target_turf))
 		current = get_step_towards(current, target_turf)
-		if(current.density)
-			full_distance = TRUE
-		return TRUE
-	if(!target_turf.density)
-			full_distance = FALSE
 
 /datum/action/xeno_action/activable/web_hook/use_ability(atom/A)
 	var/atom/movable/web_hook/web_hook = new (get_turf(owner))
 	web_beam = owner.beam(web_hook,"beam_web",'icons/effects/beam.dmi')
-	RegisterSignal(web_hook, list(COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_IMPACT), .proc/drag_widow)
+	RegisterSignal(web_hook, list(COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_IMPACT), .proc/drag_widow, TRUE)
 	web_hook.throw_at(A, WIDOW_WEB_HOOK_RANGE, 3, owner, FALSE)
 	succeed_activate()
 	add_cooldown()
@@ -328,10 +325,11 @@
 /datum/action/xeno_action/activable/web_hook/proc/drag_widow(datum/source, turf/t)
 	SIGNAL_HANDLER
 	QDEL_NULL(web_beam)
-	if(full_distance)
-		owner.throw_at(t, WIDOW_WEB_HOOK_RANGE, 1, owner)
+	if(t)
+		owner.throw_at(t, WIDOW_WEB_HOOK_RANGE, WIDOW_WEB_HOOK_SPEED, owner, FALSE)
 	else
-		owner.throw_at(get_turf(source), WIDOW_WEB_HOOK_RANGE / 2, 1, owner)
+		/// we throw widow half the distance if she hits the floor
+		owner.throw_at(get_turf(source), WIDOW_WEB_HOOK_RANGE / 2, WIDOW_WEB_HOOK_SPEED, owner, FALSE)
 	qdel(source)
 	RegisterSignal(owner, COMSIG_MOVABLE_POST_THROW, .proc/delete_beam)
 
