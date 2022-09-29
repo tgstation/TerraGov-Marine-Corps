@@ -31,13 +31,13 @@
 		return
 
 	gear.take_damage(damage_to_deal)
-	if(gear.get_integrity() <= 1)
+	if(gear.obj_integrity <= 1)
 		to_chat(occupants, "[icon2html(src, occupants)][span_danger("[gear] is critically damaged!")]")
 		playsound(src, gear.destroy_sound, 50)
 
-/obj/vehicle/sealed/mecha/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penentration)
+/obj/vehicle/sealed/mecha/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration)
 	var/damage_taken = ..()
-	if(damage_taken <= 0 || atom_integrity < 0)
+	if(damage_taken <= 0 || obj_integrity < 0)
 		return damage_taken
 
 	spark_system.start()
@@ -48,7 +48,7 @@
 
 	return damage_taken
 
-/obj/vehicle/sealed/mecha/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir, armour_penentration)
+/obj/vehicle/sealed/mecha/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir, armour_penetration)
 	. = ..()
 	if(attack_dir)
 		var/facing_modifier = get_armour_facing(abs(dir2angle(dir) - dir2angle(attack_dir)))
@@ -70,10 +70,10 @@
 	// yes we *have* to run the armor calc proc here I love tg projectile code too
 	try_damage_component(run_obj_armor(
 		damage_amount = hitting_projectile.damage,
-		damage_type = hitting_projectile.damage_type,
-		damage_flag = hitting_projectile.armor_flag,
+		damage_type = hitting_projectile.ammo.damage_type,
+		damage_flag = hitting_projectile.ammo.armor_type,
 		attack_dir = REVERSE_DIR(hitting_projectile.dir),
-		armour_penetration = hitting_projectile.armour_penetration,
+		armour_penetration = hitting_projectile.ammo.penetration,
 	), hitting_projectile.def_zone)
 	return ..()
 
@@ -203,10 +203,10 @@
 	if(!attacking_item.force)
 		return
 
-	var/damage_taken = take_damage(attacking_item.force * attacking_item.demolition_mod, attacking_item.damtype, MELEE, 1)
+	var/damage_taken = take_damage(attacking_item.force, attacking_item.damtype, MELEE, 1)
 	try_damage_component(damage_taken, user.zone_selected)
 
-	var/hit_verb = length(attacking_item.attack_verb_simple) ? "[pick(attacking_item.attack_verb_simple)]" : "hit"
+	var/hit_verb = length(attacking_item.attack_verb) ? "[pick(attacking_item.attack_verb)]" : "hit"
 	user.visible_message(
 		span_danger("[user] [hit_verb][plural_s(hit_verb)] [src] with [attacking_item][damage_taken ? "." : ", without leaving a mark!"]"),
 		span_danger("You [hit_verb] [src] with [attacking_item][damage_taken ? "." : ", without leaving a mark!"]"),
