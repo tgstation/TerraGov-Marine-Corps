@@ -28,7 +28,7 @@
 	button = new
 	if(isobj(target))
 		var/obj/target_obj = target
-		var/mutable_appearance/obj_appeareance = target_obj.appearance
+		var/obj_appeareance = target_obj.appearance
 		visual_references[VREF_APPEARANCE_LINKED_OBJ] = obj_appeareance
 		button.add_overlay(obj_appeareance)
 	button.icon = icon(background_icon, background_icon_state)
