@@ -23,14 +23,6 @@
 	light_color = COLOR_WHITE
 
 /*
- * Greyscale vars
-*/
-	greyscale_config = null
-	greyscale_colors = GUN_PALETTE_TAN
-	///List of palettes a greyscaled gun is allowed to use for its furniture
-	var/list/colorable_colors = GUN_PALETTE_LIST
-
-/*
  *  Muzzle Vars
 */
 	///Effect for the muzzle flash of the gun.
@@ -469,13 +461,13 @@
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED))
 		icon_state = base_gun_icon + "_o"
 	else if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && !in_chamber && length(chamber_items))
-		icon_state = !greyscale_config ? base_gun_icon + "_u" : GUN_ICONSTATE_UNRACKED
+		icon_state = base_gun_icon + "_u"
 	else if((!length(chamber_items) && max_chamber_items) || !rounds)
-		icon_state = !greyscale_config ? base_gun_icon + "_e" : GUN_ICONSTATE_UNLOADED
+		icon_state = base_gun_icon + "_e"
 	else if(current_chamber_position <= length(chamber_items) && chamber_items[current_chamber_position] && chamber_items[current_chamber_position].loc != src)
 		icon_state = base_gun_icon + "_l"
 	else
-		icon_state = !greyscale_config ? base_gun_icon : GUN_ICONSTATE_LOADED
+		icon_state = base_gun_icon
 
 //manages the overlays for the gun - separate from attachment overlays
 /obj/item/weapon/gun/update_overlays()
@@ -500,19 +492,13 @@
 
 /obj/item/weapon/gun/update_item_state()
 	if(!CHECK_BITFIELD(flags_gun_features, GUN_SHOWS_AMMO_REMAINING))
-		if(CHECK_BITFIELD(flags_item, WIELDED))
-			item_state = !greyscale_config ? "[base_gun_icon]_w" : "wielded"
-		else
-			item_state = !greyscale_config ? base_gun_icon : ""
+		item_state = "[base_gun_icon][flags_item & WIELDED ? "_w" : ""]"
 		return
 
 	//If the gun has item states that show how much ammo is remaining
 	var/current_state = item_state
 	var/cell_charge = (!length(chamber_items) || rounds <= 0) ? 0 : CEILING((rounds / max((length(chamber_items) ? max_rounds : max_shells), 1)) * 100, 25)
-	if(CHECK_BITFIELD(flags_item, WIELDED))
-		item_state = !greyscale_config ? "[initial(icon_state)]_[cell_charge]_w" : "wielded"
-	else
-		item_state = !greyscale_config ? "[initial(icon_state)]_[cell_charge]" : ""
+	item_state = "[initial(icon_state)]_[cell_charge][flags_item & WIELDED ? "_w" : ""]"
 	if(current_state != item_state && ishuman(gun_user))
 		var/mob/living/carbon/human/human_user = gun_user
 		if(src == human_user.l_hand)
