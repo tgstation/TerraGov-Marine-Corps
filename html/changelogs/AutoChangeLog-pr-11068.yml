@@ -1,0 +1,4 @@
+author: "botPurple"
+delete-after: True
+changes: 
+  - imageadd: "Changed snow_storm sprite"
