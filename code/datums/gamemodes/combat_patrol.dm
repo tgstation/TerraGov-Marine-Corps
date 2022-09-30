@@ -84,7 +84,7 @@
 	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/intro_sequence), SSticker.round_start_time + shutters_drop_time - 10 SECONDS) //starts intro sequence 10 seconds before shutter drop
 	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, SSticker.round_start_time + shutters_drop_time + bioscan_interval)
 
-///intro sequence
+///plays the intro sequence
 /datum/game_mode/combat_patrol/proc/intro_sequence()
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		if(human.faction == FACTION_TERRAGOV)

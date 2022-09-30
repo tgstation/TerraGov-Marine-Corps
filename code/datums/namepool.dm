@@ -74,13 +74,16 @@ GLOBAL_LIST_EMPTY_TYPED(operation_namepool, /datum/operation_namepool)
 	. += "-[rand(1,999)]" //pathfinder-738 or such
 
 /datum/operation_namepool
+	///The first word in operation name
 	var/list/operation_titles = "names/operation_title"
+	///The second word in operation name
 	var/list/operation_prefixes = "names/operation_prefix"
+	///The third word in operation name
 	var/list/operation_postfixes = "names/operation_postfix"
-	var/operation_name
+
 
 /datum/operation_namepool/proc/get_random_name()
-	operation_name = pick(SSstrings.get_list_from_file(operation_titles))
+	var/operation_name = pick(SSstrings.get_list_from_file(operation_titles))
 	operation_name += " [pick(SSstrings.get_list_from_file(operation_prefixes))]"
 	operation_name += "-[pick(SSstrings.get_list_from_file(operation_postfixes))]"
 	return uppertext(operation_name)
