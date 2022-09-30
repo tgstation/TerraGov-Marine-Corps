@@ -1061,12 +1061,6 @@
 	desc = "The Raummetall-KT SG-29 is the TGMC's current standard IFF-capable medium machine gun. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
 	icon_state = "sg29"
 	item_state = "sg29"
-	item_icons = list(
-		slot_l_hand_str = /datum/greyscale_config/gun/worn/l_hand/t29,
-		slot_r_hand_str = /datum/greyscale_config/gun/worn/r_hand/t29,
-		slot_back_str = /datum/greyscale_config/gun/worn/t29,
-		slot_s_store_str = /datum/greyscale_config/gun/worn/suit/t29,
-	)
 	caliber = CALIBER_10x26_CASELESS //codex
 	max_shells = 300 //codex
 	force = 30
@@ -1088,11 +1082,14 @@
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/stock/sgstock,
+		/obj/item/attachable/sgbarrel,
 		/obj/item/attachable/shoulder_mount,
 	)
 
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_IFF
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	starting_attachment_types = list(/obj/item/attachable/stock/sgstock, /obj/item/attachable/sgbarrel)
 	gun_skill_category = GUN_SKILL_SMARTGUN //Uses SG skill for the penalties.
 	attachable_offset = list("muzzle_x" = 42, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 12, "stock_y" = 13)
 	fire_delay = 0.2 SECONDS
@@ -1103,15 +1100,13 @@
 	scatter_unwielded = 40
 	movement_acc_penalty_mult = 4
 
-	greyscale_config = /datum/greyscale_config/gun/t29
-
 	placed_overlay_iconstate = "smartgun"
 
 /obj/item/weapon/gun/rifle/standard_smartmachinegun/pmc
-	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
+	starting_attachment_types = list(/obj/item/attachable/stock/sgstock, /obj/item/attachable/sgbarrel, /obj/item/attachable/magnetic_harness)
 
 /obj/item/weapon/gun/rifle/standard_smartmachinegun/patrol
-	starting_attachment_types = list(/obj/item/attachable/motiondetector, /obj/item/attachable/bipod)
+	starting_attachment_types = list(/obj/item/attachable/stock/sgstock, /obj/item/attachable/sgbarrel, /obj/item/attachable/motiondetector, /obj/item/attachable/bipod)
 
 //-------------------------------------------------------
 //Sectoid Rifle
@@ -1334,12 +1329,6 @@
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t21"
 	item_state = "t21"
-	item_icons = list(
-		slot_l_hand_str = /datum/greyscale_config/gun/worn/l_hand/t21,
-		slot_r_hand_str = /datum/greyscale_config/gun/worn/r_hand/t21,
-		slot_back_str = /datum/greyscale_config/gun/worn/t21,
-		slot_s_store_str = /datum/greyscale_config/gun/worn/suit/t21,
-	)
 	fire_sound = 'sound/weapons/guns/fire/t21.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/t21_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/t21_unload.ogg'
@@ -1390,8 +1379,6 @@
 	wield_delay = 0.6 SECONDS
 	aim_slowdown = 0.5
 	damage_falloff_mult = 0.5
-
-	greyscale_config = /datum/greyscale_config/gun/t21
 
 /obj/item/weapon/gun/rifle/standard_skirmishrifle/standard
 	starting_attachment_types = list(
