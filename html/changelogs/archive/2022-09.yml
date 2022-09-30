@@ -345,3 +345,16 @@
   hyper2snyper:
   - rscadd: Hyperscales the SG-29 and AR-21
   - rscadd: Hyperscales both the Vertical and Angled grip attachments.
+2022-09-30:
+  DeltaFire15:
+  - bugfix: Pheromones (And orders) should no longer "flicker" at high TD, remaining
+      consistant instead.
+  - bugfix: Xenos can no longer receive pheromones when on fire.
+  - refactor: SSauras now includes MC_CHECK_TICK to prevent it from eating too much
+      of the MC's time.
+  Pariah919:
+  - spellcheck: 'MPs have a unique spawn in blurb. tweak: MPs have Squad Engineer/Medic
+      rank scaling. (E3->E4->E5)'
+  maikilangiolo:
+  - rscadd: added holsters for the mp19 and smg-25
+  - balance: engineering storage module can fit filled sandbags
