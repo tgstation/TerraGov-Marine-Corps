@@ -17434,10 +17434,6 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/ice,
 /area/gelida/caves/east_caves)
-"ldW" = (
-/obj/structure/largecrate/supply/supplies/metal,
-/turf/open/floor/plating,
-/area/gelida/landing_zone_2)
 "ldZ" = (
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/powercell,
@@ -70434,7 +70430,7 @@ rOn
 arf
 eae
 eae
-ldW
+cAu
 kqs
 kqs
 tiD
