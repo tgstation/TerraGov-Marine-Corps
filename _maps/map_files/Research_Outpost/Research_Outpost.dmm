@@ -2787,7 +2787,7 @@
 /area/outpost/medbay)
 "nj" = (
 /obj/structure/table,
-/obj/item/ammo_magazine/shotgun,
+/obj/item/ammo_magazine/shotgun/buckshot,
 /obj/item/ammo_magazine/shotgun/buckshot,
 /turf/open/floor/tile/dark/red2{
 	dir = 1
@@ -4907,8 +4907,8 @@
 "wD" = (
 /obj/structure/closet/secure_closet/security,
 /obj/item/weapon/gun/shotgun/pump/cmb,
-/obj/item/ammo_magazine/shotgun,
-/obj/item/ammo_magazine/shotgun,
+/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/item/ammo_magazine/shotgun/buckshot,
 /obj/item/attachable/flashlight,
 /obj/item/attachable/heavy_barrel,
 /obj/item/attachable/reddot,
@@ -6043,7 +6043,7 @@
 /area/outpost/yard/south_east)
 "BL" = (
 /obj/structure/table,
-/obj/item/ammo_magazine/shotgun,
+/obj/item/ammo_magazine/shotgun/buckshot,
 /turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
@@ -8024,7 +8024,7 @@
 "Ll" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/shotgun/pump/cmb,
-/obj/item/ammo_magazine/shotgun,
+/obj/item/ammo_magazine/shotgun/buckshot,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/red2,
 /area/outpost/brig/armoury)
@@ -9033,6 +9033,7 @@
 	},
 /obj/structure/paper_bin,
 /obj/effect/spawner/random/plushie{
+	
 	},
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
@@ -9236,8 +9237,8 @@
 /obj/structure/closet/secure_closet/security,
 /obj/item/attachable/gyro,
 /obj/item/attachable/reddot,
-/obj/item/ammo_magazine/shotgun,
-/obj/item/ammo_magazine/shotgun,
+/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/item/ammo_magazine/shotgun/buckshot,
 /obj/item/weapon/gun/shotgun/double,
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark/red2,
