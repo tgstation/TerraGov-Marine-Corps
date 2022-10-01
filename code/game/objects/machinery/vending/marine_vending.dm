@@ -960,6 +960,7 @@
 
 /obj/machinery/vending/marineFood/som
 	name = "\improper SOM Food and Drinks Vendor"
+	faction = FACTION_SOM
 	products = list(
 		/obj/item/reagent_containers/food/snacks/protein_pack/som = -1,
 		/obj/item/storage/box/MRE/som = -1,
