@@ -50,7 +50,7 @@
 /datum/action/item_action/toggle
 	var/toggled = FALSE
 
-/datum/action/item_action/toggle/proc/set_toggle(var/value)
+/datum/action/item_action/toggle/proc/set_toggle(value)
 	if(value == toggled)
 		return
 	if(value)
