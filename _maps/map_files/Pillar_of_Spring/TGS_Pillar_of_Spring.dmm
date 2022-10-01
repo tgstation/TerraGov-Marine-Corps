@@ -5380,9 +5380,6 @@
 /obj/machinery/telecomms/server/presets/delta,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
-"pn" = (
-/turf/open/space/basic,
-/area/mainship/living/pilotbunks)
 "po" = (
 /obj/structure/cable,
 /obj/structure/cable,
@@ -58369,7 +58366,7 @@ vV
 pB
 ko
 sX
-pn
+sX
 Ob
 HY
 pB
@@ -58626,7 +58623,7 @@ vV
 pB
 Uh
 cQ
-pn
+cQ
 jx
 aO
 pB
