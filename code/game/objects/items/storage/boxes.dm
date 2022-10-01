@@ -440,7 +440,12 @@
 /obj/item/storage/box/MRE/update_icon()
 	if(!isopened)
 		isopened = 1
-		icon_state = "mealpackopened"
+		icon_state += "opened"
+
+/obj/item/storage/box/MRE/som
+	name = "\improper SOM MFR"
+	desc = "A Martian Field Ration, guaranteed to have a taste of Mars in every bite."
+	icon_state = "mealpack_som"
 
 /**
  * # fillable box
