@@ -43657,6 +43657,10 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/whitegreen,
 /area/prison/residential/central)
+"klS" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/red/corner,
+/area/prison/cellblock/highsec/south/north)
 "klX" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/prison,
@@ -44100,6 +44104,15 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/wood,
 /area/prison/quarters/research)
+"lOn" = (
+/obj/item/paper/Court{
+	info = "Franklin was here.\n";
+	name = "Scribbled paper";
+	pixel_x = 5;
+	pixel_y = 4
+	},
+/turf/open/floor/prison,
+/area/storage/testroom)
 "lOX" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
@@ -46603,6 +46616,10 @@
 	},
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/residential/north)
+"snZ" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/plate,
+/area/prison/cellblock/highsec/south/north)
 "soh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
@@ -47171,15 +47188,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
-"tKI" = (
-/obj/item/paper/Court{
-	info = "Franklin was here.\n";
-	name = "Scribbled paper";
-	pixel_x = 5;
-	pixel_y = 4
-	},
-/turf/open/floor/prison,
-/area/storage/testroom)
 "tKQ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
@@ -71857,7 +71865,7 @@ bvA
 byC
 bGa
 ovE
-bwA
+snZ
 bwA
 nFz
 bvA
@@ -73656,7 +73664,7 @@ bvA
 byC
 bGf
 ovE
-bKt
+klS
 bwF
 bwF
 bwF
@@ -113323,7 +113331,7 @@ aab
 aab
 bKg
 bKh
-tKI
+lOn
 ntB
 bKg
 acD
