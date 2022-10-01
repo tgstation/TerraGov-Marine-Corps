@@ -420,6 +420,12 @@
 /datum/action/suit_autodoc
 	action_icon = 'icons/mob/screen_alert.dmi'
 
+/datum/action/suit_autodoc/New(target)
+	..()
+	if(visual_references[VREF_MUTABLE_LINKED_OBJ])
+		button.cut_overlay(visual_references[VREF_MUTABLE_LINKED_OBJ])
+		visual_references[VREF_MUTABLE_LINKED_OBJ] = null
+
 /datum/action/suit_autodoc/can_use_action()
 	if(QDELETED(owner) || owner.incapacitated() || owner.lying_angle)
 		return FALSE
