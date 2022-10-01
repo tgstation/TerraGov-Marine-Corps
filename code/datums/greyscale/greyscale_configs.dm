@@ -245,7 +245,7 @@
 	icon_file = 'icons/obj/items/projectiles.dmi'
 
 
-
+/*
 ///Guns
 //AR-12
 /datum/greyscale_config/gun
@@ -381,19 +381,20 @@
 
 /datum/greyscale_config/gun/worn/r_hand/t21
 	icon_file = 'icons/Marine/gun_greyscale/t21/right_hand.dmi'
-
+*/
 
 ///Gun attachments
 /datum/greyscale_config/gun_attachment
-	icon_file = 'icons/Marine/gun_attachments_greyscale/t35_stock.dmi'
+	icon_file = 'icons/Marine/gun_attachments_greyscale/t35_stock_test.dmi'
 	json_config = 'code/datums/greyscale/json_configs/gun_attachment.json'
 
+/*
 /datum/greyscale_config/gun_attachment/verticalgrip
 	icon_file = 'icons/Marine/gun_attachments_greyscale/vertical_grip.dmi'
 
 /datum/greyscale_config/gun_attachment/angledgrip
 	icon_file = 'icons/Marine/gun_attachments_greyscale/angled_grip.dmi'
-
+*/
 /*
  * MECHS
  */

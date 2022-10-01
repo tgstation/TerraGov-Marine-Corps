@@ -29,14 +29,14 @@
 	name = "\improper AR-18 Kauser carbine"
 	desc = "The Kauser and Hoch AR-18 carbine is one of the standard rifles used by the TerraGov Marine Corps. It's commonly used by people who prefer greater mobility in combat, like scouts and other light infantry. Uses 10x24mm caseless ammunition."
 	icon = 'icons/Marine/gun64.dmi'
-	icon_state = GUN_ICONSTATE_LOADED
+	icon_state = "t18"
 	item_state = "t18"
-	item_icons = list(
+	/*item_icons = list(
 		slot_l_hand_str = /datum/greyscale_config/gun/worn/l_hand/t18,
 		slot_r_hand_str = /datum/greyscale_config/gun/worn/r_hand/t18,
 		slot_back_str = /datum/greyscale_config/gun/worn/t18,
 		slot_s_store_str = /datum/greyscale_config/gun/worn/suit/t18,
-	)
+	)*/
 	fire_sound = "gun_t12"
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
@@ -93,7 +93,7 @@
 	damage_falloff_mult = 0.9
 	movement_acc_penalty_mult = 4
 
-	greyscale_config = /datum/greyscale_config/gun/t18
+	//greyscale_config = /datum/greyscale_config/gun/t18
 
 /obj/item/weapon/gun/rifle/standard_carbine/pointman
 	starting_attachment_types = list(/obj/item/attachable/lasersight, /obj/item/attachable/flashlight)
@@ -117,14 +117,14 @@
 	name = "\improper AR-12 K&H assault rifle"
 	desc = "The Keckler and Hoch AR-12 assault rifle used to be the TerraGov Marine Corps standard issue rifle before the AR-18 carbine replaced it. It is, however, still used widely despite that. The gun itself is very good at being used in most situations however it suffers in engagements at close quarters and is relatively hard to shoulder than some others. It uses 10x24mm caseless ammunition."
 	icon = 'icons/marine/gun64.dmi'
-	icon_state = GUN_ICONSTATE_LOADED
+	icon_state = "t12"
 	item_state = "t12"
-	item_icons = list(
+	/*item_icons = list(
 		slot_l_hand_str = /datum/greyscale_config/gun/worn/l_hand,
 		slot_r_hand_str = /datum/greyscale_config/gun/worn/r_hand,
 		slot_back_str = /datum/greyscale_config/gun/worn,
 		slot_s_store_str = /datum/greyscale_config/gun/worn/suit,
-	)
+	)*/
 	fire_sound = "gun_t12"
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
@@ -181,7 +181,7 @@
 	damage_falloff_mult = 0.5
 
 	placed_overlay_iconstate = "t12"
-	greyscale_config = /datum/greyscale_config/gun
+	//greyscale_config = /datum/greyscale_config/gun
 
 /obj/item/weapon/gun/rifle/standard_assaultrifle/rifleman
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/extended_barrel, /obj/item/weapon/gun/grenade_launcher/underslung)
@@ -684,19 +684,19 @@
 	name = "\improper MG-42 Kauser light machine gun"
 	desc = "The Kauser MG-42 is the TGMC's current standard non-IFF-capable LMG. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. It uses 10x24mm ammunition."
 	icon = 'icons/Marine/gun64.dmi'
-	item_icons = list(
+	/*item_icons = list(
 		slot_l_hand_str = /datum/greyscale_config/gun/worn/l_hand/t42,
 		slot_r_hand_str = /datum/greyscale_config/gun/worn/r_hand/t42,
 		slot_back_str = /datum/greyscale_config/gun/worn/t42,
 		slot_s_store_str = /datum/greyscale_config/gun/worn/suit/t42,
-	)
+	)*/
 
 	worn_x_dimension = 64
 	worn_y_dimension = 32
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
 
-	icon_state = GUN_ICONSTATE_LOADED
+	icon_state = "t42"
 	item_state = "t42"
 	caliber = CALIBER_10X24_CASELESS //codex
 	max_shells = 120 //codex
@@ -748,7 +748,7 @@
 	scatter = 2
 	scatter_unwielded = 80
 
-	greyscale_config = /datum/greyscale_config/gun/t42
+	//greyscale_config = /datum/greyscale_config/gun/t42
 
 //-------------------------------------------------------
 //MG-60 General Purpose Machine Gun
@@ -1061,12 +1061,12 @@
 	desc = "The Raummetall-KT SG-29 is the TGMC's current standard IFF-capable medium machine gun. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
 	icon_state = "sg29"
 	item_state = "sg29"
-	item_icons = list(
+	/*item_icons = list(
 		slot_l_hand_str = /datum/greyscale_config/gun/worn/l_hand/t29,
 		slot_r_hand_str = /datum/greyscale_config/gun/worn/r_hand/t29,
 		slot_back_str = /datum/greyscale_config/gun/worn/t29,
 		slot_s_store_str = /datum/greyscale_config/gun/worn/suit/t29,
-	)
+	)*/
 	caliber = CALIBER_10x26_CASELESS //codex
 	max_shells = 300 //codex
 	force = 30
@@ -1103,7 +1103,7 @@
 	scatter_unwielded = 40
 	movement_acc_penalty_mult = 4
 
-	greyscale_config = /datum/greyscale_config/gun/t29
+	//greyscale_config = /datum/greyscale_config/gun/t29
 
 	placed_overlay_iconstate = "smartgun"
 
@@ -1334,12 +1334,12 @@
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t21"
 	item_state = "t21"
-	item_icons = list(
+	/*item_icons = list(
 		slot_l_hand_str = /datum/greyscale_config/gun/worn/l_hand/t21,
 		slot_r_hand_str = /datum/greyscale_config/gun/worn/r_hand/t21,
 		slot_back_str = /datum/greyscale_config/gun/worn/t21,
 		slot_s_store_str = /datum/greyscale_config/gun/worn/suit/t21,
-	)
+	)*/
 	fire_sound = 'sound/weapons/guns/fire/t21.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/t21_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/t21_unload.ogg'
@@ -1391,7 +1391,7 @@
 	aim_slowdown = 0.5
 	damage_falloff_mult = 0.5
 
-	greyscale_config = /datum/greyscale_config/gun/t21
+	//greyscale_config = /datum/greyscale_config/gun/t21
 
 /obj/item/weapon/gun/rifle/standard_skirmishrifle/standard
 	starting_attachment_types = list(

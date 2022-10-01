@@ -1054,7 +1054,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	scatter_unwielded_mod = 3
 	aim_speed_mod	= -0.1
 	aim_mode_movement_mult = -0.2
-	greyscale_config = /datum/greyscale_config/gun_attachment/verticalgrip
+	//greyscale_config = /datum/greyscale_config/gun_attachment/verticalgrip
 
 
 /obj/item/attachable/angledgrip
@@ -1069,7 +1069,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	scatter_mod = 2
 	accuracy_unwielded_mod = -0.1
 	scatter_unwielded_mod = 1
-	greyscale_config = /datum/greyscale_config/gun_attachment/angledgrip
+	//greyscale_config = /datum/greyscale_config/gun_attachment/angledgrip
 
 
 
