@@ -7,7 +7,7 @@
 
 // Base /datum/action visual references. All subdatums should have these
 /// A define for accesing the mutable appearance of the linked obj. Holds a reference of the objects appearance
-#define VREF_APPEARANCE_LINKED_OBJ "VREF_LINKED_OBJ"
+#define VREF_MUTABLE_LINKED_OBJ "VREF_LINKED_OBJ"
 /// A mutable appearance of icon made with action_icon_state and action_icon
 #define VREF_MUTABLE_ACTION_STATE "VREF_ACTION_STATE"
 /// A mutable appearance for keybinding maptext

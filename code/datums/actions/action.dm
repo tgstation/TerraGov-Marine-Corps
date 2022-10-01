@@ -10,13 +10,7 @@
 	var/background_icon = 'icons/mob/actions.dmi'
 	var/background_icon_state = "template"
 	// holds a set of misc visual references to use with the overlay API
-	var/list/visual_references = list(
-		VREF_APPEARANCE_LINKED_OBJ = null,
-		VREF_MUTABLE_ACTION_STATE = null,
-		VREF_MUTABLE_MAPTEXT = null,
-		VREF_MUTABLE_SELECTED_FRAME = null,
-		VREF_IMAGE_ONTOP = null
-	)
+	var/list/visual_references = list()
 	///Main keybind signal for the action
 	var/keybind_signal
 	///Alternative keybind signal, to use the action differently
@@ -29,7 +23,7 @@
 	if(isobj(target))
 		var/obj/target_obj = target
 		var/obj_appeareance = target_obj.appearance
-		visual_references[VREF_APPEARANCE_LINKED_OBJ] = obj_appeareance
+		visual_references[VREF_MUTABLE_LINKED_OBJ] = obj_appeareance
 		button.add_overlay(obj_appeareance)
 	button.icon = icon(background_icon, background_icon_state)
 	button.source_action = src
@@ -40,10 +34,12 @@
 	maptext_appearence.layer = ABOVE_HUD_LAYER // above selected/empowered frame
 	visual_references[VREF_MUTABLE_MAPTEXT] = maptext_appearence
 	var/mutable_appearance/selected_appeareance = mutable_appearance('icons/mob/actions.dmi', "selected_frame")
-	selected_appeareance.layer = HUD_LAYER
+	selected_appeareance.layer = HUD_LAYER + 0.1
+	selected_appeareance.plane = HUD_PLANE
 	visual_references[VREF_MUTABLE_SELECTED_FRAME] = selected_appeareance
 	var/mutable_appearance/action_appearence =	mutable_appearance(action_icon, action_icon_state)
 	action_appearence.layer = HUD_LAYER
+	action_appearence.plane = HUD_PLANE
 	visual_references[VREF_MUTABLE_ACTION_STATE] = action_appearence
 
 /datum/action/Destroy()

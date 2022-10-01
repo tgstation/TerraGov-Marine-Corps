@@ -36,16 +36,32 @@
 
 /datum/action/item_action/update_button_icon()
 	if(use_obj_appeareance)
-		if(visual_references[VREF_APPEARANCE_LINKED_OBJ])
-			button.cut_overlay(visual_references[VREF_APPEARANCE_LINKED_OBJ])
+		if(visual_references[VREF_MUTABLE_LINKED_OBJ])
+			button.cut_overlay(visual_references[VREF_MUTABLE_LINKED_OBJ])
 		var/obj/item/I = target
-		var/item_image = I.appearance
-		visual_references[VREF_APPEARANCE_LINKED_OBJ] = item_image
+		var/item_image = mutable_appearance(I.icon, I.icon_state, ABOVE_HUD_LAYER, HUD_PLANE)
+		visual_references[VREF_MUTABLE_LINKED_OBJ] = item_image
 		button.add_overlay(item_image)
-	else if(visual_references[VREF_APPEARANCE_LINKED_OBJ])
-		button.cut_overlay(visual_references[VREF_APPEARANCE_LINKED_OBJ])
-		visual_references[VREF_APPEARANCE_LINKED_OBJ] = null
+	else if(visual_references[VREF_MUTABLE_LINKED_OBJ])
+		button.cut_overlay(visual_references[VREF_MUTABLE_LINKED_OBJ])
+		visual_references[VREF_MUTABLE_LINKED_OBJ] = null
 	return ..()
+
+/datum/action/item_action/toggle
+	var/toggled = FALSE
+
+/datum/action/item_action/toggle/proc/set_toggle(var/value)
+	if(value == toggled)
+		return
+	if(value)
+		add_selected_frame()
+		toggled = TRUE
+	else
+		remove_selected_frame()
+		toggled = FALSE
+
+/datum/action/item_action/toggle/update_button_icon()
+	..()
 
 /datum/action/item_action/toggle/New(Target)
 	. = ..()
@@ -53,16 +69,8 @@
 	button.name = name
 
 /datum/action/item_action/toggle/suit_toggle/update_button_icon()
-	. = ..()
-	if(!holder_item.light_on)
-		if(visual_references[VREF_IMAGE_ONTOP])
-			button.cut_overlay(visual_references[VREF_IMAGE_ONTOP])
-			visual_references[VREF_IMAGE_ONTOP] = null
-		return
-	if(!visual_references[VREF_IMAGE_ONTOP])
-		var/image/light_image = image('icons/Marine/marine-weapons.dmi', src, "active", ABOVE_HUD_LAYER)
-		visual_references[VREF_IMAGE_ONTOP] = light_image
-		button.add_overlay(visual_references[VREF_IMAGE_ONTOP])
+	set_toggle(holder_item.light_on)
+	return ..()
 
 /datum/action/item_action/toggle/motion_detector/action_activate()
 	. = ..()
@@ -77,7 +85,6 @@
 /datum/action/item_action/firemode/New()
 	. = ..()
 	holder_gun = holder_item
-	button.overlays.Cut()
 	update_button_icon()
 
 
@@ -102,6 +109,9 @@
 	action_firemode = holder_gun.gun_firemode
 	return ..()
 
+/datum/action/item_action/firemode/handle_button_status_visuals()
+	button.color = rgb(255,255,255,255)
+
 /datum/action/item_action/aim_mode
 	name = "Take Aim"
 	action_icon_state = "aim_mode"
@@ -120,29 +130,29 @@
 	I.toggle_auto_aim_mode(owner)
 
 
-/datum/action/item_action/toggle_hydro
+/datum/action/item_action/toggle/hydro
 	/// This references the TL84 flamer
 	var/obj/item/weapon/gun/flamer/big_flamer/marinestandard/holder_flamer
 	use_obj_appeareance = FALSE
 
-/datum/action/item_action/toggle_hydro/New()
+/datum/action/item_action/toggle/hydro/New()
 	. = ..()
 	holder_flamer = holder_item
 	RegisterSignal(holder_flamer, COMSIG_ITEM_HYDRO_CANNON_TOGGLED, .proc/update_toggle_button_icon)
 
-
-/datum/action/item_action/toggle_hydro/update_button_icon()
+/datum/action/item_action/toggle/hydro/update_button_icon()
 	if(holder_flamer.hydro_active)
 		action_icon_state = "TL_84_Water"
 	else
 		action_icon_state = "TL_84_Flame"
+	set_toggle(holder_flamer.hydro_active)
 	return ..()
 
 ///Signal handler for when the hydro cannon is activated
-/datum/action/item_action/toggle_hydro/proc/update_toggle_button_icon()
+/datum/action/item_action/toggle/hydro/proc/update_toggle_button_icon()
 	SIGNAL_HANDLER
 	update_button_icon()
 
-/datum/action/item_action/toggle_hydro/Destroy()
+/datum/action/item_action/toggle/hydro/Destroy()
 	holder_flamer=null
 	return ..()
