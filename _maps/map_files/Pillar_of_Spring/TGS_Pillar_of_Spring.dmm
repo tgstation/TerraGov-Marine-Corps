@@ -7541,9 +7541,9 @@
 	},
 /obj/item/tool/pen,
 /obj/machinery/door_control/old/medbay{
+	dir = 1;
 	id = "Medbay";
-	name = "Medbay Lockdown";
-	dir = 1
+	name = "Medbay Lockdown"
 	},
 /turf/open/floor/wood,
 /area/mainship/medical/medical_science)
@@ -47305,12 +47305,12 @@ ta
 ta
 ta
 ta
-oc
-oc
-oc
-oc
-oc
-oc
+fb
+fb
+fb
+fb
+fb
+fb
 YZ
 PO
 Wh
@@ -63299,9 +63299,9 @@ fb
 fb
 IP
 IP
-wa
-wa
-wa
+IP
+IP
+IP
 IP
 IP
 IP
