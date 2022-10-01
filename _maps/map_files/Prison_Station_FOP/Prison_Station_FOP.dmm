@@ -28434,10 +28434,27 @@
 /turf/open/floor/prison,
 /area/prison/quarters/security)
 "bKg" = (
-/turf/closed/wall,
+/turf/closed/wall/r_wall/prison_unmeltable,
 /area/storage/testroom)
 "bKh" = (
-/turf/open/floor,
+/obj/item/weapon/shield/riot/marine{
+	color = "#919090";
+	desc = "A legendary shield. How did it get all the way out here?";
+	integrity_failure = 500;
+	max_integrity = 2000;
+	name = "Franklin Ramis' shield";
+	soft_armor = list("melee" = 80, "bullet" = 80, "laser" = 80, "energy" = 70, "bomb" = 15, "bio" = 80, "rad" = 0, "fire" = 0, "acid" = 85)
+	},
+/obj/item/weapon/shield/riot/marine{
+	color = "#919090";
+	desc = "A legendary shield. How did it get all the way out here?";
+	integrity_failure = 500;
+	max_integrity = 2000;
+	name = "Franklin Ramis' shield";
+	pixel_x = 27;
+	soft_armor = list("melee" = 80, "bullet" = 80, "laser" = 80, "energy" = 70, "bomb" = 15, "bio" = 80, "rad" = 0, "fire" = 0, "acid" = 85)
+	},
+/turf/open/floor/prison,
 /area/storage/testroom)
 "bKi" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -28612,7 +28629,7 @@
 /area/prison/quarters/security)
 "bKN" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
-/turf/open/floor,
+/turf/open/floor/prison,
 /area/storage/testroom)
 "bKO" = (
 /obj/structure/barricade/wooden,
@@ -44713,6 +44730,9 @@
 	dir = 8
 	},
 /area/prison/cellblock/mediumsec/south)
+"ntB" = (
+/turf/open/floor/prison,
+/area/storage/testroom)
 "nuk" = (
 /turf/open/ground/coast/corner{
 	dir = 1
@@ -94475,9 +94495,9 @@ coM
 cps
 cqj
 cqU
-cgI
-cgI
-cgI
+cpq
+cpq
+cpq
 adO
 aab
 aab
@@ -113294,8 +113314,8 @@ aab
 aab
 bKg
 bKh
-bKh
-bKh
+ntB
+ntB
 bKg
 acD
 aab
@@ -113550,9 +113570,9 @@ aab
 aab
 aab
 bKg
-bKh
+ntB
 bKN
-bKh
+ntB
 bKg
 acD
 aab
@@ -113807,9 +113827,9 @@ aab
 aab
 aab
 bKg
-bKh
-bKh
-bKh
+ntB
+ntB
+ntB
 bKg
 acD
 aab
