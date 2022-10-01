@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes: 
+  - bugfix: "fixed a bug that let you remove the ammo from hostile turrets"
