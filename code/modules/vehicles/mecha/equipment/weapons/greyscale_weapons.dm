@@ -24,12 +24,13 @@
 	)
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /datum/ammo/bullet/pistol/mech
+	obj_integrity = 500
 	projectiles = 20
 	projectiles_cache = 400
 	projectiles_cache_max = 400
 	variance = 10
 	slowdown = 0
-	projectile_delay = 0.15 SECONDS
+	projectile_delay = 0.3 SECONDS
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_PISTOL
 	fire_mode = GUN_FIREMODE_SEMIAUTO
@@ -47,6 +48,7 @@
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,8), "E" = list(52,28), "W" = list(-20,8)),
 	)
 	ammotype = /datum/ammo/bullet/pistol/mech/burst
+	obj_integrity = 450
 	projectiles = 42
 	projectiles_cache = 820
 	projectiles_cache_max = 820
@@ -72,6 +74,7 @@
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,12), "E" = list(52,34), "W" = list(-22,14)),
 	)
 	ammotype = /datum/ammo/bullet/smg/mech
+	obj_integrity = 400
 	projectiles = 60
 	projectiles_cache = 420
 	projectiles_cache_max = 420
@@ -94,6 +97,7 @@
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,-6), "E" = list(63,37), "W" = list(-34,17)),
 	)
 	ammotype = /datum/ammo/bullet/rifle/mech/burst
+	obj_integrity = 400
 	projectiles = 72
 	projectiles_cache = 360
 	projectiles_cache_max = 360
@@ -118,6 +122,7 @@
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,-6), "E" = list(64,37), "W" = list(-34,17)),
 	)
 	ammotype = /datum/ammo/bullet/rifle/mech
+	obj_integrity = 400
 	projectiles = 50
 	projectiles_cache = 300
 	projectiles_cache_max = 300
@@ -140,6 +145,7 @@
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,-4), "E" = list(61,36), "W" = list(-31,16)),
 	)
 	ammotype = /datum/ammo/bullet/shotgun/mech
+	obj_integrity = 350
 	projectiles = 10
 	projectiles_cache = 50
 	projectiles_cache_max = 50
@@ -162,6 +168,7 @@
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,-6), "E" = list(64,37), "W" = list(-34,17)),
 	)
 	ammotype = /datum/ammo/bullet/rifle/mech/lmg
+	obj_integrity = 400
 	projectiles = 80
 	projectiles_cache = 400
 	projectiles_cache_max = 400
@@ -177,17 +184,19 @@
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	desc = "A drum-fed autocannon that fires fragmentation rounds that burst in a frontal cone when the bullet impacts. Extra effective against clusters of enemies."
 	icon_state = "lightcannon"
+	fire_sound = 'sound/mecha/weapons/mech_light_cannon.ogg'
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	flash_offsets = list(
 		MECHA_R_ARM = list("N" = list(36,30), "S" = list(-2,-15), "E" = list(80,4), "W" = list(-50,24)),
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,-15), "E" = list(80,24), "W" = list(-50,4)),
 	)
 	ammotype = /datum/ammo/tx54/mech
+	obj_integrity = 400
 	projectiles = 30
 	projectiles_cache = 300
-	projectiles_cache_max = 1200
+	projectiles_cache_max = 300
 	variance = 10
-	projectile_delay = 2
+	projectile_delay = 0.5 SECONDS
 	slowdown = 0.4
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_LIGHTCANNON
@@ -198,12 +207,14 @@
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	desc = "Standard mech laser rifle. Does not require amnmo refills and shoots highly accurate lasers that immediately hit, but deals slightly less damage compared to similar weapons."
 	icon_state = "lasermg"
+	fire_sound = 'sound/mecha/weapons/mech_laser_heavy.ogg'
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	flash_offsets = list(
 		MECHA_R_ARM = list("N" = list(33,68), "S" = list(-2,-6), "E" = list(80,13), "W" = list(-50,33)),
 		MECHA_L_ARM = list("N" = list(0,68), "S" = list(32,-6), "E" = list(80,33), "W" = list(-50,13)),
 	)
 	ammotype = /datum/ammo/energy/lasgun/marine/mech
+	obj_integrity = 400
 	energy_drain = 10
 	variance = 0
 	projectile_delay = 2
@@ -216,12 +227,14 @@
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	desc = "A laser projector, capable of burstfiring. Does not require amnmo refills and shoots highly accurate lasers that immediately hit, but deals slightly less damage compared to similar weapons."
 	icon_state = "laserrifle"
+	fire_sound = 'sound/mecha/weapons/mech_laser_heavy.ogg'
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	flash_offsets = list(
 		MECHA_R_ARM = list("N" = list(33,52), "S" = list(-2,-6), "E" = list(75,11), "W" = list(-45,31)),
 		MECHA_L_ARM = list("N" = list(0,52), "S" = list(32,-6), "E" = list(75,31), "W" = list(-45,11)),
 	)
 	ammotype = /datum/ammo/energy/lasgun/marine/mech/burst
+	obj_integrity = 400
 	energy_drain = 10
 	variance = 0
 	projectile_delay = 0.6 SECONDS
@@ -236,12 +249,14 @@
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	desc = "Standard mech laser SMG. Does not require amnmo refills and shoots highly accurate lasers that immediately hit, but deals slightly less damage compared to similar weapons. More mobile than the laser rifle."
 	icon_state = "lasersmg"
+	fire_sound = 'sound/mecha/weapons/mech_laser_light.ogg'
 	flash_offsets = list(
 		MECHA_R_ARM = list("N" = list(33,48), "S" = list(-2,6), "E" = list(67,11), "W" = list(-37,31)),
 		MECHA_L_ARM = list("N" = list(0,48), "S" = list(32,6), "E" = list(67,31), "W" = list(-37,11)),
 	)
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /datum/ammo/energy/lasgun/marine/mech/smg
+	obj_integrity = 400
 	energy_drain = 5
 	variance = 0
 	projectile_delay = 2
@@ -260,6 +275,7 @@
 	)
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /datum/ammo/bullet/apfsds
+	obj_integrity = 400
 	projectiles = 1
 	projectiles_cache = 10
 	projectiles_cache_max = 10
@@ -275,12 +291,15 @@
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	desc = "Mobility isn't needed when you can just hide behind a hail of bullets! Requires windup before firing."
 	icon_state = "minigun"
+	fire_sound = 'sound/mecha/weapons/mech_minigun_loop.ogg'
+	windup_sound = 'sound/mecha/weapons/mech_minigun_start.ogg'
 	flash_offsets = list(
 		MECHA_R_ARM = list("N" = list(35,60), "S" = list(-2,-11), "E" = list(64,0), "W" = list(-34,20)),
 		MECHA_L_ARM = list("N" = list(-2,60), "S" = list(32,-11), "E" = list(64,20), "W" = list(-34,0)),
 	)
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /datum/ammo/bullet/minigun/mech
+	obj_integrity = 400
 	projectiles = 200
 	projectiles_cache = 600
 	projectiles_cache_max = 600
@@ -303,6 +322,7 @@
 	)
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /datum/ammo/bullet/sniper/mech
+	obj_integrity = 200
 	projectiles = 15
 	projectiles_cache = 60
 	projectiles_cache_max = 60
@@ -321,6 +341,7 @@
 	fire_sound = 'sound/weapons/guns/fire/grenadelauncher.ogg'
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /obj/item/explosive/grenade
+	obj_integrity = 350
 	projectiles = 10
 	projectiles_cache = 20
 	projectiles_cache_max = 20
@@ -350,6 +371,7 @@
 	)
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /datum/ammo/flamethrower/mech_flamer
+	obj_integrity = 250
 	projectiles = 20
 	projectiles_cache = 20 // low ammo counts so player cant just spam fire while rushing infinitely
 	projectiles_cache_max = 20
@@ -371,6 +393,7 @@
 	)
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /datum/ammo/rocket/mech
+	obj_integrity = 400
 	projectiles = 1
 	projectiles_cache = 1
 	projectiles_cache_max = 1

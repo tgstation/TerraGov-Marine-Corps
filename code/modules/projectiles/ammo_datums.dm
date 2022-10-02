@@ -1441,6 +1441,7 @@ datum/ammo/bullet/revolver/tp44
 	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/mech
 	damage = 35
 	penetration = 20
+	projectile_greyscale_colors = "#4f0303"
 
 /datum/ammo/bullet/tx54_spread/mech
 	damage = 35
@@ -1694,8 +1695,8 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/rocket/mech
 	name = "large high-explosive rocket"
-	damage = 150
-	penetration = 75
+	damage = 75
+	penetration = 50
 
 /datum/ammo/rocket/mech/drop_nade(turf/T)
 	explosion(T, 0, 2, 4, 5)
