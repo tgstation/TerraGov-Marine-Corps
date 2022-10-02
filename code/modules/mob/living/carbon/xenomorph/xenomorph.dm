@@ -261,8 +261,10 @@
 	return FALSE
 
 /mob/living/carbon/xenomorph/start_pulling(atom/movable/AM, suppress_message = TRUE, bypass_crit_delay = FALSE)
+	if(do_actions)
+		return FALSE //We are already occupied with something.
 	if(!Adjacent(AM))
-		return FALSE //The target we're trying to pull must be adjacent.
+		return FALSE //The target we're trying to pull must be adjacent and anchored. We also cannot be doing anything else.
 	if(status_flags & INCORPOREAL || AM.status_flags & INCORPOREAL)
 		return FALSE //Incorporeal things can't grab or be grabbed.
 	if(AM.anchored)
