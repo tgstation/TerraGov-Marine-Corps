@@ -1,7 +1,7 @@
 /obj/vehicle/sealed/mecha/mob_try_enter(mob/M)
 	if(!ishuman(M)) // no silicons or drones in mechas.
 		return
-	log_message("[M] tries to move into [src].", LOG_MECHA)
+	log_message("[M] tried to move into [src].", LOG_MECHA)
 	if(dna_lock)
 		var/mob/living/carbon/entering_carbon = M
 		if(md5(REF(entering_carbon)) != dna_lock)
