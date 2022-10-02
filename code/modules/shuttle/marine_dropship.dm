@@ -170,11 +170,11 @@
 	// pull the shuttle from datum/source, and state info from the shuttle itself
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DROPSHIP_TRANSIT)
 	if(first_landing)
+		first_landing = FALSE
 		for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 			if(human.faction != FACTION_TERRAGOV)
 				return
 			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[GLOB.operation_namepool[/datum/operation_namepool].get_random_name()]</u></span><br>" + "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Long Range Patrol Rapid Response Platoon<br>" + "[human.job.title], [human]", /obj/screen/text/screen_text/command_order/intro)
-		first_landing = FALSE
 
 /obj/docking_port/mobile/marine_dropship/proc/lockdown_all()
 	lockdown_airlocks("rear")
