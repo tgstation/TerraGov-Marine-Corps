@@ -836,13 +836,6 @@
 	pixel_x = 10;
 	pixel_y = -5
 	},
-/mob/living/simple_animal/parrot/clock_hawk{
-	name = "Hidden Warden of the Past"
-	},
-/obj/item/clothing/tie/medal/bronze_heart{
-	name = "Nosy Nancy Award";
-	pixel_y = -9
-	},
 /obj/machinery/light/small{
 	dir = 1
 	},
