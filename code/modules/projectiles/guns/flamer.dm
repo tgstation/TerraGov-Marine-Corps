@@ -433,9 +433,9 @@
 		update_icon(1, 0)
 	return ..()
 
-//////////////////////////////////////////////////////////////////////////////////////////////////
-//Time to redo part of abby's code.
-//Create a flame sprite object. Doesn't work like regular fire, ie. does not affect atmos or heat
+
+
+
 GLOBAL_DATUM_INIT(flamer_particles, /particles/flamer_fire, new)
 /particles/flamer_fire
 	icon = 'icons/effects/particles/fire.dmi'
