@@ -1,3 +1,37 @@
+GLOBAL_DATUM_INIT(neurotoxin_particles, /particles/xeno_reagent/neurotoxin, new)
+GLOBAL_DATUM_INIT(hemodile_particles, /particles/xeno_reagent/hemodile, new)
+GLOBAL_DATUM_INIT(transvitox_particles, /particles/xeno_reagent/transvitox, new)
+GLOBAL_DATUM_INIT(ozelomelyn_particles, /particles/xeno_reagent/ozelomelyn, new)
+/particles/xeno_reagent
+	icon = 'icons/effects/particles/xeno_reagents.dmi'
+	icon_state = "neurotoxin"
+	width = 100
+	height = 100
+	count = 1000
+	spawning = 4
+	lifespan = 0.7 SECONDS
+	fade = 1 SECONDS
+	grow = -0.01
+	velocity = list(0, 0)
+	position = generator("circle", 0, 16, NORMAL_RAND)
+	drift = generator("vector", list(0, -0.2), list(0, 0.2))
+	gravity = list(0, 0.95)
+	scale = generator("vector", list(0.3, 0.3), list(1,1), NORMAL_RAND)
+	rotation = 30
+	spin = generator("num", -20, 20)
+
+/particles/xeno_reagent/neurotoxin
+	icon_state = "neurotoxin"
+
+/particles/xeno_reagent/hemodile
+	icon_state = "hemodile"
+
+/particles/xeno_reagent/transvitox
+	icon_state = "transvitox"
+
+/particles/xeno_reagent/ozelomelyn
+	icon_state = "ozelomelyn"
+
 // ***************************************
 // *********** Defile
 // ***************************************
@@ -178,7 +212,6 @@
 		count = max(0,count - 1)
 		sleep(DEFILER_GAS_DELAY)
 
-
 // ***************************************
 // *********** Inject Egg Neurogas
 // ***************************************
@@ -301,7 +334,6 @@
 	update_button_icon()
 	return succeed_activate()
 
-
 // ***************************************
 // *********** Reagent slash
 // ***************************************
@@ -393,40 +425,6 @@
 				particles = GLOB.ozelomelyn_particles
 	if(deactivate = TRUE)
 		particles = null
-
-GLOBAL_DATUM_INIT(neurotoxin_particles, /particles/reagent_slash/neurotoxin, new)
-GLOBAL_DATUM_INIT(hemodile_particles, /particles/reagent_slash/hemodile, new)
-GLOBAL_DATUM_INIT(transvitox_particles, /particles/reagent_slash/transvitox, new)
-GLOBAL_DATUM_INIT(ozelomelyn_particles, /particles/reagent_slash/ozelomelyn, new)
-/particles/reagent_slash
-	icon = 'icons/effects/particles/reagent_slash.dmi'
-	icon_state = "neurotoxin"
-	width = 100
-	height = 100
-	count = 1000
-	spawning = 4
-	lifespan = 0.7 SECONDS
-	fade = 1 SECONDS
-	grow = -0.01
-	velocity = list(0, 0)
-	position = generator("circle", 0, 16, NORMAL_RAND)
-	drift = generator("vector", list(0, -0.2), list(0, 0.2))
-	gravity = list(0, 0.95)
-	scale = generator("vector", list(0.3, 0.3), list(1,1), NORMAL_RAND)
-	rotation = 30
-	spin = generator("num", -20, 20)
-
-/particles/reagent_slash/neurotoxin
-	icon_state = "neurotoxin"
-
-/particles/reagent_slash/hemodile
-	icon_state = "hemodile"
-
-/particles/reagent_slash/transvitox
-	icon_state = "transvitox"
-
-/particles/reagent_slash/ozelomelyn
-	icon_state = "ozelomelyn"
 
 // ***************************************
 // *********** Tentacle
