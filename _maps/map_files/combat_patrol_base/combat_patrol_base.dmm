@@ -564,36 +564,6 @@
 	},
 /turf/open/shuttle/elevator/grating,
 /area/mainship/patrol_base/som)
-"ik" = (
-/obj/machinery/vending/marineFood/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/turf/open/floor/mainship/red{
-	dir = 1
-	},
-/area/mainship/patrol_base/som)
 "il" = (
 /turf/open/floor/mainship/red{
 	dir = 6
@@ -857,6 +827,27 @@
 	},
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
+"mr" = (
+/obj/item/paper/clockresearch1{
+	pixel_x = -10;
+	pixel_y = -5
+	},
+/obj/item/paper/clockresearch2{
+	pixel_x = 10;
+	pixel_y = -5
+	},
+/mob/living/simple_animal/parrot/clock_hawk{
+	name = Hidden Warden of the Past
+	},
+/obj/item/clothing/tie/medal/bronze_heart{
+	name = Nosy Nancy Award;
+	pixel_y = -9
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/cult/clock,
+/area/chapel/main)
 "mt" = (
 /obj/structure/largecrate/supply,
 /turf/open/floor/mainship/red{
@@ -1026,13 +1017,6 @@
 	},
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
-"pz" = (
-/obj/structure/shuttle/engine/propulsion{
-	opacity = 0;
-	dir = 1
-	},
-/turf/open/space/basic,
-/area/space)
 "pB" = (
 /turf/open/floor/mainship/blue/full,
 /area/mainship/patrol_base/som)
@@ -1588,34 +1572,6 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/concrete,
-/area/mainship/patrol_base/som)
-"wU" = (
-/obj/machinery/vending/marineFood/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/obj/item/reagent_containers/food/snacks/protein_pack/som,
-/turf/open/floor/mainship/red,
 /area/mainship/patrol_base/som)
 "wY" = (
 /obj/effect/landmark/start/job/som/squadstandard,
@@ -2854,6 +2810,13 @@
 	dir = 5
 	},
 /area/mainship/patrol_base)
+"Pq" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 1;
+	opacity = 0
+	},
+/turf/open/space/basic,
+/area/space)
 "Pr" = (
 /turf/closed/shuttle/ert{
 	icon_state = "stan23"
@@ -3008,29 +2971,36 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/mainship/patrol_base/som)
-"RD" = (
-/obj/item/paper/clockresearch1{
-	pixel_x = -10;
-	pixel_y = -5
-	},
-/obj/item/paper/clockresearch2{
-	pixel_x = 10;
-	pixel_y = -5
-	},
-/mob/living/simple_animal/parrot/clock_hawk{
-	desc = Ifyoucaredenoughtocheckthisspotandexaminethisparrot,Icommendyou.Butthereisnothinghereforyou.;
-	name = HiddenWardenofthePast
-	},
-/obj/item/clothing/tie/medal/bronze_heart{
-	desc = Okfine,youdogetONEawardforfindingthis,butthisisit.;
-	name = NosyNancyAward;
-	pixel_y = -9
-	},
-/obj/machinery/light/small{
+"RL" = (
+/obj/machinery/vending/marineFood/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/turf/open/floor/mainship/red{
 	dir = 1
 	},
-/turf/open/floor/cult/clock,
-/area/chapel/main)
+/area/mainship/patrol_base/som)
 "RM" = (
 /obj/machinery/door/poddoor/mainship/indestructible{
 	dir = 2
@@ -3664,6 +3634,34 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base/som)
+"ZR" = (
+/obj/machinery/vending/marineFood/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/turf/open/floor/mainship/red,
+/area/mainship/patrol_base/som)
 "ZU" = (
 /obj/structure/table/mainship/nometal,
 /turf/open/floor/plating/ground/concrete,
@@ -4153,9 +4151,9 @@ If
 vC
 FX
 Mv
-wU
+ZR
 If
-ik
+RL
 Mv
 Mv
 qK
@@ -4166,9 +4164,9 @@ JJ
 mg
 Mv
 Mv
-wU
+ZR
 If
-ik
+RL
 Mv
 FX
 vC
@@ -4215,9 +4213,9 @@ If
 vC
 FX
 Mv
-wU
+ZR
 If
-ik
+RL
 Mv
 Mv
 qK
@@ -4228,9 +4226,9 @@ JJ
 mg
 Mv
 Mv
-wU
+ZR
 If
-ik
+RL
 Mv
 FX
 vC
@@ -4672,7 +4670,7 @@ IH
 "}
 (17,1,1) = {"
 dW
-RD
+mr
 dW
 Sw
 Sw
@@ -7473,7 +7471,7 @@ Sw
 Sw
 Sw
 Sw
-pz
+Pq
 pg
 fQ
 OI
@@ -7659,7 +7657,7 @@ Sw
 Sw
 Sw
 Sw
-pz
+Pq
 Pe
 Ua
 OI
@@ -8701,7 +8699,7 @@ Sw
 Sw
 "}
 (82,1,1) = {"
-pz
+Pq
 pg
 fQ
 OI
@@ -8887,7 +8885,7 @@ Sw
 Sw
 "}
 (85,1,1) = {"
-pz
+Pq
 Pe
 OF
 OI

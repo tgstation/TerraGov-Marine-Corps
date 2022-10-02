@@ -90,6 +90,12 @@
 	sentry_alert(SENTRY_ALERT_DESTROYED)
 	return ..()
 
+/obj/machinery/deployable/mounted/sentry/AltClick(mob/user)
+	if(!match_iff(user))
+		to_chat(user, span_notice("Access denied."))
+		return
+	return ..()
+
 //-----------------------------------------------------------------
 // Interaction
 
