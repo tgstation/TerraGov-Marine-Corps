@@ -6808,6 +6808,10 @@
 	dir = 9
 	},
 /area/space)
+"tH" = (
+/obj/item/clothing/head/pirate,
+/turf/open/space/basic,
+/area/space)
 "tI" = (
 /obj/structure/window/framed/mainship,
 /obj/machinery/door/firedoor/mainship,
@@ -13316,7 +13320,7 @@
 	dir = 1
 	},
 /obj/machinery/crema_switch,
-/turf/closed/wall/mainship,
+/turf/closed/wall/mainship/outer,
 /area/medical/morgue)
 "LL" = (
 /obj/structure/cable,
@@ -15943,7 +15947,7 @@
 /area/space)
 "Tn" = (
 /obj/effect/decal/siding,
-/turf/closed/wall/mainship,
+/turf/closed/wall/mainship/outer,
 /area/medical/morgue)
 "To" = (
 /obj/structure/bed/chair/comfy{
@@ -18016,9 +18020,6 @@
 	resistance_flags = 3
 	},
 /area/mainship/medical/operating_room_one)
-"Zg" = (
-/turf/closed/wall/mainship,
-/area/medical/morgue)
 "Zh" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
@@ -38463,12 +38464,12 @@ fI
 fI
 fI
 Tm
-Zg
+Kw
 LK
-Zg
+Kw
 Tn
-Zg
-Zg
+Kw
+Kw
 ad
 Qc
 Qc
@@ -38720,7 +38721,7 @@ fI
 fI
 fI
 Tm
-Zg
+Kw
 BX
 XX
 rH
@@ -38972,12 +38973,12 @@ fI
 fI
 fI
 fI
-fI
+tH
 fI
 fI
 fI
 Tm
-Zg
+Kw
 IO
 Ih
 ec
@@ -39234,7 +39235,7 @@ aa
 fI
 fI
 Tm
-Zg
+Kw
 IO
 Zb
 af
@@ -39491,7 +39492,7 @@ aa
 fI
 fI
 Tm
-Zg
+Kw
 YW
 Zb
 Oq
@@ -39748,7 +39749,7 @@ aa
 fI
 fI
 Tm
-Zg
+Kw
 HW
 Zb
 RC
@@ -40005,7 +40006,7 @@ Lw
 Lw
 Lw
 rc
-Zg
+Kw
 IO
 KS
 af
@@ -41798,7 +41799,7 @@ aa
 fI
 fI
 Tm
-Mb
+ad
 LS
 hM
 ZX
@@ -42055,7 +42056,7 @@ aa
 fI
 fI
 Tm
-Mb
+ad
 LS
 hS
 ZX
@@ -42312,7 +42313,7 @@ aa
 fI
 fI
 Tm
-Mb
+ad
 LS
 hS
 ZX
@@ -42569,7 +42570,7 @@ Lw
 Lw
 Lw
 rc
-Mb
+ad
 LS
 ch
 ZX
@@ -42824,9 +42825,9 @@ ad
 ad
 ad
 ad
-Mb
-Mb
-Mb
+ad
+ad
+ad
 LS
 fP
 ZX

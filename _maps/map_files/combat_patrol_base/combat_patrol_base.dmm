@@ -1028,8 +1028,8 @@
 /area/mainship/patrol_base/som)
 "pz" = (
 /obj/structure/shuttle/engine/propulsion{
-	opacity = 0;
-	dir = 1
+	dir = 1;
+	opacity = 0
 	},
 /turf/open/space/basic,
 /area/space)
@@ -3018,12 +3018,10 @@
 	pixel_y = -5
 	},
 /mob/living/simple_animal/parrot/clock_hawk{
-	desc = Ifyoucaredenoughtocheckthisspotandexaminethisparrot,Icommendyou.Butthereisnothinghereforyou.;
-	name = HiddenWardenofthePast
+	name = Hidden Warden of the Past
 	},
 /obj/item/clothing/tie/medal/bronze_heart{
-	desc = Okfine,youdogetONEawardforfindingthis,butthisisit.;
-	name = NosyNancyAward;
+	name = Nosy Nancy Award;
 	pixel_y = -9
 	},
 /obj/machinery/light/small{
