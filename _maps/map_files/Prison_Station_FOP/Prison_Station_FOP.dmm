@@ -28436,26 +28436,6 @@
 "bKg" = (
 /turf/closed/wall/r_wall/prison_unmeltable,
 /area/storage/testroom)
-"bKh" = (
-/obj/item/weapon/shield/riot/marine{
-	color = "#919090";
-	desc = "A legendary shield. How did it get all the way out here?";
-	integrity_failure = 500;
-	max_integrity = 2000;
-	name = "Franklin Ramis' shield";
-	soft_armor = list("melee" = 80, "bullet" = 80, "laser" = 80, "energy" = 70, "bomb" = 15, "bio" = 80, "rad" = 0, "fire" = 0, "acid" = 85)
-	},
-/obj/item/weapon/shield/riot/marine{
-	color = "#919090";
-	desc = "A legendary shield. How did it get all the way out here?";
-	integrity_failure = 500;
-	max_integrity = 2000;
-	name = "Franklin Ramis' shield";
-	pixel_x = 27;
-	soft_armor = list("melee" = 80, "bullet" = 80, "laser" = 80, "energy" = 70, "bomb" = 15, "bio" = 80, "rad" = 0, "fire" = 0, "acid" = 85)
-	},
-/turf/open/floor/prison,
-/area/storage/testroom)
 "bKi" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -44112,15 +44092,6 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/wood,
 /area/prison/quarters/research)
-"lOn" = (
-/obj/item/paper/Court{
-	info = "Franklin was here.\n";
-	name = "Scribbled paper";
-	pixel_x = 5;
-	pixel_y = 4
-	},
-/turf/open/floor/prison,
-/area/storage/testroom)
 "lOX" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
@@ -113337,8 +113308,8 @@ aab
 aab
 aab
 bKg
-bKh
-lOn
+ntB
+ntB
 ntB
 bKg
 acD
