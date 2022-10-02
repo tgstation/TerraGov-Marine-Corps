@@ -264,7 +264,7 @@
 	if(do_actions)
 		return FALSE //We are already occupied with something.
 	if(!Adjacent(AM))
-		return FALSE //The target we're trying to pull must be adjacent and anchored. We also cannot be doing anything else.
+		return FALSE //The target we're trying to pull must be adjacent and anchored.
 	if(status_flags & INCORPOREAL || AM.status_flags & INCORPOREAL)
 		return FALSE //Incorporeal things can't grab or be grabbed.
 	if(AM.anchored)
