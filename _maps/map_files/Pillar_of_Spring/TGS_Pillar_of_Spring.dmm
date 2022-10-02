@@ -16145,7 +16145,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/medical/morgue,
-/turf/closed/wall/mainship,
+/turf/open/floor/plating/plating_catwalk,
 /area/mainship/medical/medical_science)
 "Vh" = (
 /obj/structure/rack,
