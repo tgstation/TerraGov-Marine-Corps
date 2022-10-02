@@ -405,7 +405,7 @@
 	add_cooldown()
 
 /atom/proc/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone)
-	return
+	return TRUE
 
 /obj/machinery/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone) //Break open the machine
 	X.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)

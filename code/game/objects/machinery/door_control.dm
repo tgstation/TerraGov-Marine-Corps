@@ -327,6 +327,10 @@
 	name = "Hangar Lockdown"
 	id = "hangar_lockdown"
 
+/obj/machinery/door_control/old/cic/hangar_shutters
+	id = "hangar_shutters"
+	name = "Hangar Shutters"
+
 /obj/machinery/door_control/old/cic/armory
 	name = "Armory Lockdown"
 	id = "cic_armory"

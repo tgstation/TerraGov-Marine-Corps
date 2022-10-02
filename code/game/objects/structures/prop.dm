@@ -674,6 +674,10 @@
 	resistance_flags = RESIST_ALL
 	layer = ABOVE_MOB_LAYER
 
+/obj/structure/prop/vehicle/van/destructible
+	max_integrity = 200
+	resistance_flags = XENO_DAMAGEABLE
+
 /obj/structure/prop/vehicle/truck
 	name = "truck"
 	desc = "An old truck, seems to be broken down."
@@ -686,9 +690,16 @@
 	resistance_flags = RESIST_ALL
 	layer = ABOVE_MOB_LAYER
 
+/obj/structure/prop/vehicle/truck/destructible
+	max_integrity = 150
+	resistance_flags = XENO_DAMAGEABLE
+
 /obj/structure/prop/vehicle/truck/truckcargo
 	icon_state = "truck_cargo"
 
+/obj/structure/prop/vehicle/truck/truckcargo/destructible
+	max_integrity = 200
+	resistance_flags = XENO_DAMAGEABLE
 /obj/structure/prop/vehicle/crane
 	name = "crane"
 	desc = "An old crane, seems to be broken down."
@@ -701,8 +712,16 @@
 	resistance_flags = RESIST_ALL
 	layer = ABOVE_MOB_LAYER
 
+/obj/structure/prop/vehicle/crane/destructible
+	max_integrity = 300
+	resistance_flags = XENO_DAMAGEABLE
+
 /obj/structure/prop/vehicle/crane/cranecargo
 	icon_state = "crane_cargo"
+
+/obj/structure/prop/vehicle/crane/cranecargo/destructible
+	max_integrity = 300
+	resistance_flags = XENO_DAMAGEABLE
 
 /obj/structure/prop/vehicle/crawler
 	name = "crawler"
@@ -715,6 +734,11 @@
 	bound_width = 64
 	resistance_flags = RESIST_ALL
 	layer = ABOVE_MOB_LAYER
+
+/obj/structure/prop/vehicle/crawler/destructible
+	max_integrity = 200
+	resistance_flags = XENO_DAMAGEABLE
+
 
 /obj/structure/prop/vehicle/crawler/crawler_blue
 	icon_state = "crawler_crate_b"

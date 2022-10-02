@@ -1,0 +1,14 @@
+2022-10-01:
+  Lewdcifer:
+  - rscdel: Flashbangs no longer spawn naturally.
+  Lumipharon:
+  - bugfix: Flashbangs go bang regardless of  whether someone actually gets flashed
+  - balance: Groundside will no longer have shotgun slugs or scoped weapons as part
+      of random spawns
+  botPurple:
+  - imageadd: Changed snow_storm sprite
+  tyeagg:
+  - balance: slightly more space for tadpole
+2022-10-02:
+  Lumipharon:
+  - bugfix: fixed a bug that let you remove the ammo from hostile turrets

@@ -1,4 +1,0 @@
-author: "MiniMeatwad"
-delete-after: True
-changes: 
-  - admin: "Set-Xeno-Buffs verb percentage logging now accurate."

@@ -561,6 +561,12 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
+"ou" = (
+/obj/structure/morgue{
+	dir = 2
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/medical)
 "oy" = (
 /turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
@@ -605,6 +611,12 @@
 "pm" = (
 /obj/structure/table,
 /obj/item/bodybag,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/medical)
+"pq" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
 "pu" = (
@@ -1041,6 +1053,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
+"BI" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/medical)
 "BW" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/decal/cleanable/dirt,
@@ -1426,7 +1443,9 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
 "Mp" = (
-/obj/structure/morgue,
+/obj/structure/morgue{
+	dir = 1
+	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
 "Mt" = (
@@ -2016,10 +2035,10 @@ tH
 Mp
 qk
 Mp
-Mp
+ou
 GW
 Mp
-Mp
+GW
 oG
 KG
 "}
@@ -2042,12 +2061,12 @@ oG
 IT
 GW
 Mp
-GW
+BI
 Mp
-Mp
+ou
 tH
 Mp
-Mp
+GW
 oG
 KG
 "}
@@ -2067,12 +2086,12 @@ fI
 gj
 MO
 KD
-tH
+GW
 GW
 tH
 tH
 tH
-tH
+GW
 nq
 tH
 zk
@@ -2098,12 +2117,12 @@ oG
 Rf
 tH
 Mp
-tH
-Mp
-Mp
 GW
 Mp
+ou
+GW
 Mp
+pq
 oG
 KG
 "}
@@ -2128,10 +2147,10 @@ tH
 Mp
 bR
 Mp
-Mp
+ou
 GW
 Mp
-Mp
+pm
 oG
 KG
 "}

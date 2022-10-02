@@ -82,7 +82,7 @@
 	actions_types = list(/datum/action/item_action/toggle)
 	species_exception = list(/datum/species/robot)
 	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/glasses.dmi')
-	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 0, "energy" = 15, "bomb" = 35, "bio" = 10, "rad" = 10, "fire" = 30, "acid" = 30)
+	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 0, ENERGY = 15, BOMB = 35, BIO = 10, "rad" = 10, FIRE = 30, ACID = 30)
 	flags_equip_slot = ITEM_SLOT_EYES
 	goggles = TRUE
 

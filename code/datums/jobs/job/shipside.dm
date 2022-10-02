@@ -357,7 +357,7 @@ Though you are a warrant officer, your authority is limited to the dropship and 
 /datum/job/terragov/command/mech_pilot
 	title = MECH_PILOT
 	req_admin_notify = TRUE
-	paygrade = "E8E"
+	paygrade = "E3"
 	comm_title = "MCH"
 	total_positions = 1
 	skills_type = /datum/skills/mech_pilot
@@ -384,10 +384,8 @@ Though you are a warrant officer, your authority is limited to the dropship and 
 
 /datum/job/terragov/command/mech_pilot/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"You are charged with overseeing the operation on the ground, and are the highest-ranked deployed marine.
-Your duties are to ensure marines hold when ordered, and push when they are cowering behind barricades.
-Do not ask your men to do anything you would not do side by side with them.
-Make the TGMC proud!"})
+	to_chat(M, {"\nYou are the operator of a very expensive and valuable Mech, and are trained and expected to use it in the field of combat.
+You can serve your Division in a variety of roles, so choose carefully."})
 
 /datum/job/terragov/command/mech_pilot/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -399,12 +397,11 @@ Make the TGMC proud!"})
 		return
 	switch(playtime_mins)
 		if(0 to 1500) //starting
-			new_human.wear_id.paygrade = "E8E"
+			new_human.wear_id.paygrade = "E3"
 		if(1500 to 7500) // 25 hrs
-			new_human.wear_id.paygrade = "E9"
+			new_human.wear_id.paygrade = "E4"
 		if(7501 to INFINITY) // 125 hrs
-			new_human.wear_id.paygrade = "E9E"
-
+			new_human.wear_id.paygrade = "E5"
 
 /datum/outfit/job/command/mech_pilot
 	name = MECH_PILOT

@@ -36,6 +36,12 @@
 	return ..()
 
 
+/obj/vehicle/sealed/mecha/combat/greyscale/mob_try_enter(mob/M)
+	if(M.skills.getRating("large_vehicle") < SKILL_LARGE_VEHICLE_TRAINED)
+		balloon_alert(M, "You don't know how to pilot this")
+		return FALSE
+	return ..()
+
 /obj/vehicle/sealed/mecha/combat/greyscale/update_overlays()
 	. = ..()
 	var/list/render_order

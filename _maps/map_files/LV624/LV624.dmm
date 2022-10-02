@@ -2791,6 +2791,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/effect/spawner/random/plushie,
 /turf/open/floor/wood,
 /area/lv624/lazarus/hop)
 "biS" = (
@@ -11442,6 +11443,11 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
+"kQL" = (
+/obj/effect/spawner/random/plushie/nospawnninetyfive{
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/central4)
 "kQY" = (
 /obj/effect/landmark/corpsespawner/prisoner,
 /turf/open/floor/tile/white,
@@ -11675,10 +11681,6 @@
 "ldz" = (
 /obj/item/flash,
 /obj/structure/table/reinforced,
-/obj/item/explosive/grenade/flashbang{
-	pixel_x = 7;
-	pixel_y = 2
-	},
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -25442,7 +25444,7 @@ lXk
 lXk
 lXk
 lXk
-lXk
+kQL
 vHz
 lXk
 lXk

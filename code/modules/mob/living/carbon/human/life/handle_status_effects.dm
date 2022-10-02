@@ -13,7 +13,7 @@
 
 	return TRUE
 
-/mob/living/carbon/human/handle_received_auras()
+/mob/living/carbon/human/finish_aura_cycle()
 
 	set_mobility_aura(received_auras[AURA_HUMAN_MOVE] || 0)
 	protection_aura = received_auras[AURA_HUMAN_HOLD] || 0
