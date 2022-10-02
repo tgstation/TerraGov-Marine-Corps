@@ -9,3 +9,6 @@
   - imageadd: Changed snow_storm sprite
   tyeagg:
   - balance: slightly more space for tadpole
+2022-10-02:
+  Lumipharon:
+  - bugfix: fixed a bug that let you remove the ammo from hostile turrets
