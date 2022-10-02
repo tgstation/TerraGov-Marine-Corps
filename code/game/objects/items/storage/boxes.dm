@@ -445,7 +445,7 @@
 /obj/item/storage/box/MRE/som
 	name = "\improper SOM MFR"
 	desc = "A Martian Field Ration, guaranteed to have a taste of Mars in every bite."
-	icon_state = "mealpack_som"
+	icon_state = "som_mealpack"
 
 /**
  * # fillable box
