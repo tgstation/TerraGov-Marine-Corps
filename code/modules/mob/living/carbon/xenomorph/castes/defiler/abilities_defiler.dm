@@ -334,6 +334,7 @@
 	X.balloon_alert(X, "Reagent slash active") //Let the user know
 	X.playsound_local(X, 'sound/voice/alien_drool2.ogg', 25)
 
+	handle_particles(FALSE)
 	succeed_activate()
 	add_cooldown()
 
@@ -370,6 +371,7 @@
 	reagent_slash_count-- //Decrement the reagent slash count
 
 	if(!reagent_slash_count) //Deactivate if we have no reagent slashes remaining
+		handle_particles(TRUE)
 		reagent_slash_deactivate(X)
 
 
@@ -378,6 +380,57 @@
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
+/datum/action/xeno_action/reagent_slash/handle_particles(deactivate)
+	if(deactivate = FALSE)
+		switch(reagent_slash_reagent)
+			if(xeno_neurotoxin)
+				particles = GLOB.neurotoxin_particles
+			if(xeno_hemodile)
+				particles = GLOB.hemodile_particles
+			if(xeno_transvitox)
+				particles = GLOB.transvitox_particles
+			if(xeno_ozelomelyn)
+				particles = GLOB.ozelomelyn_particles
+	if(deactivate = TRUE)
+		particles = null
+
+GLOBAL_DATUM_INIT(neurotoxin_particles, /particles/reagent_slash/neurotoxin, new)
+GLOBAL_DATUM_INIT(hemodile_particles, /particles/reagent_slash/hemodile, new)
+GLOBAL_DATUM_INIT(transvitox_particles, /particles/reagent_slash/transvitox, new)
+GLOBAL_DATUM_INIT(ozelomelyn_particles, /particles/reagent_slash/ozelomelyn, new)
+/particles/reagent_slash
+	icon = 'icons/effects/particles/reagent_slash.dmi'
+	icon_state = "neurotoxin"
+	width = 100
+	height = 100
+	count = 1000
+	spawning = 4
+	lifespan = 0.7 SECONDS
+	fade = 1 SECONDS
+	grow = -0.01
+	velocity = list(0, 0)
+	position = generator("circle", 0, 16, NORMAL_RAND)
+	drift = generator("vector", list(0, -0.2), list(0, 0.2))
+	gravity = list(0, 0.95)
+	scale = generator("vector", list(0.3, 0.3), list(1,1), NORMAL_RAND)
+	rotation = 30
+	spin = generator("num", -20, 20)
+
+/particles/reagent_slash/neurotoxin
+	icon_state = "neurotoxin"
+
+/particles/reagent_slash/hemodile
+	icon_state = "hemodile"
+
+/particles/reagent_slash/transvitox
+	icon_state = "transvitox"
+
+/particles/reagent_slash/ozelomelyn
+	icon_state = "ozelomelyn"
+
+// ***************************************
+// *********** Tentacle
+// ***************************************
 /datum/action/xeno_action/activable/tentacle
 	name = "Tentacle"
 	action_icon_state = "tail_attack"
