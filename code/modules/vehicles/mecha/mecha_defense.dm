@@ -25,20 +25,30 @@
 			gear = equip_by_category[MECHA_R_ARM]
 	if(!gear)
 		return
-	if(!gear.obj_integrity <= 1)
+	// always leave at least 1 health
+	var/damage_to_deal = min(obj_integrity - 1, damage)
+	if(damage_to_deal <= 0)
 		return
-	gear.take_damage(min(gear.obj_integrity-1, damage))
 
-/obj/vehicle/sealed/mecha/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
-	. = ..()
-	if(. && obj_integrity > 0)
-		spark_system.start()
-		try_deal_internal_damage(.)
-		if(. >= 5 || prob(33))
-			to_chat(occupants, "[icon2html(src, occupants)][span_userdanger("Taking damage!")]")
-		log_message("Took [.] points of damage. Damage type: [damage_type]", LOG_MECHA)
+	gear.take_damage(damage_to_deal)
+	if(gear.obj_integrity <= 1)
+		to_chat(occupants, "[icon2html(src, occupants)][span_danger("[gear] is critically damaged!")]")
+		playsound(src, gear.destroy_sound, 50)
 
-/obj/vehicle/sealed/mecha/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir, armour_penentration)
+/obj/vehicle/sealed/mecha/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration)
+	var/damage_taken = ..()
+	if(damage_taken <= 0 || obj_integrity < 0)
+		return damage_taken
+
+	spark_system.start()
+	try_deal_internal_damage(damage_taken)
+	if(damage_taken >= 5 || prob(33))
+		to_chat(occupants, "[icon2html(src, occupants)][span_userdanger("Taking damage!")]")
+	log_message("Took [damage_taken] points of damage. Damage type: [damage_type]", LOG_MECHA)
+
+	return damage_taken
+
+/obj/vehicle/sealed/mecha/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir, armour_penetration)
 	. = ..()
 	if(attack_dir)
 		var/facing_modifier = get_armour_facing(abs(dir2angle(dir) - dir2angle(attack_dir)))
@@ -58,7 +68,13 @@
 /obj/vehicle/sealed/mecha/bullet_act(obj/projectile/hitting_projectile, def_zone, piercing_hit) //wrapper
 	log_message("Hit by projectile. Type: [hitting_projectile]([hitting_projectile.ammo.damage_type]).", LOG_MECHA, color="red")
 	// yes we *have* to run the armor calc proc here I love tg projectile code too
-	try_damage_component(run_obj_armor(hitting_projectile.damage, hitting_projectile.ammo.damage_type, hitting_projectile.ammo.armor_type, 0, REVERSE_DIR(hitting_projectile.dir), hitting_projectile.ammo.penetration), hitting_projectile.def_zone)
+	try_damage_component(run_obj_armor(
+		damage_amount = hitting_projectile.damage,
+		damage_type = hitting_projectile.ammo.damage_type,
+		damage_flag = hitting_projectile.ammo.armor_type,
+		attack_dir = REVERSE_DIR(hitting_projectile.dir),
+		armour_penetration = hitting_projectile.ammo.penetration,
+	), hitting_projectile.def_zone)
 	return ..()
 
 /obj/vehicle/sealed/mecha/ex_act(severity, target)
@@ -181,11 +197,25 @@
 		var/obj/item/mecha_parts/P = W
 		P.try_attach_part(user, src, FALSE)
 		return
-	. = ..()
-	log_message("Attacked by [W]. Attacker - [user], Damage - [.]", LOG_MECHA)
-	if(isliving(user))
-		var/mob/living/living_user = user
-		try_damage_component(., living_user.zone_selected)
+	return ..()
+
+/obj/vehicle/sealed/mecha/attacked_by(obj/item/attacking_item, mob/living/user)
+	if(!attacking_item.force)
+		return
+
+	var/damage_taken = take_damage(attacking_item.force, attacking_item.damtype, MELEE, 1)
+	try_damage_component(damage_taken, user.zone_selected)
+
+	var/hit_verb = length(attacking_item.attack_verb) ? "[pick(attacking_item.attack_verb)]" : "hit"
+	user.visible_message(
+		span_danger("[user] [hit_verb][plural_s(hit_verb)] [src] with [attacking_item][damage_taken ? "." : ", without leaving a mark!"]"),
+		span_danger("You [hit_verb] [src] with [attacking_item][damage_taken ? "." : ", without leaving a mark!"]"),
+		span_hear("You hear a [hit_verb]."),
+		COMBAT_MESSAGE_RANGE,
+	)
+
+	log_combat(user, src, "attacked", attacking_item)
+	log_message("Attacked by [user]. Item - [attacking_item], Damage - [damage_taken]", LOG_MECHA)
 
 /obj/vehicle/sealed/mecha/wrench_act(mob/living/user, obj/item/I)
 	..()
