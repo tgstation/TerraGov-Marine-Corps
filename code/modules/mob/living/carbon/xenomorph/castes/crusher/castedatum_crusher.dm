@@ -32,7 +32,7 @@
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_BECOME_KING
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 70, BULLET = 70, LASER = 75, ENERGY = 60, BOMB = 100, BIO = 80, "rad" = 80, FIRE = 25, ACID = 80)
+	soft_armor = list(MELEE = 70, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 100, BIO = 80, "rad" = 80, FIRE = 25, ACID = 80)
 
 	// *** Minimap Icon *** //
 	minimap_icon = "crusher"
