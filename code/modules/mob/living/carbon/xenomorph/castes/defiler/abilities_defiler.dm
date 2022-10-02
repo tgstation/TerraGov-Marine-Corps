@@ -1,36 +1,62 @@
-GLOBAL_DATUM_INIT(neurotoxin_particles, /particles/xeno_reagent/neurotoxin, new)
-GLOBAL_DATUM_INIT(hemodile_particles, /particles/xeno_reagent/hemodile, new)
-GLOBAL_DATUM_INIT(transvitox_particles, /particles/xeno_reagent/transvitox, new)
-GLOBAL_DATUM_INIT(ozelomelyn_particles, /particles/xeno_reagent/ozelomelyn, new)
-/particles/xeno_reagent
+/particles/xeno_slash
 	icon = 'icons/effects/particles/xeno_reagents.dmi'
 	icon_state = "neurotoxin"
 	width = 100
 	height = 100
 	count = 1000
-	spawning = 4
-	lifespan = 0.7 SECONDS
-	fade = 1 SECONDS
+	spawning = 6
+	lifespan = 9
+	fade = 13
 	grow = -0.01
 	velocity = list(0, 0)
-	position = generator("circle", 0, 16, NORMAL_RAND)
+	position = generator("circle", 16, 18, NORMAL_RAND)
 	drift = generator("vector", list(0, -0.2), list(0, 0.2))
 	gravity = list(0, 0.95)
 	scale = generator("vector", list(0.3, 0.3), list(1,1), NORMAL_RAND)
 	rotation = 30
 	spin = generator("num", -20, 20)
 
-/particles/xeno_reagent/neurotoxin
+/particles/xeno_slash/neurotoxin
 	icon_state = "neurotoxin"
 
-/particles/xeno_reagent/hemodile
+/particles/xeno_slash/hemodile
 	icon_state = "hemodile"
 
-/particles/xeno_reagent/transvitox
+/particles/xeno_slash/transvitox
 	icon_state = "transvitox"
 
-/particles/xeno_reagent/ozelomelyn
+/particles/xeno_slash/ozelomelyn
 	icon_state = "ozelomelyn"
+
+/particles/xeno_smoke
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "smoke"
+	width = 100
+	height = 100
+	count = 1000
+	spawning = 6
+	lifespan = 9
+	fade = 13
+	grow = -0.01
+	velocity = list(0, 0)
+	position = generator("circle", 16, 18, NORMAL_RAND)
+	drift = generator("vector", list(0, -0.2), list(0, 0.2))
+	gravity = list(0, 0.95)
+	scale = generator("vector", list(0.3, 0.3), list(1,1), NORMAL_RAND)
+	rotation = 30
+	spin = generator("num", -20, 20)
+
+/particles/xeno_smoke/neurotoxin
+	color = "#CC6D00"
+
+/particles/xeno_smoke/hemodile
+	color = "#006DCC"
+
+/particles/xeno_smoke/transvitox
+	color = "#8BCC00"
+
+/particles/xeno_smoke/ozelomelyn
+	color = "#E0A1E0"
 
 // ***************************************
 // *********** Defile
@@ -147,6 +173,7 @@ GLOBAL_DATUM_INIT(ozelomelyn_particles, /particles/xeno_reagent/ozelomelyn, new)
 /datum/action/xeno_action/emit_neurogas/action_activate()
 	var/mob/living/carbon/xenomorph/Defiler/X = owner
 
+	handle_particles(FALSE)
 	//give them fair warning
 	X.visible_message(span_danger("Tufts of smoke begin to billow from [X]!"), \
 	span_xenodanger("Our dorsal vents widen, preparing to emit toxic smoke. We must keep still!"))
@@ -177,6 +204,10 @@ GLOBAL_DATUM_INIT(ozelomelyn_particles, /particles/xeno_reagent/ozelomelyn, new)
 	X.visible_message(span_xenodanger("[X] emits a noxious gas!"), \
 	span_xenodanger("We emit noxious gas!"))
 	dispense_gas()
+
+/datum/action/xeno_action/emit_neurogas/fail_activate()
+	handle_particles(TRUE)
+	. = ..()
 
 /datum/action/xeno_action/emit_neurogas/proc/dispense_gas(count = 3)
 	var/mob/living/carbon/xenomorph/Defiler/X = owner
@@ -211,6 +242,24 @@ GLOBAL_DATUM_INIT(ozelomelyn_particles, /particles/xeno_reagent/ozelomelyn, new)
 		T.visible_message(span_danger("Noxious smoke billows from the hulking xenomorph!"))
 		count = max(0,count - 1)
 		sleep(DEFILER_GAS_DELAY)
+	handle_particles(TRUE)
+
+/datum/action/xeno_action/emit_neurogas/proc/handle_particles(deactivate)
+	var/mob/living/carbon/xenomorph/X = owner
+
+	if(deactivate == FALSE)
+		switch(X.selected_reagent)
+			if(/datum/reagent/toxin/xeno_neurotoxin)
+				X.particles = new /particles/xeno_smoke/neurotoxin
+			if(/datum/reagent/toxin/xeno_hemodile)
+				X.particles = new /particles/xeno_smoke/hemodile
+			if(/datum/reagent/toxin/xeno_transvitox)
+				X.particles = new /particles/xeno_smoke/transvitox
+			if(/datum/reagent/toxin/xeno_ozelomelyn)
+				X.particles = new /particles/xeno_smoke/ozelomelyn
+
+	if(deactivate == TRUE)
+		QDEL_NULL(X.particles)
 
 // ***************************************
 // *********** Inject Egg Neurogas
@@ -369,6 +418,7 @@ GLOBAL_DATUM_INIT(ozelomelyn_particles, /particles/xeno_reagent/ozelomelyn, new)
 	handle_particles(FALSE)
 	succeed_activate()
 	add_cooldown()
+	to_chat(X, span_xenowarning("[X.particles]"))
 
 ///Called when the duration of reagent slash lapses
 /datum/action/xeno_action/reagent_slash/proc/reagent_slash_deactivate(mob/living/carbon/xenomorph/X)
@@ -378,6 +428,7 @@ GLOBAL_DATUM_INIT(ozelomelyn_particles, /particles/xeno_reagent/ozelomelyn, new)
 	deltimer(reagent_slash_duration_timer_id) //delete the timer so we don't have mismatch issues, and so we don't potentially try to deactivate the ability twice
 	reagent_slash_duration_timer_id = null
 	reagent_slash_reagent = null
+	handle_particles(TRUE)
 
 	X.balloon_alert(X, "Reagent slash over") //Let the user know
 	X.playsound_local(X, 'sound/voice/hiss5.ogg', 25)
@@ -403,8 +454,8 @@ GLOBAL_DATUM_INIT(ozelomelyn_particles, /particles/xeno_reagent/ozelomelyn, new)
 	reagent_slash_count-- //Decrement the reagent slash count
 
 	if(!reagent_slash_count) //Deactivate if we have no reagent slashes remaining
-		handle_particles(TRUE)
 		reagent_slash_deactivate(X)
+		to_chat(X, span_xenowarning("[X.particles]"))
 
 
 /datum/action/xeno_action/reagent_slash/on_cooldown_finish()
@@ -412,19 +463,22 @@ GLOBAL_DATUM_INIT(ozelomelyn_particles, /particles/xeno_reagent/ozelomelyn, new)
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
-/datum/action/xeno_action/reagent_slash/handle_particles(deactivate)
-	if(deactivate = FALSE)
-		switch(reagent_slash_reagent)
-			if(xeno_neurotoxin)
-				particles = GLOB.neurotoxin_particles
-			if(xeno_hemodile)
-				particles = GLOB.hemodile_particles
-			if(xeno_transvitox)
-				particles = GLOB.transvitox_particles
-			if(xeno_ozelomelyn)
-				particles = GLOB.ozelomelyn_particles
-	if(deactivate = TRUE)
-		particles = null
+/datum/action/xeno_action/reagent_slash/proc/handle_particles(deactivate)
+	var/mob/living/carbon/xenomorph/X = owner
+
+	if(deactivate == FALSE)
+		switch(X.selected_reagent)
+			if(/datum/reagent/toxin/xeno_neurotoxin)
+				X.particles = new /particles/xeno_slash/neurotoxin
+			if(/datum/reagent/toxin/xeno_hemodile)
+				X.particles = new /particles/xeno_slash/hemodile
+			if(/datum/reagent/toxin/xeno_transvitox)
+				X.particles = new /particles/xeno_slash/transvitox
+			if(/datum/reagent/toxin/xeno_ozelomelyn)
+				X.particles = new /particles/xeno_slash/ozelomelyn
+
+	if(deactivate == TRUE)
+		QDEL_NULL(X.particles)
 
 // ***************************************
 // *********** Tentacle
