@@ -13,6 +13,11 @@
 	melee_damage = 21
 	attack_delay = 8
 
+	// Crusher can have less Sunder applied to them max, and has hightened sunder recovery. //
+	sunder_recover = 1
+
+	sunder_max = 60
+
 	// *** Speed *** //
 	speed = -0.1
 
