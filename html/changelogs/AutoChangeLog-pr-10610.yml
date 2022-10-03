@@ -1,0 +1,6 @@
+author: "Zaro"
+delete-after: True
+changes: 
+  - rscadd: "Added new xeno caste"
+  - imageadd: "added icons for said xeno caste and her spawn"
+  - code_imp: "added code necessary for caste"
