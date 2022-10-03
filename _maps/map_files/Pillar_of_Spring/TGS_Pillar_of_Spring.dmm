@@ -6928,6 +6928,7 @@
 /obj/machinery/light/mainship{
 	dir = 4
 	},
+/obj/structure/prop/mainship/halfbuilt_mech/vanguard,
 /turf/open/floor/mainship/black{
 	dir = 6
 	},
