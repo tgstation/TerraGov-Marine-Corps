@@ -783,7 +783,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 50
 	damage_falloff = 0.5
 	penetration = 15
-	sundering = 8
+	sundering = 7
 
 /datum/ammo/bullet/shotgun/flechette_spread
 	name = "additional flechette"
@@ -795,7 +795,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 40
 	damage_falloff = 1
 	penetration = 25
-	sundering = 7
+	sundering = 5
 
 /datum/ammo/bullet/shotgun/buckshot
 	name = "shotgun buckshot shell"
