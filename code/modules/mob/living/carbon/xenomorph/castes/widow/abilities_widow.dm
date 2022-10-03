@@ -88,17 +88,6 @@
 		return INITIALIZE_HINT_QDEL
 	QDEL_IN(src, leash_life)
 
-/proc/check_path(atom/start, atom/end, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE)
-	var/list/path_to_target = getline(start, end)
-	var/line_count = 1
-	for(var/path_turf in path_to_target)
-		if(line_count == length(path_to_target))
-			break
-		if(LinkBlocked(path_to_target[line_count], path_to_target[line_count + 1], bypass_window, projectile, bypass_xeno))
-			return FALSE
-		line_count ++
-	return TRUE
-
 /// To remove beams after the leash_ball is destroyed and also unregister all victims
 /obj/structure/xeno/aoe_leash/Destroy()
 	for(var/mob/living/carbon/human/victim AS in leash_victims)
