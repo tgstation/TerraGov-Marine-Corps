@@ -15,6 +15,8 @@
 
 	circuit = /obj/item/circuitboard/computer/comm_server
 
+/obj/machinery/computer/telecomms/server/preset
+	network = "tcommsat"
 
 /obj/machinery/computer/telecomms/server/interact(mob/user)
 	var/dat

@@ -53,6 +53,7 @@
 #include "code\__DEFINES\flags.dm"
 #include "code\__DEFINES\foam.dm"
 #include "code\__DEFINES\footsteps.dm"
+#include "code\__DEFINES\greyscale_guns.dm"
 #include "code\__DEFINES\implants.dm"
 #include "code\__DEFINES\instruments.dm"
 #include "code\__DEFINES\interaction.dm"

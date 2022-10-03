@@ -38,7 +38,9 @@
 	if(stealth)
 		cancel_stealth()
 		return TRUE
-
+	if(HAS_TRAIT_FROM(owner, TRAIT_TURRET_HIDDEN, STEALTH_TRAIT))   // stops stealth and disguise from stacking
+		owner.balloon_alert(owner, "already in a form of stealth!")
+		return
 	succeed_activate()
 	to_chat(owner, "<span class='xenodanger'>We vanish into the shadows...</span>")
 	last_stealth = world.time
@@ -217,6 +219,7 @@
 /datum/action/xeno_action/stealth/disguise
 	name = "Disguise"
 	mechanics_text = "Disguise yourself as the enemy. Uses plasma to move. Select your disguise with Hunter's Mark."
+	keybind_signal = COMSIG_XENOABILITY_TOGGLE_DISGUISE
 	///the regular appearance of the hunter
 	var/old_appearance
 
@@ -226,7 +229,9 @@
 		return TRUE
 	var/mob/living/carbon/xenomorph/xenoowner = owner
 	var/datum/action/xeno_action/activable/hunter_mark/mark = xenoowner.actions_by_path[/datum/action/xeno_action/activable/hunter_mark]
-
+	if(HAS_TRAIT_FROM(owner, TRAIT_TURRET_HIDDEN, STEALTH_TRAIT))   // stops stealth and disguise from stacking
+		owner.balloon_alert(owner, "already in a form of stealth!")
+		return
 	if(!mark.marked_target)
 		to_chat(owner, span_warning("We have no target to disguise into!"))
 		return

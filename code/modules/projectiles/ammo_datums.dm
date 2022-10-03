@@ -2869,7 +2869,7 @@ datum/ammo/bullet/revolver/tp44
 	sound_hit 	 	= "alloy_hit"
 	sound_armor	 	= "alloy_armor"
 	sound_bounce	= "alloy_bounce"
-	armor_type = "bullet"
+	armor_type = BULLET
 	accuracy = 20
 	accurate_range = 15
 	max_range = 15

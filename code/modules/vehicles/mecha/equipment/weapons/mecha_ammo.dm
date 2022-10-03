@@ -28,6 +28,8 @@
 	. = ..()
 	if(rounds)
 		. += "There [rounds > 1?"are":"is"] [rounds] [ammo_type][rounds > 1?"s":""] left."
+	else
+		. += span_notice("Use in-hand to fold it into a sheet of metal.")
 
 /obj/item/mecha_ammo/incendiary
 	name = "incendiary ammo box"
