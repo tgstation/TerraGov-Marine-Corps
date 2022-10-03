@@ -1777,9 +1777,6 @@
 "fi" = (
 /turf/open/floor/mainship/sterile/purple/side,
 /area/mainship/medical/medical_science)
-"fj" = (
-/turf/closed/wall/mainship/outer,
-/area/mainship/hallways/hangar/droppod)
 "fl" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
@@ -4854,9 +4851,6 @@
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
-"os" = (
-/turf/closed/wall/mainship/outer,
-/area/mainship/living/pilotbunks)
 "ot" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -6183,7 +6177,7 @@
 /area/mainship/hull/lower_hull)
 "sd" = (
 /obj/effect/soundplayer,
-/turf/closed/wall/mainship/outer,
+/turf/closed/wall/mainship,
 /area/mainship/living/tankerbunks)
 "se" = (
 /obj/effect/decal/warning_stripes/thin,
@@ -7781,9 +7775,6 @@
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
-"wI" = (
-/turf/closed/wall/mainship/outer,
 /area/mainship/hallways/hangar)
 "wJ" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -14027,9 +14018,6 @@
 	dir = 6
 	},
 /area/mainship/living/commandbunks)
-"OZ" = (
-/turf/closed/wall/mainship/outer,
-/area/mainship/living/tankerbunks)
 "Pa" = (
 /mob/living/simple_animal/corgi/ranger,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
@@ -14772,10 +14760,6 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
-"Rf" = (
-/obj/effect/soundplayer,
-/turf/closed/wall/mainship/outer,
 /area/mainship/hallways/hangar)
 "Rg" = (
 /turf/open/floor/plating/mainship,
@@ -16360,7 +16344,7 @@
 /area/mainship/living/grunt_rnr)
 "VG" = (
 /obj/effect/soundplayer,
-/turf/closed/wall/mainship/outer,
+/turf/closed/wall/mainship,
 /area/mainship/hallways/hangar/droppod)
 "VH" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -39559,7 +39543,7 @@ tF
 vV
 MX
 VU
-NS
+JA
 ou
 bp
 DG
@@ -39567,11 +39551,11 @@ wf
 pL
 pL
 wM
-NS
+JA
 bq
 sZ
 hR
-NS
+JA
 mt
 xn
 vq
@@ -39580,7 +39564,7 @@ vq
 vq
 xn
 wz
-NS
+JA
 ew
 XU
 Zr
@@ -39596,7 +39580,7 @@ Zr
 Zr
 Zr
 YI
-NS
+JA
 ZM
 ZM
 DX
@@ -39816,7 +39800,7 @@ yu
 nT
 tF
 XK
-NS
+JA
 kd
 BV
 qv
@@ -39824,11 +39808,11 @@ qv
 qv
 qv
 dC
-NS
+JA
 iL
 KS
 Xk
-NS
+JA
 IM
 Jz
 Cc
@@ -39837,7 +39821,7 @@ Cc
 Cc
 NC
 aN
-NS
+JA
 iB
 Dq
 xR
@@ -39853,7 +39837,7 @@ xR
 xR
 xR
 vJ
-NS
+JA
 ZM
 ZM
 DX
@@ -40073,7 +40057,7 @@ il
 SP
 tF
 dy
-NS
+JA
 sk
 aj
 xn
@@ -40081,11 +40065,11 @@ xn
 xn
 xn
 ZI
-NS
+JA
 kE
 rF
 jv
-NS
+JA
 IM
 Jz
 Cc
@@ -40094,7 +40078,7 @@ Cc
 Cc
 NC
 aN
-NS
+JA
 XU
 Yy
 xR
@@ -40110,7 +40094,7 @@ xR
 xR
 xR
 kV
-NS
+JA
 OP
 OP
 DX
@@ -40330,7 +40314,7 @@ il
 fe
 tF
 ht
-NS
+JA
 As
 aj
 qv
@@ -40338,11 +40322,11 @@ qv
 qv
 qv
 lY
-NS
+JA
 Yj
 FM
 BK
-NS
+JA
 IM
 Jz
 Cc
@@ -40351,7 +40335,7 @@ Cc
 Cc
 NC
 aN
-NS
+JA
 Si
 xR
 xR
@@ -40587,7 +40571,7 @@ il
 nn
 tF
 dy
-NS
+JA
 UB
 aj
 Kz
@@ -40595,11 +40579,11 @@ qG
 nk
 nk
 pX
-NS
+JA
 ag
 do
 vQ
-NS
+JA
 IM
 Jz
 Cc
@@ -40608,7 +40592,7 @@ Cc
 On
 NC
 aN
-NS
+JA
 Si
 Gh
 xR
@@ -40844,7 +40828,7 @@ il
 SP
 tF
 dy
-NS
+JA
 jv
 aj
 aj
@@ -40852,11 +40836,11 @@ Rb
 ko
 zl
 Gc
-NS
+JA
 lL
 Mq
 Qd
-NS
+JA
 IM
 OW
 yo
@@ -40865,7 +40849,7 @@ sz
 rq
 CB
 aN
-NS
+JA
 Si
 xR
 xR
@@ -41101,28 +41085,28 @@ il
 fe
 tF
 dy
-NS
-NS
-NS
+JA
+JA
+JA
 gx
-NS
-NS
-NS
+JA
+JA
+JA
 Bh
-NS
-NS
+JA
+JA
 Bh
-NS
-NS
-NS
-NS
-NS
+JA
+JA
+JA
+JA
+JA
 CV
 aj
-NS
-NS
-NS
-NS
+JA
+JA
+JA
+JA
 cK
 NR
 xR
@@ -43653,7 +43637,7 @@ NS
 NS
 NS
 NS
-JA
+NS
 Dd
 JA
 Jl
@@ -44136,14 +44120,14 @@ lR
 rn
 NS
 GG
-fj
-fj
-fj
-fj
-fj
-fj
-fj
-fj
+cB
+cB
+cB
+cB
+cB
+cB
+cB
+cB
 GG
 xn
 xn
@@ -44393,7 +44377,7 @@ lR
 rn
 NS
 GG
-fj
+cB
 xt
 xt
 Ob
@@ -44657,7 +44641,7 @@ uH
 uH
 FK
 Uh
-fj
+cB
 Tp
 Vc
 BQ
@@ -44907,7 +44891,7 @@ lR
 rn
 NS
 GG
-fj
+cB
 xt
 xt
 xt
@@ -45421,7 +45405,7 @@ bQ
 rn
 NS
 AA
-fj
+cB
 hQ
 uH
 uH
@@ -45678,7 +45662,7 @@ bQ
 rn
 NS
 GG
-fj
+cB
 xt
 xt
 xt
@@ -45935,7 +45919,7 @@ bQ
 rn
 NS
 GG
-fj
+cB
 xt
 xt
 xt
@@ -46192,7 +46176,7 @@ bQ
 rn
 NS
 GG
-fj
+cB
 Nd
 Rh
 Rh
@@ -46449,7 +46433,7 @@ bQ
 rn
 NS
 GG
-fj
+cB
 xt
 xt
 xt
@@ -46706,7 +46690,7 @@ NA
 Ci
 NS
 GG
-fj
+cB
 xt
 xt
 xt
@@ -47220,7 +47204,7 @@ Hq
 GG
 GG
 Hq
-fj
+cB
 xt
 xt
 xt
@@ -47474,10 +47458,10 @@ bQ
 rn
 NS
 GG
-wI
-wI
-wI
-wI
+Vc
+Vc
+Vc
+Vc
 Vc
 Vc
 Vc
@@ -50558,10 +50542,10 @@ bQ
 rn
 NS
 GG
-wI
-wI
-wI
-wI
+Vc
+Vc
+Vc
+Vc
 Vc
 Vc
 Vc
@@ -50818,7 +50802,7 @@ Hq
 GG
 GG
 Hq
-wI
+Vc
 by
 FY
 by
@@ -51075,7 +51059,7 @@ NS
 NS
 NS
 GG
-wI
+Vc
 or
 FY
 BQ
@@ -51589,7 +51573,7 @@ bQ
 rn
 NS
 AA
-wI
+Vc
 Ba
 mP
 mP
@@ -51846,7 +51830,7 @@ bQ
 rn
 NS
 GG
-wI
+Vc
 Wq
 Oo
 Oo
@@ -52103,7 +52087,7 @@ bQ
 rn
 NS
 GG
-wI
+Vc
 Ql
 Ql
 Ql
@@ -52360,7 +52344,7 @@ bQ
 rn
 NS
 GG
-wI
+Vc
 Ql
 Ql
 Ql
@@ -52617,7 +52601,7 @@ bQ
 rn
 NS
 GG
-Rf
+xQ
 bF
 eg
 eg
@@ -52874,7 +52858,7 @@ bQ
 rn
 NS
 GG
-wI
+Vc
 Nn
 LA
 LA
@@ -53169,13 +53153,13 @@ Vc
 Vc
 Vc
 Vn
-os
 Id
 Id
 Id
 Id
 Id
-os
+Id
+Id
 pN
 eu
 pN
@@ -53388,7 +53372,7 @@ bQ
 rn
 NS
 GG
-wI
+Vc
 or
 by
 BQ
@@ -53426,13 +53410,13 @@ SG
 uj
 Xp
 rb
-os
+Id
 rg
 sr
-os
+Id
 Tx
 LF
-os
+Id
 gB
 aS
 rJ
@@ -53645,7 +53629,7 @@ bQ
 rn
 NS
 AA
-wI
+Vc
 by
 by
 by
@@ -53683,13 +53667,13 @@ by
 VX
 Vc
 Da
-os
+Id
 pB
 ig
-os
+Id
 lB
 Br
-os
+Id
 my
 aS
 VD
@@ -53902,14 +53886,14 @@ bQ
 rn
 NS
 GG
-wI
-wI
-wI
-wI
-wI
-wI
-wI
-wI
+Vc
+Vc
+Vc
+Vc
+Vc
+Vc
+Vc
+Vc
 GG
 xn
 xn
@@ -53940,7 +53924,7 @@ ff
 nQ
 JA
 Da
-os
+Id
 IU
 CF
 vY
@@ -54193,14 +54177,14 @@ GG
 xK
 lZ
 Pw
-NS
-NS
+JA
+JA
 JA
 Da
-os
-os
-os
-os
+Id
+Id
+Id
+Id
 fb
 WS
 la
@@ -54452,15 +54436,15 @@ sl
 vs
 UG
 Rx
-NS
+JA
 Da
-os
+Id
 cr
 pq
 pq
 mz
 hI
-os
+Id
 my
 aS
 VD
@@ -54711,13 +54695,13 @@ NS
 NS
 NS
 Da
-os
+Id
 tC
 dH
 dH
 CT
 jw
-os
+Id
 ie
 aS
 rJ
@@ -54968,10 +54952,10 @@ Ci
 Ci
 NS
 Da
-os
 Id
-os
-os
+Id
+Id
+Id
 Wi
 Id
 Id
@@ -55225,7 +55209,7 @@ Yv
 Ci
 NS
 Da
-NS
+JA
 GW
 pV
 Rn
@@ -55482,7 +55466,7 @@ lR
 rn
 NS
 Da
-NS
+JA
 Oe
 Kc
 lN
@@ -55492,7 +55476,7 @@ rH
 oP
 Ni
 Uk
-iw
+Qx
 rd
 FE
 LE
@@ -55739,7 +55723,7 @@ lR
 rn
 NS
 Da
-NS
+JA
 Bw
 YJ
 YJ
@@ -55749,7 +55733,7 @@ rH
 Kb
 hX
 TL
-iw
+Qx
 cv
 LE
 LE
@@ -56262,7 +56246,7 @@ gf
 Za
 Vh
 cd
-OZ
+YJ
 Qx
 Qx
 Qx
@@ -56510,7 +56494,7 @@ bQ
 rn
 NS
 Da
-NS
+JA
 gW
 Kg
 td
@@ -56519,7 +56503,7 @@ Up
 SJ
 uY
 up
-OZ
+YJ
 en
 en
 tt
@@ -56529,7 +56513,7 @@ en
 en
 oZ
 en
-iw
+Qx
 yL
 xO
 IQ
@@ -56767,16 +56751,16 @@ bQ
 rn
 NS
 Da
-NS
-OZ
-OZ
-OZ
-OZ
-OZ
+JA
+YJ
+YJ
+YJ
+YJ
+YJ
 sd
-OZ
-OZ
-OZ
+YJ
+YJ
+YJ
 en
 tE
 sg
@@ -56786,7 +56770,7 @@ en
 en
 Xd
 en
-iw
+Qx
 at
 gq
 yL
@@ -57033,7 +57017,7 @@ jQ
 jQ
 jQ
 Ay
-NS
+JA
 en
 tt
 Xd
@@ -57043,7 +57027,7 @@ en
 en
 en
 tt
-iw
+Qx
 yL
 yL
 yL
@@ -57290,7 +57274,7 @@ NS
 NS
 NS
 Da
-NS
+JA
 en
 wq
 cT
@@ -57300,7 +57284,7 @@ en
 en
 LR
 Qa
-iw
+Qx
 co
 gk
 yL
@@ -57547,7 +57531,7 @@ Ci
 Ci
 NS
 Da
-NS
+JA
 tt
 en
 tt
@@ -57557,7 +57541,7 @@ en
 en
 Xd
 en
-iw
+Qx
 JA
 JA
 JA
@@ -57804,7 +57788,7 @@ rn
 Ci
 NS
 Da
-NS
+JA
 sg
 en
 Qa
@@ -57814,7 +57798,7 @@ en
 Xd
 en
 tt
-iw
+Qx
 vp
 Yq
 au
@@ -58061,7 +58045,7 @@ rn
 Ci
 NS
 Da
-NS
+JA
 Xd
 LR
 en
@@ -58071,7 +58055,7 @@ tt
 Ur
 en
 en
-iw
+Qx
 ER
 kF
 aj
@@ -58318,7 +58302,7 @@ rn
 Ci
 NS
 Da
-NS
+JA
 en
 tt
 en
@@ -58328,7 +58312,7 @@ en
 en
 LR
 tt
-iw
+Qx
 ER
 MN
 nL
@@ -58575,7 +58559,7 @@ rn
 Ci
 NS
 Da
-NS
+JA
 en
 en
 en
@@ -58585,7 +58569,7 @@ en
 tt
 en
 en
-iw
+Qx
 ER
 Ez
 sc
@@ -58832,22 +58816,22 @@ rn
 Ci
 NS
 Da
-NS
-iw
-iw
-iw
-iw
-iw
-iw
-iw
-iw
-iw
-iw
+JA
+Qx
+Qx
+Qx
+Qx
+Qx
+Qx
+Qx
+Qx
+Qx
+Qx
 No
-NS
-NS
-NS
-NS
+JA
+JA
+JA
+JA
 KC
 KC
 vH
