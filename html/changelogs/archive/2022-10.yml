@@ -12,3 +12,19 @@
 2022-10-02:
   Lumipharon:
   - bugfix: fixed a bug that let you remove the ammo from hostile turrets
+2022-10-03:
+  Lumipharon:
+  - balance: Plasma cutters once again one hit resin walls
+  - code_imp: Added a check_path proc to see if a path between atoms is blocked
+  - qol: Deployable objects can be deployed on turfs with border objects such as barricades,
+      that aren't obstructing your access
+  RipGrayson:
+  - balance: Gelida now lacks a crate with 200 free metal.
+  - bugfix: You can no longer escape the Theseus and visit space.
+  - bugfix: You can no longer escape the confines of Prison and damage telecomms.
+  - bugfix: You can no longer escape the Pillar of Spring and make a pirate ship outside.
+  - bugfix: You can no longer escape the Twin Pillars to avoid fighting.
+  - bugfix: The combat patrol base no longer has invalid strings that could lead to
+      map checks failing.
+  TiviPlus:
+  - bugfix: Fixes being able to shoot while stunned/unconcious
