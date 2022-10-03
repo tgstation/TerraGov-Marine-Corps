@@ -7279,7 +7279,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+/area/mainship/medical/operating_room_one)
+"uV" = (
+/obj/machinery/door_control/ai/exterior{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -7806,8 +7808,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/living/pilotbunks)
@@ -12403,20 +12405,10 @@
 /obj/structure/bed/chair/nometal{
 	dir = 1
 	},
-/turf/open/floor/mainship/blue/full,
-/area/mainship/living/briefing)
-"JW" = (
-/obj/machinery/vending/marineFood,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/turf/open/floor/mainship/black{
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/engineering_workshop)
+"JX" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
 /area/mainship/squads/general)
@@ -14155,6 +14147,12 @@
 /obj/structure/bed/chair/nometal{
 	dir = 4
 	},
+/area/mainship/engineering/ce_room)
+"OV" = (
+/obj/machinery/portable_atmospherics/canister/air,
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
 "Pb" = (
@@ -14209,6 +14207,9 @@
 "Pg" = (
 /obj/structure/disposaloutlet{
 	dir = 4
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 1
 	},
 /obj/structure/disposalpipe/trunk{
 	dir = 1
@@ -15068,7 +15069,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /turf/open/floor/mainship/sterile/plain,
@@ -15887,7 +15888,22 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "Uo" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/machinery/door/airlock/mainship/marine/general/corps,
+/obj/machinery/door/firedoor/mainship,
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
+"Up" = (
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/obj/structure/mirror,
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
+"Ur" = (
+/turf/closed/wall/mainship,
+/area/mainship/hallways/hangar/droppod)
+"Us" = (
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/machinery/door/poddoor/shutters/mainship/cic/armory{
@@ -16613,6 +16629,7 @@
 /obj/structure/bed/chair/office/light{
 	dir = 1
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engineering)
 "Wx" = (
@@ -43449,6 +43466,7 @@ Et
 EZ
 fb
 fL
+Mw
 fL
 Mw
 fL
@@ -49069,25 +49087,20 @@ Hu
 Kg
 Kg
 wZ
-Kg
-Kg
-UU
-yT
-Kh
-rw
-jn
-jn
-rw
-fi
-pW
-Uv
-Uv
-Ff
-bG
-dd
-vJ
-pC
-ho
+xI
+OE
+OS
+zs
+yx
+zm
+OQ
+zL
+yx
+Af
+OX
+OQ
+cu
+ad
 rc
 mC
 wn
@@ -50122,9 +50135,6 @@ rc
 rc
 rc
 rc
-Tw
-Kf
-id
 rc
 rh
 GH
@@ -52815,55 +52825,74 @@ aJ
 aJ
 "}
 (137,1,1) = {"
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-ib
-Dk
-Dk
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+cv
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+Tm
+Um
+aq
+cu
+cu
+cu
+cu
+ey
+cu
+cu
+cu
+aq
 LS
 CN
 ju
@@ -53379,6 +53408,96 @@ ib
 Dk
 Dk
 LS
+CN
+ju
+mk
+ft
+MZ
+Kr
+Kr
+Kr
+Kr
+Kr
+Kr
+Kr
+Kr
+Kr
+KG
+mL
+Ps
+JQ
+XB
+Px
+JQ
+cl
+hZ
+EC
+EC
+EC
+vi
+DL
+MZ
+ft
+ft
+ft
+qE
+TU
+Hw
+eg
+VI
+VI
+VI
+eg
+Zt
+Zt
+Zt
+De
+lc
+io
+eP
+RB
+RJ
+pc
+kE
+kE
+RJ
+lQ
+kE
+kE
+kE
+kE
+kE
+kE
+kE
+kE
+kE
+yM
+yM
+OJ
+Cu
+wF
+jl
+jU
+KZ
+SO
+jU
+KP
+wp
+SO
+jU
+KZ
+jl
+SO
+jU
+KP
+jl
+MC
+LG
+qC
+Ah
+PR
+qC
+Bv
 CN
 ju
 mk

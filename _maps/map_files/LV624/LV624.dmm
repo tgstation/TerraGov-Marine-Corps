@@ -3864,7 +3864,7 @@
 /area/lv624/ground/compound/n)
 "bYe" = (
 /obj/effect/landmark/weed_node,
-/turf/open/shuttle/dropship/fourteen,
+/turf/open/floor/prison/redfloor,
 /area/lv624/lazarus/sandtemple)
 "bYj" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -6133,10 +6133,6 @@
 	icon_state = "red"
 	},
 /area/lv624/lazarus/security)
-"eBW" = (
-/obj/structure/jungle/vines,
-/turf/closed/wall/r_wall/chigusa,
-/area/lv624/ground/sand6)
 "eBY" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -6455,7 +6451,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/atmos)
 "eYX" = (
-/turf/open/shuttle/dropship/fourteen,
+/turf/open/floor/prison/redfloor,
 /area/lv624/lazarus/sandtemple)
 "eZd" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -6722,7 +6718,7 @@
 /area/lv624/lazarus/corporate_affairs)
 "fqC" = (
 /obj/effect/ai_node,
-/turf/open/shuttle/dropship/fourteen,
+/turf/open/floor/prison/redfloor,
 /area/lv624/lazarus/sandtemple)
 "fqZ" = (
 /obj/structure/jungle/vines/heavy{
@@ -11444,8 +11440,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "kQL" = (
-/obj/effect/spawner/random/plushie/nospawnninetyfive{
-	},
+/obj/effect/spawner/random/plushie/nospawnninetyfive,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central4)
 "kQY" = (
@@ -11681,10 +11676,6 @@
 "ldz" = (
 /obj/item/flash,
 /obj/structure/table/reinforced,
-/obj/item/explosive/grenade/flashbang{
-	pixel_x = 7;
-	pixel_y = 2
-	},
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -20935,7 +20926,7 @@
 /area/lv624/ground/jungle10)
 "vSk" = (
 /obj/structure/curtain/temple,
-/turf/open/shuttle/dropship/fourteen,
+/turf/open/floor/prison/redfloor,
 /area/lv624/lazarus/sandtemple)
 "vSQ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -54094,7 +54085,7 @@ asf
 asf
 gKr
 gKr
-eBW
+oRZ
 oRZ
 oRZ
 oRZ

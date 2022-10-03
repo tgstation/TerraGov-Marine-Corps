@@ -23,5 +23,30 @@
 			"icon_state": "uncolored",
 			"blend_mode": "overlay"
 		}
+	],
+	"attached" : [
+		{
+			"type": "icon_state",
+			"icon_state": "color_1_a",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "color_2_a",
+			"blend_mode": "overlay",
+			"color_ids": [ 2 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "color_3_a",
+			"blend_mode": "overlay",
+			"color_ids": [ 3 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "uncolored_a",
+			"blend_mode": "overlay"
+		}
 	]
 }

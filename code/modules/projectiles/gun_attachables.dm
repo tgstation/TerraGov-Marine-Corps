@@ -520,13 +520,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	damage_mod = -0.15
 	gun_firemode_list_mod = list(GUN_FIREMODE_AUTOMATIC)
 
-/obj/item/attachable/sgbarrel
-	name = "SG-29 barrel"
-	icon_state = "sg29barrel"
-	desc = "A heavy barrel. CANNOT BE REMOVED."
-	slot = ATTACHMENT_SLOT_MUZZLE
-	flags_attach_features = NONE
-
 ///////////// Rail attachments ////////////////////////
 
 /obj/item/attachable/reddot
@@ -941,13 +934,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 
-/obj/item/attachable/stock/sgstock
-	name = "SG-29 stock"
-	desc = "A standard machinegun stock."
-	icon_state = "sg29stock"
-	pixel_shift_x = 32
-	pixel_shift_y = 13
-
 /obj/item/attachable/stock/revolver
 	name = "\improper M44 magnum sharpshooter stock"
 	desc = "A wooden stock modified for use on a 44-magnum. Increases accuracy and reduces recoil at the expense of handling and agility."
@@ -1068,6 +1054,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	scatter_unwielded_mod = 3
 	aim_speed_mod	= -0.1
 	aim_mode_movement_mult = -0.2
+	greyscale_config = /datum/greyscale_config/gun_attachment/verticalgrip
 
 
 /obj/item/attachable/angledgrip
@@ -1082,6 +1069,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	scatter_mod = 2
 	accuracy_unwielded_mod = -0.1
 	scatter_unwielded_mod = 1
+	greyscale_config = /datum/greyscale_config/gun_attachment/angledgrip
 
 
 
@@ -1463,7 +1451,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	if(source.Adjacent(object))
 		return
 	var/mob/living/user = master_gun.gun_user
-	if(user.stat != CONSCIOUS || user.lying_angle || LAZYACCESS(user.do_actions, src) || !user.dextrous || (!CHECK_BITFIELD(master_gun.flags_gun_features, GUN_ALLOW_SYNTHETIC) && !CONFIG_GET(flag/allow_synthetic_gun_use) && issynth(user)))
+	if(user.incapacitated()  || user.lying_angle || LAZYACCESS(user.do_actions, src) || !user.dextrous || (!CHECK_BITFIELD(master_gun.flags_gun_features, GUN_ALLOW_SYNTHETIC) && !CONFIG_GET(flag/allow_synthetic_gun_use) && issynth(user)))
 		return
 	var/active_hand = user.get_active_held_item()
 	var/inactive_hand = user.get_inactive_held_item()
@@ -1507,7 +1495,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		to_chat(user, span_warning("[src] beeps. Guns or shields in your hands are interfering with its targetting. Stopping fire."))
 		master_gun.stop_fire()
 		return
-	if(user.stat == CONSCIOUS && !user.lying_angle && !LAZYACCESS(user.do_actions, src) && user.dextrous && (CHECK_BITFIELD(master_gun.flags_gun_features, GUN_ALLOW_SYNTHETIC) || CONFIG_GET(flag/allow_synthetic_gun_use) || !issynth(user)))
+	if(!user.incapacitated() && !user.lying_angle && !LAZYACCESS(user.do_actions, src) && user.dextrous && (CHECK_BITFIELD(master_gun.flags_gun_features, GUN_ALLOW_SYNTHETIC) || CONFIG_GET(flag/allow_synthetic_gun_use) || !issynth(user)))
 		return
 	master_gun.stop_fire()
 
