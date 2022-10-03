@@ -26,7 +26,7 @@
 	plasma_gain = 10
 
 	// *** Health *** //
-	max_health = 280
+	max_health = 330
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_YOUNG_THRESHOLD
@@ -37,7 +37,7 @@
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_BECOME_KING
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 70, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 100, BIO = 80, "rad" = 80, FIRE = 25, ACID = 80)
+	soft_armor = list(MELEE = 70, BULLET = 65, LASER = 65, ENERGY = 60, BOMB = 100, BIO = 80, "rad" = 80, FIRE = 25, ACID = 80)
 
 	// *** Minimap Icon *** //
 	minimap_icon = "crusher"
@@ -84,13 +84,13 @@
 	plasma_gain = 15
 
 	// *** Health *** //
-	max_health = 285
+	max_health = 340
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_MATURE_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 75, BULLET = 75, LASER = 75, ENERGY = 65, BOMB = 100, BIO = 90, "rad" = 90, FIRE = 30, ACID = 90)
+	soft_armor = list(MELEE = 75, BULLET = 70, LASER = 70, ENERGY = 65, BOMB = 100, BIO = 90, "rad" = 90, FIRE = 30, ACID = 90)
 
 	// *** Abilities *** //
 	stomp_damage = 50
@@ -113,13 +113,13 @@
 	plasma_gain = 30
 
 	// *** Health *** //
-	max_health = 295
+	max_health = 350
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_ELDER_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 80, BULLET = 80, LASER = 80, ENERGY = 70, BOMB = 100, BIO = 95, "rad" = 95, FIRE = 35, ACID = 95)
+	soft_armor = list(MELEE = 80, BULLET = 75, LASER = 75, ENERGY = 70, BOMB = 100, BIO = 95, "rad" = 95, FIRE = 35, ACID = 95)
 
 	// *** Abilities *** //
 	stomp_damage = 55
@@ -142,13 +142,13 @@
 	plasma_gain = 30
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 350
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 90, BULLET = 85, LASER = 85, ENERGY = 75, BOMB = 100, BIO = 100, "rad" = 100, FIRE = 40, ACID = 100)
+	soft_armor = list(MELEE = 90, BULLET = 80, LASER = 80, ENERGY = 75, BOMB = 100, BIO = 100, "rad" = 100, FIRE = 40, ACID = 100)
 	// *** Abilities *** //
 	stomp_damage = 60
 	crest_toss_distance = 6
@@ -171,10 +171,10 @@
 	plasma_gain = 30
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 350
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 90, BULLET = 85, LASER = 85, ENERGY = 75, BOMB = 100, BIO = 100, "rad" = 100, FIRE = 40, ACID = 100)
+	soft_armor = list(MELEE = 90, BULLET = 80, LASER = 80, ENERGY = 75, BOMB = 100, BIO = 100, "rad" = 100, FIRE = 40, ACID = 100)
 	// *** Abilities *** //
 	stomp_damage = 60
 	crest_toss_distance = 6
