@@ -158,7 +158,7 @@
 /datum/action/xeno_action/create_spiderling/proc/remove_spiderling(datum/source)
 	SIGNAL_HANDLER
 	spiderlings -= source
-	UnregisterSignal(source, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(source, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING))
 
 // ***************************************
 // *********** Burrow
