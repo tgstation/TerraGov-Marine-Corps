@@ -172,8 +172,8 @@
 
 /datum/action/xeno_action/emit_neurogas/action_activate()
 	var/mob/living/carbon/xenomorph/Defiler/X = owner
-
 	handle_particles(FALSE)
+
 	//give them fair warning
 	X.visible_message(span_danger("Tufts of smoke begin to billow from [X]!"), \
 	span_xenodanger("Our dorsal vents widen, preparing to emit toxic smoke. We must keep still!"))
@@ -250,16 +250,16 @@
 	if(deactivate == FALSE)
 		switch(X.selected_reagent)
 			if(/datum/reagent/toxin/xeno_neurotoxin)
-				X.particles = new /particles/xeno_smoke/neurotoxin
+				particle_holder = new(parent, /particles/xeno_smoke/neurotoxin)
 			if(/datum/reagent/toxin/xeno_hemodile)
-				X.particles = new /particles/xeno_smoke/hemodile
+				particle_holder = new(parent, /particles/xeno_smoke/hemodile)
 			if(/datum/reagent/toxin/xeno_transvitox)
-				X.particles = new /particles/xeno_smoke/transvitox
+				particle_holder = new(parent, /particles/xeno_smoke/transvitox)
 			if(/datum/reagent/toxin/xeno_ozelomelyn)
-				X.particles = new /particles/xeno_smoke/ozelomelyn
+				particle_holder = new(parent, /particles/xeno_smoke/ozelomelyn)
 
-	if(deactivate == TRUE)
-		QDEL_NULL(X.particles)
+	if(deactivate == TRUE && particle_holder)
+		QDEL_NULL(particle_holder)
 
 // ***************************************
 // *********** Inject Egg Neurogas
@@ -401,6 +401,8 @@
 	var/reagent_slash_duration_timer_id
 	///Defines the reagent being used for reagent slashes; locks it to the selected reagent on activation
 	var/reagent_slash_reagent
+	/// Test.
+	var/datum/action/xeno_action/action
 
 /datum/action/xeno_action/reagent_slash/action_activate()
 	. = ..()
@@ -469,16 +471,16 @@
 	if(deactivate == FALSE)
 		switch(X.selected_reagent)
 			if(/datum/reagent/toxin/xeno_neurotoxin)
-				X.particles = new /particles/xeno_slash/neurotoxin
+				particle_holder = new(action.parent, /particles/xeno_slash/neurotoxin)
 			if(/datum/reagent/toxin/xeno_hemodile)
-				X.particles = new /particles/xeno_slash/hemodile
+				particle_holder = new(action.parent, /particles/xeno_slash/hemodile)
 			if(/datum/reagent/toxin/xeno_transvitox)
-				X.particles = new /particles/xeno_slash/transvitox
+				particle_holder = new(action.parent, /particles/xeno_slash/transvitox)
 			if(/datum/reagent/toxin/xeno_ozelomelyn)
-				X.particles = new /particles/xeno_slash/ozelomelyn
+				particle_holder = new(action.parent, /particles/xeno_slash/ozelomelyn)
 
-	if(deactivate == TRUE)
-		QDEL_NULL(X.particles)
+	if(deactivate == TRUE && particle_holder)
+		QDEL_NULL(particle_holder)
 
 // ***************************************
 // *********** Tentacle

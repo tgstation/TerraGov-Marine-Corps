@@ -12,7 +12,7 @@
 	///besides the item we're also sometimes attached to other stuff! (items held emitting particles on a mob)
 	var/datum/weakref/weak_additional
 
-/obj/effect/abstract/particle_holder/Initialize(mapload, particle_path = /particles/smoke)
+/obj/effect/abstract/particle_holder/Initialize(mapload, particle_path = null)
 	. = ..()
 	if(!loc)
 		stack_trace("particle holder was created with no loc!")

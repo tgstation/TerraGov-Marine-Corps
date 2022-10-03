@@ -11,6 +11,12 @@
 	var/target_flags = NONE
 	/// flags to restrict a xeno ability to certain gamemode
 	var/gamemode_flags = ABILITY_ALL_GAMEMODE
+	/// Used for particles. This is the atom those particles are attached to.
+	var/atom/parent
+	/// Used for particles. This defines the particles's path.
+	var/particles_path
+	/// Used for particles. The particle holder of the particles's path.
+	var/obj/effect/abstract/particle_holder/particle_holder
 
 /datum/action/xeno_action/New(Target)
 	. = ..()
@@ -20,6 +26,7 @@
 	cooldown_image = image('icons/effects/progressicons.dmi', null, "busy_clock")
 	cooldown_image.pixel_y = 7
 	cooldown_image.appearance_flags = RESET_COLOR|RESET_ALPHA
+	src.particles_path = particles_path
 
 /datum/action/xeno_action/give_action(mob/living/L)
 	. = ..()
@@ -173,6 +180,8 @@
 
 /datum/action/xeno_action/activable/Destroy()
 	var/mob/living/carbon/xenomorph/X = owner
+	if(particle_holder)
+		QDEL_NULL(particle_holder)
 	if(X.selected_ability == src)
 		deselect()
 	return ..()
