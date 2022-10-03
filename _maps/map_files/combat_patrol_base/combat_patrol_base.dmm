@@ -876,6 +876,12 @@
 	dir = 8
 	},
 /area/mainship/patrol_base)
+"mR" = (
+/obj/structure/prop/mainship/halfbuilt_mech/vanguard_finished,
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 1
+	},
+/area/mainship/patrol_base)
 "mS" = (
 /obj/structure/prop/mainship/prop_sominf{
 	dir = 4
@@ -2204,6 +2210,10 @@
 /obj/machinery/mech_bay_recharge_port,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
+"Gy" = (
+/obj/machinery/door/poddoor/timed_late/containment,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
 "GL" = (
 /obj/machinery/status_display,
 /turf/closed/wall/mainship/outer/reinforced,
@@ -2974,6 +2984,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/som)
+"Rp" = (
+/obj/structure/prop/mainship/prop_tech,
+/turf/open/floor/mainship/black,
+/area/mainship/patrol_base)
 "Rr" = (
 /turf/open/floor/mainship/terragov/north{
 	dir = 4
@@ -3018,10 +3032,10 @@
 	pixel_y = -5
 	},
 /mob/living/simple_animal/parrot/clock_hawk{
-	name = Hidden Warden of the Past
+	name = HiddenWardenofthePast
 	},
 /obj/item/clothing/tie/medal/bronze_heart{
-	name = Nosy Nancy Award;
+	name = NosyNancyAward;
 	pixel_y = -9
 	},
 /obj/machinery/light/small{
@@ -3322,7 +3336,6 @@
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
 "UP" = (
-/obj/structure/prop/mainship/prop_sec,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
@@ -9526,7 +9539,7 @@ Vu
 Vu
 Uw
 UP
-uz
+mR
 ac
 yp
 IC
@@ -9830,7 +9843,7 @@ dk
 ZN
 WX
 kA
-Ow
+Rp
 SU
 uz
 Eo
@@ -10757,9 +10770,9 @@ Fw
 Fw
 Fw
 Fw
-Fw
-Fw
-Fw
+Gy
+Gy
+Gy
 Fw
 Sw
 Sw
