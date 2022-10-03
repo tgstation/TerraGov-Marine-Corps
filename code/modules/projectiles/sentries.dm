@@ -29,6 +29,8 @@
 	var/iff_signal = NONE
 	///List of terrains/structures/machines that the sentry ignores for targetting. (If a window is inside the list, the sentry will shot at targets even if the window breaks los) For accuracy, this is on a specific typepath base and not istype().
 	var/list/ignored_terrains
+	///For minimap icon change if sentry is firing
+	var/firing
 
 //------------------------------------------------------------------
 //Setup and Deletion
@@ -63,7 +65,21 @@
 		camera.c_tag = "[name] ([rand(0, 1000)])"
 
 	GLOB.marine_turrets += src
+	update_minimap_icon()
 	set_on(TRUE)
+
+///Change minimap icon if its firing or not firing
+/obj/machinery/deployable/mounted/sentry/proc/update_minimap_icon()
+	var/marker_flags
+	if(iff_signal == TGMC_LOYALIST_IFF)
+		marker_flags = MINIMAP_FLAG_MARINE
+	else if(iff_signal == TGMC_REBEL_IFF)
+		marker_flags = MINIMAP_FLAG_MARINE_REBEL
+	else if(iff_signal == SON_OF_MARS_IFF)
+		marker_flags = MINIMAP_FLAG_MARINE_SOM
+	else
+		marker_flags = MINIMAP_FLAG_MARINE
+	SSminimaps.add_marker(src, z, marker_flags, "sentry[firing ? "_firing" : "_passive"]")
 
 /obj/machinery/deployable/mounted/sentry/update_icon_state()
 	. = ..()
@@ -84,6 +100,7 @@
 /obj/machinery/deployable/mounted/sentry/deconstruct(disassembled = TRUE)
 	if(!disassembled)
 		explosion(loc, light_impact_range = 3)
+	SSminimaps.remove_marker(src)
 	return ..()
 
 /obj/machinery/deployable/mounted/sentry/on_deconstruction()
@@ -347,6 +364,8 @@
 	if(!scan())
 		var/obj/item/weapon/gun/gun = internal_item
 		gun.stop_fire()
+		firing = FALSE
+		update_minimap_icon()
 		return
 	playsound(loc, 'sound/items/detector.ogg', 25, FALSE)
 
@@ -386,9 +405,13 @@
 	update_icon()
 	if(!target || get_dist(src, target) > range)
 		gun.stop_fire()
+		firing = FALSE
+		update_minimap_icon()
 		return
 	if(target != gun.target)
 		gun.stop_fire()
+		firing = FALSE
+		update_minimap_icon()
 	if(!gun.rounds)
 		sentry_alert(SENTRY_ALERT_AMMO)
 		return
@@ -398,6 +421,8 @@
 		gun.set_target(target)
 		return
 	gun.start_fire(src, target, bypass_checks = TRUE)
+	firing = TRUE
+	update_minimap_icon()
 
 ///Checks the path to the target for obstructions. Returns TRUE if the path is clear, FALSE if not.
 /obj/machinery/deployable/mounted/sentry/proc/check_target_path(mob/living/target)

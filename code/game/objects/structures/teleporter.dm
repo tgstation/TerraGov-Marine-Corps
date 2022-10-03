@@ -15,6 +15,10 @@
 		/obj/machinery/nuclearbomb
 	)
 
+/obj/machinery/deployable/teleporter/Initialize()
+	. = ..()
+	SSminimaps.add_marker(src, z, MINIMAP_FLAG_MARINE, "teleporter")
+
 /obj/machinery/deployable/teleporter/attack_hand(mob/living/user)
 	. = ..()
 	var/obj/item/teleporter_kit/kit = internal_item

@@ -877,6 +877,12 @@ TUNNEL
 	var/last_scan_time
 	///light color that gets set in initialize
 	var/light_initial_color = LIGHT_COLOR_GREEN
+	///For minimap icon change if sentry is firing
+	var/firing
+
+///Change minimap icon if its firing or not firing
+/obj/structure/xeno/xeno_turret/proc/update_minimap_icon()
+	SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, "xeno_turret[firing ? "_firing" : "_passive"]")
 
 /obj/structure/xeno/xeno_turret/Initialize(mapload, hivenumber = XENO_HIVE_NORMAL)
 	. = ..()
@@ -890,6 +896,7 @@ TUNNEL
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/destroy_on_hijack)
 	if(light_initial_color)
 		set_light(2, 2, light_initial_color)
+	update_minimap_icon()
 	update_icon()
 
 ///Signal handler to delete the turret when the alamo is hijacked
@@ -1068,6 +1075,8 @@ TUNNEL
 	SIGNAL_HANDLER
 	if(!hostile)
 		SEND_SIGNAL(src, COMSIG_AUTOMATIC_SHOOTER_STOP_SHOOTING_AT)
+		firing = FALSE
+		update_minimap_icon()
 		return
 	face_atom(hostile)
 	var/obj/projectile/newshot = new(loc)
@@ -1077,6 +1086,8 @@ TUNNEL
 	if(istype(ammo, /datum/ammo/xeno/hugger))
 		var/datum/ammo/xeno/hugger/hugger_ammo = ammo
 		newshot.color = initial(hugger_ammo.hugger_type.color)
+	firing = TRUE
+	update_minimap_icon()
 
 /obj/structure/xeno/xeno_turret/sticky
 	name = "Sticky resin turret"
