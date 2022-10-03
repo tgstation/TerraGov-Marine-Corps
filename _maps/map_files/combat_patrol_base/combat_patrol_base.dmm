@@ -279,9 +279,6 @@
 	dir = 4
 	},
 /area/mainship/patrol_base/som)
-"dW" = (
-/turf/closed/wall/clock,
-/area/chapel/main)
 "dX" = (
 /obj/structure/somcas/wingtip/wing13,
 /turf/open/floor/plating/ground/concrete,
@@ -3022,27 +3019,6 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/mainship/patrol_base/som)
-"RD" = (
-/obj/item/paper/clockresearch1{
-	pixel_x = -10;
-	pixel_y = -5
-	},
-/obj/item/paper/clockresearch2{
-	pixel_x = 10;
-	pixel_y = -5
-	},
-/mob/living/simple_animal/parrot/clock_hawk{
-	name = HiddenWardenofthePast
-	},
-/obj/item/clothing/tie/medal/bronze_heart{
-	name = NosyNancyAward;
-	pixel_y = -9
-	},
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/cult/clock,
-/area/chapel/main)
 "RM" = (
 /obj/machinery/door/poddoor/mainship/indestructible{
 	dir = 2
@@ -4620,9 +4596,9 @@ Ea
 IH
 "}
 (16,1,1) = {"
-dW
-dW
-dW
+Sw
+Sw
+Sw
 Sw
 Sw
 Sw
@@ -4682,9 +4658,9 @@ Ea
 IH
 "}
 (17,1,1) = {"
-dW
-RD
-dW
+Sw
+Sw
+Sw
 Sw
 Sw
 Sw
@@ -4744,9 +4720,9 @@ HN
 IH
 "}
 (18,1,1) = {"
-dW
-dW
-dW
+Sw
+Sw
+Sw
 Sw
 Sw
 Sw
