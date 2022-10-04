@@ -1,7 +1,7 @@
 
 /obj/vehicle/unmanned
 	name = "UV-L Iguana"
-	desc = "A small remote-controllable vehicle, usually owned by the TGMC and other major armies."
+	desc = "A small remote-controllable vehicle, usually owned by the TGMC and other major armies. Click with an empty hand to access internal ammo storage."
 	icon = 'icons/obj/unmanned_vehicles.dmi'
 	icon_state = "light_uv"
 	anchored = FALSE
@@ -9,7 +9,7 @@
 	light_range = 6
 	light_power = 3
 	light_system = MOVABLE_LIGHT
-	move_delay = 2.5	//set this to limit the speed of the vehicle
+	move_delay = 2.7	//set this to limit the speed of the vehicle
 	max_integrity = 150
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 	flags_atom = BUMP_ATTACKABLE
@@ -46,6 +46,8 @@
 	var/iff_signal = TGMC_LOYALIST_IFF
 	/// muzzleflash stuff
 	var/atom/movable/vis_obj/effect/muzzle_flash/flash
+	///Internal uav ammo storage object
+	var/obj/item/storage/internal/uav_ammo/ammo_storage = /obj/item/storage/internal/uav_ammo
 	COOLDOWN_DECLARE(fire_cooldown)
 
 /obj/vehicle/unmanned/Initialize()
@@ -68,6 +70,7 @@
 		max_rounds = initial(spawn_equipped_type.max_rounds)
 		update_icon()
 	hud_set_uav_ammo()
+	ammo_storage = new ammo_storage(src)
 
 
 /obj/vehicle/unmanned/Destroy()
@@ -117,6 +120,8 @@
 		return equip_turret(I, user)
 	if(istype(I, /obj/item/ammo_magazine))
 		return reload_turret(I, user)
+	if(user.a_intent != INTENT_HARM)
+		return ammo_storage.attackby(I, user, params)
 
 /obj/vehicle/unmanned/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
@@ -209,6 +214,13 @@
 	update_icon()
 	SEND_SIGNAL(src, COMSIG_UNMANNED_TURRET_UPDATED, turret_type)
 	qdel(I)
+
+/obj/vehicle/unmanned/attack_hand(mob/living/user)
+	return ammo_storage.open(user)
+
+/obj/vehicle/unmanned/MouseDrop(obj/over_object)
+	if(ammo_storage.handle_mousedrop(usr, over_object))
+		return ..()
 
 /**
  * Called when the drone is linked from a remote control
@@ -331,14 +343,14 @@
 	icon_state = "medium_uv"
 	move_delay = 3
 	max_rounds = 200
-	max_integrity = 200
+	max_integrity = 300
 
 /obj/vehicle/unmanned/heavy
 	name = "UV-H Komodo"
 	icon_state = "heavy_uv"
 	move_delay = 4
 	max_rounds = 200
-	max_integrity = 250
+	max_integrity = 500
 
 /obj/structure/closet/crate/uav_crate
 	name = "\improper UV-L Iguana Crate"
@@ -356,3 +368,19 @@
 	new /obj/item/ammo_magazine/box11x35mm(src)
 	new /obj/item/unmanned_vehicle_remote(src)
 
+/obj/item/storage/internal/uav_ammo
+	storage_slots = 4
+	max_w_class = WEIGHT_CLASS_NORMAL
+	max_storage_space = 8
+	can_hold = list(/obj/item/ammo_magazine/box12x40mm, /obj/item/ammo_magazine/box11x35mm, )
+
+/obj/item/storage/internal/uav_ammo/handle_mousedrop(mob/user, obj/over_object)
+	if(!ishuman(user))
+		return FALSE
+
+	if(user.lying_angle || user.incapacitated()) //Can't use your inventory when lying
+		return FALSE
+
+	if(over_object == user && Adjacent(user)) //This must come before the screen objects only block
+		open(user)
+		return FALSE

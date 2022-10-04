@@ -36,5 +36,6 @@
 	turret_type = TURRET_TYPE_DROIDLASER
 	ammo_type = /datum/ammo/energy/lasgun/marine/overcharge
 	fire_delay = 1.5
-	current_rounds = 300
-	max_rounds = 300
+	current_rounds = 100
+	max_rounds = 100
+	magazine_type = /obj/item/ammo_magazine/energy_droid
