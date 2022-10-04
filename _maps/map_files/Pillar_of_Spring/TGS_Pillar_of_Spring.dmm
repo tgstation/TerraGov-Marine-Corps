@@ -5614,7 +5614,6 @@
 	},
 /area/mainship/squads/general)
 "qD" = (
-/obj/machinery/door/firedoor/mainship,
 /turf/open/floor/plating/mainship,
 /area/mainship/living/bridgebunks)
 "qE" = (
@@ -12001,9 +12000,6 @@
 /turf/open/floor/wood,
 /area/mainship/living/cryo_cells)
 "IY" = (
-/obj/machinery/light/mainship{
-	dir = 8
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -16624,6 +16620,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
+	},
+/obj/machinery/door/firedoor/multi_tile{
+	dir = 1
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/living/bridgebunks)
