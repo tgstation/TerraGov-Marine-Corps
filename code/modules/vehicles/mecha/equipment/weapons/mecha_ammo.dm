@@ -4,9 +4,13 @@
 	w_class = WEIGHT_CLASS_BULKY
 	icon = 'icons/mecha/mecha_ammo.dmi'
 	icon_state = "empty"
+	///how many rounds of ammo this box has left
 	var/rounds = 0
-	var/direct_load //For weapons where we re-load the weapon itself rather than adding to the ammo storage.
+	/// For weapons where we re-load the weapon itself rather than adding to the ammo storage.
+	var/direct_load
+	/// sound to play when we reload
 	var/load_audio = 'sound/mecha/mag_bullet_insert.ogg'
+	///ammo type define that tells the user the ammo type, and lets the ammo decide what weapon types it can refill
 	var/ammo_type
 	/// whether to qdel this mecha_ammo when it becomes empty
 	var/qdel_on_empty = FALSE

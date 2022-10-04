@@ -105,12 +105,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/proc/stop_fire(mob/living/source, atom/object, location, control, params)
 	SIGNAL_HANDLER
 	var/list/modifiers = params2list(params)
-	var/is_this_hand = FALSE
-	if(modifiers[RIGHT_CLICK] && chassis.equip_by_category[MECHA_R_ARM] == src)
-		is_this_hand = TRUE
-	else if(modifiers[LEFT_CLICK] && chassis.equip_by_category[MECHA_L_ARM] == src)
-		is_this_hand = TRUE
-	if(!is_this_hand)
+	if(!(modifiers[RIGHT_CLICK] && chassis.equip_by_category[MECHA_R_ARM] == src) && !(modifiers[LEFT_CLICK] && chassis.equip_by_category[MECHA_L_ARM] == src))
 		return
 	SEND_SIGNAL(src, COMSIG_MECH_STOP_FIRE)
 	if(!HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
