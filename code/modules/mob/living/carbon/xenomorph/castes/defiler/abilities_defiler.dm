@@ -174,7 +174,7 @@
 
 /datum/action/xeno_action/emit_neurogas/action_activate()
 	var/mob/living/carbon/xenomorph/Defiler/X = owner
-	toggle_particles(FALSE)
+	toggle_particles(TRUE)
 
 	//give them fair warning
 	X.visible_message(span_danger("Tufts of smoke begin to billow from [X]!"), \
@@ -208,7 +208,7 @@
 	dispense_gas()
 
 /datum/action/xeno_action/emit_neurogas/fail_activate()
-	toggle_particles(TRUE)
+	toggle_particles(FALSE)
 	return ..()
 
 /datum/action/xeno_action/emit_neurogas/proc/dispense_gas(count = 3)
@@ -244,13 +244,14 @@
 		T.visible_message(span_danger("Noxious smoke billows from the hulking xenomorph!"))
 		count = max(0,count - 1)
 		sleep(DEFILER_GAS_DELAY)
-	toggle_particles(TRUE)
+
+	toggle_particles(FALSE)
 
 // Toggles particles on or off, depending on the defined var.
-/datum/action/xeno_action/emit_neurogas/proc/toggle_particles(deactivate)
+/datum/action/xeno_action/emit_neurogas/proc/toggle_particles(activate)
 	var/mob/living/carbon/xenomorph/X = owner
 
-	if(deactivate)
+	if(!activate)
 		QDEL_NULL(particle_holder)
 		return
 
@@ -422,7 +423,7 @@
 	X.balloon_alert(X, "Reagent slash active") //Let the user know
 	X.playsound_local(X, 'sound/voice/alien_drool2.ogg', 25)
 
-	toggle_particles(FALSE)
+	toggle_particles(TRUE)
 	succeed_activate()
 	add_cooldown()
 
@@ -434,7 +435,7 @@
 	deltimer(reagent_slash_duration_timer_id) //delete the timer so we don't have mismatch issues, and so we don't potentially try to deactivate the ability twice
 	reagent_slash_duration_timer_id = null
 	reagent_slash_reagent = null
-	toggle_particles(TRUE)
+	toggle_particles(FALSE)
 
 	X.balloon_alert(X, "Reagent slash over") //Let the user know
 	X.playsound_local(X, 'sound/voice/hiss5.ogg', 25)
@@ -469,10 +470,10 @@
 	return ..()
 
 // Toggles particles on or off, depending on the defined var.
-/datum/action/xeno_action/reagent_slash/proc/toggle_particles(deactivate)
+/datum/action/xeno_action/reagent_slash/proc/toggle_particles(activate)
 	var/mob/living/carbon/xenomorph/X = owner
 
-	if(deactivate)
+	if(!activate)
 		QDEL_NULL(particle_holder)
 		return
 
