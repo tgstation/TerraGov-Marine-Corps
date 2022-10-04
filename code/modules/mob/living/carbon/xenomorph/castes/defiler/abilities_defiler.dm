@@ -1,32 +1,32 @@
 /particles/xeno_slash
-	icon = 'icons/effects/particles/xeno_reagents.dmi'
-	icon_state = "neurotoxin"
+	icon = 'icons/effects/particles/generic_particles.dmi'
+	icon_state = "cross"
 	width = 100
 	height = 100
 	count = 1000
-	spawning = 5
+	spawning = 4
 	lifespan = 9
-	fade = 13
-	grow = -0.01
+	fade = 12
+	grow = 0.05
 	velocity = list(0, 0)
-	position = generator("circle", 16, 18, NORMAL_RAND)
-	drift = generator("vector", list(0, -0.2), list(0, 0.2))
-	gravity = list(0, 0.95)
-	scale = generator("vector", list(0.3, 0.3), list(1,1), NORMAL_RAND)
-	rotation = 30
-	spin = generator("num", -20, 20)
+	position = generator("circle", 15, 15, NORMAL_RAND)
+	drift = generator("vector", list(0, -0.15), list(0, 0.15))
+	gravity = list(0, 0.8)
+	scale = generator("vector", list(0.6, 0.6), list(1,1), NORMAL_RAND)
+	rotation = 0
+	spin = generator("num", 10, 20)
 
 /particles/xeno_slash/neurotoxin
-	icon_state = "neurotoxin"
+	color = "#BF8F42"
 
 /particles/xeno_slash/hemodile
-	icon_state = "hemodile"
+	color = "#006C7F"
 
 /particles/xeno_slash/transvitox
-	icon_state = "transvitox"
+	color = "#87BF5F"
 
 /particles/xeno_slash/ozelomelyn
-	icon_state = "ozelomelyn"
+	color = "#CCB7C5"
 
 /particles/xeno_smoke
 	icon = 'icons/effects/effects.dmi'
@@ -34,29 +34,29 @@
 	width = 100
 	height = 100
 	count = 1000
-	spawning = 5
-	lifespan = 9
-	fade = 13
+	spawning = 6
+	lifespan = 8
+	fade = 12
 	grow = -0.01
 	velocity = list(0, 0)
-	position = generator("circle", 16, 18, NORMAL_RAND)
+	position = generator("circle", 15, 17, NORMAL_RAND)
 	drift = generator("vector", list(0, -0.2), list(0, 0.2))
 	gravity = list(0, 0.95)
-	scale = generator("vector", list(0.3, 0.3), list(1,1), NORMAL_RAND)
-	rotation = 30
+	scale = generator("vector", list(0.3, 0.3), list(0.9,0.9), NORMAL_RAND)
+	rotation = 0
 	spin = generator("num", -20, 20)
 
 /particles/xeno_smoke/neurotoxin
-	color = "#CC6D00"
+	color = "#BF8F42"
 
 /particles/xeno_smoke/hemodile
-	color = "#006DCC"
+	color = "#006C7F"
 
 /particles/xeno_smoke/transvitox
-	color = "#8BCC00"
+	color = "#87BF5F"
 
 /particles/xeno_smoke/ozelomelyn
-	color = "#E0A1E0"
+	color = "#CCB7C5"
 
 // ***************************************
 // *********** Defile
@@ -257,6 +257,8 @@
 				particle_holder = new(owner, /particles/xeno_smoke/transvitox)
 			if(/datum/reagent/toxin/xeno_ozelomelyn)
 				particle_holder = new(owner, /particles/xeno_smoke/ozelomelyn)
+		particle_holder.pixel_x = 16
+		particle_holder.pixel_y = 16
 
 	if(deactivate == TRUE && particle_holder)
 		QDEL_NULL(particle_holder)
@@ -474,6 +476,8 @@
 				particle_holder = new(owner, /particles/xeno_slash/transvitox)
 			if(/datum/reagent/toxin/xeno_ozelomelyn)
 				particle_holder = new(owner, /particles/xeno_slash/ozelomelyn)
+		particle_holder.pixel_x = 16
+		particle_holder.pixel_y = 14
 
 	if(deactivate == TRUE && particle_holder)
 		QDEL_NULL(particle_holder)
