@@ -116,7 +116,7 @@
 	var/turf/impact_turf = get_turf(src)
 	playsound(impact_turf, 'sound/effects/portal_opening.ogg', 50, 1)
 
-	for(var/mob/living/victim in get_hear(outer_range, impact_turf))
+	for(var/mob/living/victim in viewers(outer_range, src))
 		var/strength
 		var/datum/looping_sound/geiger/geiger_counter
 		geiger_counter = new(null, FALSE)

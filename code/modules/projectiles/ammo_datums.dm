@@ -1829,7 +1829,7 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/rocket/som/rad/drop_nade(turf/T)
 	playsound(T, 'sound/effects/portal_opening.ogg', 50, 1)
-	for(var/mob/living/victim in get_hear(outer_range, T))
+	for(var/mob/living/victim in viewers(outer_range, T))
 		var/strength
 		var/datum/looping_sound/geiger/geiger_counter
 		geiger_counter = new(null, FALSE)
