@@ -346,6 +346,10 @@
 /mob/living/is_drawable(allowmobs = TRUE)
 	return (allowmobs && can_inject())
 
+#define NO_SWAP 0
+#define SWAPPING 1
+#define PHASING 2
+
 /mob/living/Bump(atom/A)
 	. = ..()
 	if(.) //We are thrown onto something.
@@ -369,16 +373,18 @@
 					return
 
 		if(!L.buckled && !L.anchored && !moving_diagonally)
-			var/mob_swap = FALSE
+			var/mob_swap_mode = NO_SWAP
 			//the puller can always swap with its victim if on grab intent
 			if(L.pulledby == src && a_intent == INTENT_GRAB)
-				mob_swap = TRUE
+				mob_swap_mode = SWAPPING
 			//restrained people act if they were on 'help' intent to prevent a person being pulled from being seperated from their puller
 			else if((L.restrained() || L.a_intent == INTENT_HELP) && (restrained() || a_intent == INTENT_HELP) && L.move_force < MOVE_FORCE_VERY_STRONG)
-				mob_swap = TRUE
+				mob_swap_mode = SWAPPING
+			else if(get_xeno_hivenumber() == L.get_xeno_hivenumber() && (L.flags_pass & PASSXENO || flags_pass & PASSXENO))
+				mob_swap_mode = PHASING
 			else if((move_resist >= MOVE_FORCE_VERY_STRONG || move_resist > L.move_force) && a_intent == INTENT_HELP) //Larger mobs can shove aside smaller ones. Xenos can always shove xenos
-				mob_swap = TRUE
-			if(mob_swap)
+				mob_swap_mode = SWAPPING
+			if(mob_swap_mode)
 				//switch our position with L
 				if(loc && !loc.Adjacent(L.loc))
 					return
@@ -392,7 +398,7 @@
 				flags_pass |= PASSMOB
 
 				var/move_failed = FALSE
-				if(!L.Move(oldloc) || !Move(oldLloc))
+				if(!Move(oldLloc) || (mob_swap_mode == SWAPPING && !L.Move(oldloc)))
 					L.forceMove(oldLloc)
 					forceMove(oldloc)
 					move_failed = TRUE

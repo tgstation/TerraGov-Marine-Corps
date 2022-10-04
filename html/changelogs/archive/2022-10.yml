@@ -28,3 +28,12 @@
       map checks failing.
   TiviPlus:
   - bugfix: Fixes being able to shoot while stunned/unconcious
+2022-10-04:
+  Lewdcifer:
+  - rscadd: Xenomorphs can now pull objects (again).
+  TiviPlus:
+  - qol: flamer fire now has little visual sparks
+  Zaro:
+  - rscadd: Added new xeno caste
+  - imageadd: added icons for said xeno caste and her spawn
+  - code_imp: added code necessary for caste

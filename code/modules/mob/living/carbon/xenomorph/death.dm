@@ -74,6 +74,8 @@
 /mob/living/carbon/xenomorph/proc/xeno_death_alert()
 	if(is_centcom_level(z))
 		return
+	if(xeno_caste.caste_flags & CASTE_DO_NOT_ANNOUNCE_DEATH)
+		return
 	var/area/A = get_area(src)
 	xeno_message("Hive: \The [src] has <b>died</b>[A? " at [A]":""]!", "xenoannounce", xeno_caste.caste_flags & CASTE_DO_NOT_ALERT_LOW_LIFE ? 2 : 5, hivenumber)
 
