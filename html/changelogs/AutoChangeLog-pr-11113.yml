@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes: 
-  - qol: "Deployable objects can be deployed on turfs with border objects such as barricades, that aren't obstructing your access"
