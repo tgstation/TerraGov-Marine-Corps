@@ -1484,9 +1484,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/camera/autoname/mainship{
-	dir = 8
-	},
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/living/pilotbunks)
 "ev" = (
@@ -16601,6 +16598,11 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/telecomms)
+"Wp" = (
+/obj/machinery/door/firedoor/mainship,
+/obj/machinery/camera/autoname/mainship,
+/turf/open/floor/mainship/stripesquare,
+/area/mainship/living/pilotbunks)
 "Wq" = (
 /obj/structure/sign/poster{
 	dir = 1
@@ -16729,6 +16731,7 @@
 	},
 /obj/structure/cable,
 /obj/machinery/door/firedoor/multi_tile,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "WK" = (
@@ -53160,7 +53163,7 @@ Id
 Id
 Id
 Id
-pN
+Wp
 eu
 pN
 Qx
