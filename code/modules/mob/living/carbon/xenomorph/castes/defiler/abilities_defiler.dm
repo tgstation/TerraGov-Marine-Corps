@@ -174,7 +174,7 @@
 
 /datum/action/xeno_action/emit_neurogas/action_activate()
 	var/mob/living/carbon/xenomorph/Defiler/X = owner
-	handle_particles(FALSE)
+	toggle_particles(FALSE)
 
 	//give them fair warning
 	X.visible_message(span_danger("Tufts of smoke begin to billow from [X]!"), \
@@ -208,8 +208,8 @@
 	dispense_gas()
 
 /datum/action/xeno_action/emit_neurogas/fail_activate()
-	handle_particles(TRUE)
-	. = ..()
+	toggle_particles(TRUE)
+	return ..()
 
 /datum/action/xeno_action/emit_neurogas/proc/dispense_gas(count = 3)
 	var/mob/living/carbon/xenomorph/Defiler/X = owner
@@ -244,12 +244,13 @@
 		T.visible_message(span_danger("Noxious smoke billows from the hulking xenomorph!"))
 		count = max(0,count - 1)
 		sleep(DEFILER_GAS_DELAY)
-	handle_particles(TRUE)
+	toggle_particles(TRUE)
 
-/datum/action/xeno_action/emit_neurogas/proc/handle_particles(deactivate)
+// Toggles particles on or off, depending on the defined var.
+/datum/action/xeno_action/emit_neurogas/proc/toggle_particles(deactivate)
 	var/mob/living/carbon/xenomorph/X = owner
 
-	if(deactivate == FALSE)
+	if(!deactivate)
 		switch(X.selected_reagent)
 			if(/datum/reagent/toxin/xeno_neurotoxin)
 				particle_holder = new(owner, /particles/xeno_smoke/neurotoxin)
@@ -262,7 +263,7 @@
 		particle_holder.pixel_x = 16
 		particle_holder.pixel_y = 16
 
-	if(deactivate == TRUE && particle_holder)
+	if(deactivate)
 		QDEL_NULL(particle_holder)
 
 // ***************************************
@@ -421,7 +422,7 @@
 	X.balloon_alert(X, "Reagent slash active") //Let the user know
 	X.playsound_local(X, 'sound/voice/alien_drool2.ogg', 25)
 
-	handle_particles(FALSE)
+	toggle_particles(FALSE)
 	succeed_activate()
 	add_cooldown()
 
@@ -433,7 +434,7 @@
 	deltimer(reagent_slash_duration_timer_id) //delete the timer so we don't have mismatch issues, and so we don't potentially try to deactivate the ability twice
 	reagent_slash_duration_timer_id = null
 	reagent_slash_reagent = null
-	handle_particles(TRUE)
+	toggle_particles(TRUE)
 
 	X.balloon_alert(X, "Reagent slash over") //Let the user know
 	X.playsound_local(X, 'sound/voice/hiss5.ogg', 25)
@@ -467,10 +468,11 @@
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
-/datum/action/xeno_action/reagent_slash/proc/handle_particles(deactivate)
+// Toggles particles on or off, depending on the defined var.
+/datum/action/xeno_action/reagent_slash/proc/toggle_particles(deactivate)
 	var/mob/living/carbon/xenomorph/X = owner
 
-	if(deactivate == FALSE)
+	if(!deactivate)
 		switch(X.selected_reagent)
 			if(/datum/reagent/toxin/xeno_neurotoxin)
 				particle_holder = new(owner, /particles/xeno_slash/neurotoxin)
@@ -483,7 +485,7 @@
 		particle_holder.pixel_x = 16
 		particle_holder.pixel_y = 12
 
-	if(deactivate == TRUE && particle_holder)
+	if(deactivate)
 		QDEL_NULL(particle_holder)
 
 // ***************************************
