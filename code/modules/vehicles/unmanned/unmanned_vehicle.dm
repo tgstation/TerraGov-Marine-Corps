@@ -369,10 +369,10 @@
 	new /obj/item/unmanned_vehicle_remote(src)
 
 /obj/item/storage/internal/uav_ammo
-	storage_slots = 4
+	storage_slots = 6
 	max_w_class = WEIGHT_CLASS_NORMAL
-	max_storage_space = 8
-	can_hold = list(/obj/item/ammo_magazine/box12x40mm, /obj/item/ammo_magazine/box11x35mm, )
+	max_storage_space = 10
+	can_hold = list(/obj/item/ammo_magazine/box12x40mm, /obj/item/ammo_magazine/box11x35mm, /obj/item/ammo_magazine/energy_droid)
 
 /obj/item/storage/internal/uav_ammo/handle_mousedrop(mob/user, obj/over_object)
 	if(!ishuman(user))
