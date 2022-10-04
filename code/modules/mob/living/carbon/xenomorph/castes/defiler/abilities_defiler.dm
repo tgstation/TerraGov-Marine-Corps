@@ -164,6 +164,8 @@
 	cooldown_timer = 40 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY|XACT_IGNORE_SELECTED_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_EMIT_NEUROGAS
+	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
+	var/obj/effect/abstract/particle_holder/particle_holder
 
 /datum/action/xeno_action/emit_neurogas/on_cooldown_finish()
 	playsound(owner.loc, 'sound/effects/xeno_newlarva.ogg', 50, 0)
@@ -403,6 +405,8 @@
 	var/reagent_slash_duration_timer_id
 	///Defines the reagent being used for reagent slashes; locks it to the selected reagent on activation
 	var/reagent_slash_reagent
+	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
+	var/obj/effect/abstract/particle_holder/particle_holder
 
 /datum/action/xeno_action/reagent_slash/action_activate()
 	. = ..()
