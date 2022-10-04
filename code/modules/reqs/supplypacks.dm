@@ -1494,14 +1494,20 @@ VEHICLES
 	containertype = /obj/structure/closet/crate/weapon
 
 /datum/supply_packs/vehicles/uv_light_ammo
-	name = "Light UV ammo - 11x35mm"
+	name = "Light UV ammo"
 	contains = list(/obj/item/ammo_magazine/box11x35mm)
 	cost = 3
 	containertype = /obj/structure/closet/crate/ammo
 
 /datum/supply_packs/vehicles/uv_heavy_ammo
-	name = "Heavy UV ammo - 12x40mm"
+	name = "Heavy UV ammo"
 	contains = list(/obj/item/ammo_magazine/box12x40mm)
+	cost = 3
+	containertype = /obj/structure/closet/crate/ammo
+
+/datum/supply_packs/vehicles/droid_energy_ammo
+	name = "Droid Energy ammo"
+	contains = list(/obj/item/ammo_magazine/energy_droid)
 	cost = 3
 	containertype = /obj/structure/closet/crate/ammo
 
