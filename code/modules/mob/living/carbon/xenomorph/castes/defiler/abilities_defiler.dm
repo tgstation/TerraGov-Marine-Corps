@@ -401,8 +401,6 @@
 	var/reagent_slash_duration_timer_id
 	///Defines the reagent being used for reagent slashes; locks it to the selected reagent on activation
 	var/reagent_slash_reagent
-	/// Test.
-	var/datum/action/xeno_action/action
 
 /datum/action/xeno_action/reagent_slash/action_activate()
 	. = ..()
