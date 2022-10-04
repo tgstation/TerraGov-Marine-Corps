@@ -1299,7 +1299,7 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/tx11, /obj/item/attachable/scope/mini/tx11)
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 17,"rail_x" = 8, "rail_y" = 20, "under_x" = 16, "under_y" = 13, "stock_x" = 19, "stock_y" = 23)
 	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.15 SECONDS
+	aim_fire_delay = 0.95 SECONDS
 
 	fire_delay = 0.25 SECONDS
 	burst_amount = 3

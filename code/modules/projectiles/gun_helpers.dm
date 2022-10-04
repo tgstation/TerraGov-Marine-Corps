@@ -679,6 +679,7 @@ should be alright.
 	aim_fire_delay = max(initial(aim_fire_delay) + modification_value, 0); \
 	if(HAS_TRAIT(src, TRAIT_GUN_IS_AIMING)) { \
 		modify_fire_delay(aim_fire_delay - old_delay); \
+		modify_auto_burst_delay(aim_fire_delay - old_delay); \
 	}
 
 ///Adds an aim_fire_delay modificatio value
