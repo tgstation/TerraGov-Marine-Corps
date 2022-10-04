@@ -4,7 +4,7 @@
 	width = 100
 	height = 100
 	count = 1000
-	spawning = 6
+	spawning = 5
 	lifespan = 9
 	fade = 13
 	grow = -0.01
@@ -34,7 +34,7 @@
 	width = 100
 	height = 100
 	count = 1000
-	spawning = 6
+	spawning = 5
 	lifespan = 9
 	fade = 13
 	grow = -0.01
@@ -250,13 +250,13 @@
 	if(deactivate == FALSE)
 		switch(X.selected_reagent)
 			if(/datum/reagent/toxin/xeno_neurotoxin)
-				particle_holder = new(parent, /particles/xeno_smoke/neurotoxin)
+				particle_holder = new(owner, /particles/xeno_smoke/neurotoxin)
 			if(/datum/reagent/toxin/xeno_hemodile)
-				particle_holder = new(parent, /particles/xeno_smoke/hemodile)
+				particle_holder = new(owner, /particles/xeno_smoke/hemodile)
 			if(/datum/reagent/toxin/xeno_transvitox)
-				particle_holder = new(parent, /particles/xeno_smoke/transvitox)
+				particle_holder = new(owner, /particles/xeno_smoke/transvitox)
 			if(/datum/reagent/toxin/xeno_ozelomelyn)
-				particle_holder = new(parent, /particles/xeno_smoke/ozelomelyn)
+				particle_holder = new(owner, /particles/xeno_smoke/ozelomelyn)
 
 	if(deactivate == TRUE && particle_holder)
 		QDEL_NULL(particle_holder)
@@ -420,7 +420,6 @@
 	handle_particles(FALSE)
 	succeed_activate()
 	add_cooldown()
-	to_chat(X, span_xenowarning("[X.particles]"))
 
 ///Called when the duration of reagent slash lapses
 /datum/action/xeno_action/reagent_slash/proc/reagent_slash_deactivate(mob/living/carbon/xenomorph/X)
@@ -457,7 +456,6 @@
 
 	if(!reagent_slash_count) //Deactivate if we have no reagent slashes remaining
 		reagent_slash_deactivate(X)
-		to_chat(X, span_xenowarning("[X.particles]"))
 
 
 /datum/action/xeno_action/reagent_slash/on_cooldown_finish()
@@ -471,13 +469,13 @@
 	if(deactivate == FALSE)
 		switch(X.selected_reagent)
 			if(/datum/reagent/toxin/xeno_neurotoxin)
-				particle_holder = new(action.parent, /particles/xeno_slash/neurotoxin)
+				particle_holder = new(owner, /particles/xeno_slash/neurotoxin)
 			if(/datum/reagent/toxin/xeno_hemodile)
-				particle_holder = new(action.parent, /particles/xeno_slash/hemodile)
+				particle_holder = new(owner, /particles/xeno_slash/hemodile)
 			if(/datum/reagent/toxin/xeno_transvitox)
-				particle_holder = new(action.parent, /particles/xeno_slash/transvitox)
+				particle_holder = new(owner, /particles/xeno_slash/transvitox)
 			if(/datum/reagent/toxin/xeno_ozelomelyn)
-				particle_holder = new(action.parent, /particles/xeno_slash/ozelomelyn)
+				particle_holder = new(owner, /particles/xeno_slash/ozelomelyn)
 
 	if(deactivate == TRUE && particle_holder)
 		QDEL_NULL(particle_holder)
