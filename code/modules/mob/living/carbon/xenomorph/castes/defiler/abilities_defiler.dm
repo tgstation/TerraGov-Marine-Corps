@@ -250,21 +250,21 @@
 /datum/action/xeno_action/emit_neurogas/proc/toggle_particles(deactivate)
 	var/mob/living/carbon/xenomorph/X = owner
 
-	if(!deactivate)
-		switch(X.selected_reagent)
-			if(/datum/reagent/toxin/xeno_neurotoxin)
-				particle_holder = new(owner, /particles/xeno_smoke/neurotoxin)
-			if(/datum/reagent/toxin/xeno_hemodile)
-				particle_holder = new(owner, /particles/xeno_smoke/hemodile)
-			if(/datum/reagent/toxin/xeno_transvitox)
-				particle_holder = new(owner, /particles/xeno_smoke/transvitox)
-			if(/datum/reagent/toxin/xeno_ozelomelyn)
-				particle_holder = new(owner, /particles/xeno_smoke/ozelomelyn)
-		particle_holder.pixel_x = 16
-		particle_holder.pixel_y = 16
-
 	if(deactivate)
 		QDEL_NULL(particle_holder)
+		return
+
+	switch(X.selected_reagent)
+		if(/datum/reagent/toxin/xeno_neurotoxin)
+			particle_holder = new(owner, /particles/xeno_smoke/neurotoxin)
+		if(/datum/reagent/toxin/xeno_hemodile)
+			particle_holder = new(owner, /particles/xeno_smoke/hemodile)
+		if(/datum/reagent/toxin/xeno_transvitox)
+			particle_holder = new(owner, /particles/xeno_smoke/transvitox)
+		if(/datum/reagent/toxin/xeno_ozelomelyn)
+			particle_holder = new(owner, /particles/xeno_smoke/ozelomelyn)
+	particle_holder.pixel_x = 16
+	particle_holder.pixel_y = 16
 
 // ***************************************
 // *********** Inject Egg Neurogas
@@ -472,21 +472,21 @@
 /datum/action/xeno_action/reagent_slash/proc/toggle_particles(deactivate)
 	var/mob/living/carbon/xenomorph/X = owner
 
-	if(!deactivate)
-		switch(X.selected_reagent)
-			if(/datum/reagent/toxin/xeno_neurotoxin)
-				particle_holder = new(owner, /particles/xeno_slash/neurotoxin)
-			if(/datum/reagent/toxin/xeno_hemodile)
-				particle_holder = new(owner, /particles/xeno_slash/hemodile)
-			if(/datum/reagent/toxin/xeno_transvitox)
-				particle_holder = new(owner, /particles/xeno_slash/transvitox)
-			if(/datum/reagent/toxin/xeno_ozelomelyn)
-				particle_holder = new(owner, /particles/xeno_slash/ozelomelyn)
-		particle_holder.pixel_x = 16
-		particle_holder.pixel_y = 12
-
 	if(deactivate)
 		QDEL_NULL(particle_holder)
+		return
+
+	switch(X.selected_reagent)
+		if(/datum/reagent/toxin/xeno_neurotoxin)
+			particle_holder = new(owner, /particles/xeno_slash/neurotoxin)
+		if(/datum/reagent/toxin/xeno_hemodile)
+			particle_holder = new(owner, /particles/xeno_slash/hemodile)
+		if(/datum/reagent/toxin/xeno_transvitox)
+			particle_holder = new(owner, /particles/xeno_slash/transvitox)
+		if(/datum/reagent/toxin/xeno_ozelomelyn)
+			particle_holder = new(owner, /particles/xeno_slash/ozelomelyn)
+	particle_holder.pixel_x = 16
+	particle_holder.pixel_y = 12
 
 // ***************************************
 // *********** Tentacle
