@@ -477,7 +477,7 @@
 			if(/datum/reagent/toxin/xeno_ozelomelyn)
 				particle_holder = new(owner, /particles/xeno_slash/ozelomelyn)
 		particle_holder.pixel_x = 16
-		particle_holder.pixel_y = 14
+		particle_holder.pixel_y = 13
 
 	if(deactivate == TRUE && particle_holder)
 		QDEL_NULL(particle_holder)
