@@ -28,6 +28,17 @@ SUBSYSTEM_DEF(greyscale)
 		cache_list(helmet.colorable_colors, helmet.greyscale_config)
 		qdel(helmet)
 
+	for(var/obj/item/weapon/gun/gun_type AS in subtypesof(/obj/item/weapon/gun))
+		if(!initial(gun_type.greyscale_config))
+			continue
+		var/obj/item/weapon/gun/gun = new gun_type()
+		cache_list(gun.colorable_colors, gun.greyscale_config)
+		for(var/key in gun.item_icons)
+			if(!ispath(gun.item_icons[key], /datum/greyscale_config))
+				continue
+			cache_list(gun.colorable_colors, gun.item_icons[key])
+		qdel(gun)
+
 	return ..()
 
 ///Proc built to handle cacheing the nested lists of armor colors found in code/modules/clothing/modular_armor

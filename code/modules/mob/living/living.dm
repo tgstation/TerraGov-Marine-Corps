@@ -22,10 +22,8 @@
 	handle_slowdown()
 	handle_stagger()
 
-	handle_received_auras()
-
 ///Adjusts our stats based on the auras we've received and care about, then cleans out the list for next tick.
-/mob/living/proc/handle_received_auras()
+/mob/living/proc/finish_aura_cycle()
 	received_auras.Cut() //Living, of course, doesn't care about any
 
 ///Update what auras we'll receive this life tick if it's either new or stronger than current. aura_type as AURA_ define, strength as number.
@@ -348,6 +346,10 @@
 /mob/living/is_drawable(allowmobs = TRUE)
 	return (allowmobs && can_inject())
 
+#define NO_SWAP 0
+#define SWAPPING 1
+#define PHASING 2
+
 /mob/living/Bump(atom/A)
 	. = ..()
 	if(.) //We are thrown onto something.
@@ -371,16 +373,18 @@
 					return
 
 		if(!L.buckled && !L.anchored && !moving_diagonally)
-			var/mob_swap = FALSE
+			var/mob_swap_mode = NO_SWAP
 			//the puller can always swap with its victim if on grab intent
 			if(L.pulledby == src && a_intent == INTENT_GRAB)
-				mob_swap = TRUE
+				mob_swap_mode = SWAPPING
 			//restrained people act if they were on 'help' intent to prevent a person being pulled from being seperated from their puller
-			else if((L.restrained() || L.a_intent == INTENT_HELP) && (restrained() || a_intent == INTENT_HELP) && L.mob_size < MOB_SIZE_XENO)
-				mob_swap = TRUE
-			else if((mob_size >= MOB_SIZE_XENO || mob_size > L.mob_size) && a_intent == INTENT_HELP) //Larger mobs can shove aside smaller ones. Xenos can always shove xenos
-				mob_swap = TRUE
-			if(mob_swap)
+			else if((L.restrained() || L.a_intent == INTENT_HELP) && (restrained() || a_intent == INTENT_HELP) && L.move_force < MOVE_FORCE_VERY_STRONG)
+				mob_swap_mode = SWAPPING
+			else if(get_xeno_hivenumber() == L.get_xeno_hivenumber() && (L.flags_pass & PASSXENO || flags_pass & PASSXENO))
+				mob_swap_mode = PHASING
+			else if((move_resist >= MOVE_FORCE_VERY_STRONG || move_resist > L.move_force) && a_intent == INTENT_HELP) //Larger mobs can shove aside smaller ones. Xenos can always shove xenos
+				mob_swap_mode = SWAPPING
+			if(mob_swap_mode)
 				//switch our position with L
 				if(loc && !loc.Adjacent(L.loc))
 					return
@@ -394,7 +398,7 @@
 				flags_pass |= PASSMOB
 
 				var/move_failed = FALSE
-				if(!L.Move(oldloc) || !Move(oldLloc))
+				if(!Move(oldLloc) || (mob_swap_mode == SWAPPING && !L.Move(oldloc)))
 					L.forceMove(oldLloc)
 					forceMove(oldloc)
 					move_failed = TRUE
@@ -426,7 +430,7 @@
 
 
 //Called when we want to push an atom/movable
-/mob/living/proc/PushAM(atom/movable/AM)
+/mob/living/proc/PushAM(atom/movable/AM, force = move_force)
 	if(AM.anchored)
 		return
 	if(now_pushing)
@@ -446,6 +450,25 @@
 	// a fallback.
 	if(!dir_to_target)
 		dir_to_target = dir
+
+	var/push_anchored = FALSE
+	if((AM.move_resist * MOVE_FORCE_CRUSH_RATIO) <= force)
+		if(move_crush(AM, move_force, dir_to_target))
+			push_anchored = TRUE
+	if((AM.move_resist * MOVE_FORCE_FORCEPUSH_RATIO) <= force) //trigger move_crush and/or force_push regardless of if we can push it normally
+		if(force_push(AM, move_force, dir_to_target, push_anchored))
+			push_anchored = TRUE
+	if(ismob(AM))
+		var/mob/mob_to_push = AM
+		var/atom/movable/mob_buckle = mob_to_push.buckled
+		// If we can't pull them because of what they're buckled to, make sure we can push the thing they're buckled to instead.
+		// If neither are true, we're not pushing anymore.
+		if(mob_buckle && (mob_buckle.buckle_flags & BUCKLE_PREVENTS_PULL || (force < (mob_buckle.move_resist * MOVE_FORCE_PUSH_RATIO))))
+			now_pushing = FALSE
+			return
+	if((AM.anchored && !push_anchored) || (force < (AM.move_resist * MOVE_FORCE_PUSH_RATIO)))
+		now_pushing = FALSE
+		return
 
 	if(istype(AM, /obj/structure/window))
 		var/obj/structure/window/W = AM

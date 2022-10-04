@@ -169,6 +169,7 @@
 		/obj/item/stack/rods,
 		/obj/item/stack/cable_coil,
 		/obj/item/stack/sandbags_empty,
+		/obj/item/stack/sandbags,
 		/obj/item/stack/razorwire,
 		/obj/item/tool/shovel/etool,
 		/obj/item/tool/wrench,
@@ -233,6 +234,7 @@
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/stack/medical,
 		/obj/item/tweezers,
+		/obj/item/tool/surgery/solderingtool,
 	)
 
 /obj/item/armor_module/storage/injector

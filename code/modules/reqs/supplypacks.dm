@@ -648,22 +648,28 @@ EXPLOSIVES
 /datum/supply_packs/explosives/howitzer_ammo_he
 	name = "MG-100Y howitzer HE shell (x2)"
 	contains = list(/obj/item/mortal_shell/howitzer/he, /obj/item/mortal_shell/howitzer/he)
-	cost = 3
+	cost = 4
 
 /datum/supply_packs/explosives/howitzer_ammo_incend
 	name = "MG-100Y howitzer incendiary shell (x2)"
 	contains = list(/obj/item/mortal_shell/howitzer/incendiary, /obj/item/mortal_shell/howitzer/incendiary)
-	cost = 3
+	cost = 4
 
 /datum/supply_packs/explosives/mortar_ammo_wp
 	name = "MG-100Y howitzer white phosporous smoke shell"
 	contains = list(/obj/item/mortal_shell/howitzer/white_phos)
-	cost = 2
+	cost = 6
 
 /datum/supply_packs/explosives/mortar_ammo_plasmaloss
 	name = "MG-100Y howitzer tanglefoot shell"
 	contains = list(/obj/item/mortal_shell/howitzer/plasmaloss)
-	cost = 2
+	cost = 6
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/explosives/ai_target_module
+	name = "AI artillery targeting module"
+	contains = list(/obj/item/ai_target_beacon)
+	cost = 10
 	available_against_xeno_only = TRUE
 
 /*******************************************************************************
