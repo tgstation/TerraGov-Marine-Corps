@@ -11,8 +11,6 @@
 	var/target_flags = NONE
 	/// flags to restrict a xeno ability to certain gamemode
 	var/gamemode_flags = ABILITY_ALL_GAMEMODE
-	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
-	var/obj/effect/abstract/particle_holder/particle_holder
 
 /datum/action/xeno_action/New(Target)
 	. = ..()
