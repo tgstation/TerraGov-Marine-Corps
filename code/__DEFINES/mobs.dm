@@ -478,12 +478,12 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define XENO_HEALTH_ALERT_TRIGGER_PERCENT 0.25 //If a xeno is damaged while its current hit points are less than this percent of its maximum, we send out an alert to the hive
 #define XENO_HEALTH_ALERT_TRIGGER_THRESHOLD 50 //If a xeno is damaged while its current hit points are less than this amount, we send out an alert to the hive
-#define XENO_HEALTH_ALERT_COOLDOWN 60 SECONDS //The cooldown on these xeno damage alerts
+#define XENO_HEALTH_ALERT_COOLDOWN 10 SECONDS //The cooldown on these xeno damage alerts
 #define XENO_SILO_HEALTH_ALERT_COOLDOWN 30 SECONDS //The cooldown on these xeno damage alerts
 #define XENO_HEALTH_ALERT_POINTER_DURATION 6 SECONDS //How long the alert directional pointer lasts.
 #define XENO_RALLYING_POINTER_DURATION 15 SECONDS //How long the rally hive pointer lasts
 #define XENO_SILO_DAMAGE_POINTER_DURATION 10 SECONDS //How long the alert directional pointer lasts when silos are damaged
-#define XENO_SILO_DETECTION_COOLDOWN 1 MINUTES
+#define XENO_SILO_DETECTION_COOLDOWN 10 SECONDS
 #define XENO_SILO_DETECTION_RANGE 10//How far silos can detect hostiles
 
 #define XENO_PARALYZE_NORMALIZATION_MULTIPLIER 5 //Multiplies an input to normalize xeno paralyze duration times.
