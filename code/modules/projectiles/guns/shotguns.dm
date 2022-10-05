@@ -764,3 +764,66 @@
 	accuracy_mult = 1.1
 	scatter = 0
 	recoil = 1
+
+/obj/item/weapon/gun/shotgun/pump/crossbow
+	name = "BO-Crossbow"
+	desc = "A crossbow that can fire armor piercing bolts or explosive sticky tipped arrows that detonate after 5 seconds. Silent but deadly at a range."
+	icon_state = "crossbow"
+	item_state = "crossbow"
+	pump_animation = "crossbow_loaded"
+	fire_sound = 'sound/weapons/guns/fire/mosin.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
+	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
+	caliber = "Arrows" //codex
+	load_method = SINGLE_CASING //codex
+	max_shells = 1 //codex
+	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/arrow
+	gun_skill_category = GUN_SKILL_RIFLES
+	pump_sound = 'sound/weapons/guns/interact/working_the_bolt.ogg'
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/magnetic_harness,
+	)
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
+	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 20, "stock_y" = 14)
+	starting_attachment_types = list(
+		/obj/item/attachable/scope/mini
+	)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 1
+
+	fire_delay = 1
+	accuracy_mult = 1.4
+	scatter = -10
+	recoil = 0
+	pump_delay = 1
+	aim_slowdown = 1
+	wield_delay = 1 SECONDS
+
+/obj/item/weapon/gun/shotgun/pump/bolt/unique_action(mob/user)
+	return pump_shotgun(user)
+
+/obj/item/weapon/gun/shotgun/pump/bolt/pump_fail_notice(mob/user)
+	playsound(user,'sound/weapons/throwtap.ogg', 25, 1)
+	to_chat(user,"<span class='warning'><b>[src] bolt has already been worked, locking the bolt; fire or unload a round to unlock it.</b></span>")
+	recent_notice = world.time
+
+/obj/item/weapon/gun/shotgun/pump/bolt/pump_notice(mob/user)
+	to_chat(user, "<span class='notice'><b>You work [src] bolt.</b></span>")
+
+/obj/item/weapon/gun/shotgun/pump/bolt/unload(mob/user)
+	if(pump_lock)
+		to_chat(user, "<span class='notice'><b>You open [src]'s breechloader, ejecting the cartridge.</b></span>")
+		pump_lock = FALSE //we're operating the slide release to unload, thus unlocking the pump
+	return ..()
+
+
+
+/datum/ammo/bullet/sniper/arrow/explosive/on_hit_mob(mob/M,obj/projectile/P)
+	M.apply_status_effect(/datum/status_effect/sticky_arrow, 5 SECONDS)

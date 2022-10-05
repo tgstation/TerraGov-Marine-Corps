@@ -284,3 +284,12 @@
 /datum/status_effect/spacefreeze/tick()
 	owner.adjustFireLoss(40)
 
+/datum/status_effect/sticky_arrow
+	id = "sticky_arrow"
+	tick_interval = 1 SECONDS
+	status_type = STATUS_EFFECT_MULTIPLE
+
+/datum/status_effect/sticky_arrow/on_remove()
+	explosion(get_turf(owner), 0, 1, 8, 5)
+	return ..()
+

@@ -115,3 +115,9 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	icon_state = "mbx900_tracker"
 	default_ammo = /datum/ammo/bullet/shotgun/mbx900_tracker
 	icon_state_mini = "mbx900_tracker"
+
+/obj/item/ammo_magazine/internal/shotgun/pump/arrow
+	name = "internal magazine"
+	default_ammo = /datum/ammo/bullet/sniper/arrow
+	caliber = "Arrows"
+	max_rounds = 1

@@ -2979,3 +2979,16 @@ datum/ammo/bullet/revolver/tp44
 	name = "smoke grenade shell"
 	nade_type = /obj/item/explosive/grenade/smokebomb
 	icon_state = "smoke_shell"
+
+/datum/ammo/bullet/sniper/arrow
+	name = "armor piercing arrow"
+	hud_state = "sniper_crude"
+	damage = 100
+	penetration = 75
+
+/datum/ammo/bullet/sniper/arrow/explosive
+	name = "explosive arrow"
+	hud_state = "sniper_crude"
+	damage = 30
+	penetration = 35
+
