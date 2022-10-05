@@ -24,7 +24,7 @@
 
 /obj/item/explosive/grenade/flashbang/prime()
 	var/turf/target_turf = get_turf(src)
-	playsound(T, 'sound/effects/bang.ogg', 50, 1)
+	playsound(target_turf, 'sound/effects/bang.ogg', 50, 1)
 	for(var/mob/living/carbon/victim in hearers(max_range, target_turf))
 		if(!HAS_TRAIT(victim, TRAIT_FLASHBANGIMMUNE))
 			bang(target_turf, victim)
