@@ -810,19 +810,18 @@ TUNNEL
 
 /obj/structure/xeno/silo/proc/resin_silo_damage_alert()
 	if(!COOLDOWN_CHECK(src, silo_damage_alert_cooldown))
-		warning = FALSE
 		return
 	warning = TRUE
 	update_minimap_icon()
 	associated_hive.xeno_message("Our [name] at [AREACOORD_NO_Z(src)] is under attack! It has [obj_integrity]/[max_integrity] Health remaining.", "xenoannounce", 5, FALSE, src, 'sound/voice/alien_help1.ogg',FALSE, null, /obj/screen/arrow/silo_damaged_arrow)
 	COOLDOWN_START(src, silo_damage_alert_cooldown, XENO_SILO_HEALTH_ALERT_COOLDOWN) //set the cooldown.
+	addtimer(CALLBACK(src, .proc/clear_warning), XENO_SILO_HEALTH_ALERT_COOLDOWN) //clear warning
 
 ///Alerts the Hive when hostiles get too close to their resin silo
 /obj/structure/xeno/silo/proc/resin_silo_proxy_alert(datum/source, atom/movable/hostile, direction)
 	SIGNAL_HANDLER
 
 	if(!COOLDOWN_CHECK(src, silo_proxy_alert_cooldown)) //Proxy alert triggered too recently; abort
-		warning = FALSE
 		return
 
 	if(!isliving(hostile))
@@ -831,16 +830,21 @@ TUNNEL
 	var/mob/living/living_triggerer = hostile
 	if(living_triggerer.stat == DEAD) //We don't care about the dead
 		return
-	warning = TRUE
-	update_minimap_icon()
 
 	if(isxeno(hostile))
 		var/mob/living/carbon/xenomorph/X = hostile
 		if(X.hive == associated_hive) //Trigger proxy alert only for hostile xenos
 			return
 
+	warning = TRUE
+	update_minimap_icon()
 	associated_hive.xeno_message("Our [name] has detected a nearby hostile [hostile] at [get_area(hostile)] (X: [hostile.x], Y: [hostile.y]).", "xenoannounce", 5, FALSE, hostile, 'sound/voice/alien_help1.ogg', FALSE, null, /obj/screen/arrow/leader_tracker_arrow)
 	COOLDOWN_START(src, silo_proxy_alert_cooldown, XENO_SILO_DETECTION_COOLDOWN) //set the cooldown.
+	addtimer(CALLBACK(src, .proc/clear_warning), XENO_SILO_DETECTION_COOLDOWN) //clear warning
+
+/obj/structure/xeno/silo/proc/clear_warning()
+	warning = FALSE
+	update_minimap_icon()
 
 /obj/structure/xeno/silo/process()
 	//Regenerate if we're at less than max integrity
@@ -1274,9 +1278,10 @@ TUNNEL
 	SSspawning.registerspawner(src, INFINITY, GLOB.xeno_ai_spawnable, 0, 0, null)
 	SSspawning.spawnerdata[src].required_increment = max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER)/SSspawning.wait
 	SSspawning.spawnerdata[src].max_allowed_mobs = max(2, MAX_SPAWNABLE_MOB_PER_PLAYER * SSmonitor.maximum_connected_players_count)
-	SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, "spawner")
 	for(var/turfs in RANGE_TURFS(XENO_SILO_DETECTION_RANGE, src))
 		RegisterSignal(turfs, COMSIG_ATOM_ENTERED, .proc/spawner_proxy_alert)
+	update_minimap_icon()
+	return INITIALIZE_HINT_LATELOAD
 
 /obj/structure/xeno/spawner/LateInitialize()
 	. = ..()
@@ -1300,7 +1305,6 @@ TUNNEL
 
 /obj/structure/xeno/spawner/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armour_penetration)
 	. = ..()
-
 	spawner_damage_alert()
 
 /obj/structure/xeno/spawner/proc/spawner_damage_alert()
@@ -1311,6 +1315,7 @@ TUNNEL
 	update_minimap_icon()
 	associated_hive.xeno_message("Our [name] at [AREACOORD_NO_Z(src)] is under attack! It has [obj_integrity]/[max_integrity] Health remaining.", "xenoannounce", 5, FALSE, src, 'sound/voice/alien_help1.ogg',FALSE, null, /obj/screen/arrow/silo_damaged_arrow)
 	COOLDOWN_START(src, spawner_damage_alert_cooldown, XENO_SILO_HEALTH_ALERT_COOLDOWN) //set the cooldown.
+	addtimer(CALLBACK(src, .proc/clear_warning), XENO_SILO_DETECTION_COOLDOWN) //clear warning
 
 ///Alerts the Hive when hostiles get too close to their spawner
 /obj/structure/xeno/spawner/proc/spawner_proxy_alert(datum/source, atom/movable/hostile, direction)
@@ -1326,16 +1331,21 @@ TUNNEL
 	var/mob/living/living_triggerer = hostile
 	if(living_triggerer.stat == DEAD) //We don't care about the dead
 		return
-	warning = TRUE
-	update_minimap_icon()
 
 	if(isxeno(hostile))
 		var/mob/living/carbon/xenomorph/X = hostile
 		if(X.hive == associated_hive) //Trigger proxy alert only for hostile xenos
 			return
 
+	warning = TRUE
+	update_minimap_icon()
 	associated_hive.xeno_message("Our [name] has detected a nearby hostile [hostile] at [get_area(hostile)] (X: [hostile.x], Y: [hostile.y]).", "xenoannounce", 5, FALSE, hostile, 'sound/voice/alien_help1.ogg', FALSE, null, /obj/screen/arrow/leader_tracker_arrow)
 	COOLDOWN_START(src, spawner_proxy_alert_cooldown, XENO_SILO_DETECTION_COOLDOWN) //set the cooldown.
+	addtimer(CALLBACK(src, .proc/clear_warning), XENO_SILO_DETECTION_COOLDOWN) //clear warning
+
+/obj/structure/xeno/spawner/proc/clear_warning()
+	warning = FALSE
+	update_minimap_icon()
 
 /obj/structure/xeno/spawner/Destroy()
 	GLOB.xeno_spawner -= src
