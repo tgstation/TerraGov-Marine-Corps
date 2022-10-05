@@ -149,6 +149,10 @@
 	///delay between the throw hugger ability activation for carriers
 	var/hugger_delay = 0
 
+	// *** Widow Abilities *** //
+	///maximum amount of spiderlings a widow can carry at one time.
+	var/max_spiderlings = 0
+
 	// *** Defender Abilities *** //
 	///modifying amount to the crest defense ability for defenders. Positive integers only.
 	var/crest_defense_armor = 0

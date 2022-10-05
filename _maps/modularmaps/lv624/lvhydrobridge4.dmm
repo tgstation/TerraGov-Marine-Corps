@@ -15,6 +15,7 @@
 /area/lv624/ground/river2)
 "d" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "e" = (
@@ -51,6 +52,7 @@
 /area/lv624/ground/river2)
 "p" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
 /turf/open/ground/river,
 /area/lv624/ground/river2)
 "q" = (
@@ -58,6 +60,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "r" = (
@@ -74,6 +77,7 @@
 "u" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/ai_node,
+/obj/structure/cable,
 /turf/open/ground/river,
 /area/lv624/ground/river2)
 "w" = (

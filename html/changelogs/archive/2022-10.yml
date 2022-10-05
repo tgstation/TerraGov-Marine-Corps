@@ -28,3 +28,21 @@
       map checks failing.
   TiviPlus:
   - bugfix: Fixes being able to shoot while stunned/unconcious
+2022-10-04:
+  Lewdcifer:
+  - rscadd: Xenomorphs can now pull objects (again).
+  TiviPlus:
+  - qol: flamer fire now has little visual sparks
+  Zaro:
+  - rscadd: Added new xeno caste
+  - imageadd: added icons for said xeno caste and her spawn
+  - code_imp: added code necessary for caste
+2022-10-05:
+  novaepee:
+  - rscadd: MP room
+  - rscadd: 'bathrooms expansion: Change marine''s prep to FORCE THEM to live in bunk
+      beds. expansion: Dark room simulation! Practice how bright your lights are in
+      a dark environment, realistic to when you are dealing with xenomorphs. Go to
+      the PoS''s firing range and check it out!'
+  tyeagg:
+  - rscadd: mech prop to patrol base
