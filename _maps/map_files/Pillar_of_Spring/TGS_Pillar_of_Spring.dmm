@@ -1642,7 +1642,7 @@
 /area/mainship/hull/lower_hull)
 "eQ" = (
 /obj/machinery/door/airlock/multi_tile/mainship/maint{
-	name = "\Vehicle Hangar"
+	name = "Vehicle Hangar"
 	},
 /obj/machinery/door/firedoor/multi_tile,
 /turf/open/floor/mainship/mono,
@@ -4732,6 +4732,7 @@
 /obj/machinery/door/window{
 	dir = 1
 	},
+/obj/item/tool/soap,
 /turf/open/floor/mainship/sterile/dark,
 /area/sulaco/showers)
 "nR" = (
@@ -5604,7 +5605,7 @@
 /area/mainship/medical/lower_medical)
 "qu" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/personal{
-	name = "\Pilot Bunks"
+	name = "Pilot Bunks"
 	},
 /obj/machinery/door/firedoor/multi_tile,
 /obj/structure/cable,
