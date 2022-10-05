@@ -5,10 +5,54 @@ SUBSYSTEM_DEF(aura)
 	flags = SS_NO_INIT
 	///Stores currently active aura_bearer datums
 	var/list/active_auras = list() //We can't use a normal subsystem processing list because as soon as an aura_bearer leaves the list it needs to die
+	///Stores what the current aura processing stage was working on for if it is paused.
+	var/list/current_cache = list()
+	///Auras go through three stages. Pulse auras -> finish xeno cycles -> finish human cycles. Depending on where it was paused, this tells it where to resume fire()
+	var/stage = 1
 
 /datum/controller/subsystem/aura/fire(resumed)
-	for(var/datum/aura_bearer/bearer AS in active_auras)
-		bearer.process()
+	var/current_resume = FALSE
+	if(resumed)
+		current_resume = TRUE
+	if(stage == 1)
+		if(!current_resume)
+			current_cache = active_auras.Copy()
+		current_resume = FALSE
+		while(current_cache.len)
+			var/datum/aura_bearer/bearer = current_cache[current_cache.len]
+			current_cache.len--
+			if(QDELETED(bearer))
+				continue
+			bearer.process()
+			if(MC_TICK_CHECK)
+				return
+		stage = 2
+	if(stage == 2)
+		if(!current_resume)
+			current_cache = GLOB.xeno_mob_list.Copy()
+		current_resume = FALSE
+		while(current_cache.len)
+			var/mob/living/carbon/xenomorph/xeno = current_cache[current_cache.len]
+			current_cache.len--
+			if(QDELETED(xeno))
+				continue
+			xeno.finish_aura_cycle()
+			if(MC_TICK_CHECK)
+				return
+		stage = 3
+	if(stage == 3)
+		if(!current_resume)
+			current_cache = GLOB.human_mob_list.Copy()
+		current_resume = FALSE
+		while(current_cache.len)
+			var/mob/living/carbon/human/human = current_cache[current_cache.len]
+			current_cache.len--
+			if(QDELETED(human))
+				continue
+			human.finish_aura_cycle()
+			if(MC_TICK_CHECK)
+				return
+		stage = 1
 
 ///Use this to start a new emitter with the specified stats. Returns the emitter in question, just qdel it to end early.
 /datum/controller/subsystem/aura/proc/add_emitter(atom/center, type, range, strength, duration, faction)
@@ -25,6 +69,8 @@ SUBSYSTEM_DEF(aura)
 	var/atom/emitter
 	///List containing aura varieties as strings - see AURA entries in _DEFINES/mobs.dm
 	var/list/aura_types
+	///When did this last tick?
+	var/last_tick = 0
 	///How far from our center we apply
 	var/range = 0
 	///Multiplier to aura effectiveness
@@ -51,6 +97,7 @@ SUBSYSTEM_DEF(aura)
 	strength = aura_strength
 	duration = aura_duration
 	faction = aura_faction
+	last_tick = world.time
 	if(!islist(aura_names))
 		aura_types = list(aura_names)
 	else
@@ -78,6 +125,7 @@ SUBSYSTEM_DEF(aura)
 /datum/aura_bearer/process()
 	if(suppressed)
 		suppressed = FALSE
+		last_tick = world.time
 		return
 	if(affects_humans)
 		pulse_humans()
@@ -85,8 +133,9 @@ SUBSYSTEM_DEF(aura)
 		pulse_xenos()
 	if(duration < 0) //Negative duration means infinite. Usually for pheromones.
 		return
-	duration--
-	if(!duration)
+	duration -= (world.time - last_tick)
+	last_tick = world.time
+	if(duration <= 0)
 		stop_emitting()
 
 ///Send out our aura to all humans close enough and on the same z-level
@@ -111,6 +160,8 @@ SUBSYSTEM_DEF(aura)
 		if(get_dist(aura_center, potential_hearer) > range)
 			continue
 		if(potential_hearer.faction != faction)
+			continue
+		if(!(potential_hearer.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE) && potential_hearer.on_fire) //Xenos on fire cannot receive pheros.
 			continue
 		for(var/aura in aura_types)
 			potential_hearer.receive_aura(aura, strength)

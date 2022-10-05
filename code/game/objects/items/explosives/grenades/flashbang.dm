@@ -2,7 +2,7 @@
 	name = "flashbang"
 	desc = "A grenade sometimes used by police, civilian or military, to stun targets with a flash, then a bang. May cause hearing loss, and induce feelings of overwhelming rage in victims."
 	icon_state = "flashbang2"
-	item_state = "flashbang"
+	item_state = "flashbang2"
 	arm_sound = 'sound/weapons/armbombpin.ogg'
 	///This is a cluster weapon, or part of one
 	var/banglet = FALSE
@@ -22,10 +22,11 @@
 
 /obj/item/explosive/grenade/flashbang/prime()
 	var/turf/T = get_turf(src)
+	playsound(T, 'sound/effects/bang.ogg', 50, 1)
 	for(var/obj/structure/closet/L in get_hear(7, T))
 		if(locate(/mob/living/carbon/, L))
 			for(var/mob/living/carbon/M in L)
-				bang(get_turf(src), M)
+				bang(T, M)
 
 
 	for(var/mob/living/carbon/M in get_hear(7, T))
@@ -38,7 +39,6 @@
 /// Added a new proc called 'bang' that takes a location and a person to be banged.
 /obj/item/explosive/grenade/flashbang/proc/bang(turf/T , mob/living/carbon/M)
 	to_chat(M, span_danger("BANG"))
-	playsound(src.loc, 'sound/effects/bang.ogg', 50, 1)
 
 //Checking for protections
 	var/ear_safety = 0
@@ -168,7 +168,7 @@
 	name = "\improper stun grenade"
 	desc = "A grenade designed to disorientate the senses of anyone caught in the blast radius with a blinding flash of light and viciously loud noise. Repeated use can cause deafness."
 	icon_state = "flashbang2"
-	item_state = "flashbang"
+	item_state = "flashbang2"
 	arm_sound = 'sound/weapons/armbombpin.ogg'
 	inner_range = 3
 	mp_only = FALSE

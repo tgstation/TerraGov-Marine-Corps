@@ -137,7 +137,7 @@
 	SIGNAL_HANDLER
 	if(!lunge_target.Adjacent(source))
 		return
-	lunge_grab(source, lunge_target)
+	INVOKE_ASYNC(src, .proc/lunge_grab, source, lunge_target)
 
 ///Do a last check to see if we can grab the target, and then clean up after the throw. Handles an in-place lunge.
 /datum/action/xeno_action/activable/lunge/proc/finish_lunge(datum/source)
@@ -415,7 +415,7 @@
 	add_cooldown()
 
 /atom/proc/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone)
-	return
+	return TRUE
 
 /obj/machinery/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone) //Break open the machine
 	X.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)

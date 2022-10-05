@@ -1,3 +1,63 @@
+/particles/xeno_slash
+	icon = 'icons/effects/particles/generic_particles.dmi'
+	icon_state = "rectangle"
+	width = 100
+	height = 100
+	count = 1000
+	spawning = 4
+	lifespan = 9
+	fade = 12
+	grow = 0.04
+	velocity = list(0, 0)
+	position = generator("circle", 15, 15, NORMAL_RAND)
+	drift = generator("vector", list(0, -0.15), list(0, 0.15))
+	gravity = list(0, 0.8)
+	scale = generator("vector", list(0.3, 0.3), list(0.9,0.9), NORMAL_RAND)
+	rotation = 0
+	spin = generator("num", 10, 20)
+
+/particles/xeno_slash/neurotoxin
+	color = "#BF8F42"
+
+/particles/xeno_slash/hemodile
+	color = "#239FB2"
+
+/particles/xeno_slash/transvitox
+	color = "#87BF5F"
+
+/particles/xeno_slash/ozelomelyn
+	color = "#CCB7C5"
+
+/particles/xeno_smoke
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "smoke"
+	width = 100
+	height = 100
+	count = 1000
+	spawning = 6
+	lifespan = 8
+	fade = 12
+	grow = -0.01
+	velocity = list(0, 0)
+	position = generator("circle", 15, 17, NORMAL_RAND)
+	drift = generator("vector", list(0, -0.2), list(0, 0.2))
+	gravity = list(0, 0.95)
+	scale = generator("vector", list(0.3, 0.3), list(0.9,0.9), NORMAL_RAND)
+	rotation = 0
+	spin = generator("num", -20, 20)
+
+/particles/xeno_smoke/neurotoxin
+	color = "#BF8F42"
+
+/particles/xeno_smoke/hemodile
+	color = "#006C7F"
+
+/particles/xeno_smoke/transvitox
+	color = "#87BF5F"
+
+/particles/xeno_smoke/ozelomelyn
+	color = "#CCB7C5"
+
 // ***************************************
 // *********** Defile
 // ***************************************
@@ -108,6 +168,8 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_EMIT_NEUROGAS
 	)
+	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
+	var/obj/effect/abstract/particle_holder/particle_holder
 
 /datum/action/xeno_action/emit_neurogas/on_cooldown_finish()
 	playsound(owner.loc, 'sound/effects/xeno_newlarva.ogg', 50, 0)
@@ -116,6 +178,7 @@
 
 /datum/action/xeno_action/emit_neurogas/action_activate()
 	var/mob/living/carbon/xenomorph/Defiler/X = owner
+	toggle_particles(TRUE)
 
 	//give them fair warning
 	X.visible_message(span_danger("Tufts of smoke begin to billow from [X]!"), \
@@ -147,6 +210,10 @@
 	X.visible_message(span_xenodanger("[X] emits a noxious gas!"), \
 	span_xenodanger("We emit noxious gas!"))
 	dispense_gas()
+
+/datum/action/xeno_action/emit_neurogas/fail_activate()
+	toggle_particles(FALSE)
+	return ..()
 
 /datum/action/xeno_action/emit_neurogas/proc/dispense_gas(count = 3)
 	var/mob/living/carbon/xenomorph/Defiler/X = owner
@@ -182,6 +249,27 @@
 		count = max(0,count - 1)
 		sleep(DEFILER_GAS_DELAY)
 
+	toggle_particles(FALSE)
+
+// Toggles particles on or off, depending on the defined var.
+/datum/action/xeno_action/emit_neurogas/proc/toggle_particles(activate)
+	var/mob/living/carbon/xenomorph/X = owner
+
+	if(!activate)
+		QDEL_NULL(particle_holder)
+		return
+
+	switch(X.selected_reagent)
+		if(/datum/reagent/toxin/xeno_neurotoxin)
+			particle_holder = new(owner, /particles/xeno_smoke/neurotoxin)
+		if(/datum/reagent/toxin/xeno_hemodile)
+			particle_holder = new(owner, /particles/xeno_smoke/hemodile)
+		if(/datum/reagent/toxin/xeno_transvitox)
+			particle_holder = new(owner, /particles/xeno_smoke/transvitox)
+		if(/datum/reagent/toxin/xeno_ozelomelyn)
+			particle_holder = new(owner, /particles/xeno_smoke/ozelomelyn)
+	particle_holder.pixel_x = 16
+	particle_holder.pixel_y = 16
 
 // ***************************************
 // *********** Inject Egg Neurogas
@@ -308,7 +396,6 @@
 	update_button_icon()
 	return succeed_activate()
 
-
 // ***************************************
 // *********** Reagent slash
 // ***************************************
@@ -329,6 +416,8 @@
 	var/reagent_slash_duration_timer_id
 	///Defines the reagent being used for reagent slashes; locks it to the selected reagent on activation
 	var/reagent_slash_reagent
+	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
+	var/obj/effect/abstract/particle_holder/particle_holder
 
 /datum/action/xeno_action/reagent_slash/action_activate()
 	. = ..()
@@ -343,6 +432,7 @@
 	X.balloon_alert(X, "Reagent slash active") //Let the user know
 	X.playsound_local(X, 'sound/voice/alien_drool2.ogg', 25)
 
+	toggle_particles(TRUE)
 	succeed_activate()
 	add_cooldown()
 
@@ -354,6 +444,7 @@
 	deltimer(reagent_slash_duration_timer_id) //delete the timer so we don't have mismatch issues, and so we don't potentially try to deactivate the ability twice
 	reagent_slash_duration_timer_id = null
 	reagent_slash_reagent = null
+	toggle_particles(FALSE)
 
 	X.balloon_alert(X, "Reagent slash over") //Let the user know
 	X.playsound_local(X, 'sound/voice/hiss5.ogg', 25)
@@ -387,6 +478,29 @@
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
+// Toggles particles on or off, depending on the defined var.
+/datum/action/xeno_action/reagent_slash/proc/toggle_particles(activate)
+	var/mob/living/carbon/xenomorph/X = owner
+
+	if(!activate)
+		QDEL_NULL(particle_holder)
+		return
+
+	switch(X.selected_reagent)
+		if(/datum/reagent/toxin/xeno_neurotoxin)
+			particle_holder = new(owner, /particles/xeno_slash/neurotoxin)
+		if(/datum/reagent/toxin/xeno_hemodile)
+			particle_holder = new(owner, /particles/xeno_slash/hemodile)
+		if(/datum/reagent/toxin/xeno_transvitox)
+			particle_holder = new(owner, /particles/xeno_slash/transvitox)
+		if(/datum/reagent/toxin/xeno_ozelomelyn)
+			particle_holder = new(owner, /particles/xeno_slash/ozelomelyn)
+	particle_holder.pixel_x = 16
+	particle_holder.pixel_y = 12
+
+// ***************************************
+// *********** Tentacle
+// ***************************************
 /datum/action/xeno_action/activable/tentacle
 	name = "Tentacle"
 	action_icon_state = "tail_attack"

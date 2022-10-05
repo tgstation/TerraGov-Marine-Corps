@@ -24,10 +24,11 @@
 	var/turf/build_area = get_area(build_target)
 
 	if(build_area.density)
-		to_chat(owner, "<span class='warning'>No space to build anything here.")
+
+		fobdrone.balloon_alert(owner, "No space to build anything here.")
 		return FALSE
 	if(fobdrone.do_actions)
-		to_chat(owner, "<span class='warning'>You are already building something.")
+		fobdrone.balloon_alert(owner, "You are already building something.")
 		return FALSE
 
 	return TRUE
@@ -55,11 +56,11 @@
 		if(!thing.density) //not dense, move on
 			continue
 		if(!(thing.flags_atom & ON_BORDER)) //dense and non-directional, end
-			to_chat(owner, span_warning("No space here for a barricade."))
+			fobdrone.balloon_alert(owner, "No space here for a barricade")
 			return
 		if(thing.dir != fobdrone.dir)
 			continue
-		to_chat(owner, span_warning("No space here for a barricade."))
+		fobdrone.balloon_alert(owner, "No space here for a barricade")
 		return
 	if(!do_after(fobdrone, 1.5 SECONDS, FALSE, buildplace, BUSY_ICON_BUILD))
 		return
@@ -68,14 +69,14 @@
 	cade.setDir(fobdrone.dir)
 	if(console.do_wiring)
 		if(console.metal_remaining <= 1)
-			to_chat(owner, span_warning("Not enough material for razor-wiring."))
+			fobdrone.balloon_alert(owner, "Not enough material for razor-wiring.")
 			return
 
 		console.metal_remaining -=2
 		cade.wire()
-		to_chat(owner, span_notice("Barricade placed with wiring. [console.metal_remaining] metal sheets remaining."))
+		fobdrone.balloon_alert(owner, "Barricade placed with wiring. [console.metal_remaining] metal sheets remaining.")
 		return
-	to_chat(owner, span_notice("Barricade placed. [console.metal_remaining] metal sheets remaining."))
+	fobdrone.balloon_alert(owner, "Barricade placed. [console.metal_remaining] metal sheets remaining.")
 
 /datum/action/innate/remote_fob/plast_cade
 	name = "Place Plasteel Barricade"
@@ -87,7 +88,7 @@
 		return
 
 	if(console.plasteel_remaining < 5)
-		to_chat(owner, span_warning("Out of material."))
+		fobdrone.balloon_alert(owner, "Out of material")
 		return
 
 	var/turf/buildplace = get_turf(fobdrone)
@@ -96,11 +97,11 @@
 		if(!thing.density) //not dense, move on
 			continue
 		if(!(thing.flags_atom & ON_BORDER)) //dense and non-directional, end
-			to_chat(owner, span_warning("No space here for a barricade."))
+			fobdrone.balloon_alert(owner, "No space here for a barricade")
 			return
 		if(thing.dir != fobdrone.dir)
 			continue
-		to_chat(owner, span_warning("No space here for a barricade."))
+		fobdrone.balloon_alert(owner, "No space here for a barricade")
 		return
 	if(!do_after(fobdrone, 1.5 SECONDS, FALSE, buildplace, BUSY_ICON_BUILD))
 		return
@@ -112,14 +113,13 @@
 	cade.update_icon()
 	if(console.do_wiring)
 		if(console.metal_remaining <= 1)
-			to_chat(owner, span_warning("Not enough material for razor-wiring."))
+			fobdrone.balloon_alert(owner, "Not enough material for razor-wiring")
 			return
-
-		console.metal_remaining -=2
 		cade.wire()
-		to_chat(owner, span_notice("Barricade placed with wiring. [console.plasteel_remaining] plasteel sheets, [console.metal_remaining] metal sheets remaining.remaining."))
+		console.metal_remaining -=2
+		fobdrone.balloon_alert(owner, "Barricade placed with wiring. [console.plasteel_remaining] plasteel sheets, [console.metal_remaining] metal sheets remaining.")
 		return
-	to_chat(owner, span_notice("Barricade placed. [console.plasteel_remaining] plasteel sheets remaining."))
+	fobdrone.balloon_alert(owner, "Barricade placed. [console.plasteel_remaining] plasteel sheets remaining.")
 
 /datum/action/innate/remote_fob/toggle_wiring
 	name = "Toggle Razorwire"
@@ -167,10 +167,10 @@
 	if(.)
 		return
 	if(console.metal_remaining <= 0)
-		to_chat(owner, span_warning("Nothing to eject."))
+		fobdrone.balloon_alert(owner, "No metal to eject")
 		return
 	console.eject_mat(EJECT_METAL)
-	to_chat(owner, span_notice("Metal sheets ejected."))
+	fobdrone.balloon_alert(owner, "Metal sheets ejected")
 
 
 /datum/action/innate/remote_fob/eject_plasteel_action
@@ -182,7 +182,7 @@
 	if(.)
 		return
 	if(console.plasteel_remaining <= 0)
-		to_chat(owner, span_warning("Nothing to eject."))
+		fobdrone.balloon_alert(owner, "No plasteel to eject")
 		return
 	console.eject_mat(EJECT_PLASTEEL)
-	to_chat(owner, span_notice("Plasteel sheets ejected."))
+	fobdrone.balloon_alert(owner, "Plasteel sheets ejected")
