@@ -524,6 +524,7 @@
 #include "code\game\objects\effects\manifest.dm"
 #include "code\game\objects\effects\misc.dm"
 #include "code\game\objects\effects\overlays.dm"
+#include "code\game\objects\effects\particle_holder.dm"
 #include "code\game\objects\effects\portals.dm"
 #include "code\game\objects\effects\proximity.dm"
 #include "code\game\objects\effects\spiders.dm"
