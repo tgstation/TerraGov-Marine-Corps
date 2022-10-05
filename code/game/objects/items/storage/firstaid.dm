@@ -350,6 +350,13 @@
 	greyscale_colors = "#669900#ffffff"
 	description_overlay = "Dy"
 
+/obj/item/storage/pill_bottle/isotonic
+	name = "isotonic pill bottle"
+	desc = "Contains pills that stimulate the regeneration of lost blood."
+	pill_type_to_fill = /obj/item/reagent_containers/pill/isotonic
+	greyscale_colors = "#5c0e0e#ffffff"
+	description_overlay = "Is"
+
 /obj/item/storage/pill_bottle/inaprovaline
 	name = "inaprovaline pill bottle"
 	desc = "Contains pills that prevent wounds from getting worse on their own."
