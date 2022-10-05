@@ -159,6 +159,7 @@
 
 ///Change minimap icon if its on or off
 /obj/machinery/computer/nuke_disk_generator/proc/update_minimap_icon()
+	SSminimaps.remove_marker(src)
 	SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "[disk_color]_disk[current_timer ? "_on" : "_off"]", 'icons/UI_icons/map_blips_large.dmi')
 
 /obj/machinery/computer/nuke_disk_generator/red

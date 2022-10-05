@@ -70,6 +70,7 @@
 
 ///Change minimap icon if its firing or not firing
 /obj/machinery/deployable/mounted/sentry/proc/update_minimap_icon()
+	SSminimaps.remove_marker(src)
 	var/marker_flags
 	if(iff_signal == TGMC_LOYALIST_IFF)
 		marker_flags = MINIMAP_FLAG_MARINE

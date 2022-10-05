@@ -882,6 +882,7 @@ TUNNEL
 
 ///Change minimap icon if its firing or not firing
 /obj/structure/xeno/xeno_turret/proc/update_minimap_icon()
+	SSminimaps.remove_marker(src)
 	SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, "xeno_turret[firing ? "_firing" : "_passive"]")
 
 /obj/structure/xeno/xeno_turret/Initialize(mapload, hivenumber = XENO_HIVE_NORMAL)
@@ -1195,6 +1196,7 @@ TUNNEL
 
 /obj/structure/xeno/pherotower/Initialize(mapload, hivenum)
 	. = ..()
+	SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, "phero")
 	GLOB.hive_datums[hivenumber].pherotowers += src
 	hivenumber = hivenum
 
@@ -1256,6 +1258,7 @@ TUNNEL
 	SSspawning.registerspawner(src, INFINITY, GLOB.xeno_ai_spawnable, 0, 0, null)
 	SSspawning.spawnerdata[src].required_increment = max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER)/SSspawning.wait
 	SSspawning.spawnerdata[src].max_allowed_mobs = max(2, MAX_SPAWNABLE_MOB_PER_PLAYER * SSmonitor.maximum_connected_players_count)
+	SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, "spawner")
 
 /obj/structure/xeno/spawner/Destroy()
 	GLOB.xeno_spawner -= src
