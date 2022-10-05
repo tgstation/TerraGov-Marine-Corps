@@ -555,6 +555,16 @@
 		MECH_GREY_L_ARM = MECH_VANGUARD,
 	)
 
+/obj/structure/prop/mainship/halfbuilt_mech/vanguard_finished
+	name = "Vanguard mech"
+	desc = "An advanced vanguard chassis mech. It's a recent advancement in military hardware only been in service for a short time and not in mass production yet."
+	selected_parts = list(
+		MECH_GREY_TORSO = MECH_VANGUARD,
+		MECH_GREY_HEAD = MECH_VANGUARD,
+		MECH_GREY_LEGS = MECH_VANGUARD,
+		MECH_GREY_L_ARM = MECH_VANGUARD,
+		MECH_GREY_R_ARM = MECH_VANGUARD,
+	)
 
 //items props
 
