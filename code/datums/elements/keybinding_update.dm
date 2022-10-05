@@ -29,8 +29,10 @@
 	for(var/datum/action/user_action AS in current_mob.actions)
 		if(!binder_client)
 			break
-		if(user_action.keybind_signal == changed_bind.keybind_signal)
-			user_action.update_map_text(changed_bind.get_keys_formatted(binder_client))
+		for(var/type in user_action.keybinding_signals)
+			if(user_action.keybinding_signals[type] == changed_bind.keybind_signal)
+				user_action.update_map_text(changed_bind.get_keys_formatted(binder_client), user_action.keybinding_signals[type])
+				break
 			break
 
 /// Triggered when a client enters/gets admin-dragged into a mob. Necesarry since keybindings are done using individual client preferences.
@@ -42,13 +44,14 @@
 		return
 	var/calling_client = current_mob.client
 	for(var/datum/action/user_action AS in current_mob.actions)
-		if(!user_action.keybind_signal)
+		if(user_action.keybinding_signals.len == 0)
 			continue
-		var/datum/keybinding/keybind = GLOB.keybindings_by_signal[user_action.keybind_signal]
-		if(!keybind)
-			continue
-		if(!calling_client)
-			break
-		user_action.update_map_text(keybind.get_keys_formatted(calling_client))
+		for(var/type in user_action.keybinding_signals)
+			var/datum/keybinding/keybind = GLOB.keybindings_by_signal[user_action.keybinding_signals[type]]
+			if(!keybind)
+				continue
+			if(!calling_client)
+				break
+			user_action.update_map_text(keybind.get_keys_formatted(calling_client),user_action.keybinding_signals[type] )
 
 

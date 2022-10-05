@@ -30,7 +30,9 @@
 	action_icon_state = "toggle_speed"
 	mechanics_text = "Move faster on resin."
 	plasma_cost = 50
-	keybind_signal = COMSIG_XENOABILITY_RESIN_WALKER
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RESIN_WALKER
+	)
 	use_state_flags = XACT_USE_LYING
 	var/speed_activated = FALSE
 	var/speed_bonus_active = FALSE
@@ -102,7 +104,9 @@
 	mechanics_text = "Create a tunnel entrance. Use again to create the tunnel exit."
 	plasma_cost = 200
 	cooldown_timer = 120 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_BUILD_TUNNEL
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BUILD_TUNNEL
+	)
 
 /datum/action/xeno_action/build_tunnel/can_use_action(silent = FALSE, override_flags)
 	. = ..()
@@ -189,7 +193,9 @@
 	mechanics_text = "Place down a dispenser that allows xenos to retrieve fireproof jelly."
 	plasma_cost = 500
 	cooldown_timer = 1 MINUTES
-	keybind_signal = COMSIG_XENOABILITY_PLACE_JELLY_POD
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_JELLY_POD
+	)
 
 /datum/action/xeno_action/place_jelly_pod/can_use_action(silent = FALSE, override_flags)
 	. = ..()
@@ -227,7 +233,9 @@
 	mechanics_text = "Create a fireproof jelly."
 	plasma_cost = 100
 	cooldown_timer = 20 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_CREATE_JELLY
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CREATE_JELLY
+	)
 
 /datum/action/xeno_action/create_jelly/can_use_action(silent = FALSE, override_flags)
 	. = ..()
@@ -254,7 +262,9 @@
 	mechanics_text = "Psychically infuses a friendly xeno with regenerative energies, greatly improving its natural healing. Doesn't work if the target can't naturally heal."
 	cooldown_timer = 12.5 SECONDS
 	plasma_cost = 200
-	keybind_signal = COMSIG_XENOABILITY_HEALING_INFUSION
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HEALING_INFUSION
+	)
 	use_state_flags = XACT_USE_LYING
 	target_flags = XABB_MOB_TARGET
 	var/heal_range = HIVELORD_HEAL_RANGE

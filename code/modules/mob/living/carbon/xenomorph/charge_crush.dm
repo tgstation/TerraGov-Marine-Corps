@@ -16,7 +16,9 @@
 	name = "Toggle Charging"
 	action_icon_state = "ready_charge"
 	mechanics_text = "Toggles the movement-based charge on and off."
-	keybind_signal = COMSIG_XENOABILITY_TOGGLE_CHARGE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_CHARGE
+	)
 	use_state_flags = XACT_USE_LYING
 	var/charge_type = CHARGE_CRUSH
 	var/next_move_limit = 0

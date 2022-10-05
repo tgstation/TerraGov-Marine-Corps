@@ -7,7 +7,9 @@
 	action_icon_state = "resting"
 	mechanics_text = "Rest on weeds to regenerate health and plasma."
 	use_state_flags = XACT_USE_LYING|XACT_USE_CRESTED|XACT_USE_AGILITY|XACT_USE_CLOSEDTURF
-	keybind_signal = COMSIG_XENOABILITY_REST
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REST
+	)
 
 /datum/action/xeno_action/xeno_resting/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -24,8 +26,10 @@
 	action_icon_state = "plant_weeds"
 	plasma_cost = 75
 	mechanics_text = "Plant a weed node on your tile."
-	keybind_signal = COMSIG_XENOABILITY_DROP_WEEDS
-	alternate_keybind_signal = COMSIG_XENOABILITY_CHOOSE_WEEDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DROP_WEEDS,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_CHOOSE_WEEDS
+	)
 	use_state_flags = XACT_USE_LYING
 	///the maximum range of the ability
 	var/max_range = 0
@@ -171,7 +175,9 @@
 	mechanics_text = "Builds whatever resin you selected"
 	ability_name = "secrete resin"
 	plasma_cost = 75
-	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SECRETE_RESIN
+	)
 	///Minimum time to build a resin structure
 	var/base_wait = 1 SECONDS
 	///Multiplicator factor to add to the building time, depends on the health of the structure built
@@ -372,7 +378,9 @@
 /datum/action/xeno_action/pheromones/emit_recovery
 	name = "Toggle Recovery Pheromones"
 	mechanics_text = "Increases healing for yourself and nearby teammates."
-	keybind_signal = COMSIG_XENOABILITY_EMIT_RECOVERY
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_EMIT_RECOVERY
+	)
 
 /datum/action/xeno_action/pheromones/emit_recovery/action_activate()
 	apply_pheros(AURA_XENO_RECOVERY)
@@ -383,7 +391,9 @@
 /datum/action/xeno_action/pheromones/emit_warding
 	name = "Toggle Warding Pheromones"
 	mechanics_text = "Increases armor for yourself and nearby teammates."
-	keybind_signal = COMSIG_XENOABILITY_EMIT_WARDING
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_EMIT_WARDING
+	)
 
 /datum/action/xeno_action/pheromones/emit_warding/action_activate()
 	apply_pheros(AURA_XENO_WARDING)
@@ -394,7 +404,9 @@
 /datum/action/xeno_action/pheromones/emit_frenzy
 	name = "Toggle Frenzy Pheromones"
 	mechanics_text = "Increases damage for yourself and nearby teammates."
-	keybind_signal = COMSIG_XENOABILITY_EMIT_FRENZY
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_EMIT_FRENZY
+	)
 
 /datum/action/xeno_action/pheromones/emit_frenzy/action_activate()
 	apply_pheros(AURA_XENO_FRENZY)
@@ -411,7 +423,9 @@
 	var/plasma_transfer_amount = PLASMA_TRANSFER_AMOUNT
 	var/transfer_delay = 2 SECONDS
 	var/max_range = 2
-	keybind_signal = COMSIG_XENOABILITY_TRANSFER_PLASMA
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TRANSFER_PLASMA
+	)
 	target_flags = XABB_MOB_TARGET
 
 /datum/action/xeno_action/activable/transfer_plasma/can_use_ability(atom/A, silent = FALSE, override_flags)
@@ -484,7 +498,9 @@
 	ability_name = "corrosive acid"
 	plasma_cost = 100
 	var/acid_type = /obj/effect/xenomorph/acid
-	keybind_signal = COMSIG_XENOABILITY_CORROSIVE_ACID
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CORROSIVE_ACID
+	)
 	use_state_flags = XACT_USE_BUCKLED
 
 /datum/action/xeno_action/activable/corrosive_acid/can_use_ability(atom/A, silent = FALSE, override_flags)
@@ -658,7 +674,9 @@
 
 
 /datum/action/xeno_action/activable/spray_acid
-	keybind_signal = COMSIG_XENOABILITY_SPRAY_ACID
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SPRAY_ACID
+	)
 	use_state_flags = XACT_USE_BUCKLED
 
 /datum/action/xeno_action/activable/spray_acid/can_use_ability(atom/A, silent = FALSE, override_flags)
@@ -700,7 +718,9 @@
 	action_icon_state = "shift_spit_neurotoxin"
 	mechanics_text = "Spit neurotoxin or acid at your target up to 7 tiles away."
 	ability_name = "xeno spit"
-	keybind_signal = COMSIG_XENOABILITY_XENO_SPIT
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_XENO_SPIT
+	)
 	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED|XACT_DO_AFTER_ATTACK
 	target_flags = XABB_MOB_TARGET
 	///Current target that the xeno is targeting. This is for aiming.
@@ -860,7 +880,9 @@
 	name = "Hide"
 	action_icon_state = "xenohide"
 	mechanics_text = "Causes your sprite to hide behind certain objects and under tables. Not the same as stealth. Does not use plasma."
-	keybind_signal = COMSIG_XENOABILITY_HIDE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HIDE
+	)
 
 /datum/action/xeno_action/xenohide/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -880,7 +902,9 @@
 	ability_name = "neurotoxin sting"
 	cooldown_timer = 12 SECONDS
 	plasma_cost = 150
-	keybind_signal = COMSIG_XENOABILITY_NEUROTOX_STING
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_NEUROTOX_STING
+	)
 	target_flags = XABB_MOB_TARGET
 	use_state_flags = XACT_USE_BUCKLED
 	/// Whatever our victim is injected with.
@@ -931,7 +955,9 @@
 	mechanics_text = "A channeled melee attack that injects the target with Ozelomelyn over a few seconds, purging chemicals and dealing minor toxin damage to a moderate cap while inside them."
 	ability_name = "ozelomelyn sting"
 	cooldown_timer = 25 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_OZELOMELYN_STING
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_OZELOMELYN_STING
+	)
 	plasma_cost = 100
 	sting_chemical = /datum/reagent/toxin/xeno_ozelomelyn
 
@@ -942,7 +968,9 @@
 /datum/action/xeno_action/psychic_whisper
 	name = "Psychic Whisper"
 	action_icon_state = "psychic_whisper"
-	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_WHISPER
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_WHISPER
+	)
 	use_state_flags = XACT_USE_LYING
 	target_flags = XABB_MOB_TARGET
 
@@ -983,7 +1011,9 @@
 	action_icon_state = "lay_egg"
 	plasma_cost = 200
 	cooldown_timer = 12 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_LAY_EGG
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LAY_EGG
+	)
 
 /datum/action/xeno_action/lay_egg/action_activate(mob/living/carbon/xenomorph/user)
 	var/mob/living/carbon/xenomorph/xeno = owner
@@ -1022,7 +1052,9 @@
 	mechanics_text = "Rallies the hive to a congregate at a target location, along with an arrow pointer. Gives the Hive your current health status. 60 second cooldown."
 	ability_name = "rally hive"
 	plasma_cost = 0
-	keybind_signal = COMSIG_XENOABILITY_RALLY_HIVE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RALLY_HIVE
+	)
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	cooldown_timer = 60 SECONDS
 	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED
@@ -1045,7 +1077,9 @@
 	mechanics_text = "Rallies the minions around you, asking them to follow you if they don't have a leader already. 60 second cooldown."
 	ability_name = "rally minions"
 	plasma_cost = 0
-	keybind_signal = COMSIG_XENOABILITY_RALLY_MINION
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RALLY_MINION
+	)
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	cooldown_timer = 10 SECONDS
 	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED
@@ -1066,7 +1100,9 @@
 	mechanics_text = "Order the minions escorting you to be either agressive or passive."
 	ability_name = "set_agressivity"
 	plasma_cost = 0
-	keybind_signal = COMSIG_XENOABILITY_MINION_BEHAVIOUR
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_MINION_BEHAVIOUR
+	)
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED
 	///If minions should be agressive
@@ -1105,7 +1141,9 @@
 	action_icon_state = "headbite"
 	mechanics_text = "Drain the victim of its life force to gain larva and psych points"
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
-	keybind_signal = COMSIG_XENOABILITY_HEADBITE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HEADBITE
+	)
 	gamemode_flags = ABILITY_DISTRESS
 	plasma_cost = 100
 	///How much larva points it gives (8 points for one larva in distress)
@@ -1194,7 +1232,9 @@
 	action_icon_state = "regurgitate"
 	mechanics_text = "Devour your victim to cocoon it in your belly. This cocoon will automatically be ejected later, and while the marine inside it still has life force it will give psychic points."
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
-	keybind_signal = COMSIG_XENOABILITY_REGURGITATE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REGURGITATE
+	)
 	plasma_cost = 100
 	gamemode_flags = ABILITY_DISTRESS
 	///In how much time the cocoon will be ejected
@@ -1281,7 +1321,9 @@
 	name = "Mothers Blessings"
 	action_icon_state = "hivestore"
 	mechanics_text = "Ask the Queen Mother for blessings for your hive in exchange for psychic energy."
-	keybind_signal = COMSIG_XENOABILITY_BLESSINGSMENU
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BLESSINGSMENU
+	)
 	use_state_flags = XACT_USE_LYING|XACT_USE_CRESTED|XACT_USE_AGILITY
 
 /datum/action/xeno_action/blessing_menu/action_activate()

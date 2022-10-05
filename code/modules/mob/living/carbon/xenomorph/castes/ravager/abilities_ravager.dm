@@ -8,7 +8,9 @@
 	ability_name = "charge"
 	cooldown_timer = 20 SECONDS
 	plasma_cost = 500 //Can't ignore pain/Charge and ravage in the same timeframe, but you can combo one of them.
-	keybind_signal = COMSIG_XENOABILITY_RAVAGER_CHARGE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RAVAGER_CHARGE
+	)
 
 /datum/action/xeno_action/activable/charge/proc/charge_complete()
 	SIGNAL_HANDLER
@@ -89,8 +91,10 @@
 	plasma_cost = 200
 	cooldown_timer = 6 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
-	keybind_signal = COMSIG_XENOABILITY_RAVAGE
-	alternate_keybind_signal = COMSIG_XENOABILITY_RAVAGE_SELECT
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RAVAGE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_RAVAGE_SELECT
+	)
 
 /datum/action/xeno_action/activable/ravage/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We gather enough strength to Ravage again."))
@@ -151,7 +155,9 @@
 	ability_name = "Endure"
 	plasma_cost = 200
 	cooldown_timer = 60 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_ENDURE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ENDURE
+	)
 	use_state_flags = XACT_USE_STAGGERED //Can use this while staggered
 	///How low the Ravager's health can go while under the effects of Endure before it dies
 	var/endure_threshold = RAVAGER_ENDURE_HP_LIMIT
@@ -257,7 +263,9 @@
 	plasma_cost = 0 //We're limited by cooldowns, not plasma
 	cooldown_timer = 60 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
-	keybind_signal = COMSIG_XENOABILITY_RAGE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RAGE
+	)
 	///Determines the power of Rage's many effects. Power scales inversely with the Ravager's HP; min 0.25 at 50% of Max HP, max 1 while in negative HP. 0.5 and above triggers especial effects.
 	var/rage_power
 	///Determines the Sunder to impose when Rage ends
@@ -434,7 +442,9 @@
 	plasma_cost = 0 //We're limited by cooldowns, not plasma
 	cooldown_timer = 0.5 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
-	keybind_signal = COMSIG_XENOABILITY_VAMPIRISM
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_VAMPIRISM
+	)
 	///timer hash for timer to clear last attacked
 	var/clear_timer
 	///int of how stacked we are on leeching

@@ -1,5 +1,5 @@
 /*!
- * This is just a file holding numerical defines for reference retrieval on /action datums
+ * This is just a file holding string defines for reference retrieval on /action datums
  * ideally you should never override the base list , and just add onto its length
  * The noting system for these is
  * VREF_[DATA_TYPE]_[WHAT_IS_IT_USED_FOR]
@@ -10,6 +10,7 @@
 #define VREF_MUTABLE_LINKED_OBJ "VREF_LINKED_OBJ"
 /// A mutable appearance of icon made with action_icon_state and action_icon
 #define VREF_MUTABLE_ACTION_STATE "VREF_ACTION_STATE"
+#define VREF_MUTABLE_ACTIVE_FRAME "VREF_ACTIVE_FRAME"
 /// A mutable appearance for keybinding maptext
 #define VREF_MUTABLE_MAPTEXT "VREF_BIND_TEXT"
 /// A mutable appearance to add a "selected" frame around the edges

@@ -8,7 +8,9 @@
 	action_icon_state = "larva_growth"
 	plasma_cost = 400
 	cooldown_timer = 2 MINUTES
-	keybind_signal = COMSIG_XENOABILITY_CALL_OF_THE_BURROWED
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CALL_OF_THE_BURROWED
+	)
 	use_state_flags = XACT_USE_LYING
 
 
@@ -57,7 +59,9 @@
 	mechanics_text = "Sends an enemy or an item flying. A close ranged ability."
 	cooldown_timer = 12 SECONDS
 	plasma_cost = 100
-	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_FLING
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_FLING
+	)
 	target_flags = XABB_MOB_TARGET
 
 
@@ -139,8 +143,10 @@
 	cooldown_timer = 50 SECONDS
 	plasma_cost = 300
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
-	keybind_signal = COMSIG_XENOABILITY_UNRELENTING_FORCE
-	alternate_keybind_signal = COMSIG_XENOABILITY_UNRELENTING_FORCE_SELECT
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_UNRELENTING_FORCE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_UNRELENTING_FORCE_SELECT
+	)
 
 
 /datum/action/xeno_action/activable/unrelenting_force/on_cooldown_finish()
@@ -218,7 +224,9 @@
 	mechanics_text = "Heal and remove debuffs from a target."
 	cooldown_timer = 1 MINUTES
 	plasma_cost = 200
-	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CURE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_CURE
+	)
 	var/heal_range = SHRIKE_HEAL_RANGE
 	target_flags = XABB_MOB_TARGET
 
@@ -335,7 +343,9 @@
 	action_icon_state = "gas mine"
 	mechanics_text = "Throw a gravity grenades thats sucks everyone and everything in a radius inward."
 	plasma_cost = 500
-	keybind_signal = COMSIG_XENOABILITY_GRAV_NADE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_GRAV_NADE
+	)
 	cooldown_timer = 1 MINUTES
 
 /datum/action/xeno_action/activable/gravity_grenade/use_ability(atom/A)

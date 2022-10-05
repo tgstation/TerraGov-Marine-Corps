@@ -9,7 +9,9 @@
 	plasma_cost = 100
 	cooldown_timer = 20 SECONDS
 	target_flags = XABB_MOB_TARGET
-	keybind_signal = COMSIG_XENOABILITY_DEFILE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DEFILE
+	)
 
 /datum/action/xeno_action/activable/defile/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
@@ -103,7 +105,9 @@
 	plasma_cost = 200
 	cooldown_timer = 40 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY|XACT_IGNORE_SELECTED_ABILITY
-	keybind_signal = COMSIG_XENOABILITY_EMIT_NEUROGAS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_EMIT_NEUROGAS
+	)
 
 /datum/action/xeno_action/emit_neurogas/on_cooldown_finish()
 	playsound(owner.loc, 'sound/effects/xeno_newlarva.ogg', 50, 0)
@@ -190,7 +194,9 @@
 	plasma_cost = 100
 	cooldown_timer = 5 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
-	keybind_signal = COMSIG_XENOABILITY_INJECT_EGG_NEUROGAS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_INJECT_EGG_NEUROGAS
+	)
 
 /datum/action/xeno_action/activable/inject_egg_neurogas/on_cooldown_finish()
 	playsound(owner.loc, 'sound/effects/xeno_newlarva.ogg', 50, 0)
@@ -247,8 +253,10 @@
 	action_icon_state = "select_reagent0"
 	mechanics_text = "Selects which reagent to use for reagent slash and noxious gas. Hemodile slows by 25%, increased to 50% with neurotoxin present, and deals 20% of damage received as stamina damage. Transvitox converts brute/burn damage to toxin based on 40% of damage received up to 45 toxin on target, upon reaching which causes a stun. Neurotoxin deals increasing stamina damage the longer it remains in the victim's system and prevents stamina regeneration."
 	use_state_flags = XACT_USE_BUSY|XACT_USE_LYING
-	keybind_signal = COMSIG_XENOABILITY_SELECT_REAGENT
-	alternate_keybind_signal = COMSIG_XENOABILITY_RADIAL_SELECT_REAGENT
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SELECT_REAGENT,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_RADIAL_SELECT_REAGENT
+	)
 
 /datum/action/xeno_action/select_reagent/give_action(mob/living/L)
 	. = ..()
@@ -311,7 +319,9 @@
 	ability_name = "reagent slash"
 	cooldown_timer = 6 SECONDS
 	plasma_cost = 100
-	keybind_signal = COMSIG_XENOABILITY_REAGENT_SLASH
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REAGENT_SLASH
+	)
 	target_flags = XABB_MOB_TARGET
 	///How many remaining reagent slashes the Defiler has
 	var/reagent_slash_count = 0
@@ -384,7 +394,9 @@
 	ability_name = "Tentacle"
 	cooldown_timer = 20 SECONDS
 	plasma_cost = 200
-	keybind_signal = COMSIG_XENOABILITY_TENTACLE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TENTACLE
+	)
 	///reference to beam tentacle
 	var/datum/beam/tentacle
 

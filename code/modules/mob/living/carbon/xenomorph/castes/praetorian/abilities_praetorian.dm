@@ -134,7 +134,9 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	ability_name = "acid dash"
 	plasma_cost = 250
 	cooldown_timer = 30 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_ACID_DASH
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_DASH
+	)
 	///How far can we dash
 	var/range = 5
 	///Can we use the ability again

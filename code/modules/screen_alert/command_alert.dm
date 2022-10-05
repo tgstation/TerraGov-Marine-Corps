@@ -15,7 +15,9 @@
 /datum/action/innate/message_squad
 	name = "Send Order"
 	action_icon_state = "screen_order_marine"
-	keybind_signal = COMSIG_KB_SENDORDER
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_KB_SENDORDER
+	)
 	///What skill is needed to have this action
 	var/skill_name = "leadership"
 	///What minimum level in that skill is needed to have that action

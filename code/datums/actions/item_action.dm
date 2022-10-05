@@ -47,19 +47,6 @@
 		visual_references[VREF_MUTABLE_LINKED_OBJ] = null
 	return ..()
 
-/datum/action/item_action/toggle
-	var/toggled = FALSE
-
-/datum/action/item_action/toggle/proc/set_toggle(value)
-	if(value == toggled)
-		return
-	if(value)
-		add_selected_frame()
-		toggled = TRUE
-	else
-		remove_selected_frame()
-		toggled = FALSE
-
 /datum/action/item_action/toggle/update_button_icon()
 	..()
 
