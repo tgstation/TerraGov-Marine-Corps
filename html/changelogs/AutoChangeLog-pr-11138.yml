@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes: 
+  - qol: "Shutters drop after 3 minutes in Combat Patrol instead of 5"
