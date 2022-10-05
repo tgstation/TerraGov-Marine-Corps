@@ -57,7 +57,7 @@
 	mechanics_text = "Pounce up to 5 tiles and grab a target, knocking them down and putting them in your grasp."
 	ability_name = "lunge"
 	plasma_cost = 25
-	cooldown_timer = 20 SECONDS
+	cooldown_timer = 50 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_LUNGE
 	target_flags = XABB_MOB_TARGET
 	/// The target of our lunge, we keep it to check if we are adjacent everytime we move
@@ -289,7 +289,7 @@
 /datum/action/xeno_action/activable/toss/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	var/atom/movable/target = owner.pulling
-	var/fling_distance = 4
+	var/fling_distance = 3
 	var/stagger_slow_stacks = 3
 	var/stun_duration = 0.5 SECONDS
 	var/big_mob_message
@@ -470,7 +470,7 @@
 
 /mob/living/punch_act(mob/living/carbon/xenomorph/warrior/X, damage, target_zone, push = TRUE, punch_description = "powerful", stagger_stacks = 3, slowdown_stacks = 3)
 	if(pulledby == X) //If we're being grappled by the Warrior punching us, it's gonna do extra damage and debuffs; combolicious
-		damage *= 2
+		damage *= 1.25
 		slowdown_stacks *= 2
 		stagger_stacks *= 2
 		ParalyzeNoChain(0.5 SECONDS)
