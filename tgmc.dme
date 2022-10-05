@@ -321,6 +321,7 @@
 #include "code\datums\actions\bump_attack_toggle.dm"
 #include "code\datums\actions\innate.dm"
 #include "code\datums\actions\item_action.dm"
+#include "code\datums\actions\keyboundaction.dm"
 #include "code\datums\actions\observer_action.dm"
 #include "code\datums\actions\order_action.dm"
 #include "code\datums\actions\skill.dm"

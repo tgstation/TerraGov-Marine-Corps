@@ -1,3 +1,10 @@
+/// Actions that toggle on click/trigger
+#define ACTION_TOGGLE "toggle"
+/// Actions that trigger when clicked/triggered
+#define ACTION_CLICK "click"
+/// Actions that get selected and can be targeted when clicked/triggered
+#define ACTION_SELECT "select"
+
 
 /datum/action
 	var/name = "Generic Action"
@@ -11,20 +18,13 @@
 	var/background_icon_state = "template"
 	// holds a set of misc visual references to use with the overlay API
 	var/list/visual_references = list()
-	///Main keybind signal for the action
-	var/keybind_signal
-	///Alternative keybind signal, to use the action differently
-	var/alternate_keybind_signal
+	var/list/keybinding_signals = list()
+	var/action_type = ACTION_CLICK
 
 /datum/action/New(Target)
 	target = Target
 	RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/clean_action)
 	button = new
-	if(isobj(target))
-		var/obj/target_obj = target
-		var/obj_appeareance = target_obj.appearance
-		visual_references[VREF_MUTABLE_LINKED_OBJ] = obj_appeareance
-		button.add_overlay(obj_appeareance)
 	button.icon = icon(background_icon, background_icon_state)
 	button.source_action = src
 	button.name = name
@@ -33,10 +33,12 @@
 	var/mutable_appearance/maptext_appearence = mutable_appearance()
 	maptext_appearence.layer = ABOVE_HUD_LAYER // above selected/empowered frame
 	visual_references[VREF_MUTABLE_MAPTEXT] = maptext_appearence
+	/*
 	var/mutable_appearance/selected_appeareance = mutable_appearance('icons/mob/actions.dmi', "selected_frame")
 	selected_appeareance.layer = HUD_LAYER + 0.1
 	selected_appeareance.plane = HUD_PLANE
 	visual_references[VREF_MUTABLE_SELECTED_FRAME] = selected_appeareance
+	*/
 	var/mutable_appearance/action_appearence =	mutable_appearance(action_icon, action_icon_state)
 	action_appearence.layer = HUD_LAYER
 	action_appearence.plane = HUD_PLANE
@@ -68,19 +70,17 @@
 /datum/action/proc/update_button_icon()
 	if(!button)
 		return
-
 	button.name = name
 	button.desc = desc
-
 	if(action_icon && action_icon_state)
-		button.cut_overlay(visual_references[VREF_MUTABLE_ACTION_STATE])
 		var/mutable_appearance/action_appearence = visual_references[VREF_MUTABLE_ACTION_STATE]
-		action_appearence.icon = action_icon
-		action_appearence.icon_state = action_icon_state
-		button.add_overlay(visual_references[VREF_MUTABLE_ACTION_STATE])
-	if(background_icon_state)
+		if(action_appearence.icon != action_icon && action_appearence.icon_state != action_icon_state)
+			button.cut_overlay(visual_references[VREF_MUTABLE_ACTION_STATE])
+			action_appearence.icon = action_icon
+			action_appearence.icon_state = action_icon_state
+			button.add_overlay(visual_references[VREF_MUTABLE_ACTION_STATE])
+	if(background_icon_state != button.icon_state)
 		button.icon_state = background_icon_state
-
 	handle_button_status_visuals()
 
 
