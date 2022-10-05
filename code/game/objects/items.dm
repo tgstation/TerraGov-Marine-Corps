@@ -1219,14 +1219,16 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return icon_override
 
 	//2: species-specific sprite sheets.
-	. = LAZYACCESS(sprite_sheets, species_type)
-	if(. && !inhands)
-		return
+	var/icon = LAZYACCESS(sprite_sheets, species_type)
+	if(icon && !inhands)
+		return icon
 
 	//3: slot-specific sprite sheets
-	. = LAZYACCESS(item_icons, slot_name)
-	if(.)
-		return
+	icon = LAZYACCESS(item_icons, slot_name)
+	if(ispath(icon, /datum/greyscale_config))
+		return SSgreyscale.GetColoredIconByType(icon, greyscale_colors)
+	if(icon)
+		return icon
 
 	//5: provided default_icon
 	if(default_icon)

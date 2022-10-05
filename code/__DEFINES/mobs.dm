@@ -506,6 +506,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_IS_BUILDER (1<<10) //whether we are classified as a builder caste
 #define CASTE_IS_A_MINION (1<<11) //That's a dumb ai
 #define CASTE_PLASMADRAIN_IMMUNE (1<<12)
+#define CASTE_NOT_IN_BIOSCAN (1<<13) // xenos with this flag aren't registered towards bioscan
+#define CASTE_DO_NOT_ANNOUNCE_DEATH (1<<14) // xenos with this flag wont be announced to hive when dying
 
 #define CASTE_CAN_HOLD_FACEHUGGERS (1<<0)
 #define CASTE_CAN_VENT_CRAWL (1<<1)
@@ -690,6 +692,16 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 //Larva defines
 #define LARVA_VENT_CRAWL_TIME 1 SECONDS //Larva can crawl into vents fast
+
+//Widow Defines
+#define WIDOW_SPEED_BONUS 1 // How much faster widow moves while she has wall_speedup element
+#define BURROW_FIRE_RESIST_MODIFIER 20 // How much fire resistance widow and spiderlings have while burrowed
+#define WIDOW_WEB_HOOK_RANGE 10 // how far the web hook can reach
+#define WIDOW_WEB_HOOK_MIN_RANGE 3 // the minimum range that the hook must travel to use the ability
+#define WIDOW_WEB_HOOK_SPEED 3 // how fast widow yeets herself when using web hook
+
+//Spiderling defines
+#define TIME_TO_DISSOLVE 5 SECONDS
 
 //misc
 

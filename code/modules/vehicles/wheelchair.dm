@@ -5,7 +5,7 @@
 	icon_state = "wheelchair"
 	layer = OBJ_LAYER
 	max_integrity = 100
-	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 30, "fire" = 60, "acid" = 60) //Wheelchairs aren't super tough yo
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 30, FIRE = 60, ACID = 60) //Wheelchairs aren't super tough yo
 	density = FALSE //Thought I couldn't fix this one easily, phew
 	/// Run speed delay is multiplied with this for vehicle move delay.
 	var/delay_multiplier = 6.7

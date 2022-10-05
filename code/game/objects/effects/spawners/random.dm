@@ -436,13 +436,13 @@
 		return pick(/obj/item/weapon/gun/rifle/standard_assaultrifle,\
 					/obj/item/weapon/gun/rifle/standard_carbine,\
 					/obj/item/weapon/gun/rifle/standard_skirmishrifle,\
-					/obj/item/weapon/gun/rifle/tx11,\
+					/obj/item/weapon/gun/rifle/tx11/scopeless,\
 					/obj/item/weapon/gun/smg/standard_smg,\
 					/obj/item/weapon/gun/smg/standard_machinepistol,\
 					/obj/item/weapon/gun/rifle/standard_dmr,\
 					/obj/item/weapon/gun/rifle/standard_br,\
 					/obj/item/weapon/gun/rifle/chambered,\
-					/obj/item/weapon/gun/shotgun/pump/bolt,\
+					/obj/item/weapon/gun/shotgun/pump/bolt/unscoped,\
 					/obj/item/weapon/gun/shotgun/double/martini,\
 					/obj/item/weapon/gun/pistol/standard_pistol,\
 					/obj/item/weapon/gun/pistol/standard_heavypistol,\
@@ -453,7 +453,6 @@
 					/obj/item/weapon/gun/shotgun/double/derringer,\
 					/obj/item/weapon/gun/rifle/pepperball,\
 					/obj/item/weapon/gun/shotgun/pump/lever/repeater,\
-					/obj/item/weapon/gun/shotgun/pump/bolt,\
 					/obj/item/weapon/gun/shotgun/double/marine,\
 					/obj/item/weapon/gun/rifle/standard_autoshotgun,\
 					/obj/item/weapon/gun/shotgun/combat/standardmarine)
@@ -466,7 +465,7 @@
 
 /obj/effect/spawner/random/gun/shotgun/item_to_spawn()
 		return pick(/obj/item/weapon/gun/shotgun/pump/lever/repeater,\
-					/obj/item/weapon/gun/shotgun/pump/bolt,\
+					/obj/item/weapon/gun/shotgun/pump/bolt/unscoped,\
 					/obj/item/weapon/gun/shotgun/pump/cmb,\
 					/obj/item/weapon/gun/shotgun/double/marine,\
 					/obj/item/weapon/gun/rifle/standard_autoshotgun,\
@@ -494,7 +493,7 @@
 		return pick(/obj/item/weapon/gun/rifle/standard_assaultrifle,\
 					/obj/item/weapon/gun/rifle/standard_carbine,\
 					/obj/item/weapon/gun/rifle/standard_skirmishrifle,\
-					/obj/item/weapon/gun/rifle/tx11)
+					/obj/item/weapon/gun/rifle/tx11/scopeless)
 
 
 ///random sidearms
@@ -557,7 +556,6 @@
 					/obj/item/ammo_magazine/pistol/derringer,\
 					/obj/item/ammo_magazine/rifle/pepperball,\
 					/obj/item/ammo_magazine/shotgun/flechette,\
-					/obj/item/ammo_magazine/shotgun,\
 					/obj/item/ammo_magazine/rifle/tx15_slug)
 
 
@@ -570,8 +568,7 @@
 
 /obj/effect/spawner/random/ammo/shotgun/item_to_spawn()
 		return pick(/obj/item/ammo_magazine/shotgun/buckshot,\
-					/obj/item/ammo_magazine/shotgun/flechette,\
-					/obj/item/ammo_magazine/shotgun)
+					/obj/item/ammo_magazine/shotgun/flechette)
 
 
 ///random machinegun ammunition
@@ -649,13 +646,13 @@
 		list(/obj/item/weapon/gun/rifle/standard_assaultrifle, /obj/item/ammo_magazine/rifle/standard_assaultrifle, /obj/item/ammo_magazine/rifle/standard_assaultrifle, /obj/item/ammo_magazine/rifle/standard_assaultrifle,),
 		list(/obj/item/weapon/gun/rifle/standard_carbine, /obj/item/ammo_magazine/rifle/standard_carbine, /obj/item/ammo_magazine/rifle/standard_carbine, /obj/item/ammo_magazine/rifle/standard_carbine,),
 		list(/obj/item/weapon/gun/rifle/standard_skirmishrifle, /obj/item/ammo_magazine/rifle/standard_skirmishrifle, /obj/item/ammo_magazine/rifle/standard_skirmishrifle, /obj/item/ammo_magazine/rifle/standard_skirmishrifle,),
-		list(/obj/item/weapon/gun/rifle/tx11, /obj/item/ammo_magazine/rifle/tx11, /obj/item/ammo_magazine/rifle/tx11, /obj/item/ammo_magazine/rifle/tx11,),
+		list(/obj/item/weapon/gun/rifle/tx11/scopeless, /obj/item/ammo_magazine/rifle/tx11, /obj/item/ammo_magazine/rifle/tx11, /obj/item/ammo_magazine/rifle/tx11,),
 		list(/obj/item/weapon/gun/smg/standard_smg, /obj/item/ammo_magazine/smg/standard_smg, /obj/item/ammo_magazine/smg/standard_smg, /obj/item/ammo_magazine/smg/standard_smg,),
 		list(/obj/item/weapon/gun/smg/standard_machinepistol, /obj/item/ammo_magazine/smg/standard_machinepistol, /obj/item/ammo_magazine/smg/standard_machinepistol, /obj/item/ammo_magazine/smg/standard_machinepistol,),
 		list(/obj/item/weapon/gun/rifle/standard_dmr, /obj/item/ammo_magazine/rifle/standard_dmr, /obj/item/ammo_magazine/rifle/standard_dmr, /obj/item/ammo_magazine/rifle/standard_dmr,),
 		list(/obj/item/weapon/gun/rifle/standard_br, /obj/item/ammo_magazine/rifle/standard_br, /obj/item/ammo_magazine/rifle/standard_br, /obj/item/ammo_magazine/rifle/standard_br,),
 		list(/obj/item/weapon/gun/rifle/chambered, /obj/item/ammo_magazine/rifle/chamberedrifle, /obj/item/ammo_magazine/rifle/chamberedrifle, /obj/item/ammo_magazine/rifle/chamberedrifle,),
-		list(/obj/item/weapon/gun/shotgun/pump/bolt, /obj/item/ammo_magazine/rifle/bolt, /obj/item/ammo_magazine/rifle/bolt, /obj/item/ammo_magazine/rifle/bolt,),
+		list(/obj/item/weapon/gun/shotgun/pump/bolt/unscoped, /obj/item/ammo_magazine/rifle/bolt, /obj/item/ammo_magazine/rifle/bolt, /obj/item/ammo_magazine/rifle/bolt,),
 		list(/obj/item/weapon/gun/shotgun/double/martini, /obj/item/ammo_magazine/rifle/martini, /obj/item/ammo_magazine/rifle/martini, /obj/item/ammo_magazine/rifle/martini,),
 		list(/obj/item/weapon/gun/pistol/standard_pistol, /obj/item/ammo_magazine/pistol/standard_pistol, /obj/item/ammo_magazine/pistol/standard_pistol, /obj/item/ammo_magazine/pistol/standard_pistol,),
 		list(/obj/item/weapon/gun/pistol/standard_heavypistol, /obj/item/ammo_magazine/pistol/standard_heavypistol, /obj/item/ammo_magazine/pistol/standard_heavypistol, /obj/item/ammo_magazine/pistol/standard_heavypistol,),
@@ -666,10 +663,9 @@
 		list(/obj/item/weapon/gun/shotgun/double/derringer, /obj/item/ammo_magazine/pistol/derringer, /obj/item/ammo_magazine/pistol/derringer, /obj/item/ammo_magazine/pistol/derringer,),
 		list(/obj/item/weapon/gun/rifle/pepperball, /obj/item/ammo_magazine/rifle/pepperball, /obj/item/ammo_magazine/rifle/pepperball, /obj/item/ammo_magazine/rifle/pepperball,),
 		list(/obj/item/weapon/gun/shotgun/pump/lever/repeater, /obj/item/ammo_magazine/packet/p4570, /obj/item/ammo_magazine/packet/p4570, /obj/item/ammo_magazine/packet/p4570,),
-		list(/obj/item/weapon/gun/shotgun/pump/bolt, /obj/item/ammo_magazine/rifle/bolt, /obj/item/ammo_magazine/rifle/bolt, /obj/item/ammo_magazine/rifle/bolt,),
 		list(/obj/item/weapon/gun/shotgun/double/marine, /obj/item/ammo_magazine/shotgun/buckshot, /obj/item/ammo_magazine/shotgun/buckshot, /obj/item/ammo_magazine/shotgun/buckshot,),
 		list(/obj/item/weapon/gun/rifle/standard_autoshotgun, /obj/item/ammo_magazine/rifle/tx15_slug, /obj/item/ammo_magazine/rifle/tx15_slug, /obj/item/ammo_magazine/rifle/tx15_slug,),
-		list(/obj/item/weapon/gun/shotgun/combat/standardmarine, /obj/item/ammo_magazine/shotgun, /obj/item/ammo_magazine/shotgun, /obj/item/ammo_magazine/shotgun,),
+		list(/obj/item/weapon/gun/shotgun/combat/standardmarine, /obj/item/ammo_magazine/shotgun/buckshot, /obj/item/ammo_magazine/shotgun/buckshot, /obj/item/ammo_magazine/shotgun/buckshot,),
 	)
 
 //random rifles
@@ -681,7 +677,7 @@ obj/effect/spawner/random_set/rifle
 		list(/obj/item/weapon/gun/rifle/standard_assaultrifle, /obj/item/ammo_magazine/rifle/standard_assaultrifle, /obj/item/ammo_magazine/rifle/standard_assaultrifle, /obj/item/ammo_magazine/rifle/standard_assaultrifle,),
 		list(/obj/item/weapon/gun/rifle/standard_carbine, /obj/item/ammo_magazine/rifle/standard_carbine, /obj/item/ammo_magazine/rifle/standard_carbine, /obj/item/ammo_magazine/rifle/standard_carbine,),
 		list(/obj/item/weapon/gun/rifle/standard_skirmishrifle, /obj/item/ammo_magazine/rifle/standard_skirmishrifle, /obj/item/ammo_magazine/rifle/standard_skirmishrifle, /obj/item/ammo_magazine/rifle/standard_skirmishrifle,),
-		list(/obj/item/weapon/gun/rifle/tx11, /obj/item/ammo_magazine/rifle/tx11, /obj/item/ammo_magazine/rifle/tx11, /obj/item/ammo_magazine/rifle/tx11,),
+		list(/obj/item/weapon/gun/rifle/tx11/scopeless, /obj/item/ammo_magazine/rifle/tx11, /obj/item/ammo_magazine/rifle/tx11, /obj/item/ammo_magazine/rifle/tx11,),
 	)
 
 //random shotguns
@@ -690,12 +686,12 @@ obj/effect/spawner/random_set/rifle
 	icon_state = "random_shotgun"
 
 	option_list = list(
-		list(/obj/item/weapon/gun/shotgun/pump/bolt, /obj/item/ammo_magazine/rifle/bolt, /obj/item/ammo_magazine/rifle/bolt, /obj/item/ammo_magazine/rifle/bolt,),
+		list(/obj/item/weapon/gun/shotgun/pump/bolt/unscoped, /obj/item/ammo_magazine/rifle/bolt, /obj/item/ammo_magazine/rifle/bolt, /obj/item/ammo_magazine/rifle/bolt,),
 		list(/obj/item/weapon/gun/shotgun/double/marine, /obj/item/ammo_magazine/shotgun/buckshot, /obj/item/ammo_magazine/shotgun/buckshot, /obj/item/ammo_magazine/shotgun/buckshot,),
 		list(/obj/item/weapon/gun/rifle/standard_autoshotgun, /obj/item/ammo_magazine/rifle/tx15_slug, /obj/item/ammo_magazine/rifle/tx15_slug, /obj/item/ammo_magazine/rifle/tx15_slug,),
 		list(/obj/item/weapon/gun/shotgun/combat/standardmarine, /obj/item/ammo_magazine/shotgun/flechette, /obj/item/ammo_magazine/shotgun/flechette, /obj/item/ammo_magazine/shotgun/flechette,),
 		list(/obj/item/weapon/gun/shotgun/pump/t35, /obj/item/ammo_magazine/shotgun/buckshot, /obj/item/ammo_magazine/shotgun/buckshot, /obj/item/ammo_magazine/shotgun/buckshot,),
-		list(/obj/item/weapon/gun/shotgun/pump/cmb, /obj/item/ammo_magazine/shotgun, /obj/item/ammo_magazine/shotgun, /obj/item/ammo_magazine/shotgun,),
+		list(/obj/item/weapon/gun/shotgun/pump/cmb, /obj/item/ammo_magazine/shotgun/buckshot, /obj/item/ammo_magazine/shotgun/buckshot, /obj/item/ammo_magazine/shotgun/buckshot,),
 	)
 
 //random machineguns
@@ -721,3 +717,30 @@ obj/effect/spawner/random_set/rifle
 		list(/obj/item/weapon/gun/pistol/standard_pocketpistol, /obj/item/ammo_magazine/pistol/standard_pocketpistol, /obj/item/ammo_magazine/pistol/standard_pocketpistol, /obj/item/ammo_magazine/pistol/standard_pocketpistol,),
 		list(/obj/item/weapon/gun/pistol/vp70, /obj/item/ammo_magazine/pistol/vp70, /obj/item/ammo_magazine/pistol/vp70, /obj/item/ammo_magazine/pistol/vp70,),
 	)
+
+//random plushie spawner
+/obj/effect/spawner/random/plushie
+	name = "Random plush spawner"
+	icon_state = "random_plush"
+	spawn_nothing_percentage = 85
+
+/obj/effect/spawner/random/plushie/fiftyfifty
+
+/obj/effect/spawner/random/plushie/nospawnninety
+	spawn_nothing_percentage = 90
+
+/obj/effect/spawner/random/plushie/nospawnninetyfive
+	spawn_nothing_percentage = 95
+
+/obj/effect/spawner/random/plushie/nospawnninetynine
+	spawn_nothing_percentage = 99
+
+/obj/effect/spawner/random/plushie/item_to_spawn()
+		return pick(/obj/item/toy/plush/moth,\
+					/obj/item/toy/plush/rouny,\
+					/obj/item/toy/plush/therapy_blue,\
+					/obj/item/toy/plush/therapy_green,\
+					/obj/item/toy/plush/therapy_yellow,\
+					/obj/item/toy/plush/therapy_orange,\
+					/obj/item/toy/plush/therapy_red,\
+					/obj/item/toy/plush/therapy_purple)

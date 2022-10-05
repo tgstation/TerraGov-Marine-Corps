@@ -14076,7 +14076,6 @@
 /area/desert_dam/interior/dam_interior/central_tunnel)
 "bGv" = (
 /obj/structure/table,
-/obj/item/explosive/grenade/flashbang,
 /turf/open/floor/prison,
 /area/desert_dam/building/security/staffroom)
 "bGw" = (
@@ -52272,6 +52271,11 @@
 	color = "#e0e0e0"
 	},
 /area/desert_dam/interior/dam_interior/hanger)
+"qcc" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/random/plushie,
+/turf/open/floor/prison/bright_clean/two,
+/area/desert_dam/interior/lab_northeast/east_lab_biology)
 "qck" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/desert_dam/exterior/valley/valley_hydro)
@@ -54782,6 +54786,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/effect/spawner/random/plushie,
 /turf/open/floor/prison/marked,
 /area/desert_dam/building/hydroponics/hydroponics_loading)
 "rzB" = (
@@ -111118,7 +111123,7 @@ rmx
 alI
 amo
 gbq
-amo
+qcc
 gbq
 qKx
 vql

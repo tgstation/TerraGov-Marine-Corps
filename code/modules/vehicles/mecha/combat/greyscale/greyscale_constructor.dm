@@ -98,6 +98,13 @@
 	current_stats["slowdown"] = slowdown
 	current_stats["armor"] = armor
 
+/obj/machinery/computer/mech_builder/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return
+	if(user.skills.getRating("large_vehicle") < SKILL_LARGE_VEHICLE_TRAINED)
+		return FALSE
+
 /obj/machinery/computer/mech_builder/ui_interact(mob/user, datum/tgui/ui)
 	if(currently_assembling)
 		return

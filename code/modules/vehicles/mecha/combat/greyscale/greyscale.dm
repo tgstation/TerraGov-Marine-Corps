@@ -28,6 +28,12 @@
 		message_admins("Stop trying to spawn mechs before they're ready")
 		return INITIALIZE_HINT_QDEL
 
+/obj/vehicle/sealed/mecha/combat/greyscale/mob_try_enter(mob/M)
+	if(M.skills.getRating("large_vehicle") < SKILL_LARGE_VEHICLE_TRAINED)
+		balloon_alert(M, "You don't know how to pilot this")
+		return FALSE
+	return ..()
+
 /obj/vehicle/sealed/mecha/combat/greyscale/update_overlays()
 	. = ..()
 	for(var/key in limbs)

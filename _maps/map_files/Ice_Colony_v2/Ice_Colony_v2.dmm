@@ -6620,7 +6620,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hydroponics/south)
 "aFm" = (
-/obj/item/ammo_magazine/shotgun{
+/obj/item/ammo_magazine/shotgun/buckshot{
 	pixel_x = 6;
 	pixel_y = -4
 	},
@@ -7334,7 +7334,7 @@
 "aIs" = (
 /obj/structure/closet/crate,
 /obj/item/ammo_magazine/shotgun/incendiary,
-/obj/item/ammo_magazine/shotgun,
+/obj/item/ammo_magazine/shotgun/buckshot,
 /turf/open/floor/tile/dark/blue2{
 	dir = 6
 	},
@@ -8800,7 +8800,7 @@
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aPz" = (
-/obj/item/ammo_magazine/shotgun,
+/obj/item/ammo_magazine/shotgun/buckshot,
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
@@ -17065,6 +17065,7 @@
 	pixel_y = -1
 	},
 /obj/item/tool/pen/blue,
+/obj/effect/spawner/random/plushie,
 /turf/open/floor/wood,
 /area/ice_colony/underground/security/detective)
 "bzr" = (
@@ -21513,8 +21514,8 @@
 /area/ice_colony/underground/reception)
 "bOz" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/shotgun,
-/obj/item/ammo_magazine/shotgun{
+/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/item/ammo_magazine/shotgun/buckshot{
 	pixel_x = 6;
 	pixel_y = -4
 	},
@@ -25986,7 +25987,7 @@
 "fnQ" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/shotgun/pump/cmb,
-/obj/item/ammo_magazine/shotgun,
+/obj/item/ammo_magazine/shotgun/buckshot,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
 /area/ice_colony/surface/hangar/checkpoint)
@@ -29288,6 +29289,11 @@
 	dir = 4
 	},
 /area/ice_colony/surface/engineering)
+"mhA" = (
+/obj/structure/bed,
+/obj/effect/spawner/random/plushie,
+/turf/open/floor/wood,
+/area/ice_colony/surface/dorms)
 "mhW" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/shotgun/pump/cmb,
@@ -34021,6 +34027,14 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/ice_nw)
+"vru" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1;
+	name = "\improper Colony Dormitory Unit"
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/wood,
+/area/ice_colony/surface/dorms)
 "vry" = (
 /obj/effect/turf_underlay/icefloor,
 /turf/closed/ice/thin/corner{
@@ -56906,7 +56920,7 @@ aqq
 aqP
 aqZ
 vDc
-arF
+vru
 arQ
 mpz
 asu
@@ -57121,7 +57135,7 @@ arw
 arE
 aAI
 mds
-ast
+mhA
 arE
 ast
 arQ

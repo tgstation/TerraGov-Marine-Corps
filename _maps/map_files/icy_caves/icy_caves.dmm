@@ -1728,6 +1728,7 @@
 /obj/structure/table/woodentable,
 /obj/effect/landmark/corpsespawner/colonist,
 /obj/effect/decal/cleanable/blood,
+/obj/effect/spawner/random/plushie,
 /turf/open/floor/cult,
 /area/icy_caves/caves/chapel)
 "jk" = (
@@ -7530,10 +7531,6 @@
 "IH" = (
 /obj/item/flash,
 /obj/structure/table/reinforced,
-/obj/item/explosive/grenade/flashbang{
-	pixel_x = 7;
-	pixel_y = 2
-	},
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -7556,6 +7553,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/effect/spawner/random/plushie,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/breakroom)
 "IL" = (
@@ -10189,7 +10187,7 @@
 /area/icy_caves/caves/rock)
 "UG" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/shotgun,
+/obj/item/ammo_magazine/shotgun/buckshot,
 /obj/item/weapon/gun/shotgun/pump/cmb,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
