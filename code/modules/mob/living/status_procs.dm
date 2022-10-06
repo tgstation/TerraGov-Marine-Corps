@@ -754,44 +754,44 @@
 
 ///How many deciseconds remain in our irradiated status effect
 /mob/living/proc/amount_irradiated()
-	var/datum/status_effect/irradiated/P = is_irradiated(FALSE)
-	if(P)
-		return P.duration - world.time
+	var/datum/status_effect/irradiated/irradiated = is_irradiated(FALSE)
+	if(irradiated)
+		return irradiated.duration - world.time
 	return 0
 
 ///Applies irradiation from a source
 /mob/living/proc/irradiate(amount, ignore_canstun = FALSE) //Can't go below remaining duration
 	if(status_flags & GODMODE)
 		return
-	var/datum/status_effect/irradiated/P = is_irradiated(FALSE)
-	if(P)
-		P.duration = max(world.time + amount, P.duration)
+	var/datum/status_effect/irradiated/irradiated = is_irradiated(FALSE)
+	if(irradiated)
+		irradiated.duration = max(world.time + amount, irradiated.duration)
 	else if(amount > 0)
-		P = apply_status_effect(STATUS_EFFECT_IRRADIATED, amount)
-	return P
+		irradiated = apply_status_effect(STATUS_EFFECT_IRRADIATED, amount)
+	return irradiated
 
 ///Sets irradiation  duration
 /mob/living/proc/set_radiation(amount, ignore_canstun = FALSE)
 	if(status_flags & GODMODE)
 		return
-	var/datum/status_effect/irradiated/P = is_irradiated(FALSE)
+	var/datum/status_effect/irradiated/irradiated = is_irradiated(FALSE)
 	if(amount <= 0)
-		if(P)
-			qdel(P)
+		if(irradiated)
+			qdel(irradiated)
 	else
-		if(P)
-			P.duration = world.time + amount
+		if(irradiated)
+			irradiated.duration = world.time + amount
 		else
-			P = apply_status_effect(STATUS_EFFECT_IRRADIATED, amount)
-	return P
+			irradiated = apply_status_effect(STATUS_EFFECT_IRRADIATED, amount)
+	return irradiated
 
 ///Modifies irradiation duration
 /mob/living/proc/adjust_radiation(amount, ignore_canstun = FALSE)
 	if(status_flags & GODMODE)
 		return
-	var/datum/status_effect/irradiated/P = is_irradiated(FALSE)
-	if(P)
-		P.duration += amount
+	var/datum/status_effect/irradiated/irradiated = is_irradiated(FALSE)
+	if(irradiated)
+		irradiated.duration += amount
 	else if(amount > 0)
-		P = apply_status_effect(STATUS_EFFECT_IRRADIATED, amount)
-	return P
+		irradiated = apply_status_effect(STATUS_EFFECT_IRRADIATED, amount)
+	return irradiated

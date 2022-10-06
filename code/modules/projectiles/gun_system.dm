@@ -501,19 +501,19 @@
 /obj/item/weapon/gun/update_item_state()
 	var/current_state = item_state
 	//If the gun has item states that show how much ammo is remaining
-	if(CHECK_BITFIELD(flags_gun_features, GUN_SHOWS_AMMO_REMAINING))
+	if(flags_gun_features & GUN_SHOWS_AMMO_REMAINING)
 		var/remaining_rounds = (rounds <= 0) ? 0 : CEILING((rounds / max((length(chamber_items) ? max_rounds : max_shells), 1)) * 100, 25)
-		if(CHECK_BITFIELD(flags_item, WIELDED))
+		if(flags_item & WIELDED)
 			item_state = !greyscale_config ? "[initial(icon_state)]_[remaining_rounds]_w" : "wielded"
 		else
 			item_state = !greyscale_config ? "[initial(icon_state)]_[remaining_rounds]" : ""
-	else if(CHECK_BITFIELD(flags_gun_features, GUN_SHOWS_LOADED))
-		if(CHECK_BITFIELD(flags_item, WIELDED))
+	else if(flags_gun_features & GUN_SHOWS_LOADED)
+		if(flags_item & WIELDED)
 			item_state = !greyscale_config ? "[initial(icon_state)]_[rounds ? 100 : 0]_w" : "wielded" //100 and 0 used to be consistant with GUN_SHOWS_AMMO_REMAINING
 		else
 			item_state = !greyscale_config ? "[initial(icon_state)]_[rounds ? 100 : 0]" : ""
 	else
-		if(CHECK_BITFIELD(flags_item, WIELDED))
+		if(flags_item & WIELDED)
 			item_state = !greyscale_config ? "[base_gun_icon]_w" : "wielded"
 		else
 			item_state = !greyscale_config ? base_gun_icon : ""

@@ -1845,6 +1845,7 @@ datum/ammo/bullet/revolver/tp44
 		geiger_counter.start(victim)
 	explosion(T, 0, 0, 3, 0)
 
+///Applies the actual rad effects
 /datum/ammo/rocket/som/rad/proc/irradiate(mob/living/victim, strength)
 	var/rad_penetration = max((100 - victim.get_soft_armor(BIO)) / 100, 0.25)
 	var/effective_strength = strength * rad_penetration //strength with rad armor taken into account
