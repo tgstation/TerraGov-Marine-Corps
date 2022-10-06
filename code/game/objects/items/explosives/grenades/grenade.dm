@@ -118,8 +118,7 @@
 
 	for(var/mob/living/victim in hearers(outer_range, src))
 		var/strength
-		var/datum/looping_sound/geiger/geiger_counter
-		geiger_counter = new(null, FALSE)
+		var/datum/looping_sound/geiger/geiger_counter = new(null, FALSE)
 		if(get_dist(victim, impact_turf) <= inner_range)
 			strength = rad_strength
 			geiger_counter.severity = 3
