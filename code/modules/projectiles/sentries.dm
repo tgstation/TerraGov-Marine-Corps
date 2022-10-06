@@ -366,7 +366,6 @@
 		var/obj/item/weapon/gun/gun = internal_item
 		gun.stop_fire()
 		firing = FALSE
-		update_minimap_icon()
 		return
 	playsound(loc, 'sound/items/detector.ogg', 25, FALSE)
 
