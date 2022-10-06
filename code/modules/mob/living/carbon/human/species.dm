@@ -400,7 +400,7 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 	burn_damage_icon_state = "robot_burn"
 	eyes = "blank_eyes"
 	namepool = /datum/namepool/robotic
-	death_sound = null
+	death_sound = list(MALE = "robot_deathcry", FEMALE = "robot_deathcry")
 
 	unarmed_type = /datum/unarmed_attack/punch/strong
 	total_health = 100
