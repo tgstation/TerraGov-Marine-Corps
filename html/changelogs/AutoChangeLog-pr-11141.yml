@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes: 
+  - code_imp: "cleaned up a bit of flashbang code"
