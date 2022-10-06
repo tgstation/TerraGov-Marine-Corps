@@ -65,8 +65,12 @@
 		camera.c_tag = "[name] ([rand(0, 1000)])"
 
 	GLOB.marine_turrets += src
-	update_minimap_icon()
 	set_on(TRUE)
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/machinery/deployable/mounted/sentry/LateInitialize()
+	. = ..()
+	update_minimap_icon()
 
 ///Change minimap icon if its firing or not firing
 /obj/machinery/deployable/mounted/sentry/proc/update_minimap_icon()
