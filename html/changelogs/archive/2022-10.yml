@@ -46,3 +46,15 @@
       the PoS''s firing range and check it out!'
   tyeagg:
   - rscadd: mech prop to patrol base
+2022-10-06:
+  567Turtle:
+  - rscadd: Seasonal round tips
+  - rscadd: Isotonic pills
+  Aquilar:
+  - bugfix: adjusts the positioning of the attachments on the BR-64, AR-18 and PR-11
+  Lewdcifer:
+  - imageadd: Added particle visuals to Defiler's Reagent Slash and Emit Neurogas
+      abilities.
+  Lumipharon:
+  - qol: Shutters drop after 3 minutes in Combat Patrol instead of 5
+  - bugfix: Autoburst respects aim mode penalties
