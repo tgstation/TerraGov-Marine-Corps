@@ -49,7 +49,7 @@
 	if(species.death_message)
 		deathmessage = species.death_message
 	if(!silent && species.death_sound)
-		playsound(loc, species.death_sound, 50, TRUE)
+		playsound(loc, species.death_sound[gender], 50)
 	return ..()
 
 

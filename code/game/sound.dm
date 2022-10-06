@@ -298,6 +298,10 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 			S = pick("sound/voice/human_male_preburst1.ogg", 'sound/voice/human_male_preburst2.ogg', 'sound/voice/human_male_preburst3.ogg')
 		if("female_preburst")
 			S = pick("sound/voice/human_female_preburst1.ogg", 'sound/voice/human_female_preburst2.ogg', 'sound/voice/human_female_preburst3.ogg')
+		if("male_deathcry")
+			S = pick('sound/voice/dead man 1.ogg', 'sound/voice/dead man 2.ogg', 'sound/voice/dead man 3.ogg', 'sound/voice/dead man 4.ogg', 'sound/voice/dead man 5.ogg', 'sound/voice/dead man 6.ogg')
+		if("female_deathcry")
+			S = pick('sound/voice/dead girl 1.ogg', 'sound/voice/dead girl 2.ogg', 'sound/voice/dead girl 3.ogg', 'sound/voice/dead girl 4.ogg')
 
 		//robot race
 		if("robot_scream")

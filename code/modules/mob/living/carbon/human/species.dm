@@ -329,6 +329,7 @@
 	gasps = list(MALE = "male_gasp", FEMALE = "female_gasp")
 	coughs = list(MALE = "male_cough", FEMALE = "female_cough")
 	burstscreams = list(MALE = "male_preburst", FEMALE = "female_preburst")
+	death_sound = list(MALE = "male_deathcry", FEMALE = "female_deathcry")
 	warcries = list(MALE = "male_warcry", FEMALE = "female_warcry")
 	special_death_message = "<big>You have perished.</big><br><small>But it is not the end of you yet... if you still have your body or an unbursted corpse, wait until somebody can resurrect you...</small>"
 	joinable_roundstart = TRUE
@@ -399,6 +400,7 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 	burn_damage_icon_state = "robot_burn"
 	eyes = "blank_eyes"
 	namepool = /datum/namepool/robotic
+	death_sound = null
 
 	unarmed_type = /datum/unarmed_attack/punch/strong
 	total_health = 100
