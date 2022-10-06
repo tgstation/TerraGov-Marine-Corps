@@ -1831,8 +1831,7 @@ datum/ammo/bullet/revolver/tp44
 	playsound(T, 'sound/effects/portal_opening.ogg', 50, 1)
 	for(var/mob/living/victim in hearers(outer_range, T))
 		var/strength
-		var/datum/looping_sound/geiger/geiger_counter
-		geiger_counter = new(null, FALSE)
+		var/datum/looping_sound/geiger/geiger_counter = new(null, FALSE)
 		if(get_dist(victim, T) <= inner_range)
 			strength = rad_strength
 			geiger_counter.severity = 4
