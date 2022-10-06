@@ -433,9 +433,28 @@
 		update_icon(1, 0)
 	return ..()
 
-//////////////////////////////////////////////////////////////////////////////////////////////////
-//Time to redo part of abby's code.
-//Create a flame sprite object. Doesn't work like regular fire, ie. does not affect atmos or heat
+
+
+
+GLOBAL_DATUM_INIT(flamer_particles, /particles/flamer_fire, new)
+/particles/flamer_fire
+	icon = 'icons/effects/particles/fire.dmi'
+	icon_state = "bonfire"
+	width = 100
+	height = 100
+	count = 1000
+	spawning = 8
+	lifespan = 0.7 SECONDS
+	fade = 1 SECONDS
+	grow = -0.01
+	velocity = list(0, 0)
+	position = generator("box", list(-16, -16), list(16, 16), NORMAL_RAND)
+	drift = generator("vector", list(0, -0.2), list(0, 0.2))
+	gravity = list(0, 0.95)
+	scale = generator("vector", list(0.3, 0.3), list(1,1), NORMAL_RAND)
+	rotation = 30
+	spin = generator("num", -20, 20)
+
 /obj/flamer_fire
 	name = "fire"
 	desc = "Ouch!"
@@ -456,6 +475,7 @@
 
 /obj/flamer_fire/Initialize(mapload, fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
 	. = ..()
+	particles = GLOB.flamer_particles
 
 	if(f_color)
 		flame_color = f_color

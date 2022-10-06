@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes: 
-  - code_imp: "Added a check_path proc to see if a path between atoms is blocked"

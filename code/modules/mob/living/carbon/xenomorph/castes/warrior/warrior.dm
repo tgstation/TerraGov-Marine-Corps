@@ -46,7 +46,7 @@
 	..()
 
 /mob/living/carbon/xenomorph/warrior/start_pulling(atom/movable/AM, suppress_message = TRUE, lunge = FALSE)
-	if(!check_state() || agility || !isliving(AM))
+	if(!check_state() || agility)
 		return FALSE
 
 	var/mob/living/L = AM
