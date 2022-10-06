@@ -14391,12 +14391,6 @@
 /obj/machinery/door_control/old/medbay{
 	id = "Medbay";
 	name = "Medbay Lockdown";
-	pixel_x = -5;
-	pixel_y = -3
-	},
-/obj/machinery/door_control/old/medbay{
-	id = "Medbay";
-	name = "Medbay Lockdown";
 	pixel_x = 6;
 	pixel_y = -5
 	},
