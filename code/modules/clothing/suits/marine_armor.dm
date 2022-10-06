@@ -132,7 +132,6 @@
 
 	attachments_by_slot = list(
 		ATTACHMENT_SLOT_MODULE,
-		ATTACHMENT_SLOT_BADGE,
 	)
 	attachments_allowed = list(
 		/obj/item/armor_module/module/better_shoulder_lamp,
@@ -146,7 +145,6 @@
 		/obj/item/armor_module/module/ballistic_armor,
 		/obj/item/armor_module/module/chemsystem,
 		/obj/item/armor_module/module/eshield,
-		/obj/item/armor_module/armor/badge,
 	)
 	light_range = 5
 
