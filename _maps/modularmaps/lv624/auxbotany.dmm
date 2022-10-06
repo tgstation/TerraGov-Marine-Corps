@@ -1,0 +1,886 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"at" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/tile/green/whitegreen{
+	dir = 4
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"ax" = (
+/turf/open/floor/tile/green/whitegreen{
+	dir = 9
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"aX" = (
+/obj/effect/decal/warning_stripes/thick{
+	dir = 10
+	},
+/obj/effect/decal/warning_stripes/thick{
+	dir = 1
+	},
+/obj/machinery/portable_atmospherics/hydroponics,
+/turf/open/floor/engine,
+/area/lv624/lazarus/hydroponics/aux)
+"cn" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 4
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"ct" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/landmark/excavation_site_spawner,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/turf/open/floor/engine,
+/area/lv624/lazarus/hydroponics/aux)
+"cU" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 4
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"dr" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
+	dir = 1;
+	name = "\improper Auxillary Hydroponics Dome"
+	},
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/hydroponics/aux)
+"dA" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/window/framed/colony/reinforced,
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/hydroponics/aux)
+"ef" = (
+/turf/template_noop,
+/area/template_noop)
+"es" = (
+/turf/open/floor/tile/green/whitegreencorner{
+	dir = 4
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"eI" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/tile/green/whitegreen{
+	dir = 1
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"eQ" = (
+/obj/machinery/biogenerator,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 6
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"fd" = (
+/turf/open/floor/tile/green/whitegreencorner{
+	dir = 8
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"ga" = (
+/obj/effect/decal/warning_stripes/thick{
+	dir = 6
+	},
+/obj/effect/decal/warning_stripes/thick{
+	dir = 1
+	},
+/obj/machinery/portable_atmospherics/hydroponics,
+/turf/open/floor/engine,
+/area/lv624/lazarus/hydroponics/aux)
+"gi" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 10
+	},
+/obj/effect/decal/warning_stripes/thick,
+/obj/effect/decal/warning_stripes/thick{
+	dir = 1
+	},
+/obj/machinery/portable_atmospherics/hydroponics,
+/turf/open/floor/engine,
+/area/lv624/lazarus/hydroponics/aux)
+"iF" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
+	},
+/obj/effect/decal/warning_stripes/thick{
+	dir = 9
+	},
+/obj/effect/decal/warning_stripes/thick,
+/obj/machinery/portable_atmospherics/hydroponics,
+/turf/open/floor/engine,
+/area/lv624/lazarus/hydroponics/aux)
+"iN" = (
+/turf/closed/wall,
+/area/lv624/lazarus/hydroponics/aux)
+"jW" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/structure/cable,
+/turf/open/floor/tile/white,
+/area/lv624/lazarus/hydroponics/aux)
+"kA" = (
+/turf/open/floor/tile/green/whitegreen{
+	dir = 10
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"kI" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 5
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
+	},
+/obj/effect/decal/warning_stripes/thick{
+	dir = 10
+	},
+/obj/effect/decal/warning_stripes/thick{
+	dir = 1
+	},
+/obj/machinery/portable_atmospherics/hydroponics,
+/turf/open/floor/engine,
+/area/lv624/lazarus/hydroponics/aux)
+"lX" = (
+/obj/structure/window/framed/colony/reinforced,
+/turf/open/floor/plating,
+/area/lv624/lazarus/hydroponics/aux)
+"mQ" = (
+/obj/effect/decal/warning_stripes/thick,
+/obj/effect/decal/warning_stripes/thick{
+	dir = 1
+	},
+/obj/machinery/portable_atmospherics/hydroponics,
+/turf/open/floor/engine,
+/area/lv624/lazarus/hydroponics/aux)
+"mV" = (
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"mZ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 1
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"nQ" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 4;
+	on = 1
+	},
+/turf/open/floor/tile/green/whitegreen{
+	dir = 8
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"oO" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
+	},
+/turf/open/floor/tile/green/whitegreen{
+	dir = 8
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"pt" = (
+/obj/structure/table,
+/obj/effect/spawner/random/melee,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 10
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"pD" = (
+/obj/structure/table,
+/obj/item/tool/minihoe,
+/obj/item/tool/shovel,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 4
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"qf" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/green/whitegreencorner{
+	dir = 1
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"qq" = (
+/obj/structure/table,
+/obj/item/analyzer/plant_analyzer,
+/obj/item/analyzer/plant_analyzer,
+/turf/open/floor/tile/green/whitegreen,
+/area/lv624/lazarus/hydroponics/aux)
+"rr" = (
+/obj/item/tool/shovel/spade,
+/turf/open/floor/engine,
+/area/lv624/lazarus/hydroponics/aux)
+"su" = (
+/obj/effect/decal/warning_stripes/thick{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thick,
+/obj/machinery/portable_atmospherics/hydroponics,
+/turf/open/floor/engine,
+/area/lv624/lazarus/hydroponics/aux)
+"tr" = (
+/obj/item/clothing/under/colonist,
+/turf/open/floor/tile/green/whitegreencorner{
+	dir = 4
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"tO" = (
+/obj/structure/table,
+/obj/item/tool/hatchet{
+	pixel_x = 6;
+	pixel_y = 4
+	},
+/turf/open/floor/tile/green/whitegreen{
+	dir = 5
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"uj" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile/green/whitegreencorner,
+/area/lv624/lazarus/hydroponics/aux)
+"uC" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/tile/green/whitegreen{
+	dir = 8
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"vn" = (
+/turf/open/floor/tile/green/whitegreencorner{
+	dir = 2
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"ww" = (
+/obj/item/reagent_containers/glass/bucket,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 5
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"wH" = (
+/turf/open/floor/tile/green/whitegreen,
+/area/lv624/lazarus/hydroponics/aux)
+"xA" = (
+/turf/open/floor/engine,
+/area/lv624/lazarus/hydroponics/aux)
+"xU" = (
+/obj/machinery/light,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/tile/green/whitegreen,
+/area/lv624/lazarus/hydroponics/aux)
+"xV" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/turf/open/floor/tile/white,
+/area/lv624/lazarus/hydroponics/aux)
+"yj" = (
+/turf/open/floor/tile/green/whitegreen{
+	dir = 8
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"ym" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
+	dir = 4;
+	name = "\improper Auxillary Hydroponics Dome"
+	},
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/hydroponics/aux)
+"za" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
+	},
+/turf/open/floor/tile/green/whitegreen{
+	dir = 4
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"zx" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 8
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"AF" = (
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
+	dir = 4;
+	name = "\improper Auxillary Hydroponics Dome"
+	},
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/hydroponics/aux)
+"Bl" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/closed/wall,
+/area/lv624/lazarus/hydroponics/aux)
+"Bw" = (
+/turf/closed/wall/r_wall,
+/area/lv624/lazarus/hydroponics/aux)
+"BD" = (
+/obj/item/tool/minihoe,
+/turf/open/floor/engine,
+/area/lv624/lazarus/hydroponics/aux)
+"BV" = (
+/turf/open/floor/tile/green/whitegreen{
+	dir = 6
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"BW" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/white,
+/area/lv624/lazarus/hydroponics/aux)
+"CJ" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
+	},
+/obj/effect/decal/warning_stripes/thick{
+	dir = 5
+	},
+/obj/effect/decal/warning_stripes/thick,
+/obj/machinery/portable_atmospherics/hydroponics,
+/turf/open/floor/engine,
+/area/lv624/lazarus/hydroponics/aux)
+"DR" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/green/whitegreen{
+	dir = 1
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"DS" = (
+/obj/structure/closet/crate/hydroponics/prespawned,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 4
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"DT" = (
+/turf/open/floor/tile/white,
+/area/lv624/lazarus/hydroponics/aux)
+"DW" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
+/obj/effect/decal/cleanable/blood,
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/white,
+/area/lv624/lazarus/hydroponics/aux)
+"En" = (
+/obj/machinery/smartfridge,
+/turf/open/floor/tile/green/whitegreen,
+/area/lv624/lazarus/hydroponics/aux)
+"Ep" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/white,
+/area/lv624/lazarus/hydroponics/aux)
+"Gh" = (
+/turf/open/floor/tile/green/whitegreencorner,
+/area/lv624/lazarus/hydroponics/aux)
+"Gi" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/item/reagent_containers/glass/bucket,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 1
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"GC" = (
+/obj/structure/table,
+/obj/item/tool/shovel/spade,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 8
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"Hy" = (
+/obj/structure/cable,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
+/obj/effect/ai_node,
+/turf/open/floor/tile/white,
+/area/lv624/lazarus/hydroponics/aux)
+"IT" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/white,
+/area/lv624/lazarus/hydroponics/aux)
+"IZ" = (
+/obj/structure/table,
+/obj/item/clothing/gloves/botanic_leather,
+/obj/item/clothing/suit/apron,
+/obj/item/clothing/under/colonist,
+/turf/open/floor/tile/green/whitegreen,
+/area/lv624/lazarus/hydroponics/aux)
+"Jy" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/turf/open/floor/engine,
+/area/lv624/lazarus/hydroponics/aux)
+"Ks" = (
+/obj/structure/extinguisher_cabinet,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 9
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"Kw" = (
+/obj/machinery/power/apc/drained,
+/obj/structure/cable,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 1
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"Ln" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
+/obj/effect/decal/warning_stripes/thick,
+/obj/effect/decal/warning_stripes/thick{
+	dir = 1
+	},
+/obj/machinery/portable_atmospherics/hydroponics,
+/turf/open/floor/engine,
+/area/lv624/lazarus/hydroponics/aux)
+"LL" = (
+/obj/machinery/smartfridge/seeds,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 9
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"Mh" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/item/reagent_containers/glass/bucket,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 8
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"MA" = (
+/obj/machinery/light,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/tile/green/whitegreen,
+/area/lv624/lazarus/hydroponics/aux)
+"Nt" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/white,
+/area/lv624/lazarus/hydroponics/aux)
+"NM" = (
+/obj/machinery/door/airlock/mainship/engineering/free_access{
+	name = "\improper Atmospherics Condenser"
+	},
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/hydroponics/aux)
+"OT" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/tile/green/whitegreen{
+	dir = 1
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"PD" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
+	},
+/turf/open/floor/tile/green/whitegreen{
+	dir = 4
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"PW" = (
+/turf/open/floor/tile/green/whitegreencorner{
+	dir = 1
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"Qn" = (
+/obj/effect/decal/warning_stripes/thick{
+	dir = 9
+	},
+/obj/effect/decal/warning_stripes/thick,
+/obj/machinery/portable_atmospherics/hydroponics,
+/turf/open/floor/engine,
+/area/lv624/lazarus/hydroponics/aux)
+"QR" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/tile/white,
+/area/lv624/lazarus/hydroponics/aux)
+"Rn" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 5
+	},
+/turf/open/floor/tile/white,
+/area/lv624/lazarus/hydroponics/aux)
+"RH" = (
+/obj/item/tool/shovel,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 1
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"Sf" = (
+/turf/open/floor/tile/green/whitegreen{
+	dir = 5
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"SU" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 1
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"Tt" = (
+/turf/open/floor/tile/green/whitegreen{
+	dir = 1
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"TE" = (
+/obj/structure/window/framed/colony/reinforced,
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/hydroponics/aux)
+"TS" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/decal/cleanable/blood/drip,
+/obj/structure/cable,
+/turf/open/floor/tile/green/whitegreen,
+/area/lv624/lazarus/hydroponics/aux)
+"UH" = (
+/obj/structure/table,
+/obj/item/reagent_containers/glass/bucket,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 8
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"Vq" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
+	},
+/obj/effect/decal/warning_stripes/thick{
+	dir = 6
+	},
+/obj/effect/decal/warning_stripes/thick{
+	dir = 1
+	},
+/obj/machinery/portable_atmospherics/hydroponics,
+/turf/open/floor/engine,
+/area/lv624/lazarus/hydroponics/aux)
+"Wh" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
+	},
+/turf/open/floor/tile/green/whitegreen{
+	dir = 8
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"Wz" = (
+/obj/machinery/seed_extractor,
+/turf/open/floor/tile/green/whitegreen,
+/area/lv624/lazarus/hydroponics/aux)
+"WZ" = (
+/obj/machinery/alarm,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 1
+	},
+/area/lv624/lazarus/hydroponics/aux)
+"Xp" = (
+/obj/effect/decal/warning_stripes/thick{
+	dir = 5
+	},
+/obj/effect/decal/warning_stripes/thick,
+/obj/machinery/portable_atmospherics/hydroponics,
+/turf/open/floor/engine,
+/area/lv624/lazarus/hydroponics/aux)
+"YC" = (
+/turf/open/floor/tile/green/whitegreen{
+	dir = 4
+	},
+/area/lv624/lazarus/hydroponics/aux)
+
+(1,1,1) = {"
+ef
+ef
+ef
+ef
+ef
+Bw
+lX
+AF
+lX
+Bw
+ef
+ef
+ef
+ef
+ef
+"}
+(2,1,1) = {"
+ef
+Bw
+lX
+lX
+lX
+Bw
+Ks
+yj
+kA
+Bw
+lX
+lX
+lX
+Bw
+ef
+"}
+(3,1,1) = {"
+ef
+lX
+Qn
+xA
+aX
+TE
+Tt
+Nt
+fd
+Mh
+UH
+GC
+pt
+lX
+ef
+"}
+(4,1,1) = {"
+ef
+lX
+mQ
+BD
+Ln
+dA
+Gi
+Rn
+uj
+at
+es
+DT
+qq
+lX
+ef
+"}
+(5,1,1) = {"
+ef
+lX
+CJ
+ct
+Vq
+iN
+Tt
+QR
+wH
+iN
+tO
+es
+IZ
+lX
+ef
+"}
+(6,1,1) = {"
+Bw
+Bw
+Bl
+NM
+iN
+iN
+Kw
+jW
+wH
+iN
+iN
+OT
+xU
+Bw
+Bw
+"}
+(7,1,1) = {"
+lX
+ax
+oO
+zx
+Wh
+yj
+PW
+BW
+fd
+nQ
+yj
+PW
+fd
+kA
+lX
+"}
+(8,1,1) = {"
+dr
+mZ
+Ep
+xV
+xV
+xV
+xV
+Hy
+xV
+IT
+xV
+xV
+Ep
+TS
+dr
+"}
+(9,1,1) = {"
+lX
+ww
+za
+cn
+PD
+YC
+tr
+BW
+Gh
+YC
+YC
+es
+vn
+BV
+lX
+"}
+(10,1,1) = {"
+Bw
+Bw
+Bl
+NM
+iN
+iN
+DR
+BW
+mV
+iN
+iN
+eI
+MA
+Bw
+Bw
+"}
+(11,1,1) = {"
+ef
+lX
+iF
+Jy
+kI
+iN
+WZ
+BW
+mV
+iN
+LL
+qf
+En
+lX
+ef
+"}
+(12,1,1) = {"
+ef
+lX
+su
+xA
+gi
+dA
+SU
+DW
+fd
+uC
+PW
+DT
+Wz
+lX
+ef
+"}
+(13,1,1) = {"
+ef
+lX
+Xp
+rr
+ga
+TE
+RH
+BW
+vn
+at
+DS
+pD
+eQ
+lX
+ef
+"}
+(14,1,1) = {"
+ef
+Bw
+lX
+lX
+lX
+Bw
+Sf
+cU
+BV
+Bw
+lX
+lX
+lX
+Bw
+ef
+"}
+(15,1,1) = {"
+ef
+ef
+ef
+ef
+ef
+Bw
+lX
+ym
+lX
+Bw
+ef
+ef
+ef
+ef
+ef
+"}

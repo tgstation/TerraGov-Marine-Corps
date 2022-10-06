@@ -573,8 +573,6 @@
 /area/bigredv2/caves/secomplex)
 "Iv" = (
 /obj/structure/rack,
-/obj/item/explosive/grenade/flashbang,
-/obj/item/explosive/grenade/flashbang,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "IY" = (

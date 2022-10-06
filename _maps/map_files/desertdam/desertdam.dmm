@@ -14076,7 +14076,6 @@
 /area/desert_dam/interior/dam_interior/central_tunnel)
 "bGv" = (
 /obj/structure/table,
-/obj/item/explosive/grenade/flashbang,
 /turf/open/floor/prison,
 /area/desert_dam/building/security/staffroom)
 "bGw" = (
