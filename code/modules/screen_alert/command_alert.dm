@@ -13,12 +13,27 @@
 	style_close = "</span>"
 
 /obj/screen/text/screen_text/command_order/intro
+	maptext_x = 66
 	maptext_y = 32
 	letters_per_update = 1
 	screen_loc = "WEST:6,1:5"
 	style_open = "<span class='maptext' style=font-size:20pt;text-align:left valign='top'>"
 	layer = INTRO_LAYER
 	plane = INTRO_PLANE
+	var/emblem = "lrprr"
+
+/obj/screen/text/screen_text/command_order/intro/Initialize()
+	. = ..()
+	overlays += image('icons/UI_Icons/emblems.dmi', icon_state = emblem, pixel_y = 32)
+
+/obj/screen/text/screen_text/command_order/intro/tdf
+	emblem = "tdf"
+
+/obj/screen/text/screen_text/command_order/intro/shokk
+	emblem = "shokk"
+
+/obj/screen/text/screen_text/command_order/intro/blackop
+	emblem = "blackops"
 
 /datum/action/innate/message_squad
 	name = "Send Order"
