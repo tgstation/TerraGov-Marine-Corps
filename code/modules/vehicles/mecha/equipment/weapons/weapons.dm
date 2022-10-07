@@ -44,12 +44,9 @@
 
 /obj/item/mecha_parts/mecha_equipment/weapon/Initialize(mapload)
 	. = ..()
+	AddComponent(/datum/component/automatedfire/autofire, projectile_delay, projectile_delay, projectile_burst_delay, burst_amount, fire_mode, CALLBACK(src, .proc/set_bursting), CALLBACK(src, .proc/reset_fire), CALLBACK(src, .proc/fire))
 	equip_cooldown = projectile_delay
 	muzzle_flash = new(src, muzzle_iconstate)
-
-/obj/item/mecha_parts/mecha_equipment/weapon/attach(obj/vehicle/sealed/mecha/M, attach_right)
-	. = ..()
-	AddComponent(/datum/component/automatedfire/autofire, projectile_delay, projectile_delay, projectile_burst_delay, burst_amount, fire_mode, CALLBACK(src, .proc/set_bursting), CALLBACK(src, .proc/reset_fire), CALLBACK(src, .proc/fire))
 
 /obj/item/mecha_parts/mecha_equipment/weapon/action(mob/source, atom/target, list/modifiers)
 	if(!action_checks(target))
@@ -224,6 +221,18 @@
 	var/disabledreload
 	/// string define for the ammo type that this can be reloaded with
 	var/ammo_type
+	///list of icons to display for ammo counter: list("hud_normal", "hud_empty")
+	var/hud_icons = list("rifle", "rifle_empty")
+
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/attach(obj/vehicle/sealed/mecha/M, attach_right)
+	. = ..()
+	for(var/mob/occupant AS in chassis.occupants)
+		occupant.hud_used.add_ammo_hud(src, hud_icons, projectiles)
+
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/detach(atom/moveto)
+	. = ..()
+	for(var/mob/occupant AS in chassis.occupants)
+		occupant.hud_used.remove_ammo_hud(src)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/action_checks(target)
 	if(!..())
@@ -239,18 +248,21 @@
 		return TRUE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/rearm()
-	if(projectiles < initial(projectiles))
-		var/projectiles_to_add = initial(projectiles) - projectiles
-		if(!projectiles_cache)
-			return FALSE
-		if(projectiles_to_add <= projectiles_cache)
-			projectiles = projectiles + projectiles_to_add
-			projectiles_cache = projectiles_cache - projectiles_to_add
-		else
-			projectiles = projectiles + projectiles_cache
-			projectiles_cache = 0
-		log_message("Rearmed [src].", LOG_MECHA)
-		return TRUE
+	if(projectiles >= initial(projectiles))
+		return FALSE
+	var/projectiles_to_add = initial(projectiles) - projectiles
+	if(!projectiles_cache)
+		return FALSE
+	if(projectiles_to_add <= projectiles_cache)
+		projectiles = projectiles + projectiles_to_add
+		projectiles_cache = projectiles_cache - projectiles_to_add
+	else
+		projectiles = projectiles + projectiles_cache
+		projectiles_cache = 0
+	log_message("Rearmed [src].", LOG_MECHA)
+	for(var/mob/occupant AS in chassis.occupants)
+		occupant.hud_used.update_ammo_hud(src, hud_icons, projectiles)
+	return TRUE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/needs_rearm()
 	return projectiles <= 0
@@ -260,6 +272,8 @@
 	if(!.)
 		return
 	projectiles--
+	for(var/mob/occupant AS in chassis.occupants)
+		occupant.hud_used.update_ammo_hud(src, hud_icons, projectiles)
 	if(projectiles > 0)
 		return
 	playsound(src, 'sound/weapons/guns/misc/empty_alarm.ogg', 25, 1)
