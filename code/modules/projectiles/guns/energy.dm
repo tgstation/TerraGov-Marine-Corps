@@ -131,7 +131,7 @@
 		to_chat(user, "[icon2html(src, user)] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
 		overcharge = FALSE
 
-	user?.hud_used.update_ammo_hud(user, src, get_ammo_list(), get_display_ammo_count())
+	user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 
 	return TRUE
 
@@ -324,7 +324,7 @@
 	base_gun_icon = initial(choice.icon_state)
 	update_icon()
 	to_chat(user, initial(choice.message_to_user))
-	user?.hud_used.update_ammo_hud(user, src, get_ammo_list(), get_display_ammo_count())
+	user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 
 	if(!in_chamber || !length(chamber_items))
 		return

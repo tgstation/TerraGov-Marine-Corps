@@ -422,7 +422,7 @@
 		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_ITEM_UNZOOM, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE, COMSIG_KB_GUN_SAFETY, COMSIG_KB_UNIQUEACTION, COMSIG_PARENT_QDELETING))
 		gun_user.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
 		SEND_SIGNAL(gun_user, COMSIG_GUN_USER_UNSET)
-		gun_user.hud_used.remove_ammo_hud(gun_user, src)
+		gun_user.hud_used.remove_ammo_hud(src)
 		gun_user = null
 	if(!user)
 		return
@@ -431,7 +431,7 @@
 	gun_user = user
 	SEND_SIGNAL(gun_user, COMSIG_GUN_USER_SET, src)
 	if(flags_gun_features & GUN_AMMO_COUNTER)
-		gun_user.hud_used.add_ammo_hud(gun_user, src, get_ammo_list(), get_display_ammo_count())
+		gun_user.hud_used.add_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 	if(master_gun)
 		return
 	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
@@ -783,7 +783,7 @@
 			playsound(src, empty_sound, 25, 1)
 			unload(after_fire = TRUE)
 	update_ammo_count()
-	gun_user?.hud_used.update_ammo_hud(gun_user, src, get_ammo_list(), get_display_ammo_count())
+	gun_user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 	update_icon()
 	if(dual_wield && (gun_firemode == GUN_FIREMODE_SEMIAUTO || gun_firemode == GUN_FIREMODE_BURSTFIRE))
 		var/obj/item/weapon/gun/inactive_gun = gun_user.get_inactive_held_item()
@@ -1446,7 +1446,7 @@
 				new_rounds++
 		rounds = new_rounds
 		max_rounds = max_chamber_items + 1
-		gun_user?.hud_used.update_ammo_hud(gun_user, src, get_ammo_list(), get_display_ammo_count())
+		gun_user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 		return
 	var/total_rounds
 	var/total_max_rounds
@@ -1457,7 +1457,7 @@
 	rounds = total_rounds + (in_chamber ? rounds_per_shot : 0)
 	max_rounds = total_max_rounds
 	update_icon()
-	gun_user?.hud_used.update_ammo_hud(gun_user, src, get_ammo_list(), get_display_ammo_count())
+	gun_user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 
 ///Disconnects from a worn magazine.
 /obj/item/weapon/gun/proc/drop_connected_mag(datum/source, mob/user)
