@@ -108,7 +108,7 @@
 	current_rounds = 50
 	max_rounds = 50
 
-/obj/item/ammo_magazine/packet/ap
+/obj/item/ammo_magazine/packet/p9mmap
 	name = "packet of 9mm AP"
 	desc = "A packet containing 70 rounds of 9mm armor-piercing."
 	icon_state = "box_9mmap"
