@@ -239,8 +239,6 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 				newletter = "[newletter]-[newletter]-[newletter]-[newletter]"
 			else if(prob(20))
 				newletter = "[newletter]-[newletter]-[newletter]"
-			else if (prob(5))
-				newletter = ""
 			else
 				newletter = "[newletter]-[newletter]"
 		. += newletter
