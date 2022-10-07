@@ -7,7 +7,7 @@
  * note that weapon vars are not the same as guns
  * Notably:
  * No autoburst var, uses basic var instead
- * only one firemode
+ * only one firemode per gun
  * equip_cooldown gets overriden unless propjectile is thrown
  */
 
@@ -217,7 +217,7 @@
 	obj_integrity = 400
 	energy_drain = 10
 	variance = 0
-	projectile_delay = 2
+	projectile_delay = 0.3 SECONDS
 	slowdown = 0.4
 	harmful = TRUE
 	fire_mode = GUN_FIREMODE_AUTOMATIC
@@ -259,7 +259,7 @@
 	obj_integrity = 400
 	energy_drain = 5
 	variance = 0
-	projectile_delay = 2
+	projectile_delay = 0.2 SECONDS
 	slowdown = 0.2
 	harmful = TRUE
 	fire_mode = GUN_FIREMODE_AUTOMATIC
@@ -269,6 +269,7 @@
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	desc = "Nothing says \"Go to hell\" like a tank cannon mounted on a war robot. Packs a big punch despite needing a reload after each shot."
 	icon_state = "heavycannon"
+	fire_sound = 'sound/mecha/weapons/mech_heavy_cannon.ogg'
 	flash_offsets = list(
 		MECHA_R_ARM = list("N" = list(36,48), "S" = list(-1,1), "E" = list(72,32), "W" = list(-42,48)),
 		MECHA_L_ARM = list("N" = list(-4,48), "S" = list(33,1), "E" = list(72,48), "W" = list(-42,32)),
@@ -280,7 +281,7 @@
 	projectiles_cache = 10
 	projectiles_cache_max = 10
 	variance = 0
-	projectile_delay = 2
+	projectile_delay = 1 SECONDS
 	slowdown = 1.2
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_HEAVYCANNON
@@ -291,8 +292,8 @@
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	desc = "Mobility isn't needed when you can just hide behind a hail of bullets! Requires windup before firing."
 	icon_state = "minigun"
-	fire_sound = 'sound/mecha/weapons/mech_minigun_loop.ogg'
-	windup_sound = 'sound/mecha/weapons/mech_minigun_start.ogg'
+	fire_sound = 'sound/mecha/weapons/mech_minigun.ogg'
+	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
 	flash_offsets = list(
 		MECHA_R_ARM = list("N" = list(35,60), "S" = list(-2,-11), "E" = list(64,0), "W" = list(-34,20)),
 		MECHA_L_ARM = list("N" = list(-2,60), "S" = list(32,-11), "E" = list(64,20), "W" = list(-34,0)),
@@ -304,7 +305,7 @@
 	projectiles_cache = 600
 	projectiles_cache_max = 600
 	variance = 35
-	projectile_delay = 2
+	projectile_delay = 1.5
 	slowdown = 0.7
 	windup_delay = 0.5 SECONDS
 	harmful = TRUE
@@ -316,6 +317,7 @@
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	desc = "A anti-tank rifle only capable of being wielded by mechs. Originally designed for fighting small armored vehicles, but works just as well against similarly sized creatures. Has IFF."
 	icon_state = "sniper"
+	fire_sound = 'sound/mecha/weapons/mech_sniper.ogg'
 	flash_offsets = list(
 		MECHA_R_ARM = list("N" = list(36,30), "S" = list(-2,-14), "E" = list(80,0), "W" = list(-50,22)),
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,-14), "E" = list(80,22), "W" = list(-50,0)),
@@ -327,7 +329,7 @@
 	projectiles_cache = 60
 	projectiles_cache_max = 60
 	variance = -15
-	projectile_delay = 2
+	projectile_delay = 1 SECONDS
 	slowdown = 0.6
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_SNIPER
@@ -346,7 +348,7 @@
 	projectiles_cache = 20
 	projectiles_cache_max = 20
 	missile_speed = 1.5
-	equip_cooldown = 60
+	equip_cooldown = 2 SECONDS
 	slowdown = 0.4
 	ammo_type = MECHA_AMMO_GRENADE
 	fire_mode = GUN_FIREMODE_SEMIAUTO
@@ -387,6 +389,7 @@
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	desc = "A mech missile pod. Does not hold a lot of spare ammo and requires frequent external refills. But hey, exploding missiles all the way!"
 	icon_state = "rpg"
+	fire_sound = 'sound/mecha/weapons/mech_rpg.ogg'
 	flash_offsets = list(
 		MECHA_R_ARM = list("N" = list(36,48), "S" = list(-1,1), "E" = list(56,20), "W" = list(-26,36)),
 		MECHA_L_ARM = list("N" = list(-4,48), "S" = list(33,1), "E" = list(56,36), "W" = list(-26,20)),
@@ -398,7 +401,7 @@
 	projectiles_cache = 1
 	projectiles_cache_max = 1
 	variance = 0
-	projectile_delay = 2
+	projectile_delay = 2 SECONDS
 	slowdown = 0.7
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_RPG
