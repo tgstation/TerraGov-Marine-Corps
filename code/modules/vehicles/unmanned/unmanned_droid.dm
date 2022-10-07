@@ -50,6 +50,8 @@
 	if(!remote_user) //No remote user, no need to do this.
 		return ..()
 	var/mob/living/living_user = remote_user.resolve()
+	if(!living_user)
+		return
 	living_user.clear_fullscreen("machine", 5)
 	antenna.remove_action(living_user)
 	UnregisterSignal(living_user, COMSIG_UNMANNED_COORDINATES)
