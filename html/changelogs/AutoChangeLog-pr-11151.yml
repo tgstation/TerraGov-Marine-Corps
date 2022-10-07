@@ -1,0 +1,5 @@
+author: "novaepee"
+delete-after: True
+changes: 
+  - bugfix: "Make Egg action icon"
+  - imageadd: "Update Resin Jelly, Make Egg, and Queen Crush Action Icons"
