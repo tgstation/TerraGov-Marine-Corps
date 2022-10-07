@@ -364,7 +364,13 @@
 		if(76 to INFINITY)
 			to_chat(parent, span_xenodanger("Your core is under attack!"))
 
-/obj/alien/hivemindcore/proc/hivemind_proxy_alert(datum/source, atom/movable/hostile, direction)
+/*
+* Proc checks if we should alert the hivemind, and if it can, it does so.
+* datum/source - the atom (in this case it should be a turf) sending the crossed signal
+* atom/movable/hostile - the atom that triggered the crossed signal, in this case we're looking for a mob
+*/
+
+/obj/alien/hivemindcore/proc/hivemind_proxy_alert(datum/source, atom/movable/hostile)
 	SIGNAL_HANDLER
 	if(!COOLDOWN_CHECK(src, hivemind_proxy_alert_cooldown)) //Proxy alert triggered too recently; abort
 		return
