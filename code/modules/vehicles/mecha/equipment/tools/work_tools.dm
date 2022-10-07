@@ -134,7 +134,7 @@
 	energy_drain = 0
 	equipment_slot = MECHA_UTILITY
 	range = MECHA_MELEE|MECHA_RANGED
-	mech_flags = EXOSUIT_MODULE_WORKING
+	mech_flags = EXOSUIT_MODULE_WORKING|EXOSUIT_MODULE_GREYSCALE
 	///Minimum amount of reagent needed to activate.
 	var/required_amount = 80
 
