@@ -86,6 +86,7 @@
 	if(!CHECK_BITFIELD(machine_stat, KNOCKED_DOWN))
 		return
 	icon_state += "_f"
+	update_minimap_icon()
 
 /obj/machinery/deployable/mounted/sentry/Destroy()
 	QDEL_NULL(radio)
@@ -281,7 +282,6 @@
 	update_icon()
 	START_PROCESSING(SSobj, src)
 	RegisterSignal(gun, COMSIG_MOB_GUN_FIRED, .proc/check_next_shot)
-	update_minimap_icon()
 
 ///Bonks the sentry onto its side. This currently is used here, and in /living/carbon/xeno/warrior/xeno_abilities in punch
 /obj/machinery/deployable/mounted/sentry/proc/knock_down()
