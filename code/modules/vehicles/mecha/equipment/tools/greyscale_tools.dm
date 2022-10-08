@@ -1,8 +1,8 @@
 /obj/item/mecha_parts/mecha_equipment/armor/melee
 	name = "melee armor booster"
 	desc = "Increases armor against melee attacks by 15%."
-	icon_state = "mecha_abooster_ccw"
-	iconstate_name = "melee"
+	icon_state = "armor_melee"
+	iconstate_name = "armor_melee"
 	protect_name = "Melee Armor"
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	slowdown = 0.5
@@ -11,8 +11,8 @@
 /obj/item/mecha_parts/mecha_equipment/armor/acid
 	name = "caustic armor booster"
 	desc = "Increases armor against acid attacks by 15%."
-	icon_state = "mecha_abooster_ccw"
-	iconstate_name = "melee"
+	icon_state = "armor_acid"
+	iconstate_name = "armor_acid"
 	protect_name = "Caustic Armor"
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	slowdown = 0.4
@@ -21,8 +21,8 @@
 /obj/item/mecha_parts/mecha_equipment/armor/explosive
 	name = "explosive armor booster"
 	desc = "Increases armor against explosions by 50%."
-	icon_state = "mecha_abooster_ccw"
-	iconstate_name = "melee"
+	icon_state = "armor_explosive"
+	iconstate_name = "armor_explosive"
 	protect_name = "Explosive Armor"
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	slowdown = 0.3
