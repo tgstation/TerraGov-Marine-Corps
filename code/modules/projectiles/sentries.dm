@@ -66,7 +66,6 @@
 
 	GLOB.marine_turrets += src
 	set_on(TRUE)
-	update_minimap_icon()
 
 ///Change minimap icon if its firing or not firing
 /obj/machinery/deployable/mounted/sentry/proc/update_minimap_icon()
@@ -282,6 +281,7 @@
 	update_icon()
 	START_PROCESSING(SSobj, src)
 	RegisterSignal(gun, COMSIG_MOB_GUN_FIRED, .proc/check_next_shot)
+	update_minimap_icon()
 
 ///Bonks the sentry onto its side. This currently is used here, and in /living/carbon/xeno/warrior/xeno_abilities in punch
 /obj/machinery/deployable/mounted/sentry/proc/knock_down()
