@@ -45,7 +45,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/energy_optimizer
 	name = "energy optimizer"
-	desc = "A nanotrasen brand computer that uses predictive algorithms to reduce the power consumption of all steps by 75%."
+	desc = "A Nanotrasen-brand computer that uses predictive algorithms to reduce the power consumption of all steps by 75%."
 	icon_state = "optimizer"
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	equipment_slot = MECHA_POWER
