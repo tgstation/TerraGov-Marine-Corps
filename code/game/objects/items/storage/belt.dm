@@ -536,6 +536,47 @@
 	update_icon()
 
 
+/obj/item/storage/belt/crossbow_bolt
+	name = "Crossbow bolt belt"
+	desc = "A belt designed to hold crossbow bolts."
+	icon_state = "bolt_belt"
+	item_state = "bolt_belt"
+	w_class = WEIGHT_CLASS_BULKY
+	storage_slots = 12
+	max_w_class = 2
+	max_storage_space = 14
+	can_hold = list(/obj/item/ammo_magazine/handful)
+
+/obj/item/storage/belt/crossbow_bolt/attackby(obj/item/I, mob/user, params)
+
+	if(istype(I, /obj/item/ammo_magazine))
+		var/obj/item/ammo_magazine/M = I
+		if(CHECK_BITFIELD(M.flags_magazine, MAGAZINE_HANDFUL))
+			return ..()
+		if(M.flags_magazine & MAGAZINE_REFILLABLE)
+			if(!M.current_rounds)
+				to_chat(user, span_warning("[M] is empty."))
+				return
+
+			if(length(contents) >= storage_slots)
+				to_chat(user, span_warning("[src] is full."))
+				return
+
+
+			to_chat(user, span_notice("You start refilling [src] with [M]."))
+			if(!do_after(user, 1.5 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+				return
+
+			for(var/x in 1 to (storage_slots - length(contents)))
+				var/cont = handle_item_insertion(M.create_handful(), 1, user)
+				if(!cont)
+					break
+
+			playsound(user.loc, "rustle", 15, TRUE, 6)
+			to_chat(user, span_notice("You refill [src] with [M]."))
+			return TRUE
+
+	return ..()
 /obj/item/storage/belt/knifepouch
 	name="\improper M276 pattern knife rig"
 	desc="The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is specially designed with four holsters to store throwing knives. Not commonly issued, but kept in service."

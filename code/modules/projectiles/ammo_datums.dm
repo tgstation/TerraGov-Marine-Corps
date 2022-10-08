@@ -1539,6 +1539,31 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/smoke_burst/do_at_max_range(turf/T, obj/projectile/P)
 	drop_nade(T.density ? P.loc : T)
 
+/datum/ammo/bullet/arrow
+	name = "armor piercing arrow"
+	handful_icon_state = "sniper arrow"
+	hud_state = "sniper_crude"
+	hud_state_empty = "sniper_empty"
+	flags_ammo_behavior = AMMO_BALLISTIC
+	damage_falloff = 0
+	shell_speed = 3
+	accurate_range = 30
+	max_range = 30
+	damage = 100
+	penetration = 75
+
+/datum/ammo/bullet/arrow/sticky
+	name = "explosive arrow"
+	handful_icon_state = "sticky arrow"
+	hud_state = "sniper_fire"
+	hud_state_empty = "sniper_empty"
+	flags_ammo_behavior = AMMO_BALLISTIC
+	damage_falloff = 0
+	shell_speed = 3
+	accurate_range = 30
+	max_range = 30
+	damage = 30
+	penetration = 35
 /*
 //================================================
 					Rocket Ammo
@@ -2979,16 +3004,3 @@ datum/ammo/bullet/revolver/tp44
 	name = "smoke grenade shell"
 	nade_type = /obj/item/explosive/grenade/smokebomb
 	icon_state = "smoke_shell"
-
-/datum/ammo/bullet/sniper/arrow
-	name = "armor piercing arrow"
-	hud_state = "sniper_crude"
-	damage = 100
-	penetration = 75
-
-/datum/ammo/bullet/sniper/arrow/explosive
-	name = "explosive arrow"
-	hud_state = "sniper_crude"
-	damage = 30
-	penetration = 35
-

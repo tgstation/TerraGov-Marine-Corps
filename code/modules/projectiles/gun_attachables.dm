@@ -849,6 +849,16 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "t37"
 
 
+/obj/item/attachable/scope/unremovable/crossbow
+	name = "Crossbow rail scope"
+	desc = "A rail mounted thermal scope specialized for the BO Crossbow. Allows zoom by activating the attachment."
+	icon_state = "sniperscope_invisible"
+	has_nightvision = TRUE
+	zoom_allow_movement = TRUE
+	zoom_tile_offset = 10
+	zoom_viewsize = 3
+	zoom_slowdown = 1
+
 //////////// Stock attachments ////////////////////////////
 
 

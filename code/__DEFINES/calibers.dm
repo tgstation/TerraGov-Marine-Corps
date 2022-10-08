@@ -73,6 +73,7 @@
 #define CALIBER_86 "86mm" //MBT Main Cannon
 #define CALIBER_PEPPERBALL "SAN Ball " //Pepperball gun
 #define CALIBER_10G_RAIL "10 gauge rail"
+#define CALIBER_ARROW
 
 //Sentries/ HMGs
 #define CALIBER_12X40 "12x40mm Gauss" //Gauss Sentries

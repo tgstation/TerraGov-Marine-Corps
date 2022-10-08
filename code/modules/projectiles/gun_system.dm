@@ -103,6 +103,8 @@
 	var/reload_sound = null
 	///Sound for reloading by handfuls
 	var/hand_reload_sound
+	///Load animation
+	var/load_animation
 
 	///Stored sum of magazine rounds / chamber contents. This is used for anything needing ammo. It is updated on reload/unload/fire
 	var/rounds
@@ -1162,6 +1164,8 @@
 		get_ammo()
 		if(user)
 			playsound(src, reload_sound, 25, 1)
+		if(load_animation) //Uses a load animation, if it has any.
+			flick("[load_animation]", src)
 		if(!flags_magazine_features || (flags_magazine_features && !CHECK_BITFIELD(flags_magazine_features, MAGAZINE_WORN)))
 			new_mag.forceMove(src)
 			user?.temporarilyRemoveItemFromInventory(new_mag)

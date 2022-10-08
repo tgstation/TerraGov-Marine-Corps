@@ -813,3 +813,40 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	recoil = 0
 	scatter = 0
 	movement_acc_penalty_mult = 6
+
+//-------------------------------------------------------
+//BO Crossbow
+
+/obj/item/weapon/gun/rifle/crossbow
+	name = "BO-Crossbow"
+	desc = "A modernised Black Ops crossbow that can fire specialised bolts. Comes with a thermal scope."
+	icon_state = "CB"
+	item_state = "CB"
+	load_animation = "CB_loading"
+	fire_sound = 'sound/weapons/guns/fire/mosin.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
+	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
+	caliber = "CALIBER_ARROW" //codex
+	max_shells = 1 //codex
+	gun_skill_category = GUN_SKILL_RIFLES
+	attachable_allowed = list(
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/scope/unremovable/crossbow,
+	)
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
+	reciever_flags = AMMO_RECIEVER_HANDFULS
+	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 20, "stock_y" = 14)
+	starting_attachment_types = list(
+		/obj/item/attachable/scope/unremovable/crossbow
+	)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_speed_modifier = 1
+	fire_delay = 1
+	accuracy_mult = 1.4
+	scatter = -10
+	recoil = 0
+	aim_slowdown = 1
+	wield_delay = 1 SECONDS
+
+/datum/ammo/bullet/arrow/sticky/on_hit_mob(mob/M,obj/projectile/P)
+	apply_status_effect(/datum/status_effect/sticky_arrow, 5 SECONDS)
