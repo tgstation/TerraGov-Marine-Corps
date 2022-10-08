@@ -367,6 +367,9 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	agile_charge = (X.upgrade == XENO_UPGRADE_FOUR)
 
+/datum/action/xeno_action/ready_charge/queen_charge
+	action_icon_state = "queen_ready_charge"
+
 // ***************************************
 // *********** Pre-Crush
 // ***************************************

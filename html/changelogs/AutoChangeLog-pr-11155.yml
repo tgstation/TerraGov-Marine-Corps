@@ -1,0 +1,4 @@
+author: "Autisem"
+delete-after: True
+changes: 
+  - rscadd: "9mm AP ammo packets to refil mod 4 magazines"
