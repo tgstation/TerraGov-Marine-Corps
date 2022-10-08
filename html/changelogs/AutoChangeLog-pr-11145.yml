@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes: 
+  - bugfix: "fixed a whole bunch of slight mapping issues on POS. Read PR #11145 for more details."
