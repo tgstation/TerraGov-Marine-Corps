@@ -65,7 +65,7 @@
 		camera.c_tag = "[name] ([rand(0, 1000)])"
 
 	GLOB.marine_turrets += src
-	SSminimaps.add_marker(src, z, MINIMAP_FLAG_MARINE, "sentry_passive")
+	SSminimaps.add_marker(src, 1, MINIMAP_FLAG_MARINE, "sentry_passive")
 	set_on(TRUE)
 
 ///Change minimap icon if its firing or not firing
