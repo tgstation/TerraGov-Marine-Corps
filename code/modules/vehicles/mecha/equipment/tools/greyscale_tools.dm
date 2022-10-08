@@ -31,7 +31,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/generator/greyscale
 	name = "phoron engine"
-	desc = "An advanced nanotrasen phoron engine core prototype designed for TGMC advanced mech exosuits. Uses solid phoron as fuel, click engine to refuel. The increased power generation comes at a cost to speed due to the weight."
+	desc = "An advanced Nanotrasen phoron engine core prototype designed for TGMC advanced mech exosuits. Uses solid phoron as fuel, click engine to refuel. The increased power generation comes at a cost to speed due to the weight."
 	icon_state = "phoron_engine"
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	rechargerate = 100
