@@ -47,6 +47,8 @@
 	crest_defense_slowdown = 0.8
 	fortify_armor = 50
 
+	sunder_max = 80
+
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,
@@ -62,6 +64,7 @@
 	upgrade_name = "Young"
 
 	upgrade = XENO_UPGRADE_ZERO
+
 
 /datum/xeno_caste/defender/mature
 	upgrade_name = "Mature"
@@ -89,6 +92,8 @@
 	crest_defense_armor = 26
 	crest_defense_slowdown = 0.8
 	fortify_armor = 52
+
+	sunder_max = 70
 
 /datum/xeno_caste/defender/elder
 	upgrade_name = "Elder"
@@ -118,6 +123,8 @@
 	crest_defense_armor = 30
 	crest_defense_slowdown = 0.8
 	fortify_armor = 55
+
+	sunder_max = 60
 
 /datum/xeno_caste/defender/ancient
 	upgrade_name = "Ancient"
@@ -149,6 +156,8 @@
 	crest_defense_slowdown = 0.8
 	fortify_armor = 55
 
+	sunder_max = 50
+
 /datum/xeno_caste/defender/primordial
 	upgrade_name = "Primordial"
 	caste_desc = "Alien with an incredibly tough and armored head crest able to endure even the strongest hits."
@@ -175,6 +184,8 @@
 	crest_defense_armor = 30
 	crest_defense_slowdown = 0.8
 	fortify_armor = 55
+
+	sunder_max = 40
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

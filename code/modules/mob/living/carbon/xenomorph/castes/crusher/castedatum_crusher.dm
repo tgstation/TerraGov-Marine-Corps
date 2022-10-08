@@ -41,6 +41,8 @@
 	stomp_damage = 45
 	crest_toss_distance = 3
 
+	sunder_max = 80
+
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,
@@ -91,6 +93,8 @@
 	stomp_damage = 50
 	crest_toss_distance = 4
 
+	sunder_max = 70
+
 /datum/xeno_caste/crusher/elder
 	upgrade_name = "Elder"
 	caste_desc = "A huge tanky xenomorph. It looks pretty strong."
@@ -120,6 +124,7 @@
 	stomp_damage = 55
 	crest_toss_distance = 5
 
+	sunder_max = 60
 /datum/xeno_caste/crusher/ancient
 	upgrade_name = "Ancient"
 	caste_desc = "It always has the right of way."
@@ -148,6 +153,7 @@
 	stomp_damage = 60
 	crest_toss_distance = 6
 
+	sunder_max = 50
 
 /datum/xeno_caste/crusher/primordial
 	upgrade_name = "Primordial"
@@ -173,6 +179,9 @@
 	// *** Abilities *** //
 	stomp_damage = 60
 	crest_toss_distance = 6
+
+
+	sunder_max = 40
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
