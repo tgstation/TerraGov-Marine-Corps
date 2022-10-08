@@ -102,7 +102,6 @@
 /obj/machinery/deployable/mounted/sentry/deconstruct(disassembled = TRUE)
 	if(!disassembled)
 		explosion(loc, light_impact_range = 3)
-	SSminimaps.remove_marker(src)
 	return ..()
 
 /obj/machinery/deployable/mounted/sentry/on_deconstruction()
