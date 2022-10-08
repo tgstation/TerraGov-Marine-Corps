@@ -5874,6 +5874,9 @@
 	dir = 4
 	},
 /area/mainship/engineering/lower_engine_monitoring)
+"bEk" = (
+/turf/open/floor/wood,
+/area/mainship/living/tankerbunks)
 "bEA" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay/free_access{
 	dir = 2
@@ -8686,7 +8689,7 @@
 /obj/item/camera,
 /obj/item/robot_parts/head,
 /turf/open/floor/wood,
-/area/mainship/hallways/bow_hallway)
+/area/mainship/living/tankerbunks)
 "czn" = (
 /obj/structure/bed/chair/nometal{
 	dir = 8
@@ -8905,7 +8908,7 @@
 "cYc" = (
 /obj/machinery/light/mainship/small,
 /turf/open/floor/mainship/floor,
-/area/mainship/command/bridge)
+/area/mainship/living/tankerbunks)
 "cYh" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/light_bulb/tube,
@@ -9639,7 +9642,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/floor,
-/area/mainship/hallways/bow_hallway)
+/area/mainship/living/tankerbunks)
 "enM" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship,
@@ -10606,6 +10609,9 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/cryo_cells)
 "geQ" = (
+/obj/structure/bed/bunkbed,
+/obj/effect/landmark/start/job/mechpilot,
+/obj/effect/landmark/start/job/mechpilot,
 /turf/open/floor/wood,
 /area/mainship/living/tankerbunks)
 "geX" = (
@@ -11211,7 +11217,7 @@
 	dir = 2
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/command/bridge)
+/area/mainship/living/tankerbunks)
 "hkM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -12076,10 +12082,6 @@
 /obj/item/bedsheet/brown,
 /turf/open/floor/wood,
 /area/mainship/living/bridgebunks)
-"iUK" = (
-/obj/machinery/door/poddoor/mainship/mech,
-/turf/open/floor/mainship/floor,
-/area/mainship/living/tankerbunks)
 "iVL" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -12298,11 +12300,12 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "jkn" = (
-/obj/structure/bed/bunkbed,
-/obj/effect/landmark/start/job/mechpilot,
-/obj/effect/landmark/start/job/mechpilot,
-/turf/open/floor/wood,
-/area/mainship/living/tankerbunks)
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8;
+	on = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/bow_hallway)
 "jkH" = (
 /obj/item/camera_film,
 /obj/item/camera,
@@ -13002,11 +13005,10 @@
 	},
 /area/mainship/living/cryo_cells)
 "kGl" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/tool/crowbar,
-/obj/item/flashlight/lamp,
+/obj/item/robot_parts/robot_suit,
+/obj/item/clothing/under/wedding/bride_white,
 /turf/open/floor/wood,
-/area/mainship/hallways/bow_hallway)
+/area/mainship/living/tankerbunks)
 "kGV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/floor,
@@ -13357,7 +13359,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/bow_hallway)
+/area/mainship/living/tankerbunks)
 "liL" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -14964,8 +14966,9 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/command/self_destruct)
 "nNe" = (
+/obj/machinery/door/poddoor/mainship/mech,
 /turf/open/floor/mainship/floor,
-/area/mainship/command/bridge)
+/area/mainship/living/tankerbunks)
 "nNB" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -15354,13 +15357,6 @@
 	dir = 4
 	},
 /area/mainship/medical/surgery_hallway)
-"ozH" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 8;
-	on = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/bow_hallway)
 "oAu" = (
 /obj/machinery/light/mainship/small{
 	dir = 4
@@ -19215,7 +19211,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/floor,
-/area/mainship/command/bridge)
+/area/mainship/living/tankerbunks)
 "vHF" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
@@ -19483,11 +19479,6 @@
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship,
 /area/mainship/engineering/ce_room)
-"wfO" = (
-/obj/item/robot_parts/robot_suit,
-/obj/item/clothing/under/wedding/bride_white,
-/turf/open/floor/wood,
-/area/mainship/living/tankerbunks)
 "wgD" = (
 /obj/structure/barricade/metal{
 	dir = 8
@@ -19555,7 +19546,7 @@
 "wli" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
 /turf/open/floor/wood,
-/area/mainship/hallways/bow_hallway)
+/area/mainship/living/tankerbunks)
 "wmE" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/mainship/orange{
@@ -20245,8 +20236,11 @@
 /turf/open/floor/mainship/red,
 /area/mainship/shipboard/port_point_defense)
 "xGb" = (
-/turf/closed/wall/mainship,
-/area/mainship/hallways/bow_hallway)
+/obj/structure/table/mainship/nometal,
+/obj/item/tool/crowbar,
+/obj/item/flashlight/lamp,
+/turf/open/floor/wood,
+/area/mainship/living/tankerbunks)
 "xGk" = (
 /obj/machinery/holopad,
 /obj/machinery/door_control/ai/exterior,
@@ -39090,10 +39084,10 @@ uYp
 vfS
 hKi
 fbJ
-uYp
-uYp
-uYp
-uYp
+xUR
+xUR
+xUR
+xUR
 xUR
 xUR
 xUR
@@ -39347,11 +39341,11 @@ lyB
 waN
 gGE
 nNF
-uYp
+xUR
 vGR
-nNe
+vcD
 hjX
-geQ
+bEk
 uyz
 xxs
 uze
@@ -39604,13 +39598,13 @@ lyB
 uMa
 lDQ
 nNF
-uYp
-nNe
+xUR
+vcD
 cYc
-uYp
-jkn
+xUR
 geQ
-wfO
+bEk
+kGl
 xUR
 kQd
 jFp
@@ -39861,11 +39855,11 @@ uYp
 uYp
 gSF
 iQj
-uYp
+xUR
 lhc
 elP
+xUR
 xGb
-kGl
 cyV
 wli
 xUR
@@ -40118,17 +40112,17 @@ hru
 ccE
 aUG
 ykQ
-xGb
-xGb
-xGb
-xGb
-xGb
-xGb
-xGb
+xUR
+xUR
+xUR
+xUR
+xUR
+xUR
+xUR
 xUR
 aEb
-iUK
-iUK
+nNe
+nNe
 aCv
 xUR
 dMh
@@ -40637,7 +40631,7 @@ qbG
 pUu
 biI
 pUu
-ozH
+jkn
 pUu
 pUu
 pUu
