@@ -739,7 +739,7 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/bullet/rifle/mech/lmg
 	damage = 20
 	penetration = 20
-	damage_type = 0.7
+	damage_falloff = 0.7
 
 /*
 //================================================
@@ -1439,14 +1439,14 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/tx54/mech
 	name = "30mm fragmentation grenade"
 	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/mech
-	damage = 35
+	damage = 30
 	penetration = 20
 	projectile_greyscale_colors = "#4f0303"
 
 /datum/ammo/bullet/tx54_spread/mech
-	damage = 35
+	damage = 25
 	penetration = 20
-	sundering = 3
+	sundering = 2
 
 //10-gauge Micro rail shells - aka micronades
 /datum/ammo/bullet/micro_rail
