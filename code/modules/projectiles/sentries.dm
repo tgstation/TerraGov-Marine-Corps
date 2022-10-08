@@ -65,8 +65,8 @@
 		camera.c_tag = "[name] ([rand(0, 1000)])"
 
 	GLOB.marine_turrets += src
-	SSminimaps.add_marker(src, 1, MINIMAP_FLAG_MARINE, "sentry_passive")
 	set_on(TRUE)
+	update_minimap_icon()
 
 ///Change minimap icon if its firing or not firing
 /obj/machinery/deployable/mounted/sentry/proc/update_minimap_icon()
