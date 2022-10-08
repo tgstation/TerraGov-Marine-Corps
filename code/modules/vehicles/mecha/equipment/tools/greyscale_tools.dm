@@ -20,7 +20,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/armor/explosive
 	name = "explosive armor booster"
-	desc = "Increases armor against melee attacks by 50%."
+	desc = "Increases armor against explosions by 50%."
 	icon_state = "mecha_abooster_ccw"
 	iconstate_name = "melee"
 	protect_name = "Explosive Armor"
