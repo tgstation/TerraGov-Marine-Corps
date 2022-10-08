@@ -84,9 +84,9 @@
 /obj/machinery/deployable/mounted/sentry/update_icon_state()
 	. = ..()
 	if(!CHECK_BITFIELD(machine_stat, KNOCKED_DOWN))
+		update_minimap_icon()
 		return
 	icon_state += "_f"
-	update_minimap_icon()
 
 /obj/machinery/deployable/mounted/sentry/Destroy()
 	QDEL_NULL(radio)
