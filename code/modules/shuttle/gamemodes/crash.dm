@@ -48,10 +48,11 @@
 
 /obj/docking_port/mobile/crashmode/on_prearrival()
 	. = ..()
+	var/op_name = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		if(human.faction != FACTION_TERRAGOV)
 			return
-		human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[GLOB.operation_namepool[/datum/operation_namepool].get_random_name()]</u></span><br>" + "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] █:█<br>" + "Black Ops Platoon<br>" + "[human.job.title], ████", /obj/screen/text/screen_text/command_order/intro/blackop)
+		human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name]</u></span><br>" + "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] █:█<br>" + "Black Ops Platoon<br>" + "[human.job.title], ████", /obj/screen/text/screen_text/command_order/intro/blackop)
 
 /obj/docking_port/stationary/crashmode/hangar
 	name = "Hangar Pad One"

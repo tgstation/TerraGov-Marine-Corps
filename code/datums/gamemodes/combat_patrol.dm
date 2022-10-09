@@ -86,11 +86,13 @@
 
 ///plays the intro sequence
 /datum/game_mode/combat_patrol/proc/intro_sequence()
+	var/op_name_tgmc = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
+	var/op_name_som = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		if(human.faction == FACTION_TERRAGOV)
-			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[GLOB.operation_namepool[/datum/operation_namepool].get_random_name()]</u></span><br>" + "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Territorial Defense Force Platoon<br>" + "[human.job.title], [human]<br>", /obj/screen/text/screen_text/command_order/intro/tdf)
+			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name_tgmc]</u></span><br>" + "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Territorial Defense Force Platoon<br>" + "[human.job.title], [human]<br>", /obj/screen/text/screen_text/command_order/intro/tdf)
 		else
-			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[GLOB.operation_namepool[/datum/operation_namepool].get_random_name()]</u></span><br>" + "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Shokk Infantry Platoon<br>" + "[human.job.title], [human]<br>", /obj/screen/text/screen_text/command_order/intro/shokk)
+			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name_som]</u></span><br>" + "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Shokk Infantry Platoon<br>" + "[human.job.title], [human]<br>", /obj/screen/text/screen_text/command_order/intro/shokk)
 
 ///round timer
 /datum/game_mode/combat_patrol/proc/set_game_timer()
