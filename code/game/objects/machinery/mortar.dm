@@ -3,6 +3,8 @@
 
 #define TALLY_MORTAR  1
 #define TALLY_HOWITZER 2
+#define MORTAR_COOLOFF 1 SECONDS
+#define HOWITZER_COOLOFF 2 SECONDS
 
 /obj/machinery/deployable/mortar
 
@@ -22,9 +24,7 @@
 	var/offset_x = 0
 	var/offset_y = 0
 	/// Number of turfs to offset from target by 1
-	var/offset_per_turfs = 10
-	/// Constant, assuming perfect parabolic trajectory. ONLY THE DELAY BEFORE INCOMING WARNING WHICH ADDS 45 TICKS
-	var/travel_time = 45
+	var/offset_per_turfs = 1
 	var/busy = 0
 	/// Used for deconstruction and aiming sanity
 	var/firing = 0
@@ -45,7 +45,7 @@
 	use_power = NO_POWER_USE
 
 	///Used for round stats
-	var/tally_type = TALLY_MORTAR 
+	var/tally_type = TALLY_MORTAR
 
 	///Used for remote targeting by AI
 	var/obj/item/ai_target_beacon/ai_targeter
@@ -62,9 +62,6 @@
 
 	if(busy)
 		to_chat(user, span_warning("Someone else is currently using [src]."))
-		return
-	if(firing)
-		to_chat(user, span_warning("[src]'s barrel is still steaming hot. Wait a few seconds and stop firing it."))
 		return
 
 	ui_interact(user)
@@ -166,6 +163,10 @@
 /obj/machinery/deployable/mortar/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
+	if(firing)
+		user.balloon_alert(user, "[src]'s barrel is still steaming hot. Wait a few seconds and stop firing it.")
+		return
+
 	if(istype(I, /obj/item/mortal_shell))
 		var/obj/item/mortal_shell/mortar_shell = I
 
@@ -195,6 +196,7 @@
 			return
 
 		var/turf/T = locate(coords["targ_x"] + coords["dial_x"] + offset_x, coords["targ_y"]  + coords["dial_x"] + offset_y, z)
+		dir = get_dir(src, T)
 		if(!isturf(T))
 			to_chat(user, span_warning("You cannot fire [src] to this target."))
 			return
@@ -225,25 +227,32 @@
 
 		if(tally_type == TALLY_MORTAR)
 			GLOB.round_statistics.howitzer_shells_fired++
-			SSblackbox.record_feedback("tally", "round_statistics", 1, "howitzer_shells_fired")		
+			SSblackbox.record_feedback("tally", "round_statistics", 1, "howitzer_shells_fired")
 		else if(tally_type == TALLY_HOWITZER)
 			GLOB.round_statistics.mortar_shells_fired++
-			SSblackbox.record_feedback("tally", "round_statistics", 1, "mortar_shells_fired")		
+			SSblackbox.record_feedback("tally", "round_statistics", 1, "mortar_shells_fired")
 
 		var/turf/G = get_turf(src)
 		G.ceiling_debris_check(2)
 
 		for(var/mob/M in range(7))
 			shake_camera(M, 3, 1)
-		log_game("[key_name(user)] has fired the [src] at [AREACOORD(T)], impact in [travel_time+45] ticks")
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, T, fall_sound, 50, 1), travel_time)
-		addtimer(CALLBACK(src, .proc/detonate_shell, T, mortar_shell), travel_time + 45)//This should always be 45 ticks!
+		log_game("[key_name(user)] has fired the [src] at [AREACOORD(T)]")
+		var/obj/projectile/shell = new /obj/projectile(loc)
+		var/datum/ammo/ammo = GLOB.ammo_list[mortar_shell.ammo_type]
+		shell.generate_bullet(ammo)
+		shell.fire_at(T, src, src, ammo.max_range, ammo.shell_speed, suppress_light = TRUE)
+		user.client.perspective = EYE_PERSPECTIVE
+		user.client.eye = shell
+		ADD_TRAIT(user, TRAIT_SEE_IN_DARK, UNMANNED_VEHICLE)
+		addtimer(CALLBACK(src, .proc/resetview, user, shell), 30 SECONDS)
+		addtimer(CALLBACK(src, .proc/cool_off), MORTAR_COOLOFF)
 
 	if(istype(I, /obj/item/ai_target_beacon))
 		if(!GLOB.ai_list.len)
 			to_chat(user, span_notice("There is no AI to associate with."))
 			return
-		
+
 		var/mob/living/silicon/ai/AI = tgui_input_list(usr, "Which AI would you like to associate this gun with?", null, GLOB.ai_list)
 		if(!AI)
 			return
@@ -270,11 +279,13 @@
 	say("Remote targeting set by [user]. COORDINATES: X:[coords["targ_x"]] Y:[coords["targ_y"]] OFFSET: X:[coords["dial_x"]] Y:[coords["dial_y"]]")
 	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 
-/obj/machinery/deployable/mortar/proc/detonate_shell(turf/target, obj/item/mortal_shell/mortar_shell)
-	target.ceiling_debris_check(2)
-	mortar_shell.detonate(target)
-	qdel(mortar_shell)
+/obj/machinery/deployable/mortar/proc/cool_off()
 	firing = FALSE
+
+/obj/machinery/deployable/mortar/proc/resetview(mob/user, shell)
+	user.client.perspective = MOB_PERSPECTIVE
+	user.client.eye = user
+	REMOVE_TRAIT(user, TRAIT_SEE_IN_DARK, UNMANNED_VEHICLE)
 
 ///Prompt for the AI to unlink itself.
 /obj/machinery/deployable/mortar/attack_ai(mob/living/silicon/ai/user)
@@ -286,7 +297,6 @@
 	say("Linked AI spotter has relinquished targeting privileges. Ejecting targeting device.")
 	ai_targeter.forceMove(src.loc)
 	ai_targeter = null
-	
 
 /obj/machinery/deployable/mortar/attack_hand_alternate(mob/living/user)
 	if(!Adjacent(user) || user.lying_angle || user.incapacitated() || !ishuman(user))
@@ -294,10 +304,6 @@
 
 	if(busy)
 		to_chat(user, span_warning("Someone else is currently using [src]."))
-		return
-
-	if(firing)
-		to_chat(user, span_warning("[src]'s barrel is still steaming hot. Wait a few seconds and stop firing it."))
 		return
 
 	return ..()
@@ -346,7 +352,6 @@
 /obj/machinery/deployable/mortar/howitzer
 	anchored = FALSE // You can move this.
 	offset_per_turfs = 25 // Howizters are significantly more accurate.
-	travel_time = 60
 	fire_sound = 'sound/weapons/guns/fire/howitzer_fire.ogg'
 	reload_sound = 'sound/weapons/guns/interact/tat36_reload.ogg'
 	fall_sound = 'sound/weapons/guns/misc/howitzer_whistle.ogg'
@@ -379,47 +384,23 @@
 	icon_state = "mortar_ammo_cas"
 	w_class = WEIGHT_CLASS_SMALL
 	flags_atom = CONDUCT
-
-/obj/item/mortal_shell/proc/detonate(turf/T)
-	forceMove(T)
+	var/ammo_type
 
 /obj/item/mortal_shell/he
 	name = "\improper 80mm high explosive mortar shell"
 	desc = "An 80mm mortar shell, loaded with a high explosive charge."
 	icon_state = "mortar_ammo_he"
-
-/obj/item/mortal_shell/he/detonate(turf/T)
-	explosion(T, 1, 2, 5, 3)
+	ammo_type = /datum/ammo/mortar
 
 /obj/item/mortal_shell/incendiary
 	name = "\improper 80mm incendiary mortar shell"
 	desc = "An 80mm mortar shell, loaded with a napalm charge."
 	icon_state = "mortar_ammo_inc"
-
-/obj/item/mortal_shell/incendiary/detonate(turf/T)
-	explosion(T, 0, 2, 3, 7, throw_range = 0, small_animation = TRUE)
-	flame_radius(4, T)
-	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
-
 /obj/item/mortal_shell/smoke
 	name = "\improper 80mm smoke mortar shell"
 	desc = "An 80mm mortar shell, loaded with smoke dispersal agents. Can be fired at marines more-or-less safely. Way slimmer than your typical 80mm."
 	icon_state = "mortar_ammo_smk"
 	var/datum/effect_system/smoke_spread/tactical/smoke
-
-/obj/item/mortal_shell/smoke/Initialize()
-	. = ..()
-	smoke = new(src)
-
-/obj/item/mortal_shell/smoke/detonate(turf/T)
-
-	explosion(T, 0, 0, 1, 3, throw_range = 0, small_animation = TRUE)
-	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
-	forceMove(T) //AAAAAAAA
-	smoke.set_up(10, T, 11)
-	smoke.start()
-	smoke = null
-	qdel(src)
 
 /obj/item/mortal_shell/plasmaloss
 	name = "\improper 80mm tangle mortar shell"
@@ -427,27 +408,11 @@
 	icon_state = "mortar_ammo_fsh"
 	var/datum/effect_system/smoke_spread/plasmaloss/smoke
 
-/obj/item/mortal_shell/plasmaloss/Initialize()
-	. = ..()
-	smoke = new(src)
-
-/obj/item/mortal_shell/plasmaloss/detonate(turf/T)
-	explosion(T, 0, 0, 1, 3, throw_range = 0)
-	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
-	forceMove(T)
-	smoke.set_up(10, T, 7)
-	smoke.start()
-	smoke = null
-	qdel(src)
 
 /obj/item/mortal_shell/flare
 	name = "\improper 80mm flare mortar shell"
 	desc = "An 80mm mortar shell, loaded with an illumination flare, far slimmer than your typical 80mm shell. Can be fired out of larger cannons."
 	icon_state = "mortar_ammo_flr"
-
-/obj/item/mortal_shell/flare/detonate(turf/T)
-	new /obj/effect/mortar_flare(T)
-	playsound(T, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4)
 
 ///Name_swap of the CAS flare
 /obj/effect/mortar_flare
@@ -458,14 +423,6 @@
 	light_system = HYBRID_LIGHT
 	light_power = 8
 	light_range = 12 //Way brighter than most lights
-
-/obj/effect/mortar_flare/Initialize()
-	. = ..()
-	var/turf/T = get_turf(src)
-	set_light(light_range, light_power)
-	T.visible_message(span_warning("You see a tiny flash, and then a blindingly bright light from a flare as it lights off in the sky!"))
-	playsound(T, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4) // stolen from the mortar i'm not even sorry
-	QDEL_IN(src, rand(70 SECONDS, 90 SECONDS)) // About the same burn time as a flare, considering it requires it's own CAS run.
 
 /obj/item/mortal_shell/howitzer
 	name = "\improper 150mm artillery shell"
@@ -478,37 +435,18 @@
 	name = "\improper 150mm high explosive artillery shell"
 	desc = "An 150mm artillery shell, loaded with a high explosive charge, whatever is hit by this will have, A really, REALLY bad day."
 
-/obj/item/mortal_shell/howitzer/he/detonate(turf/T)
-	explosion(T, 1, 6, 7, 12)
-
 /obj/item/mortal_shell/howitzer/plasmaloss
 	name = "\improper 150mm 'Tanglefoot' artillery shell"
 	desc = "An 150mm artillery shell, loaded with a toxic intoxicating gas, whatever is hit by this will have their abilities sapped slowly. Acommpanied by a small moderate explosion."
 	icon_state = "howitzer_ammo_purp"
 	var/datum/effect_system/smoke_spread/plasmaloss/smoke
 
-/obj/item/mortal_shell/howitzer/plasmaloss/Initialize()
-	. = ..()
-	smoke = new(src)
 
-/obj/item/mortal_shell/howitzer/plasmaloss/detonate(turf/T)
-	explosion(T, 0, 0, 5, 0, throw_range = 0)
-	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
-	forceMove(T)
-	smoke.set_up(10, T, 11)
-	smoke.start()
-	smoke = null
-	qdel(src)
 
 /obj/item/mortal_shell/howitzer/incendiary
 	name = "\improper 150mm incendiary artillery shell"
 	desc = "An 150mm artillery shell, loaded with explosives to punch through light structures then burn out whatever is on the other side. Will ruin their day and skin."
 	icon_state = "howitzer_ammo_incend"
-
-/obj/item/mortal_shell/howitzer/incendiary/detonate(turf/T)
-	explosion(T, 0, 3, 0, 3, throw_range = 0, small_animation = TRUE)
-	flame_radius(5, T)
-	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
 
 /obj/item/mortal_shell/howitzer/white_phos
 	name = "\improper 150mm white phosporous 'spotting' artillery shell"
@@ -519,15 +457,6 @@
 /obj/item/mortal_shell/howitzer/white_phos/Initialize()
 	. = ..()
 	smoke = new(src)
-
-/obj/item/mortal_shell/howitzer/white_phos/detonate(turf/T)
-	explosion(T, 0, 0, 1, 0, throw_range = 0)
-	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
-	smoke.set_up(6, T, 7)
-	smoke.start()
-	flame_radius(4, T)
-	flame_radius(1, T, burn_intensity = 45, burn_duration = 75, burn_damage = 15, fire_stacks = 75)
-	qdel(src)
 
 /obj/structure/closet/crate/mortar_ammo
 	name = "\improper T-50S mortar ammo crate"

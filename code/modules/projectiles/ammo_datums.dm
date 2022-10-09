@@ -1819,6 +1819,25 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/rocket/atgun_shell/he/on_hit_turf(turf/T, obj/projectile/P)
 	drop_nade(T.density ? P.loc : T)
 
+/datum/ammo/mortar
+	name = "80mm"
+	icon_state = "mortar"
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
+	shell_speed = 1
+	damage = 0
+	penetration = 0
+	sundering = 0
+	handful_amount = 1
+	max_range = INFINITY
+	ping = null
+
+/datum/ammo/mortar/drop_nade(turf/T)
+	explosion(T, 1, 2, 5, 3)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SHELL_EXPLODED)
+
+/datum/ammo/mortar/do_at_max_range(turf/T, obj/projectile/P)
+	drop_nade(T)
+
 /*
 //================================================
 					Energy Ammo

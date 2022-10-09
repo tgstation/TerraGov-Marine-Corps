@@ -762,6 +762,9 @@
 #define COMSIG_RELAYED_SPEECH "relayed_speech"
 	#define COMSIG_RELAYED_SPEECH_DEALT (1<<0)
 
+//mortar
+#define COMSIG_GLOB_SHELL_EXPLODED "!shell_exploded"
+
 // human signals for keybindings
 #define COMSIG_KB_QUICKEQUIP "keybinding_quickequip"
 #define COMSIG_KB_QUICKEQUIPALT "keybinding_quickequipalt"
