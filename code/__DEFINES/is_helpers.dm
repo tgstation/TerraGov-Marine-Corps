@@ -103,6 +103,11 @@
 #define isxenohivemind(A) (istype(A, /mob/living/carbon/xenomorph/hivemind))
 #define isxenowraith(A) (istype(A, /mob/living/carbon/xenomorph/wraith))
 #define isxenowidow(A) (istype(A, /mob/living/carbon/xenomorph/widow))
+#define isbeetle(A) (istype(A, /mob/living/carbon/xenomorph/beetle))
+#define ismantis(A) (istype(A, /mob/living/carbon/xenomorph/mantis))
+#define isscorpion(A) (istype(A, /mob/living/carbon/xenomorph/scorpion))
+#define isspiderling(A) (istype(A, /mob/living/carbon/xenomorph/spiderling))
+#define isminion(A) (istype(A, /mob/living/carbon/xenomorph/spiderling)) || isscorpion(A) || ismantis(A) || isbeetle(A)
 
 //Silicon mobs
 #define issilicon(A) (istype(A, /mob/living/silicon))
@@ -275,3 +280,4 @@
 
 // Slot helpers
 #define ishandslot(A) ((A == SLOT_L_HAND) || (A == SLOT_R_HAND))
+
