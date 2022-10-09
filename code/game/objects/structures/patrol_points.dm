@@ -62,9 +62,9 @@
 		message = "Eliminate the TerraGov imperialists in the ao, glory to Mars!"
 
 	if(user.faction == FACTION_TERRAGOV)
-		user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>OVERWATCH</u></span><br>" + message, /obj/screen/text/screen_text/command_order/intro/potrait)
+		user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + message, /obj/screen/text/screen_text/command_order/intro/potrait)
 	else
-		user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>OVERWATCH</u></span><br>" + message, /obj/screen/text/screen_text/command_order/intro/potrait/som_over)
+		user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + message, /obj/screen/text/screen_text/command_order/intro/potrait/som_over)
 	update_icon()
 
 /obj/structure/patrol_point/attack_ghost(mob/dead/observer/user)
