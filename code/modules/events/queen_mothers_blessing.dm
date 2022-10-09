@@ -6,7 +6,7 @@
 	weight = 15
 	earliest_start = 5 MINUTES
 
-	gamemode_blacklist = list("Combat Patrol","Civil War")
+	gamemode_blacklist = list("Combat Patrol","Civil War","Sensor Capture")
 
 /datum/round_event_control/queen_mothers_blessing/can_spawn_event(players_amt, gamemode)
 	if(length(GLOB.alive_xeno_list) <= 0)
@@ -22,7 +22,7 @@
 
 /datum/round_event/queen_mothers_blessing/proc/bless_xeno(mob/living/carbon/xenomorph/X)
 	X.evolution_stored = X.evolution_stored + (X.evolution_stored * 1.75)
-	if(!isxenolarva(X) && (X.tier != XENO_UPGRADE_FOUR)) //larva do not have proper caste datums, trying to force one results in a runtime
+	if(!isxenolarva(X) || (X.tier != XENO_UPGRADE_FOUR)) //larva do not have proper caste datums, trying to force one results in a runtime
 		X.upgrade_xeno(XENO_UPGRADE_THREE)
 	X.adjustBruteLoss(-QM_HEAL_AMOUNT)
 	X.adjustFireLoss(-QM_HEAL_AMOUNT, updating_health = TRUE)
