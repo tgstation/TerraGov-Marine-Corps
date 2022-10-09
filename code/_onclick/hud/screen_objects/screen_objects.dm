@@ -671,6 +671,9 @@
 
 	usr.hud_used.hidden_inventory_update()
 
+
+#define AMMO_HUD_ICON_NORMAL 1
+#define AMMO_HUD_ICON_EMPTY 2
 /**
  * HUD ammo indicator
  *
@@ -717,19 +720,17 @@
 	overlays.Cut()
 
 	if(rounds <= 0)
-		var/hud_state_empty = ammo_type[2]
 		overlays += image('icons/mob/ammoHUD.dmi', src, "o0")
-		var/image/empty_state = image('icons/mob/ammoHUD.dmi', src, "[hud_state_empty]")
+		var/image/empty_state = image('icons/mob/ammoHUD.dmi', src, ammo_type[AMMO_HUD_ICON_EMPTY])
 		overlays += empty_state
 		if(warned)
 			return
 		warned = TRUE
-		flick("[hud_state_empty]_flash", flash_holder)
+		flick("[ammo_type[AMMO_HUD_ICON_EMPTY]]_flash", flash_holder)
 		return
-	var/hud_state = ammo_type[1]
 
 	warned = FALSE
-	overlays += image('icons/mob/ammoHUD.dmi', src, "[hud_state]")
+	overlays += image('icons/mob/ammoHUD.dmi', src, "[ammo_type[AMMO_HUD_ICON_NORMAL]]")
 
 	rounds = num2text(rounds)
 
@@ -748,6 +749,9 @@
 			overlays += image('icons/mob/ammoHUD.dmi', src, "o9")
 			overlays += image('icons/mob/ammoHUD.dmi', src, "t9")
 			overlays += image('icons/mob/ammoHUD.dmi', src, "h9")
+
+#undef AMMO_HUD_ICON_NORMAL
+#undef AMMO_HUD_ICON_EMPTY
 
 /obj/screen/arrow
 	icon = 'icons/Marine/marine-items.dmi'
