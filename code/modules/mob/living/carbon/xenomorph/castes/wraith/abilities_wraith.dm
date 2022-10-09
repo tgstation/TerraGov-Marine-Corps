@@ -297,7 +297,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		if(living_contents in all_contents)
 			continue //if it is still inside then it is not stranded and we dont care
 		living_contents.forceMove(return_turf)
-	contained_living = list()
+	contained_living.Cut()
 
 	banishment_target.resistance_flags = initial(banishment_target.resistance_flags)
 	banishment_target.status_flags = initial(banishment_target.status_flags) //Remove stasis and temp invulerability
