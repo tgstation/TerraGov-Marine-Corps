@@ -24082,6 +24082,7 @@
 /obj/machinery/light/mainship{
 	dir = 1
 	},
+/obj/machinery/loadout_vendor,
 /turf/open/floor/prison,
 /area/mainship/living/pilotbunks)
 "ujW" = (
