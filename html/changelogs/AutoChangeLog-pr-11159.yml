@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - bugfix: "Ammo HUDs will now always blink when you are out of ammo instead of only the bottommost one"
