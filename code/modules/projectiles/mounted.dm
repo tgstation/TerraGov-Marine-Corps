@@ -10,6 +10,8 @@
 	///For animation and rotation of mounted guns
 	var/user_old_x = 0
 	var/user_old_y = 0
+	///Stores user old move resist and apply on unset interaction
+	var/user_old_move_resist
 
 ///generates the icon based on how much ammo it has.
 /obj/machinery/deployable/mounted/update_icon_state(mob/user)
@@ -147,9 +149,11 @@
 	user_old_x = operator.pixel_x
 	user_old_y = operator.pixel_y
 	update_pixels(operator, TRUE)
-	operator.anchored = TRUE
+	user_old_move_resist = operator.move_resist
+	operator.move_resist = MOVE_FORCE_STRONG
 	density = FALSE
 
+///Updates the pixel offset of user so it looks like their manning the gun from behind
 /obj/machinery/deployable/mounted/proc/update_pixels(mob/user, mounting)
 	if(mounting)
 		var/diff_x = 0
@@ -290,7 +294,7 @@
 	update_pixels(user, FALSE)
 	user_old_x = 0
 	user_old_y = 0
-	user.anchored = FALSE
+	user.move_resist = user_old_move_resist
 	density = TRUE
 
 ///makes sure you can see and or use the gun
