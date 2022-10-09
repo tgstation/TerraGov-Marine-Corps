@@ -4172,6 +4172,7 @@
 	},
 /area/ice_colony/surface/hydroponics/lobby)
 "avc" = (
+/obj/effect/landmark/sensor_tower_patrol,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 10
 	},
@@ -27165,6 +27166,10 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hangar/checkpoint)
+"iax" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/tile/white,
+/area/ice_colony/surface/clinic/treatment)
 "iaC" = (
 /turf/closed/ice_rock/corners{
 	dir = 6
@@ -30126,6 +30131,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/north_west)
+"nUM" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/research)
 "nVG" = (
 /obj/machinery/landinglight/ds2/delaytwo{
 	dir = 8
@@ -31629,6 +31638,10 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/ice_rock/corners,
 /area/ice_colony/exterior/surface/cliff)
+"qQb" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/underground/requesition)
 "qQe" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -33633,6 +33646,7 @@
 /area/ice_colony/exterior/underground/caves)
 "uJd" = (
 /obj/effect/decal/cleanable/blood/drip,
+/obj/effect/landmark/sensor_tower_patrol,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/engineering)
 "uJs" = (
@@ -41518,7 +41532,7 @@ myO
 mpQ
 mpQ
 mpQ
-mpQ
+qQb
 qaE
 mpQ
 mpQ
@@ -46156,7 +46170,7 @@ gHr
 qud
 khr
 aTl
-cQF
+nUM
 cQF
 uFO
 aUW
@@ -54604,7 +54618,7 @@ aDS
 aEs
 aqe
 aoz
-gvW
+iax
 aGI
 oxh
 aNI

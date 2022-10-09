@@ -1,0 +1,7 @@
+author: "Lumipharon"
+delete-after: True
+changes: 
+  - rscadd: "Added the V-62 incinerator for the SOM"
+  - rscadd: "Added the V-71 RPG for the SOM"
+  - rscadd: "Added Radiation effects for use by the SOM. War crimes have never been so easy!"
+  - bugfix: "Fixed a couple of minor gun ammo bugs"

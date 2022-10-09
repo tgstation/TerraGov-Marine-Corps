@@ -68,3 +68,15 @@
   - bugfix: Fixes the right hand mob state for the AR-21 and SG-29
   lbnesquik:
   - rscadd: Expanded Prison West LZ2 by 1 tile west
+2022-10-08:
+  novaepee:
+  - bugfix: Make Egg action icon
+  - imageadd: Update Resin Jelly, Make Egg, and Queen Crush Action Icons
+2022-10-09:
+  Autisem:
+  - rscadd: 9mm AP ammo packets to refil mod 4 magazines
+  Lumipharon:
+  - imageadd: added a new lobby artwork
+  lbnesquik:
+  - bugfix: 'fixed a whole bunch of slight mapping issues on POS. Read PR #11145 for
+      more details.'

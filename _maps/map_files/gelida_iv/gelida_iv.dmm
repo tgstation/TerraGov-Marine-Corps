@@ -2216,6 +2216,11 @@
 	dir = 4
 	},
 /area/gelida/indoors/a_block/dorm_north)
+"btf" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/mainship/black/full,
+/area/gelida/indoors/c_block/mining)
 "btm" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -10343,6 +10348,12 @@
 	icon_state = "65"
 	},
 /area/gelida/landing_zone_forecon/UD6_Typhoon)
+"gyH" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/prison/whitepurple/full{
+	dir = 4
+	},
+/area/gelida/indoors/a_block/dorm_north)
 "gyJ" = (
 /obj/structure/bed/stool,
 /obj/item/clothing/mask/facehugger/dead{
@@ -12804,6 +12815,7 @@
 	dir = 1;
 	pixel_x = 16
 	},
+/obj/effect/landmark/sensor_tower_patrol,
 /turf/open/floor/prison/whitegreen{
 	dir = 1
 	},
@@ -23611,6 +23623,10 @@
 /obj/structure/largecrate/random,
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/cargo)
+"pbm" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/prison,
+/area/gelida/indoors/a_block/dorms)
 "pbD" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -27600,6 +27616,13 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/dorms)
+"ruV" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/gelida/indoors/a_block/security)
 "rvq" = (
 /obj/effect/landmark/excavation_site_spawner,
 /obj/effect/landmark/weed_node,
@@ -51717,7 +51740,7 @@ taP
 stq
 yfp
 odg
-ghj
+pbm
 ghj
 ghj
 ghj
@@ -58357,7 +58380,7 @@ haP
 haP
 haP
 jmQ
-kEQ
+ruV
 qWU
 adN
 haP
@@ -61797,7 +61820,7 @@ fKv
 xJv
 fKH
 kxK
-kxK
+btf
 kxK
 fKH
 qmp
@@ -66989,7 +67012,7 @@ vNb
 fDv
 uJV
 ihl
-oZU
+gyH
 bzM
 xUH
 ihl
