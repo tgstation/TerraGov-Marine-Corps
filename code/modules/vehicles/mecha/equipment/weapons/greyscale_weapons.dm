@@ -33,6 +33,7 @@
 	projectile_delay = 0.3 SECONDS
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_PISTOL
+	hud_icons = list("pistol", "pistol_empty")
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/burstpistol
@@ -59,6 +60,7 @@
 	projectile_burst_delay = 0.1 SECONDS
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_BURSTPISTOL
+	hud_icons = list("pistol_light", "pistol_empty")
 	fire_mode = GUN_FIREMODE_AUTOBURST
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/smg
@@ -83,6 +85,7 @@
 	slowdown = 0.15
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_SMG
+	hud_icons = list("smg", "smg_empty")
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/burstrifle
@@ -108,6 +111,7 @@
 	slowdown = 0.25
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_BURSTRIFLE
+	hud_icons = list("hivelo", "hivelo_empty")
 	fire_mode = GUN_FIREMODE_AUTOBURST
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/assault_rifle
@@ -131,6 +135,7 @@
 	slowdown = 0.2
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_RIFLE
+	hud_icons = list("rifle", "rifle_empty")
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/shotgun
@@ -154,6 +159,7 @@
 	slowdown = 0.3
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_SHOTGUN
+	hud_icons = list("shotgun_buckshot", "shotgun_empty")
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/greyscale_lmg
@@ -177,6 +183,7 @@
 	slowdown = 0.3
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_GREY_LMG
+	hud_icons = list("rifle_heavy", "rifle_empty")
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/light_cannon
@@ -200,6 +207,7 @@
 	slowdown = 0.4
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_LIGHTCANNON
+	hud_icons = list("grenade_airburst", "grenade_empty")
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_rifle
@@ -285,6 +293,7 @@
 	slowdown = 1.2
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_HEAVYCANNON
+	hud_icons = list("shell_apcr", "shell_empty")
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/minigun
@@ -310,6 +319,7 @@
 	windup_delay = 0.5 SECONDS
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_MINIGUN
+	hud_icons = list("smartgun", "smartgun_empty")
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/sniper
@@ -333,6 +343,7 @@
 	slowdown = 0.6
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_SNIPER
+	hud_icons = list("sniper_supersonic", "sniper_empty")
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/grenadelauncher
@@ -351,6 +362,7 @@
 	equip_cooldown = 2 SECONDS
 	slowdown = 0.4
 	ammo_type = MECHA_AMMO_GRENADE
+	hud_icons = list("grenade_he", "grenade_empty")
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/grenadelauncher/proj_init(obj/item/explosive/grenade/nade, mob/user)
@@ -382,6 +394,7 @@
 	slowdown = 0.4
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_FLAMER
+	hud_icons = list("flame", "flame_empty")
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/rpg
@@ -405,4 +418,5 @@
 	slowdown = 0.7
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_RPG
+	hud_icons = list("rocket_he", "rocket_empty")
 	fire_mode = GUN_FIREMODE_SEMIAUTO
