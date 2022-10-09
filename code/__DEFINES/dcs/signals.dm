@@ -479,6 +479,7 @@
 #define COMSIG_XENOMORPH_PLASMA_REGEN "xenomorph_plasma_regen"
 #define COMSIG_XENOMORPH_HEALTH_REGEN "xenomorph_health_regen"
 #define COMSIG_XENOMORPH_SUNDER_REGEN "xenomorph_sunder_regen"
+#define COMSIG_XENOMORPH_RESIN_JELLY_APPLIED "xenomorph_resin_jelly_applied"
 
 #define COMSIG_XENOMORPH_REST "xenomorph_rest"
 #define COMSIG_XENOMORPH_UNREST "xenomorph_unrest"
@@ -543,6 +544,8 @@
 	#define COMPONENT_BANISH_TARGETS_EXIST (1<<0)
 
 #define COMSIG_XENO_PSYCHIC_LINK_REMOVED "xeno_psychic_link_removed"
+
+#define COMSIG_XENO_ESSENCE_LINK_REMOVED "xeno_essence_link_removed"
 
 //human signals
 #define COMSIG_CLICK_QUICKEQUIP "click_quickequip"

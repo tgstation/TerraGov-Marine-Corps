@@ -1,3 +1,6 @@
+// ***************************************
+// *********** Resin Jelly
+// ***************************************
 /datum/status_effect/resin_jelly_coating
 	id = "resin jelly"
 	duration = 15 SECONDS
@@ -29,6 +32,204 @@
 	desc = "Your health is being restored."
 	icon_state = "xeno_rejuvenate"
 
+// ***************************************
+// *********** Essence Link
+// ***************************************
+
+#define ESSENCE_LINK_COLOR "#FFFFFF"
+/datum/status_effect/stacking/essence_link
+	id = "xeno_essence_link"
+	stacks = 0
+	stack_decay = -1 //Not meant to decay.
+	max_stacks = 3
+	consumed_on_threshold = FALSE
+
+	/// The owner of the link.
+	var/mob/living/carbon/xenomorph/link_owner
+	/// Whom the owner is linked to.
+	var/mob/living/carbon/xenomorph/link_target
+	/// How far apart the linked xenos can be, in tiles. Going past this deactivates the buff.
+	var/link_range = 6
+	/// Amount of health regen given as a percentage.
+	var/health_regen = 0.01
+	/// The effectiveness of heals when applied to the other linked xeno, as a percentage
+	var/shared_heal = 0.3
+	/// If the target xeno was within range. Used to calculate the range between linked xenos.
+	var/was_within_range = TRUE
+	/// Cooldown for the plasma warning issued if there is not enough plasma to regenerate health.
+	COOLDOWN_DECLARE(plasma_warning)
+
+/datum/status_effect/stacking/essence_link/add_stacks(stacks_added)
+	. = ..()
+	message_admins("Debugging Essence Link buff: stack added. Now [stacks] stacks.")
+
+/datum/status_effect/stacking/essence_link/on_creation(mob/living/new_owner, stacks_to_apply, mob/living/carbon/link_target)
+
+// Sets some vars that will be used later.
+	link_owner = new_owner
+	src.link_target = link_target
+
+	ADD_TRAIT(link_owner, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
+	ADD_TRAIT(link_target, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
+
+	RegisterSignal(link_owner, COMSIG_MOB_DEATH, .proc/handle_death)
+	RegisterSignal(link_target, COMSIG_MOB_DEATH, .proc/handle_death)
+
+	RegisterSignal(link_owner, COMSIG_MOVABLE_MOVED, .proc/handle_dist)
+	RegisterSignal(link_target, COMSIG_MOVABLE_MOVED, .proc/handle_dist)
+
+	RegisterSignal(link_owner, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, .proc/share_jelly)
+	RegisterSignal(link_target, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, .proc/share_jelly)
+
+	RegisterSignal(link_owner, COMSIG_XENOMORPH_BRUTE_DAMAGE, .proc/share_heal)
+	RegisterSignal(link_target, COMSIG_XENOMORPH_BRUTE_DAMAGE, .proc/share_heal)
+
+	link_target.visible_message(span_xenowarning("[link_target] has gained a faint glow!"), \
+		span_xenonotice("[link_owner] has established an Essence Link with you. Stay within [link_range] tiles to maintain it."))
+	link_toggle(TRUE)
+	return ..()
+
+/datum/status_effect/stacking/essence_link/tick()
+	var/amount_healed = (link_target.maxHealth * (stacks * health_regen))
+	var/plasma_cost = (amount_healed * 2)
+	var/plasma_warning_cooldown = 20 SECONDS
+
+	if(!link_target.bruteloss)
+		return
+
+	if(link_owner.plasma_stored < plasma_cost)
+		if(!COOLDOWN_CHECK(src, plasma_warning)) // Plasma warning triggered too recently.
+			return
+		link_owner.balloon_alert(link_owner, "No plasma for link")
+		link_target.balloon_alert(link_target, "No plasma for link")
+		COOLDOWN_START(src, plasma_warning, plasma_warning_cooldown) // Cooldown for the plasma warning.
+		return
+
+	link_target.adjustBruteLoss(-amount_healed)
+	link_owner.use_plasma(plasma_cost)
+	message_admins("Debugging Essence Link tick: [link_owner] has consumed [plasma_cost] plasma. [link_target] has regained [amount_healed] health.")
+
+
+/datum/status_effect/stacking/essence_link/on_remove()
+	. = ..()
+
+	UnregisterSignal(link_owner, list(COMSIG_MOB_DEATH, COMSIG_MOVABLE_MOVED, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, COMSIG_XENOMORPH_BRUTE_DAMAGE))
+	UnregisterSignal(link_target, list(COMSIG_MOB_DEATH, COMSIG_MOVABLE_MOVED, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, COMSIG_XENOMORPH_BRUTE_DAMAGE))
+	REMOVE_TRAIT(link_owner, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
+	REMOVE_TRAIT(link_target, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
+
+	link_owner.remove_filter(id)
+	link_target.remove_filter(id)
+
+	link_owner.balloon_alert(link_owner, "Essence Link cancelled")
+	link_target.balloon_alert(link_target, "Essence Link cancelled")
+
+	SEND_SIGNAL(src, COMSIG_XENO_ESSENCE_LINK_REMOVED)
+
+
+// This will toggle the link on or off, adding/removing the corresponding signals as necessary.
+/datum/status_effect/stacking/essence_link/proc/link_toggle(toggle_on)
+
+	if(toggle_on)
+		RegisterSignal(link_owner, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, .proc/share_jelly)
+		RegisterSignal(link_target, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, .proc/share_jelly)
+		RegisterSignal(link_owner, COMSIG_XENOMORPH_BRUTE_DAMAGE, .proc/share_heal)
+		RegisterSignal(link_target, COMSIG_XENOMORPH_BRUTE_DAMAGE, .proc/share_heal)
+		link_owner.add_filter(id, 2, outline_filter(1, ESSENCE_LINK_COLOR))
+		link_target.add_filter(id, 2, outline_filter(1, ESSENCE_LINK_COLOR))
+		return
+
+	UnregisterSignal(link_owner, list(COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, COMSIG_XENOMORPH_BRUTE_DAMAGE))
+	UnregisterSignal(link_target, list(COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, COMSIG_XENOMORPH_BRUTE_DAMAGE))
+	link_owner.remove_filter(id)
+	link_target.remove_filter(id)
+
+
+// Called whenever either of the linked xenos dies.
+// This will remove the status effect, which in turn calls on_remove().
+/datum/status_effect/stacking/essence_link/proc/handle_death(datum/source)
+	SIGNAL_HANDLER
+	message_admins("Debugging handle_death: [link_owner] was link_owner, who died. They have had their status effect removed.")
+	link_owner.remove_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK)
+
+
+// Called whenever either of the linked xenos moves.
+// This checks whether the linked xenos are still within range after movement.
+// Depending on whether the above is true or not, the link is either activated or disabled.
+/datum/status_effect/stacking/essence_link/proc/handle_dist(datum/source)
+	SIGNAL_HANDLER
+	var/within_range = get_dist(link_owner, link_target) <= link_range
+
+	if(within_range == was_within_range)
+		return
+	was_within_range = within_range
+	link_toggle(was_within_range)
+	link_owner.balloon_alert(link_owner, was_within_range ? ("Link reestablished") : ("Link faltering"))
+	link_target.balloon_alert(link_target, was_within_range ? ("Link reestablished") : ("Link faltering"))
+
+
+// Called whenever either of the linked xenos has Resin Jelly applied to them.
+// This applies the buff to the other xeno.
+/datum/status_effect/stacking/essence_link/proc/share_jelly(datum/source)
+	SIGNAL_HANDLER
+	/// Who gives the buff.
+	var/mob/living/carbon/xenomorph/buff_owner
+	/// Who receives the buff.
+	var/mob/living/carbon/xenomorph/buff_target
+
+	if(source == link_target)
+		buff_owner = link_target
+		buff_target = link_owner
+	else
+		buff_owner = link_owner
+		buff_target = link_target
+
+	buff_owner.balloon_alert(buff_owner, "Buff shared")
+	buff_target.balloon_alert(buff_target, "Buff shared")
+	buff_target.visible_message(span_notice("[buff_target]'s chitin begins to gleam with an unseemly glow..."), \
+		span_xenonotice("Through the essence link, [buff_owner] has shared their resin jelly with you."))
+	INVOKE_ASYNC(buff_target, .proc/emote("roar"))
+	buff_target.apply_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING)
+
+
+// Called whenever either of the linked xenos receives any form of healing.
+// This will apply a portion of that healing to the other xeno.
+/datum/status_effect/stacking/essence_link/proc/share_heal(datum/source, amount, amount_mod)
+	SIGNAL_HANDLER
+	/// Who gives the shared heal.
+	var/mob/living/carbon/xenomorph/heal_owner
+	/// Who receives the shared heal.
+	var/mob/living/carbon/xenomorph/heal_target
+	/// Amount of health to restore.
+	var/heal_amount = (amount * shared_heal)
+	/// Shared heals must pass this threshold in order for that heal to be shared.
+	var/heal_threshold = -50
+
+	message_admins("Debugging share_heal: amount is [amount]. amount_mod is [amount_mod]. heal_amount is [heal_amount].")
+
+	if(source == link_target)
+		heal_owner = link_target
+		heal_target = link_owner
+	else
+		heal_owner = link_owner
+		heal_target = link_target
+	message_admins("Debugging share_heal: [link_target] is link_target. [link_owner] is link_owner. [heal_target] is heal_target. [heal_owner] is heal_owner.")
+
+	if(amount <= heal_threshold)
+		message_admins("Debugging share_heal. [amount] was equal to or lower than [heal_threshold].")
+		return
+	heal_owner.balloon_alert(heal_owner("Heal shared"))
+	heal_target.balloon_alert(heal_target("Heal shared"))
+	//heal_target.visible_message(span_xenowarning("[heal_target]'s wounds are mended by faint energies."), \
+		span_xenonotice("Through the essence link, [heal_owner] has shared [amount] health restoration."))
+	new /obj/effect/temp_visual/telekinesis(get_turf(heal_target))
+	message_admins("Debugging share_heal. Spawned /obj/effect/temp_visual/telekinesis on [heal_target]'s turf.")
+	heal_target.adjustBruteLoss(heal_amount)
+	message_admins("Debugging share_heal. Healed [heal_target] for [heal_amount].")
+
+// ***************************************
+// *********** Rejuvenate
+// ***************************************
 /datum/status_effect/xeno_rejuvenate
 	id = "xeno_rejuvenate"
 	tick_interval = 2 SECONDS
@@ -89,6 +290,9 @@
 	amount = min(amount * redirect_mod, remaining_health); \
 	amount_mod += amount
 
+// ***************************************
+// *********** Psychic Link
+// ***************************************
 /datum/status_effect/xeno_psychic_link
 	id = "xeno_psychic_link"
 	tick_interval = 2 SECONDS
@@ -190,6 +394,9 @@
 #define HIGN_THRESHOLD 0.6
 #define KNOCKDOWN_DURATION 1 SECONDS
 
+// ***************************************
+// *********** Carnage
+// ***************************************
 /obj/screen/alert/status_effect/xeno_carnage
 	name = "Carnage"
 	desc = "Your attacks restore health."
@@ -272,6 +479,9 @@
 #undef HIGN_THRESHOLD
 #undef KNOCKDOWN_DURATION
 
+// ***************************************
+// *********** Feast
+// ***************************************
 /obj/screen/alert/status_effect/xeno_feast
 	name = "Feast"
 	desc = "Your health is being restored at the cost of plasma."
@@ -308,7 +518,9 @@
 	adjustOverheal(X, heal_amount / 2)
 	X.use_plasma(plasma_drain)
 
-///Plasma fruit buff
+// ***************************************
+// *********** Plasma Fruit buff
+// ***************************************
 /datum/status_effect/plasma_surge
 	id = "plasma_surge"
 	alert_type = /obj/screen/alert/status_effect/plasma_surge
@@ -354,7 +566,9 @@
 	desc = "You have accelerated plasma regeneration."
 	icon_state = "drunk" //Close enough
 
-//HEALING INFUSION buff for Hivelord
+// ***************************************
+// *********** Healing Infusion
+// ***************************************
 /datum/status_effect/healing_infusion
 	id = "healing_infusion"
 	alert_type = /obj/screen/alert/status_effect/healing_infusion

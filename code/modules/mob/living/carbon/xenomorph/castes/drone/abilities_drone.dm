@@ -7,7 +7,113 @@
 	plasma_transfer_amount = PLASMA_TRANSFER_AMOUNT * 2
 
 // ***************************************
-// *********** Acidic salve
+// *********** Essence Link
+// ***************************************
+/datum/action/xeno_action/activable/essence_link
+	name = "Essence Link"
+	action_icon_state = "healing_infusion"
+	mechanics_text = "Link to a xenomorph. This changes some of your abilities, and grants them and you both various bonuses."
+	cooldown_timer = 5 SECONDS
+	plasma_cost = 0
+	target_flags = XABB_MOB_TARGET
+	//keybind_signal = COMSIG_XENOABILITY_ESSENCE_LINK
+	//alternate_keybind_signal = COMSIG_XENOABILITY_END_ESSENCE_LINK
+
+	/// Xenomorph the owner is linked to.
+	var/mob/living/carbon/xenomorph/link_target
+	/// Time it takes for the link to form.
+	var/link_delay = 5 SECONDS
+	/// The link's range in tiles. Linked xenos must be within this range for the link to be active.
+	var/link_range = 6
+	/// Levels of attunement, consumed on some abilities.
+	var/attunement_level
+	/// Maximum amount of attunement levels.
+	var/max_attunement_level = 3
+
+/datum/action/xeno_action/activable/essence_link/can_use_ability(atom/target, silent = FALSE, override_flags)
+	var/mob/living/carbon/xenomorph/X = owner
+
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(isturf(target))
+		return FALSE
+
+	if(!X.Adjacent(target))
+		X.balloon_alert(X, "Not adjacent")
+		return FALSE
+
+	if(!isxeno(target) /* && target.hive.hivenumber != X.hive.hivenumber */)
+		X.balloon_alert(X, "Not a sister")
+		return FALSE
+
+	if(!link_target)
+		if(HAS_TRAIT(X, TRAIT_ESSENCE_LINKED))
+			X.balloon_alert(X, "You are already linked")
+			return FALSE
+		if(HAS_TRAIT(target, TRAIT_ESSENCE_LINKED))
+			X.balloon_alert(X, "She is already linked")
+			return FALSE
+		return TRUE
+
+	if(target != link_target)
+		X.balloon_alert(X, "Not our linked sister")
+		return FALSE
+	return TRUE
+
+/datum/action/xeno_action/activable/essence_link/use_ability(atom/target)
+	var/mob/living/carbon/xenomorph/X = owner
+
+	if(!link_target)
+		X.balloon_alert(owner, "Linking...")
+		if(!do_after(X, link_delay, TRUE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_FRIENDLY))
+			X.balloon_alert(X, "Link cancelled")
+			return
+		var/essence_link = X.apply_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK, 1, target)
+		RegisterSignal(essence_link, COMSIG_XENO_ESSENCE_LINK_REMOVED, .proc/end_ability)
+		X.balloon_alert(X, "Link successful")
+		target.balloon_alert(target, "Essence Link established")
+		link_target = target
+		attunement_level++
+		return succeed_activate()
+
+	if(attunement_level >= max_attunement_level)
+		X.balloon_alert(X, "Cannot attune any more")
+		return
+
+	X.balloon_alert(X, "Attuning...")
+	if(!do_after(X, link_delay, TRUE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_FRIENDLY))
+		X.balloon_alert(X, "Attunement cancelled")
+		return
+	target.balloon_alert(X, "Attunement successful")
+	X.balloon_alert(target, "Essence Link reinforced")
+	X.apply_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK, 1, target)
+	attunement_level++
+
+/datum/action/xeno_action/activable/essence_link/alternate_action_activate()
+	var/mob/living/carbon/xenomorph/X = owner
+	message_admins("[X] is X. [owner] is owner.")
+
+	if(!link_target)
+		X.balloon_alert(X, "No link to cancel")
+		return
+	X.balloon_alert(X, "Link ended")
+	//end_ability()
+	return COMSIG_KB_ACTIVATED
+
+// Cancels the status effect
+/datum/action/xeno_action/activable/essence_link/proc/end_ability()
+	SIGNAL_HANDLER
+	var/mob/living/carbon/xenomorph/X = owner
+
+	X.remove_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK)
+	UnregisterSignal(X, COMSIG_XENO_ESSENCE_LINK_REMOVED)
+	add_cooldown()
+
+
+// ***************************************
+// *********** Acidic Salve
 // ***************************************
 /datum/action/xeno_action/activable/psychic_cure/acidic_salve
 	name = "Acidic Salve"
