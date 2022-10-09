@@ -5,7 +5,7 @@
 	earliest_start = 45 MINUTES
 	max_occurrences = 2
 
-	gamemode_blacklist = list("Combat Patrol","Civil War")
+	gamemode_blacklist = list("Combat Patrol","Civil War","Sensor Capture")
 
 /datum/round_event_control/queen_mothers_plasma_boost/can_spawn_event(players_amt, gamemode)
 	if(length(GLOB.alive_xeno_list) <= 8)
