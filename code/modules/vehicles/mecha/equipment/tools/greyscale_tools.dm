@@ -116,7 +116,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/ability/smoke/cloak_smoke
 	name = "smoke generator"
-	desc = "Generates a large amount of cloaking smoke to disguise nearby friendlies. Sadly, huge robots are too difficult to hide with it."
+	desc = "A multiple launch module that generates a large amount of cloaking smoke to disguise nearby friendlies. Sadly, huge robots are too difficult to hide with it."
 	icon_state = "smoke_gas"
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ability_to_grant = /datum/action/vehicle/sealed/mecha/mech_smoke
