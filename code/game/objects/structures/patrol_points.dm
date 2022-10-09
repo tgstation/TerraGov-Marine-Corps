@@ -55,7 +55,7 @@
 		if(user.faction == FACTION_TERRAGOV)
 			message = "Reactivate all sensor towers, good luck team."
 		else
-			message = "Prevent reactivation of the sensor towers, glory to Mars!."
+			message = "Prevent reactivation of the sensor towers, glory to Mars!"
 	else if(user.faction == FACTION_TERRAGOV)
 		message = "Eliminate all hostile forces in the ao, good luck team."
 	else
