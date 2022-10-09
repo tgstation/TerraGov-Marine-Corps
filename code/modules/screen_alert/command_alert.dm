@@ -20,20 +20,34 @@
 	style_open = "<span class='maptext' style=font-size:20pt;text-align:left valign='top'>"
 	layer = INTRO_LAYER
 	plane = INTRO_PLANE
-	var/emblem = "lrprr"
+	///image that will display on the left of the screen alert
+	var/image_to_play = "lrprr"
+	///y offset of image
+	var/image_to_play_offset_y = 32
+	///x offset of image
+	var/image_to_play_offset_x = 0
 
 /obj/screen/text/screen_text/command_order/intro/Initialize()
 	. = ..()
-	overlays += image('icons/UI_Icons/emblems.dmi', icon_state = emblem, pixel_y = 32)
+	overlays += image('icons/UI_Icons/screen_alert_images.dmi', icon_state = image_to_play, pixel_y = image_to_play_offset_y, pixel_x = image_to_play_offset_x)
 
 /obj/screen/text/screen_text/command_order/intro/tdf
-	emblem = "tdf"
+	image_to_play = "tdf"
 
 /obj/screen/text/screen_text/command_order/intro/shokk
-	emblem = "shokk"
+	image_to_play = "shokk"
 
 /obj/screen/text/screen_text/command_order/intro/blackop
-	emblem = "blackops"
+	image_to_play = "blackops"
+
+/obj/screen/text/screen_text/command_order/intro/potrait
+	screen_loc = "LEFT,TOP-3"
+	image_to_play = "overwatch"
+	image_to_play_offset_y = 0
+	maptext_y = 0
+
+/obj/screen/text/screen_text/command_order/intro/potrait/som_over
+	image_to_play = "overwatch_som"
 
 /datum/action/innate/message_squad
 	name = "Send Order"
