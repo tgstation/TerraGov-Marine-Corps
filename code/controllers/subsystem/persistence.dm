@@ -255,6 +255,7 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/ammo_magazine/smg/uzi = -1,
 		/obj/item/weapon/gun/smg/m25 = -1,
 		/obj/item/ammo_magazine/smg/m25 = -1,
+		/obj/item/storage/holster/m25 = -1,
 		/obj/item/weapon/gun/smg/mp7 = -1,
 		/obj/item/ammo_magazine/smg/mp7 = -1,
 		/obj/item/weapon/gun/revolver/cmb = -1,

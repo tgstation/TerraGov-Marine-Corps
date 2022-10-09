@@ -386,7 +386,6 @@
 	products = list(
 		/obj/item/restraints/handcuffs = 8,
 		/obj/item/restraints/handcuffs/zip = 10,
-		/obj/item/explosive/grenade/flashbang = 4,
 		/obj/item/flash = 5,
 		/obj/item/reagent_containers/food/snacks/donut/normal = 12,
 		/obj/item/storage/box/evidence = 6,

@@ -266,7 +266,7 @@
 /area/mainship/hull/starboard_hull)
 "abc" = (
 /obj/machinery/door/poddoor/mainship/indestructible,
-/turf/closed/wall/mainship/outer,
+/turf/open/space/basic,
 /area/space)
 "abd" = (
 /turf/open/floor/engine,
@@ -1052,6 +1052,7 @@
 /area/mainship/shipboard/port_point_defense)
 "adD" = (
 /obj/machinery/telecomms/server/presets/charlie,
+/obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
 "adF" = (
@@ -1930,6 +1931,7 @@
 /area/mainship/command/self_destruct)
 "aBc" = (
 /obj/machinery/self_destruct/console,
+/obj/effect/spawner/random/plushie/nospawnninety,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "aBe" = (
@@ -2633,6 +2635,7 @@
 /area/mainship/living/commandbunks)
 "baN" = (
 /obj/machinery/telecomms/server/presets/cas,
+/obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
 "baO" = (
@@ -3134,7 +3137,8 @@
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "bgf" = (
-/obj/machinery/computer/telecomms/server,
+/obj/machinery/camera/autoname/mainship,
+/obj/machinery/computer/telecomms/server/preset,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/telecomms)
 "bgu" = (
@@ -3574,7 +3578,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bkb" = (
-/obj/machinery/computer/telecomms/monitor,
+/obj/machinery/computer/telecomms/monitor/preset,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/telecomms)
 "bkc" = (
@@ -3980,6 +3984,7 @@
 /obj/item/folder/black,
 /obj/structure/paper_bin,
 /obj/item/tool/pen,
+/obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/mainship/engineering/ce_room)
 "blm" = (
@@ -6099,6 +6104,7 @@
 /area/mainship/engineering/lower_engineering)
 "bHG" = (
 /obj/machinery/power/monitor,
+/obj/structure/cable,
 /turf/open/floor/mainship/orange,
 /area/mainship/engineering/lower_engineering)
 "bHH" = (
@@ -7802,8 +7808,12 @@
 /turf/open/floor/mainship/orange,
 /area/mainship/hallways/repair_bay)
 "bYT" = (
+/obj/structure/window/framed/mainship/hull,
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
 /turf/closed/wall/mainship/outer,
-/area/mainship/living/starboard_garden)
+/area/mainship/command/cic)
 "bYU" = (
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
@@ -10461,9 +10471,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
-"fSp" = (
-/turf/closed/wall/mainship/outer,
-/area/mainship/living/bridgebunks)
 "fSI" = (
 /obj/structure/table/mainship/nometal,
 /obj/structure/paper_bin,
@@ -10591,6 +10598,7 @@
 "gbk" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/power/monitor,
+/obj/structure/cable,
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
@@ -10664,6 +10672,7 @@
 /area/mainship/living/cafeteria_starboard)
 "ggr" = (
 /obj/structure/bed/chair/office/dark,
+/obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/mainship/engineering/ce_room)
 "ghz" = (
@@ -18702,6 +18711,7 @@
 /area/mainship/living/cafeteria_starboard)
 "uBZ" = (
 /obj/machinery/autodoc,
+/obj/effect/spawner/random/plushie/nospawnninetyfive,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/lower_medical)
 "uDw" = (
@@ -33790,7 +33800,7 @@ wPV
 wPV
 wPV
 wPV
-pBS
+bYT
 lNZ
 wgT
 wgT
@@ -50513,13 +50523,13 @@ tWg
 ahZ
 tWg
 acf
-bYT
-bYT
 acf
 acf
 acf
 acf
-fSp
+acf
+acf
+jNc
 jNc
 jNc
 jNc
@@ -53347,7 +53357,7 @@ bVF
 fgj
 btv
 bSG
-fSp
+jNc
 yaR
 iUk
 cbX
@@ -57919,10 +57929,10 @@ aaa
 aaa
 aaa
 aaa
-aab
+aaa
 abc
 abc
-aab
+aaa
 aaa
 aaa
 aai
@@ -57982,10 +57992,10 @@ wem
 aVk
 aaa
 aaa
-aab
+aaa
 abc
 abc
-aab
+aaa
 aaa
 aaa
 aaa
@@ -58694,8 +58704,8 @@ aac
 aaK
 aaK
 aac
-aam
-aam
+aac
+aac
 aac
 rbR
 aXM
@@ -60743,11 +60753,11 @@ aaa
 aaa
 aaa
 aaa
-aam
-aam
-aam
-aam
-aam
+aac
+aac
+aac
+aac
+aac
 aac
 aac
 aac
@@ -71545,12 +71555,12 @@ aaa
 aaa
 aaa
 aaa
-aap
-aap
-aap
-aap
-aap
-aap
+aai
+aai
+aai
+aai
+aai
+aai
 aai
 aai
 aai
@@ -71802,7 +71812,7 @@ aaa
 aaa
 aaa
 aaa
-aap
+aai
 dYA
 dYA
 dYA
@@ -71858,7 +71868,7 @@ chJ
 chJ
 chJ
 chJ
-aVs
+aVk
 aaa
 aaa
 aaa
@@ -72059,7 +72069,7 @@ aaa
 aaa
 aaa
 aaa
-aap
+aai
 dYA
 dYA
 dYA
@@ -72115,7 +72125,7 @@ chJ
 chJ
 chJ
 chJ
-aVs
+aVk
 aaa
 aaa
 aaa
@@ -72316,7 +72326,7 @@ aaa
 aaa
 aaa
 aaa
-aap
+aai
 dYA
 dYA
 dYA
@@ -72372,7 +72382,7 @@ chJ
 chJ
 chJ
 chJ
-aVs
+aVk
 aaa
 aaa
 aaa
@@ -72573,7 +72583,7 @@ aaa
 aaa
 aaa
 aaa
-aap
+aai
 puC
 dYA
 dYA
@@ -72629,7 +72639,7 @@ chJ
 chJ
 chJ
 omA
-aVs
+aVk
 aaa
 aaa
 aaa
@@ -72830,7 +72840,7 @@ aaa
 aaa
 aaa
 aaa
-aap
+aai
 dYA
 dYA
 dYA
@@ -72886,7 +72896,7 @@ chJ
 chJ
 chJ
 chJ
-aVs
+aVk
 aaa
 aaa
 aaa
@@ -73087,7 +73097,7 @@ aaa
 aaa
 aaa
 aaa
-aap
+aai
 dYA
 dYA
 dYA
@@ -73143,7 +73153,7 @@ chJ
 chJ
 chJ
 chJ
-aVs
+aVk
 aaa
 aaa
 aaa
@@ -73344,7 +73354,7 @@ aaa
 aaa
 aaa
 aaa
-aap
+aai
 dYA
 dYA
 dYA
@@ -73400,7 +73410,7 @@ chJ
 chJ
 chJ
 chJ
-aVs
+aVk
 aaa
 aaa
 aaa
@@ -73601,18 +73611,18 @@ aaa
 aaa
 aaa
 aaa
-aap
-aap
-aap
-aap
-aap
-aap
-aap
-aap
-aap
-aap
-aap
-aap
+aai
+aai
+aai
+aai
+aai
+aai
+aai
+aai
+aai
+aai
+aai
+aai
 aai
 aap
 aap
@@ -73646,18 +73656,18 @@ aVs
 aVs
 aVs
 aVk
-aVs
-aVs
-aVs
-aVs
-aVs
-aVs
-aVs
-aVs
-aVs
-aVs
-aVs
-aVs
+aVk
+aVk
+aVk
+aVk
+aVk
+aVk
+aVk
+aVk
+aVk
+aVk
+aVk
+aVk
 aaa
 aaa
 aaa
@@ -76210,7 +76220,7 @@ vHF
 xON
 bfX
 xCV
-aVs
+aVk
 acJ
 acS
 aVk

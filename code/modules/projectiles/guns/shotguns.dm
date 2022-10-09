@@ -377,6 +377,8 @@
 
 	placed_overlay_iconstate = "wood"
 
+/obj/item/weapon/gun/shotgun/pump/bolt/unscoped
+	starting_attachment_types = list(/obj/item/attachable/stock/mosin)
 
 //***********************************************************
 // Martini Henry
@@ -601,8 +603,14 @@
 	desc = "The Terran Armories SH-35 is the shotgun used by the TerraGov Marine Corps. It's used as a close quarters tool when someone wants something more suited for close range than most people, or as an odd sidearm on your back for emergencies. Uses 12 gauge shells.\n<b>Requires a pump, which is the Unique Action key.</b>"
 	icon = 'icons/Marine/gun64.dmi'
 	flags_equip_slot = ITEM_SLOT_BACK
-	icon_state = "t35"
+	icon_state = GUN_ICONSTATE_LOADED
 	item_state = "t35"
+	item_icons = list(
+		slot_l_hand_str = /datum/greyscale_config/gun/worn/l_hand/t35,
+		slot_r_hand_str = /datum/greyscale_config/gun/worn/r_hand/t35,
+		slot_back_str = /datum/greyscale_config/gun/worn/t35,
+		slot_s_store_str = /datum/greyscale_config/gun/worn/suit/t35,
+	)
 	cock_animation = "t35_pump"
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	fire_sound = 'sound/weapons/guns/fire/t35.ogg'
@@ -637,6 +645,7 @@
 	cock_delay = 14
 
 	placed_overlay_iconstate = "t35"
+	greyscale_config = /datum/greyscale_config/gun/t35
 
 //buckshot variants
 /obj/item/weapon/gun/shotgun/pump/t35/pointman
@@ -694,7 +703,7 @@
 
 /obj/item/weapon/gun/shotgun/som
 	name = "\improper V-51 combat shotgun"
-	desc = "The V-51 is the main shotgun utilised by the Sons of Mars. Slower firing than some other semi automatic shotguns, but packs more of a kick with the availability of a burst fire mode."
+	desc = "The V-51 is the main shotgun utilised by the Sons of Mars. Slower firing than some other semi automatic shotguns, but packs more of a kick."
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon_state = "v51"
 	icon = 'icons/Marine/gun64.dmi'
@@ -717,10 +726,6 @@
 	)
 	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 18,"rail_x" = 26, "rail_y" = 22, "under_x" = 14, "under_y" = 16, "stock_x" = 14, "stock_y" = 16)
 
-	burst_amount = 2
-	burst_delay = 0.8 SECONDS
-	extra_delay = 2.1 SECONDS
-	burst_scatter_mult = 2 // 2x4=8
 	fire_delay = 1.8 SECONDS
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.6

@@ -266,6 +266,34 @@
 	icon_state = "m240"
 	item_state = "m240"
 
+/obj/item/weapon/gun/flamer/som
+	name = "\improper V-62 incinerator"
+	desc = "The V-62 is a deadly weapon employed in close quarter combat, favoured as much for the terror it inspires as the actual damage it inflicts. It has good range for a flamer, but lacks the integrated extinguisher of its TGMC equivalent."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "v62"
+	item_state = "v62"
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_SHOWS_LOADED
+	inhand_x_dimension = 64
+	inhand_y_dimension = 32
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+	)
+	lit_overlay_icon_state = "v62_lit"
+	lit_overlay_offset_x = 0
+	flame_max_range = 8
+	cone_angle = 40
+	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle/wide)
+	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/large/som
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/flamer_tank/large/som,
+		/obj/item/ammo_magazine/flamer_tank/backtank,
+		/obj/item/ammo_magazine/flamer_tank/backtank/X,
+	)
+
+/obj/item/weapon/gun/flamer/som/mag_harness
+	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle/wide, /obj/item/attachable/magnetic_harness)
+
 /obj/item/weapon/gun/flamer/mini_flamer
 	name = "mini flamethrower"
 	desc = "A weapon-mounted refillable flamethrower attachment.\nIt is designed for short bursts."
@@ -433,9 +461,28 @@
 		update_icon(1, 0)
 	return ..()
 
-//////////////////////////////////////////////////////////////////////////////////////////////////
-//Time to redo part of abby's code.
-//Create a flame sprite object. Doesn't work like regular fire, ie. does not affect atmos or heat
+
+
+
+GLOBAL_DATUM_INIT(flamer_particles, /particles/flamer_fire, new)
+/particles/flamer_fire
+	icon = 'icons/effects/particles/fire.dmi'
+	icon_state = "bonfire"
+	width = 100
+	height = 100
+	count = 1000
+	spawning = 8
+	lifespan = 0.7 SECONDS
+	fade = 1 SECONDS
+	grow = -0.01
+	velocity = list(0, 0)
+	position = generator("box", list(-16, -16), list(16, 16), NORMAL_RAND)
+	drift = generator("vector", list(0, -0.2), list(0, 0.2))
+	gravity = list(0, 0.95)
+	scale = generator("vector", list(0.3, 0.3), list(1,1), NORMAL_RAND)
+	rotation = 30
+	spin = generator("num", -20, 20)
+
 /obj/flamer_fire
 	name = "fire"
 	desc = "Ouch!"
@@ -456,6 +503,7 @@
 
 /obj/flamer_fire/Initialize(mapload, fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
 	. = ..()
+	particles = GLOB.flamer_particles
 
 	if(f_color)
 		flame_color = f_color

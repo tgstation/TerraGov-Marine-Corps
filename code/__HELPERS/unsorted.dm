@@ -159,6 +159,10 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 		if(293 to 337)
 			return NORTHWEST
 
+///returns degrees between two angles
+/proc/get_between_angles(degree_one, degree_two)
+	var/angle = abs(degree_one - degree_two) % 360
+	return angle > 180 ? 360 - angle : angle
 
 /**
  *	Returns true if the path from A to B is blocked. Checks both paths where the direction is diagonal
@@ -1257,3 +1261,21 @@ will handle it, but:
 	return	cone_turfs
 
 GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))
+
+/**
+ *	Draws a line between two atoms, then checks if the path is blocked.
+ *	Variables:
+ *	start -start point of the path
+ *	end - end point of the path
+ *	bypass_window - whether it will go through transparent windows in the same way as lasers
+ *	projectile - whether throwpass will be checked to ignore dense objects in the same way as projectiles
+ *	bypass_xeno - whether to bypass dense xeno structures in the same way as flamers
+ */
+/proc/check_path(atom/start, atom/end, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE)
+	var/list/path_to_target = getline(start, end)
+	var/line_count = 1
+	while(line_count < length(path_to_target))
+		if(LinkBlocked(path_to_target[line_count], path_to_target[line_count + 1], bypass_window, projectile, bypass_xeno))
+			return FALSE
+		line_count ++
+	return TRUE

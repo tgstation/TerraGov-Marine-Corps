@@ -4,7 +4,7 @@
 	desc = "An all-terrain vehicle built for traversing rough terrain with ease. One of the few old-Earth technologies that are still relevant on most planet-bound outposts."
 	icon_state = "atv"
 	max_integrity = 150
-	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 0, "bomb" = 30, "fire" = 60, "acid" = 60)
+	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 0, BOMB = 30, FIRE = 60, ACID = 60)
 	key_type = /obj/item/key/atv
 	integrity_failure = 0.5
 	var/static/mutable_appearance/atvcover
@@ -24,16 +24,32 @@
 		cut_overlay(atvcover)
 	return ..()
 
-/obj/vehicle/ridden/atv/welder_act(mob/living/user, obj/item/I)
+/obj/vehicle/ridden/atv/welder_act(mob/living/user, obj/item/W)
+	if(user.a_intent == INTENT_HARM)
+		return
+	. = TRUE
+	if(LAZYFIND(user.do_actions, src))
+		balloon_alert(user, "you're already repairing it!")
+		return
 	if(obj_integrity >= max_integrity)
-		return TRUE
-	if(!I.use_tool(src, user, 0, volume=50, amount=1))
-		return TRUE
-	user.visible_message(span_notice("[user] repairs some damage to [name]."), span_notice("You repair some damage to \the [src]."))
-	obj_integrity += min(10, max_integrity-obj_integrity)
-	if(obj_integrity == max_integrity)
-		to_chat(user, span_notice("It looks to be fully repaired now."))
-	return TRUE
+		balloon_alert(user, "it's not damaged!")
+		return
+	if(!W.tool_start_check(user, amount=1))
+		return
+	user.balloon_alert_to_viewers("started welding [src]", "started repairing [src]")
+	audible_message(span_hear("You hear welding."))
+	var/did_the_thing
+	while(obj_integrity < max_integrity)
+		if(W.use_tool(src, user, 2.5 SECONDS, volume=50, amount=1))
+			did_the_thing = TRUE
+			obj_integrity += min(10, (max_integrity - obj_integrity))
+			audible_message(span_hear("You hear welding."))
+		else
+			break
+	if(did_the_thing)
+		user.balloon_alert_to_viewers("[(obj_integrity >= max_integrity) ? "fully" : "partially"] repaired [src]")
+	else
+		user.balloon_alert_to_viewers("stopped welding [src]", "interrupted the repair!")
 
 /obj/vehicle/ridden/atv/obj_break()
 	START_PROCESSING(SSobj, src)

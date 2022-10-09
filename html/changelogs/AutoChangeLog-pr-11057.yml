@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes: 
+  - rscadd: "Hivemind gets an alert when someone is near it's core"

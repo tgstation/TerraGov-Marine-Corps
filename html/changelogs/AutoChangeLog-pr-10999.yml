@@ -1,6 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes: 
-  - imageadd: "Ported a number of legacy sprites from CM."
-  - imageadd: "Resprited the nuke, check the PR itself for proper credit."
-  - imagedel: "Removed a number of legacy sprites that were 1 dimensional and awful."
