@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - balance: "All vehicles can now be crushered, punched by warrior, and hit by acid smoke"
