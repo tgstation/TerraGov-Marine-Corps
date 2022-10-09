@@ -499,27 +499,32 @@
 	. += overlay
 
 /obj/item/weapon/gun/update_item_state()
-	if(!CHECK_BITFIELD(flags_gun_features, GUN_SHOWS_AMMO_REMAINING))
-		if(CHECK_BITFIELD(flags_item, WIELDED))
+	var/current_state = item_state
+	//If the gun has item states that show how much ammo is remaining
+	if(flags_gun_features & GUN_SHOWS_AMMO_REMAINING)
+		var/remaining_rounds = (rounds <= 0) ? 0 : CEILING((rounds / max((length(chamber_items) ? max_rounds : max_shells), 1)) * 100, 25)
+		if(flags_item & WIELDED)
+			item_state = !greyscale_config ? "[initial(icon_state)]_[remaining_rounds]_w" : "wielded"
+		else
+			item_state = !greyscale_config ? "[initial(icon_state)]_[remaining_rounds]" : ""
+	else if(flags_gun_features & GUN_SHOWS_LOADED)
+		if(flags_item & WIELDED)
+			item_state = !greyscale_config ? "[initial(icon_state)]_[rounds ? 100 : 0]_w" : "wielded" //100 and 0 used to be consistant with GUN_SHOWS_AMMO_REMAINING
+		else
+			item_state = !greyscale_config ? "[initial(icon_state)]_[rounds ? 100 : 0]" : ""
+	else
+		if(flags_item & WIELDED)
 			item_state = !greyscale_config ? "[base_gun_icon]_w" : "wielded"
 		else
 			item_state = !greyscale_config ? base_gun_icon : ""
 		return
 
-	//If the gun has item states that show how much ammo is remaining
-	var/current_state = item_state
-	var/cell_charge = (!length(chamber_items) || rounds <= 0) ? 0 : CEILING((rounds / max((length(chamber_items) ? max_rounds : max_shells), 1)) * 100, 25)
-	if(CHECK_BITFIELD(flags_item, WIELDED))
-		item_state = !greyscale_config ? "[initial(icon_state)]_[cell_charge]_w" : "wielded"
-	else
-		item_state = !greyscale_config ? "[initial(icon_state)]_[cell_charge]" : ""
 	if(current_state != item_state && ishuman(gun_user))
 		var/mob/living/carbon/human/human_user = gun_user
 		if(src == human_user.l_hand)
 			human_user.update_inv_l_hand()
 		else if (src == human_user.r_hand)
 			human_user.update_inv_r_hand()
-
 
 /obj/item/weapon/gun/examine(mob/user)
 	. = ..()
@@ -566,7 +571,7 @@
 			if(max_rounds && CHECK_BITFIELD(flags_gun_features, GUN_AMMO_COUNT_BY_PERCENTAGE))
 				dat += "Ammo counter shows [round((rounds / max_rounds) * 100)] percent remaining.<br>"
 			else if(max_rounds && CHECK_BITFIELD(flags_gun_features, GUN_AMMO_COUNT_BY_SHOTS_REMAINING))
-				dat += "Ammo counter shows [round(max_rounds / rounds_per_shot)] shots remaining."
+				dat += "Ammo counter shows [round(rounds / rounds_per_shot)] shots remaining."
 			else
 				dat += "Ammo counter shows [rounds] round\s remaining.<br>"
 		else
@@ -1443,7 +1448,6 @@
 	for(var/obj/chamber_item in chamber_items)
 		total_rounds += get_current_rounds(chamber_item)
 		total_max_rounds += get_max_rounds(chamber_item)
-	total_max_rounds += rounds_per_shot
 	rounds = total_rounds + (in_chamber ? rounds_per_shot : 0)
 	max_rounds = total_max_rounds
 	update_icon()
