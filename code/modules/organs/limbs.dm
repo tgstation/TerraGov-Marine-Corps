@@ -169,10 +169,6 @@
 	if(limb_status & LIMB_DESTROYED)
 		return 0
 
-	if(limb_status & LIMB_ROBOT && !(owner.species.species_flags & ROBOTIC_LIMBS))
-		brute *= 0.50 // half damage for ROBOLIMBS if you weren't born with them
-		burn *= 0.50
-
 
 	//High brute damage or sharp objects may damage internal organs
 	if(internal_organs && ((sharp && brute >= 10) || brute >= 20) && prob(5))
