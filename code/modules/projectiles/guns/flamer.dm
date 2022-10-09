@@ -209,7 +209,7 @@
 				walls_penetrated_wide -= 1
 			//Checks if there is a resin door on the turf
 			var/obj/structure/mineral_door/resin/door_to_check = locate() in turf
-			if(door_to_check != null)
+			if(!isnull(door_to_check))
 				walls_penetrated_wide -= 1
 			//Check to ensure that we dont burn more walls than specified
 			if(walls_penetrated_wide <= 0)
