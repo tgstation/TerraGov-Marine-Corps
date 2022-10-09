@@ -103,6 +103,11 @@
 #define isxenohivemind(A) (istype(A, /mob/living/carbon/xenomorph/hivemind))
 #define isxenowraith(A) (istype(A, /mob/living/carbon/xenomorph/wraith))
 #define isxenowidow(A) (istype(A, /mob/living/carbon/xenomorph/widow))
+#define isbeetle(A) (istype(A, /mob/living/carbon/xenomorph/beetle))
+#define ismantis(A) (istype(A, /mob/living/carbon/xenomorph/mantis))
+#define isscorpion(A) (istype(A, /mob/living/carbon/xenomorph/scorpion))
+#define isspiderling(A) (istype(A, /mob/living/carbon/xenomorph/spiderling))
+#define isminion(A) (istype(A, /mob/living/carbon/xenomorph/spiderling)) || isscorpion(A) || ismantis(A) || isbeetle(A)
 
 //Silicon mobs
 #define issilicon(A) (istype(A, /mob/living/silicon))
@@ -255,7 +260,6 @@
 #define iscrashgamemode(O) (istype(O, /datum/game_mode/infestation/crash))
 #define isinfestationgamemode(O) (istype(O, /datum/game_mode/infestation))
 #define iscombatpatrolgamemode(O) (istype(O, /datum/game_mode/combat_patrol))
-#define issensorcapturegamemode(O) (istype(O, /datum/game_mode/combat_patrol/sensor_capture))
 
 #define isxenoresearcharea(A) (istype(A, /area/mainship/medical/medical_science))
 
