@@ -24,10 +24,6 @@
 		limbs[key] = null
 		var/datum/mech_limb/limb = new new_limb_type
 		limb.attach(src, key)
-	// TIVI TODO HELLO ADMINS
-	if(length(GLOB.clients) > 1)
-		message_admins("Stop trying to spawn mechs before they're ready")
-		return INITIALIZE_HINT_QDEL
 
 /obj/vehicle/sealed/mecha/combat/greyscale/Destroy()
 	for(var/key in limbs)
