@@ -1,0 +1,4 @@
+author: "novaepee"
+delete-after: True
+changes: 
+  - bugfix: "MP computer in MP room in PoS"
