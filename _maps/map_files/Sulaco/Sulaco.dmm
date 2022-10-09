@@ -5687,8 +5687,7 @@
 /area/sulaco/briefing)
 "aBB" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/plushie/nospawnninetyfive{
-	},
+/obj/effect/spawner/random/plushie/nospawnninetyfive,
 /turf/open/floor/prison,
 /area/sulaco/briefing)
 "aBC" = (
@@ -21187,8 +21186,7 @@
 /area/space)
 "qDX" = (
 /obj/structure/table/mainship,
-/obj/effect/spawner/random/plushie/nospawnninetyfive{
-	},
+/obj/effect/spawner/random/plushie/nospawnninetyfive,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria)
 "qFe" = (
@@ -25582,6 +25580,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/machinery/vending/armor_supply,
 /turf/open/floor/prison,
 /area/mainship/living/pilotbunks)
 "wrd" = (
@@ -26135,6 +26134,7 @@
 /area/sulaco/hangar)
 "xgG" = (
 /obj/machinery/camera/autoname,
+/obj/machinery/vending/uniform_supply,
 /turf/open/floor/prison,
 /area/mainship/living/pilotbunks)
 "xhY" = (
