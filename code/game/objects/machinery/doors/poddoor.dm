@@ -215,6 +215,10 @@
 	name = "\improper Hangar Shutters"
 	id = "hangar_shutters"
 
+/obj/machinery/door/poddoor/mainship/mech
+	name = "\improper Mech Shutters"
+	id = "mech_shutters"
+
 /obj/machinery/door/poddoor/mainship/umbilical
 	name = "Umbilical Airlock"
 	resistance_flags = RESIST_ALL
