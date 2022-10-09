@@ -53,13 +53,18 @@
 	var/message
 	if(issensorcapturegamemode(SSticker.mode))
 		if(user.faction == FACTION_TERRAGOV)
-			message = "CURRENT OBJECTIVE: REACTIVATE ALL SENSOR TOWERS."
+			message = "Reactivate all sensor towers, good luck team."
 		else
-			message = "CURRENT OBJECTIVE: PREVENT REACTIVATION OF ALL SENSOR TOWERS."
+			message = "Prevent reactivation of the sensor towers, glory to Mars!."
+	else if(user.faction == FACTION_TERRAGOV)
+		message = "Eliminate all hostile forces in the ao, good luck team."
 	else
-		message = "CURRENT OBJECTIVE: ELIMINATE HOSTILE FORCES IN THE AO."
+		message = "Eliminate the TerraGov imperialists in the ao, glory to Mars!"
 
-	user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>OVERWATCH</u></span><br>" + message, /obj/screen/text/screen_text/command_order)
+	if(user.faction == FACTION_TERRAGOV)
+		user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>OVERWATCH</u></span><br>" + message, /obj/screen/text/screen_text/command_order/intro/potrait)
+	else
+		user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>OVERWATCH</u></span><br>" + message, /obj/screen/text/screen_text/command_order/intro/potrait/som_over)
 	update_icon()
 
 /obj/structure/patrol_point/attack_ghost(mob/dead/observer/user)
