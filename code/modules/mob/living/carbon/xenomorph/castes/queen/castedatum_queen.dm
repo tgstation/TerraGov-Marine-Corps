@@ -31,7 +31,7 @@
 	can_flags = CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_HOLD_JELLY|CASTE_CAN_CORRUPT_GENERATOR|CASTE_CAN_BE_GIVEN_PLASMA
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 30, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 45)
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 30, BIO = 45, "rad" = 45, FIRE = 45, ACID = 45)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
@@ -98,7 +98,7 @@
 	upgrade_threshold = TIER_THREE_MATURE_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 55, "bullet" = 55, "laser" = 55, "energy" = 55, "bomb" = 30, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
+	soft_armor = list(MELEE = 55, BULLET = 55, LASER = 55, ENERGY = 55, BOMB = 30, BIO = 50, "rad" = 50, FIRE = 50, ACID = 50)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.2 SECONDS
@@ -131,7 +131,7 @@
 	upgrade_threshold = TIER_THREE_ELDER_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 60, "bomb" = 30, "bio" = 55, "rad" = 55, "fire" = 55, "acid" = 55)
+	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 30, BIO = 55, "rad" = 55, FIRE = 55, ACID = 55)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.2 SECONDS
@@ -164,7 +164,7 @@
 	upgrade_threshold = TIER_THREE_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 65, "bullet" = 65, "laser" = 65, "energy" = 65, "bomb" = 30, "bio" = 60, "rad" = 60, "fire" = 60, "acid" = 60)
+	soft_armor = list(MELEE = 65, BULLET = 65, LASER = 65, ENERGY = 65, BOMB = 30, BIO = 60, "rad" = 60, FIRE = 60, ACID = 60)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.1 SECONDS
@@ -194,7 +194,7 @@
 	max_health = 500
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 65, "bullet" = 65, "laser" = 65, "energy" = 65, "bomb" = 30, "bio" = 60, "rad" = 60, "fire" = 60, "acid" = 60)
+	soft_armor = list(MELEE = 65, BULLET = 65, LASER = 65, ENERGY = 65, BOMB = 30, BIO = 60, "rad" = 60, FIRE = 60, ACID = 60)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.1 SECONDS
@@ -233,5 +233,5 @@
 		/datum/action/xeno_action/rally_minion,
 		/datum/action/xeno_action/activable/command_minions,
 		/datum/action/xeno_action/set_agressivity,
-		/datum/action/xeno_action/ready_charge,
+		/datum/action/xeno_action/ready_charge/queen_charge,
 	)

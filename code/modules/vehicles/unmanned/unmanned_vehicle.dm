@@ -13,7 +13,7 @@
 	max_integrity = 150
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 	flags_atom = BUMP_ATTACKABLE
-	soft_armor = list("melee" = 25, "bullet" = 85, "laser" = 50, "energy" = 100, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 25, "acid" = 25)
+	soft_armor = list(MELEE = 25, BULLET = 85, LASER = 50, ENERGY = 100, BOMB = 50, BIO = 100, "rad" = 100, FIRE = 25, ACID = 25)
 	/// Path of "turret" attached
 	var/obj/item/uav_turret/turret_path
 	/// Type of the turret attached
@@ -274,28 +274,11 @@
 /obj/vehicle/unmanned/proc/delete_muzzle_flash()
 	vis_contents -= flash
 
-/obj/vehicle/unmanned/post_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
-	take_damage(charger.xeno_caste.melee_damage * charger.xeno_melee_damage_modifier, BRUTE, "melee")
-
-/obj/vehicle/unmanned/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone)
-	X.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
-	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
-	attack_generic(X, damage * 4, BRUTE, "", FALSE) //Deals 4 times regular damage to uavs
-	X.visible_message(span_xenodanger("\The [X] smashes [src] with a devastating punch!"), \
-		span_xenodanger("We smash [src] with a devastating punch!"), visible_message_flags = COMBAT_MESSAGE)
-	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)
-	Shake(4, 4, 2 SECONDS)
-
 /obj/vehicle/unmanned/flamer_fire_act(burnlevel)
 	take_damage(burnlevel / 2, BURN, "fire")
 
 /obj/vehicle/unmanned/fire_act()
 	take_damage(20, BURN, "fire")
-
-/obj/vehicle/unmanned/effect_smoke(obj/effect/particle_effect/smoke/S)
-	. = ..()
-	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
-		take_damage(20 * S.strength)
 
 /obj/vehicle/unmanned/welder_act(mob/living/user, obj/item/I)
 	if(user.do_actions)

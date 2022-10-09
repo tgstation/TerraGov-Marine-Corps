@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes: 
+  - bugfix: "Fixes unmanned droids not deleting properly"

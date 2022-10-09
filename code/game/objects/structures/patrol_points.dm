@@ -50,10 +50,16 @@
 	user.trainteleport(linked_point.loc)
 	new /atom/movable/effect/rappel_rope(linked_point.loc)
 	user.playsound_local(user, "sound/effects/CIC_order.ogg", 10, 1)
-	if(user.faction == FACTION_TERRAGOV)
-		user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='left'><u>OVERWATCH</u></span><br>" + "Eliminate all hostile forces in the ao, good luck team.", /obj/screen/text/screen_text/command_order/intro/potrait)
+	var/message
+	if(issensorcapturegamemode(SSticker.mode))
+		if(user.faction == FACTION_TERRAGOV)
+			message = "CURRENT OBJECTIVE: REACTIVATE ALL SENSOR TOWERS."
+		else
+			message = "CURRENT OBJECTIVE: PREVENT REACTIVATION OF ALL SENSOR TOWERS."
 	else
-		user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='left'><u>OVERWATCH</u></span><br>" + "Eliminate the TerraGov imperialists in the ao, glory to Mars!", /obj/screen/text/screen_text/command_order/intro/potrait/som_over)
+		message = "CURRENT OBJECTIVE: ELIMINATE HOSTILE FORCES IN THE AO."
+
+	user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>OVERWATCH</u></span><br>" + message, /obj/screen/text/screen_text/command_order)
 	update_icon()
 
 /obj/structure/patrol_point/attack_ghost(mob/dead/observer/user)

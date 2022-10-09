@@ -73,7 +73,7 @@
  * Arguments:
  * * target: atom we are activating/clicked on
  */
-/obj/item/mecha_parts/mecha_equipment/proc/action_checks(atom/target)
+/obj/item/mecha_parts/mecha_equipment/proc/action_checks(atom/target, ignore_cooldown = FALSE)
 	if(!target)
 		return FALSE
 	if(!chassis)
@@ -87,7 +87,10 @@
 	if(chassis.equipment_disabled)
 		to_chat(chassis.occupants, span_warning("Error -- Equipment control unit is unresponsive."))
 		return FALSE
-	if(TIMER_COOLDOWN_CHECK(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
+	if(obj_integrity <= 1)
+		to_chat(chassis.occupants, span_warning("Error -- Equipment critically damaged."))
+		return FALSE
+	if(!ignore_cooldown && TIMER_COOLDOWN_CHECK(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
 		return FALSE
 	return TRUE
 
@@ -146,6 +149,10 @@
 		M.equip_by_category[to_equip_slot] += src
 	else
 		M.equip_by_category[to_equip_slot] = src
+	//tgmc changes start
+	M.move_delay += slowdown
+	M.update_icon()
+	//tgmc changes end
 	chassis = M
 	forceMove(M)
 	log_message("[src] initialized.", LOG_MECHA)
@@ -170,6 +177,10 @@
 	else
 		chassis.equip_by_category[to_unequip_slot] = null
 	log_message("[src] removed from equipment.", LOG_MECHA)
+	//tgmc changes start
+	chassis.move_delay -= slowdown
+	chassis.update_icon()
+	//tgmc changes end
 	chassis = null
 
 /obj/item/mecha_parts/mecha_equipment/log_message(message, message_type=LOG_GAME, color=null, log_globally)

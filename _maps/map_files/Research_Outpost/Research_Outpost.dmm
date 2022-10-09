@@ -21,6 +21,12 @@
 	dir = 10
 	},
 /area/outpost/science/xenobiology)
+"ag" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/tile/dark/purple2{
+	dir = 1
+	},
+/area/outpost/science)
 "ah" = (
 /obj/structure/closet/secure_closet/marshal,
 /turf/open/floor/tile/dark/red2{
@@ -2787,7 +2793,7 @@
 /area/outpost/medbay)
 "nj" = (
 /obj/structure/table,
-/obj/item/ammo_magazine/shotgun,
+/obj/item/ammo_magazine/shotgun/buckshot,
 /obj/item/ammo_magazine/shotgun/buckshot,
 /turf/open/floor/tile/dark/red2{
 	dir = 1
@@ -2888,6 +2894,10 @@
 "nB" = (
 /turf/open/floor/plating/dmg2,
 /area/outpost/hallway/south_east)
+"nC" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/outpost/yard/east)
 "nE" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump,
@@ -4907,8 +4917,8 @@
 "wD" = (
 /obj/structure/closet/secure_closet/security,
 /obj/item/weapon/gun/shotgun/pump/cmb,
-/obj/item/ammo_magazine/shotgun,
-/obj/item/ammo_magazine/shotgun,
+/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/item/ammo_magazine/shotgun/buckshot,
 /obj/item/attachable/flashlight,
 /obj/item/attachable/heavy_barrel,
 /obj/item/attachable/reddot,
@@ -5333,6 +5343,10 @@
 "ys" = (
 /turf/closed/wall/r_wall,
 /area/outpost/cargo/engineering)
+"yu" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/tile/dark2,
+/area/outpost/cargo)
 "yw" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -6043,7 +6057,7 @@
 /area/outpost/yard/south_east)
 "BL" = (
 /obj/structure/table,
-/obj/item/ammo_magazine/shotgun,
+/obj/item/ammo_magazine/shotgun/buckshot,
 /turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
@@ -7836,6 +7850,12 @@
 	dir = 9
 	},
 /area/outpost/science/xenobiology)
+"Ks" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/tile/dark/blue2{
+	dir = 6
+	},
+/area/outpost/medbay)
 "Kt" = (
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
@@ -8024,7 +8044,7 @@
 "Ll" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/shotgun/pump/cmb,
-/obj/item/ammo_magazine/shotgun,
+/obj/item/ammo_magazine/shotgun/buckshot,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/red2,
 /area/outpost/brig/armoury)
@@ -9032,6 +9052,9 @@
 	dir = 8
 	},
 /obj/structure/paper_bin,
+/obj/effect/spawner/random/plushie{
+	
+	},
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
 	},
@@ -9234,8 +9257,8 @@
 /obj/structure/closet/secure_closet/security,
 /obj/item/attachable/gyro,
 /obj/item/attachable/reddot,
-/obj/item/ammo_magazine/shotgun,
-/obj/item/ammo_magazine/shotgun,
+/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/item/ammo_magazine/shotgun/buckshot,
 /obj/item/weapon/gun/shotgun/double,
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark/red2,
@@ -11183,6 +11206,12 @@
 	dir = 1
 	},
 /area/outpost/hallway/south_east)
+"Zg" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
+	},
+/area/outpost/yard/south)
 "Zj" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -18713,7 +18742,7 @@ bq
 Ee
 td
 Gv
-fM
+Ks
 Zs
 Us
 LR
@@ -19279,7 +19308,7 @@ Pk
 Pq
 Jc
 Jc
-Jc
+yu
 pw
 Xj
 zC
@@ -22309,7 +22338,7 @@ ZK
 ZK
 fG
 mN
-wj
+Zg
 Mb
 mN
 yW
@@ -23332,7 +23361,7 @@ qA
 NU
 IF
 bL
-FI
+ag
 ZF
 ry
 bD
@@ -26530,7 +26559,7 @@ Xp
 QL
 QL
 QL
-QL
+nC
 QL
 QL
 QL

@@ -261,3 +261,100 @@
   - imageadd: mob sprites for instruments
   tyeagg:
   - bugfix: you can now build in tadpole again
+2022-09-24:
+  Lumipharon:
+  - bugfix: Fire stacks will no longer check fire armour twice in some instances
+  - refactor: Slight clean up to incendiary ammo code
+  - balance: Carrier panic drop can only be used at 25% health or less
+  - refactor: refactored some projectile on hit code
+  - bugfix: Certain projectile hit effects will no longer incorrectly trigger on the
+      wrong or dense turfs
+  - balance: Reduced the percentage of damage absorbed by shields for bullet, lasers,
+      energy and fire
+  - bugfix: Warriors can no longer infinitely punch unmanned vehicles
+  MLGTASTICa:
+  - balance: Evolution towers now multiply xeno count by 20% for each tower, increasing
+      T3 and T2 slots.
+  QualityVan:
+  - balance: Xenos can't buckle other people to stuff if they aren't conscious.
+  TiviPlus:
+  - bugfix: fixed a suit icon
+2022-09-25:
+  Lumipharon:
+  - imageadd: Updated riot and metal riot shield mob sprites
+  - imageadd: added mob sprites for grenades, COPE sentries and marine bags
+  MLGTASTICa:
+  - qol: Slowed down the FOB Drone, gave it bubble alerts and fixed double .remaining
+      messages
+  - qol: Drones now face the direction of any turf you click.
+  - code_imp: Rewrote the remote AI eye code to support more configurable move_delays
+  - code_imp: Rewrote the remote AI eye acceleration , it now gets removed on direction
+      change.
+2022-09-26:
+  Lewdcifer:
+  - rscadd: Adds the Pheromone Tower to the game, alongside its related sprites.
+  Lumipharon:
+  - bugfix: medical item description text will no longer spill into the next storage
+      slot
+  - balance: Increased MP-19 akimbo penalties
+  tyeagg:
+  - qol: bigger minimap icons for disks and orders
+  - imageadd: big minimap icons
+2022-09-27:
+  RipGrayson:
+  - rscadd: Added in two random rouny spawners per map.
+  - balance: Several useless reinforced windows on Gelida have been removed.
+  - balance: Removed the extra metal stacks from Gelida.
+  - balance: Removed an easily defensible miner from Gelida.
+  - balance: Removed a rogue B17 helmet from Gelida.
+  - bugfix: Added a missing Gelida shutter.
+  - bugfix: The morgue trays on two BR medbay modules now can be accessed normally.
+  - imageadd: Ported a new icon for dogtags.
+  Zar000:
+  - bugfix: define better than string
+  hyper2snyper:
+  - rscadd: 'The newly sprited primaries are now colorable with facepaint. Included:
+      AR12, AR18, SMG90, P14, SH35, LMG42'
+  - rscadd: Support for colorable attachments, SH-35 stock now colorable like the
+      gun itself.
+2022-09-28:
+  Jalopkomit18:
+  - qol: Oxycodone bottle capacity changed to 60u
+  Lewdcifer:
+  - balance: Pheromone tower cost 100 > 150, range 22 > 32, building time 10 > 5 seconds.
+  - bugfix: Pheromone towers now allow building around it.
+  - bugfix: Pheromone towers will now spawn under the xenomorph rather than southwest
+      of it.
+  - bugfix: Pheromone towers will now delete correctly.
+  MLGTASTICa:
+  - bugfix: Fixed plasteel cades not being wired by LZ drones.
+  Naaanii:
+  - balance: Increased Howie HE and Incen shell prices to 4
+  - balance: Increased Howie Tfoot and WP shell prices to 6
+  RipGrayson:
+  - imageadd: The nuke has been partially resprited to be less saturated and more
+      detailed.
+  - imagedel: The green nuke sprites have been deleted.
+  - imagedel: New style vests are back to what they were.
+  - soundadd: Added quite a few new voice lines for AI.
+  - sounddel: Removed some old voice lines that weren't likely to be used.
+  iLikeMemes:
+  - rscadd: Primo hunters get to use stealth again, but not at the same time as disguise.
+  - qol: added seperate keybinds for disguise and stealth
+2022-09-29:
+  hyper2snyper:
+  - rscadd: Hyperscales the SG-29 and AR-21
+  - rscadd: Hyperscales both the Vertical and Angled grip attachments.
+2022-09-30:
+  DeltaFire15:
+  - bugfix: Pheromones (And orders) should no longer "flicker" at high TD, remaining
+      consistant instead.
+  - bugfix: Xenos can no longer receive pheromones when on fire.
+  - refactor: SSauras now includes MC_CHECK_TICK to prevent it from eating too much
+      of the MC's time.
+  Pariah919:
+  - spellcheck: 'MPs have a unique spawn in blurb. tweak: MPs have Squad Engineer/Medic
+      rank scaling. (E3->E4->E5)'
+  maikilangiolo:
+  - rscadd: added holsters for the mp19 and smg-25
+  - balance: engineering storage module can fit filled sandbags
