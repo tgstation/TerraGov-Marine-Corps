@@ -80,3 +80,30 @@
   lbnesquik:
   - bugfix: 'fixed a whole bunch of slight mapping issues on POS. Read PR #11145 for
       more details.'
+2022-10-10:
+  Lumipharon:
+  - rscadd: Added the V-62 incinerator for the SOM
+  - rscadd: Added the V-71 RPG for the SOM
+  - rscadd: Added Radiation effects for use by the SOM. War crimes have never been
+      so easy!
+  - bugfix: Fixed a couple of minor gun ammo bugs
+  - balance: Very slightly increased burst extra delay on the AR-11
+  TiviPlus:
+  - bugfix: Ammo HUDs will now always blink when you are out of ammo instead of only
+      the bottommost one
+  - qol: stutter no longer removes a random consonant sometimes
+  - bugfix: wraith will now properly send mobs inside objects that are banished instead
+      of just dumping them out
+  - balance: All vehicles can now be crushered, punched by warrior, and hit by acid
+      smoke
+  - rscadd: runechat now works when you are inside something
+  - bugfix: AI will no longer attack inside of objects, instead it will aim for the
+      outermost container of it's target
+  ivanmixo:
+  - rscadd: Hivemind gets an alert when someone is near it's core
+  - bugfix: Fixes unmanned droids not deleting properly
+  novaepee:
+  - bugfix: MP computer in MP room in PoS
+  tyeagg:
+  - rscadd: sensor capture gamemode
+  - imageadd: sensor tower minimap blips
