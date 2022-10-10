@@ -1,0 +1,5 @@
+author: "Kuro020"
+delete-after: True
+changes: 
+  - balance: "mech light cannon's main projectile and spread projectiles deal less damage"
+  - bugfix: "fixed the mech lmg not dealing damage"
