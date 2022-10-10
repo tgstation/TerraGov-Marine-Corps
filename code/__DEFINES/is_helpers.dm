@@ -71,6 +71,7 @@
 #define issommarineleaderjob(J) (istype(J, /datum/job/som/squad/leader))
 #define ismarinecommandjob(J) (istype(J, /datum/job/terragov/command))
 #define ismarinecaptainjob(J) (istype(J, /datum/job/terragov/command/captain))
+#define ismarinepilotjob(J) (istype(J, /datum/job/terragov/command/pilot))
 #define iscorporateliaisonjob(J) (istype(J, /datum/job/terragov/civilian/liaison))
 #define issurvivorjob(J) (istype(J, /datum/job/survivor))
 #define ischaplainjob(J) (istype(J, /datum/job/survivor/chaplain))

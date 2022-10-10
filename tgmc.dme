@@ -1231,6 +1231,7 @@
 #include "code\modules\error_handler\error_handler.dm"
 #include "code\modules\error_handler\error_viewer.dm"
 #include "code\modules\events\_events.dm"
+#include "code\modules\events\cas_supply_increase.dm"
 #include "code\modules\events\intel_computer.dm"
 #include "code\modules\factory\howtopaper.dm"
 #include "code\modules\factory\machines.dm"
