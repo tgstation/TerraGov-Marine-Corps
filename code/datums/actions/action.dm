@@ -134,9 +134,10 @@
 	button.desc = desc
 	if(action_icon && action_icon_state)
 		var/mutable_appearance/action_appearence = visual_references[VREF_MUTABLE_ACTION_STATE]
-		if(action_appearence.icon != action_icon && action_appearence.icon_state != action_icon_state)
+		if(action_appearence.icon != action_icon || action_appearence.icon_state != action_icon_state)
 			button.cut_overlay(action_appearence)
 			action_appearence.icon = action_icon
+			// We need to update the reference since it becomes a new appearance for byond internally
 			action_appearence.icon_state = action_icon_state
 			visual_references[VREF_MUTABLE_ACTION_STATE] = action_appearence
 			button.add_overlay(visual_references[VREF_MUTABLE_ACTION_STATE])
