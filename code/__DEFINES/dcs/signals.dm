@@ -523,6 +523,7 @@
 
 #define COMSIG_XENOMORPH_BRUTE_DAMAGE "xenomorph_brute_damage"
 #define COMSIG_XENOMORPH_BURN_DAMAGE "xenomorph_burn_damage"
+#define COMSIG_XENOMORPH_HEALED_BY_ABILITY "xenomorph_healed_by_ability" // (amount, damagetype)
 
 #define COMSIG_XENOMORPH_EVOLVED "xenomorph_evolved"
 #define COMSIG_XENOMORPH_DEEVOLVED "xenomorph_deevolved"
@@ -546,6 +547,8 @@
 #define COMSIG_XENO_PSYCHIC_LINK_REMOVED "xeno_psychic_link_removed"
 
 #define COMSIG_XENO_ESSENCE_LINK_REMOVED "xeno_essence_link_removed"
+
+#define COMSIG_XENO_ENHANCEMENT_REMOVED "xeno_enhancement_removed"
 
 //human signals
 #define COMSIG_CLICK_QUICKEQUIP "click_quickequip"

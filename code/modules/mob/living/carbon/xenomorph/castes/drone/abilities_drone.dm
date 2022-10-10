@@ -13,101 +13,89 @@
 	name = "Essence Link"
 	action_icon_state = "healing_infusion"
 	mechanics_text = "Link to a xenomorph. This changes some of your abilities, and grants them and you both various bonuses."
-	cooldown_timer = 5 SECONDS
+	cooldown_timer = 1
 	plasma_cost = 0
 	target_flags = XABB_MOB_TARGET
 	//keybind_signal = COMSIG_XENOABILITY_ESSENCE_LINK
 	//alternate_keybind_signal = COMSIG_XENOABILITY_END_ESSENCE_LINK
-
-	/// Xenomorph the owner is linked to.
-	var/mob/living/carbon/xenomorph/link_target
 	/// Time it takes for the link to form.
-	var/link_delay = 5 SECONDS
+	var/link_delay = 3 SECONDS
 	/// The link's range in tiles. Linked xenos must be within this range for the link to be active.
 	var/link_range = 6
-	/// Levels of attunement, consumed on some abilities.
-	var/attunement_level
-	/// Maximum amount of attunement levels.
-	var/max_attunement_level = 3
+	/// Used to determine whether there is an existing Essence Link or not. Also allows access to its vars.
+	var/datum/status_effect/stacking/essence_link/existing_link
+	/// If there is an existing link, this var will contain the link's target.
+	var/mob/living/carbon/xenomorph/linked_target
+	/// Used to determine whether Enhancement is already active or not. Also allows access to its vars.
+	var/datum/status_effect/drone_enhancement/existing_enhancement
 
-/datum/action/xeno_action/activable/essence_link/can_use_ability(atom/target, silent = FALSE, override_flags)
+/datum/action/xeno_action/activable/essence_link/can_use_ability(mob/living/carbon/xenomorph/target, silent = FALSE, override_flags)
 	var/mob/living/carbon/xenomorph/X = owner
+	existing_link = X.has_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK)
+	if(existing_link)
+		linked_target = existing_link.link_target
+		existing_enhancement = linked_target.has_status_effect(STATUS_EFFECT_XENO_ENHANCEMENT)
 
 	. = ..()
 	if(!.)
 		return FALSE
 
-	if(isturf(target))
+	if(!isxeno(target) || target.hive.hivenumber != X.hive.hivenumber)
 		return FALSE
-
 	if(!X.Adjacent(target))
 		X.balloon_alert(X, "Not adjacent")
 		return FALSE
-
-	if(!isxeno(target) /* && target.hive.hivenumber != X.hive.hivenumber */)
-		X.balloon_alert(X, "Not a sister")
+	if(!existing_link && HAS_TRAIT(target, TRAIT_ESSENCE_LINKED))
+		target.balloon_alert(X, "She is already linked")
 		return FALSE
-
-	if(!link_target)
-		if(HAS_TRAIT(X, TRAIT_ESSENCE_LINKED))
-			X.balloon_alert(X, "You are already linked")
-			return FALSE
-		if(HAS_TRAIT(target, TRAIT_ESSENCE_LINKED))
-			X.balloon_alert(X, "She is already linked")
-			return FALSE
-		return TRUE
-
-	if(target != link_target)
-		X.balloon_alert(X, "Not our linked sister")
+	if(existing_link && target != linked_target)
+		target.balloon_alert(X, "Not our linked sister")
 		return FALSE
 	return TRUE
 
 /datum/action/xeno_action/activable/essence_link/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/X = owner
 
-	if(!link_target)
-		X.balloon_alert(owner, "Linking...")
+	if(existing_link && existing_link.stacks < 3)
+		target.balloon_alert(X, "Attuning...")
+		if(!do_after(X, link_delay, TRUE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_FRIENDLY))
+			X.balloon_alert(X, "Attunement cancelled")
+			return
+		existing_link.add_stacks(1)
+
+	if(!existing_link)
+		target.balloon_alert(X, "Linking...")
 		if(!do_after(X, link_delay, TRUE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_FRIENDLY))
 			X.balloon_alert(X, "Link cancelled")
 			return
 		var/essence_link = X.apply_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK, 1, target)
 		RegisterSignal(essence_link, COMSIG_XENO_ESSENCE_LINK_REMOVED, .proc/end_ability)
-		X.balloon_alert(X, "Link successful")
+		existing_link = X.has_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK)
 		target.balloon_alert(target, "Essence Link established")
-		link_target = target
-		attunement_level++
-		return succeed_activate()
 
-	if(attunement_level >= max_attunement_level)
-		X.balloon_alert(X, "Cannot attune any more")
-		return
-
-	X.balloon_alert(X, "Attuning...")
-	if(!do_after(X, link_delay, TRUE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_FRIENDLY))
-		X.balloon_alert(X, "Attunement cancelled")
-		return
-	target.balloon_alert(X, "Attunement successful")
-	X.balloon_alert(target, "Essence Link reinforced")
-	X.apply_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK, 1, target)
-	attunement_level++
+	target.balloon_alert(X, "Attunement: [existing_link.stacks]/[existing_link.max_stacks]")
+	return succeed_activate()
 
 /datum/action/xeno_action/activable/essence_link/alternate_action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
-	message_admins("[X] is X. [owner] is owner.")
+	existing_link = X.has_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK)
 
-	if(!link_target)
+	if(!existing_link)
 		X.balloon_alert(X, "No link to cancel")
 		return
-	X.balloon_alert(X, "Link ended")
-	//end_ability()
+	end_ability()
 	return COMSIG_KB_ACTIVATED
 
-// Cancels the status effect
 /datum/action/xeno_action/activable/essence_link/proc/end_ability()
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/X = owner
+	linked_target = existing_link.link_target
+	existing_enhancement = linked_target.has_status_effect(STATUS_EFFECT_XENO_ENHANCEMENT)
 
-	X.remove_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK)
+	if(existing_enhancement)
+		linked_target.remove_status_effect(STATUS_EFFECT_XENO_ENHANCEMENT)
+		SEND_SIGNAL(X, COMSIG_XENO_ENHANCEMENT_REMOVED)
+	X.remove_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK)
 	UnregisterSignal(X, COMSIG_XENO_ESSENCE_LINK_REMOVED)
 	add_cooldown()
 
@@ -124,101 +112,92 @@
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CURE
 	heal_range = DRONE_HEAL_RANGE
 	target_flags = XABB_MOB_TARGET
+	/// Used to determine whether there is an existing Essence Link or not. Also allows access to its vars.
+	var/datum/status_effect/stacking/essence_link/existing_link
+	/// Amount of health restored by this ability.
+	var/heal_amount = 50
+	/// Multiplier applied to this heal when below a certain threshold.
+	var/heal_multiplier = 1
 
 /datum/action/xeno_action/activable/psychic_cure/acidic_salve/use_ability(atom/target)
-	if(owner.do_actions)
+	var/mob/living/carbon/xenomorph/X = owner
+	existing_link = X.has_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK)
+
+	if(X.do_actions)
+		return FALSE
+	if(!do_mob(X, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 		return FALSE
 
-	if(!do_mob(owner, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
-		return FALSE
-
-	owner.visible_message(span_xenowarning("\the [owner] vomits acid over [target]!"), \
-	span_xenowarning("We cover [target] with our rejuvinating goo!"))
-	target.visible_message(span_xenowarning("[target]'s wounds are mended by the acid."), \
-	span_xenowarning("We feel a sudden soothing chill."))
-
-	playsound(target, "alien_drool", 25)
-
-	new /obj/effect/temp_visual/telekinesis(get_turf(target))
-	var/mob/living/carbon/xenomorph/patient = target
-	patient.salve_healing()
-
+	X.visible_message(span_xenowarning("\the [X] vomits acid over [target], mending their wounds!"))
 	owner.changeNext_move(CLICK_CD_RANGE)
-
-	log_combat(owner, patient, "acid salved")	//Not sure how important this log is but leaving it in
-
+	salve_healing(target)
 	succeed_activate()
 	add_cooldown()
 
-/mob/living/carbon/xenomorph/proc/salve_healing() //Slight modification of the heal_wounds proc
-	var/amount = 50	//Smaller than psychic cure, less useful on xenos with large health pools
-	if(recovery_aura)	//Leaving in the recovery aura bonus, not sure if it is too high the way it is
-		amount += recovery_aura * maxHealth * 0.01 // +1% max health per recovery level, up to +5%
-	var/remainder = max(0, amount - getBruteLoss()) //Heal brute first, apply whatever's left to burns
-	adjustBruteLoss(-amount)
-	adjustFireLoss(-remainder, updating_health = TRUE)
-	adjust_sunder(-amount/20)
+/datum/action/xeno_action/activable/psychic_cure/acidic_salve/proc/salve_healing(mob/living/carbon/xenomorph/target)
+	var/remaining_health = round(target.maxHealth - (target.getBruteLoss() + target.getFireLoss()))
+	var/health_threshold = round(target.maxHealth / 10) // 10% of the target's maximum health
+
+	if(existing_link && existing_link.stacks >= 1 && target == existing_link.link_target)
+		target.apply_status_effect(STATUS_EFFECT_XENO_SALVE_REGEN)
+		if(remaining_health <= health_threshold)
+			heal_multiplier = 3
+			playsound(target,'sound/effects/magic.ogg', 75, 1)
+			existing_link.add_stacks(-1)
+
+	playsound(target, "alien_drool", 25)
+	new /obj/effect/temp_visual/telekinesis(get_turf(target))
+	heal_amount += round((target.recovery_aura * target.maxHealth * 0.01) * heal_multiplier) // +1% max health per recovery level, up to +5%. Multiplied by heal_multiplier.
+	var/heal_remainder = round(max(0, heal_amount - target.getBruteLoss()) * heal_multiplier) // Heal brute first, apply whatever's left to burns
+	target.apply_healing((heal_amount), BRUTE)
+	target.apply_healing((heal_remainder), FIRE, TRUE)
+	target.adjust_sunder(-(heal_amount)/20)
+
+// ***************************************
+// *********** Enhancement
+// ***************************************
+/datum/action/xeno_action/enhancement
+	name = "Enhancement"
+	action_icon_state = "enhancement"
+	mechanics_text = "Apply an enhancement to the linked xeno, increasing their capabilities beyond their limits."
+	cooldown_timer = 60 SECONDS
+	plasma_cost = 0
+	//keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CURE
+	/// Used to determine whether there is an existing Essence Link or not. Also allows access to its vars.
+	var/datum/status_effect/stacking/essence_link/existing_link
+	/// If there is an existing link, this var will contain the link's target.
+	var/mob/living/carbon/xenomorph/linked_target
+	/// Used to determine whether Enhancement is already active or not. Also allows access to its vars.
+	var/datum/status_effect/drone_enhancement/existing_enhancement
+
+/datum/action/xeno_action/enhancement/can_use_action()
+	var/mob/living/carbon/xenomorph/X = owner
+	existing_link = X.has_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK)
+
+	if(!existing_link || existing_link.stacks < 3)
+		return FALSE
+	return ..()
+
+/datum/action/xeno_action/enhancement/action_activate()
+	linked_target = existing_link.link_target
+	existing_enhancement = linked_target.has_status_effect(STATUS_EFFECT_XENO_ENHANCEMENT)
+
+	if(existing_enhancement)
+		end_ability(target)
+		return succeed_activate()
+	linked_target.apply_status_effect(STATUS_EFFECT_XENO_ENHANCEMENT, owner)
+	RegisterSignal(owner, COMSIG_XENO_ENHANCEMENT_REMOVED, .proc/end_ability)
+	return succeed_activate()
+
+/datum/action/xeno_action/enhancement/proc/end_ability()
+	SIGNAL_HANDLER
+	UnregisterSignal(owner, COMSIG_XENO_ENHANCEMENT_REMOVED)
+	linked_target.remove_status_effect(STATUS_EFFECT_XENO_ENHANCEMENT)
+	add_cooldown()
+
 
 // ***************************************
 // *********** Drone Jelly
 // ***************************************
 /datum/action/xeno_action/create_jelly/slow
 	cooldown_timer = 45 SECONDS
-
-// ***************************************
-// *********** Sow
-// ***************************************
-/datum/action/xeno_action/sow
-	name = "Sow"
-	action_icon_state = "place_trap"
-	mechanics_text = "Sow the seeds of an alien plant."
-	plasma_cost = 200
-	cooldown_timer = 45 SECONDS
-	use_state_flags = XACT_USE_LYING
-	keybind_signal = COMSIG_XENOABILITY_DROP_PLANT
-	alternate_keybind_signal = COMSIG_XENOABILITY_CHOOSE_PLANT
-
-/datum/action/xeno_action/sow/can_use_action(silent = FALSE, override_flags)
-	. = ..()
-	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	if(!owner_xeno.loc_weeds_type)
-		if(!silent)
-			owner.balloon_alert(owner, "Cannot sow, no weeds")
-		return FALSE
-
-	var/turf/T = get_turf(owner)
-	if(!T.check_alien_construction(owner, silent))
-		return FALSE
-
-/datum/action/xeno_action/sow/action_activate()
-	var/mob/living/carbon/xenomorph/X = owner
-	if(!X.selected_plant)
-		return FALSE
-
-	playsound(src, "alien_resin_build", 25)
-	new X.selected_plant(get_turf(owner))
-	add_cooldown()
-	return succeed_activate()
-
-/datum/action/xeno_action/sow/update_button_icon()
-	var/mob/living/carbon/xenomorph/X = owner
-	button.overlays.Cut()
-	button.overlays += image('icons/mob/actions.dmi', button, initial(X.selected_plant.name))
-	return ..()
-
-///Shows a radial menu to pick the plant they wish to put down when they use the ability
-/datum/action/xeno_action/sow/proc/choose_plant()
-	var/plant_choice = show_radial_menu(owner, owner, GLOB.plant_images_list, radius = 48)
-	var/mob/living/carbon/xenomorph/X = owner
-	if(!plant_choice)
-		return
-	for(var/obj/structure/xeno/plant/current_plant AS in GLOB.plant_type_list)
-		if(initial(current_plant.name) == plant_choice)
-			X.selected_plant = current_plant
-			break
-	X.balloon_alert(X, "[plant_choice]")
-	update_button_icon()
-
-/datum/action/xeno_action/sow/alternate_action_activate()
-	INVOKE_ASYNC(src, .proc/choose_plant)
-	return COMSIG_KB_ACTIVATED

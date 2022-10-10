@@ -272,8 +272,24 @@
 
 	playsound(target,'sound/effects/magic.ogg', 75, 1)
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
+	heal_target(target)
+	owner.changeNext_move(CLICK_CD_RANGE)
+
+	succeed_activate()
+	add_cooldown()
+
+/datum/action/xeno_action/activable/psychic_cure/proc/heal_target(atom/target)
 	var/mob/living/carbon/xenomorph/patient = target
-	patient.heal_wounds(SHRIKE_CURE_HEAL_MULTIPLIER)
+	var/heal_multiplier = 10
+	var/heal_amount = round((1 + (patient.maxHealth * 0.0375)) * heal_multiplier) // 1 damage + 3.75% max health, with scaling power.
+
+	if(patient.recovery_aura)
+		heal_amount += patient.recovery_aura * patient.maxHealth * 0.01 // +1% max health per recovery level, up to +5%
+	var/remainder = max(0, heal_amount - patient.getBruteLoss()) //Heal brute first, apply whatever's left to burns
+	patient.apply_healing(heal_amount, BRUTE)
+	patient.apply_healing(remainder, FIRE, TRUE)
+	log_combat(owner, patient, "psychically cured")
+
 	if(patient.health > 0) //If they are not in crit after the heal, let's remove evil debuffs.
 		patient.SetUnconscious(0)
 		patient.SetStun(0)
@@ -281,13 +297,6 @@
 		patient.set_stagger(0)
 		patient.set_slowdown(0)
 	patient.updatehealth()
-
-	owner.changeNext_move(CLICK_CD_RANGE)
-
-	log_combat(owner, patient, "psychically cured")
-
-	succeed_activate()
-	add_cooldown()
 
 // ***************************************
 // *********** Construct Acid Well
