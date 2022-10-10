@@ -24,8 +24,8 @@
 
 /datum/round_event/hostile_ert/start()
 	priority_announce("Attention, ship sensors have detected a hostile vessel approaching at high speeds, all crew standby and prepare to be boarded.", sound = 'sound/misc/interference.ogg')
-	var/minimum_ert = (length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) * .04) //roughly comes out to 1 at min population of 30
-	var/maximum_ert = (length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) * .07) //roughly comes out to 2 at min population of 30
+	var/minimum_ert = (length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) * 0.04) //roughly comes out to 1 at min population of 30
+	var/maximum_ert = (length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) * 0.07) //roughly comes out to 2 at min population of 30
 	var/selected_ert = pick("CLF Cell","Sectoid Expedition","Sons of Mars Squad","USL Pirate Band","The Bone Zone","Pizza Delivery")
 	for(var/datum/emergency_call/C in SSticker.mode.all_calls)
 		if(C.name == selected_ert)
