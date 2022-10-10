@@ -15,7 +15,7 @@
 
 /datum/round_event/queen_mothers_blessing/start()
 	for(var/mob/living/carbon/xenomorph/X in shuffle(GLOB.alive_xeno_list))
-		if(isxenolarva(X)
+		if(isxenolarva(X))
 			continue
 		else if(isminion(X))
 			continue
