@@ -761,7 +761,7 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_SUNDERING
 	max_range = 15
 	damage = 70
-	penetration = 15
+	penetration = 7.5
 	sundering = 2
 	bullet_color = COLOR_TAN_ORANGE
 
