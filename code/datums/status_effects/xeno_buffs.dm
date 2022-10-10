@@ -27,12 +27,6 @@
 	owner.heal_limb_damage(0, 5)
 	return ..()
 
-/obj/screen/alert/status_effect/xeno_rejuvenate
-	name = "Rejuvenation"
-	desc = "Your health is being restored."
-	icon_state = "xeno_rejuvenate"
-
-
 // ***************************************
 // *********** Essence Link
 // ***************************************
@@ -46,7 +40,7 @@
 	stack_decay = -1 //Not meant to decay.
 	max_stacks = 3
 	consumed_on_threshold = FALSE
-
+	alert_type = null
 	/// The owner of the link.
 	var/mob/living/carbon/xenomorph/link_owner
 	/// Whom the owner is linked to.
@@ -64,25 +58,30 @@
 	/// Cooldown for the plasma warning. Issued if there's not enough plasma for the regen.
 	COOLDOWN_DECLARE(plasma_warning)
 
-
 /datum/status_effect/stacking/essence_link/on_creation(mob/living/new_owner, stacks_to_apply, mob/living/carbon/link_target)
 	link_owner = new_owner
 	src.link_target = link_target
-
 	ADD_TRAIT(link_owner, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
 	ADD_TRAIT(link_target, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
-	RegisterSignal(link_owner, COMSIG_MOB_DEATH, .proc/handle_death)
-	RegisterSignal(link_target, COMSIG_MOB_DEATH, .proc/handle_death)
-	RegisterSignal(link_owner, COMSIG_MOVABLE_MOVED, .proc/handle_dist)
-	RegisterSignal(link_target, COMSIG_MOVABLE_MOVED, .proc/handle_dist)
-	RegisterSignal(link_owner, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, .proc/share_jelly)
-	RegisterSignal(link_target, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, .proc/share_jelly)
-	RegisterSignal(link_owner, COMSIG_XENOMORPH_HEALED_BY_ABILITY, .proc/share_heal)
-	RegisterSignal(link_target, COMSIG_XENOMORPH_HEALED_BY_ABILITY, .proc/share_heal)
+	toggle_signals(TRUE, TRUE)
+	toggle_link(TRUE)
 	link_target.visible_message(span_xenowarning("[link_target] has gained a faint glow!"), \
 		span_xenonotice("[link_owner] has established an Essence Link with you. Stay within [link_range] tiles to maintain it."))
-	link_toggle(TRUE)
 	return ..()
+
+/datum/status_effect/stacking/essence_link/add_stacks(stacks_added)
+	. = ..()
+	update_link()
+
+/datum/status_effect/stacking/essence_link/on_remove()
+	. = ..()
+	link_owner.balloon_alert(link_owner, "Essence Link cancelled")
+	link_target.balloon_alert(link_target, "Essence Link cancelled")
+	toggle_signals(FALSE, TRUE)
+	toggle_link(FALSE)
+	REMOVE_TRAIT(link_owner, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
+	REMOVE_TRAIT(link_target, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
+	SEND_SIGNAL(src, COMSIG_XENO_ESSENCE_LINK_REMOVED)
 
 /datum/status_effect/stacking/essence_link/tick()
 	var/heal_amount = round(link_target.maxHealth * (stacks * health_regen))
@@ -101,53 +100,23 @@
 	link_target.adjustBruteLoss(-heal_amount)
 	link_owner.use_plasma(plasma_cost)
 
-/datum/status_effect/stacking/essence_link/on_remove()
-	. = ..()
-	link_owner.balloon_alert(link_owner, "Essence Link cancelled")
-	link_target.balloon_alert(link_target, "Essence Link cancelled")
-	QDEL_NULL(current_beam)
-	REMOVE_TRAIT(link_owner, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
-	REMOVE_TRAIT(link_target, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
-	UnregisterSignal(link_owner, list(COMSIG_MOB_DEATH, COMSIG_MOVABLE_MOVED, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, COMSIG_XENOMORPH_HEALED_BY_ABILITY))
-	UnregisterSignal(link_target, list(COMSIG_MOB_DEATH, COMSIG_MOVABLE_MOVED, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, COMSIG_XENOMORPH_HEALED_BY_ABILITY))
-	SEND_SIGNAL(src, COMSIG_XENO_ESSENCE_LINK_REMOVED)
-
-// Called by other procs.
-// This will toggle the link on or off, adding/removing the corresponding signals as necessary.
-/datum/status_effect/stacking/essence_link/proc/link_toggle(toggle_on)
-	if(toggle_on)
-		RegisterSignal(link_owner, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, .proc/share_jelly)
-		RegisterSignal(link_target, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, .proc/share_jelly)
-		RegisterSignal(link_owner, COMSIG_XENOMORPH_HEALED_BY_ABILITY, .proc/share_heal)
-		RegisterSignal(link_target, COMSIG_XENOMORPH_HEALED_BY_ABILITY, .proc/share_heal)
-		current_beam = link_owner.beam(link_target, icon_state= "medbeam", beam_type = /obj/effect/ebeam/essence_link)
-		//current_beam.beam_type.alpha = round(255 / (max_stacks+1 - stacks))
-		return
-	UnregisterSignal(link_owner, list(COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, COMSIG_XENOMORPH_HEALED_BY_ABILITY))
-	UnregisterSignal(link_target, list(COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, COMSIG_XENOMORPH_HEALED_BY_ABILITY))
-	QDEL_NULL(current_beam)
-
-// Called whenever either of the linked xenos dies.
-// This will remove the status effect, which in turn calls on_remove().
+/// Removes the status effect on death.
 /datum/status_effect/stacking/essence_link/proc/handle_death(datum/source)
 	SIGNAL_HANDLER
 	link_owner.remove_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK)
 
-// Called whenever either of the linked xenos moves.
-// This checks whether the linked xenos are still within range after movement.
-// Depending on whether the above is true or not, the link is either activated or disabled.
+/// Toggles the link depending on whether the linked xenos are still in range or not.
 /datum/status_effect/stacking/essence_link/proc/handle_dist(datum/source)
 	SIGNAL_HANDLER
 	var/within_range = get_dist(link_owner, link_target) <= link_range
 	if(within_range == was_within_range)
 		return
 	was_within_range = within_range
-	link_toggle(was_within_range)
+	toggle_link(was_within_range)
 	link_owner.balloon_alert(link_owner, was_within_range ? ("Link reestablished") : ("Link faltering"))
 	link_target.balloon_alert(link_target, was_within_range ? ("Link reestablished") : ("Link faltering"))
 
-// Called whenever either of the linked xenos has Resin Jelly applied to them.
-// This applies the buff to the other xeno.
+/// Shares the Resin Jelly buff with the linked xeno.
 /datum/status_effect/stacking/essence_link/proc/share_jelly(datum/source)
 	SIGNAL_HANDLER
 	/// Who gives the buff.
@@ -169,8 +138,7 @@
 	INVOKE_ASYNC(buff_target, /mob/living/carbon/xenomorph/.proc/emote, "roar")
 	buff_target.apply_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING)
 
-// Called whenever either of the linked xenos receives any form of healing.
-// This will apply a portion of that healing to the other xeno.
+/// Shares heals with the linked xeno.
 /datum/status_effect/stacking/essence_link/proc/share_heal(datum/source, amount, damagetype)
 	SIGNAL_HANDLER
 	/// Who gives the shared heal.
@@ -187,16 +155,51 @@
 		heal_owner = link_owner
 		heal_target = link_target
 
+	// Prevent healing loops by temporarily removing this signal.
 	UnregisterSignal(link_owner, COMSIG_XENOMORPH_HEALED_BY_ABILITY)
 	UnregisterSignal(link_target, COMSIG_XENOMORPH_HEALED_BY_ABILITY)
+
 	heal_amount = round(clamp(amount * (shared_heal * stacks), 0, heal_target.maxHealth))
 	heal_target.visible_message(span_xenowarning("[heal_target]'s wounds are mended by faint energies."), \
 		span_xenonotice("Through the essence link, [heal_owner] has shared [heal_amount] health restoration."))
 	new /obj/effect/temp_visual/telekinesis(get_turf(heal_target))
 	heal_target.apply_healing(heal_amount)
+
 	RegisterSignal(link_owner, COMSIG_XENOMORPH_HEALED_BY_ABILITY, .proc/share_heal)
 	RegisterSignal(link_target, COMSIG_XENOMORPH_HEALED_BY_ABILITY, .proc/share_heal)
 
+/// Toggles the effect beam on or off.
+/datum/status_effect/stacking/essence_link/proc/toggle_link(toggle)
+	if(toggle)
+		QDEL_NULL(current_beam)
+		return
+	current_beam = link_owner.beam(link_target, icon_state= "medbeam", beam_type = /obj/effect/ebeam/essence_link)
+	update_link()
+
+/// Updates the link's appearance.
+/datum/status_effect/stacking/essence_link/proc/update_link()
+	var/beam_alpha = round(255 / (max_stacks+1 - stacks)) // 255 is the maximum alpha possible. We divide that by the missing amount stacks.
+	for(var/obj/effect/ebeam/essence_link/visual AS in beam.visuals)
+		visual.alpha = beam_alpha
+
+/// Toggles signals on or off. apply_to_all should only be TRUE if called in on_creation() or on_remove().
+/datum/status_effect/stacking/essence_link/proc/toggle_signals(toggle, apply_to_all)
+	if(!toggle)
+		if(apply_to_all)
+			UnregisterSignal(link_owner, list(COMSIG_MOB_DEATH, COMSIG_MOVABLE_MOVED))
+			UnregisterSignal(link_target, list(COMSIG_MOB_DEATH, COMSIG_MOVABLE_MOVED))
+		UnregisterSignal(link_owner, list(COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, COMSIG_XENOMORPH_HEALED_BY_ABILITY))
+		UnregisterSignal(link_target, list(COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, COMSIG_XENOMORPH_HEALED_BY_ABILITY))
+		return
+	if(apply_to_all)
+		RegisterSignal(link_owner, COMSIG_MOB_DEATH, .proc/handle_death)
+		RegisterSignal(link_target, COMSIG_MOB_DEATH, .proc/handle_death)
+		RegisterSignal(link_owner, COMSIG_MOVABLE_MOVED, .proc/handle_dist)
+		RegisterSignal(link_target, COMSIG_MOVABLE_MOVED, .proc/handle_dist)
+	RegisterSignal(link_owner, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, .proc/share_jelly)
+	RegisterSignal(link_target, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, .proc/share_jelly)
+	RegisterSignal(link_owner, COMSIG_XENOMORPH_HEALED_BY_ABILITY, .proc/share_heal)
+	RegisterSignal(link_target, COMSIG_XENOMORPH_HEALED_BY_ABILITY, .proc/share_heal)
 
 // ***************************************
 // *********** Salve Regeneration
@@ -206,6 +209,7 @@
 	duration = 15 SECONDS
 	tick_interval = 2 SECONDS
 	status_type = STATUS_EFFECT_REFRESH
+	alert_type = null
 
 /datum/status_effect/salve_regen/on_apply()
 	if(!isxeno(owner))
@@ -228,7 +232,6 @@
 	owner.adjust_sunder(-1)
 	new /obj/effect/temp_visual/healing(get_turf(owner))
 	return ..()
-
 
 // ***************************************
 // *********** Enhancement
@@ -256,6 +259,7 @@
 	id = "drone enhancement"
 	duration = -1
 	tick_interval = 2 SECONDS
+	alert_type = null
 	/// Used to track the giver of this buff.
 	var/mob/living/carbon/xenomorph/buffing_target
 	/// Used to track the owner of this buff.
@@ -283,15 +287,13 @@
 	speed_addition = round(buff_owner.xeno_caste.speed * 0.05) // 5% of the user's base speed.
 	buffing_target.xeno_caste.plasma_gain = 0 // Denies natural plasma gain while this is active.
 
-	buff_owner.balloon_alert(buff_owner, "Enhancement active")
-	buffing_target.balloon_alert(buffing_target, "Enhancement active")
-	buff_owner.visible_message(span_xenowarning("[buff_owner] is engulfed in searing energies!"), \
-		span_xenonotice("Through the Essence Link between us and [buffing_target], we are overtaken by a surge of power!"))
-	INVOKE_ASYNC(buff_owner, /mob/living/carbon/xenomorph/.proc/emote, "roar2")
 	toggle_particles(TRUE)
 	buff_owner.xeno_melee_damage_modifier = damage_addition
 	buff_owner.add_movespeed_modifier(MOVESPEED_ID_ENHANCEMENT, TRUE, 0, NONE, FALSE, speed_addition)
-
+	buff_owner.balloon_alert(buff_owner, "Enhancement active")
+	buffing_target.balloon_alert(buffing_target, "Enhancement active")
+	buff_owner.visible_message(span_xenowarning("[buff_owner] is engulfed in a burst of plasma!"))
+	INVOKE_ASYNC(buff_owner, /mob/living/carbon/xenomorph/.proc/emote, "roar2")
 	RegisterSignal(buff_owner, COMSIG_MOB_DEATH, .proc/handle_death)
 	RegisterSignal(buffing_target, COMSIG_MOB_DEATH, .proc/handle_death)
 	return TRUE
@@ -317,6 +319,7 @@
 	buffing_target.use_plasma(plasma_cost)
 	return ..()
 
+/// Toggles particles on or off, adjusting their positioning to fit the buff's owner.
 /datum/status_effect/drone_enhancement/proc/toggle_particles(toggle = TRUE)
 	var/particle_x = abs(buff_owner.pixel_x)
 	if(!toggle)
@@ -326,14 +329,19 @@
 	particle_holder.pixel_x = particle_x
 	particle_holder.pixel_y = -3
 
+/// Removes the status effect on death.
 /datum/status_effect/drone_enhancement/proc/handle_death()
 	SIGNAL_HANDLER
 	buff_owner.remove_status_effect(STATUS_EFFECT_XENO_ENHANCEMENT)
 
-
 // ***************************************
 // *********** Rejuvenate
 // ***************************************
+/obj/screen/alert/status_effect/xeno_rejuvenate
+	name = "Rejuvenation"
+	desc = "Your health is being restored."
+	icon_state = "xeno_rejuvenate"
+
 /datum/status_effect/xeno_rejuvenate
 	id = "xeno_rejuvenate"
 	tick_interval = 2 SECONDS
