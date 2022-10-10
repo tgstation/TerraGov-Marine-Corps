@@ -18,10 +18,6 @@
 	X.lay_down()
 	return succeed_activate()
 
-/datum/action/xeno_Action/xeno_resting/update_button_icon()
-	set_toggle(owner.resting ? TRUE : FALSE)
-	return ..()
-
 // ***************************************
 // *********** Drone-y abilities
 // ***************************************
