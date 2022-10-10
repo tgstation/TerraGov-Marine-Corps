@@ -5,7 +5,9 @@
 	action_icon_state = "web_spit"
 	plasma_cost = 125
 	cooldown_timer = 10 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_WEB_SPIT
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_WEB_SPIT
+	)
 
 /datum/action/xeno_action/activable/web_spit/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -30,7 +32,9 @@
 	action_icon_state = "leash_ball"
 	plasma_cost = 250
 	cooldown_timer = 20 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_LEASH_BALL
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LEASH_BALL
+	)
 
 /datum/action/xeno_action/activable/leash_ball/use_ability(atom/A)
 	var/turf/target = get_turf(A)
@@ -128,7 +132,9 @@
 	action_icon_state = "spawn_spiderling"
 	plasma_cost = 100
 	cooldown_timer = 15 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_CREATE_SPIDERLING
+	keybinding_signals = list(
+		COMSIG_XENOABILITY_CREATE_SPIDERLING
+	)
 	/// List of all our spiderlings
 	var/list/mob/living/carbon/xenomorph/spiderling/spiderlings = list()
 
@@ -171,7 +177,9 @@
 	action_icon_state = "burrow"
 	plasma_cost = 0
 	cooldown_timer = 20 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_BURROW
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BURROW
+	)
 	use_state_flags = XACT_USE_BURROWED
 
 /datum/action/xeno_action/burrow/action_activate()
@@ -235,7 +243,9 @@
 	action_icon_state = "attach_spiderling"
 	plasma_cost = 0
 	cooldown_timer = 0 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_ATTACH_SPIDERLINGS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ATTACH_SPIDERLINGS
+	)
 	///the attached spiderlings
 	var/list/mob/living/carbon/xenomorph/spiderling/attached_spiderlings = list()
 	///how many times we attempt to attach adjacent spiderligns
@@ -277,7 +287,9 @@
 	action_icon_state = "web_hook"
 	plasma_cost = 200
 	cooldown_timer = 20 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_WEB_HOOK
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_WEB_HOOK
+	)
 	//ref to beam for web hook
 	var/datum/beam/web_beam
 
