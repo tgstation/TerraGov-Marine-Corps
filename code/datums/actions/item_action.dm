@@ -47,6 +47,9 @@
 		visual_references[VREF_MUTABLE_LINKED_OBJ] = null
 	return ..()
 
+/datum/action/item_action/toggle
+	action_type = ACTION_TOGGLE
+
 /datum/action/item_action/toggle/update_button_icon()
 	..()
 

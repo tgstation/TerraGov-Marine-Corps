@@ -21,11 +21,10 @@
 	var/background_icon_state = "template"
 	// holds a set of misc visual references to use with the overlay API
 	var/list/visual_references = list()
-	var/list/keybinding_signals = list(
-		KEYBINDING_NORMAL = null
-	)
+	var/list/keybinding_signals = list()
 	var/list/maptext_offsets = list(
-		KEYBINDING_NORMAL = list(0,0)
+		KEYBINDING_NORMAL = list(0,0),
+		KEYBINDING_ALTERNATE = list(16,16)
 	)
 	var/action_type = ACTION_CLICK
 	/// Used for keeping track of the addition of the selected/active frames
@@ -62,7 +61,7 @@
 			maptext_appearence.layer = ABOVE_HUD_LAYER // above selected/empowered frame
 			maptext_appearence.pixel_x = maptext_offsets[keybind_type][1]
 			maptext_appearence.pixel_y = maptext_offsets[keybind_type][2]
-			maptext_list += list(keybinding_signals[keybind_type], maptext_appearence)
+			maptext_list[keybinding_signals[keybind_type]] = maptext_appearence
 		visual_references[VREF_MUTABLE_MAPTEXT] = maptext_list
 	switch(action_type)
 		if(ACTION_TOGGLE)
@@ -171,7 +170,7 @@
 	return
 
 /// Handler for what action to trigger, inherit from this and call parent before for extra actions
-/datum/action/proc/keybind_trigger(datum/keybinding/kb_type)
+/datum/action/proc/keybind_trigger(mob/source, datum/keybinding/kb_type)
 	SIGNAL_HANDLER
 	if(kb_type.keybind_signal == keybinding_signals[KEYBINDING_NORMAL])
 		return keybind_activation()

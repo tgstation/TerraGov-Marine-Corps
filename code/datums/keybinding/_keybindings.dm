@@ -13,7 +13,7 @@
 
 /datum/keybinding/proc/down(client/user)
 	SHOULD_CALL_PARENT(TRUE)
-	return CHECK_BITFIELD(SEND_SIGNAL(user.mob, keybind_signal), COMSIG_KB_ACTIVATED)
+	return CHECK_BITFIELD(SEND_SIGNAL(user.mob, keybind_signal, src), COMSIG_KB_ACTIVATED)
 
 /datum/keybinding/proc/up(client/user)
 	return FALSE
