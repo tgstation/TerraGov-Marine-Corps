@@ -10,7 +10,7 @@
 	cooldown_timer = 20 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_STOMP
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_STOMP,
 	)
 
 /datum/action/xeno_action/activable/stomp/use_ability(atom/A)
@@ -70,7 +70,7 @@
 	plasma_cost = 75
 	cooldown_timer = 12 SECONDS
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CRESTTOSS
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CRESTTOSS,
 	)
 	target_flags = XABB_MOB_TARGET
 
@@ -178,7 +178,7 @@
 	plasma_cost = 175
 	cooldown_timer = 30 SECONDS
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ADVANCE
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ADVANCE,
 	)
 
 /datum/action/xeno_action/activable/advance/on_cooldown_finish()

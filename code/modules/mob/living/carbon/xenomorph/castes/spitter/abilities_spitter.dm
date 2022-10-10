@@ -111,7 +111,7 @@
 	plasma_cost = 280
 	cooldown_timer = 5 SECONDS
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SCATTER_SPIT
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SCATTER_SPIT,
 	)
 
 /datum/action/xeno_action/activable/scatter_spit/use_ability(atom/target)

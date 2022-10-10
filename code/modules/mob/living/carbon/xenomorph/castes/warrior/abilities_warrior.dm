@@ -9,7 +9,7 @@
 	cooldown_timer = 0.5 SECONDS
 	use_state_flags = XACT_USE_AGILITY
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_AGILITY
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_AGILITY,
 	)
 	var/last_agility_bonus = 0
 
@@ -61,7 +61,7 @@
 	plasma_cost = 25
 	cooldown_timer = 20 SECONDS
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LUNGE
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LUNGE,
 	)
 	target_flags = XABB_MOB_TARGET
 	/// The target of our lunge, we keep it to check if we are adjacent everytime we move
@@ -174,7 +174,7 @@
 	plasma_cost = 18
 	cooldown_timer = 20 SECONDS //Shared cooldown with Grapple Toss
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FLING
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FLING,
 	)
 	target_flags = XABB_MOB_TARGET
 
@@ -275,7 +275,7 @@
 	plasma_cost = 18
 	cooldown_timer = 20 SECONDS //Shared cooldown with Fling
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_GRAPPLE_TOSS
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_GRAPPLE_TOSS,
 	)
 	target_flags = XABB_TURF_TARGET
 
@@ -353,7 +353,7 @@
 	plasma_cost = 12
 	cooldown_timer = 10 SECONDS
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PUNCH
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PUNCH,
 	)
 	target_flags = XABB_MOB_TARGET
 	///The punch range, 1 would be adjacent.
@@ -562,7 +562,7 @@
 	plasma_cost = 10
 	range = 2
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_JAB
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_JAB,
 	)
 
 /datum/action/xeno_action/activable/punch/jab/use_ability(atom/A)

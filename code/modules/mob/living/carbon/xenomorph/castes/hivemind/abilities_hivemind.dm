@@ -33,7 +33,7 @@
 	ability_name = "command minions"
 	plasma_cost = 100
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RALLY_MINION
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RALLY_MINION,
 	)
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	cooldown_timer = 60 SECONDS

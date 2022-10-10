@@ -31,9 +31,10 @@
 	mechanics_text = "Move faster on resin."
 	plasma_cost = 50
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RESIN_WALKER
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RESIN_WALKER,
 	)
 	use_state_flags = XACT_USE_LYING
+	action_type = ACTION_TOGGLE
 	var/speed_activated = FALSE
 	var/speed_bonus_active = FALSE
 
@@ -62,6 +63,7 @@
 	if(walker.loc_weeds_type)
 		speed_bonus_active = TRUE
 		walker.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -1.5)
+	set_toggle(TRUE)
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/resinwalk_on_moved)
 
 
@@ -73,6 +75,7 @@
 		walker.remove_movespeed_modifier(type)
 		speed_bonus_active = FALSE
 	speed_activated = FALSE
+	set_toggle(FALSE)
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 
 
@@ -105,7 +108,7 @@
 	plasma_cost = 200
 	cooldown_timer = 120 SECONDS
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BUILD_TUNNEL
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BUILD_TUNNEL,
 	)
 
 /datum/action/xeno_action/build_tunnel/can_use_action(silent = FALSE, override_flags)
@@ -194,7 +197,7 @@
 	plasma_cost = 500
 	cooldown_timer = 1 MINUTES
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_JELLY_POD
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_JELLY_POD,
 	)
 
 /datum/action/xeno_action/place_jelly_pod/can_use_action(silent = FALSE, override_flags)
@@ -234,7 +237,7 @@
 	plasma_cost = 100
 	cooldown_timer = 20 SECONDS
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CREATE_JELLY
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CREATE_JELLY,
 	)
 
 /datum/action/xeno_action/create_jelly/can_use_action(silent = FALSE, override_flags)
@@ -263,7 +266,7 @@
 	cooldown_timer = 12.5 SECONDS
 	plasma_cost = 200
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HEALING_INFUSION
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HEALING_INFUSION,
 	)
 	use_state_flags = XACT_USE_LYING
 	target_flags = XABB_MOB_TARGET

@@ -8,7 +8,7 @@
 	plasma_cost = 50
 	cooldown_timer = 10 SECONDS
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_HIVE_MESSAGE
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_HIVE_MESSAGE,
 	)
 	use_state_flags = XACT_USE_LYING
 
@@ -70,7 +70,7 @@
 	cooldown_timer = 100 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SCREECH
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SCREECH,
 	)
 
 /datum/action/xeno_action/activable/screech/on_cooldown_finish()
@@ -224,7 +224,7 @@
 	mechanics_text = "Zoom out for a larger view around wherever you are looking."
 	plasma_cost = 0
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_QUEEN_ZOOM
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_QUEEN_ZOOM,
 	)
 
 
@@ -342,7 +342,7 @@
 	plasma_cost = 150
 	cooldown_timer = 8 SECONDS
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA,
 	)
 	use_state_flags = XACT_USE_LYING
 	target_flags = XABB_MOB_TARGET
@@ -407,7 +407,7 @@
 	mechanics_text = "De-evolve a target Xenomorph of Tier 2 or higher to the next lowest tier."
 	plasma_cost = 600
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DEEVOLVE
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DEEVOLVE,
 	)
 	use_state_flags = XACT_USE_LYING
 

@@ -113,7 +113,7 @@
 //These 'personal' subtypes are the ones not used by overwatch; like what SL or FC gets
 /datum/action/innate/order/attack_order/personal
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_KB_ATTACKORDER
+		KEYBINDING_NORMAL = COMSIG_KB_ATTACKORDER,
 	)
 
 /datum/action/innate/order/attack_order/personal/should_show()
@@ -134,7 +134,7 @@
 
 /datum/action/innate/order/defend_order/personal
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_KB_DEFENDORDER
+		KEYBINDING_NORMAL = COMSIG_KB_DEFENDORDER,
 	)
 
 /datum/action/innate/order/defend_order/personal/should_show()
@@ -154,7 +154,7 @@
 
 /datum/action/innate/order/retreat_order/personal
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_KB_RETREATORDER
+		KEYBINDING_NORMAL = COMSIG_KB_RETREATORDER,
 	)
 
 /datum/action/innate/order/retreat_order/personal/should_show()
@@ -175,7 +175,7 @@
 
 /datum/action/innate/order/rally_order/personal
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_KB_RALLYORDER
+		KEYBINDING_NORMAL = COMSIG_KB_RALLYORDER,
 	)
 
 /datum/action/innate/order/rally_order/personal/should_show()

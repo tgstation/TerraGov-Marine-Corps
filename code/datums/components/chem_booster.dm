@@ -464,7 +464,7 @@
 	action_icon = 'icons/mob/actions.dmi'
 	action_icon_state = "cboost_configure"
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_KB_VALI_CONFIGURE
+		KEYBINDING_NORMAL = COMSIG_KB_VALI_CONFIGURE,
 	)
 
 /datum/action/chem_booster/power
@@ -472,7 +472,7 @@
 	action_icon = 'icons/mob/actions.dmi'
 	action_icon_state = "cboost_off"
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_KB_VALI_HEAL
+		KEYBINDING_NORMAL = COMSIG_KB_VALI_HEAL,
 	)
 	///Records the last time the action was used to avoid accidentally cancelling the effect when spamming the button in-combat
 	var/last_activated_time
@@ -498,7 +498,7 @@
 	action_icon = 'icons/mob/actions.dmi'
 	action_icon_state = "vali_weapon_connect"
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_KB_VALI_CONNECT
+		KEYBINDING_NORMAL = COMSIG_KB_VALI_CONNECT,
 	)
 
 #undef EXTRACT

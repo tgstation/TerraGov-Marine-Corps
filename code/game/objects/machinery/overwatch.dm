@@ -849,21 +849,21 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	name = "Issue Move Order"
 	order_type = AURA_HUMAN_MOVE
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_KB_MOVEORDER
+		KEYBINDING_NORMAL = COMSIG_KB_MOVEORDER,
 	)
 
 /datum/action/skill/issue_order/hold
 	name = "Issue Hold Order"
 	order_type = AURA_HUMAN_HOLD
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_KB_HOLDORDER
+		KEYBINDING_NORMAL = COMSIG_KB_HOLDORDER,
 	)
 
 /datum/action/skill/issue_order/focus
 	name = "Issue Focus Order"
 	order_type = AURA_HUMAN_FOCUS
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_KB_FOCUSORDER
+		KEYBINDING_NORMAL = COMSIG_KB_FOCUSORDER,
 	)
 
 /datum/action/skill/toggle_orders

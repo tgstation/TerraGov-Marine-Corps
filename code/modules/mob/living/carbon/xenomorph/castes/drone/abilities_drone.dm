@@ -16,7 +16,7 @@
 	cooldown_timer = 5 SECONDS
 	plasma_cost = 150
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_CURE
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_CURE,
 	)
 	heal_range = DRONE_HEAL_RANGE
 	target_flags = XABB_MOB_TARGET
@@ -73,7 +73,7 @@
 	use_state_flags = XACT_USE_LYING
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DROP_PLANT,
-		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_CHOOSE_PLANT
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_CHOOSE_PLANT,
 	)
 
 /datum/action/xeno_action/sow/can_use_action(silent = FALSE, override_flags)

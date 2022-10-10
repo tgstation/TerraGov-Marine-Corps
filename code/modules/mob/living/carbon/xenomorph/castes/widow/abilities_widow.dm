@@ -6,7 +6,7 @@
 	plasma_cost = 125
 	cooldown_timer = 10 SECONDS
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_WEB_SPIT
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_WEB_SPIT,
 	)
 
 /datum/action/xeno_action/activable/web_spit/use_ability(atom/target)
@@ -33,7 +33,7 @@
 	plasma_cost = 250
 	cooldown_timer = 20 SECONDS
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LEASH_BALL
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LEASH_BALL,
 	)
 
 /datum/action/xeno_action/activable/leash_ball/use_ability(atom/A)
@@ -133,7 +133,7 @@
 	plasma_cost = 100
 	cooldown_timer = 15 SECONDS
 	keybinding_signals = list(
-		COMSIG_XENOABILITY_CREATE_SPIDERLING
+		COMSIG_XENOABILITY_CREATE_SPIDERLING,
 	)
 	/// List of all our spiderlings
 	var/list/mob/living/carbon/xenomorph/spiderling/spiderlings = list()
@@ -244,7 +244,7 @@
 	plasma_cost = 0
 	cooldown_timer = 0 SECONDS
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ATTACH_SPIDERLINGS
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ATTACH_SPIDERLINGS,
 	)
 	///the attached spiderlings
 	var/list/mob/living/carbon/xenomorph/spiderling/attached_spiderlings = list()
@@ -288,7 +288,7 @@
 	plasma_cost = 200
 	cooldown_timer = 20 SECONDS
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_WEB_HOOK
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_WEB_HOOK,
 	)
 	//ref to beam for web hook
 	var/datum/beam/web_beam

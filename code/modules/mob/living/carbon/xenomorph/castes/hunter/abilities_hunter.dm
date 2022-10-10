@@ -8,7 +8,7 @@
 	ability_name = "stealth"
 	plasma_cost = 10
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_STEALTH
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_STEALTH,
 	)
 	cooldown_timer = HUNTER_STEALTH_COOLDOWN
 	var/last_stealth = null
@@ -222,7 +222,7 @@
 	name = "Disguise"
 	mechanics_text = "Disguise yourself as the enemy. Uses plasma to move. Select your disguise with Hunter's Mark."
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_DISGUISE
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_DISGUISE,
 	)
 	///the regular appearance of the hunter
 	var/old_appearance
@@ -285,7 +285,7 @@
 	mechanics_text = "Psychically mark a creature you have line of sight to, allowing you to sense its direction, distance and location with Psychic Trace."
 	plasma_cost = 25
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HUNTER_MARK
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HUNTER_MARK,
 	)
 	cooldown_timer = 60 SECONDS
 	///the target marked
@@ -368,7 +368,7 @@
 	mechanics_text = "Psychically ping the creature you marked, letting you know its direction, distance and location, and general condition."
 	plasma_cost = 1 //Token amount
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_TRACE
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_TRACE,
 	)
 	cooldown_timer = HUNTER_PSYCHIC_TRACE_COOLDOWN
 
@@ -438,7 +438,7 @@
 	ability_name = "mirage"
 	plasma_cost = 50
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_MIRAGE
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_MIRAGE,
 	)
 	cooldown_timer = 30 SECONDS
 	///How long will the illusions live

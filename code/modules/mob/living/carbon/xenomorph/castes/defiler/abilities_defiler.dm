@@ -70,7 +70,7 @@
 	cooldown_timer = 20 SECONDS
 	target_flags = XABB_MOB_TARGET
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DEFILE
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DEFILE,
 	)
 
 /datum/action/xeno_action/activable/defile/on_cooldown_finish()
@@ -166,7 +166,7 @@
 	cooldown_timer = 40 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY|XACT_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_EMIT_NEUROGAS
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_EMIT_NEUROGAS,
 	)
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
@@ -283,7 +283,7 @@
 	cooldown_timer = 5 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_INJECT_EGG_NEUROGAS
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_INJECT_EGG_NEUROGAS,
 	)
 
 /datum/action/xeno_action/activable/inject_egg_neurogas/on_cooldown_finish()
@@ -343,7 +343,7 @@
 	use_state_flags = XACT_USE_BUSY|XACT_USE_LYING
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SELECT_REAGENT,
-		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_RADIAL_SELECT_REAGENT
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_RADIAL_SELECT_REAGENT,
 	)
 
 /datum/action/xeno_action/select_reagent/give_action(mob/living/L)
@@ -407,7 +407,7 @@
 	cooldown_timer = 6 SECONDS
 	plasma_cost = 100
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REAGENT_SLASH
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REAGENT_SLASH,
 	)
 	target_flags = XABB_MOB_TARGET
 	///How many remaining reagent slashes the Defiler has
@@ -509,7 +509,7 @@
 	cooldown_timer = 20 SECONDS
 	plasma_cost = 200
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TENTACLE
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TENTACLE,
 	)
 	///reference to beam tentacle
 	var/datum/beam/tentacle

@@ -39,7 +39,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	mechanics_text = "Click on a non tile and non mob to bring a facehugger into your hand. Click at a target or tile to throw a facehugger."
 	ability_name = "throw facehugger"
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_THROW_HUGGER
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_THROW_HUGGER,
 	)
 	cooldown_timer = 3 SECONDS
 
@@ -114,7 +114,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	mechanics_text = "Place a hole on weeds that can be filled with a hugger or acid. Activates when a marine steps on it."
 	plasma_cost = 400
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_TRAP
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_TRAP,
 	)
 
 /datum/action/xeno_action/place_trap/can_use_action(silent = FALSE, override_flags)
@@ -155,7 +155,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	plasma_cost = 200
 	cooldown_timer = 10 SECONDS
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SPAWN_HUGGER
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SPAWN_HUGGER,
 	)
 	use_state_flags = XACT_USE_LYING
 
@@ -193,7 +193,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	plasma_cost = 10
 	cooldown_timer = 50 SECONDS
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DROP_ALL_HUGGER
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DROP_ALL_HUGGER,
 	)
 	use_state_flags = XACT_USE_LYING
 
@@ -249,7 +249,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	mechanics_text = "Selects which hugger type you will build with the Spawn Hugger ability."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CHOOSE_HUGGER,
-		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_SWITCH_HUGGER
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_SWITCH_HUGGER,
 	)
 
 /datum/action/xeno_action/choose_hugger_type/give_action(mob/living/L)

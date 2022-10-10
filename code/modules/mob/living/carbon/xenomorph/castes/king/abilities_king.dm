@@ -10,7 +10,7 @@
 	cooldown_timer = 45 SECONDS
 	plasma_cost = 100
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_NIGHTFALL
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_NIGHTFALL,
 	)
 	/// How far nightfall will have an effect
 	var/range = 12
@@ -44,7 +44,7 @@
 	plasma_cost = 200
 	cooldown_timer = 30 SECONDS
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_GRAVITY_CRUSH
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_GRAVITY_CRUSH,
 	)
 	/// How far can we use gravity crush
 	var/king_crush_dist = 5
@@ -139,7 +139,7 @@
 	cooldown_timer = 10 MINUTES
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HIVE_SUMMON
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HIVE_SUMMON,
 	)
 
 /datum/action/xeno_action/activable/psychic_summon/on_cooldown_finish()

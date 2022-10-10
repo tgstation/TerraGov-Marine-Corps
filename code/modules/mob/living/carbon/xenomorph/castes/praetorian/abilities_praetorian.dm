@@ -135,7 +135,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	plasma_cost = 250
 	cooldown_timer = 30 SECONDS
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_DASH
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_DASH,
 	)
 	///How far can we dash
 	var/range = 5

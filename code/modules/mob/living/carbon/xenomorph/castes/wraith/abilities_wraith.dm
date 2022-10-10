@@ -13,7 +13,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	plasma_cost = 30
 	cooldown_timer = 0.5 SECONDS
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BLINK
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BLINK,
 	)
 
 ///Check target Blink turf to see if it can be blinked to
@@ -153,7 +153,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	plasma_cost = 50
 	cooldown_timer = 20 SECONDS
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BANISH
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BANISH,
 	)
 	///Target we've banished
 	var/atom/movable/banishment_target = null
@@ -327,7 +327,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	use_state_flags = XACT_USE_NOTTURF|XACT_USE_CLOSEDTURF|XACT_USE_STAGGERED|XACT_USE_INCAP|XACT_USE_LYING //So we can recall ourselves from nether Brazil
 	cooldown_timer = 1 SECONDS //Token for anti-spam
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RECALL
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RECALL,
 	)
 
 /datum/action/xeno_action/recall/can_use_action(silent = FALSE, override_flags)
@@ -388,7 +388,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	plasma_cost = 100
 	cooldown_timer = 1 MINUTES
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TIMESTOP
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TIMESTOP,
 	)
 	///The range of the ability
 	var/range = 1
@@ -432,7 +432,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	cooldown_timer = 5 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PORTAL,
-		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_PORTAL_ALTERNATE
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_PORTAL_ALTERNATE,
 	)
 	/// How far can you link two portals
 	var/range = 20
@@ -615,7 +615,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	plasma_cost = 100
 	cooldown_timer = 30 SECONDS
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REWIND
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REWIND,
 	)
 	use_state_flags = XACT_TARGET_SELF
 	/// How long till the time rewinds

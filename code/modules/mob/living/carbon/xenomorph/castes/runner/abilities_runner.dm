@@ -6,7 +6,7 @@
 	action_icon_state = "savage_on"
 	mechanics_text = "Toggle on to add a vicious attack to your pounce."
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_SAVAGE
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_SAVAGE,
 	)
 	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED
 
@@ -74,7 +74,7 @@
 	ability_name = "pounce"
 	plasma_cost = 10
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_SAVAGE
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_SAVAGE,
 	)
 	use_state_flags = XACT_USE_BUCKLED
 	///How far can we pounce.
@@ -212,7 +212,7 @@
 	plasma_cost = 75
 	cooldown_timer = 10 SECONDS
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_SAVAGE
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_SAVAGE,
 	)
 	///Whether evasion is currently active
 	var/evade_active = FALSE
@@ -407,7 +407,7 @@
 	plasma_cost = 75
 	cooldown_timer = 60 SECONDS
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SNATCH
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SNATCH,
 	)
 	target_flags = XABB_MOB_TARGET
 	///If the runner have an item

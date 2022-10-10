@@ -434,7 +434,7 @@
 	name = "User Medical Scan"
 	action_icon_state = "suit_scan"
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_KB_SUITANALYZER
+		KEYBINDING_NORMAL = COMSIG_KB_SUITANALYZER,
 	)
 
 /datum/action/suit_autodoc/configure

@@ -9,7 +9,7 @@
 	cooldown_timer = 20 SECONDS
 	plasma_cost = 500 //Can't ignore pain/Charge and ravage in the same timeframe, but you can combo one of them.
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RAVAGER_CHARGE
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RAVAGER_CHARGE,
 	)
 
 /datum/action/xeno_action/activable/charge/proc/charge_complete()
@@ -93,7 +93,7 @@
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RAVAGE,
-		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_RAVAGE_SELECT
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_RAVAGE_SELECT,
 	)
 
 /datum/action/xeno_action/activable/ravage/on_cooldown_finish()
@@ -156,7 +156,7 @@
 	plasma_cost = 200
 	cooldown_timer = 60 SECONDS
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ENDURE
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ENDURE,
 	)
 	use_state_flags = XACT_USE_STAGGERED //Can use this while staggered
 	///How low the Ravager's health can go while under the effects of Endure before it dies
@@ -264,7 +264,7 @@
 	cooldown_timer = 60 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RAGE
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RAGE,
 	)
 	///Determines the power of Rage's many effects. Power scales inversely with the Ravager's HP; min 0.25 at 50% of Max HP, max 1 while in negative HP. 0.5 and above triggers especial effects.
 	var/rage_power
@@ -443,7 +443,7 @@
 	cooldown_timer = 0.5 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_VAMPIRISM
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_VAMPIRISM,
 	)
 	///timer hash for timer to clear last attacked
 	var/clear_timer

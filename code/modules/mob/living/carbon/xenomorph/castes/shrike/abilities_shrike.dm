@@ -9,7 +9,7 @@
 	plasma_cost = 400
 	cooldown_timer = 2 MINUTES
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CALL_OF_THE_BURROWED
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CALL_OF_THE_BURROWED,
 	)
 	use_state_flags = XACT_USE_LYING
 
@@ -60,7 +60,7 @@
 	cooldown_timer = 12 SECONDS
 	plasma_cost = 100
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_FLING
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_FLING,
 	)
 	target_flags = XABB_MOB_TARGET
 
@@ -145,7 +145,7 @@
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_UNRELENTING_FORCE,
-		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_UNRELENTING_FORCE_SELECT
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_UNRELENTING_FORCE_SELECT,
 	)
 
 
@@ -225,7 +225,7 @@
 	cooldown_timer = 1 MINUTES
 	plasma_cost = 200
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_CURE
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_CURE,
 	)
 	var/heal_range = SHRIKE_HEAL_RANGE
 	target_flags = XABB_MOB_TARGET
@@ -344,7 +344,7 @@
 	mechanics_text = "Throw a gravity grenades thats sucks everyone and everything in a radius inward."
 	plasma_cost = 500
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_GRAV_NADE
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_GRAV_NADE,
 	)
 	cooldown_timer = 1 MINUTES
 

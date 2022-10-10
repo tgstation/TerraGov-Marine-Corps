@@ -17,7 +17,7 @@
 	action_icon_state = "ready_charge"
 	mechanics_text = "Toggles the movement-based charge on and off."
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_CHARGE
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_CHARGE,
 	)
 	action_type = ACTION_TOGGLE
 	use_state_flags = XACT_USE_LYING

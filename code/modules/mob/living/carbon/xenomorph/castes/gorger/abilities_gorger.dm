@@ -12,7 +12,7 @@
 	plasma_cost = 0
 	target_flags = XABB_MOB_TARGET
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DEVOUR
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DEVOUR,
 	)
 
 /datum/action/xeno_action/activable/devour/can_use_ability(atom/target, silent, override_flags)
@@ -95,7 +95,7 @@
 	plasma_cost = 0
 	target_flags = XABB_MOB_TARGET
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DRAIN
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DRAIN,
 	)
 
 /datum/action/xeno_action/activable/drain/can_use_ability(atom/target, silent = FALSE, override_flags)
@@ -177,7 +177,7 @@
 	plasma_cost = 20
 	target_flags = XABB_MOB_TARGET
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TRANSFUSION
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TRANSFUSION,
 	)
 
 /datum/action/xeno_action/activable/transfusion/can_use_ability(atom/target, silent = FALSE, override_flags) //it is set up to only return true on specific xeno or human targets
@@ -241,7 +241,7 @@
 	plasma_cost = GORGER_REJUVENATE_COST
 	target_flags = XABB_MOB_TARGET
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REJUVENATE
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REJUVENATE,
 	)
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 
@@ -280,7 +280,7 @@
 	plasma_cost = 0
 	target_flags = XABB_MOB_TARGET
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_LINK
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_LINK,
 	)
 	///Timer for activating the link
 	var/apply_psychic_link_timer
@@ -375,7 +375,7 @@
 	cooldown_timer = 15 SECONDS
 	plasma_cost = 0
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CARNAGE
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CARNAGE,
 	)
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 
@@ -407,7 +407,7 @@
 	cooldown_timer = 180 SECONDS
 	plasma_cost = 0
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FEAST
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FEAST,
 	)
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 

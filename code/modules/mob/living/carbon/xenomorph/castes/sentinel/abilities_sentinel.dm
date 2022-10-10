@@ -4,7 +4,7 @@
 	action_icon_state = "gas mine"
 	mechanics_text = "Throws a gas emitting grenade at your enemies."
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_NEUROGAS_GRENADE
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_NEUROGAS_GRENADE,
 	)
 	plasma_cost = 300
 	cooldown_timer = 1 MINUTES

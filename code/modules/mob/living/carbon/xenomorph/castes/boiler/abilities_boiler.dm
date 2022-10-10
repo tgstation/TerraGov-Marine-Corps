@@ -31,7 +31,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	mechanics_text = "Activates your weapon sight in the direction you are facing. Must remain stationary to use."
 	plasma_cost = 20
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LONG_RANGE_SIGHT
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LONG_RANGE_SIGHT,
 	)
 
 /datum/action/xeno_action/toggle_long_range/action_activate()
@@ -59,7 +59,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	use_state_flags = XACT_USE_BUSY|XACT_USE_LYING
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_BOMB,
-		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_TOGGLE_BOMB_RADIAL
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_TOGGLE_BOMB_RADIAL,
 	)
 
 /datum/action/xeno_action/toggle_bomb/can_use_action(silent = FALSE, override_flags)
@@ -136,7 +136,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	plasma_cost = 200
 	use_state_flags = XACT_USE_BUSY|XACT_USE_LYING
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CREATE_BOMB
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CREATE_BOMB,
 	)
 
 /datum/action/xeno_action/create_boiler_bomb/action_activate()
@@ -175,7 +175,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	mechanics_text = "Launch a glob of neurotoxin or acid. Must remain stationary for a few seconds to use."
 	ability_name = "bombard"
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BOMBARD
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BOMBARD,
 	)
 	target_flags = XABB_TURF_TARGET
 

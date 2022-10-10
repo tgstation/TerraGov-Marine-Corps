@@ -16,7 +16,7 @@
 	name = "Send Order"
 	action_icon_state = "screen_order_marine"
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_KB_SENDORDER
+		KEYBINDING_NORMAL = COMSIG_KB_SENDORDER,
 	)
 	///What skill is needed to have this action
 	var/skill_name = "leadership"
