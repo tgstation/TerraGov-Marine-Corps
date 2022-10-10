@@ -211,7 +211,7 @@
 	if(keybinding_signals.len)
 		for(var/type in keybinding_signals)
 			var/signal = keybinding_signals[type]
-			if(signal)
+			if(owner)
 				UnregisterSignal(owner, signal)
 	if(M.client)
 		M.client.screen -= button

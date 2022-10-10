@@ -183,6 +183,9 @@
 	else
 		button.color = "#ffffffff" // rgb(255,255,255,255)
 
+/datum/action/xeno_action/activable
+	action_type = ACTION_SELECT
+
 /datum/action/xeno_action/activable/Destroy()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.selected_ability == src)
