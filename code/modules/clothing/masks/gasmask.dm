@@ -5,7 +5,7 @@
 	desc = "A face-covering mask that can be connected to an air supply. Filters harmful gases from the air."
 	icon_state = "gas_alt"
 	item_state = "gas_alt"
-	flags_inventory = COVERMOUTH | COVEREYES | ALLOWINTERNALS | BLOCKGASEFFECT | ALLOWREBREATH
+	flags_inventory = COVERMOUTH | COVEREYES | ALLOWINTERNALS | BLOCKGASEFFECT
 	flags_inv_hide = HIDEEARS|HIDEFACE|HIDELOWHAIR
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
@@ -52,8 +52,7 @@
 	icon_state = "pmc_mask"
 	item_state = "helmet"
 	anti_hug = 3
-	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 5, "energy" = 5, "bomb" = 10, "bio" = 1, "rad" = 1, "fire" = 5, "acid" = 5)
-	flags_inventory = COVERMOUTH|ALLOWINTERNALS|BLOCKGASEFFECT|ALLOWREBREATH
+	flags_inventory = COVERMOUTH|ALLOWINTERNALS|BLOCKGASEFFECT
 	flags_inv_hide = HIDEEARS|HIDEFACE|HIDEALLHAIR
 	breathy = FALSE
 
@@ -83,7 +82,7 @@
 	desc = "A modernised version of the classic design, this mask will not only filter out phoron but it can also be connected to an air supply."
 	icon_state = "plaguedoctor"
 	item_state = "gas_mask"
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 2, "energy" = 2, "bomb" = 0, "bio" = 75, "rad" = 0, "fire" = 2, "acid" = 2)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 2, ENERGY = 2, BOMB = 0, BIO = 75, "rad" = 0, FIRE = 2, ACID = 2)
 	flags_armor_protection = HEAD|FACE
 
 /obj/item/clothing/mask/gas/swat

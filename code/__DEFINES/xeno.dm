@@ -9,11 +9,6 @@
 #define RESTING_WEED "resting weed sac"
 #define AUTOMATIC_WEEDING "repeating"
 
-//Pheromone defines
-#define RECOVERY "Recovery"
-#define WARDING "Warding"
-#define FRENZY "Frenzy"
-
 #define XENO_TURRET_ACID_ICONSTATE "acid_turret"
 #define XENO_TURRET_STICKY_ICONSTATE "resin_turret"
 
@@ -44,16 +39,16 @@
 
 //List of weed types
 GLOBAL_LIST_INIT(weed_type_list, typecacheof(list(
-		/obj/effect/alien/weeds/node,
-		/obj/effect/alien/weeds/node/sticky,
-		/obj/effect/alien/weeds/node/resting,
+		/obj/alien/weeds/node,
+		/obj/alien/weeds/node/sticky,
+		/obj/alien/weeds/node/resting,
 		)))
 
 //List of weeds with probability of spawning
 GLOBAL_LIST_INIT(weed_prob_list, list(
-		/obj/effect/alien/weeds/node = 80,
-		/obj/effect/alien/weeds/node/sticky = 5,
-		/obj/effect/alien/weeds/node/resting = 10,
+		/obj/alien/weeds/node = 80,
+		/obj/alien/weeds/node/sticky = 5,
+		/obj/alien/weeds/node/resting = 10,
 		))
 
 //List of weed images
@@ -66,25 +61,26 @@ GLOBAL_LIST_INIT(weed_images_list, list(
 
 //List of pheromone images
 GLOBAL_LIST_INIT(pheromone_images_list, list(
-		RECOVERY = image('icons/mob/actions.dmi', icon_state = RECOVERY),
-		WARDING = image('icons/mob/actions.dmi', icon_state = WARDING),
-		FRENZY = image('icons/mob/actions.dmi', icon_state = FRENZY),
+		AURA_XENO_RECOVERY = image('icons/mob/actions.dmi', icon_state = AURA_XENO_RECOVERY),
+		AURA_XENO_WARDING = image('icons/mob/actions.dmi', icon_state = AURA_XENO_WARDING),
+		AURA_XENO_FRENZY = image('icons/mob/actions.dmi', icon_state = AURA_XENO_FRENZY),
 		))
 
-//List of Defiler toxin types
+//List of Defiler toxin types available for selection
 GLOBAL_LIST_INIT(defiler_toxin_type_list, list(
-		/datum/reagent/toxin/xeno_neurotoxin,
+		/datum/reagent/toxin/xeno_ozelomelyn,
 		/datum/reagent/toxin/xeno_hemodile,
 		/datum/reagent/toxin/xeno_transvitox,
-		/datum/reagent/toxin/xeno_ozelomelyn,
+		/datum/reagent/toxin/xeno_neurotoxin,
 		))
 
 //List of toxins improving defile's damage
-GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
+GLOBAL_LIST_INIT(defiler_toxins_typecache_list, typecacheof(list(
 		/datum/reagent/toxin/xeno_ozelomelyn,
 		/datum/reagent/toxin/xeno_hemodile,
 		/datum/reagent/toxin/xeno_transvitox,
-		/datum/reagent/toxin/xeno_neurotoxin
+		/datum/reagent/toxin/xeno_neurotoxin,
+		/datum/reagent/toxin/xeno_sanguinal,
 		)))
 
 //List of plant types

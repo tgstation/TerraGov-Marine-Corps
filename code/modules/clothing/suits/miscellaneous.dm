@@ -47,7 +47,7 @@
 	flags_inv_hide = HIDEJUMPSUIT
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 	flags_item = SYNTH_RESTRICTED
-	soft_armor = list("melee" = 60, "bullet" = 90, "laser" = 60, "energy" = 20, "bomb" = 25, "bio" = 10, "rad" = 10, "fire" = 20, "acid" = 20)
+	soft_armor = list(MELEE = 60, BULLET = 90, LASER = 60, ENERGY = 20, BOMB = 25, BIO = 10, "rad" = 10, FIRE = 20, ACID = 20)
 
 
 /obj/item/clothing/suit/cyborg_suit
@@ -56,7 +56,6 @@
 	icon_state = "death"
 	item_state = "death"
 	flags_atom = CONDUCT
-	fire_resist = T0C+5200
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 
 /obj/item/clothing/suit/johnny_coat

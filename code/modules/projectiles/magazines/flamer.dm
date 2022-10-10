@@ -29,6 +29,12 @@
 /obj/item/ammo_magazine/flamer_tank/afterattack(obj/target, mob/user , flag) //refuel at fueltanks when we run out of ammo.
 
 	if(istype(target, /obj/structure/reagent_dispensers/fueltank) && get_dist(user,target) <= 1)
+		if(default_ammo != /datum/ammo/flamethrower)
+			to_chat(user, span_warning("Not the right kind of fuel!"))
+			return ..()
+		if(current_rounds >= max_rounds)
+			to_chat(user, span_warning("[src] is already full."))
+			return ..()
 		var/obj/structure/reagent_dispensers/fueltank/FT = target
 		if(FT.reagents.total_volume == 0)
 			to_chat(user, span_warning("Out of fuel!"))
@@ -53,6 +59,15 @@
 	name = "large flamerthrower tank"
 	desc = "A large fuel tank of ultra thick napthal, a sticky combustable liquid chemical, for use in the FL-84 flamethrower."
 	icon_state = "flametank_large"
+	max_rounds = 75
+	current_rounds = 75
+	reload_delay = 3 SECONDS
+	icon_state_mini = "tank_orange"
+
+/obj/item/ammo_magazine/flamer_tank/large/som
+	name = "large flamerthrower tank"
+	desc = "A large fuel tank of ultra thick napthal, a sticky combustable liquid chemical, for use in the V-62 flamethrower."
+	icon_state = "flametank_som"
 	max_rounds = 75
 	current_rounds = 75
 	reload_delay = 3 SECONDS

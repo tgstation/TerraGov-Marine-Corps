@@ -17,7 +17,7 @@
 	item_state = "welding"
 	materials = list(/datum/material/metal = 3000, /datum/material/glass = 1000)
 	var/up = FALSE
-	soft_armor = list("melee" = 10, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list(MELEE = 10, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, "rad" = 0, FIRE = 0, ACID = 0)
 	flags_atom = CONDUCT
 	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE
@@ -93,7 +93,6 @@
 	flags_inventory = COVEREYES
 	var/onfire = 0.0
 	var/status = 0
-	var/fire_resist = T0C+1300	//this is the max temp it can stand before you start to cook. although it might not burn away, you take damage
 	var/processing = 0 //I dont think this is used anywhere.
 	flags_armor_protection = EYES
 

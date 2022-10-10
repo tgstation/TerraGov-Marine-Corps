@@ -56,6 +56,15 @@
 	crowbar.play_tool_sound(src, 50)
 	deconstruct(TRUE)
 
+/obj/machinery/proc/default_change_direction_wrench(mob/user, obj/item/wrench)
+	if(wrench.tool_behaviour != TOOL_WRENCH)
+		return FALSE
+
+	wrench.play_tool_sound(src, 50)
+	setDir(turn(dir,-90))
+	to_chat(user, span_notice("You rotate [src]."))
+	return TRUE
+
 /obj/machinery/deconstruct(disassembled = TRUE)
 	if(!(flags_atom & NODECONSTRUCT))
 		on_deconstruction()
@@ -421,29 +430,8 @@
 		if(i.robotic == ORGAN_ROBOT)
 			mech = "Mechanical:<br>"
 
-		var/infection = "None"
-		switch (i.germ_level)
-			if (1 to INFECTION_LEVEL_ONE + 200)
-				infection = "Mild Infection:<br>"
-			if (INFECTION_LEVEL_ONE + 200 to INFECTION_LEVEL_ONE + 300)
-				infection = "Mild Infection+:<br>"
-			if (INFECTION_LEVEL_ONE + 300 to INFECTION_LEVEL_ONE + 400)
-				infection = "Mild Infection++:<br>"
-			if (INFECTION_LEVEL_TWO to INFECTION_LEVEL_TWO + 100)
-				infection = "Acute Infection:<br>"
-			if (INFECTION_LEVEL_TWO + 100 to INFECTION_LEVEL_TWO + 200)
-				infection = "Acute Infection+:<br>"
-			if (INFECTION_LEVEL_TWO + 200 to INFECTION_LEVEL_TWO + 300)
-				infection = "Acute Infection++:<br>"
-			if (INFECTION_LEVEL_THREE to INFECTION_LEVEL_THREE + 300)
-				infection = "Septic:<br>"
-			if (INFECTION_LEVEL_THREE to INFECTION_LEVEL_THREE + 600)
-				infection = "Septic+:<br>"
-			if (INFECTION_LEVEL_THREE to INFINITY)
-				infection = "Septic++:<br>"
-
 		dat += "<tr>"
-		dat += "<td>[i.name]</td><td>N/A</td><td>[i.damage]</td><td>[infection]:[mech]</td><td></td>"
+		dat += "<td>[i.name]</td><td>N/A</td><td>[i.damage]</td><td>None:[mech]</td><td></td>"
 		dat += "</tr>"
 	dat += "</table>"
 

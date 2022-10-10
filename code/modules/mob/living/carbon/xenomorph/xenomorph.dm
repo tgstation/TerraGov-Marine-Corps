@@ -6,6 +6,9 @@
 
 /mob/living/carbon/xenomorph/Initialize(mapload)
 	setup_verbs()
+	if(mob_size == MOB_SIZE_BIG)
+		move_resist = MOVE_FORCE_EXTREMELY_STRONG
+		move_force = MOVE_FORCE_EXTREMELY_STRONG
 	. = ..()
 
 	set_datum()
@@ -38,6 +41,9 @@
 	wound_overlay = new(null, src)
 	vis_contents += wound_overlay
 
+	fire_overlay = mob_size == MOB_SIZE_BIG ? new(null, src) : new /atom/movable/vis_obj/xeno_wounds/fire_overlay/small(null, src)
+	vis_contents += fire_overlay
+
 	set_initial_hivenumber()
 
 	generate_nicknumber()
@@ -58,8 +64,8 @@
 	if(!job) //It might be setup on spawn.
 		setup_job()
 
-	ADD_TRAIT(src, TRAIT_BATONIMMUNE, TRAIT_XENO)
-	ADD_TRAIT(src, TRAIT_FLASHBANGIMMUNE, TRAIT_XENO)
+	ADD_TRAIT(src, TRAIT_BATONIMMUNE, XENO_TRAIT)
+	ADD_TRAIT(src, TRAIT_FLASHBANGIMMUNE, XENO_TRAIT)
 	hive.update_tier_limits()
 	if(CONFIG_GET(flag/xenos_on_strike))
 		replace_by_ai()
@@ -94,10 +100,26 @@
 	hard_armor = getArmor(arglist(xeno_caste.hard_armor))
 	warding_aura = 0 //Resets aura for reapplying armor
 
-///Will multiply the base max health of this xeno by GLOB.xeno_stat_multiplicator_buff
+///Will multiply the base max health of this xeno by GLOB.xeno_stat_multiplicator_buff while maintaining current health percent.
 /mob/living/carbon/xenomorph/proc/apply_health_stat_buff()
-	maxHealth = max(xeno_caste.max_health * GLOB.xeno_stat_multiplicator_buff, 10)
-	health = min(health, maxHealth)
+	var/new_max_health = max(xeno_caste.max_health * GLOB.xeno_stat_multiplicator_buff, 10)
+	var/needed_healing = 0
+
+	if(health < 0) //In crit. Death threshold below 0 doesn't change with stat buff, so we can just apply damage equal to the max health change
+		needed_healing = maxHealth - new_max_health //Positive means our max health is going down, so heal to keep parity
+	else
+		var/current_health_percent = health / maxHealth //We want to keep this fixed so that applying the scalar doesn't heal or harm, relatively.
+		var/new_health = current_health_percent * new_max_health //What we're aiming for
+		var/new_total_damage = new_max_health - new_health
+		var/current_total_damage = maxHealth - health
+		needed_healing = current_total_damage - new_total_damage
+
+	var/brute_healing = min(getBruteLoss(), needed_healing)
+	adjustBruteLoss(-brute_healing)
+	adjustFireLoss(-(needed_healing - brute_healing))
+
+	maxHealth = new_max_health
+	updatehealth()
 
 /mob/living/carbon/xenomorph/set_armor_datum()
 	return //Handled in set_datum()
@@ -123,17 +145,6 @@
 	real_name = name
 	if(mind)
 		mind.name = name
-
-/mob/living/carbon/xenomorph/proc/tier_as_number()
-	switch(tier)
-		if(XENO_TIER_ZERO)
-			return 0
-		if(XENO_TIER_ONE)
-			return 1
-		if(XENO_TIER_TWO)
-			return 2
-		if(XENO_TIER_THREE)
-			return 3
 
 /mob/living/carbon/xenomorph/proc/upgrade_as_number()
 	switch(upgrade)
@@ -188,7 +199,7 @@
 
 /mob/living/carbon/xenomorph/proc/grabbed_self_attack()
 	SIGNAL_HANDLER
-	if(!(xeno_caste.caste_flags & CASTE_CAN_RIDE_CRUSHER) || !isxenocrusher(pulling))
+	if(!(xeno_caste.can_flags & CASTE_CAN_RIDE_CRUSHER) || !isxenocrusher(pulling))
 		return NONE
 	var/mob/living/carbon/xenomorph/crusher/grabbed = pulling
 	if(grabbed.stat == CONSCIOUS && stat == CONSCIOUS)
@@ -240,7 +251,9 @@
 	hive_placeholder.update_tier_limits() //Update our tier limits.
 
 	vis_contents -= wound_overlay
+	vis_contents -= fire_overlay
 	QDEL_NULL(wound_overlay)
+	QDEL_NULL(fire_overlay)
 	return ..()
 
 
@@ -248,21 +261,25 @@
 	return FALSE
 
 /mob/living/carbon/xenomorph/start_pulling(atom/movable/AM, suppress_message = TRUE, bypass_crit_delay = FALSE)
-	if(!isliving(AM))
-		return FALSE
-	if(!Adjacent(AM)) //Logic!
-		return FALSE
-	if(status_flags & INCORPOREAL || AM.status_flags & INCORPOREAL) //Incorporeal things can't grab or be grabbed.
-		return FALSE
+	if(do_actions)
+		return FALSE //We are already occupied with something.
+	if(!Adjacent(AM))
+		return FALSE //The target we're trying to pull must be adjacent and anchored.
+	if(status_flags & INCORPOREAL || AM.status_flags & INCORPOREAL)
+		return FALSE //Incorporeal things can't grab or be grabbed.
+	if(AM.anchored)
+		return FALSE //We cannot grab anchored items.
+	if(!isliving(AM) && AM.drag_windup && !do_after(src, AM.drag_windup, TRUE, AM, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE))
+		return //If the target is not a living mob and has a drag_windup defined, calls a do_after. If all conditions are met, it returns.
 	var/mob/living/L = AM
 	if(L.buckled)
 		return FALSE //to stop xeno from pulling marines on roller beds.
 	if(ishuman(L))
-		if(L.stat == DEAD && (SSticker.mode?.flags_round_type & MODE_DEAD_GRAB_FORBIDDEN)) //Can't drag dead human bodies in distress
+		if(L.stat == DEAD) //Can't drag dead human bodies.
 			to_chat(usr,span_xenowarning("This looks gross, better not touch it."))
 			return FALSE
-		do_attack_animation(L, ATTACK_EFFECT_GRAB)
 		pull_speed += XENO_DEADHUMAN_DRAG_SLOWDOWN
+	do_attack_animation(L, ATTACK_EFFECT_GRAB)
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_GRAB)
 	return ..()
 
@@ -320,9 +337,6 @@
 
 /mob/living/carbon/xenomorph/get_eye_protection()
 	return 2
-
-/mob/living/carbon/xenomorph/need_breathe()
-	return FALSE
 
 /mob/living/carbon/xenomorph/vomit()
 	return
@@ -394,7 +408,7 @@
 /// Handles logic for weeds nearby the xeno getting removed
 /mob/living/carbon/xenomorph/proc/handle_weeds_adjacent_removed(datum/source)
 	SIGNAL_HANDLER
-	var/obj/effect/alien/weeds/found_weed = locate(/obj/effect/alien/weeds) in loc
+	var/obj/alien/weeds/found_weed = locate(/obj/alien/weeds) in loc
 	if(!QDESTROYING(found_weed))
 		return
 	loc_weeds_type = null
@@ -402,5 +416,5 @@
 /// Handles logic for the xeno moving to a new weeds tile
 /mob/living/carbon/xenomorph/proc/handle_weeds_on_movement(datum/source)
 	SIGNAL_HANDLER
-	var/obj/effect/alien/weeds/found_weed = locate(/obj/effect/alien/weeds) in loc
+	var/obj/alien/weeds/found_weed = locate(/obj/alien/weeds) in loc
 	loc_weeds_type = found_weed?.type

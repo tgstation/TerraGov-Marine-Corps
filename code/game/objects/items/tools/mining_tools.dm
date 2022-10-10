@@ -86,11 +86,12 @@
 	item_state = "plasmacutter"
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
-	force = 40.0
+	force = 70.0
 	damtype = BURN
 	digspeed = 20 //Can slice though normal walls, all girders, or be used in reinforced wall deconstruction
 	desc = "A tool that cuts with deadly hot plasma. You could use it to cut limbs off of xenos! Or, you know, cut apart walls or mine through stone. Eye protection strongly recommended."
 	drill_verb = "cutting"
+	attack_verb = list("dissolves", "disintegrates", "liquefies", "subliminates", "vaporizes")
 	heat = 3800
 	light_system = MOVABLE_LIGHT
 	light_range = 2
@@ -110,7 +111,7 @@
 /obj/item/tool/pickaxe/plasmacutter/examine(mob/user)
 	. = ..()
 	if(cell)
-		. += "It has a loaded power cell and its readout counter is active. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"
+		. += "The internal battery readout counter is active. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"
 	else
 		. += span_warning("It does not have a power source installed!")
 
@@ -150,7 +151,7 @@
 		balloon_alert(user, "Turned off")
 	else
 		balloon_alert(user, "Insufficient charge")
-		to_chat(user, span_warning("The plasma cutter has inadequate charge remaining! Replace or recharge the battery. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
+		to_chat(user, span_warning("The plasma cutter has inadequate charge remaining! Give the internal battery time to recharge, or attack a living creature! <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
 
 /obj/item/tool/pickaxe/plasmacutter/proc/start_cut(mob/user, name = "", atom/source, charge_amount = PLASMACUTTER_BASE_COST, custom_string, no_string, SFX = TRUE)
 	if(!(cell.charge >= charge_amount) || !powered) //Check power
@@ -218,12 +219,6 @@
 		return . *= max(1, 4 - skill) //Takes twice to four times as long depending on your skill.
 	. -= min(PLASMACUTTER_CUT_DELAY, (skill - 3) * 5) //We have proper skills; delay lowered by 0.5 per skill point in excess of a field engineer's.
 
-
-/obj/item/tool/pickaxe/plasmacutter/emp_act(severity)
-	cell.use(round(cell.maxcharge / severity))
-	update_plasmacutter()
-	..()
-
 /obj/item/tool/pickaxe/plasmacutter/proc/update_plasmacutter(mob/user, silent=FALSE) //Updates the icon and power on/off status of the plasma cutter
 	if(!user && ismob(loc) )
 		user = loc
@@ -242,17 +237,16 @@
 	else
 		icon_state = "plasma_cutter_on"
 		powered = TRUE
-		force = 40
+		force = 70
 		damtype = BURN
 		heat = 3800
 		set_light_on(TRUE)
 
 
-/obj/item/tool/pickaxe/plasmacutter/attack(atom/M, mob/user)
-	if(!powered || (cell.charge < PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
+/obj/item/tool/pickaxe/plasmacutter/attack(mob/living/M, mob/living/user)
+	if(!powered)
 		fizzle_message(user)
 	else
-		use_charge(user, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD)
 		playsound(M, cutting_sound, 25, 1)
 		eyecheck(user)
 		update_plasmacutter()
@@ -261,6 +255,11 @@
 		spark_system.set_up(5, 0, M)
 		spark_system.attach(M)
 		spark_system.start(M)
+		if(isxeno(M) && M.stat != DEAD)
+			cell.charge += 200
+			var/mob/living/carbon/xenomorph/xeno = M
+			if(!CHECK_BITFIELD(xeno.xeno_caste.caste_flags, CASTE_PLASMADRAIN_IMMUNE))
+				xeno.use_plasma(round(xeno.xeno_caste.plasma_regen_limit * xeno.xeno_caste.plasma_max * 0.2)) //One fifth of the xeno's regeneratable plasma per hit.
 	return ..()
 
 

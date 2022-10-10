@@ -7,7 +7,7 @@
 
 	density = TRUE
 	max_integrity = 300
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 30)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 100, BOMB = 0, BIO = 100, "rad" = 100, FIRE = 80, ACID = 30)
 	layer = OBJ_LAYER
 
 	pipe_flags = PIPING_ONE_PER_TURF | PIPING_DEFAULT_LAYER_ONLY

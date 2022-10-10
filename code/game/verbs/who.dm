@@ -6,6 +6,7 @@
 	var/count_nonadmin_observers = 0
 	var/count_humans = 0
 	var/count_marine_humans = 0
+	var/count_som_marine_humans = 0
 	var/count_infectedhumans = 0
 	var/count_aliens = 0
 
@@ -20,6 +21,8 @@
 				var/mob/living/carbon/human/human_mob = C.mob
 				if(ismarinejob(human_mob.job))
 					count_marine_humans++
+				if(issommarinejob(human_mob.job))
+					count_som_marine_humans++
 				if(C.mob.status_flags & XENO_HOST)
 					count_infectedhumans++
 			if(isxeno(C.mob))
@@ -65,7 +68,7 @@
 		var/datum/hive_status/hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 		msg += "<b>Total Players: [length(Lines)]</b>"
 		msg += "<br><b>Observers: [count_observers] (Non-Admin: [count_nonadmin_observers])</b>"
-		msg += "<br><b>Humans: [count_humans]</b> <b>(Marines: ~[count_marine_humans])</b> <b>(Infected: [count_infectedhumans])</b><br>"
+		msg += "<br><b>Humans: [count_humans]</b> <b>(Marines: ~[count_marine_humans])</b> <b>(Sons of Mars: ~[count_som_marine_humans])</b> <b>(Infected: [count_infectedhumans])</b><br>"
 		msg += "<br><b>Xenos: [count_aliens]</b> <b>(Ruler: [hive.living_xeno_ruler ? "Alive" : "Dead"])</b>"
 	else
 		msg += "<b>Total Players: [length(Lines)]</b>"

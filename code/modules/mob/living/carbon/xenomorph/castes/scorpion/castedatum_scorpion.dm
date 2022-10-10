@@ -24,10 +24,11 @@
 	max_health = 130
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_DO_NOT_ALERT_LOW_LIFE|CASTE_IS_A_MINION
+	caste_flags = CASTE_DO_NOT_ALERT_LOW_LIFE|CASTE_IS_A_MINION
+	can_flags = CASTE_CAN_BE_QUEEN_HEALED
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 0, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
+	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 0, BIO = 15, "rad" = 15, FIRE = 15, ACID = 15)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.8 SECONDS

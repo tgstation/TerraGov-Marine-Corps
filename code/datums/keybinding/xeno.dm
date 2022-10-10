@@ -191,6 +191,12 @@
 	description = "Prompt a wheel to choose which hugger you will deploy with the Throw Hugger ability."
 	keybind_signal = COMSIG_XENOABILITY_CHOOSE_HUGGER
 
+/datum/keybinding/xeno/drop_all_hugger
+	name = "drop_all_hugger"
+	full_name = "Carrier: Drop All Facehuggers"
+	description = "Drop all stored huggers in a fit of panic. Uses all remaining plasma!"
+	keybind_signal = COMSIG_XENOABILITY_DROP_ALL_HUGGER
+
 /datum/keybinding/xeno/stomp
 	name = "stomp"
 	full_name = "Crusher: Stomp"
@@ -359,11 +365,11 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_STEALTH
 
-/datum/keybinding/xeno/swap
-	name = "swap"
-	full_name = "Hunter: Swap"
+/datum/keybinding/xeno/toggle_disguise
+	name = "toggle_disguise"
+	full_name = "Hunter: Toggle Disguise"
 	description = ""
-	keybind_signal = COMSIG_XENOABILITY_SWAP
+	keybind_signal = COMSIG_XENOABILITY_TOGGLE_DISGUISE
 
 /datum/keybinding/xeno/mirage
 	name = "mirage"
@@ -594,6 +600,12 @@
 	description = "Fires a scattershot of 6 acid globules which create acid puddles on impact or at the end of their range."
 	keybind_signal = COMSIG_XENOABILITY_SCATTER_SPIT
 
+/datum/keybinding/xeno/rewind
+	name = "rewind"
+	full_name = "Wraith: Time Shift"
+	description = "Save the location and status of the target. When the time is up, the target location and status are restored"
+	keybind_signal = COMSIG_XENOABILITY_REWIND
+
 /datum/keybinding/xeno/portal
 	name = "portal"
 	full_name = "Wraith: Portal"
@@ -665,6 +677,42 @@
 	full_name = "Drone : Choose plant"
 	description = "Pick what type of plant to sow."
 	keybind_signal = COMSIG_XENOABILITY_CHOOSE_PLANT
+
+/datum/keybinding/xeno/burrow
+	name = "burrow"
+	full_name = "Widow: Burrow"
+	description = "Dig to the ground, making you invisible."
+	keybind_signal = COMSIG_XENOABILITY_BURROW
+
+/datum/keybinding/xeno/web_spit
+	name = "Web Spit"
+	full_name = "Widow: Web Spit"
+	description = "Spit web at your target. Hitting the target will impede their functions depending on their hit location."
+	keybind_signal = COMSIG_XENOABILITY_WEB_SPIT
+
+/datum/keybinding/xeno/leash_ball
+	name = "Leash Ball"
+	full_name = "Widow: Leash Ball"
+	description = "Spit a huge web ball of web that snares groups of targets for a brief while."
+	keybind_signal = COMSIG_XENOABILITY_LEASH_BALL
+
+/datum/keybinding/xeno/create_spiderling
+	name = "Birth Spiderling"
+	full_name = "Widow: Birth Spiderling"
+	description = "Give birth to a spiderling after a short charge-up."
+	keybind_signal = COMSIG_XENOABILITY_CREATE_SPIDERLING
+
+/datum/keybinding/xeno/attach_spiderlings
+	name = "Attach Spiderlings"
+	full_name = "Widow: Attach Spiderlings"
+	description = "Scoop up and carry your spawn with you."
+	keybind_signal = COMSIG_XENOABILITY_ATTACH_SPIDERLINGS
+
+/datum/keybinding/xeno/web_hook
+	name = "Web Hook"
+	full_name = "Widow: Web Hook"
+	description = "Shoot a strong web and pull yourself towards whatever it hits."
+	keybind_signal = COMSIG_XENOABILITY_WEB_HOOK
 
 /datum/keybinding/xeno/vent/down(client/user)
 	. = ..()

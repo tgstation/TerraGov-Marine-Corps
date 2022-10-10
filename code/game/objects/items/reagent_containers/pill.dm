@@ -5,7 +5,7 @@
 /obj/item/reagent_containers/pill
 	name = "pill"
 	icon = 'icons/obj/items/chemistry.dmi'
-	icon_state = null
+	icon_state = "pill1"
 	item_state = "pill"
 	possible_transfer_amounts = null
 	init_reagent_flags = AMOUNT_SKILLCHECK
@@ -16,7 +16,7 @@
 
 /obj/item/reagent_containers/pill/Initialize()
 	. = ..()
-	if(!icon_state)
+	if(icon_state == "pill1")
 		icon_state = pill_id ? GLOB.randomized_pill_icons[pill_id] : pick(GLOB.randomized_pill_icons)
 
 /obj/item/reagent_containers/pill/attack_self(mob/user as mob)
@@ -35,6 +35,7 @@
 		to_chat(M, span_notice("You swallow [src]."))
 		M.dropItemToGround(src) //icon update
 		if(reagents.total_volume)
+			reagents.reaction(M, INGEST)
 			reagents.trans_to(M, reagents.total_volume)
 
 		qdel(src)
@@ -157,6 +158,11 @@
 	list_reagents = list(/datum/reagent/medicine/tramadol = 15)
 	pill_id = 7
 
+/obj/item/reagent_containers/pill/isotonic
+	pill_desc = "A pill with an isotonic solution inside. Used to stimulate blood regeneration."
+	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/iron = 6, /datum/reagent/consumable/sugar = 3)
+	pill_id = 4
+
 /obj/item/reagent_containers/pill/inaprovaline
 	pill_desc = "An inaprovaline pill. Used to stabilize patients."
 	list_reagents = list(/datum/reagent/medicine/inaprovaline = 30)
@@ -179,7 +185,7 @@
 
 /obj/item/reagent_containers/pill/zoom
 	pill_desc = "A Zoom pill! Gotta go fast!"
-	list_reagents = list(/datum/reagent/medicine/synaptizine = 3, /datum/reagent/medicine/hyperzine = 5, /datum/reagent/consumable/nutriment = 3)
+	list_reagents = list(/datum/reagent/medicine/synaptizine = 3, /datum/reagent/medicine/hyronalin = 5, /datum/reagent/consumable/nutriment = 3)
 	pill_id = 14
 
 /obj/item/reagent_containers/pill/russian_red
@@ -191,11 +197,6 @@
 	pill_desc = "A Ryetalyn pill. A long-duration shield against toxic chemicals."
 	list_reagents = list(/datum/reagent/medicine/ryetalyn = 15)
 	pill_id = 14
-
-/obj/item/reagent_containers/pill/peridaxon
-	pill_desc = "A peridaxon pill. Heals internal organ damage."
-	list_reagents = list(/datum/reagent/medicine/peridaxon = 10)
-	pill_id = 16
 
 /obj/item/reagent_containers/pill/imidazoline
 	pill_desc = "An imidazoline pill. Heals eye damage."

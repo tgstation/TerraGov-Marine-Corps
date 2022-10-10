@@ -26,7 +26,7 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 	pixel_y = -5
 	layer = TABLE_LAYER
 	closet_flags = CLOSET_ALLOW_OBJS|CLOSET_ALLOW_DENSE_OBJ
-	soft_armor = list("melee" = 30, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 80)
+	soft_armor = list(MELEE = 30, BULLET = 50, LASER = 50, ENERGY = 100, BOMB = 100, BIO = 0, "rad" = 0, FIRE = 100, ACID = 80)
 	anchored = TRUE
 	flags_atom = PREVENT_CONTENTS_EXPLOSION
 	var/adminNamed = FALSE

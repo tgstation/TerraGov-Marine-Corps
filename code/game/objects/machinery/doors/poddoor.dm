@@ -3,7 +3,7 @@
 	desc = "That looks like it doesn't open easily."
 	icon = 'icons/obj/doors/rapid_pdoor.dmi'
 	icon_state = "pdoor1"
-	soft_armor = list("melee" = 50, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 70)
+	soft_armor = list(MELEE = 50, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 50, BIO = 100, "rad" = 100, FIRE = 100, ACID = 70)
 	layer = PODDOOR_OPEN_LAYER
 	open_layer = PODDOOR_OPEN_LAYER
 	closed_layer = PODDOOR_CLOSED_LAYER
@@ -207,9 +207,17 @@
 	name = "\improper Combat Information Center Blast Door"
 	id = "cic_lockdown_rebel"
 
-/obj/machinery/door/poddooor/mainship/hangar
+/obj/machinery/door/poddoor/mainship/hangar
 	name = "\improper Hangar Lockdown"
 	id = "hangar_lockdown"
+
+/obj/machinery/door/poddoor/mainship/hangar/second
+	name = "\improper Hangar Shutters"
+	id = "hangar_shutters"
+
+/obj/machinery/door/poddoor/mainship/mech
+	name = "\improper Mech Shutters"
+	id = "mech_shutters"
 
 /obj/machinery/door/poddoor/mainship/umbilical
 	name = "Umbilical Airlock"
@@ -232,6 +240,7 @@
 	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
 	name = "Timed Emergency Shutters"
 	use_power = FALSE
+	resistance_flags = DROPSHIP_IMMUNE|RESIST_ALL
 
 
 /obj/machinery/door/poddoor/timed_late/Initialize()
@@ -242,7 +251,7 @@
 /obj/machinery/door/poddoor/timed_late/containment
 	name = "Containment shutters"
 	desc = "Safety shutters triggered by some kind of lockdown event."
-	resistance_flags = RESIST_ALL
+	resistance_flags = DROPSHIP_IMMUNE|RESIST_ALL
 	open_layer = UNDER_TURF_LAYER //No longer needs to be interacted with.
 	closed_layer = ABOVE_WINDOW_LAYER //Higher than usual, this is only around on the start of the round.
 	smoothing_behavior = NO_SMOOTHING

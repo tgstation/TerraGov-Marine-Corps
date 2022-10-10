@@ -1,3 +1,5 @@
+#define LIMB_MAX_DAMAGE_SEVER_RATIO 0.8
+
 /****************************************************
 				EXTERNAL ORGANS
 ****************************************************/
@@ -13,7 +15,7 @@
 	var/brute_dam = 0
 	///burn damage this limb has taken as a part
 	var/burn_dam = 0
-	///Max damage the limb can take before being destroyed
+	///Max damage the limb can take. Extremities sever when they have at least LIMB_MAX_DAMAGE_SEVER_RATIO as a fraction of this in brute damage.
 	var/max_damage = 0
 	var/max_size = 0
 	var/last_dam = -1
@@ -48,7 +50,6 @@
 
 	///Whether someone is currently doing surgery on this limb
 	var/in_surgery_op = FALSE
-	var/surgery_organ //name of the organ currently being surgically worked on (detach/remove/etc)
 
 	var/encased       // Needs to be opened with a saw to access the organs.
 
@@ -195,6 +196,7 @@
 		if(splint_health <= 0)
 			remove_limb_flags(LIMB_SPLINTED)
 			to_chat(owner, span_userdanger("The splint on your [display_name] comes apart!"))
+			playsound(owner, 'sound/items/splint_break.ogg', 100, sound_range = 1, falloff = 5)
 		else
 			splint_health = max(splint_health - (brute + burn), 0)
 
@@ -212,7 +214,7 @@
 	else
 		//If we can't inflict the full amount of damage, spread the damage in other ways
 		//How much damage can we actually cause?
-		var/can_inflict = max_damage * CONFIG_GET(number/organ_health_multiplier) - (brute_dam + burn_dam)
+		var/can_inflict = max_damage - (brute_dam + burn_dam)
 		var/remain_brute = brute
 		var/remain_burn = burn
 		if(can_inflict)
@@ -264,8 +266,10 @@
 		if(updating_health)
 			owner.updatehealth()
 		return update_icon()
-	if(CONFIG_GET(flag/limbs_can_break) && brute_dam >= max_damage * CONFIG_GET(number/organ_health_multiplier))
-		droplimb() //Reached max damage threshold through brute damage, that limb is going bye bye
+	if(CONFIG_GET(flag/limbs_can_break) && brute_dam >= max_damage * LIMB_MAX_DAMAGE_SEVER_RATIO)
+		droplimb()
+		if(!(owner.species && (owner.species.species_flags & NO_PAIN)))
+			owner.emote("scream")
 		return
 
 	if(updating_health)
@@ -306,7 +310,7 @@
 	// heal internal organs
 	for(var/o in internal_organs)
 		var/datum/internal_organ/current_organ = o
-		current_organ.rejuvenate()
+		current_organ.heal_organ_damage(current_organ.damage)
 
 	// remove embedded objects and drop them on the floor
 	for(var/o in implants)
@@ -378,7 +382,7 @@
 		update_wounds()
 
 	//Bone fractures
-	if(CONFIG_GET(flag/bones_can_break) && brute_dam > min_broken_damage * CONFIG_GET(number/organ_health_multiplier) && !(limb_status & LIMB_ROBOT))
+	if(CONFIG_GET(flag/bones_can_break) && brute_dam > min_broken_damage && !(limb_status & LIMB_ROBOT))
 		fracture()
 
 	//Infections
@@ -456,12 +460,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 				owner.adjustToxLoss(1)
 //LEVEL II
 	if(germ_level >= INFECTION_LEVEL_TWO && spaceacillin < 3)
-		//spread the infection to internal organs
-		var/datum/internal_organ/target_organ = null	//make internal organs become infected one at a time instead of all at once
-		for (var/datum/internal_organ/I in internal_organs)
-			if (I.germ_level > 0 && I.germ_level < min(germ_level, INFECTION_LEVEL_TWO))	//once the organ reaches whatever we can give it, or level two, switch to a different one
-				if (!target_organ || I.germ_level > target_organ.germ_level)	//choose the organ with the highest germ_level
-					target_organ = I
 
 		if(prob(round(germ_level/10)))
 			if (spaceacillin < MIN_ANTIBIOTICS)
@@ -472,18 +470,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 		if (prob(25))	//adjust this to tweak how fast people take toxin damage from infections
 			owner.adjustToxLoss(1)
-
-		if (!target_organ)
-			//figure out which organs we can spread germs to and pick one at random
-			var/list/candidate_organs = list()
-			for (var/datum/internal_organ/I in internal_organs)
-				if (I.germ_level < germ_level)
-					candidate_organs += I
-			if (candidate_organs.len)
-				target_organ = pick(candidate_organs)
-
-		if (target_organ)
-			target_organ.germ_level++
 
 		//spread the infection to child and parent organs
 		if (children)
@@ -508,9 +494,13 @@ Note that amputating the affected organ does in fact remove the infection from t
 			owner.adjustToxLoss(1)
 		if (prob(1))
 			to_chat(owner, span_notice("You have a high fever!"))
+//Not technically a germ effect, but derived from it
+	if(limb_status & LIMB_NECROTIZED)
+		for(var/datum/internal_organ/organ AS in internal_organs)
+			organ.take_damage(0.2, silent = TRUE) //1 point every 10 seconds, 100 seconds to bruise, five minutes to broken.
 
 
-//Updating wounds. Handles wound natural I had some free spachealing, internal bleedings and infections
+///Updating wounds. Handles natural damage healing from limb treatments and processes internal wounds
 /datum/limb/proc/update_wounds()
 
 	if((limb_status & LIMB_ROBOT)) //Robotic limbs don't heal or get worse.
@@ -530,7 +520,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if (update_icon())
 		owner.UpdateDamageIcon(1)
 
-//Updates BLEEDING status.
+///Updates LIMB_BLEEDING limb flag
 /datum/limb/proc/update_bleeding()
 	if(limb_status & LIMB_ROBOT || owner.species.species_flags & NO_BLOOD)
 		return
@@ -666,7 +656,13 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(body_part == CHEST)
 		return FALSE
 
-	set_limb_flags(LIMB_DESTROYED)
+	if(amputation)
+		set_limb_flags(LIMB_AMPUTATED|LIMB_DESTROYED)
+	else
+		set_limb_flags(LIMB_DESTROYED)
+
+	if(owner.species.species_flags & ROBOTIC_LIMBS)
+		limb_status |= LIMB_ROBOT
 
 	for(var/i in implants)
 		var/obj/item/embedded_thing = i
@@ -695,12 +691,11 @@ Note that amputating the affected organ does in fact remove the infection from t
 	reset_limb_surgeries()
 
 	var/obj/organ	//Dropped limb object
-	var/mob/living/carbon/human/H
 	switch(body_part)
 		if(HEAD)
-			if(issynth(H)) //special head for synth to allow brainmob to talk without an MMI
+			if(issynth(owner)) //special head for synth to allow brainmob to talk without an MMI
 				organ = new /obj/item/limb/head/synth(owner.loc, owner)
-			else if(isrobot(H))
+			else if(isrobot(owner))
 				organ = new /obj/item/limb/head/robotic(owner.loc, owner)
 			else
 				organ = new /obj/item/limb/head(owner.loc, owner)
@@ -867,10 +862,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 /datum/limb/proc/get_damage()	//returns total damage
 	return brute_dam + burn_dam	//could use health?
 
-//Not meaningful any more, need to remove from health scanners
-/datum/limb/proc/has_infected_wound()
-	return FALSE
-
 ///True if the limb has any damage on it
 /datum/limb/proc/has_external_wound()
 	return brute_dam || burn_dam
@@ -962,7 +953,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 	bone_repair_stage = 0
 	limb_replacement_stage = 0
 	necro_surgery_stage = 0
-	surgery_organ = null
 	cavity = 0
 
 
@@ -1021,7 +1011,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "l_arm"
 	display_name = "left arm"
 	icon_name = "l_arm"
-	max_damage = 125
+	max_damage = 150
 	min_broken_damage = 50
 	body_part = ARM_LEFT
 	cover_index = 7
@@ -1034,7 +1024,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "l_leg"
 	display_name = "left leg"
 	icon_name = "l_leg"
-	max_damage = 100
+	max_damage = 125
 	min_broken_damage = 50
 	body_part = LEG_LEFT
 	cover_index = 14
@@ -1044,7 +1034,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "r_arm"
 	display_name = "right arm"
 	icon_name = "r_arm"
-	max_damage = 125
+	max_damage = 150
 	min_broken_damage = 50
 	body_part = ARM_RIGHT
 	cover_index = 7
@@ -1057,7 +1047,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "r_leg"
 	display_name = "right leg"
 	icon_name = "r_leg"
-	max_damage = 100
+	max_damage = 125
 	min_broken_damage = 50
 	body_part = LEG_RIGHT
 	cover_index = 14
@@ -1067,7 +1057,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "l_foot"
 	display_name = "left foot"
 	icon_name = "l_foot"
-	max_damage = 75
+	max_damage = 100
 	min_broken_damage = 37
 	body_part = FOOT_LEFT
 	cover_index = 4
@@ -1077,7 +1067,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "r_foot"
 	display_name = "right foot"
 	icon_name = "r_foot"
-	max_damage = 75
+	max_damage = 100
 	min_broken_damage = 37
 	body_part = FOOT_RIGHT
 	cover_index = 4
@@ -1087,7 +1077,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "r_hand"
 	display_name = "right hand"
 	icon_name = "r_hand"
-	max_damage = 75
+	max_damage = 100
 	min_broken_damage = 37
 	body_part = HAND_RIGHT
 	cover_index = 2
@@ -1100,7 +1090,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "l_hand"
 	display_name = "left hand"
 	icon_name = "l_hand"
-	max_damage = 75
+	max_damage = 100
 	min_broken_damage = 37
 	body_part = HAND_LEFT
 	cover_index = 2
@@ -1113,7 +1103,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "head"
 	icon_name = "head"
 	display_name = "head"
-	max_damage = 100
+	max_damage = 125
 	min_broken_damage = 40
 	body_part = HEAD
 	vital = TRUE

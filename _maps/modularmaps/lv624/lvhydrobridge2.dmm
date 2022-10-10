@@ -1,0 +1,233 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/effect/landmark/corpsespawner/colonist,
+/turf/open/floor/plating,
+/area/lv624/ground/river2)
+"b" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor,
+/area/lv624/ground/river2)
+"c" = (
+/obj/structure/catwalk,
+/turf/open/ground/coast{
+	dir = 1
+	},
+/area/lv624/ground/river2)
+"d" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor,
+/area/lv624/ground/river2)
+"g" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor,
+/area/lv624/ground/river2)
+"i" = (
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/lv624/ground/river2)
+"j" = (
+/obj/structure/grille/broken,
+/turf/open/floor/plating,
+/area/lv624/ground/river2)
+"m" = (
+/turf/open/floor/plating,
+/area/lv624/ground/river2)
+"n" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor,
+/area/lv624/ground/river2)
+"p" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/turf/open/floor,
+/area/lv624/ground/river2)
+"r" = (
+/turf/open/floor,
+/area/lv624/ground/river2)
+"s" = (
+/turf/closed/wall,
+/area/lv624/ground/river2)
+"u" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor,
+/area/lv624/ground/river2)
+"w" = (
+/obj/structure/fence,
+/turf/open/floor/plating,
+/area/lv624/ground/river2)
+"A" = (
+/obj/structure/catwalk,
+/turf/open/ground/coast/corner{
+	dir = 8
+	},
+/area/lv624/ground/river2)
+"B" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/turf/open/floor,
+/area/lv624/ground/river2)
+"D" = (
+/obj/structure/fence,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/lv624/ground/river2)
+"G" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/ai_node,
+/obj/structure/cable,
+/turf/open/floor,
+/area/lv624/ground/river2)
+"I" = (
+/obj/structure/catwalk,
+/turf/open/ground/river,
+/area/lv624/ground/river2)
+"K" = (
+/obj/structure/flora/ausbushes/reedbush,
+/obj/structure/catwalk,
+/turf/open/ground/river,
+/area/lv624/ground/river2)
+"N" = (
+/obj/structure/catwalk,
+/turf/open/ground/coast{
+	dir = 5
+	},
+/area/lv624/ground/river2)
+"P" = (
+/obj/machinery/floodlight/colony{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/catwalk,
+/turf/open/ground/river,
+/area/lv624/ground/river2)
+"T" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor,
+/area/lv624/ground/river2)
+"X" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor,
+/area/lv624/ground/river2)
+
+(1,1,1) = {"
+P
+I
+I
+I
+I
+I
+I
+I
+N
+A
+"}
+(2,1,1) = {"
+w
+s
+s
+i
+i
+a
+j
+i
+s
+s
+"}
+(3,1,1) = {"
+g
+u
+u
+u
+u
+u
+u
+u
+d
+u
+"}
+(4,1,1) = {"
+p
+B
+B
+B
+G
+B
+B
+B
+B
+B
+"}
+(5,1,1) = {"
+T
+X
+r
+r
+r
+r
+r
+r
+r
+r
+"}
+(6,1,1) = {"
+n
+b
+b
+b
+b
+b
+b
+b
+b
+b
+"}
+(7,1,1) = {"
+D
+s
+s
+i
+j
+m
+i
+i
+s
+s
+"}
+(8,1,1) = {"
+P
+I
+I
+I
+I
+I
+I
+I
+K
+c
+"}

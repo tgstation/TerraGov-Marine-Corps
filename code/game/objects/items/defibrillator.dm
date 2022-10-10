@@ -136,7 +136,7 @@
 /mob/living/carbon/human/proc/has_working_organs()
 	var/datum/internal_organ/heart/heart = internal_organs_by_name["heart"]
 
-	if(!heart || heart.is_broken() || !has_brain())
+	if(!heart || heart.organ_status == ORGAN_BROKEN || !has_brain())
 		return FALSE
 
 	return TRUE
@@ -222,7 +222,7 @@
 
 	var/datum/internal_organ/heart/heart = H.internal_organs_by_name["heart"]
 	if(!issynth(H) && !isrobot(H) && heart && prob(25))
-		heart.take_damage(5) //Allow the defibrilator to possibly worsen heart damage. Still rare enough to just be the "clone damage" of the defib
+		heart.take_damage(5) //Allow the defibrillator to possibly worsen heart damage. Still rare enough to just be the "clone damage" of the defib
 
 	if((HAS_TRAIT(H, TRAIT_UNDEFIBBABLE ) && !issynth(H)) || H.suiciding) //synthetic species have no expiration date
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's brain has decayed too much. No remedy possible."))
@@ -279,8 +279,8 @@
 	H.updatehealth() //One more time, so it doesn't show the target as dead on HUDs
 	H.dead_ticks = 0 //We reset the DNR time
 	REMOVE_TRAIT(H, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
-	GLOB.round_statistics.total_human_revives++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_human_revives")
+	GLOB.round_statistics.total_human_revives[H.faction]++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_human_revives[H.faction]")
 	to_chat(H, span_notice("You suddenly feel a spark and your consciousness returns, dragging you back to the mortal plane."))
 
 	if(CHECK_BITFIELD(H.status_flags, XENO_HOST))

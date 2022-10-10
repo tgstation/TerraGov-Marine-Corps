@@ -83,6 +83,8 @@
 
 		if(INTENT_HARM)
 			// See if they can attack, and which attacks to use.
+			if(H == src && !H.do_self_harm)
+				return FALSE
 			var/datum/unarmed_attack/attack = H.species.unarmed
 			if(!attack.is_usable(H))
 				attack = H.species.secondary_unarmed
@@ -255,13 +257,13 @@
 		if(org.limb_status & LIMB_DESTROYED)
 			status = "MISSING!"
 
-		if(brute_treated == FALSE && brutedamage > 0)
+		if(brute_treated && brutedamage > 0)
 			treat = "(Bandaged"
-			if(burn_treated == FALSE && burndamage > 0)
+			if(burn_treated && burndamage > 0)
 				treat += " and Salved)"
 			else
 				treat += ")"
-		else if(burn_treated == FALSE && burndamage > 0)
+		else if(burn_treated && burndamage > 0)
 			treat += "(Salved)"
 		var/msg = "My [org.display_name] is [status]. [treat]"
 		final_msg += status=="OK" ? span_notice(msg) : span_warning (msg)

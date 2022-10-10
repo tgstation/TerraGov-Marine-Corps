@@ -37,8 +37,8 @@
 			. = TRUE
 		if("toggle_observe")
 			auto_observe = !auto_observe
-			if(auto_observe && owner.orbit_target)
-				owner.do_observe(owner.orbit_target)
+			if(auto_observe && !QDELETED(owner.orbiting.parent))
+				owner.do_observe(owner.orbiting.parent)
 			else
 				owner.reset_perspective(null)
 
@@ -54,6 +54,7 @@
 
 	var/list/humans = list()
 	var/list/marines = list()
+	var/list/som = list()
 	var/list/survivors = list()
 	var/list/xenos = list()
 	var/list/dead = list()
@@ -94,6 +95,8 @@
 			var/mob/living/carbon/human/H = poi
 			if(ismarinejob(H.job))
 				marines += list(serialized)
+			else if(issommarinejob(H.job))
+				som += list(serialized)
 			else if (issurvivorjob(H.job))
 				survivors += list(serialized)
 			else
@@ -101,6 +104,7 @@
 
 	data["humans"] = humans
 	data["marines"] = marines
+	data["som"] = som
 	data["survivors"] = survivors
 	data["xenos"] = xenos
 	data["dead"] = dead

@@ -60,7 +60,7 @@
 /** INTERNAL BLEEDING **/
 /datum/wound/internal_bleeding
 	desc = "damaged artery"
-	autoheal_cutoff = 5
+	autoheal_cutoff = 0
 
 /datum/wound/internal_bleeding/process()
 
@@ -68,12 +68,11 @@
 	var/inaprovaline = parent_limb.owner.reagents.get_reagent_amount(/datum/reagent/medicine/inaprovaline)
 	var/quickclot = parent_limb.owner.reagents.get_reagent_amount(/datum/reagent/medicine/quickclot)
 
-	if(!(can_autoheal() || (bicardose && inaprovaline) || quickclot))	//bicaridine and inaprovaline stop internal wounds from harming the parent limb over time, unless it is so small that it is already healing
+	if(!(bicardose && inaprovaline))	//bicaridine and inaprovaline stop internal wounds from harming the parent limb over time
 		parent_limb.createwound(CUT, 0.1)
-		damage += 0.1
 
 	if(!quickclot) //Quickclot stops bleeding, magic!
-		parent_limb.owner.blood_volume = max(0, parent_limb.owner.blood_volume - damage/40)
+		parent_limb.owner.blood_volume = max(0, parent_limb.owner.blood_volume - damage/30)
 		if(prob(1))
 			parent_limb.owner.custom_pain("You feel a stabbing pain in your [parent_limb.display_name]!", 1)
 

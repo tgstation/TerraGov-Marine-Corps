@@ -553,7 +553,7 @@
 				if(!silent)
 					to_chat(builder, span_warning("There is a little one here already. Best move it."))
 				return FALSE
-		if(istype(O, /obj/effect/alien/egg))
+		if(istype(O, /obj/alien/egg))
 			if(!silent)
 				to_chat(builder, span_warning("There's already an egg here."))
 			return FALSE
@@ -565,7 +565,7 @@
 			if(!silent)
 				to_chat(builder, span_warning("There is a plant growing here, destroying it would be a waste to the hive."))
 			return FALSE
-		if(istype(O, /obj/structure/mineral_door) || istype(O, /obj/structure/ladder) || istype(O, /obj/effect/alien/resin))
+		if(istype(O, /obj/structure/mineral_door) || istype(O, /obj/structure/ladder) || istype(O, /obj/alien/resin))
 			has_obstacle = TRUE
 			break
 		if(istype(O, /obj/structure/bed))
@@ -577,7 +577,7 @@
 			else if(istype(O, /obj/structure/bed/nest)) //We don't care about other beds/chairs/whatever the fuck.
 				has_obstacle = TRUE
 				break
-		if(istype(O, /obj/effect/alien/hivemindcore))
+		if(istype(O, /obj/structure/xeno/hivemindcore))
 			has_obstacle = TRUE
 			break
 
@@ -929,3 +929,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	SIGNAL_HANDLER
 	current_acid = null
 
+/turf/balloon_alert_perform(mob/viewer, text)
+	// Balloon alerts occuring on turf objects result in mass spam of alerts.
+	// Thus, no more balloon alerts for turfs.
+	return

@@ -136,7 +136,7 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "cat2"
 	flags_armor_features = ARMOR_NO_DECAP
-	soft_armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = 10, "bio" = 5, "rad" = 0, "fire" = 50, "acid" = 50)
+	soft_armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 10, BIO = 5, "rad" = 0, FIRE = 50, ACID = 50)
 	var/mob/living/simple_animal/cat/cat
 
 /obj/item/clothing/head/cat/Destroy()
@@ -160,4 +160,3 @@
 	if(loc == user)
 		return
 	qdel(src)
-

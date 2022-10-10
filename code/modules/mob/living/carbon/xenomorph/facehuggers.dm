@@ -18,7 +18,8 @@
 	icon_state = "facehugger"
 	item_state = "facehugger"
 	w_class = WEIGHT_CLASS_TINY //Note: can be picked up by aliens unlike most other items of w_class below 4
-	flags_inventory = COVEREYES|ALLOWINTERNALS|COVERMOUTH|ALLOWREBREATH
+	resistance_flags = NONE
+	flags_inventory = COVEREYES|ALLOWINTERNALS|COVERMOUTH
 	flags_armor_protection = FACE|EYES
 	flags_atom = CRITICAL_ATOM
 	flags_item = NOBLUDGEON
@@ -130,7 +131,7 @@
 /obj/item/clothing/mask/facehugger/attack_hand(mob/living/user)
 	if(isxeno(user))
 		var/mob/living/carbon/xenomorph/X = user
-		if(X.xeno_caste.caste_flags & CASTE_CAN_HOLD_FACEHUGGERS)
+		if(X.xeno_caste.can_flags & CASTE_CAN_HOLD_FACEHUGGERS)
 			deltimer(jumptimer)
 			deltimer(activetimer)
 			remove_danger_overlay() //Remove the exclamation overlay as we pick it up
@@ -310,7 +311,7 @@
 		return FALSE
 
 	if(isturf(loc))
-		var/obj/effect/alien/egg/hugger/E = locate() in loc
+		var/obj/alien/egg/hugger/E = locate() in loc
 		if(E?.insert_new_hugger(src))
 			return FALSE
 		var/obj/structure/xeno/trap/T = locate() in loc
@@ -562,7 +563,7 @@
 		playsound(loc, hugsound, 25, 0)
 	if(!sterile && !issynth(user))
 		user.disable_lights(sparks = TRUE, silent = TRUE)
-		var/stamina_dmg = user.maxHealth + user.max_stamina_buffer
+		var/stamina_dmg = user.maxHealth + user.max_stamina
 		user.apply_damage(stamina_dmg, STAMINA) // complete winds the target
 		user.Unconscious(2 SECONDS)
 	addtimer(VARSET_CALLBACK(src, flags_item, flags_item|NODROP), IMPREGNATION_TIME) // becomes stuck after min-impreg time
@@ -651,7 +652,7 @@
 	if(exposed_temperature > 300)
 		kill_hugger()
 
-/obj/item/clothing/mask/facehugger/flamer_fire_act()
+/obj/item/clothing/mask/facehugger/flamer_fire_act(burnlevel)
 	kill_hugger()
 
 /obj/item/clothing/mask/facehugger/dropped(mob/user)
@@ -765,7 +766,7 @@
 
 	for(var/turf/sticky_tile AS in RANGE_TURFS(1, loc))
 		if(!locate(/obj/effect/xenomorph/spray) in sticky_tile.contents)
-			new /obj/effect/alien/resin/sticky/thin(sticky_tile)
+			new /obj/alien/resin/sticky/thin(sticky_tile)
 
 	var/armor_block
 	for(var/mob/living/target in range(1, loc))

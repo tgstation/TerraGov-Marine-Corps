@@ -43,8 +43,8 @@ GLOBAL_LIST_INIT(base_miss_chance, list(
 	"r_leg" = 10,
 	"l_arm" = 10,
 	"r_arm" = 10,
-	"l_hand" = 15,
-	"r_hand" = 15,
+	"l_hand" = 30,
+	"r_hand" = 30,
 	"l_foot" = 40,
 	"r_foot" = 40,
 	"eyes" = 20,
@@ -239,8 +239,6 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 				newletter = "[newletter]-[newletter]-[newletter]-[newletter]"
 			else if(prob(20))
 				newletter = "[newletter]-[newletter]-[newletter]"
-			else if (prob(5))
-				newletter = ""
 			else
 				newletter = "[newletter]-[newletter]"
 		. += newletter

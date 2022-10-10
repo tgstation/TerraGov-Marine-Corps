@@ -55,9 +55,6 @@ GLOBAL_VAR(restart_counter)
 
 	load_mode()
 
-	if(byond_version < RECOMMENDED_VERSION)
-		log_world("Your server's byond version does not meet the recommended requirements for this server. Please update BYOND")
-
 	update_status()
 
 	change_tick_lag(CONFIG_GET(number/ticklag))
@@ -96,6 +93,7 @@ GLOBAL_VAR(restart_counter)
 		GLOB.log_directory = "data/logs/[override_dir]"
 
 	GLOB.world_game_log = "[GLOB.log_directory]/game.log"
+	GLOB.world_mecha_log = "[GLOB.log_directory]/mecha.log"
 	GLOB.world_asset_log = "[GLOB.log_directory]/asset.log"
 	GLOB.world_attack_log = "[GLOB.log_directory]/attack.log"
 	GLOB.world_manifest_log = "[GLOB.log_directory]/manifest.log"
@@ -207,7 +205,7 @@ GLOBAL_VAR(restart_counter)
 /world/Reboot(ping)
 	if(ping)
 		// TODO: Replace the second arguments of send2chat with custom config tags. See __HELPERS/chat.dm
-		send2chat(CONFIG_GET(string/restart_message), "")
+		send2chat(CONFIG_GET(string/restart_message), CONFIG_GET(string/end_of_round_channel))
 		var/list/msg = list()
 
 		if(GLOB.round_id)
@@ -238,7 +236,7 @@ GLOBAL_VAR(restart_counter)
 			msg += "Players: [length(GLOB.clients)]"
 
 		if(length(msg))
-			send2chat(msg.Join(" | "), "")
+			send2chat(msg.Join(" | "), CONFIG_GET(string/end_of_round_channel))
 
 	Master.Shutdown()
 	TgsReboot()

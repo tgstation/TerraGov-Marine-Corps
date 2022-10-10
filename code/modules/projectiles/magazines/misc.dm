@@ -60,6 +60,16 @@
 	current_rounds = 50
 	max_rounds = 50
 
+/obj/item/ammo_magazine/packet/smart_minigun
+	name = "SG-85 ammo bin"
+	desc = "A hefty container stuffed to the absolute brim with 1000 rounds for the SG-85 powerpack."
+	icon_state = "box_smartminigun"
+	default_ammo = /datum/ammo/bullet/smart_minigun
+	caliber = CALIBER_10x26_CASELESS
+	current_rounds = 500
+	max_rounds = 500
+	w_class = WEIGHT_CLASS_NORMAL
+
 // pistol packets
 
 /obj/item/ammo_magazine/packet/p9mm
@@ -97,6 +107,16 @@
 	caliber = CALIBER_45ACP
 	current_rounds = 50
 	max_rounds = 50
+
+/obj/item/ammo_magazine/packet/p9mmap
+	name = "packet of 9mm AP"
+	desc = "A packet containing 70 rounds of 9mm armor-piercing."
+	icon_state = "box_9mmap"
+	default_ammo = /datum/ammo/bullet/pistol/ap
+	w_class = WEIGHT_CLASS_SMALL
+	caliber = CALIBER_9X19
+	current_rounds = 70
+	max_rounds = 70
 
 /obj/item/ammo_magazine/packet/p10x26mm
 	name = "packet of 10x26mm"

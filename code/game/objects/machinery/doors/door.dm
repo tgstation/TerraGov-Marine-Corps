@@ -12,7 +12,7 @@
 	explosion_block = 2
 	resistance_flags = DROPSHIP_IMMUNE
 	minimap_color = MINIMAP_DOOR
-	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
+	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 20, ENERGY = 20, BOMB = 10, BIO = 100, "rad" = 100, FIRE = 80, ACID = 70)
 	var/open_layer = DOOR_OPEN_LAYER
 	var/closed_layer = DOOR_CLOSED_LAYER
 	var/id
@@ -80,6 +80,10 @@
 			bumpopen(M)
 		return
 
+	if(isuav(AM))
+		try_to_activate_door(AM)
+		return
+
 	if(isobj(AM))
 		var/obj/O = AM
 		for(var/m in O.buckled_mobs)
@@ -111,15 +115,17 @@
 		return
 	return try_to_activate_door(user)
 
-/obj/machinery/door/proc/try_to_activate_door(mob/user)
+/obj/machinery/door/proc/try_to_activate_door(atom/user)
 	if(operating)
 		return
-	var/can_open
+	var/can_open = !Adjacent(user) || !requiresID() || ismob(user) && allowed(user)
 	if(!Adjacent(user))
 		can_open = TRUE
 	if(!requiresID())
 		can_open = TRUE
-	if(allowed(user))
+	if(ismob(user) && allowed(user))
+		can_open = TRUE
+	if(isuav(user))
 		can_open = TRUE
 	if(can_open)
 		if(density)

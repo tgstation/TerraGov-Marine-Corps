@@ -6,6 +6,7 @@
 	name = "backpack"
 	desc = "You wear this on your back and put items into it."
 	icon_state = "backpack"
+	item_state = "backpack"
 	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/backpack.dmi')
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BACK	//ERROOOOO
@@ -113,6 +114,7 @@
 	name = "industrial backpack"
 	desc = "It's a tough backpack for the daily grind of station life."
 	icon_state = "engiepack"
+	item_state = "engiepack"
 
 /obj/item/storage/backpack/toxins
 	name = "laboratory backpack"
@@ -154,6 +156,12 @@
 /obj/item/storage/backpack/satchel/withwallet/Initialize(mapload, ...)
 	. = ..()
 	new /obj/item/storage/wallet/random( src )
+
+
+/obj/item/storage/backpack/satchel/som
+	name = "mining satchel"
+	desc = "A satchel with origins dating back to the mining colonies."
+	icon_state = "som_satchel"
 
 /obj/item/storage/backpack/satchel/norm
 	name = "satchel"
@@ -247,6 +255,7 @@
 	name = "\improper lightweight IMP backpack"
 	desc = "The standard-issue pack of the TGMC forces. Designed to slug gear into the battlefield."
 	icon_state = "marinepack"
+	item_state = "marinepack"
 
 /obj/item/storage/backpack/marine/standard
 	name = "\improper lightweight IMP backpack"
@@ -256,6 +265,7 @@
 	name = "\improper TGMC corpsman backpack"
 	desc = "The standard-issue backpack worn by TGMC corpsmen. You can recharge defibrillators by plugging them in."
 	icon_state = "marinepackm"
+	item_state = "marinepackm"
 	var/obj/item/cell/high/cell //Starts with a high capacity energy cell.
 	var/icon_skin
 
@@ -335,6 +345,7 @@
 	name = "\improper TGMC technician backpack"
 	desc = "The standard-issue backpack worn by TGMC technicians. Specially equipped to hold sentry gun and M56D emplacement parts."
 	icon_state = "marinepackt"
+	item_state = "marinepackt"
 	bypass_w_limit = list(
 		/obj/item/weapon/gun/sentry/big_sentry,
 		/obj/item/weapon/gun/sentry/mini,
@@ -352,6 +363,7 @@
 	name = "\improper TGMC satchel"
 	desc = "A heavy-duty satchel carried by some TGMC soldiers and support personnel."
 	icon_state = "marinesat"
+	item_state = "marinesat"
 	storage_slots = null
 	max_storage_space = 15
 	access_delay = 0
@@ -666,6 +678,7 @@
 	name = "\improper TGMC technician welderpack"
 	desc = "A specialized backpack worn by TGMC technicians. It carries a fueltank for quick welder refueling and use,"
 	icon_state = "engineerpack"
+	item_state = "engineerpack"
 	var/max_fuel = 260
 	storage_slots = null
 	max_storage_space = 15

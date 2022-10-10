@@ -109,7 +109,6 @@
 	SIGNAL_HANDLER
 	if((entangled.flags_pass & PASSSMALLSTRUCT) || entangled.status_flags & INCORPOREAL)
 		return
-	entangled.next_move_slowdown += RAZORWIRE_SLOWDOWN //big slowdown
 	do_razorwire_untangle(entangled)
 	visible_message(span_danger("[entangled] disentangles from [src]!"))
 	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, TRUE)

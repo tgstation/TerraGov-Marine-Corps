@@ -13,7 +13,7 @@
 	smoothing_groups = SMOOTH_GENERAL_STRUCTURES|SMOOTH_XENO_STRUCTURES
 	walltype = "metal"
 
-	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 100, BOMB = 0, BIO = 0, "rad" = 0, FIRE = 0, ACID = 0)
 
 	var/wall_integrity
 	var/max_integrity = 1000 //Wall will break down to girders if damage reaches this point
@@ -73,7 +73,7 @@
 			if(istype(O, /obj/structure/sign/poster))
 				var/obj/structure/sign/poster/P = O
 				P.roll_and_drop(src)
-			if(istype(O, /obj/effect/alien/weeds))
+			if(istype(O, /obj/alien/weeds))
 				qdel(O)
 
 
@@ -338,12 +338,15 @@
 
 		user.visible_message(span_notice("[user] starts repairing the damage to [src]."),
 		span_notice("You start repairing the damage to [src]."))
+		add_overlay(GLOB.welding_sparks)
 		playsound(src, 'sound/items/welder.ogg', 25, 1)
 		if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || !iswallturf(src) || !WT?.isOn())
+			cut_overlay(GLOB.welding_sparks)
 			return
 
 		user.visible_message(span_notice("[user] finishes repairing the damage to [src]."),
 		span_notice("You finish repairing the damage to [src]."))
+		cut_overlay(GLOB.welding_sparks)
 		repair_damage(250)
 
 	else
@@ -355,16 +358,20 @@
 					playsound(src, 'sound/items/welder.ogg', 25, 1)
 					user.visible_message(span_notice("[user] begins slicing through the outer plating."),
 					span_notice("You begin slicing through the outer plating."))
+					add_overlay(GLOB.welding_sparks)
 
 					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
+						cut_overlay(GLOB.welding_sparks)
 						return
 
 					if(!iswallturf(src) || !WT?.isOn())
+						cut_overlay(GLOB.welding_sparks)
 						return
 
 					d_state = 1
 					user.visible_message(span_notice("[user] slices through the outer plating."),
 					span_notice("You slice through the outer plating."))
+					cut_overlay(GLOB.welding_sparks)
 			if(1)
 				if(isscrewdriver(I))
 					user.visible_message(span_notice("[user] begins removing the support lines."),
@@ -385,17 +392,21 @@
 					var/obj/item/tool/weldingtool/WT = I
 					user.visible_message(span_notice("[user] begins slicing through the metal cover."),
 					span_notice("You begin slicing through the metal cover."))
+					add_overlay(GLOB.welding_sparks)
 					playsound(src, 'sound/items/welder.ogg', 25, 1)
 
 					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
+						cut_overlay(GLOB.welding_sparks)
 						return
 
 					if(!iswallturf(src) || !WT?.isOn())
+						cut_overlay(GLOB.welding_sparks)
 						return
 
 					d_state = 3
 					user.visible_message(span_notice("[user] presses firmly on the cover, dislodging it."),
 					span_notice("You press firmly on the cover, dislodging it."))
+					cut_overlay(GLOB.welding_sparks)
 			if(3)
 				if(iscrowbar(I))
 					user.visible_message(span_notice("[user] struggles to pry off the cover."),
@@ -462,16 +473,20 @@
 					user.visible_message(span_notice("[user] begins slicing through the final layer."),
 					span_notice("You begin slicing through the final layer."))
 					playsound(src, 'sound/items/welder.ogg', 25, 1)
+					add_overlay(GLOB.welding_sparks)
 
 					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
+						cut_overlay(GLOB.welding_sparks)
 						return
 
 					if(!iswallturf(src) || !WT?.isOn())
+						cut_overlay(GLOB.welding_sparks)
 						return
 
 					new /obj/item/stack/rods(src)
 					user.visible_message(span_notice("The support rods drop out as [user] slices through the final layer."),
 					span_notice("The support rods drop out as you slice through the final layer."))
+					cut_overlay(GLOB.welding_sparks)
 					dismantle_wall()
 
 		return attack_hand(user)

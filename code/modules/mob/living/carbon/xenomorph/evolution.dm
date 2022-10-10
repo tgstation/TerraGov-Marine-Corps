@@ -6,9 +6,6 @@
 //Such as evolves_to = list("Warrior", "Sentinel", "Runner", "Badass") etc
 // except use typepaths now so you dont have to have an entry for literally every evolve path
 
-#define TO_XENO_TIER_2_FORMULA(tierA, tierB, tierC) ( (tierB + tierC) > tierA ) )
-#define TO_XENO_TIER_3_FORMULA(tierA, tierB, tierC) ( (tierC * 3) > (tierA + tierB) )
-
 /mob/living/carbon/xenomorph/verb/Evolve()
 	set name = "Evolve"
 	set desc = "Evolve into a higher form."
@@ -83,11 +80,6 @@
 		to_chat(src, span_warning("The restraints are too restricting to allow us to evolve."))
 		return
 
-	if(isxenolarva(src)) //Special case for dealing with larvae
-		if(amount_grown < max_grown)
-			to_chat(src, span_warning("We are not yet fully grown. Currently at: [amount_grown] / [max_grown]."))
-			return
-
 	if(isnull(xeno_caste.evolves_to))
 		to_chat(src, span_warning("We are already the apex of form and function. Let's go forth and spread the hive!"))
 		return
@@ -151,11 +143,8 @@
 		return
 
 	// used below
-	var/tierzeros //Larva and burrowed larva if it's a certain kinda hive
-	var/tierones
-	var/tiertwos
-	var/tierthrees
-	var/tierfours
+	var/no_room_tier_two = length(hive.xenos_by_tier[XENO_TIER_TWO]) >= hive.tier2_xeno_limit
+	var/no_room_tier_three = length(hive.xenos_by_tier[XENO_TIER_THREE]) >= hive.tier3_xeno_limit
 
 	if(new_caste_type == /mob/living/carbon/xenomorph/queen) //Special case for dealing with queenae
 		if(is_banned_from(ckey, ROLE_XENO_QUEEN))
@@ -226,18 +215,12 @@
 	else
 		var/potential_queens = length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva]) + length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/drone])
 
-		tierzeros = hive.get_total_tier_zeros()
-		tierones = length(hive.xenos_by_tier[XENO_TIER_ONE])
-		tiertwos = length(hive.xenos_by_tier[XENO_TIER_TWO])
-		tierthrees = length(hive.xenos_by_tier[XENO_TIER_THREE])
-		tierfours = length(hive.xenos_by_tier[XENO_TIER_FOUR])
-
 		if(regression)
 			//Nothing, go on as normal.
-		else if((tier == XENO_TIER_ONE && TO_XENO_TIER_2_FORMULA(tierzeros + tierones + tierfours, tiertwos, tierthrees))
+		else if(tier == XENO_TIER_ONE && no_room_tier_two)
 			to_chat(src, span_warning("The hive cannot support another Tier 2, wait for either more aliens to be born or someone to die."))
 			return
-		else if(tier == XENO_TIER_TWO && TO_XENO_TIER_3_FORMULA(tierzeros + tierones, tiertwos + tierfours, tierthrees))
+		else if(tier == XENO_TIER_TWO && no_room_tier_three)
 			to_chat(src, span_warning("The hive cannot support another Tier 3, wait for either more aliens to be born or someone to die."))
 			return
 		else if(SSticker.mode?.flags_round_type & MODE_XENO_RULER && !hive.living_xeno_ruler && potential_queens == 1)
@@ -264,12 +247,6 @@
 		to_chat(src, span_warning("We quiver, but nothing happens. We must hold still while evolving."))
 		return
 
-	tierzeros = hive.get_total_tier_zeros()
-	tierones = length(hive.xenos_by_tier[XENO_TIER_ONE])
-	tiertwos = length(hive.xenos_by_tier[XENO_TIER_TWO])
-	tierthrees = length(hive.xenos_by_tier[XENO_TIER_THREE])
-	tierfours = length(hive.xenos_by_tier[XENO_TIER_FOUR])
-
 	if(new_caste_type == /mob/living/carbon/xenomorph/queen)
 		if(hive.living_xeno_queen) //Do another check after the tick.
 			to_chat(src, span_warning("There already is a Queen."))
@@ -283,16 +260,17 @@
 			to_chat(src, span_warning("There cannot be two manifestations of the hivemind's will at once."))
 			return
 	else if(!regression) // these shouldnt be checked if trying to become a queen.
-		if((tier == XENO_TIER_ONE && TO_XENO_TIER_2_FORMULA(tierzeros + tierones + tierfours, tiertwos, tierthrees))
+		if(tier == XENO_TIER_ONE && no_room_tier_two)
 			to_chat(src, span_warning("Another sister evolved meanwhile. The hive cannot support another Tier 2."))
 			return
-		else if(tier == XENO_TIER_TWO && TO_XENO_TIER_3_FORMULA(tierzeros + tierones, tiertwos + tierfours, tierthrees))
+		else if(tier == XENO_TIER_TWO && no_room_tier_three)
 			to_chat(src, span_warning("Another sister evolved meanwhile. The hive cannot support another Tier 3."))
 			return
 
 	if(!isturf(loc)) //cdel'd or moved into something
 		return
 
+	SStgui.close_user_uis(src) //Force close all UIs upon evolution.
 
 	//From there, the new xeno exists, hopefully
 	var/mob/living/carbon/xenomorph/new_xeno = new new_caste_type(get_turf(src))
@@ -350,7 +328,7 @@
 	GLOB.round_statistics.total_xenos_created-- //so an evolved xeno doesn't count as two.
 	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_xenos_created")
 
-	if(queen_chosen_lead && (new_xeno.xeno_caste.caste_flags & CASTE_CAN_BE_LEADER)) // xeno leader is removed by Destroy()
+	if(queen_chosen_lead && (new_xeno.xeno_caste.can_flags & CASTE_CAN_BE_LEADER)) // xeno leader is removed by Destroy()
 		hive.add_leader(new_xeno)
 		new_xeno.hud_set_queen_overwatch()
 		if(hive.living_xeno_queen)
@@ -379,6 +357,6 @@
 		return
 	return ..()
 
-
-#undef TO_XENO_TIER_2_FORMULA
-#undef TO_XENO_TIER_3_FORMULA
+///Handles special conditions that influence a caste's evolution point gain, such as larva gaining a bonus if on weed.
+/mob/living/carbon/xenomorph/proc/spec_evolution_boost()
+	return 0

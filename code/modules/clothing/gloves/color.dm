@@ -93,4 +93,4 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shield-blue"
 	flags_item = NODROP|DELONDROP
-	soft_armor = list("melee" = 25, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 25)
+	soft_armor = list(MELEE = 25, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 30, BIO = 20, "rad" = 20, FIRE = 20, ACID = 25)

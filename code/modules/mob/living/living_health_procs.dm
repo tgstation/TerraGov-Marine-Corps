@@ -2,7 +2,7 @@
 //procs directly related to mob health
 
 
-/mob/living/proc/getBruteLoss()
+/mob/living/proc/getBruteLoss(organic_only = FALSE)
 	return bruteloss
 
 ///We straight up set bruteloss/brute damage to a desired amount unless godmode is enabled
@@ -19,7 +19,7 @@
 		updatehealth()
 
 
-/mob/living/proc/getFireLoss()
+/mob/living/proc/getFireLoss(organic_only = FALSE)
 	return fireloss
 
 ///We straight up set fireloss/burn damage to a desired amount unless godmode is enabled
@@ -77,7 +77,7 @@
 	if(stamina_loss_adjustment > health_limit) //If we exceed maxHealth * 2 stamina damage, half of any excess as oxyloss
 		adjustOxyLoss((stamina_loss_adjustment - health_limit) * 0.5)
 
-	staminaloss = clamp(stamina_loss_adjustment, -max_stamina_buffer, health_limit)
+	staminaloss = clamp(stamina_loss_adjustment, -max_stamina, health_limit)
 
 	if(amount > 0)
 		last_staminaloss_dmg = world.time
@@ -114,12 +114,30 @@
 		hud_used.staminas.icon_state = "stamloss200"
 		return
 	var/relative_stamloss = getStaminaLoss()
-	if(relative_stamloss < 0 && max_stamina_buffer)
-		relative_stamloss = round(((relative_stamloss * 14) / max_stamina_buffer), 1)
+	if(relative_stamloss < 0 && max_stamina)
+		relative_stamloss = round(((relative_stamloss * 14) / max_stamina), 1)
 	else
 		relative_stamloss = round(((relative_stamloss * 7) / (maxHealth * 2)), 1)
 	hud_used.staminas.icon_state = "stamloss[relative_stamloss]"
 
+/// Adds an entry to our stamina_regen_modifiers and updates stamina_regen_multiplier
+/mob/living/proc/add_stamina_regen_modifier(mod_name, mod_value)
+	stamina_regen_modifiers[mod_name] = mod_value
+	recalc_stamina_regen_multiplier()
+
+/// Removes an entry from our stamina_regen_modifiers and updates stamina_regen_multiplier. Returns TRUE if an entry was removed
+/mob/living/proc/remove_stamina_regen_modifier(mod_name)
+	if(!stamina_regen_modifiers.Remove(mod_name))
+		return FALSE
+	recalc_stamina_regen_multiplier()
+	return TRUE
+
+/// Regenerates stamina_regen_multiplier from initial based on the current modifier list, minimum 0.
+/mob/living/proc/recalc_stamina_regen_multiplier()
+	stamina_regen_multiplier = initial(stamina_regen_multiplier)
+	for(var/mod_name in stamina_regen_modifiers)
+		stamina_regen_multiplier += stamina_regen_modifiers[mod_name]
+	stamina_regen_multiplier = max(stamina_regen_multiplier, 0)
 
 /mob/living/proc/getCloneLoss()
 	return cloneloss
@@ -182,7 +200,7 @@
 
 
 // heal ONE limb, organ gets randomly selected from damaged ones.
-/mob/living/proc/heal_limb_damage(brute, burn, updating_health = FALSE)
+/mob/living/proc/heal_limb_damage(brute, burn, robo_repair = FALSE, updating_health = FALSE)
 	adjustBruteLoss(-brute)
 	adjustFireLoss(-burn)
 	if(updating_health)
@@ -200,7 +218,7 @@
 
 
 // heal MANY limbs, in random order
-/mob/living/proc/heal_overall_damage(brute, burn, updating_health = FALSE)
+/mob/living/proc/heal_overall_damage(brute, burn, robo_repair = FALSE, updating_health = FALSE)
 	adjustBruteLoss(-brute)
 	adjustFireLoss(-burn)
 	if(updating_health)
@@ -296,7 +314,7 @@
 	set_blindness(0, TRUE)
 	set_blurriness(0, TRUE)
 	set_ear_damage(0, 0)
-	heal_overall_damage(getBruteLoss(), getFireLoss())
+	heal_overall_damage(getBruteLoss(), getFireLoss(), robo_repair = TRUE)
 
 	// fix all of our organs
 	restore_all_organs()
@@ -362,7 +380,7 @@
 			qdel(H)
 
 	for(var/datum/internal_organ/I in internal_organs)
-		I.damage = 0
+		I.heal_organ_damage(I.damage)
 
 	reagents.clear_reagents() //and clear all reagents in them
 	REMOVE_TRAIT(src, TRAIT_UNDEFIBBABLE, TRAIT_UNDEFIBBABLE)

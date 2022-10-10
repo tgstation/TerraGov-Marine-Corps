@@ -29,10 +29,11 @@
 	deevolves_to = /mob/living/carbon/xenomorph/runner
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_BECOME_KING
+	caste_flags = CASTE_EVOLUTION_ALLOWED
+	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_BECOME_KING
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 25, "bullet" = 35, "laser" = 25, "energy" = 25, "bomb" = 0, "bio" = 25, "rad" = 25, "fire" = 35, "acid" = 25)
+	soft_armor = list(MELEE = 25, BULLET = 35, LASER = 25, ENERGY = 25, BOMB = 0, BIO = 25, "rad" = 25, FIRE = 35, ACID = 25)
 
 	// *** Minimap Icon *** //
 	minimap_icon = "bull"
@@ -72,7 +73,7 @@
 	upgrade_threshold = TIER_TWO_MATURE_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 30, "bullet" = 40, "laser" = 30, "energy" = 30, "bomb" = 0, "bio" = 28, "rad" = 28, "fire" = 40, "acid" = 28)
+	soft_armor = list(MELEE = 30, BULLET = 40, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 28, "rad" = 28, FIRE = 40, ACID = 28)
 
 /datum/xeno_caste/bull/elder
 	upgrade_name = "Elder"
@@ -97,7 +98,7 @@
 	upgrade_threshold = TIER_TWO_ELDER_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 35, "bullet" = 45, "laser" = 35, "energy" = 35, "bomb" = 0, "bio" = 30, "rad" = 30, "fire" = 45, "acid" = 30)
+	soft_armor = list(MELEE = 35, BULLET = 45, LASER = 35, ENERGY = 35, BOMB = 0, BIO = 30, "rad" = 30, FIRE = 45, ACID = 30)
 
 /datum/xeno_caste/bull/ancient
 	upgrade_name = "Ancient"
@@ -122,7 +123,7 @@
 	upgrade_threshold = TIER_TWO_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 40, "bullet" = 50, "laser" = 40, "energy" = 40, "bomb" = 0, "bio" = 33, "rad" = 33, "fire" = 50, "acid" = 33)
+	soft_armor = list(MELEE = 40, BULLET = 50, LASER = 40, ENERGY = 40, BOMB = 0, BIO = 33, "rad" = 33, FIRE = 50, ACID = 33)
 
 /datum/xeno_caste/bull/primordial
 	upgrade_name = "Primordial"
@@ -144,5 +145,5 @@
 	max_health = 325
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 40, "bullet" = 50, "laser" = 40, "energy" = 40, "bomb" = 0, "bio" = 33, "rad" = 33, "fire" = 50, "acid" = 33)
+	soft_armor = list(MELEE = 40, BULLET = 50, LASER = 40, ENERGY = 40, BOMB = 0, BIO = 33, "rad" = 33, FIRE = 50, ACID = 33)
 

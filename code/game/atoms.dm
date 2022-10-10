@@ -12,9 +12,10 @@
 	var/list/blood_DNA
 
 	var/flags_pass = NONE
+	///whether items can be thrown past, or projectiles can fire past this atom.
 	var/throwpass = FALSE
 
-	var/resistance_flags = NONE
+	var/resistance_flags = PROJECTILE_IMMUNE
 
 	var/germ_level = GERM_LEVEL_AMBIENT // The higher the germ level, the more germ on the atom.
 
@@ -91,8 +92,6 @@
 	var/chat_color_darkened
 	///HUD images that this mob can provide.
 	var/list/hud_possible
-	///Reference to atom being orbited
-	var/atom/orbit_target
 
 	///Whether this atom smooths with things around it, and what type of smoothing if any.
 	var/smoothing_behavior = NO_SMOOTHING
@@ -417,8 +416,8 @@ directive is properly returned.
 	return //For handling the effects of explosions on contents that would not normally be effected
 
 
-//Generalized Fire Proc.
-/atom/proc/flamer_fire_act()
+///Generalized Fire Proc. Burn level is the base fire damage being received.
+/atom/proc/flamer_fire_act(burnlevel)
 	return
 
 
@@ -464,6 +463,8 @@ directive is properly returned.
 			log_admin_private_asay(log_text)
 		if(LOG_GAME)
 			log_game(log_text)
+		if(LOG_MECHA)
+			log_mecha(log_text)
 		else
 			stack_trace("Invalid individual logging type: [message_type]. Defaulting to [LOG_GAME] (LOG_GAME).")
 			log_game(log_text)
@@ -578,8 +579,7 @@ Proc for attack log creation, because really why not
 
 /obj/item/update_filters()
 	. = ..()
-	for(var/X in actions)
-		var/datum/action/A = X
+	for(var/datum/action/A AS in actions)
 		A.update_button_icon()
 
 ///returns a filter in the managed filters list by name

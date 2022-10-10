@@ -30,7 +30,7 @@
 	///the maximum range of the ability
 	var/max_range = 0
 	///The seleted type of weeds
-	var/obj/effect/alien/weeds/node/weed_type = /obj/effect/alien/weeds/node
+	var/obj/alien/weeds/node/weed_type = /obj/alien/weeds/node
 	///Whether automatic weeding is active
 	var/auto_weeding = FALSE
 	///The turf that was last weeded
@@ -90,7 +90,7 @@
 	if(weed_choice == AUTOMATIC_WEEDING)
 		toggle_auto_weeding()
 	else
-		for(var/obj/effect/alien/weeds/node/weed_type_possible AS in GLOB.weed_type_list)
+		for(var/obj/alien/weeds/node/weed_type_possible AS in GLOB.weed_type_list)
 			if(initial(weed_type_possible.name) == weed_choice)
 				weed_type = weed_type_possible
 				break
@@ -175,7 +175,7 @@
 	///List of buildable structures. Order corresponds with resin_images_list.
 	var/list/buildable_structures = list(
 		/turf/closed/wall/resin/regenerating,
-		/obj/effect/alien/resin/sticky,
+		/obj/alien/resin/sticky,
 		/obj/structure/mineral_door/resin,
 		)
 
@@ -193,6 +193,8 @@
 		return ..()
 	. = ..()
 	var/resin_choice = show_radial_menu(owner, owner, GLOB.resin_images_list, radius = 35)
+	if(!resin_choice)
+		return
 	var/i = GLOB.resin_images_list.Find(resin_choice)
 	X.selected_resin = buildable_structures[i]
 	var/atom/A = X.selected_resin
@@ -224,10 +226,8 @@
 
 	var/build_resin_modifier = 1
 	switch(X.selected_resin)
-		if(/obj/effect/alien/resin/sticky)
+		if(/obj/alien/resin/sticky)
 			build_resin_modifier = 0.5
-		if(/obj/structure/mineral_door/resin)
-			build_resin_modifier = 2
 
 	return (base_wait + scaling_wait - max(0, (scaling_wait * X.health / X.maxHealth))) * build_resin_modifier
 
@@ -246,7 +246,7 @@
 		to_chat(owner, span_warning("You cannot secrete resin without line of sight!"))
 		return fail_activate()
 
-	var/obj/effect/alien/weeds/alien_weeds = locate() in T
+	var/obj/alien/weeds/alien_weeds = locate() in T
 
 	for(var/obj/effect/forcefield/fog/F in range(1, X))
 		to_chat(X, span_warning("We can't build so close to the fog!"))
@@ -324,10 +324,8 @@
 		new_resin = new X.selected_resin(T)
 
 	switch(X.selected_resin)
-		if(/obj/effect/alien/resin/sticky)
+		if(/obj/alien/resin/sticky)
 			plasma_cost = initial(plasma_cost) / 3
-		if(/obj/structure/mineral_door/resin)
-			plasma_cost = initial(plasma_cost) * 3
 
 	if(new_resin)
 		add_cooldown(SSmonitor.gamestate == SHUTTERS_CLOSED ? get_cooldown()/2 : get_cooldown())
@@ -345,16 +343,16 @@
 /datum/action/xeno_action/pheromones/proc/apply_pheros(phero_choice)
 	var/mob/living/carbon/xenomorph/X = owner
 
-	if(X.current_aura == phero_choice)
+	if(X.current_aura && X.current_aura.aura_types[1] == phero_choice)
 		X.balloon_alert(X, "Stop emitting")
-		X.current_aura = null
+		QDEL_NULL(X.current_aura)
 		if(isxenoqueen(X))
 			X.hive?.update_leader_pheromones()
 		X.hud_set_pheromone()
 		return fail_activate()
-
-	X.current_aura = phero_choice
-	X.balloon_alert(X, "[X.current_aura]")
+	QDEL_NULL(X.current_aura)
+	X.current_aura = SSaura.add_emitter(X, phero_choice, 6 + X.xeno_caste.aura_strength * 2, X.xeno_caste.aura_strength, -1, X.faction)
+	X.balloon_alert(X, "[phero_choice]")
 	playsound(X.loc, "alien_drool", 25)
 
 	if(isxenoqueen(X))
@@ -374,7 +372,7 @@
 	keybind_signal = COMSIG_XENOABILITY_EMIT_RECOVERY
 
 /datum/action/xeno_action/pheromones/emit_recovery/action_activate()
-	apply_pheros(RECOVERY)
+	apply_pheros(AURA_XENO_RECOVERY)
 
 /datum/action/xeno_action/pheromones/emit_recovery/should_show()
 	return FALSE
@@ -385,7 +383,7 @@
 	keybind_signal = COMSIG_XENOABILITY_EMIT_WARDING
 
 /datum/action/xeno_action/pheromones/emit_warding/action_activate()
-	apply_pheros(WARDING)
+	apply_pheros(AURA_XENO_WARDING)
 
 /datum/action/xeno_action/pheromones/emit_warding/should_show()
 	return FALSE
@@ -396,7 +394,7 @@
 	keybind_signal = COMSIG_XENOABILITY_EMIT_FRENZY
 
 /datum/action/xeno_action/pheromones/emit_frenzy/action_activate()
-	apply_pheros(FRENZY)
+	apply_pheros(AURA_XENO_FRENZY)
 
 /datum/action/xeno_action/pheromones/emit_frenzy/should_show()
 	return FALSE
@@ -423,7 +421,7 @@
 
 	var/mob/living/carbon/xenomorph/target = A
 
-	if(!(target.xeno_caste.caste_flags & CASTE_CAN_BE_GIVEN_PLASMA))
+	if(!(target.xeno_caste.can_flags & CASTE_CAN_BE_GIVEN_PLASMA))
 		if(!silent)
 			to_chat(owner, span_warning("We can't give that caste plasma."))
 			return FALSE
@@ -796,7 +794,6 @@
 	var/obj/projectile/newspit = new /obj/projectile(current_turf)
 	plasma_cost = X.ammo.spit_cost
 	newspit.generate_bullet(X.ammo, X.ammo.damage * SPIT_UPGRADE_BONUS(X))
-	newspit.permutated += X
 	newspit.def_zone = X.get_limbzone_target()
 	newspit.fire_at(current_target, X, null, X.ammo.max_range, X.ammo.shell_speed)
 
@@ -1005,7 +1002,7 @@
 	if(!xeno.loc_weeds_type)
 		return fail_activate()
 
-	new /obj/effect/alien/egg/hugger(current_turf, xeno.hivenumber)
+	new /obj/alien/egg/hugger(current_turf, xeno.hivenumber)
 	playsound(current_turf, 'sound/effects/splat.ogg', 15, 1)
 
 	succeed_activate()
@@ -1058,7 +1055,7 @@
 	var/mob/living/carbon/xenomorph/xenoowner = owner
 	var/datum/action/xeno_action/set_agressivity/set_agressivity = xenoowner.actions_by_path[/datum/action/xeno_action/set_agressivity]
 	if(set_agressivity)
-		SEND_SIGNAL(owner, ESCORTING_ATOM_BEHAVIOUR_CHANGED, set_agressivity.minions_agressive) //New escorting ais should have the same behaviour as old one
+		SEND_SIGNAL(owner, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED, set_agressivity.minions_agressive) //New escorting ais should have the same behaviour as old one
 
 /datum/action/xeno_action/set_agressivity
 	name = "Set minions behavior"
@@ -1074,7 +1071,7 @@
 
 /datum/action/xeno_action/set_agressivity/action_activate()
 	minions_agressive = !minions_agressive
-	SEND_SIGNAL(owner, ESCORTING_ATOM_BEHAVIOUR_CHANGED, minions_agressive)
+	SEND_SIGNAL(owner, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED, minions_agressive)
 	update_button_icon()
 
 /datum/action/xeno_action/set_agressivity/update_button_icon()
@@ -1181,6 +1178,7 @@
 	SSpoints.add_psy_points(X.hivenumber, psy_points_reward)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	xeno_job.add_job_points(larva_point_reward)
+	X.hive.update_tier_limits()
 	GLOB.round_statistics.larva_from_psydrain +=larva_point_reward / xeno_job.job_points_needed
 
 	log_combat(victim, owner, "was drained.")
@@ -1286,5 +1284,5 @@
 
 /datum/action/xeno_action/blessing_menu/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
-	X.hive.interact(X)
+	X.hive.purchases.interact(X)
 	return succeed_activate()

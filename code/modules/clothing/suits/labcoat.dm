@@ -7,7 +7,17 @@
 	flags_armor_protection = CHEST|ARMS
 	pockets = /obj/item/storage/internal/modular/medical
 	permeability_coefficient = 0.6
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 50, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 50, "rad" = 0, FIRE = 0, ACID = 0)
+	allowed = list(
+		/obj/item/stack/medical,
+		/obj/item/reagent_containers/dropper,
+		/obj/item/reagent_containers/hypospray,
+		/obj/item/reagent_containers/syringe,
+		/obj/item/healthanalyzer,
+		/obj/item/flashlight,
+		/obj/item/radio,
+		/obj/item/tank/emergency_oxygen,
+	)
 
 	verb/toggle()
 		set name = "Toggle Labcoat Buttons"

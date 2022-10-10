@@ -1,6 +1,9 @@
 //The Marine mortar, the T-50S Mortar
 //Works like a contemporary crew weapon mortar
 
+#define TALLY_MORTAR  1
+#define TALLY_HOWITZER 2
+
 /obj/machinery/deployable/mortar
 
 	anchored = TRUE
@@ -39,8 +42,18 @@
 		/obj/item/mortal_shell/plasmaloss,
 	)
 
-
 	use_power = NO_POWER_USE
+
+	///Used for round stats
+	var/tally_type = TALLY_MORTAR 
+
+	///Used for remote targeting by AI
+	var/obj/item/ai_target_beacon/ai_targeter
+
+/obj/machinery/deployable/mortar/examine(mob/user)
+	. = ..()
+	if(ai_targeter)
+		. += span_notice("They have an AI linked targeting device on.")
 
 /obj/machinery/deployable/mortar/attack_hand(mob/living/user)
 	. = ..()
@@ -210,6 +223,13 @@
 		flick(icon_state + "_fire", src)
 		mortar_shell.forceMove(src)
 
+		if(tally_type == TALLY_MORTAR)
+			GLOB.round_statistics.howitzer_shells_fired++
+			SSblackbox.record_feedback("tally", "round_statistics", 1, "howitzer_shells_fired")		
+		else if(tally_type == TALLY_HOWITZER)
+			GLOB.round_statistics.mortar_shells_fired++
+			SSblackbox.record_feedback("tally", "round_statistics", 1, "mortar_shells_fired")		
+
 		var/turf/G = get_turf(src)
 		G.ceiling_debris_check(2)
 
@@ -218,6 +238,21 @@
 		log_game("[key_name(user)] has fired the [src] at [AREACOORD(T)], impact in [travel_time+45] ticks")
 		addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, T, fall_sound, 50, 1), travel_time)
 		addtimer(CALLBACK(src, .proc/detonate_shell, T, mortar_shell), travel_time + 45)//This should always be 45 ticks!
+
+	if(istype(I, /obj/item/ai_target_beacon))
+		if(!GLOB.ai_list.len)
+			to_chat(user, span_notice("There is no AI to associate with."))
+			return
+		
+		var/mob/living/silicon/ai/AI = tgui_input_list(usr, "Which AI would you like to associate this gun with?", null, GLOB.ai_list)
+		if(!AI)
+			return
+		to_chat(user, span_notice("You attach the [I], allowing for remote targeting."))
+		to_chat(AI, span_notice("NOTICE - [src] has been linked to your systems, allowing for remote targeting. Use shift click to set a target."))
+		user.transferItemToLoc(I, src)
+		AI.associate_artillery(src)
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+		ai_targeter = I
 
 	if(!istype(I, /obj/item/binoculars/tactical))
 		return
@@ -229,7 +264,7 @@
 	to_chat(user, "<span class='notice'>You disconnect the [binocs] from their linked mortar.")
 
 ///Proc called by tactical binoculars to send targeting information.
-/obj/machinery/deployable/mortar/proc/recieve_target(turf/T, binocs, mob/user)
+/obj/machinery/deployable/mortar/proc/recieve_target(turf/T, mob/user)
 	coords["targ_x"] = T.x
 	coords["targ_y"] = T.y
 	say("Remote targeting set by [user]. COORDINATES: X:[coords["targ_x"]] Y:[coords["targ_y"]] OFFSET: X:[coords["dial_x"]] Y:[coords["dial_y"]]")
@@ -241,7 +276,21 @@
 	qdel(mortar_shell)
 	firing = FALSE
 
-/obj/machinery/deployable/mortar/wrench_act(mob/living/user, obj/item/I)
+///Prompt for the AI to unlink itself.
+/obj/machinery/deployable/mortar/attack_ai(mob/living/silicon/ai/user)
+	if (user.linked_artillery == src && tgui_alert(usr, "This artillery piece is linked to you. Do you want to unlink yourself from it?", "Artillery Targeting", list("Yes", "No")) == "Yes")
+		user.clean_artillery_refs()
+
+///Unlinking the AI from this mortar
+/obj/machinery/deployable/mortar/proc/unset_targeter()
+	say("Linked AI spotter has relinquished targeting privileges. Ejecting targeting device.")
+	ai_targeter.forceMove(src.loc)
+	ai_targeter = null
+	
+
+/obj/machinery/deployable/mortar/attack_hand_alternate(mob/living/user)
+	if(!Adjacent(user) || user.lying_angle || user.incapacitated() || !ishuman(user))
+		return
 
 	if(busy)
 		to_chat(user, span_warning("Someone else is currently using [src]."))
@@ -256,21 +305,21 @@
 //The portable mortar item
 /obj/item/mortar_kit
 	name = "\improper TA-50S mortar"
-	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Needs to be set down first to fire. Use Ctrl-Click to deploy."
+	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Needs to be set down first to fire. Ctrl+Click on a tile to deploy, drag the mortar's sprites to mob's sprite to undeploy."
 	icon = 'icons/Marine/mortar.dmi'
 	icon_state = "mortar"
 
 	max_integrity = 200
-	flags_item = IS_DEPLOYABLE|DEPLOYED_WRENCH_DISASSEMBLE
+	flags_item = IS_DEPLOYABLE
 	/// What item is this going to deploy when we put down the mortar?
-	var/deployed_item = /obj/machinery/deployable/mortar
+	var/deployable_item = /obj/machinery/deployable/mortar
 
 	resistance_flags = RESIST_ALL
 	w_class = WEIGHT_CLASS_BULKY //No dumping this in most backpacks. Carry it, fatso
 
 /obj/item/mortar_kit/Initialize()
 	. = ..()
-	AddElement(/datum/element/deployable_item, deployed_item, 5 SECONDS)
+	AddElement(/datum/element/deployable_item, deployable_item, type, 5 SECONDS)
 
 /obj/item/mortar_kit/attack_self(mob/user)
 	do_unique_action(user)
@@ -292,7 +341,7 @@
 	max_integrity = 400
 	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
 	w_class = WEIGHT_CLASS_HUGE
-	deployed_item = /obj/machinery/deployable/mortar/howitzer
+	deployable_item = /obj/machinery/deployable/mortar/howitzer
 
 /obj/machinery/deployable/mortar/howitzer
 	anchored = FALSE // You can move this.
@@ -309,6 +358,7 @@
 		/obj/item/mortal_shell/howitzer/plasmaloss,
 		/obj/item/mortal_shell/flare,
 	)
+	tally_type = TALLY_HOWITZER
 
 /obj/machinery/deployable/mortar/howitzer/attack_hand_alternate(mob/living/user)
 	if(!Adjacent(user) || user.lying_angle || user.incapacitated() || !ishuman(user))
@@ -412,7 +462,7 @@
 /obj/effect/mortar_flare/Initialize()
 	. = ..()
 	var/turf/T = get_turf(src)
-	set_light(light_power)
+	set_light(light_range, light_power)
 	T.visible_message(span_warning("You see a tiny flash, and then a blindingly bright light from a flare as it lights off in the sky!"))
 	playsound(T, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4) // stolen from the mortar i'm not even sorry
 	QDEL_IN(src, rand(70 SECONDS, 90 SECONDS)) // About the same burn time as a flare, considering it requires it's own CAS run.
@@ -586,3 +636,6 @@
 	new /obj/item/encryptionkey/cas(src)
 	new /obj/item/encryptionkey/cas(src)
 	new /obj/item/encryptionkey/cas(src)
+
+#undef TALLY_MORTAR
+#undef TALLY_HOWITZER

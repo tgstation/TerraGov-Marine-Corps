@@ -493,7 +493,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "vR" = (
-/obj/effect/decal/mecha_wreckage/ripley/firefighter,
+/obj/mecha_wreckage/ripley/firefighter,
 /turf/open/floor/mech_bay_recharge_floor,
 /area/bigredv2/outside/office_complex)
 "vU" = (
@@ -1358,7 +1358,7 @@ ov
 ov
 zJ
 ov
-Gq
+ov
 "}
 (9,1,1) = {"
 ra

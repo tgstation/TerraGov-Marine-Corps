@@ -31,8 +31,8 @@
 	balloon_alert(user, "You only scrape at it")
 	return TRUE
 
-/obj/structure/xeno/flamer_fire_act()
-	take_damage(10, BURN, "fire")
+/obj/structure/xeno/flamer_fire_act(burnlevel)
+	take_damage(burnlevel / 3, BURN, "fire")
 
 /obj/structure/xeno/fire_act()
 	take_damage(10, BURN, "fire")
@@ -137,7 +137,7 @@
 		else
 			. += "It's empty."
 
-/obj/structure/xeno/trap/flamer_fire_act()
+/obj/structure/xeno/trap/flamer_fire_act(burnlevel)
 	hugger?.kill_hugger()
 	trigger_trap()
 	set_trap_type(null)
@@ -199,7 +199,7 @@
 	if(X.a_intent == INTENT_HARM)
 		return ..()
 	if(trap_type == TRAP_HUGGER)
-		if(!(X.xeno_caste.caste_flags & CASTE_CAN_HOLD_FACEHUGGERS))
+		if(!(X.xeno_caste.can_flags & CASTE_CAN_HOLD_FACEHUGGERS))
 			return
 		if(!hugger)
 			balloon_alert(X, "It is empty")
@@ -510,7 +510,7 @@ TUNNEL
 		if(EXPLODE_LIGHT)
 			take_damage(70)
 
-/obj/structure/xeno/acidwell/flamer_fire_act() //Removes a charge of acid, but fire is extinguished
+/obj/structure/xeno/acidwell/flamer_fire_act(burnlevel) //Removes a charge of acid, but fire is extinguished
 	acid_well_fire_interaction()
 
 /obj/structure/xeno/acidwell/fire_act() //Removes a charge of acid, but fire is extinguished
@@ -699,7 +699,7 @@ TUNNEL
 		START_PROCESSING(SSslowprocess, src)
 
 /obj/structure/xeno/silo
-	name = "resin silo"
+	name = "Resin silo"
 	icon = 'icons/Xeno/resin_silo.dmi'
 	icon_state = "weed_silo"
 	desc = "A slimy, oozy resin bed filled with foul-looking egg-like ...things."
@@ -743,8 +743,8 @@ TUNNEL
 
 /obj/structure/xeno/silo/LateInitialize()
 	. = ..()
-	if(!locate(/obj/effect/alien/weeds) in center_turf)
-		new /obj/effect/alien/weeds/node(center_turf)
+	if(!locate(/obj/alien/weeds) in center_turf)
+		new /obj/alien/weeds/node(center_turf)
 	associated_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	if(associated_hive)
 		RegisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), .proc/is_burrowed_larva_host)
@@ -848,7 +848,7 @@ TUNNEL
 /obj/structure/xeno/xeno_turret
 	icon = 'icons/Xeno/acidturret.dmi'
 	icon_state = XENO_TURRET_ACID_ICONSTATE
-	name = "acid turret"
+	name = "Acid turret"
 	desc = "A menacing looking construct of resin, it seems to be alive. It fires acid against intruders."
 	bound_width = 32
 	bound_height = 32
@@ -921,8 +921,8 @@ TUNNEL
 		if(EXPLODE_LIGHT)
 			take_damage(300)
 
-/obj/structure/xeno/xeno_turret/flamer_fire_act()
-	take_damage(60, BURN, "fire")
+/obj/structure/xeno/xeno_turret/flamer_fire_act(burnlevel)
+	take_damage(burnlevel * 2, BURN, "fire")
 	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 
 /obj/structure/xeno/xeno_turret/fire_act()
@@ -1061,7 +1061,9 @@ TUNNEL
 	for(var/obj/vehicle/unmanned/vehicle AS in GLOB.unmanned_vehicles)
 		if(vehicle.z == z && get_dist(vehicle, src) <= range)
 			potential_hostiles += vehicle
-
+	for(var/obj/vehicle/sealed/mecha/mech AS in GLOB.mechas_list)
+		if(mech.z == z && get_dist(mech, src) <= range)
+			potential_hostiles += mech
 
 ///Signal handler to make the turret shoot at its target
 /obj/structure/xeno/xeno_turret/proc/shoot()
@@ -1072,7 +1074,6 @@ TUNNEL
 	face_atom(hostile)
 	var/obj/projectile/newshot = new(loc)
 	newshot.generate_bullet(ammo)
-	newshot.permutated += src
 	newshot.def_zone = pick(GLOB.base_miss_chance)
 	newshot.fire_at(hostile, src, null, ammo.max_range, ammo.shell_speed)
 	if(istype(ammo, /datum/ammo/xeno/hugger))
@@ -1080,7 +1081,7 @@ TUNNEL
 		newshot.color = initial(hugger_ammo.hugger_type.color)
 
 /obj/structure/xeno/xeno_turret/sticky
-	name = "sticky resin turret"
+	name = "Sticky resin turret"
 	icon = 'icons/Xeno/acidturret.dmi'
 	icon_state = XENO_TURRET_STICKY_ICONSTATE
 	desc = "A menacing looking construct of resin, it seems to be alive. It fires resin against intruders."
@@ -1133,7 +1134,7 @@ TUNNEL
 			take_damage(300)
 
 /obj/structure/xeno/maturitytower
-	name = "maturity tower"
+	name = "Maturity tower"
 	desc = "A sickly outcrop from the ground. It seems to ooze a strange chemical that makes the vegetation around it grow faster."
 	icon = 'icons/Xeno/2x2building.dmi'
 	icon_state = "maturitytower"
@@ -1163,6 +1164,71 @@ TUNNEL
 			take_damage(500)
 		if(EXPLODE_LIGHT)
 			take_damage(300)
+
+/obj/structure/xeno/pherotower
+	name = "Pheromone tower"
+	desc = "A resin formation that looks like a small pillar. A faint, weird smell can be perceived from it."
+	icon = 'icons/Xeno/1x1building.dmi'
+	icon_state = "recoverytower"
+	bound_width = 32
+	bound_height = 32
+	obj_integrity = 400
+	max_integrity = 400
+	xeno_structure_flags = CRITICAL_STRUCTURE
+	///This pheromone tower's faction number.
+	var/hivenumber = XENO_HIVE_NORMAL
+	///The type of pheromone currently being emitted.
+	var/datum/aura_bearer/current_aura
+	///Strength of pheromones given by this tower.
+	var/aura_strength = 5
+	///Radius (in tiles) of the pheromones given by this tower.
+	var/aura_radius = 32
+
+/obj/structure/xeno/pherotower/Initialize(mapload, hivenum)
+	. = ..()
+	GLOB.hive_datums[hivenumber].pherotowers += src
+	hivenumber = hivenum
+
+//Pheromone towers start off with recovery.
+	current_aura = SSaura.add_emitter(src, AURA_XENO_RECOVERY, aura_radius, aura_strength, -1, FACTION_XENO)
+	playsound(src, "alien_drool", 25)
+	update_icon()
+
+/obj/structure/xeno/pherotower/ex_act(severity)
+	switch(severity)
+		if(EXPLODE_HEAVY, EXPLODE_DEVASTATE)
+			take_damage(500)
+		if(EXPLODE_LIGHT)
+			take_damage(300)
+
+/obj/structure/xeno/pherotower/Destroy()
+	GLOB.hive_datums[hivenumber].pherotowers -= src
+	return ..()
+
+// Clicking on the tower brings up a radial menu that allows you to select the type of pheromone that this tower will emit.
+/obj/structure/xeno/pherotower/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	var/phero_choice = show_radial_menu(X, src, GLOB.pheromone_images_list, radius = 35, require_near = TRUE)
+
+	if(!phero_choice)
+		return
+
+	QDEL_NULL(current_aura)
+	current_aura = SSaura.add_emitter(src, phero_choice, aura_radius, aura_strength, -1, FACTION_XENO)
+	balloon_alert(X, "[phero_choice]")
+	playsound(src, "alien_drool", 25)
+	update_icon()
+
+/obj/structure/xeno/pherotower/update_icon_state()
+	switch(current_aura.aura_types[1])
+		if(AURA_XENO_RECOVERY)
+			icon_state = "recoverytower"
+			set_light(2, 2, LIGHT_COLOR_BLUE)
+		if(AURA_XENO_WARDING)
+			icon_state = "wardingtower"
+			set_light(2, 2, LIGHT_COLOR_GREEN)
+		if(AURA_XENO_FRENZY)
+			icon_state = "frenzytower"
+			set_light(2, 2, LIGHT_COLOR_RED)
 
 /obj/structure/xeno/spawner
 	name = "spawner"

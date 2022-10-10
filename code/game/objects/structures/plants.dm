@@ -53,7 +53,7 @@
 	var/bush_sound_prob = 60
 	if(istype(L, /mob/living/carbon/xenomorph))
 		var/mob/living/carbon/xenomorph/X = L
-		bush_sound_prob = X.tier_as_number() * 20
+		bush_sound_prob = GLOB.tier_as_number[X.tier] * 20
 
 	if(prob(bush_sound_prob))
 		var/sound = pick('sound/effects/vegetation_walk_0.ogg','sound/effects/vegetation_walk_1.ogg','sound/effects/vegetation_walk_2.ogg')
@@ -75,8 +75,8 @@
 		take_damage(damage)
 
 
-/obj/structure/bush/flamer_fire_act(heat)
-	take_damage(30, BURN, "fire")
+/obj/structure/bush/flamer_fire_act(burnlevel)
+	take_damage(burnlevel, BURN, "fire")
 
 //*******************************//
 // Strange, fruit-bearing plants //

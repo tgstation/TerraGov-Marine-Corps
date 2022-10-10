@@ -426,8 +426,12 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/boiler, location, null, delmob)
 			if("crusher")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/crusher, location, null, delmob)
+			if("widow")
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/widow, location, null, delmob)
 			if("defiler")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/Defiler, location, null, delmob)
+			if("gorger")
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/gorger, location, null, delmob)
 			if("shrike")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/shrike, location, null, delmob)
 			if("hivemind")
@@ -450,6 +454,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				newmob = M.change_mob_type(/mob/living/carbon/human/species/vatborn, location, null, delmob)
 			if("vatgrown")
 				newmob = M.change_mob_type(/mob/living/carbon/human/species/vatgrown, location, null, delmob)
+			if("combat_robot")
+				newmob = M.change_mob_type(/mob/living/carbon/human/species/robot, location, null, delmob)
 			if("SKELETON")
 				newmob = M.change_mob_type(/mob/living/carbon/human/species/skeleton, location, null, delmob)
 			if("monkey")
@@ -2036,7 +2042,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				var/datum/job/J = SSjob.GetJob(change)
 				previous = H.job?.title
 				var/squad_to_insert_into
-				if(ismarinejob(J))
+				if(ismarinejob(J) || issommarinejob(J))
 					if(H.assigned_squad)
 						squad_to_insert_into = H.assigned_squad
 					else
@@ -2106,7 +2112,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				change = input("Choose the marine's new squad.", "Change Squad") as null|anything in SSjob.squads
 				if(!change || !istype(H))
 					return
-				if(!ismarinejob(H.job))
+				if(!ismarinejob(H.job) && !issommarinejob(H.job))
 					to_chat(usr, span_warning("Only marine jobs may be part of squads."))
 					return
 				H.change_squad(change)

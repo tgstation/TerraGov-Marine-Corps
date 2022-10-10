@@ -59,7 +59,7 @@
 	return TRUE
 
 /mob/living/carbon/xenomorph/proc/receive_hivemind_message(mob/living/carbon/xenomorph/X, message)
-	var/follow_link = X != src ? "(<a href='byond://?src=[REF(src)];watch_xeno_name=[X.nicknumber]'>F</a>) " : ""
+	var/follow_link = X != src ? "<a href='byond://?src=[REF(src)];watch_xeno_name=[REF(X)]'>(F)</a> " : ""
 	show_message("[follow_link][X.hivemind_start()][span_message(" hisses, '[message]'")][X.hivemind_end()]", 2)
 
 

@@ -361,7 +361,17 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			stat("Points needed to win:", mode.win_points_needed)
 			stat("Loyalists team points:", LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV) ? LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV) : 0)
 			stat("Rebels team points:", LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV_REBEL) ? LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV_REBEL) : 0)
-
+		//game end timer for patrol and sensor capture
+		var/patrol_end_countdown = SSticker.mode?.game_end_countdown()
+		if(patrol_end_countdown)
+			stat("<b>Round End timer:</b>", patrol_end_countdown)
+		//respawn wave timer
+		var/patrol_wave_countdown = SSticker.mode?.wave_countdown()
+		if(patrol_wave_countdown)
+			stat("<b>Respawn wave timer:</b>", patrol_wave_countdown)
+		var/datum/game_mode/combat_patrol/sensor_capture/sensor_mode = SSticker.mode
+		if(issensorcapturegamemode(SSticker.mode))
+			stat("<b>Activated Sensor Towers:</b>", sensor_mode.sensors_activated)
 
 /mob/dead/observer/verb/reenter_corpse()
 	set category = "Ghost"
@@ -419,6 +429,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			H = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
 			ghost_squadhud ? H.add_hud_to(src) : H.remove_hud_from(src)
 			H = GLOB.huds[DATA_HUD_SQUAD_REBEL]
+			ghost_squadhud ? H.add_hud_to(src) : H.remove_hud_from(src)
+			H = GLOB.huds[DATA_HUD_SQUAD_SOM]
 			ghost_squadhud ? H.add_hud_to(src) : H.remove_hud_from(src)
 			client.prefs.ghost_hud ^= GHOST_HUD_SQUAD
 			client.prefs.save_preferences()
@@ -893,17 +905,16 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		return
 	var/mob/living/carbon/human/new_fallen = new(pick(GLOB.spawns_by_job[/datum/job/fallen]))
 	valhalla_job = SSjob.GetJobType(valhalla_job)
-	new_fallen.apply_assigned_role_to_spawn(valhalla_job)
 	if(valhalla_job.outfit)
 		new_fallen.delete_equipment(TRUE)
 		new_fallen.equipOutfit(valhalla_job.outfit, FALSE)
 		new_fallen.regenerate_icons()
 
 	log_game("[key_name(usr)] has joined Valhalla.")
+	client.prefs.copy_to(new_fallen)
+	new_fallen.apply_assigned_role_to_spawn(valhalla_job)
 	mind.transfer_to(new_fallen, TRUE)
 	valhalla_job.after_spawn(new_fallen)
-
-
 
 /mob/dead/observer/reset_perspective(atom/A)
 	clean_observetarget()

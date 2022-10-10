@@ -10,7 +10,7 @@
 	plasma_cost = 100
 	buildable_structures = list(
 		/turf/closed/wall/resin/regenerating/thick,
-		/obj/effect/alien/resin/sticky,
+		/obj/alien/resin/sticky,
 		/obj/structure/mineral_door/resin/thick,
 	)
 	///the maximum range of the ability
@@ -77,7 +77,7 @@
 /datum/action/xeno_action/toggle_speed/proc/resinwalk_on_moved(datum/source, atom/oldloc, direction, Forced = FALSE)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/walker = owner
-	if(!isturf(walker.loc) || !walker.check_plasma(10, TRUE))
+	if(!isturf(walker.loc) || walker.plasma_stored < 10)
 		owner.balloon_alert(owner, "Resin walk ended, no plasma")
 		resinwalk_off(TRUE)
 		return
@@ -185,7 +185,7 @@
 
 /datum/action/xeno_action/place_jelly_pod
 	name = "Place Resin Jelly pod"
-	action_icon_state = "haunt"
+	action_icon_state = "resin_jelly_pod"
 	mechanics_text = "Place down a dispenser that allows xenos to retrieve fireproof jelly."
 	plasma_cost = 500
 	cooldown_timer = 1 MINUTES
@@ -223,7 +223,7 @@
 
 /datum/action/xeno_action/create_jelly
 	name = "Create Resin Jelly"
-	action_icon_state = "gut"
+	action_icon_state = "resin_jelly"
 	mechanics_text = "Create a fireproof jelly."
 	plasma_cost = 100
 	cooldown_timer = 20 SECONDS
@@ -241,7 +241,6 @@
 /datum/action/xeno_action/create_jelly/action_activate()
 	var/obj/item/resin_jelly/jelly = new(owner.loc)
 	owner.put_in_hands(jelly)
-	owner.balloon_alert(owner, "Resin jelly created")
 	to_chat(owner, span_xenonotice("We create a globule of resin from our ovipostor.")) // Ewww...
 	add_cooldown()
 	succeed_activate()

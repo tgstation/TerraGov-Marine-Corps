@@ -85,7 +85,6 @@
 /obj/item/storage/firstaid/toxin/fill_firstaid_kit()
 	new /obj/item/healthanalyzer(src)
 	new /obj/item/storage/pill_bottle/dylovene(src)
-	new /obj/item/storage/pill_bottle/peridaxon(src)
 	new /obj/item/storage/pill_bottle/packet/ryetalyn(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
@@ -140,10 +139,9 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/bicaridine(src)
 
 
-	/*
+/*
 * Syringe Case
 */
-
 
 /obj/item/storage/syringe_case
 	name = "syringe case"
@@ -154,11 +152,8 @@
 	storage_slots = 3
 	w_class = WEIGHT_CLASS_SMALL
 	can_hold = list(
-		/obj/item/reagent_containers/pill,
 		/obj/item/reagent_containers/glass/bottle,
-		/obj/item/paper,
 		/obj/item/reagent_containers/syringe,
-		/obj/item/reagent_containers/hypospray/autoinjector,
 	)
 
 /obj/item/storage/syringe_case/regular
@@ -251,100 +246,6 @@
 	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
 	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
 
-/obj/item/storage/syringe_case/combat
-	name = "syringe case (combat)"
-	desc = "It's a medical case for storing syringes and bottles. This one contains combat autoinjectors."
-
-/obj/item/storage/syringe_case/combat/PopulateContents()
-	. = ..()
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
-
-
-	/*
-* Bottle Cases
-*/
-
-
-/obj/item/storage/bottlecase
-	name = "regeant bottle case"
-	desc = "It's a medical case for only storing regeant bottles."
-	icon_state = "syringe_case"
-	throw_speed = 2
-	throw_range = 8
-	storage_slots = 3
-	w_class = WEIGHT_CLASS_SMALL
-	can_hold = list(
-		/obj/item/reagent_containers/pill,
-		/obj/item/reagent_containers/glass/bottle,
-	)
-
-/obj/item/storage/bottlecase/bica
-	name = "bicaridine bottle case"
-	desc = "It's a medical case for storing three bicaridine bottles."
-	icon_state = "bica_bottles_case"
-
-/obj/item/storage/bottlecase/bica/PopulateContents()
-	. = ..()
-	new /obj/item/reagent_containers/glass/bottle/bicaridine(src)
-	new /obj/item/reagent_containers/glass/bottle/bicaridine(src)
-	new /obj/item/reagent_containers/glass/bottle/bicaridine(src)
-
-/obj/item/storage/bottlecase/kelo
-	name = "kelotane bottle case"
-	desc = "It's a medical case for storing three kelotane bottles."
-	icon_state = "kelo_bottles_case"
-
-/obj/item/storage/bottlecase/kelo/PopulateContents()
-	. = ..()
-	new /obj/item/reagent_containers/glass/bottle/kelotane(src)
-	new /obj/item/reagent_containers/glass/bottle/kelotane(src)
-	new /obj/item/reagent_containers/glass/bottle/kelotane(src)
-
-/obj/item/storage/bottlecase/dylo
-	name = "dylovene bottle case"
-	desc = "It's a medical case for storing three dylovene bottles."
-	icon_state = "dylo_bottles_case"
-
-/obj/item/storage/bottlecase/dylo/PopulateContents()
-	. = ..()
-	new /obj/item/reagent_containers/glass/bottle/dylovene(src)
-	new /obj/item/reagent_containers/glass/bottle/dylovene(src)
-	new /obj/item/reagent_containers/glass/bottle/dylovene(src)
-
-/obj/item/storage/bottlecase/tram
-	name = "tramadol bottle case"
-	desc = "It's a medical case for storing three tramadol bottles."
-	icon_state = "tram_bottles_case"
-
-/obj/item/storage/bottlecase/tram/PopulateContents()
-	. = ..()
-	new /obj/item/reagent_containers/glass/bottle/tramadol(src)
-	new /obj/item/reagent_containers/glass/bottle/tramadol(src)
-	new /obj/item/reagent_containers/glass/bottle/tramadol(src)
-
-/obj/item/storage/bottlecase/tricord
-	name = "tricordrazine bottle case"
-	desc = "It's a medical case for storing three tricordrazine bottles."
-	icon_state = "tricord_bottles_case"
-
-/obj/item/storage/bottlecase/tricord/PopulateContents()
-	. = ..()
-	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
-	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
-	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
-
-/obj/item/storage/bottlecase/dex
-	name = "dexalin bottle case"
-	desc = "It's a medical case for storing three dexalin bottles."
-	icon_state = "dex_bottles_case"
-
-/obj/item/storage/bottlecase/dex/PopulateContents()
-	. = ..()
-	new /obj/item/reagent_containers/glass/bottle/dexalin(src)
-	new /obj/item/reagent_containers/glass/bottle/dexalin(src)
-	new /obj/item/reagent_containers/glass/bottle/dexalin(src)
 
 /*
 * Pill Bottles
@@ -354,7 +255,7 @@
 /obj/item/storage/pill_bottle
 	name = "pill bottle"
 	desc = "It's an airtight container for storing medication."
-	icon_state = "pill_canister1"
+	icon_state = "pill_canister"
 	icon = 'icons/obj/items/chemistry.dmi'
 	item_state = "contsolid"
 	w_class = WEIGHT_CLASS_SMALL
@@ -371,6 +272,8 @@
 	greyscale_config = /datum/greyscale_config/pillbottle
 	greyscale_colors = "#d9cd07#f2cdbb" //default colors
 	var/pill_type_to_fill //type of pill to use to fill in the bottle in New()
+	/// Short description in overlay
+	var/description_overlay = ""
 
 
 /obj/item/storage/pill_bottle/Initialize(mapload, ...)
@@ -409,6 +312,13 @@
 	var/mutable_appearance/number = mutable_appearance()
 	number.maptext = MAPTEXT(length(contents))
 	. += number
+	if(!description_overlay)
+		return
+	var/mutable_appearance/desc = mutable_appearance('icons/misc/12x12.dmi')
+	desc.pixel_x = 16
+	desc.maptext = MAPTEXT(description_overlay)
+	desc.maptext_width = 16
+	. += desc
 
 /obj/item/storage/pill_bottle/equipped(mob/user, slot)
 	. = ..()
@@ -423,118 +333,136 @@
 	desc = "Contains pills that heal burns, but cause slight pain. Take two to heal faster, but have slightly more pain."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/kelotane
 	greyscale_colors = "#CC9900#FFFFFF"
+	description_overlay = "Ke"
 
 /obj/item/storage/pill_bottle/dermaline
 	name = "dermaline pill bottle"
 	desc = "Contains pills that heal burns, but cause slight pain. Take two to heal faster, but have slightly more pain."
-	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/dermaline
+	greyscale_config = /datum/greyscale_config/pillbottleround
 	greyscale_colors = "#ffef00#FFFFFF"
+	description_overlay = "De"
 
 /obj/item/storage/pill_bottle/dylovene
 	name = "dylovene pill bottle"
 	desc = "Contains pills that heal toxic damage and purge toxins and neurotoxins of all kinds."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/dylovene
 	greyscale_colors = "#669900#ffffff"
+	description_overlay = "Dy"
+
+/obj/item/storage/pill_bottle/isotonic
+	name = "isotonic pill bottle"
+	desc = "Contains pills that stimulate the regeneration of lost blood."
+	pill_type_to_fill = /obj/item/reagent_containers/pill/isotonic
+	greyscale_colors = "#5c0e0e#ffffff"
+	description_overlay = "Is"
 
 /obj/item/storage/pill_bottle/inaprovaline
 	name = "inaprovaline pill bottle"
 	desc = "Contains pills that prevent wounds from getting worse on their own."
-	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/inaprovaline
+	greyscale_config = /datum/greyscale_config/pillbottlebox
 	greyscale_colors = "#9966CC#ffffff"
+	description_overlay = "In"
 
 /obj/item/storage/pill_bottle/tramadol
 	name = "tramadol pill bottle"
 	desc = "Contains pills that numb pain. Take two for a stronger effect at the cost of a toxic effect."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/tramadol
-	greyscale_colors = "#a09ca0#ffffff"
+	greyscale_colors = "#8a8686#ffffff"
+	description_overlay = "Ta"
 
 /obj/item/storage/pill_bottle/paracetamol
 	name = "paracetamol pill bottle"
 	desc = "Contains pills that mildly numb pain. Take two for a slightly stronger effect."
-	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/paracetamol
+	greyscale_colors = "#cac5c5#ffffff"
+	greyscale_config = /datum/greyscale_config/pillbottlebox
 	greyscale_colors = "#f8f4f8#ffffff"
+	description_overlay = "Pa"
 
 /obj/item/storage/pill_bottle/spaceacillin
 	name = "spaceacillin pill bottle"
 	desc = "Contains pills that handle low-level viral and bacterial infections. Effect increases with dosage."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/spaceacillin
-	greyscale_colors = "#90F7F5#ffffff"
+	greyscale_config = /datum/greyscale_config/pillbottlebox
+	greyscale_colors = "#90F7DeF5#ffffff"
+	description_overlay = "Sp"
 
 /obj/item/storage/pill_bottle/bicaridine
 	name = "bicaridine pill bottle"
 	desc = "Contains pills that heal cuts and bruises, but cause slight pain. Take two to heal faster, but have slightly more pain."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/bicaridine
 	greyscale_colors = "#DA0000#ffffff"
+	description_overlay = "Bi"
 
 /obj/item/storage/pill_bottle/meralyne
 	name = "meralyne pill bottle"
 	desc = "Contains pills that heal cuts and bruises, but cause slight pain. Take two to heal faster, but have slightly more pain."
-	icon_state = "pill_canistertall"
-	greyscale_config = /datum/greyscale_config/pillbottleround
+	icon_state = "pill_canistercomplete"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/meralyne
+	greyscale_config = /datum/greyscale_config/pillbottleround
 	greyscale_colors = "#FD5964#ffffff"
+	description_overlay = "Me"
 
 /obj/item/storage/pill_bottle/dexalin
 	name = "dexalin pill bottle"
 	desc = "Contains pills that heal oxygen damage. They can suppress bloodloss symptoms as well."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/dexalin
 	greyscale_colors = "#5972FD#ffffff"
+	description_overlay = "Dx"
 
 /obj/item/storage/pill_bottle/alkysine
 	name = "alkysine pill bottle"
 	desc = "Contains pills that heal brain damage."
-	icon_state = "pill_canistertall"
-	greyscale_config = /datum/greyscale_config/pillbottleround
+	icon_state = "pill_canistercomplete"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/alkysine
+	greyscale_config = /datum/greyscale_config/pillbottlebubble
 	greyscale_colors = "#0292AC#ffffff"
+	description_overlay = "Al"
 
 /obj/item/storage/pill_bottle/imidazoline
 	name = "imidazoline pill bottle"
 	desc = "Contains pills that heal eye damage."
-	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/imidazoline
+	greyscale_config = /datum/greyscale_config/pillbottlebubble
 	greyscale_colors = "#F7A151#ffffff" //orange like carrots
-
-/obj/item/storage/pill_bottle/peridaxon
-	name = "peridaxon pill bottle"
-	desc = "Contains pills that suppress organ damage while waiting for a full treatment."
-	icon_state = "pill_canistertall"
-	greyscale_config = /datum/greyscale_config/pillbottleround
-	pill_type_to_fill = /obj/item/reagent_containers/pill/peridaxon
-	greyscale_colors = "#6e6860#ffffff"
+	description_overlay = "Im"
 
 /obj/item/storage/pill_bottle/russian_red
 	name = "\improper Russian Red pill bottle"
 	desc = "Contains pills that heal all damage rapidly at the cost of small amounts of unhealable damage."
-	icon_state = "pill_canister1"
+	icon_state = "pill_canister"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/russian_red
-	greyscale_colors = "#E07BAD#ffffff"
+	greyscale_colors = "#3d0000#ffffff"
+	description_overlay = "Rr"
 
 /obj/item/storage/pill_bottle/quickclot
 	name = "quick-clot pill bottle"
 	desc = "Contains pills that suppress internal bleeding while waiting for full treatment."
-	icon_state = "pill_canistertall"
-	greyscale_config = /datum/greyscale_config/pillbottleround
+	icon_state = "pill_canistercomplete"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/quickclot
-	greyscale_colors = "#5ed75e#ffffff"
+	greyscale_config = /datum/greyscale_config/pillbottleround
+	greyscale_colors = "#E07BAD#ffffff"
+	description_overlay = "Qk"
 
 /obj/item/storage/pill_bottle/hypervene
 	name = "hypervene pill bottle"
 	desc = "A purge medication used to treat overdoses and rapidly remove toxins. Causes pain and vomiting."
-	icon_state = "pill_canister1"
+	icon_state = "pill_canister"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/hypervene
+	greyscale_config = /datum/greyscale_config/pillbottlebubble
 	greyscale_colors = "#AC6D32#ffffff"
+	description_overlay = "Hy"
 
 /obj/item/storage/pill_bottle/tricordrazine
 	name = "tricordrazine pill bottle"
-	desc = "Contains pills commonly used by untrained Squad Marines to avoid seeing their Squad Medic."
-	icon_state = "pill_canistertall"
-	greyscale_config = /datum/greyscale_config/pillbottleround
+	desc = "Contains pills capable of minorly healing all main types of damages."
+	icon_state = "pill_canistercomplete"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/tricordrazine
-	greyscale_colors = "#387d4b#ffffff"
+	greyscale_colors = "#f8f8f8#ffffff"
+	greyscale_config = /datum/greyscale_config/pillbottleround
+	description_overlay = "Ti"
 
 /obj/item/storage/pill_bottle/happy
 	name = "happy pill bottle"
@@ -549,59 +477,6 @@
 	max_storage_space = 7
 	pill_type_to_fill = /obj/item/reagent_containers/pill/zoom
 	greyscale_colors = "#ef3ad4#ffffff"
-
-//Pill bottles with identification locks.
-
-/obj/item/storage/pill_bottle/restricted
-	var/req_id_role
-	var/scan_name = FALSE
-	var/req_role
-
-/obj/item/storage/pill_bottle/restricted/proc/scan(mob/living/L)
-
-	if(L.status_flags & GODMODE) //Let it be
-		return TRUE
-
-	if(!allowed(L))
-		to_chat(L, span_notice("It seems to have some kind of ID lock..."))
-		return FALSE
-
-	if(req_id_role || scan_name)
-		var/obj/item/card/id/I = L.get_idcard()
-		if(!I)
-			to_chat(L, span_notice("It seems to have some kind of ID lock..."))
-			return FALSE
-
-		if(scan_name && (I.registered_name != L.real_name))
-			to_chat(L, span_warning("it seems to have some kind of ID lock..."))
-			return FALSE
-
-		if(req_id_role && (I.rank != req_id_role))
-			to_chat(L, span_notice("It must have some kind of ID lock..."))
-			return FALSE
-
-	if(req_role && (!L.job || L.job.title != req_role))
-		to_chat(L, span_notice("It must have some kind of special lock..."))
-		return FALSE
-
-	return TRUE
-
-/obj/item/storage/pill_bottle/restricted/attack_self(mob/living/user)
-	if(scan(user))
-		return ..()
-
-/obj/item/storage/pill_bottle/restricted/open(mob/user)
-	if(scan(user))
-		return ..()
-
-/obj/item/storage/pill_bottle/restricted/ultrazine
-	icon_state = "pill_canister1"
-	max_storage_space = 5
-	pill_type_to_fill = /obj/item/reagent_containers/pill/ultrazine
-	greyscale_colors = "#6CFEA9#ffffff"
-	req_access = list(ACCESS_NT_CORPORATE)
-	req_id_role = CORPORATE_LIAISON
-	scan_name = TRUE
 
 /obj/item/storage/pill_bottle/attackby(obj/item/I, mob/user, params)
 	. = ..()
