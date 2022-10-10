@@ -24,7 +24,7 @@
 	var/list/keybinding_signals = list()
 	var/list/maptext_offsets = list(
 		KEYBINDING_NORMAL = list(0,0),
-		KEYBINDING_ALTERNATE = list(16,16)
+		KEYBINDING_ALTERNATE = list(16,24)
 	)
 	var/action_type = ACTION_CLICK
 	/// Used for keeping track of the addition of the selected/active frames
