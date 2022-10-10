@@ -106,7 +106,7 @@
 
 	X.face_atom(A)
 
-	var/list/atoms_to_ravage = list()
+	var/list/atom/movable/atoms_to_ravage = list()
 	atoms_to_ravage += get_step(owner, owner.dir).contents
 	atoms_to_ravage += get_step(owner, turn(owner.dir, -45)).contents
 	atoms_to_ravage += get_step(owner, turn(owner.dir, 45)).contents
