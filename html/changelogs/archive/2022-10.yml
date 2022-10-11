@@ -107,3 +107,12 @@
   tyeagg:
   - rscadd: sensor capture gamemode
   - imageadd: sensor tower minimap blips
+2022-10-11:
+  Kuro020:
+  - balance: mech light cannon's main projectile and spread projectiles deal less
+      damage
+  - bugfix: fixed the mech lmg not dealing damage
+  TiviPlus:
+  - code_imp: Ravager will now ravage all items it can slash
+  ivanmixo:
+  - balance: Hivemind core is trackable by the xeno structure pinpointer
