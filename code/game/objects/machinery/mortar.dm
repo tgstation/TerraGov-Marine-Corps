@@ -7,7 +7,6 @@
 #define HOWITZER_COOLOFF 2 SECONDS
 
 /obj/machinery/deployable/mortar
-
 	anchored = TRUE
 	density = TRUE
 	coverage = 20
@@ -349,6 +348,7 @@
 	fire_sound = 'sound/weapons/guns/fire/howitzer_fire.ogg'
 	reload_sound = 'sound/weapons/guns/interact/tat36_reload.ogg'
 	fall_sound = 'sound/weapons/guns/misc/howitzer_whistle.ogg'
+	minimum_range = 15
 	allowed_shells = list(
 		/obj/item/mortal_shell/howitzer,
 		/obj/item/mortal_shell/howitzer/white_phos,
@@ -390,37 +390,25 @@
 	name = "\improper 80mm incendiary mortar shell"
 	desc = "An 80mm mortar shell, loaded with a napalm charge."
 	icon_state = "mortar_ammo_inc"
+	ammo_type = /datum/ammo/mortar/incend
+
 /obj/item/mortal_shell/smoke
 	name = "\improper 80mm smoke mortar shell"
 	desc = "An 80mm mortar shell, loaded with smoke dispersal agents. Can be fired at marines more-or-less safely. Way slimmer than your typical 80mm."
 	icon_state = "mortar_ammo_smk"
-	var/datum/effect_system/smoke_spread/tactical/smoke
+	ammo_type = /datum/ammo/mortar/smoke
 
 /obj/item/mortal_shell/plasmaloss
 	name = "\improper 80mm tangle mortar shell"
 	desc = "An 80mm mortar shell, loaded with plasma-draining Tanglefoot gas. Can be fired at marines more-or-less safely."
 	icon_state = "mortar_ammo_fsh"
-	var/datum/effect_system/smoke_spread/plasmaloss/smoke
-
+	ammo_type = /datum/ammo/mortar/plasmaloss
 
 /obj/item/mortal_shell/flare
 	name = "\improper 80mm flare mortar shell"
 	desc = "An 80mm mortar shell, loaded with an illumination flare, far slimmer than your typical 80mm shell. Can be fired out of larger cannons."
 	icon_state = "mortar_ammo_flr"
-
-///Name_swap of the CAS flare
-/obj/effect/mortar_flare
-	icon_state = "flare"
-	resistance_flags = RESIST_ALL
-	mouse_opacity = 0
-	light_color = COLOR_VERY_SOFT_YELLOW
-	light_system = HYBRID_LIGHT
-	light_power = 8
-	light_range = 12 //Way brighter than most lights
-
-/obj/effect/mortar_flare/Initialize()
-	. = ..()
-
+	ammo_type = /datum/ammo/mortar/flare
 
 /obj/item/mortal_shell/howitzer
 	name = "\improper 150mm artillery shell"
@@ -432,29 +420,25 @@
 /obj/item/mortal_shell/howitzer/he
 	name = "\improper 150mm high explosive artillery shell"
 	desc = "An 150mm artillery shell, loaded with a high explosive charge, whatever is hit by this will have, A really, REALLY bad day."
+	ammo_type = /datum/ammo/mortar/howi
 
 /obj/item/mortal_shell/howitzer/plasmaloss
 	name = "\improper 150mm 'Tanglefoot' artillery shell"
 	desc = "An 150mm artillery shell, loaded with a toxic intoxicating gas, whatever is hit by this will have their abilities sapped slowly. Acommpanied by a small moderate explosion."
 	icon_state = "howitzer_ammo_purp"
-	var/datum/effect_system/smoke_spread/plasmaloss/smoke
-
-
+	ammo_type = /datum/ammo/mortar/howi/plasmaloss
 
 /obj/item/mortal_shell/howitzer/incendiary
 	name = "\improper 150mm incendiary artillery shell"
 	desc = "An 150mm artillery shell, loaded with explosives to punch through light structures then burn out whatever is on the other side. Will ruin their day and skin."
 	icon_state = "howitzer_ammo_incend"
+	ammo_type = /datum/ammo/mortar/howi/incend
 
 /obj/item/mortal_shell/howitzer/white_phos
 	name = "\improper 150mm white phosporous 'spotting' artillery shell"
 	desc = "An 150mm artillery shell, loaded with a 'spotting' gas that sets anything it hits aflame, whatever is hit by this will have their day, skin and future ruined, with a demand for a warcrime tribunal."
 	icon_state = "howitzer_ammo_wp"
-	var/datum/effect_system/smoke_spread/phosphorus/smoke
-
-/obj/item/mortal_shell/howitzer/white_phos/Initialize()
-	. = ..()
-	smoke = new(src)
+	ammo_type = /datum/ammo/mortar/howi/wp
 
 /obj/structure/closet/crate/mortar_ammo
 	name = "\improper T-50S mortar ammo crate"

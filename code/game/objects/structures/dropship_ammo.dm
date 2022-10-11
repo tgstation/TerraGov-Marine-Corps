@@ -602,23 +602,4 @@
 		QDEL_IN(src, travelling_time) //deleted after last minirocket has fired and impacted the ground.
 
 /obj/structure/ship_ammo/minirocket/illumination/proc/drop_cas_flare(turf/impact)
-	new /obj/effect/cas_flare(impact)
-
-/obj/effect/cas_flare
-	name = "illumination flare"
-	desc = "Report this if you actually see this FUCK"
-	icon_state = "" //No sprite
-	invisibility = INVISIBILITY_MAXIMUM
-	resistance_flags = RESIST_ALL
-	light_color = COLOR_VERY_SOFT_YELLOW
-	light_system = STATIC_LIGHT
-	light_range = 12
-	light_power = 8 //Magnesium/sodium fires (White star) really are bright
-
-/obj/effect/cas_flare/Initialize()
-	. = ..()
-	var/turf/T = get_turf(src)
-	set_light(light_range, light_power)
-	T.visible_message(span_warning("You see a tiny flash, and then a blindingly bright light from a flare as it lights off in the sky!"))
-	playsound(T, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4) // stolen from the mortar i'm not even sorry
-	QDEL_IN(src, rand(70 SECONDS, 90 SECONDS)) // About the same burn time as a flare, considering it requires it's own CAS run.
+	new /obj/effect/temp_visual/above_flare(impact)
