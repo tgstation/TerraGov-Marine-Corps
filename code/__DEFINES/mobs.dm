@@ -666,6 +666,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define SHRIKE_HEAL_RANGE 3
 
 //Drone defines
+#define DRONE_ESSENCE_LINK_DELAY 3 SECONDS
 
 //Runner defines
 #define RUNNER_EVASION_DURATION 2 SECONDS //How long Evasion lasts.

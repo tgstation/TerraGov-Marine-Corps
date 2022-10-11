@@ -22,7 +22,7 @@
 	keybind_signal = COMSIG_XENOABILITY_ESSENCE_LINK
 	alternate_keybind_signal = COMSIG_XENOABILITY_ESSENCE_LINK_REMOVE
 	/// Time it takes for the link to form.
-	var/link_delay = 3 SECONDS
+	var/link_delay = DRONE_ESSENCE_LINK_DELAY
 	/// Used to determine whether there is an existing Essence Link or not. Also allows access to its vars.
 	var/datum/status_effect/stacking/essence_link/existing_link
 	/// If there is an existing link, this var will contain the link's target.
@@ -81,6 +81,7 @@
 	end_ability()
 	return COMSIG_KB_ACTIVATED
 
+/// Ends the ability if the buff is removed.
 /datum/action/xeno_action/activable/essence_link/proc/end_ability()
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/X = owner

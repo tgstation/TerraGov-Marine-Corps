@@ -119,9 +119,7 @@
 /// Shares the Resin Jelly buff with the linked xeno.
 /datum/status_effect/stacking/essence_link/proc/share_jelly(datum/source)
 	SIGNAL_HANDLER
-	/// Who gives the buff.
 	var/mob/living/carbon/xenomorph/buff_owner
-	/// Who receives the buff.
 	var/mob/living/carbon/xenomorph/buff_target
 
 	if(source == link_target)
@@ -141,9 +139,7 @@
 /// Shares heals with the linked xeno.
 /datum/status_effect/stacking/essence_link/proc/share_heal(datum/source, amount, damagetype)
 	SIGNAL_HANDLER
-	/// Who gives the shared heal.
 	var/mob/living/carbon/xenomorph/heal_owner
-	/// Who receives the shared heal.
 	var/mob/living/carbon/xenomorph/heal_target
 	/// Amount of health to restore.
 	var/heal_amount
@@ -179,8 +175,8 @@
 /// Updates the link's appearance.
 /datum/status_effect/stacking/essence_link/proc/update_link()
 	var/beam_alpha = round(255 / (max_stacks+1 - stacks)) // 255 is the maximum alpha possible. We divide that by the missing amount stacks.
-	for(var/obj/effect/ebeam/essence_link/visual AS in beam.visuals)
-		visual.alpha = beam_alpha
+	for(var/obj/effect/ebeam/essence_link/visuals AS in current_beam.visuals)
+		visuals.alpha = beam_alpha
 
 /// Toggles signals on or off. apply_to_all should only be TRUE if called in on_creation() or on_remove().
 /datum/status_effect/stacking/essence_link/proc/toggle_signals(toggle, apply_to_all)
