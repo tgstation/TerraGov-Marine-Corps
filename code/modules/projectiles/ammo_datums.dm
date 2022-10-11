@@ -317,14 +317,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state_empty = "pistol_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	damage = 20
-	penetration = 5
+	penetration = 10
 	accurate_range = 5
 
 /datum/ammo/bullet/pistol/tiny
 	name = "light pistol bullet"
 	hud_state = "pistol_light"
 	damage = 15
-	penetration = 5
+	penetration = 10
 
 /datum/ammo/bullet/pistol/tiny/ap
 	name = "light pistol bullet"
@@ -444,7 +444,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	handful_amount = 7
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	damage = 45
-	penetration = 10
+	penetration = 20
 
 /datum/ammo/bullet/revolver/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, stagger = 1, slowdown = 0.5, knockback = 1)
@@ -555,7 +555,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 20
 	accurate_range = 4
 	damage_falloff = 1
-	penetration = 5
+	penetration = 10
 
 /datum/ammo/bullet/smg/ap
 	name = "armor-piercing submachinegun bullet"
@@ -591,7 +591,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	accurate_range = 12
 	damage = 25
-	penetration = 5
+	penetration = 10
 
 /datum/ammo/bullet/rifle/ap
 	name = "armor-piercing rifle bullet"
@@ -604,13 +604,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "high-velocity rifle bullet"
 	hud_state = "hivelo"
 	damage = 20
-	penetration = 20
+	penetration = 25
 
 /datum/ammo/bullet/rifle/heavy
 	name = "heavy rifle bullet"
 	hud_state = "hivelo"
 	damage = 30
-	penetration = 10
+	penetration = 15
 	sundering = 0.5
 
 /datum/ammo/bullet/rifle/repeater
@@ -676,7 +676,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "rifle_heavy"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	damage = 30
-	penetration = 15
+	penetration = 20
 	sundering = 0.75
 
 /datum/ammo/bullet/rifle/standard_dmr
@@ -689,7 +689,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accurate_range_min = 6
 	max_range = 40
 	damage = 65
-	penetration = 15
+	penetration = 20
 	sundering = 2
 
 /datum/ammo/bullet/rifle/standard_br
@@ -697,7 +697,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "hivelo"
 	hud_state_empty = "hivelo_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	penetration = 15
+	penetration = 20
 	damage = 32.5
 	sundering = 0.5
 
@@ -755,7 +755,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shell_speed = 3
 	max_range = 15
 	damage = 100
-	penetration = 20
+	penetration = 30
 
 /datum/ammo/bullet/shotgun/slug/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, weaken = 1, stagger = 2, knockback = 1, slowdown = 2)
@@ -1229,7 +1229,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 3
 	accurate_range = 5
 	damage = 25
-	penetration = 15
+	penetration = 25
 	shrapnel_chance = 25
 
 /datum/ammo/bullet/minigun/mech
