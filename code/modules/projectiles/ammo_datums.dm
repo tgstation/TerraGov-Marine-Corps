@@ -1828,15 +1828,41 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 0
 	sundering = 0
 	handful_amount = 1
+	accuracy = INFINITY
+	accurate_range = INFINITY
 	max_range = INFINITY
 	ping = null
 
 /datum/ammo/mortar/drop_nade(turf/T)
 	explosion(T, 1, 2, 5, 3)
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SHELL_EXPLODED)
 
 /datum/ammo/mortar/do_at_max_range(turf/T, obj/projectile/P)
 	drop_nade(T)
+
+/datum/ammo/mortar/incend/drop_nade(turf/T)
+	explosion(T, 0, 2, 3, 7, throw_range = 0, small_animation = TRUE)
+	flame_radius(4, T)
+	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
+
+/datum/ammo/mortar/smoke/drop_nade(turf/T)
+	var/datum/effect_system/smoke_spread/tactical/smoke = new(src)
+	explosion(T, 0, 0, 1, 3, throw_range = 0, small_animation = TRUE)
+	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
+	smoke.set_up(10, T, 11)
+	smoke.start()
+	smoke = null
+
+/datum/ammo/mortar/plasmaloss/drop_nade(turf/T)
+	var/datum/effect_system/smoke_spread/plasmaloss = new(src)
+	explosion(T, 0, 0, 1, 3, throw_range = 0)
+	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
+	smoke.set_up(10, T, 7)
+	smoke.start()
+	smoke = null
+
+/datum/ammo/mortar/flare/drop_nade(turf/T)
+	new /obj/effect/mortar_flare(T)
+	playsound(T, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4)
 
 /*
 //================================================

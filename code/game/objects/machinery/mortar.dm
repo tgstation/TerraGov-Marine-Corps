@@ -24,14 +24,15 @@
 	var/offset_x = 0
 	var/offset_y = 0
 	/// Number of turfs to offset from target by 1
-	var/offset_per_turfs = 1
+	var/offset_per_turfs = 10
 	var/busy = 0
 	/// Used for deconstruction and aiming sanity
 	var/firing = 0
 	/// The fire sound of the mortar or artillery piece.
 	var/fire_sound = 'sound/weapons/guns/fire/mortar_fire.ogg'
 	var/reload_sound = 'sound/weapons/guns/interact/mortar_reload.ogg' // Our reload sound.
-	var/fall_sound = 'sound/weapons/guns/misc/mortar_travel.ogg' //The sound the shell makes when falling.
+	var/fall_sound = 'sound/weapons/guns/misc/mortar_long_whistle.ogg' //The sound the shell makes when falling.
+	var/minimum_range = 10
 
 	/// What type of shells can we use?
 	var/list/allowed_shells = list(
@@ -191,7 +192,7 @@
 			return
 
 		var/turf/selfown = locate((coords["targ_x"] + coords["dial_x"]), (coords["targ_y"] + coords["dial_y"]), z)
-		if(get_dist(loc, selfown) < 7)
+		if(get_dist(loc, selfown) < minimum_range)
 			to_chat(user, span_warning("You cannot target this coordinate, it is too close to your mortar."))
 			return
 
@@ -242,10 +243,8 @@
 		var/datum/ammo/ammo = GLOB.ammo_list[mortar_shell.ammo_type]
 		shell.generate_bullet(ammo)
 		shell.fire_at(T, src, src, ammo.max_range, ammo.shell_speed, suppress_light = TRUE)
-		user.client.perspective = EYE_PERSPECTIVE
-		user.client.eye = shell
-		ADD_TRAIT(user, TRAIT_SEE_IN_DARK, UNMANNED_VEHICLE)
-		addtimer(CALLBACK(src, .proc/resetview, user, shell), 30 SECONDS)
+		var/distance = get_dist(src, T)
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, T, fall_sound, 100, 1), distance/ammo.shell_speed - minimum_range)
 		addtimer(CALLBACK(src, .proc/cool_off), MORTAR_COOLOFF)
 
 	if(istype(I, /obj/item/ai_target_beacon))
@@ -281,11 +280,6 @@
 
 /obj/machinery/deployable/mortar/proc/cool_off()
 	firing = FALSE
-
-/obj/machinery/deployable/mortar/proc/resetview(mob/user, shell)
-	user.client.perspective = MOB_PERSPECTIVE
-	user.client.eye = user
-	REMOVE_TRAIT(user, TRAIT_SEE_IN_DARK, UNMANNED_VEHICLE)
 
 ///Prompt for the AI to unlink itself.
 /obj/machinery/deployable/mortar/attack_ai(mob/living/silicon/ai/user)
@@ -416,13 +410,17 @@
 
 ///Name_swap of the CAS flare
 /obj/effect/mortar_flare
-	invisibility = INVISIBILITY_MAXIMUM
+	icon_state = "flare"
 	resistance_flags = RESIST_ALL
 	mouse_opacity = 0
 	light_color = COLOR_VERY_SOFT_YELLOW
 	light_system = HYBRID_LIGHT
 	light_power = 8
 	light_range = 12 //Way brighter than most lights
+
+/obj/effect/mortar_flare/Initialize()
+	. = ..()
+
 
 /obj/item/mortal_shell/howitzer
 	name = "\improper 150mm artillery shell"
