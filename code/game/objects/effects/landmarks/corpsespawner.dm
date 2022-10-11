@@ -18,7 +18,6 @@
 /obj/effect/landmark/corpsespawner
 	name = "Unknown"
 	icon_state = "skullmarker"
-	var/adminspawn = FALSE // if set to true allow for admin spawning of corpses without the need for a mode to init them
 	var/death_type = COCOONED_DEATH //how did victim die? determines if we should burst, headbite them etc. we default to cocoon
 	var/mobname = "Unknown"  //Unused now but it'd fuck up maps to remove it now
 	var/corpseuniform = null //Set this to an object path to have the slot filled with said object on the corpse.
@@ -40,8 +39,6 @@
 
 /obj/effect/landmark/corpsespawner/Initialize()
 	. = ..()
-	if(adminspawn)
-		create_mob()
 	GLOB.corpse_landmarks_list += src
 
 /obj/effect/landmark/corpsespawner/Destroy()
@@ -153,11 +150,6 @@
 	corpseidjob = "Operative"
 	corpseidaccess = "Syndicate"
 
-/obj/effect/landmark/corpsespawner/syndicatesoldier/adminspawn
-	death_type = REGULAR_DEATH
-	adminspawn = TRUE
-
-
 /obj/effect/landmark/corpsespawner/syndicatecommando
 	name = "Syndicate Commando"
 	corpseuniform = /obj/item/clothing/under/syndicate
@@ -173,10 +165,6 @@
 	corpseidjob = "Operative"
 	corpseidaccess = "Syndicate"
 
-/obj/effect/landmark/corpsespawner/syndicatecommando/adminspawn
-	death_type = REGULAR_DEATH
-	adminspawn = TRUE
-
 /obj/effect/landmark/corpsespawner/pirate
 	name = "Pirate"
 	corpseuniform = /obj/item/clothing/under/syndicate
@@ -188,10 +176,6 @@
 	corpsehelmet = /obj/item/clothing/head/helmet/swat
 	corpseback = /obj/item/storage/backpack
 
-/obj/effect/landmark/corpsespawner/pirate/adminspawn
-	death_type = REGULAR_DEATH
-	adminspawn = TRUE
-
 /obj/effect/landmark/corpsespawner/realpirate
 	name = "Pirate"
 	corpseuniform = /obj/item/clothing/under/pirate
@@ -199,19 +183,11 @@
 	corpseglasses = /obj/item/clothing/glasses/eyepatch
 	corpsehelmet = /obj/item/clothing/head/bandanna
 
-/obj/effect/landmark/corpsespawner/realpirate/adminspawn
-	death_type = REGULAR_DEATH
-	adminspawn = TRUE
 
 /obj/effect/landmark/corpsespawner/realpirate/ranged
 	name = "Pirate Gunner"
 	corpsesuit = /obj/item/clothing/suit/pirate
 	corpsehelmet = /obj/item/clothing/head/pirate
-
-
-/obj/effect/landmark/corpsespawner/realpirate/ranged/adminspawn
-	death_type = REGULAR_DEATH
-	adminspawn = TRUE
 
 
 /obj/effect/landmark/corpsespawner/russian
@@ -220,17 +196,8 @@
 	corpseshoes = /obj/item/clothing/shoes/jackboots
 	corpsehelmet = /obj/item/clothing/head/bearpelt
 
-/obj/effect/landmark/corpsespawner/russian/adminspawn
-	death_type = REGULAR_DEATH
-	adminspawn = TRUE
-
-
 /obj/effect/landmark/corpsespawner/russian/ranged
 	corpsehelmet = /obj/item/clothing/head/ushanka
-
-/obj/effect/landmark/corpsespawner/russian/ranged/adminspawn
-	death_type = REGULAR_DEATH
-	adminspawn = TRUE
 
 ///////////Civilians//////////////////////
 
@@ -241,10 +208,6 @@
 	corpseid = 1
 	corpseidjob = "Prisoner"
 
-
-/obj/effect/landmark/corpsespawner/prisoner/adminspawn
-	death_type = REGULAR_DEATH
-	adminspawn = TRUE
 
 /obj/effect/landmark/corpsespawner/chef
 	name = "Chef"
@@ -257,10 +220,6 @@
 	corpseidjob = "Chef"
 //	corpseidaccess = "Syndicate"
 
-/obj/effect/landmark/corpsespawner/chef/adminspawn
-	death_type = REGULAR_DEATH
-	adminspawn = TRUE
-
 /obj/effect/landmark/corpsespawner/doctor
 	name = "Doctor"
 	corpseuniform = /obj/item/clothing/under/colonist
@@ -271,10 +230,6 @@
 	corpseid = 1
 	corpseidjob = "Medical Doctor"
 //	corpseidaccess = "Medical Doctor"
-
-/obj/effect/landmark/corpsespawner/doctor/adminspawn
-	death_type = REGULAR_DEATH
-	adminspawn = TRUE
 
 /obj/effect/landmark/corpsespawner/engineer
 	name = "Engineer"
@@ -288,19 +243,10 @@
 	corpseidjob = "Station Engineer"
 //	corpseidaccess = "Station Engineer"
 
-/obj/effect/landmark/corpsespawner/engineer/adminspawn
-	death_type = REGULAR_DEATH
-	adminspawn = TRUE
-
-
 /obj/effect/landmark/corpsespawner/engineer/rig
 	corpsesuit = /obj/item/clothing/suit/space/rig/engineering
 	corpsemask = /obj/item/clothing/mask/breath
 	corpsehelmet = /obj/item/clothing/head/helmet/space/rig/engineering
-
-/obj/effect/landmark/corpsespawner/engineer/rig/adminspawn
-	death_type = REGULAR_DEATH
-	adminspawn = TRUE
 
 /obj/effect/landmark/corpsespawner/scientist
 	name = "Scientist"
@@ -312,10 +258,6 @@
 	corpseidjob = "Scientist"
 //	corpseidaccess = "Scientist"
 
-/obj/effect/landmark/corpsespawner/scientist/adminspawn
-	death_type = REGULAR_DEATH
-	adminspawn = TRUE
-
 /obj/effect/landmark/corpsespawner/miner
 	corpseuniform = /obj/item/clothing/under/colonist
 	corpsegloves = /obj/item/clothing/gloves/black
@@ -325,27 +267,16 @@
 	corpseidjob = "Shaft Miner"
 //	corpseidaccess = "Shaft Miner"
 
-/obj/effect/landmark/corpsespawner/miner/adminspawn
-	death_type = REGULAR_DEATH
-	adminspawn = TRUE
-
 /obj/effect/landmark/corpsespawner/miner/rig
 	corpsesuit = /obj/item/clothing/suit/space/rig/mining
 	corpsemask = /obj/item/clothing/mask/breath
 	corpsehelmet = /obj/item/clothing/head/helmet/space/rig/mining
 
-/obj/effect/landmark/corpsespawner/miner/rig/adminspawn
-	death_type = REGULAR_DEATH
-	adminspawn = TRUE
 
 /obj/effect/landmark/corpsespawner/security
 	corpseuniform = /obj/item/clothing/under/rank/security
 	corpseshoes = /obj/item/clothing/shoes/jackboots
 	corpsesuit = /obj/item/clothing/suit/armor/vest/security
-
-/obj/effect/landmark/corpsespawner/security/adminspawn
-	death_type = REGULAR_DEATH
-	adminspawn = TRUE
 
 /obj/effect/landmark/corpsespawner/prison_security
 	name = "Prison Guard"
@@ -356,10 +287,6 @@
 	corpsehelmet = /obj/item/clothing/head/helmet
 	corpseid = 1
 	corpseidjob = "Prison Guard"
-
-/obj/effect/landmark/corpsespawner/prison_security/adminspawn
-	death_type = REGULAR_DEATH
-	adminspawn = TRUE
 
 /obj/effect/landmark/corpsespawner/pmc
 	name = "Unknown PMC"
@@ -374,18 +301,10 @@
 	corpseradio = /obj/item/radio/headset/survivor
 	corpsesuit = /obj/item/clothing/suit/storage/marine/veteran/PMC
 
-/obj/effect/landmark/corpsespawner/pmc/adminspawn
-	death_type = REGULAR_DEATH
-	adminspawn = TRUE
-
 /obj/effect/landmark/corpsespawner/colonist
 	name = "Colonist"
 	corpseuniform = /obj/item/clothing/under/colonist
 	corpseshoes = /obj/item/clothing/shoes/black
-
-/obj/effect/landmark/corpsespawner/colonist/adminspawn
-	death_type = REGULAR_DEATH
-	adminspawn = TRUE
 
 
 /////////////////Officers//////////////////////
@@ -399,10 +318,6 @@
 	corpseid = 1
 	corpseidjob = "Staff Officer"
 	corpseidaccess = CAPTAIN
-
-/obj/effect/landmark/corpsespawner/bridgeofficer/adminspawn
-	death_type = REGULAR_DEATH
-	adminspawn = TRUE
 
 /obj/effect/landmark/corpsespawner/commander
 	name = "Commander"
@@ -418,9 +333,6 @@
 	corpseidjob = "Commander"
 	corpseidaccess = CAPTAIN
 
-/obj/effect/landmark/corpsespawner/commander/adminspawn
-	death_type = REGULAR_DEATH
-	adminspawn = TRUE
 /obj/effect/landmark/corpsespawner/PMC
 	name = "Private Security Officer"
 	corpseuniform = /obj/item/clothing/under/marine/veteran/PMC
@@ -435,10 +347,6 @@
 	corpseidjob = "Private Security Officer"
 	corpseidaccess = "101"
 
-/obj/effect/landmark/corpsespawner/PMC/adminspawn
-	death_type = REGULAR_DEATH
-	adminspawn = TRUE
-
 /////////////////Marine//////////////////////
 
 /obj/effect/landmark/corpsespawner/marine
@@ -451,11 +359,6 @@
 	corpsegloves = /obj/item/clothing/gloves/marine
 	corpseshoes = /obj/item/clothing/shoes/marine
 	corpsepocket1 = /obj/item/tool/lighter/zippo
-
-/obj/effect/landmark/corpsespawner/marine/adminspawn
-	death_type = REGULAR_DEATH
-	adminspawn = TRUE
-
 /obj/effect/landmark/corpsespawner/marine/engineer
 	name = "Marine Engineer"
 	corpseuniform = /obj/item/clothing/under/marine/standard
@@ -468,10 +371,6 @@
 	corpsebelt = /obj/item/storage/belt/utility/full
 	corpsepocket1 = /obj/item/flashlight
 
-/obj/effect/landmark/corpsespawner/marine/engineer/adminspawn
-	death_type = REGULAR_DEATH
-	adminspawn = TRUE
-
 /obj/effect/landmark/corpsespawner/marine/corpsman
 	name = "Marine Corpsman"
 	corpseuniform = /obj/item/clothing/under/marine/corpsman
@@ -483,10 +382,6 @@
 	corpseshoes = /obj/item/clothing/shoes/marine
 	corpsepocket1 = /obj/item/tweezers
 	corpsepocket2 = /obj/item/clothing/glasses/meson
-
-/obj/effect/landmark/corpsespawner/marine/corpsman/adminspawn
-	death_type = REGULAR_DEATH
-	adminspawn = TRUE
 
 #undef REGULAR_DEATH
 #undef COCOONED_DEATH
