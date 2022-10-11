@@ -45,8 +45,13 @@
 /obj/item/weapon/gun/pistol/standard_pistol
 	name = "\improper P-14 pistol"
 	desc = "The P-14, produced by Terran Armories. A reliable sidearm that loads 9x19mm Parabellum Auto munitions. Capable of mounting a limited amount of attachments, and firing at a respectable rate of fire, often as fast as you can pull the trigger. Takes 14-round 9mm magazines."
-	icon_state = "tp14"
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = GUN_ICONSTATE_LOADED
 	item_state = "tp14"
+	item_icons = list(
+		slot_l_hand_str = /datum/greyscale_config/gun/t14/l_hand,
+		slot_r_hand_str = /datum/greyscale_config/gun/t14/r_hand,
+	)
 	caliber = CALIBER_9X19 //codex
 	max_shells = 21 //codex
 	fire_sound = 'sound/weapons/guns/fire/tp14.ogg'
@@ -54,7 +59,7 @@
 	default_ammo_type = /obj/item/ammo_magazine/pistol/standard_pistol
 	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/standard_pistol)
 
-	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 23, "under_x" = 19, "under_y" = 13, "stock_x" = 21, "stock_y" = 17)
+	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 23, "under_x" = 24, "under_y" = 14, "stock_x" = 21, "stock_y" = 17)
 
 	fire_delay = 0.15 SECONDS
 	accuracy_mult = 1.1
@@ -64,6 +69,8 @@
 	recoil_unwielded = -2
 	upper_akimbo_accuracy = 5
 	lower_akimbo_accuracy = 4
+
+	greyscale_config = /datum/greyscale_config/gun/t14
 
 //-------------------------------------------------------
 //PP-7 Plasma Pistol
@@ -546,6 +553,59 @@
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.85
 	recoil_unwielded = 3
+
+//-------------------------------------------------------
+//SOM pistol
+
+/obj/item/weapon/gun/pistol/som
+	name = "\improper V-11 pistol"
+	desc = "The standard sidearm used by the Sons of Mars. A reliable and simple weapon that is often seen on the export market on the outer colonies. Typically chambered in 9mm armor piercing rounds."
+	icon_state = "v11"
+	item_state = "v11"
+	caliber = CALIBER_9X19
+	max_shells = 18
+	fire_sound = 'sound/weapons/guns/fire/vp70.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/vp70_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/vp70_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/vp70_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/vp70_cocked.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/pistol/som
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/som, /obj/item/ammo_magazine/pistol/som/incendiary, /obj/item/ammo_magazine/pistol/som/extended)
+	force = 8
+	attachable_allowed = list(
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/burstfire_assembly,
+		/obj/item/attachable/lace,
+	)
+
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
+	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 22,"rail_x" = 6, "rail_y" = 23, "under_x" = 24, "under_y" = 15, "stock_x" = 11, "stock_y" = 10)
+
+	fire_delay = 0.15 SECONDS
+	accuracy_mult = 1.2
+	accuracy_mult_unwielded = 0.95
+	recoil = -2
+	aim_slowdown = 0.1
+	scatter = -1
+	scatter_unwielded = 4
+
+/obj/item/weapon/gun/pistol/som/standard
+	starting_attachment_types = list(
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/reddot,
+	)
+
+/obj/item/weapon/gun/pistol/som/burst
+	default_ammo_type = /obj/item/ammo_magazine/pistol/som/extended
+	starting_attachment_types = list(
+		/obj/item/attachable/burstfire_assembly,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/lace,
+	)
 
 //-------------------------------------------------------
 /*

@@ -15,6 +15,8 @@
 		if(prob(A.crash_break_probability))
 			A.overload_lighting()
 			A.set_broken()
+		for(var/obj/effect/soundplayer/alarmplayer AS in GLOB.ship_alarms)
+			alarmplayer.deltalarm.stop(alarmplayer)	//quiet the delta klaxon alarms
 		CHECK_TICK
 
 	for(var/i in GLOB.alive_living_list) //knock down mobs
@@ -418,9 +420,6 @@
 		to_chat(user, span_warning("We have overriden the shuttle lockdown!"))
 		playsound(user, "alien_roar", 50)
 		priority_announce("Alamo lockdown protocol compromised. Interference preventing remote control", "Dropship Lock Alert")
-		return FALSE
-	if(D.hijack_state == HIJACK_STATE_CALLED_DOWN)
-		to_chat(user, span_warning("The bird's mind is already tampered with!"))
 		return FALSE
 	if(D.mode != SHUTTLE_IDLE && D.mode != SHUTTLE_RECHARGING)
 		to_chat(user, span_warning("The bird's mind is currently active. We need to wait until it's more vulnerable..."))
@@ -950,6 +949,48 @@
 /obj/structure/dropship_piece/two/front/left
 	icon_state = "blue_fl"
 
+/obj/structure/dropship_piece/tadpole
+	name = "\improper Tadpole"
+
+/obj/structure/dropship_piece/tadpole/rearleft
+	icon_state = "blue_rear_lc"
+
+/obj/structure/dropship_piece/tadpole/rearright
+	icon_state = "blue_rear_rc"
+
+/obj/structure/dropship_piece/tadpole/cockpit
+	desc = "The nose part of the tadpole, able to be destroyed."
+	max_integrity = 500
+	resistance_flags = XENO_DAMAGEABLE | DROPSHIP_IMMUNE
+	opacity = FALSE
+	layer = BELOW_OBJ_LAYER
+	throwpass = FALSE
+
+/obj/structure/dropship_piece/tadpole/cockpit/left
+	icon_state = "blue_cockpit_fl"
+
+/obj/structure/dropship_piece/tadpole/cockpit/right
+	icon_state = "blue_cockpit_fr"
+
+/obj/structure/dropship_piece/tadpole/cockpit/window
+	icon = 'icons/turf/dropship2.dmi'
+	icon_state = "1"
+
+/obj/structure/dropship_piece/tadpole/engine
+	icon_state = "tadpole_engine"
+	density = FALSE
+	opacity = FALSE
+
+/obj/structure/dropship_piece/tadpole/tadpole_nose
+	icon_state = "blue_front"
+	opacity = FALSE
+	density = FALSE
+
+/obj/structure/dropship_piece/tadpole/tadpole_nose/right
+	icon_state = "blue_fr"
+
+/obj/structure/dropship_piece/tadpole/tadpole_nose/left
+	icon_state = "blue_fl"
 
 /obj/structure/dropship_piece/two/cockpit/left
 	icon_state = "blue_cockpit_fl"

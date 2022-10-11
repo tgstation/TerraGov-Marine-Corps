@@ -1,10 +1,8 @@
 //A thing for 'navigating' the current ship map up or down the gravity well.
 
-#define ESCAPE_VELOCITY 5
-#define SAFE_DISTANCE 4
+#define HIGH_ORBIT 5
 #define STANDARD_ORBIT 3
-#define CLOSE_ORBIT 2
-#define SKIM_ATMOSPHERE 1
+#define LOW_ORBIT 1
 
 #define REQUIRED_POWER_AMOUNT 250000
 #define AUTO_LOGOUT_TIME 1 MINUTES
@@ -28,7 +26,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 	var/authenticated = FALSE
 	///boolean this machine is cut off from power and is sparking uncontrollably FALSE = everything fine
 	var/shorted = FALSE
-	///boolean this machine can be interacted with by the AI player. FELSE = can interact
+	///boolean this machine can be interacted with by the AI player. FALSE = can interact
 	var/aidisabled = FALSE
 	///timer id to prevent hardel from the varset call back
 	var/timer_id
@@ -52,7 +50,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 /obj/machinery/computer/navigation/Initialize() //need anything special?
 	. = ..()
 	desc = "The navigation console for the [SSmapping.configs[SHIP_MAP].map_name]."
-	timer_id = addtimer(VARSET_CALLBACK(src, changing_orbit, FALSE), 30 MINUTES, TIMER_STOPPABLE) //people running away far too quickly it seems
+	timer_id = addtimer(VARSET_CALLBACK(src, changing_orbit, FALSE), 10 MINUTES, TIMER_STOPPABLE) //ship is still heading to area cant change orbit yet if your not at the planet
 
 /obj/machinery/computer/navigation/Destroy()
 	deltimer(timer_id)
@@ -90,7 +88,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 	var/dat
 
 	if(authenticated)
-		dat += "<BR>\[ <A HREF='?src=\ref[src];logout=1'>LOG OUT</A> \]"
+		dat += "<BR>\[ <A HREF='?src=\ref[src];logout=1'>LOG OUT</A>]"
 		dat += "<center><h4>[SSmapping.configs[SHIP_MAP].map_name]</h4></center>"//get the current ship map name
 
 		dat += "<br><center><h3>[GLOB.current_orbit]</h3></center>" //display the current orbit level
@@ -171,13 +169,13 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 		if(!silent)
 			to_chat(usr, span_warning("The ship is currently changing orbit."))
 		return FALSE
-	if(direction == "UP" && current_orbit == ESCAPE_VELOCITY)
+	if(direction == "UP" && current_orbit == HIGH_ORBIT)
 		if(!silent)
-			to_chat(usr, span_warning("The ship is already at escape velocity!"))
+			to_chat(usr, span_warning("The ship is already at the highest orbit!"))
 		return FALSE
-	if(direction == "DOWN" && current_orbit == SKIM_ATMOSPHERE)
+	if(direction == "DOWN" && current_orbit == LOW_ORBIT)
 		if(!silent)
-			to_chat(usr, span_warning("WARNING, AUTOMATIC SAFETY ENGAGED. OVERRIDING USER INPUT."))
+			to_chat(usr, span_warning("The ship is already at the lowest orbit!"))
 		return FALSE
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ORBIT_CHANGE))
 		if(!silent)
@@ -198,14 +196,20 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 
 	var/message = "Arriving at new orbital level. Prepare for engine ignition and stabilization."
 	addtimer(CALLBACK(GLOBAL_PROC, .proc/priority_announce, message, "Orbit Change"), 290 SECONDS)
-	addtimer(CALLBACK(src, .proc/orbit_gets_changed, current_orbit, direction), 5 MINUTES)
+	addtimer(CALLBACK(src, .proc/orbit_gets_changed, current_orbit, direction), 3 MINUTES)
 
 /obj/machinery/computer/navigation/proc/orbit_gets_changed(current_orbit, direction)
 	if(direction == "UP")
-		current_orbit++
+		if(current_orbit == LOW_ORBIT)
+			current_orbit = STANDARD_ORBIT
+		else
+			current_orbit = HIGH_ORBIT
 
 	if(direction == "DOWN")
-		current_orbit--
+		if(current_orbit == HIGH_ORBIT)
+			current_orbit = STANDARD_ORBIT
+		else
+			current_orbit = LOW_ORBIT
 
 	GLOB.current_orbit = current_orbit
 	changing_orbit = FALSE

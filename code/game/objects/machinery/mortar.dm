@@ -1,6 +1,9 @@
 //The Marine mortar, the T-50S Mortar
 //Works like a contemporary crew weapon mortar
 
+#define TALLY_MORTAR  1
+#define TALLY_HOWITZER 2
+
 /obj/machinery/deployable/mortar
 
 	anchored = TRUE
@@ -39,8 +42,18 @@
 		/obj/item/mortal_shell/plasmaloss,
 	)
 
-
 	use_power = NO_POWER_USE
+
+	///Used for round stats
+	var/tally_type = TALLY_MORTAR 
+
+	///Used for remote targeting by AI
+	var/obj/item/ai_target_beacon/ai_targeter
+
+/obj/machinery/deployable/mortar/examine(mob/user)
+	. = ..()
+	if(ai_targeter)
+		. += span_notice("They have an AI linked targeting device on.")
 
 /obj/machinery/deployable/mortar/attack_hand(mob/living/user)
 	. = ..()
@@ -210,6 +223,13 @@
 		flick(icon_state + "_fire", src)
 		mortar_shell.forceMove(src)
 
+		if(tally_type == TALLY_MORTAR)
+			GLOB.round_statistics.howitzer_shells_fired++
+			SSblackbox.record_feedback("tally", "round_statistics", 1, "howitzer_shells_fired")		
+		else if(tally_type == TALLY_HOWITZER)
+			GLOB.round_statistics.mortar_shells_fired++
+			SSblackbox.record_feedback("tally", "round_statistics", 1, "mortar_shells_fired")		
+
 		var/turf/G = get_turf(src)
 		G.ceiling_debris_check(2)
 
@@ -218,6 +238,21 @@
 		log_game("[key_name(user)] has fired the [src] at [AREACOORD(T)], impact in [travel_time+45] ticks")
 		addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, T, fall_sound, 50, 1), travel_time)
 		addtimer(CALLBACK(src, .proc/detonate_shell, T, mortar_shell), travel_time + 45)//This should always be 45 ticks!
+
+	if(istype(I, /obj/item/ai_target_beacon))
+		if(!GLOB.ai_list.len)
+			to_chat(user, span_notice("There is no AI to associate with."))
+			return
+		
+		var/mob/living/silicon/ai/AI = tgui_input_list(usr, "Which AI would you like to associate this gun with?", null, GLOB.ai_list)
+		if(!AI)
+			return
+		to_chat(user, span_notice("You attach the [I], allowing for remote targeting."))
+		to_chat(AI, span_notice("NOTICE - [src] has been linked to your systems, allowing for remote targeting. Use shift click to set a target."))
+		user.transferItemToLoc(I, src)
+		AI.associate_artillery(src)
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+		ai_targeter = I
 
 	if(!istype(I, /obj/item/binoculars/tactical))
 		return
@@ -229,7 +264,7 @@
 	to_chat(user, "<span class='notice'>You disconnect the [binocs] from their linked mortar.")
 
 ///Proc called by tactical binoculars to send targeting information.
-/obj/machinery/deployable/mortar/proc/recieve_target(turf/T, binocs, mob/user)
+/obj/machinery/deployable/mortar/proc/recieve_target(turf/T, mob/user)
 	coords["targ_x"] = T.x
 	coords["targ_y"] = T.y
 	say("Remote targeting set by [user]. COORDINATES: X:[coords["targ_x"]] Y:[coords["targ_y"]] OFFSET: X:[coords["dial_x"]] Y:[coords["dial_y"]]")
@@ -240,6 +275,18 @@
 	mortar_shell.detonate(target)
 	qdel(mortar_shell)
 	firing = FALSE
+
+///Prompt for the AI to unlink itself.
+/obj/machinery/deployable/mortar/attack_ai(mob/living/silicon/ai/user)
+	if (user.linked_artillery == src && tgui_alert(usr, "This artillery piece is linked to you. Do you want to unlink yourself from it?", "Artillery Targeting", list("Yes", "No")) == "Yes")
+		user.clean_artillery_refs()
+
+///Unlinking the AI from this mortar
+/obj/machinery/deployable/mortar/proc/unset_targeter()
+	say("Linked AI spotter has relinquished targeting privileges. Ejecting targeting device.")
+	ai_targeter.forceMove(src.loc)
+	ai_targeter = null
+	
 
 /obj/machinery/deployable/mortar/attack_hand_alternate(mob/living/user)
 	if(!Adjacent(user) || user.lying_angle || user.incapacitated() || !ishuman(user))
@@ -311,6 +358,7 @@
 		/obj/item/mortal_shell/howitzer/plasmaloss,
 		/obj/item/mortal_shell/flare,
 	)
+	tally_type = TALLY_HOWITZER
 
 /obj/machinery/deployable/mortar/howitzer/attack_hand_alternate(mob/living/user)
 	if(!Adjacent(user) || user.lying_angle || user.incapacitated() || !ishuman(user))
@@ -588,3 +636,6 @@
 	new /obj/item/encryptionkey/cas(src)
 	new /obj/item/encryptionkey/cas(src)
 	new /obj/item/encryptionkey/cas(src)
+
+#undef TALLY_MORTAR
+#undef TALLY_HOWITZER

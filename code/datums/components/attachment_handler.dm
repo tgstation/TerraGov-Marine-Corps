@@ -39,12 +39,12 @@
 	update_parent_overlay()
 
 	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/start_handle_attachment) //For attaching.
-	RegisterSignal(parent, list(COMSIG_ATOM_UPDATE_OVERLAYS, COMSIG_ATOM_UPDATE_ICON), .proc/update_parent_overlay) //Updating the attachment overlays.
 	RegisterSignal(parent, list(COMSIG_LOADOUT_VENDOR_VENDED_GUN_ATTACHMENT, COMSIG_LOADOUT_VENDOR_VENDED_ATTACHMENT_GUN, COMSIG_LOADOUT_VENDOR_VENDED_ARMOR_ATTACHMENT), .proc/attach_without_user)
 
 	RegisterSignal(parent, COMSIG_CLICK_ALT, .proc/start_detach) //For Detaching
 	RegisterSignal(parent, COMSIG_PARENT_QDELETING, .proc/clean_references) //Dels attachments.
 	RegisterSignal(parent, COMSIG_ITEM_APPLY_CUSTOM_OVERLAY, .proc/apply_custom)
+	RegisterSignal(parent, COMSIG_ITEM_UNEQUIPPED, .proc/remove_overlay)
 
 ///Starts processing the attack, and whether or not the attachable can attack.
 /datum/component/attachment_handler/proc/start_handle_attachment(datum/source, obj/attacking, mob/attacker)
@@ -99,6 +99,8 @@
 	slots[slot] = attachment
 	attachment_data_by_slot[slot] = attachment_data
 
+	RegisterSignal(attachment, COMSIG_ATOM_UPDATE_ICON, .proc/update_parent_overlay)
+
 	var/obj/parent_obj = parent
 	///The gun has another gun attached to it
 	if(isgun(attachment) && isgun(parent) )
@@ -112,7 +114,6 @@
 	SEND_SIGNAL(attachment, COMSIG_ATTACHMENT_ATTACHED, parent, attacker)
 	SEND_SIGNAL(parent, COMSIG_ATTACHMENT_ATTACHED_TO_ITEM, attachment, attacker)
 
-	RegisterSignal(attachment, COMSIG_ATOM_UPDATE_ICON, .proc/update_parent_overlay)
 	update_parent_overlay()
 	if(!CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_APPLY_ON_MOB))
 		return
@@ -174,15 +175,13 @@
 		to_chat(user, span_warning("You cannot attach [attachment] to [parent]!"))
 		return FALSE
 
-	var/obj/item/current_attachment_in_slot = slots[SLOT]
-
-	if(!current_attachment_in_slot) //If the slot is empty theres room.
+	if(!slots[slot]) //If the slot is empty theres room.
 		return TRUE
 
 	var/list/current_attachment_data = attachment_data_by_slot[slot]
 
 	if(!CHECK_BITFIELD(current_attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_REMOVABLE)) //If the slots attachment is unremovable.
-		to_chat(user, span_warning("You cannot remove [current_attachment_in_slot] from [parent] to make room for [attachment]!"))
+		to_chat(user, span_warning("You cannot remove [slots[slot]] from [parent] to make room for [attachment]!"))
 		return FALSE
 
 	return TRUE //Removal of a current attachment is done in finish_handle_attachment.
@@ -299,7 +298,10 @@
 
 		var/icon = attachment_data[OVERLAY_ICON]
 		var/icon_state = attachment.icon_state
-		if(attachment_data[OVERLAY_ICON] == attachment.icon)
+		if(attachment.greyscale_colors && attachment.greyscale_config)
+			icon_state = GREYSCALE_ATTACHMENT_ICONSTATE
+			icon = attachment.icon
+		else if(attachment_data[OVERLAY_ICON] == attachment.icon)
 			icon_state = attachment.icon_state + "_a"
 		if(CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SAME_ICON))
 			icon_state = attachment.icon_state
@@ -368,6 +370,20 @@
 		wearer.overlays_standing[attachment_data[ATTACHMENT_LAYER]] = new_overlay
 		wearer.apply_overlay(attachment_data[ATTACHMENT_LAYER])
 
+///Handles the removal of attachment overlays when the item is unequipped
+/datum/component/attachment_handler/proc/remove_overlay()
+	SIGNAL_HANDLER
+	var/obj/item/parent_item = parent
+	if(!ismob(parent_item.loc))
+		return
+	var/mob/living/carbon/human/wearer = parent_item.loc
+	for(var/slot in slots)
+		var/obj/item/attachment = slots[slot]
+		if(!attachment)
+			continue
+		var/list/attachment_data = attachment_data_by_slot[slot]
+		if(attachment_data[ATTACHMENT_LAYER])
+			wearer.remove_overlay(attachment_data[ATTACHMENT_LAYER])
 
 ///Deletes the attachments when the parent deletes.
 /datum/component/attachment_handler/proc/clean_references()

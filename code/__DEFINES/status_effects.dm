@@ -49,13 +49,15 @@
 
 #define STATUS_EFFECT_ADMINSLEEP /datum/status_effect/incapacitating/adminsleep //the affected is admin slept
 
-#define STATUS_EFFECT_CONFUSED /datum/status_effect/confused // random direction chosen when trying to move
+#define STATUS_EFFECT_CONFUSED /datum/status_effect/incapacitating/confused // random direction chosen when trying to move
 
 #define STATUS_EFFECT_GUN_SKILL_ACCURACY_DEBUFF /datum/status_effect/stacking/gun_skill/accuracy/debuff // Decreases the accuracy of the mob
 
 #define STATUS_EFFECT_GUN_SKILL_SCATTER_DEBUFF /datum/status_effect/stacking/gun_skill/scatter/debuff // Decreases the scatter of the mob
 
 #define STATUS_EFFECT_MUTED /datum/status_effect/mute //Mutes the affected mob
+
+#define STATUS_EFFECT_IRRADIATED /datum/status_effect/irradiated //the affected has been irradiated, harming them over time
 
 /////////////
 // NEUTRAL //

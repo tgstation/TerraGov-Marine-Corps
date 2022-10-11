@@ -2,7 +2,7 @@
 	name = "flashbang"
 	desc = "A grenade sometimes used by police, civilian or military, to stun targets with a flash, then a bang. May cause hearing loss, and induce feelings of overwhelming rage in victims."
 	icon_state = "flashbang2"
-	item_state = "flashbang"
+	item_state = "flashbang2"
 	arm_sound = 'sound/weapons/armbombpin.ogg'
 	///This is a cluster weapon, or part of one
 	var/banglet = FALSE
@@ -10,6 +10,8 @@
 	var/inner_range = 2
 	///The range where the moderate effects are applied
 	var/outer_range = 5
+	///The the max of the flashbang
+	var/max_range = 7
 	///Whether this grenade requires skill to use
 	var/mp_only = TRUE
 
@@ -21,26 +23,20 @@
 
 
 /obj/item/explosive/grenade/flashbang/prime()
-	var/turf/T = get_turf(src)
-	for(var/obj/structure/closet/L in get_hear(7, T))
-		if(locate(/mob/living/carbon/, L))
-			for(var/mob/living/carbon/M in L)
-				bang(get_turf(src), M)
+	var/turf/target_turf = get_turf(src)
+	playsound(target_turf, 'sound/effects/bang.ogg', 50, 1)
+	for(var/mob/living/carbon/victim in hearers(max_range, target_turf))
+		if(!HAS_TRAIT(victim, TRAIT_FLASHBANGIMMUNE))
+			bang(target_turf, victim)
 
-
-	for(var/mob/living/carbon/M in get_hear(7, T))
-		if(!HAS_TRAIT(M, TRAIT_FLASHBANGIMMUNE))
-			bang(T, M)
-
-	new/obj/effect/particle_effect/smoke/flashbang(T)
+	new/obj/effect/particle_effect/smoke/flashbang(target_turf)
 	qdel(src)
 
-/// Added a new proc called 'bang' that takes a location and a person to be banged.
+///Applies the flashbang effects based off range and ear protection
 /obj/item/explosive/grenade/flashbang/proc/bang(turf/T , mob/living/carbon/M)
 	to_chat(M, span_danger("BANG"))
-	playsound(src.loc, 'sound/effects/bang.ogg', 50, 1)
 
-//Checking for protections
+	//Checking for protection
 	var/ear_safety = 0
 	if(iscarbon(M))
 		if(ishuman(M))
@@ -50,14 +46,14 @@
 			if(istype(H.head, /obj/item/clothing/head/helmet/riot))
 				ear_safety += 2
 
-	if(get_dist(M, T) <= inner_range) //do we need these loc checks?
-		inner_effect(T,M,ear_safety)
+	if(get_dist(M, T) <= inner_range)
+		inner_effect(T, M, ear_safety)
 	else if(get_dist(M, T) <= outer_range)
-		outer_effect(T,M,ear_safety)
+		outer_effect(T, M, ear_safety)
 	else
-		max_range_effect(T,M,ear_safety)
+		max_range_effect(T, M, ear_safety)
 
-	base_effect(T,M,ear_safety) //done afterwards as it contains the eye/ear damage checks
+	base_effect(T, M, ear_safety) //done afterwards as it contains the eye/ear damage checks
 
 ///The effects applied to all mobs in range
 /obj/item/explosive/grenade/flashbang/proc/base_effect(turf/T , mob/living/carbon/M, ear_safety)
@@ -168,7 +164,7 @@
 	name = "\improper stun grenade"
 	desc = "A grenade designed to disorientate the senses of anyone caught in the blast radius with a blinding flash of light and viciously loud noise. Repeated use can cause deafness."
 	icon_state = "flashbang2"
-	item_state = "flashbang"
+	item_state = "flashbang2"
 	arm_sound = 'sound/weapons/armbombpin.ogg'
 	inner_range = 3
 	mp_only = FALSE

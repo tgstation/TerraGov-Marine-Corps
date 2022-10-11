@@ -314,7 +314,6 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	pilot = SKILL_PILOT_TRAINED
 	police = SKILL_POLICE_MP
 	powerloader = SKILL_POWERLOADER_MASTER
-	large_vehicle = SKILL_LARGE_VEHICLE_TRAINED
 
 /datum/skills/synthetic
 	name = SYNTHETIC
@@ -329,7 +328,6 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	pistols = SKILL_PISTOLS_TRAINED
 	police = SKILL_POLICE_MP
 	powerloader = SKILL_POWERLOADER_MASTER
-	large_vehicle = SKILL_LARGE_VEHICLE_TRAINED
 
 /datum/skills/early_synthetic
 	name = "Early Synthetic"
@@ -344,7 +342,6 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	pistols = SKILL_PISTOLS_TRAINED
 	police = SKILL_POLICE_MP
 	powerloader = SKILL_POWERLOADER_MASTER
-	large_vehicle = SKILL_LARGE_VEHICLE_TRAINED
 
 /datum/skills/captain
 	name = CAPTAIN
@@ -391,6 +388,13 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	powerloader = SKILL_POWERLOADER_PRO
 	leadership = SKILL_LEAD_TRAINED
 
+/datum/skills/mech_pilot
+	name = MECH_PILOT
+	engineer = SKILL_ENGINEER_ENGI
+	powerloader = SKILL_POWERLOADER_PRO
+	leadership = SKILL_LEAD_TRAINED
+	large_vehicle = SKILL_LARGE_VEHICLE_TRAINED
+
 /datum/skills/ce
 	name = CHIEF_SHIP_ENGINEER
 	engineer = SKILL_ENGINEER_MASTER
@@ -436,6 +440,13 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	leadership = SKILL_LEAD_EXPERT
 	medical = SKILL_MEDICAL_NOVICE
 	surgery = SKILL_SURGERY_AMATEUR
+
+/datum/skills/sl/clf
+	name = "CLF leader"
+	construction = SKILL_CONSTRUCTION_METAL
+	engineer = SKILL_ENGINEER_METAL
+	leadership = SKILL_LEAD_TRAINED
+
 /datum/skills/sl/upp
 	name = "UPP Leader"
 	firearms = SKILL_FIREARMS_TRAINED

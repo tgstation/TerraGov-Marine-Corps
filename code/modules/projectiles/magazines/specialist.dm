@@ -165,22 +165,40 @@
 /obj/item/ammo_magazine/rocket/recoilless/light
 	name = "\improper 67mm light-explosive shell"
 	desc = "A light explosive shell for the RL-160 recoilless rifle. Causes a light explosion over a large area. Can go farther than other shells of its type due to the light payload. Requires specialized storage to carry."
-	caliber = CALIBER_67MM
 	icon_state = "shell_le"
-	w_class = WEIGHT_CLASS_BULKY
-	max_rounds = 1
 	default_ammo = /datum/ammo/rocket/recoilless/light
+	reload_delay = 10
+
+/obj/item/ammo_magazine/rocket/recoilless/low_impact
+	name = "\improper 67mm light-explosive shell"
+	desc = "A light explosive shell for the RL-160 recoilless rifle. Causes a light explosion over a large area but low impact damage. Can go farther than other shells of its type due to the light payload. Requires specialized storage to carry."
+	icon_state = "shell_le"
+	default_ammo = /datum/ammo/rocket/recoilless/low_impact
 	reload_delay = 10
 
 /obj/item/ammo_magazine/rocket/recoilless/heat
 	name = "\improper 67mm HEAT shell"
-	desc = "A high explosive-anti tank shell for the RL-160 recoilless rifle. Causes a medium explosion over a small area after impacting. Requires specialized storage to carry."
-	caliber = CALIBER_67MM
+	desc = "A high explosive-anti tank shell for the RL-160 recoilless rifle. Fires a penetrating shot with no explosion. It will do moderate damage to all types of enemies, but does not sunder their armor. Requires specialized storage to carry."
 	icon_state = "shell_heat"
-	w_class = WEIGHT_CLASS_BULKY
-	max_rounds = 1
 	default_ammo = /datum/ammo/rocket/recoilless/heat
-	reload_delay = 30
+
+/obj/item/ammo_magazine/rocket/recoilless/smoke
+	name = "\improper 67mm Chemical (Smoke) shell"
+	desc = "A chemical shell for the RL-160 recoilless rifle. Fires a low velocity shell for close quarters application of chemical gas, friendlies will be able to easily dodge it due to low velocity. This warhead contains thick concealing smoke. Requires specialized storage to carry."
+	icon_state = "shell_smoke"
+	default_ammo = /datum/ammo/rocket/recoilless/chemical
+
+/obj/item/ammo_magazine/rocket/recoilless/cloak
+	name = "\improper 67mm Chemical (Cloak) shell"
+	desc = "A chemical shell for the RL-160 recoilless rifle. Fires a low velocity shell for close quarters application of chemical gas, friendlies will be able to easily dodge it due to low velocity. This warhead contains advanced cloaking smoke. Requires specialized storage to carry."
+	icon_state = "shell_cloak"
+	default_ammo = /datum/ammo/rocket/recoilless/chemical/cloak
+
+/obj/item/ammo_magazine/rocket/recoilless/plasmaloss
+	name = "\improper 67mm Chemical (Tanglefoot) shell"
+	desc = "A chemical shell for the RL-160 recoilless rifle. Fires a low velocity shell for close quarters application of chemical gas, friendlies will be able to easily dodge it due to low velocity. This warhead contains plasma-draining Tanglefoot smoke. Requires specialized storage to carry."
+	icon_state = "shell_tanglefoot"
+	default_ammo = /datum/ammo/rocket/recoilless/chemical/plasmaloss
 
 
 //-------------------------------------------------------
@@ -234,6 +252,52 @@
 /obj/item/ammo_magazine/internal/launcher/rocket/m57a4/ds
 	default_ammo = /datum/ammo/rocket/wp/quad/ds
 
+//SOM RPG
+/obj/item/ammo_magazine/rocket/som
+	name = "\improper 84mm light-explosive RPG"
+	desc = "A high explosive warhead for the V-71 rocket launcher. Causes a strong explosion over a respectable area."
+	icon_state = "rpg_rocket_le"
+	default_ammo = /datum/ammo/rocket/som
+	reload_delay = 2 SECONDS
+	bonus_overlay = "rpg_rocket"
+
+/obj/item/ammo_magazine/rocket/som/light
+	name = "\improper 84mm light-explosive RPG"
+	desc = "A light explosive warhead for the V-71 rocket launcher. Causes a light explosion over a large area but low impact damage."
+	icon_state = "rpg_rocket_le"
+	default_ammo = /datum/ammo/rocket/som/light
+	reload_delay = 1 SECONDS
+	bonus_overlay = "rpg_rocket_le"
+
+/obj/item/ammo_magazine/rocket/som/heat
+	name = "\improper 84mm HEAT RPG"
+	desc = "A high explosive anti armor warhead for the V-71 rocket launcher. Designed to punch through the toughest armor."
+	icon_state = "rpg_rocket_heat"
+	default_ammo = /datum/ammo/rocket/som/heat
+	bonus_overlay = "rpg_rocket_heat"
+
+/obj/item/ammo_magazine/rocket/som/thermobaric
+	name = "\improper 84mm thermobaric RPG"
+	desc = "A thermobaric warhead for the V-71 rocket launcher. Causes a powerful fuel air explosion over a moderate area."
+	icon_state = "rpg_rocket_thermobaric"
+	default_ammo = /datum/ammo/rocket/som/thermobaric
+	bonus_overlay = "rpg_rocket_thermobaric"
+
+/obj/item/ammo_magazine/rocket/som/rad
+	name = "\improper 84mm  irrad RPG"
+	desc = "A irrad warhead for the V-71 rocket launcher. Releases a devastating milisecond burst of radiation, debilitating anything caught in the blast radius."
+	icon_state = "rpg_rocket_rad"
+	default_ammo = /datum/ammo/rocket/som/rad
+	bonus_overlay = "rpg_rocket_rad"
+
+/obj/item/ammo_magazine/rocket/som/incendiary
+	name = "\improper 84mm incendiary RPG"
+	desc = "An incendiary warhead for the V-71 rocket launcher. Releases a white phosphorus payload, burning anything in a moderate blast radius."
+	icon_state = "rpg_rocket_incendiary"
+	default_ammo = /datum/ammo/rocket/wp/quad/som
+	bonus_overlay = "rpg_rocket_incendiary"
+
+
 // railgun
 
 /obj/item/ammo_magazine/railgun
@@ -280,7 +344,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/ammo_magazine/minigun_powerpack
-	name = "\improper MG-100 powerpack"
+	name = "\improper MG-100 Vindicator powerpack"
 	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the MG-100 Minigun System.\nClick the icon in the top left to reload your M56."
 	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "powerpack"

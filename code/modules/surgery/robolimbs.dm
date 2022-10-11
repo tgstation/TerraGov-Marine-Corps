@@ -9,16 +9,16 @@
 
 /datum/surgery_step/limb/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
 	if(!affected)
-		return 0
+		return SURGERY_CANNOT_USE
 	if(!(affected.limb_status & LIMB_DESTROYED))
-		return 0
+		return SURGERY_CANNOT_USE
 	if(affected.parent && (affected.parent.limb_status & LIMB_DESTROYED))//parent limb is destroyed
-		return 0
+		return SURGERY_CANNOT_USE
 	if(affected.limb_replacement_stage != limb_step)
-		return 0
+		return SURGERY_CANNOT_USE
 	if(affected.body_part == HEAD) //head has its own steps
-		return 0
-	return 1
+		return SURGERY_CANNOT_USE
+	return SURGERY_CAN_USE
 
 /datum/surgery_step/limb/cut
 	allowed_tools = list(
@@ -133,8 +133,10 @@
 		var/obj/item/robot_parts/p = tool
 		if(p.part)
 			if(!(target_zone in p.part))
-				return 0
-		return affected.limb_status & LIMB_AMPUTATED
+				return SURGERY_CANNOT_USE
+		if(affected.limb_status & LIMB_AMPUTATED)
+			return SURGERY_CAN_USE
+	return SURGERY_CANNOT_USE
 
 /datum/surgery_step/limb/attach/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_notice("[user] starts attaching \the [tool] where [target]'s [affected.display_name] used to be."), \

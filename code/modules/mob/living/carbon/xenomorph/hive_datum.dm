@@ -19,6 +19,8 @@
 	var/list/obj/structure/xeno/evotower/evotowers = list()
 	///list of upgrade towers
 	var/list/obj/structure/xeno/maturitytower/maturitytowers = list()
+	///list of phero towers
+	var/list/obj/structure/xeno/pherotower/pherotowers = list()
 	var/tier3_xeno_limit
 	var/tier2_xeno_limit
 	///Queue of all observer wanting to join xeno side
@@ -103,6 +105,9 @@
 		.["hive_structures"] += list(get_structure_packet(tower))
 	// Evolution towers (if they're ever built)
 	for(var/obj/structure/xeno/evotower/tower AS in GLOB.hive_datums[hivenumber].evotowers)
+		.["hive_structures"] += list(get_structure_packet(tower))
+	// Pheromone towers
+	for(var/obj/structure/xeno/pherotower/tower AS in GLOB.hive_datums[hivenumber].pherotowers)
 		.["hive_structures"] += list(get_structure_packet(tower))
 	// Spawners
 	for(var/obj/structure/xeno/spawner/spawner AS in GLOB.xeno_spawner)
@@ -1054,8 +1059,8 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/threes = length(xenos_by_tier[XENO_TIER_THREE])
 	var/fours = length(xenos_by_tier[XENO_TIER_FOUR])
 
-	tier3_xeno_limit = max(threes, FLOOR((zeros + ones + twos + fours) / 3 + 1, 1))
-	tier2_xeno_limit = max(twos, zeros + ones + fours + 1 - threes)
+	tier3_xeno_limit = max(threes, FLOOR(((zeros + ones + twos + fours) * (evotowers.len * 0.2 + 1)) / 3 + 1, 1))
+	tier2_xeno_limit = max((twos + zeros + ones + fours) * (evotowers.len * 0.2 + 1) + 1 - threes)
 
 // ***************************************
 // *********** Corrupted Xenos
@@ -1389,7 +1394,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /atom/proc/get_xeno_hivenumber()
 	return FALSE
 
-/obj/effect/alien/egg/get_xeno_hivenumber()
+/obj/alien/egg/get_xeno_hivenumber()
 	return hivenumber
 
 /obj/structure/xeno/trap/get_xeno_hivenumber()

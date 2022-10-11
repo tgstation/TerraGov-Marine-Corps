@@ -1007,7 +1007,7 @@
 /area/centcom/valhalla/library)
 "bhl" = (
 /obj/structure/sign/vacuum,
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/centcom/valhalla/exterior)
 "bhD" = (
 /obj/effect/decal/warning_stripes/thick{
@@ -2440,11 +2440,6 @@
 /turf/open/floor/tile/neutral/full,
 /area/centcom/valhalla/engine/break_room)
 "dkn" = (
-/obj/machinery/flasher{
-	id = "AI";
-	pixel_x = 9;
-	pixel_y = -24
-	},
 /obj/item/radio/intercom{
 	broadcasting = 1;
 	dir = 1;
@@ -4102,7 +4097,7 @@
 /turf/open/floor/grimy,
 /area/centcom/valhalla/security/detectives_office)
 "fmR" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/centcom/valhalla/exterior)
 "foe" = (
 /obj/structure/bed/chair/office/dark{
@@ -4611,7 +4606,7 @@
 	},
 /area/centcom/valhalla/security/brig)
 "fWu" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/centcom/valhalla/exterior)
 "fXm" = (
 /obj/effect/decal/tile/black{
@@ -7494,7 +7489,7 @@
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/primary/central_one)
 "jYG" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/space)
 "jYM" = (
 /turf/closed/wall,
@@ -9307,7 +9302,9 @@
 /turf/closed/wall,
 /area/centcom/valhalla/crew_quarters/toilet)
 "mxw" = (
-/obj/machinery/nuclearbomb,
+/obj/machinery/nuclearbomb{
+	dir = 8
+	},
 /turf/open/floor/gcircuit,
 /area/centcom/valhalla/ai_monitored/storage/secure)
 "mxM" = (
@@ -11891,6 +11888,11 @@
 	},
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla/engine/engineering)
+"pUh" = (
+/obj/effect/spawner/random/plushie/nospawnninetynine{
+	},
+/turf/open/floor/gcircuit,
+/area/centcom/valhalla/ai_monitored/storage/secure)
 "pUr" = (
 /obj/effect/decal/tile/pink{
 	dir = 4
@@ -13094,6 +13096,9 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
+/obj/effect/spawner/random/plushie/nospawnninetynine{
+	pixel_y = -3;
+	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "rlZ" = (
@@ -13180,6 +13185,8 @@
 /area/centcom/valhalla/chapel/main)
 "rsf" = (
 /obj/structure/table,
+/obj/effect/spawner/random/plushie/nospawnninetyfive{
+	},
 /turf/open/floor/tile/neutral/full,
 /area/centcom/valhalla/crew_quarters)
 "rsu" = (
@@ -13932,7 +13939,7 @@
 	icon_state = "doors";
 	name = "WARNING: BLAST DOORS"
 	},
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/centcom/valhalla/exterior)
 "srV" = (
 /turf/closed/wall,
@@ -14152,6 +14159,10 @@
 /area/centcom/valhalla/engine/atmos_monitoring)
 "sIO" = (
 /obj/effect/decal/warning_stripes/thick/corner,
+/obj/machinery/flasher{
+	id = "AI";
+	pixel_y = 31
+	},
 /turf/open/floor/tile/neutral/corner{
 	dir = 1
 	},
@@ -18335,7 +18346,7 @@
 /area/centcom/valhalla/starboard)
 "xAJ" = (
 /obj/structure/sign/securearea,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/centcom/valhalla/exterior)
 "xAL" = (
 /turf/open/floor/wood,
@@ -30340,7 +30351,7 @@ cYi
 bls
 mxw
 eiq
-vFL
+pUh
 fHG
 gtc
 hiw

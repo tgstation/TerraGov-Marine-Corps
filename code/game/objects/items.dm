@@ -12,6 +12,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	light_system = MOVABLE_LIGHT
 	flags_pass = PASSTABLE
 	flags_atom = PREVENT_CONTENTS_EXPLOSION
+	resistance_flags = PROJECTILE_IMMUNE
 
 	var/image/blood_overlay = null //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
 	///The iconstate that the items use for blood on blood.dmi when drawn on the mob.
@@ -23,8 +24,6 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 						//also useful for items with many icon_state values when you don't want to make an inhand sprite for each value.
 	///The icon state used to represent this image in "icons/obj/items/items_mini.dmi" Used in /obj/item/storage/box/visual to display tiny items in the box
 	var/icon_state_mini = "item"
-	var/force = 0
-	var/damtype = BRUTE
 	///Byond tick delay between left click attacks
 	var/attack_speed = 11
 	///Byond tick delay between right click alternate attacks
@@ -1220,14 +1219,16 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return icon_override
 
 	//2: species-specific sprite sheets.
-	. = LAZYACCESS(sprite_sheets, species_type)
-	if(. && !inhands)
-		return
+	var/icon = LAZYACCESS(sprite_sheets, species_type)
+	if(icon && !inhands)
+		return icon
 
 	//3: slot-specific sprite sheets
-	. = LAZYACCESS(item_icons, slot_name)
-	if(.)
-		return
+	icon = LAZYACCESS(item_icons, slot_name)
+	if(ispath(icon, /datum/greyscale_config))
+		return SSgreyscale.GetColoredIconByType(icon, greyscale_colors)
+	if(icon)
+		return icon
 
 	//5: provided default_icon
 	if(default_icon)

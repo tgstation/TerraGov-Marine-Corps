@@ -169,6 +169,7 @@
 		/obj/item/stack/rods,
 		/obj/item/stack/cable_coil,
 		/obj/item/stack/sandbags_empty,
+		/obj/item/stack/sandbags,
 		/obj/item/stack/razorwire,
 		/obj/item/tool/shovel/etool,
 		/obj/item/tool/wrench,
@@ -233,6 +234,7 @@
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/stack/medical,
 		/obj/item/tweezers,
+		/obj/item/tool/surgery/solderingtool,
 	)
 
 /obj/item/armor_module/storage/injector
@@ -262,6 +264,21 @@
 	storage_slots = null
 	max_storage_space = 15
 	max_w_class = WEIGHT_CLASS_NORMAL
+
+/obj/item/armor_module/storage/grenade
+	name = "Grenade Storage module"
+	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Can hold a respectable amount of grenades."
+	icon_state = "mod_grenade_harness"
+	storage =  /obj/item/storage/internal/modular/grenade
+
+/obj/item/storage/internal/modular/grenade
+	max_storage_space = 12
+	storage_slots = 6
+	max_w_class = WEIGHT_CLASS_SMALL
+	can_hold = list(
+		/obj/item/explosive/grenade,
+		/obj/item/reagent_containers/food/drinks/cans,
+	)
 
 /obj/item/armor_module/storage/helmet
 	name = "Jaeger Pattern helmet storage"

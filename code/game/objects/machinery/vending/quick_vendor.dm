@@ -4,24 +4,67 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 /proc/init_quick_loadouts()
 	. = list()
 	var/list/loadout_list = list(
+		/datum/outfit/quick/tgmc/marine/standard_carbine,
 		/datum/outfit/quick/tgmc/marine/standard_assaultrifle,
+		/datum/outfit/quick/tgmc/marine/combat_rifle,
 		/datum/outfit/quick/tgmc/marine/standard_laserrifle,
+		/datum/outfit/quick/tgmc/marine/standard_skirmishrifle,
+		/datum/outfit/quick/tgmc/marine/alf_shocktrooper,
 		/datum/outfit/quick/tgmc/marine/standard_machinegunner,
 		/datum/outfit/quick/tgmc/marine/medium_machinegunner,
+		/datum/outfit/quick/tgmc/marine/pyro,
 		/datum/outfit/quick/tgmc/marine/standard_shotgun,
 		/datum/outfit/quick/tgmc/marine/standard_lasercarbine,
+		/datum/outfit/quick/tgmc/marine/light_carbine,
+		/datum/outfit/quick/tgmc/marine/shield_tank,
+		/datum/outfit/quick/tgmc/marine/machete,
+		/datum/outfit/quick/tgmc/marine/scout,
 		/datum/outfit/quick/tgmc/engineer/rrengineer,
 		/datum/outfit/quick/tgmc/engineer/sentry,
 		/datum/outfit/quick/tgmc/engineer/demolition,
 		/datum/outfit/quick/tgmc/corpsman/standard_medic,
+		/datum/outfit/quick/tgmc/corpsman/standard_smg,
+		/datum/outfit/quick/tgmc/corpsman/standard_skirmishrifle,
+		/datum/outfit/quick/tgmc/corpsman/auto_shotgun,
+		/datum/outfit/quick/tgmc/corpsman/laser_medic,
+		/datum/outfit/quick/tgmc/corpsman/laser_carbine,
 		/datum/outfit/quick/tgmc/smartgunner/standard_sg,
 		/datum/outfit/quick/tgmc/smartgunner/minigun_sg,
 		/datum/outfit/quick/tgmc/leader/standard_assaultrifle,
+		/datum/outfit/quick/tgmc/leader/standard_carbine,
+		/datum/outfit/quick/tgmc/leader/combat_rifle,
+		/datum/outfit/quick/tgmc/leader/auto_shotgun,
+		/datum/outfit/quick/tgmc/leader/standard_laserrifle,
+		/datum/outfit/quick/tgmc/leader/oicw,
+		/datum/outfit/quick/som/marine/standard_assaultrifle,
 		/datum/outfit/quick/som/marine/mpi,
+		/datum/outfit/quick/som/marine/scout,
+		/datum/outfit/quick/som/marine/shotgunner,
+		/datum/outfit/quick/som/marine/pyro,
+		/datum/outfit/quick/som/marine/breacher,
 		/datum/outfit/quick/som/marine/charger,
-		/datum/outfit/quick/som/marine/caliver,
+		/datum/outfit/quick/som/engineer/standard_assaultrifle,
+		/datum/outfit/quick/som/engineer/mpi,
+		/datum/outfit/quick/som/engineer/standard_smg,
+		/datum/outfit/quick/som/engineer/standard_shotgun,
+		/datum/outfit/quick/som/medic/standard_assaultrifle,
+		/datum/outfit/quick/som/medic/mpi,
+		/datum/outfit/quick/som/medic/standard_smg,
+		/datum/outfit/quick/som/medic/standard_shotgun,
+		/datum/outfit/quick/som/veteran/standard_assaultrifle,
+		/datum/outfit/quick/som/veteran/standard_smg,
+		/datum/outfit/quick/som/veteran/mpi,
 		/datum/outfit/quick/som/veteran/charger,
+		/datum/outfit/quick/som/veteran/breacher,
+		/datum/outfit/quick/som/veteran/caliver,
+		/datum/outfit/quick/som/veteran/caliver_pack,
 		/datum/outfit/quick/som/veteran/culverin,
+		/datum/outfit/quick/som/veteran/rocket_man,
+		/datum/outfit/quick/som/squad_leader/standard_assaultrifle,
+		/datum/outfit/quick/som/squad_leader/standard_smg,
+		/datum/outfit/quick/som/squad_leader/charger,
+		/datum/outfit/quick/som/squad_leader/caliver,
+		/datum/outfit/quick/som/squad_leader/mpi,
 	)
 
 	for(var/X in loadout_list)
@@ -53,11 +96,11 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 /obj/machinery/quick_vendor/som
 	faction = FACTION_SOM
 	categories = list(
-		"SOM Standard",
-		"SOM Engineer",
-		"SOM Medic",
-		"SOM Veteran",
-		"SOM Leader",
+		"SOM Squad Standard",
+		"SOM Squad Engineer",
+		"SOM Squad Medic",
+		"SOM Squad Veteran",
+		"SOM Squad Leader",
 	)
 
 /obj/machinery/quick_vendor/can_interact(mob/user)
@@ -132,8 +175,8 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 			if(selected_loadout.jobtype != user_id.rank)
 				to_chat(usr, span_warning("You are not in the right job for this loadout!"))
 				return
-			if(user_id.marine_buy_flags & MARINE_CAN_BUY_LOADOUT)
-				user_id.marine_buy_flags &= ~MARINE_CAN_BUY_LOADOUT
+			if(user_id.can_buy_loadout)
+				user_id.can_buy_loadout = FALSE
 				selected_loadout.quantity --
 				selected_loadout.equip(ui.user) //actually equips the loadout
 			else

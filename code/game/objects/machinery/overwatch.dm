@@ -46,12 +46,15 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	var/datum/action/innate/order/retreat_order/send_retreat_order
 	///datum used when sending a defend order
 	var/datum/action/innate/order/defend_order/send_defend_order
+	///datum used when sending a rally order
+	var/datum/action/innate/order/rally_order/send_rally_order
 
 /obj/machinery/computer/camera_advanced/overwatch/Initialize()
 	. = ..()
 	send_attack_order = new
 	send_defend_order = new
 	send_retreat_order = new
+	send_rally_order = new
 
 /obj/machinery/computer/camera_advanced/overwatch/give_actions(mob/living/user)
 	. = ..()
@@ -67,6 +70,10 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		send_retreat_order.target = user
 		send_retreat_order.give_action(user)
 		actions += send_retreat_order
+	if(send_rally_order)
+		send_rally_order.target = user
+		send_rally_order.give_action(user)
+		actions += send_rally_order
 
 /obj/machinery/computer/camera_advanced/overwatch/main
 	icon_state = "overwatch_main"
@@ -740,7 +747,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 //This is perhaps one of the weirdest places imaginable to put it, but it's a leadership skill, so
 
-/mob/living/carbon/human/verb/issue_order(which as null|text)
+/mob/living/carbon/human/verb/issue_order(command_aura as null|text)
 	set hidden = TRUE
 
 	if(skills.getRating("leadership") < SKILL_LEAD_TRAINED)
@@ -755,29 +762,28 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		to_chat(src, span_warning("You cannot give an order while muted."))
 		return
 
-	if(command_aura_cooldown > 0)
+	if(command_aura_cooldown)
 		to_chat(src, span_warning("You have recently given an order. Calm down."))
 		return
 
-	if(!which)
-		var/choice = tgui_input_list(src, "Choose an order", items = command_aura_allowed + "help")
-		if(choice == "help")
+	if(!command_aura)
+		command_aura = tgui_input_list(src, "Choose an order", items = command_aura_allowed + "help")
+		if(command_aura == "help")
 			to_chat(src, span_notice("<br>Orders give a buff to nearby soldiers for a short period of time, followed by a cooldown, as follows:<br><B>Move</B> - Increased mobility and chance to dodge projectiles.<br><B>Hold</B> - Increased resistance to pain and combat wounds.<br><B>Focus</B> - Increased gun accuracy and effective range.<br>"))
 			return
-		if(!choice)
+		if(!command_aura)
 			return
-		command_aura = choice
-	else
-		command_aura = which
 
-	if(command_aura_cooldown > 0)
+	if(command_aura_cooldown)
 		to_chat(src, span_warning("You have recently given an order. Calm down."))
 		return
 
 	if(!(command_aura in command_aura_allowed))
 		return
-	command_aura_cooldown = 45 //40 ticks, or 90 seconds overall CD, 60 practical.
-	command_aura_tick = 15//15 ticks, or 30 seconds apprx.
+	var/aura_strength = skills.getRating("leadership") - 1
+	var/aura_target = pick_order_target()
+	SSaura.add_emitter(aura_target, command_aura, aura_strength + 4, aura_strength, 30 SECONDS, faction)
+
 	var/message = ""
 	switch(command_aura)
 		if("move")
@@ -795,8 +801,21 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			message = pick(";FOCUS FIRE!", ";PICK YOUR TARGETS!", ";CENTER MASS!", ";CONTROLLED BURSTS!", ";AIM YOUR SHOTS!", ";READY WEAPONS!", ";TAKE AIM!", ";LINE YOUR SIGHTS!", ";LOCK AND LOAD!", ";GET READY TO FIRE!")
 			say(message)
 			add_emote_overlay(focus)
+
+	command_aura_cooldown = addtimer(CALLBACK(src, .proc/end_command_aura_cooldown), 45 SECONDS)
+
 	update_action_buttons()
 
+///Choose what we're sending a buff order through
+/mob/living/carbon/human/proc/pick_order_target()
+	//If we're in overwatch, use the camera eye
+	if(istype(remote_control, /mob/camera/aiEye/remote/hud/overwatch))
+		return remote_control
+	return src
+
+/mob/living/carbon/human/proc/end_command_aura_cooldown()
+	command_aura_cooldown = null
+	update_action_buttons()
 
 /datum/action/skill/issue_order
 	name = "Issue Order"
@@ -816,23 +835,25 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	button.overlays.Cut()
 	button.overlays += image('icons/mob/order_icons.dmi', icon_state = "[order_type]")
 
-	if(human.command_aura_cooldown > 0)
+	if(human.command_aura_cooldown)
 		button.color = rgb(255,0,0,255)
 	else
 		button.color = rgb(255,255,255,255)
 
 /datum/action/skill/issue_order/move
 	name = "Issue Move Order"
-	order_type = "move"
+	order_type = AURA_HUMAN_MOVE
+	keybind_signal = COMSIG_KB_MOVEORDER
 
 /datum/action/skill/issue_order/hold
 	name = "Issue Hold Order"
-	order_type = "hold"
+	order_type = AURA_HUMAN_HOLD
+	keybind_signal = COMSIG_KB_HOLDORDER
 
 /datum/action/skill/issue_order/focus
 	name = "Issue Focus Order"
-	order_type = "focus"
-
+	order_type = AURA_HUMAN_FOCUS
+	keybind_signal = COMSIG_KB_FOCUSORDER
 
 
 /datum/action/skill/toggle_orders

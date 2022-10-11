@@ -30,6 +30,12 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	///Determines the amount of pixels to move the icon state for the overlay. in the y direction
 	var/pixel_shift_y = 16
 
+
+	greyscale_config = null
+	greyscale_colors = GUN_PALETTE_TAN
+	///List of palettes a greyscaled attachment is allowed to use for its furniture
+	var/list/colorable_colors = GUN_PALETTE_LIST
+
 	flags_atom = CONDUCT
 	materials = list(/datum/material/metal = 100)
 	w_class = WEIGHT_CLASS_SMALL
@@ -131,9 +137,36 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	///Sound played on attach
 	var/attach_sound = 'sound/machines/click.ogg'
 
+	///Replacement for initial icon that allows for the code to work with multiple variants
+	var/base_icon
+	///Assoc list that uses the parents type as a key. type = "new_icon_state". This will change the icon state depending on what type the parent is. If the list is empty, or the parent type is not within, it will have no effect.
+	var/list/variants_by_parent_type = list()
+
 /obj/item/attachable/Initialize()
 	. = ..()
 	AddElement(/datum/element/attachment, slot, icon, .proc/on_attach, .proc/on_detach, .proc/activate, .proc/can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, attach_skill, attach_skill_upper_threshold, attach_sound)
+
+/obj/item/attachable/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(!istype(I, /obj/item/facepaint))
+		return
+	if(isnull(greyscale_config))
+		to_chat(user, span_warning("[src] cannot be colored."))
+		return
+	var/obj/item/facepaint/paint = I
+	if(paint.uses < 1)
+		balloon_alert(user, "\the [paint] is out of color!")
+		return
+
+	var/new_color = tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)
+	new_color = colorable_colors[new_color]
+
+	if(!new_color || !do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+		return
+
+	set_greyscale_colors(new_color)
+	paint.uses--
+	update_icon()
 
 ///Called when the attachment is attached to something. If it is a gun it will update the guns stats.
 /obj/item/attachable/proc/on_attach(attaching_item, mob/user)
@@ -194,6 +227,12 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 			if(master_gun == living_user.l_hand || master_gun == living_user.r_hand)
 				action_to_update.give_action(living_user)
 
+	//custom attachment icons for specific guns
+	if(length(variants_by_parent_type))
+		for(var/selection in variants_by_parent_type)
+			if(istype(master_gun, selection))
+				icon_state = variants_by_parent_type[selection]
+
 	update_icon()
 
 ///Called when the attachment is detached from something. If the thing is a gun, it returns its stats to what they were before being attached.
@@ -253,6 +292,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		break
 
 	master_gun = null
+	icon_state = initial(icon_state)
 	update_icon()
 
 
@@ -372,6 +412,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	accuracy_unwielded_mod = 0.1
 	scatter_mod = -1
 	size_mod = 1
+	variants_by_parent_type = list(/obj/item/weapon/gun/rifle/som = "ebarrel_big", /obj/item/weapon/gun/smg/som = "ebarrel_big")
 
 
 /obj/item/attachable/heavy_barrel
@@ -393,6 +434,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	recoil_mod = -2
 	scatter_unwielded_mod = -3
 	recoil_unwielded_mod = -2
+	variants_by_parent_type = list(/obj/item/weapon/gun/rifle/som = "comp_big", /obj/item/weapon/gun/smg/som = "comp_big", /obj/item/weapon/gun/shotgun/som = "comp_big")
+
 
 /obj/item/attachable/sniperbarrel
 	name = "sniper barrel"
@@ -477,34 +520,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	damage_mod = -0.15
 	gun_firemode_list_mod = list(GUN_FIREMODE_AUTOMATIC)
 
-/obj/item/attachable/t42barrel
-	name = "MG-42 barrel"
-	desc = "The standard barrel on the MG-42. CANNOT BE REMOVED."
-	slot = ATTACHMENT_SLOT_MUZZLE
-	icon_state = "t42barrel"
-	flags_attach_features = NONE
-
-/obj/item/attachable/t18barrel
-	name = "AR-18 barrel"
-	desc = "The standard barrel on the AR-18. CANNOT BE REMOVED."
-	slot = ATTACHMENT_SLOT_MUZZLE
-	icon_state = "t18barrel"
-	flags_attach_features = NONE
-
-/obj/item/attachable/t12barrel
-	name = "AR-12 barrel"
-	desc = "The standard barrel on the AR-12. CANNOT BE REMOVED."
-	slot = ATTACHMENT_SLOT_MUZZLE
-	icon_state = "t12barrel"
-	flags_attach_features = NONE
-
-/obj/item/attachable/sgbarrel
-	name = "SG-29 barrel"
-	icon_state = "sg29barrel"
-	desc = "A heavy barrel. CANNOT BE REMOVED."
-	slot = ATTACHMENT_SLOT_MUZZLE
-	flags_attach_features = NONE
-
 ///////////// Rail attachments ////////////////////////
 
 /obj/item/attachable/reddot
@@ -515,6 +530,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	accuracy_mod = 0.15
 	accuracy_unwielded_mod = 0.1
 	aim_mode_delay_mod = -0.5
+	variants_by_parent_type = list(/obj/item/weapon/gun/rifle/som = "", /obj/item/weapon/gun/shotgun/som = "")
 
 /obj/item/attachable/m16sight
 	name = "M16 iron sights"
@@ -770,6 +786,14 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	user.sync_lighting_plane_alpha()
 	return TRUE
 
+/obj/item/attachable/scope/zoom(mob/living/user, tileoffset, viewsize)
+	. = ..()
+	//Makes the gun zoom align with the attachment, used for projectile procs
+	if(zoom)
+		master_gun.zoom = TRUE
+	else
+		master_gun.zoom = FALSE
+
 /obj/item/attachable/scope/optical/update_remote_sight(mob/living/user)
 	. = ..()
 	user.see_in_dark = 2
@@ -795,6 +819,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	zoom_slowdown = 0.3
 	zoom_tile_offset = 5
 	zoom_viewsize = 0
+	variants_by_parent_type = list(/obj/item/weapon/gun/rifle/som = "")
 
 /obj/item/attachable/scope/mini/tx11
 	name = "AR-11 mini rail scope"
@@ -909,13 +934,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 
-/obj/item/attachable/stock/sgstock
-	name = "SG-29 stock"
-	desc = "A standard machinegun stock."
-	icon_state = "sg29stock"
-	pixel_shift_x = 32
-	pixel_shift_y = 13
-
 /obj/item/attachable/stock/revolver
 	name = "\improper M44 magnum sharpshooter stock"
 	desc = "A wooden stock modified for use on a 44-magnum. Increases accuracy and reduces recoil at the expense of handling and agility."
@@ -949,31 +967,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_x = 41
 	pixel_shift_y = 10
 
-/obj/item/attachable/stock/t18stock
-	name = "\improper AR-18 stock"
-	desc = "A specialized stock for the AR-18."
-	icon_state = "t18stock"
-	pixel_shift_x = 32
-	pixel_shift_y = 13
-
 /obj/item/attachable/stock/tl127stock
 	name = "\improper SR-127 stock"
 	desc = "A irremovable SR-127 sniper rifle stock."
 	icon_state = "tl127stock"
-	pixel_shift_x = 32
-	pixel_shift_y = 13
-
-/obj/item/attachable/stock/t12stock
-	name = "\improper AR-12 stock"
-	desc = "A specialized stock for the AR-12."
-	icon_state = "t12stock"
-	pixel_shift_x = 32
-	pixel_shift_y = 13
-
-/obj/item/attachable/stock/t42stock
-	name = "\improper MG-42 stock"
-	desc = "A specialized stock for the MG-42."
-	icon_state = "t42stock"
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 
@@ -995,12 +992,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/stock/t35stock
 	name = "\improper SH-35 stock"
 	desc = "A non-standard heavy stock for the SH-35 shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too."
-	flags_attach_features = ATTACH_REMOVABLE
+	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON
 	wield_delay_mod = 0.2 SECONDS
 	icon_state = "t35stock"
 	accuracy_mod = 0.15
 	recoil_mod = -3
 	scatter_mod = -2
+	greyscale_config = /datum/greyscale_config/gun_attachment
 
 /obj/item/attachable/stock/t39stock
 	name = "\improper SH-39 stock"
@@ -1056,6 +1054,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	scatter_unwielded_mod = 3
 	aim_speed_mod	= -0.1
 	aim_mode_movement_mult = -0.2
+	greyscale_config = /datum/greyscale_config/gun_attachment/verticalgrip
 
 
 /obj/item/attachable/angledgrip
@@ -1070,6 +1069,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	scatter_mod = 2
 	accuracy_unwielded_mod = -0.1
 	scatter_unwielded_mod = 1
+	greyscale_config = /datum/greyscale_config/gun_attachment/angledgrip
 
 
 
@@ -1451,10 +1451,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	if(source.Adjacent(object))
 		return
 	var/mob/living/user = master_gun.gun_user
+	if(user.incapacitated()  || user.lying_angle || LAZYACCESS(user.do_actions, src) || !user.dextrous || (!CHECK_BITFIELD(master_gun.flags_gun_features, GUN_ALLOW_SYNTHETIC) && !CONFIG_GET(flag/allow_synthetic_gun_use) && issynth(user)))
+		return
 	var/active_hand = user.get_active_held_item()
 	var/inactive_hand = user.get_inactive_held_item()
-	if(user.stat != CONSCIOUS || user.lying_angle || LAZYACCESS(user.do_actions, src) || !user.dextrous || (!CHECK_BITFIELD(master_gun.flags_gun_features, GUN_ALLOW_SYNTHETIC) && !CONFIG_GET(flag/allow_synthetic_gun_use) && issynth(user)))
-		return
 	for(var/item_blacklisted in in_hand_items_blacklist)
 		if(!istype(active_hand, item_blacklisted) && !istype(inactive_hand, item_blacklisted))
 			continue
@@ -1484,10 +1484,18 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 ///Performs the unique action after firing and checks to see if the user is still able to fire.
 /obj/item/attachable/shoulder_mount/proc/after_fire(datum/source, atom/target, obj/item/weapon/gun/fired_gun)
 	SIGNAL_HANDLER
-	if(CHECK_BITFIELD(master_gun.flags_gun_features, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
+	if(CHECK_BITFIELD(master_gun.reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
 		INVOKE_ASYNC(master_gun, /obj/item/weapon/gun.proc/do_unique_action, master_gun.gun_user)
 	var/mob/living/user = master_gun.gun_user
-	if(user.stat == CONSCIOUS && !user.lying_angle && !LAZYACCESS(user.do_actions, src) && user.dextrous && (CHECK_BITFIELD(master_gun.flags_gun_features, GUN_ALLOW_SYNTHETIC) || CONFIG_GET(flag/allow_synthetic_gun_use) || !issynth(user)))
+	var/active_hand = user.get_active_held_item()
+	var/inactive_hand = user.get_inactive_held_item()
+	for(var/item_blacklisted in in_hand_items_blacklist)
+		if(!istype(active_hand, item_blacklisted) && !istype(inactive_hand, item_blacklisted))
+			continue
+		to_chat(user, span_warning("[src] beeps. Guns or shields in your hands are interfering with its targetting. Stopping fire."))
+		master_gun.stop_fire()
+		return
+	if(!user.incapacitated() && !user.lying_angle && !LAZYACCESS(user.do_actions, src) && user.dextrous && (CHECK_BITFIELD(master_gun.flags_gun_features, GUN_ALLOW_SYNTHETIC) || CONFIG_GET(flag/allow_synthetic_gun_use) || !issynth(user)))
 		return
 	master_gun.stop_fire()
 
@@ -1541,9 +1549,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "spray flamer nozzle"
 	desc = "This specialized nozzle sprays the flames of an attached flamer in a much more broad way than the standard nozzle. It serves for wide area denial as opposed to offensive directional flaming."
 	icon_state = "flame_wide"
-	range_modifier = -3
+	range_modifier = 0
 	pixel_shift_y = 17
 	stream_type = FLAMER_STREAM_CONE
+	burn_time_mod = 0.8
 
 ///Funny red wide nozzle that can fill entire screens with flames. Admeme only.
 /obj/item/attachable/flamer_nozzle/wide/red

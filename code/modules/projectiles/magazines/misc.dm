@@ -108,6 +108,16 @@
 	current_rounds = 50
 	max_rounds = 50
 
+/obj/item/ammo_magazine/packet/p9mmap
+	name = "packet of 9mm AP"
+	desc = "A packet containing 70 rounds of 9mm armor-piercing."
+	icon_state = "box_9mmap"
+	default_ammo = /datum/ammo/bullet/pistol/ap
+	w_class = WEIGHT_CLASS_SMALL
+	caliber = CALIBER_9X19
+	current_rounds = 70
+	max_rounds = 70
+
 /obj/item/ammo_magazine/packet/p10x26mm
 	name = "packet of 10x26mm"
 	desc = "A packet containing 100 rounds of 10x26mm caseless."

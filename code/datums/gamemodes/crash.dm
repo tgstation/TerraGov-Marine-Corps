@@ -57,7 +57,6 @@
 	for(var/job_type in shuttle.spawns_by_job)
 		GLOB.spawns_by_job[job_type] = shuttle.spawns_by_job[job_type]
 
-	GLOB.jobspawn_overrides = list()
 	GLOB.latejoin = shuttle.latejoins
 	GLOB.latejoin_cryo = shuttle.latejoins
 	GLOB.latejoin_gateway = shuttle.latejoins
@@ -199,3 +198,14 @@
 		return //Things are balanced, no burrowed needed
 	xeno_job.add_job_positions(1)
 	xeno_hive.update_tier_limits()
+
+/datum/game_mode/infestation/crash/get_total_joblarvaworth(list/z_levels, count_flags)
+	. = 0
+
+	for(var/mob/living/carbon/human/H AS in GLOB.human_mob_list)
+		if(!H.job)
+			continue
+		if(isspaceturf(H.loc))
+			continue
+		. += H.job.jobworth[/datum/job/xenomorph]
+

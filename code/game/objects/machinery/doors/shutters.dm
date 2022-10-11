@@ -132,6 +132,9 @@
 	id = "sd_lockdown"
 	resistance_flags = RESIST_ALL
 
+/obj/machinery/door/poddoor/shutters/mainship/open/hangar
+	name = "\improper Hangar Shutters"
+	id = "hangar_shutters"
 
 /obj/machinery/door/poddoor/shutters/mainship/open/checkpoint
 	name = "Checkpoint Shutters"

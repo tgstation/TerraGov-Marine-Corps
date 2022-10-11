@@ -464,7 +464,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		if(!do_after(user, repair_time, TRUE, src, BUSY_ICON_BUILD))
 			user.cut_overlay(GLOB.welding_sparks)
 		user.visible_message(span_warning("\The [user] patches some dents on [src]'s [affecting.display_name]."), \
-			span_warning("You patch some dents on \the [src]'s [affecting.display_name]."))	
+			span_warning("You patch some dents on \the [src]'s [affecting.display_name]."))
 		if(affecting.heal_limb_damage(15, robo_repair = TRUE, updating_health = TRUE))
 			UpdateDamageIcon()
 		if(!I.tool_use_check(user, 2))

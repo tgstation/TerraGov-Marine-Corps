@@ -38,7 +38,9 @@
 	if(stealth)
 		cancel_stealth()
 		return TRUE
-
+	if(HAS_TRAIT_FROM(owner, TRAIT_TURRET_HIDDEN, STEALTH_TRAIT))   // stops stealth and disguise from stacking
+		owner.balloon_alert(owner, "already in a form of stealth!")
+		return
 	succeed_activate()
 	to_chat(owner, "<span class='xenodanger'>We vanish into the shadows...</span>")
 	last_stealth = world.time
@@ -203,7 +205,7 @@
 
 /datum/action/xeno_action/stealth/proc/plasma_regen(datum/source, list/plasma_mod)
 	SIGNAL_HANDLER
-	if(owner.last_move_intent > world.time - 20) //Stealth halves the rate of plasma recovery on weeds, and eliminates it entirely while moving
+	if(owner.last_move_intent < world.time - 20) //Stealth halves the rate of plasma recovery on weeds, and eliminates it entirely while moving
 		plasma_mod[1] *= 0.5
 	else
 		plasma_mod[1] = 0
@@ -216,7 +218,8 @@
 
 /datum/action/xeno_action/stealth/disguise
 	name = "Disguise"
-	mechanics_text = "Disguise yourself as the enemy. Uses plasma to move."
+	mechanics_text = "Disguise yourself as the enemy. Uses plasma to move. Select your disguise with Hunter's Mark."
+	keybind_signal = COMSIG_XENOABILITY_TOGGLE_DISGUISE
 	///the regular appearance of the hunter
 	var/old_appearance
 
@@ -226,7 +229,9 @@
 		return TRUE
 	var/mob/living/carbon/xenomorph/xenoowner = owner
 	var/datum/action/xeno_action/activable/hunter_mark/mark = xenoowner.actions_by_path[/datum/action/xeno_action/activable/hunter_mark]
-
+	if(HAS_TRAIT_FROM(owner, TRAIT_TURRET_HIDDEN, STEALTH_TRAIT))   // stops stealth and disguise from stacking
+		owner.balloon_alert(owner, "already in a form of stealth!")
+		return
 	if(!mark.marked_target)
 		to_chat(owner, span_warning("We have no target to disguise into!"))
 		return
@@ -235,12 +240,15 @@
 		return
 	old_appearance = xenoowner.appearance
 	ADD_TRAIT(xenoowner, TRAIT_MOB_ICON_UPDATE_BLOCKED, STEALTH_TRAIT)
+	xenoowner.update_wounds()
 	return ..()
 
 /datum/action/xeno_action/stealth/disguise/cancel_stealth()
 	. = ..()
 	owner.appearance = old_appearance
 	REMOVE_TRAIT(owner, TRAIT_MOB_ICON_UPDATE_BLOCKED, STEALTH_TRAIT)
+	var/mob/living/carbon/xenomorph/xenoowner = owner
+	xenoowner.update_wounds()
 
 /datum/action/xeno_action/stealth/disguise/handle_stealth()
 	var/mob/living/carbon/xenomorph/xenoowner = owner
@@ -250,7 +258,8 @@
 	//Retaining old rendering layer to prevent rendering under objects.
 	xenoowner.layer = old_layer
 	xenoowner.underlays.Cut()
-	xenoowner.use_plasma(owner.m_intent == MOVE_INTENT_WALK ? HUNTER_STEALTH_WALK_PLASMADRAIN : HUNTER_STEALTH_RUN_PLASMADRAIN)
+	if(owner.last_move_intent >= world.time - HUNTER_STEALTH_STEALTH_DELAY)
+		xenoowner.use_plasma(owner.m_intent == MOVE_INTENT_WALK ? HUNTER_STEALTH_WALK_PLASMADRAIN : HUNTER_STEALTH_RUN_PLASMADRAIN)
 	//If we have 0 plasma after expending stealth's upkeep plasma, end stealth.
 	if(!xenoowner.plasma_stored)
 		to_chat(xenoowner, span_xenodanger("We lack sufficient plasma to remain disguised."))
@@ -417,25 +426,40 @@
 /datum/action/xeno_action/mirage
 	name = "Mirage"
 	action_icon_state = "mirror_image"
-	mechanics_text = "Create mirror images of ourselves."
+	mechanics_text = "Create mirror images of ourselves. Reactivate to swap with an illusion."
 	ability_name = "mirage"
 	plasma_cost = 50
 	keybind_signal = COMSIG_XENOABILITY_MIRAGE
-	cooldown_timer = 40 SECONDS
+	cooldown_timer = 30 SECONDS
 	///How long will the illusions live
 	var/illusion_life_time = 10 SECONDS
 	///How many illusions are created
 	var/illusion_count = 3
 	/// List of illusions
 	var/list/mob/illusion/illusions = list()
+	/// If swap has been used during the current set of illusions
+	var/swap_used = FALSE
 
 /datum/action/xeno_action/mirage/remove_action()
 	clean_illusions()
 	return ..()
 
+/datum/action/xeno_action/mirage/can_use_action(silent = FALSE, override_flags)
+	. = ..()
+	if(swap_used)
+		if(!silent)
+			to_chat(owner, span_xenowarning("We already swapped with an illusion!"))
+		return FALSE
+
 /datum/action/xeno_action/mirage/action_activate()
 	succeed_activate()
-	add_cooldown()
+	if (!illusions.len)
+		spawn_illusions()
+	else
+		swap()
+
+/// Spawns a set of illusions around the hunter
+/datum/action/xeno_action/mirage/proc/spawn_illusions()
 	switch(owner.a_intent)
 		if(INTENT_HARM) //Escort us and attack nearby enemy
 			var/mob/illusion/xeno/center_illusion = new (owner.loc, owner, owner, illusion_life_time)
@@ -450,24 +474,21 @@
 /// Clean up the illusions list
 /datum/action/xeno_action/mirage/proc/clean_illusions()
 	illusions = list()
-
-/datum/action/xeno_action/swap
-	name = "Swap"
-	action_icon_state = "hyperposition"
-	mechanics_text = "Swap our position with an illusion."
-	plasma_cost = 50
-	keybind_signal = COMSIG_XENOABILITY_SWAP
-	cooldown_timer = 40 SECONDS
-
-/datum/action/xeno_action/swap/action_activate()
-	succeed_activate()
 	add_cooldown()
+	swap_used = FALSE
+
+/// Swap places of hunter and an illusion
+/datum/action/xeno_action/mirage/proc/swap()
+	swap_used = TRUE
 	var/mob/living/carbon/xenomorph/X = owner
-	X.playsound_local(X, 'sound/effects/swap.ogg', 10, 0, 1)
-	var/datum/action/xeno_action/mirage/mirage_action = X.actions_by_path[/datum/action/xeno_action/mirage]
-	if(!mirage_action?.illusions)
+
+	if(!illusions.len)
 		to_chat(X, span_xenowarning("We have no illusions to swap with!"))
-		return FALSE
+		return
+
+	X.playsound_local(X, 'sound/effects/swap.ogg', 10, 0, 1)
 	var/turf/current_turf = get_turf(X)
-	X.forceMove(get_turf(mirage_action.illusions[1].loc))
-	mirage_action.illusions[1].forceMove(current_turf)
+
+	var/mob/selected_illusion = illusions[1]
+	X.forceMove(get_turf(selected_illusion.loc))
+	selected_illusion.forceMove(current_turf)

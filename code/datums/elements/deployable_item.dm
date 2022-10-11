@@ -47,6 +47,8 @@
 ///Wrapper for proc/finish_deploy
 /datum/element/deployable_item/proc/deploy(mob/user, atom/object, turf/location, control, params)
 	SIGNAL_HANDLER
+	if(!isturf(location))
+		return
 	var/obj/item/item_in_active_hand = user.get_active_held_item()
 	if(!istype(item_in_active_hand, deployable_type))
 		return
@@ -66,7 +68,7 @@
 		if(!ishuman(user) || CHECK_BITFIELD(item_to_deploy.flags_item, NODROP))
 			return
 
-		if(item_to_deploy.check_blocked_turf(location))
+		if(LinkBlocked(get_turf(user), location))
 			location.balloon_alert(user, "No room to deploy")
 			return
 		if(user.do_actions)
@@ -77,7 +79,7 @@
 		var/newdir = user.dir //Save direction before the doafter for ease of deploy
 		if(!do_after(user, deploy_time, TRUE, item_to_deploy, BUSY_ICON_BUILD))
 			return
-		if(item_to_deploy.check_blocked_turf(location))
+		if(LinkBlocked(get_turf(user), location))
 			location.balloon_alert(user, "No room to deploy")
 			return
 		user.temporarilyRemoveItemFromInventory(item_to_deploy)

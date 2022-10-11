@@ -187,8 +187,8 @@
 	taste_multi = 1
 
 /datum/reagent/toxin/plantbgone/reaction_obj(obj/O, volume)
-	if(istype(O,/obj/effect/alien/weeds))
-		var/obj/effect/alien/A = O
+	if(istype(O,/obj/alien/weeds))
+		var/obj/alien/A = O
 		A.take_damage(min(0.5 * volume))
 	else if(istype(O,/obj/structure/glowshroom)) //even a small amount is enough to kill it
 		qdel(O)
@@ -557,7 +557,7 @@
 	RegisterSignal(L, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/transvitox_human_damage_taken)
 
 /datum/reagent/toxin/xeno_transvitox/on_mob_life(mob/living/L, metabolism)
-	var/fire_loss = L.getFireLoss()
+	var/fire_loss = L.getFireLoss(TRUE)
 	if(!fire_loss) //If we have no burn damage, cancel out
 		return ..()
 
@@ -597,7 +597,7 @@
 	if(tox_loss > DEFILER_TRANSVITOX_CAP) //If toxin levels are already at their cap, cancel out
 		return
 
-	L.setToxLoss(clamp(tox_loss + min(L.getBruteLoss() * 0.1 * tox_cap_multiplier, damage * 0.1 * tox_cap_multiplier), tox_loss, DEFILER_TRANSVITOX_CAP)) //Deal bonus tox damage equal to a % of the lesser of the damage taken or the target's brute damage; capped at DEFILER_TRANSVITOX_CAP.
+	L.setToxLoss(clamp(tox_loss + min(L.getBruteLoss(TRUE) * 0.1 * tox_cap_multiplier, damage * 0.1 * tox_cap_multiplier), tox_loss, DEFILER_TRANSVITOX_CAP)) //Deal bonus tox damage equal to a % of the lesser of the damage taken or the target's brute damage; capped at DEFILER_TRANSVITOX_CAP.
 
 /datum/reagent/toxin/xeno_sanguinal //deals brute damage and causes persistant bleeding. Causes additional damage for each other xeno chem in the system
 	name = "Sanguinal"

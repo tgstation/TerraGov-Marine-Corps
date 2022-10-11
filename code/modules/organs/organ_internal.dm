@@ -13,10 +13,8 @@
 	var/min_broken_damage = 30
 	var/parent_limb = "chest"
 	var/robotic = 0 //1 for 'assisted' organs (e.g. pacemaker), 2 for actual cyber organ.
-	var/cut_away = FALSE //internal organ has its links to the body severed, organ is ready to be removed.
 	var/removed_type //When removed, forms this object.
 	var/robotic_type //robotic version of removed_type, used in mechanize().
-	var/rejecting            // Is this organ already being rejected?
 	var/obj/item/organ/organ_holder // If not in a body, held in this item.
 	var/list/transplant_data
 	var/organ_id
@@ -251,6 +249,10 @@
 	var/current_medicine_cap = 5
 	///Whether we were over cap the last time we checked.
 	var/old_overflow = FALSE
+	///Total medicines added since last tick
+	var/new_medicines = 0
+	///Total medicines removed since last tick
+	var/removed_medicines = 0
 
 /datum/internal_organ/kidneys/New(mob/living/carbon/carbon_mob)
 	. = ..()
@@ -266,14 +268,14 @@
 	SIGNAL_HANDLER
 	if(!ispath(reagent_type, /datum/reagent/medicine))
 		return
-	current_medicine_count++
+	new_medicines++
 
 ///Signaled proc. Check if the removed reagent was under reagent/medicine. If so, decrement medicine counter and potentially notify owner.
 /datum/internal_organ/kidneys/proc/owner_removed_reagent(datum/source, reagent_type)
 	SIGNAL_HANDLER
 	if(!ispath(reagent_type, /datum/reagent/medicine))
 		return
-	current_medicine_count--
+	removed_medicines++
 
 /datum/internal_organ/kidneys/set_organ_status()
 	. = ..()
@@ -284,15 +286,19 @@
 /datum/internal_organ/kidneys/process()
 	..()
 
-	if(owner.reagents.has_reagent(/datum/reagent/water))
-		return //Hydration is good for your kidneys. Shame it purges medicines.
+	var/bypass = FALSE
 
-	if(owner.bodytemperature <= 170) //No sense worrying about a chem cap if we're in cryo anyway.
-		return
+	if(owner.bodytemperature <= 170) //No sense worrying about a chem cap if we're in cryo anyway. Still need to clear tick counts.
+		bypass = TRUE
 
-	var/overflow = current_medicine_count - current_medicine_cap
+	current_medicine_count += new_medicines //We want to include medicines that were individually both added and removed this tick
+	var/overflow = current_medicine_count - current_medicine_cap //This catches any case where a reagent was added with volume below its metabolism
+	current_medicine_count -= removed_medicines //Otherwise, you can microdose infinite chems without kidneys complaining
 
-	if(overflow < 1)
+	new_medicines = 0
+	removed_medicines = 0
+
+	if(overflow < 1 || bypass)
 		if(old_overflow)
 			to_chat(owner, span_notice("You don't feel as overwhelmed by all the drugs any more."))
 			old_overflow = FALSE

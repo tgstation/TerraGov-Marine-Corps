@@ -8,11 +8,16 @@
 	var/obj/item/item_type
 	/// If it's allowed to bypass the vendor check
 	var/bypass_vendor_check = FALSE
+	/// If the item is able to be greyscaled, saves the colors
+	var/greyscale_colors
 
 /datum/item_representation/New(obj/item/item_to_copy)
 	if(!item_to_copy)
 		return
 	item_type = item_to_copy.type
+	if(!item_to_copy.greyscale_config)
+		return
+	greyscale_colors = item_to_copy.greyscale_colors
 
 /**
  * This will attempt to instantiate an object.
@@ -31,6 +36,11 @@
 		to_chat(user, span_warning("[item_type] in your loadout is an invalid item, it has probably been changed or removed."))
 		return
 	var/obj/item/item = new item_type(master)
+
+	if(greyscale_colors)
+		item.set_greyscale_colors(greyscale_colors)
+		item.update_icon()
+
 	return item
 
 /**
@@ -38,7 +48,11 @@
  */
 /datum/item_representation/proc/get_tgui_data()
 	var/list/tgui_data = list()
-	var/icon/icon_to_convert = icon(initial(item_type.icon), initial(item_type.icon_state), SOUTH)
+	var/icon/icon_to_convert
+	if(greyscale_colors && initial(item_type.greyscale_config))
+		icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(item_type.greyscale_config), greyscale_colors), initial(item_type.icon_state), dir = SOUTH)
+	else
+		icon_to_convert = icon(initial(item_type.icon), initial(item_type.icon_state), SOUTH)
 	tgui_data["icons"] = list(list(
 				"icon" = icon2base64(icon_to_convert),
 				"translateX" = NO_OFFSET,

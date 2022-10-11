@@ -262,12 +262,14 @@
 	layer = LADDER_LAYER
 	light_range = 4
 	resistance_flags = RESIST_ALL //no delaminations here
+	opacity = TRUE
 
 /obj/structure/prop/mainship/doorblocker //doors that exist only to block access, used mostly for valhalla omegastation
 	name = "\improper Barred Airlock"
 	icon = 'icons/Marine/mainship_props.dmi'
 	resistance_flags = RESIST_ALL
 	desc = "It opens and closes."
+	opacity = TRUE
 
 /obj/structure/prop/mainship/doorblocker/maint
 	name = "\improper Maintenance Hatch"
@@ -288,6 +290,19 @@
 /obj/structure/prop/mainship/doorblocker/command
 	name = "\improper Command Airlock"
 	icon_state = "command_locked"
+
+/obj/structure/prop/mainship/doorblocker/patrol_base
+	name = "\improper Main Airlock"
+	icon_state = "command_locked"
+
+/obj/structure/prop/mainship/doorblocker/patrol_base/som
+	icon_state = "security_locked"
+
+/obj/structure/prop/mainship/doorblocker/patrol_base/wide_left
+	icon_state = "secure_wide_left_locked"
+
+/obj/structure/prop/mainship/doorblocker/patrol_base/wide_right
+	icon_state = "secure_wide_right_locked"
 
 /obj/structure/prop/mainship/telecomms
 	name = "\improper Command Airlock"
@@ -345,6 +360,39 @@
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "carpprop"
 	density = TRUE
+
+/obj/structure/prop/mainship/prop_sec
+	name = "Security Officer"
+	desc = "A NT security officer guarding the perimeter. They look rather busy and pays no attention to you."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "secprop"
+	resistance_flags = RESIST_ALL
+	density = TRUE
+
+/obj/structure/prop/mainship/prop_so
+	name = "Officer"
+	desc = "A staff officer in charge of the ongoing operation, either too busy operating the observation consoles or simply looking at you and your comrades and hoping that you will succeed, that being said, it's best to leave them be."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "officerprop"
+	resistance_flags = RESIST_ALL
+	density = TRUE
+
+/obj/structure/prop/mainship/prop_tech
+	name = "Technician"
+	desc = "A hard working technician maintaining the vehicles of the base, as well as the base itself. They seem to be very busy investigating something right now."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "techieprop"
+	resistance_flags = RESIST_ALL
+	density = TRUE
+
+/obj/structure/prop/mainship/prop_sominf
+	name = "SOM Infantry"
+	desc = "Standard Sons of Mars infantry with a V-31 assault rifle on hand. While their face is obscured by the visor, it feels like you should keep going instead of loitering around."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "som_inf"
+	resistance_flags = RESIST_ALL
+	density = TRUE
+
 
 /obj/structure/prop/templedoor
 	name = "Strange Temple"
@@ -463,6 +511,61 @@
 	icon_state =  "pump_on"
 	layer = GAS_PUMP_LAYER
 
+/obj/structure/prop/mainship/halfbuilt_mech
+	name = "half-assembled mech"
+	desc = "A half-assembled mech. It's missing limbs and the maintenance ports are open. You probably shouldn't screw with it."
+	icon_state = ""
+	pixel_x = -16
+	/// selected parts you want displayed. remove parts if you dont want them
+	var/selected_parts = list(
+		MECH_GREY_TORSO = MECH_ASSAULT,
+		MECH_GREY_LEGS = MECH_ASSAULT,
+		MECH_GREY_L_ARM = MECH_ASSAULT,
+	)
+
+/obj/structure/prop/mainship/halfbuilt_mech/Initialize()
+	. = ..()
+	var/default_colors = MECH_GREY_PRIMARY_DEFAULT + MECH_GREY_SECONDARY_DEFAULT
+	var/default_visor = MECH_GREY_VISOR_DEFAULT
+	var/new_overlays = list()
+	for(var/slot in selected_parts)
+		var/datum/mech_limb/head/typepath = get_mech_limb(slot, selected_parts[slot])
+		if(slot == MECH_GREY_L_ARM || slot == MECH_GREY_R_ARM)
+			var/iconstate = "left"
+			if(slot == MECH_GREY_R_ARM)
+				iconstate = "right"
+			new_overlays += iconstate2appearance(SSgreyscale.GetColoredIconByType(initial(typepath.greyscale_type), default_colors), iconstate)
+			continue
+		new_overlays += icon2appearance(SSgreyscale.GetColoredIconByType(initial(typepath.greyscale_type), default_colors))
+		if(slot == MECH_GREY_HEAD)
+			new_overlays += icon2appearance(SSgreyscale.GetColoredIconByType(initial(typepath.visor_config), default_visor))
+	overlays = new_overlays
+
+/obj/structure/prop/mainship/halfbuilt_mech/legs
+	desc = "Leg."
+	selected_parts = list(
+		MECH_GREY_LEGS = MECH_RECON,
+	)
+
+/obj/structure/prop/mainship/halfbuilt_mech/vanguard
+	selected_parts = list(
+		MECH_GREY_TORSO = MECH_VANGUARD,
+		MECH_GREY_HEAD = MECH_VANGUARD,
+		MECH_GREY_LEGS = MECH_VANGUARD,
+		MECH_GREY_L_ARM = MECH_VANGUARD,
+	)
+
+/obj/structure/prop/mainship/halfbuilt_mech/vanguard_finished
+	name = "Vanguard mech"
+	desc = "An advanced vanguard chassis mech. It's a recent advancement in military hardware only been in service for a short time and not in mass production yet."
+	selected_parts = list(
+		MECH_GREY_TORSO = MECH_VANGUARD,
+		MECH_GREY_HEAD = MECH_VANGUARD,
+		MECH_GREY_LEGS = MECH_VANGUARD,
+		MECH_GREY_L_ARM = MECH_VANGUARD,
+		MECH_GREY_R_ARM = MECH_VANGUARD,
+	)
+
 //items props
 
 /obj/item/prop
@@ -470,11 +573,6 @@
 	desc = "THIS SHOULDN'T BE VISIBLE, AHELP 'ART-P03' IF SEEN IN ROUND WITH LOCATION"
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "hangarbox"
-
-/obj/item/prop/aimodule
-	name = "AI module"
-	desc = "An AI Module for programming laws to an AI."
-	icon_state = "std_mod"
 
 /obj/item/prop/organ
 	name = "organ"
@@ -510,6 +608,11 @@
 	name = "liver"
 	icon_state = "liver"
 
+/obj/item/prop/aimodule
+	name = "AI module"
+	desc = "An AI Module for programming laws to an AI."
+	icon_state = "std_mod"
+
 /obj/item/prop/aimodule/Initialize(mapload)
 	. = ..()
 	name = pick("'Safeguard' AI Module'",
@@ -539,6 +642,22 @@
 				"'Peacekeeper' Core AI Module",
 				"'H.O.G.A.N.' Core AI Module",
 	)
+
+/obj/item/prop/dogtag
+	name = "John Doe" //generic name
+	desc = "The remains of a marine long dead, you hope they found peace."
+	icon = 'icons/obj/items/card.dmi'
+	icon_state = "dogtag"
+
+/obj/item/prop/dogtag/pfcjim
+	name = "PFC Jim's dog tag"
+	desc = "Whoever PFC Jim is, you hope made it out alive."
+	icon = 'icons/obj/items/card.dmi'
+	icon_state = "dogtag"
+
+/obj/item/prop/dogtag/random/Initialize()
+	. = ..()
+	name = GLOB.namepool[/datum/namepool].get_random_name(pick(MALE, FEMALE))
 
 ///BROKEN MARINE VENDOR PROPS
 
@@ -604,11 +723,15 @@
 	icon = 'icons/obj/structures/vehicles.dmi'
 	icon_state = "van"
 	density = TRUE
-	coverage = 70
+	coverage = 80
 	bound_height = 32
 	bound_width = 64
 	resistance_flags = RESIST_ALL
 	layer = ABOVE_MOB_LAYER
+
+/obj/structure/prop/vehicle/van/destructible
+	max_integrity = 200
+	resistance_flags = XENO_DAMAGEABLE
 
 /obj/structure/prop/vehicle/truck
 	name = "truck"
@@ -616,29 +739,44 @@
 	icon = 'icons/obj/structures/vehicles.dmi'
 	icon_state = "truck"
 	density = TRUE
-	coverage = 70
+	coverage = 80
 	bound_height = 32
 	bound_width = 64
 	resistance_flags = RESIST_ALL
 	layer = ABOVE_MOB_LAYER
 
+/obj/structure/prop/vehicle/truck/destructible
+	max_integrity = 150
+	resistance_flags = XENO_DAMAGEABLE
+
 /obj/structure/prop/vehicle/truck/truckcargo
 	icon_state = "truck_cargo"
 
+/obj/structure/prop/vehicle/truck/truckcargo/destructible
+	max_integrity = 200
+	resistance_flags = XENO_DAMAGEABLE
 /obj/structure/prop/vehicle/crane
 	name = "crane"
 	desc = "An old crane, seems to be broken down."
 	icon = 'icons/obj/structures/vehicles.dmi'
 	icon_state = "crane"
 	density = TRUE
-	coverage = 70
+	coverage = 80
 	bound_height = 64
 	bound_width = 64
 	resistance_flags = RESIST_ALL
 	layer = ABOVE_MOB_LAYER
 
+/obj/structure/prop/vehicle/crane/destructible
+	max_integrity = 300
+	resistance_flags = XENO_DAMAGEABLE
+
 /obj/structure/prop/vehicle/crane/cranecargo
 	icon_state = "crane_cargo"
+
+/obj/structure/prop/vehicle/crane/cranecargo/destructible
+	max_integrity = 300
+	resistance_flags = XENO_DAMAGEABLE
 
 /obj/structure/prop/vehicle/crawler
 	name = "crawler"
@@ -646,11 +784,16 @@
 	icon = 'icons/obj/structures/vehicles.dmi'
 	icon_state = "crawler"
 	density = TRUE
-	coverage = 70
+	coverage = 80
 	bound_height = 32
 	bound_width = 64
 	resistance_flags = RESIST_ALL
 	layer = ABOVE_MOB_LAYER
+
+/obj/structure/prop/vehicle/crawler/destructible
+	max_integrity = 200
+	resistance_flags = XENO_DAMAGEABLE
+
 
 /obj/structure/prop/vehicle/crawler/crawler_blue
 	icon_state = "crawler_crate_b"
@@ -1055,3 +1198,179 @@
 
 /obj/structure/prop/vehicle/apc/decoration/emptyfuelcell
 	icon_state = "emptyfuelcell"
+
+/obj/structure/prop/mainship/gelida/propplaceholder
+	name = "prop placeholder"
+	desc = "Somebody fucked up, ping the map creator on Discord with the location of this object."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "placeholderprop"
+
+/obj/structure/prop/mainship/gelida/smallwire
+	name = "small wire"
+	desc = "A small patch of wiring used for cordoning off areas."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "small_wire"
+	density = FALSE
+
+/obj/structure/prop/mainship/gelida/lightstick
+	name = "light stick"
+	desc = "A post with an empty bulb at the top, used for lighting areas of dense snow."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "lightstick_spoke1"
+	density = FALSE
+
+/obj/structure/prop/mainship/gelida/planterbox
+	name = "plant box"
+	desc = "A metallic box used for holding growing plants, this one is empty."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "planter_box_empty"
+	layer = BELOW_OBJ_LAYER
+
+/obj/structure/prop/mainship/gelida/planterboxsoil
+	name = "plant box"
+	desc = "A metallic box used for holding growing plants, this one is filled with soil."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "planter_box_soil"
+	layer = BELOW_OBJ_LAYER
+
+/obj/structure/prop/mainship/gelida/planterboxsoilgrid
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "soil_grid"
+	layer = BELOW_OBJ_LAYER
+
+/obj/structure/prop/mainship/gelida/propserver
+	name = "colony research server"
+	desc = "This machine sits quietly, you can see a warning light faintly shining on its diagnostic panel."
+	icon = 'icons/obj/machines/telecomms.dmi'
+	icon_state = "comm_server_off"
+
+/obj/structure/prop/mainship/gelida/propserveralt
+	name = "colony research server"
+	desc = "This machine sits quietly, you can see a warning light faintly shining on its diagnostic panel."
+	icon = 'icons/obj/machines/research.dmi'
+	icon_state = "server_alt"
+
+/obj/structure/prop/mainship/gelida/barrier
+	name = "security barrier"
+	desc = "A deployable barrier used by security forces to cordone off an area."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "barrier0"
+
+/obj/structure/prop/mainship/gelida/heavycablenode
+	name = "heavy cable node"
+	desc = "A heavy cable node used for linking high performance cables between buildings."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "node"
+	density = FALSE
+
+/obj/structure/prop/mainship/gelida/powerconnector
+	name = "heavy cable power connector"
+	desc = "A heavy cable node used for connecting high performance cables between buildings."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "powerconnector"
+	layer = ATMOS_PIPE_LAYER
+	density = FALSE
+
+/obj/structure/prop/mainship/gelida/powerccable
+	name = "heavy cable wiring"
+	desc = "A heavy cable wire used rapid data transfer between buildings."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "powercableheavy"
+	layer = ATMOS_PIPE_LAYER
+	density = FALSE
+
+/obj/structure/prop/mainship/gelida/powercconnectortwoside
+	name = "heavy cable wiring"
+	desc = "A heavy cable wire used rapid data transfer between buildings."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "powerconnectortwoside"
+	layer = ATMOS_PIPE_LAYER
+	density = FALSE
+
+/obj/structure/prop/mainship/gelida/powercconnectortwosidealt
+	name = "heavy cable wiring"
+	desc = "A heavy cable wire used rapid data transfer between buildings."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "powerconnectortwosidealt"
+	layer = ATMOS_PIPE_LAYER
+	density = FALSE
+
+/obj/structure/prop/mainship/gelida/powercconnectorthreeside
+	name = "heavy cable wiring"
+	desc = "A heavy cable wire used rapid data transfer between buildings."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "powerconnectorthreeside"
+	layer = ATMOS_PIPE_LAYER
+	density = FALSE
+
+/obj/structure/prop/mainship/gelida/powercconnectorfourside
+	name = "heavy cable wiring"
+	desc = "A heavy cable wire used rapid data transfer between buildings."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "powerconnectorfourside"
+	layer = ATMOS_PIPE_LAYER
+	density = FALSE
+
+/obj/structure/prop/mainship/gelida/rails
+	name = "minecart rails"
+	desc = "Metal rails used for guiding a minecart."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "rail"
+	layer = BELOW_TABLE_LAYER
+	density = FALSE
+
+/obj/structure/prop/mainship/gelida/railbumper
+	name = "minecart rail bumper"
+	desc = "A metal bumper designed to catch out of control minecarts."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "rail_bumpers"
+	layer = BELOW_TABLE_LAYER
+	density = FALSE
+
+/obj/structure/prop/mainship/gelida/register
+	name = "register"
+	desc = "An antique cash register, it accepts only hard currency, not spacecredits."
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "register_static"
+	density = FALSE
+
+/obj/structure/prop/mainship/gelida/propladder
+	name = "ladder"
+	desc = "The ladder sways precariously, its connection to the upper floor severed by a large chunk of sharp metal."
+	icon = 'icons/obj/structures/structures.dmi'
+	icon_state = "ladder11"
+
+/obj/structure/prop/mainship/gelida/miner
+	name = "miner"
+	desc = "The machine stands inert, waiting for the command to begin extracting natural resources from the earth below."
+	icon = 'icons/Marine/mainship_props96.dmi'
+	icon_state = "thumper"
+
+/obj/structure/prop/radio_prop
+	name = "radio"
+	desc = "A standard military radio."
+	icon = 'icons/obj/items/radio.dmi'
+	icon_state = "beacon"
+	var/datum/looping_sound/radio/chatter_loop
+
+/obj/structure/prop/radio_prop/Initialize(mapload, ...)
+	. = ..()
+	chatter_loop = new(null, FALSE)
+	chatter_loop.start(src)
+
+/obj/structure/prop/radio_prop/Destroy()
+	QDEL_NULL(chatter_loop)
+	return ..()
+
+/obj/structure/prop/vehicle/som_mech
+	name = "Marauder assault mech"
+	desc = "A heavily armed mech used by the SOM to spearhead an assault, this one seems to be non-functional."
+	icon = 'icons/Marine/mech_prop.dmi'
+	icon_state = "som_mech"
+	density = TRUE
+	coverage = 70
+	bound_width = 32
+	pixel_x = -15
+	pixel_y = -15
+	resistance_flags = RESIST_ALL
+	layer = ABOVE_MOB_LAYER

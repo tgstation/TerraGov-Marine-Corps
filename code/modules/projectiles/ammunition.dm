@@ -167,7 +167,6 @@
 		user.put_in_hands(new_handful)
 		to_chat(user, span_notice("You grab <b>[rounds]</b> round\s from [src]."))
 		update_icon() //Update the other one.
-		user?.hud_used.update_ammo_hud(user, src)
 		if(current_rounds <= 0 && CHECK_BITFIELD(flags_magazine, MAGAZINE_HANDFUL))
 			user.temporarilyRemoveItemFromInventory(src)
 			qdel(src)
@@ -236,6 +235,29 @@
 	current_rounds = 5
 	default_ammo = /datum/ammo/bullet/shotgun/buckshot
 	caliber = CALIBER_12G
+
+/obj/item/ammo_magazine/handful/micro_grenade
+	name = "handful of airburst micro grenades (10g)"
+	icon_state = "micro_grenade_airburst"
+	current_rounds = 3
+	max_rounds = 3
+	default_ammo = /datum/ammo/bullet/micro_rail/airburst
+	caliber = CALIBER_10G_RAIL
+
+/obj/item/ammo_magazine/handful/micro_grenade/dragonbreath
+	name = "handful of dragon's breath micro grenades (10g)"
+	icon_state = "micro_grenade_incendiary"
+	default_ammo = /datum/ammo/bullet/micro_rail/dragonbreath
+
+/obj/item/ammo_magazine/handful/micro_grenade/cluster
+	name = "handful of clustermunition micro grenades (10g)"
+	icon_state = "micro_grenade_cluster"
+	default_ammo = /datum/ammo/bullet/micro_rail/cluster
+
+/obj/item/ammo_magazine/handful/micro_grenade/smoke_burst
+	name = "handful of smoke burst micro grenades (10g)"
+	icon_state = "micro_grenade_smoke"
+	default_ammo = /datum/ammo/bullet/micro_rail/smoke_burst
 
 /obj/item/ammo_magazine/handful/flechette
 	name = "handful of shotgun flechette shells (12g)"

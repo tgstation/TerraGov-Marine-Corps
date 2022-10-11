@@ -157,6 +157,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/obj/effect/temp_visual/banishment_portal/portal = null
 	///Backup coordinates to teleport the banished to, in case the portal gets destroyed (shuttles!!)
 	var/list/backup_coordinates = list(0,0,0)
+	/// living mobs in the banished object so we can check they didnt get ejected
+	var/list/mob/living/contained_living = list()
 	///The timer ID of any Banish currently active
 	var/banish_duration_timer_id
 	///Phantom zone reserved area
@@ -171,7 +173,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /datum/action/xeno_action/activable/banish/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 
-	if(!ismovableatom(A) || iseffect(A) || CHECK_BITFIELD(A.resistance_flags, INDESTRUCTIBLE) || CHECK_BITFIELD(A.resistance_flags, BANISH_IMMUNE)) //Cannot banish non-movables/things that are supposed to be invul; also we ignore effects
+	if(!ismovableatom(A) || iseffect(A) || istype(A, /obj/alien) || CHECK_BITFIELD(A.resistance_flags, INDESTRUCTIBLE) || CHECK_BITFIELD(A.resistance_flags, BANISH_IMMUNE)) //Cannot banish non-movables/things that are supposed to be invul; also we ignore effects
 		if(!silent)
 			to_chat(owner, span_xenowarning("We cannot banish this!"))
 		return FALSE
@@ -225,8 +227,11 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		var/mob/living/carbon/xenomorph/xeno_target = banishment_target
 		xeno_target.eject_victim()
 
-	for(var/mob/living/living_contents in banishment_target.contents) //Safety measure so living mobs inside the target don't get lost in Brazilspace forever
-		living_contents.forceMove(banished_turf)
+	for(var/mob/living/living_contents in banishment_target.GetAllContents()) //Safety measure so living mobs inside the target don't get lost in Brazilspace forever
+		contained_living += living_contents
+		living_contents.apply_status_effect(/datum/status_effect/incapacitating/unconscious)
+		living_contents.notransform = TRUE
+		living_contents.overlay_fullscreen("banish", /obj/screen/fullscreen/blind)
 
 	banishment_target.forceMove(target_turf)
 
@@ -277,23 +282,35 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	SIGNAL_HANDLER
 	if(QDELETED(banishment_target))
 		return
-	if(get_turf(portal))
-		banishment_target.forceMove(get_turf(portal))
-	else //The portal got removed. There's no way back. Ohgodohfuck.
-		banishment_target.forceMove(locate(backup_coordinates[1], backup_coordinates[2], backup_coordinates[3]))
+	var/turf/return_turf = get_turf(portal)
+	if(!return_turf)
+		return_turf = locate(backup_coordinates[1], backup_coordinates[2], backup_coordinates[3])
+	banishment_target.forceMove(return_turf)
+
+	var/list/all_contents = banishment_target.GetAllContents()
+	for(var/mob/living/living_contents AS in contained_living)
+		if(QDELETED(living_contents))
+			continue
+		living_contents.remove_status_effect(/datum/status_effect/incapacitating/unconscious)
+		living_contents.notransform = initial(living_contents.notransform)
+		living_contents.clear_fullscreen("banish")
+		if(living_contents in all_contents)
+			continue //if it is still inside then it is not stranded and we dont care
+		living_contents.forceMove(return_turf)
+	contained_living.Cut()
 
 	banishment_target.resistance_flags = initial(banishment_target.resistance_flags)
 	banishment_target.status_flags = initial(banishment_target.status_flags) //Remove stasis and temp invulerability
-	teleport_debuff_aoe(banishment_target) //Debuff/distortion when we reappear
-	banishment_target.add_filter("wraith_banishment_filter", 3, list("type" = "blur", 5)) //Cool filter appear
-	addtimer(CALLBACK(banishment_target, /atom.proc/remove_filter, "wraith_banishment_filter"), 1 SECONDS) //1 sec blur duration
+	teleport_debuff_aoe(banishment_target)
+	banishment_target.add_filter("wraith_banishment_filter", 3, list("type" = "blur", 5))
+	addtimer(CALLBACK(banishment_target, /atom.proc/remove_filter, "wraith_banishment_filter"), 1 SECONDS)
 
 	if(isliving(banishment_target))
 		var/mob/living/living_target = banishment_target
 		living_target = banishment_target
-		living_target.remove_status_effect(/datum/status_effect/incapacitating/unconscious) //Force the target to KO
+		living_target.remove_status_effect(/datum/status_effect/incapacitating/unconscious)
 		living_target.notransform = initial(living_target.notransform)
-		living_target.clear_fullscreen("banish") //Remove the blind overlay
+		living_target.clear_fullscreen("banish")
 
 	banishment_target.visible_message(span_warning("[banishment_target.name] abruptly reappears!"), \
 	span_warning("You suddenly reappear back in what you believe to be reality."))
@@ -544,6 +561,9 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /// Signal handler to teleport the crossing atom when its move is done
 /obj/effect/wraith_portal/proc/do_teleport_atom(atom/movable/crosser)
 	SIGNAL_HANDLER
+	for(var/mob/rider AS in crosser.buckled_mobs)
+		if(ishuman(rider))
+			crosser.unbuckle_mob(rider)
 	crosser.Move(get_turf(linked_portal), crosser.dir)
 	UnregisterSignal(crosser, COMSIG_MOVABLE_MOVED)
 
@@ -559,8 +579,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		return
 	if(!linked_portal) // A lot of racing conditions here
 		return
-	bullet.permutated.Cut()
-	bullet.fire_at(shooter = linked_portal, range = max(bullet.proj_max_range - bullet.distance_travelled, 0), angle = bullet.dir_angle, recursivity = TRUE)
+	bullet.fire_at(shooter = bullet.firer, range = max(bullet.proj_max_range - bullet.distance_travelled, 0), angle = bullet.dir_angle, recursivity = TRUE, loc_override = get_turf(linked_portal))
 
 /obj/effect/portal_effect
 	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE
@@ -669,6 +688,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	targeted.remove_filter("prerewind_blur")
 	UnregisterSignal(targeted, COMSIG_MOVABLE_MOVED)
 	if(QDELETED(targeted) || targeted.stat != CONSCIOUS)
+		REMOVE_TRAIT(targeted, TRAIT_TIME_SHIFTED, XENO_TRAIT)
 		targeted = null
 		return
 	targeted.add_filter("rewind_blur", 1, radial_blur_filter(0.3))

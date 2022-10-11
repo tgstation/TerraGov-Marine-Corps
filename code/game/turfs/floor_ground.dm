@@ -88,6 +88,17 @@
 	barefootstep = FOOTSTEP_GRASS
 	mediumxenofootstep = FOOTSTEP_GRASS
 
+/turf/open/ground/grasspatch
+	name = "grass"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "grass1"
+	shoefootstep = FOOTSTEP_GRASS
+	barefootstep = FOOTSTEP_GRASS
+	mediumxenofootstep = FOOTSTEP_GRASS
+
+/turf/open/ground/grasspatch/grassyellow
+	color = "#ffb682"
+
 /turf/open/ground/grass/grass2
 	icon_state = "grass2"
 
@@ -111,6 +122,15 @@
 // Big Red
 
 
+/turf/open/floor/plating/ground/fakesnow
+	name = "shallow snow"
+	icon = 'icons/turf/snow2.dmi'
+	icon_state = "snow_1"
+
+/turf/open/floor/plating/ground/fakesnow/alt
+	name = "deep snow"
+	icon = 'icons/turf/snow2.dmi'
+	icon_state = "snow_2"
 
 /turf/open/floor/plating/ground/mars
 	icon = 'icons/turf/bigred.dmi'
@@ -123,6 +143,9 @@
 
 	name = "cave"
 	icon_state = "mars_cave"
+
+/turf/open/floor/plating/ground/mars/random/cave/darker
+	color = "#948a7c"
 
 /turf/open/floor/plating/ground/mars/random/cave/rock
 	name = "cave"
