@@ -70,7 +70,7 @@
 	desc = "You shouldnt be seeing this"
 	equipment_slot = MECHA_UTILITY
 	///if given, a single flag of who we want this ability to be granted to
-	var/flag_controller
+	var/flag_controller = NONE
 	///typepath of ability we want to grant
 	var/ability_to_grant
 	///reference to image that is used as an overlay
