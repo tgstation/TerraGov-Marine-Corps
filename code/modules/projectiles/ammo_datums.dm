@@ -762,7 +762,7 @@ datum/ammo/bullet/revolver/tp44
 	max_range = 15
 	damage = 100
 	penetration = 20
-	sundering = 15
+	sundering = 7.5
 
 /datum/ammo/bullet/shotgun/slug/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, weaken = 1, stagger = 2, knockback = 1, slowdown = 2)
@@ -816,7 +816,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 50
 	damage_falloff = 0.5
 	penetration = 15
-	sundering = 3
+	sundering = 7
 
 /datum/ammo/bullet/shotgun/flechette_spread
 	name = "additional flechette"
@@ -828,7 +828,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 40
 	damage_falloff = 1
 	penetration = 25
-	sundering = 2.5
+	sundering = 5
 
 /datum/ammo/bullet/shotgun/buckshot
 	name = "shotgun buckshot shell"
