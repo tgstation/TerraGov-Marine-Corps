@@ -290,6 +290,8 @@
 		return
 	var/obj/item/weapon/gun/internal_gun = internal_item
 	internal_gun.stop_fire() //Comrade sentry has been sent to the gulags. He served the revolution well.
+	firing = FALSE
+	update_minimap_icon()
 	visible_message(span_highdanger("The [name] is knocked over!"))
 	sentry_alert(SENTRY_ALERT_FALLEN)
 	ENABLE_BITFIELD(machine_stat, KNOCKED_DOWN)
@@ -367,6 +369,7 @@
 		var/obj/item/weapon/gun/gun = internal_item
 		gun.stop_fire()
 		firing = FALSE
+		update_minimap_icon()
 		return
 	playsound(loc, 'sound/items/detector.ogg', 25, FALSE)
 
@@ -394,6 +397,8 @@
 		INVOKE_ASYNC(internal_gun, /obj/item/weapon/gun.proc/do_unique_action)
 	if(!CHECK_BITFIELD(internal_gun.flags_item, IS_DEPLOYED) || get_dist(src, gun_target) > range || (!CHECK_BITFIELD(get_dir(src, gun_target), dir) && !CHECK_BITFIELD(internal_gun.turret_flags, TURRET_RADIAL)) || !check_target_path(gun_target))
 		internal_gun.stop_fire()
+		firing = FALSE
+		update_minimap_icon()
 		return
 	if(internal_gun.gun_firemode != GUN_FIREMODE_SEMIAUTO)
 		return
