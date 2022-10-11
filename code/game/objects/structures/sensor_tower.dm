@@ -124,13 +124,13 @@
 		balloon_alert(user, "This sensor tower is currently activating!")
 		return
 	if(already_activated)
-		balloon_alert(user, "Theres already a sensor tower being activated!")
+		balloon_alert(user, "There's already a sensor tower being activated!")
 		return
 	balloon_alert_to_viewers("You start to activate this sensor tower!")
 	if(!do_after(user, activate_time, TRUE, src))
 		return
 	if(already_activated)
-		balloon_alert(user, "Theres already a sensor tower being activated!")
+		balloon_alert(user, "There's already a sensor tower being activated!")
 		return
 	balloon_alert_to_viewers("You activate this sensor tower!")
 	begin_activation()
