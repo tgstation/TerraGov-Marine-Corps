@@ -124,7 +124,7 @@
 /// Toggles the link depending on whether the linked xenos are still in range or not.
 /datum/status_effect/stacking/essence_link/proc/handle_dist(datum/source)
 	SIGNAL_HANDLER
-	var/within_range = get_dist(link_owner, link_target) <= DRONE_ESSENCE_LINK_RANGE
+	within_range = get_dist(link_owner, link_target) <= DRONE_ESSENCE_LINK_RANGE
 	if(within_range == was_within_range)
 		return
 	was_within_range = within_range
@@ -202,9 +202,8 @@
 
 /// Updates the link's appearance.
 /datum/status_effect/stacking/essence_link/proc/update_beam()
-	var/beam_color = round(255 / (max_stacks+1 - stacks)) // 255 is the maximum rgb value possible. We divide that by the missing amount stacks.
-	for(var/obj/effect/ebeam/beam_visual AS in current_beam.visuals)
-		beam_visual.color = rgb(beam_color, beam_color, beam_color, beam_color) // try me
+	var/beam_alpha = round(255 / (max_stacks+1 - stacks)) // 255 is the maximum value possible. We divide that by the missing amount of stacks.
+	current_beam.visuals.alpha = beam_alpha
 
 // ***************************************
 // *********** Salve Regeneration
@@ -318,17 +317,20 @@
 	SIGNAL_HANDLER
 	if(essence_link_action.existing_link.within_range == essence_link_action.existing_link.was_within_range)
 		return
+	message_admins("da thang doin a thinf")
 	toggle_buff(essence_link_action.existing_link.was_within_range ? (TRUE) : (FALSE))
 
 /// Toggles the buff on or off.
 /datum/status_effect/drone_enhancement/proc/toggle_buff(toggle)
 	if(!toggle)
+		message_admins("da thang on")
 		buff_owner.xeno_melee_damage_modifier = initial(buff_owner.xeno_melee_damage_modifier)
 		buff_owner.remove_movespeed_modifier(MOVESPEED_ID_ENHANCEMENT)
 		toggle_particles(FALSE)
 		return
 	buff_owner.xeno_melee_damage_modifier = damage_addition
 	buff_owner.add_movespeed_modifier(MOVESPEED_ID_ENHANCEMENT, TRUE, 0, NONE, FALSE, speed_addition)
+	message_admins("da thang off")
 	toggle_particles(TRUE)
 
 /// Toggles particles on or off, adjusting their positioning to fit the buff's owner.
