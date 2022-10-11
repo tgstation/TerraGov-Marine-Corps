@@ -178,7 +178,7 @@
 	plasma_cost = 0
 	cooldown_timer = 20 SECONDS
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BURROW
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BURROW,
 	)
 	use_state_flags = XACT_USE_BURROWED
 
