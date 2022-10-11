@@ -131,8 +131,6 @@ SUBSYSTEM_DEF(vote)
 	if(!.)
 		return
 	var/restart = FALSE
-	var/datum/game_mode/current_gamemode
-	var/datum/game_mode/new_gamemode
 	switch(mode)
 		if("restart")
 			if(. == "Restart Round")
@@ -146,8 +144,8 @@ SUBSYSTEM_DEF(vote)
 			else
 				var/ship_change_required
 				var/ground_change_required
-				current_gamemode = config.pick_mode(GLOB.master_mode)
-				new_gamemode = config.pick_mode(.)
+				var/datum/game_mode/current_gamemode = config.pick_mode(GLOB.master_mode)
+				var/datum/game_mode/new_gamemode = config.pick_mode(.)
 				GLOB.master_mode = . //changes the current gamemode
 				//we check the gamemode's whitelists and blacklists to see if a map change and restart is required
 				if(!(new_gamemode.white_list_ship_maps && (SSmapping.configs[SHIP_MAP].map_name in new_gamemode.white_list_ship_maps)) && !(new_gamemode.black_list_ship_maps && !(SSmapping.configs[SHIP_MAP].map_name in new_gamemode.black_list_ship_maps)))
