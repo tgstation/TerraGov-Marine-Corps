@@ -1269,16 +1269,16 @@
 
 /datum/reagent/medicine/research/medicalnanites/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
-		if(1 to 150)
+		if(1 to 75)
 			L.take_limb_damage(0.015*current_cycle*effect_str, 0.015*current_cycle*effect_str)
 			L.adjustToxLoss(1*effect_str)
 			L.adjustStaminaLoss((1.5)*effect_str)
-			L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.20)
+			L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.40)
 			if(prob(5))
 				to_chat(L, span_notice("You feel intense itching!"))
-		if(151)
+		if(76)
 			to_chat(L, span_warning("The pain rapidly subsides. Looks like they've adapted to you."))
-		if(152 to INFINITY)
+		if(77 to INFINITY)
 			if(volume < 30) //smol injection will self-replicate up to 30u using 240u of blood.
 				L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.15)
 				L.blood_volume -= 2
