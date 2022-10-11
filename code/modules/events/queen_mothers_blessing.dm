@@ -14,6 +14,9 @@
 	return ..()
 
 /datum/round_event/queen_mothers_blessing/start()
+	var/sound/queen_sound = sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS)
+	for(var/mob/living/carbon/xenomorph/receiving_xeno in GLOB.alive_xeno_list)
+		SEND_SOUND(receiving_xeno, queen_sound)
 	for(var/mob/living/carbon/xenomorph/X in shuffle(GLOB.alive_xeno_list))
 		if(isxenolarva(X))
 			continue
@@ -30,9 +33,5 @@
 	X.adjustFireLoss(-QM_HEAL_AMOUNT, updating_health = TRUE)
 	X.adjust_sunder(-QM_HEAL_AMOUNT/20)
 	xeno_message("The Queen Mother has blessed [X], may they do great things for the hive.")
-	priority_announce("Sensors have detected a malevolent psychic force hovering over the battlefield, surely this doesn't bode well for us...")
-	var/sound/queen_sound = sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS)
-	for(var/mob/living/carbon/xenomorph/T in (GLOB.alive_xeno_list))
-		SEND_SOUND(T, queen_sound)
 
 #undef QM_HEAL_AMOUNT
