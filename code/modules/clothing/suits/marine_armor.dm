@@ -394,7 +394,7 @@
 	name = "\improper M4 pattern PMC armor"
 	desc = "A common armor vest that is designed for high-profile security operators and corporate mercenaries in mind."
 	icon_state = "pmc_armor"
-	soft_armor = list(MELEE = 45, BULLET = 60, LASER = 60, ENERGY = 38, BOMB = 40, BIO = 15, "rad" = 15, FIRE = 38, ACID = 45)
+	soft_armor = list(MELEE = 55, BULLET = 70, LASER = 60, ENERGY = 38, BOMB = 50, BIO = 15, "rad" = 15, FIRE = 38, ACID = 45)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	allowed = list(
 		/obj/item/weapon/gun,
@@ -417,13 +417,13 @@
 	name = "\improper M4 pattern PMC leader armor"
 	desc = "A modification of the M4 body armor, it is designed for high-profile security operators and corporate mercenaries in mind. This particular suit looks like it belongs to a high-ranking officer."
 	icon_state = "officer_armor"
-	soft_armor = list(MELEE = 50, BULLET = 65, LASER = 65, ENERGY = 65, BOMB = 50, BIO = 50, "rad" = 50, FIRE = 50, ACID = 45)
+	soft_armor = list(MELEE = 60, BULLET = 75, LASER = 65, ENERGY = 65, BOMB = 60, BIO = 50, "rad" = 50, FIRE = 50, ACID = 45)
 
 
 /obj/item/clothing/suit/storage/marine/veteran/PMC/sniper
 	name = "\improper M4 pattern PMC sniper armor"
 	icon_state = "pmc_sniper"
-	soft_armor = list(MELEE = 45, BULLET = 55, LASER = 55, ENERGY = 60, BOMB = 65, BIO = 10, "rad" = 10, FIRE = 60, ACID = 60)
+	soft_armor = list(MELEE = 55, BULLET = 65, LASER = 55, ENERGY = 60, BOMB = 75, BIO = 10, "rad" = 10, FIRE = 60, ACID = 60)
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDELOWHAIR
 
@@ -432,7 +432,7 @@
 	desc = "A modification of the standard M4 body armor. Hooked up with harnesses and straps allowing the user to carry a smartgun."
 	icon_state = "pmc_heavyarmor"
 	slowdown = SLOWDOWN_ARMOR_HEAVY
-	soft_armor = list(MELEE = 55, BULLET = 70, LASER = 70, ENERGY = 70, BOMB = 70, BIO = 30, "rad" = 20, FIRE = 65, ACID = 65)
+	soft_armor = list(MELEE = 65, BULLET = 80, LASER = 70, ENERGY = 70, BOMB = 80, BIO = 30, "rad" = 20, FIRE = 65, ACID = 65)
 	flags_item_map_variant = NONE
 
 /*===========================Death Commando============================*/
