@@ -70,7 +70,7 @@
 	upper_akimbo_accuracy = 5
 	lower_akimbo_accuracy = 4
 
-	//greyscale_config = /datum/greyscale_config/gun/t14
+	greyscale_config = /datum/greyscale_config/gun/t14
 
 //-------------------------------------------------------
 //PP-7 Plasma Pistol

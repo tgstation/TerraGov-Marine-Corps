@@ -93,7 +93,7 @@
 	damage_falloff_mult = 0.9
 	movement_acc_penalty_mult = 4
 
-	//greyscale_config = /datum/greyscale_config/gun/t18
+	greyscale_config = /datum/greyscale_config/gun/t18
 
 /obj/item/weapon/gun/rifle/standard_carbine/pointman
 	starting_attachment_types = list(/obj/item/attachable/lasersight, /obj/item/attachable/flashlight)
@@ -181,7 +181,7 @@
 	damage_falloff_mult = 0.5
 
 	placed_overlay_iconstate = "t12"
-	//greyscale_config = /datum/greyscale_config/gun
+	greyscale_config = /datum/greyscale_config/gun
 
 /obj/item/weapon/gun/rifle/standard_assaultrifle/rifleman
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/extended_barrel, /obj/item/weapon/gun/grenade_launcher/underslung)
@@ -748,7 +748,7 @@
 	scatter = 2
 	scatter_unwielded = 80
 
-	//greyscale_config = /datum/greyscale_config/gun/t42
+	greyscale_config = /datum/greyscale_config/gun/t42
 
 //-------------------------------------------------------
 //MG-60 General Purpose Machine Gun
@@ -1103,7 +1103,7 @@
 	scatter_unwielded = 40
 	movement_acc_penalty_mult = 4
 
-	//greyscale_config = /datum/greyscale_config/gun/t29
+	greyscale_config = /datum/greyscale_config/gun/t29
 
 	placed_overlay_iconstate = "smartgun"
 
@@ -1391,7 +1391,7 @@
 	aim_slowdown = 0.5
 	damage_falloff_mult = 0.5
 
-	//greyscale_config = /datum/greyscale_config/gun/t21
+	greyscale_config = /datum/greyscale_config/gun/t21
 
 /obj/item/weapon/gun/rifle/standard_skirmishrifle/standard
 	starting_attachment_types = list(

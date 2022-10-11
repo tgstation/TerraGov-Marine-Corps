@@ -645,7 +645,7 @@
 	cock_delay = 14
 
 	placed_overlay_iconstate = "t35"
-	//greyscale_config = /datum/greyscale_config/gun/t35
+	greyscale_config = /datum/greyscale_config/gun/t35
 
 //buckshot variants
 /obj/item/weapon/gun/shotgun/pump/t35/pointman

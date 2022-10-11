@@ -138,7 +138,7 @@
 	lower_akimbo_accuracy = 2
 
 	placed_overlay_iconstate = "t90"
-	//greyscale_config = /datum/greyscale_config/gun/t90
+	greyscale_config = /datum/greyscale_config/gun/t90
 /obj/item/weapon/gun/smg/standard_smg/breacher
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
 
