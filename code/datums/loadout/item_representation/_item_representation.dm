@@ -49,7 +49,7 @@
 /datum/item_representation/proc/get_tgui_data()
 	var/list/tgui_data = list()
 	var/icon/icon_to_convert
-	if(greyscale_colors)
+	if(greyscale_colors && initial(item_type.greyscale_config))
 		icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(item_type.greyscale_config), greyscale_colors), initial(item_type.icon_state), dir = SOUTH)
 	else
 		icon_to_convert = icon(initial(item_type.icon), initial(item_type.icon_state), SOUTH)
