@@ -82,8 +82,6 @@
 		new /obj/structure/xeno/silo(i)
 
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
-		if(corpse.adminspawn) //Don't spawn double corpses if we have an admin spawned corpsespawner, which always will spawn a corpse regardless of mode
-			continue
 		corpse.create_mob()
 
 

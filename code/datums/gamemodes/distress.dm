@@ -35,8 +35,6 @@
 	for(var/i in GLOB.xeno_turret_turfs)
 		new /obj/structure/xeno/xeno_turret(i)
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
-		if(corpse.adminspawn) //Don't spawn double corpses if we have an admin spawned corpsespawner, which always will spawn a corpse regardless of mode
-			continue
 		corpse.create_mob()
 
 
