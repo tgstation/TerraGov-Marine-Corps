@@ -38,6 +38,10 @@ Basics, the most important.
 
 /datum/config_entry/string/python_path
 
+/datum/config_entry/string/end_of_round_channel
+	config_entry_value = "game-updates"
+	protection = CONFIG_ENTRY_LOCKED|CONFIG_ENTRY_HIDDEN
+
 /datum/config_entry/string/restart_message
 
 /datum/config_entry/flag/guest_ban

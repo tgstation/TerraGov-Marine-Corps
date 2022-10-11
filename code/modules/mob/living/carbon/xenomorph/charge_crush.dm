@@ -367,6 +367,9 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	agile_charge = (X.upgrade == XENO_UPGRADE_FOUR)
 
+/datum/action/xeno_action/ready_charge/queen_charge
+	action_icon_state = "queen_ready_charge"
+
 // ***************************************
 // *********** Pre-Crush
 // ***************************************
@@ -517,6 +520,15 @@
 	span_xenowarning("We slam [src] into the ground!"))
 	return PRECRUSH_PLOWED
 
+/obj/vehicle/post_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
+	take_damage(charger.xeno_caste.melee_damage * charger.xeno_melee_damage_modifier, BRUTE, MELEE)
+	if(density && charger.move_force <= move_resist)
+		charger.visible_message(span_danger("[charger] rams into [src] and skids to a halt!"),
+		span_xenowarning("We ram into [src] and skid to a halt!"))
+		charge_datum.do_stop_momentum(FALSE)
+		return PRECRUSH_STOPPED
+	charge_datum.speed_down(2) //Lose two turfs worth of speed.
+	return NONE
 
 /mob/living/post_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
 	if(density && ((mob_size == charger.mob_size && charger.is_charging <= CHARGE_MAX) || mob_size > charger.mob_size))

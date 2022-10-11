@@ -205,7 +205,7 @@ GLOBAL_VAR(restart_counter)
 /world/Reboot(ping)
 	if(ping)
 		// TODO: Replace the second arguments of send2chat with custom config tags. See __HELPERS/chat.dm
-		send2chat(CONFIG_GET(string/restart_message), "")
+		send2chat(CONFIG_GET(string/restart_message), CONFIG_GET(string/end_of_round_channel))
 		var/list/msg = list()
 
 		if(GLOB.round_id)
@@ -236,7 +236,7 @@ GLOBAL_VAR(restart_counter)
 			msg += "Players: [length(GLOB.clients)]"
 
 		if(length(msg))
-			send2chat(msg.Join(" | "), "")
+			send2chat(msg.Join(" | "), CONFIG_GET(string/end_of_round_channel))
 
 	Master.Shutdown()
 	TgsReboot()

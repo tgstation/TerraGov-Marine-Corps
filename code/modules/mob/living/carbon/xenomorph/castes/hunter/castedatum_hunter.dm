@@ -29,7 +29,7 @@
 	evolution_threshold = 180
 	upgrade_threshold = TIER_TWO_YOUNG_THRESHOLD
 
-	evolves_to = list(/mob/living/carbon/xenomorph/ravager)
+	evolves_to = list(/mob/living/carbon/xenomorph/ravager, /mob/living/carbon/xenomorph/widow)
 	deevolves_to = /mob/living/carbon/xenomorph/runner
 
 	// *** Flags *** //

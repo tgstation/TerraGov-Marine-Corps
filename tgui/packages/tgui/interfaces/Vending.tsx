@@ -13,6 +13,7 @@ type VendingData = {
   currently_vending: VendingRecord | null,
   extended: number,
   coin: string,
+  ui_theme: string,
 };
 
 type VendingStock = {
@@ -38,6 +39,7 @@ export const Vending = (props, context) => {
     coin_records,
     extended,
     tabs,
+    ui_theme,
   } = data;
 
   const [
@@ -59,7 +61,8 @@ export const Vending = (props, context) => {
     <Window
       title={vendor_name || "Vending Machine"}
       width={500}
-      height={600}>
+      height={600}
+      theme={ui_theme}>
       {showDesc ? (
         <Modal width="400px">
           <Box>{showDesc}</Box>
