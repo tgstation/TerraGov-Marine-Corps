@@ -15,6 +15,7 @@
 /area/lv624/ground/river2)
 "d" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "e" = (
@@ -56,6 +57,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "r" = (
@@ -73,6 +75,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/ai_node,
 /obj/effect/decal/cleanable/blood/gibs,
+/obj/structure/cable,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "w" = (
@@ -106,6 +109,7 @@
 "F" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/landmark/corpsespawner/colonist,
+/obj/structure/cable,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "H" = (

@@ -171,6 +171,7 @@
 		),
 		"Boxes" = list(
 			/obj/item/ammo_magazine/packet/p9mm = -1,
+			/obj/item/ammo_magazine/packet/p9mmap = -1,
 			/obj/item/ammo_magazine/packet/acp = -1,
 			/obj/item/ammo_magazine/packet/magnum = -1,
 			/obj/item/ammo_magazine/packet/p10x20mm = -1,
@@ -345,6 +346,7 @@
 		),
 		"Boxes" = list(
 			/obj/item/ammo_magazine/packet/p9mm = -1,
+			/obj/item/ammo_magazine/packet/p9mmap = -1,
 			/obj/item/ammo_magazine/packet/acp = -1,
 			/obj/item/ammo_magazine/packet/magnum = -1,
 			/obj/item/ammo_magazine/packet/p10x20mm = -1,
@@ -533,6 +535,7 @@
 		),
 		"Boxes" = list(
 			/obj/item/ammo_magazine/packet/p9mm = -1,
+			/obj/item/ammo_magazine/packet/p9mmap = -1,
 			/obj/item/ammo_magazine/packet/acp = -1,
 			/obj/item/ammo_magazine/packet/magnum = -1,
 			/obj/item/ammo_magazine/packet/p10x20mm = -1,
@@ -697,6 +700,7 @@
 		),
 		"Boxes" = list(
 			/obj/item/ammo_magazine/packet/p9mm = -1,
+			/obj/item/ammo_magazine/packet/p9mmap = -1,
 			/obj/item/ammo_magazine/packet/acp = -1,
 			/obj/item/ammo_magazine/packet/magnum = -1,
 			/obj/item/ammo_magazine/packet/p10x20mm = -1,
@@ -958,6 +962,14 @@
 	//product_slogans = "Standard Issue Marine food!;It's good for you, and not the worst thing in the world.;Just fucking eat it.;"
 	product_ads = "Try the cornbread.;Try the pizza.;Try the pasta.;Try the tofu, wimp.;Try the pork.; 9 Flavors of Protein!; You'll never guess the mystery flavor!"
 
+/obj/machinery/vending/marineFood/som
+	name = "\improper SOM Food and Drinks Vendor"
+	faction = FACTION_SOM
+	products = list(
+		/obj/item/reagent_containers/food/snacks/protein_pack/som = -1,
+		/obj/item/storage/box/MRE/som = -1,
+		/obj/item/reagent_containers/food/drinks/flask/marine = -1,
+	)
 
 /obj/machinery/vending/MarineMed
 	name = "\improper MarineMed"
@@ -1235,6 +1247,7 @@
 			/obj/item/storage/belt/sparepouch = -1,
 			/obj/item/storage/belt/gun/pistol/standard_pistol = -1,
 			/obj/item/storage/belt/gun/revolver/standard_revolver = -1,
+			/obj/item/storage/holster/t19 = -1,
 			/obj/item/storage/holster/blade/machete/full = -1,
 			/obj/item/storage/holster/blade/machete/full_harvester = -1,
 			/obj/item/storage/belt/utility/full =-1,

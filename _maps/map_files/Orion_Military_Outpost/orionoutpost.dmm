@@ -244,6 +244,7 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/canteen)
 "bE" = (
+/obj/effect/landmark/sensor_tower_patrol,
 /turf/open/floor/mainship/sterile/corner,
 /area/orion_outpost/surface/building/medbay)
 "bF" = (
@@ -2349,6 +2350,7 @@
 /turf/open/ground/grasspatch/grassyellow,
 /area/orion_outpost/ground/outposts)
 "mA" = (
+/obj/effect/landmark/sensor_tower_patrol,
 /turf/open/floor/mainship/terragov/north{
 	dir = 8
 	},
@@ -4182,6 +4184,7 @@
 /area/orion_outpost/surface/building/command)
 "vr" = (
 /obj/structure/cable,
+/obj/effect/landmark/sensor_tower_patrol,
 /turf/open/floor/mainship/terragov{
 	dir = 1
 	},
@@ -4300,6 +4303,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outpostsw)
 "vX" = (
+/obj/effect/landmark/sensor_tower_patrol,
 /turf/open/floor/mainship/terragov{
 	dir = 1
 	},
@@ -4584,6 +4588,11 @@
 	dir = 4
 	},
 /area/orion_outpost/ground/outpostnw)
+"xC" = (
+/obj/item/ammo_casing/bullet,
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/orion_outpost/ground/outpostsw)
 "xD" = (
 /obj/structure/flora/tree/joshua,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -16669,7 +16678,7 @@ Qc
 Qc
 Qc
 Qc
-vJ
+xC
 Sm
 Sm
 au

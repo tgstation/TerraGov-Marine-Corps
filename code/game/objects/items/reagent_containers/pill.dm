@@ -158,6 +158,11 @@
 	list_reagents = list(/datum/reagent/medicine/tramadol = 15)
 	pill_id = 7
 
+/obj/item/reagent_containers/pill/isotonic
+	pill_desc = "A pill with an isotonic solution inside. Used to stimulate blood regeneration."
+	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/iron = 6, /datum/reagent/consumable/sugar = 3)
+	pill_id = 4
+
 /obj/item/reagent_containers/pill/inaprovaline
 	pill_desc = "An inaprovaline pill. Used to stabilize patients."
 	list_reagents = list(/datum/reagent/medicine/inaprovaline = 30)

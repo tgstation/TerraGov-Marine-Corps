@@ -1,3 +1,68 @@
+GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
+
+///generates the static list data containig all printable mech equipment modules for greyscale
+/proc/generate_greyscale_weapons_data()
+	. = list("weapons" = list(), "ammo" = list(), "armor" = list(), "utility" = list(), "power" = list())
+	for(var/obj/item/mecha_parts/mecha_equipment/weapon/type AS in subtypesof(/obj/item/mecha_parts/mecha_equipment))
+		if(!(initial(type.mech_flags) & EXOSUIT_MODULE_GREYSCALE))
+			continue
+		if(initial(type.mech_flags) == ALL)
+			continue
+		switch(initial(type.equipment_slot))
+			if(MECHA_WEAPON)
+				var/list/weapon_representation = list(
+					"type" = type,
+					"name" = initial(type.name),
+					"desc" = initial(type.desc),
+					"icon_state" = initial(type.icon_state),
+					"health" = initial(type.max_integrity),
+					"firerate" = initial(type.projectile_delay),
+					"burst_count" = initial(type.burst_amount),
+					"scatter" = initial(type.variance),
+					"slowdown" = initial(type.slowdown),
+					"burst_amount" = initial(type.burst_amount)
+				)
+				var/datum/ammo/ammotype = initial(type.ammotype)
+				if(ispath(ammotype, /datum/ammo))
+					weapon_representation["damage"] = initial(ammotype.damage)
+					weapon_representation["armor_pierce"] = initial(ammotype.penetration)
+				if(ispath(type, /obj/item/mecha_parts/mecha_equipment/weapon/ballistic))
+					var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/ballistic_type = type
+					weapon_representation["projectiles"] = initial(ballistic_type.projectiles)
+					weapon_representation["cache_max"] = initial(ballistic_type.projectiles_cache_max)
+					weapon_representation["ammo_type"] = initial(ballistic_type.ammo_type)
+				.["weapons"] += list(weapon_representation)
+			if(MECHA_ARMOR)
+				.["armor"] += list(list(
+					"type" = type,
+					"name" = initial(type.name),
+					"desc" = initial(type.desc),
+					"slowdown" = initial(type.slowdown),
+				))
+			if(MECHA_UTILITY)
+				.["utility"] += list(list(
+					"type" = type,
+					"name" = initial(type.name),
+					"desc" = initial(type.desc),
+					"energy_drain" = initial(type.energy_drain),
+				))
+			if(MECHA_POWER)
+				.["power"] += list(list(
+					"type" = type,
+					"name" = initial(type.name),
+					"desc" = initial(type.desc),
+				))
+			else
+				stack_trace("equipment_slot not set for [type]")
+	for(var/obj/item/mecha_ammo/vendable/ammo AS in subtypesof(/obj/item/mecha_ammo/vendable))
+		.["ammo"] += list(list(
+			"type" = ammo,
+			"name" = initial(ammo.name),
+			"icon_state" = initial(ammo.icon_state),
+			"ammo_count" = initial(ammo.rounds),
+			"ammo_type" = initial(ammo.ammo_type),
+		))
+
 /obj/screen/mech_builder_view
 	name = "Mech preview"
 	del_on_map_removal = FALSE
@@ -53,6 +118,16 @@
 		MECH_GREY_R_ARM = MECH_ASSAULT,
 		MECH_GREY_L_ARM = MECH_ASSAULT,
 	)
+	/// Currently selected equipment, maxes are determined by equipment_max
+	var/selected_equipment = list(
+		MECHA_L_ARM = null,
+		MECHA_R_ARM = null,
+		MECHA_UTILITY = list(),
+		MECHA_POWER = list(),
+		MECHA_ARMOR = list(),
+	)
+	///List of max equipment that we're allowed to attach while using this console
+	var/equipment_max = MECH_GREYSCALE_MAX_EQUIP
 	///reference to the mech screen object
 	var/obj/screen/mech_builder_view/mech_view
 	///bool if the mech is currently assembling, stops Ui actions
@@ -98,6 +173,13 @@
 	current_stats["slowdown"] = slowdown
 	current_stats["armor"] = armor
 
+/obj/machinery/computer/mech_builder/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return
+	if(user.skills.getRating("large_vehicle") < SKILL_LARGE_VEHICLE_TRAINED)
+		return FALSE
+
 /obj/machinery/computer/mech_builder/ui_interact(mob/user, datum/tgui/ui)
 	if(currently_assembling)
 		return
@@ -114,11 +196,18 @@
 	user.client?.screen -= mech_view.plane_masters
 	user.client?.clear_map(mech_view.assigned_map)
 
+/obj/machinery/computer/mech_builder/ui_assets(mob/user)
+	. = ..()
+	. += get_asset_datum(/datum/asset/spritesheet/mech_builder)
+	. += get_asset_datum(/datum/asset/spritesheet/mech_ammo)
+
 /obj/machinery/computer/mech_builder/ui_static_data(mob/user)
 	var/list/data = list()
 	data["mech_view"] = mech_view.assigned_map
 	data["colors"] = available_colors
 	data["visor_colors"] = available_visor_colors
+	data["all_equipment"] = GLOB.greyscale_weapons_data
+	data["equip_max"] = equipment_max
 	return data
 
 /obj/machinery/computer/mech_builder/ui_data(mob/user)
@@ -128,10 +217,11 @@
 	data["selected_visor"] = selected_visor
 	data["selected_variants"] = selected_variants
 	data["selected_name"] = selected_name
+	data["selected_equipment"] = selected_equipment
 	data["current_stats"] = current_stats
 	return data
 
-/obj/machinery/computer/mech_builder/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state) // tivi todo weapons
+/obj/machinery/computer/mech_builder/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
 		return
@@ -204,6 +294,79 @@
 			ui.close()
 			return FALSE
 
+		if("add_weapon")
+			var/obj/item/mecha_parts/mecha_equipment/weapon/new_type = text2path(params["type"])
+			if(!ispath(new_type, /obj/item/mecha_parts/mecha_equipment/weapon))
+				return FALSE
+			if(!(initial(new_type.mech_flags) & EXOSUIT_MODULE_GREYSCALE))
+				return FALSE
+			if(params["is_right_weapon"])
+				selected_equipment[MECHA_R_ARM] = new_type
+				return TRUE
+			selected_equipment[MECHA_L_ARM] = new_type
+			return TRUE
+
+		if("add_power")
+			var/obj/item/mecha_parts/mecha_equipment/new_type = text2path(params["type"])
+			if(!ispath(new_type, /obj/item/mecha_parts/mecha_equipment))
+				return FALSE
+			if(!(initial(new_type.mech_flags) & EXOSUIT_MODULE_GREYSCALE))
+				return FALSE
+			if(length(selected_equipment[MECHA_POWER]) >= equipment_max[MECHA_POWER])
+				return FALSE
+			selected_equipment[MECHA_POWER] += new_type
+			return TRUE
+
+		if("add_armor")
+			var/obj/item/mecha_parts/mecha_equipment/new_type = text2path(params["type"])
+			if(!ispath(new_type, /obj/item/mecha_parts/mecha_equipment))
+				return FALSE
+			if(!(initial(new_type.mech_flags) & EXOSUIT_MODULE_GREYSCALE))
+				return FALSE
+			if(length(selected_equipment[MECHA_ARMOR]) >= equipment_max[MECHA_ARMOR])
+				return FALSE
+			selected_equipment[MECHA_ARMOR] += new_type
+			return TRUE
+
+		if("add_utility")
+			var/obj/item/mecha_parts/mecha_equipment/new_type = text2path(params["type"])
+			if(!ispath(new_type, /obj/item/mecha_parts/mecha_equipment))
+				return FALSE
+			if(!(initial(new_type.mech_flags) & EXOSUIT_MODULE_GREYSCALE))
+				return FALSE
+			if(length(selected_equipment[MECHA_UTILITY]) >= equipment_max[MECHA_UTILITY])
+				return FALSE
+			selected_equipment[MECHA_UTILITY] += new_type
+			return TRUE
+
+		if("remove_weapon")
+			if(params["is_right_weapon"])
+				selected_equipment[MECHA_R_ARM] = null
+				return TRUE
+			selected_equipment[MECHA_L_ARM] = null
+			return TRUE
+
+		if("remove_power")
+			var/obj/item/mecha_parts/mecha_equipment/removed_type = text2path(params["type"])
+			selected_equipment[MECHA_POWER] -= removed_type
+			return TRUE
+
+		if("remove_armor")
+			var/obj/item/mecha_parts/mecha_equipment/removed_type = text2path(params["type"])
+			selected_equipment[MECHA_ARMOR] -= removed_type
+			return TRUE
+
+		if("remove_utility")
+			var/obj/item/mecha_parts/mecha_equipment/removed_type = text2path(params["type"])
+			selected_equipment[MECHA_UTILITY] -= removed_type
+			return TRUE
+
+		if("vend_ammo")
+			var/new_ammo = text2path(params["type"])
+			if(!ispath(new_ammo, /obj/item/mecha_ammo/vendable))
+				return FALSE
+			new new_ammo(get_turf(src))
+
 ///Actually deploys mech after a short delay to let people spot it coming down
 /obj/machinery/computer/mech_builder/proc/deploy_mech()
 	var/turf/assemble_turf = get_step(src, dir)
@@ -215,6 +378,17 @@
 		limb.update_colors(selected_primary[slot], selected_secondary[slot], selected_visor)
 		limb.attach(mech, slot)
 	currently_assembling = FALSE
+	if(selected_equipment[MECHA_L_ARM])
+		var/new_type = selected_equipment[MECHA_L_ARM]
+		var/obj/item/mecha_parts/mecha_equipment/weapon/new_gun = new new_type
+		new_gun.attach(mech)
+	if(selected_equipment[MECHA_R_ARM])
+		var/new_type = selected_equipment[MECHA_R_ARM]
+		var/obj/item/mecha_parts/mecha_equipment/weapon/new_gun = new new_type
+		new_gun.attach(mech, TRUE)
+	for(var/equipment in (selected_equipment[MECHA_POWER]|selected_equipment[MECHA_ARMOR]|selected_equipment[MECHA_UTILITY]))
+		var/obj/item/mecha_parts/mecha_equipment/new_equip = new equipment
+		new_equip.attach(mech)
 
 	mech.pixel_y = 240
 	animate(mech, time=4 SECONDS, pixel_y=initial(mech.pixel_y), easing=SINE_EASING|EASE_OUT)

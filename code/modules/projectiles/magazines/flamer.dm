@@ -64,6 +64,15 @@
 	reload_delay = 3 SECONDS
 	icon_state_mini = "tank_orange"
 
+/obj/item/ammo_magazine/flamer_tank/large/som
+	name = "large flamerthrower tank"
+	desc = "A large fuel tank of ultra thick napthal, a sticky combustable liquid chemical, for use in the V-62 flamethrower."
+	icon_state = "flametank_som"
+	max_rounds = 75
+	current_rounds = 75
+	reload_delay = 3 SECONDS
+	icon_state_mini = "tank_orange"
+
 /obj/item/ammo_magazine/flamer_tank/large/X
 	name = "large flamethrower tank (X)"
 	desc = "A large fuel tank of ultra thick napthal Fuel type X, a sticky combustable liquid chemical that burns extremely hot, for use in the FL-84 flamethrower. Handle with care."

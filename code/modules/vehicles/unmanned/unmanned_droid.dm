@@ -13,6 +13,8 @@
 	var/datum/supply_beacon/beacon_datum
 	/// Action to activate suppply antenna. 
 	var/datum/action/antenna/antenna
+	/// The mob controlling the droid remotely
+	var/datum/weakref/remote_user
 
 /obj/vehicle/unmanned/droid/Initialize()
 	. = ..()
@@ -30,22 +32,32 @@
 /obj/vehicle/unmanned/droid/on_remote_toggle(datum/source, is_on, mob/user)
 	. = ..()
 	if(is_on)
+		remote_user = WEAKREF(user)
 		playsound(src, 'sound/machines/drone/weapons_engaged.ogg', 70)
 		START_PROCESSING(SSslowprocess, src)
 		user.overlay_fullscreen("machine", /obj/screen/fullscreen/machine)
 		antenna.give_action(user)
 		RegisterSignal(user, COMSIG_UNMANNED_COORDINATES, .proc/activate_antenna)
 	else
+		remote_user = null
 		playsound(src, 'sound/machines/drone/droneoff.ogg', 70)
 		STOP_PROCESSING(SSslowprocess, src)
 		user.clear_fullscreen("machine", 5)
 		antenna.remove_action(user)
 		UnregisterSignal(user, COMSIG_UNMANNED_COORDINATES)
 
-/obj/vehicle/unmanned/droid/Destroy(datum/source, mob/user)
-	user.clear_fullscreen("machine", 5)
-	antenna.remove_action(user)
-	UnregisterSignal(user, COMSIG_UNMANNED_COORDINATES)
+/obj/vehicle/unmanned/droid/Destroy()
+	if(!remote_user) //No remote user, no need to do this.
+		return ..()
+	var/mob/living/living_user = remote_user.resolve()
+	if(!living_user)
+		return
+	living_user.clear_fullscreen("machine", 5)
+	antenna.remove_action(living_user)
+	UnregisterSignal(living_user, COMSIG_UNMANNED_COORDINATES)
+	if(isAI(living_user))
+		var/mob/living/silicon/ai/AI = living_user
+		AI.eyeobj?.forceMove(get_turf(src))
 	return ..()
 
 ///stealth droid, like the normal droid but with stealthing ability on rclick

@@ -948,6 +948,10 @@
 	icon = 'icons/turf/shuttle.dmi'
 	icon_state = "floor7"
 
+/turf/open/floor/prison/redfloor
+	icon = 'icons/turf/shuttle.dmi'
+	icon_state = "floor6"
+
 /turf/open/floor/prison/bluefloor
 	icon = 'icons/turf/shuttle.dmi'
 	icon_state = "floor"

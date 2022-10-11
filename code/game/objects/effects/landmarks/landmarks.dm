@@ -430,6 +430,16 @@
 	GLOB.sensor_towers += loc
 	return INITIALIZE_HINT_QDEL
 
+/obj/effect/landmark/sensor_tower_patrol
+	name = "Sensor tower"
+	icon = 'icons/obj/structures/sensor.dmi'
+	icon_state = "sensor_loyalist"
+
+/obj/effect/landmark/sensor_tower_patrol/Initialize()
+	..()
+	GLOB.sensor_towers_patrol += loc
+	return INITIALIZE_HINT_QDEL
+
 /obj/effect/landmark/valhalla_xeno_spawn_landmark_close
 	name = "Valhalla xeno spawn"
 	icon = 'icons/effects/landmarks_static.dmi'

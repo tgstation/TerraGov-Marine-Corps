@@ -74,14 +74,16 @@
 	id = "minidropship_podlock"
 	},
 /obj/machinery/door/poddoor/shutters/transit,
-/obj/machinery/light,
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
-"r" = (
+"q" = (
 /obj/machinery/vending/nanomed/tadpolemed{
-	dir = 4
+	pixel_x = 5
 	},
-/turf/open/floor/plating/plating_catwalk,
+/obj/structure/closet/walllocker/hydrant/extinguisher{
+	pixel_x = -25
+	},
+/turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "s" = (
 /turf/open/floor/plating/plating_catwalk,
@@ -110,7 +112,6 @@
 	id = "minidropship_podlock"
 	},
 /obj/machinery/door/poddoor/shutters/transit,
-/obj/machinery/light,
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "B" = (
@@ -119,20 +120,31 @@
 	dir = 1;
 	pixel_y = -14
 	},
-/turf/closed/shuttle/tadpole{
-	icon_state = "52"
+/obj/structure/barricade/plasteel{
+	dir = 8
 	},
+/obj/machinery/light,
+/obj/machinery/door/poddoor/shutters/transit,
+/obj/machinery/door/poddoor/mainship/open{
+	id = "minidropship_podlock"
+	},
+/turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "C" = (
-/obj/machinery/telecomms/relay/preset/telecomms/onboard,
 /obj/structure/dropship_piece/tadpole/engine{
 	pixel_x = 23;
 	dir = 1;
 	pixel_y = -14
 	},
-/turf/closed/shuttle/tadpole{
-	icon_state = "54"
+/obj/structure/barricade/plasteel{
+	dir = 4
 	},
+/obj/machinery/light,
+/obj/machinery/door/poddoor/shutters/transit,
+/obj/machinery/door/poddoor/mainship/open{
+	id = "minidropship_podlock"
+	},
+/turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "D" = (
 /obj/structure/dropship_piece/tadpole/cockpit/window{
@@ -148,12 +160,6 @@
 /obj/docking_port/mobile/marine_dropship/minidropship,
 /obj/structure/bed/chair/dropship/pilot{
 	dir = 1
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/shuttle/minidropship)
-"I" = (
-/obj/structure/closet/walllocker/hydrant/extinguisher{
-	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
@@ -221,6 +227,7 @@
 /obj/structure/dropship_piece/tadpole/rearright{
 	dir = 1
 	},
+/obj/machinery/telecomms/relay/preset/telecomms/onboard,
 /turf/template_noop,
 /area/shuttle/minidropship)
 "V" = (
@@ -258,9 +265,9 @@ E
 E
 S
 K
+q
+s
 V
-V
-r
 v
 E
 "}
@@ -281,8 +288,8 @@ E
 a
 D
 j
+s
 V
-I
 v
 E
 "}

@@ -102,6 +102,7 @@
 #define isxenobull(A) (istype(A, /mob/living/carbon/xenomorph/bull))
 #define isxenohivemind(A) (istype(A, /mob/living/carbon/xenomorph/hivemind))
 #define isxenowraith(A) (istype(A, /mob/living/carbon/xenomorph/wraith))
+#define isxenowidow(A) (istype(A, /mob/living/carbon/xenomorph/widow))
 
 //Silicon mobs
 #define issilicon(A) (istype(A, /mob/living/silicon))
@@ -254,6 +255,7 @@
 #define iscrashgamemode(O) (istype(O, /datum/game_mode/infestation/crash))
 #define isinfestationgamemode(O) (istype(O, /datum/game_mode/infestation))
 #define iscombatpatrolgamemode(O) (istype(O, /datum/game_mode/combat_patrol))
+#define issensorcapturegamemode(O) (istype(O, /datum/game_mode/combat_patrol/sensor_capture))
 
 #define isxenoresearcharea(A) (istype(A, /area/mainship/medical/medical_science))
 

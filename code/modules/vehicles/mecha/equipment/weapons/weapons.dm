@@ -4,54 +4,208 @@
 	equipment_slot = MECHA_WEAPON
 	destroy_sound = 'sound/mecha/weapdestr.ogg'
 	mech_flags = EXOSUIT_MODULE_COMBAT
-	/// ammo datum typepath
-	var/ammotype
-	///sound file to play when this weapon does it's action
+	/// ammo datum/object typepath
+	var/datum/ammo/ammotype
+	///sound file to play when this weapon you know, fires
 	var/fire_sound
-	/// how many projectiles this weapon
-	var/projectiles_per_shot = 1
-	/// basically spread
+	///current tracked target for fire(), updated when user drags
+	var/atom/current_target
+	///current mob firing this weapon. used for tracking for iff and etc in fire()
+	var/mob/current_firer
+	///Tracks windups
+	var/windup_checked = WEAPON_WINDUP_NOT_CHECKED
+	///Muzzle flash visual reference
+	var/atom/movable/vis_obj/effect/muzzle_flash/muzzle_flash
+	///list for this weapons flash offsets Format: MECHA_SLOT = list(DIR = list(PIXEL_X, PIXEL_Y))
+	var/list/flash_offsets = list(
+		MECHA_R_ARM = list("N" = list(0,0), "S" = list(0,0), "E" = list(0,0), "W" = list(0,0)),
+		MECHA_L_ARM = list("N" = list(0,0), "S" = list(0,0), "E" = list(0,0), "W" = list(0,0)),
+	)
+	///Icon state of the muzzle flash effect.
+	var/muzzle_iconstate
+	///color of the muzzle flash while shooting
+	var/muzzle_flash_color = COLOR_VERY_SOFT_YELLOW
+	///Range of light when we flash while shooting
+	var/muzzle_flash_lum = 3
+	///windup sound played during windup
+	var/windup_sound
+	///windup delay for this object
+	var/windup_delay = 0
+	///scatter of this weapon. in degrees and modified by arm this is attached to
 	var/variance = 0
-	///delay between single burst shots
-	var/projectile_delay = 0
-	///muzzle flash effect to show when firing
-	var/obj/effect/firing_effect = /atom/movable/vis_obj/effect/muzzle_flash //the visual effect appearing when the weapon is fired.
+	/// since mech guns only get one firemode this is for all types of shots
+	var/projectile_delay = 3
+	/// time between shots in a burst
+	var/projectile_burst_delay = 2
+	///bullets per burst if firemode is set to burst
+	var/burst_amount = 0
+	///fire mode to use for autofire
+	var/fire_mode = GUN_FIREMODE_AUTOMATIC
 
-/obj/item/mecha_parts/mecha_equipment/weapon/Initialize()
+/obj/item/mecha_parts/mecha_equipment/weapon/Initialize(mapload)
 	. = ..()
-	firing_effect = new firing_effect
+	AddComponent(/datum/component/automatedfire/autofire, projectile_delay, projectile_delay, projectile_burst_delay, burst_amount, fire_mode, CALLBACK(src, .proc/set_bursting), CALLBACK(src, .proc/reset_fire), CALLBACK(src, .proc/fire))
+	equip_cooldown = projectile_delay
+	muzzle_flash = new(src, muzzle_iconstate)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/action(mob/source, atom/target, list/modifiers)
 	if(!action_checks(target))
 		return FALSE
 	. = ..()
-	chassis.vis_contents += firing_effect
-	fire_bullet(source, target)
-	addtimer(CALLBACK(src, .proc/remove_flash), 2)
-	for(var/i in 1 to projectiles_per_shot)
-		addtimer(CALLBACK(src, .proc/fire_bullet, source, target), (i-1)*projectile_delay)
 
-	chassis.log_message("Fired from [name], targeting [target].", LOG_ATTACK)
+	set_target(get_turf_on_clickcatcher(target, source, list2params(modifiers)))
+	if(!current_target)
+		return
+	if(windup_delay && windup_checked == WEAPON_WINDUP_NOT_CHECKED)
+		windup_checked = WEAPON_WINDUP_CHECKING
+		playsound(chassis.loc, windup_sound, 30, TRUE)
+		if(!do_after(source, windup_delay, TRUE, chassis, BUSY_ICON_DANGER, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/do_after_checks, current_target)))
+			windup_checked = WEAPON_WINDUP_NOT_CHECKED
+			return
+		windup_checked = WEAPON_WINDUP_CHECKED
+	if(QDELETED(current_target))
+		windup_checked = WEAPON_WINDUP_NOT_CHECKED
+		return
+	current_firer = source
+	if(fire_mode == GUN_FIREMODE_SEMIAUTO)
+		if(!INVOKE_ASYNC(src, .proc/fire) || windup_checked == WEAPON_WINDUP_CHECKING)
+			return
+		reset_fire()
+		return
+	RegisterSignal(source, COMSIG_MOB_MOUSEUP, .proc/stop_fire)
+	RegisterSignal(source, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
+	SEND_SIGNAL(src, COMSIG_MECH_FIRE)
+	source?.client?.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
+
+/obj/item/mecha_parts/mecha_equipment/weapon/proc/set_bursting(bursting)
+	if(bursting)
+		ADD_TRAIT(src, TRAIT_GUN_BURST_FIRING, VEHICLE_TRAIT)
+		return
+	REMOVE_TRAIT(src, TRAIT_GUN_BURST_FIRING, VEHICLE_TRAIT)
+
+///Changes the current target.
+/obj/item/mecha_parts/mecha_equipment/weapon/proc/change_target(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
+	SIGNAL_HANDLER
+	set_target(get_turf_on_clickcatcher(over_object, source, params))
+
+///Sets the current target and registers for qdel to prevent hardels
+/obj/item/mecha_parts/mecha_equipment/weapon/proc/set_target(atom/object)
+	if(object == current_target || object == chassis)
+		return
+	if(current_target)
+		UnregisterSignal(current_target, COMSIG_PARENT_QDELETING)
+	current_target = object
+	if(current_target)
+		RegisterSignal(current_target, COMSIG_PARENT_QDELETING, .proc/clean_target)
+
+///Stops the Autofire component and resets the current cursor.
+/obj/item/mecha_parts/mecha_equipment/weapon/proc/stop_fire(mob/living/source, atom/object, location, control, params)
+	SIGNAL_HANDLER
+	var/list/modifiers = params2list(params)
+	if(!((modifiers[BUTTON] == RIGHT_CLICK) && chassis.equip_by_category[MECHA_R_ARM] == src) && !((modifiers[BUTTON] == LEFT_CLICK) && chassis.equip_by_category[MECHA_L_ARM] == src))
+		return
+	SEND_SIGNAL(src, COMSIG_MECH_STOP_FIRE)
+	if(!HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
+		reset_fire()
+	UnregisterSignal(source, list(COMSIG_MOB_MOUSEDRAG, COMSIG_MOB_MOUSEUP))
+
+///Cleans the current target in case of Hardel
+/obj/item/mecha_parts/mecha_equipment/weapon/proc/clean_target()
+	SIGNAL_HANDLER
+	current_target = get_turf(current_target)
+
+///Resets the autofire component.
+/obj/item/mecha_parts/mecha_equipment/weapon/proc/reset_fire()
+	windup_checked = WEAPON_WINDUP_NOT_CHECKED
+	current_firer?.client?.mouse_pointer_icon = chassis.mouse_pointer
+	set_target(null)
+	current_firer = null
+
+///does any effects and changes to the projectile when it is fired
+/obj/item/mecha_parts/mecha_equipment/weapon/proc/apply_weapon_modifiers(obj/projectile/projectile_to_fire, mob/firer)
+	projectile_to_fire.shot_from = src
+	if(istype(chassis, /obj/vehicle/sealed/mecha/combat/greyscale))
+		var/obj/vehicle/sealed/mecha/combat/greyscale/grey = chassis
+		var/datum/mech_limb/head/head = grey.limbs[MECH_GREY_HEAD]
+		if(head)
+			projectile_to_fire.accuracy *= head.accuracy_mod
+		var/datum/mech_limb/arm/holding
+		if(grey.equip_by_category[MECHA_R_ARM] == src)
+			holding = grey.limbs[MECH_GREY_R_ARM]
+		else
+			holding = grey.limbs[MECH_GREY_L_ARM]
+		projectile_to_fire.scatter = variance + holding?.scatter_mod
+	projectile_to_fire.projectile_speed = projectile_to_fire.ammo.shell_speed
+	if(projectile_to_fire.ammo.flags_ammo_behavior & AMMO_IFF)
+		var/iff_signal
+		if(ishuman(firer))
+			var/mob/living/carbon/human/human_firer = firer
+			var/obj/item/card/id/id = human_firer.get_idcard()
+			iff_signal = id?.iff_signal
+		projectile_to_fire.iff_signal = iff_signal
+
+///actually executes firing when autofire asks for it, returns TRUE to keep firing FALSE to stop
+/obj/item/mecha_parts/mecha_equipment/weapon/proc/fire()
+	if(!action_checks(current_target, TRUE))
+		return FALSE
+	var/dir_target_diff = get_between_angles(Get_Angle(chassis, current_target), dir2angle(chassis.dir))
+	if(dir_target_diff > (MECH_FIRE_CONE_ALLOWED / 2))
+		return TRUE
+
+	var/type_to_spawn = (initial(ammotype.flags_ammo_behavior) & AMMO_HITSCAN) ? /obj/projectile/hitscan : /obj/projectile
+	var/obj/projectile/projectile_to_fire = new type_to_spawn(get_turf(src))
+	projectile_to_fire.generate_bullet(GLOB.ammo_list[ammotype])
+
+	apply_weapon_modifiers(projectile_to_fire, current_firer)
+	var/firing_angle = get_angle_with_scatter(chassis, current_target, projectile_to_fire.scatter, projectile_to_fire.p_x, projectile_to_fire.p_y)
+
+	playsound(chassis, fire_sound, 25, TRUE)
+	projectile_to_fire.fire_at(current_target, chassis, null, projectile_to_fire.ammo.max_range, projectile_to_fire.projectile_speed, firing_angle, suppress_light = HAS_TRAIT(src, TRAIT_GUN_SILENCED))
+
+	chassis.log_message("Fired from [name], targeting [current_target] at [AREACOORD(current_target)].", LOG_ATTACK)
+
+	if(!muzzle_flash || muzzle_flash.applied)
+		return TRUE
+
+	var/prev_light = light_range
+	if(!light_on && (light_range <= muzzle_flash_lum))
+		set_light_range(muzzle_flash_lum)
+		set_light_color(muzzle_flash_color)
+		set_light_on(TRUE)
+		addtimer(CALLBACK(src, .proc/reset_light_range, prev_light), 1 SECONDS)
+
+	var/mech_slot = chassis.equip_by_category[MECHA_R_ARM] == src ? MECHA_R_ARM : MECHA_L_ARM
+	muzzle_flash.pixel_x = flash_offsets[mech_slot][dir2text_short(chassis.dir)][1]
+	muzzle_flash.pixel_y = flash_offsets[mech_slot][dir2text_short(chassis.dir)][2]
+	switch(chassis.dir)
+		if(NORTH)
+			muzzle_flash.layer = initial(muzzle_flash.layer)
+		if(SOUTH, EAST, WEST)
+			muzzle_flash.layer = ABOVE_ALL_MOB_LAYER+0.01
+	muzzle_flash.transform = null
+	muzzle_flash.transform = turn(muzzle_flash.transform, firing_angle)
+	chassis.vis_contents += muzzle_flash
+	muzzle_flash.applied = TRUE
+
+	addtimer(CALLBACK(src, .proc/remove_flash, muzzle_flash), 0.2 SECONDS)
+	return TRUE
+
+/obj/item/mecha_parts/mecha_equipment/weapon/proc/reset_light_range(lightrange)
+	set_light_range(lightrange)
+	set_light_color(initial(light_color))
+	if(lightrange <= 0)
+		set_light_on(FALSE)
 
 ///removes the flash object from viscontents
-/obj/item/mecha_parts/mecha_equipment/weapon/proc/remove_flash()
-	chassis.vis_contents -= firing_effect
-
-///proc that actually fires the bullet after timer, should use autofire instead
-/obj/item/mecha_parts/mecha_equipment/weapon/proc/fire_bullet(mob/source, atom/target)
-	if(energy_drain && !chassis.has_charge(energy_drain))//in case we run out of energy mid-burst, such as emp
-		return
-	var/angle = Get_Angle(src, target)
-	var/obj/projectile/projectile_obj = new(get_turf(src))
-	projectile_obj.generate_bullet(GLOB.ammo_list[ammotype])
-	projectile_obj.fire_at(target, chassis, chassis) // get_angle_with_scatter
-	firing_effect.transform = turn(firing_effect.transform, angle)
-	playsound(chassis, fire_sound, 50, TRUE)
+/obj/item/mecha_parts/mecha_equipment/weapon/proc/remove_flash(atom/movable/vis_obj/effect/muzzle_flash/flash)
+	chassis.vis_contents -= flash
+	flash.applied = FALSE
 
 //Base energy weapon type
 /obj/item/mecha_parts/mecha_equipment/weapon/energy
 	name = "general energy weapon"
-	firing_effect = /atom/movable/vis_obj/effect/muzzle_flash
+	muzzle_flash_color = COLOR_LASER_RED
+	muzzle_iconstate = "muzzle_flash_laser"
 
 //Base ballistic weapon type
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic
@@ -67,6 +221,18 @@
 	var/disabledreload
 	/// string define for the ammo type that this can be reloaded with
 	var/ammo_type
+	///list of icons to display for ammo counter: list("hud_normal", "hud_empty")
+	var/hud_icons = list("rifle", "rifle_empty")
+
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/attach(obj/vehicle/sealed/mecha/M, attach_right)
+	. = ..()
+	for(var/mob/occupant AS in chassis.occupants)
+		occupant.hud_used.add_ammo_hud(src, hud_icons, projectiles)
+
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/detach(atom/moveto)
+	. = ..()
+	for(var/mob/occupant AS in chassis.occupants)
+		occupant.hud_used.remove_ammo_hud(src)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/action_checks(target)
 	if(!..())
@@ -82,28 +248,35 @@
 		return TRUE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/rearm()
-	if(projectiles < initial(projectiles))
-		var/projectiles_to_add = initial(projectiles) - projectiles
-		if(!projectiles_cache)
-			return FALSE
-		if(projectiles_to_add <= projectiles_cache)
-			projectiles = projectiles + projectiles_to_add
-			projectiles_cache = projectiles_cache - projectiles_to_add
-		else
-			projectiles = projectiles + projectiles_cache
-			projectiles_cache = 0
-		log_message("Rearmed [src].", LOG_MECHA)
-		return TRUE
+	if(projectiles >= initial(projectiles))
+		return FALSE
+	var/projectiles_to_add = initial(projectiles) - projectiles
+	if(!projectiles_cache)
+		return FALSE
+	if(projectiles_to_add <= projectiles_cache)
+		projectiles = projectiles + projectiles_to_add
+		projectiles_cache = projectiles_cache - projectiles_to_add
+	else
+		projectiles = projectiles + projectiles_cache
+		projectiles_cache = 0
+	log_message("Rearmed [src].", LOG_MECHA)
+	for(var/mob/occupant AS in chassis.occupants)
+		occupant.hud_used.update_ammo_hud(src, hud_icons, projectiles)
+	return TRUE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/needs_rearm()
 	return projectiles <= 0
 
-
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/action(mob/source, atom/target, list/modifiers)
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/fire()
 	. = ..()
 	if(!.)
 		return
-	projectiles -= projectiles_per_shot
+	projectiles--
+	for(var/mob/occupant AS in chassis.occupants)
+		occupant.hud_used.update_ammo_hud(src, hud_icons, projectiles)
+	if(projectiles > 0)
+		return
+	playsound(src, 'sound/weapons/guns/misc/empty_alarm.ogg', 25, 1)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/carbine
 	name = "\improper FNX-99 \"Hades\" Carbine"
@@ -139,7 +312,6 @@
 	projectiles = 300
 	projectiles_cache = 300
 	projectiles_cache_max = 1200
-	projectiles_per_shot = 3
 	variance = 6
 	projectile_delay = 2
 	harmful = TRUE
@@ -181,6 +353,9 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/action(mob/source, atom/target, list/modifiers)
 	if(!action_checks(target))
 		return
+	var/dir_target_diff = get_between_angles(Get_Angle(chassis, target), dir2angle(chassis.dir))
+	if(dir_target_diff > (MECH_FIRE_CONE_ALLOWED / 2))
+		return TRUE
 	var/obj/O = new ammotype(chassis.loc)
 	playsound(chassis, fire_sound, 50, TRUE)
 	log_message("Launched a [O] from [src], targeting [target].", LOG_MECHA)
