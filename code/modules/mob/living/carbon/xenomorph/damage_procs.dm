@@ -144,20 +144,19 @@
 	if(updating_health)
 		updatehealth()
 
+#undef HANDLE_OVERHEAL
+
 /mob/living/carbon/xenomorph/proc/apply_healing(amount = 0, damagetype = BRUTE, updating_health = FALSE)
-	SEND_SIGNAL(src, COMSIG_XENOMORPH_HEALED_BY_ABILITY, amount, damagetype)
+	var/list/amount_mod = list()
+	SEND_SIGNAL(src, COMSIG_XENOMORPH_HEALED_BY_ABILITY, amount, damagetype, amount_mod)
+	for(var/i in amount_mod)
+		amount -= i
 
 	switch(damagetype)
 		if(BRUTE)
 			adjustBruteLoss(-amount)
 		if(BURN)
 			adjustFireLoss(-amount)
-
-	if(updating_health)
-		updatehealth()
-	return amount
-
-#undef HANDLE_OVERHEAL
 
 /mob/living/carbon/xenomorph/proc/check_blood_splash(damage = 0, damtype = BRUTE, chancemod = 0, radius = 1)
 	if(!damage)

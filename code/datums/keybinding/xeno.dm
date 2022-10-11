@@ -668,13 +668,13 @@
 
 /datum/keybinding/xeno/sow
 	name = "sow"
-	full_name = "Drone : Sow"
+	full_name = "Hivelord : Sow"
 	description = "Plant the seeds of an alien plant."
 	keybind_signal = COMSIG_XENOABILITY_DROP_PLANT
 
 /datum/keybinding/xeno/sow_select_plant
 	name = "choose_plant"
-	full_name = "Drone : Choose plant"
+	full_name = "Hivelord : Choose plant"
 	description = "Pick what type of plant to sow."
 	keybind_signal = COMSIG_XENOABILITY_CHOOSE_PLANT
 
