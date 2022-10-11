@@ -1,0 +1,4 @@
+author: "RipGrayson"
+delete-after: True
+changes: 
+  - bugfix: "The force event verb is now functional"

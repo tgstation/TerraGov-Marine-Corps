@@ -1232,6 +1232,7 @@
 #include "code\modules\error_handler\error_viewer.dm"
 #include "code\modules\events\_events.dm"
 #include "code\modules\events\intel_computer.dm"
+#include "code\modules\events\ion_storm.dm"
 #include "code\modules\events\queen_mothers_blessing.dm"
 #include "code\modules\factory\howtopaper.dm"
 #include "code\modules\factory\machines.dm"

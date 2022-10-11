@@ -52,7 +52,6 @@
 	icon_state = "pmc_mask"
 	item_state = "helmet"
 	anti_hug = 3
-	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 5, ENERGY = 5, BOMB = 10, BIO = 1, "rad" = 1, FIRE = 5, ACID = 5)
 	flags_inventory = COVERMOUTH|ALLOWINTERNALS|BLOCKGASEFFECT
 	flags_inv_hide = HIDEEARS|HIDEFACE|HIDEALLHAIR
 	breathy = FALSE

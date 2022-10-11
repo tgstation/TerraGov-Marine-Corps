@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - bugfix: "AI will no longer attack inside of objects, instead it will aim for the outermost container of it's target"

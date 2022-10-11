@@ -78,7 +78,6 @@
 	desc = "It's the official uniform of the station's janitor. It has minor protection from biohazards."
 	name = "janitor's jumpsuit"
 	icon_state = "janitor"
-	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 10, "rad" = 0, FIRE = 0, ACID = 0)
 
 /obj/item/clothing/under/lawyer
 	desc = "Slick threads."
