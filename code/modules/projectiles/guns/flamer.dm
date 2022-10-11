@@ -96,14 +96,14 @@
 		return
 	if(attachments_by_slot[ATTACHMENT_SLOT_FLAMER_NOZZLE])
 		light_pilot(TRUE)
-	gun_user?.hud_used.update_ammo_hud(gun_user, src)
+	gun_user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 
 /obj/item/weapon/gun/flamer/unload(mob/living/user, drop = TRUE, after_fire = FALSE)
 	. = ..()
 	if(!.)
 		return
 	light_pilot(FALSE)
-	gun_user?.hud_used.update_ammo_hud(gun_user, src)
+	gun_user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 
 ///Makes the sound of the flamer being lit, and applies the overlay.
 /obj/item/weapon/gun/flamer/proc/light_pilot(light)
@@ -220,7 +220,7 @@
 		flame_turf(turf_to_ignite, gun_user, burn_time, burn_level, fire_color)
 		adjust_current_rounds(chamber_items[current_chamber_position], -1)
 		rounds--
-	gun_user?.hud_used.update_ammo_hud(gun_user, src)
+	gun_user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 	return TRUE
 
 ///Lights the specific turf on fire and processes melting snow or vines and the like.
@@ -265,6 +265,34 @@
 	desc = "The FL-240 has proven to be one of the most effective weapons at clearing out soft-targets. This is a weapon to be feared and respected as it is quite deadly."
 	icon_state = "m240"
 	item_state = "m240"
+
+/obj/item/weapon/gun/flamer/som
+	name = "\improper V-62 incinerator"
+	desc = "The V-62 is a deadly weapon employed in close quarter combat, favoured as much for the terror it inspires as the actual damage it inflicts. It has good range for a flamer, but lacks the integrated extinguisher of its TGMC equivalent."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "v62"
+	item_state = "v62"
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_SHOWS_LOADED
+	inhand_x_dimension = 64
+	inhand_y_dimension = 32
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+	)
+	lit_overlay_icon_state = "v62_lit"
+	lit_overlay_offset_x = 0
+	flame_max_range = 8
+	cone_angle = 40
+	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle/wide)
+	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/large/som
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/flamer_tank/large/som,
+		/obj/item/ammo_magazine/flamer_tank/backtank,
+		/obj/item/ammo_magazine/flamer_tank/backtank/X,
+	)
+
+/obj/item/weapon/gun/flamer/som/mag_harness
+	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle/wide, /obj/item/attachable/magnetic_harness)
 
 /obj/item/weapon/gun/flamer/mini_flamer
 	name = "mini flamethrower"
@@ -365,7 +393,7 @@
 		hydro_active = FALSE
 		if (rounds > 0)
 			light_pilot(TRUE)
-	user.hud_used.update_ammo_hud(user, src)
+	user.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 	SEND_SIGNAL(src, COMSIG_ITEM_HYDRO_CANNON_TOGGLED)
 	return TRUE
 
@@ -377,7 +405,7 @@
 		water_count -= 7//reagents is not updated in this proc, we need water_count for a updated HUD
 		last_fired = world.time
 		last_use = world.time
-		gun_user.hud_used.update_ammo_hud(gun_user, src)
+		gun_user.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 		return
 	if(gun_user?.skills.getRating("firearms") < 0)
 		switch(windup_checked)
@@ -405,7 +433,7 @@
 		water_count = reagents.maximum_volume
 		to_chat(user, span_notice("\The [src]'s hydro cannon is refilled with water."))
 		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
-		user.hud_used.update_ammo_hud(user, src)
+		user.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 		return
 
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/wide

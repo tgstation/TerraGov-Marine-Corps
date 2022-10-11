@@ -1084,7 +1084,9 @@ TUNNEL
 	for(var/obj/vehicle/unmanned/vehicle AS in GLOB.unmanned_vehicles)
 		if(vehicle.z == z && get_dist(vehicle, src) <= range)
 			potential_hostiles += vehicle
-
+	for(var/obj/vehicle/sealed/mecha/mech AS in GLOB.mechas_list)
+		if(mech.z == z && get_dist(mech, src) <= range)
+			potential_hostiles += mech
 
 ///Signal handler to make the turret shoot at its target
 /obj/structure/xeno/xeno_turret/proc/shoot()

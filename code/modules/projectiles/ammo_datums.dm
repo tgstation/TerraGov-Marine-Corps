@@ -250,9 +250,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		var/obj/projectile/new_proj = new proj_type(main_proj.loc, effect_icon)
 		if(bonus_projectiles_type)
 			new_proj.generate_bullet(bonus_projectiles_type)
-			var/obj/item/weapon/gun/g = source
-			if(source) //Check for the source so we don't runtime if we have bonus projectiles from a non-gun source like a Spitter
-				new_proj.damage *= g.damage_mult //Bonus or reduced damage based on damage modifiers on the gun.
+			if(isgun(source)) //Check for the source so we don't runtime if we have bonus projectiles from a non-gun source like a Spitter
+				var/obj/item/weapon/gun/gun = source
+				new_proj.damage *= gun.damage_mult //Bonus or reduced damage based on damage modifiers on the gun.
 		else //If no bonus type is defined then the extra projectiles are the same as the main one.
 			new_proj.generate_bullet(src)
 
@@ -387,6 +387,18 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/pistol/superheavy/derringer
 	handful_amount = 2
 	handful_icon_state = "derringer"
+
+/datum/ammo/bullet/pistol/mech
+	name = "super-heavy pistol bullet"
+	damage = 40
+	penetration = 15
+	sundering = 1
+
+/datum/ammo/bullet/pistol/mech/burst
+	name = "super-heavy pistol bullet"
+	damage = 35
+	penetration = 10
+	sundering = 0.5
 
 /datum/ammo/bullet/pistol/incendiary
 	name = "incendiary pistol bullet"
@@ -565,6 +577,12 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 0
 
 
+/datum/ammo/bullet/smg/mech
+	name = "super-heavy submachinegun bullet"
+	damage = 20
+	sundering = 0.25
+	penetration = 10
+
 /*
 //================================================
 					Rifle Ammo
@@ -707,6 +725,21 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 0 // incen doens't have sundering
 	accuracy = -10
 
+/datum/ammo/bullet/rifle/mech
+	name = "super-heavy rifle bullet"
+	damage = 25
+	penetration = 15
+	sundering = 0.5
+	damage_falloff = 0.8
+
+/datum/ammo/bullet/rifle/mech/burst
+	damage = 30
+	penetration = 10
+
+/datum/ammo/bullet/rifle/mech/lmg
+	damage = 20
+	penetration = 20
+	damage_falloff = 0.7
 
 /*
 //================================================
@@ -998,6 +1031,26 @@ datum/ammo/bullet/revolver/tp44
 	victim.AddComponent(/datum/component/dripping, DRIP_ON_TIME, 40 SECONDS, 2 SECONDS)
 
 
+/datum/ammo/bullet/shotgun/mech
+	name = "super-heavy shotgun buckshot shell"
+	icon_state = "buckshot"
+	hud_state = "shotgun_buckshot"
+	bonus_projectiles_type = /datum/ammo/bullet/shotgun/mech/spread
+	bonus_projectiles_amount = 4
+	bonus_projectiles_scatter = 10
+	accuracy_var_low = 10
+	accuracy_var_high = 10
+	max_range = 10
+	damage = 60
+	damage_falloff = 4
+
+/datum/ammo/bullet/shotgun/mech/spread
+	name = "super-heavy additional buckshot"
+	icon_state = "buckshot"
+	max_range = 10
+	damage = 50
+	damage_falloff = 4
+
 /*
 //================================================
 					Sniper Ammo
@@ -1103,6 +1156,14 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 2
 	damage_falloff = 0.25
 
+/datum/ammo/bullet/sniper/mech
+	name = "light anti-tank bullet"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SNIPER|AMMO_IFF
+	damage = 100
+	penetration = 35
+	sundering = 5
+	damage_falloff = 0.3
+
 /*
 //================================================
 					Special Ammo
@@ -1181,6 +1242,12 @@ datum/ammo/bullet/revolver/tp44
 	shrapnel_chance = 25
 	sundering = 2.5
 
+/datum/ammo/bullet/minigun/mech
+	name = "vulcan bullet"
+	damage = 30
+	penetration = 20
+	sundering = 0.5
+
 /datum/ammo/bullet/dual_cannon
 	name = "dualcannon bullet"
 	hud_state = "minigun"
@@ -1239,6 +1306,18 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/bullet/railgun/smart/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, stagger = 3, slowdown = 3, shake = 0)
 
+/datum/ammo/bullet/apfsds
+	name = "\improper APFSDS round"
+	hud_state = "alloy_spike"
+	icon_state 	= "blue_bullet"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
+	shell_speed = 4
+	max_range = 14
+	damage = 150
+	penetration = 100
+	sundering = 20
+	bullet_color = COLOR_PULSE_BLUE
+	on_pierce_multiplier = 0.85
 
 /datum/ammo/tx54
 	name = "20mm airburst grenade"
@@ -1356,6 +1435,18 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/tx54/he/do_at_max_range(turf/T, obj/projectile/P)
 	drop_nade(T.density ? P.loc : T)
+
+/datum/ammo/tx54/mech
+	name = "30mm fragmentation grenade"
+	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/mech
+	damage = 30
+	penetration = 20
+	projectile_greyscale_colors = "#4f0303"
+
+/datum/ammo/bullet/tx54_spread/mech
+	damage = 25
+	penetration = 20
+	sundering = 2
 
 //10-gauge Micro rail shells - aka micronades
 /datum/ammo/bullet/micro_rail
@@ -1602,6 +1693,14 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/rocket/ltb/drop_nade(turf/T)
 	explosion(T, 0, 4, 6, 7)
 
+/datum/ammo/rocket/mech
+	name = "large high-explosive rocket"
+	damage = 75
+	penetration = 50
+
+/datum/ammo/rocket/mech/drop_nade(turf/T)
+	explosion(T, 0, 2, 4, 5)
+
 /datum/ammo/rocket/heavy_rr
 	name = "75mm round"
 	icon_state = "heavyrr"
@@ -1632,12 +1731,14 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 75
 	max_range = 20
 	sundering = 100
+	//The radius for the non explosion effects
+	var/effect_radius = 3
 
-/datum/ammo/rocket/wp/drop_nade(turf/T, radius = 3)
+/datum/ammo/rocket/wp/drop_nade(turf/T)
 	if(!T || !isturf(T))
 		return
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
-	flame_radius(radius, T, 27, 27, 27, 17)
+	flame_radius(effect_radius, T, 27, 27, 27, 17)
 
 /datum/ammo/rocket/wp/quad
 	name = "thermobaric rocket"
@@ -1654,15 +1755,19 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/rocket/wp/quad/set_smoke()
 	smoke_system = new /datum/effect_system/smoke_spread/phosphorus()
 
-/datum/ammo/rocket/wp/quad/drop_nade(turf/T, atom/firer, range = 3, radius = 3)
+/datum/ammo/rocket/wp/quad/drop_nade(turf/T)
 	set_smoke()
-	smoke_system.set_up(range, T)
+	smoke_system.set_up(effect_radius, T)
 	smoke_system.start()
 	smoke_system = null
 	T.visible_message(span_danger("The rocket explodes into white gas!") )
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
-	flame_radius(radius, T, 27, 27, 27, 17)
+	flame_radius(effect_radius, T, 27, 27, 27, 17)
 
+/datum/ammo/rocket/wp/quad/som
+	name = "white phosphorous RPG"
+	hud_state = "rpg_fire"
+	flags_ammo_behavior = AMMO_ROCKET
 
 /datum/ammo/rocket/wp/quad/ds
 	name = "super thermobaric rocket"
@@ -1763,6 +1868,93 @@ datum/ammo/bullet/revolver/tp44
 	damage = 100
 	penetration = 100
 	sundering = 100
+
+/datum/ammo/rocket/som
+	name = "low impact RPG"
+	hud_state = "rpg_le"
+	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING
+	accurate_range = 15
+	max_range = 20
+	damage = 80
+	penetration = 20
+	sundering = 20
+
+/datum/ammo/rocket/som/drop_nade(turf/T)
+	explosion(T, 0, 3, 6, 2)
+
+/datum/ammo/rocket/som/light
+	name = "low impact RPG"
+	hud_state = "rpg_le"
+	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING
+	accurate_range = 15
+	max_range = 20
+	damage = 60
+	penetration = 10
+
+/datum/ammo/rocket/som/light/drop_nade(turf/T)
+	explosion(T, 0, 2, 7, 2)
+
+/datum/ammo/rocket/som/thermobaric
+	name = "thermobaric RPG"
+	hud_state = "rpg_thermobaric"
+	damage = 30
+
+/datum/ammo/rocket/som/thermobaric/drop_nade(turf/T)
+	explosion(T, 0, 4, 5, 4, 4)
+
+/datum/ammo/rocket/som/heat //Anti tank, or mech
+	name = "HEAT RPG"
+	hud_state = "rpg_heat"
+	damage = 200
+	penetration = 100
+	sundering = 0
+
+/datum/ammo/rocket/som/heat/drop_nade(turf/T)
+	explosion(T, flash_range = 1)
+
+/datum/ammo/rocket/som/rad
+	name = "irrad RPG"
+	hud_state = "rpg_rad"
+	damage = 50
+	penetration = 10
+	///Base strength of the rad effects
+	var/rad_strength = 25
+	///Range for the maximum rad effects
+	var/inner_range = 3
+	///Range for the moderate rad effects
+	var/mid_range = 5
+	///Range for the minimal rad effects
+	var/outer_range = 8
+
+/datum/ammo/rocket/som/rad/drop_nade(turf/T)
+	playsound(T, 'sound/effects/portal_opening.ogg', 50, 1)
+	for(var/mob/living/victim in hearers(outer_range, T))
+		var/strength
+		var/datum/looping_sound/geiger/geiger_counter = new(null, FALSE)
+		if(get_dist(victim, T) <= inner_range)
+			strength = rad_strength
+			geiger_counter.severity = 4
+		else if(get_dist(victim, T) <= mid_range)
+			strength = rad_strength * 0.7
+			geiger_counter.severity = 3
+		else
+			strength = rad_strength * 0.3
+			geiger_counter.severity = 2
+		irradiate(victim, strength)
+		geiger_counter.start(victim)
+	explosion(T, 0, 0, 3, 0)
+
+///Applies the actual rad effects
+/datum/ammo/rocket/som/rad/proc/irradiate(mob/living/victim, strength)
+	var/rad_penetration = max((100 - victim.get_soft_armor(BIO)) / 100, 0.25)
+	var/effective_strength = strength * rad_penetration //strength with rad armor taken into account
+	victim.adjustCloneLoss(effective_strength)
+	victim.adjustStaminaLoss(effective_strength * 7)
+	victim.adjust_stagger(effective_strength / 2)
+	victim.add_slowdown(effective_strength / 2)
+	victim.blur_eyes(effective_strength) //adds a visual indicator that you've just been irradiated
+	victim.adjust_radiation(effective_strength * 20) //Radiation status effect, duration is in deciseconds
+	to_chat(victim, span_warning("Your body tingles as you suddenly feel the strength drain from your body!"))
 
 /datum/ammo/rocket/atgun_shell
 	name = "high explosive ballistic cap shell"
@@ -2153,8 +2345,25 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/energy/lasgun/marine/heavy_laser/do_at_max_range(turf/T, obj/projectile/P)
 	drop_nade(T.density ? P.loc : T)
 
-// Plasma //
+/datum/ammo/energy/lasgun/marine/mech
+	name = "superheated laser bolt"
+	damage = 40
+	penetration = 20
+	sundering = 1
+	damage_falloff = 0.5
 
+/datum/ammo/energy/lasgun/marine/mech/burst
+	damage = 50
+	penetration = 20
+	sundering = 0.75
+	damage_falloff = 0.6
+
+/datum/ammo/energy/lasgun/marine/mech/smg
+	name = "superheated pulsed laser bolt"
+	damage = 35
+	penetration = 15
+
+// Plasma //
 /datum/ammo/energy/plasma
 	name = "plasma bolt"
 	icon_state = "pulse2"
@@ -2915,6 +3124,11 @@ datum/ammo/bullet/revolver/tp44
 	if(!istype(T))
 		return
 	flame_radius(2, T)
+
+/datum/ammo/flamethrower/mech_flamer/drop_flame(turf/T)
+	if(!istype(T))
+		return
+	flame_radius(1, T)
 
 /datum/ammo/flamethrower/blue
 	name = "blue flame"

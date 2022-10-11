@@ -127,10 +127,14 @@
 		orbiting = null
 
 	vis_contents.Cut()
+	vis_locs = null
 
 	//We add ourselves to this list, best to clear it out
 	//DO it after moveToNullspace so memes can be had
 	LAZYCLEARLIST(important_recursive_contents)
+
+	QDEL_NULL(light)
+	QDEL_NULL(static_light)
 
 ///Updates this movables emissive overlay
 /atom/movable/proc/update_emissive_block()

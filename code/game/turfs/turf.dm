@@ -577,7 +577,7 @@
 			else if(istype(O, /obj/structure/bed/nest)) //We don't care about other beds/chairs/whatever the fuck.
 				has_obstacle = TRUE
 				break
-		if(istype(O, /obj/alien/hivemindcore))
+		if(istype(O, /obj/structure/xeno/hivemindcore))
 			has_obstacle = TRUE
 			break
 
