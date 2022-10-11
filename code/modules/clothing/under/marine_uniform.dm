@@ -6,7 +6,6 @@
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented marine uniform. You suspect it's not as robust-proof as advertised."
 	siemens_coefficient = 0.9
 	icon_state = "marine_jumpsuit"
-	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, "rad" = 0, FIRE = 0, ACID = 0) //No armor on non ERT uniforms.
 	has_sensor = 2
 	adjustment_variants = list(
 		"Down" = "_d",
@@ -226,7 +225,6 @@
 	desc = "A white set of fatigues, designed for private security operators. The symbol of the Nanotrasen corporation is emblazed on the suit."
 	icon_state = "pmc_jumpsuit"
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 0, ENERGY = 0, BOMB = 10, BIO = 0, "rad" = 0, FIRE = 0, ACID = 0)
 
 /obj/item/clothing/under/marine/veteran/PMC/leader
 	name = "\improper PMC command fatigues"
@@ -331,7 +329,6 @@
 	name = "colonial marshal uniform"
 	desc = "A blue shirt and tan trousers - the official uniform for a Colonial Marshal."
 	icon_state = "marshal"
-	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, "rad" = 0, FIRE = 0, ACID = 0)
 	has_sensor = 2
 
 /obj/item/clothing/under/liaison_suit

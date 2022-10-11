@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - bugfix: "wraith will now properly send mobs inside objects that are banished instead of just dumping them out"

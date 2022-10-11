@@ -8499,6 +8499,12 @@
 	dir = 1
 	},
 /area/lv624/ground/jungle6)
+"hyS" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
+	},
+/area/lv624/lazarus/corporate_affairs)
 "hAS" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
@@ -11515,12 +11521,6 @@
 "kYj" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/lv624/ground/compound/n)
-"kYm" = (
-/obj/effect/decal/sandytile,
-/obj/effect/decal/sandytile,
-/obj/effect/landmark/sensor_tower_patrol,
-/turf/open/floor/tile/whiteyellow/full,
-/area/lv624/lazarus/sandtemple)
 "kYv" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
@@ -40405,7 +40405,7 @@ rAx
 xYX
 gbp
 bQd
-bQd
+hyS
 lwx
 tJT
 bxn
@@ -58540,7 +58540,7 @@ qfl
 oRZ
 jNf
 bOl
-kYm
+jQc
 jNf
 bOl
 fnP
