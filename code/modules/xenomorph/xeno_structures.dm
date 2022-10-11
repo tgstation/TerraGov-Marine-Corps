@@ -842,6 +842,7 @@ TUNNEL
 	COOLDOWN_START(src, silo_proxy_alert_cooldown, XENO_SILO_DETECTION_COOLDOWN) //set the cooldown.
 	addtimer(CALLBACK(src, .proc/clear_warning), XENO_SILO_DETECTION_COOLDOWN) //clear warning
 
+///Clears the warning for minimap if its warning for hostiles
 /obj/structure/xeno/silo/proc/clear_warning()
 	warning = FALSE
 	update_minimap_icon()
@@ -856,6 +857,7 @@ TUNNEL
 	if(associated_hive)
 		silos += src
 
+///Change minimap icon if silo is under attack or not
 /obj/structure/xeno/silo/proc/update_minimap_icon()
 	SSminimaps.remove_marker(src)
 	SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, "silo[warning ? "_warn" : "_passive"]")
@@ -1309,6 +1311,7 @@ TUNNEL
 	. = ..()
 	spawner_damage_alert()
 
+///Alert if spawner is receiving damage
 /obj/structure/xeno/spawner/proc/spawner_damage_alert()
 	if(!COOLDOWN_CHECK(src, spawner_damage_alert_cooldown))
 		warning = FALSE
@@ -1345,6 +1348,7 @@ TUNNEL
 	COOLDOWN_START(src, spawner_proxy_alert_cooldown, XENO_SILO_DETECTION_COOLDOWN) //set the cooldown.
 	addtimer(CALLBACK(src, .proc/clear_warning), XENO_SILO_DETECTION_COOLDOWN) //clear warning
 
+///Clears the warning for minimap if its warning for hostiles
 /obj/structure/xeno/spawner/proc/clear_warning()
 	warning = FALSE
 	update_minimap_icon()
@@ -1353,6 +1357,7 @@ TUNNEL
 	GLOB.xeno_spawner -= src
 	return ..()
 
+///Change minimap icon if spawner is under attack or not
 /obj/structure/xeno/spawner/proc/update_minimap_icon()
 	SSminimaps.remove_marker(src)
 	SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, "spawner[warning ? "_warn" : "_passive"]")
