@@ -319,14 +319,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 20
 	penetration = 5
 	accurate_range = 5
-	sundering = 1
 
 /datum/ammo/bullet/pistol/tiny
 	name = "light pistol bullet"
 	hud_state = "pistol_light"
 	damage = 15
 	penetration = 5
-	sundering = 0.5
 
 /datum/ammo/bullet/pistol/tiny/ap
 	name = "light pistol bullet"
@@ -353,7 +351,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "pistol_hollow"
 	accuracy = -10
 	shrapnel_chance = 45
-	sundering = 2
 
 /datum/ammo/bullet/pistol/hollow/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, stagger = 1, slowdown = 0.5, knockback = 1)
@@ -448,12 +445,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	damage = 45
 	penetration = 10
-	sundering = 3
 
 /datum/ammo/bullet/revolver/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, stagger = 1, slowdown = 0.5, knockback = 1)
 
-datum/ammo/bullet/revolver/tp44
+/datum/ammo/bullet/revolver/tp44
 	name = "standard revolver bullet"
 	damage = 30
 	penetration = 20
@@ -559,7 +555,6 @@ datum/ammo/bullet/revolver/tp44
 	damage = 20
 	accurate_range = 4
 	damage_falloff = 1
-	sundering = 0.5
 	penetration = 5
 
 /datum/ammo/bullet/smg/ap
@@ -597,7 +592,6 @@ datum/ammo/bullet/revolver/tp44
 	accurate_range = 12
 	damage = 25
 	penetration = 5
-	sundering = 0.5
 
 /datum/ammo/bullet/rifle/ap
 	name = "armor-piercing rifle bullet"
@@ -611,14 +605,13 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "hivelo"
 	damage = 20
 	penetration = 20
-	sundering = 1.25
 
 /datum/ammo/bullet/rifle/heavy
 	name = "heavy rifle bullet"
 	hud_state = "hivelo"
 	damage = 30
 	penetration = 10
-	sundering = 1.25
+	sundering = 0.5
 
 /datum/ammo/bullet/rifle/repeater
 	name = "heavy impact rifle bullet"
@@ -643,6 +636,7 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "rifle_heavy"
 	damage = 20
 	penetration = 10
+	sundering = 0.5
 
 /datum/ammo/bullet/rifle/tx8
 	name = "A19 high velocity bullet"
@@ -683,7 +677,7 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	damage = 30
 	penetration = 15
-	sundering = 1.75
+	sundering = 0.75
 
 /datum/ammo/bullet/rifle/standard_dmr
 	name = "marksman bullet"
@@ -705,7 +699,7 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	penetration = 15
 	damage = 32.5
-	sundering = 1.25
+	sundering = 0.5
 
 /datum/ammo/bullet/rifle/standard_br/incendiary
 	name = "incendiary light marksman bullet"
@@ -762,7 +756,6 @@ datum/ammo/bullet/revolver/tp44
 	max_range = 15
 	damage = 100
 	penetration = 20
-	sundering = 15
 
 /datum/ammo/bullet/shotgun/slug/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, weaken = 1, stagger = 2, knockback = 1, slowdown = 2)
@@ -795,7 +788,6 @@ datum/ammo/bullet/revolver/tp44
 	max_range = 15
 	damage = 70
 	penetration = 15
-	sundering = 2
 	bullet_color = COLOR_TAN_ORANGE
 
 /datum/ammo/bullet/shotgun/incendiary/on_hit_mob(mob/M, obj/projectile/P)
@@ -963,7 +955,6 @@ datum/ammo/bullet/revolver/tp44
 	max_range = 15
 	damage = 60
 	penetration = 30
-	sundering = 3.5
 
 /datum/ammo/bullet/shotgun/tx15_slug/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, slowdown = 2, knockback = 1)
@@ -1240,7 +1231,6 @@ datum/ammo/bullet/revolver/tp44
 	damage = 25
 	penetration = 15
 	shrapnel_chance = 25
-	sundering = 2.5
 
 /datum/ammo/bullet/minigun/mech
 	name = "vulcan bullet"
