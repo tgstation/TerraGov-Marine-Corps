@@ -9702,7 +9702,7 @@
 /area/sulaco/hallway/lower_main_hall)
 "aZu" = (
 /obj/machinery/computer/mech_builder{
-	dir = 8
+	dir = 2
 	},
 /obj/machinery/light/mainship{
 	dir = 1
