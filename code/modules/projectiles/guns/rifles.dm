@@ -1184,6 +1184,7 @@
 		/obj/item/attachable/scope/unremovable/tl127,
 		/obj/item/attachable/stock/tl127stock,
 		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
