@@ -205,10 +205,8 @@
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	var/mob/living/carbon/xenomorph/target_xeno = target
 	var/heal_amount = target_xeno.maxHealth * GORGER_TRANSFUSION_HEAL
-	var/remainder = max(0, heal_amount - target_xeno.getBruteLoss()) //Heal brute first, apply whatever's left as overheal
-
-	target_xeno.apply_healing(heal_amount, BRUTE)
-	adjustOverheal(target_xeno, remainder)
+	HEAL_XENO_DAMAGE(target_xeno, heal_amount)
+	adjustOverheal(target_xeno, heal_amount)
 	if(target_xeno.overheal)
 		target_xeno.balloon_alert(owner_xeno, "Overheal: [target_xeno.overheal]/[target_xeno.xeno_caste.overheal_max]")
 	add_cooldown()

@@ -146,19 +146,6 @@
 
 #undef HANDLE_OVERHEAL
 
-/// Heals the xeno's health and sends a signal in response. Meant to be used by healing abilities.
-/mob/living/carbon/xenomorph/proc/apply_healing(amount = 0, damagetype = BRUTE, updating_health = FALSE)
-	var/list/amount_mod = list()
-	SEND_SIGNAL(src, COMSIG_XENOMORPH_HEALED_BY_ABILITY, amount, damagetype, amount_mod)
-	for(var/i in amount_mod)
-		amount -= i
-
-	switch(damagetype)
-		if(BRUTE)
-			adjustBruteLoss(-amount)
-		if(BURN)
-			adjustFireLoss(-amount)
-
 /mob/living/carbon/xenomorph/proc/check_blood_splash(damage = 0, damtype = BRUTE, chancemod = 0, radius = 1)
 	if(!damage)
 		return FALSE

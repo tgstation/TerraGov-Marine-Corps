@@ -76,11 +76,12 @@
 	RegisterSignal(link_target, COMSIG_MOVABLE_MOVED, .proc/handle_dist)
 	RegisterSignal(link_owner, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, .proc/share_jelly)
 	RegisterSignal(link_target, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, .proc/share_jelly)
-	RegisterSignal(link_owner, COMSIG_XENOMORPH_HEALED_BY_ABILITY, .proc/share_heal)
-	RegisterSignal(link_target, COMSIG_XENOMORPH_HEALED_BY_ABILITY, .proc/share_heal)
+	RegisterSignal(link_owner, COMSIG_XENOMORPH_BRUTE_DAMAGE, .proc/share_heal)
+	RegisterSignal(link_target, COMSIG_XENOMORPH_BRUTE_DAMAGE, .proc/share_heal)
+	RegisterSignal(link_owner, COMSIG_XENOMORPH_BURN_DAMAGE, .proc/share_heal)
+	RegisterSignal(link_target, COMSIG_XENOMORPH_BURN_DAMAGE, .proc/share_heal)
 	toggle_link(TRUE)
-	link_target.visible_message(span_xenowarning("[link_target] has gained a faint glow!"), \
-		span_xenonotice("[link_owner] has established an Essence Link with you. Stay within [DRONE_ESSENCE_LINK_RANGE] tiles to maintain it."))
+	to_chat(link_target, "[link_owner] has established an Essence Link with you. Stay within [DRONE_ESSENCE_LINK_RANGE] tiles to maintain it.")
 	return ..()
 
 /datum/status_effect/stacking/essence_link/add_stacks(stacks_added)
@@ -88,7 +89,7 @@
 	essence_link_action.update_button_icon()
 	link_owner.balloon_alert(link_owner, "Attunement: [stacks]/[max_stacks]")
 	heal_amount = round(link_target.maxHealth * (stacks * DRONE_ESSENCE_LINK_REGEN))
-	plasma_cost = round(heal_amount * 3)
+	plasma_cost = round(heal_amount * 2)
 	COOLDOWN_START(src, attunement_increase, attunement_cooldown)
 	update_beam()
 
@@ -100,8 +101,8 @@
 	essence_link_action.end_ability()
 	REMOVE_TRAIT(link_owner, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
 	REMOVE_TRAIT(link_target, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
-	UnregisterSignal(link_owner, list(COMSIG_MOB_DEATH, COMSIG_MOVABLE_MOVED, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, COMSIG_XENOMORPH_HEALED_BY_ABILITY))
-	UnregisterSignal(link_target, list(COMSIG_MOB_DEATH, COMSIG_MOVABLE_MOVED, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, COMSIG_XENOMORPH_HEALED_BY_ABILITY))
+	UnregisterSignal(link_owner, list(COMSIG_MOB_DEATH, COMSIG_MOVABLE_MOVED, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
+	UnregisterSignal(link_target, list(COMSIG_MOB_DEATH, COMSIG_MOVABLE_MOVED, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
 
 /datum/status_effect/stacking/essence_link/tick()
 	if(stacks < max_stacks && COOLDOWN_CHECK(src, attunement_increase))
@@ -161,7 +162,7 @@
 	var/mob/living/carbon/xenomorph/heal_target
 	var/heal_amount
 
-	if(amount >= 0)
+	if(amount > -DRONE_BASE_SALVE_HEAL) // lowest heal in the game
 		return
 
 	if(source == link_target)
@@ -171,7 +172,7 @@
 		heal_owner = link_owner
 		heal_target = link_target
 
-	heal_amount = round(clamp(amount * (DRONE_ESSENCE_LINK_SHARED_HEAL * stacks), 0, heal_target.maxHealth))
+	heal_amount = round(clamp(amount * (DRONE_ESSENCE_LINK_SHARED_HEAL * stacks), -heal_target.maxHealth, 0))
 	heal_target.visible_message(span_xenowarning("[heal_target]'s wounds are mended by faint energies."), \
 		span_xenonotice("Through the essence link, [heal_owner] has shared [heal_amount] health restoration."))
 	new /obj/effect/temp_visual/telekinesis(get_turf(heal_target))
@@ -752,7 +753,7 @@
 	//Healing pool has been calculated; now to decrement it
 	var/brute_amount = min(patient.bruteloss, total_heal_amount)
 	if(brute_amount)
-		patient.apply_healing(brute_amount, BRUTE, updating_health = TRUE)
+		patient.adjustBruteLoss(-brute_amount, updating_health = TRUE)
 		total_heal_amount = max(0, total_heal_amount - brute_amount) //Decrement from our heal pool the amount of brute healed
 
 	if(!total_heal_amount) //no healing left, no need to continue
@@ -760,7 +761,7 @@
 
 	var/burn_amount = min(patient.fireloss, total_heal_amount)
 	if(burn_amount)
-		patient.apply_healing(burn_amount, BURN, updating_health = TRUE)
+		patient.adjustFireLoss(-burn_amount, updating_health = TRUE)
 
 
 ///Called when the target xeno regains Sunder via heal_wounds in life.dm
