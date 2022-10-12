@@ -2216,6 +2216,11 @@
 	dir = 4
 	},
 /area/gelida/indoors/a_block/dorm_north)
+"btf" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/mainship/black/full,
+/area/gelida/indoors/c_block/mining)
 "btm" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -3737,6 +3742,10 @@
 /turf/open/floor/prison/blue/plate{
 	dir = 1
 	},
+/area/gelida/indoors/a_block/admin)
+"cug" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/prison,
 /area/gelida/indoors/a_block/admin)
 "cun" = (
 /obj/structure/platform/gelida{
@@ -10343,6 +10352,12 @@
 	icon_state = "65"
 	},
 /area/gelida/landing_zone_forecon/UD6_Typhoon)
+"gyH" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/prison/whitepurple/full{
+	dir = 4
+	},
+/area/gelida/indoors/a_block/dorm_north)
 "gyJ" = (
 /obj/structure/bed/stool,
 /obj/item/clothing/mask/facehugger/dead{
@@ -19353,6 +19368,11 @@
 	},
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/colony_streets/central_streets)
+"mmL" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/wood,
+/area/gelida/indoors/a_block/fitness)
 "mmP" = (
 /obj/structure/filingcabinet{
 	pixel_x = -8;
@@ -27600,6 +27620,13 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/dorms)
+"ruV" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/gelida/indoors/a_block/security)
 "rvq" = (
 /obj/effect/landmark/excavation_site_spawner,
 /obj/effect/landmark/weed_node,
@@ -52111,7 +52138,7 @@ ngb
 jwQ
 rsY
 kVR
-kVR
+mmL
 kVR
 ych
 baD
@@ -58357,7 +58384,7 @@ haP
 haP
 haP
 jmQ
-kEQ
+ruV
 qWU
 adN
 haP
@@ -61797,7 +61824,7 @@ fKv
 xJv
 fKH
 kxK
-kxK
+btf
 kxK
 fKH
 qmp
@@ -66989,7 +67016,7 @@ vNb
 fDv
 uJV
 ihl
-oZU
+gyH
 bzM
 xUH
 ihl
@@ -70127,7 +70154,7 @@ poj
 hsf
 uch
 qLo
-mVh
+cug
 kFl
 kFl
 fGk
