@@ -93,10 +93,6 @@
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CURE
 	heal_range = DRONE_HEAL_RANGE
 	target_flags = XABB_MOB_TARGET
-	/// Amount of health restored by this ability.
-	var/heal_amount = 50
-	/// Multiplier applied to this heal when below a certain threshold.
-	var/heal_multiplier = 1
 
 /datum/action/xeno_action/activable/psychic_cure/acidic_salve/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -115,19 +111,28 @@
 	var/datum/action/xeno_action/activable/essence_link/essence_link_action = owner.actions_by_path[/datum/action/xeno_action/activable/essence_link]
 	var/remaining_health = round(target.maxHealth - (target.getBruteLoss() + target.getFireLoss()))
 	var/health_threshold = round(target.maxHealth / 10) // 10% of the target's maximum health
+	var/base_heal_amount = 50
+	var/heal_amount = 0
+	var/heal_multiplier = 1
+
 	if(essence_link_action.existing_link && essence_link_action.existing_link.stacks >= 1 && target == essence_link_action.existing_link.link_target)
 		target.apply_status_effect(STATUS_EFFECT_XENO_SALVE_REGEN)
 		if(remaining_health <= health_threshold)
 			heal_multiplier = 3
 			playsound(target,'sound/effects/magic.ogg', 75, 1)
 			essence_link_action.existing_link.add_stacks(-1)
+
 	playsound(target, "alien_drool", 25)
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
-	heal_amount += round((target.recovery_aura * target.maxHealth * 0.01) * heal_multiplier) // +1% max health per recovery level, up to +5%. Multiplied by heal_multiplier.
-	var/heal_remainder = round(max(0, heal_amount - target.getBruteLoss()) * heal_multiplier) // Heal brute first, apply whatever's left to burns
+	heal_amount = round(base_heal_amount * heal_multiplier) + round((target.recovery_aura * target.maxHealth * 0.01)) // +1% max health per recovery level, up to +5%. Multiplied by heal_multiplier.
+	message_admins("heal_amount is [heal_amount].")
+	var/heal_remainder = round(max(0, heal_amount - target.getBruteLoss())) // Heal brute first, apply whatever's left to burns
 	target.apply_healing(heal_amount, BRUTE)
 	target.apply_healing(heal_remainder, FIRE, TRUE)
 	target.adjust_sunder(-heal_amount/20)
+
+	heal_multiplier = initial(heal_multiplier)
+	heal_amount = initial(heal_amount)
 
 // ***************************************
 // *********** Enhancement
