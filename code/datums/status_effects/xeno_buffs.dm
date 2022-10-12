@@ -275,9 +275,9 @@
 	/// The plasma cost per tick of this ability.
 	var/plasma_cost
 	/// Damage bonus given by this ability.
-	var/damage_multiplier = 1.2
+	var/damage_multiplier = 1.1
 	/// Speed bonus given by this ability.
-	var/speed_addition = -0.5
+	var/speed_addition = -0.4
 	/// If the target xeno was within range.
 	var/was_within_range = TRUE
 
