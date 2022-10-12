@@ -48,10 +48,6 @@
 	var/datum/action/xeno_action/activable/essence_link/essence_link_action
 	/// If the target xeno was within range.
 	var/was_within_range = TRUE
-	/// The amount of health restored passively.
-	var/heal_amount
-	/// The plasma cost incurred by passive regeneration.
-	var/plasma_cost
 	/// Time it takes for the attunement levels to increase.
 	var/attunement_cooldown = 20 SECONDS
 	/// Cooldown for passive attunement increase.
@@ -62,6 +58,8 @@
 	COOLDOWN_DECLARE(plasma_warning)
 	/// The beam used to represent the link between linked xenos.
 	var/datum/beam/current_beam
+	/// Used to prevent duplicate heals in the case of two damage sources.
+	var/heal_count
 
 /datum/status_effect/stacking/essence_link/on_creation(mob/living/new_owner, stacks_to_apply, mob/living/carbon/link_target)
 	link_owner = new_owner
@@ -87,8 +85,6 @@
 	. = ..()
 	essence_link_action.update_button_icon()
 	link_owner.balloon_alert(link_owner, "Attunement: [stacks]/[max_stacks]")
-	heal_amount = round(link_target.maxHealth * (stacks * DRONE_ESSENCE_LINK_REGEN))
-	plasma_cost = round(heal_amount * 2)
 	COOLDOWN_START(src, attunement_increase, attunement_cooldown)
 	update_beam()
 
@@ -104,9 +100,13 @@
 	UnregisterSignal(link_target, list(COMSIG_MOB_DEATH, COMSIG_MOVABLE_MOVED, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
 
 /datum/status_effect/stacking/essence_link/tick()
+	var/remaining_health = link_target.maxHealth - (link_target.getBruteLoss() + link_target.getFireLoss())
+	var/heal_amount = round(link_target.maxHealth * (stacks * DRONE_ESSENCE_LINK_REGEN))
+	var/heal_remainder = round(max(0, heal_amount - link_target.getBruteLoss()))
+	var/plasma_cost = round(heal_amount * 2.5)
 	if(stacks < max_stacks && COOLDOWN_CHECK(src, attunement_increase))
 		add_stacks(1)
-	if(!link_target.bruteloss || !current_beam)
+	if(!was_within_range || remaining_health >= link_target.maxHealth)
 		return
 	if(link_owner.plasma_stored < plasma_cost)
 		if(!COOLDOWN_CHECK(src, plasma_warning))
@@ -115,7 +115,8 @@
 		link_target.balloon_alert(link_target, "No plasma for link")
 		COOLDOWN_START(src, plasma_warning, plasma_warning_cooldown)
 		return
-	HEAL_XENO_DAMAGE(link_target, heal_amount)
+	link_target.adjustBruteLoss(-heal_amount)
+	link_target.adjustFireLoss(-heal_remainder)
 	link_owner.use_plasma(plasma_cost)
 
 /// Removes the status effect on death.
@@ -159,11 +160,15 @@
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/heal_owner
 	var/mob/living/carbon/xenomorph/heal_target
-	var/heal_amount
 
-	if(amount > -60) // Most passive regen values do not go past this value.
+	// Prevents passive regeneration from triggering this. Most values do not go past 60.
+	if(amount > -60)
 		return
-
+	// Prevents duplicate heals. Some heals restore both damage types, and we also have 2 signals.
+	if(heal_count)
+		heal_count--
+		return
+	heal_count++
 	if(source == link_target)
 		heal_owner = link_target
 		heal_target = link_owner
@@ -171,11 +176,15 @@
 		heal_owner = link_owner
 		heal_target = link_target
 
-	heal_amount = round(clamp(amount * (DRONE_ESSENCE_LINK_SHARED_HEAL * stacks), -heal_target.maxHealth, 0))
-	heal_target.visible_message(span_xenowarning("[heal_target]'s wounds are mended by faint energies."), \
-		span_xenonotice("Through the essence link, [heal_owner] has shared [abs(heal_amount)] health restoration."))
 	new /obj/effect/temp_visual/telekinesis(get_turf(heal_target))
-	HEAL_XENO_DAMAGE(heal_target, heal_amount)
+	var/heal_amount = round(clamp(amount * (DRONE_ESSENCE_LINK_SHARED_HEAL * stacks), -heal_target.maxHealth, 0))
+	var/heal_remainder = round(max(0, heal_amount - heal_target.getBruteLoss()))
+	heal_target.adjustBruteLoss(heal_amount)
+	heal_target.adjustFireLoss(-heal_remainder)
+	heal_target.adjust_sunder(heal_amount/20)
+	if(heal_amount < 0 || heal_remainder < 0)
+		heal_target.visible_message(span_xenowarning("[heal_target]'s wounds are mended by faint energies."), \
+			span_xenonotice("Through the essence link, [heal_owner] has shared [abs(heal_amount + heal_remainder)] health restoration."))
 
 // Toggles the link signals on or off.
 /datum/status_effect/stacking/essence_link/proc/toggle_link(toggle)
