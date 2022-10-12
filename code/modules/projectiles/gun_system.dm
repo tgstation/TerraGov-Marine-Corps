@@ -104,7 +104,7 @@
 	///Sound for reloading by handfuls
 	var/hand_reload_sound
 	///Load animation
-	var/load_animation
+	var/load_animation = null
 
 	///Stored sum of magazine rounds / chamber contents. This is used for anything needing ammo. It is updated on reload/unload/fire
 	var/rounds

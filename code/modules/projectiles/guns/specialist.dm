@@ -828,6 +828,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
 	caliber = "CALIBER_ARROW" //codex
 	max_shells = 1 //codex
+	default_ammo_type = /datum/ammo/bullet/arrow
 	gun_skill_category = GUN_SKILL_RIFLES
 	attachable_allowed = list(
 		/obj/item/attachable/bipod,
@@ -849,4 +850,4 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	wield_delay = 1 SECONDS
 
 /datum/ammo/bullet/arrow/sticky/on_hit_mob(mob/M,obj/projectile/P)
-	apply_status_effect(/datum/status_effect/sticky_arrow, 5 SECONDS)
+    apply_status_effect(/datum/status_effect/sticky_arrow, 5 SECONDS)

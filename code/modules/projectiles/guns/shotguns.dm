@@ -764,4 +764,3 @@
 	accuracy_mult = 1.1
 	scatter = 0
 	recoil = 1
-

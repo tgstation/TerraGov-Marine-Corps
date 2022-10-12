@@ -1564,6 +1564,10 @@ datum/ammo/bullet/revolver/tp44
 	max_range = 30
 	damage = 30
 	penetration = 35
+
+/datum/ammo/bullet/arrow/sticky/on_hit_mob(mob/M,obj/projectile/P)
+
+
 /*
 //================================================
 					Rocket Ammo
