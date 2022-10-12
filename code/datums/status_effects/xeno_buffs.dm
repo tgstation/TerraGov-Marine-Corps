@@ -47,8 +47,6 @@
 	var/mob/living/carbon/xenomorph/link_target
 	/// References the Essence Link action and its vars.
 	var/datum/action/xeno_action/activable/essence_link/essence_link_action
-	/// If the target xeno is within range.
-	var/within_range
 	/// If the target xeno was within range.
 	var/was_within_range = TRUE
 	/// Time it takes for the attunement levels to increase.
@@ -93,6 +91,7 @@
 	link_owner.balloon_alert(link_owner, "Essence Link cancelled")
 	link_target.balloon_alert(link_target, "Essence Link cancelled")
 	toggle_link(FALSE)
+	essence_link_action.end_ability()
 	REMOVE_TRAIT(link_owner, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
 	REMOVE_TRAIT(link_target, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
 	UnregisterSignal(link_owner, list(COMSIG_MOB_DEATH, COMSIG_MOVABLE_MOVED, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, COMSIG_XENOMORPH_HEALED_BY_ABILITY))
@@ -124,7 +123,7 @@
 /// Toggles the link depending on whether the linked xenos are still in range or not.
 /datum/status_effect/stacking/essence_link/proc/handle_dist(datum/source)
 	SIGNAL_HANDLER
-	within_range = get_dist(link_owner, link_target) <= DRONE_ESSENCE_LINK_RANGE
+	var/within_range = get_dist(link_owner, link_target) <= DRONE_ESSENCE_LINK_RANGE
 	if(within_range == was_within_range)
 		return
 	was_within_range = within_range
@@ -153,11 +152,14 @@
 	buff_target.apply_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING)
 
 /// Shares heals with the linked xeno.
-/datum/status_effect/stacking/essence_link/proc/share_heal(datum/source, amount, damagetype)
+/datum/status_effect/stacking/essence_link/proc/share_heal(datum/source, amount, list/amount_mod)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/heal_owner
 	var/mob/living/carbon/xenomorph/heal_target
 	var/heal_amount
+
+	if(amount >= 0)
+		return
 
 	if(source == link_target)
 		heal_owner = link_target
@@ -166,18 +168,11 @@
 		heal_owner = link_owner
 		heal_target = link_target
 
-	// Prevent healing loops by temporarily removing this signal.
-	UnregisterSignal(link_owner, COMSIG_XENOMORPH_HEALED_BY_ABILITY)
-	UnregisterSignal(link_target, COMSIG_XENOMORPH_HEALED_BY_ABILITY)
-
 	heal_amount = round(clamp(amount * (DRONE_ESSENCE_LINK_SHARED_HEAL * stacks), 0, heal_target.maxHealth))
 	heal_target.visible_message(span_xenowarning("[heal_target]'s wounds are mended by faint energies."), \
 		span_xenonotice("Through the essence link, [heal_owner] has shared [heal_amount] health restoration."))
 	new /obj/effect/temp_visual/telekinesis(get_turf(heal_target))
-	heal_target.apply_healing(heal_amount)
-
-	RegisterSignal(link_owner, COMSIG_XENOMORPH_HEALED_BY_ABILITY, .proc/share_heal)
-	RegisterSignal(link_target, COMSIG_XENOMORPH_HEALED_BY_ABILITY, .proc/share_heal)
+	HEAL_XENO_DAMAGE(heal_target, heal_amount)
 
 // Toggles the link signals on or off.
 /datum/status_effect/stacking/essence_link/proc/toggle_link(toggle)
@@ -277,9 +272,11 @@
 	/// The plasma cost per tick of this ability.
 	var/plasma_cost
 	/// Damage bonus given by this ability.
-	var/damage_addition
+	var/damage_multiplier = 1.2
 	/// Speed bonus given by this ability.
 	var/speed_addition = -0.5
+	/// If the target xeno was within range.
+	var/was_within_range = TRUE
 
 /datum/status_effect/drone_enhancement/on_creation(mob/living/new_owner, mob/living/carbon/new_target)
 	buff_owner = new_owner
@@ -287,20 +284,17 @@
 	essence_link_action = buffing_target.actions_by_path[/datum/action/xeno_action/activable/essence_link]
 	enhancement_action = buffing_target.actions_by_path[/datum/action/xeno_action/enhancement]
 	plasma_cost = round(buffing_target.xeno_caste.plasma_max * 0.1)
-	damage_addition = round(buff_owner.xeno_caste.melee_damage * 0.04)
-	buffing_target.xeno_caste.plasma_gain = 0
 	RegisterSignal(buff_owner, COMSIG_MOVABLE_MOVED, .proc/handle_dist)
 	RegisterSignal(buffing_target, COMSIG_MOVABLE_MOVED, .proc/handle_dist)
 	RegisterSignal(buff_owner, COMSIG_MOB_DEATH, .proc/handle_death)
 	RegisterSignal(buffing_target, COMSIG_MOB_DEATH, .proc/handle_death)
-	INVOKE_ASYNC(buff_owner, /mob/living/carbon/xenomorph/.proc/emote, "roar2")
+	INVOKE_ASYNC(buff_owner, /mob/living/carbon/xenomorph.proc/emote, "roar2")
 	toggle_buff(TRUE)
 	return ..()
 
 /datum/status_effect/drone_enhancement/on_remove()
 	buff_owner.balloon_alert(buff_owner, "Enhancement inactive")
 	buffing_target.balloon_alert(buffing_target, "Enhancement inactive")
-	buffing_target.xeno_caste.plasma_gain -= buffing_target.xeno_caste.plasma_gain
 	UnregisterSignal(buff_owner, list(COMSIG_MOVABLE_MOVED, COMSIG_MOB_DEATH))
 	UnregisterSignal(buffing_target, list(COMSIG_MOVABLE_MOVED, COMSIG_MOB_DEATH))
 	toggle_buff(FALSE)
@@ -315,32 +309,29 @@
 /// Toggles the link depending on whether the linked xenos are still in range or not.
 /datum/status_effect/drone_enhancement/proc/handle_dist(datum/source)
 	SIGNAL_HANDLER
-	if(essence_link_action.existing_link.within_range == essence_link_action.existing_link.was_within_range)
+	var/within_range = get_dist(buff_owner, buffing_target) <= DRONE_ESSENCE_LINK_RANGE
+	if(within_range == was_within_range)
 		return
-	message_admins("da thang doin a thinf")
-	toggle_buff(essence_link_action.existing_link.was_within_range ? (TRUE) : (FALSE))
+	was_within_range = within_range
+	toggle_buff(was_within_range ? (TRUE) : (FALSE))
 
 /// Toggles the buff on or off.
 /datum/status_effect/drone_enhancement/proc/toggle_buff(toggle)
 	if(!toggle)
-		message_admins("da thang on")
 		buff_owner.xeno_melee_damage_modifier = initial(buff_owner.xeno_melee_damage_modifier)
 		buff_owner.remove_movespeed_modifier(MOVESPEED_ID_ENHANCEMENT)
 		toggle_particles(FALSE)
 		return
-	buff_owner.xeno_melee_damage_modifier = damage_addition
+	buff_owner.xeno_melee_damage_modifier = damage_multiplier
 	buff_owner.add_movespeed_modifier(MOVESPEED_ID_ENHANCEMENT, TRUE, 0, NONE, FALSE, speed_addition)
-	message_admins("da thang off")
 	toggle_particles(TRUE)
 
 /// Toggles particles on or off, adjusting their positioning to fit the buff's owner.
 /datum/status_effect/drone_enhancement/proc/toggle_particles(toggle)
 	var/particle_x = abs(buff_owner.pixel_x)
 	if(!toggle)
-		message_admins("toggle particles is false")
 		QDEL_NULL(particle_holder)
 		return
-	message_admins("toggle particles is true")
 	particle_holder = new(buff_owner, /particles/drone_enhancement)
 	particle_holder.pixel_x = particle_x
 	particle_holder.pixel_y = -3

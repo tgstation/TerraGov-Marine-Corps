@@ -106,12 +106,29 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_POUNCE
 
+/datum/keybinding/xeno/essence_link
+	name = "essence_link"
+	full_name = "Drone: Essence Link"
+	description = "Establish a link of plasma with a sister."
+	keybind_signal = COMSIG_XENOABILITY_ESSENCE_LINK
+
+/datum/keybinding/xeno/essence_link_remove
+	name = "essence_link_remove"
+	full_name = "Drone: End Essence Link"
+	description = "Forcibly end an Essence Link."
+	keybind_signal = COMSIG_XENOABILITY_ESSENCE_LINK_REMOVE
+
+/datum/keybinding/xeno/enhancement
+	name = "enhancement"
+	full_name = "Drone: Enhancement"
+	description = "Using an Essence Link, increase a sister's capabilities beyond their limits."
+	keybind_signal = COMSIG_XENOABILITY_ENHANCEMENT
+
 /datum/keybinding/xeno/nurogasnade
 	name = "neurogas"
 	full_name = "Sentinel: Neurogas Grenade"
 	description = "Throws a gas emitting grenade at the targetted area"
 	keybind_signal = COMSIG_XENOABILITY_NEUROGAS_GRENADE
-
 
 /datum/keybinding/xeno/plow_charge
 	name = "plow_charge"
@@ -713,24 +730,6 @@
 	full_name = "Widow: Web Hook"
 	description = "Shoot a strong web and pull yourself towards whatever it hits."
 	keybind_signal = COMSIG_XENOABILITY_WEB_HOOK
-
-/datum/keybinding/xeno/essence_link
-	name = "essence_link"
-	full_name = "Essence Link"
-	description = "Establish a link of plasma with a sister."
-	keybind_signal = COMSIG_XENOABILITY_ESSENCE_LINK
-
-/datum/keybinding/xeno/essence_link_remove
-	name = "essence_link_remove"
-	full_name = "End Essence Link"
-	description = "Forcibly end an Essence Link."
-	keybind_signal = COMSIG_XENOABILITY_ESSENCE_LINK_REMOVE
-
-/datum/keybinding/xeno/enhancement
-	name = "enhancement"
-	full_name = "Enhancement"
-	description = "Using an Essence Link, increase a sister's capabilities beyond their limits."
-	keybind_signal = COMSIG_XENOABILITY_ENHANCEMENT
 
 /datum/keybinding/xeno/vent/down(client/user)
 	. = ..()

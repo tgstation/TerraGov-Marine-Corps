@@ -16,7 +16,7 @@
 	name = "Essence Link"
 	action_icon_state = "healing_infusion"
 	mechanics_text = "Link to a xenomorph. This changes some of your abilities, and grants them and you both various bonuses."
-	cooldown_timer = 1
+	cooldown_timer = 5 SECONDS
 	plasma_cost = 0
 	target_flags = XABB_MOB_TARGET
 	keybind_signal = COMSIG_XENOABILITY_ESSENCE_LINK
@@ -136,7 +136,7 @@
 	name = "Enhancement"
 	action_icon_state = "enhancement"
 	mechanics_text = "Apply an enhancement to the linked xeno, increasing their capabilities beyond their limits."
-	cooldown_timer = 60 SECONDS
+	cooldown_timer = 120 SECONDS
 	plasma_cost = 0
 	keybind_signal = COMSIG_XENOABILITY_ENHANCEMENT
 	/// References Essence Link and its vars.
@@ -147,7 +147,7 @@
 /datum/action/xeno_action/enhancement/can_use_action()
 	var/mob/living/carbon/xenomorph/X = owner
 	essence_link_action = X.actions_by_path[/datum/action/xeno_action/activable/essence_link]
-	if(!essence_link_action.existing_link || essence_link_action.existing_link.stacks < 3)
+	if(!essence_link_action.existing_link || !essence_link_action.existing_link.was_within_range || essence_link_action.existing_link.stacks < 3)
 		return FALSE
 	return ..()
 
@@ -155,16 +155,14 @@
 	if(existing_enhancement)
 		end_ability()
 		return succeed_activate()
+	essence_link_action.existing_link.add_stacks(-1)
 	essence_link_action.linked_target.apply_status_effect(STATUS_EFFECT_XENO_ENHANCEMENT, owner)
 	existing_enhancement = essence_link_action.linked_target.has_status_effect(STATUS_EFFECT_XENO_ENHANCEMENT)
-	message_admins("existing_enhancement is [existing_enhancement]")
 	succeed_activate()
 
 /// Ends the ability if the Enhancement buff is removed.
 /datum/action/xeno_action/enhancement/proc/end_ability()
-	var/mob/living/carbon/xenomorph/X = owner
 	if(existing_enhancement)
-		X.remove_status_effect(STATUS_EFFECT_XENO_ENHANCEMENT)
+		essence_link_action.linked_target.remove_status_effect(STATUS_EFFECT_XENO_ENHANCEMENT)
 		existing_enhancement = null
-		message_admins("existing_enhancement is [existing_enhancement]")
 		add_cooldown()
