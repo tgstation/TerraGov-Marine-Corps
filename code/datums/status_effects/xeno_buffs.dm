@@ -156,7 +156,7 @@
 	buff_target.apply_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING)
 
 /// Shares heals with the linked xeno.
-/datum/status_effect/stacking/essence_link/proc/share_heal(datum/source, amount, list/amount_mod)
+/datum/status_effect/stacking/essence_link/proc/share_heal(datum/source, amount)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/heal_owner
 	var/mob/living/carbon/xenomorph/heal_target
@@ -174,7 +174,7 @@
 
 	heal_amount = round(clamp(amount * (DRONE_ESSENCE_LINK_SHARED_HEAL * stacks), -heal_target.maxHealth, 0))
 	heal_target.visible_message(span_xenowarning("[heal_target]'s wounds are mended by faint energies."), \
-		span_xenonotice("Through the essence link, [heal_owner] has shared [heal_amount] health restoration."))
+		span_xenonotice("Through the essence link, [heal_owner] has shared [abs(heal_amount)] health restoration."))
 	new /obj/effect/temp_visual/telekinesis(get_turf(heal_target))
 	HEAL_XENO_DAMAGE(heal_target, heal_amount)
 
@@ -202,7 +202,8 @@
 /// Updates the link's appearance.
 /datum/status_effect/stacking/essence_link/proc/update_beam()
 	var/beam_alpha = round(255 / (max_stacks+1 - stacks)) // 255 is the maximum value possible. We divide that by the missing amount of stacks.
-	current_beam.visuals.alpha = beam_alpha
+	if(current_beam)
+		current_beam.visuals.alpha = beam_alpha
 
 // ***************************************
 // *********** Salve Regeneration
