@@ -22,6 +22,9 @@
 		current_turf.flags_atom &= ~AI_BLOCKED
 	return ..()
 
+/obj/machinery/door/poddoor/bumpopen(mob/user)
+	return
+
 /obj/machinery/door/poddoor/open()
 	. = ..()
 	var/turf/current_turf = get_turf(src)

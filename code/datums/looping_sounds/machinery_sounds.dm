@@ -40,3 +40,11 @@
 
 /datum/looping_sound/geiger/get_sound(starttime)
 	return ..(starttime, mid_sounds[severity])
+
+/datum/looping_sound/mech_overload
+	start_sound = 'sound/mecha/overload_start.ogg'
+	start_length = 9
+	mid_sounds = list('sound/mecha/overload_loop.ogg'=1)
+	mid_length = 6
+	end_sound = 'sound/mecha/overload_stop.ogg'
+	volume = 40

@@ -31638,10 +31638,6 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/ice_rock/corners,
 /area/ice_colony/exterior/surface/cliff)
-"qQb" = (
-/obj/effect/landmark/sensor_tower_patrol,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/underground/requesition)
 "qQe" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -32915,6 +32911,10 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice,
 /area/ice_colony/exterior/underground/caves/open)
+"tcW" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/underground/maintenance/central)
 "tde" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -41532,7 +41532,7 @@ myO
 mpQ
 mpQ
 mpQ
-qQb
+mpQ
 qaE
 mpQ
 mpQ
@@ -50268,7 +50268,7 @@ nqu
 qGt
 qGt
 qGt
-qGt
+tcW
 qGt
 qGt
 qGt
