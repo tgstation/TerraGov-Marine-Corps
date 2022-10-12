@@ -127,7 +127,7 @@
 			new_name = params["name"]
 			last_three_inputs["coords_three"]["name"] = new_name
 	if((coords["targ_x"] != 0 && coords["targ_y"] != 0))
-Ssrc]'s firing angle and distance."),
+		usr.visible_message(span_notice("[usr] adjusts [src]'s firing angle and distance."),
 		span_notice("You adjust [src]'s firing angle and distance to match the new coordinates."))
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		// allows for offsetting using the dial, I had accidentally misplaced this.
