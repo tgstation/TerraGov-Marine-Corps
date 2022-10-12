@@ -35,15 +35,14 @@
 	return TRUE
 
 /datum/action/item_action/update_button_icon()
+	if(visual_references[VREF_MUTABLE_LINKED_OBJ])
+		button.cut_overlay(visual_references[VREF_MUTABLE_LINKED_OBJ])
 	if(use_obj_appeareance)
-		if(visual_references[VREF_MUTABLE_LINKED_OBJ])
-			button.cut_overlay(visual_references[VREF_MUTABLE_LINKED_OBJ])
 		var/obj/item/I = target
 		var/item_image = mutable_appearance(I.icon, I.icon_state, ABOVE_HUD_LAYER, HUD_PLANE)
 		visual_references[VREF_MUTABLE_LINKED_OBJ] = item_image
 		button.add_overlay(item_image)
-	else if(visual_references[VREF_MUTABLE_LINKED_OBJ])
-		button.cut_overlay(visual_references[VREF_MUTABLE_LINKED_OBJ])
+	else
 		visual_references[VREF_MUTABLE_LINKED_OBJ] = null
 	return ..()
 

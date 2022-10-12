@@ -24,3 +24,15 @@
 #define VREF_IMAGE_XENO_CLOCK "VREF_ACTION_CLOCK"
 // extra reference for ravager leech
 #define VREF_MUTABLE_RAV_LEECH "VREF_RAV_LEECH"
+
+/// Actions that toggle on click/trigger
+#define ACTION_TOGGLE "toggle"
+/// Actions that trigger when clicked/triggered
+#define ACTION_CLICK "click"
+/// Actions that get selected and can be targeted when clicked/triggered
+#define ACTION_SELECT "select"
+
+/// Normal keybinding , calls keybind_activation
+#define KEYBINDING_NORMAL "normal_trigger"
+/// Alternate keybinding , calls alternate_ability_activation
+#define KEYBINDING_ALTERNATE "alternate_trigger"

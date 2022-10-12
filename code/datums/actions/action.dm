@@ -1,14 +1,13 @@
-/// Actions that toggle on click/trigger
-#define ACTION_TOGGLE "toggle"
-/// Actions that trigger when clicked/triggered
-#define ACTION_CLICK "click"
-/// Actions that get selected and can be targeted when clicked/triggered
-#define ACTION_SELECT "select"
+/*
+ACTION TYPES
+-ACTION_CLICK (no visuals)
+-ACTION_TOGGLE (adds an active frame on activation)
+-ACTION_SELECT (adds a selection frame whenever clicked)
 
-#define KEYBINDING_NORMAL "normal_trigger"
-#define KEYBINDING_ALTERNATE "alternate_trigger"
-
-
+KEYBINDINGS
+-KEYBINDING_NORMAL (calls keybind_activation)
+-KEYBINDING_ALTERNATE (calls alternate_ability_activation)
+*/
 /datum/action
 	var/name = "Generic Action"
 	var/desc
@@ -19,27 +18,19 @@
 	var/action_icon_state = "default"
 	var/background_icon = 'icons/mob/actions.dmi'
 	var/background_icon_state = "template"
-	// holds a set of misc visual references to use with the overlay API
+	/// holds a set of misc visual references to use with the overlay API
 	var/list/visual_references = list()
+	/// Used for keybindings , use KEYBINDING_NORMAL or KEYBINDING_ALTERNATE for keybinding_activation or alternate_ability_activate
 	var/list/keybinding_signals = list()
+	/// Holds offsets for said keybinds, 0 0 is bottom-left corner.
 	var/list/maptext_offsets = list(
 		KEYBINDING_NORMAL = list(0,0),
 		KEYBINDING_ALTERNATE = list(0,22)
 	)
+	/// Defines what visual references will be initialized at round-start
 	var/action_type = ACTION_CLICK
 	/// Used for keeping track of the addition of the selected/active frames
 	var/toggled = FALSE
-
-	/* Example for multiple keys
-	var/list/keybinding_signals = list(
-		KEYBINDING_NORMAL = null,
-		KEYBINDING_ALTERNATE = null
-	)
-	var/list/maptext_offsets = list(
-		KEYBINDING_NORMAL = list(0,0),
-		KEYBINDING_ALTERNATE = list(32,32)
-	)
-	*/
 
 /datum/action/New(Target)
 	target = Target
@@ -50,18 +41,18 @@
 	button.name = name
 	if(desc)
 		button.desc = desc
-	if(keybinding_signals.len == 1)
-		var/mutable_appearance/maptext_appearence = mutable_appearance()
-		maptext_appearence.layer = ABOVE_HUD_LAYER // above selected/empowered frame
-		visual_references[VREF_MUTABLE_MAPTEXT] = maptext_appearence
+	if(length(keybinding_signals) == 1)
+		var/mutable_appearance/maptext_appearance = mutable_appearance()
+		maptext_appearance.layer = ABOVE_HUD_LAYER // above selected/empowered frame
+		visual_references[VREF_MUTABLE_MAPTEXT] = maptext_appearance
 	else
 		var/list/maptext_list = list()
 		for(var/keybind_type in keybinding_signals)
-			var/mutable_appearance/maptext_appearence = mutable_appearance()
-			maptext_appearence.layer = ABOVE_HUD_LAYER // above selected/empowered frame
-			maptext_appearence.pixel_x = maptext_offsets[keybind_type][1]
-			maptext_appearence.pixel_y = maptext_offsets[keybind_type][2]
-			maptext_list[keybinding_signals[keybind_type]] = maptext_appearence
+			var/mutable_appearance/maptext_appearance = mutable_appearance()
+			maptext_appearance.layer = ABOVE_HUD_LAYER // above selected/empowered frame
+			maptext_appearance.pixel_x = maptext_offsets[keybind_type][1]
+			maptext_appearance.pixel_y = maptext_offsets[keybind_type][2]
+			maptext_list[keybinding_signals[keybind_type]] = maptext_appearance
 		visual_references[VREF_MUTABLE_MAPTEXT] = maptext_list
 	switch(action_type)
 		if(ACTION_TOGGLE)
@@ -94,6 +85,7 @@
 /datum/action/proc/should_show()
 	return TRUE
 
+/// Depending on the action type , toggles the selected/active frame to show without allowing stacking multiple overlays
 /datum/action/proc/set_toggle(value)
 	if(value == toggled)
 		return
@@ -104,27 +96,30 @@
 			if(ACTION_TOGGLE)
 				button.add_overlay(visual_references[VREF_MUTABLE_ACTIVE_FRAME])
 		toggled = TRUE
-	else
-		switch(action_type)
-			if(ACTION_SELECT)
-				button.cut_overlay(visual_references[VREF_MUTABLE_SELECTED_FRAME])
-			if(ACTION_TOGGLE)
-				button.cut_overlay(visual_references[VREF_MUTABLE_ACTIVE_FRAME])
-		toggled = FALSE
+		return
+	switch(action_type)
+		if(ACTION_SELECT)
+			button.cut_overlay(visual_references[VREF_MUTABLE_SELECTED_FRAME])
+		if(ACTION_TOGGLE)
+			button.cut_overlay(visual_references[VREF_MUTABLE_ACTIVE_FRAME])
+	toggled = FALSE
 
 /// A handler used to update the maptext and show the change immediately.
 /datum/action/proc/update_map_text(key_string, key_signal)
 	// The cutting needs to be done /BEFORE/ the string maptext gets changed
 	// Since byond internally recognizes it as a different image, and doesn't cut it properly
-	if(keybinding_signals.len == 1)
-		button.cut_overlay(visual_references[VREF_MUTABLE_MAPTEXT])
-		var/image/maptext_image = visual_references[VREF_MUTABLE_MAPTEXT]
-		maptext_image.maptext = MAPTEXT(key_string)
-		button.add_overlay(visual_references[VREF_MUTABLE_MAPTEXT])
-	else
-		var/mutable_appearance/reference = visual_references[VREF_MUTABLE_MAPTEXT][key_signal]
+	var/mutable_appearance/reference = null
+	if(length(keybinding_signals) == 1)
+		reference = visual_references[VREF_MUTABLE_ACTION_STATE]
 		button.cut_overlay(reference)
 		reference.maptext = MAPTEXT(key_string)
+		visual_references[VREF_MUTABLE_MAPTEXT] = reference
+		button.add_overlay(reference)
+	else
+		reference = visual_references[VREF_MUTABLE_MAPTEXT][key_signal]
+		button.cut_overlay(reference)
+		reference.maptext = MAPTEXT(key_string)
+		visual_references[VREF_MUTABLE_MAPTEXT][key_signal] = reference
 		button.add_overlay(reference)
 
 /datum/action/proc/update_button_icon()
