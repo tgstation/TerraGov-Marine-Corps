@@ -63,6 +63,8 @@
 
 #define STATUS_EFFECT_MUTED /datum/status_effect/mute //Mutes the affected mob
 
+#define STATUS_EFFECT_IRRADIATED /datum/status_effect/irradiated //the affected has been irradiated, harming them over time
+
 /////////////
 // NEUTRAL //
 /////////////

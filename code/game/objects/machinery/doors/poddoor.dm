@@ -22,6 +22,9 @@
 		current_turf.flags_atom &= ~AI_BLOCKED
 	return ..()
 
+/obj/machinery/door/poddoor/bumpopen(mob/user)
+	return
+
 /obj/machinery/door/poddoor/open()
 	. = ..()
 	var/turf/current_turf = get_turf(src)
@@ -214,6 +217,10 @@
 /obj/machinery/door/poddoor/mainship/hangar/second
 	name = "\improper Hangar Shutters"
 	id = "hangar_shutters"
+
+/obj/machinery/door/poddoor/mainship/mech
+	name = "\improper Mech Shutters"
+	id = "mech_shutters"
 
 /obj/machinery/door/poddoor/mainship/umbilical
 	name = "Umbilical Airlock"

@@ -185,7 +185,7 @@
 
 /datum/action/xeno_action/place_jelly_pod
 	name = "Place Resin Jelly pod"
-	action_icon_state = "haunt"
+	action_icon_state = "resin_jelly_pod"
 	mechanics_text = "Place down a dispenser that allows xenos to retrieve fireproof jelly."
 	plasma_cost = 500
 	cooldown_timer = 1 MINUTES
@@ -223,7 +223,7 @@
 
 /datum/action/xeno_action/create_jelly
 	name = "Create Resin Jelly"
-	action_icon_state = "gut"
+	action_icon_state = "resin_jelly"
 	mechanics_text = "Create a fireproof jelly."
 	plasma_cost = 100
 	cooldown_timer = 20 SECONDS

@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes: 
+  - bugfix: "The intel event will no longer trigger in Combat Patrol or Sensor capture"

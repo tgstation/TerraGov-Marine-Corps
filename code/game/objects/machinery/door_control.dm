@@ -102,7 +102,7 @@
 		if(directional)
 			flick("doorctrl-denied",src)
 		if(!directional) //nondirectional door controls use the old door denied sprites
-			flick("olddoorctrl-denied",src)	
+			flick("olddoorctrl-denied",src)
 		return
 
 	use_power(active_power_usage)
@@ -243,6 +243,10 @@
 /obj/machinery/door_control/mainship/cic/hangar
 	name = "Hangar Lockdown"
 	id = "hangar_lockdown"
+
+/obj/machinery/door_control/mainship/mech
+	name = "Mech Shutter"
+	id = "mech_shutter"
 
 /obj/machinery/door_control/mainship/tcomms
 	name = "Telecommunications Entrance"
