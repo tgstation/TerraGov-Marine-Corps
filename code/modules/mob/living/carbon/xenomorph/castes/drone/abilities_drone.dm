@@ -59,7 +59,6 @@
 
 /datum/action/xeno_action/activable/essence_link/alternate_action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
-	existing_link = X.has_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK)
 	if(!existing_link)
 		X.balloon_alert(X, "No link to cancel")
 		return

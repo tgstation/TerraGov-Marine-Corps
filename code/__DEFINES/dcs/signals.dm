@@ -526,7 +526,6 @@
 
 #define COMSIG_XENOMORPH_BRUTE_DAMAGE "xenomorph_brute_damage"
 #define COMSIG_XENOMORPH_BURN_DAMAGE "xenomorph_burn_damage"
-#define COMSIG_XENOMORPH_HEALED_BY_ABILITY "xenomorph_healed_by_ability" // (amount, damagetype)
 
 #define COMSIG_XENOMORPH_EVOLVED "xenomorph_evolved"
 #define COMSIG_XENOMORPH_DEEVOLVED "xenomorph_deevolved"

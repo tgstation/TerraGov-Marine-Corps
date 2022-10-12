@@ -33,7 +33,6 @@
 /obj/effect/ebeam/essence_link
 	name = "essence link beam"
 
-#define ESSENCE_LINK_COLOR "#FFFFFF"
 /datum/status_effect/stacking/essence_link
 	id = "xeno_essence_link"
 	stacks = 0
@@ -116,7 +115,7 @@
 		link_target.balloon_alert(link_target, "No plasma for link")
 		COOLDOWN_START(src, plasma_warning, plasma_warning_cooldown)
 		return
-	link_target.adjustBruteLoss(-heal_amount)
+	HEAL_XENO_DAMAGE(link_target, heal_amount)
 	link_owner.use_plasma(plasma_cost)
 
 /// Removes the status effect on death.
@@ -181,14 +180,16 @@
 // Toggles the link signals on or off.
 /datum/status_effect/stacking/essence_link/proc/toggle_link(toggle)
 	if(!toggle)
-		UnregisterSignal(link_owner, list(COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, COMSIG_XENOMORPH_HEALED_BY_ABILITY))
-		UnregisterSignal(link_target, list(COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, COMSIG_XENOMORPH_HEALED_BY_ABILITY))
+		UnregisterSignal(link_owner, list(COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
+		UnregisterSignal(link_target, list(COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
 		toggle_beam(FALSE)
 		return
 	RegisterSignal(link_owner, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, .proc/share_jelly)
 	RegisterSignal(link_target, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, .proc/share_jelly)
-	RegisterSignal(link_owner, COMSIG_XENOMORPH_HEALED_BY_ABILITY, .proc/share_heal)
-	RegisterSignal(link_target, COMSIG_XENOMORPH_HEALED_BY_ABILITY, .proc/share_heal)
+	RegisterSignal(link_owner, COMSIG_XENOMORPH_BRUTE_DAMAGE, .proc/share_heal)
+	RegisterSignal(link_target, COMSIG_XENOMORPH_BRUTE_DAMAGE, .proc/share_heal)
+	RegisterSignal(link_owner, COMSIG_XENOMORPH_BURN_DAMAGE, .proc/share_heal)
+	RegisterSignal(link_target, COMSIG_XENOMORPH_BURN_DAMAGE, .proc/share_heal)
 	toggle_beam(TRUE)
 
 /// Toggles the effect beam on or off.
@@ -226,11 +227,8 @@
 	return ..()
 
 /datum/status_effect/salve_regen/tick()
-	/// Amount healed by this ability.
-	var/heal_amount = round(owner.maxHealth * 0.01) // 1% of the owner's maximum health
-	/// Remainder of the above, after brute has been healed. Applies the remainder to burns.
+	var/heal_amount = round(owner.maxHealth * 0.01)
 	var/heal_remainder = max(0, heal_amount - owner.getBruteLoss())
-
 	owner.adjustBruteLoss(-heal_amount)
 	owner.adjustFireLoss(-heal_remainder, TRUE)
 	owner.adjust_sunder(-1)
@@ -318,7 +316,7 @@
 	if(within_range == was_within_range)
 		return
 	was_within_range = within_range
-	toggle_buff(was_within_range ? (TRUE) : (FALSE))
+	toggle_buff(was_within_range)
 
 /// Toggles the buff on or off.
 /datum/status_effect/drone_enhancement/proc/toggle_buff(toggle)
