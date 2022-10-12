@@ -471,6 +471,11 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/flamer_tank)
 	cost = 3
 
+/datum/supply_packs/weapons/napalm_X
+	name = "FL-84 X fuel tank"
+	contains = list(/obj/item/ammo_magazine/flamer_tank/large/X)
+	cost = 30
+
 /datum/supply_packs/weapons/back_fuel_tank
 	name = "Standard back fuel tank"
 	contains = list(/obj/item/ammo_magazine/flamer_tank/backtank)
