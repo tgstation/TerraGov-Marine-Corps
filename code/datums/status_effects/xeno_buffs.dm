@@ -49,6 +49,10 @@
 	var/datum/action/xeno_action/activable/essence_link/essence_link_action
 	/// If the target xeno was within range.
 	var/was_within_range = TRUE
+	/// The amount of health restored passively.
+	var/heal_amount
+	/// The plasma cost incurred by passive regeneration.
+	var/plasma_cost
 	/// Time it takes for the attunement levels to increase.
 	var/attunement_cooldown = 20 SECONDS
 	/// Cooldown for passive attunement increase.
@@ -83,6 +87,8 @@
 	. = ..()
 	essence_link_action.update_button_icon()
 	link_owner.balloon_alert(link_owner, "Attunement: [stacks]/[max_stacks]")
+	heal_amount = round(link_target.maxHealth * (stacks * DRONE_ESSENCE_LINK_REGEN))
+	plasma_cost = round(heal_amount * 3)
 	COOLDOWN_START(src, attunement_increase, attunement_cooldown)
 	update_beam()
 
@@ -98,9 +104,6 @@
 	UnregisterSignal(link_target, list(COMSIG_MOB_DEATH, COMSIG_MOVABLE_MOVED, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, COMSIG_XENOMORPH_HEALED_BY_ABILITY))
 
 /datum/status_effect/stacking/essence_link/tick()
-	var/heal_amount = round(link_target.maxHealth * (stacks * DRONE_ESSENCE_LINK_REGEN))
-	var/plasma_cost = round(heal_amount * 3)
-
 	if(stacks < max_stacks && COOLDOWN_CHECK(src, attunement_increase))
 		add_stacks(1)
 	if(!link_target.bruteloss || !current_beam)
