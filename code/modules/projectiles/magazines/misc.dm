@@ -70,6 +70,15 @@
 	max_rounds = 500
 	w_class = WEIGHT_CLASS_NORMAL
 
+/obj/item/ammo_magazine/packet/tx8
+	name = "Box of A19 high velocity bullets"
+	desc = "A box containing 150."
+	icon_state = "box_tx8"
+	default_ammo = /datum/ammo/bullet/rifle/tx8
+	caliber = CALIBER_10X28_CASELESS
+	current_rounds = 150
+	max_rounds = 150
+
 // pistol packets
 
 /obj/item/ammo_magazine/packet/p9mm

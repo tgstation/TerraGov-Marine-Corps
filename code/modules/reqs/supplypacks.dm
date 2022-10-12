@@ -306,25 +306,31 @@ WEAPONS
 /datum/supply_packs/weapons/tx8
 	name = "BR-8 Scout Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/tx8)
-	cost = 50
+	cost = 40
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/scout_regular
 	name = "BR-8 scout magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/tx8)
+	cost = 2
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/weapons/scout_regular_box
+	name = "BR-8 scout ammo box"
+	contains = list(/obj/item/ammo_magazine/packet/tx8)
 	cost = 5
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/scout_impact
 	name = "BR-8 scout impact magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/tx8/impact)
-	cost = 7
+	cost = 4
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/scout_incendiary
 	name = "Br-8 scout incendiary magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/tx8/incendiary)
-	cost = 7
+	cost = 4
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/thermobaric
