@@ -1189,8 +1189,9 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	accurate_range = 12
 	damage = 10
-	penetration = 15
+	penetration = 25
 	sundering = 1
+	damage_falloff = 0.1
 
 /datum/ammo/bullet/turret
 	name = "autocannon bullet"
