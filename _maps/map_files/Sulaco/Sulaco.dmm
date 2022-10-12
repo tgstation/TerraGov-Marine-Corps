@@ -9808,7 +9808,7 @@
 	},
 /area/sulaco/hangar/droppod)
 "bal" = (
-/obj/structure/closet/secure_closet/pilot_officer,
+/obj/machinery/loadout_vendor,
 /turf/open/floor/prison,
 /area/mainship/living/pilotbunks)
 "bam" = (
@@ -14456,8 +14456,7 @@
 	},
 /area/space)
 "hdz" = (
-/obj/structure/bed,
-/obj/effect/landmark/start/job/pilotofficer,
+/obj/machinery/vending/armor_supply,
 /turf/open/floor/prison,
 /area/mainship/living/pilotbunks)
 "hdN" = (
@@ -14611,8 +14610,6 @@
 /turf/open/floor/tile/hydro,
 /area/sulaco/hydro)
 "hnl" = (
-/obj/effect/landmark/start/job/pilotofficer,
-/obj/structure/bed,
 /obj/machinery/firealarm{
 	dir = 8
 	},
@@ -20355,6 +20352,7 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 9
 	},
+/obj/machinery/holopad,
 /turf/open/floor/mainship/sterile/plain,
 /area/sulaco/mechpilotquarters)
 "peL" = (
@@ -24175,6 +24173,12 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/security)
+"tUA" = (
+/obj/structure/bed/bunkbed,
+/obj/effect/landmark/start/job/pilotofficer,
+/obj/effect/landmark/start/job/pilotofficer,
+/turf/open/floor/prison,
+/area/mainship/living/pilotbunks)
 "tVZ" = (
 /obj/structure/table/reinforced,
 /obj/structure/cable,
@@ -24403,6 +24407,7 @@
 /obj/machinery/light/mainship{
 	dir = 1
 	},
+/obj/machinery/vending/uniform_supply,
 /turf/open/floor/prison,
 /area/mainship/living/pilotbunks)
 "ujW" = (
@@ -25792,6 +25797,10 @@
 /obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/prison/red,
 /area/sulaco/cargo/prep)
+"wie" = (
+/obj/structure/closet/secure_closet/pilot_officer,
+/turf/open/floor/prison,
+/area/mainship/living/pilotbunks)
 "wjm" = (
 /turf/open/floor/prison,
 /area/sulaco/hallway/dropshipprep)
@@ -65783,7 +65792,7 @@ oLM
 xgG
 sbf
 aZw
-hdz
+wie
 aXN
 aUt
 aUt
@@ -66297,7 +66306,7 @@ oLM
 ujq
 aZw
 aZw
-hdz
+tUA
 aXN
 aUt
 aUt
