@@ -548,10 +548,6 @@
 
 #define COMSIG_XENO_PSYCHIC_LINK_REMOVED "xeno_psychic_link_removed"
 
-#define COMSIG_XENO_ESSENCE_LINK_REMOVED "xeno_essence_link_removed"
-
-#define COMSIG_XENO_ENHANCEMENT_REMOVED "xeno_enhancement_removed"
-
 //human signals
 #define COMSIG_CLICK_QUICKEQUIP "click_quickequip"
 

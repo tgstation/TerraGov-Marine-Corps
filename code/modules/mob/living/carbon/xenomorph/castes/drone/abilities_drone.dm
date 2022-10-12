@@ -48,7 +48,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	if(!existing_link)
 		target.balloon_alert(X, "Linking...")
-		if(!do_after(X, DRONE_ESSENCE_LINK_DELAY, TRUE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_FRIENDLY))
+		if(!do_after(X, DRONE_ESSENCE_LINK_WINDUP, TRUE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_FRIENDLY))
 			X.balloon_alert(X, "Link cancelled")
 			return
 		X.apply_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK, 1, target)

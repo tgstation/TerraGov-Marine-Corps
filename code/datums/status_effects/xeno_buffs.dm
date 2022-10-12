@@ -161,7 +161,7 @@
 	var/mob/living/carbon/xenomorph/heal_target
 	var/heal_amount
 
-	if(amount > -DRONE_BASE_SALVE_HEAL) // lowest heal in the game
+	if(amount > -60) // Most passive regen values do not go past this value.
 		return
 
 	if(source == link_target)
