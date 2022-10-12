@@ -53,6 +53,10 @@
 	)
 	///Max range of the flamer in tiles.
 	var/flame_max_range = 6
+	///Max resin wall penetration in tiles.
+	var/flame_max_wall_pen = 3
+	///After how many total resin walls the flame wont proceed further
+	var/flame_max_wall_pen_wide = 9
 	///Travel speed of the flames in seconds.
 	var/flame_spread_time = 0.1 SECONDS
 	///Gun based modifier for burn level. Percentage based.
@@ -96,14 +100,14 @@
 		return
 	if(attachments_by_slot[ATTACHMENT_SLOT_FLAMER_NOZZLE])
 		light_pilot(TRUE)
-	gun_user?.hud_used.update_ammo_hud(gun_user, src)
+	gun_user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 
 /obj/item/weapon/gun/flamer/unload(mob/living/user, drop = TRUE, after_fire = FALSE)
 	. = ..()
 	if(!.)
 		return
 	light_pilot(FALSE)
-	gun_user?.hud_used.update_ammo_hud(gun_user, src)
+	gun_user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 
 ///Makes the sound of the flamer being lit, and applies the overlay.
 /obj/item/weapon/gun/flamer/proc/light_pilot(light)
@@ -150,22 +154,21 @@
 		if(FLAMER_STREAM_STRAIGHT)
 			var/path_to_target = getline(start_location, current_target)
 			path_to_target -= start_location
-			recursive_flame_straight(1, old_turfs, path_to_target, range, current_target)
+			recursive_flame_straight(1, old_turfs, path_to_target, range, current_target, flame_max_wall_pen)
 		if(FLAMER_STREAM_CONE)
 			//direction in degrees
 			var/dir_to_target = Get_Angle(src, target)
 			var/list/turf/turfs_to_ignite = generate_true_cone(get_turf(src), range, 1, cone_angle, dir_to_target, projectile = TRUE, bypass_xeno = TRUE)
-			recursive_flame_cone(1, turfs_to_ignite, dir_to_target, range, current_target, get_turf(src))
+			recursive_flame_cone(1, turfs_to_ignite, dir_to_target, range, current_target, get_turf(src), flame_max_wall_pen_wide)
 		if(FLAMER_STREAM_RANGED)
 			return ..()
 	return TRUE
 
 ///Flames recursively a straight path.
-/obj/item/weapon/gun/flamer/proc/recursive_flame_straight(iteration, list/turf/old_turfs, list/turf/path_to_target, range, current_target)
+/obj/item/weapon/gun/flamer/proc/recursive_flame_straight(iteration, list/turf/old_turfs, list/turf/path_to_target, range, current_target, walls_penetrated)
 	if(!rounds)
 		light_pilot(FALSE)
 		return
-
 	//recursive checks
 	if(!length(old_turfs) || iteration > range || !current_target || (current_target in old_turfs))
 		return
@@ -176,17 +179,21 @@
 	var/turf/turf_to_check = get_turf(src)
 	if(iteration > 1)
 		turf_to_check = path_to_target[iteration - 1]
-
 	if(LinkBlocked(turf_to_check, path_to_target[iteration], projectile = TRUE, bypass_xeno = TRUE)) //checks if it's actually possible to get to the next tile in the line
+		return
+	if(turf_to_check.density && istype(turf_to_check, /turf/closed/wall/resin))
+		walls_penetrated -= 1
+	//how many resin walls we've penetrated check
+	if(walls_penetrated <= 0)
 		return
 	turfs_to_ignite += path_to_target[iteration]
 	if(!burn_list(turfs_to_ignite))
 		return
 	iteration++
-	addtimer(CALLBACK(src, .proc/recursive_flame_straight, iteration, turfs_to_ignite, path_to_target, range, current_target), flame_spread_time)
+	addtimer(CALLBACK(src, .proc/recursive_flame_straight, iteration, turfs_to_ignite, path_to_target, range, current_target, walls_penetrated), flame_spread_time)
 
 ///Flames recursively a cone.
-/obj/item/weapon/gun/flamer/proc/recursive_flame_cone(iteration, list/turf/turfs_to_ignite, dir_to_target, range, current_target, turf/flame_source)
+/obj/item/weapon/gun/flamer/proc/recursive_flame_cone(iteration, list/turf/turfs_to_ignite, dir_to_target, range, current_target, turf/flame_source, walls_penetrated_wide)
 	if(!rounds)
 		light_pilot(FALSE)
 		return
@@ -197,11 +204,21 @@
 	var/list/turf/turfs_by_iteration = list()
 	for(var/turf/turf AS in turfs_to_ignite)
 		if(get_dist(turf, flame_source) == iteration)
+			//Checks if turf is resin wall
+			if(turf.density && istype(turf, /turf/closed/wall/resin))
+				walls_penetrated_wide -= 1
+			//Checks if there is a resin door on the turf
+			var/obj/structure/mineral_door/resin/door_to_check = locate() in turf
+			if(!isnull(door_to_check))
+				walls_penetrated_wide -= 1
+			//Check to ensure that we dont burn more walls than specified
+			if(walls_penetrated_wide <= 0)
+				break
 			turfs_by_iteration += turf
 
 	burn_list(turfs_by_iteration)
 	iteration++
-	addtimer(CALLBACK(src, .proc/recursive_flame_cone, iteration, turfs_to_ignite, dir_to_target, range, current_target, flame_source), flame_spread_time)
+	addtimer(CALLBACK(src, .proc/recursive_flame_cone, iteration, turfs_to_ignite, dir_to_target, range, current_target, flame_source, walls_penetrated_wide), flame_spread_time)
 
 ///Checks and lights the turfs in turfs_to_burn
 /obj/item/weapon/gun/flamer/proc/burn_list(list/turf/turfs_to_burn)
@@ -220,7 +237,7 @@
 		flame_turf(turf_to_ignite, gun_user, burn_time, burn_level, fire_color)
 		adjust_current_rounds(chamber_items[current_chamber_position], -1)
 		rounds--
-	gun_user?.hud_used.update_ammo_hud(gun_user, src)
+	gun_user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 	return TRUE
 
 ///Lights the specific turf on fire and processes melting snow or vines and the like.
@@ -393,7 +410,7 @@
 		hydro_active = FALSE
 		if (rounds > 0)
 			light_pilot(TRUE)
-	user.hud_used.update_ammo_hud(user, src)
+	user.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 	SEND_SIGNAL(src, COMSIG_ITEM_HYDRO_CANNON_TOGGLED)
 	return TRUE
 
@@ -405,7 +422,7 @@
 		water_count -= 7//reagents is not updated in this proc, we need water_count for a updated HUD
 		last_fired = world.time
 		last_use = world.time
-		gun_user.hud_used.update_ammo_hud(gun_user, src)
+		gun_user.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 		return
 	if(gun_user?.skills.getRating("firearms") < 0)
 		switch(windup_checked)
@@ -433,7 +450,7 @@
 		water_count = reagents.maximum_volume
 		to_chat(user, span_notice("\The [src]'s hydro cannon is refilled with water."))
 		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
-		user.hud_used.update_ammo_hud(user, src)
+		user.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 		return
 
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/wide

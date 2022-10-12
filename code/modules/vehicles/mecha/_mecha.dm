@@ -24,6 +24,7 @@
 	move_force = MOVE_FORCE_VERY_STRONG
 	move_resist = MOVE_FORCE_EXTREMELY_STRONG
 	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
+	flags_atom = BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION
 	max_integrity = 300
 	soft_armor = list(MELEE = 20, BULLET = 10, LASER = 0, ENERGY = 0, BOMB = 10, BIO = 0, FIRE = 100, ACID = 100)
 	force = 5
@@ -507,7 +508,7 @@
 		balloon_alert(user, "wrong seat for equipment!")
 		return
 	var/obj/item/mecha_parts/mecha_equipment/selected
-	if(LAZYACCESS(modifiers, RIGHT_CLICK))
+	if(modifiers[BUTTON] == RIGHT_CLICK)
 		selected = equip_by_category[MECHA_R_ARM]
 	else
 		selected = equip_by_category[MECHA_L_ARM]

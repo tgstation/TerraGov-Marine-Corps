@@ -50,7 +50,7 @@ export const GearCustomization = (props, context) => {
         <Grid.Column>
           <Section title={'Head'}>
             <LabeledList>
-              {bySlot['Head'].map(item => (
+              {bySlot['Head']?.map(item => (
                 <LabeledList.Item
                   key={item.name}
                   label={`${item.name} (${item.cost})`}>
@@ -70,7 +70,7 @@ export const GearCustomization = (props, context) => {
         <Grid.Column>
           <Section title={'Eyewear'}>
             <LabeledList>
-              {bySlot['Eyewear'].map(item => (
+              {bySlot['Eyewear']?.map(item => (
                 <LabeledList.Item
                   key={item.name}
                   label={`${item.name}
@@ -93,7 +93,7 @@ export const GearCustomization = (props, context) => {
         <Grid.Column>
           <Section title={'Mouth'}>
             <LabeledList>
-              {bySlot['Mouth'].map(item => (
+              {bySlot['Mouth']?.map(item => (
                 <LabeledList.Item
                   key={item.name}
                   label={`${item.name} (${item.cost})`}>
@@ -113,7 +113,7 @@ export const GearCustomization = (props, context) => {
         <Grid.Column>
           <Section title={'Undershirt (select one)'}>
             <LabeledList>
-              {clothing['undershirt'].map((item, idx) => (
+              {clothing['undershirt']?.map((item, idx) => (
                 <LabeledList.Item key={item} label={item}>
                   <Button.Checkbox
                     inline
@@ -131,7 +131,7 @@ export const GearCustomization = (props, context) => {
         <Grid.Column>
           <Section title={'Underwear (select one)'}>
             <LabeledList>
-              {clothing['underwear'][gender].map((item, idx) => (
+              {clothing['underwear'][gender]?.map((item, idx) => (
                 <LabeledList.Item key={item} label={item}>
                   <Button.Checkbox
                     inline
@@ -147,7 +147,7 @@ export const GearCustomization = (props, context) => {
         <Grid.Column>
           <Section title={'Backpack (select one)'}>
             <LabeledList>
-              {clothing['backpack'].map((item, idx) => (
+              {clothing['backpack']?.map((item, idx) => (
                 <LabeledList.Item key={item} label={item}>
                   <Button.Checkbox
                     inline

@@ -69,8 +69,20 @@
 	RegisterSignal(M, COMSIG_LIVING_DO_RESIST, /atom/movable.proc/resisted_against, TRUE)
 	. = ..()
 	update_icon()
+	//tgmc addition start
+	if(istype(equip_by_category[MECHA_R_ARM], /obj/item/mecha_parts/mecha_equipment/weapon/ballistic))
+		var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/gun = equip_by_category[MECHA_R_ARM]
+		M.hud_used.add_ammo_hud(gun, gun.hud_icons, gun.projectiles)
+	if(istype(equip_by_category[MECHA_L_ARM], /obj/item/mecha_parts/mecha_equipment/weapon/ballistic))
+		var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/gun = equip_by_category[MECHA_L_ARM]
+		M.hud_used.add_ammo_hud(gun, gun.hud_icons, gun.projectiles)
+	//tgmc addition end
 
 /obj/vehicle/sealed/mecha/remove_occupant(mob/M)
+	//tgmc addition start
+	M.hud_used.remove_ammo_hud(equip_by_category[MECHA_R_ARM])
+	M.hud_used.remove_ammo_hud(equip_by_category[MECHA_L_ARM])
+	//tgmc addition end
 	UnregisterSignal(M, COMSIG_MOB_DEATH)
 	UnregisterSignal(M, COMSIG_MOB_MOUSEDOWN)
 	UnregisterSignal(M, COMSIG_MOB_SAY)

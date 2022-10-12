@@ -4,7 +4,6 @@
 	icon_state = "syndicate"
 	item_state = "bl_suit"
 	has_sensor = 0
-	soft_armor = list(MELEE = 10, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, "rad" = 0, FIRE = 0, ACID = 0)
 	siemens_coefficient = 0.9
 
 /obj/item/clothing/under/syndicate/combat

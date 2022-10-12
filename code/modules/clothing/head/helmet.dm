@@ -439,7 +439,7 @@ obj/item/clothing/head/helmet/marine/pilot/green
 	name = "\improper PMC tactical helmet"
 	desc = "A protective helmet made from flexible aramid materials. Standard issue protection for a lot of security firms."
 	icon_state = "pmc_helmet"
-	soft_armor = list(MELEE = 55, BULLET = 55, LASER = 55, ENERGY = 50, BOMB = 50, BIO = 50, "rad" = 50, FIRE = 50, ACID = 50)
+	soft_armor = list(MELEE = 65, BULLET = 65, LASER = 60, ENERGY = 55, BOMB = 60, BIO = 50, "rad" = 50, FIRE = 55, ACID = 55)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = NONE
@@ -449,14 +449,14 @@ obj/item/clothing/head/helmet/marine/pilot/green
 	name = "\improper PMC beret"
 	desc = "The pinacle of fashion for any aspiring mercenary leader. Designed to protect the head from light impacts."
 	icon_state = "officer_hat"
-	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 50, BOMB = 50, BIO = 50, "rad" = 50, FIRE = 50, ACID = 55)
+	soft_armor = list(MELEE = 70, BULLET = 70, LASER = 65, ENERGY = 55, BOMB = 60, BIO = 50, "rad" = 50, FIRE = 55, ACID = 60)
 
 /obj/item/clothing/head/helmet/marine/veteran/PMC/sniper
 	name = "\improper PMC sniper helmet"
 	desc = "A helmet worn by PMC Marksmen"
 	icon_state = "pmc_sniper_hat"
 	flags_armor_protection = HEAD|FACE|EYES
-	soft_armor = list(MELEE = 55, BULLET = 65, LASER = 50, ENERGY = 55, BOMB = 60, BIO = 50, "rad" = 50, FIRE = 55, ACID = 55)
+	soft_armor = list(MELEE = 65, BULLET = 75, LASER = 55, ENERGY = 60, BOMB = 70, BIO = 50, "rad" = 50, FIRE = 60, ACID = 60)
 	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
 	flags_marine_helmet = HELMET_DAMAGE_OVERLAY
@@ -466,7 +466,7 @@ obj/item/clothing/head/helmet/marine/pilot/green
 	desc = "A modification of the standard helmet used by a lot of security firms, has a visor for added protection."
 	icon_state = "pmc_heavyhelmet"
 	flags_armor_protection = HEAD|FACE|EYES
-	soft_armor = list(MELEE = 65, BULLET = 75, LASER = 75, ENERGY = 60, BOMB = 70, BIO = 50, "rad" = 50, FIRE = 60, ACID = 60)
+	soft_armor = list(MELEE = 75, BULLET = 85, LASER = 80, ENERGY = 65, BOMB = 80, BIO = 50, "rad" = 50, FIRE = 65, ACID = 65)
 	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
 	flags_marine_helmet = HELMET_DAMAGE_OVERLAY

@@ -1,5 +1,0 @@
-author: "tyeagg"
-delete-after: True
-changes: 
-  - rscadd: "sensor capture gamemode"
-  - imageadd: "sensor tower minimap blips"

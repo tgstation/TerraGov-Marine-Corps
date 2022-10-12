@@ -40927,10 +40927,6 @@
 /obj/machinery/light/small,
 /turf/open/floor/wood/broken,
 /area/prison/residential/south)
-"cGe" = (
-/obj/effect/landmark/sensor_tower_patrol,
-/turf/open/ground/grass,
-/area/prison/residential/north)
 "cIe" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -46154,6 +46150,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/cellblock/highsec/south/north)
+"rhB" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/prison,
+/area/prison/security/monitoring/highsec)
 "rhE" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/prison/plate,
@@ -57937,7 +57937,7 @@ aab
 avm
 aFY
 aHM
-cGe
+aHM
 aLd
 avN
 aHr
@@ -66708,7 +66708,7 @@ bni
 bjR
 bkr
 lnA
-lnA
+rhB
 lnA
 lnA
 bkr

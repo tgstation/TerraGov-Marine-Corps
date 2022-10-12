@@ -3743,6 +3743,10 @@
 	dir = 1
 	},
 /area/gelida/indoors/a_block/admin)
+"cug" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/prison,
+/area/gelida/indoors/a_block/admin)
 "cun" = (
 /obj/structure/platform/gelida{
 	dir = 1
@@ -12815,7 +12819,6 @@
 	dir = 1;
 	pixel_x = 16
 	},
-/obj/effect/landmark/sensor_tower_patrol,
 /turf/open/floor/prison/whitegreen{
 	dir = 1
 	},
@@ -19365,6 +19368,11 @@
 	},
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/colony_streets/central_streets)
+"mmL" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/wood,
+/area/gelida/indoors/a_block/fitness)
 "mmP" = (
 /obj/structure/filingcabinet{
 	pixel_x = -8;
@@ -23623,10 +23631,6 @@
 /obj/structure/largecrate/random,
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/cargo)
-"pbm" = (
-/obj/effect/landmark/sensor_tower_patrol,
-/turf/open/floor/prison,
-/area/gelida/indoors/a_block/dorms)
 "pbD" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -51740,7 +51744,7 @@ taP
 stq
 yfp
 odg
-pbm
+ghj
 ghj
 ghj
 ghj
@@ -52134,7 +52138,7 @@ ngb
 jwQ
 rsY
 kVR
-kVR
+mmL
 kVR
 ych
 baD
@@ -70150,7 +70154,7 @@ poj
 hsf
 uch
 qLo
-mVh
+cug
 kFl
 kFl
 fGk
