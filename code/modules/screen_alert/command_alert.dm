@@ -45,6 +45,7 @@
 	image_to_play = "overwatch"
 	image_to_play_offset_y = 0
 	maptext_y = 0
+	letters_per_update = 2
 
 /obj/screen/text/screen_text/command_order/intro/potrait/som_over
 	image_to_play = "overwatch_som"
