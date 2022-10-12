@@ -1,0 +1,4 @@
+author: "Kuro020"
+delete-after: True
+changes: 
+  - bugfix: "Mechs are no longer immortal"
