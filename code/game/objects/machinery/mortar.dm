@@ -347,7 +347,7 @@ Ssrc]'s firing angle and distance."),
 
 /obj/machinery/deployable/mortar/howitzer
 	anchored = FALSE // You can move this.
-	offset_per_turfs = 25 // Howizters are significantly more accurate.
+	offset_per_turfs = 25 // Howitzers are significantly more accurate.
 	fire_sound = 'sound/weapons/guns/fire/howitzer_fire.ogg'
 	reload_sound = 'sound/weapons/guns/interact/tat36_reload.ogg'
 	fall_sound = 'sound/weapons/guns/misc/howitzer_whistle.ogg'
