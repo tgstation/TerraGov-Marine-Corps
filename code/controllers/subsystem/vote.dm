@@ -244,8 +244,6 @@ SUBSYSTEM_DEF(vote)
 					var/players = length(GLOB.clients)
 					if(mode.time_between_round && (world.realtime - SSpersistence.last_modes_round_date[mode.name]) < mode.time_between_round)
 						continue
-					//if(mode.white_list_ship_maps && !(SSmapping.configs[SHIP_MAP].map_name in mode.white_list_ship_maps)) //if a map has a whitelist ship map that isn't currently selected, cannot vote to avoid more restarts
-					//	continue
 					if(players > mode.maximum_players)
 						continue
 					if(players < mode.required_players)
