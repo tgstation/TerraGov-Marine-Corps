@@ -468,8 +468,8 @@ WEAPONS
 
 /datum/supply_packs/weapons/napalm
 	name = "FL-84 normal fuel tank"
-	contains = list(/obj/item/ammo_magazine/flamer_tank)
-	cost = 3
+	contains = list(/obj/item/ammo_magazine/flamer_tank/large)
+	cost = 6
 
 /datum/supply_packs/weapons/napalm_X
 	name = "FL-84 X fuel tank"
