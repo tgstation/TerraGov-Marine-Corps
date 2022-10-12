@@ -72,7 +72,7 @@
 
 /obj/item/ammo_magazine/packet/tx8
 	name = "Box of A19 high velocity bullets"
-	desc = "A box containing 150."
+	desc = "A box containing 150 rounds of A19 overpressuered high velocity."
 	icon_state = "box_tx8"
 	default_ammo = /datum/ammo/bullet/rifle/tx8
 	caliber = CALIBER_10X28_CASELESS
