@@ -33,8 +33,6 @@
 	var/minimum_range = 10
 	///Time it takes for the mortar to cool off to fire
 	var/cool_off_time = 1 SECONDS
-	deploy_time = 1 SECONDS
-	undeploy_time = 1 SECONDS
 
 	/// What type of shells can we use?
 	var/list/allowed_shells = list(
@@ -315,6 +313,8 @@
 	flags_item = IS_DEPLOYABLE
 	/// What item is this going to deploy when we put down the mortar?
 	var/deployable_item = /obj/machinery/deployable/mortar
+	deploy_time = 1 SECONDS
+	undeploy_time = 1 SECONDS
 
 	resistance_flags = RESIST_ALL
 	w_class = WEIGHT_CLASS_BULKY //No dumping this in most backpacks. Carry it, fatso
