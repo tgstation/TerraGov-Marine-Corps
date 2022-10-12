@@ -3,8 +3,6 @@
 
 #define TALLY_MORTAR  1
 #define TALLY_HOWITZER 2
-#define MORTAR_COOLOFF 1 SECONDS
-#define HOWITZER_COOLOFF 2 SECONDS
 
 /obj/machinery/deployable/mortar
 	anchored = TRUE
@@ -31,7 +29,12 @@
 	var/fire_sound = 'sound/weapons/guns/fire/mortar_fire.ogg'
 	var/reload_sound = 'sound/weapons/guns/interact/mortar_reload.ogg' // Our reload sound.
 	var/fall_sound = 'sound/weapons/guns/misc/mortar_long_whistle.ogg' //The sound the shell makes when falling.
+	///Minimum range to fire
 	var/minimum_range = 10
+	///Time it takes for the mortar to cool off to fire
+	var/cool_off_time = 1 SECONDS
+	deploy_time = 1 SECONDS
+	undeploy_time = 1 SECONDS
 
 	/// What type of shells can we use?
 	var/list/allowed_shells = list(
@@ -124,7 +127,7 @@
 			new_name = params["name"]
 			last_three_inputs["coords_three"]["name"] = new_name
 	if((coords["targ_x"] != 0 && coords["targ_y"] != 0))
-		usr.visible_message(span_notice("[usr] adjusts [src]'s firing angle and distance."),
+Ssrc]'s firing angle and distance."),
 		span_notice("You adjust [src]'s firing angle and distance to match the new coordinates."))
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		// allows for offsetting using the dial, I had accidentally misplaced this.
@@ -244,7 +247,7 @@
 		shell.fire_at(T, src, src, ammo.max_range, ammo.shell_speed, suppress_light = TRUE)
 		var/distance = get_dist(src, T)
 		addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, T, fall_sound, 100, 1), distance/ammo.shell_speed - minimum_range)
-		addtimer(CALLBACK(src, .proc/cool_off), MORTAR_COOLOFF)
+		addtimer(CALLBACK(src, .proc/cool_off), cool_off_time)
 
 	if(istype(I, /obj/item/ai_target_beacon))
 		if(!GLOB.ai_list.len)
@@ -358,6 +361,7 @@
 		/obj/item/mortal_shell/flare,
 	)
 	tally_type = TALLY_HOWITZER
+	cool_off_time = 2 SECONDS
 
 /obj/machinery/deployable/mortar/howitzer/attack_hand_alternate(mob/living/user)
 	if(!Adjacent(user) || user.lying_angle || user.incapacitated() || !ishuman(user))
