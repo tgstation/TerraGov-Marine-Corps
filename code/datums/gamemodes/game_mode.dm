@@ -51,7 +51,7 @@
 	///If the gamemode has a whitelist of valid ground maps
 	var/list/white_list_ground_maps
 	///If the gamemode has a blacklist of disallowed ground maps
-	var/list/black_list_ground_maps =list(MAP_WHISKEY_OUTPOST)
+	var/list/black_list_ground_maps = list(MAP_WHISKEY_OUTPOST)
 
 
 /datum/game_mode/New()
