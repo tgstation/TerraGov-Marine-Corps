@@ -1,0 +1,4 @@
+author: "tyeagg"
+delete-after: True
+changes: 
+  - imageadd: "minimap icons for st, cl ,mo ,cmo, uavs, supply beacons, asrs pads, teleporter pads, sentries, spawners, phero tower and xeno turrets"
