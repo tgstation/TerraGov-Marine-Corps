@@ -818,6 +818,7 @@
 	desc = "you shouldn't see this gun."
 	icon_state = "charger"
 	item_state = "charger"
+	ammo_level_icon = ""
 	fire_sound = 'sound/weapons/guns/fire/volkite_1.ogg'
 	dry_fire_sound = 'sound/weapons/guns/misc/error.ogg'
 	unload_sound = 'sound/weapons/guns/interact/volkite_unload.ogg'
@@ -854,7 +855,6 @@
 	icon_state = "vx12"
 	item_state = "vx12"
 	w_class = WEIGHT_CLASS_NORMAL
-	ammo_level_icon = ""
 	max_shots = 15
 	rounds_per_shot = 36
 	ammo_datum_type = /datum/ammo/energy/volkite/medium
@@ -877,7 +877,6 @@
 	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. The charger is a light weight weapon with a high rate of fire, designed for high mobility and easy handling. Ineffective at longer ranges."
 	icon_state = "charger"
 	item_state = "charger"
-	ammo_level_icon = "charger"
 	max_shots = 40
 	rounds_per_shot = 24
 	attachable_allowed = list(
@@ -916,7 +915,6 @@
 	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. The caliver is the primary rifle of the volkite family, and effective at most ranges and situations. Drag click the powerpack to the gun to use that instead of magazines."
 	icon_state = "caliver"
 	item_state = "caliver"
-	ammo_level_icon = ""
 	fire_sound = 'sound/weapons/guns/fire/volkite_3.ogg'
 	max_shots = 40
 	ammo_datum_type = /datum/ammo/energy/volkite/medium
