@@ -130,7 +130,7 @@
 	if(within_range == was_within_range)
 		return
 	was_within_range = within_range
-	toggle_link(was_within_range ? (TRUE) : (FALSE))
+	toggle_link(was_within_range)
 	link_owner.balloon_alert(link_owner, was_within_range ? ("Link reestablished") : ("Link faltering"))
 	link_target.balloon_alert(link_target, was_within_range ? ("Link reestablished") : ("Link faltering"))
 
