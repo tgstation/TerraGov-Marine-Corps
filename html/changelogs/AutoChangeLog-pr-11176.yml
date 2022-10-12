@@ -1,5 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes: 
-  - bugfix: "Emergency chem heals only scale on fleshy damage."
-  - bugfix: "Transvit doesn't try to convert burn from robot limbs"

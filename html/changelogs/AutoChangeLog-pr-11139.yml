@@ -1,5 +1,0 @@
-author: "hyper2snyper"
-delete-after: True
-changes: 
-  - bugfix: "Caches hyperscaled attachments."
-  - bugfix: "Allows loadout icons to be displayed correctly in case of greyscale_colors being set and not greyscale_config."

@@ -116,3 +116,39 @@
   - code_imp: Ravager will now ravage all items it can slash
   ivanmixo:
   - balance: Hivemind core is trackable by the xeno structure pinpointer
+2022-10-12:
+  Aquilar:
+  - balance: Teleporters moved to engineer gear vendor and no longer free. costing
+      25 points.
+  Jalopkomit18:
+  - balance: Nanite adjustment period halved to 75 ticks
+  Lumipharon:
+  - bugfix: The intel event will no longer trigger in Combat Patrol or Sensor capture
+  - balance: Cluster grenade bomblets do 20 damage instead of 30
+  Pariah919:
+  - balance: 12 Gauge Slugs (Both Incend/Normal) sunder halved to 7.5, flechette upped
+      to 17 max sunder on hit from 8.
+  QualityVan:
+  - bugfix: Emergency chem heals only scale on fleshy damage.
+  - bugfix: Transvit doesn't try to convert burn from robot limbs
+  RipGrayson:
+  - bugfix: The force event verb is now functional
+  - rscadd: Added a new event, ion storm
+  - rscadd: Added a new event, stock uptick
+  TiviPlus:
+  - bugfix: fixed shutters being bump-openable sometimes
+  Zar000:
+  - balance: nerfed standard and wide flamer nozzle
+  - code_imp: Made it possible to set flamer penetration on resin walls
+  hyper2snyper:
+  - bugfix: Caches hyperscaled attachments.
+  - bugfix: Allows loadout icons to be displayed correctly in case of greyscale_colors
+      being set and not greyscale_config.
+  jlsnow301:
+  - bugfix: Fixes a bluescreen at the gear customization screen for combat robos.
+  tyeagg:
+  - balance: tgmc can now only activate 1 sensor tower and cannot activate another
+      until that sensor tower is activated or stopped
+  - balance: adjusted extra time when sensor tower is activated to +7 minutes from
+      10 minutes
+  - balance: time to activate sensor tower is now 250 seconds
