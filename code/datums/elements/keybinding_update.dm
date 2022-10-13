@@ -27,7 +27,7 @@
 		return
 	var/client/binder_client = current_mob.client
 	for(var/datum/action/user_action AS in current_mob.actions)
-		if(user_action.keybinding_signals.len == 0)
+		if(length(user_action.keybinding_signals) == 0)
 			continue
 		if(!binder_client)
 			break
@@ -45,7 +45,7 @@
 		return
 	var/calling_client = current_mob.client
 	for(var/datum/action/user_action AS in current_mob.actions)
-		if(user_action.keybinding_signals.len == 0)
+		if(length(user_action.keybinding_signals) == 0)
 			continue
 		for(var/type in user_action.keybinding_signals)
 			var/datum/keybinding/keybind = GLOB.keybindings_by_signal[user_action.keybinding_signals[type]]

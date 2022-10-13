@@ -18,15 +18,10 @@ KEYBINDINGS
 	var/action_icon_state = "default"
 	var/background_icon = 'icons/mob/actions.dmi'
 	var/background_icon_state = "template"
-	/// holds a set of misc visual references to use with the overlay API
+	/// holds a set of misc visual references to use with the overlay API. Always atleast one
 	var/list/visual_references = list()
 	/// Used for keybindings , use KEYBINDING_NORMAL or KEYBINDING_ALTERNATE for keybinding_activation or alternate_ability_activate
-	var/list/keybinding_signals = list()
-	/// Holds offsets for said keybinds, 0 0 is bottom-left corner.
-	var/list/maptext_offsets = list(
-		KEYBINDING_NORMAL = list(0,0),
-		KEYBINDING_ALTERNATE = list(0,22)
-	)
+	var/list/keybinding_signals = null
 	/// Defines what visual references will be initialized at round-start
 	var/action_type = ACTION_CLICK
 	/// Used for keeping track of the addition of the selected/active frames
@@ -50,8 +45,8 @@ KEYBINDINGS
 		for(var/keybind_type in keybinding_signals)
 			var/mutable_appearance/maptext_appearance = mutable_appearance()
 			maptext_appearance.layer = ABOVE_HUD_LAYER // above selected/empowered frame
-			maptext_appearance.pixel_x = maptext_offsets[keybind_type][1]
-			maptext_appearance.pixel_y = maptext_offsets[keybind_type][2]
+			maptext_appearance.pixel_x = GLOB.action_maptext_offsets[keybind_type][1]
+			maptext_appearance.pixel_y = GLOB.action_maptext_offsets[keybind_type][2]
 			maptext_list[keybinding_signals[keybind_type]] = maptext_appearance
 		visual_references[VREF_MUTABLE_MAPTEXT] = maptext_list
 	switch(action_type)
@@ -191,7 +186,7 @@ KEYBINDINGS
 		owner.client.screen += button
 	owner.update_action_buttons()
 	owner.actions_by_path[type] = src
-	if(keybinding_signals.len)
+	if(length(keybinding_signals))
 		for(var/type in keybinding_signals)
 			var/signal = keybinding_signals[type]
 			if(signal)
@@ -203,7 +198,7 @@ KEYBINDINGS
 	SEND_SIGNAL(M, ACTION_GIVEN)
 
 /datum/action/proc/remove_action(mob/M)
-	if(keybinding_signals.len)
+	if(length(keybinding_signals))
 		for(var/type in keybinding_signals)
 			var/signal = keybinding_signals[type]
 			if(owner)

@@ -168,6 +168,7 @@
 #include "code\_globalvars\lists\admin.dm"
 #include "code\_globalvars\lists\client.dm"
 #include "code\_globalvars\lists\flavor_misc.dm"
+#include "code\_globalvars\lists\hud.dm"
 #include "code\_globalvars\lists\keybinding.dm"
 #include "code\_globalvars\lists\mapping.dm"
 #include "code\_globalvars\lists\mobs.dm"
