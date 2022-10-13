@@ -23,7 +23,7 @@
 	siemens_coefficient = 0
 
 /obj/item/clothing/gloves/marine/corpsman
-	name = "Advanced medical combat gloves"
+	name = "advanced medical combat gloves"
 	desc = "Advanced medical gloves, these include small electrodes to defibrilate a patiant. No more bulky units!"
 	icon_state = "gloves_marine_medic"
 	var/obj/item/defibrillator/DF
