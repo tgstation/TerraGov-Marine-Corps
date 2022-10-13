@@ -6,7 +6,7 @@
 /obj/item/clothing/gloves/marine
 	name = "marine combat gloves"
 	desc = "Standard issue marine tactical gloves. It reads: 'knit by Marine Widows Association'."
-	icon_state = "gloves_marine"
+	icon_state = "gloves_marine_medic"
 	item_state = "gloves_marine"
 	siemens_coefficient = 0.6
 	permeability_coefficient = 0.05
@@ -22,25 +22,25 @@
 	desc = "Insulated marine tactical gloves that protect against electrical shocks."
 	siemens_coefficient = 0
 
-/obj/item/clothing/gloves/marine/medic
+/obj/item/clothing/gloves/marine/corpsman
 	name = "Advanced medical combat gloves"
 	desc = "Advanced medical gloves, these include small electrodes to defibrilate a patiant. No more bulky units!"
 	var/obj/item/defibrillator/DF
 
-/obj/item/clothing/gloves/marine/medic/Initialize()
+/obj/item/clothing/gloves/marine/corpsman/Initialize()
 	. = ..()
 	DF = new()
 	DF.ready = TRUE
 
-/obj/item/clothing/gloves/marine/medic/equipped(mob/user, slot)
+/obj/item/clothing/gloves/marine/corpsman/equipped(mob/user, slot)
 	. = ..()
 	RegisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, .proc/try_defib)
 
-/obj/item/clothing/gloves/marine/medic/unequipped(mob/unequipper, slot)
+/obj/item/clothing/gloves/marine/corpsman/unequipped(mob/unequipper, slot)
 	UnregisterSignal(unequipper,COMSIG_HUMAN_MELEE_UNARMED_ATTACK)
 	. = ..()
 
-/obj/item/clothing/gloves/marine/medic/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)
+/obj/item/clothing/gloves/marine/corpsman/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)
 	. = ..()
 	if(istype(over,/obj/item/storage/backpack/marine/corpsman))
 		if(!usr || !over || QDELETED(src))
@@ -50,7 +50,7 @@
 		over.MouseDrop_T(DF,usr)
 
 
-/obj/item/clothing/gloves/marine/medic/proc/try_defib(mob/self, atom/target)
+/obj/item/clothing/gloves/marine/corpsman/proc/try_defib(mob/self, atom/target)
 	if(!istype(loc,/mob/living/carbon/human))
 		return
 	var/mob/living/carbon/human/user = loc
