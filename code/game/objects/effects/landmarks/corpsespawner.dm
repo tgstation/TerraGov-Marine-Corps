@@ -87,8 +87,6 @@
 			victim.update_headbite()
 	qdel(src)
 
-
-
 /obj/effect/landmark/corpsespawner/proc/equip_items_to_mob(mob/living/carbon/human/corpse)
 	if(corpseuniform)
 		corpse.equip_to_slot_or_del(new corpseuniform(corpse), SLOT_W_UNIFORM)
@@ -157,8 +155,6 @@
 /obj/effect/landmark/corpsespawner/syndicatesoldier/regular
 	death_type = REGULAR_DEATH
 
-
-
 /obj/effect/landmark/corpsespawner/syndicatecommando
 	name = "Syndicate Commando"
 	corpseuniform = /obj/item/clothing/under/syndicate
@@ -175,10 +171,9 @@
 	corpseidaccess = "Syndicate"
 /obj/effect/landmark/corpsespawner/syndicatecommando/burst
 	death_type = CHESTBURST_DEATH
+
 /obj/effect/landmark/corpsespawner/syndicatecommando/regular
 	death_type = REGULAR_DEATH
-
-
 
 /obj/effect/landmark/corpsespawner/pirate
 	name = "Pirate"
@@ -197,8 +192,6 @@
 /obj/effect/landmark/corpsespawner/pirate/regular
 	death_type = REGULAR_DEATH
 
-
-
 /obj/effect/landmark/corpsespawner/realpirate
 	name = "Pirate"
 	corpseuniform = /obj/item/clothing/under/pirate
@@ -212,8 +205,6 @@
 /obj/effect/landmark/corpsespawner/realpirate/regular
 	death_type = REGULAR_DEATH
 
-
-
 /obj/effect/landmark/corpsespawner/realpirate/ranged
 	name = "Pirate Gunner"
 	corpsesuit = /obj/item/clothing/suit/pirate
@@ -224,8 +215,6 @@
 
 /obj/effect/landmark/corpsespawner/realpirate/ranged/regular
 	death_type = REGULAR_DEATH
-
-
 
 /obj/effect/landmark/corpsespawner/russian
 	name = "Russian"
@@ -248,8 +237,6 @@
 /obj/effect/landmark/corpsespawner/russian/ranged/regular
 	death_type = REGULAR_DEATH
 
-
-
 ///////////Civilians//////////////////////
 
 /obj/effect/landmark/corpsespawner/prisoner
@@ -264,8 +251,6 @@
 
 /obj/effect/landmark/corpsespawner/prisoner/regular
 	death_type = REGULAR_DEATH
-
-
 
 /obj/effect/landmark/corpsespawner/chef
 	name = "Chef"
@@ -284,8 +269,6 @@
 /obj/effect/landmark/corpsespawner/chef/regular
 	death_type = REGULAR_DEATH
 
-
-
 /obj/effect/landmark/corpsespawner/doctor
 	name = "Doctor"
 	corpseuniform = /obj/item/clothing/under/colonist
@@ -302,8 +285,6 @@
 
 /obj/effect/landmark/corpsespawner/doctor/regular
 	death_type = REGULAR_DEATH
-
-
 
 /obj/effect/landmark/corpsespawner/engineer
 	name = "Engineer"
@@ -323,8 +304,6 @@
 /obj/effect/landmark/corpsespawner/engineer/regular
 	death_type = REGULAR_DEATH
 
-
-
 /obj/effect/landmark/corpsespawner/engineer/rig
 	corpsesuit = /obj/item/clothing/suit/space/rig/engineering
 	corpsemask = /obj/item/clothing/mask/breath
@@ -335,8 +314,6 @@
 
 /obj/effect/landmark/corpsespawner/engineer/rig/regular
 	death_type = REGULAR_DEATH
-
-
 
 /obj/effect/landmark/corpsespawner/scientist
 	name = "Scientist"
@@ -354,8 +331,6 @@
 /obj/effect/landmark/corpsespawner/engineer/rig/regular
 	death_type = REGULAR_DEATH
 
-
-
 /obj/effect/landmark/corpsespawner/miner
 	corpseuniform = /obj/item/clothing/under/colonist
 	corpsegloves = /obj/item/clothing/gloves/black
@@ -371,8 +346,6 @@
 /obj/effect/landmark/corpsespawner/miner/regular
 	death_type = REGULAR_DEATH
 
-
-
 /obj/effect/landmark/corpsespawner/miner/rig
 	corpsesuit = /obj/item/clothing/suit/space/rig/mining
 	corpsemask = /obj/item/clothing/mask/breath
@@ -384,8 +357,6 @@
 /obj/effect/landmark/corpsespawner/miner/rig/regular
 	death_type = REGULAR_DEATH
 
-
-
 /obj/effect/landmark/corpsespawner/security
 	corpseuniform = /obj/item/clothing/under/rank/security
 	corpseshoes = /obj/item/clothing/shoes/jackboots
@@ -396,8 +367,6 @@
 
 /obj/effect/landmark/corpsespawner/security/regular
 	death_type = REGULAR_DEATH
-
-
 
 /obj/effect/landmark/corpsespawner/prison_security
 	name = "Prison Guard"
@@ -414,8 +383,6 @@
 
 /obj/effect/landmark/corpsespawner/prison_security/regular
 	death_type = REGULAR_DEATH
-
-
 
 /obj/effect/landmark/corpsespawner/pmc
 	name = "Unknown PMC"
@@ -436,8 +403,6 @@
 /obj/effect/landmark/corpsespawner/pmc/regular
 	death_type = REGULAR_DEATH
 
-
-
 /obj/effect/landmark/corpsespawner/colonist
 	name = "Colonist"
 	corpseuniform = /obj/item/clothing/under/colonist
@@ -448,8 +413,6 @@
 
 /obj/effect/landmark/corpsespawner/colonist/regular
 	death_type = REGULAR_DEATH
-
-
 
 /////////////////Officers//////////////////////
 
@@ -468,8 +431,6 @@
 
 /obj/effect/landmark/corpsespawner/bridgeofficer/regular
 	death_type = REGULAR_DEATH
-
-
 
 /obj/effect/landmark/corpsespawner/commander
 	name = "Commander"
@@ -491,8 +452,6 @@
 /obj/effect/landmark/corpsespawner/commander/regular
 	death_type = REGULAR_DEATH
 
-
-
 /obj/effect/landmark/corpsespawner/PMC
 	name = "Private Security Officer"
 	corpseuniform = /obj/item/clothing/under/marine/veteran/PMC
@@ -513,8 +472,6 @@
 /obj/effect/landmark/corpsespawner/PMC/regular
 	death_type = REGULAR_DEATH
 
-
-
 /////////////////Marine//////////////////////
 
 /obj/effect/landmark/corpsespawner/marine
@@ -534,8 +491,6 @@
 /obj/effect/landmark/corpsespawner/marine/regular
 	death_type = REGULAR_DEATH
 
-
-
 /obj/effect/landmark/corpsespawner/marine/engineer
 	name = "Marine Engineer"
 	corpseuniform = /obj/item/clothing/under/marine/standard
@@ -553,8 +508,6 @@
 
 /obj/effect/landmark/corpsespawner/marine/engineer/regular
 	death_type = REGULAR_DEATH
-
-
 
 /obj/effect/landmark/corpsespawner/marine/corpsman
 	name = "Marine Corpsman"
