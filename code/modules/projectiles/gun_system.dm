@@ -369,7 +369,7 @@
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER))
 		for(var/i in 0 to max_chamber_items)
 			chamber_items.Add(null)
-	if(spawn_empty)
+	if(spawn_empty || !default_ammo_type)
 		update_icon()
 		return
 	INVOKE_ASYNC(src, .proc/fill_gun)
