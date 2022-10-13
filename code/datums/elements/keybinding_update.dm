@@ -19,8 +19,6 @@
 	SIGNAL_HANDLER
 	if(!changed_bind)
 		return
-	if(!current_mob)
-		CRASH("/datum/element/keybinding_update received a mob signal without a mob tied to it")
 	if(!current_mob.actions)
 		return
 	if(!current_mob.client)
