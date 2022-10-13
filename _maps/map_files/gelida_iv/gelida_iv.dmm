@@ -6581,15 +6581,15 @@
 /area/gelida/indoors/a_block/dorm_north)
 "eaD" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	locked = 1;
+	locked = 0;
 	name = "\improper Corporation Dome"
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/corpo)
 "ebe" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	locked = 1;
-	welded = 1
+	locked = 0;
+	welded = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/mainship/stripesquare,
@@ -8375,7 +8375,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
 	name = "\improper Westlock";
-	welded = 1
+	welded = 0
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/dorms)
@@ -9806,7 +9806,7 @@
 /area/gelida/indoors/a_block/bridges/corpo)
 "ghM" = (
 /obj/machinery/door/airlock/mainship/security/glass{
-	locked = 1;
+	locked = 0;
 	name = "\improper Marshall Office Armory";
 	req_access = null
 	},
@@ -17248,7 +17248,7 @@
 "kXf" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 8;
-	locked = 1;
+	locked = 0;
 	name = "\improper Wildcatters Office"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -18025,7 +18025,7 @@
 /obj/effect/spawner/gibspawner/xeno,
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 8;
-	locked = 1;
+	locked = 0;
 	name = "\improper Wildcatters Office"
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -19814,7 +19814,7 @@
 "mCa" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 2;
-	welded = 1
+	welded = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/mainship/stripesquare,
@@ -20623,7 +20623,7 @@
 /area/gelida/outdoors/colony_streets/north_east_street)
 "nfT" = (
 /obj/machinery/door/airlock/mainship/security/glass{
-	locked = 1;
+	locked = 0;
 	name = "\improper Marshal Office Holding Cell";
 	req_access = null
 	},
@@ -20742,7 +20742,7 @@
 /area/gelida/outdoors/colony_streets/central_streets)
 "niE" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	welded = 1
+	welded = 0
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/bridges/op_centre)
@@ -21716,7 +21716,7 @@
 /area/gelida/outdoors/colony_streets/east_central_street)
 "nOF" = (
 /obj/machinery/door/airlock/mainship/generic{
-	locked = 1;
+	locked = 0;
 	name = "\improper Corporate Liason"
 	},
 /obj/structure/cable,
@@ -24000,7 +24000,7 @@
 "pli" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
-	welded = 1
+	welded = 0
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/c_block/casino)
@@ -24678,7 +24678,7 @@
 "pIB" = (
 /obj/machinery/door/airlock/mainship/medical{
 	dir = 2;
-	locked = 1;
+	locked = 0;
 	name = "Medical Airlock"
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -26803,7 +26803,7 @@
 /area/gelida/indoors/a_block/dorms)
 "qWs" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	welded = 1
+	welded = 0
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/b_block/hydro)
@@ -29968,7 +29968,7 @@
 /area/gelida/outdoors/colony_streets/north_west_street)
 "sTK" = (
 /obj/machinery/door/airlock/mainship/generic{
-	welded = 1
+	welded = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -30557,7 +30557,7 @@
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
 	name = "\improper Canteen";
-	welded = 1
+	welded = 0
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/kitchen)
@@ -31360,7 +31360,7 @@
 /area/gelida/outdoors/rock)
 "tQi" = (
 /obj/machinery/door/airlock/mainship/generic{
-	welded = 1
+	welded = 0
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/c_block/cargo)
@@ -32435,7 +32435,7 @@
 "uDB" = (
 /obj/machinery/door/airlock/mainship/medical{
 	dir = 2;
-	locked = 1;
+	locked = 0;
 	name = "Medical Airlock"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -32467,7 +32467,7 @@
 /area/gelida/indoors/c_block/garage)
 "uEs" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	welded = 1
+	welded = 0
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
@@ -37740,7 +37740,7 @@
 "xZp" = (
 /obj/machinery/door/airlock/mainship/security/glass{
 	dir = 8;
-	locked = 1;
+	locked = 0;
 	name = "\improper Marshall Head Office";
 	req_access = null
 	},
