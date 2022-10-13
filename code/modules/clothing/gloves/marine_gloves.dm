@@ -25,7 +25,8 @@
 /obj/item/clothing/gloves/marine/corpsman
 	name = "advanced medical combat gloves"
 	desc = "Advanced medical gloves, these include small electrodes to defibrilate a patiant. No more bulky units!"
-	icon_state = "gloves_marine_medic"
+	icon_state = "defib_gloves"
+	item_state = "defib_gloves"
 	attack_verb = "Challanged ELECTRICALLY"
 	var/obj/item/defibrillator/DF
 
