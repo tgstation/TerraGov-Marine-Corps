@@ -707,6 +707,9 @@
 
 	else if(istype(I, /obj/item/ammo_magazine/flamer_tank))
 		var/obj/item/ammo_magazine/flamer_tank/FT = I
+		if(FT.default_ammo != /datum/ammo/flamethrower)
+			to_chat(user, span_warning("Not the right kind of fuel!"))
+			return ..()
 		if(FT.current_rounds == FT.max_rounds || !reagents.total_volume)
 			return ..()
 
