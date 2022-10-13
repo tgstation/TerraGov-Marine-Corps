@@ -1822,18 +1822,14 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/mortar
 	name = "80mm"
 	icon_state = "mortar"
-	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
 	shell_speed = 1
 	damage = 0
 	penetration = 0
 	sundering = 0
-	handful_amount = 1
-	accuracy = INFINITY
-	accurate_range = INFINITY
-	max_range = INFINITY
+	accuracy = 250
+	max_range = 250
 	ping = null
-	accuracy_var_low = 0
-	accuracy_var_high = 0
 
 /datum/ammo/mortar/drop_nade(turf/T)
 	explosion(T, 1, 2, 5, 3)
