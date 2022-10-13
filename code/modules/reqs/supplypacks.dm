@@ -317,7 +317,7 @@ WEAPONS
 
 /datum/supply_packs/weapons/scout_regular_box
 	name = "BR-8 scout ammo box"
-	contains = list(/obj/item/ammo_magazine/packet/tx8)
+	contains = list(/obj/item/ammo_magazine/packet/scout_rifle)
 	cost = 5
 	available_against_xeno_only = TRUE
 

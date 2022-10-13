@@ -70,7 +70,7 @@
 	max_rounds = 500
 	w_class = WEIGHT_CLASS_NORMAL
 
-/obj/item/ammo_magazine/packet/tx8
+/obj/item/ammo_magazine/packet/scout_rifle
 	name = "Box of A19 high velocity bullets"
 	desc = "A box containing 150 rounds of A19 overpressuered high velocity."
 	icon_state = "box_tx8"
