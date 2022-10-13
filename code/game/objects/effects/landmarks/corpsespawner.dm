@@ -87,6 +87,8 @@
 			victim.update_headbite()
 	qdel(src)
 
+
+
 /obj/effect/landmark/corpsespawner/proc/equip_items_to_mob(mob/living/carbon/human/corpse)
 	if(corpseuniform)
 		corpse.equip_to_slot_or_del(new corpseuniform(corpse), SLOT_W_UNIFORM)
@@ -172,6 +174,7 @@
 /obj/effect/landmark/corpsespawner/syndicatecommando/burst
 	death_type = CHESTBURST_DEATH
 
+
 /obj/effect/landmark/corpsespawner/syndicatecommando/regular
 	death_type = REGULAR_DEATH
 
@@ -212,6 +215,7 @@
 
 /obj/effect/landmark/corpsespawner/realpirate/ranged/burst
 	death_type = CHESTBURST_DEATH
+
 
 /obj/effect/landmark/corpsespawner/realpirate/ranged/regular
 	death_type = REGULAR_DEATH
