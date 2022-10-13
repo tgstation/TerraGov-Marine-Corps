@@ -6,7 +6,7 @@
 /obj/item/clothing/gloves/marine
 	name = "marine combat gloves"
 	desc = "Standard issue marine tactical gloves. It reads: 'knit by Marine Widows Association'."
-	icon_state = "gloves_marine_medic"
+	icon_state = "gloves_marine"
 	item_state = "gloves_marine"
 	siemens_coefficient = 0.6
 	permeability_coefficient = 0.05
@@ -25,6 +25,7 @@
 /obj/item/clothing/gloves/marine/corpsman
 	name = "Advanced medical combat gloves"
 	desc = "Advanced medical gloves, these include small electrodes to defibrilate a patiant. No more bulky units!"
+	icon_state = "gloves_marine_medic"
 	var/obj/item/defibrillator/DF
 
 /obj/item/clothing/gloves/marine/corpsman/Initialize()
@@ -39,6 +40,10 @@
 /obj/item/clothing/gloves/marine/corpsman/unequipped(mob/unequipper, slot)
 	UnregisterSignal(unequipper,COMSIG_HUMAN_MELEE_UNARMED_ATTACK)
 	. = ..()
+
+/obj/item/clothing/gloves/marine/corpsman/examine(mob/user)
+	. = ..()
+	. += DF.maybe_message_recharge_hint(user)
 
 /obj/item/clothing/gloves/marine/corpsman/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)
 	. = ..()
