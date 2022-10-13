@@ -42,7 +42,7 @@
 		/datum/job/terragov/squad/leader/rebel = 4,
 		/datum/job/terragov/squad/standard/rebel = -1
 	)
-	white_list_ship_maps = list(MAP_TWIN_PILLARS)
+	whitelist_ship_maps = list(MAP_TWIN_PILLARS)
 
 	win_points_needed = 1000
 	///How many points per zone to control, determined by the number of zones

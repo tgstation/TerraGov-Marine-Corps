@@ -44,14 +44,14 @@
 	/// Ponderation rate of silos output. 1 is normal, 2 is twice
 	var/silo_scaling = 1
 
-	///If the gamemode has a whitelist of valid ship maps
-	var/list/white_list_ship_maps
+	///If the gamemode has a whitelist of valid ship maps. Whitelist overrides the blacklist
+	var/list/whitelist_ship_maps
 	///If the gamemode has a blacklist of disallowed ship maps
-	var/list/black_list_ship_maps = list(MAP_COMBAT_PATROL_BASE, MAP_TWIN_PILLARS)
-	///If the gamemode has a whitelist of valid ground maps
-	var/list/white_list_ground_maps
+	var/list/blacklist_ship_maps = list(MAP_COMBAT_PATROL_BASE, MAP_TWIN_PILLARS)
+	///If the gamemode has a whitelist of valid ground maps. Whitelist overrides the blacklist
+	var/list/whitelist_ground_maps
 	///If the gamemode has a blacklist of disallowed ground maps
-	var/list/black_list_ground_maps = list(MAP_WHISKEY_OUTPOST)
+	var/list/blacklist_ground_maps = list(MAP_WHISKEY_OUTPOST)
 
 
 /datum/game_mode/New()

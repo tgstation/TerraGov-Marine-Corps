@@ -147,9 +147,9 @@ SUBSYSTEM_DEF(vote)
 				var/datum/game_mode/new_gamemode = config.pick_mode(.)
 				GLOB.master_mode = . //changes the current gamemode
 				//we check the gamemode's whitelists and blacklists to see if a map change and restart is required
-				if(!(new_gamemode.white_list_ship_maps && (SSmapping.configs[SHIP_MAP].map_name in new_gamemode.white_list_ship_maps)) && !(new_gamemode.black_list_ship_maps && !(SSmapping.configs[SHIP_MAP].map_name in new_gamemode.black_list_ship_maps)))
+				if(!(new_gamemode.whitelist_ship_maps && (SSmapping.configs[SHIP_MAP].map_name in new_gamemode.whitelist_ship_maps)) && !(new_gamemode.blacklist_ship_maps && !(SSmapping.configs[SHIP_MAP].map_name in new_gamemode.blacklist_ship_maps)))
 					ship_change_required = TRUE
-				if(!(new_gamemode.white_list_ground_maps && (SSmapping.configs[GROUND_MAP].map_name in new_gamemode.white_list_ground_maps)) && !(new_gamemode.black_list_ground_maps && !(SSmapping.configs[GROUND_MAP].map_name in new_gamemode.black_list_ground_maps)))
+				if(!(new_gamemode.whitelist_ground_maps && (SSmapping.configs[GROUND_MAP].map_name in new_gamemode.whitelist_ground_maps)) && !(new_gamemode.blacklist_ground_maps && !(SSmapping.configs[GROUND_MAP].map_name in new_gamemode.blacklist_ground_maps)))
 					ground_change_required = TRUE
 				//we queue up the required votes and restarts
 				if(ship_change_required && ground_change_required)
@@ -262,11 +262,11 @@ SUBSYSTEM_DEF(vote)
 					var/datum/map_config/VM = config.maplist[GROUND_MAP][map]
 					if(!VM.voteweight)
 						continue
-					if(next_gamemode.white_list_ground_maps)
-						if(!(VM.map_name in next_gamemode.white_list_ground_maps))
+					if(next_gamemode.whitelist_ground_maps)
+						if(!(VM.map_name in next_gamemode.whitelist_ground_maps))
 							continue
-					else if(next_gamemode.black_list_ground_maps) //can't blacklist and whitelist for the same map
-						if(VM.map_name in next_gamemode.black_list_ground_maps)
+					else if(next_gamemode.blacklist_ground_maps) //can't blacklist and whitelist for the same map
+						if(VM.map_name in next_gamemode.blacklist_ground_maps)
 							continue
 					if(VM.config_max_users || VM.config_min_users)
 						var/players = length(GLOB.clients)
@@ -291,11 +291,11 @@ SUBSYSTEM_DEF(vote)
 					var/datum/map_config/VM = config.maplist[SHIP_MAP][map]
 					if(!VM.voteweight)
 						continue
-					if(next_gamemode.white_list_ship_maps)
-						if(!(VM.map_name in next_gamemode.white_list_ship_maps))
+					if(next_gamemode.whitelist_ship_maps)
+						if(!(VM.map_name in next_gamemode.whitelist_ship_maps))
 							continue
-					else if(next_gamemode.black_list_ship_maps) //can't blacklist and whitelist for the same map
-						if(VM.map_name in next_gamemode.black_list_ship_maps)
+					else if(next_gamemode.blacklist_ship_maps) //can't blacklist and whitelist for the same map
+						if(VM.map_name in next_gamemode.blacklist_ship_maps)
 							continue
 					if(VM.config_max_users || VM.config_min_users)
 						var/players = length(GLOB.clients)
