@@ -47,12 +47,7 @@
 
 /obj/item/clothing/gloves/marine/corpsman/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)
 	. = ..()
-	if(istype(over,/obj/item/storage/backpack/marine/corpsman))
-		if(!usr || !over || QDELETED(src))
-			return
-		if(!Adjacent(usr) || !over.Adjacent(usr))
-			return
-		over.MouseDrop_T(DF,usr)
+	over.MouseDrop_T(DF,usr)
 
 
 /obj/item/clothing/gloves/marine/corpsman/proc/try_defib(mob/self, atom/target)
