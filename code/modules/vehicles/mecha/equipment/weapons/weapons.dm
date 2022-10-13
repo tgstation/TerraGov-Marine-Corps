@@ -134,7 +134,7 @@
 			holding = grey.limbs[MECH_GREY_R_ARM]
 		else
 			holding = grey.limbs[MECH_GREY_L_ARM]
-		projectile_to_fire.scatter = variance + holding?.scatter_mod
+		projectile_to_fire.scatter = max(variance + holding?.scatter_mod, 0)
 	projectile_to_fire.projectile_speed = projectile_to_fire.ammo.shell_speed
 	if(projectile_to_fire.ammo.flags_ammo_behavior & AMMO_IFF)
 		var/iff_signal
