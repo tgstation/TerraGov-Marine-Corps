@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes: 
+  - refactor: "Refactor vote code to be less spaghetti"
