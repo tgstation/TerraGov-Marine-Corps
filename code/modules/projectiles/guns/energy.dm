@@ -875,8 +875,8 @@
 	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. The charger is a light weight weapon with a high rate of fire, designed for high mobility and easy handling. Ineffective at longer ranges."
 	icon_state = "charger"
 	item_state = "charger"
-	max_shots = 40
-	rounds_per_shot = 24
+	max_shots = 45
+	rounds_per_shot = 32
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/lasersight,
@@ -924,9 +924,9 @@
 	max_shots = 40
 	ammo_datum_type = /datum/ammo/energy/volkite/medium
 	rounds_per_shot = 36
-	default_ammo_type = /obj/item/cell/lasgun/volkite/highcap
+	default_ammo_type = /obj/item/cell/lasgun/volkite
 	allowed_ammo_types = list(
-		/obj/item/cell/lasgun/volkite/highcap,
+		/obj/item/cell/lasgun/volkite,
 		/obj/item/cell/lasgun/volkite/powerpack,
 	)
 	attachable_allowed = list(
@@ -983,7 +983,7 @@
 	)
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_WIELDED_FIRING_ONLY|GUN_SHOWS_LOADED
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
-	attachable_offset = list("muzzle_x" = 34, "muzzle_y" = 14,"rail_x" = 17, "rail_y" = 22, "under_x" = 23, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
+	attachable_offset = list("muzzle_x" = 34, "muzzle_y" = 14,"rail_x" = 11, "rail_y" = 29, "under_x" = 23, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
 	aim_slowdown = 1
 	wield_delay	= 1.2 SECONDS
 	fire_delay = 0.15 SECONDS
