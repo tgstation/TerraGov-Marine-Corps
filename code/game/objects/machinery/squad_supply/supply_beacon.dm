@@ -57,6 +57,16 @@
 	playsound(src, 'sound/machines/twobeep.ogg', 15, 1)
 	H.visible_message("[H] activates [src].",
 	"You activate [src].")
+	var/marker_flags
+	if(H.faction == FACTION_TERRAGOV)
+		marker_flags = MINIMAP_FLAG_MARINE
+	else if(H.faction == FACTION_TERRAGOV_REBEL)
+		marker_flags = MINIMAP_FLAG_MARINE_REBEL
+	else if(H.faction == FACTION_SOM)
+		marker_flags = MINIMAP_FLAG_MARINE_SOM
+	else
+		marker_flags = MINIMAP_FLAG_MARINE
+	SSminimaps.add_marker(src, z, marker_flags, "supply")
 	update_icon()
 	return TRUE
 
@@ -78,6 +88,7 @@
 	H.visible_message("[H] deactivates [src].",
 	"You deactivate [src].")
 	H.put_in_active_hand(src)
+	SSminimaps.remove_marker(src)
 	update_icon()
 	return TRUE
 

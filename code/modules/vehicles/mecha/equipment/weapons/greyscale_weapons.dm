@@ -107,7 +107,7 @@
 	variance = 15
 	projectile_delay = 0.6 SECONDS
 	burst_amount = 3
-	projectile_burst_delay = 0.1 SECONDS
+	projectile_burst_delay = 0.2 SECONDS
 	slowdown = 0.25
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_BURSTRIFLE
@@ -202,8 +202,8 @@
 	projectiles = 30
 	projectiles_cache = 300
 	projectiles_cache_max = 300
-	variance = 10
-	projectile_delay = 0.5 SECONDS
+	variance = 20
+	projectile_delay = 0.7 SECONDS
 	slowdown = 0.4
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_LIGHTCANNON
@@ -225,7 +225,7 @@
 	obj_integrity = 400
 	energy_drain = 10
 	variance = 0
-	projectile_delay = 0.3 SECONDS
+	projectile_delay = 0.4 SECONDS
 	slowdown = 0.4
 	harmful = TRUE
 	fire_mode = GUN_FIREMODE_AUTOMATIC
@@ -246,8 +246,8 @@
 	energy_drain = 10
 	variance = 0
 	projectile_delay = 0.6 SECONDS
-	burst_amount = 4
-	projectile_burst_delay = 0.1 SECONDS
+	burst_amount = 3
+	projectile_burst_delay = 0.2 SECONDS
 	slowdown = 0.4
 	harmful = TRUE
 	fire_mode = GUN_FIREMODE_AUTOBURST
@@ -358,6 +358,7 @@
 	projectiles = 10
 	projectiles_cache = 20
 	projectiles_cache_max = 20
+	projectile_delay = 1.5 SECONDS
 	missile_speed = 1.5
 	equip_cooldown = 2 SECONDS
 	slowdown = 0.4

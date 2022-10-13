@@ -39,6 +39,13 @@ SUBSYSTEM_DEF(greyscale)
 			cache_list(gun.colorable_colors, gun.item_icons[key])
 		qdel(gun)
 
+	for(var/obj/item/attachable/attachment_type AS in subtypesof(/obj/item/attachable))
+		if(!initial(attachment_type.greyscale_config))
+			continue
+		var/obj/item/attachable/attachment = new attachment_type()
+		cache_list(attachment.colorable_colors, attachment.greyscale_config)
+		qdel(attachment)
+
 	return ..()
 
 ///Proc built to handle cacheing the nested lists of armor colors found in code/modules/clothing/modular_armor

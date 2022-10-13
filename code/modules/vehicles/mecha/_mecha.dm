@@ -22,7 +22,7 @@
 	desc = "Exosuit"
 	icon = 'icons/mecha/mecha.dmi'
 	move_force = MOVE_FORCE_VERY_STRONG
-	move_resist = MOVE_FORCE_EXTREMELY_STRONG
+	move_resist = MOVE_FORCE_OVERPOWERING
 	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
 	flags_atom = BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION
 	max_integrity = 300
