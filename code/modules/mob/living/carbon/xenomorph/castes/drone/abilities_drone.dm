@@ -25,13 +25,12 @@
 	var/datum/status_effect/stacking/essence_link/existing_link
 	/// The target of an existing link, if applicable.
 	var/mob/living/carbon/xenomorph/linked_target
+	/// Time it takes for the attunement levels to increase.
+	var/attunement_cooldown = 20 SECONDS
 
 /datum/action/xeno_action/activable/essence_link/can_use_ability(mob/living/carbon/xenomorph/target, silent = FALSE, override_flags)
 	var/mob/living/carbon/xenomorph/X = owner
-	. = ..()
-	if(!.)
-		return FALSE
-	if(!isxeno(target) || target.hive.hivenumber != X.hive.hivenumber)
+	if(!isxeno(target) || target.get_xeno_hivenumber() != X.get_xeno_hivenumber())
 		return FALSE
 	if(!X.Adjacent(target))
 		X.balloon_alert(X, "Not adjacent")
@@ -42,7 +41,7 @@
 	if(existing_link && target != linked_target)
 		target.balloon_alert(X, "Not our linked sister")
 		return FALSE
-	return TRUE
+	return ..()
 
 /datum/action/xeno_action/activable/essence_link/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -111,14 +110,14 @@
 	var/remaining_health = round(target.maxHealth - (target.getBruteLoss() + target.getFireLoss()))
 	var/health_threshold = round(target.maxHealth / 10) // 10% of the target's maximum health
 	var/heal_multiplier = 1
-	if(essence_link_action.existing_link && target == essence_link_action.existing_link.link_target)
+	if(essence_link_action?.existing_link && target == essence_link_action?.existing_link.link_target)
 		target.apply_status_effect(STATUS_EFFECT_XENO_SALVE_REGEN)
 		if(essence_link_action.existing_link.stacks >= 1 && remaining_health <= health_threshold)
 			heal_multiplier = 3
 	playsound(target, "alien_drool", 25)
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
-	var/heal_amount = round((DRONE_BASE_SALVE_HEAL + target.recovery_aura * target.maxHealth * 0.01) * heal_multiplier)
-	var/heal_remainder = round(max(0, heal_amount - target.getBruteLoss())) // Heal brute first, apply whatever's left to burns
+	var/heal_amount = (DRONE_BASE_SALVE_HEAL + target.recovery_aura * target.maxHealth * 0.01) * heal_multiplier
+	var/heal_remainder = max(0, heal_amount - target.getBruteLoss()) // Heal brute first, apply whatever's left to burns
 	target.adjustBruteLoss(-heal_amount)
 	target.adjustFireLoss(-heal_remainder, TRUE)
 	target.adjust_sunder(-heal_amount/20)
@@ -140,6 +139,10 @@
 	var/datum/action/xeno_action/activable/essence_link/essence_link_action
 	/// Used to determine whether Enhancement is already active or not. Also allows access to its vars.
 	var/datum/status_effect/drone_enhancement/existing_enhancement
+	/// Damage bonus given by this ability.
+	var/damage_multiplier = 1.1
+	/// Speed bonus given by this ability.
+	var/speed_addition = -0.4
 
 /datum/action/xeno_action/enhancement/can_use_action()
 	var/mob/living/carbon/xenomorph/X = owner
