@@ -26,6 +26,7 @@
 	name = "Advanced medical combat gloves"
 	desc = "Advanced medical gloves, these include small electrodes to defibrilate a patiant. No more bulky units!"
 	icon_state = "gloves_marine_medic"
+	attack_verb = "Challanged ELECTRICALLY"
 	var/obj/item/defibrillator/DF
 
 /obj/item/clothing/gloves/marine/corpsman/Initialize()
