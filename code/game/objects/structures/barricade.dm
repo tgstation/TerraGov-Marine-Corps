@@ -1171,31 +1171,31 @@
 	soft_armor = list(MELEE = 35, BULLET = 30, LASER = 20, ENERGY = 40, BOMB = 25, BIO = 100, "rad" = 0, FIRE = 100, ACID = 30)
 	///Whether this item can be deployed or undeployed
 	var/flags_item = IS_DEPLOYABLE
-	///What it deploys into
-	var/obj/item/weapon/shield/riot/marine/deployable/internal_item
+	///What it deploys into. typecast version of internal_item
+	var/obj/item/weapon/shield/riot/marine/deployable/internal_shield
 
 /obj/structure/barricade/deployable/Initialize(mapload, _internal_item, deployer)
 	. = ..()
 	internal_item = _internal_item
+	internal_shield = _internal_item
 
-	name = internal_item.name
-	desc = internal_item.desc
+	name = internal_shield.name
+	desc = internal_shield.desc
 	//if the shield is wired, it deploys wired
-	if (internal_item.is_wired)
+	if (internal_shield.is_wired)
 		can_wire = FALSE
 		is_wired = TRUE
 
 ///Dissassembles the device
 /obj/structure/barricade/deployable/proc/disassemble(mob/user)
-	var/obj/item/item = internal_item
-	if(CHECK_BITFIELD(item.flags_item, DEPLOYED_NO_PICKUP))
+	if(CHECK_BITFIELD(internal_shield.flags_item, DEPLOYED_NO_PICKUP))
 		to_chat(user, span_notice("The [src] is anchored in place and cannot be disassembled."))
 		return
 	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user)
 
 /obj/structure/barricade/deployable/Destroy()
-	if(internal_item)
-		QDEL_NULL(internal_item)
+	if(internal_shield)
+		QDEL_NULL(internal_shield)
 	return ..()
 
 /obj/structure/barricade/deployable/MouseDrop(over_object, src_location, over_location)
@@ -1204,7 +1204,7 @@
 	var/mob/living/carbon/human/user = usr
 	if(over_object != user || !in_range(src, user))
 		return
-	if(CHECK_BITFIELD(internal_item.flags_item, DEPLOYED_WRENCH_DISASSEMBLE))
+	if(CHECK_BITFIELD(internal_shield.flags_item, DEPLOYED_WRENCH_DISASSEMBLE))
 		to_chat(user, "<span class = 'notice'>You cannot disassemble [src] without a wrench.</span>")
 		return
 	disassemble(user)
@@ -1212,8 +1212,8 @@
 /obj/structure/barricade/deployable/wire()
 	. = ..()
 	//makes the shield item wired as well
-	internal_item.is_wired = TRUE
-	internal_item.modify_max_integrity(max_integrity + 50)
+	internal_shield.is_wired = TRUE
+	internal_shield.modify_max_integrity(max_integrity + 50)
 
 //repairable but not upgradable
 /obj/structure/barricade/deployable/attackby(obj/item/I, mob/user, params)

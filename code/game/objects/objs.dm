@@ -40,6 +40,9 @@
 	///odds of a projectile hitting the object, if throwpass is true and the object is dense
 	var/coverage = 50
 
+	///Internal deployable item
+	var/obj/item/internal_item
+
 /obj/Initialize()
 	. = ..()
 	if(islist(soft_armor))
