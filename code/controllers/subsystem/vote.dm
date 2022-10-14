@@ -136,30 +136,33 @@ SUBSYSTEM_DEF(vote)
 			if(. == "Restart Round")
 				restart = TRUE
 		if("gamemode")
-			if(. == "Civil War")
-				deltimer(shipmap_timer_id)
-				var/datum/map_config/VM = config.maplist[SHIP_MAP]["Twin Pillars"]
-				SSmapping.changemap(VM, SHIP_MAP)
-			else if(. == "Combat Patrol" || . == "Sensor Capture")
-				deltimer(shipmap_timer_id)
-				var/datum/map_config/VM = config.maplist[SHIP_MAP]["Combat Patrol Base"]
-				SSmapping.changemap(VM, SHIP_MAP)
 			SSticker.save_mode(.) //changes the next game mode
 			if(GLOB.master_mode == .)
 				return
 			if(SSticker.HasRoundStarted())
 				restart = TRUE
 			else
-				var/datum/game_mode/current_gamemode = config.pick_mode(GLOB.master_mode)
+				var/ship_change_required
+				var/ground_change_required
 				var/datum/game_mode/new_gamemode = config.pick_mode(.)
 				GLOB.master_mode = . //changes the current gamemode
-				if(new_gamemode.flags_round_type & MODE_SPECIFIC_SHIP_MAP) //the new gamemode has a shipmap that is mode specific, restart to load it
-					SSticker.Reboot("Restarting server to load correct ship map", 10 SECONDS)
-					return
-				else if(current_gamemode.flags_round_type & MODE_SPECIFIC_SHIP_MAP) //the previous gamemode has a shipmap that is mode specific, so must be changed, then restarted to load the new one
+				//we check the gamemode's whitelists and blacklists to see if a map change and restart is required
+				if(!(new_gamemode.whitelist_ship_maps && (SSmapping.configs[SHIP_MAP].map_name in new_gamemode.whitelist_ship_maps)) && !(new_gamemode.blacklist_ship_maps && !(SSmapping.configs[SHIP_MAP].map_name in new_gamemode.blacklist_ship_maps)))
+					ship_change_required = TRUE
+				if(!(new_gamemode.whitelist_ground_maps && (SSmapping.configs[GROUND_MAP].map_name in new_gamemode.whitelist_ground_maps)) && !(new_gamemode.blacklist_ground_maps && !(SSmapping.configs[GROUND_MAP].map_name in new_gamemode.blacklist_ground_maps)))
+					ground_change_required = TRUE
+				//we queue up the required votes and restarts
+				if(ship_change_required && ground_change_required)
 					addtimer(CALLBACK(src, .proc/initiate_vote, "shipmap", null, TRUE), 5 SECONDS)
-					SSticker.Reboot("Restarting server when valid ship map selected", CONFIG_GET(number/vote_period) + 15 SECONDS)
+					addtimer(CALLBACK(src, .proc/initiate_vote, "groundmap", null, TRUE), CONFIG_GET(number/vote_period) + 5 SECONDS)
+					SSticker.Reboot("Restarting server when valid ship map selected", (CONFIG_GET(number/vote_period) * 2) + 15 SECONDS)
 					return
+				else if(ship_change_required)
+					addtimer(CALLBACK(src, .proc/initiate_vote, "shipmap", null, TRUE), 5 SECONDS)
+				else if(ground_change_required)
+					addtimer(CALLBACK(src, .proc/initiate_vote, "groundmap", null, TRUE), 5 SECONDS)
+				SSticker.Reboot("Restarting server when valid ship map selected", CONFIG_GET(number/vote_period) + 15 SECONDS)
+			return
 		if("groundmap")
 			var/datum/map_config/VM = config.maplist[GROUND_MAP][.]
 			SSmapping.changemap(VM, GROUND_MAP)
@@ -241,10 +244,6 @@ SUBSYSTEM_DEF(vote)
 					var/players = length(GLOB.clients)
 					if(mode.time_between_round && (world.realtime - SSpersistence.last_modes_round_date[mode.name]) < mode.time_between_round)
 						continue
-					if(istype(mode, /datum/game_mode/civil_war) && SSticker.current_state < GAME_STATE_PLAYING && SSmapping.configs[SHIP_MAP].map_name != MAP_TWIN_PILLARS)
-						continue
-					if(istype(mode, /datum/game_mode/combat_patrol) && SSticker.current_state < GAME_STATE_PLAYING && SSmapping.configs[SHIP_MAP].map_name != MAP_COMBAT_PATROL_BASE)
-						continue
 					if(players > mode.maximum_players)
 						continue
 					if(players < mode.required_players)
@@ -255,6 +254,7 @@ SUBSYSTEM_DEF(vote)
 				if(!lower_admin && SSmapping.groundmap_voted)
 					to_chat(usr, span_warning("The next ground map has already been selected."))
 					return FALSE
+				var/datum/game_mode/next_gamemode = config.pick_mode(trim(file2text("data/mode.txt")))
 				var/list/maps = list()
 				if(!config.maplist)
 					return
@@ -262,6 +262,12 @@ SUBSYSTEM_DEF(vote)
 					var/datum/map_config/VM = config.maplist[GROUND_MAP][map]
 					if(!VM.voteweight)
 						continue
+					if(next_gamemode.whitelist_ground_maps)
+						if(!(VM.map_name in next_gamemode.whitelist_ground_maps))
+							continue
+					else if(next_gamemode.blacklist_ground_maps) //can't blacklist and whitelist for the same map
+						if(VM.map_name in next_gamemode.blacklist_ground_maps)
+							continue
 					if(VM.config_max_users || VM.config_min_users)
 						var/players = length(GLOB.clients)
 						if(VM.config_max_users && players > VM.config_max_users)
@@ -278,9 +284,6 @@ SUBSYSTEM_DEF(vote)
 					to_chat(usr, span_warning("The next ship map has already been selected."))
 					return FALSE
 				var/datum/game_mode/next_gamemode = config.pick_mode(trim(file2text("data/mode.txt")))
-				if(next_gamemode.flags_round_type & MODE_SPECIFIC_SHIP_MAP)
-					to_chat(usr, span_warning("No other valid maps for [next_gamemode.name]."))
-					return FALSE
 				var/list/maps = list()
 				if(!config.maplist)
 					return
@@ -288,6 +291,12 @@ SUBSYSTEM_DEF(vote)
 					var/datum/map_config/VM = config.maplist[SHIP_MAP][map]
 					if(!VM.voteweight)
 						continue
+					if(next_gamemode.whitelist_ship_maps)
+						if(!(VM.map_name in next_gamemode.whitelist_ship_maps))
+							continue
+					else if(next_gamemode.blacklist_ship_maps) //can't blacklist and whitelist for the same map
+						if(VM.map_name in next_gamemode.blacklist_ship_maps)
+							continue
 					if(VM.config_max_users || VM.config_min_users)
 						var/players = length(GLOB.clients)
 						if(VM.config_max_users && players > VM.config_max_users)
