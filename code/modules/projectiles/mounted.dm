@@ -150,7 +150,7 @@
 	user_old_y = operator.pixel_y
 	update_pixels(operator, TRUE)
 	density = FALSE
-    user_old_move_resist = operator.move_resist
+	user_old_move_resist = operator.move_resist
 	operator.move_resist = MOVE_FORCE_STRONG
 
 ///Updates the pixel offset of user so it looks like their manning the gun from behind
