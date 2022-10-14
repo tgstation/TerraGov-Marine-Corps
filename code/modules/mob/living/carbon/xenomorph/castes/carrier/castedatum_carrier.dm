@@ -29,7 +29,7 @@
 
 	deevolves_to = /mob/living/carbon/xenomorph/drone
 
-	evolves_to = list(/mob/living/carbon/xenomorph/Defiler, /mob/living/carbon/xenomorph/widow)
+	evolves_to = list(/mob/living/carbon/xenomorph/defiler, /mob/living/carbon/xenomorph/widow)
 
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED
