@@ -35,6 +35,7 @@
 
 /datum/status_effect/stacking/essence_link
 	id = "xeno_essence_link"
+	tick_interval = 1 SECONDS
 	stacks = 0
 	stack_decay = -1 //Not meant to decay.
 	max_stacks = 3
@@ -101,8 +102,8 @@
 	var/remaining_health = link_target.maxHealth - (link_target.getBruteLoss() + link_target.getFireLoss())
 	if(!was_within_range || remaining_health >= link_target.maxHealth)
 		return
-	var/heal_amount = round(link_target.maxHealth * (stacks * DRONE_ESSENCE_LINK_REGEN))
-	var/plasma_cost = round(heal_amount * 2.5)
+	var/heal_amount = link_target.maxHealth * (DRONE_ESSENCE_LINK_REGEN * stacks)
+	var/plasma_cost = heal_amount * 2
 	if(link_owner.plasma_stored < plasma_cost)
 		if(!COOLDOWN_CHECK(src, plasma_warning))
 			return
@@ -110,9 +111,9 @@
 		link_target.balloon_alert(link_target, "No plasma for link")
 		COOLDOWN_START(src, plasma_warning, plasma_warning_cooldown)
 		return
-	var/heal_remainder = round(max(0, heal_amount - link_target.getBruteLoss()))
-	link_target.adjustBruteLoss(-heal_amount)
-	link_target.adjustFireLoss(-heal_remainder)
+	var/heal_remainder = max(0, heal_amount - link_target.getBruteLoss())
+	link_target.adjustBruteLoss(-heal_amount, signal = FALSE)
+	link_target.adjustFireLoss(-heal_remainder, signal = FALSE)
 	link_owner.use_plasma(plasma_cost)
 
 /// Removes the status effect on death.
@@ -175,12 +176,12 @@
 	shared_heal_count++
 
 	new /obj/effect/temp_visual/healing(get_turf(heal_target))
-	var/heal_amount = clamp(amount * (DRONE_ESSENCE_LINK_SHARED_HEAL * stacks), -heal_target.maxHealth, 0)
-	var/heal_remainder = max(0, heal_amount - heal_target.getBruteLoss()) // Heal brute first, apply whatever's left to burns
-	heal_target.adjustBruteLoss(heal_amount, signal = FALSE)
-	heal_target.adjustFireLoss(heal_remainder, signal = FALSE)
-	heal_target.adjust_sunder(heal_amount/20)
-	heal_target.balloon_alert(heal_target, "+[abs(heal_amount + heal_remainder)]")
+	var/heal_amount = clamp(abs(amount) * (DRONE_ESSENCE_LINK_SHARED_HEAL * stacks), 0, heal_target.maxHealth)
+	var/heal_remainder = max(0, heal_amount - heal_target.getBruteLoss())
+	heal_target.adjustBruteLoss(-heal_amount, signal = FALSE)
+	heal_target.adjustFireLoss(-heal_remainder, signal = FALSE)
+	heal_target.adjust_sunder(-heal_amount/20)
+	heal_target.balloon_alert(heal_target, "Shared heal: +[heal_amount + heal_remainder]")
 
 /// Toggles the link signals on or off.
 /datum/status_effect/stacking/essence_link/proc/toggle_link(toggle)
@@ -218,23 +219,26 @@
 	tick_interval = 2 SECONDS
 	status_type = STATUS_EFFECT_REFRESH
 	alert_type = null
+	var/mob/living/carbon/xenomorph/buff_owner
 
 /datum/status_effect/salve_regen/on_apply()
-	if(!isxeno(owner))
+	buff_owner = owner
+	if(!isxeno(buff_owner))
 		return FALSE
-	owner.balloon_alert(owner, "Regenerating")
+	buff_owner.balloon_alert(buff_owner, "Salve regeneration")
 	return TRUE
 
 /datum/status_effect/salve_regen/on_remove()
-	owner.balloon_alert(owner, "No longer regenerating")
+	buff_owner.balloon_alert(buff_owner, "Salve regeneration ended")
 	return ..()
 
 /datum/status_effect/salve_regen/tick()
-	new /obj/effect/temp_visual/healing(get_turf(owner))
-	var/heal_amount = round(owner.maxHealth * 0.01)
-	owner.adjustFireLoss(-heal_amount - owner.getBruteLoss())
-	owner.adjustBruteLoss(-heal_amount, TRUE)
-	owner.adjust_sunder(-1)
+	new /obj/effect/temp_visual/healing(get_turf(buff_owner))
+	var/heal_amount = buff_owner.maxHealth * 0.01
+	var/heal_remainder = max(0, heal_amount - buff_owner.getBruteLoss())
+	buff_owner.adjustBruteLoss(-heal_amount, signal = FALSE)
+	buff_owner.adjustFireLoss(-heal_remainder, signal = FALSE)
+	buff_owner.adjust_sunder(-1)
 	return ..()
 
 // ***************************************
