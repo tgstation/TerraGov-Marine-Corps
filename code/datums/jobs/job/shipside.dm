@@ -357,7 +357,7 @@ Though you are a warrant officer, your authority is limited to the dropship and 
 /datum/job/terragov/command/mech_pilot
 	title = MECH_PILOT
 	req_admin_notify = TRUE
-	paygrade = "E8E"
+	paygrade = "E3"
 	comm_title = "MCH"
 	total_positions = 1
 	skills_type = /datum/skills/mech_pilot
@@ -384,10 +384,8 @@ Though you are a warrant officer, your authority is limited to the dropship and 
 
 /datum/job/terragov/command/mech_pilot/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"You are charged with overseeing the operation on the ground, and are the highest-ranked deployed marine.
-Your duties are to ensure marines hold when ordered, and push when they are cowering behind barricades.
-Do not ask your men to do anything you would not do side by side with them.
-Make the TGMC proud!"})
+	to_chat(M, {"\nYou are the operator of a very expensive and valuable Mech, and are trained and expected to use it in the field of combat.
+You can serve your Division in a variety of roles, so choose carefully."})
 
 /datum/job/terragov/command/mech_pilot/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -399,12 +397,11 @@ Make the TGMC proud!"})
 		return
 	switch(playtime_mins)
 		if(0 to 1500) //starting
-			new_human.wear_id.paygrade = "E8E"
+			new_human.wear_id.paygrade = "E3"
 		if(1500 to 7500) // 25 hrs
-			new_human.wear_id.paygrade = "E9"
+			new_human.wear_id.paygrade = "E4"
 		if(7501 to INFINITY) // 125 hrs
-			new_human.wear_id.paygrade = "E9E"
-
+			new_human.wear_id.paygrade = "E5"
 
 /datum/outfit/job/command/mech_pilot
 	name = MECH_PILOT
@@ -544,6 +541,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 		<b>Gamemode Availability</b>: Distress<br /><br /><br />
 		<b>Duty</b>: Maintain the ship, be in charge of the engines. Be the secondary engineer to a forward operating base, prepare the shipside defenses if needed. Help the Pilot Officer in preparing the dropship.
 	"}
+	minimap_icon = "st"
 
 /datum/job/terragov/engineering/tech/rebel
 	title = REBEL_SHIP_TECH
@@ -729,6 +727,7 @@ A happy ship is a well-functioning ship."})
 		<b>Gamemode Availability</b>: Crash, Distress<br /><br /><br />
 		<b>Duty</b>: Communicate and lead your fellow medical staff (if available), supervise the medical department. Coordinate and teach fellow medical staff and corpsmen what they’re doing for treating an injury. Be the sole doctor in the Canterbury.
 	"}
+	minimap_icon = "chief_medical"
 
 /datum/job/terragov/medical/professor/rebel
 	title = REBEL_CHIEF_MEDICAL_OFFICER
@@ -815,6 +814,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 		<b>Gamemode Availability</b>: Distress<br /><br /><br />
 		<b>Duty</b>: Tend severely wounded patients to your aid in the form of surgery, repair broken bones and damaged organs, fix internal bleeding and prevent the birth of a xenomorph larva. Develop superior healing medicines.
 	"}
+	minimap_icon = "medical"
 
 /datum/job/terragov/medical/medicalofficer/rebel
 	title = REBEL_MEDICAL_DOCTOR
@@ -991,6 +991,7 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 		<b>Gamemode Availability</b>: Distress<br /><br /><br />
 		<b>Duty</b>: Manage relations between Nanotrasen and TerraGov Marine Corps. Report your findings via faxes. Reply if you’re called.
 	"}
+	minimap_icon = "cl"
 
 /datum/job/terragov/civilian/liaison/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()

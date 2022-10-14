@@ -2216,6 +2216,11 @@
 	dir = 4
 	},
 /area/gelida/indoors/a_block/dorm_north)
+"btf" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/mainship/black/full,
+/area/gelida/indoors/c_block/mining)
 "btm" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -3738,6 +3743,10 @@
 	dir = 1
 	},
 /area/gelida/indoors/a_block/admin)
+"cug" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/prison,
+/area/gelida/indoors/a_block/admin)
 "cun" = (
 /obj/structure/platform/gelida{
 	dir = 1
@@ -3885,10 +3894,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/indoors/a_block/medical)
-"cyV" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic,
-/turf/open/floor/mainship/stripesquare,
-/area/gelida/indoors/a_block/bridges/op_centre)
 "czh" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
@@ -6147,8 +6152,7 @@
 "dOS" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
-	name = "\improper Westlock";
-	welded = null
+	name = "\improper Westlock"
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/dorms)
@@ -6194,8 +6198,7 @@
 /area/gelida/caves/west_caves)
 "dQX" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	name = "\improper Eastlock";
-	welded = null
+	name = "\improper Eastlock"
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/hallway)
@@ -6574,21 +6577,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorm_north)
-"eaD" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	locked = 1;
-	name = "\improper Corporation Dome"
-	},
-/turf/open/floor/mainship/stripesquare,
-/area/gelida/indoors/a_block/corpo)
-"ebe" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	locked = 1;
-	welded = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/mainship/stripesquare,
-/area/gelida/indoors/a_block/dorms)
 "ebg" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison/plate,
@@ -8369,8 +8357,7 @@
 /obj/structure/platform_decoration,
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
-	name = "\improper Westlock";
-	welded = 1
+	name = "\improper Westlock"
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/dorms)
@@ -9405,8 +9392,7 @@
 "fVE" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
-	name = "\improper Eastlock";
-	welded = null
+	name = "\improper Eastlock"
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/hallway)
@@ -9801,7 +9787,6 @@
 /area/gelida/indoors/a_block/bridges/corpo)
 "ghM" = (
 /obj/machinery/door/airlock/mainship/security/glass{
-	locked = 1;
 	name = "\improper Marshall Office Armory";
 	req_access = null
 	},
@@ -10343,6 +10328,12 @@
 	icon_state = "65"
 	},
 /area/gelida/landing_zone_forecon/UD6_Typhoon)
+"gyH" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/prison/whitepurple/full{
+	dir = 4
+	},
+/area/gelida/indoors/a_block/dorm_north)
 "gyJ" = (
 /obj/structure/bed/stool,
 /obj/item/clothing/mask/facehugger/dead{
@@ -13935,8 +13926,7 @@
 /area/gelida/indoors/a_block/admin)
 "iKo" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	name = "\improper Northlock";
-	welded = null
+	name = "\improper Northlock"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/mainship/stripesquare,
@@ -17228,15 +17218,13 @@
 /area/gelida/indoors/a_block/dorms)
 "kWP" = (
 /obj/machinery/door/airlock/mainship/generic{
-	dir = 2;
-	locked = 1
+	dir = 2
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/hallway)
 "kXf" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 8;
-	locked = 1;
 	name = "\improper Wildcatters Office"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -17434,10 +17422,6 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/ice,
 /area/gelida/caves/east_caves)
-"ldW" = (
-/obj/structure/largecrate/supply/supplies/metal,
-/turf/open/floor/plating,
-/area/gelida/landing_zone_2)
 "ldZ" = (
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/powercell,
@@ -17866,8 +17850,7 @@
 /area/gelida/outdoors/rock)
 "lsj" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 1;
-	locked = 1
+	dir = 1
 	},
 /turf/open/floor/mainship/black/full,
 /area/gelida/indoors/a_block/kitchen)
@@ -18017,7 +18000,6 @@
 /obj/effect/spawner/gibspawner/xeno,
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 8;
-	locked = 1;
 	name = "\improper Wildcatters Office"
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -19357,6 +19339,11 @@
 	},
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/colony_streets/central_streets)
+"mmL" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/wood,
+/area/gelida/indoors/a_block/fitness)
 "mmP" = (
 /obj/structure/filingcabinet{
 	pixel_x = -8;
@@ -19803,14 +19790,6 @@
 /obj/effect/spawner/random/tool,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/garage)
-"mCa" = (
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 2;
-	welded = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/mainship/stripesquare,
-/area/gelida/indoors/a_block/dorms)
 "mCj" = (
 /obj/structure/platform_decoration{
 	dir = 1
@@ -20615,7 +20594,6 @@
 /area/gelida/outdoors/colony_streets/north_east_street)
 "nfT" = (
 /obj/machinery/door/airlock/mainship/security/glass{
-	locked = 1;
 	name = "\improper Marshal Office Holding Cell";
 	req_access = null
 	},
@@ -20733,9 +20711,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/central_streets)
 "niE" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	welded = 1
-	},
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/bridges/op_centre)
 "niX" = (
@@ -21708,7 +21684,6 @@
 /area/gelida/outdoors/colony_streets/east_central_street)
 "nOF" = (
 /obj/machinery/door/airlock/mainship/generic{
-	locked = 1;
 	name = "\improper Corporate Liason"
 	},
 /obj/structure/cable,
@@ -23987,8 +23962,7 @@
 /area/gelida/outdoors/colony_streets/south_west_street)
 "pli" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 1;
-	welded = 1
+	dir = 1
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/c_block/casino)
@@ -24666,7 +24640,6 @@
 "pIB" = (
 /obj/machinery/door/airlock/mainship/medical{
 	dir = 2;
-	locked = 1;
 	name = "Medical Airlock"
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -26790,9 +26763,7 @@
 	},
 /area/gelida/indoors/a_block/dorms)
 "qWs" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	welded = 1
-	},
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/b_block/hydro)
 "qWM" = (
@@ -27604,6 +27575,13 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/dorms)
+"ruV" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/gelida/indoors/a_block/security)
 "rvq" = (
 /obj/effect/landmark/excavation_site_spawner,
 /obj/effect/landmark/weed_node,
@@ -28405,9 +28383,7 @@
 /turf/open/floor/grass,
 /area/gelida/indoors/a_block/garden)
 "rYJ" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	locked = 1
-	},
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/c_block/casino)
 "rYO" = (
@@ -29948,9 +29924,7 @@
 	},
 /area/gelida/outdoors/colony_streets/north_west_street)
 "sTK" = (
-/obj/machinery/door/airlock/mainship/generic{
-	welded = 1
-	},
+/obj/machinery/door/airlock/mainship/generic,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -30537,8 +30511,7 @@
 "tmm" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
-	name = "\improper Canteen";
-	welded = 1
+	name = "\improper Canteen"
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/kitchen)
@@ -31340,9 +31313,7 @@
 /turf/closed/ice_rock/singleEnd,
 /area/gelida/outdoors/rock)
 "tQi" = (
-/obj/machinery/door/airlock/mainship/generic{
-	welded = 1
-	},
+/obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/c_block/cargo)
 "tQv" = (
@@ -32416,7 +32387,6 @@
 "uDB" = (
 /obj/machinery/door/airlock/mainship/medical{
 	dir = 2;
-	locked = 1;
 	name = "Medical Airlock"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -32447,9 +32417,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/garage)
 "uEs" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	welded = 1
-	},
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
 /obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/c_block/casino)
@@ -37721,7 +37689,6 @@
 "xZp" = (
 /obj/machinery/door/airlock/mainship/security/glass{
 	dir = 8;
-	locked = 1;
 	name = "\improper Marshall Head Office";
 	req_access = null
 	},
@@ -46828,7 +46795,7 @@ dZI
 hix
 hix
 cLI
-mCa
+riu
 tfL
 bYk
 jRa
@@ -48826,7 +48793,7 @@ pej
 fqe
 sJb
 tms
-ebe
+ruK
 vqV
 qzk
 ogT
@@ -52115,7 +52082,7 @@ ngb
 jwQ
 rsY
 kVR
-kVR
+mmL
 kVR
 ych
 baD
@@ -58105,7 +58072,7 @@ bBz
 eZJ
 ujh
 oUq
-eaD
+jzP
 cuz
 wJx
 jvj
@@ -58361,7 +58328,7 @@ haP
 haP
 haP
 jmQ
-kEQ
+ruV
 qWU
 adN
 haP
@@ -61801,7 +61768,7 @@ fKv
 xJv
 fKH
 kxK
-kxK
+btf
 kxK
 fKH
 qmp
@@ -65018,7 +64985,7 @@ juQ
 hWs
 tZb
 eas
-cyV
+niE
 kxB
 koL
 hUv
@@ -65038,7 +65005,7 @@ kxB
 hUv
 kxB
 nja
-cyV
+niE
 dKU
 loO
 tzW
@@ -66993,7 +66960,7 @@ vNb
 fDv
 uJV
 ihl
-oZU
+gyH
 bzM
 xUH
 ihl
@@ -70131,7 +70098,7 @@ poj
 hsf
 uch
 qLo
-mVh
+cug
 kFl
 kFl
 fGk
@@ -70434,7 +70401,7 @@ rOn
 arf
 eae
 eae
-ldW
+cAu
 kqs
 kqs
 tiD

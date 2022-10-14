@@ -70,6 +70,15 @@
 	max_rounds = 500
 	w_class = WEIGHT_CLASS_NORMAL
 
+/obj/item/ammo_magazine/packet/scout_rifle
+	name = "Box of A19 high velocity bullets"
+	desc = "A box containing 150 rounds of A19 overpressuered high velocity."
+	icon_state = "box_tx8"
+	default_ammo = /datum/ammo/bullet/rifle/tx8
+	caliber = CALIBER_10X28_CASELESS
+	current_rounds = 150
+	max_rounds = 150
+
 // pistol packets
 
 /obj/item/ammo_magazine/packet/p9mm
@@ -107,6 +116,16 @@
 	caliber = CALIBER_45ACP
 	current_rounds = 50
 	max_rounds = 50
+
+/obj/item/ammo_magazine/packet/p9mmap
+	name = "packet of 9mm AP"
+	desc = "A packet containing 70 rounds of 9mm armor-piercing."
+	icon_state = "box_9mmap"
+	default_ammo = /datum/ammo/bullet/pistol/ap
+	w_class = WEIGHT_CLASS_SMALL
+	caliber = CALIBER_9X19
+	current_rounds = 70
+	max_rounds = 70
 
 /obj/item/ammo_magazine/packet/p10x26mm
 	name = "packet of 10x26mm"

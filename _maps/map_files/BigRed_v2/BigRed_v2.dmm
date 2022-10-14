@@ -862,7 +862,6 @@
 /area/bigredv2/outside/marshal_office)
 "aji" = (
 /obj/structure/table,
-/obj/item/explosive/grenade/flashbang,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "ajj" = (
@@ -2594,6 +2593,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
+/obj/effect/landmark/sensor_tower_patrol,
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
@@ -7894,6 +7894,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/bigredv2/outside/e)
+"bXr" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/wood,
+/area/bigredv2/outside/bar)
 "bZo" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -11885,6 +11889,10 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/freezer,
 /area/bigredv2/outside/virology)
+"nCV" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor,
+/area/bigredv2/outside/engineering)
 "nDf" = (
 /obj/effect/decal/cleanable/vomit,
 /turf/open/floor/tile/purple/whitepurplefull,
@@ -12365,6 +12373,10 @@
 	dir = 8
 	},
 /area/bigredv2/outside/w)
+"paY" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor,
+/area/bigredv2/outside/marshal_office)
 "pbI" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
@@ -13182,6 +13194,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "rHJ" = (
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/sensor_tower_patrol,
 /turf/open/floor/tile/dark/blue2{
 	dir = 10
 	},
@@ -31318,7 +31331,7 @@ oxP
 aIm
 lLi
 blJ
-hwc
+nCV
 uNS
 pqs
 bnX
@@ -36012,7 +36025,7 @@ adT
 adT
 aer
 aiM
-lGe
+paY
 ajL
 akp
 acp
@@ -41259,7 +41272,7 @@ pfx
 aKw
 iSp
 xye
-aEO
+bXr
 aEO
 aLr
 naP

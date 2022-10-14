@@ -133,7 +133,7 @@
 	SIGNAL_HANDLER
 	if(!lunge_target.Adjacent(source))
 		return
-	lunge_grab(source, lunge_target)
+	INVOKE_ASYNC(src, .proc/lunge_grab, source, lunge_target)
 
 ///Do a last check to see if we can grab the target, and then clean up after the throw. Handles an in-place lunge.
 /datum/action/xeno_action/activable/lunge/proc/finish_lunge(datum/source)
@@ -462,6 +462,16 @@
 	X.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
 	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
 	attack_alien(X, damage * 4, BRUTE, "", FALSE) //Deals 4 times regular damage to structures
+	X.visible_message(span_xenodanger("\The [X] smashes [src] with a devastating punch!"), \
+		span_xenodanger("We smash [src] with a devastating punch!"), visible_message_flags = COMBAT_MESSAGE)
+	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)
+	Shake(4, 4, 2 SECONDS)
+	return TRUE
+
+/obj/vehicle/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone)
+	X.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
+	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
+	attack_generic(X, damage * 4, BRUTE, "", FALSE) //Deals 4 times regular damage to vehicles
 	X.visible_message(span_xenodanger("\The [X] smashes [src] with a devastating punch!"), \
 		span_xenodanger("We smash [src] with a devastating punch!"), visible_message_flags = COMBAT_MESSAGE)
 	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)

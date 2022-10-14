@@ -55,6 +55,8 @@
 	var/list/modifiers = params2list(params)
 	if(!modifiers["ctrl"] || modifiers["right"] || get_turf(user) == location || !(user.Adjacent(object)) || !location)
 		return
+	if(ISDIAGONALDIR(get_dir(user,location)))
+		return
 	INVOKE_ASYNC(src, .proc/finish_deploy, item_in_active_hand, user, location)
 	return COMSIG_KB_ACTIVATED
 
@@ -68,7 +70,7 @@
 		if(!ishuman(user) || CHECK_BITFIELD(item_to_deploy.flags_item, NODROP))
 			return
 
-		if(item_to_deploy.check_blocked_turf(location))
+		if(LinkBlocked(get_turf(user), location))
 			location.balloon_alert(user, "No room to deploy")
 			return
 		if(user.do_actions)
@@ -79,7 +81,7 @@
 		var/newdir = user.dir //Save direction before the doafter for ease of deploy
 		if(!do_after(user, deploy_time, TRUE, item_to_deploy, BUSY_ICON_BUILD))
 			return
-		if(item_to_deploy.check_blocked_turf(location))
+		if(LinkBlocked(get_turf(user), location))
 			location.balloon_alert(user, "No room to deploy")
 			return
 		user.temporarilyRemoveItemFromInventory(item_to_deploy)

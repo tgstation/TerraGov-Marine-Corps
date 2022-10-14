@@ -33,9 +33,12 @@
 		"Invalid credentials, upgrading permissions through TGMC military override- Permissions upgraded, nuke_fission_timing.exe available",
 		"Downloading nuke_fission_timing.exe to removable storage- nuke_fission_timing.exe downloaded to floppy disk, have a nice day"
 	)
+	///For designating minimap color icon
+	var/disk_color
 
 /obj/machinery/computer/nuke_disk_generator/Initialize()
 	. = ..()
+	update_minimap_icon()
 
 	if(!disk_type)
 		WARNING("disk_type is required to be set before init")
@@ -130,6 +133,7 @@
 			return
 
 		current_timer = addtimer(CALLBACK(src, .proc/complete_segment), generate_time, TIMER_STOPPABLE)
+		update_minimap_icon()
 
 	updateUsrDialog()
 
@@ -138,6 +142,7 @@
 	playsound(src, 'sound/machines/ping.ogg', 25, 1)
 	current_timer = null
 	completed_segments = min(completed_segments + 1, total_segments)
+	update_minimap_icon()
 
 	if(completed_segments == total_segments)
 		reprintable = TRUE
@@ -152,28 +157,24 @@
 	visible_message(span_notice("[src] beeps as it finishes printing the disc."))
 	reprintable = TRUE
 
+///Change minimap icon if its on or off
+/obj/machinery/computer/nuke_disk_generator/proc/update_minimap_icon()
+	SSminimaps.remove_marker(src)
+	SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "[disk_color]_disk[current_timer ? "_on" : "_off"]", 'icons/UI_icons/map_blips_large.dmi')
+
 /obj/machinery/computer/nuke_disk_generator/red
 	name = "red nuke disk generator"
 	disk_type = /obj/item/disk/nuclear/red
-
-/obj/machinery/computer/nuke_disk_generator/red/Initialize()
-	. = ..()
-	SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "red_disk", 'icons/UI_icons/map_blips_large.dmi')
+	disk_color = "red"
 
 /obj/machinery/computer/nuke_disk_generator/green
 	name = "green nuke disk generator"
 	icon_state = "nuke_green"
 	disk_type = /obj/item/disk/nuclear/green
-
-/obj/machinery/computer/nuke_disk_generator/green/Initialize()
-	. = ..()
-	SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "green_disk", 'icons/UI_icons/map_blips_large.dmi')
+	disk_color = "green"
 
 /obj/machinery/computer/nuke_disk_generator/blue
 	name = "blue nuke disk generator"
 	icon_state = "nuke_blue"
 	disk_type = /obj/item/disk/nuclear/blue
-
-/obj/machinery/computer/nuke_disk_generator/blue/Initialize()
-	. = ..()
-	SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "blue_disk", 'icons/UI_icons/map_blips_large.dmi')
+	disk_color = "blue"

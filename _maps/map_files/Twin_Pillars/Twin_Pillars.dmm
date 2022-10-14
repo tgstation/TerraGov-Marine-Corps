@@ -2736,11 +2736,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing)
 "cEA" = (
-/obj/machinery/camera/autoname/mainship/rebelship{
-	dir = 4
-	},
-/turf/closed/wall/mainship,
-/area/mainship/hull/lower_hull/rebel)
+/obj/structure/cable,
+/obj/machinery/camera/autoname/mainship/rebelship,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/lower_hull)
 "cFc" = (
 /obj/machinery/light,
 /turf/open/floor/plating/plating_catwalk,
@@ -13889,8 +13888,7 @@
 /obj/structure/table/woodentable,
 /obj/item/storage/bible,
 /obj/item/reagent_containers/food/drinks/flask/barflask,
-/obj/effect/spawner/random/plushie/nospawnninety{
-	},
+/obj/effect/spawner/random/plushie/nospawnninety,
 /turf/open/floor/carpet/side{
 	dir = 5
 	},
@@ -17925,11 +17923,10 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "pXR" = (
-/obj/machinery/camera/autoname/mainship/rebelship{
-	dir = 4
-	},
-/turf/closed/wall/mainship,
-/area/mainship/hull/lower_hull)
+/obj/structure/cable,
+/obj/machinery/camera/autoname/mainship/rebelship,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/lower_hull/rebel)
 "pXU" = (
 /obj/structure/flora/pottedplant/twentytwo,
 /turf/open/floor/mainship/mono,
@@ -27265,8 +27262,7 @@
 /obj/item/tool/hand_labeler,
 /obj/item/tool/stamp/denied,
 /obj/item/tool/stamp/qm,
-/obj/effect/spawner/random/plushie/nospawnninetynine{
-	},
+/obj/effect/spawner/random/plushie/nospawnninetynine,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req/rebel)
 "yaI" = (
@@ -30816,7 +30812,7 @@ juv
 juv
 juv
 juv
-lOJ
+dSv
 skA
 ivk
 rZe
@@ -31073,7 +31069,7 @@ juv
 juv
 juv
 juv
-lOJ
+dSv
 jwF
 oZm
 rfU
@@ -31330,7 +31326,7 @@ juv
 juv
 juv
 juv
-nif
+wgc
 iUd
 nif
 xif
@@ -31578,7 +31574,7 @@ xKy
 xKy
 xKy
 kkL
-nif
+wgc
 juv
 juv
 juv
@@ -31587,7 +31583,7 @@ juv
 juv
 juv
 juv
-nif
+wgc
 xzi
 nif
 xif
@@ -31835,7 +31831,7 @@ xKy
 xKy
 xKy
 kkL
-nif
+wgc
 juv
 juv
 juv
@@ -31844,7 +31840,7 @@ juv
 juv
 juv
 juv
-nif
+wgc
 xzi
 nif
 xif
@@ -32092,7 +32088,7 @@ xKy
 xKy
 xKy
 kkL
-nif
+wgc
 juv
 juv
 juv
@@ -32101,7 +32097,7 @@ juv
 juv
 juv
 juv
-nif
+wgc
 xzi
 nif
 xif
@@ -32349,7 +32345,7 @@ xKy
 xKy
 xKy
 kkL
-nif
+wgc
 juv
 juv
 juv
@@ -32358,7 +32354,7 @@ juv
 juv
 juv
 juv
-nif
+wgc
 xzi
 nif
 xif
@@ -32606,16 +32602,16 @@ xKy
 xKy
 xKy
 mWK
-nif
-nif
-nif
-nif
-nif
-nif
-nif
-nif
-nif
-nif
+wgc
+wgc
+wgc
+wgc
+wgc
+wgc
+wgc
+wgc
+wgc
+wgc
 xzi
 nif
 xif
@@ -35358,8 +35354,8 @@ tRq
 tRq
 juv
 juv
-nif
-nif
+wgc
+wgc
 wgc
 wgc
 wgc
@@ -35615,7 +35611,7 @@ tRq
 tRq
 juv
 juv
-nif
+wgc
 wnQ
 wnQ
 wnQ
@@ -35872,7 +35868,7 @@ tRq
 tRq
 juv
 juv
-nif
+wgc
 bgL
 nif
 nif
@@ -36129,7 +36125,7 @@ tRq
 tRq
 juv
 juv
-nif
+wgc
 wnQ
 nif
 vbM
@@ -36386,7 +36382,7 @@ tRq
 tRq
 juv
 juv
-nif
+wgc
 wnQ
 nif
 wVM
@@ -36643,7 +36639,7 @@ tRq
 tRq
 juv
 juv
-nif
+wgc
 wnQ
 nif
 xUO
@@ -36900,7 +36896,7 @@ tRq
 tRq
 juv
 juv
-nif
+wgc
 wnQ
 nif
 xUO
@@ -37157,7 +37153,7 @@ tRq
 tRq
 juv
 juv
-nif
+wgc
 wnQ
 nif
 xUO
@@ -37414,7 +37410,7 @@ tRq
 tRq
 juv
 juv
-nif
+wgc
 wnQ
 nif
 nPs
@@ -37671,7 +37667,7 @@ tRq
 tRq
 juv
 juv
-nif
+wgc
 wnQ
 nif
 saY
@@ -37928,7 +37924,7 @@ tRq
 tRq
 juv
 juv
-nif
+wgc
 wnQ
 nif
 saY
@@ -38185,7 +38181,7 @@ tRq
 tRq
 juv
 juv
-nif
+wgc
 thJ
 nif
 saY
@@ -38442,7 +38438,7 @@ tRq
 tRq
 juv
 juv
-nif
+wgc
 wnQ
 isA
 saY
@@ -38699,7 +38695,7 @@ tRq
 tRq
 juv
 juv
-nif
+wgc
 thJ
 nif
 iqs
@@ -38956,8 +38952,8 @@ tRq
 tRq
 juv
 juv
-cEA
-wnQ
+wgc
+pXR
 nif
 xUO
 jVD
@@ -39213,7 +39209,7 @@ tRq
 tRq
 juv
 juv
-nif
+wgc
 wnQ
 nif
 wVM
@@ -39470,7 +39466,7 @@ tRq
 tRq
 juv
 juv
-nif
+wgc
 wnQ
 nif
 xUO
@@ -39727,7 +39723,7 @@ tRq
 tRq
 juv
 juv
-nif
+wgc
 wnQ
 nif
 wVM
@@ -39984,7 +39980,7 @@ tRq
 tRq
 juv
 juv
-nif
+wgc
 wnQ
 nif
 wVM
@@ -40241,7 +40237,7 @@ tRq
 tRq
 juv
 juv
-nif
+wgc
 wnQ
 nif
 wVM
@@ -40498,7 +40494,7 @@ tRq
 tRq
 juv
 juv
-nif
+wgc
 red
 nif
 wVM
@@ -40755,8 +40751,8 @@ tRq
 tRq
 juv
 juv
-cEA
-wnQ
+wgc
+pXR
 nif
 wVM
 wVM
@@ -41012,7 +41008,7 @@ tRq
 tRq
 juv
 juv
-nif
+wgc
 wnQ
 nif
 tYj
@@ -41269,7 +41265,7 @@ tRq
 tRq
 juv
 juv
-nif
+wgc
 wnQ
 nif
 lBe
@@ -41526,7 +41522,7 @@ tRq
 tRq
 juv
 juv
-nif
+wgc
 wnQ
 nif
 lBe
@@ -41783,7 +41779,7 @@ tRq
 tRq
 juv
 juv
-nif
+wgc
 wnQ
 nif
 pqH
@@ -42040,8 +42036,8 @@ tRq
 tRq
 juv
 juv
-cEA
-wnQ
+wgc
+pXR
 nif
 lBe
 lBe
@@ -42297,7 +42293,7 @@ tRq
 tRq
 juv
 juv
-nif
+wgc
 wnQ
 nif
 lBe
@@ -42554,7 +42550,7 @@ tRq
 tRq
 juv
 juv
-nif
+wgc
 wnQ
 nif
 pqH
@@ -42811,7 +42807,7 @@ tRq
 tRq
 juv
 juv
-nif
+wgc
 wnQ
 nif
 lBe
@@ -43068,7 +43064,7 @@ tRq
 tRq
 juv
 juv
-nif
+wgc
 wnQ
 nif
 lBe
@@ -43325,7 +43321,7 @@ tRq
 tRq
 juv
 juv
-nif
+wgc
 wnQ
 nif
 nif
@@ -43582,7 +43578,7 @@ tRq
 tRq
 juv
 juv
-nif
+wgc
 red
 wnQ
 wnQ
@@ -43839,28 +43835,28 @@ tRq
 tRq
 juv
 juv
-nif
-nif
-nif
-nif
-nif
-nif
-nif
-nif
-nif
-nif
-nif
-nif
-nif
-nif
-nif
-nif
-nif
-nif
-nif
-nif
-nif
-nif
+wgc
+wgc
+wgc
+wgc
+wgc
+wgc
+wgc
+wgc
+wgc
+wgc
+wgc
+wgc
+wgc
+wgc
+wgc
+wgc
+wgc
+wgc
+wgc
+wgc
+wgc
+wgc
 thJ
 xQf
 aEf
@@ -44117,7 +44113,7 @@ juv
 juv
 juv
 juv
-nif
+wgc
 wnQ
 xQf
 xQf
@@ -44374,7 +44370,7 @@ juv
 juv
 juv
 juv
-nif
+wgc
 wnQ
 xQf
 nHx
@@ -44631,7 +44627,7 @@ tRq
 tRq
 juv
 juv
-nif
+wgc
 wnQ
 xQf
 bLM
@@ -44888,7 +44884,7 @@ tRq
 tRq
 juv
 juv
-nif
+wgc
 wnQ
 nif
 nif
@@ -45145,7 +45141,7 @@ tRq
 tRq
 juv
 juv
-nif
+wgc
 wnQ
 xMR
 xMR
@@ -45402,8 +45398,8 @@ tRq
 tRq
 juv
 juv
-nif
-nif
+wgc
+wgc
 wgc
 wgc
 wgc
@@ -71555,7 +71551,7 @@ juv
 juv
 juv
 juv
-ljt
+njI
 xbm
 vgQ
 pNl
@@ -71812,7 +71808,7 @@ juv
 juv
 juv
 juv
-ljt
+njI
 gXg
 tyf
 mJI
@@ -72069,7 +72065,7 @@ juv
 juv
 juv
 juv
-ucm
+iAA
 aAs
 ucm
 mtR
@@ -72317,7 +72313,7 @@ obT
 obT
 obT
 lDK
-ucm
+iAA
 juv
 juv
 juv
@@ -72326,7 +72322,7 @@ juv
 juv
 juv
 juv
-ucm
+iAA
 eyp
 ucm
 mtR
@@ -72574,7 +72570,7 @@ obT
 obT
 obT
 lDK
-ucm
+iAA
 juv
 juv
 juv
@@ -72583,7 +72579,7 @@ juv
 juv
 juv
 juv
-ucm
+iAA
 eyp
 ucm
 mtR
@@ -72831,7 +72827,7 @@ obT
 obT
 obT
 lDK
-ucm
+iAA
 juv
 juv
 juv
@@ -72840,7 +72836,7 @@ juv
 juv
 juv
 juv
-ucm
+iAA
 eyp
 ucm
 mtR
@@ -73088,7 +73084,7 @@ obT
 obT
 obT
 lDK
-ucm
+iAA
 juv
 juv
 juv
@@ -73097,7 +73093,7 @@ juv
 juv
 juv
 juv
-ucm
+iAA
 eyp
 ucm
 mtR
@@ -73345,16 +73341,16 @@ obT
 obT
 obT
 sVm
-ucm
-ucm
-ucm
-ucm
-ucm
-ucm
-ucm
-ucm
-ucm
-ucm
+iAA
+iAA
+iAA
+iAA
+iAA
+iAA
+iAA
+iAA
+iAA
+iAA
 eyp
 ucm
 mtR
@@ -76097,8 +76093,8 @@ tRq
 tRq
 juv
 juv
-ucm
-ucm
+iAA
+iAA
 iAA
 iAA
 iAA
@@ -76354,7 +76350,7 @@ tRq
 tRq
 juv
 juv
-ucm
+iAA
 aAA
 aAA
 aAA
@@ -76611,7 +76607,7 @@ tRq
 tRq
 juv
 juv
-ucm
+iAA
 rej
 ucm
 ucm
@@ -76868,7 +76864,7 @@ tRq
 tRq
 juv
 juv
-ucm
+iAA
 aAA
 ucm
 phb
@@ -77125,7 +77121,7 @@ tRq
 tRq
 juv
 juv
-ucm
+iAA
 aAA
 ucm
 gRM
@@ -77382,7 +77378,7 @@ tRq
 tRq
 juv
 juv
-ucm
+iAA
 aAA
 ucm
 dly
@@ -77639,7 +77635,7 @@ tRq
 tRq
 juv
 juv
-ucm
+iAA
 aAA
 ucm
 dly
@@ -77896,7 +77892,7 @@ tRq
 tRq
 juv
 juv
-ucm
+iAA
 aAA
 ucm
 dly
@@ -78153,7 +78149,7 @@ tRq
 tRq
 juv
 juv
-ucm
+iAA
 aAA
 ucm
 kQZ
@@ -78410,7 +78406,7 @@ tRq
 tRq
 juv
 juv
-ucm
+iAA
 aAA
 ucm
 nlG
@@ -78667,7 +78663,7 @@ tRq
 tRq
 juv
 juv
-ucm
+iAA
 aAA
 ucm
 nlG
@@ -78924,7 +78920,7 @@ tRq
 tRq
 juv
 juv
-ucm
+iAA
 nfa
 ucm
 nlG
@@ -79181,7 +79177,7 @@ tRq
 tRq
 juv
 juv
-ucm
+iAA
 aAA
 gTz
 nlG
@@ -79438,7 +79434,7 @@ tRq
 tRq
 juv
 juv
-ucm
+iAA
 nfa
 ucm
 gHr
@@ -79695,8 +79691,8 @@ tRq
 tRq
 juv
 juv
-pXR
-aAA
+iAA
+cEA
 ucm
 dly
 svx
@@ -79952,7 +79948,7 @@ tRq
 tRq
 juv
 juv
-ucm
+iAA
 aAA
 ucm
 gRM
@@ -80209,7 +80205,7 @@ tRq
 tRq
 juv
 juv
-ucm
+iAA
 aAA
 ucm
 dly
@@ -80466,7 +80462,7 @@ tRq
 tRq
 juv
 juv
-ucm
+iAA
 aAA
 ucm
 gRM
@@ -80723,7 +80719,7 @@ tRq
 tRq
 juv
 juv
-ucm
+iAA
 aAA
 ucm
 gRM
@@ -80980,7 +80976,7 @@ tRq
 tRq
 juv
 juv
-ucm
+iAA
 aAA
 ucm
 gRM
@@ -81237,7 +81233,7 @@ tRq
 tRq
 juv
 juv
-ucm
+iAA
 lHo
 ucm
 gRM
@@ -81494,8 +81490,8 @@ tRq
 tRq
 juv
 juv
-pXR
-aAA
+iAA
+cEA
 ucm
 gRM
 gRM
@@ -81751,7 +81747,7 @@ tRq
 tRq
 juv
 juv
-ucm
+iAA
 aAA
 ucm
 sRB
@@ -82008,7 +82004,7 @@ tRq
 tRq
 juv
 juv
-ucm
+iAA
 aAA
 ucm
 pxO
@@ -82265,7 +82261,7 @@ tRq
 tRq
 juv
 juv
-ucm
+iAA
 aAA
 ucm
 pxO
@@ -82522,7 +82518,7 @@ tRq
 tRq
 juv
 juv
-ucm
+iAA
 aAA
 ucm
 xPx
@@ -82779,8 +82775,8 @@ tRq
 tRq
 juv
 juv
-pXR
-aAA
+iAA
+cEA
 ucm
 pxO
 pxO
@@ -83036,7 +83032,7 @@ tRq
 tRq
 juv
 juv
-ucm
+iAA
 aAA
 ucm
 pxO
@@ -83293,7 +83289,7 @@ tRq
 tRq
 juv
 juv
-ucm
+iAA
 aAA
 ucm
 xPx
@@ -83550,7 +83546,7 @@ tRq
 tRq
 juv
 juv
-ucm
+iAA
 aAA
 ucm
 pxO
@@ -83807,7 +83803,7 @@ tRq
 tRq
 juv
 juv
-ucm
+iAA
 aAA
 ucm
 pxO
@@ -84064,7 +84060,7 @@ tRq
 tRq
 juv
 juv
-ucm
+iAA
 aAA
 ucm
 ucm
@@ -84321,7 +84317,7 @@ tRq
 tRq
 juv
 juv
-ucm
+iAA
 lHo
 aAA
 aAA
@@ -84578,28 +84574,28 @@ tRq
 tRq
 juv
 juv
-ucm
-ucm
-ucm
-ucm
-ucm
-ucm
-ucm
-ucm
-ucm
-ucm
-ucm
-ucm
-ucm
-ucm
-ucm
-ucm
-ucm
-ucm
-ucm
-ucm
-ucm
-ucm
+iAA
+iAA
+iAA
+iAA
+iAA
+iAA
+iAA
+iAA
+iAA
+iAA
+iAA
+iAA
+iAA
+iAA
+iAA
+iAA
+iAA
+iAA
+iAA
+iAA
+iAA
+iAA
 nfa
 hxi
 hry
@@ -84856,7 +84852,7 @@ juv
 juv
 juv
 juv
-ucm
+iAA
 aAA
 hxi
 hxi
@@ -85113,7 +85109,7 @@ juv
 juv
 juv
 juv
-ucm
+iAA
 aAA
 hxi
 sJm
@@ -85370,7 +85366,7 @@ tRq
 tRq
 juv
 juv
-ucm
+iAA
 aAA
 hxi
 iMS
@@ -85627,7 +85623,7 @@ tRq
 tRq
 juv
 juv
-ucm
+iAA
 aAA
 ucm
 ucm
@@ -85884,7 +85880,7 @@ tRq
 tRq
 juv
 juv
-ucm
+iAA
 aAA
 gCm
 gCm
@@ -86141,8 +86137,8 @@ tRq
 tRq
 juv
 juv
-ucm
-ucm
+iAA
+iAA
 iAA
 iAA
 iAA

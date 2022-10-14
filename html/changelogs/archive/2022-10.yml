@@ -1,0 +1,179 @@
+2022-10-01:
+  Lewdcifer:
+  - rscdel: Flashbangs no longer spawn naturally.
+  Lumipharon:
+  - bugfix: Flashbangs go bang regardless of  whether someone actually gets flashed
+  - balance: Groundside will no longer have shotgun slugs or scoped weapons as part
+      of random spawns
+  botPurple:
+  - imageadd: Changed snow_storm sprite
+  tyeagg:
+  - balance: slightly more space for tadpole
+2022-10-02:
+  Lumipharon:
+  - bugfix: fixed a bug that let you remove the ammo from hostile turrets
+2022-10-03:
+  Lumipharon:
+  - balance: Plasma cutters once again one hit resin walls
+  - code_imp: Added a check_path proc to see if a path between atoms is blocked
+  - qol: Deployable objects can be deployed on turfs with border objects such as barricades,
+      that aren't obstructing your access
+  RipGrayson:
+  - balance: Gelida now lacks a crate with 200 free metal.
+  - bugfix: You can no longer escape the Theseus and visit space.
+  - bugfix: You can no longer escape the confines of Prison and damage telecomms.
+  - bugfix: You can no longer escape the Pillar of Spring and make a pirate ship outside.
+  - bugfix: You can no longer escape the Twin Pillars to avoid fighting.
+  - bugfix: The combat patrol base no longer has invalid strings that could lead to
+      map checks failing.
+  TiviPlus:
+  - bugfix: Fixes being able to shoot while stunned/unconcious
+2022-10-04:
+  Lewdcifer:
+  - rscadd: Xenomorphs can now pull objects (again).
+  TiviPlus:
+  - qol: flamer fire now has little visual sparks
+  Zaro:
+  - rscadd: Added new xeno caste
+  - imageadd: added icons for said xeno caste and her spawn
+  - code_imp: added code necessary for caste
+2022-10-05:
+  novaepee:
+  - rscadd: MP room
+  - rscadd: 'bathrooms expansion: Change marine''s prep to FORCE THEM to live in bunk
+      beds. expansion: Dark room simulation! Practice how bright your lights are in
+      a dark environment, realistic to when you are dealing with xenomorphs. Go to
+      the PoS''s firing range and check it out!'
+  tyeagg:
+  - rscadd: mech prop to patrol base
+2022-10-06:
+  567Turtle:
+  - rscadd: Seasonal round tips
+  - rscadd: Isotonic pills
+  Aquilar:
+  - bugfix: adjusts the positioning of the attachments on the BR-64, AR-18 and PR-11
+  Lewdcifer:
+  - imageadd: Added particle visuals to Defiler's Reagent Slash and Emit Neurogas
+      abilities.
+  Lumipharon:
+  - qol: Shutters drop after 3 minutes in Combat Patrol instead of 5
+  - bugfix: Autoburst respects aim mode penalties
+2022-10-07:
+  Dikozda:
+  - bugfix: fixed synthesized instruments
+  Lumipharon:
+  - code_imp: cleaned up a bit of flashbang code
+  - rscadd: The SOM have begun domestic food production to replace imported UPP rations
+  hyper2snyper:
+  - bugfix: Fixes the right hand mob state for the AR-21 and SG-29
+  lbnesquik:
+  - rscadd: Expanded Prison West LZ2 by 1 tile west
+2022-10-08:
+  novaepee:
+  - bugfix: Make Egg action icon
+  - imageadd: Update Resin Jelly, Make Egg, and Queen Crush Action Icons
+2022-10-09:
+  Autisem:
+  - rscadd: 9mm AP ammo packets to refil mod 4 magazines
+  Lumipharon:
+  - imageadd: added a new lobby artwork
+  lbnesquik:
+  - bugfix: 'fixed a whole bunch of slight mapping issues on POS. Read PR #11145 for
+      more details.'
+2022-10-10:
+  Lumipharon:
+  - rscadd: Added the V-62 incinerator for the SOM
+  - rscadd: Added the V-71 RPG for the SOM
+  - rscadd: Added Radiation effects for use by the SOM. War crimes have never been
+      so easy!
+  - bugfix: Fixed a couple of minor gun ammo bugs
+  - balance: Very slightly increased burst extra delay on the AR-11
+  TiviPlus:
+  - bugfix: Ammo HUDs will now always blink when you are out of ammo instead of only
+      the bottommost one
+  - qol: stutter no longer removes a random consonant sometimes
+  - bugfix: wraith will now properly send mobs inside objects that are banished instead
+      of just dumping them out
+  - balance: All vehicles can now be crushered, punched by warrior, and hit by acid
+      smoke
+  - rscadd: runechat now works when you are inside something
+  - bugfix: AI will no longer attack inside of objects, instead it will aim for the
+      outermost container of it's target
+  ivanmixo:
+  - rscadd: Hivemind gets an alert when someone is near it's core
+  - bugfix: Fixes unmanned droids not deleting properly
+  novaepee:
+  - bugfix: MP computer in MP room in PoS
+  tyeagg:
+  - rscadd: sensor capture gamemode
+  - imageadd: sensor tower minimap blips
+2022-10-11:
+  Kuro020:
+  - balance: mech light cannon's main projectile and spread projectiles deal less
+      damage
+  - bugfix: fixed the mech lmg not dealing damage
+  TiviPlus:
+  - code_imp: Ravager will now ravage all items it can slash
+  ivanmixo:
+  - balance: Hivemind core is trackable by the xeno structure pinpointer
+2022-10-12:
+  Aquilar:
+  - balance: Teleporters moved to engineer gear vendor and no longer free. costing
+      25 points.
+  Jalopkomit18:
+  - balance: Nanite adjustment period halved to 75 ticks
+  Lumipharon:
+  - bugfix: The intel event will no longer trigger in Combat Patrol or Sensor capture
+  - balance: Cluster grenade bomblets do 20 damage instead of 30
+  Pariah919:
+  - balance: 12 Gauge Slugs (Both Incend/Normal) sunder halved to 7.5, flechette upped
+      to 17 max sunder on hit from 8.
+  QualityVan:
+  - bugfix: Emergency chem heals only scale on fleshy damage.
+  - bugfix: Transvit doesn't try to convert burn from robot limbs
+  RipGrayson:
+  - bugfix: The force event verb is now functional
+  - rscadd: Added a new event, ion storm
+  - rscadd: Added a new event, stock uptick
+  TiviPlus:
+  - bugfix: fixed shutters being bump-openable sometimes
+  Zar000:
+  - balance: nerfed standard and wide flamer nozzle
+  - code_imp: Made it possible to set flamer penetration on resin walls
+  hyper2snyper:
+  - bugfix: Caches hyperscaled attachments.
+  - bugfix: Allows loadout icons to be displayed correctly in case of greyscale_colors
+      being set and not greyscale_config.
+  jlsnow301:
+  - bugfix: Fixes a bluescreen at the gear customization screen for combat robos.
+  tyeagg:
+  - balance: tgmc can now only activate 1 sensor tower and cannot activate another
+      until that sensor tower is activated or stopped
+  - balance: adjusted extra time when sensor tower is activated to +7 minutes from
+      10 minutes
+  - balance: time to activate sensor tower is now 250 seconds
+2022-10-13:
+  Kuro020:
+  - bugfix: Mechs are no longer immortal
+  - balance: Some mech guns nerfed
+  Losenis:
+  - balance: SR-127 can now fit barrel charger
+  tyeagg:
+  - imageadd: minimap icons for st, cl ,mo ,cmo, uavs, supply beacons, asrs pads,
+      teleporter pads, sentries, spawners, phero tower and xeno turrets
+2022-10-14:
+  Aquilar:
+  - rscadd: New BR8 ammo box
+  - balance: Lowers the price of teh BR8 and magazines slightly
+  Lewdcifer:
+  - bugfix: Xeno HUD upgrade chevrons and leader star now match each other in positioning.
+  Lumipharon:
+  - refactor: Refactor vote code to be less spaghetti
+  - imageadd: Made the lobby screens compatible with widescreen
+  - imageadd: adds and removed some lobby screens
+  - imageadd: added some new AI core sprites, and updated some old ones
+  TiviPlus:
+  - bugfix: AI can no longer touch the mech console
+  tyeagg:
+  - qol: can no longer be moved while manning mounted gun
+  - bugfix: can no longer deploy mounted gun diagonally since it breaks stuff

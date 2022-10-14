@@ -30,12 +30,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	///Determines the amount of pixels to move the icon state for the overlay. in the y direction
 	var/pixel_shift_y = 16
 
-
-	greyscale_config = null
-	greyscale_colors = GUN_PALETTE_TAN
-	///List of palettes a greyscaled attachment is allowed to use for its furniture
-	var/list/colorable_colors = GUN_PALETTE_LIST
-
 	flags_atom = CONDUCT
 	materials = list(/datum/material/metal = 100)
 	w_class = WEIGHT_CLASS_SMALL
@@ -145,28 +139,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/Initialize()
 	. = ..()
 	AddElement(/datum/element/attachment, slot, icon, .proc/on_attach, .proc/on_detach, .proc/activate, .proc/can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, attach_skill, attach_skill_upper_threshold, attach_sound)
-
-/obj/item/attachable/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(!istype(I, /obj/item/facepaint))
-		return
-	if(isnull(greyscale_config))
-		to_chat(user, span_warning("[src] cannot be colored."))
-		return
-	var/obj/item/facepaint/paint = I
-	if(paint.uses < 1)
-		balloon_alert(user, "\the [paint] is out of color!")
-		return
-
-	var/new_color = tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)
-	new_color = colorable_colors[new_color]
-
-	if(!new_color || !do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
-		return
-
-	set_greyscale_colors(new_color)
-	paint.uses--
-	update_icon()
 
 ///Called when the attachment is attached to something. If it is a gun it will update the guns stats.
 /obj/item/attachable/proc/on_attach(attaching_item, mob/user)
@@ -519,6 +491,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_y = 15
 	damage_mod = -0.15
 	gun_firemode_list_mod = list(GUN_FIREMODE_AUTOMATIC)
+
+/obj/item/attachable/sgbarrel
+	name = "SG-29 barrel"
+	icon_state = "sg29barrel"
+	desc = "A heavy barrel. CANNOT BE REMOVED."
+	slot = ATTACHMENT_SLOT_MUZZLE
+	flags_attach_features = NONE
 
 ///////////// Rail attachments ////////////////////////
 
@@ -934,6 +913,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 
+/obj/item/attachable/stock/sgstock
+	name = "SG-29 stock"
+	desc = "A standard machinegun stock."
+	icon_state = "sg29stock"
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+
 /obj/item/attachable/stock/revolver
 	name = "\improper M44 magnum sharpshooter stock"
 	desc = "A wooden stock modified for use on a 44-magnum. Increases accuracy and reduces recoil at the expense of handling and agility."
@@ -992,13 +978,12 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/stock/t35stock
 	name = "\improper SH-35 stock"
 	desc = "A non-standard heavy stock for the SH-35 shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too."
-	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON
+	flags_attach_features = ATTACH_REMOVABLE
 	wield_delay_mod = 0.2 SECONDS
 	icon_state = "t35stock"
 	accuracy_mod = 0.15
 	recoil_mod = -3
 	scatter_mod = -2
-	greyscale_config = /datum/greyscale_config/gun_attachment
 
 /obj/item/attachable/stock/t39stock
 	name = "\improper SH-39 stock"
@@ -1054,7 +1039,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	scatter_unwielded_mod = 3
 	aim_speed_mod	= -0.1
 	aim_mode_movement_mult = -0.2
-	greyscale_config = /datum/greyscale_config/gun_attachment/verticalgrip
 
 
 /obj/item/attachable/angledgrip
@@ -1069,7 +1053,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	scatter_mod = 2
 	accuracy_unwielded_mod = -0.1
 	scatter_unwielded_mod = 1
-	greyscale_config = /datum/greyscale_config/gun_attachment/angledgrip
 
 
 
@@ -1451,7 +1434,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	if(source.Adjacent(object))
 		return
 	var/mob/living/user = master_gun.gun_user
-	if(user.stat != CONSCIOUS || user.lying_angle || LAZYACCESS(user.do_actions, src) || !user.dextrous || (!CHECK_BITFIELD(master_gun.flags_gun_features, GUN_ALLOW_SYNTHETIC) && !CONFIG_GET(flag/allow_synthetic_gun_use) && issynth(user)))
+	if(user.incapacitated()  || user.lying_angle || LAZYACCESS(user.do_actions, src) || !user.dextrous || (!CHECK_BITFIELD(master_gun.flags_gun_features, GUN_ALLOW_SYNTHETIC) && !CONFIG_GET(flag/allow_synthetic_gun_use) && issynth(user)))
 		return
 	var/active_hand = user.get_active_held_item()
 	var/inactive_hand = user.get_inactive_held_item()
@@ -1495,7 +1478,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		to_chat(user, span_warning("[src] beeps. Guns or shields in your hands are interfering with its targetting. Stopping fire."))
 		master_gun.stop_fire()
 		return
-	if(user.stat == CONSCIOUS && !user.lying_angle && !LAZYACCESS(user.do_actions, src) && user.dextrous && (CHECK_BITFIELD(master_gun.flags_gun_features, GUN_ALLOW_SYNTHETIC) || CONFIG_GET(flag/allow_synthetic_gun_use) || !issynth(user)))
+	if(!user.incapacitated() && !user.lying_angle && !LAZYACCESS(user.do_actions, src) && user.dextrous && (CHECK_BITFIELD(master_gun.flags_gun_features, GUN_ALLOW_SYNTHETIC) || CONFIG_GET(flag/allow_synthetic_gun_use) || !issynth(user)))
 		return
 	master_gun.stop_fire()
 
