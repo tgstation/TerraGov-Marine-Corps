@@ -260,7 +260,7 @@
 /mob/living/carbon/xenomorph/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
 	return FALSE
 
-/mob/living/carbon/xenomorph/start_pulling(atom/movable/AM, suppress_message = TRUE, bypass_crit_delay = FALSE)
+/mob/living/carbon/xenomorph/start_pulling(atom/movable/AM, force = move_force, suppress_message = TRUE, bypass_crit_delay = FALSE)
 	if(do_actions)
 		return FALSE //We are already occupied with something.
 	if(!Adjacent(AM))
