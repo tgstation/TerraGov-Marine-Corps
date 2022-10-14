@@ -38,8 +38,8 @@
 	if(!existing_link && HAS_TRAIT(target, TRAIT_ESSENCE_LINKED))
 		target.balloon_alert(X, "She is already linked")
 		return FALSE
-	if(existing_link && target != linked_target)
-		target.balloon_alert(X, "Not our linked sister")
+	if(existing_link)
+		target.balloon_alert(X, "We are already linked")
 		return FALSE
 	return ..()
 
