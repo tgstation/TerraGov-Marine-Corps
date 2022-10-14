@@ -37,7 +37,7 @@
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_LEADER|CASTE_CAN_BECOME_KING
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 10, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
+	soft_armor = list(MELEE = 5, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 10, BIO = 5, "rad" = 5, FIRE = 5, ACID = 5)
 
 	// *** Minimap Icon *** //
 	minimap_icon = "gorger"
@@ -83,7 +83,7 @@
 	upgrade_threshold = TIER_THREE_MATURE_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 10, "rad" = 10, FIRE = 10, ACID = 10)
 
 	// *** Gorger Abilities *** //
 	overheal_max = 225
@@ -109,7 +109,7 @@
 	upgrade_threshold = TIER_THREE_ELDER_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 10, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
+	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 15, "rad" = 15, FIRE = 15, ACID = 15)
 
 	// *** Gorger Abilities *** //
 	overheal_max = 250
@@ -134,7 +134,7 @@
 	upgrade_threshold = TIER_THREE_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 20)
+	soft_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 10, BIO = 20, "rad" = 20, FIRE = 20, ACID = 20)
 
 	// *** Gorger Abilities *** //
 	overheal_max = 275
@@ -156,7 +156,7 @@
 	max_health = 600
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 20)
+	soft_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 10, BIO = 20, "rad" = 20, FIRE = 20, ACID = 20)
 
 	// *** Gorger Abilities *** //
 	overheal_max = 275

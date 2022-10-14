@@ -4172,6 +4172,7 @@
 	},
 /area/ice_colony/surface/hydroponics/lobby)
 "avc" = (
+/obj/effect/landmark/sensor_tower_patrol,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 10
 	},
@@ -6619,7 +6620,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hydroponics/south)
 "aFm" = (
-/obj/item/ammo_magazine/shotgun{
+/obj/item/ammo_magazine/shotgun/buckshot{
 	pixel_x = 6;
 	pixel_y = -4
 	},
@@ -7333,7 +7334,7 @@
 "aIs" = (
 /obj/structure/closet/crate,
 /obj/item/ammo_magazine/shotgun/incendiary,
-/obj/item/ammo_magazine/shotgun,
+/obj/item/ammo_magazine/shotgun/buckshot,
 /turf/open/floor/tile/dark/blue2{
 	dir = 6
 	},
@@ -8799,7 +8800,7 @@
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aPz" = (
-/obj/item/ammo_magazine/shotgun,
+/obj/item/ammo_magazine/shotgun/buckshot,
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
@@ -17064,6 +17065,7 @@
 	pixel_y = -1
 	},
 /obj/item/tool/pen/blue,
+/obj/effect/spawner/random/plushie,
 /turf/open/floor/wood,
 /area/ice_colony/underground/security/detective)
 "bzr" = (
@@ -21512,8 +21514,8 @@
 /area/ice_colony/underground/reception)
 "bOz" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/shotgun,
-/obj/item/ammo_magazine/shotgun{
+/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/item/ammo_magazine/shotgun/buckshot{
 	pixel_x = 6;
 	pixel_y = -4
 	},
@@ -25985,7 +25987,7 @@
 "fnQ" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/shotgun/pump/cmb,
-/obj/item/ammo_magazine/shotgun,
+/obj/item/ammo_magazine/shotgun/buckshot,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
 /area/ice_colony/surface/hangar/checkpoint)
@@ -27164,6 +27166,10 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hangar/checkpoint)
+"iax" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/tile/white,
+/area/ice_colony/surface/clinic/treatment)
 "iaC" = (
 /turf/closed/ice_rock/corners{
 	dir = 6
@@ -29283,6 +29289,11 @@
 	dir = 4
 	},
 /area/ice_colony/surface/engineering)
+"mhA" = (
+/obj/structure/bed,
+/obj/effect/spawner/random/plushie,
+/turf/open/floor/wood,
+/area/ice_colony/surface/dorms)
 "mhW" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/shotgun/pump/cmb,
@@ -30120,6 +30131,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/north_west)
+"nUM" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/research)
 "nVG" = (
 /obj/machinery/landinglight/ds2/delaytwo{
 	dir = 8
@@ -32896,6 +32911,10 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice,
 /area/ice_colony/exterior/underground/caves/open)
+"tcW" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/underground/maintenance/central)
 "tde" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -33627,6 +33646,7 @@
 /area/ice_colony/exterior/underground/caves)
 "uJd" = (
 /obj/effect/decal/cleanable/blood/drip,
+/obj/effect/landmark/sensor_tower_patrol,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/engineering)
 "uJs" = (
@@ -34007,6 +34027,14 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/ice_nw)
+"vru" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1;
+	name = "\improper Colony Dormitory Unit"
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/wood,
+/area/ice_colony/surface/dorms)
 "vry" = (
 /obj/effect/turf_underlay/icefloor,
 /turf/closed/ice/thin/corner{
@@ -46142,7 +46170,7 @@ gHr
 qud
 khr
 aTl
-cQF
+nUM
 cQF
 uFO
 aUW
@@ -50240,7 +50268,7 @@ nqu
 qGt
 qGt
 qGt
-qGt
+tcW
 qGt
 qGt
 qGt
@@ -54590,7 +54618,7 @@ aDS
 aEs
 aqe
 aoz
-gvW
+iax
 aGI
 oxh
 aNI
@@ -56892,7 +56920,7 @@ aqq
 aqP
 aqZ
 vDc
-arF
+vru
 arQ
 mpz
 asu
@@ -57107,7 +57135,7 @@ arw
 arE
 aAI
 mds
-ast
+mhA
 arE
 ast
 arQ

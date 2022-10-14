@@ -47,7 +47,7 @@
 		/obj/item/stack/nanopaste,
 		/obj/item/tweezers,
 	)
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 10, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 10, "rad" = 0, FIRE = 0, ACID = 0)
 
 
 //Captain
@@ -149,7 +149,7 @@
 		/obj/item/attachable/bayonetknife,
 		/obj/item/storage/holster/blade,
 	)
-	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 25, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 25, ENERGY = 10, BOMB = 0, BIO = 0, "rad" = 0, FIRE = 10, ACID = 10)
 
 /obj/item/clothing/suit/storage/det_suit/black
 	icon_state = "detective2"
@@ -171,7 +171,7 @@
 		/obj/item/detective_scanner,
 		/obj/item/taperecorder,
 	)
-	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 15, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 15, ENERGY = 10, BOMB = 0, BIO = 0, "rad" = 0, FIRE = 10, ACID = 10)
 
 /obj/item/clothing/suit/storage/forensics/red
 	name = "red jacket"
@@ -316,7 +316,7 @@
 	icon_state = "snowsuit_alpha"
 	flags_armor_protection = CHEST|GROIN|ARMS
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS
-	soft_armor = list("melee" = 10, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list(MELEE = 10, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, "rad" = 0, FIRE = 0, ACID = 0)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	blood_overlay_type = "armor"
 	siemens_coefficient = 0.7
@@ -327,9 +327,9 @@
 	name = "doctor's snow suit"
 	icon_state = "snowsuit_doctor"
 	permeability_coefficient = 0.6
-	soft_armor = list("melee" = 25, "bullet" = 35, "laser" = 35, "energy" = 20, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 20)
+	soft_armor = list(MELEE = 25, BULLET = 35, LASER = 35, ENERGY = 20, BOMB = 10, BIO = 0, "rad" = 0, FIRE = 20, ACID = 20)
 
 /obj/item/clothing/suit/storage/snow_suit/engineer
 	name = "engineer's snow suit"
 	icon_state = "snowsuit_engineer"
-	soft_armor = list("melee" = 25, "bullet" = 35, "laser" = 35, "energy" = 20, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 20)
+	soft_armor = list(MELEE = 25, BULLET = 35, LASER = 35, ENERGY = 20, BOMB = 10, BIO = 0, "rad" = 0, FIRE = 20, ACID = 20)

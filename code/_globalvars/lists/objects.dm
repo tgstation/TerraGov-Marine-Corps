@@ -57,6 +57,7 @@ GLOBAL_LIST_EMPTY(lz2_shuttle_console_turfs_list)
 GLOBAL_LIST_EMPTY(fob_sentries_loc)
 GLOBAL_LIST_EMPTY(fob_sentries_rebel_loc)
 GLOBAL_LIST_EMPTY(sensor_towers)
+GLOBAL_LIST_EMPTY(sensor_towers_patrol)
 
 GLOBAL_LIST_EMPTY(unmanned_vehicles)
 

@@ -1,7 +1,7 @@
 /obj/vehicle/sealed/mecha/mob_try_enter(mob/M)
 	if(!ishuman(M)) // no silicons or drones in mechas.
 		return
-	log_message("[M] tries to move into [src].", LOG_MECHA)
+	log_message("[M] tried to move into [src].", LOG_MECHA)
 	if(dna_lock)
 		var/mob/living/carbon/entering_carbon = M
 		if(md5(REF(entering_carbon)) != dna_lock)
@@ -63,16 +63,28 @@
 	return ..()
 
 /obj/vehicle/sealed/mecha/add_occupant(mob/M, control_flags)
-	RegisterSignal(M, COMSIG_MOB_DEATH, .proc/mob_exit)
-	RegisterSignal(M, COMSIG_MOB_CLICKON, .proc/on_mouseclick)
-	RegisterSignal(M, COMSIG_MOB_SAY, .proc/display_speech_bubble)
-	RegisterSignal(M, COMSIG_LIVING_DO_RESIST, /atom/movable.proc/resisted_against)
+	RegisterSignal(M, COMSIG_MOB_DEATH, .proc/mob_exit, TRUE)
+	RegisterSignal(M, COMSIG_MOB_MOUSEDOWN, .proc/on_mouseclick, TRUE)
+	RegisterSignal(M, COMSIG_MOB_SAY, .proc/display_speech_bubble, TRUE)
+	RegisterSignal(M, COMSIG_LIVING_DO_RESIST, /atom/movable.proc/resisted_against, TRUE)
 	. = ..()
 	update_icon()
+	//tgmc addition start
+	if(istype(equip_by_category[MECHA_R_ARM], /obj/item/mecha_parts/mecha_equipment/weapon/ballistic))
+		var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/gun = equip_by_category[MECHA_R_ARM]
+		M.hud_used.add_ammo_hud(gun, gun.hud_icons, gun.projectiles)
+	if(istype(equip_by_category[MECHA_L_ARM], /obj/item/mecha_parts/mecha_equipment/weapon/ballistic))
+		var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/gun = equip_by_category[MECHA_L_ARM]
+		M.hud_used.add_ammo_hud(gun, gun.hud_icons, gun.projectiles)
+	//tgmc addition end
 
 /obj/vehicle/sealed/mecha/remove_occupant(mob/M)
+	//tgmc addition start
+	M.hud_used.remove_ammo_hud(equip_by_category[MECHA_R_ARM])
+	M.hud_used.remove_ammo_hud(equip_by_category[MECHA_L_ARM])
+	//tgmc addition end
 	UnregisterSignal(M, COMSIG_MOB_DEATH)
-	UnregisterSignal(M, COMSIG_MOB_CLICKON)
+	UnregisterSignal(M, COMSIG_MOB_MOUSEDOWN)
 	UnregisterSignal(M, COMSIG_MOB_SAY)
 	UnregisterSignal(M, COMSIG_LIVING_DO_RESIST)
 	M.clear_alert(ALERT_CHARGE)

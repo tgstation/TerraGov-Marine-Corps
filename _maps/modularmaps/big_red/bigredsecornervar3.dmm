@@ -921,8 +921,6 @@
 /area/bigredv2/caves/undergroundrobotics)
 "Zu" = (
 /obj/structure/rack,
-/obj/item/explosive/grenade/flashbang,
-/obj/item/explosive/grenade/flashbang,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 8
 	},

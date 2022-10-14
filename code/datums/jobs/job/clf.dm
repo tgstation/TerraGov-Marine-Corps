@@ -270,6 +270,7 @@
 /datum/job/clf/leader
 	title = "CLF Leader"
 	paygrade = "CLF3"
+	skills_type = /datum/skills/sl/clf
 	outfit = /datum/outfit/job/clf/leader/assault_rifle
 	multiple_outfits = TRUE
 	outfits = list(

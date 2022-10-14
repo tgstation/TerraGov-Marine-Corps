@@ -116,8 +116,8 @@
 //leadership skill
 #define SKILL_LEAD_NOVICE 0 //Anyone but the above. Using SL items is possible but painfully slow
 #define SKILL_LEAD_BEGINNER 1 //All non-Standard Marines
-#define SKILL_LEAD_TRAINED 2 //SL
-#define SKILL_LEAD_EXPERT 3 //SOs
+#define SKILL_LEAD_TRAINED 2 //PO, CMO, etc
+#define SKILL_LEAD_EXPERT 3 //SL, SO
 #define SKILL_LEAD_MASTER 4 //XO, CO
 
 

@@ -266,6 +266,14 @@
 	template_height = 15
 	keepcentered = TRUE
 
+/datum/map_template/modular/lv624/dome_internal_affairs
+	name = "LV auxillary botany dome"
+	mappath = "_maps/modularmaps/lv624/auxbotany.dmm"
+	modular_id = "lvdome"
+	template_width = 15
+	template_height = 15
+	keepcentered = TRUE
+
 /datum/map_template/modular/bigred/eastone
 	name = "Big red east caves"
 	mappath = "_maps/modularmaps/big_red/bigredcavevar1.dmm"

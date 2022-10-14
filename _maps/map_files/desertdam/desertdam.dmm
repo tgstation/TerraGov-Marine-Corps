@@ -14076,7 +14076,6 @@
 /area/desert_dam/interior/dam_interior/central_tunnel)
 "bGv" = (
 /obj/structure/table,
-/obj/item/explosive/grenade/flashbang,
 /turf/open/floor/prison,
 /area/desert_dam/building/security/staffroom)
 "bGw" = (
@@ -30731,6 +30730,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/water_treatment_one/hallway)
+"edV" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/prison,
+/area/desert_dam/interior/dam_interior/primary_tool_storage)
 "eec" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -38347,6 +38351,12 @@
 /obj/effect/decal/medical_decals/doc/four,
 /turf/open/floor/tile/white,
 /area/desert_dam/building/medical/garage)
+"itu" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/prison/whitegreen,
+/area/desert_dam/building/medical/north_wing_hallway)
 "itw" = (
 /obj/structure/cable,
 /obj/machinery/light{
@@ -38690,6 +38700,11 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/building/medical/east_wing_hallway)
+"iDl" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/prison/whitegreen/full,
+/area/desert_dam/interior/east_engineering)
 "iDC" = (
 /obj/structure/toilet,
 /obj/structure/cable,
@@ -51375,6 +51390,10 @@
 /obj/structure/flora/desert/grass/six,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_hydro)
+"pFs" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/prison/bright_clean,
+/area/desert_dam/building/hydroponics/hydroponics)
 "pFu" = (
 /obj/effect/landmark/start/job/xenomorph,
 /obj/effect/landmark/weed_node,
@@ -52252,6 +52271,11 @@
 	color = "#e0e0e0"
 	},
 /area/desert_dam/interior/dam_interior/hanger)
+"qcc" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/random/plushie,
+/turf/open/floor/prison/bright_clean/two,
+/area/desert_dam/interior/lab_northeast/east_lab_biology)
 "qck" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/desert_dam/exterior/valley/valley_hydro)
@@ -54762,6 +54786,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/effect/spawner/random/plushie,
 /turf/open/floor/prison/marked,
 /area/desert_dam/building/hydroponics/hydroponics_loading)
 "rzB" = (
@@ -61684,6 +61709,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/south_valley_dam)
+"vql" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/prison/bright_clean/two,
+/area/desert_dam/interior/lab_northeast/east_lab_biology)
 "vqq" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -85201,7 +85230,7 @@ uFz
 dDD
 fms
 imv
-mBx
+edV
 tgV
 bHc
 kaa
@@ -92779,7 +92808,7 @@ kxi
 mOO
 daK
 daK
-daK
+pFs
 fsK
 daK
 qbG
@@ -106300,7 +106329,7 @@ cjy
 cjy
 ehh
 fSC
-uZc
+itu
 crM
 ctY
 cvb
@@ -111094,10 +111123,10 @@ rmx
 alI
 amo
 gbq
-amo
+qcc
 gbq
 qKx
-alI
+vql
 ajY
 sAE
 afP
@@ -116363,7 +116392,7 @@ lFE
 vFr
 vuf
 mJQ
-xjh
+iDl
 vuf
 iXH
 maE

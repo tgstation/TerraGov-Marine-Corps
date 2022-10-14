@@ -3,7 +3,7 @@
 	icon = 'icons/obj/machines/atmos.dmi'
 	use_power = NO_POWER_USE
 	max_integrity = 250
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 60, "acid" = 30)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 100, BOMB = 0, BIO = 100, "rad" = 100, FIRE = 60, ACID = 30)
 	anchored = FALSE
 
 	var/datum/gas_mixture/air_contents

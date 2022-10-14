@@ -28,7 +28,7 @@
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 14, "bullet" = 5, "laser" = 5, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 5, "acid" = 0)
+	soft_armor = list(MELEE = 14, BULLET = 5, LASER = 5, ENERGY = 0, BOMB = 0, BIO = 0, "rad" = 0, FIRE = 5, ACID = 0)
 
 	minimap_icon = "xenominion"
 

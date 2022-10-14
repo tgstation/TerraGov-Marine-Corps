@@ -6,7 +6,6 @@
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented marine uniform. You suspect it's not as robust-proof as advertised."
 	siemens_coefficient = 0.9
 	icon_state = "marine_jumpsuit"
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0) //No armor on non ERT uniforms.
 	has_sensor = 2
 	adjustment_variants = list(
 		"Down" = "_d",
@@ -208,7 +207,7 @@
 	adjustment_variants = list() // don't disrespect the EMPEROR!
 	icon_state = "guardjumpsuit"
 	item_state = "guardjumpsuit"
-	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 10, "rad" = 10, FIRE = 10, ACID = 10)
 
 /obj/item/clothing/under/marine/veteran
 	adjustment_variants = list()
@@ -219,14 +218,13 @@
 	adjustment_variants = list() // don't disrespect the EMPEROR!
 	icon_state = "commissar_uniform"
 	item_state = "commissar_uniform"
-	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 10, "rad" = 10, FIRE = 10, ACID = 10)
 
 /obj/item/clothing/under/marine/veteran/PMC
 	name = "\improper PMC fatigues"
 	desc = "A white set of fatigues, designed for private security operators. The symbol of the Nanotrasen corporation is emblazed on the suit."
 	icon_state = "pmc_jumpsuit"
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 0, "energy" = 0, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
 /obj/item/clothing/under/marine/veteran/PMC/leader
 	name = "\improper PMC command fatigues"
@@ -237,7 +235,7 @@
 	name = "\improper PMC commando uniform"
 	desc = "An armored uniform worn by Nanotrasen elite commandos. It is well protected while remaining light and comfortable."
 	icon_state = "commando_jumpsuit"
-	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 20, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 20, "acid" = 20)
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 20, BOMB = 10, BIO = 10, "rad" = 10, FIRE = 20, ACID = 20)
 	has_sensor = 0
 
 /obj/item/clothing/under/marine/veteran/wolves
@@ -295,7 +293,7 @@
 	desc = "A beige suit with a red armband. Sturdy and thick, simply imposing. A mysterious crest emblazons it."
 	icon_state = "mercenary_heavy_uniform"
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 0, "energy" = 0, "bomb" = 10, "bio" = 1, "rad" = 1, "fire" = 0, "acid" = 0)
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 0, ENERGY = 0, BOMB = 10, BIO = 1, "rad" = 1, FIRE = 0, ACID = 0)
 
 /obj/item/clothing/under/marine/veteran/mercenary/miner
 	name = "mercenary miner fatigues"
@@ -331,7 +329,6 @@
 	name = "colonial marshal uniform"
 	desc = "A blue shirt and tan trousers - the official uniform for a Colonial Marshal."
 	icon_state = "marshal"
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	has_sensor = 2
 
 /obj/item/clothing/under/liaison_suit
