@@ -352,7 +352,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/action(mob/source, atom/target, list/modifiers)
 	if(!action_checks(target))
-		return
+		return FALSE
 	var/dir_target_diff = get_between_angles(Get_Angle(chassis, target), dir2angle(chassis.dir))
 	if(dir_target_diff > (MECH_FIRE_CONE_ALLOWED / 2))
 		return TRUE
@@ -367,7 +367,7 @@
 	for(var/mob/occupant AS in chassis.occupants)
 		occupant.hud_used.update_ammo_hud(src, hud_icons, projectiles)
 	if(projectiles > 0)
-		return
+		return TRUE
 	playsound(src, 'sound/weapons/guns/misc/empty_alarm.ogg', 25, 1)
 	return TRUE
 
