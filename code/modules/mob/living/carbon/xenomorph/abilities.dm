@@ -799,9 +799,9 @@
 
 	if(can_use_ability(current_target) && X.client) //X.client to make sure autospit doesn't continue for non player mobs.
 		succeed_activate()
-		return TRUE
+		return AUTOFIRE_CONTINUE
 	fail_activate()
-	return FALSE
+	return NONE
 
 ///Resets the autofire component.
 /datum/action/xeno_action/activable/xeno_spit/proc/reset_fire()
