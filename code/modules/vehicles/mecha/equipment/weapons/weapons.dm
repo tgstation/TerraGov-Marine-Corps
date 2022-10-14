@@ -364,6 +364,11 @@
 	O.throw_at(target, missile_range, missile_speed, source, FALSE)
 	TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_EQUIPMENT(type), equip_cooldown)
 	chassis.use_power(energy_drain)
+	for(var/mob/occupant AS in chassis.occupants)
+		occupant.hud_used.update_ammo_hud(src, hud_icons, projectiles)
+	if(projectiles > 0)
+		return
+	playsound(src, 'sound/weapons/guns/misc/empty_alarm.ogg', 25, 1)
 	return TRUE
 
 //used for projectile initilisation (priming flashbang) and additional logging
