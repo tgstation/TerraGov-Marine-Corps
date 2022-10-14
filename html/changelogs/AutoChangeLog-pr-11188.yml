@@ -1,5 +1,0 @@
-author: "tyeagg"
-delete-after: True
-changes: 
-  - qol: "can no longer be moved while manning mounted gun"
-  - bugfix: "can no longer deploy mounted gun diagonally since it breaks stuff"

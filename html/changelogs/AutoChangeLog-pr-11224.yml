@@ -1,0 +1,4 @@
+author: "RipGrayson"
+delete-after: True
+changes: 
+  - balance: "Gelida no longer has bolted or welded doors at roundstart."

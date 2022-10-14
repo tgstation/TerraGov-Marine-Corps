@@ -161,3 +161,19 @@
   tyeagg:
   - imageadd: minimap icons for st, cl ,mo ,cmo, uavs, supply beacons, asrs pads,
       teleporter pads, sentries, spawners, phero tower and xeno turrets
+2022-10-14:
+  Aquilar:
+  - rscadd: New BR8 ammo box
+  - balance: Lowers the price of teh BR8 and magazines slightly
+  Lewdcifer:
+  - bugfix: Xeno HUD upgrade chevrons and leader star now match each other in positioning.
+  Lumipharon:
+  - refactor: Refactor vote code to be less spaghetti
+  - imageadd: Made the lobby screens compatible with widescreen
+  - imageadd: adds and removed some lobby screens
+  - imageadd: added some new AI core sprites, and updated some old ones
+  TiviPlus:
+  - bugfix: AI can no longer touch the mech console
+  tyeagg:
+  - qol: can no longer be moved while manning mounted gun
+  - bugfix: can no longer deploy mounted gun diagonally since it breaks stuff
