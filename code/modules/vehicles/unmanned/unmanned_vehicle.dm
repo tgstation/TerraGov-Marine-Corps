@@ -124,10 +124,14 @@
 		return TRUE
 
 /obj/vehicle/unmanned/relaymove(mob/living/user, direction)
+	var/new_delay = move_delay
 	if(user.incapacitated())
 		return FALSE
 
-	if(world.time < last_move_time + move_delay)
+	if(direction & (direction - 1)) //moved diagonally successfully
+		new_delay *= DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER
+
+	if(world.time < last_move_time + new_delay)
 		return
 
 	return Move(get_step(src, direction))
