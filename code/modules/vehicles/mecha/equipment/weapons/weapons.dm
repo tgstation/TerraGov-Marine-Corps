@@ -362,6 +362,8 @@
 	projectiles--
 	proj_init(O, source)
 	O.throw_at(target, missile_range, missile_speed, source, FALSE)
+	TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_EQUIPMENT(type), equip_cooldown)
+	chassis.use_power(energy_drain)
 	return TRUE
 
 //used for projectile initilisation (priming flashbang) and additional logging
