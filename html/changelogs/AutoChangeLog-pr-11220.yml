@@ -1,0 +1,6 @@
+author: "Naaanii"
+delete-after: True
+changes: 
+  - rscadd: "Added X tank to requisitions for 30 points."
+  - balance: "Replaced incinerator tanks with large flame tank for higher cost (6 points)."
+  - balance: "Reduced starting availability of large flame tanks from 30 to 16."
