@@ -35,9 +35,11 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	pixel_x = -32
 	pixel_y = -32
+	light_system = STATIC_LIGHT
 
-/obj/effect/explosion/Initialize()
+/obj/effect/explosion/Initialize(mapload, radius, color)
 	. = ..()
+	set_light(radius, radius, color)
 	QDEL_IN(src, 1 SECONDS)
 
 /datum/effect_system/explosion
@@ -48,8 +50,8 @@
 	else
 		location = get_turf(loca)
 
-/datum/effect_system/explosion/start()
-	new/obj/effect/explosion( location )
+/datum/effect_system/explosion/start(radius, color)
+	new/obj/effect/explosion(location, radius, color)
 	var/datum/effect_system/expl_particles/P = new/datum/effect_system/expl_particles()
 	P.set_up(10, 0, location)
 	P.start()

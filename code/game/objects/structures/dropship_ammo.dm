@@ -293,7 +293,7 @@
 
 /obj/structure/ship_ammo/railgun/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
-	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, adminlog = FALSE, small_animation = TRUE)//no messaging admin, that'd spam them.
+	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, adminlog = FALSE, small_animation = TRUE, color = COLOR_CYAN)//no messaging admin, that'd spam them.
 	var/datum/effect_system/expl_particles/P = new
 	P.set_up(4, 0, impact)
 	P.start()
