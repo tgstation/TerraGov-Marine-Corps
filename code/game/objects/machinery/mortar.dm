@@ -33,7 +33,10 @@
 	///Time it takes for the mortar to cool off to fire
 	var/cool_off_time = 1 SECONDS
 	var/fire_delay = 0
+	var/current_rounds = 0
+	var/max_rounds = 1
 	var/fire_amount = 1
+	var/obj/projectile/in_chamber = null
 
 	/// What type of shells can we use?
 	var/list/allowed_shells = list(
@@ -210,20 +213,16 @@
 		G.ceiling_debris_check(2)
 		log_game("[key_name(user)] has fired the [src] at [AREACOORD(T)]")
 
-		var/offset_x_max = round(abs((coords["targ_x"] + coords["dial_x"]) - x)/offset_per_turfs) //Offset of mortar shot, grows by 1 every 10 tiles travelled
-		var/offset_y_max = round(abs((coords["targ_y"] + coords["dial_y"]) - y)/offset_per_turfs)
-		spread = offset_x_max + offset_y_max
+		var/max_offset = round(abs((get_dist(src, T)) - x)/offset_per_turfs)
+		spread = max_offset
 
 		var/list/turf_list = list()
 		for(var/turf/spread_turf in range(spread, T))
 			turf_list += spread_turf
 		user.balloon_alert(user, spread)
 		for(var/i = 1 to fire_amount)
-			var/turf/impact_turf = pick_n_take(turf_list)
-			begin_fire(impact_turf, mortar_shell)
-			if(fire_delay)
-				sleep(fire_delay)
-		addtimer(CALLBACK(src, .proc/cool_off), cool_off_time)
+			var/turf/impact_turf = pick(turf_list)
+			addtimer(CALLBACK(src, .proc/begin_fire, impact_turf, mortar_shell), (i-1)*fire_delay)
 
 	if(istype(I, /obj/item/ai_target_beacon))
 		if(!GLOB.ai_list.len)
@@ -264,9 +263,10 @@
 	var/obj/projectile/shell = new /obj/projectile(loc)
 	var/datum/ammo/ammo = GLOB.ammo_list[arty_shell.ammo_type]
 	shell.generate_bullet(ammo)
-	shell.fire_at(target, src, src, get_dist(src, target), ammo.shell_speed, suppress_light = TRUE)
+	shell.fire_at(target, src, src, get_dist(src, target), ammo.shell_speed)
 	var/distance = get_dist(src, target)
 	addtimer(CALLBACK(src, .proc/falling, target, shell), distance/ammo.shell_speed - 10)
+	addtimer(CALLBACK(src, .proc/cool_off), cool_off_time)
 
 ///Proc called by tactical binoculars to send targeting information.
 /obj/machinery/deployable/mortar/proc/recieve_target(turf/T, mob/user)
@@ -280,7 +280,7 @@
 
 /obj/machinery/deployable/mortar/proc/falling(turf/T, obj/projectile/shell)
 	flick(shell.icon_state + "_falling", shell)
-	playsound(T, fall_sound, 100, 1)
+	playsound(T, fall_sound, 75, 1)
 
 ///Prompt for the AI to unlink itself.
 /obj/machinery/deployable/mortar/attack_ai(mob/living/silicon/ai/user)
@@ -343,6 +343,7 @@
 	deployable_item = /obj/machinery/deployable/mortar/howitzer
 
 /obj/machinery/deployable/mortar/howitzer
+	pixel_x = -16
 	anchored = FALSE // You can move this.
 	offset_per_turfs = 25
 	fire_sound = 'sound/weapons/guns/fire/howitzer_fire.ogg'
@@ -378,10 +379,11 @@
 	deployable_item = /obj/machinery/deployable/mortar/rocket_arty
 
 /obj/machinery/deployable/mortar/rocket_arty
+	pixel_x = -16
 	anchored = FALSE // You can move this.
-	fire_sound = 'sound/weapons/guns/fire/launcher.ogg'
+	fire_sound = 'sound/weapons/guns/fire/rocket_arty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/tat36_reload.ogg'
-	fall_sound = 'sound/weapons/guns/misc/mortar_long_whistle.ogg'
+	fall_sound = 'sound/weapons/guns/misc/rocket_whistle.ogg'
 	minimum_range = 22
 	allowed_shells = list(
 		/obj/item/mortal_shell/howitzer,
@@ -390,6 +392,9 @@
 		/obj/item/mortal_shell/howitzer/incendiary,
 		/obj/item/mortal_shell/howitzer/plasmaloss,
 		/obj/item/mortal_shell/flare,
+		/obj/item/mortal_shell/rocket,
+		/obj/item/mortal_shell/rocket/incend,
+		/obj/item/mortal_shell/rocket/minelaying,
 	)
 	tally_type = TALLY_HOWITZER
 	cool_off_time = 2 SECONDS
@@ -474,6 +479,15 @@
 	desc = "An 150mm artillery shell, loaded with a 'spotting' gas that sets anything it hits aflame, whatever is hit by this will have their day, skin and future ruined, with a demand for a warcrime tribunal."
 	icon_state = "howitzer_ammo_wp"
 	ammo_type = /datum/ammo/mortar/howi/wp
+
+/obj/item/mortal_shell/rocket
+	ammo_type = /datum/ammo/mortar/rocket
+
+/obj/item/mortal_shell/rocket/incend
+	ammo_type = /datum/ammo/mortar/rocket/incend
+
+/obj/item/mortal_shell/rocket/minelaying
+	ammo_type = /datum/ammo/mortar/rocket/minelayer
 
 /obj/structure/closet/crate/mortar_ammo
 	name = "\improper T-50S mortar ammo crate"

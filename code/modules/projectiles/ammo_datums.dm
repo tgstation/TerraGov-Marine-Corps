@@ -1830,6 +1830,7 @@ datum/ammo/bullet/revolver/tp44
 	accuracy = 250
 	max_range = 250
 	ping = null
+	bullet_color = COLOR_WHITE
 
 /datum/ammo/mortar/drop_nade(turf/T)
 	explosion(T, 1, 2, 5, 3)
@@ -1892,6 +1893,23 @@ datum/ammo/bullet/revolver/tp44
 	smoke.set_up(10, T, 11)
 	smoke.start()
 	smoke = null
+
+/datum/ammo/mortar/rocket
+	name = "rocket"
+	icon_state = "rocket"
+	shell_speed = 1.5
+
+/datum/ammo/mortar/rocket/drop_nade(turf/T)
+	explosion(T, 1, 2, 5, 3)
+
+/datum/ammo/mortar/rocket/incend/drop_nade(turf/T)
+	explosion(T, 0, 3, 0, 3, throw_range = 0, small_animation = TRUE)
+	flame_radius(5, T)
+	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
+
+/datum/ammo/mortar/rocket/minelayer/drop_nade(turf/T)
+	var/obj/item/explosive/mine/mine = new /obj/item/explosive/mine(T)
+	mine.deploy_mine(null, TGMC_LOYALIST_IFF)
 
 /*
 //================================================
