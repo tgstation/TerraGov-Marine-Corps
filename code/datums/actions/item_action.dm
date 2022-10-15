@@ -66,13 +66,13 @@
 	update_button_icon()
 
 /datum/action/item_action/firemode
-	var/action_firemode
-	var/obj/item/weapon/gun/holder_gun
-	// just here so players see it
+	// just here so players see what key is it bound to
 	keybinding_signals = list(
 		KEYBINDING_ALTERNATE = COMSIG_KB_FIREMODE,
 	)
 	use_obj_appeareance = FALSE
+	var/action_firemode
+	var/obj/item/weapon/gun/holder_gun
 
 
 /datum/action/item_action/firemode/New()
