@@ -312,7 +312,6 @@
 	icon = 'icons/obj/clothing/gloves.dmi'
 	item_state_worn = TRUE
 	siemens_coefficient = 0.50
-	var/transfer_prints = TRUE
 	blood_sprite_state = "bloodyhands"
 	flags_armor_protection = HANDS
 	flags_equip_slot = ITEM_SLOT_GLOVES
@@ -323,13 +322,13 @@
 	if(user.gloves == src)
 		RegisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, .proc/on_unarmed_attack)
 	else
-		UnregisterSignal(user,COMSIG_HUMAN_MELEE_UNARMED_ATTACK)
+		UnregisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK)
 
+//when you are wearing these gloves, this will call the normal attack code to begin defibing the target
 /obj/item/defibrillator/gloves/proc/on_unarmed_attack(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	attack(target,user)
+	if(istype(user) && istype(target))
+		attack(target,user)
 
 /obj/item/defibrillator/gloves/update_icon_state()
 	return
 
-/obj/item/defibrillator/gloves/attack_hand(mob/living/user)
-	. = ..()
