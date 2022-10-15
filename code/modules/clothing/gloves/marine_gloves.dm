@@ -22,44 +22,6 @@
 	desc = "Insulated marine tactical gloves that protect against electrical shocks."
 	siemens_coefficient = 0
 
-/obj/item/clothing/gloves/marine/corpsman
-	name = "advanced medical combat gloves"
-	desc = "Advanced medical gloves, these include small electrodes to defibrilate a patiant. No more bulky units!"
-	icon_state = "defib_gloves"
-	item_state = "defib_gloves"
-	attack_verb = "Challanged ELECTRICALLY"
-	var/obj/item/defibrillator/DF
-
-/obj/item/clothing/gloves/marine/corpsman/Initialize()
-	. = ..()
-	DF = new()
-	DF.ready = TRUE
-
-/obj/item/clothing/gloves/marine/corpsman/equipped(mob/user, slot)
-	. = ..()
-	RegisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, .proc/try_defib)
-
-/obj/item/clothing/gloves/marine/corpsman/unequipped(mob/unequipper, slot)
-	UnregisterSignal(unequipper,COMSIG_HUMAN_MELEE_UNARMED_ATTACK)
-	. = ..()
-
-/obj/item/clothing/gloves/marine/corpsman/examine(mob/user)
-	. = ..()
-	. += DF.maybe_message_recharge_hint(user)
-
-/obj/item/clothing/gloves/marine/corpsman/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)
-	. = ..()
-	over.MouseDrop_T(DF,usr)
-
-
-/obj/item/clothing/gloves/marine/corpsman/proc/try_defib(mob/self, atom/target)
-	if(!istype(loc,/mob/living/carbon/human))
-		return
-	var/mob/living/carbon/human/user = loc
-
-	if(user.a_intent == INTENT_HELP)
-		DF.attack(target,user)
-
 /obj/item/clothing/gloves/marine/officer
 	name = "officer gloves"
 	desc = "Shiny and impressive. They look expensive."
