@@ -183,6 +183,7 @@
 			/obj/item/storage/pill_bottle/tricordrazine = 15,
 			/obj/item/storage/pill_bottle/dylovene = 15,
 			/obj/item/storage/pill_bottle/inaprovaline = 15,
+			/obj/item/storage/pill_bottle/inaprovaline = 15,
 			/obj/item/storage/pill_bottle/dexalin = 6,
 			/obj/item/storage/pill_bottle/spaceacillin = 6,
 			/obj/item/storage/pill_bottle/alkysine = 6,
