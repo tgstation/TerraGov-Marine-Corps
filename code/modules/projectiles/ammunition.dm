@@ -533,8 +533,8 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	icon_state = "big_ammo_box_m25"
 	base_icon_state = "big_ammo_box_m25"
 	default_ammo = /datum/ammo/bullet/smg
-	var/bullet_amount = 4500
-	var/max_bullet_amount = 4500
+	bullet_amount = 4500
+	max_bullet_amount = 4500
 
 /obj/item/shotgunbox/buckshot
 	name = "Buckshot Ammo Box"
