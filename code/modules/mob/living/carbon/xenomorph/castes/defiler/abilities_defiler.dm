@@ -230,9 +230,11 @@
 	while(count)
 		if(X.stagger) //If we got staggered, return
 			to_chat(X, span_xenowarning("We try to emit toxins but are staggered!"))
+			toggle_particles(FALSE)
 			return
 		if(X.IsStun() || X.IsParalyzed())
 			to_chat(X, span_xenowarning("We try to emit toxins but are disabled!"))
+			toggle_particles(FALSE)
 			return
 		var/turf/T = get_turf(X)
 		playsound(T, 'sound/effects/smoke.ogg', 25)

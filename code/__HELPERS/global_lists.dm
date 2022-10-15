@@ -174,6 +174,10 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 		var/datum/namepool/NP = new path
 		GLOB.namepool[path] = NP
 
+	for(var/path in typesof(/datum/operation_namepool))
+		var/datum/operation_namepool/NP = new path
+		GLOB.operation_namepool[path] = NP
+
 	return TRUE
 
 
