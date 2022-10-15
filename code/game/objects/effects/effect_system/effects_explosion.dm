@@ -3,6 +3,11 @@
 	icon_state = "explosion_particle"
 	opacity = FALSE
 	anchored = TRUE
+	light_system = MOVABLE_LIGHT
+	light_range = 3
+	light_power = 2
+	light_color = LIGHT_COLOR_LAVA
+	light_on = TRUE
 
 /obj/effect/particle_effect/expl_particles/Initialize()
 	..()
@@ -40,7 +45,7 @@
 /obj/effect/explosion/Initialize(mapload, radius, color)
 	. = ..()
 	set_light(radius, radius, color)
-	QDEL_IN(src, 1 SECONDS)
+	QDEL_IN(src, 12.8)
 
 /datum/effect_system/explosion
 
