@@ -178,7 +178,7 @@
 	heal_target.adjustBruteLoss(-heal_amount, passive = TRUE)
 	heal_target.adjustFireLoss(-heal_remainder, passive = TRUE)
 	heal_target.adjust_sunder(-heal_amount/20)
-	heal_target.balloon_alert(heal_target, "Shared heal: +[heal_amount + heal_remainder]")
+	heal_target.balloon_alert(heal_target, "Shared heal: +[heal_amount]")
 
 /// Toggles the link signals on or off.
 /datum/status_effect/stacking/essence_link/proc/toggle_link(toggle)
