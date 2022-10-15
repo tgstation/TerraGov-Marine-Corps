@@ -14,7 +14,8 @@
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 	flags_atom = BUMP_ATTACKABLE
 	soft_armor = list(MELEE = 25, BULLET = 85, LASER = 50, ENERGY = 100, BOMB = 50, BIO = 100, "rad" = 100, FIRE = 25, ACID = 25)
-	var/new_move_delay = 0	//needed to keep track of any slowdowns or diagonal movement
+	/// Needed to keep track of any slowdowns and/or diagonal movement
+	var/next_move_delay = 0	
 	/// Path of "turret" attached
 	var/obj/item/uav_turret/turret_path
 	/// Type of the turret attached
@@ -124,19 +125,19 @@
 	if((unmanned_flags & UNDERCARRIAGE) && istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return TRUE
 
-/obj/vehicle/unmanned/relaymove(mob/living/user, direction)	
+/obj/vehicle/unmanned/relaymove(mob/living/user, direction)
 	if(user.incapacitated())
 		return FALSE
 
-	if(world.time < last_move_time + new_move_delay)
+	if(world.time < last_move_time + next_move_delay)
 		return
 
-	Move(get_step(src, direction))
+	. = Move(get_step(src, direction))
 	
-	if(direction & (direction - 1))//moved diagonally successfully
-		new_move_delay = move_delay * DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER
+	if(ISDIAGONALDIR(direction)) //moved diagonally successfully
+		next_move_delay = move_delay * DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER
 	else
-		new_move_delay = move_delay
+		next_move_delay = move_delay
 
 ///Try to desequip the turret
 /obj/vehicle/unmanned/wrench_act(mob/living/user, obj/item/I)
