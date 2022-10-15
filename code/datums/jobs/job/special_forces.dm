@@ -19,7 +19,7 @@
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/distress/dutch
-	mask = /obj/item/clothing/mask/balaclava
+	mask = /obj/item/clothing/mask/gas/swat
 	w_uniform = /obj/item/clothing/under/syndicate/tacticool
 	shoes = /obj/item/clothing/shoes/combat
 	wear_suit = /obj/item/clothing/suit/armor/bulletproof
@@ -70,13 +70,13 @@
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/gun/pistol/standard_pistol
 	ears = /obj/item/radio/headset/distress/dutch
-	mask = /obj/item/clothing/mask/balaclava
+	mask = /obj/item/clothing/mask/gas/swat
 	w_uniform = /obj/item/clothing/under/syndicate/tacticool
 	shoes = /obj/item/clothing/shoes/combat
 	wear_suit = /obj/item/clothing/suit/armor/bulletproof
 	gloves = /obj/item/clothing/gloves/marine/veteran/PMC
 	head = /obj/item/clothing/head/helmet/marine/tech
-	suit_store = /obj/item/weapon/gun/pistol/standard_heavypistol/suppressed
+	suit_store = /obj/item/weapon/gun/pistol/standard_heavypistol/tacticool
 	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	l_store = /obj/item/storage/pouch/medkit/firstaid
 	back = /obj/item/storage/backpack/lightpack
@@ -117,7 +117,7 @@
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/distress/dutch
-	mask = /obj/item/clothing/mask/balaclava
+	mask = /obj/item/clothing/mask/gas/swat
 	w_uniform = /obj/item/clothing/under/syndicate/tacticool
 	glasses = /obj/item/clothing/glasses/night
 	shoes = /obj/item/clothing/shoes/combat
