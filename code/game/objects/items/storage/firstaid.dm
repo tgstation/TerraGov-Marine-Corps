@@ -314,9 +314,10 @@
 	. += number
 	if(!description_overlay)
 		return
-	var/mutable_appearance/desc = mutable_appearance()
-	desc.pixel_x += 18
+	var/mutable_appearance/desc = mutable_appearance('icons/misc/12x12.dmi')
+	desc.pixel_x = 16
 	desc.maptext = MAPTEXT(description_overlay)
+	desc.maptext_width = 16
 	. += desc
 
 /obj/item/storage/pill_bottle/equipped(mob/user, slot)
@@ -348,6 +349,13 @@
 	pill_type_to_fill = /obj/item/reagent_containers/pill/dylovene
 	greyscale_colors = "#669900#ffffff"
 	description_overlay = "Dy"
+
+/obj/item/storage/pill_bottle/isotonic
+	name = "isotonic pill bottle"
+	desc = "Contains pills that stimulate the regeneration of lost blood."
+	pill_type_to_fill = /obj/item/reagent_containers/pill/isotonic
+	greyscale_colors = "#5c0e0e#ffffff"
+	description_overlay = "Is"
 
 /obj/item/storage/pill_bottle/inaprovaline
 	name = "inaprovaline pill bottle"

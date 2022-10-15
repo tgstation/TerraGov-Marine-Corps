@@ -51,6 +51,9 @@
 	var/datum/action/innate/order/current_order
 	/// If it is currently controlling an object
 	var/controlling = FALSE
+	
+	///Linked artillery for remote targeting.
+	var/obj/machinery/deployable/mortar/linked_artillery
 
 
 /mob/living/silicon/ai/Initialize(mapload, ...)
@@ -82,9 +85,9 @@
 
 	RegisterSignal(src, COMSIG_MOB_CLICK_ALT, .proc/send_order)
 	RegisterSignal(src, COMSIG_ORDER_SELECTED, .proc/set_order)
+
 	RegisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED, .proc/receive_laser_ob)
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED, .proc/receive_laser_cas)
-
 	RegisterSignal(SSdcs, COMSIG_GLOB_SHUTTLE_TAKEOFF, .proc/shuttle_takeoff_notification)
 
 	var/datum/action/innate/order/attack_order/send_attack_order = new
@@ -112,8 +115,10 @@
 	QDEL_NULL(track)
 	UnregisterSignal(src, COMSIG_ORDER_SELECTED)
 	UnregisterSignal(src, COMSIG_MOB_CLICK_ALT)
+
 	UnregisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_SHUTTLE_TAKEOFF)
 	return ..()
 
 ///Print order visual to all marines squad hud and give them an arrow to follow the waypoint
@@ -353,8 +358,11 @@
 
 		stat("Current supply points:", "[round(SSpoints.supply_points[FACTION_TERRAGOV])]")
 
-		stat("Current alert level:", "[GLOB.marine_main_ship.get_security_level()]")
+		stat("Current dropship points:", "[round(SSpoints.dropship_points)]")
 
+		stat("Current alert level:", "[GLOB.marine_main_ship.get_security_level()]")
+	
+		stat("Number of living marines:", "[SSticker.mode.count_humans_and_xenos()[1]]")
 
 
 /mob/living/silicon/ai/fully_replace_character_name(oldname, newname)
@@ -391,6 +399,22 @@
 		reset_perspective()
 	remote_control = controlled
 
+///Called for associating the AI with artillery
+/mob/living/silicon/ai/proc/associate_artillery(mortar)
+	if(linked_artillery)
+		UnregisterSignal(linked_artillery, COMSIG_PARENT_QDELETING)
+		linked_artillery = null
+		return FALSE
+	linked_artillery = mortar
+	RegisterSignal(linked_artillery, COMSIG_PARENT_QDELETING, .proc/clean_artillery_refs)
+	return TRUE
+
+///Proc called when linked_mortar is deleted.
+/mob/living/silicon/ai/proc/clean_artillery_refs()
+	SIGNAL_HANDLER
+	linked_artillery.unset_targeter()
+	linked_artillery = null
+	to_chat(src, span_notice("NOTICE: Connection closed with linked mortar."))
 
 /datum/action/control_vehicle
 	name = "Select vehicle to control"

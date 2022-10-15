@@ -53,6 +53,21 @@
 #define MECHA_AMMO_FLASHBANG "Flashbang"
 #define MECHA_AMMO_CLUSTERBANG "Clusterbang"
 
+#define MECHA_AMMO_GREY_LMG "30mm LMG bullet"
+#define MECHA_AMMO_RIFLE "Rocket-assisted rifle bullet"
+#define MECHA_AMMO_BURSTRIFLE "Rocket-assisted burst bullet"
+#define MECHA_AMMO_SHOTGUN "Large buckshot shell"
+#define MECHA_AMMO_LIGHTCANNON "Autocannon shrapnel shell"
+#define MECHA_AMMO_HEAVYCANNON "APFSDS tank shell"
+#define MECHA_AMMO_SMG "Large SMG bullet"
+#define MECHA_AMMO_BURSTPISTOL "Heavy burstpistol bullet"
+#define MECHA_AMMO_PISTOL "Heavy pistol bullet"
+#define MECHA_AMMO_RPG "High explosive missile"
+#define MECHA_AMMO_MINIGUN "Vulcan bullet"
+#define MECHA_AMMO_SNIPER "Anti-tank bullet"
+#define MECHA_AMMO_GRENADE "Frag grenade"
+#define MECHA_AMMO_FLAMER "Napalm"
+
 /// Module is compatible with Ripley Exosuit models
 #define EXOSUIT_MODULE_RIPLEY (1<<0)
 /// Module is compatible with Odyseeus Exosuit models
@@ -67,6 +82,8 @@
 #define EXOSUIT_MODULE_PHAZON (1<<5)
 /// Module is compatible with Savannah Exosuit models
 #define EXOSUIT_MODULE_SAVANNAH (1<<6)
+/// Module is compatible with Greyscale Exosuit models
+#define EXOSUIT_MODULE_GREYSCALE (1<<7)
 
 /// Module is compatible with "Working" Exosuit models - Ripley and Clarke
 #define EXOSUIT_MODULE_WORKING EXOSUIT_MODULE_RIPLEY
@@ -74,3 +91,30 @@
 #define EXOSUIT_MODULE_COMBAT EXOSUIT_MODULE_GYGAX | EXOSUIT_MODULE_HONK | EXOSUIT_MODULE_DURAND | EXOSUIT_MODULE_PHAZON | EXOSUIT_MODULE_SAVANNAH
 /// Module is compatible with "Medical" Exosuit modelsm - Odysseus
 #define EXOSUIT_MODULE_MEDICAL EXOSUIT_MODULE_ODYSSEUS
+
+///degree of cone in front of which mech is allowed to fire at
+#define MECH_FIRE_CONE_ALLOWED 120
+
+/**
+ * greyscale mech shenanigans
+ */
+#define MECH_VANGUARD "Vanguard"
+#define MECH_RECON "Recon"
+#define MECH_ASSAULT "Assault"
+
+#define MECH_GREY_R_ARM "R_ARM"
+#define MECH_GREY_L_ARM "L_ARM"
+#define MECH_GREY_LEGS "LEG"
+#define MECH_GREY_TORSO "CHEST"
+#define MECH_GREY_HEAD "HEAD"
+
+//Defaults for mech palettes and the palette shown in the UI
+#define MECH_GREY_PRIMARY_DEFAULT ARMOR_PALETTE_DRAB
+#define MECH_GREY_SECONDARY_DEFAULT ARMOR_PALETTE_BLACK
+#define MECH_GREY_VISOR_DEFAULT VISOR_PALETTE_GOLD
+
+#define MECH_GREYSCALE_MAX_EQUIP list(\
+		MECHA_UTILITY = 1,\
+		MECHA_POWER = 1,\
+		MECHA_ARMOR = 1,\
+	)

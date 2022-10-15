@@ -13,7 +13,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	anchored = TRUE
 	layer = ABOVE_OBJ_LAYER
 	resistance_flags = XENO_DAMAGEABLE
-	soft_armor = list("melee" = 50, "bullet" = 70, "laser" = 70, "energy" = 100, "bomb" = 70, "bio" = 100, "rad" = 100, "fire" = 0, "acid" = 0)
+	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 100, BOMB = 70, BIO = 100, "rad" = 100, FIRE = 0, ACID = 0)
 	max_integrity = 50
 	flags_atom = PREVENT_CONTENTS_EXPLOSION
 	coverage = 75
@@ -172,6 +172,8 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	var/turf/target = locate(target_x, target_y, 2)
 	log_game("[key_name(user)] launched pod [src] at [AREACOORD(target)]")
 	deadchat_broadcast(" has been launched", src, turf_target = target)
+	for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
+		to_chat(AI, span_notice("[user] has launched [src] towards [target.loc] at X:[target_x] Y:[target_y]"))
 	reserved_area = SSmapping.RequestBlockReservation(3,3)
 
 	drop_state = DROPPOD_ACTIVE

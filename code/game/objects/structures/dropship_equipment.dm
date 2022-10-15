@@ -91,13 +91,7 @@
 
 /obj/effect/attach_point/weapon/minidropship
 	ship_tag = SHUTTLE_TADPOLE
-	icon_state = "equip_base"
-
-/obj/effect/attach_point/weapon/minidropship/pointing_east
-	dir = 4
-
-/obj/effect/attach_point/weapon/minidropship/pointing_west
-	dir = 8
+	pixel_y = 32
 
 /obj/effect/attach_point/crew_weapon
 	name = "rear attach point"
@@ -462,12 +456,14 @@
 	deployed_turret.loc = get_step(src, dir)
 	icon_state = "sentry_system_deployed"
 	dropship_equipment_flags |= IS_NOT_REMOVABLE
+	deployed_turret.update_minimap_icon()
 
 /obj/structure/dropship_equipment/sentry_holder/proc/undeploy_sentry()
 	if(!deployed_turret)
 		return
 	playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
 	deployment_cooldown = world.time + 50
+	SSminimaps.remove_marker(deployed_turret)
 	deployed_turret.loc = src
 	deployed_turret.set_on(FALSE)
 	deployed_turret.update_icon()
@@ -843,7 +839,7 @@
 
 /obj/structure/dropship_equipment/weapon/heavygun
 	name = "\improper GAU-21 30mm cannon"
-	desc = "A dismounted GAU-21 'Rattler' 30mm rotary cannon. It seems to be missing its feed links and has exposed connection wires. Capable of firing 5200 rounds a minute, feared by many for its power. Earned the nickname 'Rattler' from the vibrations it would cause on dropships in its inital production run."
+	desc = "A dismounted GAU-21 'Rattler' 30mm rotary cannon. It seems to be missing its feed links and has exposed connection wires. Capable of firing 5200 rounds a minute, feared by many for its power. Earned the nickname 'Rattler' from the vibrations it would cause on dropships in its inital production run. Moving this will require some sort of lifter."
 	icon_state = "30mm_cannon"
 	firing_sound = 'sound/weapons/gunship_chaingun.ogg'
 	point_cost = 400

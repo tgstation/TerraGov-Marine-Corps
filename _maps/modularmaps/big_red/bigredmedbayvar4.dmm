@@ -860,6 +860,12 @@
 /obj/machinery/light,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
+"xc" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/medical)
 "xh" = (
 /turf/open/floor/tile/green/whitegreen{
 	dir = 6
@@ -892,6 +898,12 @@
 "ys" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/green/whitegreen,
+/area/bigredv2/outside/medical)
+"yu" = (
+/obj/structure/morgue{
+	dir = 2
+	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
 "yy" = (
 /obj/effect/ai_node,
@@ -1068,6 +1080,7 @@
 "Ew" = (
 /obj/structure/table,
 /obj/item/storage/pill_bottle/tramadol,
+/obj/effect/ai_node,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 8
 	},
@@ -1507,7 +1520,9 @@
 	},
 /area/bigredv2/outside/medical)
 "PE" = (
-/obj/structure/morgue,
+/obj/structure/morgue{
+	dir = 1
+	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
 "PK" = (
@@ -1647,6 +1662,11 @@
 	dir = 1
 	},
 /area/bigredv2/outside/medical)
+"SB" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/medical)
 "SC" = (
 /obj/item/weapon/broken_bottle,
 /obj/effect/decal/cleanable/dirt,
@@ -1687,11 +1707,8 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "TH" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/tile/white,
+/turf/open/floor/tile/green/whitegreen,
 /area/bigredv2/outside/medical)
 "TP" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible,
@@ -1966,10 +1983,10 @@ lZ
 PE
 aC
 PE
-PE
+yu
 OC
 PE
-PE
+OC
 SR
 dZ
 "}
@@ -1992,12 +2009,12 @@ SR
 tC
 OC
 PE
-OC
+SB
 PE
-PE
+yu
 lZ
 PE
-PE
+OC
 SR
 dZ
 "}
@@ -2017,12 +2034,12 @@ rB
 hQ
 ys
 Cp
-lZ
+OC
 OC
 lZ
 lZ
 lZ
-lZ
+OC
 cB
 lZ
 ua
@@ -2048,12 +2065,12 @@ SR
 QT
 lZ
 PE
-lZ
-PE
-PE
 OC
 PE
+yu
+OC
 PE
+xc
 SR
 dZ
 "}
@@ -2078,10 +2095,10 @@ lZ
 PE
 hj
 PE
-PE
+yu
 OC
 PE
-PE
+kY
 SR
 dZ
 "}
@@ -2179,7 +2196,7 @@ pN
 OI
 pj
 Hm
-af
+lN
 nl
 Hm
 nl
@@ -2206,9 +2223,9 @@ Gq
 Il
 DK
 Il
-TH
+pZ
 vl
-zx
+TH
 OI
 EV
 Hm
@@ -2348,7 +2365,7 @@ SR
 Kq
 Hm
 lN
-zx
+TH
 SR
 WN
 Rg

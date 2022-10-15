@@ -223,7 +223,7 @@
 	var/burst_delay = 0.1 SECONDS
 	///When burst-firing, this number is extra time before the weapon can fire again. Depends on number of rounds fired.
 	var/extra_delay	= 0
-	///when autobursting, this is the amount of extra (extra) time before the weapon fires again. If no amount is specified, defaults to x2 fire_delay
+	///when autobursting, this is the total amount of time before the weapon fires again. If no amount is specified, defaults to fire_delay + extra_delay
 	var/autoburst_delay = 0
 
 	///Slowdown for wielding
@@ -343,7 +343,8 @@
 	base_gun_icon = icon_state
 
 	update_force_list() //This gives the gun some unique verbs for attacking.
-
+	if(!autoburst_delay)
+		autoburst_delay = (fire_delay + extra_delay)
 	setup_firemodes()
 	AddComponent(/datum/component/automatedfire/autofire, fire_delay, autoburst_delay, burst_delay, burst_amount, gun_firemode, CALLBACK(src, .proc/set_bursting), CALLBACK(src, .proc/reset_fire), CALLBACK(src, .proc/Fire)) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
 	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachable_allowed, attachable_offset, starting_attachment_types, null, CALLBACK(src, .proc/on_attachment_attach), CALLBACK(src, .proc/on_attachment_detach), attachment_overlays)
@@ -413,7 +414,7 @@
 		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_ITEM_UNZOOM, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE, COMSIG_KB_GUN_SAFETY, COMSIG_KB_UNIQUEACTION, COMSIG_PARENT_QDELETING))
 		gun_user.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
 		SEND_SIGNAL(gun_user, COMSIG_GUN_USER_UNSET)
-		gun_user.hud_used.remove_ammo_hud(gun_user, src)
+		gun_user.hud_used.remove_ammo_hud(src)
 		gun_user = null
 	if(!user)
 		return
@@ -421,7 +422,8 @@
 		return
 	gun_user = user
 	SEND_SIGNAL(gun_user, COMSIG_GUN_USER_SET, src)
-	gun_user.hud_used.add_ammo_hud(gun_user, src)
+	if(flags_gun_features & GUN_AMMO_COUNTER)
+		gun_user.hud_used.add_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 	if(master_gun)
 		return
 	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
@@ -505,7 +507,6 @@
 		else if (src == human_user.r_hand)
 			human_user.update_inv_r_hand()
 
-
 /obj/item/weapon/gun/examine(mob/user)
 	. = ..()
 	var/list/dat = list()
@@ -532,6 +533,9 @@
 		if(CHECK_BITFIELD(flags_item, IS_DEPLOYABLE))
 			. += span_notice("Use Ctrl-Click on a tile to deploy.")
 		return
+	if(!CHECK_BITFIELD(flags_item, DEPLOYED_NO_ROTATE))
+		. += span_notice("Left or Right Click on a nearby tile to aim towards it.")
+		return
 	. += span_notice("Click-Drag to yourself to undeploy.")
 	. += span_notice("Alt-Click to unload.")
 	. += span_notice("Right-Click to perform the guns unique action.")
@@ -548,7 +552,7 @@
 			if(max_rounds && CHECK_BITFIELD(flags_gun_features, GUN_AMMO_COUNT_BY_PERCENTAGE))
 				dat += "Ammo counter shows [round((rounds / max_rounds) * 100)] percent remaining.<br>"
 			else if(max_rounds && CHECK_BITFIELD(flags_gun_features, GUN_AMMO_COUNT_BY_SHOTS_REMAINING))
-				dat += "Ammo counter shows [round(max_rounds / rounds_per_shot)] shots remaining."
+				dat += "Ammo counter shows [round(rounds / rounds_per_shot)] shots remaining."
 			else
 				dat += "Ammo counter shows [rounds] round\s remaining.<br>"
 		else
@@ -632,6 +636,7 @@
 		if(gun_user.hand && isgun(gun_user.r_hand) || !gun_user.hand && isgun(gun_user.l_hand)) // If we have a gun in our inactive hand too, both guns get innacuracy maluses
 			dual_wield = TRUE
 			modify_fire_delay(fire_delay * akimbo_additional_delay) // Adds the additional delay to auto_fire
+			modify_auto_burst_delay(autoburst_delay * akimbo_additional_delay)
 			if(gun_user.get_inactive_held_item() == src && (gun_firemode == GUN_FIREMODE_SEMIAUTO || gun_firemode == GUN_FIREMODE_BURSTFIRE))
 				return
 		if(gun_user.in_throw_mode)
@@ -684,6 +689,7 @@
 	windup_checked = WEAPON_WINDUP_NOT_CHECKED
 	if(dual_wield)
 		modify_fire_delay(-fire_delay + fire_delay/(1 + akimbo_additional_delay)) // Removes the additional delay from auto_fire
+		modify_auto_burst_delay(-autoburst_delay + autoburst_delay/(1 + akimbo_additional_delay))
 		dual_wield = FALSE
 	gun_user?.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
 
@@ -762,7 +768,7 @@
 			playsound(src, empty_sound, 25, 1)
 			unload(after_fire = TRUE)
 	update_ammo_count()
-	gun_user?.hud_used.update_ammo_hud(gun_user, src)
+	gun_user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 	update_icon()
 	if(dual_wield && (gun_firemode == GUN_FIREMODE_SEMIAUTO || gun_firemode == GUN_FIREMODE_BURSTFIRE))
 		var/obj/item/weapon/gun/inactive_gun = gun_user.get_inactive_held_item()
@@ -1397,10 +1403,19 @@
 	ammo_datum_type = ammo_type
 	return ammo_datum_type
 
+///returns ammo string icon_states to display in the ammo counter of the HUD. list(normal_state, empty_state)
 /obj/item/weapon/gun/proc/get_ammo_list()
 	if(!ammo_datum_type)
 		return list("unknown", "unknown")
 	return list(initial(ammo_datum_type.hud_state), initial(ammo_datum_type.hud_state_empty))
+
+///returns ammo count to display in the ammo counter of the HUD
+/obj/item/weapon/gun/proc/get_display_ammo_count()
+	if(rounds && (flags_gun_features & GUN_AMMO_COUNT_BY_SHOTS_REMAINING))
+		return round(rounds / rounds_per_shot)
+	if(max_rounds && rounds && (flags_gun_features & GUN_AMMO_COUNT_BY_PERCENTAGE))
+		return round((rounds / max_rounds) * 100)
+	return rounds
 
 ///Updates the guns rounds and max_rounds vars based on the contents of chamber_items
 /obj/item/weapon/gun/proc/update_ammo_count()
@@ -1416,18 +1431,17 @@
 				new_rounds++
 		rounds = new_rounds
 		max_rounds = max_chamber_items + 1
-		gun_user?.hud_used.update_ammo_hud(gun_user, src)
+		gun_user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 		return
 	var/total_rounds
 	var/total_max_rounds
 	for(var/obj/chamber_item in chamber_items)
 		total_rounds += get_current_rounds(chamber_item)
 		total_max_rounds += get_max_rounds(chamber_item)
-	total_max_rounds += rounds_per_shot
 	rounds = total_rounds + (in_chamber ? rounds_per_shot : 0)
 	max_rounds = total_max_rounds
 	update_icon()
-	gun_user?.hud_used.update_ammo_hud(gun_user, src)
+	gun_user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 
 ///Disconnects from a worn magazine.
 /obj/item/weapon/gun/proc/drop_connected_mag(datum/source, mob/user)
@@ -1477,7 +1491,7 @@
 //----------------------------------------------------------
 
 /obj/item/weapon/gun/proc/able_to_fire(mob/user)
-	if(!user || user.stat != CONSCIOUS || user.lying_angle || !isturf(user.loc))
+	if(!user || user.incapacitated()  || user.lying_angle || !isturf(user.loc))
 		return
 	if(rounds - rounds_per_shot < 0 && rounds)
 		to_chat(user, span_warning("Theres not enough rounds left to fire."))

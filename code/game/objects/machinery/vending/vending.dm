@@ -508,6 +508,14 @@
 	.["extended"] = extended_inventory
 	.["isshared"] = isshared
 
+	var/ui_theme
+	switch(faction)
+		if(FACTION_SOM)
+			ui_theme = "som"
+		else
+			ui_theme = "main"
+	.["ui_theme"] = ui_theme
+
 /obj/machinery/vending/ui_act(action, list/params)
 	. = ..()
 	if(.)
@@ -580,8 +588,8 @@
 		if(ismodularhelmet(new_item))
 			var/obj/item/clothing/head/modular/helmet = new_item
 			helmet.limit_colorable_colors(faction)
-	if(istype(new_item))
-		user.put_in_any_hand_if_possible(new_item, warning = FALSE)
+	if(istype(new_item) && user.put_in_any_hand_if_possible(new_item, warning = FALSE))
+		new_item.pickup(user)
 	vend_ready = 1
 	updateUsrDialog()
 

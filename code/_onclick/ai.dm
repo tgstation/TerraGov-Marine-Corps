@@ -62,6 +62,7 @@
 		CtrlShiftClickOn(A)
 		return
 	if(modifiers["middle"])
+		MiddleClickOn(A)
 		return
 	if(modifiers["shift"])
 		ShiftClickOn(A)
@@ -111,6 +112,9 @@
 /mob/living/silicon/ai/CtrlClickOn(atom/A)
 	A.AICtrlClick(src)
 
+/mob/living/silicon/ai/MiddleClickOn(atom/A)
+	A.AIMiddleClick(src)
+
 /*
 	The following criminally helpful code is just the previous code cleaned up;
 	I have no idea why it was in atoms.dm instead of respective files.
@@ -125,6 +129,9 @@
 	return
 
 /atom/proc/AICtrlShiftClick()
+	return
+
+/atom/proc/AIMiddleClick()
 	return
 
 /* Airlocks */
@@ -189,6 +196,20 @@
 
 	else if(down)
 		TD.move_camera_by_click()
+
+/turf/AIShiftClick(mob/living/silicon/ai/user)
+	if(!user.linked_artillery)
+		to_chat(user, span_notice("No linked mortar found."))
+		return
+	
+	var/area/A = get_area(src)
+	if(istype(A) && A.ceiling >= CEILING_UNDERGROUND)
+		to_chat(user, span_warning("You cannot hit the target. It is probably underground."))
+		return
+	to_chat(user, span_notice("Sending targeting information to [user.linked_artillery]. COORDINATES: X:[x] Y:[y]"))
+	user.linked_artillery.recieve_target(src,user)
+
+
 
 /turf/AICtrlClick(mob/living/silicon/ai/user)
 	var/message = "Rangefinding of selected turf at [loc]. COORDINATES: X:[x] Y:[y]"

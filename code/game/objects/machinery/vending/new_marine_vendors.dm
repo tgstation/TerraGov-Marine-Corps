@@ -164,8 +164,8 @@
 			else
 				vended_item = new idx(loc)
 
-			if(istype(vended_item)) // in case of spawning /obj
-				usr.put_in_any_hand_if_possible(vended_item, warning = FALSE)
+			if(istype(vended_item) && usr.put_in_any_hand_if_possible(vended_item, warning = FALSE))
+				vended_item.pickup(usr)
 
 			if(icon_vend)
 				flick(icon_vend, src)

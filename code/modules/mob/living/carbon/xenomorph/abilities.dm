@@ -228,8 +228,6 @@
 	switch(X.selected_resin)
 		if(/obj/alien/resin/sticky)
 			build_resin_modifier = 0.5
-		if(/obj/structure/mineral_door/resin)
-			build_resin_modifier = 2
 
 	return (base_wait + scaling_wait - max(0, (scaling_wait * X.health / X.maxHealth))) * build_resin_modifier
 
@@ -328,8 +326,6 @@
 	switch(X.selected_resin)
 		if(/obj/alien/resin/sticky)
 			plasma_cost = initial(plasma_cost) / 3
-		if(/obj/structure/mineral_door/resin)
-			plasma_cost = initial(plasma_cost) * 3
 
 	if(new_resin)
 		add_cooldown(SSmonitor.gamestate == SHUTTERS_CLOSED ? get_cooldown()/2 : get_cooldown())
@@ -1059,7 +1055,7 @@
 	var/mob/living/carbon/xenomorph/xenoowner = owner
 	var/datum/action/xeno_action/set_agressivity/set_agressivity = xenoowner.actions_by_path[/datum/action/xeno_action/set_agressivity]
 	if(set_agressivity)
-		SEND_SIGNAL(owner, ESCORTING_ATOM_BEHAVIOUR_CHANGED, set_agressivity.minions_agressive) //New escorting ais should have the same behaviour as old one
+		SEND_SIGNAL(owner, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED, set_agressivity.minions_agressive) //New escorting ais should have the same behaviour as old one
 
 /datum/action/xeno_action/set_agressivity
 	name = "Set minions behavior"
@@ -1075,7 +1071,7 @@
 
 /datum/action/xeno_action/set_agressivity/action_activate()
 	minions_agressive = !minions_agressive
-	SEND_SIGNAL(owner, ESCORTING_ATOM_BEHAVIOUR_CHANGED, minions_agressive)
+	SEND_SIGNAL(owner, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED, minions_agressive)
 	update_button_icon()
 
 /datum/action/xeno_action/set_agressivity/update_button_icon()
