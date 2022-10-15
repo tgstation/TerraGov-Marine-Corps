@@ -74,7 +74,7 @@
 	ability_name = "pounce"
 	plasma_cost = 10
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_SAVAGE,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_POUNCE,
 	)
 	use_state_flags = XACT_USE_BUCKLED
 	///How far can we pounce.
@@ -212,7 +212,7 @@
 	plasma_cost = 75
 	cooldown_timer = 10 SECONDS
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_SAVAGE,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_EVASION,
 	)
 	///Whether evasion is currently active
 	var/evade_active = FALSE
