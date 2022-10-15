@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes: 
+  - balance: "Set the AI artillery aiming module to 10 in engineering vendor also"
