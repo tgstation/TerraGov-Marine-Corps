@@ -41,7 +41,7 @@
 	return ..()
 
 
-/obj/item/defibrillator/update_icon()
+/obj/item/defibrillator/update_icon_state()
 	icon_state = "defib"
 	if(ready)
 		icon_state += "_out"
@@ -328,5 +328,8 @@
 /obj/item/defibrillator/gloves/proc/on_unarmed_attack(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	attack(target,user)
 
-/obj/item/defibrillator/gloves/update_icon()
+/obj/item/defibrillator/gloves/update_icon_state()
 	return
+
+/obj/item/defibrillator/gloves/attack_hand(mob/living/user)
+	. = ..()
