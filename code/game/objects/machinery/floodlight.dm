@@ -81,7 +81,7 @@
 	set_light(brightness_on)
 
 /obj/machinery/floodlightcombat
-	name = "armoured floodlight"
+	name = "Armored Floodlight"
 	icon = 'icons/obj/machines/floodlight.dmi'
 	icon_state = "floodlightcombat_off"
 	anchored = FALSE
