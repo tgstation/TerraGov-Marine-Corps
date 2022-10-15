@@ -27,13 +27,13 @@
 	if(!choices || !weights)
 		return null
 
-    //Build a range of weights
+	//Build a range of weights
 	var/max_num = 0
 	for(var/X in weights)
 		if(isnum(X))
 			max_num += X
 
-    //Now roll in the range.
+	//Now roll in the range.
 	var/weighted_num = rand(1,max_num)
 	var/running_total, i
 	//Loop through all possible choices
