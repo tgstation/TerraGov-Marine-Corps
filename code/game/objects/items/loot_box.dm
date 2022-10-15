@@ -4,10 +4,15 @@
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "lootbox"
 	item_state = "lootbox"
+	///list of the lowest probability drops
 	var/list/legendary_list
+	///list of rare propability drops
 	var/list/rare_list
+	///list of uncommon drops
 	var/list/uncommon_list
+	///list of common drops
 	var/list/common_list
+	///the probabilities of the different drop lists being chosen
 	var/list/weights = list(10, 20, 30, 40)
 
 /obj/item/loot_box/ex_act()
@@ -23,6 +28,7 @@
 	user.visible_message("[user] pulled a [loot_pick.name] out of the [src]!")
 	qdel(src)
 
+///Makes a weighted choice on the different loot tables based on their respective probabilities
 /obj/item/loot_box/proc/weightedprob(choices[], weights[])
 	if(!choices || !weights)
 		return null
