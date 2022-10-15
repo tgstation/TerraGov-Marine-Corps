@@ -92,7 +92,7 @@
 	icon_state = ""
 	var/late = FALSE
 
-/obj/effect/mapping_helpers/Initialize()a
+/obj/effect/mapping_helpers/Initialize()
 	. = ..()
 	return late ? INITIALIZE_HINT_LATELOAD : INITIALIZE_HINT_QDEL
 
@@ -149,24 +149,27 @@
 	if(!mapload)
 		log_world("### MAP WARNING, [src] spawned outside of mapload!")
 		return
+
+/obj/effect/mapping_helpers/area_flag_injector
+	name = "Area flag Injector"
+	var/flag_type = NONE
+	icon_state = "area_flag_injector"
+
+/obj/effect/mapping_helpers/area_flag_injector/Initialize(mapload)
+	. = ..()
+	var/area/area = get_area(src)
+	area.flags_area |= flag_type
+
+/obj/effect/mapping_helpers/area_flag_injector/marine_base
+	flag_type = MARINE_BASE
+
+
 //	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
 //	if(airlock)
 //		airlock.unres_sides ^= dir
 //	else
 //		log_world("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
 
-
-/obj/effect/mapping_helpers/area_flag_injector
-	name = "Component Injector"
-	var/flag_type = NONE
-
-/obj/effect/mapping_helpers/area_flag_injector/Initialize()
-	. = ..()
-	var/area/area = get_area(src)
-	area.flags_area |= flag_type
-
-/obj/effect/mapping_helpers/area_flag_injector/marine_base
-	var/flag_type = MARINE_BASE
 
 //needs to do its thing before spawn_rivers() is called
 /*
