@@ -384,7 +384,7 @@ should be alright.
 	do_toggle_firemode()
 
 
-/obj/item/weapon/gun/proc/do_toggle_firemode(datum/source, new_firemode)
+/obj/item/weapon/gun/proc/do_toggle_firemode(datum/source, datum/keybinding, new_firemode)
 	SIGNAL_HANDLER
 	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))//can't toggle mid burst
 		return

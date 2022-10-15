@@ -68,6 +68,10 @@
 /datum/action/item_action/firemode
 	var/action_firemode
 	var/obj/item/weapon/gun/holder_gun
+	// just here so players see it
+	keybinding_signals = list(
+		KEYBINDING_ALTERNATE = COMSIG_KB_FIREMODE,
+	)
 	use_obj_appeareance = FALSE
 
 
@@ -104,15 +108,10 @@
 /datum/action/item_action/aim_mode
 	name = "Take Aim"
 	action_icon_state = "aim_mode"
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_KB_AIMMODE,
+	)
 	use_obj_appeareance = FALSE
-
-/datum/action/item_action/aim_mode/give_action(mob/M)
-	. = ..()
-	RegisterSignal(M, COMSIG_KB_AIMMODE, .proc/action_activate)
-
-/datum/action/item_action/aim_mode/remove_action(mob/M)
-	UnregisterSignal(M, COMSIG_KB_AIMMODE, .proc/action_activate)
-	return ..()
 
 /datum/action/item_action/aim_mode/action_activate()
 	var/obj/item/weapon/gun/I = target
