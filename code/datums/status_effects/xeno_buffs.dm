@@ -155,19 +155,15 @@
 /// Shares heals with the linked xeno.
 /datum/status_effect/stacking/essence_link/proc/share_heal(datum/source, amount, amount_mod, passive)
 	SIGNAL_HANDLER
-	var/mob/living/carbon/xenomorph/heal_owner
 	var/mob/living/carbon/xenomorph/heal_target
 
 	if(source == link_target)
-		heal_owner = link_target
 		heal_target = link_owner
 	else
-		heal_owner = link_owner
 		heal_target = link_target
 
 	// Prevents actual damage, decimals of 0, and passive healing.
 	if(amount > -1 || passive)
-		message_admins("amount is [amount], passive is [passive]")
 		return
 
 	// Prevents duplicate heals. Some heals restore 2 damage types at once, and we also have 2 signals.
