@@ -18991,8 +18991,9 @@
 /turf/open/floor/mainship/tcomms,
 /area/sulaco/telecomms)
 "niS" = (
+/obj/structure/window/framed/mainship/gray/toughened,
 /obj/docking_port/stationary/marine_dropship/crash_target,
-/turf/closed/wall/mainship/gray,
+/turf/open/floor/plating/platebotc,
 /area/sulaco/bridge/office)
 "nka" = (
 /obj/structure/cable,
@@ -53897,7 +53898,7 @@ aol
 edm
 arc
 avr
-niS
+avr
 avr
 azU
 avr
@@ -54925,7 +54926,7 @@ aoi
 jGA
 arc
 avr
-awO
+niS
 dSA
 awO
 avr
