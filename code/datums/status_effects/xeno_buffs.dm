@@ -204,8 +204,7 @@
 /// Updates the link's appearance.
 /datum/status_effect/stacking/essence_link/proc/update_beam()
 	var/beam_alpha = round(255 / (max_stacks+1 - stacks))
-	if(current_beam)
-		current_beam?.visuals.alpha = beam_alpha
+	current_beam?.visuals.alpha = beam_alpha
 
 // ***************************************
 // *********** Salve Regeneration
@@ -216,6 +215,7 @@
 	tick_interval = 2 SECONDS
 	status_type = STATUS_EFFECT_REFRESH
 	alert_type = null
+	/// The owner of this buff.
 	var/mob/living/carbon/xenomorph/buff_owner
 
 /datum/status_effect/salve_regen/on_apply()
