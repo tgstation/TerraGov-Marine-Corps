@@ -64,7 +64,23 @@
 	end_message = span_boldannounce("The downpour gradually slows to a light shower.")
 	end_overlay = "rain_low"
 
-	aesthetic = TRUE
-
 	probability = 60
 	repeatable = TRUE
+
+/datum/weather/acid_rain/harmless/weather_act(mob/living/carbon/human/L)
+	cleanup(L)
+
+/datum/weather/acid_rain/proc/cleanup(mob/living/carbon/human/H)
+	if(!ishuman(H))
+		return
+	if(H.back?.clean_blood())
+		H.update_inv_back()
+	if(H.wear_suit?.clean_blood())
+		H.update_inv_wear_suit()
+	if(H.w_uniform?.clean_blood())
+		H.update_inv_w_uniform()
+	if(H.gloves?.clean_blood())
+		H.update_inv_gloves()
+	if(H.shoes?.clean_blood())
+		H.update_inv_shoes()
+	H.clean_blood()
