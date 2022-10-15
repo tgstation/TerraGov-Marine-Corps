@@ -1336,7 +1336,7 @@ TUNNEL
 
 	var/mob/living/carbon/xenomorph/X = user
 	var/heal_amount = max(healing_amount_min, healing_amount_max_health_scaling * X.xeno_caste.max_health)
-	HEAL_XENO_DAMAGE(X,heal_amount)
+	HEAL_XENO_DAMAGE(X, heal_amount, FALSE)
 	playsound(user, "alien_drool", 25)
 	balloon_alert(X, "Health restored")
 	to_chat(X, span_xenowarning("We feel a sudden soothing chill as [src] tends to our wounds."))

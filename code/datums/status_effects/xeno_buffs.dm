@@ -112,8 +112,8 @@
 		COOLDOWN_START(src, plasma_warning, plasma_warning_cooldown)
 		return
 	var/heal_remainder = max(0, heal_amount - link_target.getBruteLoss())
-	link_target.adjustBruteLoss(-heal_amount, signal = FALSE)
-	link_target.adjustFireLoss(-heal_remainder, signal = FALSE)
+	link_target.adjustBruteLoss(-heal_amount, passive = TRUE)
+	link_target.adjustFireLoss(-heal_remainder, passive = TRUE)
 	link_owner.use_plasma(plasma_cost)
 
 /// Removes the status effect on death.
@@ -153,7 +153,7 @@
 	buff_target.apply_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING)
 
 /// Shares heals with the linked xeno.
-/datum/status_effect/stacking/essence_link/proc/share_heal(datum/source, amount)
+/datum/status_effect/stacking/essence_link/proc/share_heal(datum/source, amount, amount_mod, passive)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/heal_owner
 	var/mob/living/carbon/xenomorph/heal_target
@@ -165,8 +165,9 @@
 		heal_owner = link_owner
 		heal_target = link_target
 
-	// Prevents actual damage, decimals of 0, and healing gained through resting.
-	if(amount > -1 || heal_owner.lying_angle)
+	// Prevents actual damage, decimals of 0, and passive healing.
+	if(amount > -1 || passive)
+		message_admins("amount is [amount], passive is [passive]")
 		return
 
 	// Prevents duplicate heals. Some heals restore 2 damage types at once, and we also have 2 signals.
@@ -178,8 +179,8 @@
 	new /obj/effect/temp_visual/healing(get_turf(heal_target))
 	var/heal_amount = clamp(abs(amount) * (DRONE_ESSENCE_LINK_SHARED_HEAL * stacks), 0, heal_target.maxHealth)
 	var/heal_remainder = max(0, heal_amount - heal_target.getBruteLoss())
-	heal_target.adjustBruteLoss(-heal_amount, signal = FALSE)
-	heal_target.adjustFireLoss(-heal_remainder, signal = FALSE)
+	heal_target.adjustBruteLoss(-heal_amount, passive = TRUE)
+	heal_target.adjustFireLoss(-heal_remainder, passive = TRUE)
 	heal_target.adjust_sunder(-heal_amount/20)
 	heal_target.balloon_alert(heal_target, "Shared heal: +[heal_amount + heal_remainder]")
 
@@ -236,8 +237,8 @@
 	new /obj/effect/temp_visual/healing(get_turf(buff_owner))
 	var/heal_amount = buff_owner.maxHealth * 0.01
 	var/heal_remainder = max(0, heal_amount - buff_owner.getBruteLoss())
-	buff_owner.adjustBruteLoss(-heal_amount, signal = FALSE)
-	buff_owner.adjustFireLoss(-heal_remainder, signal = FALSE)
+	buff_owner.adjustBruteLoss(-heal_amount, passive = TRUE)
+	buff_owner.adjustFireLoss(-heal_remainder, passive = TRUE)
 	buff_owner.adjust_sunder(-1)
 	return ..()
 
@@ -390,7 +391,7 @@
 	to_chat(owner_xeno, span_notice("We feel our wounds close up."))
 
 	var/amount = owner_xeno.maxHealth * GORGER_REJUVENATE_HEAL
-	HEAL_XENO_DAMAGE(owner_xeno, amount)
+	HEAL_XENO_DAMAGE(owner_xeno, amount, FALSE)
 	tick_damage = 0
 
 ///Handles damage received when the status effect is active
@@ -577,7 +578,7 @@
 /datum/status_effect/xeno_carnage/proc/do_carnage_slash(datum/source, mob/living/target, damage)
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	var/owner_heal = healing_on_hit
-	HEAL_XENO_DAMAGE(owner_xeno, owner_heal)
+	HEAL_XENO_DAMAGE(owner_xeno, owner_heal, FALSE)
 	adjustOverheal(owner_xeno, owner_heal * 0.5)
 
 	if(plasma_mod >= HIGN_THRESHOLD)
@@ -593,7 +594,7 @@
 			if(target_xeno == owner_xeno)
 				continue
 			var/heal_amount = healing_on_hit
-			HEAL_XENO_DAMAGE(target_xeno, heal_amount)
+			HEAL_XENO_DAMAGE(target_xeno, heal_amount, FALSE)
 			new /obj/effect/temp_visual/telekinesis(get_turf(target_xeno))
 			to_chat(target_xeno, span_notice("You feel your wounds being restored by [owner_xeno]'s pheromones."))
 
@@ -638,7 +639,7 @@
 		X.remove_status_effect(STATUS_EFFECT_XENO_FEAST)
 		return
 	var/heal_amount = X.maxHealth*0.08
-	HEAL_XENO_DAMAGE(X, heal_amount)
+	HEAL_XENO_DAMAGE(X, heal_amount, FALSE)
 	adjustOverheal(X, heal_amount / 2)
 	X.use_plasma(plasma_drain)
 
