@@ -308,7 +308,6 @@
 	ready = TRUE
 	ready_needed = FALSE
 	flags_equip_slot = ITEM_SLOT_GLOVES
-	soft_armor =
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/clothing/gloves.dmi'
 	item_state_worn = TRUE
