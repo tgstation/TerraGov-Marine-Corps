@@ -1,0 +1,4 @@
+author: "RipGrayson"
+delete-after: True
+changes: 
+  - bugfix: "The booze dispenser can dispense beer again."
