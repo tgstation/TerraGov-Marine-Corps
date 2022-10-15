@@ -18,7 +18,9 @@
 	var/loot_class = weightedprob(choices, weights)
 	var/loot_pick = pick(loot_class)
 	loot_pick = new loot_pick(loc)
-	user.put_in_hands(loot_pick)
+	if(isitem)
+		user.put_in_hands(loot_pick)
+	user.visible_message("[user] pulled a [attached_item] out of the [src]!")
 	qdel(src)
 
 /obj/item/loot_box/proc/weightedprob(choices[], weights[])
