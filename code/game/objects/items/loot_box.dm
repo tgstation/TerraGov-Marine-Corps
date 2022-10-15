@@ -52,15 +52,25 @@
 		/obj/item/weapon/karambit/case_hardened,
 	)
 	rare_list = list(
-		/obj/vehicle/ridden/motorbike,
 		/obj/vehicle/unmanned,
+		/obj/item/weapon/gun/rifle/sniper/antimaterial,
+		/obj/item/weapon/gun/rifle/tx8,
+		/obj/item/weapon/gun/minigun,
+		/obj/item/weapon/gun/launcher/rocket/sadar,
+		/obj/item/weapon/gun/rifle/railgun,
+		/obj/item/weapon/gun/rifle/standard_autosniper,
+		/obj/item/weapon/gun/shotgun/zx76,
 		/obj/item/storage/belt/champion,
 	)
 	uncommon_list = list(
 		/obj/item/weapon/gun/revolver/mateba,
 		/obj/item/storage/fancy/crayons,
 		/obj/item/weapon/claymore,
-		/obj/item/tool/soap/deluxe,
+		/obj/vehicle/ridden/motorbike,
+		/obj/item/weapon/gun/launcher/rocket/oneuse,
+		/obj/item/weapon/gun/rifle/m412l1_hpr,
+		/obj/item/weapon/gun/shotgun/som,
+		/obj/item/loot_box/marine, //reroll time
 	)
 	common_list = list(
 		/obj/item/clothing/head/strawhat,
