@@ -13,7 +13,7 @@
 	return ..()
 
 /datum/round_event/queen_mothers_plasma_boost/start()
-	var/sound/queen_sound = sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS, volume = 50))
+	var/sound/queen_sound = sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS, volume = 50)
 	xeno_message("The Queen Mother has refilled the empty plasma stores of our hive. She expects great things, do not fail her.")
 	for(var/mob/living/carbon/xenomorph/boosted_xeno in GLOB.alive_xeno_list)
 		SEND_SOUND(receiving_xeno, queen_sound)
