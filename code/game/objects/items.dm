@@ -129,6 +129,16 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	var/active = FALSE
 
+	//Trick vars
+	///Sound played when you spin the item like the cool dude you are
+	var/spin_sound = 'sound/effects/spin.ogg'
+	///Sound played when you catch your item after a cool trick
+	var/thud_sound = 'sound/effects/thud.ogg'
+	///Delay between tricks
+	var/trick_delay = 6
+	///Time of last trick
+	var/recent_trick //So they're not spamming tricks.
+
 
 /obj/item/Initialize()
 
@@ -1265,3 +1275,94 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 ///applies any accessory the item may have, called by make_worn_icon().
 /obj/item/proc/apply_accessories(mutable_appearance/standing)
 	return standing
+
+//fancy tricks
+
+///Checks to see if you successfully perform a trick, and what kind
+/obj/item/proc/do_trick(mob/living/carbon/human/user)
+	if(world.time < (recent_trick + trick_delay) )
+		return FALSE
+	if(!istype(user))
+		return FALSE
+	var/chance = -5
+	chance = user.health < 6 ? 0 : user.health - 5
+
+	var/obj/item/double = user.get_inactive_held_item()
+	if(prob(chance))
+		switch(rand(1,7))
+			if(1)
+				basic_spin_trick(user, -1)
+			if(2)
+				basic_spin_trick(user, 1)
+			if(3)
+				throw_catch_trick(user)
+			if(4)
+				basic_spin_trick(user, 1)
+			if(5)
+				var/arguments[] = istype(double) ? list(user, 1, double) : list(user, -1)
+				basic_spin_trick(arglist(arguments))
+			if(6)
+				var/arguments[] = istype(double) ? list(user, -1, double) : list(user, 1)
+				basic_spin_trick(arglist(arguments))
+			if(7)
+				if(istype(double))
+					spawn(0)
+						double.throw_catch_trick(user)
+					throw_catch_trick(user)
+				else
+					throw_catch_trick(user)
+	else
+		if(prob(10))
+			to_chat(user, span_warning("You fumble with [src] like an idiot... Uncool."))
+		else
+			user.visible_message(span_info("<b>[user]</b> fumbles with [src] like a huge idiot!"))
+
+	recent_trick = world.time
+
+	return TRUE
+
+///The basic spin trick
+/obj/item/proc/basic_spin_trick(mob/living/carbon/human/user, direction = 1, obj/item/double)
+	set waitfor = 0
+	playsound(user, spin_sound, 25, 1)
+	if(double)
+		user.visible_message("[user] deftly flicks and spins [src] and [double]!",span_notice(" You flick and spin [src] and [double]!"))
+		animation_wrist_flick(double, 1)
+	else
+		user.visible_message("[user] deftly flicks and spins [src]!",span_notice(" You flick and spin [src]!"))
+	animation_wrist_flick(src, direction)
+	sleep(3)
+	if(loc && user) playsound(user, thud_sound, 25, 1)
+
+///The fancy trick. Woah.
+/obj/item/proc/throw_catch_trick(mob/living/carbon/human/user)
+	set waitfor = 0
+	user.visible_message("[user] deftly flicks [src] and tosses it into the air!",span_notice(" You flick and toss [src] into the air!"))
+	var/img_layer = MOB_LAYER+0.1
+	var/image/trick = image(icon,user,icon_state,img_layer)
+	switch(pick(1,2))
+		if(1) animation_toss_snatch(trick)
+		if(2) animation_toss_flick(trick, pick(1,-1))
+
+	invisibility = 100
+	for(var/mob/M in viewers(user))
+		SEND_IMAGE(M, trick)
+	sleep(5)
+	trick.loc = null
+	if(!loc || !user)
+		return
+	invisibility = 0
+	playsound(user, thud_sound, 25, 1)
+
+	if(user.get_active_held_item() != src)
+		return
+
+	if(user.get_inactive_held_item())
+		user.visible_message("[user] catches [src] with the same hand!",span_notice(" You catch [src] as it spins in to your hand!"))
+		return
+	user.visible_message("[user] catches [src] with his other hand!",span_notice(" You snatch [src] with your other hand! Awesome!"))
+	user.temporarilyRemoveItemFromInventory(src)
+	user.put_in_inactive_hand(src)
+	user.swap_hand()
+	user.update_inv_l_hand(0)
+	user.update_inv_r_hand()
