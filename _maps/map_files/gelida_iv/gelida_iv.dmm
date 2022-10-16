@@ -492,15 +492,10 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/caves/west_caves)
 "apq" = (
-/obj/structure/closet,
-/obj/machinery/power/apc/drained,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/prison/whitepurple/full{
-	dir = 4
-	},
-/area/gelida/indoors/a_block/dorms)
+/obj/effect/ai_node,
+/obj/structure/cable,
+/turf/open/floor/prison,
+/area/gelida/indoors/a_block/security)
 "apv" = (
 /obj/structure/platform_decoration{
 	dir = 8
@@ -1956,7 +1951,7 @@
 /obj/structure/platform/gelida{
 	dir = 4
 	},
-/turf/open/floor/grass,
+/turf/open/ground/grass,
 /area/gelida/indoors/a_block/garden)
 "bjN" = (
 /obj/structure/cargo_container/horizontal{
@@ -3743,10 +3738,6 @@
 	dir = 1
 	},
 /area/gelida/indoors/a_block/admin)
-"cug" = (
-/obj/effect/landmark/sensor_tower_patrol,
-/turf/open/floor/prison,
-/area/gelida/indoors/a_block/admin)
 "cun" = (
 /obj/structure/platform/gelida{
 	dir = 1
@@ -3894,6 +3885,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/indoors/a_block/medical)
+"cyV" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
+/turf/open/floor/mainship/stripesquare,
+/area/gelida/indoors/a_block/bridges/op_centre)
 "czh" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
@@ -4738,7 +4733,7 @@
 /area/gelida/landing_zone_1)
 "cWj" = (
 /obj/structure/flora/ausbushes/grassybush,
-/turf/open/floor/grass,
+/turf/open/ground/grass,
 /area/gelida/indoors/a_block/garden)
 "cWF" = (
 /obj/item/stack/sheet/wood,
@@ -6152,7 +6147,8 @@
 "dOS" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
-	name = "\improper Westlock"
+	name = "\improper Westlock";
+	welded = null
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/dorms)
@@ -6198,7 +6194,8 @@
 /area/gelida/caves/west_caves)
 "dQX" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	name = "\improper Eastlock"
+	name = "\improper Eastlock";
+	welded = null
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/hallway)
@@ -6256,7 +6253,7 @@
 /obj/structure/platform/gelida{
 	dir = 1
 	},
-/turf/open/floor/grass,
+/turf/open/ground/grass,
 /area/gelida/indoors/a_block/garden)
 "dTl" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -6577,6 +6574,21 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorm_north)
+"eaD" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	locked = 1;
+	name = "\improper Corporation Dome"
+	},
+/turf/open/floor/mainship/stripesquare,
+/area/gelida/indoors/a_block/corpo)
+"ebe" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	locked = 1;
+	welded = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/mainship/stripesquare,
+/area/gelida/indoors/a_block/dorms)
 "ebg" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison/plate,
@@ -6716,6 +6728,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/gelida/indoors/a_block/executive)
+"eek" = (
+/obj/structure/platform/gelida{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/ground/grass,
+/area/gelida/indoors/a_block/garden)
 "eem" = (
 /obj/structure/table/mainship,
 /obj/item/trash/plate{
@@ -8357,7 +8376,8 @@
 /obj/structure/platform_decoration,
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
-	name = "\improper Westlock"
+	name = "\improper Westlock";
+	welded = 1
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/dorms)
@@ -8773,7 +8793,7 @@
 /obj/structure/platform/gelida{
 	dir = 1
 	},
-/turf/open/floor/grass,
+/turf/open/ground/grass,
 /area/gelida/indoors/a_block/garden)
 "fxl" = (
 /obj/item/clothing/under/liaison_suit/suspenders{
@@ -9132,7 +9152,7 @@
 /obj/structure/platform/gelida{
 	dir = 4
 	},
-/turf/open/floor/grass,
+/turf/open/ground/grass,
 /area/gelida/indoors/a_block/garden)
 "fMQ" = (
 /obj/item/clothing/mask/facehugger/dead{
@@ -9194,7 +9214,7 @@
 	dir = 8
 	},
 /obj/structure/platform/gelida,
-/turf/open/floor/grass,
+/turf/open/ground/grass,
 /area/gelida/indoors/a_block/garden)
 "fOz" = (
 /obj/effect/decal/cleanable/blood/drip,
@@ -9392,7 +9412,8 @@
 "fVE" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
-	name = "\improper Eastlock"
+	name = "\improper Eastlock";
+	welded = null
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/hallway)
@@ -9595,7 +9616,7 @@
 	dir = 4
 	},
 /obj/structure/platform/gelida,
-/turf/open/floor/grass,
+/turf/open/ground/grass,
 /area/gelida/indoors/a_block/garden)
 "gbh" = (
 /obj/structure/platform_decoration{
@@ -9787,6 +9808,7 @@
 /area/gelida/indoors/a_block/bridges/corpo)
 "ghM" = (
 /obj/machinery/door/airlock/mainship/security/glass{
+	locked = 1;
 	name = "\improper Marshall Office Armory";
 	req_access = null
 	},
@@ -10620,7 +10642,7 @@
 /area/gelida/landing_zone_forecon/UD6_Tornado)
 "gHM" = (
 /obj/structure/jungle/planttop1,
-/turf/open/floor/grass,
+/turf/open/ground/grass,
 /area/gelida/indoors/a_block/garden)
 "gHP" = (
 /turf/open/floor/plating/ground/fakesnow/alt,
@@ -12795,6 +12817,7 @@
 	dir = 1;
 	pixel_x = 16
 	},
+/obj/effect/landmark/sensor_tower_patrol,
 /turf/open/floor/prison/whitegreen{
 	dir = 1
 	},
@@ -13223,10 +13246,8 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/machinery/power/apc/drained,
 /obj/structure/table/reinforced/prison,
 /obj/item/tool/pen/blue,
-/obj/structure/cable,
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/indoors/a_block/corpo)
 "imv" = (
@@ -13497,7 +13518,7 @@
 /obj/structure/platform_decoration{
 	dir = 4
 	},
-/turf/open/floor/grass,
+/turf/open/ground/grass,
 /area/gelida/indoors/a_block/garden)
 "iwH" = (
 /obj/structure/platform_decoration,
@@ -13670,7 +13691,7 @@
 	},
 /area/gelida/outdoors/colony_streets/north_street)
 "iBw" = (
-/turf/open/floor/grass,
+/turf/open/ground/grass,
 /area/gelida/indoors/a_block/garden)
 "iBO" = (
 /obj/structure/cargo_container,
@@ -13926,7 +13947,8 @@
 /area/gelida/indoors/a_block/admin)
 "iKo" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	name = "\improper Northlock"
+	name = "\improper Northlock";
+	welded = null
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/mainship/stripesquare,
@@ -16873,7 +16895,7 @@
 /area/gelida/outdoors/colony_streets/central_streets)
 "kKo" = (
 /obj/structure/jungle/plantbot1,
-/turf/open/floor/grass,
+/turf/open/ground/grass,
 /area/gelida/indoors/a_block/garden)
 "kKK" = (
 /turf/open/floor/prison,
@@ -17218,13 +17240,15 @@
 /area/gelida/indoors/a_block/dorms)
 "kWP" = (
 /obj/machinery/door/airlock/mainship/generic{
-	dir = 2
+	dir = 2;
+	locked = 1
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/hallway)
 "kXf" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 8;
+	locked = 1;
 	name = "\improper Wildcatters Office"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -17370,7 +17394,7 @@
 /area/gelida/indoors/lone_buildings/outdoor_bot)
 "lcj" = (
 /obj/structure/flora/ausbushes/lavendergrass,
-/turf/open/floor/grass,
+/turf/open/ground/grass,
 /area/gelida/indoors/a_block/garden)
 "lcm" = (
 /obj/structure/platform_decoration,
@@ -17850,7 +17874,8 @@
 /area/gelida/outdoors/rock)
 "lsj" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 1
+	dir = 1;
+	locked = 1
 	},
 /turf/open/floor/mainship/black/full,
 /area/gelida/indoors/a_block/kitchen)
@@ -18000,6 +18025,7 @@
 /obj/effect/spawner/gibspawner/xeno,
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 8;
+	locked = 1;
 	name = "\improper Wildcatters Office"
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -19339,11 +19365,6 @@
 	},
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/colony_streets/central_streets)
-"mmL" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/landmark/sensor_tower_patrol,
-/turf/open/floor/wood,
-/area/gelida/indoors/a_block/fitness)
 "mmP" = (
 /obj/structure/filingcabinet{
 	pixel_x = -8;
@@ -19790,6 +19811,14 @@
 /obj/effect/spawner/random/tool,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/garage)
+"mCa" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 2;
+	welded = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/mainship/stripesquare,
+/area/gelida/indoors/a_block/dorms)
 "mCj" = (
 /obj/structure/platform_decoration{
 	dir = 1
@@ -20594,6 +20623,7 @@
 /area/gelida/outdoors/colony_streets/north_east_street)
 "nfT" = (
 /obj/machinery/door/airlock/mainship/security/glass{
+	locked = 1;
 	name = "\improper Marshal Office Holding Cell";
 	req_access = null
 	},
@@ -20711,7 +20741,9 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/central_streets)
 "niE" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic,
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	welded = 1
+	},
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/bridges/op_centre)
 "niX" = (
@@ -21684,6 +21716,7 @@
 /area/gelida/outdoors/colony_streets/east_central_street)
 "nOF" = (
 /obj/machinery/door/airlock/mainship/generic{
+	locked = 1;
 	name = "\improper Corporate Liason"
 	},
 /obj/structure/cable,
@@ -23410,7 +23443,7 @@
 /obj/structure/platform/gelida{
 	dir = 4
 	},
-/turf/open/floor/grass,
+/turf/open/ground/grass,
 /area/gelida/indoors/a_block/garden)
 "oWl" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -23590,6 +23623,10 @@
 /obj/structure/largecrate/random,
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/cargo)
+"pbm" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/prison,
+/area/gelida/indoors/a_block/dorms)
 "pbD" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -23962,7 +23999,8 @@
 /area/gelida/outdoors/colony_streets/south_west_street)
 "pli" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 1
+	dir = 1;
+	welded = 1
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/c_block/casino)
@@ -24640,6 +24678,7 @@
 "pIB" = (
 /obj/machinery/door/airlock/mainship/medical{
 	dir = 2;
+	locked = 1;
 	name = "Medical Airlock"
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -25465,7 +25504,7 @@
 "qhc" = (
 /obj/structure/jungle/planttop1,
 /obj/structure/flora/ausbushes/ppflowers,
-/turf/open/floor/grass,
+/turf/open/ground/grass,
 /area/gelida/indoors/a_block/garden)
 "qhj" = (
 /obj/machinery/light{
@@ -25783,7 +25822,7 @@
 /area/gelida/indoors/c_block/bridge)
 "qtm" = (
 /obj/structure/flora/ausbushes/ppflowers,
-/turf/open/floor/grass,
+/turf/open/ground/grass,
 /area/gelida/indoors/a_block/garden)
 "qtB" = (
 /obj/structure/filingcabinet{
@@ -26458,7 +26497,7 @@
 /obj/structure/platform/gelida{
 	dir = 8
 	},
-/turf/open/floor/grass,
+/turf/open/ground/grass,
 /area/gelida/indoors/a_block/garden)
 "qOn" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
@@ -26763,7 +26802,9 @@
 	},
 /area/gelida/indoors/a_block/dorms)
 "qWs" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic,
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	welded = 1
+	},
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/b_block/hydro)
 "qWM" = (
@@ -28380,10 +28421,12 @@
 /obj/structure/platform/gelida{
 	dir = 1
 	},
-/turf/open/floor/grass,
+/turf/open/ground/grass,
 /area/gelida/indoors/a_block/garden)
 "rYJ" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic,
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	locked = 1
+	},
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/c_block/casino)
 "rYO" = (
@@ -29504,7 +29547,7 @@
 /obj/structure/platform/gelida{
 	dir = 4
 	},
-/turf/open/floor/grass,
+/turf/open/ground/grass,
 /area/gelida/indoors/a_block/garden)
 "sFl" = (
 /obj/structure/largecrate/random/secure,
@@ -29737,7 +29780,7 @@
 /obj/structure/platform/gelida{
 	dir = 8
 	},
-/turf/open/floor/grass,
+/turf/open/ground/grass,
 /area/gelida/indoors/a_block/garden)
 "sMS" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
@@ -29924,7 +29967,9 @@
 	},
 /area/gelida/outdoors/colony_streets/north_west_street)
 "sTK" = (
-/obj/machinery/door/airlock/mainship/generic,
+/obj/machinery/door/airlock/mainship/generic{
+	welded = 1
+	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -30260,7 +30305,7 @@
 /area/gelida/indoors/c_block/garage)
 "tdN" = (
 /obj/structure/sink/puddle,
-/turf/open/floor/grass,
+/turf/open/ground/grass,
 /area/gelida/indoors/a_block/garden)
 "tec" = (
 /obj/structure/table/reinforced/prison,
@@ -30511,7 +30556,8 @@
 "tmm" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
-	name = "\improper Canteen"
+	name = "\improper Canteen";
+	welded = 1
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/kitchen)
@@ -31135,7 +31181,7 @@
 /obj/structure/platform_decoration{
 	dir = 8
 	},
-/turf/open/floor/grass,
+/turf/open/ground/grass,
 /area/gelida/indoors/a_block/garden)
 "tJa" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -31313,7 +31359,9 @@
 /turf/closed/ice_rock/singleEnd,
 /area/gelida/outdoors/rock)
 "tQi" = (
-/obj/machinery/door/airlock/mainship/generic,
+/obj/machinery/door/airlock/mainship/generic{
+	welded = 1
+	},
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/c_block/cargo)
 "tQv" = (
@@ -32085,7 +32133,7 @@
 /obj/structure/platform_decoration{
 	dir = 5
 	},
-/turf/open/floor/grass,
+/turf/open/ground/grass,
 /area/gelida/indoors/a_block/garden)
 "upa" = (
 /obj/structure/prop/mainship/gelida/smallwire,
@@ -32387,6 +32435,7 @@
 "uDB" = (
 /obj/machinery/door/airlock/mainship/medical{
 	dir = 2;
+	locked = 1;
 	name = "Medical Airlock"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -32417,7 +32466,9 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/garage)
 "uEs" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic,
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	welded = 1
+	},
 /obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/c_block/casino)
@@ -33306,12 +33357,13 @@
 /turf/open/floor/plating/ground/fakesnow/alt,
 /area/gelida/outdoors/colony_streets/south_west_street)
 "vhC" = (
+/obj/structure/window/framed/colony/reinforced,
 /obj/structure/cable,
-/turf/closed/wall,
+/turf/open/floor/plating,
 /area/gelida/indoors/a_block/security)
 "vhD" = (
 /obj/structure/platform/gelida,
-/turf/open/floor/grass,
+/turf/open/ground/grass,
 /area/gelida/indoors/a_block/garden)
 "vhH" = (
 /obj/structure/prop/mainship/gelida/lightstick{
@@ -36287,7 +36339,7 @@
 /obj/structure/platform/gelida{
 	dir = 4
 	},
-/turf/open/floor/grass,
+/turf/open/ground/grass,
 /area/gelida/indoors/a_block/garden)
 "xie" = (
 /obj/structure/platform_decoration{
@@ -37499,7 +37551,7 @@
 /obj/structure/platform/gelida{
 	dir = 8
 	},
-/turf/open/floor/grass,
+/turf/open/ground/grass,
 /area/gelida/indoors/a_block/garden)
 "xTh" = (
 /obj/machinery/floodlight/colony{
@@ -37689,6 +37741,7 @@
 "xZp" = (
 /obj/machinery/door/airlock/mainship/security/glass{
 	dir = 8;
+	locked = 1;
 	name = "\improper Marshall Head Office";
 	req_access = null
 	},
@@ -37944,7 +37997,6 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/w_rockies)
 "yiU" = (
-/obj/machinery/power/apc/drained,
 /obj/structure/bed/chair{
 	dir = 8
 	},
@@ -46795,7 +46847,7 @@ dZI
 hix
 hix
 cLI
-riu
+mCa
 tfL
 bYk
 jRa
@@ -47672,7 +47724,7 @@ jjX
 tkC
 kpE
 yfp
-apq
+kpE
 qGg
 yfp
 ujy
@@ -48793,7 +48845,7 @@ pej
 fqe
 sJb
 tms
-ruK
+ebe
 vqV
 qzk
 ogT
@@ -51688,7 +51740,7 @@ taP
 stq
 yfp
 odg
-ghj
+pbm
 ghj
 ghj
 ghj
@@ -52082,7 +52134,7 @@ ngb
 jwQ
 rsY
 kVR
-mmL
+kVR
 kVR
 ych
 baD
@@ -56415,7 +56467,7 @@ vky
 dvV
 mWl
 jTv
-gpR
+jTv
 bNZ
 lMU
 jTv
@@ -58072,7 +58124,7 @@ bBz
 eZJ
 ujh
 oUq
-jzP
+eaD
 cuz
 wJx
 jvj
@@ -62773,7 +62825,7 @@ ffR
 qWU
 qZr
 qWU
-aiH
+apq
 lGx
 uqN
 uqN
@@ -62995,7 +63047,7 @@ cgQ
 nwc
 haP
 ixw
-nwc
+lir
 kDG
 vzc
 scM
@@ -63214,10 +63266,10 @@ gLl
 uNy
 xqB
 lir
-cgQ
+twk
 haP
 haP
-mvy
+vhC
 mvy
 mvy
 mvy
@@ -63436,10 +63488,10 @@ haP
 ptl
 rez
 haP
-vhC
-vhC
+haP
+haP
 uoU
-xSW
+eek
 xSW
 xSW
 xSW
@@ -64985,7 +65037,7 @@ juQ
 hWs
 tZb
 eas
-niE
+cyV
 kxB
 koL
 hUv
@@ -65005,7 +65057,7 @@ kxB
 hUv
 kxB
 nja
-niE
+cyV
 dKU
 loO
 tzW
@@ -65035,7 +65087,7 @@ sOJ
 xvC
 mQy
 mQy
-dgW
+iLp
 eOV
 xvC
 auH
@@ -70098,7 +70150,7 @@ poj
 hsf
 uch
 qLo
-cug
+mVh
 kFl
 kFl
 fGk
