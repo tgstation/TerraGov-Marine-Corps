@@ -1459,7 +1459,7 @@ VEHICLES
 /datum/supply_packs/vehicles/droid_combat
 	name = "Combat droid with weapon equipped"
 	contains = list(/obj/vehicle/unmanned/droid)
-	cost = 40
+	cost = 60
 
 /datum/supply_packs/vehicles/droid_scout
 	name = "Scout droid"

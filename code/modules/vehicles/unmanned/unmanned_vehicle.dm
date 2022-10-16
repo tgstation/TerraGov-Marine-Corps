@@ -9,7 +9,7 @@
 	light_range = 6
 	light_power = 3
 	light_system = MOVABLE_LIGHT
-	move_delay = 2.5	//set this to limit the speed of the vehicle
+	move_delay = 3.5	//set this to limit the speed of the vehicle
 	max_integrity = 150
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 	flags_atom = BUMP_ATTACKABLE
@@ -311,14 +311,14 @@
 /obj/vehicle/unmanned/medium
 	name = "UV-M Gecko"
 	icon_state = "medium_uv"
-	move_delay = 3
+	move_delay = 4
 	max_rounds = 200
 	max_integrity = 200
 
 /obj/vehicle/unmanned/heavy
 	name = "UV-H Komodo"
 	icon_state = "heavy_uv"
-	move_delay = 4
+	move_delay = 4.5
 	max_rounds = 200
 	max_integrity = 250
 

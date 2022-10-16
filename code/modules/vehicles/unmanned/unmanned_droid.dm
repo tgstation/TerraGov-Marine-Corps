@@ -2,7 +2,7 @@
 	name = "XN-43-H combat droid"
 	desc = "A prototype combat droid, first deployed as a prototype to fight the xeno menace in the frontier sytems."
 	icon_state = "droidcombat"
-	move_delay = 3
+	move_delay = 3.5
 	max_integrity = 150
 	turret_pattern = PATTERN_DROID
 	can_interact = TRUE
@@ -11,7 +11,7 @@
 	unmanned_flags = HAS_LIGHTS|OVERLAY_TURRET
 	/// Existing signal for Supply console.
 	var/datum/supply_beacon/beacon_datum
-	/// Action to activate suppply antenna. 
+	/// Action to activate suppply antenna.
 	var/datum/action/antenna/antenna
 	/// The mob controlling the droid remotely
 	var/datum/weakref/remote_user
