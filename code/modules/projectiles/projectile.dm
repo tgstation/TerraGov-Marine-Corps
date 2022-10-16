@@ -1231,10 +1231,23 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 /mob/living/carbon/xenomorph/get_hard_armor(armor_type, proj_def_zone)
 	return ..() * get_sunder()
 
-///Returns damage after taking into account both soft and hard armor for the specified damage type. If human and no limb is specified, it takes the weighted average of all available limbs.
-/mob/living/proc/get_armor_modified_damage(damage_amount, armor_type, proj_def_zone)
-	var/hard_armor_modifier = get_hard_armor(armor_type, proj_def_zone) //hard armor is typically used as a flat modifier to damage, applying before soft armor
-	var/soft_armor_modifier = min((1 - (get_soft_armor(armor_type, proj_def_zone) * 0.01)), 1)
+/**
+	Returns damage after taking into account both soft and hard armor for the specified damage type
+
+	Arguments
+	* Damage_amount: The original unmodified damage
+	* armor_type: The type of armor by which the damage will be modified
+	* penetration: How much the damage source might bypass the armour value (optional)
+	* proj_def_zone: What part of the body the damage is targetting (optional)
+
+	Hard armor is calculated as a flat reduction before soft armor is applied as a multiplier.
+	Penetration reduces soft armor by a flat amount, but reduces hard armor as a multiplier.
+	Damage has a lower boundary of 0 to prevent high armour causing damage to heal the victim.
+*/
+/mob/living/proc/get_armor_modified_damage(damage_amount, armor_type, penetration, proj_def_zone)
+	var/hard_armor_modifier = get_hard_armor(armor_type, proj_def_zone)
+	hard_armor_modifier = hard_armor_modifier - (hard_armor_modifier * penetration * 0.01)
+	var/soft_armor_modifier = min((1 - ((get_soft_armor(armor_type, proj_def_zone) - penetration) * 0.01)), 1)
 	return max(((damage_amount - hard_armor_modifier) * soft_armor_modifier), 0)
 
 /mob/living/proc/bullet_soak_effect(obj/projectile/proj)
