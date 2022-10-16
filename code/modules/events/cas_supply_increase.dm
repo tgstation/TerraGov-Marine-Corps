@@ -20,7 +20,6 @@
 	for(var/mob/living/carbon/human/H in GLOB.alive_human_list_faction[FACTION_TERRAGOV])
 		if(ismarinepilotjob(H))
 			cas_points_to_be_added += rand(50,175)
-	if(cas_points_to_be_added > 300) //cap the added points to 300 in case rng really favors pilots
-		cas_points_to_be_added = 300
+	cas_points_to_be_added = min(cas_points_to_be_added , 300)
 	SSpoints.dropship_points += cas_points_to_be_added
 	priority_announce("Due to recycling of discarded ammo casings, our dropship fabricator has absorbed enough material to increase capacity by [cas_points_to_be_added] points.")
