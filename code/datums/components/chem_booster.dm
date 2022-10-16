@@ -237,6 +237,7 @@
 	if(boost_on)
 		STOP_PROCESSING(SSobj, src)
 		wearer.clear_fullscreen("degeneration")
+		vali_necro_timer = world.time - processing_start
 		var/necrotized_counter = FLOOR(min(vali_necro_timer, 20 SECONDS)/200 + (vali_necro_timer-20 SECONDS)/100, 1)
 		if(necrotized_counter >= 1)
 			for(var/X in shuffle(wearer.limbs))
