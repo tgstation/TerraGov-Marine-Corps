@@ -315,10 +315,9 @@
 	G.ceiling_debris_check(2)
 	log_game("[key_name(user)] has fired the [src] at [AREACOORD(T)]")
 
-	var/max_offset_x = round(abs((get_dist(src, T)) - x)/offset_per_turfs)
-	var/max_offset_y = round(abs((get_dist(src, T)) - y)/offset_per_turfs)
+	var/max_offset_x = round(abs((coords["targ_x"] + coords["dial_x"]) - x)/offset_per_turfs)
+	var/max_offset_y = round(abs((coords["targ_y"] + coords["dial_y"]) - y)/offset_per_turfs)
 	spread = max_offset_x + max_offset_y
-
 	var/list/turf_list = list()
 	var/obj/in_chamber
 	var/next_chamber_position = length(chamber_items)
