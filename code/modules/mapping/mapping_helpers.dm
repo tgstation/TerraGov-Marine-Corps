@@ -152,8 +152,9 @@
 
 /obj/effect/mapping_helpers/area_flag_injector
 	name = "Area flag Injector"
-	var/flag_type = NONE
 	icon_state = "area_flag_injector"
+	/// flags to inject to the area this is placed in
+	var/flag_type = NONE
 
 /obj/effect/mapping_helpers/area_flag_injector/Initialize(mapload)
 	. = ..()
