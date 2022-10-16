@@ -111,12 +111,12 @@
 /mob/living/proc/IgniteMob()
 	if(status_flags & GODMODE) //Invulnerable mobs don't get ignited
 		return FALSE
-	if(HAS_TRAIT(src, TRAIT_NON_FLAMMABLE))
+	if(HAS_TRAIT(src, TRAIT_NON_FLAMMABLE) || HAS_TRAIT(src, TRAIT_FIREIMMUNE))
 		return FALSE
 	if(!CHECK_BITFIELD(datum_flags, DF_ISPROCESSING))
 		return FALSE
-	if(get_fire_resist() <= 0 || get_hard_armor("fire", BODY_ZONE_CHEST) >= 100)	//having high fire resist makes you immune
-		return FALSE
+	//if(get_fire_resist() <= 0 || get_hard_armor("fire", BODY_ZONE_CHEST) >= 100)	//having high fire resist makes you immune
+	//	return FALSE
 	if(fire_stacks > 0 && !on_fire)
 		on_fire = TRUE
 		RegisterSignal(src, COMSIG_LIVING_DO_RESIST, .proc/resist_fire)
@@ -175,7 +175,7 @@
 	return
 
 /mob/living/proc/adjust_fire_stacks(add_fire_stacks) //Adjusting the amount of fire_stacks we have on person
-	if(status_flags & GODMODE) //Invulnerable mobs don't get fire stacks
+	if((status_flags & GODMODE) || HAS_TRAIT(src, TRAIT_NON_FLAMMABLE) || HAS_TRAIT(src, TRAIT_FIREIMMUNE)) //Invulnerable or non flammable mobs don't get fire stacks
 		return
 	if(add_fire_stacks > 0)	//Fire stack increases are affected by armor, end result rounded up.
 		add_fire_stacks = CEILING(add_fire_stacks * get_fire_resist(), 1)

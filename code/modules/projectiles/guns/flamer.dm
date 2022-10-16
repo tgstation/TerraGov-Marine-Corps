@@ -244,12 +244,9 @@
 /obj/item/weapon/gun/flamer/proc/flame_turf(turf/turf_to_ignite, mob/living/user, burn_time, burn_level, fire_color = "red")
 	turf_to_ignite.ignite(burn_time, burn_level, fire_color)
 
-	var/fire_mod
 	for(var/mob/living/mob_caught in turf_to_ignite) //Deal bonus damage if someone's caught directly in initial stream
-		if(mob_caught.stat == DEAD)
+		if((mob_caught.stat == DEAD) || HAS_TRAIT(mob_caught, TRAIT_FIREIMMUNE))
 			continue
-
-		fire_mod = mob_caught.get_fire_resist()
 
 		if(isxeno(mob_caught))
 			var/mob/living/carbon/xenomorph/xeno_caught = mob_caught
@@ -267,10 +264,7 @@
 				else
 					log_combat(user, human_caught, "flamed", src)
 
-			if(human_caught.hard_armor.getRating("fire") >= 100)
-				continue
-
-		mob_caught.take_overall_damage(0, rand(burn_level, (burn_level * mob_flame_damage_mod)) * fire_mod, updating_health = TRUE) // Make it so its the amount of heat or twice it for the initial blast.
+		mob_caught.take_overall_damage(0, get_armor_modified_damage(rand(burn_level, (burn_level * mob_flame_damage_mod)), FIRE), updating_health = TRUE) // Make it so its the amount of heat or twice it for the initial blast.
 		mob_caught.adjust_fire_stacks(rand(5, (burn_level * mob_flame_damage_mod)))
 		mob_caught.IgniteMob()
 
@@ -556,14 +550,15 @@ GLOBAL_DATUM_INIT(flamer_particles, /particles/flamer_fire, new)
 
 // override this proc to give different walking-over-fire effects
 /mob/living/proc/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
-	if(status_flags & (INCORPOREAL|GODMODE))
+	if((status_flags & (INCORPOREAL|GODMODE)) || HAS_TRAIT(src, TRAIT_FIREIMMUNE))
 		return FALSE
 	if(!CHECK_BITFIELD(flags_pass, PASSFIRE)) //Pass fire allow to cross fire without being ignited
 		adjust_fire_stacks(burnlevel) //Make it possible to light them on fire later.
 		IgniteMob()
-	fire_mod *= get_fire_resist()
-	take_overall_damage(0, round(burnlevel*0.5)* fire_mod, updating_health = TRUE)
-	to_chat(src, span_danger("You are burned!"))
+	var/damage = get_armor_modified_damage(round(burnlevel*0.5), FIRE)
+	if(damage)
+		take_overall_damage(0, damage, updating_health = TRUE)
+		to_chat(src, span_danger("You are burned!"))
 
 /obj/flamer_fire/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
@@ -576,9 +571,6 @@ GLOBAL_DATUM_INIT(flamer_particles, /particles/flamer_fire, new)
 		qdel(src)
 
 /mob/living/carbon/human/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
-	if(hard_armor.getRating("fire") >= 100)
-		take_overall_damage_armored(round(burnlevel * 0.2) * fire_mod, BURN, "fire", updating_health = TRUE)
-		return
 	. = ..()
 	if(isxeno(pulledby))
 		var/mob/living/carbon/xenomorph/X = pulledby
@@ -643,7 +635,7 @@ GLOBAL_DATUM_INIT(flamer_particles, /particles/flamer_fire, new)
 /mob/living/flamer_fire_act(burnlevel)
 	if(!burnlevel)
 		return
-	if(status_flags & (INCORPOREAL|GODMODE)) //Ignore incorporeal/invul targets
+	if((status_flags & (INCORPOREAL|GODMODE)) || HAS_TRAIT(src, TRAIT_FIREIMMUNE)) //Ignore incorporeal/invul targets
 		return
 	adjust_fire_stacks(burnlevel) //If I stand in the fire i deserve all of this. Also Napalm stacks quickly.
 	IgniteMob()

@@ -124,7 +124,7 @@
 /// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).
 #define TRAIT_HANDS_BLOCKED "handsblocked"
 #define TRAIT_STUNIMMUNE "stun_immunity"
-#define TRAIT_FIRERESISTANT "fire_resistant" // Won't catch on fire
+#define TRAIT_FIREIMMUNE "fire_resistant" // won't be hurt by fire
 #define TRAIT_BATONIMMUNE "baton_immunity"
 #define TRAIT_SLEEPIMMUNE "sleep_immunity"
 #define TRAIT_FLASHBANGIMMUNE "flashbang_immunity"
