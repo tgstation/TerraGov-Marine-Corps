@@ -53,8 +53,9 @@
 		L.adjustFireLoss(7)
 		to_chat(L, span_boldannounce("You feel the acid rain melting you away!"))
 	cleanup(L, TRUE)
-	if(prob(35))
+	if(L.on_fire && prob(10))
 		L.ExtinguishMob()
+		to_chat(L, span_warning("As the acidic rain burns your body away, it also extinguishes the fire with a steamy hiss."))
 
 /datum/weather/acid_rain/harmless
 
@@ -72,8 +73,10 @@
 
 /datum/weather/acid_rain/harmless/weather_act(mob/living/L)
 	cleanup(L)
-	L.ExtinguishMob()
-	L.fire_stacks = -30
+	if(L.on_fire && prob(20))
+		L.ExtinguishMob()
+		L.fire_stacks = -30
+		to_chat(L, span_warning("With a hiss, the heavy rain extinguishes the fire on your body, leaving nasty burns behind."))
 
 /datum/weather/acid_rain/proc/cleanup(mob/living/L, acid = FALSE)
 	if(!ishuman(L))
@@ -98,7 +101,10 @@
 		"Heavy raindrops hit your face as the rain thoroughly soaks your body!",
 		"As you move through the heavy rain, your clothes become completely waterlogged!",
 	)
-	if(!acid)
-		to_chat(H, span_warning(wetmessage))
-	else
-		to_chat(H, span_warning("Corrosive acid seeps into your outfit, dissolving dirt and blood as it soaks in!"))
+	if(prob(20))
+		if(isrobot(L))
+			return
+		if(acid)
+			to_chat(H, span_warning("Corrosive acid seeps into your outfit, dissolving dirt and blood as it soaks in!"))
+		else
+			to_chat(H, span_warning(wetmessage))
