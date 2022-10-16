@@ -1823,7 +1823,7 @@ datum/ammo/bullet/revolver/tp44
 	name = "80mm"
 	icon_state = "mortar"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
-	shell_speed = 1
+	shell_speed = 1.25
 	damage = 0
 	penetration = 0
 	sundering = 0
