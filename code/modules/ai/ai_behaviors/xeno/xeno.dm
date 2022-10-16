@@ -246,6 +246,10 @@
 
 /datum/ai_behavior/xeno/peaceful
 	is_offered_on_creation = FALSE
+	base_action = MOVING_TO_NODE
+
+/datum/ai_behavior/xeno/peacefull/start_ai()
+	late_initialize()
 
 /datum/ai_behavior/xeno/peaceful/look_for_new_state()
 	var/mob/living/living_parent = mob_parent
