@@ -3,6 +3,7 @@
 
 #define TALLY_MORTAR  1
 #define TALLY_HOWITZER 2
+#define TALLY_ROCKET_ARTY 3
 
 /obj/machinery/deployable/mortar
 	anchored = TRUE
@@ -18,7 +19,7 @@
 		"coords_three" = list("name"="Target 3", "targ_x" = 0, "targ_y" = 0, "dial_x" = 0, "dial_y" = 0)
 		)
 	/// Number of turfs to offset from target by 1
-	var/offset_per_turfs = 10
+	var/offset_per_turfs = 15
 	/// Spread on target
 	var/spread
 	var/busy = 0
@@ -32,11 +33,16 @@
 	var/minimum_range = 10
 	///Time it takes for the mortar to cool off to fire
 	var/cool_off_time = 1 SECONDS
+	///How long to wait before next shot
 	var/fire_delay = 0
-	var/current_rounds = 0
+	///Amount of shells that can be loaded
 	var/max_rounds = 1
-	var/fire_amount = 1
-	var/obj/projectile/in_chamber = null
+	///List of stored ammunition items.
+	var/list/obj/chamber_items = list()
+	///Time to load a shell
+	var/reload_time = 0.5 SECONDS
+	///Amount of shells to fire if this is empty all shells in chamber items list will fire
+	var/fire_amount
 
 	/// What type of shells can we use?
 	var/list/allowed_shells = list(
@@ -59,6 +65,8 @@
 	. = ..()
 	if(ai_targeter)
 		. += span_notice("They have an AI linked targeting device on.")
+	. += span_notice("Alt-Right-Click to anchor.")
+	. += span_notice("Right-Click to fire the loaded shell.")
 
 /obj/machinery/deployable/mortar/attack_hand(mob/living/user)
 	. = ..()
@@ -159,8 +167,8 @@
 	if(istype(I, /obj/item/mortal_shell))
 		var/obj/item/mortal_shell/mortar_shell = I
 
-		if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
-			to_chat(user, span_warning("Your programming restricts operating heavy weaponry."))
+		if(length(chamber_items) >= max_rounds)
+			to_chat(user, span_warning("You cannot fit more than [max_rounds] shells in there!"))
 			return
 
 		if(!(I.type in allowed_shells))
@@ -171,35 +179,11 @@
 			to_chat(user, span_warning("Someone else is currently using [src]."))
 			return
 
-		if(!is_ground_level(z))
-			to_chat(user, span_warning("You cannot fire [src] here."))
-			return
-
-		if(coords["targ_x"] == 0 && coords["targ_y"] == 0) //Mortar wasn't set
-			to_chat(user, span_warning("[src] needs to be aimed first."))
-			return
-
-		var/turf/selfown = locate((coords["targ_x"] + coords["dial_x"]), (coords["targ_y"] + coords["dial_y"]), z)
-		if(get_dist(loc, selfown) < minimum_range)
-			to_chat(user, span_warning("You cannot target this coordinate, it is too close to your mortar."))
-			return
-
-		var/turf/T = locate(coords["targ_x"] + coords["dial_x"], coords["targ_y"]  + coords["dial_x"], z)
-		dir = get_dir(src, T)
-		if(!isturf(T))
-			to_chat(user, span_warning("You cannot fire [src] to this target."))
-			return
-
-		var/area/A = get_area(T)
-		if(istype(A) && A.ceiling >= CEILING_UNDERGROUND)
-			to_chat(user, span_warning("You cannot hit the target. It is probably underground."))
-			return
-
 		user.visible_message(span_notice("[user] starts loading \a [mortar_shell.name] into [src]."),
 		span_notice("You start loading \a [mortar_shell.name] into [src]."))
 		playsound(loc, reload_sound, 50, 1)
 		busy = TRUE
-		if(!do_after(user, 15, TRUE, src, BUSY_ICON_HOSTILE))
+		if(!do_after(user, reload_time, TRUE, src, BUSY_ICON_HOSTILE))
 			busy = FALSE
 			return
 
@@ -207,22 +191,9 @@
 
 		user.visible_message(span_notice("[user] loads \a [mortar_shell.name] into [src]."),
 		span_notice("You load \a [mortar_shell.name] into [src]."))
-		visible_message("[icon2html(src, viewers(src))] [span_danger("The [name] fires!")]")
+		chamber_items.Add(mortar_shell)
+		user.balloon_alert(user, "Right click to fire shell.")
 		qdel(mortar_shell)
-		var/turf/G = get_turf(src)
-		G.ceiling_debris_check(2)
-		log_game("[key_name(user)] has fired the [src] at [AREACOORD(T)]")
-
-		var/max_offset = round(abs((get_dist(src, T)) - x)/offset_per_turfs)
-		spread = max_offset
-
-		var/list/turf_list = list()
-		for(var/turf/spread_turf in range(spread, T))
-			turf_list += spread_turf
-		user.balloon_alert(user, spread)
-		for(var/i = 1 to fire_amount)
-			var/turf/impact_turf = pick(turf_list)
-			addtimer(CALLBACK(src, .proc/begin_fire, impact_turf, mortar_shell), (i-1)*fire_delay)
 
 	if(istype(I, /obj/item/ai_target_beacon))
 		if(!GLOB.ai_list.len)
@@ -251,21 +222,27 @@
 /obj/machinery/deployable/mortar/proc/begin_fire(target, obj/item/mortal_shell/arty_shell)
 	firing = TRUE
 	for(var/mob/M in range(7))
-		shake_camera(M, 2, 1)
+		shake_camera(M, 1, 1)
 	if(tally_type == TALLY_MORTAR)
-		GLOB.round_statistics.howitzer_shells_fired++
-		SSblackbox.record_feedback("tally", "round_statistics", 1, "howitzer_shells_fired")
-	else if(tally_type == TALLY_HOWITZER)
 		GLOB.round_statistics.mortar_shells_fired++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "mortar_shells_fired")
+	else if(tally_type == TALLY_HOWITZER)
+		GLOB.round_statistics.howitzer_shells_fired++
+		SSblackbox.record_feedback("tally", "round_statistics", 1, "howitzer_shells_fired")
+	else if(tally_type == TALLY_ROCKET_ARTY)
+		GLOB.round_statistics.rocket_shells_fired++
+		SSblackbox.record_feedback("tally", "round_statistics", 1, "rocket_shells_fired")
 	playsound(loc, fire_sound, 50, 1)
 	flick(icon_state + "_fire", src)
 	var/obj/projectile/shell = new /obj/projectile(loc)
 	var/datum/ammo/ammo = GLOB.ammo_list[arty_shell.ammo_type]
 	shell.generate_bullet(ammo)
 	shell.fire_at(target, src, src, get_dist(src, target), ammo.shell_speed)
-	var/distance = get_dist(src, target)
-	addtimer(CALLBACK(src, .proc/falling, target, shell), distance/ammo.shell_speed - 10)
+	var/delay_time = 1 SECONDS
+	if(get_dist(src, target)/ammo.shell_speed - 1 SECONDS < 0.5 SECONDS)
+		//prevent runtime
+		delay_time = 0
+	addtimer(CALLBACK(src, .proc/falling, target, shell), get_dist(src, target)/ammo.shell_speed - delay_time)
 	addtimer(CALLBACK(src, .proc/cool_off), cool_off_time)
 
 ///Proc called by tactical binoculars to send targeting information.
@@ -297,10 +274,67 @@
 	if(!Adjacent(user) || user.lying_angle || user.incapacitated() || !ishuman(user))
 		return
 
-	if(busy)
-		to_chat(user, span_warning("Someone else is currently using [src]."))
+	if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+		to_chat(user, span_warning("Your programming restricts operating heavy weaponry."))
 		return
 
+	if(firing)
+		to_chat(user, span_warning("The [src] is still firing."))
+		return
+
+	if(length(chamber_items) <= 0)
+		to_chat(user, span_warning("There is nothing loaded."))
+		return
+
+	if(!is_ground_level(z))
+		to_chat(user, span_warning("You cannot fire [src] here."))
+		return
+
+	if(coords["targ_x"] == 0 && coords["targ_y"] == 0) //Mortar wasn't set
+		to_chat(user, span_warning("[src] needs to be aimed first."))
+		return
+
+	var/turf/selfown = locate((coords["targ_x"] + coords["dial_x"]), (coords["targ_y"] + coords["dial_y"]), z)
+	if(get_dist(loc, selfown) < minimum_range)
+		to_chat(user, span_warning("You cannot target this coordinate, it is too close to your mortar."))
+		return
+
+	var/turf/T = locate(coords["targ_x"] + coords["dial_x"], coords["targ_y"]  + coords["dial_x"], z)
+	dir = get_dir(src, T)
+	if(!isturf(T))
+		to_chat(user, span_warning("You cannot fire [src] to this target."))
+		return
+
+	var/area/A = get_area(T)
+	if(istype(A) && A.ceiling >= CEILING_UNDERGROUND)
+		to_chat(user, span_warning("You cannot hit the target. It is probably underground."))
+		return
+
+	visible_message("[icon2html(src, viewers(src))] [span_danger("The [name] fires!")]")
+	var/turf/G = get_turf(src)
+	G.ceiling_debris_check(2)
+	log_game("[key_name(user)] has fired the [src] at [AREACOORD(T)]")
+
+	var/max_offset_x = round(abs((get_dist(src, T)) - x)/offset_per_turfs)
+	var/max_offset_y = round(abs((get_dist(src, T)) - y)/offset_per_turfs)
+	spread = max_offset_x + max_offset_y
+
+	var/list/turf_list = list()
+	var/obj/in_chamber
+	var/next_chamber_position = length(chamber_items)
+	var/amount_to_fire
+	if(fire_amount)
+		amount_to_fire = fire_amount
+	else
+		amount_to_fire = length(chamber_items)
+	for(var/turf/spread_turf in range(spread, T))
+		turf_list += spread_turf
+	for(var/i = 1 to amount_to_fire)
+		var/turf/impact_turf = pick(turf_list)
+		in_chamber = chamber_items[next_chamber_position]
+		addtimer(CALLBACK(src, .proc/begin_fire, impact_turf, in_chamber), (i-1)*fire_delay)
+		next_chamber_position--
+		chamber_items.Remove(in_chamber)
 	return ..()
 
 //The portable mortar item
@@ -330,11 +364,29 @@
 		return
 	return ..()
 
+//tadpole mounted double barrel mortar
+
+/obj/item/mortar_kit/double
+	name = "\improper TA-55DB mortar"
+	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Needs to be set down first to fire. This one is a double barreled mortar that can hold 4 rounds usually fitted in TAV's."
+	icon_state = "mortar_db"
+	max_integrity = 400
+	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
+	w_class = WEIGHT_CLASS_HUGE
+	deployable_item = /obj/machinery/deployable/mortar/double
+
+/obj/machinery/deployable/mortar/double
+	tally_type = TALLY_MORTAR
+	reload_time = 1 SECONDS
+	fire_amount = 2
+	max_rounds = 4
+	fire_delay = 0.5 SECONDS
+
 // The big boy, the Howtizer.
 
 /obj/item/mortar_kit/howitzer
 	name = "\improper TA-100Y howitzer"
-	desc = "A manual, crew-operated and towable howitzer, will rain down 150mm laserguided and accurate shells on any of your foes. Right click to anchor to the ground."
+	desc = "A manual, crew-operated and towable howitzer, will rain down 150mm laserguided and accurate shells on any of your foes."
 	icon = 'icons/Marine/howitzer.dmi'
 	icon_state = "howitzer"
 	max_integrity = 400
@@ -360,25 +412,31 @@
 	)
 	tally_type = TALLY_HOWITZER
 	cool_off_time = 2 SECONDS
+	reload_time = 1 SECONDS
 
-/obj/machinery/deployable/mortar/howitzer/attack_hand_alternate(mob/living/user)
+/obj/machinery/deployable/mortar/howitzer/AltRightClick(mob/living/user)
 	if(!Adjacent(user) || user.lying_angle || user.incapacitated() || !ishuman(user))
 		return
 
-	anchored = !anchored
-	to_chat(usr, span_warning("You have [anchored ? "<b>anchored</b>" : "<b>unanchored</b>"] the gun."))
+	if(!anchored)
+		anchored = TRUE
+		to_chat(user, span_warning("You have anchored the gun to the ground. It may not be moved."))
+	else
+		anchored = FALSE
+		to_chat(user, span_warning("You unanchored the gun from the ground. It may be moved."))
+
 
 /obj/item/mortar_kit/rocket_arty
-	name = "\improper TA-100Y howitzer"
-	desc = "A manual, crew-operated and towable howitzer, will rain down 150mm laserguided and accurate shells on any of your foes. Right click to anchor to the ground."
+	name = "\improper TA-120R rocket artillery"
+	desc = "A manual, crew-operated and towable rocket artillery piece, will rain down a volley of 132mm rockets on any of your foes."
 	icon = 'icons/Marine/howitzer.dmi'
 	icon_state = "howitzer"
 	max_integrity = 400
 	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
 	w_class = WEIGHT_CLASS_HUGE
-	deployable_item = /obj/machinery/deployable/mortar/rocket_arty
+	deployable_item = /obj/machinery/deployable/mortar/howitzer/rocket_arty
 
-/obj/machinery/deployable/mortar/rocket_arty
+/obj/machinery/deployable/mortar/howitzer/rocket_arty
 	pixel_x = -16
 	anchored = FALSE // You can move this.
 	fire_sound = 'sound/weapons/guns/fire/rocket_arty.ogg'
@@ -396,18 +454,12 @@
 		/obj/item/mortal_shell/rocket/incend,
 		/obj/item/mortal_shell/rocket/minelaying,
 	)
-	tally_type = TALLY_HOWITZER
-	cool_off_time = 2 SECONDS
-	fire_delay = 0.2 SECONDS
-	fire_amount = 12
-	spread = 7
-
-/obj/machinery/deployable/mortar/rocket_arty/attack_hand_alternate(mob/living/user)
-	if(!Adjacent(user) || user.lying_angle || user.incapacitated() || !ishuman(user))
-		return
-
-	anchored = !anchored
-	to_chat(usr, span_warning("You have [anchored ? "<b>anchored</b>" : "<b>unanchored</b>"] the gun."))
+	tally_type = TALLY_ROCKET_ARTY
+	cool_off_time = 5 SECONDS
+	fire_delay = 0.3 SECONDS
+	reload_time = 1 SECONDS
+	max_rounds = 12
+	offset_per_turfs = 8
 
 // Shells themselves //
 

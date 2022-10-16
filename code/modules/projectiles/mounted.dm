@@ -285,4 +285,4 @@
 		to_chat(user, span_warning("You have anchored the gun to the ground. It may not be moved."))
 	else
 		anchored = FALSE
-		to_chat(user, span_warning("You unanchored the gun from the gruond. It may be moved."))
+		to_chat(user, span_warning("You unanchored the gun from the ground. It may be moved."))
