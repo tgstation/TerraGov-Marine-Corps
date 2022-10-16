@@ -34,7 +34,7 @@
 	///Time it takes for the mortar to cool off to fire
 	var/cool_off_time = 1 SECONDS
 	///How long to wait before next shot
-	var/fire_delay = 0
+	var/fire_delay = 0.1 SECONDS
 	///Amount of shells that can be loaded
 	var/max_rounds = 1
 	///List of stored ammunition items.
@@ -238,11 +238,11 @@
 	var/datum/ammo/ammo = GLOB.ammo_list[arty_shell.ammo_type]
 	shell.generate_bullet(ammo)
 	shell.fire_at(target, src, src, get_dist(src, target), ammo.shell_speed)
-	var/delay_time = 1 SECONDS
-	if(get_dist(src, target)/ammo.shell_speed - 1 SECONDS < 0.5 SECONDS)
-		//prevent runtime
-		delay_time = 0
-	addtimer(CALLBACK(src, .proc/falling, target, shell), get_dist(src, target)/ammo.shell_speed - delay_time)
+	var/fall_time = get_dist(src, target)/ammo.shell_speed - 1 SECONDS
+	//prevent runtime
+	if(fall_time < 0.5 SECONDS)
+		fall_time = 0.5 SECONDS
+	addtimer(CALLBACK(src, .proc/falling, target, shell), fall_time)
 	addtimer(CALLBACK(src, .proc/cool_off), cool_off_time)
 
 ///Proc called by tactical binoculars to send targeting information.
@@ -332,7 +332,7 @@
 	for(var/i = 1 to amount_to_fire)
 		var/turf/impact_turf = pick(turf_list)
 		in_chamber = chamber_items[next_chamber_position]
-		addtimer(CALLBACK(src, .proc/begin_fire, impact_turf, in_chamber), (i-1)*fire_delay)
+		addtimer(CALLBACK(src, .proc/begin_fire, impact_turf, in_chamber), fire_delay * i)
 		next_chamber_position--
 		chamber_items.Remove(in_chamber)
 	return ..()
