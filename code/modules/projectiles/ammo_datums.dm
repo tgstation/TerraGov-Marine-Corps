@@ -2585,6 +2585,68 @@ datum/ammo/bullet/revolver/tp44
 	reagent_transfer_amount = 6.5
 
 
+/datum/ammo/xeno/corrosive
+	name = "Corrosive spit"
+	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_SKIPS_ALIENS
+	spit_cost = 45
+	added_spit_delay = 5
+	damage_type = BURN
+	accurate_range = 5
+	max_range = 10
+	accuracy_var_low = 3
+	accuracy_var_high = 3
+	damage = 5
+	stagger_stacks = 0.5
+	slowdown_stacks = 0.5
+	smoke_strength = 0.6
+	smoke_range = 0
+	reagent_transfer_amount = 0
+
+/datum/ammo/xeno/corrosive/on_hit_mob(mob/living/carbon/C, obj/projectile/P)
+	drop_corrosive_smoke(get_turf(C))
+
+	if(!istype(C) || C.stat == DEAD || C.issamexenohive(P.firer) )
+		return
+
+	if(isnestedhost(C))
+		return
+
+/datum/ammo/xeno/corrosive/on_hit_obj(obj/O, obj/projectile/P)
+	var/turf/T = get_turf(O)
+	drop_corrosive_smoke(T.density ? P.loc : T)
+
+/datum/ammo/xeno/corrosive/on_hit_turf(turf/T, obj/projectile/P)
+	drop_corrosive_smoke(T.density ? P.loc : T)
+
+/datum/ammo/xeno/corrosive/do_at_max_range(turf/T, obj/projectile/P)
+	drop_corrosive_smoke(T.density ? P.loc : T)
+
+/datum/ammo/xeno/corrosive/set_smoke()
+	smoke_system = new /datum/effect_system/smoke_spread/xeno/corrosive()
+
+/datum/ammo/xeno/corrosive/proc/drop_corrosive_smoke(turf/T)
+	if(T.density)
+		return
+
+	set_smoke()
+	smoke_system.strength = smoke_strength
+	smoke_system.set_up(smoke_range, T)
+	smoke_system.start()
+	smoke_system = null
+
+
+/datum/ammo/xeno/corrosive/upgrade1
+	smoke_strength = 0.7
+	reagent_transfer_amount = 0.5
+
+/datum/ammo/xeno/corrosive/upgrade2
+	smoke_strength = 0.8
+	reagent_transfer_amount = 1
+
+/datum/ammo/xeno/corrosive/upgrade3
+	smoke_strength = 0.9
+	reagent_transfer_amount = 1.5
+
 /datum/ammo/xeno/toxin/heavy //Praetorian
 	name = "neurotoxic splash"
 	added_spit_delay = 0

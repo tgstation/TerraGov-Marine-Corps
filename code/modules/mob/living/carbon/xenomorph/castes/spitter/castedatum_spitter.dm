@@ -43,7 +43,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 0.8 SECONDS
-	spit_types = list(/datum/ammo/xeno/acid/medium) //Gotta give them their own version of heavy acid; kludgy but necessary as 100 plasma is way too costly.
+	spit_types = list(/datum/ammo/xeno/acid/medium, /datum/ammo/xeno/corrosive/upgrade1) //spit types//
 
 	acid_spray_duration = 10 SECONDS
 	acid_spray_damage_on_hit = 35
@@ -90,7 +90,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 0.7 SECONDS
-
+	spit_types = list(/datum/ammo/xeno/acid/medium, /datum/ammo/xeno/corrosive/upgrade1)
 
 
 /datum/xeno_caste/spitter/elder
@@ -120,7 +120,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 0.6 SECONDS
-
+	spit_types = list(/datum/ammo/xeno/acid/medium, /datum/ammo/xeno/corrosive/upgrade2)
 
 
 /datum/xeno_caste/spitter/ancient
@@ -150,6 +150,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 0.5 SECONDS
+	spit_types = list(/datum/ammo/xeno/acid/medium, /datum/ammo/xeno/corrosive/upgrade3)
 
 /datum/xeno_caste/spitter/primordial
 	upgrade_name = "Primordial"

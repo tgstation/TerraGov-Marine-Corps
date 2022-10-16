@@ -735,3 +735,13 @@
 			L.Losebreath(3)
 
 	return ..()
+
+/datum/reagent/toxin/xeno_corrosive //For spitter//
+	name = "Corrosive Acid"
+	description = "Burns organic tissue"
+	reagent_state = LIQUID
+	color = "#46e062"
+	custom_metabolism = 0.4
+	overdose_threshold = 10000
+	scannable = TRUE
+	toxpwr = 0
