@@ -111,9 +111,8 @@
 		link_target.balloon_alert(link_target, "No plasma for link")
 		COOLDOWN_START(src, plasma_warning, plasma_warning_cooldown)
 		return
-	var/heal_remainder = max(0, heal_amount - link_target.getBruteLoss())
+	link_target.adjustFireLoss(-max(0, heal_amount - link_target.getBruteLoss()), passive = TRUE)
 	link_target.adjustBruteLoss(-heal_amount, passive = TRUE)
-	link_target.adjustFireLoss(-heal_remainder, passive = TRUE)
 	link_owner.use_plasma(plasma_cost)
 
 /// Removes the status effect on death.
@@ -174,9 +173,8 @@
 
 	new /obj/effect/temp_visual/healing(get_turf(heal_target))
 	var/heal_amount = clamp(abs(amount) * (DRONE_ESSENCE_LINK_SHARED_HEAL * stacks), 0, heal_target.maxHealth)
-	var/heal_remainder = max(0, heal_amount - heal_target.getBruteLoss())
+	heal_target.adjustFireLoss(-max(0, heal_amount - heal_target.getBruteLoss()), passive = TRUE)
 	heal_target.adjustBruteLoss(-heal_amount, passive = TRUE)
-	heal_target.adjustFireLoss(-heal_remainder, passive = TRUE)
 	heal_target.adjust_sunder(-heal_amount/20)
 	heal_target.balloon_alert(heal_target, "Shared heal: +[heal_amount]")
 
@@ -203,8 +201,7 @@
 
 /// Updates the link's appearance.
 /datum/status_effect/stacking/essence_link/proc/update_beam()
-	var/beam_alpha = round(255 / (max_stacks+1 - stacks))
-	current_beam?.visuals.alpha = beam_alpha
+	current_beam?.visuals.alpha = round(255 / (max_stacks+1 - stacks))
 
 // ***************************************
 // *********** Salve Regeneration
@@ -232,9 +229,8 @@
 /datum/status_effect/salve_regen/tick()
 	new /obj/effect/temp_visual/healing(get_turf(buff_owner))
 	var/heal_amount = buff_owner.maxHealth * 0.01
-	var/heal_remainder = max(0, heal_amount - buff_owner.getBruteLoss())
+	buff_owner.adjustFireLoss(-max(0, heal_amount - buff_owner.getBruteLoss()), passive = TRUE)
 	buff_owner.adjustBruteLoss(-heal_amount, passive = TRUE)
-	buff_owner.adjustFireLoss(-heal_remainder, passive = TRUE)
 	buff_owner.adjust_sunder(-1)
 	return ..()
 

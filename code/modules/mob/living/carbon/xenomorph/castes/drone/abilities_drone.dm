@@ -110,16 +110,15 @@
 	var/remaining_health = round(target.maxHealth - (target.getBruteLoss() + target.getFireLoss()))
 	var/health_threshold = round(target.maxHealth / 10) // 10% of the target's maximum health
 	var/heal_multiplier = 1
-	if(essence_link_action?.existing_link && target == essence_link_action?.existing_link.link_target)
+	if(essence_link_action.existing_link?.link_target == target)
 		target.apply_status_effect(STATUS_EFFECT_XENO_SALVE_REGEN)
 		if(essence_link_action.existing_link.stacks >= 1 && remaining_health <= health_threshold)
 			heal_multiplier = 3
 	playsound(target, "alien_drool", 25)
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	var/heal_amount = (DRONE_BASE_SALVE_HEAL + target.recovery_aura * target.maxHealth * 0.01) * heal_multiplier
-	var/heal_remainder = max(0, heal_amount - target.getBruteLoss()) // Heal brute first, apply whatever's left to burns
+	target.adjustFireLoss(-max(0, heal_amount - target.getBruteLoss()), TRUE)
 	target.adjustBruteLoss(-heal_amount)
-	target.adjustFireLoss(-heal_remainder, TRUE)
 	target.adjust_sunder(-heal_amount/20)
 	if(heal_multiplier > 1) // A signal depends on the above heals, so this has to be done here.
 		playsound(target,'sound/effects/magic.ogg', 75, 1)
