@@ -4,7 +4,7 @@
 	upgrade_name = ""
 	caste_desc = "A frightening looking, bulky xeno that drips with suspect green fluids."
 
-	caste_type_path = /mob/living/carbon/xenomorph/Defiler
+	caste_type_path = /mob/living/carbon/xenomorph/defiler
 
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE
