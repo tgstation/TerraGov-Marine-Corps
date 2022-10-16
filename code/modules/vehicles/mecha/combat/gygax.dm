@@ -42,7 +42,7 @@
 	if(ability)
 		chassis.cut_overlay(ability.overlay)
 		var/state = chassis.leg_overload_mode ? (initial(ability.icon_state) + "_active") : initial(ability.icon_state)
-		ability.overlay = image('icons/mecha/mecha_ability_overlays.dmi', icon_state = state, layer=10)
+		ability.overlay = image('icons/mecha/mecha_ability_overlays.dmi', icon_state = state, layer=chassis.layer+0.001)
 		chassis.add_overlay(ability.overlay)
 		if(chassis.leg_overload_mode)
 			ability.sound_loop.start(chassis)
