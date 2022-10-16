@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes: 
+  - balance: "guns can now shoot past obstacles up to 2 tiles away instead of 1"
