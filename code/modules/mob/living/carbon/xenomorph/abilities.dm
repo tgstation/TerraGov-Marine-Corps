@@ -135,10 +135,10 @@
 
 /datum/action/xeno_action/activable/plant_weeds/ai_should_use(target)
 	if(!can_use_action(override_flags = XACT_IGNORE_SELECTED_ABILITY))
-		return ..()
+		return FALSE
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(owner_xeno.loc_weeds_type)
-		return ..()
+		return FALSE
 	return TRUE
 
 /datum/action/xeno_action/activable/plant_weeds/ranged

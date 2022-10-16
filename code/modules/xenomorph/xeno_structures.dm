@@ -1552,9 +1552,6 @@ TUNNEL
 	////The list of actively camouflaged xenos by veil
 	var/list/mob/living/carbon/xenomorph/camouflaged_xenos = list()
 
-/obj/structure/xeno/plant/stealth_plant/Initialize()
-	. = ..()
-
 /obj/structure/xeno/plant/stealth_plant/on_mature(mob/user)
 	. = ..()
 	START_PROCESSING(SSslowprocess, src)
@@ -1621,3 +1618,20 @@ TUNNEL
 		X.alpha = initial(X.alpha)
 		balloon_alert(X, "Effect wears off")
 		to_chat(X, span_xenowarning("The effect of [src] wears off!"))
+
+/obj/structure/xeno/nymph_nest
+	name = "nymph nest"
+	desc = "Placeholder"
+	icon = 'icons/Xeno/1x1building.dmi'
+	icon_state = "wardingtower" //placeholder
+	max_integrity = 200
+	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
+	xeno_structure_flags = IGNORE_WEED_REMOVAL | CRITICAL_STRUCTURE
+	/// Which hive built that
+	var/datum/hive_status/associated_hive
+
+/obj/structure/xeno/nymph_nest/Initialize()
+	. = ..()
+	SSspawning.registerspawner(src, INFINITY, list(/mob/living/carbon/xenomorph/nymph/ai), 0, 0, null)
+	SSspawning.spawnerdata[src].required_increment = 2 * max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER)/SSspawning.wait
+	SSspawning.spawnerdata[src].max_allowed_mobs = max(1, MAX_SPAWNABLE_MOB_PER_PLAYER * SSmonitor.maximum_connected_players_count * 2)

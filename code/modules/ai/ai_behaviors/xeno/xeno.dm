@@ -243,3 +243,28 @@
 /datum/ai_behavior/xeno/ranged
 	distance_to_maintain = 5
 	minimum_health = 0.3
+
+/datum/ai_behavior/xeno/peaceful
+	is_offered_on_creation = FALSE
+
+/datum/ai_behavior/xeno/peaceful/look_for_new_state()
+	var/mob/living/living_parent = mob_parent
+	switch(current_action)
+		if(MOVING_TO_NODE, FOLLOWING_PATH)
+			var/atom/next_target = get_nearest_target(mob_parent, target_distance, ALL, mob_parent.faction, mob_parent.get_xeno_hivenumber())
+			if(!next_target)
+				if(living_parent.health <= 2 * living_parent.maxHealth)
+					try_to_heal() //If we have some damage, look for some healing
+				return
+			change_action(MOVING_TO_ATOM)
+		if(MOVING_TO_SAFETY)
+			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, ALL, mob_parent.faction, mob_parent.get_xeno_hivenumber())
+			if(!next_target)//We are safe, try to find some weeds
+				target_distance = initial(target_distance)
+				cleanup_current_action()
+				late_initialize()
+				RegisterSignal(mob_parent, COMSIG_XENOMORPH_TAKING_DAMAGE, .proc/check_for_critical_health)
+				return
+			if(next_target == atom_to_walk_to)
+				return
+			change_action(null, next_target, INFINITY)
