@@ -11,7 +11,8 @@
 	w_class = WEIGHT_CLASS_NORMAL
 
 	var/ready = FALSE
-	var/ready_needed = TRUE //wether readying is needed
+	///wether readying is needed
+	var/ready_needed = TRUE
 	var/damage_threshold = 8 //This is the maximum non-oxy damage the defibrillator will heal to get a patient above -100, in all categories
 	var/charge_cost = 66 //How much energy is used.
 	var/obj/item/cell/dcell = null
@@ -304,7 +305,6 @@
 	desc = "Advanced medical gloves, these include small electrodes to defibrilate a patiant. No more bulky units!"
 	icon_state = "defib_gloves"
 	item_state = "defib_gloves"
-	attack_verb = "Challanged ELECTRICALLY"
 	ready = TRUE
 	ready_needed = FALSE
 	flags_equip_slot = ITEM_SLOT_GLOVES
@@ -315,8 +315,8 @@
 	blood_sprite_state = "bloodyhands"
 	flags_armor_protection = HANDS
 	flags_equip_slot = ITEM_SLOT_GLOVES
-	attack_verb = list("DEFIBRILATINGLY challenged")
-	soft_armor = list(MELEE = 25, BULLET = 15, LASER = 10, ENERGY = 15, BOMB = 15, BIO = 5, "rad" = 5, FIRE = 15, ACID = 15)
+	attack_verb = "zaps"
+	soft_armor = list(MELEE = 25, BULLET = 15, LASER = 10, ENERGY = 15, BOMB = 15, BIO = 5, FIRE = 15, ACID = 15)
 	flags_cold_protection = HANDS
 	flags_heat_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
