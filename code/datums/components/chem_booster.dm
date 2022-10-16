@@ -69,7 +69,7 @@
 	///Vali movement speed buff is this value
 	var/movement_boost = 0
 	///How much time left on vali heal till necrosis occurs
-	var/vali_necro_timer = world.time - processing_start
+	var/vali_necro_timer
 
 	/**
 	 * This list contains the vali stat increases that correspond to each reagent
@@ -187,6 +187,7 @@
 
 	wearer.adjustToxLoss(-tox_heal*boost_amount)
 	wearer.heal_limb_damage(6*boost_amount*brute_heal_amp, 6*boost_amount*burn_heal_amp)
+	vali_necro_timer = world.time - processing_start
 	if(connected_weapon && vali_necro_timer < 20 SECONDS)
 		wearer.adjustStaminaLoss(-7*stamina_regen_amp*((20 - (vali_necro_timer)/10)/20)) //stamina gain scales inversely with passed time, up to 20 seconds
 	if(vali_necro_timer > 10 SECONDS && vali_necro_timer < 20 SECONDS)
