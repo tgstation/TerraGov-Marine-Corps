@@ -881,38 +881,22 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	var/feedback_flags = NONE
 
-	var/living_hard_armor = (proj.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR) ? 0 : get_hard_armor(proj.armor_type, proj.def_zone, proj.dir)
-	var/living_soft_armor = (proj.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR) ? 0 : get_soft_armor(proj.armor_type, proj.def_zone, proj.dir)
-	if(living_hard_armor || living_soft_armor)
-		if(proj.penetration > 0)
-			if(proj.shot_from && src == proj.shot_from.sniper_target(src))
-				damage *= SNIPER_LASER_DAMAGE_MULTIPLIER
-				proj.penetration *= SNIPER_LASER_ARMOR_MULTIPLIER
-				add_slowdown(SNIPER_LASER_SLOWDOWN_STACKS)
-			if(living_hard_armor)
-				living_hard_armor = max(0, living_hard_armor - (living_hard_armor * proj.penetration * 0.01)) //AP reduces a % of hard armor.
-			if(living_soft_armor)
-				living_soft_armor = max(0, living_soft_armor - proj.penetration) //Flat removal.
+	if(proj.shot_from && src == proj.shot_from.sniper_target(src))
+		damage *= SNIPER_LASER_DAMAGE_MULTIPLIER
+		proj.penetration *= SNIPER_LASER_ARMOR_MULTIPLIER
+		add_slowdown(SNIPER_LASER_SLOWDOWN_STACKS)
 
-		if(iscarbon(proj.firer))
-			var/mob/living/carbon/shooter_carbon = proj.firer
-			if(shooter_carbon.stagger)
-				damage *= STAGGER_DAMAGE_MULTIPLIER //Since we hate RNG, stagger reduces damage by a % instead of reducing accuracy; consider it a 'glancing' hit due to being disoriented.
-
-		if(!living_hard_armor && !living_soft_armor) //Armor fully penetrated.
-			feedback_flags |= BULLET_FEEDBACK_PEN
-		else
-			if(living_hard_armor)
-				damage = max(0, damage - living_hard_armor) //Damage soak.
-			if(!damage) //Damage fully negated by hard armor.
-				bullet_soak_effect(proj)
-				feedback_flags |= BULLET_FEEDBACK_IMMUNE
-			else if(living_soft_armor >= 100) //Damage fully negated by soft armor.
-				damage = 0
-				bullet_soak_effect(proj)
-				feedback_flags |= BULLET_FEEDBACK_SOAK
-			else if(living_soft_armor) //Soft armor/padding, damage reduction.
-				damage = max(0, damage - (damage * living_soft_armor * 0.01))
+	if(iscarbon(proj.firer))
+		var/mob/living/carbon/shooter_carbon = proj.firer
+		if(shooter_carbon.stagger)
+			damage *= STAGGER_DAMAGE_MULTIPLIER //Since we hate RNG, stagger reduces damage by a % instead of reducing accuracy; consider it a 'glancing' hit due to being disoriented.
+	var/original_damage = damage
+	damage = get_armor_modified_damage(damage, proj.armor_type, proj.penetration, proj.def_zone)
+	if(damage == original_damage)
+		feedback_flags |= BULLET_FEEDBACK_PEN
+	else if(!damage)
+		feedback_flags |= BULLET_FEEDBACK_SOAK
+		bullet_soak_effect(proj)
 
 	if(proj.ammo.flags_ammo_behavior & AMMO_INCENDIARY)
 		adjust_fire_stacks(proj.ammo.incendiary_strength)
