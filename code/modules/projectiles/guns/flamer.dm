@@ -643,21 +643,15 @@ GLOBAL_DATUM_INIT(flamer_particles, /particles/flamer_fire, new)
 /mob/living/flamer_fire_act(burnlevel)
 	if(!burnlevel)
 		return
-	var/fire_mod = get_fire_resist()
-	if(fire_mod <= 0)
-		return
 	if(status_flags & (INCORPOREAL|GODMODE)) //Ignore incorporeal/invul targets
 		return
-	if(hard_armor.getRating("fire") >= 100)
-		to_chat(src, span_warning("Your suit protects you from most of the flames."))
-		adjustFireLoss(rand(0, burnlevel * 0.25)) //Does small burn damage to a person wearing one of the suits.
-		return
-	adjust_fire_stacks(burnlevel) //If i stand in the fire i deserve all of this. Also Napalm stacks quickly.
-	burnlevel *= fire_mod //Fire stack adjustment is handled in the stacks themselves so this is modified afterwards.
+	adjust_fire_stacks(burnlevel) //If I stand in the fire i deserve all of this. Also Napalm stacks quickly.
 	IgniteMob()
-	adjustFireLoss(min(burnlevel, rand(10 , burnlevel))) //Including the fire should be way stronger.
+	var/fire_damage = get_armor_modified_damage(min(burnlevel, rand(10 , burnlevel)), FIRE)
+	if(!fire_damage)
+		return
+	adjustFireLoss(fire_damage)
 	to_chat(src, span_warning("You are burned!"))
-
 
 /mob/living/carbon/xenomorph/flamer_fire_act(burnlevel)
 	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
