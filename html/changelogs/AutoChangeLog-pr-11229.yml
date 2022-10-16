@@ -1,0 +1,4 @@
+author: "Lewdcifer"
+delete-after: True
+changes: 
+  - bugfix: "Ravager's Ravage will no longer push anchored atoms."

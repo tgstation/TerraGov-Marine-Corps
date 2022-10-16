@@ -177,3 +177,9 @@
   tyeagg:
   - qol: can no longer be moved while manning mounted gun
   - bugfix: can no longer deploy mounted gun diagonally since it breaks stuff
+2022-10-15:
+  Derrick2Electricboogaloo:
+  - rscadd: Added Mechbay and Bunks to Sulaco
+  - rscadd: 'Gave PO bunks: Loadout, Armor and uniform supply vendors'
+  RipGrayson:
+  - balance: Gelida no longer has bolted or welded doors at roundstart.

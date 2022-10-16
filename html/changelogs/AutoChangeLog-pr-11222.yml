@@ -1,0 +1,8 @@
+author: "Lumipharon"
+delete-after: True
+changes: 
+  - balance: "Volkite chargers and calivers now use the same volkite power cell"
+  - balance: "Volkite chargers have 45 shots per mag"
+  - bugfix: "fixed missing RPG sprites if stored in suit storage"
+  - bugfix: "fixed guns not updating their icon state correctly on init if they don't start loaded"
+  - imageadd: "Resprited the volkite charger, caliver and culverin, as well as volkite power cell"

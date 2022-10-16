@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes: 
+  - bugfix: "fixed both kinds of welder bag still refilling xfuel tanks"

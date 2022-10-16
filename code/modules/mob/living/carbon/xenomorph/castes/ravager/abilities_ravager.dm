@@ -112,7 +112,8 @@
 	for(var/atom/movable/ravaged AS in atoms_to_ravage)
 		if(!(ravaged.resistance_flags & XENO_DAMAGEABLE))
 			continue
-		step_away(ravaged, X, 1, 2)
+		if(!ravaged.anchored)
+			step_away(ravaged, X, 1, 2)
 		if(!ishuman(ravaged))
 			ravaged.attack_alien(X, X.xeno_caste.melee_damage)
 			continue
