@@ -30,6 +30,9 @@
 /obj/screen/text/screen_text/picture/blackop
 	image_to_play = "blackops"
 
+/obj/screen/text/screen_text/picture/cadia
+	image_to_play = "cadia"
+
 /obj/screen/text/screen_text/picture/potrait
 	screen_loc = "LEFT,TOP-3"
 	image_to_play = "overwatch"

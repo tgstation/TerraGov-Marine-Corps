@@ -103,6 +103,16 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		"SOM Squad Leader",
 	)
 
+/obj/machinery/quick_vendor/imperium
+	faction = FACTION_IMP
+	categories = list(
+		"Guardsman",
+		"Tech Priest",
+		"Guardsman Medicae",
+		"Guardsman Veteran",
+		"Guardsman Sergeant",
+	)
+
 /obj/machinery/quick_vendor/can_interact(mob/user)
 	. = ..()
 	if(!.)

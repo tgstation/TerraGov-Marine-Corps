@@ -481,6 +481,7 @@
 	name = "\improper Imperial Guard flak armour"
 	desc = "A cheap, mass produced armour worn by the Imperial Guard, which are also cheap and mass produced. You can make out what appears to be <i>Cadia stands</i> carved into the armour."
 	icon_state = "guardarmor"
+	item_state = "guardarmor"
 	soft_armor = list(MELEE = 75, BULLET = 65, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 0, "rad" = 0, FIRE = 60, ACID = 60)
 	flags_item_map_variant = NONE
 
@@ -489,6 +490,7 @@
 	name = "\improper Imperial Guard sergeant armour"
 	desc = "A body armour that offers much better protection than the flak armour."
 	icon_state = "guardSLarmor"
+	item_state = "guardSLarmor"
 	soft_armor = list(MELEE = 85, BULLET = 85, LASER = 85, ENERGY = 85, BOMB = 85, BIO = 25, "rad" = 25, FIRE = 85, ACID = 85)
 	light_range = 6 // better light
 	pockets = /obj/item/storage/internal/suit/imperial
@@ -501,11 +503,13 @@
 	name = "\improper Imperial Guard medicae armour"
 	desc = "An armour worn by the medicae of the Imperial Guard."
 	icon_state = "guardmedicarmor"
+	item_state = "guardmedicarmor"
 
 /obj/item/clothing/suit/storage/marine/imperial/sergeant/veteran
 	name = "\improper Imperial Guard carapace armour"
 	desc = "A heavy full body armour that protects the wearer a lot more than the flak armour, also slows down considerably."
 	icon_state = "guardvetarmor"
+	item_state = "guardvetarmor"
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 	soft_armor = list(MELEE = 90, BULLET = 90, LASER = 90, ENERGY = 90, BOMB = 90, BIO = 30, "rad" = 30, FIRE = 90, ACID = 90)
 

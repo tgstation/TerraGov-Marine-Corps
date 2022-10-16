@@ -152,6 +152,44 @@
 	var/obj/item/weapon/gun/energy/lasgun/lasrifle/G = new /obj/item/weapon/gun/energy/lasgun/lasrifle(H)
 	H.equip_to_slot_or_del(G, SLOT_S_STORE)
 
+/datum/job/imperial/guardsman/veteran
+	title = "Guardsman Veteran"
+	comm_title = "Veteran"
+	paygrade = "Guard"
+	outfit = /datum/outfit/job/imperial/guardsman/veteran
+
+/datum/outfit/job/imperial/guardsman/veteran
+	name = "Guardsman Veteran"
+	jobtype = /datum/job/imperial/guardsman/veteran
+
+	belt = /obj/item/storage/belt/marine
+	wear_suit = /obj/item/clothing/suit/storage/marine/imperial/sergeant/veteran
+	head = /obj/item/clothing/head/helmet/marine/imperial/sergeant
+	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
+	l_store = /obj/item/storage/pouch/flare/full
+	back = /obj/item/storage/backpack/lightpack
+
+/datum/outfit/job/imperial/guardsman/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/oxycodone, SLOT_IN_HEAD)
+
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_SUIT)
+
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_BACKPACK)
+
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
+
+	var/obj/item/weapon/gun/energy/lasgun/lasrifle/G = new /obj/item/weapon/gun/energy/lasgun/lasrifle(H)
+	H.equip_to_slot_or_del(G, SLOT_S_STORE)
+
 /datum/job/imperial/commissar
 	title = "Imperial Commissar"
 	comm_title = "Commissar"
