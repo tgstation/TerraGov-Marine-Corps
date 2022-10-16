@@ -163,6 +163,18 @@
 /obj/effect/mapping_helpers/area_flag_injector/marine_base
 	flag_type = MARINE_BASE
 
+/obj/effect/mapping_helpers/area_flag_injector/no_weeding
+	flag_type = DISALLOW_WEEDING
+
+/obj/effect/mapping_helpers/area_flag_injector/ob_immune
+	flag_type = OB_CAS_IMMUNE
+
+/obj/effect/mapping_helpers/area_flag_injector/droppod_immune
+	flag_type = NO_DROPPOD
+
+/obj/effect/mapping_helpers/area_flag_injector/near_fob
+	flag_type = NEAR_FOB
+
 
 //	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
 //	if(airlock)
