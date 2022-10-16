@@ -26,7 +26,7 @@
 	/// The target of an existing link, if applicable.
 	var/mob/living/carbon/xenomorph/linked_target
 	/// Time it takes for the attunement levels to increase.
-	var/attunement_cooldown = 20 SECONDS
+	var/attunement_cooldown = 60 SECONDS
 
 /datum/action/xeno_action/activable/essence_link/can_use_ability(mob/living/carbon/xenomorph/target, silent = FALSE, override_flags)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -139,7 +139,7 @@
 	/// Used to determine whether Enhancement is already active or not. Also allows access to its vars.
 	var/datum/status_effect/drone_enhancement/existing_enhancement
 	/// Damage bonus given by this ability.
-	var/damage_multiplier = 1.1
+	var/damage_multiplier = 1.15
 	/// Speed bonus given by this ability.
 	var/speed_addition = -0.4
 

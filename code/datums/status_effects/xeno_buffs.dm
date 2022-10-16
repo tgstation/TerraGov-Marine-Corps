@@ -35,7 +35,7 @@
 
 /datum/status_effect/stacking/essence_link
 	id = "xeno_essence_link"
-	tick_interval = 1 SECONDS
+	tick_interval = 2 SECONDS
 	stacks = 0
 	stack_decay = -1 //Not meant to decay.
 	max_stacks = 3
