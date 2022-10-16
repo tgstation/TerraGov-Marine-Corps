@@ -14,24 +14,22 @@
 	return ..()
 
 /datum/round_event/queen_mothers_blessing/start()
-	var/sound/queen_sound = sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS)
-	for(var/mob/living/carbon/xenomorph/receiving_xeno in GLOB.alive_xeno_list)
-		SEND_SOUND(receiving_xeno, queen_sound)
-	for(var/mob/living/carbon/xenomorph/X in shuffle(GLOB.alive_xeno_list))
-		if(isxenolarva(X))
+	var/sound/queen_sound = sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS, volume = 50)
+	for(var/mob/living/carbon/xenomorph/target_xeno in shuffle(GLOB.alive_xeno_list))
+		if(isxenolarva(target_xeno) || (isminion(target_xeno))
 			continue
-		else if(isminion(X))
-			continue
-		bless_xeno(X)
-		break
+		for(var/mob/living/carbon/xenomorph/receiving_xeno in GLOB.alive_xeno_list)
+			SEND_SOUND(receiving_xeno, queen_sound)
+		bless_xeno(target_xeno)
+		return
 
-/datum/round_event/queen_mothers_blessing/proc/bless_xeno(mob/living/carbon/xenomorph/X)
-	X.evolution_stored = X.xeno_caste.evolution_threshold
-	if(X.tier != XENO_UPGRADE_FOUR) //larva do not have proper caste datums, trying to force one results in a runtime
-		X.upgrade_xeno(XENO_UPGRADE_THREE)
-	X.adjustBruteLoss(-QM_HEAL_AMOUNT)
-	X.adjustFireLoss(-QM_HEAL_AMOUNT, updating_health = TRUE)
-	X.adjust_sunder(-QM_HEAL_AMOUNT/20)
-	xeno_message("The Queen Mother has blessed [X], may they do great things for the hive.")
+/datum/round_event/queen_mothers_blessing/proc/bless_xeno(mob/living/carbon/xenomorph/target_xeno)
+	target_xeno.evolution_stored = target_xeno.xeno_caste.evolution_threshold
+	if(target_xeno.tier != XENO_UPGRADE_FOUR || XENO_UPGRADE_THREE)
+		target_xeno.upgrade_xeno(XENO_UPGRADE_THREE)
+	target_xeno.adjustBruteLoss(-QM_HEAL_AMOUNT)
+	target_xeno.adjustFireLoss(-QM_HEAL_AMOUNT, updating_health = TRUE)
+	target_xeno.adjust_sunder(-QM_HEAL_AMOUNT/20)
+	xeno_message("The Queen Mother has blessed [target_xeno], may they do great things for the hive.")
 
 #undef QM_HEAL_AMOUNT
