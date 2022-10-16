@@ -249,27 +249,15 @@
 	hitsound = 'sound/weapons/slash.ogg'
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut", "hooked")
 
-///Try to do a fancy with with your knife
-/obj/item/weapon/karambit/verb/knife_trick()
-	set category = "Weapons"
-	set name = "Do a knife trick"
-	set desc = "Show off to all your friends!"
+//Try to do a fancy trick with your cool knife
+/obj/item/weapon/karambit/attack_self(mob/user)
+	. = ..()
 	if(!usr.dextrous)
 		to_chat(usr, span_warning("You don't have the dexterity to do this."))
 		return
-
 	if(usr.incapacitated() || !isturf(usr.loc))
 		to_chat(usr, span_warning("You can't do this right now."))
 		return
-
-	var/obj/item/weapon/karambit/held_knife = usr.get_active_held_item()
-	if(!istype(held_knife))
-		held_knife = usr.get_inactive_held_item()
-
-	if(!istype(held_knife))
-		to_chat(usr, span_warning("You need a knife in your hands to do that!"))
-		return
-
 	if(usr.do_actions)
 		return
 	do_trick(usr)
