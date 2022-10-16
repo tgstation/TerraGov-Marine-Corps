@@ -16,7 +16,7 @@
 /datum/round_event/queen_mothers_blessing/start()
 	var/sound/queen_sound = sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS, volume = 50)
 	for(var/mob/living/carbon/xenomorph/target_xeno in shuffle(GLOB.alive_xeno_list))
-		if(isxenolarva(target_xeno) || (isminion(target_xeno))
+		if(isxenolarva(target_xeno) || isminion(target_xeno))
 			continue
 		for(var/mob/living/carbon/xenomorph/receiving_xeno in GLOB.alive_xeno_list)
 			SEND_SOUND(receiving_xeno, queen_sound)
