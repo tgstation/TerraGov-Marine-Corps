@@ -147,10 +147,10 @@
 ///actually executes firing when autofire asks for it, returns TRUE to keep firing FALSE to stop
 /obj/item/mecha_parts/mecha_equipment/weapon/proc/fire()
 	if(!action_checks(current_target, TRUE))
-		return FALSE
+		return NONE
 	var/dir_target_diff = get_between_angles(Get_Angle(chassis, current_target), dir2angle(chassis.dir))
 	if(dir_target_diff > (MECH_FIRE_CONE_ALLOWED / 2))
-		return TRUE
+		return AUTOFIRE_CONTINUE
 
 	var/type_to_spawn = (initial(ammotype.flags_ammo_behavior) & AMMO_HITSCAN) ? /obj/projectile/hitscan : /obj/projectile
 	var/obj/projectile/projectile_to_fire = new type_to_spawn(get_turf(src))
@@ -165,7 +165,7 @@
 	chassis.log_message("Fired from [name], targeting [current_target] at [AREACOORD(current_target)].", LOG_ATTACK)
 
 	if(!muzzle_flash || muzzle_flash.applied)
-		return TRUE
+		return AUTOFIRE_CONTINUE|AUTOFIRE_SUCCESS
 
 	var/prev_light = light_range
 	if(!light_on && (light_range <= muzzle_flash_lum))
@@ -188,7 +188,7 @@
 	muzzle_flash.applied = TRUE
 
 	addtimer(CALLBACK(src, .proc/remove_flash, muzzle_flash), 0.2 SECONDS)
-	return TRUE
+	return AUTOFIRE_CONTINUE|AUTOFIRE_SUCCESS
 
 /obj/item/mecha_parts/mecha_equipment/weapon/proc/reset_light_range(lightrange)
 	set_light_range(lightrange)
@@ -269,7 +269,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/fire()
 	. = ..()
-	if(!.)
+	if(!(. & AUTOFIRE_SUCCESS))
 		return
 	projectiles--
 	for(var/mob/occupant AS in chassis.occupants)

@@ -113,7 +113,7 @@
 		return
 	if(next_fire > world.time)//This mean duplication somewhere, we abort now
 		return
-	if(!callback_fire.Invoke())//If the parent has failed to fire, we reset the component
+	if(!(callback_fire.Invoke() & AUTOFIRE_CONTINUE))//reset fire if we want to stop
 		hard_reset()
 		return
 	switch(fire_mode)
