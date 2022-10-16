@@ -47,7 +47,7 @@
 		return
 	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE) && on_fire) //Sanity check; have to be on fire to actually take the damage.
 		SEND_SIGNAL(src, COMSIG_XENOMORPH_FIRE_BURNING)
-		adjustFireLoss((fire_stacks + 3) * get_fire_resist())
+		adjustFireLoss(get_armor_modified_damage(fire_stacks + 3, FIRE))
 
 /mob/living/carbon/xenomorph/proc/handle_living_health_updates()
 	if(health < 0)
