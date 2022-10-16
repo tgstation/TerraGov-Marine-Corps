@@ -1441,7 +1441,7 @@ Imports
 /datum/supply_packs/loot_box
 	name = "What could be inside?"
 	contains = list(/obj/item/loot_box/marine)
-	cost = 100
+	cost = 50
 
 /*******************************************************************************
 VEHICLES
