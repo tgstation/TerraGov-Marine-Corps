@@ -1187,10 +1187,10 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 
 ///Returns the soft armor for the given mob. If human and no limb is specified, it takes the weighted average of all available limbs.
-/mob/living/proc/get_soft_armor(armor_type, proj_def_zone, proj_dir)
+/mob/living/proc/get_soft_armor(armor_type, proj_def_zone)
 	return soft_armor.getRating(armor_type)
 
-/mob/living/carbon/human/get_soft_armor(armor_type, proj_def_zone, proj_dir)
+/mob/living/carbon/human/get_soft_armor(armor_type, proj_def_zone)
 	if(proj_def_zone)
 		var/datum/limb/affected_limb
 
@@ -1217,20 +1217,25 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		//Note, in the case of limbs missing, this will increase average armor if remaining armor is higher than if fully limbed.
 		return armor_val / total_weight
 
-/mob/living/carbon/xenomorph/get_soft_armor(armor_type, proj_def_zone, proj_dir)
+/mob/living/carbon/xenomorph/get_soft_armor(armor_type, proj_def_zone)
 	return ..() * get_sunder()
 
 
-/mob/living/proc/get_hard_armor(armor_type, proj_def_zone, proj_dir)
+/mob/living/proc/get_hard_armor(armor_type, proj_def_zone)
 	return hard_armor.getRating(armor_type)
 
-/mob/living/carbon/human/get_hard_armor(armor_type, proj_def_zone, proj_dir)
+/mob/living/carbon/human/get_hard_armor(armor_type, proj_def_zone)
 	var/datum/limb/affected_limb = get_limb(check_zone(proj_def_zone))
 	return affected_limb.hard_armor.getRating(armor_type)
 
-/mob/living/carbon/xenomorph/get_hard_armor(armor_type, proj_def_zone, proj_dir)
+/mob/living/carbon/xenomorph/get_hard_armor(armor_type, proj_def_zone)
 	return ..() * get_sunder()
 
+///Returns damage after taking into account both soft and hard armor for the specified damage type. If human and no limb is specified, it takes the weighted average of all available limbs.
+/mob/living/proc/get_armor_modified_damage(damage_amount, armor_type, proj_def_zone)
+	var/hard_armor_modifier = get_hard_armor(armor_type, proj_def_zone) //hard armor is typically used as a flat modifier to damage, applying before soft armor
+	var/soft_armor_modifier = min((1 - (get_soft_armor(armor_type, proj_def_zone) * 0.01)), 1)
+	return max(((damage_amount - hard_armor_modifier) * soft_armor_modifier), 0)
 
 /mob/living/proc/bullet_soak_effect(obj/projectile/proj)
 	bullet_ping(proj)
