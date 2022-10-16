@@ -492,14 +492,15 @@
 	. += overlay
 
 /obj/item/weapon/gun/update_item_state()
-	if(!CHECK_BITFIELD(flags_gun_features, GUN_SHOWS_AMMO_REMAINING))
-		item_state = "[base_gun_icon][flags_item & WIELDED ? "_w" : ""]"
-		return
-
-	//If the gun has item states that show how much ammo is remaining
 	var/current_state = item_state
-	var/cell_charge = (!length(chamber_items) || rounds <= 0) ? 0 : CEILING((rounds / max((length(chamber_items) ? max_rounds : max_shells), 1)) * 100, 25)
-	item_state = "[initial(icon_state)]_[cell_charge][flags_item & WIELDED ? "_w" : ""]"
+	if(flags_gun_features & GUN_SHOWS_AMMO_REMAINING) //shows different ammo levels
+		var/remaining_rounds = (rounds <= 0) ? 0 : CEILING((rounds / max((length(chamber_items) ? max_rounds : max_shells), 1)) * 100, 25)
+		item_state = "[initial(icon_state)]_[remaining_rounds][flags_item & WIELDED ? "_w" : ""]"
+	else if(flags_gun_features & GUN_SHOWS_LOADED) //shows loaded or unloaded
+		item_state = "[initial(icon_state)]_[rounds ? 100 : 0][flags_item & WIELDED ? "_w" : ""]"
+	else
+		item_state = "[base_gun_icon][flags_item & WIELDED ? "_w" : ""]"
+
 	if(current_state != item_state && ishuman(gun_user))
 		var/mob/living/carbon/human/human_user = gun_user
 		if(src == human_user.l_hand)
