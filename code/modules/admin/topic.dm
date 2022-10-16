@@ -429,7 +429,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if("widow")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/widow, location, null, delmob)
 			if("defiler")
-				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/Defiler, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/defiler, location, null, delmob)
 			if("gorger")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/gorger, location, null, delmob)
 			if("shrike")

@@ -104,6 +104,9 @@
 		if(L.mob_size >= MOB_SIZE_BIG) //Penalize toss distance for big creatures
 			toss_distance = FLOOR(toss_distance * 0.5, 1)
 			big_mob_message = ", struggling mightily to heft its bulk"
+	else if(ismecha(A))
+		toss_distance = FLOOR(toss_distance * 0.5, 1)
+		big_mob_message = ", struggling mightily to heft its bulk"
 
 	if(X.a_intent == INTENT_HARM) //If we use the ability on hurt intent, we throw them in front; otherwise we throw them behind.
 		for(var/x in 1 to toss_distance)

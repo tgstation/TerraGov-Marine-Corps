@@ -1,0 +1,4 @@
+author: "RipGrayson"
+delete-after: True
+changes: 
+  - qol: "Corpses can now have multiple causes of death per map instead of being restricted to only one."

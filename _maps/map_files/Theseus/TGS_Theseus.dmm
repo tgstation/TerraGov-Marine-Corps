@@ -1482,11 +1482,11 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
 "aoW" = (
-/obj/machinery/door/airlock/mainship/secure{
-	name = "Self Destruct Room"
-	},
 /obj/machinery/door/poddoor/shutters/mainship/selfdestruct,
 /obj/structure/cable,
+/obj/machinery/door/airlock/mainship/secure/free_access{
+	name = "Self Destruct Room"
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
 "aoY" = (
@@ -1800,9 +1800,9 @@
 /turf/open/floor/plating,
 /area/mainship/command/self_destruct)
 "axs" = (
-/obj/machinery/door/airlock/mainship/secure{
+/obj/machinery/door/airlock/mainship/secure/free_access{
 	dir = 2;
-	name = "\improper Exterior Airlock"
+	name = "Self Destruct Room"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
@@ -1841,11 +1841,11 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/cryo_cells)
 "azh" = (
-/obj/machinery/door/airlock/mainship/secure{
-	name = "Self Destruct Room"
-	},
 /obj/structure/cable,
 /obj/machinery/door/poddoor/shutters/mainship/selfdestruct,
+/obj/machinery/door/airlock/mainship/secure/free_access{
+	name = "Self Destruct Room"
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
 "azj" = (
@@ -11956,7 +11956,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
 "iHs" = (
-/obj/machinery/door/airlock/mainship/secure{
+/obj/machinery/door/airlock/mainship/secure/free_access{
 	name = "\improper Self Destruct Control Room"
 	},
 /turf/open/floor/mainship/floor,
@@ -16415,9 +16415,9 @@
 	},
 /area/mainship/engineering/ce_room)
 "quo" = (
-/obj/machinery/door/airlock/mainship/secure{
+/obj/machinery/door/airlock/mainship/secure/free_access{
 	dir = 2;
-	name = "\improper Exterior Airlock"
+	name = "Self Destruct Room"
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/command/self_destruct)

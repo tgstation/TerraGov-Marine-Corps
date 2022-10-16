@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - code_imp: "Redid how autofire decided to continue firing a little"

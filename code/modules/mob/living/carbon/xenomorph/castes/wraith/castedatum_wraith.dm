@@ -26,7 +26,7 @@
 	upgrade_threshold = TIER_TWO_YOUNG_THRESHOLD
 
 	evolves_to = list(
-		/mob/living/carbon/xenomorph/Defiler,
+		/mob/living/carbon/xenomorph/defiler,
 		/mob/living/carbon/xenomorph/ravager,
 	)
 	deevolves_to = /mob/living/carbon/xenomorph/runner

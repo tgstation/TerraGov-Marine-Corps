@@ -7,7 +7,7 @@ jobs:
   generate_documentation:
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Setup cache
         uses: actions/cache@v2
         with:
