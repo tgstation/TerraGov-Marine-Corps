@@ -14,12 +14,12 @@
 
 /datum/round_event/queen_mothers_fireproof/start()
 	xeno_message("The Queen Mother has temporarily reinforced our armor with fireproof coating, strike before it wears off!")
-	for(var/mob/living/carbon/xenomorph/X in GLOB.alive_xeno_list)
-		if(isminion(X))
+	for(var/mob/living/carbon/xenomorph/fireproofed_xeno in GLOB.alive_xeno_list)
+		if(isminion(fireproofed_xeno))
 			continue
-		fireproof_xeno(X)
+		fireproof_xeno(fireproofed_xeno)
 
-/datum/round_event/queen_mothers_fireproof/proc/fireproof_xeno(mob/living/carbon/xenomorph/X)
-	X.apply_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING)
-	var/sound/queen_sound = sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS)
-	SEND_SOUND(X, queen_sound)
+/datum/round_event/queen_mothers_fireproof/proc/fireproof_xeno(mob/living/carbon/xenomorph/fireproofed_xeno)
+	fireproofed_xeno.apply_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING)
+	var/sound/queen_sound = sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS, volume = 50)
+	SEND_SOUND(fireproofed_xeno, queen_sound)
