@@ -168,15 +168,15 @@
 		var/obj/item/mortal_shell/mortar_shell = I
 
 		if(length(chamber_items) >= max_rounds)
-			to_chat(user, span_warning("You cannot fit more than [max_rounds] shells in there!"))
+			user.balloon_alert(user, "You cannot fit more in there.")
 			return
 
 		if(!(I.type in allowed_shells))
-			to_chat(user, span_warning("This shell doesn't fit in here!"))
+			user.balloon_alert(user, "This shell doesn't fit.")
 			return
 
 		if(busy)
-			to_chat(user, span_warning("Someone else is currently using [src]."))
+			user.balloon_alert(user, "Someone else is using this.")
 			return
 
 		user.visible_message(span_notice("[user] starts loading \a [mortar_shell.name] into [src]."),
@@ -191,9 +191,10 @@
 
 		user.visible_message(span_notice("[user] loads \a [mortar_shell.name] into [src]."),
 		span_notice("You load \a [mortar_shell.name] into [src]."))
-		chamber_items.Add(mortar_shell)
-		user.balloon_alert(user, "Right click to fire shell.")
-		qdel(mortar_shell)
+		chamber_items += mortar_shell
+		user.balloon_alert(user, "Right click to fire.")
+		mortar_shell.forceMove(src)
+		user.temporarilyRemoveItemFromInventory(mortar_shell)
 
 	if(istype(I, /obj/item/ai_target_beacon))
 		if(!GLOB.ai_list.len)
@@ -219,19 +220,21 @@
 		return
 	to_chat(user, "<span class='notice'>You disconnect the [binocs] from their linked mortar.")
 
+///Start firing the gun on target and increase tally
 /obj/machinery/deployable/mortar/proc/begin_fire(target, obj/item/mortal_shell/arty_shell)
 	firing = TRUE
 	for(var/mob/M in range(7))
 		shake_camera(M, 1, 1)
-	if(tally_type == TALLY_MORTAR)
-		GLOB.round_statistics.mortar_shells_fired++
-		SSblackbox.record_feedback("tally", "round_statistics", 1, "mortar_shells_fired")
-	else if(tally_type == TALLY_HOWITZER)
-		GLOB.round_statistics.howitzer_shells_fired++
-		SSblackbox.record_feedback("tally", "round_statistics", 1, "howitzer_shells_fired")
-	else if(tally_type == TALLY_ROCKET_ARTY)
-		GLOB.round_statistics.rocket_shells_fired++
-		SSblackbox.record_feedback("tally", "round_statistics", 1, "rocket_shells_fired")
+	switch(tally_type)
+		if(TALLY_MORTAR)
+			GLOB.round_statistics.mortar_shells_fired++
+			SSblackbox.record_feedback("tally", "round_statistics", 1, "mortar_shells_fired")
+		if(TALLY_HOWITZER)
+			GLOB.round_statistics.howitzer_shells_fired++
+			SSblackbox.record_feedback("tally", "round_statistics", 1, "howitzer_shells_fired")
+		if(TALLY_ROCKET_ARTY)
+			GLOB.round_statistics.rocket_shells_fired++
+			SSblackbox.record_feedback("tally", "round_statistics", 1, "rocket_shells_fired")
 	playsound(loc, fire_sound, 50, 1)
 	flick(icon_state + "_fire", src)
 	var/obj/projectile/shell = new /obj/projectile(loc)
@@ -252,9 +255,11 @@
 	say("Remote targeting set by [user]. COORDINATES: X:[coords["targ_x"]] Y:[coords["targ_y"]] OFFSET: X:[coords["dial_x"]] Y:[coords["dial_y"]]")
 	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 
+///Allows the mortar to be fired again
 /obj/machinery/deployable/mortar/proc/cool_off()
 	firing = FALSE
 
+///Begins fall animation for projectile and plays fall sound
 /obj/machinery/deployable/mortar/proc/falling(turf/T, obj/projectile/shell)
 	flick(shell.icon_state + "_falling", shell)
 	playsound(T, fall_sound, 75, 1)
@@ -275,45 +280,45 @@
 		return
 
 	if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
-		to_chat(user, span_warning("Your programming restricts operating heavy weaponry."))
+		user.balloon_alert(user, "Your programming restricts operating this")
 		return
 
 	if(firing)
-		to_chat(user, span_warning("The [src] is still firing."))
+		user.balloon_alert(user, "The gun is still firing.")
 		return
 
 	if(length(chamber_items) <= 0)
-		to_chat(user, span_warning("There is nothing loaded."))
+		user.balloon_alert(user, "There is nothing loaded.")
 		return
 
 	if(!is_ground_level(z))
-		to_chat(user, span_warning("You cannot fire [src] here."))
+		user.balloon_alert(user, "You can't fire the gun here.")
 		return
 
 	if(coords["targ_x"] == 0 && coords["targ_y"] == 0) //Mortar wasn't set
-		to_chat(user, span_warning("[src] needs to be aimed first."))
+		user.balloon_alert(user, "The gun needs to be aimed first.")
 		return
 
 	var/turf/selfown = locate((coords["targ_x"] + coords["dial_x"]), (coords["targ_y"] + coords["dial_y"]), z)
 	if(get_dist(loc, selfown) < minimum_range)
-		to_chat(user, span_warning("You cannot target this coordinate, it is too close to your mortar."))
+		user.balloon_alert(user, "The target is too close to the gun.")
 		return
 
-	var/turf/T = locate(coords["targ_x"] + coords["dial_x"], coords["targ_y"]  + coords["dial_x"], z)
-	dir = get_dir(src, T)
-	if(!isturf(T))
-		to_chat(user, span_warning("You cannot fire [src] to this target."))
+	var/turf/target = locate(coords["targ_x"] + coords["dial_x"], coords["targ_y"]  + coords["dial_x"], z)
+	setDir(get_dir(src, target))
+	if(!isturf(target))
+		user.balloon_alert(user, "You cannot fire the gun to this target.")
 		return
 
-	var/area/A = get_area(T)
+	var/area/A = get_area(target)
 	if(istype(A) && A.ceiling >= CEILING_UNDERGROUND)
-		to_chat(user, span_warning("You cannot hit the target. It is probably underground."))
+		user.balloon_alert(user, "The target is underground.")
 		return
 
 	visible_message("[icon2html(src, viewers(src))] [span_danger("The [name] fires!")]")
-	var/turf/G = get_turf(src)
-	G.ceiling_debris_check(2)
-	log_game("[key_name(user)] has fired the [src] at [AREACOORD(T)]")
+	var/turf/location = get_turf(src)
+	location.ceiling_debris_check(2)
+	log_game("[key_name(user)] has fired the [src] at [AREACOORD(target)]")
 
 	var/max_offset_x = round(abs((coords["targ_x"] + coords["dial_x"]) - x)/offset_per_turfs)
 	var/max_offset_y = round(abs((coords["targ_y"] + coords["dial_y"]) - y)/offset_per_turfs)
@@ -321,19 +326,20 @@
 	var/list/turf_list = list()
 	var/obj/in_chamber
 	var/next_chamber_position = length(chamber_items)
-	var/amount_to_fire
-	if(fire_amount)
-		amount_to_fire = fire_amount
-	else
+	var/amount_to_fire = fire_amount
+	if(!amount_to_fire)
 		amount_to_fire = length(chamber_items)
-	for(var/turf/spread_turf in range(spread, T))
+	if(amount_to_fire > length(chamber_items))
+		amount_to_fire = length(chamber_items)
+	for(var/turf/spread_turf in RANGE_TURFS(spread, target))
 		turf_list += spread_turf
 	for(var/i = 1 to amount_to_fire)
 		var/turf/impact_turf = pick(turf_list)
 		in_chamber = chamber_items[next_chamber_position]
 		addtimer(CALLBACK(src, .proc/begin_fire, impact_turf, in_chamber), fire_delay * i)
 		next_chamber_position--
-		chamber_items.Remove(in_chamber)
+		chamber_items -= in_chamber
+		QDEL_NULL(in_chamber)
 	return ..()
 
 //The portable mortar item
@@ -400,7 +406,7 @@
 	fire_sound = 'sound/weapons/guns/fire/howitzer_fire.ogg'
 	reload_sound = 'sound/weapons/guns/interact/tat36_reload.ogg'
 	fall_sound = 'sound/weapons/guns/misc/howitzer_whistle.ogg'
-	minimum_range = 15
+	minimum_range = 20
 	allowed_shells = list(
 		/obj/item/mortal_shell/howitzer,
 		/obj/item/mortal_shell/howitzer/white_phos,
@@ -469,6 +475,7 @@
 	icon_state = "mortar_ammo_cas"
 	w_class = WEIGHT_CLASS_SMALL
 	flags_atom = CONDUCT
+	///Ammo datum typepath that the shell uses
 	var/ammo_type
 
 /obj/item/mortal_shell/he
