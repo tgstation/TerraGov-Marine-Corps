@@ -85,7 +85,7 @@
 /datum/action/xeno_action/activable/psychic_cure/acidic_salve
 	name = "Acidic Salve"
 	action_icon_state = "heal_xeno"
-	mechanics_text = "Apply a minor heal to the target. If applied to a linked sister, it will also apply a regenerative buff. Additionally, if that linked sister is near death, the heal's potency is tripled"
+	mechanics_text = "Apply a minor heal to the target. If applied to a linked sister, it will also apply a regenerative buff. Additionally, if that linked sister is near death, the heal's potency is increased"
 	cooldown_timer = 5 SECONDS
 	plasma_cost = 150
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CURE

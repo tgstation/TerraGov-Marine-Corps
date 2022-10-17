@@ -84,10 +84,10 @@
 	link_target.balloon_alert(link_target, "Essence Link cancelled")
 	toggle_link(FALSE)
 	essence_link_action.end_ability()
+	UnregisterSignal(link_owner, COMSIG_MOB_DEATH)
+	UnregisterSignal(link_target, COMSIG_MOB_DEATH)
 	REMOVE_TRAIT(link_owner, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
 	REMOVE_TRAIT(link_target, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
-	UnregisterSignal(link_owner, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
-	UnregisterSignal(link_target, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
 
 /datum/status_effect/stacking/essence_link/tick()
 	var/within_range = get_dist(link_owner, link_target) <= DRONE_ESSENCE_LINK_RANGE
