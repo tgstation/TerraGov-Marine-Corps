@@ -1,5 +1,0 @@
-author: "Derrick2Electricboogaloo"
-delete-after: True
-changes: 
-  - bugfix: "Removes multiple APCs from areas such as Medbay, Admin, and Aerodome Security"
-  - bugfix: "Cleans up some useless cables"
