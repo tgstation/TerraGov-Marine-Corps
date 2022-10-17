@@ -183,3 +183,64 @@
   - rscadd: 'Gave PO bunks: Loadout, Armor and uniform supply vendors'
   RipGrayson:
   - balance: Gelida no longer has bolted or welded doors at roundstart.
+2022-10-16:
+  Aquilar:
+  - code_imp: Unmanned vehicles respect diagonal movement delay
+  Lewdcifer:
+  - bugfix: Ravager's Ravage will no longer push anchored atoms.
+  - bugfix: Defiler particles are cleared correctly when staggered or stunned during
+      Emit Gas.
+  Lumipharon:
+  - bugfix: fixed both kinds of welder bag still refilling xfuel tanks
+  - balance: Volkite chargers and calivers now use the same volkite power cell
+  - balance: Volkite chargers have 45 shots per mag
+  - bugfix: fixed missing RPG sprites if stored in suit storage
+  - bugfix: fixed guns not updating their icon state correctly on init if they don't
+      start loaded
+  - imageadd: Resprited the volkite charger, caliver and culverin, as well as volkite
+      power cell
+  Naaanii:
+  - rscadd: Added X tank to requisitions for 30 points.
+  - balance: Replaced incinerator tanks with large flame tank for higher cost (6 points).
+  - balance: Reduced starting availability of large flame tanks from 30 to 16.
+  RipGrayson:
+  - bugfix: The booze dispenser can dispense beer again.
+  TiviPlus:
+  - bugfix: fixed ravage not working on humans
+  lbnesquik:
+  - balance: Set the AI artillery aiming module to 10 in engineering vendor also
+  tyeagg:
+  - rscadd: intro sequence thing in first drop
+  - imageadd: lrprr, tdf, black ops, shokk emblems for deployment intro sequence and
+      portraits of som and tgmc overwatch
+2022-10-17:
+  Autisem, Inanichts(sprite):
+  - rscadd: Advanced medical gloves are now navigable to all corpsman for 5 points
+  Derrick2Electricboogaloo:
+  - bugfix: Removes multiple APCs from areas such as Medbay, Admin, and Aerodome Security
+  - bugfix: Cleans up some useless cables
+  Losenis:
+  - rscadd: There's now a Big Ammo Box for 10x20mm SMG caliber. 4500 rounds.
+  - balance: Big 10x24 ammo box now fits 2400 rounds from 800
+  - rscadd: Big ammo boxes (10x20mm and 10x24mm) can be ordered from req for 5 points
+      each.
+  Lumipharon:
+  - balance: guns can now shoot past obstacles up to 2 tiles away instead of 1
+  - imageadd: Improved a few lobby artworks
+  RipGrayson:
+  - bugfix: The Theseus' SD doors are now accessible to everyone once the shutters
+      are lifted.
+  - qol: Corpses can now have multiple causes of death per map instead of being restricted
+      to only one.
+  TiviPlus:
+  - code_imp: Redid how autofire decided to continue firing a little
+  - bugfix: things that have high move resistance such as mechs can no longer be pulled
+      by things with low move resistance
+  lbnesquik:
+  - balance: Gave SAS ERT Mag Harness
+  - balance: Gave SAS ERT Pistol Lace for breacher
+  - balance: Gave SAS ERT Gas masks instead of baclavas
+  maikilangiolo:
+  - balance: HSG2102 nd MG08 now have bomb armor, and 20 acid armor.
+  tyeagg:
+  - balance: stop drop and roll only takes 5 seconds now
