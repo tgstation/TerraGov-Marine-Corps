@@ -162,6 +162,7 @@
 	playsound(chassis, fire_sound, 25, TRUE)
 	projectile_to_fire.fire_at(current_target, chassis, null, projectile_to_fire.ammo.max_range, projectile_to_fire.projectile_speed, firing_angle, suppress_light = HAS_TRAIT(src, TRAIT_GUN_SILENCED))
 
+	chassis.use_power(energy_drain)
 	chassis.log_message("Fired from [name], targeting [current_target] at [AREACOORD(current_target)].", LOG_ATTACK)
 
 	if(!muzzle_flash || muzzle_flash.applied)
