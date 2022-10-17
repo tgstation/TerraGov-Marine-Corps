@@ -12,44 +12,28 @@
 	var/list/uncommon_list
 	///list of common drops
 	var/list/common_list
-	///the probabilities of the different drop lists being chosen
-	var/list/weights = list(10, 20, 30, 40)
+	///the odds of each loot category being picked
+	var/list/weight_list = list(legendary_list = 10, rare_list = 20, uncommon_list = 30, common_list = 40)
 
 /obj/item/loot_box/ex_act()
 	qdel(src)
 
 /obj/item/loot_box/attack_self(mob/user)
-	var/list/choices = list(legendary_list, rare_list, uncommon_list, common_list)
-	var/loot_class = weightedprob(choices, weights)
-	var/obj/loot_pick = pick(loot_class)
+	var/obj/loot_pick
+	switch(pickweight(weight_list))
+		if("legendary_list")
+			loot_pick = pick(legendary_list)
+		if("rare_list")
+			loot_pick = pick(rare_list)
+		if("uncommon_list")
+			loot_pick = pick(uncommon_list)
+		if("common_list")
+			loot_pick = pick(common_list)
 	loot_pick = new loot_pick(get_turf(user))
 	if(isitem(loot_pick))
 		user.put_in_hands(loot_pick)
 	user.visible_message("[user] pulled a [loot_pick.name] out of the [src]!")
 	qdel(src)
-
-///Makes a weighted choice on the different loot tables based on their respective probabilities
-/obj/item/loot_box/proc/weightedprob(choices[], weights[])
-	if(!choices || !weights)
-		return null
-
-	//Build a range of weights
-	var/max_num = 0
-	for(var/X in weights)
-		if(isnum(X))
-			max_num += X
-
-	//Now roll in the range.
-	var/weighted_num = rand(1,max_num)
-	var/running_total, i
-	//Loop through all possible choices
-	for(i = 1; i <= choices.len; i++)
-		if(i > weights.len)
-			return null
-		running_total += weights[i]
-		//Once the current step is less than the roll, we have our winner.
-		if(weighted_num <= running_total)
-			return choices[i]
 
 /obj/item/loot_box/marine
 	legendary_list = list(
