@@ -42,6 +42,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	var/registered_for_node_pathfinding = FALSE
 	///Are we already registered for normal pathfinding
 	var/registered_for_move = FALSE
+	/// If this ai only follows basic behaviours, aka no escorting nor node pathfinding
+	var/basic_behaviour = FALSE
 
 /datum/ai_behavior/New(loc, mob/parent_to_assign, atom/escorted_atom)
 	..()
@@ -65,6 +67,9 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 
 ///Register ai behaviours
 /datum/ai_behavior/proc/start_ai()
+	late_initialize()
+	if(basic_behaviour)
+		return
 	if(escorted_atom)
 		global_set_escorted_atom(null, escorted_atom)
 	else
@@ -72,7 +77,6 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	RegisterSignal(SSdcs, COMSIG_GLOB_AI_GOAL_SET, .proc/set_goal_node)
 	set_goal_node(null, null, GLOB.goal_nodes[identifier])
 	RegisterSignal(goal_node, COMSIG_PARENT_QDELETING, .proc/clean_goal_node)
-	late_initialize()
 
 ///Set behaviour to base behavior
 /datum/ai_behavior/proc/late_initialize()
@@ -96,6 +100,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		set_current_node(null)
 	if(current_action == ESCORTING_ATOM && next_action != ESCORTING_ATOM && next_action != MOVING_TO_ATOM)
 		clean_escorted_atom()
+	if(current_action == MOVING_TO_SAFETY)
+
 	unregister_action_signals(current_action)
 
 ///Clean every signal on the ai_behavior
@@ -258,6 +264,9 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	SIGNAL_HANDLER
 	clean_escorted_atom()
 	escorted_atom = atom_to_escort
+	if(!escorted_atom)
+		base_action = initial(base_action)
+		return
 	UnregisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY)
 	RegisterSignal(escorted_atom, COMSIG_ESCORTED_ATOM_CHANGING, .proc/set_escorted_atom)
 	RegisterSignal(escorted_atom, COMSIG_PARENT_QDELETING, .proc/clean_escorted_atom)

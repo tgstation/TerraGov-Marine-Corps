@@ -187,6 +187,8 @@
 			if(ismachinery(atom_to_walk_to))
 				UnregisterSignal(atom_to_walk_to, COMSIG_PARENT_PREQDELETED)
 				return
+		if(MOVING_TO_SAFETY)
+			UnregisterSignal(mob_parent, COMSIG_XENOMORPH_TAKING_DAMAGE)
 
 	return ..()
 
@@ -247,9 +249,7 @@
 /datum/ai_behavior/xeno/peaceful
 	is_offered_on_creation = FALSE
 	base_action = MOVING_TO_NODE
-
-/datum/ai_behavior/xeno/peacefull/start_ai()
-	late_initialize()
+	target_distance = 12
 
 /datum/ai_behavior/xeno/peaceful/look_for_new_state()
 	var/mob/living/living_parent = mob_parent
@@ -257,12 +257,12 @@
 		if(MOVING_TO_NODE, FOLLOWING_PATH)
 			var/atom/next_target = get_nearest_target(mob_parent, target_distance, ALL, mob_parent.faction, mob_parent.get_xeno_hivenumber())
 			if(!next_target)
-				if(living_parent.health <= 2 * living_parent.maxHealth)
+				if(living_parent.health < living_parent.maxHealth)
 					try_to_heal() //If we have some damage, look for some healing
 				return
-			change_action(MOVING_TO_ATOM)
+			change_action(MOVING_TO_SAFETY, next_target, INFINITY)
 		if(MOVING_TO_SAFETY)
-			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, ALL, mob_parent.faction, mob_parent.get_xeno_hivenumber())
+			var/atom/next_target = get_nearest_target(mob_parent, target_distance, ALL, mob_parent.faction, mob_parent.get_xeno_hivenumber())
 			if(!next_target)//We are safe, try to find some weeds
 				target_distance = initial(target_distance)
 				cleanup_current_action()

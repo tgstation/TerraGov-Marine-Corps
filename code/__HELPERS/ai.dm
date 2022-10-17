@@ -31,7 +31,7 @@
 				continue
 			if(get_dist(source, nearby_human) < shorter_distance)
 				nearest_target = nearby_human
-				shorter_distance = get_dist(source, nearby_human) //better to recalculate than to save the var
+				shorter_distance = get_dist(source, nearby_human)
 	if(target_flags & TARGET_XENO)
 		for(var/mob/nearby_xeno AS in cheap_get_xenos_near(source, shorter_distance - 1))
 			if(source.issamexenohive(nearby_xeno))
