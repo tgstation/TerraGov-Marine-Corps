@@ -188,13 +188,15 @@
 	wearer.adjustToxLoss(-tox_heal*boost_amount)
 	wearer.heal_limb_damage(6*boost_amount*brute_heal_amp, 6*boost_amount*burn_heal_amp)
 	vali_necro_timer = world.time - processing_start
-	if(connected_weapon && vali_necro_timer < 20 SECONDS)
+	if(vali_necro_timer > 20 SECONDS)
+		return
+	if(connected_weapon)
 		wearer.adjustStaminaLoss(-7*stamina_regen_amp*((20 - (vali_necro_timer)/10)/20)) //stamina gain scales inversely with passed time, up to 20 seconds
-	if(vali_necro_timer > 10 SECONDS && vali_necro_timer < 20 SECONDS)
+	if(vali_necro_timer > 10 SECONDS)
 		to_chat(wearer, span_bold("WARNING: You have [(200 - (vali_necro_timer))/10] seconds before necrotic tissue forms on your limbs."))
-		if(vali_necro_timer > 15 SECONDS)
-			wearer.overlay_fullscreen("degeneration", /obj/screen/fullscreen/infection, 1)
-			to_chat(wearer, span_highdanger("The process of necrosis begins to set in. Turn it off before it's too late!"))
+	if(vali_necro_timer > 15 SECONDS)
+		wearer.overlay_fullscreen("degeneration", /obj/screen/fullscreen/infection, 1)
+		to_chat(wearer, span_highdanger("The process of necrosis begins to set in. Turn it off before it's too late!"))
 
 /**
  *	Opens the radial menu with everything
