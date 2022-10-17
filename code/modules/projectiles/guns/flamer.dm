@@ -264,7 +264,7 @@
 				else
 					log_combat(user, human_caught, "flamed", src)
 
-		mob_caught.take_overall_damage(0, get_armor_modified_damage(rand(burn_level, (burn_level * mob_flame_damage_mod)), FIRE), updating_health = TRUE) // Make it so its the amount of heat or twice it for the initial blast.
+		mob_caught.take_overall_damage(0, mob_caught.get_armor_modified_damage(rand(burn_level, (burn_level * mob_flame_damage_mod)), FIRE), updating_health = TRUE) // Make it so its the amount of heat or twice it for the initial blast.
 		mob_caught.adjust_fire_stacks(rand(5, (burn_level * mob_flame_damage_mod)))
 		mob_caught.IgniteMob()
 
