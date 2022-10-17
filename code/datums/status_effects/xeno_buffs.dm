@@ -165,12 +165,6 @@
 	if(amount > -1 || passive)
 		return
 
-	// Prevents duplicate heals. Some heals restore 2 damage types at once, and we also have 2 signals.
-	if(shared_heal_count)
-		shared_heal_count--
-		return
-	shared_heal_count++
-
 	new /obj/effect/temp_visual/healing(get_turf(heal_target))
 	var/heal_amount = clamp(abs(amount) * (DRONE_ESSENCE_LINK_SHARED_HEAL * stacks), 0, heal_target.maxHealth)
 	heal_target.adjustFireLoss(-max(0, heal_amount - heal_target.getBruteLoss()), passive = TRUE)
