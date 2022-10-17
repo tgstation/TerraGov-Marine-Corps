@@ -107,10 +107,10 @@
 /// Heals the target and gives them a regenerative buff, if applicable.
 /datum/action/xeno_action/activable/psychic_cure/acidic_salve/proc/salve_healing(mob/living/carbon/xenomorph/target)
 	var/datum/action/xeno_action/activable/essence_link/essence_link_action = owner.actions_by_path[/datum/action/xeno_action/activable/essence_link]
-	var/remaining_health = round(target.maxHealth - (target.getBruteLoss() + target.getFireLoss()))
-	var/health_threshold = round(target.maxHealth / 10) // 10% of the target's maximum health
 	var/heal_multiplier = 1
 	if(essence_link_action.existing_link?.link_target == target)
+		var/remaining_health = round(target.maxHealth - (target.getBruteLoss() + target.getFireLoss()))
+		var/health_threshold = round(target.maxHealth / 10) // 10% of the target's maximum health
 		target.apply_status_effect(STATUS_EFFECT_XENO_SALVE_REGEN)
 		if(essence_link_action.existing_link.stacks >= 1 && remaining_health <= health_threshold)
 			heal_multiplier = 3

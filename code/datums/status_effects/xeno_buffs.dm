@@ -57,8 +57,6 @@
 	COOLDOWN_DECLARE(plasma_warning)
 	/// The beam used to represent the link between linked xenos.
 	var/datum/beam/current_beam
-	/// Used to prevent duplicate shared heals.
-	var/shared_heal_count
 
 /datum/status_effect/stacking/essence_link/on_creation(mob/living/new_owner, stacks_to_apply, mob/living/carbon/link_target)
 	link_owner = new_owner
@@ -70,10 +68,6 @@
 	RegisterSignal(link_target, COMSIG_MOB_DEATH, .proc/handle_death)
 	RegisterSignal(link_owner, COMSIG_MOVABLE_MOVED, .proc/handle_dist)
 	RegisterSignal(link_target, COMSIG_MOVABLE_MOVED, .proc/handle_dist)
-	RegisterSignal(link_owner, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, .proc/share_jelly)
-	RegisterSignal(link_target, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, .proc/share_jelly)
-	RegisterSignal(link_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), .proc/share_heal)
-	RegisterSignal(link_target, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), .proc/share_heal)
 	toggle_link(TRUE)
 	to_chat(link_target, "[link_owner] has established an Essence Link with you. Stay within [DRONE_ESSENCE_LINK_RANGE] tiles to maintain it.")
 	return ..()
@@ -293,7 +287,7 @@
 	return ..()
 
 /datum/status_effect/drone_enhancement/tick()
-	if(buffing_target.plasma_stored < enhancement_action.plasma_cost)
+	if(buffing_target.plasma_stored < plasma_cost)
 		enhancement_action.end_ability()
 		return
 	buffing_target.use_plasma(plasma_cost)
