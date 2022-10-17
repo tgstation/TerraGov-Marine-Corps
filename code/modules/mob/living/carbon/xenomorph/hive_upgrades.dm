@@ -231,6 +231,14 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	flags_upgrade = ABILITY_DISTRESS
 	building_type = /obj/structure/xeno/spawner
 
+/datum/hive_upgrade/building/nymph_nest
+	name = "Nymph nest"
+	desc = "Constructs a nymph nest that generates ai worker over time"
+	psypoint_cost = 200
+	icon = "spawner"
+	flags_upgrade = ABILITY_DISTRESS
+	building_type = /obj/structure/xeno/nymph_nest
+
 /datum/hive_upgrade/defence
 	category = "Defences"
 

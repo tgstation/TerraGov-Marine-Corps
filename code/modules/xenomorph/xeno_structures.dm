@@ -1621,14 +1621,14 @@ TUNNEL
 
 /obj/structure/xeno/nymph_nest
 	name = "nymph nest"
-	desc = "Placeholder"
-	icon = 'icons/Xeno/1x1building.dmi'
-	icon_state = "wardingtower" //placeholder
+	desc = "The nest of the hard working nymphs"
+	icon = 'icons/Xeno/2x2building.dmi'
+	icon_state = "nymph_nest"
 	max_integrity = 200
+	bound_width = 96
+	bound_height = 96
 	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
 	xeno_structure_flags = IGNORE_WEED_REMOVAL | CRITICAL_STRUCTURE
-	/// Which hive built that
-	var/datum/hive_status/associated_hive
 
 /obj/structure/xeno/nymph_nest/Initialize()
 	. = ..()
