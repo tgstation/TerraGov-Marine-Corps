@@ -112,7 +112,7 @@
 		var/remaining_health = round(target.maxHealth - (target.getBruteLoss() + target.getFireLoss()))
 		var/health_threshold = round(target.maxHealth / 10) // 10% of the target's maximum health
 		target.apply_status_effect(STATUS_EFFECT_XENO_SALVE_REGEN)
-		if(essence_link_action.existing_link.stacks >= 1 && remaining_health <= health_threshold)
+		if(essence_link_action.existing_link.stacks > 0 && remaining_health <= health_threshold)
 			heal_multiplier = 3
 	playsound(target, "alien_drool", 25)
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
@@ -146,7 +146,11 @@
 /datum/action/xeno_action/enhancement/can_use_action()
 	var/mob/living/carbon/xenomorph/X = owner
 	essence_link_action = X.actions_by_path[/datum/action/xeno_action/activable/essence_link]
-	if(!essence_link_action.existing_link || !essence_link_action.existing_link.was_within_range || essence_link_action.existing_link.stacks < 3)
+	if(!essence_link_action.existing_link)
+		return FALSE
+	if(!essence_link_action.existing_link.was_within_range)
+		return FALSE
+	if(essence_link_action.existing_link.stacks < essence_link_action.existing_link.max_stacks)
 		return FALSE
 	return ..()
 
