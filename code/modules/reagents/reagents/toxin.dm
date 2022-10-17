@@ -493,6 +493,16 @@
 
 	return ..()
 
+/datum/reagent/toxin/xeno_corrosive //For spitter//
+	name = "Corrosive Acid"
+	description = "Burns organic tissue"
+	reagent_state = LIQUID
+	color = "#46e062"
+	custom_metabolism = 0.4
+	overdose_threshold = 10000
+	scannable = TRUE
+	toxpwr = 0
+
 /datum/reagent/toxin/xeno_hemodile //Slows its victim. The slow becomes twice as strong with each other xeno toxin in the victim's system.
 	name = "Hemodile"
 	description = "Impedes motor functions and muscle response, causing slower movement."

@@ -308,6 +308,16 @@
 	smoke_can_spread_through = TRUE
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_NEURO_LIGHT //Light neuro smoke doesn't extinguish
 
+//Xeno corrosive//
+/obj/effect/particle_effect/smoke/xeno/corrosive
+	alpha = 60
+	opacity = FALSE
+	color = "#7be844"
+	smoke_can_spread_through = TRUE
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_ACID|SMOKE_GASP|SMOKE_COUGH|SMOKE_CORROSIVE
+
+
+
 /obj/effect/particle_effect/smoke/xeno/hemodile
 	smoke_can_spread_through = TRUE
 	color = "#0287A1"
@@ -375,6 +385,9 @@ datum/effect_system/smoke_spread/tactical
 
 /datum/effect_system/smoke_spread/xeno/neuro/light
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/neuro/light
+
+/datum/effect_system/smoke_spread/xeno/corrosive
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/corrosive
 
 /datum/effect_system/smoke_spread/xeno/hemodile
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/hemodile
