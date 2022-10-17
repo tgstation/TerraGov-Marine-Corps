@@ -252,15 +252,15 @@
 //Try to do a fancy trick with your cool knife
 /obj/item/weapon/karambit/attack_self(mob/user)
 	. = ..()
-	if(!usr.dextrous)
-		to_chat(usr, span_warning("You don't have the dexterity to do this."))
+	if(!user.dextrous)
+		to_chat(user, span_warning("You don't have the dexterity to do this."))
 		return
-	if(usr.incapacitated() || !isturf(usr.loc))
-		to_chat(usr, span_warning("You can't do this right now."))
+	if(user.incapacitated() || !isturf(user.loc))
+		to_chat(user, span_warning("You can't do this right now."))
 		return
-	if(usr.do_actions)
+	if(user.do_actions)
 		return
-	do_trick(usr)
+	do_trick(user)
 
 /obj/item/weapon/karambit/fade
 	name = "\improper karambit"
