@@ -264,7 +264,7 @@
 				else
 					log_combat(user, human_caught, "flamed", src)
 
-		mob_caught.take_overall_damage(0, mob_caught.get_armor_modified_damage(rand(burn_level, (burn_level * mob_flame_damage_mod)), FIRE), updating_health = TRUE) // Make it so its the amount of heat or twice it for the initial blast.
+		mob_caught.take_overall_damage(0, mob_caught.modify_by_armor(rand(burn_level, (burn_level * mob_flame_damage_mod)), FIRE), updating_health = TRUE) // Make it so its the amount of heat or twice it for the initial blast.
 		mob_caught.adjust_fire_stacks(rand(5, (burn_level * mob_flame_damage_mod)))
 		mob_caught.IgniteMob()
 
@@ -555,7 +555,7 @@ GLOBAL_DATUM_INIT(flamer_particles, /particles/flamer_fire, new)
 	if(!CHECK_BITFIELD(flags_pass, PASSFIRE)) //Pass fire allow to cross fire without being ignited
 		adjust_fire_stacks(burnlevel) //Make it possible to light them on fire later.
 		IgniteMob()
-	var/damage = get_armor_modified_damage(round(burnlevel*0.5), FIRE)
+	var/damage = modify_by_armor(round(burnlevel*0.5), FIRE)
 	if(damage)
 		take_overall_damage(0, damage, updating_health = TRUE)
 		to_chat(src, span_danger("You are burned!"))
@@ -639,7 +639,7 @@ GLOBAL_DATUM_INIT(flamer_particles, /particles/flamer_fire, new)
 		return
 	adjust_fire_stacks(burnlevel) //If I stand in the fire i deserve all of this. Also Napalm stacks quickly.
 	IgniteMob()
-	var/fire_damage = get_armor_modified_damage(min(burnlevel, rand(10 , burnlevel)), FIRE)
+	var/fire_damage = modify_by_armor(min(burnlevel, rand(10 , burnlevel)), FIRE)
 	if(!fire_damage)
 		return
 	adjustFireLoss(fire_damage)

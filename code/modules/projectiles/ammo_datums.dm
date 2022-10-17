@@ -170,7 +170,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			continue
 		victim.visible_message(span_danger("[victim] is hit by backlash from \a [proj.name]!"),
 			isxeno(victim) ? span_xenodanger("We are hit by backlash from \a </b>[proj.name]</b>!") : span_highdanger("You are hit by backlash from \a </b>[proj.name]</b>!"))
-		var/airburst_damage = victim.get_armor_modified_damage(proj.damage * proj.airburst_multiplier, proj.ammo.armor_type)
+		var/airburst_damage = victim.modify_by_armor(proj.damage * proj.airburst_multiplier, proj.ammo.armor_type)
 		victim.apply_damage(airburst_damage, proj.ammo.damage_type, null, updating_health = TRUE)
 
 ///handles the probability of a projectile hit to trigger fire_burst, based off actual damage done
@@ -181,7 +181,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		return
 	var/effective_damage = max(0, proj.damage - round(proj.distance_travelled * proj.damage_falloff)) //we want to take falloff into account
 	var/mob/living/victim = target
-	effective_damage = victim.get_armor_modified_damage(effective_damage, FIRE, proj.penetration)
+	effective_damage = victim.modify_by_armor(effective_damage, FIRE, proj.penetration)
 	if(!effective_damage)
 		return
 	var/deflagrate_chance = (effective_damage * deflagrate_multiplier * 0.01)
@@ -200,7 +200,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			victim.visible_message(span_danger("[victim] is scorched by [target] as they burst into flames!"),
 				isxeno(victim) ? span_xenodanger("We are scorched by [target] as they burst into flames!") : span_highdanger("you are scorched by [target] as they burst into flames!"))
 		//Damages the victims, inflicts brief stagger+slow, and ignites
-		deflagrate_damage = victim.get_armor_modified_damage(fire_burst_damage, FIRE)
+		deflagrate_damage = victim.modify_by_armor(fire_burst_damage, FIRE)
 		victim.apply_damage(deflagrate_damage, BURN, updating_health = TRUE)
 		staggerstun(victim, proj, 30, stagger = 0.5, slowdown = 0.5, shake = 0)
 		victim.adjust_fire_stacks(5)
@@ -1571,7 +1571,7 @@ datum/ammo/bullet/revolver/tp44
 	for(var/mob/living/carbon/victim in get_hear(2, T))
 		victim.visible_message(span_danger("[victim] is hit by the bomblet blast!"),
 			isxeno(victim) ? span_xenodanger("We are hit by the bomblet blast!") : span_highdanger("you are hit by the bomblet blast!"))
-		var/effective_damage = victim.get_armor_modified_damage(10, BOMB)
+		var/effective_damage = victim.modify_by_armor(10, BOMB)
 		victim.apply_damage(effective_damage, BRUTE, updating_health = FALSE)
 		victim.apply_damage(effective_damage, BURN, updating_health = TRUE)
 		staggerstun(victim, P, stagger = 1, slowdown = 1)
@@ -2541,7 +2541,7 @@ datum/ammo/bullet/revolver/tp44
 
 	set_reagents()
 	for(var/reagent_id in spit_reagents) //modify by armor
-		spit_reagents[reagent_id] = C.get_armor_modified_damage(spit_reagents[reagent_id], armor_type)
+		spit_reagents[reagent_id] = C.modify_by_armor(spit_reagents[reagent_id], armor_type)
 
 	C.reagents.add_reagent_list(spit_reagents) //transfer reagents
 
@@ -2821,7 +2821,7 @@ datum/ammo/bullet/revolver/tp44
 	var/mob/living/carbon/carbon_victim = victim
 	set_reagents()
 	for(var/reagent_id in spit_reagents) //modify by armor
-		spit_reagents[reagent_id] = C.get_armor_modified_damage(spit_reagents[reagent_id], armor_type)
+		spit_reagents[reagent_id] = C.modify_by_armor(spit_reagents[reagent_id], armor_type)
 
 	carbon_victim.reagents.add_reagent_list(spit_reagents) //transfer reagents
 

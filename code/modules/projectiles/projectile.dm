@@ -891,7 +891,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		if(shooter_carbon.stagger)
 			damage *= STAGGER_DAMAGE_MULTIPLIER //Since we hate RNG, stagger reduces damage by a % instead of reducing accuracy; consider it a 'glancing' hit due to being disoriented.
 	var/original_damage = damage
-	damage = get_armor_modified_damage(damage, proj.armor_type, proj.penetration, proj.def_zone)
+	damage = modify_by_armor(damage, proj.armor_type, proj.penetration, proj.def_zone)
 	if(damage == original_damage)
 		feedback_flags |= BULLET_FEEDBACK_PEN
 	else if(!damage)
@@ -1228,7 +1228,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	Penetration reduces soft armor by a flat amount, but reduces hard armor as a multiplier.
 	Damage has a lower boundary of 0 to prevent high armour causing damage to heal the victim.
 */
-/mob/living/proc/get_armor_modified_damage(damage_amount, armor_type, penetration, proj_def_zone)
+/mob/living/proc/modify_by_armor(damage_amount, armor_type, penetration, proj_def_zone)
 	var/hard_armor_modifier = get_hard_armor(armor_type, proj_def_zone)
 	hard_armor_modifier = hard_armor_modifier - (hard_armor_modifier * penetration * 0.01)
 	var/soft_armor_modifier = min((1 - ((get_soft_armor(armor_type, proj_def_zone) - penetration) * 0.01)), 1)
