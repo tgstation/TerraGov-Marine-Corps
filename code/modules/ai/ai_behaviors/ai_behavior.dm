@@ -100,8 +100,6 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		set_current_node(null)
 	if(current_action == ESCORTING_ATOM && next_action != ESCORTING_ATOM && next_action != MOVING_TO_ATOM)
 		clean_escorted_atom()
-	if(current_action == MOVING_TO_SAFETY)
-
 	unregister_action_signals(current_action)
 
 ///Clean every signal on the ai_behavior

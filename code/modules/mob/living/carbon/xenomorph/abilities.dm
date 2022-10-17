@@ -160,6 +160,10 @@
 		return FALSE
 	return ..()
 
+/datum/action/xeno_action/activable/plant_weeds/free
+	plasma_cost = 0
+	cooldown_timer = 4 SECONDS
+
 // Secrete Resin
 /datum/action/xeno_action/activable/secrete_resin
 	name = "Secrete Resin"
