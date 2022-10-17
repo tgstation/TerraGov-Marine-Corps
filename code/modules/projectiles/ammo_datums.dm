@@ -36,7 +36,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/bonus_projectiles_amount 	= 0 		// How many extra projectiles it shoots out. Works kind of like firing on burst, but all of the projectiles travel together
 	var/bonus_projectiles_scatter	= 8			// Degrees scattered per two projectiles, each in a different direction.
 	var/barricade_clear_distance	= 1			// How far the bullet can travel before incurring a chance of hitting barricades; normally 1.
-	var/armor_type					= "bullet"	// Does this have an override for the armor type the ammo should test? Bullet by default
+	var/armor_type					= BULLET	// Does this have an override for the armor type the ammo should test? Bullet by default
 	var/sundering					= 0 		// How many stacks of sundering to apply to a mob on hit
 	///how much damage airbursts do to mobs around the target, multiplier of the bullet's damage
 	var/airburst_multiplier	= 0.1
@@ -170,8 +170,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			continue
 		victim.visible_message(span_danger("[victim] is hit by backlash from \a [proj.name]!"),
 			isxeno(victim) ? span_xenodanger("We are hit by backlash from \a </b>[proj.name]</b>!") : span_highdanger("You are hit by backlash from \a </b>[proj.name]</b>!"))
-		var/armor_block = victim.get_soft_armor(proj.ammo.armor_type)
-		victim.apply_damage(proj.damage * proj.airburst_multiplier, proj.ammo.damage_type, null, armor_block, updating_health = TRUE)
+		var/airburst_damage = victim.get_armor_modified_damage(proj.damage * proj.airburst_multiplier, proj.ammo.armor_type)
+		victim.apply_damage(airburst_damage, proj.ammo.damage_type, null, updating_health = TRUE)
 
 ///handles the probability of a projectile hit to trigger fire_burst, based off actual damage done
 /datum/ammo/proc/deflagrate(atom/target, obj/projectile/proj)
@@ -180,11 +180,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	if(!istype(target, /mob/living))
 		return
 	var/effective_damage = max(0, proj.damage - round(proj.distance_travelled * proj.damage_falloff)) //we want to take falloff into account
+	var/mob/living/victim = target
+	effective_damage = victim.get_armor_modified_damage(effective_damage, FIRE, proj.penetration)
 	if(!effective_damage)
 		return
-	var/mob/living/victim = target
-	var/armor_block = victim.get_soft_armor("fire") //checks fire armour across the victim's whole body
-	var/deflagrate_chance = (effective_damage * deflagrate_multiplier * (100 + min(0, proj.penetration - armor_block)) / 100)
+	var/deflagrate_chance = (effective_damage * deflagrate_multiplier * 0.01)
 	if(prob(deflagrate_chance))
 		playsound(target, 'sound/effects/incendiary_explode.ogg', 45, falloff = 5)
 		fire_burst(target, proj)
@@ -200,9 +200,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			victim.visible_message(span_danger("[victim] is scorched by [target] as they burst into flames!"),
 				isxeno(victim) ? span_xenodanger("We are scorched by [target] as they burst into flames!") : span_highdanger("you are scorched by [target] as they burst into flames!"))
 		//Damages the victims, inflicts brief stagger+slow, and ignites
-		var/armor_block = victim.get_soft_armor("fire") //checks fire armour across the victim's whole body
-		victim.apply_damage(fire_burst_damage, BURN, null, armor_block, updating_health = TRUE) //Placeholder damage, will be a ammo var
-
+		deflagrate_damage = victim.get_armor_modified_damage(fire_burst_damage, FIRE)
+		victim.apply_damage(deflagrate_damage, BURN, updating_health = TRUE)
 		staggerstun(victim, proj, 30, stagger = 0.5, slowdown = 0.5, shake = 0)
 		victim.adjust_fire_stacks(5)
 		victim.IgniteMob()
@@ -1572,9 +1571,9 @@ datum/ammo/bullet/revolver/tp44
 	for(var/mob/living/carbon/victim in get_hear(2, T))
 		victim.visible_message(span_danger("[victim] is hit by the bomblet blast!"),
 			isxeno(victim) ? span_xenodanger("We are hit by the bomblet blast!") : span_highdanger("you are hit by the bomblet blast!"))
-		var/armor_block = victim.get_soft_armor("bomb")
-		victim.apply_damage(10, BRUTE, null, armor_block, updating_health = FALSE)
-		victim.apply_damage(10, BURN, null, armor_block, updating_health = TRUE)
+		var/effective_damage = victim.get_armor_modified_damage(10, BOMB)
+		victim.apply_damage(effective_damage, BRUTE, updating_health = FALSE)
+		victim.apply_damage(effective_damage, BURN, updating_health = TRUE)
 		staggerstun(victim, P, stagger = 1, slowdown = 1)
 
 /datum/ammo/micro_rail_cluster/on_leave_turf(turf/T, atom/firer, obj/projectile/proj)
@@ -2541,9 +2540,8 @@ datum/ammo/bullet/revolver/tp44
 	C.add_slowdown(slowdown_stacks) //slow em down
 
 	set_reagents()
-	var/armor_block = (1 - C.get_soft_armor(armor_type, BODY_ZONE_CHEST) * 0.01) //Check the target's armor mod; default to chest
 	for(var/reagent_id in spit_reagents) //modify by armor
-		spit_reagents[reagent_id] *= armor_block
+		spit_reagents[reagent_id] = C.get_armor_modified_damage(spit_reagents[reagent_id], armor_type)
 
 	C.reagents.add_reagent_list(spit_reagents) //transfer reagents
 
@@ -2822,9 +2820,8 @@ datum/ammo/bullet/revolver/tp44
 
 	var/mob/living/carbon/carbon_victim = victim
 	set_reagents()
-	var/armor_block = (1 - carbon_victim.get_soft_armor(armor_type, BODY_ZONE_CHEST) * 0.01) //Check the target's armor mod; default to chest
 	for(var/reagent_id in spit_reagents) //modify by armor
-		spit_reagents[reagent_id] *= armor_block
+		spit_reagents[reagent_id] = C.get_armor_modified_damage(spit_reagents[reagent_id], armor_type)
 
 	carbon_victim.reagents.add_reagent_list(spit_reagents) //transfer reagents
 
