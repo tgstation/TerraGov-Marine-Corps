@@ -200,7 +200,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			victim.visible_message(span_danger("[victim] is scorched by [target] as they burst into flames!"),
 				isxeno(victim) ? span_xenodanger("We are scorched by [target] as they burst into flames!") : span_highdanger("you are scorched by [target] as they burst into flames!"))
 		//Damages the victims, inflicts brief stagger+slow, and ignites
-		deflagrate_damage = victim.modify_by_armor(fire_burst_damage, FIRE)
+		var/deflagrate_damage = victim.modify_by_armor(fire_burst_damage, FIRE)
 		victim.apply_damage(deflagrate_damage, BURN, updating_health = TRUE)
 		staggerstun(victim, proj, 30, stagger = 0.5, slowdown = 0.5, shake = 0)
 		victim.adjust_fire_stacks(5)
@@ -2527,23 +2527,23 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/xeno/toxin/proc/set_reagents()
 	spit_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = reagent_transfer_amount)
 
-/datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/C, obj/projectile/P)
-	drop_neuro_smoke(get_turf(C))
+/datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/carbon_victim, obj/projectile/P)
+	drop_neuro_smoke(get_turf(carbon_victim))
 
-	if(!istype(C) || C.stat == DEAD || C.issamexenohive(P.firer) )
+	if(!istype(carbon_victim) || carbon_victim.stat == DEAD || carbon_victim.issamexenohive(P.firer) )
 		return
 
-	if(isnestedhost(C))
+	if(isnestedhost(carbon_victim))
 		return
 
-	C.adjust_stagger(stagger_stacks) //stagger briefly; useful for support
-	C.add_slowdown(slowdown_stacks) //slow em down
+	carbon_victim.adjust_stagger(stagger_stacks) //stagger briefly; useful for support
+	carbon_victim.add_slowdown(slowdown_stacks) //slow em down
 
 	set_reagents()
 	for(var/reagent_id in spit_reagents) //modify by armor
-		spit_reagents[reagent_id] = C.modify_by_armor(spit_reagents[reagent_id], armor_type)
+		spit_reagents[reagent_id] = carbon_victim.modify_by_armor(spit_reagents[reagent_id], armor_type)
 
-	C.reagents.add_reagent_list(spit_reagents) //transfer reagents
+	carbon_victim.reagents.add_reagent_list(spit_reagents) //transfer reagents
 
 	return ..()
 
@@ -2821,7 +2821,7 @@ datum/ammo/bullet/revolver/tp44
 	var/mob/living/carbon/carbon_victim = victim
 	set_reagents()
 	for(var/reagent_id in spit_reagents) //modify by armor
-		spit_reagents[reagent_id] = C.modify_by_armor(spit_reagents[reagent_id], armor_type)
+		spit_reagents[reagent_id] = carbon_victim.modify_by_armor(spit_reagents[reagent_id], armor_type)
 
 	carbon_victim.reagents.add_reagent_list(spit_reagents) //transfer reagents
 
