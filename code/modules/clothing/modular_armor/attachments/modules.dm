@@ -58,7 +58,7 @@
 	desc = "Designed for mounting on modular armor. Providing a near immunity to being bathed in flames, and amazing flame retardant qualities, this is every pyromaniacs' first stop to survival. Will impact mobility."
 	icon_state = "mod_fire"
 	item_state = "mod_fire_a"
-	soft_armor = list(FIRE = 200)
+	soft_armor = list(FIRE = 50)
 	hard_armor = list(FIRE = 200)
 	slowdown = 0.4
 	slot = ATTACHMENT_SLOT_MODULE
