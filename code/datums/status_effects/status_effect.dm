@@ -159,6 +159,7 @@
 	var/max_stacks //stacks cannot exceed this amount
 	var/consumed_on_threshold = TRUE //if status should be removed once threshold is crossed
 	var/threshold_crossed = FALSE //set to true once the threshold is crossed, false once it falls back below
+	var/consumed_on_fadeout = TRUE //if status should be removed due to being under one stack
 	var/overlay_file
 	var/underlay_file
 	var/overlay_state // states in .dmi must be given a name followed by a number which corresponds to a number of stacks. put the state name without the number in these state vars
@@ -217,7 +218,7 @@
 		status_underlay.icon_state = "[underlay_state][stacks]"
 		owner.add_overlay(status_overlay)
 		owner.underlays += status_underlay
-	else
+	else if(consumed_on_fadeout)
 		fadeout_effect()
 		qdel(src) //deletes status if stacks fall under one
 

@@ -40,6 +40,7 @@
 	stack_decay = -1 //Not meant to decay.
 	max_stacks = 3
 	consumed_on_threshold = FALSE
+	consumed_on_fadeout = FALSE
 	alert_type = null
 	/// The owner of the link.
 	var/mob/living/carbon/xenomorph/link_owner
@@ -100,7 +101,7 @@
 		add_stacks(1)
 
 	var/remaining_health = link_target.maxHealth - (link_target.getBruteLoss() + link_target.getFireLoss())
-	if(!was_within_range || remaining_health >= link_target.maxHealth)
+	if(stacks < 1 || !was_within_range || remaining_health >= link_target.maxHealth)
 		return
 	var/heal_amount = link_target.maxHealth * (DRONE_ESSENCE_LINK_REGEN * stacks)
 	var/plasma_cost = heal_amount * 2
@@ -126,6 +127,9 @@
 	var/mob/living/carbon/xenomorph/buff_owner
 	var/mob/living/carbon/xenomorph/buff_target
 
+	if(stacks < 1)
+		return
+
 	if(source == link_target)
 		buff_owner = link_target
 		buff_target = link_owner
@@ -145,14 +149,14 @@
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/heal_target
 
+	// Besides the stacks check, also prevents actual damage, decimals of 0, and passive healing.
+	if(stacks < 1 || amount > -1 || passive)
+		return
+
 	if(source == link_target)
 		heal_target = link_owner
 	else
 		heal_target = link_target
-
-	// Prevents actual damage, decimals of 0, and passive healing.
-	if(amount > -1 || passive)
-		return
 
 	new /obj/effect/temp_visual/healing(get_turf(heal_target))
 	var/heal_amount = clamp(abs(amount) * (DRONE_ESSENCE_LINK_SHARED_HEAL * stacks), 0, heal_target.maxHealth)
