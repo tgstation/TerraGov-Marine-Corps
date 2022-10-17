@@ -660,7 +660,6 @@ GLOBAL_LIST_INIT(loadout_role_essential_set, list(
 		/obj/item/lightreplacer = 1,
 		/obj/item/circuitboard/apc = 1,
 		/obj/item/clothing/under/marine/engineer = 1,
-		/obj/item/tool/surgery/solderingtool = 1,
 	),
 	SQUAD_CORPSMAN = list(
 		/obj/item/bodybag/cryobag = 1,
@@ -674,6 +673,7 @@ GLOBAL_LIST_INIT(loadout_role_essential_set, list(
 		/obj/item/storage/firstaid/adv = 1,
 		/obj/item/clothing/glasses/hud/health = 1,
 		/obj/item/clothing/under/marine/corpsman = 1,
+		/obj/item/tool/surgery/solderingtool = 1,
 	),
 	SQUAD_SMARTGUNNER = list(
 		/obj/item/clothing/glasses/night/m56_goggles = 1,
