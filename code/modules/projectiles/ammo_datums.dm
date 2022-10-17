@@ -2717,7 +2717,7 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE
 	armor_type = "acid"
 	damage = 18
-	max_range = 10
+	max_range = 8
 	bullet_color = COLOR_PALE_GREEN_GRAY
 	///Duration of the acid puddles
 	var/puddle_duration = 1 SECONDS //Lasts 1-3 seconds
