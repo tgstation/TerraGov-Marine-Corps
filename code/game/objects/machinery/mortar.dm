@@ -223,8 +223,9 @@
 ///Start firing the gun on target and increase tally
 /obj/machinery/deployable/mortar/proc/begin_fire(target, obj/item/mortal_shell/arty_shell)
 	firing = TRUE
-	for(var/mob/M in range(7))
-		shake_camera(M, 1, 1)
+	for(var/mob/M in GLOB.mob_list)
+		if(get_dist(M , src) < 7)
+			shake_camera(M, 1, 1)
 	switch(tally_type)
 		if(TALLY_MORTAR)
 			GLOB.round_statistics.mortar_shells_fired++
