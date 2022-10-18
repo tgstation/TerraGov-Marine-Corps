@@ -1670,13 +1670,21 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/rocket/do_at_max_range(turf/T, obj/projectile/P)
 	drop_nade(T.density ? P.loc : T)
 
+/datum/ammo/rocket/dumbfire
+	damage = 50
+	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING // We want this one to specifically go over onscreen range.
+
+/datum/ammo/rocket/drop_nade(turf/T)
+	explosion(T, 0, 7, 7, 2)
+
 /datum/ammo/rocket/ap
-	name = "anti-armor rocket"
+	name = "kinetic penetrator"
 	hud_state = "rocket_ap"
-	damage_falloff = 0
+	damage = 360
+	damage_falloff = 0.5
 	accurate_range = 15
-	penetration = 150
-	damage = 325
+	penetration = 200
+	sundering = 0
 
 /datum/ammo/rocket/ap/drop_nade(turf/T)
 	explosion(T, flash_range = 1)
@@ -1777,6 +1785,11 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 75
 	max_range = 30
 	sundering = 100
+
+/datum/ammo/rocket/wp/dumbfire
+	flags_ammo_behavior = AMMO_ROCKET|AMMO_INCENDIARY|AMMO_SUNDERING
+	damage = 50
+	effect_radius = 7
 
 /datum/ammo/rocket/recoilless
 	name = "high explosive shell"

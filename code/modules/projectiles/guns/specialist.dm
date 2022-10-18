@@ -610,8 +610,10 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	default_ammo_type = /obj/item/ammo_magazine/rocket/sadar
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/rocket/sadar,
+		/obj/item/ammo_magazine/rocket/sadar/dumb,
 		/obj/item/ammo_magazine/rocket/sadar/ap,
 		/obj/item/ammo_magazine/rocket/sadar/wp,
+		/obj/item/ammo_magazine/rocket/sadar/wp/dumb,
 	)
 	flags_equip_slot = NONE
 	w_class = WEIGHT_CLASS_HUGE
