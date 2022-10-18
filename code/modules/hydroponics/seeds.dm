@@ -28,143 +28,143 @@
 
 
 /obj/item/seeds/poppyseed
-	name = "Poppy Seed"
+	name = "poppy seed"
 	seed_type = "poppies"
 
 /obj/item/seeds/chiliseed
-	name = "Chili Seed"
+	name = "chili seed"
 	seed_type = "chili"
 
 /obj/item/seeds/plastiseed
-	name = "Plastic Seed"
+	name = "plastic seed"
 	seed_type = "plastic"
 
 /obj/item/seeds/grapeseed
-	name = "Grape Seed"
+	name = "grape seed"
 	seed_type = "grapes"
 
 /obj/item/seeds/greengrapeseed
-	name = "Green Grape Seed"
+	name = "green grape seed"
 	seed_type = "greengrapes"
 
 /obj/item/seeds/peanutseed
-	name = "Peanut Seed"
+	name = "peanut seed"
 	seed_type = "peanut"
 
 /obj/item/seeds/cabbageseed
-	name = "Cabbage Seed"
+	name = "cabbage seed"
 	seed_type = "cabbage"
 
 /obj/item/seeds/berryseed
-	name = "Berry Seed"
+	name = "berry seed"
 	seed_type = "berries"
 
 /obj/item/seeds/glowberryseed
-	name = "Glowberry Seed"
+	name = "glowberry seed"
 	seed_type = "glowberries"
 
 /obj/item/seeds/bananaseed
-	name = "Banana Seed"
+	name = "banana seed"
 	seed_type = "banana"
 
 /obj/item/seeds/eggplantseed
-	name = "Eggplant Seed"
+	name = "eggplant seed"
 	seed_type = "eggplant"
 
 /obj/item/seeds/eggyseed
-	name = "Eggplant Seed"
+	name = "eggplant seed"
 	seed_type = "realeggplant"
 
 /obj/item/seeds/bloodtomatoseed
-	name = "Blood Tomato Seed"
+	name = "blood tomato seed"
 	seed_type = "bloodtomato"
 
 /obj/item/seeds/tomatoseed
-	name = "Tomato Seed"
+	name = "tomato seed"
 	seed_type = "tomato"
 
 /obj/item/seeds/killertomatoseed
-	name = "Tomato Seed"
+	name = "tomato seed"
 	seed_type = "killertomato"
 
 /obj/item/seeds/bluetomatoseed
-	name = "Blue Tomato Seed"
+	name = "blue tomato seed"
 	seed_type = "bluetomato"
 
 /obj/item/seeds/bluespacetomatoseed
-	name = "Bluespace Tomato Seed"
+	name = "bluespace tomato seed"
 	seed_type = "bluespacetomato"
 
 /obj/item/seeds/cornseed
-	name = "Corn Seed"
+	name = "corn seed"
 	seed_type = "corn"
 
 /obj/item/seeds/potatoseed
-	name = "Potato Seed"
+	name = "potato seed"
 	seed_type = "potato"
 
 /obj/item/seeds/icepepperseed
-	name = "Ice Chili Seed"
+	name = "ice chili seed"
 	seed_type = "icechili"
 
 /obj/item/seeds/soyaseed
-	name = "Soybean Seed"
+	name = "soybean seed"
 	seed_type = "soybean"
 
 /obj/item/seeds/wheatseed
-	name = "Wheat Seed"
+	name = "wheat seed"
 	seed_type = "wheat"
 
 /obj/item/seeds/riceseed
-	name = "Rice Seed"
+	name = "rice seed"
 	seed_type = "rice"
 
 /obj/item/seeds/carrotseed
-	name = "Carrot Seed"
+	name = "carrot seed"
 	seed_type = "carrot"
 
 /obj/item/seeds/reishimycelium
-	name = "Reishi Mycelium Seed"
+	name = "reishi mycelium seed"
 	seed_type = "reishi"
 
 /obj/item/seeds/amanitamycelium
-	name = "Amanita Seed"
+	name = "amanita seed"
 	seed_type = "amanita"
 
 /obj/item/seeds/angelmycelium
-	name = "Angel Mycelium Seed"
+	name = "angel mycelium seed"
 	seed_type = "destroyingangel"
 
 /obj/item/seeds/libertymycelium
-	name = "Liberty Cap Seed"
+	name = "liberty cap seed"
 	seed_type = "libertycap"
 
 /obj/item/seeds/chantermycelium
-	name = "Mushroom Seed"
+	name = "mushroom seed"
 	seed_type = "mushrooms"
 
 /obj/item/seeds/towermycelium
-	name = "Tower Cap Seed"
+	name = "tower-cap seed"
 	seed_type = "towercap"
 
 /obj/item/seeds/glowshroom
-	name = "Glowshroom Seed"
+	name = "glowshroom seed"
 	seed_type = "glowshroom"
 
 /obj/item/seeds/plumpmycelium
-	name = "Plumphelmet Seed"
+	name = "plumphelmet seed"
 	seed_type = "plumphelmet"
 
 /obj/item/seeds/walkingmushroommycelium
-	name = "Walking Mushroom Seed"
+	name = "walking mushroom seed"
 	seed_type = "walkingmushroom"
 
 /obj/item/seeds/nettleseed
-	name = "Nettle Seed"
+	name = "nettle seed"
 	seed_type = "nettle"
 
 /obj/item/seeds/deathnettleseed
-	name = "Deathnettle Seed"
+	name = "deathnettle seed"
 	seed_type = "deathnettle"
 
 /obj/item/seeds/weeds
@@ -174,22 +174,22 @@
 	seed_type = "harebells"
 
 /obj/item/seeds/sunflowerseed
-	name = "Sunflower Seed"
+	name = "sunflower seed"
 	seed_type = "sunflowers"
 
 /obj/item/seeds/brownmold
-	name = "Brownmold Seed"
+	name = "brownmold seed"
 	seed_type = "mold"
 
 /obj/item/seeds/appleseed
-	name = "Apple Seed"
+	name = "apple seed"
 	seed_type = "apple"
 
 /obj/item/seeds/poisonedappleseed
 	seed_type = "poisonapple"
 
 /obj/item/seeds/goldappleseed
-	name = "Goldenapple Seed"
+	name = "goldenapple seed"
 	seed_type = "goldapple"
 
 /obj/item/seeds/ambrosiavulgarisseed
@@ -199,31 +199,31 @@
 	seed_type = "ambrosiadeus"
 
 /obj/item/seeds/whitebeetseed
-	name = "Whitebeet Seed"
+	name = "whitebeet seed"
 	seed_type = "whitebeet"
 
 /obj/item/seeds/sugarcaneseed
-	name = "Sugarcane Seed"
+	name = "sugarcane seed"
 	seed_type = "sugarcane"
 
 /obj/item/seeds/watermelonseed
-	name = "Watermelon Seed"
+	name = "watermelon seed"
 	seed_type = "watermelon"
 
 /obj/item/seeds/pumpkinseed
-	name = "Pumpkin Seed"
+	name = "pumpkin seed"
 	seed_type = "pumpkin"
 
 /obj/item/seeds/limeseed
-	name = "Lime Seed"
+	name = "lime seed"
 	seed_type = "lime"
 
 /obj/item/seeds/lemonseed
-	name = "Lemon Seed"
+	name = "lemon seed"
 	seed_type = "lemon"
 
 /obj/item/seeds/orangeseed
-	name = "Orange Seed"
+	name = "orange seed"
 	seed_type = "orange"
 
 /obj/item/seeds/poisonberryseed
@@ -233,15 +233,15 @@
 	seed_type = "deathberries"
 
 /obj/item/seeds/grassseed
-	name = "Grass Seed"
+	name = "grass seed"
 	seed_type = "grass"
 
 /obj/item/seeds/cocoapodseed
-	name = "Cocoa Seed"
+	name = "cocoa seed"
 	seed_type = "cocoa"
 
 /obj/item/seeds/cherryseed
-	name = "Cherry Seed"
+	name = "cherry seed"
 	seed_type = "cherry"
 
 /obj/item/seeds/kudzuseed
