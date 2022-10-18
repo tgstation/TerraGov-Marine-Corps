@@ -27,7 +27,10 @@
 	evolution_threshold = 80
 	upgrade_threshold = TIER_ONE_YOUNG_THRESHOLD
 
-	evolves_to = list(/mob/living/carbon/xenomorph/warrior)
+	evolves_to = list(
+	/mob/living/carbon/xenomorph/warrior,
+	/mob/living/carbon/xenomorph/bull
+	)
 
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED
