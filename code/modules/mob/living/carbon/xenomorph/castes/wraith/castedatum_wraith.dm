@@ -36,7 +36,7 @@
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_BECOME_KING
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 25, BULLET = 25, LASER = 5, ENERGY = 5, BOMB = 0, BIO = 10, "rad" = 15, FIRE = 15, ACID = 10)
+	soft_armor = list(MELEE = 25, BULLET = 25, LASER = 5, ENERGY = 5, BOMB = 0, BIO = 10, FIRE = 15, ACID = 10)
 
 	// *** Minimap Icon *** //
 	minimap_icon = "wraith"
@@ -77,7 +77,7 @@
 	upgrade_threshold = TIER_TWO_MATURE_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 15, "rad" = 20, FIRE = 20, ACID = 15)
+	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 15, FIRE = 20, ACID = 15)
 
 
 /datum/xeno_caste/wraith/elder
@@ -103,7 +103,7 @@
 	upgrade_threshold = TIER_TWO_ELDER_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 35, BULLET = 35, LASER = 15, ENERGY = 15, BOMB = 0, BIO = 18, "rad" = 25, FIRE = 25, ACID = 18)
+	soft_armor = list(MELEE = 35, BULLET = 35, LASER = 15, ENERGY = 15, BOMB = 0, BIO = 18, FIRE = 25, ACID = 18)
 
 
 /datum/xeno_caste/wraith/ancient
@@ -129,7 +129,7 @@
 	upgrade_threshold = TIER_TWO_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 18, "rad" = 25, FIRE = 30, ACID = 18)
+	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 18, FIRE = 30, ACID = 18)
 
 /datum/xeno_caste/wraith/primordial
 	upgrade_name = "Primordial"
@@ -151,7 +151,7 @@
 	max_health = 260
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 18, "rad" = 25, FIRE = 30, ACID = 18)
+	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 18, FIRE = 30, ACID = 18)
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
