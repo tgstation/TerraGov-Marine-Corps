@@ -201,32 +201,35 @@
 	var/list/helmet_overlays
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS
+	///marine helmet behaviour flags
 	var/flags_marine_helmet = HELMET_GARB_OVERLAY|HELMET_DAMAGE_OVERLAY|HELMET_STORE_GARB
+	///reference to helmet storage object
 	var/obj/item/storage/internal/pockets = /obj/item/storage/internal/marinehelmet
-	var/list/allowed_helmet_items = list(
-						/obj/item/tool/lighter/random = "helmet_lighter_",
-						/obj/item/tool/lighter/zippo = "helmet_lighter_zippo",
-						/obj/item/storage/box/matches = "helmet_matches",
-						/obj/item/storage/fancy/cigarettes = "helmet_cig_kpack",
-						/obj/item/storage/fancy/cigarettes/kpack = "helmet_cig_kpack",
-						/obj/item/storage/fancy/cigarettes/luckystars = "helmet_cig_ls",
-						/obj/item/storage/fancy/cigarettes/dromedaryco = "helmet_cig_kpack",
-						/obj/item/storage/fancy/cigarettes/lady_finger = "helmet_cig_lf",
-						/obj/item/toy/deck = "helmet_card_card",
-						/obj/item/toy/handcard = "helmet_card_card",
-						/obj/item/reagent_containers/food/drinks/flask/marine = "helmet_canteen",
-						/obj/item/reagent_containers/food/snacks/enrg_bar = "helmet_snack_eat",
-						/obj/item/reagent_containers/food/snacks/packaged_burrito = "helmet_snack_burrito",
-						/obj/item/clothing/glasses/mgoggles = "goggles",
-						/obj/item/clothing/glasses/mgoggles/prescription = "goggles",
-						/obj/item/clothing/glasses/hud/medgoggles = "goggles",
-						/obj/item/clothing/glasses/hud/medgoggles/prescription = "goggles",
-						/obj/item/clothing/glasses/night/optgoggles = "optgoggles",
-						/obj/item/clothing/glasses/night/optgoggles/prescription = "optgoggles",
-						/obj/item/clothing/glasses/meson/enggoggles = "enggoggles",
-						/obj/item/clothing/glasses/meson/enggoggles/prescription = "enggoggles",
-						/obj/item/clothing/head/hairflower = "flower_pin"
-						)
+	/// items that fit in the helmet: strict type = iconstate to show
+	var/static/list/allowed_helmet_items = list(
+		/obj/item/tool/lighter/random = "helmet_lighter_",
+		/obj/item/tool/lighter/zippo = "helmet_lighter_zippo",
+		/obj/item/storage/box/matches = "helmet_matches",
+		/obj/item/storage/fancy/cigarettes = "helmet_cig_kpack",
+		/obj/item/storage/fancy/cigarettes/kpack = "helmet_cig_kpack",
+		/obj/item/storage/fancy/cigarettes/luckystars = "helmet_cig_ls",
+		/obj/item/storage/fancy/cigarettes/dromedaryco = "helmet_cig_kpack",
+		/obj/item/storage/fancy/cigarettes/lady_finger = "helmet_cig_lf",
+		/obj/item/toy/deck = "helmet_card_card",
+		/obj/item/toy/handcard = "helmet_card_card",
+		/obj/item/reagent_containers/food/drinks/flask/marine = "helmet_canteen",
+		/obj/item/reagent_containers/food/snacks/enrg_bar = "helmet_snack_eat",
+		/obj/item/reagent_containers/food/snacks/packaged_burrito = "helmet_snack_burrito",
+		/obj/item/clothing/glasses/mgoggles = "goggles",
+		/obj/item/clothing/glasses/mgoggles/prescription = "goggles",
+		/obj/item/clothing/glasses/hud/medgoggles = "goggles",
+		/obj/item/clothing/glasses/hud/medgoggles/prescription = "goggles",
+		/obj/item/clothing/glasses/night/optgoggles = "optgoggles",
+		/obj/item/clothing/glasses/night/optgoggles/prescription = "optgoggles",
+		/obj/item/clothing/glasses/meson/enggoggles = "enggoggles",
+		/obj/item/clothing/glasses/meson/enggoggles/prescription = "enggoggles",
+		/obj/item/clothing/head/hairflower = "flower_pin",
+	)
 
 /obj/item/storage/internal/marinehelmet
 	storage_slots = 2
