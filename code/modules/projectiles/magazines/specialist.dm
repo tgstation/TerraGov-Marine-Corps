@@ -143,7 +143,7 @@
 	default_ammo = /datum/ammo/rocket/dumbfire
 
 /obj/item/ammo_magazine/rocket/sadar/ap
-	name = "\improper 84mm anti-armor rocket"
+	name = "\improper 84mm 'L-G' anti-armor rocket"
 	icon_state = "ap_rocket"
 	default_ammo = /datum/ammo/rocket/ap
 	desc = "A tube for an AP rocket, the warhead of which inside is a missile assisted kinetic penetrator that will devastate just about anything that it hits internally, but will do nothing to the surrounding armor. When empty, use this frame to deconstruct it."
