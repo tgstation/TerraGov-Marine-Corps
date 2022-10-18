@@ -156,7 +156,6 @@
 
 /obj/item/ammo_magazine/rocket/sadar/wp/dumb
 	name = "\improper 84mm 'Dumbfire' white-phosphorus rocket"
-	icon_state = "wp_rocket"
 	default_ammo = /datum/ammo/rocket/wp/dumbfire
 	desc = "A highly destructive warhead that bursts into deadly flames on impact. It is entirely unguided, and thus 'Dumbfire', the benefit of this is a bigger overall payload, and a skilled operator can hit longer ranged hits that a laser-guided rocket could not reach at all. Use this in hand to deconstruct it."
 

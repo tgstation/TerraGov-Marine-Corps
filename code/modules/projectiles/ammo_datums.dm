@@ -1675,7 +1675,7 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING // We want this one to specifically go over onscreen range.
 
 /datum/ammo/rocket/drop_nade(turf/T)
-	explosion(T, 0, 7, 7, 2)
+	explosion(T, 0, 7, 0, 2)
 
 /datum/ammo/rocket/ap
 	name = "kinetic penetrator"
