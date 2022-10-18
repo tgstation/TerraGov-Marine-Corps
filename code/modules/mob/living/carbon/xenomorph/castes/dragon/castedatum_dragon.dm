@@ -12,7 +12,6 @@
 
 	// *** Speed *** //
 	speed = 0.3
-	// weeds_speed_mod = 0.2
 
 	// *** Plasma *** //
 	plasma_max = 900
@@ -24,7 +23,7 @@
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_YOUNG_THRESHOLD
 
-	deevolves_to = list(/mob/living/carbon/xenomorph/warrior, /mob/living/carbon/xenomorph/hivelord)
+	deevolves_to = list(/mob/living/carbon/xenomorph/ravager, /mob/living/carbon/xenomorph/shrike, /mob/living/carbon/xenomorph/gorger, /mob/living/carbon/xenomorph/praetorian)
 
 	// *** Flags *** //
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_LEADER|CASTE_CAN_BECOME_KING|CASTE_CAN_BE_GIVEN_PLASMA
@@ -135,8 +134,6 @@
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 60, "rad" = 60, FIRE = 85, ACID = 60)
-
-
 
 	// *** Abilities *** //
 	// actions = list(

@@ -28,6 +28,7 @@
 	upgrade_threshold = TIER_THREE_YOUNG_THRESHOLD
 
 	deevolves_to = /mob/living/carbon/xenomorph/hunter
+	evolves_to = /mob/living/carbon/xenomorph/dragon
 
 	// *** Flags *** //
 	caste_flags = CASTE_INNATE_PLASMA_REGEN|CASTE_PLASMADRAIN_IMMUNE
