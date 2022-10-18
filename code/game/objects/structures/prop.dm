@@ -305,14 +305,47 @@
 	icon_state = "secure_wide_right_locked"
 
 /obj/structure/prop/mainship/telecomms
-	name = "\improper Command Airlock"
+	name = "subspace broadcaster"
+	desc = "A mighty piece of hardware used to broadcast processed subspace signals."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "broadcaster_send"
 
+/obj/structure/prop/mainship/telecomms/hub
+	name = "subspace broadcaster"
+	desc = "A mighty piece of hardware used to send/receive massive amounts of data."
+	icon = 'icons/obj/machines/telecomms.dmi'
+	icon_state = "hub"
+
+/obj/structure/prop/mainship/telecomms/processor
+	name = "processor unit"
+	desc = "This machine is used to process large quantities of information."
+	icon = 'icons/obj/machines/telecomms.dmi'
+	icon_state = "processor"
+
 /obj/structure/prop/mainship/telecomms/bus
-	name = "\improper Command Airlock"
-	icon = 'icons/obj/stationobjs.dmi'
+	name = "bus mainframe"
+	desc = "A mighty piece of hardware used to send massive amounts of data quickly."
+	icon = 'icons/obj/machines/telecomms.dmi'
 	icon_state = "bus"
+
+/obj/structure/prop/mainship/telecomms/broadcaster
+	name = "subspace broadcaster"
+	desc = "This machine has a dish-like shape and green lights. It is designed to detect and process subspace radio activity."
+	icon = 'icons/obj/machines/telecomms.dmi'
+	icon_state = "broadcaster"
+
+/obj/structure/prop/mainship/telecomms/receiver
+	name = "subspace receiver"
+	desc = "A dish-shaped machine used to broadcast processed subspace signals."
+	icon = 'icons/obj/machines/telecomms.dmi'
+	icon_state = "broadcast receiver"
+
+/obj/structure/prop/mainship/telecomms/relay
+	name = "telecomms relay"
+	desc = "A mighty piece of hardware used to send massive amounts of data far away."
+	icon = 'icons/obj/machines/telecomms.dmi'
+	icon_state = "relay"
+
 
 /obj/structure/prop/mainship/suit_storage_prop
 	name = "Suit Storage Unit"
