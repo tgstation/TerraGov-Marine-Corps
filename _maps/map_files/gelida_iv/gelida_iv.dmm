@@ -21644,6 +21644,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/fakesnow,
 /area/gelida/outdoors/colony_streets/south_west_street)
+"nNL" = (
+/obj/effect/mapping_helpers/area_flag_injector/marine_base,
+/turf/open/floor/plating,
+/area/shuttle/drop2/gelida)
 "nNN" = (
 /obj/structure/toilet{
 	pixel_y = 16
@@ -23585,6 +23589,10 @@
 	dir = 4
 	},
 /area/gelida/indoors/a_block/admin)
+"paR" = (
+/obj/effect/mapping_helpers/area_flag_injector/marine_base,
+/turf/open/floor/plating,
+/area/shuttle/drop1/gelida)
 "pbi" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/largecrate/random,
@@ -42005,7 +42013,7 @@ ecy
 suA
 ecy
 ecy
-ecy
+paR
 ecy
 ecy
 ecy
@@ -73530,7 +73538,7 @@ alr
 vpW
 alr
 alr
-alr
+nNL
 alr
 alr
 alr
