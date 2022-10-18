@@ -4769,7 +4769,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/stern_hallway)
 "nW" = (
-/obj/machinery/portable_atmospherics/canister/air,
+/obj/structure/ship_ammo/rocket/keeper,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "nX" = (
