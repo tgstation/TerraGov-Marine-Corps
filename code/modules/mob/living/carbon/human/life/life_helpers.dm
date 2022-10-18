@@ -197,14 +197,3 @@
 			thermal_protection += THERMAL_PROTECTION_HAND_RIGHT
 
 	return min(1, thermal_protection)
-
-
-/mob/living/carbon/human/handle_slurring()
-	if(..())
-		speech_problem_flag = 1
-	return slurring
-
-/mob/living/carbon/human/handle_stuttering()
-	if(..())
-		speech_problem_flag = 1
-	return stuttering

@@ -150,6 +150,7 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 
 /**
  * Makes you speak like you're drunk
+ * todo remove, deprecated
  */
 /proc/slur(phrase)
 	phrase = html_decode(phrase)
@@ -181,51 +182,7 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 		. += "[newletter]"
 	return sanitize(.)
 
-/// Makes you talk like you got cult stunned, which is slurring but with some dark messages
-/proc/cultslur(phrase) // Inflicted on victims of a stun talisman
-	phrase = html_decode(phrase)
-	var/leng = length(phrase)
-	. = ""
-	var/newletter = ""
-	var/rawchar = ""
-	for(var/i = 1, i <= leng, i += length(rawchar))
-		rawchar = newletter = phrase[i]
-		if(rand(1, 2) == 2)
-			var/lowerletter = lowertext(newletter)
-			if(lowerletter == "o")
-				newletter = "u"
-			else if(lowerletter == "t")
-				newletter = "ch"
-			else if(lowerletter == "a")
-				newletter = "ah"
-			else if(lowerletter == "u")
-				newletter = "oo"
-			else if(lowerletter == "c")
-				newletter = " NAR "
-			else if(lowerletter == "s")
-				newletter = " SIE "
-		if(rand(1, 4) == 4)
-			if(newletter == " ")
-				newletter = " no hope... "
-			else if(newletter == "H")
-				newletter = " IT COMES... "
-
-		if(prob(33))
-			switch(rand(1, 5))
-				if(1)
-					newletter = "'"
-				if(2)
-					newletter += "agn"
-				if(3)
-					newletter = "fth"
-				if(4)
-					newletter = "nglu"
-				if(5)
-					newletter = "glor"
-		. += newletter
-	return sanitize(.)
-
-///Adds stuttering to the message passed in
+///Adds stuttering to the message passed in, todo remove, deprecated
 /proc/stutter(phrase)
 	phrase = html_decode(phrase)
 	var/leng = length(phrase)

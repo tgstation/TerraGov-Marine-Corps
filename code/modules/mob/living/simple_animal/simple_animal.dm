@@ -78,12 +78,6 @@
 	return ..()
 
 
-/mob/living/simple_animal/handle_status_effects()
-	. = ..()
-	if(stuttering)
-		stuttering = 0
-
-
 /mob/living/simple_animal/updatehealth()
 	. = ..()
 	health = clamp(health, 0, maxHealth)
@@ -100,7 +94,7 @@
 	med_hud_set_status()
 
 
-/mob/living/simple_animal/revive()
+/mob/living/simple_animal/revive(admin_revive = FALSE)
 	. = ..()
 	icon = initial(icon)
 	icon_state = icon_living

@@ -93,8 +93,6 @@
 	var/list/stun_absorption //lazy list
 
 	//Speech
-	var/stuttering = 0
-	var/slurring = 0
 
 	var/resting = FALSE
 
