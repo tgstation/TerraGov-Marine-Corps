@@ -29,7 +29,7 @@
 
 	evolves_to = list(
 	/mob/living/carbon/xenomorph/warrior,
-	/mob/living/carbon/xenomorph/bull
+	/mob/living/carbon/xenomorph/bull,
 	)
 
 	// *** Flags *** //
