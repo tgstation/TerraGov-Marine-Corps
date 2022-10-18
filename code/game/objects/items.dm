@@ -130,10 +130,6 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	var/active = FALSE
 
 	//Trick vars
-	///Sound played when you spin the item like the cool dude you are
-	var/spin_sound = 'sound/effects/spin.ogg'
-	///Sound played when you catch your item after a cool trick
-	var/thud_sound = 'sound/effects/thud.ogg'
 	///Delay between tricks
 	var/trick_delay = 6
 	///Time of last trick
@@ -1324,7 +1320,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 ///The basic spin trick
 /obj/item/proc/basic_spin_trick(mob/living/carbon/human/user, direction = 1, obj/item/double)
 	set waitfor = 0
-	playsound(user, spin_sound, 25, 1)
+	playsound(user, 'sound/effects/spin.ogg', 25, 1)
 	if(double)
 		user.visible_message("[user] deftly flicks and spins [src] and [double]!",span_notice(" You flick and spin [src] and [double]!"))
 		animation_wrist_flick(double, 1)
@@ -1332,7 +1328,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		user.visible_message("[user] deftly flicks and spins [src]!",span_notice(" You flick and spin [src]!"))
 	animation_wrist_flick(src, direction)
 	sleep(3)
-	if(loc && user) playsound(user, thud_sound, 25, 1)
+	if(loc && user) playsound(user, 'sound/effects/thud.ogg', 25, 1)
 
 ///The fancy trick. Woah.
 /obj/item/proc/throw_catch_trick(mob/living/carbon/human/user)
@@ -1352,7 +1348,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	if(!loc || !user)
 		return
 	invisibility = 0
-	playsound(user, thud_sound, 25, 1)
+	playsound(user, 'sound/effects/thud.ogg', 25, 1)
 
 	if(user.get_active_held_item() != src)
 		return
