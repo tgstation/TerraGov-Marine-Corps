@@ -232,7 +232,7 @@
 	throw_range = 8
 
 /obj/item/weapon/karambit
-	name = "\improper karambit"
+	name = "karambit"
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "karambit"
 	item_state = "karambit"
@@ -263,14 +263,12 @@
 	do_trick(user)
 
 /obj/item/weapon/karambit/fade
-	name = "\improper karambit"
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "karambit_fade"
 	item_state = "karambit_fade"
 	desc = "A small high quality knife with a curved blade, good for slashing and hooking. This one has been painted by airbrushing transparent paints that fade together over a chrome base coat."
 
 /obj/item/weapon/karambit/case_hardened
-	name = "\improper karambit"
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "karambit_case_hardened"
 	item_state = "karambit_case_hardened"
