@@ -500,7 +500,6 @@
 		item_state = "[initial(icon_state)]_[rounds ? 100 : 0][flags_item & WIELDED ? "_w" : ""]"
 	else
 		item_state = "[base_gun_icon][flags_item & WIELDED ? "_w" : ""]"
-		return
 
 	if(current_state != item_state && ishuman(gun_user))
 		var/mob/living/carbon/human/human_user = gun_user
