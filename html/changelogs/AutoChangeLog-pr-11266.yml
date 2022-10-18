@@ -1,5 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes: 
-  - rscadd: "Added in new mapping helpers for assigning flags to an area."
-  - bugfix: "Fixed a bug where wraiths could portal into BR LZ1 and Gelida LZ2."

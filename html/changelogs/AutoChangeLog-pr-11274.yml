@@ -1,0 +1,4 @@
+author: "RipGrayson"
+delete-after: True
+changes: 
+  - bugfix: "Some telecomms props now have proper descriptions and names."
