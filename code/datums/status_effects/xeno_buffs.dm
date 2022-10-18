@@ -65,8 +65,8 @@
 	essence_link_action = link_owner.actions_by_path[/datum/action/xeno_action/activable/essence_link]
 	ADD_TRAIT(link_owner, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
 	ADD_TRAIT(link_target, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
-	RegisterSignal(link_owner, COMSIG_MOB_DEATH, .proc/handle_death)
-	RegisterSignal(link_target, COMSIG_MOB_DEATH, .proc/handle_death)
+	RegisterSignal(link_owner, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED), .proc/end_link)
+	RegisterSignal(link_target, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED), .proc/end_link)
 	toggle_link(TRUE)
 	to_chat(link_target, "[link_owner] has established an Essence Link with you. Stay within [DRONE_ESSENCE_LINK_RANGE] tiles to maintain it.")
 	return ..()
@@ -84,8 +84,8 @@
 	link_target.balloon_alert(link_target, "Essence Link cancelled")
 	toggle_link(FALSE)
 	essence_link_action.end_ability()
-	UnregisterSignal(link_owner, COMSIG_MOB_DEATH)
-	UnregisterSignal(link_target, COMSIG_MOB_DEATH)
+	UnregisterSignal(link_owner, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED))
+	UnregisterSignal(link_target, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED))
 	REMOVE_TRAIT(link_owner, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
 	REMOVE_TRAIT(link_target, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
 
@@ -115,11 +115,6 @@
 	link_target.adjustFireLoss(-max(0, heal_amount - link_target.getBruteLoss()), passive = TRUE)
 	link_target.adjustBruteLoss(-heal_amount, passive = TRUE)
 	link_owner.use_plasma(plasma_cost)
-
-/// Removes the status effect on death.
-/datum/status_effect/stacking/essence_link/proc/handle_death(datum/source)
-	SIGNAL_HANDLER
-	essence_link_action.end_ability()
 
 /// Shares the Resin Jelly buff with the linked xeno.
 /datum/status_effect/stacking/essence_link/proc/share_jelly(datum/source)
@@ -189,6 +184,11 @@
 /// Updates the link's appearance.
 /datum/status_effect/stacking/essence_link/proc/update_beam()
 	current_beam?.visuals.alpha = round(255 / (max_stacks+1 - stacks))
+
+/// Ends the link prematurely.
+/datum/status_effect/stacking/essence_link/proc/end_link(datum/source)
+	SIGNAL_HANDLER
+	link_owner.remove_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK)
 
 // ***************************************
 // *********** Salve Regeneration

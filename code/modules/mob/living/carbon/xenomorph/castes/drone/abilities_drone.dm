@@ -35,11 +35,11 @@
 	if(!X.Adjacent(target))
 		X.balloon_alert(X, "Not adjacent")
 		return FALSE
+	if(existing_link || HAS_TRAIT(X, TRAIT_ESSENCE_LINKED))
+		target.balloon_alert(X, "We are already linked")
+		return FALSE
 	if(!existing_link && HAS_TRAIT(target, TRAIT_ESSENCE_LINKED))
 		target.balloon_alert(X, "She is already linked")
-		return FALSE
-	if(existing_link)
-		target.balloon_alert(X, "We are already linked")
 		return FALSE
 	return ..()
 
@@ -146,7 +146,9 @@
 /datum/action/xeno_action/enhancement/can_use_action()
 	var/mob/living/carbon/xenomorph/X = owner
 	essence_link_action = X.actions_by_path[/datum/action/xeno_action/activable/essence_link]
-	if(!essence_link_action.existing_link)
+	if(existing_enhancement)
+		return TRUE
+	if(!HAS_TRAIT(X, TRAIT_ESSENCE_LINKED))
 		return FALSE
 	if(!essence_link_action.existing_link.was_within_range)
 		return FALSE
