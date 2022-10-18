@@ -129,13 +129,6 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	var/active = FALSE
 
-	//Trick vars
-	///Delay between tricks
-	var/trick_delay = 6
-	///Time of last trick
-	var/recent_trick //So they're not spamming tricks.
-
-
 /obj/item/Initialize()
 
 	if(species_exception)
@@ -1276,7 +1269,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 ///Checks to see if you successfully perform a trick, and what kind
 /obj/item/proc/do_trick(mob/living/carbon/human/user)
-	if(world.time < (recent_trick + trick_delay) )
+	if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_ITEM_TRICK))
 		return FALSE
 	if(!istype(user))
 		return FALSE
@@ -1313,7 +1306,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		else
 			user.visible_message(span_info("<b>[user]</b> fumbles with [src] like a huge idiot!"))
 
-	recent_trick = world.time
+	TIMER_COOLDOWN_START(user, COOLDOWN_ITEM_TRICK, 6)
 
 	return TRUE
 
