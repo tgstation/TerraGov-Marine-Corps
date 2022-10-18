@@ -244,3 +244,12 @@
   - balance: HSG2102 nd MG08 now have bomb armor, and 20 acid armor.
   tyeagg:
   - balance: stop drop and roll only takes 5 seconds now
+2022-10-18:
+  567Turtle:
+  - qol: moved isotonic pills from the corpsman loadout vendor to the medical vending
+      machine
+  Lumipharon:
+  - bugfix: fixed certain guns not displaying their mob sprites
+  RipGrayson:
+  - rscadd: Added in new mapping helpers for assigning flags to an area.
+  - bugfix: Fixed a bug where wraiths could portal into BR LZ1 and Gelida LZ2.
