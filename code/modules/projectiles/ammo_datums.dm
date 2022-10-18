@@ -434,6 +434,16 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		P.visible_message(span_danger("The [src] chimpers furiously!"))
 		new /mob/living/carbon/human/species/monkey(P.loc)
 
+/datum/ammo/bullet/pistol/boltpistol
+	name = "high impact pistol bullet"
+	hud_state = "pistol_hollow"
+	damage = 45
+	penetration = 100
+	sundering = 10
+
+/datum/ammo/bullet/pistol/superheavy/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, stagger = 1, slowdown = 1, shake = 0)
+
 /*
 //================================================
 					Revolver Ammo

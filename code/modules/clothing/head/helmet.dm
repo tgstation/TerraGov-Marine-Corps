@@ -491,15 +491,16 @@ obj/item/clothing/head/helmet/marine/pilot/green
 /obj/item/clothing/head/helmet/marine/imperial
 	name = "\improper Imperial Guard flak helmet"
 	desc = "A standard Imperial Guard helmet that goes with the flak armour, it is also mass produced, and it can save your life, maybe."
-	icon_state = "guardhelm"
-	item_state = "guardhelm"
+	icon_state = "guard_helmet"
+	item_state = "guard_helmet"
 	flags_item = SYNTH_RESTRICTED
 	soft_armor = list(MELEE = 85, BULLET = 75, LASER = 70, ENERGY = 70, BOMB = 60, BIO = 50, "rad" = 50, FIRE = 50, ACID = 50)
 
 /obj/item/clothing/head/helmet/marine/imperial/sergeant
 	name = "\improper Imperial Guard sergeant helmet"
 	desc = "A helmet that goes with the sergeant armour, unlike the flak variant, this one will actually protect you."
-	icon_state = "guardhelm"
+	icon_state = "guard_sl_helmet"
+	item_state = "guard_sl_helmet"
 	soft_armor = list(MELEE = 85, BULLET = 85, LASER = 85, ENERGY = 85, BOMB = 85, BIO = 50, "rad" = 50, FIRE = 80, ACID = 80)
 	pockets = /obj/item/storage/internal/imperialhelmet
 
@@ -510,7 +511,8 @@ obj/item/clothing/head/helmet/marine/pilot/green
 /obj/item/clothing/head/helmet/marine/imperial/sergeant/veteran
 	name = "\improper Imperial Guard carapace helmet"
 	desc = "A helmet that goes with the heavy carapace armour, this is some serious protection."
-	icon_state = "guardvethelm"
+	icon_state = "guard_vet_helmet"
+	item_state = "guard_vet_helmet"
 	soft_armor = list(MELEE = 90, BULLET = 90, LASER = 90, ENERGY = 90, BOMB = 90, BIO = 30, "rad" = 30, FIRE = 90, ACID = 90)
 
 /obj/item/clothing/head/helmet/marine/imperial/power

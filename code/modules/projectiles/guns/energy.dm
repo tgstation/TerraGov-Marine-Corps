@@ -996,3 +996,107 @@
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin/magharness
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/imperium
+	name = "\improper Lasgun"
+	desc = "The Lasgun, also sometimes referred to as a Lasrifle, is a directed-energy antipersonnel weapon used by the military forces of the Imperium of Man, and it is the most common and widely-used type of laser weapon in the galaxy."
+	reload_sound = 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg'
+	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
+	icon_state = "lasgun"
+	item_state = "lasgun"
+	max_shots = 50 //codex stuff
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine
+	ammo_diff = null
+	rounds_per_shot = 12
+	gun_firemode = GUN_FIREMODE_AUTOMATIC
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	turret_flags = TURRET_INACCURATE
+	ammo_level_icon = "te"
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/scope/mini,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
+		/obj/item/attachable/shoulder_mount,
+	)
+
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
+	attachable_offset = list("muzzle_x" = 40, "muzzle_y" = 17,"rail_x" = 22, "rail_y" = 21, "under_x" = 29, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
+
+	aim_slowdown = 0.4
+	wield_delay = 0.5 SECONDS
+	scatter = 0
+	scatter_unwielded = 10
+	fire_delay = 0.15 SECONDS
+	accuracy_mult_unwielded = 0.55
+	damage_falloff_mult = 0.2
+
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/laspistol
+	name = "\improper Laspistol"
+	desc = "The Laspistol is capable of producing the same amount of damage in a skilled user's hands as the Lasgun, yet it has drastically reduced range as compared to its variant rifle form. The Laspistol lacks the Lasgun's selective fire options, having only the ability to fire single shots."
+	reload_sound = 'sound/weapons/guns/interact/standard_laser_pistol_reload.ogg'
+	fire_sound = 'sound/weapons/guns/fire/Laser Pistol Standard.ogg'
+	icon_state = "laspistol"
+	item_state = "laspistol"
+	w_class = WEIGHT_CLASS_NORMAL
+	flags_equip_slot = ITEM_SLOT_BELT
+	max_shots = 30 //codex stuff
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/pistol
+	ammo_diff = null
+	rounds_per_shot = 20
+	gun_firemode = GUN_FIREMODE_SEMIAUTO
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
+
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/lace,
+	)
+
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
+	attachable_offset = list("muzzle_x" = 23, "muzzle_y" = 22,"rail_x" = 12, "rail_y" = 22, "under_x" = 16, "under_y" = 14, "stock_x" = 22, "stock_y" = 12)
+
+	akimbo_additional_delay = 0.9
+	wield_delay = 0.6 SECONDS
+	scatter = 2
+	scatter_unwielded = 4
+	fire_delay = 0.15 SECONDS
+	accuracy_mult = 1
+	accuracy_mult_unwielded = 0.9
+	damage_falloff_mult = 0.2
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/plasmagun
+	name = "\improper Plasma gun"
+	desc = "The Plasma Gun is a rifle-sized Plasma Weapon common to many of the armed forces of the Imperium of Man. It is classified as a special weapon and is carried by a variety of Imperial infantry, including Space Marines, Imperial Guardsmen and Storm Troopers."
+	icon_state = "plasmagun"
+	item_state = "plasmagun"
+	w_class = WEIGHT_CLASS_NORMAL
+	max_shots = 15
+	rounds_per_shot = 36
+	ammo_datum_type = /datum/ammo/energy/volkite/medium
+	default_ammo_type = /obj/item/cell/lasgun/volkite/small
+	allowed_ammo_types = list(/obj/item/cell/lasgun/volkite/small)
+	fire_sound = 'sound/weapons/guns/fire/volkite_3.ogg'
+	gun_firemode = GUN_FIREMODE_SEMIAUTO
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
+	fire_delay = 0.35 SECONDS
+	scatter = -1
+	scatter_unwielded = 5
+	accuracy_mult = 1.15
+	accuracy_mult_unwielded = 0.9
+	recoil_unwielded = 0
+	movement_acc_penalty_mult = 2
+	aim_slowdown = 0.1

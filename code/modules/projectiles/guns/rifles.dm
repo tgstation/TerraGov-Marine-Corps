@@ -1709,3 +1709,62 @@
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/bayonet,
 	)
+
+/obj/item/weapon/gun/rifle/autogun
+	name = "\improper Agripinaa-Pattern Autogun"
+	desc = "The Autogun is a fully automatic Auto Weapon that fires solid-slug ballistic rounds at the intended target in rapid succession. Cheap, rugged and reliable, it can be found throughout the Imperium of Man, where it is appreciated for its decent damage and accuracy."
+	icon_state = "autogun"
+	icon = 'icons/Marine/gun64.dmi'
+	item_state = "autogun"
+	fire_sound = 'sound/weapons/guns/fire/som_rifle.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
+	caliber = CALIBER_10X24_CASELESS
+	max_shells = 50
+	default_ammo_type = /obj/item/ammo_magazine/rifle/som
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/som)
+	attachable_allowed = list(
+		/obj/item/weapon/gun/shotgun/micro_grenade,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/motiondetector,
+	)
+
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
+	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 16,"rail_x" = 23, "rail_y" = 24, "under_x" = 33, "under_y" = 11, "stock_x" = -1, "stock_y" = 17)
+	actions_types = list(/datum/action/item_action/aim_mode)
+
+	wield_delay = 0.3 SECONDS
+
+	aim_fire_delay = 0.1 SECONDS
+	aim_speed_modifier = 2
+
+	fire_delay = 0.15 SECONDS
+	aim_slowdown = 0.35
+
+	accuracy_mult = 1.05
+	accuracy_mult_unwielded = 0.55
+	scatter = 1.3
+	scatter_unwielded = 15
+
+	burst_amount = 3
+	burst_delay = 0.1 SECONDS
+	extra_delay = 0.1 SECONDS
+	autoburst_delay = 0.3 SECONDS
+

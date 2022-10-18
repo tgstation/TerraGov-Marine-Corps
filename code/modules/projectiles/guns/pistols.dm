@@ -728,3 +728,40 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	scatter_unwielded = 5
 	recoil = -2
 	recoil_unwielded = -2
+
+/obj/item/weapon/gun/pistol/boltpistol
+	name = "\improper Bolt pistol"
+	desc = "Powerful and utilitarian side arms, Bolt Pistols have seen service within many of the Imperium's military forces since its inception in the 30th Millennium."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "boltpistol"
+	item_state = "boltpistol"
+	caliber = CALIBER_9X19
+	max_shells = 10
+	fire_sound = 'sound/weapons/guns/fire/autocannon_fire.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/vp70_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/vp70_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/vp70_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/vp70_cocked.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/pistol/boltpistol
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/boltpistol)
+	force = 8
+	attachable_allowed = list(
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/burstfire_assembly,
+		/obj/item/attachable/lace,
+	)
+
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
+	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 22,"rail_x" = 6, "rail_y" = 23, "under_x" = 24, "under_y" = 15, "stock_x" = 11, "stock_y" = 10)
+
+	fire_delay = 0.15 SECONDS
+	accuracy_mult = 1.2
+	accuracy_mult_unwielded = 0.95
+	recoil = 2
+	aim_slowdown = 0.1
+	scatter = -1
+	scatter_unwielded = 4
