@@ -26,6 +26,9 @@
 					ExtinguishMob()
 				return TRUE
 
+			if(istype(src.wear_mask, /obj/item/clothing/mask/facehugger) && H != src)
+				H.stripPanelUnequip(src.wear_mask, src, SLOT_WEAR_MASK)
+
 			if(health >= get_crit_threshold())
 				help_shake_act(H)
 				return TRUE
