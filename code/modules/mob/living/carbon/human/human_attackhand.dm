@@ -26,7 +26,7 @@
 					ExtinguishMob()
 				return TRUE
 
-			if(istype(src.wear_mask, /obj/item/clothing/mask/facehugger) && H != src)
+			if(istype(wear_mask, /obj/item/clothing/mask/facehugger) && H != src)
 				H.stripPanelUnequip(src.wear_mask, src, SLOT_WEAR_MASK)
 				return TRUE
 
