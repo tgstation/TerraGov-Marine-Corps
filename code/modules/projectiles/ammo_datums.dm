@@ -1670,11 +1670,12 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/rocket/do_at_max_range(turf/T, obj/projectile/P)
 	drop_nade(T.density ? P.loc : T)
 
-/datum/ammo/rocket/dumbfire
-	damage = 50
+/datum/ammo/rocket/unguided
+	damage = 100
+	max_range = 21
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING // We want this one to specifically go over onscreen range.
 
-/datum/ammo/rocket/drop_nade(turf/T)
+/datum/ammo/rocket/unguided/drop_nade(turf/T)
 	explosion(T, 0, 7, 0, 2)
 
 /datum/ammo/rocket/ap
@@ -1786,10 +1787,11 @@ datum/ammo/bullet/revolver/tp44
 	max_range = 30
 	sundering = 100
 
-/datum/ammo/rocket/wp/dumbfire
+/datum/ammo/rocket/wp/unguided
+	damage = 100
+	max_range = 21
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_INCENDIARY|AMMO_SUNDERING
-	damage = 50
-	effect_radius = 7
+	effect_radius = 5
 
 /datum/ammo/rocket/recoilless
 	name = "high explosive shell"

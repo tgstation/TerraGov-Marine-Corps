@@ -347,20 +347,20 @@ WEAPONS
 
 /datum/supply_packs/weapons/rpg_regular
 	name = "RL-152 SADAR HE rocket"
-	contains = list(/obj/item/ammo_magazine/rocket/sadar, /obj/item/ammo_magazine/rocket/sadar)
+	contains = list(/obj/item/ammo_magazine/rocket/sadar)
 	cost = 6
 	available_against_xeno_only = TRUE
 
-/datum/supply_packs/weapons/rpg_regular_dumb
-	name = "RL-152 SADAR HE rocke (Dumbfire)"
-	contains = list(/obj/item/ammo_magazine/rocket/sadar/dumb, /obj/item/ammo_magazine/rocket/sadar/dumb)
+/datum/supply_packs/weapons/rpg_regular_unguided
+	name = "RL-152 SADAR HE rocket (Unguided)"
+	contains = list(/obj/item/ammo_magazine/rocket/sadar/unguided)
 	cost = 6
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/rpg_ap
 	name = "RL-152 SADAR AP rocket"
 	contains = list(/obj/item/ammo_magazine/rocket/sadar/ap)
-	cost = 6
+	cost = 7
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/rpg_wp
@@ -369,9 +369,9 @@ WEAPONS
 	cost = 5
 	available_against_xeno_only = TRUE
 
-/datum/supply_packs/weapons/rpg_wp_dumb
-	name = "RL-152 SADAR WP rocket (Dumbfire)"
-	contains = list(/obj/item/ammo_magazine/rocket/sadar/wp/dumb, /obj/item/ammo_magazine/rocket/sadar/wp/dumb)
+/datum/supply_packs/weapons/rpg_wp_unguided
+	name = "RL-152 SADAR WP rocket (Unguided)"
+	contains = list(/obj/item/ammo_magazine/rocket/sadar/wp/unguided)
 	cost = 5
 	available_against_xeno_only = TRUE
 

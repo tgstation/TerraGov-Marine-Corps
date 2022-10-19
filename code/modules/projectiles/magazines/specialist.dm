@@ -137,10 +137,10 @@
 	default_ammo = /datum/ammo/rocket
 	reload_delay = 60
 
-/obj/item/ammo_magazine/rocket/sadar/dumb
-	name = "\improper 84mm 'Dumbfire' high-explosive rocket"
-	desc = "A warhead for the RL-152 rocket launcher. Carries a bogstandard HE warhead that explodes. It is entirely unguided, and thus 'Dumbfire', this allows for a larger payload, and a skilled operator can hit longer ranged hits that a laser-guided rocket could not reach at all.  When empty, use this frame to deconstruct it."
-	default_ammo = /datum/ammo/rocket/dumbfire
+/obj/item/ammo_magazine/rocket/sadar/unguided
+	name = "\improper 84mm 'Unguided' high-explosive rocket"
+	desc = "A warhead for the RL-152 rocket launcher. Carries a bogstandard HE warhead that explodes. It is entirely unguided, and thus 'Dumb', this allows for a larger payload, and a skilled operator can hit longer ranged hits that a laser-guided rocket could not reach at all.  When empty, use this frame to deconstruct it."
+	default_ammo = /datum/ammo/rocket/unguided
 
 /obj/item/ammo_magazine/rocket/sadar/ap
 	name = "\improper 84mm 'L-G' anti-armor rocket"
@@ -154,10 +154,10 @@
 	default_ammo = /datum/ammo/rocket/wp
 	desc = "A highly destructive warhead that bursts into deadly flames on impact. Due to being laser-guided, it will hit exactly where you aim, however the payload is smaller due to the internal space required for this. Use this in hand to deconstruct it."
 
-/obj/item/ammo_magazine/rocket/sadar/wp/dumb
-	name = "\improper 84mm 'Dumbfire' white-phosphorus rocket"
-	default_ammo = /datum/ammo/rocket/wp/dumbfire
-	desc = "A highly destructive warhead that bursts into deadly flames on impact. It is entirely unguided, and thus 'Dumbfire', the benefit of this is a bigger overall payload, and a skilled operator can hit longer ranged hits that a laser-guided rocket could not reach at all. Use this in hand to deconstruct it."
+/obj/item/ammo_magazine/rocket/sadar/wp/unguided
+	name = "\improper 84mm 'Unguided' white-phosphorus rocket"
+	default_ammo = /datum/ammo/rocket/wp/unguided
+	desc = "A highly destructive warhead that bursts into deadly flames on impact. It is entirely unguided, and thus 'Dumb', the benefit of this is a bigger overall payload, and a skilled operator can hit longer ranged hits that a laser-guided rocket could not reach at all. Use this in hand to deconstruct it."
 
 
 //-------------------------------------------------------
