@@ -1823,7 +1823,7 @@ datum/ammo/bullet/revolver/tp44
 	name = "80mm"
 	icon_state = "mortar"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
-	shell_speed = 1.25
+	shell_speed = 1.10
 	damage = 0
 	penetration = 0
 	sundering = 0
@@ -1866,7 +1866,7 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/mortar/howi
 	name = "150mm"
 	icon_state = "howi"
-	shell_speed = 1.5
+	shell_speed = 1.25
 
 /datum/ammo/mortar/howi/drop_nade(turf/T)
 	explosion(T, 1, 6, 7, 12)

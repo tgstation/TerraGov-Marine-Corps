@@ -20,8 +20,10 @@
 		)
 	/// Number of turfs to offset from target by 1
 	var/offset_per_turfs = 15
-	/// Spread on target
+	/// Constant spread on target
 	var/spread
+	/// Max spread on target
+	var/max_spread = 6
 	var/busy = 0
 	/// Used for deconstruction and aiming sanity
 	var/firing = 0
@@ -30,7 +32,7 @@
 	var/reload_sound = 'sound/weapons/guns/interact/mortar_reload.ogg' // Our reload sound.
 	var/fall_sound = 'sound/weapons/guns/misc/mortar_long_whistle.ogg' //The sound the shell makes when falling.
 	///Minimum range to fire
-	var/minimum_range = 10
+	var/minimum_range = 15
 	///Time it takes for the mortar to cool off to fire
 	var/cool_off_time = 1 SECONDS
 	///How long to wait before next shot
@@ -321,9 +323,10 @@
 	location.ceiling_debris_check(2)
 	log_game("[key_name(user)] has fired the [src] at [AREACOORD(target)]")
 
-	var/max_offset_x = round(abs((coords["targ_x"] + coords["dial_x"]) - x)/offset_per_turfs)
-	var/max_offset_y = round(abs((coords["targ_y"] + coords["dial_y"]) - y)/offset_per_turfs)
-	spread = max_offset_x + max_offset_y
+	var/max_offset = round(abs((get_dist(src,target)))/offset_per_turfs)
+	var/firing_spread = max_offset + spread
+	if(firing_spread > max_spread)
+		firing_spread = max_spread
 	var/list/turf_list = list()
 	var/obj/in_chamber
 	var/next_chamber_position = length(chamber_items)
@@ -332,7 +335,7 @@
 		amount_to_fire = length(chamber_items)
 	if(amount_to_fire > length(chamber_items))
 		amount_to_fire = length(chamber_items)
-	for(var/turf/spread_turf in RANGE_TURFS(spread, target))
+	for(var/turf/spread_turf in RANGE_TURFS(firing_spread, target))
 		turf_list += spread_turf
 	for(var/i = 1 to amount_to_fire)
 		var/turf/impact_turf = pick(turf_list)
@@ -419,6 +422,7 @@
 	tally_type = TALLY_HOWITZER
 	cool_off_time = 2 SECONDS
 	reload_time = 1 SECONDS
+	max_spread = 8
 
 /obj/machinery/deployable/mortar/howitzer/AltRightClick(mob/living/user)
 	if(!Adjacent(user) || user.lying_angle || user.incapacitated() || !ishuman(user))
@@ -466,6 +470,7 @@
 	reload_time = 1 SECONDS
 	max_rounds = 12
 	offset_per_turfs = 8
+	spread = 3
 
 // Shells themselves //
 
