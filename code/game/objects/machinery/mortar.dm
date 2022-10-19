@@ -21,9 +21,9 @@
 	/// Number of turfs to offset from target by 1
 	var/offset_per_turfs = 15
 	/// Constant spread on target
-	var/spread
+	var/spread = 1
 	/// Max spread on target
-	var/max_spread = 6
+	var/max_spread = 5
 	var/busy = 0
 	/// Used for deconstruction and aiming sanity
 	var/firing = 0
@@ -469,7 +469,7 @@
 	fire_delay = 0.3 SECONDS
 	reload_time = 1 SECONDS
 	max_rounds = 12
-	offset_per_turfs = 8
+	offset_per_turfs = 10
 	spread = 3
 
 // Shells themselves //
