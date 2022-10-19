@@ -2038,21 +2038,18 @@ datum/ammo/bullet/revolver/tp44
 	flame_radius(4, T)
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
 
+/datum/ammo/mortar/smoke
+	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/tactical
+
 /datum/ammo/mortar/smoke/drop_nade(turf/T)
-	var/datum/effect_system/smoke_spread/tactical/smoke = new(src)
+	var/datum/effect_system/smoke_spread/smoke = new smoketype()
 	explosion(T, 0, 0, 1, 3, throw_range = 0, small_animation = TRUE)
 	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
 	smoke.set_up(10, T, 11)
 	smoke.start()
-	smoke = null
 
-/datum/ammo/mortar/plasmaloss/drop_nade(turf/T)
-	var/datum/effect_system/smoke_spread/plasmaloss/smoke = new(src)
-	explosion(T, 0, 0, 1, 3, throw_range = 0)
-	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
-	smoke.set_up(10, T, 7)
-	smoke.start()
-	smoke = null
+/datum/ammo/mortar/smoke/plasmaloss
+	smoketype = /datum/effect_system/smoke_spread/plasmaloss
 
 /datum/ammo/mortar/flare/drop_nade(turf/T)
 	new /obj/effect/temp_visual/above_flare(T)
@@ -2071,23 +2068,32 @@ datum/ammo/bullet/revolver/tp44
 	flame_radius(5, T)
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
 
-/datum/ammo/mortar/howi/wp/drop_nade(turf/T)
-	var/datum/effect_system/smoke_spread/phosphorus/smoke = new(src)
+/datum/ammo/mortar/smoke/howi
+	name = "150mm"
+	icon_state = "howi"
+	shell_speed = 1.25
+
+/datum/ammo/mortar/smoke/howi/wp
+	smoketype = /datum/effect_system/smoke_spread/phosphorus
+
+/datum/ammo/mortar/smoke/howi/wp/drop_nade(turf/T)
+	var/datum/effect_system/smoke_spread/smoke = new smoketype()
 	explosion(T, 0, 0, 1, 0, throw_range = 0)
 	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
 	smoke.set_up(6, T, 7)
 	smoke.start()
 	flame_radius(4, T)
 	flame_radius(1, T, burn_intensity = 45, burn_duration = 75, burn_damage = 15, fire_stacks = 75)
-	qdel(src)
 
-/datum/ammo/mortar/howi/plasmaloss/drop_nade(turf/T)
-	var/datum/effect_system/smoke_spread/plasmaloss/smoke = new(src)
+/datum/ammo/mortar/smoke/howi/plasmaloss
+	smoketype = /datum/effect_system/smoke_spread/plasmaloss
+
+/datum/ammo/mortar/smoke/howi/plasmaloss/drop_nade(turf/T)
+	var/datum/effect_system/smoke_spread/smoke = new smoketype()
 	explosion(T, 0, 0, 5, 0, throw_range = 0)
 	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
 	smoke.set_up(10, T, 11)
 	smoke.start()
-	smoke = null
 
 /datum/ammo/mortar/rocket
 	name = "rocket"

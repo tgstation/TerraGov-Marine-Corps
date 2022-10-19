@@ -506,7 +506,7 @@
 	name = "\improper 80mm tangle mortar shell"
 	desc = "An 80mm mortar shell, loaded with plasma-draining Tanglefoot gas. Can be fired at marines more-or-less safely."
 	icon_state = "mortar_ammo_fsh"
-	ammo_type = /datum/ammo/mortar/plasmaloss
+	ammo_type = /datum/ammo/mortar/smoke/plasmaloss
 
 /obj/item/mortal_shell/flare
 	name = "\improper 80mm flare mortar shell"
@@ -530,7 +530,7 @@
 	name = "\improper 150mm 'Tanglefoot' artillery shell"
 	desc = "An 150mm artillery shell, loaded with a toxic intoxicating gas, whatever is hit by this will have their abilities sapped slowly. Acommpanied by a small moderate explosion."
 	icon_state = "howitzer_ammo_purp"
-	ammo_type = /datum/ammo/mortar/howi/plasmaloss
+	ammo_type = /datum/ammo/mortar/smoke/howi/plasmaloss
 
 /obj/item/mortal_shell/howitzer/incendiary
 	name = "\improper 150mm incendiary artillery shell"
@@ -542,7 +542,7 @@
 	name = "\improper 150mm white phosporous 'spotting' artillery shell"
 	desc = "An 150mm artillery shell, loaded with a 'spotting' gas that sets anything it hits aflame, whatever is hit by this will have their day, skin and future ruined, with a demand for a warcrime tribunal."
 	icon_state = "howitzer_ammo_wp"
-	ammo_type = /datum/ammo/mortar/howi/wp
+	ammo_type = /datum/ammo/mortar/smoke/howi/wp
 
 /obj/item/mortal_shell/rocket
 	ammo_type = /datum/ammo/mortar/rocket
