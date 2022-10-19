@@ -343,6 +343,9 @@
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	var/mob/living/carbon/xenomorph/patient = target
 	patient.salve_healing()
+	owner.changeNext_move(CLICK_CD_RANGE)
+	succeed_activate()
+	add_cooldown()
 
 /// Heals the target.
 /mob/living/carbon/xenomorph/proc/salve_healing()
