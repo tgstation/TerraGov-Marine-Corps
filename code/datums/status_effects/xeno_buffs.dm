@@ -65,9 +65,10 @@
 	essence_link_action = link_owner.actions_by_path[/datum/action/xeno_action/activable/essence_link]
 	ADD_TRAIT(link_owner, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
 	ADD_TRAIT(link_target, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
-	RegisterSignal(link_owner, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED), .proc/end_link)
-	RegisterSignal(link_target, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED), .proc/end_link)
+	RegisterSignal(link_owner, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), .proc/end_link)
+	RegisterSignal(link_target, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), .proc/end_link)
 	toggle_link(TRUE)
+	to_chat(link_owner, "You have established an Essence Link with [link_target]. Stay within [DRONE_ESSENCE_LINK_RANGE] tiles to maintain it.")
 	to_chat(link_target, "[link_owner] has established an Essence Link with you. Stay within [DRONE_ESSENCE_LINK_RANGE] tiles to maintain it.")
 	return ..()
 
@@ -79,15 +80,15 @@
 	update_beam()
 
 /datum/status_effect/stacking/essence_link/on_remove()
-	. = ..()
-	link_owner.balloon_alert(link_owner, "Essence Link cancelled")
-	link_target.balloon_alert(link_target, "Essence Link cancelled")
+	to_chat(link_owner, "The Essence Link between you and [link_target] has been cancelled.")
+	to_chat(link_target, "The Essence Link between you and [link_owner] has been cancelled.")
 	toggle_link(FALSE)
 	essence_link_action.end_ability()
-	UnregisterSignal(link_owner, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED))
-	UnregisterSignal(link_target, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED))
+	UnregisterSignal(link_owner, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED))
+	UnregisterSignal(link_target, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED))
 	REMOVE_TRAIT(link_owner, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
 	REMOVE_TRAIT(link_target, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
+	return ..()
 
 /datum/status_effect/stacking/essence_link/tick()
 	var/within_range = get_dist(link_owner, link_target) <= DRONE_ESSENCE_LINK_RANGE
@@ -188,7 +189,7 @@
 /// Ends the link prematurely.
 /datum/status_effect/stacking/essence_link/proc/end_link(datum/source)
 	SIGNAL_HANDLER
-	link_owner.remove_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK)
+	essence_link_action.end_ability()
 
 // ***************************************
 // *********** Salve Regeneration

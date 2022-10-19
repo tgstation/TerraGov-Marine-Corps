@@ -35,17 +35,20 @@
 	if(!X.Adjacent(target))
 		X.balloon_alert(X, "Not adjacent")
 		return FALSE
-	if(existing_link || HAS_TRAIT(X, TRAIT_ESSENCE_LINKED))
+	if(target.tier == XENO_TIER_ZERO || target.tier == XENO_TIER_MINION)
+		target.balloon_alert(X, "We cannot link to her.")
+		return FALSE
+	if(HAS_TRAIT(X, TRAIT_ESSENCE_LINKED))
 		target.balloon_alert(X, "We are already linked")
 		return FALSE
-	if(!existing_link && HAS_TRAIT(target, TRAIT_ESSENCE_LINKED))
+	if(HAS_TRAIT(target, TRAIT_ESSENCE_LINKED))
 		target.balloon_alert(X, "She is already linked")
 		return FALSE
 	return ..()
 
 /datum/action/xeno_action/activable/essence_link/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/X = owner
-	if(!existing_link)
+	if(!HAS_TRAIT(X, TRAIT_ESSENCE_LINKED))
 		target.balloon_alert(X, "Linking...")
 		if(!do_after(X, DRONE_ESSENCE_LINK_WINDUP, TRUE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_FRIENDLY))
 			X.balloon_alert(X, "Link cancelled")
@@ -58,9 +61,10 @@
 
 /datum/action/xeno_action/activable/essence_link/alternate_action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
-	if(!existing_link)
+	if(!HAS_TRAIT(X, TRAIT_ESSENCE_LINKED))
 		X.balloon_alert(X, "No link to cancel")
 		return
+	X.remove_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK)
 	end_ability()
 	return COMSIG_KB_ACTIVATED
 
@@ -69,7 +73,6 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	var/datum/action/xeno_action/enhancement/enhancement_action = X.actions_by_path[/datum/action/xeno_action/enhancement]
 	enhancement_action.end_ability()
-	X.remove_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK)
 	existing_link = null
 	linked_target = null
 	add_cooldown()
