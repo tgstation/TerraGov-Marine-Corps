@@ -202,6 +202,22 @@
 	var/scatter	= 4
 	///How much the bullet scatters when fired while unwielded.
 	var/scatter_unwielded = 12
+	///Maximum scatter
+	var/max_scatter = 360
+	///Maximum scatter when wielded
+	var/max_scatter_unwielded = 360
+	///How much scatter decays every X seconds
+	var/scatter_decay = 0
+	///How much scatter decays every X seconds when wielded
+	var/scatter_decay_unwielded = 0
+	///How much scatter increases per shot
+	var/scatter_increase = 0
+	///How much scatter increases per shot when wielded
+	var/scatter_increase_unwielded = 0
+	///Minimum scatter
+	var/min_scatter = 0
+	///Minimum scatter when wielded
+	var/min_scatter_unwielded = 0
 	///Multiplier. Increases or decreases how much bonus scatter is added when burst firing (wielded only).
 	var/burst_scatter_mult = 1
 	///Multiplier. Defaults to 1 (no penalty). Multiplies accuracy modifier by this amount while burst firing; usually a fraction (penalty) when set.
@@ -1619,8 +1635,12 @@
 
 	if(((flags_item & WIELDED) && wielded_stable()) || CHECK_BITFIELD(flags_item, IS_DEPLOYED) || (master_gun && CHECK_BITFIELD(master_gun.flags_item, WIELDED) && master_gun.wielded_stable()))
 		gun_accuracy_mult = accuracy_mult
+		scatter = max(max(min_scatter, 0), min((scatter + scatter_increase) - ((world.time - last_fired - 1) * scatter_decay), max_scatter))
 		gun_scatter = scatter
 		wielded_fire = TRUE
+	else
+		scatter = max(max(min_scatter_unwielded, 0), min((scatter + scatter_increase_unwielded) - ((world.time - last_fired - 1) * scatter_decay_unwielded), max_scatter_unwielded))
+		gun_scatter = scatter
 
 	if(user && world.time - user.last_move_time < 5) //if you moved during the last half second, you have some penalties to accuracy and scatter
 		if(wielded_fire)
