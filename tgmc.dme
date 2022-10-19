@@ -656,6 +656,7 @@
 #include "code\game\objects\items\radio\headset.dm"
 #include "code\game\objects\items\radio\intercom.dm"
 #include "code\game\objects\items\radio\radio.dm"
+#include "code\game\objects\items\loot_box.dm"
 #include "code\game\objects\items\reagent_containers\autoinjectors.dm"
 #include "code\game\objects\items\reagent_containers\blood_pack.dm"
 #include "code\game\objects\items\reagent_containers\borghydro.dm"

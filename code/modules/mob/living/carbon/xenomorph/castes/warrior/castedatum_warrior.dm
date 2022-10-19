@@ -33,7 +33,7 @@
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_BECOME_KING
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 30, BULLET = 40, LASER = 40, ENERGY = 30, BOMB = 20, BIO = 36, "rad" = 36, FIRE = 40, ACID = 36)
+	soft_armor = list(MELEE = 30, BULLET = 40, LASER = 40, ENERGY = 30, BOMB = 20, BIO = 36, FIRE = 40, ACID = 36)
 
 	// *** Minimap Icon *** //
 	minimap_icon = "warrior"
@@ -78,7 +78,7 @@
 	upgrade_threshold = TIER_TWO_MATURE_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 34, BULLET = 45, LASER = 45, ENERGY = 34, BOMB = 20, BIO = 36, "rad" = 36, FIRE = 45, ACID = 36)
+	soft_armor = list(MELEE = 34, BULLET = 45, LASER = 45, ENERGY = 34, BOMB = 20, BIO = 36, FIRE = 45, ACID = 36)
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = -0.6
@@ -107,7 +107,7 @@
 	upgrade_threshold = TIER_TWO_ELDER_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 38, BULLET = 50, LASER = 50, ENERGY = 38, BOMB = 20, BIO = 40, "rad" = 40, FIRE = 50, ACID = 40)
+	soft_armor = list(MELEE = 38, BULLET = 50, LASER = 50, ENERGY = 38, BOMB = 20, BIO = 40, FIRE = 50, ACID = 40)
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = -0.6
@@ -136,7 +136,7 @@
 	upgrade_threshold = TIER_TWO_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 42, BULLET = 55, LASER = 55, ENERGY = 42, BOMB = 20, BIO = 50, "rad" = 50, FIRE = 55, ACID = 50)
+	soft_armor = list(MELEE = 42, BULLET = 55, LASER = 55, ENERGY = 42, BOMB = 20, BIO = 50, FIRE = 55, ACID = 50)
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = -0.6
@@ -162,7 +162,7 @@
 	max_health = 350
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 42, BULLET = 55, LASER = 55, ENERGY = 42, BOMB = 20, BIO = 50, "rad" = 50, FIRE = 55, ACID = 50)
+	soft_armor = list(MELEE = 42, BULLET = 55, LASER = 55, ENERGY = 42, BOMB = 20, BIO = 50, FIRE = 55, ACID = 50)
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = -0.6

@@ -15,7 +15,7 @@
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	max_integrity = 200
 	coverage = 40
-	soft_armor = list(MELEE = 20, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 10, BIO = 0, "rad" = 0, FIRE = 70, ACID = 60)
+	soft_armor = list(MELEE = 20, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 10, BIO = 0, FIRE = 70, ACID = 60)
 	var/icon_closed = "closed"
 	var/icon_opened = "open"
 	var/overlay_welded = "welded"
