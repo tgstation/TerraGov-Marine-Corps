@@ -1649,7 +1649,7 @@ datum/ammo/bullet/revolver/tp44
 	shell_speed = 2
 	accuracy = 40
 	accurate_range = 20
-	max_range = 30
+	max_range = 14
 	damage = 200
 	penetration = 100
 	sundering = 100
@@ -1672,7 +1672,6 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/rocket/unguided
 	damage = 100
-	max_range = 21
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING // We want this one to specifically go over onscreen range.
 
 /datum/ammo/rocket/unguided/drop_nade(turf/T)
@@ -1789,7 +1788,6 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/rocket/wp/unguided
 	damage = 100
-	max_range = 21
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_INCENDIARY|AMMO_SUNDERING
 	effect_radius = 5
 
