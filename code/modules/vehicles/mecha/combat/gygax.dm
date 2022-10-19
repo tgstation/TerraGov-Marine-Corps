@@ -37,6 +37,18 @@
 		chassis.leg_overload_mode = !chassis.leg_overload_mode
 	action_icon_state = "mech_overload_[chassis.leg_overload_mode ? "on" : "off"]"
 	chassis.log_message("Toggled leg actuators overload.", LOG_MECHA)
+	//tgmc add
+	var/obj/item/mecha_parts/mecha_equipment/ability/dash/ability = locate() in chassis.equip_by_category[MECHA_UTILITY]
+	if(ability)
+		chassis.cut_overlay(ability.overlay)
+		var/state = chassis.leg_overload_mode ? (initial(ability.icon_state) + "_active") : initial(ability.icon_state)
+		ability.overlay = image('icons/mecha/mecha_ability_overlays.dmi', icon_state = state, layer=chassis.layer+0.001)
+		chassis.add_overlay(ability.overlay)
+		if(chassis.leg_overload_mode)
+			ability.sound_loop.start(chassis)
+		else
+			ability.sound_loop.stop(chassis)
+	//tgmc end
 	if(chassis.leg_overload_mode)
 		chassis.move_delay = min(1, round(chassis.move_delay * 0.5))
 		chassis.step_energy_drain = max(chassis.overload_step_energy_drain_min,chassis.step_energy_drain*chassis.leg_overload_coeff)

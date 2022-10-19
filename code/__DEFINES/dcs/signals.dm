@@ -339,6 +339,9 @@
 #define COMSIG_XENO_STOP_FIRE "xeno_stop_fire"
 #define COMSIG_XENO_AUTOFIREDELAY_MODIFIED "xeno_firedelay_modified"
 
+#define COMSIG_MECH_FIRE "mech_fire"
+#define COMSIG_MECH_STOP_FIRE "mech_stop_fire"
+
 
 // /obj/item/clothing signals
 #define COMSIG_SHOES_STEP_ACTION "shoes_step_action"			//from base of obj/item/clothing/shoes/proc/step_action(): ()

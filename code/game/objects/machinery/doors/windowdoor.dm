@@ -8,7 +8,7 @@
 	obj_flags = CAN_BE_HIT
 	var/base_state = "left"
 	max_integrity = 50
-	soft_armor = list(MELEE = 20, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 100, "rad" = 100, FIRE = 70, ACID = 100)
+	soft_armor = list(MELEE = 20, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 100, FIRE = 70, ACID = 100)
 	visible = FALSE
 	use_power = FALSE
 	flags_atom = ON_BORDER

@@ -105,22 +105,24 @@
 	span_xenowarning("We thrash about in a murderous frenzy!"))
 
 	X.face_atom(A)
-	var/sweep_range = 1
-	var/list/L = orange(sweep_range, X) // Not actually the fruit
-	var/victims = 0
-	var/target_facing
-	for(var/mob/living/carbon/human/H in L)
-		if(victims >= 3) //Max 3 victims
-			break
-		target_facing = get_dir(X, H)
-		if(target_facing != X.dir && target_facing != turn(X.dir,45) && target_facing != turn(X.dir,-45) ) //Have to be actually facing the target
+
+	var/list/atom/movable/atoms_to_ravage = get_step(owner, owner.dir).contents.Copy()
+	atoms_to_ravage += get_step(owner, turn(owner.dir, -45)).contents
+	atoms_to_ravage += get_step(owner, turn(owner.dir, 45)).contents
+	for(var/atom/movable/ravaged AS in atoms_to_ravage)
+		if(!(ravaged.resistance_flags & XENO_DAMAGEABLE))
 			continue
-		if(H.stat != DEAD && !isnestedhost(H)) //No bully
-			H.attack_alien_harm(X, X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier * 0.25, FALSE, TRUE, FALSE, TRUE)
-			victims++
-			step_away(H, X, sweep_range, 2)
-			shake_camera(H, 2, 1)
-			H.Paralyze(1 SECONDS)
+		if(!ravaged.anchored)
+			step_away(ravaged, X, 1, 2)
+		if(!ishuman(ravaged))
+			ravaged.attack_alien(X, X.xeno_caste.melee_damage)
+			continue
+		var/mob/living/carbon/human/attacking = ravaged
+		if(attacking.stat == DEAD)
+			continue
+		attacking.attack_alien_harm(X, X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier * 0.25, FALSE, TRUE, FALSE, TRUE)
+		shake_camera(attacking, 2, 1)
+		attacking.Paralyze(1 SECONDS)
 
 	succeed_activate()
 	add_cooldown()

@@ -565,6 +565,10 @@
 /obj/structure/grille,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/LZ2)
+"cA" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northwestmonorail/hallway)
 "cB" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison,
@@ -1258,6 +1262,10 @@
 "gB" = (
 /turf/open/floor/tile/dark/brown2,
 /area/icy_caves/outpost/refinery)
+"gC" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/medbay)
 "gF" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -1408,6 +1416,7 @@
 /area/icy_caves/caves/northwestmonorail)
 "hD" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno,
+/obj/effect/landmark/sensor_tower_patrol,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/south)
 "hG" = (
@@ -1427,6 +1436,10 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/cult,
 /area/icy_caves/caves/south)
+"hK" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/dorms)
 "hN" = (
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 1
@@ -5900,6 +5913,10 @@
 	dir = 4
 	},
 /area/icy_caves/caves)
+"Bw" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/west)
 "Bx" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
@@ -13246,7 +13263,7 @@ Nb
 Pp
 Nb
 Wn
-Nb
+cA
 Nb
 Nb
 Nb
@@ -17496,7 +17513,7 @@ ZU
 ZU
 ZU
 ZU
-ZU
+Bw
 ZU
 jP
 ZU
@@ -20495,7 +20512,7 @@ Ai
 sg
 uR
 RK
-Kp
+gC
 rW
 Kp
 Ai
@@ -21923,7 +21940,7 @@ vB
 Xn
 Vo
 Dg
-tg
+hK
 tg
 tg
 Zq
