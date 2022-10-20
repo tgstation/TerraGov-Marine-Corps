@@ -1278,7 +1278,7 @@ TUNNEL
 
 /obj/structure/xeno/spawner/Initialize()
 	. = ..()
-	GLOB.xeno_spawner += src
+	GLOB.xeno_spawners += src
 	SSspawning.registerspawner(src, INFINITY, GLOB.xeno_ai_spawnable, 0, 0, null)
 	SSspawning.spawnerdata[src].required_increment = max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER)/SSspawning.wait
 	SSspawning.spawnerdata[src].max_allowed_mobs = max(2, MAX_SPAWNABLE_MOB_PER_PLAYER * SSmonitor.maximum_connected_players_count)
@@ -1354,7 +1354,7 @@ TUNNEL
 	update_minimap_icon()
 
 /obj/structure/xeno/spawner/Destroy()
-	GLOB.xeno_spawner -= src
+	GLOB.xeno_spawners -= src
 	return ..()
 
 ///Change minimap icon if spawner is under attack or not
@@ -1632,6 +1632,9 @@ TUNNEL
 
 /obj/structure/xeno/nymph_nest/Initialize()
 	. = ..()
-	SSspawning.registerspawner(src, INFINITY, list(/mob/living/carbon/xenomorph/nymph/ai), 0, 0, null)
-	SSspawning.spawnerdata[src].required_increment = 2 * max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER)/SSspawning.wait
-	SSspawning.spawnerdata[src].max_allowed_mobs = max(1, MAX_SPAWNABLE_MOB_PER_PLAYER * SSmonitor.maximum_connected_players_count * 2)
+	GLOB.xeno_nymph_nests += src
+	SSspawning.registerspawner(src, max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER), list(/mob/living/carbon/xenomorph/nymph/ai), max(1, MAX_SPAWNABLE_MOB_PER_PLAYER * SSmonitor.maximum_connected_players_count), 0, null)
+
+/obj/structure/xeno/nymph_nest/Destroy()
+	GLOB.xeno_nymph_nests -= src
+	return ..()
