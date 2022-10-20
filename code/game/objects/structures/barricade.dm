@@ -161,7 +161,7 @@
 	update_icon()
 
 /obj/structure/barricade/wirecutter_act(mob/living/user, obj/item/I)
-	if(!is_wired || user.do_actions)
+	if(!is_wired || LAZYACCESS(user.do_actions, src))
 		return FALSE
 
 	user.visible_message(span_notice("[user] begin removing the barbed wire on [src]."),
@@ -326,8 +326,8 @@
 		if(ET.folded)
 			return
 
-		if(user.do_actions)
-			to_chat(user, span_warning(" You are already shoveling!"))
+		if(LAZYACCESS(user.do_actions, src))
+			to_chat(user, span_warning("You are already shoveling!"))
 			return
 
 		user.visible_message("[user] starts clearing out \the [src].", "You start removing \the [src].")
@@ -562,7 +562,7 @@
 	. += span_info("It is [barricade_upgrade_type ? "upgraded with [barricade_upgrade_type]" : "not upgraded"].")
 
 /obj/structure/barricade/metal/welder_act(mob/living/user, obj/item/I)
-	if(user.do_actions)
+	if(LAZYACCESS(user.do_actions, src))
 		return FALSE
 
 	var/obj/item/tool/weldingtool/WT = I
@@ -618,7 +618,7 @@
 
 
 /obj/structure/barricade/metal/screwdriver_act(mob/living/user, obj/item/I)
-	if(user.do_actions)
+	if(LAZYACCESS(user.do_actions, src))
 		return FALSE
 	switch(build_state)
 		if(BARRICADE_METAL_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
@@ -658,7 +658,7 @@
 
 
 /obj/structure/barricade/metal/wrench_act(mob/living/user, obj/item/I)
-	if(user.do_actions)
+	if(LAZYACCESS(user.do_actions, src))
 		return FALSE
 	switch(build_state)
 		if(BARRICADE_METAL_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
@@ -719,7 +719,7 @@
 
 
 /obj/structure/barricade/metal/crowbar_act(mob/living/user, obj/item/I)
-	if(user.do_actions)
+	if(LAZYACCESS(user.do_actions, src))
 		return FALSE
 	switch(build_state)
 		if(BARRICADE_METAL_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to resecure anchor bolts
