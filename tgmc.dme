@@ -595,7 +595,6 @@
 #include "code\game\objects\items\misc.dm"
 #include "code\game\objects\items\motion_detector.dm"
 #include "code\game\objects\items\multitool.dm"
-#include "code\game\objects\items\paint.dm"
 #include "code\game\objects\items\pinpointer.dm"
 #include "code\game\objects\items\pipe_painter.dm"
 #include "code\game\objects\items\plantable_flags.dm"
