@@ -1452,8 +1452,8 @@ Imports
 	contains = list(/obj/item/clothing/head/strawhat)
 	cost = 1
 
-/datum/supply_packs/loot_box
-	name = "What could be inside?"
+/datum/supply_packs/imports/loot_box
+	name = "Loot box"
 	contains = list(/obj/item/loot_box/marine)
 	cost = 50
 
