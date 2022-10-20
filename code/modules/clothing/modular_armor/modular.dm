@@ -846,7 +846,7 @@
 
 /obj/item/clothing/suit/modular/som/heavy/leader
 	name = "\improper SOM Gorgon pattern assault armor"
-	desc = "A bulky suit of heavy combat armor, the M-35 'Gorgon' armour provides the user with superior protection without severely impacting mobility. Typically seen on SOM leaders or their most elite combat units due to the significant construction and maintenance requirements. You'll need serious firepower to punch through this. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	desc = "A bulky suit of heavy combat armor, the M-35 'Gorgon' armor provides the user with superior protection without severely impacting mobility. Typically seen on SOM leaders or their most elite combat units due to the significant construction and maintenance requirements. You'll need serious firepower to punch through this. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
 	soft_armor = list(MELEE = 60, BULLET = 80, LASER = 70, ENERGY = 70, BOMB = 60, BIO = 55, FIRE = 65, ACID = 55)
 	icon_state = "som_leader"
 	item_state = "som_leader"
@@ -874,7 +874,6 @@
 	icon_state = "som_helmet"
 	item_state = "som_helmet"
 	soft_armor = list(MELEE = 45, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
-	accuracy_mod = 0
 	greyscale_config = null
 	greyscale_colors = null
 
@@ -911,14 +910,14 @@
 /obj/item/clothing/head/modular/som/veteran
 	name = "\improper SOM veteran helmet"
 	desc = "The standard combat helmet worn by SOM combat specialists. State of the art materials provides more protection for more valuable brains."
-	icon = 'icons/mob/modular/m10.dmi'
-	item_icons = list(
-		slot_head_str = 'icons/mob/modular/m10.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
-	icon_state = "som_helmet"
-	item_state = "som_helmet"
 	soft_armor = list(MELEE = 50, BULLET = 75, LASER = 65, ENERGY = 65, BOMB = 50, BIO = 50, FIRE = 60, ACID = 55)
 
 /obj/item/clothing/head/modular/som/veteran/lorica
 	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/tyr_head/som)
+
+/obj/item/clothing/head/modular/som/leader
+	name = "\improper SOM Gorgon pattern helmet"
+	desc = "Made for use with Gorgon pattern assault armor, providing superior protection. Typically seen on SOM leaders or their most elite combat units."
+	icon_state = "som_helmet_leader"
+	item_state = "som_helmet_leader"
+	soft_armor = list(MELEE = 60, BULLET = 80, LASER = 70, ENERGY = 70, BOMB = 60, BIO = 55, FIRE = 65, ACID = 55)
