@@ -90,14 +90,8 @@
 	desc = "The SMG-90 is the TerraGov Marine Corps standard issue SMG. Its known for it's compact size and ease of use inside the field. It's usually carried by troops who want a lightweight firearm to rush with. It uses 10x20mm caseless rounds."
 	icon = 'icons/Marine/gun64.dmi'
 	fire_sound = 'sound/weapons/guns/fire/t90.ogg'
-	icon_state = GUN_ICONSTATE_LOADED
+	icon_state = "t90"
 	item_state = "t90"
-	item_icons = list(
-		slot_l_hand_str = /datum/greyscale_config/gun/worn/l_hand/t90,
-		slot_r_hand_str = /datum/greyscale_config/gun/worn/r_hand/t90,
-		slot_back_str = /datum/greyscale_config/gun/worn/t90,
-		slot_s_store_str = /datum/greyscale_config/gun/worn/suit/t90,
-	)
 	caliber = CALIBER_10X20_CASELESS //codex
 	max_shells = 50 //codex
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -138,7 +132,7 @@
 	lower_akimbo_accuracy = 2
 
 	placed_overlay_iconstate = "t90"
-	greyscale_config = /datum/greyscale_config/gun/t90
+
 /obj/item/weapon/gun/smg/standard_smg/breacher
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
 
@@ -236,7 +230,7 @@
 /obj/item/weapon/gun/smg/m25/elite/suppressed
 	icon_state = "m25"
 	item_state = "m25"
-	starting_attachment_types = list(/obj/item/attachable/suppressor) //Tacticool
+	starting_attachment_types = list(/obj/item/attachable/suppressor, /obj/item/attachable/magnetic_harness) //Tacticool
 
 //-------------------------------------------------------
 //SMG-27, based on the grease gun

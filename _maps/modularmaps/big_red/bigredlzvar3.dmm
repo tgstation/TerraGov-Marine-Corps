@@ -380,6 +380,10 @@
 /obj/effect/spawner/random/tool,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
+"jz" = (
+/obj/effect/mapping_helpers/area_flag_injector/marine_base,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/telecomm)
 "jA" = (
 /obj/structure/table,
 /obj/item/folder/black,
@@ -2553,7 +2557,7 @@ cX
 kT
 sv
 Ce
-Pf
+jz
 Pf
 wi
 Ry
