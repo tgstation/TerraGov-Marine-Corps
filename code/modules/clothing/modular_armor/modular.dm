@@ -876,7 +876,7 @@
 	soft_armor = list(MELEE = 45, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
 	greyscale_config = null
 	greyscale_colors = null
-
+	flags_inv_hide = HIDEEARS|HIDEALLHAIR
 	flags_armor_protection = HEAD|FACE|EYES
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head/som,
