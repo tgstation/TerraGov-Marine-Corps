@@ -1035,7 +1035,7 @@
 /area/lv624/ground/caves/west1)
 "azz" = (
 /obj/structure/cargo_container{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/marking/bot,
 /area/lv624/ground/sand2)
@@ -1054,7 +1054,7 @@
 /area/lv624/ground/sand2)
 "azG" = (
 /obj/structure/cargo_container{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor,
 /area/lv624/ground/sand2)
@@ -1914,7 +1914,7 @@
 /area/lv624/lazarus/sleep_male)
 "aRV" = (
 /obj/structure/cargo_container{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
@@ -15932,7 +15932,7 @@
 /area/lv624/ground/sand7)
 "qoW" = (
 /obj/structure/cargo_container{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
