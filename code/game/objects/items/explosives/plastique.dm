@@ -69,6 +69,9 @@
 			var/atom/movable/T = plant_target
 			T.vis_contents += src
 		detonation_pending = addtimer(CALLBACK(src, .proc/detonate), timer*10, TIMER_STOPPABLE)
+		var/beeping_timer = ((timer*10) - 27)
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, get_turf(target), 'sound/items/countdown.ogg', 40, TRUE), beeping_timer)
+
 
 /obj/item/explosive/plastique/attack(mob/M as mob, mob/user as mob, def_zone)
 	return
