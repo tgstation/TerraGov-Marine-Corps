@@ -60,6 +60,7 @@
 	var/list/recording_recipe
 	///Whether untrained people get a delay when using it
 	var/needs_medical_training = TRUE
+	var/needs_engineer_training = TRUE
 	///If TRUE, we'll clear a recipe we click on instead of dispensing it
 	var/clearing_recipe = FALSE
 
@@ -175,11 +176,11 @@
 	if(.)
 		return
 
-	if(needs_medical_training && ishuman(usr))
+
+
+	if(needs_medical_training || needs_engineer_training && ishuman(usr))
 		var/mob/living/carbon/human/user = usr
-		if(!user.skills.getRating("medical"))
-			if(user.do_actions)
-				return
+		if((user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI) && (user.skills.getRating("medical") < SKILL_MEDICAL_PRACTICED))
 			to_chat(user, span_notice("You start fiddling with \the [src]..."))
 			if(!do_after(user, SKILL_TASK_EASY, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
@@ -418,6 +419,7 @@
 		/datum/reagent/consumable/drink/grapesoda,
 	)
 	needs_medical_training = FALSE
+	needs_engineer_training = FALSE
 
 
 /obj/machinery/chem_dispenser/beer
@@ -459,9 +461,11 @@
 		/datum/reagent/consumable/drink/berryjuice,
 	)
 	needs_medical_training = FALSE
+	needs_engineer_training = FALSE
 
 /obj/machinery/chem_dispenser/valhalla
 	needs_medical_training = FALSE
+	needs_engineer_training = FALSE
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
 
