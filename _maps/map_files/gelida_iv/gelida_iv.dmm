@@ -4652,6 +4652,16 @@
 	dir = 8
 	},
 /area/gelida/outdoors/rock)
+"cTz" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/structure/window/reinforced/windowstake{
+	dir = 4
+	},
+/turf/open/floor/prison/whitegreenfull2,
+/area/gelida/indoors/a_block/fitness)
 "cTC" = (
 /obj/structure/platform_decoration,
 /turf/open/floor/prison/blue/plate{
@@ -10907,6 +10917,15 @@
 	dir = 4
 	},
 /area/gelida/indoors/c_block/cargo)
+"gPy" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/structure/window/reinforced/windowstake{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/gelida/indoors/a_block/fitness)
 "gPD" = (
 /obj/structure/cargo_container/gorg{
 	dir = 4
@@ -14985,7 +15004,6 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
 	},
-/obj/structure/window/reinforced,
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/a_block/fitness)
 "jwX" = (
@@ -19068,11 +19086,16 @@
 /turf/closed/wall,
 /area/gelida/indoors/a_block/medical)
 "mhI" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/structure/window/reinforced,
-/turf/open/floor/prison/whitegreenfull2,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/structure/window/reinforced/windowstake{
+	dir = 1
+	},
+/turf/open/floor/wood,
 /area/gelida/indoors/a_block/fitness)
 "mhK" = (
 /obj/structure/reagent_dispensers/water_cooler{
@@ -21923,6 +21946,16 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/ice,
 /area/gelida/caves/east_caves)
+"nYR" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/landmark/weed_node,
+/obj/structure/window/reinforced/windowstake{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/gelida/indoors/a_block/fitness)
 "nZi" = (
 /obj/effect/landmark/start/job/survivor,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -22591,7 +22624,7 @@
 /area/gelida/landing_zone_1)
 "owj" = (
 /obj/structure/prop/mainship/sensor_computer1,
-/obj/structure/window/reinforced{
+/obj/structure/window/reinforced/windowstake{
 	dir = 8
 	},
 /turf/open/floor/mainship/black/full,
@@ -27538,6 +27571,9 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
+/obj/structure/window/reinforced/windowstake{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/gelida/indoors/a_block/fitness)
 "rtC" = (
@@ -27751,6 +27787,18 @@
 /obj/machinery/light,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
+"rBz" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/structure/window/reinforced/windowstake{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/gelida/indoors/a_block/fitness)
 "rBW" = (
 /obj/item/toy/beach_ball/holoball{
 	pixel_x = 7;
@@ -29274,7 +29322,7 @@
 /area/gelida/indoors/a_block/kitchen)
 "syU" = (
 /obj/structure/prop/mainship/sensor_computer2,
-/obj/structure/window/reinforced{
+/obj/structure/window/reinforced/windowstake{
 	dir = 4
 	},
 /turf/open/floor/mainship/black/full,
@@ -34680,6 +34728,15 @@
 	dir = 1
 	},
 /area/gelida/outdoors/colony_streets/east_central_street)
+"vZr" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/structure/window/reinforced/windowstake{
+	dir = 8
+	},
+/turf/open/floor/prison/whitegreenfull2,
+/area/gelida/indoors/a_block/fitness)
 "wah" = (
 /obj/structure/bed/chair/wood/normal,
 /obj/effect/ai_node,
@@ -50760,7 +50817,7 @@ kHO
 kHO
 kHO
 kHO
-kHO
+cTz
 aDM
 sKa
 sKa
@@ -50977,8 +51034,8 @@ jDy
 fzq
 sKa
 ugY
+swq
 mhI
-ndA
 xWJ
 arF
 xWJ
@@ -51199,8 +51256,8 @@ jDy
 uCW
 sKa
 ugY
+swq
 mhI
-ndA
 stE
 kNm
 cfj
@@ -51421,8 +51478,8 @@ jDy
 fzq
 sKa
 ugY
-mhI
-cml
+swq
+gPy
 oBR
 lDt
 iyf
@@ -51643,8 +51700,8 @@ jDy
 uwy
 sKa
 bqU
-mhI
-cml
+swq
+gPy
 kNm
 kNm
 kNm
@@ -51865,8 +51922,8 @@ vPO
 glJ
 sKa
 ugY
-mhI
-cml
+swq
+gPy
 kNm
 kNm
 ijZ
@@ -52531,8 +52588,8 @@ red
 ams
 bqU
 sKa
-cMf
-stE
+ams
+nYR
 kNm
 kNm
 kNm
@@ -52753,8 +52810,8 @@ vPO
 ams
 sKa
 sKa
-cMf
-cml
+ams
+gPy
 kNm
 kNm
 kNm
@@ -52975,8 +53032,8 @@ vPO
 ams
 sKa
 sKa
-cMf
-cml
+ams
+gPy
 kNm
 ijZ
 kNm
@@ -53197,8 +53254,8 @@ jDy
 ams
 mdb
 bAb
-cMf
-cml
+ams
+gPy
 ndA
 kBZ
 nZH
@@ -53419,8 +53476,8 @@ jDy
 fzq
 bss
 rKr
-cMf
-oBR
+ams
+rBz
 cml
 kNm
 cfj
@@ -53641,8 +53698,8 @@ jDy
 fzq
 myR
 sKa
-cMf
-oBR
+ams
+rBz
 dXY
 hju
 dXY
@@ -53868,7 +53925,7 @@ kOu
 kOu
 kOu
 kOu
-kOu
+vZr
 aDM
 sKa
 sKa

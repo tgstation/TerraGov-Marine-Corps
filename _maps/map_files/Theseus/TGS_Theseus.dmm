@@ -13409,11 +13409,11 @@
 /area/mainship/command/corporateliaison)
 "lkZ" = (
 /obj/structure/table/mainship/nometal,
-/obj/structure/window/reinforced/toughened{
-	dir = 8
-	},
 /obj/structure/window/reinforced/toughened,
 /obj/machinery/computer/communications,
+/obj/structure/window/reinforced/windowstake{
+	dir = 8
+	},
 /turf/open/floor/mainship/silver{
 	dir = 10
 	},
@@ -20049,12 +20049,12 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
 "xow" = (
-/obj/structure/window/reinforced/toughened{
-	dir = 4
-	},
 /obj/structure/window/reinforced/toughened,
 /obj/structure/table/mainship/nometal,
 /obj/machinery/computer/security/marinemainship_network,
+/obj/structure/window/reinforced/windowstake{
+	dir = 4
+	},
 /turf/open/floor/mainship/silver{
 	dir = 6
 	},
