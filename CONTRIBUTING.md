@@ -7,8 +7,6 @@
     1. [Headcoder](#headcoder)
     2. [Art Director](#art-director)
     3. [Maintainers](#maintainers)
-    4. [Map Maintainers](#map-maintainers)
-    5. [Walance Maintainers](#walance-maintainers)
 5. [Specifications](#specifications)
     1. [Code specifications](#code-specifications)
     2. [Map specifications](#map-specifications)
@@ -60,8 +58,6 @@ Maintainers are the code quality control. If a proposed pull request doesn't mee
 Maintainers can revert changes if they feel they are not worth maintaining or if they did not live up to the quality specifications.
 
 They also control the design and balance directions, and may reject prs whose effects are deemed detrimental to the quality of the game.
-
-### Map Maintainers
 
 ## Specifications
 
