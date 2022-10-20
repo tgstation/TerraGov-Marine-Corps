@@ -2385,6 +2385,19 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
+"gZ" = (
+/obj/machinery/marine_selector/clothes,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "ha" = (
 /obj/machinery/door/poddoor/mainship/ammo{
 	dir = 2;
@@ -4423,7 +4436,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "mY" = (
-/obj/structure/window/reinforced{
+/obj/structure/window/reinforced/windowstake{
 	dir = 8
 	},
 /turf/open/floor/mainship/cargo,
@@ -4769,7 +4782,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/stern_hallway)
 "nW" = (
-/obj/machinery/portable_atmospherics/canister/air,
+/obj/structure/ship_ammo/rocket/keeper,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "nX" = (
@@ -8289,7 +8302,6 @@
 	},
 /area/mainship/squads/general)
 "xT" = (
-/obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -8297,6 +8309,9 @@
 	dir = 8
 	},
 /obj/machinery/vending/weapon,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "xU" = (
@@ -12012,12 +12027,14 @@
 /area/mainship/command/cic)
 "IC" = (
 /obj/machinery/vending/weapon,
-/obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
 /obj/structure/window/reinforced{
 	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
 	},
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
@@ -12269,6 +12286,16 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/hull/lower_hull)
+"Jm" = (
+/obj/machinery/marine_selector/clothes,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "Jn" = (
 /obj/structure/bed/bunkbed,
 /obj/effect/landmark/start/job/squadsmartgunner,
@@ -14454,6 +14481,19 @@
 	dir = 8
 	},
 /area/mainship/medical/chemistry)
+"PL" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/marine_selector/clothes,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "PN" = (
 /obj/machinery/light/mainship/small{
 	dir = 4
@@ -55015,7 +55055,7 @@ iu
 WN
 IQ
 sy
-xT
+xy
 Fg
 Fg
 Ak
@@ -56290,17 +56330,17 @@ iu
 xO
 IQ
 Yf
-Dh
+PL
 aF
 xO
 IQ
 Yf
-Dh
+PL
 iu
 xO
 IQ
 Yf
-Dh
+PL
 yL
 yL
 fG
@@ -56547,17 +56587,17 @@ Vp
 xO
 IQ
 IQ
-Dh
+PL
 yl
 xO
 IQ
 IQ
-Dh
+PL
 Vp
 xO
 IQ
 IQ
-Dh
+PL
 yL
 Cg
 nS
@@ -56804,17 +56844,17 @@ JT
 xO
 IQ
 IQ
-Ja
+gZ
 zO
 xO
 IQ
 IQ
-Ja
+Jm
 JT
 xO
 IQ
 IQ
-Ja
+gZ
 yL
 yL
 gQ

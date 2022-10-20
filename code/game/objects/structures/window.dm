@@ -305,6 +305,27 @@
 	reinf = TRUE
 	explosion_block = EXPLOSION_BLOCK_PROC
 	real_explosion_block = 2
+	layer = ABOVE_MOB_LAYER
+
+/obj/structure/window/reinforced/Initialize(mapload)
+	. = ..()
+	if(dir == 1)
+		add_overlay(image(icon, "rwindow2", layer = WINDOW_LAYER))
+		layer = WINDOW_FRAME_LAYER
+	if(dir == 8 || dir == 4)
+		var/turf/adj = get_step(src, SOUTH)
+		if(isclosedturf(adj))
+			return
+		if(locate(/obj/structure) in adj)
+			return
+		if(locate(/obj/machinery) in adj)
+			return
+		else
+			add_overlay(image(icon, "windowstake", layer = ABOVE_ALL_MOB_LAYER))
+
+/obj/structure/window/reinforced/windowstake/Initialize(mapload)
+	. = ..()
+	add_overlay(image(icon, "windowstake", layer = ABOVE_ALL_MOB_LAYER))
 
 /obj/structure/window/reinforced/toughened
 	name = "safety glass"

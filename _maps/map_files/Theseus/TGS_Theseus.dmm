@@ -7547,7 +7547,7 @@
 /area/mainship/command/self_destruct)
 "bVv" = (
 /obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
+/obj/structure/window/reinforced/windowstake{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
