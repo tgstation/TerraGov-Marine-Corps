@@ -401,7 +401,7 @@
 	L.setDrowsyness(0)
 	// Remove all speech related status effects
 	for(var/effect in typesof(/datum/status_effect/speech))
-		M.remove_status_effect(effect)
+		L.remove_status_effect(effect)
 	L.SetConfused(0)
 	L.SetSleeping(0)
 	L.jitteriness = 0
