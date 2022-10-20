@@ -672,74 +672,65 @@
 	usr.hud_used.hidden_inventory_update()
 
 
+#define AMMO_HUD_ICON_NORMAL 1
+#define AMMO_HUD_ICON_EMPTY 2
+/**
+ * HUD ammo indicator
+ *
+ * Displays a number and an icon representing the ammo for up to 4 at a time
+ */
 /obj/screen/ammo
 	name = "ammo"
 	icon = 'icons/mob/ammoHUD.dmi'
 	icon_state = "ammo"
 	screen_loc = ui_ammo1
+	///If the user has already had their warning played for running out of ammo
 	var/warned = FALSE
+	///Holder for playing a out of ammo animation so that it doesnt get cut during updates
+	var/atom/movable/flash_holder
 	///List of possible screen locs
-	var/static/list/ammo_screen_loc_list = list(ui_ammo1, ui_ammo2, ui_ammo3 ,ui_ammo4)
+	var/static/list/ammo_screen_loc_list = list(ui_ammo1, ui_ammo2, ui_ammo3, ui_ammo4)
 
+/obj/screen/ammo/Initialize()
+	. = ..()
+	flash_holder = new
+	flash_holder.icon_state = "frame"
+	flash_holder.icon = icon
+	flash_holder.plane = plane
+	flash_holder.layer = layer+0.001
+	flash_holder.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	vis_contents += flash_holder
 
-/obj/screen/ammo/proc/add_hud(mob/living/user, obj/item/weapon/gun/G)
+/obj/screen/ammo/Destroy()
+	QDEL_NULL(flash_holder)
+	return ..()
 
-	if(isnull(G))
-		CRASH("/obj/screen/ammo/proc/add_hud() has been called from [src] without the required param of G")
+///wrapper to add this to the users screen with a owner
+/obj/screen/ammo/proc/add_hud(mob/living/user, datum/ammo_owner)
+	if(isnull(ammo_owner))
+		CRASH("/obj/screen/ammo/proc/add_hud() has been called from [src] without the required param of ammo_owner")
+	user?.client.screen += src
 
-	if(!user?.client)
-		return
-
-	if(!CHECK_BITFIELD(G.flags_gun_features, GUN_AMMO_COUNTER))
-		return
-
-	user.client.screen += src
-
-
+///wrapper to removing this ammo hud from the users screen
 /obj/screen/ammo/proc/remove_hud(mob/living/user)
 	user?.client?.screen -= src
 
-
-/obj/screen/ammo/proc/update_hud(mob/living/user, obj/item/weapon/gun/G)
-	if(!user?.client?.screen.Find(src))
-		return
-
-	if(!G || !(G.flags_gun_features & GUN_AMMO_COUNTER))
-		remove_hud(user)
-		return
-
-	var/list/ammo_type = G.get_ammo_list()
-	var/rounds
-	if(G.max_rounds && G.rounds && CHECK_BITFIELD(G.flags_gun_features, GUN_AMMO_COUNT_BY_PERCENTAGE))
-		rounds = round((G.rounds / G.max_rounds) * 100)
-	else if (G.rounds && CHECK_BITFIELD(G.flags_gun_features, GUN_AMMO_COUNT_BY_SHOTS_REMAINING))
-		rounds = round(G.rounds / G.rounds_per_shot)
-	else
-		rounds = G.rounds
-	var/hud_state = ammo_type[1]
-	var/hud_state_empty = ammo_type[2]
-
+///actually handles upadating the hud
+/obj/screen/ammo/proc/update_hud(mob/living/user, list/ammo_type, rounds)
 	overlays.Cut()
 
-	var/empty = image('icons/mob/ammoHUD.dmi', src, "[hud_state_empty]")
-
-	if(rounds == 0)
+	if(rounds <= 0)
+		overlays += image('icons/mob/ammoHUD.dmi', src, "o0")
+		var/image/empty_state = image('icons/mob/ammoHUD.dmi', src, ammo_type[AMMO_HUD_ICON_EMPTY])
+		overlays += empty_state
 		if(warned)
-			overlays += empty
-		else
-			warned = TRUE
-			var/obj/screen/ammo/F = new /obj/screen/ammo(src)
-			F.icon_state = "frame"
-			user.client.screen += F
-			flick("[hud_state_empty]_flash", F)
-			spawn(20)
-				user.client.screen -= F
-				qdel(F)
-				if(G.rounds == 0)
-					overlays += empty
-	else
-		warned = FALSE
-		overlays += image('icons/mob/ammoHUD.dmi', src, "[hud_state]")
+			return
+		warned = TRUE
+		flick("[ammo_type[AMMO_HUD_ICON_EMPTY]]_flash", flash_holder)
+		return
+
+	warned = FALSE
+	overlays += image('icons/mob/ammoHUD.dmi', src, "[ammo_type[AMMO_HUD_ICON_NORMAL]]")
 
 	rounds = num2text(rounds)
 
@@ -758,6 +749,9 @@
 			overlays += image('icons/mob/ammoHUD.dmi', src, "o9")
 			overlays += image('icons/mob/ammoHUD.dmi', src, "t9")
 			overlays += image('icons/mob/ammoHUD.dmi', src, "h9")
+
+#undef AMMO_HUD_ICON_NORMAL
+#undef AMMO_HUD_ICON_EMPTY
 
 /obj/screen/arrow
 	icon = 'icons/Marine/marine-items.dmi'

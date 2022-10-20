@@ -6,7 +6,7 @@
 	icon_state = "marine"
 	item_state = "marine"
 	flags_armor_protection = FEET
-	soft_armor = list(MELEE = 25, BULLET = 15, LASER = 5, ENERGY = 5, BOMB = 5, BIO = 5, "rad" = 0, FIRE = 5, ACID = 20)
+	soft_armor = list(MELEE = 25, BULLET = 15, LASER = 5, ENERGY = 5, BOMB = 5, BIO = 5, FIRE = 5, ACID = 20)
 	flags_cold_protection = FEET
 	flags_heat_protection = FEET
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
@@ -81,14 +81,14 @@
 	name = "flame-resistant combat boots"
 	desc = "Protects you from fire and even contains a pouch for your knife!"
 	icon_state = "marine_armored"
-	hard_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, "rad" = 0, FIRE = 100, ACID = 0)
+	hard_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 100, ACID = 0)
 
 
 /obj/item/clothing/shoes/marinechief
 	name = "chief officer shoes"
 	desc = "Only a small amount of monkeys, kittens, and orphans were killed in making this."
 	icon_state = "laceups"
-	soft_armor = list(MELEE = 35, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 30, BIO = 20, "rad" = 20, FIRE = 20, ACID = 25)
+	soft_armor = list(MELEE = 35, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 30, BIO = 20, FIRE = 20, ACID = 25)
 	flags_inventory = NOSLIPPING
 	siemens_coefficient = 0.6
 
@@ -108,7 +108,7 @@
 	icon_state = "jackboots"
 	item_state = "jackboots"
 	flags_armor_protection = FEET
-	soft_armor = list(MELEE = 30, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 30, BIO = 20, "rad" = 20, FIRE = 20, ACID = 15)
+	soft_armor = list(MELEE = 30, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 30, BIO = 20, FIRE = 20, ACID = 15)
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 	flags_cold_protection = FEET
@@ -122,7 +122,7 @@
 	icon_state = "commando_boots"
 	permeability_coefficient = 0.01
 	flags_armor_protection = FEET
-	soft_armor = list(MELEE = 40, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 30, BIO = 20, "rad" = 20, FIRE = 20, ACID = 25)
+	soft_armor = list(MELEE = 40, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 30, BIO = 20, FIRE = 20, ACID = 25)
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 	flags_cold_protection = FEET
@@ -136,7 +136,7 @@
 	name = "guardsmen combat boots"
 	desc = "A pair of boots issued to the Imperial Guard, just like anything else they use, they are mass produced."
 	//icon_state = ""
-	soft_armor = list(MELEE = 30, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 30, BIO = 20, "rad" = 20, FIRE = 20, ACID = 25)
+	soft_armor = list(MELEE = 30, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 30, BIO = 20, FIRE = 20, ACID = 25)
 
 
 /obj/item/clothing/shoes/marine/som
@@ -154,7 +154,7 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shield-blue"
 	flags_item = NODROP|DELONDROP
-	soft_armor = list(MELEE = 30, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 30, BIO = 20, "rad" = 20, FIRE = 20, ACID = 25)
+	soft_armor = list(MELEE = 30, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 30, BIO = 20, FIRE = 20, ACID = 25)
 	flags_inventory = NOSLIPPING
 
 /obj/item/clothing/shoes/cowboy

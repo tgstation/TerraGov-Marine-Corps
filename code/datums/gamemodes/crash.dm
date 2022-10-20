@@ -82,7 +82,8 @@
 		new /obj/structure/xeno/silo(i)
 
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
-		corpse.create_mob(HEADBITE_DEATH)
+		corpse.create_mob()
+
 
 	for(var/i in GLOB.nuke_spawn_locs)
 		new /obj/machinery/nuclearbomb(i)

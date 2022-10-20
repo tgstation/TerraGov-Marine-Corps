@@ -306,25 +306,31 @@ WEAPONS
 /datum/supply_packs/weapons/tx8
 	name = "BR-8 Scout Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/tx8)
-	cost = 50
+	cost = 40
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/scout_regular
 	name = "BR-8 scout magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/tx8)
+	cost = 2
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/weapons/scout_regular_box
+	name = "BR-8 scout ammo box"
+	contains = list(/obj/item/ammo_magazine/packet/scout_rifle)
 	cost = 5
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/scout_impact
 	name = "BR-8 scout impact magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/tx8/impact)
-	cost = 7
+	cost = 4
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/scout_incendiary
 	name = "Br-8 scout incendiary magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/tx8/incendiary)
-	cost = 7
+	cost = 4
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/thermobaric
@@ -468,8 +474,13 @@ WEAPONS
 
 /datum/supply_packs/weapons/napalm
 	name = "FL-84 normal fuel tank"
-	contains = list(/obj/item/ammo_magazine/flamer_tank)
-	cost = 3
+	contains = list(/obj/item/ammo_magazine/flamer_tank/large)
+	cost = 6
+
+/datum/supply_packs/weapons/napalm_X
+	name = "FL-84 X fuel tank"
+	contains = list(/obj/item/ammo_magazine/flamer_tank/large/X)
+	cost = 30
 
 /datum/supply_packs/weapons/back_fuel_tank
 	name = "Standard back fuel tank"
@@ -538,6 +549,15 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol)
 	cost = 1
 
+/datum/supply_packs/weapons/BigAmmoBox
+	name = "Big Ammo Box (10x24mm)"
+	contains = list(/obj/item/big_ammo_box)
+	cost = 5
+
+/datum/supply_packs/weapons/BigAmmoBoxSMG
+	name = "Big Ammo Box (10x20mm)"
+	contains = list(/obj/item/big_ammo_box/smg)
+	cost = 5
 
 /*******************************************************************************
 EXPLOSIVES
@@ -1432,6 +1452,10 @@ Imports
 	contains = list(/obj/item/clothing/head/strawhat)
 	cost = 1
 
+/datum/supply_packs/loot_box
+	name = "What could be inside?"
+	contains = list(/obj/item/loot_box/marine)
+	cost = 50
 
 /*******************************************************************************
 VEHICLES
