@@ -92,7 +92,6 @@
 	var/list/emitted_auras
 	var/list/stun_absorption //lazy list
 
-	//Speech
 
 	var/resting = FALSE
 
