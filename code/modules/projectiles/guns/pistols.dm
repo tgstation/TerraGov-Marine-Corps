@@ -737,7 +737,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	item_state = "boltpistol"
 	caliber = CALIBER_9X19
 	max_shells = 10
-	fire_sound = 'sound/weapons/guns/fire/autocannon_fire.ogg'
+	fire_sound = 'sound/weapons/guns/fire/bolter.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/vp70_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/vp70_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/vp70_reload.ogg'
@@ -758,7 +758,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 22,"rail_x" = 6, "rail_y" = 23, "under_x" = 24, "under_y" = 15, "stock_x" = 11, "stock_y" = 10)
 
-	fire_delay = 0.15 SECONDS
+	fire_delay = 0.35 SECONDS
 	accuracy_mult = 1.2
 	accuracy_mult_unwielded = 0.95
 	recoil = 2

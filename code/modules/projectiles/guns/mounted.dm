@@ -447,3 +447,43 @@
 		if(EXPLODE_LIGHT)
 			take_damage(rand(10, 50))
 
+//-------------------------------------------------------
+//Cadian Pattern Missile Launcher
+
+/obj/item/weapon/gun/launcher/rocket/cadian_ml
+	name = "\improper Cadian Pattern Missile Launcher"
+	desc = "A commonly used pattern of Missile Launcher by the troopers of the Imperial Guard, this pattern carries a missile magazine containing individual self-propelled missiles, and can fire a variety of load types."
+
+	w_class = WEIGHT_CLASS_HUGE
+	flags_equip_slot = ITEM_SLOT_BACK
+	icon = 'icons/Marine/marine-atgun.dmi'
+	icon_state = "missile_cadian"
+	default_ammo_type = /obj/item/ammo_magazine/concussion_missile
+	max_shells = 1 //codex
+	caliber = CALIBER_75MM // codex
+
+	scatter = 10
+	deployed_scatter_change = -10
+	windup_delay = 1 SECONDS
+	fire_delay = 3 SECONDS
+
+	flags_item = IS_DEPLOYABLE|TWOHANDED
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
+	backblastdamage = FALSE
+
+	attachable_allowed = list(/obj/item/attachable/scope/unremovable/cadian_ml)
+
+	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/cadian_ml)
+
+	allowed_ammo_types = list(/obj/item/ammo_magazine/concussion_missile, /obj/item/ammo_magazine/krak_missile)
+
+	deploy_time = 3 SECONDS
+	undeploy_time = 3 SECONDS
+	deployable_item = /obj/machinery/deployable/mounted/cadian_ml
+
+	max_integrity = 600
+	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 80, BIO = 100, "rad" = 0, FIRE = 0, ACID = 0)
+
+/obj/machinery/deployable/mounted/cadian_ml
+	pixel_x = -4

@@ -1,0 +1,266 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/space/basic,
+/area/space)
+"c" = (
+/turf/closed/shuttle/ert{
+	icon_state = "upp22"
+	},
+/area/space)
+"d" = (
+/turf/closed/shuttle/ert{
+	icon_state = "upp_rightengine"
+	},
+/area/space)
+"f" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "107"
+	},
+/area/space)
+"h" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "108"
+	},
+/area/space)
+"n" = (
+/turf/closed/shuttle/ert{
+	icon_state = "upp25"
+	},
+/area/space)
+"p" = (
+/turf/closed/shuttle/ert{
+	icon_state = "rightengine_1";
+	opacity = 0
+	},
+/area/space)
+"q" = (
+/turf/closed/shuttle/ert{
+	icon_state = "rightengine_2"
+	},
+/area/space)
+"x" = (
+/turf/closed/shuttle/ert{
+	icon_state = "leftengine_1";
+	opacity = 0
+	},
+/area/space)
+"A" = (
+/turf/closed/shuttle/ert{
+	icon_state = "upp27"
+	},
+/area/space)
+"B" = (
+/obj/structure/dropship_piece/two/front/left{
+	dir = 1
+	},
+/turf/open/space/basic,
+/area/space)
+"E" = (
+/turf/closed/shuttle/ert{
+	icon_state = "upp23"
+	},
+/area/space)
+"F" = (
+/turf/closed/shuttle/ert{
+	icon_state = "upp5"
+	},
+/area/space)
+"G" = (
+/turf/closed/shuttle/ert{
+	icon_state = "leftengine_2";
+	opacity = 0
+	},
+/area/space)
+"I" = (
+/obj/structure/dropship_piece/two/front/right{
+	dir = 1
+	},
+/turf/open/space/basic,
+/area/space)
+"J" = (
+/obj/structure/dropship_piece/two/front{
+	dir = 1
+	},
+/turf/open/space/basic,
+/area/space)
+"R" = (
+/turf/closed/shuttle/ert{
+	icon_state = "upp20"
+	},
+/area/space)
+"V" = (
+/turf/closed/shuttle/ert{
+	icon_state = "upp4"
+	},
+/area/space)
+"X" = (
+/turf/closed/shuttle/ert{
+	icon_state = "upp_leftengine"
+	},
+/area/space)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(3,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(4,1,1) = {"
+a
+a
+a
+R
+V
+V
+V
+V
+X
+G
+x
+a
+a
+"}
+(5,1,1) = {"
+B
+R
+f
+c
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(6,1,1) = {"
+J
+A
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(7,1,1) = {"
+I
+n
+h
+E
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(8,1,1) = {"
+a
+a
+a
+n
+F
+F
+F
+F
+d
+q
+p
+a
+a
+"}
+(9,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(10,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(11,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}

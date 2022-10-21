@@ -997,21 +997,21 @@
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin/magharness
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
 
-/obj/item/weapon/gun/energy/lasgun/lasrifle/imperium
+/obj/item/weapon/gun/energy/lasgun/lasrifle/lasgun
 	name = "\improper Lasgun"
 	desc = "The Lasgun, also sometimes referred to as a Lasrifle, is a directed-energy antipersonnel weapon used by the military forces of the Imperium of Man, and it is the most common and widely-used type of laser weapon in the galaxy."
 	reload_sound = 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg'
-	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
+	fire_sound = 'sound/weapons/guns/fire/lasgun.ogg'
 	icon_state = "lasgun"
 	item_state = "lasgun"
+	ammo_level_icon = ""
 	max_shots = 50 //codex stuff
-	ammo_datum_type = /datum/ammo/energy/lasgun/marine
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/overcharge
 	ammo_diff = null
 	rounds_per_shot = 12
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	turret_flags = TURRET_INACCURATE
-	ammo_level_icon = "te"
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -1035,22 +1035,69 @@
 	wield_delay = 0.5 SECONDS
 	scatter = 0
 	scatter_unwielded = 10
-	fire_delay = 0.15 SECONDS
+	fire_delay = 0.3 SECONDS
 	accuracy_mult_unwielded = 0.55
 	damage_falloff_mult = 0.2
+	akimbo_additional_delay = 0.9
 
+/obj/item/weapon/gun/energy/lasgun/lasrifle/lascarbine
+	name = "\improper Lascarbine"
+	desc = "The Lascarbine is a carbine form of the standard Imperial Lasgun that is easier to carry and to aim than its larger counterpart.However, as a result of these modifications, a Lascarbine has a shorter range and will fire fewer shots before depleting its power pack when compared to a standard Lasgun."
+	reload_sound = 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg'
+	fire_sound = 'sound/weapons/guns/fire/lasgun.ogg'
+	icon_state = "lascarbine"
+	item_state = "lascarbine"
+	ammo_level_icon = ""
+	max_shots = 20 //codex stuff
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/overcharge
+	ammo_diff = null
+	fire_delay = 0.25 SECONDS
+	burst_delay = 0.1 SECONDS
+	extra_delay = 0.6 SECONDS
+	autoburst_delay = 0.6 SECONDS
+	akimbo_additional_delay = 0.9
+	burst_amount = 4
+	rounds_per_shot = 30
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
+	turret_flags = TURRET_INACCURATE
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/scope/mini,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
+		/obj/item/attachable/shoulder_mount,
+	)
+
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
+	attachable_offset = list("muzzle_x" = 40, "muzzle_y" = 17,"rail_x" = 22, "rail_y" = 21, "under_x" = 29, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
+
+	aim_slowdown = 0.4
+	wield_delay = 0.5 SECONDS
+	scatter = 5
+	scatter_unwielded = 10
+	accuracy_mult_unwielded = 0.55
+	damage_falloff_mult = 0.5
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/laspistol
 	name = "\improper Laspistol"
 	desc = "The Laspistol is capable of producing the same amount of damage in a skilled user's hands as the Lasgun, yet it has drastically reduced range as compared to its variant rifle form. The Laspistol lacks the Lasgun's selective fire options, having only the ability to fire single shots."
 	reload_sound = 'sound/weapons/guns/interact/standard_laser_pistol_reload.ogg'
-	fire_sound = 'sound/weapons/guns/fire/Laser Pistol Standard.ogg'
+	fire_sound = 'sound/weapons/guns/fire/lasgun.ogg'
 	icon_state = "laspistol"
 	item_state = "laspistol"
+	ammo_level_icon = ""
 	w_class = WEIGHT_CLASS_NORMAL
 	flags_equip_slot = ITEM_SLOT_BELT
 	max_shots = 30 //codex stuff
-	ammo_datum_type = /datum/ammo/energy/lasgun/marine/pistol
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine
 	ammo_diff = null
 	rounds_per_shot = 20
 	gun_firemode = GUN_FIREMODE_SEMIAUTO
@@ -1083,20 +1130,115 @@
 	desc = "The Plasma Gun is a rifle-sized Plasma Weapon common to many of the armed forces of the Imperium of Man. It is classified as a special weapon and is carried by a variety of Imperial infantry, including Space Marines, Imperial Guardsmen and Storm Troopers."
 	icon_state = "plasmagun"
 	item_state = "plasmagun"
-	w_class = WEIGHT_CLASS_NORMAL
+	ammo_level_icon = ""
 	max_shots = 15
-	rounds_per_shot = 36
-	ammo_datum_type = /datum/ammo/energy/volkite/medium
-	default_ammo_type = /obj/item/cell/lasgun/volkite/small
-	allowed_ammo_types = list(/obj/item/cell/lasgun/volkite/small)
-	fire_sound = 'sound/weapons/guns/fire/volkite_3.ogg'
-	gun_firemode = GUN_FIREMODE_SEMIAUTO
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
-	fire_delay = 0.35 SECONDS
+	rounds_per_shot = 20
+	ammo_datum_type = /datum/ammo/energy/plasmabolt
+	default_ammo_type = /obj/item/cell/lasgun/plasma
+	allowed_ammo_types = list(/obj/item/cell/lasgun/plasma)
+	fire_sound = 'sound/weapons/guns/fire/plasmablast.ogg'
+	gun_firemode = GUN_FIREMODE_AUTOMATIC
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_WIELDED_FIRING_ONLY
+	fire_delay = 0.5 SECONDS
 	scatter = -1
 	scatter_unwielded = 5
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.9
 	recoil_unwielded = 0
 	movement_acc_penalty_mult = 2
-	aim_slowdown = 0.1
+	wield_delay = 12
+	aim_slowdown = 0.8
+	var/heat_level = 0
+	var/max_heat = 30
+	var/static/image/heat_overlay
+	var/cool_amount = 2
+	var/overheated = FALSE
+	var/cooldown_time = 2 SECONDS
+	var/obj/effect/abstract/particle_holder/overheat_smoke
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/plasmagun/Initialize()
+	. = ..()
+	heat_overlay = image(icon, icon_state = "overheat")
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/plasmagun/able_to_fire(mob/user)
+	. = ..()
+	if(heat_level >= max_heat)
+		user.balloon_alert(user, "The gun is overheated!")
+		return FALSE
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/plasmagun/do_fire()
+	. = ..()
+	heat_level += 3
+	START_PROCESSING(SSobj, src)
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/plasmagun/process()
+	heat_level -= cool_amount
+	if(heat_level <= 0)
+		heat_level = 0
+		STOP_PROCESSING(SSobj, src)
+	update_icon()
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/plasmagun/proc/cooldown()
+	overheated = FALSE
+	update_icon()
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/plasmagun/update_icon()
+	if(heat_level >= max_heat)
+		if(overheated)
+			return
+		overlays += heat_overlay
+		overheated = TRUE
+		gun_user.balloon_alert(gun_user, "The gun is overheated!")
+		overheat_smoke = new(src, /particles/mecha_smoke)
+		overheat_smoke.particles.position = list(8, 8, 0)
+		addtimer(CALLBACK(src, .proc/cooldown), cooldown_time)
+	else if(overheated)
+		QDEL_NULL(overheat_smoke)
+		overlays -= heat_overlay
+		overheated = FALSE
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/longlas
+	name = "\improper Long-Las"
+	desc = "A variant of the humble Lasgun with a reinforced barrel and overcharged power cells known as 'Hot Shots' Favoured by Imperial Guard and Scout Marine snipers, the Long-Las is a specially modified version of the standard Lasgun for added range and accuracy. As its name implies, a Long-Las also has a much longer barrel than a Lasgun, both to increase range and prevent overheating."
+	reload_sound = 'sound/weapons/guns/interact/standard_laser_sniper_reload.ogg'
+	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Standard.ogg'
+	icon_state = "longlas"
+	item_state = "longlas"
+	ammo_level_icon = ""
+	w_class = WEIGHT_CLASS_BULKY
+	max_shots = 12 //codex stuff
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/sniper
+	ammo_diff = null
+	rounds_per_shot = 50
+	damage_falloff_mult = 0
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	actions_types = list(/datum/action/item_action/aim_mode)
+
+
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/unremovable/longlas,
+		/obj/item/weapon/gun/grenade_launcher/underslung,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
+		/obj/item/attachable/shoulder_mount,
+	)
+
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
+	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 18,"rail_x" = 19, "rail_y" = 19, "under_x" = 28, "under_y" = 8, "stock_x" = 22, "stock_y" = 12)
+	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/longlas)
+
+	aim_slowdown = 0.7
+	aim_fire_delay = 0.4 SECONDS
+	wield_delay = 0.7 SECONDS
+	scatter = 0
+	scatter_unwielded = 10
+	fire_delay = 0.6 SECONDS
+	accuracy_mult = 1.2
+	accuracy_mult_unwielded = 0.5
+	movement_acc_penalty_mult = 6

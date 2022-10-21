@@ -150,3 +150,10 @@
 		D.update_icon()
 	else
 		to_chat(user, span_warning("This cell is already at maximum charge!"))
+
+/obj/item/cell/lasgun/plasma
+	name = "\improper M19C4 pulse battery"
+	desc = "An advanced, ultrahigh capacity battery used to power the M19C4 pulse rifle system; Uses pulse-based energy rather than laser energy, massively increasing its firepower. It can also recharge on its own."
+	charge_overlay = "pulse"
+	icon_state = "pulse"
+	maxcharge = 500

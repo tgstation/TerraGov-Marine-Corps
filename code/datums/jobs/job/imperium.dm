@@ -37,7 +37,7 @@
 	outfit = /datum/outfit/job/imperial/guardsman
 
 /datum/outfit/job/imperial/guardsman
-	name = "Imperial Guardsman"
+	name = "Guardsman Private"
 	jobtype = /datum/job/imperial/guardsman
 
 	belt = /obj/item/storage/belt/marine
@@ -46,7 +46,7 @@
 	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	l_store = /obj/item/storage/pouch/flare/full
 	back = /obj/item/storage/backpack/lightpack
-	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/imperium
+	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/lasgun
 
 /datum/outfit/job/imperial/guardsman/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -80,10 +80,11 @@
 	belt = /obj/item/storage/belt/marine
 	wear_suit = /obj/item/clothing/suit/storage/marine/imperial/sergeant
 	head = /obj/item/clothing/head/helmet/marine/imperial/sergeant
+	mask = /obj/item/clothing/mask/rebreather
 	r_store = /obj/item/storage/pouch/explosive/upp
 	l_store = /obj/item/storage/pouch/field_pouch/full
 	back = /obj/item/storage/backpack/lightpack
-	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/imperium
+	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/lasgun
 
 /datum/outfit/job/imperial/sergeant/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -122,7 +123,7 @@
 	l_store = /obj/item/storage/pouch/medkit/medic
 	r_store = /obj/item/storage/pouch/medical_injectors/medic
 	back = /obj/item/storage/backpack/lightpack
-	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/imperium
+	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/lasgun
 
 /datum/outfit/job/imperial/medicae/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -159,10 +160,11 @@
 	belt = /obj/item/storage/belt/marine
 	wear_suit = /obj/item/clothing/suit/storage/marine/imperial/sergeant/veteran
 	head = /obj/item/clothing/head/helmet/marine/imperial/sergeant/veteran
+	mask = /obj/item/clothing/mask/rebreather
 	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	l_store = /obj/item/storage/pouch/flare/full
 	back = /obj/item/storage/backpack/lightpack
-	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/imperium
+	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/lasgun
 
 /datum/outfit/job/imperial/guardsman/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()

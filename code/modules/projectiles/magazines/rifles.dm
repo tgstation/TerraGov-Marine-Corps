@@ -402,3 +402,13 @@
 	icon_state = "v31_incend"
 	default_ammo = /datum/ammo/bullet/rifle/incendiary
 	icon_state_mini = "mag_rifle_big_red"
+
+/obj/item/ammo_magazine/rifle/autogun
+	name = "\improper Autogun magazine (10x24mm)"
+	desc = "A 10mm rifle magazine designed for the V-31."
+	caliber = CALIBER_10X24_CASELESS
+	icon_state = "v31"
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/bullet/rifle
+	max_rounds = 80
+	icon_state_mini = "mag_rifle_big"

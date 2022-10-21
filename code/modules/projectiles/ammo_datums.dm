@@ -1704,6 +1704,33 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/rocket/ltb/drop_nade(turf/T)
 	explosion(T, 0, 4, 6, 7)
 
+/datum/ammo/rocket/krak
+	name = "krak rocket"
+	hud_state = "rocket_ap"
+	icon_state = "krak"
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
+	damage_falloff = 0
+	accurate_range = 15
+	penetration = 150
+	damage = 200
+
+/datum/ammo/rocket/krak/drop_nade(turf/T)
+	explosion(T, flash_range = 1)
+
+/datum/ammo/rocket/conc
+	name = "concussion rocket"
+	icon_state = "conc"
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
+	damage_falloff = 0
+	accurate_range = 15
+	max_range = 40
+	penetration = 150
+	damage = 175
+	sundering = 50
+
+/datum/ammo/rocket/conc/drop_nade(turf/T)
+	explosion(T, 0, 4, 6, 3)
+
 /datum/ammo/rocket/mech
 	name = "large high-explosive rocket"
 	damage = 75
@@ -2178,6 +2205,33 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 100
 	sundering = 100
 	bullet_color = COLOR_PULSE_BLUE
+
+/datum/ammo/energy/plasmabolt
+	name = "pulse bolt"
+	icon_state = "pulse2"
+	hud_state = "pulse"
+	damage = 40
+	max_range = 40
+	penetration = 40
+	sundering = 25
+	bullet_color = COLOR_PULSE_BLUE
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_EXPLOSIVE
+	shell_speed = 2
+
+/datum/ammo/energy/plasmabolt/drop_nade(turf/T)
+	flame_radius(1, T, 3, 3, 40, 20, colour = "blue")
+
+/datum/ammo/energy/plasmabolt/on_hit_mob(mob/M, obj/projectile/P)
+	drop_nade(get_turf(M))
+
+/datum/ammo/energy/plasmabolt/on_hit_obj(obj/O, obj/projectile/P)
+	drop_nade(get_turf(O))
+
+/datum/ammo/energy/plasmabolt/on_hit_turf(turf/T, obj/projectile/P)
+	drop_nade(T.density ? P.loc : T)
+
+/datum/ammo/energy/plasmabolt/do_at_max_range(turf/T, obj/projectile/P)
+	drop_nade(T.density ? P.loc : T)
 
 /datum/ammo/energy/lasgun/M43/practice
 	name = "practice laser bolt"

@@ -684,7 +684,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/scope/unremovable/standard_atgun
 	name = "AT-36 long range scope"
-	desc = "An unremovable set of long range scopes, very complex to properly range. Requires time to aim.."
+	desc = "An unremovable set of long range scopes, very complex to properly range. Requires time to aim."
 	icon_state = "sniperscope_invisible"
 	flags_attach_features = ATTACH_ACTIVATION
 	scope_delay = 2 SECONDS
@@ -705,6 +705,15 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	zoom_tile_offset = 7
 	zoom_viewsize = 2
 	deployed_scope_rezoom = FALSE
+
+/obj/item/attachable/scope/unremovable/cadian_ml
+	name = "cadian pattern scope"
+	desc = "An unremovable set of long range scopes for the Cadian pattern missile launcher."
+	icon_state = "sniperscope_invisible"
+	flags_attach_features = ATTACH_ACTIVATION
+	zoom_tile_offset = 7
+	zoom_viewsize = 2
+	deployed_scope_rezoom = TRUE
 
 /obj/item/attachable/scope/activate(mob/living/carbon/user, turn_off)
 	if(turn_off)
@@ -782,6 +791,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "Terra Experimental laser sniper rifle rail scope"
 	desc = "A marine standard mounted zoom sight scope made for the Terra Experimental laser sniper rifle otherwise known as TE-S abbreviated, allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	icon_state = "tes"
+
+/obj/item/attachable/scope/unremovable/longlas
+	name = "longlas rail scope"
+	desc = "A rail mounted zoom sight scope for the longlas. Use F12 if your HUD doesn't come back."
+	icon_state = "longlasscope"
+	scoped_accuracy_mod = SCOPE_RAIL_SNIPER
+	has_nightvision = TRUE
 
 /obj/item/attachable/scope/mini
 	name = "mini rail scope"

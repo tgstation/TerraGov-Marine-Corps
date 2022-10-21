@@ -123,3 +123,37 @@
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket/heavy_rr
 	reload_delay = 10 SECONDS
+
+/obj/item/ammo_magazine/concussion_missile
+	name = "Concussion Missile"
+	desc = "Concussion Missiles are outfitted with powerful high explosives and are very effective at breaking up entrenched enemy fortifications."
+	w_class = WEIGHT_CLASS_BULKY
+	icon = 'icons/Marine/marine-atgun.dmi'
+	icon_state = "rocket_conc"
+	item_state = "rocket_conc"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items_lefthand_0.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_0.dmi',
+		)
+	flags_magazine = MAGAZINE_REFUND_IN_CHAMBER
+	caliber = CALIBER_75MM
+	max_rounds = 1
+	default_ammo = /datum/ammo/rocket/conc
+	reload_delay = 2 SECONDS
+
+/obj/item/ammo_magazine/krak_missile
+	name = "Krak Missile"
+	desc = "Krak Missiles are primarily intended to serve as anti-vehicle weapons, and contain a high-strength shaped charge with a relatively small blast radius, but causes massive damage to anything it hits with minimal collateral damage. Krak Missiles are also very effective against heavily armoured infantry, bunkers and other armoured or fortified static targets where their concentrated explosives will often punch holes straight through armour."
+	w_class = WEIGHT_CLASS_BULKY
+	icon = 'icons/Marine/marine-atgun.dmi'
+	icon_state = "rocket_krak"
+	item_state = "rocket_krak"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items_lefthand_0.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_0.dmi',
+		)
+	flags_magazine = MAGAZINE_REFUND_IN_CHAMBER
+	caliber = CALIBER_75MM
+	max_rounds = 1
+	default_ammo = /datum/ammo/rocket/krak
+	reload_delay = 2 SECONDS

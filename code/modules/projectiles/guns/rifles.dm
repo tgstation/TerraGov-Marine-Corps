@@ -1716,14 +1716,14 @@
 	icon_state = "autogun"
 	icon = 'icons/Marine/gun64.dmi'
 	item_state = "autogun"
-	fire_sound = 'sound/weapons/guns/fire/som_rifle.ogg'
+	fire_sound = 'sound/weapons/guns/fire/autogun.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
 	caliber = CALIBER_10X24_CASELESS
 	max_shells = 50
-	default_ammo_type = /obj/item/ammo_magazine/rifle/som
-	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/som)
+	default_ammo_type = /obj/item/ammo_magazine/rifle/autogun
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/autogun)
 	attachable_allowed = list(
 		/obj/item/weapon/gun/shotgun/micro_grenade,
 		/obj/item/attachable/reddot,
@@ -1760,7 +1760,7 @@
 
 	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.55
-	scatter = 1.3
+	scatter = 5
 	scatter_unwielded = 15
 
 	burst_amount = 3
