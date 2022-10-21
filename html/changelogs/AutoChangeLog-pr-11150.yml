@@ -1,4 +1,0 @@
-author: "Jalopkomit18"
-delete-after: True
-changes: 
-  - qol: "Vali necro warning divided into two warnings at separate intervals. Will first give warning with how much time remaining starting at 10secs onwards. Second warning will begin 15secs onwards and give the necro hud and an additional warning."
