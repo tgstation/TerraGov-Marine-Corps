@@ -306,15 +306,15 @@
 	explosion_block = EXPLOSION_BLOCK_PROC
 	real_explosion_block = 2
 	layer = ABOVE_MOB_LAYER
-	//are we tinted or not
+	///are we tinted or not
 	var/tinted = FALSE
 
 /obj/structure/window/reinforced/Initialize(mapload)
 	. = ..()
-	if(dir == 1)
+	if(dir == NORTH)
 		add_overlay(image(icon, "rwindow_overlay", layer = WINDOW_LAYER))
 		layer = WINDOW_FRAME_LAYER
-	if(dir == 8 || dir == 4)
+	if(dir == WEST || dir == EAST)
 		var/turf/adj = get_step(src, SOUTH)
 		if(isclosedturf(adj))
 			return
@@ -322,11 +322,10 @@
 			return
 		if(locate(/obj/machinery) in adj)
 			return
-		else
-			if(tinted)
-				add_overlay(image(icon, "twindowstake", layer = ABOVE_ALL_MOB_LAYER))
-				return
-			add_overlay(image(icon, "windowstake", layer = ABOVE_ALL_MOB_LAYER))
+		if(tinted)
+			add_overlay(image(icon, "twindowstake", layer = ABOVE_ALL_MOB_LAYER))
+			return
+		add_overlay(image(icon, "windowstake", layer = ABOVE_ALL_MOB_LAYER))
 
 /obj/structure/window/reinforced/windowstake/Initialize(mapload)
 	. = ..()
