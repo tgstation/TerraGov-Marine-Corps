@@ -9,7 +9,7 @@
 
 // partname is the name of a body part
 // amount is a num from 1 to 100
-/mob/living/carbon/proc/pain(var/partname, var/amount, var/force, var/burning = 0)
+/mob/living/carbon/proc/pain(partname, amount, force, burning = FALSE)
 	if(stat >= DEAD || (world.time < next_pain_time && !force))
 		return
 	if(reagent_pain_modifier < 0)
