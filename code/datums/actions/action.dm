@@ -39,12 +39,14 @@ KEYBINDINGS
 	if(length(keybinding_signals) == 1)
 		var/mutable_appearance/maptext_appearance = mutable_appearance()
 		maptext_appearance.layer = ABOVE_HUD_LAYER // above selected/empowered frame
+		maptext_appearance.plane = ABOVE_HUD_PLANE
 		visual_references[VREF_MUTABLE_MAPTEXT] = maptext_appearance
 	else
 		var/list/maptext_list = list()
 		for(var/keybind_type in keybinding_signals)
 			var/mutable_appearance/maptext_appearance = mutable_appearance()
 			maptext_appearance.layer = ABOVE_HUD_LAYER // above selected/empowered frame
+			maptext_appearance.plane = ABOVE_HUD_PLANE
 			maptext_appearance.pixel_x = GLOB.action_maptext_offsets[keybind_type][1]
 			maptext_appearance.pixel_y = GLOB.action_maptext_offsets[keybind_type][2]
 			maptext_list[keybinding_signals[keybind_type]] = maptext_appearance
@@ -57,7 +59,7 @@ KEYBINDINGS
 			visual_references[VREF_MUTABLE_ACTIVE_FRAME] = active_appearance
 		if(ACTION_SELECT)
 			var/mutable_appearance/selected_appeareance = mutable_appearance('icons/mob/actions.dmi', "selected_frame")
-			selected_appeareance.layer = HUD_LAYER + 0.1
+			selected_appeareance.layer = HUD_LAYER
 			selected_appeareance.plane = HUD_PLANE
 			visual_references[VREF_MUTABLE_SELECTED_FRAME] = selected_appeareance
 	var/mutable_appearance/action_appearence =	mutable_appearance(action_icon, action_icon_state)
@@ -106,16 +108,16 @@ KEYBINDINGS
 	var/mutable_appearance/reference = null
 	if(length(keybinding_signals) == 1)
 		reference = visual_references[VREF_MUTABLE_ACTION_STATE]
-		button.cut_overlay(reference)
+		button.cut_overlay(reference, TRUE)
 		reference.maptext = MAPTEXT(key_string)
 		visual_references[VREF_MUTABLE_MAPTEXT] = reference
-		button.add_overlay(reference)
+		button.add_overlay(reference, TRUE)
 	else
 		reference = visual_references[VREF_MUTABLE_MAPTEXT][key_signal]
-		button.cut_overlay(reference)
+		button.cut_overlay(reference, TRUE)
 		reference.maptext = MAPTEXT(key_string)
 		visual_references[VREF_MUTABLE_MAPTEXT][key_signal] = reference
-		button.add_overlay(reference)
+		button.add_overlay(reference, TRUE)
 
 /datum/action/proc/update_button_icon()
 	if(!button)
