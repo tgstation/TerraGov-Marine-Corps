@@ -195,6 +195,7 @@
 			/obj/item/assembly/signaler = -1,
 			/obj/item/binoculars = -1,
 			/obj/item/compass = -1,
+			/obj/item/reagent_containers/food/drinks/flask/marine = -1,
 		),
 	)
 
