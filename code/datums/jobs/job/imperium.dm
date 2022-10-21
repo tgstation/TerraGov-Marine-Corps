@@ -195,7 +195,7 @@
 	name = "Imperial Commissar"
 	jobtype = /datum/job/imperial/commissar
 
-	belt = /obj/item/storage/belt/gun/mateba/full //Ideally this can be later replaced with a bolter
+	belt = /obj/item/weapon/gun/pistol/boltpistol //Ideally this can be later replaced with a bolter
 	w_uniform = /obj/item/clothing/under/marine/commissar
 	wear_suit = /obj/item/clothing/suit/storage/marine/imperial/commissar
 	gloves = /obj/item/clothing/gloves/marine/commissar
@@ -203,6 +203,7 @@
 	l_store = /obj/item/storage/pouch/medkit
 	r_store = /obj/item/storage/pouch/magazine/pistol/large/mateba
 	back = /obj/item/storage/backpack/lightpack
+	glasses = /obj/item/clothing/glasses/night/imager_goggles
 
 /datum/outfit/job/imperial/commissar/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()

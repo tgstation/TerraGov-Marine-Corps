@@ -125,8 +125,8 @@
 	reload_delay = 10 SECONDS
 
 /obj/item/ammo_magazine/concussion_missile
-	name = "Concussion Missile"
-	desc = "Concussion Missiles are outfitted with powerful high explosives and are very effective at breaking up entrenched enemy fortifications."
+	name = "concussion missile"
+	desc = "Concussion missiles are outfitted with powerful high explosives and are very effective at breaking up entrenched enemy fortifications."
 	w_class = WEIGHT_CLASS_BULKY
 	icon = 'icons/Marine/marine-atgun.dmi'
 	icon_state = "rocket_conc"
@@ -142,8 +142,8 @@
 	reload_delay = 2 SECONDS
 
 /obj/item/ammo_magazine/krak_missile
-	name = "Krak Missile"
-	desc = "Krak Missiles are primarily intended to serve as anti-vehicle weapons, and contain a high-strength shaped charge with a relatively small blast radius, but causes massive damage to anything it hits with minimal collateral damage. Krak Missiles are also very effective against heavily armoured infantry, bunkers and other armoured or fortified static targets where their concentrated explosives will often punch holes straight through armour."
+	name = "krak missile"
+	desc = "Krak missiles are primarily intended to serve as anti-vehicle weapons, and contain a high-strength shaped charge with a relatively small blast radius, but causes massive damage to anything it hits with minimal collateral damage. Krak missiles are also very effective against heavily armored infantry, bunkers and other armored or fortified static targets where their concentrated explosives will often punch holes straight through armor."
 	w_class = WEIGHT_CLASS_BULKY
 	icon = 'icons/Marine/marine-atgun.dmi'
 	icon_state = "rocket_krak"
@@ -156,4 +156,16 @@
 	caliber = CALIBER_75MM
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket/krak
+	reload_delay = 2 SECONDS
+
+/obj/item/ammo_magazine/autocannon
+	name = "dualcannon IFF Magazine(20mm)"
+	desc = "A box of 150 20mm rounds for the ATR-22 mounted dualcannon."
+	w_class = WEIGHT_CLASS_BULKY
+	icon = 'icons/Marine/marine-hmg.dmi'
+	icon_state = "ac_mag"
+	flags_magazine = NONE
+	caliber = CALIBER_20
+	max_rounds = 15
+	default_ammo = /datum/ammo/bullet/dual_cannon
 	reload_delay = 2 SECONDS

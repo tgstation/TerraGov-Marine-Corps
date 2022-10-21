@@ -1280,6 +1280,18 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/bullet/dual_cannon/on_hit_obj(obj/O, obj/projectile/P)
 	P.proj_max_range -= 10
 
+/datum/ammo/bullet/dual_cannon
+	name = "dualcannon bullet"
+	hud_state = "minigun"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
+	accuracy_var_low = 3
+	accuracy_var_high = 3
+	accurate_range = 5
+	damage = 50
+	penetration = 100
+	sundering = 25
+	max_range = 30
+
 /datum/ammo/bullet/railgun
 	name = "armor piercing railgun slug"
 	hud_state = "alloy_spike"
