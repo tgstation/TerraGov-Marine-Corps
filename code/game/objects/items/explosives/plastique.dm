@@ -54,7 +54,31 @@
 		user.drop_held_item()
 		var/location
 		location = target
-		forceMove(location)
+		var/user_turf = get_turf(user)
+		forceMove(user_turf)
+		if(user_turf != (get_turf(target)))
+			var/direction_to_target = get_dir(user_turf, target)
+			switch(direction_to_target)
+				if(NORTH)
+					pixel_y = 32
+				if(SOUTH)
+					pixel_y = -32
+				if(EAST)
+					pixel_x = 32
+				if(WEST)
+					pixel_x = -32
+				if(NORTHEAST)
+					pixel_x = 32
+					pixel_y = 32
+				if(NORTHWEST)
+					pixel_x = -32
+					pixel_y = 32
+				if(SOUTHEAST)
+					pixel_x = 32
+					pixel_y = -32
+				if(SOUTHWEST)
+					pixel_x = -32
+					pixel_y = -32
 		armed = TRUE
 
 		log_combat(user, target, "attached [src] to")
@@ -66,7 +90,7 @@
 
 		plant_target = target
 		if(ismovableatom(plant_target))
-			var/atom/movable/T = plant_target
+			var/atom/movable/T = get_turf(user)
 			T.vis_contents += src
 		detonation_pending = addtimer(CALLBACK(src, .proc/detonate), timer*10, TIMER_STOPPABLE)
 		var/beeping_timer = ((timer*10) - 27)
@@ -110,14 +134,14 @@
 
 /obj/item/explosive/plastique/proc/detonate()
 	if(QDELETED(plant_target))
-		playsound(loc, 'sound/weapons/ring.ogg', 100, FALSE, 30)
+		playsound(plant_target, 'sound/weapons/ring.ogg', 100, FALSE, 30)
 		explosion(plant_target, 0, 0, 0, 1)
 		qdel(src)
 		return
 	explosion(plant_target, 0, 0, 1, 0, 0, 1, 0, 1)
-	playsound(loc, sound(get_sfx("explosion_small")), 100, FALSE, 30)
+	playsound(plant_target, sound(get_sfx("explosion_small")), 100, FALSE, 30)
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
-	smoke.set_up(smokeradius, loc, 2)
+	smoke.set_up(smokeradius, plant_target, 2)
 	smoke.start()
 	plant_target.ex_act(EXPLODE_DEVASTATE)
 	qdel(src)
