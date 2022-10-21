@@ -37,35 +37,21 @@ KEYBINDINGS
 	if(desc)
 		button.desc = desc
 	if(length(keybinding_signals) == 1)
-		var/mutable_appearance/maptext_appearance = mutable_appearance()
-		maptext_appearance.layer = ABOVE_HUD_LAYER // above selected/empowered frame
-		maptext_appearance.plane = ABOVE_HUD_PLANE
-		visual_references[VREF_MUTABLE_MAPTEXT] = maptext_appearance
+		visual_references[VREF_MUTABLE_MAPTEXT] = mutable_appearance(null, null, ACTION_LAYER_MAPTEXT, FLOAT_PLANE)
 	else
 		var/list/maptext_list = list()
 		for(var/keybind_type in keybinding_signals)
-			var/mutable_appearance/maptext_appearance = mutable_appearance()
-			maptext_appearance.layer = ABOVE_HUD_LAYER // above selected/empowered frame
-			maptext_appearance.plane = ABOVE_HUD_PLANE
+			var/mutable_appearance/maptext_appearance = mutable_appearance(null, null, ACTION_LAYER_MAPTEXT, FLOAT_PLANE)
 			maptext_appearance.pixel_x = GLOB.action_maptext_offsets[keybind_type][1]
 			maptext_appearance.pixel_y = GLOB.action_maptext_offsets[keybind_type][2]
 			maptext_list[keybinding_signals[keybind_type]] = maptext_appearance
 		visual_references[VREF_MUTABLE_MAPTEXT] = maptext_list
 	switch(action_type)
 		if(ACTION_TOGGLE)
-			var/mutable_appearance/active_appearance = mutable_appearance('icons/Marine/marine-weapons.dmi', "active")
-			active_appearance.layer = HUD_LAYER
-			active_appearance.plane = HUD_PLANE
-			visual_references[VREF_MUTABLE_ACTIVE_FRAME] = active_appearance
+			visual_references[VREF_MUTABLE_ACTIVE_FRAME] = mutable_appearance('icons/Marine/marine-weapons.dmi', "active", ACTION_LAYER_ACTION_ICON_STATE, FLOAT_PLANE)
 		if(ACTION_SELECT)
-			var/mutable_appearance/selected_appeareance = mutable_appearance('icons/mob/actions.dmi', "selected_frame")
-			selected_appeareance.layer = HUD_LAYER
-			selected_appeareance.plane = HUD_PLANE
-			visual_references[VREF_MUTABLE_SELECTED_FRAME] = selected_appeareance
-	var/mutable_appearance/action_appearence =	mutable_appearance(action_icon, action_icon_state)
-	action_appearence.layer = HUD_LAYER
-	action_appearence.plane = HUD_PLANE
-	visual_references[VREF_MUTABLE_ACTION_STATE] = action_appearence
+			visual_references[VREF_MUTABLE_SELECTED_FRAME] = mutable_appearance('icons/mob/actions.dmi', "selected_frame", ACTION_LAYER_ACTION_ICON_STATE, FLOAT_PLANE)
+	visual_references[VREF_MUTABLE_ACTION_STATE] = mutable_appearance(action_icon, action_icon_state, HUD_LAYER, HUD_PLANE)
 	button.add_overlay(visual_references[VREF_MUTABLE_ACTION_STATE])
 
 /datum/action/Destroy()
@@ -108,16 +94,16 @@ KEYBINDINGS
 	var/mutable_appearance/reference = null
 	if(length(keybinding_signals) == 1)
 		reference = visual_references[VREF_MUTABLE_ACTION_STATE]
-		button.cut_overlay(reference, TRUE)
+		button.cut_overlay(reference)
 		reference.maptext = MAPTEXT(key_string)
 		visual_references[VREF_MUTABLE_MAPTEXT] = reference
-		button.add_overlay(reference, TRUE)
+		button.add_overlay(reference)
 	else
 		reference = visual_references[VREF_MUTABLE_MAPTEXT][key_signal]
-		button.cut_overlay(reference, TRUE)
+		button.cut_overlay(reference)
 		reference.maptext = MAPTEXT(key_string)
 		visual_references[VREF_MUTABLE_MAPTEXT][key_signal] = reference
-		button.add_overlay(reference, TRUE)
+		button.add_overlay(reference)
 
 /datum/action/proc/update_button_icon()
 	if(!button)
@@ -132,7 +118,7 @@ KEYBINDINGS
 			// We need to update the reference since it becomes a new appearance for byond internally
 			action_appearence.icon_state = action_icon_state
 			visual_references[VREF_MUTABLE_ACTION_STATE] = action_appearence
-			button.add_overlay(visual_references[VREF_MUTABLE_ACTION_STATE])
+			button.add_overlay(action_appearence)
 	if(background_icon_state != button.icon_state)
 		button.icon_state = background_icon_state
 	handle_button_status_visuals()
@@ -188,23 +174,21 @@ KEYBINDINGS
 		owner.client.screen += button
 	owner.update_action_buttons()
 	owner.actions_by_path[type] = src
-	if(length(keybinding_signals))
-		for(var/type in keybinding_signals)
-			var/signal = keybinding_signals[type]
-			if(signal)
-				RegisterSignal(owner, signal, .proc/keybind_trigger)
-				var/datum/keybinding/our_kb = GLOB.keybindings_by_signal[signal]
-				if(M.client && our_kb)
-					update_map_text(our_kb.get_keys_formatted(M.client), signal)
+	for(var/type in keybinding_signals)
+		var/signal = keybinding_signals[type]
+		if(signal)
+			RegisterSignal(owner, signal, .proc/keybind_trigger)
+			var/datum/keybinding/our_kb = GLOB.keybindings_by_signal[signal]
+			if(M.client && our_kb)
+				update_map_text(our_kb.get_keys_formatted(M.client), signal)
 
 	SEND_SIGNAL(M, ACTION_GIVEN)
 
 /datum/action/proc/remove_action(mob/M)
-	if(length(keybinding_signals))
-		for(var/type in keybinding_signals)
-			var/signal = keybinding_signals[type]
-			if(owner)
-				UnregisterSignal(owner, signal)
+	for(var/type in keybinding_signals)
+		var/signal = keybinding_signals[type]
+		if(owner)
+			UnregisterSignal(owner, signal)
 	if(M.client)
 		M.client.screen -= button
 	M.actions_by_path[type] = null

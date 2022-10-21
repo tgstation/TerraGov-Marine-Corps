@@ -39,7 +39,8 @@
 		button.cut_overlay(visual_references[VREF_MUTABLE_LINKED_OBJ])
 	if(use_obj_appeareance)
 		var/obj/item/I = target
-		var/item_image = mutable_appearance(I.icon, I.icon_state, ABOVE_HUD_LAYER, HUD_PLANE)
+		// -0.5 so its below maptext and above the selected frames
+		var/item_image = mutable_appearance(I.icon, I.icon_state, ACTION_LAYER_IMAGE_ONTOP, FLOAT_PLANE)
 		visual_references[VREF_MUTABLE_LINKED_OBJ] = item_image
 		button.add_overlay(item_image)
 	else
@@ -48,9 +49,6 @@
 
 /datum/action/item_action/toggle
 	action_type = ACTION_TOGGLE
-
-/datum/action/item_action/toggle/update_button_icon()
-	..()
 
 /datum/action/item_action/toggle/New(Target)
 	. = ..()

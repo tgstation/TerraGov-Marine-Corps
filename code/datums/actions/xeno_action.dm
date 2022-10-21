@@ -16,9 +16,8 @@
 	. = ..()
 	if(plasma_cost)
 		name = "[name] ([plasma_cost])"
-	var/image/cooldown_image = image('icons/effects/progressicons.dmi', null, "busy_clock")
-	var/mutable_appearance/empowered_appearence = mutable_appearance('icons/mob/actions.dmi', "borders_center")
-	empowered_appearence.layer = HUD_LAYER
+	var/image/cooldown_image = image('icons/effects/progressicons.dmi', null, "busy_clock", ACTION_LAYER_CLOCK)
+	var/mutable_appearance/empowered_appearence = mutable_appearance('icons/mob/actions.dmi', "borders_center", ACTION_LAYER_EMPOWERED, FLOAT_PLANE)
 	cooldown_image.pixel_y = 7
 	cooldown_image.appearance_flags = RESET_COLOR|RESET_ALPHA
 	visual_references[VREF_IMAGE_XENO_CLOCK] = cooldown_image

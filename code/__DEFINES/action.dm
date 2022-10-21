@@ -36,3 +36,14 @@
 #define KEYBINDING_NORMAL "normal_trigger"
 /// Alternate keybinding , calls alternate_ability_activation
 #define KEYBINDING_ALTERNATE "alternate_trigger"
+
+/* Defines for layering action overlays
+Numbers closer to 0 get drawn above everything thats smaller
+*/
+
+#define ACTION_LAYER_MAPTEXT FLOAT_LAYER // Maptext only
+#define ACTION_LAYER_CLOCK FLOAT_LAYER - 0.1 // Clock only
+#define ACTION_LAYER_SELECTED FLOAT_LAYER - 0.2 // Selected frame only
+#define ACTION_LAYER_EMPOWERED FLOAT_LAYER - 0.3 // Empowered frame only
+#define ACTION_LAYER_IMAGE_ONTOP FLOAT_LAYER - 0.4 // LINKED_OBJ , IMAGE_ONTOP, RAV_LEECH
+#define ACTION_LAYER_ACTION_ICON_STATE FLOAT_LAYER - 1 // Action icon frame only

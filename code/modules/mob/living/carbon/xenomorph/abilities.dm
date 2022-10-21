@@ -130,7 +130,8 @@
 	action_icon_state = initial(weed_type.name)
 	if(auto_weeding)
 		if(!visual_references[VREF_IMAGE_ONTOP])
-			visual_references[VREF_IMAGE_ONTOP] = image('icons/mob/actions.dmi', icon_state = "repeating")
+			// below maptext , above selected frames
+			visual_references[VREF_IMAGE_ONTOP] = image('icons/mob/actions.dmi', icon_state = "repeating", layer = ACTION_LAYER_IMAGE_ONTOP)
 			button.add_overlay(visual_references[VREF_IMAGE_ONTOP])
 	else if(visual_references[VREF_IMAGE_ONTOP])
 		button.cut_overlay(visual_references[VREF_IMAGE_ONTOP])
