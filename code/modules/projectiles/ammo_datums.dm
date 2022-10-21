@@ -304,6 +304,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 10
 	shrapnel_chance = 10
 	bullet_color = COLOR_VERY_SOFT_YELLOW
+	barricade_clear_distance = 2
 
 /*
 //================================================
@@ -1189,8 +1190,9 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	accurate_range = 12
 	damage = 10
-	penetration = 15
+	penetration = 25
 	sundering = 1
+	damage_falloff = 0.1
 
 /datum/ammo/bullet/turret
 	name = "autocannon bullet"
@@ -1444,9 +1446,9 @@ datum/ammo/bullet/revolver/tp44
 	projectile_greyscale_colors = "#4f0303"
 
 /datum/ammo/bullet/tx54_spread/mech
-	damage = 25
-	penetration = 20
-	sundering = 2
+	damage = 20
+	penetration = 10
+	sundering = 1
 
 //10-gauge Micro rail shells - aka micronades
 /datum/ammo/bullet/micro_rail
@@ -1654,6 +1656,7 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 100
 	sundering = 100
 	bullet_color = LIGHT_COLOR_FIRE
+	barricade_clear_distance = 2
 
 /datum/ammo/rocket/drop_nade(turf/T)
 	explosion(T, 0, 4, 6, 2)
@@ -2028,6 +2031,7 @@ datum/ammo/bullet/revolver/tp44
 	armor_type = "energy"
 	accuracy = 15 //lasers fly fairly straight
 	bullet_color = COLOR_LASER_RED
+	barricade_clear_distance = 2
 
 /datum/ammo/energy/emitter //Damage is determined in emitter.dm
 	name = "emitter bolt"
@@ -2347,7 +2351,7 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/energy/lasgun/marine/mech
 	name = "superheated laser bolt"
-	damage = 40
+	damage = 50
 	penetration = 20
 	sundering = 1
 	damage_falloff = 0.5
@@ -2360,7 +2364,7 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/energy/lasgun/marine/mech/smg
 	name = "superheated pulsed laser bolt"
-	damage = 35
+	damage = 25
 	penetration = 15
 
 // Plasma //

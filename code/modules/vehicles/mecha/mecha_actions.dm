@@ -54,7 +54,7 @@
 	if(!owner || !chassis || !(owner in chassis.occupants))
 		return
 
-	if(!(chassis.mecha_flags & HAS_LIGHTS))
+	if(!(chassis.mecha_flags & HAS_HEADLIGHTS))
 		chassis.balloon_alert(owner, "the mech lights are broken!")
 		return
 	chassis.mecha_flags ^= LIGHTS_ON

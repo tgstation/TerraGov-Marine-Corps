@@ -118,7 +118,7 @@
 			/obj/item/weapon/gun/rifle/pepperball = 4,
 			/obj/item/ammo_magazine/rifle/pepperball = 40,
 			/obj/item/weapon/gun/flamer/big_flamer/marinestandard = 4,
-			/obj/item/ammo_magazine/flamer_tank/large = 30,
+			/obj/item/ammo_magazine/flamer_tank/large = 16,
 			/obj/item/ammo_magazine/flamer_tank/backtank = 4,
 			/obj/item/jetpack_marine = 3,
 			/obj/item/bodybag/tarp = 10,
@@ -825,6 +825,7 @@
 		),
 		"Ammo Boxes" = list(
 			/obj/item/big_ammo_box = 1,
+			/obj/item/big_ammo_box/smg = 1,
 			/obj/item/shotgunbox = 1,
 			/obj/item/shotgunbox/buckshot = 1,
 			/obj/item/shotgunbox/flechette = 1,
