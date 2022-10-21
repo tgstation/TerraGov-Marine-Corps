@@ -1,0 +1,4 @@
+author: "Kuro020"
+delete-after: True
+changes: 
+  - balance: "Mech's no longer use all of their energy using the actuator overload, efficiency module now does what it says, laser burst rifle uses less energy per shot"
