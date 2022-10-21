@@ -312,7 +312,7 @@
 /obj/structure/window/reinforced/Initialize(mapload)
 	. = ..()
 	if(dir == 1)
-		add_overlay(image(icon, "rwindow2", layer = WINDOW_LAYER))
+		add_overlay(image(icon, "rwindow_overlay", layer = WINDOW_LAYER))
 		layer = WINDOW_FRAME_LAYER
 	if(dir == 8 || dir == 4)
 		var/turf/adj = get_step(src, SOUTH)
