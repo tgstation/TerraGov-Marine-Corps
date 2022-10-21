@@ -110,12 +110,12 @@
 
 /obj/item/explosive/plastique/proc/detonate()
 	if(QDELETED(plant_target))
-		playsound(loc, 'sound/weapons/ring.ogg', 200, FALSE)
+		playsound(loc, 'sound/weapons/ring.ogg', 100, FALSE, 30)
 		explosion(plant_target, 0, 0, 0, 1)
 		qdel(src)
 		return
 	explosion(plant_target, 0, 0, 1, 0, 0, 1, 0, 1)
-	playsound(loc, pick('sound/effects/explosion_small1.ogg','sound/effects/explosion_small2.ogg','sound/effects/explosion_small3.ogg'), 200, FALSE)
+	playsound(loc, sound(get_sfx("explosion_small")), 100, FALSE, 30)
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
 	smoke.set_up(smokeradius, loc, 2)
 	smoke.start()
