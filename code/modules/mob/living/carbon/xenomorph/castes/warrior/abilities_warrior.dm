@@ -351,7 +351,7 @@
 
 /datum/action/xeno_action/activable/punch/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
-	to_chat(X, span_xenodanger("We gather enough strength to punch again."))
+	to_chat(X, span_xenodanger("We gather enough strength to [ability_name] again."))
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
@@ -401,11 +401,11 @@
 	GLOB.round_statistics.warrior_punches++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_punches")
 
+	succeed_activate()
+	add_cooldown()
 	var/datum/action/xeno_action/jab = X.actions_by_path[/datum/action/xeno_action/activable/punch/jab]
 	if(jab)
 		jab.add_cooldown()
-	succeed_activate()
-	add_cooldown()
 
 /atom/proc/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone)
 	return TRUE
@@ -561,6 +561,7 @@
 /datum/action/xeno_action/activable/punch/jab
 	name = "Jab"
 	action_icon_state = "jab"
+	ability_name = "jab"
 	mechanics_text = "Precisely strike your target from further away, heavily slowing them."
 	plasma_cost = 10
 	range = 2
@@ -574,9 +575,6 @@
 
 	if(!target.punch_act(X, damage, target_zone, push = FALSE, punch_description = "precise", stagger_stacks = 3, slowdown_stacks = 6))
 		return fail_activate()
-	var/datum/action/xeno_action/punch = X.actions_by_path[/datum/action/xeno_action/activable/punch]
-	if(punch)
-		punch.add_cooldown()
 	if(X.empower())
 		target.blind_eyes(3)
 		target.blur_eyes(6)
@@ -586,9 +584,6 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_punches")
 	succeed_activate()
 	add_cooldown()
-
-/datum/action/xeno_action/activable/punch/jab/on_cooldown_finish()
-	var/mob/living/carbon/xenomorph/X = owner
-	to_chat(X, span_xenodanger("We gather enough strength to jab again."))
-	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
-	return ..()
+	var/datum/action/xeno_action/punch = X.actions_by_path[/datum/action/xeno_action/activable/punch]
+	if(punch)
+		punch.add_cooldown()
