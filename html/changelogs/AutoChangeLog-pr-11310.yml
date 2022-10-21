@@ -1,0 +1,4 @@
+author: "novaepee"
+delete-after: True
+changes: 
+  - qol: "Combat robot armors can now store instruments and other things that the modular armors can. Some things have been axed from being put on the suit-storage slot, however, like oxygen tanks."

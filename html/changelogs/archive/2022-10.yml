@@ -259,3 +259,28 @@
   - rscadd: Adds loot boxes to req
   RipGrayson:
   - bugfix: Some telecomms props now have proper descriptions and names.
+2022-10-20:
+  Lumipharon:
+  - bugfix: Some minor balloon alert fixes for sensor cap
+  - imageadd: Human head shape is now consistant
+  TiviPlus:
+  - code_imp: changed recomended versions
+  novaepee:
+  - bugfix: missing keeper missle in PoS
+2022-10-21:
+  Derrick2Electricboogaloo:
+  - bugfix: Seed Vendors now show the proper seed packets.
+  Jalopkomit18:
+  - qol: Vali necro warning divided into two warnings at separate intervals. Will
+      first give warning with how much time remaining starting at 10secs onwards.
+      Second warning will begin 15secs onwards and give the necro hud and an additional
+      warning.
+  Jordanstolethepreciousslam:
+  - qol: huggers can now be removed without using equip menu
+  Lumipharon:
+  - bugfix: Loot boxes are now actually orderable
+  - imageadd: New lobby art
+  - bugfix: Couple of minor sprites fixes for volkite weapons
+  RipGrayson:
+  - imageadd: Resprited some new icons to replace ones with improper perspective.
+  - imagedel: Deleted some old icons with improper perspective.
