@@ -343,7 +343,7 @@
 	mechanics_text = "Strike a target, inflicting stamina damage, stagger and slowdown. Deals double damage, stagger and slowdown to grappled targets. Deals quadruple damage to structures and machinery."
 	ability_name = "punch"
 	plasma_cost = 12
-	cooldown_timer = 10 SECONDS
+	cooldown_timer = 10 SECONDS //shared with jab, meaning jab goes on cooldown if you use punch and vice versa
 	keybind_signal = COMSIG_XENOABILITY_PUNCH
 	target_flags = XABB_MOB_TARGET
 	///The punch range, 1 would be adjacent.
@@ -401,6 +401,9 @@
 	GLOB.round_statistics.warrior_punches++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_punches")
 
+	var/datum/action/xeno_action/jab = X.actions_by_path[/datum/action/xeno_action/activable/punch/jab]
+	if(jab)
+		jab.add_cooldown()
 	succeed_activate()
 	add_cooldown()
 
@@ -571,6 +574,9 @@
 
 	if(!target.punch_act(X, damage, target_zone, push = FALSE, punch_description = "precise", stagger_stacks = 3, slowdown_stacks = 6))
 		return fail_activate()
+	var/datum/action/xeno_action/punch = X.actions_by_path[/datum/action/xeno_action/activable/punch]
+	if(punch)
+		punch.add_cooldown()
 	if(X.empower())
 		target.blind_eyes(3)
 		target.blur_eyes(6)
