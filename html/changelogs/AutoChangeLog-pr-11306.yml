@@ -1,0 +1,5 @@
+author: "lbnesquik"
+delete-after: True
+changes: 
+  - soundadd: "Add a beeping noise to C4"
+  - soundadd: "Add an explosion noise to C4"
