@@ -7,6 +7,8 @@
     1. [Headcoder](#headcoder)
     2. [Art Director](#art-director)
     3. [Maintainers](#maintainers)
+    4. [Map Maintainers](#map-maintainers)
+    5. [Walance Maintainers](#walance-maintainer)
 5. [Specifications](#specifications)
     1. [Code specifications](#code-specifications)
     2. [Map specifications](#map-specifications)
@@ -53,11 +55,19 @@ They also control the general "perspective" of the game - how sprites should gen
 
 ### Maintainers
 
-Maintainers are the code quality control. If a proposed pull request doesn't meet the following specifications, they can request a change, and if a proper reason is not provided or the request becomes stale, they may close it. Maintainers are required to give a reason for closing the pull request.
+Maintainers are the code quality control. If a proposed pull request doesn't meet [code specifications](#code-specifications), they can request a change, and if a proper reason is not provided or the request becomes stale, they may close it. Maintainers are required to give a reason for closing the pull request.
 
 Maintainers can revert changes if they feel they are not worth maintaining or if they did not live up to the quality specifications.
 
 They also control the design and balance directions, and may reject prs whose effects are deemed detrimental to the quality of the game.
+
+#### Map Maintainers
+
+Map maintainers verify that all changes meet the [map specifications](#map-specifications). They also make sure that maps are readily maintainable and maintain a coherent visual style that's easily understandable by new mappers.
+
+### Walance Maintainers
+
+They work with the maintainers to help advise them on concepts and ideas. They review balance and feature PRs
 
 ## Specifications
 
