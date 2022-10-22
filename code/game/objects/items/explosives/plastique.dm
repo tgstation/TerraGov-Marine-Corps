@@ -55,8 +55,8 @@
 		var/location
 		location = target
 		var/user_turf = get_turf(user)
-		forceMove(user_turf)
-		if(user_turf != (get_turf(target)))
+		if(user_turf != (get_turf(target)) && isturf(target))
+			forceMove(user_turf)
 			var/direction_to_target = get_dir(user_turf, target)
 			switch(direction_to_target)
 				if(NORTH)
@@ -79,6 +79,8 @@
 				if(SOUTHWEST)
 					pixel_x = -32
 					pixel_y = -32
+		else
+			forceMove(location)
 		armed = TRUE
 
 		log_combat(user, target, "attached [src] to")
@@ -90,11 +92,11 @@
 
 		plant_target = target
 		if(ismovableatom(plant_target))
-			var/atom/movable/T = get_turf(user)
+			var/atom/movable/T = plant_target
 			T.vis_contents += src
 		detonation_pending = addtimer(CALLBACK(src, .proc/detonate), timer*10, TIMER_STOPPABLE)
 		var/beeping_timer = ((timer*10) - 27)
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, get_turf(target), 'sound/items/countdown.ogg', 40, TRUE), beeping_timer)
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, target, 'sound/items/countdown.ogg', 20, TRUE), beeping_timer)
 
 
 /obj/item/explosive/plastique/attack(mob/M as mob, mob/user as mob, def_zone)
