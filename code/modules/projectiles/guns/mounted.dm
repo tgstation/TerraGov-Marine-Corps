@@ -482,7 +482,7 @@
 	deployable_item = /obj/machinery/deployable/mounted/cadian_ml
 
 	max_integrity = 600
-	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 80, BIO = 100, "rad" = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 80, BIO = 100, FIRE = 0, ACID = 0)
 
 /obj/machinery/deployable/mounted/cadian_ml
 	pixel_x = -4
@@ -519,7 +519,7 @@
 	deployable_item = /obj/machinery/deployable/mounted/autocannon
 
 	max_integrity = 300
-	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, "rad" = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, FIRE = 0, ACID = 0)
 
 /obj/machinery/deployable/mounted/autocannon
 	pixel_x = -8
