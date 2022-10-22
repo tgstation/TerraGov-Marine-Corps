@@ -1,4 +1,0 @@
-author: "Losenis"
-delete-after: True
-changes: 
-  - bugfix: "Big Ammo Box (10x20mm) will actually fill mags of its caliber now."
