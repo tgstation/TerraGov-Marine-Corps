@@ -11,6 +11,8 @@
 	w_class = WEIGHT_CLASS_NORMAL
 
 	var/ready = FALSE
+	///wether readying is needed
+	var/ready_needed = TRUE
 	var/damage_threshold = 8 //This is the maximum non-oxy damage the defibrillator will heal to get a patient above -100, in all categories
 	var/charge_cost = 66 //How much energy is used.
 	var/obj/item/cell/dcell = null
@@ -40,7 +42,7 @@
 	return ..()
 
 
-/obj/item/defibrillator/update_icon()
+/obj/item/defibrillator/update_icon_state()
 	icon_state = "defib"
 	if(ready)
 		icon_state += "_out"
@@ -81,6 +83,8 @@
 
 
 /obj/item/defibrillator/attack_self(mob/living/carbon/human/user)
+	if(!ready_needed)
+		return
 	if(!istype(user))
 		return
 	if(defib_cooldown > world.time)
@@ -294,3 +298,42 @@
 	desc = "A handheld emergency defibrillator, used to restore fibrillating patients. Can optionally bring people back from the dead. Appears to be a civillian model."
 	icon_state = "civ_defib_full"
 	item_state = "defib"
+
+
+/obj/item/defibrillator/gloves
+	name = "advanced medical combat gloves"
+	desc = "Advanced medical gloves, these include small electrodes to defibrilate a patiant. No more bulky units!"
+	icon_state = "defib_gloves"
+	item_state = "defib_gloves"
+	ready = TRUE
+	ready_needed = FALSE
+	flags_equip_slot = ITEM_SLOT_GLOVES
+	w_class = WEIGHT_CLASS_SMALL
+	icon = 'icons/obj/clothing/gloves.dmi'
+	item_state_worn = TRUE
+	siemens_coefficient = 0.50
+	blood_sprite_state = "bloodyhands"
+	flags_armor_protection = HANDS
+	flags_equip_slot = ITEM_SLOT_GLOVES
+	attack_verb = "zaps"
+	soft_armor = list(MELEE = 25, BULLET = 15, LASER = 10, ENERGY = 15, BOMB = 15, BIO = 5, FIRE = 15, ACID = 15)
+	flags_cold_protection = HANDS
+	flags_heat_protection = HANDS
+	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
+	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
+
+/obj/item/defibrillator/gloves/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(user.gloves == src)
+		RegisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, .proc/on_unarmed_attack)
+	else
+		UnregisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK)
+
+//when you are wearing these gloves, this will call the normal attack code to begin defibing the target
+/obj/item/defibrillator/gloves/proc/on_unarmed_attack(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	if(istype(user) && istype(target))
+		attack(target,user)
+
+/obj/item/defibrillator/gloves/update_icon_state()
+	return
+
