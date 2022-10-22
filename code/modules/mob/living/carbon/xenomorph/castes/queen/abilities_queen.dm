@@ -339,7 +339,7 @@
 	heal_range = HIVELORD_HEAL_RANGE
 	target_flags = XABB_MOB_TARGET
 
-/datum/action/xeno_action/activable/queen_heal/use_ability(atom/target)
+/datum/action/xeno_action/activable/queen_give_heal/use_ability(atom/target)
 	if(owner.do_actions)
 		return FALSE
 	if(!do_mob(owner, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
