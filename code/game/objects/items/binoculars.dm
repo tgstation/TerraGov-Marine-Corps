@@ -345,3 +345,318 @@
 #undef MODE_RANGE_FINDER
 #undef MODE_RAILGUN
 #undef MODE_ORBITAL
+
+#define MODE_CAS_RUN 0
+#define MODE_GAS_MORTAR 1
+#define MODE_HE_ARTY 2
+
+/obj/item/binoculars/tac_patrol
+	name = "tactical binoculars"
+	desc = "A pair of binoculars, with a laser targeting function. Alt+Click or unique action to toggle mode. Ctrl+Click when using to target something. Shift+Click to get coordinates. Ctrl+Shift+Click to fire OB when lasing in OB mode"
+	var/laser_cooldown = 10 SECONDS
+	var/cooldown_duration = 200 //20 seconds
+	var/cost = 100
+	var/obj/effect/overlay/temp/laser_target/laser
+	var/target_acquisition_delay = 100 //10 seconds
+	var/mode = 0  //Able to be switched between modes, 0 for cas laser, 1 for finding coordinates, 2 for directing railgun, 3 for orbital bombardment, 4 for range finding and mortar targeting.
+	var/changable = TRUE //If set to FALSE, you can't toggle the mode between CAS and coordinate finding
+	var/turf/current_turf // The target turf, used for OBs
+	///Last stored turf targetted by rangefinders
+	var/turf/targetturf
+	var/attack_width = 3
+	var/bullet_spread_range = 2
+	var/faction
+
+/obj/item/binoculars/tac_patrol/Initialize()
+	. = ..()
+	update_icon()
+
+/obj/item/binoculars/tac_patrol/unique_action(mob/user)
+	. = ..()
+	toggle_mode(user)
+	return TRUE
+
+/obj/item/binoculars/tac_patrol/examine(mob/user)
+	. = ..()
+	switch(mode)
+		if(MODE_CAS_RUN)
+			. += span_notice("They are currently set to CAS gun run marking mode.")
+		if(MODE_GAS_MORTAR)
+			. += span_notice("They are currently set to gas mortar salvo targeting mode.")
+		if(MODE_HE_ARTY)
+			. += span_notice("They are currently set to HE artillery salvo targeting mode.")
+
+/obj/item/binoculars/tac_patrol/Destroy()
+	if(laser)
+		QDEL_NULL(laser)
+	return ..()
+
+/obj/item/binoculars/tac_patrol/InterceptClickOn(mob/user, params, atom/object)
+	var/list/pa = params2list(params)
+	if(!pa.Find("ctrl") && pa.Find("shift"))
+		acquire_coordinates(object, user)
+		return TRUE
+
+	if(pa.Find("ctrl") && !pa.Find("shift"))
+		acquire_target(object, user)
+		return TRUE
+
+	return FALSE
+
+/obj/item/binoculars/tac_patrol/onzoom(mob/living/user)
+	. = ..()
+	user.reset_perspective(src)
+	user.update_sight()
+	user.client.click_intercept = src
+
+/obj/item/binoculars/tac_patrol/onunzoom(mob/living/user)
+	. = ..()
+
+	QDEL_NULL(laser)
+
+	if(!user?.client)
+		return
+
+	user.client.click_intercept = null
+	user.reset_perspective(user)
+	user.update_sight()
+
+
+/obj/item/binoculars/tac_patrol/update_remote_sight(mob/living/user)
+	user.see_in_dark = 32 // Should include the offset from zoom and client viewport
+	user.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+	user.sync_lighting_plane_alpha()
+	return TRUE
+
+
+/obj/item/binoculars/tac_patrol/update_overlays()
+	. = ..()
+	if(mode)
+		. += "binoculars_range"
+	else
+		. += "binoculars_laser"
+
+/obj/item/binoculars/tac_patrol/AltClick(mob/user)
+	. = ..()
+	toggle_mode(user)
+
+/obj/item/binoculars/tac_patrol/verb/toggle_mode(mob/user)
+	set category = "Object"
+	set name = "Toggle Laser Mode"
+	if(!user && isliving(loc))
+		user = loc
+	if (laser)
+		to_chat(user, "<span class='warning'>You can't switch mode while targeting")
+		return
+	if(!changable)
+		to_chat(user, "These binoculars only have one mode.")
+		return
+	mode += 1
+	if(mode > MODE_HE_ARTY)
+		mode = MODE_CAS_RUN
+	switch(mode)
+		if(MODE_CAS_RUN)
+			to_chat(user, span_notice("You switch [src] to CAS gau run marking mode."))
+		if(MODE_GAS_MORTAR)
+			to_chat(user, span_notice("You switch [src] to acid gas mortar targeting mode."))
+		if(MODE_HE_ARTY)
+			to_chat(user, span_notice("You switch [src] to HE artillery targeting mode."))
+	update_icon()
+	playsound(user, 'sound/items/binoculars.ogg', 15, 1)
+
+/obj/item/binoculars/tac_patrol/proc/acquire_coordinates(atom/A, mob/living/carbon/human/user)
+	var/turf/TU = get_turf(A)
+	targetturf = TU
+	to_chat(user, span_notice("COORDINATES: LONGITUDE [targetturf.x]. LATITUDE [targetturf.y]."))
+	playsound(src, 'sound/effects/binoctarget.ogg', 35)
+
+/obj/item/binoculars/tac_patrol/proc/acquire_target(atom/A, mob/living/carbon/human/user)
+	set waitfor = 0
+
+	if(laser)
+		to_chat(user, span_warning("You're already targeting something."))
+		return
+
+	if(world.time < laser_cooldown)
+		to_chat(user, span_warning("[src]'s laser battery is recharging."))
+		return
+
+	var/turf/TU = get_turf(A)
+	var/distance = get_dist(TU, get_turf(user))
+	var/zoom_screen_size = zoom_tile_offset + zoom_viewsize + 1
+	if(TU.z != user.z || distance == -1 || (distance > zoom_screen_size))
+		to_chat(user, span_warning("You can't focus properly through \the [src] while looking through something else."))
+		return
+
+
+	if(!user.mind)
+		return
+	var/datum/squad/S = user.assigned_squad
+
+	var/laz_name = ""
+	laz_name += user.get_paygrade()
+	laz_name += user.name
+	if(S)
+		laz_name += " ([S.name])"
+	var/area/targ_area = get_area(A)
+	if(!istype(TU))
+		return
+	var/is_outside = FALSE
+	if(is_ground_level(TU.z))
+		switch(targ_area.ceiling)
+			if(CEILING_NONE)
+				is_outside = TRUE
+			if(CEILING_GLASS)
+				is_outside = TRUE
+			if(CEILING_METAL)
+				is_outside = TRUE
+	if(!is_outside)
+		to_chat(user, span_warning("DEPTH WARNING: Target too deep for ordnance."))
+		return
+	if(user.do_actions)
+		return
+	playsound(src, 'sound/effects/nightvision.ogg', 35)
+	to_chat(user, span_notice("INITIATING LASER TARGETING. Stand still."))
+	if(!do_after(user, max(1.5 SECONDS, target_acquisition_delay - (2.5 SECONDS * user.skills.getRating("leadership"))), TRUE, TU, BUSY_ICON_GENERIC) || world.time < laser_cooldown || laser)
+		return
+	switch(mode)
+		if(MODE_CAS_RUN)
+			to_chat(user, span_notice("ACQUIRING TARGET. LASING FOR CAS. DON'T MOVE."))
+			if(!targ_area)
+				to_chat(user, "[icon2html(src, user)] [span_warning("No target detected!")]")
+			else
+				var/obj/effect/overlay/temp/laser_target/OB/OBL = new (TU, 0, laz_name, S)
+				laser = OBL
+				playsound(src, 'sound/effects/binoctarget.ogg', 35)
+				if(!do_after(user, 2 SECONDS, TRUE, user, BUSY_ICON_GENERIC))
+					QDEL_NULL(laser)
+					return
+				to_chat(user, span_notice("TARGET ACQUIRED. GAU RUN INBOUND."))
+				current_turf = TU
+				addtimer(CALLBACK(src, .proc/detonate_on, current_turf), 3 SECONDS)
+				playsound(current_turf, 'sound/effects/casplane_incoming.ogg',75)
+				SSpoints.support_points[faction] -= cost
+				user.balloon_alert(user, "[SSpoints.support_points[faction]] REMAINING.")
+
+		if(MODE_GAS_MORTAR)
+			to_chat(user, span_notice("ACQUIRING TARGET. MORTAR TRIANGULATING. DON'T MOVE."))
+			if(!targ_area)
+				to_chat(user, "[icon2html(src, user)] [span_warning("No target detected!")]")
+			else
+				var/obj/effect/overlay/temp/laser_target/OB/OBL = new (TU, 0, laz_name, S)
+				laser = OBL
+				playsound(src, 'sound/effects/binoctarget.ogg', 35)
+				if(!do_after(user, 2 SECONDS, TRUE, user, BUSY_ICON_GENERIC))
+					QDEL_NULL(laser)
+					return
+				to_chat(user, span_notice("TARGET ACQUIRED. GAS MORTAR STRIKE INBOUND."))
+				current_turf = TU
+				addtimer(CALLBACK(src, .proc/gas_fire, current_turf), 3 SECONDS)
+				SSpoints.support_points[faction] -= cost
+
+		if(MODE_HE_ARTY)
+			to_chat(user, span_notice("ACQUIRING TARGET. ARTILLERY TRIANGULATING. DON'T MOVE."))
+			if(!targ_area)
+				to_chat(user, "[icon2html(src, user)] [span_warning("No target detected!")]")
+			else
+				var/obj/effect/overlay/temp/laser_target/OB/OBL = new (TU, 0, laz_name, S)
+				laser = OBL
+				playsound(src, 'sound/effects/binoctarget.ogg', 35)
+				if(!do_after(user, 2 SECONDS, TRUE, user, BUSY_ICON_GENERIC))
+					QDEL_NULL(laser)
+					return
+				to_chat(user, span_notice("TARGET ACQUIRED. ARTILLERY STRIKE INBOUND."))
+				user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>SHAKER-1</u></span><br>" + "Grid coordinates received, all guns open fire!", /obj/screen/text/screen_text/picture/potrait/artillery)
+				current_turf = TU
+				addtimer(CALLBACK(src, .proc/he_fire, current_turf), 3 SECONDS)
+				SSpoints.support_points[faction] -= cost
+
+/obj/item/binoculars/tac_patrol/proc/get_turfs_to_impact(turf/impact, attackdir = NORTH)
+	var/turf/beginning = impact
+	var/revdir = REVERSE_DIR(attackdir)
+	for(var/i=0 to bullet_spread_range)
+		beginning = get_step(beginning, revdir)
+	var/list/strafelist = list(beginning)
+	strafelist += get_step(beginning, turn(attackdir, 90))
+	strafelist += get_step(beginning, turn(attackdir, -90)) //Build this list 3 turfs at a time for strafe_turfs
+	for(var/b=0 to bullet_spread_range*2)
+		beginning = get_step(beginning, attackdir)
+		strafelist += beginning
+		strafelist += get_step(beginning, turn(attackdir, 90))
+		strafelist += get_step(beginning, turn(attackdir, -90))
+
+	return strafelist
+
+/obj/item/binoculars/tac_patrol/proc/detonate_on(turf/impact, attackdir = NORTH)
+	var/amount_fired
+	var/max_fired = 5
+	amount_fired = 0
+	var/x_offset = rand(-2,2) //Little bit of randomness.
+	var/y_offset = rand(-2,2)
+	while(amount_fired < max_fired)
+		if(y_offset == 0)
+			attackdir = EAST
+		strafe_turfs(get_turfs_to_impact(impact, attackdir))
+		impact = locate(impact.x + x_offset,impact.y + y_offset,current_turf.z)
+		amount_fired += 1
+		playsound(impact, 'sound/effects/casplane_flyby.ogg', 40)
+
+///Takes the top 3 turfs and miniguns them, then repeats until none left
+/obj/item/binoculars/tac_patrol/proc/strafe_turfs(list/strafelist)
+	var/turf/strafed
+	playsound(strafelist[1], get_sfx("explosion"), 40, 1, 20, falloff = 3)
+	for(var/i=1 to attack_width)
+		strafed = strafelist[1]
+		strafelist -= strafed
+		strafed.ex_act(EXPLODE_HEAVY)
+		new /obj/effect/particle_effect/expl_particles(strafed)
+		new /obj/effect/temp_visual/heavyimpact(strafed)
+		for(var/atom/movable/AM AS in strafed)
+			AM.ex_act(EXPLODE_HEAVY)
+
+	if(length(strafelist))
+		addtimer(CALLBACK(src, .proc/strafe_turfs, strafelist), 2)
+
+	QDEL_NULL(laser)
+
+/obj/item/binoculars/tac_patrol/proc/gas_fire(turf/impact)
+	var/amount_fired
+	var/max_fired = 5
+	amount_fired = 0
+	while(amount_fired < max_fired)
+		var/x_offset = rand(-5,5) //Little bit of randomness.
+		var/y_offset = rand(-5,5)
+		var/turf/target = locate(impact.x + x_offset, impact.y + y_offset, current_turf.z)
+		playsound(target, 'sound/weapons/guns/misc/mortar_travel.ogg', 40)
+		addtimer(CALLBACK(src, .proc/gas_detonate, target), 5 SECONDS)
+		amount_fired += 1
+	QDEL_NULL(laser)
+
+/obj/item/binoculars/tac_patrol/proc/gas_detonate(turf/impact)
+	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/xeno/acid
+	var/datum/effect_system/smoke_spread/smoke = new smoketype()
+	impact.ceiling_debris_check(2)
+	smoke.set_up(4, impact, 11)
+	smoke.start()
+	playsound(impact, 'sound/effects/smoke.ogg', 25, 1, 4)
+
+/obj/item/binoculars/tac_patrol/proc/he_fire(turf/impact)
+	var/amount_fired
+	var/max_fired = 5
+	amount_fired = 0
+	while(amount_fired < max_fired)
+		var/x_offset = rand(-5,5) //Little bit of randomness.
+		var/y_offset = rand(-5,5)
+		var/turf/target = locate(impact.x + x_offset, impact.y + y_offset, current_turf.z)
+		playsound(target, 'sound/weapons/guns/misc/howitzer_whistle.ogg', 40)
+		addtimer(CALLBACK(src, .proc/he_detonate, target), 5 SECONDS)
+		amount_fired += 1
+	QDEL_NULL(laser)
+
+/obj/item/binoculars/tac_patrol/proc/he_detonate(turf/impact)
+	impact.ceiling_debris_check(2)
+	explosion(impact, 1, 6, 7, 12)
+
+#undef MODE_CAS_RUN
+#undef MODE_GAS_MORTAR
+#undef MODE_HE_ARTY

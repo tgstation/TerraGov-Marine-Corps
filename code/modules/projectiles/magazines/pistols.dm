@@ -241,7 +241,7 @@
 	default_ammo = /datum/ammo/bullet/pistol
 
 /obj/item/ammo_magazine/pistol/boltpistol
-	name = "\improper Bolt pistol magazine (Bolt)"
+	name = "\improper bolt pistol magazine (.75)"
 	default_ammo = /datum/ammo/bullet/pistol/boltpistol
 	caliber = CALIBER_9X19
 	icon_state = "v11"

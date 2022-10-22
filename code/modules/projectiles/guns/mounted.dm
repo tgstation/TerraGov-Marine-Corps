@@ -502,7 +502,7 @@
 
 	scatter = 10
 	deployed_scatter_change = -10
-	fire_delay = 0.2 SECONDS
+	fire_delay = 0.5 SECONDS
 
 	flags_item = IS_DEPLOYABLE|TWOHANDED
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF
@@ -516,7 +516,11 @@
 
 	deploy_time = 3 SECONDS
 	undeploy_time = 3 SECONDS
-	deployable_item = /obj/machinery/deployable/mounted
+	deployable_item = /obj/machinery/deployable/mounted/autocannon
 
 	max_integrity = 300
 	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, "rad" = 0, FIRE = 0, ACID = 0)
+
+/obj/machinery/deployable/mounted/autocannon
+	pixel_x = -8
+	pixel_y = -8

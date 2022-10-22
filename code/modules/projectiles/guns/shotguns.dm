@@ -757,3 +757,47 @@
 	accuracy_mult = 1.1
 	scatter = 0
 	recoil = 1
+
+/obj/item/weapon/gun/shotgun/pump/mk6shotgun
+	name = "\improper Accatran pattern Mk XI shotgun"
+	desc = "This model has an eight round internal magazine and uses a manual pump action to to fire a single shot then re-cock the weapon. It can fire a variety of ammunition. The stock is removable and at close quarters many users prefer to discard it, shortening the weapon for extra manoeuvrability. The pistol grip allows the weapon to be fired single handed, but this makes it wildly inaccurate and requires a very strong firer. This weapon is known to be used by Cadian Shock Troopers Regiments of the Imperial Guard.</b>"
+	icon = 'icons/Marine/gun64.dmi'
+	flags_equip_slot = ITEM_SLOT_BACK
+	icon_state = "mk6shotgun"
+	item_state = "mk6shotgun"
+	cock_animation = "mk6shotgun_pump"
+	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
+	fire_sound = "shotgun_som"
+	dry_fire_sound = 'sound/weapons/guns/fire/v51_empty.ogg'
+	reload_sound = 'sound/weapons/guns/interact/v51_load.ogg'
+	hand_reload_sound = 'sound/weapons/guns/interact/v51_load.ogg'
+	max_chamber_items = 8
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/stock/t35stock,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
+	)
+
+	attachable_offset = list("muzzle_x" = 35, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 20, "under_x" = 23, "under_y" = 8, "stock_x" = 7, "stock_y" = 12)
+
+	flags_item_map_variant = NONE
+
+	fire_delay = 15
+	scatter_unwielded = 10
+	recoil = 2
+	recoil_unwielded = 4
+	aim_slowdown = 0.45
+	cock_delay = 10
+	damage_mult = 0.85

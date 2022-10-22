@@ -1,6 +1,7 @@
 // points per minute
 #define DROPSHIP_POINT_RATE 18 * ((GLOB.current_orbit+3)/6)
 #define SUPPLY_POINT_RATE 2 * (GLOB.current_orbit/3)
+#define SUPPORT_POINT_RATE 10
 
 SUBSYSTEM_DEF(points)
 	name = "Points"
@@ -14,6 +15,8 @@ SUBSYSTEM_DEF(points)
 	var/supply_points = list()
 	///Assoc list of xeno points: xeno_points_by_hive["hivenum"]
 	var/list/xeno_points_by_hive = list()
+	///Assoc list of points for combat patrol
+	var/support_points = list()
 
 	var/ordernum = 1					//order number given to next order
 
@@ -77,6 +80,9 @@ SUBSYSTEM_DEF(points)
 
 	for(var/key in supply_points)
 		supply_points[key] += SUPPLY_POINT_RATE / (1 MINUTES / wait)
+
+	for(var/key in support_points)
+		support_points[key] += SUPPORT_POINT_RATE / (1 MINUTES / wait)
 
 ///Add amount of psy points to the selected hive only if the gamemode support psypoints
 /datum/controller/subsystem/points/proc/add_psy_points(hivenumber, amount)

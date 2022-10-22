@@ -42,3 +42,6 @@
 
 /obj/screen/text/screen_text/picture/potrait/som_over
 	image_to_play = "overwatch_som"
+
+/obj/screen/text/screen_text/picture/potrait/artillery
+	image_to_play = "artillery"

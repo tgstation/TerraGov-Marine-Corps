@@ -998,8 +998,8 @@
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/lasgun
-	name = "\improper Lasgun"
-	desc = "The Lasgun, also sometimes referred to as a Lasrifle, is a directed-energy antipersonnel weapon used by the military forces of the Imperium of Man, and it is the most common and widely-used type of laser weapon in the galaxy."
+	name = "\improper Kantrael Pattern M36 lasrifle"
+	desc = "The lasgun, also sometimes referred to as a lasrifle, is a directed-energy antipersonnel weapon used by the military forces of the Imperium of Man, and it is the most common and widely-used type of laser weapon in the galaxy. This appears to be a Kantrael Pattern lasgun, the standard lasgun pattern for Cadia Shock Trooper regiment."
 	reload_sound = 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/lasgun.ogg'
 	icon_state = "lasgun"
@@ -1041,8 +1041,8 @@
 	akimbo_additional_delay = 0.9
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/lascarbine
-	name = "\improper Lascarbine"
-	desc = "The Lascarbine is a carbine form of the standard Imperial Lasgun that is easier to carry and to aim than its larger counterpart.However, as a result of these modifications, a Lascarbine has a shorter range and will fire fewer shots before depleting its power pack when compared to a standard Lasgun."
+	name = "\improper Mk 4 lascarbine"
+	desc = "The lascarbine is a carbine form of the standard Imperial lasgun that is easier to carry and to aim than its larger counterpart. However, as a result of these modifications, a lascarbine has a shorter range and will fire fewer shots before depleting its power pack when compared to a standard lasgun."
 	reload_sound = 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/lasgun.ogg'
 	icon_state = "lascarbine"
@@ -1087,8 +1087,8 @@
 	damage_falloff_mult = 0.5
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/laspistol
-	name = "\improper Laspistol"
-	desc = "The Laspistol is capable of producing the same amount of damage in a skilled user's hands as the Lasgun, yet it has drastically reduced range as compared to its variant rifle form. The Laspistol lacks the Lasgun's selective fire options, having only the ability to fire single shots."
+	name = "\improper Kantrael MG 'Defender' laspistol"
+	desc = "The laspistol is capable of producing the same amount of damage in a skilled user's hands as the lasgun, yet it has drastically reduced range as compared to its variant rifle form. The laspistol lacks the lasgun's selective fire options, having only the ability to fire single shots."
 	reload_sound = 'sound/weapons/guns/interact/standard_laser_pistol_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/lasgun.ogg'
 	icon_state = "laspistol"
@@ -1126,13 +1126,13 @@
 	damage_falloff_mult = 0.2
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/plasmagun
-	name = "\improper Plasma gun"
-	desc = "The Plasma Gun is a rifle-sized Plasma Weapon common to many of the armed forces of the Imperium of Man. It is classified as a special weapon and is carried by a variety of Imperial infantry, including Space Marines, Imperial Guardsmen and Storm Troopers."
+	name = "\improper M35 Magnacore Pattern plasma gun"
+	desc = "The plasma gun is a rifle-sized plasma infantry weapon common to many of the armed forces of the Imperium of Man. It is classified as a special weapon and is carried by a variety of Imperial infantry, including Space Marines, Imperial Guardsmen and Storm Troopers."
 	icon_state = "plasmagun"
 	item_state = "plasmagun"
 	ammo_level_icon = ""
 	max_shots = 15
-	rounds_per_shot = 20
+	rounds_per_shot = 12
 	ammo_datum_type = /datum/ammo/energy/plasmabolt
 	default_ammo_type = /obj/item/cell/lasgun/plasma
 	allowed_ammo_types = list(/obj/item/cell/lasgun/plasma)
@@ -1149,60 +1149,41 @@
 	movement_acc_penalty_mult = 2
 	wield_delay = 12
 	aim_slowdown = 0.8
-	var/heat_level = 0
-	var/max_heat = 30
-	var/static/image/heat_overlay
-	var/cool_amount = 2
-	var/overheated = FALSE
-	var/cooldown_time = 2 SECONDS
-	var/obj/effect/abstract/particle_holder/overheat_smoke
+	use_heat = TRUE
+	max_heat = 20
 
-/obj/item/weapon/gun/energy/lasgun/lasrifle/plasmagun/Initialize()
-	. = ..()
-	heat_overlay = image(icon, icon_state = "overheat")
-
-/obj/item/weapon/gun/energy/lasgun/lasrifle/plasmagun/able_to_fire(mob/user)
-	. = ..()
-	if(heat_level >= max_heat)
-		user.balloon_alert(user, "The gun is overheated!")
-		return FALSE
-
-/obj/item/weapon/gun/energy/lasgun/lasrifle/plasmagun/do_fire()
-	. = ..()
-	heat_level += 3
-	START_PROCESSING(SSobj, src)
-
-/obj/item/weapon/gun/energy/lasgun/lasrifle/plasmagun/process()
-	heat_level -= cool_amount
-	if(heat_level <= 0)
-		heat_level = 0
-		STOP_PROCESSING(SSobj, src)
-	update_icon()
-
-/obj/item/weapon/gun/energy/lasgun/lasrifle/plasmagun/proc/cooldown()
-	overheated = FALSE
-	update_icon()
-
-/obj/item/weapon/gun/energy/lasgun/lasrifle/plasmagun/update_icon()
-	if(heat_level >= max_heat)
-		if(overheated)
-			return
-		overlays += heat_overlay
-		overheated = TRUE
-		gun_user.balloon_alert(gun_user, "The gun is overheated!")
-		overheat_smoke = new(src, /particles/mecha_smoke)
-		overheat_smoke.particles.position = list(8, 8, 0)
-		addtimer(CALLBACK(src, .proc/cooldown), cooldown_time)
-	else if(overheated)
-		QDEL_NULL(overheat_smoke)
-		overlays -= heat_overlay
-		overheated = FALSE
+/obj/item/weapon/gun/energy/lasgun/lasrifle/plasmapistol
+	name = "\improper Plasma pistol"
+	desc = "The plasma pistol is the smallest variant in the plasma weapons family. Each shot from a plasma pistol contains all the destructive fury of a larger plasma gun, although with a reduced range and rate of fire."
+	icon_state = "plasmapistolimp"
+	item_state = "plasmapistolimp"
+	ammo_level_icon = ""
+	max_shots = 15
+	rounds_per_shot = 20
+	ammo_datum_type = /datum/ammo/energy/plasmabolt
+	default_ammo_type = /obj/item/cell/lasgun/plasma
+	allowed_ammo_types = list(/obj/item/cell/lasgun/plasma)
+	fire_sound = 'sound/weapons/guns/fire/plasmablast.ogg'
+	gun_firemode = GUN_FIREMODE_SEMIAUTO
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_WIELDED_FIRING_ONLY
+	fire_delay = 0.8 SECONDS
+	scatter = -1
+	scatter_unwielded = 5
+	accuracy_mult = 1.15
+	accuracy_mult_unwielded = 0.9
+	recoil_unwielded = 0
+	movement_acc_penalty_mult = 2
+	wield_delay = 0.5 SECONDS
+	aim_slowdown = 0.8
+	use_heat = TRUE
+	max_heat = 20
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/longlas
 	name = "\improper Long-Las"
-	desc = "A variant of the humble Lasgun with a reinforced barrel and overcharged power cells known as 'Hot Shots' Favoured by Imperial Guard and Scout Marine snipers, the Long-Las is a specially modified version of the standard Lasgun for added range and accuracy. As its name implies, a Long-Las also has a much longer barrel than a Lasgun, both to increase range and prevent overheating."
+	desc = "A variant of the humble lasgun with a reinforced barrel and overcharged power cells known as 'Hot Shots'. Favored by Imperial Guard and Scout Marine snipers, the Long-Las is a specially modified version of the standard lasgun for added range and accuracy. As its name implies, a Long-Las also has a much longer barrel than a lasgun, both to increase range and prevent overheating."
 	reload_sound = 'sound/weapons/guns/interact/standard_laser_sniper_reload.ogg'
-	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Standard.ogg'
+	fire_sound = 'sound/weapons/guns/fire/lasgun.ogg'
 	icon_state = "longlas"
 	item_state = "longlas"
 	ammo_level_icon = ""
