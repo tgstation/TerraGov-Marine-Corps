@@ -7,7 +7,7 @@
 	reload_sound = 'sound/weapons/guns/interact/smartgun_unload.ogg'
 
 	max_integrity = 200
-	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, "rad" = 0, FIRE = 80, ACID = 50)
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 80, ACID = 50)
 
 	fire_delay = 0.6 SECONDS
 	extra_delay = 0.6 SECONDS
@@ -95,7 +95,7 @@
 	w_class = WEIGHT_CLASS_NORMAL //same as other sentries
 	sentry_iff_signal = SON_OF_MARS_IFF
 
-	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, "rad" = 0, FIRE = 80, ACID = 50)
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 80, ACID = 50)
 
 	ignored_terrains = list(
 		/obj/machinery/deployable/mounted,
