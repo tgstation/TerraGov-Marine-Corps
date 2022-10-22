@@ -1161,7 +1161,7 @@
 		span_notice("You replace a damaged sandbag, repairing it [src]."))
 		update_icon()
 
-/obj/structure/barricade/deployable
+/obj/structure/barricade/metal/deployable
 	icon_state = "folding_0"
 	max_integrity = 300
 	coverage = 100
@@ -1174,7 +1174,7 @@
 	///What it deploys into. typecast version of internal_item
 	var/obj/item/weapon/shield/riot/marine/deployable/internal_shield
 
-/obj/structure/barricade/deployable/Initialize(mapload, _internal_item, deployer)
+/obj/structure/barricade/metal/deployable/Initialize(mapload, _internal_item, deployer)
 	. = ..()
 	internal_shield = _internal_item
 
@@ -1185,110 +1185,37 @@
 		can_wire = FALSE
 		is_wired = TRUE
 
-/obj/structure/barricade/deployable/get_internal_item()
+/obj/structure/barricade/metal/deployable/get_internal_item()
 	return internal_shield
 
-/obj/structure/barricade/deployable/clear_internal_item()
+/obj/structure/barricade/metal/deployable/clear_internal_item()
 	internal_shield = null
 
 ///Dissassembles the device
-/obj/structure/barricade/deployable/proc/disassemble(mob/user)
+/obj/structure/barricade/metal/deployable/proc/disassemble(mob/user)
 	if(CHECK_BITFIELD(internal_shield.flags_item, DEPLOYED_NO_PICKUP))
 		to_chat(user, span_notice("The [src] is anchored in place and cannot be disassembled."))
 		return
 	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user)
 
-/obj/structure/barricade/deployable/Destroy()
+/obj/structure/barricade/metal/deployable/Destroy()
 	if(internal_shield)
 		QDEL_NULL(internal_shield)
 	return ..()
 
-/obj/structure/barricade/deployable/MouseDrop(over_object, src_location, over_location)
+/obj/structure/barricade/metal/deployable/MouseDrop(over_object, src_location, over_location)
 	if(!ishuman(usr))
 		return
 	var/mob/living/carbon/human/user = usr
-	if(over_object != user || !in_range(src, user))
-		return
-	if(CHECK_BITFIELD(internal_shield.flags_item, DEPLOYED_WRENCH_DISASSEMBLE))
-		to_chat(user, "<span class = 'notice'>You cannot disassemble [src] without a wrench.</span>")
+	if(over_object != user || !in_range(src, user) || user.incapacitated() || user.lying_angle)
 		return
 	disassemble(user)
 
-/obj/structure/barricade/deployable/wire()
+/obj/structure/barricade/metal/deployable/wire()
 	. = ..()
 	//makes the shield item wired as well
 	internal_shield.is_wired = TRUE
 	internal_shield.modify_max_integrity(max_integrity + 50)
 
-//repairable but not upgradable
-/obj/structure/barricade/deployable/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(istype(I, /obj/item/stack/sheet/metal))
-		var/obj/item/stack/sheet/metal/metal_sheets = I
-
-		if(metal_sheets.get_amount() < 2)
-			to_chat(user, span_warning("You need two metal sheets to repair the base of [src]."))
-			return FALSE
-
-		visible_message(span_notice("[user] begins to repair the base of [src]."))
-
-		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
-			return FALSE
-
-		if(!metal_sheets.use(2))
-			return FALSE
-
-		repair_damage(max_integrity * 0.3)
-		visible_message(span_notice("[user] repairs the base of [src]."))
-
-//repair when not severely damaged
-/obj/structure/barricade/deployable/welder_act(mob/living/user, obj/item/I)
-	if(user.do_actions)
-		return FALSE
-
-	var/obj/item/tool/weldingtool/WT = I
-
-	if(!WT.isOn())
-		return FALSE
-
-	for(var/obj/effect/xenomorph/acid/A in loc)
-		if(A.acid_t == src)
-			to_chat(user, "You can't get near that, it's melting!")
-			return TRUE
-
-	if(obj_integrity <= max_integrity * 0.3)
-		to_chat(user, span_warning("[src] has sustained too much structural damage and needs more metal plates to be repaired."))
-		return TRUE
-
-	if(obj_integrity == max_integrity)
-		to_chat(user, span_warning("[src] doesn't need repairs."))
-		return TRUE
-
-	if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
-		user.visible_message(span_notice("[user] fumbles around figuring out how to repair [src]."),
-		span_notice("You fumble around figuring out how to repair [src]."))
-		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_METAL - user.skills.getRating("engineer") )
-		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_BUILD))
-			return TRUE
-
-	user.visible_message(span_notice("[user] begins repairing damage to [src]."),
-	span_notice("You begin repairing the damage to [src]."))
-	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
-
-	if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
-		return TRUE
-
-	if(obj_integrity <= max_integrity * 0.3 || obj_integrity == max_integrity)
-		return TRUE
-
-	if(!WT.remove_fuel(2, user))
-		to_chat(user, span_warning("Not enough fuel to finish the task."))
-		return TRUE
-
-	user.visible_message(span_notice("[user] repairs some damage on [src]."),
-	span_notice("You repair [src]."))
-	repair_damage(150)
-	update_icon()
-	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
-	return TRUE
+/obj/structure/barricade/metal/deployable/attempt_barricade_upgrade()
+	return //not upgradable

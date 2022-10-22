@@ -197,7 +197,7 @@
 	slowdown = 0.3
 	flags_item = IS_DEPLOYABLE
 	///The item this deploys into
-	var/deployable_item = /obj/structure/barricade/deployable
+	var/deployable_item = /obj/structure/barricade/metal/deployable
 	///Time to deploy
 	var/deploy_time = 1 SECONDS
 	///Time to undeploy
