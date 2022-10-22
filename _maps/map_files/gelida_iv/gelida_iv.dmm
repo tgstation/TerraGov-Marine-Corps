@@ -26911,7 +26911,7 @@
 "qZM" = (
 /obj/machinery/scoreboard{
 	id = "lvbasketball";
-	pixel_y = 30
+	pixel_y = 10
 	},
 /obj/effect/decal/warning_stripes/nscenter,
 /turf/open/floor/wood,
