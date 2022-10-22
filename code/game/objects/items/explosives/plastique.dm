@@ -55,7 +55,7 @@
 		var/location
 		location = target
 		var/user_turf = get_turf(user)
-		if(user_turf != (get_turf(target)) && isturf(target))
+		if(isturf(target) && user_turf != (get_turf(target))) //we position the c4 differently so it can't be seen from the other side of the solid turf we're blowing up
 			forceMove(user_turf)
 			var/direction_to_target = get_dir(user_turf, target)
 			switch(direction_to_target)
@@ -94,10 +94,7 @@
 		if(ismovableatom(plant_target))
 			var/atom/movable/T = plant_target
 			T.vis_contents += src
-		detonation_pending = addtimer(CALLBACK(src, .proc/detonate), timer*10, TIMER_STOPPABLE)
-		var/beeping_timer = ((timer*10) - 27)
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, target, 'sound/items/countdown.ogg', 20, TRUE), beeping_timer)
-
+		detonation_pending = addtimer(CALLBACK(src, .proc/warning_sound, target, 'sound/items/countdown.ogg', 20, TRUE), ((timer*10) - 27), TIMER_STOPPABLE)
 
 /obj/item/explosive/plastique/attack(mob/M as mob, mob/user as mob, def_zone)
 	return
@@ -116,10 +113,10 @@
 		if(ismovableatom(plant_target))
 			var/atom/movable/T = plant_target
 			T.vis_contents -= src
-			forceMove(plant_target.loc)
-		else
-			forceMove(plant_target)
 
+		forceMove(get_turf(user))
+		pixel_y = 0
+		pixel_x = 0
 		deltimer(detonation_pending)
 
 		user.visible_message(span_warning("[user] disarmed [src] on [plant_target]!"),
@@ -147,3 +144,9 @@
 	smoke.start()
 	plant_target.ex_act(EXPLODE_DEVASTATE)
 	qdel(src)
+
+///Triggers a warning beep prior to the actual detonation, while also setting the actual detonation timer
+/obj/item/explosive/plastique/proc/warning_sound()
+	if(armed)
+		playsound(plant_target, 'sound/items/countdown.ogg', 20, TRUE, 5)
+		detonation_pending = addtimer(CALLBACK(src, .proc/detonate), 27, TIMER_STOPPABLE)
