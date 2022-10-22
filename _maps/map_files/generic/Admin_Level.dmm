@@ -208,7 +208,6 @@
 	pixel_x = -3;
 	pixel_y = -3
 	},
-/obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -2743,9 +2742,6 @@
 /obj/structure/closet/wardrobe/mixed,
 /obj/structure/window/reinforced{
 	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 1
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla/medical/medbay)

@@ -964,10 +964,14 @@
 /area/mainship/squads/req)
 "aey" = (
 /obj/effect/landmark/start/job/ai,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
 "aez" = (
-/obj/structure/window/reinforced{
+/obj/machinery/door/window/secure/bridge/aidoor{
 	dir = 8
 	},
 /turf/open/floor/mainship,
@@ -1024,9 +1028,6 @@
 /area/mainship/squads/req)
 "aeM" = (
 /obj/machinery/telecomms/processor/preset_one,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
 /turf/open/floor/mainship,
 /area/mainship/command/telecomms)
 "aeN" = (
@@ -1636,7 +1637,6 @@
 /area/mainship/medical/medical_science)
 "ahI" = (
 /obj/machinery/telecomms/bus/preset_one,
-/obj/structure/window/reinforced,
 /turf/open/floor/mainship,
 /area/mainship/command/telecomms)
 "ahJ" = (

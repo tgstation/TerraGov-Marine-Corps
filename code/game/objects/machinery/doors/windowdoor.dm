@@ -255,6 +255,8 @@
 	icon_state = "rightsecure"
 	base_state = "rightsecure"
 
+/obj/machinery/door/window/secure/bridge/aidoor //special door with similar integrity to protective ai glass
+	max_integrity = 1200
 
 // Req Doors
 /obj/machinery/door/window/secure/req

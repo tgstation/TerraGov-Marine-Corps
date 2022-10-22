@@ -10951,9 +10951,7 @@
 /obj/machinery/camera/autoname{
 	dir = 1
 	},
-/obj/structure/window/reinforced/extratoughened{
-	dir = 1
-	},
+/obj/structure/window/reinforced/extratoughened,
 /turf/open/floor/mainship/tcomms,
 /area/sulaco/command/ai)
 "chQ" = (
@@ -12605,6 +12603,12 @@
 	dir = 8
 	},
 /obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/structure/window/reinforced/extratoughened{
+	dir = 4
+	},
+/obj/structure/window/reinforced/extratoughened{
 	dir = 1
 	},
 /turf/open/floor/mainship/tcomms,
@@ -16394,6 +16398,10 @@
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "jHb" = (
+/obj/structure/window/reinforced/extratoughened,
+/obj/structure/window/reinforced/windowstake{
+	dir = 8
+	},
 /turf/open/floor/mainship/tcomms,
 /area/sulaco/command/ai)
 "jHI" = (
@@ -17342,6 +17350,12 @@
 /area/sulaco/hallway/central_hall3)
 "kXV" = (
 /obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/structure/window/reinforced/extratoughened{
+	dir = 8
+	},
+/obj/structure/window/reinforced/extratoughened{
 	dir = 1
 	},
 /turf/open/floor/mainship/tcomms,
@@ -19977,6 +19991,13 @@
 /obj/machinery/self_destruct/console,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
+"oDw" = (
+/obj/structure/window/reinforced/extratoughened,
+/obj/structure/window/reinforced/windowstake{
+	dir = 4
+	},
+/turf/open/floor/mainship/tcomms,
+/area/sulaco/command/ai)
 "oDI" = (
 /obj/machinery/light/mainship/small{
 	dir = 4
@@ -22959,7 +22980,7 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced/extratoughened{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/mainship/tcomms,
 /area/sulaco/command/ai)
@@ -23537,8 +23558,10 @@
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "teI" = (
-/obj/structure/window/reinforced/extratoughened,
 /obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/machinery/door/window/secure/bridge/aidoor{
 	dir = 1
 	},
 /turf/open/floor/mainship/tcomms,
@@ -23705,7 +23728,7 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced/extratoughened{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/mainship/tcomms,
 /area/sulaco/command/ai)
@@ -53873,7 +53896,7 @@ xyq
 lsW
 ewT
 svy
-jHb
+oDw
 aAI
 aVR
 aCg

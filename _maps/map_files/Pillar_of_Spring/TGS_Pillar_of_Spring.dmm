@@ -267,7 +267,9 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "aO" = (
-/obj/structure/window/reinforced/extratoughened,
+/obj/machinery/door/window/secure/bridge/aidoor{
+	dir = 1
+	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/airoom)
 "aP" = (
@@ -3869,6 +3871,12 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "lr" = (
+/obj/structure/window/reinforced/extratoughened{
+	dir = 1
+	},
+/obj/structure/window/reinforced/extratoughened{
+	dir = 8
+	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/airoom)
 "ls" = (
@@ -5020,8 +5028,8 @@
 	},
 /area/mainship/squads/general)
 "oJ" = (
-/obj/structure/window/reinforced/extratoughened{
-	dir = 1
+/obj/machinery/door/window/secure/bridge/aidoor{
+	dir = 2
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/airoom)
@@ -13918,7 +13926,7 @@
 /area/mainship/command/telecomms)
 "Od" = (
 /obj/structure/window/reinforced/extratoughened{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/airoom)
@@ -15361,6 +15369,13 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
+"Sm" = (
+/obj/structure/window/reinforced/extratoughened,
+/obj/structure/window/reinforced/windowstake{
+	dir = 8
+	},
+/turf/open/floor/mainship/tcomms,
+/area/mainship/command/airoom)
 "Sn" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 4
@@ -53286,7 +53301,7 @@ oE
 nw
 lr
 Od
-lr
+Sm
 nw
 KU
 OF
