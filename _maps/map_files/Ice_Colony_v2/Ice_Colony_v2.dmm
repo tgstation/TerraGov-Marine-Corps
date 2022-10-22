@@ -10636,7 +10636,7 @@
 /area/ice_colony/exterior/surface/clearing/south)
 "aXX" = (
 /obj/structure/cargo_container{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/container_yard)
@@ -10648,7 +10648,7 @@
 /area/ice_colony/exterior/surface/container_yard)
 "aXZ" = (
 /obj/structure/cargo_container{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/container_yard)
@@ -20119,7 +20119,7 @@
 /area/ice_colony/underground/crew/dorm_r)
 "bJN" = (
 /obj/structure/cargo_container{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/underground/hangar)
@@ -20552,7 +20552,7 @@
 /area/ice_colony/underground/responsehangar)
 "bLs" = (
 /obj/structure/cargo_container{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
