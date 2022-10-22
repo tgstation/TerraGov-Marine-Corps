@@ -155,25 +155,25 @@
 
 ///Updates the pixel offset of user so it looks like their manning the gun from behind
 /obj/machinery/deployable/mounted/proc/update_pixels(mob/user, mounting)
-	if(mounting)
-		var/diff_x = 0
-		var/diff_y = 0
-		switch(dir)
-			if(NORTH)
-				diff_y = -16 + user_old_y
-				diff_x = 0
-			if(SOUTH)
-				diff_y = 16 + user_old_y
-				diff_x = 0
-			if(EAST)
-				diff_x = -16 + user_old_x
-				diff_y = 0
-			if(WEST)
-				diff_x = 16 + user_old_x
-				diff_y = 0
-		animate(user, pixel_x=diff_x, pixel_y=diff_y, 0.4 SECONDS)
-	else
+	if(!mounting)
 		animate(user, pixel_x=user_old_x, pixel_y=user_old_y, 4, 1)
+		return
+	var/diff_x = 0
+	var/diff_y = 0
+	switch(dir)
+		if(NORTH)
+			diff_y = -16 + user_old_y
+			diff_x = 0
+		if(SOUTH)
+			diff_y = 16 + user_old_y
+			diff_x = 0
+		if(EAST)
+			diff_x = -16 + user_old_x
+			diff_y = 0
+		if(WEST)
+			diff_x = 16 + user_old_x
+			diff_y = 0
+	animate(user, pixel_x=diff_x, pixel_y=diff_y, 0.4 SECONDS)
 
 ///Begins the Firing Process, does custom checks before calling the guns start_fire()
 /obj/machinery/deployable/mounted/proc/start_fire(datum/source, atom/object, turf/location, control, params)
