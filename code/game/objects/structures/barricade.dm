@@ -12,6 +12,7 @@
 	climb_delay = 20 //Leaping a barricade is universally much faster than clumsily climbing on a table or rack
 	interaction_flags = INTERACT_CHECK_INCAPACITATED
 	max_integrity = 100
+	flags_barrier = HANDLE_BARRIER_CHANCE
 	///The type of stack the barricade dropped when disassembled if any.
 	var/stack_type
 	///The amount of stack dropped when disassembled at full health
@@ -30,7 +31,6 @@
 	var/can_wire = FALSE
 	///is this barriade wired?
 	var/is_wired = FALSE
-	flags_barrier = HANDLE_BARRIER_CHANCE
 
 /obj/structure/barricade/Initialize()
 	. = ..()
@@ -1176,7 +1176,6 @@
 
 /obj/structure/barricade/deployable/Initialize(mapload, _internal_item, deployer)
 	. = ..()
-	internal_item = _internal_item
 	internal_shield = _internal_item
 
 	name = internal_shield.name
@@ -1185,6 +1184,12 @@
 	if (internal_shield.is_wired)
 		can_wire = FALSE
 		is_wired = TRUE
+
+/obj/structure/barricade/deployable/get_internal_item()
+	return internal_shield
+
+/obj/structure/barricade/deployable/clear_internal_item()
+	internal_shield = null
 
 ///Dissassembles the device
 /obj/structure/barricade/deployable/proc/disassemble(mob/user)

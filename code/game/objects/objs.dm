@@ -40,9 +40,6 @@
 	///odds of a projectile hitting the object, if throwpass is true and the object is dense
 	var/coverage = 50
 
-	///Internal deployable item
-	var/obj/item/internal_item
-
 /obj/Initialize()
 	. = ..()
 	if(islist(soft_armor))
@@ -179,3 +176,11 @@
 			setAnchored(var_value)
 			return TRUE
 	return ..()
+
+///Called to return an internally stored item, currently for the deployable element
+/obj/proc/get_internal_item()
+	return
+
+///Called to clear a stored item var, currently for the deployable element
+/obj/proc/clear_internal_item()
+	return
