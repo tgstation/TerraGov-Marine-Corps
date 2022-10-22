@@ -426,8 +426,8 @@
 #define BARRICADE_METAL_ANCHORED 1
 #define BARRICADE_METAL_FIRM 2
 
-#define CADE_TYPE_BOMB "concussive armor"
-#define CADE_TYPE_MELEE "ballistic armor"
+#define CADE_TYPE_BOMB "explosive armor"
+#define CADE_TYPE_MELEE "strengthened armor"
 #define CADE_TYPE_ACID "caustic armor"
 
 #define CADE_UPGRADE_REQUIRED_SHEETS 1
