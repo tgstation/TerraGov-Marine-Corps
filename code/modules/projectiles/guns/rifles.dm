@@ -723,8 +723,8 @@
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("muzzle_x" = 49, "muzzle_y" = 16,"rail_x" = 20, "rail_y" = 19, "under_x" = 24, "under_y" = 9, "stock_x" = 0, "stock_y" = 13)
 	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.2 SECONDS
-	aim_speed_modifier = 5
+	aim_fire_delay = 0.1 SECONDS
+	aim_speed_modifier = 2
 
 	fire_delay = 0.2 SECONDS
 	burst_amount = 1
