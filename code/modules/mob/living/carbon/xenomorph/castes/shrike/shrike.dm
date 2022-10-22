@@ -21,6 +21,7 @@
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 		/mob/living/carbon/xenomorph/proc/hijack,
 	)
+	orbit_icon = "chess-rook"
 
 // ***************************************
 // *********** Life overrides

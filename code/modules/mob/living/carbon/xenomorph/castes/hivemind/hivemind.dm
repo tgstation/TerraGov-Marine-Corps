@@ -35,6 +35,7 @@
 	var/obj/structure/xeno/hivemindcore/core
 	///The minimum health we can have
 	var/minimum_health = -300
+	orbit_icon = "brain"
 
 /mob/living/carbon/xenomorph/hivemind/Initialize(mapload)
 	. = ..()

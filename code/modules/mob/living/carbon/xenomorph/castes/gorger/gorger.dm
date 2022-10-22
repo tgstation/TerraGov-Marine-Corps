@@ -12,6 +12,7 @@
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_ZERO
 	mob_size = MOB_SIZE_BIG
+	orbit_icon = "vial"
 
 /mob/living/carbon/xenomorph/gorger/Initialize(mapload)
 	. = ..()

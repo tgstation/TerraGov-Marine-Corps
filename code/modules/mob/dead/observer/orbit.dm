@@ -72,35 +72,53 @@
 
 		serialized["ref"] = REF(poi)
 
-		var/mob/M = poi
-		if(!istype(M))
+		var/mob/mob_poi = poi
+
+		if(!istype(mob_poi))
 			misc += list(serialized)
 			continue
 
-		var/number_of_orbiters = length(M.get_all_orbiters())
-		if(number_of_orbiters)
-			serialized["orbiters"] = number_of_orbiters
-
-		if(isobserver(M))
+		if(isobserver(mob_poi))
 			ghosts += list(serialized)
-		else if(M.stat == DEAD)
+		if(mob_poi.stat == DEAD)
 			dead += list(serialized)
-		else if(M.mind == null)
+			continue
+
+		if(mob_poi.mind == null)
 			npcs += list(serialized)
-		else if(isxeno(M))
+			continue
+
+		var/mob/living/player = mob_poi
+		serialized["health"] = FLOOR((player.health / player.maxHealth * 100), 1)
+
+		if(isxeno(mob_poi))
+			var/mob/living/carbon/xenomorph/xeno = poi
+			serialized["caste"] = xeno.xeno_caste?.display_name
+			serialized["icon"] = xeno.xeno_caste?.orbit_icon
+			serialized["name"] = isnum(xeno.nicknumber) ? name : xeno.nicknumber
 			xenos += list(serialized)
-		else if(isAI(M))
+			continue
+
+		if(isAI(mob_poi))
+			serialized["job"] = "AI"
+			serialized["icon"] = "eye"
 			humans += list(serialized)
-		else if(ishuman(M))
-			var/mob/living/carbon/human/H = poi
-			if(ismarinejob(H.job))
+			continue
+
+		if(ishuman(mob_poi))
+			var/mob/living/carbon/human/human = poi
+			if(ismarinejob(human.job))
+				serialized["job"] = human.job.title
+				serialized["icon"] = human.job.orbit_icon
 				marines += list(serialized)
-			else if(issommarinejob(H.job))
+				continue
+			if(issommarinejob(human.job))
 				som += list(serialized)
-			else if (issurvivorjob(H.job))
+				continue
+			if(issurvivorjob(human.job))
 				survivors += list(serialized)
-			else
-				humans += list(serialized)
+				continue
+			humans += list(serialized)
 
 	data["humans"] = humans
 	data["marines"] = marines

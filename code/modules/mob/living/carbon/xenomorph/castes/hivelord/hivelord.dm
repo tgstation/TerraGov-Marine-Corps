@@ -14,6 +14,7 @@
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_ZERO
 	var/list/tunnels = list() //list of active tunnels
+	orbit_icon = "leaf"
 
 // ***************************************
 // *********** Init

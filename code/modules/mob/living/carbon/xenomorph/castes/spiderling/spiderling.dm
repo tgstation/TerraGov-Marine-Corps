@@ -14,6 +14,7 @@
 	pull_speed = -2
 	flags_pass = PASSXENO | PASSTABLE
 	density = FALSE
+	orbit_icon = "spider"
 
 /mob/living/carbon/xenomorph/spiderling/Initialize(mapload, mob/living/carbon/xenomorph/spidermother)
 	. = ..()

@@ -13,6 +13,7 @@
 	comm_title = "CPT"
 	supervisors = "TGMC high command"
 	selection_color = "#ccccff"
+	orbit_icon = "crown"
 	total_positions = 1
 	skills_type = /datum/skills/captain
 	access = ALL_MARINE_ACCESS
@@ -102,6 +103,7 @@ Godspeed, captain! And remember, you are not above the law."})
 	paygrade = "O3"
 	comm_title = "FCDR"
 	total_positions = 1
+	icon = "star"
 	skills_type = /datum/skills/fo
 	access = ALL_MARINE_ACCESS
 	minimal_access = ALL_MARINE_ACCESS
@@ -192,6 +194,7 @@ Make the TGMC proud!"})
 	title = STAFF_OFFICER
 	paygrade = "O3"
 	comm_title = "SO"
+	orbit_icon = "users-cog"
 	total_positions = 4
 	access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
 	minimal_access = ALL_MARINE_ACCESS
@@ -272,6 +275,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	title = PILOT_OFFICER
 	paygrade = "WO"
 	comm_title = "PO"
+	orbit_icon = "plane"
 	total_positions = 2
 	access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT)
 	minimal_access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
@@ -359,6 +363,7 @@ Though you are a warrant officer, your authority is limited to the dropship and 
 	req_admin_notify = TRUE
 	paygrade = "E3"
 	comm_title = "MCH"
+	orbit_icon = "battery-half"
 	total_positions = 1
 	skills_type = /datum/skills/mech_pilot
 	access = list(ACCESS_MARINE_WO, ACCESS_MARINE_PREP, ACCESS_MARINE_MECH, ACCESS_CIVILIAN_PUBLIC)
@@ -431,6 +436,7 @@ You can serve your Division in a variety of roles, so choose carefully."})
 	paygrade = "O2"
 	comm_title = "CSE"
 	selection_color = "#ffeeaa"
+	orbit_icon = "tools"
 	total_positions = 1
 	access = list(ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PREP)
 	minimal_access = list(ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
@@ -521,6 +527,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	title = SHIP_TECH
 	comm_title = "ST"
 	paygrade = "PO3"
+	orbit_icon = "toolbox"
 	total_positions = 5
 	supervisors = "the chief ship engineer and the requisitions officer"
 	access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CARGO, ACCESS_CIVILIAN_ENGINEERING)
@@ -613,6 +620,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	paygrade = "CPO"
 	comm_title = "RO"
 	selection_color = "#9990B2"
+	orbit_icon = "sack-dollar"
 	total_positions = 1
 	access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_PREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
 	minimal_access = list(ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_PREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS)
@@ -704,6 +712,7 @@ A happy ship is a well-functioning ship."})
 	req_admin_notify = TRUE
 	comm_title = "CMO"
 	paygrade = "CHO"
+	orbit_icon = "user-md"
 	total_positions = 1
 	supervisors = "the acting captain"
 	selection_color = "#99FF99"
@@ -794,6 +803,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	title = MEDICAL_DOCTOR
 	comm_title = "MD"
 	paygrade = "RES"
+	orbit_icon = "staff-snake"
 	total_positions = 6
 	supervisors = "the chief medical officer"
 	access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)
@@ -880,6 +890,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	title = MEDICAL_RESEARCHER
 	comm_title = "Rsr"
 	paygrade = "CD"
+	orbit_icon = "flask"
 	total_positions = 2
 	supervisors = "the NT corporate office"
 	access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_ENGINEERING, ACCESS_CIVILIAN_ENGINEERING)
@@ -972,6 +983,7 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 	paygrade = "NT"
 	comm_title = "CL"
 	supervisors = "the NT corporate office"
+	orbit_icon = "paperclip"
 	total_positions = 1
 	access = list(ACCESS_NT_CORPORATE, ACCESS_ILLEGAL_PIRATE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_LOGISTICS)
 	minimal_access = list(ACCESS_NT_CORPORATE, ACCESS_ILLEGAL_PIRATE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO, ACCESS_MARINE_MEDBAY)
@@ -1044,6 +1056,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	comm_title = "Syn"
 	paygrade = "Mk.I"
 	supervisors = "the acting captain"
+	orbit_icon = "robot"
 	total_positions = 1
 	skills_type = /datum/skills/synthetic
 	access = ALL_ACCESS
@@ -1136,6 +1149,7 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 	job_category = JOB_CAT_SILICON
 	req_admin_notify = TRUE
 	comm_title = "AI"
+	orbit_icon = "eye"
 	total_positions = 1
 	selection_color = "#92c255"
 	supervisors = "your laws and the human crew"

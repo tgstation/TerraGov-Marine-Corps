@@ -12,6 +12,7 @@
 	tier = XENO_TIER_ONE
 	upgrade = XENO_UPGRADE_ZERO
 	pull_speed = -2
+	orbit_icon = "shield-alt"
 
 // ***************************************
 // *********** Icon

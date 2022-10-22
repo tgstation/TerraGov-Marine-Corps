@@ -17,6 +17,7 @@
 	drag_delay = 6
 	tier = XENO_TIER_FOUR //King, like queen, doesn't count towards population limit.
 	upgrade = XENO_UPGRADE_ZERO
+	orbit_icon = "chess-king"
 
 /mob/living/carbon/xenomorph/king/Initialize(mapload)
 	. = ..()

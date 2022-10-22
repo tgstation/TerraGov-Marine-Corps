@@ -14,3 +14,4 @@
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 	)
+	orbit_icon = "cat"

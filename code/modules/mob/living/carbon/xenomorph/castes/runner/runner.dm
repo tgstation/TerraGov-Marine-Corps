@@ -15,6 +15,7 @@
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 	)
+	orbit_icon = "running"
 
 /mob/living/carbon/xenomorph/runner/set_stat()
 	. = ..()

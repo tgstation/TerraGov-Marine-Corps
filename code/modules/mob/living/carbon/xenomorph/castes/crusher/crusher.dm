@@ -12,6 +12,7 @@
 	drag_delay = 6 //pulling a big dead xeno is hard
 	mob_size = MOB_SIZE_BIG
 	buckle_flags = CAN_BUCKLE
+	orbit_icon = "truck"
 
 	pixel_x = -16
 	pixel_y = -3
