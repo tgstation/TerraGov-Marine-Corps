@@ -2039,6 +2039,7 @@ datum/ammo/bullet/revolver/tp44
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
 
 /datum/ammo/mortar/smoke
+	///the smoke effect at the point of detonation
 	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/tactical
 
 /datum/ammo/mortar/smoke/drop_nade(turf/T)
