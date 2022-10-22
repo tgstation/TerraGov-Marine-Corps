@@ -152,6 +152,8 @@
 	duration = -1 //removed under specific conditions
 	alert_type = null
 
+	/// If status should be removed due to being under one stack
+	var/consumed_on_fadeout = TRUE
 	/// How many stacks are accumulated, also is # of stacks that target will have when first applied
 	var/stacks = 0
 	/// Deciseconds until ticks start occuring, which removes stacks (first stack will be removed at this time plus tick_interval)
@@ -168,8 +170,6 @@
 	var/consumed_on_threshold = TRUE
 	/// Set to true once the threshold is crossed, false once it falls back below
 	var/threshold_crossed = FALSE
-	/// If status should be removed due to being under one stack
-	var/consumed_on_fadeout = TRUE
 	var/overlay_file
 	var/underlay_file
 	/// States in .dmi must be given a name followed by a number which corresponds to a number of stacks. put the state name without the number in these state vars
