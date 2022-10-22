@@ -329,11 +329,17 @@
 // ***************************************
 // *********** Queen Acidic Salve
 // ***************************************
-/datum/action/xeno_action/activable/psychic_cure/acidic_salve/queen
+/datum/action/xeno_action/activable/queen_give_heal
+	name = "Heal"
+	action_icon_state = "heal_xeno"
 	mechanics_text = "Apply a minor heal to the target."
+	cooldown_timer = 5 SECONDS
+	plasma_cost = 150
+	keybind_signal = COMSIG_XENOABILITY_QUEEN_HEAL
 	heal_range = HIVELORD_HEAL_RANGE
+	target_flags = XABB_MOB_TARGET
 
-/datum/action/xeno_action/activable/psychic_cure/acidic_salve/queen/use_ability(atom/target)
+/datum/action/xeno_action/activable/queen_heal/use_ability(atom/target)
 	if(owner.do_actions)
 		return FALSE
 	if(!do_mob(owner, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
