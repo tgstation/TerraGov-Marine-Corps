@@ -157,6 +157,7 @@
 	if (user.s_active)
 		user.s_active.close(user)
 	show_to(user)
+	return TRUE
 
 
 /obj/item/storage/proc/close(mob/user)
@@ -527,12 +528,12 @@
 		if(draw_mode && ishuman(user) && contents.len)
 			var/obj/item/I = contents[contents.len]
 			I.attack_hand(user)
-		else
-			open(user)
-	else
-		. = ..()
-		for(var/mob/M in content_watchers)
-			close(M)
+			return
+		else if(open(user))
+			return
+	. = ..()
+	for(var/mob/M AS in content_watchers)
+		close(M)
 
 
 /obj/item/storage/attack_ghost(mob/user)
