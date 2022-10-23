@@ -97,7 +97,7 @@
 			serialized["job"] = xeno.xeno_caste?.display_name
 			serialized["name"] = xeno.name
 			if(!isnum(xeno.nicknumber))
-				serialized["nickname"] = xeno.xeno_caste?.upgrade_name + xeno.nicknumber
+				serialized["nickname"] = xeno.xeno_caste?.upgrade_name + " " + xeno.nicknumber
 			xenos += list(serialized)
 			continue
 
