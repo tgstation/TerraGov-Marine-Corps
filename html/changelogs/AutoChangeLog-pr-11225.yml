@@ -1,0 +1,5 @@
+author: "lbnesquik"
+delete-after: True
+changes: 
+  - rscadd: "Added 3 new AI cores from polaris"
+  - rscadd: "Added 1 new AI hologram"
