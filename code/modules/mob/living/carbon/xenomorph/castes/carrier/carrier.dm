@@ -7,6 +7,8 @@
 	health = 200
 	maxHealth = 200
 	plasma_stored = 50
+	///Number of huggers the carrier is currently carrying
+	var/huggers = 0
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_ZERO
 	pixel_x = -16 //Needed for 2x2
@@ -14,8 +16,6 @@
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 	)
-	///Number of huggers the carrier is currently carrying
-	var/huggers = 0
 
 // ***************************************
 // *********** Life overrides

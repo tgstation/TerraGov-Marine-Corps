@@ -66,6 +66,8 @@
 
 		if(isobserver(mob_poi))
 			ghosts += list(serialized)
+			continue
+
 		if(mob_poi.stat == DEAD)
 			dead += list(serialized)
 			continue

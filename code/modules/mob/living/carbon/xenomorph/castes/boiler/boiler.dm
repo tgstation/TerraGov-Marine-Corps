@@ -19,7 +19,6 @@
 	var/corrosive_ammo = 0
 	var/neuro_ammo = 0
 
-
 ///updates the boiler's glow, based on its base glow/color, and its ammo reserves. More green ammo = more green glow; more yellow = more yellow.
 /mob/living/carbon/xenomorph/boiler/proc/update_boiler_glow()
 	var/current_ammo = corrosive_ammo + neuro_ammo
