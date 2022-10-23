@@ -189,7 +189,7 @@
 
 		else
 			if(acid_t.contents.len) //Hopefully won't auto-delete things inside melted stuff..
-				for(var/mob/M in acid_t.contents)
+				for(var/atom/movable/M in acid_t.contents)
 					if(acid_t.loc) M.forceMove(acid_t.loc)
 			qdel(acid_t)
 			acid_t = null
