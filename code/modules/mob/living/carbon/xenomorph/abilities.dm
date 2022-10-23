@@ -1173,6 +1173,8 @@
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	if(HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))
 		victim.med_hud_set_status()
+	if(HAS_TRAIT(victim, HIVE_TARGET))
+		do_reward_thingo() //provide the reward, remove the trait, notify the hive on a job well done
 	var/psy_points_reward = PSY_DRAIN_REWARD_MIN + ((HIGH_PLAYER_POP - SSmonitor.maximum_connected_players_count) / HIGH_PLAYER_POP * (PSY_DRAIN_REWARD_MAX - PSY_DRAIN_REWARD_MIN))
 	psy_points_reward = clamp(psy_points_reward, PSY_DRAIN_REWARD_MIN, PSY_DRAIN_REWARD_MAX)
 	SSpoints.add_psy_points(X.hivenumber, psy_points_reward)
@@ -1183,6 +1185,26 @@
 
 	log_combat(victim, owner, "was drained.")
 	log_game("[key_name(victim)] was drained at [AREACOORD(victim.loc)].")
+
+/datum/round_event/queen_mothers_blessing/start()
+	var/list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_GROUND))
+	var/list/eligible_targets
+	for(var/z in z_levels)
+		for(var/i in GLOB.humans_by_zlevel["[z]"])
+			var/mob/living/carbon/human/possible_target = i
+			if(!istype(possible_target) || !possible_target.client)
+				continue
+			eligible_targets += possible_target
+	if(!length(eligible_targets))
+		return //everyone is dead or evac'd
+	set_target(pick(eligible_targets))
+
+/datum/round_event/queen_mothers_blessing/proc/set_target(var/mob/living/carbon/human/target)
+	ADD_TRAIT(target, HIVE_TARGET, HIVE_TARGET) //insert new trait here
+	var/sound/queen_sound = sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS, volume = 50)
+	xeno_message("The Queen Mother senses that [target] is a deadly threat to the hive. Psydrain them for the Queen Mother's blessing!")
+	for(var/mob/living/carbon/xenomorph/receiving_xeno in GLOB.alive_xeno_list)
+			SEND_SOUND(receiving_xeno, queen_sound)
 
 /////////////////////////////////
 // Cocoon
