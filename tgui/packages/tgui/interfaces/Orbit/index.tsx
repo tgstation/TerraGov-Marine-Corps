@@ -1,6 +1,5 @@
 import { filter, sortBy } from 'common/collections';
 import { flow } from 'common/fp';
-import { classes } from 'common/react';
 import { capitalizeFirst, multiline } from 'common/string';
 import { useBackend, useLocalState } from 'tgui/backend';
 import {
@@ -15,7 +14,6 @@ import {
   Stack,
 } from 'tgui/components';
 import { Window } from 'tgui/layouts';
-import { logger } from '../../logging';
 import { getDisplayColor, isJobOrNameMatch } from './helpers';
 import type { Observable, OrbitData } from './types';
 
@@ -202,7 +200,7 @@ const ObservableItem = (
 ) => {
   const { act } = useBackend<OrbitData>(context);
   const { color, item } = props;
-  const { icon_state, health, name, nickname, orbiters, ref } = item;
+  const { icon, health, name, nickname, orbiters, ref } = item;
   const [autoObserve] = useLocalState<boolean>(context, 'autoObserve', false);
 
   return (
@@ -211,12 +209,13 @@ const ObservableItem = (
       onClick={() => act('orbit', { auto_observe: autoObserve, ref: ref })}
       tooltip={!!health && <ObservableTooltip item={item} />}
       tooltipPosition="bottom-start">
-      {!!icon_state && (
+      {!!icon && (
         <Box
           as="img"
-          src={`data:image/jpeg;base64,${icon_state}`}
+          mr={1.5}
+          src={`data:image/jpeg;base64,${icon}`}
           style={{
-            transform: 'scale(3) translateX(-3.5px)',
+            transform: 'scale(2) translatey(-1px)',
             '-ms-interpolation-mode': 'nearest-neighbor',
           }}
         />

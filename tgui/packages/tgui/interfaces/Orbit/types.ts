@@ -13,7 +13,7 @@ export type OrbitData = {
 export type Observable = {
   caste?: string;
   health?: number;
-  icon_state?: string;
+  icon?: string;
   job?: string;
   name: string;
   nickname?: string;
