@@ -35,23 +35,26 @@
 	hive_target = target
 	ADD_TRAIT(target, TRAIT_HIVE_TARGET, TRAIT_HIVE_TARGET)
 	//probs add some xenohud overlay to the target so we can keep track of the nerd
-	RegisterSignal(SSdcs, COMSIG_GLOB_HIVE_TARGET_DRAINED, .proc/bless_hive)
+	RegisterSignal(SSdcs, COMSIG_GLOB_HIVE_TARGET_DRAINED, .proc/handle_reward)
 	var/sound/queen_sound = sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS, volume = 50)
 	xeno_message("The Queen Mother senses that [target] is a deadly threat to the hive. Psydrain them for the Queen Mother's blessing!")
 	for(var/mob/living/carbon/xenomorph/receiving_xeno in GLOB.alive_xeno_list)
 		SEND_SOUND(receiving_xeno, queen_sound)
 
-///buffs the hive when the target has been drained
-/datum/round_event/hive_threat/proc/bless_hive(datum/source, mob/living/carbon/human/target)
+//manages the hive reward and clean up
+/datum/round_event/hive_threat/proc/handle_reward(datum/source, mob/living/carbon/human/target)
 	SIGNAL_HANDLER
 	xeno_message("The Queen Mother has gleaned the secrets from the mind of [target], helping ensure the future of the hive. The Queen Mother empowers us for our success.")
-	//better than the below, would to grant the hive leadership access to a one use ability to trigger the below on demand. I laz tho.
-	for(var/mob/living/carbon/xenomorph/receiving_xeno in GLOB.alive_xeno_list)
-		receiving_xeno.add_movespeed_modifier(MOVESPEED_ID_BLESSED_HIVE, TRUE, 0, NONE, TRUE, 0.18) //placeholder buff. gotta go fast.
-	addtimer(CALLBACK(src, .proc/remove_blessing), 2 MINUTES)
+	bless_hive()
 	REMOVE_TRAIT(hive_target, TRAIT_HIVE_TARGET, TRAIT_HIVE_TARGET)
 	hive_target = null
 	UnregisterSignal(SSdcs, COMSIG_GLOB_HIVE_TARGET_DRAINED)
+
+///Actually applies the buff to the hive
+/datum/round_event/hive_threat/proc/bless_hive()
+	for(var/mob/living/carbon/xenomorph/receiving_xeno in GLOB.alive_xeno_list)
+		receiving_xeno.add_movespeed_modifier(MOVESPEED_ID_BLESSED_HIVE, TRUE, 0, NONE, TRUE, 0.18) //placeholder buff. gotta go fast.
+	addtimer(CALLBACK(src, .proc/remove_blessing), 2 MINUTES)
 
 ///debuffs the hive when the blessing expires
 /datum/round_event/hive_threat/proc/remove_blessing()
