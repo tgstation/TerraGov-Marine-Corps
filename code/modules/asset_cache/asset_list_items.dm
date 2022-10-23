@@ -118,14 +118,6 @@
 		set waitfor = FALSE
 		var/datum/language/L = new path ()
 		L.get_icon()
-
-/datum/asset/spritesheet/orbit
-	name = "orbitmenu"
-
-/datum/asset/spritesheet/orbit/register()
-	InsertAll("", 'icons/ui_icons/map_blips.dmi')
-	..()
-
 /datum/asset/spritesheet/blessingmenu
 	name = "blessingmenu"
 

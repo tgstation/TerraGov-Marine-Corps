@@ -1,5 +1,4 @@
 /datum/orbit_menu
-	var/auto_observe = FALSE
 	var/mob/dead/observer/owner
 
 /datum/orbit_menu/New(mob/dead/observer/new_owner)
@@ -29,25 +28,12 @@
 				return
 			owner.ManualFollow(poi)
 			owner.reset_perspective(null)
-			if(auto_observe)
+			if(params["auto_observe"])
 				owner.do_observe(poi)
 			. = TRUE
 		if("refresh")
 			update_static_data()
 			. = TRUE
-		if("toggle_observe")
-			auto_observe = !auto_observe
-			if(auto_observe && !QDELETED(owner.orbiting.parent))
-				owner.do_observe(owner.orbiting.parent)
-			else
-				owner.reset_perspective(null)
-
-
-
-/datum/orbit_menu/ui_data(mob/user)
-	var/list/data = list()
-	data["auto_observe"] = auto_observe
-	return data
 
 /datum/orbit_menu/ui_static_data(mob/user)
 	var/list/data = list()
@@ -95,7 +81,8 @@
 			var/mob/living/carbon/xenomorph/xeno = poi
 			var/datum/xeno_caste/caste = xeno.xeno_caste
 			serialized["caste"] = caste?.display_name
-			serialized["icon_state"] = caste?.minimap_icon
+			var/icon/orbit_icon = icon('icons/UI_icons/map_blips.dmi', initial(caste?.minimap_icon))
+			serialized["icon"] = icon2base64(orbit_icon)
 			if(!isnum(xeno.nicknumber))
 				serialized["nickname"] = caste?.upgrade_name + " " + xeno.nicknumber
 			xenos += list(serialized)
@@ -111,7 +98,8 @@
 			if(ismarinejob(human.job))
 				var/datum/job/marine_job = human.job
 				serialized["job"] = marine_job?.title
-				serialized["icon_state"] = marine_job?.minimap_icon
+				var/icon/orbit_icon = icon('icons/UI_icons/map_blips.dmi', initial(marine_job?.minimap_icon))
+				serialized["icon"] = icon2base64(orbit_icon)
 				marines += list(serialized)
 				continue
 			if(issommarinejob(human.job))
@@ -133,7 +121,3 @@
 	data["npcs"] = npcs
 
 	return data
-
-/datum/orbit_menu/ui_assets(mob/user)
-	. = ..() || list()
-	. += get_asset_datum(/datum/asset/spritesheet/orbit)

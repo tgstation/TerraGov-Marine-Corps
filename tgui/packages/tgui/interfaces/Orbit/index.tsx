@@ -15,6 +15,7 @@ import {
   Stack,
 } from 'tgui/components';
 import { Window } from 'tgui/layouts';
+import { logger } from '../../logging';
 import { getDisplayColor, isJobOrNameMatch } from './helpers';
 import type { Observable, OrbitData } from './types';
 
@@ -210,7 +211,16 @@ const ObservableItem = (
       onClick={() => act('orbit', { auto_observe: autoObserve, ref: ref })}
       tooltip={!!health && <ObservableTooltip item={item} />}
       tooltipPosition="bottom-start">
-      {!!icon_state && <ItemIcon icon={icon_state} />}
+      {!!icon_state && (
+        <Box
+          as="img"
+          src={`data:image/jpeg;base64,${icon_state}`}
+          style={{
+            transform: 'scale(3) translateX(-3.5px)',
+            '-ms-interpolation-mode': 'nearest-neighbor',
+          }}
+        />
+      )}
       {capitalizeFirst(nickname ?? name)}
       {!!orbiters && (
         <>
@@ -244,22 +254,5 @@ const ObservableTooltip = (props: { item: Observable }) => {
         )}
       </LabeledList>
     </>
-  );
-};
-
-const ItemIcon = (props: { icon: string }) => {
-  const { icon } = props;
-
-  return (
-    <Box
-      className={classes(['minimap_blip', icon])}
-      ml={5}
-      mr={20}
-      mt={3}
-      mb={9}
-      style={{
-        'transform': 'scale(3) translate(20%, 20%)',
-      }}
-    />
   );
 };
