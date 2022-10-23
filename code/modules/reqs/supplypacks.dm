@@ -475,12 +475,12 @@ WEAPONS
 /datum/supply_packs/weapons/napalm
 	name = "FL-84 normal fuel tank"
 	contains = list(/obj/item/ammo_magazine/flamer_tank/large)
-	cost = 6
+	cost = 5
 
 /datum/supply_packs/weapons/napalm_X
 	name = "FL-84 X fuel tank"
 	contains = list(/obj/item/ammo_magazine/flamer_tank/large/X)
-	cost = 30
+	cost = 8
 
 /datum/supply_packs/weapons/back_fuel_tank
 	name = "Standard back fuel tank"
@@ -490,7 +490,7 @@ WEAPONS
 /datum/supply_packs/weapons/back_fuel_tank_x
 	name = "Type X back fuel tank"
 	contains = list(/obj/item/ammo_magazine/flamer_tank/backtank/X)
-	cost = 60
+	cost = 30
 
 /datum/supply_packs/weapons/rpgoneuse
 	name = "RL-72 Disposable RPG"
