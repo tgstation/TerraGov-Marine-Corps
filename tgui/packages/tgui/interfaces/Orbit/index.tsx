@@ -224,7 +224,7 @@ const ObservableItem = (
 /** Displays some info on the mob as a tooltip. */
 const ObservableTooltip = (props: { item: Observable }) => {
   const {
-    item: { name, job, health },
+    item: { caste, health, job, name },
   } = props;
   const displayHealth = !!health && health >= 0 ? `${health}%` : 'Critical';
 
@@ -235,6 +235,7 @@ const ObservableTooltip = (props: { item: Observable }) => {
       </NoticeBox>
       <LabeledList>
         {!!name && <LabeledList.Item label="Name">{name}</LabeledList.Item>}
+        {!!caste && <LabeledList.Item label="Caste">{caste}</LabeledList.Item>}
         {!!job && <LabeledList.Item label="Job">{job}</LabeledList.Item>}
         {!!health && (
           <LabeledList.Item label="Health">{displayHealth}</LabeledList.Item>
