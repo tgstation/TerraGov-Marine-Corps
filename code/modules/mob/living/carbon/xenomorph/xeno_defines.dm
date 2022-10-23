@@ -387,7 +387,4 @@
 	///Are we the roony version of this xeno
 	var/is_a_rouny = FALSE
 
-	/// The displayed icon on the orbit UI. Source: FontAwesome 5 Free
-	var/orbit_icon
-
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)

@@ -120,7 +120,6 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	title = SQUAD_ENGINEER
 	paygrade = "E3"
 	comm_title = "Eng"
-	orbit_icon = "wrench"
 	total_positions = 12
 	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_ENGPREP, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_REMOTEBUILD, ACCESS_MARINE_ENGINEERING)
 	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_ENGPREP, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_REMOTEBUILD, ACCESS_MARINE_ENGINEERING)
@@ -211,7 +210,6 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	title = SQUAD_CORPSMAN
 	paygrade = "E3"
 	comm_title = "Med"
-	orbit_icon = "plus-square"
 	total_positions = 16
 	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)
 	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_DROPSHIP)
@@ -309,7 +307,6 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	title = SQUAD_SMARTGUNNER
 	paygrade = "E3"
 	comm_title = "SGnr"
-	orbit_icon = "dot-circle"
 	total_positions = 4
 	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_SMARTPREP)
 	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_DROPSHIP)
@@ -437,7 +434,6 @@ You can serve a variety of roles, so choose carefully."})
 	req_admin_notify = TRUE
 	paygrade = "E5"
 	comm_title = JOB_COMM_TITLE_SQUAD_LEADER
-	orbit_icon = "angle-double-up"
 	total_positions = 4
 	supervisors = "the acting field commander"
 	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)

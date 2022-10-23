@@ -12,8 +12,7 @@
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_ZERO
 	var/emitting_gas = FALSE
-	orbit_icon = "disease"
-	inherent_verbs = list(
+		inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 	)
 

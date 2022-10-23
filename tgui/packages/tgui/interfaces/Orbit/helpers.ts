@@ -1,3 +1,4 @@
+import { Box } from 'tgui/components';
 import type { Observable } from './types';
 
 enum HEALTH {

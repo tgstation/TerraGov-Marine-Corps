@@ -94,8 +94,7 @@
 		if(isxeno(mob_poi))
 			var/mob/living/carbon/xenomorph/xeno = poi
 			serialized["caste"] = xeno.xeno_caste?.display_name
-			serialized["icon"] = xeno.orbit_icon
-			serialized["name"] = xeno.name
+			serialized["icon_state"] = xeno.xeno_caste?.minimap_icon
 			if(!isnum(xeno.nicknumber))
 				serialized["nickname"] = xeno.xeno_caste?.upgrade_name + " " + xeno.nicknumber
 			xenos += list(serialized)
@@ -103,7 +102,7 @@
 
 		if(isAI(mob_poi))
 			serialized["job"] = "AI"
-			serialized["icon"] = "eye"
+			serialized["icon_state"] = human.job.minimap_icon
 			humans += list(serialized)
 			continue
 
@@ -111,7 +110,7 @@
 			var/mob/living/carbon/human/human = poi
 			if(ismarinejob(human.job))
 				serialized["job"] = human.job.title
-				serialized["icon"] = human.job.orbit_icon
+				serialized["icon_state"] = human.job.minimap_icon
 				marines += list(serialized)
 				continue
 			if(issommarinejob(human.job))
@@ -136,4 +135,4 @@
 
 /datum/orbit_menu/ui_assets(mob/user)
 	. = ..() || list()
-	. += get_asset_datum(/datum/asset/simple/orbit)
+	. += get_asset_datum(/datum/asset/spritesheet/orbit)

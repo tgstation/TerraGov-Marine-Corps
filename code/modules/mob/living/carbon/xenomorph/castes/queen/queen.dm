@@ -17,7 +17,6 @@
 	drag_delay = 6 //pulling a big dead xeno is hard
 	tier = XENO_TIER_FOUR //Queen doesn't count towards population limit.
 	upgrade = XENO_UPGRADE_ZERO
-	orbit_icon = "chess-queen"
 
 	var/breathing_counter = 0
 	inherent_verbs = list(

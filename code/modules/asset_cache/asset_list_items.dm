@@ -119,10 +119,12 @@
 		var/datum/language/L = new path ()
 		L.get_icon()
 
-/datum/asset/simple/orbit
-	assets = list(
-		"ghost.png" = 'html/images/ghost.png'
-	)
+/datum/asset/spritesheet/orbit
+	name = "orbitmenu"
+
+/datum/asset/spritesheet/orbit/register()
+	InsertAll("", 'icons/ui_icons/map_blips.dmi')
+	..()
 
 /datum/asset/spritesheet/blessingmenu
 	name = "blessingmenu"

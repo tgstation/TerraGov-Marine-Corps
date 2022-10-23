@@ -14,8 +14,7 @@
 	upgrade = XENO_UPGRADE_ZERO
 	gib_chance = 100
 	drag_delay = 6 //pulling a big dead xeno is hard
-	orbit_icon = "fire"
-	var/datum/effect_system/smoke_spread/xeno/smoke
+		var/datum/effect_system/smoke_spread/xeno/smoke
 	//Boiler ammo
 	var/corrosive_ammo = 0
 	var/neuro_ammo = 0

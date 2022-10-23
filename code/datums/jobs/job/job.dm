@@ -65,9 +65,6 @@ GLOBAL_PROTECT(exp_specialmap)
 	///string; typepath for the icon that this job will show on the minimap
 	var/minimap_icon
 
-	/// The icon to be displayed on the orbit UI. Source: fontawesome 5.15.3 free.
-	var/orbit_icon
-
 /datum/job/New()
 	if(outfit)
 		if(!ispath(outfit, /datum/outfit))

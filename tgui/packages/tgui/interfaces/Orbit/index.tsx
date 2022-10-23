@@ -1,8 +1,10 @@
 import { filter, sortBy } from 'common/collections';
 import { flow } from 'common/fp';
+import { classes } from 'common/react';
 import { capitalizeFirst, multiline } from 'common/string';
 import { useBackend, useLocalState } from 'tgui/backend';
 import {
+  Box,
   Button,
   Collapsible,
   Icon,
@@ -199,16 +201,16 @@ const ObservableItem = (
 ) => {
   const { act } = useBackend<OrbitData>(context);
   const { color, item } = props;
-  const { icon, health, name, nickname, orbiters, ref } = item;
+  const { icon_state, health, name, nickname, orbiters, ref } = item;
   const [autoObserve] = useLocalState<boolean>(context, 'autoObserve', false);
 
   return (
     <Button
       color={getDisplayColor(item, color)}
-      icon={icon || null}
       onClick={() => act('orbit', { auto_observe: autoObserve, ref: ref })}
       tooltip={!!health && <ObservableTooltip item={item} />}
       tooltipPosition="bottom-start">
+      {!!icon_state && <ItemIcon icon={icon_state} />}
       {capitalizeFirst(nickname ?? name)}
       {!!orbiters && (
         <>
@@ -242,5 +244,22 @@ const ObservableTooltip = (props: { item: Observable }) => {
         )}
       </LabeledList>
     </>
+  );
+};
+
+const ItemIcon = (props: { icon: string }) => {
+  const { icon } = props;
+
+  return (
+    <Box
+      className={classes(['minimap_blip', icon])}
+      ml={5}
+      mr={20}
+      mt={3}
+      mb={9}
+      style={{
+        'transform': 'scale(3) translate(20%, 20%)',
+      }}
+    />
   );
 };
