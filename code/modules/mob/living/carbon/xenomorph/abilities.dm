@@ -1173,7 +1173,7 @@
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	if(HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))
 		victim.med_hud_set_status()
-	if(HAS_TRAIT(victim, HIVE_TARGET))
+	if(HAS_TRAIT(victim, TRAIT_HIVE_TARGET))
 		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_HIVE_TARGET_DRAINED, victim) //provide the reward, remove the trait, notify the hive on a job well done
 	var/psy_points_reward = PSY_DRAIN_REWARD_MIN + ((HIGH_PLAYER_POP - SSmonitor.maximum_connected_players_count) / HIGH_PLAYER_POP * (PSY_DRAIN_REWARD_MAX - PSY_DRAIN_REWARD_MIN))
 	psy_points_reward = clamp(psy_points_reward, PSY_DRAIN_REWARD_MIN, PSY_DRAIN_REWARD_MAX)
@@ -1195,8 +1195,8 @@
 	gamemode_blacklist = list("Combat Patrol","Civil War","Sensor Capture")
 
 /datum/round_event_control/queen_mothers_blessing/can_spawn_event(players_amt, gamemode)
-	for(var/i in GLOB.alive_human_list)
-		if(HAS_TRAIT(i, HIVE_TARGET))
+	for(var/mob/living/carbon/human/human in GLOB.alive_human_list)
+		if(HAS_TRAIT(human, TRAIT_HIVE_TARGET))
 			return FALSE //only one target at a time. Although maybe this isn't needed.
 	return ..()
 
@@ -1225,14 +1225,14 @@
 	var/sound/queen_sound = sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS, volume = 50)
 	xeno_message("The Queen Mother senses that [target] is a deadly threat to the hive. Psydrain them for the Queen Mother's blessing!")
 	for(var/mob/living/carbon/xenomorph/receiving_xeno in GLOB.alive_xeno_list)
-			SEND_SOUND(receiving_xeno, queen_sound)
+		SEND_SOUND(receiving_xeno, queen_sound)
 
 /datum/round_event/queen_mothers_blessing/proc/bless_hive(datum/source, var/mob/living/carbon/human/target)
 	SIGNAL_HANDLER
 	xeno_message("The Queen Mother has gleaned the secrets from the mind of [target], helping ensure the future of the hive. The Queen Mother empowers us for our success.")
 	//better than the below, would to grant the hive leadership access to a one use ability to trigger the below on demand. I laz tho.
 	for(var/mob/living/carbon/xenomorph/receiving_xeno in GLOB.alive_xeno_list)
-		add_movespeed_modifier(MOVESPEED_ID_BLESSED_HIVE, TRUE, 0, NONE, TRUE, 0.18) //placeholder buff. gotta go fast.
+		receiving_xeno.add_movespeed_modifier(MOVESPEED_ID_BLESSED_HIVE, TRUE, 0, NONE, TRUE, 0.18) //placeholder buff. gotta go fast.
 	addtimer(CALLBACK(src, .proc/remove_blessing), 2 MINUTES)
 	REMOVE_TRAIT(hive_target, TRAIT_HIVE_TARGET, TRAIT_HIVE_TARGET)
 	hive_target = null
@@ -1240,7 +1240,7 @@
 
 /datum/round_event/queen_mothers_blessing/proc/remove_blessing()
 	for(var/mob/living/carbon/xenomorph/receiving_xeno in GLOB.alive_xeno_list)
-		remove_movespeed_modifier(MOVESPEED_ID_BLESSED_HIVE)
+		receiving_xeno.remove_movespeed_modifier(MOVESPEED_ID_BLESSED_HIVE)
 
 /////////////////////////////////
 // Cocoon
