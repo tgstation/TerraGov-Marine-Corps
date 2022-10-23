@@ -17,7 +17,7 @@
 	tier = XENO_TIER_FOUR
 	upgrade = XENO_UPGRADE_ZERO
 	var/shrike_flags = SHRIKE_FLAG_PAIN_HUD_ON
-		inherent_verbs = list(
+	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 		/mob/living/carbon/xenomorph/proc/hijack,
 	)

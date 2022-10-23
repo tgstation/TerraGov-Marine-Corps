@@ -93,24 +93,25 @@
 
 		if(isxeno(mob_poi))
 			var/mob/living/carbon/xenomorph/xeno = poi
-			serialized["caste"] = xeno.xeno_caste?.display_name
-			serialized["icon_state"] = xeno.xeno_caste?.minimap_icon
+			var/datum/xeno_caste/caste = xeno.xeno_caste
+			serialized["caste"] = caste?.display_name
+			serialized["icon_state"] = caste?.minimap_icon
 			if(!isnum(xeno.nicknumber))
-				serialized["nickname"] = xeno.xeno_caste?.upgrade_name + " " + xeno.nicknumber
+				serialized["nickname"] = caste?.upgrade_name + " " + xeno.nicknumber
 			xenos += list(serialized)
 			continue
 
 		if(isAI(mob_poi))
 			serialized["job"] = "AI"
-			serialized["icon_state"] = human.job.minimap_icon
 			humans += list(serialized)
 			continue
 
 		if(ishuman(mob_poi))
 			var/mob/living/carbon/human/human = poi
 			if(ismarinejob(human.job))
-				serialized["job"] = human.job.title
-				serialized["icon_state"] = human.job.minimap_icon
+				var/datum/job/marine_job = human.job
+				serialized["job"] = marine_job?.title
+				serialized["icon_state"] = marine_job?.minimap_icon
 				marines += list(serialized)
 				continue
 			if(issommarinejob(human.job))

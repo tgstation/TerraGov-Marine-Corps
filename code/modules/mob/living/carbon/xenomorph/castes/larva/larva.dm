@@ -16,7 +16,7 @@
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 	)
-		var/base_icon_state = "Larva"
+	var/base_icon_state = "Larva"
 
 // ***************************************
 // *********** Mob overrides
