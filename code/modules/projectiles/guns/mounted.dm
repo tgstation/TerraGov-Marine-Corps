@@ -269,7 +269,7 @@
 /obj/item/weapon/gun/heavymachinegun
 	name = "\improper HMG-08 heavy machinegun"
 	desc = "An absolute monster of a weapon, this is a watercooled heavy machinegun modernized by some crazy armorer with a wheeling kit included. Considering the mish mash of parts for the wheeling kit, you think its from another model of the gun. The pinnacle at holding a chokepoint. Holds 500 rounds of 10x28mm caseless in a box case. IS NOT IFF CAPABLE. Aiming carefully recommended. Can be repaired with a blowtorch once deployed. Alt Right click to unanchor and reanchor it."
-
+	coverage = 75 //has a shield
 	w_class = WEIGHT_CLASS_HUGE
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon = 'icons/Marine/marine-hmg.dmi'
@@ -379,6 +379,7 @@
 	name = "\improper AT-36 anti tank gun"
 	desc = "The AT-36 is a light dual purpose anti tank and anti personnel weapon used by the TGMC. Used for light vehicle or bunker busting on a short notice. Best used by two people. It can move around with wheels, and has an ammo rack intergral to the weapon. CANNOT BE UNDEPLOYED ONCE DEPLOYED! It uses several types of 37mm shells boxes. Alt-right click on it to anchor it so that it cannot be moved by anyone, then alt-right click again to move it."
 	w_class = WEIGHT_CLASS_BULKY
+	coverage = 75 //has a shield
 	icon = 'icons/Marine/marine-atgun.dmi'
 	icon_state = "tat36"
 	item_state = "tat36"

@@ -693,11 +693,13 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	return TRUE
 
 /obj/machinery/deployable/mounted/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+	. = ..()
+	var/hit_chance = coverage
+	hit_chance = min(hit_chance , hit_chance + 100 - proj.accuracy)
+	if(!density)
+		return prob(hit_chance)
 	if(operator?.wear_id.iff_signal & proj.iff_signal)
 		return FALSE
-	if(isxeno(proj.firer))
-		return TRUE
-	return	src == proj.original_target
 
 /obj/machinery/door/poddoor/railing/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	return src == proj.original_target

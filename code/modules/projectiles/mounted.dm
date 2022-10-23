@@ -7,6 +7,8 @@
 	layer = TANK_BARREL_LAYER
 	use_power = FALSE
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
+	flags_atom = ON_BORDER
+	throwpass = TRUE
 	///For animation and rotation of mounted guns
 	var/user_old_x = 0
 	var/user_old_y = 0
