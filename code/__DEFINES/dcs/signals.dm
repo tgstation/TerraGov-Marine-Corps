@@ -33,6 +33,7 @@
 
 #define COMSIG_GLOB_AI_GOAL_SET "!ai_goal_set"
 #define COMSIG_GLOB_AI_MINION_RALLY "!ai_minion_rally"
+#define COMSIG_GLOB_HIVE_TARGET_DRAINED "!hive_target_drained"
 
 
 /// Sent when a marine dropship enters transit level

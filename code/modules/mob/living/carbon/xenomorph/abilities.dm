@@ -1174,7 +1174,7 @@
 	if(HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))
 		victim.med_hud_set_status()
 	if(HAS_TRAIT(victim, HIVE_TARGET))
-		do_reward_thingo() //provide the reward, remove the trait, notify the hive on a job well done
+		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_HIVE_TARGET_DRAINED, victim) //provide the reward, remove the trait, notify the hive on a job well done
 	var/psy_points_reward = PSY_DRAIN_REWARD_MIN + ((HIGH_PLAYER_POP - SSmonitor.maximum_connected_players_count) / HIGH_PLAYER_POP * (PSY_DRAIN_REWARD_MAX - PSY_DRAIN_REWARD_MIN))
 	psy_points_reward = clamp(psy_points_reward, PSY_DRAIN_REWARD_MIN, PSY_DRAIN_REWARD_MAX)
 	SSpoints.add_psy_points(X.hivenumber, psy_points_reward)
@@ -1185,6 +1185,24 @@
 
 	log_combat(victim, owner, "was drained.")
 	log_game("[key_name(victim)] was drained at [AREACOORD(victim.loc)].")
+
+/datum/round_event_control/queen_mothers_blessing
+	name = "Queen Mother's Blessing"
+	typepath = /datum/round_event/queen_mothers_blessing
+	weight = 15
+	earliest_start = 10 MINUTES
+
+	gamemode_blacklist = list("Combat Patrol","Civil War","Sensor Capture")
+
+/datum/round_event_control/queen_mothers_blessing/can_spawn_event(players_amt, gamemode)
+	for(var/i in GLOB.alive_human_list)
+		if(HAS_TRAIT(i, HIVE_TARGET))
+			return FALSE //only one target at a time. Although maybe this isn't needed.
+	return ..()
+
+/datum/round_event/queen_mothers_blessing
+	///The human target for this event
+	var/mob/living/carbon/human/hive_target
 
 /datum/round_event/queen_mothers_blessing/start()
 	var/list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_GROUND))
@@ -1200,11 +1218,29 @@
 	set_target(pick(eligible_targets))
 
 /datum/round_event/queen_mothers_blessing/proc/set_target(var/mob/living/carbon/human/target)
-	ADD_TRAIT(target, HIVE_TARGET, HIVE_TARGET) //insert new trait here
+	hive_target = target
+	ADD_TRAIT(target, TRAIT_HIVE_TARGET, TRAIT_HIVE_TARGET)
+	//probs add some xenohud overlay to the target so we can keep track of the nerd
+	RegisterSignal(SSdcs, COMSIG_GLOB_HIVE_TARGET_DRAINED, .proc/bless_hive)
 	var/sound/queen_sound = sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS, volume = 50)
 	xeno_message("The Queen Mother senses that [target] is a deadly threat to the hive. Psydrain them for the Queen Mother's blessing!")
 	for(var/mob/living/carbon/xenomorph/receiving_xeno in GLOB.alive_xeno_list)
 			SEND_SOUND(receiving_xeno, queen_sound)
+
+/datum/round_event/queen_mothers_blessing/proc/bless_hive(datum/source, var/mob/living/carbon/human/target)
+	SIGNAL_HANDLER
+	xeno_message("The Queen Mother has gleaned the secrets from the mind of [target], helping ensure the future of the hive. The Queen Mother empowers us for our success.")
+	//better than the below, would to grant the hive leadership access to a one use ability to trigger the below on demand. I laz tho.
+	for(var/mob/living/carbon/xenomorph/receiving_xeno in GLOB.alive_xeno_list)
+		add_movespeed_modifier(MOVESPEED_ID_BLESSED_HIVE, TRUE, 0, NONE, TRUE, 0.18) //placeholder buff. gotta go fast.
+	addtimer(CALLBACK(src, .proc/remove_blessing), 2 MINUTES)
+	REMOVE_TRAIT(hive_target, TRAIT_HIVE_TARGET, TRAIT_HIVE_TARGET)
+	hive_target = null
+	UnregisterSignal(SSdcs, COMSIG_GLOB_HIVE_TARGET_DRAINED)
+
+/datum/round_event/queen_mothers_blessing/proc/remove_blessing()
+	for(var/mob/living/carbon/xenomorph/receiving_xeno in GLOB.alive_xeno_list)
+		remove_movespeed_modifier(MOVESPEED_ID_BLESSED_HIVE)
 
 /////////////////////////////////
 // Cocoon
