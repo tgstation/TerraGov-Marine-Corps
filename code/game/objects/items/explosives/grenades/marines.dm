@@ -227,7 +227,6 @@
 	item_state = "grenade_pgas"
 	det_time = 60
 	icon_state_mini = "grenade_blue"
-	dangerous = TRUE
 	smoketype = /datum/effect_system/smoke_spread/plasmaloss
 
 /obj/item/explosive/grenade/phosphorus

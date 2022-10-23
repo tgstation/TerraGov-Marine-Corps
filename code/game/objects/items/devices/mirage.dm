@@ -3,6 +3,7 @@
 	desc = "A special device that, when activated, produces a pair of holographic copies of the user."
 	icon_state = "delivery"
 	item_state = "delivery"
+	dangerous = FALSE
 	///the parent to be copied
 	var/mob/living/current_user
 	///How long the illusory fakes last
