@@ -12,7 +12,8 @@
 	pixel_x = -12
 	old_x = -12
 	pull_speed = -2
+	orbit_icon = "chess-pawn"
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 	)
-	orbit_icon = "chess-pawn"
+

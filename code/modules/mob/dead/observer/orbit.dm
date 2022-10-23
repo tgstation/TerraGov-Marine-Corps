@@ -93,9 +93,11 @@
 
 		if(isxeno(mob_poi))
 			var/mob/living/carbon/xenomorph/xeno = poi
-			serialized["caste"] = xeno.xeno_caste?.display_name
-			serialized["icon"] = xeno.xeno_caste?.orbit_icon
-			serialized["name"] = isnum(xeno.nicknumber) ? name : xeno.nicknumber
+			serialized["icon"] = xeno.orbit_icon
+			serialized["job"] = xeno.xeno_caste?.display_name
+			serialized["name"] = xeno.name
+			if(!isnum(xeno.nicknumber))
+				serialized["nickname"] = xeno.xeno_caste?.upgrade_name + xeno.nicknumber
 			xenos += list(serialized)
 			continue
 

@@ -28,14 +28,14 @@
 	sight = SEE_MOBS|SEE_TURFS|SEE_OBJS
 	see_in_dark = 8
 	move_on_shuttle = TRUE
-
+	orbit_icon = "brain"
 	hud_type = /datum/hud/hivemind
 	hud_possible = list(PLASMA_HUD, HEALTH_HUD_XENO, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD)
 	///The core of our hivemind
 	var/obj/structure/xeno/hivemindcore/core
 	///The minimum health we can have
 	var/minimum_health = -300
-	orbit_icon = "brain"
+
 
 /mob/living/carbon/xenomorph/hivemind/Initialize(mapload)
 	. = ..()

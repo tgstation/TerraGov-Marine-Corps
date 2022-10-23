@@ -199,17 +199,17 @@ const ObservableItem = (
 ) => {
   const { act } = useBackend<OrbitData>(context);
   const { color, item } = props;
-  const { job_icon, health, name, orbiters, ref } = item;
+  const { icon, health, name, nickname, orbiters, ref } = item;
   const [autoObserve] = useLocalState<boolean>(context, 'autoObserve', false);
 
   return (
     <Button
       color={getDisplayColor(item, color)}
-      icon={job_icon || null}
+      icon={icon || null}
       onClick={() => act('orbit', { auto_observe: autoObserve, ref: ref })}
       tooltip={!!health && <ObservableTooltip item={item} />}
       tooltipPosition="bottom-start">
-      {capitalizeFirst(name)}
+      {capitalizeFirst(nickname ?? name)}
       {!!orbiters && (
         <>
           {' '}

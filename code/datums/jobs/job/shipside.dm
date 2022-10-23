@@ -103,7 +103,7 @@ Godspeed, captain! And remember, you are not above the law."})
 	paygrade = "O3"
 	comm_title = "FCDR"
 	total_positions = 1
-	icon = "star"
+	orbit_icon = "star"
 	skills_type = /datum/skills/fo
 	access = ALL_MARINE_ACCESS
 	minimal_access = ALL_MARINE_ACCESS

@@ -214,8 +214,6 @@
 	var/vent_exit_speed = XENO_DEFAULT_VENT_EXIT_TIME
 	///Whether the caste enters and crawls through vents silently
 	var/silent_vent_crawl = FALSE
-	/// The displayed icon on the orbit UI. Source: FontAwesome 5 Free
-	var/orbit_icon
 
 ///Add needed component to the xeno
 /datum/xeno_caste/proc/on_caste_applied(mob/xenomorph)
@@ -388,5 +386,8 @@
 
 	///Are we the roony version of this xeno
 	var/is_a_rouny = FALSE
+
+	/// The displayed icon on the orbit UI. Source: FontAwesome 5 Free
+	var/orbit_icon
 
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)
