@@ -480,7 +480,7 @@ WEAPONS
 /datum/supply_packs/weapons/napalm_X
 	name = "FL-84 X fuel tank"
 	contains = list(/obj/item/ammo_magazine/flamer_tank/large/X)
-	cost = 8
+	cost = 10
 
 /datum/supply_packs/weapons/back_fuel_tank
 	name = "Standard back fuel tank"
