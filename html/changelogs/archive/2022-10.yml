@@ -305,3 +305,15 @@
       however, like oxygen tanks.
   novaepee and Ghost (IGN:Jack(ie)):
   - rscadd: Orion Fatigue! Find it at the nearest clothing vendor!
+2022-10-23:
+  RipGrayson:
+  - imageadd: Created new versions of the glass window sprites, implements some windoor
+      sprites from another artist (see the PR for details).
+  - imagedel: Removed some old glass window sprites.
+  SplinterGP:
+  - rscadd: Added the engineer dispenser which is equipped on back slot and carries
+      alot of items, can only heal(robots) and access items when deployed
+  - imageadd: new title screen announcing the new engineer dispenser
+  TiviPlus:
+  - balance: all metal cade tool interactions no longer block you from interacting
+      with other cades

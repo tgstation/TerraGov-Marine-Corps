@@ -1,5 +1,0 @@
-author: "SplinterGP"
-delete-after: True
-changes: 
-  - rscadd: "Added the engineer dispenser which is equipped on back slot and carries alot of items, can only heal(robots) and access items when deployed"
-  - imageadd: "new title screen announcing the new engineer dispenser"
