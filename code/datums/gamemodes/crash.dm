@@ -12,7 +12,7 @@
 		/datum/job/terragov/medical/professor = 1,
 		/datum/job/terragov/silicon/synthetic = 1,
 		/datum/job/terragov/command/fieldcommander = 1,
-		/datum/job/xenomorph = FREE_XENO_AT_START
+		/datum/job/xenomorph = CRASH_FREE_XENO_AT_START
 	)
 
 	// Round end conditions
@@ -178,6 +178,8 @@
 		if(XENO_TIER_ONE)
 			new_xeno.upgrade_xeno(XENO_UPGRADE_TWO)
 		if(XENO_TIER_TWO)
+			new_xeno.upgrade_xeno(XENO_UPGRADE_TWO)
+		if(XENO_TIER_THREE)
 			new_xeno.upgrade_xeno(XENO_UPGRADE_ONE)
 
 /datum/game_mode/infestation/crash/can_summon_dropship(mob/user)
