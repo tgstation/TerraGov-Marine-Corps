@@ -208,7 +208,6 @@
 	pixel_x = -3;
 	pixel_y = -3
 	},
-/obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -2744,9 +2743,6 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
 /turf/open/floor/plating,
 /area/centcom/valhalla/medical/medbay)
 "dDN" = (
@@ -3835,14 +3831,14 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
 /obj/machinery/door/window/secure{
 	dir = 2
+	},
+/obj/structure/window/reinforced/windowstake{
+	dir = 8
+	},
+/obj/structure/window/reinforced/windowstake{
+	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla/ai_monitored/storage/secure)
@@ -7717,16 +7713,16 @@
 /obj/machinery/prop/mainship/computer,
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
 	dir = 1
 	},
 /obj/machinery/door/window/secure{
 	dir = 2
+	},
+/obj/structure/window/reinforced/windowstake{
+	dir = 4
+	},
+/obj/structure/window/reinforced/windowstake{
+	dir = 8
 	},
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla/ai_monitored/storage/secure)
@@ -11889,8 +11885,7 @@
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla/engine/engineering)
 "pUh" = (
-/obj/effect/spawner/random/plushie/nospawnninetynine{
-	},
+/obj/effect/spawner/random/plushie/nospawnninetynine,
 /turf/open/floor/gcircuit,
 /area/centcom/valhalla/ai_monitored/storage/secure)
 "pUr" = (
@@ -13097,7 +13092,7 @@
 	dir = 1
 	},
 /obj/effect/spawner/random/plushie/nospawnninetynine{
-	pixel_y = -3;
+	pixel_y = -3
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig/interiorcavern)
@@ -13185,8 +13180,7 @@
 /area/centcom/valhalla/chapel/main)
 "rsf" = (
 /obj/structure/table,
-/obj/effect/spawner/random/plushie/nospawnninetyfive{
-	},
+/obj/effect/spawner/random/plushie/nospawnninetyfive,
 /turf/open/floor/tile/neutral/full,
 /area/centcom/valhalla/crew_quarters)
 "rsu" = (
@@ -17091,9 +17085,6 @@
 /area/centcom/valhalla/starboard_hallway)
 "wfL" = (
 /obj/structure/table/mainship,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
 /obj/item/clothing/glasses/hud/xenohud{
 	pixel_x = -3;
 	pixel_y = -2
@@ -17103,6 +17094,9 @@
 	pixel_y = 3
 	},
 /obj/item/clothing/glasses/hud/xenohud,
+/obj/structure/window/reinforced/windowstake{
+	dir = 4
+	},
 /turf/open/floor/mainship/stripesquare,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "wge" = (
@@ -17149,7 +17143,7 @@
 	},
 /obj/effect/decal/tile/black,
 /obj/structure/table/mainship,
-/obj/structure/window/reinforced{
+/obj/structure/window/reinforced/windowstake{
 	dir = 4
 	},
 /turf/open/floor/mainship/stripesquare,

@@ -80,6 +80,13 @@
 	icon_state = "MP_jumpsuit"
 	adjustment_variants = list()
 
+/obj/item/clothing/under/marine/orion_fatigue
+	name = "\improper Orion fatigues"
+	desc = "Originated from Orion Military Outpost. Designed for ship and urban environments, they're meant for recon, stealth, and evac operations. They come with a built in cassette player hearable only to the user to help pass time, during any possible long waits. They're the definition of over-funded ideas, least they look neat. It is very likely that a boot fresh from boot camp to buy this at the BX with his E-1 pay because of how tacticool it looks."
+	icon_state = "orion_fatigues"
+	item_state = "orion_fatigues"
+	adjustment_variants = list()
+
 /obj/item/clothing/under/marine/officer
 	name = "marine officer uniform"
 	desc = "A kevlar-weaved, hazmat-tested, EMF-augmented, yet extra-soft and extra-light officer uniform. You suspect it's not as extra-fancy as advertised."

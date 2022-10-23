@@ -4222,9 +4222,6 @@
 /area/sulaco/engineering)
 "auF" = (
 /obj/structure/window/reinforced/toughened,
-/obj/structure/window/reinforced/toughened{
-	dir = 4
-	},
 /obj/structure/table/reinforced,
 /obj/machinery/door_control/old/cic{
 	id = "bridge blast";
@@ -4246,6 +4243,9 @@
 	id = "port blast";
 	name = "Aft Lockdown";
 	pixel_x = -5
+	},
+/obj/structure/window/reinforced/windowstake{
+	dir = 4
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/bridge)
@@ -5157,7 +5157,7 @@
 "ayR" = (
 /obj/structure/window/reinforced/toughened,
 /obj/structure/table/reinforced,
-/obj/structure/window/reinforced/toughened{
+/obj/structure/window/reinforced/windowstake{
 	dir = 8
 	},
 /turf/open/floor/prison/bright_clean,
@@ -10951,9 +10951,7 @@
 /obj/machinery/camera/autoname{
 	dir = 1
 	},
-/obj/structure/window/reinforced/extratoughened{
-	dir = 1
-	},
+/obj/structure/window/reinforced/extratoughened,
 /turf/open/floor/mainship/tcomms,
 /area/sulaco/command/ai)
 "chQ" = (
@@ -12605,6 +12603,12 @@
 	dir = 8
 	},
 /obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/structure/window/reinforced/extratoughened{
+	dir = 4
+	},
+/obj/structure/window/reinforced/extratoughened{
 	dir = 1
 	},
 /turf/open/floor/mainship/tcomms,
@@ -16394,6 +16398,10 @@
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "jHb" = (
+/obj/structure/window/reinforced/extratoughened,
+/obj/structure/window/reinforced/windowstake{
+	dir = 8
+	},
 /turf/open/floor/mainship/tcomms,
 /area/sulaco/command/ai)
 "jHI" = (
@@ -17342,6 +17350,12 @@
 /area/sulaco/hallway/central_hall3)
 "kXV" = (
 /obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/structure/window/reinforced/extratoughened{
+	dir = 8
+	},
+/obj/structure/window/reinforced/extratoughened{
 	dir = 1
 	},
 /turf/open/floor/mainship/tcomms,
@@ -19977,6 +19991,13 @@
 /obj/machinery/self_destruct/console,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
+"oDw" = (
+/obj/structure/window/reinforced/extratoughened,
+/obj/structure/window/reinforced/windowstake{
+	dir = 4
+	},
+/turf/open/floor/mainship/tcomms,
+/area/sulaco/command/ai)
 "oDI" = (
 /obj/machinery/light/mainship/small{
 	dir = 4
@@ -20264,7 +20285,7 @@
 /obj/machinery/firealarm{
 	dir = 8
 	},
-/obj/structure/window/reinforced{
+/obj/structure/window/reinforced/windowstake{
 	dir = 8
 	},
 /turf/open/floor/prison/marked,
@@ -22526,10 +22547,10 @@
 /area/sulaco/hallway/central_hall)
 "rXM" = (
 /obj/structure/window/reinforced/toughened,
-/obj/structure/window/reinforced/toughened{
+/obj/machinery/telecomms/receiver/preset_right/cicbackup,
+/obj/structure/window/reinforced/windowstake{
 	dir = 8
 	},
-/obj/machinery/telecomms/receiver/preset_right/cicbackup,
 /turf/open/floor/mainship/tcomms,
 /area/sulaco/bridge)
 "rZU" = (
@@ -22828,10 +22849,10 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
 "slc" = (
-/obj/structure/window/reinforced{
+/obj/machinery/alarm{
 	dir = 4
 	},
-/obj/machinery/alarm{
+/obj/structure/window/reinforced/windowstake{
 	dir = 4
 	},
 /turf/open/floor/prison/marked,
@@ -22959,7 +22980,7 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced/extratoughened{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/mainship/tcomms,
 /area/sulaco/command/ai)
@@ -23296,7 +23317,7 @@
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "sQE" = (
-/obj/structure/window/reinforced{
+/obj/structure/window/reinforced/windowstake{
 	dir = 8
 	},
 /turf/open/floor/prison/marked,
@@ -23537,8 +23558,10 @@
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "teI" = (
-/obj/structure/window/reinforced/extratoughened,
 /obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/machinery/door/window/secure/bridge/aidoor{
 	dir = 1
 	},
 /turf/open/floor/mainship/tcomms,
@@ -23705,7 +23728,7 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced/extratoughened{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/mainship/tcomms,
 /area/sulaco/command/ai)
@@ -26745,10 +26768,10 @@
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
 "xBs" = (
-/obj/structure/window/reinforced{
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/window/reinforced/windowstake{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/marked,
 /area/sulaco/firingrange)
 "xCi" = (
@@ -53873,7 +53896,7 @@ xyq
 lsW
 ewT
 svy
-jHb
+oDw
 aAI
 aVR
 aCg
