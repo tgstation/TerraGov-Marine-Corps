@@ -112,12 +112,12 @@
 
 	for(var/key in render_order)
 		if(key == MECHA_R_ARM)
-			var/obj/item/mecha_parts/mecha_equipment/weapon/right_gun = equip_by_category[MECHA_R_ARM]
+			var/obj/item/mecha_parts/mecha_equipment/right_gun = equip_by_category[MECHA_R_ARM]
 			if(right_gun)
 				. += image('icons/mecha/mech_gun_overlays.dmi', right_gun.icon_state + "_right", pixel_x=-32)
 			continue
 		if(key == MECHA_L_ARM)
-			var/obj/item/mecha_parts/mecha_equipment/weapon/left_gun = equip_by_category[MECHA_L_ARM]
+			var/obj/item/mecha_parts/mecha_equipment/left_gun = equip_by_category[MECHA_L_ARM]
 			if(left_gun)
 				. += image('icons/mecha/mech_gun_overlays.dmi', left_gun.icon_state + "_left", pixel_x=-32)
 			continue

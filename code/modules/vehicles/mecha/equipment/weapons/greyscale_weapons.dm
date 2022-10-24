@@ -421,3 +421,88 @@
 	ammo_type = MECHA_AMMO_RPG
 	hud_icons = list("rocket_he", "rocket_empty")
 	fire_mode = GUN_FIREMODE_SEMIAUTO
+
+//////////////////////////
+//NON GUNS BEYOND HERE
+//////////////////////////
+
+#define LASER_DASH_RANGE_NORMAL 3
+#define LASER_DASH_RANGE_ENHANCED 5
+
+/obj/item/mecha_parts/mecha_equipment/laser_sword
+	name = "\improper Moonlight particle cutter"
+	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
+	desc = "A mech laser blade. When activated, overloads the leg actuators to dash forward, before cutting with a superheated plasma beam. Melee core increases area cut and distance dashed."
+	icon_state = "moonlight"
+	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	obj_integrity = 400
+	slowdown = 0
+	harmful = TRUE
+	equip_cooldown = 1 SECONDS
+	energy_drain = 0 // energy drain due to dashing is good enough
+	range = MECHA_MELEE|MECHA_RANGED
+	force = 150
+	/// holder var for the mob that is attacking right now
+	var/mob/cutter
+
+/obj/item/mecha_parts/mecha_equipment/laser_sword/action_checks(atom/target, ignore_cooldown)
+	. = ..()
+	if(!.)
+		return
+	if(chassis.zoom_mode)
+		to_chat(chassis.occupants, "[icon2html(src, chassis.occupants)][span_warning("Unable to dash while in zoom mode!")]")
+		return FALSE
+	if(cutter)
+		to_chat(chassis.occupants, "[icon2html(src, chassis.occupants)][span_warning("Already in use!")]")
+		return FALSE
+
+/obj/item/mecha_parts/mecha_equipment/laser_sword/action(mob/source, atom/target, list/modifiers)
+	if(!action_checks(target))
+		return
+	//melee swipe, no need to dash
+	if(chassis.Adjacent(target))
+		execute_melee(source, modifiers)
+		return ..()
+
+	//try dash to target
+	var/laser_dash_range = LASER_DASH_RANGE_ENHANCED
+
+	chassis.add_filter("dash_blur", 1, radial_blur_filter(0.3))
+	icon_state += "_on"
+	chassis.update_icon()
+	new /obj/effect/temp_visual/xenomorph/afterimage(chassis.loc, chassis)
+	RegisterSignal(chassis, COMSIG_MOVABLE_POST_THROW, .proc/end_dash)
+	cutter = source
+	chassis.flags_atom |= DIRLOCK
+	RegisterSignal(chassis, COMSIG_MOVABLE_MOVED, .proc/drop_afterimage)
+	chassis.throw_at(target, laser_dash_range, 1, flying = TRUE)
+	return ..()
+
+///signal handler, drops afterimage every move executed while dashing
+/obj/item/mecha_parts/mecha_equipment/laser_sword/proc/drop_afterimage(datum/source)
+	SIGNAL_HANDLER
+	new /obj/effect/temp_visual/xenomorph/afterimage(chassis.loc, chassis)
+
+///Ends dash and executes attack
+/obj/item/mecha_parts/mecha_equipment/laser_sword/proc/end_dash(datum/source)
+	SIGNAL_HANDLER
+	UnregisterSignal(source, list(COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_MOVED))
+	chassis.remove_filter("dash_blur")
+	icon_state = initial(icon_state)
+	chassis.update_icon()
+	execute_melee(cutter)
+	cutter = null
+	chassis.flags_atom &= ~DIRLOCK
+
+///executes a melee attack in the direction that the mech is facing
+/obj/item/mecha_parts/mecha_equipment/laser_sword/proc/execute_melee(mob/source, list/modifiers)
+	var/turf/target = get_step(chassis, chassis.dir)
+	chassis.do_attack_animation(target, ATTACK_EFFECT_LASERSWORD)
+	playsound(chassis, 'sound/mecha/weapons/laser_sword.ogg', 30)
+
+	var/old_intent = source.a_intent
+	source.a_intent = INTENT_HARM
+	for(var/atom/movable/slashed AS in target)
+		slashed.attackby(src, source, list2params(modifiers))
+	source.a_intent = old_intent
+
