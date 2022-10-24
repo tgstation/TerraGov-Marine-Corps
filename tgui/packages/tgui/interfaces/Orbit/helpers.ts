@@ -39,10 +39,11 @@ export const isJobOrNameMatch = (
   if (!searchQuery) {
     return true;
   }
-  const { name, job } = observable;
+  const { caste, job, name } = observable;
 
   return (
     name?.toLowerCase().includes(searchQuery?.toLowerCase())
+    || caste?.toLowerCase().includes(searchQuery?.toLowerCase())
     || job?.toLowerCase().includes(searchQuery?.toLowerCase())
     || false
   );
