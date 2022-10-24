@@ -86,7 +86,7 @@
 			var/icon/orbit_icon = icon('icons/UI_icons/map_blips.dmi', initial(caste?.minimap_icon))
 			serialized["icon"] = icon2base64(orbit_icon)
 			if(!isnum(xeno.nicknumber))
-				serialized["nickname"] = caste?.upgrade_name + " " + xeno.nicknumber
+				serialized["nickname"] = xeno.nicknumber
 			xenos += list(serialized)
 			continue
 
