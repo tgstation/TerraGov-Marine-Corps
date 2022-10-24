@@ -1,0 +1,4 @@
+author: "novaepee"
+delete-after: True
+changes: 
+  - code_imp: "putting space between = and -1 for items in vendor code"
