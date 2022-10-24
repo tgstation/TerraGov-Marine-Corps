@@ -211,9 +211,9 @@
 
 /mob/living/carbon/xenomorph/proc/handle_environment() //unused while atmos is not on
 	var/env_temperature = loc.return_temperature()
-	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE))
+	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE) && !HAS_TRAIT(src, TRAIT_FIREIMMUNE))
 		if(env_temperature > (T0C + 66))
-			adjustFireLoss((env_temperature - (T0C + 66) ) * 0.2 * get_fire_resist()) //Might be too high, check in testing.
+			adjustFireLoss(modify_by_armor((env_temperature - (T0C + 66) ) * 0.2, FIRE))
 			updatehealth() //unused while atmos is off
 			if(hud_used && hud_used.fire_icon)
 				hud_used.fire_icon.icon_state = "fire2"

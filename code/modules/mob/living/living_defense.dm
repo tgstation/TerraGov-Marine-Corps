@@ -115,8 +115,6 @@
 		return FALSE
 	if(!CHECK_BITFIELD(datum_flags, DF_ISPROCESSING))
 		return FALSE
-	//if(get_fire_resist() <= 0 || get_hard_armor("fire", BODY_ZONE_CHEST) >= 100)	//having high fire resist makes you immune
-	//	return FALSE
 	if(fire_stacks > 0 && !on_fire)
 		on_fire = TRUE
 		RegisterSignal(src, COMSIG_LIVING_DO_RESIST, .proc/resist_fire)
@@ -178,7 +176,7 @@
 	if((status_flags & GODMODE) || HAS_TRAIT(src, TRAIT_NON_FLAMMABLE) || HAS_TRAIT(src, TRAIT_FIREIMMUNE)) //Invulnerable or non flammable mobs don't get fire stacks
 		return
 	if(add_fire_stacks > 0)	//Fire stack increases are affected by armor, end result rounded up.
-		add_fire_stacks = CEILING(add_fire_stacks * get_fire_resist(), 1)
+		add_fire_stacks = CEILING(modify_by_armor(add_fire_stacks, FIRE), 1)
 	fire_stacks = clamp(fire_stacks + add_fire_stacks, -20, 20)
 	if(on_fire && fire_stacks <= 0)
 		ExtinguishMob()
@@ -264,6 +262,3 @@
 		. = shield_check.Invoke(attack_type, ., damage_type, silent, penetration)
 		if(!.)
 			break
-
-/mob/living/proc/get_fire_resist()
-	return clamp((100 - get_soft_armor("fire", null)) * 0.01, 0, 1)
