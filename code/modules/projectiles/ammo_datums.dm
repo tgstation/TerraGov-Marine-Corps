@@ -303,6 +303,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 10
 	shrapnel_chance = 10
 	bullet_color = COLOR_VERY_SOFT_YELLOW
+	barricade_clear_distance = 2
 
 /*
 //================================================
@@ -1654,6 +1655,7 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 100
 	sundering = 100
 	bullet_color = LIGHT_COLOR_FIRE
+	barricade_clear_distance = 2
 
 /datum/ammo/rocket/drop_nade(turf/T)
 	explosion(T, 0, 4, 6, 2)
@@ -2028,6 +2030,7 @@ datum/ammo/bullet/revolver/tp44
 	armor_type = "energy"
 	accuracy = 15 //lasers fly fairly straight
 	bullet_color = COLOR_LASER_RED
+	barricade_clear_distance = 2
 
 /datum/ammo/energy/emitter //Damage is determined in emitter.dm
 	name = "emitter bolt"

@@ -1,5 +1,7 @@
 GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
-	/obj/structure/barricade)))
+	/obj/vehicle/sealed,
+	/obj/structure/barricade,
+)))
 
 // ***************************************
 // *********** Blink

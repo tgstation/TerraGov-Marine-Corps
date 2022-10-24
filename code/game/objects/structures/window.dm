@@ -305,6 +305,31 @@
 	reinf = TRUE
 	explosion_block = EXPLOSION_BLOCK_PROC
 	real_explosion_block = 2
+	layer = ABOVE_MOB_LAYER
+	///are we tinted or not
+	var/tinted = FALSE
+
+/obj/structure/window/reinforced/Initialize(mapload)
+	. = ..()
+	if(dir == NORTH)
+		add_overlay(image(icon, "rwindow_overlay", layer = WINDOW_LAYER))
+		layer = WINDOW_FRAME_LAYER
+	if(dir == WEST || dir == EAST)
+		var/turf/adj = get_step(src, SOUTH)
+		if(isclosedturf(adj))
+			return
+		if(locate(/obj/structure) in adj)
+			return
+		if(locate(/obj/machinery) in adj)
+			return
+		if(tinted)
+			add_overlay(image(icon, "twindowstake", layer = ABOVE_ALL_MOB_LAYER))
+			return
+		add_overlay(image(icon, "windowstake", layer = ABOVE_ALL_MOB_LAYER))
+
+/obj/structure/window/reinforced/windowstake/Initialize(mapload)
+	. = ..()
+	add_overlay(image(icon, "windowstake", layer = ABOVE_ALL_MOB_LAYER))
 
 /obj/structure/window/reinforced/toughened
 	name = "safety glass"
@@ -330,6 +355,7 @@
 	icon_state = "twindow"
 	basestate = "twindow"
 	opacity = TRUE
+	tinted =  TRUE
 
 /obj/structure/window/reinforced/tinted/frosted
 	name = "frosted window"

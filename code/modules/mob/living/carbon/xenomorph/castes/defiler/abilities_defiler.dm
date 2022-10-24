@@ -173,7 +173,7 @@
 	return ..()
 
 /datum/action/xeno_action/emit_neurogas/action_activate()
-	var/mob/living/carbon/xenomorph/Defiler/X = owner
+	var/mob/living/carbon/xenomorph/defiler/X = owner
 	toggle_particles(TRUE)
 
 	//give them fair warning
@@ -212,7 +212,7 @@
 	return ..()
 
 /datum/action/xeno_action/emit_neurogas/proc/dispense_gas(count = 3)
-	var/mob/living/carbon/xenomorph/Defiler/X = owner
+	var/mob/living/carbon/xenomorph/defiler/X = owner
 	set waitfor = FALSE
 	var/smoke_range = 2
 	var/datum/effect_system/smoke_spread/xeno/gas
@@ -288,7 +288,7 @@
 	return ..()
 
 /datum/action/xeno_action/activable/inject_egg_neurogas/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/Defiler/X = owner
+	var/mob/living/carbon/xenomorph/defiler/X = owner
 
 	if(istype(A, /obj/alien/egg/gas))
 		A.balloon_alert(X, "Egg already injected")
