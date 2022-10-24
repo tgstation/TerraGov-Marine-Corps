@@ -1,4 +1,3 @@
-import { Box } from 'tgui/components';
 import type { Observable } from './types';
 
 enum HEALTH {
@@ -43,8 +42,8 @@ export const isJobOrNameMatch = (
   const { name, job } = observable;
 
   return (
-    name?.toLowerCase().includes(searchQuery?.toLowerCase()) ||
-    job?.toLowerCase().includes(searchQuery?.toLowerCase()) ||
-    false
+    name?.toLowerCase().includes(searchQuery?.toLowerCase())
+    || job?.toLowerCase().includes(searchQuery?.toLowerCase())
+    || false
   );
 };
