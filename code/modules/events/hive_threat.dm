@@ -42,16 +42,16 @@
 		SEND_SOUND(receiving_xeno, queen_sound)
 
 //manages the hive reward and clean up
-/datum/round_event/hive_threat/proc/handle_reward(datum/source, mob/living/carbon/human/target)
+/datum/round_event/hive_threat/proc/handle_reward(datum/source, mob/living/carbon/xenomorph/drainer) //draining xeno as an arg so child events can have rewards that target them specifically, etc
 	SIGNAL_HANDLER
-	xeno_message("The Queen Mother has gleaned the secrets from the mind of [target], helping ensure the future of the hive. The Queen Mother empowers us for our success.")
-	bless_hive()
+	xeno_message("[drainer] has gleaned the secrets from the mind of [hive_target], helping ensure the future of the hive. The Queen Mother empowers us for our success!")
+	bless_hive(drainer)
 	REMOVE_TRAIT(hive_target, TRAIT_HIVE_TARGET, TRAIT_HIVE_TARGET)
 	hive_target = null
 	UnregisterSignal(SSdcs, COMSIG_GLOB_HIVE_TARGET_DRAINED)
 
 ///Actually applies the buff to the hive
-/datum/round_event/hive_threat/proc/bless_hive()
+/datum/round_event/hive_threat/proc/bless_hive(mob/living/carbon/xenomorph/drainer)
 	for(var/mob/living/carbon/xenomorph/receiving_xeno in GLOB.alive_xeno_list)
 		receiving_xeno.add_movespeed_modifier(MOVESPEED_ID_BLESSED_HIVE, TRUE, 0, NONE, TRUE, 0.18) //placeholder buff. gotta go fast.
 	addtimer(CALLBACK(src, .proc/remove_blessing), 2 MINUTES)
