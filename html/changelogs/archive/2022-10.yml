@@ -317,3 +317,11 @@
   TiviPlus:
   - balance: all metal cade tool interactions no longer block you from interacting
       with other cades
+2022-10-24:
+  Lumipharon:
+  - imageadd: Slight changes to the SOM satchel and powerpack sprites
+  Pariah919:
+  - balance: Arrowhead no longer has slowdown.
+  lbnesquik:
+  - rscadd: Added 3 new AI cores from polaris
+  - rscadd: Added 1 new AI hologram
