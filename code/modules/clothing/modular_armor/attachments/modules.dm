@@ -105,7 +105,7 @@
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "lorica_armor"
 	item_state = "lorica_armor_a"
-	attachment_layer = COLLAR_LAYER
+	attachment_layer = null
 	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 5, FIRE = 10, ACID = 5)
 	slowdown = 0.2
 	slot = ATTACHMENT_SLOT_MODULE
@@ -127,12 +127,13 @@
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "lorica_head"
 	item_state = "lorica_head_a"
+	attachment_layer = COLLAR_LAYER
 	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 5, FIRE = 10, ACID = 5)
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 	variants_by_parent_type = list()
 
 /**
- * Environment protecttion module
+ * Environment protection module
 */
 /obj/item/armor_module/module/mimir_environment_protection
 	name = "\improper Mark 2 Mimir Environmental Resistance System"
@@ -255,7 +256,6 @@
 	icon_state = "mod_eshield"
 	item_state = "mod_eshield_a"
 	slot = ATTACHMENT_SLOT_MODULE
-	slowdown = 0.2
 	soft_armor = list(MELEE = -10, BULLET = -5, LASER = 0, ENERGY = 0, BOMB = 0, BIO = -5, FIRE = 0, ACID = -5)
 	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_eshield_xn", /obj/item/clothing/suit/modular/xenonauten/light = "mod_eshield_xn", /obj/item/clothing/suit/modular/xenonauten/heavy = "mod_eshield_xn")
 

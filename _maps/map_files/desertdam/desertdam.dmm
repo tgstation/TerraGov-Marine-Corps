@@ -64364,7 +64364,7 @@
 "wOy" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
+/obj/structure/window/reinforced/windowstake{
 	dir = 8
 	},
 /turf/open/floor/prison/bright_clean/two,
