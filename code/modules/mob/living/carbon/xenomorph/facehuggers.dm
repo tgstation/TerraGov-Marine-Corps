@@ -800,7 +800,7 @@
 	var/affecting = ran_zone(null, 0)
 	if(!affecting) //Still nothing??
 		affecting = BODY_ZONE_CHEST //Gotta have a torso?!
-	victim.apply_damage(victim.modify_by_armor(CARRIER_SLASH_HUGGER_DAMAGE, MELEE, def_zone = affecting), BRUTE, affecting)
+	victim.apply_damage(victim.modify_by_armor(CARRIER_SLASH_HUGGER_DAMAGE, MELEE, def_zone = affecting), BRUTE, affecting, updating_health = TRUE)
 	victim.visible_message(span_danger("[src] frantically claws at [victim]!"),span_danger("[src] frantically claws at you!"))
 	leaping = FALSE
 	go_active() //Slashy boys recover *very* fast.
