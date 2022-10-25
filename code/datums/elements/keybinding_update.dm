@@ -25,7 +25,7 @@
 		return
 	var/client/binder_client = current_mob.client
 	for(var/datum/action/user_action AS in current_mob.actions)
-		if(length(user_action.keybinding_signals) == 0)
+		if(!length(user_action.keybinding_signals))
 			continue
 		if(!binder_client)
 			break
