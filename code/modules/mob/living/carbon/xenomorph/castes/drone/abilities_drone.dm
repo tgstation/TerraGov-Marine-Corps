@@ -19,8 +19,10 @@
 	cooldown_timer = 5 SECONDS
 	plasma_cost = 0
 	target_flags = XABB_MOB_TARGET
-	keybind_signal = COMSIG_XENOABILITY_ESSENCE_LINK
-	alternate_keybind_signal = COMSIG_XENOABILITY_ESSENCE_LINK_REMOVE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ESSENCE_LINK
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_ESSENCE_LINK_REMOVE
+	)
 	/// Used to determine whether there is an existing Essence Link or not. Also allows access to its vars.
 	var/datum/status_effect/stacking/essence_link/existing_link
 	/// The target of an existing link, if applicable.
@@ -91,7 +93,9 @@
 	mechanics_text = "Apply a minor heal to the target. If applied to a linked sister, it will also apply a regenerative buff. Additionally, if that linked sister is near death, the heal's potency is increased"
 	cooldown_timer = 5 SECONDS
 	plasma_cost = 150
-	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CURE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_CURE,
+	)
 	heal_range = DRONE_HEAL_RANGE
 	target_flags = XABB_MOB_TARGET
 
@@ -136,7 +140,9 @@
 	mechanics_text = "Apply an enhancement to the linked xeno, increasing their capabilities beyond their limits."
 	cooldown_timer = 120 SECONDS
 	plasma_cost = 0
-	keybind_signal = COMSIG_XENOABILITY_ENHANCEMENT
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ENHANCEMENT,
+	)
 	/// References Essence Link and its vars.
 	var/datum/action/xeno_action/activable/essence_link/essence_link_action
 	/// Used to determine whether Enhancement is already active or not. Also allows access to its vars.
@@ -159,14 +165,29 @@
 		return FALSE
 	return ..()
 
-/datum/action/xeno_action/enhancement/action_activate()
-	if(existing_enhancement)
-		end_ability()
-		return succeed_activate()
-	essence_link_action.existing_link.add_stacks(-1)
-	essence_link_action.linked_target.apply_status_effect(STATUS_EFFECT_XENO_ENHANCEMENT, owner)
-	existing_enhancement = essence_link_action.linked_target.has_status_effect(STATUS_EFFECT_XENO_ENHANCEMENT)
-	succeed_activate()
+	playsound(src, "alien_resin_build", 25)
+	new X.selected_plant(get_turf(owner))
+	add_cooldown()
+	return succeed_activate()
+
+/datum/action/xeno_action/sow/update_button_icon()
+	var/mob/living/carbon/xenomorph/X = owner
+	button.overlays.Cut()
+	button.overlays += image('icons/mob/actions.dmi', button, initial(X.selected_plant.name))
+	return ..()
+
+///Shows a radial menu to pick the plant they wish to put down when they use the ability
+/datum/action/xeno_action/sow/proc/choose_plant()
+	var/plant_choice = show_radial_menu(owner, owner, GLOB.plant_images_list, radius = 48)
+	var/mob/living/carbon/xenomorph/X = owner
+	if(!plant_choice)
+		return
+	for(var/obj/structure/xeno/plant/current_plant AS in GLOB.plant_type_list)
+		if(initial(current_plant.name) == plant_choice)
+			X.selected_plant = current_plant
+			break
+	X.balloon_alert(X, "[plant_choice]")
+	update_button_icon()
 
 /// Ends the ability if the Enhancement buff is removed.
 /datum/action/xeno_action/enhancement/proc/end_ability()

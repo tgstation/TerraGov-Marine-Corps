@@ -21,8 +21,12 @@
 	layer = ABOVE_ALL_MOB_LAYER
 	mech_type = EXOSUIT_MODULE_GREYSCALE
 	pixel_x = -16
-	move_delay = 3 // tivi todo: polish, mechs too fast
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 5, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	move_delay = 3
 	max_equip_by_category = MECH_GREYSCALE_MAX_EQUIP
+	internal_damage_threshold = 15
+	internal_damage_probability = 5
+	possible_int_damage = MECHA_INT_FIRE|MECHA_INT_CONTROL_LOST|MECHA_INT_SHORT_CIRCUIT
 	/// keyed list. values are types at init, otherwise instances of mecha limbs, order is layer order as well
 	var/list/datum/mech_limb/limbs = list(
 		MECH_GREY_TORSO = null,

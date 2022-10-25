@@ -1482,11 +1482,11 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
 "aoW" = (
-/obj/machinery/door/airlock/mainship/secure{
-	name = "Self Destruct Room"
-	},
 /obj/machinery/door/poddoor/shutters/mainship/selfdestruct,
 /obj/structure/cable,
+/obj/machinery/door/airlock/mainship/secure/free_access{
+	name = "Self Destruct Room"
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
 "aoY" = (
@@ -1800,9 +1800,9 @@
 /turf/open/floor/plating,
 /area/mainship/command/self_destruct)
 "axs" = (
-/obj/machinery/door/airlock/mainship/secure{
+/obj/machinery/door/airlock/mainship/secure/free_access{
 	dir = 2;
-	name = "\improper Exterior Airlock"
+	name = "Self Destruct Room"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
@@ -1841,11 +1841,11 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/cryo_cells)
 "azh" = (
-/obj/machinery/door/airlock/mainship/secure{
-	name = "Self Destruct Room"
-	},
 /obj/structure/cable,
 /obj/machinery/door/poddoor/shutters/mainship/selfdestruct,
+/obj/machinery/door/airlock/mainship/secure/free_access{
+	name = "Self Destruct Room"
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
 "azj" = (
@@ -2951,11 +2951,11 @@
 /turf/open/floor/carpet,
 /area/mainship/living/commandbunks)
 "bdP" = (
-/obj/structure/window/reinforced/toughened{
-	dir = 8
-	},
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
+	},
+/obj/structure/window/reinforced/extratoughened{
+	dir = 4
 	},
 /turf/open/floor/mainship/ai,
 /area/mainship/living/numbertwobunks)
@@ -7547,7 +7547,7 @@
 /area/mainship/command/self_destruct)
 "bVv" = (
 /obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
+/obj/structure/window/reinforced/windowstake{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -10527,6 +10527,12 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/port_hull)
 "fZR" = (
+/obj/structure/window/reinforced/extratoughened{
+	dir = 1
+	},
+/obj/structure/window/reinforced/extratoughened{
+	dir = 4
+	},
 /turf/open/floor/mainship/ai,
 /area/mainship/living/numbertwobunks)
 "gaj" = (
@@ -11956,7 +11962,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
 "iHs" = (
-/obj/machinery/door/airlock/mainship/secure{
+/obj/machinery/door/airlock/mainship/secure/free_access{
 	name = "\improper Self Destruct Control Room"
 	},
 /turf/open/floor/mainship/floor,
@@ -13409,11 +13415,11 @@
 /area/mainship/command/corporateliaison)
 "lkZ" = (
 /obj/structure/table/mainship/nometal,
-/obj/structure/window/reinforced/toughened{
-	dir = 8
-	},
 /obj/structure/window/reinforced/toughened,
 /obj/machinery/computer/communications,
+/obj/structure/window/reinforced/windowstake{
+	dir = 8
+	},
 /turf/open/floor/mainship/silver{
 	dir = 10
 	},
@@ -15308,6 +15314,12 @@
 /obj/machinery/door_control/ai/interior{
 	dir = 4
 	},
+/obj/structure/window/reinforced/extratoughened{
+	dir = 1
+	},
+/obj/structure/window/reinforced/extratoughened{
+	dir = 8
+	},
 /turf/open/floor/mainship/ai,
 /area/mainship/living/numbertwobunks)
 "oxk" = (
@@ -16018,6 +16030,13 @@
 	},
 /turf/open/floor/mainship/cargo/arrow,
 /area/mainship/squads/req)
+"pMi" = (
+/obj/structure/window/reinforced/extratoughened{
+	dir = 4
+	},
+/obj/structure/window/reinforced/extratoughened,
+/turf/open/floor/mainship/ai,
+/area/mainship/living/numbertwobunks)
 "pNi" = (
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -16415,9 +16434,9 @@
 	},
 /area/mainship/engineering/ce_room)
 "quo" = (
-/obj/machinery/door/airlock/mainship/secure{
+/obj/machinery/door/airlock/mainship/secure/free_access{
 	dir = 2;
-	name = "\improper Exterior Airlock"
+	name = "Self Destruct Room"
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/command/self_destruct)
@@ -16741,9 +16760,7 @@
 /area/mainship/hallways/aft_umbilical)
 "qVQ" = (
 /obj/machinery/light/mainship,
-/obj/structure/window/reinforced/toughened{
-	dir = 1
-	},
+/obj/structure/window/reinforced/extratoughened,
 /turf/open/floor/mainship/ai,
 /area/mainship/living/numbertwobunks)
 "qWF" = (
@@ -17848,7 +17865,9 @@
 /obj/machinery/light/mainship{
 	dir = 1
 	},
-/obj/structure/window/reinforced/toughened,
+/obj/structure/window/reinforced/extratoughened{
+	dir = 1
+	},
 /turf/open/floor/mainship/ai,
 /area/mainship/living/numbertwobunks)
 "tgK" = (
@@ -20049,12 +20068,12 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
 "xow" = (
-/obj/structure/window/reinforced/toughened{
-	dir = 4
-	},
 /obj/structure/window/reinforced/toughened,
 /obj/structure/table/mainship/nometal,
 /obj/machinery/computer/security/marinemainship_network,
+/obj/structure/window/reinforced/windowstake{
+	dir = 4
+	},
 /turf/open/floor/mainship/silver{
 	dir = 6
 	},
@@ -20469,6 +20488,13 @@
 	},
 /turf/open/floor/mainship/cargo,
 /area/mainship/engineering/engine_core)
+"yae" = (
+/obj/structure/window/reinforced/extratoughened{
+	dir = 8
+	},
+/obj/structure/window/reinforced/extratoughened,
+/turf/open/floor/mainship/ai,
+/area/mainship/living/numbertwobunks)
 "yay" = (
 /obj/vehicle/ridden/powerloader,
 /obj/machinery/light/mainship{
@@ -20508,7 +20534,9 @@
 	},
 /area/mainship/hallways/hangar)
 "ycd" = (
-/obj/machinery/door/window/secure/bridge,
+/obj/machinery/door/window/secure/bridge/aidoor{
+	dir = 8
+	},
 /turf/open/floor/mainship/ai,
 /area/mainship/living/numbertwobunks)
 "ycL" = (
@@ -69655,7 +69683,7 @@ uqa
 vXq
 ovC
 ycd
-fZR
+yae
 vXq
 ojL
 abR
@@ -70169,7 +70197,7 @@ tYy
 vXq
 fZR
 bdP
-fZR
+pMi
 vXq
 jHu
 abR

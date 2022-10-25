@@ -1,5 +1,0 @@
-author: "Zar000"
-delete-after: True
-changes: 
-  - balance: "nerfed standard and wide flamer nozzle"
-  - code_imp: "Made it possible to set flamer penetration on resin walls"

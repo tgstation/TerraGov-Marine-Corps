@@ -80,6 +80,13 @@
 	icon_state = "MP_jumpsuit"
 	adjustment_variants = list()
 
+/obj/item/clothing/under/marine/orion_fatigue
+	name = "\improper Orion fatigues"
+	desc = "Originated from Orion Military Outpost. Designed for ship and urban environments, they're meant for recon, stealth, and evac operations. They come with a built in cassette player hearable only to the user to help pass time, during any possible long waits. They're the definition of over-funded ideas, least they look neat. It is very likely that a boot fresh from boot camp to buy this at the BX with his E-1 pay because of how tacticool it looks."
+	icon_state = "orion_fatigues"
+	item_state = "orion_fatigues"
+	adjustment_variants = list()
+
 /obj/item/clothing/under/marine/officer
 	name = "marine officer uniform"
 	desc = "A kevlar-weaved, hazmat-tested, EMF-augmented, yet extra-soft and extra-light officer uniform. You suspect it's not as extra-fancy as advertised."
@@ -207,7 +214,7 @@
 	adjustment_variants = list() // don't disrespect the EMPEROR!
 	icon_state = "guardjumpsuit"
 	item_state = "guardjumpsuit"
-	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 10, "rad" = 10, FIRE = 10, ACID = 10)
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 10, FIRE = 10, ACID = 10)
 
 /obj/item/clothing/under/marine/veteran
 	adjustment_variants = list()
@@ -218,7 +225,7 @@
 	adjustment_variants = list() // don't disrespect the EMPEROR!
 	icon_state = "commissar_uniform"
 	item_state = "commissar_uniform"
-	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 10, "rad" = 10, FIRE = 10, ACID = 10)
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 10, FIRE = 10, ACID = 10)
 
 /obj/item/clothing/under/marine/veteran/PMC
 	name = "\improper PMC fatigues"
@@ -235,7 +242,7 @@
 	name = "\improper PMC commando uniform"
 	desc = "An armored uniform worn by Nanotrasen elite commandos. It is well protected while remaining light and comfortable."
 	icon_state = "commando_jumpsuit"
-	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 20, BOMB = 10, BIO = 10, "rad" = 10, FIRE = 20, ACID = 20)
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 20, BOMB = 10, BIO = 10, FIRE = 20, ACID = 20)
 	has_sensor = 0
 
 /obj/item/clothing/under/marine/veteran/wolves
@@ -293,7 +300,7 @@
 	desc = "A beige suit with a red armband. Sturdy and thick, simply imposing. A mysterious crest emblazons it."
 	icon_state = "mercenary_heavy_uniform"
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 0, ENERGY = 0, BOMB = 10, BIO = 1, "rad" = 1, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 0, ENERGY = 0, BOMB = 10, BIO = 1, FIRE = 0, ACID = 0)
 
 /obj/item/clothing/under/marine/veteran/mercenary/miner
 	name = "mercenary miner fatigues"

@@ -277,6 +277,7 @@
 	icon_state = "title_painting1"
 //	icon_state = "title_holiday"
 	layer = FLY_LAYER
+	pixel_x = -64
 
 /turf/closed/wall/indestructible/splashscreen/New()
 	..()

@@ -3624,9 +3624,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
-/obj/machinery/door/window/secure{
-	dir = 2
-	},
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/alienstuff)
 "rO" = (
@@ -4288,13 +4285,6 @@
 	dir = 5
 	},
 /area/icy_caves/caves/rock)
-"ut" = (
-/obj/machinery/door/window/secure{
-	dir = 2
-	},
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/tile/dark,
-/area/icy_caves/caves/alienstuff)
 "uv" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/grilledcheese,
@@ -4831,7 +4821,7 @@
 /area/icy_caves/caves/northwestmonorail/morgue)
 "wK" = (
 /obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
+/obj/structure/window/reinforced/windowstake{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
@@ -26215,7 +26205,7 @@ Vg
 Rn
 JV
 Cb
-ut
+SS
 Ju
 mf
 YZ

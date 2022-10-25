@@ -3,7 +3,7 @@
 	name = "armor module"
 	desc = "A dis-figured armor module, in its prime this would've been a key item in your modular armor... now its just trash."
 	icon = 'icons/mob/modular/modular_armor.dmi'
-	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, "rad" = 0, FIRE = 0, ACID = 0) // This is here to overwrite code over at objs.dm line 41. Marines don't get funny 200+ bio buff anymore.
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0) // This is here to overwrite code over at objs.dm line 41. Marines don't get funny 200+ bio buff anymore.
 
 	slowdown = 0
 
@@ -102,8 +102,8 @@
 	var/datum/action/item_action/toggle/new_action = new(src)
 	new_action.give_action(user)
 
-/obj/item/armor_module/ui_action_click(mob/user, datum/action/item_action/action)
-	activate(user)
+/obj/item/armor_module/ui_action_click(mob/user, datum/action/item_action/toggle/action)
+	action.set_toggle(activate(user))
 	action.update_button_icon()
 
 ///Called on ui_action_click. Used for activating the module.
@@ -120,7 +120,7 @@
 	icon = 'icons/mob/modular/modular_armor.dmi'
 
 	/// The additional armor provided by equipping this piece.
-	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, "rad" = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 	/// Addititve Slowdown of this armor piece
 	slowdown = 0
