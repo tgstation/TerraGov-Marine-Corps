@@ -17,11 +17,12 @@
 	attack_verb = list("slammed", "bashed", "battered", "bludgeoned", "thrashed", "whacked")
 	var/table_type = /obj/structure/table //what type of table it creates when assembled
 	var/deconstruct_type = /obj/item/stack/sheet/metal
+	var/dropmetal_on_deconstruct = TRUE
 
 /obj/item/frame/table/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(iswrench(I))
+	if(iswrench(I) && dropmetal_on_deconstruct)
 		new deconstruct_type(loc)
 		qdel(src)
 
@@ -53,13 +54,13 @@
 	if(locate(/obj/structure/table) in get_turf(user))
 		to_chat(user, span_warning("There is another table built in here already."))
 		return
-	if(istype(get_area(loc), /area/shuttle))  //HANGAR/SHUTTLE BUILDING
-		to_chat(user, span_warning("No. This area is needed for the dropship."))
-		return
 
 	new table_type(user.loc)
 	user.drop_held_item()
 	qdel(src)
+
+/obj/item/frame/table/nometal
+	dropmetal_on_deconstruct = FALSE
 
 /*
 * Reinforced Table Parts
