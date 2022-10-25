@@ -1214,19 +1214,19 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	return ..() * get_sunder()
 
 /**
-	Returns damage after taking into account both soft and hard armor for the specified damage type
+	Returns a number after taking into account both soft and hard armor for the specified damage type, usually damage
 
 	Arguments
 	* Damage_amount: The original unmodified damage
 	* armor_type: The type of armor by which the damage will be modified
 	* penetration: How much the damage source might bypass the armour value (optional)
-	* proj_def_zone: What part of the body the damage is targetting (optional)
+	* def_zone: What part of the body we want to check the armor of (optional)
 
 	Hard armor is calculated as a flat reduction before soft armor is applied as a multiplier.
 	Penetration reduces soft armor by a flat amount, but reduces hard armor as a multiplier.
 	Damage has a lower boundary of 0 to prevent high armour causing damage to heal the victim.
 */
-/mob/living/proc/modify_by_armor(damage_amount, armor_type, penetration, proj_def_zone)
+/mob/living/proc/modify_by_armor(damage_amount, armor_type, penetration, def_zone)
 	var/hard_armor_modifier = get_hard_armor(armor_type, proj_def_zone)
 	hard_armor_modifier = hard_armor_modifier - (hard_armor_modifier * penetration * 0.01)
 	var/soft_armor_modifier = min((1 - ((get_soft_armor(armor_type, proj_def_zone) - penetration) * 0.01)), 1)
