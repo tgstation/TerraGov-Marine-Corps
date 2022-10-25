@@ -341,7 +341,9 @@
 	mechanics_text = "Apply a minor heal to the target."
 	cooldown_timer = 5 SECONDS
 	plasma_cost = 150
-	keybind_signal = COMSIG_XENOABILITY_QUEEN_HEAL
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_HEAL,
+	)
 	heal_range = HIVELORD_HEAL_RANGE
 	target_flags = XABB_MOB_TARGET
 

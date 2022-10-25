@@ -20,8 +20,8 @@
 	plasma_cost = 0
 	target_flags = XABB_MOB_TARGET
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ESSENCE_LINK
-		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_ESSENCE_LINK_REMOVE
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ESSENCE_LINK,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_ESSENCE_LINK_REMOVE,
 	)
 	/// Used to determine whether there is an existing Essence Link or not. Also allows access to its vars.
 	var/datum/status_effect/stacking/essence_link/existing_link

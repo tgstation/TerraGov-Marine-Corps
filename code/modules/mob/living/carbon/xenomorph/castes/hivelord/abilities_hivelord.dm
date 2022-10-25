@@ -347,8 +347,10 @@
 	plasma_cost = 200
 	cooldown_timer = 45 SECONDS
 	use_state_flags = XACT_USE_LYING
-	keybind_signal = COMSIG_XENOABILITY_DROP_PLANT
-	alternate_keybind_signal = COMSIG_XENOABILITY_CHOOSE_PLANT
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DROP_PLANT,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_CHOOSE_PLANT,
+	)
 
 /datum/action/xeno_action/sow/can_use_action(silent = FALSE, override_flags)
 	. = ..()
