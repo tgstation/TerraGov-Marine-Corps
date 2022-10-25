@@ -325,3 +325,10 @@
   lbnesquik:
   - rscadd: Added 3 new AI cores from polaris
   - rscadd: Added 1 new AI hologram
+2022-10-25:
+  Lumipharon:
+  - bugfix: Fixed a voting bug with whitelisted maps
+  novaepee:
+  - code_imp: putting space between = and -1 for items in vendor code
+  tyeagg:
+  - soundadd: shovel hit sound

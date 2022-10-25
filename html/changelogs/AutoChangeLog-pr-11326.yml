@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes: 
-  - bugfix: "Fixed a voting bug with whitelisted maps"
