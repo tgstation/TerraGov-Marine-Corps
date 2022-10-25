@@ -80,8 +80,7 @@
 	add_cooldown()
 
 /datum/action/xeno_action/activable/essence_link/update_button_icon()
-	button.overlays.Cut()
-	button.overlays += image('icons/mob/actions.dmi', button, "essence_link_[existing_link ? (existing_link.stacks) : (0)]")
+	action_icon_state = "essence_link_[existing_link ? (existing_link.stacks) : (0)]"
 	return ..()
 
 // ***************************************
@@ -164,30 +163,6 @@
 	if(essence_link_action.existing_link.stacks < essence_link_action.existing_link.max_stacks)
 		return FALSE
 	return ..()
-
-	playsound(src, "alien_resin_build", 25)
-	new X.selected_plant(get_turf(owner))
-	add_cooldown()
-	return succeed_activate()
-
-/datum/action/xeno_action/sow/update_button_icon()
-	var/mob/living/carbon/xenomorph/X = owner
-	button.overlays.Cut()
-	button.overlays += image('icons/mob/actions.dmi', button, initial(X.selected_plant.name))
-	return ..()
-
-///Shows a radial menu to pick the plant they wish to put down when they use the ability
-/datum/action/xeno_action/sow/proc/choose_plant()
-	var/plant_choice = show_radial_menu(owner, owner, GLOB.plant_images_list, radius = 48)
-	var/mob/living/carbon/xenomorph/X = owner
-	if(!plant_choice)
-		return
-	for(var/obj/structure/xeno/plant/current_plant AS in GLOB.plant_type_list)
-		if(initial(current_plant.name) == plant_choice)
-			X.selected_plant = current_plant
-			break
-	X.balloon_alert(X, "[plant_choice]")
-	update_button_icon()
 
 /// Ends the ability if the Enhancement buff is removed.
 /datum/action/xeno_action/enhancement/proc/end_ability()

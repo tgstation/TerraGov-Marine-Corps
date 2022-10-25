@@ -68,8 +68,8 @@
 	RegisterSignal(link_owner, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), .proc/end_link)
 	RegisterSignal(link_target, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), .proc/end_link)
 	toggle_link(TRUE)
-	to_chat(link_owner, "You have established an Essence Link with [link_target]. Stay within [DRONE_ESSENCE_LINK_RANGE] tiles to maintain it.")
-	to_chat(link_target, "[link_owner] has established an Essence Link with you. Stay within [DRONE_ESSENCE_LINK_RANGE] tiles to maintain it.")
+	to_chat(link_owner, "We have established an Essence Link with [link_target]. Stay within [DRONE_ESSENCE_LINK_RANGE] tiles to maintain it.")
+	to_chat(link_target, "[link_owner] has established an Essence Link with us. Stay within [DRONE_ESSENCE_LINK_RANGE] tiles to maintain it.")
 	return ..()
 
 /datum/status_effect/stacking/essence_link/add_stacks(stacks_added)
@@ -80,8 +80,8 @@
 	update_beam()
 
 /datum/status_effect/stacking/essence_link/on_remove()
-	to_chat(link_owner, "The Essence Link between you and [link_target] has been cancelled.")
-	to_chat(link_target, "The Essence Link between you and [link_owner] has been cancelled.")
+	to_chat(link_owner, "The Essence Link between us and [link_target] has been cancelled.")
+	to_chat(link_target, "The Essence Link between us and [link_owner] has been cancelled.")
 	toggle_link(FALSE)
 	essence_link_action.end_ability()
 	UnregisterSignal(link_owner, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED))
@@ -136,7 +136,7 @@
 	buff_owner.balloon_alert(buff_owner, "Buff shared")
 	buff_target.balloon_alert(buff_target, "Buff shared")
 	buff_target.visible_message(span_notice("[buff_target]'s chitin begins to gleam with an unseemly glow..."), \
-		span_xenonotice("Through the essence link, [buff_owner] has shared their resin jelly with you."))
+		span_xenonotice("Through the Essence Link, [buff_owner] has shared their resin jelly with us."))
 	INVOKE_ASYNC(buff_target, /mob/living/carbon/xenomorph.proc/emote, "roar")
 	buff_target.apply_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING)
 
