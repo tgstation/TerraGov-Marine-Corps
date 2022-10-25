@@ -54,6 +54,9 @@
 	if(locate(/obj/structure/table) in get_turf(user))
 		to_chat(user, span_warning("There is another table built in here already."))
 		return
+	if(istype(get_area(loc), /area/shuttle))  //HANGAR/SHUTTLE BUILDING
+		to_chat(user, span_warning("No. This area is needed for the dropship."))
+		return
 
 	new table_type(user.loc)
 	user.drop_held_item()
