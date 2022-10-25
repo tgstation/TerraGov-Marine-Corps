@@ -814,6 +814,11 @@ CLOTHING
 	contains = list(/obj/item/storage/backpack/lightpack)
 	cost = 15
 
+/datum/supply_packs/clothing/dispenser
+	name = "Dispenser"
+	contains = list(/obj/item/storage/backpack/dispenser)
+	cost = 40
+
 /datum/supply_packs/clothing/welding_pack
 	name = "Engineering Welding Pack"
 	contains = list(/obj/item/storage/backpack/marine/engineerpack)
