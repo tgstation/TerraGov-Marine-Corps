@@ -168,3 +168,28 @@
 /obj/effect/landmark/start/job/som/squadleader
 	icon_state = "SL"
 	job = /datum/job/som/squad/leader
+
+//Imperium
+/obj/effect/landmark/start/job/imp/squadstandard
+	icon_state = "PFC"
+	job = /datum/job/imperial/squad/standard
+
+/obj/effect/landmark/start/job/imp/squadveteran
+	icon_state = "SGnr"
+	job = /datum/job/som/squad/veteran
+
+/obj/effect/landmark/start/job/imp/tech_priest
+	icon_state = "Eng"
+	job = /datum/job/som/squad/engineer
+
+/obj/effect/landmark/start/job/imp/skitarii
+	icon_state = "Eng"
+	job = /datum/job/som/squad/engineer
+
+/obj/effect/landmark/start/job/imp/squadmedicae
+	icon_state = "HM"
+	job = /datum/job/imperial/squad/medicae
+
+/obj/effect/landmark/start/job/imp/sergeant
+	icon_state = "SL"
+	job = /datum/job/som/squad/leader

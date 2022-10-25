@@ -461,6 +461,38 @@
 		/obj/item/attachable/magnetic_harness,
 	)
 
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/flamer_imp
+	name = "\improper Flamer"
+	desc = "Flamers, also known as 'flame guns', are flamer weapons that come in a wide variety of designs and patterns, but all are ideal for flushing out enemies in cover and putting groups of foes to the torch with projected flame."
+	max_shots = 150 //codex stuff
+	ammo_datum_type = /datum/ammo/flamethrower/promethium
+	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/large/promethium
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/flamer_tank/large/promethium,
+	)
+	gun_firemode = GUN_FIREMODE_AUTOMATIC
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	attachable_allowed = list(
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/flamer_nozzle/long/unremovable,
+	)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle/long/unremovable,)
+	fire_delay = 1.10 SECONDS
+	scatter = 5
+
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "flamerimp"
+	item_state = "flamerimp"
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_SHOWS_LOADED
+	lit_overlay_icon_state = "flamerimp_lit"
+	lit_overlay_offset_x = 0
+	use_heat = TRUE
+	heat_amount = 1
+	max_heat = 50
+	cool_amount = 5
+
 /turf/proc/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
 	//extinguish any flame present
 	var/obj/flamer_fire/F = locate(/obj/flamer_fire) in src

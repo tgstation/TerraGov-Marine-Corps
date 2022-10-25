@@ -730,6 +730,11 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define XRAY_SQUAD "xray_squad"
 #define WHISKEY_SQUAD "whiskey_squad"
 
+#define THETA_SQUAD "theta_squad"
+#define OMEGA_SQUAD "omega_squad"
+#define GAMMA_SQUAD "gamma_squad"
+#define SIGMA_SQUAD "sigma_squad"
+
 #define TYPING_INDICATOR_LIFETIME 3 SECONDS	//Grace period after which typing indicator disappears regardless of text in chatbar.
 
 

@@ -344,7 +344,7 @@
 	///Amount of cooling per tick.
 	var/cool_amount = 2
 	///Amount of time the gun is unable to fire after it has overheated.
-	var/cooldown_time = 2 SECONDS
+	var/cooldown_time = 5 SECONDS
 	///If the gun is overheated.
 	var/overheated = FALSE
 	///Stores the timer for overheat.
@@ -481,18 +481,15 @@
 			action.update_button_icon()
 
 	if(use_heat)
-		if(heat_level >= max_heat)
-			if(overheated)
+		if(overheated)
+			if(overheat_smoke)
 				return
 			overlays += heat_overlay
-			overheated = TRUE
-			gun_user.balloon_alert(gun_user, "The gun is overheating icon!")
 			overheat_smoke = new(src, /particles/mecha_smoke)
 			overheat_smoke.particles.position = list(8, 8, 0)
-		else if(overheated)
+		else
 			QDEL_NULL(overheat_smoke)
 			overlays -= heat_overlay
-			overheated = FALSE
 
 	update_item_state()
 
@@ -1575,10 +1572,11 @@
 	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_ATTACHMENT) && !master_gun && CHECK_BITFIELD(flags_gun_features, GUN_ATTACHMENT_FIRE_ONLY))
 		to_chat(user, span_notice("You cannot fire [src] without it attached to a gun!"))
 		return FALSE
-	if(heat_level >= max_heat)
-		user.balloon_alert(user, "The gun is overheated able fire!")
+	if(heat_level >= max_heat || overheated)
+		user.balloon_alert(user, "The gun is overheated!")
 		if(!overheat_timer)
-			overheat_timer = addtimer(CALLBACK(src, .proc/cooldown), cooldown_time)
+			overheated = TRUE
+			overheat_timer = addtimer(CALLBACK(src, .proc/cooldown), cooldown_time, TIMER_STOPPABLE)
 		return FALSE
 	return TRUE
 
@@ -1805,4 +1803,5 @@
 
 /obj/item/weapon/gun/proc/cooldown()
 	overheated = FALSE
-	START_PROCESSING(SSobj, src)
+	deltimer(overheat_timer)
+	overheat_timer = null

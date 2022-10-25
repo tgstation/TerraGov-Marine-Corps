@@ -65,6 +65,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		/datum/outfit/quick/som/squad_leader/charger,
 		/datum/outfit/quick/som/squad_leader/caliver,
 		/datum/outfit/quick/som/squad_leader/mpi,
+		/datum/outfit/quick/imperial/guardsman/lasgun,
 	)
 
 	for(var/X in loadout_list)
@@ -106,11 +107,12 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 /obj/machinery/quick_vendor/imperium
 	faction = FACTION_IMP
 	categories = list(
-		"Guardsman",
-		"Tech Priest",
-		"Guardsman Medicae",
-		"Guardsman Veteran",
-		"Guardsman Sergeant",
+		"Guard Squad Private",
+		"Guard Squad Medicae",
+		"Guard Squad Veteran",
+		"Guard Squad Sergeant",
+		"Mechanicus Tech Priest",
+		"Mechanicus Skitarii",
 	)
 
 /obj/machinery/quick_vendor/can_interact(mob/user)

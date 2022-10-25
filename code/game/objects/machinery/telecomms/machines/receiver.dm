@@ -47,18 +47,22 @@
 	id = "Receiver A"
 	network = "tcommsat"
 	autolinkers = list("receiverA") // link to relay
-	freq_listening = list(FREQ_MEDICAL, FREQ_REQUISITIONS, FREQ_ALPHA, FREQ_BRAVO, FREQ_CHARLIE, FREQ_DELTA, FREQ_COMMAND, FREQ_ENGINEERING, FREQ_CAS, FREQ_PMC, FREQ_COLONIST, FREQ_USL, FREQ_DEATHSQUAD, FREQ_IMPERIAL, FREQ_SOM, FREQ_SECTOID, FREQ_ECHO)
+	freq_listening = list(FREQ_MEDICAL, FREQ_REQUISITIONS, FREQ_ALPHA, FREQ_BRAVO, FREQ_CHARLIE, FREQ_DELTA, FREQ_COMMAND, FREQ_ENGINEERING, FREQ_CAS, FREQ_PMC, FREQ_COLONIST, FREQ_USL, FREQ_DEATHSQUAD, FREQ_IMP, FREQ_SOM, FREQ_SECTOID, FREQ_ECHO)
 
 /obj/machinery/telecomms/receiver/preset_left/rebel
 	id = "Receiver A rebel"
 	autolinkers = list("receiverA_rebel") // link to relay
-	freq_listening = list(FREQ_MEDICAL_REBEL, FREQ_REQUISITIONS_REBEL, FREQ_ALPHA_REBEL, FREQ_BRAVO_REBEL, FREQ_CHARLIE_REBEL, FREQ_DELTA_REBEL, FREQ_COMMAND_REBEL, FREQ_ENGINEERING_REBEL, FREQ_CAS_REBEL, FREQ_PMC, FREQ_COLONIST, FREQ_USL, FREQ_DEATHSQUAD, FREQ_IMPERIAL, FREQ_SOM, FREQ_SECTOID, FREQ_ECHO)
+	freq_listening = list(FREQ_MEDICAL_REBEL, FREQ_REQUISITIONS_REBEL, FREQ_ALPHA_REBEL, FREQ_BRAVO_REBEL, FREQ_CHARLIE_REBEL, FREQ_DELTA_REBEL, FREQ_COMMAND_REBEL, FREQ_ENGINEERING_REBEL, FREQ_CAS_REBEL, FREQ_PMC, FREQ_COLONIST, FREQ_USL, FREQ_DEATHSQUAD, FREQ_IMP, FREQ_SOM, FREQ_SECTOID, FREQ_ECHO)
 
 /obj/machinery/telecomms/receiver/preset_left/som
 	id = "Receiver A som"
 	autolinkers = list("receiverA_som") // link to relay
 	freq_listening = list(FREQ_MEDICAL_SOM, FREQ_ZULU, FREQ_YANKEE, FREQ_XRAY, FREQ_WHISKEY, FREQ_COMMAND_SOM, FREQ_ENGINEERING_SOM) //ert channels shouldn't be needed. Probably.
 
+/obj/machinery/telecomms/receiver/preset_left/imp
+	id = "Receiver A imp"
+	autolinkers = list("receiverA_imp") // link to relay
+	freq_listening = list(FREQ_MEDICAL_IMP, FREQ_THETA, FREQ_OMEGA, FREQ_GAMMA, FREQ_SIGMA, FREQ_COMMAND_IMP, FREQ_ENGINEERING_IMP)
 
 //--PRESET RIGHT--//
 /obj/machinery/telecomms/receiver/preset_right
@@ -85,6 +89,10 @@
 	autolinkers = list("receiverB_som") // link to relay
 	freq_listening = list(FREQ_SOM)
 
+/obj/machinery/telecomms/receiver/preset_right/imp
+	id = "Receiver B imp"
+	autolinkers = list("receiverB_imp") // link to relay
+	freq_listening = list(FREQ_IMP)
 
 //Common and other radio frequencies for people to freely use
 /obj/machinery/telecomms/receiver/preset_right/Initialize()

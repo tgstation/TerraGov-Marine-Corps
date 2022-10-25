@@ -1,0 +1,4329 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ad" = (
+/turf/open/floor/mainship_hull/dir{
+	dir = 1
+	},
+/area/mainship/battlemace)
+"af" = (
+/obj/structure/bed/chair/nometal{
+	dir = 1
+	},
+/turf/open/floor/mainship/blue/full,
+/area/mainship/battlemace)
+"al" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/obj/machinery/light,
+/turf/open/floor/mainship/office,
+/area/mainship/battlemace)
+"at" = (
+/turf/open/floor/plating/ground/concrete/edge{
+	dir = 8
+	},
+/area/mainship/battlemace)
+"aR" = (
+/obj/structure/table/rusticwoodentable,
+/obj/item/tool/candle,
+/turf/open/floor/mainship/office,
+/area/mainship/battlemace)
+"aY" = (
+/obj/structure/monorail{
+	dir = 4
+	},
+/obj/structure/monorail,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"bk" = (
+/obj/machinery/vending/marineFood/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/turf/open/floor/mainship/red,
+/area/mainship/battlemace)
+"bl" = (
+/obj/structure/platform/metalplatform{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 4
+	},
+/area/mainship/battlemace)
+"bE" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/mainship/battlemace)
+"cR" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/battlemace)
+"dG" = (
+/turf/open/floor/mainship/silver{
+	dir = 8
+	},
+/area/mainship/battlemace)
+"dK" = (
+/obj/structure/shuttle/engine/heater{
+	dir = 4
+	},
+/turf/closed/shuttle/ert{
+	icon_state = "stan25"
+	},
+/area/mainship/battlemace)
+"ef" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/battlemace)
+"eB" = (
+/obj/structure/largecrate/random/case/double,
+/turf/open/floor/mainship/red{
+	dir = 9
+	},
+/area/mainship/battlemace)
+"eR" = (
+/obj/structure/largecrate/supply,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/battlemace)
+"fr" = (
+/turf/closed/shuttle/ert{
+	icon_state = "stan25"
+	},
+/area/mainship/battlemace)
+"fB" = (
+/turf/open/floor/mainship/office,
+/area/mainship/battlemace)
+"fN" = (
+/obj/machinery/telecomms/hub/preset/imp,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"fP" = (
+/obj/structure/prop/vehicle/truck{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"fQ" = (
+/obj/structure/bed/bunkbed,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/office,
+/area/mainship/battlemace)
+"gF" = (
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/battlemace)
+"gN" = (
+/turf/open/floor/plating/ground/concrete/edge{
+	dir = 4
+	},
+/area/mainship/battlemace)
+"hg" = (
+/obj/machinery/door/poddoor/mainship/indestructible{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 10
+	},
+/area/mainship/battlemace)
+"hw" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/office,
+/area/mainship/battlemace)
+"hJ" = (
+/obj/structure/platform/metalplatform{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"hU" = (
+/obj/effect/decal/warning_stripes/box/arrow,
+/turf/open/floor/mainship/office,
+/area/mainship/battlemace)
+"hZ" = (
+/obj/structure/bed/chair/sofa/corsat/verticaltop,
+/turf/open/floor/mainship/red{
+	dir = 4
+	},
+/area/mainship/battlemace)
+"is" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/stairs/seamless{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"iJ" = (
+/obj/effect/decal/warning_stripes/box/arrow{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 1
+	},
+/area/mainship/battlemace)
+"jd" = (
+/obj/structure/platform/metalplatform{
+	dir = 1
+	},
+/obj/structure/platform/metalplatform{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"jq" = (
+/turf/open/floor/mainship/blue{
+	dir = 5
+	},
+/area/mainship/battlemace)
+"js" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/turf/open/floor/mainship/office,
+/area/mainship/battlemace)
+"ju" = (
+/obj/structure/table/mainship/nometal,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"jv" = (
+/obj/machinery/telecomms/server/presets/engineering/imp,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"jB" = (
+/obj/structure/bed/chair/sofa/corsat/verticalsouth,
+/turf/open/floor/mainship/red{
+	dir = 4
+	},
+/area/mainship/battlemace)
+"jC" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"jG" = (
+/turf/closed/shuttle/ert{
+	icon_state = "stan22"
+	},
+/area/mainship/battlemace)
+"jQ" = (
+/obj/structure/prop/mainship/doorblocker/patrol_base/som{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/battlemace)
+"jW" = (
+/obj/machinery/light,
+/turf/open/floor/mainship/silver,
+/area/mainship/battlemace)
+"kc" = (
+/obj/structure/prop/mainship/mapping_computer,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"lh" = (
+/obj/structure/monorail{
+	dir = 5
+	},
+/obj/structure/monorail{
+	dir = 10
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"li" = (
+/turf/open/floor/mainship/red{
+	dir = 8
+	},
+/area/mainship/battlemace)
+"lA" = (
+/obj/structure/prop/mainship/prop_sominf,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/battlemace)
+"lK" = (
+/obj/effect/decal/warning_stripes/box/arrow{
+	dir = 1
+	},
+/turf/open/floor/mainship/red/corner{
+	dir = 1
+	},
+/area/mainship/battlemace)
+"lN" = (
+/turf/open/floor/mainship/silver,
+/area/mainship/battlemace)
+"me" = (
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 1
+	},
+/area/mainship/battlemace)
+"mn" = (
+/obj/structure/platform/metalplatform{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"mr" = (
+/obj/structure/prop/mainship/prop_so{
+	dir = 1
+	},
+/turf/open/floor/mainship/office,
+/area/mainship/battlemace)
+"mF" = (
+/obj/structure/table/mainship/nometal,
+/obj/machinery/light,
+/turf/open/floor/mainship/silver,
+/area/mainship/battlemace)
+"mH" = (
+/turf/open/floor/mainship/red{
+	dir = 10
+	},
+/area/mainship/battlemace)
+"mL" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/battlemace)
+"mP" = (
+/obj/machinery/quick_vendor/imperium,
+/turf/open/floor/mainship/mono,
+/area/mainship/battlemace)
+"mT" = (
+/turf/open/floor/carpet/side{
+	dir = 8
+	},
+/area/mainship/battlemace)
+"nB" = (
+/obj/structure/window/framed/prison/reinforced/nonshutter_hull,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"nD" = (
+/obj/structure/platform/metalplatform,
+/obj/item/tool/candle,
+/turf/open/floor/carpet,
+/area/mainship/battlemace)
+"nG" = (
+/obj/structure/platform/metalplatform,
+/obj/item/tool/candle,
+/turf/open/floor/carpet/side{
+	dir = 4
+	},
+/area/mainship/battlemace)
+"ov" = (
+/obj/structure/platform/metalplatform{
+	dir = 8
+	},
+/turf/open/floor/mainship/office,
+/area/mainship/battlemace)
+"oz" = (
+/obj/structure/patrol_point{
+	id = "SOM_11"
+	},
+/turf/open/shuttle/elevator/grating,
+/area/mainship/battlemace)
+"oJ" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/battlemace)
+"oS" = (
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/battlemace)
+"oX" = (
+/obj/structure/largecrate/supply,
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/mainship/battlemace)
+"pe" = (
+/obj/effect/landmark/start/job/som/squadleader,
+/turf/open/floor/mainship/office,
+/area/mainship/battlemace)
+"pn" = (
+/turf/closed/shuttle/ert{
+	icon_state = "stan1"
+	},
+/area/mainship/battlemace)
+"pz" = (
+/obj/structure/platform/metalplatform{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"pC" = (
+/obj/structure/largecrate/random/case/small,
+/turf/open/floor/mainship/red{
+	dir = 5
+	},
+/area/mainship/battlemace)
+"pI" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/turf/open/floor/mainship/red,
+/area/mainship/battlemace)
+"pP" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"pY" = (
+/obj/machinery/quick_vendor/imperium,
+/turf/open/floor/mainship/office,
+/area/mainship/battlemace)
+"qA" = (
+/turf/open/floor/mainship/orange/full,
+/area/mainship/battlemace)
+"ra" = (
+/turf/closed/shuttle/ert{
+	icon_state = "stan23"
+	},
+/area/mainship/battlemace)
+"rd" = (
+/turf/open/floor/mainship/green/full,
+/area/mainship/battlemace)
+"rk" = (
+/obj/structure/monorail{
+	dir = 6
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"rv" = (
+/obj/machinery/vending/tool,
+/turf/open/floor/mainship/red,
+/area/mainship/battlemace)
+"rC" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/turf/open/floor/mainship/red{
+	dir = 5
+	},
+/area/mainship/battlemace)
+"rG" = (
+/obj/structure/window/framed/prison/reinforced/nonshutter_hull,
+/turf/open/floor/mainship/office,
+/area/mainship/battlemace)
+"rV" = (
+/obj/effect/landmark/start/latejoin,
+/turf/open/floor/mainship/office,
+/area/mainship/battlemace)
+"rW" = (
+/turf/open/floor/mainship/mono,
+/area/mainship/battlemace)
+"sa" = (
+/obj/machinery/telecomms/processor/preset_three/imp,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"so" = (
+/obj/structure/prop/mainship/prop_sominf{
+	dir = 1
+	},
+/turf/open/floor/mainship/office,
+/area/mainship/battlemace)
+"su" = (
+/obj/effect/decal/warning_stripes/box/empty,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"sB" = (
+/obj/effect/decal/warning_stripes/box/arrow{
+	dir = 4
+	},
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/mainship/battlemace)
+"sS" = (
+/turf/open/floor/carpet/side{
+	dir = 9
+	},
+/area/mainship/battlemace)
+"sW" = (
+/turf/open/floor/carpet/side{
+	dir = 4
+	},
+/area/mainship/battlemace)
+"td" = (
+/obj/machinery/door/poddoor/mainship/indestructible{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"tG" = (
+/obj/structure/bed/chair/dropship/passenger,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/battlemace)
+"tH" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"tU" = (
+/obj/machinery/door/poddoor/mainship/indestructible{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 4
+	},
+/area/mainship/battlemace)
+"us" = (
+/obj/effect/decal/warning_stripes/box/empty,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"uC" = (
+/turf/closed/wall/r_wall/prison_unmeltable,
+/area/mainship/battlemace)
+"uF" = (
+/obj/machinery/door/poddoor/timed_late/containment,
+/turf/open/floor/plating/ground/snow/layer3,
+/area/mainship/battlemace)
+"uH" = (
+/obj/structure/prop/mainship/prop_so,
+/turf/open/floor/mainship/silver,
+/area/mainship/battlemace)
+"uM" = (
+/obj/structure/bed/chair/nometal{
+	dir = 1
+	},
+/turf/open/floor/mainship/orange/full,
+/area/mainship/battlemace)
+"uR" = (
+/turf/open/floor/mainship/red{
+	dir = 4
+	},
+/area/mainship/battlemace)
+"uS" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/battlemace)
+"uY" = (
+/turf/open/floor/mainship/red{
+	dir = 5
+	},
+/area/mainship/battlemace)
+"va" = (
+/obj/structure/bed/chair/dropship/pilot{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/battlemace)
+"vd" = (
+/obj/machinery/computer3,
+/obj/structure/table/mainship,
+/turf/open/floor/mainship/mono,
+/area/mainship/battlemace)
+"vh" = (
+/obj/structure/table/mainship/nometal,
+/turf/open/floor/mainship/red,
+/area/mainship/battlemace)
+"vj" = (
+/turf/open/floor/mainship/blue{
+	dir = 8
+	},
+/area/mainship/battlemace)
+"vl" = (
+/obj/machinery/computer/mecha,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"vC" = (
+/obj/structure/table/mainship/nometal,
+/turf/open/floor/mainship/blue{
+	dir = 10
+	},
+/area/mainship/battlemace)
+"vD" = (
+/obj/structure/monorail{
+	dir = 6
+	},
+/obj/structure/monorail{
+	dir = 9
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"we" = (
+/obj/structure/prop/mainship/sensor_computer3,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/blue{
+	dir = 1
+	},
+/area/mainship/battlemace)
+"wj" = (
+/turf/open/floor/mainship/red,
+/area/mainship/battlemace)
+"wo" = (
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 8
+	},
+/area/mainship/battlemace)
+"wp" = (
+/obj/effect/decal/warning_stripes/box/empty,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"wz" = (
+/obj/machinery/telecomms/receiver/preset_right/imp,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"wB" = (
+/obj/structure/platform_decoration/metalplatform_deco{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 4
+	},
+/area/mainship/battlemace)
+"wD" = (
+/turf/open/floor/plating/ground/concrete/lines,
+/area/mainship/battlemace)
+"wG" = (
+/obj/structure/prop/mainship/sensor_computer2,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/silver{
+	dir = 1
+	},
+/area/mainship/battlemace)
+"wM" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 9
+	},
+/area/mainship/battlemace)
+"wS" = (
+/obj/structure/rack,
+/obj/item/mortal_shell/howitzer/he,
+/turf/open/floor/mainship/office,
+/area/mainship/battlemace)
+"wX" = (
+/obj/machinery/light,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"wZ" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 4
+	},
+/obj/structure/prop/mainship/prop_so{
+	dir = 4
+	},
+/turf/open/floor/mainship/office,
+/area/mainship/battlemace)
+"xb" = (
+/turf/open/floor/mainship/red{
+	dir = 9
+	},
+/area/mainship/battlemace)
+"xn" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/battlemace)
+"xo" = (
+/obj/structure/patrol_point{
+	id = "SOM_23"
+	},
+/turf/open/shuttle/elevator/grating,
+/area/mainship/battlemace)
+"xr" = (
+/obj/effect/decal/warning_stripes/box/arrow{
+	dir = 1
+	},
+/turf/open/floor/mainship/red/corner{
+	dir = 4
+	},
+/area/mainship/battlemace)
+"xw" = (
+/obj/structure/platform/metalplatform{
+	dir = 4
+	},
+/turf/open/floor/mainship/office,
+/area/mainship/battlemace)
+"xz" = (
+/turf/open/floor/mainship/silver{
+	dir = 6
+	},
+/area/mainship/battlemace)
+"xE" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8
+	},
+/turf/open/floor/mainship/red{
+	dir = 4
+	},
+/area/mainship/battlemace)
+"xX" = (
+/obj/effect/decal/warning_stripes/box/arrow{
+	dir = 4
+	},
+/turf/open/floor/mainship/office,
+/area/mainship/battlemace)
+"ya" = (
+/obj/structure/largecrate/random/case/small,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/mainship/battlemace)
+"ye" = (
+/obj/structure/reagent_dispensers/water_cooler,
+/turf/open/floor/mainship/silver{
+	dir = 10
+	},
+/area/mainship/battlemace)
+"yf" = (
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 6
+	},
+/area/mainship/battlemace)
+"ym" = (
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"yr" = (
+/obj/effect/decal/warning_stripes/box/arrow{
+	dir = 4
+	},
+/turf/open/floor/mainship/red{
+	dir = 4
+	},
+/area/mainship/battlemace)
+"yV" = (
+/turf/open/floor/mainship/red/corner{
+	dir = 1
+	},
+/area/mainship/battlemace)
+"zh" = (
+/turf/open/floor/mainship/red/corner,
+/area/mainship/battlemace)
+"zr" = (
+/obj/machinery/door/poddoor/mainship/open{
+	dir = 2
+	},
+/turf/open/floor/mainship/red/full,
+/area/mainship/battlemace)
+"zs" = (
+/turf/closed/shuttle/ert{
+	icon_state = "stan3"
+	},
+/area/mainship/battlemace)
+"zE" = (
+/obj/structure/patrol_point{
+	id = "SOM_22"
+	},
+/turf/open/shuttle/elevator/grating,
+/area/mainship/battlemace)
+"zL" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/turf/open/floor/mainship/red/full,
+/area/mainship/battlemace)
+"zS" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/battlemace)
+"zV" = (
+/obj/structure/bed/bunkbed,
+/turf/open/floor/mainship/office,
+/area/mainship/battlemace)
+"zZ" = (
+/obj/structure/bed/chair/dropship/passenger,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/battlemace)
+"Aa" = (
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"Af" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 1
+	},
+/obj/machinery/light,
+/turf/open/floor/mainship/mono,
+/area/mainship/battlemace)
+"Ag" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 4
+	},
+/obj/machinery/light,
+/turf/open/floor/mainship/red,
+/area/mainship/battlemace)
+"Ak" = (
+/obj/structure/bed/chair/sofa/corsat/right,
+/turf/open/floor/wood,
+/area/mainship/battlemace)
+"AK" = (
+/obj/structure/window/framed/prison/reinforced/nonshutter_hull,
+/turf/open/floor/mainship/mono,
+/area/mainship/battlemace)
+"AL" = (
+/obj/structure/largecrate/random/barrel/green,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 10
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/battlemace)
+"AR" = (
+/obj/structure/patrol_point{
+	id = "SOM_21"
+	},
+/turf/open/shuttle/elevator/grating,
+/area/mainship/battlemace)
+"Bj" = (
+/turf/open/floor/mainship_hull/dir,
+/area/mainship/battlemace)
+"Bl" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/battlemace)
+"Bw" = (
+/obj/structure/patrol_point{
+	id = "SOM_24"
+	},
+/turf/open/shuttle/elevator/grating,
+/area/mainship/battlemace)
+"BG" = (
+/turf/open/floor/carpet/side{
+	dir = 5
+	},
+/area/mainship/battlemace)
+"BL" = (
+/obj/machinery/telecomms/server/presets/omega,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"BY" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 4
+	},
+/area/mainship/battlemace)
+"Cb" = (
+/obj/structure/table/mainship/nometal,
+/obj/machinery/computer/emails,
+/turf/open/floor/mainship/blue,
+/area/mainship/battlemace)
+"Cd" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"Ce" = (
+/obj/structure/patrol_point{
+	id = "SOM_13"
+	},
+/turf/open/shuttle/elevator/grating,
+/area/mainship/battlemace)
+"Ci" = (
+/obj/structure/prop/mainship/mapping_computer,
+/turf/open/floor/mainship/silver{
+	dir = 4
+	},
+/area/mainship/battlemace)
+"Cv" = (
+/obj/machinery/light,
+/turf/open/floor/mainship/office,
+/area/mainship/battlemace)
+"Cy" = (
+/obj/structure/prop/mainship/prop_so{
+	dir = 1
+	},
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/turf/open/floor/mainship/office,
+/area/mainship/battlemace)
+"CH" = (
+/turf/closed/shuttle/ert{
+	icon_state = "stan21"
+	},
+/area/mainship/battlemace)
+"CI" = (
+/obj/effect/landmark/start/job/som/squadstandard,
+/turf/open/floor/mainship/office,
+/area/mainship/battlemace)
+"CM" = (
+/obj/machinery/telecomms/server/presets/command/imp,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"CT" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/battlemace)
+"Da" = (
+/obj/machinery/telecomms/broadcaster/preset_left/imp,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"De" = (
+/obj/machinery/door/poddoor/mainship/indestructible,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"Dj" = (
+/obj/machinery/cic_maptable/som_maptable,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"Dk" = (
+/obj/machinery/telecomms/receiver/preset_left/imp,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"Du" = (
+/turf/open/space/basic,
+/area/space)
+"DG" = (
+/obj/structure/prop/mainship/doorblocker/patrol_base/som,
+/turf/open/floor/mainship/office,
+/area/mainship/battlemace)
+"DT" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 10
+	},
+/area/mainship/battlemace)
+"Ea" = (
+/obj/structure/platform_decoration/metalplatform_deco{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"Ec" = (
+/obj/machinery/light,
+/turf/open/floor/mainship/red,
+/area/mainship/battlemace)
+"Eh" = (
+/obj/structure/window/framed/mainship/gray,
+/turf/open/floor/mainship/mono,
+/area/mainship/battlemace)
+"Ej" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 8
+	},
+/turf/open/floor/mainship/red{
+	dir = 4
+	},
+/area/mainship/battlemace)
+"EN" = (
+/turf/open/floor/carpet,
+/area/mainship/battlemace)
+"Fl" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/mainship/battlemace)
+"Fo" = (
+/obj/structure/prop/radio_prop,
+/obj/structure/table/mainship/nometal,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"Fu" = (
+/obj/structure/prop/mainship/sensor_computer3,
+/turf/open/floor/mainship/office,
+/area/mainship/battlemace)
+"Fz" = (
+/turf/open/floor/mainship/red{
+	dir = 6
+	},
+/area/mainship/battlemace)
+"FO" = (
+/obj/structure/monorail{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"FR" = (
+/obj/structure/prop/mainship/sensor_computer3,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"FY" = (
+/turf/open/floor/mainship/red/full,
+/area/mainship/battlemace)
+"Gm" = (
+/obj/machinery/cic_maptable/som_maptable,
+/turf/open/floor/mainship/silver,
+/area/mainship/battlemace)
+"Gn" = (
+/obj/machinery/telecomms/server/presets/theta,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"Gv" = (
+/obj/structure/stairs/seamless,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"GV" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 5
+	},
+/area/mainship/battlemace)
+"Hv" = (
+/obj/machinery/telecomms/bus/preset_four/imp,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"HL" = (
+/obj/machinery/door/poddoor/timed_late/containment,
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 1
+	},
+/area/mainship/battlemace)
+"HQ" = (
+/obj/machinery/telecomms/server/presets/gamma,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"HS" = (
+/obj/machinery/mech_bay_recharge_port,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"HU" = (
+/obj/structure/prop/mainship/sensor_computer3,
+/turf/open/floor/mainship/silver{
+	dir = 1
+	},
+/area/mainship/battlemace)
+"Ih" = (
+/obj/structure/bed/chair/nometal,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"Iw" = (
+/obj/structure/table/mainship/nometal,
+/turf/open/floor/mainship/silver{
+	dir = 5
+	},
+/area/mainship/battlemace)
+"IC" = (
+/obj/structure/bed/chair/dropship/passenger,
+/turf/open/floor/mainship/mono,
+/area/mainship/battlemace)
+"IJ" = (
+/obj/machinery/telecomms/bus/preset_three/imp,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"IM" = (
+/obj/machinery/computer/general_air_control,
+/turf/open/floor/mainship/silver{
+	dir = 4
+	},
+/area/mainship/battlemace)
+"IR" = (
+/obj/effect/decal/warning_stripes/box,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"IV" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 8
+	},
+/area/mainship/battlemace)
+"JA" = (
+/obj/structure/prop/mainship/sensor_computer1,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/silver{
+	dir = 1
+	},
+/area/mainship/battlemace)
+"JB" = (
+/obj/structure/monorail{
+	dir = 5
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"JF" = (
+/obj/machinery/light,
+/obj/machinery/quick_vendor/imperium,
+/turf/open/floor/mainship/office,
+/area/mainship/battlemace)
+"JL" = (
+/obj/structure/patrol_point{
+	id = "SOM_12"
+	},
+/turf/open/shuttle/elevator/grating,
+/area/mainship/battlemace)
+"JM" = (
+/obj/structure/prop/mainship/doorblocker/patrol_base/som,
+/turf/open/floor/mainship/mono,
+/area/mainship/battlemace)
+"Kb" = (
+/obj/effect/decal/warning_stripes/box/arrow{
+	dir = 1
+	},
+/turf/open/floor/mainship/office,
+/area/mainship/battlemace)
+"Kg" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/quick_vendor/imperium,
+/turf/open/floor/mainship/mono,
+/area/mainship/battlemace)
+"Kp" = (
+/obj/item/tool/candle,
+/turf/open/floor/carpet,
+/area/mainship/battlemace)
+"Ks" = (
+/obj/effect/decal/warning_stripes/box,
+/turf/open/floor/mainship/office,
+/area/mainship/battlemace)
+"Kw" = (
+/obj/machinery/telecomms/processor/preset_two/imp,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"KM" = (
+/obj/structure/bed/chair/nometal{
+	dir = 1
+	},
+/turf/open/floor/mainship/purple/full,
+/area/mainship/battlemace)
+"KP" = (
+/turf/open/floor/mainship/blue/full,
+/area/mainship/battlemace)
+"Li" = (
+/obj/structure/platform/metalplatform{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"Lw" = (
+/obj/item/tool/candle,
+/turf/open/floor/mainship/office,
+/area/mainship/battlemace)
+"LG" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/turf/open/floor/mainship/red{
+	dir = 9
+	},
+/area/mainship/battlemace)
+"LR" = (
+/obj/structure/bed/chair/office/dark,
+/turf/open/floor/mainship/office,
+/area/mainship/battlemace)
+"LS" = (
+/obj/structure/bed/chair/nometal{
+	dir = 1
+	},
+/turf/open/floor/mainship/green/full,
+/area/mainship/battlemace)
+"LU" = (
+/obj/structure/bed/chair/sofa/corsat/left,
+/turf/open/floor/wood,
+/area/mainship/battlemace)
+"Mk" = (
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/mainship/battlemace)
+"Mw" = (
+/obj/machinery/telecomms/server/presets/medical/imp,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"MK" = (
+/obj/structure/bed/chair/nometal{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship/orange/full,
+/area/mainship/battlemace)
+"ML" = (
+/obj/structure/platform/metalplatform,
+/obj/item/tool/candle,
+/turf/open/floor/carpet/side{
+	dir = 8
+	},
+/area/mainship/battlemace)
+"MN" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/battlemace)
+"MQ" = (
+/turf/open/floor/mainship/blue{
+	dir = 6
+	},
+/area/mainship/battlemace)
+"MZ" = (
+/obj/structure/closet/secure_closet/security,
+/turf/open/floor/mainship/blue{
+	dir = 9
+	},
+/area/mainship/battlemace)
+"No" = (
+/turf/open/floor/carpet/side{
+	dir = 1
+	},
+/area/mainship/battlemace)
+"NI" = (
+/turf/closed/wall/r_wall/unmeltable,
+/area/mainship/patrol_base/telecomms)
+"NU" = (
+/obj/effect/decal/warning_stripes/box/arrow{
+	dir = 8
+	},
+/obj/machinery/light,
+/turf/open/floor/plating/ground/concrete/lines,
+/area/mainship/battlemace)
+"OO" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/quick_vendor/imperium,
+/turf/open/floor/mainship/mono,
+/area/mainship/battlemace)
+"OZ" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/battlemace)
+"Pj" = (
+/turf/open/floor/mainship/purple/full,
+/area/mainship/battlemace)
+"Pl" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/battlemace)
+"PH" = (
+/obj/structure/bed/chair/office/dark,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"PT" = (
+/obj/machinery/door/poddoor/timed_late/containment,
+/turf/open/floor/plating/ground/concrete/lines,
+/area/mainship/battlemace)
+"Qa" = (
+/obj/item/tool/candle,
+/turf/open/floor/wood,
+/area/mainship/battlemace)
+"Ql" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/mainship/office,
+/area/mainship/battlemace)
+"QA" = (
+/turf/closed/shuttle/ert{
+	icon_state = "stan20"
+	},
+/area/mainship/battlemace)
+"Rm" = (
+/obj/machinery/door/poddoor/timed_late/containment,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"Rq" = (
+/obj/structure/prop/mainship/doorblocker/patrol_base/wide_right,
+/turf/closed/wall/r_wall/prison_unmeltable,
+/area/mainship/battlemace)
+"Rs" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship/office,
+/area/mainship/battlemace)
+"RA" = (
+/obj/structure/bed/chair/wood/wings{
+	dir = 1
+	},
+/turf/open/floor/mainship/office,
+/area/mainship/battlemace)
+"Sy" = (
+/obj/machinery/telecomms/server/presets/sigma,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"SE" = (
+/turf/open/floor/mainship/blue{
+	dir = 4
+	},
+/area/mainship/battlemace)
+"SJ" = (
+/obj/structure/largecrate/random/case/double,
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/mainship/battlemace)
+"SK" = (
+/obj/structure/largecrate/random/barrel/red,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/battlemace)
+"SM" = (
+/turf/open/floor/mainship/silver{
+	dir = 1
+	},
+/area/mainship/battlemace)
+"SP" = (
+/obj/structure/prop/mainship/doorblocker/patrol_base/som,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/battlemace)
+"TJ" = (
+/obj/effect/decal/warning_stripes/box,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"Uq" = (
+/turf/closed/shuttle/ert{
+	icon_state = "stan2"
+	},
+/area/mainship/battlemace)
+"Us" = (
+/obj/machinery/telecomms/server/presets/common/imp,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"Uu" = (
+/obj/structure/shuttle/engine/heater{
+	dir = 4
+	},
+/turf/closed/shuttle/ert{
+	icon_state = "stan3"
+	},
+/area/mainship/battlemace)
+"UC" = (
+/obj/machinery/vending/cigarette,
+/turf/open/floor/mainship/red,
+/area/mainship/battlemace)
+"UH" = (
+/turf/closed/shuttle/ert{
+	icon_state = "stan8"
+	},
+/area/mainship/battlemace)
+"UU" = (
+/obj/structure/table/mainship/nometal,
+/obj/machinery/computer/emails,
+/turf/open/floor/mainship/silver{
+	dir = 1
+	},
+/area/mainship/battlemace)
+"Vq" = (
+/turf/open/floor/mainship/silver{
+	dir = 9
+	},
+/area/mainship/battlemace)
+"Vy" = (
+/obj/structure/somcas/wingtip,
+/turf/closed/wall/r_wall/prison_unmeltable,
+/area/mainship/battlemace)
+"Wl" = (
+/obj/structure/bed/bunkbed,
+/obj/machinery/light,
+/turf/open/floor/mainship/office,
+/area/mainship/battlemace)
+"Wq" = (
+/obj/structure/table/rusticwoodentable,
+/turf/open/floor/mainship/office,
+/area/mainship/battlemace)
+"WA" = (
+/obj/structure/prop/mainship/doorblocker/patrol_base/som{
+	dir = 8
+	},
+/turf/open/floor/mainship/office,
+/area/mainship/battlemace)
+"WC" = (
+/obj/structure/largecrate/random/barrel/green,
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/mainship/battlemace)
+"Xp" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"XB" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/mainship/battlemace)
+"XZ" = (
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 5
+	},
+/area/mainship/battlemace)
+"Ys" = (
+/obj/machinery/telecomms/processor/preset_four/imp,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"Yu" = (
+/turf/open/floor/mainship/red/corner{
+	dir = 4
+	},
+/area/mainship/battlemace)
+"Yy" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/turf/open/floor/mainship/office,
+/area/mainship/battlemace)
+"YF" = (
+/obj/machinery/vending/marineFood/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/obj/item/reagent_containers/food/snacks/protein_pack/som,
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/mainship/battlemace)
+"YL" = (
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 4
+	},
+/area/mainship/battlemace)
+"YM" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship/red{
+	dir = 4
+	},
+/area/mainship/battlemace)
+"YO" = (
+/obj/effect/landmark/start/job/som/squadveteran,
+/turf/open/floor/mainship/office,
+/area/mainship/battlemace)
+"YV" = (
+/obj/machinery/telecomms/bus/preset_one/imp,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"YW" = (
+/obj/structure/bed/chair/nometal{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship/blue/full,
+/area/mainship/battlemace)
+"Zb" = (
+/obj/structure/prop/mainship/doorblocker/patrol_base/wide_left,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/battlemace)
+"Zd" = (
+/obj/effect/landmark/start/job/som/squadcorpsman,
+/turf/open/floor/mainship/office,
+/area/mainship/battlemace)
+"Zh" = (
+/obj/structure/prop/mainship/prop_sominf,
+/turf/open/floor/mainship/office,
+/area/mainship/battlemace)
+"Zk" = (
+/turf/open/floor/wood,
+/area/mainship/battlemace)
+"ZB" = (
+/turf/closed/shuttle/ert{
+	icon_state = "stan9"
+	},
+/area/mainship/battlemace)
+"ZL" = (
+/obj/machinery/telecomms/processor/preset_one/imp,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"ZR" = (
+/obj/structure/patrol_point{
+	id = "SOM_14"
+	},
+/turf/open/shuttle/elevator/grating,
+/area/mainship/battlemace)
+
+(1,1,1) = {"
+Du
+Du
+Du
+Du
+Du
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+Du
+Du
+Du
+uC
+uC
+uC
+De
+De
+De
+De
+De
+De
+De
+uC
+De
+De
+De
+De
+De
+De
+De
+uC
+uC
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+"}
+(2,1,1) = {"
+Du
+Du
+Du
+Du
+Du
+NI
+Aa
+fN
+YV
+Aa
+IJ
+Hv
+ZL
+Kw
+sa
+Ys
+NI
+Du
+Du
+Du
+uC
+eB
+eR
+me
+ad
+JB
+FO
+rk
+Bj
+ym
+su
+su
+ad
+JB
+FO
+rk
+Bj
+ym
+wD
+uC
+uC
+uC
+uC
+uC
+uC
+uC
+uC
+uC
+uC
+uC
+uC
+uC
+uC
+jQ
+uC
+uC
+uC
+uC
+uC
+uC
+uC
+uC
+uC
+uC
+Du
+"}
+(3,1,1) = {"
+Du
+Du
+Du
+Du
+Du
+NI
+Aa
+Aa
+Aa
+Aa
+Aa
+Aa
+Aa
+Aa
+Aa
+Aa
+NI
+Du
+Du
+Du
+uC
+SJ
+MN
+me
+ad
+vD
+aY
+lh
+Bj
+ym
+su
+su
+ad
+vD
+aY
+lh
+Bj
+ym
+wD
+Bl
+ef
+ef
+SP
+CT
+ef
+ef
+zS
+lA
+ef
+ef
+CT
+ef
+ef
+xn
+gF
+Pl
+gF
+gF
+gF
+gF
+gF
+gF
+gF
+uC
+Du
+"}
+(4,1,1) = {"
+Du
+Du
+Du
+Du
+Du
+NI
+CM
+Aa
+Aa
+Aa
+Aa
+Aa
+Aa
+Aa
+Aa
+Aa
+NI
+Du
+Du
+Du
+uC
+oX
+MN
+me
+ad
+QA
+Eh
+Eh
+pn
+ym
+ym
+ym
+ad
+QA
+Eh
+Eh
+pn
+ym
+wD
+MN
+fB
+fB
+uC
+uR
+hZ
+jB
+xE
+Ej
+hZ
+jB
+uR
+Yu
+fB
+fB
+fB
+uR
+uR
+uR
+uR
+uR
+YM
+uR
+YM
+uC
+Du
+"}
+(5,1,1) = {"
+Du
+Du
+Du
+Du
+Du
+NI
+Aa
+Aa
+Aa
+Aa
+Aa
+Aa
+Aa
+Aa
+Aa
+Aa
+NI
+Du
+Du
+Du
+uC
+Fl
+MN
+me
+QA
+jG
+vd
+vd
+UH
+pn
+ym
+ym
+QA
+jG
+vd
+vd
+UH
+pn
+wD
+MN
+zh
+Fz
+uC
+uC
+AK
+uC
+uC
+uC
+AK
+uC
+uC
+uY
+uR
+uR
+Fz
+uC
+uC
+AK
+uC
+uC
+uC
+AK
+uC
+uC
+Du
+"}
+(6,1,1) = {"
+Du
+Du
+Du
+Du
+Du
+NI
+Aa
+Aa
+Aa
+Aa
+Aa
+Aa
+Aa
+Aa
+Aa
+Aa
+NI
+Du
+Du
+Du
+uC
+Mk
+MN
+me
+rW
+mL
+va
+va
+zZ
+rW
+Cd
+jC
+rW
+mL
+va
+va
+zZ
+rW
+wD
+MN
+wj
+uC
+uC
+zV
+zV
+zV
+zV
+zV
+zV
+zV
+uC
+AK
+AK
+jQ
+uC
+uC
+zV
+zV
+zV
+zV
+zV
+zV
+zV
+uC
+uC
+"}
+(7,1,1) = {"
+Du
+Du
+Du
+Du
+Du
+NI
+Gn
+BL
+HQ
+Sy
+Us
+jv
+Mw
+Da
+Dk
+wz
+NI
+Du
+Du
+Du
+uC
+Mk
+MN
+me
+rW
+rW
+AR
+xo
+rW
+rW
+tH
+tH
+rW
+rW
+oz
+Ce
+rW
+rW
+wD
+MN
+Ec
+uC
+fQ
+rV
+rV
+Zd
+Zd
+CI
+CI
+CI
+fB
+xb
+li
+li
+mH
+fB
+CI
+pe
+pe
+YO
+YO
+rV
+rV
+Wl
+uC
+"}
+(8,1,1) = {"
+Du
+Du
+Du
+Du
+Du
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+NI
+Du
+Du
+Du
+uC
+Mk
+MN
+me
+CH
+IC
+zE
+Bw
+OZ
+Uq
+tH
+tH
+CH
+IC
+JL
+ZR
+OZ
+Uq
+wD
+MN
+wj
+uC
+zV
+rV
+fB
+bk
+uC
+YF
+fB
+fB
+hU
+Mk
+fB
+fB
+wj
+Kb
+fB
+fB
+bk
+uC
+YF
+fB
+rV
+zV
+uC
+"}
+(9,1,1) = {"
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+uC
+Mk
+MN
+me
+dK
+ra
+IC
+OZ
+ZB
+Uu
+tH
+tH
+dK
+ra
+IC
+OZ
+ZB
+Uu
+wD
+MN
+wj
+uC
+zV
+rV
+fB
+bk
+uC
+YF
+fB
+fB
+hU
+sB
+fB
+xX
+wj
+Kb
+fB
+fB
+bk
+uC
+YF
+fB
+rV
+zV
+uC
+"}
+(10,1,1) = {"
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+uC
+Mk
+MN
+me
+pP
+CH
+tG
+Af
+Uq
+pP
+us
+us
+pP
+CH
+tG
+Af
+Uq
+pP
+wD
+MN
+Ec
+uC
+fQ
+rV
+rV
+YO
+YO
+pe
+pe
+CI
+fB
+Mk
+fB
+fB
+wj
+fB
+CI
+CI
+CI
+Zd
+Zd
+rV
+rV
+Wl
+uC
+"}
+(11,1,1) = {"
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+uC
+ya
+MN
+me
+ym
+fr
+rW
+rW
+zs
+ym
+us
+us
+ym
+fr
+rW
+rW
+zs
+ym
+wD
+MN
+wj
+uC
+uC
+zV
+zV
+zV
+zV
+zV
+zV
+zV
+uC
+Mk
+fB
+fB
+rv
+uC
+zV
+zV
+zV
+zV
+zV
+zV
+zV
+uC
+uC
+"}
+(12,1,1) = {"
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+uC
+WC
+SK
+XZ
+YL
+YL
+YL
+YL
+YL
+YL
+BY
+BY
+YL
+YL
+YL
+YL
+YL
+YL
+yf
+MN
+wj
+uC
+uC
+uC
+AK
+uC
+uC
+uC
+uC
+uC
+uC
+XB
+Ql
+fB
+UC
+uC
+uC
+AK
+uC
+uC
+uC
+AK
+uC
+uC
+uC
+"}
+(13,1,1) = {"
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+uC
+pC
+AL
+ef
+ef
+uS
+ef
+cR
+ef
+ef
+oS
+oS
+ef
+ef
+ef
+ef
+ef
+ef
+ef
+oJ
+wj
+wo
+wo
+DT
+ym
+ym
+uC
+MZ
+vj
+vC
+AK
+bE
+Ql
+fB
+Ag
+uC
+wM
+wo
+wo
+IV
+wo
+wo
+IV
+hg
+uC
+"}
+(14,1,1) = {"
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+uC
+uC
+uC
+uC
+uC
+uC
+uY
+MN
+uR
+YM
+xE
+Ej
+uR
+YM
+uR
+uR
+uR
+uR
+uR
+uR
+Fz
+YL
+gN
+wD
+ym
+wX
+uC
+we
+LR
+Cb
+AK
+Mk
+LR
+fB
+pI
+uC
+me
+fP
+ym
+ym
+fP
+ym
+ym
+td
+uC
+"}
+(15,1,1) = {"
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+uC
+uC
+Rq
+Zb
+uC
+uC
+AK
+AK
+uC
+uC
+ym
+ym
+ym
+ym
+ym
+ym
+ym
+me
+wD
+ym
+ym
+JM
+jq
+SE
+MQ
+DG
+Mk
+fB
+fB
+vh
+uC
+me
+ym
+ym
+ym
+ym
+ym
+ym
+td
+uC
+"}
+(16,1,1) = {"
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+uC
+fB
+fB
+uC
+Vq
+dG
+dG
+ye
+uC
+uC
+uC
+uC
+uC
+uC
+uC
+uF
+HL
+PT
+Rm
+uC
+uC
+uC
+uC
+uC
+uC
+sB
+zh
+yr
+Fz
+uC
+me
+ym
+ym
+ym
+ym
+ym
+ym
+td
+uC
+"}
+(17,1,1) = {"
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+uC
+fB
+fB
+uC
+JA
+mr
+LR
+mF
+uC
+ym
+ym
+KM
+KM
+LS
+LS
+ym
+iJ
+NU
+uC
+uC
+mP
+mP
+mP
+OO
+LG
+yV
+wj
+rd
+JF
+uC
+GV
+bl
+bl
+bl
+bl
+wB
+YL
+tU
+uC
+"}
+(18,1,1) = {"
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+uC
+fB
+fB
+uC
+HU
+Cy
+fB
+Gm
+AK
+ym
+ym
+KM
+KM
+LS
+LS
+ym
+me
+at
+zr
+js
+Pj
+Pj
+Pj
+Pj
+Mk
+fB
+wj
+rd
+pY
+rG
+wS
+wS
+wS
+fB
+Li
+ym
+ym
+uC
+uC
+"}
+(19,1,1) = {"
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+uC
+fB
+fB
+uC
+wG
+Zh
+fB
+uH
+AK
+ym
+kc
+KM
+KM
+LS
+LS
+ym
+me
+ym
+zr
+Ks
+li
+li
+li
+li
+lK
+fB
+wj
+rd
+pY
+rG
+so
+fB
+fB
+fB
+Gv
+ym
+ym
+uC
+uC
+"}
+(20,1,1) = {"
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+uC
+fB
+fB
+JM
+SM
+fB
+fB
+jW
+uC
+Ih
+Fo
+ym
+ym
+ym
+ym
+ym
+me
+ym
+zr
+Ks
+uR
+uR
+uR
+uR
+xr
+fB
+wj
+rd
+pY
+uC
+fB
+fB
+fB
+fB
+Li
+ym
+ym
+uC
+uC
+"}
+(21,1,1) = {"
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+uC
+fB
+fB
+uC
+UU
+Cy
+wZ
+lN
+AK
+ym
+Dj
+af
+af
+uM
+uM
+ym
+me
+ym
+zr
+Ks
+Pj
+Pj
+Pj
+Pj
+Mk
+fB
+wj
+rd
+pY
+uC
+fB
+fB
+fB
+Rs
+Li
+ym
+ym
+uC
+uC
+"}
+(22,1,1) = {"
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+uC
+fB
+fB
+uC
+Iw
+IM
+Ci
+xz
+uC
+ym
+ym
+af
+af
+uM
+uM
+ym
+me
+ym
+zr
+zL
+mP
+mP
+mP
+mP
+Yy
+fB
+wj
+FY
+Yy
+uC
+hw
+Fu
+al
+uC
+pz
+ym
+ym
+uC
+uC
+"}
+(23,1,1) = {"
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+uC
+fB
+fB
+uC
+uC
+uC
+uC
+WA
+uC
+ym
+ym
+YW
+af
+uM
+MK
+ym
+me
+ym
+zr
+Ks
+KP
+KP
+KP
+KP
+Mk
+fB
+wj
+qA
+pY
+rG
+fB
+jd
+mn
+hJ
+Ea
+ym
+ym
+td
+uC
+"}
+(24,1,1) = {"
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+uC
+fB
+fB
+uC
+Du
+uC
+fB
+fB
+uC
+uC
+uC
+uC
+nB
+nB
+uC
+ym
+me
+ym
+zr
+Ks
+li
+li
+li
+li
+lK
+fB
+wj
+qA
+pY
+rG
+fB
+Li
+ym
+ym
+ym
+ym
+ym
+td
+uC
+"}
+(25,1,1) = {"
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+uC
+fB
+fB
+uC
+Du
+uC
+fB
+fB
+uC
+HS
+ym
+IR
+TJ
+ym
+ym
+ym
+me
+ym
+zr
+Ks
+uR
+uR
+uR
+uR
+xr
+fB
+wj
+qA
+pY
+uC
+fB
+Li
+ym
+ym
+ym
+ym
+ym
+td
+uC
+"}
+(26,1,1) = {"
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+uC
+uC
+uC
+uC
+Du
+uC
+fB
+fB
+uC
+wp
+ym
+ym
+ym
+ym
+ym
+ym
+XZ
+YL
+zr
+js
+KP
+KP
+KP
+KP
+Mk
+fB
+wj
+qA
+pY
+uC
+fB
+Li
+ym
+ym
+ym
+ym
+ym
+td
+uC
+"}
+(27,1,1) = {"
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+uC
+fB
+fB
+td
+ym
+ym
+TJ
+TJ
+ym
+ym
+ym
+fB
+Cv
+uC
+uC
+mP
+mP
+mP
+Kg
+rC
+uR
+Fz
+qA
+JF
+uC
+is
+Li
+ym
+ym
+ym
+ym
+ym
+td
+uC
+"}
+(28,1,1) = {"
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+uC
+fB
+fB
+td
+ym
+ym
+ym
+ym
+ym
+uC
+uC
+Zk
+Zk
+uC
+uC
+AK
+AK
+AK
+uC
+uC
+uC
+uC
+uC
+uC
+uC
+ym
+ym
+ym
+ym
+ym
+ym
+ym
+uC
+uC
+"}
+(29,1,1) = {"
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+uC
+fB
+fB
+uC
+ym
+FR
+Xp
+ym
+vl
+uC
+LU
+Zk
+Zk
+LU
+LU
+LU
+LU
+Zk
+Lw
+fB
+Wq
+uC
+Du
+Du
+uC
+uC
+uC
+uC
+uC
+uC
+uC
+uC
+uC
+uC
+"}
+(30,1,1) = {"
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+uC
+fB
+fB
+uC
+ym
+ju
+ju
+PH
+ju
+uC
+Ak
+Zk
+Zk
+Ak
+Ak
+Ak
+Ak
+Zk
+xw
+fB
+Wq
+uC
+Du
+Du
+uC
+ym
+ym
+ym
+ym
+ym
+ym
+ym
+uC
+uC
+"}
+(31,1,1) = {"
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+uC
+fB
+fB
+uC
+uC
+uC
+uC
+uC
+uC
+uC
+sS
+mT
+mT
+mT
+mT
+mT
+mT
+ML
+aR
+fB
+fB
+uC
+Du
+Du
+uC
+wo
+wo
+wo
+wo
+wo
+wo
+wo
+uC
+uC
+"}
+(32,1,1) = {"
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+uC
+fB
+fB
+uC
+Du
+Du
+Du
+Du
+Du
+uC
+No
+EN
+EN
+EN
+EN
+EN
+Kp
+nD
+aR
+RA
+fB
+uC
+Du
+Du
+uC
+ym
+ym
+ym
+ym
+ym
+ym
+ym
+uC
+Du
+"}
+(33,1,1) = {"
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+uC
+fB
+fB
+uC
+Du
+Du
+Du
+Du
+Du
+uC
+BG
+sW
+sW
+sW
+sW
+sW
+sW
+nG
+Wq
+fB
+fB
+uC
+Du
+Du
+uC
+ym
+ym
+ym
+ym
+ym
+ym
+ym
+uC
+Du
+"}
+(34,1,1) = {"
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+uC
+uC
+uC
+uC
+Du
+Du
+Du
+Du
+Du
+uC
+LU
+Zk
+Zk
+LU
+LU
+LU
+LU
+Qa
+ov
+fB
+Wq
+uC
+Du
+Du
+uC
+ym
+ym
+ym
+ym
+ym
+ym
+ym
+uC
+Du
+"}
+(35,1,1) = {"
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+uC
+Ak
+Zk
+Zk
+Ak
+Ak
+Ak
+Ak
+Zk
+fB
+Lw
+Wq
+uC
+Du
+Du
+uC
+YL
+YL
+YL
+YL
+YL
+YL
+YL
+uC
+Du
+"}
+(36,1,1) = {"
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+uC
+uC
+uC
+uC
+uC
+uC
+uC
+Vy
+uC
+uC
+uC
+uC
+uC
+Du
+Du
+uC
+ym
+ym
+ym
+uC
+uC
+uC
+uC
+uC
+Du
+"}
+(37,1,1) = {"
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+uC
+ym
+ym
+ym
+uC
+Du
+Du
+Du
+Du
+Du
+"}
+(38,1,1) = {"
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+uC
+uC
+uC
+uC
+uC
+Du
+Du
+Du
+Du
+Du
+"}
+(39,1,1) = {"
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+"}
+(40,1,1) = {"
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+Du
+"}

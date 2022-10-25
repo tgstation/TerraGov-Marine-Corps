@@ -133,7 +133,7 @@
 
 /obj/item/encryptionkey/imperial
 	name = "\improper Imperial encryption key"
-	channels = list(RADIO_CHANNEL_IMPERIAL = TRUE)
+	channels = list(RADIO_CHANNEL_IMP = TRUE)
 	independent = TRUE
 
 
@@ -191,3 +191,42 @@
 	name = "\improper SOM general radio encryption key"
 	icon_state = "cypherkey"
 	channels = list(RADIO_CHANNEL_SOM = TRUE)
+
+//Imperium
+
+/obj/item/encryptionkey/engi/imp
+	channels = list(RADIO_CHANNEL_ENGINEERING_IMP = TRUE)
+
+/obj/item/encryptionkey/med/imp
+	channels = list(RADIO_CHANNEL_MEDICAL_IMP = TRUE)
+
+/obj/item/encryptionkey/mcom/imp
+	channels = list(RADIO_CHANNEL_COMMAND_IMP = TRUE, RADIO_CHANNEL_THETA = TRUE, RADIO_CHANNEL_OMEGA = TRUE, RADIO_CHANNEL_GAMMA = TRUE, RADIO_CHANNEL_SIGMA = TRUE, RADIO_CHANNEL_ENGINEERING_IMP = TRUE, RADIO_CHANNEL_MEDICAL_IMP = TRUE)
+
+/obj/item/encryptionkey/sergeant/imp
+	channels = list(RADIO_CHANNEL_COMMAND_SOM = TRUE)
+
+/obj/item/encryptionkey/theta
+	name = "\improper Theta Squad radio encryption key"
+	icon_state = "cypherkey"
+	channels = list(RADIO_CHANNEL_THETA = TRUE)
+
+/obj/item/encryptionkey/omega
+	name = "\improper Omega Squad radio encryption key"
+	icon_state = "cypherkey"
+	channels = list(RADIO_CHANNEL_OMEGA = TRUE)
+
+/obj/item/encryptionkey/gamma
+	name = "\improper Gamma Squad radio encryption key"
+	icon_state = "cypherkey"
+	channels = list(RADIO_CHANNEL_GAMMA = TRUE)
+
+/obj/item/encryptionkey/sigma
+	name = "\improper Sigma Squad radio encryption key"
+	icon_state = "cypherkey"
+	channels = list(RADIO_CHANNEL_SIGMA = TRUE)
+
+/obj/item/encryptionkey/general/imp
+	name = "\improper SOM general radio encryption key"
+	icon_state = "cypherkey"
+	channels = list(RADIO_CHANNEL_IMP = TRUE)

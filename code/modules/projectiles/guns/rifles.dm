@@ -1725,7 +1725,6 @@
 	default_ammo_type = /obj/item/ammo_magazine/rifle/autogun
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/autogun)
 	attachable_allowed = list(
-		/obj/item/weapon/gun/shotgun/micro_grenade,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/lasersight,
@@ -1742,11 +1741,10 @@
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
-		/obj/item/attachable/motiondetector,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
-	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 16,"rail_x" = 23, "rail_y" = 24, "under_x" = 33, "under_y" = 11, "stock_x" = -1, "stock_y" = 17)
 	actions_types = list(/datum/action/item_action/aim_mode)
 
@@ -1768,3 +1766,39 @@
 	extra_delay = 0.1 SECONDS
 	autoburst_delay = 0.3 SECONDS
 
+/obj/item/weapon/gun/rifle/galvanic
+	name = "\improper Mark IV Arkhan Pattern Galvanic Rifle"
+	desc = "Its bodywork is that of an antique, with a polished wooden stock and curlicues that echo the sandy seas of Mars' desert. Yet the galvanic servitor-bullets inside are incredibly advanced. When such a bullet strikes home, it causes all the potential energy of the target to burn out in a killing blast of electric force."
+	fire_sound = 'sound/weapons/guns/fire/galvanic.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "galvanic"
+	item_state = "galvanic"
+	max_shots = 12 //codex stuff
+	gun_firemode = GUN_FIREMODE_AUTOMATIC
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+
+	default_ammo_type = /obj/item/ammo_magazine/rifle/galvanic
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/galvanic)
+
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+	)
+
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	attachable_offset = list("muzzle_x" = 40, "muzzle_y" = 17,"rail_x" = 22, "rail_y" = 21, "under_x" = 29, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
+
+	aim_slowdown = 0.5
+	wield_delay = 0.6 SECONDS
+	scatter = 0
+	scatter_unwielded = 10
+	fire_delay = 0.75 SECONDS
+	accuracy_mult_unwielded = 0.55
+	damage_falloff_mult = 0
+	akimbo_additional_delay = 0.9
+	recoil = 3

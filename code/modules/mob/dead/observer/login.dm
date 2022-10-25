@@ -21,6 +21,8 @@
 		H.add_hud_to(src)
 		H = GLOB.huds[DATA_HUD_SQUAD_SOM]
 		H.add_hud_to(src)
+		H = GLOB.huds[DATA_HUD_SQUAD_IMP]
+		H.add_hud_to(src)
 	if(ghost_xenohud)
 		H = GLOB.huds[DATA_HUD_XENO_STATUS]
 		H.add_hud_to(src)

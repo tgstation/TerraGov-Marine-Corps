@@ -513,6 +513,14 @@
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 	soft_armor = list(MELEE = 60, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 50, ACID = 60)
 
+/obj/item/clothing/suit/storage/marine/imperial/skitarii
+	name = "\improper Skitarii robe"
+	desc = "A cheap, mass produced armour worn by the Imperial Guard, which are also cheap and mass produced. You can make out what appears to be <i>Cadia stands</i> carved into the armour."
+	icon_state = "skitarii"
+	item_state = "skitarii"
+	soft_armor = list(MELEE = 45, BULLET = 65, LASER = 65, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 50, ACID = 55)
+	flags_item_map_variant = NONE
+
 /obj/item/clothing/suit/storage/marine/imperial/power
 	// Should this maybe require recharging?
 	name = "\improper salvaged Space Marine power armour"

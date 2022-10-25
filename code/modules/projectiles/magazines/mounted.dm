@@ -159,8 +159,8 @@
 	reload_delay = 2 SECONDS
 
 /obj/item/ammo_magazine/autocannon
-	name = "dualcannon IFF Magazine(20mm)"
-	desc = "A box of 150 20mm rounds for the ATR-22 mounted dualcannon."
+	name = "autocannon Magazine(20mm)"
+	desc = "A box of 15 20mm rounds for the autocannon."
 	w_class = WEIGHT_CLASS_BULKY
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "ac_mag"

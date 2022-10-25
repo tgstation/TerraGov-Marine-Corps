@@ -217,28 +217,71 @@
 	freq_listening = list(FREQ_ENGINEERING_SOM)
 	autolinkers = list("engineering_som")
 
+//Imperium
+/obj/machinery/telecomms/server/presets/medical/imp
+	id = "Medical Server imp"
+	freq_listening = list(FREQ_MEDICAL_IMP)
+	autolinkers = list("medical_imp")
+
+/obj/machinery/telecomms/server/presets/theta
+	id = "Theta"
+	freq_listening = list(FREQ_THETA)
+	autolinkers = list("theta")
+
+
+/obj/machinery/telecomms/server/presets/omega
+	id = "Omega"
+	freq_listening = list(FREQ_OMEGA)
+	autolinkers = list("omega")
+
+
+/obj/machinery/telecomms/server/presets/gamma
+	id = "Gamma"
+	freq_listening = list(FREQ_GAMMA)
+	autolinkers = list("gamma")
+
+
+/obj/machinery/telecomms/server/presets/sigma
+	id = "Sigma"
+	freq_listening = list(FREQ_SIGMA)
+	autolinkers = list("sigma")
+
+/obj/machinery/telecomms/server/presets/command/imp
+	id = "Command Server imp"
+	freq_listening = list(FREQ_COMMAND_IMP)
+	autolinkers = list("command_imp")
+
+/obj/machinery/telecomms/server/presets/engineering/imp
+	id = "Engineering Server imp"
+	freq_listening = list(FREQ_ENGINEERING_IMP)
+	autolinkers = list("engineering_imp")
 
 /obj/machinery/telecomms/server/presets/common
 	id = "Common Server"
-	freq_listening = list(FREQ_COMMON, FREQ_PMC, FREQ_COLONIST, FREQ_USL, FREQ_DEATHSQUAD, FREQ_IMPERIAL, FREQ_SOM, FREQ_SECTOID, FREQ_ECHO)
+	freq_listening = list(FREQ_COMMON, FREQ_PMC, FREQ_COLONIST, FREQ_USL, FREQ_DEATHSQUAD, FREQ_IMP, FREQ_SOM, FREQ_SECTOID, FREQ_ECHO)
 	autolinkers = list("common", "ert")
 
 //adds a proper emergency server in CIC instead of an unlinked one.
 /obj/machinery/telecomms/server/presets/common/cicbackup
 	on = 0
 	id = "Backup Common Server"
-	freq_listening = list(FREQ_COMMON, FREQ_PMC, FREQ_COLONIST, FREQ_USL, FREQ_DEATHSQUAD, FREQ_IMPERIAL, FREQ_SOM, FREQ_SECTOID, FREQ_ECHO)
+	freq_listening = list(FREQ_COMMON, FREQ_PMC, FREQ_COLONIST, FREQ_USL, FREQ_DEATHSQUAD, FREQ_IMP, FREQ_SOM, FREQ_SECTOID, FREQ_ECHO)
 	autolinkers = list("common", "ert")
 
 /obj/machinery/telecomms/server/presets/common/rebel
 	id = "Common Server rebel"
-	freq_listening = list(FREQ_COMMON_REBEL, FREQ_PMC, FREQ_COLONIST, FREQ_USL, FREQ_DEATHSQUAD, FREQ_IMPERIAL, FREQ_SOM, FREQ_SECTOID, FREQ_ECHO)
+	freq_listening = list(FREQ_COMMON_REBEL, FREQ_PMC, FREQ_COLONIST, FREQ_USL, FREQ_DEATHSQUAD, FREQ_IMP, FREQ_SOM, FREQ_SECTOID, FREQ_ECHO)
 	autolinkers = list("common_rebel", "ert")
 
 /obj/machinery/telecomms/server/presets/common/som
 	id = "Common Server som"
 	freq_listening = list(FREQ_SOM)
 	autolinkers = list("common_som")
+
+/obj/machinery/telecomms/server/presets/common/imp
+	id = "Common Server imp"
+	freq_listening = list(FREQ_IMP)
+	autolinkers = list("common_imp")
 
 //Common and other radio frequencies for people to freely use
 /obj/machinery/telecomms/server/presets/common/Initialize()

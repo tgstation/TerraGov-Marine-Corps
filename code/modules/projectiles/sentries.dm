@@ -79,6 +79,8 @@
 		marker_flags = MINIMAP_FLAG_MARINE_REBEL
 	else if(iff_signal == SON_OF_MARS_IFF)
 		marker_flags = MINIMAP_FLAG_MARINE_SOM
+	else if(iff_signal == IMP_IFF)
+		marker_flags = MINIMAP_FLAG_MARINE_IMP
 	else
 		marker_flags = MINIMAP_FLAG_MARINE
 	SSminimaps.add_marker(src, z, marker_flags, "sentry[firing ? "_firing" : "_passive"]")

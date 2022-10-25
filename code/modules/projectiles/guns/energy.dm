@@ -1006,7 +1006,7 @@
 	item_state = "lasgun"
 	ammo_level_icon = ""
 	max_shots = 50 //codex stuff
-	ammo_datum_type = /datum/ammo/energy/lasgun/marine/overcharge
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine
 	ammo_diff = null
 	rounds_per_shot = 12
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
@@ -1021,11 +1021,6 @@
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
-		/obj/item/weapon/gun/flamer/mini_flamer,
-		/obj/item/attachable/motiondetector,
-		/obj/item/attachable/buildasentry,
-		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
-		/obj/item/attachable/shoulder_mount,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
@@ -1035,10 +1030,39 @@
 	wield_delay = 0.5 SECONDS
 	scatter = 0
 	scatter_unwielded = 10
-	fire_delay = 0.3 SECONDS
+	fire_delay = 0.2 SECONDS
 	accuracy_mult_unwielded = 0.55
 	damage_falloff_mult = 0.2
 	akimbo_additional_delay = 0.9
+	mode_list = list(
+		"Standard" = /datum/lasrifle/base/energy_lasgun_mode/standard,
+		"Overcharge" = /datum/lasrifle/base/energy_lasgun_mode/overcharge,
+	)
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/lasgun/standard
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet,)
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/lasgun/dmr
+	starting_attachment_types = list(/obj/item/attachable/scope/mini, )
+
+/datum/lasrifle/base/energy_lasgun_mode/standard
+	rounds_per_shot = 12
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine
+	fire_delay = 0.2 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/lasgun.ogg'
+	message_to_user = "You set the lasgun charge mode to standard fire."
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	icon_state = "lasgun"
+
+/datum/lasrifle/base/energy_lasgun_mode/overcharge
+	rounds_per_shot = 30
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/overcharge
+	fire_delay = 0.35 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/lasgun.ogg'
+	message_to_user = "You set the lasgun charge mode to overcharge."
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	icon_state = "lasgun"
+	radial_icon_state = "laser_overcharge"
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/lascarbine
 	name = "\improper Mk 4 lascarbine"
@@ -1048,18 +1072,13 @@
 	icon_state = "lascarbine"
 	item_state = "lascarbine"
 	ammo_level_icon = ""
-	max_shots = 20 //codex stuff
-	ammo_datum_type = /datum/ammo/energy/lasgun/marine/overcharge
+	max_shots = 40 //codex stuff
+	load_method = CELL //codex stuff
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine
 	ammo_diff = null
-	fire_delay = 0.25 SECONDS
-	burst_delay = 0.1 SECONDS
-	extra_delay = 0.6 SECONDS
-	autoburst_delay = 0.6 SECONDS
-	akimbo_additional_delay = 0.9
-	burst_amount = 4
-	rounds_per_shot = 30
-	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
-	turret_flags = TURRET_INACCURATE
+	rounds_per_shot = 15
+	gun_firemode = GUN_FIREMODE_AUTOMATIC
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC||GUN_FIREMODE_AUTOBURST)
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -1067,24 +1086,25 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/scope/marine,
-		/obj/item/attachable/scope/mini,
-		/obj/item/weapon/gun/flamer/mini_flamer,
-		/obj/item/attachable/motiondetector,
-		/obj/item/attachable/buildasentry,
-		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
-		/obj/item/attachable/shoulder_mount,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
-	attachable_offset = list("muzzle_x" = 40, "muzzle_y" = 17,"rail_x" = 22, "rail_y" = 21, "under_x" = 29, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 17, "rail_y" = 21, "under_x" = 23, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
 
-	aim_slowdown = 0.4
-	wield_delay = 0.5 SECONDS
-	scatter = 5
+	aim_slowdown = 0.2
+	wield_delay = 0.3 SECONDS
+	scatter = 1
 	scatter_unwielded = 10
-	accuracy_mult_unwielded = 0.55
+	fire_delay = 0.2 SECONDS
+	burst_amount = 1
+	burst_delay = 0.15 SECONDS
+	accuracy_mult = 1
+	accuracy_mult_unwielded = 0.65
 	damage_falloff_mult = 0.5
+	movement_acc_penalty_mult = 4
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/lascarbine/standard
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet,)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/laspistol
 	name = "\improper Kantrael MG 'Defender' laspistol"
@@ -1153,7 +1173,7 @@
 	max_heat = 20
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/plasmapistol
-	name = "\improper Plasma pistol"
+	name = "\improper plasma pistol"
 	desc = "The plasma pistol is the smallest variant in the plasma weapons family. Each shot from a plasma pistol contains all the destructive fury of a larger plasma gun, although with a reduced range and rate of fire."
 	icon_state = "plasmapistolimp"
 	item_state = "plasmapistolimp"
@@ -1202,12 +1222,6 @@
 		/obj/item/attachable/bayonetknife,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/unremovable/longlas,
-		/obj/item/weapon/gun/grenade_launcher/underslung,
-		/obj/item/weapon/gun/flamer/mini_flamer,
-		/obj/item/attachable/motiondetector,
-		/obj/item/attachable/buildasentry,
-		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
-		/obj/item/attachable/shoulder_mount,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
@@ -1223,3 +1237,41 @@
 	accuracy_mult = 1.2
 	accuracy_mult_unwielded = 0.5
 	movement_acc_penalty_mult = 6
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/arcrifle
+	name = "\improper Arc rifle"
+	desc = "Arc Weapons are a type of weapon utilised by the armed forces of the Adeptus Mechanicus. They are powered by bulky perma-capacitors shipped from Mars' great repositorum some of these zinc-plated blocks store energy from days when the Imperium was young. arc weapons discharge directed energy blasts with a loud crack, firing blots of blue-white electricity that can fry a man's brain or overload a war machine's data-cortex in a solar second."
+	reload_sound = 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg'
+	fire_sound = 'sound/weapons/guns/fire/arc.ogg'
+	icon_state = "arc_rifle"
+	item_state = "arc_rifle"
+	ammo_level_icon = ""
+	max_shots = 50 //codex stuff
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/arc
+	ammo_diff = null
+	default_ammo_type = /obj/item/cell/lasgun/volkite/powerpack/skitarii
+	allowed_ammo_types = list(/obj/item/cell/lasgun/volkite/powerpack/skitarii)
+	rounds_per_shot = 12
+	gun_firemode = GUN_FIREMODE_AUTOMATIC
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+	)
+
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_WIELDED_FIRING_ONLY
+	attachable_offset = list("muzzle_x" = 40, "muzzle_y" = 17,"rail_x" = 22, "rail_y" = 21, "under_x" = 29, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
+
+	aim_slowdown = 0.4
+	wield_delay = 0.5 SECONDS
+	scatter = 0
+	scatter_unwielded = 10
+	fire_delay = 0.5 SECONDS
+	accuracy_mult_unwielded = 0.55
+	akimbo_additional_delay = 0.9
+	windup_delay = 0.5 SECONDS
+	use_heat = TRUE
+	cool_amount = 5

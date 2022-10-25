@@ -352,7 +352,7 @@
 
 /obj/item/binoculars/tac_patrol
 	name = "tactical binoculars"
-	desc = "A pair of binoculars, with a laser targeting function. Alt+Click or unique action to toggle mode. Ctrl+Click when using to target something. Shift+Click to get coordinates. Ctrl+Shift+Click to fire OB when lasing in OB mode"
+	desc = "A pair of binoculars, with a laser targeting function. <b>Alt+Click</b> or unique action to toggle mode. <b>Ctrl+Click</b> when using to target something. <b>Shift+Click</b> to get coordinates. <b>Ctrl+Shift+Click</b> to fire OB when lasing in OB mode."
 	var/laser_cooldown = 10 SECONDS
 	var/cooldown_duration = 200 //20 seconds
 	var/cost = 100
@@ -446,7 +446,7 @@
 	if(!user && isliving(loc))
 		user = loc
 	if (laser)
-		to_chat(user, "<span class='warning'>You can't switch mode while targeting")
+		to_chat(user, "<span class='warning'>You can't switch mode while targeting.")
 		return
 	if(!changable)
 		to_chat(user, "These binoculars only have one mode.")

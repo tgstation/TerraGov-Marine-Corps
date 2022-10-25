@@ -135,9 +135,12 @@
 /obj/item/clothing/shoes/marine/imperial
 	name = "guardsmen combat boots"
 	desc = "A pair of boots issued to the Imperial Guard, just like anything else they use, they are mass produced."
-	//icon_state = ""
-	soft_armor = list(MELEE = 30, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 30, BIO = 20, FIRE = 20, ACID = 25)
 
+/obj/item/clothing/shoes/marine/skitarii
+	name = "skitarii combat boots"
+	desc = "A pair of boots issued to skitarii units."
+	icon_state = "skitarii"
+	item_state = "skitarii"
 
 /obj/item/clothing/shoes/marine/som
 	name = "\improper S11 combat shoes"

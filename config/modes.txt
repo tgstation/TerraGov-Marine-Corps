@@ -31,3 +31,7 @@ endmode
 mode Sensor Capture
 	requiredplayers 2
 endmode
+
+mode Warhammer 40k
+	requiredplayers 2
+endmode

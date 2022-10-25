@@ -55,6 +55,7 @@
 	var/list/humans = list()
 	var/list/marines = list()
 	var/list/som = list()
+	var/list/imperium = list()
 	var/list/survivors = list()
 	var/list/xenos = list()
 	var/list/dead = list()
@@ -97,6 +98,8 @@
 				marines += list(serialized)
 			else if(issommarinejob(H.job))
 				som += list(serialized)
+			else if(isimpmarinejob(H.job))
+				imperium += list(serialized)
 			else if (issurvivorjob(H.job))
 				survivors += list(serialized)
 			else
@@ -105,6 +108,7 @@
 	data["humans"] = humans
 	data["marines"] = marines
 	data["som"] = som
+	data["imperium"] = imperium
 	data["survivors"] = survivors
 	data["xenos"] = xenos
 	data["dead"] = dead

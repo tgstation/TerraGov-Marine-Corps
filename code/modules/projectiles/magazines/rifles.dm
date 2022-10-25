@@ -405,10 +405,20 @@
 
 /obj/item/ammo_magazine/rifle/autogun
 	name = "\improper Autogun magazine (10x24mm)"
-	desc = "A 10mm rifle magazine designed for the V-31."
+	desc = "A 10mm rifle magazine designed for the autogun"
 	caliber = CALIBER_10X24_CASELESS
 	icon_state = "v31"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 80
+	icon_state_mini = "mag_rifle_big"
+
+/obj/item/ammo_magazine/rifle/galvanic
+	name = "\improper Galvanic rifle magazine (10x24mm)"
+	desc = "A 10mm rifle magazine designed for the galvanic rifle."
+	caliber = CALIBER_10X24_CASELESS
+	icon_state = "v31"
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/bullet/rifle/galvanic
+	max_rounds = 12
 	icon_state_mini = "mag_rifle_big"

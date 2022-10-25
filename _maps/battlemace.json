@@ -1,0 +1,7 @@
+{
+    "map_name": "Battlemace of Fury",
+    "map_path": "map_files/warhammer",
+    "map_file": "battlemace.dmm",
+    "traits": [{"Marine Main Ship": true}],
+    "squads": 2
+}

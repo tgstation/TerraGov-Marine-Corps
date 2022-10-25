@@ -92,6 +92,14 @@
 #define SOM_SQUAD_VETERAN "SOM Squad Veteran"
 #define SOM_SQUAD_MARINE "SOM Squad Standard"
 
+//Imperium
+#define IMPERIUM_SQUAD_SERGEANT "Guard Squad Sergeant"
+#define IMPERIUM_SQUAD_MEDICAE "Guard Squad Medicae"
+#define IMPERIUM_SQUAD_VETERAN "Guard Squad Veteran"
+#define IMPERIUM_SQUAD_PRIVATE "Guard Squad Private"
+#define IMPERIUM_TECH_PRIEST "Mechanicus Tech Priest"
+#define IMPERIUM_SKITARII "Mechanicus Skitarii"
+
 #define JOB_CAT_COMMAND "Command"
 #define JOB_CAT_SILICON "Silicon"
 #define JOB_CAT_REQUISITIONS "Requisitions"

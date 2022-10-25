@@ -455,7 +455,7 @@
 	desc = "A common pattern of missile launcher by the troopers of the Imperial Guard, this pattern carries a missile magazine containing individual self-propelled missiles, and can fire a variety of load types."
 	w_class = WEIGHT_CLASS_HUGE
 	flags_equip_slot = ITEM_SLOT_BACK
-	icon = 'icons/Marine/marine-atgun.dmi'
+	icon = 'icons/Marine/marine-40k.dmi'
 	icon_state = "missile_cadian"
 	default_ammo_type = /obj/item/ammo_magazine/concussion_missile
 	max_shells = 1 //codex
@@ -485,20 +485,21 @@
 	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 80, BIO = 100, FIRE = 0, ACID = 0)
 
 /obj/machinery/deployable/mounted/cadian_ml
-	pixel_x = -4
+	pixel_x = -9
+	pixel_y = -4
 
 /obj/item/weapon/gun/autocannon
 	name = "\improper Autocannon"
 	desc = "The ATR-22 mounted heavy dualcannon is a double barrel 20mm autocannon, usually seen fitted in terran armored vehicles. It shreds through armor and walls causing heavy sunder but is rather lacking in damage against xenomorph targets."
 	w_class = WEIGHT_CLASS_HUGE
 	flags_equip_slot = ITEM_SLOT_BACK
-	icon = 'icons/Marine/marine-autocannon.dmi'
+	icon = 'icons/Marine/marine-40k.dmi'
 	icon_state = "autocannon"
 
 	fire_sound = 'sound/weapons/guns/fire/autocannon_thunk.ogg'
 	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
 
-	default_ammo_type = /obj/item/ammo_magazine/dual_cannon
+	default_ammo_type = /obj/item/ammo_magazine/autocannon
 
 	scatter = 10
 	deployed_scatter_change = -10
@@ -512,7 +513,7 @@
 
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102/nest)
 
-	allowed_ammo_types = list(/obj/item/ammo_magazine/dual_cannon)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/autocannon)
 
 	deploy_time = 3 SECONDS
 	undeploy_time = 3 SECONDS

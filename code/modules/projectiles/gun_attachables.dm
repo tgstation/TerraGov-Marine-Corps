@@ -1584,6 +1584,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	if(initial(flamer.reciever_flags) & AMMO_RECIEVER_DO_NOT_EMPTY_ROUNDS_AFTER_FIRE)
 		flamer.reciever_flags |= AMMO_RECIEVER_DO_NOT_EMPTY_ROUNDS_AFTER_FIRE
 
+/obj/item/attachable/flamer_nozzle/long/unremovable
+	flags_attach_features = NONE
+	icon_state = null
+
 ///This is called when an attachment gun (src) attaches to a gun.
 /obj/item/weapon/gun/proc/on_attach(obj/item/attached_to, mob/user)
 	if(!istype(attached_to, /obj/item/weapon/gun))

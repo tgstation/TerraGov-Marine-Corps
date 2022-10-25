@@ -100,3 +100,22 @@
 /obj/machinery/telecomms/processor/preset_four/som
 	id = "Processor 4 som"
 	autolinkers = list("processor4_som")
+
+/obj/machinery/telecomms/processor/preset_one/imp
+	id = "Processor 1 imp"
+	autolinkers = list("processor1_imp")
+
+
+/obj/machinery/telecomms/processor/preset_two/imp
+	id = "Processor 2 imp"
+	autolinkers = list("processor2_imp")
+
+
+/obj/machinery/telecomms/processor/preset_three/imp
+	id = "Processor 3 imp"
+	autolinkers = list("processor3_imp")
+
+
+/obj/machinery/telecomms/processor/preset_four/imp
+	id = "Processor 4 imp"
+	autolinkers = list("processor4_imp")

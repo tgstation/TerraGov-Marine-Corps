@@ -445,3 +445,9 @@
 /area/mainship/patrol_base/telecomms
 	name = "Telecommunications"
 	icon_state = "tcomms"
+
+//battlemace of fury
+/area/mainship/battlemace
+	name = "Battlemace of Fury"
+	icon_state = "req"
+	requires_power = FALSE

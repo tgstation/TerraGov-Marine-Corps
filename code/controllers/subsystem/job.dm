@@ -99,7 +99,7 @@ SUBSYSTEM_DEF(job)
 	if(!job.player_old_enough(player.client))
 		JobDebug("AR player not old enough, Player: [player], Job:[job.title]")
 		return FALSE
-	if(ismarinejob(job) || issommarinejob(job))
+	if(ismarinejob(job) || issommarinejob(job) || isimpmarinejob(job))
 		if(!handle_initial_squad(player, job, latejoin, job.faction))
 			JobDebug("Failed to assign marine role to a squad. Player: [player.key] Job: [job.title]")
 			return FALSE

@@ -131,6 +131,11 @@ a.popt {text-decoration: none;}
 .xrayradio				{color: #008000;}
 .whiskeyradio			{color: #CC00CC;}
 
+.thetaradio				{color: #ffce50;}
+.omegaradio				{color: #4c8929;}
+.gammaradio				{color: #90e6ff;}
+.sigmaradio				{color: #ff0000;}
+
 .binarysay    			{color: #20c20e; background-color: #000000; display: block;}
 .binarysay a  			{color: #00ff00;}
 .binarysay a:active, .binarysay a:visited {color: #88ff88;}

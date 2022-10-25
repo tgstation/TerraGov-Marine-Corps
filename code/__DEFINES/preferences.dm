@@ -158,6 +158,13 @@
 	"None"\
 	)
 
+#define SELECTABLE_SQUADS_IMP list(\
+	"Theta",\
+	"Omega",\
+	"Gamma",\
+	"Sigma",\
+	"None"\
+	)
 
 #define UI_STYLES list(\
 	"Midnight",\

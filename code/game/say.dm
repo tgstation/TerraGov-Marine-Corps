@@ -3,7 +3,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	"[FREQ_BRAVO]" = "bravoradio",
 	"[FREQ_CHARLIE]" = "charlieradio",
 	"[FREQ_DELTA]" = "deltaradio",
-	"[FREQ_IMPERIAL]" = "impradio",
+	"[FREQ_IMP]" = "impradio",
 	"[FREQ_COMMAND]" = "comradio",
 	"[FREQ_AI]" = "airadio",
 	"[FREQ_CAS]" = "casradio",
@@ -27,6 +27,13 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	"[FREQ_COMMAND_SOM]" = "comradio",
 	"[FREQ_ENGINEERING_SOM]" = "engradio",
 	"[FREQ_MEDICAL_SOM]" = "medradio",
+	"[FREQ_THETA]" = "thetaradio",
+	"[FREQ_OMEGA]" = "omegaradio",
+	"[FREQ_GAMMA]" = "gammaradio",
+	"[FREQ_SIGMA]" = "sigmaradio",
+	"[FREQ_COMMAND_IMP]" = "comradio",
+	"[FREQ_ENGINEERING_IMP]" = "engradio",
+	"[FREQ_MEDICAL_IMP]" = "medradio",
 	))
 
 

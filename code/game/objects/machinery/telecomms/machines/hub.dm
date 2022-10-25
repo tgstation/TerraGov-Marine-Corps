@@ -62,3 +62,9 @@
 	autolinkers = list("hub_som", "relay", "s_relay", "command_som", "medical_som", "ert",
 	"zulu", "yankee", "xray", "whiskey", "common_som", "engineering_som",
 	"receiverA_som", "receiverB_som", "broadcasterA_som")
+
+/obj/machinery/telecomms/hub/preset/imp
+	id = "Hub imp"
+	autolinkers = list("hub_imp", "relay", "s_relay", "command_imp", "medical_imp", "ert",
+	"theta", "omega", "gamma", "sigma", "common_imp", "engineering_imp",
+	"receiverA_imp", "receiverB_imp", "broadcasterA_imp")

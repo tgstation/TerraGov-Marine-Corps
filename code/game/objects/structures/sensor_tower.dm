@@ -194,3 +194,29 @@
 		SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "relay_[towerid]_on_full")
 	else
 		SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "relay_[towerid][current_timer ? "_on" : "_off"]")
+
+/obj/structure/comms_tower
+	name = "sensor tower"
+	desc = "A tall tower with a sensor array at the top and a control box at the bottom. Has a lengthy activation process."
+	icon = 'icons/obj/structures/sensor.dmi'
+	icon_state = "sensor"
+	obj_flags = NONE
+	density = TRUE
+	layer = BELOW_OBJ_LAYER
+	resistance_flags = RESIST_ALL
+	///The timer for when the sensor tower activates
+	var/current_timer
+	///Time it takes for the sensor tower to fully activate
+	var/generate_time = 250 SECONDS
+	///Time it takes to start the activation
+	var/activate_time = 5 SECONDS
+	///Time it takes to stop the activation
+	var/deactivate_time = 10 SECONDS
+	///Count amount of sensor towers existing
+	var/static/id = 1
+	///The id for the tower when it initializes, used for minimap icon
+	var/towerid
+	///True if the sensor tower has finished activation, used for minimap icon and preventing deactivation
+	var/activated = FALSE
+	///Prevents there being more than one sensor tower being activated
+	var/static/already_activated = FALSE

@@ -99,3 +99,13 @@
 	name = "back fuel tank (X)"
 	desc = "A specialized fuel tank of ultra thick napthal type X for use with the FL-84 flamethrower and FL-240 incinerator unit."
 	default_ammo = /datum/ammo/flamethrower/blue
+
+/obj/item/ammo_magazine/flamer_tank/large/promethium
+	name = "promethium flamerthrower tank"
+	desc = "A large fuel tank of promethium, a highly volatile incendiary gel, for use in the flamer."
+	icon_state = "flametank_large"
+	max_rounds = 150
+	current_rounds = 150
+	reload_delay = 3 SECONDS
+	icon_state_mini = "tank_orange"
+	default_ammo = /datum/ammo/flamethrower/promethium

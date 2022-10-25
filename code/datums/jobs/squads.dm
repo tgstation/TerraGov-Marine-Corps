@@ -206,6 +206,71 @@
 		SOM_SQUAD_LEADER = 1,
 )
 
+//Imperium squads
+/datum/squad/theta
+	name = "Theta"
+	id = THETA_SQUAD
+	color = "#FF6A00"
+	access = list(ACCESS_MARINE_ALPHA) //No unique imperium access yet
+	radio_freq = FREQ_THETA
+	faction = FACTION_IMP
+	current_positions = list(
+		IMPERIUM_SQUAD_PRIVATE = 0,
+		IMPERIUM_SQUAD_MEDICAE = 0,
+		IMPERIUM_SQUAD_SERGEANT = 0,
+)
+	max_positions = list(
+		IMPERIUM_SQUAD_PRIVATE = -1,
+		IMPERIUM_SQUAD_SERGEANT = 1,
+)
+
+/datum/squad/omega
+	name = "Omega"
+	id = YANKEE_SQUAD
+	color = "#009999"
+	access = list(ACCESS_MARINE_BRAVO)
+	radio_freq = FREQ_OMEGA
+	faction = FACTION_IMP
+	current_positions = list(
+		IMPERIUM_SQUAD_PRIVATE = 0,
+		IMPERIUM_SQUAD_MEDICAE = 0,
+		IMPERIUM_SQUAD_SERGEANT = 0,
+)
+	max_positions = list(
+		IMPERIUM_SQUAD_PRIVATE = -1,
+		IMPERIUM_SQUAD_SERGEANT = 1,
+)
+
+/datum/squad/gamma
+	name = "Gamma"
+	id = GAMMA_SQUAD
+	color = "#008000"
+	access = list(ACCESS_MARINE_CHARLIE)
+	radio_freq = FREQ_XRAY
+	faction = FACTION_IMP
+	current_positions = list(
+		IMPERIUM_SQUAD_PRIVATE = 0,
+		IMPERIUM_SQUAD_MEDICAE = 0,
+		IMPERIUM_SQUAD_SERGEANT = 0
+)
+	max_positions = list(
+		IMPERIUM_SQUAD_PRIVATE = -1,
+		IMPERIUM_SQUAD_SERGEANT = 1,
+)
+
+//mechanicus only squad
+/datum/squad/sigma
+	name = "Sigma"
+	id = SIGMA_SQUAD
+	color = "#CC00CC"
+	access = list(ACCESS_MARINE_DELTA)
+	radio_freq = FREQ_SIGMA
+	faction = FACTION_IMP
+	current_positions = list(
+		IMPERIUM_TECH_PRIEST = 0,
+		IMPERIUM_SKITARII = 0,
+)
+
 GLOBAL_LIST_EMPTY(glovemarkings)
 GLOBAL_LIST_EMPTY(armormarkings)
 GLOBAL_LIST_EMPTY(armormarkings_sl)
@@ -465,6 +530,8 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	var/datum/squad/preferred_squad
 	if(faction == FACTION_SOM)
 		preferred_squad = LAZYACCESSASSOC(SSjob.squads_by_name, faction, player.client.prefs.preferred_squad_som)
+	else if(faction == FACTION_IMP)
+		preferred_squad = LAZYACCESSASSOC(SSjob.squads_by_name, faction, player.client.prefs.preferred_squad_imp)
 	else
 		preferred_squad = LAZYACCESSASSOC(SSjob.squads_by_name, faction, player.client.prefs.preferred_squad) //TGMC and rebels use the same squads
 	if(available_squads.Find(preferred_squad) && preferred_squad?.assign_initial(player, job, latejoin))

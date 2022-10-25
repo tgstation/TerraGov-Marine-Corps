@@ -286,6 +286,12 @@
 	item_state = "dogtag_som"
 	iff_signal = SON_OF_MARS_IFF
 
+/obj/item/card/id/dogtag/imp
+	name = "\improper Imperial Guard dogtag"
+	desc = "Used by the Imperial guard."
+	icon_state = "dogtag_som"
+	item_state = "dogtag_som"
+	iff_signal = IMP_IFF
 
 /obj/item/card/id/dogtag/examine(mob/user)
 	. = ..()

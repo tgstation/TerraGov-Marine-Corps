@@ -278,6 +278,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 			marker_flags = MINIMAP_FLAG_MARINE_REBEL
 		else if(hud_type == DATA_HUD_SQUAD_SOM)
 			marker_flags = MINIMAP_FLAG_MARINE_SOM
+		else if(hud_type == DATA_HUD_SQUAD_IMP)
+			marker_flags = MINIMAP_FLAG_MARINE_IMP
 	if(HAS_TRAIT(wearer, TRAIT_UNDEFIBBABLE))
 		SSminimaps.add_marker(wearer, wearer.z, marker_flags, "undefibbable")
 		return
@@ -302,6 +304,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		marker_flags = MINIMAP_FLAG_MARINE_REBEL
 	else if(hud_type == DATA_HUD_SQUAD_SOM)
 		marker_flags = MINIMAP_FLAG_MARINE_SOM
+	else if(hud_type == DATA_HUD_SQUAD_IMP)
+		marker_flags = MINIMAP_FLAG_MARINE_IMP
 	SSminimaps.add_marker(wearer, wearer.z, marker_flags, "defibbable")
 
 ///Change the minimap icon to a undefibbable icon
@@ -317,6 +321,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		marker_flags = MINIMAP_FLAG_MARINE_REBEL
 	else if(hud_type == DATA_HUD_SQUAD_SOM)
 		marker_flags = MINIMAP_FLAG_MARINE_SOM
+	else if(hud_type == DATA_HUD_SQUAD_IMP)
+		marker_flags = MINIMAP_FLAG_MARINE_IMP
 	SSminimaps.add_marker(wearer, wearer.z, marker_flags, "undefibbable")
 
 ///Remove all action of type minimap from the wearer, and make him disappear from the minimap
@@ -790,7 +796,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/distress/imperial
 	name = "imperial headset"
 	keyslot = /obj/item/encryptionkey/imperial
-	frequency = FREQ_IMPERIAL
+	frequency = FREQ_IMP
 
 
 /obj/item/radio/headset/distress/som
@@ -933,3 +939,132 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/mainship/som/whiskey/med
 	name = "SOM whiskey corpsman radio headset"
 	keyslot2 = /obj/item/encryptionkey/med/som
+
+
+//Imperium headsets
+
+/obj/item/radio/headset/mainship/imp
+	frequency = FREQ_IMP
+	keyslot = /obj/item/encryptionkey/general/imp
+	hud_type = DATA_HUD_SQUAD_IMP
+	minimap_type = /datum/action/minimap/som
+
+/obj/item/radio/headset/mainship/imp/Initialize(mapload, datum/squad/squad, rank)
+	if(!squad)
+		return ..()
+	icon_state = "headset_marine_[lowertext(squad.name)]"
+	var/dat = "guardsman [lowertext(squad.name)]"
+	frequency = squad.radio_freq
+	if(ispath(rank, /datum/job/imperial/squad/sergeant))
+		dat += " sergeant"
+		keyslot2 = /obj/item/encryptionkey/sergeant/imp
+		use_command = TRUE
+		command = TRUE
+	else if(ispath(rank, /datum/job/imperial/squad/tech_priest))
+		dat += " tech priest"
+		keyslot2 = /obj/item/encryptionkey/engi/imp
+	else if(ispath(rank, /datum/job/imperial/squad/skitarii))
+		dat += " skitarii"
+		keyslot2 = /obj/item/encryptionkey/engi/imp
+	else if(ispath(rank, /datum/job/imperial/squad/medicae))
+		dat += " medicae"
+		keyslot2 = /obj/item/encryptionkey/med/imp
+	name = dat + " radio headset"
+	return ..()
+
+
+/obj/item/radio/headset/mainship/imp/theta
+	name = "Imperium theta radio headset"
+	icon_state = "headset_marine_zulu"
+	frequency = FREQ_THETA
+	minimap_type = /datum/action/minimap/imp
+
+/obj/item/radio/headset/mainship/imp/theta/LateInitialize(mapload)
+	. = ..()
+	camera.network += list("zulu")
+
+/obj/item/radio/headset/mainship/imp/theta/lead
+	name = "Imperium theta leader radio headset"
+	keyslot2 = /obj/item/encryptionkey/sergeant/imp
+	use_command = TRUE
+	command = TRUE
+
+/obj/item/radio/headset/mainship/imp/theta/engi
+	name = "Imperium theta mechanicus radio headset"
+	keyslot2 = /obj/item/encryptionkey/engi/imp
+
+/obj/item/radio/headset/mainship/imp/theta/med
+	name = "Imperium theta medicae radio headset"
+	keyslot2 = /obj/item/encryptionkey/med/imp
+
+/obj/item/radio/headset/mainship/imp/omega
+	name = "Imperium omega radio headset"
+	icon_state = "headset_marine_yankee"
+	frequency = FREQ_OMEGA
+	minimap_type = /datum/action/minimap/imp
+
+/obj/item/radio/headset/mainship/imp/omega/LateInitialize(mapload)
+	. = ..()
+	camera.network += list("omega")
+
+/obj/item/radio/headset/mainship/imp/omega/lead
+	name = "Imperium omega leader radio headset"
+	keyslot2 = /obj/item/encryptionkey/sergeant/imp
+	use_command = TRUE
+	command = TRUE
+
+/obj/item/radio/headset/mainship/imp/omega/engi
+	name = "Imperium omega mechanicus radio headset"
+	keyslot2 = /obj/item/encryptionkey/engi/imp
+
+/obj/item/radio/headset/mainship/imp/omega/med
+	name = "Imperium omega medicae radio headset"
+	keyslot2 = /obj/item/encryptionkey/med/imp
+
+/obj/item/radio/headset/mainship/imp/gamma
+	name = "Imperium gamma radio headset"
+	icon_state = "headset_marine_yankee"
+	frequency = FREQ_GAMMA
+	minimap_type = /datum/action/minimap/imp
+
+/obj/item/radio/headset/mainship/imp/gamma/LateInitialize(mapload)
+	. = ..()
+	camera.network += list("gamma")
+
+/obj/item/radio/headset/mainship/imp/gamma/lead
+	name = "Imperium gamma leader radio headset"
+	keyslot2 = /obj/item/encryptionkey/sergeant/imp
+	use_command = TRUE
+	command = TRUE
+
+/obj/item/radio/headset/mainship/imp/gamma/engi
+	name = "Imperium gamma mechanicus radio headset"
+	keyslot2 = /obj/item/encryptionkey/engi/imp
+
+/obj/item/radio/headset/mainship/imp/gamma/med
+	name = "Imperium gamma medicae radio headset"
+	keyslot2 = /obj/item/encryptionkey/med/imp
+
+/obj/item/radio/headset/mainship/imp/sigma
+	name = "Imperium sigma radio headset"
+	icon_state = "headset_marine_yankee"
+	frequency = FREQ_SIGMA
+	minimap_type = /datum/action/minimap/imp
+
+/obj/item/radio/headset/mainship/imp/sigma/LateInitialize(mapload)
+	. = ..()
+	camera.network += list("sigma")
+
+/obj/item/radio/headset/mainship/imp/sigma/lead
+	name = "Imperium sigma leader radio headset"
+	keyslot2 = /obj/item/encryptionkey/sergeant/imp
+	use_command = TRUE
+	command = TRUE
+
+/obj/item/radio/headset/mainship/imp/sigma/engi
+	name = "Imperium sigma mechanicus radio headset"
+	keyslot2 = /obj/item/encryptionkey/engi/imp
+
+/obj/item/radio/headset/mainship/imp/sigma/med
+	name = "Imperium sigma medicae radio headset"
+	keyslot2 = /obj/item/encryptionkey/med/imp

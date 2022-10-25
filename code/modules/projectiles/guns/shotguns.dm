@@ -759,8 +759,8 @@
 	recoil = 1
 
 /obj/item/weapon/gun/shotgun/pump/mk6shotgun
-	name = "\improper Accatran pattern Mk XI shotgun"
-	desc = "This model has an eight round internal magazine and uses a manual pump action to to fire a single shot then re-cock the weapon. It can fire a variety of ammunition. The stock is removable and at close quarters many users prefer to discard it, shortening the weapon for extra manoeuvrability. The pistol grip allows the weapon to be fired single handed, but this makes it wildly inaccurate and requires a very strong firer. This weapon is known to be used by Cadian Shock Troopers Regiments of the Imperial Guard.</b>"
+	name = "\improper Accatran Pattern Mk XI shotgun"
+	desc = "An eight-round magazine pump shotgun. Strongly made and versatile, the Mk XI shotgun serves at the secondary preferred weapon for close-quarters and crowd control in urban enviroments, though a lasgun is best for longer distances. A service shotgun for the Cadian Shock Trooper regiment.</b>"
 	icon = 'icons/Marine/gun64.dmi'
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon_state = "mk6shotgun"

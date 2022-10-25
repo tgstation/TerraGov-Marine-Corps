@@ -39,3 +39,7 @@ endmap
 map combat_patrol_base
 	voteweight 0
 endmap
+
+map battlemace
+	voteweight 0
+endmap

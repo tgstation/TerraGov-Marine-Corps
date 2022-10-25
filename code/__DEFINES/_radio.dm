@@ -5,6 +5,7 @@
 #define RADIO_CHANNEL_COMMON "Common"
 #define RADIO_CHANNEL_COMMON_REBEL "Common Rebel"
 #define RADIO_CHANNEL_SOM "Common SOM"
+#define RADIO_CHANNEL_IMP "Common Imperium"
 #define RADIO_KEY_COMMON ";"
 
 #define RADIO_CHANNEL_REQUISITIONS "Requisitions"
@@ -15,18 +16,21 @@
 #define RADIO_CHANNEL_ENGINEERING "Engineering"
 #define RADIO_CHANNEL_ENGINEERING_REBEL "Engineering Rebel"
 #define RADIO_CHANNEL_ENGINEERING_SOM "Engineering SOM"
+#define RADIO_CHANNEL_ENGINEERING_IMP "Engineering Imperium"
 #define RADIO_KEY_ENGINEERING "e"
 #define RADIO_TOKEN_ENGINEERING ":e"
 
 #define RADIO_CHANNEL_MEDICAL "Medical"
 #define RADIO_CHANNEL_MEDICAL_REBEL "Medical Rebel"
 #define RADIO_CHANNEL_MEDICAL_SOM "Medical SOM"
+#define RADIO_CHANNEL_MEDICAL_IMP "Medical Imperium"
 #define RADIO_KEY_MEDICAL "m"
 #define RADIO_TOKEN_MEDICAL ":m"
 
 #define RADIO_CHANNEL_COMMAND "Command"
 #define RADIO_CHANNEL_COMMAND_REBEL "Command Rebel"
 #define RADIO_CHANNEL_COMMAND_SOM "Command SOM"
+#define RADIO_CHANNEL_COMMAND_IMP "Command Imperium"
 #define RADIO_KEY_COMMAND "v"
 #define RADIO_TOKEN_COMMAND ":v"
 
@@ -38,24 +42,28 @@
 #define RADIO_CHANNEL_ALPHA "Alpha"
 #define RADIO_CHANNEL_ALPHA_REBEL "Alpha Rebel"
 #define RADIO_CHANNEL_ZULU "Zulu"
+#define RADIO_CHANNEL_THETA "Theta"
 #define RADIO_KEY_ALPHA "q"
 #define RADIO_TOKEN_ALPHA ":q"
 
 #define RADIO_CHANNEL_BRAVO "Bravo"
 #define RADIO_CHANNEL_BRAVO_REBEL "Bravo Rebel"
 #define RADIO_CHANNEL_YANKEE "Yankee"
+#define RADIO_CHANNEL_OMEGA "Omega"
 #define RADIO_KEY_BRAVO "b"
 #define RADIO_TOKEN_BRAVO ":b"
 
 #define RADIO_CHANNEL_CHARLIE "Charlie"
 #define RADIO_CHANNEL_CHARLIE_REBEL "Charlie Rebel"
 #define RADIO_CHANNEL_XRAY "Xray"
+#define RADIO_CHANNEL_GAMMA "Gamma"
 #define RADIO_KEY_CHARLIE "c"
 #define RADIO_TOKEN_CHARLIE ":c"
 
 #define RADIO_CHANNEL_DELTA "Delta"
 #define RADIO_CHANNEL_DELTA_REBEL "Delta Rebel"
 #define RADIO_CHANNEL_WHISKEY "Whiskey"
+#define RADIO_CHANNEL_SIGMA "Sigma"
 #define RADIO_KEY_DELTA "d"
 #define RADIO_TOKEN_DELTA ":d"
 
@@ -64,7 +72,6 @@
 #define RADIO_CHANNEL_PMC "NT PMC"
 #define RADIO_CHANNEL_USL "USL"
 #define RADIO_CHANNEL_DEATHSQUAD "Deathsquad"
-#define RADIO_CHANNEL_IMPERIAL "Imperial"
 #define RADIO_CHANNEL_SECTOID "Alien"
 #define RADIO_CHANNEL_ECHO "Echo"
 #define RADIO_CHANNEL_DS1 "Alamo"
@@ -73,6 +80,16 @@
 
 #define MIN_FREE_FREQ 1201 // -------------------------------------------------
 // Frequencies are always odd numbers and range from 1201 to 1599.
+
+//Imperium squads
+#define FREQ_COMMAND_IMP 1221
+#define FREQ_MEDICAL_IMP 1223
+#define FREQ_ENGINEERING_IMP 1225
+
+#define FREQ_THETA 1227
+#define FREQ_OMEGA 1229
+#define FREQ_GAMMA 1231
+#define FREQ_SIGMA 1233
 
 //SOM squads
 #define FREQ_COMMAND_SOM 1235
@@ -89,7 +106,7 @@
 #define FREQ_COLONIST 1335
 #define FREQ_USL 1337
 #define FREQ_DEATHSQUAD 1339
-#define FREQ_IMPERIAL 1341
+#define FREQ_IMP 1341
 #define FREQ_SOM 1343
 #define FREQ_SECTOID 1347
 #define FREQ_ECHO 1349

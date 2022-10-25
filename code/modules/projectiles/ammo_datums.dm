@@ -752,6 +752,16 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 20
 	damage_falloff = 0.7
 
+/datum/ammo/bullet/rifle/galvanic
+	name = "galvanic servitor bullet"
+	icon_state = "blue_bullet"
+	hud_state = "laser_sniper"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	bullet_color = COLOR_PULSE_BLUE
+	damage = 40
+	penetration = 75
+	sundering = 15
+
 /*
 //================================================
 					Shotgun Ammo
@@ -2222,7 +2232,7 @@ datum/ammo/bullet/revolver/tp44
 	bullet_color = COLOR_PULSE_BLUE
 
 /datum/ammo/energy/plasmabolt
-	name = "pulse bolt"
+	name = "plasma bolt"
 	icon_state = "pulse2"
 	hud_state = "pulse"
 	damage = 40
@@ -2442,6 +2452,14 @@ datum/ammo/bullet/revolver/tp44
 	name = "superheated pulsed laser bolt"
 	damage = 25
 	penetration = 15
+
+/datum/ammo/energy/lasgun/marine/arc
+	name = "arc bolt"
+	icon_state = "pulse2"
+	hud_state = "taser"
+	damage = 50
+	penetration = 75
+	hitscan_effect_icon = "beam_electric"
 
 // Plasma //
 /datum/ammo/energy/plasma
@@ -3218,6 +3236,31 @@ datum/ammo/bullet/revolver/tp44
 	burntime = 40
 	burnlevel = 46
 	bullet_color = COLOR_NAVY
+
+/datum/ammo/flamethrower/promethium
+	icon_state = "flamer"
+	damage = 2
+	penetration = 10
+	sundering = 1
+	max_range = 6
+	accuracy = 20
+	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_EXPLOSIVE
+	shell_speed = 0.6
+	ping = null
+
+/datum/ammo/flamethrower/promethium/drop_nade(turf/T)
+	if(!T || !isturf(T))
+		return
+	flame_radius(1, T, 5, 5	, 3, 3)
+
+/datum/ammo/flamethrower/promethium/on_hit_mob(mob/M, obj/projectile/P)
+	drop_nade(get_turf(M))
+
+/datum/ammo/flamethrower/promethium/on_hit_turf(turf/T, obj/projectile/P)
+	drop_nade(T)
+
+/datum/ammo/flamethrower/promethium/do_at_max_range(turf/T, obj/projectile/P)
+	drop_nade(T)
 
 /datum/ammo/water
 	name = "water"

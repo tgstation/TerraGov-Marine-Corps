@@ -104,6 +104,8 @@
 		hud_type = DATA_HUD_SQUAD_REBEL
 	else if(faction == FACTION_SOM)
 		hud_type = DATA_HUD_SQUAD_SOM
+	else if(faction == FACTION_IMP)
+		marker_flags = DATA_HUD_SQUAD_IMP
 	else
 		return
 	if(hud_type == DATA_HUD_SQUAD_TERRAGOV)
@@ -112,6 +114,8 @@
 		marker_flags = MINIMAP_FLAG_MARINE_REBEL
 	else if(hud_type == DATA_HUD_SQUAD_SOM)
 		marker_flags = MINIMAP_FLAG_MARINE_SOM
+	else if(hud_type == DATA_HUD_SQUAD_IMP)
+		marker_flags = MINIMAP_FLAG_MARINE_IMP
 	else
 		return
 	var/datum/atom_hud/squad/squad_hud = GLOB.huds[hud_type]

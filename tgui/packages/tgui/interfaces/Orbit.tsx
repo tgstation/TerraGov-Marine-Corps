@@ -46,6 +46,7 @@ type OrbitData = {
   humans: OrbitList[],
   marines: OrbitList[],
   som: OrbitList[],
+  imperium: OrbitList[],
   survivors: OrbitList[],
   xenos: OrbitList[],
   dead: OrbitList[],
@@ -120,6 +121,7 @@ export const Orbit = (props: any, context: any) => {
     humans,
     marines,
     som,
+    imperium,
     survivors,
     xenos,
     dead,
@@ -136,6 +138,7 @@ export const Orbit = (props: any, context: any) => {
       humans,
       marines,
       som,
+      imperium,
       survivors,
       xenos,
     ]) {
@@ -221,6 +224,18 @@ export const Orbit = (props: any, context: any) => {
 
         <Section title={`SOM - (${som.length})`}>
           {som
+            .filter(searchFor(searchText))
+            .sort(compareNumberedText)
+            .map(thing => (
+              <OrbitedButton
+                key={thing.name}
+                color="good"
+                thing={thing} />
+            ))}
+        </Section>
+
+        <Section title={`Imperium - (${imperium.length})`}>
+          {imperium
             .filter(searchFor(searchText))
             .sort(compareNumberedText)
             .map(thing => (

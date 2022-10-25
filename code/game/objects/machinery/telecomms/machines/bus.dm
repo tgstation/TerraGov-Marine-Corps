@@ -57,7 +57,7 @@
 /obj/machinery/telecomms/bus/preset_two
 	id = "Bus 2"
 	network = "tcommsat"
-	freq_listening = list(FREQ_PMC, FREQ_COLONIST, FREQ_USL, FREQ_DEATHSQUAD, FREQ_IMPERIAL, FREQ_SOM, FREQ_SECTOID, FREQ_ECHO)
+	freq_listening = list(FREQ_PMC, FREQ_COLONIST, FREQ_USL, FREQ_DEATHSQUAD, FREQ_IMP, FREQ_SOM, FREQ_SECTOID, FREQ_ECHO)
 	autolinkers = list("processor2", "ert")
 
 
@@ -112,6 +112,28 @@
 	id = "Bus 4 som"
 	freq_listening = list(FREQ_SOM) //same channel as SOM ert
 	autolinkers = list("processor4_som", "common_som")
+
+
+/obj/machinery/telecomms/bus/preset_four/Initialize()
+	. = ..()
+	for(var/i = MIN_FREQ, i <= MAX_FREQ, i += 2)
+		freq_listening |= i
+
+//Imperium
+/obj/machinery/telecomms/bus/preset_one/imp
+	id = "Bus 1 imp"
+	freq_listening = list(FREQ_COMMAND_IMP, FREQ_MEDICAL_IMP, FREQ_ENGINEERING_IMP) //No need for extra channels at this stage
+	autolinkers = list("processor1_imp", "command_imp", "medical_imp", "engineering_imp")
+
+/obj/machinery/telecomms/bus/preset_three/imp
+	id = "Bus 3 imp"
+	freq_listening = list(FREQ_THETA, FREQ_OMEGA, FREQ_GAMMA, FREQ_SIGMA)
+	autolinkers = list("processor3_imp", "theta", "omega", "gamma", "sigma")
+
+/obj/machinery/telecomms/bus/preset_four/imp
+	id = "Bus 4 imp"
+	freq_listening = list(FREQ_IMP) //same channel as Imperium ert
+	autolinkers = list("processor4_imp", "common_imp")
 
 
 /obj/machinery/telecomms/bus/preset_four/Initialize()

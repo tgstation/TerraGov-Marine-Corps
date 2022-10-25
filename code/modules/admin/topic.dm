@@ -2042,7 +2042,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				var/datum/job/J = SSjob.GetJob(change)
 				previous = H.job?.title
 				var/squad_to_insert_into
-				if(ismarinejob(J) || issommarinejob(J))
+				if(ismarinejob(J) || issommarinejob(J) || isimpmarinejob(J))
 					if(H.assigned_squad)
 						squad_to_insert_into = H.assigned_squad
 					else
@@ -2112,7 +2112,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				change = input("Choose the marine's new squad.", "Change Squad") as null|anything in SSjob.squads
 				if(!change || !istype(H))
 					return
-				if(!ismarinejob(H.job) && !issommarinejob(H.job))
+				if(!ismarinejob(H.job) || !issommarinejob(H.job) || isimpmarinejob(H.job))
 					to_chat(usr, span_warning("Only marine jobs may be part of squads."))
 					return
 				H.change_squad(change)

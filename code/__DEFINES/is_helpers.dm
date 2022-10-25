@@ -66,6 +66,7 @@
 #define isengineeringjob(J) (istype(J, /datum/job/terragov/engineering))
 #define ismarinejob(J) (istype(J, /datum/job/terragov/squad))
 #define issommarinejob(J) (istype(J, /datum/job/som/squad))
+#define isimpmarinejob(J) (istype(J, /datum/job/imperial/squad))
 #define ismarinespecjob(J) (istype(J, /datum/job/terragov/squad/specialist))
 #define ismarineleaderjob(J) (istype(J, /datum/job/terragov/squad/leader))
 #define issommarineleaderjob(J) (istype(J, /datum/job/som/squad/leader))
@@ -256,6 +257,7 @@
 #define isinfestationgamemode(O) (istype(O, /datum/game_mode/infestation))
 #define iscombatpatrolgamemode(O) (istype(O, /datum/game_mode/combat_patrol))
 #define issensorcapturegamemode(O) (istype(O, /datum/game_mode/combat_patrol/sensor_capture))
+#define iswarhammergamemode(O) (istype(O, /datum/game_mode/infestation/distress/warhammer))
 
 #define isxenoresearcharea(A) (istype(A, /area/mainship/medical/medical_science))
 

@@ -8,8 +8,10 @@ export const JobPreferences = (props, context) => {
     alternate_option,
     squads,
     squads_som,
+    squads_imp,
     preferred_squad,
     preferred_squad_som,
+    preferred_squad_imp,
     overflow_job,
     special_occupations,
     special_occupation,
@@ -51,6 +53,14 @@ export const JobPreferences = (props, context) => {
     'SOM Squad Medic',
     'SOM Squad Veteran',
     'SOM Squad Leader',
+  ];
+  const impJobs = [
+    'Guard Squad Private',
+    'Guard Squad Medicae',
+    'Guard Squad Veteran',
+    'Guard Squad Sergeant',
+    'Mechanicus Tech Priest',
+    'Mechanicus Skitarii',
   ];
   const flavourJobs = ['Corporate Liaison'];
 
@@ -155,6 +165,18 @@ export const JobPreferences = (props, context) => {
                 ))}
               </Flex.Item>
               <Flex.Item>
+                <h4>Preferred Squad - Imperium</h4>
+                {Object.values(squads_imp).map(squad_imp => (
+                  <Button.Checkbox
+                    key={squad_imp}
+                    inline
+                    content={squad_imp}
+                    checked={preferred_squad_imp === squad_imp}
+                    onClick={() => act('squad_imp', { newValue: squad_imp })}
+                  />
+                ))}
+              </Flex.Item>
+              <Flex.Item>
                 <h4>Occupational choices</h4>
                 {Object.keys(special_occupations).map((special, idx) => (
                   <>
@@ -182,6 +204,9 @@ export const JobPreferences = (props, context) => {
       <Grid>
         <Grid.Column>
           <JobList name="SOM Jobs" jobs={somJobs} />
+        </Grid.Column>
+        <Grid.Column>
+          <JobList name="Imperium Jobs" jobs={impJobs} />
         </Grid.Column>
       </Grid>
     </Section>

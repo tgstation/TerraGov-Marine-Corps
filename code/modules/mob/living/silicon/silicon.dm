@@ -149,6 +149,8 @@
 				H = DATA_HUD_SQUAD_REBEL
 			else if(GLOB.huds[faction] == FACTION_SOM)
 				H = DATA_HUD_SQUAD_SOM
+			else if(GLOB.huds[faction] == FACTION_IMP)
+				H = DATA_HUD_SQUAD_IMP
 			HUD_nbr = 3
 		else
 			return
