@@ -708,8 +708,7 @@
 
 	var/mob/living/victim = M
 	do_attack_animation(M)
-	var/armor_block = victim.get_soft_armor("bio", BODY_ZONE_CHEST)
-	victim.apply_damage(100, STAMINA, BODY_ZONE_CHEST, armor_block) //This should prevent sprinting
+	victim.apply_damage(victim.modify_by_armor(100, BIO), STAMINA) //This should prevent sprinting
 	victim.apply_damage(1, BRUTE, sharp = TRUE) //Token brute for the injection
 	victim.reagents.add_reagent(/datum/reagent/toxin/xeno_neurotoxin, 10, no_overdose = TRUE)
 	playsound(victim, 'sound/effects/spray3.ogg', 25, 1)
@@ -775,8 +774,7 @@
 
 		target.adjust_stagger(3)
 		target.add_slowdown(15)
-		armor_block = target.get_soft_armor("bio", BODY_ZONE_CHEST)
-		target.apply_damage(100, STAMINA, BODY_ZONE_CHEST, armor_block) //Small amount of stamina damage; meant to stop sprinting.
+		target.apply_damage(target.modify_by_armor(100, BIO), STAMINA)
 
 	kill_hugger(0.5 SECONDS)
 
@@ -802,8 +800,7 @@
 	var/affecting = ran_zone(null, 0)
 	if(!affecting) //Still nothing??
 		affecting = BODY_ZONE_CHEST //Gotta have a torso?!
-	var/armor_block = victim.get_soft_armor("melee", affecting)
-	victim.apply_damage(CARRIER_SLASH_HUGGER_DAMAGE, BRUTE, affecting, armor_block) //Crap base damage after armour...
+	victim.apply_damage(victim.modify_by_armor(CARRIER_SLASH_HUGGER_DAMAGE, MELEE, def_zone = affecting), BRUTE, affecting)
 	victim.visible_message(span_danger("[src] frantically claws at [victim]!"),span_danger("[src] frantically claws at you!"))
 	leaping = FALSE
 	go_active() //Slashy boys recover *very* fast.
