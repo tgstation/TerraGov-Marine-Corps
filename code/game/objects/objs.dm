@@ -6,6 +6,8 @@
 
 	///damage amount to deal when this obj is attacking something
 	var/force = 0
+	///The amount of armor penetration the object has when attacking something
+	var/penetration = 0
 	///damage type to deal when this obj is attacking something
 	var/damtype = BRUTE
 	var/list/materials

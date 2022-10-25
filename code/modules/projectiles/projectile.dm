@@ -66,8 +66,6 @@
 	var/list/atom/movable/uncross_scheduled = list() // List of border movable atoms to check for when exiting a turf.
 
 	var/damage = 0
-	///ammo penetration value
-	var/penetration = 0
 	///ammo sundering value
 	var/sundering = 0
 	var/accuracy = 90 //Base projectile accuracy. Can maybe be later taken from the mob if desired.
