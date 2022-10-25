@@ -4290,8 +4290,7 @@
 /area/mainship/living/pilotbunks)
 "ob" = (
 /obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/plushie/nospawnninety{
-	},
+/obj/effect/spawner/random/plushie/nospawnninety,
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/starboard_hallway)
 "oc" = (
@@ -6542,8 +6541,7 @@
 /area/mainship/medical/lounge)
 "vE" = (
 /obj/structure/table/woodentable,
-/obj/effect/spawner/random/plushie/nospawnninety{
-	},
+/obj/effect/spawner/random/plushie/nospawnninety,
 /turf/open/floor/wood,
 /area/mainship/medical/lounge)
 "vF" = (
@@ -11229,6 +11227,15 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/briefing)
+"Jy" = (
+/obj/structure/window/reinforced/extratoughened{
+	dir = 1
+	},
+/obj/structure/window/reinforced/extratoughened{
+	dir = 4
+	},
+/turf/open/floor/mainship/tcomms,
+/area/mainship/command/airoom)
 "JA" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -15905,11 +15912,17 @@
 	},
 /area/mainship/command/cic)
 "XV" = (
+/obj/structure/window/reinforced/extratoughened{
+	dir = 8
+	},
+/obj/structure/window/reinforced/extratoughened{
+	dir = 1
+	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/airoom)
 "XW" = (
-/obj/machinery/door/window/secure/bridge{
-	dir = 2
+/obj/structure/window/reinforced/extratoughened{
+	dir = 1
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/airoom)
@@ -16239,20 +16252,21 @@
 /area/mainship/medical/chemistry)
 "YW" = (
 /obj/machinery/light/mainship,
-/obj/structure/window/reinforced/toughened{
-	dir = 4
+/obj/machinery/door/window/secure/bridge/aidoor{
+	dir = 8
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/airoom)
 "YX" = (
 /obj/effect/landmark/start/job/ai,
+/obj/machinery/door/window/secure/bridge{
+	dir = 2
+	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/airoom)
 "YZ" = (
 /obj/machinery/light/mainship,
-/obj/structure/window/reinforced/toughened{
-	dir = 8
-	},
+/obj/machinery/door/window/secure/bridge/aidoor,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/airoom)
 "Zb" = (
@@ -28167,7 +28181,7 @@ Sp
 TZ
 VR
 WQ
-XV
+Jy
 YZ
 NO
 xB

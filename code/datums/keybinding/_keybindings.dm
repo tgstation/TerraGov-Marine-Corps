@@ -13,7 +13,7 @@
 
 /datum/keybinding/proc/down(client/user)
 	SHOULD_CALL_PARENT(TRUE)
-	return CHECK_BITFIELD(SEND_SIGNAL(user.mob, keybind_signal), COMSIG_KB_ACTIVATED)
+	return CHECK_BITFIELD(SEND_SIGNAL(user.mob, keybind_signal, src), COMSIG_KB_ACTIVATED)
 
 /datum/keybinding/proc/up(client/user)
 	return FALSE
@@ -21,3 +21,14 @@
 /datum/keybinding/proc/intercept_mouse_special(datum/source)
 	SIGNAL_HANDLER
 	return COMSIG_MOB_CLICK_CANCELED
+
+/// returns the keys that the keybinding is currently triggered by
+/datum/keybinding/proc/get_keys_formatted(client/user)
+	if(!user)
+		return ""
+	var/datum/preferences/user_prefs = GLOB.preferences_datums[user.ckey]
+	if(!user_prefs)
+		return ""
+	for(var/key in user_prefs.key_bindings)
+		if(name in user_prefs.key_bindings[key])
+			return "[key]"

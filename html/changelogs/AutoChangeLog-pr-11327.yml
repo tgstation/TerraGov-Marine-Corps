@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes: 
+  - bugfix: "Fixes ozelomelyn defiler smoke not doing anything if you have a gas mask"

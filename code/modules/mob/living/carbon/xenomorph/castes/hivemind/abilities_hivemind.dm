@@ -32,7 +32,9 @@
 	mechanics_text = "Command all minions, ordering them to converge on this location."
 	ability_name = "command minions"
 	plasma_cost = 100
-	keybind_signal = COMSIG_XENOABILITY_RALLY_MINION
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RALLY_MINION,
+	)
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	cooldown_timer = 60 SECONDS
 	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED
