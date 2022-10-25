@@ -6,6 +6,8 @@
 	 * e.g. gun attachment action: target = attachment, holder = gun.
 	 */
 	var/obj/item/holder_item
+	/// Defines wheter we overlay the image of the obj we are linked to
+	var/use_obj_appeareance = TRUE
 
 /datum/action/item_action/New(Target, obj/item/holder)
 	. = ..()
@@ -33,16 +35,20 @@
 	return TRUE
 
 /datum/action/item_action/update_button_icon()
-	button.overlays.Cut()
-	var/obj/item/I = target
-	var/old_layer = I.layer
-	var/old_plane = I.plane
-	I.layer = ABOVE_HUD_LAYER
-	I.plane = ABOVE_HUD_PLANE
-	button.overlays += I
-	I.layer = old_layer
-	I.plane = old_plane
+	if(visual_references[VREF_MUTABLE_LINKED_OBJ])
+		button.cut_overlay(visual_references[VREF_MUTABLE_LINKED_OBJ])
+	if(use_obj_appeareance)
+		var/obj/item/I = target
+		// -0.5 so its below maptext and above the selected frames
+		var/item_image = mutable_appearance(I.icon, I.icon_state, ACTION_LAYER_IMAGE_ONTOP, FLOAT_PLANE)
+		visual_references[VREF_MUTABLE_LINKED_OBJ] = item_image
+		button.add_overlay(item_image)
+	else
+		visual_references[VREF_MUTABLE_LINKED_OBJ] = null
+	return ..()
 
+/datum/action/item_action/toggle
+	action_type = ACTION_TOGGLE
 
 /datum/action/item_action/toggle/New(Target)
 	. = ..()
@@ -50,94 +56,89 @@
 	button.name = name
 
 /datum/action/item_action/toggle/suit_toggle/update_button_icon()
-	. = ..()
-	if(!holder_item.light_on)
-		return
-	button.overlays += image('icons/Marine/marine-weapons.dmi', src, "active")
+	set_toggle(holder_item.light_on)
+	return ..()
 
 /datum/action/item_action/toggle/motion_detector/action_activate()
 	. = ..()
 	update_button_icon()
 
 /datum/action/item_action/firemode
+	// just here so players see what key is it bound to
+	keybinding_signals = list(
+		KEYBINDING_ALTERNATE = COMSIG_KB_FIREMODE,
+	)
+	use_obj_appeareance = FALSE
 	var/action_firemode
 	var/obj/item/weapon/gun/holder_gun
-	var/static/atom/movable/vis_obj/action/fmode_single/semiauto = new
-	var/static/atom/movable/vis_obj/action/fmode_burst/burstfire = new
-	var/static/atom/movable/vis_obj/action/fmode_single_auto/fullauto = new
-	var/static/atom/movable/vis_obj/action/fmode_burst_auto/autoburst = new
-	var/atom/movable/vis_obj/action/current_action_vis_obj
 
 
 /datum/action/item_action/firemode/New()
 	. = ..()
 	holder_gun = holder_item
-	button.overlays.Cut()
 	update_button_icon()
 
 
 /datum/action/item_action/firemode/update_button_icon()
 	if(holder_gun.gun_firemode == action_firemode)
 		return
-	button.vis_contents -= current_action_vis_obj
+	var/firemode_string = "fmode_"
 	switch(holder_gun.gun_firemode)
 		if(GUN_FIREMODE_SEMIAUTO)
 			button.name = "Semi-Automatic Firemode"
-			current_action_vis_obj = semiauto
+			firemode_string += "single"
 		if(GUN_FIREMODE_BURSTFIRE)
 			button.name = "Burst Firemode"
-			current_action_vis_obj = burstfire
+			firemode_string += "burst"
 		if(GUN_FIREMODE_AUTOMATIC)
 			button.name = "Automatic Firemode"
-			current_action_vis_obj = fullauto
+			firemode_string += "single_auto"
 		if(GUN_FIREMODE_AUTOBURST)
 			button.name = "Automatic Burst Firemode"
-			current_action_vis_obj = autoburst
-	button.vis_contents += current_action_vis_obj
+			firemode_string += "burst_auto"
+	action_icon_state = firemode_string
 	action_firemode = holder_gun.gun_firemode
+	return ..()
+
+/datum/action/item_action/firemode/handle_button_status_visuals()
+	button.color = rgb(255,255,255,255)
 
 /datum/action/item_action/aim_mode
 	name = "Take Aim"
-
-/datum/action/item_action/aim_mode/give_action(mob/M)
-	. = ..()
-	RegisterSignal(M, COMSIG_KB_AIMMODE, .proc/action_activate)
-
-/datum/action/item_action/aim_mode/remove_action(mob/M)
-	UnregisterSignal(M, COMSIG_KB_AIMMODE, .proc/action_activate)
-	return ..()
-
-/datum/action/item_action/aim_mode/update_button_icon()
-	button.overlays.Cut()
-	button.overlays += image('icons/mob/actions.dmi', null, "aim_mode", ABOVE_HUD_LAYER)
+	action_icon_state = "aim_mode"
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_KB_AIMMODE,
+	)
+	use_obj_appeareance = FALSE
 
 /datum/action/item_action/aim_mode/action_activate()
 	var/obj/item/weapon/gun/I = target
 	I.toggle_auto_aim_mode(owner)
 
 
-/datum/action/item_action/toggle_hydro
+/datum/action/item_action/toggle/hydro
 	/// This references the TL84 flamer
 	var/obj/item/weapon/gun/flamer/big_flamer/marinestandard/holder_flamer
+	use_obj_appeareance = FALSE
 
-/datum/action/item_action/toggle_hydro/New()
+/datum/action/item_action/toggle/hydro/New()
 	. = ..()
 	holder_flamer = holder_item
 	RegisterSignal(holder_flamer, COMSIG_ITEM_HYDRO_CANNON_TOGGLED, .proc/update_toggle_button_icon)
 
-
-/datum/action/item_action/toggle_hydro/update_button_icon()
-	button.overlays.Cut()
-	if (holder_flamer.hydro_active)
-		button.overlays += image('icons/mob/actions.dmi', null, "TL_84_Water", ABOVE_HUD_LAYER)
-		return
-	button.overlays += image('icons/mob/actions.dmi', null, "TL_84_Flame", ABOVE_HUD_LAYER)
+/datum/action/item_action/toggle/hydro/update_button_icon()
+	if(holder_flamer.hydro_active)
+		action_icon_state = "TL_84_Water"
+	else
+		action_icon_state = "TL_84_Flame"
+	set_toggle(holder_flamer.hydro_active)
+	return ..()
 
 ///Signal handler for when the hydro cannon is activated
-/datum/action/item_action/toggle_hydro/proc/update_toggle_button_icon()
+/datum/action/item_action/toggle/hydro/proc/update_toggle_button_icon()
 	SIGNAL_HANDLER
 	update_button_icon()
 
-/datum/action/item_action/toggle_hydro/Destroy()
+/datum/action/item_action/toggle/hydro/Destroy()
 	holder_flamer=null
 	return ..()

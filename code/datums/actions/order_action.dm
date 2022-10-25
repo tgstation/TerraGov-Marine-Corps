@@ -21,7 +21,7 @@
 
 /datum/action/innate/order/Activate()
 	active = TRUE
-	add_selected_frame()
+	set_toggle(TRUE)
 	SEND_SIGNAL(owner, COMSIG_ORDER_SELECTED, src)
 	RegisterSignal(owner, COMSIG_ORDER_SELECTED, .proc/Deactivate_signal_handler)
 
@@ -32,7 +32,7 @@
 
 /datum/action/innate/order/Deactivate()
 	active = FALSE
-	remove_selected_frame()
+	set_toggle(FALSE)
 	UnregisterSignal(owner, COMSIG_ORDER_SELECTED)
 
 /datum/action/innate/order/can_use_action()
@@ -112,7 +112,9 @@
 
 //These 'personal' subtypes are the ones not used by overwatch; like what SL or FC gets
 /datum/action/innate/order/attack_order/personal
-	keybind_signal = COMSIG_KB_ATTACKORDER
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_KB_ATTACKORDER,
+	)
 
 /datum/action/innate/order/attack_order/personal/should_show()
 	return owner.skills.getRating(skill_name) >= skill_min
@@ -131,7 +133,9 @@
 	visual_type = /obj/effect/temp_visual/order/defend_order
 
 /datum/action/innate/order/defend_order/personal
-	keybind_signal = COMSIG_KB_DEFENDORDER
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_KB_DEFENDORDER,
+	)
 
 /datum/action/innate/order/defend_order/personal/should_show()
 	return owner.skills.getRating(skill_name) >= skill_min
@@ -149,7 +153,9 @@
 	visual_type = /obj/effect/temp_visual/order/retreat_order
 
 /datum/action/innate/order/retreat_order/personal
-	keybind_signal = COMSIG_KB_RETREATORDER
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_KB_RETREATORDER,
+	)
 
 /datum/action/innate/order/retreat_order/personal/should_show()
 	return owner.skills.getRating(skill_name) >= skill_min
@@ -168,7 +174,9 @@
 	visual_type = /obj/effect/temp_visual/order/rally_order
 
 /datum/action/innate/order/rally_order/personal
-	keybind_signal = COMSIG_KB_RALLYORDER
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_KB_RALLYORDER,
+	)
 
 /datum/action/innate/order/rally_order/personal/should_show()
 	return owner.skills.getRating(skill_name) >= skill_min
