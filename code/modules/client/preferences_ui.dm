@@ -630,7 +630,6 @@
 			key_bindings[full_key] = sortList(key_bindings[full_key])
 			current_client.update_movement_keys()
 			save_keybinds()
-			// If they have a mob
 			if(user)
 				SEND_SIGNAL(user, COMSIG_MOB_KEYBINDINGS_UPDATED, GLOB.keybindings_by_name[kb_name])
 			return TRUE
