@@ -81,10 +81,10 @@
 
 		if(isxeno(mob_poi))
 			var/mob/living/carbon/xenomorph/xeno = poi
-			var/datum/xeno_caste/caste = xeno.xeno_caste
-			serialized["caste"] = caste?.display_name
-			var/icon/orbit_icon = icon('icons/UI_icons/map_blips.dmi', initial(caste?.minimap_icon))
-			serialized["icon"] = icon2base64(orbit_icon)
+			if(xeno.xeno_caste)
+				var/datum/xeno_caste/caste = xeno.xeno_caste
+				serialized["caste"] = caste.display_name
+				serialized["icon"] = caste.minimap_icon
 			if(!isnum(xeno.nicknumber))
 				serialized["nickname"] = xeno.nicknumber
 			xenos += list(serialized)
@@ -97,29 +97,36 @@
 
 		if(ishuman(mob_poi))
 			var/mob/living/carbon/human/human = poi
+			var/datum/job/job = human.job
+			serialized["icon"] = job.minimap_icon
+			serialized["job"] = job.title
+
 			if(ismarinejob(human.job))
-				var/datum/job/marine_job = human.job
-				serialized["job"] = marine_job?.title
-				var/icon/orbit_icon = icon('icons/UI_icons/map_blips.dmi', initial(marine_job?.minimap_icon))
-				serialized["icon"] = icon2base64(orbit_icon)
+				if(human.assigned_squad)
+					serialized["icon"] = lowertext(human.assigned_squad.name) + "_" + job.minimap_icon
+					serialized["job"] = human.assigned_squad.name + " " + job.title
 				marines += list(serialized)
 				continue
+
 			if(issommarinejob(human.job))
 				som += list(serialized)
 				continue
+
 			if(issurvivorjob(human.job))
 				survivors += list(serialized)
 				continue
+
 			humans += list(serialized)
 
+	data["dead"] = dead
+	data["ghosts"] = ghosts
 	data["humans"] = humans
+	data["icons"] = GLOB.minimap_icons
+	data["misc"] = misc
+	data["npcs"] = npcs
 	data["marines"] = marines
 	data["som"] = som
 	data["survivors"] = survivors
 	data["xenos"] = xenos
-	data["dead"] = dead
-	data["ghosts"] = ghosts
-	data["misc"] = misc
-	data["npcs"] = npcs
 
 	return data

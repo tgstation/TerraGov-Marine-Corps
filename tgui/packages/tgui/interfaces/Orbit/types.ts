@@ -2,6 +2,7 @@ export type OrbitData = {
   dead: Observable[];
   ghosts: Observable[];
   humans: Observable[];
+  icons?: string[];
   marines: Observable[];
   misc: Observable[];
   npcs: Observable[];

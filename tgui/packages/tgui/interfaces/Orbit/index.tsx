@@ -172,7 +172,10 @@ const ObservableSection = (
     filter<Observable>((observable) =>
       isJobOrNameMatch(observable, searchQuery)
     ),
-    sortBy<Observable>((observable) => observable.name.toLowerCase()),
+    sortBy<Observable>(
+      (observable) =>
+        observable.nickname?.toLowerCase() || observable.name.toLowerCase()
+    ),
   ])(section);
   if (!filteredSection.length) {
     return null;
@@ -200,7 +203,7 @@ const ObservableItem = (
 ) => {
   const { act } = useBackend<OrbitData>(context);
   const { color, item } = props;
-  const { icon, health, name, nickname, orbiters, ref } = item;
+  const { health, icon, name, nickname, orbiters, ref } = item;
   const [autoObserve] = useLocalState<boolean>(context, 'autoObserve', false);
 
   return (
@@ -209,17 +212,7 @@ const ObservableItem = (
       onClick={() => act('orbit', { auto_observe: autoObserve, ref: ref })}
       tooltip={!!health && <ObservableTooltip item={item} />}
       tooltipPosition="bottom-start">
-      {!!icon && (
-        <Box
-          as="img"
-          mr={1.5}
-          src={`data:image/jpeg;base64,${icon}`}
-          style={{
-            transform: 'scale(2) translatey(-1px)',
-            '-ms-interpolation-mode': 'nearest-neighbor',
-          }}
-        />
-      )}
+      {!!icon && <ObservableIcon item={item} />}
       {capitalizeFirst(nickname ?? name)}
       {!!orbiters && (
         <>
@@ -253,5 +246,29 @@ const ObservableTooltip = (props: { item: Observable }) => {
         )}
       </LabeledList>
     </>
+  );
+};
+
+/** Generates a small icon for buttons based on ICONMAP */
+const ObservableIcon = (props: { item: Observable }, context) => {
+  const { data } = useBackend<OrbitData>(context);
+  const { icons = [] } = data;
+  const {
+    item: { icon },
+  } = props;
+  if (!icon || !icons[icon]) {
+    return null;
+  }
+
+  return (
+    <Box
+      as="img"
+      mr={1.5}
+      src={`data:image/jpeg;base64,${icons[icon]}`}
+      style={{
+        transform: 'scale(2) translatey(-1px)',
+        '-ms-interpolation-mode': 'nearest-neighbor',
+      }}
+    />
   );
 };
