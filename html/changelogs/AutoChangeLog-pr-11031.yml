@@ -1,0 +1,5 @@
+author: "MLGTASTICa"
+delete-after: True
+changes: 
+  - qol: "Actions now show the key they are binded to."
+  - code_imp: "Refactored action visuals handling to be far easier to work with in the future and to (possibly) less intensive on clients"
