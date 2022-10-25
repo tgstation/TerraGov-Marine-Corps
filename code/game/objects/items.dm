@@ -309,7 +309,6 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		span_danger("Corrosive substances burn and seethe all over you upon retrieving the acid-soaked [src]!"))
 		playsound(user, "acid_hit", 25)
 		var/mob/living/carbon/human/H = user
-		var/armor_block
 		H.emote("pain")
 		var/raw_damage = current_acid.acid_damage * 0.25 //It's spread over 4 areas.
 		var/list/affected_limbs = list("l_hand", "r_hand", "l_arm", "r_arm")

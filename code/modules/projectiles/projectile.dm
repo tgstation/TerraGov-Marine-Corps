@@ -1227,9 +1227,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	Damage has a lower boundary of 0 to prevent high armour causing damage to heal the victim.
 */
 /mob/living/proc/modify_by_armor(damage_amount, armor_type, penetration, def_zone)
-	var/hard_armor_modifier = get_hard_armor(armor_type, proj_def_zone)
+	var/hard_armor_modifier = get_hard_armor(armor_type, def_zone)
 	hard_armor_modifier = hard_armor_modifier - (hard_armor_modifier * penetration * 0.01)
-	var/soft_armor_modifier = min((1 - ((get_soft_armor(armor_type, proj_def_zone) - penetration) * 0.01)), 1)
+	var/soft_armor_modifier = min((1 - ((get_soft_armor(armor_type, def_zone) - penetration) * 0.01)), 1)
 	return max(((damage_amount - hard_armor_modifier) * soft_armor_modifier), 0)
 
 /mob/living/proc/bullet_soak_effect(obj/projectile/proj)

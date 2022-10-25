@@ -275,7 +275,7 @@
 
 	var/power = I.force + round(I.force * 0.3 * user.skills.getRating("melee_weapons")) //30% bonus per melee level
 
-switch(I.damtype)
+	switch(I.damtype)
 		if(BRUTE)
 			apply_damage(modify_by_armor(power, MELEE, I.penetration, user.zone_selected), BRUTE, user.zone_selected)
 		if(BURN)
