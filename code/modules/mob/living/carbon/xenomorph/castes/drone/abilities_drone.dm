@@ -66,7 +66,6 @@
 	if(!HAS_TRAIT(X, TRAIT_ESSENCE_LINKED))
 		X.balloon_alert(X, "No link to cancel")
 		return
-	X.remove_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK)
 	end_ability()
 	return COMSIG_KB_ACTIVATED
 
@@ -75,6 +74,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	var/datum/action/xeno_action/enhancement/enhancement_action = X.actions_by_path[/datum/action/xeno_action/enhancement]
 	enhancement_action.end_ability()
+	X.remove_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK)
 	existing_link = null
 	linked_target = null
 	add_cooldown()

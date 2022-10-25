@@ -68,8 +68,8 @@
 	RegisterSignal(link_owner, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), .proc/end_link)
 	RegisterSignal(link_target, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), .proc/end_link)
 	toggle_link(TRUE)
-	to_chat(link_owner, "We have established an Essence Link with [link_target]. Stay within [DRONE_ESSENCE_LINK_RANGE] tiles to maintain it.")
-	to_chat(link_target, "[link_owner] has established an Essence Link with us. Stay within [DRONE_ESSENCE_LINK_RANGE] tiles to maintain it.")
+	to_chat(link_owner, span_xenonotice("We have established an Essence Link with [link_target]. Stay within [DRONE_ESSENCE_LINK_RANGE] tiles to maintain it."))
+	to_chat(link_target, span_xenonotice("[link_owner] has established an Essence Link with us. Stay within [DRONE_ESSENCE_LINK_RANGE] tiles to maintain it."))
 	return ..()
 
 /datum/status_effect/stacking/essence_link/add_stacks(stacks_added)
@@ -80,8 +80,8 @@
 	update_beam()
 
 /datum/status_effect/stacking/essence_link/on_remove()
-	to_chat(link_owner, "The Essence Link between us and [link_target] has been cancelled.")
-	to_chat(link_target, "The Essence Link between us and [link_owner] has been cancelled.")
+	to_chat(link_owner, span_xenonotice("The Essence Link between us and [link_target] has been cancelled."))
+	to_chat(link_target, span_xenonotice("The Essence Link between us and [link_owner] has been cancelled."))
 	toggle_link(FALSE)
 	essence_link_action.end_ability()
 	UnregisterSignal(link_owner, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED))
