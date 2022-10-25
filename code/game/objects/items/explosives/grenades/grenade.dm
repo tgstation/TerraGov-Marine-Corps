@@ -132,8 +132,7 @@
 
 ///Applies the actual effects of the rad grenade
 /obj/item/explosive/grenade/rad/proc/irradiate(mob/living/victim, strength)
-	var/rad_penetration = max((100 - victim.get_soft_armor(BIO)) / 100, 0.25)
-	var/effective_strength = strength * rad_penetration //strength with rad armor taken into account
+	var/effective_strength = max(victim.modify_by_armor(strength, BIO), strength * 0.25) //you can't completely block the rads
 	victim.adjustCloneLoss(effective_strength)
 	victim.adjustStaminaLoss(effective_strength * 7)
 	victim.adjust_stagger(effective_strength / 2)
