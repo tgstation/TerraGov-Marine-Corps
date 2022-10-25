@@ -319,7 +319,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 				break
 			if(!affected_limbs.Find(X.name) )
 				continue
-			if(istype(X) && X.take_damage_limb(0, H.modify_by_armor(raw_damage * rand(0.75, 1.25), ACID))
+			if(istype(X) && X.take_damage_limb(0, H.modify_by_armor(raw_damage * rand(0.75, 1.25), ACID)))
 				H.UpdateDamageIcon()
 			limb_count++
 		UPDATEHEALTH(H)
