@@ -608,8 +608,9 @@ TUNNEL
 		return
 
 	stepper.next_move_slowdown += charges * 2 //Acid spray has slow down so this should too; scales with charges, Min 2 slowdown, Max 10
-	stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_L_FOOT, stepper.get_soft_armor("acid", BODY_ZONE_PRECISE_L_FOOT) * 0.66) //33% armor pen
-	stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_R_FOOT, stepper.get_soft_armor("acid", BODY_ZONE_PRECISE_R_FOOT) * 0.66) //33% armor pen
+	stepper.apply_damage(stepper.modify_by_armor(charges * 10, ACID, 33, BODY_ZONE_PRECISE_L_FOOT), BURN, BODY_ZONE_PRECISE_L_FOOT)
+	stepper.apply_damage(stepper.modify_by_armor(charges * 10, ACID, 33, BODY_ZONE_PRECISE_R_FOOT), BURN, BODY_ZONE_PRECISE_R_FOOT)
+	stepper.updatehealth()
 	stepper.ExtinguishMob()
 	stepper.visible_message(span_danger("[stepper] is immersed in [src]'s acid!") , \
 	span_danger("We are immersed in [src]'s acid!") , null, 5)
@@ -1478,7 +1479,7 @@ TUNNEL
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			H.adjust_stagger(3)
-			H.apply_damage(30, BRUTE, "chest", H.get_soft_armor("melee", "chest"))
+			H.apply_damage(H.modify_by_armor(30, MELEE), BRUTE, updating_health = TRUE)
 		qdel(src)
 		return TRUE
 
