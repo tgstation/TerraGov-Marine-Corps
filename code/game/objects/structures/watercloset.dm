@@ -270,13 +270,8 @@
 		L.fire_stacks = -20 //Douse ourselves with water to avoid fire more easily
 		to_chat(L, span_warning("You've been drenched in water!"))
 		L.clean_mob()
-
-	if(isturf(loc))
-		var/turf/tile = loc
-		loc.clean_blood()
-		for(var/obj/effect/E in tile)
-			if(istype(E,/obj/effect/rune) || istype(E,/obj/effect/decal/cleanable) || istype(E,/obj/effect/overlay))
-				qdel(E)
+	else
+		O.clean_blood()
 
 /obj/machinery/shower/process()
 	if(!on)
@@ -293,7 +288,7 @@
 	is_washing = TRUE
 	addtimer(VARSET_CALLBACK(src, is_washing, FALSE), 10 SECONDS)
 	var/turf/T = get_turf(src)
-	T.clean(src)
+	T.clean_turf()
 
 /obj/machinery/shower/proc/check_heat(mob/M)
 	if(!on || watertemp == WATER_TEMP_NORMAL)
