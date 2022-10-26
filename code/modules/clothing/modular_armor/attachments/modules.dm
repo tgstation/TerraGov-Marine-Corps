@@ -130,7 +130,6 @@
 	soft_armor = list(MELEE = 0, BULLET = 40, LASER = 40, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 
-
 /obj/item/armor_module/module/tyr_head/som
 	name = "Lorica Helmet System"
 	desc = "Designed for mounting on a modular SOM helmet. Substantial additional armor improves protection against all damage."
