@@ -65,6 +65,8 @@
 	if(current_action == MOVING_TO_ATOM)
 		if(escorted_atom && !(mob_parent.Adjacent(escorted_atom)))
 			change_action(ESCORTING_ATOM, escorted_atom)
+	if(current_action != MOVING_TO_ATOM)
+		change_action(ESCORTING_ATOM, escorted_atom)
 
 /// Check so that we dont keep attacking our target beyond it's death
 /datum/ai_behavior/spiderling/register_action_signals(action_type)
