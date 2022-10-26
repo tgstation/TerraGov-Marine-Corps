@@ -156,30 +156,27 @@
 /obj/structure/closet/proc/toggle(mob/living/user)
 	return opened ? close(user) : open(user)
 
-
-// this should probably use dump_contents()
 /obj/structure/closet/ex_act(severity)
+	var/dmg
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			for(var/am in contents)//pulls everything out of the locker and hits it with an explosion
-				var/atom/movable/movable_content = am
-				movable_content.forceMove(loc)
-				movable_content.ex_act(severity)
+			contents_explosion(EXPLODE_HEAVY)
+			dump_contents()
 			qdel(src)
 		if(EXPLODE_HEAVY)
-			if(prob(50))
-				for(var/am in contents)
-					var/atom/movable/movable_content = am
-					movable_content.forceMove(loc)
-					movable_content.ex_act(severity)
-				qdel(src)
+			dmg = rand()
+			if(!locked || dmg > 0.1)
+				contents_explosion(EXPLODE_LIGHT)
+				break_open()
+				if(dmg > 0.5)
+					qdel(src)
 		if(EXPLODE_LIGHT)
-			if(prob(5))
-				for(var/am in contents)
-					var/atom/movable/movable_content = am
-					movable_content.forceMove(loc)
-					movable_content.ex_act(severity)
-				qdel(src)
+			dmg = rand()
+			if(!locked || dmg > 0.5)
+				contents_explosion(EXPLODE_LIGHT)
+				break_open()
+				if(dmg > 0.95)
+					qdel(src)
 
 /obj/structure/closet/attack_animal(mob/living/user)
 	if(user.wall_smash)
