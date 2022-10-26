@@ -397,8 +397,7 @@
 		if(!target_zone || rand(40))
 			target_zone = "chest"
 		if(launched && CHECK_BITFIELD(resistance_flags, ON_FIRE) && !L.on_fire)
-			var/armor_block = L.get_soft_armor("fire", target_zone)
-			L.apply_damage(rand(throwforce*0.75,throwforce*1.25), BURN, target_zone, armor_block, updating_health = TRUE) //Do more damage if launched from a proper launcher and active
+			L.apply_damage(L.modify_by_armor(rand(throwforce*0.75,throwforce*1.25), FIRE, def_zone = target_zone), BURN, target_zone, updating_health = TRUE) //Do more damage if launched from a proper launcher and active
 
 	// Flares instantly burn out nodes when thrown at them.
 	var/obj/alien/weeds/node/N = locate() in loc
