@@ -73,10 +73,8 @@
 
 /datum/weather/acid_rain/harmless/weather_act(mob/living/L)
 	cleanup(L)
-	if(L.on_fire && prob(20))
-		L.ExtinguishMob()
-		L.fire_stacks = -30
-		to_chat(L, span_warning("With a hiss, the heavy rain extinguishes the fire on your body, leaving nasty burns behind."))
+	if(L.fire_stacks > -20 && prob(25)
+		L.fire_stacks = max(-20, L.fire_stacks - 1)
 
 /datum/weather/acid_rain/proc/cleanup(mob/living/L, acid = FALSE)
 	if(!ishuman(L))
