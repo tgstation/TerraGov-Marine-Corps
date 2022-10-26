@@ -267,7 +267,9 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "aO" = (
-/obj/structure/window/reinforced/extratoughened,
+/obj/machinery/door/window/secure/bridge/aidoor{
+	dir = 1
+	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/airoom)
 "aP" = (
@@ -2385,6 +2387,19 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
+"gZ" = (
+/obj/machinery/marine_selector/clothes,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "ha" = (
 /obj/machinery/door/poddoor/mainship/ammo{
 	dir = 2;
@@ -3856,6 +3871,12 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "lr" = (
+/obj/structure/window/reinforced/extratoughened{
+	dir = 1
+	},
+/obj/structure/window/reinforced/extratoughened{
+	dir = 8
+	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/airoom)
 "ls" = (
@@ -4036,11 +4057,6 @@
 	dir = 8
 	},
 /area/mainship/engineering/ce_room)
-"lT" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/stern_hallway)
 "lU" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -4423,7 +4439,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "mY" = (
-/obj/structure/window/reinforced{
+/obj/structure/window/reinforced/windowstake{
 	dir = 8
 	},
 /turf/open/floor/mainship/cargo,
@@ -5007,8 +5023,8 @@
 	},
 /area/mainship/squads/general)
 "oJ" = (
-/obj/structure/window/reinforced/extratoughened{
-	dir = 1
+/obj/machinery/door/window/secure/bridge/aidoor{
+	dir = 2
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/airoom)
@@ -7171,7 +7187,6 @@
 /area/mainship/living/chapel)
 "uL" = (
 /obj/structure/disposalpipe/segment,
-/obj/structure/cable,
 /obj/machinery/alarm{
 	dir = 4
 	},
@@ -8289,7 +8304,6 @@
 	},
 /area/mainship/squads/general)
 "xT" = (
-/obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -8297,6 +8311,9 @@
 	dir = 8
 	},
 /obj/machinery/vending/weapon,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "xU" = (
@@ -10522,7 +10539,6 @@
 	dir = 2
 	},
 /obj/structure/disposalpipe/segment,
-/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "El" = (
@@ -10932,7 +10948,6 @@
 /obj/machinery/power/apc/mainship{
 	dir = 8
 	},
-/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/command/cic)
 "Fu" = (
@@ -11178,7 +11193,6 @@
 /area/mainship/hallways/hangar)
 "Ge" = (
 /obj/effect/landmark/start/job/synthetic,
-/obj/structure/cable,
 /turf/open/floor/mainship/cargo,
 /area/mainship/command/cic)
 "Gf" = (
@@ -12012,12 +12026,14 @@
 /area/mainship/command/cic)
 "IC" = (
 /obj/machinery/vending/weapon,
-/obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
 /obj/structure/window/reinforced{
 	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
 	},
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
@@ -12269,6 +12285,16 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/hull/lower_hull)
+"Jm" = (
+/obj/machinery/marine_selector/clothes,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "Jn" = (
 /obj/structure/bed/bunkbed,
 /obj/effect/landmark/start/job/squadsmartgunner,
@@ -12988,7 +13014,6 @@
 /obj/machinery/light/mainship{
 	dir = 8
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "Lt" = (
@@ -13891,7 +13916,7 @@
 /area/mainship/command/telecomms)
 "Od" = (
 /obj/structure/window/reinforced/extratoughened{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/airoom)
@@ -14454,6 +14479,19 @@
 	dir = 8
 	},
 /area/mainship/medical/chemistry)
+"PL" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/marine_selector/clothes,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "PN" = (
 /obj/machinery/light/mainship/small{
 	dir = 4
@@ -15321,6 +15359,13 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
+"Sm" = (
+/obj/structure/window/reinforced/extratoughened,
+/obj/structure/window/reinforced/windowstake{
+	dir = 8
+	},
+/turf/open/floor/mainship/tcomms,
+/area/mainship/command/airoom)
 "Sn" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 4
@@ -16420,11 +16465,6 @@
 /obj/machinery/holopad,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
-"Vk" = (
-/obj/machinery/holopad,
-/obj/structure/cable,
-/turf/open/floor/mainship/mono,
-/area/mainship/command/cic)
 "Vl" = (
 /obj/machinery/cryopod/right,
 /obj/machinery/camera/autoname/mainship,
@@ -17569,7 +17609,6 @@
 	},
 /area/space)
 "Yw" = (
-/obj/structure/cable,
 /obj/machinery/door/airlock/mainship/command/cic,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
@@ -50921,7 +50960,7 @@ ub
 Ls
 uL
 Ek
-lT
+BE
 JE
 iT
 Wk
@@ -51175,7 +51214,7 @@ Qs
 SX
 Ae
 mn
-Vk
+FB
 pa
 Ae
 iT
@@ -53246,7 +53285,7 @@ oE
 nw
 lr
 Od
-lr
+Sm
 nw
 KU
 OF
@@ -55015,7 +55054,7 @@ iu
 WN
 IQ
 sy
-xT
+xy
 Fg
 Fg
 Ak
@@ -56290,17 +56329,17 @@ iu
 xO
 IQ
 Yf
-Dh
+PL
 aF
 xO
 IQ
 Yf
-Dh
+PL
 iu
 xO
 IQ
 Yf
-Dh
+PL
 yL
 yL
 fG
@@ -56547,17 +56586,17 @@ Vp
 xO
 IQ
 IQ
-Dh
+PL
 yl
 xO
 IQ
 IQ
-Dh
+PL
 Vp
 xO
 IQ
 IQ
-Dh
+PL
 yL
 Cg
 nS
@@ -56804,17 +56843,17 @@ JT
 xO
 IQ
 IQ
-Ja
+gZ
 zO
 xO
 IQ
 IQ
-Ja
+Jm
 JT
 xO
 IQ
 IQ
-Ja
+gZ
 yL
 yL
 gQ

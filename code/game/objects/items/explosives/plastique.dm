@@ -69,6 +69,9 @@
 			var/atom/movable/T = plant_target
 			T.vis_contents += src
 		detonation_pending = addtimer(CALLBACK(src, .proc/detonate), timer*10, TIMER_STOPPABLE)
+		var/beeping_timer = ((timer*10) - 27)
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, get_turf(target), 'sound/items/countdown.ogg', 40, TRUE), beeping_timer)
+
 
 /obj/item/explosive/plastique/attack(mob/M as mob, mob/user as mob, def_zone)
 	return
@@ -112,6 +115,7 @@
 		qdel(src)
 		return
 	explosion(plant_target, 0, 0, 1, 0, 0, 1, 0, 1)
+	playsound(loc, pick('sound/effects/explosion_small1.ogg','sound/effects/explosion_small2.ogg','sound/effects/explosion_small3.ogg'), 100, FALSE, 25)
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
 	smoke.set_up(smokeradius, loc, 2)
 	smoke.start()

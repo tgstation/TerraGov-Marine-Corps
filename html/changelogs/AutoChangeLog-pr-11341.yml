@@ -1,0 +1,4 @@
+author: "Zar000"
+delete-after: True
+changes: 
+  - balance: "xenos dont pay back for roundstart slots"
