@@ -472,7 +472,13 @@
 ///Called when a driver clicks somewhere. Handles everything like equipment, punches, etc.
 /obj/vehicle/sealed/mecha/proc/on_mouseclick(mob/user, atom/target, turf/location, control, list/modifiers)
 	SIGNAL_HANDLER
-	modifiers = params2list(modifiers) //tgmc added
+	//tgmc add start
+	modifiers = params2list(modifiers)
+	if(isnull(location) && target.plane == CLICKCATCHER_PLANE) //Checks if the intended target is in deep darkness and adjusts target based on params.
+		target = params2turf(modifiers["screen-loc"], get_turf(user), user.client)
+		modifiers["icon-x"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-x"])))
+		modifiers["icon-y"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-y"])))
+	//tgmc add end
 	if(LAZYACCESS(modifiers, MIDDLE_CLICK))
 		set_safety(user)
 		return COMSIG_MOB_CLICK_CANCELED
