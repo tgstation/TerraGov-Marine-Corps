@@ -16,6 +16,7 @@
 /datum/round_event/hive_threat
 	///The human target for this event
 	var/mob/living/carbon/human/hive_target
+	var/sound/queen_sound
 
 /datum/round_event/hive_threat/start()
 	var/list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_GROUND))
@@ -28,6 +29,7 @@
 			eligible_targets += possible_target
 	if(!length(eligible_targets))
 		return //everyone is dead or evac'd
+	queen_sound = sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS, volume = 50)
 	set_target(pick(eligible_targets))
 
 ///sets the target for this event, and notifies the hive
@@ -37,7 +39,6 @@
 	hive_target.med_hud_set_status()
 	//probs add some xenohud overlay to the target so we can keep track of the nerd
 	RegisterSignal(SSdcs, COMSIG_GLOB_HIVE_TARGET_DRAINED, .proc/handle_reward)
-	var/sound/queen_sound = sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS, volume = 50)
 	xeno_message("The Queen Mother senses that [hive_target] is a deadly threat to the hive. Psydrain them for the Queen Mother's blessing!", force = TRUE)
 	for(var/mob/living/carbon/xenomorph/receiving_xeno in GLOB.alive_xeno_list)
 		SEND_SOUND(receiving_xeno, queen_sound)
@@ -56,6 +57,12 @@
 /datum/round_event/hive_threat/proc/bless_hive(mob/living/carbon/xenomorph/drainer)
 	for(var/mob/living/carbon/xenomorph/receiving_xeno in GLOB.alive_xeno_list)
 		receiving_xeno.add_movespeed_modifier(MOVESPEED_ID_BLESSED_HIVE, TRUE, 0, NONE, TRUE, -0.2) //placeholder buff. gotta go fast.
+		receiving_xeno.gain_plasma(receiving_xeno.xeno_caste.plasma_max)
+		receiving_xeno.salve_healing()
+		if(receiving_xeno == drainer)
+			receiving_xeno.evolution_stored = receiving_xeno.xeno_caste.evolution_threshold
+			if(receiving_xeno.tier != XENO_UPGRADE_FOUR || XENO_UPGRADE_THREE)
+				receiving_xeno.upgrade_xeno(XENO_UPGRADE_THREE)
 		SEND_SOUND(receiving_xeno, queen_sound)
 	addtimer(CALLBACK(src, .proc/remove_blessing), 2 MINUTES)
 
