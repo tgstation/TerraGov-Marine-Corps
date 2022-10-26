@@ -212,7 +212,7 @@ const ObservableItem = (
       onClick={() => act('orbit', { auto_observe: autoObserve, ref: ref })}
       tooltip={!!health && <ObservableTooltip item={item} />}
       tooltipPosition="bottom-start">
-      {!!icon && <ObservableIcon item={item} />}
+      {!!icon && <ObservableIcon icon={icon} />}
       {capitalizeFirst(nickname ?? name)}
       {!!orbiters && (
         <>
@@ -250,12 +250,10 @@ const ObservableTooltip = (props: { item: Observable }) => {
 };
 
 /** Generates a small icon for buttons based on ICONMAP */
-const ObservableIcon = (props: { item: Observable }, context) => {
+const ObservableIcon = (props: { icon: Observable['icon'] }, context) => {
   const { data } = useBackend<OrbitData>(context);
   const { icons = [] } = data;
-  const {
-    item: { icon },
-  } = props;
+  const { icon } = props;
   if (!icon || !icons[icon]) {
     return null;
   }
