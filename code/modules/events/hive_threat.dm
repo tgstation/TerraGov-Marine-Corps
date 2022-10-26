@@ -16,6 +16,7 @@
 /datum/round_event/hive_threat
 	///The human target for this event
 	var/mob/living/carbon/human/hive_target
+	///The announcement sound
 	var/sound/queen_sound
 
 /datum/round_event/hive_threat/start()
@@ -44,7 +45,7 @@
 		SEND_SOUND(receiving_xeno, queen_sound)
 
 //manages the hive reward and clean up
-/datum/round_event/hive_threat/proc/handle_reward(datum/source, mob/living/carbon/xenomorph/drainer) //draining xeno as an arg so child events can have rewards that target them specifically, etc
+/datum/round_event/hive_threat/proc/handle_reward(datum/source, mob/living/carbon/xenomorph/drainer)
 	SIGNAL_HANDLER
 	xeno_message("[drainer] has gleaned the secrets from the mind of [hive_target], helping ensure the future of the hive. The Queen Mother empowers us for our success!", force = TRUE)
 	bless_hive(drainer)
@@ -56,7 +57,7 @@
 ///Actually applies the buff to the hive
 /datum/round_event/hive_threat/proc/bless_hive(mob/living/carbon/xenomorph/drainer)
 	for(var/mob/living/carbon/xenomorph/receiving_xeno in GLOB.alive_xeno_list)
-		receiving_xeno.add_movespeed_modifier(MOVESPEED_ID_BLESSED_HIVE, TRUE, 0, NONE, TRUE, -0.2) //placeholder buff. gotta go fast.
+		receiving_xeno.add_movespeed_modifier(MOVESPEED_ID_BLESSED_HIVE, TRUE, 0, NONE, TRUE, -0.2)
 		receiving_xeno.gain_plasma(receiving_xeno.xeno_caste.plasma_max)
 		receiving_xeno.salve_healing()
 		if(receiving_xeno == drainer)
