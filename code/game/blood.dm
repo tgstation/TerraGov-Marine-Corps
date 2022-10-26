@@ -115,6 +115,65 @@
 		update_inv_shoes()
 		return TRUE
 
+///Washes the blood and such off a mob
+/mob/living/proc/clean_mob()
+	clean_blood()
 
+/mob/living/carbon/clean_mob()
+	. = ..()
+	if(r_hand)
+		r_hand.clean_blood()
+	if(l_hand)
+		l_hand.clean_blood()
+	if(back)
+		if(back.clean_blood())
+			update_inv_back(0)
+	if(!ishuman(src))
+		if(wear_mask)//if the mob is not human, it cleans the mask without asking for bitflags
+			if(wear_mask.clean_blood())
+				update_inv_wear_mask()
 
-
+/mob/living/carbon/human/clean_mob()
+	. = ..()
+	var/washgloves = 1
+	var/washshoes = 1
+	var/washmask = 1
+	var/washears = 1
+	var/washglasses = 1
+	if(wear_suit)
+		washgloves = !(wear_suit.flags_inv_hide & HIDEGLOVES)
+		washshoes = !(wear_suit.flags_inv_hide & HIDESHOES)
+		if(wear_suit.clean_blood())
+			update_inv_wear_suit()
+	else if(w_uniform)
+		if(w_uniform.clean_blood())
+			update_inv_w_uniform()
+	if(head)
+		washmask = !(head.flags_inv_hide & HIDEMASK)
+		washglasses = !(head.flags_inv_hide & HIDEEYES)
+		washears = !(head.flags_inv_hide & HIDEEARS)
+		if(head.clean_blood())
+			update_inv_head()
+	if(wear_mask)
+		if(washears)
+			washears = !(wear_mask.flags_inv_hide & HIDEEARS)
+		if(washglasses)
+			washglasses = !(wear_mask.flags_inv_hide & HIDEEYES)
+		if(washmask && wear_mask.clean_blood())
+			update_inv_wear_mask()
+	if(gloves && washgloves)
+		if(gloves.clean_blood())
+			update_inv_gloves()
+	if(shoes && washshoes)
+		if(shoes.clean_blood())
+			update_inv_shoes()
+	if(glasses && washglasses)
+		if(glasses.clean_blood())
+			update_inv_glasses()
+	if(wear_ear && washears)
+		if(wear_ear.clean_blood())
+			update_inv_ears()
+	if(belt)
+		if(belt.clean_blood())
+			update_inv_belt()
+	clean_blood(washshoes)
