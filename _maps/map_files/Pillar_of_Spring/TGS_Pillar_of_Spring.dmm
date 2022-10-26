@@ -4057,11 +4057,6 @@
 	dir = 8
 	},
 /area/mainship/engineering/ce_room)
-"lT" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/stern_hallway)
 "lU" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -4540,7 +4535,13 @@
 /area/mainship/shipboard/firing_range)
 "nj" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/folder/white,
+/obj/machinery/reagentgrinder,
+/obj/item/stack/sheet/mineral/phoron,
+/obj/item/stack/sheet/mineral/phoron,
+/obj/item/stack/sheet/mineral/phoron,
+/obj/item/stack/sheet/mineral/phoron,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/dropper,
 /obj/machinery/light/mainship{
 	dir = 1
 	},
@@ -7192,7 +7193,6 @@
 /area/mainship/living/chapel)
 "uL" = (
 /obj/structure/disposalpipe/segment,
-/obj/structure/cable,
 /obj/machinery/alarm{
 	dir = 4
 	},
@@ -8081,6 +8081,7 @@
 /area/mainship/hallways/hangar)
 "xm" = (
 /obj/structure/table/mainship/nometal,
+/obj/item/folder/white,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
 "xn" = (
@@ -10545,7 +10546,6 @@
 	dir = 2
 	},
 /obj/structure/disposalpipe/segment,
-/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "El" = (
@@ -10955,7 +10955,6 @@
 /obj/machinery/power/apc/mainship{
 	dir = 8
 	},
-/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/command/cic)
 "Fu" = (
@@ -11201,7 +11200,6 @@
 /area/mainship/hallways/hangar)
 "Ge" = (
 /obj/effect/landmark/start/job/synthetic,
-/obj/structure/cable,
 /turf/open/floor/mainship/cargo,
 /area/mainship/command/cic)
 "Gf" = (
@@ -13023,7 +13021,6 @@
 /obj/machinery/light/mainship{
 	dir = 8
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "Lt" = (
@@ -16475,11 +16472,6 @@
 /obj/machinery/holopad,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
-"Vk" = (
-/obj/machinery/holopad,
-/obj/structure/cable,
-/turf/open/floor/mainship/mono,
-/area/mainship/command/cic)
 "Vl" = (
 /obj/machinery/cryopod/right,
 /obj/machinery/camera/autoname/mainship,
@@ -17624,7 +17616,6 @@
 	},
 /area/space)
 "Yw" = (
-/obj/structure/cable,
 /obj/machinery/door/airlock/mainship/command/cic,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
@@ -50976,7 +50967,7 @@ ub
 Ls
 uL
 Ek
-lT
+BE
 JE
 iT
 Wk
@@ -51230,7 +51221,7 @@ Qs
 SX
 Ae
 mn
-Vk
+FB
 pa
 Ae
 iT

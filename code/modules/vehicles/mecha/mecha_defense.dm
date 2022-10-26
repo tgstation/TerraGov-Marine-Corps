@@ -258,7 +258,7 @@
 	while(obj_integrity < max_integrity)
 		if(W.use_tool(src, user, 2.5 SECONDS, volume=50, amount=1))
 			did_the_thing = TRUE
-			obj_integrity += min(10, (max_integrity - obj_integrity))
+			obj_integrity += min(150, (max_integrity - obj_integrity))
 			audible_message(span_hear("You hear welding."))
 		else
 			break

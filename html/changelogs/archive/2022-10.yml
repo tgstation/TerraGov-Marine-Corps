@@ -317,3 +317,29 @@
   TiviPlus:
   - balance: all metal cade tool interactions no longer block you from interacting
       with other cades
+2022-10-24:
+  Lumipharon:
+  - imageadd: Slight changes to the SOM satchel and powerpack sprites
+  Pariah919:
+  - balance: Arrowhead no longer has slowdown.
+  lbnesquik:
+  - rscadd: Added 3 new AI cores from polaris
+  - rscadd: Added 1 new AI hologram
+2022-10-25:
+  Lumipharon:
+  - bugfix: Fixed a voting bug with whitelisted maps
+  novaepee:
+  - code_imp: putting space between = and -1 for items in vendor code
+  tyeagg:
+  - soundadd: shovel hit sound
+2022-10-26:
+  MLGTASTICa:
+  - qol: Actions now show the key they are binded to.
+  - code_imp: Refactored action visuals handling to be far easier to work with in
+      the future and to (possibly) less intensive on clients
+  RipGrayson:
+  - bugfix: Fixed a bug with power in PoS CIC.
+  ivanmixo:
+  - bugfix: Fixes ozelomelyn defiler smoke not doing anything if you have a gas mask
+  lbnesquik:
+  - bugfix: fixed C4 being hearable way too far.
