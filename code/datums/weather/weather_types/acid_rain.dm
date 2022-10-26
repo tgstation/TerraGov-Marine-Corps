@@ -53,9 +53,8 @@
 		L.adjustFireLoss(7)
 		to_chat(L, span_boldannounce("You feel the acid rain melting you away!"))
 	cleanup(L, TRUE)
-	if(L.on_fire && prob(10))
-		L.ExtinguishMob()
-		to_chat(L, span_warning("As the acidic rain burns your body away, it also extinguishes the fire with a steamy hiss."))
+	if(L.fire_stacks > -20 && prob(25)
+		L.fire_stacks = max(-20, L.fire_stacks - 1)
 
 /datum/weather/acid_rain/harmless
 
