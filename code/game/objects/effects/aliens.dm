@@ -94,7 +94,7 @@
 
 	TIMER_COOLDOWN_START(src, COOLDOWN_ACID, 1 SECONDS)
 	if(HAS_TRAIT(src, TRAIT_FLOORED))
-		INVOKE_ASYNC(src, .proc/take_overall_damage_armored, acid_damage, BURN, "acid", FALSE, FALSE, TRUE)
+		INVOKE_ASYNC(src, .proc/take_overall_damage_armored, acid_damage, BURN, ACID, FALSE, FALSE, TRUE)
 		to_chat(src, span_danger("You are scalded by the burning acid!"))
 		return
 	to_chat(src, span_danger("Your feet scald and burn! Argh!"))
@@ -103,12 +103,10 @@
 
 	next_move_slowdown += slow_amt
 	var/datum/limb/affecting = get_limb(BODY_ZONE_PRECISE_L_FOOT)
-	var/armor_block = get_soft_armor("acid", affecting)
-	INVOKE_ASYNC(affecting, /datum/limb/.proc/take_damage_limb, 0, acid_damage/2, FALSE, FALSE, armor_block)
+	INVOKE_ASYNC(affecting, /datum/limb/.proc/take_damage_limb, 0, modify_by_armor(acid_damage * 0.5, ACID, def_zone = BODY_ZONE_PRECISE_L_FOOT), FALSE, FALSE)
 
 	affecting = get_limb(BODY_ZONE_PRECISE_R_FOOT)
-	armor_block = get_soft_armor("acid", affecting)
-	INVOKE_ASYNC(affecting, /datum/limb/.proc/take_damage_limb, 0, acid_damage/2, FALSE, FALSE, armor_block, TRUE)
+	INVOKE_ASYNC(affecting, /datum/limb/.proc/take_damage_limb, 0, modify_by_armor(acid_damage * 0.5, ACID, def_zone = BODY_ZONE_PRECISE_L_FOOT), FALSE, FALSE, 0, TRUE)
 
 
 /obj/effect/xenomorph/spray/process()
