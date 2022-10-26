@@ -505,10 +505,6 @@
 			target_zone = BODY_ZONE_CHEST
 			L =  carbon_victim.get_limb(target_zone)
 
-		if(L.limb_status & LIMB_SPLINTED) //If they have it splinted, the splint won't hold.
-			L.remove_limb_flags(LIMB_SPLINTED)
-			to_chat(src, span_danger("The splint on your [L.display_name] comes apart!"))
-
 		L.take_damage_limb(damage, 0, FALSE, FALSE, get_soft_armor("melee", target_zone))
 	else
 		apply_damage(damage, BRUTE, target_zone, get_soft_armor("melee", target_zone))
