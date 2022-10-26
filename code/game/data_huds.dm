@@ -96,7 +96,7 @@
 
 //medical hud used by ghosts
 /datum/atom_hud/medical/observer
-	hud_icons = list(HEALTH_HUD, XENO_EMBRYO_HUD, XENO_REAGENT_HUD, STATUS_HUD, MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
+	hud_icons = list(HEALTH_HUD, XENO_EMBRYO_HUD, XENO_REAGENT_HUD, XENO_DEBUFF_HUD, STATUS_HUD, MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 
 
 /datum/atom_hud/medical/pain
@@ -194,6 +194,7 @@
 	var/static/image/transvitox_high_image = image('icons/mob/hud.dmi', icon_state = "transvitox_high")
 	var/static/image/hunter_silence_image = image('icons/mob/hud.dmi', icon_state = "silence_debuff")
 	var/static/image/sanguinal_high_image = image('icons/mob/hud.dmi', icon_state = "sanguinal_high")
+	var/static/image/hive_target_image = image('icons/mob/hud.dmi', icon_state = "hive_target")
 
 	xeno_reagent.overlays.Cut()
 	xeno_reagent.icon_state = ""
@@ -235,6 +236,8 @@
 	if(stat != DEAD)
 		if(IsMute())
 			xeno_debuff.overlays += hunter_silence_image
+	if(HAS_TRAIT(src, TRAIT_HIVE_TARGET))
+		xeno_debuff.overlays += hive_target_image
 
 	hud_list[XENO_DEBUFF_HUD] = xeno_debuff
 
