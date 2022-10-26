@@ -265,7 +265,7 @@
 	return ..()
 
 
-/mob/living/simple_animal/proc/attack_threshold_check(damage, damagetype = BRUTE, armorcheck = "melee")
+/mob/living/simple_animal/proc/attack_threshold_check(damage, damagetype = BRUTE, armorcheck = MELEE)
 	var/temp_damage = damage
 	if(!damage_coeff[damagetype])
 		temp_damage = 0
@@ -276,7 +276,7 @@
 		visible_message(span_warning("[src] looks unharmed."))
 		return FALSE
 	else
-		apply_damage(damage, damagetype, blocked = get_soft_armor(armorcheck))
+		apply_damage(modify_by_armor(damage, armorcheck), damagetype)
 		UPDATEHEALTH(src)
 		return TRUE
 
