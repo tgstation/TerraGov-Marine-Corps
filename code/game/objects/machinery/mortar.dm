@@ -492,7 +492,8 @@
 	reload_time = 0.25 SECONDS
 	max_rounds = 32
 	offset_per_turfs = 25
-	spread = 6
+	spread = 5
+	max_spread = 5
 
 // Shells themselves //
 
