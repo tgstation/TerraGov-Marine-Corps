@@ -471,7 +471,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	icon_state = "pepperball"
 	item_state = "pepperball"
 	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
-	max_shells = 70 //codex
+	max_shells = 100 //codex
 	caliber = CALIBER_PEPPERBALL
 	default_ammo_type = /obj/item/ammo_magazine/rifle/pepperball
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/pepperball)
@@ -481,12 +481,13 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	attachable_allowed = list(
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/shoulder_mount,
+		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
 	) // One
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.15 SECONDS
-	aim_speed_modifier = 0.5
+	aim_fire_delay = 0.1 SECONDS
+	aim_speed_modifier = 0.1
 
 	flags_gun_features = GUN_AMMO_COUNTER
 
