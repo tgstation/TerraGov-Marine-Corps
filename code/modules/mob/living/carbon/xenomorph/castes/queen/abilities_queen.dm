@@ -7,7 +7,9 @@
 	mechanics_text = "Announces a message to the hive."
 	plasma_cost = 50
 	cooldown_timer = 10 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_QUEEN_HIVE_MESSAGE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_HIVE_MESSAGE,
+	)
 	use_state_flags = XACT_USE_LYING
 
 //Parameters used when displaying hive message to all xenos
@@ -67,7 +69,9 @@
 	plasma_cost = 250
 	cooldown_timer = 100 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
-	keybind_signal = COMSIG_XENOABILITY_SCREECH
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SCREECH,
+	)
 
 /datum/action/xeno_action/activable/screech/on_cooldown_finish()
 	to_chat(owner, span_warning("We feel our throat muscles vibrate. We are ready to screech again."))
@@ -166,7 +170,7 @@
 	RegisterSignal(watcher, COMSIG_MOVABLE_MOVED, .proc/on_movement)
 	RegisterSignal(watcher, COMSIG_XENOMORPH_TAKING_DAMAGE, .proc/on_damage_taken)
 	overwatch_active = TRUE
-	add_selected_frame()
+	set_toggle(TRUE)
 
 /datum/action/xeno_action/watch_xeno/proc/stop_overwatch(do_reset_perspective = TRUE)
 	var/mob/living/carbon/xenomorph/watcher = owner
@@ -180,7 +184,7 @@
 		watcher.reset_perspective()
 	UnregisterSignal(watcher, list(COMSIG_MOVABLE_MOVED, COMSIG_XENOMORPH_TAKING_DAMAGE))
 	overwatch_active = FALSE
-	remove_selected_frame()
+	set_toggle(FALSE)
 
 /datum/action/xeno_action/watch_xeno/proc/on_list_xeno_selection(datum/source, mob/living/carbon/xenomorph/selected_xeno)
 	SIGNAL_HANDLER
@@ -219,7 +223,9 @@
 	action_icon_state = "toggle_queen_zoom"
 	mechanics_text = "Zoom out for a larger view around wherever you are looking."
 	plasma_cost = 0
-	keybind_signal = COMSIG_XENOABILITY_TOGGLE_QUEEN_ZOOM
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_QUEEN_ZOOM,
+	)
 
 
 /datum/action/xeno_action/toggle_queen_zoom/action_activate()
@@ -335,7 +341,9 @@
 	mechanics_text = "Give plasma to a target Xenomorph (you must be overwatching them.)"
 	plasma_cost = 150
 	cooldown_timer = 8 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA,
+	)
 	use_state_flags = XACT_USE_LYING
 	target_flags = XABB_MOB_TARGET
 
@@ -398,7 +406,9 @@
 	action_icon_state = "xeno_deevolve"
 	mechanics_text = "De-evolve a target Xenomorph of Tier 2 or higher to the next lowest tier."
 	plasma_cost = 600
-	keybind_signal = COMSIG_XENOABILITY_DEEVOLVE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DEEVOLVE,
+	)
 	use_state_flags = XACT_USE_LYING
 
 /datum/action/xeno_action/deevolve/action_activate()

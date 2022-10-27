@@ -6,9 +6,15 @@
 /obj/effect/temp_visual/explosion
 	name = "explosion"
 	icon = 'icons/effects/explosion.dmi'
-	icon_state = "grenade"
-	duration = 0.8 SECONDS
+	icon_state = "explosion"
+	duration = 8
 	pixel_x = -16
+	pixel_y = -16
+	light_system = STATIC_LIGHT
+
+/obj/effect/temp_visual/explosion/Initialize(mapload, radius, color)
+	. = ..()
+	set_light(radius, radius, color)
 
 //unsorted miscellaneous temporary visuals
 /obj/effect/temp_visual/dir_setting/bloodsplatter

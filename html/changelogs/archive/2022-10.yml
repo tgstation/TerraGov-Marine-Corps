@@ -284,3 +284,72 @@
   RipGrayson:
   - imageadd: Resprited some new icons to replace ones with improper perspective.
   - imagedel: Deleted some old icons with improper perspective.
+2022-10-22:
+  Kuro020:
+  - balance: Mech's no longer use all of their energy using the actuator overload,
+      efficiency module now does what it says, laser burst rifle uses less energy
+      per shot
+  Losenis:
+  - bugfix: Big Ammo Box (10x20mm) will actually fill mags of its caliber now.
+  Lumipharon:
+  - balance: SOM SL's now have helmets equivalent to their Gorgon body armour
+  - imageadd: Added some new SOM helmet sprites
+  RipGrayson:
+  - imageadd: Added new acid well sprites by Gregormack.
+  lbnesquik:
+  - soundadd: Add a beeping noise to C4
+  - soundadd: Add an explosion noise to C4
+  novaepee:
+  - qol: Combat robot armors can now store instruments and other things that the modular
+      armors can. Some things have been axed from being put on the suit-storage slot,
+      however, like oxygen tanks.
+  novaepee and Ghost (IGN:Jack(ie)):
+  - rscadd: Orion Fatigue! Find it at the nearest clothing vendor!
+2022-10-23:
+  RipGrayson:
+  - imageadd: Created new versions of the glass window sprites, implements some windoor
+      sprites from another artist (see the PR for details).
+  - imagedel: Removed some old glass window sprites.
+  SplinterGP:
+  - rscadd: Added the engineer dispenser which is equipped on back slot and carries
+      alot of items, can only heal(robots) and access items when deployed
+  - imageadd: new title screen announcing the new engineer dispenser
+  TiviPlus:
+  - balance: all metal cade tool interactions no longer block you from interacting
+      with other cades
+2022-10-24:
+  Lumipharon:
+  - imageadd: Slight changes to the SOM satchel and powerpack sprites
+  Pariah919:
+  - balance: Arrowhead no longer has slowdown.
+  lbnesquik:
+  - rscadd: Added 3 new AI cores from polaris
+  - rscadd: Added 1 new AI hologram
+2022-10-25:
+  Lumipharon:
+  - bugfix: Fixed a voting bug with whitelisted maps
+  novaepee:
+  - code_imp: putting space between = and -1 for items in vendor code
+  tyeagg:
+  - soundadd: shovel hit sound
+2022-10-26:
+  MLGTASTICa:
+  - qol: Actions now show the key they are binded to.
+  - code_imp: Refactored action visuals handling to be far easier to work with in
+      the future and to (possibly) less intensive on clients
+  RipGrayson:
+  - bugfix: Fixed a bug with power in PoS CIC.
+  ivanmixo:
+  - bugfix: Fixes ozelomelyn defiler smoke not doing anything if you have a gas mask
+  lbnesquik:
+  - bugfix: fixed C4 being hearable way too far.
+2022-10-27:
+  Lumipharon:
+  - bugfix: fixed the MG-42 mob sprites and various other minor gun mob sprite issues
+  - bugfix: fixed another minor vote bug
+  Zar000:
+  - balance: xenos dont pay back for roundstart slots
+  lbnesquik:
+  - code_imp: Renamed sulaco to TGS_sulaco
+  novaepee:
+  - rscadd: add grinder in PoS'  research lab

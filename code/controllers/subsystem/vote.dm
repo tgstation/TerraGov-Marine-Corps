@@ -155,13 +155,14 @@ SUBSYSTEM_DEF(vote)
 				if(ship_change_required && ground_change_required)
 					addtimer(CALLBACK(src, .proc/initiate_vote, "shipmap", null, TRUE), 5 SECONDS)
 					addtimer(CALLBACK(src, .proc/initiate_vote, "groundmap", null, TRUE), CONFIG_GET(number/vote_period) + 5 SECONDS)
-					SSticker.Reboot("Restarting server when valid ship map selected", (CONFIG_GET(number/vote_period) * 2) + 15 SECONDS)
+					SSticker.Reboot("Restarting server when valid ship and ground map selected", (CONFIG_GET(number/vote_period) * 2) + 15 SECONDS)
 					return
 				else if(ship_change_required)
 					addtimer(CALLBACK(src, .proc/initiate_vote, "shipmap", null, TRUE), 5 SECONDS)
+					SSticker.Reboot("Restarting server when valid ship map selected", CONFIG_GET(number/vote_period) + 15 SECONDS)
 				else if(ground_change_required)
 					addtimer(CALLBACK(src, .proc/initiate_vote, "groundmap", null, TRUE), 5 SECONDS)
-				SSticker.Reboot("Restarting server when valid ship map selected", CONFIG_GET(number/vote_period) + 15 SECONDS)
+					SSticker.Reboot("Restarting server when valid ground map selected", CONFIG_GET(number/vote_period) + 15 SECONDS)
 			return
 		if("groundmap")
 			var/datum/map_config/VM = config.maplist[GROUND_MAP][.]

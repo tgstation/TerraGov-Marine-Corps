@@ -8,7 +8,9 @@
 	ability_name = "toggle agility"
 	cooldown_timer = 0.5 SECONDS
 	use_state_flags = XACT_USE_AGILITY
-	keybind_signal = COMSIG_XENOABILITY_TOGGLE_AGILITY
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_AGILITY,
+	)
 	var/last_agility_bonus = 0
 
 /datum/action/xeno_action/toggle_agility/on_xeno_upgrade()
@@ -58,7 +60,9 @@
 	ability_name = "lunge"
 	plasma_cost = 25
 	cooldown_timer = 20 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_LUNGE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LUNGE,
+	)
 	target_flags = XABB_MOB_TARGET
 	/// The target of our lunge, we keep it to check if we are adjacent everytime we move
 	var/atom/lunge_target
@@ -169,7 +173,9 @@
 	ability_name = "fling"
 	plasma_cost = 18
 	cooldown_timer = 20 SECONDS //Shared cooldown with Grapple Toss
-	keybind_signal = COMSIG_XENOABILITY_FLING
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FLING,
+	)
 	target_flags = XABB_MOB_TARGET
 
 /datum/action/xeno_action/activable/fling/on_cooldown_finish()
@@ -268,7 +274,9 @@
 	ability_name = "grapple toss"
 	plasma_cost = 18
 	cooldown_timer = 20 SECONDS //Shared cooldown with Fling
-	keybind_signal = COMSIG_XENOABILITY_GRAPPLE_TOSS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_GRAPPLE_TOSS,
+	)
 	target_flags = XABB_TURF_TARGET
 
 /datum/action/xeno_action/activable/toss/on_cooldown_finish()
@@ -344,7 +352,9 @@
 	ability_name = "punch"
 	plasma_cost = 12
 	cooldown_timer = 10 SECONDS //shared with jab, meaning jab goes on cooldown if you use punch and vice versa
-	keybind_signal = COMSIG_XENOABILITY_PUNCH
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PUNCH,
+	)
 	target_flags = XABB_MOB_TARGET
 	///The punch range, 1 would be adjacent.
 	var/range = 1
@@ -565,7 +575,9 @@
 	mechanics_text = "Precisely strike your target from further away, heavily slowing them."
 	plasma_cost = 10
 	range = 2
-	keybind_signal = COMSIG_XENOABILITY_JAB
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_JAB,
+	)
 
 /datum/action/xeno_action/activable/punch/jab/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
