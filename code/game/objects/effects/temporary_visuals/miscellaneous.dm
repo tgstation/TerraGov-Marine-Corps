@@ -10,13 +10,13 @@
 	duration = 8
 	light_system = STATIC_LIGHT
 	///The icon for the explosion itself
-	var/explosion_icon
+	var/explosion_icon = "explosion"
 
 /obj/effect/temp_visual/explosion/Initialize(mapload, radius, color)
 	. = ..()
 	set_light(radius, radius, color)
 
-	var/image/I = image('icons/effects/explosion.dmi',src,"explosion",10 , pixel_x = -16, pixel_y = -16)
+	var/image/I = image(icon, src, explosion_icon, 10, pixel_x = -16, pixel_y = -16)
 	var/matrix/rotate = matrix()
 	rotate.Turn(rand(0, 359))
 	I.transform = rotate
