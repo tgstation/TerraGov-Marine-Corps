@@ -309,3 +309,18 @@
 	cut_apart(user, O.name, O)
 	qdel(O)
 	return TRUE
+
+/obj/item/tool/pickaxe/plasmacutter/AltClick(mob/user)
+	if(!can_interact(user))
+		return ..()
+	if(!ishuman(user))
+		return ..()
+	if(!(user.l_hand == src || user.r_hand == src))
+		return ..()
+	TOGGLE_BITFIELD(flags_item, NODROP)
+	if(CHECK_BITFIELD(flags_item, NODROP))
+		to_chat(user, span_warning("You feel the [src] clamp shut around your hand!"))
+		playsound(user, 'sound/weapons/fistclamp.ogg', 25, 1, 7)
+	else
+		to_chat(user, span_notice("You feel the [src] loosen around your hand!"))
+		playsound(user, 'sound/weapons/fistunclamp.ogg', 25, 1, 7)
