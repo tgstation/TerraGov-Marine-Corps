@@ -76,6 +76,10 @@
 			npcs += list(serialized)
 			continue
 
+		var/number_of_orbiters = length(mob_poi.get_all_orbiters())
+		if(number_of_orbiters)
+			serialized["orbiters"] = number_of_orbiters
+
 		var/mob/living/player = mob_poi
 		serialized["health"] = FLOOR((player.health / player.maxHealth * 100), 1)
 
