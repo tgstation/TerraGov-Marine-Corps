@@ -41,7 +41,6 @@
 	default_ammo_type = /obj/item/ammo_magazine/smg/standard_machinepistol
 	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/standard_machinepistol)
 
-	w_class = WEIGHT_CLASS_NORMAL
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,
