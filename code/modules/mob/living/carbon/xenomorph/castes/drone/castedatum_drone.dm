@@ -40,7 +40,7 @@
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_HOLD_JELLY|CASTE_CAN_BECOME_KING|CASTE_CAN_RIDE_CRUSHER
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, "rad" = 0, FIRE = 10, ACID = 0)
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, FIRE = 10, ACID = 0)
 
 	// *** Pheromones *** //
 	aura_strength = 1 //Drone's aura is the weakest. At the top of their evolution, it's equivalent to a Young Queen Climbs by 0.5 to 2
@@ -56,10 +56,10 @@
 		/datum/action/xeno_action/activable/cocoon,
 		/datum/action/xeno_action/activable/plant_weeds,
 		/datum/action/xeno_action/activable/secrete_resin,
+		/datum/action/xeno_action/activable/essence_link,
 		/datum/action/xeno_action/activable/psychic_cure/acidic_salve,
 		/datum/action/xeno_action/activable/transfer_plasma/drone,
 		/datum/action/xeno_action/activable/corrosive_acid/drone,
-		/datum/action/xeno_action/activable/neurotox_sting/ozelomelyn,
 		/datum/action/xeno_action/create_jelly/slow,
 		/datum/action/xeno_action/pheromones,
 		/datum/action/xeno_action/pheromones/emit_recovery,
@@ -92,7 +92,7 @@
 	upgrade_threshold = TIER_ONE_MATURE_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 17, BULLET = 17, LASER = 17, ENERGY = 17, BOMB = 0, BIO = 5, "rad" = 5, FIRE = 17, ACID = 5)
+	soft_armor = list(MELEE = 17, BULLET = 17, LASER = 17, ENERGY = 17, BOMB = 0, BIO = 5, FIRE = 17, ACID = 5)
 
 	// *** Pheromones *** //
 	aura_strength = 1.5
@@ -120,7 +120,7 @@
 	upgrade_threshold = TIER_ONE_ELDER_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 24, BULLET = 24, LASER = 24, ENERGY = 24, BOMB = 0, BIO = 10, "rad" = 10, FIRE = 24, ACID = 10)
+	soft_armor = list(MELEE = 24, BULLET = 24, LASER = 24, ENERGY = 24, BOMB = 0, BIO = 10, FIRE = 24, ACID = 10)
 
 	// *** Pheromones *** //
 	aura_strength = 1.8
@@ -148,7 +148,7 @@
 	upgrade_threshold = TIER_ONE_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 31, BULLET = 31, LASER = 31, ENERGY = 31, BOMB = 0, BIO = 15, "rad" = 15, FIRE = 31, ACID = 15)
+	soft_armor = list(MELEE = 31, BULLET = 31, LASER = 31, ENERGY = 31, BOMB = 0, BIO = 15, FIRE = 31, ACID = 15)
 
 	// *** Pheromones *** //
 	aura_strength = 2
@@ -176,7 +176,7 @@
 	upgrade_threshold = 660
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 31, BULLET = 31, LASER = 31, ENERGY = 31, BOMB = 0, BIO = 15, "rad" = 15, FIRE = 31, ACID = 15)
+	soft_armor = list(MELEE = 31, BULLET = 31, LASER = 31, ENERGY = 31, BOMB = 0, BIO = 15, FIRE = 31, ACID = 15)
 
 	// *** Pheromones *** //
 	aura_strength = 2
@@ -189,11 +189,11 @@
 		/datum/action/xeno_action/activable/cocoon,
 		/datum/action/xeno_action/activable/plant_weeds,
 		/datum/action/xeno_action/activable/secrete_resin,
-		/datum/action/xeno_action/sow,
+		/datum/action/xeno_action/activable/essence_link,
 		/datum/action/xeno_action/activable/psychic_cure/acidic_salve,
 		/datum/action/xeno_action/activable/transfer_plasma/drone,
+		/datum/action/xeno_action/enhancement,
 		/datum/action/xeno_action/activable/corrosive_acid/drone,
-		/datum/action/xeno_action/activable/neurotox_sting/ozelomelyn,
 		/datum/action/xeno_action/create_jelly/slow,
 		/datum/action/xeno_action/pheromones,
 		/datum/action/xeno_action/pheromones/emit_recovery,

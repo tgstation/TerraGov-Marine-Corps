@@ -68,6 +68,8 @@
 	var/stamina_regen_amp = 1
 	///Vali movement speed buff is this value
 	var/movement_boost = 0
+	///How much time left on vali heal till necrosis occurs
+	var/vali_necro_timer
 
 	/**
 	 * This list contains the vali stat increases that correspond to each reagent
@@ -185,11 +187,16 @@
 
 	wearer.adjustToxLoss(-tox_heal*boost_amount)
 	wearer.heal_limb_damage(6*boost_amount*brute_heal_amp, 6*boost_amount*burn_heal_amp)
-	if(connected_weapon && world.time - processing_start < 20 SECONDS)
-		wearer.adjustStaminaLoss(-7*stamina_regen_amp*((20 - (world.time - processing_start)/10)/20)) //stamina gain scales inversely with passed time, up to 20 seconds
-	if(world.time - processing_start > 12 SECONDS && world.time - processing_start < 15 SECONDS)
+	vali_necro_timer = world.time - processing_start
+	if(vali_necro_timer > 20 SECONDS)
+		return
+	if(connected_weapon)
+		wearer.adjustStaminaLoss(-7*stamina_regen_amp*((20 - (vali_necro_timer)/10)/20)) //stamina gain scales inversely with passed time, up to 20 seconds
+	if(vali_necro_timer > 10 SECONDS)
+		to_chat(wearer, span_bold("WARNING: You have [(200 - (vali_necro_timer))/10] seconds before necrotic tissue forms on your limbs."))
+	if(vali_necro_timer > 15 SECONDS)
 		wearer.overlay_fullscreen("degeneration", /obj/screen/fullscreen/infection, 1)
-		to_chat(wearer, span_highdanger("WARNING: You have [(200 - (world.time - processing_start))/10] seconds before necrotic tissue forms on your limbs."))
+		to_chat(wearer, span_highdanger("The process of necrosis begins to set in. Turn it off before it's too late!"))
 
 /**
  *	Opens the radial menu with everything
@@ -232,7 +239,8 @@
 	if(boost_on)
 		STOP_PROCESSING(SSobj, src)
 		wearer.clear_fullscreen("degeneration")
-		var/necrotized_counter = FLOOR(min(world.time-processing_start, 20 SECONDS)/200 + (world.time-processing_start-20 SECONDS)/100, 1)
+		vali_necro_timer = world.time - processing_start
+		var/necrotized_counter = FLOOR(min(vali_necro_timer, 20 SECONDS)/200 + (vali_necro_timer-20 SECONDS)/100, 1)
 		if(necrotized_counter >= 1)
 			for(var/X in shuffle(wearer.limbs))
 				var/datum/limb/L = X
@@ -463,13 +471,17 @@
 	name = "Configure Vali Chemical Enhancement"
 	action_icon = 'icons/mob/actions.dmi'
 	action_icon_state = "cboost_configure"
-	keybind_signal = COMSIG_KB_VALI_CONFIGURE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_KB_VALI_CONFIGURE,
+	)
 
 /datum/action/chem_booster/power
 	name = "Power Vali Chemical Enhancement"
 	action_icon = 'icons/mob/actions.dmi'
 	action_icon_state = "cboost_off"
-	keybind_signal = COMSIG_KB_VALI_HEAL
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_KB_VALI_HEAL,
+	)
 	///Records the last time the action was used to avoid accidentally cancelling the effect when spamming the button in-combat
 	var/last_activated_time
 
@@ -493,7 +505,9 @@
 	name = "Connect Weapon"
 	action_icon = 'icons/mob/actions.dmi'
 	action_icon_state = "vali_weapon_connect"
-	keybind_signal = COMSIG_KB_VALI_CONNECT
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_KB_VALI_CONNECT,
+	)
 
 #undef EXTRACT
 #undef LOAD

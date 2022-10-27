@@ -36,7 +36,7 @@
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_CORRUPT_GENERATOR
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 20, BIO = 10, "rad" = 10, FIRE = 30, ACID = 10)
+	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 20, BIO = 10, FIRE = 30, ACID = 10)
 
 	// *** Pheromones *** //
 	aura_strength = 2 //The Shrike's aura is decent.
@@ -96,7 +96,7 @@
 	upgrade_threshold = TIER_TWO_MATURE_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 35, BULLET = 35, LASER = 35, ENERGY = 35, BOMB = 20, BIO = 15, "rad" = 15, FIRE = 35, ACID = 15)
+	soft_armor = list(MELEE = 35, BULLET = 35, LASER = 35, ENERGY = 35, BOMB = 20, BIO = 15, FIRE = 35, ACID = 15)
 
 	// *** Pheromones *** //
 	aura_strength = 2.5
@@ -124,7 +124,7 @@
 	upgrade_threshold = TIER_TWO_ELDER_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 20, BIO = 18, "rad" = 18, FIRE = 40, ACID = 18)
+	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 20, BIO = 18, FIRE = 40, ACID = 18)
 
 	// *** Pheromones *** //
 	aura_strength = 2.8
@@ -152,7 +152,7 @@
 	upgrade_threshold = TIER_TWO_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 45, BULLET = 45, LASER = 45, ENERGY = 45, BOMB = 20, BIO = 23, "rad" = 23, FIRE = 45, ACID = 20)
+	soft_armor = list(MELEE = 45, BULLET = 45, LASER = 45, ENERGY = 45, BOMB = 20, BIO = 23, FIRE = 45, ACID = 20)
 
 	// *** Pheromones *** //
 	aura_strength = 3
@@ -176,7 +176,7 @@
 	// *** Health *** //
 	max_health = 400
 	// *** Defense *** //
-	soft_armor = list(MELEE = 45, BULLET = 45, LASER = 45, ENERGY = 45, BOMB = 20, BIO = 23, "rad" = 23, FIRE = 45, ACID = 20)
+	soft_armor = list(MELEE = 45, BULLET = 45, LASER = 45, ENERGY = 45, BOMB = 20, BIO = 23, FIRE = 45, ACID = 20)
 
 	// *** Pheromones *** //
 	aura_strength = 3

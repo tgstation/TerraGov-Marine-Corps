@@ -63,7 +63,7 @@
 	deployable_item = /obj/machinery/deployable/mounted
 
 	max_integrity = 200
-	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 0, ENERGY = 0, BOMB = 80, BIO = 100, "rad" = 0, FIRE = 0, ACID = 20)
+	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 0, ENERGY = 0, BOMB = 80, BIO = 100, FIRE = 0, ACID = 20)
 
 ///Unmovable ship mounted version.
 /obj/item/weapon/gun/tl102/hsg_nest
@@ -84,7 +84,7 @@
 		/obj/item/ammo_magazine/tl102/hsg_nest,
 	)
 	flags_item =  IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
-	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, "rad" = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, FIRE = 0, ACID = 0)
 
 //-------------------------------------------------------
 //MG-2005 mounted minigun
@@ -125,7 +125,7 @@
 	deployable_item = /obj/machinery/deployable/mounted
 
 	max_integrity = 300
-	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, "rad" = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, FIRE = 0, ACID = 0)
 
 //-------------------------------------------------------
 //ATR-22 mounted heavy dualcannon
@@ -162,7 +162,7 @@
 	deployable_item = /obj/machinery/deployable/mounted
 
 	max_integrity = 300
-	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, "rad" = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, FIRE = 0, ACID = 0)
 
 //-------------------------------------------------------
 //TE-9001 mounted heavy laser
@@ -200,7 +200,7 @@
 	deployable_item = /obj/machinery/deployable/mounted
 
 	max_integrity = 400
-	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, "rad" = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, FIRE = 0, ACID = 0)
 
 //-------------------------------------------------------
 //RR-15 mounted heavy recoilless rifle
@@ -243,7 +243,7 @@
 	deployable_item = /obj/machinery/deployable/mounted
 
 	max_integrity = 600
-	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 80, BIO = 100, "rad" = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 0, ENERGY = 0, BOMB = 80, BIO = 100, FIRE = 0, ACID = 0)
 
 ///This is my meme version, the first version of the HSG-102 to have auto-fire, revel in its presence.
 /obj/item/weapon/gun/tl102/death
@@ -280,7 +280,7 @@
 	caliber = CALIBER_10X28
 
 	default_ammo_type = /obj/item/ammo_magazine/heavymachinegun
-	allowed_ammo_types = list(/obj/item/ammo_magazine/heavymachinegun)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/heavymachinegun, /obj/item/ammo_magazine/heavymachinegun/small)
 
 	scatter = 10
 	deployed_scatter_change = -8
@@ -306,7 +306,7 @@
 	deployable_item = /obj/machinery/deployable/mounted/moveable
 
 	max_integrity = 200
-	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 0, ENERGY = 0, BOMB = 80, BIO = 100, "rad" = 0, FIRE = 0, ACID = 20)
+	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 0, ENERGY = 0, BOMB = 80, BIO = 100, FIRE = 0, ACID = 20)
 
 
 
@@ -356,7 +356,7 @@
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 5
-	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, "rad" = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, FIRE = 0, ACID = 0)
 
 
 	scatter = 30 // you're not firing this standing.
@@ -403,7 +403,7 @@
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_time = 6 SECONDS
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT
-	soft_armor = list(MELEE = 60, BULLET = 50, LASER = 0, ENERGY = 0, BOMB = 80, BIO = 100, "rad" = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 60, BULLET = 50, LASER = 0, ENERGY = 0, BOMB = 80, BIO = 100, FIRE = 0, ACID = 0)
 
 	scatter = 0
 	recoil = 3

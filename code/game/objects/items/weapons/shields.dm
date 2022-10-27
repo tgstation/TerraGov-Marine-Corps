@@ -23,8 +23,8 @@
 	w_class = WEIGHT_CLASS_BULKY
 	materials = list(/datum/material/metal = 1000)
 	attack_verb = list("shoved", "bashed")
-	soft_armor = list(MELEE = 40, BULLET = 20, LASER = 0, ENERGY = 70, BOMB = 0, BIO = 100, "rad" = 70, FIRE = 0, ACID = 0)
-	hard_armor = list(MELEE = 5, BULLET = 5, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, "rad" = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 40, BULLET = 20, LASER = 0, ENERGY = 70, BOMB = 0, BIO = 100, FIRE = 0, ACID = 0)
+	hard_armor = list(MELEE = 5, BULLET = 5, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	hit_sound = 'sound/effects/grillehit.ogg'
 	destroy_sound = 'sound/effects/glassbr3.ogg'
 	var/cooldown = 0 //shield bash cooldown. based on world.time
@@ -139,8 +139,8 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	max_integrity = 400
 	integrity_failure = 100
-	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 20, ENERGY = 70, BOMB = 15, BIO = 50, "rad" = 0, FIRE = 0, ACID = 35)
-	hard_armor = list(MELEE = 0, BULLET = 5, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, "rad" = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 20, ENERGY = 70, BOMB = 15, BIO = 50, FIRE = 0, ACID = 35)
+	hard_armor = list(MELEE = 0, BULLET = 5, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	force = 20
 	slowdown = 0.5
 
@@ -183,6 +183,35 @@
 	icon_state = "som_shield"
 	soft_armor = list(MELEE = 35, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 30, BIO = 50, FIRE = 0, ACID = 15)
 
+//A shield that can be deployed as a barricade
+/obj/item/weapon/shield/riot/marine/deployable
+	name = "\improper TL-182 deployable shield"
+	desc = "A compact shield adept at blocking blunt or sharp objects from connecting with the shield wielder. Can be deployed as a barricade. Alt click to tighten the strap."
+	icon = 'icons/obj/items/weapons.dmi'
+	icon_state = "folding_shield"
+	flags_equip_slot = ITEM_SLOT_BACK
+	w_class = WEIGHT_CLASS_NORMAL
+	max_integrity = 300
+	integrity_failure = 50
+	soft_armor = list(MELEE = 35, BULLET = 30, LASER = 20, ENERGY = 40, BOMB = 25, BIO = 50, FIRE = 0, ACID = 30)
+	slowdown = 0.3
+	flags_item = IS_DEPLOYABLE
+	///The item this deploys into
+	var/deployable_item = /obj/structure/barricade/metal/deployable
+	///Time to deploy
+	var/deploy_time = 1 SECONDS
+	///Time to undeploy
+	var/undeploy_time = 1 SECONDS
+	///Whether it is wired
+	var/is_wired = FALSE
+
+/obj/item/weapon/shield/riot/marine/deployable/Initialize()
+	. = ..()
+	AddElement(/datum/element/deployable_item, deployable_item, type, deploy_time, undeploy_time)
+
+/obj/item/weapon/shield/riot/marine/deployable/set_shield()
+	AddComponent(/datum/component/shield, SHIELD_PARENT_INTEGRITY, shield_cover = list(MELEE = 40, BULLET = 35, LASER = 35, ENERGY = 35, BOMB = 40, BIO = 15, FIRE = 30, ACID = 35))
+
 /obj/item/weapon/shield/energy
 	name = "energy combat shield"
 	desc = "A shield capable of stopping most projectile and melee attacks. It can be retracted, expanded, and stored anywhere."
@@ -214,3 +243,4 @@
 		playsound(user, 'sound/weapons/saberoff.ogg', 25, TRUE)
 		to_chat(user, span_notice("[src] can now be concealed."))
 	add_fingerprint(user, "turned [active ? "on" : "off"]")
+

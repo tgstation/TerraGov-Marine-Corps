@@ -3,7 +3,7 @@
 	desc = "That looks like it doesn't open easily."
 	icon = 'icons/obj/doors/rapid_pdoor.dmi'
 	icon_state = "pdoor1"
-	soft_armor = list(MELEE = 50, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 50, BIO = 100, "rad" = 100, FIRE = 100, ACID = 70)
+	soft_armor = list(MELEE = 50, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 50, BIO = 100, FIRE = 100, ACID = 70)
 	layer = PODDOOR_OPEN_LAYER
 	open_layer = PODDOOR_OPEN_LAYER
 	closed_layer = PODDOOR_CLOSED_LAYER

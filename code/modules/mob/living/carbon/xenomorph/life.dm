@@ -114,7 +114,7 @@
 
 	var/list/heal_data = list(amount)
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_HEALTH_REGEN, heal_data)
-	HEAL_XENO_DAMAGE(src, heal_data[1])
+	HEAL_XENO_DAMAGE(src, heal_data[1], TRUE)
 	return heal_data[1]
 
 /mob/living/carbon/xenomorph/proc/handle_living_plasma_updates()
