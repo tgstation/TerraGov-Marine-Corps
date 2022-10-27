@@ -163,7 +163,7 @@
 	. = ..()
 
 	if(firing)
-		user.balloon_alert(user, "The barrel is steaming hot. Wait a few seconds")
+		user.balloon_alert(user, "The barrel is steaming hot. Wait till it cools off.")
 		return
 
 	if(istype(I, /obj/item/mortal_shell))
@@ -454,11 +454,6 @@
 	fall_sound = 'sound/weapons/guns/misc/rocket_whistle.ogg'
 	minimum_range = 22
 	allowed_shells = list(
-		/obj/item/mortal_shell/howitzer,
-		/obj/item/mortal_shell/howitzer/white_phos,
-		/obj/item/mortal_shell/howitzer/he,
-		/obj/item/mortal_shell/howitzer/incendiary,
-		/obj/item/mortal_shell/howitzer/plasmaloss,
 		/obj/item/mortal_shell/flare,
 		/obj/item/mortal_shell/rocket,
 		/obj/item/mortal_shell/rocket/incend,
@@ -466,11 +461,39 @@
 	)
 	tally_type = TALLY_ROCKET_ARTY
 	cool_off_time = 5 SECONDS
-	fire_delay = 0.3 SECONDS
 	reload_time = 1 SECONDS
 	max_rounds = 12
 	offset_per_turfs = 10
 	spread = 3
+
+/obj/item/mortar_kit/mlrs
+	name = "\improper TA-120R multiple rocket launcher system"
+	desc = "This weapon has a cool off time of around 3 minutes once fired."
+	icon_state = "mlrs"
+	max_integrity = 400
+	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
+	w_class = WEIGHT_CLASS_HUGE
+	deployable_item = /obj/machinery/deployable/mortar/howitzer/mlrs
+
+/obj/machinery/deployable/mortar/howitzer/mlrs
+	pixel_x = 0
+	desc = "A manual, crew-operated and towable multiple rocket launcher system piece used by the TerraGov Marine Corps, it is meant to saturate an area with munitions to total up to large amounts of firepower, it thus has high scatter when firing to accomplish such a task. Fires in only bursts of up to 16 rockets, it can hold 32 rockets in total. Uses 60mm Rockets."
+	anchored = FALSE // You can move this.
+	fire_sound = 'sound/weapons/guns/fire/rocket_arty.ogg'
+	reload_sound = 'sound/weapons/guns/interact/tat36_reload.ogg'
+	fall_sound = 'sound/weapons/guns/misc/rocket_whistle.ogg'
+	minimum_range = 25
+	allowed_shells = list(
+		/obj/item/mortal_shell/rocket/mlrs,
+	)
+	tally_type = TALLY_ROCKET_ARTY
+	cool_off_time = 180 SECONDS
+	fire_delay = 0.15 SECONDS
+	fire_amount = 16
+	reload_time = 0.25 SECONDS
+	max_rounds = 32
+	offset_per_turfs = 25
+	spread = 6
 
 // Shells themselves //
 
@@ -552,6 +575,10 @@
 
 /obj/item/mortal_shell/rocket/minelaying
 	ammo_type = /datum/ammo/mortar/rocket/minelayer
+
+/obj/item/mortal_shell/rocket/mlrs
+	icon_state = "mlrs_rocket"
+	ammo_type = /datum/ammo/mortar/rocket/mlrs
 
 /obj/structure/closet/crate/mortar_ammo
 	name = "\improper T-50S mortar ammo crate"
