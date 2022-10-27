@@ -467,8 +467,8 @@
 	spread = 3
 
 /obj/item/mortar_kit/mlrs
-	name = "\improper TA-120R multiple rocket launcher system"
-	desc = "This weapon has a cool off time of around 3 minutes once fired."
+	name = "\improper TA-40 multiple rocket launcher system"
+	desc = "A manual, crew-operated and towable multiple rocket launcher system piece used by the TerraGov Marine Corps, it is meant to saturate an area with munitions to total up to large amounts of firepower, it thus has high scatter when firing to accomplish such a task. Fires in only bursts of up to 16 rockets, it can hold 32 rockets in total. Uses 60mm Rockets."
 	icon_state = "mlrs"
 	max_integrity = 400
 	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
@@ -477,7 +477,6 @@
 
 /obj/machinery/deployable/mortar/howitzer/mlrs
 	pixel_x = 0
-	desc = "A manual, crew-operated and towable multiple rocket launcher system piece used by the TerraGov Marine Corps, it is meant to saturate an area with munitions to total up to large amounts of firepower, it thus has high scatter when firing to accomplish such a task. Fires in only bursts of up to 16 rockets, it can hold 32 rockets in total. Uses 60mm Rockets."
 	anchored = FALSE // You can move this.
 	fire_sound = 'sound/weapons/guns/fire/rocket_arty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/tat36_reload.ogg'
