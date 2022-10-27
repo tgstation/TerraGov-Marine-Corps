@@ -14,7 +14,7 @@ import {
   Stack,
 } from 'tgui/components';
 import { Window } from 'tgui/layouts';
-import { getDisplayColor, isJobOrNameMatch } from './helpers';
+import { getDisplayColor, getDisplayName, isJobOrNameMatch } from './helpers';
 import type { Observable, OrbitData } from './types';
 
 export const Orbit = (props, context) => {
@@ -172,9 +172,10 @@ const ObservableSection = (
     filter<Observable>((observable) =>
       isJobOrNameMatch(observable, searchQuery)
     ),
-    sortBy<Observable>(
-      (observable) =>
-        observable.nickname?.toLowerCase() || observable.name.toLowerCase()
+    sortBy<Observable>((observable) =>
+      getDisplayName(observable.full_name, observable.nickname)
+        .replace(/^"/, '')
+        .toLowerCase()
     ),
   ])(section);
   if (!filteredSection.length) {
@@ -203,17 +204,17 @@ const ObservableItem = (
 ) => {
   const { act } = useBackend<OrbitData>(context);
   const { color, item } = props;
-  const { health, icon, name, nickname, orbiters, ref } = item;
+  const { health, icon, full_name, nickname, orbiters, ref } = item;
   const [autoObserve] = useLocalState<boolean>(context, 'autoObserve', false);
 
   return (
     <Button
-      color={getDisplayColor(item, color)}
+      color={getDisplayColor(item, !!color)}
       onClick={() => act('orbit', { auto_observe: autoObserve, ref: ref })}
       tooltip={!!health && <ObservableTooltip item={item} />}
       tooltipPosition="bottom-start">
       {!!icon && <ObservableIcon icon={icon} />}
-      {capitalizeFirst(nickname ?? name)}
+      {capitalizeFirst(getDisplayName(full_name, nickname))}
       {!!orbiters && (
         <>
           {' '}
@@ -228,7 +229,7 @@ const ObservableItem = (
 /** Displays some info on the mob as a tooltip. */
 const ObservableTooltip = (props: { item: Observable }) => {
   const {
-    item: { caste, health, job, name },
+    item: { caste, health, job, full_name },
   } = props;
   const displayHealth = !!health && health >= 0 ? `${health}%` : 'Critical';
 
@@ -238,7 +239,9 @@ const ObservableTooltip = (props: { item: Observable }) => {
         Last Known Data
       </NoticeBox>
       <LabeledList>
-        {!!name && <LabeledList.Item label="Name">{name}</LabeledList.Item>}
+        {!!full_name && (
+          <LabeledList.Item label="full_name">{full_name}</LabeledList.Item>
+        )}
         {!!caste && <LabeledList.Item label="Caste">{caste}</LabeledList.Item>}
         {!!job && <LabeledList.Item label="Job">{job}</LabeledList.Item>}
         {!!health && (

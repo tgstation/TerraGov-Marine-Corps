@@ -32,7 +32,7 @@
 				owner.do_observe(poi)
 			. = TRUE
 		if("refresh")
-			update_static_data()
+			update_static_data(usr, ui)
 			. = TRUE
 
 /datum/orbit_menu/ui_static_data(mob/user)
@@ -52,7 +52,7 @@
 	var/list/pois = getpois(skip_mindless = !is_admin, specify_dead_role = FALSE)
 	for(var/name in pois)
 		var/list/serialized = list()
-		serialized["name"] = name
+		serialized["full_name"] = name
 
 		var/poi = pois[name]
 
@@ -104,7 +104,7 @@
 			var/datum/job/job = human.job
 			serialized["icon"] = job.minimap_icon
 			serialized["job"] = job.title
-
+			serialized["nickname"] = human.real_name
 			if(ismarinejob(human.job))
 				if(human.assigned_squad)
 					serialized["icon"] = lowertext(human.assigned_squad.name) + "_" + job.minimap_icon
