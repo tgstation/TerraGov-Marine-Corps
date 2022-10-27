@@ -104,7 +104,7 @@ GLOBAL_LIST_INIT(medic_gear_listed_products, list(
 GLOBAL_LIST_INIT(leader_gear_listed_products, list(
 		/obj/effect/essentials_set/leader = list(CAT_ESS, "Essential SL Set", 0, "white"),
 		/obj/item/whistle = list(CAT_LEDSUP, "Whistle", 5, "black"),
-		/obj/item/clothing/glasses/night/imager_goggles = list(CAT_LEDSUP, "Optical Imager Goggles", 15, "black")
+		/obj/item/clothing/glasses/night/imager_goggles = list(CAT_LEDSUP, "Optical Imager Goggles", 15, "black"),
 		/obj/item/beacon/supply_beacon = list(CAT_LEDSUP, "Supply beacon", 10, "black"),
 		/obj/item/fulton_extraction_pack = list(CAT_LEDSUP, "Fulton Extraction Pack", 20, "orange"),
 		/obj/item/deployable_camera = list(CAT_LEDSUP, "Deployable Overwatch Camera", 2, "orange"),
