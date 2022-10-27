@@ -16,7 +16,7 @@
 	. = ..()
 	set_light(radius, radius, color)
 
-	var/image/I = image('icons/effects/explosion.dmi',src,"explosion",10, pixel_x = -16, pixel_y = -16)
+	var/image/I = image('icons/effects/explosion.dmi',src,"explosion",10 , pixel_x = -16, pixel_y = -16)
 	var/angle = rand(0, 359)
 	var/matrix/rotate = matrix()
 	rotate.Turn(angle)
