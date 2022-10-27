@@ -102,15 +102,17 @@
 		if(ishuman(mob_poi))
 			var/mob/living/carbon/human/human = poi
 			var/datum/job/job = human.job
-			serialized["icon"] = job.minimap_icon
-			serialized["job"] = job.title
 			serialized["nickname"] = human.real_name
+
 			if(ismarinejob(human.job))
 				if(human.assigned_squad)
 					serialized["icon"] = lowertext(human.assigned_squad.name) + "_" + job.minimap_icon
 					serialized["job"] = human.assigned_squad.name + " " + job.title
 				marines += list(serialized)
 				continue
+
+			serialized["icon"] = job.minimap_icon
+			serialized["job"] = job.title
 
 			if(issommarinejob(human.job))
 				som += list(serialized)
