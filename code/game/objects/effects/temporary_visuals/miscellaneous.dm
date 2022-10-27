@@ -6,15 +6,22 @@
 /obj/effect/temp_visual/explosion
 	name = "explosion"
 	icon = 'icons/effects/explosion.dmi'
-	icon_state = "explosion"
+	icon_state = ""
 	duration = 8
-	pixel_x = -16
-	pixel_y = -16
 	light_system = STATIC_LIGHT
+	///The icon for the explosion itself
+	var/explosion_icon
 
 /obj/effect/temp_visual/explosion/Initialize(mapload, radius, color)
 	. = ..()
 	set_light(radius, radius, color)
+
+	var/image/I = image('icons/effects/explosion.dmi',src,"explosion",10, pixel_x = -16, pixel_y = -16)
+	var/angle = rand(0, 359)
+	var/matrix/rotate = matrix()
+	rotate.Turn(angle)
+	I.transform = rotate
+	add_overlay(I) //we use an overlay so the explosion and light source are both in the correct location
 
 //unsorted miscellaneous temporary visuals
 /obj/effect/temp_visual/dir_setting/bloodsplatter
