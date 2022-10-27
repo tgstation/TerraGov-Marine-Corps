@@ -333,6 +333,45 @@
 	selected_xeno.update_leader_icon(TRUE)
 
 // ***************************************
+// *********** Queen Acidic Salve
+// ***************************************
+/datum/action/xeno_action/activable/psychic_cure/queen_give_heal
+	name = "Heal"
+	action_icon_state = "heal_xeno"
+	mechanics_text = "Apply a minor heal to the target."
+	cooldown_timer = 5 SECONDS
+	plasma_cost = 150
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_HEAL,
+	)
+	heal_range = HIVELORD_HEAL_RANGE
+	target_flags = XABB_MOB_TARGET
+
+/datum/action/xeno_action/activable/psychic_cure/queen_give_heal/use_ability(atom/target)
+	if(owner.do_actions)
+		return FALSE
+	if(!do_mob(owner, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+		return FALSE
+	target.visible_message(span_xenowarning("\the [owner] vomits acid over [target], mending their wounds!"))
+	playsound(target, "alien_drool", 25)
+	new /obj/effect/temp_visual/telekinesis(get_turf(target))
+	var/mob/living/carbon/xenomorph/patient = target
+	patient.salve_healing()
+	owner.changeNext_move(CLICK_CD_RANGE)
+	succeed_activate()
+	add_cooldown()
+
+/// Heals the target.
+/mob/living/carbon/xenomorph/proc/salve_healing()
+	var/amount = 50
+	if(recovery_aura)
+		amount += recovery_aura * maxHealth * 0.01
+	var/remainder = max(0, amount - getBruteLoss())
+	adjustBruteLoss(-amount)
+	adjustFireLoss(-remainder, updating_health = TRUE)
+	adjust_sunder(-amount/20)
+
+// ***************************************
 // *********** Queen plasma
 // ***************************************
 /datum/action/xeno_action/activable/queen_give_plasma
