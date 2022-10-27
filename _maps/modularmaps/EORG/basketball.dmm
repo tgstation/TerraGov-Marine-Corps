@@ -364,7 +364,7 @@
 /obj/structure/window/reinforced/tinted/frosted{
 	dir = 1
 	},
-/obj/machinery/door/window{
+/obj/structure/window/reinforced/tinted/frosted{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -510,8 +510,7 @@
 /area/deathmatch)
 "gE" = (
 /obj/structure/table/reinforced/prison,
-/obj/effect/spawner/random/plushie/nospawnninetyfive{
-	},
+/obj/effect/spawner/random/plushie/nospawnninetyfive,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "hr" = (
@@ -723,6 +722,12 @@
 "BC" = (
 /obj/structure/prop/mainship/ship_memorial,
 /turf/open/floor/plating/mainship,
+/area/deathmatch)
+"Cq" = (
+/obj/machinery/door/window{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
 /area/deathmatch)
 "Di" = (
 /obj/structure/target_stake,
@@ -999,8 +1004,7 @@
 	pixel_x = 4;
 	pixel_y = 4
 	},
-/obj/effect/spawner/random/plushie/fiftyfifty{
-	},
+/obj/effect/spawner/random/plushie/fiftyfifty,
 /turf/open/floor/grass,
 /area/deathmatch)
 "Xx" = (
@@ -1461,7 +1465,7 @@ bI
 aa
 bb
 dH
-ba
+Cq
 bc
 bm
 aa

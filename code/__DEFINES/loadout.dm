@@ -306,6 +306,7 @@ GLOBAL_LIST_INIT(engineer_clothes_listed_products, list(
 		/obj/item/storage/holster/blade/machete/full = list(CAT_BAK, "Machete scabbard", 0, "black"),
 		/obj/item/storage/backpack/marine/engineerpack = list(CAT_BAK, "Welderpack", 0, "black"),
 		/obj/item/storage/backpack/marine/radiopack = list(CAT_BAK, "Radio Pack", 0, "black"),
+		/obj/item/storage/backpack/dispenser = list(CAT_BAK, "Dispenser", 0, "black"),
 		/obj/item/armor_module/storage/uniform/brown_vest = list(CAT_WEB, "Tactical brown vest", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/webbing = list(CAT_WEB, "Tactical webbing", 0, "black"),
 		/obj/item/armor_module/storage/uniform/holster = list(CAT_WEB, "Shoulder handgun holster", 0, "black"),

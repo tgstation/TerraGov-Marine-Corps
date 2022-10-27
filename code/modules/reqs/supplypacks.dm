@@ -443,9 +443,14 @@ WEAPONS
 	cost = 30
 
 /datum/supply_packs/weapons/hmg_ammo
-	name = "HMG-08 heavy machinegun ammo"
+	name = "HMG-08 heavy machinegun ammo (500 rounds)"
 	contains = list(/obj/item/ammo_magazine/heavymachinegun)
 	cost = 7
+	
+/datum/supply_packs/weapons/hmg_ammo_small
+	name = "HMG-08 heavy machinegun ammo (250 rounds)"
+	contains = list(/obj/item/ammo_magazine/heavymachinegun/small)
+	cost = 4
 
 /datum/supply_packs/weapons/smartgun
 	name = "SG-29 Smart Machinegun"
@@ -723,6 +728,11 @@ ARMOR
 	contains = list(/obj/item/weapon/shield/riot/marine)
 	cost = 10
 
+/datum/supply_packs/armor/marine_shield/deployable
+	name = "TL-182 Deployable Shield"
+	contains = list(/obj/item/weapon/shield/riot/marine/deployable)
+	cost = 3
+
 /datum/supply_packs/armor/b18
 	name = "B18 Armor Set"
 	contains = list(
@@ -813,6 +823,11 @@ CLOTHING
 	name = "Combat Backpack"
 	contains = list(/obj/item/storage/backpack/lightpack)
 	cost = 15
+
+/datum/supply_packs/clothing/dispenser
+	name = "Dispenser"
+	contains = list(/obj/item/storage/backpack/dispenser)
+	cost = 40
 
 /datum/supply_packs/clothing/welding_pack
 	name = "Engineering Welding Pack"
@@ -1452,8 +1467,8 @@ Imports
 	contains = list(/obj/item/clothing/head/strawhat)
 	cost = 1
 
-/datum/supply_packs/loot_box
-	name = "What could be inside?"
+/datum/supply_packs/imports/loot_box
+	name = "Loot box"
 	contains = list(/obj/item/loot_box/marine)
 	cost = 50
 

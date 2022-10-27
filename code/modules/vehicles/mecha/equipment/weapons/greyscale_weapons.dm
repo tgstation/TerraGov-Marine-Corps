@@ -243,7 +243,7 @@
 	)
 	ammotype = /datum/ammo/energy/lasgun/marine/mech/burst
 	obj_integrity = 400
-	energy_drain = 10
+	energy_drain = 5
 	variance = 0
 	projectile_delay = 0.6 SECONDS
 	burst_amount = 3

@@ -280,7 +280,7 @@
 	caliber = CALIBER_10X28
 
 	default_ammo_type = /obj/item/ammo_magazine/heavymachinegun
-	allowed_ammo_types = list(/obj/item/ammo_magazine/heavymachinegun)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/heavymachinegun, /obj/item/ammo_magazine/heavymachinegun/small)
 
 	scatter = 10
 	deployed_scatter_change = -8

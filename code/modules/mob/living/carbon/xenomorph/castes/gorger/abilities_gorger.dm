@@ -9,10 +9,11 @@
 	action_icon_state = "regurgitate"
 	mechanics_text = "Devour your victim to be able to carry it faster."
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
-	keybind_signal = COMSIG_XENOABILITY_REGURGITATE
 	plasma_cost = 0
 	target_flags = XABB_MOB_TARGET
-	keybind_signal = COMSIG_XENOABILITY_DEVOUR
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DEVOUR,
+	)
 
 /datum/action/xeno_action/activable/devour/can_use_ability(atom/target, silent, override_flags)
 	. = ..()
@@ -93,7 +94,9 @@
 	cooldown_timer = 15 SECONDS
 	plasma_cost = 0
 	target_flags = XABB_MOB_TARGET
-	keybind_signal = COMSIG_XENOABILITY_DRAIN
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DRAIN,
+	)
 
 /datum/action/xeno_action/activable/drain/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
@@ -130,7 +133,7 @@
 	target_human.apply_damage(damage = 4, damagetype = BRUTE, def_zone = BODY_ZONE_HEAD, blocked = 0, sharp = TRUE, edge = FALSE, updating_health = TRUE);\
 \
 	var/drain_healing = GORGER_DRAIN_HEAL;\
-	HEAL_XENO_DAMAGE(owner_xeno, drain_healing);\
+	HEAL_XENO_DAMAGE(owner_xeno, drain_healing, TRUE);\
 	adjustOverheal(owner_xeno, drain_healing);\
 	owner_xeno.gain_plasma(owner_xeno.xeno_caste.drain_plasma_gain)
 
@@ -173,7 +176,9 @@
 	cooldown_timer = 2 SECONDS
 	plasma_cost = 20
 	target_flags = XABB_MOB_TARGET
-	keybind_signal = COMSIG_XENOABILITY_TRANSFUSION
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TRANSFUSION,
+	)
 
 /datum/action/xeno_action/activable/transfusion/can_use_ability(atom/target, silent = FALSE, override_flags) //it is set up to only return true on specific xeno or human targets
 	. = ..()
@@ -205,7 +210,7 @@
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	var/mob/living/carbon/xenomorph/target_xeno = target
 	var/heal_amount = target_xeno.maxHealth * GORGER_TRANSFUSION_HEAL
-	HEAL_XENO_DAMAGE(target_xeno, heal_amount)
+	HEAL_XENO_DAMAGE(target_xeno, heal_amount, FALSE)
 	adjustOverheal(target_xeno, heal_amount)
 	if(target_xeno.overheal)
 		target_xeno.balloon_alert(owner_xeno, "Overheal: [target_xeno.overheal]/[target_xeno.xeno_caste.overheal_max]")
@@ -235,7 +240,9 @@
 	cooldown_timer = 4 SECONDS
 	plasma_cost = GORGER_REJUVENATE_COST
 	target_flags = XABB_MOB_TARGET
-	keybind_signal = COMSIG_XENOABILITY_REJUVENATE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REJUVENATE,
+	)
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 
 /datum/action/xeno_action/activable/rejuvenate/can_use_ability(atom/A, silent, override_flags)
@@ -272,7 +279,9 @@
 	cooldown_timer = 50 SECONDS
 	plasma_cost = 0
 	target_flags = XABB_MOB_TARGET
-	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_LINK
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_LINK,
+	)
 	///Timer for activating the link
 	var/apply_psychic_link_timer
 	///Overlay applied on the target xeno while linking
@@ -365,7 +374,9 @@
 	mechanics_text = "Enter a state of thirst, gaining movement and healing on your next attack, scaling with missing blood. If your blood is below a certain %, you also knockdown your victim and drain some blood, during which you can't move."
 	cooldown_timer = 15 SECONDS
 	plasma_cost = 0
-	keybind_signal = COMSIG_XENOABILITY_CARNAGE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CARNAGE,
+	)
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 
 /datum/action/xeno_action/activable/carnage/use_ability(atom/A)
@@ -395,7 +406,9 @@
 	mechanics_text = "Enter a state of rejuvenation. During this time you use a small amount of blood and heal. You can cancel this early."
 	cooldown_timer = 180 SECONDS
 	plasma_cost = 0
-	keybind_signal = COMSIG_XENOABILITY_FEAST
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FEAST,
+	)
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 
 /datum/action/xeno_action/activable/feast/can_use_ability(atom/target, silent, override_flags)
