@@ -467,7 +467,7 @@
 	spread = 3
 
 /obj/item/mortar_kit/mlrs
-	name = "\improper TA-40 multiple rocket launcher system"
+	name = "\improper TA-40L multiple rocket launcher system"
 	desc = "A manual, crew-operated and towable multiple rocket launcher system piece used by the TerraGov Marine Corps, it is meant to saturate an area with munitions to total up to large amounts of firepower, it thus has high scatter when firing to accomplish such a task. Fires in only bursts of up to 16 rockets, it can hold 32 rockets in total. Uses 60mm Rockets."
 	icon_state = "mlrs"
 	max_integrity = 400
@@ -686,6 +686,36 @@
 	new /obj/item/encryptionkey/cas(src)
 	new /obj/item/encryptionkey/cas(src)
 	new /obj/item/encryptionkey/cas(src)
+
+/obj/structure/closet/crate/mortar_ammo/mlrs_kit
+	name = "\improper TA-40L howitzer kit"
+	desc = "A crate containing a basic, somehow compressed kit consisting of an entire multiple launch rocket system and some rockets, to get a artilleryman started."
+
+/obj/structure/closet/crate/mortar_ammo/howitzer_kit/PopulateContents()
+	new /obj/item/mortar_kit/mlrs(src)
+	new /obj/item/storage/box/mlrs_rockets(src)
+	new /obj/item/storage/box/mlrs_rockets(src)
+	new /obj/item/storage/box/mlrs_rockets(src)
+	new /obj/item/storage/box/mlrs_rockets(src)
+	new /obj/item/storage/box/mlrs_rockets(src)
+	new /obj/item/storage/box/mlrs_rockets(src)
+
+
+/obj/item/storage/box/mlrs_rockets
+	name = "\improper TA-40L rocket crate"
+	desc = "A large case containing rockets in a compressed setting for the TA-40L MLRS. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	storage_slots = 8
+
+/obj/item/storage/box/mlrs_rockets/Initialize()
+	. = ..()
+	new /obj/item/mortal_shell/rocket/mlrs(src)
+	new /obj/item/mortal_shell/rocket/mlrs(src)
+	new /obj/item/mortal_shell/rocket/mlrs(src)
+	new /obj/item/mortal_shell/rocket/mlrs(src)
+	new /obj/item/mortal_shell/rocket/mlrs(src)
+	new /obj/item/mortal_shell/rocket/mlrs(src)
+	new /obj/item/mortal_shell/rocket/mlrs(src)
+	new /obj/item/mortal_shell/rocket/mlrs(src)
 
 #undef TALLY_MORTAR
 #undef TALLY_HOWITZER

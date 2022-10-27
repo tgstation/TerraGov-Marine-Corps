@@ -446,7 +446,7 @@ WEAPONS
 	name = "HMG-08 heavy machinegun ammo (500 rounds)"
 	contains = list(/obj/item/ammo_magazine/heavymachinegun)
 	cost = 7
-	
+
 /datum/supply_packs/weapons/hmg_ammo_small
 	name = "HMG-08 heavy machinegun ammo (250 rounds)"
 	contains = list(/obj/item/ammo_magazine/heavymachinegun/small)
@@ -664,6 +664,16 @@ EXPLOSIVES
 	contains = list(/obj/item/mortal_shell/plasmaloss)
 	cost = 1
 	available_against_xeno_only = TRUE
+
+/datum/supply_packs/explosives/mlrs
+	name = "TA-40L Multiple Rocket System"
+	contains = list(/obj/item/mortar_kit/mlrs)
+	cost = 45
+
+/datum/supply_packs/explosives/howitzer_ammo_he
+	name = "TA-40L MLRS Rocket (x2)"
+	contains = list(/obj/item/mortal_shell/rocket/mlrs, /obj/item/mortal_shell/rocket/mlrs)
+	cost = 1
 
 /datum/supply_packs/explosives/howitzer
 	name = "MG-100Y howitzer"
