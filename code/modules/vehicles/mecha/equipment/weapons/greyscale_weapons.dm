@@ -432,7 +432,7 @@
 /obj/item/mecha_parts/mecha_equipment/laser_sword
 	name = "\improper Moonlight particle cutter"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
-	desc = "A mech laser blade. When activated, overloads the leg actuators to dash forward, before cutting with a superheated plasma beam. Melee core increases area cut and distance dashed."
+	desc = "A specialized mech laser blade made out of compressed energy with unimaginable power. Its compact size allows fast, short-ranged attacks. When activated, overloads the leg actuators to dash forward, before cutting with a superheated plasma beam. Melee core increases area cut and distance dashed. Heavy, but it is the top-of-the-line melee weapon of TGMC's fine line of mecha close-range offensive capability."
 	icon_state = "moonlight"
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	obj_integrity = 400
