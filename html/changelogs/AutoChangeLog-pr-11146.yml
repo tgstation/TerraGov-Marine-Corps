@@ -1,4 +1,0 @@
-author: "lbnesquik"
-delete-after: True
-changes: 
-  - code_imp: "Renamed sulaco to TGS_sulaco"
