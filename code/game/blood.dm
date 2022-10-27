@@ -135,11 +135,11 @@
 
 /mob/living/carbon/human/clean_mob()
 	. = ..()
-	var/washgloves = 1
-	var/washshoes = 1
-	var/washmask = 1
-	var/washears = 1
-	var/washglasses = 1
+	var/washgloves = TRUE
+	var/washshoes = TRUE
+	var/washmask = TRUE
+	var/washears = TRUE
+	var/washglasses = TRUE
 	if(wear_suit)
 		washgloves = !(wear_suit.flags_inv_hide & HIDEGLOVES)
 		washshoes = !(wear_suit.flags_inv_hide & HIDESHOES)
