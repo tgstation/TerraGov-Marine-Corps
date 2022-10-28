@@ -21,7 +21,7 @@
 /obj/item/frame/table/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(iswrench(I) && deconstruct_type))
+	if(iswrench(I) && deconstruct_type)
 		new deconstruct_type(loc)
 		qdel(src)
 
