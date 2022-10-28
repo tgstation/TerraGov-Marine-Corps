@@ -212,7 +212,7 @@
 	/// Limits tiles_moved to this value.
 	var/max_tile_acceleration = 8
 	/// last direction moved
-	var/direction_moved = 0
+	var/direction_moved
 	var/cooldown = 0
 	var/acceleration = TRUE
 	var/mob/living/eye_user = null
