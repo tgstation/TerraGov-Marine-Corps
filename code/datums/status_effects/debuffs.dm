@@ -326,3 +326,30 @@
 	name = "Irradiated"
 	desc = "You've been irradiated! The effects of the radiation will continue to harm you until purged from your system."
 	icon_state = "radiation"
+
+/datum/status_effect/dragon_fire
+	id = "dragon_fire_burning"
+
+/datum/status_effect/dragon_fire/on_apply()
+	. = ..()
+	duration = rand()
+	to_chat(owner, span_warning("Something viscous is burning on you!"))
+	RegisterSignal(owner, COMSIG_LIVING_DO_RESIST, .proc/resist_fire)
+	RegisterSignal(owner, COMSIG_LIVING_EXTINGUISH, .proc/extinguish)
+
+/datum/status_effect/dragon_fire/on_remove()
+	. = ..()
+	to_chat(owner, span_warning("The last of the viscous material has stopped burning"))
+	UnregisterSignal(owner, COMSIG_LIVING_DO_RESIST)
+	UnregisterSignal(owner, COMSIG_LIVING_EXTINGUISH)
+
+// Let's not be on fire anymore
+/datum/status_effect/dragon_fire/proc/extinguish()
+	qdel(src)
+
+/datum/status_effect/dragon_fire/proc/resist_fire()
+	if(!isliving(owner))
+		return
+	var/mob/living/L = owner
+	L.resist_fire()
+

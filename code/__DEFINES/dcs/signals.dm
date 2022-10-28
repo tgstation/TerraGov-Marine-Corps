@@ -433,6 +433,8 @@
 #define COMSIG_LIVING_STATUS_STAGGER "living_stagger"			//from base of mob/living/adjust_stagger() (amount, update, ignore)
 #define COMSIG_LIVING_STATUS_SLOWDOWN "living_slowdown"			//from base of mob/living/set_slowdown() (amount, update)
 
+#define COMSIG_LIVING_EXTINGUISH "living_extinguish"			//from /mob/living/proc/ExtinguishMob()
+
 	#define COMPONENT_NO_STUN (1<<0)			//For all of them
 
 #define COMSIG_LIVING_STATUS_MUTE "living_mute"					//from base of mob/living/Mute()

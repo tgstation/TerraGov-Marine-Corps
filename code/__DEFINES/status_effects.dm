@@ -59,6 +59,10 @@
 
 #define STATUS_EFFECT_IRRADIATED /datum/status_effect/irradiated //the affected has been irradiated, harming them over time
 
+#define STATUS_EFFECT_FLAMMABLE /datum/status_effect/stacking/flammable // The affected mob will get set on fire far, far more easily.
+
+#define STATUS_EFFECT_FIRE /datum/status_effect/stacking/flammable/fire //The affected mob is on fire, ow.
+
 /////////////
 // NEUTRAL //
 /////////////

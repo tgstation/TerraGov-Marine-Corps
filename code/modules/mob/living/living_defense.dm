@@ -156,6 +156,7 @@
 /mob/living/proc/ExtinguishMob()
 	if(!on_fire)
 		return FALSE
+	SEND_SIGNAL(src, COMSIG_LIVING_EXTINGUISH)
 	on_fire = FALSE
 	adjust_bodytemperature(-80, 300)
 	fire_stacks = 0

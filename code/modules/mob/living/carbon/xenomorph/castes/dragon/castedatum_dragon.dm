@@ -29,7 +29,7 @@
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_LEADER|CASTE_CAN_BECOME_KING|CASTE_CAN_BE_GIVEN_PLASMA
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 45, "rad" = 45, FIRE = 60, ACID = 45)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 45, FIRE = 60, ACID = 45)
 
 	// *** Minimap Icon *** //
 	// minimap_icon = "todo"
@@ -62,7 +62,7 @@
 	upgrade_threshold = TIER_THREE_MATURE_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 5, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 5, BIO = 50, "rad" = 50, FIRE = 65, ACID = 50)
+	soft_armor = list(MELEE = 5, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 5, BIO = 50, FIRE = 65, ACID = 50)
 
 /datum/xeno_caste/dragon/elder
 	upgrade_name = "Elder"
@@ -86,7 +86,7 @@
 	upgrade_threshold = TIER_THREE_ELDER_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 5, "rad" = 55, FIRE = 70, ACID = 55)
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 5, FIRE = 70, ACID = 55)
 
 /datum/xeno_caste/dragon/ancient
 	upgrade_name = "Ancient"
@@ -111,7 +111,7 @@
 	upgrade_threshold = TIER_THREE_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 60, "rad" = 60, FIRE = 85, ACID = 60)
+	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 60, FIRE = 85, ACID = 60)
 
 /datum/xeno_caste/dragon/primordial
 	upgrade_name = "Primordial"
@@ -133,7 +133,7 @@
 	max_health = 700
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 60, "rad" = 60, FIRE = 85, ACID = 60)
+	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 60, FIRE = 85, ACID = 60)
 
 	// *** Abilities *** //
 	// actions = list(

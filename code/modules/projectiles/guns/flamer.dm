@@ -517,8 +517,9 @@ GLOBAL_DATUM_INIT(flamer_particles, /particles/flamer_fire, new)
 	var/firelevel = 12 //Tracks how much "fire" there is. Basically the timer of how long the fire burns
 	var/burnlevel = 10 //Tracks how HOT the fire is. This is basically the heat level of the fire and determines the temperature.
 	var/flame_color = "red"
+	var/burnflags = BURN_XENOBUILDINGS|BURN_XENOS|BURN_HUMANS|BURN_SNOW|IGNITES_MOBS // Determines what things it causes damage to, marines, xenos, their buildings or not, and if it can set mobs on fire+
 
-/obj/flamer_fire/Initialize(mapload, fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
+/obj/flamer_fire/Initialize(mapload, fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0, burn_flags)
 	. = ..()
 	particles = GLOB.flamer_particles
 
@@ -530,6 +531,8 @@ GLOBAL_DATUM_INIT(flamer_particles, /particles/flamer_fire, new)
 		firelevel = fire_lvl
 	if(burn_lvl)
 		burnlevel = burn_lvl
+	if(burn_flags)
+		burnflags = burn_flags
 	if(fire_stacks || fire_damage)
 		for(var/mob/living/C in get_turf(src))
 			C.flamer_fire_act(fire_stacks)
@@ -552,17 +555,17 @@ GLOBAL_DATUM_INIT(flamer_particles, /particles/flamer_fire, new)
 
 /obj/flamer_fire/proc/on_cross(datum/source, mob/living/M, oldloc, oldlocs) //Only way to get it to reliable do it when you walk into it.
 	if(istype(M))
-		M.flamer_fire_crossed(burnlevel, firelevel)
+		M.flamer_fire_crossed(burnlevel, firelevel, 1, burnflags)
 
 // override this proc to give different walking-over-fire effects
-/mob/living/proc/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
+/mob/living/proc/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1, burn_flags)
 	if(status_flags & (INCORPOREAL|GODMODE))
 		return FALSE
 	if(!CHECK_BITFIELD(flags_pass, PASSFIRE)) //Pass fire allow to cross fire without being ignited
 		adjust_fire_stacks(burnlevel) //Make it possible to light them on fire later.
 		IgniteMob()
 	fire_mod *= get_fire_resist()
-	take_overall_damage(0, round(burnlevel*0.5)* fire_mod, updating_health = TRUE)
+	take_overall_damage(0, round(burnlevel * 0.5) * fire_mod, updating_health = TRUE)
 	to_chat(src, span_danger("You are burned!"))
 
 /obj/flamer_fire/effect_smoke(obj/effect/particle_effect/smoke/S)
@@ -575,16 +578,20 @@ GLOBAL_DATUM_INIT(flamer_particles, /particles/flamer_fire, new)
 	if(firelevel < 1) //Extinguish if our firelevel is less than 1
 		qdel(src)
 
-/mob/living/carbon/human/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
+/mob/living/carbon/human/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1, burn_flags)
+	if(!CHECK_BITFIELD(burn_flags, BURN_HUMANS))
+		return
 	if(hard_armor.getRating("fire") >= 100)
 		take_overall_damage_armored(round(burnlevel * 0.2) * fire_mod, BURN, "fire", updating_health = TRUE)
 		return
 	. = ..()
 	if(isxeno(pulledby))
 		var/mob/living/carbon/xenomorph/X = pulledby
-		X.flamer_fire_crossed(burnlevel, firelevel)
+		X.flamer_fire_crossed(burnlevel, firelevel, 1, burn_flags)
 
-/mob/living/carbon/xenomorph/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
+/mob/living/carbon/xenomorph/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1, burn_flags)
+	if(!CHECK_BITFIELD(burn_flags, BURN_XENOS))
+		return
 	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
 	return ..()
@@ -600,6 +607,8 @@ GLOBAL_DATUM_INIT(flamer_particles, /particles/flamer_fire, new)
 			light_color = LIGHT_COLOR_CYAN
 		if("green")
 			light_color = LIGHT_COLOR_GREEN
+		if("purple")
+			light_color = LIGHT_COLOR_PURPLE
 	switch(firelevel)
 		if(1 to 9)
 			icon_state = "[flame_color]_1"
@@ -659,17 +668,24 @@ GLOBAL_DATUM_INIT(flamer_particles, /particles/flamer_fire, new)
 	to_chat(src, span_warning("You are burned!"))
 
 
-/mob/living/carbon/xenomorph/flamer_fire_act(burnlevel)
+/mob/living/carbon/xenomorph/flamer_fire_act(burnlevel, damage_flags)
+	if(!CHECK_BITFIELD(damage_flags, BURN_XENOS))
+		return
 	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
 	. = ..()
 	updatehealth()
 
-/mob/living/carbon/xenomorph/queen/flamer_fire_act(burnlevel)
+/mob/living/carbon/xenomorph/queen/flamer_fire_act(burnlevel, damage_flags)
+	if(!CHECK_BITFIELD(damage_flags, BURN_XENOS))
+		return
 	to_chat(src, span_xenowarning("Our extra-thick exoskeleton protects us from the flames."))
 
-/mob/living/carbon/xenomorph/ravager/flamer_fire_act(burnlevel)
+/mob/living/carbon/xenomorph/ravager/flamer_fire_act(burnlevel, damage_flags)
 	if(stat)
+		return
+	// Don't 
+	if(!CHECK_BITFIELD(damage_flags, BURN_XENOS))
 		return
 	plasma_stored = xeno_caste.plasma_max
 	var/datum/action/xeno_action/charge = actions_by_path[/datum/action/xeno_action/activable/charge]

@@ -50,6 +50,7 @@
 #include "code\__DEFINES\events.dm"
 #include "code\__DEFINES\factions.dm"
 #include "code\__DEFINES\factory.dm"
+#include "code\__DEFINES\fire.dm"
 #include "code\__DEFINES\flags.dm"
 #include "code\__DEFINES\foam.dm"
 #include "code\__DEFINES\footsteps.dm"
