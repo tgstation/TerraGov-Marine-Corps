@@ -53,7 +53,7 @@
 		L.adjustFireLoss(7)
 		to_chat(L, span_boldannounce("You feel the acid rain melting you away!"))
 	cleanup(L, TRUE)
-	if(L.fire_stacks > -20 && prob(25))
+	if(L.fire_stacks > -20)
 		L.fire_stacks = max(-20, L.fire_stacks - 1)
 
 /datum/weather/acid_rain/harmless
@@ -72,7 +72,7 @@
 
 /datum/weather/acid_rain/harmless/weather_act(mob/living/L)
 	cleanup(L)
-	if(L.fire_stacks > -20 && prob(25))
+	if(L.fire_stacks > -20)
 		L.fire_stacks = max(-20, L.fire_stacks - 1)
 
 /datum/weather/acid_rain/proc/cleanup(mob/living/L, acid = FALSE)
