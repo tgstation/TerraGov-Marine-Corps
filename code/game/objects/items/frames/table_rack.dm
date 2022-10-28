@@ -17,13 +17,11 @@
 	attack_verb = list("slammed", "bashed", "battered", "bludgeoned", "thrashed", "whacked")
 	var/table_type = /obj/structure/table //what type of table it creates when assembled
 	var/deconstruct_type = /obj/item/stack/sheet/metal
-	//do we drop metal when deconstructing parts?
-	var/dropmetal_on_deconstruct = TRUE
 
 /obj/item/frame/table/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(iswrench(I) && dropmetal_on_deconstruct)
+	if(iswrench(I) && !(deconstruct_type == null))
 		new deconstruct_type(loc)
 		qdel(src)
 
@@ -64,7 +62,7 @@
 	qdel(src)
 
 /obj/item/frame/table/nometal
-	dropmetal_on_deconstruct = FALSE
+	dropmetal_on_deconstruct = null
 
 /*
 * Reinforced Table Parts
