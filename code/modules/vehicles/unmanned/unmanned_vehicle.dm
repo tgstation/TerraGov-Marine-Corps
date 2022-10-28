@@ -41,7 +41,7 @@
 	/// If something is already controlling the vehicle
 	var/controlled = FALSE
 	/// Flags for unmanned vehicules
-	var/unmanned_flags = OVERLAY_TURRET|HAS_LIGHTS
+	var/unmanned_flags = OVERLAY_TURRET|HAS_LIGHTS|UNDERCARRIAGE
 	/// Iff flags, to prevent friendly fire from sg and aiming marines
 	var/iff_signal = TGMC_LOYALIST_IFF
 	/// muzzleflash stuff
@@ -120,7 +120,7 @@
 
 /obj/vehicle/unmanned/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	if((unmanned_flags & UNDERCARRIAGE) && istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
+	if((unmanned_flags & UNDERCARRIAGE) && istype(mover) && !ismob(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return TRUE
 
 /obj/vehicle/unmanned/relaymove(mob/living/user, direction)
