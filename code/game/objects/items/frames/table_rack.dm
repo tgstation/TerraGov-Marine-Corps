@@ -62,7 +62,7 @@
 	qdel(src)
 
 /obj/item/frame/table/nometal
-	dropmetal_on_deconstruct = null
+	deconstruct_type = null
 
 /*
 * Reinforced Table Parts
