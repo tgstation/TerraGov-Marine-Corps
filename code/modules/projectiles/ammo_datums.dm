@@ -2450,21 +2450,21 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/lasgun/marine/mech
 	name = "superheated laser bolt"
-	damage = 50
+	damage = 45
 	penetration = 20
 	sundering = 1
 	damage_falloff = 0.5
 
 /datum/ammo/energy/lasgun/marine/mech/burst
-	damage = 50
+	damage = 40
 	penetration = 20
 	sundering = 0.75
 	damage_falloff = 0.6
 
 /datum/ammo/energy/lasgun/marine/mech/smg
 	name = "superheated pulsed laser bolt"
-	damage = 25
-	penetration = 15
+	damage = 20
+	penetration = 10
 
 // Plasma //
 /datum/ammo/energy/plasma
