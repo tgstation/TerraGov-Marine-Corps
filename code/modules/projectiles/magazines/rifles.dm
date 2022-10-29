@@ -402,3 +402,17 @@
 	icon_state = "v31_incend"
 	default_ammo = /datum/ammo/bullet/rifle/incendiary
 	icon_state_mini = "mag_rifle_big_red"
+
+//-------------------------------------------------------
+//V-41 Machine Gun
+
+/obj/item/ammo_magazine/som_mg
+	name = "\improper V-41 box magazine (10x26mm)"
+	desc = "A drum magazine for the V-41 machinegun."
+	icon_state = "v41"
+	caliber = CALIBER_10x26_CASELESS
+	default_ammo = /datum/ammo/bullet/rifle/machinegun
+	w_class = WEIGHT_CLASS_NORMAL
+	max_rounds = 250
+	reload_delay = 3 SECONDS
+	icon_state_mini = "mag_gpmg"
