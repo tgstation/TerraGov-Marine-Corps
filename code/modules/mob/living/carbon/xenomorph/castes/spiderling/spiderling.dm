@@ -35,6 +35,10 @@
 	. = ..()
 	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/go_to_target)
 
+/datum/ai_behavior/spiderling/look_for_new_state()
+	. = ..()
+	change_action(ESCORTING_ATOM, escorted_atom)
+
 /// Signal handler to check if we can attack what our escorted_atom is attacking
 /datum/ai_behavior/spiderling/proc/go_to_target(source, mob/living/target)
 	SIGNAL_HANDLER
@@ -70,7 +74,7 @@
 /datum/ai_behavior/spiderling/register_action_signals(action_type)
 	if(action_type == MOVING_TO_ATOM)
 		RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, .proc/attack_target)
-		RegisterSignal(atom_to_walk_to, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING), .proc/change_action)
+		RegisterSignal(atom_to_walk_to, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING), .proc/look_for_new_state)
 	return ..()
 
 /datum/ai_behavior/spiderling/unregister_action_signals(action_type)
