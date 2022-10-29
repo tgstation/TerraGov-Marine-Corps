@@ -1,4 +1,6 @@
 /datum/orbit_menu
+	/// Determines whether the orbit UI displays the hud on observable click.
+	var/auto_observe = FALSE
 	var/mob/dead/observer/owner
 
 /datum/orbit_menu/New(mob/dead/observer/new_owner)
@@ -28,12 +30,24 @@
 				return
 			owner.ManualFollow(poi)
 			owner.reset_perspective(null)
-			if(params["auto_observe"])
+			if(auto_observe)
 				owner.do_observe(poi)
 			. = TRUE
 		if("refresh")
 			update_static_data(usr, ui)
 			. = TRUE
+		if("toggle_observe")
+			auto_observe = !auto_observe
+			if(auto_observe && !QDELETED(owner.orbiting.parent))
+				owner.do_observe(owner.orbiting.parent)
+			else
+				owner.reset_perspective(null)
+			. = TRUE
+
+/datum/orbit_menu/ui_data(mob/user)
+	var/list/data = list()
+	data["auto_observe"] = auto_observe
+	return data
 
 /datum/orbit_menu/ui_static_data(mob/user)
 	var/list/data = list()

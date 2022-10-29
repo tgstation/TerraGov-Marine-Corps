@@ -40,17 +40,13 @@ export const Orbit = (props, context) => {
 const ObservableSearch = (props, context) => {
   const { act, data } = useBackend<OrbitData>(context);
   const {
+    auto_observe,
     humans = [],
     marines = [],
     som = [],
     survivors = [],
     xenos = [],
   } = data;
-  const [autoObserve, setAutoObserve] = useLocalState<boolean>(
-    context,
-    'autoObserve',
-    false
-  );
   const [searchQuery, setSearchQuery] = useLocalState<string>(
     context,
     'searchQuery',
@@ -71,7 +67,6 @@ const ObservableSearch = (props, context) => {
     if (mostRelevant !== undefined) {
       act('orbit', {
         ref: mostRelevant.ref,
-        auto_observe: autoObserve,
       });
     }
   };
@@ -95,9 +90,9 @@ const ObservableSearch = (props, context) => {
         <Stack.Divider />
         <Stack.Item>
           <Button
-            color={autoObserve ? 'good' : 'transparent'}
-            icon={autoObserve ? 'toggle-on' : 'toggle-off'}
-            onClick={() => setAutoObserve(!autoObserve)}
+            color={auto_observe ? 'good' : 'transparent'}
+            icon={auto_observe ? 'toggle-on' : 'toggle-off'}
+            onClick={() => act('toggle_observe')}
             tooltip={multiline`Toggle Auto-Observe. When active, you'll
             see the UI / full inventory of whoever you're orbiting. Neat!`}
             tooltipPosition="bottom-start"
@@ -205,12 +200,11 @@ const ObservableItem = (
   const { act } = useBackend<OrbitData>(context);
   const { color, item } = props;
   const { health, icon, full_name, nickname, orbiters, ref } = item;
-  const [autoObserve] = useLocalState<boolean>(context, 'autoObserve', false);
 
   return (
     <Button
       color={getDisplayColor(item, !!color)}
-      onClick={() => act('orbit', { auto_observe: autoObserve, ref: ref })}
+      onClick={() => act('orbit', { ref: ref })}
       tooltip={!!health && <ObservableTooltip item={item} />}
       tooltipPosition="bottom-start">
       {!!icon && <ObservableIcon icon={icon} />}

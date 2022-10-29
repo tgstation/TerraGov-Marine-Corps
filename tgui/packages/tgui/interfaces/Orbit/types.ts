@@ -1,4 +1,7 @@
+import { BooleanLike } from "common/react";
+
 export type OrbitData = {
+  auto_observe: BooleanLike;
   dead: Observable[];
   ghosts: Observable[];
   humans: Observable[];
