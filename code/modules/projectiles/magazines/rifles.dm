@@ -411,8 +411,8 @@
 	desc = "A drum magazine for the V-41 machinegun."
 	icon_state = "v41"
 	caliber = CALIBER_10x26_CASELESS
-	default_ammo = /datum/ammo/bullet/rifle/machinegun
+	default_ammo = /datum/ammo/bullet/rifle/som_machinegun
 	w_class = WEIGHT_CLASS_NORMAL
-	max_rounds = 250
+	max_rounds = 200
 	reload_delay = 3 SECONDS
 	icon_state_mini = "mag_gpmg"

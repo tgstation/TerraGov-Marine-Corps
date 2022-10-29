@@ -1711,7 +1711,7 @@
 
 /obj/item/weapon/gun/rifle/som_mg
 	name = "\improper V-41 machine gun"
-	desc = "The V-41 is a large man portable machine used by the SOM, allowing for sustained, accurate suppressive firepower. Commonly seen where their preferred tactics of fast, mobile aggression is ill suited."
+	desc = "The V-41 is a large man portable machine used by the SOM, allowing for sustained, accurate suppressive firepower at the cost of mobility and handling. Commonly seen where their preferred tactics of fast, mobile aggression is ill suited."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "v41"
 	item_state = "v41"
@@ -1724,9 +1724,8 @@
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
 	caliber = CALIBER_10x26_CASELESS
-	max_shells = 250
+	max_shells = 200
 	force = 35
-	aim_slowdown = 1.2
 	wield_delay = 1.5 SECONDS
 	fire_sound =  'sound/weapons/guns/fire/GPMG.ogg'
 	fire_rattle =  'sound/weapons/guns/fire/GPMG_low.ogg'
@@ -1759,17 +1758,16 @@
 	attachable_offset = list("muzzle_x" = 53, "muzzle_y" = 19,"rail_x" = 14, "rail_y" = 23, "under_x" = 41, "under_y" = 14, "stock_x" = -32, "stock_y" = 0)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.2 SECONDS
-	aim_speed_modifier = 6
+	aim_slowdown = 1.2
 
-	fire_delay = 0.15 SECONDS
-	damage_falloff_mult = 0.5
+	fire_delay = 0.2 SECONDS
 	burst_amount = 1
 	accuracy_mult_unwielded = 0.4
-	scatter = 7
-	scatter_unwielded = 45
+	scatter = 6
+	scatter_unwielded = 40
 	movement_acc_penalty_mult = 6
 
 	placed_overlay_iconstate = "lmg"
 
 /obj/item/weapon/gun/rifle/som_mg/standard
-	starting_attachment_types = list(/obj/item/attachable/verticalgrip, /obj/item/attachable/reddot)
+	starting_attachment_types = list(/obj/item/attachable/bipod, /obj/item/attachable/reddot, /obj/item/attachable/extended_barrel)

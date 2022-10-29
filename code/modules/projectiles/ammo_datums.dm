@@ -645,6 +645,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 20
 	penetration = 10
 
+/datum/ammo/bullet/rifle/som_machinegun
+	name = "machinegun bullet"
+	hud_state = "rifle_heavy"
+	damage = 25
+	penetration = 12.5
+	sundering = 1
+
 /datum/ammo/bullet/rifle/tx8
 	name = "A19 high velocity bullet"
 	hud_state = "hivelo"
