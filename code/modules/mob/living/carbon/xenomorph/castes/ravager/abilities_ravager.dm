@@ -123,7 +123,7 @@
 		var/mob/living/carbon/human/attacking = ravaged
 		if(attacking.stat == DEAD)
 			continue
-		step_away(ravaged, X, 1, 2)
+		step_away(attacking, X, 1, 2)
 		attacking.attack_alien_harm(X, X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier * 0.25, FALSE, TRUE, FALSE, TRUE)
 		shake_camera(attacking, 2, 1)
 		attacking.Paralyze(1 SECONDS)
