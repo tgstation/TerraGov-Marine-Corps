@@ -454,7 +454,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/revolver/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, stagger = 1, slowdown = 0.5, knockback = 1)
 
-datum/ammo/bullet/revolver/tp44
+/datum/ammo/bullet/revolver/tp44
 	name = "standard revolver bullet"
 	damage = 30
 	penetration = 20
@@ -2014,6 +2014,105 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/rocket/atgun_shell/he/on_hit_turf(turf/T, obj/projectile/P)
 	drop_nade(T.density ? P.loc : T)
 
+/datum/ammo/mortar
+	name = "80mm"
+	icon_state = "mortar"
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
+	shell_speed = 1.10
+	damage = 0
+	penetration = 0
+	sundering = 0
+	accuracy = 250
+	max_range = 250
+	ping = null
+	bullet_color = COLOR_WHITE
+
+/datum/ammo/mortar/drop_nade(turf/T)
+	explosion(T, 1, 2, 5, 3)
+
+/datum/ammo/mortar/do_at_max_range(turf/T, obj/projectile/P)
+	drop_nade(T)
+
+/datum/ammo/mortar/incend/drop_nade(turf/T)
+	explosion(T, 0, 2, 3, 7, throw_range = 0, small_animation = TRUE)
+	flame_radius(4, T)
+	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
+
+/datum/ammo/mortar/smoke
+	///the smoke effect at the point of detonation
+	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/tactical
+
+/datum/ammo/mortar/smoke/drop_nade(turf/T)
+	var/datum/effect_system/smoke_spread/smoke = new smoketype()
+	explosion(T, 0, 0, 1, 3, throw_range = 0, small_animation = TRUE)
+	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
+	smoke.set_up(10, T, 11)
+	smoke.start()
+
+/datum/ammo/mortar/smoke/plasmaloss
+	smoketype = /datum/effect_system/smoke_spread/plasmaloss
+
+/datum/ammo/mortar/flare/drop_nade(turf/T)
+	new /obj/effect/temp_visual/above_flare(T)
+	playsound(T, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4)
+
+/datum/ammo/mortar/howi
+	name = "150mm"
+	icon_state = "howi"
+	shell_speed = 1.25
+
+/datum/ammo/mortar/howi/drop_nade(turf/T)
+	explosion(T, 1, 6, 7, 12)
+
+/datum/ammo/mortar/howi/incend/drop_nade(turf/T)
+	explosion(T, 0, 3, 0, 3, throw_range = 0, small_animation = TRUE)
+	flame_radius(5, T)
+	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
+
+/datum/ammo/mortar/smoke/howi
+	name = "150mm"
+	icon_state = "howi"
+	shell_speed = 1.25
+
+/datum/ammo/mortar/smoke/howi/wp
+	smoketype = /datum/effect_system/smoke_spread/phosphorus
+
+/datum/ammo/mortar/smoke/howi/wp/drop_nade(turf/T)
+	var/datum/effect_system/smoke_spread/smoke = new smoketype()
+	explosion(T, 0, 0, 1, 0, throw_range = 0)
+	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
+	smoke.set_up(6, T, 7)
+	smoke.start()
+	flame_radius(4, T)
+	flame_radius(1, T, burn_intensity = 45, burn_duration = 75, burn_damage = 15, fire_stacks = 75)
+
+/datum/ammo/mortar/smoke/howi/plasmaloss
+	smoketype = /datum/effect_system/smoke_spread/plasmaloss
+
+/datum/ammo/mortar/smoke/howi/plasmaloss/drop_nade(turf/T)
+	var/datum/effect_system/smoke_spread/smoke = new smoketype()
+	explosion(T, 0, 0, 5, 0, throw_range = 0)
+	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
+	smoke.set_up(10, T, 11)
+	smoke.start()
+
+/datum/ammo/mortar/rocket
+	name = "rocket"
+	icon_state = "rocket"
+	shell_speed = 1.5
+
+/datum/ammo/mortar/rocket/drop_nade(turf/T)
+	explosion(T, 1, 2, 5, 3)
+
+/datum/ammo/mortar/rocket/incend/drop_nade(turf/T)
+	explosion(T, 0, 3, 0, 3, throw_range = 0, small_animation = TRUE)
+	flame_radius(5, T)
+	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
+
+/datum/ammo/mortar/rocket/minelayer/drop_nade(turf/T)
+	var/obj/item/explosive/mine/mine = new /obj/item/explosive/mine(T)
+	mine.deploy_mine(null, TGMC_LOYALIST_IFF)
+
 /*
 //================================================
 					Energy Ammo
@@ -2351,21 +2450,21 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/energy/lasgun/marine/mech
 	name = "superheated laser bolt"
-	damage = 50
+	damage = 45
 	penetration = 20
 	sundering = 1
 	damage_falloff = 0.5
 
 /datum/ammo/energy/lasgun/marine/mech/burst
-	damage = 50
+	damage = 40
 	penetration = 20
 	sundering = 0.75
 	damage_falloff = 0.6
 
 /datum/ammo/energy/lasgun/marine/mech/smg
 	name = "superheated pulsed laser bolt"
-	damage = 25
-	penetration = 15
+	damage = 20
+	penetration = 10
 
 // Plasma //
 /datum/ammo/energy/plasma

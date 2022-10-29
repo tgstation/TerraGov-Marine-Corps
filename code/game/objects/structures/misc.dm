@@ -105,59 +105,61 @@
 
 //ICE COLONY RESEARCH DECORATION-----------------------//
 //Most of icons made by ~Morrinn
-obj/structure/xenoautopsy
+/obj/structure/xenoautopsy
 	name = "Research thingies"
 	icon = 'icons/obj/alien_autopsy.dmi'
 	icon_state = "jarshelf_9"
 
-obj/structure/xenoautopsy/jar_shelf
+/obj/structure/xenoautopsy/jar_shelf
 	name = "jar shelf"
 	icon_state = "jarshelf_0"
 	var/randomise = 1 //Random icon
 
-	New()
-		if(randomise)
-			icon_state = "jarshelf_[rand(0,9)]"
+/obj/structure/xenoautopsy/jar_shelf/Initialize()
+	. = ..()
+	if(randomise)
+		icon_state = "jarshelf_[rand(0,9)]"
 
-obj/structure/xenoautopsy/tank
+/obj/structure/xenoautopsy/tank
 	name = "cryo tank"
 	icon_state = "tank_empty"
 	desc = "It is empty."
 
-obj/structure/xenoautopsy/tank/escaped
+/obj/structure/xenoautopsy/tank/escaped
 	name = "broken cryo tank"
 	icon_state = "tank_escaped"
 	desc = "Something broke it..."
 
-obj/structure/xenoautopsy/tank/broken
+/obj/structure/xenoautopsy/tank/broken
 	icon_state = "tank_broken"
 	desc = "Something broke it..."
 
-obj/structure/xenoautopsy/tank/alien
+/obj/structure/xenoautopsy/tank/alien
 	icon_state = "tank_alien"
 	desc = "There is something big inside..."
 
-obj/structure/xenoautopsy/tank/hugger
+/obj/structure/xenoautopsy/tank/hugger
 	icon_state = "tank_hugger"
 	desc = "There is something spider-like inside..."
 
-obj/structure/xenoautopsy/tank/larva
+/obj/structure/xenoautopsy/tank/larva
 	icon_state = "tank_larva"
 	desc = "There is something worm-like inside..."
 
-obj/item/alienjar
+/obj/item/alienjar
 	name = "sample jar"
 	icon = 'icons/obj/alien_autopsy.dmi'
 	icon_state = "jar_sample"
 	desc = "Used to store organic samples inside for preservation."
 
-	New()
-		var/image/I
-		I = image('icons/obj/alien_autopsy.dmi', "sample_[rand(0,11)]")
-		I.layer = src.layer - 0.1
-		overlays += I
-		pixel_x += rand(-3,3)
-		pixel_y += rand(-3,3)
+/obj/item/alienjar/Initialize()
+	. = ..()
+
+	var/image/sample_image = image('icons/obj/alien_autopsy.dmi', "sample_[rand(0,11)]")
+	sample_image.layer = layer - 0.1
+	add_overlay(sample_image)
+	pixel_x += rand(-3,3)
+	pixel_y += rand(-3,3)
 
 
 

@@ -336,7 +336,7 @@
 /datum/effect_system/smoke_spread/bad
 	smoke_type = /obj/effect/particle_effect/smoke/bad
 
-datum/effect_system/smoke_spread/tactical
+/datum/effect_system/smoke_spread/tactical
 	smoke_type = /obj/effect/particle_effect/smoke/tactical
 
 /datum/effect_system/smoke_spread/sleepy

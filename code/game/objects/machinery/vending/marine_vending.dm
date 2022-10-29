@@ -80,6 +80,7 @@
 			/obj/item/weapon/twohanded/spear/tactical/harvester = -1,
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/shield/riot/marine = 6,
+			/obj/item/weapon/shield/riot/marine/deployable = 6,
 		),
 		"Sidearm" = list(
 			/obj/item/weapon/gun/pistol/standard_pistol = -1,
@@ -130,7 +131,8 @@
 			/obj/item/storage/box/sentry = 4,
 			/obj/item/storage/box/tl102 = 1,
 			/obj/item/weapon/gun/heavymachinegun = 1,
-			/obj/item/ammo_magazine/heavymachinegun = 10,
+			/obj/item/ammo_magazine/heavymachinegun = 5,
+			/obj/item/ammo_magazine/heavymachinegun/small = 10,
 			/obj/item/storage/holster/backholster/rpg/full = 2,
 			/obj/item/ammo_magazine/rocket/recoilless = 4,
 			/obj/item/ammo_magazine/rocket/recoilless/light = 4,
@@ -275,6 +277,7 @@
 			/obj/item/weapon/twohanded/spear/tactical/harvester = -1,
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/shield/riot/marine = 6,
+			/obj/item/weapon/shield/riot/marine/deployable = 6,
 		),
 		"Sidearm" = list(
 			/obj/item/weapon/gun/pistol/standard_pistol = -1,
@@ -451,6 +454,7 @@
 			/obj/item/weapon/twohanded/spear/tactical/harvester = -1,
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/shield/riot/marine = -1,
+			/obj/item/weapon/shield/riot/marine/deployable = -1,
 		),
 		"Sidearm" = list(
 			/obj/item/weapon/gun/pistol/standard_pistol = -1,
@@ -634,6 +638,7 @@
 			/obj/item/weapon/twohanded/spear/tactical/harvester = -1,
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/shield/riot/marine = 6,
+			/obj/item/weapon/shield/riot/marine/deployable = 6,
 		),
 		"Sidearm" = list(
 			/obj/item/weapon/gun/pistol/standard_pistol = -1,

@@ -9703,11 +9703,13 @@
 /area/mainship/command/corporateliaison)
 "etF" = (
 /obj/structure/window/framed/mainship,
-/obj/machinery/door/poddoor/shutters/mainship/corporate{
-	dir = 2
-	},
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
+	},
+/obj/machinery/door/poddoor/shutters/mainship/open{
+	dir = 2;
+	id = "cl_shutters";
+	name = "\improper Privacy Shutters"
 	},
 /turf/open/floor/plating,
 /area/mainship/command/corporateliaison)
@@ -16586,8 +16588,10 @@
 /obj/machinery/door/airlock/mainship/generic/corporate{
 	dir = 2
 	},
-/obj/machinery/door/poddoor/shutters/mainship/corporate{
-	dir = 2
+/obj/machinery/door/poddoor/shutters/mainship/open{
+	dir = 2;
+	id = "cl_shutters";
+	name = "\improper Privacy Shutters"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)

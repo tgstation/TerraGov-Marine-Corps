@@ -74,3 +74,22 @@
 	tracker_target = target
 	tracker_target.overlays += holder
 	hud_list[XENO_TACTICAL_HUD] = holder
+
+///Name_swap of the CAS flare
+/obj/effect/temp_visual/above_flare
+	icon_state = "flare"
+	layer = FLY_LAYER
+	resistance_flags = RESIST_ALL
+	mouse_opacity = 0
+	light_system = HYBRID_LIGHT
+	light_power = 12
+	light_range = 12 //Way brighter than most lights
+	pixel_y = 150
+	duration = 90 SECONDS
+
+/obj/effect/temp_visual/above_flare/Initialize()
+	. = ..()
+	set_light(light_range, light_power)
+	loc.visible_message(span_warning("You see a tiny flash, and then a blindingly bright light from a flare as it lights off in the sky!"))
+	playsound(loc, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4)
+	animate(src, time = duration, pixel_y = 0)

@@ -400,7 +400,7 @@
 	flags_marine_helmet = NONE
 	flags_item_map_variant = null
 
-obj/item/clothing/head/helmet/marine/pilot/green
+/obj/item/clothing/head/helmet/marine/pilot/green
 	name = "\improper M30 tactical helmet"
 	desc = "The M30 tactical helmet has an left eyepiece filter used to filter tactical data. It is used by pilots in the TGN. This one is in green."
 	icon_state = "helmetp"
