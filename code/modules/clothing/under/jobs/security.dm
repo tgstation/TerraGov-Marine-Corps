@@ -34,6 +34,11 @@
 	icon_state = "securitywhite"
 	item_state = "securitywhite"
 
+/obj/item/clothing/under/rank/security/skirt
+	name = "security jumpskirt"
+	desc = "A \"tactical\" security jumpsuit with the legs replaced by a skirt."
+	icon_state = "securityskirtred"
+	item_state = "securityskirtred"
 /obj/item/clothing/under/rank/dispatch
 	name = "dispatcher's uniform"
 	desc = "A dress shirt and khakis with a security patch sewn on."
