@@ -116,14 +116,14 @@
 	for(var/atom/movable/ravaged AS in atoms_to_ravage)
 		if(!(ravaged.resistance_flags & XENO_DAMAGEABLE))
 			continue
-		if(!ravaged.anchored)
-			step_away(ravaged, X, 1, 2)
-		if(!ishuman(ravaged))
+		if(!ishuman(ravaged) && !ravaged.anchored)
 			ravaged.attack_alien(X, X.xeno_caste.melee_damage)
+			step_away(ravaged, X, 1, 2)
 			continue
 		var/mob/living/carbon/human/attacking = ravaged
 		if(attacking.stat == DEAD)
 			continue
+		step_away(ravaged, X, 1, 2)
 		attacking.attack_alien_harm(X, X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier * 0.25, FALSE, TRUE, FALSE, TRUE)
 		shake_camera(attacking, 2, 1)
 		attacking.Paralyze(1 SECONDS)
