@@ -35,10 +35,6 @@
 	. = ..()
 	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/go_to_target)
 
-/datum/ai_behavior/spiderling/look_for_new_state()
-	. = ..()
-	change_action(ESCORTING_ATOM, escorted_atom)
-
 /// Signal handler to check if we can attack what our escorted_atom is attacking
 /datum/ai_behavior/spiderling/proc/go_to_target(source, mob/living/target)
 	SIGNAL_HANDLER
