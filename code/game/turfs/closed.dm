@@ -311,8 +311,10 @@
 	icon_state = "wall1"
 	icon = 'icons/turf/shuttle.dmi'
 	plane = FLOOR_PLANE
-	smoothing_behavior = NO_SMOOTHING
+	smoothing_behavior = CARDINAL_SMOOTHING
 	resistance_flags = PLASMACUTTER_IMMUNE
+	smoothing_groups = SMOOTH_ESCAPESHUTTLE
+	color = "#616161"
 
 /turf/closed/shuttle/re_corner/notdense
 	icon_state = "re_cornergrass"

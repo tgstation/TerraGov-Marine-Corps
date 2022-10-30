@@ -2,11 +2,6 @@
 "a" = (
 /turf/closed/shuttle,
 /area/shuttle/escape_pod)
-"b" = (
-/turf/closed/shuttle/diagonal{
-	dir = 1
-	},
-/area/shuttle/escape_pod)
 "c" = (
 /turf/open/space/basic,
 /area/shuttle/escape_pod)
@@ -34,7 +29,7 @@
 /turf/closed/shuttle,
 /area/shuttle/escape_pod)
 "i" = (
-/obj/structure/window/shuttle,
+/obj/structure/window/framed/mainship/canterbury,
 /turf/open/floor/plating/mainship,
 /area/shuttle/escape_pod)
 "j" = (
@@ -65,27 +60,10 @@
 	icon_state = "floor10"
 	},
 /area/shuttle/escape_pod)
-"p" = (
-/turf/closed/shuttle/diagonal{
-	dir = 4
-	},
-/area/shuttle/escape_pod)
 "q" = (
 /obj/machinery/door/airlock/evacuation,
 /obj/docking_port/mobile/escape_pod/escape_shuttle,
 /turf/open/floor/plating/mainship,
-/area/shuttle/escape_pod)
-"r" = (
-/obj/structure/window/shuttle,
-/turf/closed/shuttle/diagonal{
-	dir = 1
-	},
-/area/shuttle/escape_pod)
-"s" = (
-/obj/structure/window/shuttle,
-/turf/closed/shuttle/diagonal{
-	dir = 4
-	},
 /area/shuttle/escape_pod)
 
 (1,1,1) = {"
@@ -134,38 +112,38 @@ d
 a
 "}
 (6,1,1) = {"
-b
+a
 d
 f
 k
 f
 d
-p
+a
 "}
 (7,1,1) = {"
-c
+a
 a
 g
 l
 o
 a
-c
+a
 "}
 (8,1,1) = {"
 c
-b
+a
 h
 m
 a
-p
+a
 c
 "}
 (9,1,1) = {"
 c
 c
-r
+a
 i
-s
+a
 c
 c
 "}
