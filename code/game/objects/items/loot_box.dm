@@ -82,10 +82,10 @@
 	item_state = "lootbox"
 
 	legendary_list = list(
-	/obj/item/storage/box/loot/operator_pack,
-	/obj/item/storage/box/loot/heavy_pack,
-	/obj/item/storage/box/loot/b18classic_pack,
-	/obj/item/storage/box/loot/sadarclassic_pack,
+		/obj/item/storage/box/loot/operator_pack,
+		/obj/item/storage/box/loot/heavy_pack,
+		/obj/item/storage/box/loot/b18classic_pack,
+		/obj/item/storage/box/loot/sadarclassic_pack,
 	)
 	rare_list = list(
 		/obj/item/storage/box/loot/tl102_pack,
