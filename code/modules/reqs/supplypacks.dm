@@ -31,6 +31,12 @@ OPERATIONS
 	group = "Operations"
 	containertype = /obj/structure/closet/crate
 
+/datum/supply_packs/imports/loot_pack
+	name = "TGMC Loot Pack"
+	notes = "Contains a random, but curated set of items, these packs are valued around 150 to 200 points. Some items can only be acquired from these. Spend responsibly."
+	contains = list(/obj/item/loot_box/tgmclootbox)
+	cost = 100
+
 /datum/supply_packs/operations/beacons_supply
 	name = "supply beacon"
 	contains = list(/obj/item/beacon/supply_beacon)
@@ -446,7 +452,7 @@ WEAPONS
 	name = "HMG-08 heavy machinegun ammo (500 rounds)"
 	contains = list(/obj/item/ammo_magazine/heavymachinegun)
 	cost = 7
-	
+
 /datum/supply_packs/weapons/hmg_ammo_small
 	name = "HMG-08 heavy machinegun ammo (250 rounds)"
 	contains = list(/obj/item/ammo_magazine/heavymachinegun/small)
