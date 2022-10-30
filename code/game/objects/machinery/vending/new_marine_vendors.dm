@@ -79,6 +79,8 @@
 	.["vendor_name"] = name
 	.["show_points"] = use_points
 
+	var/obj/item/card/id/I = user.get_idcard()
+	.["total_points"] = I ? initial(I.marine_points) : 0
 
 	for(var/i in listed_products)
 		var/list/myprod = listed_products[i]
@@ -94,21 +96,13 @@
 
 	var/obj/item/card/id/I = user.get_idcard()
 	var/buy_choices = I?.marine_buy_choices
-	var/obj/item/card/id/dogtag/full/ptscheck = new /obj/item/card/id/dogtag/full
-
+	.["remaining_points"] = I?.marine_points || 0
+		
 	.["cats"] = list()
 	for(var/cat in GLOB.marine_selector_cats)
 		.["cats"][cat] = list(
 			"remaining" = buy_choices[cat],
 			"total" = GLOB.marine_selector_cats[cat],
-			"choice" = "choice",
-			)
-
-	for(var/cat in I?.marine_points)
-		.["cats"][cat] = list(
-			"remaining_points" = I?.marine_points[cat],
-			"total_points" = ptscheck?.marine_points[cat],
-			"choice" = "points",
 			)
 
 /obj/machinery/marine_selector/ui_act(action, list/params)
@@ -136,7 +130,7 @@
 					flick(icon_deny, src)
 				return
 
-			if(use_points && (item_category in I.marine_points) && I.marine_points[item_category] < cost)
+			if(use_points && I.marine_points < cost)
 				to_chat(usr, span_warning("Not enough points."))
 				if(icon_deny)
 					flick(icon_deny, src)
@@ -182,8 +176,8 @@
 					if(istype(H.job, /datum/job/terragov/squad/leader))
 						new /obj/item/hud_tablet(loc, vendor_role, H.assigned_squad)
 
-			if(use_points && (item_category in I.marine_points))
-				I.marine_points[item_category] -= cost
+			if(use_points)
+				I.marine_points -= cost
 			. = TRUE
 
 	updateUsrDialog()
