@@ -1823,7 +1823,7 @@
 
 /obj/item/weapon/gun/rifle/galvanic
 	name = "\improper Mark IV Arkhan Pattern Galvanic Rifle"
-	desc = "Its bodywork is that of an antique, with a polished wooden stock and curlicues that echo the sandy seas of Mars' desert. Yet the galvanic servitor-bullets inside are incredibly advanced. When such a bullet strikes home, it causes all the potential energy of the target to burn out in a killing blast of electric force."
+	desc = "Its bodywork is that of an antique, with a polished wooden stock and curlicues that echo the sandy seas of Mars' desert. Yet the galvanic servitor-bullets inside are incredibly advanced. When such a bullet strikes home, it causes all the potential energy of the target to burn out in a killing blast of electric force. An exquisite, handcrafted and outdated rifle, with enough penetrative power to boot."
 	fire_sound = 'sound/weapons/guns/fire/galvanic.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'

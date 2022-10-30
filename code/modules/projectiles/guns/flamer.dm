@@ -462,8 +462,8 @@
 	)
 
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/flamer_imp
-	name = "\improper Flamer"
-	desc = "Flamers, also known as 'flame guns', are flamer weapons that come in a wide variety of designs and patterns, but all are ideal for flushing out enemies in cover and putting groups of foes to the torch with projected flame."
+	name = "\improper Mk.IIIa Heretic Pattern Flamer"
+	desc = "Flamers, also known as 'flame guns' or 'burners', are flamer weapons that come in a wide variety of designs and patterns, but all are ideal for flushing out enemies in cover and putting groups of foes to the torch with highly volatile projected flame. Very effective against flesh targets."
 	max_shots = 150 //codex stuff
 	ammo_datum_type = /datum/ammo/flamethrower/promethium
 	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/large/promethium

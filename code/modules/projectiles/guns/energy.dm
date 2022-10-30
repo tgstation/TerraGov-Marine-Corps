@@ -1246,7 +1246,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/arcrifle
 	name = "\improper Arc rifle"
-	desc = "Arc Weapons are a type of weapon utilised by the armed forces of the Adeptus Mechanicus. They are powered by bulky perma-capacitors shipped from Mars' great repositorum some of these zinc-plated blocks store energy from days when the Imperium was young. arc weapons discharge directed energy blasts with a loud crack, firing blots of blue-white electricity that can fry a man's brain or overload a war machine's data-cortex in a solar second."
+	desc = "An electrical weapon utilized by the forces of the Adeptus Mechanicus, the rifles most commonly used by the Skitarii Rangers. They are powered by bulky perma-capacitors shipped from Mars' great repositorum some of these zinc-plated blocks store energy from days when the Imperium was young. Arc weapons discharge directed energy blasts with a loud crack, firing blots of blue-white electricity that can fry a man's brain or overload a war machine's data-cortex in a solar second."
 	reload_sound = 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/arc.ogg'
 	icon_state = "arc_rifle"

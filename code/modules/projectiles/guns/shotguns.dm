@@ -760,7 +760,7 @@
 
 /obj/item/weapon/gun/shotgun/pump/mk6shotgun
 	name = "\improper Accatran Pattern Mk XI shotgun"
-	desc = "An eight-round magazine pump shotgun. Strongly made and versatile, the Mk XI shotgun serves at the secondary preferred weapon for close-quarters and crowd control in urban enviroments, though a lasgun is best for longer distances. A service shotgun for the Cadian Shock Trooper regiment.</b>"
+	desc = "An eight-round magazine pump shotgun. Strongly made and versatile, the Mk XI shotgun serves at the secondary preferred weapon for close-quarters and crowd control in urban environments, though a lasgun is best for longer distances. A service shotgun for the Cadian Shock Trooper regiment."
 	icon = 'icons/Marine/gun64.dmi'
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon_state = "mk6shotgun"
