@@ -17,6 +17,7 @@ import './styles/themes/retro.scss';
 import './styles/themes/syndicate.scss';
 import './styles/themes/som.scss';
 import './styles/themes/xeno.scss';
+import './styles/themes/imperium.scss';
 
 import { perf } from 'common/perf';
 import { setupHotReloading } from 'tgui-dev-server/link/client.cjs';

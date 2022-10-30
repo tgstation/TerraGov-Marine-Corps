@@ -461,6 +461,76 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 		clear_fullscreen("robothalf")
 		clear_fullscreen("robotlow")
 
+/datum/species/augmented
+	name = "Augmented"
+	name_plural = "Augmented"
+	icobase = 'icons/mob/human_races/r_skitarii.dmi'
+	damage_mask_icon = 'icons/mob/dam_mask_robot.dmi'
+	brute_damage_icon_state = "robot_brute"
+	burn_damage_icon_state = "robot_burn"
+	eyes = "blank_eyes"
+	namepool = /datum/namepool/robotic
+
+	unarmed_type = /datum/unarmed_attack/punch/strong
+	total_health = 100
+	slowdown = SHOES_SLOWDOWN //because they don't wear boots.
+
+	cold_level_1 = -1
+	cold_level_2 = -1
+	cold_level_3 = -1
+
+	heat_level_1 = 500
+	heat_level_2 = 1000
+	heat_level_3 = 2000
+
+	body_temperature = 350
+
+	inherent_traits = list(TRAIT_NON_FLAMMABLE)
+	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|NO_STAMINA|DETACHABLE_HEAD|HAS_NO_HAIR|ROBOTIC_LIMBS|IS_INSULATED
+
+	no_equip = list(
+		SLOT_W_UNIFORM,
+		SLOT_HEAD,
+		SLOT_WEAR_MASK,
+		SLOT_WEAR_SUIT,
+		SLOT_SHOES,
+		SLOT_GLOVES,
+		SLOT_GLASSES,
+	)
+	blood_color = "#2d2055" //"oil" color
+	hair_color = "#00000000"
+	has_organ = list()
+
+
+	screams = list(MALE = "robot_scream", FEMALE = "robot_scream", PLURAL = "robot_scream", NEUTER = "robot_scream")
+	paincries = list(MALE = "robot_pain", FEMALE = "robot_pain", PLURAL = "robot_pain", NEUTER = "robot_pain")
+	goredcries = list(MALE = "robot_scream", FEMALE = "robot_scream", PLURAL = "robot_scream", NEUTER = "robot_scream")
+	warcries = list(MALE = "robot_warcry", FEMALE = "robot_warcry", PLURAL = "robot_warcry", NEUTER = "robot_warcry")
+	death_message = "shudders violently whilst spitting out error text before collapsing, their visual sensor darkening..."
+	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
+	joinable_roundstart = TRUE
+
+/datum/species/augmented/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
+	. = ..()
+	H.speech_span = SPAN_ROBOT
+	H.health_threshold_crit = -100
+
+/datum/species/augmented/post_species_loss(mob/living/carbon/human/H)
+	. = ..()
+	H.speech_span = initial(H.speech_span)
+	H.health_threshold_crit = -50
+
+/mob/living/carbon/human/species/augmented/handle_regular_hud_updates()
+	. = ..()
+	if(health <= 0 && health > -50)
+		clear_fullscreen("robotlow")
+		overlay_fullscreen("robothalf", /obj/screen/fullscreen/robothalf)
+	else if(health <= -50)
+		clear_fullscreen("robothalf")
+		overlay_fullscreen("robotlow", /obj/screen/fullscreen/robotlow)
+	else
+		clear_fullscreen("robothalf")
+		clear_fullscreen("robotlow")
 
 /datum/species/synthetic
 	name = "Synthetic"

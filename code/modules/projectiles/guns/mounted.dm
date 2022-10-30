@@ -525,3 +525,60 @@
 /obj/machinery/deployable/mounted/autocannon
 	pixel_x = -8
 	pixel_y = -8
+
+/obj/item/weapon/gun/heavy_stubber
+	name = "\improper Krieg pattern heavy stubber"
+	desc = "The MG-27 is the SG-29s aging IFF-less cousin, made for rapid accurate machinegun fire in a short amount of time, you could use it while standing, not a great idea. Use the tripod for actual combat. It uses 10x27mm boxes."
+	flags_equip_slot = ITEM_SLOT_BACK
+	w_class = WEIGHT_CLASS_BULKY
+	icon = 'icons/Marine/marine-mmg.dmi'
+	icon_state = "t27"
+	item_state = "t27"
+	caliber = CALIBER_10x27_CASELESS // codex
+	max_shells = 100 //codex
+	force = 40
+	aim_slowdown = 1.2
+	wield_delay = 2 SECONDS
+	fire_sound =  'sound/weapons/guns/fire/heavystubber.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/standard_mmg
+	allowed_ammo_types = list(/obj/item/ammo_magazine/standard_mmg)
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/stock/irremoveable/t27,
+	)
+
+	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/t27)
+	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 20,"rail_x" = 18, "rail_y" = 22, "under_x" = 28, "under_y" = 13, "stock_x" = 0, "stock_y" = 0)
+
+	flags_item = IS_DEPLOYABLE|TWOHANDED
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
+	deployable_item = /obj/machinery/deployable/mounted
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.1 SECONDS
+	aim_speed_modifier = 5
+	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, FIRE = 0, ACID = 0)
+
+
+	scatter = 30 // you're not firing this standing.
+	deployed_scatter_change = -70 // innumerable amount of reduced scatter when deployed,
+	recoil = 2
+	scatter_unwielded = 45
+	accuracy_mult = 1.1 //it's got a bipod
+	fire_delay = 0.15 SECONDS
+	burst_amount = 1
+	deploy_time = 1 SECONDS
+	undeploy_time = 0.5 SECONDS
+	max_integrity = 200

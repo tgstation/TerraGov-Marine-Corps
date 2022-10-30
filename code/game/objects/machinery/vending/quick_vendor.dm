@@ -66,6 +66,12 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		/datum/outfit/quick/som/squad_leader/caliver,
 		/datum/outfit/quick/som/squad_leader/mpi,
 		/datum/outfit/quick/imperial/guardsman/lasgun,
+		/datum/outfit/quick/imperial/guardsman/lascarbine,
+		/datum/outfit/quick/imperial/guardsman/autogun,
+		/datum/outfit/quick/imperial/guardsman/autogun_grenadier,
+		/datum/outfit/quick/imperial/guardsman/shotgun,
+		/datum/outfit/quick/imperial/guardsman/technician/lasgun,
+		/datum/outfit/quick/imperial/guardsman/technician/shotgun,
 	)
 
 	for(var/X in loadout_list)
@@ -111,6 +117,8 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		"Guard Squad Medicae",
 		"Guard Squad Veteran",
 		"Guard Squad Sergeant",
+		"Guard Squad Sergeant",
+		"Guard Commisar",
 		"Mechanicus Tech Priest",
 		"Mechanicus Skitarii",
 	)
@@ -163,6 +171,8 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 	switch(faction)
 		if(FACTION_SOM)
 			ui_theme = "som"
+		if(FACTION_IMP)
+			ui_theme = "imperium"
 		else
 			ui_theme = "ntos"
 	data["ui_theme"] = ui_theme

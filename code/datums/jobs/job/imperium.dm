@@ -41,8 +41,8 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 //Guard Standard
 /datum/job/imperial/squad/standard
 	title =	IMPERIUM_SQUAD_PRIVATE
-	paygrade = "SOM1"
-	comm_title = "Mar"
+	paygrade = "IMP1"
+	comm_title = "Pvt"
 	minimap_icon = "private"
 	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE
 	total_positions = -1
@@ -75,7 +75,7 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 
 /datum/job/imperial/squad/medicae
 	title = IMPERIUM_SQUAD_MEDICAE
-	paygrade = "SOM2"
+	paygrade = "IMP2"
 	comm_title = "Med"
 	total_positions = 16
 	minimap_icon = "medic"
@@ -111,7 +111,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 
 /datum/job/imperial/squad/veteran
 	title = IMPERIUM_SQUAD_VETERAN
-	paygrade = "SOM3"
+	paygrade = "IMP3"
 	comm_title = "Vet"
 	total_positions = 8
 	skills_type = /datum/skills/crafty //smarter than the average bear
@@ -142,7 +142,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 /datum/job/imperial/squad/sergeant
 	title = IMPERIUM_SQUAD_SERGEANT
 	req_admin_notify = TRUE
-	paygrade = "SOM3"
+	paygrade = "IMP4"
 	comm_title = JOB_COMM_TITLE_SQUAD_LEADER
 	total_positions = 4
 	supervisors = "the acting field commander"
@@ -178,64 +178,106 @@ You are also in charge of communicating with command and letting them know about
 
 	id = /obj/item/card/id/dogtag/imp
 
-/datum/job/imperial/squad/tech_priest
-	title = IMPERIUM_TECH_PRIEST
-	paygrade = "SOM3"
-	comm_title = "Tp"
-	total_positions = 8
-	skills_type = /datum/skills/crafty //smarter than the average bear
-	display_order = JOB_DISPLAY_ORDER_SQUAD_SMARTGUNNER
-	minimap_icon = "smartgunner"
-	outfit = /datum/outfit/job/imperium/squad/veteran
-	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
-	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR)
+/datum/job/imperial/commissar
+	title = IMPERIUM_COMMISSAR
+	req_admin_notify = TRUE
+	paygrade = "IMP7"
+	comm_title = "Cmsr"
+	total_positions = 1
+	skills_type = /datum/skills/fo
+	access = ALL_MARINE_ACCESS
+	minimal_access = ALL_MARINE_ACCESS
+	display_order = JOB_DISPLAY_ORDER_EXECUTIVE_OFFICER
+	outfit = /datum/outfit/job/command/fieldcommander
+	exp_requirements = XP_REQ_EXPERIENCED
+	exp_type = EXP_TYPE_REGULAR_ALL
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP
+	jobworth = list(
+		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
+		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+	)
 	html_description = {"
-		<b>Difficulty</b>: Medium<br /><br />
-		<b>You answer to the</b> acting Squad Leader<br /><br />
+		<b>Difficulty</b>:Very Hard<br /><br />
+		<b>You answer to the</b> Captain<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Warhammer 40k<br /><br /><br />
-		You are a seasoned veteran of the Guard. You have fought and bled for the cause, proving your self a . As fitting reward for your service, you are entrusted with best arms and equipment the Guard can offer, and you are expected to serve as an example to your fellow soldier.
-		<br /><br />
-		<b>Duty</b>: Show your comrades how a true Guardsman acts, and crush our enemies without mercy!.
+		<b>Gamemode Availability</b>: Crash, Distress<br /><br /><br />
+		<b>Duty</b>: Lead your platoon on the field. Take advantage of the military staff and assets you will need for the mission, keep good relations between command and the marines. Assist the captain if available.
 	"}
+	minimap_icon = "fieldcommander"
 
-/datum/job/imperial/squad/tech_priest/radio_help_message(mob/M)
+/datum/job/imperial/commissar/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"\nYou are the a Veteran among the Guardsman. With your shockingly long experience (and better training and equipment), your job is to provide special weapons support to bolster the line."})
+	to_chat(M, {"\nYou are responsible for the men and women of your squad. Make sure they are on task, working together, and communicating.
+You are also in charge of communicating with command and letting them know about the situation first hand. Keep out of harm's way."})
 
-/datum/outfit/job/imperium/squad/tech_priest
-	name = "Mechanicus Tech Priest"
-	jobtype = /datum/job/imperial/squad/tech_priest
+/datum/outfit/job/imperial/commissar
+	name = "Commissar"
+	jobtype = /datum/job/imperial/commissar
+
 	id = /obj/item/card/id/dogtag/imp
 
-/datum/job/imperial/squad/skitarii
+/datum/job/imperial/tech_priest
+	title = IMPERIUM_TECH_PRIEST
+	paygrade = "IMP6"
+	comm_title = "TP"
+	total_positions = 8
+	skills_type = /datum/skills/ce
+	display_order = JOB_DISPLAY_ORDER_CHIEF_ENGINEER
+	minimap_icon = "tech_priest"
+	exp_requirements = XP_REQ_EXPERIENCED
+	exp_type = EXP_TYPE_REGULAR_ALL
+	outfit = /datum/outfit/job/imperium/tech_priest
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR)
+
+	html_description = {"
+		<b>Difficulty</b>: Medium<br /><br />
+		<b>You answer to the</b> omnissiah<br /><br />
+		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Gamemode Availability</b>: Warhammer 40k<br /><br /><br />
+		You are a worshipper of the omnissiah you have augmented yourself to such a degree that you are half machine. Provide engineering support to your team while also leading your skitarii units.
+		<br /><br />
+		<b>Duty</b>: Make objective_achieved = 1.
+	"}
+
+/datum/job/imperial/tech_priest/radio_help_message(mob/M)
+	. = ..()
+	to_chat(M, {"\nYou are a tech priest of the mechanicus. With your experienced knowledge of machinery, your job is to provide engineering support to your team while also leading your skitarii units."})
+
+/datum/outfit/job/imperium/tech_priest
+	name = "Mechanicus Tech Priest"
+	jobtype = /datum/job/imperial/tech_priest
+	id = /obj/item/card/id/dogtag/imp
+
+/datum/job/imperial/skitarii
 	title = IMPERIUM_SKITARII
-	paygrade = "SOM3"
-	comm_title = "Skit"
+	paygrade = "IMP5"
+	comm_title = "Skt"
 	total_positions = 8
 	skills_type = /datum/skills/crafty //smarter than the average bear
 	display_order = JOB_DISPLAY_ORDER_SQUAD_SMARTGUNNER
-	minimap_icon = "smartgunner"
-	outfit = /datum/outfit/job/imperium/squad/veteran
+	minimap_icon = "skitarii"
+	outfit = /datum/outfit/job/imperium/skitarii
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR)
 	html_description = {"
 		<b>Difficulty</b>: Medium<br /><br />
-		<b>You answer to the</b> acting Squad Leader<br /><br />
+		<b>You answer to the</b> tech priest<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
 		<b>Gamemode Availability</b>: Warhammer 40k<br /><br /><br />
 		You are a seasoned veteran of the Guard. You have fought and bled for the cause, proving your self a . As fitting reward for your service, you are entrusted with best arms and equipment the Guard can offer, and you are expected to serve as an example to your fellow soldier.
 		<br /><br />
-		<b>Duty</b>: Show your comrades how a true Guardsman acts, and crush our enemies without mercy!.
+		<b>Duty</b>: Make objective_achieved = 1.
 	"}
 
-/datum/job/imperial/squad/skitarii/radio_help_message(mob/M)
+/datum/job/imperial/skitarii/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"\nYou are the a Veteran among the Guardsman. With your shockingly long experience (and better training and equipment), your job is to provide special weapons support to bolster the line."})
 
-/datum/outfit/job/imperium/squad/skitarii
+/datum/outfit/job/imperium/skitarii
 	name = "Mechanicus Skitarii"
-	jobtype = /datum/job/imperial/squad/skitarii
+	jobtype = /datum/job/imperial/skitarii
 	id = /obj/item/card/id/dogtag/imp
 
 //ERT Loadouts
@@ -264,7 +306,7 @@ You are also in charge of communicating with command and letting them know about
 
 /datum/job/imperial/guardsman
 	title = "Guardsman"
-	comm_title = "Guard"
+	comm_title = "Pvt"
 	paygrade = "Guard"
 	outfit = /datum/outfit/job/imperial/guardsman
 
@@ -300,7 +342,7 @@ You are also in charge of communicating with command and letting them know about
 
 /datum/job/imperial/guardsman/sergeant
 	title = "Guardsman Sergeant"
-	comm_title = "Sergeant"
+	comm_title = JOB_COMM_TITLE_SQUAD_LEADER
 	skills_type = /datum/skills/imperial/sl
 	paygrade = "Sergeant"
 	outfit = /datum/outfit/job/imperial/sergeant
@@ -339,7 +381,7 @@ You are also in charge of communicating with command and letting them know about
 
 /datum/job/imperial/guardsman/medicae
 	title = "Guardsman Medicae"
-	comm_title = "Medicae"
+	comm_title = "Med"
 	skills_type = /datum/skills/imperial/medicae
 	paygrade = "Medicae"
 	outfit = /datum/outfit/job/imperial/medicae
@@ -381,7 +423,7 @@ You are also in charge of communicating with command and letting them know about
 
 /datum/job/imperial/guardsman/veteran
 	title = "Guardsman Veteran"
-	comm_title = "Veteran"
+	comm_title = "Vet"
 	paygrade = "Guard"
 	outfit = /datum/outfit/job/imperial/guardsman/veteran
 
@@ -418,7 +460,7 @@ You are also in charge of communicating with command and letting them know about
 
 /datum/job/imperial/commissar
 	title = "Imperial Commissar"
-	comm_title = "Commissar"
+	comm_title = "Cmsr"
 	skills_type = /datum/skills/imperial/sl
 	paygrade = "Commissar"
 	outfit = /datum/outfit/job/imperial/commissar

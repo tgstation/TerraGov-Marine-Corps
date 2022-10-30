@@ -33,6 +33,8 @@
 #define CALIBER_10x27_CASELESS "10x27mm caseless"
 #define CALIBER_10x265_CASELESS "10x26.5mm caseless"
 #define CALIBER_762X39 "7.62x39mm"
+#define CALIBER_8X25 "8.25mm"
+#define CALIBER_75 ".75mm"
 #define CALIBER_556X45 "5.56x45mm"
 #define CALIBER_16G "16 gauge" //Autoshotty, but coded like a rifle so eeh
 #define CALIBER_4570 ".45-70 Government"

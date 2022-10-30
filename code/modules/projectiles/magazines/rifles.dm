@@ -404,12 +404,12 @@
 	icon_state_mini = "mag_rifle_big_red"
 
 /obj/item/ammo_magazine/rifle/autogun
-	name = "\improper Autogun magazine (10x24mm)"
-	desc = "A 10mm rifle magazine designed for the autogun"
+	name = "\improper autogun magazine (8.25 long)"
+	desc = "A 8.25 long rifle magazine designed for the autogun"
 	caliber = CALIBER_10X24_CASELESS
-	icon_state = "v31"
+	icon_state = "autogun"
 	w_class = WEIGHT_CLASS_NORMAL
-	default_ammo = /datum/ammo/bullet/rifle
+	default_ammo = /datum/ammo/bullet/rifle/solidslug
 	max_rounds = 80
 	icon_state_mini = "mag_rifle_big"
 
@@ -417,7 +417,7 @@
 	name = "\improper Galvanic rifle magazine (10x24mm)"
 	desc = "A 10mm rifle magazine designed for the galvanic rifle."
 	caliber = CALIBER_10X24_CASELESS
-	icon_state = "v31"
+	icon_state = "galvanic"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle/galvanic
 	max_rounds = 12

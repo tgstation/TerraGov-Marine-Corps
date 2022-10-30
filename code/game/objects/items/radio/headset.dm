@@ -960,10 +960,10 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		keyslot2 = /obj/item/encryptionkey/sergeant/imp
 		use_command = TRUE
 		command = TRUE
-	else if(ispath(rank, /datum/job/imperial/squad/tech_priest))
+	else if(ispath(rank, /datum/job/imperial/tech_priest))
 		dat += " tech priest"
 		keyslot2 = /obj/item/encryptionkey/engi/imp
-	else if(ispath(rank, /datum/job/imperial/squad/skitarii))
+	else if(ispath(rank, /datum/job/imperial/skitarii))
 		dat += " skitarii"
 		keyslot2 = /obj/item/encryptionkey/engi/imp
 	else if(ispath(rank, /datum/job/imperial/squad/medicae))

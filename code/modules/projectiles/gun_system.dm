@@ -352,7 +352,7 @@
 	///Smoke particles on overheat.
 	var/obj/effect/abstract/particle_holder/overheat_smoke
 	///Overheat overlay.
-	var/static/image/heat_overlay
+	var/image/heat_overlay
 
 //----------------------------------------------------------
 				//				    \\

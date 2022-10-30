@@ -533,6 +533,8 @@
 		hud_type = SQUAD_HUD_REBEL
 	else if(faction == FACTION_SOM)
 		hud_type = SQUAD_HUD_SOM
+	else if(faction == FACTION_IMP)
+		hud_type = SQUAD_HUD_IMP
 	else
 		return
 	var/image/holder = hud_list[hud_type]

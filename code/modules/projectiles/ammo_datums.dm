@@ -752,6 +752,9 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 20
 	damage_falloff = 0.7
 
+/datum/ammo/bullet/rifle/solidslug
+	name = "solid-slug ballistic bullet"
+
 /datum/ammo/bullet/rifle/galvanic
 	name = "galvanic servitor bullet"
 	icon_state = "blue_bullet"
@@ -761,6 +764,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 40
 	penetration = 75
 	sundering = 15
+	shell_speed = 2.5
 
 /*
 //================================================
@@ -3239,9 +3243,8 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/flamethrower/promethium
 	icon_state = "flamer"
-	damage = 2
+	damage = 3
 	penetration = 10
-	sundering = 1
 	max_range = 6
 	accuracy = 20
 	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_EXPLOSIVE

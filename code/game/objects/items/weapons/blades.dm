@@ -366,6 +366,12 @@
 	force = 10
 	throwforce = 5
 	var/on = FALSE
+	var/datum/looping_sound/chainsaw/chainsaw_loop
+
+
+/obj/item/weapon/chainsword/Initialize()
+	. = ..()
+	chainsaw_loop = new(null, FALSE)
 
 /obj/item/weapon/chainsword/attack_self(mob/user)
 	. = ..()
@@ -373,12 +379,15 @@
 		on = !on
 		icon_state = "chainswordon"
 		force = 40
+		attack_speed = 5
 		throwforce = 30
+		chainsaw_loop.start(src)
 	else
 		on = !on
 		icon_state = initial(icon_state)
 		force = initial(force)
 		throwforce = initial(icon_state)
+		chainsaw_loop.stop()
 
 /obj/item/weapon/chainsword/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	playsound(loc, 'sound/weapons/chainsawhit.ogg', 100, 1)

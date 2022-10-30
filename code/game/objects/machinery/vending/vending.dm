@@ -512,6 +512,8 @@
 	switch(faction)
 		if(FACTION_SOM)
 			ui_theme = "som"
+		if(FACTION_IMP)
+			ui_theme = "imperium"
 		else
 			ui_theme = "main"
 	.["ui_theme"] = ui_theme

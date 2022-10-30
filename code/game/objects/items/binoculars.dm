@@ -347,10 +347,13 @@
 #undef MODE_ORBITAL
 
 #define MODE_CAS_RUN 0
-#define MODE_GAS_MORTAR 1
-#define MODE_HE_ARTY 2
+#define MODE_HE_ARTY 1
+#define MODE_OB 2
+#define MODE_DROP_TROOP 3
+#define MODE_AMMO_DROP 4
+#define MODE_MED_DROP 5
 
-/obj/item/binoculars/tac_patrol
+/obj/item/binoculars/fire_support
 	name = "tactical binoculars"
 	desc = "A pair of binoculars, with a laser targeting function. <b>Alt+Click</b> or unique action to toggle mode. <b>Ctrl+Click</b> when using to target something. <b>Shift+Click</b> to get coordinates. <b>Ctrl+Shift+Click</b> to fire OB when lasing in OB mode."
 	var/laser_cooldown = 10 SECONDS
@@ -367,31 +370,29 @@
 	var/bullet_spread_range = 2
 	var/faction
 
-/obj/item/binoculars/tac_patrol/Initialize()
+/obj/item/binoculars/fire_support/Initialize()
 	. = ..()
 	update_icon()
 
-/obj/item/binoculars/tac_patrol/unique_action(mob/user)
+/obj/item/binoculars/fire_support/unique_action(mob/user)
 	. = ..()
 	toggle_mode(user)
 	return TRUE
 
-/obj/item/binoculars/tac_patrol/examine(mob/user)
+/obj/item/binoculars/fire_support/examine(mob/user)
 	. = ..()
 	switch(mode)
 		if(MODE_CAS_RUN)
 			. += span_notice("They are currently set to CAS gun run marking mode.")
-		if(MODE_GAS_MORTAR)
-			. += span_notice("They are currently set to gas mortar salvo targeting mode.")
 		if(MODE_HE_ARTY)
 			. += span_notice("They are currently set to HE artillery salvo targeting mode.")
 
-/obj/item/binoculars/tac_patrol/Destroy()
+/obj/item/binoculars/fire_support/Destroy()
 	if(laser)
 		QDEL_NULL(laser)
 	return ..()
 
-/obj/item/binoculars/tac_patrol/InterceptClickOn(mob/user, params, atom/object)
+/obj/item/binoculars/fire_support/InterceptClickOn(mob/user, params, atom/object)
 	var/list/pa = params2list(params)
 	if(!pa.Find("ctrl") && pa.Find("shift"))
 		acquire_coordinates(object, user)
@@ -403,13 +404,13 @@
 
 	return FALSE
 
-/obj/item/binoculars/tac_patrol/onzoom(mob/living/user)
+/obj/item/binoculars/fire_support/onzoom(mob/living/user)
 	. = ..()
 	user.reset_perspective(src)
 	user.update_sight()
 	user.client.click_intercept = src
 
-/obj/item/binoculars/tac_patrol/onunzoom(mob/living/user)
+/obj/item/binoculars/fire_support/onunzoom(mob/living/user)
 	. = ..()
 
 	QDEL_NULL(laser)
@@ -422,25 +423,25 @@
 	user.update_sight()
 
 
-/obj/item/binoculars/tac_patrol/update_remote_sight(mob/living/user)
+/obj/item/binoculars/fire_support/update_remote_sight(mob/living/user)
 	user.see_in_dark = 32 // Should include the offset from zoom and client viewport
 	user.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 	user.sync_lighting_plane_alpha()
 	return TRUE
 
 
-/obj/item/binoculars/tac_patrol/update_overlays()
+/obj/item/binoculars/fire_support/update_overlays()
 	. = ..()
 	if(mode)
 		. += "binoculars_range"
 	else
 		. += "binoculars_laser"
 
-/obj/item/binoculars/tac_patrol/AltClick(mob/user)
+/obj/item/binoculars/fire_support/AltClick(mob/user)
 	. = ..()
 	toggle_mode(user)
 
-/obj/item/binoculars/tac_patrol/verb/toggle_mode(mob/user)
+/obj/item/binoculars/fire_support/verb/toggle_mode(mob/user)
 	set category = "Object"
 	set name = "Toggle Laser Mode"
 	if(!user && isliving(loc))
@@ -451,26 +452,24 @@
 	if(!changable)
 		to_chat(user, "These binoculars only have one mode.")
 		return
-	mode += 1
-	if(mode > MODE_HE_ARTY)
-		mode = MODE_CAS_RUN
+
 	switch(mode)
 		if(MODE_CAS_RUN)
-			to_chat(user, span_notice("You switch [src] to CAS gau run marking mode."))
-		if(MODE_GAS_MORTAR)
-			to_chat(user, span_notice("You switch [src] to acid gas mortar targeting mode."))
+			to_chat(user, span_notice("You switch [src] to CAS gun run marking mode.This will cost 50 points"))
 		if(MODE_HE_ARTY)
-			to_chat(user, span_notice("You switch [src] to HE artillery targeting mode."))
+			to_chat(user, span_notice("You switch [src] to HE artillery targeting mode. This will cost 100 points"))
+		if(MODE_OB)
+			to_chat(user, span_notice("You switch [src] to OB targeting mode. This will cost 150 points"))
 	update_icon()
 	playsound(user, 'sound/items/binoculars.ogg', 15, 1)
 
-/obj/item/binoculars/tac_patrol/proc/acquire_coordinates(atom/A, mob/living/carbon/human/user)
+/obj/item/binoculars/fire_support/proc/acquire_coordinates(atom/A, mob/living/carbon/human/user)
 	var/turf/TU = get_turf(A)
 	targetturf = TU
 	to_chat(user, span_notice("COORDINATES: LONGITUDE [targetturf.x]. LATITUDE [targetturf.y]."))
 	playsound(src, 'sound/effects/binoctarget.ogg', 35)
 
-/obj/item/binoculars/tac_patrol/proc/acquire_target(atom/A, mob/living/carbon/human/user)
+/obj/item/binoculars/fire_support/proc/acquire_target(atom/A, mob/living/carbon/human/user)
 	set waitfor = 0
 
 	if(laser)
@@ -538,22 +537,6 @@
 				SSpoints.support_points[faction] -= cost
 				user.balloon_alert(user, "[SSpoints.support_points[faction]] REMAINING.")
 
-		if(MODE_GAS_MORTAR)
-			to_chat(user, span_notice("ACQUIRING TARGET. MORTAR TRIANGULATING. DON'T MOVE."))
-			if(!targ_area)
-				to_chat(user, "[icon2html(src, user)] [span_warning("No target detected!")]")
-			else
-				var/obj/effect/overlay/temp/laser_target/OB/OBL = new (TU, 0, laz_name, S)
-				laser = OBL
-				playsound(src, 'sound/effects/binoctarget.ogg', 35)
-				if(!do_after(user, 2 SECONDS, TRUE, user, BUSY_ICON_GENERIC))
-					QDEL_NULL(laser)
-					return
-				to_chat(user, span_notice("TARGET ACQUIRED. GAS MORTAR STRIKE INBOUND."))
-				current_turf = TU
-				addtimer(CALLBACK(src, .proc/gas_fire, current_turf), 3 SECONDS)
-				SSpoints.support_points[faction] -= cost
-
 		if(MODE_HE_ARTY)
 			to_chat(user, span_notice("ACQUIRING TARGET. ARTILLERY TRIANGULATING. DON'T MOVE."))
 			if(!targ_area)
@@ -571,7 +554,7 @@
 				addtimer(CALLBACK(src, .proc/he_fire, current_turf), 3 SECONDS)
 				SSpoints.support_points[faction] -= cost
 
-/obj/item/binoculars/tac_patrol/proc/get_turfs_to_impact(turf/impact, attackdir = NORTH)
+/obj/item/binoculars/fire_support/proc/get_turfs_to_impact(turf/impact, attackdir = NORTH)
 	var/turf/beginning = impact
 	var/revdir = REVERSE_DIR(attackdir)
 	for(var/i=0 to bullet_spread_range)
@@ -587,7 +570,7 @@
 
 	return strafelist
 
-/obj/item/binoculars/tac_patrol/proc/detonate_on(turf/impact, attackdir = NORTH)
+/obj/item/binoculars/fire_support/proc/detonate_on(turf/impact, attackdir = NORTH)
 	var/amount_fired
 	var/max_fired = 5
 	amount_fired = 0
@@ -602,7 +585,7 @@
 		playsound(impact, 'sound/effects/casplane_flyby.ogg', 40)
 
 ///Takes the top 3 turfs and miniguns them, then repeats until none left
-/obj/item/binoculars/tac_patrol/proc/strafe_turfs(list/strafelist)
+/obj/item/binoculars/fire_support/proc/strafe_turfs(list/strafelist)
 	var/turf/strafed
 	playsound(strafelist[1], get_sfx("explosion"), 40, 1, 20, falloff = 3)
 	for(var/i=1 to attack_width)
@@ -619,28 +602,7 @@
 
 	QDEL_NULL(laser)
 
-/obj/item/binoculars/tac_patrol/proc/gas_fire(turf/impact)
-	var/amount_fired
-	var/max_fired = 5
-	amount_fired = 0
-	while(amount_fired < max_fired)
-		var/x_offset = rand(-5,5) //Little bit of randomness.
-		var/y_offset = rand(-5,5)
-		var/turf/target = locate(impact.x + x_offset, impact.y + y_offset, current_turf.z)
-		playsound(target, 'sound/weapons/guns/misc/mortar_travel.ogg', 40)
-		addtimer(CALLBACK(src, .proc/gas_detonate, target), 5 SECONDS)
-		amount_fired += 1
-	QDEL_NULL(laser)
-
-/obj/item/binoculars/tac_patrol/proc/gas_detonate(turf/impact)
-	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/xeno/acid
-	var/datum/effect_system/smoke_spread/smoke = new smoketype()
-	impact.ceiling_debris_check(2)
-	smoke.set_up(4, impact, 11)
-	smoke.start()
-	playsound(impact, 'sound/effects/smoke.ogg', 25, 1, 4)
-
-/obj/item/binoculars/tac_patrol/proc/he_fire(turf/impact)
+/obj/item/binoculars/fire_support/proc/he_fire(turf/impact)
 	var/amount_fired
 	var/max_fired = 5
 	amount_fired = 0
@@ -653,10 +615,13 @@
 		amount_fired += 1
 	QDEL_NULL(laser)
 
-/obj/item/binoculars/tac_patrol/proc/he_detonate(turf/impact)
+/obj/item/binoculars/fire_support/proc/he_detonate(turf/impact)
 	impact.ceiling_debris_check(2)
 	explosion(impact, 1, 6, 7, 12)
 
 #undef MODE_CAS_RUN
-#undef MODE_GAS_MORTAR
 #undef MODE_HE_ARTY
+#undef MODE_OB
+#undef MODE_DROP_TROOP
+#undef MODE_AMMO_DROP
+#undef MODE_MED_DROP

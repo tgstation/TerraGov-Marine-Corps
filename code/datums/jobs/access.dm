@@ -347,6 +347,20 @@
 			. = size ? "SOM " : "SOM Veteran"
 		if("SOM4")
 			. = size ? "SOM " : "SOM Leader"
+		if("IMP1")
+			. = size ? "GRD " : "Guard Private"
+		if("IMP2")
+			. = size ? "GRD " : "Guard Medicae"
+		if("IMP3")
+			. = size ? "GRD " : "Guard Veteran"
+		if("IMP4")
+			. = size ? "GRD " : "Guard Sergeant"
+		if("IMP5")
+			. = size ? "MCH " : "Mechanicus Skitarii"
+		if("IMP6")
+			. = size ? "MHC " : "Mechanicus Tech Priest"
+		if("IMP7")
+			. = size ? "GRD " : "Guard Commissar"
 		if("MRC1")
 			. = size ? "MERC " : "MERC Heavy"
 		if("MRC2")

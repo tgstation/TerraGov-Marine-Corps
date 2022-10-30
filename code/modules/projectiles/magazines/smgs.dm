@@ -151,3 +151,12 @@
 	icon_state_mini = "mag_smg_yellow"
 	w_class = WEIGHT_CLASS_NORMAL
 	aim_speed_mod = 0.1
+
+/obj/item/ammo_magazine/smg/autopistol
+	name = "\improper autopistol magazine (8.25 long)"
+	desc = "A 8.25 long caseless autopistol magazine."
+	caliber = CALIBER_10X20_CASELESS
+	icon_state = "autopistol"
+	default_ammo = /datum/ammo/bullet/rifle/solidslug
+	max_rounds = 40
+	w_class = WEIGHT_CLASS_SMALL

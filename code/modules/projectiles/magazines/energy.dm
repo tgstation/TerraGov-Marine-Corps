@@ -54,6 +54,14 @@
 	icon_state_mini = "mag_cell_te"
 	maxcharge = 600
 
+/obj/item/cell/lasgun/lasguns
+	name = "\improper las standard battery"
+	desc = "A specialized high density battery used to power most standard las weaponary."
+	charge_overlay = "lasgun"
+	icon_state = "lasgun"
+	icon_state_mini = "mag_cell_te"
+	maxcharge = 600
+
 /obj/item/cell/lasgun/fob_sentry/cell
 	maxcharge = INFINITY
 
@@ -157,19 +165,3 @@
 	charge_overlay = "pulse"
 	icon_state = "pulse"
 	maxcharge = 500
-
-/obj/item/cell/lasgun/volkite/powerpack/skitarii
-	name = "\improper M-70 powerpack"
-	desc = "A heavy reinforced backpack with an array of ultradensity energy cells, linked to a miniature radioisotope thermoelectric generator for continuous power generation. Used to power the largest man portable volkite weaponry. Click drag cells to the powerpack to recharge."
-	icon = 'icons/obj/items/storage/storage.dmi'
-	icon_state = "skitarii"
-	charge_overlay = ""
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BACK
-	flags_magazine_features = MAGAZINE_REFUND_IN_CHAMBER|MAGAZINE_WORN
-	w_class = WEIGHT_CLASS_HUGE
-	slowdown = 0.3
-	maxcharge = 4800
-	self_recharge = TRUE
-	charge_amount = 32
-	charge_delay = 2 SECONDS

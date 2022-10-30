@@ -240,9 +240,11 @@
 	w_class = WEIGHT_CLASS_SMALL
 	default_ammo = /datum/ammo/bullet/pistol
 
+//-------------------------------------------------------
+//Bolt pistol
 /obj/item/ammo_magazine/pistol/boltpistol
 	name = "\improper bolt pistol magazine (.75)"
 	default_ammo = /datum/ammo/bullet/pistol/boltpistol
-	caliber = CALIBER_9X19
-	icon_state = "v11"
+	caliber = CALIBER_75
+	icon_state = "boltpistol"
 	max_rounds = 10

@@ -552,8 +552,7 @@
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
 	ammo_diff = null
 	rounds_per_shot = 15
-	gun_firemode = GUN_FIREMODE_AUTOMATIC
-	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC||GUN_FIREMODE_AUTOBURST)
 	ammo_level_icon = "te"
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -1008,6 +1007,8 @@
 	max_shots = 50 //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
 	ammo_diff = null
+	default_ammo_type = /obj/item/cell/lasgun/lasguns
+	allowed_ammo_types = list(/obj/item/cell/lasgun/lasguns)
 	rounds_per_shot = 12
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
@@ -1058,7 +1059,7 @@
 	rounds_per_shot = 30
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/overcharge
 	fire_delay = 0.35 SECONDS
-	fire_sound = 'sound/weapons/guns/fire/lasgun.ogg'
+	fire_sound = 'sound/weapons/guns/fire/lasgun_overcharge.ogg'
 	message_to_user = "You set the lasgun charge mode to overcharge."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "lasgun"
@@ -1076,9 +1077,10 @@
 	load_method = CELL //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
 	ammo_diff = null
+	default_ammo_type = /obj/item/cell/lasgun/lasguns
+	allowed_ammo_types = list(/obj/item/cell/lasgun/lasguns)
 	rounds_per_shot = 15
-	gun_firemode = GUN_FIREMODE_AUTOMATIC
-	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC||GUN_FIREMODE_AUTOBURST)
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -1096,8 +1098,8 @@
 	scatter = 1
 	scatter_unwielded = 10
 	fire_delay = 0.2 SECONDS
-	burst_amount = 1
-	burst_delay = 0.15 SECONDS
+	burst_amount = 4
+	autoburst_delay = 0.15 SECONDS
 	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.65
 	damage_falloff_mult = 0.5
@@ -1119,6 +1121,8 @@
 	max_shots = 30 //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
 	ammo_diff = null
+	default_ammo_type = /obj/item/cell/lasgun/lasguns
+	allowed_ammo_types = list(/obj/item/cell/lasgun/lasguns)
 	rounds_per_shot = 20
 	gun_firemode = GUN_FIREMODE_SEMIAUTO
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
@@ -1211,6 +1215,8 @@
 	max_shots = 12 //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/sniper
 	ammo_diff = null
+	default_ammo_type = /obj/item/cell/lasgun/lasguns
+	allowed_ammo_types = list(/obj/item/cell/lasgun/lasguns)
 	rounds_per_shot = 50
 	damage_falloff_mult = 0
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
@@ -1249,8 +1255,8 @@
 	max_shots = 50 //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/arc
 	ammo_diff = null
-	default_ammo_type = /obj/item/cell/lasgun/volkite/powerpack/skitarii
-	allowed_ammo_types = list(/obj/item/cell/lasgun/volkite/powerpack/skitarii)
+	default_ammo_type = /obj/item/cell/lasgun/lasguns
+	allowed_ammo_types = list(/obj/item/cell/lasgun/lasguns)
 	rounds_per_shot = 12
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)

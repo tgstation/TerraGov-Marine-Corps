@@ -496,8 +496,19 @@
 	pockets = /obj/item/storage/internal/suit/imperial
 
 /obj/item/storage/internal/suit/imperial
-	storage_slots = 3
 	max_storage_space = 6
+	storage_slots = 2
+	max_w_class = WEIGHT_CLASS_NORMAL
+
+	bypass_w_limit = list(
+		/obj/item/ammo_magazine/rifle,
+		/obj/item/cell/lasgun,
+		/obj/item/ammo_magazine/smg,
+		/obj/item/ammo_magazine/pistol,
+		/obj/item/ammo_magazine/revolver,
+		/obj/item/ammo_magazine/sniper,
+		/obj/item/ammo_magazine/handful,
+	)
 
 /obj/item/clothing/suit/storage/marine/imperial/medicae
 	name = "\improper Imperial Guard medicae armour"

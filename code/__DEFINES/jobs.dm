@@ -93,6 +93,7 @@
 #define SOM_SQUAD_MARINE "SOM Squad Standard"
 
 //Imperium
+#define IMPERIUM_COMMISSAR "Guard Commisar"
 #define IMPERIUM_SQUAD_SERGEANT "Guard Squad Sergeant"
 #define IMPERIUM_SQUAD_MEDICAE "Guard Squad Medicae"
 #define IMPERIUM_SQUAD_VETERAN "Guard Squad Veteran"

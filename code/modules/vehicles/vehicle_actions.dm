@@ -221,6 +221,25 @@
 	. = ..()
 	vehicle_entered_target.remove_key(owner)
 
+/datum/action/vehicle/sealed/horn
+	name = "Sound Horn"
+	desc = "Sound your horn."
+	action_icon_state = "car_horn"
+	///sound file to play
+	var/hornsound = 'sound/mecha/horn.ogg'
+
+/datum/action/vehicle/sealed/horn/action_activate(trigger_flags)
+	. = ..()
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_VEHICLE_HONK))
+		return
+	TIMER_COOLDOWN_START(src, COOLDOWN_VEHICLE_HONK, 10 SECONDS)
+	vehicle_target.balloon_alert(owner, "Sounds horn")
+	vehicle_entered_target.visible_message(span_danger("[vehicle_entered_target] sounds it's horn!"))
+	if(istype(vehicle_target.inserted_key, /obj/item/toy/bikehorn))
+		vehicle_target.inserted_key.attack_self(owner) //The horn plays a sound instead
+		return
+	playsound(vehicle_entered_target, hornsound, 75)
+
 //CLOWN CAR ACTION DATUMS
 /datum/action/vehicle/sealed/headlights
 	name = "Toggle Headlights"

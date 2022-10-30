@@ -48,3 +48,8 @@
 	mid_length = 6
 	end_sound = 'sound/mecha/overload_stop.ogg'
 	volume = 40
+
+/datum/looping_sound/chainsaw
+	mid_sounds = list('sound/machines/grill/grillsizzle.ogg' = 1)
+	mid_length = 18
+	volume = 50

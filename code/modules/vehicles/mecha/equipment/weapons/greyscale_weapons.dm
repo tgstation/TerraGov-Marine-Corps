@@ -186,6 +186,30 @@
 	hud_icons = list("rifle_heavy", "rifle_empty")
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/heavy_bolter
+	name = "\improper Heavy Bolter"
+	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
+	desc = "A massive hulk of metal that fires base-bleed LMG rounds. Like the standard LMG, but bigger, better and heavier."
+	icon_state = "lmg"
+	fire_sound = 'sound/weapons/guns/fire/bolter.ogg'
+	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	flash_offsets = list(
+		MECHA_R_ARM = list("N" = list(36,30), "S" = list(24,8), "E" = list(64,17), "W" = list(-34,37)),
+		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(8,8), "E" = list(64,37), "W" = list(-34,17)),
+	)
+	ammotype = /datum/ammo/bullet/pistol/boltpistol
+	obj_integrity = 400
+	projectiles = 80
+	projectiles_cache = 400
+	projectiles_cache_max = 400
+	variance = 25
+	projectile_delay = 0.15 SECONDS
+	slowdown = 0.3
+	harmful = TRUE
+	ammo_type = MECHA_AMMO_GREY_LMG
+	hud_icons = list("rifle_heavy", "rifle_empty")
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/light_cannon
 	name = "\improper Leto light autocannon"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'

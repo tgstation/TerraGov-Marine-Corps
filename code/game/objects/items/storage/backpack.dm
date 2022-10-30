@@ -782,3 +782,19 @@
 	desc = "A rucksack with origins dating back to the mining colonies."
 	icon_state = "som_lightpack"
 	item_state = "som_lightpack"
+
+/obj/item/storage/backpack/skitarii
+	name = "\improper skitarii pack"
+	desc = "A heavy reinforced backpack with an array of ultradensity energy cells, linked to a miniature radioisotope thermoelectric generator for continuous power generation. Used to power the largest man portable volkite weaponry. Click drag cells to the powerpack to recharge."
+	icon_state = "skitarii"
+	item_state = "skitarii"
+	max_storage_space = 15
+	access_delay = 0
+
+/obj/item/storage/backpack/guard
+	name = "guard backpack"
+	desc = "A backpack issued to all guardsman."
+	icon_state = "guardpack"
+	item_state = "guardpack"
+	max_storage_space = 15
+	access_delay = 0

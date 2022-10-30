@@ -138,3 +138,69 @@
 	user.dropItemToGround(cell)
 	cell = null
 	playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 25, TRUE)
+
+/obj/item/weapon/maul
+	name = "taser goad"
+	desc = "A metal gauntlet with a energy-powered fist to throw back enemies. Altclick to clamp it around your hand, use it to change power settings and screwdriver to pop out the cell."
+	icon_state = "goad"
+	item_state = "goad"
+	flags_equip_slot = ITEM_SLOT_BELT
+	force = 30
+	attack_verb = list("electrocutes", "goads", "fries")
+	var/obj/item/cell/cell
+	var/on = FALSE
+
+/obj/item/weapon/maul/Destroy()
+	if(cell)
+		QDEL_NULL(cell)
+	return ..()
+
+/obj/item/weapon/maul/examine(user)
+	. = ..()
+	if(cell)
+		. += "It has [cell.charge] power remaining."
+	else
+		. += "There is no cell installed!"
+
+/obj/item/weapon/maul/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+	if(!cell)
+		to_chat(user, span_warning("\The [src] can't operate without a source of power!"))
+		return
+
+	if(M.status_flags & INCORPOREAL || user.status_flags & INCORPOREAL) //Incorporeal beings cannot attack or be attacked
+		return
+
+	var/powerused = 30
+	if(powerused >= cell.charge)
+		to_chat(user, span_warning("\The [src]'s cell doesn't have enough power!"))
+		unload(user)
+		return ..()
+	M.apply_effects(1,2)
+	cell.charge -= powerused
+	return ..()
+
+/obj/item/weapon/maul/attackby(obj/item/I, mob/user, params)
+	if(!istype(I, /obj/item/cell))
+		return
+	if(cell)
+		to_chat(user, span_notice("There is already a cell installed!"))
+	user.transferItemToLoc(I,src)
+	cell = I
+	icon_state = "goad_on"
+	to_chat(user, span_notice("You insert the [I] into the [src]."))
+
+/obj/item/weapon/maul/attack_hand(mob/living/user)
+	if(!cell)
+		to_chat(user, span_notice("There is no cell installed!"))
+		return
+	if(user.get_inactive_held_item() != src)
+		return ..()
+	unload(user)
+
+/// Remove the cell from the powerfist
+/obj/item/weapon/maul/proc/unload(mob/user)
+	user.dropItemToGround(cell)
+	cell = null
+	playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 25, TRUE)
+	on = FALSE
+	icon_state = "goad_off"

@@ -474,3 +474,50 @@
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/magnetic_harness,
 	)
+
+/obj/item/weapon/gun/smg/autopistol
+	name = "\improper autopistol"
+	desc = "An Autopistol is a rapid-firing, fully automatic ballistic firearm that has a faster rate of fire than most other pistol-grade weapons. In essence, they are the pistol version of the Autogun, and resemble the compact submachine guns of ancient Terra."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "autopistol"
+	item_state = "autopistol"
+	caliber = CALIBER_10X20_CASELESS //codex
+	max_shells = 40 //codex
+	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
+	type_of_casings = null
+	default_ammo_type = /obj/item/ammo_magazine/smg/autopistol
+	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/autopistol)
+
+	fire_sound = 'sound/weapons/guns/fire/autogun.ogg'
+
+	w_class = WEIGHT_CLASS_NORMAL
+	attachable_allowed = list(
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/stock/t19stock,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/motiondetector,
+	)
+
+	attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 19,"rail_x" = 9, "rail_y" = 20, "under_x" = 21, "under_y" = 14, "stock_x" = 24, "stock_y" = 10)
+
+	accuracy_mult = 1.1
+	accuracy_mult_unwielded = 0.9
+	recoil_unwielded = 0
+	scatter = 0
+	fire_delay = 0.15 SECONDS
+	scatter_unwielded = 4
+	aim_slowdown = 0.15
+	burst_amount = 5
+	movement_acc_penalty_mult = 2
+	akimbo_additional_delay = 0.5
+	upper_akimbo_accuracy = 5
+	lower_akimbo_accuracy = 3
