@@ -316,7 +316,7 @@
 	if(thisarea.lighting_effect)
 		W.add_overlay(thisarea.lighting_effect)
 
-	if(W.smoothing_behavior == NO_SMOOTHING)
+	if(!W.smoothing_behavior == NO_SMOOTHING)
 		return W
 	else
 		for(var/dirn in GLOB.alldirs)
