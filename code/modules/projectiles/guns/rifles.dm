@@ -672,12 +672,8 @@
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
 		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
-		slot_back_str = 'icons/mob/items_back_64.dmi',
-		slot_s_store_str = 'icons/mob/items_suit_slot_64.dmi',
 	)
 
-	worn_x_dimension = 64
-	worn_y_dimension = 32
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
 
@@ -723,8 +719,8 @@
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("muzzle_x" = 49, "muzzle_y" = 16,"rail_x" = 20, "rail_y" = 19, "under_x" = 24, "under_y" = 9, "stock_x" = 0, "stock_y" = 13)
 	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.2 SECONDS
-	aim_speed_modifier = 5
+	aim_fire_delay = 0.1 SECONDS
+	aim_speed_modifier = 2
 
 	fire_delay = 0.2 SECONDS
 	burst_amount = 1
@@ -1709,3 +1705,69 @@
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/bayonet,
 	)
+
+//-------------------------------------------------------
+// V-41 SOM LMG
+
+/obj/item/weapon/gun/rifle/som_mg
+	name = "\improper V-41 machine gun"
+	desc = "The V-41 is a large man portable machine used by the SOM, allowing for sustained, accurate suppressive firepower at the cost of mobility and handling. Commonly seen where their preferred tactics of fast, mobile aggression is ill suited."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "v41"
+	item_state = "v41"
+	fire_animation = "v41_fire"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+	)
+
+	inhand_x_dimension = 64
+	inhand_y_dimension = 32
+	caliber = CALIBER_10x26_CASELESS
+	max_shells = 200
+	force = 35
+	wield_delay = 1.5 SECONDS
+	fire_sound =  'sound/weapons/guns/fire/GPMG.ogg'
+	fire_rattle =  'sound/weapons/guns/fire/GPMG_low.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/som_mg
+	allowed_ammo_types = list(/obj/item/ammo_magazine/som_mg)
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/stock/som_mg_stock,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
+	)
+
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	starting_attachment_types = list(/obj/item/attachable/stock/som_mg_stock)
+	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
+	attachable_offset = list("muzzle_x" = 53, "muzzle_y" = 19,"rail_x" = 14, "rail_y" = 23, "under_x" = 41, "under_y" = 14, "stock_x" = -32, "stock_y" = 0)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.2 SECONDS
+	aim_slowdown = 1.2
+
+	fire_delay = 0.2 SECONDS
+	burst_amount = 1
+	accuracy_mult_unwielded = 0.4
+	scatter = 6
+	scatter_unwielded = 40
+	movement_acc_penalty_mult = 6
+
+	placed_overlay_iconstate = "lmg"
+
+/obj/item/weapon/gun/rifle/som_mg/standard
+	starting_attachment_types = list(/obj/item/attachable/stock/som_mg_stock, /obj/item/attachable/bipod, /obj/item/attachable/reddot, /obj/item/attachable/extended_barrel)

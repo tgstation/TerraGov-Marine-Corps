@@ -120,18 +120,18 @@ GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
 ))
 
 ///Heals a xeno, respecting different types of damage
-#define HEAL_XENO_DAMAGE(xeno, amount) do { \
+#define HEAL_XENO_DAMAGE(xeno, amount, passive) do { \
 	var/fire_loss = xeno.getFireLoss(); \
 	if(fire_loss) { \
 		var/fire_heal = min(fire_loss, amount); \
 		amount -= fire_heal;\
-		xeno.adjustFireLoss(-fire_heal, TRUE); \
+		xeno.adjustFireLoss(-fire_heal, TRUE, passive); \
 	} \
 	var/brute_loss = xeno.getBruteLoss(); \
 	if(brute_loss) { \
 		var/brute_heal = min(brute_loss, amount); \
 		amount -= brute_heal; \
-		xeno.adjustBruteLoss(-brute_heal, TRUE); \
+		xeno.adjustBruteLoss(-brute_heal, TRUE, passive); \
 	} \
 } while(FALSE)
 

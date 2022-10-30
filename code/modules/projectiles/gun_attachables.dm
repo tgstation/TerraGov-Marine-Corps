@@ -279,6 +279,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	if(G == user.get_active_held_item() || G == user.get_inactive_held_item() || CHECK_BITFIELD(G.flags_item, IS_DEPLOYED))
 		G.do_unique_action(user)
 		return
+
 	if(activate(user)) //success
 		playsound(user, activation_sound, 15, 1)
 
@@ -1021,6 +1022,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "AR-11 stock"
 	icon_state = "tx11stock"
 
+/obj/item/attachable/stock/som_mg_stock
+	name = "\improper V-41 stock"
+	desc = "A irremovable V-41 machine gun stock."
+	icon_state = "v41stock"
+	pixel_shift_x = 0
+	pixel_shift_y = 0
+
 //Underbarrel
 
 /obj/item/attachable/verticalgrip
@@ -1232,7 +1240,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = ""
 	slot = ATTACHMENT_SLOT_UNDER
 	flags_attach_features = GUN_ALLOW_SYNTHETIC
-	attachment_action_type = /datum/action/item_action/toggle_hydro
+	attachment_action_type = /datum/action/item_action/toggle/hydro
 	var/is_active = FALSE
 
 /obj/item/attachable/hydro_cannon/activate(attached_item, mob/living/user, turn_off)
@@ -1240,17 +1248,14 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		if(user)
 			to_chat(user, span_notice("You are no longer using [src]."))
 		is_active = FALSE
-		overlays -= image('icons/Marine/marine-weapons.dmi', src, "active")
 		. = FALSE
 	else
 		if(user)
 			to_chat(user, span_notice("You are now using [src]."))
 		is_active = TRUE
-		overlays += image('icons/Marine/marine-weapons.dmi', src, "active")
 		. = TRUE
-	for(var/X in master_gun.actions)
-		var/datum/action/A = X
-		A.update_button_icon()
+	for(var/datum/action/item_action/action AS in master_gun.actions)
+		action.update_button_icon()
 
 	update_icon()
 
@@ -1361,19 +1366,18 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	. = ..()
 	if(CHECK_BITFIELD(master_gun.flags_item, IS_DEPLOYED))
 		DISABLE_BITFIELD(master_gun.flags_item, IS_DEPLOYED)
-		overlays -= image('icons/Marine/marine-weapons.dmi', src, "active")
 		UnregisterSignal(user, COMSIG_MOB_MOUSEDOWN)
 		master_gun.set_gun_user(null)
-	else if(turn_off)
-		return
-	else
+		. = FALSE
+	else if(!turn_off)
 		ENABLE_BITFIELD(master_gun.flags_item, IS_DEPLOYED)
-		overlays += image('icons/Marine/marine-weapons.dmi', src, "active")
 		update_icon()
 		master_gun.set_gun_user(user)
 		RegisterSignal(user, COMSIG_MOB_MOUSEDOWN, .proc/handle_firing)
 		master_gun.RegisterSignal(user, COMSIG_MOB_MOUSEDRAG, /obj/item/weapon/gun.proc/change_target)
-	for(var/datum/action/action_to_update AS in actions)
+		. = TRUE
+	for(var/datum/action/item_action/toggle/action_to_update AS in actions)
+		action_to_update.set_toggle(.)
 		action_to_update.update_button_icon()
 
 ///Handles the gun attaching to the armor.
@@ -1399,7 +1403,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 			continue
 		QDEL_NULL(action_to_delete)
 		break
-	overlays -= image('icons/Marine/marine-weapons.dmi', src, "active")
 	update_icon(user)
 	master_gun.base_gun_icon = initial(master_gun.icon_state)
 	master_gun.update_icon()
@@ -1576,7 +1579,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.wield_delay					+= wield_delay_mod
 	if(gun_user)
 		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_ITEM_UNZOOM, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE, COMSIG_KB_GUN_SAFETY, COMSIG_KB_UNIQUEACTION, COMSIG_PARENT_QDELETING,  COMSIG_MOB_CLICK_RIGHT))
-	var/datum/action/new_action = new /datum/action/item_action/toggle(src, master_gun)
+	var/datum/action/item_action/toggle/new_action = new /datum/action/item_action/toggle(src, master_gun)
 	if(!isliving(user))
 		return
 	var/mob/living/living_user = user
@@ -1584,6 +1587,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		new_action.give_action(living_user)
 	attached_to:gunattachment = src
 	activate(user)
+	new_action.set_toggle(TRUE)
+	new_action.update_button_icon()
 	update_icon(user)
 
 ///This is called when an attachment gun (src) detaches from a gun.
@@ -1596,7 +1601,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		QDEL_NULL(action_to_delete)
 		break
 	icon_state = initial(icon_state)
-	overlays -= image('icons/Marine/marine-weapons.dmi', src, "active")
 	if(master_gun.active_attachable == src)
 		master_gun.active_attachable = null
 	master_gun.wield_delay					-= wield_delay_mod
@@ -1612,15 +1616,16 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 			return TRUE
 		master_gun.active_attachable = null
 		set_gun_user(null)
-		overlays -= image('icons/Marine/marine-weapons.dmi', src, "active")
 		to_chat(user, span_notice("You stop using [src]."))
 	else
 		master_gun.active_attachable = src
 		set_gun_user(null)
 		set_gun_user(master_gun.gun_user)
-		overlays += image('icons/Marine/marine-weapons.dmi', src, "active")
 		to_chat(user, span_notice("You start using [src]."))
-	for(var/datum/action/action AS in master_gun.actions)
+	for(var/datum/action/item_action/toggle/action AS in master_gun.actions)
+		if(action.target != src )
+			continue
+		action.set_toggle(master_gun.active_attachable == src)
 		action.update_button_icon()
 	return TRUE
 

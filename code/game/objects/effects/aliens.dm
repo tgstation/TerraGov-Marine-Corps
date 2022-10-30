@@ -133,21 +133,21 @@
 	anchored = TRUE
 	var/atom/acid_t
 	var/ticks = 0
-	var/acid_strength = 0.004 //base speed, normal
+	var/acid_strength = 0.04 //base speed, normal
 	var/acid_damage = 125 //acid damage on pick up, subject to armor
 	var/strength_t
 
 //Sentinel weakest acid
 /obj/effect/xenomorph/acid/weak
 	name = "weak acid"
-	acid_strength = 0.0016 //40% of base speed
+	acid_strength = 0.016 //40% of base speed
 	acid_damage = 75
 	icon_state = "acid_weak"
 
 //Superacid
 /obj/effect/xenomorph/acid/strong
 	name = "strong acid"
-	acid_strength = 0.01 //250% normal speed
+	acid_strength = 0.1 //250% normal speed
 	acid_damage = 175
 	icon_state = "acid_strong"
 
@@ -189,7 +189,7 @@
 
 		else
 			if(acid_t.contents.len) //Hopefully won't auto-delete things inside melted stuff..
-				for(var/mob/M in acid_t.contents)
+				for(var/atom/movable/M in acid_t.contents)
 					if(acid_t.loc) M.forceMove(acid_t.loc)
 			qdel(acid_t)
 			acid_t = null

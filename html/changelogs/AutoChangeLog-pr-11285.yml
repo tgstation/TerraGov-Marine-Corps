@@ -1,5 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes: 
-  - imageadd: "Resprited some new icons to replace ones with improper perspective."
-  - imagedel: "Deleted some old icons with improper perspective."

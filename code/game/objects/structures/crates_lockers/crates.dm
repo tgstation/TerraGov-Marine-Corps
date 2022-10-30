@@ -54,6 +54,9 @@
 		climbable = 0 //Open crate is not a surface that works when climbing around
 	return 1
 
+/obj/structure/closet/crate/break_open()
+	open()
+
 /obj/structure/closet/crate/close()
 	if(!opened)
 		return 0
@@ -111,23 +114,6 @@
 		to_chat(user, span_notice("You cut away the wiring."))
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		rigged = FALSE
-
-
-/obj/structure/closet/crate/ex_act(severity)
-	switch(severity)
-		if(EXPLODE_DEVASTATE)
-			for(var/obj/O in src.contents)
-				qdel(O)
-			qdel(src)
-		if(EXPLODE_HEAVY)
-			for(var/obj/O in src.contents)
-				if(prob(50))
-					qdel(O)
-			qdel(src)
-		if(EXPLODE_LIGHT)
-			if (prob(50))
-				qdel(src)
-
 
 /obj/structure/closet/crate/alpha
 	name = "alpha squad crate"

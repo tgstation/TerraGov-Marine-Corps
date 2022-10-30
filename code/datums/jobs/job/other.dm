@@ -43,6 +43,7 @@
 	r_store = /obj/item/radio
 	l_store = /obj/item/reagent_containers/food/drinks/cans/dr_gibb
 	back = /obj/item/storage/backpack/satchel
+	r_hand = /obj/item/pizzabox/margherita
 
 
 //Spatial Agent

@@ -126,6 +126,7 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 	health_mod = 500
 	accuracy_mod = 1.4
 	slowdown_mod = 0.3
+	light_range = 6
 	greyscale_type = /datum/greyscale_config/mech_assault/head
 	visor_config = /datum/greyscale_config/mech_assault/visor
 
@@ -133,6 +134,7 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 	health_mod = 750
 	accuracy_mod = 1.5
 	slowdown_mod = 0.4
+	light_range = 5
 	greyscale_type = /datum/greyscale_config/mech_vanguard/head
 	visor_config = /datum/greyscale_config/mech_vanguard/visor
 
