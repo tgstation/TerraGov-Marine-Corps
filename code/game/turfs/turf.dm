@@ -316,6 +316,13 @@
 	if(thisarea.lighting_effect)
 		W.add_overlay(thisarea.lighting_effect)
 
+	if(W.smoothing_behavior == NO_SMOOTHING)
+		return W
+	else
+		for(var/dirn in GLOB.alldirs)
+			var/turf/D = get_step(W,dirn)
+			D.smooth_self()
+			D.smooth_neighbors()
 	return W
 
 /// Take off the top layer turf and replace it with the next baseturf down
