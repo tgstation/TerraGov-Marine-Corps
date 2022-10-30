@@ -1744,7 +1744,7 @@
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
-		/obj/item/attachable/stock/v41stock,
+		/obj/item/attachable/stock/som_mg_stock,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
@@ -1753,7 +1753,7 @@
 
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
-	starting_attachment_types = list(/obj/item/attachable/stock/v41stock)
+	starting_attachment_types = list(/obj/item/attachable/stock/som_mg_stock)
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("muzzle_x" = 53, "muzzle_y" = 19,"rail_x" = 14, "rail_y" = 23, "under_x" = 41, "under_y" = 14, "stock_x" = -32, "stock_y" = 0)
 	actions_types = list(/datum/action/item_action/aim_mode)
@@ -1770,4 +1770,4 @@
 	placed_overlay_iconstate = "lmg"
 
 /obj/item/weapon/gun/rifle/som_mg/standard
-	starting_attachment_types = list(/obj/item/attachable/stock/v41stock, /obj/item/attachable/bipod, /obj/item/attachable/reddot, /obj/item/attachable/extended_barrel)
+	starting_attachment_types = list(/obj/item/attachable/stock/som_mg_stock, /obj/item/attachable/bipod, /obj/item/attachable/reddot, /obj/item/attachable/extended_barrel)

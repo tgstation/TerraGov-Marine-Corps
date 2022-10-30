@@ -1022,8 +1022,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "AR-11 stock"
 	icon_state = "tx11stock"
 
-/obj/item/attachable/stock/v41stock
-	name = "V-41 stock"
+/obj/item/attachable/stock/som_mg_stock
+	name = "\improper V-41 stock"
 	desc = "A irremovable V-41 machine gun stock."
 	icon_state = "v41stock"
 	pixel_shift_x = 0
