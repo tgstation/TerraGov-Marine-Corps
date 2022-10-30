@@ -165,6 +165,12 @@
 	icon_state = "red_suit"
 	item_state = "r_suit"
 
+/obj/item/clothing/under/schoolgirl
+	name = "schoolgirl uniform"
+	desc = "It's just like one of my Japanese animes!"
+	icon_state = "schoolgirl"
+	flags_armor_protection = CHEST|GROIN
+
 /obj/item/clothing/under/overalls
 	name = "laborer's overalls"
 	desc = "A set of durable overalls for getting the job done."
