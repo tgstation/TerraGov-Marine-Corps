@@ -1706,6 +1706,72 @@
 		/obj/item/attachable/bayonet,
 	)
 
+//-------------------------------------------------------
+// V-41 SOM LMG
+
+/obj/item/weapon/gun/rifle/som_mg
+	name = "\improper V-41 machine gun"
+	desc = "The V-41 is a large man portable machine used by the SOM, allowing for sustained, accurate suppressive firepower at the cost of mobility and handling. Commonly seen where their preferred tactics of fast, mobile aggression is ill suited."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "v41"
+	item_state = "v41"
+	fire_animation = "v41_fire"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+	)
+
+	inhand_x_dimension = 64
+	inhand_y_dimension = 32
+	caliber = CALIBER_10x26_CASELESS
+	max_shells = 200
+	force = 35
+	wield_delay = 1.5 SECONDS
+	fire_sound =  'sound/weapons/guns/fire/GPMG.ogg'
+	fire_rattle =  'sound/weapons/guns/fire/GPMG_low.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/som_mg
+	allowed_ammo_types = list(/obj/item/ammo_magazine/som_mg)
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/stock/som_mg_stock,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
+	)
+
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	starting_attachment_types = list(/obj/item/attachable/stock/som_mg_stock)
+	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
+	attachable_offset = list("muzzle_x" = 53, "muzzle_y" = 19,"rail_x" = 14, "rail_y" = 23, "under_x" = 41, "under_y" = 14, "stock_x" = -32, "stock_y" = 0)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.2 SECONDS
+	aim_slowdown = 1.2
+
+	fire_delay = 0.2 SECONDS
+	burst_amount = 1
+	accuracy_mult_unwielded = 0.4
+	scatter = 6
+	scatter_unwielded = 40
+	movement_acc_penalty_mult = 6
+
+	placed_overlay_iconstate = "lmg"
+
+/obj/item/weapon/gun/rifle/som_mg/standard
+	starting_attachment_types = list(/obj/item/attachable/stock/som_mg_stock, /obj/item/attachable/bipod, /obj/item/attachable/reddot, /obj/item/attachable/extended_barrel)
+
 /obj/item/weapon/gun/rifle/autogun
 	name = "\improper Agripinaa-Pattern Autogun"
 	desc = "The Autogun is a fully automatic Auto Weapon that fires solid-slug ballistic rounds at the intended target in rapid succession. Cheap, rugged and reliable, it can be found throughout the Imperium of Man, where it is appreciated for its decent damage and accuracy."
@@ -1820,39 +1886,3 @@
 	accuracy_mult_unwielded = 0.55
 	scatter = 1
 	scatter_unwielded = 15
-
-/obj/item/weapon/gun/rifle/galvanic
-	name = "\improper Mark IV Arkhan Pattern Galvanic Rifle"
-	desc = "Its bodywork is that of an antique, with a polished wooden stock and curlicues that echo the sandy seas of Mars' desert. Yet the galvanic servitor-bullets inside are incredibly advanced. When such a bullet strikes home, it causes all the potential energy of the target to burn out in a killing blast of electric force. An exquisite, handcrafted and outdated rifle, with enough penetrative power to boot."
-	fire_sound = 'sound/weapons/guns/fire/galvanic.ogg'
-	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
-	unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
-	reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
-	icon = 'icons/Marine/gun64.dmi'
-	icon_state = "galvanic"
-	item_state = "galvanic"
-	max_shots = 12 //codex stuff
-
-	default_ammo_type = /obj/item/ammo_magazine/rifle/galvanic
-	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/galvanic)
-
-	attachable_allowed = list(
-		/obj/item/attachable/bayonet,
-		/obj/item/attachable/bayonetknife,
-		/obj/item/attachable/flashlight,
-		/obj/item/attachable/magnetic_harness,
-	)
-
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
-	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
-	attachable_offset = list("muzzle_x" = 40, "muzzle_y" = 17,"rail_x" = 22, "rail_y" = 21, "under_x" = 29, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
-
-	aim_slowdown = 0.5
-	wield_delay = 0.6 SECONDS
-	scatter = 0
-	scatter_unwielded = 10
-	fire_delay = 0.75 SECONDS
-	accuracy_mult_unwielded = 0.55
-	damage_falloff_mult = 0
-	akimbo_additional_delay = 0.9
-	recoil = 3
