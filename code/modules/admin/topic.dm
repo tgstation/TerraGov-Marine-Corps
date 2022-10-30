@@ -288,7 +288,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 					var/mob/living/L = i
 					if(!L.client)
 						continue
-					L.revive()
+					L.revive(TRUE)
 	else if(href_list["force_event"])
 		if(!check_rights(R_FUN))
 			return
@@ -485,7 +485,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(alert("Are you sure you want to rejuvenate [L]?", "Rejuvenate", "Yes", "No") != "Yes")
 			return
 
-		L.revive()
+		L.revive(TRUE)
 
 		log_admin("[key_name(usr)] revived [key_name(L)].")
 		message_admins("[ADMIN_TPMONTY(usr)] revived [ADMIN_TPMONTY(L)].")

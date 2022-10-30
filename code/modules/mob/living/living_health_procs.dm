@@ -290,7 +290,7 @@
 	GLOB.alive_xeno_list += src
 	GLOB.dead_xeno_list -= src
 
-/mob/living/proc/revive()
+/mob/living/proc/revive(admin_revive = FALSE)
 	for(var/i in embedded_objects)
 		var/obj/item/embedded = i
 		embedded.unembed_ourself()
@@ -342,9 +342,10 @@
 	hud_used?.show_hud(hud_used.hud_version)
 
 	SSmobs.start_processing(src)
+	SEND_SIGNAL(src, COMSIG_LIVING_POST_FULLY_HEAL, admin_revive)
 
 
-/mob/living/carbon/revive()
+/mob/living/carbon/revive(admin_revive = FALSE)
 	set_nutrition(400)
 	setTraumatic_Shock(0)
 	setShock_Stage(0)
@@ -358,7 +359,7 @@
 	return ..()
 
 
-/mob/living/carbon/human/revive()
+/mob/living/carbon/human/revive(admin_revive = FALSE)
 	restore_all_organs()
 
 	if(species && !(species.species_flags & NO_BLOOD))
@@ -393,7 +394,7 @@
 	return ..()
 
 
-/mob/living/carbon/xenomorph/revive()
+/mob/living/carbon/xenomorph/revive(admin_revive = FALSE)
 	plasma_stored = xeno_caste.plasma_max
 	stagger = 0
 	sunder = 0
