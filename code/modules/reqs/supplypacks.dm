@@ -446,7 +446,7 @@ WEAPONS
 	name = "HMG-08 heavy machinegun ammo (500 rounds)"
 	contains = list(/obj/item/ammo_magazine/heavymachinegun)
 	cost = 7
-	
+
 /datum/supply_packs/weapons/hmg_ammo_small
 	name = "HMG-08 heavy machinegun ammo (250 rounds)"
 	contains = list(/obj/item/ammo_magazine/heavymachinegun/small)
@@ -625,13 +625,9 @@ EXPLOSIVES
 	cost = 3
 
 /datum/supply_packs/explosives/detpack
-	name = "detpack explosives"
-	contains = list(
-		/obj/item/detpack,
-		/obj/item/detpack,
-		/obj/item/assembly/signaler,
-	)
-	cost = 15
+	name = "detpack explosive"
+	contains = list(/obj/item/detpack)
+	cost = 5
 
 /datum/supply_packs/explosives/mortar
 	name = "T-50S mortar crate"
