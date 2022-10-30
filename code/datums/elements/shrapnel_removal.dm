@@ -24,7 +24,7 @@
 		M.balloon_alert(user, "You only know how to remove shrapnel from humans!")
 		return
 	var/mob/living/carbon/human/target = M
-	var/datum/limb/targetlimb = target.get_limb(user.zone_selected)
+	var/datum/limb/targetlimb = user.client.prefs.toggles_gameplay & RADIAL_MEDICAL ? radial_medical(target, user) : target.get_limb(user.zone_selected)
 	if(!length(targetlimb.implants))
 		M.balloon_alert(user, "There is nothing in limb!")
 		return
@@ -43,8 +43,8 @@
 		I.unembed_ourself(FALSE)
 		if(skill < SKILL_MEDICAL_PRACTICED)
 			user.visible_message(span_notice("[user] violently rips out [I] from [target]!"), span_notice("You violently rip out [I] from [target]!"))
-			target.apply_damage(30 * (SKILL_MEDICAL_PRACTICED - skill), def_zone = user.zone_selected)
+			targetlimb.take_damage_limb(30 * (SKILL_MEDICAL_PRACTICED - skill), 0, FALSE, FALSE)
 		else
 			user.visible_message(span_notice("[user] pulls out [I] from [target]!"), span_notice("You pull out [I] from [target]!"))
-			target.apply_damage(15, def_zone = user.zone_selected)
+			targetlimb.take_damage_limb(15, 0, FALSE_FALSE)
 		break
