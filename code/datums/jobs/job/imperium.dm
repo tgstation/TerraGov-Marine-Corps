@@ -17,7 +17,9 @@
 
 /datum/job/imperial/squad/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, span_highdanger("gloreh to terah"))
+	//you never know
+	to_chat(M, span_highdanger("This game is completely unofficial and is in no way endorsed by Games Workshop Limited. Adeptus Astartes, Blood Angels, Bloodquest, Cadian, Catachan, the Chaos devices, Cityfight, the Chaos logo, Citadel, Citadel Device, Codex, Daemonhunters, Dark Angels, Dark Eldar, 'Eavy Metal, Eldar, Eldar symbol devices, Eye of Terror, Fire Warrior, Forge World, Games Workshop, Games Workshop logo, Genestealer, Golden Demon, Gorkamorka, Great Unclean One, Inquisitor, the Inquisitor logo, the Inquisitor device, Inquisitor:Conspiracies, Keeper of Secrets, Khorne, Kroot, Lord of Change, Necron, Nurgle, Ork, Ork skull devices, Sisters of Battle, Slaanesh, Space Hulk, Space Marine, Space Marine chapters, Space Marine chapter logos, Tau, the Tau caste designations, Tyranid, Tyrannid, Tzeentch, Ultramarines, Warhammer, Warhammer 40k Device, White Dwarf, the White Dwarf logo, and all associated marks, names, races, race insignia, characters, vehicles, locations, units, illustrations and images from the Warhammer 40,000 universe are either ®, TM and/or © Copyright Games Workshop Ltd 2000-2012, variably registered in the UK and other countries around the world. Used without permission. No challenge to their status intended. All Rights Reserved to their respective owners."))
+
 
 /datum/job/imperial/squad/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
 	. = ..()
