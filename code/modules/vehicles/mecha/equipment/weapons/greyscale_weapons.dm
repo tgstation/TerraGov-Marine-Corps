@@ -51,8 +51,8 @@
 	ammotype = /datum/ammo/bullet/pistol/mech/burst
 	obj_integrity = 450
 	projectiles = 42
-	projectiles_cache = 820
-	projectiles_cache_max = 820
+	projectiles_cache = 840
+	projectiles_cache_max = 840
 	variance = 15
 	slowdown = 0.1
 	projectile_delay = 0.6 SECONDS
@@ -78,8 +78,8 @@
 	ammotype = /datum/ammo/bullet/smg/mech
 	obj_integrity = 400
 	projectiles = 60
-	projectiles_cache = 420
-	projectiles_cache_max = 420
+	projectiles_cache = 900
+	projectiles_cache_max = 900
 	variance = 20
 	projectile_delay = 0.15 SECONDS
 	slowdown = 0.15
@@ -102,8 +102,8 @@
 	ammotype = /datum/ammo/bullet/rifle/mech/burst
 	obj_integrity = 400
 	projectiles = 72
-	projectiles_cache = 360
-	projectiles_cache_max = 360
+	projectiles_cache = 720
+	projectiles_cache_max = 720
 	variance = 15
 	projectile_delay = 0.6 SECONDS
 	burst_amount = 3
@@ -127,9 +127,9 @@
 	)
 	ammotype = /datum/ammo/bullet/rifle/mech
 	obj_integrity = 400
-	projectiles = 50
-	projectiles_cache = 300
-	projectiles_cache_max = 300
+	projectiles = 80
+	projectiles_cache = 960
+	projectiles_cache_max = 960
 	variance = 15
 	projectile_delay = 0.2 SECONDS
 	slowdown = 0.2
@@ -152,8 +152,8 @@
 	ammotype = /datum/ammo/bullet/shotgun/mech
 	obj_integrity = 350
 	projectiles = 10
-	projectiles_cache = 50
-	projectiles_cache_max = 50
+	projectiles_cache = 120
+	projectiles_cache_max = 120
 	variance = 6
 	projectile_delay = 1.5 SECONDS
 	slowdown = 0.3
@@ -175,9 +175,9 @@
 	)
 	ammotype = /datum/ammo/bullet/rifle/mech/lmg
 	obj_integrity = 400
-	projectiles = 80
-	projectiles_cache = 400
-	projectiles_cache_max = 400
+	projectiles = 120
+	projectiles_cache = 1200
+	projectiles_cache_max = 1200
 	variance = 25
 	projectile_delay = 0.15 SECONDS
 	slowdown = 0.3
@@ -310,8 +310,8 @@
 	ammotype = /datum/ammo/bullet/apfsds
 	obj_integrity = 400
 	projectiles = 1
-	projectiles_cache = 10
-	projectiles_cache_max = 10
+	projectiles_cache = 15
+	projectiles_cache_max = 15
 	variance = 0
 	projectile_delay = 1 SECONDS
 	slowdown = 1.2
@@ -335,8 +335,8 @@
 	ammotype = /datum/ammo/bullet/minigun/mech
 	obj_integrity = 400
 	projectiles = 200
-	projectiles_cache = 600
-	projectiles_cache_max = 600
+	projectiles_cache = 800
+	projectiles_cache_max = 800
 	variance = 35
 	projectile_delay = 1.5
 	slowdown = 0.7
@@ -360,8 +360,8 @@
 	ammotype = /datum/ammo/bullet/sniper/mech
 	obj_integrity = 200
 	projectiles = 15
-	projectiles_cache = 60
-	projectiles_cache_max = 60
+	projectiles_cache = 90
+	projectiles_cache_max = 90
 	variance = -15
 	projectile_delay = 1 SECONDS
 	slowdown = 0.6
@@ -380,8 +380,8 @@
 	ammotype = /obj/item/explosive/grenade
 	obj_integrity = 350
 	projectiles = 10
-	projectiles_cache = 20
-	projectiles_cache_max = 20
+	projectiles_cache = 40
+	projectiles_cache_max = 40
 	projectile_delay = 1.5 SECONDS
 	missile_speed = 1.5
 	equip_cooldown = 2 SECONDS

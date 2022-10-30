@@ -29,6 +29,15 @@
 	default_ammo = /datum/ammo/bullet/machinegun
 	reload_delay = 10 SECONDS
 
+/obj/item/ammo_magazine/heavymachinegun/small
+	name = "HMG-08 box magazine (10x30mm Caseless)"
+	desc = "A box of 250 10x28mm caseless tungsten rounds for the HMG-08 mounted heavy machinegun."
+	w_class = WEIGHT_CLASS_NORMAL
+	flags_equip_slot = ITEM_SLOT_BELT
+	icon_state = "mg08_mag_small"
+	max_rounds = 250
+	reload_delay = 5 SECONDS
+
 /obj/item/ammo_magazine/standard_mmg
 	name = "MG-27 box magazine (10x27m Caseless)"
 	desc = "A box of 100 10x27mm caseless rounds for the MG-27 medium machinegun."

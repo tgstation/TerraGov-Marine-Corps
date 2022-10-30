@@ -662,12 +662,16 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HIVELORD_HEALING_INFUSION_TICKS 10
 
 //Shrike defines
-
 #define SHRIKE_FLAG_PAIN_HUD_ON (1<<0)
 #define SHRIKE_CURE_HEAL_MULTIPLIER 10
 #define SHRIKE_HEAL_RANGE 3
 
 //Drone defines
+#define DRONE_BASE_SALVE_HEAL 50
+#define DRONE_ESSENCE_LINK_WINDUP 3 SECONDS
+#define DRONE_ESSENCE_LINK_RANGE 6 // How far apart the linked xenos can be, in tiles. Going past this deactivates the buff.
+#define DRONE_ESSENCE_LINK_REGEN 0.012 // Amount of health regen given as a percentage.
+#define DRONE_ESSENCE_LINK_SHARED_HEAL 0.1 // The effectiveness of heals when applied to the other linked xeno, as a percentage
 
 //Runner defines
 #define RUNNER_EVASION_DURATION 2 SECONDS //How long Evasion lasts.

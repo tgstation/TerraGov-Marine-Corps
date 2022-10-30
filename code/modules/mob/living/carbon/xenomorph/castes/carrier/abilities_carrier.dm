@@ -38,7 +38,9 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	action_icon_state = "throw_hugger"
 	mechanics_text = "Click on a non tile and non mob to bring a facehugger into your hand. Click at a target or tile to throw a facehugger."
 	ability_name = "throw facehugger"
-	keybind_signal = COMSIG_XENOABILITY_THROW_HUGGER
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_THROW_HUGGER,
+	)
 	cooldown_timer = 3 SECONDS
 
 /datum/action/xeno_action/activable/throw_hugger/get_cooldown()
@@ -111,7 +113,9 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	action_icon_state = "place_trap"
 	mechanics_text = "Place a hole on weeds that can be filled with a hugger or acid. Activates when a marine steps on it."
 	plasma_cost = 400
-	keybind_signal = COMSIG_XENOABILITY_PLACE_TRAP
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_TRAP,
+	)
 
 /datum/action/xeno_action/place_trap/can_use_action(silent = FALSE, override_flags)
 	. = ..()
@@ -150,7 +154,9 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	mechanics_text = "Spawn a facehugger that is stored on your body."
 	plasma_cost = 200
 	cooldown_timer = 10 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_SPAWN_HUGGER
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SPAWN_HUGGER,
+	)
 	use_state_flags = XACT_USE_LYING
 
 /datum/action/xeno_action/spawn_hugger/on_cooldown_finish()
@@ -186,7 +192,9 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	mechanics_text = "Drop all stored huggers in a fit of panic. Uses all remaining plasma!"
 	plasma_cost = 10
 	cooldown_timer = 50 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_DROP_ALL_HUGGER
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DROP_ALL_HUGGER,
+	)
 	use_state_flags = XACT_USE_LYING
 
 /datum/action/xeno_action/carrier_panic/give_action(mob/living/L)
@@ -239,8 +247,10 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	name = "Choose Hugger Type"
 	action_icon_state = "facehugger"
 	mechanics_text = "Selects which hugger type you will build with the Spawn Hugger ability."
-	keybind_signal = COMSIG_XENOABILITY_CHOOSE_HUGGER
-	alternate_keybind_signal = COMSIG_XENOABILITY_SWITCH_HUGGER
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CHOOSE_HUGGER,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_SWITCH_HUGGER,
+	)
 
 /datum/action/xeno_action/choose_hugger_type/give_action(mob/living/L)
 	. = ..()
@@ -251,8 +261,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 /datum/action/xeno_action/choose_hugger_type/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner
 	var/atom/A = X.selected_hugger_type
-	button.overlays.Cut()
-	button.overlays += image('icons/mob/actions.dmi', button, initial(A.name))
+	action_icon_state = initial(A.name)
 	return ..()
 
 /datum/action/xeno_action/choose_hugger_type/alternate_action_activate()

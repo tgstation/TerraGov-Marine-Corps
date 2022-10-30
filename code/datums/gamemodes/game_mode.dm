@@ -417,6 +417,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		dat += "[GLOB.round_statistics.mortar_shells_fired] mortar shells were fired."
 	if(GLOB.round_statistics.howitzer_shells_fired)
 		dat += "[GLOB.round_statistics.howitzer_shells_fired] howitzer shells were fired."
+	if(GLOB.round_statistics.rocket_shells_fired)
+		dat += "[GLOB.round_statistics.rocket_shells_fired] rocket artillery shells were fired."
 	if(GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV])
 		dat += "[GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV]] people were killed, among which [GLOB.round_statistics.total_human_revives[FACTION_TERRAGOV]] were revived and [GLOB.round_statistics.total_human_respawns] respawned. For a [(GLOB.round_statistics.total_human_revives[FACTION_TERRAGOV] / max(GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV], 1)) * 100]% revival rate and a [(GLOB.round_statistics.total_human_respawns / max(GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV], 1)) * 100]% respawn rate."
 	if(SSevacuation.human_escaped)

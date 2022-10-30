@@ -211,6 +211,8 @@
 	var/tiles_moved = 0
 	/// Limits tiles_moved to this value.
 	var/max_tile_acceleration = 8
+	/// last direction moved
+	var/direction_moved
 	var/cooldown = 0
 	var/acceleration = TRUE
 	var/mob/living/eye_user = null
@@ -247,7 +249,7 @@
 		return
 	if(T.z != z && use_static)
 		GLOB.cameranet.visibility(src, GetViewerClient(), null, use_static)
-	dir = get_dir(src, target)
+	direction_moved = get_dir(src, target)
 	abstract_move(T)
 	if(use_static)
 		GLOB.cameranet.visibility(src, GetViewerClient(), null, use_static)
@@ -278,7 +280,7 @@
 	cooldown = world.time + move_delay * (1 - acceleration * tiles_moved / 10)
 	var/turf/T = get_turf(get_step(src, direct))
 	// check for dir change , if we changed then remove all acceleration
-	if(get_dir(src, T) != dir)
+	if(get_dir(src, T) != direction_moved)
 		tiles_moved = 0
 	tiles_moved = min(tiles_moved++, max_tile_acceleration)
 	setLoc(T)
