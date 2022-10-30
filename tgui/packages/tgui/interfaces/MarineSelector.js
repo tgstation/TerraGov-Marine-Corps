@@ -18,7 +18,7 @@ export const MarineSelector = (props, context) => {
   const {
     remaining_points,
     total_points,
-    show_points
+    show_points,
   } = data;
 
   const categories = Object
@@ -135,8 +135,8 @@ const ItemLine = (props, context) => {
   ] = useLocalState(context, 'showDesc', null);
 
   const {
-    remaining_points
-  } = data
+    remaining_points,
+  } = data; 
 
   const {
     display_record: {
