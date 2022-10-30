@@ -77,7 +77,7 @@
 	if(!.)
 		return FALSE
 
-	if(get_dist_euclide_square(A, owner) > 36)
+	if(get_dist_euclide_square(A, owner) > 16)
 		if(!silent)
 			to_chat(owner, span_xenonotice("You are too far!"))
 		return FALSE
