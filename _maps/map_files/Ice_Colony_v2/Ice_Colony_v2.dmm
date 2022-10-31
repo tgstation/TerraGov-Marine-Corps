@@ -9267,11 +9267,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hangar/beta)
-"aRy" = (
-/turf/closed/shuttle{
-	icon_state = "swall3"
-	},
-/area/ice_colony/surface/hangar/alpha)
 "aRz" = (
 /obj/machinery/light,
 /turf/open/shuttle/dropship/fourteen,
@@ -9773,11 +9768,6 @@
 	dir = 5
 	},
 /area/ice_colony/surface/research/temporary)
-"aUh" = (
-/turf/closed/shuttle{
-	icon_state = "swall1"
-	},
-/area/ice_colony/surface/hangar/alpha)
 "aUk" = (
 /obj/machinery/alarm{
 	dir = 8
@@ -67388,8 +67378,8 @@ jlo
 jlo
 jlo
 jlo
-aRy
-aUh
+aTy
+aTy
 jlo
 jlo
 jlo
