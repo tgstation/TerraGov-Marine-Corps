@@ -1567,6 +1567,12 @@
 	},
 /turf/open/floor/tile/cafe,
 /area/centcom/valhalla/crew_quarters/cafeteria)
+"cae" = (
+/obj/item/storage/secure/safe{
+	pixel_y = -6
+	},
+/turf/closed/wall/r_wall/unmeltable,
+/area/centcom/valhalla/crew_quarters/heads/hop)
 "caq" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/tile/darkgreen,
@@ -1772,10 +1778,6 @@
 	pixel_x = -8
 	},
 /obj/item/storage/secure/briefcase,
-/obj/item/storage/secure/safe{
-	pixel_x = 32;
-	pixel_y = 24
-	},
 /obj/item/pinpointer,
 /obj/item/megaphone,
 /turf/open/floor/grimy,
@@ -2438,6 +2440,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/neutral/full,
 /area/centcom/valhalla/engine/break_room)
+"diX" = (
+/obj/item/storage/secure/safe{
+	pixel_y = -6
+	},
+/turf/closed/wall/r_wall/unmeltable,
+/area/centcom/valhalla/crew_quarters/captain)
 "dkn" = (
 /obj/item/radio/intercom{
 	broadcasting = 1;
@@ -4688,7 +4696,7 @@
 	},
 /obj/effect/decal/tile/black,
 /obj/structure/table/mainship,
-/obj/structure/window/reinforced{
+/obj/structure/window/reinforced/windowstake{
 	dir = 4
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -4706,7 +4714,7 @@
 	},
 /obj/effect/decal/tile/black,
 /obj/structure/table/mainship,
-/obj/structure/window/reinforced{
+/obj/structure/window/reinforced/windowstake{
 	dir = 4
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -4723,7 +4731,7 @@
 	},
 /obj/effect/decal/tile/black,
 /obj/structure/table/mainship,
-/obj/structure/window/reinforced{
+/obj/structure/window/reinforced/windowstake{
 	dir = 4
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -4783,9 +4791,6 @@
 "glw" = (
 /obj/structure/table,
 /obj/item/flashlight/lamp,
-/obj/item/storage/secure/safe{
-	pixel_x = 32
-	},
 /obj/structure/extinguisher_cabinet,
 /turf/open/floor/grimy,
 /area/centcom/valhalla/security/detectives_office)
@@ -8023,9 +8028,6 @@
 /area/centcom/valhalla/security/brig/interiorcavern)
 "kIk" = (
 /obj/structure/bookcase,
-/obj/structure/sign/kiddieplaque{
-	pixel_y = 32
-	},
 /obj/machinery/status_display/ai{
 	pixel_x = 32
 	},
@@ -12996,7 +12998,9 @@
 /obj/effect/decal/warning_stripes/thick{
 	dir = 4
 	},
-/obj/structure/prop/mainship/doorblocker/external,
+/obj/structure/prop/mainship/doorblocker/external{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/centcom/valhalla/maintenance/starboardsolar)
 "rgf" = (
@@ -13907,6 +13911,14 @@
 	dir = 1
 	},
 /area/centcom/valhalla/chapel/main)
+"soB" = (
+/obj/effect/decal/warning_stripes/thick{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/obj/structure/sign/kiddieplaque,
+/turf/open/floor/plating,
+/area/centcom/valhalla/port)
 "soG" = (
 /obj/machinery/door/poddoor/mainship/indestructible{
 	dir = 1
@@ -16102,6 +16114,12 @@
 	},
 /turf/open/floor/grimy,
 /area/centcom/valhalla/primary/aft)
+"vhy" = (
+/obj/item/storage/secure/safe{
+	pixel_y = -6
+	},
+/turf/closed/wall,
+/area/centcom/valhalla/security/detectives_office)
 "vjb" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -18567,10 +18585,6 @@
 "xLo" = (
 /obj/structure/bedsheetbin,
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
-/obj/item/storage/secure/safe{
-	pixel_x = 32;
-	pixel_y = 24
-	},
 /turf/open/floor/wood,
 /area/centcom/valhalla/crew_quarters/heads/hop)
 "xLw" = (
@@ -27997,7 +28011,7 @@ box
 bZR
 cKf
 doK
-fPe
+vhy
 dnm
 eNk
 fpS
@@ -28882,7 +28896,7 @@ fgO
 fgO
 qfs
 vxC
-sdV
+soB
 sKi
 kIk
 mWF
@@ -29235,7 +29249,7 @@ xrI
 biW
 xrI
 biW
-brs
+diX
 cpX
 cRl
 dxY
@@ -31857,7 +31871,7 @@ xrI
 ohJ
 xXc
 bmG
-vGP
+cae
 xLo
 nFq
 dLi
