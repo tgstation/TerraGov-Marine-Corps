@@ -145,7 +145,7 @@
 //MARINE SHIP GRILLE
 
 /obj/structure/grille/smoothing
-	icon_state = "grillewall-0-0-0-0"
+	icon_state = "grille0"
 	smoothing_behavior = CARDINAL_SMOOTHING
 	smoothing_groups = SMOOTH_GENERAL_STRUCTURES
 
