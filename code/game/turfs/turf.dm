@@ -933,3 +933,8 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	// Balloon alerts occuring on turf objects result in mass spam of alerts.
 	// Thus, no more balloon alerts for turfs.
 	return
+
+///cleans any cleanable decals from the turf
+/turf/proc/clean_turf()
+	for(var/obj/effect/decal/cleanable/filth in src)
+		qdel(filth) //dirty, filthy floor

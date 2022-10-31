@@ -269,80 +269,9 @@
 		L.ExtinguishMob()
 		L.fire_stacks = -20 //Douse ourselves with water to avoid fire more easily
 		to_chat(L, span_warning("You've been drenched in water!"))
-		if(iscarbon(O))
-			var/mob/living/carbon/M = O
-			if(M.r_hand)
-				M.r_hand.clean_blood()
-			if(M.l_hand)
-				M.l_hand.clean_blood()
-			if(M.back)
-				if(M.back.clean_blood())
-					M.update_inv_back(0)
-			if(ishuman(M))
-				var/mob/living/carbon/human/H = M
-				var/washgloves = 1
-				var/washshoes = 1
-				var/washmask = 1
-				var/washears = 1
-				var/washglasses = 1
-
-				if(H.wear_suit)
-					washgloves = !(H.wear_suit.flags_inv_hide & HIDEGLOVES)
-					washshoes = !(H.wear_suit.flags_inv_hide & HIDESHOES)
-
-				if(H.head)
-					washmask = !(H.head.flags_inv_hide & HIDEMASK)
-					washglasses = !(H.head.flags_inv_hide & HIDEEYES)
-					washears = !(H.head.flags_inv_hide & HIDEEARS)
-
-				if(H.wear_mask)
-					if (washears)
-						washears = !(H.wear_mask.flags_inv_hide & HIDEEARS)
-					if (washglasses)
-						washglasses = !(H.wear_mask.flags_inv_hide & HIDEEYES)
-
-				if(H.head)
-					if(H.head.clean_blood())
-						H.update_inv_head()
-				if(H.wear_suit)
-					if(H.wear_suit.clean_blood())
-						H.update_inv_wear_suit()
-				else if(H.w_uniform)
-					if(H.w_uniform.clean_blood())
-						H.update_inv_w_uniform()
-				if(H.gloves && washgloves)
-					if(H.gloves.clean_blood())
-						H.update_inv_gloves()
-				if(H.shoes && washshoes)
-					if(H.shoes.clean_blood())
-						H.update_inv_shoes()
-				if(H.wear_mask && washmask)
-					if(H.wear_mask.clean_blood())
-						H.update_inv_wear_mask()
-				if(H.glasses && washglasses)
-					if(H.glasses.clean_blood())
-						H.update_inv_glasses()
-				if(H.wear_ear && washears)
-					if(H.wear_ear.clean_blood())
-						H.update_inv_ears()
-				if(H.belt)
-					if(H.belt.clean_blood())
-						H.update_inv_belt()
-				H.clean_blood(washshoes)
-			else
-				if(M.wear_mask)						//if the mob is not human, it cleans the mask without asking for bitflags
-					if(M.wear_mask.clean_blood())
-						M.update_inv_wear_mask()
-				M.clean_blood()
-		else
-			O.clean_blood()
-
-	if(isturf(loc))
-		var/turf/tile = loc
-		loc.clean_blood()
-		for(var/obj/effect/E in tile)
-			if(istype(E,/obj/effect/rune) || istype(E,/obj/effect/decal/cleanable) || istype(E,/obj/effect/overlay))
-				qdel(E)
+		L.clean_mob()
+	else
+		O.clean_blood()
 
 /obj/machinery/shower/process()
 	if(!on)
@@ -359,7 +288,7 @@
 	is_washing = TRUE
 	addtimer(VARSET_CALLBACK(src, is_washing, FALSE), 10 SECONDS)
 	var/turf/T = get_turf(src)
-	T.clean(src)
+	T.clean_turf()
 
 /obj/machinery/shower/proc/check_heat(mob/M)
 	if(!on || watertemp == WATER_TEMP_NORMAL)
