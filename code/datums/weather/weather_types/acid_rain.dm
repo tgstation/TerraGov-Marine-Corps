@@ -86,4 +86,4 @@
 			if(isrobot(L))
 				return
 			else
-				to_chat(H, span_warning(wetmessage))
+				to_chat(L, span_warning(wetmessage))
