@@ -3231,7 +3231,7 @@
 /turf/open/floor/tile/neutral/corner,
 /area/centcom/valhalla/primary/port)
 "dWn" = (
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/mainship/indestructible{
 	dir = 1
@@ -18496,7 +18496,7 @@
 /area/centcom/valhalla/secondary/exit)
 "xHr" = (
 /obj/structure/lattice,
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /turf/open/space,
 /area/space)
 "xIx" = (
@@ -18694,7 +18694,7 @@
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/quartermaster/miningdock)
 "xPH" = (
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /turf/closed/wall/r_wall/unmeltable,
 /area/centcom/valhalla/secondary/exit)
 "xPQ" = (

@@ -81,7 +81,7 @@
 /turf/open/ground/river,
 /area/lv624/ground/river2)
 "w" = (
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
 "A" = (
@@ -123,7 +123,7 @@
 	},
 /area/lv624/ground/river2)
 "J" = (
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /turf/open/ground/river,
 /area/lv624/ground/river2)
 "K" = (

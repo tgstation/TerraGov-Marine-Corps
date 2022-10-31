@@ -32,7 +32,7 @@
 /turf/open/floor,
 /area/lv624/ground/river2)
 "i" = (
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
 "j" = (

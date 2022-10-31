@@ -4986,11 +4986,11 @@
 	},
 /area/ice_colony/surface/hydroponics/lobby)
 "aym" = (
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad2)
 "ayn" = (
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /obj/structure/sign/electricshock,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad2)

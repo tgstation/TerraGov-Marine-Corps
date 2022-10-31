@@ -1,7 +1,7 @@
 /obj/structure/grille
 	desc = "A flimsy lattice of metal rods, with screws to secure it to the floor."
 	name = "grille"
-	icon = 'icons/obj/structures/structures.dmi'
+	icon = 'icons/obj/structures/grille.dmi'
 	icon_state = "grille"
 	hit_sound = 'sound/effects/grillehit.ogg'
 	density = TRUE
@@ -144,11 +144,12 @@
 
 //MARINE SHIP GRILLE
 
-/obj/structure/grille/mainship
+/obj/structure/grille/smoothing
 	icon = 'icons/turf/mainship.dmi'
 	icon_state = "grille0"
-	smoothing_behavior = CARDINAL_SMOOTHING
+	smoothing_behavior = DIAGONAL_SMOOTHING
 	smoothing_groups = SMOOTH_GENERAL_STRUCTURES
 
-/obj/structure/grille/mainship/update_icon()
+/obj/structure/grille/smoothing/update_icon()
 	smooth_self()
+	smooth_neighbors()

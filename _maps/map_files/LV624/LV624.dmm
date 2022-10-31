@@ -5883,7 +5883,7 @@
 /area/lv624/lazarus/chapel)
 "esh" = (
 /obj/structure/disposalpipe/segment,
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /obj/structure/catwalk,
 /turf/open/floor/plating/warning{
 	dir = 5
@@ -6460,7 +6460,7 @@
 /area/lv624/ground/jungle3)
 "ffD" = (
 /obj/structure/disposalpipe/segment,
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /turf/open/floor/plating/warning{
 	dir = 9
 	},
@@ -6506,7 +6506,7 @@
 /area/lv624/ground/compound/n)
 "fht" = (
 /obj/structure/disposalpipe/segment,
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /obj/structure/disposalpipe/segment,
 /obj/structure/catwalk,
 /turf/open/ground/river,
@@ -6699,7 +6699,7 @@
 /area/lv624/ground/compound/se)
 "fvn" = (
 /obj/structure/disposalpipe/segment,
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /obj/structure/catwalk,
 /turf/open/floor/plating/warning{
 	dir = 2
@@ -14172,7 +14172,7 @@
 /area/lv624/lazarus/sandtemple)
 "ocO" = (
 /obj/structure/disposalpipe/segment,
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /obj/structure/catwalk,
 /turf/open/floor/plating/warning{
 	dir = 9

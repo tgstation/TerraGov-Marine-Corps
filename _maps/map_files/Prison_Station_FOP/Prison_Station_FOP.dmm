@@ -447,12 +447,12 @@
 /area/prison/research/secret/biolab)
 "adi" = (
 /obj/machinery/disposal,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
 /obj/effect/decal/warning_stripes/thin,
 /obj/structure/disposalpipe/up{
 	dir = 1
+	},
+/obj/structure/window/reinforced/windowstake{
+	dir = 4
 	},
 /turf/open/floor/prison/plate,
 /area/prison/research/secret/biolab)
@@ -476,11 +476,11 @@
 /area/prison/research/secret/biolab)
 "adl" = (
 /obj/structure/table/reinforced,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
 /obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/cleanable/blood/splatter,
+/obj/structure/window/reinforced/windowstake{
+	dir = 8
+	},
 /turf/open/floor/prison/plate,
 /area/prison/research/secret/biolab)
 "adm" = (
@@ -513,10 +513,10 @@
 /area/prison/research/secret/biolab)
 "adq" = (
 /obj/structure/table/reinforced,
-/obj/structure/window/reinforced{
+/obj/effect/decal/warning_stripes/thin,
+/obj/structure/window/reinforced/windowstake{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/prison/plate,
 /area/prison/research/secret/biolab)
 "adr" = (
@@ -20506,7 +20506,7 @@
 /area/prison/cellblock/lowsec/nw)
 "bkq" = (
 /obj/structure/lattice,
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /turf/open/space/sea,
 /area/space)
 "bkr" = (
@@ -25480,7 +25480,7 @@
 	},
 /area/prison/cellblock/highsec/south/north)
 "bAP" = (
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /obj/structure/lattice,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -27039,7 +27039,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/hallway/east)
 "bFN" = (
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /turf/open/floor/plating,
 /area/prison/maintenance/hangar_barracks)
 "bFO" = (
@@ -38336,7 +38336,7 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced,
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /obj/structure/window/reinforced/windowstake{
 	dir = 8
 	},
@@ -38347,7 +38347,7 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced,
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /turf/open/floor/plating,
 /area/prison/pirate)
 "cqC" = (
@@ -38358,7 +38358,7 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced,
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /obj/structure/window/reinforced/windowstake{
 	dir = 4
 	},
@@ -45352,7 +45352,7 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/sw)
 "pkD" = (
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/nw)
 "pla" = (
@@ -46628,7 +46628,7 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "suo" = (
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/prison/maintenance/hangar_barracks)
@@ -47305,7 +47305,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/canteen)
 "ufB" = (
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/sw)
 "uhu" = (
