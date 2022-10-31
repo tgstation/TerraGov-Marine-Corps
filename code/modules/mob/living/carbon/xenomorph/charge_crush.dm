@@ -36,6 +36,8 @@
 	var/plasma_use_multiplier = 1
 	///If this charge should keep momentum on dir change and if it can charge diagonally
 	var/agile_charge = FALSE
+	///the time we last changed direction. Used for agile charging
+	var/last_dir_change
 
 
 /datum/action/xeno_action/ready_charge/give_action(mob/living/L)
@@ -89,9 +91,14 @@
 	var/mob/living/carbon/xenomorph/charger = owner
 	if(charger.is_charging == CHARGE_OFF)
 		return
-	if(!old_dir || !new_dir || old_dir == new_dir || agile_charge) //Check for null direction from help shuffle signals
+	if(!old_dir || !new_dir || old_dir == new_dir) //Check for null direction from help shuffle signals
 		return
-	do_stop_momentum()
+	if(!agile_charge || new_dir == REVERSE_DIR(old_dir)) //we can't just go back and forth
+		do_stop_momentum()
+		return
+	if(last_dir_change > world.time - 10)
+		do_stop_momentum()
+	last_dir_change = world.time
 
 
 /datum/action/xeno_action/ready_charge/proc/update_charging(datum/source, atom/oldloc, direction, Forced, old_locs)
