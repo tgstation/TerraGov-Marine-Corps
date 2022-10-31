@@ -313,7 +313,6 @@
 	plane = FLOOR_PLANE
 	smoothing_behavior = NO_SMOOTHING
 	resistance_flags = PLASMACUTTER_IMMUNE
-	color = "#616161"
 
 /turf/closed/shuttle/re_corner/notdense
 	icon_state = "re_cornergrass"
@@ -410,6 +409,7 @@
 /turf/closed/shuttle/escapeshuttle
 	smoothing_behavior = CARDINAL_SMOOTHING
 	smoothing_groups = SMOOTH_ESCAPESHUTTLE
+	color = "#616161"
 
 /turf/closed/banish_space //Brazil
 	plane = PLANE_SPACE
