@@ -9253,7 +9253,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hangar/alpha)
 "aRu" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship/escapeshuttle,
 /turf/open/shuttle/plating,
 /area/ice_colony/surface/hangar/alpha)
 "aRv" = (
@@ -9272,7 +9272,7 @@
 /turf/open/shuttle/dropship/fourteen,
 /area/ice_colony/surface/hangar/alpha)
 "aRF" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship/escapeshuttle,
 /turf/open/shuttle/plating,
 /area/ice_colony/surface/hangar/beta)
 "aRG" = (

@@ -2695,11 +2695,11 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_labs)
 "apC" = (
-/obj/structure/shuttle/window,
 /obj/machinery/door/poddoor/shutters/mainship/open{
 	id = "vehicle1door";
 	name = "Shutters"
 	},
+/obj/structure/window/framed/mainship/canterbury,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/tri_trans1/alpha)
 "apG" = (
@@ -6893,11 +6893,11 @@
 	},
 /area/desert_dam/building/warehouse/loading)
 "aOX" = (
-/obj/structure/shuttle/window,
 /obj/machinery/door/poddoor/shutters/mainship/open{
 	id = "vehicle1door";
 	name = "Shutters"
 	},
+/obj/structure/window/framed/mainship/canterbury,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/tri_trans2/alpha)
 "aPa" = (
