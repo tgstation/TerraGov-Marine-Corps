@@ -5182,7 +5182,7 @@
 "oY" = (
 /obj/machinery/door_control/mainship{
 	dir = 8;
-	id = mechbay;
+	id = "mechbay";
 	name = "Mech Bay Shutters"
 	},
 /turf/open/floor/mainship/mono,
@@ -9086,7 +9086,7 @@
 "AD" = (
 /obj/machinery/door_control/mainship{
 	dir = 4;
-	id = mechbay;
+	id = "mechbay";
 	name = "Mech Bay Shutters"
 	},
 /turf/open/floor/mainship/mono,
@@ -9787,7 +9787,7 @@
 /area/mainship/hallways/hangar)
 "CI" = (
 /obj/machinery/door/poddoor/shutters{
-	id = mechbay;
+	id = "mechbay";
 	name = "Mech Bay Shutters"
 	},
 /turf/open/floor/mainship/mono,
