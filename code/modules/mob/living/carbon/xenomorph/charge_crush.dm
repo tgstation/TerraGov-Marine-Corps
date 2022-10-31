@@ -36,7 +36,7 @@
 	var/plasma_use_multiplier = 1
 	///If this charge should keep momentum on dir change and if it can charge diagonally
 	var/agile_charge = FALSE
-	///the time we last changed direction. Used for agile charging
+	///the time we last changed direction
 	var/last_dir_change
 
 
@@ -93,13 +93,15 @@
 		return
 	if(!old_dir || !new_dir || old_dir == new_dir) //Check for null direction from help shuffle signals
 		return
-	if(!agile_charge || new_dir == REVERSE_DIR(old_dir)) //we can't just go back and forth
+	if(new_dir == REVERSE_DIR(old_dir))//we can't just 180 back the way we came
 		do_stop_momentum()
 		return
+	var/turn_rate = 16
+		if(agile_charge)
+			turn_rate = 8
 	if(last_dir_change > world.time - 10)
 		do_stop_momentum()
 	last_dir_change = world.time
-
 
 /datum/action/xeno_action/ready_charge/proc/update_charging(datum/source, atom/oldloc, direction, Forced, old_locs)
 	SIGNAL_HANDLER_DOES_SLEEP
