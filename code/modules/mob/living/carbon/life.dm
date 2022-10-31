@@ -83,7 +83,7 @@
 	if(drowsyness)
 		adjustDrowsyness(-restingpwr)
 		blur_eyes(2)
-		if(prob(5))
+		if(drowsyness > 18 && prob(5))
 			Sleeping(20)
 			Unconscious(10 SECONDS)
 

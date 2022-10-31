@@ -2980,6 +2980,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	bullet_color = BOILER_LUMINOSITY_AMMO_CORROSIVE_COLOR
 	hit_paralyze_time = 1 SECONDS
 	hit_eye_blur = 1
+	hit_drowsyness = 1
 	reagent_transfer_amount = 0
 
 /datum/ammo/xeno/boiler_gas/corrosive/enhance_trap(obj/structure/xeno/trap/trap, mob/living/carbon/xenomorph/user_xeno)
@@ -3010,6 +3011,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	passed_turf_smoke_type = /datum/effect_system/smoke_spread/xeno/neuro/light
 	hit_paralyze_time = 2 SECONDS
 	hit_eye_blur = 16
+	hit_drowsyness = 18
 	fixed_spread_range = 2
 	accuracy = 100
 	accurate_range = 30
@@ -3028,6 +3030,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	passed_turf_smoke_type = /datum/effect_system/smoke_spread/xeno/acid/light
 	hit_paralyze_time = 1.5 SECONDS
 	hit_eye_blur = 4
+	hit_drowsyness = 2
 	fixed_spread_range = 2
 	accuracy = 100
 	accurate_range = 30
