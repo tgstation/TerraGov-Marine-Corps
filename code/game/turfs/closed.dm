@@ -407,9 +407,9 @@
 	plane = GAME_PLANE
 
 /turf/closed/shuttle/escapeshuttle
+	icon_state = "swall0"
 	smoothing_behavior = CARDINAL_SMOOTHING
 	smoothing_groups = SMOOTH_ESCAPESHUTTLE
-	color = "#616161"
 
 /turf/closed/banish_space //Brazil
 	plane = PLANE_SPACE

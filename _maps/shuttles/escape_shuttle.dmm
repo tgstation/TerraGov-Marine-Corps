@@ -1,7 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/turf/closed/shuttle,
-/area/shuttle/escape_pod)
 "c" = (
 /turf/open/space/basic,
 /area/shuttle/escape_pod)
@@ -144,7 +141,7 @@ c
 (9,1,1) = {"
 c
 c
-a
+R
 i
 R
 c
