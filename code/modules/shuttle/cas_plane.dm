@@ -186,6 +186,8 @@
 	var/fuel_max = 40
 	///Our currently selected weapon we will fire
 	var/obj/structure/dropship_equipment/weapon/active_weapon
+	///Whether we have directional hotkey mode enabled or not
+	var/dirmode = FALSE
 
 /obj/docking_port/mobile/marine_dropship/casplane/Initialize()
 	. = ..()
@@ -284,9 +286,9 @@
 		to_chat(user, span_warning("CAS mode is already in-use!"))
 		return
 	SSmonitor.process_human_positions()
-	if(SSmonitor.human_on_ground <= 5)
-		to_chat(user, span_warning("The signal from the area of operations is too weak, you cannot route towards the battlefield."))
-		return
+	//if(SSmonitor.human_on_ground <= 5)
+	//	to_chat(user, span_warning("The signal from the area of operations is too weak, you cannot route towards the battlefield."))
+	//	return
 	var/input
 	if(length(GLOB.active_cas_targets))
 		input = tgui_input_list(user, "Select a CAS target", "CAS targetting", GLOB.active_cas_targets)
@@ -395,6 +397,7 @@
 			.["active_weapon_ammo"] = active_weapon.ammo_equipped.ammo_count
 			.["active_weapon_max_ammo"] = active_weapon.ammo_equipped.max_ammo_count
 			.["active_weapon_ammo_name"] =  active_weapon.ammo_equipped.name
+	.["dirmode"] = dirmode
 
 /obj/docking_port/mobile/marine_dropship/casplane/getStatusText()
 	switch(mode)
@@ -454,6 +457,8 @@
 		if("deselect")
 			owner.active_weapon = null
 			. = TRUE
+		if("dirmodeswitch")
+			owner.dirmode = !(owner.dirmode)
 		if("cycle_attackdir")
 			if(params["newdir"] == null)
 				owner.attackdir = turn(owner.attackdir, 90)
