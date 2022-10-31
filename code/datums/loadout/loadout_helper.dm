@@ -44,9 +44,15 @@
 		item_info = listed_products[item_type]
 		if(item_info[1] == CAT_ESS)
 			return FALSE
-		if(seller.available_points[item_info[1]] < item_info[3])
+		if(seller.available_points < item_info[3])
 			return FALSE
-		seller.available_points[item_info[1]] -= item_info[3]
+		
+		if(item_info[1] == CAT_SPECIAL)
+			if(!buy_category(item_info[1], seller))
+				return FALSE
+			else
+				buy_category(item_info[1], seller)
+		seller.available_points -= item_info[3]
 		return TRUE
 	return FALSE
 
@@ -55,13 +61,6 @@
  */
 /proc/buy_stack(obj/item/stack/stack_to_buy_type, datum/loadout_seller/seller, mob/living/user, amount)
 	//Hardcode to check the category. Why is this function even here? But it doesn't work, and here I am doing hardcode to make it work because it's hardcoded anyway.
-	var/item_cat = ""
-	if(user.job.title == SQUAD_LEADER)
-		item_cat = CAT_LEDSUP
-	else if (user.job.title == SQUAD_ENGINEER)
-		item_cat = CAT_ENGSUP
-	else
-		return FALSE
 
 	var/base_amount = 0
 	var/base_price = 0
@@ -75,9 +74,9 @@
 		base_amount = 25
 		base_price = SANDBAG_PRICE_IN_GEAR_VENDOR
 
-	if(base_amount && (round(amount / base_amount) * base_price <= seller.available_points[item_cat]))
+	if(base_amount && (round(amount / base_amount) * base_price <= seller.available_points))
 		var/points_cost = round(amount / base_amount) * base_price
-		seller.available_points[item_cat] -= points_cost
+		seller.available_points -= points_cost
 		return TRUE
 
 ///Return wich type of item_representation should representate any item_type
