@@ -26,7 +26,7 @@
 /area/shuttle/escape_pod)
 "h" = (
 /obj/machinery/computer/shuttle/escape_pod/escape_shuttle,
-/turf/closed/shuttle,
+/turf/closed/shuttle/escapeshuttle,
 /area/shuttle/escape_pod)
 "i" = (
 /obj/structure/window/framed/mainship/canterbury,
@@ -65,77 +65,80 @@
 /obj/docking_port/mobile/escape_pod/escape_shuttle,
 /turf/open/floor/plating/mainship,
 /area/shuttle/escape_pod)
+"R" = (
+/turf/closed/shuttle/escapeshuttle,
+/area/shuttle/escape_pod)
 
 (1,1,1) = {"
-a
-a
-a
+R
+R
+R
 q
-a
-a
-a
+R
+R
+R
 "}
 (2,1,1) = {"
-a
+R
 d
 e
 j
 n
 d
-a
+R
 "}
 (3,1,1) = {"
-a
+R
 d
 f
 k
 f
 d
-a
+R
 "}
 (4,1,1) = {"
-a
+R
 d
 f
 k
 f
 d
-a
+R
 "}
 (5,1,1) = {"
-a
+R
 d
 f
 k
 f
 d
-a
+R
 "}
 (6,1,1) = {"
-a
+R
 d
 f
 k
 f
 d
-a
+R
 "}
 (7,1,1) = {"
-a
-a
+R
+R
 g
 l
 o
-a
-a
+R
+R
 "}
 (8,1,1) = {"
 c
-a
+R
 h
 m
-a
-a
+R
+R
 c
 "}
 (9,1,1) = {"
@@ -143,7 +146,7 @@ c
 c
 a
 i
-a
+R
 c
 c
 "}

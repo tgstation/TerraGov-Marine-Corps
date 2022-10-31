@@ -311,9 +311,8 @@
 	icon_state = "wall1"
 	icon = 'icons/turf/shuttle.dmi'
 	plane = FLOOR_PLANE
-	smoothing_behavior = CARDINAL_SMOOTHING
+	smoothing_behavior = NONE
 	resistance_flags = PLASMACUTTER_IMMUNE
-	smoothing_groups = SMOOTH_ESCAPESHUTTLE
 	color = "#616161"
 
 /turf/closed/shuttle/re_corner/notdense
@@ -408,6 +407,9 @@
 	icon_state = "wall0"
 	plane = GAME_PLANE
 
+/turf/closed/shuttle/escapeshuttle
+	smoothing_behavior = CARDINAL_SMOOTHING
+	smoothing_groups = SMOOTH_ESCAPESHUTTLE
 
 /turf/closed/banish_space //Brazil
 	plane = PLANE_SPACE
