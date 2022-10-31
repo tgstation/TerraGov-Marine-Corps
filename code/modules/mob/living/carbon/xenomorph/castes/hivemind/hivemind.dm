@@ -124,31 +124,30 @@
 	update_movespeed()
 	if(status_flags & INCORPOREAL)
 		status_flags = NONE
-		upgrade = XENO_UPGRADE_ZERO
 		resistance_flags = BANISH_IMMUNE
 		flags_pass = NONE
 		density = TRUE
 		throwpass = FALSE
+		hive.xenos_by_upgrade[upgrade] -= src
 		upgrade = XENO_UPGRADE_MANIFESTATION
 		set_datum(FALSE)
+		hive.xenos_by_upgrade[upgrade] += src
 		update_wounds()
 		update_icon()
 		update_action_buttons()
 		return
-	invisibility = initial(invisibility)
 	status_flags = initial(status_flags)
-	upgrade = initial(upgrade)
 	resistance_flags = initial(resistance_flags)
 	flags_pass = initial(flags_pass)
 	density = initial(flags_pass)
 	throwpass = initial(throwpass)
+	hive.xenos_by_upgrade[upgrade] -= src
 	upgrade = XENO_UPGRADE_BASETYPE
 	set_datum(FALSE)
+	hive.xenos_by_upgrade[upgrade] += src
 	update_wounds()
 	update_icon()
 	update_action_buttons()
-
-
 
 /mob/living/carbon/xenomorph/hivemind/flamer_fire_act(burnlevel)
 	return_to_core()
