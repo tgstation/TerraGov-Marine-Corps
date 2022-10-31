@@ -286,9 +286,9 @@
 		to_chat(user, span_warning("CAS mode is already in-use!"))
 		return
 	SSmonitor.process_human_positions()
-	//if(SSmonitor.human_on_ground <= 5)
-	//	to_chat(user, span_warning("The signal from the area of operations is too weak, you cannot route towards the battlefield."))
-	//	return
+	if(SSmonitor.human_on_ground <= 5)
+		to_chat(user, span_warning("The signal from the area of operations is too weak, you cannot route towards the battlefield."))
+		return
 	var/input
 	if(length(GLOB.active_cas_targets))
 		input = tgui_input_list(user, "Select a CAS target", "CAS targetting", GLOB.active_cas_targets)
