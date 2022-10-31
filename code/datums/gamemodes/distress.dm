@@ -17,6 +17,7 @@
 		/datum/job/terragov/medical/researcher = 2,
 		/datum/job/terragov/civilian/liaison = 1,
 		/datum/job/terragov/silicon/synthetic = 1,
+		/datum/job/terragov/command/mech_pilot = 1,
 		/datum/job/terragov/silicon/ai = 1,
 		/datum/job/terragov/squad/engineer = 8,
 		/datum/job/terragov/squad/corpsman = 8,
