@@ -306,25 +306,31 @@ WEAPONS
 /datum/supply_packs/weapons/tx8
 	name = "BR-8 Scout Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/tx8)
-	cost = 50
+	cost = 40
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/scout_regular
 	name = "BR-8 scout magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/tx8)
+	cost = 2
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/weapons/scout_regular_box
+	name = "BR-8 scout ammo box"
+	contains = list(/obj/item/ammo_magazine/packet/scout_rifle)
 	cost = 5
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/scout_impact
 	name = "BR-8 scout impact magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/tx8/impact)
-	cost = 7
+	cost = 4
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/scout_incendiary
 	name = "Br-8 scout incendiary magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/tx8/incendiary)
-	cost = 7
+	cost = 4
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/thermobaric
@@ -437,9 +443,14 @@ WEAPONS
 	cost = 30
 
 /datum/supply_packs/weapons/hmg_ammo
-	name = "HMG-08 heavy machinegun ammo"
+	name = "HMG-08 heavy machinegun ammo (500 rounds)"
 	contains = list(/obj/item/ammo_magazine/heavymachinegun)
 	cost = 7
+
+/datum/supply_packs/weapons/hmg_ammo_small
+	name = "HMG-08 heavy machinegun ammo (250 rounds)"
+	contains = list(/obj/item/ammo_magazine/heavymachinegun/small)
+	cost = 4
 
 /datum/supply_packs/weapons/smartgun
 	name = "SG-29 Smart Machinegun"
@@ -468,8 +479,13 @@ WEAPONS
 
 /datum/supply_packs/weapons/napalm
 	name = "FL-84 normal fuel tank"
-	contains = list(/obj/item/ammo_magazine/flamer_tank)
-	cost = 3
+	contains = list(/obj/item/ammo_magazine/flamer_tank/large)
+	cost = 6
+
+/datum/supply_packs/weapons/napalm_X
+	name = "FL-84 X fuel tank"
+	contains = list(/obj/item/ammo_magazine/flamer_tank/large/X)
+	cost = 30
 
 /datum/supply_packs/weapons/back_fuel_tank
 	name = "Standard back fuel tank"
@@ -538,6 +554,15 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol)
 	cost = 1
 
+/datum/supply_packs/weapons/BigAmmoBox
+	name = "Big Ammo Box (10x24mm)"
+	contains = list(/obj/item/big_ammo_box)
+	cost = 5
+
+/datum/supply_packs/weapons/BigAmmoBoxSMG
+	name = "Big Ammo Box (10x20mm)"
+	contains = list(/obj/item/big_ammo_box/smg)
+	cost = 5
 
 /*******************************************************************************
 EXPLOSIVES
@@ -600,13 +625,9 @@ EXPLOSIVES
 	cost = 3
 
 /datum/supply_packs/explosives/detpack
-	name = "detpack explosives"
-	contains = list(
-		/obj/item/detpack,
-		/obj/item/detpack,
-		/obj/item/assembly/signaler,
-	)
-	cost = 15
+	name = "detpack explosive"
+	contains = list(/obj/item/detpack)
+	cost = 5
 
 /datum/supply_packs/explosives/mortar
 	name = "T-50S mortar crate"
@@ -703,6 +724,11 @@ ARMOR
 	contains = list(/obj/item/weapon/shield/riot/marine)
 	cost = 10
 
+/datum/supply_packs/armor/marine_shield/deployable
+	name = "TL-182 Deployable Shield"
+	contains = list(/obj/item/weapon/shield/riot/marine/deployable)
+	cost = 3
+
 /datum/supply_packs/armor/b18
 	name = "B18 Armor Set"
 	contains = list(
@@ -793,6 +819,11 @@ CLOTHING
 	name = "Combat Backpack"
 	contains = list(/obj/item/storage/backpack/lightpack)
 	cost = 15
+
+/datum/supply_packs/clothing/dispenser
+	name = "Dispenser"
+	contains = list(/obj/item/storage/backpack/dispenser)
+	cost = 40
 
 /datum/supply_packs/clothing/welding_pack
 	name = "Engineering Welding Pack"
@@ -1432,6 +1463,10 @@ Imports
 	contains = list(/obj/item/clothing/head/strawhat)
 	cost = 1
 
+/datum/supply_packs/imports/loot_box
+	name = "Loot box"
+	contains = list(/obj/item/loot_box/marine)
+	cost = 50
 
 /*******************************************************************************
 VEHICLES

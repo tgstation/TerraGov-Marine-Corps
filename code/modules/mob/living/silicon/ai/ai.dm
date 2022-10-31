@@ -51,7 +51,7 @@
 	var/datum/action/innate/order/current_order
 	/// If it is currently controlling an object
 	var/controlling = FALSE
-	
+
 	///Linked artillery for remote targeting.
 	var/obj/machinery/deployable/mortar/linked_artillery
 
@@ -361,7 +361,7 @@
 		stat("Current dropship points:", "[round(SSpoints.dropship_points)]")
 
 		stat("Current alert level:", "[GLOB.marine_main_ship.get_security_level()]")
-	
+
 		stat("Number of living marines:", "[SSticker.mode.count_humans_and_xenos()[1]]")
 
 
@@ -468,7 +468,9 @@
 /datum/action/innate/squad_message
 	name = "Send Order"
 	action_icon_state = "screen_order_marine"
-	keybind_signal = COMSIG_KB_SENDORDER
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_KB_SENDORDER,
+	)
 
 /datum/action/innate/squad_message/can_use_action()
 	. = ..()

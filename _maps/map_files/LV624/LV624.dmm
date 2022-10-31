@@ -1035,7 +1035,7 @@
 /area/lv624/ground/caves/west1)
 "azz" = (
 /obj/structure/cargo_container{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/marking/bot,
 /area/lv624/ground/sand2)
@@ -1054,7 +1054,7 @@
 /area/lv624/ground/sand2)
 "azG" = (
 /obj/structure/cargo_container{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor,
 /area/lv624/ground/sand2)
@@ -1914,7 +1914,7 @@
 /area/lv624/lazarus/sleep_male)
 "aRV" = (
 /obj/structure/cargo_container{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
@@ -8499,6 +8499,12 @@
 	dir = 1
 	},
 /area/lv624/ground/jungle6)
+"hyS" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
+	},
+/area/lv624/lazarus/corporate_affairs)
 "hAS" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
@@ -11515,12 +11521,6 @@
 "kYj" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/lv624/ground/compound/n)
-"kYm" = (
-/obj/effect/decal/sandytile,
-/obj/effect/decal/sandytile,
-/obj/effect/landmark/sensor_tower_patrol,
-/turf/open/floor/tile/whiteyellow/full,
-/area/lv624/lazarus/sandtemple)
 "kYv" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
@@ -14616,13 +14616,13 @@
 	},
 /area/lv624/ground/river2)
 "oGk" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
 /obj/structure/window/reinforced,
 /obj/structure/rack,
 /obj/effect/spawner/random/gun/shotgun,
 /obj/effect/spawner/random/gun/shotgun,
+/obj/structure/window/reinforced/windowstake{
+	dir = 8
+	},
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/secure_storage)
 "oGt" = (
@@ -15932,7 +15932,7 @@
 /area/lv624/ground/sand7)
 "qoW" = (
 /obj/structure/cargo_container{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
@@ -18319,11 +18319,11 @@
 /area/lv624/ground/jungle9)
 "sZl" = (
 /obj/structure/showcase,
-/obj/structure/window/reinforced{
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced/windowstake{
 	dir = 4
 	},
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
+/obj/structure/window/reinforced/windowstake{
 	dir = 8
 	},
 /turf/open/floor/wood,
@@ -19013,14 +19013,14 @@
 "tJT" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
 	dir = 1
 	},
 /obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
+/obj/structure/window/reinforced/windowstake{
 	dir = 8
+	},
+/obj/structure/window/reinforced/windowstake{
+	dir = 4
 	},
 /turf/open/floor/grass,
 /area/lv624/lazarus/corporate_affairs)
@@ -40405,7 +40405,7 @@ rAx
 xYX
 gbp
 bQd
-bQd
+hyS
 lwx
 tJT
 bxn
@@ -58540,7 +58540,7 @@ qfl
 oRZ
 jNf
 bOl
-kYm
+jQc
 jNf
 bOl
 fnP

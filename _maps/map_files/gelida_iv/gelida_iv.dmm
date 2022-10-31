@@ -3743,6 +3743,10 @@
 	dir = 1
 	},
 /area/gelida/indoors/a_block/admin)
+"cug" = (
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/prison,
+/area/gelida/indoors/a_block/admin)
 "cun" = (
 /obj/structure/platform/gelida{
 	dir = 1
@@ -3890,10 +3894,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/indoors/a_block/medical)
-"cyV" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic,
-/turf/open/floor/mainship/stripesquare,
-/area/gelida/indoors/a_block/bridges/op_centre)
 "czh" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
@@ -4652,6 +4652,16 @@
 	dir = 8
 	},
 /area/gelida/outdoors/rock)
+"cTz" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/structure/window/reinforced/windowstake{
+	dir = 4
+	},
+/turf/open/floor/prison/whitegreenfull2,
+/area/gelida/indoors/a_block/fitness)
 "cTC" = (
 /obj/structure/platform_decoration,
 /turf/open/floor/prison/blue/plate{
@@ -6152,8 +6162,7 @@
 "dOS" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
-	name = "\improper Westlock";
-	welded = null
+	name = "\improper Westlock"
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/dorms)
@@ -6199,8 +6208,7 @@
 /area/gelida/caves/west_caves)
 "dQX" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	name = "\improper Eastlock";
-	welded = null
+	name = "\improper Eastlock"
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/hallway)
@@ -6579,21 +6587,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorm_north)
-"eaD" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	locked = 1;
-	name = "\improper Corporation Dome"
-	},
-/turf/open/floor/mainship/stripesquare,
-/area/gelida/indoors/a_block/corpo)
-"ebe" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	locked = 1;
-	welded = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/mainship/stripesquare,
-/area/gelida/indoors/a_block/dorms)
 "ebg" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison/plate,
@@ -8374,8 +8367,7 @@
 /obj/structure/platform_decoration,
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
-	name = "\improper Westlock";
-	welded = 1
+	name = "\improper Westlock"
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/dorms)
@@ -9410,8 +9402,7 @@
 "fVE" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
-	name = "\improper Eastlock";
-	welded = null
+	name = "\improper Eastlock"
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/hallway)
@@ -9806,7 +9797,6 @@
 /area/gelida/indoors/a_block/bridges/corpo)
 "ghM" = (
 /obj/machinery/door/airlock/mainship/security/glass{
-	locked = 1;
 	name = "\improper Marshall Office Armory";
 	req_access = null
 	},
@@ -10927,6 +10917,15 @@
 	dir = 4
 	},
 /area/gelida/indoors/c_block/cargo)
+"gPy" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/structure/window/reinforced/windowstake{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/gelida/indoors/a_block/fitness)
 "gPD" = (
 /obj/structure/cargo_container/gorg{
 	dir = 4
@@ -12815,7 +12814,6 @@
 	dir = 1;
 	pixel_x = 16
 	},
-/obj/effect/landmark/sensor_tower_patrol,
 /turf/open/floor/prison/whitegreen{
 	dir = 1
 	},
@@ -13947,8 +13945,7 @@
 /area/gelida/indoors/a_block/admin)
 "iKo" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	name = "\improper Northlock";
-	welded = null
+	name = "\improper Northlock"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/mainship/stripesquare,
@@ -15007,7 +15004,6 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
 	},
-/obj/structure/window/reinforced,
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/a_block/fitness)
 "jwX" = (
@@ -17240,15 +17236,13 @@
 /area/gelida/indoors/a_block/dorms)
 "kWP" = (
 /obj/machinery/door/airlock/mainship/generic{
-	dir = 2;
-	locked = 1
+	dir = 2
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/hallway)
 "kXf" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 8;
-	locked = 1;
 	name = "\improper Wildcatters Office"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -17874,8 +17868,7 @@
 /area/gelida/outdoors/rock)
 "lsj" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 1;
-	locked = 1
+	dir = 1
 	},
 /turf/open/floor/mainship/black/full,
 /area/gelida/indoors/a_block/kitchen)
@@ -18025,7 +18018,6 @@
 /obj/effect/spawner/gibspawner/xeno,
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 8;
-	locked = 1;
 	name = "\improper Wildcatters Office"
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -19094,11 +19086,16 @@
 /turf/closed/wall,
 /area/gelida/indoors/a_block/medical)
 "mhI" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/structure/window/reinforced,
-/turf/open/floor/prison/whitegreenfull2,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/structure/window/reinforced/windowstake{
+	dir = 1
+	},
+/turf/open/floor/wood,
 /area/gelida/indoors/a_block/fitness)
 "mhK" = (
 /obj/structure/reagent_dispensers/water_cooler{
@@ -19365,6 +19362,11 @@
 	},
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/colony_streets/central_streets)
+"mmL" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/sensor_tower_patrol,
+/turf/open/floor/wood,
+/area/gelida/indoors/a_block/fitness)
 "mmP" = (
 /obj/structure/filingcabinet{
 	pixel_x = -8;
@@ -19811,14 +19813,6 @@
 /obj/effect/spawner/random/tool,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/garage)
-"mCa" = (
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 2;
-	welded = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/mainship/stripesquare,
-/area/gelida/indoors/a_block/dorms)
 "mCj" = (
 /obj/structure/platform_decoration{
 	dir = 1
@@ -20623,7 +20617,6 @@
 /area/gelida/outdoors/colony_streets/north_east_street)
 "nfT" = (
 /obj/machinery/door/airlock/mainship/security/glass{
-	locked = 1;
 	name = "\improper Marshal Office Holding Cell";
 	req_access = null
 	},
@@ -20741,9 +20734,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/central_streets)
 "niE" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	welded = 1
-	},
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/bridges/op_centre)
 "niX" = (
@@ -21676,6 +21667,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/fakesnow,
 /area/gelida/outdoors/colony_streets/south_west_street)
+"nNL" = (
+/obj/effect/mapping_helpers/area_flag_injector/marine_base,
+/turf/open/floor/plating,
+/area/shuttle/drop2/gelida)
 "nNN" = (
 /obj/structure/toilet{
 	pixel_y = 16
@@ -21716,7 +21711,6 @@
 /area/gelida/outdoors/colony_streets/east_central_street)
 "nOF" = (
 /obj/machinery/door/airlock/mainship/generic{
-	locked = 1;
 	name = "\improper Corporate Liason"
 	},
 /obj/structure/cable,
@@ -21952,6 +21946,16 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/ice,
 /area/gelida/caves/east_caves)
+"nYR" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/landmark/weed_node,
+/obj/structure/window/reinforced/windowstake{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/gelida/indoors/a_block/fitness)
 "nZi" = (
 /obj/effect/landmark/start/job/survivor,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -22620,7 +22624,7 @@
 /area/gelida/landing_zone_1)
 "owj" = (
 /obj/structure/prop/mainship/sensor_computer1,
-/obj/structure/window/reinforced{
+/obj/structure/window/reinforced/windowstake{
 	dir = 8
 	},
 /turf/open/floor/mainship/black/full,
@@ -23618,15 +23622,15 @@
 	dir = 4
 	},
 /area/gelida/indoors/a_block/admin)
+"paR" = (
+/obj/effect/mapping_helpers/area_flag_injector/marine_base,
+/turf/open/floor/plating,
+/area/shuttle/drop1/gelida)
 "pbi" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/largecrate/random,
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/cargo)
-"pbm" = (
-/obj/effect/landmark/sensor_tower_patrol,
-/turf/open/floor/prison,
-/area/gelida/indoors/a_block/dorms)
 "pbD" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -23999,8 +24003,7 @@
 /area/gelida/outdoors/colony_streets/south_west_street)
 "pli" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 1;
-	welded = 1
+	dir = 1
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/c_block/casino)
@@ -24678,7 +24681,6 @@
 "pIB" = (
 /obj/machinery/door/airlock/mainship/medical{
 	dir = 2;
-	locked = 1;
 	name = "Medical Airlock"
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -26802,9 +26804,7 @@
 	},
 /area/gelida/indoors/a_block/dorms)
 "qWs" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	welded = 1
-	},
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/b_block/hydro)
 "qWM" = (
@@ -26911,7 +26911,7 @@
 "qZM" = (
 /obj/machinery/scoreboard{
 	id = "lvbasketball";
-	pixel_y = 30
+	pixel_y = 10
 	},
 /obj/effect/decal/warning_stripes/nscenter,
 /turf/open/floor/wood,
@@ -27571,6 +27571,9 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
+/obj/structure/window/reinforced/windowstake{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/gelida/indoors/a_block/fitness)
 "rtC" = (
@@ -27784,6 +27787,18 @@
 /obj/machinery/light,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
+"rBz" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/structure/window/reinforced/windowstake{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/gelida/indoors/a_block/fitness)
 "rBW" = (
 /obj/item/toy/beach_ball/holoball{
 	pixel_x = 7;
@@ -28424,9 +28439,7 @@
 /turf/open/floor/grass,
 /area/gelida/indoors/a_block/garden)
 "rYJ" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	locked = 1
-	},
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/c_block/casino)
 "rYO" = (
@@ -29309,7 +29322,7 @@
 /area/gelida/indoors/a_block/kitchen)
 "syU" = (
 /obj/structure/prop/mainship/sensor_computer2,
-/obj/structure/window/reinforced{
+/obj/structure/window/reinforced/windowstake{
 	dir = 4
 	},
 /turf/open/floor/mainship/black/full,
@@ -29967,9 +29980,7 @@
 	},
 /area/gelida/outdoors/colony_streets/north_west_street)
 "sTK" = (
-/obj/machinery/door/airlock/mainship/generic{
-	welded = 1
-	},
+/obj/machinery/door/airlock/mainship/generic,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -30556,8 +30567,7 @@
 "tmm" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
-	name = "\improper Canteen";
-	welded = 1
+	name = "\improper Canteen"
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/kitchen)
@@ -31359,9 +31369,7 @@
 /turf/closed/ice_rock/singleEnd,
 /area/gelida/outdoors/rock)
 "tQi" = (
-/obj/machinery/door/airlock/mainship/generic{
-	welded = 1
-	},
+/obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/c_block/cargo)
 "tQv" = (
@@ -32435,7 +32443,6 @@
 "uDB" = (
 /obj/machinery/door/airlock/mainship/medical{
 	dir = 2;
-	locked = 1;
 	name = "Medical Airlock"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -32466,9 +32473,7 @@
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/garage)
 "uEs" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	welded = 1
-	},
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
 /obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/c_block/casino)
@@ -34723,6 +34728,15 @@
 	dir = 1
 	},
 /area/gelida/outdoors/colony_streets/east_central_street)
+"vZr" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/structure/window/reinforced/windowstake{
+	dir = 8
+	},
+/turf/open/floor/prison/whitegreenfull2,
+/area/gelida/indoors/a_block/fitness)
 "wah" = (
 /obj/structure/bed/chair/wood/normal,
 /obj/effect/ai_node,
@@ -37740,7 +37754,6 @@
 "xZp" = (
 /obj/machinery/door/airlock/mainship/security/glass{
 	dir = 8;
-	locked = 1;
 	name = "\improper Marshall Head Office";
 	req_access = null
 	},
@@ -42057,7 +42070,7 @@ ecy
 suA
 ecy
 ecy
-ecy
+paR
 ecy
 ecy
 ecy
@@ -46847,7 +46860,7 @@ dZI
 hix
 hix
 cLI
-mCa
+riu
 tfL
 bYk
 jRa
@@ -48845,7 +48858,7 @@ pej
 fqe
 sJb
 tms
-ebe
+ruK
 vqV
 qzk
 ogT
@@ -50804,7 +50817,7 @@ kHO
 kHO
 kHO
 kHO
-kHO
+cTz
 aDM
 sKa
 sKa
@@ -51021,8 +51034,8 @@ jDy
 fzq
 sKa
 ugY
+swq
 mhI
-ndA
 xWJ
 arF
 xWJ
@@ -51243,8 +51256,8 @@ jDy
 uCW
 sKa
 ugY
+swq
 mhI
-ndA
 stE
 kNm
 cfj
@@ -51465,8 +51478,8 @@ jDy
 fzq
 sKa
 ugY
-mhI
-cml
+swq
+gPy
 oBR
 lDt
 iyf
@@ -51687,8 +51700,8 @@ jDy
 uwy
 sKa
 bqU
-mhI
-cml
+swq
+gPy
 kNm
 kNm
 kNm
@@ -51740,7 +51753,7 @@ taP
 stq
 yfp
 odg
-pbm
+ghj
 ghj
 ghj
 ghj
@@ -51909,8 +51922,8 @@ vPO
 glJ
 sKa
 ugY
-mhI
-cml
+swq
+gPy
 kNm
 kNm
 ijZ
@@ -52134,7 +52147,7 @@ ngb
 jwQ
 rsY
 kVR
-kVR
+mmL
 kVR
 ych
 baD
@@ -52575,8 +52588,8 @@ red
 ams
 bqU
 sKa
-cMf
-stE
+ams
+nYR
 kNm
 kNm
 kNm
@@ -52797,8 +52810,8 @@ vPO
 ams
 sKa
 sKa
-cMf
-cml
+ams
+gPy
 kNm
 kNm
 kNm
@@ -53019,8 +53032,8 @@ vPO
 ams
 sKa
 sKa
-cMf
-cml
+ams
+gPy
 kNm
 ijZ
 kNm
@@ -53241,8 +53254,8 @@ jDy
 ams
 mdb
 bAb
-cMf
-cml
+ams
+gPy
 ndA
 kBZ
 nZH
@@ -53463,8 +53476,8 @@ jDy
 fzq
 bss
 rKr
-cMf
-oBR
+ams
+rBz
 cml
 kNm
 cfj
@@ -53685,8 +53698,8 @@ jDy
 fzq
 myR
 sKa
-cMf
-oBR
+ams
+rBz
 dXY
 hju
 dXY
@@ -53912,7 +53925,7 @@ kOu
 kOu
 kOu
 kOu
-kOu
+vZr
 aDM
 sKa
 sKa
@@ -58124,7 +58137,7 @@ bBz
 eZJ
 ujh
 oUq
-eaD
+jzP
 cuz
 wJx
 jvj
@@ -65037,7 +65050,7 @@ juQ
 hWs
 tZb
 eas
-cyV
+niE
 kxB
 koL
 hUv
@@ -65057,7 +65070,7 @@ kxB
 hUv
 kxB
 nja
-cyV
+niE
 dKU
 loO
 tzW
@@ -70150,7 +70163,7 @@ poj
 hsf
 uch
 qLo
-mVh
+cug
 kFl
 kFl
 fGk
@@ -73582,7 +73595,7 @@ alr
 vpW
 alr
 alr
-alr
+nNL
 alr
 alr
 alr

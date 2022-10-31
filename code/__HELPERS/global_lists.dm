@@ -174,6 +174,14 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 		var/datum/namepool/NP = new path
 		GLOB.namepool[path] = NP
 
+	for(var/path in typesof(/datum/operation_namepool))
+		var/datum/operation_namepool/NP = new path
+		GLOB.operation_namepool[path] = NP
+
+	/// Minimap icons for UI display
+	for(var/icon_state in GLOB.playable_icons)
+		GLOB.minimap_icons[icon_state] = icon2base64(icon('icons/UI_icons/map_blips.dmi', icon_state, frame = 1))
+
 	return TRUE
 
 

@@ -376,6 +376,7 @@
 #define COMSIG_MOB_EXAMINATE "mob_examinate"
 #define COMSIG_MOB_UPDATE_SIGHT "mob_update_sight"				//from base of /mob/update_sight(): ()
 #define COMSIG_MOB_HUD_CREATED "mob_hud_created"				//from base of mob/create_mob_hud(): ()
+#define COMSIG_MOB_KEYBINDINGS_UPDATED "mob_bindings_changed"   //from base of datum/preferences/ui_act(): (/datum/keybinding)
 
 #define COMSIG_MOB_SHIELD_DETATCH "mob_shield_detatched"
 #define COMSIG_MOB_ITEM_ATTACK "mob_item_attack"				//from base of /obj/item/attack(): (mob/target, /obj/item/attacking_item)
@@ -422,6 +423,9 @@
 ///from /mob/living/proc/set_lying_angle
 #define COMSIG_LIVING_SET_LYING_ANGLE "living_set_lying_angle"
 
+/// From mob/living/treat_message(): (list/message_args)
+#define COMSIG_LIVING_TREAT_MESSAGE "living_treat_message"
+
 //ALL OF THESE DO NOT TAKE INTO ACCOUNT WHETHER AMOUNT IS 0 OR LOWER AND ARE SENT REGARDLESS!
 #define COMSIG_LIVING_STATUS_STUN "living_stun"					//from base of mob/living/Stun() (amount, update, ignore)
 #define COMSIG_LIVING_STATUS_KNOCKDOWN "living_knockdown"		//from base of mob/living/Knockdown() (amount, update, ignore)
@@ -432,8 +436,10 @@
 #define COMSIG_LIVING_STATUS_CONFUSED "living_confused"			//from base of mob/living/Confused() (amount, update, ignore)
 #define COMSIG_LIVING_STATUS_STAGGER "living_stagger"			//from base of mob/living/adjust_stagger() (amount, update, ignore)
 #define COMSIG_LIVING_STATUS_SLOWDOWN "living_slowdown"			//from base of mob/living/set_slowdown() (amount, update)
-
 	#define COMPONENT_NO_STUN (1<<0)			//For all of them
+
+///from end of fully_heal(): (admin_revive)
+#define COMSIG_LIVING_POST_FULLY_HEAL "living_post_fully_heal"
 
 #define COMSIG_LIVING_STATUS_MUTE "living_mute"					//from base of mob/living/Mute()
 	#define COMPONENT_NO_MUTE (1<<0)
@@ -482,6 +488,7 @@
 #define COMSIG_XENOMORPH_PLASMA_REGEN "xenomorph_plasma_regen"
 #define COMSIG_XENOMORPH_HEALTH_REGEN "xenomorph_health_regen"
 #define COMSIG_XENOMORPH_SUNDER_REGEN "xenomorph_sunder_regen"
+#define COMSIG_XENOMORPH_RESIN_JELLY_APPLIED "xenomorph_resin_jelly_applied"
 
 #define COMSIG_XENOMORPH_REST "xenomorph_rest"
 #define COMSIG_XENOMORPH_UNREST "xenomorph_unrest"
@@ -523,8 +530,8 @@
 #define COMSIG_XENOMORPH_FIRE_BURNING "xenomorph_fire_burning"
 #define COMSIG_XENOMORPH_TAKING_DAMAGE "xenomorph_taking_damage" // (target, damagetaken)
 
-#define COMSIG_XENOMORPH_BRUTE_DAMAGE "xenomorph_brute_damage"
-#define COMSIG_XENOMORPH_BURN_DAMAGE "xenomorph_burn_damage"
+#define COMSIG_XENOMORPH_BRUTE_DAMAGE "xenomorph_brute_damage" // (amount, amount_mod, passive)
+#define COMSIG_XENOMORPH_BURN_DAMAGE "xenomorph_burn_damage" // (amount, amount_mod, passive)
 
 #define COMSIG_XENOMORPH_EVOLVED "xenomorph_evolved"
 #define COMSIG_XENOMORPH_DEEVOLVED "xenomorph_deevolved"
@@ -635,6 +642,10 @@
 #define COMSIG_XENOABILITY_RALLY_HIVE "xenoability_rally_hive"
 #define COMSIG_XENOABILITY_RALLY_MINION "xenoability_rally_minion"
 #define COMSIG_XENOABILITY_MINION_BEHAVIOUR "xenoability_minion_behavior"
+
+#define COMSIG_XENOABILITY_ESSENCE_LINK "xenoability_essence_link"
+#define COMSIG_XENOABILITY_ESSENCE_LINK_REMOVE "xenoability_essence_link_remove"
+#define COMSIG_XENOABILITY_ENHANCEMENT "xenoability_enhancement"
 
 #define COMSIG_XENOABILITY_LONG_RANGE_SIGHT "xenoability_long_range_sight"
 #define COMSIG_XENOABILITY_TOGGLE_BOMB "xenoability_toggle_bomb"

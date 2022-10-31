@@ -25,7 +25,7 @@
 
 //############################## THE ACTUAL DECALS ###########################
 
-obj/structure/sign/poster
+/obj/structure/sign/poster
 	name = "poster"
 	desc = "A large piece of space-resistant printed paper. "
 	icon = 'icons/obj/contraband.dmi'

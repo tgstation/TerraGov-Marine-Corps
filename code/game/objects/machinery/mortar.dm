@@ -3,9 +3,9 @@
 
 #define TALLY_MORTAR  1
 #define TALLY_HOWITZER 2
+#define TALLY_ROCKET_ARTY 3
 
 /obj/machinery/deployable/mortar
-
 	anchored = TRUE
 	density = TRUE
 	coverage = 20
@@ -18,20 +18,33 @@
 		"coords_two" = list("name"="Target 2", "targ_x" = 0, "targ_y" = 0, "dial_x" = 0, "dial_y" = 0),
 		"coords_three" = list("name"="Target 3", "targ_x" = 0, "targ_y" = 0, "dial_x" = 0, "dial_y" = 0)
 		)
-	/// Automatic offset from target
-	var/offset_x = 0
-	var/offset_y = 0
 	/// Number of turfs to offset from target by 1
-	var/offset_per_turfs = 10
-	/// Constant, assuming perfect parabolic trajectory. ONLY THE DELAY BEFORE INCOMING WARNING WHICH ADDS 45 TICKS
-	var/travel_time = 45
+	var/offset_per_turfs = 15
+	/// Constant spread on target
+	var/spread = 1
+	/// Max spread on target
+	var/max_spread = 5
 	var/busy = 0
 	/// Used for deconstruction and aiming sanity
 	var/firing = 0
 	/// The fire sound of the mortar or artillery piece.
 	var/fire_sound = 'sound/weapons/guns/fire/mortar_fire.ogg'
 	var/reload_sound = 'sound/weapons/guns/interact/mortar_reload.ogg' // Our reload sound.
-	var/fall_sound = 'sound/weapons/guns/misc/mortar_travel.ogg' //The sound the shell makes when falling.
+	var/fall_sound = 'sound/weapons/guns/misc/mortar_long_whistle.ogg' //The sound the shell makes when falling.
+	///Minimum range to fire
+	var/minimum_range = 15
+	///Time it takes for the mortar to cool off to fire
+	var/cool_off_time = 1 SECONDS
+	///How long to wait before next shot
+	var/fire_delay = 0.1 SECONDS
+	///Amount of shells that can be loaded
+	var/max_rounds = 1
+	///List of stored ammunition items.
+	var/list/obj/chamber_items = list()
+	///Time to load a shell
+	var/reload_time = 0.5 SECONDS
+	///Amount of shells to fire if this is empty all shells in chamber items list will fire
+	var/fire_amount
 
 	/// What type of shells can we use?
 	var/list/allowed_shells = list(
@@ -45,7 +58,7 @@
 	use_power = NO_POWER_USE
 
 	///Used for round stats
-	var/tally_type = TALLY_MORTAR 
+	var/tally_type = TALLY_MORTAR
 
 	///Used for remote targeting by AI
 	var/obj/item/ai_target_beacon/ai_targeter
@@ -54,6 +67,8 @@
 	. = ..()
 	if(ai_targeter)
 		. += span_notice("They have an AI linked targeting device on.")
+	. += span_notice("Alt-Right-Click to anchor.")
+	. += span_notice("Right-Click to fire the loaded shell.")
 
 /obj/machinery/deployable/mortar/attack_hand(mob/living/user)
 	. = ..()
@@ -62,9 +77,6 @@
 
 	if(busy)
 		to_chat(user, span_warning("Someone else is currently using [src]."))
-		return
-	if(firing)
-		to_chat(user, span_warning("[src]'s barrel is still steaming hot. Wait a few seconds and stop firing it."))
 		return
 
 	ui_interact(user)
@@ -130,11 +142,6 @@
 		usr.visible_message(span_notice("[usr] adjusts [src]'s firing angle and distance."),
 		span_notice("You adjust [src]'s firing angle and distance to match the new coordinates."))
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-		// allows for offsetting using the dial, I had accidentally misplaced this.
-		var/offset_x_max = round(abs((coords["targ_x"] + coords["dial_x"]) - x)/offset_per_turfs) //Offset of mortar shot, grows by 1 every 10 tiles travelled
-		var/offset_y_max = round(abs((coords["targ_y"] + coords["dial_y"]) - y)/offset_per_turfs)
-		offset_x = rand(-offset_x_max, offset_x_max)
-		offset_y = rand(-offset_y_max, offset_y_max)
 
 /**
  * this proc is used because pointers suck and references would break the saving of coordinates.
@@ -152,63 +159,33 @@
 		if("coords")
 			. += coords
 
-/**
- * checks if we are entering in the exact same coordinates,
- * and does not save them again.
- */
-/obj/machinery/deployable/mortar/proc/check_bombard_spam()
-	var/list/temp = get_new_list("coords")
-	for(var/i in temp)
-		if(!(last_three_inputs["coords_one"][i] == temp[i]) && !(last_three_inputs["coords_two"][i] == temp[i]) && !(last_three_inputs["coords_three"][i] == temp[i]))
-			return FALSE
-	return TRUE
-
 /obj/machinery/deployable/mortar/attackby(obj/item/I, mob/user, params)
 	. = ..()
+
+	if(firing)
+		user.balloon_alert(user, "The barrel is steaming hot. Wait a few seconds")
+		return
 
 	if(istype(I, /obj/item/mortal_shell))
 		var/obj/item/mortal_shell/mortar_shell = I
 
-		if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
-			to_chat(user, span_warning("Your programming restricts operating heavy weaponry."))
+		if(length(chamber_items) >= max_rounds)
+			user.balloon_alert(user, "You cannot fit more in there.")
 			return
 
 		if(!(I.type in allowed_shells))
-			to_chat(user, span_warning("This shell doesn't fit in here!"))
+			user.balloon_alert(user, "This shell doesn't fit.")
 			return
 
 		if(busy)
-			to_chat(user, span_warning("Someone else is currently using [src]."))
-			return
-
-		if(!is_ground_level(z))
-			to_chat(user, span_warning("You cannot fire [src] here."))
-			return
-
-		if(coords["targ_x"] == 0 && coords["targ_y"] == 0) //Mortar wasn't set
-			to_chat(user, span_warning("[src] needs to be aimed first."))
-			return
-
-		var/turf/selfown = locate((coords["targ_x"] + coords["dial_x"]), (coords["targ_y"] + coords["dial_y"]), z)
-		if(get_dist(loc, selfown) < 7)
-			to_chat(user, span_warning("You cannot target this coordinate, it is too close to your mortar."))
-			return
-
-		var/turf/T = locate(coords["targ_x"] + coords["dial_x"] + offset_x, coords["targ_y"]  + coords["dial_x"] + offset_y, z)
-		if(!isturf(T))
-			to_chat(user, span_warning("You cannot fire [src] to this target."))
-			return
-
-		var/area/A = get_area(T)
-		if(istype(A) && A.ceiling >= CEILING_UNDERGROUND)
-			to_chat(user, span_warning("You cannot hit the target. It is probably underground."))
+			user.balloon_alert(user, "Someone else is using this.")
 			return
 
 		user.visible_message(span_notice("[user] starts loading \a [mortar_shell.name] into [src]."),
 		span_notice("You start loading \a [mortar_shell.name] into [src]."))
 		playsound(loc, reload_sound, 50, 1)
 		busy = TRUE
-		if(!do_after(user, 15, TRUE, src, BUSY_ICON_HOSTILE))
+		if(!do_after(user, reload_time, TRUE, src, BUSY_ICON_HOSTILE))
 			busy = FALSE
 			return
 
@@ -216,34 +193,16 @@
 
 		user.visible_message(span_notice("[user] loads \a [mortar_shell.name] into [src]."),
 		span_notice("You load \a [mortar_shell.name] into [src]."))
-		visible_message("[icon2html(src, viewers(src))] [span_danger("The [name] fires!")]")
-		user.transferItemToLoc(mortar_shell, src)
-		playsound(loc, fire_sound, 50, 1)
-		firing = TRUE
-		flick(icon_state + "_fire", src)
+		chamber_items += mortar_shell
+		user.balloon_alert(user, "Right click to fire.")
 		mortar_shell.forceMove(src)
-
-		if(tally_type == TALLY_MORTAR)
-			GLOB.round_statistics.howitzer_shells_fired++
-			SSblackbox.record_feedback("tally", "round_statistics", 1, "howitzer_shells_fired")		
-		else if(tally_type == TALLY_HOWITZER)
-			GLOB.round_statistics.mortar_shells_fired++
-			SSblackbox.record_feedback("tally", "round_statistics", 1, "mortar_shells_fired")		
-
-		var/turf/G = get_turf(src)
-		G.ceiling_debris_check(2)
-
-		for(var/mob/M in range(7))
-			shake_camera(M, 3, 1)
-		log_game("[key_name(user)] has fired the [src] at [AREACOORD(T)], impact in [travel_time+45] ticks")
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, T, fall_sound, 50, 1), travel_time)
-		addtimer(CALLBACK(src, .proc/detonate_shell, T, mortar_shell), travel_time + 45)//This should always be 45 ticks!
+		user.temporarilyRemoveItemFromInventory(mortar_shell)
 
 	if(istype(I, /obj/item/ai_target_beacon))
 		if(!GLOB.ai_list.len)
 			to_chat(user, span_notice("There is no AI to associate with."))
 			return
-		
+
 		var/mob/living/silicon/ai/AI = tgui_input_list(usr, "Which AI would you like to associate this gun with?", null, GLOB.ai_list)
 		if(!AI)
 			return
@@ -263,6 +222,35 @@
 		return
 	to_chat(user, "<span class='notice'>You disconnect the [binocs] from their linked mortar.")
 
+///Start firing the gun on target and increase tally
+/obj/machinery/deployable/mortar/proc/begin_fire(target, obj/item/mortal_shell/arty_shell)
+	firing = TRUE
+	for(var/mob/M in GLOB.player_list)
+		if(get_dist(M , src) <= 7)
+			shake_camera(M, 1, 1)
+	switch(tally_type)
+		if(TALLY_MORTAR)
+			GLOB.round_statistics.mortar_shells_fired++
+			SSblackbox.record_feedback("tally", "round_statistics", 1, "mortar_shells_fired")
+		if(TALLY_HOWITZER)
+			GLOB.round_statistics.howitzer_shells_fired++
+			SSblackbox.record_feedback("tally", "round_statistics", 1, "howitzer_shells_fired")
+		if(TALLY_ROCKET_ARTY)
+			GLOB.round_statistics.rocket_shells_fired++
+			SSblackbox.record_feedback("tally", "round_statistics", 1, "rocket_shells_fired")
+	playsound(loc, fire_sound, 50, 1)
+	flick(icon_state + "_fire", src)
+	var/obj/projectile/shell = new /obj/projectile(loc)
+	var/datum/ammo/ammo = GLOB.ammo_list[arty_shell.ammo_type]
+	shell.generate_bullet(ammo)
+	shell.fire_at(target, src, src, get_dist(src, target), ammo.shell_speed)
+	var/fall_time = get_dist(src, target)/ammo.shell_speed - 1 SECONDS
+	//prevent runtime
+	if(fall_time < 0.5 SECONDS)
+		fall_time = 0.5 SECONDS
+	addtimer(CALLBACK(src, .proc/falling, target, shell), fall_time)
+	addtimer(CALLBACK(src, .proc/cool_off), cool_off_time)
+
 ///Proc called by tactical binoculars to send targeting information.
 /obj/machinery/deployable/mortar/proc/recieve_target(turf/T, mob/user)
 	coords["targ_x"] = T.x
@@ -270,11 +258,14 @@
 	say("Remote targeting set by [user]. COORDINATES: X:[coords["targ_x"]] Y:[coords["targ_y"]] OFFSET: X:[coords["dial_x"]] Y:[coords["dial_y"]]")
 	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 
-/obj/machinery/deployable/mortar/proc/detonate_shell(turf/target, obj/item/mortal_shell/mortar_shell)
-	target.ceiling_debris_check(2)
-	mortar_shell.detonate(target)
-	qdel(mortar_shell)
+///Allows the mortar to be fired again
+/obj/machinery/deployable/mortar/proc/cool_off()
 	firing = FALSE
+
+///Begins fall animation for projectile and plays fall sound
+/obj/machinery/deployable/mortar/proc/falling(turf/T, obj/projectile/shell)
+	flick(shell.icon_state + "_falling", shell)
+	playsound(T, fall_sound, 75, 1)
 
 ///Prompt for the AI to unlink itself.
 /obj/machinery/deployable/mortar/attack_ai(mob/living/silicon/ai/user)
@@ -286,20 +277,73 @@
 	say("Linked AI spotter has relinquished targeting privileges. Ejecting targeting device.")
 	ai_targeter.forceMove(src.loc)
 	ai_targeter = null
-	
 
 /obj/machinery/deployable/mortar/attack_hand_alternate(mob/living/user)
 	if(!Adjacent(user) || user.lying_angle || user.incapacitated() || !ishuman(user))
 		return
 
-	if(busy)
-		to_chat(user, span_warning("Someone else is currently using [src]."))
+	if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+		user.balloon_alert(user, "Your programming restricts operating this")
 		return
 
 	if(firing)
-		to_chat(user, span_warning("[src]'s barrel is still steaming hot. Wait a few seconds and stop firing it."))
+		user.balloon_alert(user, "The gun is still firing.")
 		return
 
+	if(length(chamber_items) <= 0)
+		user.balloon_alert(user, "There is nothing loaded.")
+		return
+
+	if(!is_ground_level(z))
+		user.balloon_alert(user, "You can't fire the gun here.")
+		return
+
+	if(coords["targ_x"] == 0 && coords["targ_y"] == 0) //Mortar wasn't set
+		user.balloon_alert(user, "The gun needs to be aimed first.")
+		return
+
+	var/turf/selfown = locate((coords["targ_x"] + coords["dial_x"]), (coords["targ_y"] + coords["dial_y"]), z)
+	if(get_dist(loc, selfown) < minimum_range)
+		user.balloon_alert(user, "The target is too close to the gun.")
+		return
+
+	var/turf/target = locate(coords["targ_x"] + coords["dial_x"], coords["targ_y"]  + coords["dial_x"], z)
+	setDir(get_dir(src, target))
+	if(!isturf(target))
+		user.balloon_alert(user, "You cannot fire the gun to this target.")
+		return
+
+	var/area/A = get_area(target)
+	if(istype(A) && A.ceiling >= CEILING_UNDERGROUND)
+		user.balloon_alert(user, "The target is underground.")
+		return
+
+	visible_message("[icon2html(src, viewers(src))] [span_danger("The [name] fires!")]")
+	var/turf/location = get_turf(src)
+	location.ceiling_debris_check(2)
+	log_game("[key_name(user)] has fired the [src] at [AREACOORD(target)]")
+
+	var/max_offset = round(abs((get_dist(src,target)))/offset_per_turfs)
+	var/firing_spread = max_offset + spread
+	if(firing_spread > max_spread)
+		firing_spread = max_spread
+	var/list/turf_list = list()
+	var/obj/in_chamber
+	var/next_chamber_position = length(chamber_items)
+	var/amount_to_fire = fire_amount
+	if(!amount_to_fire)
+		amount_to_fire = length(chamber_items)
+	if(amount_to_fire > length(chamber_items))
+		amount_to_fire = length(chamber_items)
+	for(var/turf/spread_turf in RANGE_TURFS(firing_spread, target))
+		turf_list += spread_turf
+	for(var/i = 1 to amount_to_fire)
+		var/turf/impact_turf = pick(turf_list)
+		in_chamber = chamber_items[next_chamber_position]
+		addtimer(CALLBACK(src, .proc/begin_fire, impact_turf, in_chamber), fire_delay * i)
+		next_chamber_position--
+		chamber_items -= in_chamber
+		QDEL_NULL(in_chamber)
 	return ..()
 
 //The portable mortar item
@@ -308,18 +352,16 @@
 	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Needs to be set down first to fire. Ctrl+Click on a tile to deploy, drag the mortar's sprites to mob's sprite to undeploy."
 	icon = 'icons/Marine/mortar.dmi'
 	icon_state = "mortar"
-
 	max_integrity = 200
 	flags_item = IS_DEPLOYABLE
 	/// What item is this going to deploy when we put down the mortar?
 	var/deployable_item = /obj/machinery/deployable/mortar
-
 	resistance_flags = RESIST_ALL
 	w_class = WEIGHT_CLASS_BULKY //No dumping this in most backpacks. Carry it, fatso
 
 /obj/item/mortar_kit/Initialize()
 	. = ..()
-	AddElement(/datum/element/deployable_item, deployable_item, type, 5 SECONDS)
+	AddElement(/datum/element/deployable_item, deployable_item, type, 1 SECONDS)
 
 /obj/item/mortar_kit/attack_self(mob/user)
 	do_unique_action(user)
@@ -331,11 +373,29 @@
 		return
 	return ..()
 
+//tadpole mounted double barrel mortar
+
+/obj/item/mortar_kit/double
+	name = "\improper TA-55DB mortar"
+	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Needs to be set down first to fire. This one is a double barreled mortar that can hold 4 rounds usually fitted in TAV's."
+	icon_state = "mortar_db"
+	max_integrity = 400
+	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
+	w_class = WEIGHT_CLASS_HUGE
+	deployable_item = /obj/machinery/deployable/mortar/double
+
+/obj/machinery/deployable/mortar/double
+	tally_type = TALLY_MORTAR
+	reload_time = 1 SECONDS
+	fire_amount = 2
+	max_rounds = 4
+	fire_delay = 0.5 SECONDS
+
 // The big boy, the Howtizer.
 
 /obj/item/mortar_kit/howitzer
 	name = "\improper TA-100Y howitzer"
-	desc = "A manual, crew-operated and towable howitzer, will rain down 150mm laserguided and accurate shells on any of your foes. Right click to anchor to the ground."
+	desc = "A manual, crew-operated and towable howitzer, will rain down 150mm laserguided and accurate shells on any of your foes."
 	icon = 'icons/Marine/howitzer.dmi'
 	icon_state = "howitzer"
 	max_integrity = 400
@@ -344,12 +404,13 @@
 	deployable_item = /obj/machinery/deployable/mortar/howitzer
 
 /obj/machinery/deployable/mortar/howitzer
+	pixel_x = -16
 	anchored = FALSE // You can move this.
-	offset_per_turfs = 25 // Howizters are significantly more accurate.
-	travel_time = 60
+	offset_per_turfs = 25
 	fire_sound = 'sound/weapons/guns/fire/howitzer_fire.ogg'
 	reload_sound = 'sound/weapons/guns/interact/tat36_reload.ogg'
 	fall_sound = 'sound/weapons/guns/misc/howitzer_whistle.ogg'
+	minimum_range = 20
 	allowed_shells = list(
 		/obj/item/mortal_shell/howitzer,
 		/obj/item/mortal_shell/howitzer/white_phos,
@@ -359,16 +420,57 @@
 		/obj/item/mortal_shell/flare,
 	)
 	tally_type = TALLY_HOWITZER
+	cool_off_time = 2 SECONDS
+	reload_time = 1 SECONDS
+	max_spread = 8
 
-/obj/machinery/deployable/mortar/howitzer/attack_hand_alternate(mob/living/user)
+/obj/machinery/deployable/mortar/howitzer/AltRightClick(mob/living/user)
 	if(!Adjacent(user) || user.lying_angle || user.incapacitated() || !ishuman(user))
 		return
 
-	anchored = !anchored
-	to_chat(usr, span_warning("You have [anchored ? "<b>anchored</b>" : "<b>unanchored</b>"] the gun."))
+	if(!anchored)
+		anchored = TRUE
+		to_chat(user, span_warning("You have anchored the gun to the ground. It may not be moved."))
+	else
+		anchored = FALSE
+		to_chat(user, span_warning("You unanchored the gun from the ground. It may be moved."))
 
 
+/obj/item/mortar_kit/rocket_arty
+	name = "\improper TA-120R rocket artillery"
+	desc = "A manual, crew-operated and towable rocket artillery piece, will rain down a volley of 132mm rockets on any of your foes."
+	icon = 'icons/Marine/howitzer.dmi'
+	icon_state = "howitzer"
+	max_integrity = 400
+	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
+	w_class = WEIGHT_CLASS_HUGE
+	deployable_item = /obj/machinery/deployable/mortar/howitzer/rocket_arty
 
+/obj/machinery/deployable/mortar/howitzer/rocket_arty
+	pixel_x = -16
+	anchored = FALSE // You can move this.
+	fire_sound = 'sound/weapons/guns/fire/rocket_arty.ogg'
+	reload_sound = 'sound/weapons/guns/interact/tat36_reload.ogg'
+	fall_sound = 'sound/weapons/guns/misc/rocket_whistle.ogg'
+	minimum_range = 22
+	allowed_shells = list(
+		/obj/item/mortal_shell/howitzer,
+		/obj/item/mortal_shell/howitzer/white_phos,
+		/obj/item/mortal_shell/howitzer/he,
+		/obj/item/mortal_shell/howitzer/incendiary,
+		/obj/item/mortal_shell/howitzer/plasmaloss,
+		/obj/item/mortal_shell/flare,
+		/obj/item/mortal_shell/rocket,
+		/obj/item/mortal_shell/rocket/incend,
+		/obj/item/mortal_shell/rocket/minelaying,
+	)
+	tally_type = TALLY_ROCKET_ARTY
+	cool_off_time = 5 SECONDS
+	fire_delay = 0.3 SECONDS
+	reload_time = 1 SECONDS
+	max_rounds = 12
+	offset_per_turfs = 10
+	spread = 3
 
 // Shells themselves //
 
@@ -379,93 +481,38 @@
 	icon_state = "mortar_ammo_cas"
 	w_class = WEIGHT_CLASS_SMALL
 	flags_atom = CONDUCT
-
-/obj/item/mortal_shell/proc/detonate(turf/T)
-	forceMove(T)
+	///Ammo datum typepath that the shell uses
+	var/ammo_type
 
 /obj/item/mortal_shell/he
 	name = "\improper 80mm high explosive mortar shell"
 	desc = "An 80mm mortar shell, loaded with a high explosive charge."
 	icon_state = "mortar_ammo_he"
-
-/obj/item/mortal_shell/he/detonate(turf/T)
-	explosion(T, 1, 2, 5, 3)
+	ammo_type = /datum/ammo/mortar
 
 /obj/item/mortal_shell/incendiary
 	name = "\improper 80mm incendiary mortar shell"
 	desc = "An 80mm mortar shell, loaded with a napalm charge."
 	icon_state = "mortar_ammo_inc"
-
-/obj/item/mortal_shell/incendiary/detonate(turf/T)
-	explosion(T, 0, 2, 3, 7, throw_range = 0, small_animation = TRUE)
-	flame_radius(4, T)
-	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
+	ammo_type = /datum/ammo/mortar/incend
 
 /obj/item/mortal_shell/smoke
 	name = "\improper 80mm smoke mortar shell"
 	desc = "An 80mm mortar shell, loaded with smoke dispersal agents. Can be fired at marines more-or-less safely. Way slimmer than your typical 80mm."
 	icon_state = "mortar_ammo_smk"
-	var/datum/effect_system/smoke_spread/tactical/smoke
-
-/obj/item/mortal_shell/smoke/Initialize()
-	. = ..()
-	smoke = new(src)
-
-/obj/item/mortal_shell/smoke/detonate(turf/T)
-
-	explosion(T, 0, 0, 1, 3, throw_range = 0, small_animation = TRUE)
-	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
-	forceMove(T) //AAAAAAAA
-	smoke.set_up(10, T, 11)
-	smoke.start()
-	smoke = null
-	qdel(src)
+	ammo_type = /datum/ammo/mortar/smoke
 
 /obj/item/mortal_shell/plasmaloss
 	name = "\improper 80mm tangle mortar shell"
 	desc = "An 80mm mortar shell, loaded with plasma-draining Tanglefoot gas. Can be fired at marines more-or-less safely."
 	icon_state = "mortar_ammo_fsh"
-	var/datum/effect_system/smoke_spread/plasmaloss/smoke
-
-/obj/item/mortal_shell/plasmaloss/Initialize()
-	. = ..()
-	smoke = new(src)
-
-/obj/item/mortal_shell/plasmaloss/detonate(turf/T)
-	explosion(T, 0, 0, 1, 3, throw_range = 0)
-	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
-	forceMove(T)
-	smoke.set_up(10, T, 7)
-	smoke.start()
-	smoke = null
-	qdel(src)
+	ammo_type = /datum/ammo/mortar/smoke/plasmaloss
 
 /obj/item/mortal_shell/flare
 	name = "\improper 80mm flare mortar shell"
 	desc = "An 80mm mortar shell, loaded with an illumination flare, far slimmer than your typical 80mm shell. Can be fired out of larger cannons."
 	icon_state = "mortar_ammo_flr"
-
-/obj/item/mortal_shell/flare/detonate(turf/T)
-	new /obj/effect/mortar_flare(T)
-	playsound(T, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4)
-
-///Name_swap of the CAS flare
-/obj/effect/mortar_flare
-	invisibility = INVISIBILITY_MAXIMUM
-	resistance_flags = RESIST_ALL
-	mouse_opacity = 0
-	light_color = COLOR_VERY_SOFT_YELLOW
-	light_system = HYBRID_LIGHT
-	light_power = 8
-	light_range = 12 //Way brighter than most lights
-
-/obj/effect/mortar_flare/Initialize()
-	. = ..()
-	var/turf/T = get_turf(src)
-	set_light(light_range, light_power)
-	T.visible_message(span_warning("You see a tiny flash, and then a blindingly bright light from a flare as it lights off in the sky!"))
-	playsound(T, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4) // stolen from the mortar i'm not even sorry
-	QDEL_IN(src, rand(70 SECONDS, 90 SECONDS)) // About the same burn time as a flare, considering it requires it's own CAS run.
+	ammo_type = /datum/ammo/mortar/flare
 
 /obj/item/mortal_shell/howitzer
 	name = "\improper 150mm artillery shell"
@@ -477,57 +524,34 @@
 /obj/item/mortal_shell/howitzer/he
 	name = "\improper 150mm high explosive artillery shell"
 	desc = "An 150mm artillery shell, loaded with a high explosive charge, whatever is hit by this will have, A really, REALLY bad day."
-
-/obj/item/mortal_shell/howitzer/he/detonate(turf/T)
-	explosion(T, 1, 6, 7, 12)
+	ammo_type = /datum/ammo/mortar/howi
 
 /obj/item/mortal_shell/howitzer/plasmaloss
 	name = "\improper 150mm 'Tanglefoot' artillery shell"
 	desc = "An 150mm artillery shell, loaded with a toxic intoxicating gas, whatever is hit by this will have their abilities sapped slowly. Acommpanied by a small moderate explosion."
 	icon_state = "howitzer_ammo_purp"
-	var/datum/effect_system/smoke_spread/plasmaloss/smoke
-
-/obj/item/mortal_shell/howitzer/plasmaloss/Initialize()
-	. = ..()
-	smoke = new(src)
-
-/obj/item/mortal_shell/howitzer/plasmaloss/detonate(turf/T)
-	explosion(T, 0, 0, 5, 0, throw_range = 0)
-	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
-	forceMove(T)
-	smoke.set_up(10, T, 11)
-	smoke.start()
-	smoke = null
-	qdel(src)
+	ammo_type = /datum/ammo/mortar/smoke/howi/plasmaloss
 
 /obj/item/mortal_shell/howitzer/incendiary
 	name = "\improper 150mm incendiary artillery shell"
 	desc = "An 150mm artillery shell, loaded with explosives to punch through light structures then burn out whatever is on the other side. Will ruin their day and skin."
 	icon_state = "howitzer_ammo_incend"
-
-/obj/item/mortal_shell/howitzer/incendiary/detonate(turf/T)
-	explosion(T, 0, 3, 0, 3, throw_range = 0, small_animation = TRUE)
-	flame_radius(5, T)
-	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
+	ammo_type = /datum/ammo/mortar/howi/incend
 
 /obj/item/mortal_shell/howitzer/white_phos
 	name = "\improper 150mm white phosporous 'spotting' artillery shell"
 	desc = "An 150mm artillery shell, loaded with a 'spotting' gas that sets anything it hits aflame, whatever is hit by this will have their day, skin and future ruined, with a demand for a warcrime tribunal."
 	icon_state = "howitzer_ammo_wp"
-	var/datum/effect_system/smoke_spread/phosphorus/smoke
+	ammo_type = /datum/ammo/mortar/smoke/howi/wp
 
-/obj/item/mortal_shell/howitzer/white_phos/Initialize()
-	. = ..()
-	smoke = new(src)
+/obj/item/mortal_shell/rocket
+	ammo_type = /datum/ammo/mortar/rocket
 
-/obj/item/mortal_shell/howitzer/white_phos/detonate(turf/T)
-	explosion(T, 0, 0, 1, 0, throw_range = 0)
-	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
-	smoke.set_up(6, T, 7)
-	smoke.start()
-	flame_radius(4, T)
-	flame_radius(1, T, burn_intensity = 45, burn_duration = 75, burn_damage = 15, fire_stacks = 75)
-	qdel(src)
+/obj/item/mortal_shell/rocket/incend
+	ammo_type = /datum/ammo/mortar/rocket/incend
+
+/obj/item/mortal_shell/rocket/minelaying
+	ammo_type = /datum/ammo/mortar/rocket/minelayer
 
 /obj/structure/closet/crate/mortar_ammo
 	name = "\improper T-50S mortar ammo crate"

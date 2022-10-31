@@ -8,7 +8,9 @@
 	ability_name = "charge"
 	cooldown_timer = 20 SECONDS
 	plasma_cost = 500 //Can't ignore pain/Charge and ravage in the same timeframe, but you can combo one of them.
-	keybind_signal = COMSIG_XENOABILITY_RAVAGER_CHARGE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RAVAGER_CHARGE,
+	)
 
 /datum/action/xeno_action/activable/charge/proc/charge_complete()
 	SIGNAL_HANDLER
@@ -89,8 +91,10 @@
 	plasma_cost = 200
 	cooldown_timer = 6 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
-	keybind_signal = COMSIG_XENOABILITY_RAVAGE
-	alternate_keybind_signal = COMSIG_XENOABILITY_RAVAGE_SELECT
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RAVAGE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_RAVAGE_SELECT,
+	)
 
 /datum/action/xeno_action/activable/ravage/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We gather enough strength to Ravage again."))
@@ -105,22 +109,25 @@
 	span_xenowarning("We thrash about in a murderous frenzy!"))
 
 	X.face_atom(A)
-	var/sweep_range = 1
-	var/list/L = orange(sweep_range, X) // Not actually the fruit
-	var/victims = 0
-	var/target_facing
-	for(var/mob/living/carbon/human/H in L)
-		if(victims >= 3) //Max 3 victims
-			break
-		target_facing = get_dir(X, H)
-		if(target_facing != X.dir && target_facing != turn(X.dir,45) && target_facing != turn(X.dir,-45) ) //Have to be actually facing the target
+
+	var/list/atom/movable/atoms_to_ravage = get_step(owner, owner.dir).contents.Copy()
+	atoms_to_ravage += get_step(owner, turn(owner.dir, -45)).contents
+	atoms_to_ravage += get_step(owner, turn(owner.dir, 45)).contents
+	for(var/atom/movable/ravaged AS in atoms_to_ravage)
+		if(!(ravaged.resistance_flags & XENO_DAMAGEABLE))
 			continue
-		if(H.stat != DEAD && !isnestedhost(H)) //No bully
-			H.attack_alien_harm(X, X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier * 0.25, FALSE, TRUE, FALSE, TRUE)
-			victims++
-			step_away(H, X, sweep_range, 2)
-			shake_camera(H, 2, 1)
-			H.Paralyze(1 SECONDS)
+		if(!ishuman(ravaged))
+			ravaged.attack_alien(X, X.xeno_caste.melee_damage)
+			if(!ravaged.anchored)
+				step_away(ravaged, X, 1, 2)
+			continue
+		var/mob/living/carbon/human/attacking = ravaged
+		if(attacking.stat == DEAD)
+			continue
+		step_away(attacking, X, 1, 2)
+		attacking.attack_alien_harm(X, X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier * 0.25, FALSE, TRUE, FALSE, TRUE)
+		shake_camera(attacking, 2, 1)
+		attacking.Paralyze(1 SECONDS)
 
 	succeed_activate()
 	add_cooldown()
@@ -151,7 +158,9 @@
 	ability_name = "Endure"
 	plasma_cost = 200
 	cooldown_timer = 60 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_ENDURE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ENDURE,
+	)
 	use_state_flags = XACT_USE_STAGGERED //Can use this while staggered
 	///How low the Ravager's health can go while under the effects of Endure before it dies
 	var/endure_threshold = RAVAGER_ENDURE_HP_LIMIT
@@ -257,7 +266,9 @@
 	plasma_cost = 0 //We're limited by cooldowns, not plasma
 	cooldown_timer = 60 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
-	keybind_signal = COMSIG_XENOABILITY_RAGE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RAGE,
+	)
 	///Determines the power of Rage's many effects. Power scales inversely with the Ravager's HP; min 0.25 at 50% of Max HP, max 1 while in negative HP. 0.5 and above triggers especial effects.
 	var/rage_power
 	///Determines the Sunder to impose when Rage ends
@@ -434,7 +445,9 @@
 	plasma_cost = 0 //We're limited by cooldowns, not plasma
 	cooldown_timer = 0.5 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
-	keybind_signal = COMSIG_XENOABILITY_VAMPIRISM
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_VAMPIRISM,
+	)
 	///timer hash for timer to clear last attacked
 	var/clear_timer
 	///int of how stacked we are on leeching
@@ -442,16 +455,20 @@
 	///list of mob = timer_key of mobs we are actively leeching
 	var/mob/living/last_leeched
 
+/datum/action/xeno_action/vampirism/New(Target)
+	..()
+	var/mutable_appearance/leech_appeareace = mutable_appearance(null,null, ACTION_LAYER_IMAGE_ONTOP)
+	visual_references[VREF_MUTABLE_RAV_LEECH] = leech_appeareace
+
 /datum/action/xeno_action/vampirism/update_button_icon()
-	button.overlays.Cut()
 	var/mob/living/carbon/xenomorph/xeno = owner
-	if(xeno.vampirism)
-		button.overlays += image('icons/mob/actions.dmi', button, "neuroclaws_on")
-	else
-		button.overlays += image('icons/mob/actions.dmi', button, "neuroclaws_off")
-	var/mutable_appearance/number = mutable_appearance()
+	action_icon_state = xeno.vampirism ? "neuroclaws_on" : "neuroclaws_off"
+	button.cut_overlay(visual_references[VREF_MUTABLE_RAV_LEECH])
+	var/mutable_appearance/number = visual_references[VREF_MUTABLE_RAV_LEECH]
 	number.maptext = MAPTEXT("[leech_count]")
-	button.overlays += number
+	visual_references[VREF_MUTABLE_RAV_LEECH] = number
+	button.add_overlay(visual_references[VREF_MUTABLE_RAV_LEECH])
+	return ..()
 
 /datum/action/xeno_action/vampirism/give_action(mob/living/L)
 	. = ..()

@@ -304,6 +304,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 10
 	shrapnel_chance = 10
 	bullet_color = COLOR_VERY_SOFT_YELLOW
+	barricade_clear_distance = 2
 
 /*
 //================================================
@@ -453,7 +454,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/revolver/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, stagger = 1, slowdown = 0.5, knockback = 1)
 
-datum/ammo/bullet/revolver/tp44
+/datum/ammo/bullet/revolver/tp44
 	name = "standard revolver bullet"
 	damage = 30
 	penetration = 20
@@ -644,6 +645,13 @@ datum/ammo/bullet/revolver/tp44
 	damage = 20
 	penetration = 10
 
+/datum/ammo/bullet/rifle/som_machinegun
+	name = "machinegun bullet"
+	hud_state = "rifle_heavy"
+	damage = 25
+	penetration = 12.5
+	sundering = 1
+
 /datum/ammo/bullet/rifle/tx8
 	name = "A19 high velocity bullet"
 	hud_state = "hivelo"
@@ -762,7 +770,7 @@ datum/ammo/bullet/revolver/tp44
 	max_range = 15
 	damage = 100
 	penetration = 20
-	sundering = 15
+	sundering = 7.5
 
 /datum/ammo/bullet/shotgun/slug/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, weaken = 1, stagger = 2, knockback = 1, slowdown = 2)
@@ -816,7 +824,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 50
 	damage_falloff = 0.5
 	penetration = 15
-	sundering = 3
+	sundering = 7
 
 /datum/ammo/bullet/shotgun/flechette_spread
 	name = "additional flechette"
@@ -828,7 +836,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 40
 	damage_falloff = 1
 	penetration = 25
-	sundering = 2.5
+	sundering = 5
 
 /datum/ammo/bullet/shotgun/buckshot
 	name = "shotgun buckshot shell"
@@ -1189,8 +1197,9 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	accurate_range = 12
 	damage = 10
-	penetration = 15
+	penetration = 25
 	sundering = 1
+	damage_falloff = 0.1
 
 /datum/ammo/bullet/turret
 	name = "autocannon bullet"
@@ -1444,9 +1453,9 @@ datum/ammo/bullet/revolver/tp44
 	projectile_greyscale_colors = "#4f0303"
 
 /datum/ammo/bullet/tx54_spread/mech
-	damage = 25
-	penetration = 20
-	sundering = 2
+	damage = 20
+	penetration = 10
+	sundering = 1
 
 //10-gauge Micro rail shells - aka micronades
 /datum/ammo/bullet/micro_rail
@@ -1572,8 +1581,8 @@ datum/ammo/bullet/revolver/tp44
 		victim.visible_message(span_danger("[victim] is hit by the bomblet blast!"),
 			isxeno(victim) ? span_xenodanger("We are hit by the bomblet blast!") : span_highdanger("you are hit by the bomblet blast!"))
 		var/armor_block = victim.get_soft_armor("bomb")
-		victim.apply_damage(15, BRUTE, null, armor_block, updating_health = FALSE)
-		victim.apply_damage(15, BURN, null, armor_block, updating_health = TRUE)
+		victim.apply_damage(10, BRUTE, null, armor_block, updating_health = FALSE)
+		victim.apply_damage(10, BURN, null, armor_block, updating_health = TRUE)
 		staggerstun(victim, P, stagger = 1, slowdown = 1)
 
 /datum/ammo/micro_rail_cluster/on_leave_turf(turf/T, atom/firer, obj/projectile/proj)
@@ -1654,6 +1663,7 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 100
 	sundering = 100
 	bullet_color = LIGHT_COLOR_FIRE
+	barricade_clear_distance = 2
 
 /datum/ammo/rocket/drop_nade(turf/T)
 	explosion(T, 0, 4, 6, 2)
@@ -2011,6 +2021,105 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/rocket/atgun_shell/he/on_hit_turf(turf/T, obj/projectile/P)
 	drop_nade(T.density ? P.loc : T)
 
+/datum/ammo/mortar
+	name = "80mm"
+	icon_state = "mortar"
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
+	shell_speed = 1.10
+	damage = 0
+	penetration = 0
+	sundering = 0
+	accuracy = 250
+	max_range = 250
+	ping = null
+	bullet_color = COLOR_WHITE
+
+/datum/ammo/mortar/drop_nade(turf/T)
+	explosion(T, 1, 2, 5, 3)
+
+/datum/ammo/mortar/do_at_max_range(turf/T, obj/projectile/P)
+	drop_nade(T)
+
+/datum/ammo/mortar/incend/drop_nade(turf/T)
+	explosion(T, 0, 2, 3, 7, throw_range = 0, small_animation = TRUE)
+	flame_radius(4, T)
+	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
+
+/datum/ammo/mortar/smoke
+	///the smoke effect at the point of detonation
+	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/tactical
+
+/datum/ammo/mortar/smoke/drop_nade(turf/T)
+	var/datum/effect_system/smoke_spread/smoke = new smoketype()
+	explosion(T, 0, 0, 1, 3, throw_range = 0, small_animation = TRUE)
+	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
+	smoke.set_up(10, T, 11)
+	smoke.start()
+
+/datum/ammo/mortar/smoke/plasmaloss
+	smoketype = /datum/effect_system/smoke_spread/plasmaloss
+
+/datum/ammo/mortar/flare/drop_nade(turf/T)
+	new /obj/effect/temp_visual/above_flare(T)
+	playsound(T, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4)
+
+/datum/ammo/mortar/howi
+	name = "150mm"
+	icon_state = "howi"
+	shell_speed = 1.25
+
+/datum/ammo/mortar/howi/drop_nade(turf/T)
+	explosion(T, 1, 6, 7, 12)
+
+/datum/ammo/mortar/howi/incend/drop_nade(turf/T)
+	explosion(T, 0, 3, 0, 3, throw_range = 0, small_animation = TRUE)
+	flame_radius(5, T)
+	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
+
+/datum/ammo/mortar/smoke/howi
+	name = "150mm"
+	icon_state = "howi"
+	shell_speed = 1.25
+
+/datum/ammo/mortar/smoke/howi/wp
+	smoketype = /datum/effect_system/smoke_spread/phosphorus
+
+/datum/ammo/mortar/smoke/howi/wp/drop_nade(turf/T)
+	var/datum/effect_system/smoke_spread/smoke = new smoketype()
+	explosion(T, 0, 0, 1, 0, throw_range = 0)
+	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
+	smoke.set_up(6, T, 7)
+	smoke.start()
+	flame_radius(4, T)
+	flame_radius(1, T, burn_intensity = 45, burn_duration = 75, burn_damage = 15, fire_stacks = 75)
+
+/datum/ammo/mortar/smoke/howi/plasmaloss
+	smoketype = /datum/effect_system/smoke_spread/plasmaloss
+
+/datum/ammo/mortar/smoke/howi/plasmaloss/drop_nade(turf/T)
+	var/datum/effect_system/smoke_spread/smoke = new smoketype()
+	explosion(T, 0, 0, 5, 0, throw_range = 0)
+	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
+	smoke.set_up(10, T, 11)
+	smoke.start()
+
+/datum/ammo/mortar/rocket
+	name = "rocket"
+	icon_state = "rocket"
+	shell_speed = 1.5
+
+/datum/ammo/mortar/rocket/drop_nade(turf/T)
+	explosion(T, 1, 2, 5, 3)
+
+/datum/ammo/mortar/rocket/incend/drop_nade(turf/T)
+	explosion(T, 0, 3, 0, 3, throw_range = 0, small_animation = TRUE)
+	flame_radius(5, T)
+	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
+
+/datum/ammo/mortar/rocket/minelayer/drop_nade(turf/T)
+	var/obj/item/explosive/mine/mine = new /obj/item/explosive/mine(T)
+	mine.deploy_mine(null, TGMC_LOYALIST_IFF)
+
 /*
 //================================================
 					Energy Ammo
@@ -2028,6 +2137,7 @@ datum/ammo/bullet/revolver/tp44
 	armor_type = "energy"
 	accuracy = 15 //lasers fly fairly straight
 	bullet_color = COLOR_LASER_RED
+	barricade_clear_distance = 2
 
 /datum/ammo/energy/emitter //Damage is determined in emitter.dm
 	name = "emitter bolt"
@@ -2347,21 +2457,21 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/energy/lasgun/marine/mech
 	name = "superheated laser bolt"
-	damage = 40
+	damage = 45
 	penetration = 20
 	sundering = 1
 	damage_falloff = 0.5
 
 /datum/ammo/energy/lasgun/marine/mech/burst
-	damage = 50
+	damage = 40
 	penetration = 20
 	sundering = 0.75
 	damage_falloff = 0.6
 
 /datum/ammo/energy/lasgun/marine/mech/smg
 	name = "superheated pulsed laser bolt"
-	damage = 35
-	penetration = 15
+	damage = 20
+	penetration = 10
 
 // Plasma //
 /datum/ammo/energy/plasma

@@ -620,7 +620,11 @@
 	icon_state= "sparepouch"
 	item_state= "sparepouch"
 
-
+/obj/item/storage/belt/sparepouch/som
+	name= "standard utility pouch"
+	desc= "A small, lightweight pouch that can be clipped onto armor or your belt to provide additional storage for miscellaneous gear or box and drum magazines. Made from genuine SOM leather."
+	icon_state= "sparepouch_som"
+	item_state= "som_belt"
 
 
 ////////////////////////////// GUN BELTS /////////////////////////////////////
@@ -687,10 +691,7 @@
 		sure that we don't have to do any extra calculations.
 		*/
 		playsound(src,drawSound, 15, 1)
-		if(current_gun.greyscale_config && current_gun.greyscale_colors)
-			gun_underlay = image(SSgreyscale.GetColoredIconByType(current_gun.greyscale_config, current_gun.greyscale_colors), current_gun.rounds ? "belt" : "belt_empty")
-		else
-			gun_underlay = image(icon, src, current_gun.icon_state)
+		gun_underlay = image(icon, src, current_gun.icon_state)
 		icon_state += "_g"
 		item_state = icon_state
 		underlays += gun_underlay

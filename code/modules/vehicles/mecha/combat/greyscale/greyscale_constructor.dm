@@ -88,7 +88,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	name = "mech computer"
 	icon_state = "mech_computer"
 	dir = EAST // determines where the mech will pop out, NOT where the computer faces
-	interaction_flags = INTERACT_MACHINE_TGUI
+	interaction_flags = INTERACT_OBJ_UI
 
 	///current selected name for the mech
 	var/selected_name = "TGMC Combat Mech"
@@ -296,7 +296,9 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 
 		if("add_weapon")
 			var/obj/item/mecha_parts/mecha_equipment/weapon/new_type = text2path(params["type"])
-			if(!ispath(new_type, /obj/item/mecha_parts/mecha_equipment/weapon))
+			if(!ispath(new_type, /obj/item/mecha_parts/mecha_equipment))
+				return FALSE
+			if(initial(new_type.equipment_slot) != MECHA_WEAPON)
 				return FALSE
 			if(!(initial(new_type.mech_flags) & EXOSUIT_MODULE_GREYSCALE))
 				return FALSE

@@ -39,9 +39,10 @@
 	return TRUE
 
 /datum/job/xenomorph/add_job_positions(amount)
-	if(free_xeno_at_start > 0)
-		free_xeno_at_start--
-		return
+	if(!(SSticker.mode.flags_round_type & MODE_XENO_SPAWN_PROTECT))
+		if(free_xeno_at_start > 0)
+			free_xeno_at_start--
+			return
 	. = ..()
 	if(!.)
 		return

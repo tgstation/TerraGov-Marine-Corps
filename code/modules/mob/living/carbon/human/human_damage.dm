@@ -254,8 +254,6 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 
 	SEND_SIGNAL(src, COMSIG_HUMAN_DAMAGE_TAKEN, brute + burn)
 
-	speech_problem_flag = 1
-
 
 ///Heal MANY limbs, in random order. If robo_repair is TRUE then both metal and flesh limbs will be healed, otherwise only flesh.
 /mob/living/carbon/human/heal_overall_damage(brute, burn, robo_repair = FALSE, updating_health = FALSE)
@@ -276,7 +274,6 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 		parts -= picked
 	if(updating_health)
 		updatehealth()
-	speech_problem_flag = 1
 	if(update)
 		UpdateDamageIcon()
 

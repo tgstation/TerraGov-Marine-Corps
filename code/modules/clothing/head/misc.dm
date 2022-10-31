@@ -149,7 +149,7 @@
 	item_state = "hgpiratecap"
 	flags_armor_protection = NONE
 	flags_item = SYNTH_RESTRICTED
-	soft_armor = list(MELEE = 50, BULLET = 80, LASER = 50, ENERGY = 10, BOMB = 50, BIO = 0, "rad" = 0, FIRE = 10, ACID = 10)
+	soft_armor = list(MELEE = 50, BULLET = 80, LASER = 50, ENERGY = 10, BOMB = 50, BIO = 0, FIRE = 10, ACID = 10)
 
 /obj/item/clothing/head/bandanna/brown
 	name = "brown bandanna"

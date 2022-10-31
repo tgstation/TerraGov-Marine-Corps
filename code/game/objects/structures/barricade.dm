@@ -12,6 +12,7 @@
 	climb_delay = 20 //Leaping a barricade is universally much faster than clumsily climbing on a table or rack
 	interaction_flags = INTERACT_CHECK_INCAPACITATED
 	max_integrity = 100
+	flags_barrier = HANDLE_BARRIER_CHANCE
 	///The type of stack the barricade dropped when disassembled if any.
 	var/stack_type
 	///The amount of stack dropped when disassembled at full health
@@ -30,7 +31,6 @@
 	var/can_wire = FALSE
 	///is this barriade wired?
 	var/is_wired = FALSE
-	flags_barrier = HANDLE_BARRIER_CHANCE
 
 /obj/structure/barricade/Initialize()
 	. = ..()
@@ -161,7 +161,7 @@
 	update_icon()
 
 /obj/structure/barricade/wirecutter_act(mob/living/user, obj/item/I)
-	if(!is_wired || user.do_actions)
+	if(!is_wired || LAZYACCESS(user.do_actions, src))
 		return FALSE
 
 	user.visible_message(span_notice("[user] begin removing the barbed wire on [src]."),
@@ -211,7 +211,7 @@
 	. = ..()
 	update_icon()
 
-/obj/structure/barricade/update_icon()
+/obj/structure/barricade/update_icon_state()
 	. = ..()
 	var/damage_state
 	var/percentage = (obj_integrity / max_integrity) * 100
@@ -326,8 +326,8 @@
 		if(ET.folded)
 			return
 
-		if(user.do_actions)
-			to_chat(user, span_warning(" You are already shoveling!"))
+		if(LAZYACCESS(user.do_actions, src))
+			to_chat(user, span_warning("You are already shoveling!"))
 			return
 
 		user.visible_message("[user] starts clearing out \the [src].", "You start removing \the [src].")
@@ -355,7 +355,7 @@
 	icon_state = "railing_0"
 	coverage = 25
 	max_integrity = 150
-	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 15, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 10)
+	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 15, "bio" = 100, "fire" = 100, "acid" = 10)
 	climbable = FALSE
 	stack_type = /obj/item/stack/rods
 	destroyed_stack_amount = 3
@@ -437,7 +437,7 @@
 	desc = "A sturdy and easily assembled barricade made of metal plates, often used for quick fortifications. Use a blowtorch to repair."
 	icon_state = "metal_0"
 	max_integrity = 200
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 40)
+	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "fire" = 80, "acid" = 40)
 	coverage = 128
 	stack_type = /obj/item/stack/sheet/metal
 	stack_amount = 4
@@ -562,7 +562,7 @@
 	. += span_info("It is [barricade_upgrade_type ? "upgraded with [barricade_upgrade_type]" : "not upgraded"].")
 
 /obj/structure/barricade/metal/welder_act(mob/living/user, obj/item/I)
-	if(user.do_actions)
+	if(LAZYACCESS(user.do_actions, src))
 		return FALSE
 
 	var/obj/item/tool/weldingtool/WT = I
@@ -618,7 +618,7 @@
 
 
 /obj/structure/barricade/metal/screwdriver_act(mob/living/user, obj/item/I)
-	if(user.do_actions)
+	if(LAZYACCESS(user.do_actions, src))
 		return FALSE
 	switch(build_state)
 		if(BARRICADE_METAL_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
@@ -658,7 +658,7 @@
 
 
 /obj/structure/barricade/metal/wrench_act(mob/living/user, obj/item/I)
-	if(user.do_actions)
+	if(LAZYACCESS(user.do_actions, src))
 		return FALSE
 	switch(build_state)
 		if(BARRICADE_METAL_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
@@ -719,7 +719,7 @@
 
 
 /obj/structure/barricade/metal/crowbar_act(mob/living/user, obj/item/I)
-	if(user.do_actions)
+	if(LAZYACCESS(user.do_actions, src))
 		return FALSE
 	switch(build_state)
 		if(BARRICADE_METAL_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to resecure anchor bolts
@@ -816,7 +816,7 @@
 	desc = "A very sturdy barricade made out of plasteel panels, the pinnacle of strongpoints. Use a blowtorch to repair. Can be flipped down to create a path."
 	icon_state = "plasteel_closed_0"
 	max_integrity = 500
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 40)
+	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "fire" = 80, "acid" = 40)
 	coverage = 128
 	stack_type = /obj/item/stack/sheet/plasteel
 	stack_amount = 5
@@ -1098,7 +1098,7 @@
 	desc = "A bunch of bags filled with sand, stacked into a small wall. Surprisingly sturdy, albeit labour intensive to set up. Trusted to do the job since 1914."
 	icon_state = "sandbag_0"
 	max_integrity = 300
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 40)
+	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "fire" = 80, "acid" = 40)
 	coverage = 128
 	stack_type = /obj/item/stack/sandbags
 	hit_sound = "sound/weapons/genhit.ogg"
@@ -1160,3 +1160,62 @@
 		user.visible_message(span_notice("[user] replaces a damaged sandbag, repairing [src]."),
 		span_notice("You replace a damaged sandbag, repairing it [src]."))
 		update_icon()
+
+/obj/structure/barricade/metal/deployable
+	icon_state = "folding_0"
+	max_integrity = 300
+	coverage = 100
+	barricade_type = "folding"
+	can_wire = TRUE
+	is_wired = FALSE
+	soft_armor = list(MELEE = 35, BULLET = 30, LASER = 20, ENERGY = 40, BOMB = 25, BIO = 100, FIRE = 100, ACID = 30)
+	///Whether this item can be deployed or undeployed
+	var/flags_item = IS_DEPLOYABLE
+	///What it deploys into. typecast version of internal_item
+	var/obj/item/weapon/shield/riot/marine/deployable/internal_shield
+
+/obj/structure/barricade/metal/deployable/Initialize(mapload, _internal_item, deployer)
+	. = ..()
+	internal_shield = _internal_item
+
+	name = internal_shield.name
+	desc = internal_shield.desc
+	//if the shield is wired, it deploys wired
+	if (internal_shield.is_wired)
+		can_wire = FALSE
+		is_wired = TRUE
+
+/obj/structure/barricade/metal/deployable/get_internal_item()
+	return internal_shield
+
+/obj/structure/barricade/metal/deployable/clear_internal_item()
+	internal_shield = null
+
+///Dissassembles the device
+/obj/structure/barricade/metal/deployable/proc/disassemble(mob/user)
+	if(CHECK_BITFIELD(internal_shield.flags_item, DEPLOYED_NO_PICKUP))
+		to_chat(user, span_notice("The [src] is anchored in place and cannot be disassembled."))
+		return
+	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user)
+
+/obj/structure/barricade/metal/deployable/Destroy()
+	if(internal_shield)
+		QDEL_NULL(internal_shield)
+	return ..()
+
+/obj/structure/barricade/metal/deployable/MouseDrop(over_object, src_location, over_location)
+	if(!ishuman(usr))
+		return
+	var/mob/living/carbon/human/user = usr
+	if(over_object != user || !in_range(src, user) || user.incapacitated() || user.lying_angle)
+		return
+	disassemble(user)
+
+/obj/structure/barricade/metal/deployable/wire()
+	. = ..()
+	//makes the shield item wired as well
+	internal_shield.is_wired = TRUE
+	internal_shield.modify_max_integrity(max_integrity + 50)
+
+/obj/structure/barricade/metal/deployable/attempt_barricade_upgrade()
+	return //not upgradable

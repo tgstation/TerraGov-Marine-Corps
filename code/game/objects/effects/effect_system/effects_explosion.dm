@@ -3,6 +3,11 @@
 	icon_state = "explosion_particle"
 	opacity = FALSE
 	anchored = TRUE
+	light_system = MOVABLE_LIGHT
+	light_range = 3
+	light_power = 2
+	light_color = LIGHT_COLOR_LAVA
+	light_on = TRUE
 
 /obj/effect/particle_effect/expl_particles/Initialize()
 	..()
@@ -35,10 +40,12 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	pixel_x = -32
 	pixel_y = -32
+	light_system = STATIC_LIGHT
 
-/obj/effect/explosion/Initialize()
+/obj/effect/explosion/Initialize(mapload, radius, color)
 	. = ..()
-	QDEL_IN(src, 1 SECONDS)
+	set_light(radius, radius, color)
+	QDEL_IN(src, 12.8)
 
 /datum/effect_system/explosion
 
@@ -48,8 +55,8 @@
 	else
 		location = get_turf(loca)
 
-/datum/effect_system/explosion/start()
-	new/obj/effect/explosion( location )
+/datum/effect_system/explosion/start(radius, color)
+	new/obj/effect/explosion(location, radius, color)
 	var/datum/effect_system/expl_particles/P = new/datum/effect_system/expl_particles()
 	P.set_up(10, 0, location)
 	P.start()

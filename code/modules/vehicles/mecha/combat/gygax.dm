@@ -27,6 +27,8 @@
 /datum/action/vehicle/sealed/mecha/mech_overload_mode
 	name = "Toggle leg actuators overload"
 	action_icon_state = "mech_overload_off"
+	///stores value that we will add and remove from the mecha
+	var/speed_mod = 0
 
 /datum/action/vehicle/sealed/mecha/mech_overload_mode/action_activate(trigger_flags, forced_state = null)
 	if(!owner || !chassis || !(owner in chassis.occupants))
@@ -37,12 +39,25 @@
 		chassis.leg_overload_mode = !chassis.leg_overload_mode
 	action_icon_state = "mech_overload_[chassis.leg_overload_mode ? "on" : "off"]"
 	chassis.log_message("Toggled leg actuators overload.", LOG_MECHA)
+	//tgmc add
+	var/obj/item/mecha_parts/mecha_equipment/ability/dash/ability = locate() in chassis.equip_by_category[MECHA_UTILITY]
+	if(ability)
+		chassis.cut_overlay(ability.overlay)
+		var/state = chassis.leg_overload_mode ? (initial(ability.icon_state) + "_active") : initial(ability.icon_state)
+		ability.overlay = image('icons/mecha/mecha_ability_overlays.dmi', icon_state = state, layer=chassis.layer+0.001)
+		chassis.add_overlay(ability.overlay)
+		if(chassis.leg_overload_mode)
+			ability.sound_loop.start(chassis)
+		else
+			ability.sound_loop.stop(chassis)
+	//tgmc end
 	if(chassis.leg_overload_mode)
-		chassis.move_delay = min(1, round(chassis.move_delay * 0.5))
+		speed_mod = min(chassis.move_delay-1, round(chassis.move_delay * 0.5))
+		chassis.move_delay -= speed_mod
 		chassis.step_energy_drain = max(chassis.overload_step_energy_drain_min,chassis.step_energy_drain*chassis.leg_overload_coeff)
 		chassis.balloon_alert(owner,"leg actuators overloaded")
 	else
-		chassis.move_delay = initial(chassis.move_delay)
+		chassis.move_delay += speed_mod
 		chassis.step_energy_drain = chassis.normal_step_energy_drain
 		chassis.balloon_alert(owner, "you disable the overload")
 	update_button_icon()

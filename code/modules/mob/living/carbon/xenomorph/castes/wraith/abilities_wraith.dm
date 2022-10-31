@@ -1,5 +1,7 @@
 GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
-	/obj/structure/barricade)))
+	/obj/vehicle/sealed,
+	/obj/structure/barricade,
+)))
 
 // ***************************************
 // *********** Blink
@@ -12,7 +14,9 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	use_state_flags = XABB_TURF_TARGET
 	plasma_cost = 30
 	cooldown_timer = 0.5 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_BLINK
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BLINK,
+	)
 
 ///Check target Blink turf to see if it can be blinked to
 /datum/action/xeno_action/activable/blink/proc/check_blink_tile(turf/T, ignore_blocker = FALSE, silent = FALSE)
@@ -150,7 +154,9 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	use_state_flags = XACT_TARGET_SELF
 	plasma_cost = 50
 	cooldown_timer = 20 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_BANISH
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BANISH,
+	)
 	///Target we've banished
 	var/atom/movable/banishment_target = null
 	///SFX indicating the banished target's position
@@ -339,7 +345,9 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	mechanics_text = "We recall a target we've banished back from the depths of nullspace."
 	use_state_flags = XACT_USE_NOTTURF|XACT_USE_CLOSEDTURF|XACT_USE_STAGGERED|XACT_USE_INCAP|XACT_USE_LYING //So we can recall ourselves from nether Brazil
 	cooldown_timer = 1 SECONDS //Token for anti-spam
-	keybind_signal = COMSIG_XENOABILITY_RECALL
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RECALL,
+	)
 
 /datum/action/xeno_action/recall/can_use_action(silent = FALSE, override_flags)
 	. = ..()
@@ -398,7 +406,9 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	mechanics_text = "Freezes bullets in their course, and they will start to move again only after a certain time"
 	plasma_cost = 100
 	cooldown_timer = 1 MINUTES
-	keybind_signal = COMSIG_XENOABILITY_TIMESTOP
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TIMESTOP,
+	)
 	///The range of the ability
 	var/range = 1
 	///How long is the bullet freeze staying
@@ -439,8 +449,10 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	mechanics_text = "Place a portal on your location. You can travel from portal to portal. Left click to create portal one, right click to create portal two"
 	plasma_cost = 50
 	cooldown_timer = 5 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_PORTAL
-	alternate_keybind_signal = COMSIG_XENOABILITY_PORTAL_ALTERNATE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PORTAL,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_PORTAL_ALTERNATE,
+	)
 	/// How far can you link two portals
 	var/range = 20
 	/// The first portal
@@ -621,7 +633,9 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	mechanics_text = "Save the location and status of the target. When the time is up, the target location and status are restored"
 	plasma_cost = 100
 	cooldown_timer = 30 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_REWIND
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REWIND,
+	)
 	use_state_flags = XACT_TARGET_SELF
 	/// How long till the time rewinds
 	var/start_rewinding = 5 SECONDS

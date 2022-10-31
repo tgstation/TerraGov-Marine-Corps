@@ -21,8 +21,12 @@
 	layer = ABOVE_ALL_MOB_LAYER
 	mech_type = EXOSUIT_MODULE_GREYSCALE
 	pixel_x = -16
-	move_delay = 3 // tivi todo: polish, mechs too fast
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 5, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	move_delay = 3
 	max_equip_by_category = MECH_GREYSCALE_MAX_EQUIP
+	internal_damage_threshold = 15
+	internal_damage_probability = 5
+	possible_int_damage = MECHA_INT_FIRE|MECHA_INT_CONTROL_LOST|MECHA_INT_SHORT_CIRCUIT
 	/// keyed list. values are types at init, otherwise instances of mecha limbs, order is layer order as well
 	var/list/datum/mech_limb/limbs = list(
 		MECH_GREY_TORSO = null,
@@ -108,12 +112,12 @@
 
 	for(var/key in render_order)
 		if(key == MECHA_R_ARM)
-			var/obj/item/mecha_parts/mecha_equipment/weapon/right_gun = equip_by_category[MECHA_R_ARM]
+			var/obj/item/mecha_parts/mecha_equipment/right_gun = equip_by_category[MECHA_R_ARM]
 			if(right_gun)
 				. += image('icons/mecha/mech_gun_overlays.dmi', right_gun.icon_state + "_right", pixel_x=-32)
 			continue
 		if(key == MECHA_L_ARM)
-			var/obj/item/mecha_parts/mecha_equipment/weapon/left_gun = equip_by_category[MECHA_L_ARM]
+			var/obj/item/mecha_parts/mecha_equipment/left_gun = equip_by_category[MECHA_L_ARM]
 			if(left_gun)
 				. += image('icons/mecha/mech_gun_overlays.dmi', left_gun.icon_state + "_left", pixel_x=-32)
 			continue

@@ -456,12 +456,14 @@
 	deployed_turret.loc = get_step(src, dir)
 	icon_state = "sentry_system_deployed"
 	dropship_equipment_flags |= IS_NOT_REMOVABLE
+	deployed_turret.update_minimap_icon()
 
 /obj/structure/dropship_equipment/sentry_holder/proc/undeploy_sentry()
 	if(!deployed_turret)
 		return
 	playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
 	deployment_cooldown = world.time + 50
+	SSminimaps.remove_marker(deployed_turret)
 	deployed_turret.loc = src
 	deployed_turret.set_on(FALSE)
 	deployed_turret.update_icon()
@@ -677,6 +679,46 @@
 		QDEL_NULL(deployed_heavyrr)
 	return ..()
 
+/obj/structure/dropship_equipment/mortar_holder
+	name = "mortar deployment system"
+	desc = "A box that deploys a TA-55DB mortar. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
+	equip_category = DROPSHIP_CREW_WEAPON
+	icon_state = "mortar_system"
+	point_cost = 300
+	///machine type for the internal gun and for checking if the gun is deployed
+	var/obj/machinery/deployable/mortar/double/deployed_mortar
+
+/obj/structure/dropship_equipment/mortar_holder/Initialize()
+	. = ..()
+	if(deployed_mortar)
+		return
+	var/obj/item/mortar_kit/double/new_gun = new(src)
+	deployed_mortar = new_gun.loc //new_gun.loc, since it deploys on new(), is located within the deployed_mortar. Therefore new_gun.loc = deployed_mg.
+
+/obj/structure/dropship_equipment/mortar_holder/examine(mob/user)
+	. = ..()
+	if(!deployed_mortar)
+		. += "Its mortar is missing."
+
+/obj/structure/dropship_equipment/mortar_holder/update_equipment()
+	if(!deployed_mortar)
+		return
+	if(ship_base)
+		deployed_mortar.loc = loc
+	else
+		deployed_mortar.loc = src
+	update_icon()
+
+/obj/structure/dropship_equipment/mortar_holder/update_icon_state()
+	if(ship_base)
+		icon_state = "mg_system_deployed"
+	else
+		icon_state = "mg_system"
+
+/obj/structure/dropship_equipment/mortar_holder/Destroy()
+	if(deployed_mortar)
+		QDEL_NULL(deployed_mortar)
+	return ..()
 ////////////////////////////////// FUEL EQUIPMENT /////////////////////////////////
 
 /obj/structure/dropship_equipment/fuel
