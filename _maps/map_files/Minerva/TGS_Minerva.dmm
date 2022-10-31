@@ -11028,6 +11028,7 @@
 "Gl" = (
 /obj/item/bedsheet/captain,
 /obj/structure/bed,
+/obj/effect/landmark/start/job/mechpilot,
 /turf/open/floor/wood,
 /area/mainship/living/tankerbunks)
 "Gm" = (
