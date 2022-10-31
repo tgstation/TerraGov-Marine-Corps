@@ -440,6 +440,7 @@
 #include "code\datums\keybinding\emote.dm"
 #include "code\datums\keybinding\human.dm"
 #include "code\datums\keybinding\living.dm"
+#include "code\datums\keybinding\mecha.dm"
 #include "code\datums\keybinding\mob.dm"
 #include "code\datums\keybinding\movement.dm"
 #include "code\datums\keybinding\xeno.dm"
