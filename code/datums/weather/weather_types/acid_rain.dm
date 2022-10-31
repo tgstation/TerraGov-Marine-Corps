@@ -52,7 +52,7 @@
 	if(prob(max(0,100-resist)))
 		L.adjustFireLoss(7)
 		to_chat(L, span_boldannounce("You feel the acid rain melting you away!"))
-	clean_mob(L)
+	L.clean_mob()
 	if(L.fire_stacks > -20)
 		L.fire_stacks = max(-20, L.fire_stacks - 1)
 
@@ -71,7 +71,7 @@
 	repeatable = TRUE
 
 /datum/weather/acid_rain/harmless/weather_act(mob/living/L)
-	clean_mob(L)
+	L.clean_mob()
 	if(L.fire_stacks > -20)
 		L.fire_stacks = max(-20, L.fire_stacks - 1)
 		var/wetmessage = pick( "You're drenched in water!",
@@ -81,9 +81,9 @@
 		"Rushing water rolls off your face as the rain soaks you completely!",
 		"Heavy raindrops hit your face as the rain thoroughly soaks your body!",
 		"As you move through the heavy rain, your clothes become completely waterlogged!",
+		if(prob(20))
+			if(isrobot(L))
+				return
+			else
+				to_chat(H, span_warning(wetmessage))
 	)
-	if(prob(20))
-		if(isrobot(L))
-			return
-		else
-			to_chat(H, span_warning(wetmessage))
