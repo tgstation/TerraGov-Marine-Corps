@@ -11,14 +11,12 @@
 	updatehealth()
 
 
-//this updates all special effects: knockdown, druggy, stuttering, etc..
+//this updates all special effects: knockdown, druggy, etc.., DELETE ME!!
 /mob/living/proc/handle_status_effects()
 	if(no_stun)//anti-chainstun flag for alien tackles
 		no_stun = max(0, no_stun - 1) //decrement by 1.
 
 	handle_drugged()
-	handle_stuttering()
-	handle_slurring()
 	handle_slowdown()
 	handle_stagger()
 
@@ -52,21 +50,10 @@
 	reagent_shock_modifier = 0
 	reagent_pain_modifier = 0
 
-/mob/living/proc/handle_stuttering()
-	if(stuttering)
-		stuttering = max(stuttering-1, 0)
-	return stuttering
-
 /mob/living/proc/handle_drugged()
 	if(druggy)
 		adjust_drugginess(-1)
 	return druggy
-
-/mob/living/proc/handle_slurring()
-	if(slurring)
-		slurring = max(slurring-1, 0)
-	return slurring
-
 
 /mob/living/proc/handle_staminaloss()
 	if(world.time < last_staminaloss_dmg + 3 SECONDS)

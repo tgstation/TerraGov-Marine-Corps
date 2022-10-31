@@ -399,7 +399,9 @@
 	L.SetParalyzed(0)
 	L.dizziness = 0
 	L.setDrowsyness(0)
-	L.stuttering = 0
+	// Remove all speech related status effects
+	for(var/effect in typesof(/datum/status_effect/speech))
+		L.remove_status_effect(effect)
 	L.SetConfused(0)
 	L.SetSleeping(0)
 	L.jitteriness = 0
@@ -482,7 +484,7 @@
 	L.reagent_shock_modifier += (2 * PAIN_REDUCTION_VERY_HEAVY)
 	L.adjustDrowsyness(-5)
 	L.dizzy(-5)
-	L.stuttering = max(L.stuttering-5, 0)
+	L.adjust_timed_status_effect(-10 SECONDS, /datum/status_effect/speech/stutter)
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		C.drunkenness = max(C.drunkenness-5, 0)
@@ -1086,7 +1088,7 @@
 /datum/reagent/medicine/ethylredoxrazine/on_mob_life(mob/living/L, metabolism)
 	L.dizzy(-1)
 	L.adjustDrowsyness(-1)
-	L.stuttering = max(L.stuttering-1, 0)
+	L.adjust_timed_status_effect(-2 SECONDS, /datum/status_effect/speech/stutter)
 	L.AdjustConfused(-20)
 	var/mob/living/carbon/C = L
 	C.drunkenness = max(C.drunkenness-4, 0)

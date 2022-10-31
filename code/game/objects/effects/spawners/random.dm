@@ -349,7 +349,8 @@
 					/obj/item/clothing/head/strawhat,\
 					/obj/item/clothing/head/warning_cone,\
 					/obj/item/clothing/head/collectable/paper,\
-					/obj/item/clothing/head/helmet/riot)
+					/obj/item/clothing/head/helmet/riot,\
+					/obj/item/clothing/head/collectable/kitty)
 
 
 ///random kitchen items

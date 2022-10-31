@@ -76,8 +76,6 @@
 
 	var/icon/stand_icon = null
 
-	var/speech_problem_flag = 0
-
 	var/special_voice = "" // For changing our voice. Used by a symptom.
 
 	var/last_dam = -1	//Used for determining if we need to process all limbs or just some or even none.

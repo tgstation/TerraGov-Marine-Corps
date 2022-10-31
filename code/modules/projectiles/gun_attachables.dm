@@ -1022,6 +1022,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "AR-11 stock"
 	icon_state = "tx11stock"
 
+/obj/item/attachable/stock/som_mg_stock
+	name = "\improper V-41 stock"
+	desc = "A irremovable V-41 machine gun stock."
+	icon_state = "v41stock"
+	pixel_shift_x = 0
+	pixel_shift_y = 0
+
 //Underbarrel
 
 /obj/item/attachable/verticalgrip
