@@ -127,3 +127,6 @@
 /obj/item/storage/backpack/dispenser/open(mob/user)
 	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		return ..()
+
+/obj/item/storage/backpack/dispenser/attempt_draw_object(mob/living/user)
+	to_chat(usr, span_notice("You can't grab anything out of [src] while its not deployed."))
