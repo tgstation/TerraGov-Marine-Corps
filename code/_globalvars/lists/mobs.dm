@@ -97,11 +97,6 @@ GLOBAL_LIST_INIT(all_xeno_types, list(
 	/mob/living/carbon/xenomorph/carrier/elder,
 	/mob/living/carbon/xenomorph/carrier/ancient,
 	/mob/living/carbon/xenomorph/carrier/primordial,
-	/mob/living/carbon/xenomorph/bull,
-	/mob/living/carbon/xenomorph/bull/mature,
-	/mob/living/carbon/xenomorph/bull/elder,
-	/mob/living/carbon/xenomorph/bull/ancient,
-	/mob/living/carbon/xenomorph/bull/primordial,
 	/mob/living/carbon/xenomorph/queen,
 	/mob/living/carbon/xenomorph/queen/mature,
 	/mob/living/carbon/xenomorph/queen/elder,
@@ -154,7 +149,7 @@ GLOBAL_LIST_INIT(all_xeno_types, list(
 	/mob/living/carbon/xenomorph/spiderling,
 	))
 GLOBAL_LIST_INIT(xeno_types_tier_one, list(/mob/living/carbon/xenomorph/runner, /mob/living/carbon/xenomorph/drone, /mob/living/carbon/xenomorph/sentinel, /mob/living/carbon/xenomorph/defender))
-GLOBAL_LIST_INIT(xeno_types_tier_two, list(/mob/living/carbon/xenomorph/hunter, /mob/living/carbon/xenomorph/warrior, /mob/living/carbon/xenomorph/spitter, /mob/living/carbon/xenomorph/hivelord, /mob/living/carbon/xenomorph/carrier, /mob/living/carbon/xenomorph/bull, /mob/living/carbon/xenomorph/wraith))
+GLOBAL_LIST_INIT(xeno_types_tier_two, list(/mob/living/carbon/xenomorph/hunter, /mob/living/carbon/xenomorph/warrior, /mob/living/carbon/xenomorph/spitter, /mob/living/carbon/xenomorph/hivelord, /mob/living/carbon/xenomorph/carrier, /mob/living/carbon/xenomorph/wraith))
 GLOBAL_LIST_INIT(xeno_types_tier_three, list(/mob/living/carbon/xenomorph/gorger, /mob/living/carbon/xenomorph/widow, /mob/living/carbon/xenomorph/ravager, /mob/living/carbon/xenomorph/praetorian, /mob/living/carbon/xenomorph/boiler, /mob/living/carbon/xenomorph/defiler, /mob/living/carbon/xenomorph/crusher, /mob/living/carbon/xenomorph/shrike))
 
 GLOBAL_LIST_EMPTY_TYPED(hive_datums, /datum/hive_status) // init by make_datum_references_lists()

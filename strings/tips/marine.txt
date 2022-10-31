@@ -14,7 +14,7 @@ Be mindful when using hand grenades. Getting stunned or knocked over after primi
 Watch out for friendly fire and marines not in aim mode. Make sure you're not walking into anyone's firing line, and make sure no one else is in yours!
 Some weapons permit aim mode, which prevents friendly fire. Use this behind marines and be a smartgunner lite!
 While medics and doctors are best at it, anyone can use a defibrillator and operate the body scanner and autodoc medical system.
-Anyone can make razor wire by using three metal sheets, which is four metal rods and barbed wire from metal sheets. Stop that crusher and bull from charging!
+Anyone can make razor wire by using three metal sheets, which is four metal rods and barbed wire from metal sheets. Stop that crusher from charging!
 Terra Experimental standard batteries can be recharged in APCs and power cell rechargers if the generators are on.
 If you aren't a squad marine, then you have a special room in prep with special gear vendors.
 Sidearms aren't complete garbage. They are often faster than reloading if in a very tight situation, it may save your life.

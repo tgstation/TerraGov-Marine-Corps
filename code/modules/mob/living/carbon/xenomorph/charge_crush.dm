@@ -218,9 +218,6 @@
 						span_danger("We run [victim] over!"), null, 5)
 					victim.take_overall_damage_armored(CHARGE_SPEED(src) * 10, BRUTE, "melee")
 					animation_flash_color(victim)
-			if(CHARGE_BULL, CHARGE_BULL_HEADBUTT, CHARGE_BULL_GORE) //Xeno Bull
-				if(MODULUS(valid_steps_taken, 4) == 0)
-					playsound(charger, "alien_footstep_large", 50)
 
 	lastturf = charger.loc
 

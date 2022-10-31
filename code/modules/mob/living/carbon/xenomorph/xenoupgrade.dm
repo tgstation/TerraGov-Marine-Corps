@@ -105,22 +105,6 @@
 
 //-----RUNNER END-----//
 //================//
-//-----BULL START-----//
-
-/mob/living/carbon/xenomorph/bull/mature
-	upgrade = XENO_UPGRADE_ONE
-
-/mob/living/carbon/xenomorph/bull/elder
-	upgrade = XENO_UPGRADE_TWO
-
-/mob/living/carbon/xenomorph/bull/ancient
-	upgrade = XENO_UPGRADE_THREE
-
-/mob/living/carbon/xenomorph/bull/primordial
-	upgrade = XENO_UPGRADE_FOUR
-
-//-----BULL END-----//
-//================//
 //-----DRONE START-----//
 
 /mob/living/carbon/xenomorph/drone/mature

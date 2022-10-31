@@ -130,24 +130,6 @@
 	description = "Throws a gas emitting grenade at the targetted area"
 	keybind_signal = COMSIG_XENOABILITY_NEUROGAS_GRENADE
 
-/datum/keybinding/xeno/plow_charge
-	name = "plow_charge"
-	full_name = "Bull: Plow Charge"
-	description = "A charge that plows through the victims."
-	keybind_signal = COMSIG_XENOABILITY_BULLCHARGE
-
-/datum/keybinding/xeno/headbutt_charge
-	name = "headbutt_charge"
-	full_name = "Bull: Headbutt Charge"
-	description = "A charge that tosses the victim forward or backwards, depending on intent."
-	keybind_signal = COMSIG_XENOABILITY_BULLHEADBUTT
-
-/datum/keybinding/xeno/gore_charge
-	name = "gore_charge"
-	full_name = "Bull: Gore Charge"
-	description = "A charge that gores the victim."
-	keybind_signal = COMSIG_XENOABILITY_BULLGORE
-
 /datum/keybinding/xeno/long_range_sight
 	name = "long_range_sight"
 	full_name = "Boiler: Long Range Sight"

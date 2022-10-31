@@ -26,7 +26,7 @@
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_YOUNG_THRESHOLD
 
-	deevolves_to = /mob/living/carbon/xenomorph/bull
+	deevolves_to = /mob/living/carbon/xenomorph/warrior
 
 	// *** Flags *** //
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_BECOME_KING
