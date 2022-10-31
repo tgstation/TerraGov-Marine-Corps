@@ -6937,6 +6937,13 @@
 	dir = 8
 	},
 /area/lv624/lazarus/spaceport)
+"fIr" = (
+/obj/machinery/door/airlock/mainship/generic{
+	desc = "This strange temple is covered in runes. It looks extremely ancient.";
+	name = "Strange Temple"
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/lazarus/sandtemple)
 "fIY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -8956,8 +8963,9 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "ics" = (
-/obj/machinery/door/airlock/sandstone{
+/obj/machinery/door/airlock/mainship/generic{
 	desc = "This strange temple is covered in runes. It looks extremely ancient.";
+	dir = 2;
 	name = "Strange Temple"
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -19086,7 +19094,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "tPY" = (
-/obj/machinery/door/airlock/sandstone{
+/obj/machinery/door/airlock/mainship/generic{
 	desc = "This strange temple is covered in runes. It looks extremely ancient.";
 	name = "Strange Temple"
 	},
@@ -60665,7 +60673,7 @@ tPY
 qfl
 qfl
 oRZ
-ics
+fIr
 qfl
 qfl
 oRZ
