@@ -94,6 +94,9 @@
 	icon_state = "[walltype][junction]"
 	junctiontype = junction
 
+/obj/structure/grille/mainship/handle_icon_junction(junction)
+	icon_state = "grille[junction]"
+
 /turf/open/floor/vault/relativewall()
 	return
 
