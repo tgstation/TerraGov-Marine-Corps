@@ -2,6 +2,7 @@
 #define IGNORE_WEED_REMOVAL (1<<0)
 #define HAS_OVERLAY (1<<1)
 #define CRITICAL_STRUCTURE (1<<2)
+#define DEPART_DESTRUCTION_IMMUNE (1<<3)
 
 //Weeds defines
 #define WEED "weed sac"
