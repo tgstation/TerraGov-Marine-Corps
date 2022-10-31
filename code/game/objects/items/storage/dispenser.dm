@@ -1,9 +1,11 @@
 
 /obj/machinery/deployable/dispenser
 	name = "TX-9000 provisions dispenser"
-	desc = "The TX-9000 also known as \"Dispenser\" is a machine capable of holding a big amount of items on it, while also healing nearby synthetics. Your allies will often ask you to lay down one of those."
+	desc = "The TX-9000 also known as \"Dispenser\" is a machine capable of holding a large amount of items on it, while also healing nearby synthetics. Your allies will often ask you to lay down one of these."
 	density = TRUE
 	anchored = TRUE
+	max_integrity = 250
+	resistance_flags = XENO_DAMAGEABLE
 	///list of human mobs we're currently affecting in our area.
 	var/list/mob/living/carbon/human/affecting_list
 	///if the dispenser has finished deploying and is fully active and can be used.
@@ -111,6 +113,7 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	max_w_class = 6
 	max_storage_space = 63
+	max_integrity = 200
 
 /obj/item/storage/backpack/dispenser/Initialize(mapload, ...)
 	. = ..()
@@ -124,3 +127,6 @@
 /obj/item/storage/backpack/dispenser/open(mob/user)
 	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		return ..()
+
+/obj/item/storage/backpack/dispenser/attempt_draw_object(mob/living/user)
+	to_chat(usr, span_notice("You can't grab anything out of [src] while its not deployed."))
