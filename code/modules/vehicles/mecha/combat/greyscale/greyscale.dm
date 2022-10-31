@@ -26,7 +26,7 @@
 	max_equip_by_category = MECH_GREYSCALE_MAX_EQUIP
 	internal_damage_threshold = 15
 	internal_damage_probability = 5
-	possible_int_damage = MECHA_INT_FIRE|MECHA_INT_CONTROL_LOST|MECHA_INT_SHORT_CIRCUIT
+	possible_int_damage = MECHA_INT_FIRE|MECHA_INT_SHORT_CIRCUIT
 	/// keyed list. values are types at init, otherwise instances of mecha limbs, order is layer order as well
 	var/list/datum/mech_limb/limbs = list(
 		MECH_GREY_TORSO = null,
