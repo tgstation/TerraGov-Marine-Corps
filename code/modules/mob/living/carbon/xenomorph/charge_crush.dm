@@ -35,7 +35,7 @@
 	var/next_special_attack = 0 //Little var to keep track on special attack timers.
 	var/plasma_use_multiplier = 1
 	///If this charge should keep momentum on dir change and if it can charge diagonally
-	var/agile_charge = FALSE
+	var/agile_charge = 0
 	///the time we last changed direction
 	var/last_dir_change
 
@@ -93,11 +93,11 @@
 		return
 	if(!old_dir || !new_dir || old_dir == new_dir) //Check for null direction from help shuffle signals
 		return
-	if(new_dir == REVERSE_DIR(old_dir))//we can't just 180 back the way we came
+	if((new_dir != old_dir && !agile_charge) || new_dir == REVERSE_DIR(old_dir))
 		do_stop_momentum()
 		return
 	var/turn_rate = 16
-	if(agile_charge)
+	if(agile_charge == 2)
 		turn_rate = 8
 	if(last_dir_change > world.time - turn_rate)
 		do_stop_momentum()
@@ -165,7 +165,7 @@
 	var/mob/living/carbon/xenomorph/charger = owner
 	if(!newdir)
 		return
-	if(ISDIAGONALDIR(newdir) && !agile_charge)
+	if(ISDIAGONALDIR(newdir) && !agile_charge) //broken due to mob dir being cardinals, will see if fixable...
 		return
 
 	if(next_move_limit && world.time > next_move_limit)
@@ -342,6 +342,7 @@
 	max_steps_buildup = 10
 	crush_living_damage = 15
 	plasma_use_multiplier = 2
+	agile_charge = 1
 
 
 /datum/action/xeno_action/ready_charge/bull_charge/give_action(mob/living/L)
@@ -378,7 +379,8 @@
 
 /datum/action/xeno_action/ready_charge/bull_charge/on_xeno_upgrade()
 	var/mob/living/carbon/xenomorph/X = owner
-	agile_charge = (X.upgrade == XENO_UPGRADE_FOUR)
+	if(X.upgrade == XENO_UPGRADE_FOUR)
+		agile_charge = 2
 
 /datum/action/xeno_action/ready_charge/queen_charge
 	action_icon_state = "queen_ready_charge"
