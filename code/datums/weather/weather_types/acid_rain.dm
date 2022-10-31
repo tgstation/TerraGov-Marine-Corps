@@ -52,7 +52,7 @@
 	if(prob(max(0,100-resist)))
 		L.adjustFireLoss(7)
 		to_chat(L, span_boldannounce("You feel the acid rain melting you away!"))
-	cleanup(L, TRUE)
+	clean_mob(L)
 	if(L.fire_stacks > -20)
 		L.fire_stacks = max(-20, L.fire_stacks - 1)
 
@@ -71,26 +71,10 @@
 	repeatable = TRUE
 
 /datum/weather/acid_rain/harmless/weather_act(mob/living/L)
-	cleanup(L)
+	clean_mob(L)
 	if(L.fire_stacks > -20)
 		L.fire_stacks = max(-20, L.fire_stacks - 1)
-
-/datum/weather/acid_rain/proc/cleanup(mob/living/L, acid = FALSE)
-	if(!ishuman(L))
-		return
-	var/mob/living/carbon/human/H = L
-	if(H.back?.clean_blood())
-		H.update_inv_back()
-	if(H.wear_suit?.clean_blood())
-		H.update_inv_wear_suit()
-	if(H.w_uniform?.clean_blood())
-		H.update_inv_w_uniform()
-	if(H.gloves?.clean_blood())
-		H.update_inv_gloves()
-	if(H.shoes?.clean_blood())
-		H.update_inv_shoes()
-	H.clean_blood()
-	var/wetmessage = pick( "You're drenched in water!",
+		var/wetmessage = pick( "You're drenched in water!",
 		"You're completely soaked by rainfall!",
 		"You become soaked by the heavy rainfall!",
 		"Water drips off your uniform as the rain soaks your outfit!",
@@ -101,7 +85,5 @@
 	if(prob(20))
 		if(isrobot(L))
 			return
-		if(acid)
-			to_chat(H, span_warning("Corrosive acid seeps into your outfit, dissolving dirt and blood as it soaks in!"))
 		else
 			to_chat(H, span_warning(wetmessage))
