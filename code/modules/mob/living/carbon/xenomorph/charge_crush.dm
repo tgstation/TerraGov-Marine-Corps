@@ -97,9 +97,9 @@
 		do_stop_momentum()
 		return
 	var/turn_rate = 16
-		if(agile_charge)
-			turn_rate = 8
-	if(last_dir_change > world.time - 10)
+	if(agile_charge)
+		turn_rate = 8
+	if(last_dir_change > world.time - turn_rate)
 		do_stop_momentum()
 	last_dir_change = world.time
 
