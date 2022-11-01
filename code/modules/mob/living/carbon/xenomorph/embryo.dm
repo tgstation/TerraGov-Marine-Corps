@@ -68,7 +68,7 @@
 /obj/item/alien_embryo/proc/process_growth()
 
 	if(stage <= 4)
-		counter += 2.5 //Free burst time in ~7/8 min.
+		counter += 3.3 //Free burst time in ~6/7 min.
 
 	if(affected_mob.reagents.get_reagent_amount(/datum/reagent/consumable/larvajelly))
 		counter += 10 //Accelerates larval growth massively. Voluntarily drinking larval jelly while infected is straight-up suicide. Larva hits Stage 5 in exactly ONE minute.
