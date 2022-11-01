@@ -454,6 +454,7 @@
 /area/mainship/hull/starboard_hull)
 "bj" = (
 /obj/structure/reagent_dispensers/water_cooler,
+/obj/machinery/door_control/mainship/mech,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
 "bk" = (
@@ -2520,6 +2521,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/door/poddoor/mainship/mech{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
 "gX" = (
@@ -5180,10 +5184,8 @@
 /turf/open/floor/mainship/sterile/plain,
 /area/mainship/medical/lower_medical)
 "oY" = (
-/obj/machinery/door_control/mainship{
-	dir = 8;
-	id = "mechbay";
-	name = "Mech Bay Shutters"
+/obj/machinery/door_control/mainship/mech{
+	dir = 8
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
@@ -5891,6 +5893,9 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/door/poddoor/mainship/mech{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
 "rp" = (
@@ -9084,10 +9089,8 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
 "AD" = (
-/obj/machinery/door_control/mainship{
-	dir = 4;
-	id = "mechbay";
-	name = "Mech Bay Shutters"
+/obj/machinery/door_control/mainship/mech{
+	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
@@ -9786,10 +9789,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "CI" = (
-/obj/machinery/door/poddoor/shutters{
-	id = "mechbay";
-	name = "Mech Bay Shutters"
-	},
+/obj/machinery/door/poddoor/mainship/mech,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
 "CJ" = (
@@ -10150,6 +10150,7 @@
 /area/mainship/living/cafeteria_starboard)
 "DN" = (
 /obj/effect/ai_node,
+/obj/machinery/door_control/mainship/mech,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
 "DO" = (
