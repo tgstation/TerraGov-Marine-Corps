@@ -246,7 +246,7 @@
 
 /obj/machinery/door_control/mainship/mech
 	name = "Mech Shutter"
-	id = "mech_shutter"
+	id = "mech_shutters"
 
 /obj/machinery/door_control/mainship/tcomms
 	name = "Telecommunications Entrance"
