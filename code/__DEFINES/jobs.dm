@@ -176,4 +176,5 @@ GLOBAL_LIST_INIT(jobs_fallen_all, typecacheof(list(/datum/job/fallen)))
 /// How many points a medic can spend on pills
 #define MEDIC_TOTAL_BUY_POINTS 45
 /// How many points an engineer can spend
-#define ENGINEER_TOTAL_BUY_POINTS 75
+#define ENGINEER_TOTAL_BUY_POINTS 50
+#define ENGINEER_SPECIAL_TOTAL_BUY_POINTS 2

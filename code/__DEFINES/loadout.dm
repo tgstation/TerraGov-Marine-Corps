@@ -15,6 +15,8 @@
 #define CAT_MOD "JAEGER STORAGE MODULES"
 #define CAT_ARMMOD "JAEGER ARMOR MODULES"
 
+#define CAT_ENGISPL "ENGINEER SPECIALIZATION"
+
 #define CAT_MEDSUP "MEDICAL SUPPLIES"
 #define CAT_ENGSUP "ENGINEERING SUPPLIES"
 #define CAT_LEDSUP "LEADER SUPPLIES"
@@ -48,17 +50,20 @@ GLOBAL_LIST_INIT(marine_gear_listed_products, list())
 
 GLOBAL_LIST_INIT(engineer_gear_listed_products, list(
 		/obj/effect/essentials_set/engi = list(CAT_ESS, "Essential Engineer Set", 0, "white"),
+		/obj/item/storage/box/minisentry = list(CAT_ENGISPL, "ST-580 point defense sentry kit", 2, "black"),
+		/obj/structure/closet/crate/uav_crate = list(CAT_ENGISPL, "Iguana Unmanned Vehicle", 2, "black"),
+		/obj/effect/teleporter_linker = list(CAT_ENGISPL, "Teleporters", 1, "black"),
+		/obj/item/storage/backpack/dispenser = list(CAT_ENGISPL, "Dispenser", 1, "black"),
+		/obj/item/storage/backpack/marine/radiopack = list(CAT_ENGISPL, "Radio Pack", 1, "black"),
+		/obj/item/tool/pickaxe/plasmacutter = list(CAT_ENGISPL, "Plasma cutter", 1, "black"),
 		/obj/item/stack/sheet/metal/small_stack = list(CAT_ENGSUP, "Metal x10", METAL_PRICE_IN_GEAR_VENDOR, "orange"),
 		/obj/item/stack/sheet/plasteel/small_stack = list(CAT_ENGSUP, "Plasteel x10", PLASTEEL_PRICE_IN_GEAR_VENDOR, "orange"),
 		/obj/item/stack/sandbags_empty/half = list(CAT_ENGSUP, "Sandbags x25", SANDBAG_PRICE_IN_GEAR_VENDOR, "orange"),
 		/obj/item/tool/weldingtool/hugetank = list(CAT_ENGSUP, "High-capacity industrial blowtorch", 5, "black"),
 		/obj/item/clothing/glasses/welding/superior = list(CAT_ENGSUP, "Superior welding goggles", 2, "black"),
 		/obj/item/armor_module/module/welding/superior = list(CAT_ENGSUP, "Superior welding module", 2, "black"),
-		/obj/item/tool/pickaxe/plasmacutter = list(CAT_ENGSUP, "Plasma cutter", 20, "black"),
 		/obj/item/explosive/plastique = list(CAT_ENGSUP, "Plastique explosive", 2, "black"),
 		/obj/item/detpack = list(CAT_ENGSUP, "Detonation pack", 5, "black"),
-		/obj/item/storage/box/minisentry = list(CAT_ENGSUP, "ST-580 point defense sentry kit", 50, "black"),
-		/obj/structure/closet/crate/uav_crate = list(CAT_ENGSUP, "Iguana Unmanned Vehicle", 50, "black"),
 		/obj/item/attachable/buildasentry = list(CAT_ENGSUP, "Build-A-Sentry Attachment", 30, "black"),
 		/obj/item/binoculars/tactical/range = list(CAT_ENGSUP, "Range Finder", 10, "black"),
 		/obj/item/ai_target_beacon = list(CAT_ENGSUP, "AI remote targeting module", 10, "black"),
@@ -66,9 +71,8 @@ GLOBAL_LIST_INIT(engineer_gear_listed_products, list(
 		/obj/item/cell/high = list(CAT_ENGSUP, "High capacity powercell", 1, "black"),
 		/obj/item/cell/rtg/small = list(CAT_ENGSUP, "Recharger powercell", 5, "black"),
 		/obj/item/cell/rtg/large = list(CAT_ENGSUP, "Large recharger powercell", 15, "black"),
-		/obj/effect/teleporter_linker = list(CAT_ENGSUP, "Teleporters", 25, "black"),
-		/obj/item/storage/box/explosive_mines = list(CAT_ENGSUP, "M20 mine box", 18, "black"),
-		/obj/item/storage/box/explosive_mines/large = list(CAT_ENGSUP, "Large M20 mine box", 35, "black"),
+		/obj/item/storage/box/explosive_mines = list(CAT_ENGSUP, "M20 mine box", 15, "black"),
+		/obj/item/storage/box/explosive_mines/large = list(CAT_ENGSUP, "Large M20 mine box", 30, "black"),
 		/obj/item/minelayer = list(CAT_ENGSUP, "M21 APRDS \"Minelayer\"", 5, "black"),
 		/obj/item/minerupgrade/overclock = list(CAT_ENGSUP, "Mining well overclock upgrade", 4, "black"),
 		/obj/item/minerupgrade/reinforcement = list(CAT_ENGSUP, "Mining well reinforcement upgrade", 4, "black"),
@@ -305,8 +309,6 @@ GLOBAL_LIST_INIT(engineer_clothes_listed_products, list(
 		/obj/item/storage/backpack/marine/tech = list(CAT_BAK, "Backpack", 0, "black"),
 		/obj/item/storage/holster/blade/machete/full = list(CAT_BAK, "Machete scabbard", 0, "black"),
 		/obj/item/storage/backpack/marine/engineerpack = list(CAT_BAK, "Welderpack", 0, "black"),
-		/obj/item/storage/backpack/marine/radiopack = list(CAT_BAK, "Radio Pack", 0, "black"),
-		/obj/item/storage/backpack/dispenser = list(CAT_BAK, "Dispenser", 0, "black"),
 		/obj/item/armor_module/storage/uniform/brown_vest = list(CAT_WEB, "Tactical brown vest", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/webbing = list(CAT_WEB, "Tactical webbing", 0, "black"),
 		/obj/item/armor_module/storage/uniform/holster = list(CAT_WEB, "Shoulder handgun holster", 0, "black"),
