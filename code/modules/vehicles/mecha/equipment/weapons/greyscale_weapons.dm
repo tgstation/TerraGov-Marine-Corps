@@ -439,7 +439,7 @@
 	slowdown = 0
 	harmful = TRUE
 	equip_cooldown = 3 SECONDS
-	energy_drain = 150 // Gives 8 slashes before running out of energy
+	energy_drain = 100 // Gives 8 slashes before running out of energy
 	range = MECHA_MELEE|MECHA_RANGED
 	force = 150
 	/// holder var for the mob that is attacking right now
