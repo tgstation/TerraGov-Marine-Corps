@@ -86,7 +86,7 @@
 	color = "#cac5c5"
 	scannable = TRUE
 	custom_metabolism = REAGENTS_METABOLISM * 0.125
-	purge_list = list(/datum/reagent/medicine/kelotane, /datum/reagent/medicine/tricordrazine, /datum/reagent/medicine/bicaridine)
+	purge_list = list(/datum/reagent/medicine/kelotane, /datum/reagent/medicine/bicaridine)
 	purge_rate = 1
 	overdose_threshold = REAGENTS_OVERDOSE*2
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL*2
