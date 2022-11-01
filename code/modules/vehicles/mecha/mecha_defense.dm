@@ -252,6 +252,13 @@
 		return
 	if(!W.tool_start_check(user, amount=1))
 		return
+	//check if a dumbass
+	var/skill = user.skills.getRating("engineer")
+	if(skill < SKILL_ENGINEER_ENGI) //Better be at least a engineer or you going to have a bad time
+		user.visible_message(span_notice("[user] fumbles around figuring out how to use [W]."),
+		span_notice("You fumble around figuring out how to use [W]."))
+		if(!do_after(user, 150 * (SKILL_ENGINEER_ENGI - skill), TRUE, user, BUSY_ICON_UNSKILLED))
+			return
 	user.balloon_alert_to_viewers("started welding [src]", "started repairing [src]")
 	audible_message(span_hear("You hear welding."))
 	var/did_the_thing
