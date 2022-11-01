@@ -1263,6 +1263,7 @@
 "dD" = (
 /obj/structure/rack,
 /obj/item/storage/toolbox/mechanical,
+/obj/machinery/door_control/mainship/mech,
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
@@ -1646,10 +1647,11 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "eQ" = (
-/obj/machinery/door/airlock/multi_tile/mainship/maint{
-	name = "Vehicle Hangar"
-	},
 /obj/machinery/door/firedoor/multi_tile,
+/obj/machinery/door/airlock/multi_tile/mainship/generic/mechbay,
+/obj/machinery/door/poddoor/mainship/mech{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
 "eR" = (
@@ -1807,6 +1809,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/machinery/door/poddoor/mainship/mech,
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/living/pilotbunks)
 "fn" = (
@@ -5728,6 +5731,9 @@
 	},
 /area/mainship/squads/general)
 "qJ" = (
+/obj/machinery/door/poddoor/mainship/mech{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
 "qK" = (
@@ -5930,6 +5936,11 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
+"rl" = (
+/obj/machinery/door/firedoor/mainship,
+/obj/machinery/door/poddoor/mainship/mech,
+/turf/open/floor/mainship/stripesquare,
+/area/mainship/living/pilotbunks)
 "rm" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -15957,6 +15968,12 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
+"TR" = (
+/obj/machinery/door_control/mainship/mech,
+/turf/open/floor/mainship/black{
+	dir = 1
+	},
+/area/mainship/living/pilotbunks)
 "TS" = (
 /obj/structure/bed/chair/nometal{
 	dir = 8
@@ -55029,7 +55046,7 @@ mC
 CT
 jw
 Id
-ie
+TR
 aS
 rJ
 iw
@@ -55286,9 +55303,9 @@ Id
 Wi
 Id
 Id
-pN
+rl
 fm
-pN
+rl
 iw
 ga
 BR

@@ -247,6 +247,7 @@
 /obj/machinery/door_control/mainship/mech
 	name = "Mech Shutter"
 	id = "mech_shutter"
+	req_one_access = list(ACCESS_MARINE_MECH)
 
 /obj/machinery/door_control/mainship/tcomms
 	name = "Telecommunications Entrance"

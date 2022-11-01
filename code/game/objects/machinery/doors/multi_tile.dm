@@ -121,6 +121,9 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic/rnr
 	name = "\improper Rest and Recreation"
 
+/obj/machinery/door/airlock/multi_tile/mainship/generic/mechbay
+	name = "\improper Mech Pilot's Office"
+
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric
 	name = "\improper Airlock"
 	icon = 'icons/obj/doors/mainship/2x1almayerdoor.dmi'
