@@ -577,6 +577,8 @@
 	ammo_type = /datum/ammo/mortar/rocket/minelayer
 
 /obj/item/mortal_shell/rocket/mlrs
+	name = "\improper 60mm rocket"
+	desc = "An unlabeled 60mm rocket."
 	icon_state = "mlrs_rocket"
 	ammo_type = /datum/ammo/mortar/rocket/mlrs
 
