@@ -34,4 +34,3 @@
 		if(NUTRITION_OVERFED to INFINITY) //Overeating
 			if(old_nutrition > NUTRITION_OVERFED)
 				return
-			add_movespeed_modifier(MOVESPEED_ID_HUNGRY, TRUE, 0, NONE, TRUE, 0.5)
