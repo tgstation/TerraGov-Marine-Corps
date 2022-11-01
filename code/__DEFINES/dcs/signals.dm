@@ -616,6 +616,15 @@
 #define COMSIG_KB_TOGGLE_MINIMAP "toggle_minimap"
 #define COMSIG_KB_SELFHARM "keybind_selfharm"
 
+// mecha keybinds
+#define COMSIG_MECHABILITY_TOGGLE_INTERNALS "mechability_toggle_internals"
+#define COMSIG_MECHABILITY_TOGGLE_STRAFE "mechability_toggle_strafe"
+#define COMSIG_MECHABILITY_VIEW_STATS "mechability_view_stats"
+#define COMSIG_MECHABILITY_SMOKE "mechability_smoke"
+#define COMSIG_MECHABILITY_TOGGLE_ZOOM "mechability_toggle_zoom"
+#define COMSIG_MECHABILITY_SKYFALL "mechability_skyfall"
+#define COMSIG_MECHABILITY_STRIKE "mechability_strike"
+
 // xeno abilities for keybindings
 
 #define COMSIG_XENOABILITY_REST "xenoability_rest"
