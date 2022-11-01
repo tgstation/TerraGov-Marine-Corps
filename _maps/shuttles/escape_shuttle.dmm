@@ -1,12 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/turf/closed/shuttle,
-/area/shuttle/escape_pod)
-"b" = (
-/turf/closed/shuttle/diagonal{
-	dir = 1
-	},
-/area/shuttle/escape_pod)
 "c" = (
 /turf/open/space/basic,
 /area/shuttle/escape_pod)
@@ -31,10 +23,10 @@
 /area/shuttle/escape_pod)
 "h" = (
 /obj/machinery/computer/shuttle/escape_pod/escape_shuttle,
-/turf/closed/shuttle,
+/turf/closed/shuttle/escapeshuttle,
 /area/shuttle/escape_pod)
 "i" = (
-/obj/structure/window/shuttle,
+/obj/structure/window/framed/mainship/escapeshuttle,
 /turf/open/floor/plating/mainship,
 /area/shuttle/escape_pod)
 "j" = (
@@ -65,107 +57,93 @@
 	icon_state = "floor10"
 	},
 /area/shuttle/escape_pod)
-"p" = (
-/turf/closed/shuttle/diagonal{
-	dir = 4
-	},
-/area/shuttle/escape_pod)
 "q" = (
 /obj/machinery/door/airlock/evacuation,
 /obj/docking_port/mobile/escape_pod/escape_shuttle,
 /turf/open/floor/plating/mainship,
 /area/shuttle/escape_pod)
-"r" = (
-/obj/structure/window/shuttle,
-/turf/closed/shuttle/diagonal{
-	dir = 1
-	},
-/area/shuttle/escape_pod)
-"s" = (
-/obj/structure/window/shuttle,
-/turf/closed/shuttle/diagonal{
-	dir = 4
-	},
+"R" = (
+/turf/closed/shuttle/escapeshuttle,
 /area/shuttle/escape_pod)
 
 (1,1,1) = {"
-a
-a
-a
+R
+R
+R
 q
-a
-a
-a
+R
+R
+R
 "}
 (2,1,1) = {"
-a
+R
 d
 e
 j
 n
 d
-a
+R
 "}
 (3,1,1) = {"
-a
+R
 d
 f
 k
 f
 d
-a
+R
 "}
 (4,1,1) = {"
-a
+R
 d
 f
 k
 f
 d
-a
+R
 "}
 (5,1,1) = {"
-a
+R
 d
 f
 k
 f
 d
-a
+R
 "}
 (6,1,1) = {"
-b
+R
 d
 f
 k
 f
 d
-p
+R
 "}
 (7,1,1) = {"
-c
-a
+R
+R
 g
 l
 o
-a
-c
+R
+R
 "}
 (8,1,1) = {"
 c
-b
+R
 h
 m
-a
-p
+R
+R
 c
 "}
 (9,1,1) = {"
 c
 c
-r
+R
 i
-s
+R
 c
 c
 "}

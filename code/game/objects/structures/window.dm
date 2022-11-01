@@ -418,6 +418,9 @@
 /obj/structure/window/framed/mainship/canterbury //So we can wallsmooth properly.
 	smoothing_groups = SMOOTH_CANTERBURY
 
+/obj/structure/window/framed/mainship/escapeshuttle
+	smoothing_groups = SMOOTH_ESCAPESHUTTLE
+
 /obj/structure/window/framed/mainship/toughened
 	name = "safety glass"
 	desc = "A very tough looking glass window with a special rod matrice, probably bullet proof."

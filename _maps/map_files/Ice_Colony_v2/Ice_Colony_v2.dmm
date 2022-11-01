@@ -4986,11 +4986,11 @@
 	},
 /area/ice_colony/surface/hydroponics/lobby)
 "aym" = (
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad2)
 "ayn" = (
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /obj/structure/sign/electricshock,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad2)
@@ -9253,7 +9253,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hangar/alpha)
 "aRu" = (
-/obj/structure/window/shuttle,
+/obj/structure/window/framed/mainship/escapeshuttle,
 /turf/open/shuttle/plating,
 /area/ice_colony/surface/hangar/alpha)
 "aRv" = (
@@ -9267,22 +9267,12 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hangar/beta)
-"aRy" = (
-/turf/closed/shuttle{
-	icon_state = "swall3"
-	},
-/area/ice_colony/surface/hangar/alpha)
 "aRz" = (
 /obj/machinery/light,
 /turf/open/shuttle/dropship/fourteen,
 /area/ice_colony/surface/hangar/alpha)
-"aRE" = (
-/turf/closed/shuttle{
-	icon_state = "swall3"
-	},
-/area/ice_colony/surface/hangar/beta)
 "aRF" = (
-/obj/structure/window/shuttle,
+/obj/structure/window/framed/mainship/escapeshuttle,
 /turf/open/shuttle/plating,
 /area/ice_colony/surface/hangar/beta)
 "aRG" = (
@@ -9391,24 +9381,11 @@
 	dir = 8
 	},
 /area/ice_colony/surface/hangar/alpha)
-"aSg" = (
-/turf/closed/shuttle{
-	icon_state = "swall7"
-	},
-/area/ice_colony/surface/hangar/alpha)
 "aSi" = (
-/obj/machinery/door/airlock/unpowered/shuttle,
+/obj/machinery/door/airlock/engineering/evac{
+	dir = 1
+	},
 /turf/open/shuttle/dropship/fourteen,
-/area/ice_colony/surface/hangar/alpha)
-"aSj" = (
-/turf/closed/shuttle{
-	icon_state = "swall4"
-	},
-/area/ice_colony/surface/hangar/alpha)
-"aSk" = (
-/turf/closed/shuttle{
-	icon_state = "swall11"
-	},
 /area/ice_colony/surface/hangar/alpha)
 "aSl" = (
 /obj/structure/largecrate/random,
@@ -9428,24 +9405,11 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hangar/beta)
-"aSp" = (
-/turf/closed/shuttle{
-	icon_state = "swall7"
-	},
-/area/ice_colony/surface/hangar/beta)
 "aSr" = (
-/obj/machinery/door/airlock/unpowered/shuttle,
+/obj/machinery/door/airlock/engineering/evac{
+	dir = 1
+	},
 /turf/open/shuttle/dropship/fourteen,
-/area/ice_colony/surface/hangar/beta)
-"aSs" = (
-/turf/closed/shuttle{
-	icon_state = "swall4"
-	},
-/area/ice_colony/surface/hangar/beta)
-"aSt" = (
-/turf/closed/shuttle{
-	icon_state = "swall11"
-	},
 /area/ice_colony/surface/hangar/beta)
 "aSv" = (
 /obj/structure/computerframe,
@@ -9656,11 +9620,6 @@
 	dir = 8
 	},
 /area/ice_colony/surface/research)
-"aTy" = (
-/turf/closed/shuttle{
-	icon_state = "swall0"
-	},
-/area/ice_colony/surface/hangar/alpha)
 "aTz" = (
 /obj/structure/disposalpipe/junction{
 	dir = 4
@@ -9771,16 +9730,6 @@
 /obj/item/lightstick/red/anchored,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/south)
-"aTZ" = (
-/turf/closed/shuttle{
-	icon_state = "swall8"
-	},
-/area/ice_colony/surface/hangar/alpha)
-"aUa" = (
-/turf/closed/shuttle{
-	icon_state = "swall8"
-	},
-/area/ice_colony/surface/hangar/beta)
 "aUc" = (
 /turf/closed/wall/r_wall,
 /area/ice_colony/surface/research/temporary)
@@ -9814,11 +9763,6 @@
 	dir = 5
 	},
 /area/ice_colony/surface/research/temporary)
-"aUh" = (
-/turf/closed/shuttle{
-	icon_state = "swall1"
-	},
-/area/ice_colony/surface/hangar/alpha)
 "aUk" = (
 /obj/machinery/alarm{
 	dir = 8
@@ -9835,11 +9779,6 @@
 	dir = 4
 	},
 /area/ice_colony/surface/research/temporary)
-"aUn" = (
-/turf/closed/shuttle{
-	icon_state = "swall1"
-	},
-/area/ice_colony/surface/hangar/beta)
 "aUo" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
@@ -9992,11 +9931,6 @@
 	},
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
-"aVd" = (
-/turf/closed/shuttle{
-	icon_state = "swall0"
-	},
-/area/ice_colony/surface/hangar/beta)
 "aVe" = (
 /obj/structure/bed/chair/wood/normal{
 	dir = 8
@@ -10120,11 +10054,6 @@
 	dir = 5
 	},
 /area/ice_colony/exterior/surface/container_yard)
-"aVy" = (
-/turf/closed/shuttle{
-	icon_state = "swall2"
-	},
-/area/ice_colony/surface/hangar/alpha)
 "aVz" = (
 /obj/structure/table,
 /obj/item/storage/belt/utility,
@@ -10141,11 +10070,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/research/temporary)
-"aVD" = (
-/turf/closed/shuttle{
-	icon_state = "swall2"
-	},
-/area/ice_colony/surface/hangar/beta)
 "aVF" = (
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
@@ -10754,21 +10678,11 @@
 	dir = 8
 	},
 /area/ice_colony/surface/hangar/alpha)
-"aYg" = (
-/turf/closed/shuttle{
-	icon_state = "swall14"
-	},
-/area/ice_colony/surface/hangar/alpha)
 "aYi" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/container_yard)
-"aYk" = (
-/turf/closed/shuttle{
-	icon_state = "swall14"
-	},
-/area/ice_colony/surface/hangar/beta)
 "aYl" = (
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/responsehangar)
@@ -10941,11 +10855,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/taxiway)
-"aZg" = (
-/turf/closed/shuttle{
-	icon_state = "swall13"
-	},
-/area/ice_colony/surface/hangar/alpha)
 "aZh" = (
 /obj/machinery/floodlight/landing,
 /turf/open/floor/plating/icefloor/warnplate{
@@ -10990,11 +10899,6 @@
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad)
-"aZq" = (
-/turf/closed/shuttle{
-	icon_state = "swall13"
-	},
-/area/ice_colony/surface/hangar/beta)
 "aZr" = (
 /turf/closed/ice/thin/end{
 	dir = 1
@@ -24681,12 +24585,6 @@
 	},
 /turf/closed/ice_rock/southWall,
 /area/ice_colony/exterior/surface/cliff)
-"ckI" = (
-/obj/effect/turf_underlay/shuttle/floor6,
-/turf/closed/shuttle{
-	icon_state = "swall_f6"
-	},
-/area/ice_colony/surface/hangar/alpha)
 "cnu" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/tile/dark2,
@@ -25086,9 +24984,7 @@
 /area/ice_colony/exterior/underground/caves)
 "dbV" = (
 /obj/effect/turf_overlay/shuttle/heater,
-/turf/closed/shuttle{
-	icon_state = "swall0"
-	},
+/turf/closed/shuttle/escapeshuttle,
 /area/ice_colony/surface/hangar/alpha)
 "ddh" = (
 /obj/structure/disposalpipe/segment,
@@ -25333,15 +25229,12 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/command)
-"dwI" = (
-/obj/effect/turf_underlay/tiles/plating,
-/obj/effect/turf_overlay/shuttle/platform{
-	dir = 1
+"dya" = (
+/obj/machinery/door/airlock/engineering/evac{
+	dir = 8
 	},
-/turf/closed/shuttle{
-	icon_state = "burst_l"
-	},
-/area/ice_colony/surface/hangar/beta)
+/turf/open/shuttle/dropship/fourteen,
+/area/ice_colony/surface/hangar/alpha)
 "dyb" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -25901,12 +25794,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
-"eBO" = (
-/obj/effect/turf_underlay/shuttle/floor6,
-/turf/closed/shuttle{
-	icon_state = "swall_f6"
-	},
-/area/ice_colony/surface/hangar/beta)
 "eCI" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
@@ -26034,13 +25921,6 @@
 "ePo" = (
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
-"ePL" = (
-/obj/effect/turf_underlay/tiles/dark2,
-/turf/closed/shuttle{
-	dir = 9;
-	icon_state = "wall"
-	},
-/area/ice_colony/surface/hangar/alpha)
 "eRd" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -26137,13 +26017,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/garage/two)
-"fad" = (
-/obj/effect/turf_underlay/tiles/dark2,
-/turf/closed/shuttle{
-	dir = 5;
-	icon_state = "wall"
-	},
-/area/ice_colony/surface/hangar/beta)
 "faz" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/freezer,
@@ -26333,12 +26206,6 @@
 "foI" = (
 /turf/closed/ice_rock/corners,
 /area/ice_colony/exterior/surface/landing_pad2)
-"fpg" = (
-/obj/effect/turf_underlay/shuttle/floor6,
-/turf/closed/shuttle{
-	icon_state = "swall_f9"
-	},
-/area/ice_colony/surface/hangar/beta)
 "fqh" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -26445,13 +26312,6 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/ice_rock/corners,
 /area/ice_colony/exterior/surface/cliff)
-"fCe" = (
-/obj/effect/turf_underlay/tiles/dark2,
-/turf/closed/shuttle{
-	dir = 9;
-	icon_state = "wall"
-	},
-/area/ice_colony/surface/hangar/beta)
 "fDb" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -26780,12 +26640,6 @@
 	},
 /turf/closed/ice_rock/corners,
 /area/ice_colony/exterior/surface/cliff)
-"gnJ" = (
-/obj/effect/turf_underlay/tiles/dark2,
-/turf/closed/shuttle{
-	icon_state = "swall_f5"
-	},
-/area/ice_colony/surface/hangar/beta)
 "goZ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -26902,12 +26756,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/ice_colony/exterior/surface/landing_pad2)
-"gzn" = (
-/obj/effect/turf_underlay/tiles/dark2,
-/turf/closed/shuttle{
-	icon_state = "swall_f9"
-	},
-/area/ice_colony/surface/hangar/alpha)
 "gzL" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/drained{
@@ -27414,9 +27262,7 @@
 /area/ice_colony/exterior/underground/caves/ice_se)
 "hvh" = (
 /obj/effect/turf_overlay/shuttle/heater,
-/turf/closed/shuttle{
-	icon_state = "swall0"
-	},
+/turf/closed/shuttle/escapeshuttle,
 /area/ice_colony/surface/hangar/beta)
 "hwa" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -27479,15 +27325,6 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/north)
-"hAz" = (
-/obj/effect/turf_underlay/tiles/plating,
-/obj/effect/turf_overlay/shuttle/platform{
-	dir = 1
-	},
-/turf/closed/shuttle{
-	icon_state = "burst_r"
-	},
-/area/ice_colony/surface/hangar/alpha)
 "hAK" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -27815,12 +27652,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
-"iro" = (
-/obj/effect/turf_underlay/shuttle/floor6,
-/turf/closed/shuttle{
-	icon_state = "swall_f10"
-	},
-/area/ice_colony/surface/hangar/beta)
 "irC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -28749,12 +28580,6 @@
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/taxiway)
-"jLv" = (
-/obj/effect/turf_underlay/tiles/dark2,
-/turf/closed/shuttle{
-	icon_state = "swall_f6"
-	},
-/area/ice_colony/surface/hangar/beta)
 "jLH" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice/corner{
@@ -29920,9 +29745,7 @@
 /obj/effect/turf_overlay/shuttle/platform{
 	dir = 1
 	},
-/turf/closed/shuttle{
-	icon_state = "burst_l"
-	},
+/turf/closed/shuttle/escapeshuttle,
 /area/ice_colony/surface/hangar/alpha)
 "lRs" = (
 /obj/structure/bed/chair/wood/normal{
@@ -30285,9 +30108,7 @@
 /obj/effect/turf_overlay/shuttle/platform{
 	dir = 1
 	},
-/turf/closed/shuttle{
-	icon_state = "burst_r"
-	},
+/turf/closed/shuttle/escapeshuttle,
 /area/ice_colony/surface/hangar/beta)
 "mtL" = (
 /obj/machinery/landinglight/ds1/delaythree{
@@ -30701,12 +30522,6 @@
 /obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hangar/checkpoint)
-"nkf" = (
-/obj/effect/turf_underlay/shuttle/floor6,
-/turf/closed/shuttle{
-	icon_state = "swall_f5"
-	},
-/area/ice_colony/surface/hangar/alpha)
 "nlt" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -31543,13 +31358,6 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice,
 /area/ice_colony/exterior/surface/cliff)
-"oKy" = (
-/obj/effect/turf_underlay/tiles/dark2,
-/turf/closed/shuttle{
-	dir = 10;
-	icon_state = "wall"
-	},
-/area/ice_colony/surface/hangar/beta)
 "oKP" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -31818,13 +31626,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/substation/smes)
-"pkB" = (
-/obj/effect/turf_underlay/tiles/dark2,
-/turf/closed/shuttle{
-	dir = 6;
-	icon_state = "wall"
-	},
-/area/ice_colony/surface/hangar/beta)
 "pkN" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -31952,12 +31753,6 @@
 	dir = 10
 	},
 /area/ice_colony/exterior/surface/landing_pad2)
-"pxK" = (
-/obj/effect/turf_underlay/shuttle/floor6,
-/turf/closed/shuttle{
-	icon_state = "swall_f10"
-	},
-/area/ice_colony/surface/hangar/alpha)
 "pxL" = (
 /obj/machinery/light{
 	dir = 4
@@ -32220,13 +32015,6 @@
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/cliff)
-"pTC" = (
-/obj/effect/turf_underlay/tiles/dark2,
-/turf/closed/shuttle{
-	dir = 6;
-	icon_state = "wall"
-	},
-/area/ice_colony/surface/hangar/alpha)
 "pUs" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -32343,12 +32131,6 @@
 	dir = 1
 	},
 /area/ice_colony/exterior/underground/caves)
-"qdo" = (
-/obj/effect/turf_underlay/tiles/dark2,
-/turf/closed/shuttle{
-	icon_state = "swall_f6"
-	},
-/area/ice_colony/surface/hangar/alpha)
 "qdt" = (
 /obj/effect/turf_underlay/icefloor,
 /turf/closed/ice/thin/end,
@@ -32361,6 +32143,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
+"qdR" = (
+/obj/machinery/door/airlock/engineering/evac{
+	dir = 8
+	},
+/turf/open/shuttle/dropship/fourteen,
+/area/ice_colony/surface/hangar/beta)
 "qfM" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -33215,9 +33003,7 @@
 /area/ice_colony/exterior/surface/clearing/south)
 "ryh" = (
 /obj/effect/turf_underlay/shuttle/floor6,
-/turf/closed/shuttle{
-	icon_state = "swall_f5"
-	},
+/turf/closed/shuttle/escapeshuttle,
 /area/ice_colony/surface/hangar/beta)
 "rys" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
@@ -34133,12 +33919,6 @@
 "sQr" = (
 /turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/exterior/surface/landing_pad2)
-"sSJ" = (
-/obj/effect/turf_underlay/tiles/dark2,
-/turf/closed/shuttle{
-	icon_state = "swall_f5"
-	},
-/area/ice_colony/surface/hangar/alpha)
 "sTG" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/ai_node,
@@ -34762,12 +34542,6 @@
 	dir = 4
 	},
 /area/ice_colony/underground/hangar)
-"tWL" = (
-/obj/effect/turf_underlay/tiles/dark2,
-/turf/closed/shuttle{
-	icon_state = "swall_f10"
-	},
-/area/ice_colony/surface/hangar/beta)
 "tWU" = (
 /obj/machinery/vending/snack,
 /turf/open/floor/tile/green/whitegreen{
@@ -35972,10 +35746,7 @@
 	},
 /area/ice_colony/surface/hangar/alpha)
 "wcB" = (
-/obj/effect/turf_underlay/tiles/dark2,
-/turf/closed/shuttle{
-	icon_state = "swall_f9"
-	},
+/turf/closed/shuttle/escapeshuttle,
 /area/ice_colony/surface/hangar/beta)
 "wdM" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -36109,13 +35880,6 @@
 /obj/structure/sign/safety/hazard,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/clearing/pass)
-"wuh" = (
-/obj/effect/turf_underlay/tiles/dark2,
-/turf/closed/shuttle{
-	dir = 10;
-	icon_state = "wall"
-	},
-/area/ice_colony/surface/hangar/alpha)
 "wuk" = (
 /obj/effect/turf_underlay/icefloor,
 /turf/closed/ice/thin/corner{
@@ -36186,9 +35950,7 @@
 /area/ice_colony/underground/maintenance/central)
 "wzJ" = (
 /obj/effect/turf_underlay/shuttle/floor6,
-/turf/closed/shuttle{
-	icon_state = "swall_f9"
-	},
+/turf/closed/shuttle/escapeshuttle,
 /area/ice_colony/surface/hangar/alpha)
 "wAC" = (
 /obj/effect/turf_underlay/icefloor,
@@ -36208,12 +35970,6 @@
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
-"wDW" = (
-/obj/effect/turf_underlay/tiles/dark2,
-/turf/closed/shuttle{
-	icon_state = "swall_f10"
-	},
-/area/ice_colony/surface/hangar/alpha)
 "wEr" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
@@ -36445,11 +36201,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms)
 "wZl" = (
-/obj/effect/turf_underlay/tiles/dark2,
-/turf/closed/shuttle{
-	dir = 5;
-	icon_state = "wall"
-	},
+/turf/closed/shuttle/escapeshuttle,
 /area/ice_colony/surface/hangar/alpha)
 "wZq" = (
 /obj/effect/decal/cleanable/blood/oil,
@@ -65805,9 +65557,9 @@ jlo
 jlo
 hft
 jlo
-qdo
-aRy
-aUh
+jlo
+wZl
+wZl
 jlo
 xVT
 jlo
@@ -66016,8 +65768,8 @@ jlo
 jlo
 jlo
 jlo
-qdo
-aTy
+jlo
+wZl
 dbV
 lQY
 jlo
@@ -66225,20 +65977,20 @@ qQe
 aOf
 rnH
 jlo
-qdo
-aRy
-aSg
-aSk
-aRy
-aRy
-aRy
-aUh
-aSi
-aVy
-sSJ
+wZl
+wZl
+wZl
+wZl
+wZl
+wZl
+wZl
+wZl
+dya
+wZl
+wZl
 hft
-ePL
-pTC
+wZl
+wZl
 xwr
 kzj
 kzj
@@ -66436,10 +66188,10 @@ exj
 qQe
 aOf
 sox
-qdo
+wZl
 wzJ
 aRz
-aTZ
+wZl
 bmI
 bny
 bny
@@ -66447,9 +66199,9 @@ bny
 bmI
 aSV
 bny
-pxK
-sSJ
-aSj
+wzJ
+wZl
+wZl
 jlo
 xwr
 kzj
@@ -66660,8 +66412,8 @@ aSV
 uoo
 aSV
 aSV
-aYg
-aZg
+wZl
+wZl
 jlo
 xwr
 kzj
@@ -66860,10 +66612,10 @@ exj
 qQe
 aOf
 sox
-wDW
-nkf
+wZl
+wzJ
 aRz
-aSj
+wZl
 bmJ
 bnC
 bnC
@@ -66871,9 +66623,9 @@ bnC
 bmJ
 aSV
 bnC
-ckI
-gzn
-aTZ
+wzJ
+wZl
+wZl
 jlo
 xwr
 kzj
@@ -67073,20 +66825,20 @@ dJU
 aOf
 sox
 jlo
-wDW
-aRy
-aSk
-aSg
-aRy
-aRy
-aRy
-aUh
-aSi
-aVy
-gzn
+wZl
+wZl
+wZl
+wZl
+wZl
+wZl
+wZl
+wZl
+dya
+wZl
+wZl
 jlo
 wZl
-wuh
+wZl
 xwr
 kzj
 kzj
@@ -67288,10 +67040,10 @@ xVT
 jlo
 jlo
 jlo
-wDW
-aTy
+jlo
+wZl
 dbV
-hAz
+lQY
 jlo
 jlo
 jlo
@@ -67501,9 +67253,9 @@ jlo
 jlo
 jlo
 jlo
-wDW
-aRy
-aUh
+jlo
+wZl
+wZl
 jlo
 jlo
 jlo
@@ -69833,9 +69585,9 @@ xYu
 xYu
 xYu
 dqB
-jLv
-aRE
-aUn
+xYu
+wcB
+wcB
 sgF
 sgF
 xYu
@@ -70044,10 +69796,10 @@ xYu
 xYu
 xYu
 xYu
-jLv
-aVd
+xYu
+wcB
 hvh
-dwI
+mtf
 xYu
 xYu
 xYu
@@ -70253,20 +70005,20 @@ aac
 aOj
 iBi
 khj
-jLv
-aRE
-aSp
-aSt
-aRE
-aRE
-aRE
-aUn
-aSr
-aVD
-gnJ
+wcB
+wcB
+wcB
+wcB
+wcB
+wcB
+wcB
+wcB
+qdR
+wcB
+wcB
 xYu
-fCe
-pkB
+wcB
+wcB
 uZQ
 kzj
 kzj
@@ -70464,10 +70216,10 @@ aac
 aac
 aOj
 qnr
-jLv
-fpg
+wcB
+ryh
 aTv
-aUa
+wcB
 bnr
 bnD
 bnD
@@ -70475,9 +70227,9 @@ bnD
 bnr
 aSZ
 bnD
-iro
-gnJ
-aSs
+ryh
+wcB
+wcB
 xYu
 uZQ
 kzj
@@ -70688,8 +70440,8 @@ aWE
 gDu
 aSZ
 aSZ
-aYk
-aZq
+wcB
+wcB
 xYu
 uZQ
 kzj
@@ -70888,10 +70640,10 @@ aac
 aac
 aOj
 xyx
-tWL
+wcB
 ryh
 aRH
-aSs
+wcB
 bnx
 bnE
 bnE
@@ -70899,9 +70651,9 @@ bnE
 bnx
 aSZ
 bnE
-eBO
+ryh
 wcB
-aUa
+wcB
 xYu
 uZQ
 kzj
@@ -71101,20 +70853,20 @@ aac
 aOj
 qnr
 xYu
-tWL
-aRE
-aSt
-aSp
-aRE
-aRE
-aRE
-aUn
-aSr
-aVD
+wcB
+wcB
+wcB
+wcB
+wcB
+wcB
+wcB
+wcB
+qdR
+wcB
 wcB
 xYu
-fad
-oKy
+wcB
+wcB
 uZQ
 kzj
 kzj
@@ -71316,8 +71068,8 @@ xYu
 xYu
 xYu
 xYu
-tWL
-aVd
+xYu
+wcB
 hvh
 mtf
 xYu
@@ -71529,9 +71281,9 @@ dqB
 xYu
 xYu
 xYu
-tWL
-aRE
-aUn
+xYu
+wcB
+wcB
 xYu
 xYu
 xYu
