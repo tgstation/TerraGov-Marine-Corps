@@ -252,17 +252,16 @@
 		return
 	if(!W.tool_start_check(user, amount=1))
 		return
-	//check if a dumbass
-	var/skill = user.skills.getRating("engineer")
-	if(skill < SKILL_ENGINEER_ENGI) //Better be at least a engineer or you going to have a bad time
-		user.visible_message(span_notice("[user] fumbles around figuring out how to use [W]."),
-		span_notice("You fumble around figuring out how to use [W]."))
-		if(!do_after(user, 150 * (SKILL_ENGINEER_ENGI - skill), TRUE, user, BUSY_ICON_UNSKILLED))
-			return
 	user.balloon_alert_to_viewers("started welding [src]", "started repairing [src]")
 	audible_message(span_hear("You hear welding."))
 	var/did_the_thing
+	var/skill = user.skills.getRating("engineer") //Dumbass check
 	while(obj_integrity < max_integrity)
+		if(skill < SKILL_ENGINEER_ENGI) //fumble for every repair
+			user.visible_message(span_notice("[user] fumbles around figuring out how to repair [src]."),
+			span_notice("You fumble around figuring out how to repair [src]."))
+			if(!do_after(user, 30 * (SKILL_ENGINEER_ENGI - skill), TRUE, user, BUSY_ICON_UNSKILLED)) //repeat for different text for ongoing repairs
+				return
 		if(W.use_tool(src, user, 2.5 SECONDS, volume=50, amount=1))
 			did_the_thing = TRUE
 			obj_integrity += min(150, (max_integrity - obj_integrity))
