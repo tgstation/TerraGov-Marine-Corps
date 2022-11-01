@@ -79,7 +79,7 @@
 	var/static/list/reagent_stats = list(
 		/datum/reagent/medicine/bicaridine = list(NAME = "Bicaridine", REQ = 5, BRUTE_AMP = 0.1, BURN_AMP = 0, TOX_HEAL = 0, STAM_REG_AMP = 0, SPEED_BOOST = 0),
 		/datum/reagent/medicine/kelotane = list(NAME = "Kelotane", REQ = 5, BRUTE_AMP = 0, BURN_AMP = 0.1, TOX_HEAL = 0, STAM_REG_AMP = 0, SPEED_BOOST = 0),
-		/datum/reagent/medicine/paracetamol = list(NAME = "Paracetamol", REQ = 5, BRUTE_AMP = 0, BURN_AMP = 0, TOX_HEAL = 0, STAM_REG_AMP = 0.2, SPEED_BOOST = -0.1),
+		/datum/reagent/medicine/paracetamol = list(NAME = "Paracetamol", REQ = 5, BRUTE_AMP = 0.1, BURN_AMP = 0.1, TOX_HEAL = 0, STAM_REG_AMP = 0.2, SPEED_BOOST = 0),
 		/datum/reagent/medicine/meralyne = list(NAME = "Meralyne", REQ = 5, BRUTE_AMP = 0.2, BURN_AMP = 0, TOX_HEAL = 0, STAM_REG_AMP = 0, SPEED_BOOST = 0),
 		/datum/reagent/medicine/dermaline = list(NAME = "Dermaline", REQ = 5, BRUTE_AMP = 0, BURN_AMP = 0.2, TOX_HEAL = 0, STAM_REG_AMP = 0, SPEED_BOOST = 0),
 		/datum/reagent/medicine/dylovene = list(NAME = "Dylovene", REQ = 5, BRUTE_AMP = 0, BURN_AMP = 0, TOX_HEAL = 0.5, STAM_REG_AMP = 0, SPEED_BOOST = 0),
