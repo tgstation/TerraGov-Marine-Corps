@@ -465,7 +465,7 @@
 		return ..()
 
 	//try dash to target
-	var/laser_dash_range = LASER_DASH_RANGE_ENHANCED
+	var/laser_dash_range = LASER_DASH_RANGE_NORMAL
 
 	chassis.add_filter("dash_blur", 1, radial_blur_filter(0.3))
 	icon_state += "_on"
