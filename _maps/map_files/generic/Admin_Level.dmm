@@ -7376,12 +7376,6 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla/fore)
-"jSj" = (
-/obj/structure/closet/wardrobe,
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
-/area/centcom/valhalla/security/brig)
 "jTw" = (
 /obj/effect/decal/warning_stripes/thick{
 	dir = 8
@@ -10119,15 +10113,7 @@
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/storage/primary)
 "nwK" = (
-/obj/structure/closet/secure_closet,
-/obj/item/radio/intercom{
-	dir = 4;
-	name = "Station Intercom"
-	},
-/obj/effect/decal/tile/black,
-/obj/effect/decal/tile/black{
-	dir = 4
-	},
+/obj/machinery/computer/mech_builder,
 /turf/open/floor/tile/vault{
 	dir = 5
 	},
@@ -10803,22 +10789,6 @@
 	},
 /turf/open/space/basic,
 /area/tdome)
-"osY" = (
-/obj/machinery/status_display{
-	pixel_x = -32
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1
-	},
-/obj/structure/closet/l3closet/security,
-/obj/effect/decal/tile/black,
-/obj/effect/decal/tile/black{
-	dir = 4
-	},
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
-/area/centcom/valhalla/security/brig)
 "osZ" = (
 /obj/machinery/vending/weapon/valhalla,
 /obj/structure/window/reinforced{
@@ -11440,71 +11410,11 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/centcom/valhalla/medical/medbay)
-"pgR" = (
-/obj/structure/extinguisher_cabinet{
-	dir = 4
-	},
-/obj/structure/reagent_dispensers/wallmounted/peppertank{
-	dir = 1
-	},
-/obj/structure/closet/secure_closet,
-/obj/effect/decal/tile/black,
-/obj/effect/decal/tile/black{
-	dir = 4
-	},
-/obj/effect/decal/tile/black{
-	dir = 8
-	},
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
-/area/centcom/valhalla/security/brig)
 "phm" = (
 /obj/structure/morgue,
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla/medical/morgue)
-"php" = (
-/obj/structure/rack,
-/obj/item/clothing/suit/armor/vest{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/clothing/suit/armor/vest,
-/obj/item/clothing/suit/armor/vest{
-	pixel_x = 3;
-	pixel_y = -3
-	},
-/obj/item/clothing/head/helmet{
-	layer = 3.00001;
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/clothing/head/helmet{
-	layer = 3.00001
-	},
-/obj/item/clothing/head/helmet{
-	layer = 3.00001;
-	pixel_x = 3;
-	pixel_y = -3
-	},
-/obj/machinery/alarm{
-	dir = 1
-	},
-/obj/effect/decal/tile/black{
-	dir = 8
-	},
-/obj/effect/decal/tile/black{
-	dir = 4
-	},
-/obj/item/ammo_magazine/packet/p4570,
-/obj/item/ammo_magazine/packet/p4570,
-/obj/item/ammo_magazine/packet/p4570,
-/obj/item/ammo_magazine/packet/p4570,
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
-/area/centcom/valhalla/security/brig)
 "pii" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
@@ -11519,21 +11429,6 @@
 	icon_state = "platingdmg2"
 	},
 /area/centcom/valhalla/port)
-"piX" = (
-/obj/structure/closet/secure_closet,
-/obj/machinery/firealarm{
-	dir = 1
-	},
-/obj/effect/decal/tile/black{
-	dir = 8
-	},
-/obj/effect/decal/tile/black{
-	dir = 4
-	},
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
-/area/centcom/valhalla/security/brig)
 "pjm" = (
 /obj/effect/decal/tile/yellow{
 	dir = 4
@@ -25803,9 +25698,9 @@ koR
 kWa
 mcN
 lGH
-nwK
-osY
-pgR
+ecT
+ecT
+ecT
 mvn
 qTA
 ead
@@ -25940,10 +25835,10 @@ jxN
 kqf
 ivs
 mda
-ior
-ecT
+lGH
+nwK
 ouT
-php
+ecT
 mvn
 wsm
 mZM
@@ -26079,9 +25974,9 @@ kqG
 kYp
 mdp
 lGH
-jSj
 ecT
-piX
+ecT
+ecT
 mvn
 xnM
 ojA
