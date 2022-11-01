@@ -1687,7 +1687,6 @@
 	},
 /area/mainship/command/self_destruct)
 "avZ" = (
-/obj/effect/ai_node,
 /obj/machinery/light/mainship{
 	dir = 4
 	},
@@ -4373,6 +4372,7 @@
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/ai_node,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "brl" = (
@@ -4580,7 +4580,7 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/req)
 "bta" = (
-/obj/structure/janitorialcart,
+/obj/effect/ai_node,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "btd" = (
@@ -4858,6 +4858,7 @@
 	id = "supply_elevator_gear"
 	},
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "bwr" = (
@@ -4961,8 +4962,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/numbertwobunks)
 "bxX" = (
-/obj/item/tool/mop,
-/turf/open/floor/mainship/floor,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/green{
+	dir = 8
+	},
 /area/mainship/squads/req)
 "byf" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -5558,6 +5561,8 @@
 /area/mainship/squads/req)
 "bGk" = (
 /obj/machinery/camera/autoname/mainship,
+/obj/structure/janitorialcart,
+/obj/item/tool/mop,
 /turf/open/floor/mainship/green,
 /area/mainship/squads/req)
 "bGl" = (
@@ -6066,7 +6071,9 @@
 /area/mainship/hull/starboard_hull)
 "bLG" = (
 /obj/effect/ai_node,
-/turf/open/floor/mainship/green,
+/turf/open/floor/mainship/green{
+	dir = 4
+	},
 /area/mainship/squads/req)
 "bLH" = (
 /turf/open/floor/plating/plating_catwalk,
@@ -6199,7 +6206,7 @@
 /area/mainship/living/cryo_cells)
 "bMP" = (
 /obj/effect/ai_node,
-/turf/open/floor/mainship/floor,
+/turf/open/floor/mainship/green,
 /area/mainship/squads/req)
 "bMS" = (
 /obj/machinery/camera/autoname/mainship{
@@ -6249,7 +6256,6 @@
 	},
 /area/mainship/living/cryo_cells)
 "bOt" = (
-/obj/effect/ai_node,
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
@@ -10680,11 +10686,19 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/surgery_hallway)
 "gVb" = (
-/obj/effect/ai_node,
-/turf/open/floor/mainship/green{
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/area/mainship/squads/req)
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/port_hallway)
 "gXD" = (
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -60263,14 +60277,14 @@ acm
 acm
 fLQ
 seG
+bAG
+bnD
 bLG
-bnD
-bnD
 bnD
 fpW
 bnD
+bLG
 bnD
-gVb
 bDM
 seG
 sZv
@@ -60526,7 +60540,7 @@ bDM
 bAG
 bzq
 bDM
-bAG
+bMP
 otD
 bDM
 seG
@@ -60770,7 +60784,7 @@ aAY
 aAY
 aWH
 aLX
-bjV
+krL
 biu
 fCa
 jFn
@@ -60778,13 +60792,13 @@ pbV
 fOx
 ace
 qNt
-acj
-acj
+bxX
+bxX
 acj
 haf
 acj
 acj
-acj
+bxX
 vaF
 bnD
 bnD
@@ -60792,7 +60806,7 @@ bnD
 bnD
 msT
 ruj
-bQw
+gVb
 bWC
 cbn
 spa
@@ -64630,7 +64644,7 @@ biu
 bnF
 bpB
 iWe
-bxX
+iWe
 bAG
 bDM
 kzX
@@ -64886,14 +64900,14 @@ bjV
 blj
 bnF
 bpw
-iWe
 bta
+iWe
 bAG
 bDM
 iWe
 iWe
 iWe
-iWe
+bta
 iWe
 iWe
 iWe
@@ -65150,10 +65164,10 @@ avZ
 bnD
 ace
 bnD
-bMP
+iWe
 bnD
 ace
-gVb
+bnD
 jnG
 bnF
 bJP
