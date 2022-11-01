@@ -1723,9 +1723,7 @@
 	},
 /area/mainship/medical/lounge)
 "eT" = (
-/obj/machinery/door/airlock/mainship/marine/general{
-	dir = 8
-	},
+/obj/machinery/door/airlock/mainship/generic/mech_pilot/bunk,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
 "eU" = (
@@ -2516,12 +2514,12 @@
 /turf/closed/wall/mainship,
 /area/mainship/hallways/hangar)
 "gW" = (
-/obj/machinery/door/airlock/mainship/marine/general{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/door/poddoor/mainship/mech{
+	dir = 1
+	},
+/obj/machinery/door/airlock/mainship/generic/mech_pilot/bunk{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -5887,13 +5885,13 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/shipboard/firing_range)
 "ro" = (
-/obj/machinery/door/airlock/mainship/marine/general{
-	dir = 1
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/door/poddoor/mainship/mech{
+	dir = 1
+	},
+/obj/machinery/door/airlock/mainship/generic/mech_pilot{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
