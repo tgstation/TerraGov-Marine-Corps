@@ -27,6 +27,7 @@ type CasWeapon = {
 
 export const MarineCasship = (props, context) => {
   const { act, data } = useBackend<CasData>(context);
+  let limiter = false;
   return (
     <Window
       width={600}
@@ -60,7 +61,7 @@ export const MarineCasship = (props, context) => {
           if (keyCode === KEY_6) {
             act('deselect');
           }
-          if (data.plane_state !== 0) {
+          if ((data.plane_state !== 0) && (limiter === false)) {
             let newdir = 0;
             switch (keyCode) {
               case KEY_UP:
@@ -83,6 +84,9 @@ export const MarineCasship = (props, context) => {
                 return;
             }
             act('cycle_attackdir', { newdir: newdir });
+            if (newdir > 0) {
+              limiter = true;
+            }
           }
         }}>
         {data.plane_state === 0 ? (
