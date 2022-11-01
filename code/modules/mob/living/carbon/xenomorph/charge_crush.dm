@@ -34,7 +34,7 @@
 	var/crush_living_damage = 20
 	var/next_special_attack = 0 //Little var to keep track on special attack timers.
 	var/plasma_use_multiplier = 1
-	///If this charge should keep momentum on dir change and if it can charge diagonally
+	///If this charge should keep momentum on dir change
 	var/agile_charge = 0
 	///the time we last changed direction
 	var/last_dir_change
@@ -93,7 +93,7 @@
 		return
 	if(!old_dir || !new_dir || old_dir == new_dir) //Check for null direction from help shuffle signals
 		return
-	if((new_dir != old_dir && !agile_charge) || new_dir == REVERSE_DIR(old_dir))
+	if((!agile_charge) || new_dir == REVERSE_DIR(old_dir)) //No doubling back
 		do_stop_momentum()
 		return
 	var/turn_rate = 16
@@ -165,7 +165,7 @@
 	var/mob/living/carbon/xenomorph/charger = owner
 	if(!newdir)
 		return
-	if(ISDIAGONALDIR(newdir) && !agile_charge) //broken due to mob dir being cardinals, will see if fixable...
+	if(ISDIAGONALDIR(newdir)
 		return
 
 	if(next_move_limit && world.time > next_move_limit)
