@@ -25,7 +25,7 @@
 		return
 	var/mob/living/carbon/human/target = M
 	var/datum/limb/targetlimb = user.client.prefs.toggles_gameplay & RADIAL_MEDICAL ? radial_medical(target, user) : target.get_limb(user.zone_selected)
-	if(!length(targetlimb.implants))
+	if(!has_shrapnel(targetlimb))
 		M.balloon_alert(user, "There is nothing in limb!")
 		return
 	var/skill = user.skills.getRating("medical")
@@ -36,7 +36,26 @@
 			return
 	user.visible_message(span_notice("[user] starts searching for shrapnel in [target] with the [removaltool]."), span_notice("You start searching for shrapnel in [target] with the [removaltool]."))
 	if(!do_after(user, do_after_time, TRUE, target, BUSY_ICON_MEDICAL))
+		to_chat(user, span_notice("You stop searching for shrapnel in [target]"))
 		return
+	remove_shrapnel(user, target, targetlimb, skill)
+	//iterates over the rest of the patient's limbs, attempting to remove shrapnel
+	for(targetlimb AS in target.limbs)
+		while(has_shrapnel(targetlimb))
+			if(!do_after(user, do_after_time, TRUE, target, BUSY_ICON_MEDICAL))
+				to_chat(user, span_notice("You stop searching for shrapnel in [target]"))
+				return
+			remove_shrapnel(user, target, targetlimb, skill)
+	to_chat(user, span_notice("You remove the last of the shrapnel from [target]"))
+
+///returns TRUE if the argument limb has any shrapnel in it
+/datum/element/shrapnel_removal/proc/has_shrapnel(datum/limb/targetlimb)
+	for (var/obj/item/I in targetlimb.implants)
+		if(!is_type_in_list(I, GLOB.known_implants))
+			return TRUE
+	return FALSE
+
+/datum/element/shrapnel_removal/proc/remove_shrapnel(mob/living/user, mob/living/target, datum/limb/targetlimb, skill)
 	for(var/obj/item/I AS in targetlimb.implants)
 		if(is_type_in_list(I, GLOB.known_implants))
 			continue
