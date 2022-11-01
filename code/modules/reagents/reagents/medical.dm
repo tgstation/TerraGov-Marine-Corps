@@ -145,7 +145,7 @@
 	to_chat(L, span_userdanger("You feel a burst of energy revitalize you all of a sudden! You can do anything!"))
 
 /datum/reagent/medicine/oxycodone/on_mob_life(mob/living/L, metabolism)
-	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
+	L.reagent_pain_modifier += PAIN_REDUCTION_SUPER_HEAVY
 	L.apply_damage(0.2*effect_str, TOX)
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L

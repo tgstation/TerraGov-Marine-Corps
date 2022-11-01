@@ -13,6 +13,8 @@
 #define PAIN_REDUCTION_MEDIUM -25 //synaptizine
 #define PAIN_REDUCTION_HEAVY -35 //paracetamol
 #define PAIN_REDUCTION_VERY_HEAVY -50 //tramadol
+#define PAIN_REDUCTION_SUPER_HEAVY -100 //oxycodone
+
 
 #define PAIN_REACTIVITY 0.15
 
