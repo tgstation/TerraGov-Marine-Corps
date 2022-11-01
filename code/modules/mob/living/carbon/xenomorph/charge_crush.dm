@@ -165,7 +165,7 @@
 	var/mob/living/carbon/xenomorph/charger = owner
 	if(!newdir)
 		return
-	if(ISDIAGONALDIR(newdir)
+	if(ISDIAGONALDIR(newdir))
 		return
 
 	if(next_move_limit && world.time > next_move_limit)
