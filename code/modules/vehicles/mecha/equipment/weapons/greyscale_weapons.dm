@@ -438,7 +438,7 @@
 	obj_integrity = 400
 	slowdown = 0
 	harmful = TRUE
-	equip_cooldown = 1 SECONDS
+	equip_cooldown = 3 SECONDS
 	energy_drain = 150 // Gives 8 slashes before running out of energy
 	range = MECHA_MELEE|MECHA_RANGED
 	force = 150
