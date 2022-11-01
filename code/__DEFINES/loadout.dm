@@ -50,12 +50,11 @@ GLOBAL_LIST_INIT(marine_gear_listed_products, list())
 
 GLOBAL_LIST_INIT(engineer_gear_listed_products, list(
 		/obj/effect/essentials_set/engi = list(CAT_ESS, "Essential Engineer Set", 0, "white"),
-		/obj/item/storage/box/minisentry = list(CAT_ENGISPL, "ST-580 point defense sentry kit", 2, "black"),
-		/obj/structure/closet/crate/uav_crate = list(CAT_ENGISPL, "Iguana Unmanned Vehicle", 2, "black"),
-		/obj/effect/teleporter_linker = list(CAT_ENGISPL, "Teleporters", 1, "black"),
-		/obj/item/storage/backpack/dispenser = list(CAT_ENGISPL, "Dispenser", 1, "black"),
-		/obj/item/storage/backpack/marine/radiopack = list(CAT_ENGISPL, "Radio Pack", 1, "black"),
-		/obj/item/tool/pickaxe/plasmacutter = list(CAT_ENGISPL, "Plasma cutter", 1, "black"),
+		/obj/item/storage/box/minisentry = list(CAT_ENGISPL, "ST-580 point defense sentry kit", 1, "black"),
+		/obj/structure/closet/crate/uav_crate = list(CAT_ENGISPL, "Iguana Unmanned Vehicle", 1, "black"),
+		/obj/item/storage/box/engikit/logistics = list(CAT_ENGISPL, "Logistical Engineering Kit", 1, "black"),
+		/obj/item/storage/box/engikit/forwardsupport = list(CAT_ENGISPL, "Forward Support Kit", 1, "black"),
+		/obj/item/storage/box/engikit/breacher = list(CAT_ENGISPL, "Breacher Kit", 1, "black"),
 		/obj/item/stack/sheet/metal/small_stack = list(CAT_ENGSUP, "Metal x10", METAL_PRICE_IN_GEAR_VENDOR, "orange"),
 		/obj/item/stack/sheet/plasteel/small_stack = list(CAT_ENGSUP, "Plasteel x10", PLASTEEL_PRICE_IN_GEAR_VENDOR, "orange"),
 		/obj/item/stack/sandbags_empty/half = list(CAT_ENGSUP, "Sandbags x25", SANDBAG_PRICE_IN_GEAR_VENDOR, "orange"),

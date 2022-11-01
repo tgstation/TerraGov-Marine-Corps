@@ -916,3 +916,48 @@
 	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
 	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
 	new /obj/item/clothing/mask/rebreather/scarf(src)
+
+// engineer Kits
+
+/obj/item/storage/box/engikit
+	name = "\improper Engineer kit"
+	desc = "A large case containing specialist engineering kit"
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "armor_case"
+	w_class = WEIGHT_CLASS_HUGE
+	storage_slots = 2
+
+/obj/item/storage/box/engikit/logistics
+	name = "\improper Logistical Engineering Kit"
+	desc = "A large case containing a pair of teleporters and dispenser. Sentry and batteries not included."
+	storage_slots = 3
+
+/obj/item/storage/box/engikit/logistics/Initialize(mapload, ...)
+	. = ..()
+	new /obj/effect/teleporter_linker(src)
+	new /obj/item/storage/backpack/dispenser(src)
+
+/obj/item/storage/box/engikit/forwardsupport
+	name = "\improper Forward Support Kit"
+	desc = "A large case containing a radio backpack, a pair of fultons and a range finder."
+	storage_slots = 4
+
+/obj/item/storage/box/engikit/forwardsupport/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/storage/backpack/marine/radiopack(src)
+	new /obj/item/fulton_extraction_pack(src)
+	new /obj/item/fulton_extraction_pack(src)
+	new /obj/item/binoculars/tactical/range(src)
+
+/obj/item/storage/box/engikit/breacher
+	name = "\improper Breacher kit"
+	desc = "A large case containing a plasma cutter and four C4"
+	storage_slots = 5
+
+/obj/item/storage/box/engikit/breacher/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/tool/pickaxe/plasmacutter(src)
+	new /obj/item/explosive/plastique(src)
+	new /obj/item/explosive/plastique(src)
+	new /obj/item/explosive/plastique(src)
+	new /obj/item/explosive/plastique(src)
