@@ -256,3 +256,11 @@
 	req_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_DROPSHIP)
 	max_view_dist = WORLD_VIEW_NUM
 
+
+/obj/item/hud_tablet/artillery
+	name = "artillery impact hud tablet"
+	desc = "A handy tablet with a live feed to several TGMC satellites. Provides a view of all artillery on the battlefield. Transmits a video of the impact site whenever a shot is fired, so that hits may be observed by the loader or spotter."
+	network = list("terragovartillery") //This shows cameras of all mortars, so don't add this to HvH
+	req_access = list()
+	max_view_dist = WORLD_VIEW_NUM
+
