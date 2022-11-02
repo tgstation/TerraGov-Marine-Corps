@@ -109,6 +109,8 @@
 
 //Mobs on Fire
 /mob/living/proc/IgniteMob()
+	if (SEND_SIGNAL(src, COMSIG_IGNITE_ATTEMPT) & COMSIG_IGNITE_CANCEL)
+		return
 	if(status_flags & GODMODE) //Invulnerable mobs don't get ignited
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_NON_FLAMMABLE))
@@ -118,6 +120,7 @@
 	if(get_fire_resist() <= 0 || get_hard_armor("fire", BODY_ZONE_CHEST) >= 100)	//having high fire resist makes you immune
 		return FALSE
 	if(fire_stacks > 0 && !on_fire)
+		SEND_SIGNAL(src, COMSIG_LIVING_IGNITE_SUCCESS)
 		on_fire = TRUE
 		RegisterSignal(src, COMSIG_LIVING_DO_RESIST, .proc/resist_fire)
 		to_chat(src, span_danger("You are on fire! Use Resist to put yourself out!"))

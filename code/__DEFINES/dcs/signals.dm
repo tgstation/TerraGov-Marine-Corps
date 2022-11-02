@@ -433,6 +433,10 @@
 #define COMSIG_LIVING_STATUS_STAGGER "living_stagger"			//from base of mob/living/adjust_stagger() (amount, update, ignore)
 #define COMSIG_LIVING_STATUS_SLOWDOWN "living_slowdown"			//from base of mob/living/set_slowdown() (amount, update)
 
+#define COMSIG_LIVING_IGNITE_ATTEMPT "living_ignite"			//From the base of /mob/living/proc/IgniteMob()
+	#define COMSIG_IGNITE_CANCEL (1<<0)
+#define COMSIG_LIVING_IGNITE_SUCCESS "living_ignite"			//Close to the end of /mob/living/proc/IgniteMob()
+
 #define COMSIG_LIVING_EXTINGUISH "living_extinguish"			//from /mob/living/proc/ExtinguishMob()
 
 	#define COMPONENT_NO_STUN (1<<0)			//For all of them

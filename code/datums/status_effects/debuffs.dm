@@ -331,7 +331,6 @@
 /datum/status_effect/dragon_fire
 	id = "dragon_fire"
 	alert_type = /obj/screen/alert/fire
-	var/fire_overlay
 	var/mob/living/person
 	var/mutable_appearance/fire_effect
 
@@ -343,8 +342,6 @@
 	person = owner
 	// Let's not have double fire
 	person.ExtinguishMob()
-	// directly using fire_stacks instead of adjust_fire_stacks because we want to set, not add
-	person.fire_stacks = clamp(duration, -20, 20)
 	fire_effect = mutable_appearance('icons/mob/OnFire.dmi', "Standing_weak", -FIRE_LAYER)
 	fire_effect.color = "purple"
 	person.overlays_standing[FIRE_LAYER] = fire_effect
@@ -353,23 +350,37 @@
 	to_chat(owner, span_warning("Something viscous is burning on you!"))
 	RegisterSignal(owner, COMSIG_LIVING_DO_RESIST, .proc/resist_fire)
 	RegisterSignal(owner, COMSIG_LIVING_EXTINGUISH, .proc/extinguish)
+	RegisterSignal(owner, COMSIG_LIVING_IGNITE, .proc/override_fire)
 
 /datum/status_effect/dragon_fire/tick()
-	duration = person.fire_stacks
+	// There's a lot of stuff that affects fire_stacks, this way we get to keep that instead of those effects simply not doing anything
+	// Consume any fire stacks present
+	duration = duration + person.fire_stacks
+	person.fire_stacks = 0
 	person.take_overall_damage_armored(5, BURN)
+
+/datum/status_effect/dragon_fire/proc/override_fire()
+	SIGNAL_HANDLER
+	adjust_duration(duration + 5)
+	return COMSIG_IGNITE_CANCEL
+
+/datum/status_effect/dragon_fire/proc/adjust_duration(amount)
+	duration = clamp(amount, -20, 20)
 
 /datum/status_effect/dragon_fire/on_remove()
 	. = ..()
-	person.fire_stacks = 0
+	remove_overlay(FIRE_LAYER)
 	to_chat(owner, span_warning("The last of the viscous material has stopped burning"))
 	UnregisterSignal(owner, COMSIG_LIVING_DO_RESIST)
 	UnregisterSignal(owner, COMSIG_LIVING_EXTINGUISH)
 
 // Let's not be on fire anymore
 /datum/status_effect/dragon_fire/proc/extinguish()
+	SIGNAL_HANDLER
 	person.adjust_fire_stacks(-10)
 
 /datum/status_effect/dragon_fire/proc/resist_fire()
+	SIGNAL_HANDLER
 	if(!isliving(owner))
 		return
 	var/mob/living/L = owner
