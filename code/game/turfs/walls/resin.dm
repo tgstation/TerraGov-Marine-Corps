@@ -72,7 +72,7 @@
 		if(EXPLODE_DEVASTATE)
 			take_damage(600) // Heavy and devastate instakill walls.
 		if(EXPLODE_HEAVY)
-			take_damage(rand(400))
+			take_damage(600)
 		if(EXPLODE_LIGHT)
 			take_damage(rand(75, 100))
 
@@ -150,7 +150,7 @@
  * Regenerating walls that start with lower health, but grow to a much higher hp over time
  */
 /turf/closed/wall/resin/regenerating
-	max_integrity = 150
+	max_integrity = 100
 
 	/// Total health possible for a wall after regenerating at max health
 	var/max_upgradable_health = 300
@@ -200,4 +200,4 @@
 
 /* Hivelord walls, they start off stronger */
 /turf/closed/wall/resin/regenerating/thick
-	max_integrity = 250
+	max_integrity = 150
