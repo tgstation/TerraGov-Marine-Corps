@@ -810,7 +810,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	default_ammo_type = /obj/item/ammo_magazine/rocket/som/rad
 
 //-------------------------------------------------------
-//SR-220 Railgun
+//RG-220 Railgun
 
 /obj/item/weapon/gun/rifle/railgun
 	name = "\improper RG-220 railgun"
@@ -833,9 +833,10 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	)
 	force = 40
 	wield_delay = 1 SECONDS //You're not quick drawing this.
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 31, "rail_y" = 23, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	attachable_allowed = list(
 		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/marine,
 	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
