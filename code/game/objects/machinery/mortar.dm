@@ -74,7 +74,7 @@
 
 /obj/machinery/deployable/mortar/Destroy()
 	qdel(impact_cam)
-	. = ..()
+	return ..()
 
 
 /obj/machinery/deployable/mortar/examine(mob/user)
@@ -413,7 +413,7 @@
 /obj/machinery/camera/artillery/Destroy()
 	if(artillery)
 		artillery.impact_cam = null
-	. = ..()
+	return ..()
 
 
 //tadpole mounted double barrel mortar
