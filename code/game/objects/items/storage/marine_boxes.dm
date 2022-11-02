@@ -927,6 +927,19 @@
 	w_class = WEIGHT_CLASS_HUGE
 	storage_slots = 2
 
+/obj/item/storage/box/engikit/construction
+	name = "\improper Contruction Engineering Kit"
+	desc = "A large case containing one hundred sheets of metal, fifty sheets of plasteel and twenty spools of barbed wire with a complimentary high capacity welder."
+	storage_slots = 5
+
+/obj/item/storage/box/engikit/construction/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/stack/sheet/metal/large_stack(src)
+	new /obj/item/stack/sheet/metal/large_stack(src)
+	new /obj/item/stack/sheet/plasteel/large_stack(src)
+	new /obj/item/stack/barbed_wire/full(src)
+	new /obj/item/tool/weldingtool/hugetank(src)
+
 /obj/item/storage/box/engikit/logistics
 	name = "\improper Logistical Engineering Kit"
 	desc = "A large case containing a pair of teleporters and dispenser. Sentry and batteries not included."
@@ -939,7 +952,7 @@
 
 /obj/item/storage/box/engikit/forwardsupport
 	name = "\improper Forward Support Kit"
-	desc = "A large case containing a radio backpack, a pair of fultons and a range finder."
+	desc = "A large case containing a radio backpack, a pair of fultons and a tactical binoculars."
 	storage_slots = 4
 
 /obj/item/storage/box/engikit/forwardsupport/Initialize(mapload, ...)
@@ -947,17 +960,20 @@
 	new /obj/item/storage/backpack/marine/radiopack(src)
 	new /obj/item/fulton_extraction_pack(src)
 	new /obj/item/fulton_extraction_pack(src)
-	new /obj/item/binoculars/tactical/range(src)
+	new /obj/item/binoculars/tactical(src)
 
 /obj/item/storage/box/engikit/breacher
 	name = "\improper Breacher kit"
-	desc = "A large case containing a plasma cutter and four C4"
-	storage_slots = 5
+	desc = "A large case containing a plasma cutter, a pair of C4, four detonation packs and a signaller."
+	storage_slots = 8
 
 /obj/item/storage/box/engikit/breacher/Initialize(mapload, ...)
 	. = ..()
 	new /obj/item/tool/pickaxe/plasmacutter(src)
 	new /obj/item/explosive/plastique(src)
 	new /obj/item/explosive/plastique(src)
-	new /obj/item/explosive/plastique(src)
-	new /obj/item/explosive/plastique(src)
+	new /obj/item/detpack(src)
+	new /obj/item/detpack(src)
+	new /obj/item/detpack(src)
+	new /obj/item/detpack(src)
+	new /obj/item/assembly/signaler(src)
