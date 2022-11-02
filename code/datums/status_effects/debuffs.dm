@@ -327,25 +327,39 @@
 	desc = "You've been irradiated! The effects of the radiation will continue to harm you until purged from your system."
 	icon_state = "radiation"
 
+// TODO: Turn actual fire into status effects?
 /datum/status_effect/dragon_fire
-	id = "dragon_fire_burning"
+	id = "dragon_fire"
+	alert_type = /obj/screen/alert/fire
+	var/fire_overlay
+	var/mob/living/person
 
 /datum/status_effect/dragon_fire/on_apply()
 	. = ..()
-	duration = rand()
+	if(!isliving(owner))
+		qdel(src)
+		CRASH("/datum/status_effect/dragon_fire somehow applied on a non-living thing")
+	person = owner
+	// directly using fire_stacks instead of adjust_fire_stacks because we want to set, not add
+	person.fire_stacks = clamp(duration, -20, 20)
 	to_chat(owner, span_warning("Something viscous is burning on you!"))
 	RegisterSignal(owner, COMSIG_LIVING_DO_RESIST, .proc/resist_fire)
 	RegisterSignal(owner, COMSIG_LIVING_EXTINGUISH, .proc/extinguish)
 
+/datum/status_effect/dragon_fire/tick()
+	duration = person.fire_stacks
+	person.take_overall_damage_armored(5, BURN)
+
 /datum/status_effect/dragon_fire/on_remove()
 	. = ..()
+	person.fire_stacks = 0
 	to_chat(owner, span_warning("The last of the viscous material has stopped burning"))
 	UnregisterSignal(owner, COMSIG_LIVING_DO_RESIST)
 	UnregisterSignal(owner, COMSIG_LIVING_EXTINGUISH)
 
 // Let's not be on fire anymore
 /datum/status_effect/dragon_fire/proc/extinguish()
-	qdel(src)
+	person.adjust_fire_stacks(-10)
 
 /datum/status_effect/dragon_fire/proc/resist_fire()
 	if(!isliving(owner))
