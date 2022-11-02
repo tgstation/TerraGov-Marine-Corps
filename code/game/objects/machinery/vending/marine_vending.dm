@@ -855,6 +855,22 @@
 			/obj/item/storage/box/visual/magazine/compact/chamberedrifle/full = 1,
 			/obj/item/storage/box/visual/magazine/compact/standard_lmg/full = 1,
 			/obj/item/storage/box/visual/magazine/compact/standard_gpmg/full = 1,
+		),
+		"Mecha Ammo" = list(
+			/obj/item/mecha_ammo/vendable/pistol = -1,
+			/obj/item/mecha_ammo/vendable/burstpistol = -1,
+			/obj/item/mecha_ammo/vendable/smg = -1,
+			/obj/item/mecha_ammo/vendable/burstrifle = -1,
+			/obj/item/mecha_ammo/vendable/rifle = -1,
+			/obj/item/mecha_ammo/vendable/shotgun = -1,
+			/obj/item/mecha_ammo/vendable/lmg = -1,
+			/obj/item/mecha_ammo/vendable/lightcannon = -1,
+			/obj/item/mecha_ammo/vendable/heavycannon = -1,
+			/obj/item/mecha_ammo/vendable/minigun = -1,
+			/obj/item/mecha_ammo/vendable/sniper = -1,
+			/obj/item/mecha_ammo/vendable/grenade = -1,
+			/obj/item/mecha_ammo/vendable/flamer = -1,
+			/obj/item/mecha_ammo/vendable/rpg = -1,
 		)
 	)
 
