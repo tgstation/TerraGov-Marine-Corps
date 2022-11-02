@@ -446,7 +446,7 @@ WEAPONS
 	name = "HMG-08 heavy machinegun ammo (500 rounds)"
 	contains = list(/obj/item/ammo_magazine/heavymachinegun)
 	cost = 7
-	
+
 /datum/supply_packs/weapons/hmg_ammo_small
 	name = "HMG-08 heavy machinegun ammo (250 rounds)"
 	contains = list(/obj/item/ammo_magazine/heavymachinegun/small)
@@ -722,11 +722,6 @@ ARMOR
 	)
 	cost = 12
 	available_against_xeno_only = TRUE
-
-/datum/supply_packs/armor/marine_shield
-	name = "TL-172 Defensive Shield"
-	contains = list(/obj/item/weapon/shield/riot/marine)
-	cost = 10
 
 /datum/supply_packs/armor/marine_shield/deployable
 	name = "TL-182 Deployable Shield"
