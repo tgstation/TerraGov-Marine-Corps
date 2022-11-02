@@ -45,7 +45,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/energy_optimizer
 	name = "energy optimizer"
-	desc = "A Nanotrasen-brand computer that uses predictive algorithms to reduce the power consumption of all steps by 75%."
+	desc = "A Nanotrasen-brand computer that uses predictive algorithms to reduce the power consumption of all steps by 50%."
 	icon_state = "optimizer"
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	equipment_slot = MECHA_POWER
@@ -53,14 +53,14 @@
 
 /obj/item/mecha_parts/mecha_equipment/energy_optimizer/attach(obj/vehicle/sealed/mecha/M, attach_right)
 	. = ..()
-	M.normal_step_energy_drain *= 0.25
-	M.step_energy_drain *= 0.25
-	M.overload_step_energy_drain_min *= 0.25
+	M.normal_step_energy_drain *= 0.50
+	M.step_energy_drain *= 0.50
+	M.overload_step_energy_drain_min *= 0.50
 
 /obj/item/mecha_parts/mecha_equipment/energy_control/detach(atom/moveto)
-	chassis.normal_step_energy_drain /= 0.25
-	chassis.step_energy_drain /= 0.25
-	chassis.overload_step_energy_drain_min /= 0.25
+	chassis.normal_step_energy_drain /= 0.50
+	chassis.step_energy_drain /= 0.50
+	chassis.overload_step_energy_drain_min /= 0.50
 	return ..()
 
 
