@@ -830,6 +830,11 @@ CLOTHING
 	contains = list(/obj/item/storage/backpack/marine/engineerpack)
 	cost = 5
 
+/datum/supply_packs/clothing/welding_kit
+	name = "M-22 welding kit"
+	contains = list(/obj/item/tool/weldpack/marinestandard)
+	cost = 5
+
 /datum/supply_packs/clothing/radio_pack
 	name = "Radio Operator Pack"
 	contains = list(/obj/item/storage/backpack/marine/radiopack)
