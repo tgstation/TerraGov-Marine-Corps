@@ -123,7 +123,7 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 	visor_config = /datum/greyscale_config/mech_recon/visor
 
 /datum/mech_limb/head/assault
-	health_mod = 500
+	health_mod = 400
 	accuracy_mod = 1.4
 	slowdown_mod = 0.3
 	light_range = 6
@@ -131,7 +131,7 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 	visor_config = /datum/greyscale_config/mech_assault/visor
 
 /datum/mech_limb/head/vanguard
-	health_mod = 750
+	health_mod = 600
 	accuracy_mod = 1.5
 	slowdown_mod = 0.4
 	light_range = 5
@@ -159,14 +159,14 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 	greyscale_type = /datum/greyscale_config/mech_recon/torso
 
 /datum/mech_limb/torso/assault
-	health_mod = 500
+	health_mod = 400
 	slowdown_mod = 0.7
 	cell_type = /obj/item/cell/mecha/medium
 	greyscale_type = /datum/greyscale_config/mech_assault/torso
 
 /datum/mech_limb/torso/vanguard
-	health_mod = 750
-	slowdown_mod = 1.1
+	health_mod = 600
+	slowdown_mod = 1.0
 	cell_type = /obj/item/cell/mecha/large
 	greyscale_type = /datum/greyscale_config/mech_vanguard/torso
 
@@ -199,13 +199,13 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 	greyscale_type = /datum/greyscale_config/mech_recon/arms
 
 /datum/mech_limb/arm/assault
-	health_mod = 500
+	health_mod = 400
 	scatter_mod = -17
 	slowdown_mod = 0.3
 	greyscale_type = /datum/greyscale_config/mech_assault/arms
 
 /datum/mech_limb/arm/vanguard
-	health_mod = 750
+	health_mod = 600
 	scatter_mod = -25
 	slowdown_mod = 0.4
 	greyscale_type = /datum/greyscale_config/mech_vanguard/arms
@@ -216,16 +216,16 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 	health_mod = 300
 
 /datum/mech_limb/legs/recon
-	health_mod = 500
+	health_mod = 300
 	slowdown_mod = -0.7
 	greyscale_type = /datum/greyscale_config/mech_recon/legs
 
 /datum/mech_limb/legs/assault
-	health_mod = 750
+	health_mod = 600
 	slowdown_mod = -0.3
 	greyscale_type = /datum/greyscale_config/mech_assault/legs
 
 /datum/mech_limb/legs/vanguard
-	health_mod = 1000
+	health_mod = 800
 	slowdown_mod = 0.1
 	greyscale_type = /datum/greyscale_config/mech_vanguard/legs
