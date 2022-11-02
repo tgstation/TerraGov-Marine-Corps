@@ -83,7 +83,7 @@
 		"As you move through the heavy rain, your clothes become completely waterlogged!",
 		)
 		if(prob(20))
-			if(isrobot(L))
+			if(isrobot(L) || isxeno(L))
 				return
 			else
 				to_chat(L, span_warning(wetmessage))
