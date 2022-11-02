@@ -29,4 +29,4 @@
 		return
 	owner_xeno.balloon_alert_to_viewers("[owner_xeno] has set [target] on fire with their tail!")
 	target.apply_status_effect(STATUS_EFFECT_DRAGONFIRE, 40)
-7
+

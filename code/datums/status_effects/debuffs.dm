@@ -333,6 +333,7 @@
 	alert_type = /obj/screen/alert/fire
 	var/fire_overlay
 	var/mob/living/person
+	var/mutable_appearance/fire_effect
 
 /datum/status_effect/dragon_fire/on_apply()
 	. = ..()
@@ -340,8 +341,15 @@
 		qdel(src)
 		CRASH("/datum/status_effect/dragon_fire somehow applied on a non-living thing")
 	person = owner
+	// Let's not have double fire
+	person.ExtinguishMob()
 	// directly using fire_stacks instead of adjust_fire_stacks because we want to set, not add
 	person.fire_stacks = clamp(duration, -20, 20)
+	fire_effect = mutable_appearance('icons/mob/OnFire.dmi', "Standing_weak", -FIRE_LAYER)
+	fire_effect.color = "purple"
+	person.overlays_standing[FIRE_LAYER] = fire_effect
+	person.apply_overlay(FIRE_LAYER)
+
 	to_chat(owner, span_warning("Something viscous is burning on you!"))
 	RegisterSignal(owner, COMSIG_LIVING_DO_RESIST, .proc/resist_fire)
 	RegisterSignal(owner, COMSIG_LIVING_EXTINGUISH, .proc/extinguish)
