@@ -1,6 +1,6 @@
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, ProgressBar, NoticeBox, Section } from '../components';
-import { KEY_DOWN, KEY_ENTER, KEY_LEFT, KEY_RIGHT, KEY_SPACE, KEY_UP, KEY_W, KEY_D, KEY_S, KEY_A, KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6, KEY_SHIFT } from '../../common/keycodes';
+import { KEY_DOWN, KEY_ENTER, KEY_LEFT, KEY_RIGHT, KEY_SPACE, KEY_UP, KEY_W, KEY_D, KEY_S, KEY_A, KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6 } from '../../common/keycodes';
 import { Window } from '../layouts';
 
 type CasData = {
@@ -17,7 +17,6 @@ type CasData = {
   active_weapon_ammo: number | null
   active_weapon_max_ammo: number | null
   active_weapon_ammo_name: string | null
-  dirmode: number
 }
 
 type CasWeapon = {
@@ -61,39 +60,29 @@ export const MarineCasship = (props, context) => {
           if (keyCode === KEY_6) {
             act('deselect');
           }
-          if (keyCode === KEY_SHIFT) {
-            if (data.dirmode === 0) {
-              data.dirmode = 1;
-            } else {
-              data.dirmode = 0;
-            }
-            act('dirmodeswitch');
-          }
           if (data.plane_state !== 0) {
-            if (data.dirmode === 1) {
-              let newdir = 0;
-              switch (keyCode) {
-                case KEY_UP:
-                case KEY_W:
-                  newdir = 1;
-                  break;
-                case KEY_DOWN:
-                case KEY_S:
-                  newdir = 2;
-                  break;
-                case KEY_RIGHT:
-                case KEY_D:
-                  newdir = 4;
-                  break;
-                case KEY_LEFT:
-                case KEY_A:
-                  newdir = 8;
-                  break;
-                default:
-                  return;
-              }
-              act('cycle_attackdir', { newdir: newdir });
+            let newdir = 0;
+            switch (keyCode) {
+              case KEY_UP:
+              case KEY_W:
+                newdir = 1;
+                break;
+              case KEY_DOWN:
+              case KEY_S:
+                newdir = 2;
+                break;
+              case KEY_RIGHT:
+              case KEY_D:
+                newdir = 4;
+                break;
+              case KEY_LEFT:
+              case KEY_A:
+                newdir = 8;
+                break;
+              default:
+                return;
             }
+            act('cycle_attackdir', { newdir: newdir });
           }
         }}>
         {data.plane_state === 0 ? (
@@ -155,7 +144,6 @@ const NormalOperation = (props, context) => {
     active_weapon_max_ammo,
     active_weapon_ammo_name,
     active_weapon_tag,
-    dirmode,
   } = data;
   return (
     <>
@@ -262,8 +250,7 @@ const NormalOperation = (props, context) => {
           width="100%"
           textAlign="center">
           <Button
-            selected={dirmode === 1}
-            content={"Strafe Direction: "+attackdir+(dirmode ? " [D]" : "")}
+            content={"Strafe Direction: "+attackdir}
             onClick={() => act('cycle_attackdir')} />
         </Box>
       </Section>
