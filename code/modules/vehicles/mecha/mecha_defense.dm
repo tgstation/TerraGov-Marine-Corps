@@ -255,12 +255,12 @@
 	user.balloon_alert_to_viewers("started welding [src]", "started repairing [src]")
 	audible_message(span_hear("You hear welding."))
 	var/did_the_thing
-	var/skill = user.skills.getRating("engineer") //Dumbass check
+	var/skill = user.skills.getRating("engineer")
 	while(obj_integrity < max_integrity)
-		if(skill < SKILL_ENGINEER_ENGI) //fumble for every repair
+		if(skill < SKILL_ENGINEER_ENGI)
 			user.visible_message(span_notice("[user] fumbles around figuring out how to repair [src]."),
 			span_notice("You fumble around figuring out how to repair [src]."))
-			if(!do_after(user, 30 * (SKILL_ENGINEER_ENGI - skill), TRUE, user, BUSY_ICON_UNSKILLED)) //repeat for different text for ongoing repairs
+			if(!do_after(user, 30 * (SKILL_ENGINEER_ENGI - skill), TRUE, user, BUSY_ICON_UNSKILLED))
 				return
 		if(W.use_tool(src, user, 2.5 SECONDS, volume=50, amount=1))
 			did_the_thing = TRUE
