@@ -186,7 +186,7 @@
 /area/bigredv2/outside/s)
 "rg" = (
 /turf/open/ground/river,
-/area/bigredv2/outside/s)
+/area/bigredv2/caves/rock)
 "rC" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 1

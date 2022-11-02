@@ -499,7 +499,7 @@
 /area/bigredv2/outside/se)
 "Uj" = (
 /turf/open/ground/river,
-/area/bigredv2/outside/s)
+/area/bigredv2/caves/rock)
 "Uu" = (
 /obj/machinery/computer/nuke_disk_generator/red,
 /turf/open/floor,
