@@ -447,12 +447,12 @@
 /area/prison/research/secret/biolab)
 "adi" = (
 /obj/machinery/disposal,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
 /obj/effect/decal/warning_stripes/thin,
 /obj/structure/disposalpipe/up{
 	dir = 1
+	},
+/obj/structure/window/reinforced/windowstake{
+	dir = 4
 	},
 /turf/open/floor/prison/plate,
 /area/prison/research/secret/biolab)
@@ -476,11 +476,11 @@
 /area/prison/research/secret/biolab)
 "adl" = (
 /obj/structure/table/reinforced,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
 /obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/cleanable/blood/splatter,
+/obj/structure/window/reinforced/windowstake{
+	dir = 8
+	},
 /turf/open/floor/prison/plate,
 /area/prison/research/secret/biolab)
 "adm" = (
@@ -513,10 +513,10 @@
 /area/prison/research/secret/biolab)
 "adq" = (
 /obj/structure/table/reinforced,
-/obj/structure/window/reinforced{
+/obj/effect/decal/warning_stripes/thin,
+/obj/structure/window/reinforced/windowstake{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/prison/plate,
 /area/prison/research/secret/biolab)
 "adr" = (
@@ -20506,7 +20506,7 @@
 /area/prison/cellblock/lowsec/nw)
 "bkq" = (
 /obj/structure/lattice,
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /turf/open/space/sea,
 /area/space)
 "bkr" = (
@@ -25480,7 +25480,7 @@
 	},
 /area/prison/cellblock/highsec/south/north)
 "bAP" = (
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /obj/structure/lattice,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -25798,19 +25798,8 @@
 /obj/structure/cable,
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/residential/south)
-"bBR" = (
-/turf/closed/shuttle/diagonal/sea{
-	dir = 8
-	},
-/area/prison/hangar/main)
-"bBS" = (
-/obj/structure/shuttle/window,
-/turf/open/floor/plating,
-/area/prison/hangar/main)
 "bBT" = (
-/turf/closed/shuttle/diagonal/sea{
-	dir = 1
-	},
+/turf/open/space/sea,
 /area/prison/hangar/main)
 "bBV" = (
 /turf/open/floor/prison/cellstripe{
@@ -26166,9 +26155,6 @@
 /area/prison/hangar/main)
 "bDf" = (
 /turf/open/floor/prison/darkred,
-/area/prison/hangar/main)
-"bDi" = (
-/turf/closed/shuttle/swall3,
 /area/prison/hangar/main)
 "bDj" = (
 /obj/structure/bed/chair/comfy{
@@ -27053,7 +27039,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/hallway/east)
 "bFN" = (
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /turf/open/floor/plating,
 /area/prison/maintenance/hangar_barracks)
 "bFO" = (
@@ -27218,8 +27204,11 @@
 /turf/open/shuttle/dropship/floor,
 /area/prison/hangar/main)
 "bGi" = (
-/obj/machinery/door/airlock/unpowered/shuttle,
 /obj/machinery/door/poddoor/shutters/transit/open,
+/obj/machinery/door/airlock/engineering/evac{
+	dir = 8;
+	name = "\improper Monorail Airlock"
+	},
 /turf/open/shuttle/dropship/three,
 /area/prison/hangar/main)
 "bGj" = (
@@ -28194,7 +28183,7 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/hangar_barracks)
 "bJz" = (
-/turf/closed/shuttle,
+/turf/closed/shuttle/escapeshuttle,
 /area/prison/hangar/main)
 "bJA" = (
 /obj/structure/bookcase,
@@ -28391,7 +28380,9 @@
 	},
 /area/prison/security/checkpoint/highsec/s)
 "bKj" = (
-/obj/machinery/door/airlock/glass,
+/obj/machinery/door/airlock/glass{
+	dir = 1
+	},
 /turf/open/floor/marking/delivery,
 /area/prison/hangar/main)
 "bKk" = (
@@ -29190,7 +29181,8 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/access/south)
 "bMQ" = (
-/turf/closed/shuttle/diagonal/sea,
+/obj/structure/window/framed/mainship/escapeshuttle,
+/turf/open/floor/plating,
 /area/prison/hangar/main)
 "bMR" = (
 /obj/structure/cable,
@@ -29223,11 +29215,6 @@
 	},
 /turf/open/floor/wood,
 /area/prison/residential/south)
-"bMU" = (
-/turf/closed/shuttle/diagonal/sea{
-	dir = 4
-	},
-/area/prison/hangar/main)
 "bMV" = (
 /obj/structure/lattice,
 /obj/structure/monorail,
@@ -38349,7 +38336,7 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced,
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /obj/structure/window/reinforced/windowstake{
 	dir = 8
 	},
@@ -38360,7 +38347,7 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced,
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /turf/open/floor/plating,
 /area/prison/pirate)
 "cqC" = (
@@ -38371,7 +38358,7 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced,
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /obj/structure/window/reinforced/windowstake{
 	dir = 4
 	},
@@ -45365,7 +45352,7 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/sw)
 "pkD" = (
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/nw)
 "pla" = (
@@ -46641,7 +46628,7 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "suo" = (
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/prison/maintenance/hangar_barracks)
@@ -47090,11 +47077,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/sw)
-"tzz" = (
-/obj/effect/landmark/xeno_turret_spawn,
-/obj/effect/landmark/excavation_site_spawner,
-/turf/open/floor/prison/bright_clean,
-/area/prison/hallway/central)
 "tAo" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -47323,7 +47305,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/canteen)
 "ufB" = (
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/sw)
 "uhu" = (
@@ -79794,7 +79776,7 @@ aIS
 aKO
 aCe
 alo
-tzz
+ttr
 bRS
 alo
 bRS
@@ -109646,21 +109628,21 @@ nRo
 byl
 aXt
 bAP
-bBR
-bDi
-bBS
-bDi
-bBS
-bDi
+bBT
 bJz
-bBS
-bJz
-bDi
-bBS
-bDi
-bBS
-bDi
 bMQ
+bJz
+bMQ
+bJz
+bJz
+bJz
+bJz
+bJz
+bMQ
+bJz
+bMQ
+bJz
+aab
 aab
 adO
 aab
@@ -109903,21 +109885,21 @@ byi
 eJX
 obp
 bAP
-bBS
-bDj
-bDj
-bGh
-bDj
-bDj
-bDj
-bBS
-bDj
-bDj
+bBT
+bMQ
 bDj
 bGh
 bDj
 bDj
-bBS
+bDj
+bMQ
+bDj
+bDj
+bDj
+bGh
+bDj
+bMQ
+adO
 adO
 bHd
 adO
@@ -110160,8 +110142,8 @@ byi
 bnQ
 obp
 bAP
-bBS
-bDk
+bBT
+bMQ
 bDk
 bDk
 bDk
@@ -110173,8 +110155,8 @@ bDk
 bDk
 bDk
 bDk
-bDk
-bBS
+bMQ
+bDE
 btd
 btd
 btd
@@ -110417,21 +110399,21 @@ byi
 bnQ
 obp
 bAP
-bBS
-bDl
-bDl
-bGh
-bDl
-bDl
-bDl
-bBS
-bDl
-bDl
+bBT
+bMQ
 bDl
 bGh
 bDl
 bDl
-bBS
+bDl
+bMQ
+bDl
+bDl
+bDl
+bGh
+bDl
+bMQ
+adO
 adO
 adO
 adO
@@ -110675,20 +110657,20 @@ bnQ
 aXt
 bAP
 bBT
-bDi
-bBS
-bGi
-bBS
-bDi
 bJz
-bBS
-bJz
-bDi
-bBS
+bMQ
 bGi
-bBS
-bDi
-bMU
+bMQ
+bJz
+bJz
+bJz
+bJz
+bJz
+bMQ
+bGi
+bMQ
+bJz
+aab
 aab
 aab
 aab

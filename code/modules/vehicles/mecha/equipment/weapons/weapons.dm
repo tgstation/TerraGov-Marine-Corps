@@ -41,6 +41,8 @@
 	var/burst_amount = 0
 	///fire mode to use for autofire
 	var/fire_mode = GUN_FIREMODE_AUTOMATIC
+	///how many seconds automatic rearming takes
+	var/rearm_time = 2 SECONDS
 
 /obj/item/mecha_parts/mecha_equipment/weapon/Initialize(mapload)
 	. = ..()
@@ -278,6 +280,11 @@
 	if(projectiles > 0)
 		return
 	playsound(src, 'sound/weapons/guns/misc/empty_alarm.ogg', 25, 1)
+	if(LAZYACCESS(current_firer.do_actions, src) || projectiles_cache < 1)
+		return
+	if(!do_after(current_firer, rearm_time, FALSE, chassis, BUSY_ICON_GENERIC))
+		return
+	rearm()
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/carbine
 	name = "\improper FNX-99 \"Hades\" Carbine"

@@ -77,7 +77,7 @@
 /turf/closed/wall,
 /area/deathmatch)
 "at" = (
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /obj/structure/window/framed/prison/reinforced/hull/tyson/reinforced,
 /turf/open/shuttle/brig,
 /area/deathmatch)
@@ -453,7 +453,7 @@
 /turf/open/floor,
 /area/deathmatch)
 "bQ" = (
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /obj/structure/window/framed/prison/reinforced/hull/tyson/reinforced,
 /turf/open/floor/plating,
 /area/deathmatch)

@@ -562,7 +562,7 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/outpost/LZ2)
 "cz" = (
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/LZ2)
 "cA" = (
@@ -3536,7 +3536,7 @@
 /turf/open/floor/prison/kitchen,
 /area/icy_caves/outpost/kitchen)
 "rw" = (
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/mining/west)
 "rx" = (
@@ -3904,7 +3904,7 @@
 /turf/open/floor/cult,
 /area/icy_caves/caves/chapel)
 "sM" = (
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/refinery)
 "sN" = (
@@ -4762,7 +4762,7 @@
 /turf/open/floor/tile/dark/green2,
 /area/icy_caves/outpost/medbay)
 "ww" = (
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
 "wx" = (

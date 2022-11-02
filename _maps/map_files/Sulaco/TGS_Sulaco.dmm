@@ -2814,7 +2814,7 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 1
 	},
-/obj/structure/window/reinforced/toughened{
+/obj/structure/window/reinforced/windowstake{
 	dir = 8
 	},
 /turf/open/floor/prison/red/full{
@@ -2946,7 +2946,7 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 1
 	},
-/obj/structure/window/reinforced/toughened{
+/obj/structure/window/reinforced/windowstake{
 	dir = 4
 	},
 /turf/open/floor/prison/red{
@@ -9224,9 +9224,6 @@
 	dir = 4;
 	id = "lower_garbage"
 	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
 /turf/open/floor/prison/darkyellow,
 /area/sulaco/disposal)
 "aVt" = (
@@ -9237,9 +9234,6 @@
 	},
 /obj/machinery/recycler{
 	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 1
 	},
 /turf/open/floor/prison/darkyellow{
 	dir = 6
@@ -23912,16 +23906,6 @@
 	},
 /turf/open/floor/prison/bright_clean,
 /area/mainship/command/self_destruct)
-"tzn" = (
-/obj/machinery/conveyor{
-	dir = 4;
-	id = "lower_garbage"
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/open/floor/prison/darkyellow,
-/area/sulaco/disposal)
 "tzU" = (
 /obj/machinery/door/airlock/hatch/engineering{
 	name = "EVA"
@@ -74213,7 +74197,7 @@ wEi
 oEX
 aEt
 xmu
-tzn
+fPw
 oEX
 aJu
 aKm
@@ -74470,7 +74454,7 @@ tcD
 aAx
 uoT
 tBy
-tzn
+fPw
 oYE
 aOP
 rwf
