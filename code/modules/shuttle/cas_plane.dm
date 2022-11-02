@@ -187,7 +187,7 @@
 	///Our currently selected weapon we will fire
 	var/obj/structure/dropship_equipment/weapon/active_weapon
 	///Whether we have directional hotkey mode enabled or not
-	var/dirmode = 0
+	var/dirmode = FALSE
 
 /obj/docking_port/mobile/marine_dropship/casplane/Initialize()
 	. = ..()
