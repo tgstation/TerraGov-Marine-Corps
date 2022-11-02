@@ -254,7 +254,8 @@ const NormalOperation = (props, context) => {
           width="100%"
           textAlign="center">
           <Button
-            content={"Strafe Direction: "+attackdir}
+            selected={dirmode === 1}
+            content={"Strafe Direction: "+attackdir+(dirmode ? " [D]" : "")}
             onClick={() => act('cycle_attackdir')} />
         </Box>
       </Section>
