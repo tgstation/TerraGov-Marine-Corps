@@ -50,6 +50,7 @@ GLOBAL_LIST_INIT(marine_gear_listed_products, list())
 
 GLOBAL_LIST_INIT(engineer_gear_listed_products, list(
 		/obj/effect/essentials_set/engi = list(CAT_ESS, "Essential Engineer Set", 0, "white"),
+		/obj/item/storage/box/engikit/construction = list(CAT_ENGISPL, "Construction Engineering Kit", 1, "black"),
 		/obj/item/storage/box/minisentry = list(CAT_ENGISPL, "ST-580 point defense sentry kit", 1, "black"),
 		/obj/structure/closet/crate/uav_crate = list(CAT_ENGISPL, "Iguana Unmanned Vehicle", 1, "black"),
 		/obj/item/storage/box/engikit/logistics = list(CAT_ENGISPL, "Logistical Engineering Kit", 1, "black"),
