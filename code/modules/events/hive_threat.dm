@@ -2,10 +2,10 @@
 /datum/round_event_control/hive_threat
 	name = "Hive threat"
 	typepath = /datum/round_event/hive_threat
-	weight = 15
-	earliest_start = 10 MINUTES
+	weight = 10
+	earliest_start = 30 MINUTES
 
-	gamemode_blacklist = list("Combat Patrol","Civil War","Sensor Capture")
+	gamemode_blacklist = list("Combat Patrol","Civil War","Sensor Capture", "Crash")
 
 /datum/round_event_control/hive_threat/can_spawn_event(players_amt, gamemode)
 	for(var/mob/living/carbon/human/human in GLOB.alive_human_list)
