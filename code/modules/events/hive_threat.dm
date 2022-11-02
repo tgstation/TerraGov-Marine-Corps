@@ -7,12 +7,6 @@
 
 	gamemode_blacklist = list("Combat Patrol","Civil War","Sensor Capture", "Crash")
 
-/datum/round_event_control/hive_threat/can_spawn_event(players_amt, gamemode)
-	for(var/mob/living/carbon/human/human in GLOB.alive_human_list)
-		if(HAS_TRAIT(human, TRAIT_HIVE_TARGET))
-			return FALSE //only one target at a time. Although maybe this isn't needed.
-	return ..()
-
 /datum/round_event/hive_threat
 	///The human target for this event
 	var/mob/living/carbon/human/hive_target
