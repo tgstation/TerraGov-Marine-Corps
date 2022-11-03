@@ -73,7 +73,7 @@
 	impact_cam.artillery = src
 
 /obj/machinery/deployable/mortar/Destroy()
-	qdel(impact_cam)
+	QDEL_NULL(impact_cam)
 	return ..()
 
 
