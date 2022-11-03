@@ -186,7 +186,7 @@
 	X.balloon_alert(X, "Keep still...")
 
 	X.emitting_gas = TRUE //We gain bump movement immunity while we're emitting gas.
-	succeed_activate()
+	
 	X.icon_state = "Defiler Power Up"
 
 	if(!do_after(X, DEFILER_GAS_CHANNEL_TIME, TRUE, null, BUSY_ICON_HOSTILE))
@@ -206,7 +206,8 @@
 
 	GLOB.round_statistics.defiler_neurogas_uses++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "defiler_neurogas_uses")
-
+	
+    succeed_activate()
 	X.visible_message(span_xenodanger("[X] emits a noxious gas!"), \
 	span_xenodanger("We emit noxious gas!"))
 	dispense_gas()
