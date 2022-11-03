@@ -430,6 +430,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	SSmonitor.stats.miniguns_in_use -= src
 	return ..()
 
+/obj/item/weapon/gun/minigun/magharness
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
 
 // SG minigun
 

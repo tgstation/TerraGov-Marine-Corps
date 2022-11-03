@@ -473,6 +473,23 @@
 
 	return ..()
 
+/obj/item/storage/belt/shotgun/flechette/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/flechette(src)
+
 /obj/item/storage/belt/shotgun/som
 	desc = "An ammunition belt designed to hold shotgun shells or individual bullets. Made with traditional SOM leather."
 	icon_state = "shotgunbelt_som"
