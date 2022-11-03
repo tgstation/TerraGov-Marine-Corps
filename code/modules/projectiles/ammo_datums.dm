@@ -2029,8 +2029,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 0
 	penetration = 0
 	sundering = 0
-	accuracy = 250
-	max_range = 250
+	accuracy = 1000
+	max_range = 1000
 	ping = null
 	bullet_color = COLOR_WHITE
 

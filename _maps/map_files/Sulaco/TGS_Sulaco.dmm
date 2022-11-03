@@ -2814,7 +2814,7 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 1
 	},
-/obj/structure/window/reinforced/toughened{
+/obj/structure/window/reinforced/windowstake{
 	dir = 8
 	},
 /turf/open/floor/prison/red/full{
@@ -2946,7 +2946,7 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 1
 	},
-/obj/structure/window/reinforced/toughened{
+/obj/structure/window/reinforced/windowstake{
 	dir = 4
 	},
 /turf/open/floor/prison/red{
@@ -8949,6 +8949,9 @@
 "aTt" = (
 /obj/structure/rack,
 /obj/item/storage/box/sentry,
+/obj/machinery/door_control/mainship/mech{
+	id = "mech_shutters_2"
+	},
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "aTw" = (
@@ -9221,9 +9224,6 @@
 	dir = 4;
 	id = "lower_garbage"
 	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
 /turf/open/floor/prison/darkyellow,
 /area/sulaco/disposal)
 "aVt" = (
@@ -9234,9 +9234,6 @@
 	},
 /obj/machinery/recycler{
 	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 1
 	},
 /turf/open/floor/prison/darkyellow{
 	dir = 6
@@ -11786,6 +11783,17 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/prison/plate,
 /area/shuttle/distress/arrive_1)
+"dkE" = (
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/obj/machinery/door/firedoor/mainship,
+/obj/machinery/door/poddoor/mainship/mech{
+	id = "mech_shutters_1"
+	},
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint)
 "dls" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -14064,11 +14072,14 @@
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "gBG" = (
-/obj/machinery/door/airlock/mainship/maint{
-	dir = 1
-	},
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
+	},
+/obj/machinery/door/airlock/mainship/generic/mech_pilot/bunk{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/mainship/mech{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar/storage)
@@ -14855,6 +14866,9 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
+	},
+/obj/machinery/door/poddoor/mainship/mech{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar/storage)
@@ -23892,16 +23906,6 @@
 	},
 /turf/open/floor/prison/bright_clean,
 /area/mainship/command/self_destruct)
-"tzn" = (
-/obj/machinery/conveyor{
-	dir = 4;
-	id = "lower_garbage"
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/open/floor/prison/darkyellow,
-/area/sulaco/disposal)
 "tzU" = (
 /obj/machinery/door/airlock/hatch/engineering{
 	name = "EVA"
@@ -25397,6 +25401,9 @@
 	dir = 1
 	},
 /obj/effect/ai_node,
+/obj/machinery/door/poddoor/mainship/mech{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint)
 "vFC" = (
@@ -69154,7 +69161,7 @@ pWS
 bYM
 vov
 aUu
-aZB
+dkE
 aTM
 jQX
 aUt
@@ -74190,7 +74197,7 @@ wEi
 oEX
 aEt
 xmu
-tzn
+fPw
 oEX
 aJu
 aKm
@@ -74447,7 +74454,7 @@ tcD
 aAx
 uoT
 tBy
-tzn
+fPw
 oYE
 aOP
 rwf

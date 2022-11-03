@@ -438,8 +438,8 @@
 	obj_integrity = 400
 	slowdown = 0
 	harmful = TRUE
-	equip_cooldown = 1 SECONDS
-	energy_drain = 0 // energy drain due to dashing is good enough
+	equip_cooldown = 3 SECONDS
+	energy_drain = 100
 	range = MECHA_MELEE|MECHA_RANGED
 	force = 150
 	/// holder var for the mob that is attacking right now
@@ -465,7 +465,7 @@
 		return ..()
 
 	//try dash to target
-	var/laser_dash_range = LASER_DASH_RANGE_ENHANCED
+	var/laser_dash_range = LASER_DASH_RANGE_NORMAL
 
 	chassis.add_filter("dash_blur", 1, radial_blur_filter(0.3))
 	icon_state += "_on"
