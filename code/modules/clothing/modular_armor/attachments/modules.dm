@@ -125,7 +125,7 @@
 	name = "\improper Hod Helmet System"
 	desc = "Designed for mounting on a modular helmet. When attached, this system provides substantial resistance to most gunshot wounds by providing high internal padding within the helmet's structure."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
-	icon_state = "mod_ff"
+	icon_state = "mod_ff_head"
 	item_state = "mod_ff_head_a"
 	soft_armor = list(MELEE = 0, BULLET = 40, LASER = 40, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
