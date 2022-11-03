@@ -261,7 +261,7 @@
 			if(!do_after(user, 30 * (SKILL_ENGINEER_ENGI - skill), TRUE, user, BUSY_ICON_UNSKILLED))
 				return
 		if(!started)
-			user.balloon_alert_to_viewers("started welding [src]", "started repairing [src]")
+			user.balloon_alert_to_viewers("started welding", "started repairing")
 			audible_message(span_hear("You hear welding."))
 			started = TRUE
 		if(W.use_tool(src, user, 2.5 SECONDS, volume=50, amount=1))
