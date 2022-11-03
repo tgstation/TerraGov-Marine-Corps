@@ -278,7 +278,7 @@
 ///Returns the impact camera to the mortar
 /obj/machinery/deployable/mortar/proc/return_cam()
 	current_shots--
-	if(current_shots == 0)
+	if(current_shots <= 0)
 		impact_cam.forceMove(src)
 
 ///Allows the mortar to be fired again
