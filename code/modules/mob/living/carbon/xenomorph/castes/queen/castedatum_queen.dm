@@ -140,7 +140,7 @@
 	aura_strength = 4.5
 
 	// *** Queen Abilities *** //
-	queen_leader_limit = 3
+	queen_leader_limit = 4
 
 /datum/xeno_caste/queen/ancient
 	caste_desc = "The most perfect Xeno form imaginable."
@@ -173,7 +173,7 @@
 	aura_strength = 5
 
 	// *** Queen Abilities *** //
-	queen_leader_limit = 4
+	queen_leader_limit = 5
 
 //same stats as ancient
 /datum/xeno_caste/queen/primordial
