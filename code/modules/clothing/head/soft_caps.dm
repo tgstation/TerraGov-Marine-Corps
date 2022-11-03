@@ -103,7 +103,7 @@
 	desc = "It's a soft cap made from advanced ballistic-resistant fibres. Fails to prevent lumps in the head."
 	icon_state = "greysoft"
 	cap_color = "grey"
-	soft_armor = list(MELEE = 35, BULLET = 35, LASER = 35, ENERGY = 15, BOMB = 10, BIO = 0, "rad" = 0, FIRE = 15, ACID = 15)
+	soft_armor = list(MELEE = 35, BULLET = 35, LASER = 35, ENERGY = 15, BOMB = 10, BIO = 0, FIRE = 15, ACID = 15)
 	flags_inventory = BLOCKSHARPOBJ
 
 /obj/item/clothing/head/soft/marine/alpha

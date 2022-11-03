@@ -1,4 +1,0 @@
-author: "Aquilar"
-delete-after: True
-changes: 
-  - code_imp: "Unmanned vehicles respect diagonal movement delay"

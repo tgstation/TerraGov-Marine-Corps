@@ -107,6 +107,10 @@
 #define GUN_FIREMODE_AUTOMATIC "automatic fire mode"
 #define GUN_FIREMODE_AUTOBURST "auto-burst-fire mode"
 
+//autofire component fire callback callback return flags
+#define AUTOFIRE_CONTINUE (1<<0)
+#define AUTOFIRE_SUCCESS (1<<1)
+
 //Ammo magazine defines, for flags_magazine
 #define MAGAZINE_REFILLABLE (1<<0)
 #define MAGAZINE_HANDFUL (1<<1)

@@ -69,7 +69,7 @@
 	aim_slowdown = 0.15
 	burst_amount = 5
 	movement_acc_penalty_mult = 2
-	akimbo_additional_delay = 0.5
+	akimbo_additional_delay = 1.3
 	upper_akimbo_accuracy = 5
 	lower_akimbo_accuracy = 3
 
@@ -230,7 +230,7 @@
 /obj/item/weapon/gun/smg/m25/elite/suppressed
 	icon_state = "m25"
 	item_state = "m25"
-	starting_attachment_types = list(/obj/item/attachable/suppressor) //Tacticool
+	starting_attachment_types = list(/obj/item/attachable/suppressor, /obj/item/attachable/magnetic_harness) //Tacticool
 
 //-------------------------------------------------------
 //SMG-27, based on the grease gun

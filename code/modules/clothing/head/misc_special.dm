@@ -4,6 +4,7 @@
 *		Cakehat
 *		Ushanka
 *		Pumpkin head
+*		Kitty ears
 *
 */
 
@@ -17,7 +18,7 @@
 	item_state = "welding"
 	materials = list(/datum/material/metal = 3000, /datum/material/glass = 1000)
 	var/up = FALSE
-	soft_armor = list(MELEE = 10, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, "rad" = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 10, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	flags_atom = CONDUCT
 	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE
@@ -131,3 +132,35 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	anti_hug = 1
 
+/*
+* Kitty ears
+*/
+/obj/item/clothing/head/kitty
+	name = "kitty ears"
+	desc = "A pair of kitty ears. Meow!"
+	icon_state = "kitty"
+	flags_armor_protection = 0
+	siemens_coefficient = 1.5
+	var/icon/ears = new /icon("icon" = 'icons/mob/head_0.dmi', "icon_state" = "kitty")
+	var/icon/earbit = new /icon("icon" = 'icons/mob/head_0.dmi', "icon_state" = "kittyinner")
+
+/obj/item/clothing/head/kitty/update_icon(mob/living/carbon/human/user, remove = FALSE)
+	if(!istype(user))
+		return
+
+	ears = new /icon("icon" = 'icons/mob/head_0.dmi', "icon_state" = "kitty")
+	ears.Blend(rgb(user.r_hair, user.g_hair, user.b_hair), ICON_ADD)
+	ears.Blend(earbit, ICON_OVERLAY)
+
+	if(user.head && istype(user.head, /obj/item/clothing/head/kitty) && !remove)
+		user.overlays.Add(ears)
+	else
+		user.overlays.Remove(ears)
+
+/obj/item/clothing/head/kitty/dropped(mob/living/carbon/human/user)
+	update_icon(user, remove = TRUE)
+
+/obj/item/clothing/head/kitty/equipped(mob/living/carbon/human/user)
+	. = ..()
+	if(user.head && istype(user.head, /obj/item/clothing/head/kitty))
+		update_icon(user)

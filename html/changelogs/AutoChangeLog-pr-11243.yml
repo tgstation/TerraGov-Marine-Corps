@@ -1,4 +1,0 @@
-author: "Lewdcifer"
-delete-after: True
-changes: 
-  - bugfix: "Defiler particles are cleared correctly when staggered or stunned during Emit Gas."

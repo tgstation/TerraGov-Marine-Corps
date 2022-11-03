@@ -13,7 +13,7 @@
 	name = "\improper Jaeger Pattern Infantry leg plates"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Infantry armor piece."
 	icon_state = "infantry_legs"
-	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 10, "rad" = 10, FIRE = 10, ACID = 10)
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 10, FIRE = 10, ACID = 10)
 	slowdown = 0.1
 	greyscale_config = /datum/greyscale_config/modularlegs
 

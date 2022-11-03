@@ -8,7 +8,7 @@
 	obj_flags = CAN_BE_HIT
 	var/base_state = "left"
 	max_integrity = 50
-	soft_armor = list(MELEE = 20, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 100, "rad" = 100, FIRE = 70, ACID = 100)
+	soft_armor = list(MELEE = 20, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 100, FIRE = 70, ACID = 100)
 	visible = FALSE
 	use_power = FALSE
 	flags_atom = ON_BORDER
@@ -25,6 +25,9 @@
 
 /obj/machinery/door/window/Initialize(mapload, set_dir)
 	. = ..()
+	if(dir == NORTH)
+		add_overlay(image(icon, "rwindow_overlay", layer = WINDOW_LAYER))
+		layer = ABOVE_TABLE_LAYER
 	if(set_dir)
 		setDir(set_dir)
 	if(length(req_access))
@@ -252,6 +255,8 @@
 	icon_state = "rightsecure"
 	base_state = "rightsecure"
 
+/obj/machinery/door/window/secure/bridge/aidoor //special door with similar integrity to protective ai glass
+	max_integrity = 1200
 
 // Req Doors
 /obj/machinery/door/window/secure/req

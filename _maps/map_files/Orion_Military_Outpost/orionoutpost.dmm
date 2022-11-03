@@ -5336,13 +5336,6 @@
 	dir = 4
 	},
 /area/orion_outpost/surface/building/ammodepot)
-"Bz" = (
-/obj/structure/window,
-/obj/structure/window{
-	dir = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/orion_outpost/surface/building/cargo)
 "BA" = (
 /obj/structure/cable,
 /obj/effect/spawner/random/gun/rifles,
@@ -6899,9 +6892,6 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/cargo)
 "JP" = (
-/obj/structure/window{
-	dir = 1
-	},
 /obj/structure/window,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/cargo)
@@ -8211,6 +8201,7 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
+/obj/structure/window,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/cargo)
 "Qk" = (
@@ -21369,7 +21360,7 @@ Fl
 pW
 Li
 Qj
-Bz
+JP
 is
 Bb
 pW
@@ -21501,7 +21492,7 @@ Fl
 pW
 Bb
 Qj
-Bz
+JP
 is
 Bb
 pW

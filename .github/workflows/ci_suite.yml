@@ -12,7 +12,7 @@ jobs:
     name: Run Linters
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Restore SpacemanDMM cache
         uses: actions/cache@v2
         with:
@@ -41,7 +41,7 @@ jobs:
           tools/bootstrap/python -m mapmerge2.dmm_test
           ~/dreamchecker > ${GITHUB_WORKSPACE}/output-annotations.txt 2>&1
       - name: Annotate Lints
-        uses: yogstation13/DreamAnnotate@v1
+        uses: yogstation13/DreamAnnotate@v2
         if: always()
         with:
           outputFile: output-annotations.txt
@@ -51,7 +51,7 @@ jobs:
     name: Compile Maps
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Restore BYOND cache
         uses: actions/cache@v2
         with:
@@ -76,7 +76,7 @@ jobs:
           - 3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Setup cache
         uses: actions/cache@v2
         with:
@@ -103,7 +103,7 @@ jobs:
     name: Windows Build
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Restore Yarn Cache
         uses: actions/cache@v2
         with:

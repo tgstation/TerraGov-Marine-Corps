@@ -346,8 +346,8 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	flags_equip_slot = ITEM_SLOT_BACK
 	var/base_icon_state = "big_ammo_box"
 	var/default_ammo = /datum/ammo/bullet/rifle
-	var/bullet_amount = 800
-	var/max_bullet_amount = 800
+	var/bullet_amount = 2400
+	var/max_bullet_amount = 2400
 	var/caliber = CALIBER_10X24_CASELESS
 
 /obj/item/big_ammo_box/update_icon_state()
@@ -533,6 +533,9 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	icon_state = "big_ammo_box_m25"
 	base_icon_state = "big_ammo_box_m25"
 	default_ammo = /datum/ammo/bullet/smg
+	bullet_amount = 4500
+	max_bullet_amount = 4500
+	caliber = CALIBER_10X20_CASELESS
 
 /obj/item/shotgunbox/buckshot
 	name = "Buckshot Ammo Box"

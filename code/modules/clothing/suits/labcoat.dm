@@ -7,7 +7,7 @@
 	flags_armor_protection = CHEST|ARMS
 	pockets = /obj/item/storage/internal/modular/medical
 	permeability_coefficient = 0.6
-	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 50, "rad" = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 50, FIRE = 0, ACID = 0)
 	allowed = list(
 		/obj/item/stack/medical,
 		/obj/item/reagent_containers/dropper,

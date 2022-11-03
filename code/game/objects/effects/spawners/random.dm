@@ -349,7 +349,8 @@
 					/obj/item/clothing/head/strawhat,\
 					/obj/item/clothing/head/warning_cone,\
 					/obj/item/clothing/head/collectable/paper,\
-					/obj/item/clothing/head/helmet/riot)
+					/obj/item/clothing/head/helmet/riot,\
+					/obj/item/clothing/head/collectable/kitty)
 
 
 ///random kitchen items
@@ -669,7 +670,7 @@
 	)
 
 //random rifles
-obj/effect/spawner/random_set/rifle
+/obj/effect/spawner/random_set/rifle
 	name = "Random rifle set spawner"
 	icon_state = "random_rifle"
 

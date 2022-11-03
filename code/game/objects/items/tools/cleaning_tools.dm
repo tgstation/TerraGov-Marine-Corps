@@ -66,7 +66,7 @@
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("warned", "cautioned", "smashed")
-	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 15, BIO = 10, "rad" = 0, FIRE = 20, ACID = 20)
+	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 15, BIO = 10, FIRE = 20, ACID = 20)
 
 
 
@@ -107,6 +107,10 @@
 	//So this is a workaround. This also makes more sense from an IC standpoint. ~Carn
 	if(user.client && (target in user.client.screen))
 		to_chat(user, span_notice("You need to take that [target.name] off before cleaning it."))
+	else if(isturf(target))
+		to_chat(user, span_notice("You scrub \the [target.name]."))
+		var/turf/target_turf = target
+		target_turf.clean_turf()
 	else if(istype(target,/obj/effect/decal/cleanable))
 		to_chat(user, span_notice("You scrub \the [target.name] out."))
 		qdel(target)

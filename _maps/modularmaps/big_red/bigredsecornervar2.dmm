@@ -495,7 +495,7 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/rustedpreparea)
 "oF" = (
-/obj/effect/landmarkweed_node,
+/obj/effect/landmark/weed_node,
 /obj/effect/landmark/patrol_point{
 	id = "TGMC_12";
 	name = "TGMC exit point 12"

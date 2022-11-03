@@ -19,6 +19,7 @@
 		/datum/job/som/squad/standard = -1,
 	)
 	whitelist_ship_maps = list(MAP_COMBAT_PATROL_BASE)
+	blacklist_ship_maps = null
 	/// Timer used to calculate how long till round ends
 	var/game_timer
 	///The length of time until round ends.

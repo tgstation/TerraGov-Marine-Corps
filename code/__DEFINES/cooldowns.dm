@@ -46,6 +46,7 @@
 #define COOLDOWN_SIGNALLER_SEND "cooldown_signaller_send"
 #define COOLDOWN_BIKE_FUEL_MESSAGE "cooldown_bikee_fuel_message"
 #define COOLDOWN_WRAITH_PORTAL_TELEPORTED "cooldown_wraith_portal_teleported"
+#define COOLDOWN_ITEM_TRICK "cooldown_item_trick"
 
 //Mecha cooldowns
 #define COOLDOWN_MECHA_MESSAGE "mecha_message"

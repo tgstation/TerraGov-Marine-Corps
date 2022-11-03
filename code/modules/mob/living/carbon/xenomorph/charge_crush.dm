@@ -16,7 +16,10 @@
 	name = "Toggle Charging"
 	action_icon_state = "ready_charge"
 	mechanics_text = "Toggles the movement-based charge on and off."
-	keybind_signal = COMSIG_XENOABILITY_TOGGLE_CHARGE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_CHARGE,
+	)
+	action_type = ACTION_TOGGLE
 	use_state_flags = XACT_USE_LYING
 	var/charge_type = CHARGE_CRUSH
 	var/next_move_limit = 0
@@ -64,6 +67,7 @@
 	charge_ability_on = TRUE
 	RegisterSignal(charger, COMSIG_MOVABLE_MOVED, .proc/update_charging)
 	RegisterSignal(charger, COMSIG_ATOM_DIR_CHANGE, .proc/on_dir_change)
+	set_toggle(TRUE)
 	if(verbose)
 		to_chat(charger, span_xenonotice("We will charge when moving, now."))
 
@@ -75,6 +79,7 @@
 	UnregisterSignal(charger, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE))
 	if(verbose)
 		to_chat(charger, span_xenonotice("We will no longer charge when moving."))
+	set_toggle(FALSE)
 	valid_steps_taken = 0
 	charge_ability_on = FALSE
 

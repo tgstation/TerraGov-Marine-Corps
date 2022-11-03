@@ -283,6 +283,11 @@ WEAPONS
 	cost = 3
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/weapons/pepperball
+	name = "PB-12 pepperball gun"
+	contains = list(/obj/item/weapon/gun/rifle/pepperball)
+	cost = 10
+
 /datum/supply_packs/weapons/railgun
 	name = "SR-220 Railgun"
 	contains = list(/obj/item/weapon/gun/rifle/railgun)
@@ -443,9 +448,14 @@ WEAPONS
 	cost = 30
 
 /datum/supply_packs/weapons/hmg_ammo
-	name = "HMG-08 heavy machinegun ammo"
+	name = "HMG-08 heavy machinegun ammo (500 rounds)"
 	contains = list(/obj/item/ammo_magazine/heavymachinegun)
 	cost = 7
+
+/datum/supply_packs/weapons/hmg_ammo_small
+	name = "HMG-08 heavy machinegun ammo (250 rounds)"
+	contains = list(/obj/item/ammo_magazine/heavymachinegun/small)
+	cost = 4
 
 /datum/supply_packs/weapons/smartgun
 	name = "SG-29 Smart Machinegun"
@@ -549,6 +559,15 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol)
 	cost = 1
 
+/datum/supply_packs/weapons/BigAmmoBox
+	name = "Big Ammo Box (10x24mm)"
+	contains = list(/obj/item/big_ammo_box)
+	cost = 5
+
+/datum/supply_packs/weapons/BigAmmoBoxSMG
+	name = "Big Ammo Box (10x20mm)"
+	contains = list(/obj/item/big_ammo_box/smg)
+	cost = 5
 
 /*******************************************************************************
 EXPLOSIVES
@@ -611,13 +630,9 @@ EXPLOSIVES
 	cost = 3
 
 /datum/supply_packs/explosives/detpack
-	name = "detpack explosives"
-	contains = list(
-		/obj/item/detpack,
-		/obj/item/detpack,
-		/obj/item/assembly/signaler,
-	)
-	cost = 15
+	name = "detpack explosive"
+	contains = list(/obj/item/detpack)
+	cost = 5
 
 /datum/supply_packs/explosives/mortar
 	name = "T-50S mortar crate"
@@ -714,6 +729,11 @@ ARMOR
 	contains = list(/obj/item/weapon/shield/riot/marine)
 	cost = 10
 
+/datum/supply_packs/armor/marine_shield/deployable
+	name = "TL-182 Deployable Shield"
+	contains = list(/obj/item/weapon/shield/riot/marine/deployable)
+	cost = 3
+
 /datum/supply_packs/armor/b18
 	name = "B18 Armor Set"
 	contains = list(
@@ -804,6 +824,11 @@ CLOTHING
 	name = "Combat Backpack"
 	contains = list(/obj/item/storage/backpack/lightpack)
 	cost = 15
+
+/datum/supply_packs/clothing/dispenser
+	name = "Dispenser"
+	contains = list(/obj/item/storage/backpack/dispenser)
+	cost = 40
 
 /datum/supply_packs/clothing/welding_pack
 	name = "Engineering Welding Pack"
@@ -1443,6 +1468,10 @@ Imports
 	contains = list(/obj/item/clothing/head/strawhat)
 	cost = 1
 
+/datum/supply_packs/imports/loot_box
+	name = "Loot box"
+	contains = list(/obj/item/loot_box/marine)
+	cost = 50
 
 /*******************************************************************************
 VEHICLES
