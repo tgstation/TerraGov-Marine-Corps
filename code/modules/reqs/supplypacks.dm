@@ -671,9 +671,9 @@ EXPLOSIVES
 	cost = 45
 
 /datum/supply_packs/explosives/mlrs_rockets
-	name = "TA-40L MLRS Rocket (x2)"
-	contains = list(/obj/item/mortal_shell/rocket/mlrs, /obj/item/mortal_shell/rocket/mlrs)
-	cost = 1
+	name = "TA-40L MLRS Rocket Pack (x8)"
+	contains = list(/obj/item/storage/box/mlrs_rockets)
+	cost = 3
 
 /datum/supply_packs/explosives/howitzer
 	name = "MG-100Y howitzer"

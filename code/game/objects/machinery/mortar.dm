@@ -486,7 +486,7 @@
 		/obj/item/mortal_shell/rocket/mlrs,
 	)
 	tally_type = TALLY_ROCKET_ARTY
-	cool_off_time = 180 SECONDS
+	cool_off_time = 80 SECONDS
 	fire_delay = 0.15 SECONDS
 	fire_amount = 16
 	reload_time = 0.25 SECONDS
@@ -578,7 +578,7 @@
 
 /obj/item/mortal_shell/rocket/mlrs
 	name = "\improper 60mm rocket"
-	desc = "An unlabeled 60mm rocket."
+	desc = "A 60mm rocket loaded with explosives, meant to be used in saturation fire with high scatter."
 	icon_state = "mlrs_rocket"
 	ammo_type = /datum/ammo/mortar/rocket/mlrs
 
@@ -694,7 +694,7 @@
 	name = "\improper TA-40L howitzer kit"
 	desc = "A crate containing a basic, somehow compressed kit consisting of an entire multiple launch rocket system and some rockets, to get a artilleryman started."
 
-/obj/structure/closet/crate/mortar_ammo/howitzer_kit/PopulateContents()
+/obj/structure/closet/crate/mortar_ammo/mlrs_kit/PopulateContents()
 	new /obj/item/mortar_kit/mlrs(src)
 	new /obj/item/storage/box/mlrs_rockets(src)
 	new /obj/item/storage/box/mlrs_rockets(src)
@@ -702,6 +702,13 @@
 	new /obj/item/storage/box/mlrs_rockets(src)
 	new /obj/item/storage/box/mlrs_rockets(src)
 	new /obj/item/storage/box/mlrs_rockets(src)
+	new /obj/item/encryptionkey/engi(src)
+	new /obj/item/encryptionkey/engi(src)
+	new /obj/item/binoculars/tactical/range(src)
+	new /obj/item/encryptionkey/cas(src)
+	new /obj/item/encryptionkey/cas(src)
+	new /obj/item/encryptionkey/cas(src)
+
 
 
 /obj/item/storage/box/mlrs_rockets

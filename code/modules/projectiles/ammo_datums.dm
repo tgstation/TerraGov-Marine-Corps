@@ -2117,7 +2117,7 @@ datum/ammo/bullet/revolver/tp44
 	shell_speed = 2.5
 
 /datum/ammo/mortar/rocket/mlrs/drop_nade(turf/T)
-	explosion(T, 0, 0, 3, 2)
+	explosion(T, 0, 0, 4, 2)
 
 /*
 //================================================
