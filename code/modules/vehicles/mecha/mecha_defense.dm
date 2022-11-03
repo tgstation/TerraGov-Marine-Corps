@@ -257,7 +257,7 @@
 	var/skill = user.skills.getRating("engineer")
 	while(obj_integrity < max_integrity)
 		if(skill < SKILL_ENGINEER_ENGI)
-			user.balloon_alert_to_viewers("[user] fumbles around figuring out how to repair [src].")
+			user.balloon_alert_to_viewers("fumbles around trying to repair")
 			if(!do_after(user, 30 * (SKILL_ENGINEER_ENGI - skill), TRUE, user, BUSY_ICON_UNSKILLED))
 				return
 		if(!started)
