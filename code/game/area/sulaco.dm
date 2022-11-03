@@ -1,9 +1,5 @@
 //SULACO AREAS--------------------------------------//
 
-/area/sulaco/bridge2
-	name = "Sulaco Bridge2"
-	icon_state = "bridge"
-
 /area/sulaco/bridge
 	name = "Sulaco Bridge"
 	icon_state = "bridge"
