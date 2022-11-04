@@ -207,7 +207,7 @@
 
 	GLOB.round_statistics.defiler_neurogas_uses++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "defiler_neurogas_uses")
-	
+
 	X.visible_message(span_xenodanger("[X] emits a noxious gas!"), \
 	span_xenodanger("We emit noxious gas!"))
 	dispense_gas()
