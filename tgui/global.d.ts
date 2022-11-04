@@ -35,21 +35,21 @@ type TguiMessage = {
 };
 
 type ByondType = {
-    /**
+  /**
    * ID of the Byond window this script is running on.
    * Can be used as a parameter to winget/winset.
    */
-    windowId: string;
+  windowId: string;
 
   /**
    * True if javascript is running in BYOND.
    */
   IS_BYOND: boolean;
 
-    /**
+  /**
    * Version of Trident engine of Internet Explorer. Null if N/A.
    */
-    TRIDENT: number | null;
+  TRIDENT: number | null;
 
   /**
    * True if browser is IE8 or lower.
