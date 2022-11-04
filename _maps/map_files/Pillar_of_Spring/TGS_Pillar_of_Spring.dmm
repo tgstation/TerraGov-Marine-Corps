@@ -2956,9 +2956,14 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "iE" = (
-/obj/structure/sink,
-/turf/open/floor/mainship/mono,
-/area/space)
+/obj/structure/bed/chair/comfy{
+	dir = 8
+	},
+/obj/structure/prop/tiger_rug/centered{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/mainship/living/commandbunks)
 "iF" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -5242,16 +5247,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
-"pj" = (
-/obj/machinery/door/airlock/mainship/generic/bathroom{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/mainship/mono,
-/area/space)
 "pk" = (
 /obj/structure/closet/crate/ammo,
 /obj/structure/cable,
@@ -7068,10 +7063,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/hangar/droppod)
-"ul" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
-/turf/open/floor/mainship/mono,
-/area/space)
 "um" = (
 /obj/structure/rack,
 /turf/open/floor/mainship/blue/full,
@@ -7218,9 +7209,6 @@
 /obj/structure/dropship_equipment/operatingtable,
 /turf/open/floor/mainship/office,
 /area/mainship/hallways/hangar)
-"uD" = (
-/turf/open/floor/mainship/mono,
-/area/space)
 "uE" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
@@ -8682,19 +8670,6 @@
 "yL" = (
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
-"yM" = (
-/obj/structure/window/reinforced/tinted{
-	dir = 8
-	},
-/obj/machinery/door/window{
-	dir = 2
-	},
-/obj/machinery/shower{
-	pixel_y = 16
-	},
-/obj/item/tool/soap/nanotrasen,
-/turf/open/floor/plating/plating_catwalk,
-/area/space)
 "yN" = (
 /turf/closed/wall/mainship,
 /area/mainship/engineering/upper_engineering)
@@ -9678,9 +9653,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
-"Bx" = (
-/turf/closed/wall/mainship,
-/area/space)
 "By" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -15394,11 +15366,6 @@
 "RU" = (
 /turf/open/floor/plating/mainship,
 /area/mainship/command/self_destruct)
-"RV" = (
-/obj/structure/toilet,
-/obj/structure/mirror,
-/turf/open/floor/mainship/mono,
-/area/space)
 "RW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
@@ -16155,10 +16122,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
-"TX" = (
-/obj/machinery/light/mainship,
-/turf/open/floor/mainship/mono,
-/area/space)
 "TY" = (
 /turf/open/floor/mainship/research/containment/floor2{
 	dir = 5
@@ -40917,9 +40880,9 @@ lR
 lR
 lR
 lR
-Bx
-Bx
-Bx
+lR
+lR
+lR
 lR
 lR
 bQ
@@ -41174,9 +41137,9 @@ lR
 lR
 lR
 lR
-iE
-ul
-pj
+lR
+lR
+lR
 lR
 lR
 bQ
@@ -41431,9 +41394,9 @@ lR
 lR
 lR
 lR
-RV
-TX
-Bx
+lR
+lR
+lR
 lR
 lR
 bQ
@@ -41688,9 +41651,9 @@ lR
 lR
 lR
 lR
-yM
-uD
-Bx
+lR
+lR
+lR
 lR
 lR
 bQ
@@ -41945,9 +41908,9 @@ lR
 lR
 lR
 lR
-Bx
-Bx
-Bx
+lR
+lR
+lR
 lR
 lR
 bQ
@@ -42199,12 +42162,12 @@ bQ
 bQ
 bQ
 bQ
-bQ
-bQ
-bQ
-bQ
-bQ
-bQ
+lR
+lR
+lR
+lR
+lR
+lR
 bQ
 bQ
 bQ
@@ -45762,7 +45725,7 @@ Ig
 Sp
 Xf
 qK
-Xf
+iE
 qj
 cE
 bM

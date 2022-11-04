@@ -1415,3 +1415,6 @@
 	density = FALSE
 	layer = BELOW_TABLE_LAYER
 	icon_state = "Bengal"
+
+/obj/structure/prop/tiger_rug/centered
+	pixel_y = 16
