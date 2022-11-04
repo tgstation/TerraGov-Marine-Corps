@@ -165,6 +165,10 @@
 	animate(src, alpha = initial(alpha)-30, time = 50, loop = -1)
 	animate(alpha = initial(alpha), time = 20, loop = -1)
 
+/obj/screen/fullscreen/ivanov_display
+	icon_state = "ivanov"
+	alpha = 180
+
 /obj/screen/fullscreen/robothalf
 	icon_state = "robothalf"
 	alpha = 60

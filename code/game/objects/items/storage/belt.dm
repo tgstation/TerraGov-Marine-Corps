@@ -23,10 +23,6 @@
 	mouse_opacity = initial(mouse_opacity)
 	..()
 
-
-
-
-
 /obj/item/storage/belt/champion
 	name = "championship belt"
 	desc = "Proves to the world that you are the strongest!"
@@ -37,14 +33,8 @@
 		/obj/item/clothing/mask/luchador,
 	)
 
-
-
-
-
-
 /*============================//MARINE BELTS\\==================================
 =======================================================================*/
-
 
 /obj/item/storage/belt/utility
 	name = "\improper M276 pattern toolbelt rig" //Carn: utility belt is nicer, but it bamboozles the text parsing.
@@ -104,9 +94,10 @@
 		/obj/item/storage/syringe_case,
 		/obj/item/reagent_containers/hypospray/autoinjector,
 		/obj/item/stack/medical,
+		/obj/item/tool/surgery/solderingtool,
 	)
 
-/obj/item/storage/belt/lifesaver/Initialize()  //The belt, with all it's magic inside!
+/obj/item/storage/belt/lifesaver/full/Initialize()  //The belt, with all it's magic inside!
 	. = ..()
 	new /obj/item/storage/pill_bottle/bicaridine(src)
 	new /obj/item/storage/pill_bottle/kelotane(src)
@@ -128,6 +119,67 @@
 	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
 	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
 	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/healthanalyzer(src)
+
+/obj/item/storage/belt/lifesaver/full/upp
+	name ="\improper Type 41 pattern lifesaver bag"
+	desc = "The Type 41 load rig is the standard-issue LBE of the UPP military. This configuration mounts a satchel filled with a range of injectors and light medical supplies, common among medics and partisans."
+	icon_state = "medicbag_upp"
+	item_state = "medicbag_upp"
+
+
+/obj/item/storage/belt/lifesaver/som
+	name = "\improper S17 lifesaver bag"
+	desc = "A belt with heavy origins from the belt used by paramedics and doctors in the old mining colonies."
+	icon_state = "medicbag_som"
+	item_state = "medicbag_som"
+
+/obj/item/storage/belt/lifesaver/som/ert/Initialize()
+	. = ..()
+	new /obj/item/storage/pill_bottle/bicaridine(src)
+	new /obj/item/storage/pill_bottle/kelotane(src)
+	new /obj/item/storage/pill_bottle/tramadol(src)
+	new /obj/item/storage/pill_bottle/tricordrazine(src)
+	new /obj/item/storage/pill_bottle/dylovene(src)
+	new /obj/item/storage/pill_bottle/inaprovaline(src)
+	new /obj/item/storage/pill_bottle/dexalin(src)
+	new /obj/item/storage/pill_bottle/quickclot(src)
+	new /obj/item/storage/pill_bottle/hypervene(src)
+	new /obj/item/storage/pill_bottle/meralyne(src)
+	new /obj/item/storage/pill_bottle/dermaline(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/healthanalyzer(src)
+
+/obj/item/storage/belt/lifesaver/quick/Initialize()  //quick load for combat patrol
+	. = ..()
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/storage/pill_bottle/bicaridine(src)
+	new /obj/item/storage/pill_bottle/kelotane(src)
+	new /obj/item/storage/pill_bottle/dylovene(src)
+	new /obj/item/storage/pill_bottle/tramadol(src)
+	new /obj/item/storage/pill_bottle/tricordrazine(src)
+	new /obj/item/storage/pill_bottle/inaprovaline(src)
+	new /obj/item/storage/pill_bottle/quickclot(src)
+	new /obj/item/storage/pill_bottle/alkysine(src)
+	new /obj/item/storage/pill_bottle/imidazoline(src)
+	new /obj/item/storage/pill_bottle/meralyne(src)
+	new /obj/item/storage/pill_bottle/dermaline(src)
+	new /obj/item/storage/pill_bottle/hypervene(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
 	new /obj/item/healthanalyzer(src)
 
 /obj/item/storage/belt/rig
@@ -155,8 +207,6 @@
 		/obj/item/tool/research,
 	)
 
-/obj/item/storage/belt/rig/medical
-
 /obj/item/storage/belt/rig/medical/Initialize()  //The belt, with all it's magic inside!
 	. = ..()
 	new /obj/item/storage/pill_bottle/bicaridine(src)
@@ -175,8 +225,6 @@
 	new /obj/item/roller(src)
 	new /obj/item/defibrillator(src)
 	new /obj/item/healthanalyzer(src)
-
-/obj/item/storage/belt/rig/research
 
 /obj/item/storage/belt/rig/research/Initialize()  //The belt, with all it's magic inside!
 	. = ..()
@@ -214,37 +262,22 @@
 
 /obj/item/storage/belt/hypospraybelt/Initialize()  //The belt, with all it's magic inside!
 	. = ..()
+	new /obj/item/reagent_containers/hypospray/advanced/big/bicaridine(src)
+	new /obj/item/reagent_containers/glass/bottle/bicaridine(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/kelotane(src)
+	new /obj/item/reagent_containers/glass/bottle/kelotane(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/tramadol(src)
+	new /obj/item/reagent_containers/glass/bottle/tramadol(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/tricordrazine(src)
+	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/dylovene(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/inaprovaline(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/dexalin(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/spaceacillin(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/imialky(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/quickclot(src)
+	new /obj/item/reagent_containers/hypospray/advanced/hypervene(src)
 	new /obj/item/healthanalyzer(src)
-	new /obj/item/reagent_containers/hypospray/advanced/bicaridine(src)
-	new /obj/item/storage/bottlecase/bica(src)
-	new /obj/item/reagent_containers/hypospray/advanced/kelotane(src)
-	new /obj/item/storage/bottlecase/kelo(src)
-	new /obj/item/reagent_containers/hypospray/advanced/dylovene(src)
-	new /obj/item/storage/bottlecase/dylo(src)
-	new /obj/item/reagent_containers/hypospray/advanced/tramadol(src)
-	new /obj/item/storage/bottlecase/tram(src)
-	new /obj/item/reagent_containers/hypospray/advanced/tricordrazine(src)
-	new /obj/item/storage/bottlecase/tricord(src)
-	new /obj/item/reagent_containers/hypospray/advanced/dexalin(src)
-	new /obj/item/reagent_containers/glass/bottle/dexalin(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/spaceacillin(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/quickclot(src)
-
-/obj/item/storage/belt/lifesaver/upp
-	name ="\improper Type 41 pattern lifesaver bag"
-	desc = "The Type 41 load rig is the standard-issue LBE of the UPP military. This configuration mounts a satchel filled with a range of injectors and light medical supplies, common among medics and partisans."
-	icon_state = "medicalbag_u"
-	item_state = "medicbag_u"
-
-
-/obj/item/storage/belt/lifesaver/som
-	name = "\improper S17 lifesaver bag"
-	desc = "A belt with heavy origins from the belt used by paramedics and doctors in the old mining colonies."
-	icon_state = "medicbag_som"
-	item_state = "medicbag_som"
-
 
 /obj/item/storage/belt/security
 	name = "\improper M276 pattern security rig"
@@ -440,6 +473,10 @@
 
 	return ..()
 
+/obj/item/storage/belt/shotgun/som
+	desc = "An ammunition belt designed to hold shotgun shells or individual bullets. Made with traditional SOM leather."
+	icon_state = "shotgunbelt_som"
+
 /obj/item/storage/belt/shotgun/martini
 	name = "martini henry ammo belt"
 	desc = "A belt good enough for holding all your .577/400 ball rounds."
@@ -523,7 +560,7 @@
 /obj/item/storage/belt/grenade
 	name="\improper M276 pattern M40 HEDP rig"
 	desc="The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is designed to carry bulk quantities of M40 HEDP Grenades."
-	icon_state="grenadebelt" // temp
+	icon_state="grenadebelt"
 	item_state="grenadebelt"
 	w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 9
@@ -531,6 +568,10 @@
 	max_storage_space = 27
 	can_hold = list(/obj/item/explosive/grenade)
 
+/obj/item/storage/belt/grenade/som
+	name="\improper S16 pattern grenade rig"
+	desc="A simple harness system available in many configurations. This version is designed to carry bulk quantities of grenades."
+	icon_state="grenadebelt_som"
 
 /obj/item/storage/belt/grenade/standard/Initialize()
 	. = ..()
@@ -579,7 +620,11 @@
 	icon_state= "sparepouch"
 	item_state= "sparepouch"
 
-
+/obj/item/storage/belt/sparepouch/som
+	name= "standard utility pouch"
+	desc= "A small, lightweight pouch that can be clipped onto armor or your belt to provide additional storage for miscellaneous gear or box and drum magazines. Made from genuine SOM leather."
+	icon_state= "sparepouch_som"
+	item_state= "som_belt"
 
 
 ////////////////////////////// GUN BELTS /////////////////////////////////////
@@ -606,7 +651,9 @@
 		/obj/item/weapon/gun/pistol,
 		/obj/item/ammo_magazine/pistol,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta,
 		/obj/item/cell/lasgun/lasrifle,
+		/obj/item/cell/lasgun/volkite/small,
 	)
 
 /obj/item/storage/belt/gun/Destroy()
@@ -750,16 +797,23 @@
 
 /obj/item/storage/belt/gun/pistol/m4a3/som
 	name = "\improper S19 holster rig"
-	desc = "A belt with origins to old colony security holster rigs."
+	desc = "A belt with origins dating back to old colony security holster rigs."
 	icon_state = "som_belt_pistol"
 	item_state = "som_belt_pistol"
+	can_hold = list(
+		/obj/item/weapon/gun/pistol,
+		/obj/item/ammo_magazine/pistol,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta,
+		/obj/item/cell/lasgun/lasrifle,
+		/obj/item/cell/lasgun/volkite/small,
+	)
 
-//No overlays, sprite not positioned to allow for it
-/obj/item/storage/belt/gun/pistol/m4a3/som/update_gun_icon()
-	if(current_gun)
-		playsound(src,drawSound, 15, 1)
-	else
-		playsound(src,sheatheSound, 15, 1)
+/obj/item/storage/belt/gun/pistol/m4a3/som/fancy
+	name = "\improper S19-B holster rig"
+	desc = "A quality pistol belt of a style typically seen worn by SOM officers. It looks old, but well looked after."
+	icon_state = "som_belt_pistol_fancy"
+	item_state = "som_belt_pistol_fancy"
 
 /obj/item/storage/belt/gun/pistol/stand
 	name = "\improper M276 pattern M4A3 holster rig"
@@ -916,18 +970,6 @@
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/shotgun/double/marine(src)
 	new /obj/item/ammo_magazine/shotgun/buckshot(src)
-	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_gun)
-
-
-/obj/item/storage/belt/gun/pistol/m4a3/officer/Initialize()
-	. = ..()
-	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/rt3(src)
-	new /obj/item/ammo_magazine/pistol/hp(src)
-	new /obj/item/ammo_magazine/pistol/hp(src)
-	new /obj/item/ammo_magazine/pistol/ap(src)
-	new /obj/item/ammo_magazine/pistol/ap(src)
-	new /obj/item/ammo_magazine/pistol/ap(src)
-	new /obj/item/ammo_magazine/pistol/ap(src)
 	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_gun)
 
 /obj/item/storage/belt/gun/pistol/smart_pistol

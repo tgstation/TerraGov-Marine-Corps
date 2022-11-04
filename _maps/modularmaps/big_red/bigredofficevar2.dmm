@@ -932,8 +932,8 @@
 /area/bigredv2/outside/c)
 "AS" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/belt/lifesaver,
-/obj/item/storage/belt/lifesaver,
+/obj/item/storage/belt/lifesaver/full,
+/obj/item/storage/belt/lifesaver/full,
 /obj/item/healthanalyzer,
 /turf/open/floor/mainship/sterile/dark,
 /area/bigredv2/outside/office_complex)

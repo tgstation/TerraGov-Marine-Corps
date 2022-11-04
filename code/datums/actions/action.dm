@@ -1,3 +1,13 @@
+/*
+ACTION TYPES
+-ACTION_CLICK (no visuals)
+-ACTION_TOGGLE (adds an active frame on activation)
+-ACTION_SELECT (adds a selection frame whenever clicked)
+
+KEYBINDINGS
+-KEYBINDING_NORMAL (calls keybind_activation)
+-KEYBINDING_ALTERNATE (calls alternate_ability_activation)
+*/
 /datum/action
 	var/name = "Generic Action"
 	var/desc
@@ -8,32 +18,41 @@
 	var/action_icon_state = "default"
 	var/background_icon = 'icons/mob/actions.dmi'
 	var/background_icon_state = "template"
-	var/static/atom/movable/vis_obj/action/selected_frame/selected_frame = new
-	var/static/atom/movable/vis_obj/action/empowered_frame/empowered_frame = new //Got lazy and didn't make a child, ask tivi for a better solution.
-	///Main keybind signal for the action
-	var/keybind_signal
-	///Alternative keybind signal, to use the action differently
-	var/alternate_keybind_signal
+	/// holds a set of misc visual references to use with the overlay API. Always atleast one
+	var/list/visual_references = list()
+	/// Used for keybindings , use KEYBINDING_NORMAL or KEYBINDING_ALTERNATE for keybinding_activation or alternate_ability_activate
+	var/list/keybinding_signals = null
+	/// Defines what visual references will be initialized at round-start
+	var/action_type = ACTION_CLICK
+	/// Used for keeping track of the addition of the selected/active frames
+	var/toggled = FALSE
 
 /datum/action/New(Target)
 	target = Target
 	RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/clean_action)
 	button = new
-	if(isobj(target))
-		var/obj/target_obj = target
-		var/image/IMG
-		if(ispath(target_obj))
-			IMG = image(initial(target_obj.icon), button, initial(target_obj.icon_state))
-		else
-			IMG = image(target_obj.icon, button, target_obj.icon_state)
-		IMG.pixel_x = 0
-		IMG.pixel_y = 0
-		button.overlays += IMG
 	button.icon = icon(background_icon, background_icon_state)
 	button.source_action = src
 	button.name = name
 	if(desc)
 		button.desc = desc
+	if(length(keybinding_signals) == 1)
+		visual_references[VREF_MUTABLE_MAPTEXT] = mutable_appearance(null, null, ACTION_LAYER_MAPTEXT, FLOAT_PLANE)
+	else
+		var/list/maptext_list = list()
+		for(var/keybind_type in keybinding_signals)
+			var/mutable_appearance/maptext_appearance = mutable_appearance(null, null, ACTION_LAYER_MAPTEXT, FLOAT_PLANE)
+			maptext_appearance.pixel_x = GLOB.action_maptext_offsets[keybind_type][1]
+			maptext_appearance.pixel_y = GLOB.action_maptext_offsets[keybind_type][2]
+			maptext_list[keybinding_signals[keybind_type]] = maptext_appearance
+		visual_references[VREF_MUTABLE_MAPTEXT] = maptext_list
+	switch(action_type)
+		if(ACTION_TOGGLE)
+			visual_references[VREF_MUTABLE_ACTIVE_FRAME] = mutable_appearance('icons/Marine/marine-weapons.dmi', "active", ACTION_LAYER_ACTION_ICON_STATE, FLOAT_PLANE)
+		if(ACTION_SELECT)
+			visual_references[VREF_MUTABLE_SELECTED_FRAME] = mutable_appearance('icons/mob/actions.dmi', "selected_frame", ACTION_LAYER_ACTION_ICON_STATE, FLOAT_PLANE)
+	visual_references[VREF_MUTABLE_ACTION_STATE] = mutable_appearance(action_icon, action_icon_state, HUD_LAYER, HUD_PLANE)
+	button.add_overlay(visual_references[VREF_MUTABLE_ACTION_STATE])
 
 /datum/action/Destroy()
 	if(owner)
@@ -49,26 +68,68 @@
 /datum/action/proc/should_show()
 	return TRUE
 
+/// Depending on the action type , toggles the selected/active frame to show without allowing stacking multiple overlays
+/datum/action/proc/set_toggle(value)
+	if(value == toggled)
+		return
+	if(value)
+		switch(action_type)
+			if(ACTION_SELECT)
+				button.add_overlay(visual_references[VREF_MUTABLE_SELECTED_FRAME])
+			if(ACTION_TOGGLE)
+				button.add_overlay(visual_references[VREF_MUTABLE_ACTIVE_FRAME])
+		toggled = TRUE
+		return
+	switch(action_type)
+		if(ACTION_SELECT)
+			button.cut_overlay(visual_references[VREF_MUTABLE_SELECTED_FRAME])
+		if(ACTION_TOGGLE)
+			button.cut_overlay(visual_references[VREF_MUTABLE_ACTIVE_FRAME])
+	toggled = FALSE
+
+/// A handler used to update the maptext and show the change immediately.
+/datum/action/proc/update_map_text(key_string, key_signal)
+	// The cutting needs to be done /BEFORE/ the string maptext gets changed
+	// Since byond internally recognizes it as a different image, and doesn't cut it properly
+	var/mutable_appearance/reference = null
+	if(length(keybinding_signals) == 1)
+		reference = visual_references[VREF_MUTABLE_ACTION_STATE]
+		button.cut_overlay(reference)
+		reference.maptext = MAPTEXT(key_string)
+		visual_references[VREF_MUTABLE_MAPTEXT] = reference
+		button.add_overlay(reference)
+	else
+		reference = visual_references[VREF_MUTABLE_MAPTEXT][key_signal]
+		button.cut_overlay(reference)
+		reference.maptext = MAPTEXT(key_string)
+		visual_references[VREF_MUTABLE_MAPTEXT][key_signal] = reference
+		button.add_overlay(reference)
+
 /datum/action/proc/update_button_icon()
 	if(!button)
 		return
-
 	button.name = name
 	button.desc = desc
-
 	if(action_icon && action_icon_state)
-		button.cut_overlays(TRUE)
-		button.add_overlay(mutable_appearance(action_icon, action_icon_state))
-
-	if(background_icon_state)
+		var/mutable_appearance/action_appearence = visual_references[VREF_MUTABLE_ACTION_STATE]
+		if(action_appearence.icon != action_icon || action_appearence.icon_state != action_icon_state)
+			button.cut_overlay(action_appearence)
+			action_appearence.icon = action_icon
+			// We need to update the reference since it becomes a new appearance for byond internally
+			action_appearence.icon_state = action_icon_state
+			visual_references[VREF_MUTABLE_ACTION_STATE] = action_appearence
+			button.add_overlay(action_appearence)
+	if(background_icon_state != button.icon_state)
 		button.icon_state = background_icon_state
+	handle_button_status_visuals()
+	return TRUE
 
+/// A proc called on update button action for  additional visuals beyond the very base
+/datum/action/proc/handle_button_status_visuals()
 	if(can_use_action())
 		button.color = rgb(255, 255, 255, 255)
 	else
 		button.color = rgb(128, 0, 0, 128)
-
-	return TRUE
 
 /datum/action/proc/action_activate()
 	if(SEND_SIGNAL(src, COMSIG_ACTION_TRIGGER) & COMPONENT_ACTION_BLOCK_TRIGGER)
@@ -87,21 +148,16 @@
 	SIGNAL_HANDLER
 	return
 
+/// Handler for what action to trigger, inherit from this and call parent before for extra actions
+/datum/action/proc/keybind_trigger(mob/source, datum/keybinding/kb_type)
+	SIGNAL_HANDLER
+	if(kb_type.keybind_signal == keybinding_signals[KEYBINDING_NORMAL])
+		return keybind_activation()
+	if(kb_type.keybind_signal == keybinding_signals[KEYBINDING_ALTERNATE])
+		return alternate_action_activate()
+
 /datum/action/proc/fail_activate()
 	return
-
-/datum/action/proc/add_selected_frame()
-	button.vis_contents += selected_frame
-
-/datum/action/proc/remove_selected_frame()
-	button.vis_contents -= selected_frame
-
-///Adds an outline around the ability button
-/datum/action/proc/add_empowered_frame()
-	button.vis_contents += empowered_frame
-
-/datum/action/proc/remove_empowered_frame()
-	button.vis_contents -= empowered_frame
 
 /datum/action/proc/can_use_action()
 	if(!QDELETED(owner))
@@ -118,15 +174,21 @@
 		owner.client.screen += button
 	owner.update_action_buttons()
 	owner.actions_by_path[type] = src
-	if(keybind_signal)
-		RegisterSignal(owner, keybind_signal, .proc/keybind_activation)
-	if(alternate_keybind_signal)
-		RegisterSignal(owner, alternate_keybind_signal, .proc/alternate_action_activate)
+	for(var/type in keybinding_signals)
+		var/signal = keybinding_signals[type]
+		if(signal)
+			RegisterSignal(owner, signal, .proc/keybind_trigger)
+			var/datum/keybinding/our_kb = GLOB.keybindings_by_signal[signal]
+			if(M.client && our_kb)
+				update_map_text(our_kb.get_keys_formatted(M.client), signal)
+
 	SEND_SIGNAL(M, ACTION_GIVEN)
 
 /datum/action/proc/remove_action(mob/M)
-	if(keybind_signal)
-		UnregisterSignal(M, keybind_signal)
+	for(var/type in keybinding_signals)
+		var/signal = keybinding_signals[type]
+		if(owner)
+			UnregisterSignal(owner, signal)
 	if(M.client)
 		M.client.screen -= button
 	M.actions_by_path[type] = null

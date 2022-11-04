@@ -127,28 +127,42 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	category = "Buildings"
 	///The type of building created
 	var/building_type
+	///The location to spawn the building at. Southwest of the xeno by default.
+	var/building_loc = SOUTHWEST
+	///Building time, in seconds. 10 by default.
+	var/building_time = 10 SECONDS
 
 /datum/hive_upgrade/building/can_buy(mob/living/carbon/xenomorph/buyer, silent)
 	. = ..()
 	if(!.)
 		return
-	var/turf/buildloc = get_step(buyer, SOUTHWEST)
+	var/turf/buildloc = get_step(buyer, building_loc)
 	if(!buildloc)
 		return FALSE
 
-	if(buildloc.density)
+	if(!buildloc.is_weedable())
 		if(!silent)
-			to_chat(buyer, span_xenowarning("You cannot build in a dense location!"))
+			to_chat(buyer, span_warning("We can't do that here."))
+		return FALSE
+
+	var/obj/alien/weeds/alien_weeds = locate() in buildloc
+
+	if(!alien_weeds)
+		if(!silent)
+			to_chat(buyer, span_warning("We can only shape on weeds. We must find some resin before we start building!"))
+		return FALSE
+
+	if(!buildloc.check_alien_construction(buyer, silent) || !buildloc.check_disallow_alien_fortification(buyer, silent))
 		return FALSE
 
 /datum/hive_upgrade/building/on_buy(mob/living/carbon/xenomorph/buyer)
-	if(!do_after(buyer, 10 SECONDS, TRUE, buyer, BUSY_ICON_BUILD))
+	if(!do_after(buyer, building_time, TRUE, buyer, BUSY_ICON_BUILD))
 		return FALSE
 
 	if(!can_buy(buyer, FALSE))
 		return FALSE
 
-	var/turf/buildloc = get_step(buyer, SOUTHWEST)
+	var/turf/buildloc = get_step(buyer, building_loc)
 
 	var/atom/built = new building_type(buildloc, buyer.hivenumber)
 	to_chat(buyer, span_notice("We build \a [built] for [psypoint_cost] psy points."))
@@ -169,7 +183,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	if(!.)
 		return
 
-	var/turf/buildloc = get_step(buyer, SOUTHWEST)
+	var/turf/buildloc = get_step(buyer, building_loc)
 	if(!buildloc)
 		return FALSE
 
@@ -182,6 +196,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 		if(get_dist(silo, buyer) < 15)
 			to_chat(buyer, span_xenowarning("Another silo is too close!"))
 			return FALSE
+
 /datum/hive_upgrade/building/evotower
 	name = "Evolution Tower"
 	desc = "Constructs a tower that increases the rate of evolution point generation by 1.25 times per tower."
@@ -197,6 +212,16 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	icon = "maturitytower"
 	flags_upgrade = ABILITY_DISTRESS
 	building_type = /obj/structure/xeno/maturitytower
+
+/datum/hive_upgrade/building/pherotower
+	name = "Pheromone Tower"
+	desc = "Constructs a tower that emanates a selectable type of pheromone."
+	psypoint_cost = 150
+	icon = "pherotower"
+	flags_upgrade = ABILITY_DISTRESS
+	building_type = /obj/structure/xeno/pherotower
+	building_loc = 0 //This results in spawning the structure under the user.
+	building_time = 5 SECONDS
 
 /datum/hive_upgrade/building/spawner
 	name = "Spawner"

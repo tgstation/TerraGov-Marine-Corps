@@ -153,7 +153,7 @@
 	jobtype = /datum/job/freelancer/medic
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/lifesaver
+	belt = /obj/item/storage/belt/lifesaver/full
 	ears = /obj/item/radio/headset/distress/dutch
 	mask = /obj/item/clothing/mask/rebreather/scarf/freelancer
 	w_uniform = /obj/item/clothing/under/marine/veteran/freelancer

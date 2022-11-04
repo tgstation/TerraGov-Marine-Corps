@@ -172,8 +172,8 @@
 	name = "\improper Oxycodone bottle"
 	desc = "A very small bottle. Contains Oxycodone - Used as an Extreme Painkiller."
 	icon_state = "bottle2"
-	volume = 10
-	list_reagents = list(/datum/reagent/medicine/oxycodone = 10)
+	volume = 60
+	list_reagents = list(/datum/reagent/medicine/oxycodone = 60)
 
 /obj/item/reagent_containers/glass/bottle/hypervene
 	name = "\improper Hypervene bottle"
@@ -185,7 +185,7 @@
 /obj/item/reagent_containers/glass/bottle/tricordrazine
 	name = "\improper Tricordrazine bottle"
 	desc = "A small bottle. Contains tricordrazine - used as a generic treatment for injuries."
-	icon_state = "bottle4"
+	icon_state = "bottle-5"
 	list_reagents = list(/datum/reagent/medicine/tricordrazine = 60)
 
 /obj/item/reagent_containers/glass/bottle/meralyne
@@ -225,6 +225,7 @@
 	list_reagents = list(/datum/reagent/medicine/lemoline = 10)
 
 /obj/item/reagent_containers/glass/bottle/lemoline/doctor
+	desc = "A small bottle. Contains 30 units of lemoline, a reagent used in the creation of advanced medicine."
 	list_reagents = list(/datum/reagent/medicine/lemoline = 30)
 
 /obj/item/reagent_containers/glass/bottle/doctor_delight

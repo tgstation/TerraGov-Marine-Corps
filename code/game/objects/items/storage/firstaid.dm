@@ -246,90 +246,6 @@
 	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
 	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
 
-/*
-* Bottle Cases
-*/
-
-
-/obj/item/storage/bottlecase
-	name = "regeant bottle case"
-	desc = "It's a medical case for only storing regeant bottles."
-	icon_state = "syringe_case"
-	throw_speed = 2
-	throw_range = 8
-	storage_slots = 3
-	w_class = WEIGHT_CLASS_SMALL
-	can_hold = list(
-		/obj/item/reagent_containers/pill,
-		/obj/item/reagent_containers/glass/bottle,
-	)
-
-/obj/item/storage/bottlecase/bica
-	name = "bicaridine bottle case"
-	desc = "It's a medical case for storing three bicaridine bottles."
-	icon_state = "bica_bottles_case"
-
-/obj/item/storage/bottlecase/bica/PopulateContents()
-	. = ..()
-	new /obj/item/reagent_containers/glass/bottle/bicaridine(src)
-	new /obj/item/reagent_containers/glass/bottle/bicaridine(src)
-	new /obj/item/reagent_containers/glass/bottle/bicaridine(src)
-
-/obj/item/storage/bottlecase/kelo
-	name = "kelotane bottle case"
-	desc = "It's a medical case for storing three kelotane bottles."
-	icon_state = "kelo_bottles_case"
-
-/obj/item/storage/bottlecase/kelo/PopulateContents()
-	. = ..()
-	new /obj/item/reagent_containers/glass/bottle/kelotane(src)
-	new /obj/item/reagent_containers/glass/bottle/kelotane(src)
-	new /obj/item/reagent_containers/glass/bottle/kelotane(src)
-
-/obj/item/storage/bottlecase/dylo
-	name = "dylovene bottle case"
-	desc = "It's a medical case for storing three dylovene bottles."
-	icon_state = "dylo_bottles_case"
-
-/obj/item/storage/bottlecase/dylo/PopulateContents()
-	. = ..()
-	new /obj/item/reagent_containers/glass/bottle/dylovene(src)
-	new /obj/item/reagent_containers/glass/bottle/dylovene(src)
-	new /obj/item/reagent_containers/glass/bottle/dylovene(src)
-
-/obj/item/storage/bottlecase/tram
-	name = "tramadol bottle case"
-	desc = "It's a medical case for storing three tramadol bottles."
-	icon_state = "tram_bottles_case"
-
-/obj/item/storage/bottlecase/tram/PopulateContents()
-	. = ..()
-	new /obj/item/reagent_containers/glass/bottle/tramadol(src)
-	new /obj/item/reagent_containers/glass/bottle/tramadol(src)
-	new /obj/item/reagent_containers/glass/bottle/tramadol(src)
-
-/obj/item/storage/bottlecase/tricord
-	name = "tricordrazine bottle case"
-	desc = "It's a medical case for storing three tricordrazine bottles."
-	icon_state = "tricord_bottles_case"
-
-/obj/item/storage/bottlecase/tricord/PopulateContents()
-	. = ..()
-	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
-	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
-	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
-
-/obj/item/storage/bottlecase/dex
-	name = "dexalin bottle case"
-	desc = "It's a medical case for storing three dexalin bottles."
-	icon_state = "dex_bottles_case"
-
-/obj/item/storage/bottlecase/dex/PopulateContents()
-	. = ..()
-	new /obj/item/reagent_containers/glass/bottle/dexalin(src)
-	new /obj/item/reagent_containers/glass/bottle/dexalin(src)
-	new /obj/item/reagent_containers/glass/bottle/dexalin(src)
-
 
 /*
 * Pill Bottles
@@ -356,6 +272,8 @@
 	greyscale_config = /datum/greyscale_config/pillbottle
 	greyscale_colors = "#d9cd07#f2cdbb" //default colors
 	var/pill_type_to_fill //type of pill to use to fill in the bottle in New()
+	/// Short description in overlay
+	var/description_overlay = ""
 
 
 /obj/item/storage/pill_bottle/Initialize(mapload, ...)
@@ -394,6 +312,13 @@
 	var/mutable_appearance/number = mutable_appearance()
 	number.maptext = MAPTEXT(length(contents))
 	. += number
+	if(!description_overlay)
+		return
+	var/mutable_appearance/desc = mutable_appearance('icons/misc/12x12.dmi')
+	desc.pixel_x = 16
+	desc.maptext = MAPTEXT(description_overlay)
+	desc.maptext_width = 16
+	. += desc
 
 /obj/item/storage/pill_bottle/equipped(mob/user, slot)
 	. = ..()
@@ -408,6 +333,7 @@
 	desc = "Contains pills that heal burns, but cause slight pain. Take two to heal faster, but have slightly more pain."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/kelotane
 	greyscale_colors = "#CC9900#FFFFFF"
+	description_overlay = "Ke"
 
 /obj/item/storage/pill_bottle/dermaline
 	name = "dermaline pill bottle"
@@ -415,12 +341,21 @@
 	pill_type_to_fill = /obj/item/reagent_containers/pill/dermaline
 	greyscale_config = /datum/greyscale_config/pillbottleround
 	greyscale_colors = "#ffef00#FFFFFF"
+	description_overlay = "De"
 
 /obj/item/storage/pill_bottle/dylovene
 	name = "dylovene pill bottle"
 	desc = "Contains pills that heal toxic damage and purge toxins and neurotoxins of all kinds."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/dylovene
 	greyscale_colors = "#669900#ffffff"
+	description_overlay = "Dy"
+
+/obj/item/storage/pill_bottle/isotonic
+	name = "isotonic pill bottle"
+	desc = "Contains pills that stimulate the regeneration of lost blood."
+	pill_type_to_fill = /obj/item/reagent_containers/pill/isotonic
+	greyscale_colors = "#5c0e0e#ffffff"
+	description_overlay = "Is"
 
 /obj/item/storage/pill_bottle/inaprovaline
 	name = "inaprovaline pill bottle"
@@ -428,31 +363,38 @@
 	pill_type_to_fill = /obj/item/reagent_containers/pill/inaprovaline
 	greyscale_config = /datum/greyscale_config/pillbottlebox
 	greyscale_colors = "#9966CC#ffffff"
+	description_overlay = "In"
 
 /obj/item/storage/pill_bottle/tramadol
 	name = "tramadol pill bottle"
 	desc = "Contains pills that numb pain. Take two for a stronger effect at the cost of a toxic effect."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/tramadol
-	greyscale_colors = "#a09ca0#ffffff"
+	greyscale_colors = "#8a8686#ffffff"
+	description_overlay = "Ta"
 
 /obj/item/storage/pill_bottle/paracetamol
 	name = "paracetamol pill bottle"
 	desc = "Contains pills that mildly numb pain. Take two for a slightly stronger effect."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/paracetamol
+	greyscale_colors = "#cac5c5#ffffff"
 	greyscale_config = /datum/greyscale_config/pillbottlebox
+	greyscale_colors = "#f8f4f8#ffffff"
+	description_overlay = "Pa"
 
 /obj/item/storage/pill_bottle/spaceacillin
 	name = "spaceacillin pill bottle"
 	desc = "Contains pills that handle low-level viral and bacterial infections. Effect increases with dosage."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/spaceacillin
 	greyscale_config = /datum/greyscale_config/pillbottlebox
-	greyscale_colors = "#90F7F5#ffffff"
+	greyscale_colors = "#90F7DeF5#ffffff"
+	description_overlay = "Sp"
 
 /obj/item/storage/pill_bottle/bicaridine
 	name = "bicaridine pill bottle"
 	desc = "Contains pills that heal cuts and bruises, but cause slight pain. Take two to heal faster, but have slightly more pain."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/bicaridine
 	greyscale_colors = "#DA0000#ffffff"
+	description_overlay = "Bi"
 
 /obj/item/storage/pill_bottle/meralyne
 	name = "meralyne pill bottle"
@@ -461,12 +403,14 @@
 	pill_type_to_fill = /obj/item/reagent_containers/pill/meralyne
 	greyscale_config = /datum/greyscale_config/pillbottleround
 	greyscale_colors = "#FD5964#ffffff"
+	description_overlay = "Me"
 
 /obj/item/storage/pill_bottle/dexalin
 	name = "dexalin pill bottle"
 	desc = "Contains pills that heal oxygen damage. They can suppress bloodloss symptoms as well."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/dexalin
 	greyscale_colors = "#5972FD#ffffff"
+	description_overlay = "Dx"
 
 /obj/item/storage/pill_bottle/alkysine
 	name = "alkysine pill bottle"
@@ -475,6 +419,7 @@
 	pill_type_to_fill = /obj/item/reagent_containers/pill/alkysine
 	greyscale_config = /datum/greyscale_config/pillbottlebubble
 	greyscale_colors = "#0292AC#ffffff"
+	description_overlay = "Al"
 
 /obj/item/storage/pill_bottle/imidazoline
 	name = "imidazoline pill bottle"
@@ -482,13 +427,15 @@
 	pill_type_to_fill = /obj/item/reagent_containers/pill/imidazoline
 	greyscale_config = /datum/greyscale_config/pillbottlebubble
 	greyscale_colors = "#F7A151#ffffff" //orange like carrots
+	description_overlay = "Im"
 
 /obj/item/storage/pill_bottle/russian_red
 	name = "\improper Russian Red pill bottle"
 	desc = "Contains pills that heal all damage rapidly at the cost of small amounts of unhealable damage."
 	icon_state = "pill_canister"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/russian_red
-	greyscale_colors = "#E07BAD#ffffff"
+	greyscale_colors = "#3d0000#ffffff"
+	description_overlay = "Rr"
 
 /obj/item/storage/pill_bottle/quickclot
 	name = "quick-clot pill bottle"
@@ -496,7 +443,8 @@
 	icon_state = "pill_canistercomplete"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/quickclot
 	greyscale_config = /datum/greyscale_config/pillbottleround
-	greyscale_colors = "#5ed75e#ffffff"
+	greyscale_colors = "#E07BAD#ffffff"
+	description_overlay = "Qk"
 
 /obj/item/storage/pill_bottle/hypervene
 	name = "hypervene pill bottle"
@@ -505,14 +453,16 @@
 	pill_type_to_fill = /obj/item/reagent_containers/pill/hypervene
 	greyscale_config = /datum/greyscale_config/pillbottlebubble
 	greyscale_colors = "#AC6D32#ffffff"
+	description_overlay = "Hy"
 
 /obj/item/storage/pill_bottle/tricordrazine
 	name = "tricordrazine pill bottle"
 	desc = "Contains pills capable of minorly healing all main types of damages."
 	icon_state = "pill_canistercomplete"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/tricordrazine
+	greyscale_colors = "#f8f8f8#ffffff"
 	greyscale_config = /datum/greyscale_config/pillbottleround
-	greyscale_colors = "#f8f4f8#ffffff"
+	description_overlay = "Ti"
 
 /obj/item/storage/pill_bottle/happy
 	name = "happy pill bottle"

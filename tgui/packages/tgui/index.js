@@ -15,6 +15,7 @@ import './styles/themes/ntos.scss';
 import './styles/themes/paper.scss';
 import './styles/themes/retro.scss';
 import './styles/themes/syndicate.scss';
+import './styles/themes/som.scss';
 import './styles/themes/xeno.scss';
 
 import { perf } from 'common/perf';

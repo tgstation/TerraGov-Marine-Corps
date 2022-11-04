@@ -6,6 +6,7 @@
 #define PASSMOB (1<<4)
 #define PASSSMALLSTRUCT (1<<5)
 #define PASSFIRE (1<<6)
+#define PASSXENO (1<<7)
 #define HOVERING (PASSTABLE|PASSMOB|PASSSMALLSTRUCT|PASSFIRE)
 
 //==========================================================================================

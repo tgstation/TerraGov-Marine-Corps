@@ -87,6 +87,7 @@
 #define BUCKLE_TRAIT "buckle"
 #define THROW_TRAIT "throw"
 #define FORTIFY_TRAIT "fortify" //Defender fortify ability.
+#define CREST_DEFENSE_TRAIT "crestdefense"
 #define TRAIT_STASIS "stasis"//Subject to the stasis effect
 #define ENDURE_TRAIT "endure" //Ravager Endure ability.
 #define RAGE_TRAIT "rage" //Ravager Rage ability.
@@ -100,6 +101,13 @@
 #define OPTABLE_TRAIT "optable"
 #define TIMESHIFT_TRAIT "timeshift"
 #define BRAIN_TRAIT "brain"
+#define WIDOW_ABILITY_TRAIT "widow_ability_trait"
+
+/// A trait given by any status effect
+#define STATUS_EFFECT_TRAIT "status-effect"
+/// A trait given by a specific status effect (not sure why we need both but whatever!)
+#define TRAIT_STATUS_EFFECT(effect_id) "[effect_id]-trait"
+
 /// Trait from a reagent of the given name
 #define REAGENT_TRAIT(reagent) reagent.name
 /// inherited from riding vehicles
@@ -109,13 +117,17 @@
 #define TRAIT_FOOD_GRILLED "food_grilled"
 
 //mob traits
+#define TRAIT_POSSESSING "possessing" // Prevents mob from being taken by ghosts
+#define TRAIT_BURROWED "burrowed" // Burrows the xeno
 #define TRAIT_KNOCKEDOUT "knockedout" //Forces the user to stay unconscious.
 #define TRAIT_INCAPACITATED "incapacitated"
 #define TRAIT_FLOORED "floored" //User is forced to the ground on a prone position.
 #define TRAIT_IMMOBILE "immobile" //User is unable to move by its own volition.
 #define TRAIT_IS_RESURRECTING "resurrecting"
+#define TRAIT_ESSENCE_LINKED "essence_linked"
 #define TRAIT_PSY_LINKED "psy_linked"
 #define TRAIT_TIME_SHIFTED "time_shifted"
+#define TRAIT_LEASHED "leashed"
 /// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).
 #define TRAIT_HANDS_BLOCKED "handsblocked"
 #define TRAIT_STUNIMMUNE "stun_immunity"

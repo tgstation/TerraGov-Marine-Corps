@@ -21,7 +21,7 @@
 /obj/item/frame/table/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(iswrench(I))
+	if(iswrench(I) && deconstruct_type)
 		new deconstruct_type(loc)
 		qdel(src)
 
@@ -60,6 +60,9 @@
 	new table_type(user.loc)
 	user.drop_held_item()
 	qdel(src)
+
+/obj/item/frame/table/nometal
+	deconstruct_type = null
 
 /*
 * Reinforced Table Parts

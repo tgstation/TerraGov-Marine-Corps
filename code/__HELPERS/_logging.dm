@@ -79,6 +79,9 @@
 	if(CONFIG_GET(flag/log_game))
 		WRITE_LOG(GLOB.world_game_log, "GAME: [text]")
 
+/proc/log_mecha(text)
+	if (CONFIG_GET(flag/log_mecha))
+		WRITE_LOG(GLOB.world_mecha_log, "MECHA: [text]")
 
 /proc/log_access(text)
 	LAZYADD(GLOB.access_log, "\[[stationTimestamp()]\] ACCESS: [text]")

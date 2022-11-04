@@ -126,3 +126,24 @@
 	self_recharge = TRUE
 	charge_amount = 50
 	charge_delay = 2 SECONDS //One hit on a resin thingy every 4 seconds, or one actual wall every 40 seconds.
+
+/obj/item/cell/mecha
+	name = "small radiotope cell"
+	desc = "A large twisting piece of metal that acts as the power core of a mecha. You probably shouldn't lick it, despite the blue glow."
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "trashmelt"
+	item_state = "trashmelt"
+	w_class = WEIGHT_CLASS_HUGE
+	self_recharge = TRUE
+	maxcharge = 1000
+	charge_amount = 30
+
+/obj/item/cell/mecha/medium
+	name = "medium radiotope cell"
+	maxcharge = 1250
+	charge_amount = 40
+
+/obj/item/cell/mecha/large
+	name = "large radiotope cell"
+	maxcharge = 1500
+	charge_amount = 50

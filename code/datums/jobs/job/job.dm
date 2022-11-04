@@ -277,6 +277,9 @@ GLOBAL_PROTECT(exp_specialmap)
 	skills = getSkillsType(job.return_skills_type(player?.prefs))
 	faction = job.faction
 	job.announce(src)
+	GLOB.round_statistics.total_humans_created[faction]++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_humans_created[faction]")
+
 
 
 /mob/living/carbon/human/apply_assigned_role_to_spawn(datum/job/assigned_role, client/player, datum/squad/assigned_squad, admin_action = FALSE)

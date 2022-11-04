@@ -45,8 +45,8 @@
 		UnregisterSignal(L, COMSIG_LIVING_DO_RESIST)
 	..()
 
-/mob/living/carbon/xenomorph/warrior/start_pulling(atom/movable/AM, suppress_message = TRUE, lunge = FALSE)
-	if(!check_state() || agility || !isliving(AM))
+/mob/living/carbon/xenomorph/warrior/start_pulling(atom/movable/AM, force = move_force, suppress_message = TRUE, lunge = FALSE)
+	if(!check_state() || agility)
 		return FALSE
 
 	var/mob/living/L = AM
@@ -59,7 +59,7 @@
 	if(lunge && ..())
 		return neck_grab(L)
 
-	. = ..(L, suppress_message)
+	. = ..(L, force, suppress_message)
 
 /mob/living/carbon/xenomorph/warrior/proc/neck_grab(mob/living/L)
 	GLOB.round_statistics.warrior_grabs++

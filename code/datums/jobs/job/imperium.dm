@@ -119,7 +119,7 @@
 	name = "Guardsman Medicae"
 	jobtype = /datum/job/imperial/guardsman/medicae
 
-	belt = /obj/item/storage/belt/lifesaver
+	belt = /obj/item/storage/belt/lifesaver/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/imperial/medicae
 	head = /obj/item/clothing/head/helmet/marine/imperial
 	glasses = /obj/item/clothing/glasses/hud/health

@@ -19,11 +19,13 @@
 /area/lv624/ground/river2)
 "f" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
 "g" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/decal/riverdecal/edge,
+/obj/structure/cable,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "h" = (
@@ -38,12 +40,14 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/ai_node,
 /obj/effect/decal/riverdecal,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
 "k" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/landmark/weed_node,
 /obj/effect/decal/riverdecal,
+/obj/structure/cable,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "m" = (
@@ -107,6 +111,7 @@
 /area/lv624/ground/river2)
 "z" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "A" = (
@@ -149,6 +154,7 @@
 /area/lv624/ground/river2)
 "K" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
 /turf/open/ground/river,
 /area/lv624/ground/river2)
 "M" = (
@@ -179,6 +185,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "R" = (
@@ -186,11 +193,13 @@
 /obj/effect/decal/riverdecal/edge{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "S" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/decal/riverdecal,
+/obj/structure/cable,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "T" = (

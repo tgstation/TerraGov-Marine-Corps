@@ -12,8 +12,6 @@
 	GLOB.alive_human_list += src
 	LAZYADD(GLOB.humans_by_zlevel["[z]"], src)
 	RegisterSignal(src, COMSIG_MOVABLE_Z_CHANGED, .proc/human_z_changed)
-	GLOB.round_statistics.total_humans_created++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_humans_created")
 
 	var/datum/action/skill/toggle_orders/toggle_orders_action = new
 	toggle_orders_action.give_action(src)
@@ -23,10 +21,17 @@
 	issue_order_hold.give_action(src)
 	var/datum/action/skill/issue_order/focus/issue_order_focus = new
 	issue_order_focus.give_action(src)
-	var/datum/action/innate/order/rally_order/send_rally_order = new
+	var/datum/action/innate/order/attack_order/personal/send_attack_order = new
+	send_attack_order.give_action(src)
+	var/datum/action/innate/order/defend_order/personal/send_defend_order = new
+	send_defend_order.give_action(src)
+	var/datum/action/innate/order/retreat_order/personal/send_retreat_order = new
+	send_retreat_order.give_action(src)
+	var/datum/action/innate/order/rally_order/personal/send_rally_order = new
 	send_rally_order.give_action(src)
 	var/datum/action/innate/message_squad/screen_orders = new
 	screen_orders.give_action(src)
+
 
 	//makes order hud visible
 	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_ORDER]
@@ -90,6 +95,11 @@
 		if(eta_status)
 			stat("Evacuation in:", eta_status)
 
+		//combat patrol timer
+		var/patrol_end_countdown = SSticker.mode?.game_end_countdown()
+		if(patrol_end_countdown)
+			stat("<b>Round End timer:</b>", patrol_end_countdown)
+
 		if(internal)
 			stat("Internal Atmosphere Info", internal.name)
 			stat("Tank Pressure", internal.pressure)
@@ -112,6 +122,9 @@
 			stat("Points needed to win:", mode.win_points_needed)
 			stat("Loyalists team points:", LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV) ? LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV) : 0)
 			stat("Rebels team points:", LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV_REBEL) ? LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV_REBEL) : 0)
+		var/datum/game_mode/combat_patrol/sensor_capture/sensor_mode = SSticker.mode
+		if(issensorcapturegamemode(SSticker.mode))
+			stat("<b>Activated Sensor Towers:</b>", sensor_mode.sensors_activated)
 
 /mob/living/carbon/human/ex_act(severity)
 	if(status_flags & GODMODE)
@@ -780,12 +793,9 @@
 	if(!species.has_organ["eyes"]) return 2//No eyes, can't hurt them.
 
 	var/datum/internal_organ/eyes/I = internal_organs_by_name["eyes"]
-	if(I)
-		if(I.cut_away)
-			return 2
-		if(I.robotic == ORGAN_ROBOT)
-			return 2
-	else
+	if(!I)
+		return 2
+	if(I.robotic == ORGAN_ROBOT)
 		return 2
 
 	if(istype(head, /obj/item/clothing))

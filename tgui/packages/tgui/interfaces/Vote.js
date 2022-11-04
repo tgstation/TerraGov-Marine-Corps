@@ -193,14 +193,14 @@ const ChoicesPanel = (props, context) => {
                   textAlign="right"
                   buttons={
                     <Button
-                      disabled={i === selected_choice - 1}
+                      color={selected_choice.includes(i + 1) ? "green" : "orange"}
                       onClick={() => {
                         act("vote", { index: i + 1 });
                       }}>
                       Vote
                     </Button>
                   }>
-                  {i === selected_choice - 1 && (
+                  {selected_choice.includes(i + 1) && (
                     <Icon
                       alignSelf="right"
                       mr={2}

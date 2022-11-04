@@ -242,7 +242,7 @@ SUBSYSTEM_DEF(minimaps)
 /datum/controller/subsystem/minimaps/proc/on_z_change(atom/movable/source, oldz, newz)
 	SIGNAL_HANDLER
 	for(var/flag in GLOB.all_minimap_flags)
-		if(!minimaps_by_z["[oldz]"].images_assoc["[flag]"][source])
+		if(!minimaps_by_z["[oldz]"]?.images_assoc["[flag]"][source])
 			continue
 		//see previous byond bug comments http://www.byond.com/forum/post/2661309
 		var/ref_old = minimaps_by_z["[oldz]"].images_assoc["[flag]"][source]
@@ -400,6 +400,10 @@ SUBSYSTEM_DEF(minimaps)
 	minimap_flags = MINIMAP_FLAG_MARINE_REBEL
 	marker_flags = MINIMAP_FLAG_MARINE_REBEL
 
+/datum/action/minimap/som
+	minimap_flags = MINIMAP_FLAG_MARINE_SOM
+	marker_flags = MINIMAP_FLAG_MARINE_SOM
+
 /datum/action/minimap/observer
-	minimap_flags = MINIMAP_FLAG_XENO|MINIMAP_FLAG_MARINE|MINIMAP_FLAG_MARINE_REBEL|MINIMAP_FLAG_EXCAVATION_ZONE
+	minimap_flags = MINIMAP_FLAG_XENO|MINIMAP_FLAG_MARINE|MINIMAP_FLAG_MARINE_REBEL|MINIMAP_FLAG_MARINE_SOM|MINIMAP_FLAG_EXCAVATION_ZONE
 	marker_flags = NONE

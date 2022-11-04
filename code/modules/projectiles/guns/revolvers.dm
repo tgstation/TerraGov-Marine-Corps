@@ -32,14 +32,6 @@
 
 	placed_overlay_iconstate = "revolver"
 
-	///Sound played when revolvers chamber is spun.
-	var/spin_sound = 'sound/effects/spin.ogg'
-	///Sound played when thud?
-	var/thud_sound = 'sound/effects/thud.ogg'
-	///Delay between gun tricks
-	var/trick_delay = 6
-	///Time of last trick
-	var/recent_trick //So they're not spamming tricks.
 	///If the gun is able to play Russian Roulette
 	var/russian_roulette = FALSE //God help you if you do this.
 	///Whether the chamber can be spun for Russian Roulette. If False the chamber can be spun.
@@ -60,96 +52,7 @@
 	if(zoom)
 		to_chat(usr, span_warning("You cannot conceviably do that while looking down \the [src]'s scope!"))
 		return
-	revolver_trick(usr)
-
-/obj/item/weapon/gun/revolver/proc/revolver_throw_catch(mob/living/carbon/human/user)
-	set waitfor = 0
-	user.visible_message("[user] deftly flicks [src] and tosses it into the air!",span_notice(" You flick and toss [src] into the air!"))
-	var/img_layer = MOB_LAYER+0.1
-	var/image/trick = image(icon,user,icon_state,img_layer)
-	switch(pick(1,2))
-		if(1) animation_toss_snatch(trick)
-		if(2) animation_toss_flick(trick, pick(1,-1))
-
-	invisibility = 100
-	for(var/mob/M in viewers(user))
-		SEND_IMAGE(M, trick)
-	sleep(5)
-	trick.loc = null
-	if(!loc || !user)
-		return
-	invisibility = 0
-	playsound(user, thud_sound, 25, 1)
-
-	if(user.get_active_held_item() != src)
-		return
-
-	if(user.get_inactive_held_item())
-		user.visible_message("[user] catches [src] with the same hand!",span_notice(" You catch [src] as it spins in to your hand!"))
-		return
-	user.visible_message("[user] catches [src] with his other hand!",span_notice(" You snatch [src] with your other hand! Awesome!"))
-	user.temporarilyRemoveItemFromInventory(src)
-	user.put_in_inactive_hand(src)
-	user.swap_hand()
-	user.update_inv_l_hand(0)
-	user.update_inv_r_hand()
-
-/obj/item/weapon/gun/revolver/proc/revolver_trick(mob/living/carbon/human/user)
-	if(world.time < (recent_trick + trick_delay) )
-		return FALSE //Don't spam it.
-	if(!istype(user))
-		return FALSE //Not human.
-	var/chance = -5
-	chance = user.health < 6 ? 0 : user.health - 5
-
-	//Pain is largely ignored, since it deals its own effects on the mob. We're just concerned with health.
-	//And this proc will only deal with humans for now.
-
-	var/obj/item/weapon/gun/revolver/double = user.get_inactive_held_item()
-	if(prob(chance))
-		switch(rand(1,7))
-			if(1)
-				revolver_basic_spin(user, -1)
-			if(2)
-				revolver_basic_spin(user, 1)
-			if(3)
-				revolver_throw_catch(user)
-			if(4)
-				revolver_basic_spin(user, 1)
-			if(5)
-				var/arguments[] = istype(double) ? list(user, 1, double) : list(user, -1)
-				revolver_basic_spin(arglist(arguments))
-			if(6)
-				var/arguments[] = istype(double) ? list(user, -1, double) : list(user, 1)
-				revolver_basic_spin(arglist(arguments))
-			if(7)
-				if(istype(double))
-					spawn(0)
-						double.revolver_throw_catch(user)
-					revolver_throw_catch(user)
-				else
-					revolver_throw_catch(user)
-	else
-		if(prob(10))
-			to_chat(user, span_warning("You fumble with [src] like an idiot... Uncool."))
-		else
-			user.visible_message(span_info("<b>[user]</b> fumbles with [src] like a huge idiot!"))
-
-	recent_trick = world.time //Turn on the delay for the next trick.
-
-	return TRUE
-
-/obj/item/weapon/gun/revolver/proc/revolver_basic_spin(mob/living/carbon/human/user, direction = 1, obj/item/weapon/gun/revolver/double)
-	set waitfor = 0
-	playsound(user, spin_sound, 25, 1)
-	if(double)
-		user.visible_message("[user] deftly flicks and spins [src] and [double]!",span_notice(" You flick and spin [src] and [double]!"))
-		animation_wrist_flick(double, 1)
-	else
-		user.visible_message("[user] deftly flicks and spins [src]!",span_notice(" You flick and spin [src]!"))
-	animation_wrist_flick(src, direction)
-	sleep(3)
-	if(loc && user) playsound(user, thud_sound, 25, 1)
+	do_trick(usr)
 
 //-------------------------------------------------------
 //R-44 COMBAT REVOLVER

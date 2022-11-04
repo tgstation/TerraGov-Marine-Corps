@@ -47,11 +47,15 @@
 ///Wrapper for proc/finish_deploy
 /datum/element/deployable_item/proc/deploy(mob/user, atom/object, turf/location, control, params)
 	SIGNAL_HANDLER
+	if(!isturf(location))
+		return
 	var/obj/item/item_in_active_hand = user.get_active_held_item()
 	if(!istype(item_in_active_hand, deployable_type))
 		return
 	var/list/modifiers = params2list(params)
 	if(!modifiers["ctrl"] || modifiers["right"] || get_turf(user) == location || !(user.Adjacent(object)) || !location)
+		return
+	if(ISDIAGONALDIR(get_dir(user,location)))
 		return
 	INVOKE_ASYNC(src, .proc/finish_deploy, item_in_active_hand, user, location)
 	return COMSIG_KB_ACTIVATED
@@ -66,7 +70,7 @@
 		if(!ishuman(user) || CHECK_BITFIELD(item_to_deploy.flags_item, NODROP))
 			return
 
-		if(item_to_deploy.check_blocked_turf(location))
+		if(LinkBlocked(get_turf(user), location))
 			location.balloon_alert(user, "No room to deploy")
 			return
 		if(user.do_actions)
@@ -77,7 +81,7 @@
 		var/newdir = user.dir //Save direction before the doafter for ease of deploy
 		if(!do_after(user, deploy_time, TRUE, item_to_deploy, BUSY_ICON_BUILD))
 			return
-		if(item_to_deploy.check_blocked_turf(location))
+		if(LinkBlocked(get_turf(user), location))
 			location.balloon_alert(user, "No room to deploy")
 			return
 		user.temporarilyRemoveItemFromInventory(item_to_deploy)
@@ -115,8 +119,8 @@
 
 //Handles the conversion of Machine into Item. 'source' should be the Machine. User is the one undeploying. It can be undeployed without a user, if so, the var 'location' is required. If 'source' is not /obj/machinery/deployable then 'undeploying' should be the item to be undeployed from the machine.
 /datum/element/deployable_item/proc/finish_undeploy(datum/source, mob/user)
-	var/obj/machinery/deployable/deployed_machine = source //The machinethat is undeploying should be the the one sending the Signal
-	var/obj/item/attached_item  = deployed_machine.internal_item //Item the machine is undeploying
+	var/obj/deployed_machine = source //The machinethat is undeploying should be the the one sending the Signal
+	var/obj/item/attached_item  = deployed_machine.get_internal_item() //Item the machine is undeploying
 
 	if(!user)
 		CRASH("[source] has sent the signal COMSIG_ITEM_UNDEPLOY to [attached_item] without the arg 'user'")
@@ -139,7 +143,7 @@
 	attached_item.max_integrity = deployed_machine.max_integrity
 	attached_item.obj_integrity = deployed_machine.obj_integrity
 
-	deployed_machine.internal_item = null
+	deployed_machine.clear_internal_item()
 
 	QDEL_NULL(deployed_machine)
 	attached_item.update_icon_state()

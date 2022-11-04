@@ -243,3 +243,66 @@
 /datum/greyscale_config/projectile
 	json_config = 'code/datums/greyscale/json_configs/projectiles.json'
 	icon_file = 'icons/obj/items/projectiles.dmi'
+
+/*
+ * MECHS
+ */
+//MEDIUM
+/datum/greyscale_config/mech_assault
+	icon_file = 'icons/mecha/mech_assault.dmi'
+	json_config = 'code/datums/greyscale/json_configs/mech_arm.json'
+
+/datum/greyscale_config/mech_assault/arms
+	json_config = 'code/datums/greyscale/json_configs/mech_arm.json'
+
+/datum/greyscale_config/mech_assault/legs
+	json_config = 'code/datums/greyscale/json_configs/mech_legs.json'
+
+/datum/greyscale_config/mech_assault/torso
+	json_config = 'code/datums/greyscale/json_configs/mech_torso.json'
+
+/datum/greyscale_config/mech_assault/head
+	json_config = 'code/datums/greyscale/json_configs/mech_head.json'
+
+/datum/greyscale_config/mech_assault/visor
+	json_config = 'code/datums/greyscale/json_configs/mech_visor.json'
+
+//LIGHT
+/datum/greyscale_config/mech_recon
+	icon_file = 'icons/mecha/mech_recon.dmi'
+	json_config = 'code/datums/greyscale/json_configs/mech_arm.json'
+
+/datum/greyscale_config/mech_recon/arms
+	json_config = 'code/datums/greyscale/json_configs/mech_arm.json'
+
+/datum/greyscale_config/mech_recon/legs
+	json_config = 'code/datums/greyscale/json_configs/mech_legs.json'
+
+/datum/greyscale_config/mech_recon/torso
+	json_config = 'code/datums/greyscale/json_configs/mech_torso.json'
+
+/datum/greyscale_config/mech_recon/head
+	json_config = 'code/datums/greyscale/json_configs/mech_head.json'
+
+/datum/greyscale_config/mech_recon/visor
+	json_config = 'code/datums/greyscale/json_configs/mech_visor.json'
+
+//HEAVY
+/datum/greyscale_config/mech_vanguard
+	icon_file = 'icons/mecha/mech_vanguard.dmi'
+	json_config = 'code/datums/greyscale/json_configs/mech_arm.json'
+
+/datum/greyscale_config/mech_vanguard/arms
+	json_config = 'code/datums/greyscale/json_configs/mech_arm.json'
+
+/datum/greyscale_config/mech_vanguard/legs
+	json_config = 'code/datums/greyscale/json_configs/mech_legs.json'
+
+/datum/greyscale_config/mech_vanguard/torso
+	json_config = 'code/datums/greyscale/json_configs/mech_torso.json'
+
+/datum/greyscale_config/mech_vanguard/head
+	json_config = 'code/datums/greyscale/json_configs/mech_head.json'
+
+/datum/greyscale_config/mech_vanguard/visor
+	json_config = 'code/datums/greyscale/json_configs/mech_visor.json'

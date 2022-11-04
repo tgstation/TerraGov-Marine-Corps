@@ -126,6 +126,11 @@ a.popt {text-decoration: none;}
 .charlieradio			{color: #AA55AA;}
 .deltaradio				{color: #007FCF;}
 
+.zuluradio				{color: #FF6A00;}
+.yankeeradio			{color: #009999;}
+.xrayradio				{color: #008000;}
+.whiskeyradio			{color: #CC00CC;}
+
 .binarysay    			{color: #20c20e; background-color: #000000; display: block;}
 .binarysay a  			{color: #00ff00;}
 .binarysay a:active, .binarysay a:visited {color: #88ff88;}

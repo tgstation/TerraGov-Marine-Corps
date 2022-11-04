@@ -26,6 +26,10 @@
 					ExtinguishMob()
 				return TRUE
 
+			if(istype(wear_mask, /obj/item/clothing/mask/facehugger) && H != src)
+				H.stripPanelUnequip(wear_mask, src, SLOT_WEAR_MASK)
+				return TRUE
+
 			if(health >= get_crit_threshold())
 				help_shake_act(H)
 				return TRUE
@@ -83,6 +87,8 @@
 
 		if(INTENT_HARM)
 			// See if they can attack, and which attacks to use.
+			if(H == src && !H.do_self_harm)
+				return FALSE
 			var/datum/unarmed_attack/attack = H.species.unarmed
 			if(!attack.is_usable(H))
 				attack = H.species.secondary_unarmed

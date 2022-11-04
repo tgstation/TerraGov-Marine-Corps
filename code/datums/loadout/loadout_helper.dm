@@ -22,7 +22,7 @@
 	var/list/job_specific_list = GLOB.loadout_role_essential_set[user.job.title]
 
 	//If we still have our essential kit, and the item is in there, we take one from it
-	if(seller.buying_bitfield & MARINE_CAN_BUY_ESSENTIALS && islist(job_specific_list) && job_specific_list[item_to_buy_type] > seller.unique_items_list[item_to_buy_type])
+	if(seller.buying_choices_left[CAT_ESS] && islist(job_specific_list) && job_specific_list[item_to_buy_type] > seller.unique_items_list[item_to_buy_type])
 		seller.unique_items_list[item_to_buy_type]++
 		return TRUE
 
@@ -44,9 +44,9 @@
 		item_info = listed_products[item_type]
 		if(item_info[1] == CAT_ESS)
 			return FALSE
-		if(seller.available_points < item_info[3])
+		if(seller.available_points[item_info[1]] < item_info[3])
 			return FALSE
-		seller.available_points -= item_info[3]
+		seller.available_points[item_info[1]] -= item_info[3]
 		return TRUE
 	return FALSE
 
@@ -54,8 +54,15 @@
  * Check if that stack is buyable in a points vendor (currently, only metal, sandbags and plasteel)
  */
 /proc/buy_stack(obj/item/stack/stack_to_buy_type, datum/loadout_seller/seller, mob/living/user, amount)
-	if(user.job.title != SQUAD_LEADER && user.job.title != SQUAD_ENGINEER)
+	//Hardcode to check the category. Why is this function even here? But it doesn't work, and here I am doing hardcode to make it work because it's hardcoded anyway.
+	var/item_cat = ""
+	if(user.job.title == SQUAD_LEADER)
+		item_cat = CAT_LEDSUP
+	else if (user.job.title == SQUAD_ENGINEER)
+		item_cat = CAT_ENGSUP
+	else
 		return FALSE
+
 	var/base_amount = 0
 	var/base_price = 0
 	if(ispath(stack_to_buy_type, /obj/item/stack/sheet/metal) && user.job.title == SQUAD_ENGINEER)
@@ -67,9 +74,10 @@
 	else if(ispath(stack_to_buy_type, /obj/item/stack/sandbags_empty))
 		base_amount = 25
 		base_price = SANDBAG_PRICE_IN_GEAR_VENDOR
-	if(base_amount && (round(amount / base_amount) * base_price <= seller.available_points))
+
+	if(base_amount && (round(amount / base_amount) * base_price <= seller.available_points[item_cat]))
 		var/points_cost = round(amount / base_amount) * base_price
-		seller.available_points -= points_cost
+		seller.available_points[item_cat] -= points_cost
 		return TRUE
 
 ///Return wich type of item_representation should representate any item_type
@@ -123,27 +131,15 @@
 	var/headset_type = faction == FACTION_TERRAGOV_REBEL ? /obj/item/radio/headset/mainship/marine/rebel : /obj/item/radio/headset/mainship/marine
 	user.equip_to_slot_or_del(new headset_type(null, user.assigned_squad, user.job.type), SLOT_EARS, override_nodrop = TRUE)
 
-/// Will check if the selected category can be bought according to the buying_bitfield
-/proc/can_buy_category(category, buying_bitfield)
-	var/selling_bitfield = NONE
-	for(var/i in GLOB.marine_selector_cats[category])
-		selling_bitfield |= i
-	return buying_bitfield & selling_bitfield
+/// Will check if the selected category can be bought according to the category choices left
+/proc/can_buy_category(category, category_choices)
+	return category_choices && GLOB.marine_selector_cats[category]
 
 /// Return true if you can buy this category, and also change the loadout seller buying bitfield
 /proc/buy_category(category, datum/loadout_seller/seller)
-	var/selling_bitfield = NONE
-	for(var/i in GLOB.marine_selector_cats[category])
-		selling_bitfield |= i
-	if(!(seller.buying_bitfield & selling_bitfield))
+	if(!(seller.buying_choices_left[category] && GLOB.marine_selector_cats[category]))
 		return FALSE
-	if(selling_bitfield == (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH))
-		if(seller.buying_bitfield & MARINE_CAN_BUY_R_POUCH)
-			seller.buying_bitfield &= ~MARINE_CAN_BUY_R_POUCH
-		else
-			seller.buying_bitfield &= ~MARINE_CAN_BUY_L_POUCH
-		return TRUE
-	seller.buying_bitfield &= ~selling_bitfield
+	seller.buying_choices_left[category]-= 1
 	return TRUE
 
 /proc/load_player_loadout(player_ckey, loadout_job, loadout_name)

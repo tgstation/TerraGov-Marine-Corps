@@ -13,6 +13,7 @@ type VendingData = {
   currently_vending: VendingRecord | null,
   extended: number,
   coin: string,
+  ui_theme: string,
 };
 
 type VendingStock = {
@@ -29,7 +30,7 @@ type VendingRecord = {
 }
 
 export const Vending = (props, context) => {
-  const { data } = useBackend<VendingData>(context);
+  const { act, data } = useBackend<VendingData>(context);
 
   const {
     vendor_name,
@@ -38,6 +39,7 @@ export const Vending = (props, context) => {
     coin_records,
     extended,
     tabs,
+    ui_theme,
   } = data;
 
   const [
@@ -59,7 +61,8 @@ export const Vending = (props, context) => {
     <Window
       title={vendor_name || "Vending Machine"}
       width={500}
-      height={600}>
+      height={600}
+      theme={ui_theme}>
       {showDesc ? (
         <Modal width="400px">
           <Box>{showDesc}</Box>
@@ -79,12 +82,19 @@ export const Vending = (props, context) => {
         <Section
           title="Select an item"
           buttons={
-            <Button
-              icon="power-off"
-              selected={showEmpty}
-              onClick={() => setShowEmpty(!showEmpty)}>
-              Show sold-out items
-            </Button>
+            <>
+              <Button
+                icon="power-off"
+                selected={showEmpty}
+                onClick={() => setShowEmpty(!showEmpty)}>
+                Show sold-out items
+              </Button>
+              <Button
+                icon="truck-loading"
+                color="good"
+                tooltip="Stock all loose items in the outlet back into the vending machine"
+                onClick={() => act('vacuum')} />
+            </>
           }>
           {(tabs.length > 0 && (
             <Section

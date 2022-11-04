@@ -1,6 +1,5 @@
 {
 	"recommendations": [
-		"gbasood.byond-dm-language-support",
 		"arcanis.vscode-zipfs",
 		"dbaeumer.vscode-eslint",
 		"donkie.vscode-tgstation-test-adapter",
@@ -9,6 +8,7 @@
 		"platymuus.dm-langclient",
 		"editorconfig.editorconfig",
 		"eamodio.gitlens",
-		"anturk.dmi-editor"
+		"anturk.dmi-editor",
+		"sukumo28.wav-preview"
 	]
 }
