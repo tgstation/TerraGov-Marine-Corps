@@ -15,7 +15,7 @@ import { globalEvents } from '../events.js';
 
 const logger = createLogger('Button');
 
-export const Button = props => {
+export const Button = (props) => {
   const {
     className,
     fluid,
@@ -43,12 +43,13 @@ export const Button = props => {
   // A warning about the lowercase onclick
   if (onclick) {
     logger.warn(
-      `Lowercase 'onclick' is not supported on Button and lowercase`
-      + ` prop names are discouraged in general. Please use a camelCase`
-      + `'onClick' instead and read: `
-      + `https://infernojs.org/docs/guides/event-handling`);
+      `Lowercase 'onclick' is not supported on Button and lowercase` +
+        ` prop names are discouraged in general. Please use a camelCase` +
+        `'onClick' instead and read: ` +
+        `https://infernojs.org/docs/guides/event-handling`
+    );
   }
-  rest.onClick = e => {
+  rest.onClick = (e) => {
     if (!disabled && onClick) {
       onClick(e);
     }
@@ -69,17 +70,18 @@ export const Button = props => {
         circular && 'Button--circular',
         compact && 'Button--compact',
         iconPosition && 'Button--iconPosition--' + iconPosition,
-        verticalAlignContent && "Button--flex",
-        (verticalAlignContent && fluid) && "Button--flex--fluid",
-        verticalAlignContent && 'Button--verticalAlignContent--' + verticalAlignContent,
-        (color && typeof color === 'string')
+        verticalAlignContent && 'Button--flex',
+        verticalAlignContent && fluid && 'Button--flex--fluid',
+        verticalAlignContent &&
+          'Button--verticalAlignContent--' + verticalAlignContent,
+        color && typeof color === 'string'
           ? 'Button--color--' + color
           : 'Button--color--default',
         className,
         computeBoxClassName(rest),
       ])}
       tabIndex={!disabled && '0'}
-      onKeyDown={e => {
+      onKeyDown={(e) => {
         if (props.captureKeys === false) {
           return;
         }
@@ -134,14 +136,15 @@ export const Button = props => {
 
 Button.defaultHooks = pureComponentHooks;
 
-export const ButtonCheckbox = props => {
+export const ButtonCheckbox = (props) => {
   const { checked, ...rest } = props;
   return (
     <Button
       color="transparent"
       icon={checked ? 'check-square-o' : 'square-o'}
       selected={checked}
-      {...rest} />
+      {...rest}
+    />
   );
 };
 
@@ -166,16 +169,15 @@ export class ButtonConfirm extends Component {
     });
     if (clickedOnce) {
       setTimeout(() => window.addEventListener('click', this.handleClick));
-    }
-    else {
+    } else {
       window.removeEventListener('click', this.handleClick);
     }
   }
 
   render() {
     const {
-      confirmContent = "Confirm?",
-      confirmColor = "bad",
+      confirmContent = 'Confirm?',
+      confirmColor = 'bad',
       confirmIcon,
       icon,
       color,
@@ -188,9 +190,9 @@ export class ButtonConfirm extends Component {
         content={this.state.clickedOnce ? confirmContent : content}
         icon={this.state.clickedOnce ? confirmIcon : icon}
         color={this.state.clickedOnce ? confirmColor : color}
-        onClick={() => this.state.clickedOnce
-          ? onClick()
-          : this.setClickedOnce(true)}
+        onClick={() =>
+          this.state.clickedOnce ? onClick() : this.setClickedOnce(true)
+        }
         {...rest}
       />
     );
@@ -215,12 +217,11 @@ export class ButtonInput extends Component {
     if (this.inputRef) {
       const input = this.inputRef.current;
       if (inInput) {
-        input.value = this.props.currentValue || "";
+        input.value = this.props.currentValue || '';
         try {
           input.focus();
           input.select();
-        }
-        catch {}
+        } catch {}
       }
     }
   }
@@ -228,7 +229,7 @@ export class ButtonInput extends Component {
   commitResult(e) {
     if (this.inputRef) {
       const input = this.inputRef.current;
-      const hasValue = (input.value !== "");
+      const hasValue = input.value !== '';
       if (hasValue) {
         this.props.onCommit(e, input.value);
         return;
@@ -265,12 +266,8 @@ export class ButtonInput extends Component {
         ])}
         {...rest}
         onClick={() => this.setInInput(true)}>
-        {icon && (
-          <Icon name={icon} rotation={iconRotation} spin={iconSpin} />
-        )}
-        <div>
-          {content}
-        </div>
+        {icon && <Icon name={icon} rotation={iconRotation} spin={iconSpin} />}
+        <div>{content}</div>
         <input
           ref={this.inputRef}
           className="NumberInput__input"
@@ -278,14 +275,14 @@ export class ButtonInput extends Component {
             'display': !this.state.inInput ? 'none' : undefined,
             'text-align': 'left',
           }}
-          onBlur={e => {
+          onBlur={(e) => {
             if (!this.state.inInput) {
               return;
             }
             this.setInInput(false);
             this.commitResult(e);
           }}
-          onKeyDown={e => {
+          onKeyDown={(e) => {
             if (e.keyCode === KEY_ENTER) {
               this.setInInput(false);
               this.commitResult(e);
@@ -300,10 +297,7 @@ export class ButtonInput extends Component {
     );
     if (tooltip) {
       buttonContent = (
-        <Tooltip
-          content={tooltip}
-          position={tooltipPosition}
-        >
+        <Tooltip content={tooltip} position={tooltipPosition}>
           {buttonContent}
         </Tooltip>
       );
@@ -332,9 +326,9 @@ export class ButtonKeybind extends Component {
     const { onFinish } = this.props;
     const { keysDown } = this.state;
 
-    const listOfKeys
-    = Object.keys(keysDown)
-      .filter(isTrue => keysDown[isTrue]);
+    const listOfKeys = Object.keys(keysDown).filter(
+      (isTrue) => keysDown[isTrue]
+    );
 
     onFinish(listOfKeys);
     document.activeElement.blur();
@@ -351,15 +345,15 @@ export class ButtonKeybind extends Component {
     this.finishTimerStart(200);
 
     // Prevents repeating
-    if (keysDown[pressedKey] && e.type === "keydown") {
+    if (keysDown[pressedKey] && e.type === 'keydown') {
       return;
     }
 
     if (e.keyCode >= 96 && e.keyCode <= 105) {
-      pressedKey = "Numpad" + pressedKey;
+      pressedKey = 'Numpad' + pressedKey;
     }
 
-    keysDown[pressedKey] = e.type === "keydown";
+    keysDown[pressedKey] = e.type === 'keydown';
     this.setState({
       keysDown: keysDown,
     });
@@ -389,22 +383,21 @@ export class ButtonKeybind extends Component {
 
   render() {
     const { focused, keysDown } = this.state;
-    const {
-      content,
-      ...rest
-    } = this.props;
+    const { content, ...rest } = this.props;
 
     return (
       <Button
         {...rest}
-        content={focused
-          ? Object.keys(keysDown)
-            .filter(isTrue => keysDown[isTrue])
-            .join("+") || content
-          : content}
+        content={
+          focused
+            ? Object.keys(keysDown)
+              .filter((isTrue) => keysDown[isTrue])
+              .join('+') || content
+            : content
+        }
         selected={focused}
         inline
-        onClick={e => {
+        onClick={(e) => {
           if (focused && Object.keys(keysDown).length) {
             this.doFinish();
             e.preventDefault();
@@ -412,7 +405,7 @@ export class ButtonKeybind extends Component {
         }}
         onFocus={() => this.doFocus()}
         onBlur={() => this.doBlur()}
-        onKeyDown={e => this.handleKeyPress(e)}
+        onKeyDown={(e) => this.handleKeyPress(e)}
       />
     );
   }

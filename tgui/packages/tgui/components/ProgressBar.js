@@ -9,7 +9,7 @@ import { classes, pureComponentHooks } from 'common/react';
 import { computeBoxClassName, computeBoxProps } from './Box';
 import { CSS_COLORS } from '../constants';
 
-export const ProgressBar = props => {
+export const ProgressBar = (props) => {
   const {
     className,
     value,
@@ -22,18 +22,13 @@ export const ProgressBar = props => {
   } = props;
   const scaledValue = scale(value, minValue, maxValue);
   const hasContent = children !== undefined;
-  const effectiveColor = color
-    || keyOfMatchingRange(value, ranges)
-    || 'default';
+  const effectiveColor =
+    color || keyOfMatchingRange(value, ranges) || 'default';
 
   // We permit colors to be in hex format, rgb()/rgba() format,
   // a name for a color-<name> class, or a base CSS class.
   const outerProps = computeBoxProps(rest);
-  const outerClasses = [
-    'ProgressBar',
-    className,
-    computeBoxClassName(rest),
-  ];
+  const outerClasses = ['ProgressBar', className, computeBoxClassName(rest)];
   const fillStyles = {
     'width': clamp01(scaledValue) * 100 + '%',
   };
@@ -42,22 +37,19 @@ export const ProgressBar = props => {
     outerClasses.push('ProgressBar--color--' + effectiveColor);
   } else {
     // Otherwise, set styles directly.
-    outerProps.style = (outerProps.style || "")
-      + `border-color: ${effectiveColor};`;
+    outerProps.style =
+      (outerProps.style || '') + `border-color: ${effectiveColor};`;
     fillStyles['background-color'] = effectiveColor;
   }
 
   return (
-    <div
-      className={classes(outerClasses)}
-      {...outerProps}>
+    <div className={classes(outerClasses)} {...outerProps}>
       <div
         className="ProgressBar__fill ProgressBar__fill--animated"
-        style={fillStyles} />
+        style={fillStyles}
+      />
       <div className="ProgressBar__content">
-        {hasContent
-          ? children
-          : toFixed(scaledValue * 100) + '%'}
+        {hasContent ? children : toFixed(scaledValue * 100) + '%'}
       </div>
     </div>
   );

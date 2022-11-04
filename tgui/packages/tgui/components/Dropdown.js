@@ -32,8 +32,7 @@ export class Dropdown extends Component {
     if (open) {
       setTimeout(() => window.addEventListener('click', this.handleClick));
       this.menuRef.focus();
-    }
-    else {
+    } else {
       window.removeEventListener('click', this.handleClick);
     }
   }
@@ -48,10 +47,10 @@ export class Dropdown extends Component {
 
   buildMenu() {
     const { options = [] } = this.props;
-    const ops = options.map(option => {
+    const ops = options.map((option) => {
       let displayText, value;
 
-      if (typeof option === "string") {
+      if (typeof option === 'string') {
         displayText = option;
         value = option;
       } else {
@@ -94,22 +93,21 @@ export class Dropdown extends Component {
       displayText,
       ...boxProps
     } = props;
-    const {
-      className,
-      ...rest
-    } = boxProps;
+    const { className, ...rest } = boxProps;
 
     const adjustedOpen = over ? !this.state.open : this.state.open;
 
     const menu = this.state.open ? (
       <div
-        ref={menu => { this.menuRef = menu; }}
+        ref={(menu) => {
+          this.menuRef = menu;
+        }}
         tabIndex="-1"
         style={{
           'width': openWidth,
         }}
         className={classes([
-          noscroll && 'Dropdown__menu-noscroll' || 'Dropdown__menu',
+          (noscroll && 'Dropdown__menu-noscroll') || 'Dropdown__menu',
           over && 'Dropdown__over',
         ])}>
         {this.buildMenu()}
@@ -139,15 +137,13 @@ export class Dropdown extends Component {
             }
           }}>
           {icon && (
-            <Icon
-              name={icon}
-              rotation={iconRotation}
-              spin={iconSpin}
-              mr={1} />
+            <Icon name={icon} rotation={iconRotation} spin={iconSpin} mr={1} />
           )}
-          <span className="Dropdown__selected-text" style={{
-            "overflow": clipSelectedText ? "hidden" : "visible",
-          }}>
+          <span
+            className="Dropdown__selected-text"
+            style={{
+              'overflow': clipSelectedText ? 'hidden' : 'visible',
+            }}>
             {displayText ? displayText : this.state.selected}
           </span>
           {!!nochevron || (

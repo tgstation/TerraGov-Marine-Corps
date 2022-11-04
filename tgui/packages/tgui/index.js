@@ -56,7 +56,7 @@ const setupApp = () => {
   store.subscribe(renderApp);
 
   // Dispatch incoming messages
-  window.update = msg => store.dispatch(Byond.parseJson(msg));
+  window.update = (msg) => store.dispatch(Byond.parseJson(msg));
 
   // Dispatch incoming messages as store actions
   Byond.subscribe((type, payload) => store.dispatch({ type, payload }));
@@ -64,14 +64,12 @@ const setupApp = () => {
   // Enable hot module reloading
   if (module.hot) {
     setupHotReloading();
-    module.hot.accept([
-      './components',
-      './debug',
-      './layouts',
-      './routes',
-    ], () => {
-      renderApp();
-    });
+    module.hot.accept(
+      ['./components', './debug', './layouts', './routes'],
+      () => {
+        renderApp();
+      }
+    );
   }
 };
 
