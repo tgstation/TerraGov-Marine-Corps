@@ -847,8 +847,9 @@ const XenoList = (_props, context) => {
                         : ''
                     }
                     onClick={() => {
-                      if (user_ref !== entry.ref)
-                        { act('Compass', { xeno: user_ref, target: entry.ref }); }
+                      if (user_ref !== entry.ref) {
+                        act('Compass', { xeno: user_ref, target: entry.ref });
+                      }
                     }}>
                     {entry.name}
                   </Button>
