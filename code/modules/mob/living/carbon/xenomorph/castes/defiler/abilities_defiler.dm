@@ -566,6 +566,7 @@
 	qdel(source)
 	if(!can_use_ability(target, TRUE, XACT_IGNORE_COOLDOWN|XACT_IGNORE_PLASMA))
 		owner.balloon_alert(owner, "Grab failed")
+		clear_cooldown()
 		return
 	tentacle = owner.beam(target, "curse0",'icons/effects/beam.dmi')
 	playsound(target, 'sound/effects/blobattack.ogg', 40, 1)
