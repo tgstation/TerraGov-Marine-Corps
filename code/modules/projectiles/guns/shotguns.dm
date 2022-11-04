@@ -746,6 +746,7 @@
 	icon_state = "v51b"
 	burst_amount = 2
 	burst_delay = 0.5 SECONDS
+	extra_delay = -0.2 SECONDS
 	default_ammo_type = /datum/ammo/bullet/shotgun/flechette
 
 //-------------------------------------------------------
