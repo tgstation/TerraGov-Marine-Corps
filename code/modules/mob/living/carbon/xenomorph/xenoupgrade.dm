@@ -46,8 +46,6 @@
 	if(current_aura) //Updates pheromone strength
 		current_aura.range = 6 + xeno_caste.aura_strength * 2
 		current_aura.strength = xeno_caste.aura_strength
-		if(isxenoqueen(src))
-			hive?.update_leader_pheromones()
 
 	switch(upgrade)
 		//FIRST UPGRADE

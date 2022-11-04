@@ -73,6 +73,10 @@
 	client.perspective = EYE_PERSPECTIVE
 	client.eye = loc
 
+/mob/living/carbon/xenomorph/queen/upgrade_xeno(newlevel, silent = FALSE)
+	. = ..()
+	hive?.update_leader_pheromones()
+
 // ***************************************
 // *********** Name
 // ***************************************
