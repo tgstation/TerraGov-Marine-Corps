@@ -1416,19 +1416,10 @@
 	layer = BELOW_TABLE_LAYER
 	icon_state = "Bengal"
 
-/obj/structure/prop/tiger_rug/centered
-	pixel_y = 16
-
 /obj/structure/prop/tiger_rug/white
 	desc = "A rather tasteless but impressive tiger rug. Must've costed a fortune to get this exported to the rim, especially with this particular color. Should the TerraGov be buying an exotic product made from an endangered species?"
 	icon_state = "White"
 
-/obj/structure/prop/tiger_rug/white/centered
-	pixel_y = 16
-
 /obj/structure/prop/tiger_rug/hotline
 	desc = "A rather tasteless but impressive tiger rug. Must've costed a fortune to get this exported to the rim, especially with this psychedelic color. Should the TerraGov be buying an exotic product made from an endangered species?"
 	icon_state = "Hotline"
-
-/obj/structure/prop/tiger_rug/hotline/centered
-	pixel_y = 16
