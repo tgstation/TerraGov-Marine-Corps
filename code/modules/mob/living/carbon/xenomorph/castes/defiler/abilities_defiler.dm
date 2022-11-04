@@ -186,7 +186,7 @@
 	X.balloon_alert(X, "Keep still...")
 
 	X.emitting_gas = TRUE //We gain bump movement immunity while we're emitting gas.
-	succeed_activate()
+	
 	X.icon_state = "Defiler Power Up"
 
 	if(!do_after(X, DEFILER_GAS_CHANNEL_TIME, TRUE, null, BUSY_ICON_HOSTILE))
@@ -199,7 +199,8 @@
 	X.icon_state = "Defiler Running"
 
 	add_cooldown()
-
+	succeed_activate()
+	
 	if(X.stagger) //If we got staggered, return
 		to_chat(X, span_xenowarning("We try to emit toxins but are staggered!"))
 		return fail_activate()
