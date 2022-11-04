@@ -1806,6 +1806,10 @@
 "fi" = (
 /turf/open/floor/mainship/sterile/purple/side,
 /area/mainship/medical/medical_science)
+"fj" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/floor,
+/area/mainship/command/corporateliaison)
 "fl" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
@@ -18253,7 +18257,6 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
-/obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "ZE" = (
@@ -44222,7 +44225,7 @@ al
 JR
 WZ
 Mo
-SY
+fj
 hz
 XV
 WZ
