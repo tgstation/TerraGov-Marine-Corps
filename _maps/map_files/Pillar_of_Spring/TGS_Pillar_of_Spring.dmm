@@ -10773,7 +10773,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/space/basic,
+/turf/open/floor/mainship,
 /area/mainship/living/numbertwobunks)
 "Ez" = (
 /obj/item/clothing/gloves/marine/som,
@@ -13522,7 +13522,7 @@
 /obj/structure/paper_bin{
 	pixel_y = 5
 	},
-/obj/item/tool/pen/sleepypen,
+/obj/item/tool/pen/blue,
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
 "Mu" = (
