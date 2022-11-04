@@ -593,7 +593,7 @@ You are also in charge of communicating with command and letting them know about
 	minimal_access = list(ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR, 
-		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR
+		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
 	)
 
 /datum/job/terragov/squad/vatgrown/return_spawn_type(datum/preferences/prefs)
