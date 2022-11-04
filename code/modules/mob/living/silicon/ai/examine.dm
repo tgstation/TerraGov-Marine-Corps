@@ -31,5 +31,5 @@
 	return list(msg)
 
 /mob/living/silicon/ai/get_examine_string(mob/user, thats)
-	null
+	return null
 
