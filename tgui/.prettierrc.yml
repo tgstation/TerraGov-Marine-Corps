@@ -1,5 +1,4 @@
 arrowParens: always
-bracketSpacing: true
 breakLongMethodChains: true
 endOfLine: lf
 importFormatting: oneline
