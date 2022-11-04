@@ -3136,6 +3136,7 @@
 /turf/open/floor/plating,
 /area/mainship/living/cryo_cells)
 "jc" = (
+/obj/effect/ai_node,
 /turf/open/floor/mainship/ntlogo/nt2,
 /area/mainship/command/corporateliaison)
 "jd" = (
@@ -4153,10 +4154,10 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
 	},
-/obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/floor,
 /area/mainship/command/corporateliaison)
 "mc" = (
