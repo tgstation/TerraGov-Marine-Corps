@@ -1146,6 +1146,12 @@
 	dir = 8
 	},
 /area/mainship/squads/general)
+"dm" = (
+/obj/structure/bed/chair/nometal{
+	dir = 8
+	},
+/turf/closed/wall/mainship,
+/area/mainship/hull/lower_hull)
 "dn" = (
 /turf/closed/wall/mainship/outer,
 /area/medical/morgue)
@@ -1318,12 +1324,6 @@
 /obj/item/clothing/head/warning_cone,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
-"dO" = (
-/obj/structure/bed/chair/nometal{
-	dir = 8
-	},
-/turf/closed/wall/mainship,
-/area/mainship/hull/lower_hull)
 "dP" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/fancy/cigarettes/kpack,
@@ -10759,7 +10759,6 @@
 	},
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
-/obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/space/basic,
@@ -42938,7 +42937,7 @@ Ns
 JA
 jA
 JA
-dO
+dm
 JA
 JA
 JA
