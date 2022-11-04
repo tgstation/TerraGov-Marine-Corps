@@ -9669,7 +9669,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "BA" = (
@@ -12272,6 +12271,12 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_hallway)
+"IZ" = (
+/obj/structure/bed/chair/nometal{
+	dir = 8
+	},
+/turf/closed/wall/mainship,
+/area/mainship/hull/lower_hull)
 "Ja" = (
 /obj/machinery/marine_selector/clothes,
 /obj/structure/window/reinforced,
@@ -16085,9 +16090,6 @@
 	},
 /area/mainship/living/pilotbunks)
 "TS" = (
-/obj/structure/bed/chair/nometal{
-	dir = 8
-	},
 /obj/structure/bed/chair/nometal{
 	dir = 8
 	},
@@ -42887,7 +42889,7 @@ Ns
 JA
 jA
 JA
-JA
+IZ
 JA
 JA
 JA
