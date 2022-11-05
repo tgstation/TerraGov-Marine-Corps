@@ -40,6 +40,7 @@
 		if(!istype(node))
 			CRASH("Weed created with non-weed node. Type: [node.type]")
 		set_parent_node(node)
+		color_variant = node.color_variant
 	update_icon()
 	AddElement(/datum/element/accelerate_on_crossed)
 	if(!swapped)
