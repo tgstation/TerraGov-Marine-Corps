@@ -23,7 +23,7 @@ export const removeAllSkiplines = (toSanitize: string) => {
   return toSanitize.replace(/[\r\n]+/, '');
 };
 
-export const TextInputModal = (_, context) => {
+export const TextInputModal = (props, context) => {
   const { act, data } = useBackend<TextInputData>(context);
   const {
     large_buttons,
@@ -105,18 +105,13 @@ const InputArea = (props, context) => {
       autoSelect
       height={multiline || input.length >= 30 ? '100%' : '1.8rem'}
       maxLength={max_length}
-      onKeyDown={(event) => {
-        const keyCode = window.event ? event.which : event.keyCode;
-        if (keyCode === KEY_ENTER) {
-          if (visualMultiline && event.shiftKey) {
-            return;
-          }
-          act('submit', { entry: input });
-          event.preventDefault();
+      onEscape={() => act('cancel')}
+      onEnter={(event) => {
+        if (visualMultiline && event.shiftKey) {
+          return;
         }
-        if (keyCode === KEY_ESCAPE) {
-          act('cancel');
-        }
+        event.preventDefault();
+        act('submit', { entry: input });
       }}
       onInput={(_, value) => onType(value)}
       placeholder="Type something..."

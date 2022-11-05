@@ -27,6 +27,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/tgui_input = TRUE
 	var/tgui_input_big_buttons = FALSE
 	var/tgui_input_buttons_swap = FALSE
+	var/tgui_say_light_mode = FALSE
+	//// Whether or not to show a typing indicator when speaking. Defaults to on.
+	var/typing_indicator = TRUE
 	var/toggles_deadchat = TOGGLES_DEADCHAT_DEFAULT
 	var/toggles_chat = TOGGLES_CHAT_DEFAULT
 	var/toggles_sound = TOGGLES_SOUND_DEFAULT
@@ -201,7 +204,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		var/datum/custom_emote/emote = new
 		emote.id = i
 		custom_emotes += emote
-	C.update_movement_keys(src)
+	C.update_special_keybinds(src)
 	loadout_manager = new
 
 

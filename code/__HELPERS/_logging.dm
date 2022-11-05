@@ -222,6 +222,11 @@
 /proc/log_paper(text)
 	WRITE_LOG(GLOB.world_paper_log, "PAPER: [text]")
 
+/// Logging for speech indicators.
+/proc/log_speech_indicators(text)
+	if (CONFIG_GET(flag/log_speech_indicators))
+		WRITE_LOG(GLOB.world_speech_indicators_log, "SPEECH INDICATOR: [text]")
+
 /**
  * Appends a tgui-related log entry. All arguments are optional.
  */

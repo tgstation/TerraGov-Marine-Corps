@@ -136,7 +136,9 @@
 	GLOB.directory[ckey] = src
 
 	// Instantiate tgui panel
-	tgui_panel = new(src)
+	tgui_panel = new(src, "browseroutput")
+
+	tgui_say = new(src, "tgui_say")
 
 	GLOB.ahelp_tickets.ClientLogin(src)
 
@@ -207,11 +209,12 @@
 			restore_stickybans()
 
 	if(SSinput.initialized)
-		set_macros()
-		update_movement_keys()
+		update_special_keybinds()
 
 	// Initialize tgui panel
 	tgui_panel.initialize()
+
+	tgui_say.initialize()
 
 	if(byond_version < REQUIRED_CLIENT_MAJOR || (byond_build && byond_build < REQUIRED_CLIENT_MINOR))
 		//to_chat(src, span_userdanger("Your version of byond is severely out of date."))
@@ -782,10 +785,11 @@
 	view_size.set_view_radius_to(clamp(change, min, max), clamp(change, min, max))
 
 
-/client/proc/update_movement_keys(datum/preferences/direct_prefs)
+/client/proc/update_special_keybinds(datum/preferences/direct_prefs)
 	var/datum/preferences/D = prefs || direct_prefs
 	if(!D?.key_bindings)
 		return
+	set_macros() // reset macros
 	movement_keys = list()
 	for(var/key in D.key_bindings)
 		for(var/kb_name in D.key_bindings[key])
@@ -798,6 +802,24 @@
 					movement_keys[key] = WEST
 				if("South")
 					movement_keys[key] = SOUTH
+				if(SAY_CHANNEL)
+					var/say = tgui_say_create_open_command(SAY_CHANNEL)
+					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[say]")
+				if(RADIO_CHANNEL)
+					var/radio = tgui_say_create_open_command(RADIO_CHANNEL)
+					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[radio]")
+				if(ME_CHANNEL)
+					var/me = tgui_say_create_open_command(ME_CHANNEL)
+					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[me]")
+				if(OOC_CHANNEL)
+					var/ooc = tgui_say_create_open_command(OOC_CHANNEL)
+					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[ooc]")
+				if(XOOC_CHANNEL)
+					var/xooc = tgui_say_create_open_command(XOOC_CHANNEL)
+					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[xooc]")
+				if(MOOC_CHANNEL)
+					var/mooc = tgui_say_create_open_command(MOOC_CHANNEL)
+					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[mooc]")
 
 
 /client/proc/change_view(new_size)

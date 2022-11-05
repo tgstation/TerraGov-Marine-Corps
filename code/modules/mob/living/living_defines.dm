@@ -65,7 +65,6 @@
 
 	var/now_pushing
 
-	var/bubble_icon = "default" //what icon the mob uses for speechbubbles
 
 	var/cameraFollow
 

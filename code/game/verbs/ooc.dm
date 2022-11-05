@@ -1,7 +1,7 @@
-/client/verb/ooc_wrapper()
+/*/client/verb/ooc_wrapper()
 	set hidden = TRUE
 	var/message = input("", "OOC \"text\"") as null|text
-	ooc(message)
+	ooc(message)*/
 
 
 /client/verb/ooc(msg as text)
@@ -109,13 +109,6 @@
 			to_chat(C, "<font color='[display_colour]'>[span_ooc("<span class='prefix'>OOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 		else
 			to_chat(C, "<span class='[display_class]'>[span_prefix("OOC: [display_name]")]: <span class='message linkify'>[msg]</span></span>", avoid_highlighting = avoid_highlight)
-
-
-/client/verb/xooc_wrapper()
-	set hidden = TRUE
-	var/message = input("", "XOOC \"text\"") as null|text
-	xooc(message)
-
 
 /client/verb/xooc(msg as text) // Same as MOOC, but for xenos.
 	set name = "XOOC"

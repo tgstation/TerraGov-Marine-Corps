@@ -123,6 +123,8 @@
 				hit_report += "(KO)"
 
 			damage += attack.damage
+			if(damage >= 9)
+				force_say()
 			apply_damage(damage, BRUTE, affecting, armor_block, attack.sharp, attack.edge, updating_health = TRUE)
 
 			hit_report += "(RAW DMG: [damage])"

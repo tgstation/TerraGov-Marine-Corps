@@ -47,36 +47,6 @@
 	user.mob.button_pressed_F12()
 	return TRUE
 
-
-/datum/keybinding/client/ooc
-	name = "ooc"
-	full_name = "OOC"
-	hotkey_keys = list("O")
-	description = "Speak in OOC"
-	keybind_signal = COMSIG_KB_CLIENT_OOC_DOWN
-
-/datum/keybinding/client/ooc/down(client/user)
-	. = ..()
-	if(.)
-		return
-	user.ooc_wrapper()
-	return TRUE
-
-
-/datum/keybinding/client/xooc
-	name = "xooc"
-	full_name = "XOOC"
-	description = "Speak in XOOC"
-	keybind_signal = COMSIG_KB_CLIENT_XOOC_DOWN
-
-/datum/keybinding/client/xooc/down(client/user)
-	. = ..()
-	if(.)
-		return
-	user.xooc_wrapper()
-	return TRUE
-
-
 /datum/keybinding/client/mooc
 	name = "mooc"
 	full_name = "MOOC"
