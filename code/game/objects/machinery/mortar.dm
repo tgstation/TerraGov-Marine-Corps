@@ -70,7 +70,6 @@
 /obj/machinery/deployable/mortar/Initialize(mapload, _internal_item, deployer)
 	. = ..()
 	impact_cam.forceMove(src)
-	impact_cam.artillery = src
 
 /obj/machinery/deployable/mortar/Destroy()
 	qdel(impact_cam)
@@ -401,20 +400,10 @@
 /obj/machinery/camera/artillery
 	name = "artillery camera"
 	network = list("terragovartillery")
-	icon_state = "nothing" //you shouldn't be able to see this!
+	alpha = 0 //we shouldn't be able to see this!
 	internal_light = FALSE
 	c_tag = "impact camera"
 	resistance_flags = RESIST_ALL
-	var/obj/machinery/deployable/mortar/artillery = null
-
-/obj/machinery/camera/artillery/update_icon()
-	icon_state = "nothing"
-
-/obj/machinery/camera/artillery/Destroy()
-	if(artillery)
-		artillery.impact_cam = null
-	. = ..()
-
 
 //tadpole mounted double barrel mortar
 
