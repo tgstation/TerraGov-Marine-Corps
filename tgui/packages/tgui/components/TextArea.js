@@ -9,15 +9,15 @@ import { classes } from 'common/react';
 import { Component, createRef } from 'inferno';
 import { Box } from './Box';
 import { toInputValue } from './Input';
-import { KEY_ESCAPE } from 'common/keycodes';
+import { KEY_ENTER, KEY_ESCAPE, KEY_TAB } from 'common/keycodes';
 
 export class TextArea extends Component {
   constructor(props, context) {
     super(props, context);
-    this.textareaRef = createRef();
-    this.fillerRef = createRef();
+    this.textareaRef = props.innerRef || createRef();
     this.state = {
       editing: false,
+      scrolledAmount: 0,
     };
     const { dontUseTabForIndent = false } = props;
     this.handleOnInput = (e) => {
@@ -52,19 +52,47 @@ export class TextArea extends Component {
     };
     this.handleKeyDown = (e) => {
       const { editing } = this.state;
-      const { onKeyDown } = this.props;
-      if (e.keyCode === KEY_ESCAPE) {
+      const { onChange, onInput, onEnter, onKey } = this.props;
+      if (e.keyCode === KEY_ENTER) {
         this.setEditing(false);
-        e.target.value = toInputValue(this.props.value);
-        e.target.blur();
+        if (onChange) {
+          onChange(e, e.target.value);
+        }
+        if (onInput) {
+          onInput(e, e.target.value);
+        }
+        if (onEnter) {
+          onEnter(e, e.target.value);
+        }
+        if (this.props.selfClear) {
+          e.target.value = '';
+          e.target.blur();
+        }
+        return;
+      }
+      if (e.keyCode === KEY_ESCAPE) {
+        if (this.props.onEscape) {
+          this.props.onEscape(e);
+        }
+        this.setEditing(false);
+        if (this.props.selfClear) {
+          e.target.value = '';
+        } else {
+          e.target.value = toInputValue(this.props.value);
+          e.target.blur();
+        }
         return;
       }
       if (!editing) {
         this.setEditing(true);
       }
+      // Custom key handler
+      if (onKey) {
+        onKey(e, e.target.value);
+      }
       if (!dontUseTabForIndent) {
         const keyCode = e.keyCode || e.which;
-        if (keyCode === 9) {
+        if (keyCode === KEY_TAB) {
           e.preventDefault();
           const { value, selectionStart, selectionEnd } = e.target;
           e.target.value =
@@ -72,10 +100,10 @@ export class TextArea extends Component {
             '\t' +
             value.substring(selectionEnd);
           e.target.selectionEnd = selectionStart + 1;
+          if (onInput) {
+            onInput(e, e.target.value);
+          }
         }
-      }
-      if (onKeyDown) {
-        onKeyDown(e, e.target.value);
       }
     };
     this.handleFocus = (e) => {
@@ -94,6 +122,15 @@ export class TextArea extends Component {
         }
       }
     };
+    this.handleScroll = (e) => {
+      const { displayedValue } = this.props;
+      const input = this.textareaRef.current;
+      if (displayedValue && input) {
+        this.setState({
+          scrolledAmount: input.scrollTop,
+        });
+      }
+    };
   }
 
   componentDidMount() {
@@ -102,7 +139,6 @@ export class TextArea extends Component {
     if (input) {
       input.value = toInputValue(nextValue);
     }
-
     if (this.props.autoFocus || this.props.autoSelect) {
       setTimeout(() => {
         input.focus();
@@ -115,11 +151,10 @@ export class TextArea extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { editing } = this.state;
     const prevValue = prevProps.value;
     const nextValue = this.props.value;
     const input = this.textareaRef.current;
-    if (input && !editing && prevValue !== nextValue) {
+    if (input && typeof nextValue === 'string' && prevValue !== nextValue) {
       input.value = toInputValue(nextValue);
     }
   }
@@ -145,17 +180,43 @@ export class TextArea extends Component {
       value,
       maxLength,
       placeholder,
+      scrollbar,
+      noborder,
+      displayedValue,
       ...boxProps
     } = this.props;
     // Box props
     const { className, fluid, ...rest } = boxProps;
+    const { scrolledAmount } = this.state;
     return (
       <Box
-        className={classes(['TextArea', fluid && 'TextArea--fluid', className])}
+        className={classes([
+          'TextArea',
+          fluid && 'TextArea--fluid',
+          noborder && 'TextArea--noborder',
+          className,
+        ])}
         {...rest}>
+        {!!displayedValue && (
+          <Box position="absolute" width="100%" height="100%" overflow="hidden">
+            <div
+              className={classes([
+                'TextArea__textarea',
+                'TextArea__textarea_custom',
+              ])}
+              style={{
+                'transform': `translateY(-${scrolledAmount}px)`,
+              }}>
+              {displayedValue}
+            </div>
+          </Box>
+        )}
         <textarea
           ref={this.textareaRef}
-          className="TextArea__textarea"
+          className={classes([
+            'TextArea__textarea',
+            scrollbar && 'TextArea__textarea--scrollable',
+          ])}
           placeholder={placeholder}
           onChange={this.handleOnChange}
           onKeyDown={this.handleKeyDown}
@@ -163,7 +224,11 @@ export class TextArea extends Component {
           onInput={this.handleOnInput}
           onFocus={this.handleFocus}
           onBlur={this.handleBlur}
+          onScroll={this.handleScroll}
           maxLength={maxLength}
+          style={{
+            'color': displayedValue ? 'rgba(0, 0, 0, 0)' : 'inherit',
+          }}
         />
       </Box>
     );

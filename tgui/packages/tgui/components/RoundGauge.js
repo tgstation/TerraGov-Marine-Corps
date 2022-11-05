@@ -59,8 +59,9 @@ export const RoundGauge = (props) => {
     return false;
   };
 
-  const alertColor =
-    shouldShowAlert() && keyOfMatchingRange(clampedValue, scaledRanges);
+  // prettier-ignore
+  const alertColor = shouldShowAlert()
+    && keyOfMatchingRange(clampedValue, scaledRanges);
 
   return (
     <Box inline>

@@ -2,19 +2,20 @@ import { Component, createRef, RefObject } from 'inferno';
 
 const DEFAULT_ACCEPTABLE_DIFFERENCE = 5;
 
-export class FitText extends Component<
-  {
-    acceptableDifference?: number;
-    maxWidth: number;
-    maxFontSize: number;
-    native?: HTMLAttributes<HTMLDivElement>;
-  },
-  {
-    fontSize: number;
-  }
-> {
+type Props = {
+  acceptableDifference?: number;
+  maxWidth: number;
+  maxFontSize: number;
+  native?: HTMLAttributes<HTMLDivElement>;
+};
+
+type State = {
+  fontSize: number;
+};
+
+export class FitText extends Component<Props, State> {
   ref: RefObject<HTMLDivElement> = createRef();
-  state = {
+  state: State = {
     fontSize: 0,
   };
 

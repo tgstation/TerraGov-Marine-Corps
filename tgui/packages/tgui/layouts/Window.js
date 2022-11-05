@@ -36,9 +36,11 @@ export class Window extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const shouldUpdateGeometry =
-      this.props.width !== prevProps.width ||
-      this.props.height !== prevProps.height;
+    // prettier-ignore
+    const shouldUpdateGeometry = (
+      this.props.width !== prevProps.width
+      || this.props.height !== prevProps.height
+    );
     if (shouldUpdateGeometry) {
       this.updateGeometry();
     }
@@ -66,11 +68,12 @@ export class Window extends Component {
     const dispatch = useDispatch(this.context);
     const fancy = config.window?.fancy;
     // Determine when to show dimmer
-    const showDimmer =
-      config.user &&
-      (config.user.observer
+    // prettier-ignore
+    const showDimmer = config.user && (
+      config.user.observer
         ? config.status < UI_DISABLED
-        : config.status < UI_INTERACTIVE);
+        : config.status < UI_INTERACTIVE
+    );
     return (
       <Layout className="Window" theme={theme}>
         <TitleBar
@@ -151,6 +154,13 @@ const TitleBar = (props, context) => {
     children,
   } = props;
   const dispatch = useDispatch(context);
+  // prettier-ignore
+  const finalTitle = (
+    typeof title === 'string'
+    && title === title.toLowerCase()
+    && toTitleCase(title)
+    || title
+  );
   return (
     <div className={classes(['TitleBar', className])}>
       {(status === undefined && (
@@ -167,10 +177,7 @@ const TitleBar = (props, context) => {
         onMousedown={(e) => fancy && onDragStart(e)}
       />
       <div className="TitleBar__title">
-        {(typeof title === 'string' &&
-          title === title.toLowerCase() &&
-          toTitleCase(title)) ||
-          title}
+        {finalTitle}
         {!!children && <div className="TitleBar__buttons">{children}</div>}
       </div>
       {process.env.NODE_ENV !== 'production' && (

@@ -71,8 +71,9 @@ export const Slider = (props) => {
           maxValue
         );
         const scaledDisplayValue = scale(displayValue, minValue, maxValue);
-        const effectiveColor =
-          color || keyOfMatchingRange(fillValue ?? value, ranges) || 'default';
+        // prettier-ignore
+        const effectiveColor = color
+          || keyOfMatchingRange(fillValue ?? value, ranges) || 'default';
         return (
           <div
             className={classes([
@@ -97,9 +98,9 @@ export const Slider = (props) => {
             <div
               className="ProgressBar__fill"
               style={{
-                width:
-                  clamp01(Math.min(scaledFillValue, scaledDisplayValue)) * 100 +
-                  '%',
+                // prettier-ignore
+                width: clamp01(Math.min(scaledFillValue, scaledDisplayValue))
+                  * 100 + '%',
               }}
             />
             <div

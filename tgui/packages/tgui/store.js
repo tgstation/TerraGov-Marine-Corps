@@ -23,14 +23,13 @@ export const configureStore = (options = {}) => {
     }),
     options.reducer,
   ]);
-  const middleware = !sideEffects
-    ? []
-    : [
-      ...(options.middleware?.pre || []),
-      assetMiddleware,
-      backendMiddleware,
-      ...(options.middleware?.post || []),
-    ];
+  // prettier-ignore
+  const middleware = !sideEffects ? [] : [
+    ...(options.middleware?.pre || []),
+    assetMiddleware,
+    backendMiddleware,
+    ...(options.middleware?.post || []),
+  ];
   if (process.env.NODE_ENV !== 'production') {
     // We are using two if statements because Webpack is capable of
     // removing this specific block as dead code.
@@ -72,13 +71,12 @@ const createStackAugmentor = (store) => (stack, error) => {
   const config = state?.backend?.config;
   let augmentedStack = stack;
   augmentedStack += '\nUser Agent: ' + navigator.userAgent;
-  augmentedStack +=
-    '\nState: ' +
-    JSON.stringify({
-      ckey: config?.client?.ckey,
-      interface: config?.interface,
-      window: config?.window,
-    });
+  // prettier-ignore
+  augmentedStack += '\nState: ' + JSON.stringify({
+    ckey: config?.client?.ckey,
+    interface: config?.interface,
+    window: config?.window,
+  });
   return augmentedStack;
 };
 

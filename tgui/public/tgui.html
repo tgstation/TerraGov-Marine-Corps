@@ -395,7 +395,7 @@ window.onerror = function (msg, url, line, col, error) {
       var textProp = Byond.IS_LTE_IE8 ? 'innerText' : 'textContent';
       errorStack[textProp] = window.onerror.__stack__;
     }
-        // Set window geometry
+    // Set window geometry
     var setFatalErrorGeometry = function () {
       Byond.winset(Byond.windowId, {
         titlebar: true,

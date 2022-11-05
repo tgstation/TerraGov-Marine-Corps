@@ -53,12 +53,17 @@ export const formatSiUnit = (
   const symbolIndex = clamp(SI_BASE_INDEX + base1000, 0, SI_SYMBOLS.length);
   const symbol = SI_SYMBOLS[symbolIndex];
   const scaledNumber = value / Math.pow(1000, base1000);
-  const scaledPrecision =
-    realBase1000 > minBase1000 ? 2 + base1000 * 3 - base10 : 0;
+  // prettier-ignore
+  const scaledPrecision = realBase1000 > minBase1000
+    ? (2 + base1000 * 3 - base10)
+    : 0;
   // TODO: Make numbers bigger than precision value show
   // up to 2 decimal numbers.
-  const finalString =
-    toFixed(scaledNumber, scaledPrecision) + ' ' + symbol + unit;
+  // prettier-ignore
+  const finalString = (
+    toFixed(scaledNumber, scaledPrecision)
+    + ' ' + symbol + unit
+  );
   return finalString.trim();
 };
 
@@ -150,12 +155,17 @@ export const formatSiBaseTenUnit = (
   );
   const symbol = SI_BASE_TEN_UNIT[symbolIndex];
   const scaledNumber = value / Math.pow(1000, base1000);
-  const scaledPrecision =
-    realBase1000 > minBase1000 ? 2 + base1000 * 3 - base10 : 0;
+  // prettier-ignore
+  const scaledPrecision = realBase1000 > minBase1000
+    ? (2 + base1000 * 3 - base10)
+    : 0;
   // TODO: Make numbers bigger than precision value show
   // up to 2 decimal numbers.
-  const finalString =
-    toFixed(scaledNumber, scaledPrecision) + ' ' + symbol + ' ' + unit;
+  // prettier-ignore
+  const finalString = (
+    toFixed(scaledNumber, scaledPrecision)
+    + ' ' + symbol + ' ' + unit
+  );
   return finalString.trim();
 };
 

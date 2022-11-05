@@ -93,8 +93,8 @@ export const highlightNode = (
 // Linkify
 // --------------------------------------------------------
 
-const URL_REGEX =
-  /(?:(?:https?:\/\/)|(?:www\.))(?:[^ ]*?\.[^ ]*?)+[-A-Za-z0-9+&@#/%?=~_|$!:,.;()]+/gi;
+// prettier-ignore
+const URL_REGEX = /(?:(?:https?:\/\/)|(?:www\.))(?:[^ ]*?\.[^ ]*?)+[-A-Za-z0-9+&@#/%?=~_|$!:,.;(){}]+/ig;
 
 /**
  * Highlights the text in the node based on the provided regular expression.

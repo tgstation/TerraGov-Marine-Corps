@@ -22,13 +22,20 @@ export const ProgressBar = (props) => {
   } = props;
   const scaledValue = scale(value, minValue, maxValue);
   const hasContent = children !== undefined;
-  const effectiveColor =
-    color || keyOfMatchingRange(value, ranges) || 'default';
+  // prettier-ignore
+  const effectiveColor = color
+    || keyOfMatchingRange(value, ranges)
+    || 'default';
 
   // We permit colors to be in hex format, rgb()/rgba() format,
   // a name for a color-<name> class, or a base CSS class.
   const outerProps = computeBoxProps(rest);
-  const outerClasses = ['ProgressBar', className, computeBoxClassName(rest)];
+  // prettier-ignore
+  const outerClasses = [
+    'ProgressBar',
+    className,
+    computeBoxClassName(rest),
+  ];
   const fillStyles = {
     'width': clamp01(scaledValue) * 100 + '%',
   };
@@ -37,8 +44,9 @@ export const ProgressBar = (props) => {
     outerClasses.push('ProgressBar--color--' + effectiveColor);
   } else {
     // Otherwise, set styles directly.
-    outerProps.style =
-      (outerProps.style || '') + `border-color: ${effectiveColor};`;
+    // prettier-ignore
+    outerProps.style = (outerProps.style || "")
+      + `border-color: ${effectiveColor};`;
     fillStyles['background-color'] = effectiveColor;
   }
 

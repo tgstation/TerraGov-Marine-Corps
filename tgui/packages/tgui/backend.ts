@@ -222,8 +222,10 @@ export const backendMiddleware = (store) => {
  */
 export const sendAct = (action: string, payload: object = {}) => {
   // Validate that payload is an object
-  const isObject =
-    typeof payload === 'object' && payload !== null && !Array.isArray(payload);
+  // prettier-ignore
+  const isObject = typeof payload === 'object'
+    && payload !== null
+    && !Array.isArray(payload);
   if (!isObject) {
     logger.error(`Payload for act() must be an object, got this:`, payload);
     return;
@@ -348,13 +350,15 @@ export const useSharedState = <T>(
   return [
     sharedState,
     (nextState) => {
+      // prettier-ignore
       Byond.sendMessage({
         type: 'setSharedState',
         key,
-        value:
-          JSON.stringify(
-            typeof nextState === 'function' ? nextState(sharedState) : nextState
-          ) || '',
+        value: JSON.stringify(
+          typeof nextState === 'function'
+            ? nextState(sharedState)
+            : nextState
+        ) || '',
       });
     },
   ];

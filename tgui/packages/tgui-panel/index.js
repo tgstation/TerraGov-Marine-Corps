@@ -95,21 +95,19 @@ const setupApp = () => {
   // Enable hot module reloading
   if (module.hot) {
     setupHotReloading();
-    module.hot.accept(
-      [
-        './audio',
-        './chat',
-        './game',
-        './Notifications',
-        './Panel',
-        './ping',
-        './settings',
-        './telemetry',
-      ],
-      () => {
-        renderApp();
-      }
-    );
+    // prettier-ignore
+    module.hot.accept([
+      './audio',
+      './chat',
+      './game',
+      './Notifications',
+      './Panel',
+      './ping',
+      './settings',
+      './telemetry',
+    ], () => {
+      renderApp();
+    });
   }
 };
 

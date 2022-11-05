@@ -9,7 +9,11 @@ import { globalEvents } from '../events';
 import { acquireHotKey } from '../hotkeys';
 import { openExternalBrowser, toggleDebugLayout, toggleKitchenSink } from './actions';
 
-const relayedTypes = ['backend/update', 'chat/message'];
+// prettier-ignore
+const relayedTypes = [
+  'backend/update',
+  'chat/message',
+];
 
 export const debugMiddleware = (store) => {
   acquireHotKey(KEY_F11);
@@ -25,11 +29,11 @@ export const debugMiddleware = (store) => {
       // NOTE: We need to call this in a timeout, because we need a clean
       // stack in order for this to be a fatal error.
       setTimeout(() => {
+        // prettier-ignore
         throw new Error(
-          'OOPSIE WOOPSIE!! UwU We made a fucky wucky!! A wittle' +
-            ' fucko boingo! The code monkeys at our headquarters are' +
-            ' working VEWY HAWD to fix this!'
-        );
+          'OOPSIE WOOPSIE!! UwU We made a fucky wucky!! A wittle'
+          + ' fucko boingo! The code monkeys at our headquarters are'
+          + ' working VEWY HAWD to fix this!');
       });
     }
   });

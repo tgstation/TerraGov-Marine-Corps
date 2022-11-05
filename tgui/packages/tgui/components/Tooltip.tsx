@@ -38,8 +38,11 @@ export class Tooltip extends Component<TooltipProps, TooltipState> {
   static singletonPopper: ReturnType<typeof createPopper> | undefined;
   static currentHoveredElement: Element | undefined;
   static virtualElement: VirtualElement = {
-    getBoundingClientRect: () =>
-      Tooltip.currentHoveredElement?.getBoundingClientRect() ?? NULL_RECT,
+    // prettier-ignore
+    getBoundingClientRect: () => (
+      Tooltip.currentHoveredElement?.getBoundingClientRect()
+        ?? NULL_RECT
+    ),
   };
 
   getDOMNode() {

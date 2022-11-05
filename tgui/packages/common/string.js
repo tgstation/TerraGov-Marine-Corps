@@ -46,14 +46,10 @@ export const multiline = (str) => {
  */
 export const createGlobPattern = (pattern) => {
   const escapeString = (str) => str.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&');
-  const regex = new RegExp(
-    '^' +
-      pattern
-        .split(/\*+/)
-        .map(escapeString)
-        .join('.*') +
-      '$'
-  );
+  // prettier-ignore
+  const regex = new RegExp('^'
+    + pattern.split(/\*+/).map(escapeString).join('.*')
+    + '$');
   return (str) => regex.test(str);
 };
 
@@ -121,6 +117,7 @@ export const capitalizeAll = (str) => {
 export const capitalizeFirst = (str) => {
   return str.replace(/^\w/, (letter) => letter.toUpperCase());
 };
+
 export const toTitleCase = (str) => {
   // Handle array
   if (Array.isArray(str)) {
@@ -132,28 +129,10 @@ export const toTitleCase = (str) => {
   }
   // Handle string
   const WORDS_UPPER = ['Id', 'Tv'];
+  // prettier-ignore
   const WORDS_LOWER = [
-    'A',
-    'An',
-    'And',
-    'As',
-    'At',
-    'But',
-    'By',
-    'For',
-    'For',
-    'From',
-    'In',
-    'Into',
-    'Near',
-    'Nor',
-    'Of',
-    'On',
-    'Onto',
-    'Or',
-    'The',
-    'To',
-    'With',
+    'A', 'An', 'And', 'As', 'At', 'But', 'By', 'For', 'For', 'From', 'In',
+    'Into', 'Near', 'Nor', 'Of', 'On', 'Onto', 'Or', 'The', 'To', 'With',
   ];
   let currentStr = str.replace(/([^\W_]+[^\s-]*) */g, (str) => {
     return str.charAt(0).toUpperCase() + str.substr(1).toLowerCase();
@@ -188,30 +167,30 @@ export const decodeHtmlEntities = (str) => {
     gt: '>',
     apos: "'",
   };
-  return (
-    str
-      // Newline tags
-      .replace(/<br>/gi, '\n')
-      .replace(/<\/?[a-z0-9-_]+[^>]*>/gi, '')
-      // Basic entities
-      .replace(translate_re, (match, entity) => translate[entity])
-      // Decimal entities
-      .replace(/&#?([0-9]+);/gi, (match, numStr) => {
-        const num = parseInt(numStr, 10);
-        return String.fromCharCode(num);
-      })
-      // Hex entities
-      .replace(/&#x?([0-9a-f]+);/gi, (match, numStr) => {
-        const num = parseInt(numStr, 16);
-        return String.fromCharCode(num);
-      })
-  );
+  // prettier-ignore
+  return str
+    // Newline tags
+    .replace(/<br>/gi, '\n')
+    .replace(/<\/?[a-z0-9-_]+[^>]*>/gi, '')
+    // Basic entities
+    .replace(translate_re, (match, entity) => translate[entity])
+    // Decimal entities
+    .replace(/&#?([0-9]+);/gi, (match, numStr) => {
+      const num = parseInt(numStr, 10);
+      return String.fromCharCode(num);
+    })
+    // Hex entities
+    .replace(/&#x?([0-9a-f]+);/gi, (match, numStr) => {
+      const num = parseInt(numStr, 16);
+      return String.fromCharCode(num);
+    });
 };
 
 /**
  * Converts an object into a query string,
  */
-export const buildQueryString = (obj) =>
-  Object.keys(obj)
-    .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(obj[key]))
-    .join('&');
+// prettier-ignore
+export const buildQueryString = obj => Object.keys(obj)
+  .map(key => encodeURIComponent(key)
+    + '=' + encodeURIComponent(obj[key]))
+  .join('&');

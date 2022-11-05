@@ -164,19 +164,20 @@ export class NumberInput extends Component {
     if (dragging || suppressingFlicker) {
       displayValue = intermediateValue;
     }
-    // IE8: Use an "unselectable" prop because "user-select" doesn't work.
-    const renderContentElement = (value) => (
+
+    // prettier-ignore
+    const contentElement = (
       <div className="NumberInput__content" unselectable={Byond.IS_LTE_IE8}>
-        {value + (unit ? ' ' + unit : '')}
+        {
+          (animated && !dragging && !suppressingFlicker) ?
+            (<AnimatedNumber value={displayValue} format={format} />) :
+            (format ? format(displayValue) : displayValue)
+        }
+
+        {unit ? ' ' + unit : ''}
       </div>
     );
-    const contentElement =
-      (animated && !dragging && !suppressingFlicker && (
-        <AnimatedNumber value={displayValue} format={format}>
-          {renderContentElement}
-        </AnimatedNumber>
-      )) ||
-      renderContentElement(format ? format(displayValue) : displayValue);
+
     return (
       <Box
         className={classes([
@@ -193,12 +194,10 @@ export class NumberInput extends Component {
           <div
             className="NumberInput__bar"
             style={{
-              height:
-                clamp(
-                  ((displayValue - minValue) / (maxValue - minValue)) * 100,
-                  0,
-                  100
-                ) + '%',
+              // prettier-ignore
+              height: clamp(
+                (displayValue - minValue) / (maxValue - minValue) * 100,
+                0, 100) + '%',
             }}
           />
         </div>
@@ -237,6 +236,7 @@ export class NumberInput extends Component {
           }}
           onKeyDown={(e) => {
             if (e.keyCode === 13) {
+              // prettier-ignore
               const value = clamp(
                 parseFloat(e.target.value),
                 minValue,

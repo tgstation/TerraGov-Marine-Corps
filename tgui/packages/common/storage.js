@@ -28,15 +28,16 @@ const testGeneric = (testFn) => () => {
 // Localstorage can sometimes throw an error, even if DOM storage is not
 // disabled in IE11 settings.
 // See: https://superuser.com/questions/1080011
-const testLocalStorage = testGeneric(
-  () => window.localStorage && window.localStorage.getItem
-);
+// prettier-ignore
+const testLocalStorage = testGeneric(() => (
+  window.localStorage && window.localStorage.getItem
+));
 
-const testIndexedDb = testGeneric(
-  () =>
-    (window.indexedDB || window.msIndexedDB) &&
-    (window.IDBTransaction || window.msIDBTransaction)
-);
+// prettier-ignore
+const testIndexedDb = testGeneric(() => (
+  (window.indexedDB || window.msIndexedDB)
+  && (window.IDBTransaction || window.msIDBTransaction)
+));
 
 class MemoryBackend {
   constructor() {
@@ -108,11 +109,10 @@ class IndexedDbBackend {
   }
 
   getStore(mode) {
-    return this.dbPromise.then((db) =>
-      db
-        .transaction(INDEXED_DB_STORE_NAME, mode)
-        .objectStore(INDEXED_DB_STORE_NAME)
-    );
+    // prettier-ignore
+    return this.dbPromise.then((db) => db
+      .transaction(INDEXED_DB_STORE_NAME, mode)
+      .objectStore(INDEXED_DB_STORE_NAME));
   }
 
   async get(key) {

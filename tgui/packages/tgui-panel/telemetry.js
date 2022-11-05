@@ -11,10 +11,12 @@ const logger = createLogger('telemetry');
 
 const MAX_CONNECTIONS_STORED = 10;
 
-const connectionsMatch = (a, b) =>
-  a.ckey === b.ckey &&
-  a.address === b.address &&
-  a.computer_id === b.computer_id;
+// prettier-ignore
+const connectionsMatch = (a, b) => (
+  a.ckey === b.ckey
+    && a.address === b.address
+    && a.computer_id === b.computer_id
+);
 
 export const telemetryMiddleware = (store) => {
   let telemetry;
@@ -56,9 +58,9 @@ export const telemetryMiddleware = (store) => {
         }
         // Append a connection record
         let telemetryMutated = false;
-        const duplicateConnection = telemetry.connections.find((conn) =>
-          connectionsMatch(conn, client)
-        );
+        // prettier-ignore
+        const duplicateConnection = telemetry.connections
+          .find(conn => connectionsMatch(conn, client));
         if (!duplicateConnection) {
           telemetryMutated = true;
           telemetry.connections.unshift(client);

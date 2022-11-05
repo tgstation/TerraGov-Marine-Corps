@@ -55,16 +55,16 @@
       $value: math.div($value + 0.055, 1.055);
       $value: math.pow($value, 2.4);
     }
-    $colors: map.merge(
-      $colors,
-      (
-        $name: $value,
-      )
-    );
+    // prettier-ignore
+    $colors: map.merge($colors, (
+      $name: $value,
+    ));
   }
 
-  @return (map.get($colors, 'red') * 0.2126) +
-    (map.get($colors, 'green') * 0.7152) + (map.get($colors, 'blue') * 0.0722);
+  // prettier-ignore
+  @return (map.get($colors, 'red') * .2126)
+    + (map.get($colors, 'green') * .7152)
+    + (map.get($colors, 'blue') * .0722);
 }
 
 // Blends an RGBA color with a static background color based on its

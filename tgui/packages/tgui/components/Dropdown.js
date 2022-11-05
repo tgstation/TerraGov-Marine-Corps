@@ -30,7 +30,9 @@ export class Dropdown extends Component {
   setOpen(open) {
     this.setState({ open: open });
     if (open) {
-      setTimeout(() => window.addEventListener('click', this.handleClick));
+      setTimeout(() => {
+        window.addEventListener('click', this.handleClick);
+      });
       this.menuRef.focus();
     } else {
       window.removeEventListener('click', this.handleClick);

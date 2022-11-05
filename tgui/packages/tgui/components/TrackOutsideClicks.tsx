@@ -1,8 +1,10 @@
 import { Component, createRef } from 'inferno';
 
-export class TrackOutsideClicks extends Component<{
+type Props = {
   onOutsideClick: () => void;
-}> {
+};
+
+export class TrackOutsideClicks extends Component<Props> {
   ref = createRef<HTMLDivElement>();
 
   constructor() {

@@ -9,7 +9,7 @@ import { createVNode, InfernoNode, SFC } from 'inferno';
 import { ChildFlags, VNodeFlags } from 'inferno-vnode-flags';
 import { CSS_COLORS } from '../constants';
 
-export interface BoxProps {
+export type BoxProps = {
   [key: string]: any;
   as?: string;
   className?: string | BooleanLike;
@@ -57,7 +57,7 @@ export interface BoxProps {
   textColor?: string | BooleanLike;
   backgroundColor?: string | BooleanLike;
   fillPositionedParent?: boolean;
-}
+};
 
 /**
  * Coverts our rem-like spacing unit into a CSS unit.
@@ -162,7 +162,7 @@ const styleMapperByPropName = {
   italic: mapBooleanPropTo('font-style', 'italic'),
   nowrap: mapBooleanPropTo('white-space', 'nowrap'),
   preserveWhitespace: mapBooleanPropTo('white-space', 'pre-wrap'),
-  // Margins
+  // Margin
   m: mapDirectionalUnitPropTo('margin', halfUnit, [
     'top',
     'bottom',
@@ -175,7 +175,7 @@ const styleMapperByPropName = {
   mb: mapUnitPropTo('margin-bottom', halfUnit),
   ml: mapUnitPropTo('margin-left', halfUnit),
   mr: mapUnitPropTo('margin-right', halfUnit),
-  // Margins
+  // Padding
   p: mapDirectionalUnitPropTo('padding', halfUnit, [
     'top',
     'bottom',

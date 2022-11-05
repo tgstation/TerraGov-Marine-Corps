@@ -68,16 +68,25 @@ export const computeFlexItemClassName = (props: FlexItemProps) => {
 };
 
 export const computeFlexItemProps = (props: FlexItemProps) => {
-  const { className, style, grow, order, shrink, basis, align, ...rest } =
-    props;
-  const computedBasis =
-    basis ??
+  // prettier-ignore
+  const {
+    className,
+    style,
+    grow,
+    order,
+    shrink,
+    basis,
+    align,
+    ...rest
+  } = props;
+  // prettier-ignore
+  const computedBasis = basis
     // IE11: Set basis to specified width if it's known, which fixes certain
     // bugs when rendering tables inside the flex.
-    props.width ??
+    ?? props.width
     // If grow is used, basis should be set to 0 to be consistent with
     // flex css shorthand `flex: 1`.
-    (grow !== undefined ? 0 : undefined);
+    ?? (grow !== undefined ? 0 : undefined);
   return computeBoxProps({
     style: {
       ...style,
