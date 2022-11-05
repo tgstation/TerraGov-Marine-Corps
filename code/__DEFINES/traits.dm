@@ -113,6 +113,8 @@
 /// inherited from riding vehicles
 #define VEHICLE_TRAIT "vehicle"
 
+
+
 //added b grilling a food
 #define TRAIT_FOOD_GRILLED "food_grilled"
 
@@ -171,3 +173,6 @@
 #define TRAIT_TURF_BULLET_MANIPULATION "bullet_manipulation" //This tile is doing something to projectile
 // projectile traits
 #define TRAIT_PROJ_HIT_SOMETHING "hit_something" //If projectile hit something on its path
+
+//this mech is melee core boosted
+#define TRAIT_MELEE_CORE "melee_core"
