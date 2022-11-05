@@ -294,8 +294,6 @@
 	#define COMPONENT_ITEM_CLICKON_BYPASS (1<<0)
 #define COMSIG_ITEM_TOGGLE_BUMP_ATTACK "item_toggle_bump_attack"		//from base of obj/item/proc/toggle_item_bump_attack(): (/mob/user, enable_bump_attack)
 
-#define COMSIG_ITEM_HYDRO_CANNON_TOGGLED "hydro_cannon_toggled"
-
 #define COMSIG_NEW_REAGENT_ADD "new_reagent_add"					//from add_reagent(): (reagent_path, amount); it is sent when a reagent gets added for the first time to a holder
 #define COMSIG_REAGENT_DELETING "reagent_deleting"					//from /datum/reagents/del_reagent(): (reagent_path) When a reagent is entirely removed from its holder
 

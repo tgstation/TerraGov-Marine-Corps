@@ -3204,19 +3204,21 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/flamethrower
 	name = "flame"
-	icon_state = "pulse0"
+	icon_state = "flamer"
 	hud_state = "flame"
 	hud_state_empty = "flame_empty"
 	damage_type = BURN
 	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_FLAME|AMMO_EXPLOSIVE
 	armor_type = "fire"
-	max_range = 7
-	damage = 31
+	max_range = 6
+	damage = 3
 	damage_falloff = 0
 	incendiary_strength = 30 //Firestacks cap at 20, but that's after armor.
+	shell_speed = 0.6
 	bullet_color = LIGHT_COLOR_FIRE
+	ping = null
 	var/fire_color = "red"
-	var/burntime = 17
+	var/burntime = 0.3 SECONDS
 	var/burnlevel = 31
 
 /datum/ammo/flamethrower/drop_flame(turf/T)
@@ -3246,12 +3248,41 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		return
 	flame_radius(1, T)
 
+/datum/ammo/flamethrower/bounce
+	bonus_projectiles_type = /datum/ammo/flamethrower
+
+/datum/ammo/flamethrower/bounce/on_hit_turf(turf/T, obj/projectile/proj)
+	. = ..()
+	var/ricochet_angle = 360 - Get_Angle(proj.firer, T)
+
+	// Check for the neightbour tile
+	var/rico_dir_check
+	switch(ricochet_angle)
+		if(-INFINITY to 45)
+			rico_dir_check = EAST
+		if(46 to 135)
+			rico_dir_check = ricochet_angle > 90 ? SOUTH : NORTH
+		if(136 to 225)
+			rico_dir_check = ricochet_angle > 180 ? WEST : EAST
+		if(126 to 315)
+			rico_dir_check = ricochet_angle > 270 ? NORTH : SOUTH
+		if(316 to INFINITY)
+			rico_dir_check = WEST
+
+	var/turf/next_turf = get_step(T, rico_dir_check)
+	if(next_turf.density)
+		ricochet_angle += 180
+
+	bonus_projectiles_amount = 1
+	fire_bonus_projectiles(proj, proj.firer, proj.shot_from, proj.proj_max_range, proj.projectile_speed, ricochet_angle)
+	bonus_projectiles_amount = 0
+
 /datum/ammo/flamethrower/blue
 	name = "blue flame"
 	hud_state = "flame_blue"
-	max_range = 7
 	fire_color = "blue"
-	burntime = 40
+	damage = 5
+	burntime = 0.5 SECONDS
 	burnlevel = 46
 	bullet_color = COLOR_NAVY
 

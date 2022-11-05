@@ -37,8 +37,6 @@
 //note: not an attachment but uses the same overlay updating system
 #define ATTACHMENT_SLOT_MAGAZINE "mag"
 
-#define ATTACHMENT_SLOT_FLAMER_NOZZLE "flamer_nozzle"
-
 //Jaeger attachment slot defines
 #define ATTACHMENT_SLOT_CHESTPLATE "chestplate"
 #define ATTACHMENT_SLOT_SHOULDER "shoulder"

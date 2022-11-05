@@ -128,7 +128,7 @@
 	. = ..()
 	if(on_fire == TRUE)
 		if(!stat && !(species.species_flags & NO_PAIN))
-			emote("scream")
+			emote("scream", intentional = TRUE)
 
 /mob/living/carbon/xenomorph/IgniteMob()
 	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
