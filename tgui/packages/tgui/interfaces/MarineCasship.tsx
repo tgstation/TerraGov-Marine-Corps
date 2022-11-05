@@ -27,7 +27,6 @@ type CasWeapon = {
 
 export const MarineCasship = (props, context) => {
   const { act, data } = useBackend<CasData>(context);
-  let limiter = false;
   return (
     <Window
       width={600}
@@ -61,32 +60,41 @@ export const MarineCasship = (props, context) => {
           if (keyCode === KEY_6) {
             act('deselect');
           }
-          if ((data.plane_state !== 0) && (limiter === false)) {
+          if (data.plane_state !== 0) {
             let newdir = 0;
             switch (keyCode) {
               case KEY_UP:
               case KEY_W:
                 newdir = 1;
+                if (data.attackdir === "NORTH") {
+                  return;
+                }
                 break;
               case KEY_DOWN:
               case KEY_S:
                 newdir = 2;
+                if (data.attackdir === "SOUTH") {
+                  return;
+                }
                 break;
               case KEY_RIGHT:
               case KEY_D:
                 newdir = 4;
+                if (data.attackdir === "EAST") {
+                  return;
+                }
                 break;
               case KEY_LEFT:
               case KEY_A:
                 newdir = 8;
+                if (data.attackdir === "WEST") {
+                  return;
+                }
                 break;
               default:
                 return;
             }
             act('cycle_attackdir', { newdir: newdir });
-            if (newdir > 0) {
-              limiter = true;
-            }
           }
         }}>
         {data.plane_state === 0 ? (
