@@ -1263,7 +1263,6 @@
 "dD" = (
 /obj/structure/rack,
 /obj/item/storage/toolbox/mechanical,
-/obj/machinery/door_control/mainship/mech,
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
@@ -1278,6 +1277,9 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
 "dF" = (
+/obj/machinery/computer/mech_builder{
+	dir = 8
+	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
 	},
@@ -6066,9 +6068,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/bridgebunks)
 "rz" = (
-/obj/machinery/computer/mech_builder{
-	dir = 8
-	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
@@ -7300,6 +7299,12 @@
 /obj/structure/table/mainship/nometal,
 /obj/item/reagent_containers/food/drinks/britcup,
 /obj/item/clothing/head/helmet/marine/robot/heavy,
+/obj/item/stack/sheet/mineral/phoron{
+	amount = 25
+	},
+/obj/item/stack/sheet/mineral/phoron{
+	amount = 25
+	},
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
@@ -10963,9 +10968,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "Ft" = (
-/obj/machinery/power/apc/mainship{
-	dir = 8
-	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/command/cic)
 "Fu" = (
@@ -13133,6 +13135,9 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
 "LI" = (
+/obj/machinery/computer/mech_builder{
+	dir = 8
+	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
 	},
@@ -14273,6 +14278,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/power/port_gen/pacman,
+/obj/item/stack/sheet/mineral/phoron{
+	amount = 25
+	},
 /obj/item/stack/sheet/mineral/phoron{
 	amount = 25
 	},
@@ -17596,11 +17604,8 @@
 "Yp" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/power/port_gen/pacman,
-/obj/item/stack/sheet/mineral/phoron{
-	amount = 25
-	},
 /obj/item/storage/briefcase/inflatable,
+/obj/structure/closet/crate,
 /turf/open/floor/mainship/office,
 /area/mainship/hallways/hangar)
 "Yq" = (
@@ -17888,6 +17893,12 @@
 	dir = 9
 	},
 /area/mainship/squads/general)
+"Ze" = (
+/obj/machinery/door_control/mainship/mech{
+	dir = 1
+	},
+/turf/open/floor/mainship/black,
+/area/mainship/living/tankerbunks)
 "Zf" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -55562,7 +55573,7 @@ Li
 gE
 Dc
 VS
-cd
+Ze
 Qx
 Qx
 Qx

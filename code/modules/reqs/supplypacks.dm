@@ -283,6 +283,11 @@ WEAPONS
 	cost = 3
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/weapons/pepperball
+	name = "PB-12 pepperball gun"
+	contains = list(/obj/item/weapon/gun/rifle/pepperball)
+	cost = 10
+
 /datum/supply_packs/weapons/railgun
 	name = "SR-220 Railgun"
 	contains = list(/obj/item/weapon/gun/rifle/railgun)
@@ -1697,7 +1702,7 @@ FACTORY
 /datum/supply_packs/factory/scout_rifle_magazine_refill
 	name = "BR-8 scout rifle magazine assembly refill"
 	contains = list(/obj/item/factory_refill/scout_rifle_magazine_refill)
-	cost = 50
+	cost = 20
 
 /datum/supply_packs/factory/claymorerefill
 	name = "Claymore parts refill"
