@@ -547,7 +547,9 @@
 		if(CHARGE_CRUSH)
 			Paralyze(CHARGE_SPEED(charge_datum) * 20)
 		if(CHARGE_BULL_HEADBUTT)
-			Paralyze(CHARGE_SPEED(charge_datum) * 25)
+			Paralyze(1) //Token paralyze to drop stuff etc...
+			adjust_stagger(CHARGE_SPEED(charge_datum) * 25)
+			add_slowdown(CHARGE_SPEED(charge_datum) * 10)
 
 	if(anchored)
 		charge_datum.do_stop_momentum(FALSE)
