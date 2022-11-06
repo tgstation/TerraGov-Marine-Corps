@@ -13,10 +13,10 @@ jobs:
       - name: "Check for CHANGELOG_ENABLER secret and pass true to output if it exists to be checked by later steps"
         id: value_holder
         env:
-          ENABLER_SECRET: ${{ secrets.CHANGELOG_ENABLER }}
+          ACTIONS_ENABLED: ${{ secrets.CHANGELOG_ENABLER }}
         run: |
           unset SECRET_EXISTS
-          if [ -n "$ENABLER_SECRET" ]; then SECRET_EXISTS=true ; fi
+          if [ -n "$ACTIONS_ENABLED" ]; then SECRET_EXISTS=true ; fi
           echo "ACTIONS_ENABLED=$SECRET_EXISTS" >> $GITHUB_OUTPUT
       - name: "Setup python"
         if: steps.value_holder.outputs.ACTIONS_ENABLED
