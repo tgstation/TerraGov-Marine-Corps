@@ -29,7 +29,7 @@
 ///sets the target for this event, and notifies the hive
 /datum/round_event/supply_drop/proc/set_target(turf/target_turf)
 	var/supplying_faction = pick(SSticker.mode.factions)
-	priority_announce("Friendly supply drop arriving in AO in [drop_delay / 600] minutes. Drop zone at [target_turf.loc]", "Short Range Tactical Radar Status", sound = 'sound/AI/bioscan.ogg', receivers = (GLOB.alive_human_list_faction[supplying_faction] + GLOB.observer_list))
+	priority_announce("Friendly supply drop arriving in AO in [drop_delay / 600] minutes. Drop zone at [target_turf.loc]", "Short Range Tactical Radar Status", sound = 'sound/AI/distressreceived.ogg', receivers = (GLOB.alive_human_list_faction[supplying_faction] + GLOB.observer_list))
 	addtimer(CALLBACK(src, .proc/alert_hostiles, target_turf, supplying_faction), alert_delay)
 	addtimer(CALLBACK(src, .proc/drop_supplies, target_turf, supplying_faction), drop_delay)
 
@@ -40,7 +40,7 @@
 		if(alerted_human.faction == supplying_faction)
 			humans_to_alert -= alerted_human
 
-	priority_announce("[supplying_faction] supply drop detected, ETA [(drop_delay - alert_delay) / 600] minutes. Drop zone estimated as [target_turf.loc]", "Short Range Tactical Radar Status", sound = 'sound/AI/bioscan.ogg', receivers = (humans_to_alert + GLOB.observer_list))
+	priority_announce("[supplying_faction] supply drop detected, ETA [(drop_delay - alert_delay) / 600] minutes. Drop zone estimated as [target_turf.loc]", "Short Range Tactical Radar Status", sound = 'sound/AI/distressreceived.ogg', receivers = (humans_to_alert + GLOB.observer_list))
 
 
 ///deploys the actual supply drop
