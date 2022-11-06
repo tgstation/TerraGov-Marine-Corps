@@ -461,13 +461,13 @@
 		/obj/item/attachable/magnetic_harness,
 	)
 
-/turf/proc/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
+/turf/proc/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0, flame_color, burn_flags)
 	//extinguish any flame present
 	var/obj/flamer_fire/F = locate(/obj/flamer_fire) in src
 	if(F)
 		qdel(F)
 
-	new /obj/flamer_fire(src, fire_lvl, burn_lvl, f_color, fire_stacks, fire_damage)
+	new /obj/flamer_fire(src, fire_lvl, burn_lvl, f_color, fire_stacks, fire_damage, flame_color, burn_flags)
 
 	for(var/obj/structure/jungle/vines/vines in src)
 		QDEL_NULL(vines)

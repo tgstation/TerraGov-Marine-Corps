@@ -101,6 +101,7 @@
 #define isxenodefiler(A) (istype(A, /mob/living/carbon/xenomorph/defiler))
 #define isxenobull(A) (istype(A, /mob/living/carbon/xenomorph/bull))
 #define isxenohivemind(A) (istype(A, /mob/living/carbon/xenomorph/hivemind))
+#define isxenodragon(A) (istype(A, /mob/living/carbon/xenomorph/dragon))
 #define isxenowraith(A) (istype(A, /mob/living/carbon/xenomorph/wraith))
 #define isxenowidow(A) (istype(A, /mob/living/carbon/xenomorph/widow))
 

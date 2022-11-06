@@ -3106,11 +3106,12 @@ datum/ammo/bullet/revolver/tp44
 	var/fire_color = "red"
 	var/burntime = 17
 	var/burnlevel = 31
+	var/burn_flags = BURN_XENOBUILDINGS|BURN_XENOS|BURN_HUMANS|BURN_SNOW|IGNITES_MOBS
 
 /datum/ammo/flamethrower/drop_flame(turf/T)
 	if(!istype(T))
 		return
-	T.ignite(burntime, burnlevel, fire_color)
+	T.ignite(burntime, burnlevel, fire_color, 0, 0, burn_flags)
 
 /datum/ammo/flamethrower/on_hit_mob(mob/M, obj/projectile/P)
 	drop_flame(get_turf(M))

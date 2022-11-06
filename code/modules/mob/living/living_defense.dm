@@ -109,7 +109,7 @@
 
 //Mobs on Fire
 /mob/living/proc/IgniteMob()
-	if (SEND_SIGNAL(src, COMSIG_IGNITE_ATTEMPT) & COMSIG_IGNITE_CANCEL)
+	if (SEND_SIGNAL(src, COMSIG_LIVING_IGNITE_ATTEMPT) & COMSIG_IGNITE_CANCEL)
 		return
 	if(status_flags & GODMODE) //Invulnerable mobs don't get ignited
 		return FALSE
@@ -200,7 +200,7 @@
 	adjust_fire_stacks(rand(1,2))
 	IgniteMob()
 
-
+// Add signals here too
 /mob/living/proc/resist_fire(datum/source)
 	SIGNAL_HANDLER
 	fire_stacks = max(fire_stacks - rand(3, 6), 0)
@@ -208,16 +208,18 @@
 
 	var/turf/T = get_turf(src)
 	if(istype(T, /turf/open/floor/plating/ground/snow))
-		visible_message(span_danger("[src] rolls in the snow, putting themselves out!"), \
-		span_notice("You extinguish yourself in the snow!"), null, 5)
+		if(!(SEND_SIGNAL(src, COMSIG_LIVING_RESIST_EXTINGUISH_MESSAGE) & COMSIG_EXTINGUISH_NO_MESSAGE))
+			visible_message(span_danger("[src] rolls in the snow, putting themselves out!"), \
+			span_notice("You extinguish yourself in the snow!"), null, 5)
 		ExtinguishMob()
 		return
 
 	visible_message(span_danger("[src] rolls on the floor, trying to put themselves out!"), \
 	span_notice("You stop, drop, and roll!"), null, 5)
 	if(fire_stacks <= 0)
-		visible_message(span_danger("[src] has successfully extinguished themselves!"), \
-		span_notice("You extinguish yourself."), null, 5)
+		if(!(SEND_SIGNAL(src, COMSIG_LIVING_RESIST_EXTINGUISH_MESSAGE) & COMSIG_EXTINGUISH_NO_MESSAGE))
+			visible_message(span_danger("[src] has successfully extinguished themselves!"), \
+			span_notice("You extinguish yourself."), null, 5)
 		ExtinguishMob()
 
 
