@@ -666,6 +666,16 @@ EXPLOSIVES
 	cost = 1
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/explosives/mlrs
+	name = "TA-40L Multiple Rocket System"
+	contains = list(/obj/item/mortar_kit/mlrs)
+	cost = 45
+
+/datum/supply_packs/explosives/mlrs_rockets
+	name = "TA-40L MLRS Rocket Pack (x8)"
+	contains = list(/obj/item/storage/box/mlrs_rockets)
+	cost = 3
+
 /datum/supply_packs/explosives/howitzer
 	name = "MG-100Y howitzer"
 	contains = list(/obj/item/mortar_kit/howitzer)
