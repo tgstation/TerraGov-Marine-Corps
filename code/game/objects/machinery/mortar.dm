@@ -45,6 +45,10 @@
 	var/reload_time = 0.5 SECONDS
 	///Amount of shells to fire if this is empty all shells in chamber items list will fire
 	var/fire_amount
+	///Camera to display impact shots
+	var/obj/machinery/camera/artillery/impact_cam
+	///Amount of shots that we need to monitor with imapct cameras
+	var/current_shots = 0
 
 	/// What type of shells can we use?
 	var/list/allowed_shells = list(
@@ -62,6 +66,16 @@
 
 	///Used for remote targeting by AI
 	var/obj/item/ai_target_beacon/ai_targeter
+
+/obj/machinery/deployable/mortar/Initialize(mapload, _internal_item, deployer)
+	. = ..()
+	impact_cam = new
+	impact_cam.forceMove(src)
+
+/obj/machinery/deployable/mortar/Destroy()
+	QDEL_NULL(impact_cam)
+	return ..()
+
 
 /obj/machinery/deployable/mortar/examine(mob/user)
 	. = ..()
@@ -249,7 +263,10 @@
 	//prevent runtime
 	if(fall_time < 0.5 SECONDS)
 		fall_time = 0.5 SECONDS
+	impact_cam.forceMove(get_turf(target))
+	current_shots++
 	addtimer(CALLBACK(src, .proc/falling, target, shell), fall_time)
+	addtimer(CALLBACK(src, .proc/return_cam), fall_time + 2 SECONDS)
 	addtimer(CALLBACK(src, .proc/cool_off), cool_off_time)
 
 ///Proc called by tactical binoculars to send targeting information.
@@ -258,6 +275,12 @@
 	coords["targ_y"] = T.y
 	say("Remote targeting set by [user]. COORDINATES: X:[coords["targ_x"]] Y:[coords["targ_y"]] OFFSET: X:[coords["dial_x"]] Y:[coords["dial_y"]]")
 	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+
+///Returns the impact camera to the mortar
+/obj/machinery/deployable/mortar/proc/return_cam()
+	current_shots--
+	if(current_shots <= 0)
+		impact_cam.forceMove(src)
 
 ///Allows the mortar to be fired again
 /obj/machinery/deployable/mortar/proc/cool_off()
@@ -346,6 +369,16 @@
 		chamber_items -= in_chamber
 		QDEL_NULL(in_chamber)
 	return ..()
+
+// Artillery cameras. Together with the artillery impact hud tablet, shows a live feed of imapcts.
+
+/obj/machinery/camera/artillery
+	name = "artillery camera"
+	network = list("terragovartillery")
+	alpha = 0 //we shouldn't be able to see this!
+	internal_light = FALSE
+	c_tag = "impact camera"
+	resistance_flags = RESIST_ALL
 
 //The portable mortar item
 /obj/item/mortar_kit
@@ -618,6 +651,8 @@
 	new /obj/item/encryptionkey/cas(src)
 	new /obj/item/encryptionkey/cas(src)
 	new /obj/item/encryptionkey/cas(src)
+	new /obj/item/hud_tablet/artillery(src)
+
 
 /obj/structure/closet/crate/mortar_ammo/howitzer_kit
 	name = "\improper TA-100Y howitzer kit"
@@ -661,6 +696,8 @@
 	new /obj/item/encryptionkey/cas(src)
 	new /obj/item/encryptionkey/cas(src)
 	new /obj/item/encryptionkey/cas(src)
+	new /obj/item/hud_tablet/artillery(src)
+
 
 #undef TALLY_MORTAR
 #undef TALLY_HOWITZER
