@@ -746,6 +746,7 @@
 		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE))
 			cycle(gun_user, FALSE)
 		windup_checked = WEAPON_WINDUP_NOT_CHECKED
+		update_icon()
 		return NONE
 
 	if(!do_fire(projectile_to_fire))
@@ -1012,6 +1013,7 @@
 			last_cock_message = world.time
 			return
 		cycle(user, FALSE)
+		update_icon()
 		playsound(src, cocked_sound, 25, 1)
 		if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && casings_to_eject)
 			make_casing()
@@ -1024,6 +1026,7 @@
 		return
 	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN))
 		cycle(user, FALSE)
+		update_icon()
 		playsound(src, cocked_sound, 25, 1)
 		return
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED)) //We want to open it.
@@ -1343,7 +1346,6 @@
 			user.put_in_hands(in_chamber)
 	in_chamber = new_in_chamber
 	update_ammo_count()
-	update_icon()
 	if(!after_fire || CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN))
 		return
 	make_casing()
@@ -1442,7 +1444,6 @@
 		total_max_rounds += get_max_rounds(chamber_item)
 	rounds = total_rounds + (in_chamber ? rounds_per_shot : 0)
 	max_rounds = total_max_rounds
-	update_icon()
 	gun_user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 
 ///Disconnects from a worn magazine.
