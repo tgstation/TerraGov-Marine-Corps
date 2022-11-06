@@ -13,34 +13,34 @@ jobs:
       - name: "Check for CHANGELOG_ENABLER secret and pass true to output if it exists to be checked by later steps"
         id: value_holder
         env:
-          ACTIONS_ENABLED: ${{ secrets.CHANGELOG_ENABLER }}
+          CHANGELOG_ENABLER: ${{ secrets.CHANGELOG_ENABLER }}
         run: |
           unset SECRET_EXISTS
-          if [ -n "$ACTIONS_ENABLED" ]; then SECRET_EXISTS=true ; fi
-          echo "ACTIONS_ENABLED=$SECRET_EXISTS" >> $GITHUB_OUTPUT
+          if [ -n "$CHANGELOG_ENABLER" ]; then SECRET_EXISTS=true ; fi
+          echo "CHANGELOG_ENABLER=$SECRET_EXISTS" >> $GITHUB_OUTPUT
       - name: "Setup python"
-        if: steps.value_holder.outputs.ACTIONS_ENABLED
+        if: steps.value_holder.outputs.CHANGELOG_ENABLER
         uses: actions/setup-python@v1
         with:
           python-version: '3.x'
       - name: "Install deps"
-        if: steps.value_holder.outputs.ACTIONS_ENABLED
+        if: steps.value_holder.outputs.CHANGELOG_ENABLER
         run: |
           python -m pip install --upgrade pip
           python -m pip install pyyaml
           sudo apt-get install  dos2unix
       - name: "Checkout"
-        if: steps.value_holder.outputs.ACTIONS_ENABLED
+        if: steps.value_holder.outputs.CHANGELOG_ENABLER
         uses: actions/checkout@v3
         with:
           fetch-depth: 25
           persist-credentials: false
       - name: "Compile"
-        if: steps.value_holder.outputs.ACTIONS_ENABLED
+        if: steps.value_holder.outputs.CHANGELOG_ENABLER
         run: |
           python tools/ss13_genchangelog.py html/changelogs
       - name: Commit
-        if: steps.value_holder.outputs.ACTIONS_ENABLED
+        if: steps.value_holder.outputs.CHANGELOG_ENABLER
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "Changelogs"
@@ -48,7 +48,7 @@ jobs:
           git add html/changelogs
           git commit -m "Automatic changelog compile [ci skip]" -a || true
       - name: "Push"
-        if: steps.value_holder.outputs.ACTIONS_ENABLED
+        if: steps.value_holder.outputs.CHANGELOG_ENABLER
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.COMFY_ORANGE_PAT || secrets.GITHUB_TOKEN }}
