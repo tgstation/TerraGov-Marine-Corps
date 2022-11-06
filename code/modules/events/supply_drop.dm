@@ -14,18 +14,21 @@
 	var/alert_delay = 30 SECONDS
 
 /datum/round_event/supply_drop/start()
-	var/turf/target_turf = null
-	while(!target_turf)
-		var/turf/potential_turf = locate(rand(0, world.maxx), rand(0,world.maxy), 2) //placeholder z value
-		if(isclosedturf(potential_turf) || isspaceturf(potential_turf))
-			continue
-		target_turf = potential_turf
-		set_target(target_turf)
+	var/turf/target_turf
+	var/list/z_levels = SSmapping.levels_by_trait(ZTRAIT_GROUND)
+
+	for(var/z in z_levels)
+		while(!target_turf)
+			var/turf/potential_turf = locate(rand(0, world.maxx), rand(0,world.maxy), z)
+			if(isclosedturf(potential_turf) || isspaceturf(potential_turf))
+				continue
+			target_turf = potential_turf
+			set_target(target_turf)
+			return
 
 ///sets the target for this event, and notifies the hive
 /datum/round_event/supply_drop/proc/set_target(turf/target_turf)
 	var/supplying_faction = pick(SSticker.mode.factions)
-	//the eta might display incorrectly, to check
 	priority_announce("Friendly supply drop arriving in AO in [drop_delay / 600] minutes. Drop zone at [target_turf.loc]", "Short Range Tactical Radar Status", sound = 'sound/AI/bioscan.ogg', receivers = (GLOB.alive_human_list_faction[supplying_faction] + GLOB.observer_list))
 	addtimer(CALLBACK(src, .proc/alert_hostiles, target_turf, supplying_faction), alert_delay)
 	addtimer(CALLBACK(src, .proc/drop_supplies, target_turf, supplying_faction), drop_delay)
@@ -44,4 +47,5 @@
 /datum/round_event/supply_drop/proc/drop_supplies(turf/target_turf, faction)
 	//rng rolls a faction loot box, and deploys it to the target turf
 	//message to both factions that the drop has actually occured
+	new /obj/item/loot_box/supply_drop(target_turf) //placeholder
 
