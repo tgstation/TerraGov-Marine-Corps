@@ -41,7 +41,7 @@
 	aura_strength = 3.5 //The Queen's aura is strong and stays so, and gets devastating late game. Climbs by 1 to 5
 
 	// *** Queen Abilities *** //
-	queen_leader_limit = 2 //Amount of leaders allowed
+	queen_leader_limit = 4 //Amount of leaders allowed
 
 	minimap_icon = "xenoqueen"
 
@@ -107,7 +107,7 @@
 	aura_strength = 4
 
 	// *** Queen Abilities *** //
-	queen_leader_limit = 3
+	queen_leader_limit = 4
 
 /datum/xeno_caste/queen/elder
 	caste_desc = "The biggest and baddest xeno. The Empress controls multiple hives and planets."
@@ -173,7 +173,7 @@
 	aura_strength = 5
 
 	// *** Queen Abilities *** //
-	queen_leader_limit = 5
+	queen_leader_limit = 4
 
 //same stats as ancient
 /datum/xeno_caste/queen/primordial
