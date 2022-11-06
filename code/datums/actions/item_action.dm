@@ -124,7 +124,6 @@
 /datum/action/item_action/toggle/hydro/New()
 	. = ..()
 	holder_flamer = holder_item
-	RegisterSignal(holder_flamer, COMSIG_ITEM_HYDRO_CANNON_TOGGLED, .proc/update_toggle_button_icon)
 
 /datum/action/item_action/toggle/hydro/update_button_icon()
 	if(holder_flamer.hydro_active)

@@ -29,15 +29,13 @@
 		ATTACHMENT_SLOT_UNDER,
 		ATTACHMENT_SLOT_MAGAZINE,
 	)
-	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
-	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
-	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_DO_NOT_EMPTY_ROUNDS_AFTER_FIRE
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
+	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE|AMMO_RECIEVER_AUTO_EJECT
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23)
-	actions_types = list(/datum/action/item_action/aim_mode)
 	fire_delay = 0.15 SECONDS
-	scatter = 5
+	scatter = 3
 
 	placed_overlay_iconstate = "flamer"
 
@@ -51,11 +49,30 @@
 		/obj/item/ammo_magazine/flamer_tank/backtank/X,
 	)
 	var/list/datum/flamer/base/mode_list = list(
+		"Standard" = /datum/flamer/base/flamer_mode/standard,
+		"Bounce" = /datum/flamer/base/flamer_mode/bounce,
+		"Spread" = /datum/flamer/base/flamer_mode/spread,
+		"Over" = /datum/flamer/base/flamer_mode/over,
 	)
+
+/obj/item/weapon/gun/flamer/get_current_rounds(obj/item/mag)
+	var/obj/item/ammo_magazine/flamer_tank/tank = mag
+	return tank?.fuel
+
+/obj/item/weapon/gun/flamer/adjust_current_rounds(obj/item/mag, new_rounds)
+	var/obj/item/ammo_magazine/flamer_tank/tank = mag
+	tank?.fuel += new_rounds
+
+/obj/item/weapon/gun/flamer/get_max_rounds(obj/item/mag)
+	var/obj/item/ammo_magazine/flamer_tank/tank = mag
+	return tank?.max_fuel
+
+/obj/item/weapon/gun/flamer/get_magazine_default_ammo(obj/item/mag)
+	return null
 
 /datum/flamer/base
 	///how much fuel the gun uses on this mode when shot.
-	var/rounds_per_shot = 0
+	var/rounds_per_shot = 1
 	///the ammo datum this mode is.
 	var/datum/ammo/ammo_datum_type = null
 	///how long it takes between each shot of that mode, same as gun fire delay.
@@ -63,17 +80,47 @@
 	///Gives guns a burst amount, editable.
 	var/burst_amount = 0
 	///The gun firing sound of this mode
-	var/fire_sound = null
+	var/fire_sound = "gun_flamethrower"
+	var/scatter
 	///What message it sends to the user when you switch to this mode.
 	var/message_to_user = ""
 	///Used to change the gun firemode, like automatic, semi-automatic and burst.
 	var/fire_mode = GUN_FIREMODE_SEMIAUTO
-	///what to change the gun icon_state to when switching to this mode.
-	var/icon_state = "m240"
 	///Which icon file the radial menu will use.
 	var/radial_icon = 'icons/mob/radial.dmi'
 	///The icon state the radial menu will use.
 	var/radial_icon_state = "laser"
+
+/datum/flamer/base/flamer_mode/standard
+	ammo_datum_type = /datum/ammo/flamethrower
+	message_to_user = "You set the flamethrowers mode to standard fire."
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	radial_icon_state = "flamer"
+	fire_delay = 0.15 SECONDS
+	scatter = 3
+
+/datum/flamer/base/flamer_mode/bounce
+	ammo_datum_type = /datum/ammo/flamethrower/bounce
+	message_to_user = "You set the flamethrowers mode to bounce fire."
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	radial_icon_state = "flamer_bounce"
+	fire_delay = 0.15 SECONDS
+
+/datum/flamer/base/flamer_mode/spread
+	ammo_datum_type = /datum/ammo/flamethrower
+	message_to_user = "You set the flamethrowers charge mode to spread fire."
+	fire_mode = GUN_FIREMODE_BURSTFIRE
+	radial_icon_state = "flamer_spread"
+	fire_delay = 2 SECONDS
+	burst_amount = 15
+	scatter = 15
+
+/datum/flamer/base/flamer_mode/over
+	ammo_datum_type = /datum/ammo/flamethrower/over
+	message_to_user = "You set the laser rifle's charge mode to over fire."
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	radial_icon_state = "flamer_over"
+	fire_delay = 0.2 SECONDS
 
 /obj/item/weapon/gun/flamer/unique_action(mob/user)
 	if(!user)
@@ -94,11 +141,10 @@
 	burst_amount = initial(choice.burst_amount)
 	fire_sound = initial(choice.fire_sound)
 	rounds_per_shot = initial(choice.rounds_per_shot)
+	scatter = initial(choice.scatter)
 	SEND_SIGNAL(src, COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED, burst_amount)
 	SEND_SIGNAL(src, COMSIG_GUN_AUTOFIREDELAY_MODIFIED, fire_delay)
 	SEND_SIGNAL(src, COMSIG_GUN_FIRE_MODE_TOGGLE, initial(choice.fire_mode), user.client)
-
-	base_gun_icon = initial(choice.icon_state)
 	update_icon()
 	to_chat(user, initial(choice.message_to_user))
 	user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
@@ -195,12 +241,6 @@
 	reagents.my_atom = src
 	reagents.add_reagent(/datum/reagent/water, reagents.maximum_volume)
 	water_count = reagents.maximum_volume
-
-/datum/flamer/base/flamer_mode/bounce
-	ammo_datum_type = /datum/ammo/flamethrower/bounce
-	message_to_user = "You set the laser rifle's charge mode to bounce fire."
-	fire_mode = GUN_FIREMODE_AUTOMATIC
-	icon_state = "ter"
 
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/update_ammo_count()
 	if(hydro_active)

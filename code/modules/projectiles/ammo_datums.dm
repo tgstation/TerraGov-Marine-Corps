@@ -519,30 +519,45 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/revolver/ricochet/on_hit_turf(turf/T, obj/projectile/proj)
 	. = ..()
-	var/ricochet_angle = 360 - Get_Angle(proj.firer, T)
+	var/surface_angle = Get_Angle(T, proj.loc)
+	switch(surface_angle)
+		if(0, 360)
+			surface_angle = 0
+		if(1 to 44)
+			surface_angle = 45
+		if(45)
+			surface_angle = 0
+		if(46 to 89)
+			surface_angle = 45
+		if(90)
+			surface_angle = 90
+		if(91 to 134)
+			surface_angle = 135
+		if(135)
+			surface_angle = 90
+		if(136 to 179)
+			surface_angle = 135
+		if(180)
+			surface_angle = 180
+		if(181 to 224)
+			surface_angle = 225
+		if(225)
+			surface_angle = 135
+		if(226 to 269)
+			surface_angle = 225
+		if(270)
+			surface_angle = 270
+		if(271 to 314)
+			surface_angle = 315
+		if(225)
+			surface_angle = 0
+		if(316 to 359)
+			surface_angle = 315
 
-	// Check for the neightbour tile
-	var/rico_dir_check
-	switch(ricochet_angle)
-		if(-INFINITY to 45)
-			rico_dir_check = EAST
-		if(46 to 135)
-			rico_dir_check = ricochet_angle > 90 ? SOUTH : NORTH
-		if(136 to 225)
-			rico_dir_check = ricochet_angle > 180 ? WEST : EAST
-		if(126 to 315)
-			rico_dir_check = ricochet_angle > 270 ? NORTH : SOUTH
-		if(316 to INFINITY)
-			rico_dir_check = WEST
-
-	var/turf/next_turf = get_step(T, rico_dir_check)
-	if(next_turf.density)
-		ricochet_angle += 180
-
+	var/ricochet_angle = 2 * surface_angle - proj.dir_angle + 180
 	bonus_projectiles_amount = 1
-	fire_bonus_projectiles(proj, proj.firer, proj.shot_from, proj.proj_max_range, proj.projectile_speed, ricochet_angle)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 3, proj.projectile_speed, ricochet_angle)
 	bonus_projectiles_amount = 0
-
 
 /*
 //================================================
@@ -3246,36 +3261,57 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/flamethrower/mech_flamer/drop_flame(turf/T)
 	if(!istype(T))
 		return
-	flame_radius(1, T)
+	flame_radius(1, T, 5, 0.4 SECONDS)
 
 /datum/ammo/flamethrower/bounce
 	bonus_projectiles_type = /datum/ammo/flamethrower
 
 /datum/ammo/flamethrower/bounce/on_hit_turf(turf/T, obj/projectile/proj)
 	. = ..()
-	var/ricochet_angle = 360 - Get_Angle(proj.firer, T)
+	var/surface_angle = Get_Angle(T, proj.loc)
+	switch(surface_angle)
+		if(0, 360)
+			surface_angle = 0
+		if(1 to 44)
+			surface_angle = 45
+		if(45)
+			surface_angle = 0
+		if(46 to 89)
+			surface_angle = 45
+		if(90)
+			surface_angle = 90
+		if(91 to 134)
+			surface_angle = 135
+		if(135)
+			surface_angle = 90
+		if(136 to 179)
+			surface_angle = 135
+		if(180)
+			surface_angle = 180
+		if(181 to 224)
+			surface_angle = 225
+		if(225)
+			surface_angle = 135
+		if(226 to 269)
+			surface_angle = 225
+		if(270)
+			surface_angle = 270
+		if(271 to 314)
+			surface_angle = 315
+		if(225)
+			surface_angle = 0
+		if(316 to 359)
+			surface_angle = 315
 
-	// Check for the neightbour tile
-	var/rico_dir_check
-	switch(ricochet_angle)
-		if(-INFINITY to 45)
-			rico_dir_check = EAST
-		if(46 to 135)
-			rico_dir_check = ricochet_angle > 90 ? SOUTH : NORTH
-		if(136 to 225)
-			rico_dir_check = ricochet_angle > 180 ? WEST : EAST
-		if(126 to 315)
-			rico_dir_check = ricochet_angle > 270 ? NORTH : SOUTH
-		if(316 to INFINITY)
-			rico_dir_check = WEST
-
-	var/turf/next_turf = get_step(T, rico_dir_check)
-	if(next_turf.density)
-		ricochet_angle += 180
-
+	var/ricochet_angle = 2 * surface_angle - proj.dir_angle + 180
 	bonus_projectiles_amount = 1
-	fire_bonus_projectiles(proj, proj.firer, proj.shot_from, proj.proj_max_range, proj.projectile_speed, ricochet_angle)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 3, proj.projectile_speed, ricochet_angle)
 	bonus_projectiles_amount = 0
+
+/datum/ammo/flamethrower/over
+	icon_state = "flamer_over"
+	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_FLAME|AMMO_EXPLOSIVE|AMMO_IFF
+	max_range = 4
 
 /datum/ammo/flamethrower/blue
 	name = "blue flame"

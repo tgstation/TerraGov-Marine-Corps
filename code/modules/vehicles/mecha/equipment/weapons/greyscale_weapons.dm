@@ -387,16 +387,16 @@
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /datum/ammo/flamethrower/mech_flamer
 	obj_integrity = 250
-	projectiles = 20
-	projectiles_cache = 20 // low ammo counts so player cant just spam fire while rushing infinitely
-	projectiles_cache_max = 20
+	projectiles = 75
+	projectiles_cache = 500 // low ammo counts so player cant just spam fire while rushing infinitely
+	projectiles_cache_max = 500
 	variance = 0
-	projectile_delay = 2 SECONDS
+	projectile_delay = 0.15 SECONDS
 	slowdown = 0.4
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_FLAMER
 	hud_icons = list("flame", "flame_empty")
-	fire_mode = GUN_FIREMODE_SEMIAUTO
+	fire_mode = GUN_FIREMODE_AUTOMATIC
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/rpg
 	name = "\improper Iapetus missile pod"
