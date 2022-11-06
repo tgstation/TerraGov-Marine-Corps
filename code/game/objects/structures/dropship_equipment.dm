@@ -4,6 +4,7 @@
 #define DROPSHIP_ELECTRONICS "dropship_electronics"
 #define DROPSHIP_FUEL_EQP "dropship_fuel_equipment"
 #define DROPSHIP_COMPUTER "dropship_computer"
+#define RAPPEL_REPAIR_TIME 5 MINUTES
 
 
 //the bases onto which you attach dropship equipments.
@@ -997,6 +998,8 @@
 
 //////////////// OTHER EQUIPMENT /////////////////
 
+//////////////// OPERATING TABLE /////////////////
+
 /obj/structure/dropship_equipment/operatingtable
 	name = "Dropship Operating Table Deployment System"
 	desc = "Used for advanced medical procedures. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
@@ -1030,3 +1033,223 @@
 	deployed_table.layer = ABOVE_OBJ_LAYER + 0.01 //make sure its directly ABOVE the layer
 	deployed_table.loc = loc
 	icon_state = "table2-idle"
+
+//////////////// RAPPEL SYSTEM /////////////////
+
+//Rappel target selection action
+/datum/action/innate/rappel_designate
+	name = "Designate rappel point"
+	action_icon = 'icons/mecha/actions_mecha.dmi'
+	action_icon_state = "mech_zoom_on"
+	var/obj/structure/dropship_equipment/rappel_system/origin
+
+/datum/action/innate/rappel_designate/Activate()
+	var/mob/C = target
+	var/mob/camera/aiEye/remote/remote_eye = C.remote_control
+	var/turf/target_turf = get_turf(remote_eye)
+	var/area/target_area = get_area(target_turf)
+
+	if(origin.disable || target_turf.density || target_area.ceiling >= CEILING_DEEP_UNDERGROUND)
+		playsound(origin, 'sound/machines/buzz-two.ogg', 25)
+		return
+
+	C.playsound_local(origin, 'sound/effects/binoctarget.ogg', 35)
+
+	if(!do_after(C, 5 SECONDS, TRUE, remote_eye, BUSY_ICON_BAR))
+		return
+
+	if(!origin.unlocked)
+		playsound(origin, 'sound/machines/ping.ogg', 50, FALSE)
+		origin.deploy_rope(target_turf)
+
+	if(hooked)
+		return
+
+	origin.icon_state = "rappel_hatch_locked"
+	origin.retract_rope()
+	playsound(origin, 'sound/effects/rappel.ogg', 50, TRUE)
+
+
+//The actual system you put on the tadpole
+/obj/structure/dropship_equipment/rappel_system
+	equip_category = DROPSHIP_CREW_WEAPON
+	name = "rappel deployment system"
+	desc = "A system that deploys rappel ropes to go up or down fast, without the need for the tadpole to land. You need to designate the rappel point at the navigation computer."
+	dropship_equipment_flags = IS_INTERACTABLE
+	icon_state = "rappel_hatch_locked"
+	point_cost = 100
+	integrity = 300
+	anchored = TRUE
+	density = FALSE
+	///The rappeling rope we use
+	var/obj/effect/rappel_rope/tadpole/rope
+	///Whether marines can use the rope or not (i.e, if the rope)
+	var/unlocked = FALSE
+	///Whether xenos have temporarily disabled the system or not
+	var/disabled = FALSE
+	///Whether a xeno is currently disabling the system or not
+	var/hooked = FALSE
+
+/obj/structure/dropship_equipment/rappel_system/Initialize()
+	. = ..()
+	rope = new
+	rope.forceMove(src)
+	rope.parent_system = src
+
+
+/obj/structure/dropship_equipment/rappel_system/Destroy()
+	. = ..()
+	QDEL_NULL(rope)
+
+///Human interaction with the rappel system; this is how people rappel down
+/obj/structure/dropship_equipment/rappel_system/attack_hand(mob/living/carbon/human/user)
+	if(disabled)
+		balloon_alert(user, "The system is disabled!")
+
+	if(!is_reserved_level(z))
+		balloon_alert(user, "You are not in-flight!")
+		return
+
+	if(!rope || !unlocked)
+		balloon_alert(user, "No rappel deployed!")
+		return
+
+	var/turf/target_turf = get_turf(rope)
+	if(target_turf.density)
+		balloon_alert(src, "You can't rappel into a wall!")
+		return
+
+	var/area/target_area = get_area(target_turf)
+	if(target_area.ceiling >= CEILING_DEEP_UNDERGROUND)
+		balloon_alert(src, "The rappel is too deep underground!")
+		return
+
+	rope.icon_state = "rope_rappeling"
+	if(icon_state != "rappel_hatch_open")
+		flick("rappel_hatch_opening", src)
+		icon_state = "rappel_hatch_open"
+
+	step(user, get_dir(user, src))
+	user.client.perspective = EYE_PERSPECTIVE
+	user.client.eye = target_turf
+
+	if(do_after(user, 5 SECONDS, TRUE, target_turf, BUSY_ICON_GENERIC) && !user.lying_angle && !user.anchored && unlocked && !disabled)
+		playsound(target_turf, 'sound/effects/rappel.ogg', 50, TRUE)
+		playsound(src, 'sound/effects/rappel.ogg', 50, TRUE)
+		user.forceMove(target_turf)
+		//INVOKE_ASYNC(user, /mob/living/carbon/human.proc/animation_rappel) TODO - funny anims
+
+	flick("rappel_hatch_closing", src)
+	icon_state = "rappel_hatch_unlocked"
+	rope.icon_state = "rope"
+
+	user.client.perspective = MOB_PERSPECTIVE
+	user.client.eye = user
+
+
+///Deploys the rappel and unlocks the hatch so that people can drop down
+/obj/structure/dropship_equipment/rappel_system/proc/deploy_rope(turf/target)
+	if(!rope || disabled || unlocked || hooked)
+		return
+
+	rope.forceMove(target)
+	unlocked = TRUE
+	icon_state = "rappel_hatch_unlocked"
+
+	rope.icon_state = "rope"
+	flick("rope_deploy", rope)
+	playsound(target, 'sound/effects/tadpolehovering.ogg', 100, TRUE, falloff = 2.5)
+	playsound(target, 'sound/effects/rappel.ogg', 50, TRUE)
+	playsound(src, 'sound/effects/rappel.ogg', 50, TRUE)
+	target.balloon_alert_to_viewers("You see a dropship fly overhead and begin dropping ropes!")
+	balloon_alert_to_viewers("You hear a hiss as [src] unlocks!")
+
+
+///Undeploys the rappel and locks the hatch. Rappel cannot be retracted if it is currently being attacked (hooked)
+/obj/structure/dropship_equipment/rappel_system/proc/retract_rope()
+	if(!rope || hooked)
+		return
+
+	var/turf/target = get_turf(rope)
+	target.balloon_alert_to_viewers("A dropship overhead retracts the ropes!")
+	balloon_alert_to_viewers("The rappel ropes reel back into [src], locking the system with a click!")
+	playsound(target, 'sound/effects/tadpolehovering.ogg', 100, TRUE, falloff = 2.5)
+	playsound(target, 'sound/effects/rappel.ogg', 50, TRUE)
+	playsound(src, 'sound/effects/rappel.ogg', 50, TRUE)
+	flick("rope_up", rope)
+
+	addtimer(CALLBACK(src, .proc/reel_in), 0.4 SECONDS)
+
+
+///Part 2 of retract_rope(), moves the rope back into the system after the rope animation has completed.
+/obj/structure/dropship_equipment/rappel_system/proc/reel_in()
+	unlocked = FALSE
+	rope.forceMove(src)
+
+
+
+///This is the rope that the system deploys, a subtype of the HvH deployment rappel.
+///Created by the rappel system on init and stored in the rappel system when it's not in use
+/obj/effect/rappel_rope/tadpole
+	icon = 'icons/Marine/mainship_props.dmi'
+	name = "tadpole rappel rope"
+	light_system = STATIC_LIGHT
+	light_power = 0.5
+	light_range = 2
+	///The rappel system this rope originates from
+	var/obj/structure/dropship_equipment/rappel_system/parent_system
+
+///Going up the rappel. Going up retracts the rappel
+/obj/effect/rappel_rope/tadpole/attack_hand(mob/living/user)
+	. = ..()
+
+	if(hooked)
+		return
+
+	step(user, get_dir(user, src))
+	if(!do_after(user, 4 SECONDS, TRUE, src, BUSY_ICON_GENERIC) || user.lying_angle || user.anchored)
+		return
+
+	user.forceMove(get_turf(parent_system))
+	playsound(get_turf(src), 'sound/effects/rappel.ogg', 50, TRUE)
+	parent_system.icon_state = "rappel_hatch_locked"
+	parent_system.retract_rope()
+
+
+///Rappel destruction, xeno mains rejoice
+/obj/effect/rappel_rope/tadpole/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+	. = ..()
+
+	parent_system.hooked = TRUE //Stops the pilot bringing up the rappel to prevent it being disabled
+	X.balloon_alert_to_viewers("[X] tears at the rappel!","You start tearing up [src] to disable the host's sky-rope system!")
+	step(X, get_dir(X, src))
+
+	if(!do_after(X, 5 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
+		parent_system.hooked = FALSE
+		return
+
+	parent_system.hooked = FALSE
+
+	X.balloon_alert_to_viewers("[X] rips the rappel cord out from above!","You have disabled their sky-rope!")
+	parent_system.balloon_alert_to_viewers("You hear a horrible screeching sound as something breaks!")
+	parent_system.icon_state = "rappel_hatch_disabled"
+
+	var/datum/effect_system/spark_spread/sparks = new
+	sparks.set_up(5, 0, src)
+	sparks.attach(parent_system)
+	sparks.start()
+	sparks.attach(src)
+	sparks.start()
+
+	parent_system.retract_rope()
+	parent_system.disabled = TRUE
+
+	addtimer(CALLBACK(src, .proc/self_repair), RAPPEL_REPAIR_TIME)
+
+
+///Disabled rappels repair themselves after a while
+/obj/effect/rappel_rope/tadpole/proc/self_repair()
+	parent_system.disabled = FALSE
+	parent_system.balloon_alert_to_viewers("[parent_system] pings happily as it finishes its self-repair cycle.")
+	playsound(parent_system, 'sound/machines/ping.ogg', 50, FALSE)
+	parent_system.icon_state = "rappel_hatch_locked"
