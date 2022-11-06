@@ -1,4 +1,4 @@
-/** Assigned say modal of the client */
+/*/** Assigned say modal of the client */
 /client/var/datum/tgui_say/tgui_say
 
 /**
@@ -131,3 +131,4 @@
 		handle_entry(type, payload)
 		return TRUE
 	return FALSE
+*/

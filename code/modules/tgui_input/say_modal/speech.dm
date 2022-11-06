@@ -1,3 +1,4 @@
+/*
 /**
  * Alters text when players are injured.
  * Adds text, trims left and right side
@@ -91,3 +92,4 @@
 		delegate_speech(alter_entry(payload), target_channel)
 		return TRUE
 	return FALSE
+*/

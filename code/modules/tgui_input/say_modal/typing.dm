@@ -1,3 +1,4 @@
+/*
 /** Creates a thinking indicator over the mob. */
 /mob/proc/create_thinking_indicator()
 	return
@@ -95,4 +96,4 @@
 	thinking_IC = FALSE
 	remove_thinking_indicator()
 	remove_typing_indicator()
-
+*/
