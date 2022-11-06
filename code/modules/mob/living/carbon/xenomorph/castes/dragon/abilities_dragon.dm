@@ -68,8 +68,9 @@
 	if(owner.do_actions)
 		return FALSE
 	var/invalid_area = FALSE
-	for(var/area in blacklisted_areas)
-		if (istype(get_area(owner.loc)) == area)
+	for(var/area/area in blacklisted_areas)
+		var/area/owner_area = get_area(get_turf(owner))
+		if(istype(owner_area, area))
 			invalid_area = TRUE
 			break
 	if(invalid_area)
@@ -79,23 +80,23 @@
 /datum/action/xeno_action/activable/flight/on_activation()
 
 // Mostly re-used from hivemind
-/datum/action/xeno_action/activable/flight/proc/toggle_flight()
+/mob/living/carbon/xenomorph/proc/toggle_flight(invincibility = TRUE)
 	if(status_flags & INCORPOREAL)
-		invisibility = INVISIBILITY_MAXIMUM
-		status_flags = NONE
-		upgrade = XENO_UPGRADE_ZERO
-		resistance_flags = BANISH_IMMUNE
-		flags_pass = NONE
-		density = TRUE
-		throwpass = FALSE
-	else
 		invisibility = initial(invisibility)
 		status_flags = initial(status_flags)
-		upgrade = initial(upgrade)
+		// upgrade = initial(upgrade)
 		resistance_flags = initial(resistance_flags)
 		flags_pass = initial(flags_pass)
 		density = initial(flags_pass)
 		throwpass = initial(throwpass)
+	else
+		invisibility = INVISIBILITY_MAXIMUM
+		status_flags = invincibility ? GODMODE | INCORPOREAL : INCORPOREAL
+		// upgrade = XENO_UPGRADE_ZERO
+		resistance_flags = BANISH_IMMUNE
+		flags_pass = NONE
+		density = TRUE
+		throwpass = FALSE
 
 	update_wounds()
 	update_icon()
