@@ -1,7 +1,7 @@
 ///After how much time of being active we die
 #define FACEHUGGER_DEATH 10 SECONDS
 ///Time it takes to impregnate someone
-#define IMPREGNATION_TIME 12 SECONDS
+#define IMPREGNATION_TIME 10 SECONDS
 
 /**
  *Facehuggers
