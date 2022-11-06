@@ -38,6 +38,7 @@
 	owner_xeno.balloon_alert_to_viewers("has tail-stabbed [target]")
 	owner_xeno.face_atom(target)
 	target.Immobilize(DRAGON_TAIL_STAB_DELAY)
+	target.apply_status_effect(STATUS_EFFECT_DRAGONFIRE, 10)
 	if(!do_after(owner_xeno, DRAGON_TAIL_STAB_DELAY, extra_checks=CALLBACK(.proc/can_use_ability, target)))
 		owner_xeno.balloon_alert(owner_xeno, "You give up on lighting [target] on fire!")
 		add_cooldown(3 SECONDS)
@@ -76,6 +77,7 @@
 	if(invalid_area)
 		if(!silent)
 			owner.balloon_alert("can't fly here!")
+		return FALSE
 
 /datum/action/xeno_action/activable/flight/on_activation()
 
@@ -97,6 +99,7 @@
 		flags_pass = NONE
 		density = TRUE
 		throwpass = FALSE
+		// Do following shadow here
 
 	update_wounds()
 	update_icon()
