@@ -177,9 +177,6 @@ Contains most of the procs that are called when a mob is attacked by something
 
 	user.do_attack_animation(src, used_item = I)
 
-		/// Triggers force say events
-	if(I.force > 10 || I.force >= 5 && prob(33))
-		force_say(user)
 	apply_damage(damage, I.damtype, affecting, armor, weapon_sharp, weapon_edge, updating_health = TRUE)
 
 	var/list/hit_report = list("(RAW DMG: [damage])")

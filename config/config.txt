@@ -80,8 +80,6 @@ LOG_HREFS
 LOG_RUNTIME
 LOG_MANIFEST
 # LOG_MECHA
-## log speech indicators
-LOG_SPEECH_INDICATORS
 
 ## Gameplay options
 

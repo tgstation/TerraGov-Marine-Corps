@@ -55,8 +55,6 @@ GLOBAL_LIST_EMPTY(say_log)
 GLOBAL_PROTECT(say_log)
 GLOBAL_LIST_EMPTY(telecomms_log)
 GLOBAL_PROTECT(telecomms_log)
-GLOBAL_VAR(world_speech_indicators_log)
-GLOBAL_PROTECT(world_speech_indicators_log)
 
 GLOBAL_LIST_EMPTY(attack_log)
 GLOBAL_PROTECT(attack_log)
