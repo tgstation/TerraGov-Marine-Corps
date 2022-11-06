@@ -45,6 +45,10 @@
 	var/reload_time = 0.5 SECONDS
 	///Amount of shells to fire if this is empty all shells in chamber items list will fire
 	var/fire_amount
+	///Camera to display impact shots
+	var/obj/machinery/camera/artillery/impact_cam
+	///Amount of shots that we need to monitor with imapct cameras
+	var/current_shots = 0
 
 	/// What type of shells can we use?
 	var/list/allowed_shells = list(
@@ -62,6 +66,16 @@
 
 	///Used for remote targeting by AI
 	var/obj/item/ai_target_beacon/ai_targeter
+
+/obj/machinery/deployable/mortar/Initialize(mapload, _internal_item, deployer)
+	. = ..()
+	impact_cam = new
+	impact_cam.forceMove(src)
+
+/obj/machinery/deployable/mortar/Destroy()
+	QDEL_NULL(impact_cam)
+	return ..()
+
 
 /obj/machinery/deployable/mortar/examine(mob/user)
 	. = ..()
@@ -163,7 +177,7 @@
 	. = ..()
 
 	if(firing)
-		user.balloon_alert(user, "The barrel is steaming hot. Wait a few seconds")
+		user.balloon_alert(user, "The barrel is steaming hot. Wait till it cools off.")
 		return
 
 	if(istype(I, /obj/item/mortal_shell))
@@ -223,7 +237,7 @@
 	to_chat(user, "<span class='notice'>You disconnect the [binocs] from their linked mortar.")
 
 ///Start firing the gun on target and increase tally
-/obj/machinery/deployable/mortar/proc/begin_fire(target, obj/item/mortal_shell/arty_shell)
+/obj/machinery/deployable/mortar/proc/begin_fire(atom/target, obj/item/mortal_shell/arty_shell)
 	firing = TRUE
 	for(var/mob/M in GLOB.player_list)
 		if(get_dist(M , src) <= 7)
@@ -243,12 +257,16 @@
 	var/obj/projectile/shell = new /obj/projectile(loc)
 	var/datum/ammo/ammo = GLOB.ammo_list[arty_shell.ammo_type]
 	shell.generate_bullet(ammo)
-	shell.fire_at(target, src, src, get_dist(src, target), ammo.shell_speed)
-	var/fall_time = get_dist(src, target)/ammo.shell_speed - 1 SECONDS
+	var/shell_range = min(get_dist_euclide(src,target), ammo.max_range)
+	shell.fire_at(target, src, src, shell_range, ammo.shell_speed)
+	var/fall_time = shell_range/ammo.shell_speed - 1 SECONDS
 	//prevent runtime
 	if(fall_time < 0.5 SECONDS)
 		fall_time = 0.5 SECONDS
+	impact_cam.forceMove(get_turf(target))
+	current_shots++
 	addtimer(CALLBACK(src, .proc/falling, target, shell), fall_time)
+	addtimer(CALLBACK(src, .proc/return_cam), fall_time + 2 SECONDS)
 	addtimer(CALLBACK(src, .proc/cool_off), cool_off_time)
 
 ///Proc called by tactical binoculars to send targeting information.
@@ -257,6 +275,12 @@
 	coords["targ_y"] = T.y
 	say("Remote targeting set by [user]. COORDINATES: X:[coords["targ_x"]] Y:[coords["targ_y"]] OFFSET: X:[coords["dial_x"]] Y:[coords["dial_y"]]")
 	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+
+///Returns the impact camera to the mortar
+/obj/machinery/deployable/mortar/proc/return_cam()
+	current_shots--
+	if(current_shots <= 0)
+		impact_cam.forceMove(src)
 
 ///Allows the mortar to be fired again
 /obj/machinery/deployable/mortar/proc/cool_off()
@@ -323,7 +347,7 @@
 	location.ceiling_debris_check(2)
 	log_game("[key_name(user)] has fired the [src] at [AREACOORD(target)]")
 
-	var/max_offset = round(abs((get_dist(src,target)))/offset_per_turfs)
+	var/max_offset = round(abs((get_dist_euclide(src,target)))/offset_per_turfs)
 	var/firing_spread = max_offset + spread
 	if(firing_spread > max_spread)
 		firing_spread = max_spread
@@ -345,6 +369,16 @@
 		chamber_items -= in_chamber
 		QDEL_NULL(in_chamber)
 	return ..()
+
+// Artillery cameras. Together with the artillery impact hud tablet, shows a live feed of imapcts.
+
+/obj/machinery/camera/artillery
+	name = "artillery camera"
+	network = list("terragovartillery")
+	alpha = 0 //we shouldn't be able to see this!
+	internal_light = FALSE
+	c_tag = "impact camera"
+	resistance_flags = RESIST_ALL
 
 //The portable mortar item
 /obj/item/mortar_kit
@@ -454,11 +488,6 @@
 	fall_sound = 'sound/weapons/guns/misc/rocket_whistle.ogg'
 	minimum_range = 22
 	allowed_shells = list(
-		/obj/item/mortal_shell/howitzer,
-		/obj/item/mortal_shell/howitzer/white_phos,
-		/obj/item/mortal_shell/howitzer/he,
-		/obj/item/mortal_shell/howitzer/incendiary,
-		/obj/item/mortal_shell/howitzer/plasmaloss,
 		/obj/item/mortal_shell/flare,
 		/obj/item/mortal_shell/rocket,
 		/obj/item/mortal_shell/rocket/incend,
@@ -466,11 +495,39 @@
 	)
 	tally_type = TALLY_ROCKET_ARTY
 	cool_off_time = 5 SECONDS
-	fire_delay = 0.3 SECONDS
 	reload_time = 1 SECONDS
 	max_rounds = 12
 	offset_per_turfs = 10
 	spread = 3
+
+/obj/item/mortar_kit/mlrs
+	name = "\improper TA-40L multiple rocket launcher system"
+	desc = "A manual, crew-operated and towable multiple rocket launcher system piece used by the TerraGov Marine Corps, it is meant to saturate an area with munitions to total up to large amounts of firepower, it thus has high scatter when firing to accomplish such a task. Fires in only bursts of up to 16 rockets, it can hold 32 rockets in total. Uses 60mm Rockets."
+	icon_state = "mlrs"
+	max_integrity = 400
+	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
+	w_class = WEIGHT_CLASS_HUGE
+	deployable_item = /obj/machinery/deployable/mortar/howitzer/mlrs
+
+/obj/machinery/deployable/mortar/howitzer/mlrs
+	pixel_x = 0
+	anchored = FALSE // You can move this.
+	fire_sound = 'sound/weapons/guns/fire/rocket_arty.ogg'
+	reload_sound = 'sound/weapons/guns/interact/tat36_reload.ogg'
+	fall_sound = 'sound/weapons/guns/misc/rocket_whistle.ogg'
+	minimum_range = 25
+	allowed_shells = list(
+		/obj/item/mortal_shell/rocket/mlrs,
+	)
+	tally_type = TALLY_ROCKET_ARTY
+	cool_off_time = 80 SECONDS
+	fire_delay = 0.15 SECONDS
+	fire_amount = 16
+	reload_time = 0.25 SECONDS
+	max_rounds = 32
+	offset_per_turfs = 25
+	spread = 5
+	max_spread = 5
 
 // Shells themselves //
 
@@ -553,6 +610,12 @@
 /obj/item/mortal_shell/rocket/minelaying
 	ammo_type = /datum/ammo/mortar/rocket/minelayer
 
+/obj/item/mortal_shell/rocket/mlrs
+	name = "\improper 60mm rocket"
+	desc = "A 60mm rocket loaded with explosives, meant to be used in saturation fire with high scatter."
+	icon_state = "mlrs_rocket"
+	ammo_type = /datum/ammo/mortar/rocket/mlrs
+
 /obj/structure/closet/crate/mortar_ammo
 	name = "\improper T-50S mortar ammo crate"
 	desc = "A crate containing live mortar shells with various payloads. DO NOT DROP. KEEP AWAY FROM FIRE SOURCES."
@@ -617,6 +680,8 @@
 	new /obj/item/encryptionkey/cas(src)
 	new /obj/item/encryptionkey/cas(src)
 	new /obj/item/encryptionkey/cas(src)
+	new /obj/item/hud_tablet/artillery(src)
+
 
 /obj/structure/closet/crate/mortar_ammo/howitzer_kit
 	name = "\improper TA-100Y howitzer kit"
@@ -660,6 +725,45 @@
 	new /obj/item/encryptionkey/cas(src)
 	new /obj/item/encryptionkey/cas(src)
 	new /obj/item/encryptionkey/cas(src)
+	new /obj/item/hud_tablet/artillery(src)
+
+
+/obj/structure/closet/crate/mortar_ammo/mlrs_kit
+	name = "\improper TA-40L howitzer kit"
+	desc = "A crate containing a basic, somehow compressed kit consisting of an entire multiple launch rocket system and some rockets, to get a artilleryman started."
+
+/obj/structure/closet/crate/mortar_ammo/mlrs_kit/PopulateContents()
+	new /obj/item/mortar_kit/mlrs(src)
+	new /obj/item/storage/box/mlrs_rockets(src)
+	new /obj/item/storage/box/mlrs_rockets(src)
+	new /obj/item/storage/box/mlrs_rockets(src)
+	new /obj/item/storage/box/mlrs_rockets(src)
+	new /obj/item/storage/box/mlrs_rockets(src)
+	new /obj/item/storage/box/mlrs_rockets(src)
+	new /obj/item/encryptionkey/engi(src)
+	new /obj/item/encryptionkey/engi(src)
+	new /obj/item/binoculars/tactical/range(src)
+	new /obj/item/encryptionkey/cas(src)
+	new /obj/item/encryptionkey/cas(src)
+	new /obj/item/encryptionkey/cas(src)
+
+
+
+/obj/item/storage/box/mlrs_rockets
+	name = "\improper TA-40L rocket crate"
+	desc = "A large case containing rockets in a compressed setting for the TA-40L MLRS. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	storage_slots = 8
+
+/obj/item/storage/box/mlrs_rockets/Initialize()
+	. = ..()
+	new /obj/item/mortal_shell/rocket/mlrs(src)
+	new /obj/item/mortal_shell/rocket/mlrs(src)
+	new /obj/item/mortal_shell/rocket/mlrs(src)
+	new /obj/item/mortal_shell/rocket/mlrs(src)
+	new /obj/item/mortal_shell/rocket/mlrs(src)
+	new /obj/item/mortal_shell/rocket/mlrs(src)
+	new /obj/item/mortal_shell/rocket/mlrs(src)
+	new /obj/item/mortal_shell/rocket/mlrs(src)
 
 #undef TALLY_MORTAR
 #undef TALLY_HOWITZER

@@ -1918,9 +1918,15 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 200
 	penetration = 100
 	sundering = 0
+	accuracy = -30 //Not designed for anti human use
+
+/datum/ammo/rocket/som/heat/on_hit_obj(obj/O, obj/projectile/P)
+	drop_nade(get_turf(O))
+	if(ismecha(O))
+		P.damage *= 2 //this is specifically designed to hurt mechs
 
 /datum/ammo/rocket/som/heat/drop_nade(turf/T)
-	explosion(T, flash_range = 1)
+	explosion(T, 0, 1, 0, 1)
 
 /datum/ammo/rocket/som/rad
 	name = "irrad RPG"
@@ -2022,15 +2028,15 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	drop_nade(T.density ? P.loc : T)
 
 /datum/ammo/mortar
-	name = "80mm"
+	name = "80mm shell"
 	icon_state = "mortar"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
 	shell_speed = 1.10
 	damage = 0
 	penetration = 0
 	sundering = 0
-	accuracy = 250
-	max_range = 250
+	accuracy = 1000
+	max_range = 1000
 	ping = null
 	bullet_color = COLOR_WHITE
 
@@ -2064,7 +2070,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	playsound(T, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4)
 
 /datum/ammo/mortar/howi
-	name = "150mm"
+	name = "150mm shell"
 	icon_state = "howi"
 	shell_speed = 1.25
 
@@ -2077,7 +2083,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
 
 /datum/ammo/mortar/smoke/howi
-	name = "150mm"
+	name = "150mm shell"
 	icon_state = "howi"
 	shell_speed = 1.25
 
@@ -2119,6 +2125,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/mortar/rocket/minelayer/drop_nade(turf/T)
 	var/obj/item/explosive/mine/mine = new /obj/item/explosive/mine(T)
 	mine.deploy_mine(null, TGMC_LOYALIST_IFF)
+
+/datum/ammo/mortar/rocket/mlrs
+	shell_speed = 2.5
+
+/datum/ammo/mortar/rocket/mlrs/drop_nade(turf/T)
+	explosion(T, 0, 0, 4, 2)
 
 /*
 //================================================

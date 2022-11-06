@@ -25,6 +25,10 @@
 	icon = 'icons/obj/doors/mainship/engidoor.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_eng
 
+/obj/machinery/door/airlock/engineering/evac
+	icon = 'icons/obj/doors/mainship/pod_doors.dmi'
+	icon_state = "door_locked"
+
 /obj/machinery/door/airlock/medical
 	name = "\improper Medical Airlock"
 	icon = 'icons/obj/doors/mainship/medidoor.dmi'

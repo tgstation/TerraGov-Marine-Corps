@@ -381,12 +381,12 @@
 /area/lv624/ground/sand9)
 "EE" = (
 /obj/structure/jungle/vines,
-/obj/machinery/door/airlock/sandstone{
+/obj/machinery/door/airlock/mainship/generic{
 	desc = "This strange temple is covered in runes. It looks extremely ancient.";
-	icon_state = "door_locked";
-	locked = 1;
+	dir = 2;
 	name = "Strange Temple"
 	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
 "EJ" = (
