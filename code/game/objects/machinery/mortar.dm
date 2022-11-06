@@ -46,7 +46,7 @@
 	///Amount of shells to fire if this is empty all shells in chamber items list will fire
 	var/fire_amount
 	///Camera to display impact shots
-	var/obj/machinery/camera/artillery/impact_cam = new
+	var/obj/machinery/camera/artillery/impact_cam
 	///Amount of shots that we need to monitor with imapct cameras
 	var/current_shots = 0
 
@@ -69,6 +69,7 @@
 
 /obj/machinery/deployable/mortar/Initialize(mapload, _internal_item, deployer)
 	. = ..()
+	impact_cam = new
 	impact_cam.forceMove(src)
 
 /obj/machinery/deployable/mortar/Destroy()
@@ -368,6 +369,16 @@
 		QDEL_NULL(in_chamber)
 	return ..()
 
+// Artillery cameras. Together with the artillery impact hud tablet, shows a live feed of imapcts.
+
+/obj/machinery/camera/artillery
+	name = "artillery camera"
+	network = list("terragovartillery")
+	alpha = 0 //we shouldn't be able to see this!
+	internal_light = FALSE
+	c_tag = "impact camera"
+	resistance_flags = RESIST_ALL
+
 //The portable mortar item
 /obj/item/mortar_kit
 	name = "\improper TA-50S mortar"
@@ -394,16 +405,6 @@
 		to_chat(user, span_warning("You probably shouldn't deploy [src] indoors."))
 		return
 	return ..()
-
-// Artillery cameras. Together with the artillery impact hud tablet, shows a live feed of imapcts.
-
-/obj/machinery/camera/artillery
-	name = "artillery camera"
-	network = list("terragovartillery")
-	alpha = 0 //we shouldn't be able to see this!
-	internal_light = FALSE
-	c_tag = "impact camera"
-	resistance_flags = RESIST_ALL
 
 //tadpole mounted double barrel mortar
 
