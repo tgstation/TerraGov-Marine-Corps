@@ -144,3 +144,6 @@ obj/structure/platform_decoration
 		if(WEST)
 			I.pixel_x = -16
 	overlays += I
+
+/obj/structure/fakeplatform/magmoor
+    icon_state = "metalplatform"
