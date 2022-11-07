@@ -10,7 +10,7 @@
 
 	New()
 		..()
-		sleep(2)
+		sleep(0.2 SECONDS)
 		new /obj/item/clothing/under/rank/cargo(src)
 		new /obj/item/clothing/shoes/brown(src)
 //		new /obj/item/radio/headset/mainship/ct(src)

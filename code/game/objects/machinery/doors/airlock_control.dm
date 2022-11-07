@@ -53,7 +53,7 @@
 		if("secure_open")
 			unlock()
 
-			sleep(2)
+			sleep(0.2 SECONDS)
 			open()
 
 			lock()
@@ -63,7 +63,7 @@
 			close()
 
 			lock()
-			sleep(2)
+			sleep(0.2 SECONDS)
 
 	send_status()
 

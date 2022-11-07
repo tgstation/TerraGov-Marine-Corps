@@ -318,7 +318,7 @@ What a mess.*/
 					record1 = active1
 				if ((istype(active2, /datum/data/record) && GLOB.datacore.security.Find(active2)))
 					record2 = active2
-				sleep(50)
+				sleep(5 SECONDS)
 				var/obj/item/paper/P = new /obj/item/paper( loc )
 				P.info = "<CENTER><B>Security Record</B></CENTER><BR>"
 				if (record1)

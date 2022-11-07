@@ -219,7 +219,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 	if(sleep_offline_after_initializations)
 		world.sleep_offline = TRUE
-	sleep(1)
+	sleep(1 TICKS)
 
 	if(sleep_offline_after_initializations && CONFIG_GET(flag/resume_after_initializations))
 		world.sleep_offline = FALSE
@@ -323,7 +323,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 		var/starting_tick_usage = TICK_USAGE
 		if (processing <= 0)
 			current_ticklimit = TICK_LIMIT_RUNNING
-			sleep(10)
+			sleep(1 SECONDS)
 			continue
 
 		//Anti-tick-contention heuristics:
@@ -378,7 +378,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 				iteration++
 			error_level++
 			current_ticklimit = TICK_LIMIT_RUNNING
-			sleep(10)
+			sleep(1 SECONDS)
 			continue
 
 		if (queue_head)
@@ -390,7 +390,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 					iteration++
 				error_level++
 				current_ticklimit = TICK_LIMIT_RUNNING
-				sleep(10)
+				sleep(1 SECONDS)
 				continue
 		error_level--
 		if (!queue_head) //reset the counts if the queue is empty, in the off chance they get out of sync
