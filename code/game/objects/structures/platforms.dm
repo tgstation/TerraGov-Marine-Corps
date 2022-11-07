@@ -146,5 +146,5 @@ obj/structure/platform_decoration
 	overlays += I
 
 /obj/structure/fakeplatform/magmoor
-    icon_state = "metalplatform"
-    layer = LATTICE_LAYER
+	icon_state = "metalplatform"
+	layer = LATTICE_LAYER
