@@ -130,6 +130,9 @@
 /turf/open/floor/plating/asteroidwarning // used around lv's lz2
 	icon_state = "asteroidwarning"
 
+/turf/open/floor/plating/asteroidwarning/old // used around lv's lz2
+	icon_state = "asteroidwarning_old"
+
 /turf/open/floor/plating/asteroidwarning/alt
 	icon_state = "asteroidwarning2"
 
@@ -139,6 +142,8 @@
 /turf/open/floor/plating/asteroidfloor
 	icon_state = "asteroidfloor"
 
+/turf/open/floor/plating/asteroidfloor/old
+	icon_state = "asteroidfloor_old"
 
 /turf/open/floor/plating/asteroidplating
 	icon_state = "asteroidplating"
