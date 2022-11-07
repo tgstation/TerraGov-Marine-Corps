@@ -1407,19 +1407,3 @@
 	pixel_y = -15
 	resistance_flags = RESIST_ALL
 	layer = ABOVE_MOB_LAYER
-
-/obj/structure/prop/tiger_rug
-	name = "tiger rug"
-	desc = "A rather tasteless but impressive tiger rug. Must've costed a fortune to get this exported to the rim."
-	icon = 'icons/obj/structures/tiger_rugs.dmi'
-	density = FALSE
-	layer = BELOW_TABLE_LAYER
-	icon_state = "Bengal"
-
-/obj/structure/prop/tiger_rug/white
-	desc = "A rather tasteless but impressive tiger rug. Must've costed a fortune to get this exported to the rim, especially with this particular color. Should the TerraGov be buying an exotic product made from an endangered species?"
-	icon_state = "White"
-
-/obj/structure/prop/tiger_rug/hotline
-	desc = "A rather tasteless but impressive tiger rug. Must've costed a fortune to get this exported to the rim, especially with this psychedelic color. Should the TerraGov be buying an exotic product made from an endangered species?"
-	icon_state = "Hotline"

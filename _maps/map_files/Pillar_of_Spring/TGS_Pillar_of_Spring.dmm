@@ -2982,16 +2982,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
-"iE" = (
-/obj/structure/bed/chair/comfy{
-	dir = 8
-	},
-/obj/structure/prop/tiger_rug{
-	dir = 4;
-	pixel_y = 16
-	},
-/turf/open/floor/carpet,
-/area/mainship/living/commandbunks)
 "iF" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -11618,9 +11608,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing)
 "GT" = (
-/obj/structure/prop/tiger_rug/white{
-	pixel_x = 16
-	},
 /turf/open/floor/mainship/blue,
 /area/mainship/living/numbertwobunks)
 "GV" = (
@@ -45799,7 +45786,7 @@ Ig
 Sp
 Xf
 qK
-iE
+Xf
 qj
 cE
 bM
