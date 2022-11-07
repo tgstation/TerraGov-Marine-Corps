@@ -85,7 +85,7 @@
 	icon_state = "lootbox" //to change
 	item_state = "lootbox"	//to change
 	w_class = WEIGHT_CLASS_GIGANTIC
-	rolls = 3
+	rolls = 4
 
 	legendary_list = list(
 		/obj/item/weapon/karambit,
@@ -102,23 +102,37 @@
 	uncommon_list = list(
 		/obj/effect/supply_drop/marine_sentry,
 		/obj/effect/supply_drop/recoilless_rifle,
+		/obj/effect/supply_drop/scout,
 		/obj/effect/supply_drop/oicw,
+		/obj/item/storage/belt/lifesaver/quick,
+		/obj/item/storage/belt/rig/medical,
+		/obj/effect/supply_drop/mmg,
 	)
 	common_list = list(
 		/obj/effect/supply_drop/armor_upgrades,
-		/obj/effect/supply_drop/mmg,
-		/obj/effect/supply_drop/scout,
+		/obj/effect/supply_drop/medical_basic,
+		/obj/item/storage/pouch/firstaid/combat_patrol,
+		/obj/item/storage/pouch/medical_injectors/firstaid,
+		/obj/item/storage/pouch/medical_injectors/medic,
+		/obj/effect/supply_drop/standard_carbine,
+		/obj/effect/supply_drop/standard_rifle,
+		/obj/effect/supply_drop/combat_rifle,
+		/obj/effect/supply_drop/laser_rifle,
+		/obj/effect/supply_drop/standard_shotgun,
 	)
 
 
 //put these somewhere else in a bit
+/obj/effect/supply_drop/medical_basic/Initialize()
+	. = ..()
+	new /obj/item/storage/firstaid/adv(loc)
+	new /obj/item/storage/firstaid/regular(loc)
+	qdel(src)
+
 /obj/effect/supply_drop/heavy_armor/Initialize()
 	. = ..()
 	new /obj/item/clothing/head/helmet/marine/specialist(loc)
-	new /obj/item/clothing/head/helmet/marine/specialist(loc)
 	new /obj/item/clothing/gloves/marine/specialist(loc)
-	new /obj/item/clothing/gloves/marine/specialist(loc)
-	new /obj/item/clothing/suit/storage/marine/specialist(loc)
 	new /obj/item/clothing/suit/storage/marine/specialist(loc)
 	qdel(src)
 
@@ -133,18 +147,12 @@
 /obj/effect/supply_drop/minigun/Initialize()
 	. = ..()
 	new /obj/item/weapon/gun/minigun/magharness(loc)
-	new /obj/item/weapon/gun/minigun/magharness(loc)
-	new /obj/item/ammo_magazine/minigun_powerpack(loc)
-	new /obj/item/ammo_magazine/minigun_powerpack(loc)
-	new /obj/item/ammo_magazine/minigun_powerpack(loc)
 	new /obj/item/ammo_magazine/minigun_powerpack(loc)
 	qdel(src)
 
 /obj/effect/supply_drop/zx_shotgun/Initialize()
 	. = ..()
 	new /obj/item/weapon/gun/shotgun/zx76/standard(loc)
-	new /obj/item/weapon/gun/shotgun/zx76/standard(loc)
-	new /obj/item/storage/belt/shotgun/flechette(loc)
 	new /obj/item/storage/belt/shotgun/flechette(loc)
 	qdel(src)
 
@@ -164,60 +172,58 @@
 /obj/effect/supply_drop/oicw/Initialize()
 	. = ..()
 	new /obj/item/weapon/gun/rifle/tx55/combat_patrol(loc)
-	new /obj/item/weapon/gun/rifle/tx55/combat_patrol(loc)
-	new /obj/item/ammo_magazine/rifle/tx55(loc)
-	new /obj/item/ammo_magazine/rifle/tx55(loc)
-	new /obj/item/ammo_magazine/rifle/tx55(loc)
-	new /obj/item/ammo_magazine/rifle/tx55(loc)
-	new /obj/item/ammo_magazine/rifle/tx55(loc)
-	new /obj/item/ammo_magazine/rifle/tx55(loc)
-	new /obj/item/ammo_magazine/rifle/tx54(loc)
-	new /obj/item/ammo_magazine/rifle/tx54(loc)
-	new /obj/item/ammo_magazine/rifle/tx54(loc)
-	new /obj/item/ammo_magazine/rifle/tx54(loc)
-	new /obj/item/ammo_magazine/rifle/tx54/incendiary(loc)
-	new /obj/item/ammo_magazine/rifle/tx54/incendiary(loc)
+	new /obj/item/storage/belt/marine/oicw(loc)
 	qdel(src)
 
 /obj/effect/supply_drop/scout/Initialize()
 	. = ..()
 	new /obj/item/weapon/gun/rifle/tx8/scout(loc)
-	new /obj/item/weapon/gun/rifle/tx8/scout(loc)
-	new /obj/item/ammo_magazine/rifle/tx8(loc)
-	new /obj/item/ammo_magazine/rifle/tx8(loc)
-	new /obj/item/ammo_magazine/rifle/tx8(loc)
-	new /obj/item/ammo_magazine/rifle/tx8(loc)
-	new /obj/item/ammo_magazine/rifle/tx8(loc)
-	new /obj/item/ammo_magazine/rifle/tx8(loc)
-	new /obj/item/ammo_magazine/rifle/tx8(loc)
-	new /obj/item/ammo_magazine/rifle/tx8(loc)
-	new /obj/item/ammo_magazine/rifle/tx8/impact(loc)
-	new /obj/item/ammo_magazine/rifle/tx8/impact(loc)
-	new /obj/item/ammo_magazine/rifle/tx8/incendiary(loc)
-	new /obj/item/ammo_magazine/rifle/tx8/incendiary(loc)
+	new /obj/item/storage/belt/marine/tx8(loc)
 	qdel(src)
 
 /obj/effect/supply_drop/armor_upgrades/Initialize()
 	. = ..()
 	new /obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two(loc)
-	new /obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two(loc)
 	new /obj/item/clothing/head/modular/marine/m10x/tyr(loc)
-	new /obj/item/clothing/head/modular/marine/m10x/tyr(loc)
-	new /obj/item/weapon/shield/riot/marine(loc)
 	new /obj/item/weapon/shield/riot/marine(loc)
 	qdel(src)
 
 /obj/effect/supply_drop/mmg/Initialize()
 	. = ..()
 	new /obj/item/weapon/gun/standard_mmg/machinegunner(loc)
-	new /obj/item/weapon/gun/standard_mmg/machinegunner(loc)
 	new /obj/item/ammo_magazine/standard_mmg(loc)
 	new /obj/item/ammo_magazine/standard_mmg(loc)
 	new /obj/item/ammo_magazine/standard_mmg(loc)
-	new /obj/item/ammo_magazine/standard_mmg(loc)
-	new /obj/item/ammo_magazine/standard_mmg(loc)
-	new /obj/item/ammo_magazine/standard_mmg(loc)
-	new /obj/item/stack/sandbags/large_stack(loc)
 	new /obj/item/stack/sandbags/large_stack(loc)
 	new /obj/item/stack/barbed_wire/full(loc)
+	qdel(src)
+
+/obj/effect/supply_drop/standard_carbine/Initialize()
+	. = ..()
+	new /obj/item/weapon/gun/rifle/standard_carbine/scout(loc)
+	new /obj/item/storage/belt/marine/t18(loc)
+	qdel(src)
+
+/obj/effect/supply_drop/standard_rifle/Initialize()
+	. = ..()
+	new /obj/item/weapon/gun/rifle/standard_assaultrifle/rifleman(loc)
+	new /obj/item/storage/belt/marine/t12(loc)
+	qdel(src)
+
+/obj/effect/supply_drop/combat_rifle/Initialize()
+	. = ..()
+	new /obj/item/weapon/gun/rifle/tx11/standard(loc)
+	new /obj/item/storage/belt/marine/combat_rifle(loc)
+	qdel(src)
+
+/obj/effect/supply_drop/laser_rifle/Initialize()
+	. = ..()
+	new /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle/rifleman(loc)
+	new /obj/item/storage/belt/marine/te_cells(loc)
+	qdel(src)
+
+/obj/effect/supply_drop/standard_shotgun/Initialize()
+	. = ..()
+	new /obj/item/weapon/gun/shotgun/pump/t35/pointman(loc)
+	new /obj/item/storage/belt/shotgun/mixed(loc)
 	qdel(src)
