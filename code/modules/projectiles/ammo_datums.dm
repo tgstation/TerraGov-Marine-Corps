@@ -3226,7 +3226,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_FLAME|AMMO_EXPLOSIVE
 	armor_type = "fire"
 	max_range = 6
-	damage = 3
+	damage = 5
 	damage_falloff = 0
 	incendiary_strength = 30 //Firestacks cap at 20, but that's after armor.
 	shell_speed = 0.6
@@ -3268,42 +3268,48 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/flamethrower/bounce/on_hit_turf(turf/T, obj/projectile/proj)
 	. = ..()
-	var/surface_angle = Get_Angle(T, proj.loc)
+	var/surface_angle = round(Get_Angle(T, proj.loc))
 	switch(surface_angle)
 		if(0, 360)
 			surface_angle = 0
 		if(1 to 44)
-			surface_angle = 45
+			surface_angle = 0
 		if(45)
 			surface_angle = 0
 		if(46 to 89)
-			surface_angle = 45
+			surface_angle = 0
 		if(90)
 			surface_angle = 90
 		if(91 to 134)
-			surface_angle = 135
+			surface_angle = 180
 		if(135)
-			surface_angle = 90
+			surface_angle = 180
 		if(136 to 179)
-			surface_angle = 135
+			surface_angle = 180
 		if(180)
 			surface_angle = 180
 		if(181 to 224)
-			surface_angle = 225
+			surface_angle = 270
 		if(225)
-			surface_angle = 135
+			surface_angle = 0
 		if(226 to 269)
-			surface_angle = 225
+			surface_angle = 0
 		if(270)
 			surface_angle = 270
 		if(271 to 314)
-			surface_angle = 315
+			surface_angle = 0
 		if(225)
 			surface_angle = 0
+		if(315)
+			surface_angle = 0
 		if(316 to 359)
-			surface_angle = 315
+			surface_angle = 0
 
 	var/ricochet_angle = 2 * surface_angle - proj.dir_angle + 180
+	to_chat(proj.firer, "<font size=6 color=red>[ricochet_angle] ricochet</font>")
+	to_chat(proj.firer, "<font size=6 color=red>[surface_angle] surface</font>")
+	to_chat(proj.firer, "<font size=6 color=red>[proj.dir_angle] projectile</font>")
+	to_chat(proj.firer, "<font size=6 color=red>[Get_Angle(T, proj.loc)] surfaceproj</font>")
 	bonus_projectiles_amount = 1
 	fire_directionalburst(proj, proj.firer, proj.shot_from, 3, proj.projectile_speed, ricochet_angle)
 	bonus_projectiles_amount = 0
