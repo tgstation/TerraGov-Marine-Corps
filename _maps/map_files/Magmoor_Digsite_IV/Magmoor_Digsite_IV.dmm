@@ -11051,11 +11051,11 @@
 /area/magmoor/landing)
 "itd" = (
 /obj/structure/table/mainship,
-/obj/item/tool/pen/sleepypen,
 /obj/structure/paper_bin{
 	pixel_y = 7;
 	pixel_x = 2
 	},
+/obj/item/tool/pen/red,
 /turf/open/floor/mainship/orange{
 	dir = 6
 	},
