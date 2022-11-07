@@ -321,6 +321,8 @@
 	else
 		for(var/dirn in GLOB.alldirs)
 			var/turf/D = get_step(W,dirn)
+			if(isnull(D))
+				continue
 			D.smooth_self()
 			D.smooth_neighbors()
 	return W

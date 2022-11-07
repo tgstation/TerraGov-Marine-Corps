@@ -534,6 +534,7 @@
 	greyscale_config = /datum/greyscale_config/modularhelmet
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/hod_head,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
 		/obj/item/armor_module/module/welding,
@@ -570,6 +571,7 @@
 	greyscale_config = /datum/greyscale_config/modularhelmet/skirmisher
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/hod_head,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
 		/obj/item/armor_module/module/welding,
@@ -590,6 +592,7 @@
 	greyscale_config = /datum/greyscale_config/modularhelmet/assault
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/hod_head,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
 		/obj/item/armor_module/module/welding,
@@ -610,6 +613,7 @@
 	greyscale_config = /datum/greyscale_config/modularhelmet/eva
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/hod_head,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
 		/obj/item/armor_module/module/welding,
@@ -635,6 +639,7 @@
 	greyscale_config = /datum/greyscale_config/modularhelmet/eod
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/hod_head,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
 		/obj/item/armor_module/module/welding,
@@ -658,6 +663,7 @@
 	greyscale_config = /datum/greyscale_config/modularhelmet/scout
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/hod_head,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
 		/obj/item/armor_module/module/welding,
@@ -678,6 +684,7 @@
 	greyscale_config = /datum/greyscale_config/modularhelmet/helljumper
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/hod_head,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
 		/obj/item/armor_module/module/welding,
@@ -697,6 +704,7 @@
 	greyscale_config = /datum/greyscale_config/modularhelmet/infantry_open
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/hod_head,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
 		/obj/item/armor_module/module/welding,
@@ -729,6 +737,7 @@
 	greyscale_config = null
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/hod_head,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
 		/obj/item/armor_module/module/welding,

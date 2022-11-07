@@ -161,6 +161,7 @@ GLOBAL_LIST_INIT(jobs_fallen_all, typecacheof(list(/datum/job/fallen)))
 #define SMARTIE_POINTS_MEDIUM 2
 #define SMARTIE_POINTS_HIGH 3
 #define SYNTH_POINTS_REGULAR 1
+#define MECH_POINTS_REGULAR 1
 
 #define VETERAN_POINTS_REGULAR 1
 
