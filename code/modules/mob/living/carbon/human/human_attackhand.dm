@@ -212,7 +212,7 @@
 
 /mob/living/carbon/human/proc/check_self_for_injuries()
 	var/list/final_msg = list()
-	visible_message(span_notice("[src] examines [p_them()]self."))
+	balloon_alert_to_viewers("Examines [p_them()]self.", "You examine yourself")
 	final_msg += span_notice("<b>You check yourself for injuries.</b>")
 
 	for(var/datum/limb/org in limbs)
