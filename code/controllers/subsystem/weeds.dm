@@ -77,9 +77,9 @@ SUBSYSTEM_DEF(weeds)
 	if(QDELETED(node))
 		return
 	var/obj/alien/weeds/weed_to_spawn = node.weed_type
+	var/swapped = FALSE
 	if(iswallturf(T))
 		weed_to_spawn = /obj/alien/weeds/weedwall
-	var/swapped = FALSE
 	for (var/obj/O in T)
 		if(istype(O, /obj/structure/window/framed))
 			weed_to_spawn = /obj/alien/weeds/weedwall/window
