@@ -748,10 +748,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
-"bZ" = (
-/obj/effect/attach_point/electronics/dropship1,
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "ca" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/ai_node,
@@ -5001,7 +4997,7 @@
 /area/mainship/squads/general)
 "op" = (
 /obj/docking_port/stationary/marine_dropship/crash_target,
-/turf/open/floor/plating,
+/turf/open/floor/plating/alternate,
 /area/mainship/hallways/hangar)
 "oq" = (
 /obj/machinery/door/airlock/mainship/maint,
@@ -5011,6 +5007,11 @@
 "or" = (
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/floor,
+/area/mainship/hallways/hangar)
+"os" = (
+/turf/open/floor/plating/warning/corner/alt{
+	dir = 4
+	},
 /area/mainship/hallways/hangar)
 "ot" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -5221,6 +5222,11 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
+"pc" = (
+/turf/open/floor/plating/warning/corner/alt{
+	dir = 8
+	},
+/area/mainship/hallways/hangar)
 "pd" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -7243,6 +7249,11 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_hallway)
+"uF" = (
+/turf/open/floor/plating/warning/alt{
+	dir = 4
+	},
+/area/mainship/hallways/hangar)
 "uG" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -7884,7 +7895,7 @@
 "wu" = (
 /obj/docking_port/stationary/marine_dropship/hangar/one,
 /obj/docking_port/stationary/marine_dropship/crash_target,
-/turf/open/floor/plating,
+/turf/open/floor/plating/alternate,
 /area/mainship/hallways/hangar)
 "wv" = (
 /turf/open/floor/mainship/black{
@@ -8095,7 +8106,7 @@
 	dir = 8;
 	icon_state = "equip_base_l_wing"
 	},
-/turf/open/floor/plating/icefloor/warnplate{
+/turf/open/floor/plating/warning/alt{
 	dir = 8
 	},
 /area/mainship/hallways/hangar)
@@ -9332,6 +9343,11 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
+"Ax" = (
+/turf/open/floor/plating/warning/alt{
+	dir = 1
+	},
+/area/mainship/hallways/hangar)
 "Ay" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/wood,
@@ -11230,6 +11246,9 @@
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/port_hallway)
+"FO" = (
+/turf/open/floor/plating/warning/corner,
+/area/mainship/hallways/hangar)
 "FP" = (
 /obj/machinery/door/firedoor/mainship,
 /obj/machinery/door/poddoor/mainship/open/cic,
@@ -11610,6 +11629,11 @@
 "GT" = (
 /turf/open/floor/mainship/blue,
 /area/mainship/living/numbertwobunks)
+"GU" = (
+/turf/open/floor/plating/warning/alt{
+	dir = 8
+	},
+/area/mainship/hallways/hangar)
 "GV" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -14079,7 +14103,7 @@
 /area/mainship/living/briefing)
 "NX" = (
 /obj/docking_port/stationary/marine_dropship/cas,
-/turf/open/floor/plating,
+/turf/open/floor/plating/alternate,
 /area/mainship/hallways/hangar)
 "NY" = (
 /obj/machinery/door/poddoor/shutters/mainship/selfdestruct,
@@ -14921,9 +14945,7 @@
 /area/mainship/living/starboard_garden)
 "Qw" = (
 /obj/effect/attach_point/weapon/dropship1,
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 1
-	},
+/turf/open/floor/plating/alternate,
 /area/mainship/hallways/hangar)
 "Qx" = (
 /turf/closed/wall/mainship,
@@ -17753,9 +17775,7 @@
 /area/mainship/squads/general)
 "Yg" = (
 /obj/effect/attach_point/electronics/dropship1,
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 1
-	},
+/turf/open/floor/plating/alternate,
 /area/mainship/hallways/hangar)
 "Yh" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -17824,7 +17844,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "Yt" = (
-/turf/open/floor/plating/dmg1,
+/turf/open/floor/plating/alternate,
 /area/mainship/hallways/hangar)
 "Yu" = (
 /obj/machinery/telecomms/server/presets/alpha,
@@ -45980,11 +46000,11 @@ BQ
 Gd
 tR
 tR
-KL
+FO
 xl
 Ds
-KD
-KD
+GU
+GU
 xb
 zA
 xl
@@ -45992,11 +46012,11 @@ xl
 xl
 xl
 Ds
-KD
-KD
-KD
-KD
-KD
+GU
+GU
+GU
+GU
+GU
 JP
 xl
 in
@@ -46238,24 +46258,24 @@ Vq
 tR
 tR
 RH
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
+Qw
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
 JP
-JP
+Ax
 wX
 bh
 qd
@@ -46495,24 +46515,24 @@ Vq
 xl
 xl
 Ds
-tR
-tR
-tR
-bZ
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
+Yg
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
 JP
-JP
+Ax
 yK
 IS
 Nw
@@ -46749,27 +46769,27 @@ qq
 BQ
 sb
 oY
-JP
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-KD
-hY
+Ax
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+GU
+os
 Ab
 RX
 Ps
@@ -47006,25 +47026,25 @@ Vc
 WW
 sb
 Az
-JP
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
+Ax
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
 lK
 KD
 uq
@@ -47263,25 +47283,25 @@ Gf
 BQ
 sb
 Az
-JP
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
+Ax
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
 wu
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
 JP
 tR
 uJ
@@ -47520,25 +47540,25 @@ Vc
 BQ
 sb
 yX
-JP
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
+Ax
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
 zA
 xl
 Cm
@@ -47777,27 +47797,27 @@ Vc
 HK
 sb
 oY
-JP
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-xl
-Rk
+Ax
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+uF
+pc
 Bg
 un
 KX
@@ -48036,25 +48056,25 @@ sb
 oi
 KD
 KD
-KD
+aK
 Yg
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
 JP
-JP
+Ax
 Lr
 eJ
 KK
@@ -48293,25 +48313,25 @@ sb
 mc
 tR
 tR
-tR
+RH
 Qw
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
 JP
-JP
+Ax
 wX
 eJ
 qd
@@ -48553,20 +48573,20 @@ tR
 tR
 KD
 aK
-xl
-xl
-xl
+uF
+uF
+uF
 lK
 KD
 KD
 KD
 KD
 aK
-xl
-xl
-xl
-xl
-xl
+uF
+uF
+uF
+uF
+uF
 JP
 KD
 yK
@@ -50610,7 +50630,7 @@ tR
 tR
 KL
 Ds
-KD
+Yt
 JP
 tR
 tR
@@ -50866,8 +50886,8 @@ tR
 tR
 tR
 RH
-tR
-tR
+Yt
+Yt
 JP
 tR
 KL
@@ -51123,14 +51143,14 @@ tR
 tR
 tR
 RH
-tR
-tR
+Yt
+Yt
 zA
 xl
 Ds
-tR
-tR
-tR
+Yt
+Yt
+Yt
 JP
 Pj
 Xo
@@ -51380,14 +51400,14 @@ tR
 tR
 tR
 RH
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
 JP
 lq
 Il
@@ -51637,14 +51657,14 @@ xl
 xl
 xl
 Ds
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
 JP
 Pj
 YM
@@ -51890,18 +51910,18 @@ HK
 rC
 kn
 RH
-tR
-tR
-tR
-tR
+Yt
+Yt
+Yt
+Yt
 Yt
 NX
 op
-tR
-tR
-tR
-tR
-tR
+Yt
+Yt
+Yt
+Yt
+Yt
 JP
 Pj
 wZ
@@ -52151,14 +52171,14 @@ KD
 KD
 KD
 aK
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
 JP
 Pj
 hG
@@ -52408,14 +52428,14 @@ tR
 tR
 tR
 RH
-tR
-tR
-tR
-tR
-tR
-tR
-tR
-tR
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
 JP
 gt
 Qq
@@ -52665,14 +52685,14 @@ tR
 tR
 tR
 RH
-tR
-tR
+Yt
+Yt
 lK
 KD
 aK
-tR
-tR
-tR
+Yt
+Yt
+Yt
 JP
 nh
 UY
@@ -52922,8 +52942,8 @@ tR
 tR
 tR
 RH
-tR
-tR
+Yt
+Yt
 JP
 tR
 aw
@@ -53180,7 +53200,7 @@ tR
 tR
 aw
 aK
-xl
+Yt
 JP
 tR
 tR

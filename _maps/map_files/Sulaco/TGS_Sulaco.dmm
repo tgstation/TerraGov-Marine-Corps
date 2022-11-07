@@ -15139,6 +15139,11 @@
 	dir = 4
 	},
 /area/mainship/living/basketball)
+"hWk" = (
+/turf/open/floor/plating/warning/alt{
+	dir = 8
+	},
+/area/sulaco/hangar/cas)
 "hWs" = (
 /obj/machinery/door/poddoor/railing{
 	id = "supply_elevator_railing"
@@ -16275,6 +16280,11 @@
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
+"jxI" = (
+/turf/open/floor/plating/warning/alt{
+	dir = 4
+	},
+/area/sulaco/hangar/cas)
 "jyQ" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -57117,7 +57127,7 @@ pwv
 pwv
 gkQ
 bBx
-sYa
+hWk
 wCz
 pwv
 pwv
@@ -59687,7 +59697,7 @@ pwv
 pwv
 kpy
 bDy
-sYa
+jxI
 wCz
 pwv
 pwv

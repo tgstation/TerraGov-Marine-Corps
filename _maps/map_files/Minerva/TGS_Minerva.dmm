@@ -2030,6 +2030,11 @@
 /obj/item/storage/toolbox/electrical,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
+"fL" = (
+/turf/open/floor/plating/warning/alt{
+	dir = 4
+	},
+/area/mainship/hallways/hangar)
 "fM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -5951,7 +5956,7 @@
 "rx" = (
 /obj/docking_port/stationary/marine_dropship/hangar/one,
 /obj/docking_port/stationary/marine_dropship/crash_target,
-/turf/open/floor/plating,
+/turf/open/floor/plating/alternate,
 /area/mainship/hallways/hangar)
 "ry" = (
 /obj/machinery/door/poddoor/mainship/umbilical/south{
@@ -6193,12 +6198,6 @@
 	dir = 9
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/hangar)
-"si" = (
-/obj/effect/attach_point/weapon/dropship1,
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 1
-	},
 /area/mainship/hallways/hangar)
 "sj" = (
 /obj/structure/closet/firecloset,
@@ -6618,10 +6617,6 @@
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
-"tD" = (
-/obj/effect/attach_point/electronics/dropship1,
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "tE" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
@@ -8855,7 +8850,7 @@
 /area/mainship/hallways/hangar)
 "zP" = (
 /obj/docking_port/stationary/marine_dropship/cas,
-/turf/open/floor/plating,
+/turf/open/floor/plating/alternate,
 /area/mainship/hallways/hangar)
 "zQ" = (
 /obj/structure/bed/chair/nometal{
@@ -9254,11 +9249,9 @@
 /turf/closed/wall/mainship,
 /area/mainship/living/pilotbunks)
 "AU" = (
-/obj/effect/attach_point/weapon/dropship2{
-	dir = 8;
-	icon_state = "equip_base_l_wing"
+/turf/open/floor/plating/warning/alt{
+	dir = 1
 	},
-/turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "AV" = (
 /obj/machinery/alarm,
@@ -9276,11 +9269,7 @@
 	},
 /area/mainship/command/self_destruct)
 "AY" = (
-/obj/effect/attach_point/weapon/dropship2{
-	dir = 4;
-	icon_state = "equip_base_r_wing"
-	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/alternate,
 /area/mainship/hallways/hangar)
 "AZ" = (
 /obj/structure/bed/chair/office/dark,
@@ -9667,9 +9656,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/port_hull)
 "Cf" = (
-/turf/open/floor/plating{
-	icon_state = "warnplatecorner"
-	},
+/turf/open/floor/plating/warning/corner,
 /area/mainship/hallways/hangar)
 "Cg" = (
 /turf/closed/wall/mainship,
@@ -9742,6 +9729,11 @@
 	},
 /obj/machinery/holopad,
 /turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
+"Ct" = (
+/turf/open/floor/plating/warning/alt{
+	dir = 10
+	},
 /area/mainship/hallways/hangar)
 "Cu" = (
 /obj/machinery/holopad,
@@ -9918,8 +9910,9 @@
 	},
 /area/mainship/medical/lower_medical)
 "CX" = (
-/obj/docking_port/stationary/marine_dropship/crash_target,
-/turf/open/floor/plating,
+/turf/open/floor/plating/warning/alt{
+	dir = 8
+	},
 /area/mainship/hallways/hangar)
 "CZ" = (
 /obj/structure/bed/chair/wood/normal{
@@ -12507,7 +12500,7 @@
 /area/mainship/hallways/hangar)
 "Kz" = (
 /obj/effect/attach_point/weapon/dropship1,
-/turf/open/floor/plating,
+/turf/open/floor/plating/alternate,
 /area/mainship/hallways/hangar)
 "KA" = (
 /obj/machinery/light/mainship,
@@ -12664,6 +12657,9 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/starboard_hull)
+"KY" = (
+/turf/open/floor/plating/warning/alt,
+/area/mainship/hallways/hangar)
 "KZ" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
@@ -12854,7 +12850,7 @@
 	dir = 8;
 	icon_state = "equip_base_l_wing"
 	},
-/turf/open/floor/plating/icefloor/warnplate{
+/turf/open/floor/plating/warning/alt{
 	dir = 8
 	},
 /area/mainship/hallways/hangar)
@@ -14620,6 +14616,11 @@
 "QD" = (
 /turf/closed/wall/mainship,
 /area/mainship/engineering/ce_room)
+"QE" = (
+/turf/open/floor/plating/warning/alt{
+	dir = 6
+	},
+/area/mainship/hallways/hangar)
 "QF" = (
 /obj/structure/window/framed/mainship/requisitions,
 /turf/open/floor/mainship/mono,
@@ -15006,8 +15007,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
 "RQ" = (
-/turf/open/floor/plating/warning/corner{
-	dir = 4;
+/turf/open/floor/plating/warning/corner/alt{
+	dir = 4
 	},
 /area/mainship/hallways/hangar)
 "RR" = (
@@ -15028,8 +15029,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
 "RU" = (
-/turf/open/floor/plating/warning/corner{
-	dir = 8;
+/turf/open/floor/plating/warning/corner/alt{
+	dir = 8
 	},
 /area/mainship/hallways/hangar)
 "RV" = (
@@ -15750,9 +15751,7 @@
 /area/mainship/command/airoom)
 "TW" = (
 /obj/effect/attach_point/electronics/dropship1,
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 1
-	},
+/turf/open/floor/plating/alternate,
 /area/mainship/hallways/hangar)
 "TX" = (
 /obj/machinery/light/mainship{
@@ -24233,9 +24232,9 @@ ez
 ez
 ez
 ez
-ez
-ez
-AU
+Xs
+CX
+RV
 ez
 ez
 ez
@@ -24258,8 +24257,8 @@ ez
 Cf
 RS
 Xs
-RR
-RR
+CX
+CX
 LB
 QC
 RS
@@ -24267,11 +24266,11 @@ RS
 RS
 RS
 Xs
-RR
-RR
-RR
-RR
-RR
+CX
+CX
+CX
+CX
+CX
 RV
 RS
 Tw
@@ -24330,10 +24329,10 @@ ez
 ez
 sI
 ez
-ez
-ez
-ez
-ez
+WA
+AY
+AY
+RV
 ez
 sI
 ez
@@ -24355,23 +24354,23 @@ ez
 ez
 WA
 Kz
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
 RV
-RV
+AU
 Tw
 VC
 VC
@@ -24428,15 +24427,15 @@ ez
 ez
 ez
 ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
+WA
+AY
+AY
+QC
+RS
+Xs
+CX
+CX
+Ct
 ez
 ez
 Kx
@@ -24452,24 +24451,24 @@ is
 RS
 RS
 Xs
-tD
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
+TW
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
 RV
-RV
+AU
 Tw
 VC
 jq
@@ -24526,15 +24525,15 @@ ez
 ez
 ez
 ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
+WA
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+KY
 ez
 ez
 Kx
@@ -24547,26 +24546,26 @@ ez
 ez
 Vh
 is
-RV
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-RR
+AU
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+CX
 RQ
 Tw
 VC
@@ -24621,18 +24620,18 @@ bZ
 cH
 de
 ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
+RS
+RS
+RS
+Xs
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+KY
 ez
 ez
 Kx
@@ -24645,25 +24644,25 @@ ez
 ez
 Vh
 is
-RV
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
+AU
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
 QA
 RR
 Tr
@@ -24719,18 +24718,18 @@ cb
 cI
 df
 ez
-ez
-ez
-ez
-ez
-ez
+AU
+AY
+AY
+AY
+AY
 zP
-ez
-ez
-ez
-ez
-ez
-ez
+AY
+AY
+AY
+AY
+AY
+KY
 ez
 ez
 Cs
@@ -24743,25 +24742,25 @@ ez
 ez
 Vh
 rb
-RV
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
+AU
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
 rx
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
 RV
 ez
 sU
@@ -24817,18 +24816,18 @@ cc
 cJ
 dg
 ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
+RR
+RR
+RR
+nn
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+KY
 ez
 ez
 Kx
@@ -24841,25 +24840,25 @@ ez
 ez
 Vh
 is
-RV
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
+AU
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
 QC
 RS
 Ts
@@ -24918,15 +24917,15 @@ ez
 ez
 ez
 ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
+WA
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+KY
 ez
 ez
 Kx
@@ -24939,26 +24938,26 @@ ez
 ez
 Vh
 is
-RV
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-RS
+AU
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+fL
 RU
 Tw
 VC
@@ -25016,15 +25015,15 @@ ez
 ez
 ez
 ez
-ez
-ez
-ez
-ez
-ez
-CX
-ez
-ez
-ez
+WA
+AY
+AY
+QA
+RR
+nn
+fL
+fL
+QE
 ez
 ez
 Kx
@@ -25039,25 +25038,25 @@ Nw
 is
 RR
 RR
-RR
+nn
 TW
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
 RV
-RV
+AU
 Tw
 VC
 jq
@@ -25114,10 +25113,10 @@ ez
 ez
 sI
 ez
-ez
-ez
-ez
-ez
+WA
+AY
+AY
+RV
 ez
 sI
 ez
@@ -25137,25 +25136,25 @@ OS
 Vj
 ez
 ez
-ez
-si
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
+WA
+Kz
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
 RV
-RV
+AU
 Tw
 VC
 VC
@@ -25213,9 +25212,9 @@ ez
 ez
 ez
 ez
-ez
-ez
-AY
+nn
+fL
+RV
 ez
 ez
 ez
@@ -25238,20 +25237,20 @@ ez
 ez
 RR
 nn
-RS
-RS
-RS
+fL
+fL
+fL
 QA
 RR
 RR
 RR
 RR
 nn
-RS
-RS
-RS
-RS
-RS
+fL
+fL
+fL
+fL
+fL
 RV
 RR
 Tw
