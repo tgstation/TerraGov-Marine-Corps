@@ -198,7 +198,7 @@
 	var/recoil_backtime_multiplier = 2
 	///this is how much deviation the gun recoil can have, recoil pushes the screen towards the reverse angle you shot + some deviation which this is the max.
 	var/recoil_deviation = 22.5
-	///How much the bullet scatters when fired while wielded.
+	///How much the bullet currently scattered when last fired.
 	var/scatter	= 4
 	///How much the bullet scatters when fired while unwielded.
 	var/scatter_unwielded = 12
@@ -1639,8 +1639,8 @@
 		gun_scatter = scatter
 		wielded_fire = TRUE
 	else
-		scatter = max(max(min_scatter_unwielded, 0), min((scatter + scatter_increase_unwielded) - ((world.time - last_fired - 1) * scatter_decay_unwielded), max_scatter_unwielded))
-		gun_scatter = scatter
+		scatter_unwielded = max(max(min_scatter_unwielded, 0), min((scatter + scatter_increase_unwielded) - ((world.time - last_fired - 1) * scatter_decay_unwielded), max_scatter_unwielded))
+		gun_scatter = scatter_unwielded
 
 	if(user && world.time - user.last_move_time < 5) //if you moved during the last half second, you have some penalties to accuracy and scatter
 		if(wielded_fire)
