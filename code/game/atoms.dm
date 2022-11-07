@@ -248,7 +248,7 @@ directive is properly returned.
 		for(var/i in 1 to (length(result) - 1))
 			result[i] += "\n"
 
-	to_chat(src, examine_block(span_infoplain(result.Join("\n"))))
+	to_chat(src, examine_block(span_infoplain(result.Join())))
 	SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, examinify)
 
 /**
