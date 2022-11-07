@@ -1491,9 +1491,6 @@
 	},
 /turf/open/floor/tile/purple,
 /area/magmoor/civilian/jani)
-"beT" = (
-/turf/closed/wall,
-/area/magmoor/compound)
 "bfs" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 8
@@ -9968,14 +9965,6 @@
 	dir = 1
 	},
 /area/magmoor/civilian/rnr)
-"hyC" = (
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 2;
-	id = "req_sec_storage";
-	name = "\improper Storage Shutters"
-	},
-/turf/open/floor/mainship/stripesquare,
-/area/magmoor/compound)
 "hyF" = (
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -47803,7 +47792,7 @@ spa
 wQe
 klj
 klj
-beT
+klj
 hIT
 sgB
 wiB
@@ -48036,7 +48025,7 @@ gES
 oaK
 eEu
 wNG
-beT
+klj
 hIT
 sgB
 nBe
@@ -48269,7 +48258,7 @@ qHK
 uju
 fBz
 cgb
-beT
+klj
 hIT
 sgB
 hiG
@@ -48502,7 +48491,7 @@ tBm
 tBm
 gMt
 mOE
-hyC
+sBQ
 hIT
 sgB
 hiG
@@ -48735,7 +48724,7 @@ eLp
 eiy
 eiy
 wJz
-hyC
+sBQ
 hIT
 sgB
 hiG
@@ -48968,7 +48957,7 @@ qpo
 mEG
 eiy
 dSr
-hyC
+sBQ
 hIT
 sgB
 hiG
@@ -49201,7 +49190,7 @@ aou
 cuk
 iFI
 uNc
-beT
+klj
 hIT
 pKb
 hiG
@@ -49434,7 +49423,7 @@ hnx
 rHX
 jGH
 fie
-beT
+klj
 hIT
 tuv
 sgB
@@ -49667,7 +49656,7 @@ spa
 spa
 klj
 klj
-beT
+klj
 kkl
 rKd
 hiG
