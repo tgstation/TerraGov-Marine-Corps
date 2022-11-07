@@ -596,6 +596,10 @@
 	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
+"pb" = (
+/obj/effect/mapping_helpers/area_flag_injector/marine_base,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/telecomm)
 "pc" = (
 /obj/machinery/computer/telecomms/server,
 /turf/open/floor/tile/dark,
@@ -2516,7 +2520,7 @@ Qi
 MQ
 WZ
 kn
-uO
+pb
 uO
 pX
 Eg

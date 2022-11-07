@@ -208,7 +208,6 @@
 	pixel_x = -3;
 	pixel_y = -3
 	},
-/obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -1568,6 +1567,12 @@
 	},
 /turf/open/floor/tile/cafe,
 /area/centcom/valhalla/crew_quarters/cafeteria)
+"cae" = (
+/obj/item/storage/secure/safe{
+	pixel_y = -6
+	},
+/turf/closed/wall/r_wall/unmeltable,
+/area/centcom/valhalla/crew_quarters/heads/hop)
 "caq" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/tile/darkgreen,
@@ -1773,10 +1778,6 @@
 	pixel_x = -8
 	},
 /obj/item/storage/secure/briefcase,
-/obj/item/storage/secure/safe{
-	pixel_x = 32;
-	pixel_y = 24
-	},
 /obj/item/pinpointer,
 /obj/item/megaphone,
 /turf/open/floor/grimy,
@@ -2439,6 +2440,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/neutral/full,
 /area/centcom/valhalla/engine/break_room)
+"diX" = (
+/obj/item/storage/secure/safe{
+	pixel_y = -6
+	},
+/turf/closed/wall/r_wall/unmeltable,
+/area/centcom/valhalla/crew_quarters/captain)
 "dkn" = (
 /obj/item/radio/intercom{
 	broadcasting = 1;
@@ -2743,9 +2750,6 @@
 /obj/structure/closet/wardrobe/mixed,
 /obj/structure/window/reinforced{
 	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 1
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla/medical/medbay)
@@ -3227,7 +3231,7 @@
 /turf/open/floor/tile/neutral/corner,
 /area/centcom/valhalla/primary/port)
 "dWn" = (
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/mainship/indestructible{
 	dir = 1
@@ -3835,14 +3839,14 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
 /obj/machinery/door/window/secure{
 	dir = 2
+	},
+/obj/structure/window/reinforced/windowstake{
+	dir = 8
+	},
+/obj/structure/window/reinforced/windowstake{
+	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla/ai_monitored/storage/secure)
@@ -4692,7 +4696,7 @@
 	},
 /obj/effect/decal/tile/black,
 /obj/structure/table/mainship,
-/obj/structure/window/reinforced{
+/obj/structure/window/reinforced/windowstake{
 	dir = 4
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -4710,7 +4714,7 @@
 	},
 /obj/effect/decal/tile/black,
 /obj/structure/table/mainship,
-/obj/structure/window/reinforced{
+/obj/structure/window/reinforced/windowstake{
 	dir = 4
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -4727,7 +4731,7 @@
 	},
 /obj/effect/decal/tile/black,
 /obj/structure/table/mainship,
-/obj/structure/window/reinforced{
+/obj/structure/window/reinforced/windowstake{
 	dir = 4
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -4787,9 +4791,6 @@
 "glw" = (
 /obj/structure/table,
 /obj/item/flashlight/lamp,
-/obj/item/storage/secure/safe{
-	pixel_x = 32
-	},
 /obj/structure/extinguisher_cabinet,
 /turf/open/floor/grimy,
 /area/centcom/valhalla/security/detectives_office)
@@ -7380,12 +7381,6 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla/fore)
-"jSj" = (
-/obj/structure/closet/wardrobe,
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
-/area/centcom/valhalla/security/brig)
 "jTw" = (
 /obj/effect/decal/warning_stripes/thick{
 	dir = 8
@@ -7717,16 +7712,16 @@
 /obj/machinery/prop/mainship/computer,
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
 	dir = 1
 	},
 /obj/machinery/door/window/secure{
 	dir = 2
+	},
+/obj/structure/window/reinforced/windowstake{
+	dir = 4
+	},
+/obj/structure/window/reinforced/windowstake{
+	dir = 8
 	},
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla/ai_monitored/storage/secure)
@@ -8027,9 +8022,6 @@
 /area/centcom/valhalla/security/brig/interiorcavern)
 "kIk" = (
 /obj/structure/bookcase,
-/obj/structure/sign/kiddieplaque{
-	pixel_y = 32
-	},
 /obj/machinery/status_display/ai{
 	pixel_x = 32
 	},
@@ -10123,15 +10115,7 @@
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/storage/primary)
 "nwK" = (
-/obj/structure/closet/secure_closet,
-/obj/item/radio/intercom{
-	dir = 4;
-	name = "Station Intercom"
-	},
-/obj/effect/decal/tile/black,
-/obj/effect/decal/tile/black{
-	dir = 4
-	},
+/obj/machinery/computer/mech_builder,
 /turf/open/floor/tile/vault{
 	dir = 5
 	},
@@ -10807,22 +10791,6 @@
 	},
 /turf/open/space/basic,
 /area/tdome)
-"osY" = (
-/obj/machinery/status_display{
-	pixel_x = -32
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1
-	},
-/obj/structure/closet/l3closet/security,
-/obj/effect/decal/tile/black,
-/obj/effect/decal/tile/black{
-	dir = 4
-	},
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
-/area/centcom/valhalla/security/brig)
 "osZ" = (
 /obj/machinery/vending/weapon/valhalla,
 /obj/structure/window/reinforced{
@@ -11444,71 +11412,11 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/centcom/valhalla/medical/medbay)
-"pgR" = (
-/obj/structure/extinguisher_cabinet{
-	dir = 4
-	},
-/obj/structure/reagent_dispensers/wallmounted/peppertank{
-	dir = 1
-	},
-/obj/structure/closet/secure_closet,
-/obj/effect/decal/tile/black,
-/obj/effect/decal/tile/black{
-	dir = 4
-	},
-/obj/effect/decal/tile/black{
-	dir = 8
-	},
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
-/area/centcom/valhalla/security/brig)
 "phm" = (
 /obj/structure/morgue,
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla/medical/morgue)
-"php" = (
-/obj/structure/rack,
-/obj/item/clothing/suit/armor/vest{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/clothing/suit/armor/vest,
-/obj/item/clothing/suit/armor/vest{
-	pixel_x = 3;
-	pixel_y = -3
-	},
-/obj/item/clothing/head/helmet{
-	layer = 3.00001;
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/clothing/head/helmet{
-	layer = 3.00001
-	},
-/obj/item/clothing/head/helmet{
-	layer = 3.00001;
-	pixel_x = 3;
-	pixel_y = -3
-	},
-/obj/machinery/alarm{
-	dir = 1
-	},
-/obj/effect/decal/tile/black{
-	dir = 8
-	},
-/obj/effect/decal/tile/black{
-	dir = 4
-	},
-/obj/item/ammo_magazine/packet/p4570,
-/obj/item/ammo_magazine/packet/p4570,
-/obj/item/ammo_magazine/packet/p4570,
-/obj/item/ammo_magazine/packet/p4570,
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
-/area/centcom/valhalla/security/brig)
 "pii" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
@@ -11523,21 +11431,6 @@
 	icon_state = "platingdmg2"
 	},
 /area/centcom/valhalla/port)
-"piX" = (
-/obj/structure/closet/secure_closet,
-/obj/machinery/firealarm{
-	dir = 1
-	},
-/obj/effect/decal/tile/black{
-	dir = 8
-	},
-/obj/effect/decal/tile/black{
-	dir = 4
-	},
-/turf/open/floor/tile/vault{
-	dir = 5
-	},
-/area/centcom/valhalla/security/brig)
 "pjm" = (
 /obj/effect/decal/tile/yellow{
 	dir = 4
@@ -11889,8 +11782,7 @@
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla/engine/engineering)
 "pUh" = (
-/obj/effect/spawner/random/plushie/nospawnninetynine{
-	},
+/obj/effect/spawner/random/plushie/nospawnninetynine,
 /turf/open/floor/gcircuit,
 /area/centcom/valhalla/ai_monitored/storage/secure)
 "pUr" = (
@@ -13001,7 +12893,9 @@
 /obj/effect/decal/warning_stripes/thick{
 	dir = 4
 	},
-/obj/structure/prop/mainship/doorblocker/external,
+/obj/structure/prop/mainship/doorblocker/external{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/centcom/valhalla/maintenance/starboardsolar)
 "rgf" = (
@@ -13097,7 +12991,7 @@
 	dir = 1
 	},
 /obj/effect/spawner/random/plushie/nospawnninetynine{
-	pixel_y = -3;
+	pixel_y = -3
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig/interiorcavern)
@@ -13185,8 +13079,7 @@
 /area/centcom/valhalla/chapel/main)
 "rsf" = (
 /obj/structure/table,
-/obj/effect/spawner/random/plushie/nospawnninetyfive{
-	},
+/obj/effect/spawner/random/plushie/nospawnninetyfive,
 /turf/open/floor/tile/neutral/full,
 /area/centcom/valhalla/crew_quarters)
 "rsu" = (
@@ -13913,6 +13806,14 @@
 	dir = 1
 	},
 /area/centcom/valhalla/chapel/main)
+"soB" = (
+/obj/effect/decal/warning_stripes/thick{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/obj/structure/sign/kiddieplaque,
+/turf/open/floor/plating,
+/area/centcom/valhalla/port)
 "soG" = (
 /obj/machinery/door/poddoor/mainship/indestructible{
 	dir = 1
@@ -16108,6 +16009,12 @@
 	},
 /turf/open/floor/grimy,
 /area/centcom/valhalla/primary/aft)
+"vhy" = (
+/obj/item/storage/secure/safe{
+	pixel_y = -6
+	},
+/turf/closed/wall,
+/area/centcom/valhalla/security/detectives_office)
 "vjb" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -17091,9 +16998,6 @@
 /area/centcom/valhalla/starboard_hallway)
 "wfL" = (
 /obj/structure/table/mainship,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
 /obj/item/clothing/glasses/hud/xenohud{
 	pixel_x = -3;
 	pixel_y = -2
@@ -17103,6 +17007,9 @@
 	pixel_y = 3
 	},
 /obj/item/clothing/glasses/hud/xenohud,
+/obj/structure/window/reinforced/windowstake{
+	dir = 4
+	},
 /turf/open/floor/mainship/stripesquare,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "wge" = (
@@ -17149,7 +17056,7 @@
 	},
 /obj/effect/decal/tile/black,
 /obj/structure/table/mainship,
-/obj/structure/window/reinforced{
+/obj/structure/window/reinforced/windowstake{
 	dir = 4
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -18484,7 +18391,7 @@
 /area/centcom/valhalla/secondary/exit)
 "xHr" = (
 /obj/structure/lattice,
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /turf/open/space,
 /area/space)
 "xIx" = (
@@ -18573,10 +18480,6 @@
 "xLo" = (
 /obj/structure/bedsheetbin,
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
-/obj/item/storage/secure/safe{
-	pixel_x = 32;
-	pixel_y = 24
-	},
 /turf/open/floor/wood,
 /area/centcom/valhalla/crew_quarters/heads/hop)
 "xLw" = (
@@ -18686,7 +18589,7 @@
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/quartermaster/miningdock)
 "xPH" = (
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /turf/closed/wall/r_wall/unmeltable,
 /area/centcom/valhalla/secondary/exit)
 "xPQ" = (
@@ -25809,9 +25712,9 @@ koR
 kWa
 mcN
 lGH
-nwK
-osY
-pgR
+ecT
+ecT
+ecT
 mvn
 qTA
 ead
@@ -25946,10 +25849,10 @@ jxN
 kqf
 ivs
 mda
-ior
-ecT
+lGH
+nwK
 ouT
-php
+nwK
 mvn
 wsm
 mZM
@@ -26085,9 +25988,9 @@ kqG
 kYp
 mdp
 lGH
-jSj
 ecT
-piX
+ecT
+ecT
 mvn
 xnM
 ojA
@@ -28003,7 +27906,7 @@ box
 bZR
 cKf
 doK
-fPe
+vhy
 dnm
 eNk
 fpS
@@ -28888,7 +28791,7 @@ fgO
 fgO
 qfs
 vxC
-sdV
+soB
 sKi
 kIk
 mWF
@@ -29241,7 +29144,7 @@ xrI
 biW
 xrI
 biW
-brs
+diX
 cpX
 cRl
 dxY
@@ -31863,7 +31766,7 @@ xrI
 ohJ
 xXc
 bmG
-vGP
+cae
 xLo
 nFq
 dLi

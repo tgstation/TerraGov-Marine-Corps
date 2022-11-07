@@ -130,13 +130,25 @@
  * This is only able to representate items of type /obj/item/armor_module/armor
  */
 /datum/item_representation/armor_module/colored
+	///The color of that armor module
+	var/greyscale_colors
 
 /datum/item_representation/armor_module/colored/New(obj/item/item_to_copy)
 	if(!item_to_copy)
 		return
 	if(!ismodulararmorarmorpiece(item_to_copy))
 		CRASH("/datum/item_representation/armor_module created from an item that is not a jaeger armor piece")
-	return ..()
+	..()
+	greyscale_colors = item_to_copy.greyscale_colors
+
+/datum/item_representation/armor_module/colored/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
+	. = ..()
+	if(!.)
+		return
+	var/obj/item/armor_module/armor/armor = .
+	if(greyscale_colors)
+		armor.set_greyscale_colors(greyscale_colors)
+	armor.update_icon()
 
 /datum/item_representation/armor_module/storage
 	///Storage repressentation of storage modules.

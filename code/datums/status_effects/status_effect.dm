@@ -151,28 +151,45 @@
 	id = "stacking_base"
 	duration = -1 //removed under specific conditions
 	alert_type = null
-	var/stacks = 0 //how many stacks are accumulated, also is # of stacks that target will have when first applied
-	var/delay_before_decay //deciseconds until ticks start occuring, which removes stacks (first stack will be removed at this time plus tick_interval)
-	tick_interval = 10 //deciseconds between decays once decay starts
-	var/stack_decay = 1 //how many stacks are lost per tick (decay trigger)
-	var/stack_threshold //special effects trigger when stacks reach this amount
-	var/max_stacks //stacks cannot exceed this amount
-	var/consumed_on_threshold = TRUE //if status should be removed once threshold is crossed
-	var/threshold_crossed = FALSE //set to true once the threshold is crossed, false once it falls back below
+
+	/// If status should be removed due to being under one stack
+	var/consumed_on_fadeout = TRUE
+	/// How many stacks are accumulated, also is # of stacks that target will have when first applied
+	var/stacks = 0
+	/// Deciseconds until ticks start occuring, which removes stacks (first stack will be removed at this time plus tick_interval)
+	var/delay_before_decay
+	/// Deciseconds between decays once decay starts
+	tick_interval = 10
+	/// How many stacks are lost per tick (decay trigger)
+	var/stack_decay = 1
+	/// Special effects trigger when stacks reach this amount
+	var/stack_threshold
+	/// Stacks cannot exceed this amount
+	var/max_stacks
+	/// If status should be removed once threshold is crossed
+	var/consumed_on_threshold = TRUE
+	/// Set to true once the threshold is crossed, false once it falls back below
+	var/threshold_crossed = FALSE
 	var/overlay_file
 	var/underlay_file
-	var/overlay_state // states in .dmi must be given a name followed by a number which corresponds to a number of stacks. put the state name without the number in these state vars
-	var/underlay_state // the number is concatonated onto the string based on the number of stacks to get the correct state name
+	/// States in .dmi must be given a name followed by a number which corresponds to a number of stacks. put the state name without the number in these state vars
+	var/overlay_state
+	/// The number is concatonated onto the string based on the number of stacks to get the correct state name
+	var/underlay_state
 	var/mutable_appearance/status_overlay
 	var/mutable_appearance/status_underlay
 
-/datum/status_effect/stacking/proc/threshold_cross_effect() //what happens when threshold is crossed
+/// What happens when threshold is crossed
+/datum/status_effect/stacking/proc/threshold_cross_effect()
 
-/datum/status_effect/stacking/proc/stacks_consumed_effect() //runs if status is deleted due to threshold being crossed
+/// Runs if status is deleted due to threshold being crossed
+/datum/status_effect/stacking/proc/stacks_consumed_effect()
 
-/datum/status_effect/stacking/proc/fadeout_effect() //runs if status is deleted due to being under one stack
+/// Runs if status is deleted due to being under one stack
+/datum/status_effect/stacking/proc/fadeout_effect()
 
-/datum/status_effect/stacking/proc/stack_decay_effect() //runs every time tick() causes stacks to decay
+/// Runs every time tick() causes stacks to decay
+/datum/status_effect/stacking/proc/stack_decay_effect()
 
 /datum/status_effect/stacking/proc/on_threshold_cross()
 	threshold_cross_effect()
@@ -217,7 +234,7 @@
 		status_underlay.icon_state = "[underlay_state][stacks]"
 		owner.add_overlay(status_overlay)
 		owner.underlays += status_underlay
-	else
+	else if(consumed_on_fadeout)
 		fadeout_effect()
 		qdel(src) //deletes status if stacks fall under one
 

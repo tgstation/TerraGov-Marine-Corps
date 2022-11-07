@@ -25,7 +25,7 @@
 /mob/living/carbon/xenomorph/larva/a_intent_change()
 	return
 
-/mob/living/carbon/xenomorph/larva/start_pulling(atom/movable/AM, suppress_message = FALSE)
+/mob/living/carbon/xenomorph/larva/start_pulling(atom/movable/AM, force = move_force, suppress_message = FALSE)
 	return FALSE
 
 /mob/living/carbon/xenomorph/larva/pull_response(mob/puller)

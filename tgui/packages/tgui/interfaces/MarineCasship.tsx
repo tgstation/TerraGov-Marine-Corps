@@ -66,18 +66,30 @@ export const MarineCasship = (props, context) => {
               case KEY_UP:
               case KEY_W:
                 newdir = 1;
+                if (data.attackdir === "NORTH") {
+                  return;
+                }
                 break;
               case KEY_DOWN:
               case KEY_S:
                 newdir = 2;
+                if (data.attackdir === "SOUTH") {
+                  return;
+                }
                 break;
               case KEY_RIGHT:
               case KEY_D:
                 newdir = 4;
+                if (data.attackdir === "EAST") {
+                  return;
+                }
                 break;
               case KEY_LEFT:
               case KEY_A:
                 newdir = 8;
+                if (data.attackdir === "WEST") {
+                  return;
+                }
                 break;
               default:
                 return;

@@ -10,7 +10,9 @@
 	use_state_flags = XACT_USE_CRESTED
 	cooldown_timer = 12 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
-	keybind_signal = COMSIG_XENOABILITY_TAIL_SWEEP
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAIL_SWEEP,
+	)
 
 /datum/action/xeno_action/tail_sweep/can_use_action(silent, override_flags)
 	. = ..()
@@ -92,7 +94,9 @@
 	cooldown_timer = 10 SECONDS
 	plasma_cost = 80
 	use_state_flags = XACT_USE_CRESTED|XACT_USE_FORTIFIED
-	keybind_signal = COMSIG_XENOABILITY_FORWARD_CHARGE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FORWARD_CHARGE,
+	)
 	///How far can we charge
 	var/range = 4
 	///How long is the windup before charging
@@ -192,7 +196,9 @@
 	ability_name = "toggle crest defense"
 	use_state_flags = XACT_USE_FORTIFIED|XACT_USE_CRESTED // duh
 	cooldown_timer = 1 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_CREST_DEFENSE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CREST_DEFENSE,
+	)
 	var/last_crest_bonus = 0
 
 /datum/action/xeno_action/toggle_crest_defense/on_xeno_upgrade()
@@ -267,7 +273,9 @@
 	ability_name = "fortify"
 	use_state_flags = XACT_USE_FORTIFIED|XACT_USE_CRESTED // duh
 	cooldown_timer = 1 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_FORTIFY
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FORTIFY,
+	)
 	var/last_fortify_bonus = 0
 
 /datum/action/xeno_action/fortify/on_xeno_upgrade()
@@ -341,7 +349,9 @@
 	plasma_cost = 160
 	cooldown_timer = 1 MINUTES
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
-	keybind_signal = COMSIG_XENOABILITY_REGENERATE_SKIN
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REGENERATE_SKIN,
+	)
 
 /datum/action/xeno_action/regenerate_skin/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -381,7 +391,9 @@
 	use_state_flags = XACT_USE_CRESTED
 	cooldown_timer = 30 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
-	keybind_signal = COMSIG_XENOABILITY_CENTRIFUGAL_FORCE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CENTRIFUGAL_FORCE,
+	)
 	///bool whether we should take a random step this tick
 	var/step_tick = FALSE
 	///timer hash for the timer we use when spinning

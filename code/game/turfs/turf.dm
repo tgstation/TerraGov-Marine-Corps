@@ -316,6 +316,15 @@
 	if(thisarea.lighting_effect)
 		W.add_overlay(thisarea.lighting_effect)
 
+	if(!W.smoothing_behavior == NO_SMOOTHING)
+		return W
+	else
+		for(var/dirn in GLOB.alldirs)
+			var/turf/D = get_step(W,dirn)
+			if(isnull(D))
+				continue
+			D.smooth_self()
+			D.smooth_neighbors()
 	return W
 
 /// Take off the top layer turf and replace it with the next baseturf down
@@ -933,3 +942,8 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	// Balloon alerts occuring on turf objects result in mass spam of alerts.
 	// Thus, no more balloon alerts for turfs.
 	return
+
+///cleans any cleanable decals from the turf
+/turf/proc/clean_turf()
+	for(var/obj/effect/decal/cleanable/filth in src)
+		qdel(filth) //dirty, filthy floor

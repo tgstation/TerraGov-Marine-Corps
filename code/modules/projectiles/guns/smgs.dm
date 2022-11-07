@@ -17,7 +17,7 @@
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
 	gun_skill_category = GUN_SKILL_SMGS
 
 	fire_delay = 0.3 SECONDS
@@ -69,7 +69,7 @@
 	aim_slowdown = 0.15
 	burst_amount = 5
 	movement_acc_penalty_mult = 2
-	akimbo_additional_delay = 0.5
+	akimbo_additional_delay = 1.3
 	upper_akimbo_accuracy = 5
 	lower_akimbo_accuracy = 3
 
@@ -90,14 +90,8 @@
 	desc = "The SMG-90 is the TerraGov Marine Corps standard issue SMG. Its known for it's compact size and ease of use inside the field. It's usually carried by troops who want a lightweight firearm to rush with. It uses 10x20mm caseless rounds."
 	icon = 'icons/Marine/gun64.dmi'
 	fire_sound = 'sound/weapons/guns/fire/t90.ogg'
-	icon_state = GUN_ICONSTATE_LOADED
+	icon_state = "t90"
 	item_state = "t90"
-	item_icons = list(
-		slot_l_hand_str = /datum/greyscale_config/gun/worn/l_hand/t90,
-		slot_r_hand_str = /datum/greyscale_config/gun/worn/r_hand/t90,
-		slot_back_str = /datum/greyscale_config/gun/worn/t90,
-		slot_s_store_str = /datum/greyscale_config/gun/worn/suit/t90,
-	)
 	caliber = CALIBER_10X20_CASELESS //codex
 	max_shells = 50 //codex
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -122,7 +116,7 @@
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 15,"rail_x" = 22, "rail_y" = 22, "under_x" = 26, "under_y" = 12, "stock_x" = 24, "stock_y" = 10)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
@@ -138,7 +132,7 @@
 	lower_akimbo_accuracy = 2
 
 	placed_overlay_iconstate = "t90"
-	greyscale_config = /datum/greyscale_config/gun/t90
+
 /obj/item/weapon/gun/smg/standard_smg/breacher
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
 
@@ -236,7 +230,7 @@
 /obj/item/weapon/gun/smg/m25/elite/suppressed
 	icon_state = "m25"
 	item_state = "m25"
-	starting_attachment_types = list(/obj/item/attachable/suppressor) //Tacticool
+	starting_attachment_types = list(/obj/item/attachable/suppressor, /obj/item/attachable/magnetic_harness) //Tacticool
 
 //-------------------------------------------------------
 //SMG-27, based on the grease gun
@@ -404,7 +398,7 @@
 	default_ammo_type = /obj/item/ammo_magazine/smg/som
 	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/som, /obj/item/ammo_magazine/smg/som/ap, /obj/item/ammo_magazine/smg/som/incendiary, /obj/item/ammo_magazine/smg/som/extended)
 	fire_sound = 'sound/weapons/guns/fire/vector_fire.ogg'
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST) //semi, full auto, fuller auto
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST) //full auto, fuller auto
 
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,

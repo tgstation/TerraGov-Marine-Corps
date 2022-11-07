@@ -9,6 +9,7 @@
 	melee_damage = 5
 	m_intent = MOVE_INTENT_WALK
 	buckle_flags = CAN_BE_BUCKLED|CAN_BUCKLE
+	resistance_flags = XENO_DAMAGEABLE
 
 	hud_type = /datum/hud/human
 
@@ -74,8 +75,6 @@
 	var/obj/item/s_store = null
 
 	var/icon/stand_icon = null
-
-	var/speech_problem_flag = 0
 
 	var/special_voice = "" // For changing our voice. Used by a symptom.
 

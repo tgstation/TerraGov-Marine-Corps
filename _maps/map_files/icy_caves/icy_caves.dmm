@@ -562,7 +562,7 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/outpost/LZ2)
 "cz" = (
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/LZ2)
 "cA" = (
@@ -3536,7 +3536,7 @@
 /turf/open/floor/prison/kitchen,
 /area/icy_caves/outpost/kitchen)
 "rw" = (
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/mining/west)
 "rx" = (
@@ -3623,9 +3623,6 @@
 "rN" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
-	},
-/obj/machinery/door/window/secure{
-	dir = 2
 	},
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/alienstuff)
@@ -3907,7 +3904,7 @@
 /turf/open/floor/cult,
 /area/icy_caves/caves/chapel)
 "sM" = (
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/refinery)
 "sN" = (
@@ -4288,13 +4285,6 @@
 	dir = 5
 	},
 /area/icy_caves/caves/rock)
-"ut" = (
-/obj/machinery/door/window/secure{
-	dir = 2
-	},
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/tile/dark,
-/area/icy_caves/caves/alienstuff)
 "uv" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/grilledcheese,
@@ -4772,7 +4762,7 @@
 /turf/open/floor/tile/dark/green2,
 /area/icy_caves/outpost/medbay)
 "ww" = (
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
 "wx" = (
@@ -4831,7 +4821,7 @@
 /area/icy_caves/caves/northwestmonorail/morgue)
 "wK" = (
 /obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
+/obj/structure/window/reinforced/windowstake{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
@@ -26215,7 +26205,7 @@ Vg
 Rn
 JV
 Cb
-ut
+SS
 Ju
 mf
 YZ

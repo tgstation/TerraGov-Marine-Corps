@@ -398,7 +398,10 @@
 
 	else if(istype(I, /obj/item/ammo_magazine/flamer_tank))
 		var/obj/item/ammo_magazine/flamer_tank/FT = I
-		if(!reagents.total_volume)
+		if(FT.current_rounds == FT.max_rounds || !reagents.total_volume)
+			return ..()
+		if(FT.default_ammo != /datum/ammo/flamethrower)
+			to_chat(user, span_warning("Not the right kind of fuel!"))
 			return ..()
 
 		//Reworked and much simpler equation; fuel capacity minus the current amount, with a check for insufficient fuel

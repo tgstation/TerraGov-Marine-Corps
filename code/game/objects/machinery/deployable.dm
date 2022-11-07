@@ -3,11 +3,10 @@
 	hud_possible = list(MACHINE_HEALTH_HUD)
 	obj_flags = CAN_BE_HIT
 	throwpass = FALSE
-
-	///Item that is deployed to create src.
-	var/obj/item/internal_item
 	///Since /obj/machinery/deployable aquires its sprites from an item and are set in New(), initial(icon_state) would return null. This var exists as a substitute.
 	var/default_icon_state
+	///Item that is deployed to create src.
+	var/obj/item/internal_item
 
 /obj/machinery/deployable/Initialize(mapload, _internal_item, deployer)
 	. = ..()
@@ -34,6 +33,11 @@
 		sentry_status_hud.remove_from_hud(src)
 	return ..()
 
+/obj/machinery/deployable/get_internal_item()
+	return internal_item
+
+/obj/machinery/deployable/clear_internal_item()
+	internal_item = null
 
 /obj/machinery/deployable/update_icon()
 	. = ..()

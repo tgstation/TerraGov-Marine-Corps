@@ -288,7 +288,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 					var/mob/living/L = i
 					if(!L.client)
 						continue
-					L.revive()
+					L.revive(TRUE)
 	else if(href_list["force_event"])
 		if(!check_rights(R_FUN))
 			return
@@ -429,7 +429,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if("widow")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/widow, location, null, delmob)
 			if("defiler")
-				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/Defiler, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/defiler, location, null, delmob)
 			if("gorger")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/gorger, location, null, delmob)
 			if("shrike")
@@ -485,7 +485,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(alert("Are you sure you want to rejuvenate [L]?", "Rejuvenate", "Yes", "No") != "Yes")
 			return
 
-		L.revive()
+		L.revive(TRUE)
 
 		log_admin("[key_name(usr)] revived [key_name(L)].")
 		message_admins("[ADMIN_TPMONTY(usr)] revived [ADMIN_TPMONTY(L)].")
@@ -2208,7 +2208,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if("upgrade")
 				previous = X.xeno_caste.upgrade
 
-				change = input("Select a new upgrade tier.", "Xeno Panel") as null|anything in (GLOB.xenoupgradetiers - XENO_UPGRADE_BASETYPE - XENO_UPGRADE_INVALID)
+				change = input("Select a new upgrade tier.", "Xeno Panel") as null|anything in (GLOB.xenoupgradetiers - XENO_UPGRADE_BASETYPE - XENO_UPGRADE_INVALID - XENO_UPGRADE_MANIFESTATION)
 				if(!change || change == previous)
 					return
 

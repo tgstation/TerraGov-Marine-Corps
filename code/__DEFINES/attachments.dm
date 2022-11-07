@@ -19,8 +19,6 @@
 #define MOB_PIXEL_SHIFT_Y "mob_pixel_shift_y"
 #define ATTACHMENT_LAYER "attachment_layer"
 
-#define GREYSCALE_ATTACHMENT_ICONSTATE "attached"
-
 //flags_attach_features
 #define ATTACH_REMOVABLE (1<<0)
 #define ATTACH_ACTIVATION (1<<1)

@@ -86,16 +86,13 @@ SUBSYSTEM_DEF(explosions)
 // 5 explosion power is a (0, 1, 3) explosion.
 // 1 explosion power is a (0, 0, 1) explosion.
 
-/proc/explosion(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range = 0, throw_range, adminlog = TRUE, silent = FALSE, smoke = FALSE, small_animation = FALSE)
-	return SSexplosions.explode(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range, throw_range, adminlog, silent, smoke, small_animation)
+/proc/explosion(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range = 0, throw_range, adminlog = TRUE, silent = FALSE, smoke = FALSE, small_animation = FALSE, color = LIGHT_COLOR_LAVA)
+	return SSexplosions.explode(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range, throw_range, adminlog, silent, smoke, small_animation, color)
 
-/datum/controller/subsystem/explosions/proc/explode(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range, throw_range, adminlog, silent, smoke, small_animation)
+/datum/controller/subsystem/explosions/proc/explode(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range, throw_range, adminlog, silent, smoke, small_animation, color)
 	epicenter = get_turf(epicenter)
 	if(!epicenter)
 		return
-
-	if(small_animation)
-		new /obj/effect/temp_visual/explosion(epicenter)
 
 	if(isnull(flash_range))
 		flash_range = devastation_range
@@ -107,6 +104,10 @@ SUBSYSTEM_DEF(explosions)
 
 	var/max_range = max(devastation_range, heavy_impact_range, light_impact_range, flame_range, throw_range)
 	var/started_at = REALTIMEOFDAY
+
+	if(small_animation)
+		new /obj/effect/temp_visual/explosion(epicenter, max_range, color)
+
 	if(adminlog)
 		log_game("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [flame_range]) in [loc_name(epicenter)]")
 		if(is_mainship_level(epicenter.z))
@@ -163,7 +164,7 @@ SUBSYSTEM_DEF(explosions)
 		else
 			E = new
 		E.set_up(epicenter)
-		E.start()
+		E.start(max_range, color)
 
 	//flash mobs
 	if(flash_range)

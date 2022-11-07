@@ -167,7 +167,6 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced,
 /obj/machinery/marine_selector/clothes,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
@@ -226,7 +225,6 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced,
 /obj/machinery/marine_selector/clothes,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
@@ -802,14 +800,6 @@
 /obj/effect/landmark/start/latejoin/crash,
 /turf/open/floor/mainship,
 /area/shuttle/canterbury)
-"ye" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/marine_selector/clothes,
-/obj/structure/window/reinforced,
-/turf/open/floor/mainship/mono,
-/area/shuttle/canterbury)
 "yp" = (
 /obj/machinery/light{
 	dir = 8
@@ -887,7 +877,6 @@
 	dir = 8
 	},
 /obj/machinery/marine_selector/clothes,
-/obj/structure/window/reinforced,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "JM" = (
@@ -1717,7 +1706,7 @@ ow
 ab
 aM
 DI
-ye
+aQ
 bA
 cF
 DI

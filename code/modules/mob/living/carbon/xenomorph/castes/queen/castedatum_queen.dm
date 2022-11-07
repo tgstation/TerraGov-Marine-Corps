@@ -31,7 +31,7 @@
 	can_flags = CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_HOLD_JELLY|CASTE_CAN_CORRUPT_GENERATOR|CASTE_CAN_BE_GIVEN_PLASMA
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 30, BIO = 45, "rad" = 45, FIRE = 45, ACID = 45)
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 30, BIO = 45, FIRE = 45, ACID = 45)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
@@ -41,7 +41,7 @@
 	aura_strength = 3.5 //The Queen's aura is strong and stays so, and gets devastating late game. Climbs by 1 to 5
 
 	// *** Queen Abilities *** //
-	queen_leader_limit = 2 //Amount of leaders allowed
+	queen_leader_limit = 4 //Amount of leaders allowed
 
 	minimap_icon = "xenoqueen"
 
@@ -57,7 +57,7 @@
 		/datum/action/xeno_action/activable/screech,
 		/datum/action/xeno_action/activable/corrosive_acid/strong,
 		/datum/action/xeno_action/activable/xeno_spit,
-		/datum/action/xeno_action/activable/psychic_cure/acidic_salve/queen,
+		/datum/action/xeno_action/activable/psychic_cure/queen_give_heal,
 		/datum/action/xeno_action/activable/neurotox_sting/ozelomelyn,
 		/datum/action/xeno_action/pheromones,
 		/datum/action/xeno_action/pheromones/emit_recovery,
@@ -98,7 +98,7 @@
 	upgrade_threshold = TIER_THREE_MATURE_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 55, BULLET = 55, LASER = 55, ENERGY = 55, BOMB = 30, BIO = 50, "rad" = 50, FIRE = 50, ACID = 50)
+	soft_armor = list(MELEE = 55, BULLET = 55, LASER = 55, ENERGY = 55, BOMB = 30, BIO = 50, FIRE = 50, ACID = 50)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.2 SECONDS
@@ -107,7 +107,7 @@
 	aura_strength = 4
 
 	// *** Queen Abilities *** //
-	queen_leader_limit = 3
+	queen_leader_limit = 4
 
 /datum/xeno_caste/queen/elder
 	caste_desc = "The biggest and baddest xeno. The Empress controls multiple hives and planets."
@@ -131,7 +131,7 @@
 	upgrade_threshold = TIER_THREE_ELDER_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 30, BIO = 55, "rad" = 55, FIRE = 55, ACID = 55)
+	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 30, BIO = 55, FIRE = 55, ACID = 55)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.2 SECONDS
@@ -140,7 +140,7 @@
 	aura_strength = 4.5
 
 	// *** Queen Abilities *** //
-	queen_leader_limit = 3
+	queen_leader_limit = 4
 
 /datum/xeno_caste/queen/ancient
 	caste_desc = "The most perfect Xeno form imaginable."
@@ -164,7 +164,7 @@
 	upgrade_threshold = TIER_THREE_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 65, BULLET = 65, LASER = 65, ENERGY = 65, BOMB = 30, BIO = 60, "rad" = 60, FIRE = 60, ACID = 60)
+	soft_armor = list(MELEE = 65, BULLET = 65, LASER = 65, ENERGY = 65, BOMB = 30, BIO = 60, FIRE = 60, ACID = 60)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.1 SECONDS
@@ -194,7 +194,7 @@
 	max_health = 500
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 65, BULLET = 65, LASER = 65, ENERGY = 65, BOMB = 30, BIO = 60, "rad" = 60, FIRE = 60, ACID = 60)
+	soft_armor = list(MELEE = 65, BULLET = 65, LASER = 65, ENERGY = 65, BOMB = 30, BIO = 60, FIRE = 60, ACID = 60)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.1 SECONDS
@@ -217,7 +217,7 @@
 		/datum/action/xeno_action/activable/screech,
 		/datum/action/xeno_action/activable/corrosive_acid/strong,
 		/datum/action/xeno_action/activable/xeno_spit,
-		/datum/action/xeno_action/activable/psychic_cure/acidic_salve/queen,
+		/datum/action/xeno_action/activable/psychic_cure/queen_give_heal,
 		/datum/action/xeno_action/activable/neurotox_sting/ozelomelyn,
 		/datum/action/xeno_action/pheromones,
 		/datum/action/xeno_action/pheromones/emit_recovery,

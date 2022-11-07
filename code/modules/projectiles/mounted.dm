@@ -7,6 +7,8 @@
 	layer = TANK_BARREL_LAYER
 	use_power = FALSE
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
+	///Stores user old move resist and apply on unset interaction
+	var/user_old_move_resist
 
 ///generates the icon based on how much ammo it has.
 /obj/machinery/deployable/mounted/update_icon_state(mob/user)
@@ -139,7 +141,8 @@
 		action.give_action(operator)
 
 	gun.set_gun_user(operator)
-
+	user_old_move_resist = operator.move_resist
+	operator.move_resist = MOVE_FORCE_STRONG
 
 ///Begins the Firing Process, does custom checks before calling the guns start_fire()
 /obj/machinery/deployable/mounted/proc/start_fire(datum/source, atom/object, turf/location, control, params)
@@ -265,6 +268,7 @@
 
 	operator = null
 	gun?.set_gun_user(null)
+	user.move_resist = user_old_move_resist
 
 ///makes sure you can see and or use the gun
 /obj/machinery/deployable/mounted/check_eye(mob/user)
@@ -285,4 +289,4 @@
 		to_chat(user, span_warning("You have anchored the gun to the ground. It may not be moved."))
 	else
 		anchored = FALSE
-		to_chat(user, span_warning("You unanchored the gun from the gruond. It may be moved."))
+		to_chat(user, span_warning("You unanchored the gun from the ground. It may be moved."))

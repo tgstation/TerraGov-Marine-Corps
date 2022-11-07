@@ -80,7 +80,7 @@ Arguments
 			adjustStaminaLoss(effect/(blocked+1))
 		if(STUTTER)
 			if(status_flags & CANSTUN) // stun is usually associated with stutter
-				stuttering = max(stuttering,(effect/(blocked+1)))
+				set_timed_status_effect(effect/(blocked+1), /datum/status_effect/speech/stutter, only_if_higher = TRUE)
 		if(EYE_BLUR)
 			blur_eyes(effect/(blocked+1))
 		if(DROWSY)

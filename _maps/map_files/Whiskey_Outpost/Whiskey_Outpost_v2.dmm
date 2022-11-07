@@ -2242,7 +2242,7 @@
 /obj/item/storage/belt/lifesaver/full,
 /obj/item/storage/belt/lifesaver/full,
 /obj/structure/table/mainship,
-/obj/item/armor_module/storage/uniform/white_vest/surgery,
+/obj/item/armor_module/storage/uniform/white_vest,
 /obj/item/clothing/suit/surgical,
 /turf/open/floor/mainship/sterile,
 /area/whiskey_outpost)
@@ -7666,7 +7666,7 @@
 /obj/effect/spawner/random/pillbottle{
 	pixel_x = -2
 	},
-/obj/item/armor_module/storage/uniform/white_vest/surgery,
+/obj/item/armor_module/storage/uniform/white_vest,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 4
 	},

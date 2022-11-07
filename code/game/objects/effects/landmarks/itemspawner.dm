@@ -145,3 +145,8 @@
 	items_to_spawn = list(\
 	/obj/item/clothing/mask/gas/sexymime,\
 	/obj/item/clothing/under/sexymime)
+
+/obj/effect/landmark/itemspawner/nyangirl
+	items_to_spawn = list(\
+	/obj/item/clothing/under/schoolgirl,\
+	/obj/item/clothing/head/kitty)

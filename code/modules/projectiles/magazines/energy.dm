@@ -64,7 +64,7 @@
 	desc = "A specialized high density battery used to power volkite weaponry."
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "volkite"
-	maxcharge = 960
+	maxcharge = 1440
 	w_class = WEIGHT_CLASS_NORMAL
 	icon_state_mini = "mag_cell"
 	charge_overlay = "volkite"
@@ -80,16 +80,6 @@
 	icon_state_mini = "mag_cell"
 	charge_overlay = "volkite_small"
 
-/obj/item/cell/lasgun/volkite/highcap
-	name = "\improper high capacity volkite energy cell"
-	desc = "An advanced, ultrahigh capacity battery used to power volkite weaponry."
-	icon = 'icons/obj/items/ammo.dmi'
-	icon_state = "volkite_big"
-	maxcharge = 1440
-	w_class = WEIGHT_CLASS_NORMAL
-	icon_state_mini = "mag_cell"
-	charge_overlay = "volkite_big"
-
 /obj/item/cell/lasgun/volkite/turret
 	name = "\improper volkite nuclear energy cell"
 	desc = "A nuclear powered battery designed for certain heavy SOM machinery like sentries. Slowly charges over time."
@@ -98,7 +88,7 @@
 	maxcharge = 1800
 	w_class = WEIGHT_CLASS_NORMAL
 	icon_state_mini = "mag_cell"
-	charge_overlay = "volkite"
+	charge_overlay = "volkite_big"
 	reload_delay = 0
 	self_recharge = TRUE
 	charge_amount = 24

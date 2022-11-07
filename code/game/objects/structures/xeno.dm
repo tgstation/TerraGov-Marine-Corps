@@ -328,6 +328,7 @@
 	user.visible_message(span_notice("[user]'s chitin begins to gleam with an unseemly glow..."), span_xenonotice("We feel powerful as we are covered in [src]!"))
 	user.emote("roar")
 	user.apply_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING)
+	SEND_SIGNAL(user, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED)
 	qdel(src)
 
 /obj/item/resin_jelly/throw_at(atom/target, range, speed, thrower, spin, flying)

@@ -1035,7 +1035,7 @@
 /area/lv624/ground/caves/west1)
 "azz" = (
 /obj/structure/cargo_container{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/marking/bot,
 /area/lv624/ground/sand2)
@@ -1054,7 +1054,7 @@
 /area/lv624/ground/sand2)
 "azG" = (
 /obj/structure/cargo_container{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor,
 /area/lv624/ground/sand2)
@@ -1914,7 +1914,7 @@
 /area/lv624/lazarus/sleep_male)
 "aRV" = (
 /obj/structure/cargo_container{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
@@ -5883,7 +5883,7 @@
 /area/lv624/lazarus/chapel)
 "esh" = (
 /obj/structure/disposalpipe/segment,
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /obj/structure/catwalk,
 /turf/open/floor/plating/warning{
 	dir = 5
@@ -6460,7 +6460,7 @@
 /area/lv624/ground/jungle3)
 "ffD" = (
 /obj/structure/disposalpipe/segment,
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /turf/open/floor/plating/warning{
 	dir = 9
 	},
@@ -6506,7 +6506,7 @@
 /area/lv624/ground/compound/n)
 "fht" = (
 /obj/structure/disposalpipe/segment,
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /obj/structure/disposalpipe/segment,
 /obj/structure/catwalk,
 /turf/open/ground/river,
@@ -6699,7 +6699,7 @@
 /area/lv624/ground/compound/se)
 "fvn" = (
 /obj/structure/disposalpipe/segment,
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /obj/structure/catwalk,
 /turf/open/floor/plating/warning{
 	dir = 2
@@ -7964,7 +7964,7 @@
 /area/lv624/ground/jungle3)
 "gSY" = (
 /obj/structure/jungle/vines,
-/obj/machinery/door/airlock/sandstone{
+/obj/machinery/door/airlock/mainship/generic{
 	desc = "This strange temple is covered in runes. It looks extremely ancient.";
 	name = "Strange Temple"
 	},
@@ -8956,8 +8956,9 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "ics" = (
-/obj/machinery/door/airlock/sandstone{
+/obj/machinery/door/airlock/mainship/generic{
 	desc = "This strange temple is covered in runes. It looks extremely ancient.";
+	dir = 2;
 	name = "Strange Temple"
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -14172,7 +14173,7 @@
 /area/lv624/lazarus/sandtemple)
 "ocO" = (
 /obj/structure/disposalpipe/segment,
-/obj/structure/grille,
+/obj/structure/grille/smoothing,
 /obj/structure/catwalk,
 /turf/open/floor/plating/warning{
 	dir = 9
@@ -14616,13 +14617,13 @@
 	},
 /area/lv624/ground/river2)
 "oGk" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
 /obj/structure/window/reinforced,
 /obj/structure/rack,
 /obj/effect/spawner/random/gun/shotgun,
 /obj/effect/spawner/random/gun/shotgun,
+/obj/structure/window/reinforced/windowstake{
+	dir = 8
+	},
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/secure_storage)
 "oGt" = (
@@ -15932,7 +15933,7 @@
 /area/lv624/ground/sand7)
 "qoW" = (
 /obj/structure/cargo_container{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
@@ -18319,11 +18320,11 @@
 /area/lv624/ground/jungle9)
 "sZl" = (
 /obj/structure/showcase,
-/obj/structure/window/reinforced{
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced/windowstake{
 	dir = 4
 	},
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
+/obj/structure/window/reinforced/windowstake{
 	dir = 8
 	},
 /turf/open/floor/wood,
@@ -19013,14 +19014,14 @@
 "tJT" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
 	dir = 1
 	},
 /obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
+/obj/structure/window/reinforced/windowstake{
 	dir = 8
+	},
+/obj/structure/window/reinforced/windowstake{
+	dir = 4
 	},
 /turf/open/floor/grass,
 /area/lv624/lazarus/corporate_affairs)
@@ -19086,7 +19087,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "tPY" = (
-/obj/machinery/door/airlock/sandstone{
+/obj/machinery/door/airlock/mainship/generic{
 	desc = "This strange temple is covered in runes. It looks extremely ancient.";
 	name = "Strange Temple"
 	},
@@ -22133,6 +22134,13 @@
 /obj/effect/decal/remains/xeno,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle3)
+"xlg" = (
+/obj/machinery/door/airlock/mainship/generic{
+	desc = "This strange temple is covered in runes. It looks extremely ancient.";
+	name = "Strange Temple"
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/lazarus/sandtemple)
 "xlM" = (
 /obj/effect/decal/cleanable/blood,
 /obj/item/ammo_casing,
@@ -60665,7 +60673,7 @@ tPY
 qfl
 qfl
 oRZ
-ics
+xlg
 qfl
 qfl
 oRZ

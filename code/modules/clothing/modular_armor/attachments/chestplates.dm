@@ -12,7 +12,7 @@
 	name = "\improper Jaeger Pattern Medium Infantry chestplates"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides moderate protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Infantry armor piece."
 	icon_state = "infantry_chest"
-	soft_armor = list(MELEE = 25, BULLET = 45, LASER = 45, ENERGY = 35, BOMB = 30, BIO = 30, "rad" = 30, FIRE = 30, ACID = 35)
+	soft_armor = list(MELEE = 25, BULLET = 45, LASER = 45, ENERGY = 35, BOMB = 30, BIO = 30, FIRE = 30, ACID = 35)
 	slowdown = 0.3
 	greyscale_config = /datum/greyscale_config/modularchest
 
@@ -20,7 +20,7 @@
 	name = "\improper Jaeger Pattern Light Skirmisher chestplates"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides minor protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Skirmisher armor piece."
 	icon_state = "skirmisher_chest"
-	soft_armor = list(MELEE = 20, BULLET = 40, LASER = 40, ENERGY = 30, BOMB = 30, BIO = 30, "rad" = 30, FIRE = 30, ACID = 30)
+	soft_armor = list(MELEE = 20, BULLET = 40, LASER = 40, ENERGY = 30, BOMB = 30, BIO = 30, FIRE = 30, ACID = 30)
 	slowdown = 0.1
 	greyscale_config = /datum/greyscale_config/modularchest/skirmisher
 
@@ -34,7 +34,7 @@
 	name = "\improper Jaeger Pattern Heavy Assault chestplates"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Assault armor piece."
 	icon_state = "assault_chest"
-	soft_armor = list(MELEE = 30, BULLET = 50, LASER = 50, ENERGY = 40, BOMB = 30, BIO = 30, "rad" = 30, FIRE = 30, ACID = 40)
+	soft_armor = list(MELEE = 30, BULLET = 50, LASER = 50, ENERGY = 40, BOMB = 30, BIO = 30, FIRE = 30, ACID = 40)
 	slowdown = 0.5
 	greyscale_config = /datum/greyscale_config/modularchest/assault
 

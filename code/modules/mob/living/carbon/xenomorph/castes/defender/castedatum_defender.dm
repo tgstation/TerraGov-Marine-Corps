@@ -27,14 +27,17 @@
 	evolution_threshold = 80
 	upgrade_threshold = TIER_ONE_YOUNG_THRESHOLD
 
-	evolves_to = list(/mob/living/carbon/xenomorph/warrior)
+	evolves_to = list(
+		/mob/living/carbon/xenomorph/warrior,
+		/mob/living/carbon/xenomorph/bull,
+	)
 
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_BECOME_KING
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 25, ENERGY = 20, BOMB = 20, BIO = 20, "rad" = 20, FIRE = 30, ACID = 20)
+	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 25, ENERGY = 20, BOMB = 20, BIO = 20, FIRE = 30, ACID = 20)
 
 	// *** Ranged Attack *** //
 	charge_type = CHARGE_TYPE_LARGE
@@ -83,7 +86,7 @@
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 33, BULLET = 33, LASER = 28, ENERGY = 25, BOMB = 20
-	, BIO = 25, "rad" = 25, FIRE = 33, ACID = 25)
+	, BIO = 25, FIRE = 33, ACID = 25)
 
 	// *** Defender Abilities *** //
 	crest_defense_armor = 26
@@ -112,7 +115,7 @@
 	upgrade_threshold = TIER_ONE_ELDER_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 35, BULLET = 35, LASER = 30, ENERGY = 28, BOMB = 20, BIO = 28, "rad" = 28, FIRE = 35, ACID = 28)
+	soft_armor = list(MELEE = 35, BULLET = 35, LASER = 30, ENERGY = 28, BOMB = 20, BIO = 28, FIRE = 35, ACID = 28)
 
 	// *** Defender Abilities *** //
 	crest_defense_armor = 30
@@ -142,7 +145,7 @@
 	upgrade_threshold = TIER_ONE_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 20, BIO = 30, "rad" = 30, FIRE = 40, ACID = 30)
+	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 20, BIO = 30, FIRE = 40, ACID = 30)
 
 	// *** Defender Abilities *** //
 	crest_defense_armor = 30
@@ -169,7 +172,7 @@
 	max_health = 320
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 20, BIO = 30, "rad" = 30, FIRE = 40, ACID = 30)
+	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 20, BIO = 30, FIRE = 40, ACID = 30)
 
 	// *** Defender Abilities *** //
 	crest_defense_armor = 30

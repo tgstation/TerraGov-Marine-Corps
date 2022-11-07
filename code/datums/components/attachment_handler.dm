@@ -298,10 +298,7 @@
 
 		var/icon = attachment_data[OVERLAY_ICON]
 		var/icon_state = attachment.icon_state
-		if(attachment.greyscale_colors && attachment.greyscale_config)
-			icon_state = GREYSCALE_ATTACHMENT_ICONSTATE
-			icon = attachment.icon
-		else if(attachment_data[OVERLAY_ICON] == attachment.icon)
+		if(attachment_data[OVERLAY_ICON] == attachment.icon)
 			icon_state = attachment.icon_state + "_a"
 		if(CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SAME_ICON))
 			icon_state = attachment.icon_state

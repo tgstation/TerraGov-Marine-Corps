@@ -328,22 +328,6 @@
 	L.reagent_pain_modifier = volume
 	return ..()
 
-/datum/reagent/toxin/beer2	//disguised as normal beer
-	name = "Beer"
-	description = "An alcoholic beverage made from malted grains, hops, yeast, and water. The fermentation appears to be incomplete." //If the players manage to analyze this, they deserve to know something is wrong.
-	color = "#664300" // rgb: 102, 67, 0
-	custom_metabolism = REAGENTS_METABOLISM * 2.5
-	taste_description = "piss water"
-
-/datum/reagent/toxin/beer2/on_mob_life(mob/living/L, metabolism)
-	switch(current_cycle)
-		if(1 to 50)
-			L.Sleeping(10 SECONDS)
-		if(51 to INFINITY)
-			L.Sleeping(10 SECONDS)
-			L.adjustToxLoss((current_cycle/2 - 25)*effect_str)
-	return ..()
-
 /datum/reagent/toxin/plasticide
 	name = "Plasticide"
 	description = "Liquid plastic, do not eat."
@@ -497,7 +481,7 @@
 		L.adjustOxyLoss(stamina_excess_damage * 0.5)
 		L.Losebreath(2) //So the oxy loss actually means something.
 
-	L.stuttering = max(L.stuttering, 1)
+	L.set_timed_status_effect(2 SECONDS, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
 
 	if(current_cycle < 21) //Additional effects at higher cycles
 		return ..()

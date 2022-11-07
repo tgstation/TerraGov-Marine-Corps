@@ -3,6 +3,8 @@
  * This is only able to representate items of type /obj/item/clothing/head/modular
  */
 /datum/item_representation/modular_helmet
+	///The color of the helmet
+	var/greyscale_colors
 	///The attachments installed.
 	var/list/datum/item_representation/armor_module/attachments = list()
 	///Icon_state suffix for the saved icon_state varient.
@@ -24,6 +26,7 @@
 			attachments += new /datum/item_representation/armor_module/storage(helmet_to_copy.attachments_by_slot[key])
 			continue
 		attachments += new /datum/item_representation/armor_module(helmet_to_copy.attachments_by_slot[key])
+	greyscale_colors = helmet_to_copy.greyscale_colors
 
 /datum/item_representation/modular_helmet/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
 	. = ..()
@@ -33,6 +36,8 @@
 	modular_helmet.current_variant = (current_variant in modular_helmet.icon_state_variants) ? current_variant : initial(modular_helmet.current_variant)
 	for(var/datum/item_representation/armor_module/armor_attachement AS in attachments)
 		armor_attachement.install_on_armor(seller, modular_helmet, user)
+	if(greyscale_colors)
+		modular_helmet.set_greyscale_colors(greyscale_colors)
 	modular_helmet.update_icon()
 
 /datum/item_representation/modular_helmet/get_tgui_data()

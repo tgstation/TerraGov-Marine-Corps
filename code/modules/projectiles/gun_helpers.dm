@@ -26,29 +26,6 @@
 
 /obj/item/weapon/gun/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(istype(I, /obj/item/facepaint))
-		if(isnull(greyscale_config))
-			to_chat(user, span_warning("[src] cannot be colored."))
-			return
-		var/obj/item/facepaint/paint = I
-		if(paint.uses < 1)
-			balloon_alert(user, "\the [paint] is out of color!")
-			return
-
-		var/new_color = tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)
-		new_color = colorable_colors[new_color]
-
-		if(!new_color || !do_after(user, 1 SECONDS, TRUE, master_gun ? master_gun : src, BUSY_ICON_GENERIC))
-			return
-
-		set_greyscale_colors(new_color)
-		paint.uses--
-		update_icon()
-		master_gun?.update_icon()
-		if(ishuman(loc))
-			var/mob/living/carbon/human/holder = loc
-			holder.regenerate_icons()
-		return
 	if(user.get_inactive_held_item() != src || istype(I, /obj/item/attachable) || isgun(I))
 		return
 	reload(I, user)
@@ -384,7 +361,7 @@ should be alright.
 	do_toggle_firemode()
 
 
-/obj/item/weapon/gun/proc/do_toggle_firemode(datum/source, new_firemode)
+/obj/item/weapon/gun/proc/do_toggle_firemode(datum/source, datum/keybinding, new_firemode)
 	SIGNAL_HANDLER
 	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))//can't toggle mid burst
 		return
@@ -498,6 +475,8 @@ should be alright.
 		var/obj/item/attachable/attachable = attachment
 		return attachable.activate(user)
 
+
+// todo destroy all verbs
 /mob/living/carbon/human/verb/empty_mag()
 	set category = "Weapons"
 	set name = "Unload Weapon"
@@ -552,7 +531,7 @@ should be alright.
 	set name = "Toggle Gun Safety (Weapon)"
 	set desc = "Toggle the safety of the held gun."
 
-	to_chat(usr, span_notice("You toggle the safety [HAS_TRAIT(src, TRAIT_GUN_SAFETY) ? "<b>off</b>" : "<b>on</b>"]."))
+	balloon_alert(usr, "Safety [HAS_TRAIT(src, TRAIT_GUN_SAFETY) ? "off" : "on"].")
 	playsound(usr, 'sound/weapons/guns/interact/selector.ogg', 15, 1)
 	if(!HAS_TRAIT(src, TRAIT_GUN_SAFETY))
 		ADD_TRAIT(src, TRAIT_GUN_SAFETY, GUN_TRAIT)
@@ -581,7 +560,7 @@ should be alright.
 	//	if(rail && (rail.flags_attach_features & ATTACH_ACTIVATION) )
 	//		usable_attachments += rail
 	if(!length(attachments_by_slot))
-		to_chat(usr, span_warning("[src] does not have any usable attachment!"))
+		balloon_alert(usr, "No usable attachments")
 		return
 
 	for(var/key in attachments_by_slot)
@@ -593,7 +572,7 @@ should be alright.
 			usable_attachments += attachment
 
 	if(!length(usable_attachments)) //No usable attachments.
-		to_chat(usr, span_warning("[src] does not have any usable attachment!"))
+		balloon_alert(usr, "No usable attachments")
 		return
 	var/obj/item/attachable/usable_attachment
 	if(length(usable_attachments) == 1)
@@ -623,7 +602,7 @@ should be alright.
 
 	if(activate_attachment(ATTACHMENT_SLOT_RAIL, usr))
 		return
-	to_chat(usr, span_warning("[src] does not have any usable rail attachment!"))
+	balloon_alert(usr, "No usable rail attachments")
 
 /obj/item/weapon/gun/verb/toggle_underrail_attachment()
 	set category = null
@@ -632,7 +611,7 @@ should be alright.
 
 	if(activate_attachment(ATTACHMENT_SLOT_UNDER, usr))
 		return
-	to_chat(usr, span_warning("[src] does not have any usable rail attachment!"))
+	balloon_alert(usr, "No usable underrail attachments")
 
 
 

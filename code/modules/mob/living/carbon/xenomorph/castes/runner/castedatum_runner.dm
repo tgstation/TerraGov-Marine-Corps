@@ -42,7 +42,7 @@
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_BECOME_KING|CASTE_CAN_RIDE_CRUSHER
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 14, BULLET = 5, LASER = 5, ENERGY = 0, BOMB = 0, BIO = 0, "rad" = 0, FIRE = 5, ACID = 0)
+	soft_armor = list(MELEE = 14, BULLET = 5, LASER = 5, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 5, ACID = 0)
 
 	// *** Ranged Attack *** //
 	charge_type = CHARGE_TYPE_SMALL
@@ -89,7 +89,7 @@
 	upgrade_threshold = TIER_ONE_MATURE_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 16, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 3, "rad" = 3, FIRE = 10, ACID = 3)
+	soft_armor = list(MELEE = 16, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 3, FIRE = 10, ACID = 3)
 
 	// *** Ranged Attack *** //
 	pounce_delay = 13 SECONDS
@@ -119,7 +119,7 @@
 	upgrade_threshold = TIER_ONE_ELDER_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 18, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 0, BIO = 5, "rad" = 5, FIRE = 15, ACID = 5)
+	soft_armor = list(MELEE = 18, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 0, BIO = 5, FIRE = 15, ACID = 5)
 
 	// *** Ranged Attack *** //
 	pounce_delay = 13 SECONDS
@@ -149,7 +149,7 @@
 	upgrade_threshold = TIER_ONE_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 20, BULLET = 19, LASER = 19, ENERGY = 19, BOMB = 0, BIO = 7, "rad" = 7, FIRE = 19, ACID = 7)
+	soft_armor = list(MELEE = 20, BULLET = 19, LASER = 19, ENERGY = 19, BOMB = 0, BIO = 7, FIRE = 19, ACID = 7)
 
 	// *** Ranged Attack *** //
 	pounce_delay = 13 SECONDS
@@ -176,7 +176,7 @@
 	max_health = 240
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 20, BULLET = 19, LASER = 19, ENERGY = 19, BOMB = 0, BIO = 7, "rad" = 7, FIRE = 19, ACID = 7)
+	soft_armor = list(MELEE = 20, BULLET = 19, LASER = 19, ENERGY = 19, BOMB = 0, BIO = 7, FIRE = 19, ACID = 7)
 
 	// *** Ranged Attack *** //
 	pounce_delay = 13 SECONDS

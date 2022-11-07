@@ -43,6 +43,10 @@
 	if(queen_chosen_lead)
 		give_rally_abilities() //Give them back their rally hive ability
 
+	if(current_aura) //Updates pheromone strength
+		current_aura.range = 6 + xeno_caste.aura_strength * 2
+		current_aura.strength = xeno_caste.aura_strength
+
 	switch(upgrade)
 		//FIRST UPGRADE
 		if(XENO_UPGRADE_ONE)
@@ -399,16 +403,16 @@
 //============//
 //----DEFILER START----//
 
-/mob/living/carbon/xenomorph/Defiler/mature
+/mob/living/carbon/xenomorph/defiler/mature
 	upgrade = XENO_UPGRADE_ONE
 
-/mob/living/carbon/xenomorph/Defiler/elder
+/mob/living/carbon/xenomorph/defiler/elder
 	upgrade = XENO_UPGRADE_TWO
 
-/mob/living/carbon/xenomorph/Defiler/ancient
+/mob/living/carbon/xenomorph/defiler/ancient
 	upgrade = XENO_UPGRADE_THREE
 
-/mob/living/carbon/xenomorph/Defiler/primordial
+/mob/living/carbon/xenomorph/defiler/primordial
 	upgrade = XENO_UPGRADE_FOUR
 
 //----DEFILER END----//
