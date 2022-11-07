@@ -171,3 +171,9 @@
 #define TRAIT_TURF_BULLET_MANIPULATION "bullet_manipulation" //This tile is doing something to projectile
 // projectile traits
 #define TRAIT_PROJ_HIT_SOMETHING "hit_something" //If projectile hit something on its path
+
+// UI traits
+/// Inability to access UI hud elements.
+#define TRAIT_UI_BLOCKED "ui_blocked" //if user is blocked from using UI
+/// This mob should never close UI even if it doesn't have a client
+#define TRAIT_PRESERVE_UI_WITHOUT_CLIENT "preserve_ui_without_client"
