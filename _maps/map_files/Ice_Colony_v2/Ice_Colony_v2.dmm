@@ -22566,9 +22566,8 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/east)
 "bSJ" = (
-/turf/open/floor/plating{
+/turf/open/floor/plating/warning/corner{
 	dir = 1;
-	icon_state = "warnplatecorner"
 	},
 /area/ice_colony/underground/maintenance/east)
 "bSK" = (

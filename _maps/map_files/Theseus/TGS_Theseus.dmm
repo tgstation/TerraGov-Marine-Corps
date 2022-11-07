@@ -19869,9 +19869,8 @@
 /turf/open/floor/mainship_hull,
 /area/space)
 "wQl" = (
-/turf/open/floor/plating{
+/turf/open/floor/plating/warning/corner{
 	dir = 4;
-	icon_state = "warnplatecorner"
 	},
 /area/mainship/hallways/hangar)
 "wQK" = (
@@ -19917,9 +19916,8 @@
 /turf/open/floor/mainship_hull,
 /area/space)
 "wVm" = (
-/turf/open/floor/plating{
+/turf/open/floor/plating/warning/corner{
 	dir = 8;
-	icon_state = "warnplatecorner"
 	},
 /area/mainship/hallways/hangar)
 "wVv" = (
