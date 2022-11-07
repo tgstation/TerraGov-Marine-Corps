@@ -203,7 +203,7 @@
 		return
 	if(!COOLDOWN_CHECK(src, refresh_cooldown))
 		refreshing = TRUE
-		addtimer(CALLBACK(src, .proc/send_full_update, custom_data, force), COOLDOWN_TIMELEFT(src, refresh_cooldown), TIMER_UNIQUE)
+		addtimer(CALLBACK(src, .proc/send_full_update, custom_data, force), COOLDOWN_TIMELEFT(src, refresh_cooldown)+0.5, TIMER_UNIQUE)
 		return
 	refreshing = FALSE
 	var/should_update_data = force || status >= UI_UPDATE
