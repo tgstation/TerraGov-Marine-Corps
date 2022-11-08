@@ -215,9 +215,9 @@
 	///How much scatter increases per shot when wielded
 	var/scatter_increase_unwielded = 0
 	///Minimum scatter
-	var/min_scatter = 0
+	var/min_scatter = -360
 	///Minimum scatter when wielded
-	var/min_scatter_unwielded = 0
+	var/min_scatter_unwielded = -360
 	///Multiplier. Increases or decreases how much bonus scatter is added when burst firing (wielded only).
 	var/burst_scatter_mult = 1
 	///Multiplier. Defaults to 1 (no penalty). Multiplies accuracy modifier by this amount while burst firing; usually a fraction (penalty) when set.
