@@ -3275,35 +3275,33 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		if(1 to 44)
 			surface_angle = 0
 		if(45)
-			surface_angle = 0
+			surface_angle = 180
 		if(46 to 89)
 			surface_angle = 0
 		if(90)
 			surface_angle = 90
 		if(91 to 134)
-			surface_angle = 180
+			surface_angle = 90
 		if(135)
-			surface_angle = 180
+			surface_angle = 90
 		if(136 to 179)
-			surface_angle = 180
+			surface_angle = 90
 		if(180)
-			surface_angle = 180
+			surface_angle = 0
 		if(181 to 224)
-			surface_angle = 270
+			surface_angle = 0
 		if(225)
 			surface_angle = 0
 		if(226 to 269)
 			surface_angle = 0
 		if(270)
-			surface_angle = 270
+			surface_angle = 90
 		if(271 to 314)
-			surface_angle = 0
-		if(225)
 			surface_angle = 0
 		if(315)
 			surface_angle = 0
 		if(316 to 359)
-			surface_angle = 0
+			surface_angle = 90
 
 	var/ricochet_angle = 2 * surface_angle - proj.dir_angle + 180
 	to_chat(proj.firer, "<font size=6 color=red>[ricochet_angle] ricochet</font>")
