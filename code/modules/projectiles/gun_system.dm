@@ -459,16 +459,19 @@
 
 /obj/item/weapon/gun/update_icon_state()
 	. = ..()
+	var/new_state = base_gun_icon
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED))
-		icon_state = base_gun_icon + "_o"
+		new_state = base_gun_icon + "_o"
 	else if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && !in_chamber && length(chamber_items))
-		icon_state = base_gun_icon + "_u"
+		new_state = base_gun_icon + "_u"
 	else if((!length(chamber_items) && max_chamber_items) || !rounds)
-		icon_state = base_gun_icon + "_e"
+		new_state = base_gun_icon + "_e"
 	else if(current_chamber_position <= length(chamber_items) && chamber_items[current_chamber_position] && chamber_items[current_chamber_position].loc != src)
-		icon_state = base_gun_icon + "_l"
-	else
-		icon_state = base_gun_icon
+		new_state = base_gun_icon + "_l"
+
+	if(icon_state == new_state)
+		return
+	icon_state = new_state //apparently this helps with performance
 
 //manages the overlays for the gun - separate from attachment overlays
 /obj/item/weapon/gun/update_overlays()
