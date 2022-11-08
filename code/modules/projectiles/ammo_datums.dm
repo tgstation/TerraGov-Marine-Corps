@@ -3293,13 +3293,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		if(225)
 			surface_angle = 0
 		if(226 to 269)
-			surface_angle = 0
+			surface_angle = 90
 		if(270)
 			surface_angle = 90
 		if(271 to 314)
 			surface_angle = 0
 		if(315)
-			surface_angle = 0
+			surface_angle = 90
 		if(316 to 359)
 			surface_angle = 90
 
@@ -3309,7 +3309,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	to_chat(proj.firer, "<font size=6 color=red>[proj.dir_angle] projectile</font>")
 	to_chat(proj.firer, "<font size=6 color=red>[Get_Angle(T, proj.loc)] surfaceproj</font>")
 	bonus_projectiles_amount = 1
-	fire_directionalburst(proj, proj.firer, proj.shot_from, 3, proj.projectile_speed, ricochet_angle)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 3, proj.projectile_speed, ricochet_angle + rand(-20, 20))
 	bonus_projectiles_amount = 0
 
 /datum/ammo/flamethrower/over
