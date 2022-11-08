@@ -174,8 +174,13 @@
 	name = "Atmospheric Processing"
 	icon_state = "lava_atmos"
 
-/area/magmoor/engi/power
+/area/magmoor/engi/thermal
 	name = "Thermal Reactors"
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	icon_state = "lava_power"
+
+/area/magmoor/engi/power
+	name = "Power Management Centre"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 	icon_state = "lava_power"
 
