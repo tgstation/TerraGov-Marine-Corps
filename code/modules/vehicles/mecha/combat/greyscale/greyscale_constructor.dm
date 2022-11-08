@@ -86,7 +86,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 
 /obj/item/coin/mech
 	name = "Mech Coin"
-	desc = "This coin is needed to assemble a mech, don't lose this."
+	desc = "An encrypted data coin needed to assemble a mech. Don't lose this."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "coin-mech"
 
