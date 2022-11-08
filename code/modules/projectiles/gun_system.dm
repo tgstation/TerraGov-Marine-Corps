@@ -470,8 +470,8 @@
 		new_state = base_gun_icon + "_l"
 
 	if(icon_state == new_state)
-		return
-	icon_state = new_state //apparently this helps with performance
+		return //small perf benefit
+	icon_state = new_state
 
 //manages the overlays for the gun - separate from attachment overlays
 /obj/item/weapon/gun/update_overlays()
