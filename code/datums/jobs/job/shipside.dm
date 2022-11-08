@@ -417,6 +417,7 @@ You can serve your Division in a variety of roles, so choose carefully."})
 	shoes = /obj/item/clothing/shoes/marine/full
 	gloves = /obj/item/clothing/gloves/marine
 	back = /obj/item/storage/backpack/marine/satchel
+	l_hand = /obj/item/coin/mech
 
 /datum/job/terragov/engineering
 	job_category = JOB_CAT_ENGINEERING

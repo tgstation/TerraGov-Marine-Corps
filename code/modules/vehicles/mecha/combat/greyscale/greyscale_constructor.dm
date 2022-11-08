@@ -84,11 +84,20 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	QDEL_LIST(plane_masters)
 	return ..()
 
+/obj/item/coin/mech
+	name = "Mech Coin"
+	desc = "This coin is needed to assemble a mech, don't lose this."
+	icon = 'icons/obj/items/items.dmi'
+	icon_state = "coin-mech"
+
 /obj/machinery/computer/mech_builder
 	name = "mech computer"
 	icon_state = "mech_computer"
 	dir = EAST // determines where the mech will pop out, NOT where the computer faces
 	interaction_flags = INTERACT_OBJ_UI
+	
+	///Check if coin was given
+	var/purchased = FALSE
 
 	///current selected name for the mech
 	var/selected_name = "TGMC Combat Mech"
@@ -179,6 +188,15 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 		return
 	if(user.skills.getRating("large_vehicle") < SKILL_LARGE_VEHICLE_TRAINED)
 		return FALSE
+
+/obj/machinery/computer/mech_builder/attackby(obj/item/I, mob/living/user)
+	. = ..()
+	if(istype(I, /obj/item/coin/mech))
+		to_chat(usr, span_notice("You insert the mech coin into the [src]."))
+		purchased = TRUE
+		playsound(src, 'sound/machines/chime.ogg', 15, 0)
+		qdel(I)
+		return
 
 /obj/machinery/computer/mech_builder/ui_interact(mob/user, datum/tgui/ui)
 	if(currently_assembling)
@@ -288,7 +306,13 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 					return FALSE
 			if(isnull(selected_visor))
 				return FALSE
+			if(!purchased)
+				//token not given
+				to_chat(usr, span_warning("You need to insert a mech coin to assemble a mech."))
+				playsound(src, 'sound/machines/buzz-sigh.ogg', 15, 0)
+				return FALSE
 			currently_assembling = TRUE
+			purchased = FALSE
 			addtimer(CALLBACK(src, .proc/deploy_mech), 1 SECONDS)
 			playsound(get_step(src, dir), 'sound/machines/elevator_move.ogg', 50, 0)
 			ui.close()

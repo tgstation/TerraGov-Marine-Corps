@@ -1490,6 +1490,12 @@ VEHICLES
 /datum/supply_packs/vehicles
 	group = "Vehicles"
 
+/datum/supply_packs/vehicles/mechtoken
+	name = "Mech Token"
+	contains = list(/obj/item/coin/mech)
+	cost = 300
+	containertype = /obj/structure/closet/crate
+
 /datum/supply_packs/vehicles/motorbike
 	name = "All-Terrain Motorbike"
 	cost = 40
