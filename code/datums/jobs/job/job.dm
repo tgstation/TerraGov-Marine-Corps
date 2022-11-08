@@ -204,7 +204,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	current_positions += amount
 	for(var/index in jobworth)
 		var/datum/job/scaled_job = SSjob.GetJobType(index)
-		if(!(scaled_job in SSjob.active_joinable_occupations))
+		if(!(index in SSticker.mode.valid_job_types))
 			continue
 		if(isxenosjob(scaled_job))
 			if(respawn && (SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN))
