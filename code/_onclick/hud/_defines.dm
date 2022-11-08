@@ -18,16 +18,16 @@
 #define ui_inventory "WEST:6,1:5"
 
 //Lower center, persistant menu
-#define ui_sstore1 "WEST+2:10,1:5"
-#define ui_id "WEST+3:12,1:5"
-#define ui_belt "WEST+4:14,1:5"
-#define ui_back "WEST+5:14,1:5"
-#define ui_rhand "WEST+6:16,1:5"
-#define ui_lhand "WEST+7:16,1:5"
-#define ui_swaphand1 "WEST+6:16,2:5"
-#define ui_swaphand2 "WEST+7:16,2:5"
-#define ui_storage1 "WEST+8:18,1:5"
-#define ui_storage2 "WEST+9:20,1:5"
+#define ui_sstore1 "CENTER-5:10,SOUTH:5"
+#define ui_id "CENTER-4:12,SOUTH:5"
+#define ui_belt "CENTER-3:14,SOUTH:5"
+#define ui_back "CENTER-2:14,SOUTH:5"
+#define ui_rhand "CENTER-1:16,SOUTH:5"
+#define ui_lhand "CENTER+0:16,SOUTH:5"
+#define ui_swaphand1 "CENTER-1:16,SOUTH+1:5"
+#define ui_swaphand2 "CENTER+0:16,SOUTH+1:5"
+#define ui_storage1 "CENTER+1:18,SOUTH:5"
+#define ui_storage2 "CENTER+2:20,SOUTH:5"
 
 //Lower right, persistant menu
 #define ui_dropbutton "EAST-4:22,1:5"
@@ -88,7 +88,7 @@
 #define ui_ammo3 "EAST-1:28,CENTER+3:29"
 #define ui_ammo4 "EAST-1:28,CENTER+4:31"
 
-									//borgs
+// borgs
 #define ui_borg_health "EAST-1:28,6:13" //borgs have the health display where humans have the bodytemp indicator.
 #define ui_borg_temp "EAST-1:28,10:21"	//borgs have the bodytemp display where humans have the pressure indicator.
 #define ui_alien_nightvision "EAST-1:28,5:13"
@@ -98,14 +98,13 @@
 
 //Pop-up inventory
 #define ui_shoes "WEST+1:8,1:5"
-
-#define ui_iclothing "WEST:6,2:7"
-#define ui_oclothing "WEST+1:8,2:7"
-#define ui_gloves "WEST+2:10,2:7"
-#define ui_glasses "WEST:6,3:9"
-#define ui_mask "WEST+1:8,3:9"
-#define ui_wear_ear "WEST+2:10,3:9"
-#define ui_head "WEST+1:8,4:11"
+#define ui_iclothing "WEST:6,SOUTH+1:7"
+#define ui_oclothing "WEST+1:8,SOUTH+1:7"
+#define ui_gloves "WEST+2:10,SOUTH+1:7"
+#define ui_glasses "WEST:6,SOUTH+2:9"
+#define ui_mask "WEST+1:8,SOUTH+2:9"
+#define ui_wear_ear "WEST+2:10,SOUTH+2:9"
+#define ui_head "WEST+1:8,SOUTH+3:11"
 
 #define ui_sl_dir "CENTER,CENTER"
 
