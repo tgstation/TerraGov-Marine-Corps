@@ -93,7 +93,7 @@ SUBSYSTEM_DEF(weeds)
 			var/obj/alien/weeds/weed = O
 			if(weed.parent_node && weed.parent_node != node && get_dist_euclide_square(node, weed) >= get_dist_euclide_square(weed.parent_node, weed))
 				return
-			if((weed.type == weed_to_spawn) && (weed.color_variant == weed_to_spawn.color_variant))
+			if((weed.type == weed_to_spawn) && (weed.color_variant == node.color_variant))
 				weed.set_parent_node(node)
 				return
 			weed.swapped = TRUE
