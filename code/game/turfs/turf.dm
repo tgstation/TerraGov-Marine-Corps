@@ -321,6 +321,8 @@
 	else
 		for(var/dirn in GLOB.alldirs)
 			var/turf/D = get_step(W,dirn)
+			if(isnull(D))
+				continue
 			D.smooth_self()
 			D.smooth_neighbors()
 	return W
@@ -516,6 +518,9 @@
 //Does NOT return a message, just a 0 or 1.
 /turf/proc/is_weedable()
 	return !density
+
+/turf/closed/wall/is_weedable()
+	return TRUE
 
 /turf/open/space/is_weedable()
 	return FALSE

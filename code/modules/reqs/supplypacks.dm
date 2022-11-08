@@ -666,6 +666,16 @@ EXPLOSIVES
 	cost = 1
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/explosives/mlrs
+	name = "TA-40L Multiple Rocket System"
+	contains = list(/obj/item/mortar_kit/mlrs)
+	cost = 45
+
+/datum/supply_packs/explosives/mlrs_rockets
+	name = "TA-40L MLRS Rocket Pack (x8)"
+	contains = list(/obj/item/storage/box/mlrs_rockets)
+	cost = 3
+
 /datum/supply_packs/explosives/howitzer
 	name = "MG-100Y howitzer"
 	contains = list(/obj/item/mortar_kit/howitzer)
@@ -1702,7 +1712,7 @@ FACTORY
 /datum/supply_packs/factory/scout_rifle_magazine_refill
 	name = "BR-8 scout rifle magazine assembly refill"
 	contains = list(/obj/item/factory_refill/scout_rifle_magazine_refill)
-	cost = 50
+	cost = 20
 
 /datum/supply_packs/factory/claymorerefill
 	name = "Claymore parts refill"
