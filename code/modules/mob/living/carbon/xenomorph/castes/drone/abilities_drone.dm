@@ -73,8 +73,7 @@
 /datum/action/xeno_action/activable/essence_link/proc/end_ability()
 	var/mob/living/carbon/xenomorph/X = owner
 	var/datum/action/xeno_action/enhancement/enhancement_action = X.actions_by_path[/datum/action/xeno_action/enhancement]
-	if(enhancement_action)
-		enhancement_action.end_ability()
+	enhancement_action?.end_ability()
 	X.remove_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK)
 	QDEL_NULL(existing_link)
 	linked_target = null

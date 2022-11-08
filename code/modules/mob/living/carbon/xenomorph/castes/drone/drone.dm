@@ -16,8 +16,3 @@
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 	)
 
-/mob/living/carbon/xenomorph/drone/on_death()
-	var/datum/action/xeno_action/activable/essence_link/essence_link_action = actions_by_path[/datum/action/xeno_action/activable/essence_link]
-	if(essence_link_action)
-		essence_link_action.end_ability()
-	return ..()
