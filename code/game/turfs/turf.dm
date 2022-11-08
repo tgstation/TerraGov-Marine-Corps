@@ -519,6 +519,9 @@
 /turf/proc/is_weedable()
 	return !density
 
+/turf/closed/wall/is_weedable()
+	return TRUE
+
 /turf/open/space/is_weedable()
 	return FALSE
 
