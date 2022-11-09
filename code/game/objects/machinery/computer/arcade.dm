@@ -83,7 +83,7 @@
 			if(turtle > 0)
 				turtle--
 
-			sleep(10)
+			sleep(1 SECONDS)
 			src.enemy_hp -= attackamt
 			src.arcade_action()
 
@@ -95,7 +95,7 @@
 			src.updateUsrDialog()
 			turtle++
 
-			sleep(10)
+			sleep(1 SECONDS)
 			src.player_mp -= pointamt
 			src.player_hp += healamt
 			src.blocked = 1
@@ -111,7 +111,7 @@
 				turtle--
 
 			src.updateUsrDialog()
-			sleep(10)
+			sleep(1 SECONDS)
 			src.arcade_action()
 
 	else if (href_list["newgame"]) //Reset everything
@@ -154,7 +154,7 @@
 
 		if (src.player_mp <= 0)
 			src.gameover = 1
-			sleep(10)
+			sleep(1 SECONDS)
 			src.temp = "You have been drained! GAME OVER"
 
 	else if ((src.enemy_hp <= 10) && (src.enemy_mp > 4))

@@ -122,7 +122,7 @@
 
 /obj/vehicle/unmanned/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	if((unmanned_flags & UNDERCARRIAGE) && istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
+	if((unmanned_flags & UNDERCARRIAGE) && istype(mover) && !ismob(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return TRUE
 
 /obj/vehicle/unmanned/relaymove(mob/living/user, direction)

@@ -310,7 +310,7 @@
 		if ("print")
 			if (!( printing ))
 				printing = 1
-				sleep(50)
+				sleep(5 SECONDS)
 				var/obj/item/paper/P = new /obj/item/paper( loc )
 
 				var/t1 = "<h4>Crew Manifest</h4>"

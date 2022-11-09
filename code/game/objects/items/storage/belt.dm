@@ -620,7 +620,11 @@
 	icon_state= "sparepouch"
 	item_state= "sparepouch"
 
-
+/obj/item/storage/belt/sparepouch/som
+	name= "standard utility pouch"
+	desc= "A small, lightweight pouch that can be clipped onto armor or your belt to provide additional storage for miscellaneous gear or box and drum magazines. Made from genuine SOM leather."
+	icon_state= "sparepouch_som"
+	item_state= "som_belt"
 
 
 ////////////////////////////// GUN BELTS /////////////////////////////////////

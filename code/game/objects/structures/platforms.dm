@@ -64,7 +64,7 @@
 	if(!(flags_atom & ON_BORDER) || !(get_dir(loc, target) & dir))
 		return TRUE
 
-obj/structure/platform_decoration
+/obj/structure/platform_decoration
 	name = "platform"
 	desc = "A square metal surface resting on four legs."
 	icon = 'icons/obj/structures/platforms.dmi'

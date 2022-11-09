@@ -221,6 +221,7 @@
 /obj/machinery/door/poddoor/mainship/mech
 	name = "\improper Mech Shutters"
 	id = "mech_shutters"
+	resistance_flags = PLASMACUTTER_IMMUNE
 
 /obj/machinery/door/poddoor/mainship/umbilical
 	name = "Umbilical Airlock"

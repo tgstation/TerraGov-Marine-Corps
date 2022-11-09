@@ -361,7 +361,7 @@ should be alright.
 	do_toggle_firemode()
 
 
-/obj/item/weapon/gun/proc/do_toggle_firemode(datum/source, new_firemode)
+/obj/item/weapon/gun/proc/do_toggle_firemode(datum/source, datum/keybinding, new_firemode)
 	SIGNAL_HANDLER
 	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))//can't toggle mid burst
 		return
@@ -475,6 +475,8 @@ should be alright.
 		var/obj/item/attachable/attachable = attachment
 		return attachable.activate(user)
 
+
+// todo destroy all verbs
 /mob/living/carbon/human/verb/empty_mag()
 	set category = "Weapons"
 	set name = "Unload Weapon"
@@ -529,7 +531,7 @@ should be alright.
 	set name = "Toggle Gun Safety (Weapon)"
 	set desc = "Toggle the safety of the held gun."
 
-	to_chat(usr, span_notice("You toggle the safety [HAS_TRAIT(src, TRAIT_GUN_SAFETY) ? "<b>off</b>" : "<b>on</b>"]."))
+	balloon_alert(usr, "Safety [HAS_TRAIT(src, TRAIT_GUN_SAFETY) ? "off" : "on"].")
 	playsound(usr, 'sound/weapons/guns/interact/selector.ogg', 15, 1)
 	if(!HAS_TRAIT(src, TRAIT_GUN_SAFETY))
 		ADD_TRAIT(src, TRAIT_GUN_SAFETY, GUN_TRAIT)
@@ -558,7 +560,7 @@ should be alright.
 	//	if(rail && (rail.flags_attach_features & ATTACH_ACTIVATION) )
 	//		usable_attachments += rail
 	if(!length(attachments_by_slot))
-		to_chat(usr, span_warning("[src] does not have any usable attachment!"))
+		balloon_alert(usr, "No usable attachments")
 		return
 
 	for(var/key in attachments_by_slot)
@@ -570,7 +572,7 @@ should be alright.
 			usable_attachments += attachment
 
 	if(!length(usable_attachments)) //No usable attachments.
-		to_chat(usr, span_warning("[src] does not have any usable attachment!"))
+		balloon_alert(usr, "No usable attachments")
 		return
 	var/obj/item/attachable/usable_attachment
 	if(length(usable_attachments) == 1)
@@ -600,7 +602,7 @@ should be alright.
 
 	if(activate_attachment(ATTACHMENT_SLOT_RAIL, usr))
 		return
-	to_chat(usr, span_warning("[src] does not have any usable rail attachment!"))
+	balloon_alert(usr, "No usable rail attachments")
 
 /obj/item/weapon/gun/verb/toggle_underrail_attachment()
 	set category = null
@@ -609,7 +611,7 @@ should be alright.
 
 	if(activate_attachment(ATTACHMENT_SLOT_UNDER, usr))
 		return
-	to_chat(usr, span_warning("[src] does not have any usable rail attachment!"))
+	balloon_alert(usr, "No usable underrail attachments")
 
 
 

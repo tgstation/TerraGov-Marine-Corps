@@ -29,6 +29,9 @@
 /datum/action/vehicle/sealed/mecha/mech_toggle_internals
 	name = "Toggle Internal Airtank Usage"
 	action_icon_state = "mech_internals_off"
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_MECHABILITY_TOGGLE_INTERNALS,
+	)
 
 /datum/action/vehicle/sealed/mecha/mech_toggle_internals/action_activate(trigger_flags)
 	if(!owner || !chassis || !(owner in chassis.occupants))
@@ -71,7 +74,9 @@
 /datum/action/vehicle/sealed/mecha/mech_view_stats
 	name = "View Stats"
 	action_icon_state = "mech_view_stats"
-
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_MECHABILITY_VIEW_STATS,
+	)
 /datum/action/vehicle/sealed/mecha/mech_view_stats/action_activate(trigger_flags)
 	if(!owner || !chassis || !(owner in chassis.occupants))
 		return
@@ -82,7 +87,9 @@
 /datum/action/vehicle/sealed/mecha/strafe
 	name = "Toggle Strafing. Disabled when Alt is held."
 	action_icon_state = "strafe"
-
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_MECHABILITY_TOGGLE_STRAFE,
+	)
 /datum/action/vehicle/sealed/mecha/strafe/action_activate(trigger_flags)
 	if(!owner || !chassis || !(owner in chassis.occupants))
 		return

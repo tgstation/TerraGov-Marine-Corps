@@ -1,5 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes: 
-  - imageadd: "Created new versions of the glass window sprites, implements some windoor sprites from another artist (see the PR for details)."
-  - imagedel: "Removed some old glass window sprites."

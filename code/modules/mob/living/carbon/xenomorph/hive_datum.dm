@@ -905,7 +905,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	RegisterSignal(hijacked_ship, COMSIG_SHUTTLE_SETMODE, .proc/on_hijack_depart)
 
 	for(var/obj/structure/xeno/structure AS in GLOB.xeno_structure)
-		if(!is_ground_level(structure.z))
+		if(!is_ground_level(structure.z) || structure.xeno_structure_flags & DEPART_DESTRUCTION_IMMUNE)
 			continue
 		qdel(structure)
 
@@ -1002,7 +1002,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	UnregisterSignal(observer, COMSIG_PARENT_QDELETING)
 	observer.larva_position = 0
 	var/datum/action/observer_action/join_larva_queue/join = observer.actions_by_path[/datum/action/observer_action/join_larva_queue]
-	join.remove_selected_frame()
+	join.set_toggle(FALSE)
 	to_chat(observer, span_warning("You left the Larva queue."))
 	var/mob/dead/observer/observer_in_queue
 	for(var/i in 1 to LAZYLEN(candidate))

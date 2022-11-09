@@ -471,13 +471,17 @@
 	name = "Configure Vali Chemical Enhancement"
 	action_icon = 'icons/mob/actions.dmi'
 	action_icon_state = "cboost_configure"
-	keybind_signal = COMSIG_KB_VALI_CONFIGURE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_KB_VALI_CONFIGURE,
+	)
 
 /datum/action/chem_booster/power
 	name = "Power Vali Chemical Enhancement"
 	action_icon = 'icons/mob/actions.dmi'
 	action_icon_state = "cboost_off"
-	keybind_signal = COMSIG_KB_VALI_HEAL
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_KB_VALI_HEAL,
+	)
 	///Records the last time the action was used to avoid accidentally cancelling the effect when spamming the button in-combat
 	var/last_activated_time
 
@@ -501,7 +505,9 @@
 	name = "Connect Weapon"
 	action_icon = 'icons/mob/actions.dmi'
 	action_icon_state = "vali_weapon_connect"
-	keybind_signal = COMSIG_KB_VALI_CONNECT
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_KB_VALI_CONNECT,
+	)
 
 #undef EXTRACT
 #undef LOAD

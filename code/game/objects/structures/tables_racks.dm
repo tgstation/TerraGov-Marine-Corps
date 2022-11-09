@@ -26,6 +26,7 @@
 	max_integrity = 40
 
 /obj/structure/table/mainship/nometal
+	parts = /obj/item/frame/table/nometal
 	dropmetal = FALSE
 
 /obj/structure/table/deconstruct(disassembled)

@@ -45,7 +45,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/energy_optimizer
 	name = "energy optimizer"
-	desc = "A Nanotrasen-brand computer that uses predictive algorithms to reduce the power consumption of all steps by 75%."
+	desc = "A Nanotrasen-brand computer that uses predictive algorithms to reduce the power consumption of all steps by 50%."
 	icon_state = "optimizer"
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	equipment_slot = MECHA_POWER
@@ -53,16 +53,35 @@
 
 /obj/item/mecha_parts/mecha_equipment/energy_optimizer/attach(obj/vehicle/sealed/mecha/M, attach_right)
 	. = ..()
-	M.normal_step_energy_drain *= 0.25
-	M.step_energy_drain *= 0.25
-	M.overload_step_energy_drain_min *= 0.25
+	M.normal_step_energy_drain *= 0.50
+	M.step_energy_drain *= 0.50
+	M.overload_step_energy_drain_min *= 0.50
 
 /obj/item/mecha_parts/mecha_equipment/energy_control/detach(atom/moveto)
-	chassis.normal_step_energy_drain /= 0.25
-	chassis.step_energy_drain /= 0.25
-	chassis.overload_step_energy_drain_min /= 0.25
+	chassis.normal_step_energy_drain /= 0.50
+	chassis.step_energy_drain /= 0.50
+	chassis.overload_step_energy_drain_min /= 0.50
 	return ..()
 
+/obj/item/mecha_parts/mecha_equipment/melee_core
+	name = "melee core"
+	desc = "A bluespace orion-sperkov converter. Through science you can't be bothered to understand, makes mechs faster and their weapons able to draw more power, making them more dangerous. However this comes at the cost of not being able to use projectile and laser weaponry."
+	icon_state = "melee_core"
+	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	equipment_slot = MECHA_UTILITY
+	///speed amount we modify the mech by
+	var/speed_mod
+
+/obj/item/mecha_parts/mecha_equipment/melee_core/attach(obj/vehicle/sealed/mecha/M, attach_right)
+	. = ..()
+	ADD_TRAIT(M, TRAIT_MELEE_CORE, REF(src))
+	speed_mod = min(chassis.move_delay-1, round(chassis.move_delay * 0.5))
+	M.move_delay -= speed_mod
+
+/obj/item/mecha_parts/mecha_equipment/melee_core/detach(atom/moveto)
+	REMOVE_TRAIT(chassis, TRAIT_MELEE_CORE, REF(src))
+	chassis.move_delay += speed_mod
+	return ..()
 
 
 /obj/item/mecha_parts/mecha_equipment/ability

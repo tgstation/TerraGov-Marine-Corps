@@ -1001,29 +1001,29 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			if(C)
 				C.propelled = 4
 			B.Move(get_step(user,movementdirection), movementdirection)
-			sleep(1)
+			sleep(0.1 SECONDS)
 			B.Move(get_step(user,movementdirection), movementdirection)
 			if(C)
 				C.propelled = 3
-			sleep(1)
+			sleep(0.1 SECONDS)
 			B.Move(get_step(user,movementdirection), movementdirection)
-			sleep(1)
+			sleep(0.1 SECONDS)
 			B.Move(get_step(user,movementdirection), movementdirection)
 			if(C)
 				C.propelled = 2
-			sleep(2)
+			sleep(0.2 SECONDS)
 			B.Move(get_step(user,movementdirection), movementdirection)
 			if(C)
 				C.propelled = 1
-			sleep(2)
+			sleep(0.2 SECONDS)
 			B.Move(get_step(user,movementdirection), movementdirection)
 			if(C)
 				C.propelled = 0
-			sleep(3)
+			sleep(0.3 SECONDS)
 			B.Move(get_step(user,movementdirection), movementdirection)
-			sleep(3)
+			sleep(0.3 SECONDS)
 			B.Move(get_step(user,movementdirection), movementdirection)
-			sleep(3)
+			sleep(0.3 SECONDS)
 			B.Move(get_step(user,movementdirection), movementdirection)
 
 	var/turf/T = get_turf(target)
@@ -1071,7 +1071,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 								C.die()
 				if(W.loc == my_target)
 					break
-				sleep(2)
+				sleep(0.2 SECONDS)
 			qdel(W)
 
 	if(isspaceturf(user.loc))
@@ -1320,7 +1320,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	else
 		user.visible_message("[user] deftly flicks and spins [src]!",span_notice(" You flick and spin [src]!"))
 	animation_wrist_flick(src, direction)
-	sleep(3)
+	sleep(0.3 SECONDS)
 	if(loc && user) playsound(user, 'sound/effects/thud.ogg', 25, 1)
 
 ///The fancy trick. Woah.
@@ -1336,7 +1336,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	invisibility = 100
 	for(var/mob/M in viewers(user))
 		SEND_IMAGE(M, trick)
-	sleep(5)
+	sleep(0.5 SECONDS)
 	trick.loc = null
 	if(!loc || !user)
 		return

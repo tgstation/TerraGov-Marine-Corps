@@ -144,11 +144,10 @@
 
 //MARINE SHIP GRILLE
 
-/obj/structure/grille/mainship
-	icon = 'icons/turf/mainship.dmi'
+/obj/structure/grille/smoothing
 	icon_state = "grille0"
 	smoothing_behavior = CARDINAL_SMOOTHING
 	smoothing_groups = SMOOTH_GENERAL_STRUCTURES
 
-/obj/structure/grille/mainship/update_icon()
+/obj/structure/grille/smoothing/update_icon()
 	smooth_self()

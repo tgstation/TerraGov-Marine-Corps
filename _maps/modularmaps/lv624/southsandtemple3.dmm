@@ -7,8 +7,8 @@
 /area/lv624/ground/jungle8)
 "cm" = (
 /obj/structure/jungle/vines{
-	pixel_y = 1;
-	icon_state = "Hvy2"
+	icon_state = "Hvy2";
+	pixel_y = 1
 	},
 /turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
@@ -43,8 +43,8 @@
 /area/lv624/ground/river3)
 "fB" = (
 /obj/structure/jungle/vines{
-	pixel_y = 1;
-	icon_state = "Hvy2"
+	icon_state = "Hvy2";
+	pixel_y = 1
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
@@ -171,26 +171,26 @@
 /obj/effect/decal/sandytile,
 /obj/effect/decal/sandytile,
 /obj/structure/jungle/vines{
-	pixel_y = 1;
-	icon_state = "Med2"
+	icon_state = "Med2";
+	pixel_y = 1
 	},
 /obj/structure/jungle/vines{
-	pixel_y = 1;
-	icon_state = "Hvy2"
+	icon_state = "Hvy2";
+	pixel_y = 1
 	},
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "ot" = (
 /obj/structure/jungle/vines{
-	pixel_y = 1;
-	icon_state = "Light1"
+	icon_state = "Light1";
+	pixel_y = 1
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
 "oF" = (
 /obj/structure/jungle/vines{
-	pixel_y = 1;
-	icon_state = "Hvy3"
+	icon_state = "Hvy3";
+	pixel_y = 1
 	},
 /turf/closed/wall/r_wall/chigusa,
 /area/lv624/lazarus/sandtemple)
@@ -270,8 +270,8 @@
 /obj/structure/showcase,
 /obj/effect/decal/sandytile,
 /obj/structure/jungle/vines{
-	pixel_y = 1;
-	icon_state = "Light1"
+	icon_state = "Light1";
+	pixel_y = 1
 	},
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
@@ -286,8 +286,8 @@
 /area/lv624/ground/river3)
 "vu" = (
 /turf/open/ground/coast{
-	icon_state = "beachcorner2";
-	dir = 1
+	dir = 1;
+	icon_state = "beachcorner2"
 	},
 /area/lv624/ground/river3)
 "vZ" = (
@@ -306,8 +306,8 @@
 /area/lv624/ground/sand6)
 "xO" = (
 /obj/structure/jungle/vines{
-	pixel_y = 1;
-	icon_state = "Med1"
+	icon_state = "Med1";
+	pixel_y = 1
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
@@ -359,15 +359,15 @@
 /area/lv624/ground/river3)
 "Cf" = (
 /obj/structure/jungle/vines{
-	pixel_y = 1;
-	icon_state = "Light1"
+	icon_state = "Light1";
+	pixel_y = 1
 	},
 /turf/closed/wall/r_wall/chigusa,
 /area/lv624/lazarus/sandtemple)
 "CL" = (
 /obj/structure/jungle/vines{
-	pixel_y = 1;
-	icon_state = "Hvy2"
+	icon_state = "Hvy2";
+	pixel_y = 1
 	},
 /turf/closed/wall/r_wall/chigusa,
 /area/lv624/lazarus/sandtemple)
@@ -377,8 +377,8 @@
 /area/lv624/ground/sand3)
 "Dm" = (
 /obj/structure/jungle/vines{
-	pixel_y = 1;
-	icon_state = "Light1"
+	icon_state = "Light1";
+	pixel_y = 1
 	},
 /turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
@@ -394,8 +394,8 @@
 "HH" = (
 /obj/item/weapon/claymore/mercsword/machete,
 /obj/structure/jungle/vines{
-	pixel_y = 1;
-	icon_state = "Med2"
+	icon_state = "Med2";
+	pixel_y = 1
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
@@ -405,8 +405,8 @@
 /area/lv624/lazarus/sandtemple)
 "IF" = (
 /obj/structure/jungle/vines{
-	pixel_y = 1;
-	icon_state = "Med3"
+	icon_state = "Med3";
+	pixel_y = 1
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
@@ -422,8 +422,8 @@
 /area/lv624/ground/jungle8)
 "Jv" = (
 /obj/structure/jungle/vines{
-	pixel_y = 1;
-	icon_state = "Med1"
+	icon_state = "Med1";
+	pixel_y = 1
 	},
 /turf/closed/wall/r_wall/chigusa,
 /area/lv624/lazarus/sandtemple)
@@ -454,8 +454,8 @@
 /area/lv624/ground/river3)
 "KK" = (
 /obj/structure/jungle/vines{
-	pixel_y = 1;
-	icon_state = "Med2"
+	icon_state = "Med2";
+	pixel_y = 1
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
@@ -464,8 +464,8 @@
 /area/lv624/ground/sand3)
 "Lr" = (
 /turf/open/ground/coast{
-	icon_state = "beachcorner2";
-	dir = 4
+	dir = 4;
+	icon_state = "beachcorner2"
 	},
 /area/lv624/ground/river3)
 "Mo" = (
@@ -499,8 +499,8 @@
 "PY" = (
 /obj/structure/jungle/plantbot1/alien,
 /obj/structure/jungle/vines{
-	pixel_y = 1;
-	icon_state = "Med2"
+	icon_state = "Med2";
+	pixel_y = 1
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
@@ -538,8 +538,8 @@
 "Sm" = (
 /obj/structure/flora/ausbushes/palebush,
 /turf/open/ground/coast{
-	icon_state = "beachcorner2";
-	dir = 1
+	dir = 1;
+	icon_state = "beachcorner2"
 	},
 /area/lv624/ground/river3)
 "SD" = (
@@ -561,16 +561,16 @@
 /area/lv624/ground/river3)
 "Tt" = (
 /obj/structure/jungle/vines{
-	pixel_y = 1;
-	icon_state = "Med2"
+	icon_state = "Med2";
+	pixel_y = 1
 	},
 /turf/closed/wall/r_wall/chigusa,
 /area/lv624/lazarus/sandtemple)
 "TF" = (
 /obj/effect/decal/sandytile,
 /obj/structure/jungle/vines{
-	pixel_y = 1;
-	icon_state = "Light1"
+	icon_state = "Light1";
+	pixel_y = 1
 	},
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
@@ -605,15 +605,15 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "Xv" = (
-/obj/machinery/door/airlock/sandstone{
-	desc = "This strange temple is covered in runes. It looks extremely ancient.";
-	icon_state = "door_locked";
-	locked = 1;
-	name = "Strange Temple"
-	},
 /obj/structure/jungle/vines{
 	pixel_y = 1
 	},
+/obj/machinery/door/airlock/mainship/generic{
+	desc = "This strange temple is covered in runes. It looks extremely ancient.";
+	dir = 2;
+	name = "Strange Temple"
+	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
 "Xx" = (

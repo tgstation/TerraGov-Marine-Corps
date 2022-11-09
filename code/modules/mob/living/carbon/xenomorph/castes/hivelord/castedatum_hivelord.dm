@@ -211,7 +211,7 @@
 		/datum/action/xeno_action/blessing_menu,
 		/datum/action/xeno_action/activable/transfer_plasma/improved,
 		/datum/action/xeno_action/activable/corrosive_acid/strong,
-		/datum/action/xeno_action/place_trap,
+		/datum/action/xeno_action/sow,
 		/datum/action/xeno_action/build_tunnel,
 		/datum/action/xeno_action/toggle_speed,
 		/datum/action/xeno_action/pheromones,
