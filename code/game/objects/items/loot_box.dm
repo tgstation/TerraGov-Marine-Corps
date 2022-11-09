@@ -76,7 +76,7 @@
 
 /obj/item/loot_box/tgmclootbox
 	name = "TGMC pack box"
-	desc = "A box of gear sent over by the TGMC on request, nobody knows whats in it. You just know it'll probably be good."
+	desc = "A box of gear sent over by the TGMC on request, nobody knows what's in it. You just know it'll probably be good."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "lootbox"
 	item_state = "lootbox"
