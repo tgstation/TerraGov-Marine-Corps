@@ -134,6 +134,8 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	var/currently_assembling = FALSE
 	///list of stat data that will be sent to the UI
 	var/list/current_stats
+	///cooldown check that will stop players from interacting with the mech builder unless the timer ends
+	var/in_cooldown = FALSE
 
 	/// list(STRING-list(STRING-STRING)) of primary and secondary palettes. first string is category, second is name
 	var/static/list/available_colors = ARMOR_PALETTES_LIST
@@ -178,6 +180,8 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	if(!.)
 		return
 	if(user.skills.getRating("large_vehicle") < SKILL_LARGE_VEHICLE_TRAINED)
+		return FALSE
+	if(in_cooldown)
 		return FALSE
 
 /obj/machinery/computer/mech_builder/ui_interact(mob/user, datum/tgui/ui)
@@ -289,6 +293,9 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 			if(isnull(selected_visor))
 				return FALSE
 			currently_assembling = TRUE
+			in_cooldown = TRUE
+			spawn(30 MINUTES) // NEEDS FEEDBACK, MAYBE A TIMER WHILE EXAMINING OR A CHANGE IN THE SPRITE
+				in_cooldown = FALSE
 			addtimer(CALLBACK(src, .proc/deploy_mech), 1 SECONDS)
 			playsound(get_step(src, dir), 'sound/machines/elevator_move.ogg', 50, 0)
 			ui.close()
