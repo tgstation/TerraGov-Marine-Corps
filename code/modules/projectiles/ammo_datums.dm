@@ -2130,7 +2130,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shell_speed = 2.5
 
 /datum/ammo/mortar/rocket/mlrs/drop_nade(turf/T)
-	explosion(T, 0, 0, 4, 2)
+	explosion(T, 0, 0, 4, 2, small_animation = TRUE)
 
 /*
 //================================================

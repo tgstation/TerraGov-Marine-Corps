@@ -746,7 +746,7 @@
 	new /obj/item/encryptionkey/cas(src)
 	new /obj/item/encryptionkey/cas(src)
 	new /obj/item/encryptionkey/cas(src)
-
+	new /obj/item/hud_tablet/artillery(src)
 
 
 /obj/item/storage/box/mlrs_rockets
