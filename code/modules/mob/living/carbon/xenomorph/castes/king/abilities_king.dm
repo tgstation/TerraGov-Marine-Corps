@@ -112,6 +112,9 @@
 						continue
 				mob_crushed.ex_act(EXPLODE_LIGHT)
 				continue
+			else if(ismecha(item))
+				var/obj/vehicle/sealed/mecha/mech_crushed = item
+				mech_crushed.take_damage(rand(500, 800), BRUTE, "bomb", 0)
 			item.ex_act(EXPLODE_HEAVY)	//crushing without damaging the nearby area
 
 /datum/action/xeno_action/activable/gravity_crush/ai_should_start_consider()
