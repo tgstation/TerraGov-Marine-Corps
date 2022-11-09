@@ -75,7 +75,7 @@
 
 //admin only
 /obj/item/clothing/suit/storage/marine/harness/boomvest/ob_vest
-	name = "oribital bombardment vest"
+	name = "orbital bombardment vest"
 	desc = "This is your lieutenant speaking, I know exactly what those coordinates are for."
 
 /obj/item/clothing/suit/storage/marine/harness/boomvest/ob_vest/attack_self(mob/user)
