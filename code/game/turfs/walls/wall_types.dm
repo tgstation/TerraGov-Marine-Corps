@@ -191,7 +191,6 @@
 	desc = "A huge chunk of metal used to separate rooms on spaceships from the cold void of space."
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "sulaco0"
-	color = "#616161"
 
 	max_integrity = 3000
 	max_temperature = 28000 //K, walls will take damage if they're next to a fire hotter than this
