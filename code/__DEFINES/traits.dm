@@ -113,6 +113,8 @@
 /// inherited from riding vehicles
 #define VEHICLE_TRAIT "vehicle"
 
+
+
 //added b grilling a food
 #define TRAIT_FOOD_GRILLED "food_grilled"
 
@@ -177,3 +179,6 @@
 #define TRAIT_UI_BLOCKED "ui_blocked" //if user is blocked from using UI
 /// This mob should never close UI even if it doesn't have a client
 #define TRAIT_PRESERVE_UI_WITHOUT_CLIENT "preserve_ui_without_client"
+
+//this mech is melee core boosted
+#define TRAIT_MELEE_CORE "melee_core"

@@ -89,7 +89,7 @@ steam.start() -- spawns the effect
 	else
 		direction = pick(GLOB.alldirs)
 	for(var/i in 1 to pick(1,2,3))
-		sleep(5) // sleep is fine here, invoked async
+		sleep(0.5 SECONDS) // sleep is fine here, invoked async
 		step(steam,direction)
 	QDEL_IN(steam, 2 SECONDS)
 
@@ -128,7 +128,7 @@ steam.start() -- spawns the effect
 	else
 		direction = pick(GLOB.alldirs)
 	for(var/i in pick(1,2,3))
-		sleep(5)
+		sleep(0.5 SECONDS)
 		step(sparks,direction)
 	QDEL_IN(sparks, 2 SECONDS)
 
