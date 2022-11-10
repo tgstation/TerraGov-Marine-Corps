@@ -27,7 +27,7 @@ SUBSYSTEM_DEF(greyscale)
 		var/obj/item/clothing/head/modular/helmet = new helmet_type()
 		cache_list(helmet.colorable_colors, helmet.greyscale_config)
 		qdel(helmet)
-
+	/*
 	for(var/obj/item/weapon/gun/gun_type AS in subtypesof(/obj/item/weapon/gun))
 		if(!initial(gun_type.greyscale_config))
 			continue
@@ -45,7 +45,7 @@ SUBSYSTEM_DEF(greyscale)
 		var/obj/item/attachable/attachment = new attachment_type()
 		cache_list(attachment.colorable_colors, attachment.greyscale_config)
 		qdel(attachment)
-
+	*/
 	return ..()
 
 ///Proc built to handle cacheing the nested lists of armor colors found in code/modules/clothing/modular_armor
