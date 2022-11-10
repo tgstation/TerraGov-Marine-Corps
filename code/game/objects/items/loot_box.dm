@@ -79,8 +79,8 @@
 
 //Supply drop boxes
 /obj/item/loot_box/supply_drop
-	name = "Supply drop"
-	desc = "A box of valuable military equipment"
+	name = "supply drop"
+	desc = "A TGMC-marked box full of valuable military tactical equipment."
 	icon = 'icons/obj/items/items.dmi'
 	w_class = WEIGHT_CLASS_GIGANTIC
 	slowdown = 1 //You won't be running off with this
@@ -116,8 +116,8 @@
 	)
 
 /obj/item/loot_box/supply_drop/som
-	name = "Supply drop"
-	desc = "A box of valuable SOM military equipment"
+	name = "supply drop"
+	desc = "A rugged box composed of valuable SOM military materiel."
 	icon = 'icons/obj/items/items.dmi'
 	w_class = WEIGHT_CLASS_GIGANTIC
 	rolls = 4
