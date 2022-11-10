@@ -9,8 +9,9 @@
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 	flags_atom = ON_BORDER
 	throwpass = TRUE
-	///For animation and rotation of mounted guns
+	///Store user old pixel x
 	var/user_old_x = 0
+	///Store user old pixel y
 	var/user_old_y = 0
 	///Stores user old move resist and apply on unset interaction
 	var/user_old_move_resist
