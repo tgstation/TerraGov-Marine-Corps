@@ -239,6 +239,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 				if(!(new_color_name in available_colors[key]))
 					continue
 				selected_primary[selected_part] = available_colors[key][new_color_name]
+				update_ui_view()
 				return TRUE
 			return FALSE
 
@@ -248,6 +249,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 				if(!(new_color_name in available_colors[key]))
 					continue
 				selected_secondary[selected_part] = available_colors[key][new_color_name]
+				update_ui_view()
 				return TRUE
 			return FALSE
 
@@ -257,6 +259,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 				if(!(new_color_name in available_visor_colors[key]))
 					continue
 				selected_visor = available_visor_colors[key][new_color_name]
+				update_ui_view()
 				return TRUE
 			return FALSE
 
@@ -426,8 +429,6 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 
 ///Updates the displayed mech preview dummy in the UI
 /obj/machinery/computer/mech_builder/proc/update_ui_view()
-	var/default_colors = MECH_GREY_PRIMARY_DEFAULT + MECH_GREY_SECONDARY_DEFAULT
-	var/default_visor = MECH_GREY_VISOR_DEFAULT
 	var/new_overlays = list()
 	for(var/slot in selected_variants)
 		var/datum/mech_limb/head/typepath = get_mech_limb(slot, selected_variants[slot])
@@ -435,9 +436,9 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 			var/iconstate = "left"
 			if(slot == MECH_GREY_R_ARM)
 				iconstate = "right"
-			new_overlays += iconstate2appearance(SSgreyscale.GetColoredIconByType(initial(typepath.greyscale_type), default_colors), iconstate)
+			new_overlays += iconstate2appearance(SSgreyscale.GetColoredIconByType(initial(typepath.greyscale_type), selected_primary[slot] + selected_secondary[slot]), iconstate)
 			continue
-		new_overlays += icon2appearance(SSgreyscale.GetColoredIconByType(initial(typepath.greyscale_type), default_colors))
+		new_overlays += icon2appearance(SSgreyscale.GetColoredIconByType(initial(typepath.greyscale_type), selected_primary[slot] + selected_secondary[slot]))
 		if(slot == MECH_GREY_HEAD)
-			new_overlays += icon2appearance(SSgreyscale.GetColoredIconByType(initial(typepath.visor_config), default_visor))
+			new_overlays += icon2appearance(SSgreyscale.GetColoredIconByType(initial(typepath.visor_config), selected_visor))
 	mech_view.overlays = new_overlays
