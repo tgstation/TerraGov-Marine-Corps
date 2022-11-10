@@ -308,7 +308,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 			currently_assembling = TRUE
 			in_cooldown = TRUE
 			update_icon()
-			spawn(30 MINUTES) // NEEDS FEEDBACK, MAYBE A TIMER WHILE EXAMINING OR A CHANGE IN THE SPRITE
+			spawn(30 MINUTES)
 				in_cooldown = FALSE
 				update_icon()
 			addtimer(CALLBACK(src, .proc/deploy_mech), 1 SECONDS)
