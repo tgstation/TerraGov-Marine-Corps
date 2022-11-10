@@ -1421,7 +1421,7 @@
 			/obj/item/ammo_magazine/revolver/mateba = -1,
 			/obj/item/ammo_magazine/packet/mateba = -1,
 			/obj/item/ammo_magazine/rifle/chamberedrifle/flak = -1,
-			/obj/item/ammo_magazine/flamer_tank/backtank/X = -1,
+			/obj/item/weapon/gun/flamer/big_flamer/flx = -1,
 			/obj/item/weapon/claymore/harvester = -1,
 			/obj/item/weapon/twohanded/spear/tactical/harvester = -1,
 			/obj/item/weapon/twohanded/rocketsledge = -1,

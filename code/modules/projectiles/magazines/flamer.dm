@@ -6,8 +6,7 @@
 	name = "incinerator tank"
 	desc = "A fuel tank of usually ultra thick napthal, a sticky combustable liquid chemical, for use in the FL-240 incinerator unit. Handle with care."
 	icon_state = "flametank"
-	var/fuel = 50
-	var/max_fuel = 50
+	max_rounds = 75
 	reload_delay = 2 SECONDS
 	w_class = WEIGHT_CLASS_NORMAL //making sure you can't sneak this onto your belt.
 	caliber = CALIBER_FUEL_THICK //Ultra Thick Napthal Fuel, from the lore book.
@@ -20,16 +19,12 @@
 	icon_state = "flametank_mini"
 	reload_delay = 0 SECONDS
 	w_class = WEIGHT_CLASS_SMALL
-	fuel = 25
-	max_fuel = 25
+	max_rounds = 50
 	icon_state_mini = "tank_orange_mini"
 
 /obj/item/ammo_magazine/flamer_tank/afterattack(obj/target, mob/user , flag) //refuel at fueltanks when we run out of ammo.
 
 	if(istype(target, /obj/structure/reagent_dispensers/fueltank) && get_dist(user,target) <= 1)
-		if(default_ammo != /datum/ammo/flamethrower)
-			to_chat(user, span_warning("Not the right kind of fuel!"))
-			return ..()
 		if(current_rounds >= max_rounds)
 			to_chat(user, span_warning("[src] is already full."))
 			return ..()
@@ -57,17 +52,7 @@
 	name = "large flamerthrower tank"
 	desc = "A large fuel tank of ultra thick napthal, a sticky combustable liquid chemical, for use in the FL-84 flamethrower."
 	icon_state = "flametank_large"
-	max_fuel = 75
-	fuel = 75
-	reload_delay = 3 SECONDS
-	icon_state_mini = "tank_orange"
-
-/obj/item/ammo_magazine/flamer_tank/bounce	// Extra thicc tank
-	name = "large flamerthrower tank"
-	desc = "A large fuel tank of ultra thick napthal, a sticky combustable liquid chemical, for use in the FL-84 flamethrower."
-	icon_state = "flametank_large"
-	max_fuel = 75
-	fuel = 75
+	max_rounds = 100
 	reload_delay = 3 SECONDS
 	icon_state_mini = "tank_orange"
 
@@ -75,17 +60,9 @@
 	name = "large flamerthrower tank"
 	desc = "A large fuel tank of ultra thick napthal, a sticky combustable liquid chemical, for use in the V-62 flamethrower."
 	icon_state = "flametank_som"
-	max_fuel = 75
-	fuel = 75
+	max_rounds = 100
 	reload_delay = 3 SECONDS
 	icon_state_mini = "tank_orange"
-
-/obj/item/ammo_magazine/flamer_tank/large/X
-	name = "large flamethrower tank (X)"
-	desc = "A large fuel tank of ultra thick napthal Fuel type X, a sticky combustable liquid chemical that burns extremely hot, for use in the FL-84 flamethrower. Handle with care."
-	icon_state = "flametank_large_blue"
-	default_ammo = /datum/ammo/flamethrower/blue
-	icon_state_mini = "tank_blue"
 
 /obj/item/ammo_magazine/flamer_tank/backtank
 	name = "back fuel tank"
@@ -93,13 +70,8 @@
 	icon_state = "flamethrower_tank"
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
-	max_fuel = 500
-	fuel = 500
+	max_rounds = 500
 	reload_delay = 1 SECONDS
 	caliber = CALIBER_FUEL_THICK
 	flags_magazine = MAGAZINE_WORN
 	icon_state_mini = "tank"
-
-/obj/item/ammo_magazine/flamer_tank/backtank/X
-	name = "back fuel tank (X)"
-	desc = "A specialized fuel tank of ultra thick napthal type X for use with the FL-84 flamethrower and FL-240 incinerator unit."

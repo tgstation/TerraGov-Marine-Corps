@@ -125,14 +125,6 @@
 	. = ..()
 	holder_flamer = holder_item
 
-/datum/action/item_action/toggle/hydro/update_button_icon()
-	if(holder_flamer.hydro_active)
-		action_icon_state = "TL_84_Water"
-	else
-		action_icon_state = "TL_84_Flame"
-	set_toggle(holder_flamer.hydro_active)
-	return ..()
-
 ///Signal handler for when the hydro cannon is activated
 /datum/action/item_action/toggle/hydro/proc/update_toggle_button_icon()
 	SIGNAL_HANDLER

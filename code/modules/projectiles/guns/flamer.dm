@@ -44,9 +44,7 @@
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/flamer_tank,
 		/obj/item/ammo_magazine/flamer_tank/large,
-		/obj/item/ammo_magazine/flamer_tank/large/X,
 		/obj/item/ammo_magazine/flamer_tank/backtank,
-		/obj/item/ammo_magazine/flamer_tank/backtank/X,
 	)
 	var/list/datum/flamer/base/mode_list = list(
 		"Standard" = /datum/flamer/base/flamer_mode/standard,
@@ -55,72 +53,8 @@
 		"Over" = /datum/flamer/base/flamer_mode/over,
 	)
 
-/obj/item/weapon/gun/flamer/get_current_rounds(obj/item/mag)
-	var/obj/item/ammo_magazine/flamer_tank/tank = mag
-	return tank?.fuel
-
-/obj/item/weapon/gun/flamer/adjust_current_rounds(obj/item/mag, new_rounds)
-	var/obj/item/ammo_magazine/flamer_tank/tank = mag
-	tank?.fuel += new_rounds
-
-/obj/item/weapon/gun/flamer/get_max_rounds(obj/item/mag)
-	var/obj/item/ammo_magazine/flamer_tank/tank = mag
-	return tank?.max_fuel
-
 /obj/item/weapon/gun/flamer/get_magazine_default_ammo(obj/item/mag)
 	return null
-
-/datum/flamer/base
-	///how much fuel the gun uses on this mode when shot.
-	var/rounds_per_shot = 1
-	///the ammo datum this mode is.
-	var/datum/ammo/ammo_datum_type = null
-	///how long it takes between each shot of that mode, same as gun fire delay.
-	var/fire_delay = 0
-	///Gives guns a burst amount, editable.
-	var/burst_amount = 0
-	///The gun firing sound of this mode
-	var/fire_sound = "gun_flamethrower"
-	var/scatter
-	///What message it sends to the user when you switch to this mode.
-	var/message_to_user = ""
-	///Used to change the gun firemode, like automatic, semi-automatic and burst.
-	var/fire_mode = GUN_FIREMODE_SEMIAUTO
-	///Which icon file the radial menu will use.
-	var/radial_icon = 'icons/mob/radial.dmi'
-	///The icon state the radial menu will use.
-	var/radial_icon_state = "laser"
-
-/datum/flamer/base/flamer_mode/standard
-	ammo_datum_type = /datum/ammo/flamethrower
-	message_to_user = "You set the flamethrowers mode to standard fire."
-	fire_mode = GUN_FIREMODE_AUTOMATIC
-	radial_icon_state = "flamer"
-	fire_delay = 0.15 SECONDS
-	scatter = 3
-
-/datum/flamer/base/flamer_mode/bounce
-	ammo_datum_type = /datum/ammo/flamethrower/bounce
-	message_to_user = "You set the flamethrowers mode to bounce fire."
-	fire_mode = GUN_FIREMODE_AUTOMATIC
-	radial_icon_state = "flamer_bounce"
-	fire_delay = 0.15 SECONDS
-
-/datum/flamer/base/flamer_mode/spread
-	ammo_datum_type = /datum/ammo/flamethrower
-	message_to_user = "You set the flamethrowers charge mode to spread fire."
-	fire_mode = GUN_FIREMODE_BURSTFIRE
-	radial_icon_state = "flamer_spread"
-	fire_delay = 2 SECONDS
-	burst_amount = 15
-	scatter = 15
-
-/datum/flamer/base/flamer_mode/over
-	ammo_datum_type = /datum/ammo/flamethrower/over
-	message_to_user = "You set the laser rifle's charge mode to over fire."
-	fire_mode = GUN_FIREMODE_AUTOMATIC
-	radial_icon_state = "flamer_over"
-	fire_delay = 0.2 SECONDS
 
 /obj/item/weapon/gun/flamer/unique_action(mob/user)
 	if(!user)
@@ -155,6 +89,58 @@
 
 	in_chamber = get_ammo_object(chamber_items[current_chamber_position])
 
+/datum/flamer/base
+	///how much fuel the gun uses on this mode when shot.
+	var/rounds_per_shot = 1
+	///the ammo datum this mode is.
+	var/datum/ammo/ammo_datum_type = null
+	///how long it takes between each shot of that mode, same as gun fire delay.
+	var/fire_delay = 0
+	///Gives guns a burst amount, editable.
+	var/burst_amount = 0
+	///The gun firing sound of this mode
+	var/fire_sound = "gun_flamethrower"
+	var/scatter = 0
+	///What message it sends to the user when you switch to this mode.
+	var/message_to_user = ""
+	///Used to change the gun firemode, like automatic, semi-automatic and burst.
+	var/fire_mode = GUN_FIREMODE_SEMIAUTO
+	///Which icon file the radial menu will use.
+	var/radial_icon = 'icons/mob/radial.dmi'
+	///The icon state the radial menu will use.
+	var/radial_icon_state = "flamer"
+
+/datum/flamer/base/flamer_mode/standard
+	ammo_datum_type = /datum/ammo/flamethrower
+	message_to_user = "You set the flamethrowers mode to standard fire."
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	radial_icon_state = "flamer"
+	fire_delay = 0.15 SECONDS
+	scatter = 3
+
+/datum/flamer/base/flamer_mode/bounce
+	ammo_datum_type = /datum/ammo/flamethrower/bounce
+	message_to_user = "You set the flamethrowers mode to bounce fire."
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	radial_icon_state = "flamer_bounce"
+	fire_delay = 0.15 SECONDS
+
+/datum/flamer/base/flamer_mode/spread
+	ammo_datum_type = /datum/ammo/flamethrower
+	message_to_user = "You set the flamethrowers charge mode to spread fire."
+	fire_mode = GUN_FIREMODE_BURSTFIRE
+	radial_icon_state = "flamer_spread"
+	fire_delay = 2 SECONDS
+	burst_amount = 15
+	scatter = 15
+
+/datum/flamer/base/flamer_mode/over
+	ammo_datum_type = /datum/ammo/flamethrower/over
+	message_to_user = "You set the laser rifle's charge mode to over fire."
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	radial_icon_state = "flamer_over"
+	fire_delay = 0.2 SECONDS
+
 /obj/item/weapon/gun/flamer/big_flamer
 	name = "\improper FL-240 incinerator unit"
 	desc = "The FL-240 has proven to be one of the most effective weapons at clearing out soft-targets. This is a weapon to be feared and respected as it is quite deadly."
@@ -178,7 +164,6 @@
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/flamer_tank/large/som,
 		/obj/item/ammo_magazine/flamer_tank/backtank,
-		/obj/item/ammo_magazine/flamer_tank/backtank/X,
 	)
 
 /obj/item/weapon/gun/flamer/som/mag_harness
@@ -229,74 +214,6 @@
 		/obj/item/attachable/hydro_cannon,
 	)
 	starting_attachment_types = list(/obj/item/attachable/stock/t84stock, /obj/item/attachable/hydro_cannon)
-	var/last_use
-	///If we are using the hydro cannon when clicking
-	var/hydro_active = FALSE
-	///How much water the hydro cannon has
-	var/water_count = 0
-
-/obj/item/weapon/gun/flamer/big_flamer/marinestandard/Initialize()
-	. = ..()
-	reagents = new /datum/reagents(FLAMER_WATER)
-	reagents.my_atom = src
-	reagents.add_reagent(/datum/reagent/water, reagents.maximum_volume)
-	water_count = reagents.maximum_volume
-
-/obj/item/weapon/gun/flamer/big_flamer/marinestandard/update_ammo_count()
-	if(hydro_active)
-		rounds = max(water_count, 0)
-		max_rounds = reagents.maximum_volume
-		return
-	return ..()
-
-/obj/item/weapon/gun/flamer/big_flamer/marinestandard/get_ammo()
-	if(hydro_active)
-		ammo_datum_type = /datum/ammo/water
-		return
-	return ..()
-
-/obj/item/weapon/gun/flamer/big_flamer/marinestandard/examine(mob/user)
-	. = ..()
-	to_chat(user, span_notice("Its hydro cannon contains [reagents.get_reagent_amount(/datum/reagent/water)]/[reagents.maximum_volume] units of water!"))
-
-/obj/item/weapon/gun/flamer/big_flamer/marinestandard/do_fire(obj/projectile/projectile_to_fire)
-	if(!target)
-		return
-	if(hydro_active && (world.time > last_use + 10))
-		INVOKE_ASYNC(src, .proc/extinguish, target, gun_user) //Fire it.
-		water_count -= 7//reagents is not updated in this proc, we need water_count for a updated HUD
-		last_fired = world.time
-		last_use = world.time
-		gun_user.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
-		return
-	if(gun_user?.skills.getRating("firearms") < 0)
-		switch(windup_checked)
-			if(WEAPON_WINDUP_NOT_CHECKED)
-				INVOKE_ASYNC(src, .proc/do_windup)
-				return
-			if(WEAPON_WINDUP_CHECKING)
-				return
-	return ..()
-
-///Flamer windup called before firing
-/obj/item/weapon/gun/flamer/big_flamer/marinestandard/proc/do_windup()
-	windup_checked = WEAPON_WINDUP_CHECKING
-	if(!do_after(gun_user, 1 SECONDS, TRUE, src))
-		windup_checked = WEAPON_WINDUP_NOT_CHECKED
-		return
-	windup_checked = WEAPON_WINDUP_CHECKED
-	Fire()
-
-/obj/item/weapon/gun/flamer/big_flamer/marinestandard/afterattack(atom/target, mob/user)
-	. = ..()
-	if(istype(target, /obj/structure/reagent_dispensers/watertank) && get_dist(user,target) <= 1)
-		var/obj/o = target
-		o.reagents.trans_to(src, reagents.maximum_volume)
-		water_count = reagents.maximum_volume
-		to_chat(user, span_notice("\The [src]'s hydro cannon is refilled with water."))
-		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
-		user.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
-		return
 
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/wide
 	starting_attachment_types = list(
@@ -304,6 +221,32 @@
 		/obj/item/attachable/hydro_cannon,
 		/obj/item/attachable/magnetic_harness,
 	)
+
+/obj/item/weapon/gun/flamer/big_flamer/flx
+	name = "\improper FL-X-150 flamethrower"
+	desc = "The FL-X-150 flamethrower is the current standard issue flamethrower of the TGMC, and is used for area control and urban combat. Use unique action to use hydro cannon"
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_SHOWS_LOADED
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "flx150"
+	item_state = "flx150"
+	mode_list = list(
+		"Standard" = /datum/flamer/base/flamer_mode/standard/blue,
+		"Bounce" = /datum/flamer/base/flamer_mode/bounce/blue,
+		"Spread" = /datum/flamer/base/flamer_mode/spread/blue,
+		"Over" = /datum/flamer/base/flamer_mode/over/blue,
+	)
+
+/datum/flamer/base/flamer_mode/standard/blue
+	ammo_datum_type = /datum/ammo/flamethrower/blue
+
+/datum/flamer/base/flamer_mode/bounce/blue
+	ammo_datum_type = /datum/ammo/flamethrower/blue
+
+/datum/flamer/base/flamer_mode/spread/blue
+	ammo_datum_type = /datum/ammo/flamethrower/blue
+
+/datum/flamer/base/flamer_mode/over/blue
+	ammo_datum_type = /datum/ammo/flamethrower/blue
 
 /turf/proc/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
 	//extinguish any flame present
