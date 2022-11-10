@@ -13,7 +13,7 @@ SUBSYSTEM_DEF(greyscale)
 	for(var/greyscale_type in subtypesof(/datum/greyscale_config))
 		var/datum/greyscale_config/config = new greyscale_type()
 		configurations["[greyscale_type]"] = config
-
+/*
 	for(var/obj/item/armor_module/armor/armor_type AS in subtypesof(/obj/item/armor_module/armor))
 		if(!initial(armor_type.greyscale_config))
 			continue
@@ -27,7 +27,7 @@ SUBSYSTEM_DEF(greyscale)
 		var/obj/item/clothing/head/modular/helmet = new helmet_type()
 		cache_list(helmet.colorable_colors, helmet.greyscale_config)
 		qdel(helmet)
-	/*
+
 	for(var/obj/item/weapon/gun/gun_type AS in subtypesof(/obj/item/weapon/gun))
 		if(!initial(gun_type.greyscale_config))
 			continue
