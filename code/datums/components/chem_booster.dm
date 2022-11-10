@@ -70,6 +70,8 @@
 	var/movement_boost = 0
 	///How much time left on vali heal till necrosis occurs
 	var/vali_necro_timer
+	///Ref to armor itself for icon manipulation
+	var/obj/item/armor_module/module/chemsystem/chemsystem_ref
 
 	/**
 	 * This list contains the vali stat increases that correspond to each reagent
@@ -500,6 +502,7 @@
 	else
 		action_icon_state = "cboost_off"
 	update_button_icon()
+	SEND_SIGNAL(src, COMSIG_VALI_HEAL)
 
 /datum/action/chem_booster/connect_weapon
 	name = "Connect Weapon"
