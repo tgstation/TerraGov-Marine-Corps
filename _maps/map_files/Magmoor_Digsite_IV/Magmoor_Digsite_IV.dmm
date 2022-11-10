@@ -2960,9 +2960,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/arrival)
-"cfP" = (
-/turf/closed/mineral/smoothoutdoor,
-/area/magmoor/compound/north)
 "cfY" = (
 /obj/item/ammo_casing,
 /obj/structure/window/reinforced{
@@ -10776,7 +10773,7 @@
 /turf/open/floor/mainship/blue,
 /area/magmoor/civilian/arrival/east)
 "hNF" = (
-/turf/closed/mineral/smoothoutdoor,
+/turf/closed/mineral/smooth/outdoor,
 /area/magmoor/compound/northeast)
 "hNQ" = (
 /obj/effect/decal/cleanable/blood/splatter,
@@ -12716,9 +12713,6 @@
 "jib" = (
 /turf/closed/wall/r_wall,
 /area/magmoor/medical/treatment)
-"jig" = (
-/turf/closed/mineral/smooth,
-/area/magmoor/compound/northeast)
 "jii" = (
 /turf/open/lavaland/basalt/dirt/corner{
 	dir = 8
@@ -14345,7 +14339,7 @@
 /turf/open/floor/mainship/orange,
 /area/magmoor/engi/power)
 "kns" = (
-/turf/closed/mineral/smooth,
+/turf/closed/mineral/smooth/outdoor,
 /area/magmoor/compound/north)
 "knx" = (
 /obj/structure/disposalpipe/water_pipe{
@@ -20696,7 +20690,7 @@
 	},
 /area/magmoor/compound/north)
 "oTR" = (
-/turf/closed/mineral/smoothoutdoor,
+/turf/closed/mineral/smooth/outdoor,
 /area/magmoor/compound)
 "oUm" = (
 /turf/open/floor/mainship/purple/corner,
@@ -20973,7 +20967,7 @@
 /turf/open/lavaland/catwalk,
 /area/magmoor/compound/east)
 "pdi" = (
-/turf/closed/mineral/smoothoutdoor,
+/turf/closed/mineral/smooth/outdoor,
 /area/magmoor/compound/south)
 "pef" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -25212,7 +25206,7 @@
 /turf/open/floor/plating/mainship,
 /area/magmoor/engi/storage)
 "sdX" = (
-/turf/closed/mineral/smoothoutdoor,
+/turf/closed/mineral/smooth/outdoor,
 /area/magmoor/compound/west)
 "sea" = (
 /obj/structure/bed/chair{
@@ -46825,7 +46819,7 @@ lqI
 lqI
 lqI
 oPq
-cfP
+kns
 dXE
 vkq
 bKQ
@@ -47058,7 +47052,7 @@ lqI
 lqI
 lqI
 lqI
-cfP
+kns
 dXE
 vkq
 bKQ
@@ -47287,7 +47281,7 @@ auu
 evg
 rHW
 oPq
-cfP
+kns
 lqI
 lqI
 lqI
@@ -47519,8 +47513,8 @@ ntX
 evg
 soI
 qEm
-cfP
-cfP
+kns
+kns
 lqI
 oPq
 lqI
@@ -47989,8 +47983,8 @@ lqI
 lqI
 lqI
 lqI
-cfP
-cfP
+kns
+kns
 dXE
 vkq
 bKQ
@@ -48221,8 +48215,8 @@ lqI
 lqI
 lqI
 lqI
-cfP
-cfP
+kns
+kns
 lqI
 dXE
 vkq
@@ -48454,7 +48448,7 @@ lqI
 lqI
 oPq
 lqI
-cfP
+kns
 lqI
 oPq
 dXE
@@ -49851,15 +49845,15 @@ cfc
 bKQ
 lqI
 lqI
-cfP
-cfP
-cfP
+kns
+kns
+kns
 lqI
 lqI
 lqI
 lqI
 lqI
-cfP
+kns
 rZn
 evg
 soI
@@ -50084,7 +50078,7 @@ fFp
 bKQ
 lqI
 lqI
-cfP
+kns
 lqI
 lqI
 lqI
@@ -50333,7 +50327,7 @@ rQl
 xHK
 cRP
 iks
-cfP
+kns
 lqI
 wUY
 dSo
@@ -50565,8 +50559,8 @@ lqI
 dXE
 dSo
 rWP
-cfP
-cfP
+kns
+kns
 lqI
 gNZ
 dSo
@@ -51261,7 +51255,7 @@ sIt
 uYE
 lqI
 lqI
-cfP
+kns
 lqI
 lqI
 lqI
@@ -51495,8 +51489,8 @@ jSX
 xfT
 lqI
 lqI
-cfP
-cfP
+kns
+kns
 lqI
 dXE
 sZk
@@ -51729,8 +51723,8 @@ jSX
 epu
 lqI
 lqI
-cfP
-cfP
+kns
+kns
 dXE
 sZk
 bKQ
@@ -65236,8 +65230,8 @@ lqI
 lqI
 iwE
 lqI
-cfP
-cfP
+kns
+kns
 lqI
 lqI
 lqI
@@ -65469,7 +65463,7 @@ lqI
 lqI
 lqI
 oPq
-cfP
+kns
 lqI
 lqI
 lqI
@@ -72484,7 +72478,7 @@ ugo
 fJO
 lTR
 pLJ
-jig
+hNF
 fJO
 qyP
 bDD
@@ -72716,8 +72710,8 @@ fJO
 fJO
 qyP
 lTR
-jig
-jig
+hNF
+hNF
 fJO
 fJO
 fJO
@@ -72950,7 +72944,7 @@ fJO
 fJO
 lTR
 pLJ
-jig
+hNF
 fJO
 fJO
 fJO
