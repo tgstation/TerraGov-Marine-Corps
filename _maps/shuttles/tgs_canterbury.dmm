@@ -3,10 +3,12 @@
 /turf/template_noop,
 /area/template_noop)
 "ab" = (
+/obj/structure/prop/holidays/string_lights/corner,
 /turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/canterbury/cic)
 "ac" = (
 /obj/structure/window/framed/mainship/hull/canterbury,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/plating,
 /area/shuttle/canterbury/cic)
 "ad" = (
@@ -86,12 +88,18 @@
 	name = "General Listening Channel";
 	pixel_y = -28
 	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
 /turf/open/floor/mainship/blue{
 	dir = 10
 	},
 /area/shuttle/canterbury/cic)
 "aq" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
 /turf/open/floor/mainship/blue,
 /area/shuttle/canterbury/cic)
 "ar" = (
@@ -109,6 +117,9 @@
 /obj/item/clipboard,
 /obj/item/pinpointer,
 /obj/machinery/vending/nanomed,
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
 /turf/open/floor/mainship/blue,
 /area/shuttle/canterbury/cic)
 "at" = (
@@ -118,6 +129,9 @@
 	},
 /obj/machinery/light{
 	dir = 4
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
 	},
 /turf/open/floor/mainship/blue{
 	dir = 6
@@ -832,6 +846,42 @@
 	},
 /turf/open/floor/mainship/red,
 /area/shuttle/canterbury)
+"eo" = (
+/obj/structure/prop/holidays/string_lights/corner,
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 8
+	},
+/turf/closed/wall/mainship/outer/canterbury,
+/area/shuttle/canterbury/cic)
+"gI" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 10
+	},
+/turf/closed/wall/mainship/outer/canterbury,
+/area/shuttle/canterbury/cic)
+"hX" = (
+/obj/structure/window/framed/mainship/hull/canterbury,
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/canterbury/cic)
+"sS" = (
+/obj/structure/prop/holidays/string_lights,
+/turf/closed/wall/mainship/outer/canterbury,
+/area/shuttle/canterbury)
+"ve" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/turf/closed/wall/mainship/outer/canterbury,
+/area/shuttle/canterbury)
+"vx" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 1
+	},
+/turf/closed/wall/mainship/outer/canterbury,
+/area/shuttle/canterbury/cic)
 "vY" = (
 /obj/machinery/vending/tool,
 /turf/open/floor/mainship/orange/full,
@@ -864,18 +914,65 @@
 /obj/machinery/loadout_vendor,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
+"Kn" = (
+/obj/structure/prop/holidays/string_lights,
+/turf/closed/wall/mainship/outer/canterbury,
+/area/shuttle/canterbury/cic)
 "KE" = (
 /obj/effect/landmark/start/job/crash/squadmarine,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
+"LF" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/wall/mainship/outer/canterbury,
+/area/shuttle/canterbury)
+"Mi" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 1
+	},
+/turf/closed/wall/mainship/outer/canterbury,
+/area/shuttle/canterbury)
+"Pf" = (
+/obj/structure/cable,
+/obj/structure/flora/tree/pine/xmas/presents,
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/canterbury)
+"Pg" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 1
+	},
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 4
+	},
+/turf/closed/wall/mainship/outer/canterbury,
+/area/shuttle/canterbury/cic)
 "RS" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/mainship/mono,
+/area/shuttle/canterbury)
+"Ua" = (
+/obj/structure/prop/holidays/string_lights/corner,
+/turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/canterbury)
 "UG" = (
 /obj/machinery/marine_selector/clothes/synth,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
+"Wn" = (
+/obj/structure/window/framed/mainship/hull/canterbury,
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/canterbury/cic)
+"Ws" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 6
+	},
+/turf/closed/wall/mainship/outer/canterbury,
+/area/shuttle/canterbury/cic)
 
 (1,1,1) = {"
 aa
@@ -904,8 +1001,8 @@ an
 aa
 aa
 aa
-an
-an
+Ua
+ve
 az
 aH
 aH
@@ -927,7 +1024,7 @@ cl
 aa
 aa
 aa
-an
+sS
 au
 aA
 aA
@@ -950,7 +1047,7 @@ cm
 aa
 aa
 aa
-an
+sS
 av
 aB
 aI
@@ -971,10 +1068,10 @@ cm
 "}
 (5,1,1) = {"
 ab
-ac
-ac
-ab
-ab
+hX
+hX
+Pg
+gI
 cV
 aJ
 aL
@@ -997,7 +1094,7 @@ ac
 ad
 ai
 ap
-ab
+Kn
 cF
 aJ
 cR
@@ -1020,7 +1117,7 @@ ac
 ae
 aj
 aq
-ab
+Kn
 cN
 aJ
 aD
@@ -1046,7 +1143,7 @@ ar
 aw
 bO
 bO
-bO
+Pf
 bO
 ao
 bO
@@ -1066,7 +1163,7 @@ ac
 ag
 aj
 as
-ab
+Kn
 RS
 aJ
 aD
@@ -1089,7 +1186,7 @@ ac
 ah
 am
 at
-ab
+Kn
 cP
 aJ
 cS
@@ -1108,11 +1205,11 @@ an
 an
 "}
 (11,1,1) = {"
-ab
-ac
-ac
-ab
-ab
+vx
+Wn
+Wn
+eo
+Ws
 cQ
 aJ
 cT
@@ -1134,7 +1231,7 @@ cl
 aa
 aa
 aa
-an
+sS
 ax
 cQ
 aI
@@ -1157,7 +1254,7 @@ cm
 aa
 aa
 aa
-an
+sS
 ay
 aF
 aF
@@ -1180,8 +1277,8 @@ cm
 aa
 aa
 aa
-an
-an
+Mi
+LF
 aG
 aK
 aK

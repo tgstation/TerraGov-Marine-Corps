@@ -1407,3 +1407,29 @@
 	pixel_y = -15
 	resistance_flags = RESIST_ALL
 	layer = ABOVE_MOB_LAYER
+
+/obj/structure/prop/holidays
+	projectile_coverage = 0
+	density = 0
+	icon = 'icons/Marine/holiday_props.dmi'
+	desc = "parent object for temporary holiday structures. If you are reading this, go find a mapper and tell them to search up error code: TOO MUCH EGGNOG"//hello future mapper. Next time use the sub types or instance the desc. Thanks -past mapper.
+	layer = 4
+	health = 50
+	anchored = TRUE
+
+/obj/structure/prop/holidays/string_lights
+	name = "M1 pattern festive bulb strings"
+	desc = "Strung from strut to strut, these standard issue M1 pattern 'festive bulb strings' flicker and shimmer to the tune of the output frequency of the Almayer's Engine... or the local power grid. Might want to ask the Bravo's to check which one it is for ya. Ya damn jarhead."
+	icon_state = "string_lights"
+
+
+/obj/structure/prop/holidays/string_lights/corner
+	icon_state = "strings_lights_corner"
+
+/obj/structure/prop/holidays/string_lights/cap
+	icon_state = "string_lights_cap"
+
+/obj/structure/prop/holidays/wreath
+	name = "M1 pattern festive needle torus"
+	desc = "In 2140 after a two different sub levels of the São Luís Bay Underground Habitat burned out (evidence points to a Bladerunner incident, but local police denies such claims) due to actual wreaths made with REAL needles, these have been issued ever since. They're made of ''''''pine'''''' scented poly-kevlon. According to the grunts from the American Corridor, during the SACO riots, protestors would pack these things into pillow cases, forming rudimentary body armor against soft point ballistics."
+	icon_state = "wreath"

@@ -1,54 +1,137 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/turf/template_noop,
-/area/template_noop)
-"b" = (
+"aD" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
 /turf/closed/shuttle/ert{
-	icon_state = "nt20"
+	icon_state = "nt5"
 	},
 /area/shuttle/ert/pmc)
-"c" = (
+"aV" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/ert/pmc)
+"bL" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/turf/closed/shuttle/ert{
+	icon_state = "nt8"
+	},
+/area/shuttle/ert/pmc)
+"cy" = (
+/turf/closed/shuttle/ert{
+	icon_state = "nt1"
+	},
+/area/shuttle/ert/pmc)
+"dH" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 4
+	},
+/turf/closed/shuttle/ert{
+	icon_state = "nt4"
+	},
+/area/shuttle/ert/pmc)
+"eo" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/shuttle/ert{
+	icon_state = "nt17"
+	},
+/area/shuttle/ert/pmc)
+"gk" = (
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin4"
+	},
+/area/shuttle/ert/pmc)
+"hD" = (
+/turf/open/shuttle/dropship/three,
+/area/shuttle/ert/pmc)
+"jA" = (
+/turf/open/shuttle/dropship/eight,
+/area/shuttle/ert/pmc)
+"kc" = (
+/turf/closed/shuttle/ert{
+	icon_state = "rightengine_2";
+	opacity = 0
+	},
+/area/shuttle/ert/pmc)
+"le" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/turf/closed/shuttle/ert{
+	icon_state = "nt12"
+	},
+/area/shuttle/ert/pmc)
+"oN" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/turf/closed/shuttle/ert{
+	icon_state = "nt14"
+	},
+/area/shuttle/ert/pmc)
+"rE" = (
+/turf/closed/shuttle/ert{
+	icon_state = "leftengine_1";
+	opacity = 0
+	},
+/area/shuttle/ert/pmc)
+"rO" = (
 /obj/docking_port/mobile/ert,
+/obj/structure/prop/holidays/string_lights,
 /turf/closed/shuttle/ert{
 	icon_state = "nt27"
 	},
 /area/shuttle/ert/pmc)
-"d" = (
-/turf/closed/shuttle/ert{
-	icon_state = "nt25"
+"rU" = (
+/turf/template_noop,
+/area/template_noop)
+"sV" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 10
 	},
-/area/shuttle/ert/pmc)
-"e" = (
-/turf/closed/shuttle/ert{
-	icon_state = "nt21"
-	},
-/area/shuttle/ert/pmc)
-"f" = (
-/turf/closed/shuttle/ert{
-	icon_state = "nt22"
-	},
-/area/shuttle/ert/pmc)
-"g" = (
-/turf/open/shuttle/dropship/floor,
-/area/shuttle/ert/pmc)
-"h" = (
 /turf/closed/shuttle/ert{
 	icon_state = "nt23"
 	},
 /area/shuttle/ert/pmc)
-"i" = (
+"uo" = (
+/obj/structure/rack,
+/obj/effect/landmark/distress_item,
+/obj/item/storage/firstaid/regular,
+/obj/item/storage/belt/lifesaver/full,
+/obj/structure/prop/holidays/string_lights{
+	dir = 9
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/ert/pmc)
+"uR" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
 /turf/closed/shuttle/ert{
 	icon_state = "nt18"
 	},
 /area/shuttle/ert/pmc)
-"j" = (
-/obj/structure/rack,
-/obj/effect/landmark/distress_item,
-/obj/item/storage/toolbox/mechanical,
-/obj/item/multitool,
-/turf/open/shuttle/dropship/floor,
+"vI" = (
+/turf/closed/shuttle/ert{
+	icon_state = "rightengine_1";
+	opacity = 0
+	},
 /area/shuttle/ert/pmc)
-"k" = (
+"wu" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/turf/closed/shuttle/ert{
+	icon_state = "nt16"
+	},
+/area/shuttle/ert/pmc)
+"xd" = (
 /obj/machinery/light{
 	dir = 1
 	},
@@ -56,126 +139,193 @@
 	icon_state = "rasputin6"
 	},
 /area/shuttle/ert/pmc)
-"l" = (
-/turf/open/shuttle/dropship{
-	icon_state = "floor8"
+"xo" = (
+/obj/effect/landmark/distress,
+/turf/open/shuttle/dropship/three,
+/area/shuttle/ert/pmc)
+"xy" = (
+/turf/closed/shuttle/ert{
+	icon_state = "leftengine_2";
+	opacity = 0
 	},
 /area/shuttle/ert/pmc)
-"m" = (
+"ye" = (
+/turf/closed/shuttle/ert{
+	icon_state = "nt_rightengine"
+	},
+/area/shuttle/ert/pmc)
+"zI" = (
+/turf/closed/shuttle/ert{
+	icon_state = "nt2"
+	},
+/area/shuttle/ert/pmc)
+"AY" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/shuttle/ert{
+	icon_state = "nt13"
+	},
+/area/shuttle/ert/pmc)
+"BI" = (
+/obj/structure/prop/holidays/string_lights,
+/turf/closed/shuttle/ert{
+	icon_state = "nt21"
+	},
+/area/shuttle/ert/pmc)
+"BY" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 8
+	},
+/turf/closed/shuttle/ert{
+	icon_state = "nt5"
+	},
+/area/shuttle/ert/pmc)
+"Cs" = (
+/obj/machinery/computer/shuttle/ert,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/ert/pmc)
+"Du" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
+/turf/open/shuttle/dropship/three,
+/area/shuttle/ert/pmc)
+"Ea" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/shuttle/ert{
+	icon_state = "nt19"
+	},
+/area/shuttle/ert/pmc)
+"FA" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/effect/landmark/distress,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/ert/pmc)
+"Hp" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 6
+	},
+/turf/closed/shuttle/ert{
+	icon_state = "nt22"
+	},
+/area/shuttle/ert/pmc)
+"Jk" = (
+/obj/machinery/door/poddoor/shutters/transit/open,
+/obj/machinery/door/airlock/mainship/generic/ert,
+/turf/open/shuttle/dropship/three,
+/area/shuttle/ert/pmc)
+"Nl" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/ert/pmc)
+"Np" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/turf/closed/shuttle/ert{
+	icon_state = "nt4"
+	},
+/area/shuttle/ert/pmc)
+"Ok" = (
+/turf/closed/shuttle/ert{
+	icon_state = "leftengine_3";
+	opacity = 0
+	},
+/area/shuttle/ert/pmc)
+"Ol" = (
+/turf/closed/shuttle/ert{
+	icon_state = "nt_leftengine"
+	},
+/area/shuttle/ert/pmc)
+"OQ" = (
+/turf/closed/shuttle/ert{
+	icon_state = "nt3"
+	},
+/area/shuttle/ert/pmc)
+"OS" = (
+/obj/structure/bed/chair/dropship/passenger,
+/obj/effect/landmark/distress,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/ert/pmc)
+"Py" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/shuttle/ert{
+	icon_state = "nt9"
+	},
+/area/shuttle/ert/pmc)
+"QV" = (
+/obj/structure/prop/holidays/string_lights/corner,
+/turf/closed/shuttle/ert{
+	icon_state = "nt20"
+	},
+/area/shuttle/ert/pmc)
+"Ro" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/shuttle/dropship/seven,
 /area/shuttle/ert/pmc)
-"n" = (
+"Sk" = (
 /obj/structure/rack,
 /obj/effect/landmark/distress_item,
-/obj/item/storage/firstaid/adv,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/multitool,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/pmc)
-"o" = (
+"Tb" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 1
+	},
 /turf/closed/shuttle/ert{
-	icon_state = "nt19"
+	icon_state = "nt25"
 	},
 /area/shuttle/ert/pmc)
-"p" = (
-/obj/machinery/door/poddoor/shutters/transit/open,
-/obj/machinery/door/airlock/mainship/generic/ert,
-/turf/open/shuttle/dropship/three,
-/area/shuttle/ert/pmc)
-"q" = (
-/obj/effect/landmark/distress,
-/turf/open/shuttle/dropship/three,
-/area/shuttle/ert/pmc)
-"r" = (
-/obj/structure/bed/chair/dropship/passenger,
-/obj/effect/landmark/distress,
-/turf/open/shuttle/dropship/floor,
-/area/shuttle/ert/pmc)
-"s" = (
-/turf/closed/shuttle/ert{
-	icon_state = "nt16"
-	},
-/area/shuttle/ert/pmc)
-"t" = (
+"TH" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
 	},
 /obj/effect/landmark/distress,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/pmc)
-"u" = (
-/obj/structure/bed/chair/dropship/passenger{
+"UM" = (
+/turf/closed/shuttle/ert{
+	icon_state = "rightengine_3";
+	opacity = 0
+	},
+/area/shuttle/ert/pmc)
+"Va" = (
+/obj/structure/prop/holidays/string_lights{
 	dir = 8
 	},
-/obj/effect/landmark/distress,
-/turf/open/shuttle/dropship/floor,
-/area/shuttle/ert/pmc)
-"v" = (
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin4"
-	},
-/area/shuttle/ert/pmc)
-"w" = (
-/turf/open/shuttle/dropship/eight,
-/area/shuttle/ert/pmc)
-"x" = (
-/turf/closed/shuttle/ert{
-	icon_state = "nt17"
-	},
-/area/shuttle/ert/pmc)
-"y" = (
-/turf/closed/shuttle/ert{
-	icon_state = "nt14"
-	},
-/area/shuttle/ert/pmc)
-"z" = (
-/turf/open/shuttle/dropship/three,
-/area/shuttle/ert/pmc)
-"A" = (
 /turf/closed/shuttle/ert{
 	icon_state = "nt15"
 	},
 /area/shuttle/ert/pmc)
-"B" = (
-/turf/closed/shuttle/ert{
-	icon_state = "nt12"
-	},
-/area/shuttle/ert/pmc)
-"C" = (
-/obj/machinery/computer/shuttle/ert,
-/turf/open/shuttle/dropship/floor,
-/area/shuttle/ert/pmc)
-"D" = (
-/turf/closed/shuttle/ert{
-	icon_state = "nt13"
-	},
-/area/shuttle/ert/pmc)
-"E" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/shuttle/dropship/floor,
-/area/shuttle/ert/pmc)
-"F" = (
-/turf/closed/shuttle/ert{
-	icon_state = "nt4"
-	},
-/area/shuttle/ert/pmc)
-"G" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/shuttle/dropship/floor,
-/area/shuttle/ert/pmc)
-"H" = (
+"VP" = (
 /obj/structure/rack,
 /obj/effect/landmark/distress_item,
 /obj/item/storage/firstaid/regular,
 /obj/item/storage/belt/lifesaver/full,
+/obj/structure/prop/holidays/string_lights{
+	dir = 5
+	},
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/pmc)
-"I" = (
+"XQ" = (
+/turf/open/shuttle/dropship{
+	icon_state = "floor8"
+	},
+/area/shuttle/ert/pmc)
+"XV" = (
 /obj/machinery/door/poddoor/shutters/transit/open{
 	dir = 2
 	},
@@ -184,185 +334,118 @@
 	},
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/pmc)
-"J" = (
-/turf/closed/shuttle/ert{
-	icon_state = "nt5"
-	},
+"Zb" = (
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/pmc)
-"K" = (
-/turf/closed/shuttle/ert{
-	icon_state = "nt_leftengine"
-	},
-/area/shuttle/ert/pmc)
-"L" = (
-/turf/closed/shuttle/ert{
-	icon_state = "nt8"
-	},
-/area/shuttle/ert/pmc)
-"M" = (
-/turf/closed/shuttle/ert{
-	icon_state = "nt9"
-	},
-/area/shuttle/ert/pmc)
-"N" = (
-/turf/closed/shuttle/ert{
-	icon_state = "nt_rightengine"
-	},
-/area/shuttle/ert/pmc)
-"O" = (
-/turf/closed/shuttle/ert{
-	icon_state = "rightengine_1";
-	opacity = 0
-	},
-/area/shuttle/ert/pmc)
-"Q" = (
-/turf/closed/shuttle/ert{
-	icon_state = "nt1"
-	},
-/area/shuttle/ert/pmc)
-"R" = (
-/turf/closed/shuttle/ert{
-	icon_state = "nt2"
-	},
-/area/shuttle/ert/pmc)
-"S" = (
-/turf/closed/shuttle/ert{
-	icon_state = "nt3"
-	},
-/area/shuttle/ert/pmc)
-"T" = (
-/turf/closed/shuttle/ert{
-	icon_state = "leftengine_1";
-	opacity = 0
-	},
-/area/shuttle/ert/pmc)
-"U" = (
-/turf/closed/shuttle/ert{
-	icon_state = "rightengine_3";
-	opacity = 0
-	},
-/area/shuttle/ert/pmc)
-"V" = (
-/turf/closed/shuttle/ert{
-	icon_state = "leftengine_2";
-	opacity = 0
-	},
-/area/shuttle/ert/pmc)
-"W" = (
-/turf/closed/shuttle/ert{
-	icon_state = "rightengine_2";
-	opacity = 0
-	},
-/area/shuttle/ert/pmc)
-"X" = (
-/turf/closed/shuttle/ert{
-	icon_state = "leftengine_3";
-	opacity = 0
-	},
+"ZS" = (
+/obj/structure/rack,
+/obj/effect/landmark/distress_item,
+/obj/item/storage/firstaid/adv,
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/pmc)
 
 (1,1,1) = {"
-a
-b
-i
-p
-s
-y
-B
-p
-F
-K
-X
-V
-T
+rU
+QV
+uR
+Jk
+wu
+oN
+le
+Jk
+dH
+Ol
+Ok
+xy
+rE
 "}
 (2,1,1) = {"
-a
-e
-j
-g
-t
-t
-t
-g
-H
-L
-F
-F
-Q
+rU
+BI
+Sk
+Zb
+TH
+TH
+TH
+Zb
+VP
+bL
+Np
+dH
+cy
 "}
 (3,1,1) = {"
-b
-f
-k
-q
-q
-q
-q
-q
-v
-g
-E
-g
-I
+QV
+Hp
+xd
+xo
+xo
+xo
+xo
+xo
+gk
+Zb
+Nl
+Zb
+XV
 "}
 (4,1,1) = {"
-c
-C
-l
-r
-r
-r
-r
-r
-l
-z
-z
-z
-R
+rO
+Cs
+XQ
+OS
+OS
+OS
+OS
+OS
+XQ
+hD
+hD
+Du
+zI
 "}
 (5,1,1) = {"
-d
-h
-m
-q
-q
-q
-q
-q
-w
-g
-G
-g
-I
+Tb
+sV
+Ro
+xo
+xo
+xo
+xo
+xo
+jA
+Zb
+aV
+Zb
+XV
 "}
 (6,1,1) = {"
-a
-e
-n
-g
-u
-u
-u
-g
-H
-M
-J
-J
-S
+rU
+BI
+ZS
+Zb
+FA
+FA
+FA
+Zb
+uo
+Py
+aD
+BY
+OQ
 "}
 (7,1,1) = {"
-a
-d
-o
-p
-x
-A
-D
-p
-J
-N
-U
-W
-O
+rU
+Tb
+Ea
+Jk
+eo
+Va
+AY
+Jk
+BY
+ye
+UM
+kc
+vI
 "}

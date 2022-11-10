@@ -15673,6 +15673,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/engineering/upper_engineering)
 "SC" = (
+/obj/structure/flora/tree/pine/xmas/presents,
 /turf/open/floor/mainship/terragov{
 	dir = 1
 	},
