@@ -942,6 +942,13 @@
 	},
 /turf/open/floor/mainship/red/full,
 /area/shuttle/canterbury)
+"EB" = (
+/obj/structure/prop/holidays/string_lights,
+/obj/structure/prop/holidays/wreath{
+	dir = 6
+	},
+/turf/closed/wall/mainship/outer/canterbury,
+/area/shuttle/canterbury)
 "Fl" = (
 /obj/machinery/loadout_vendor,
 /turf/open/floor/mainship/mono,
@@ -1411,7 +1418,7 @@ bL
 Mp
 Rd
 jq
-Rv
+EB
 iy
 WY
 ac
@@ -1477,7 +1484,7 @@ bN
 Mp
 FZ
 JW
-Rv
+EB
 uZ
 an
 ac
@@ -1708,7 +1715,7 @@ bS
 Mp
 BZ
 JW
-Rv
+EB
 uZ
 an
 ac
@@ -1774,7 +1781,7 @@ ic
 Mp
 UP
 JW
-Rv
+EB
 CA
 an
 ac
