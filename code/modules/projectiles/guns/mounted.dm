@@ -414,7 +414,7 @@
 
 /obj/machinery/deployable/mounted/moveable/atgun
 	var/obj/item/storage/internal/ammo_rack/sponson = /obj/item/storage/internal/ammo_rack
-	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE
+	resistance_flags = XENO_DAMAGEABLE
 	coverage = 75 //has a shield
 
 /obj/item/storage/internal/ammo_rack

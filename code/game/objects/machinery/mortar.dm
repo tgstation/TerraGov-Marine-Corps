@@ -419,6 +419,7 @@
 	deployable_item = /obj/machinery/deployable/mortar/double
 
 /obj/machinery/deployable/mortar/double
+	resistance_flags = XENO_DAMAGEABLE
 	tally_type = TALLY_MORTAR
 	reload_time = 1 SECONDS
 	fire_amount = 2
@@ -438,6 +439,7 @@
 	deployable_item = /obj/machinery/deployable/mortar/howitzer
 
 /obj/machinery/deployable/mortar/howitzer
+	resistance_flags = XENO_DAMAGEABLE
 	pixel_x = -16
 	anchored = FALSE // You can move this.
 	offset_per_turfs = 25
@@ -481,6 +483,7 @@
 	deployable_item = /obj/machinery/deployable/mortar/howitzer/rocket_arty
 
 /obj/machinery/deployable/mortar/howitzer/rocket_arty
+	resistance_flags = XENO_DAMAGEABLE
 	pixel_x = -16
 	anchored = FALSE // You can move this.
 	fire_sound = 'sound/weapons/guns/fire/rocket_arty.ogg'
@@ -510,6 +513,7 @@
 	deployable_item = /obj/machinery/deployable/mortar/howitzer/mlrs
 
 /obj/machinery/deployable/mortar/howitzer/mlrs
+	resistance_flags = XENO_DAMAGEABLE
 	pixel_x = 0
 	anchored = FALSE // You can move this.
 	fire_sound = 'sound/weapons/guns/fire/rocket_arty.ogg'
