@@ -223,7 +223,7 @@
 	)
 	ammotype = /datum/ammo/energy/lasgun/marine/mech
 	obj_integrity = 400
-	energy_drain = 10
+	energy_drain = 20
 	variance = 0
 	projectile_delay = 0.4 SECONDS
 	slowdown = 0.4
@@ -243,7 +243,7 @@
 	)
 	ammotype = /datum/ammo/energy/lasgun/marine/mech/burst
 	obj_integrity = 400
-	energy_drain = 5
+	energy_drain = 10
 	variance = 0
 	projectile_delay = 0.6 SECONDS
 	burst_amount = 3
@@ -265,7 +265,7 @@
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /datum/ammo/energy/lasgun/marine/mech/smg
 	obj_integrity = 400
-	energy_drain = 5
+	energy_drain = 10
 	variance = 0
 	projectile_delay = 0.2 SECONDS
 	slowdown = 0.2
