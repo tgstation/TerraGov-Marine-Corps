@@ -113,6 +113,8 @@
 /// inherited from riding vehicles
 #define VEHICLE_TRAIT "vehicle"
 
+
+
 //added b grilling a food
 #define TRAIT_FOOD_GRILLED "food_grilled"
 
@@ -141,6 +143,7 @@
 #define TRAIT_UNDEFIBBABLE "undefibbable"//human can't be revived
 #define TRAIT_HEALING_INFUSION "healing_infusion"//greatly improves natural healing for xenos
 #define TRAIT_PSY_DRAINED "psy_drained"//mob was drained of life force by a xenos
+#define TRAIT_HIVE_TARGET "hive_target"//mob is targetted for draining by the hive
 #define TRAIT_RESEARCHED "researched" // Whether the thing has been researched/probed
 #define TRAIT_STAGGERIMMUNE	"stagger_immunity" //Immunity to stagger
 #define TRAIT_SLOWDOWNIMMUNE "slowdown_immunity" //Immunity to slowdown
@@ -171,3 +174,6 @@
 #define TRAIT_TURF_BULLET_MANIPULATION "bullet_manipulation" //This tile is doing something to projectile
 // projectile traits
 #define TRAIT_PROJ_HIT_SOMETHING "hit_something" //If projectile hit something on its path
+
+//this mech is melee core boosted
+#define TRAIT_MELEE_CORE "melee_core"

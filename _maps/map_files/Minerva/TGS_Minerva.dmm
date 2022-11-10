@@ -3414,6 +3414,7 @@
 	id = "qm_warehouse";
 	name = "Requisition Warehouse Shutters"
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "jG" = (
@@ -3862,6 +3863,10 @@
 /obj/structure/table/mainship/nometal,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
+"lf" = (
+/obj/effect/decal/cleanable/blood/gibs/robot,
+/turf/open/floor/mainship/mono,
+/area/mainship/living/tankerbunks)
 "lg" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/surgical_tray,
@@ -4619,6 +4624,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/structure/prop/mainship/halfbuilt_mech/vanguard,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
 "nA" = (
@@ -4771,12 +4777,19 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "nX" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/ai_node,
-/turf/open/floor/mainship/purple{
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/area/mainship/living/briefing)
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/squads/req)
 "nY" = (
 /obj/structure/sign/prop1{
 	name = "Squad Leader Preparations"
@@ -5826,6 +5839,12 @@
 /obj/machinery/holopad,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"rd" = (
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "rg" = (
 /obj/machinery/computer/crew,
 /obj/machinery/light/mainship{
@@ -6640,9 +6659,7 @@
 	},
 /area/mainship/living/briefing)
 "tI" = (
-/obj/machinery/computer/mech_builder{
-	dir = 8
-	},
+/obj/effect/decal/cleanable/blood/gibs/robot,
 /turf/open/floor/plating,
 /area/mainship/living/tankerbunks)
 "tJ" = (
@@ -6818,6 +6835,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
+"up" = (
+/obj/machinery/computer/mech_builder{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/mainship/living/tankerbunks)
 "uq" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -7729,6 +7752,12 @@
 	dir = 4
 	},
 /area/space)
+"wO" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/purple{
+	dir = 8
+	},
+/area/mainship/living/briefing)
 "wP" = (
 /obj/structure/table/woodentable,
 /obj/effect/spawner/random/plushie/nospawnninety,
@@ -8557,8 +8586,8 @@
 /area/mainship/living/evacuation)
 "zg" = (
 /obj/docking_port/stationary/ert/target{
-	id = "starboard_target";
-	name = "Starboard"
+	id = "port_target";
+	name = "Port"
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/living/evacuation)
@@ -9118,6 +9147,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "AI" = (
@@ -9347,6 +9377,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
+/obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/tankerbunks)
 "Bm" = (
@@ -9804,6 +9835,9 @@
 /obj/structure/platform{
 	dir = 4
 	},
+/obj/structure/rack,
+/obj/item/stack/sheet/mineral/phoron/medium_stack,
+/obj/item/stack/sheet/mineral/phoron/medium_stack,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
 "CL" = (
@@ -11493,7 +11527,7 @@
 /area/mainship/living/cafeteria_starboard)
 "HE" = (
 /obj/effect/ai_node,
-/turf/open/floor/mech_bay_recharge_floor,
+/turf/open/floor/plating,
 /area/mainship/living/tankerbunks)
 "HF" = (
 /obj/structure/table/woodentable,
@@ -12003,6 +12037,20 @@
 /obj/item/toy/dice,
 /turf/open/floor/wood,
 /area/mainship/hallways/hangar)
+"Jg" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/starboard_hallway)
 "Ji" = (
 /obj/structure/bed/chair/comfy/beige{
 	dir = 8
@@ -14953,6 +15001,8 @@
 /obj/machinery/light/mainship{
 	dir = 4
 	},
+/obj/structure/table/mainship/nometal,
+/obj/item/clothing/head/helmet/marine/robot/heavy,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
 "RQ" = (
@@ -15476,6 +15526,11 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/commandbunks)
+"Tq" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/robot_parts/chest,
+/turf/open/floor/mainship/mono,
+/area/mainship/living/tankerbunks)
 "Tr" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -16285,19 +16340,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
 "VB" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_hallway)
+/turf/open/floor/mech_bay_recharge_floor,
+/area/mainship/living/tankerbunks)
 "VC" = (
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
@@ -23260,11 +23304,11 @@ Wg
 Wg
 Xv
 Xv
-Yr
-Yr
-Yr
-Yr
-Yr
+Xv
+Xv
+Xv
+Xv
+Xv
 Xv
 Xv
 Xv
@@ -23358,11 +23402,11 @@ Xv
 Xv
 Xv
 Xv
-Xv
-Xv
-YS
-Xv
-Xv
+Yr
+Yr
+Yr
+Yr
+Yr
 Xv
 Xv
 Xv
@@ -25377,7 +25421,7 @@ Bw
 bw
 bw
 bw
-bw
+BK
 bw
 Ow
 Al
@@ -25768,8 +25812,8 @@ fg
 pB
 mA
 nz
-Bf
-Bf
+tI
+tI
 Bf
 di
 BC
@@ -25866,9 +25910,9 @@ Bk
 eo
 ro
 gp
-Bf
+VB
 HE
-Bf
+VB
 ad
 yE
 mA
@@ -25901,12 +25945,12 @@ VC
 VC
 VC
 aU
+Xy
+Xy
+Xy
 Xv
-Xv
-YS
-YS
-Xv
-Xv
+Xy
+Xy
 Xy
 Xv
 Xv
@@ -25964,9 +26008,9 @@ fg
 oI
 mA
 yH
+up
 Bf
-tI
-Bf
+up
 qt
 fK
 mA
@@ -25999,7 +26043,7 @@ dz
 VC
 VC
 aU
-Xy
+Xv
 Xv
 Xv
 Xv
@@ -26101,9 +26145,9 @@ Xv
 Xv
 Xv
 Xv
-Xv
-Xv
-Xv
+Xy
+Xy
+Xy
 Xv
 Xv
 Xv
@@ -26200,11 +26244,11 @@ Xv
 Xv
 Xv
 Xv
-YS
-Xv
-YS
-Xv
-Xv
+Yr
+Yr
+Yr
+Yr
+Yr
 Xv
 Xv
 Xv
@@ -26259,7 +26303,7 @@ SA
 SA
 VA
 oI
-oI
+lf
 oI
 oI
 rW
@@ -26283,7 +26327,7 @@ OT
 KC
 Ci
 Ot
-zU
+Jg
 MX
 NH
 QZ
@@ -26293,16 +26337,16 @@ it
 RW
 RX
 Ww
+Xy
+Xy
+Xy
+Xv
+Xy
+Xy
+Xy
 Xv
 Xv
 Xv
-Xv
-Xv
-Yr
-Yr
-Yr
-Yr
-Yr
 Xv
 Xv
 Xv
@@ -26357,7 +26401,7 @@ pR
 SA
 Ih
 oI
-oI
+Tq
 RP
 oI
 Jv
@@ -26391,14 +26435,14 @@ RW
 RW
 RX
 QD
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
 Xy
 Xv
-Xv
-Xv
-Xv
-Xv
-Xv
-YS
 Xv
 Xv
 Xv
@@ -26490,12 +26534,12 @@ Ty
 Vm
 QD
 Xy
+Xy
+Xy
 Xv
 Xv
 Xv
-Xv
-Xv
-Xv
+Xy
 Xv
 Xv
 Xv
@@ -26552,7 +26596,7 @@ jA
 SA
 qV
 gY
-gY
+rd
 gY
 gY
 gY
@@ -26590,12 +26634,12 @@ QD
 Xv
 Xv
 Xv
-Xy
-Xy
+Xv
+Xv
 Xv
 Xy
-Xy
-Xy
+Xv
+Xv
 Xv
 Xy
 Xv
@@ -26863,7 +26907,7 @@ BG
 NB
 dJ
 sK
-SN
+wO
 Hm
 Lp
 SN
@@ -26940,7 +26984,7 @@ jC
 jx
 iL
 kC
-gX
+nX
 vV
 qu
 vi
@@ -27059,7 +27103,7 @@ lZ
 Dk
 Ev
 yD
-nX
+Ho
 Ho
 XL
 Mb
@@ -27263,7 +27307,7 @@ kK
 Ci
 Ci
 Ot
-VB
+zU
 Jo
 NH
 OH

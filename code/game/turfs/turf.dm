@@ -316,6 +316,15 @@
 	if(thisarea.lighting_effect)
 		W.add_overlay(thisarea.lighting_effect)
 
+	if(!W.smoothing_behavior == NO_SMOOTHING)
+		return W
+	else
+		for(var/dirn in GLOB.alldirs)
+			var/turf/D = get_step(W,dirn)
+			if(isnull(D))
+				continue
+			D.smooth_self()
+			D.smooth_neighbors()
 	return W
 
 /// Take off the top layer turf and replace it with the next baseturf down
@@ -509,6 +518,9 @@
 //Does NOT return a message, just a 0 or 1.
 /turf/proc/is_weedable()
 	return !density
+
+/turf/closed/wall/is_weedable()
+	return TRUE
 
 /turf/open/space/is_weedable()
 	return FALSE

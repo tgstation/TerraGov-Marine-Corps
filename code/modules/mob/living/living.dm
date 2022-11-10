@@ -615,7 +615,7 @@ below 100 is not dizzy
 			client.pixel_x = amplitude * sin(0.008 * dizziness * world.time)
 			client.pixel_y = amplitude * cos(0.008 * dizziness * world.time)
 
-		sleep(1)
+		sleep(0.1 SECONDS)
 	//endwhile - reset the pixel offsets to zero
 	is_dizzy = FALSE
 	if(client)

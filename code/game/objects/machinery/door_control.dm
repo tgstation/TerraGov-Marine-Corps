@@ -165,7 +165,7 @@
 		if(M.id == id)
 			M.open()
 
-	sleep(50)
+	sleep(5 SECONDS)
 
 	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
 		if(M.id == id)

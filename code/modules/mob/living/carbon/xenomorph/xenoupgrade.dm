@@ -43,6 +43,10 @@
 	if(queen_chosen_lead)
 		give_rally_abilities() //Give them back their rally hive ability
 
+	if(current_aura) //Updates pheromone strength
+		current_aura.range = 6 + xeno_caste.aura_strength * 2
+		current_aura.strength = xeno_caste.aura_strength
+
 	switch(upgrade)
 		//FIRST UPGRADE
 		if(XENO_UPGRADE_ONE)

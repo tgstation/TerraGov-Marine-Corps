@@ -288,18 +288,3 @@
 	slowdown = 0
 	show_storage = TRUE
 	flags_attach_features = NONE
-
-/obj/item/armor_module/storage/helmet/som_leader/Initialize()
-	. = ..()
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(storage)
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(storage)
-
-/obj/item/armor_module/storage/helmet/som_vet/Initialize()
-	. = ..()
-	new /obj/item/reagent_containers/hypospray/autoinjector/oxycodone(storage)
-	new /obj/item/reagent_containers/hypospray/autoinjector/russian_red(storage)
-
-/obj/item/armor_module/storage/helmet/som/Initialize()
-	. = ..()
-	new /obj/item/reagent_containers/hypospray/autoinjector/oxycodone(storage)
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat(storage)

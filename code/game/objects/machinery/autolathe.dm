@@ -251,7 +251,7 @@
 		//immediately update the autolathe window
 		updateUsrDialog()
 
-		sleep(50)
+		sleep(5 SECONDS)
 
 		busy = 0
 

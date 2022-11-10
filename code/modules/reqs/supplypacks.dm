@@ -31,6 +31,12 @@ OPERATIONS
 	group = "Operations"
 	containertype = /obj/structure/closet/crate
 
+/datum/supply_packs/imports/loot_pack
+	name = "TGMC Loot Pack"
+	notes = "Contains a random, but curated set of items, these packs are valued around 150 to 200 points. Some items can only be acquired from these. Spend responsibly."
+	contains = list(/obj/item/loot_box/tgmclootbox)
+	cost = 100
+
 /datum/supply_packs/operations/beacons_supply
 	name = "supply beacon"
 	contains = list(/obj/item/beacon/supply_beacon)
@@ -282,6 +288,11 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/rocket/recoilless/plasmaloss)
 	cost = 3
 	available_against_xeno_only = TRUE
+
+/datum/supply_packs/weapons/pepperball
+	name = "PB-12 pepperball gun"
+	contains = list(/obj/item/weapon/gun/rifle/pepperball)
+	cost = 10
 
 /datum/supply_packs/weapons/railgun
 	name = "SR-220 Railgun"
@@ -660,6 +671,16 @@ EXPLOSIVES
 	contains = list(/obj/item/mortal_shell/plasmaloss)
 	cost = 1
 	available_against_xeno_only = TRUE
+
+/datum/supply_packs/explosives/mlrs
+	name = "TA-40L Multiple Rocket System"
+	contains = list(/obj/item/mortar_kit/mlrs)
+	cost = 45
+
+/datum/supply_packs/explosives/mlrs_rockets
+	name = "TA-40L MLRS Rocket Pack (x8)"
+	contains = list(/obj/item/storage/box/mlrs_rockets)
+	cost = 3
 
 /datum/supply_packs/explosives/howitzer
 	name = "MG-100Y howitzer"
@@ -1697,7 +1718,7 @@ FACTORY
 /datum/supply_packs/factory/scout_rifle_magazine_refill
 	name = "BR-8 scout rifle magazine assembly refill"
 	contains = list(/obj/item/factory_refill/scout_rifle_magazine_refill)
-	cost = 50
+	cost = 20
 
 /datum/supply_packs/factory/claymorerefill
 	name = "Claymore parts refill"

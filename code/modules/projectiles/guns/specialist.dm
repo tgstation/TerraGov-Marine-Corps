@@ -363,7 +363,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	gun_skill_category = GUN_SKILL_FIREARMS
 	attachable_offset = list("muzzle_x" = 44, "muzzle_y" = 18,"rail_x" = 18, "rail_y" = 24, "under_x" = 31, "under_y" = 15, "stock_x" = 24, "stock_y" = 13)
 
@@ -473,7 +473,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	icon_state = "pepperball"
 	item_state = "pepperball"
 	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
-	max_shells = 70 //codex
+	max_shells = 100 //codex
 	caliber = CALIBER_PEPPERBALL
 	default_ammo_type = /obj/item/ammo_magazine/rifle/pepperball
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/pepperball)
@@ -483,12 +483,13 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	attachable_allowed = list(
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/shoulder_mount,
+		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
 	) // One
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.15 SECONDS
-	aim_speed_modifier = 0.5
+	aim_fire_delay = 0.1 SECONDS
+	aim_speed_modifier = 0.1
 
 	flags_gun_features = GUN_AMMO_COUNTER
 
@@ -812,7 +813,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	default_ammo_type = /obj/item/ammo_magazine/rocket/som/rad
 
 //-------------------------------------------------------
-//SR-220 Railgun
+//RG-220 Railgun
 
 /obj/item/weapon/gun/rifle/railgun
 	name = "\improper RG-220 railgun"
@@ -835,9 +836,10 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	)
 	force = 40
 	wield_delay = 1 SECONDS //You're not quick drawing this.
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 31, "rail_y" = 23, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	attachable_allowed = list(
 		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/marine,
 	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER

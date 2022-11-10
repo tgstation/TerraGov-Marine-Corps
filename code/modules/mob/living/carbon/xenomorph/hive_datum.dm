@@ -905,7 +905,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	RegisterSignal(hijacked_ship, COMSIG_SHUTTLE_SETMODE, .proc/on_hijack_depart)
 
 	for(var/obj/structure/xeno/structure AS in GLOB.xeno_structure)
-		if(!is_ground_level(structure.z))
+		if(!is_ground_level(structure.z) || structure.xeno_structure_flags & DEPART_DESTRUCTION_IMMUNE)
 			continue
 		qdel(structure)
 

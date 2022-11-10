@@ -1,7 +1,7 @@
 ///After how much time of being active we die
 #define FACEHUGGER_DEATH 10 SECONDS
 ///Time it takes to impregnate someone
-#define IMPREGNATION_TIME 12 SECONDS
+#define IMPREGNATION_TIME 10 SECONDS
 
 /**
  *Facehuggers
@@ -538,13 +538,6 @@
 			if(!blocked)
 				M.visible_message(span_danger("[src] smashes against [M]'s [W.name] and rips it off!"))
 				M.dropItemToGround(W)
-			if(ishuman(M)) //Check for camera; if we have one, turn it off.
-				var/mob/living/carbon/human/H = M
-				if(istype(H.wear_ear, /obj/item/radio/headset/mainship/marine))
-					var/obj/item/radio/headset/mainship/marine/R = H.wear_ear
-					if(R.camera.status)
-						R.camera.toggle_cam(null, FALSE) //Turn camera off.
-						to_chat(H, "<span class='danger'>Your headset camera flickers off; you'll need to reactivate it by rebooting your headset HUD!<span>")
 
 	if(blocked)
 		M.visible_message(span_danger("[src] smashes against [M]'s [blocked]!"))
@@ -562,7 +555,6 @@
 		var/hugsound = user.gender == FEMALE ? get_sfx("female_hugged") : get_sfx("male_hugged")
 		playsound(loc, hugsound, 25, 0)
 	if(!sterile && !issynth(user))
-		user.disable_lights(sparks = TRUE, silent = TRUE)
 		var/stamina_dmg = user.maxHealth + user.max_stamina
 		user.apply_damage(stamina_dmg, STAMINA) // complete winds the target
 		user.Unconscious(2 SECONDS)

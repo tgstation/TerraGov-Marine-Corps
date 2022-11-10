@@ -9163,6 +9163,9 @@
 /turf/open/floor/wood,
 /area/sulaco/liaison)
 "aUV" = (
+/obj/machinery/computer/mech_builder{
+	dir = 2
+	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
 	},
@@ -9698,9 +9701,6 @@
 /turf/open/floor/prison/marked,
 /area/sulaco/hallway/lower_main_hall)
 "aZu" = (
-/obj/machinery/computer/mech_builder{
-	dir = 2
-	},
 /obj/machinery/light/mainship{
 	dir = 1
 	},
@@ -10335,6 +10335,9 @@
 /area/sulaco/hydro)
 "bjL" = (
 /obj/effect/decal/cleanable/blood/oil,
+/obj/machinery/computer/mech_builder{
+	dir = 2
+	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
 	},
@@ -13288,7 +13291,9 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
 "fsW" = (
-/obj/structure/prop/mainship/halfbuilt_mech/vanguard,
+/obj/structure/rack,
+/obj/item/stack/sheet/mineral/phoron/medium_stack,
+/obj/item/stack/sheet/mineral/phoron/medium_stack,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "ftq" = (
@@ -21621,6 +21626,7 @@
 	name = "Observation Windows";
 	pixel_x = 30
 	},
+/obj/structure/prop/mainship/halfbuilt_mech/vanguard,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "qMX" = (

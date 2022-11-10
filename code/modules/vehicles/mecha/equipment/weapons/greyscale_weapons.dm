@@ -465,7 +465,7 @@
 		return ..()
 
 	//try dash to target
-	var/laser_dash_range = LASER_DASH_RANGE_NORMAL
+	var/laser_dash_range = HAS_TRAIT(chassis, TRAIT_MELEE_CORE) ? LASER_DASH_RANGE_ENHANCED : LASER_DASH_RANGE_NORMAL
 
 	chassis.add_filter("dash_blur", 1, radial_blur_filter(0.3))
 	icon_state += "_on"
@@ -496,13 +496,20 @@
 
 ///executes a melee attack in the direction that the mech is facing
 /obj/item/mecha_parts/mecha_equipment/laser_sword/proc/execute_melee(mob/source, list/modifiers)
-	var/turf/target = get_step(chassis, chassis.dir)
-	chassis.do_attack_animation(target, ATTACK_EFFECT_LASERSWORD)
+	var/list/turf/targets
+	if(HAS_TRAIT(chassis, TRAIT_MELEE_CORE))
+		targets = list(get_step(chassis, chassis.dir), get_step(chassis, turn(chassis.dir, 45)), get_step(chassis, turn(chassis.dir, -45)))
+	else
+		targets = list(get_step(chassis, chassis.dir))
+	if(!targets[1])
+		return
 	playsound(chassis, 'sound/mecha/weapons/laser_sword.ogg', 30)
 
 	var/old_intent = source.a_intent
 	source.a_intent = INTENT_HARM
-	for(var/atom/movable/slashed AS in target)
-		slashed.attackby(src, source, list2params(modifiers))
+	for(var/turf/target AS in targets)
+		chassis.do_attack_animation(target, ATTACK_EFFECT_LASERSWORD)
+		for(var/atom/movable/slashed AS in target)
+			slashed.attackby(src, source, list2params(modifiers))
 	source.a_intent = old_intent
 
