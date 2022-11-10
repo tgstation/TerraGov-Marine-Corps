@@ -306,13 +306,10 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 			if(isnull(selected_visor))
 				return FALSE
 			currently_assembling = TRUE
-			in_cooldown = TRUE
-			update_icon()
-			spawn(30 MINUTES)
-				in_cooldown = FALSE
-				update_icon()
+			cooldown()
 			addtimer(CALLBACK(src, .proc/deploy_mech), 1 SECONDS)
 			playsound(get_step(src, dir), 'sound/machines/elevator_move.ogg', 50, 0)
+			addtimer(CALLBACK(src, .proc/cooldown), 60 SECONDS)
 			ui.close()
 			return FALSE
 
@@ -390,6 +387,14 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 			if(!ispath(new_ammo, /obj/item/mecha_ammo/vendable))
 				return FALSE
 			new new_ammo(get_turf(src))
+
+/obj/machinery/computer/mech_builder/proc/cooldown()
+	if(in_cooldown)
+		in_cooldown = FALSE
+		update_icon()
+		return
+	in_cooldown = TRUE
+	update_icon()
 
 ///Actually deploys mech after a short delay to let people spot it coming down
 /obj/machinery/computer/mech_builder/proc/deploy_mech()
