@@ -40,7 +40,7 @@
 		if(alerted_human.faction == supplying_faction)
 			humans_to_alert -= alerted_human
 
-	priority_announce("Incoming [supplying_faction] supply drop detected, ETA [(drop_delay - alert_delay) / 600] minutes. Drop zone estimated as [target_turf.loc].", "Bluespace Tactical Radar Status", sound = 'sound/AI/distressreceived.ogg', receivers = (humans_to_alert + GLOB.observer_list))
+	priority_announce("Incoming [supplying_faction] supply drop detected, ETA [(drop_delay - alert_delay) / 600] minutes. Drop zone estimated as [target_turf.loc].", "Bluespace Tactical Scanner Status", sound = 'sound/AI/distressreceived.ogg', receivers = (humans_to_alert + GLOB.observer_list))
 
 
 ///deploys the actual supply drop
