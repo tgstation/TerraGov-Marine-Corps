@@ -4,7 +4,6 @@
 		return
 	hive.upgrade_xeno(src, upgrade, newlevel)
 	upgrade = newlevel
-	upgrade_stored = 0
 	if(!silent)
 		visible_message(span_xenonotice("\The [src] begins to twist and contort."), \
 		span_xenonotice("We begin to twist and contort."))
