@@ -309,7 +309,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 			cooldown()
 			addtimer(CALLBACK(src, .proc/deploy_mech), 1 SECONDS)
 			playsound(get_step(src, dir), 'sound/machines/elevator_move.ogg', 50, 0)
-			addtimer(CALLBACK(src, .proc/cooldown), 60 SECONDS)
+			addtimer(CALLBACK(src, .proc/cooldown), 30 MINUTES)
 			ui.close()
 			return FALSE
 
