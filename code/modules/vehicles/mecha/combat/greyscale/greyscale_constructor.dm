@@ -175,6 +175,19 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	current_stats["slowdown"] = slowdown
 	current_stats["armor"] = armor
 
+/obj/machinery/computer/mech_builder/update_icon()
+	..()
+
+	// Cooldown
+	if(in_cooldown)
+		icon_state = "[initial(icon_state)]_cd"
+
+		if(machine_stat & (BROKEN|DISABLED))
+			icon_state += "b"
+
+		else if(machine_stat & NOPOWER)
+			icon_state += "0"
+
 /obj/machinery/computer/mech_builder/can_interact(mob/user)
 	. = ..()
 	if(!.)
@@ -294,8 +307,10 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 				return FALSE
 			currently_assembling = TRUE
 			in_cooldown = TRUE
+			update_icon()
 			spawn(30 MINUTES) // NEEDS FEEDBACK, MAYBE A TIMER WHILE EXAMINING OR A CHANGE IN THE SPRITE
 				in_cooldown = FALSE
+				update_icon()
 			addtimer(CALLBACK(src, .proc/deploy_mech), 1 SECONDS)
 			playsound(get_step(src, dir), 'sound/machines/elevator_move.ogg', 50, 0)
 			ui.close()
