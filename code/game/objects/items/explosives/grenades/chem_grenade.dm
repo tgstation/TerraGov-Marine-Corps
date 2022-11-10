@@ -243,7 +243,6 @@
 	desc = "Contains construction nanites ready to turn a small area into razorwire after a few seconds. DO NOT ENTER AREA WHILE ACTIVE."
 	icon_state = "grenade_razorburn"
 	item_state = "grenade_razorburn"
-	dangerous = FALSE
 	stage = CG_READY
 	icon_state_mini = "grenade_chem_yellow"
 
@@ -264,7 +263,6 @@
 	name = "Razorburn Canister"
 	desc = "Contains construction nanites ready to turn a large area into razorwire after a few seconds. DO NOT ENTER AREA WHILE ACTIVE."
 	icon_state = "grenade_large_razorburn"
-	dangerous = FALSE
 	stage = CG_READY
 	icon_state_mini = "grenade_chem_yellow"
 
