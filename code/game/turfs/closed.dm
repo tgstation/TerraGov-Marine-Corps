@@ -45,6 +45,15 @@
 	smoothing_behavior = DIAGONAL_SMOOTHING
 	smoothing_groups = SMOOTH_MINERAL_STRUCTURES
 
+/turf/closed/mineral/smoothoutdoor
+	name = "rock"
+	icon = 'icons/turf/walls/lvwall.dmi'
+	icon_state = "lvwall-0-0-0-0"
+	walltype = "lvwall"
+	smoothing_behavior = DIAGONAL_SMOOTHING
+	smoothing_groups = SMOOTH_MINERAL_STRUCTURES
+	open_turf_type = /turf/open/floor/plating/ground/mars/random/dirt
+
 /turf/closed/mineral/smooth/indestructible
 	resistance_flags = RESIST_ALL
 
