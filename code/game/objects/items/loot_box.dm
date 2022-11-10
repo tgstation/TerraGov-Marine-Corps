@@ -82,17 +82,11 @@
 	name = "Supply drop"
 	desc = "A box of valuable military equipment"
 	icon = 'icons/obj/items/items.dmi'
-	icon_state = "lootbox" //to change
-	item_state = "lootbox"	//to change
 	w_class = WEIGHT_CLASS_GIGANTIC
+	slowdown = 1 //You won't be running off with this
 	rolls = 4
+	weight_list = list(rare_list = 20, uncommon_list = 30, common_list = 40)
 
-	legendary_list = list(
-		/obj/item/weapon/karambit,
-		/obj/item/weapon/karambit/fade,
-		/obj/item/weapon/karambit/case_hardened,
-		/obj/vehicle/ridden/motorbike,
-	)
 	rare_list = list(
 		/obj/effect/supply_drop/heavy_armor,
 		/obj/effect/supply_drop/grenadier,
@@ -121,8 +115,62 @@
 		/obj/effect/supply_drop/standard_shotgun,
 	)
 
+/obj/item/loot_box/supply_drop/som
+	name = "Supply drop"
+	desc = "A box of valuable SOM military equipment"
+	icon = 'icons/obj/items/items.dmi'
+	w_class = WEIGHT_CLASS_GIGANTIC
+	rolls = 4
 
-//put these somewhere else in a bit
+	rare_list = list(
+		/obj/effect/supply_drop/culverin,
+		/obj/effect/supply_drop/caliver,
+		/obj/effect/supply_drop/som_shotgun_burst,
+	)
+	uncommon_list = list(
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope,
+		/obj/effect/supply_drop/som_rifle_ap,
+		/obj/effect/supply_drop/som_smg_ap,
+		/obj/effect/supply_drop/som_rpg,
+		/obj/effect/supply_drop/som_flamer,
+		/obj/item/storage/belt/lifesaver/som/quick,
+		/obj/item/storage/belt/rig/medical,
+		/obj/effect/supply_drop/charger,
+	)
+	common_list = list(
+		/obj/effect/supply_drop/som_armor_upgrades,
+		/obj/effect/supply_drop/medical_basic,
+		/obj/item/storage/pouch/firstaid/som/combat_patrol,
+		/obj/item/storage/pouch/medical_injectors/som/firstaid,
+		/obj/item/storage/pouch/medical_injectors/som/medic,
+		/obj/effect/supply_drop/som_rifle,
+		/obj/effect/supply_drop/som_smg,
+		/obj/effect/supply_drop/som_shotgun,
+		/obj/effect/supply_drop/som_mg,
+	)
+
+//Alien supply drop, how'd they get a bluespace teleporter?
+/obj/effect/supply_drop/xenomorph/Initialize()
+	. = ..()
+	addtimer(CALLBACK(src, .proc/spawn_larva), 1)
+
+/obj/effect/supply_drop/xenomorph/proc/spawn_larva()
+	var/mob/picked = get_alien_candidate()
+	var/mob/living/carbon/xenomorph/larva/new_xeno
+
+	new_xeno = new(loc)
+
+	new_xeno.hivenumber = XENO_HIVE_NORMAL
+	new_xeno.update_icons()
+
+	//If we have a candidate, transfer it over.
+	if(picked)
+		picked.mind.transfer_to(new_xeno, TRUE)
+		to_chat(new_xeno, span_xenoannounce("The Queen Mother has hurled us through Bluespace, we live for the hive!"))
+		new_xeno << sound('sound/effects/xeno_newlarva.ogg')
+	qdel(src)
+
+//The actual drop sets
 /obj/effect/supply_drop/medical_basic/Initialize()
 	. = ..()
 	new /obj/item/storage/firstaid/adv(loc)
@@ -226,4 +274,95 @@
 	. = ..()
 	new /obj/item/weapon/gun/shotgun/pump/t35/pointman(loc)
 	new /obj/item/storage/belt/shotgun/mixed(loc)
+	qdel(src)
+
+//SOM drops
+/obj/effect/supply_drop/gorgon_armor/Initialize()
+	. = ..()
+	new /obj/item/clothing/head/modular/som/leader(loc)
+	new /obj/item/clothing/suit/modular/som/heavy/leader/valk(loc)
+	qdel(src)
+
+/obj/effect/supply_drop/som_mg/Initialize()
+	. = ..()
+	new /obj/item/weapon/gun/rifle/som_mg/standard(loc)
+	new /obj/item/ammo_magazine/som_mg(loc)
+	new /obj/item/ammo_magazine/som_mg(loc)
+	new /obj/item/ammo_magazine/som_mg(loc)
+	qdel(src)
+
+/obj/effect/supply_drop/som_rifle/Initialize()
+	. = ..()
+	new /obj/item/weapon/gun/rifle/som/standard(loc)
+	new /obj/item/storage/belt/marine/som/som_rifle(loc)
+	qdel(src)
+
+/obj/effect/supply_drop/som_rifle_ap/Initialize()
+	. = ..()
+	new /obj/item/weapon/gun/rifle/som/veteran(loc)
+	new /obj/item/storage/belt/marine/som/som_rifle_ap(loc)
+	qdel(src)
+
+/obj/effect/supply_drop/som_smg/Initialize()
+	. = ..()
+	new /obj/item/weapon/gun/smg/som/scout(loc)
+	new /obj/item/storage/belt/marine/som/som_smg(loc)
+	qdel(src)
+
+/obj/effect/supply_drop/som_smg_ap/Initialize()
+	. = ..()
+	new /obj/item/weapon/gun/smg/som/veteran(loc)
+	new /obj/item/storage/belt/marine/som/som_smg_ap(loc)
+	qdel(src)
+
+/obj/effect/supply_drop/som_shotgun/Initialize()
+	. = ..()
+	new /obj/item/weapon/gun/shotgun/som/pointman(loc)
+	new /obj/item/storage/belt/shotgun/som/mixed(loc)
+	qdel(src)
+
+/obj/effect/supply_drop/som_shotgun_burst/Initialize()
+	. = ..()
+	new /obj/item/weapon/gun/shotgun/som/burst/pointman(loc)
+	new /obj/item/storage/belt/shotgun/som/flechette(loc)
+	qdel(src)
+
+/obj/effect/supply_drop/som_rpg/Initialize()
+	. = ..()
+	new /obj/item/storage/holster/backholster/rpg/som/war_crimes(loc)
+	new /obj/item/clothing/head/modular/som/mithridatius(loc)
+	new /obj/item/clothing/suit/modular/som/heavy/mithridatius(loc)
+	qdel(src)
+
+/obj/effect/supply_drop/som_flamer/Initialize()
+	. = ..()
+	new /obj/item/weapon/gun/flamer/som/mag_harness(loc)
+	new /obj/item/ammo_magazine/flamer_tank/backtank(loc)
+	new /obj/item/clothing/suit/modular/som/heavy/pyro(loc)
+	new /obj/item/tool/extinguisher(loc)
+	qdel(src)
+
+/obj/effect/supply_drop/som_armor_upgrades/Initialize()
+	. = ..()
+	new /obj/item/clothing/head/modular/som/veteran/lorica(loc)
+	new /obj/item/clothing/suit/modular/som/heavy/lorica(loc)
+	new /obj/item/weapon/shield/riot/marine/som(loc)
+	qdel(src)
+
+/obj/effect/supply_drop/charger/Initialize()
+	. = ..()
+	new /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/scout(loc)
+	new /obj/item/storage/belt/marine/som/volkite(loc)
+	qdel(src)
+
+/obj/effect/supply_drop/caliver/Initialize()
+	. = ..()
+	new /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/standard(loc)
+	new /obj/item/storage/belt/marine/som/volkite(loc)
+	qdel(src)
+
+/obj/effect/supply_drop/culverin/Initialize()
+	. = ..()
+	new /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin/magharness(loc)
+	new /obj/item/cell/lasgun/volkite/powerpack(loc)
 	qdel(src)

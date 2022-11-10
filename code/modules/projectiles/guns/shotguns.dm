@@ -749,6 +749,10 @@
 	extra_delay = -0.2 SECONDS
 	default_ammo_type = /datum/ammo/bullet/shotgun/flechette
 
+/obj/item/weapon/gun/shotgun/som/burst/pointman
+	default_ammo_type = /datum/ammo/bullet/shotgun/flechette
+	starting_attachment_types = list(/obj/item/attachable/bayonet, /obj/item/attachable/motiondetector)
+
 //-------------------------------------------------------
 //Inbuilt launcher for the V-31
 /obj/item/weapon/gun/shotgun/micro_grenade

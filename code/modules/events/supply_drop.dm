@@ -29,7 +29,7 @@
 ///sets the target for this event, and notifies the hive
 /datum/round_event/supply_drop/proc/set_target(turf/target_turf)
 	var/supplying_faction = pick(SSticker.mode.factions)
-	priority_announce("Friendly supply drop arriving in AO in [drop_delay / 600] minutes. Drop zone at [target_turf.loc]", "Short Range Tactical Radar Status", sound = 'sound/AI/distressreceived.ogg', receivers = (GLOB.alive_human_list_faction[supplying_faction] + GLOB.observer_list))
+	priority_announce("Friendly supply drop arriving in AO in [drop_delay / 600] minutes. Drop zone at [target_turf.loc].", "Bluespace Tactical Scanner Status", sound = 'sound/AI/distressreceived.ogg', receivers = (GLOB.alive_human_list_faction[supplying_faction] + GLOB.observer_list))
 	addtimer(CALLBACK(src, .proc/alert_hostiles, target_turf, supplying_faction), alert_delay)
 	addtimer(CALLBACK(src, .proc/drop_supplies, target_turf, supplying_faction), drop_delay)
 
@@ -40,12 +40,19 @@
 		if(alerted_human.faction == supplying_faction)
 			humans_to_alert -= alerted_human
 
-	priority_announce("[supplying_faction] supply drop detected, ETA [(drop_delay - alert_delay) / 600] minutes. Drop zone estimated as [target_turf.loc]", "Short Range Tactical Radar Status", sound = 'sound/AI/distressreceived.ogg', receivers = (humans_to_alert + GLOB.observer_list))
+	priority_announce("Incoming [supplying_faction] supply drop detected, ETA [(drop_delay - alert_delay) / 600] minutes. Drop zone estimated as [target_turf.loc].", "Bluespace Tactical Radar Status", sound = 'sound/AI/distressreceived.ogg', receivers = (humans_to_alert + GLOB.observer_list))
 
 
 ///deploys the actual supply drop
 /datum/round_event/supply_drop/proc/drop_supplies(turf/target_turf, faction)
-	//rng rolls a faction loot box, and deploys it to the target turf
-	//message to both factions that the drop has actually occured
-	new /obj/item/loot_box/supply_drop(target_turf) //placeholder
+	priority_announce("[faction] supply drop Materialisation detected at [target_turf.loc].", "Bluespace Tactical Scanner Status", sound = 'sound/AI/distressreceived.ogg', receivers = (GLOB.alive_human_list + GLOB.observer_list))
+	new /obj/item/explosive/grenade/flare/on(target_turf)
+	switch(faction)
+		if(FACTION_SOM)
+			new /obj/item/loot_box/supply_drop/som(target_turf)
+		if(FACTION_ALIEN)
+			new /obj/effect/supply_drop/xenomorph(target_turf)
+		else
+			new /obj/item/loot_box/supply_drop(target_turf) //Marine box is the default
+	playsound(target_turf,'sound/effects/phasein.ogg', 80, FALSE)
 
