@@ -345,7 +345,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 /datum/action/xeno_action/activable/call_younger
 	name = "Call of younger"
 	action_icon_state = "call_younger"
-	mechanics_text = "Appeals to the larva inside the Marine. The Marine loses his balance at the cost of larva stage."
+	mechanics_text = "Appeals to the larva inside the Marine. The Marine loses his balance, and larva's progress accelerates."
 	ability_name = "call younger"
 	plasma_cost = 150
 	cooldown_timer = 20 SECONDS
@@ -392,7 +392,6 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	var/obj/item/alien_embryo/young = locate() in victim
 	var/debuff = young.stage + 1
 	var/strength = (debuff + X.xeno_caste.aura_strength)
-	var/damage = strength * 2
 	var/stamina_dmg = (victim.maxHealth + victim.max_stamina) * strength * 0.1
 
 
@@ -401,7 +400,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	victim.emote("scream")
 
 	victim.apply_effects(1, 0.5)
-	victim.apply_damage(damage, BRUTE, BODY_ZONE_CHEST)
+	victim.apply_damage(strength * 2, BRUTE, BODY_ZONE_CHEST)
 	var/datum/internal_organ/O
 	for(var/i in list("heart", "lungs", "liver"))
 		O = victim.internal_organs_by_name[i]
