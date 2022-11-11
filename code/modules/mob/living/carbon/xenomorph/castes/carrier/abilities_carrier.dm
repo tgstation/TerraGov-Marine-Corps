@@ -358,6 +358,11 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
+/datum/action/xeno_action/activable/call_younger/proc/check_los(atom/A)
+	if(!line_of_sight(owner, A))
+		return FALSE
+	return TRUE
+
 /datum/action/xeno_action/activable/call_younger/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
 	if(!.)
@@ -380,7 +385,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 				livingtarget.balloon_alert(owner, "We cannot call from the dead")
 			return FALSE
 
-	if(!line_of_sight(owner, A)) //Need line of sight.
+	if(!check_los(A)) //Need line of sight.
 		if(!silent)
 			A.balloon_alert(owner, "We require line of sight to call them!")
 		return FALSE
@@ -389,13 +394,18 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 /datum/action/xeno_action/activable/call_younger/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/human/victim = A
-	var/obj/item/alien_embryo/young = locate() in victim
-	var/debuff = young.stage + 1
-	var/strength = (debuff + X.xeno_caste.aura_strength) * 0.1
-	var/stamina_dmg = (victim.maxHealth + victim.max_stamina) * strength
-
 
 	owner.face_atom(victim)
+	if(!do_after(X, 0.5 SECONDS, TRUE, user_display = BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/check_los, victim)))
+		return fail_activate()
+
+	if(!can_use_ability(A))
+		return fail_activate()
+
+	var/obj/item/alien_embryo/young = locate() in victim
+	var/debuff = young.stage + 1
+	var/stamina_dmg = (victim.maxHealth + victim.max_stamina) * (debuff + X.xeno_caste.aura_strength) * 0.1
+
 	X.emote("roar5")
 	victim.emote("scream")
 
