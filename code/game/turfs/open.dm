@@ -388,6 +388,10 @@
 	if (AM)
 		thing_to_check = list(AM)
 	for(var/thing in thing_to_check)
+		if(ismecha(thing))
+			var/obj/vehicle/sealed/mecha/burned_mech = thing
+			burned_mech.take_damage(rand(40, 120), BURN)
+			. = 1
 		if(isobj(thing))
 			var/obj/O = thing
 			O.fire_act(10000, 1000)
