@@ -391,7 +391,7 @@
 		if(ismecha(thing))
 			var/mechdamage = (rand(40, 120))
 			var/obj/vehicle/sealed/mecha/burned_mech = thing
-			burned_mech.take_damage(mechdamage , BURN)
+			burned_mech.take_damage(mechdamage, BURN)
 			log_message("Received [mechdamage] burn damage from lava", LOG_MECHA, color="orange")
 			. = 1
 
