@@ -337,3 +337,89 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	turret.ammo = GLOB.ammo_list[GLOB.hugger_to_ammo[X.selected_hugger_type]]
 	succeed_activate()
 	add_cooldown()
+
+// ***************************************
+// *********** Call of younger
+// ***************************************
+
+/datum/action/xeno_action/activable/call_younger
+	name = "Call of younger"
+	action_icon_state = "call_younger"
+	mechanics_text = "Appeals to the larva inside the Marine. The Marine loses his balance at the cost of larva stage."
+	ability_name = "call younger"
+	plasma_cost = 100
+	cooldown_timer = 12 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CALL_YOUNGER,
+	)
+
+/datum/action/xeno_action/activable/call_younger/on_cooldown_finish()
+	to_chat(owner, span_notice("We are ready to make another call"))
+	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+	return ..()
+
+/datum/action/xeno_action/activable/call_younger/can_use_ability(atom/A, silent, override_flags)
+	. = ..()
+	if(!.)
+		return
+
+	if(!ishuman(A))
+		if(!silent)
+			A.balloon_alert(owner, "It's not a human")
+		return FALSE
+
+	if(!(locate(/obj/item/alien_embryo) in A))
+		if(!silent)
+			A.balloon_alert(owner, "There is no younger one inside him")
+		return FALSE
+
+	if(isliving(A))
+		var/mob/living/livingtarget = A
+		if(livingtarget.stat == DEAD)
+			if(!silent)
+				livingtarget.balloon_alert(owner, "We cannot call from the dead")
+			return FALSE
+
+	if(!line_of_sight(owner, A)) //Need line of sight.
+		if(!silent)
+			A.balloon_alert(owner, "We require line of sight to call them!")
+		return FALSE
+	return TRUE
+
+/datum/action/xeno_action/activable/call_younger/use_ability(atom/A)
+	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/human/victim = A
+	var/obj/item/alien_embryo/young = locate() in victim
+	var/debuff = young.stage + 1
+	var/strength = (debuff + X.xeno_caste.aura_strength)
+	var/damage = strength * 2
+	var/stamina_dmg = (victim.maxHealth + victim.max_stamina) * strength * 0.1
+
+
+	owner.face_atom(victim)
+	X.emote("roar5")
+	victim.emote("scream")
+
+	victim.apply_effects(1, 0.5)
+	victim.apply_damage(damage, BRUTE, BODY_ZONE_CHEST)
+	var/datum/internal_organ/O
+	for(var/i in list("heart", "lungs", "liver"))
+		O = victim.internal_organs_by_name[i]
+		O.take_damage(strength)
+	victim.adjust_slowdown(debuff)
+	victim.apply_damage(stamina_dmg, STAMINA)
+	victim.throw_at(owner, 3, 1, owner)
+
+	owner.visible_message(span_xenowarning("\the [owner] emits an unusual roar!"), \
+	span_xenowarning("We called out to the younger one inside [victim]!"))
+	victim.visible_message(span_xenowarning("\The [victim] loses his balance, falling to the side!"), \
+	span_xenowarning("You feel like something inside you is tearing out!"))
+
+	if(young.stage > 1 && young.stage < 5)
+		young.stage++
+	else if(young.stage == 6)
+		var/mob/living/carbon/xenomorph/larva/L = locate() in victim
+		L?.initiate_burst(victim, 0.5)
+
+	succeed_activate()
+	add_cooldown()

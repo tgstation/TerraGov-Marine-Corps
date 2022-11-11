@@ -151,7 +151,7 @@
 	stage = 6
 
 
-/mob/living/carbon/xenomorph/larva/proc/initiate_burst(mob/living/carbon/victim)
+/mob/living/carbon/xenomorph/larva/proc/initiate_burst(mob/living/carbon/victim, timeburst = 3)
 	if(victim.chestburst || loc != victim)
 		return
 
@@ -166,7 +166,7 @@
 
 	victim.emote_burstscream()
 
-	addtimer(CALLBACK(src, .proc/burst, victim), 3 SECONDS)
+	addtimer(CALLBACK(src, .proc/burst, victim), timeburst SECONDS)
 
 
 /mob/living/carbon/xenomorph/larva/proc/burst(mob/living/carbon/victim)
