@@ -77,8 +77,6 @@
 	while (L && !isturf(L))
 		if(iscarbon(L))// if we're a non immune mob inside an immune mob we have to reconsider if that mob is immune to protect ourselves
 			var/mob/living/carbon/the_mob = L
-			if(the_mob.wear_mask)	//safety first
-				return TRUE
 			if(the_mob.status_flags & INCORPOREAL)
 				return TRUE
 		L = L.loc //Check parent items immunities (recurses up to the turf)
