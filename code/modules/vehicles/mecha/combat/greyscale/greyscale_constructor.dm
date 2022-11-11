@@ -391,7 +391,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 //these two procs lock and unlock the computer, it takes 20 minutes after a mech dies until a new mech can be created
 /obj/machinery/computer/mech_builder/proc/lock()
 	if(locked)
-		addtimer(CALLBACK(src, .proc/unlock), 20 SECONDS)
+		addtimer(CALLBACK(src, .proc/unlock), 20 MINUTES)
 		return
 	locked = TRUE
 	update_icon()
