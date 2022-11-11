@@ -9,7 +9,7 @@
 	wound_type = "hivelord" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 17
+	melee_damage = 21
 
 	// *** Speed *** //
 	speed = 0.4
@@ -21,7 +21,7 @@
 	plasma_icon_state = "hivelord_plasma"
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 375
 
 	// *** Evolution *** //
 	evolution_threshold = 180
@@ -91,7 +91,7 @@
 	plasma_gain = 60
 
 	// *** Health *** //
-	max_health = 325
+	max_health = 405
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_TWO_MATURE_THRESHOLD
@@ -112,7 +112,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 25
 
 	// *** Speed *** //
 	speed = 0.2
@@ -122,7 +122,7 @@
 	plasma_gain = 63
 
 	// *** Health *** //
-	max_health = 340
+	max_health = 425
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_TWO_ELDER_THRESHOLD
@@ -154,7 +154,7 @@
 	plasma_gain = 65
 
 	// *** Health *** //
-	max_health = 350
+	max_health = 440
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_TWO_ANCIENT_THRESHOLD
@@ -177,7 +177,7 @@
 	upgrade = XENO_UPGRADE_FOUR
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 25
 
 	// *** Speed *** //
 	speed = 0.1
@@ -187,7 +187,7 @@
 	plasma_gain = 65
 
 	// *** Health *** //
-	max_health = 350
+	max_health = 440
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 20, FIRE = 30, ACID = 20)

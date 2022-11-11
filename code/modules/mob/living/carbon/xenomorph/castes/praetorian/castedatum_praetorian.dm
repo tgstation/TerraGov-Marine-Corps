@@ -9,7 +9,7 @@
 	wound_type = "praetorian" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 25
 
 	// *** Speed *** //
 	speed = -0.2
@@ -19,7 +19,7 @@
 	plasma_gain = 50
 
 	// *** Health *** //
-	max_health = 290
+	max_health = 365
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_YOUNG_THRESHOLD
@@ -81,7 +81,7 @@
 	plasma_gain = 60
 
 	// *** Health *** //
-	max_health = 320
+	max_health = 400
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_MATURE_THRESHOLD
@@ -105,7 +105,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 23
+	melee_damage = 29
 
 	// *** Speed *** //
 	speed = -0.4
@@ -115,7 +115,7 @@
 	plasma_gain = 70
 
 	// *** Health *** //
-	max_health = 340
+	max_health = 425
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_ELDER_THRESHOLD
@@ -140,7 +140,7 @@
 	ancient_message = "We are the strongest ranged fighter around. Our spit is devastating and we can fire nearly a constant stream."
 
 	// *** Melee Attacks *** //
-	melee_damage = 23
+	melee_damage = 29
 
 	// *** Speed *** //
 	speed = -0.5
@@ -150,7 +150,7 @@
 	plasma_gain = 80
 
 	// *** Health *** //
-	max_health = 360
+	max_health = 450
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_ANCIENT_THRESHOLD
@@ -175,7 +175,7 @@
 	primordial_message = "The strongest of acids flows through our veins, let's reduce them to dust."
 
 	// *** Melee Attacks *** //
-	melee_damage = 23
+	melee_damage = 29
 
 	// *** Speed *** //
 	speed = -0.5
@@ -185,7 +185,7 @@
 	plasma_gain = 80
 
 	// *** Health *** //
-	max_health = 360
+	max_health = 450
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 45, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 38, FIRE = 50, ACID = 38)

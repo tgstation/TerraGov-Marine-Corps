@@ -11,7 +11,7 @@
 	wound_type = "hunter" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 21
+	melee_damage = 26
 	attack_delay = 7
 
 	// *** Speed *** //
@@ -23,7 +23,7 @@
 	plasma_gain = 10
 
 	// *** Health *** //
-	max_health = 230
+	max_health = 290
 
 	// *** Evolution *** //
 	evolution_threshold = 180
@@ -84,7 +84,7 @@
 	plasma_gain = 15
 
 	// *** Health *** //
-	max_health = 250
+	max_health = 315
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_TWO_MATURE_THRESHOLD
@@ -101,7 +101,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 24
+	melee_damage = 30
 
 	// *** Speed *** //
 	speed = -1.3
@@ -111,7 +111,7 @@
 	plasma_gain = 18
 
 	// *** Health *** //
-	max_health = 270
+	max_health = 340
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_TWO_ELDER_THRESHOLD
@@ -129,7 +129,7 @@
 	ancient_message = "We are the epitome of the hunter. Few can stand against us in open combat."
 
 	// *** Melee Attacks *** //
-	melee_damage = 24
+	melee_damage = 30
 
 	// *** Speed *** //
 	speed = -1.4
@@ -139,7 +139,7 @@
 	plasma_gain = 18
 
 	// *** Health *** //
-	max_health = 290
+	max_health = 365
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_TWO_ANCIENT_THRESHOLD
@@ -157,7 +157,7 @@
 	ancient_message = "We are the ultimate predator. Let the hunt begin."
 
 	// *** Melee Attacks *** //
-	melee_damage = 24
+	melee_damage = 30
 
 	// *** Speed *** //
 	speed = -1.4
@@ -167,7 +167,7 @@
 	plasma_gain = 18
 
 	// *** Health *** //
-	max_health = 290
+	max_health = 365
 	// *** Defense *** //
 	soft_armor = list(MELEE = 55, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 18, FIRE = 30, ACID = 18)
 

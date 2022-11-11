@@ -10,7 +10,7 @@
 	wound_type = "crusher" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 21
+	melee_damage = 26
 	attack_delay = 8
 
 	// *** Speed *** //
@@ -21,7 +21,7 @@
 	plasma_gain = 10
 
 	// *** Health *** //
-	max_health = 325
+	max_health = 405
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_YOUNG_THRESHOLD
@@ -79,7 +79,7 @@
 	plasma_gain = 15
 
 	// *** Health *** //
-	max_health = 345
+	max_health = 430
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_MATURE_THRESHOLD
@@ -98,7 +98,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 24
+	melee_damage = 30
 
 	// *** Speed *** //
 	speed = -0.1
@@ -108,7 +108,7 @@
 	plasma_gain = 30
 
 	// *** Health *** //
-	max_health = 370
+	max_health = 460
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_ELDER_THRESHOLD
@@ -127,7 +127,7 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 24
+	melee_damage = 30
 
 	// *** Speed *** //
 	speed = -0.1
@@ -137,7 +137,7 @@
 	plasma_gain = 30
 
 	// *** Health *** //
-	max_health = 400
+	max_health = 500
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_ANCIENT_THRESHOLD
@@ -156,7 +156,7 @@
 	upgrade = XENO_UPGRADE_FOUR
 
 	// *** Melee Attacks *** //
-	melee_damage = 24
+	melee_damage = 30
 
 	// *** Speed *** //
 	speed = -0.1
@@ -166,7 +166,7 @@
 	plasma_gain = 30
 
 	// *** Health *** //
-	max_health = 400
+	max_health = 500
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 90, BULLET = 75, LASER = 75, ENERGY = 75, BOMB = 100, BIO = 100, FIRE = 40, ACID = 100)

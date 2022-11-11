@@ -11,7 +11,7 @@
 	wound_type = "defender" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 17
+	melee_damage = 21
 
 	// *** Speed *** //
 	speed = -0.3
@@ -21,7 +21,7 @@
 	plasma_gain = 10
 
 	// *** Health *** //
-	max_health = 260
+	max_health = 325
 
 	// *** Evolution *** //
 	evolution_threshold = 80
@@ -79,7 +79,7 @@
 	plasma_gain = 13
 
 	// *** Health *** //
-	max_health = 280
+	max_health = 350
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_ONE_MATURE_THRESHOLD
@@ -99,7 +99,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 21
+	melee_damage = 26
 
 	// *** Speed *** //
 	speed = -0.5
@@ -109,7 +109,7 @@
 	plasma_gain = 14
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 375
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_ONE_ELDER_THRESHOLD
@@ -129,7 +129,7 @@
 	ancient_message = "We are incredibly resilient, we can control the battle through sheer force."
 
 	// *** Melee Attacks *** //
-	melee_damage = 21
+	melee_damage = 26
 
 	// *** Speed *** //
 	speed = -0.6
@@ -139,7 +139,7 @@
 	plasma_gain = 15
 
 	// *** Health *** //
-	max_health = 320
+	max_health = 400
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_ONE_ANCIENT_THRESHOLD
@@ -159,7 +159,7 @@
 	primordial_message = "We are the aegis of the hive. Let nothing pierce our guard."
 
 	// *** Melee Attacks *** //
-	melee_damage = 21
+	melee_damage = 26
 
 	// *** Speed *** //
 	speed = -0.6
@@ -169,7 +169,7 @@
 	plasma_gain = 15
 
 	// *** Health *** //
-	max_health = 320
+	max_health = 400
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 20, BIO = 30, FIRE = 40, ACID = 30)

@@ -2710,21 +2710,21 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "neurotoxic splash"
 	added_spit_delay = 0
 	spit_cost = 100
-	damage = 40
+	damage = 50
 	smoke_strength = 0.9
-	reagent_transfer_amount = 8.5
+	reagent_transfer_amount = 11
 
 /datum/ammo/xeno/toxin/heavy/upgrade1
 	smoke_strength = 0.9
-	reagent_transfer_amount = 9
+	reagent_transfer_amount = 12
 
 /datum/ammo/xeno/toxin/heavy/upgrade2
 	smoke_strength = 0.95
-	reagent_transfer_amount = 9.5
+	reagent_transfer_amount = 13
 
 /datum/ammo/xeno/toxin/heavy/upgrade3
 	smoke_strength = 1
-	reagent_transfer_amount = 10
+	reagent_transfer_amount = 14
 
 
 /datum/ammo/xeno/sticky
@@ -2787,7 +2787,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	spit_cost = 50
 	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE
 	armor_type = "acid"
-	damage = 18
+	damage = 23
 	max_range = 8
 	bullet_color = COLOR_PALE_GREEN_GRAY
 	///Duration of the acid puddles
@@ -2800,29 +2800,29 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/xeno/acid/medium
 	name = "acid spatter"
-	damage = 30
+	damage = 38
 	flags_ammo_behavior = AMMO_XENO
 
 /datum/ammo/xeno/acid/auto
 	name = "light acid spatter"
-	damage = 10
+	damage = 13
 	flags_ammo_behavior = AMMO_XENO
 	spit_cost = 25
 	added_spit_delay = 0
 
 /datum/ammo/xeno/acid/passthrough
 	name = "acid spittle"
-	damage = 20
+	damage = 25
 	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS
 
 /datum/ammo/xeno/acid/heavy
 	name = "acid splash"
 	added_spit_delay = 2
 	spit_cost = 70
-	damage = 30
+	damage = 38
 
 /datum/ammo/xeno/acid/heavy/turret
-	damage = 20
+	damage = 25
 	name = "acid turret splash"
 	shell_speed = 2
 	max_range = 9

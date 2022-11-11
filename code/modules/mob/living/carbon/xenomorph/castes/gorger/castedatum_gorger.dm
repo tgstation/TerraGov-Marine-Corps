@@ -12,7 +12,7 @@
 	wound_type = "gorger" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 15
+	melee_damage = 19
 
 	// *** Speed *** //
 	speed = -0.6
@@ -25,7 +25,7 @@
 	plasma_icon_state = "fury"
 
 	// *** Health *** //
-	max_health = 400
+	max_health = 500
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_YOUNG_THRESHOLD
@@ -77,7 +77,7 @@
 	plasma_max = 250
 
 	// *** Health *** //
-	max_health = 450
+	max_health = 565
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_MATURE_THRESHOLD
@@ -97,13 +97,13 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 25
 
 	// *** Plasma *** //
 	plasma_max = 300
 
 	// *** Health *** //
-	max_health = 500
+	max_health = 625
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_ELDER_THRESHOLD
@@ -122,13 +122,13 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 25
 
 	// *** Plasma *** //
 	plasma_max = 400
 
 	// *** Health *** //
-	max_health = 600
+	max_health = 750
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_ANCIENT_THRESHOLD
@@ -147,13 +147,13 @@
 	upgrade = XENO_UPGRADE_FOUR
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 25
 
 	// *** Plasma *** //
 	plasma_max = 400
 
 	// *** Health *** //
-	max_health = 600
+	max_health = 750
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 10, BIO = 20, FIRE = 20, ACID = 20)

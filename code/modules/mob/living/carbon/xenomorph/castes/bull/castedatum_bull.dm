@@ -9,7 +9,7 @@
 	wound_type = "bull" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 19
+	melee_damage = 24
 
 	// *** Speed *** //
 	speed = -0.7
@@ -19,7 +19,7 @@
 	plasma_gain = 10
 
 	// *** Health *** //
-	max_health = 250
+	max_health = 315
 
 	// *** Evolution *** //
 	evolution_threshold = 180
@@ -67,7 +67,7 @@
 	plasma_gain = 13
 
 	// *** Health *** //
-	max_health = 275
+	max_health = 345
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_TWO_MATURE_THRESHOLD
@@ -82,7 +82,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 21
+	melee_damage = 26
 
 	// *** Speed *** //
 	speed = -0.7
@@ -92,7 +92,7 @@
 	plasma_gain = 16
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 375
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_TWO_ELDER_THRESHOLD
@@ -107,7 +107,7 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 21
+	melee_damage = 26
 
 	// *** Speed *** //
 	speed = -0.8
@@ -117,7 +117,7 @@
 	plasma_gain = 18
 
 	// *** Health *** //
-	max_health = 325
+	max_health = 405
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_TWO_ANCIENT_THRESHOLD
@@ -132,7 +132,7 @@
 	upgrade = XENO_UPGRADE_FOUR
 
 	// *** Melee Attacks *** //
-	melee_damage = 21
+	melee_damage = 26
 
 	// *** Speed *** //
 	speed = -0.8
@@ -142,7 +142,7 @@
 	plasma_gain = 18
 
 	// *** Health *** //
-	max_health = 325
+	max_health = 405
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 40, BULLET = 50, LASER = 40, ENERGY = 40, BOMB = 0, BIO = 33, FIRE = 50, ACID = 33)

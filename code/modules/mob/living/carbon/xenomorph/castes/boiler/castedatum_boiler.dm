@@ -11,7 +11,7 @@
 	wound_type = "boiler" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 17
+	melee_damage = 21
 
 	// *** Speed *** //
 	speed = 0.3
@@ -21,7 +21,7 @@
 	plasma_gain = 30
 
 	// *** Health *** //
-	max_health = 250
+	max_health = 315
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_YOUNG_THRESHOLD
@@ -52,7 +52,7 @@
 	ammo_multiplier = 1.5 SECONDS
 
 	acid_spray_duration = 10 SECONDS
-	acid_spray_damage = 16
+	acid_spray_damage = 20
 	acid_spray_damage_on_hit = 35
 	acid_spray_structure_damage = 45
 
@@ -87,7 +87,7 @@
 	plasma_gain = 35
 
 	// *** Health *** //
-	max_health = 270
+	max_health = 340
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_MATURE_THRESHOLD
@@ -98,7 +98,7 @@
 	// *** Ranged Attack *** //
 	spit_delay = 3 SECONDS
 
-	acid_spray_damage_on_hit = 39
+	acid_spray_damage_on_hit = 50
 	acid_spray_structure_damage = 53
 
 	// *** Boiler Abilities *** //
@@ -113,7 +113,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 25
 
 	// *** Speed *** //
 	speed = 0.1
@@ -123,7 +123,7 @@
 	plasma_gain = 40
 
 	// *** Health *** //
-	max_health = 290
+	max_health = 360
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_ELDER_THRESHOLD
@@ -134,7 +134,7 @@
 	// *** Ranged Attack *** //
 	spit_delay = 2 SECONDS
 
-	acid_spray_damage_on_hit = 43
+	acid_spray_damage_on_hit = 54
 	acid_spray_structure_damage = 61
 
 	// *** Boiler Abilities *** //
@@ -150,7 +150,7 @@
 	ancient_message = "We are the master of ranged artillery. Let's bring death from above."
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 25
 
 	// *** Speed *** //
 	speed = 0.1
@@ -160,7 +160,7 @@
 	plasma_gain = 50
 
 	// *** Health *** //
-	max_health = 325
+	max_health = 405
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_ANCIENT_THRESHOLD
@@ -187,7 +187,7 @@
 	primordial_message = "We have refined the art of bombardement to perfection. End them before they can utter a desperate plea."
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 25
 
 	// *** Speed *** //
 	speed = 0.1
@@ -197,7 +197,7 @@
 	plasma_gain = 50
 
 	// *** Health *** //
-	max_health = 325
+	max_health = 405
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 45, BULLET = 45, LASER = 45, ENERGY = 45, BOMB = 0, BIO = 37, FIRE = 45, ACID = 37)

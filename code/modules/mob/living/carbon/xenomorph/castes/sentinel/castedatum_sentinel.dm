@@ -8,7 +8,7 @@
 	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
-	melee_damage = 16
+	melee_damage = 20
 
 	// *** Speed *** //
 	speed = -0.8
@@ -18,7 +18,7 @@
 	plasma_gain = 10
 
 	// *** Health *** //
-	max_health = 225
+	max_health = 280
 
 	// *** Evolution *** //
 	evolution_threshold = 80
@@ -69,7 +69,7 @@
 	plasma_gain = 15
 
 	// *** Health *** //
-	max_health = 250
+	max_health = 315
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_ONE_MATURE_THRESHOLD
@@ -88,7 +88,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 17
+	melee_damage = 22
 
 	// *** Speed *** //
 	speed = -0.8
@@ -98,7 +98,7 @@
 	plasma_gain = 18
 
 	// *** Health *** //
-	max_health = 275
+	max_health = 340
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_ONE_ELDER_THRESHOLD
@@ -117,7 +117,7 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 17
+	melee_damage = 21
 
 	// *** Speed *** //
 	speed = -0.8
@@ -127,7 +127,7 @@
 	plasma_gain = 20
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 375
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_ONE_ANCIENT_THRESHOLD
@@ -148,7 +148,7 @@
 	upgrade = XENO_UPGRADE_FOUR
 
 	// *** Melee Attacks *** //
-	melee_damage = 17
+	melee_damage = 21
 
 	// *** Speed *** //
 	speed = -0.8
@@ -158,7 +158,7 @@
 	plasma_gain = 20
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 375
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 26, BULLET = 26, LASER = 26, ENERGY = 26, BOMB = 0, BIO = 25, FIRE = 26, ACID = 25)

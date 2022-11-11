@@ -12,7 +12,7 @@
 	gib_flick = "gibbed-a-runner"
 
 	// *** Melee Attacks *** //
-	melee_damage = 17
+	melee_damage = 21
 	attack_delay = 6
 
 	savage_cooldown = 30 SECONDS
@@ -25,7 +25,7 @@
 	plasma_gain = 5
 
 	// *** Health *** //
-	max_health = 175
+	max_health = 220
 
 	// *** Evolution *** //
 	evolution_threshold = 80
@@ -83,7 +83,7 @@
 	plasma_gain = 7
 
 	// *** Health *** //
-	max_health = 200
+	max_health = 250
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_ONE_MATURE_THRESHOLD
@@ -101,7 +101,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 21
+	melee_damage = 26
 
 	savage_cooldown = 30 SECONDS
 
@@ -113,7 +113,7 @@
 	plasma_gain = 9
 
 	// *** Health *** //
-	max_health = 225
+	max_health = 280
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_ONE_ELDER_THRESHOLD
@@ -133,7 +133,7 @@
 	savage_cooldown = 30 SECONDS
 
 	// *** Melee Attacks *** //
-	melee_damage = 21
+	melee_damage = 26
 
 	// *** Speed *** //
 	speed = -1.5
@@ -143,7 +143,7 @@
 	plasma_gain = 11
 
 	// *** Health *** //
-	max_health = 240
+	max_health = 300
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_ONE_ANCIENT_THRESHOLD
@@ -163,7 +163,7 @@
 	savage_cooldown = 30 SECONDS
 
 	// *** Melee Attacks *** //
-	melee_damage = 21
+	melee_damage = 26
 
 	// *** Speed *** //
 	speed = -1.5
@@ -173,7 +173,7 @@
 	plasma_gain = 11
 
 	// *** Health *** //
-	max_health = 240
+	max_health = 300
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 20, BULLET = 19, LASER = 19, ENERGY = 19, BOMB = 0, BIO = 7, FIRE = 19, ACID = 7)

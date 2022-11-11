@@ -10,7 +10,7 @@
 	wound_type = "widow"
 
 	// *** Melee Attacks *** //
-	melee_damage = 16
+	melee_damage = 20
 
 	// *** Speed *** //
 	speed = -0.2
@@ -20,7 +20,7 @@
 	plasma_gain = 40
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 375
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_YOUNG_THRESHOLD
@@ -82,7 +82,7 @@
 	plasma_gain = 45
 
 	// *** Health *** //
-	max_health = 350
+	max_health = 440
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_MATURE_THRESHOLD
@@ -99,7 +99,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 16
+	melee_damage = 20
 
 	// *** Speed *** //
 	speed = -0.4
@@ -109,7 +109,7 @@
 	plasma_gain = 50
 
 	// *** Health *** //
-	max_health = 400
+	max_health = 500
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_ELDER_THRESHOLD
@@ -127,7 +127,7 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 18
+	melee_damage = 23
 
 	// *** Speed *** //
 	speed = -0.5
@@ -137,7 +137,7 @@
 	plasma_gain = 55
 
 	// *** Health *** //
-	max_health = 450
+	max_health = 565
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_ANCIENT_THRESHOLD
@@ -155,7 +155,7 @@
 	upgrade = XENO_UPGRADE_FOUR
 
 	// *** Melee Attacks *** //
-	melee_damage = 18
+	melee_damage = 23
 
 	// *** Speed *** //
 	speed = -0.5
@@ -165,7 +165,7 @@
 	plasma_gain = 55
 
 	// *** Health *** //
-	max_health = 450
+	max_health = 565
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 15, BIO = 10, FIRE = 15, ACID = 10)

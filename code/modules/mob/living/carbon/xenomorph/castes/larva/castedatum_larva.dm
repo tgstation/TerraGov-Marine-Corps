@@ -21,7 +21,7 @@
 	plasma_gain = 1
 
 	// *** Health *** //
-	max_health = 50
+	max_health = 65
 	crit_health = -25
 
 	// *** Evolution *** //

@@ -11,7 +11,7 @@
 	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
-	melee_damage = 12
+	melee_damage = 15
 
 	// *** Speed *** //
 	speed = -0.5
@@ -21,7 +21,7 @@
 	plasma_gain = 10
 
 	// *** Health *** //
-	max_health = 130
+	max_health = 160
 
 	// *** Flags *** //
 	caste_flags = CASTE_DO_NOT_ALERT_LOW_LIFE|CASTE_IS_A_MINION

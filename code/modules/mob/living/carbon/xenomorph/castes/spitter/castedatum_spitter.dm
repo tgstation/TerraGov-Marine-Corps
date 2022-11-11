@@ -9,7 +9,7 @@
 	wound_type = "spitter" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 17
+	melee_damage = 21
 
 	// *** Speed *** //
 	speed = -0.3
@@ -19,7 +19,7 @@
 	plasma_gain = 21
 
 	// *** Health *** //
-	max_health = 250
+	max_health = 315
 
 	// *** Evolution *** //
 	evolution_threshold = 180
@@ -46,7 +46,7 @@
 	spit_types = list(/datum/ammo/xeno/acid/medium) //Gotta give them their own version of heavy acid; kludgy but necessary as 100 plasma is way too costly.
 
 	acid_spray_duration = 10 SECONDS
-	acid_spray_damage_on_hit = 35
+	acid_spray_damage_on_hit = 44
 	acid_spray_damage = 16
 	acid_spray_structure_damage = 45
 
@@ -80,7 +80,7 @@
 	plasma_gain = 25
 
 	// *** Health *** //
-	max_health = 270
+	max_health = 340
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_TWO_MATURE_THRESHOLD
@@ -100,7 +100,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 25
 
 	// *** Speed *** //
 	speed = -0.5
@@ -110,7 +110,7 @@
 	plasma_gain = 28
 
 	// *** Health *** //
-	max_health = 290
+	max_health = 365
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_TWO_ELDER_THRESHOLD
@@ -130,7 +130,7 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 25
 
 	// *** Speed *** //
 	speed = -0.6
@@ -140,7 +140,7 @@
 	plasma_gain = 30
 
 	// *** Health *** //
-	max_health = 310
+	max_health = 390
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_TWO_ANCIENT_THRESHOLD
@@ -158,7 +158,7 @@
 	primordial_message = "Our suppression is unmatched! Let nothing show its head!"
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 25
 
 	// *** Speed *** //
 	speed = -0.6
@@ -168,7 +168,7 @@
 	plasma_gain = 30
 
 	// *** Health *** //
-	max_health = 310
+	max_health = 390
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 25, BULLET = 35, LASER = 35, ENERGY = 35, BOMB = 0, BIO = 20, FIRE = 35, ACID = 20)
