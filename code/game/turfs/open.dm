@@ -389,11 +389,8 @@
 		thing_to_check = list(AM)
 	for(var/thing in thing_to_check)
 		if(ismecha(thing))
-			///simple holder to determine damage and output it for logging
-			var/mechdamage = (rand(40, 120))
 			var/obj/vehicle/sealed/mecha/burned_mech = thing
-			burned_mech.take_damage(mechdamage, BURN)
-			log_message("Received [mechdamage] burn damage from lava", LOG_MECHA, color="orange")
+			burned_mech.take_damage(rand(40, 120), BURN)
 			. = 1
 
 		else if(isobj(thing))
