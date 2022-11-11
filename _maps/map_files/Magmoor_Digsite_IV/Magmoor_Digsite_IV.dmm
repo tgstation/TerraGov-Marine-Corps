@@ -539,7 +539,6 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/magmoor/compound/west)
 "auu" = (
@@ -580,13 +579,6 @@
 	dir = 9
 	},
 /area/magmoor/compound)
-"avu" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_22";
-	name = "TGMC exit point 22"
-	},
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/southwest)
 "avN" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -698,9 +690,6 @@
 	dir = 8
 	},
 /area/magmoor/civilian/rnr)
-"aAc" = (
-/turf/open/lavaland/basalt/glowing,
-/area/magmoor/compound/southwest)
 "aAd" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -981,10 +970,6 @@
 /obj/item/ammo_magazine/shotgun/buckshot,
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
-"aMd" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/dirttosand,
-/area/magmoor/compound)
 "aMe" = (
 /obj/structure/rack,
 /obj/item/smallDelivery,
@@ -1036,11 +1021,6 @@
 	dir = 4
 	},
 /area/magmoor/cave/northeast)
-"aNz" = (
-/turf/open/lavaland/basalt/dirt/corner{
-	dir = 1
-	},
-/area/magmoor/compound/southwest)
 "aNS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/tile/purple,
@@ -2480,13 +2460,6 @@
 /obj/item/toy/deck/kotahi,
 /turf/open/floor/mainship/mono,
 /area/magmoor/mining)
-"bLk" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_24";
-	name = "TGMC exit point 24"
-	},
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/southwest)
 "bLw" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -2523,13 +2496,6 @@
 	dir = 8
 	},
 /area/magmoor/civilian/dorms)
-"bME" = (
-/obj/structure/fakeplatform{
-	dir = 1
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/magmoor/compound/west)
 "bMF" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -2695,10 +2661,6 @@
 	dir = 8
 	},
 /area/magmoor/compound/east)
-"bRS" = (
-/obj/structure/prop/vehicle/crane,
-/turf/open/floor/concrete,
-/area/magmoor/cave/west)
 "bSk" = (
 /turf/open/lavaland/basalt/dirt{
 	dir = 6
@@ -2772,12 +2734,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/concrete/edge{
 	dir = 4
-	},
-/area/magmoor/compound)
-"bVb" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/dirttosand{
-	dir = 10
 	},
 /area/magmoor/compound)
 "bVv" = (
@@ -3102,16 +3058,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/landing/two)
-"cjm" = (
-/obj/structure/rack,
-/obj/item/storage/bag/ore,
-/obj/item/tool/shovel,
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
-	},
-/turf/open/floor/concrete,
-/area/magmoor/cave/west)
 "cjF" = (
 /obj/machinery/computer3/server/rack,
 /turf/open/floor/mainship/tcomms,
@@ -3811,14 +3757,6 @@
 /obj/structure/cable,
 /turf/open/floor/freezer,
 /area/magmoor/civilian/cook)
-"cJF" = (
-/obj/structure/closet/secure_closet/miner,
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
-	},
-/turf/open/floor/concrete,
-/area/magmoor/cave/west)
 "cJR" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
@@ -4747,16 +4685,15 @@
 /turf/open/floor/concrete/edge,
 /area/magmoor/compound/southwest)
 "dqQ" = (
-/turf/open/lavaland/lava/side{
-	dir = 1
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
-/area/magmoor/compound/southwest)
-"dro" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/dirttosand{
-	dir = 4
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_13";
+	name = "TGMC exit point 13"
 	},
-/area/magmoor/compound/west)
+/turf/open/floor/mainship,
+/area/magmoor/landing/two)
 "drq" = (
 /obj/structure/sign/engie{
 	dir = 8
@@ -4919,11 +4856,6 @@
 /obj/structure/flora/rock/pile/alt2,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/magmoor/compound/south)
-"dwA" = (
-/turf/open/lavaland/lava/corner{
-	dir = 4
-	},
-/area/magmoor/cave/west)
 "dwF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -5964,11 +5896,6 @@
 /obj/item/trash/eat,
 /turf/open/floor/mainship/floor,
 /area/magmoor/civilian/arrival/east)
-"ehJ" = (
-/obj/structure/rack,
-/obj/item/tool/shovel,
-/turf/open/floor/concrete,
-/area/magmoor/cave/west)
 "ehQ" = (
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
@@ -6224,13 +6151,6 @@
 	dir = 1
 	},
 /area/magmoor/civilian/jani)
-"etq" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
-	},
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/west)
 "etJ" = (
 /obj/machinery/door/airlock/mainship/security{
 	name = "\improper Security Breakroom";
@@ -6634,11 +6554,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/orange/full,
 /area/magmoor/engi)
-"eFb" = (
-/turf/open/lavaland/lava/lpiece{
-	dir = 4
-	},
-/area/magmoor/cave/west)
 "eFy" = (
 /obj/structure/closet/firecloset/full,
 /turf/open/floor/mainship/orange{
@@ -6947,9 +6862,6 @@
 	dir = 1
 	},
 /area/magmoor/civilian/clean)
-"eOn" = (
-/turf/open/floor/concrete/lines,
-/area/magmoor/cave/west)
 "eOG" = (
 /obj/machinery/light,
 /turf/open/floor/tile/blue/taupeblue,
@@ -7052,13 +6964,6 @@
 	dir = 9
 	},
 /area/magmoor/cargo/processing/south)
-"eSt" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_21";
-	name = "SOM exit point 21"
-	},
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/southeast)
 "eSN" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/freezer,
@@ -7930,11 +7835,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/arrival/east)
-"fBX" = (
-/turf/open/floor/concrete/lines{
-	dir = 1
-	},
-/area/magmoor/cave/west)
 "fCc" = (
 /obj/structure/closet/crate/secure/hydrosec,
 /obj/effect/decal/cleanable/dirt,
@@ -8917,13 +8817,6 @@
 	dir = 4
 	},
 /area/magmoor/compound/east)
-"gll" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
-	},
-/turf/open/floor/concrete/lines,
-/area/magmoor/cave/west)
 "glm" = (
 /obj/structure/curtain/medical,
 /obj/machinery/shower{
@@ -10196,11 +10089,6 @@
 	},
 /turf/open/floor/freezer,
 /area/magmoor/civilian/bar)
-"hkA" = (
-/obj/structure/cable,
-/obj/structure/lattice,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/west)
 "hkH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
@@ -10243,9 +10131,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
-"hmZ" = (
-/turf/open/floor/concrete,
-/area/magmoor/cave/west)
 "hnx" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -10460,11 +10345,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/landing)
-"huK" = (
-/turf/open/lavaland/lava/corner{
-	dir = 8
-	},
-/area/magmoor/cave/west)
 "hvC" = (
 /obj/structure/lattice,
 /obj/structure/barricade/guardrail,
@@ -10953,9 +10833,6 @@
 "hPZ" = (
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/lobby)
-"hQg" = (
-/turf/open/lavaland/basalt,
-/area/magmoor/compound/west)
 "hQv" = (
 /obj/machinery/portable_atmospherics/scrubber,
 /turf/open/floor/mainship/mono,
@@ -11604,11 +11481,6 @@
 "ipy" = (
 /turf/closed/wall/r_wall,
 /area/magmoor/research/rnd)
-"ipB" = (
-/turf/open/lavaland/lava/side{
-	dir = 1
-	},
-/area/magmoor/cave/west)
 "ipE" = (
 /obj/machinery/vending/cigarette/colony,
 /turf/open/floor/wood,
@@ -11806,10 +11678,6 @@
 	dir = 4
 	},
 /area/magmoor/landing/two)
-"ixx" = (
-/obj/structure/disposalconstruct,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/west)
 "ixy" = (
 /obj/structure/cable,
 /turf/open/floor/stairs/rampbottom{
@@ -12439,11 +12307,6 @@
 /obj/structure/largecrate/supply/medicine/iv,
 /turf/open/floor/mainship/cargo,
 /area/magmoor/landing/two)
-"iWj" = (
-/obj/structure/rack,
-/obj/item/storage/box/lightstick/red,
-/turf/open/floor/concrete,
-/area/magmoor/cave/west)
 "iWw" = (
 /obj/structure/flora/pottedplant/ten,
 /turf/open/floor/freezer,
@@ -12574,13 +12437,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/medical/morgue)
-"jaz" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_11";
-	name = "TGMC exit point 11"
-	},
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/north)
 "jaF" = (
 /obj/structure/table/mainship,
 /obj/machinery/light,
@@ -13881,10 +13737,6 @@
 	},
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
-"jQw" = (
-/obj/structure/prop/mainship/brokengen,
-/turf/open/floor/concrete,
-/area/magmoor/cave/west)
 "jQE" = (
 /obj/structure/barricade/guardrail{
 	dir = 8
@@ -13894,13 +13746,6 @@
 	dir = 4
 	},
 /area/magmoor/compound)
-"jRv" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_14";
-	name = "TGMC exit point 14"
-	},
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/north)
 "jRL" = (
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/magmoor/compound/southeast)
@@ -14364,9 +14209,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/magmoor/landing)
-"kiZ" = (
-/turf/open/lavaland/lava,
-/area/magmoor/cave/west)
 "kja" = (
 /obj/structure/flora/grass/green,
 /obj/effect/landmark/corpsespawner/colonist,
@@ -14644,13 +14486,6 @@
 	dir = 4
 	},
 /area/magmoor/medical/patient)
-"kvZ" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_13";
-	name = "TGMC exit point 13"
-	},
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/north)
 "kwa" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay/free_access,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -15140,11 +14975,6 @@
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/mainship/mono,
 /area/magmoor/cargo/processing/south)
-"kPh" = (
-/turf/open/lavaland/basalt/dirt/corner{
-	dir = 8
-	},
-/area/magmoor/compound/west)
 "kPs" = (
 /obj/structure/window/reinforced/tinted{
 	dir = 4
@@ -15336,9 +15166,12 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/cargo/processing/south)
 "kVF" = (
-/obj/structure/lattice,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/west)
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_14";
+	name = "TGMC exit point 14"
+	},
+/turf/open/floor/mainship/cargo,
+/area/magmoor/landing/two)
 "kVS" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -15675,9 +15508,6 @@
 /obj/structure/largecrate/cow,
 /turf/open/floor/mainship/cargo,
 /area/magmoor/landing/two)
-"lil" = (
-/turf/open/lavaland/lava/side,
-/area/magmoor/cave/west)
 "lim" = (
 /obj/machinery/light,
 /turf/open/floor/wood,
@@ -16103,9 +15933,6 @@
 	dir = 4
 	},
 /area/magmoor/mining)
-"lyX" = (
-/turf/open/lavaland/basalt/dirt/corner,
-/area/magmoor/compound/west)
 "lzg" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -16310,13 +16137,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/rnr)
-"lHG" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_12";
-	name = "SOM exit point 12"
-	},
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/northwest)
 "lHQ" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/concrete/lines,
@@ -16568,13 +16388,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/research)
-"lSv" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
-	},
-/turf/closed/wall/r_wall/unmeltable,
-/area/magmoor/cave/west)
 "lSA" = (
 /obj/structure/bed/chair/office/light,
 /turf/open/floor/mainship/red{
@@ -17310,13 +17123,6 @@
 	},
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/magmoor/compound/south)
-"mvD" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_23";
-	name = "TGMC exit point 23"
-	},
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/southwest)
 "mww" = (
 /turf/open/ground/grass,
 /area/magmoor/hydroponics/south)
@@ -17900,18 +17706,6 @@
 	},
 /turf/open/floor/tile/white,
 /area/magmoor/civilian/pool)
-"mQg" = (
-/obj/machinery/door/airlock/multi_tile/secure{
-	dir = 1;
-	resistance_flags = RESIST_ALL;
-	name = "Tunnel A1"
-	},
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
-	},
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/west)
 "mQq" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/magmoor/compound/southwest)
@@ -18566,9 +18360,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/cargo/processing/south)
-"nmi" = (
-/turf/closed/wall/r_wall/unmeltable,
-/area/magmoor/cave/west)
 "nmp" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -18659,25 +18450,12 @@
 /obj/structure/table/mainship,
 /turf/open/floor/mainship,
 /area/magmoor/cargo/processing/south)
-"npk" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_23";
-	name = "SOM exit point 23"
-	},
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/southeast)
 "npm" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/magmoor/command/conference)
-"npp" = (
-/obj/effect/decal/warning_stripes/thick{
-	dir = 8
-	},
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/magmoor/compound/west)
 "npx" = (
 /turf/open/floor/mainship/blue{
 	dir = 1
@@ -18692,11 +18470,6 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/surgery)
-"nqg" = (
-/turf/open/lavaland/lava/side{
-	dir = 8
-	},
-/area/magmoor/cave/west)
 "nqJ" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/tile/red/redtaupecorner{
@@ -19052,10 +18825,6 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/magmoor/civilian/mosque)
-"nDM" = (
-/obj/effect/landmark/sensor_tower,
-/turf/open/floor/mainship/mono,
-/area/magmoor/mining)
 "nDT" = (
 /obj/machinery/light{
 	dir = 1
@@ -19127,11 +18896,6 @@
 	dir = 1
 	},
 /area/magmoor/engi/power)
-"nGk" = (
-/obj/structure/rack,
-/obj/item/storage/bag/ore,
-/turf/open/floor/concrete,
-/area/magmoor/cave/west)
 "nGp" = (
 /obj/structure/flora/pottedplant,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -19285,6 +19049,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/research/lab)
 "nOp" = (
+/obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -19488,13 +19253,6 @@
 	},
 /turf/open/floor/tile/white,
 /area/magmoor/civilian/pool)
-"nYb" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
-	},
-/turf/closed/wall/r_wall/unmeltable,
-/area/magmoor/cave/rock)
 "nYo" = (
 /obj/structure/flora/pottedplant/twentyone,
 /turf/open/floor/mainship/purple{
@@ -19869,14 +19627,6 @@
 	dir = 1
 	},
 /area/magmoor/compound)
-"olY" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/patrol_point{
-	id = "SOM_22";
-	name = "SOM exit point 22"
-	},
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/southeast)
 "omr" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
@@ -19931,13 +19681,6 @@
 	dir = 1
 	},
 /area/magmoor/compound)
-"ook" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_13";
-	name = "SOM exit point 13"
-	},
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/northwest)
 "opb" = (
 /obj/structure/mirror{
 	pixel_y = 28
@@ -20973,13 +20716,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/arrival)
-"oVs" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_24";
-	name = "SOM exit point 24"
-	},
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/southeast)
 "oVw" = (
 /turf/open/lavaland/basalt/dirt/corner,
 /area/magmoor/compound/south)
@@ -22008,10 +21744,6 @@
 	dir = 8
 	},
 /area/magmoor/compound/north)
-"pAk" = (
-/obj/effect/landmark/weed_node,
-/turf/closed/mineral/smooth,
-/area/magmoor/cave/north)
 "pAr" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -22781,9 +22513,6 @@
 	dir = 8
 	},
 /area/magmoor/compound)
-"qee" = (
-/turf/open/lavaland/basalt/glowing,
-/area/magmoor/compound/west)
 "qej" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -23503,16 +23232,6 @@
 "qDg" = (
 /turf/open/floor/mainship/black,
 /area/magmoor/landing/two)
-"qDm" = (
-/obj/machinery/door/airlock/external{
-	name = "\improper Tunnel Airlock"
-	},
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
-	},
-/turf/open/floor/concrete,
-/area/magmoor/cave/west)
 "qDY" = (
 /obj/machinery/light/small,
 /turf/open/floor/plating/ground/dirtgrassborder2{
@@ -23787,9 +23506,6 @@
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/magmoor/compound/northeast)
-"qTl" = (
-/turf/open/lavaland/lava,
-/area/magmoor/compound/southwest)
 "qTD" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -24805,13 +24521,6 @@
 	dir = 8
 	},
 /area/magmoor/compound/north)
-"rDi" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_14";
-	name = "SOM exit point 14"
-	},
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/northwest)
 "rDk" = (
 /obj/machinery/landinglight/ds2/delaythree{
 	dir = 1
@@ -25098,13 +24807,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/magmoor/security/arrivals/south)
-"rNC" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/ai_node,
-/turf/open/floor/concrete,
-/area/magmoor/compound)
 "rNH" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/magmoor/engi/power)
@@ -26498,13 +26200,6 @@
 /obj/structure/bed/chair/sofa/left,
 /turf/open/floor/mainship/mono,
 /area/magmoor/mining)
-"sOc" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_21";
-	name = "TGMC exit point 21"
-	},
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/southwest)
 "sOe" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/concrete/lines{
@@ -26534,11 +26229,6 @@
 "sOV" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/south)
-"sPg" = (
-/turf/open/lavaland/lava/lpiece{
-	dir = 8
-	},
-/area/magmoor/cave/west)
 "sPm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/wood,
@@ -26730,11 +26420,6 @@
 	dir = 8
 	},
 /area/magmoor/compound/northeast)
-"sWe" = (
-/turf/open/lavaland/lava/side{
-	dir = 4
-	},
-/area/magmoor/cave/west)
 "sWk" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 4
@@ -27076,15 +26761,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/mono,
 /area/magmoor/research/rnd/lobby)
-"tib" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
-	},
-/turf/open/floor/concrete/lines{
-	dir = 1
-	},
-/area/magmoor/cave/west)
 "tif" = (
 /obj/structure/filingcabinet,
 /obj/machinery/light{
@@ -27159,13 +26835,6 @@
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/concrete,
 /area/magmoor/medical/morgue)
-"tkg" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_12";
-	name = "TGMC exit point 12"
-	},
-/turf/open/floor/plating/ground/mars/random/dirt,
-/area/magmoor/compound/northeast)
 "tky" = (
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/magmoor/compound/west)
@@ -29382,9 +29051,6 @@
 	},
 /turf/open/floor/mainship/orange,
 /area/magmoor/cargo/storage/south)
-"uNt" = (
-/turf/closed/mineral/smooth,
-/area/magmoor/cave/north)
 "uNJ" = (
 /obj/machinery/floodlight/colony{
 	layer = 4.3;
@@ -30044,13 +29710,6 @@
 	},
 /turf/open/floor/freezer,
 /area/magmoor/cargo/freezer)
-"vmG" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
-	},
-/turf/open/floor/concrete,
-/area/magmoor/cave/west)
 "vmI" = (
 /turf/open/lavaland/basalt/cave{
 	dir = 9
@@ -30954,9 +30613,6 @@
 	dir = 8
 	},
 /area/magmoor/compound/south)
-"vVc" = (
-/turf/open/lavaland/lava/lpiece,
-/area/magmoor/cave/west)
 "vVm" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -31928,13 +31584,6 @@
 	},
 /turf/open/floor/plating,
 /area/magmoor/research/containment)
-"wEm" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_11";
-	name = "SOM exit point 11"
-	},
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/northwest)
 "wEn" = (
 /obj/structure/closet/walllocker/hydrant/extinguisher{
 	dir = 4
@@ -32368,11 +32017,18 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/surgery)
 "wSQ" = (
-/obj/effect/decal/warning_stripes/thick/corner,
-/turf/open/floor/plating/ground/mars/dirttosand{
-	dir = 1
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
-/area/magmoor/compound/west)
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_12";
+	name = "TGMC exit point 12"
+	},
+/turf/open/floor/mainship,
+/area/magmoor/landing/two)
 "wSV" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
@@ -32511,8 +32167,12 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/command/lobby/east)
 "wXM" = (
-/turf/closed/mineral/smooth,
-/area/magmoor/compound/southwest)
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_11";
+	name = "TGMC exit point 11"
+	},
+/turf/open/floor/mainship/floor,
+/area/magmoor/landing/two)
 "wXT" = (
 /turf/open/lavaland/basalt/dirt{
 	dir = 5
@@ -32683,13 +32343,6 @@
 	dir = 10
 	},
 /area/magmoor/command/lobby)
-"xbH" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_12";
-	name = "TGMC exit point 12"
-	},
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/northeast)
 "xbM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
@@ -33802,15 +33455,6 @@
 	dir = 8
 	},
 /area/magmoor/research/containment)
-"xNO" = (
-/obj/effect/decal/warning_stripes/thick{
-	dir = 8
-	},
-/obj/structure/sign/mait{
-	dir = 8
-	},
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/magmoor/compound/west)
 "xOh" = (
 /obj/item/ammo_casing/shell,
 /turf/open/floor/wood,
@@ -35348,28 +34992,28 @@ rxl
 rxl
 rxl
 rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
 aZd
 aZd
+aZd
+aZd
+aZd
+aZd
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
 rxl
 rxl
 rxl
@@ -35580,29 +35224,29 @@ rxl
 rxl
 rxl
 rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
+aZd
+fVB
+aZd
+jHZ
 aZd
 aZd
+aZd
+aZd
+fVB
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
 rxl
 rxl
 rxl
@@ -35812,31 +35456,31 @@ aZd
 aZd
 rxl
 rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
+jHZ
+aZd
+aZd
 rxl
 rxl
 rxl
 aZd
 aZd
+jHZ
 aZd
+fVB
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
 rxl
 rxl
 rxl
@@ -36044,25 +35688,11 @@ aZd
 aZd
 aZd
 aZd
-jHZ
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
+aZd
+aZd
+aZd
+aZd
+aZd
 rxl
 rxl
 rxl
@@ -36070,12 +35700,26 @@ aZd
 aZd
 aZd
 aZd
+aZd
+aZd
 rxl
 rxl
-vVc
-sWe
-sWe
-eFb
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
 rxl
 rxl
 rxl
@@ -36228,7 +35872,7 @@ efw
 efw
 efw
 rxl
-rDi
+efw
 rxl
 rxl
 rxl
@@ -36279,23 +35923,10 @@ aZd
 aZd
 aZd
 aZd
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
+aZd
+aZd
+aZd
+aZd
 rxl
 rxl
 rxl
@@ -36303,13 +35934,26 @@ aZd
 aZd
 aZd
 aZd
+aZd
+aZd
 rxl
 rxl
-lil
-kiZ
-kiZ
-huK
-eFb
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
 rxl
 rxl
 rxl
@@ -36506,43 +36150,43 @@ aZd
 fVB
 aZd
 aZd
+aZd
+aZd
+aZd
 fVB
 aZd
 aZd
 aZd
-aZd
-fVB
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-nmi
+cNn
 aZd
 aZd
-nmi
+aZd
 rxl
 rxl
-sPg
-nqg
-dwA
-kiZ
-ipB
+rxl
+aZd
+jHZ
+aZd
+aZd
+jHZ
+aZd
+aZd
+aZd
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
 rxl
 rxl
 rxl
@@ -36746,37 +36390,37 @@ aZd
 aZd
 aZd
 aZd
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-ixx
 aZd
+fVB
+aZd
+rxl
+rxl
+rxl
+rxl
+aZd
+fVB
+aZd
+aZd
+aZd
+aZd
+aZd
+aZd
+jHZ
+aZd
+fVB
 aZd
 aZd
 rxl
 rxl
 rxl
 rxl
-sPg
-dwA
-huK
-eFb
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
 rxl
 rxl
 rxl
@@ -36927,7 +36571,7 @@ efw
 efw
 efw
 efw
-lHG
+efw
 efw
 efw
 qDf
@@ -36976,9 +36620,31 @@ aZd
 aZd
 aZd
 rxl
+rxl
+rxl
 aZd
 aZd
 aZd
+jHZ
+aZd
+aZd
+aZd
+jHZ
+aZd
+aZd
+aZd
+aZd
+aZd
+aZd
+aZd
+aZd
+aZd
+aZd
+aZd
+fVB
+aZd
+jHZ
+aZd
 rxl
 rxl
 rxl
@@ -36989,28 +36655,6 @@ rxl
 rxl
 rxl
 rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-kVF
-hmZ
-hkA
-kVF
-rxl
-rxl
-rxl
-rxl
-rxl
-lil
-kiZ
-huK
-eFb
 rxl
 rxl
 rxl
@@ -37186,8 +36830,8 @@ rxl
 rxl
 rxl
 jHZ
-aZd
-aZd
+rxl
+rxl
 rxl
 rxl
 aZd
@@ -37206,12 +36850,35 @@ aZd
 aZd
 aZd
 aZd
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+fVB
 aZd
-rxl
-rxl
-rxl
+aZd
+aZd
+aZd
+aZd
+aZd
+fVB
 aZd
 jHZ
+aZd
+aZd
+jHZ
+aZd
+aZd
+aZd
+aZd
+aZd
+aZd
+aZd
+aZd
+aZd
 rxl
 rxl
 rxl
@@ -37221,29 +36888,6 @@ rxl
 rxl
 rxl
 rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-hmZ
-hmZ
-hmZ
-kVF
-rxl
-rxl
-rxl
-rxl
-rxl
-lil
-kiZ
-kiZ
-ipB
 rxl
 rxl
 rxl
@@ -37399,7 +37043,7 @@ efw
 efw
 efw
 efw
-ook
+efw
 rxl
 rxl
 rxl
@@ -37437,13 +37081,37 @@ rxl
 aZd
 jHZ
 aZd
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+aZd
+aZd
+aZd
 aZd
 jHZ
-rxl
-rxl
-rxl
-rxl
-fVB
+aZd
+aZd
+aZd
+aZd
+aZd
 aZd
 rxl
 rxl
@@ -37453,30 +37121,6 @@ rxl
 rxl
 rxl
 rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-lSv
-qDm
-qDm
-lSv
-rxl
-rxl
-rxl
-rxl
-rxl
-sPg
-dwA
-kiZ
-ipB
 rxl
 rxl
 rxl
@@ -37670,46 +37314,46 @@ rxl
 aZd
 aZd
 aZd
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
 aZd
 aZd
 aZd
-rxl
+jHZ
+aZd
+aZd
+jHZ
 aZd
 rxl
 rxl
-fVB
-aZd
 rxl
 rxl
 rxl
 rxl
 rxl
 rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-tib
-vmG
-vmG
-gll
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-lil
-kiZ
-ipB
 rxl
 rxl
 rxl
@@ -37861,7 +37505,7 @@ rxl
 rxl
 efw
 efw
-wEm
+efw
 rxl
 efw
 efw
@@ -37904,14 +37548,37 @@ aZd
 aZd
 rxl
 rxl
-fVB
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
 aZd
 aZd
 aZd
 aZd
 aZd
 aZd
-aZd
 rxl
 rxl
 rxl
@@ -37920,29 +37587,6 @@ rxl
 rxl
 rxl
 rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-jQw
-fBX
-hmZ
-bRS
-eOn
-ehJ
-rxl
-rxl
-rxl
-rxl
-rxl
-lil
-kiZ
-ipB
 rxl
 rxl
 rxl
@@ -38138,13 +37782,36 @@ rxl
 rxl
 rxl
 rxl
+rxl
+rxl
+dze
+dze
+dze
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
 fVB
-jHZ
-dze
-dze
-dze
+aZd
+aZd
 fVB
-jHZ
+aZd
+aZd
 rxl
 rxl
 rxl
@@ -38153,29 +37820,6 @@ rxl
 rxl
 rxl
 rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-nGk
-fBX
-hmZ
-hmZ
-eOn
-iWj
-rxl
-rxl
-rxl
-rxl
-rxl
-lil
-kiZ
-ipB
 rxl
 rxl
 rxl
@@ -38395,20 +38039,20 @@ rxl
 rxl
 rxl
 rxl
-cJF
-tib
-vmG
-vmG
-gll
-cjm
+rxl
+aZd
+jHZ
+aZd
+aZd
 rxl
 rxl
 rxl
 rxl
 rxl
-lil
-kiZ
-ipB
+rxl
+rxl
+rxl
+rxl
 rxl
 rxl
 rxl
@@ -38608,11 +38252,11 @@ dze
 dze
 dze
 dze
-ibO
 dze
 dze
 dze
 dze
+dze
 rxl
 rxl
 rxl
@@ -38628,20 +38272,20 @@ rxl
 rxl
 rxl
 rxl
-nYb
-lSv
-etq
-mQg
-lSv
-nYb
+rxl
+aZd
+aZd
+aZd
+aZd
 rxl
 rxl
 rxl
 rxl
 rxl
-lil
-kiZ
-ipB
+rxl
+rxl
+rxl
+rxl
 rxl
 rxl
 rxl
@@ -38837,7 +38481,6 @@ rxl
 rxl
 rxl
 rxl
-ibO
 dze
 dze
 dze
@@ -38845,36 +38488,37 @@ dze
 dze
 dze
 dze
-ibO
 dze
-dze
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-xNO
-npp
-npp
-npp
-wSQ
 dze
 dze
 dze
 rxl
 rxl
-lil
-kiZ
-ipB
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+rxl
+ybU
+ybU
+ybU
+ybU
+bGe
+dze
+dze
+dze
+rxl
+rxl
+rxl
+rxl
+rxl
 rxl
 rxl
 rxl
@@ -39105,9 +38749,9 @@ dze
 dze
 dze
 qCX
-xMO
-qTl
-dqQ
+gHM
+dzF
+rgm
 rxl
 rxl
 rxl
@@ -39305,15 +38949,15 @@ rxl
 rxl
 rxl
 dze
-ibO
+dze
 dze
 hHW
-kaF
 dze
 dze
 dze
 dze
-kaF
+dze
+dze
 dze
 rxl
 rxl
@@ -39338,10 +38982,10 @@ dze
 dze
 dze
 qCX
-xMO
-qTl
-dqQ
+gHM
 dzF
+rgm
+rgm
 rgm
 rxl
 rxl
@@ -39537,15 +39181,15 @@ rxl
 rxl
 rxl
 rxl
-kaF
-dze
-dze
-kaF
-ibO
 dze
 dze
 dze
-ibO
+dze
+dze
+dze
+dze
+dze
+dze
 dze
 dze
 rxl
@@ -39571,10 +39215,10 @@ dze
 dze
 dze
 qCX
-xMO
-qTl
-dqQ
+gHM
 dzF
+rgm
+rgm
 rgm
 rgm
 rxl
@@ -39803,11 +39447,11 @@ dze
 dze
 dze
 dze
-uTD
-xMO
-qTl
-dqQ
-fGo
+qCX
+gHM
+dzF
+rgm
+rgm
 rgm
 rgm
 rgm
@@ -40003,7 +39647,7 @@ rxl
 rxl
 rxl
 dze
-ibO
+dze
 dze
 dze
 dze
@@ -40034,14 +39678,14 @@ ybU
 fkP
 dze
 dze
-lyX
+dze
+dze
 uTD
-qee
-xMO
-wXM
-wXM
-aAc
-fGo
+gHM
+dzF
+rgm
+rgm
+rgm
 rgm
 rgm
 rgm
@@ -40246,7 +39890,7 @@ dze
 dze
 dze
 dze
-ibO
+dze
 dze
 rxl
 rxl
@@ -40266,17 +39910,17 @@ ybU
 ybU
 ybU
 bGe
-lyX
-uTD
-tGZ
-wXM
-wXM
-wXM
-wXM
-wXM
-wXM
-fGo
-hlP
+dze
+dze
+qCX
+fGn
+eGW
+dzF
+rgm
+rgm
+rgm
+rgm
+rgm
 rgm
 rgm
 rgm
@@ -40473,10 +40117,10 @@ dze
 dze
 tWr
 tWr
-dro
 tWr
 tWr
-dro
+tWr
+tWr
 tWr
 tWr
 tWr
@@ -40499,17 +40143,17 @@ wuD
 ybU
 ybU
 bGe
+dze
+dze
 qCX
-tGZ
-tGZ
-wXM
-wXM
-wXM
-wXM
-wXM
-wXM
-wXM
-dzF
+gHM
+rRG
+rgm
+rgm
+rgm
+rgm
+rgm
+rgm
 rgm
 rgm
 rgm
@@ -40732,17 +40376,17 @@ fsP
 ybU
 ybU
 bGe
-kPh
-wXT
-hQg
-wXM
-wXM
-wXM
-wXM
-wXM
-rRG
-gLT
-aNz
+dze
+dze
+qCX
+gHM
+dzF
+rgm
+rgm
+rgm
+rgm
+rgm
+rgm
 rgm
 rgm
 rgm
@@ -40935,7 +40579,7 @@ dze
 dze
 dze
 dRz
-vzO
+ybU
 dff
 auq
 ybU
@@ -40944,13 +40588,13 @@ dff
 ybU
 pij
 fUk
-bME
+fsP
 ybU
 ybU
-ygU
 ybU
 ybU
-ygU
+ybU
+ybU
 ybU
 ybU
 ybU
@@ -40966,14 +40610,14 @@ ybU
 ybU
 bGe
 dze
-qCX
-qee
-xMO
-wXM
-wXM
-wXM
-aAc
-aNz
+dze
+uTD
+gHM
+dzF
+rgm
+rgm
+rgm
+rgm
 rgm
 rgm
 rgm
@@ -41167,7 +40811,7 @@ tKd
 sdX
 dze
 tky
-vzO
+ybU
 dff
 dff
 dff
@@ -41201,11 +40845,11 @@ bGe
 dze
 qCX
 fGn
-qTl
-qTl
 eGW
-aAc
-rRG
+dzF
+rgm
+rgm
+rgm
 rgm
 rgm
 rgm
@@ -41411,7 +41055,7 @@ dff
 ybU
 ybU
 ybU
-nwa
+fkP
 tWr
 tWr
 tWr
@@ -41433,11 +41077,11 @@ ugf
 dze
 dze
 qCX
-xMO
-qTl
-dqQ
+gHM
 rRG
-gLT
+rgm
+rgm
+rgm
 lWM
 lWM
 rgm
@@ -41494,7 +41138,7 @@ dwS
 dwS
 dwS
 dwS
-bLk
+dwS
 rxl
 rxl
 rxl
@@ -41642,7 +41286,7 @@ iOh
 uvK
 dff
 ybU
-ygU
+ybU
 ybU
 ybU
 ybU
@@ -41666,10 +41310,10 @@ fkP
 tWr
 tWr
 qCX
-xMO
-qTl
-dqQ
+gHM
 dzF
+rgm
+rgm
 bOC
 mQq
 mQq
@@ -41721,7 +41365,7 @@ rxl
 rxl
 rxl
 rxl
-avu
+dwS
 dwS
 dwS
 dwS
@@ -42341,7 +41985,7 @@ enm
 gZR
 dff
 ybU
-ygU
+ybU
 ybU
 oin
 ioE
@@ -42421,13 +42065,13 @@ iLH
 iLH
 iLH
 iLH
-sOc
+dwS
 dwS
 dwS
 dwS
 lAc
 dwS
-mvD
+dwS
 iLH
 rxl
 rxl
@@ -43958,7 +43602,7 @@ qCX
 luq
 mNY
 tKd
-kaF
+dze
 dze
 dze
 dze
@@ -44366,7 +44010,7 @@ rxl
 rxl
 rxl
 rxl
-efw
+rxl
 efw
 efw
 qDf
@@ -44816,19 +44460,19 @@ kcd
 iXx
 kcd
 kcd
-kcd
+iXx
 kcd
 kcd
 kxx
 kcd
+kcd
+kcd
 rxl
 rxl
 rxl
 rxl
 rxl
-rxl
-rxl
-rxl
+kcd
 kcd
 kcd
 iXx
@@ -45047,23 +44691,23 @@ rxl
 kcd
 kcd
 kcd
+kcd
+kcd
+kxx
 iXx
+kcd
+kcd
+kcd
+kcd
+kcd
+iXx
+kcd
 kcd
 kxx
 kcd
 kcd
 kcd
-kcd
 iXx
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-kcd
 kcd
 kcd
 kxx
@@ -45286,17 +44930,17 @@ kcd
 kcd
 kcd
 kcd
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
-rxl
+kcd
+kxx
+kcd
+kcd
+kcd
+kcd
+kcd
+kcd
+kcd
+kcd
+kxx
 kcd
 kcd
 kcd
@@ -45524,13 +45168,13 @@ pao
 pao
 tMF
 tMF
+xeB
+xeB
 tMF
 tMF
 tMF
-tMF
-tMF
-rxl
-rxl
+kcd
+kcd
 kcd
 kcd
 uYH
@@ -45762,7 +45406,7 @@ ofE
 kPQ
 sVa
 tMF
-rxl
+kcd
 kcd
 kxx
 kcd
@@ -46288,7 +45932,7 @@ jSU
 tKd
 dze
 dze
-mNO
+tky
 tDP
 fJb
 hrv
@@ -46444,7 +46088,7 @@ kcd
 kxx
 kcd
 kcd
-iXx
+kcd
 czo
 uxf
 rPE
@@ -46677,7 +46321,7 @@ kcd
 kcd
 kcd
 kcd
-uNt
+kcd
 pao
 gip
 aAK
@@ -46908,9 +46552,9 @@ rxl
 kcd
 kcd
 kcd
-uNt
-uNt
-uNt
+kcd
+kcd
+kcd
 pao
 fZM
 mSc
@@ -47140,8 +46784,8 @@ rxl
 rxl
 kcd
 kxx
-uNt
-uNt
+kcd
+kcd
 tMF
 tMF
 pao
@@ -47374,7 +47018,7 @@ rxl
 kcd
 kcd
 kcd
-uNt
+kcd
 tMF
 oJz
 nAd
@@ -47686,7 +47330,7 @@ hiG
 nBe
 nHq
 avp
-aMd
+rjq
 tDP
 tDP
 sUJ
@@ -47854,12 +47498,12 @@ vEv
 rjj
 sze
 yay
-nDM
+kaV
 jxd
 kaV
 dzU
 tMF
-uNt
+kcd
 kcd
 kcd
 kcd
@@ -47920,7 +47564,7 @@ nBe
 jMO
 apR
 fWG
-bVb
+ghU
 tDP
 mhS
 bmc
@@ -48092,7 +47736,7 @@ jxd
 kaV
 dzU
 tMF
-uNt
+kcd
 kxx
 kcd
 rhL
@@ -48154,7 +47798,7 @@ bGJ
 uDu
 erE
 hiG
-iDm
+rKd
 ghU
 lVA
 rsQ
@@ -48325,8 +47969,8 @@ xus
 wRW
 dzU
 tMF
-uNt
-uNt
+kcd
+kcd
 rhL
 eFL
 rZn
@@ -48558,7 +48202,7 @@ aGx
 onq
 sle
 tMF
-uNt
+kcd
 kcd
 vRc
 rZn
@@ -48846,16 +48490,16 @@ dfQ
 twO
 twO
 twO
-rNC
+twO
 twO
 tcR
 dwF
 nOp
 oxD
 duF
+wQY
+wQY
 bpE
-wQY
-wQY
 wQY
 wQY
 nnS
@@ -49248,10 +48892,10 @@ jYq
 jYq
 jYq
 tMF
-tMF
+xeB
 tMF
 xeB
-xeB
+tMF
 tMF
 xeB
 xeB
@@ -49480,9 +49124,9 @@ iKA
 mkG
 fXI
 jYq
-uNt
-uNt
-uNt
+kcd
+kcd
+kcd
 kcd
 kcd
 kcd
@@ -49713,8 +49357,8 @@ sHe
 nwM
 lop
 jYq
-pAk
-uNt
+kxx
+kcd
 kcd
 kxx
 kcd
@@ -49946,7 +49590,7 @@ tZW
 itf
 qlP
 jYq
-uNt
+kcd
 kcd
 kcd
 rhL
@@ -50179,7 +49823,7 @@ aUs
 itf
 suF
 jYq
-uNt
+kcd
 kcd
 iqE
 eFL
@@ -70447,7 +70091,7 @@ wYx
 fWe
 eQY
 rxl
-kvZ
+kcd
 kcd
 kcd
 kcd
@@ -71144,9 +70788,9 @@ rxl
 rxl
 rxl
 rxl
-jaz
 kcd
-jRv
+kcd
+kcd
 rxl
 kcd
 kcd
@@ -72074,7 +71718,7 @@ rxl
 rxl
 lwH
 lwH
-xbH
+lwH
 rxl
 rxl
 rxl
@@ -72898,7 +72542,7 @@ eQS
 eQS
 eQS
 eQS
-eQS
+wSQ
 klA
 rxl
 rxl
@@ -72910,7 +72554,7 @@ oGr
 oGr
 oGr
 oGr
-olY
+lKQ
 rxl
 rxl
 rxl
@@ -73593,7 +73237,7 @@ cOr
 sht
 fSW
 cUc
-aeE
+kVF
 ddc
 aeE
 cmJ
@@ -74310,7 +73954,7 @@ rxl
 rxl
 oGr
 oGr
-oVs
+oGr
 rxl
 rxl
 rxl
@@ -74461,7 +74105,7 @@ fJO
 fJO
 fJO
 fJO
-tkg
+fJO
 rxl
 mFF
 mFF
@@ -74756,7 +74400,7 @@ oGC
 dwT
 cOr
 lkh
-sBk
+dqQ
 sBk
 sBk
 sBk
@@ -75228,7 +74872,7 @@ dwT
 dwT
 dwT
 dwT
-dwT
+wXM
 cAl
 iLH
 iLH
@@ -75240,7 +74884,7 @@ oGr
 rxl
 rxl
 rxl
-eSt
+oGr
 oGr
 oGr
 rxl
@@ -76406,7 +76050,7 @@ rxl
 rxl
 oGr
 lKQ
-npk
+oGr
 rxl
 rxl
 rxl
