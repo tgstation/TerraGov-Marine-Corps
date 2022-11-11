@@ -168,21 +168,21 @@
 		picked.mind.transfer_to(new_xeno, TRUE)
 		to_chat(new_xeno, span_xenoannounce("The Queen Mother has hurled us through Bluespace, we live for the hive!"))
 		new_xeno << sound('sound/effects/xeno_newlarva.ogg')
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 //The actual drop sets
 /obj/effect/supply_drop/medical_basic/Initialize()
 	. = ..()
 	new /obj/item/storage/firstaid/adv(loc)
 	new /obj/item/storage/firstaid/regular(loc)
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/supply_drop/heavy_armor/Initialize()
 	. = ..()
 	new /obj/item/clothing/head/helmet/marine/specialist(loc)
 	new /obj/item/clothing/gloves/marine/specialist(loc)
 	new /obj/item/clothing/suit/storage/marine/specialist(loc)
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/supply_drop/grenadier/Initialize()
 	. = ..()
@@ -190,19 +190,19 @@
 	new /obj/item/storage/belt/grenade/b17(loc)
 	new /obj/item/clothing/head/helmet/marine/grenadier(loc)
 	new /obj/item/clothing/suit/storage/marine/B17(loc)
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/supply_drop/minigun/Initialize()
 	. = ..()
 	new /obj/item/weapon/gun/minigun/magharness(loc)
 	new /obj/item/ammo_magazine/minigun_powerpack(loc)
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/supply_drop/zx_shotgun/Initialize()
 	. = ..()
 	new /obj/item/weapon/gun/shotgun/zx76/standard(loc)
 	new /obj/item/storage/belt/shotgun/flechette(loc)
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/supply_drop/marine_sentry/Initialize()
 	. = ..()
@@ -210,31 +210,31 @@
 	new /obj/item/weapon/gun/sentry/mini/combat_patrol(loc)
 	new /obj/item/ammo_magazine/minisentry(loc)
 	new /obj/item/ammo_magazine/minisentry(loc)
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/supply_drop/recoilless_rifle/Initialize()
 	. = ..()
 	new /obj/item/storage/holster/backholster/rpg/low_impact(loc)
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/supply_drop/oicw/Initialize()
 	. = ..()
 	new /obj/item/weapon/gun/rifle/tx55/combat_patrol(loc)
 	new /obj/item/storage/belt/marine/oicw(loc)
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/supply_drop/scout/Initialize()
 	. = ..()
 	new /obj/item/weapon/gun/rifle/tx8/scout(loc)
 	new /obj/item/storage/belt/marine/tx8(loc)
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/supply_drop/armor_upgrades/Initialize()
 	. = ..()
 	new /obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two(loc)
 	new /obj/item/clothing/head/modular/marine/m10x/tyr(loc)
 	new /obj/item/weapon/shield/riot/marine(loc)
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/supply_drop/mmg/Initialize()
 	. = ..()
@@ -244,7 +244,7 @@
 	new /obj/item/ammo_magazine/standard_mmg(loc)
 	new /obj/item/stack/sandbags/large_stack(loc)
 	new /obj/item/stack/barbed_wire/full(loc)
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/supply_drop/standard_carbine/Initialize()
 	. = ..()
@@ -252,7 +252,7 @@
 	new /obj/item/storage/belt/marine/t18(loc)
 	new /obj/item/explosive/grenade(loc)
 	new /obj/item/explosive/grenade(loc)
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/supply_drop/standard_rifle/Initialize()
 	. = ..()
@@ -260,33 +260,33 @@
 	new /obj/item/storage/belt/marine/t12(loc)
 	new /obj/item/explosive/grenade(loc)
 	new /obj/item/explosive/grenade(loc)
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/supply_drop/combat_rifle/Initialize()
 	. = ..()
 	new /obj/item/weapon/gun/rifle/tx11/standard(loc)
 	new /obj/item/storage/belt/marine/combat_rifle(loc)
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/supply_drop/laser_rifle/Initialize()
 	. = ..()
 	new /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle/rifleman(loc)
 	new /obj/item/storage/belt/marine/te_cells(loc)
 	new /obj/item/ammo_magazine/flamer_tank/mini(loc)
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/supply_drop/standard_shotgun/Initialize()
 	. = ..()
 	new /obj/item/weapon/gun/shotgun/pump/t35/pointman(loc)
 	new /obj/item/storage/belt/shotgun/mixed(loc)
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 //SOM drops
 /obj/effect/supply_drop/gorgon_armor/Initialize()
 	. = ..()
 	new /obj/item/clothing/head/modular/som/leader(loc)
 	new /obj/item/clothing/suit/modular/som/heavy/leader/valk(loc)
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/supply_drop/som_mg/Initialize()
 	. = ..()
@@ -294,7 +294,7 @@
 	new /obj/item/ammo_magazine/som_mg(loc)
 	new /obj/item/ammo_magazine/som_mg(loc)
 	new /obj/item/ammo_magazine/som_mg(loc)
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/supply_drop/som_rifle/Initialize()
 	. = ..()
@@ -304,7 +304,7 @@
 	new /obj/item/ammo_magazine/handful/micro_grenade(loc)
 	new /obj/item/ammo_magazine/handful/micro_grenade/dragonbreath(loc)
 	new /obj/item/ammo_magazine/handful/micro_grenade/cluster(loc)
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/supply_drop/som_rifle_ap/Initialize()
 	. = ..()
@@ -314,38 +314,38 @@
 	new /obj/item/ammo_magazine/handful/micro_grenade(loc)
 	new /obj/item/ammo_magazine/handful/micro_grenade/dragonbreath(loc)
 	new /obj/item/ammo_magazine/handful/micro_grenade/cluster(loc)
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/supply_drop/som_smg/Initialize()
 	. = ..()
 	new /obj/item/weapon/gun/smg/som/scout(loc)
 	new /obj/item/storage/belt/marine/som/som_smg(loc)
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/supply_drop/som_smg_ap/Initialize()
 	. = ..()
 	new /obj/item/weapon/gun/smg/som/veteran(loc)
 	new /obj/item/storage/belt/marine/som/som_smg_ap(loc)
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/supply_drop/som_shotgun/Initialize()
 	. = ..()
 	new /obj/item/weapon/gun/shotgun/som/pointman(loc)
 	new /obj/item/storage/belt/shotgun/som/mixed(loc)
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/supply_drop/som_shotgun_burst/Initialize()
 	. = ..()
 	new /obj/item/weapon/gun/shotgun/som/burst/pointman(loc)
 	new /obj/item/storage/belt/shotgun/som/flechette(loc)
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/supply_drop/som_rpg/Initialize()
 	. = ..()
 	new /obj/item/storage/holster/backholster/rpg/som/war_crimes(loc)
 	new /obj/item/clothing/head/modular/som/mithridatius(loc)
 	new /obj/item/clothing/suit/modular/som/heavy/mithridatius(loc)
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/supply_drop/som_flamer/Initialize()
 	. = ..()
@@ -353,32 +353,32 @@
 	new /obj/item/ammo_magazine/flamer_tank/backtank(loc)
 	new /obj/item/clothing/suit/modular/som/heavy/pyro(loc)
 	new /obj/item/tool/extinguisher(loc)
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/supply_drop/som_armor_upgrades/Initialize()
 	. = ..()
 	new /obj/item/clothing/head/modular/som/veteran/lorica(loc)
 	new /obj/item/clothing/suit/modular/som/heavy/lorica(loc)
 	new /obj/item/weapon/shield/riot/marine/som(loc)
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/supply_drop/charger/Initialize()
 	. = ..()
 	new /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/scout(loc)
 	new /obj/item/storage/belt/marine/som/volkite(loc)
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/supply_drop/caliver/Initialize()
 	. = ..()
 	new /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/standard(loc)
 	new /obj/item/storage/belt/marine/som/volkite(loc)
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/supply_drop/culverin/Initialize()
 	. = ..()
 	new /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin/magharness(loc)
 	new /obj/item/cell/lasgun/volkite/powerpack(loc)
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 
 // 150 to 200 points of value packs, spend 100 points get 150 to 200 in value, basically. Ideally, commons are variety packs, uncommons maybe shake up the round a bit, rares a bit more. Legendaries make the round go wacko. You get a crate of stuff dropped on spawn.
