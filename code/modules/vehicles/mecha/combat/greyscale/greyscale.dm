@@ -40,6 +40,9 @@
 	///right particle smoke holder
 	var/obj/effect/abstract/particle_holder/holder_right
 
+	///linked mech computer
+	var/obj/machinery/computer/mech_builder/linked_builder
+
 /obj/vehicle/sealed/mecha/combat/greyscale/Initialize(mapload)
 	. = ..()
 	holder_left = new(src, /particles/mecha_smoke)
@@ -56,6 +59,8 @@
 		limb.attach(src, key)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/Destroy()
+	if(linked_builder)
+		linked_builder.lock()
 	for(var/key in limbs)
 		var/datum/mech_limb/limb = limbs[key]
 		limb?.detach(src)

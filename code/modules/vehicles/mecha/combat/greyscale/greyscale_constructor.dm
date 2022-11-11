@@ -135,7 +135,8 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	///list of stat data that will be sent to the UI
 	var/list/current_stats
 	///cooldown check that will stop players from interacting with the mech builder unless the timer ends
-	var/in_cooldown = FALSE
+	var/locked = FALSE
+	var/obj/vehicle/sealed/mecha/combat/greyscale/linked_mech
 
 	/// list(STRING-list(STRING-STRING)) of primary and secondary palettes. first string is category, second is name
 	var/static/list/available_colors = ARMOR_PALETTES_LIST
@@ -179,7 +180,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	..()
 
 	// Cooldown
-	if(in_cooldown)
+	if(locked)
 		icon_state = "[initial(icon_state)]_cd"
 
 		if(machine_stat & (BROKEN|DISABLED))
@@ -194,7 +195,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 		return
 	if(user.skills.getRating("large_vehicle") < SKILL_LARGE_VEHICLE_TRAINED)
 		return FALSE
-	if(in_cooldown)
+	if(locked)
 		return FALSE
 
 /obj/machinery/computer/mech_builder/ui_interact(mob/user, datum/tgui/ui)
@@ -306,10 +307,9 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 			if(isnull(selected_visor))
 				return FALSE
 			currently_assembling = TRUE
-			cooldown()
+			lock()
 			addtimer(CALLBACK(src, .proc/deploy_mech), 1 SECONDS)
 			playsound(get_step(src, dir), 'sound/machines/elevator_move.ogg', 50, 0)
-			addtimer(CALLBACK(src, .proc/cooldown), 30 MINUTES)
 			ui.close()
 			return FALSE
 
@@ -388,12 +388,17 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 				return FALSE
 			new new_ammo(get_turf(src))
 
-/obj/machinery/computer/mech_builder/proc/cooldown()
-	if(in_cooldown)
-		in_cooldown = FALSE
-		update_icon()
+//these two procs lock and unlock the computer, it takes 20 minutes after a mech dies until a new mech can be created
+/obj/machinery/computer/mech_builder/proc/lock()
+	if(locked)
+		addtimer(CALLBACK(src, .proc/unlock), 20 SECONDS)
 		return
-	in_cooldown = TRUE
+	locked = TRUE
+	update_icon()
+
+/obj/machinery/computer/mech_builder/proc/unlock()
+	linked_mech = 0
+	locked = FALSE
 	update_icon()
 
 ///Actually deploys mech after a short delay to let people spot it coming down
@@ -421,6 +426,8 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 
 	mech.pixel_y = 240
 	animate(mech, time=4 SECONDS, pixel_y=initial(mech.pixel_y), easing=SINE_EASING|EASE_OUT)
+	linked_mech = mech
+	linked_mech.linked_builder = src
 
 ///updates the current_stats data for the UI
 /obj/machinery/computer/mech_builder/proc/update_stats(selected_part, old_bodytype, new_bodytype)
