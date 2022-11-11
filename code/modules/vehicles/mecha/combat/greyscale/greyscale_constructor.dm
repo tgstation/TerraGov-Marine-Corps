@@ -186,7 +186,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(ui)
 		return
-	ui = new(user, src, "MechVendor", name, 1600, 650)
+	ui = new(user, src, "MechVendor", name)
 	ui.open()
 	user.client?.screen |= mech_view.plane_masters
 	user.client?.register_map_obj(mech_view)
