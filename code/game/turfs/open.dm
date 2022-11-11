@@ -389,6 +389,7 @@
 		thing_to_check = list(AM)
 	for(var/thing in thing_to_check)
 		if(ismecha(thing))
+			///simple holder to determine damage and output it for logging
 			var/mechdamage = (rand(40, 120))
 			var/obj/vehicle/sealed/mecha/burned_mech = thing
 			burned_mech.take_damage(mechdamage, BURN)
