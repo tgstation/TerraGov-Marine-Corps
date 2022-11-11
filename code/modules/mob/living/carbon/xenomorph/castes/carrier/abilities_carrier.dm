@@ -391,8 +391,8 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	var/mob/living/carbon/human/victim = A
 	var/obj/item/alien_embryo/young = locate() in victim
 	var/debuff = young.stage + 1
-	var/strength = (debuff + X.xeno_caste.aura_strength)
-	var/stamina_dmg = (victim.maxHealth + victim.max_stamina) * strength * 0.1
+	var/strength = (debuff + X.xeno_caste.aura_strength) * 0.1
+	var/stamina_dmg = (victim.maxHealth + victim.max_stamina) * strength
 
 
 	owner.face_atom(victim)
@@ -400,11 +400,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	victim.emote("scream")
 
 	victim.apply_effects(1, 0.5)
-	victim.apply_damage(strength * 2, BRUTE, BODY_ZONE_CHEST)
-	var/datum/internal_organ/O
-	for(var/i in list("heart", "lungs", "liver"))
-		O = victim.internal_organs_by_name[i]
-		O.take_damage(strength)
+	victim.adjust_stagger(debuff)
 	victim.adjust_slowdown(debuff)
 	victim.apply_damage(stamina_dmg, STAMINA)
 	victim.throw_at(owner, 3, 1, owner)
