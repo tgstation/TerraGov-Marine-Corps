@@ -347,8 +347,8 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	action_icon_state = "call_younger"
 	mechanics_text = "Appeals to the larva inside the Marine. The Marine loses his balance at the cost of larva stage."
 	ability_name = "call younger"
-	plasma_cost = 100
-	cooldown_timer = 12 SECONDS
+	plasma_cost = 150
+	cooldown_timer = 20 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CALL_YOUNGER,
 	)
@@ -415,8 +415,8 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	victim.visible_message(span_xenowarning("\The [victim] loses his balance, falling to the side!"), \
 	span_xenowarning("You feel like something inside you is tearing out!"))
 
-	if(young.stage > 1 && young.stage < 5)
-		young.stage++
+	if(young.stage < 5)
+		young.counter = 120
 	else if(young.stage == 6)
 		var/mob/living/carbon/xenomorph/larva/L = locate() in victim
 		L?.initiate_burst(victim, 0.5)
