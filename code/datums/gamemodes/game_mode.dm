@@ -467,6 +467,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		dat += "[GLOB.round_statistics.larva_from_silo] larvas came from silos."
 	if(GLOB.round_statistics.larva_from_cocoon)
 		dat += "[GLOB.round_statistics.larva_from_cocoon] larvas came from cocoons."
+	if(GLOB.round_statistics.larva_from_embryo)
+		dat += "[GLOB.round_statistics.larva_from_embryo] larvas came from infections."
 	if(GLOB.round_statistics.larva_from_marine_spawning)
 		dat += "[GLOB.round_statistics.larva_from_marine_spawning] larvas came from marine spawning."
 	if(GLOB.round_statistics.larva_from_siloing_body)

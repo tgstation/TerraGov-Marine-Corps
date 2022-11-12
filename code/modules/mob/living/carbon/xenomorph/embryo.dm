@@ -64,6 +64,12 @@
 
 	process_growth()
 
+/obj/item/alien_embryo/proc/process_reward(var/points)
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	xeno_job.add_job_points(points)
+	var/datum/hive_status/hive_status = GLOB.hive_datums[hivenumber]
+	hive_status.update_tier_limits()
+	GLOB.round_statistics.larva_from_embryo += points / xeno_job.job_points_needed 
 
 /obj/item/alien_embryo/proc/process_growth()
 
@@ -81,6 +87,8 @@
 		counter = 0
 		stage++
 		log_combat(affected_mob, null, "had their embryo advance to stage [stage]")
+		if(stage >= 3)
+			process_reward(0.2)
 		var/mob/living/carbon/C = affected_mob
 		C.med_hud_set_status()
 		affected_mob.jitter(stage * 5)
