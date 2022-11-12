@@ -972,6 +972,9 @@
 		/obj/item/reagent_containers/food/snacks/mre_pack/meal4 = -1,
 		/obj/item/reagent_containers/food/snacks/mre_pack/meal5 = -1,
 		/obj/item/reagent_containers/food/snacks/mre_pack/meal6 = -1,
+		/obj/item/reagent_containers/food/snacks/mre_pack/xmas1 = -1,
+		/obj/item/reagent_containers/food/snacks/mre_pack/xmas2 = -1,
+		/obj/item/reagent_containers/food/snacks/mre_pack/xmas3 = -1,
 		/obj/item/storage/box/MRE = -1,
 		/obj/item/reagent_containers/food/drinks/flask/marine = -1,
 	)

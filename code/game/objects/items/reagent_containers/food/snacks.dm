@@ -334,6 +334,62 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
 	tastes = list("cookie" = 1)
 
+/obj/item/reagent_containers/food/snacks/christmas_cookieone
+	name = "cookie"
+	desc = "COOKIE!!!"
+	icon_state = "sugarcookie"
+	filling_color = "#DBC94F"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
+	tastes = list("cookie" = 1)
+
+/obj/item/reagent_containers/food/snacks/christmas_cookietwo
+	name = "cookie"
+	desc = "COOKIE!!!"
+	icon_state = "sugarcookie_tree"
+	filling_color = "#DBC94F"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
+	tastes = list("cookie" = 1)
+
+/obj/item/reagent_containers/food/snacks/christmas_cookiethree
+	name = "cookie"
+	desc = "COOKIE!!!"
+	icon_state = "sugarcookie_bear"
+	filling_color = "#DBC94F"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
+	tastes = list("cookie" = 1)
+
+/obj/item/reagent_containers/food/snacks/christmas_cookiefour
+	name = "cookie"
+	desc = "COOKIE!!!"
+	icon_state = "sugarcookie_santa"
+	filling_color = "#DBC94F"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
+	tastes = list("cookie" = 1)
+
+/obj/item/reagent_containers/food/snacks/christmas_cookiefive
+	name = "cookie"
+	desc = "COOKIE!!!"
+	icon_state = "sugarcookie_stocking"
+	filling_color = "#DBC94F"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
+	tastes = list("cookie" = 1)
+
+/obj/item/reagent_containers/food/snacks/christmas_cookiesix
+	name = "cookie"
+	desc = "COOKIE!!!"
+	icon_state = "sugarcookie_present"
+	filling_color = "#DBC94F"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
+	tastes = list("cookie" = 1)
+
+/obj/item/reagent_containers/food/snacks/christmas_cookieseven
+	name = "cookie"
+	desc = "COOKIE!!!"
+	icon_state = "sugarcookie_cane"
+	filling_color = "#DBC94F"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
+	tastes = list("cookie" = 1)
+
 /obj/item/reagent_containers/food/snacks/chocolatebar
 	name = "Chocolate Bar"
 	desc = "Such sweet, fattening food."

@@ -126,6 +126,9 @@
 	center_of_mass = list("x"=16, "y"=9)
 	list_reagents = list(/datum/reagent/consumable/drink/milk = 50)
 
+/obj/item/reagent_containers/food/drinks/milk/xmas
+	icon_state = "milkxmas"
+
 /* Flour is no longer a reagent
 /obj/item/reagent_containers/food/drinks/flour
 	name = "flour sack"

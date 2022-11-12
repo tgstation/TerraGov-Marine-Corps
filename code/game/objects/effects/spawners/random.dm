@@ -228,6 +228,20 @@
 					/obj/item/reagent_containers/food/snacks/xenoburger,\
 					/obj/item/reagent_containers/food/snacks/fishfingers)
 
+/obj/effect/spawner/random/christmas_food
+	name = "Random christmas food"
+	icon_state = "random_xmas"
+	spawn_nothing_percentage = 25
+
+/obj/effect/spawner/random/christmas_food/item_to_spawn()
+	return pick(/obj/item/reagent_containers/food/snacks/christmas_cookieone,\
+					/obj/item/reagent_containers/food/snacks/christmas_cookietwo,\
+					/obj/item/reagent_containers/food/snacks/christmas_cookiethree,\
+					/obj/item/reagent_containers/food/snacks/christmas_cookiefour,\
+					/obj/item/reagent_containers/food/snacks/christmas_cookiefive,\
+					/obj/item/reagent_containers/food/snacks/christmas_cookiesix,\
+					/obj/item/reagent_containers/food/snacks/christmas_cookieseven,\
+					/obj/item/reagent_containers/food/drinks/milk/xmas)
 
 ///All the trash.
 /obj/effect/spawner/random/trash
