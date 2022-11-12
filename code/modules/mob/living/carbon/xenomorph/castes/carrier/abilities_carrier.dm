@@ -404,15 +404,17 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	victim.adjust_stagger(debuff)
 	victim.adjust_slowdown(debuff)
 	victim.apply_damage(stamina_dmg, STAMINA)
-	victim.throw_at(owner, 3, 1, owner)
+	young.counter = 120
 
 	owner.visible_message(span_xenowarning("\the [owner] emits an unusual roar!"), \
 	span_xenowarning("We called out to the younger one inside [victim]!"))
 	victim.visible_message(span_xenowarning("\The [victim] loses his balance, falling to the side!"), \
 	span_xenowarning("You feel like something inside you is tearing out!"))
 
-	if(young.stage < 5)
-		young.counter = 120
+	if(young.stage <= 1)
+		victim.throw_at(owner, 2, 1, owner)
+	else if(young.stage > 1 && young.stage <= 5)
+		victim.throw_at(owner, 3, 1, owner)
 	else if(young.stage == 6)
 		var/mob/living/carbon/xenomorph/larva/L = locate() in victim
 		L?.initiate_burst(victim, 0.5)
