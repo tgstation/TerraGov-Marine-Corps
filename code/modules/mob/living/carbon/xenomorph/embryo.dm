@@ -64,7 +64,7 @@
 
 	process_growth()
 
-/obj/item/alien_embryo/proc/process_reward(var/points)
+/obj/item/alien_embryo/proc/process_reward(points)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	xeno_job.add_job_points(points)
 	var/datum/hive_status/hive_status = GLOB.hive_datums[hivenumber]
