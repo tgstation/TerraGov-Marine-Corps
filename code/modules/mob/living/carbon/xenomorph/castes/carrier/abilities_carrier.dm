@@ -378,7 +378,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 
 	if(!line_of_sight(owner, A))
 		if(!silent)
-			A.balloon_alert(owner, "Need line of sight!")
+			A.balloon_alert(owner, "Need line of sight")
 		return FALSE
 	return TRUE
 
