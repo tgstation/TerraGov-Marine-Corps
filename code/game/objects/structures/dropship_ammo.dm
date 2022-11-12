@@ -450,14 +450,24 @@
 	icon_state = "fatty"
 	ammo_id = "f"
 	point_cost = 250
+	devastating_explosion_range = 2
+	heavy_explosion_range = 3
+	light_explosion_range = 4
 	cas_effect = /obj/effect/overlay/blinking_laser/fatty
 
 /obj/structure/ship_ammo/rocket/fatty/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
-	var/list/to_check = filled_turfs(impact, 3, "square")
+	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range) //first explosion is small to trick xenos into thinking its a minirocket.
+	addtimer(CALLBACK(src, .proc/delayed_detonation, impact), 3 SECONDS)
 
-	for(var/turf/closed/wall/resin/wall in to_check)
-		wall.take_damage(2000)
+/obj/structure/ship_ammo/rocket/fatty/proc/delayed_detonation(turf/impact)
+	var/list/impact_coords = list(list(-3,3),list(0,4),list(3,3),list(-4,0),list(4,0),list(-3,-3),list(0,-4), list(3,-3))
+	for(var/i=1 to 8)
+		var/list/coords = impact_coords[i]
+		var/turf/detonation_target = locate(impact.x+coords[1],impact.y+coords[2],impact.z)
+		detonation_target.ceiling_debris_check(2)
+		explosion(detonation_target, devastating_explosion_range, heavy_explosion_range, light_explosion_range, adminlog = FALSE, small_animation = TRUE)
+	qdel(src)
 
 /obj/structure/ship_ammo/rocket/napalm
 	name = "\improper XN-99 'Napalm'"
