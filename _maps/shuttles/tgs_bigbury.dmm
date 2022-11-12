@@ -738,19 +738,15 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/cic)
-"jX" = (
-/obj/effect/spawner/random/present,
-/obj/effect/spawner/random/present{
-	pixel_x = -3;
-	pixel_y = 9
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/shuttle/canterbury)
 "ki" = (
 /obj/machinery/light/small{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
+/area/shuttle/canterbury)
+"kB" = (
+/obj/effect/spawner/random/present,
+/turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury)
 "kY" = (
 /obj/structure/window/framed/mainship/hull/canterbury,
@@ -891,6 +887,10 @@
 /obj/effect/spawner/random/christmas_food{
 	pixel_x = -3
 	},
+/obj/item/reagent_containers/food/drinks/h_chocolate{
+	pixel_x = -7;
+	pixel_y = 10
+	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "su" = (
@@ -917,16 +917,6 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/cargo,
-/area/shuttle/canterbury)
-"ts" = (
-/obj/effect/spawner/random/present{
-	pixel_y = -20
-	},
-/obj/effect/spawner/random/present{
-	pixel_x = 3;
-	pixel_y = -7
-	},
-/turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "tv" = (
 /obj/structure/window/framed/mainship/white/canterbury,
@@ -1050,10 +1040,6 @@
 /obj/effect/spawner/random_set/christmas_costume,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
-"Ak" = (
-/obj/effect/spawner/random/present,
-/turf/open/floor/plating/plating_catwalk,
-/area/shuttle/canterbury)
 "AS" = (
 /obj/structure/largecrate/supply/supplies/flares,
 /turf/open/floor/mainship/cargo,
@@ -1080,13 +1066,6 @@
 	},
 /obj/effect/spawner/random/christmas_food,
 /turf/open/floor/plating/plating_catwalk,
-/area/shuttle/canterbury)
-"Dq" = (
-/obj/effect/spawner/random/present{
-	pixel_x = -4;
-	pixel_y = -7
-	},
-/turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "Dt" = (
 /obj/structure/prop/holidays/string_lights/corner{
@@ -1252,6 +1231,14 @@
 /obj/structure/prop/holidays/string_lights,
 /turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/canterbury/cic)
+"MR" = (
+/obj/effect/spawner/random/present,
+/obj/effect/spawner/random/present{
+	pixel_x = -3;
+	pixel_y = 9
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/canterbury)
 "MY" = (
 /turf/open/floor/mainship/blue/full,
 /area/shuttle/canterbury/cic)
@@ -1290,6 +1277,13 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/medical)
+"PI" = (
+/obj/effect/spawner/random/present{
+	pixel_x = -4;
+	pixel_y = -7
+	},
+/turf/open/floor/mainship/mono,
+/area/shuttle/canterbury)
 "PQ" = (
 /obj/effect/spawner/random/christmas_food,
 /turf/open/floor/mainship/mono,
@@ -1426,6 +1420,16 @@
 "UP" = (
 /obj/structure/bed/chair/dropship/passenger,
 /obj/effect/landmark/start/job/crash/cmo,
+/turf/open/floor/mainship/mono,
+/area/shuttle/canterbury)
+"VY" = (
+/obj/effect/spawner/random/present{
+	pixel_y = -20
+	},
+/obj/effect/spawner/random/present{
+	pixel_x = 3;
+	pixel_y = -7
+	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "Wb" = (
@@ -1785,8 +1789,8 @@ Mp
 zy
 ac
 ki
-ts
-Ak
+VY
+kB
 rX
 ac
 ac
@@ -1851,8 +1855,8 @@ Mp
 nM
 ac
 ac
-Dq
-jX
+PI
+MR
 cE
 ac
 ac

@@ -5254,6 +5254,9 @@
 /obj/structure/window/reinforced/windowstake{
 	dir = 8
 	},
+/obj/item/reagent_containers/food/drinks/h_chocolate{
+	pixel_y = 7
+	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/bridge)
 "ayS" = (
@@ -6096,6 +6099,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 9
+	},
+/obj/item/reagent_containers/food/drinks/h_chocolate{
+	pixel_y = 7
 	},
 /turf/open/floor/prison,
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
@@ -11342,6 +11348,17 @@
 /obj/effect/ai_node,
 /turf/open/floor/cult,
 /area/sulaco/morgue)
+"cxW" = (
+/obj/structure/table/mainship/nometal,
+/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
+/turf/open/floor/prison,
+/area/sulaco/bridge/office)
 "cyg" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/computer/security/marinemainship{
@@ -12947,6 +12964,9 @@
 "eAP" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/flashlight/flare,
+/obj/item/reagent_containers/food/drinks/h_chocolate{
+	pixel_y = 7
+	},
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
 "eBK" = (
@@ -13366,14 +13386,6 @@
 	},
 /turf/closed/wall/mainship/gray,
 /area/sulaco/marine)
-"faS" = (
-/obj/effect/spawner/random/present{
-	pixel_y = -13
-	},
-/turf/open/floor/prison/darkyellow{
-	dir = 8
-	},
-/area/sulaco/briefing)
 "fbS" = (
 /obj/machinery/firealarm{
 	dir = 4
@@ -13625,13 +13637,6 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
-"fud" = (
-/obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/present{
-	pixel_y = 5
-	},
-/turf/open/floor/prison,
-/area/sulaco/bar)
 "fuV" = (
 /obj/structure/bed/chair/nometal,
 /obj/structure/cable,
@@ -14219,6 +14224,13 @@
 "glh" = (
 /turf/open/floor/mainship/sterile/plain,
 /area/sulaco/mechpilotquarters)
+"gll" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
+/turf/open/floor/mainship/ai,
+/area/sulaco/command/ai)
 "glp" = (
 /obj/machinery/light/mainship{
 	dir = 4
@@ -15956,6 +15968,9 @@
 /obj/item/flashlight/lamp,
 /obj/machinery/alarm{
 	dir = 1
+	},
+/obj/item/reagent_containers/food/drinks/h_chocolate{
+	pixel_y = 7
 	},
 /turf/open/floor/mainship/black,
 /area/sulaco/mechpilotquarters)
@@ -17960,13 +17975,6 @@
 	dir = 4
 	},
 /area/sulaco/engineering)
-"leT" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/spawner/random/present{
-	pixel_y = 5
-	},
-/turf/open/floor/mainship/ai,
-/area/sulaco/command/ai)
 "lfa" = (
 /obj/structure/droppod,
 /obj/structure/dropprop,
@@ -18638,16 +18646,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/central_hall3)
-"lXY" = (
-/obj/effect/spawner/random/present{
-	pixel_x = 4;
-	pixel_y = 6
-	},
-/obj/effect/spawner/random/present,
-/turf/open/floor/prison/darkpurple{
-	dir = 4
-	},
-/area/sulaco/briefing)
 "lYE" = (
 /obj/structure/droppod,
 /obj/structure/dropprop,
@@ -19535,6 +19533,14 @@
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/prison,
 /area/sulaco/marine)
+"ngp" = (
+/obj/effect/spawner/random/present{
+	pixel_y = -13
+	},
+/turf/open/floor/prison/darkyellow{
+	dir = 8
+	},
+/area/sulaco/briefing)
 "ngU" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
@@ -20431,6 +20437,16 @@
 	},
 /turf/open/floor/mainship_hull/gray,
 /area/space)
+"osb" = (
+/obj/effect/spawner/random/present{
+	pixel_x = 4;
+	pixel_y = 6
+	},
+/obj/effect/spawner/random/present,
+/turf/open/floor/prison/darkpurple{
+	dir = 4
+	},
+/area/sulaco/briefing)
 "osr" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -22738,6 +22754,13 @@
 /obj/machinery/firealarm,
 /turf/open/floor/prison/red,
 /area/sulaco/hallway/central_hall3)
+"rnf" = (
+/obj/structure/table/mainship/nometal,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
+/turf/open/floor/prison,
+/area/sulaco/bar)
 "rng" = (
 /obj/structure/prop/holidays/string_lights{
 	dir = 4
@@ -23959,6 +23982,9 @@
 /obj/structure/table/mainship/nometal,
 /obj/item/tool/hand_labeler,
 /obj/item/tool/hand_labeler,
+/obj/item/reagent_containers/food/drinks/h_chocolate{
+	pixel_y = 7
+	},
 /turf/open/floor/prison,
 /area/sulaco/cargo/prep)
 "sIs" = (
@@ -26144,17 +26170,6 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/engineering/atmos)
-"vqW" = (
-/obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/present{
-	pixel_y = 5
-	},
-/turf/open/floor/prison,
-/area/sulaco/bridge/office)
 "vrP" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -54651,7 +54666,7 @@ eMk
 aAI
 lae
 akN
-leT
+gll
 lsW
 teI
 wnN
@@ -55152,7 +55167,7 @@ arc
 avr
 atF
 ecX
-vqW
+cxW
 avr
 awI
 rhM
@@ -62344,7 +62359,7 @@ pMU
 bSB
 cmN
 apT
-faS
+ngp
 ihO
 tPl
 sjY
@@ -62859,7 +62874,7 @@ bSB
 aqj
 apV
 ntj
-lXY
+osb
 auh
 aIt
 aru
@@ -67738,7 +67753,7 @@ anQ
 aaW
 aaw
 gbw
-fud
+rnf
 amT
 ncU
 duZ

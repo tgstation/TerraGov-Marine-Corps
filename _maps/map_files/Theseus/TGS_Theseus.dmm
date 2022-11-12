@@ -4011,6 +4011,12 @@
 	dir = 4
 	},
 /area/mainship/medical/medical_science)
+"bny" = (
+/obj/effect/spawner/random/present,
+/turf/open/floor/mainship/green{
+	dir = 8
+	},
+/area/mainship/squads/req)
 "bnA" = (
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
@@ -8090,6 +8096,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/port_hull)
+"cse" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/storage/box/MRE,
+/obj/effect/spawner/random/present,
+/turf/open/floor/mainship/floor,
+/area/mainship/living/cafeteria_port)
 "csh" = (
 /obj/machinery/camera/autoname/mainship,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -9672,12 +9684,6 @@
 	},
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
-"eUS" = (
-/obj/effect/spawner/random/present,
-/turf/open/floor/mainship/green{
-	dir = 8
-	},
-/area/mainship/squads/req)
 "eVB" = (
 /obj/structure/cable,
 /obj/machinery/light/mainship{
@@ -10167,6 +10173,13 @@
 	dir = 1
 	},
 /area/mainship/squads/delta)
+"fEc" = (
+/obj/effect/spawner/random/present{
+	pixel_x = 5;
+	pixel_y = -5
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "fEn" = (
 /obj/machinery/light/mainship{
 	dir = 4
@@ -11094,6 +11107,14 @@
 	dir = 8
 	},
 /area/mainship/medical/medical_science)
+"gYS" = (
+/obj/effect/spawner/random/present{
+	pixel_y = 10
+	},
+/turf/open/floor/mainship/green{
+	dir = 1
+	},
+/area/mainship/squads/req)
 "haf" = (
 /turf/open/floor/mainship/green/full,
 /area/mainship/squads/req)
@@ -11895,6 +11916,12 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/officer_study)
+"ipe" = (
+/obj/effect/spawner/random/present,
+/turf/open/floor/mainship/green/corner{
+	dir = 1
+	},
+/area/mainship/squads/req)
 "ipy" = (
 /obj/structure/cable,
 /obj/machinery/camera/autoname/mainship{
@@ -14570,12 +14597,6 @@
 "mFS" = (
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
-"mGq" = (
-/obj/effect/spawner/random/present,
-/turf/open/floor/mainship/green{
-	dir = 1
-	},
-/area/mainship/squads/req)
 "mGz" = (
 /obj/effect/landmark/start/latejoin_cryo,
 /turf/open/floor/mainship/mono,
@@ -14894,6 +14915,9 @@
 /obj/structure/table/mainship/nometal,
 /obj/machinery/door_control/old/req,
 /obj/effect/spawner/random/christmas_food,
+/obj/item/reagent_containers/food/drinks/h_chocolate{
+	pixel_y = 5
+	},
 /turf/open/floor/mainship/green,
 /area/mainship/squads/req)
 "nga" = (
@@ -14966,6 +14990,12 @@
 	},
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/grunt_rnr)
+"nkH" = (
+/obj/effect/spawner/random/present,
+/turf/open/floor/mainship/green{
+	dir = 1
+	},
+/area/mainship/squads/req)
 "nmb" = (
 /obj/structure/closet/crate/weapon,
 /turf/open/floor/mainship/cargo,
@@ -15118,6 +15148,9 @@
 /obj/item/tool/kitchen/utensil/fork,
 /obj/item/tool/kitchen/utensil/fork,
 /obj/item/tool/kitchen/utensil/fork,
+/obj/item/reagent_containers/food/drinks/h_chocolate{
+	pixel_y = 5
+	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/grunt_rnr)
 "nzG" = (
@@ -15126,12 +15159,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
-"nAa" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/storage/box/MRE,
-/obj/effect/spawner/random/present,
-/turf/open/floor/mainship/floor,
-/area/mainship/living/cafeteria_port)
 "nAt" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -15930,6 +15957,12 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/officer_study)
+"oLp" = (
+/obj/effect/spawner/random/present,
+/turf/open/floor/mainship/green/corner{
+	dir = 4
+	},
+/area/mainship/squads/req)
 "oLJ" = (
 /obj/machinery/vending/nanomed,
 /obj/structure/table/mainship/nometal,
@@ -17863,12 +17896,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/aft_hallway)
-"rGo" = (
-/obj/effect/spawner/random/present,
-/turf/open/floor/mainship/green/corner{
-	dir = 1
-	},
-/area/mainship/squads/req)
 "rHG" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -18548,10 +18575,6 @@
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/cryo_cells)
-"sJP" = (
-/obj/effect/spawner/random/present,
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
 "sLs" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 2;
@@ -19084,6 +19107,9 @@
 /obj/structure/table/mainship/nometal,
 /obj/structure/prop/holidays/string_lights{
 	dir = 1
+	},
+/obj/item/reagent_containers/food/drinks/h_chocolate{
+	pixel_y = 7
 	},
 /turf/open/floor/mainship/silver{
 	dir = 6
@@ -19874,12 +19900,6 @@
 	},
 /turf/closed/wall/mainship,
 /area/mainship/squads/alpha)
-"uTq" = (
-/obj/effect/spawner/random/present,
-/turf/open/floor/mainship/green/corner{
-	dir = 4
-	},
-/area/mainship/squads/req)
 "uTP" = (
 /obj/machinery/shower{
 	dir = 4
@@ -60799,7 +60819,7 @@ rkB
 bnD
 bnD
 jMY
-uTq
+oLp
 hfD
 fAI
 erX
@@ -61310,7 +61330,7 @@ nZY
 gPA
 acj
 fNe
-eUS
+bny
 acj
 wMU
 bDM
@@ -61821,7 +61841,7 @@ lNr
 lNr
 abX
 aat
-mGq
+gYS
 bAG
 bzq
 rrW
@@ -62338,7 +62358,7 @@ seG
 seG
 bAG
 nGK
-mGq
+nkH
 seG
 xrx
 xas
@@ -62592,10 +62612,10 @@ bGj
 hHl
 abz
 seG
-sJP
+fEc
 kzX
 acj
-rGo
+ipe
 seG
 gbB
 egi
@@ -69294,7 +69314,7 @@ aDZ
 nmg
 gQo
 bUL
-nAa
+cse
 bln
 rnS
 bRQ

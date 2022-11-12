@@ -242,6 +242,7 @@
 					/obj/item/reagent_containers/food/snacks/christmas_cookiesix,\
 					/obj/item/reagent_containers/food/snacks/christmas_cookieseven,\
 					/obj/item/reagent_containers/food/snacks/sliceable/fruitcake,\
+					/obj/item/reagent_containers/food/drinks/h_chocolate,\
 					/obj/item/reagent_containers/food/drinks/milk/xmas)
 
 ///All the trash.
