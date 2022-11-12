@@ -339,11 +339,11 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	add_cooldown()
 
 // ***************************************
-// *********** Call of younger
+// *********** Call of Younger
 // ***************************************
 
 /datum/action/xeno_action/activable/call_younger
-	name = "Call of younger"
+	name = "Call of Younger"
 	action_icon_state = "call_younger"
 	mechanics_text = "Appeals to the larva inside the Marine. The Marine loses his balance, and larva's progress accelerates."
 	ability_name = "call younger"
@@ -353,15 +353,6 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CALL_YOUNGER,
 	)
 
-/datum/action/xeno_action/activable/call_younger/on_cooldown_finish()
-	to_chat(owner, span_notice("We are ready to make another call"))
-	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
-	return ..()
-
-/datum/action/xeno_action/activable/call_younger/proc/check_los(atom/A)
-	if(!line_of_sight(owner, A))
-		return FALSE
-	return TRUE
 
 /datum/action/xeno_action/activable/call_younger/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
@@ -370,24 +361,24 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 
 	if(!ishuman(A))
 		if(!silent)
-			A.balloon_alert(owner, "It's not a human")
+			A.balloon_alert(owner, "Not human")
 		return FALSE
 
 	if(!(locate(/obj/item/alien_embryo) in A))
 		if(!silent)
-			A.balloon_alert(owner, "There is no younger one inside him")
+			A.balloon_alert(owner, "He's not infected")
 		return FALSE
 
 	if(isliving(A))
 		var/mob/living/livingtarget = A
 		if(livingtarget.stat == DEAD)
 			if(!silent)
-				livingtarget.balloon_alert(owner, "We cannot call from the dead")
+				livingtarget.balloon_alert(owner, "He's dead")
 			return FALSE
 
-	if(!check_los(A)) //Need line of sight.
+	if(!line_of_sight(owner, A))
 		if(!silent)
-			A.balloon_alert(owner, "We require line of sight to call them!")
+			A.balloon_alert(owner, "Need line of sight!")
 		return FALSE
 	return TRUE
 
@@ -396,7 +387,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	var/mob/living/carbon/human/victim = A
 
 	owner.face_atom(victim)
-	if(!do_after(X, 0.5 SECONDS, TRUE, user_display = BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/check_los, victim)))
+	if(!do_after(X, 0.5 SECONDS, TRUE, X, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_ability, A, FALSE, XACT_USE_BUSY)))
 		return fail_activate()
 
 	if(!can_use_ability(A))
