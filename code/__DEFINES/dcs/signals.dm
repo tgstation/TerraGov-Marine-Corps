@@ -868,3 +868,6 @@
 //Signals for ais
 #define COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED "escorting_behaviour_changed"
 #define COMSIG_ESCORTED_ATOM_CHANGING "escorted_atom_changing"
+
+/// from datum ui_act (usr, action)
+#define COMSIG_UI_ACT "COMSIG_UI_ACT"

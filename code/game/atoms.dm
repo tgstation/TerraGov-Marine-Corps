@@ -244,7 +244,11 @@ directive is properly returned.
 	face_atom(examinify)
 	var/list/result = examinify.examine(src) // if a tree is examined but no client is there to see it, did the tree ever really exist?
 
-	to_chat(src, span_infoplain(result.Join("\n")))
+	if(result.len)
+		for(var/i in 1 to (length(result) - 1))
+			result[i] += "\n"
+
+	to_chat(src, examine_block(span_infoplain(result.Join())))
 	SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, examinify)
 
 /**
@@ -268,7 +272,11 @@ directive is properly returned.
 
 /atom/proc/examine(mob/user)
 	SHOULD_CALL_PARENT(TRUE)
-	. = list("[get_examine_string(user, TRUE)].")
+	var/examine_string = get_examine_string(user, thats = TRUE)
+	if(examine_string)
+		. = list("[examine_string].")
+	else
+		. = list()
 
 	if(desc)
 		. += desc

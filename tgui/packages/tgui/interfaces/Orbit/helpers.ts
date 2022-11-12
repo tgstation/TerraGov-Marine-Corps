@@ -20,9 +20,9 @@ export const getDisplayName = (full_name: string, nickname?: string) => {
     return full_name;
   }
   if (
-    !full_name?.includes('[')
-    || full_name.match(/\(as /)
-    || full_name.match(/^Unknown/)
+    !full_name?.includes('[') ||
+    full_name.match(/\(as /) ||
+    full_name.match(/^Unknown/)
   ) {
     return nickname;
   }
@@ -53,9 +53,9 @@ export const isJobOrNameMatch = (
   const { caste, job, full_name } = observable;
 
   return (
-    full_name?.toLowerCase().includes(searchQuery?.toLowerCase())
-    || caste?.toLowerCase().includes(searchQuery?.toLowerCase())
-    || job?.toLowerCase().includes(searchQuery?.toLowerCase())
-    || false
+    full_name?.toLowerCase().includes(searchQuery?.toLowerCase()) ||
+    caste?.toLowerCase().includes(searchQuery?.toLowerCase()) ||
+    job?.toLowerCase().includes(searchQuery?.toLowerCase()) ||
+    false
   );
 };

@@ -76,7 +76,6 @@
 	user.xooc_wrapper()
 	return TRUE
 
-
 /datum/keybinding/client/mooc
 	name = "mooc"
 	full_name = "MOOC"
