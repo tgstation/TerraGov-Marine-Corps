@@ -32,6 +32,10 @@
 	)
 
 /obj/item/tool/research/xeno_analyzer/attack(mob/living/M, mob/living/user)
+	if(M.type == /mob/living/simple_animal/catslug/newt)
+		SEND_SIGNAL(M, COMSIG_MASTER_MOB_CHANGE, user)
+		return ..()
+
 	if(!isxeno(M))
 		return ..()
 

@@ -724,6 +724,7 @@ below 100 is not dizzy
 	var/obj/visual = new /obj/effect/overlay/temp/point/big(our_tile, 0, invisibility)
 	animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + A.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + A.pixel_y, time = 1.7, easing = EASE_OUT)
 	visible_message("<b>[src]</b> points to [A]")
+	SEND_SIGNAL(src, COMSIG_POINT_TO_ATOM, A)
 	return TRUE
 
 

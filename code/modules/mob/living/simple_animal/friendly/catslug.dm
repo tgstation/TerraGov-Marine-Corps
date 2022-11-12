@@ -17,6 +17,10 @@
 	response_disarm = "rudely paps"
 	response_harm   = "kicks"
 
+/mob/living/simple_animal/catslug/Initialize()
+	. = ..()
+	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/slugcat)
+
 /mob/living/simple_animal/catslug/newt
 	name = "Newt"
 	real_name = "Newt"
