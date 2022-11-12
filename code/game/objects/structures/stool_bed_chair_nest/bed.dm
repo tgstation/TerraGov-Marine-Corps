@@ -32,7 +32,7 @@
 
 /obj/structure/bed/nometal
 	dropmetal = FALSE
-	
+
 /obj/structure/bed/bunkbed
 	name = "bunk bed"
 	icon_state = "bunkbed"
@@ -239,13 +239,14 @@ obj/structure/bed/Destroy()
 /obj/item/roller/attack_self(mob/user)
 	deploy_roller(user, user.loc)
 
-/obj/item/roller/afterattack(obj/target, mob/user , proximity)
-	if(!proximity)
+/obj/item/roller/afterattack(atom/target, mob/user , proximity)
+	if(!proximity || !isturf(target) || target.density)
 		return
-	if(isturf(target))
-		var/turf/T = target
-		if(!T.density)
-			deploy_roller(user, target)
+	var/turf/target_turf = target
+	for(var/atom/i AS in target_turf)
+		if(i.density)
+			return
+	deploy_roller(user, target_turf)
 
 /obj/item/roller/attackby(obj/item/I, mob/user, params)
 	. = ..()
