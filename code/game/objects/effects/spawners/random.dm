@@ -241,6 +241,7 @@
 					/obj/item/reagent_containers/food/snacks/christmas_cookiefive,\
 					/obj/item/reagent_containers/food/snacks/christmas_cookiesix,\
 					/obj/item/reagent_containers/food/snacks/christmas_cookieseven,\
+					/obj/item/reagent_containers/food/snacks/sliceable/fruitcake,\
 					/obj/item/reagent_containers/food/drinks/milk/xmas)
 
 ///All the trash.
@@ -758,3 +759,12 @@
 					/obj/item/toy/plush/therapy_orange,\
 					/obj/item/toy/plush/therapy_red,\
 					/obj/item/toy/plush/therapy_purple)
+
+/obj/effect/spawner/random_set/christmas_costume
+	name = "Random santa suit set spawner"
+	icon_state = "random_santasuit"
+	spawn_nothing_percentage = 90
+
+	option_list = list(
+		list(/obj/item/clothing/head/helmet/space/santahat, /obj/item/clothing/suit/space/santa,),
+	)

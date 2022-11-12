@@ -2173,6 +2173,23 @@
 	bitesize = 2
 	tastes = list("cake" = 5, "sweetness" = 1, "apple" = 1)
 
+/obj/item/reagent_containers/food/snacks/sliceable/fruitcake
+	name = "english fruitcake"
+	desc = "A proper good cake, innit?"
+	slice_path = /obj/item/reagent_containers/food/snacks/fruitcakeslice
+	icon_state = "fruitcake"
+	tastes = list("dried fruit" = 5, "treacle" = 2, "christmas" = 2)
+	force = 7
+	throwforce = 7
+
+/obj/item/reagent_containers/food/snacks/fruitcakeslice
+	name = "english fruitcake slice"
+	desc = "A proper good slice, innit?"
+	icon_state = "fruitcake_slice1"
+	tastes = list("dried fruit" = 5, "treacle" = 2, "christmas" = 2)
+	force = 2
+	throwforce = 2
+
 /obj/item/reagent_containers/food/snacks/sliceable/pumpkinpie
 	name = "Pumpkin Pie"
 	desc = "A delicious treat for the autumn months."

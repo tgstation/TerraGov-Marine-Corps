@@ -120,6 +120,15 @@
 /obj/structure/prop/holidays/string_lights{
 	dir = 1
 	},
+/obj/item/reagent_containers/food/drinks/bottle/eggnog{
+	pixel_x = -4
+	},
+/obj/item/reagent_containers/food/drinks/bottle/eggnog{
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/food/drinks/bottle/eggnog{
+	pixel_x = 5
+	},
 /turf/open/floor/mainship/blue,
 /area/shuttle/canterbury/cic)
 "at" = (
@@ -775,6 +784,7 @@
 /obj/item/storage/bag/trash,
 /obj/item/storage/bag/trash,
 /obj/item/wrapping_paper,
+/obj/effect/spawner/random_set/christmas_costume,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "cO" = (

@@ -993,6 +993,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "cJ" = (
+/obj/effect/spawner/random_set/christmas_costume,
 /turf/open/floor/mainship/terragov/north,
 /area/mainship/living/briefing)
 "cK" = (
@@ -2704,6 +2705,7 @@
 "hq" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/box/donkpockets,
+/obj/item/reagent_containers/food/drinks/bottle/eggnog,
 /turf/open/floor/wood,
 /area/mainship/medical/lower_medical)
 "hr" = (
@@ -4697,6 +4699,9 @@
 /obj/item/bodybag/cryobag,
 /obj/item/bodybag/cryobag,
 /obj/item/bodybag/cryobag,
+/obj/effect/spawner/random/christmas_food{
+	pixel_y = 3
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "mY" = (
@@ -4773,6 +4778,7 @@
 "ne" = (
 /obj/item/reagent_containers/food/snacks/grown/poppy,
 /obj/item/clothing/head/modular/marine,
+/obj/effect/spawner/random_set/christmas_costume,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/starboard_garden)
 "nf" = (
@@ -4931,6 +4937,7 @@
 /obj/item/tool/pen,
 /obj/item/tool/pen/red,
 /obj/item/tool/pen/blue,
+/obj/effect/spawner/random/christmas_food,
 /turf/open/floor/carpet,
 /area/mainship/living/commandbunks)
 "nB" = (
@@ -6173,7 +6180,11 @@
 /area/mainship/medical/lower_medical)
 "ra" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/reagent_containers/food/snacks/cheeseburger,
+/obj/effect/spawner/random/christmas_food{
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/effect/spawner/random/christmas_food,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
 "rb" = (
@@ -7363,6 +7374,11 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
+"uh" = (
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/drinks/bottle/eggnog,
+/turf/open/floor/wood,
+/area/mainship/living/grunt_rnr)
 "ui" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
@@ -7969,6 +7985,9 @@
 /obj/item/defibrillator,
 /obj/item/defibrillator,
 /obj/machinery/recharger,
+/obj/effect/spawner/random/christmas_food{
+	pixel_x = 1
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "vN" = (
@@ -8043,6 +8062,9 @@
 "vW" = (
 /obj/structure/table/woodentable,
 /obj/structure/disposalpipe/segment,
+/obj/item/reagent_containers/food/drinks/bottle/eggnog{
+	pixel_y = 4
+	},
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
 "vX" = (
@@ -10099,6 +10121,9 @@
 "BB" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/box/bodybags,
+/obj/effect/spawner/random/christmas_food{
+	pixel_y = -3
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "BC" = (
@@ -10354,6 +10379,9 @@
 /obj/item/roller,
 /obj/item/roller,
 /obj/item/roller,
+/obj/effect/spawner/random/christmas_food{
+	pixel_x = -3
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "Cs" = (
@@ -12188,6 +12216,10 @@
 /obj/item/radio{
 	pixel_x = 6
 	},
+/obj/item/reagent_containers/food/drinks/bottle/eggnog,
+/obj/effect/spawner/random/christmas_food{
+	pixel_x = 1
+	},
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
@@ -13468,6 +13500,7 @@
 /area/mainship/engineering/engineering_workshop)
 "KN" = (
 /obj/structure/table/mainship/nometal,
+/obj/item/reagent_containers/food/drinks/bottle/eggnog,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
 "KO" = (
@@ -14043,6 +14076,8 @@
 	pixel_y = 5
 	},
 /obj/item/tool/pen/blue,
+/obj/effect/spawner/random_set/christmas_costume,
+/obj/effect/spawner/random/christmas_food,
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
 "Mu" = (
@@ -18962,6 +18997,7 @@
 /area/mainship/command/cic)
 "ZG" = (
 /obj/structure/table/woodentable,
+/obj/effect/spawner/random_set/christmas_costume,
 /turf/open/floor/wood,
 /area/mainship/living/chapel)
 "ZH" = (
@@ -45164,7 +45200,7 @@ sO
 bl
 Km
 HT
-on
+uh
 dS
 al
 JR
@@ -45936,7 +45972,7 @@ bS
 al
 Km
 JD
-on
+uh
 dS
 bY
 WZ

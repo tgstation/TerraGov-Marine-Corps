@@ -395,6 +395,7 @@
 	pixel_x = 3;
 	pixel_y = 3
 	},
+/obj/item/reagent_containers/food/drinks/bottle/eggnog,
 /turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
 "bs" = (
@@ -556,6 +557,7 @@
 /obj/structure/prop/holidays/string_lights{
 	dir = 1
 	},
+/obj/item/reagent_containers/food/drinks/bottle/eggnog,
 /turf/open/floor/mainship/blue{
 	dir = 8
 	},
@@ -1013,6 +1015,7 @@
 /obj/item/storage/bag/trash,
 /obj/item/storage/bag/trash,
 /obj/item/storage/bag/trash,
+/obj/effect/spawner/random_set/christmas_costume,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "AS" = (

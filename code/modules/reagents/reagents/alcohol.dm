@@ -739,3 +739,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 			if(prob(20))
 				L.AdjustConfused(10 SECONDS)
 	return ..()
+
+/datum/reagent/consumable/ethanol/eggnog
+	name = "Eggnog"
+	description = "For enjoying the most wonderful time of the year."
+	nutriment_factor = 2 * REAGENTS_METABOLISM
+	color = "#fcfdc6" // rgb: 252, 253, 198
+	boozepwr = 1
+	taste_description = "custard and alcohol"

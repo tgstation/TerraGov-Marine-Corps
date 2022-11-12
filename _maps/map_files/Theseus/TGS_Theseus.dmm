@@ -3846,6 +3846,7 @@
 "bli" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/fancy/cigarettes,
+/obj/item/reagent_containers/food/drinks/bottle/eggnog,
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
 "blj" = (
@@ -8974,6 +8975,11 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/surgery_hallway)
+"dJk" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/reagent_containers/food/drinks/bottle/eggnog,
+/turf/open/floor/mainship/floor,
+/area/mainship/living/officer_study)
 "dKa" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/junction/flipped{
@@ -9776,6 +9782,8 @@
 /area/mainship/squads/alpha)
 "fgj" = (
 /obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/drinks/bottle/eggnog,
+/obj/item/reagent_containers/food/drinks/bottle/eggnog,
 /turf/open/floor/carpet/side,
 /area/mainship/living/officer_study)
 "fgF" = (
@@ -10695,6 +10703,7 @@
 "gxh" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/radio/intercom/general,
+/obj/item/reagent_containers/food/drinks/bottle/eggnog,
 /turf/open/floor/mainship/silver{
 	dir = 5
 	},
@@ -11393,6 +11402,10 @@
 "hwd" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/radio/intercom/general,
+/obj/effect/spawner/random/christmas_food{
+	pixel_x = -2;
+	pixel_y = 4
+	},
 /turf/open/floor/mainship/silver{
 	dir = 9
 	},
@@ -11636,6 +11649,7 @@
 /area/mainship/squads/alpha)
 "hUl" = (
 /obj/structure/table/mainship/nometal,
+/obj/item/reagent_containers/food/drinks/bottle/eggnog,
 /turf/open/floor/carpet,
 /area/mainship/living/commandbunks)
 "hUw" = (
@@ -14345,6 +14359,7 @@
 /area/mainship/hallways/hangar)
 "mra" = (
 /obj/structure/table/mainship/nometal,
+/obj/item/reagent_containers/food/drinks/bottle/eggnog,
 /turf/open/floor/mainship/green{
 	dir = 8
 	},
@@ -17570,13 +17585,28 @@
 "rkt" = (
 /obj/structure/table/woodentable,
 /obj/item/storage/fancy/cigar,
-/obj/item/reagent_containers/food/drinks/bottle/whiskey{
+/obj/item/reagent_containers/food/drinks/bottle/eggnog{
 	pixel_x = 8
 	},
 /turf/open/floor/carpet/side{
 	dir = 1
 	},
 /area/mainship/living/officer_study)
+"rky" = (
+/obj/structure/table/mainship/nometal,
+/obj/machinery/computer/security/marinemainship{
+	dir = 8;
+	pixel_x = -17
+	},
+/obj/item/reagent_containers/food/drinks/bottle/eggnog{
+	pixel_x = -2;
+	pixel_y = 7
+	},
+/obj/item/reagent_containers/food/drinks/bottle/eggnog,
+/turf/open/floor/mainship/green{
+	dir = 8
+	},
+/area/mainship/command/cic)
 "rkB" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
@@ -18417,6 +18447,10 @@
 /area/mainship/medical/upper_medical)
 "syG" = (
 /obj/structure/table/mainship/nometal,
+/obj/item/reagent_containers/food/drinks/bottle/eggnog{
+	pixel_x = 2;
+	pixel_y = 3
+	},
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
 "syT" = (
@@ -34251,7 +34285,7 @@ jQu
 lzB
 mra
 lzB
-jQu
+rky
 oRU
 pBS
 wPV
@@ -53542,7 +53576,7 @@ aeI
 bSD
 nJN
 bWH
-bZa
+dJk
 nJN
 bSG
 pWo
