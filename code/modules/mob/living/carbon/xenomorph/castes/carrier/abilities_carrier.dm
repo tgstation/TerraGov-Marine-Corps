@@ -416,8 +416,6 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	else if(young.stage > 1 && young.stage <= 5)
 		victim.throw_at(owner, 3, 1, owner)
 	else if(young.stage == 6)
-		var/mob/living/carbon/xenomorph/larva/L = locate() in victim
-		L?.initiate_burst(victim, 0.5)
-
+		victim.throw_at(owner, 4, 1, owner)
 	succeed_activate()
 	add_cooldown()
