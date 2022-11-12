@@ -145,7 +145,7 @@
 "aH" = (
 /obj/machinery/vending/MarineMed/Blood,
 /obj/structure/prop/holidays/string_lights{
-	dir = 1
+	dir = 5
 	},
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
@@ -211,7 +211,7 @@
 /obj/machinery/cell_charger,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/structure/prop/holidays/string_lights{
-	dir = 1
+	dir = 9
 	},
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
@@ -660,6 +660,13 @@
 /obj/item/reagent_containers/glass/beaker/bluespace,
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
+"gc" = (
+/obj/structure/window/framed/mainship/white/canterbury,
+/obj/structure/prop/holidays/string_lights{
+	dir = 10
+	},
+/turf/open/floor/mainship/sterile,
+/area/shuttle/canterbury/medical)
 "gv" = (
 /obj/structure/barricade/plasteel,
 /turf/open/floor/mainship/stripesquare,
@@ -731,6 +738,14 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/cic)
+"jX" = (
+/obj/effect/spawner/random/present,
+/obj/effect/spawner/random/present{
+	pixel_x = -3;
+	pixel_y = 9
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/canterbury)
 "ki" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -903,6 +918,16 @@
 	},
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
+"ts" = (
+/obj/effect/spawner/random/present{
+	pixel_y = -20
+	},
+/obj/effect/spawner/random/present{
+	pixel_x = 3;
+	pixel_y = -7
+	},
+/turf/open/floor/mainship/mono,
+/area/shuttle/canterbury)
 "tv" = (
 /obj/structure/window/framed/mainship/white/canterbury,
 /obj/structure/prop/holidays/string_lights{
@@ -1010,6 +1035,13 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
+"zp" = (
+/obj/structure/window/framed/mainship/white/canterbury,
+/obj/structure/prop/holidays/string_lights{
+	dir = 6
+	},
+/turf/open/floor/mainship/sterile,
+/area/shuttle/canterbury/medical)
 "zy" = (
 /obj/structure/closet/crate/trashcart,
 /obj/item/storage/bag/trash,
@@ -1017,6 +1049,10 @@
 /obj/item/storage/bag/trash,
 /obj/effect/spawner/random_set/christmas_costume,
 /turf/open/floor/mainship/mono,
+/area/shuttle/canterbury)
+"Ak" = (
+/obj/effect/spawner/random/present,
+/turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury)
 "AS" = (
 /obj/structure/largecrate/supply/supplies/flares,
@@ -1044,6 +1080,13 @@
 	},
 /obj/effect/spawner/random/christmas_food,
 /turf/open/floor/plating/plating_catwalk,
+/area/shuttle/canterbury)
+"Dq" = (
+/obj/effect/spawner/random/present{
+	pixel_x = -4;
+	pixel_y = -7
+	},
+/turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "Dt" = (
 /obj/structure/prop/holidays/string_lights/corner{
@@ -1591,7 +1634,7 @@ aq
 aC
 aq
 aH
-az
+zp
 aW
 aA
 fL
@@ -1657,7 +1700,7 @@ aq
 aq
 aN
 aR
-az
+gc
 aJ
 lu
 aY
@@ -1742,8 +1785,8 @@ Mp
 zy
 ac
 ki
-ac
-an
+ts
+Ak
 rX
 ac
 ac
@@ -1808,8 +1851,8 @@ Mp
 nM
 ac
 ac
-ac
-an
+Dq
+jX
 cE
 ac
 ac

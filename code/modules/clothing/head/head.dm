@@ -26,7 +26,6 @@
 	flags_inv_hide = HIDETOPHAIR
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
 
-
 /obj/item/clothing/head/tgmcberet
 	name = "\improper Dark gray beret"
 	desc = "A hat typically worn by the field-officers of the TGMC. Occasionally they find their way down the ranks into the hands of squad-leaders and decorated grunts."

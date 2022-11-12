@@ -104,6 +104,9 @@
 /obj/item/mass_spectrometer,
 /obj/item/reagent_scanner,
 /obj/item/tool/hand_labeler,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -1228,6 +1231,9 @@
 /obj/structure/table/mainship/nometal,
 /obj/item/reagent_containers/glass/beaker/cryomix,
 /obj/item/reagent_containers/glass/beaker/cryomix,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -1486,6 +1492,9 @@
 /obj/structure/table/mainship/nometal,
 /obj/effect/spawner/random/toolbox,
 /obj/item/lightreplacer,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -3784,6 +3793,9 @@
 	pixel_y = 7
 	},
 /obj/item/tool/pen,
+/obj/effect/spawner/random/present{
+	pixel_y = 7
+	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/bridge)
 "asX" = (
@@ -4717,6 +4729,9 @@
 	id = "EngineBlast";
 	name = "Engine Room Blast Doors";
 	pixel_y = -3
+	},
+/obj/effect/spawner/random/present{
+	pixel_y = 5
 	},
 /turf/open/floor/prison/darkyellow/full,
 /area/sulaco/engineering/engine_monitoring)
@@ -5827,6 +5842,9 @@
 /obj/item/flashlight/lamp,
 /obj/item/weapon/chainofcommand,
 /obj/machinery/camera/autoname,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/wood,
 /area/sulaco/cap_office)
 "aBO" = (
@@ -6083,6 +6101,9 @@
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
 "aCJ" = (
 /obj/structure/table/mainship/nometal,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/prison,
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
 "aCK" = (
@@ -10116,6 +10137,9 @@
 /obj/item/storage/box/nt_mre,
 /obj/item/ashtray/bronze,
 /obj/structure/table/fancywoodentable,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/wood,
 /area/sulaco/liaison)
 "bcr" = (
@@ -10382,6 +10406,9 @@
 "beL" = (
 /obj/item/flashlight/lamp,
 /obj/structure/table/fancywoodentable,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
 "bfh" = (
@@ -11107,6 +11134,9 @@
 /obj/machinery/firealarm{
 	dir = 8
 	},
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
 "cjc" = (
@@ -11341,6 +11371,9 @@
 	name = "Lockdown Shutter-Control Outer Shutters";
 	pixel_x = -7;
 	pixel_y = -2
+	},
+/obj/effect/spawner/random/present{
+	pixel_y = 5
 	},
 /turf/open/floor/prison,
 /area/sulaco/security)
@@ -13333,6 +13366,14 @@
 	},
 /turf/closed/wall/mainship/gray,
 /area/sulaco/marine)
+"faS" = (
+/obj/effect/spawner/random/present{
+	pixel_y = -13
+	},
+/turf/open/floor/prison/darkyellow{
+	dir = 8
+	},
+/area/sulaco/briefing)
 "fbS" = (
 /obj/machinery/firealarm{
 	dir = 4
@@ -13584,6 +13625,13 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
+"fud" = (
+/obj/structure/table/mainship/nometal,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
+/turf/open/floor/prison,
+/area/sulaco/bar)
 "fuV" = (
 /obj/structure/bed/chair/nometal,
 /obj/structure/cable,
@@ -15627,6 +15675,15 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 4
 	},
+/obj/effect/spawner/random/present{
+	pixel_x = 2;
+	pixel_y = 12
+	},
+/obj/effect/spawner/random/present,
+/obj/effect/spawner/random/present{
+	pixel_x = -9;
+	pixel_y = 5
+	},
 /turf/open/floor/prison/darkyellow{
 	dir = 8
 	},
@@ -16340,6 +16397,9 @@
 /area/sulaco/hangar/storage)
 "iZY" = (
 /obj/structure/table/mainship/nometal,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 5
 	},
@@ -16708,6 +16768,20 @@
 /obj/machinery/light/mainship{
 	dir = 8
 	},
+/obj/effect/spawner/random/present{
+	pixel_x = -5;
+	pixel_y = 8
+	},
+/obj/effect/spawner/random/present{
+	pixel_x = -5
+	},
+/obj/effect/spawner/random/present{
+	pixel_x = 9;
+	pixel_y = 8
+	},
+/obj/effect/spawner/random/present{
+	pixel_x = 9
+	},
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
 "jCy" = (
@@ -16835,6 +16909,7 @@
 	holo_range = 9;
 	name = "Basketball Court holopad"
 	},
+/obj/effect/spawner/random/present,
 /turf/open/floor/wood,
 /area/mainship/living/basketball)
 "jJe" = (
@@ -17885,6 +17960,13 @@
 	dir = 4
 	},
 /area/sulaco/engineering)
+"leT" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
+/turf/open/floor/mainship/ai,
+/area/sulaco/command/ai)
 "lfa" = (
 /obj/structure/droppod,
 /obj/structure/dropprop,
@@ -18556,6 +18638,16 @@
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/central_hall3)
+"lXY" = (
+/obj/effect/spawner/random/present{
+	pixel_x = 4;
+	pixel_y = 6
+	},
+/obj/effect/spawner/random/present,
+/turf/open/floor/prison/darkpurple{
+	dir = 4
+	},
+/area/sulaco/briefing)
 "lYE" = (
 /obj/structure/droppod,
 /obj/structure/dropprop,
@@ -18633,6 +18725,9 @@
 	},
 /obj/structure/table/mainship/nometal,
 /obj/item/facepaint/green,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
 "mdt" = (
@@ -19003,6 +19098,9 @@
 /obj/structure/table/woodentable,
 /obj/item/paper,
 /obj/item/tool/pen,
+/obj/effect/spawner/random/present{
+	pixel_y = 6
+	},
 /turf/open/floor/mainship/black{
 	dir = 10
 	},
@@ -19557,6 +19655,14 @@
 /turf/open/floor/wood,
 /area/sulaco/liaison)
 "ntj" = (
+/obj/effect/spawner/random/present{
+	pixel_x = -5;
+	pixel_y = -20
+	},
+/obj/effect/spawner/random/present{
+	pixel_x = -5;
+	pixel_y = -8
+	},
 /turf/open/floor/prison/darkpurple{
 	dir = 4
 	},
@@ -25026,6 +25132,9 @@
 "uad" = (
 /obj/structure/table/woodentable,
 /obj/item/flashlight/lamp,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/tile/chapel{
 	dir = 8
 	},
@@ -26035,6 +26144,17 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/engineering/atmos)
+"vqW" = (
+/obj/structure/table/mainship/nometal,
+/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
+/turf/open/floor/prison,
+/area/sulaco/bridge/office)
 "vrP" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -26253,6 +26373,7 @@
 	pixel_x = -6;
 	pixel_y = 8
 	},
+/obj/effect/spawner/random/present,
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
 "vIJ" = (
@@ -27945,6 +28066,9 @@
 /obj/structure/table/mainship/nometal,
 /obj/structure/prop/holidays/string_lights{
 	dir = 5
+	},
+/obj/effect/spawner/random/present{
+	pixel_y = 5
 	},
 /turf/open/floor/prison,
 /area/sulaco/marine)
@@ -54527,7 +54651,7 @@ eMk
 aAI
 lae
 akN
-sPn
+leT
 lsW
 teI
 wnN
@@ -55028,7 +55152,7 @@ arc
 avr
 atF
 ecX
-ear
+vqW
 avr
 awI
 rhM
@@ -62220,7 +62344,7 @@ pMU
 bSB
 cmN
 apT
-tPl
+faS
 ihO
 tPl
 sjY
@@ -62735,7 +62859,7 @@ bSB
 aqj
 apV
 ntj
-ntj
+lXY
 auh
 aIt
 aru
@@ -67614,7 +67738,7 @@ anQ
 aaW
 aaw
 gbw
-tRg
+fud
 amT
 ncU
 duZ

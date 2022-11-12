@@ -59,7 +59,27 @@
 	siemens_coefficient = 0.9
 	flags_armor_protection = CHEST|ARMS
 
+/obj/item/clothing/suit/costume/snowman
+	name = "snowman outfit"
+	desc = "Two white spheres covered in white glitter. 'Tis the season."
+	icon_state = "snowman"
+	item_state = "snowman"
+	slowdown = 3
+	soft_armor = list(MELEE = 35, BULLET = 35, LASER = 30, ENERGY = 15, BOMB = 30, BIO = 30, FIRE = 0, ACID = 0)
+	w_class = WEIGHT_CLASS_NORMAL
+	body_parts_covered = CHEST|GROIN
+	flags_armor_protection = FULL_BODY
 
+/obj/item/clothing/head/snowman
+	name = "snowman head"
+	desc = "A ball of white styrofoam. So festive."
+	icon_state = "snowman_h"
+	item_icons = list(
+		slot_head_str = 'icons/mob/head_1.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
+	flags_inv_hide = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEALLHAIR
+	soft_armor = list(MELEE = 20, BULLET = 20, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 15, FIRE = 0, ACID = 5)
 
 /obj/item/clothing/head/helmet/space/compression
 	name = "\improper MK.50 compression helmet"

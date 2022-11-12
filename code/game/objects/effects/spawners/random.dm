@@ -760,6 +760,17 @@
 					/obj/item/toy/plush/therapy_red,\
 					/obj/item/toy/plush/therapy_purple)
 
+/obj/effect/spawner/random/present
+	name = "Random present spawner"
+	icon_state = "random_present"
+	spawn_nothing_percentage = 70
+
+/obj/effect/spawner/random/present/item_to_spawn()
+		return pick(/obj/item/a_gift,\
+					/obj/item/a_gift/medicine,\
+					/obj/item/a_gift/weapons,\
+					/obj/item/a_gift/fluff)
+
 /obj/effect/spawner/random_set/christmas_costume
 	name = "Random santa suit set spawner"
 	icon_state = "random_santasuit"

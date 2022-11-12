@@ -13,10 +13,10 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 /obj/item/a_gift
 	name = "gift"
 	desc = "PRESENTS!!!! eek!"
-	icon = 'icons/obj/storage/storage.dmi'
-	icon_state = "giftdeliverypackage3"
-	inhand_icon_state = "gift"
-	resistance_flags = FLAMMABLE
+	icon = 'icons/obj/items/items.dmi'
+	icon_state = "gift0"
+	inhand_icon_state = "gift0"
+	resistance_flags = RESIST_ALL
 
 	var/obj/item/contains_type
 
@@ -24,30 +24,18 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	. = ..()
 	pixel_x = rand(-10,10)
 	pixel_y = rand(-10,10)
-	icon_state = "giftdeliverypackage[rand(1,5)]"
+	icon_state = "gift[rand(0,4)]"
 
 	contains_type = get_gift_type()
 
-/obj/item/a_gift/suicide_act(mob/user)
-	user.visible_message(span_suicide("[user] peeks inside [src] and cries [user.p_them()]self to death! It looks like [user.p_they()] [user.p_were()] on the naughty list..."))
-	return (BRUTELOSS)
-
-/obj/item/a_gift/examine(mob/M)
-	. = ..()
-	if((M.mind && HAS_TRAIT(M.mind, TRAIT_PRESENT_VISION)) || isobserver(M))
-		. += span_notice("It contains \a [initial(contains_type.name)].")
-
 /obj/item/a_gift/attack_self(mob/M)
-	if(M.mind && HAS_TRAIT(M.mind, TRAIT_CANNOT_OPEN_PRESENTS))
-		to_chat(M, span_warning("You're supposed to be spreading gifts, not opening them yourself!"))
-		return
 
 	qdel(src)
 
 	var/obj/item/I = new contains_type(get_turf(M))
 	if (!QDELETED(I)) //might contain something like metal rods that might merge with a stack on the ground
 		M.visible_message(span_notice("[M] unwraps \the [src], finding \a [I] inside!"))
-		I.investigate_log("([I.type]) was found in a present by [key_name(M)].", INVESTIGATE_PRESENTS)
+		I.investigate_log("([I.type]) was found in a present by [key_name(M)].")
 		M.put_in_hands(I)
 		I.add_fingerprint(M)
 	else
@@ -89,7 +77,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		/obj/item/clothing/suit/costume/poncho/red,
 		/obj/item/clothing/suit/costume/snowman,
 		/obj/item/clothing/head/snowman,
-		/obj/item/stack/sheet/mineral/coal)
+		/obj/item/ore/coal)
 
 	gift_type_list += subtypesof(/obj/item/clothing/head/collectable)
 	gift_type_list += subtypesof(/obj/item/toy) - (((typesof(/obj/item/toy/cards) - /obj/item/toy/cards/deck) + /obj/item/toy/figure + /obj/item/toy/ammo)) //All toys, except for abstract types and syndicate cards.
@@ -114,3 +102,9 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	var/gift_type = pick(GLOB.possible_gifts)
 
 	return gift_type
+
+/obj/item/a_gift/weapons
+
+/obj/item/a_gift/medicine
+
+/obj/item/a_gift/fluff

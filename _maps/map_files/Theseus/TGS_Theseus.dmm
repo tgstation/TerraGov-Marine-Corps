@@ -1662,6 +1662,7 @@
 /area/mainship/medical/medical_science)
 "avy" = (
 /obj/docking_port/stationary/marine_dropship/crash_target,
+/obj/item/a_gift/anything,
 /turf/open/floor/mainship/research/containment/floor1,
 /area/mainship/medical/medical_science)
 "avz" = (
@@ -5518,6 +5519,7 @@
 "bDQ" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/stack/sheet/metal/large_stack,
+/obj/effect/spawner/random/present,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engineering)
 "bDR" = (
@@ -8207,6 +8209,7 @@
 /obj/item/cell/high,
 /obj/item/tool/hand_labeler,
 /obj/item/tool/hand_labeler,
+/obj/effect/spawner/random/present,
 /turf/open/floor/mainship/green{
 	dir = 8
 	},
@@ -9669,6 +9672,12 @@
 	},
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
+"eUS" = (
+/obj/effect/spawner/random/present,
+/turf/open/floor/mainship/green{
+	dir = 8
+	},
+/area/mainship/squads/req)
 "eVB" = (
 /obj/structure/cable,
 /obj/machinery/light/mainship{
@@ -10043,6 +10052,7 @@
 "fxh" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/flashlight/lamp,
+/obj/effect/spawner/random/present,
 /turf/open/floor/mainship/silver{
 	dir = 5
 	},
@@ -14560,6 +14570,12 @@
 "mFS" = (
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
+"mGq" = (
+/obj/effect/spawner/random/present,
+/turf/open/floor/mainship/green{
+	dir = 1
+	},
+/area/mainship/squads/req)
 "mGz" = (
 /obj/effect/landmark/start/latejoin_cryo,
 /turf/open/floor/mainship/mono,
@@ -14890,6 +14906,7 @@
 "ngm" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/instrument/guitar,
+/obj/effect/spawner/random/present,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/cafeteria_port)
 "ngq" = (
@@ -15109,6 +15126,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"nAa" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/storage/box/MRE,
+/obj/effect/spawner/random/present,
+/turf/open/floor/mainship/floor,
+/area/mainship/living/cafeteria_port)
 "nAt" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -17840,6 +17863,12 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/aft_hallway)
+"rGo" = (
+/obj/effect/spawner/random/present,
+/turf/open/floor/mainship/green/corner{
+	dir = 1
+	},
+/area/mainship/squads/req)
 "rHG" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -18519,6 +18548,10 @@
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/cryo_cells)
+"sJP" = (
+/obj/effect/spawner/random/present,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "sLs" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 2;
@@ -19734,6 +19767,7 @@
 /obj/item/ammo_magazine/pistol,
 /obj/item/ammo_magazine/pistol,
 /obj/item/weapon/gun/pistol/rt3,
+/obj/effect/spawner/random/present,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/firing_range)
 "uLM" = (
@@ -19840,6 +19874,12 @@
 	},
 /turf/closed/wall/mainship,
 /area/mainship/squads/alpha)
+"uTq" = (
+/obj/effect/spawner/random/present,
+/turf/open/floor/mainship/green/corner{
+	dir = 4
+	},
+/area/mainship/squads/req)
 "uTP" = (
 /obj/machinery/shower{
 	dir = 4
@@ -20976,6 +21016,7 @@
 "wMU" = (
 /obj/structure/table/woodentable,
 /obj/effect/spawner/random/christmas_food,
+/obj/effect/spawner/random/present,
 /turf/open/floor/mainship/green{
 	dir = 8
 	},
@@ -60758,7 +60799,7 @@ rkB
 bnD
 bnD
 jMY
-jFn
+uTq
 hfD
 fAI
 erX
@@ -61269,7 +61310,7 @@ nZY
 gPA
 acj
 fNe
-acj
+eUS
 acj
 wMU
 bDM
@@ -61780,7 +61821,7 @@ lNr
 lNr
 abX
 aat
-bDM
+mGq
 bAG
 bzq
 rrW
@@ -62297,7 +62338,7 @@ seG
 seG
 bAG
 nGK
-bDM
+mGq
 seG
 xrx
 xas
@@ -62551,10 +62592,10 @@ bGj
 hHl
 abz
 seG
-seG
+sJP
 kzX
 acj
-vaF
+rGo
 seG
 gbB
 egi
@@ -69253,7 +69294,7 @@ aDZ
 nmg
 gQo
 bUL
-bYf
+nAa
 bln
 rnS
 bRQ

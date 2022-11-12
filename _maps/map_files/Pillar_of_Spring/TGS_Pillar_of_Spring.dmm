@@ -16,6 +16,7 @@
 /obj/structure/table/mainship/nometal,
 /obj/item/folder/blue,
 /obj/item/tool/pen,
+/obj/effect/spawner/random/present,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing)
 "ad" = (
@@ -729,6 +730,7 @@
 	dir = 4
 	},
 /obj/item/lightreplacer,
+/obj/effect/spawner/random/present,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "bU" = (
@@ -3106,6 +3108,10 @@
 /turf/closed/wall/mainship,
 /area/mainship/living/cryo_cells)
 "iA" = (
+/obj/effect/spawner/random/present{
+	pixel_x = 4;
+	pixel_y = -4
+	},
 /turf/open/floor/mainship/terragov/north{
 	dir = 9
 	},
@@ -4398,6 +4404,14 @@
 	dir = 5
 	},
 /area/mainship/medical/lower_medical)
+"mh" = (
+/obj/item/trash/cigbutt{
+	pixel_x = 5;
+	pixel_y = -8
+	},
+/obj/effect/spawner/random/present,
+/turf/open/floor/mainship/cargo,
+/area/mainship/squads/general)
 "mi" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
@@ -5417,6 +5431,9 @@
 /obj/item/roller,
 /obj/item/roller,
 /obj/item/roller,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/lower_medical)
 "oV" = (
@@ -5692,6 +5709,7 @@
 /area/mainship/shipboard/weapon_room)
 "pQ" = (
 /obj/item/trash/cigbutt,
+/obj/effect/spawner/random/present,
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
@@ -5949,6 +5967,7 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
+/obj/effect/spawner/random/present,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "qy" = (
@@ -7708,6 +7727,7 @@
 /obj/item/stack/sheet/mineral/phoron{
 	amount = 25
 	},
+/obj/effect/spawner/random/present,
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
@@ -7974,6 +7994,10 @@
 	},
 /area/mainship/command/cic)
 "vL" = (
+/obj/effect/spawner/random/present{
+	pixel_x = -4;
+	pixel_y = 3
+	},
 /turf/open/floor/mainship/terragov/north{
 	dir = 4
 	},
@@ -11054,6 +11078,7 @@
 /obj/machinery/light/mainship{
 	dir = 8
 	},
+/obj/effect/spawner/random/present,
 /turf/open/floor/grass,
 /area/mainship/living/starboard_garden)
 "Eg" = (
@@ -11430,6 +11455,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/stern_hallway)
 "Fd" = (
+/obj/effect/spawner/random/present{
+	pixel_x = -8;
+	pixel_y = -5
+	},
 /turf/open/floor/mainship/terragov/north{
 	dir = 5
 	},
@@ -13376,6 +13405,7 @@
 /area/mainship/living/grunt_rnr)
 "Kv" = (
 /obj/structure/bed/chair/nometal,
+/obj/effect/spawner/random/present,
 /turf/open/floor/wood,
 /area/mainship/medical/lower_medical)
 "Kw" = (
@@ -16568,6 +16598,11 @@
 /turf/open/floor/mainship_hull,
 /area/space)
 "Tk" = (
+/obj/effect/spawner/random/present{
+	pixel_x = 4;
+	pixel_y = 7
+	},
+/obj/effect/spawner/random/present,
 /turf/open/floor/mainship/terragov/north{
 	dir = 8
 	},
@@ -17433,6 +17468,7 @@
 	pixel_x = 5;
 	pixel_y = 10
 	},
+/obj/effect/spawner/random/present,
 /turf/open/floor/mainship/orange/full,
 /area/mainship/command/cic)
 "Vy" = (
@@ -18408,6 +18444,7 @@
 "XZ" = (
 /obj/structure/table/mainship,
 /obj/item/whistle,
+/obj/effect/spawner/random/present,
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
 "Ya" = (
@@ -18632,6 +18669,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
+"YH" = (
+/obj/item/trash/cigbutt,
+/obj/effect/spawner/random/present,
+/turf/open/floor/mainship/cargo,
+/area/mainship/squads/general)
 "YI" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
@@ -18985,6 +19027,7 @@
 "ZE" = (
 /obj/structure/table/woodentable,
 /obj/item/storage/bible,
+/obj/effect/spawner/random/present,
 /turf/open/floor/wood,
 /area/mainship/living/chapel)
 "ZF" = (
@@ -56004,7 +56047,7 @@ IQ
 xT
 sv
 WN
-Eo
+mh
 sy
 xT
 iu
@@ -57280,7 +57323,7 @@ GO
 we
 xO
 IQ
-Yf
+YH
 Dh
 iu
 xO
