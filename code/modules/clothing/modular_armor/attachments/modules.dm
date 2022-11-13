@@ -253,12 +253,12 @@
 /obj/item/armor_module/module/chemsystem/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
 	chemsystem = parent.AddComponent(/datum/component/chem_booster)
-	RegisterSignal(chemsystem, COMSIG_VALI_HEAL, .proc/toggle_icon_state_vali)
+	RegisterSignal(chemsystem, COMSIG_ACTION_TRIGGER, .proc/toggle_icon_state_vali)
 
 /obj/item/armor_module/module/chemsystem/on_detach(obj/item/detaching_from, mob/user)
 	chemsystem = parent.GetComponent(/datum/component/chem_booster)
 	chemsystem.RemoveComponent()
-	UnregisterSignal(chemsystem, COMSIG_VALI_HEAL)
+	UnregisterSignal(chemsystem, COMSIG_ACTION_TRIGGER)
 	return ..()
 
 /obj/item/armor_module/module/chemsystem/proc/toggle_icon_state_vali()
@@ -266,8 +266,8 @@
 		item_state = "mod_chemsystem_active_a"
 		icon_state = "mod_chemsystem_active_a"
 		return
-	item_state = "mod_chemsystem_a"
-	icon_state = "mod_chemsystem_a"
+	item_state = "mod_chemsystem_active_a"
+	icon_state = "mod_chemsystem_active_a"
 
 /obj/item/armor_module/module/eshield
 	name = "Arrowhead Energy Shield System"

@@ -502,7 +502,6 @@
 	else
 		action_icon_state = "cboost_off"
 	update_button_icon()
-	SEND_SIGNAL(src, COMSIG_VALI_HEAL)
 
 /datum/action/chem_booster/connect_weapon
 	name = "Connect Weapon"
