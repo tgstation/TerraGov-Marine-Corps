@@ -74,7 +74,7 @@ REAGENT SCANNER
 /obj/item/healthanalyzer/Initialize()
 	. = ..()
 	setup_healthscan_component()
-	 // We always want a healthscan component otherwise things get fucky.
+	// We always want a healthscan component otherwise things get fucky.
 
 /obj/item/healthanalyzer/Destroy()
 	. = ..()
