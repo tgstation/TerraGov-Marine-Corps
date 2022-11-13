@@ -37,14 +37,23 @@
 
 /obj/item/clothing/suit/space/santa/special //for ERT, when santa has to give presents to REALLY naughty children
 	desc = "That's not red dye. That's red blood."
-	soft_armor = list(MELEE = 70, BULLET = 55, LASER = 35, ENERGY = 20, BOMB = 30, BIO = 100, FIRE = 20, ACID = 20)
+	soft_armor = list(MELEE = 70, BULLET = 50, LASER = 40, ENERGY = 25, BOMB = 90, BIO = 70, FIRE = 20, ACID = 20)
 	slowdown = 1
 	flags_item = NODROP|DELONDROP
 
 /obj/item/clothing/head/helmet/space/santahat/special
 	name = "Santa's hat"
 	desc = "Ho ho ho. Merrry X-mas to all! Now you're all gonna die!"
-	soft_armor = list(MELEE = 65, BULLET = 55, LASER = 35, ENERGY = 20, BOMB = 30, BIO = 30, FIRE = 20, ACID = 20)
+	soft_armor = list(MELEE = 70, BULLET = 45, LASER = 35, ENERGY = 20, BOMB = 90, BIO = 70, FIRE = 20, ACID = 20)
+	flags_item = NODROP|DELONDROP
+
+/obj/item/clothing/suit/space/elf
+	name = "Elf suit"
+	desc = "Festive!"
+	icon_state = "elfcostume"
+	item_state = "elfcostume"
+	slowdown = -1
+	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 10, BOMB = 20, BIO = 40, FIRE = 20, ACID = 15)
 	flags_item = NODROP|DELONDROP
 
 //Space pirate outfit
