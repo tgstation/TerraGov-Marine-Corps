@@ -387,7 +387,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	var/mob/living/carbon/human/victim = A
 
 	owner.face_atom(victim)
-	if(!do_after(X, 20 SECONDS, TRUE, X, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_ability, A, FALSE, XACT_USE_BUSY)))
+	if(!do_after(X, 0.5 SECONDS, TRUE, X, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_ability, A, FALSE, XACT_USE_BUSY)))
 		return fail_activate()
 
 	if(!can_use_ability(A))
