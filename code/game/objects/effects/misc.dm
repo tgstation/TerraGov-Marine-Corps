@@ -90,6 +90,7 @@
 	density = TRUE
 	icon_state = "blocker"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	resistance_flags = RESIST_ALL
 
 /obj/effect/forcefield/Initialize()
 	. = ..()
@@ -144,6 +145,7 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "smoke"
 	density = FALSE
+	resistance_flags = RESIST_ALL|PROJECTILE_IMMUNE
 
 /obj/effect/forcefield/fog/passable_fog/Initialize()
 	. = ..()

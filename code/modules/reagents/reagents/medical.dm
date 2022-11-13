@@ -23,8 +23,8 @@
 		return
 	if(L.health < H.health_threshold_crit && volume > 14) //If you are in crit, and someone injects at least 15u into you at once, you will heal 30% of your physical damage instantly.
 		to_chat(L, span_userdanger("You feel a rush of energy as stimulants course through your veins!"))
-		L.adjustBruteLoss(-L.getBruteLoss() * 0.30)
-		L.adjustFireLoss(-L.getFireLoss() * 0.30)
+		L.adjustBruteLoss(-L.getBruteLoss(TRUE) * 0.30)
+		L.adjustFireLoss(-L.getFireLoss(TRUE) * 0.30)
 		L.jitter(5)
 		for(var/datum/internal_organ/I AS in H.internal_organs)
 			if(I.damage)
@@ -86,7 +86,7 @@
 	color = "#cac5c5"
 	scannable = TRUE
 	custom_metabolism = REAGENTS_METABOLISM * 0.125
-	purge_list = list(/datum/reagent/medicine/kelotane, /datum/reagent/medicine/tricordrazine, /datum/reagent/medicine/bicaridine)
+	purge_list = list(/datum/reagent/medicine/kelotane, /datum/reagent/medicine/bicaridine)
 	purge_rate = 1
 	overdose_threshold = REAGENTS_OVERDOSE*2
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL*2
@@ -145,7 +145,7 @@
 	to_chat(L, span_userdanger("You feel a burst of energy revitalize you all of a sudden! You can do anything!"))
 
 /datum/reagent/medicine/oxycodone/on_mob_life(mob/living/L, metabolism)
-	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
+	L.reagent_pain_modifier += PAIN_REDUCTION_SUPER_HEAVY
 	L.apply_damage(0.2*effect_str, TOX)
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
@@ -399,7 +399,9 @@
 	L.SetParalyzed(0)
 	L.dizziness = 0
 	L.setDrowsyness(0)
-	L.stuttering = 0
+	// Remove all speech related status effects
+	for(var/effect in typesof(/datum/status_effect/speech))
+		L.remove_status_effect(effect)
 	L.SetConfused(0)
 	L.SetSleeping(0)
 	L.jitteriness = 0
@@ -468,8 +470,8 @@
 		return
 	if(L.health < H.health_threshold_crit && volume > 3) //If you are in crit, and someone injects at least 3u into you, you will heal 20% of your physical damage instantly.
 		to_chat(L, span_userdanger("You feel a rush of energy as stimulants course through your veins!"))
-		L.adjustBruteLoss(-L.getBruteLoss() * 0.20)
-		L.adjustFireLoss(-L.getFireLoss() * 0.20)
+		L.adjustBruteLoss(-L.getBruteLoss(TRUE) * 0.20)
+		L.adjustFireLoss(-L.getFireLoss(TRUE) * 0.20)
 		L.jitter(10)
 		for(var/datum/internal_organ/I AS in H.internal_organs)
 			if(I.damage)
@@ -482,7 +484,7 @@
 	L.reagent_shock_modifier += (2 * PAIN_REDUCTION_VERY_HEAVY)
 	L.adjustDrowsyness(-5)
 	L.dizzy(-5)
-	L.stuttering = max(L.stuttering-5, 0)
+	L.adjust_timed_status_effect(-10 SECONDS, /datum/status_effect/speech/stutter)
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		C.drunkenness = max(C.drunkenness-5, 0)
@@ -527,15 +529,17 @@
 
 /datum/reagent/medicine/arithrazine
 	name = "Arithrazine"
-	description = "Arithrazine is a component medicine capable of healing very minor amounts of toxin poisoning."
+	description = "Arithrazine is a component medicine capable of healing minor amounts of toxin poisoning."
 	color = "#C8A5DC" // rgb: 200, 165, 220
-	custom_metabolism = REAGENTS_METABOLISM * 1.25
+	custom_metabolism = REAGENTS_METABOLISM
 	overdose_threshold = REAGENTS_OVERDOSE/2
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/2
 	scannable = TRUE
 
 /datum/reagent/medicine/arithrazine/on_mob_life(mob/living/L)
-	L.adjustToxLoss(-0.2*effect_str)
+	L.adjustToxLoss(-0.5*effect_str)
+	if(prob(15))
+		L.take_limb_damage(effect_str, 0)
 	return ..()
 
 /datum/reagent/medicine/arithrazine/overdose_process(mob/living/L, metabolism)
@@ -559,8 +563,8 @@
 		return
 	if(L.health < H.health_threshold_crit && volume > 9) //If you are in crit, and someone injects at least 9u into you, you will heal 20% of your physical damage instantly.
 		to_chat(L, span_userdanger("You feel a rush of energy as stimulants course through your veins!"))
-		L.adjustBruteLoss(-L.getBruteLoss() * 0.20)
-		L.adjustFireLoss(-L.getFireLoss() * 0.20)
+		L.adjustBruteLoss(-L.getBruteLoss(TRUE) * 0.20)
+		L.adjustFireLoss(-L.getFireLoss(TRUE) * 0.20)
 		L.jitter(10)
 		for(var/datum/internal_organ/I AS in H.internal_organs)
 			if(I.damage)
@@ -1084,7 +1088,7 @@
 /datum/reagent/medicine/ethylredoxrazine/on_mob_life(mob/living/L, metabolism)
 	L.dizzy(-1)
 	L.adjustDrowsyness(-1)
-	L.stuttering = max(L.stuttering-1, 0)
+	L.adjust_timed_status_effect(-2 SECONDS, /datum/status_effect/speech/stutter)
 	L.AdjustConfused(-20)
 	var/mob/living/carbon/C = L
 	C.drunkenness = max(C.drunkenness-4, 0)
@@ -1267,16 +1271,16 @@
 
 /datum/reagent/medicine/research/medicalnanites/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
-		if(1 to 150)
+		if(1 to 75)
 			L.take_limb_damage(0.015*current_cycle*effect_str, 0.015*current_cycle*effect_str)
 			L.adjustToxLoss(1*effect_str)
 			L.adjustStaminaLoss((1.5)*effect_str)
-			L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.20)
+			L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.40)
 			if(prob(5))
 				to_chat(L, span_notice("You feel intense itching!"))
-		if(151)
+		if(76)
 			to_chat(L, span_warning("The pain rapidly subsides. Looks like they've adapted to you."))
-		if(152 to INFINITY)
+		if(77 to INFINITY)
 			if(volume < 30) //smol injection will self-replicate up to 30u using 240u of blood.
 				L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.15)
 				L.blood_volume -= 2

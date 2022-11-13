@@ -122,6 +122,15 @@
 // Big Red
 
 
+/turf/open/floor/plating/ground/fakesnow
+	name = "shallow snow"
+	icon = 'icons/turf/snow2.dmi'
+	icon_state = "snow_1"
+
+/turf/open/floor/plating/ground/fakesnow/alt
+	name = "deep snow"
+	icon = 'icons/turf/snow2.dmi'
+	icon_state = "snow_2"
 
 /turf/open/floor/plating/ground/mars
 	icon = 'icons/turf/bigred.dmi'

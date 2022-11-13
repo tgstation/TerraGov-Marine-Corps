@@ -1,0 +1,6 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - imageadd: "Updated wall, r-wall and white wall sprites"
+  - imageadd: "Updated weed, resin wall and resin door sprites"
+  - code_imp: "Renabled wallweeds"

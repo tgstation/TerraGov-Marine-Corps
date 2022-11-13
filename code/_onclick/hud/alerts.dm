@@ -219,3 +219,25 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 	master = null
 	owner = null
 	return ..()
+
+
+//MECHS
+/obj/screen/alert/nocell
+	name = "Missing Power Cell"
+	desc = "Unit has no power cell. No modules available until a power cell is reinstalled. Robotics may provide assistance."
+	icon_state = "no_cell"
+
+/obj/screen/alert/emptycell
+	name = "Out of Power"
+	desc = "Unit's power cell has no charge remaining. No modules available until power cell is recharged."
+	icon_state = "empty_cell"
+
+/obj/screen/alert/lowcell
+	name = "Low Charge"
+	desc = "Unit's power cell is running low."
+	icon_state = "low_cell"
+
+/obj/screen/alert/low_mech_integrity
+	name = "Mech Damaged"
+	desc = "Mech integrity is low."
+	icon_state = "low_mech_integrity"

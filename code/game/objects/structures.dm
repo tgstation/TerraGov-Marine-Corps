@@ -109,7 +109,7 @@
 	return TRUE
 
 /obj/structure/proc/do_climb(mob/living/user)
-	if(!can_climb(user))
+	if(!can_climb(user) || user.do_actions)
 		return
 
 	user.visible_message(span_warning("[user] starts [flags_atom & ON_BORDER ? "leaping over":"climbing onto"] \the [src]!"))

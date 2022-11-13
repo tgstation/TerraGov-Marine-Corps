@@ -126,7 +126,7 @@
 
 /mob/living/carbon/human/IgniteMob()
 	. = ..()
-	if(.)
+	if(on_fire == TRUE)
 		if(!stat && !(species.species_flags & NO_PAIN))
 			emote("scream")
 
@@ -200,7 +200,7 @@
 /mob/living/proc/resist_fire(datum/source)
 	SIGNAL_HANDLER
 	fire_stacks = max(fire_stacks - rand(3, 6), 0)
-	Paralyze(80)
+	Paralyze(30)
 
 	var/turf/T = get_turf(src)
 	if(istype(T, /turf/open/floor/plating/ground/snow))
@@ -250,7 +250,7 @@
 		S.reagents?.reaction(src, TOUCH, S.fraction)
 	return protection
 
-/mob/living/proc/check_shields(attack_type, damage, damage_type = "melee", silent)
+/mob/living/proc/check_shields(attack_type, damage, damage_type = "melee", silent, penetration = 0)
 	if(!damage)
 		stack_trace("check_shields called without a damage value")
 		return 0
@@ -261,7 +261,7 @@
 		sortTim(affecting_shields, /proc/cmp_numeric_dsc, associative = TRUE)
 	for(var/shield in affecting_shields)
 		var/datum/callback/shield_check = shield
-		. = shield_check.Invoke(attack_type, ., damage_type, silent)
+		. = shield_check.Invoke(attack_type, ., damage_type, silent, penetration)
 		if(!.)
 			break
 

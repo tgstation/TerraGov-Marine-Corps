@@ -96,6 +96,7 @@
 		if(MINER_AUTOMATED)
 			if(stored_mineral)
 				SSpoints.supply_points[faction] += mineral_value * stored_mineral
+				GLOB.round_statistics.points_from_mining += mineral_value * stored_mineral
 				do_sparks(5, TRUE, src)
 				playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
 				say("Ore shipment has been sold for [mineral_value * stored_mineral] points.")
@@ -255,6 +256,7 @@
 		return
 
 	SSpoints.supply_points[faction] += mineral_value * stored_mineral
+	GLOB.round_statistics.points_from_mining += mineral_value * stored_mineral
 	do_sparks(5, TRUE, src)
 	playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
 	say("Ore shipment has been sold for [mineral_value * stored_mineral] points.")
@@ -273,6 +275,7 @@
 				if(!isopenturf(get_step(loc, direction))) //Must be open on one side to operate
 					continue
 				SSpoints.supply_points[faction] += mineral_value
+				GLOB.round_statistics.points_from_mining += mineral_value
 				do_sparks(5, TRUE, src)
 				playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
 				say("Ore shipment has been sold for [mineral_value] points.")

@@ -11,39 +11,7 @@
 	///Initial hex color we use when applying the visor color
 	greyscale_colors = VISOR_PALETTE_GOLD
 	flags_attach_features = ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
-	colorable_colors = list(
-		"Default" = list(
-			"Gold" = VISOR_PALETTE_GOLD,
-			"Silver" = VISOR_PALETTE_SILVER,
-			"Black" = VISOR_PALETTE_BLACK,
-		),
-		"Red" = list(
-			"Red" = VISOR_PALETTE_RED,
-		),
-		"Green" = list(
-			"Green" = VISOR_PALETTE_GREEN,
-		),
-		"Purple" = list(
-			"Purple" = VISOR_PALETTE_PURPLE,
-			"Magenta" = VISOR_PALETTE_MAGENTA,
-		),
-		"Blue" = list(
-			"Blue" = VISOR_PALETTE_BLUE,
-			"Ice Blue" = VISOR_PALETTE_ICE,
-			"Sky Blue" = VISOR_PALETTE_SKY_BLUE,
-		),
-		"Yellow" = list(
-			"Honey" = VISOR_PALETTE_HONEY,
-			"Metallic Bronze" = VISOR_PALETTE_METALLIC_BRONZE,
-		),
-		"Orange" = list(
-			"Orange" = VISOR_PALETTE_ORANGE,
-		),
-		"Pink" = list(
-			"Salmon" = VISOR_PALETTE_SALMON,
-			"Pearl Pink" = VISOR_PALETTE_PEARL_PINK,
-		),
-	)
+	colorable_colors = VISOR_PALETTES_LIST
 	secondary_color = TRUE
 	flags_item_map_variant = NONE
 	///whether this helmet should be using its emissive overlay or not

@@ -37,9 +37,9 @@
 /datum/action/observer_action/join_larva_queue/action_activate()
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	if(HS.add_to_larva_candidate_queue(owner))
-		add_selected_frame()
+		set_toggle(TRUE)
 		return
-	remove_selected_frame()
+	set_toggle(FALSE)
 
 /datum/action/observer_action/take_ssd_mob
 	name = "Take SSD mob"
@@ -71,6 +71,10 @@
 
 	if(new_mob.stat == DEAD)
 		to_chat(owner, span_warning("You cannot join if the mob is dead."))
+		return FALSE
+
+	if(HAS_TRAIT(new_mob, TRAIT_POSSESSING))
+		to_chat(owner, span_warning("That mob is currently possessing a different mob."))
 		return FALSE
 
 	if(new_mob.client)

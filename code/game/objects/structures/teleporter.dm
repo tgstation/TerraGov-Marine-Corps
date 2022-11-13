@@ -1,7 +1,7 @@
 #define TELEPORTING_COST 250
 /obj/machinery/deployable/teleporter
 	density = FALSE
-	max_integrity = 250
+	max_integrity = 200
 	resistance_flags = XENO_DAMAGEABLE
 	idle_power_usage = 50
 	///List of all teleportable types
@@ -14,6 +14,10 @@
 	var/static/list/blacklisted_types = list(
 		/obj/machinery/nuclearbomb
 	)
+
+/obj/machinery/deployable/teleporter/Initialize()
+	. = ..()
+	SSminimaps.add_marker(src, z, MINIMAP_FLAG_MARINE, "teleporter")
 
 /obj/machinery/deployable/teleporter/attack_hand(mob/living/user)
 	. = ..()
@@ -130,7 +134,7 @@
 
 /obj/item/teleporter_kit
 	name = "\improper ASRS Bluespace teleporter"
-	desc = "A bluespace telepad for moving personnel and equipment across small distances to another prelinked teleporter. Ctrl+Click on a tile to deploy, use a wrench to undeploy."
+	desc = "A bluespace telepad for moving personnel and equipment across small distances to another prelinked teleporter. Ctrl+Click on a tile to deploy, use a wrench to undeploy, use a crowbar to remove the power cell."
 	icon = 'icons/Marine/teleporter.dmi'
 	icon_state = "teleporter"
 

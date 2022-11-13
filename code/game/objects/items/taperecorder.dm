@@ -46,7 +46,7 @@
 			if(recording == 0)
 				break
 			timerecorded++
-			sleep(10)
+			sleep(1 SECONDS)
 		recording = 0
 		icon_state = "taperecorderidle"
 		return
@@ -116,13 +116,13 @@
 		T.visible_message("<font color=Maroon><B>[src]</B>: [storedinfo[i]]</font>")
 		if(storedinfo.len < i+1)
 			playsleepseconds = 1
-			sleep(10)
+			sleep(1 SECONDS)
 			T = get_turf(src)
 			T.visible_message("<font color=Maroon><B>[src]</B>: End of recording.</font>")
 		else
 			playsleepseconds = timestamp[i+1] - timestamp[i]
 		if(playsleepseconds > 14)
-			sleep(10)
+			sleep(1 SECONDS)
 			T = get_turf(src)
 			T.visible_message("<font color=Maroon><B>[src]</B>: Skipping [playsleepseconds] seconds of silence</font>")
 			playsleepseconds = 1
@@ -151,7 +151,7 @@
 	P.info = t1
 	P.name = "Transcript"
 	canprint = 0
-	sleep(300)
+	sleep(30 SECONDS)
 	canprint = 1
 
 
@@ -169,7 +169,7 @@
 				if(recording == 0)
 					break
 				timerecorded++
-				sleep(10)
+				sleep(1 SECONDS)
 			recording = 0
 			icon_state = "taperecorderidle"
 			return

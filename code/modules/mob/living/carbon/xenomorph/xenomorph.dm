@@ -6,6 +6,9 @@
 
 /mob/living/carbon/xenomorph/Initialize(mapload)
 	setup_verbs()
+	if(mob_size == MOB_SIZE_BIG)
+		move_resist = MOVE_FORCE_EXTREMELY_STRONG
+		move_force = MOVE_FORCE_EXTREMELY_STRONG
 	. = ..()
 
 	set_datum()
@@ -37,6 +40,9 @@
 
 	wound_overlay = new(null, src)
 	vis_contents += wound_overlay
+
+	fire_overlay = mob_size == MOB_SIZE_BIG ? new(null, src) : new /atom/movable/vis_obj/xeno_wounds/fire_overlay/small(null, src)
+	vis_contents += fire_overlay
 
 	set_initial_hivenumber()
 
@@ -133,7 +139,8 @@
 //Since Xenos change names like they change shoes, we need somewhere to hammer in all those legos
 //We set their name first, then update their real_name AND their mind name
 /mob/living/carbon/xenomorph/proc/generate_name()
-	name = "[hive.prefix][xeno_caste.upgrade_name] [xeno_caste.display_name] ([nicknumber])"
+	var/prefix = (hive.prefix || xeno_caste.upgrade_name) ? "[hive.prefix][xeno_caste.upgrade_name] " : ""
+	name = prefix + "[xeno_caste.display_name] ([nicknumber])"
 
 	//Update linked data so they show up properly
 	real_name = name
@@ -245,29 +252,35 @@
 	hive_placeholder.update_tier_limits() //Update our tier limits.
 
 	vis_contents -= wound_overlay
+	vis_contents -= fire_overlay
 	QDEL_NULL(wound_overlay)
+	QDEL_NULL(fire_overlay)
 	return ..()
 
 
 /mob/living/carbon/xenomorph/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
 	return FALSE
 
-/mob/living/carbon/xenomorph/start_pulling(atom/movable/AM, suppress_message = TRUE, bypass_crit_delay = FALSE)
-	if(!isliving(AM))
-		return FALSE
-	if(!Adjacent(AM)) //Logic!
-		return FALSE
-	if(status_flags & INCORPOREAL || AM.status_flags & INCORPOREAL) //Incorporeal things can't grab or be grabbed.
-		return FALSE
+/mob/living/carbon/xenomorph/start_pulling(atom/movable/AM, force = move_force, suppress_message = TRUE, bypass_crit_delay = FALSE)
+	if(do_actions)
+		return FALSE //We are already occupied with something.
+	if(!Adjacent(AM))
+		return FALSE //The target we're trying to pull must be adjacent and anchored.
+	if(status_flags & INCORPOREAL || AM.status_flags & INCORPOREAL)
+		return FALSE //Incorporeal things can't grab or be grabbed.
+	if(AM.anchored)
+		return FALSE //We cannot grab anchored items.
+	if(!isliving(AM) && AM.drag_windup && !do_after(src, AM.drag_windup, TRUE, AM, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE))
+		return //If the target is not a living mob and has a drag_windup defined, calls a do_after. If all conditions are met, it returns.
 	var/mob/living/L = AM
 	if(L.buckled)
 		return FALSE //to stop xeno from pulling marines on roller beds.
 	if(ishuman(L))
-		if(L.stat == DEAD && (SSticker.mode?.flags_round_type & MODE_DEAD_GRAB_FORBIDDEN)) //Can't drag dead human bodies in distress
+		if(L.stat == DEAD) //Can't drag dead human bodies.
 			to_chat(usr,span_xenowarning("This looks gross, better not touch it."))
 			return FALSE
-		do_attack_animation(L, ATTACK_EFFECT_GRAB)
 		pull_speed += XENO_DEADHUMAN_DRAG_SLOWDOWN
+	do_attack_animation(L, ATTACK_EFFECT_GRAB)
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_GRAB)
 	return ..()
 
@@ -396,7 +409,7 @@
 /// Handles logic for weeds nearby the xeno getting removed
 /mob/living/carbon/xenomorph/proc/handle_weeds_adjacent_removed(datum/source)
 	SIGNAL_HANDLER
-	var/obj/effect/alien/weeds/found_weed = locate(/obj/effect/alien/weeds) in loc
+	var/obj/alien/weeds/found_weed = locate(/obj/alien/weeds) in loc
 	if(!QDESTROYING(found_weed))
 		return
 	loc_weeds_type = null
@@ -404,5 +417,5 @@
 /// Handles logic for the xeno moving to a new weeds tile
 /mob/living/carbon/xenomorph/proc/handle_weeds_on_movement(datum/source)
 	SIGNAL_HANDLER
-	var/obj/effect/alien/weeds/found_weed = locate(/obj/effect/alien/weeds) in loc
+	var/obj/alien/weeds/found_weed = locate(/obj/alien/weeds) in loc
 	loc_weeds_type = found_weed?.type

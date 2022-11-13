@@ -361,7 +361,7 @@ should be alright.
 	do_toggle_firemode()
 
 
-/obj/item/weapon/gun/proc/do_toggle_firemode(datum/source, new_firemode)
+/obj/item/weapon/gun/proc/do_toggle_firemode(datum/source, datum/keybinding, new_firemode)
 	SIGNAL_HANDLER
 	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))//can't toggle mid burst
 		return
@@ -475,6 +475,8 @@ should be alright.
 		var/obj/item/attachable/attachable = attachment
 		return attachable.activate(user)
 
+
+// todo destroy all verbs
 /mob/living/carbon/human/verb/empty_mag()
 	set category = "Weapons"
 	set name = "Unload Weapon"
@@ -529,7 +531,7 @@ should be alright.
 	set name = "Toggle Gun Safety (Weapon)"
 	set desc = "Toggle the safety of the held gun."
 
-	to_chat(usr, span_notice("You toggle the safety [HAS_TRAIT(src, TRAIT_GUN_SAFETY) ? "<b>off</b>" : "<b>on</b>"]."))
+	balloon_alert(usr, "Safety [HAS_TRAIT(src, TRAIT_GUN_SAFETY) ? "off" : "on"].")
 	playsound(usr, 'sound/weapons/guns/interact/selector.ogg', 15, 1)
 	if(!HAS_TRAIT(src, TRAIT_GUN_SAFETY))
 		ADD_TRAIT(src, TRAIT_GUN_SAFETY, GUN_TRAIT)
@@ -558,7 +560,7 @@ should be alright.
 	//	if(rail && (rail.flags_attach_features & ATTACH_ACTIVATION) )
 	//		usable_attachments += rail
 	if(!length(attachments_by_slot))
-		to_chat(usr, span_warning("[src] does not have any usable attachment!"))
+		balloon_alert(usr, "No usable attachments")
 		return
 
 	for(var/key in attachments_by_slot)
@@ -570,7 +572,7 @@ should be alright.
 			usable_attachments += attachment
 
 	if(!length(usable_attachments)) //No usable attachments.
-		to_chat(usr, span_warning("[src] does not have any usable attachment!"))
+		balloon_alert(usr, "No usable attachments")
 		return
 	var/obj/item/attachable/usable_attachment
 	if(length(usable_attachments) == 1)
@@ -600,7 +602,7 @@ should be alright.
 
 	if(activate_attachment(ATTACHMENT_SLOT_RAIL, usr))
 		return
-	to_chat(usr, span_warning("[src] does not have any usable rail attachment!"))
+	balloon_alert(usr, "No usable rail attachments")
 
 /obj/item/weapon/gun/verb/toggle_underrail_attachment()
 	set category = null
@@ -609,7 +611,7 @@ should be alright.
 
 	if(activate_attachment(ATTACHMENT_SLOT_UNDER, usr))
 		return
-	to_chat(usr, span_warning("[src] does not have any usable rail attachment!"))
+	balloon_alert(usr, "No usable underrail attachments")
 
 
 
@@ -627,6 +629,10 @@ should be alright.
 	burst_delay += value
 	SEND_SIGNAL(src, COMSIG_GUN_BURST_SHOT_DELAY_MODIFIED, burst_delay)
 
+/obj/item/weapon/gun/proc/modify_auto_burst_delay(value, mob/user)
+	autoburst_delay += value
+	SEND_SIGNAL(src, COMSIG_GUN_AUTO_BURST_SHOT_DELAY_MODIFIED, autoburst_delay)
+
 /obj/item/weapon/gun/proc/modify_burst_amount(value, mob/user)
 	burst_amount += value
 	SEND_SIGNAL(src, COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED, burst_amount)
@@ -643,28 +649,25 @@ should be alright.
 			add_firemode(GUN_FIREMODE_AUTOBURST, user)
 
 ///Calculates aim_fire_delay, can't be below 0
-#define RECALCULATE_AIM_MODE_FIRE_DELAY \
-	var/modification_value = 0; \
-	for(var/key in aim_fire_delay_mods) { \
-		modification_value += aim_fire_delay_mods[key]; \
-	}; \
-	var/old_delay = aim_fire_delay; \
-	aim_fire_delay = max(initial(aim_fire_delay) + modification_value, 0); \
-	if(HAS_TRAIT(src, TRAIT_GUN_IS_AIMING)) { \
-		modify_fire_delay(aim_fire_delay - old_delay); \
-	}
+/obj/item/weapon/gun/proc/recalculate_aim_mode_fire_delay()
+	var/modification_value = 0
+	for(var/key in aim_fire_delay_mods)
+		modification_value += aim_fire_delay_mods[key]
+	var/old_delay = aim_fire_delay
+	aim_fire_delay = max(initial(aim_fire_delay) + modification_value, 0)
+	if(HAS_TRAIT(src, TRAIT_GUN_IS_AIMING))
+		modify_fire_delay(aim_fire_delay - old_delay)
+		modify_auto_burst_delay(aim_fire_delay - old_delay)
 
 ///Adds an aim_fire_delay modificatio value
 /obj/item/weapon/gun/proc/add_aim_mode_fire_delay(source, value)
 	aim_fire_delay_mods[source] = value
-	RECALCULATE_AIM_MODE_FIRE_DELAY
+	recalculate_aim_mode_fire_delay()
 
 ///Removes an aim_fire_delay modificatio value
 /obj/item/weapon/gun/proc/remove_aim_mode_fire_delay(source)
 	aim_fire_delay_mods -= source
-	RECALCULATE_AIM_MODE_FIRE_DELAY
-
-#undef RECALCULATE_AIM_MODE_FIRE_DELAY
+	recalculate_aim_mode_fire_delay()
 
 /obj/item/weapon/gun/proc/toggle_auto_aim_mode(mob/living/carbon/human/user) //determines whether toggle_aim_mode activates at the end of gun/wield proc
 
@@ -687,10 +690,12 @@ should be alright.
 		REMOVE_TRAIT(src, TRAIT_GUN_IS_AIMING, GUN_TRAIT)
 		user.remove_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN)
 		modify_fire_delay(-aim_fire_delay)
+		modify_auto_burst_delay(-aim_fire_delay)
 		///if your attached weapon has aim mode, stops it from aimming
 		if( (gunattachment) && (/datum/action/item_action/aim_mode in gunattachment.actions_types) )
 			REMOVE_TRAIT(gunattachment, TRAIT_GUN_IS_AIMING, GUN_TRAIT)
-			gunattachment:modify_fire_delay(-aim_fire_delay)
+			gunattachment.modify_fire_delay(-aim_fire_delay)
+			gunattachment.modify_auto_burst_delay(-aim_fire_delay)
 		to_chat(user, span_notice("You cease aiming."))
 		return
 	if(!CHECK_BITFIELD(flags_item, WIELDED) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
@@ -714,10 +719,12 @@ should be alright.
 	ADD_TRAIT(src, TRAIT_GUN_IS_AIMING, GUN_TRAIT)
 	user.add_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN, TRUE, 0, NONE, TRUE, aim_speed_modifier)
 	modify_fire_delay(aim_fire_delay)
+	modify_auto_burst_delay(aim_fire_delay)
 	///if your attached weapon has aim mode, makes it aim
 	if( (gunattachment) && (/datum/action/item_action/aim_mode in gunattachment.actions_types) )
 		ADD_TRAIT(gunattachment, TRAIT_GUN_IS_AIMING, GUN_TRAIT)
-		gunattachment:modify_fire_delay(aim_fire_delay)
+		gunattachment.modify_fire_delay(aim_fire_delay)
+		gunattachment.modify_auto_burst_delay(aim_fire_delay)
 	to_chat(user, span_notice("You line up your aim, allowing you to shoot past allies.</b>"))
 
 /// Signal handler to activate the rail attachement of that gun if it's in our active hand

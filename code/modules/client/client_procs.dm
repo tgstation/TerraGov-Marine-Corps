@@ -1,9 +1,9 @@
 #define UPLOAD_LIMIT 1000000	//Restricts client uploads to the server to 1MB
 #define UPLOAD_LIMIT_ADMIN 10000000	//Restricts admin uploads to the server to 10MB
 
-#define MAX_RECOMMENDED_CLIENT 1584
+#define MAX_RECOMMENDED_CLIENT 1588
 #define MIN_RECOMMENDED_CLIENT 1575
-#define REQUIRED_CLIENT_MAJOR 513
+#define REQUIRED_CLIENT_MAJOR 514
 #define REQUIRED_CLIENT_MINOR 1493
 
 #define LIMITER_SIZE 5
@@ -136,7 +136,8 @@
 	GLOB.directory[ckey] = src
 
 	// Instantiate tgui panel
-	tgui_panel = new(src)
+	tgui_panel = new(src, "browseroutput")
+
 
 	GLOB.ahelp_tickets.ClientLogin(src)
 
@@ -208,7 +209,7 @@
 
 	if(SSinput.initialized)
 		set_macros()
-		update_movement_keys()
+		update_special_keybinds()
 
 	// Initialize tgui panel
 	tgui_panel.initialize()
@@ -389,6 +390,7 @@
 		movingmob.client_mobs_in_contents -= mob
 		UNSETEMPTY(movingmob.client_mobs_in_contents)
 		movingmob = null
+	SSping.currentrun -= src
 	QDEL_NULL(tooltips)
 	Master.UpdateTickRate()
 	SSambience.ambience_listening_clients -= src
@@ -781,7 +783,7 @@
 	view_size.set_view_radius_to(clamp(change, min, max), clamp(change, min, max))
 
 
-/client/proc/update_movement_keys(datum/preferences/direct_prefs)
+/client/proc/update_special_keybinds(datum/preferences/direct_prefs)
 	var/datum/preferences/D = prefs || direct_prefs
 	if(!D?.key_bindings)
 		return

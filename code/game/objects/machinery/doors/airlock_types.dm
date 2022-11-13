@@ -25,6 +25,10 @@
 	icon = 'icons/obj/doors/mainship/engidoor.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_eng
 
+/obj/machinery/door/airlock/engineering/evac
+	icon = 'icons/obj/doors/mainship/pod_doors.dmi'
+	icon_state = "door_locked"
+
 /obj/machinery/door/airlock/medical
 	name = "\improper Medical Airlock"
 	icon = 'icons/obj/doors/mainship/medidoor.dmi'
@@ -668,6 +672,14 @@
 
 /obj/machinery/door/airlock/mainship/generic/pilot/rebel/quarters
 	name = "\improper Pilot's Quarters"
+
+/obj/machinery/door/airlock/mainship/generic/mech_pilot
+	name = "\improper Mech Pilot's Office"
+	req_access = list(ACCESS_MARINE_MECH)
+
+/obj/machinery/door/airlock/mainship/generic/mech_pilot/bunk
+	name = "\improper Mech Pilot's Bunks"
+
 /obj/machinery/door/airlock/mainship/generic/ert
 	name = "\improper Airlock"
 	icon = 'icons/obj/doors/mainship/personaldoor.dmi'
@@ -879,9 +891,6 @@
 	resistance_flags = RESIST_ALL
 	no_panel = TRUE
 	not_weldable = TRUE
-
-/obj/machinery/door/airlock/canAIControl(mob/user)
-	return TRUE
 
 /obj/machinery/door/airlock/dropship_hatch/proc/lockdown()
 	unlock()

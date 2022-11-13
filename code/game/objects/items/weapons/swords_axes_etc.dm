@@ -25,13 +25,12 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 	force = 10
 
-/obj/item/weapon/classic_baton/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/weapon/classic_baton/attack(mob/living/M, mob/living/user)
 	. = ..()
 	if(!.)
 		return
 
-	if (M.stuttering < 8)
-		M.stuttering = 8
+	M.set_timed_status_effect(16 SECONDS, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
 	visible_message(span_danger("[M] has been beaten with \the [src] by [user]!"), null, span_warning(" You hear someone fall"), 2)
 
 //Telescopic baton

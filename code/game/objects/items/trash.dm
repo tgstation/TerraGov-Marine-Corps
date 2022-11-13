@@ -152,3 +152,8 @@
 	desc = "It has done its part for the TGMC. Have you?"
 	icon = 'icons/obj/items/trash.dmi'
 	icon_state = "mealpackempty"
+
+/obj/item/trash/mre/som
+	name = "\improper crumbled SOM MFR"
+	desc = "It has done its part for the SOM. Have you?"
+	icon_state = "som_mealpackempty"
