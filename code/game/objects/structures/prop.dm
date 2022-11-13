@@ -1428,6 +1428,15 @@
 /obj/structure/prop/holidays/string_lights/cap
 	icon_state = "string_lights_cap"
 
+/obj/structure/prop/holidays/string_lights/green_and_red
+	icon_state = "string_lights_red_and_green"
+
+/obj/structure/prop/holidays/string_lights/green_and_red/corner
+	icon_state = "string_lights_red_and_green_corner"
+
+/obj/structure/prop/holidays/string_lights/green_and_red/cap
+	icon_state = "string_lights_red_and_green_cap"
+
 /obj/structure/prop/holidays/wreath
 	name = "M1 pattern festive needle torus"
 	desc = "In 2140 after a two different sub levels of the São Luís Bay Underground Habitat burned out (evidence points to a Bladerunner incident, but local police denies such claims) due to actual wreaths made with REAL needles, these have been issued ever since. They're made of ''''''pine'''''' scented poly-kevlon. According to the grunts from the American Corridor, during the SACO riots, protestors would pack these things into pillow cases, forming rudimentary body armor against soft point ballistics."
