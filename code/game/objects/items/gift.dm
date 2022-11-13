@@ -41,6 +41,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	if(!freepresent && present_receiver != M)
 		if(tgui_alert(M, "This present is addressed to [present_receiver]. Open it anyways?", "Continue?", list("Yes", "No")) != "No")
 			if(prob(99))
+				GLOB.round_statistics.presents_grinched += 1
 				new /obj/item/ore/coal(get_turf(M))
 			else
 				spawnpresent(M)
@@ -64,6 +65,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 
 /obj/item/a_gift/proc/spawnpresent(mob/M)
 	var/obj/item/I = new contains_type(get_turf(M))
+	GLOB.round_statistics.presents_delivered += 1
 	if(!QDELETED(I)) //might contain something like metal rods that might merge with a stack on the ground
 		M.visible_message(span_notice("[M] unwraps \the [src], finding \a [I] inside!"))
 		M.put_in_hands(I)
@@ -97,12 +99,14 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		/obj/item/spacecash/c500,
 		/obj/item/spacecash/c100,
 		/obj/item/coin/diamond,
+		/obj/item/cell/infinite,
 		/obj/item/assembly/mousetrap/armed,
 		/obj/item/clothing/glasses/sunglasses/aviator/yellow,
 		/obj/item/clothing/head/boonie,
 		/obj/item/clothing/mask/cigarette/pipe/cobpipe,
 		/obj/item/book/manual/wiki/barman_recipes,
 		/obj/item/book/manual/chef_recipes,
+		/obj/item/clothing/head/helmet/space/santahat,
 		/obj/item/instrument/bikehorn,
 		/obj/item/toy/beach_ball,
 		/obj/item/toy/beach_ball/holoball,
