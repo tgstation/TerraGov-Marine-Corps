@@ -470,12 +470,12 @@
 
 
 // ***************************************
-// *********** psyblast
+// *********** psychic crush
 // ***************************************
 /datum/action/xeno_action/activable/psy_crush
 	name = "psychic crush"
 	action_icon_state = "centrifugal_force"
-	mechanics_text = "Blaps a nerd with psychic power." //placeholder
+	mechanics_text = "Channel our psychic force to crush everything in an area of effect." //placeholder
 	ability_name = "psychic crush"
 	plasma_cost = 20
 	cooldown_timer = 5 SECONDS //placeholder
@@ -483,18 +483,23 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CENTRIFUGAL_FORCE,
 	)
-	var/max_interations = 5
+	///The number of times we can expand our effect radius. Effectively a max radius
+	var/max_interations = 6
+	///How many times we have expanded our effect radius
 	var/current_iterations = 0
-	///timer hash for the timer we use when spinning
-	var/spin_loop_timer
+	///timer hash for the timer we use when charging up
+	var/channel_loop_timer
+	///List of turfs in the effect radius
 	var/list/target_turfs = list()
+	///list of effects used to visualise area of effect
 	var/list/effect_list = list()
+	///max range at which we can cast out ability
 	var/ability_range = 7
 
 /datum/action/xeno_action/activable/psy_crush/use_ability(atom/target)
 	if(owner.do_actions)
 		return FALSE
-	if(spin_loop_timer) //you're already spinning
+	if(channel_loop_timer) //you're already channeling
 		return
 	if(!can_use_action(TRUE)) //stunned or whatever
 		return fail_activate()
@@ -502,19 +507,17 @@
 		return FALSE
 	if(!do_after(owner, 0.5 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_action, FALSE, XACT_USE_BUSY))) //windup
 		return fail_activate()
-	owner.visible_message(span_xenowarning("\The [owner] starts swinging its tail in a circle!"), \
-		span_xenowarning("We start swinging our tail in a wide circle!"))
-	target_turfs += get_turf(target)
-	do_spin() //start spin
-	succeed_activate()
-	RegisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)), .proc/stop_spin)
+	owner.visible_message(span_xenowarning("\The [owner] starts channeling their psychic might!"), \
+		span_xenowarning("We start channeling our psychic might!"))
+	var/turf/target_turf = get_turf(target)
+	target_turfs += target_turf
+	do_channel(target_turf) //start channeling
+	RegisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)), .proc/stop_crush)
 
 /datum/action/xeno_action/activable/psy_crush/alternate_action_activate()
-	if(!can_use_action())
-		return
-	if(!length(target_turfs))
-		owner.visible_message(span_xenowarning("\The [owner] fails to crush!"), \
-			span_xenowarning("We fail to crush!"))
+	if(!can_use_action() || !length(target_turfs))
+		owner.visible_message(span_xenowarning("\The [owner] is unable to unleash their power!"), \
+			span_xenowarning("We fail to unleash our power!"))
 		return
 	addtimer(CALLBACK(src, .proc/crush), 1)
 
@@ -528,14 +531,17 @@
 		return FALSE
 	return TRUE
 
-/// runs a spin, then starts the timer for a new spin if needed
-/datum/action/xeno_action/activable/psy_crush/proc/do_spin()
-	spin_loop_timer = null
+///Increases the area of effect, or triggers the crush if we've reached max iterations
+/datum/action/xeno_action/activable/psy_crush/proc/do_channel(turf/target)
+	channel_loop_timer = null
 	var/mob/living/carbon/xenomorph/X = owner
 	if(isnull(X) || isdead(X))
-		stop_spin()
+		stop_crush(target)
 		return
-	playsound(X, pick('sound/effects/alien_tail_swipe1.ogg','sound/effects/alien_tail_swipe2.ogg','sound/effects/alien_tail_swipe3.ogg'), 25, 1) //Sound effects
+	if(current_iterations >= max_interations)
+		crush(target)
+		return
+	playsound(target, pick('sound/effects/alien_tail_swipe1.ogg','sound/effects/alien_tail_swipe2.ogg','sound/effects/alien_tail_swipe3.ogg'), 25, 1) //Sound effects
 
 	succeed_activate()
 
@@ -543,27 +549,24 @@
 	for(var/turf/current_turf AS in target_turfs)
 		var/list/turfs_to_check = get_adjacent_open_turfs(current_turf)
 		for(var/turf/turf_to_check AS in turfs_to_check)
-			if(turf_to_check in target_turfs)
+			if((turf_to_check in target_turfs) || (turf_to_check in turfs_to_add))
 				continue
 			turfs_to_add += turf_to_check
 			effect_list += new /obj/effect/xeno/crush_warning(turf_to_check)
 	target_turfs += turfs_to_add
 	current_iterations ++
-	if(current_iterations >= max_interations)
-		crush()
-		return
 	if(can_use_action(X, XACT_IGNORE_COOLDOWN))
-		spin_loop_timer = addtimer(CALLBACK(src, .proc/do_spin), 10, TIMER_STOPPABLE)
+		channel_loop_timer = addtimer(CALLBACK(src, .proc/do_channel, target), 10, TIMER_STOPPABLE)
 		return
-	stop_spin()
+	stop_crush(target)
 
-/// stops spin and unregisters all listeners
-/datum/action/xeno_action/activable/psy_crush/proc/stop_spin()
+/// stops channeling and unregisters all listeners, resetting the ability
+/datum/action/xeno_action/activable/psy_crush/proc/stop_crush(turf/target)
 	SIGNAL_HANDLER
-	to_chat(owner, span_warning("We stop."))
-	if(spin_loop_timer)
-		deltimer(spin_loop_timer)
-		spin_loop_timer = null
+	to_chat(owner, span_warning("We stop.")) //debug only
+	if(channel_loop_timer)
+		deltimer(channel_loop_timer)
+		channel_loop_timer = null
 	for(var/obj/effect/xeno/crush_warning/current_effect AS in effect_list)
 		qdel(current_effect)
 	current_iterations = 0
@@ -572,13 +575,27 @@
 	add_cooldown()
 	UnregisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)))
 
-/datum/action/xeno_action/activable/psy_crush/proc/crush()
-	to_chat(owner, span_warning("We crush!"))
-	playsound(target_turfs[1], 'sound/effects/portal.ogg', 20)
+///crushes all turfs in the AOE
+/datum/action/xeno_action/activable/psy_crush/proc/crush(turf/target)
+	//note: do we need a check to see if we have sufficient plasma, due to the override?
+	succeed_activate(plasma_cost * current_iterations)
+	to_chat(owner, span_warning("We unleash our psychic might!"))
+	playsound(target, 'sound/effects/portal.ogg', 20)
 	for(var/turf/effected_turf AS in target_turfs)
-		for(var/mob/living/carbon/human/victim in effected_turf)
-			victim.ex_act(EXPLODE_LIGHT) //placeholder
-	stop_spin()
+		for(var/i AS in effected_turf)
+			if(iscarbon(i))
+				var/mob/living/carbon/carbon_victim = i
+				if(isxeno(carbon_victim) || isdead(carbon_victim))
+					continue
+				var/block = carbon_victim.get_soft_armor(BOMB)
+				carbon_victim.apply_damage(35, BRUTE, blocked = block)
+				carbon_victim.apply_damage(50, STAMINA, blocked = block)
+				carbon_victim.adjust_stagger(5)
+				carbon_victim.add_slowdown(5)
+			else if(isobj(i))
+				var/obj/obj_victim = i
+				obj_victim.ex_act(EXPLODE_LIGHT)
+	stop_crush(target)
 
 /obj/effect/xeno/crush_warning
 	icon = 'icons/xeno/Effects.dmi'
