@@ -466,3 +466,107 @@
 		deltimer(spin_loop_timer)
 		spin_loop_timer = null
 	UnregisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)))
+
+
+
+// ***************************************
+// *********** psyblast
+// ***************************************
+/datum/action/xeno_action/activable/psy_crush
+	name = "psychic crush"
+	action_icon_state = "centrifugal_force"
+	mechanics_text = "Blaps a nerd with psychic power." //placeholder
+	ability_name = "psychic crush"
+	plasma_cost = 20
+	cooldown_timer = 5 SECONDS //placeholder
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CENTRIFUGAL_FORCE,
+	)
+	var/max_interations = 5
+	var/current_iterations = 0
+	///timer hash for the timer we use when spinning
+	var/spin_loop_timer
+	var/list/target_turfs = list()
+	var/ability_range = 7
+
+/datum/action/xeno_action/activable/psy_crush/use_ability(atom/target)
+	if(owner.do_actions)
+		return FALSE
+	if(spin_loop_timer) //you're already spinning
+		return
+	if(!can_use_action(TRUE)) //stunned or whatever
+		return fail_activate()
+	if(!check_distance(target))
+		return FALSE
+	if(!do_after(owner, 0.5 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_action, FALSE, XACT_USE_BUSY))) //windup
+		return fail_activate()
+	owner.visible_message(span_xenowarning("\The [owner] starts swinging its tail in a circle!"), \
+		span_xenowarning("We start swinging our tail in a wide circle!"))
+	target_turfs += get_turf(target)
+	do_spin() //start spin
+	succeed_activate()
+	RegisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)), .proc/stop_spin)
+
+/datum/action/xeno_action/activable/psy_crush/alternate_action_activate()
+	if(!can_use_action())
+		return
+	if(!length(target_turfs))
+		owner.visible_message(span_xenowarning("\The [owner] fails to crush!"), \
+			span_xenowarning("We fail to crush!"))
+		return
+	addtimer(CALLBACK(src, .proc/crush), 1)
+
+/datum/action/xeno_action/activable/psy_crush/proc/check_distance(atom/target, silent)
+	var/dist = get_dist(owner, target)
+	if(dist > ability_range)
+		to_chat(owner, span_warning("Too far for our reach... We need to be [dist - ability_range] steps closer!"))
+		return FALSE
+	else if(!line_of_sight(owner, target))
+		to_chat(owner, span_warning("We can't focus properly without a clear line of sight!"))
+		return FALSE
+	return TRUE
+
+/// runs a spin, then starts the timer for a new spin if needed
+/datum/action/xeno_action/activable/psy_crush/proc/do_spin()
+	spin_loop_timer = null
+	var/mob/living/carbon/xenomorph/X = owner
+	playsound(X, pick('sound/effects/alien_tail_swipe1.ogg','sound/effects/alien_tail_swipe2.ogg','sound/effects/alien_tail_swipe3.ogg'), 25, 1) //Sound effects
+
+	succeed_activate()
+
+	var/list/turfs_to_add = list()
+	for(var/turf/current_turf AS in target_turfs)
+		var/list/turfs_to_check = get_adjacent_open_turfs(current_turf)
+		for(var/turf/turf_to_check AS in turfs_to_check)
+			if(turf_to_check in target_turfs)
+				continue
+			turfs_to_add += turf_to_check
+	target_turfs += turfs_to_add
+	current_iterations ++
+	if(current_iterations >= max_interations)
+		stop_spin()
+		return
+	if(can_use_action(X, XACT_IGNORE_COOLDOWN))
+		spin_loop_timer = addtimer(CALLBACK(src, .proc/do_spin), 10, TIMER_STOPPABLE)
+		return
+	stop_spin()
+
+/// stops spin and unregisters all listeners
+/datum/action/xeno_action/activable/psy_crush/proc/stop_spin()
+	SIGNAL_HANDLER
+	to_chat(owner, span_warning("We stop."))
+	if(spin_loop_timer)
+		deltimer(spin_loop_timer)
+		spin_loop_timer = null
+	current_iterations = 0
+	target_turfs = list()
+	add_cooldown()
+	UnregisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)))
+
+/datum/action/xeno_action/activable/psy_crush/proc/crush()
+	to_chat(owner, span_warning("We crush!"))
+	for(var/turf/effected_turf AS in target_turfs)
+		for(var/mob/living/carbon/human/victim in effected_turf)
+			victim.ex_act(EXPLODE_LIGHT) //placeholder
+	stop_spin()
