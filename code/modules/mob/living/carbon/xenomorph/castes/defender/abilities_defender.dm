@@ -626,7 +626,7 @@
 	target_flags = XABB_MOB_TARGET //todo:what does this actually do?
 
 /datum/action/xeno_action/activable/bombard/on_cooldown_finish()
-	to_chat(owner, span_notice("We feel your toxin glands swell. We are able to bombard an area again."))
+	to_chat(owner, span_notice("We feel our strength return. We are ready to unleash a psychic blast again."))
 	var/mob/living/carbon/xenomorph/shrike/X = owner
 	if(X.selected_ability == src)
 		X.set_bombard_pointer()
@@ -679,9 +679,9 @@
 	if(!istype(target))
 		return
 
-	to_chat(X, span_xenonotice("We begin building up pressure."))
+	to_chat(X, span_xenonotice("We channel our psychic power."))
 
-	if(!do_after(X, 2 SECONDS, FALSE, target, BUSY_ICON_DANGER))
+	if(!do_after(X, 1 SECONDS, FALSE, target, BUSY_ICON_DANGER))
 		to_chat(X, span_warning("We decide not to launch."))
 		return fail_activate()
 
@@ -691,12 +691,12 @@
 	X.visible_message(span_xenowarning("\The [X] launches a blast of psychic energy!"), \
 	span_xenowarning("We launch a huge blast of psychic energy!"), null, 5)
 
-	var/obj/projectile/P = new /obj/projectile(X.loc)
-	var/datum/ammo/ammo_type = /datum/ammo/energy/lasgun/pulsebolt
+	var/obj/projectile/hitscan/P = new /obj/projectile/hitscan(X.loc)
+	var/datum/ammo/ammo_type = /datum/ammo/energy/psy_blast
 	//P.generate_bullet(X.ammo) //readd this when we make the beno
 	P.generate_bullet(ammo_type)
 	P.fire_at(target, X, null, P.ammo.max_range, P.ammo.shell_speed)
-	playsound(X, 'sound/effects/blobattack.ogg', 25, 1)
+	playsound(X, 'sound/weapons/guns/fire/volkite_4.ogg', 50)
 	//if(istype(X.ammo, /datum/ammo/xeno/shrike_gas/corrosive))
 	//	GLOB.round_statistics.shrike_acid_smokes++
 	//	SSblackbox.record_feedback("tally", "round_statistics", 1, "shrike_acid_smokes")

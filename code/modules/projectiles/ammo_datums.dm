@@ -2467,6 +2467,36 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/lasgun/marine/heavy_laser/do_at_max_range(turf/T, obj/projectile/P)
 	drop_nade(T.density ? P.loc : T)
 
+//psyblast// lots of placeholder stuff
+/datum/ammo/energy/psy_blast
+	name = "psychic blast"
+	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN
+	damage = 60
+	penetration = 10
+	sundering = 1
+	max_range = 30
+	accurate_range = 15
+	hitscan_effect_icon = "beam_incen"
+
+/datum/ammo/energy/psy_blast/drop_nade(turf/T, radius = 1)
+	if(!T || !isturf(T))
+		return
+	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
+	flame_radius(radius, T, 3, 3, 3, 3)
+
+/datum/ammo/energy/psy_blast/on_hit_mob(mob/M, obj/projectile/P)
+	drop_nade(get_turf(M))
+
+/datum/ammo/energy/psy_blast/on_hit_obj(obj/O, obj/projectile/P)
+	drop_nade(get_turf(O))
+
+/datum/ammo/energy/psy_blast/on_hit_turf(turf/T, obj/projectile/P)
+	drop_nade(T.density ? P.loc : T)
+
+/datum/ammo/energy/psy_blast/do_at_max_range(turf/T, obj/projectile/P)
+	drop_nade(T.density ? P.loc : T)
+
+
 /datum/ammo/energy/lasgun/marine/mech
 	name = "superheated laser bolt"
 	damage = 45
