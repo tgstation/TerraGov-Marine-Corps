@@ -383,6 +383,7 @@
 #include "code\datums\emergency_calls\imperium.dm"
 #include "code\datums\emergency_calls\pizza.dm"
 #include "code\datums\emergency_calls\pmc.dm"
+#include "code\datums\emergency_calls\santa.dm"
 #include "code\datums\emergency_calls\sectoid.dm"
 #include "code\datums\emergency_calls\skeleton.dm"
 #include "code\datums\emergency_calls\sonsofmars.dm"
