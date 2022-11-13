@@ -453,6 +453,7 @@
 	devastating_explosion_range = 2
 	heavy_explosion_range = 3
 	light_explosion_range = 4
+	prediction_type = CAS_AMMO_EXPLOSIVE
 	cas_effect = /obj/effect/overlay/blinking_laser/fatty
 
 /obj/structure/ship_ammo/rocket/fatty/detonate_on(turf/impact, attackdir = NORTH)
