@@ -408,6 +408,12 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	victim.adjust_stagger(debuff)
 	victim.adjust_slowdown(debuff)
 	victim.apply_damage(stamina_dmg, STAMINA)
+
+	var/datum/internal_organ/O
+	for(var/i in list("heart", "lungs", "liver"))
+		O = victim.internal_organs_by_name[i]
+		O.take_damage(debuff, TRUE)
+
 	if(!young.weak)
 		young.adjust_weakness(15)
 		young.counter = 120
