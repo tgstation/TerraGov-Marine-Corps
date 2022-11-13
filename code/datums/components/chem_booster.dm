@@ -281,11 +281,20 @@
 
 ///Updates the module on the armor to glow or not
 /datum/component/chem_booster/proc/update_module_icon(var/on_off)
-	var/obj/item/armor_module/module/chemsystem/chemsystem_icon = parent.GetComponent(/obj/item/armor_module/module/chemsystem)
-	if(on_off)
-		chemsystem_icon.item_state = "mod_chemsystem_active_a"
+	var/obj/item/clothing/suit/modular/parent_armor = parent
+	var/obj/item/armor_module/module/chemsystem/chemsystem_icon = parent_armor.attachments_by_slot[ATTACHMENT_SLOT_MODULE]
+	if(isnull(chemsystem_icon))
 		return
+	if(on_off)
+		chemsystem_icon.icon_state = "mod_chemsystem_active"
+		chemsystem_icon.item_state = "mod_chemsystem_active_a"
+		chemsystem_icon.update_icon()
+		parent_armor.update_icon()
+		return
+	chemsystem_icon.icon_state = "mod_chemsystem"
 	chemsystem_icon.item_state = "mod_chemsystem_a"
+	chemsystem_icon.update_icon()
+	parent_armor.update_icon()
 
 ///Updates the boost amount of the suit and effect_str of reagents if component is on. "amount" is the final level you want to set the boost to.
 /datum/component/chem_booster/proc/update_boost(amount)

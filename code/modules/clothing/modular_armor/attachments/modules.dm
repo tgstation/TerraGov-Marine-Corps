@@ -245,7 +245,7 @@
 	desc = "Designed for mounting on modular armor. This experimental module runs on green blood taken from xenos with harvester class weapons; Green blood heals the user and boosts any chems in the suit injection system. \nUse the suit menu to connect harvester class weapons, control the injection system, find chem boost information, and more."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_chemsystem"
-	item_state = "mod_chemsystem_active_a"
+	item_state = "mod_chemsystem_a"
 	slot = ATTACHMENT_SLOT_MODULE
 
 /obj/item/armor_module/module/chemsystem/on_attach(obj/item/attaching_to, mob/user)
@@ -253,8 +253,8 @@
 	parent.AddComponent(/datum/component/chem_booster)
 
 /obj/item/armor_module/module/chemsystem/on_detach(obj/item/detaching_from, mob/user)
-	parent.GetComponent(/datum/component/chem_booster)
-	parent.RemoveComponent()
+	var/datum/component/chem_booster/chemsystem = parent.GetComponent(/datum/component/chem_booster)
+	chemsystem.RemoveComponent()
 	return ..()
 
 /obj/item/armor_module/module/eshield
