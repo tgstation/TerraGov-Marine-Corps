@@ -70,8 +70,6 @@
 	var/movement_boost = 0
 	///How much time left on vali heal till necrosis occurs
 	var/vali_necro_timer
-	///Ref to armor itself for icon manipulation
-	var/obj/item/armor_module/module/chemsystem/chemsystem_ref
 
 	/**
 	 * This list contains the vali stat increases that correspond to each reagent
@@ -239,6 +237,7 @@
 /datum/component/chem_booster/proc/on_off(datum/source)
 	SIGNAL_HANDLER
 	if(boost_on)
+		update_module_icon(FALSE)
 		STOP_PROCESSING(SSobj, src)
 		wearer.clear_fullscreen("degeneration")
 		vali_necro_timer = world.time - processing_start
@@ -268,6 +267,7 @@
 		wearer.balloon_alert(wearer, "Insufficient green blood to begin operation")
 		return
 
+	update_module_icon(TRUE)
 	boost_on = TRUE
 	processing_start = world.time
 	START_PROCESSING(SSobj, src)
@@ -278,6 +278,14 @@
 		to_chat(wearer, get_meds_beaker_contents())
 		meds_beaker.reagents.trans_to(wearer, 30)
 	setup_bonus_effects()
+
+///Updates the module on the armor to glow or not
+/datum/component/chem_booster/proc/update_module_icon(var/on_off)
+	var/obj/item/armor_module/module/chemsystem/chemsystem_icon = parent.GetComponent(/obj/item/armor_module/module/chemsystem)
+	if(on_off)
+		chemsystem_icon.item_state = "mod_chemsystem_active_a"
+		return
+	chemsystem_icon.item_state = "mod_chemsystem_a"
 
 ///Updates the boost amount of the suit and effect_str of reagents if component is on. "amount" is the final level you want to set the boost to.
 /datum/component/chem_booster/proc/update_boost(amount)

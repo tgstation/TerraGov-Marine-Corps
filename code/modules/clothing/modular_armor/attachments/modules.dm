@@ -247,27 +247,15 @@
 	icon_state = "mod_chemsystem"
 	item_state = "mod_chemsystem_active_a"
 	slot = ATTACHMENT_SLOT_MODULE
-	// ref to component
-	var/datum/component/chem_booster/chemsystem
 
 /obj/item/armor_module/module/chemsystem/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
-	chemsystem = parent.AddComponent(/datum/component/chem_booster)
-	RegisterSignal(chemsystem, COMSIG_ACTION_TRIGGER, .proc/toggle_icon_state_vali)
+	parent.AddComponent(/datum/component/chem_booster)
 
 /obj/item/armor_module/module/chemsystem/on_detach(obj/item/detaching_from, mob/user)
-	chemsystem = parent.GetComponent(/datum/component/chem_booster)
-	chemsystem.RemoveComponent()
-	UnregisterSignal(chemsystem, COMSIG_ACTION_TRIGGER)
+	parent.GetComponent(/datum/component/chem_booster)
+	parent.RemoveComponent()
 	return ..()
-
-/obj/item/armor_module/module/chemsystem/proc/toggle_icon_state_vali()
-	if(chemsystem.boost_on)
-		item_state = "mod_chemsystem_active_a"
-		icon_state = "mod_chemsystem_active_a"
-		return
-	item_state = "mod_chemsystem_active_a"
-	icon_state = "mod_chemsystem_active_a"
 
 /obj/item/armor_module/module/eshield
 	name = "Arrowhead Energy Shield System"
