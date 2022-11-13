@@ -84,7 +84,7 @@
 	storage_slots = null
 	max_w_class = 3
 	max_storage_space = 400 // can store a ton of shit!
-
+	flags_item = NODROP|DELONDROP
 /obj/item/storage/backpack/cultpack
 	name = "trophy rack"
 	desc = "It's useful for both carrying extra gear and proudly declaring your insanity."

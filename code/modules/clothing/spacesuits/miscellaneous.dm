@@ -39,11 +39,13 @@
 	desc = "That's not red dye. That's red blood."
 	soft_armor = list(MELEE = 70, BULLET = 55, LASER = 35, ENERGY = 20, BOMB = 30, BIO = 100, FIRE = 20, ACID = 20)
 	slowdown = 1
+	flags_item = NODROP|DELONDROP
 
 /obj/item/clothing/head/helmet/space/santahat/special
 	name = "Santa's hat"
 	desc = "Ho ho ho. Merrry X-mas to all! Now you're all gonna die!"
 	soft_armor = list(MELEE = 65, BULLET = 55, LASER = 35, ENERGY = 20, BOMB = 30, BIO = 30, FIRE = 20, ACID = 20)
+	flags_item = NODROP|DELONDROP
 
 //Space pirate outfit
 /obj/item/clothing/head/helmet/space/pirate

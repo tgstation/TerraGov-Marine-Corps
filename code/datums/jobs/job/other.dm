@@ -125,10 +125,10 @@
 	w_uniform = /obj/item/clothing/under/marine/veteran/PMC/commando
 	shoes = /obj/item/clothing/shoes/galoshes/santa
 	wear_suit = /obj/item/clothing/suit/space/santa/special
-	gloves = /obj/item/clothing/gloves/marine/som/veteran
+	gloves = /obj/item/clothing/gloves/marine/veteran/PMC/commando
 	mask = /obj/item/clothing/mask/gas/swat/santa
 	head = /obj/item/clothing/head/helmet/space/santahat/special
-	glasses = /obj/item/clothing/glasses/thermal/eyepatch
+	glasses = /obj/item/clothing/glasses/thermal/eyepatch //santa lost one of his eyes in a vicious reindeer accident around '32
 	r_store = /obj/item/weapon/gun/pistol/auto9
 	l_store = /obj/item/ammo_magazine/pistol/auto9
 	r_store = /obj/item/storage/pouch/magazine/pistol/large

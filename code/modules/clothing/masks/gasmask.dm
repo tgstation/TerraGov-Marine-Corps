@@ -104,6 +104,7 @@
 	icon_state = "s_beard"
 	anti_hug = 6
 	breathy = FALSE
+	flags_item = NODROP|DELONDROP
 
 /obj/item/clothing/mask/gas/syndicate
 	name = "syndicate mask"
