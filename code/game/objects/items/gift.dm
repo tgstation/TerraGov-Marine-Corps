@@ -65,7 +65,8 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 
 /obj/item/a_gift/proc/spawnpresent(mob/M)
 	var/obj/item/I = new contains_type(get_turf(M))
-	GLOB.round_statistics.presents_delivered += 1
+	if(!freepresent)
+		GLOB.round_statistics.presents_delivered += 1
 	if(!QDELETED(I)) //might contain something like metal rods that might merge with a stack on the ground
 		M.visible_message(span_notice("[M] unwraps \the [src], finding \a [I] inside!"))
 		M.put_in_hands(I)
@@ -171,8 +172,5 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 
 	return gift_type
 
-/obj/item/a_gift/weapons
-
-/obj/item/a_gift/medicine
-
-/obj/item/a_gift/fluff
+/obj/item/a_gift/free
+	freepresent = TRUE

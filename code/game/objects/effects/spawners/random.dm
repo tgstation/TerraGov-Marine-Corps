@@ -768,9 +768,7 @@
 
 /obj/effect/spawner/random/present/item_to_spawn()
 		return pick(/obj/item/a_gift,\
-					/obj/item/a_gift/medicine,\
-					/obj/item/a_gift/weapons,\
-					/obj/item/a_gift/fluff)
+					/obj/item/a_gift/free)
 
 /obj/effect/spawner/random_set/christmas_costume
 	name = "Random santa suit set spawner"
