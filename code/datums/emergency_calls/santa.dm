@@ -6,12 +6,12 @@
 
 
 /datum/emergency_call/santa/print_backstory(mob/living/carbon/human/H)
-	to_chat(H, "<B>You [pick("grew up in the mines working in horrible conditions until signing up to", "were part of a poor family until you decided to leave to join", "were born on a colony on Mars to a family of several brothers and sisters before leaving to", "worked at horrible conditions in the mines until deciding to leave to join")] the Sons of Mars (SoM).</b>")
-	to_chat(H, "<B>As part of the Big-3 included in the Independent Colonial Confederation (ICC), the SoM, formed in 2180, is a heavily industrialized group with the standing army of approx. 200,000 enlisted or trained members.</b>")
-	to_chat(H, "<B>The SoM rebels were able to overpower the Space Authority, discovering an engine capable of Faster Than Light travel, but the Space Authority Marine Corps succeeded in prevented them from stealing the engine. Currently, the SoM have the biggest ICC fleet outside of the Sol system.</b>")
+	to_chat(H, "<B>You [pick("fed the reindeer and worked hard for 11 months a year", "worked hard to deliver presents to good boys and girls of all species", "survived the ice, snow, and low gravity working tirelessly for Santa", "were a master craftsman who snuck onto Santa's galactic sleigh ride")].</b>")
+	to_chat(H, "<B>As part of Santa's entourage, you travel with him to deliver presents to all who deserve to be rewarded.</b>")
+	to_chat(H, "<B>Santa travels the galaxy once a year, visiting every single inhabited planet in a single period of 24 standard hours. Santa maintains an active defense force to punish especially naughty sapients with lethal force, this defense force currently numbers more than 30,000 elves and ships.</b>")
 	to_chat(H, "")
-	to_chat(H, "<B>Today, a TGMC vessel, [SSmapping.configs[SHIP_MAP].map_name], has sent out a distress signal on the orbit of [SSmapping.configs[GROUND_MAP].map_name]. This is our chance to attack without being intercepted!</b>")
-	to_chat(H, "<B>Eliminate the TGMC, take no prisoners. Get back what it was once lost.</B>")
+	to_chat(H, "<B>Today, while enroute to visit a TGMC vessel, [SSmapping.configs[SHIP_MAP].map_name], the artificial intelligence in Santa's sleigh detected an abnormally high level of naughtiness in the orbit of [SSmapping.configs[GROUND_MAP].map_name]. Santa has resolved to punish them in the spirit of Christmas!</b>")
+	to_chat(H, "<B>Punish the naughty aliens onboard the ship, coal won't be enough this time. The only punishment Santa believes in now is hot lead!</B>")
 
 
 /datum/emergency_call/santa/create_member(datum/mind/M)
@@ -31,9 +31,9 @@
 
 	if(!leader)
 		leader = H
-		var/datum/job/J = SSjob.GetJobType(/datum/job/som/ert/leader)
+		var/datum/job/J = SSjob.GetJobType(/datum/outfit/job/santa/ert/leader)
 		H.apply_assigned_role_to_spawn(J)
-		to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are a member of the Sons of Mars assigned to lead this fireteam to the TGMC distress signal sent out nearby. Lead your fireteam to top-working conidition!")]</p>")
+		to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are Santa Claus! Punish all naughty aliens with overwhelming firepower, starting with their naughty queen hiding on the ship.")]</p>")
 		return
 
 	if(medics < max_medics)

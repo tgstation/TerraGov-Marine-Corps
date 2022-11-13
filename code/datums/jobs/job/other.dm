@@ -103,8 +103,14 @@
 /datum/job/zombie
 	title = "Oh god run"
 
+/datum/job/santa/ert/leader
+	title = "Santa Claus"
+	access = ALL_ACCESS
+	minimal_access = ALL_ACCESS
+	skills_type = /datum/skills/santaclause
+	outfit = /datum/outfit/job/santa/ert/leader
 
-/datum/outfit/job/som/ert/santa/leader //he's done ho ho ho ing around
+/datum/outfit/job/santa/ert/leader //he's done ho ho ho ing around
 	name = "Santa Claus"
 	jobtype = /datum/job/som/ert/santa/leader
 
@@ -116,7 +122,7 @@
 	gloves = /obj/item/clothing/gloves/marine/som/veteran
 	mask = /obj/item/clothing/mask/gas/swat/santa
 	head = /obj/item/clothing/head/helmet/space/santahat/special
-	glasses = /obj/item/clothing/glasses/hud/health
+	glasses = /obj/item/clothing/glasses/thermal/eyepatch
 	r_store = /obj/item/storage/pouch/pistol/som
 	l_store = /obj/item/storage/pouch/grenade/som/ert
 	back = /obj/item/storage/backpack/santabag

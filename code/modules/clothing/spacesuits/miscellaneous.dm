@@ -36,7 +36,7 @@
 	allowed = list(/obj/item) //for stuffing exta special presents
 
 /obj/item/clothing/suit/space/santa/special //for ERT, when santa has to give presents to REALLY naughty children
-	desc = "That's not red dye. That's real blood."
+	desc = "That's not red dye. That's red blood."
 	soft_armor = list(MELEE = 70, BULLET = 55, LASER = 35, ENERGY = 20, BOMB = 30, BIO = 100, FIRE = 20, ACID = 20)
 	slowdown = 1
 
