@@ -12,12 +12,16 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 
 /obj/item/a_gift
 	name = "gift"
-	desc = "PRESENTS!!!! eek!"
+	desc = "A wrapped bundle of joy, you'll have to get closer to see who it's addressed to."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "gift0"
 	inhand_icon_state = "gift0"
 	resistance_flags = RESIST_ALL
-
+	///if true the present can be opened by anybody
+	var/freepresent = FALSE
+	///who is the present addressed to?
+	var/present_receiver = null
+	///item contained in this gift
 	var/obj/item/contains_type
 
 /obj/item/a_gift/Initialize(mapload)
@@ -29,19 +33,45 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	contains_type = get_gift_type()
 
 /obj/item/a_gift/attack_self(mob/M)
-	if(isxeno(M)) //xenos are naughty, Santa hates them
-		new /obj/item/ore/coal(get_turf(M))
+	if(present_receiver == null)
+		get_recipient()
+	to_chat(user, span_warning("You start unwrapping the present, trying to locate any sign of who the present belongs to..."))
+	if(!do_after(user, 4 SECONDS))
 		return
+	if(!freepresent && present_receiver != M)
+		if(tgui_alert(M, "This present is addressed to [present_receiver]. Open it anyways?", "Continue?", list("Yes", "No")) != "No")
+			if(prob(99))
+				new /obj/item/ore/coal(get_turf(M))
+			else
+				var/obj/item/I = new contains_type(get_turf(M))
+				if(!QDELETED(I)) //might contain something like metal rods that might merge with a stack on the ground
+					M.visible_message(span_notice("[M] unwraps \the [src], finding \a [I] inside!"))
+					M.put_in_hands(I)
+					I.add_fingerprint(M)
+			qdel(src)
+			return
+
 	qdel(src)
 
 	var/obj/item/I = new contains_type(get_turf(M))
-	if (!QDELETED(I)) //might contain something like metal rods that might merge with a stack on the ground
+	if(!QDELETED(I)) //might contain something like metal rods that might merge with a stack on the ground
 		M.visible_message(span_notice("[M] unwraps \the [src], finding \a [I] inside!"))
-		I.investigate_log("([I.type]) was found in a present by [key_name(M)].")
 		M.put_in_hands(I)
 		I.add_fingerprint(M)
 	else
 		M.visible_message(span_danger("Oh no! The present that [M] opened had nothing inside it!"))
+
+/obj/item/a_gift/proc/get_recipient(mob/M)
+	var/list/eligible_targets = list()
+	for(var/z in z_levels)
+		for(var/i in GLOB.alive_human_list)
+			var/mob/living/carbon/human/potential_gift_receiver = i
+			if(!istype(possible_target) || !possible_target.client)
+				continue
+			eligible_targets += potential_gift_receiver
+	if(!length(eligible_targets))
+		freepresent = TRUE //nobody alive, anybody can open it
+	present_receiver = (pick(eligible_targets))
 
 /obj/item/a_gift/proc/get_gift_type()
 	var/gift_type_list = list(/obj/item/sord,
