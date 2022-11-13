@@ -693,6 +693,7 @@
 
 	var/obj/projectile/hitscan/P = new /obj/projectile/hitscan(X.loc)
 	var/datum/ammo/ammo_type = /datum/ammo/energy/psy_blast
+	P.effect_icon = initial(ammo_type.hitscan_effect_icon)
 	//P.generate_bullet(X.ammo) //readd this when we make the beno
 	P.generate_bullet(ammo_type)
 	P.fire_at(target, X, null, P.ammo.max_range, P.ammo.shell_speed)

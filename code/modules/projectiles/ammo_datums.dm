@@ -2462,10 +2462,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	drop_nade(get_turf(O))
 
 /datum/ammo/energy/lasgun/marine/heavy_laser/on_hit_turf(turf/T, obj/projectile/P)
-	drop_nade(T.density ? P.loc : T)
+	drop_nade(T.density ? get_step_towards(T, P) : T)
 
 /datum/ammo/energy/lasgun/marine/heavy_laser/do_at_max_range(turf/T, obj/projectile/P)
-	drop_nade(T.density ? P.loc : T)
+	drop_nade(T.density ? get_step_towards(T, P) : T)
 
 //psyblast// lots of placeholder stuff
 /datum/ammo/energy/psy_blast
@@ -2476,7 +2476,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 1
 	max_range = 30
 	accurate_range = 15
-	hitscan_effect_icon = "beam_incen"
+	hitscan_effect_icon = "beam_darkt"
 
 /datum/ammo/energy/psy_blast/drop_nade(turf/T, radius = 1)
 	if(!T || !isturf(T))
@@ -2491,11 +2491,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	drop_nade(get_turf(O))
 
 /datum/ammo/energy/psy_blast/on_hit_turf(turf/T, obj/projectile/P)
-	drop_nade(T.density ? P.loc : T)
+	drop_nade(T.density ? get_step_towards(T, P) : T)
 
 /datum/ammo/energy/psy_blast/do_at_max_range(turf/T, obj/projectile/P)
-	drop_nade(T.density ? P.loc : T)
-
+	drop_nade(T.density ? get_step_towards(T, P) : T)
 
 /datum/ammo/energy/lasgun/marine/mech
 	name = "superheated laser bolt"
