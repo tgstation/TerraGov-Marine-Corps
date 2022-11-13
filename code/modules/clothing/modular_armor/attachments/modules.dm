@@ -257,6 +257,7 @@
 	chemsystem.RemoveComponent()
 	return ..()
 
+
 /obj/item/armor_module/module/eshield
 	name = "Arrowhead Energy Shield System"
 	desc = "A brand new innovation in armor systems, this module creates a shield around the user that is capable of negating all damage. If it sustains too much it will deactivate, and leave the user vulnerable."
