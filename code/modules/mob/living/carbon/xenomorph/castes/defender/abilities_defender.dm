@@ -488,6 +488,7 @@
 	///timer hash for the timer we use when spinning
 	var/spin_loop_timer
 	var/list/target_turfs = list()
+	var/list/effect_list = list()
 	var/ability_range = 7
 
 /datum/action/xeno_action/activable/psy_crush/use_ability(atom/target)
@@ -531,6 +532,9 @@
 /datum/action/xeno_action/activable/psy_crush/proc/do_spin()
 	spin_loop_timer = null
 	var/mob/living/carbon/xenomorph/X = owner
+	if(isnull(X) || isdead(X))
+		stop_spin()
+		return
 	playsound(X, pick('sound/effects/alien_tail_swipe1.ogg','sound/effects/alien_tail_swipe2.ogg','sound/effects/alien_tail_swipe3.ogg'), 25, 1) //Sound effects
 
 	succeed_activate()
@@ -542,10 +546,11 @@
 			if(turf_to_check in target_turfs)
 				continue
 			turfs_to_add += turf_to_check
+			effect_list += new /obj/effect/xeno/crush_warning(turf_to_check)
 	target_turfs += turfs_to_add
 	current_iterations ++
 	if(current_iterations >= max_interations)
-		stop_spin()
+		crush()
 		return
 	if(can_use_action(X, XACT_IGNORE_COOLDOWN))
 		spin_loop_timer = addtimer(CALLBACK(src, .proc/do_spin), 10, TIMER_STOPPABLE)
@@ -559,14 +564,25 @@
 	if(spin_loop_timer)
 		deltimer(spin_loop_timer)
 		spin_loop_timer = null
+	for(var/obj/effect/xeno/crush_warning/current_effect AS in effect_list)
+		qdel(current_effect)
 	current_iterations = 0
 	target_turfs = list()
+	effect_list = list()
 	add_cooldown()
 	UnregisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)))
 
 /datum/action/xeno_action/activable/psy_crush/proc/crush()
 	to_chat(owner, span_warning("We crush!"))
+	playsound(target_turfs[1], 'sound/effects/portal.ogg', 20)
 	for(var/turf/effected_turf AS in target_turfs)
 		for(var/mob/living/carbon/human/victim in effected_turf)
 			victim.ex_act(EXPLODE_LIGHT) //placeholder
 	stop_spin()
+
+/obj/effect/xeno/crush_warning
+	icon = 'icons/xeno/Effects.dmi'
+	icon_state = "crush_warning"
+	anchored = TRUE
+	resistance_flags = RESIST_ALL
+	layer = FLY_LAYER
