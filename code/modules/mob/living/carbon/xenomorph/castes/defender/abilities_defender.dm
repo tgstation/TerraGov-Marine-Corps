@@ -484,7 +484,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CENTRIFUGAL_FORCE,
 	)
 	///The number of times we can expand our effect radius. Effectively a max radius
-	var/max_interations = 6
+	var/max_interations = 5 //maybe tie this to maturity
 	///How many times we have expanded our effect radius
 	var/current_iterations = 0
 	///timer hash for the timer we use when charging up
@@ -494,7 +494,7 @@
 	///list of effects used to visualise area of effect
 	var/list/effect_list = list()
 	///max range at which we can cast out ability
-	var/ability_range = 7
+	var/ability_range = 9
 
 /datum/action/xeno_action/activable/psy_crush/use_ability(atom/target)
 	//note: can probs just make alt action activate a new proc, and call it here if timer is active.
@@ -520,7 +520,7 @@
 		owner.visible_message(span_xenowarning("\The [owner] is unable to unleash their power!"), \
 			span_xenowarning("We fail to unleash our power!"))
 		return
-	addtimer(CALLBACK(src, .proc/crush), 1)
+	addtimer(CALLBACK(src, .proc/crush, target_turfs[1]), 1)
 
 /datum/action/xeno_action/activable/psy_crush/proc/check_distance(atom/target, silent)
 	var/dist = get_dist(owner, target)
@@ -536,7 +536,7 @@
 /datum/action/xeno_action/activable/psy_crush/proc/do_channel(turf/target)
 	channel_loop_timer = null
 	var/mob/living/carbon/xenomorph/X = owner
-	if(isnull(X) || isdead(X))
+	if(!check_distance(target) || isnull(X) || isdead(X))
 		stop_crush(target)
 		return
 	if(current_iterations >= max_interations)
@@ -579,6 +579,9 @@
 ///crushes all turfs in the AOE
 /datum/action/xeno_action/activable/psy_crush/proc/crush(turf/target)
 	//note: do we need a check to see if we have sufficient plasma, due to the override?
+	if(!check_distance(target))
+		stop_crush(target)
+		return
 	succeed_activate(plasma_cost * current_iterations)
 	to_chat(owner, span_warning("We unleash our psychic might!"))
 	playsound(target, 'sound/effects/EMPulse.ogg', 70)
@@ -595,6 +598,8 @@
 				carbon_victim.add_slowdown(5)
 			else if(isobj(i))
 				var/obj/obj_victim = i
+				if(istype(obj_victim, /obj/alien))
+					continue
 				obj_victim.ex_act(EXPLODE_LIGHT)
 	stop_crush(target)
 
