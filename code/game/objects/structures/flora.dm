@@ -134,7 +134,14 @@
 		return
 	if(!user.ckey)
 		return
-
+	to_chat(user, span_warning("You start rummaging through the pile of presents underneath the tree, trying to locate a gift addressed to you..."))
+	if(!do_after(user, 4 SECONDS))
+		return
+	if(isxeno(user) || prob(1)) //Santa hates xenos, he also hates really unlucky marines
+		to_chat(user, span_warning("After a bit of rummaging, you locate a small parcel with your name on it, it splits open to reveal coal."))
+		new /obj/item/ore/coal(get_turf(user))
+		took_presents[user.ckey] = TRUE
+		return
 	if(took_presents[user.ckey] && !unlimited)
 		to_chat(user, span_warning("There are no presents with your name on."))
 		return

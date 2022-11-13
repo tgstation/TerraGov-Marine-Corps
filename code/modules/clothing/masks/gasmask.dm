@@ -46,6 +46,11 @@
 	icon_state = "gascoif"
 	flags_inv_hide = HIDEEARS|HIDEFACE|HIDEALLHAIR
 
+/obj/item/clothing/mask/gas/tactical/coif/beard
+	name = "Tactical coifed Santa beard"
+	desc = "A cheap imitation of the real thing, the dense hairs still filter harmful gases out of the air via Christmas magic."
+	icon_state = "s_beard"
+
 /obj/item/clothing/mask/gas/PMC
 	name = "\improper M8 pattern armored balaclava"
 	desc = "An armored balaclava designed to conceal both the identity of the operator and act as an air-filter."
@@ -94,8 +99,11 @@
 	flags_armor_protection = FACE|EYES
 
 /obj/item/clothing/mask/gas/swat/santa
+	name = "\improper Santa's beard"
+	desc = "A dense mat of hair surrounding Santa's mouth, in addition to lending Santa a sense of authority, it's also dense enough to repel harmful gases and facehuggers."
 	icon_state = "s_beard"
-	anti_hug = 3
+	anti_hug = 6
+	breathy = FALSE
 
 /obj/item/clothing/mask/gas/syndicate
 	name = "syndicate mask"

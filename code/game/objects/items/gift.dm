@@ -29,7 +29,9 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	contains_type = get_gift_type()
 
 /obj/item/a_gift/attack_self(mob/M)
-
+	if(isxeno(M)) //xenos are naughty, Santa hates them
+		new /obj/item/ore/coal(get_turf(M))
+		return
 	qdel(src)
 
 	var/obj/item/I = new contains_type(get_turf(M))
