@@ -43,23 +43,12 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 			if(prob(99))
 				new /obj/item/ore/coal(get_turf(M))
 			else
-				var/obj/item/I = new contains_type(get_turf(M))
-				if(!QDELETED(I)) //might contain something like metal rods that might merge with a stack on the ground
-					M.visible_message(span_notice("[M] unwraps \the [src], finding \a [I] inside!"))
-					M.put_in_hands(I)
-					I.add_fingerprint(M)
+				spawnpresent(M)
 			qdel(src)
 			return
 
 	qdel(src)
-
-	var/obj/item/I = new contains_type(get_turf(M))
-	if(!QDELETED(I)) //might contain something like metal rods that might merge with a stack on the ground
-		M.visible_message(span_notice("[M] unwraps \the [src], finding \a [I] inside!"))
-		M.put_in_hands(I)
-		I.add_fingerprint(M)
-	else
-		M.visible_message(span_danger("Oh no! The present that [M] opened had nothing inside it!"))
+	spawnpresent(M)
 
 /obj/item/a_gift/proc/get_recipient(mob/M)
 	var/list/eligible_targets = list()
@@ -72,6 +61,15 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	if(!length(eligible_targets))
 		freepresent = TRUE //nobody alive, anybody can open it
 	present_receiver = (pick(eligible_targets))
+
+/obj/item/a_gift/proc/spawnpresent(mob/M)
+	var/obj/item/I = new contains_type(get_turf(M))
+	if(!QDELETED(I)) //might contain something like metal rods that might merge with a stack on the ground
+		M.visible_message(span_notice("[M] unwraps \the [src], finding \a [I] inside!"))
+		M.put_in_hands(I)
+		I.add_fingerprint(M)
+	else
+		M.visible_message(span_danger("Oh no! The present that [M] opened had nothing inside it!"))
 
 /obj/item/a_gift/proc/get_gift_type()
 	var/gift_type_list = list(/obj/item/sord,
