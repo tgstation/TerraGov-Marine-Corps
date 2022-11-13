@@ -99,14 +99,15 @@
 /datum/action/observer_action/toggle_healthscanner
 	name = "Toggle health scanner"
 	action_icon_state = "toggle_healthscanner_off"
+	action_type = ACTION_TOGGLE
 
 /datum/action/observer_action/toggle_healthscanner/action_activate()
 	var/mob/dead/observer/dead_owner = owner
 	dead_owner.toggle_healthscanner()
 	if(dead_owner.ghost_healthscan)
 		action_icon_state = "toggle_healthscanner_on"
-		add_selected_frame()
+		set_toggle(TRUE)
 	else
-		remove_selected_frame()
+		set_toggle(FALSE)
 		action_icon_state = "toggle_healthscanner_off"
 	update_button_icon()
