@@ -497,6 +497,7 @@
 	var/ability_range = 7
 
 /datum/action/xeno_action/activable/psy_crush/use_ability(atom/target)
+	//note: can probs just make alt action activate a new proc, and call it here if timer is active.
 	if(owner.do_actions)
 		return FALSE
 	if(channel_loop_timer) //you're already channeling
@@ -541,7 +542,7 @@
 	if(current_iterations >= max_interations)
 		crush(target)
 		return
-	playsound(target, pick('sound/effects/alien_tail_swipe1.ogg','sound/effects/alien_tail_swipe2.ogg','sound/effects/alien_tail_swipe3.ogg'), 25, 1) //Sound effects
+	playsound(target, 'sound/effects/woosh_swoosh.ogg', 30 + (current_iterations * 10)) //Sound effects
 
 	succeed_activate()
 
@@ -580,7 +581,7 @@
 	//note: do we need a check to see if we have sufficient plasma, due to the override?
 	succeed_activate(plasma_cost * current_iterations)
 	to_chat(owner, span_warning("We unleash our psychic might!"))
-	playsound(target, 'sound/effects/portal.ogg', 20)
+	playsound(target, 'sound/effects/EMPulse.ogg', 70)
 	for(var/turf/effected_turf AS in target_turfs)
 		for(var/i AS in effected_turf)
 			if(iscarbon(i))
