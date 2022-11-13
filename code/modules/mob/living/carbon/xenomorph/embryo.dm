@@ -10,6 +10,8 @@
 	var/stage = 0
 	///How developed the embryo is, if it ages up highly enough it has a chance to burst.
 	var/counter = 0
+	//Individual abilities can acquire additional effects if there is no weakness. (See Carrier Call of Younger ability)
+	var/weak = 0
 	///How long before the larva is kicked out, * SSobj wait
 	var/larva_autoburst_countdown = 20
 	var/hivenumber = XENO_HIVE_NORMAL
@@ -76,6 +78,8 @@
 	if(affected_mob.reagents.get_reagent_amount(/datum/reagent/medicine/larvaway))
 		counter -= 1 //Halves larval growth progress, for some tradeoffs. Larval toxin purges this
 
+	if(weak)
+		adjust_weakness(-1)
 
 	if(stage < 5 && counter >= 120)
 		counter = 0
@@ -229,3 +233,7 @@
 	if(species.species_flags & NO_PAIN)
 		return
 	emote("burstscream")
+
+/obj/item/alien_embryo/proc/adjust_weakness(amount)
+	weak = max(weak + amount, 0)
+	return weak

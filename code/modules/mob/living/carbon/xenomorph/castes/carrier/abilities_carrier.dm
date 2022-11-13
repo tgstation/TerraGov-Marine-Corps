@@ -387,7 +387,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	var/mob/living/carbon/human/victim = A
 
 	owner.face_atom(victim)
-	if(!do_after(X, 0.5 SECONDS, TRUE, X, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_ability, A, FALSE, XACT_USE_BUSY)))
+	if(!do_after(X, 20 SECONDS, TRUE, X, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_ability, A, FALSE, XACT_USE_BUSY)))
 		return fail_activate()
 
 	if(!can_use_ability(A))
@@ -399,17 +399,19 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 
 	X.emote("roar5")
 	victim.emote("scream")
+	owner.visible_message(span_xenowarning("\the [owner] emits an unusual roar!"), \
+	span_xenowarning("We called out to the younger one inside [victim]!"))
+	victim.visible_message(span_xenowarning("\The [victim] loses his balance, falling to the side!"), \
+	span_xenowarning("You feel like something inside you is tearing out!"))
 
 	victim.apply_effects(1, 0.5)
 	victim.adjust_stagger(debuff)
 	victim.adjust_slowdown(debuff)
 	victim.apply_damage(stamina_dmg, STAMINA)
-	young.counter = 120
-
-	owner.visible_message(span_xenowarning("\the [owner] emits an unusual roar!"), \
-	span_xenowarning("We called out to the younger one inside [victim]!"))
-	victim.visible_message(span_xenowarning("\The [victim] loses his balance, falling to the side!"), \
-	span_xenowarning("You feel like something inside you is tearing out!"))
+	if(!young.weak)
+		young.adjust_weakness(15)
+		young.counter = 120
+		victim.visible_message(self_message = span_userdanger("You feel like your insides are moving with great speed!"))
 
 	if(young.stage <= 1)
 		victim.throw_at(owner, 2, 1, owner)
