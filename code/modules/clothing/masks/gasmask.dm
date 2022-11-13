@@ -93,6 +93,10 @@
 	siemens_coefficient = 0.7
 	flags_armor_protection = FACE|EYES
 
+/obj/item/clothing/mask/gas/swat/santa
+	icon_state = "s_beard"
+	anti_hug = 3
+
 /obj/item/clothing/mask/gas/syndicate
 	name = "syndicate mask"
 	desc = "A close-fitting tactical mask that can be connected to an air supply."

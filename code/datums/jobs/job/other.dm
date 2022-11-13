@@ -102,3 +102,21 @@
 
 /datum/job/zombie
 	title = "Oh god run"
+
+
+/datum/outfit/job/som/ert/santa/leader //he's done ho ho ho ing around
+	name = "Santa Claus"
+	jobtype = /datum/job/som/ert/santa/leader
+
+	belt = /obj/item/storage/belt/marine/som
+	ears = /obj/item/radio/headset/distress/som
+	w_uniform = /obj/item/clothing/under/som/leader/webbing
+	shoes = /obj/item/clothing/shoes/galoshes/santa
+	wear_suit = /obj/item/clothing/suit/space/santa/special
+	gloves = /obj/item/clothing/gloves/marine/som/veteran
+	mask = /obj/item/clothing/mask/gas/swat/santa
+	head = /obj/item/clothing/head/helmet/space/santahat/special
+	glasses = /obj/item/clothing/glasses/hud/health
+	r_store = /obj/item/storage/pouch/pistol/som
+	l_store = /obj/item/storage/pouch/grenade/som/ert
+	back = /obj/item/storage/backpack/santabag

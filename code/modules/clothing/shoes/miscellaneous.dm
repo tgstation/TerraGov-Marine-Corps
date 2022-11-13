@@ -82,6 +82,12 @@
 	flags_inventory = NOSLIPPING
 	slowdown = SHOES_SLOWDOWN+1
 
+/obj/item/clothing/shoes/galoshes/santa //santa has to wear galoshes to avoid slipping in all the blood he spills on Christmas
+	name = "Santa's boots"
+	desc = "Made from high quality reindeer leather, Santa owns only the finest footwear."
+	icon_state = "santa_galoshes"
+	soft_armor = list(MELEE = 80, BULLET = 60, LASER = 50, ENERGY = 25, BOMB = 50, BIO = 10, FIRE = 25, ACID = 25)
+	flags_armor_protection = FEET
 /obj/item/clothing/shoes/clown_shoes
 	desc = "The prankster's standard-issue clowning shoes. Damn they're huge!"
 	name = "clown shoes"
