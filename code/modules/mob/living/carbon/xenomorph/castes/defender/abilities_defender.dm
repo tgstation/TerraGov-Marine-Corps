@@ -609,3 +609,103 @@
 	anchored = TRUE
 	resistance_flags = RESIST_ALL
 	layer = FLY_LAYER
+
+
+
+// ***************************************
+// *********** Psyblast
+// ***************************************
+/datum/action/xeno_action/activable/psy_blast
+	name = "Psychic blast"
+	action_icon_state = "bombard"
+	mechanics_text = "Launch a blast of psychic energy. Must remain stationary for a few seconds to use."
+	ability_name = "bombard"
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BOMBARD,
+	)
+	target_flags = XABB_MOB_TARGET //todo:what does this actually do?
+
+/datum/action/xeno_action/activable/bombard/on_cooldown_finish()
+	to_chat(owner, span_notice("We feel your toxin glands swell. We are able to bombard an area again."))
+	var/mob/living/carbon/xenomorph/shrike/X = owner
+	if(X.selected_ability == src)
+		X.set_bombard_pointer()
+	return ..()
+
+/datum/action/xeno_action/activable/psy_blast/on_activation()
+	var/mob/living/carbon/xenomorph/shrike/X = owner
+	X.visible_message(span_notice("\The [X] prepares to fire!"), \
+		span_notice("We prepare to fire."), null, 5) //placeholder
+	X.set_bombard_pointer()
+	RegisterSignal(X, COMSIG_MOB_ATTACK_RANGED, /datum/action/xeno_action/activable/bombard/proc.on_ranged_attack)
+
+
+/datum/action/xeno_action/activable/psy_blast/on_deactivation()
+	var/mob/living/carbon/xenomorph/shrike/X = owner
+	if(X.selected_ability == src)
+		X.reset_bombard_pointer()
+		to_chat(X, span_notice("We relax our stance."))
+	UnregisterSignal(X, COMSIG_MOB_ATTACK_RANGED)
+
+
+/datum/action/xeno_action/activable/psy_blast/proc/on_ranged_attack(mob/living/carbon/xenomorph/X, atom/A, params)
+	SIGNAL_HANDLER
+	if(can_use_ability(A))
+		INVOKE_ASYNC(src, .proc/use_ability, A)
+
+/mob/living/carbon/xenomorph/shrike/proc/set_bombard_pointer()
+	if(client)
+		client.mouse_pointer_icon = 'icons/mecha/mecha_mouse.dmi'
+
+/mob/living/carbon/xenomorph/shrike/proc/reset_bombard_pointer()
+	if(client)
+		client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
+
+/datum/action/xeno_action/activable/psy_blast/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	var/turf/T = get_turf(A)
+	var/turf/S = get_turf(owner)
+	if(!isturf(T) || T.z != S.z)
+		if(!silent)
+			to_chat(owner, span_warning("This is not a valid target."))
+		return FALSE
+
+/datum/action/xeno_action/activable/psy_blast/use_ability(atom/A)
+	var/mob/living/carbon/xenomorph/shrike/X = owner
+	var/turf/target = get_turf(A)
+
+	if(!istype(target))
+		return
+
+	to_chat(X, span_xenonotice("We begin building up pressure."))
+
+	if(!do_after(X, 2 SECONDS, FALSE, target, BUSY_ICON_DANGER))
+		to_chat(X, span_warning("We decide not to launch."))
+		return fail_activate()
+
+	if(!can_use_ability(target, FALSE))
+		return fail_activate()
+
+	X.visible_message(span_xenowarning("\The [X] launches a blast of psychic energy!"), \
+	span_xenowarning("We launch a huge blast of psychic energy!"), null, 5)
+
+	var/obj/projectile/P = new /obj/projectile(X.loc)
+	var/datum/ammo/ammo_type = /datum/ammo/energy/lasgun/pulsebolt
+	//P.generate_bullet(X.ammo) //readd this when we make the beno
+	P.generate_bullet(ammo_type)
+	P.fire_at(target, X, null, P.ammo.max_range, P.ammo.shell_speed)
+	playsound(X, 'sound/effects/blobattack.ogg', 25, 1)
+	//if(istype(X.ammo, /datum/ammo/xeno/shrike_gas/corrosive))
+	//	GLOB.round_statistics.shrike_acid_smokes++
+	//	SSblackbox.record_feedback("tally", "round_statistics", 1, "shrike_acid_smokes")
+	//	X.corrosive_ammo--
+	//else
+	//	GLOB.round_statistics.shrike_neuro_smokes++
+	//	SSblackbox.record_feedback("tally", "round_statistics", 1, "shrike_neuro_smokes")
+	//	X.neuro_ammo--
+
+	update_button_icon() //is this just for ammo count?
+	add_cooldown()
+	X.reset_bombard_pointer()
