@@ -103,26 +103,80 @@
 /datum/job/zombie
 	title = "Oh god run"
 
-/datum/job/santa/ert/leader
+/datum/job/santa
+	access = ALL_ANTAGONIST_ACCESS
+	minimal_access = ALL_ANTAGONIST_ACCESS
+	skills_type = /datum/skills/elf
+	faction = FACTION_SANTA
+
+/datum/job/santa/leader
 	title = "Santa Claus"
 	access = ALL_ACCESS
 	minimal_access = ALL_ACCESS
 	skills_type = /datum/skills/santaclause
-	outfit = /datum/outfit/job/santa/ert/leader
+	outfit = /datum/outfit/job/santa/leader
 
-/datum/outfit/job/santa/ert/leader //he's done ho ho ho ing around
+/datum/outfit/job/santa/leader //he's done ho ho ho ing around
 	name = "Santa Claus"
-	jobtype = /datum/job/som/ert/santa/leader
+	jobtype = /datum/job/santa/leader
 
-	belt = /obj/item/storage/belt/marine/som
-	ears = /obj/item/radio/headset/distress/som
-	w_uniform = /obj/item/clothing/under/som/leader/webbing
+	belt = /obj/item/storage/belt/gun/mateba/notmarine
+	ears = /obj/item/radio/headset/distress/commando
+	w_uniform = /obj/item/clothing/under/marine/veteran/PMC/commando
 	shoes = /obj/item/clothing/shoes/galoshes/santa
 	wear_suit = /obj/item/clothing/suit/space/santa/special
 	gloves = /obj/item/clothing/gloves/marine/som/veteran
 	mask = /obj/item/clothing/mask/gas/swat/santa
 	head = /obj/item/clothing/head/helmet/space/santahat/special
 	glasses = /obj/item/clothing/glasses/thermal/eyepatch
-	r_store = /obj/item/storage/pouch/pistol/som
-	l_store = /obj/item/storage/pouch/grenade/som/ert
+	r_store = /obj/item/weapon/gun/pistol/auto9
+	l_store = /obj/item/ammo_magazine/pistol/auto9
+	r_store = /obj/item/storage/pouch/magazine/pistol/large
+	l_store = /obj/item/storage/pouch/medkit
 	back = /obj/item/storage/backpack/santabag
+	suit_store = /obj/item/weapon/gun/pistol/auto9
+
+/datum/outfit/job/santa/leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+
+
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/christmas_cookieone, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/christmas_cookietwo, SLOT_IN_HEAD)
+
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/auto9, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/auto9, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/auto9, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/auto9, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/auto9, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/auto9, SLOT_IN_R_POUCH)
+
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/auto9, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/auto9, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/auto9, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/auto9, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/auto9, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/PMC, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/PMC, SLOT_IN_BACKPACK)
+
+	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/packet/ryetalyn, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/elite, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/elite, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/advanced/bruise_pack, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/advanced/burn_pack, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/oxycodone, SLOT_IN_L_POUCH)
+
+	H.equip_to_slot_or_del(new /obj/item/hailer, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/assembly/signaler, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/sliceable/fruitcake, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/PMC, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/PMC, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/weapon/energy/sword/green, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/mirage, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/mirage, SLOT_IN_BACKPACK)

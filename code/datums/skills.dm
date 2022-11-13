@@ -724,3 +724,13 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	name = "Skeleton"
 	cqc = SKILL_CQC_TRAINED
 	melee_weapons = SKILL_MELEE_TRAINED
+
+/datum/skills/elf
+	name = "Elf"
+	cqc = SKILL_CQC_WEAK
+	melee_weapons = SKILL_MELEE_WEAK
+	engineer = SKILL_ENGINEER_MASTER
+	construction = SKILL_CONSTRUCTION_MASTER
+	medical = SKILL_MEDICAL_PRACTICED
+	surgery = SKILL_SURGERY_AMATEUR
+	firearms = SKILL_FIREARMS_TRAINED

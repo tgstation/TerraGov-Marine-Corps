@@ -2179,6 +2179,7 @@
 	slice_path = /obj/item/reagent_containers/food/snacks/fruitcakeslice
 	icon_state = "fruitcake"
 	tastes = list("dried fruit" = 5, "treacle" = 2, "christmas" = 2)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 60)
 	force = 7
 	throwforce = 7
 
@@ -2187,6 +2188,7 @@
 	desc = "A proper good slice, innit?"
 	icon_state = "fruitcake_slice1"
 	tastes = list("dried fruit" = 5, "treacle" = 2, "christmas" = 2)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 60)
 	force = 2
 	throwforce = 2
 

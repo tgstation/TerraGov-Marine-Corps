@@ -88,6 +88,8 @@
 	icon_state = "santa_galoshes"
 	soft_armor = list(MELEE = 80, BULLET = 60, LASER = 50, ENERGY = 25, BOMB = 50, BIO = 10, FIRE = 25, ACID = 25)
 	flags_armor_protection = FEET
+	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
+
 /obj/item/clothing/shoes/clown_shoes
 	desc = "The prankster's standard-issue clowning shoes. Damn they're huge!"
 	name = "clown shoes"

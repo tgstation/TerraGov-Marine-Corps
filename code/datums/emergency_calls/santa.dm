@@ -1,7 +1,8 @@
 //Santa is back in town
 /datum/emergency_call/santa
-	name = "Santa's Naughty Squad"
+	name = "Santa's Workshop"
 	base_probability = 20
+	mob_max = 15 //santa gets extra help because he's the only one with decent gear
 	alignement_factor = -1
 
 
@@ -29,10 +30,15 @@
 
 	print_backstory(H)
 
+	//
+	//Santa himself is a discount deathsquad leader, his elves are just fodder though and very poorly equipped
+	//
+
 	if(!leader)
 		leader = H
-		var/datum/job/J = SSjob.GetJobType(/datum/outfit/job/santa/ert/leader)
+		var/datum/job/J = SSjob.GetJobType(/datum/job/santa/leader)
 		H.apply_assigned_role_to_spawn(J)
+		H.set_nutrition(NUTRITION_OVERFED * 2)
 		to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are Santa Claus! Punish all naughty aliens with overwhelming firepower, starting with their naughty queen hiding on the ship.")]</p>")
 		return
 
