@@ -55,6 +55,8 @@
 	var/directional_opacity = NONE
 	///Lazylist of movable atoms providing opacity sources.
 	var/list/atom/movable/opacity_sources
+	///Will draw on minimap if TRUE, even if not dense
+	var/draw_minimap = FALSE
 
 
 /turf/Initialize(mapload)

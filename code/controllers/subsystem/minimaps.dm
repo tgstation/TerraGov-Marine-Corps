@@ -46,7 +46,7 @@ SUBSYSTEM_DEF(minimaps)
 				var/turf/location = locate(xval,yval,level)
 				if(isspaceturf(location))
 					continue
-				if(location.density)
+				if(location.density || location.draw_minimap)
 					icon_gen.DrawBox(location.minimap_color, xval, yval)
 					continue
 				var/atom/movable/alttarget = locate(/obj/machinery/door) in location||locate(/obj/structure/fence) in location
