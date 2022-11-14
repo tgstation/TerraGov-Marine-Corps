@@ -641,30 +641,28 @@
 	action_icon_state = "bombard"
 	mechanics_text = "Launch a blast of psychic energy. Must remain stationary for a few seconds to use."
 	ability_name = "bombard"
+	cooldown_timer = 5 SECONDS //placeholder
+	plasma_cost = 60 //placeholder
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BOMBARD,
 	)
 	target_flags = XABB_MOB_TARGET //todo:what does this actually do?
 
-/datum/action/xeno_action/activable/bombard/on_cooldown_finish()
+/datum/action/xeno_action/activable/psy_blast/on_cooldown_finish()
 	to_chat(owner, span_notice("We feel our strength return. We are ready to unleash a psychic blast again."))
 	var/mob/living/carbon/xenomorph/shrike/X = owner
-	if(X.selected_ability == src)
-		X.set_bombard_pointer()
 	return ..()
 
 /datum/action/xeno_action/activable/psy_blast/on_activation()
 	var/mob/living/carbon/xenomorph/shrike/X = owner
 	X.visible_message(span_notice("\The [X] prepares to fire!"), \
 		span_notice("We prepare to fire."), null, 5) //placeholder
-	X.set_bombard_pointer()
-	RegisterSignal(X, COMSIG_MOB_ATTACK_RANGED, /datum/action/xeno_action/activable/bombard/proc.on_ranged_attack)
+	RegisterSignal(X, COMSIG_MOB_ATTACK_RANGED, /datum/action/xeno_action/activable/psy_blast/proc.on_ranged_attack)
 
 
 /datum/action/xeno_action/activable/psy_blast/on_deactivation()
 	var/mob/living/carbon/xenomorph/shrike/X = owner
 	if(X.selected_ability == src)
-		X.reset_bombard_pointer()
 		to_chat(X, span_notice("We relax our stance."))
 	UnregisterSignal(X, COMSIG_MOB_ATTACK_RANGED)
 
@@ -673,14 +671,6 @@
 	SIGNAL_HANDLER
 	if(can_use_ability(A))
 		INVOKE_ASYNC(src, .proc/use_ability, A)
-
-/mob/living/carbon/xenomorph/shrike/proc/set_bombard_pointer()
-	if(client)
-		client.mouse_pointer_icon = 'icons/mecha/mecha_mouse.dmi'
-
-/mob/living/carbon/xenomorph/shrike/proc/reset_bombard_pointer()
-	if(client)
-		client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
 
 /datum/action/xeno_action/activable/psy_blast/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -728,6 +718,5 @@
 	//	SSblackbox.record_feedback("tally", "round_statistics", 1, "shrike_neuro_smokes")
 	//	X.neuro_ammo--
 
-	update_button_icon() //is this just for ammo count?
+	succeed_activate()
 	add_cooldown()
-	X.reset_bombard_pointer()
