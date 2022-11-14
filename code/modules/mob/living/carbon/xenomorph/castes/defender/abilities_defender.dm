@@ -536,7 +536,7 @@
 /datum/action/xeno_action/activable/psy_crush/proc/do_channel(turf/target)
 	channel_loop_timer = null
 	var/mob/living/carbon/xenomorph/X = owner
-	if(!check_distance(target) || isnull(X) || isdead(X))
+	if(!check_distance(target) || isnull(X) || X.stat == DEAD)
 		stop_crush(target)
 		return
 	if(current_iterations >= max_interations)
@@ -589,7 +589,7 @@
 		for(var/i AS in effected_turf)
 			if(iscarbon(i))
 				var/mob/living/carbon/carbon_victim = i
-				if(isxeno(carbon_victim) || isdead(carbon_victim))
+				if(isxeno(carbon_victim) || carbon_victim.stat == DEAD)
 					continue
 				var/block = carbon_victim.get_soft_armor(BOMB)
 				carbon_victim.apply_damage(35, BRUTE, blocked = block)
