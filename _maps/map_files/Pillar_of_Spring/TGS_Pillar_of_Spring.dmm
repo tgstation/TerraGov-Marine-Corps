@@ -1396,14 +1396,14 @@
 /area/mainship/living/pilotbunks)
 "dI" = (
 /obj/structure/table/mainship,
-/obj/structure/prop/mainship/candle{
+/obj/item/prop/mainship/candle{
 	pixel_y = 7
 	},
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_x = 9;
 	pixel_y = 8
 	},
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_x = 8;
 	pixel_y = 1
 	},
@@ -4486,7 +4486,7 @@
 /area/mainship/medical/lower_medical)
 "mh" = (
 /obj/structure/table/woodentable,
-/obj/structure/prop/mainship/candle{
+/obj/item/prop/mainship/candle{
 	pixel_y = 7
 	},
 /turf/open/floor/wood,
@@ -4642,7 +4642,7 @@
 /obj/structure/table/fancywoodentable,
 /obj/item/newspaper,
 /obj/item/reagent_containers/food/drinks/britcup,
-/obj/structure/prop/mainship/candle{
+/obj/item/prop/mainship/candle{
 	pixel_y = 9
 	},
 /turf/open/floor/wood,
@@ -10281,11 +10281,11 @@
 /obj/effect/spawner/random/christmas_food{
 	pixel_y = -3
 	},
-/obj/structure/prop/mainship/candle{
+/obj/item/prop/mainship/candle{
 	pixel_x = -20;
 	pixel_y = 25
 	},
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_x = -10;
 	pixel_y = 22
 	},
@@ -11583,10 +11583,10 @@
 	dir = 4;
 	pixel_x = 17
 	},
-/obj/structure/prop/mainship/candle{
+/obj/item/prop/mainship/candle{
 	pixel_y = 5
 	},
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_x = -9
 	},
 /turf/open/floor/mainship/emerald{
@@ -13998,7 +13998,7 @@
 /area/mainship/living/numbertwobunks)
 "LF" = (
 /obj/structure/table/mainship/nometal,
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_y = 4
 	},
 /turf/open/floor/mainship/white{
@@ -14676,7 +14676,7 @@
 /obj/machinery/light/mainship{
 	dir = 1
 	},
-/obj/structure/prop/mainship/candle{
+/obj/item/prop/mainship/candle{
 	pixel_y = 5
 	},
 /turf/open/floor/mainship/orange{
@@ -15233,7 +15233,7 @@
 /area/mainship/shipboard/firing_range)
 "OZ" = (
 /obj/structure/table/reinforced,
-/obj/structure/prop/mainship/candle{
+/obj/item/prop/mainship/candle{
 	pixel_y = 7
 	},
 /turf/open/floor/mainship/stripesquare,

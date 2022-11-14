@@ -2754,14 +2754,14 @@
 /obj/item/tool/screwdriver,
 /obj/item/tool/screwdriver,
 /obj/item/tool/wrench,
-/obj/structure/prop/mainship/candle{
+/obj/item/prop/mainship/candle{
 	pixel_x = 1;
 	pixel_y = 8
 	},
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_x = -8
 	},
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_x = 1;
 	pixel_y = -3
 	},
@@ -5465,7 +5465,7 @@
 /obj/structure/table/reinforced,
 /obj/item/storage/box/ids,
 /obj/item/storage/box/ids,
-/obj/structure/prop/mainship/candle{
+/obj/item/prop/mainship/candle{
 	pixel_y = 6
 	},
 /turf/open/floor/carpet,
@@ -8548,17 +8548,17 @@
 "aQl" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/box/beakers,
-/obj/structure/prop/mainship/candle{
+/obj/item/prop/mainship/candle{
 	pixel_y = 4
 	},
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_x = 20
 	},
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_x = 11;
 	pixel_y = 8
 	},
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_x = -11
 	},
 /turf/open/floor/prison/whitegreen/full,
@@ -9425,7 +9425,7 @@
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/box/bodybags,
 /obj/item/storage/box/bodybags,
-/obj/structure/prop/mainship/candle{
+/obj/item/prop/mainship/candle{
 	pixel_y = 5
 	},
 /turf/open/floor/cult,
@@ -12364,13 +12364,13 @@
 /turf/open/floor/freezer,
 /area/sulaco/showers)
 "dzM" = (
-/obj/structure/prop/mainship/candle{
+/obj/item/prop/mainship/candle{
 	pixel_x = -10
 	},
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_y = 12
 	},
-/obj/structure/prop/mainship/candle/short,
+/obj/item/prop/mainship/candle/short,
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
 "dAr" = (
@@ -14043,7 +14043,7 @@
 /obj/machinery/camera/autoname{
 	dir = 8
 	},
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_y = 6
 	},
 /turf/open/floor/prison/kitchen,
@@ -14917,7 +14917,7 @@
 	},
 /obj/structure/table/mainship/nometal,
 /obj/item/book/manual/medical_diagnostics_manual,
-/obj/structure/prop/mainship/candle{
+/obj/item/prop/mainship/candle{
 	pixel_y = 7
 	},
 /turf/open/floor/prison/whitegreen/corner,
@@ -14968,23 +14968,23 @@
 	},
 /area/sulaco/medbay)
 "gXW" = (
-/obj/structure/prop/mainship/candle{
+/obj/item/prop/mainship/candle{
 	pixel_x = -9;
 	pixel_y = 9
 	},
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_x = 3;
 	pixel_y = 4
 	},
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_x = 4;
 	pixel_y = -9
 	},
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_x = -8;
 	pixel_y = -4
 	},
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_x = 15;
 	pixel_y = 9
 	},
@@ -15299,14 +15299,14 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/prop/mainship/candle{
+/obj/item/prop/mainship/candle{
 	pixel_x = 1;
 	pixel_y = 8
 	},
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_x = -8
 	},
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_x = 1;
 	pixel_y = -6
 	},
@@ -15490,7 +15490,7 @@
 /obj/structure/prop/holidays/string_lights{
 	dir = 5
 	},
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_x = 5;
 	pixel_y = -6
 	},
@@ -24907,7 +24907,7 @@
 /obj/structure/prop/holidays/string_lights{
 	dir = 1
 	},
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_x = -10;
 	pixel_y = 9
 	},
@@ -25557,10 +25557,10 @@
 /area/sulaco/marine/chapel)
 "tRg" = (
 /obj/structure/table/mainship/nometal,
-/obj/structure/prop/mainship/candle{
+/obj/item/prop/mainship/candle{
 	pixel_y = 6
 	},
-/obj/structure/prop/mainship/candle{
+/obj/item/prop/mainship/candle{
 	pixel_x = -9
 	},
 /turf/open/floor/prison,
@@ -27566,7 +27566,7 @@
 	name = "Sandwich Joe's Grilled Cheese";
 	volume = 65
 	},
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_y = 6
 	},
 /turf/open/floor/prison/sterilewhite,

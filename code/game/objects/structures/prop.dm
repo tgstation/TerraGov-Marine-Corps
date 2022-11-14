@@ -693,7 +693,7 @@
 
 /obj/item/prop/mainship/candle
 	name = "candle"
-	desc = "An unlit decorative candle, it faintly smells of [pick["christmas","ornaments","Santa","pine trees"]] and [pick["wrapping paper","sleigh bells","chestnuts","mistletoe"]]."
+	desc = "An unlit decorative candle, it faintly smells of [pick("christmas","ornaments","Santa","pine trees")] and [pick("wrapping paper","sleigh bells","chestnuts","mistletoe")]."
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "candle"
 	coverage = 5
@@ -722,7 +722,7 @@
 /obj/item/prop/mainship/candle/burnoutcandle()
 	balloon_alert_to_viewers("Burns out")
 	icon_state = base_icon_state
-	desc = "An unlit decorative candle, it faintly smells of [pick["christmas","ornaments","Santa","pine trees"]] and [pick["wrapping paper","sleigh bells","chestnuts","mistletoe"]]."
+	desc = "An unlit decorative candle, it faintly smells of [pick("christmas","ornaments","Santa","pine trees")] and [pick("wrapping paper","sleigh bells","chestnuts","mistletoe")]."
 	set_light(0)
 	litcandle = FALSE
 

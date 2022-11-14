@@ -6876,19 +6876,19 @@
 	},
 /area/mainship/medical/lower_medical)
 "bSd" = (
-/obj/structure/prop/mainship/candle{
+/obj/item/prop/mainship/candle{
 	pixel_x = 3;
 	pixel_y = -1
 	},
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_x = 8;
 	pixel_y = 12
 	},
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_x = -9;
 	pixel_y = -5
 	},
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_x = -22
 	},
 /turf/open/floor/mainship/mono,
@@ -6964,10 +6964,10 @@
 	dir = 1
 	},
 /obj/structure/table/woodentable,
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_x = -2
 	},
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_x = 7;
 	pixel_y = 8
 	},
@@ -7028,7 +7028,7 @@
 /obj/item/tool/lighter/zippo,
 /obj/machinery/door_control/mainship/corporate,
 /obj/structure/table/fancywoodentable,
-/obj/structure/prop/mainship/candle{
+/obj/item/prop/mainship/candle{
 	pixel_y = 6
 	},
 /turf/open/floor/wood,
@@ -7822,11 +7822,11 @@
 	dir = 1
 	},
 /obj/structure/table/woodentable,
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_x = 5;
 	pixel_y = 9
 	},
-/obj/structure/prop/mainship/candle/short,
+/obj/item/prop/mainship/candle/short,
 /obj/effect/spawner/random/present{
 	pixel_x = 9;
 	pixel_y = 14
@@ -8064,22 +8064,22 @@
 	id = "basketball";
 	pixel_y = 30
 	},
-/obj/structure/prop/mainship/candle{
+/obj/item/prop/mainship/candle{
 	pixel_x = 7;
 	pixel_y = 9
 	},
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_x = -3;
 	pixel_y = 4
 	},
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_x = 2;
 	pixel_y = -3
 	},
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_x = 15
 	},
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_x = -11;
 	pixel_y = -4
 	},
@@ -8426,11 +8426,11 @@
 	dir = 1
 	},
 /obj/structure/table/woodentable,
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_x = 2;
 	pixel_y = -3
 	},
-/obj/structure/prop/mainship/candle{
+/obj/item/prop/mainship/candle{
 	pixel_x = -7;
 	pixel_y = 6
 	},
@@ -9436,7 +9436,7 @@
 /obj/structure/table/mainship/nometal,
 /obj/structure/paper_bin,
 /obj/item/tool/pen,
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_x = 12;
 	pixel_y = 8
 	},
@@ -11739,7 +11739,7 @@
 /obj/machinery/door_control/mainship/tcomms,
 /obj/structure/table/mainship/nometal,
 /obj/machinery/alarm,
-/obj/structure/prop/mainship/candle{
+/obj/item/prop/mainship/candle{
 	pixel_y = 7
 	},
 /turf/open/floor/mainship/mono,
@@ -12562,11 +12562,11 @@
 	},
 /area/mainship/medical/lower_medical)
 "jdV" = (
-/obj/structure/prop/mainship/candle{
+/obj/item/prop/mainship/candle{
 	pixel_x = -10;
 	pixel_y = -3
 	},
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -14626,8 +14626,8 @@
 	dir = 1
 	},
 /obj/structure/table/woodentable,
-/obj/structure/prop/mainship/candle/short,
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short,
+/obj/item/prop/mainship/candle/short{
 	pixel_x = -6;
 	pixel_y = 11
 	},
@@ -15937,16 +15937,16 @@
 /turf/closed/wall/mainship,
 /area/mainship/squads/alpha)
 "ory" = (
-/obj/structure/prop/mainship/candle{
+/obj/item/prop/mainship/candle{
 	pixel_x = -7;
 	pixel_y = 6
 	},
-/obj/structure/prop/mainship/candle,
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle,
+/obj/item/prop/mainship/candle/short{
 	pixel_x = 9;
 	pixel_y = 8
 	},
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_x = 21
 	},
 /turf/open/floor/mainship/mono,
@@ -17576,15 +17576,15 @@
 /turf/open/floor/mainship/green,
 /area/mainship/squads/req)
 "qNT" = (
-/obj/structure/prop/mainship/candle{
+/obj/item/prop/mainship/candle{
 	pixel_x = 6;
 	pixel_y = 6
 	},
-/obj/structure/prop/mainship/candle{
+/obj/item/prop/mainship/candle{
 	pixel_x = -9;
 	pixel_y = 8
 	},
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_x = -2;
 	pixel_y = -4
 	},
@@ -17824,15 +17824,15 @@
 	dir = 1
 	},
 /obj/structure/table/woodentable,
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_x = 5;
 	pixel_y = 3
 	},
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_x = -5;
 	pixel_y = -4
 	},
-/obj/structure/prop/mainship/candle{
+/obj/item/prop/mainship/candle{
 	pixel_x = -3;
 	pixel_y = 11
 	},
@@ -19099,7 +19099,7 @@
 	dir = 1
 	},
 /obj/structure/table/woodentable,
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_x = -2;
 	pixel_y = 3
 	},
@@ -20419,12 +20419,12 @@
 	},
 /area/mainship/squads/req)
 "voe" = (
-/obj/structure/prop/mainship/candle,
-/obj/structure/prop/mainship/candle{
+/obj/item/prop/mainship/candle,
+/obj/item/prop/mainship/candle{
 	pixel_x = 9;
 	pixel_y = 11
 	},
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_x = -11
 	},
 /turf/open/floor/mainship/mono,
@@ -20692,11 +20692,11 @@
 /area/mainship/shipboard/port_point_defense)
 "vMG" = (
 /obj/structure/table/mainship/nometal,
-/obj/structure/prop/mainship/candle{
+/obj/item/prop/mainship/candle{
 	pixel_x = 2;
 	pixel_y = 7
 	},
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_x = -7
 	},
 /turf/open/floor/mainship/floor,
@@ -21570,7 +21570,7 @@
 "xcs" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/firstaid/regular,
-/obj/structure/prop/mainship/candle/short{
+/obj/item/prop/mainship/candle/short{
 	pixel_x = 10;
 	pixel_y = 9
 	},
@@ -21678,7 +21678,7 @@
 "xmg" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/flashlight/combat,
-/obj/structure/prop/mainship/candle{
+/obj/item/prop/mainship/candle{
 	pixel_y = 6
 	},
 /turf/open/floor/mainship/floor,
