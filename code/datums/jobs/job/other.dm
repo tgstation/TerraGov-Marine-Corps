@@ -133,7 +133,7 @@
 	r_store = /obj/item/storage/pouch/construction/equippedengineer
 	l_store = /obj/item/storage/pouch/magazine/pistol
 	back = /obj/item/storage/backpack/industrial
-	suit_store = /obj/item/weapon/gun/pistol/standard_pistol
+	suit_store = /obj/item/weapon/twohanded/spear/candycane/elf
 
 
 /datum/outfit/job/santa/leader //he's done ho ho ho ing around
@@ -231,4 +231,5 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_pistol, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_pistol, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_pistol, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new 	/obj/item/weapon/gun/pistol/standard_pistol, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new 	/obj/item/weapon/gun/pistol/standard_pistol, SLOT_IN_BACKPACK)
