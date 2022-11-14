@@ -350,7 +350,6 @@
 #include "code\datums\components\sizzle.dm"
 #include "code\datums\components\squeak.dm"
 #include "code\datums\components\stamina_behavior.dm"
-#include "code\datums\components\storage.dm"
 #include "code\datums\components\suit_autodoc.dm"
 #include "code\datums\components\throw_parry.dm"
 #include "code\datums\components\udder.dm"
