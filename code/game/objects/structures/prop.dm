@@ -72,49 +72,6 @@
 	density = TRUE
 	anchored = TRUE
 	coverage = 15
-
-/obj/structure/prop/mainship/candle
-	name = "candle"
-	desc = "An unlit decorative candle, it faintly smells of [pick["christmas","ornaments","Santa","pine trees"]] and [pick["wrapping paper","sleigh bells","chestnuts","mistletoe"]]."
-	icon = 'icons/Marine/mainship_props.dmi'
-	icon_state = "candle"
-	coverage = 5
-	light_power = 1
-	light_system = MOVABLE_LIGHT
-	//light intensity while active
-	var/candlelight = 2
-	//is the candle on or off
-	var/litcandle = FALSE
-	//used for easy reverting back to default icon_state once the candle burns out
-	var/base_icon_state = "candle"
-
-
-/obj/structure/prop/mainship/candle/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(istype(obj/item/tool/lighter/))
-		var/obj/item/tool/lighter/lighting_instrument = I
-		if(I.heat && !litcandle)
-			litcandle = TRUE
-			desc = "A brightly burning candle, it casts soft shadows all around it."
-			light(span_rose("With a flick of [user.p_their()] wrist, [user] lights the candle."))
-			icon_state = [base_icon_state] += "_lit"
-			set_light(brightness_on)
-			addtimer(CALLBACK(GLOBAL_PROC, .proc/burnoutcandle, src), 15 MINUTES) //candles last for 15 minutes after being lit
-
-/obj/structure/prop/mainship/candle/burnoutcandle()
-	balloon_alert_to_viewers("Burns out")
-	icon_state = base_icon_state
-	desc = "An unlit decorative candle, it faintly smells of [pick["christmas","ornaments","Santa","pine trees"]] and [pick["wrapping paper","sleigh bells","chestnuts","mistletoe"]]."
-	set_light(0)
-	litcandle = FALSE
-
-/obj/structure/prop/mainship/candle/short
-	name = "short candle"
-	desc = "A short unlit decorative candle, it faintly smells of fruitcake and wrapping paper."
-	icon = 'icons/Marine/mainship_props.dmi'
-	icon_state = "candleshort"
-	base_icon_state = "candleshort"
-
 /obj/structure/prop/mainship/minigun_crate
 	name = "30mm ammo crate"
 	desc = "A crate full of 30mm bullets used on one of the weapon pod types for the dropship. Moving this will require some sort of lifter."
@@ -733,6 +690,49 @@
 /obj/item/prop/dogtag/random/Initialize()
 	. = ..()
 	name = GLOB.namepool[/datum/namepool].get_random_name(pick(MALE, FEMALE))
+
+/obj/item/prop/mainship/candle
+	name = "candle"
+	desc = "An unlit decorative candle, it faintly smells of [pick["christmas","ornaments","Santa","pine trees"]] and [pick["wrapping paper","sleigh bells","chestnuts","mistletoe"]]."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "candle"
+	coverage = 5
+	light_power = 1
+	light_system = MOVABLE_LIGHT
+	//light intensity while active
+	var/candlelight = 2
+	//is the candle on or off
+	var/litcandle = FALSE
+	//used for easy reverting back to default icon_state once the candle burns out
+	var/base_icon_state = "candle"
+
+
+/obj/item/prop/mainship/candle/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(istype(obj/item/tool/lighter/))
+		var/obj/item/tool/lighter/lighting_instrument = I
+		if(I.heat && !litcandle)
+			litcandle = TRUE
+			desc = "A brightly burning candle, it casts soft shadows all around it."
+			light(span_rose("With a flick of [user.p_their()] wrist, [user] lights the candle."))
+			icon_state = [base_icon_state] += "_lit"
+			set_light(brightness_on)
+			addtimer(CALLBACK(GLOBAL_PROC, .proc/burnoutcandle, src), 15 MINUTES) //candles last for 15 minutes after being lit
+
+/obj/item/prop/mainship/candle/burnoutcandle()
+	balloon_alert_to_viewers("Burns out")
+	icon_state = base_icon_state
+	desc = "An unlit decorative candle, it faintly smells of [pick["christmas","ornaments","Santa","pine trees"]] and [pick["wrapping paper","sleigh bells","chestnuts","mistletoe"]]."
+	set_light(0)
+	litcandle = FALSE
+
+/obj/item/prop/mainship/candle/short
+	name = "short candle"
+	desc = "A short unlit decorative candle, it faintly smells of fruitcake and wrapping paper."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "candleshort"
+	base_icon_state = "candleshort"
+
 
 ///BROKEN MARINE VENDOR PROPS
 
