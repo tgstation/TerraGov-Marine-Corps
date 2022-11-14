@@ -1,23 +1,12 @@
-#define HELD_ITEM "held_item" //an item the mob is currently holding
-#define FETCH_TARGET "fetch_target" //the item the mob is trying to pick up
-#define ACTION_TERMINATE_TIMER "action_terminate_timer" //a timer that terminates the current action if it doesn't complete on time
-
-#define RETURNING_ITEM
-
 /// Slugcat AI configuration
 /datum/ai_behavior/slugcat
-	///The action that the AI is trying to accomplish. This is used to determine whether to cancel an ongoing action in case it might conflict with a different one
-	var/current_activity
 	///The mob the slugcat is following
 	var/mob/mob_master
 	///List of actions performed upon hearing certain things from mob_master
 	var/list/on_hear_behaviours = list(
 		"repeat after me" = .proc/repeat_speech,
-		"fetch" = .proc/fetch,
 		"maybe the xenos are not so bad" = .proc/for_the_empire
 	)
-	///An associative list, where temporary variables required for some actions can be inserted
-	var/blackboard = list()
 
 /datum/ai_behavior/slugcat/New(loc, parent_to_assign, escorted_atom, can_heal = FALSE)
 	..()
@@ -91,54 +80,6 @@
 	addtimer(CALLBACK(src, .proc/say, raw_message, SPEECH_CONTROLLER_QUEUE_SAY_VERB), 1 SECONDS, TIMER_UNIQUE)
 	RegisterSignal(mob_parent, COMSIG_MOVABLE_HEAR, .proc/handle_mob_master_speech, override = TRUE)
 
-/datum/ai_behavior/slugcat/proc/fetch()
-	if(held_item)
-		say("I currently hold [held_item]")
-		return
-	RegisterSignal(mob_master, COMSIG_POINT_TO_ATOM, .proc/handle_fetch)
-
-/datum/ai_behavior/slugcat/proc/fetch_cleanup()
-	if(current_action != ESCORTING_ATOM)
-		change_action(ESCORTING_ATOM, mob_master)
-	if(blackboard[HELD_ITEM])
-
-
-/datum/ai_behavior/slugcat/proc/handle_fetch(datum/source, atom/target)
-	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, .proc/async_fetch, target)
-
-/datum/ai_behavior/slugcat/proc/async_fetch(atom/target)
-	UnregisterSignal(mob_master, COMSIG_POINT_TO_ATOM)
-	if(!can_interact_with_item(target))
-		say("Cannot fetch [target]")
-		return
-
-	say("Fetching [target]")
-	change_action(MOVING_TO_ATOM, target)
-	blackboard[FETCH_TARGET] = target
-	RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, .proc/pickup_item)
-	blackboard[ACTION_TERMINATE_TIMER] = addtimer(CALLBACK(src, .proc/apply_psychic_link, target), GORGER_PSYCHIC_LINK_CHANNEL, TIMER_UNIQUE|TIMER_STOPPABLE)
-
-/datum/ai_behavior/slugcat/proc/pickup_item(datum/source, atom/movable/target)
-	if(!can_pickup_item(target))
-		return
-	target.forceMove(mob_parent)
-	held_item = target
-	RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, .proc/give_item, override = TRUE)
-	change_action(ESCORTING_ATOM, mob_master)
-
-/datum/ai_behavior/slugcat/proc/give_item(datum/source)
-	if(!held_item)
-		return
-	if(mob_master.put_in_any_hand_if_possible(held_item))
-		emote("gives [held_item]")
-		return
-
-	held_item.forceMove(get_turf(mob_parent))
-	emote("drops [held_item]")
-	held_item = null
-	UnregisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE)
-
 /datum/ai_behavior/slugcat/proc/for_the_empire()
 	SIGNAL_HANDLER
 	var/delay = 0.7
@@ -151,17 +92,3 @@
 
 /datum/ai_behavior/slugcat/proc/emote(message)
 	SSspeech_controller.queue_say_for_mob(mob_parent, message, SPEECH_CONTROLLER_QUEUE_EMOTE_VERB)
-
-/datum/ai_behavior/slugcat/proc/can_interact_with_item(atom/movable/target)
-	if(!target)
-		return FALSE
-	if(!isturf(target?.loc))
-		return FALSE
-	return isitem(target)
-
-/datum/ai_behavior/slugcat/proc/can_pickup_item(atom/movable/target)
-	if(!can_interact_with_item(target))
-		return FALSE
-	if(target.anchored)
-		return FALSE
-	return mob_parent.CanReach(target)
