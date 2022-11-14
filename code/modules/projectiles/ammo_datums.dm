@@ -2477,12 +2477,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 30
 	accurate_range = 15
 	hitscan_effect_icon = "beam_darkt"
+	///The AOE for drop_nade
+	var/range = 3
 
 /datum/ammo/energy/psy_blast/drop_nade(turf/T, obj/projectile/P)
 	if(!T || !isturf(T))
 		return
 	playsound(T, 'sound/effects/EMPulse.ogg', 50)
-	for(var/atom/movable/victim in view(3, T))
+	for(var/atom/movable/victim in view(range, T))
 		if(victim.anchored)
 			continue
 		if(isliving(victim))
@@ -2497,6 +2499,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		if(T == get_turf(victim))
 			throw_dir = get_dir(P.starting_turf, T)
 		victim.safe_throw_at(get_ranged_target_turf(T, throw_dir, 5), 4, 1, spin = TRUE) //flings em
+	new /obj/effect/temp_visual/shockwave(T, range + 2)
 
 /datum/ammo/energy/psy_blast/on_hit_mob(mob/M, obj/projectile/P)
 	drop_nade(get_turf(M), P)
