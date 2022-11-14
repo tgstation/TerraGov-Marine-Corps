@@ -2471,30 +2471,44 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/psy_blast
 	name = "psychic blast"
 	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN
-	damage = 60
+	damage = 35
 	penetration = 10
 	sundering = 1
 	max_range = 30
 	accurate_range = 15
 	hitscan_effect_icon = "beam_darkt"
 
-/datum/ammo/energy/psy_blast/drop_nade(turf/T, radius = 1)
+/datum/ammo/energy/psy_blast/drop_nade(turf/T, obj/projectile/P)
 	if(!T || !isturf(T))
 		return
-	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
-	flame_radius(radius, T, 3, 3, 3, 3)
+	playsound(T, 'sound/effects/EMPulse.ogg', 50)
+	for(var/atom/movable/victim in view(3, T))
+		if(victim.anchored)
+			continue
+		if(isliving(victim))
+			var/mob/living/living_victim = victim
+			if(living_victim.stat == DEAD)
+				continue
+			if(!isxeno(living_victim))
+				living_victim.apply_damage(35, BURN, blocked = living_victim.get_soft_armor(ENERGY), updating_health = TRUE) //does a bit of burn, maybe add soft cc.
+		else
+			victim.ex_act(EXPLODE_LIGHT) //blows up non living, placeholder
+		var/throw_dir = get_dir(T, victim)
+		if(T == get_turf(victim))
+			throw_dir = get_dir(P.starting_turf, T)
+		victim.safe_throw_at(get_ranged_target_turf(T, throw_dir, 5), 4, 1, spin = TRUE) //flings em
 
 /datum/ammo/energy/psy_blast/on_hit_mob(mob/M, obj/projectile/P)
-	drop_nade(get_turf(M))
+	drop_nade(get_turf(M), P)
 
 /datum/ammo/energy/psy_blast/on_hit_obj(obj/O, obj/projectile/P)
-	drop_nade(get_turf(O))
+	drop_nade(get_turf(O), P)
 
 /datum/ammo/energy/psy_blast/on_hit_turf(turf/T, obj/projectile/P)
-	drop_nade(T.density ? get_step_towards(T, P) : T)
+	drop_nade(T.density ? get_step_towards(T, P) : T, P)
 
 /datum/ammo/energy/psy_blast/do_at_max_range(turf/T, obj/projectile/P)
-	drop_nade(T.density ? get_step_towards(T, P) : T)
+	drop_nade(T.density ? get_step_towards(T, P) : T, P)
 
 /datum/ammo/energy/lasgun/marine/mech
 	name = "superheated laser bolt"
