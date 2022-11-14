@@ -18,6 +18,9 @@ GLOBAL_LIST_INIT(all_minimap_flags, bitfield2list(MINIMAP_FLAG_ALL))
 #define MINIMAP_DOOR "#451e5eb8"
 #define MINIMAP_FENCE "#8d2294ad"
 #define MINIMAP_LAVA "#db4206ad"
+#define MINIMAP_DIRT "#9c906da2"
+#define MINIMAP_MARS_DIRT "#aa5f448f"
+#define MINIMAP_WATER "#94b0d59c"
 #define MINIMAP_AREA "#66666699"
 
 #define MINIMAP_AREA_ENGI "#c19504e7"
@@ -25,6 +28,6 @@ GLOBAL_LIST_INIT(all_minimap_flags, bitfield2list(MINIMAP_FLAG_ALL))
 #define MINIMAP_AREA_SEC "#a22d2dee"
 #define MINIMAP_AREA_CAVES "#656060b1"
 #define MINIMAP_AREA_JUNGLE "#2b5b2bee"
-#define MINIMAP_AREA_COLONY "#6c6767ee"
+#define MINIMAP_AREA_COLONY "#6c6767d8"
 #define MINIMAP_AREA_LZ "#ebe5e5ee"
 #define MINIMAP_AREA_CONTESTED_ZONE "#0603c4ee"

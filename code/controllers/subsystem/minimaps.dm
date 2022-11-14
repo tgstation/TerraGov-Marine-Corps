@@ -49,7 +49,7 @@ SUBSYSTEM_DEF(minimaps)
 				if(location.density || location.draw_minimap)
 					icon_gen.DrawBox(location.minimap_color, xval, yval)
 					continue
-				var/atom/movable/alttarget = locate(/obj/machinery/door) in location||locate(/obj/structure/fence) in location
+				var/atom/movable/alttarget = (locate(/obj/machinery/door) in location) || (locate(/obj/structure/fence) in location)
 				if(alttarget)
 					icon_gen.DrawBox(alttarget.minimap_color, xval, yval)
 					continue

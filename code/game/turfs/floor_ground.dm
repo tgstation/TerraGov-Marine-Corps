@@ -22,6 +22,8 @@
 	shoefootstep = FOOTSTEP_SAND
 	barefootstep = FOOTSTEP_SAND
 	mediumxenofootstep = FOOTSTEP_SAND
+	draw_minimap = TRUE
+	minimap_color = MINIMAP_DIRT
 
 /turf/open/floor/plating/ground/dirt/dug
 	icon_state = "desert_dug"
@@ -138,6 +140,8 @@
 	mediumxenofootstep = FOOTSTEP_SAND
 	barefootstep = FOOTSTEP_SAND
 	shoefootstep = FOOTSTEP_SAND
+	draw_minimap = TRUE
+	minimap_color = MINIMAP_MARS_DIRT
 
 /turf/open/floor/plating/ground/mars/random/cave
 
@@ -202,6 +206,8 @@
 	mediumxenofootstep = FOOTSTEP_CONCRETE
 	barefootstep = FOOTSTEP_CONCRETE
 	shoefootstep = FOOTSTEP_CONCRETE
+	draw_minimap = TRUE
+	minimap_color = MINIMAP_AREA_COLONY
 
 /turf/open/floor/plating/ground/concrete/lines
 	icon_state = "concrete_lines"
