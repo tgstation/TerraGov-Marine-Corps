@@ -2754,6 +2754,17 @@
 /obj/item/tool/screwdriver,
 /obj/item/tool/screwdriver,
 /obj/item/tool/wrench,
+/obj/structure/prop/mainship/candle{
+	pixel_x = 1;
+	pixel_y = 8
+	},
+/obj/structure/prop/mainship/candle/short{
+	pixel_x = -8
+	},
+/obj/structure/prop/mainship/candle/short{
+	pixel_x = 1;
+	pixel_y = -3
+	},
 /turf/open/floor/prison,
 /area/sulaco/cargo/prep)
 "anK" = (
@@ -2963,6 +2974,10 @@
 "apa" = (
 /obj/item/radio/intercom/general{
 	dir = 4
+	},
+/obj/effect/spawner/random/christmas_food{
+	pixel_x = 3;
+	pixel_y = -7
 	},
 /turf/open/floor/prison,
 /area/sulaco/briefing)
@@ -5287,6 +5302,7 @@
 /area/sulaco/briefing)
 "ayP" = (
 /obj/structure/bed/chair/nometal,
+/obj/effect/spawner/random/christmas_food,
 /turf/open/floor/prison/red{
 	dir = 10
 	},
@@ -5449,6 +5465,9 @@
 /obj/structure/table/reinforced,
 /obj/item/storage/box/ids,
 /obj/item/storage/box/ids,
+/obj/structure/prop/mainship/candle{
+	pixel_y = 6
+	},
 /turf/open/floor/carpet,
 /area/sulaco/cap_office)
 "azI" = (
@@ -8529,6 +8548,19 @@
 "aQl" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/box/beakers,
+/obj/structure/prop/mainship/candle{
+	pixel_y = 4
+	},
+/obj/structure/prop/mainship/candle/short{
+	pixel_x = 20
+	},
+/obj/structure/prop/mainship/candle/short{
+	pixel_x = 11;
+	pixel_y = 8
+	},
+/obj/structure/prop/mainship/candle/short{
+	pixel_x = -11
+	},
 /turf/open/floor/prison/whitegreen/full,
 /area/sulaco/research)
 "aQm" = (
@@ -9393,6 +9425,9 @@
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/box/bodybags,
 /obj/item/storage/box/bodybags,
+/obj/structure/prop/mainship/candle{
+	pixel_y = 5
+	},
 /turf/open/floor/cult,
 /area/sulaco/morgue)
 "aVp" = (
@@ -12108,6 +12143,13 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/prison/plate,
 /area/shuttle/distress/arrive_1)
+"dko" = (
+/obj/structure/bed/chair/nometal,
+/obj/effect/spawner/random/christmas_food,
+/turf/open/floor/prison/darkyellow{
+	dir = 4
+	},
+/area/sulaco/briefing)
 "dkE" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 8
@@ -12321,6 +12363,16 @@
 /obj/machinery/light/mainship,
 /turf/open/floor/freezer,
 /area/sulaco/showers)
+"dzM" = (
+/obj/structure/prop/mainship/candle{
+	pixel_x = -10
+	},
+/obj/structure/prop/mainship/candle/short{
+	pixel_y = 12
+	},
+/obj/structure/prop/mainship/candle/short,
+/turf/open/floor/prison,
+/area/sulaco/hallway/lower_main_hall)
 "dAr" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/disposalpipe/segment,
@@ -13991,6 +14043,9 @@
 /obj/machinery/camera/autoname{
 	dir = 8
 	},
+/obj/structure/prop/mainship/candle/short{
+	pixel_y = 6
+	},
 /turf/open/floor/prison/kitchen,
 /area/sulaco/cafeteria)
 "fKK" = (
@@ -14862,6 +14917,9 @@
 	},
 /obj/structure/table/mainship/nometal,
 /obj/item/book/manual/medical_diagnostics_manual,
+/obj/structure/prop/mainship/candle{
+	pixel_y = 7
+	},
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/cmo)
 "gVp" = (
@@ -14909,6 +14967,29 @@
 	dir = 1
 	},
 /area/sulaco/medbay)
+"gXW" = (
+/obj/structure/prop/mainship/candle{
+	pixel_x = -9;
+	pixel_y = 9
+	},
+/obj/structure/prop/mainship/candle/short{
+	pixel_x = 3;
+	pixel_y = 4
+	},
+/obj/structure/prop/mainship/candle/short{
+	pixel_x = 4;
+	pixel_y = -9
+	},
+/obj/structure/prop/mainship/candle/short{
+	pixel_x = -8;
+	pixel_y = -4
+	},
+/obj/structure/prop/mainship/candle/short{
+	pixel_x = 15;
+	pixel_y = 9
+	},
+/turf/open/floor/prison,
+/area/sulaco/briefing)
 "gYB" = (
 /obj/structure/sink{
 	dir = 4
@@ -15218,6 +15299,17 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/prop/mainship/candle{
+	pixel_x = 1;
+	pixel_y = 8
+	},
+/obj/structure/prop/mainship/candle/short{
+	pixel_x = -8
+	},
+/obj/structure/prop/mainship/candle/short{
+	pixel_x = 1;
+	pixel_y = -6
+	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 1
 	},
@@ -15397,6 +15489,10 @@
 "hDp" = (
 /obj/structure/prop/holidays/string_lights{
 	dir = 5
+	},
+/obj/structure/prop/mainship/candle/short{
+	pixel_x = 5;
+	pixel_y = -6
 	},
 /turf/open/floor/prison,
 /area/sulaco/briefing)
@@ -17303,6 +17399,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/effect/spawner/random/christmas_food,
 /turf/open/floor/prison/blue,
 /area/sulaco/briefing)
 "jVb" = (
@@ -24806,6 +24903,16 @@
 /obj/machinery/vending/weapon,
 /turf/open/floor/prison,
 /area/sulaco/marine)
+"tez" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
+/obj/structure/prop/mainship/candle/short{
+	pixel_x = -10;
+	pixel_y = 9
+	},
+/turf/open/floor/prison,
+/area/sulaco/briefing)
 "teI" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -25450,6 +25557,12 @@
 /area/sulaco/marine/chapel)
 "tRg" = (
 /obj/structure/table/mainship/nometal,
+/obj/structure/prop/mainship/candle{
+	pixel_y = 6
+	},
+/obj/structure/prop/mainship/candle{
+	pixel_x = -9
+	},
 /turf/open/floor/prison,
 /area/sulaco/bar)
 "tRW" = (
@@ -27452,6 +27565,9 @@
 	desc = "'The best grilled cheese this side of Uranus!' (tm)";
 	name = "Sandwich Joe's Grilled Cheese";
 	volume = 65
+	},
+/obj/structure/prop/mainship/candle/short{
+	pixel_y = 6
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria)
@@ -56548,7 +56664,7 @@ tMH
 xWz
 uiN
 erP
-pIP
+dzM
 wXV
 uXi
 aaJ
@@ -61058,7 +61174,7 @@ mDu
 aYZ
 agm
 bSB
-anr
+gXW
 apa
 arm
 anr
@@ -61323,7 +61439,7 @@ arn
 avE
 arn
 ayN
-iMe
+tez
 eln
 azZ
 jXo
@@ -62346,7 +62462,7 @@ bSB
 anr
 apR
 arq
-arq
+dko
 arq
 fuV
 arq
