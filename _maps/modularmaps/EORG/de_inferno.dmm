@@ -708,6 +708,7 @@
 /area/deathmatch)
 "jG" = (
 /obj/effect/spawner/random/plushie/nospawnninetyfive{
+	
 	},
 /turf/open/floor/wood,
 /area/deathmatch)
@@ -869,6 +870,7 @@
 /obj/structure/table/gamblingtable,
 /obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
 /obj/effect/spawner/random/plushie/nospawnninetyfive{
+	
 	},
 /turf/open/floor/wood,
 /area/deathmatch)
@@ -1070,7 +1072,7 @@
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "Ax" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "AJ" = (
@@ -1459,7 +1461,7 @@
 	},
 /area/deathmatch)
 "Tx" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)

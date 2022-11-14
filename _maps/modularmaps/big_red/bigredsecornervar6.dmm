@@ -717,7 +717,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "QK" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "QY" = (
