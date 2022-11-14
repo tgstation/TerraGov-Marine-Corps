@@ -709,7 +709,7 @@
 
 /obj/item/prop/mainship/candle/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(istype(obj/item/tool/lighter/))
+	if(istype(obj/item/tool/lighter))
 		var/obj/item/tool/lighter/lighting_instrument = I
 		if(I.heat && !litcandle)
 			litcandle = TRUE

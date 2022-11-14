@@ -127,7 +127,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		/obj/item/instrument/guitar,
 		/obj/item/instrument/glockenspiel,
 		/obj/item/instrument/accordion,
-		/obj/item/stack/barbed_wire/small_stack
+		/obj/item/stack/barbed_wire/small_stack,
 		/obj/item/instrument/trumpet,
 		/obj/item/instrument/saxophone,
 		/obj/item/instrument/trombone,
