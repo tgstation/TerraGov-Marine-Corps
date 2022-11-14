@@ -26,6 +26,9 @@
 	flags_inventory = NOPRESSUREDMAGE|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEYES
 	flags_armor_protection = HEAD
+	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
+	flags_item_map_variant = NONE
+	flags_armor_features = ARMOR_NO_DECAP
 
 /obj/item/clothing/suit/space/santa
 	name = "Santa's suit"
