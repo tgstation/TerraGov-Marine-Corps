@@ -1181,6 +1181,14 @@
 		/obj/item/attachable/stock/tl127stock,
 	)
 
+	attachments_by_slot = list(
+		ATTACHMENT_SLOT_MUZZLE,
+		ATTACHMENT_SLOT_RAIL,
+		ATTACHMENT_SLOT_STOCK,
+		ATTACHMENT_SLOT_UNDER,
+		ATTACHMENT_BARREL_MOD,
+	)
+
 	burst_amount = 0
 	fire_delay = 1.35 SECONDS
 	accuracy_mult = 1.15
