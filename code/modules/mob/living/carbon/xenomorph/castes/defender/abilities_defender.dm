@@ -493,6 +493,8 @@
 	var/list/target_turfs = list()
 	///list of effects used to visualise area of effect
 	var/list/effect_list = list()
+	/// A list of all things that had a fliter applied
+	var/list/filters_applied = list()
 	///max range at which we can cast out ability
 	var/ability_range = 9
 
@@ -585,6 +587,8 @@
 	succeed_activate(plasma_cost * current_iterations)
 	to_chat(owner, span_warning("We unleash our psychic might!"))
 	playsound(target, 'sound/effects/EMPulse.ogg', 70)
+	apply_filters(target_turfs)
+	addtimer(CALLBACK(src, .proc/remove_all_filters), 2 SECONDS, TIMER_STOPPABLE)
 	for(var/turf/effected_turf AS in target_turfs)
 		for(var/i AS in effected_turf)
 			if(iscarbon(i))
@@ -602,6 +606,23 @@
 					continue
 				obj_victim.ex_act(EXPLODE_LIGHT)
 	stop_crush(target)
+
+///Remove all filters of items in filters_applied
+/datum/action/xeno_action/activable/psy_crush/proc/remove_all_filters()
+	for(var/atom/thing AS in filters_applied)
+		if(QDELETED(thing))
+			continue
+		thing.remove_filter("crushblur")
+	filters_applied.Cut()
+
+///Apply a filter on all items in the list of turfs
+/datum/action/xeno_action/activable/psy_crush/proc/apply_filters(list/turfs)
+	for(var/turf/targeted AS in turfs)
+		targeted.add_filter("crushblur", 1, radial_blur_filter(0.3))
+		filters_applied += targeted
+		for(var/atom/movable/item AS in targeted.contents)
+			item.add_filter("crushblur", 1, radial_blur_filter(0.3))
+			filters_applied += item
 
 /obj/effect/xeno/crush_warning
 	icon = 'icons/xeno/Effects.dmi'
