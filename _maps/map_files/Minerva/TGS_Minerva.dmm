@@ -3280,6 +3280,12 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/green,
 /area/mainship/hull/starboard_hull)
+"iT" = (
+/obj/structure/prop/holidays/wreath{
+	dir = 8
+	},
+/turf/closed/wall/mainship/white,
+/area/mainship/medical/medical_science)
 "iU" = (
 /turf/open/floor/mainship/cargo/arrow,
 /area/mainship/living/cryo_cells)
@@ -7358,6 +7364,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
+"uR" = (
+/obj/structure/prop/holidays/wreath{
+	dir = 8
+	},
+/turf/closed/wall/mainship/white,
+/area/mainship/medical/lower_medical)
 "uS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -9019,6 +9031,12 @@
 	dir = 1
 	},
 /area/mainship/command/cic)
+"zn" = (
+/obj/structure/prop/holidays/wreath{
+	dir = 9
+	},
+/turf/closed/wall/mainship/white,
+/area/mainship/medical/chemistry)
 "zo" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -11688,8 +11706,8 @@
 /area/mainship/living/bridgebunks)
 "GH" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/limecakeslice,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/spawner/random/christmas_food,
 /turf/open/floor/wood,
 /area/mainship/medical/lounge)
 "GI" = (
@@ -12254,6 +12272,10 @@
 /obj/structure/table/mainship/nometal,
 /obj/item/paper,
 /obj/item/tool/pen,
+/obj/structure/prop/holidays/stocking{
+	pixel_x = -11;
+	pixel_y = 26
+	},
 /turf/open/floor/mainship/sterile/purple/side{
 	dir = 1
 	},
@@ -14905,6 +14927,10 @@
 "PG" = (
 /obj/structure/table,
 /obj/item/trash/boonie,
+/obj/effect/spawner/random/christmas_food{
+	pixel_x = 2;
+	pixel_y = 2
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
 "PH" = (
@@ -15259,6 +15285,15 @@
 "QD" = (
 /turf/closed/wall/mainship,
 /area/mainship/engineering/ce_room)
+"QE" = (
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/obj/structure/prop/holidays/stocking{
+	pixel_y = 26
+	},
+/turf/open/floor/mainship/sterile/plain,
+/area/mainship/medical/lower_medical)
 "QF" = (
 /obj/structure/window/framed/mainship/requisitions,
 /turf/open/floor/mainship/mono,
@@ -18164,6 +18199,13 @@
 "YV" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/paper/crumpled,
+/obj/structure/prop/holidays/stocking{
+	pixel_x = 10;
+	pixel_y = 26
+	},
+/obj/structure/prop/holidays/stocking{
+	pixel_y = 26
+	},
 /turf/open/floor/mainship/sterile/purple/corner{
 	dir = 1
 	},
@@ -22927,7 +22969,7 @@ dS
 eC
 CH
 aX
-OS
+CY
 bO
 VC
 NA
@@ -23613,7 +23655,7 @@ ct
 eC
 aI
 OS
-OS
+CY
 bP
 cC
 aW
@@ -23750,7 +23792,7 @@ Gj
 eU
 HQ
 Is
-HQ
+zn
 Kl
 Lh
 HQ
@@ -23929,7 +23971,7 @@ kq
 kq
 kq
 kq
-kq
+iT
 tT
 uX
 jc
@@ -24142,7 +24184,7 @@ kt
 mz
 HQ
 Is
-HQ
+zn
 Oc
 Kt
 HQ
@@ -24327,7 +24369,7 @@ kt
 rY
 NG
 kt
-kt
+uR
 Bn
 Ju
 DW
@@ -24412,7 +24454,7 @@ VC
 aW
 VC
 kt
-tx
+QE
 mn
 mn
 mn

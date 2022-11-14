@@ -1441,3 +1441,31 @@
 	name = "M1 pattern festive needle torus"
 	desc = "In 2140 after a two different sub levels of the São Luís Bay Underground Habitat burned out (evidence points to a Bladerunner incident, but local police denies such claims) due to actual wreaths made with REAL needles, these have been issued ever since. They're made of ''''''pine'''''' scented poly-kevlon. According to the grunts from the American Corridor, during the SACO riots, protestors would pack these things into pillow cases, forming rudimentary body armor against soft point ballistics."
 	icon_state = "wreath"
+
+/obj/structure/prop/holidays/stocking
+	name = "\improper stocking"
+	desc = "A festive sock tacked to a wall, traditonally stuffed with presents."
+	icon_state = "stocking"
+	//how many presents we have stored
+	var/numberofpresents
+
+/obj/structure/prop/holidays/stocking/Initialize()
+	. = ..()
+	pixel_y = 26
+	if(prob(10))
+		numberofpresents = rand(1,3)
+
+/obj/structure/prop/holidays/stocking/attack_hand(mob/living/user)
+	. = ..()
+	if(isxeno(user))
+		return
+	to_chat(user, span_warning("You start rummaging through the stocking..."))
+	if(!do_after(user, 4 SECONDS))
+		return
+	if(numberofpresents != 0)
+		var/obj/item/I = new /obj/item/a_gift(get_turf(user))
+		user.balloon_alert_to_viewers("A present tumbles free" ,ignored_mobs = user)
+		user.balloon_alert(user, "Found a present")
+		user.put_in_hands(I)
+		I.add_fingerprint(user)
+		numberofpresents -= 1

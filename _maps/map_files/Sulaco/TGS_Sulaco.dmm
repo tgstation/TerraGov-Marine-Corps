@@ -2921,6 +2921,9 @@
 /area/sulaco/bridge)
 "aoG" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/obj/structure/prop/holidays/stocking{
+	pixel_y = 26
+	},
 /turf/open/floor/prison,
 /area/sulaco/briefing)
 "aoL" = (
@@ -10620,6 +10623,12 @@
 	dir = 4
 	},
 /area/sulaco/medbay)
+"brX" = (
+/obj/structure/prop/holidays/stocking{
+	pixel_y = 26
+	},
+/turf/open/floor/prison,
+/area/sulaco/briefing)
 "bsi" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/prison,
@@ -11472,6 +11481,9 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
+/obj/structure/prop/holidays/stocking{
+	pixel_y = 26
+	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
 "cyv" = (
@@ -12067,6 +12079,9 @@
 "djH" = (
 /obj/machinery/light/mainship{
 	dir = 1
+	},
+/obj/structure/prop/holidays/stocking{
+	pixel_y = 26
 	},
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
@@ -13607,6 +13622,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/prop/holidays/stocking{
+	pixel_y = 26
+	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -13975,6 +13993,12 @@
 	},
 /turf/open/floor/prison/kitchen,
 /area/sulaco/cafeteria)
+"fKK" = (
+/obj/structure/prop/holidays/stocking{
+	pixel_y = 26
+	},
+/turf/open/floor/prison,
+/area/sulaco/hallway/central_hall2)
 "fMR" = (
 /obj/machinery/landinglight/ds2{
 	dir = 1
@@ -16005,6 +16029,9 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
+/obj/structure/prop/holidays/stocking{
+	pixel_y = 26
+	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
 "iqZ" = (
@@ -17616,6 +17643,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
+"kry" = (
+/obj/structure/prop/holidays/stocking{
+	pixel_y = 26
+	},
+/turf/open/floor/prison/red{
+	dir = 1
+	},
+/area/sulaco/hallway/central_hall)
 "krC" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 6
@@ -22574,6 +22609,16 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/evac)
+"qIP" = (
+/obj/structure/prop/holidays/stocking{
+	pixel_x = 9;
+	pixel_y = 26
+	},
+/obj/structure/prop/holidays/stocking{
+	pixel_y = 26
+	},
+/turf/open/floor/prison/red,
+/area/sulaco/hallway/central_hall3)
 "qIY" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -23362,6 +23407,13 @@
 	dir = 1
 	},
 /area/mainship/shipboard/weapon_room)
+"rCj" = (
+/obj/structure/prop/holidays/stocking{
+	pixel_x = -13;
+	pixel_y = 26
+	},
+/turf/open/floor/prison/red,
+/area/sulaco/hallway/central_hall3)
 "rDx" = (
 /obj/structure/closet/secure_closet/medical3,
 /obj/item/storage/surgical_tray,
@@ -24263,6 +24315,15 @@
 /obj/effect/decal/warning_stripes/thin,
 /obj/structure/ship_ammo/rocket/widowmaker,
 /turf/open/floor/prison,
+/area/sulaco/hangar/cas)
+"sDc" = (
+/obj/structure/prop/holidays/stocking{
+	pixel_y = 26
+	},
+/obj/structure/prop/holidays/stocking{
+	pixel_y = 26
+	},
+/turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar/cas)
 "sEr" = (
 /obj/effect/decal/cleanable/dirt,
@@ -55351,7 +55412,7 @@ niS
 avr
 azU
 avr
-awI
+kry
 rXJ
 sPg
 aCA
@@ -59201,7 +59262,7 @@ aeM
 aov
 apJ
 ank
-aor
+fKK
 asS
 nka
 avz
@@ -61623,7 +61684,7 @@ aOd
 aPq
 aPA
 aRd
-jtC
+sDc
 jtC
 kAz
 aWe
@@ -64081,7 +64142,7 @@ aYZ
 cWj
 aaW
 bSB
-anr
+brX
 anr
 anr
 wOA
@@ -69739,7 +69800,7 @@ baz
 baz
 aZG
 aYM
-mYf
+qIP
 cHX
 axO
 azg
@@ -69996,7 +70057,7 @@ bbs
 baz
 aZH
 aYM
-mYf
+rCj
 cHX
 axO
 azg

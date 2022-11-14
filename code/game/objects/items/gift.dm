@@ -40,13 +40,15 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		return
 	if(!freepresent && present_receiver != M)
 		if(tgui_alert(M, "This present is addressed to [present_receiver]. Open it anyways?", "Continue?", list("Yes", "No")) != "No")
-			if(prob(99))
+			M.visible_message(span_notice("[M] tears into [present_receiver]'s gift with reckless abandon!"))
+			M.balloon_alert_to_viewers("Open's [present_receiver]'s gift" ,ignored_mobs = M)
+			if(prob(75))
 				GLOB.round_statistics.presents_grinched += 1
 				new /obj/item/ore/coal(get_turf(M))
 			else
 				spawnpresent(M)
 			qdel(src)
-			return
+		return
 
 	qdel(src)
 	spawnpresent(M)
@@ -68,11 +70,12 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	if(!freepresent)
 		GLOB.round_statistics.presents_delivered += 1
 	if(!QDELETED(I)) //might contain something like metal rods that might merge with a stack on the ground
-		M.visible_message(span_notice("[M] unwraps \the [src], finding \a [I] inside!"))
+		M.balloon_alert_to_viewers("Found a [I]")
 		M.put_in_hands(I)
 		I.add_fingerprint(M)
 	else
-		M.visible_message(span_danger("Oh no! The present that [M] opened had nothing inside it!"))
+		M.balloon_alert_to_viewers("Nothing inside [M]'s gift" ,ignored_mobs = M)
+		M.balloon_alert(user, "Nothing inside")
 
 /obj/item/a_gift/proc/get_gift_type()
 	var/gift_type_list = list(/obj/item/weapon/claymore/mercsword/commissar_sword,

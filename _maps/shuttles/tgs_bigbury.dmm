@@ -396,6 +396,9 @@
 	pixel_y = 3
 	},
 /obj/item/reagent_containers/food/drinks/bottle/eggnog,
+/obj/structure/prop/holidays/stocking{
+	pixel_y = 26
+	},
 /turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
 "bs" = (
@@ -836,6 +839,14 @@
 	dir = 1
 	},
 /area/shuttle/canterbury)
+"oR" = (
+/obj/structure/bed/chair/dropship/passenger,
+/obj/effect/landmark/start/job/crash/squadengineer,
+/obj/structure/prop/holidays/stocking{
+	pixel_y = 26
+	},
+/turf/open/floor/mainship/mono,
+/area/shuttle/canterbury)
 "ph" = (
 /obj/structure/prop/holidays/string_lights{
 	dir = 4
@@ -892,6 +903,15 @@
 	pixel_y = 10
 	},
 /turf/open/floor/mainship/mono,
+/area/shuttle/canterbury)
+"sq" = (
+/obj/structure/barricade/plasteel{
+	dir = 4
+	},
+/obj/structure/prop/holidays/stocking{
+	pixel_y = 26
+	},
+/turf/open/floor/mainship/stripesquare,
 /area/shuttle/canterbury)
 "su" = (
 /obj/structure/bed/chair/dropship/passenger{
@@ -1046,6 +1066,9 @@
 /area/shuttle/canterbury)
 "BZ" = (
 /obj/machinery/vending/cola,
+/obj/structure/prop/holidays/stocking{
+	pixel_y = 26
+	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "CA" = (
@@ -1756,7 +1779,7 @@ Mp
 qh
 JW
 Rv
-Wk
+oR
 an
 ac
 ac
@@ -2053,7 +2076,7 @@ Mp
 vW
 cR
 Rv
-hc
+sq
 hc
 hc
 hc
