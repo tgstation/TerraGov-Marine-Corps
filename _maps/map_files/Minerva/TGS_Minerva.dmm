@@ -2895,6 +2895,10 @@
 "hP" = (
 /obj/structure/table/woodentable,
 /obj/item/newspaper,
+/obj/structure/prop/mainship/candle/short{
+	pixel_x = -8;
+	pixel_y = 8
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
 "hQ" = (
@@ -6421,6 +6425,9 @@
 "sd" = (
 /obj/structure/table/woodentable,
 /obj/item/storage/donut_box,
+/obj/structure/prop/mainship/candle{
+	pixel_y = 6
+	},
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
 "sf" = (
@@ -9493,6 +9500,9 @@
 "Ax" = (
 /obj/structure/table/woodentable,
 /obj/item/storage/fancy/cigar,
+/obj/structure/prop/mainship/candle{
+	pixel_y = 6
+	},
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
 "Ay" = (
@@ -9577,6 +9587,18 @@
 "AJ" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/light/mainship,
+/obj/structure/prop/mainship/candle{
+	pixel_x = 4;
+	pixel_y = 8
+	},
+/obj/structure/prop/mainship/candle{
+	pixel_x = -7;
+	pixel_y = 8
+	},
+/obj/structure/prop/mainship/candle/short{
+	pixel_x = 1;
+	pixel_y = -1
+	},
 /turf/open/floor/mainship/research,
 /area/mainship/medical/medical_science)
 "AK" = (
@@ -10663,6 +10685,10 @@
 /obj/structure/cable,
 /obj/structure/cable,
 /obj/structure/cable,
+/obj/structure/prop/mainship/candle{
+	pixel_x = 2;
+	pixel_y = 6
+	},
 /turf/open/floor/freezer,
 /area/mainship/living/cafeteria_starboard)
 "DP" = (
@@ -16244,6 +16270,10 @@
 "Tq" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/robot_parts/chest,
+/obj/structure/prop/mainship/candle{
+	pixel_x = -2;
+	pixel_y = 7
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
 "Tr" = (
@@ -17934,6 +17964,22 @@
 /area/mainship/hallways/port_hallway)
 "Yi" = (
 /obj/structure/table/mainship/nometal,
+/obj/structure/prop/mainship/candle{
+	pixel_x = 4;
+	pixel_y = 8
+	},
+/obj/structure/prop/mainship/candle/short{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/structure/prop/mainship/candle/short{
+	pixel_x = 2;
+	pixel_y = -3
+	},
+/obj/structure/prop/mainship/candle/short{
+	pixel_x = -9;
+	pixel_y = -2
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/telecomms)
 "Yj" = (

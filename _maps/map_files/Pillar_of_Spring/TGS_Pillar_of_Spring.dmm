@@ -1396,7 +1396,17 @@
 /area/mainship/living/pilotbunks)
 "dI" = (
 /obj/structure/table/mainship,
-/obj/item/ashtray/bronze,
+/obj/structure/prop/mainship/candle{
+	pixel_y = 7
+	},
+/obj/structure/prop/mainship/candle/short{
+	pixel_x = 9;
+	pixel_y = 8
+	},
+/obj/structure/prop/mainship/candle/short{
+	pixel_x = 8;
+	pixel_y = 1
+	},
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
 "dJ" = (
@@ -4474,6 +4484,13 @@
 	dir = 5
 	},
 /area/mainship/medical/lower_medical)
+"mh" = (
+/obj/structure/table/woodentable,
+/obj/structure/prop/mainship/candle{
+	pixel_y = 7
+	},
+/turf/open/floor/wood,
+/area/mainship/living/grunt_rnr)
 "mi" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
@@ -4625,6 +4642,9 @@
 /obj/structure/table/fancywoodentable,
 /obj/item/newspaper,
 /obj/item/reagent_containers/food/drinks/britcup,
+/obj/structure/prop/mainship/candle{
+	pixel_y = 9
+	},
 /turf/open/floor/wood,
 /area/mainship/living/numbertwobunks)
 "mC" = (
@@ -10261,6 +10281,14 @@
 /obj/effect/spawner/random/christmas_food{
 	pixel_y = -3
 	},
+/obj/structure/prop/mainship/candle{
+	pixel_x = -20;
+	pixel_y = 25
+	},
+/obj/structure/prop/mainship/candle/short{
+	pixel_x = -10;
+	pixel_y = 22
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "BC" = (
@@ -11554,6 +11582,12 @@
 /obj/machinery/computer/security/marinemainship{
 	dir = 4;
 	pixel_x = 17
+	},
+/obj/structure/prop/mainship/candle{
+	pixel_y = 5
+	},
+/obj/structure/prop/mainship/candle/short{
+	pixel_x = -9
 	},
 /turf/open/floor/mainship/emerald{
 	dir = 5
@@ -13964,6 +13998,9 @@
 /area/mainship/living/numbertwobunks)
 "LF" = (
 /obj/structure/table/mainship/nometal,
+/obj/structure/prop/mainship/candle/short{
+	pixel_y = 4
+	},
 /turf/open/floor/mainship/white{
 	dir = 10
 	},
@@ -14639,6 +14676,9 @@
 /obj/machinery/light/mainship{
 	dir = 1
 	},
+/obj/structure/prop/mainship/candle{
+	pixel_y = 5
+	},
 /turf/open/floor/mainship/orange{
 	dir = 9
 	},
@@ -15190,6 +15230,13 @@
 /area/mainship/living/grunt_rnr)
 "OY" = (
 /turf/open/floor/plating/plating_catwalk,
+/area/mainship/shipboard/firing_range)
+"OZ" = (
+/obj/structure/table/reinforced,
+/obj/structure/prop/mainship/candle{
+	pixel_y = 7
+	},
+/turf/open/floor/mainship/stripesquare,
 /area/mainship/shipboard/firing_range)
 "Pa" = (
 /mob/living/simple_animal/corgi/ranger,
@@ -47221,7 +47268,7 @@ pt
 sO
 bJ
 HX
-on
+mh
 on
 al
 al
@@ -58523,7 +58570,7 @@ tt
 Xd
 Xd
 Xd
-Ua
+OZ
 yG
 Ju
 BX

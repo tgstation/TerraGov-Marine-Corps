@@ -399,6 +399,9 @@
 /obj/structure/prop/holidays/stocking{
 	pixel_y = 26
 	},
+/obj/structure/prop/mainship/candle{
+	pixel_y = 7
+	},
 /turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
 "bs" = (

@@ -119,7 +119,7 @@
 /obj/structure/flora/tree/pine/xmas/presents
 	icon_state = "pinepresents"
 	desc = "A wondrous decorated Christmas tree. It has presents!"
-	var/gift_type = /obj/item/a_gift/anything
+	var/gift_type = /obj/item/a_gift/free
 	var/unlimited = FALSE
 	var/static/list/took_presents //shared between all xmas trees
 
