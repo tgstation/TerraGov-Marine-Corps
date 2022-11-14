@@ -126,7 +126,7 @@
 /obj/item/reagent_containers/food/drinks/bottle/eggnog
 	name = "\improper Clause's Own Eggnog"
 	desc = "A thick mix of custard and alcohol, perfect for celebrating the holiday season."
-	icon_state = "glass_yellow"
+	icon_state = "eggnogbottle"
 	center_of_mass = list("x"=16, "y"=3)
 	list_reagents = list(/datum/reagent/consumable/ethanol/eggnog = 100)
 
