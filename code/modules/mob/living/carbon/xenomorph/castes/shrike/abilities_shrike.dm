@@ -306,6 +306,9 @@
 	mechanics_text = "Place an acid well that can put out fires."
 	plasma_cost = 400
 	cooldown_timer = 2 MINUTES
+	keybinding_signals = list(
+	KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_CURE,
+	)
 
 /datum/action/xeno_action/place_acidwell/can_use_action(silent = FALSE, override_flags)
 	. = ..()
