@@ -231,6 +231,7 @@
 /area/mainship/shipboard/starboard_point_defense)
 "aaW" = (
 /obj/structure/table/mainship/nometal,
+/obj/effect/spawner/random/present,
 /turf/open/floor/mainship/orange{
 	dir = 5
 	},
@@ -300,6 +301,11 @@
 /area/mainship/living/cafeteria_starboard)
 "abj" = (
 /obj/structure/table/mainship/nometal,
+/obj/effect/spawner/random/present,
+/obj/effect/spawner/random/present{
+	pixel_x = -4;
+	pixel_y = 8
+	},
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
@@ -1913,6 +1919,7 @@
 "aBc" = (
 /obj/machinery/self_destruct/console,
 /obj/effect/spawner/random/plushie/nospawnninety,
+/obj/effect/spawner/random/present,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "aBe" = (
@@ -4129,6 +4136,7 @@
 /obj/machinery/alarm{
 	dir = 4
 	},
+/obj/effect/spawner/random/present,
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
 "bot" = (
@@ -4633,6 +4641,9 @@
 /obj/item/tool/pen,
 /obj/machinery/status_display{
 	pixel_y = 30
+	},
+/obj/effect/spawner/random/present{
+	pixel_y = 5
 	},
 /turf/open/floor/mainship/orange{
 	dir = 9
@@ -5530,6 +5541,9 @@
 /obj/structure/table/mainship/nometal,
 /obj/item/stack/sheet/metal/large_stack,
 /obj/effect/spawner/random/present,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engineering)
 "bDR" = (
@@ -6957,6 +6971,9 @@
 "bSP" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/pizzabox/margherita,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/cafeteria_starboard)
 "bSQ" = (
@@ -8921,6 +8938,7 @@
 "dwc" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/vending/nanomed,
+/obj/effect/spawner/random/present,
 /turf/open/floor/mainship/blue/full,
 /area/mainship/command/cic)
 "dwp" = (
@@ -9110,6 +9128,7 @@
 "dJk" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/reagent_containers/food/drinks/bottle/eggnog,
+/obj/effect/spawner/random/present,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/officer_study)
 "dKa" = (
@@ -9751,6 +9770,11 @@
 /obj/item/roller,
 /obj/item/roller,
 /obj/item/roller,
+/obj/effect/spawner/random/present{
+	pixel_x = 3;
+	pixel_y = 4
+	},
+/obj/effect/spawner/random/present,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -10700,6 +10724,9 @@
 /obj/structure/table/mainship/nometal,
 /obj/item/tool/crowbar,
 /obj/item/flashlight/lamp,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/wood,
 /area/mainship/living/tankerbunks)
 "geX" = (
@@ -11268,6 +11295,12 @@
 "haz" = (
 /turf/open/floor/mainship/floor,
 /area/mainship/living/numbertwobunks)
+"haC" = (
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/delta)
 "haI" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -15461,6 +15494,7 @@
 /obj/item/tool/weldingtool/largetank,
 /obj/item/tool/weldingtool/largetank,
 /obj/item/clothing/head/welding,
+/obj/effect/spawner/random/present,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/surgery_hallway)
 "nJf" = (
@@ -17149,6 +17183,7 @@
 /obj/structure/table/mainship/nometal,
 /obj/structure/paper_bin,
 /obj/item/tool/pen/blue,
+/obj/effect/spawner/random/present,
 /turf/open/floor/carpet/side{
 	dir = 4
 	},
@@ -17212,6 +17247,7 @@
 /obj/structure/table/mainship/nometal,
 /obj/item/weapon/combat_knife,
 /obj/item/storage/toolbox/mechanical,
+/obj/effect/spawner/random/present,
 /turf/open/floor/mainship/white{
 	dir = 1
 	},
@@ -18534,6 +18570,13 @@
 	},
 /turf/closed/wall/mainship,
 /area/mainship/squads/alpha)
+"skZ" = (
+/obj/structure/cable,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/squads/delta)
 "smq" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -64264,7 +64307,7 @@ wLT
 pGn
 pGn
 pGn
-pGn
+haC
 vJr
 cec
 jMR
@@ -66321,7 +66364,7 @@ tBV
 iLV
 ktN
 ada
-vJr
+skZ
 cec
 jMR
 qxQ

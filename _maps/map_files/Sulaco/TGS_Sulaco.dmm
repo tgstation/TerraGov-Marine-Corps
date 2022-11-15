@@ -253,6 +253,9 @@
 /obj/structure/table/mainship/nometal,
 /obj/machinery/firealarm,
 /obj/item/reagent_containers/food/drinks/bottle/eggnog,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -320,6 +323,9 @@
 /obj/item/pizzabox/meat,
 /obj/item/tool/soap/deluxe,
 /obj/item/tool/soap/deluxe,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
 "abb" = (
@@ -4478,6 +4484,9 @@
 	pixel_x = 8;
 	pixel_y = 8
 	},
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/mainship/terragov{
 	dir = 8
 	},
@@ -5876,6 +5885,9 @@
 /obj/item/storage/fancy/cigarettes/dromedaryco,
 /obj/structure/prop/holidays/string_lights{
 	dir = 1
+	},
+/obj/effect/spawner/random/present{
+	pixel_y = 5
 	},
 /turf/open/floor/prison,
 /area/sulaco/briefing)
@@ -7609,6 +7621,9 @@
 	pixel_x = 5;
 	pixel_y = 9
 	},
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hydro)
 "aKI" = (
@@ -8714,6 +8729,9 @@
 	dir = 1
 	},
 /obj/item/tank/anesthetic,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/medbay/hangar)
 "aRc" = (
@@ -11822,6 +11840,9 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 6
 	},
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/evac)
 "cOV" = (
@@ -13139,6 +13160,9 @@
 /obj/item/flashlight/flare,
 /obj/item/reagent_containers/food/drinks/h_chocolate{
 	pixel_y = 7
+	},
+/obj/effect/spawner/random/present{
+	pixel_y = 5
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
@@ -16099,6 +16123,15 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall2)
+"ipL" = (
+/obj/structure/bed/chair/nometal{
+	dir = 4
+	},
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
+/turf/open/floor/prison,
+/area/sulaco/hallway/evac)
 "iqc" = (
 /obj/machinery/camera/autoname{
 	dir = 4
@@ -16503,6 +16536,12 @@
 /obj/machinery/light/mainship,
 /turf/open/floor/wood,
 /area/sulaco/cap_office)
+"iNw" = (
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
+/turf/open/floor/prison/whitegreen/corner,
+/area/sulaco/medbay)
 "iNC" = (
 /obj/structure/ship_ammo/rocket/widowmaker,
 /turf/open/floor/prison,
@@ -22862,6 +22901,9 @@
 /obj/structure/paper_bin,
 /obj/item/clipboard,
 /obj/item/tool/pen,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -25938,6 +25980,12 @@
 	dir = 1
 	},
 /area/sulaco/disposal)
+"upk" = (
+/obj/structure/prop/holidays/stocking{
+	pixel_y = -5
+	},
+/turf/closed/wall/mainship/gray,
+/area/mainship/living/pilotbunks)
 "usZ" = (
 /turf/open/floor/plating/icefloor/warnplate,
 /area/sulaco/hangar/storage)
@@ -26621,6 +26669,9 @@
 /obj/structure/ob_ammo/warhead/incendiary,
 /obj/structure/ob_ammo/warhead/incendiary,
 /obj/machinery/camera/autoname,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/prison/red{
 	dir = 1
 	},
@@ -27484,6 +27535,13 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
+"wpW" = (
+/obj/structure/table/mainship/nometal,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
+/turf/open/floor/prison/sterilewhite,
+/area/sulaco/cafeteria/kitchen)
 "wqg" = (
 /obj/machinery/power/apc/mainship{
 	dir = 4
@@ -28743,6 +28801,24 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/mainship/tcomms,
 /area/sulaco/telecomms)
+"yem" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
+/turf/open/floor/prison/whitegreen/corner{
+	dir = 1
+	},
+/area/sulaco/medbay)
 "yfh" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -50005,7 +50081,7 @@ ppl
 aKN
 ifF
 oiG
-aMg
+wpW
 xZq
 aMc
 vMY
@@ -56931,7 +57007,7 @@ oxz
 afc
 eqh
 ade
-pKP
+yem
 ade
 gXI
 ade
@@ -58990,7 +59066,7 @@ agz
 fdz
 ade
 mJk
-ade
+iNw
 cvw
 dsX
 fhg
@@ -67201,7 +67277,7 @@ pWS
 aUL
 jYO
 vfb
-oLM
+upk
 wqg
 aXe
 tgH
@@ -69421,7 +69497,7 @@ djr
 fbS
 gLT
 aIb
-aIb
+ipL
 aIb
 aIb
 gRM
@@ -69937,7 +70013,7 @@ djr
 aIb
 aIb
 aIb
-aIb
+ipL
 djr
 aIb
 djr

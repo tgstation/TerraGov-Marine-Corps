@@ -530,6 +530,9 @@
 	name = "Privacy Shutters"
 	},
 /obj/structure/table/fancywoodentable,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "bv" = (
@@ -1544,6 +1547,7 @@
 /obj/item/tool/hand_labeler,
 /obj/structure/table/reinforced,
 /obj/item/wrapping_paper,
+/obj/effect/spawner/random/present,
 /turf/open/floor/mainship/black,
 /area/mainship/squads/general)
 "ed" = (
@@ -1568,6 +1572,15 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/grunt_rnr)
+"ei" = (
+/obj/structure/table/mainship/nometal,
+/obj/effect/spawner/random/christmas_food,
+/obj/effect/spawner/random/christmas_food{
+	pixel_x = 5;
+	pixel_y = 1
+	},
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "ej" = (
 /obj/machinery/door/poddoor/shutters/mainship/selfdestruct,
 /obj/machinery/keycard_auth,
@@ -4220,6 +4233,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
+"lw" = (
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/drinks/bottle/eggnog,
+/obj/effect/spawner/random/present,
+/turf/open/floor/wood,
+/area/mainship/living/grunt_rnr)
 "lx" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -4798,6 +4817,7 @@
 /obj/effect/spawner/random/christmas_food{
 	pixel_y = 3
 	},
+/obj/effect/spawner/random/present,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "mY" = (
@@ -4809,6 +4829,7 @@
 	pixel_y = 5
 	},
 /obj/item/tool/pen,
+/obj/effect/spawner/random/present,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/numbertwobunks)
 "mZ" = (
@@ -5566,6 +5587,7 @@
 	pixel_x = 6;
 	pixel_y = 11
 	},
+/obj/effect/spawner/random/present,
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/shipboard/firing_range)
 "pd" = (
@@ -10361,6 +10383,14 @@
 "BM" = (
 /turf/open/floor/mainship/cargo/arrow,
 /area/mainship/hallways/hangar)
+"BN" = (
+/obj/structure/bed/bunkbed,
+/obj/effect/landmark/start/job/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
+/obj/machinery/camera/autoname/mainship,
+/obj/effect/spawner/random/present,
+/turf/open/floor/wood,
+/area/mainship/living/cryo_cells)
 "BO" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 2
@@ -10561,6 +10591,16 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/black,
+/area/mainship/squads/general)
+"Ct" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/reagent_containers/food/snacks/boiledegg,
+/obj/effect/spawner/random/christmas_food,
+/obj/effect/spawner/random/christmas_food{
+	pixel_x = -3;
+	pixel_y = 1
+	},
+/turf/open/floor/mainship,
 /area/mainship/squads/general)
 "Cu" = (
 /obj/structure/cable,
@@ -12718,6 +12758,13 @@
 "Id" = (
 /turf/closed/wall/mainship,
 /area/mainship/living/pilotbunks)
+"Ie" = (
+/obj/machinery/holopad,
+/obj/structure/prop/holidays/stocking{
+	pixel_y = 26
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/command/cic)
 "If" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
@@ -13713,6 +13760,7 @@
 	dir = 8
 	},
 /obj/item/lightreplacer,
+/obj/effect/spawner/random/present,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "KP" = (
@@ -14318,6 +14366,9 @@
 /obj/structure/table/mainship/nometal,
 /obj/item/reagent_containers/food/snacks/boiledegg,
 /obj/effect/spawner/random/christmas_food,
+/obj/effect/spawner/random/christmas_food{
+	pixel_x = 2
+	},
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "My" = (
@@ -18109,6 +18160,10 @@
 /obj/effect/spawner/random/christmas_food{
 	pixel_x = -3;
 	pixel_y = 1
+	},
+/obj/effect/spawner/random/christmas_food{
+	pixel_x = 3;
+	pixel_y = 3
 	},
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
@@ -46242,7 +46297,7 @@ bS
 al
 Km
 JD
-uh
+lw
 dS
 bY
 WZ
@@ -49609,7 +49664,7 @@ Ae
 Ae
 iP
 Ae
-FB
+Ie
 Fz
 AU
 AU
@@ -57826,10 +57881,10 @@ IQ
 PL
 yL
 Cg
-nS
+Ct
 WD
 nS
-Ha
+ei
 kA
 Nz
 yL
@@ -59876,7 +59931,7 @@ jy
 WX
 jD
 KC
-tL
+BN
 nK
 Yx
 jD

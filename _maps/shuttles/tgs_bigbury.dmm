@@ -751,7 +751,21 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "kB" = (
-/obj/effect/spawner/random/present,
+/obj/effect/spawner/random/present{
+	pixel_x = 6;
+	pixel_y = -2
+	},
+/obj/effect/spawner/random/present{
+	pixel_x = -8;
+	pixel_y = -2
+	},
+/obj/effect/spawner/random/present{
+	pixel_x = -7;
+	pixel_y = 5
+	},
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury)
 "kY" = (
@@ -865,6 +879,9 @@
 /area/shuttle/canterbury)
 "qh" = (
 /obj/structure/reagent_dispensers/fueltank,
+/obj/structure/prop/holidays/stocking{
+	pixel_y = 26
+	},
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "ql" = (
@@ -1062,6 +1079,9 @@
 /area/shuttle/canterbury)
 "AS" = (
 /obj/structure/largecrate/supply/supplies/flares,
+/obj/structure/prop/holidays/stocking{
+	pixel_y = 26
+	},
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "BZ" = (
@@ -1302,7 +1322,7 @@
 "PI" = (
 /obj/effect/spawner/random/present{
 	pixel_x = -4;
-	pixel_y = -7
+	pixel_y = -9
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)

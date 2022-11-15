@@ -973,6 +973,10 @@
 /obj/effect/spawner/random/present{
 	pixel_y = -3
 	},
+/obj/effect/spawner/random/present{
+	pixel_x = -3;
+	pixel_y = 9
+	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "vx" = (
@@ -1069,6 +1073,20 @@
 	},
 /obj/effect/spawner/random/christmas_food{
 	pixel_x = -3
+	},
+/obj/effect/spawner/random/present{
+	pixel_y = 8
+	},
+/obj/effect/spawner/random/present{
+	pixel_x = 7;
+	pixel_y = 5
+	},
+/obj/effect/spawner/random/present{
+	pixel_x = 9;
+	pixel_y = -3
+	},
+/obj/effect/spawner/random/present{
+	pixel_y = -3
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)

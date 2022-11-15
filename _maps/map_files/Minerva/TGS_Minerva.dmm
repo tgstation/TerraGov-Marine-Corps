@@ -3259,6 +3259,9 @@
 /area/mainship/living/tankerbunks)
 "iP" = (
 /obj/structure/table,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/mainship/green{
 	dir = 10
 	},
@@ -4274,6 +4277,18 @@
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship,
 /area/mainship/command/cic)
+"lT" = (
+/obj/structure/table/woodentable,
+/obj/item/clipboard{
+	pixel_x = 5
+	},
+/obj/item/paper,
+/obj/item/tool/pen,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
+/turf/open/floor/wood,
+/area/mainship/living/bridgebunks)
 "lU" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
@@ -5463,6 +5478,18 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/port_hallway)
+"ph" = (
+/obj/structure/table/woodentable,
+/obj/item/clipboard{
+	pixel_x = 5
+	},
+/obj/item/paper,
+/obj/item/tool/pen,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
+/turf/open/floor/wood,
+/area/mainship/living/pilotbunks)
 "pi" = (
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/red{
@@ -6723,6 +6750,9 @@
 "sW" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/pizzabox,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/freezer,
 /area/mainship/living/cafeteria_starboard)
 "sX" = (
@@ -7019,6 +7049,9 @@
 	pixel_y = 7
 	},
 /obj/item/tool/pen,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/carpet,
 /area/mainship/living/bridgebunks)
 "tS" = (
@@ -10289,6 +10322,9 @@
 	pixel_x = -6;
 	pixel_y = 2
 	},
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lounge)
 "CK" = (
@@ -12416,6 +12452,14 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/starboard_hull)
+"IE" = (
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
+/turf/open/floor/mainship/black{
+	dir = 8
+	},
+/area/mainship/engineering/port_atmos)
 "IF" = (
 /obj/machinery/roomba,
 /obj/structure/mirror{
@@ -12657,6 +12701,9 @@
 "Jn" = (
 /obj/structure/table,
 /obj/item/trash/cheesie,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
 "Jo" = (
@@ -13223,6 +13270,9 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
@@ -14415,6 +14465,9 @@
 /area/mainship/hallways/hangar)
 "Of" = (
 /obj/structure/table/mainship/nometal,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/carpet,
 /area/mainship/living/grunt_rnr)
 "Og" = (
@@ -15223,6 +15276,7 @@
 /obj/structure/rack,
 /obj/structure/ob_ammo/warhead/cluster,
 /obj/structure/ob_ammo/warhead/cluster,
+/obj/effect/spawner/random/present,
 /turf/open/floor/mainship/cargo,
 /area/mainship/shipboard/weapon_room)
 "Qq" = (
@@ -15778,6 +15832,9 @@
 	pixel_x = -2
 	},
 /obj/effect/spawner/random/christmas_food,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
 "Sd" = (
@@ -15808,6 +15865,9 @@
 	},
 /obj/structure/table/woodentable,
 /obj/item/storage/box/cups,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
 "Si" = (
@@ -16077,6 +16137,10 @@
 "SW" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/box/ids,
+/obj/effect/spawner/random/present{
+	pixel_x = 3;
+	pixel_y = 9
+	},
 /obj/effect/spawner/random/present{
 	pixel_y = 5
 	},
@@ -18287,6 +18351,13 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/airoom)
+"Za" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/living/briefing)
 "Zb" = (
 /turf/open/floor/mainship/red{
 	dir = 6
@@ -22470,7 +22541,7 @@ Ja
 Kc
 EM
 GF
-LZ
+lT
 EM
 hG
 iw
@@ -26679,7 +26750,7 @@ zD
 Ci
 xb
 FI
-Gp
+Za
 UJ
 KA
 WJ
@@ -27678,7 +27749,7 @@ XB
 Yx
 ZD
 fX
-Oq
+IE
 Oq
 fE
 XH
@@ -28998,7 +29069,7 @@ cp
 cQ
 dl
 Hn
-eh
+ph
 eI
 wM
 fV
