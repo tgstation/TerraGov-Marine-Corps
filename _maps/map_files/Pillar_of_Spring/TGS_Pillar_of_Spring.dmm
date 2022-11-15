@@ -1572,15 +1572,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/grunt_rnr)
-"ei" = (
-/obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/christmas_food,
-/obj/effect/spawner/random/christmas_food{
-	pixel_x = 5;
-	pixel_y = 1
-	},
-/turf/open/floor/mainship,
-/area/mainship/squads/general)
 "ej" = (
 /obj/machinery/door/poddoor/shutters/mainship/selfdestruct,
 /obj/machinery/keycard_auth,
@@ -2780,6 +2771,7 @@
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/box/donkpockets,
 /obj/item/reagent_containers/food/drinks/bottle/eggnog,
+/obj/effect/spawner/random/present,
 /turf/open/floor/wood,
 /area/mainship/medical/lower_medical)
 "hr" = (
@@ -3282,6 +3274,14 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
+"iN" = (
+/obj/structure/bed/bunkbed,
+/obj/effect/landmark/start/job/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
+/obj/machinery/camera/autoname/mainship,
+/obj/effect/spawner/random/present,
+/turf/open/floor/wood,
+/area/mainship/living/cryo_cells)
 "iO" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/junction{
@@ -4233,12 +4233,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
-"lw" = (
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/bottle/eggnog,
-/obj/effect/spawner/random/present,
-/turf/open/floor/wood,
-/area/mainship/living/grunt_rnr)
 "lx" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -4761,6 +4755,13 @@
 /obj/structure/ship_ammo/minirocket,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
+"mQ" = (
+/obj/machinery/holopad,
+/obj/structure/prop/holidays/stocking{
+	pixel_y = 26
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/command/cic)
 "mR" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment/corner{
@@ -5552,6 +5553,15 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
+"oW" = (
+/obj/structure/table/mainship/nometal,
+/obj/effect/spawner/random/christmas_food,
+/obj/effect/spawner/random/christmas_food{
+	pixel_x = 5;
+	pixel_y = 1
+	},
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "oX" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
@@ -10384,13 +10394,11 @@
 /turf/open/floor/mainship/cargo/arrow,
 /area/mainship/hallways/hangar)
 "BN" = (
-/obj/structure/bed/bunkbed,
-/obj/effect/landmark/start/job/squadmarine,
-/obj/effect/landmark/start/job/squadmarine,
-/obj/machinery/camera/autoname/mainship,
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/drinks/bottle/eggnog,
 /obj/effect/spawner/random/present,
 /turf/open/floor/wood,
-/area/mainship/living/cryo_cells)
+/area/mainship/living/grunt_rnr)
 "BO" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 2
@@ -10591,16 +10599,6 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/black,
-/area/mainship/squads/general)
-"Ct" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/reagent_containers/food/snacks/boiledegg,
-/obj/effect/spawner/random/christmas_food,
-/obj/effect/spawner/random/christmas_food{
-	pixel_x = -3;
-	pixel_y = 1
-	},
-/turf/open/floor/mainship,
 /area/mainship/squads/general)
 "Cu" = (
 /obj/structure/cable,
@@ -12758,13 +12756,6 @@
 "Id" = (
 /turf/closed/wall/mainship,
 /area/mainship/living/pilotbunks)
-"Ie" = (
-/obj/machinery/holopad,
-/obj/structure/prop/holidays/stocking{
-	pixel_y = 26
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/command/cic)
 "If" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
@@ -13624,7 +13615,6 @@
 /area/mainship/living/grunt_rnr)
 "Kv" = (
 /obj/structure/bed/chair/nometal,
-/obj/effect/spawner/random/present,
 /turf/open/floor/wood,
 /area/mainship/medical/lower_medical)
 "Kw" = (
@@ -15245,6 +15235,16 @@
 	dir = 1
 	},
 /area/mainship/hallways/hangar)
+"OS" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/reagent_containers/food/snacks/boiledegg,
+/obj/effect/spawner/random/christmas_food,
+/obj/effect/spawner/random/christmas_food{
+	pixel_x = -3;
+	pixel_y = 1
+	},
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "OT" = (
 /obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/simple/general/visible{
@@ -46297,7 +46297,7 @@ bS
 al
 Km
 JD
-lw
+BN
 dS
 bY
 WZ
@@ -49664,7 +49664,7 @@ Ae
 Ae
 iP
 Ae
-Ie
+mQ
 Fz
 AU
 AU
@@ -57881,10 +57881,10 @@ IQ
 PL
 yL
 Cg
-Ct
+OS
 WD
 nS
-ei
+oW
 kA
 Nz
 yL
@@ -59931,7 +59931,7 @@ jy
 WX
 jD
 KC
-BN
+iN
 nK
 Yx
 jD
