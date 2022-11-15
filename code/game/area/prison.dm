@@ -166,14 +166,17 @@
 /area/prison/command/office
 	name = "Warden's Office"
 	icon_state = "Warden"
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/prison/command/secretary_office
 	name = "Warden's Secretary's Office"
 	icon_state = "blue"
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/prison/command/quarters
 	name = "Warden's Quarters"
 	icon_state = "party"
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/prison/toilet
 	icon_state = "restrooms"
@@ -434,7 +437,7 @@
 	name = "Biological Research Department"
 	icon_state = "research"
 	ceiling = CEILING_UNDERGROUND_METAL
-	minimap_color = MINIMAP_AREA_CAVES
+	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
 
 /area/prison/research/RD
 	name = "Research Director's office"
@@ -444,7 +447,6 @@
 	name = "Classified Research"
 	icon_state = "toxlab"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
-	minimap_color = MINIMAP_AREA_CAVES
 
 /area/prison/research/secret/dissection
 	name = "Dissection"
@@ -513,6 +515,7 @@
 	name = "Research Hangar Storage"
 	icon_state = "toxstorage"
 	ceiling = CEILING_METAL
+	minimap_color = MINIMAP_AREA_RESEARCH
 
 /area/prison/telecomms
 	name = "Telecommunications"

@@ -278,6 +278,7 @@
 /area/lv624/lazarus/captain
 	name = "\improper Commandant's Quarters"
 	icon_state = "captain"
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/lv624/lazarus/hop
 	name = "\improper Head of Personnel's Office"
@@ -362,6 +363,7 @@
 /area/lv624/lazarus/research
 	name = "\improper Research Lab"
 	icon_state = "toxlab"
+	minimap_color = MINIMAP_AREA_RESEARCH
 
 /area/lv624/lazarus/fitness
 	name = "\improper Fitness Room"

@@ -76,6 +76,7 @@
 	name = "Underground research complex"
 	icon_state = "yellow"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
 
 /area/bigredv2/caves/east
 	name = "Eastern Caves"
@@ -111,7 +112,7 @@
 	icon_state = "engine"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 	outside = FALSE
-	minimap_color = MINIMAP_AREA_CAVES
+	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
 
 /area/bigredv2/outside/cargo
 	name = "Cargo"
@@ -144,6 +145,7 @@
 	icon_state = "bridge"
 	ceiling = CEILING_METAL
 	outside = FALSE
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/bigredv2/outside/filtration_plant
 	name = "Filtration Plant"
@@ -244,7 +246,7 @@
 	icon_state = "party"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 	outside = FALSE
-	minimap_color = MINIMAP_AREA_CAVES
+	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
 
 /area/bigredv2/outside/general_offices
 	name = "General Offices"

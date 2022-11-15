@@ -177,6 +177,7 @@
 	name = "A-Block - Colony Operations Centre"
 	icon_state = "mechbay"
 	ceiling = CEILING_GLASS
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/gelida/indoors/a_block/dorms
 	name = "A-Block - Western Dorms And Offices"

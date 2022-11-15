@@ -244,7 +244,7 @@
 /area/ice_colony/surface/command
 	name = "Colony Administration"
 	icon_state = "bridge"
-	minimap_color = MINIMAP_AREA_SEC
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/ice_colony/surface/command/checkpoint
 	name = "Colony Administration Security Checkpoint"
@@ -443,9 +443,9 @@
 */
 
 /area/ice_colony/surface/research
-
 	name = "Omicron Dome"
 	icon_state = "toxlab"
+	minimap_color = MINIMAP_AREA_RESEARCH
 
 /area/ice_colony/surface/research/tech_storage
 	name = "Omicron Dome Technical Storage"
@@ -552,6 +552,7 @@
 /area/ice_colony/underground/command
 	name = "Underground Colonial Administration"
 	icon_state = "bridge"
+	minimap_color = MINIMAP_AREA_COMMAND_CAVE
 
 /area/ice_colony/underground/command/checkpoint
 	name = "Underground Colonial Administration Lobby"
@@ -577,6 +578,7 @@
 /area/ice_colony/underground/engineering
 	name = "Underground Engineering"
 	icon_state = "engine_hallway"
+	minimap_color = MINIMAP_AREA_ENGI_CAVE
 
 /area/ice_colony/underground/engineering/locker
 	name = "Underground Engineering Locker Room"
@@ -722,6 +724,7 @@
 /area/ice_colony/underground/research
 	name = "Theta-V Research Laboratory"
 	icon_state = "anolab"
+	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
 
 /area/ice_colony/underground/research/work
 	name = "Theta-V Research Laboratory Work Station"
