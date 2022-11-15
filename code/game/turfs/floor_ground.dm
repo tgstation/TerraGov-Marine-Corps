@@ -192,6 +192,7 @@
 	shoefootstep = FOOTSTEP_ICE
 	barefootstep = FOOTSTEP_ICE
 	mediumxenofootstep = FOOTSTEP_ICE
+	minimap_color = MINIMAP_ICE
 
 //Randomize ice floor sprite
 /turf/open/floor/plating/ground/ice/Initialize()
