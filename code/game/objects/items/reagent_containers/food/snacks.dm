@@ -332,63 +332,71 @@
 	icon_state = "COOKIE!!!"
 	filling_color = "#DBC94F"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
+	bitesize = 3
 	tastes = list("cookie" = 1)
 
 /obj/item/reagent_containers/food/snacks/christmas_cookieone
-	name = "cookie"
-	desc = "COOKIE!!!"
+	name = "christmas cookie"
+	desc = "A festive Christmas cookie."
 	icon_state = "sugarcookie"
 	filling_color = "#DBC94F"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
-	tastes = list("cookie" = 1)
+	bitesize = 3
+	tastes = list("cookie" = 1, "sugar" = 4)
 
 /obj/item/reagent_containers/food/snacks/christmas_cookietwo
-	name = "cookie"
-	desc = "COOKIE!!!"
+	name = "christmas cookie"
+	desc = "A festive Christmas cookie, this one is in the shape of a tree."
 	icon_state = "sugarcookie_tree"
 	filling_color = "#DBC94F"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
-	tastes = list("cookie" = 1)
+	bitesize = 3
+	tastes = list("cookie" = 1, "christmas" = 2, "pine trees" = 1)
 
 /obj/item/reagent_containers/food/snacks/christmas_cookiethree
-	name = "cookie"
-	desc = "COOKIE!!!"
+	name = "christmas cookie"
+	desc = "A festive Christmas cookie, this one is in the shape of a teddy bear."
 	icon_state = "sugarcookie_bear"
 	filling_color = "#DBC94F"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
-	tastes = list("cookie" = 1)
+	bitesize = 3
+	tastes = list("cookie" = 1, "christmas" = 2, "mistletoe" = 1)
 
 /obj/item/reagent_containers/food/snacks/christmas_cookiefour
-	name = "cookie"
-	desc = "COOKIE!!!"
+	name = "christmas cookie"
+	desc = "A festive Christmas cookie, this one is in the shape of Santa Claus."
 	icon_state = "sugarcookie_santa"
 	filling_color = "#DBC94F"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
-	tastes = list("cookie" = 1)
+	bitesize = 3
+	tastes = list("cookie" = 1, "coal" = 1, "fruitcake" = 1, "christmas" = 1)
 
 /obj/item/reagent_containers/food/snacks/christmas_cookiefive
-	name = "cookie"
-	desc = "COOKIE!!!"
+	name = "christmas cookie"
+	desc = "A festive Christmas cookie, this one is in the shape of a stocking bursting with presents."
 	icon_state = "sugarcookie_stocking"
 	filling_color = "#DBC94F"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
-	tastes = list("cookie" = 1)
+	bitesize = 3
+	tastes = list("cookie" = 1, "christmas" = 2, "presents" = 1)
 
 /obj/item/reagent_containers/food/snacks/christmas_cookiesix
-	name = "cookie"
-	desc = "COOKIE!!!"
+	name = "christmas cookie"
+	desc = "A festive Christmas cookie, this one is in the shape of a present."
 	icon_state = "sugarcookie_present"
 	filling_color = "#DBC94F"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
-	tastes = list("cookie" = 1)
+	bitesize = 3
+	tastes = list("cookie" = 1, "christmas" = 2, "wrapping paper" = 1)
 
 /obj/item/reagent_containers/food/snacks/christmas_cookieseven
-	name = "cookie"
-	desc = "COOKIE!!!"
+	name = "christmas cookie"
+	desc = "A festive Christmas cookie, this one is in the shape of a candy cane."
 	icon_state = "sugarcookie_cane"
 	filling_color = "#DBC94F"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
-	tastes = list("cookie" = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/toxin/minttoxin = 1)
+	bitesize = 3
+	tastes = list("cookie" = 1, "christmas" = 2, "mint" = 2)
 
 /obj/item/reagent_containers/food/snacks/chocolatebar
 	name = "Chocolate Bar"

@@ -231,7 +231,7 @@
 /obj/effect/spawner/random/christmas_food
 	name = "Random christmas food"
 	icon_state = "random_xmas"
-	spawn_nothing_percentage = 35
+	spawn_nothing_percentage = 30
 
 /obj/effect/spawner/random/christmas_food/item_to_spawn()
 	return pick(/obj/item/reagent_containers/food/snacks/christmas_cookieone,\
