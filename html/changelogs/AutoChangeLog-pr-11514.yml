@@ -1,0 +1,4 @@
+author: "tyeagg"
+delete-after: True
+changes:
+  - rscadd: "change name of marine platoon for distress and nuclear"

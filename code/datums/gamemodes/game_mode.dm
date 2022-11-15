@@ -35,6 +35,8 @@
 	 * after the end of the last round with the gamemode type
 	 */
 	var/time_between_round = 0
+	///What factions are used in this gamemode, typically TGMC and xenos
+	var/list/factions = list(FACTION_TERRAGOV, FACTION_ALIEN)
 
 //Distress call variables.
 	var/list/datum/emergency_call/all_calls = list() //initialized at round start and stores the datums.

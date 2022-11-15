@@ -399,9 +399,9 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 	var/obj/structure/disposalholder/H = new()	// virtual holder object which actually
 												// travels through the pipes.
 
-	sleep(10)
+	sleep(1 SECONDS)
 	playsound(src, 'sound/machines/disposalflush.ogg', 25, 0)
-	sleep(5) // wait for animation to finish
+	sleep(0.5 SECONDS) // wait for animation to finish
 
 	H.init(src)	// copy the contents of disposer to holder
 

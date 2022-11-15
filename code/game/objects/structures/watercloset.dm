@@ -352,7 +352,7 @@
 	to_chat(usr, span_notice("You start washing your hands."))
 
 	busy = 1
-	sleep(40)
+	sleep(4 SECONDS)
 	busy = 0
 
 	if(!Adjacent(user)) return		//Person has moved away from the sink

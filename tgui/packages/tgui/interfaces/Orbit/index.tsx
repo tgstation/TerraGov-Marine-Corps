@@ -2,17 +2,7 @@ import { filter, sortBy } from 'common/collections';
 import { flow } from 'common/fp';
 import { capitalizeFirst, multiline } from 'common/string';
 import { useBackend, useLocalState } from 'tgui/backend';
-import {
-  Box,
-  Button,
-  Collapsible,
-  Icon,
-  Input,
-  LabeledList,
-  NoticeBox,
-  Section,
-  Stack,
-} from 'tgui/components';
+import { Box, Button, Collapsible, Icon, Input, LabeledList, NoticeBox, Section, Stack } from 'tgui/components';
 import { Window } from 'tgui/layouts';
 import { getDisplayColor, getDisplayName, isJobOrNameMatch } from './helpers';
 import type { Observable, OrbitData } from './types';

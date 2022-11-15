@@ -31,17 +31,20 @@
 
 /obj/item/mecha_parts/mecha_equipment/generator/greyscale
 	name = "phoron engine"
-	desc = "An advanced Nanotrasen phoron engine core prototype designed for TGMC advanced mech exosuits. Uses solid phoron as fuel, click engine to refuel. The increased power generation comes at a cost to speed due to the weight."
+	desc = "An advanced Nanotrasen phoron engine core prototype designed for TGMC advanced mech exosuits. Uses solid phoron as fuel, click engine to refuel. The lightest engine mechs can use at a cost of recharge rate and max fuel capacity."
 	icon_state = "phoron_engine"
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
-	rechargerate = 100
-	slowdown = 0.2
+	rechargerate = 5
+	slowdown = 0.3
+	max_fuel = 30000
 
 /obj/item/mecha_parts/mecha_equipment/generator/greyscale/upgraded
 	name = "fusion engine"
-	desc = "A highly experimental phoron fusion core. Generates more power at the same consumption rate, but slows you down even more than the standard phoron engine. Uses solid phoron as fuel, click engine to refuel. Nanotrasen does not take any responsibility in case of detonation."
+	desc = "A highly experimental phoron fusion core. Generates more power at the same consumption rate, but slows you down even more than the standard phoron engine. Uses solid phoron as fuel, click engine to refuel. The heaviest engine mechs can use at a cost of speed due to weight."
 	icon_state = "phoron_engine_adv"
-	slowdown = 0.4
+	rechargerate = 10
+	slowdown = 0.6
+	max_fuel = 60000
 
 /obj/item/mecha_parts/mecha_equipment/energy_optimizer
 	name = "energy optimizer"
@@ -63,6 +66,25 @@
 	chassis.overload_step_energy_drain_min /= 0.50
 	return ..()
 
+/obj/item/mecha_parts/mecha_equipment/melee_core
+	name = "melee core"
+	desc = "A bluespace orion-sperkov converter. Through science you can't be bothered to understand, makes mechs faster and their weapons able to draw more power, making them more dangerous. However this comes at the cost of not being able to use projectile and laser weaponry."
+	icon_state = "melee_core"
+	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	equipment_slot = MECHA_UTILITY
+	///speed amount we modify the mech by
+	var/speed_mod
+
+/obj/item/mecha_parts/mecha_equipment/melee_core/attach(obj/vehicle/sealed/mecha/M, attach_right)
+	. = ..()
+	ADD_TRAIT(M, TRAIT_MELEE_CORE, REF(src))
+	speed_mod = min(chassis.move_delay-1, round(chassis.move_delay * 0.5))
+	M.move_delay -= speed_mod
+
+/obj/item/mecha_parts/mecha_equipment/melee_core/detach(atom/moveto)
+	REMOVE_TRAIT(chassis, TRAIT_MELEE_CORE, REF(src))
+	chassis.move_delay += speed_mod
+	return ..()
 
 
 /obj/item/mecha_parts/mecha_equipment/ability
