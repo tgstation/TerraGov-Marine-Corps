@@ -331,6 +331,30 @@
 	///Icon state used for an added overlay for a sentry. Currently only used in Build-A-Sentry.
 	var/placed_overlay_iconstate = "rifle"
 
+/*
+ * Heat Mechanics Vars
+*/
+	///If the gun uses overheat mechanics.
+	var/use_heat = FALSE
+	///Current heat of the gun.
+	var/heat_level = 0
+	///Max heat of the gun.
+	var/max_heat = 50
+	///Amount of heat per shot.
+	var/heat_amount = 1
+	///Amount of cooling per tick.
+	var/cool_amount = 5
+	///Amount of time the gun is unable to fire after it has overheated.
+	var/cooldown_time = 5 SECONDS
+	///If the gun is overheated.
+	var/overheated = FALSE
+	///Stores the timer for overheat.
+	var/overheat_timer
+	///Smoke particles on overheat.
+	var/obj/effect/abstract/particle_holder/overheat_smoke
+	///Overheat overlay.
+	var/image/heat_overlay
+
 //----------------------------------------------------------
 				//				    \\
 				// NECESSARY PROCS  \\
@@ -352,6 +376,8 @@
 		AddElement(/datum/element/attachment, slot, icon, .proc/on_attach, .proc/on_detach, .proc/activate, .proc/can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, "firearms", SKILL_FIREARMS_DEFAULT, 'sound/machines/click.ogg')
 
 	muzzle_flash = new(src, muzzleflash_iconstate)
+	if(use_heat)
+		heat_overlay = image(icon, icon_state = icon_state + "_overheat")
 
 	if(deployable_item)
 		AddElement(/datum/element/deployable_item, deployable_item, type, deploy_time, undeploy_time)
@@ -454,6 +480,17 @@
 	if(master_gun)
 		for(var/datum/action/action AS in master_gun.actions)
 			action.update_button_icon()
+
+	if(use_heat)
+		if(overheated)
+			if(overheat_smoke)
+				return
+			overlays += heat_overlay
+			overheat_smoke = new(src, /particles/mecha_smoke)
+			overheat_smoke.particles.position = list(8, 8, 0)
+		else
+			QDEL_NULL(overheat_smoke)
+			overlays -= heat_overlay
 
 	update_item_state()
 
@@ -887,6 +924,9 @@
 
 	if(fire_animation) //Fires gun firing animation if it has any. ex: rotating barrel
 		flick("[fire_animation]", src)
+	if(use_heat)
+		heat_level += heat_amount
+		START_PROCESSING(SSobj, src)
 
 	return TRUE
 
@@ -1534,6 +1574,12 @@
 	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_ATTACHMENT) && !master_gun && CHECK_BITFIELD(flags_gun_features, GUN_ATTACHMENT_FIRE_ONLY))
 		to_chat(user, span_notice("You cannot fire [src] without it attached to a gun!"))
 		return FALSE
+	if(heat_level >= max_heat || overheated)
+		user.balloon_alert(user, "The gun is overheated!")
+		if(!overheat_timer)
+			overheated = TRUE
+			overheat_timer = addtimer(CALLBACK(src, .proc/cooldown), cooldown_time, TIMER_STOPPABLE)
+		return FALSE
 	return TRUE
 
 /obj/item/weapon/gun/proc/gun_on_cooldown(mob/user)
@@ -1749,3 +1795,16 @@
 	playsound(loc, "alien_claw_metal", 25, 1)
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	to_chat(X, span_warning("We disable the metal thing's lights.") )
+
+/obj/item/weapon/gun/process()
+	heat_level -= cool_amount
+	if(heat_level <= 0)
+		heat_level = 0
+		STOP_PROCESSING(SSobj, src)
+	update_icon()
+
+///Allows the gun to fire after overheat timer is over
+/obj/item/weapon/gun/proc/cooldown()
+	overheated = FALSE
+	deltimer(overheat_timer)
+	overheat_timer = null
