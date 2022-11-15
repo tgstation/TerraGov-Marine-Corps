@@ -151,7 +151,11 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 
 	gift_type_list += subtypesof(/obj/item/clothing/head/collectable)
 	gift_type_list += subtypesof(/obj/item/toy) //All toys, except for abstract types and syndicate cards.
-
+	gift_type_list += subtypesof(/obj/item/cell)
+	gift_type_list += subtypesof(/obj/item/explosive/grenade)
+	gift_type_list += subtypesof(/obj/item/clothing/gloves)
+	gift_type_list += subtypesof(/obj/item/clothing/head)
+	gift_type_list += subtypesof(/obj/item/clothing/mask)
 	var/gift_type = pick(gift_type_list)
 
 	return gift_type
