@@ -519,4 +519,4 @@
 /datum/chemical_reaction/eggnog
 	name = "Eggnog"
 	results = list(/datum/reagent/consumable/ethanol/eggnog = 15)
-	required_reagents = list(/datum/reagent/consumable/ethanol/rum = 5, /datum/reagent/consumable/cream = 5, /datum/reagent/consumable/eggyolk = 2)
+	required_reagents = list(/datum/reagent/consumable/ethanol/rum = 5, /datum/reagent/consumable/drink/milk/cream = 5, /datum/reagent/consumable/sugar = 2)

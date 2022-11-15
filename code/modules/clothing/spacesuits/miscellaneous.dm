@@ -40,14 +40,14 @@
 
 /obj/item/clothing/suit/space/santa/special //for ERT, when santa has to give presents to REALLY naughty children
 	desc = "That's not red dye. That's red blood."
-	soft_armor = list(MELEE = 70, BULLET = 50, LASER = 40, ENERGY = 25, BOMB = 90, BIO = 70, FIRE = 20, ACID = 20)
+	soft_armor = list(MELEE = 75, BULLET = 50, LASER = 40, ENERGY = 25, BOMB = 90, BIO = 70, FIRE = 20, ACID = 50)
 	slowdown = 1
 	flags_item = NODROP|DELONDROP
 
 /obj/item/clothing/head/helmet/space/santahat/special
 	name = "Santa's hat"
 	desc = "Ho ho ho. Merrry X-mas to all! Now you're all gonna die!"
-	soft_armor = list(MELEE = 70, BULLET = 45, LASER = 35, ENERGY = 20, BOMB = 90, BIO = 70, FIRE = 20, ACID = 20)
+	soft_armor = list(MELEE = 75, BULLET = 45, LASER = 35, ENERGY = 20, BOMB = 90, BIO = 70, FIRE = 20, ACID = 50)
 	flags_item = NODROP|DELONDROP
 
 /obj/item/clothing/suit/space/elf
@@ -91,7 +91,6 @@
 	slowdown = 3
 	soft_armor = list(MELEE = 35, BULLET = 35, LASER = 30, ENERGY = 15, BOMB = 30, BIO = 30, FIRE = 0, ACID = 0)
 	w_class = WEIGHT_CLASS_NORMAL
-	body_parts_covered = CHEST|GROIN
 	flags_armor_protection = FULL_BODY
 
 /obj/item/clothing/head/snowman

@@ -152,7 +152,7 @@
 	r_store = /obj/item/storage/pouch/magazine/pistol/large
 	l_store = /obj/item/storage/pouch/medkit
 	back = /obj/item/storage/backpack/santabag
-	suit_store = /obj/item/weapon/gun/pistol/auto9
+	suit_store = /obj/item/weapon/gun/launcher/rocket/m57a4
 
 /datum/outfit/job/santa/leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -161,13 +161,15 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/christmas_cookieone, SLOT_IN_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/christmas_cookietwo, SLOT_IN_HEAD)
 
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/auto9, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/auto9, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/auto9, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/auto9, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/auto9, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/auto9, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/auto9, SLOT_IN_R_POUCH)
 
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/auto9, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/auto9, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/auto9, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/auto9, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/auto9, SLOT_IN_BACKPACK)
@@ -179,7 +181,6 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/m57a4, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/m57a4, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/m57a4, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/launcher/rocket/m57a4, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/PMC, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/PMC, SLOT_IN_BACKPACK)
 
@@ -221,7 +222,6 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/PMC, SLOT_IN_BACKPACK)
 
 	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/medium_stack, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/stack/sheet/glass/small_stack, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/medium_stack, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)

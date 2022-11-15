@@ -693,7 +693,7 @@
 
 /obj/item/prop/mainship/candle
 	name = "candle"
-	desc = "An unlit decorative candle, it faintly smells of [pick("christmas","ornaments","Santa","pine trees")] and [pick("wrapping paper","sleigh bells","chestnuts","mistletoe")]."
+	desc = "An unlit decorative candle, it faintly smells of Santa and wrapping paper."
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "candle"
 	coverage = 5
@@ -706,21 +706,29 @@
 	//used for easy reverting back to default icon_state once the candle burns out
 	var/base_icon_state = "candle"
 
+/obj/item/prop/mainship/candle/Initialize()
+	. = ..()
+	desc = "An unlit decorative candle, it faintly smells of [pick("christmas","ornaments","Santa","pine trees")] and [pick("wrapping paper","sleigh bells","chestnuts","mistletoe")]."
 
 /obj/item/prop/mainship/candle/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(istype(obj/item/tool/lighter))
+	if(istype(I, /obj/item/tool/lighter))
 		var/obj/item/tool/lighter/lighting_instrument = I
-		if(I.heat && !litcandle)
+		if(lighting_instrument.heat && !litcandle)
 			litcandle = TRUE
 			desc = "A brightly burning candle, it casts soft shadows all around it."
-			light(span_rose("With a flick of [user.p_their()] wrist, [user] lights the candle."))
-			icon_state = [base_icon_state] += "_lit"
-			set_light(brightness_on)
-			addtimer(CALLBACK(GLOBAL_PROC, .proc/burnoutcandle, src), 15 MINUTES) //candles last for 15 minutes after being lit
+			src.balloon_alert_to_viewers("Lights the candle")
+			icon_state += "_lit"
+			set_light(candlelight)
 
-/obj/item/prop/mainship/candle/burnoutcandle()
-	balloon_alert_to_viewers("Burns out")
+/obj/item/prop/mainship/candle/attack_alien(mob/living/carbon/xenomorph/attackingxeno, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+	if(litcandle)
+		attackingxeno.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+		attackingxeno.visible_message(span_danger("\The [attackingxeno] claws the candle, smothering the flame!"), \
+		span_danger("You smother the candle with your claw, extinguishing the flame!"), null, 5)
+		burnoutcandle()
+
+/obj/item/prop/mainship/candle/proc/burnoutcandle()
 	icon_state = base_icon_state
 	desc = "An unlit decorative candle, it faintly smells of [pick("christmas","ornaments","Santa","pine trees")] and [pick("wrapping paper","sleigh bells","chestnuts","mistletoe")]."
 	set_light(0)
@@ -1489,12 +1497,12 @@
 	desc = "A festive sock tacked to a wall, traditonally stuffed with presents."
 	icon_state = "stocking"
 	//how many presents we have stored
-	var/numberofpresents
+	var/numberofpresents = 0
 
 /obj/structure/prop/holidays/stocking/Initialize()
 	. = ..()
 	pixel_y = 26
-	if(prob(10))
+	if(prob(25))
 		numberofpresents = rand(1,3)
 
 /obj/structure/prop/holidays/stocking/attack_hand(mob/living/user)
@@ -1509,5 +1517,15 @@
 		user.balloon_alert_to_viewers("A present tumbles free" ,ignored_mobs = user)
 		user.balloon_alert(user, "Found a present")
 		user.put_in_hands(I)
-		I.add_fingerprint(user)
 		numberofpresents -= 1
+		return
+	else
+		user.balloon_alert(user, "Empty")
+
+/obj/structure/prop/holidays/stocking/attack_alien(mob/living/carbon/xenomorph/attackingxeno, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+	if(!do_after(attackingxeno, 5 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
+		return
+	attackingxeno.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+	attackingxeno.visible_message(span_danger("\The [attackingxeno] pulls [src] down and slices it apart!"), \
+	span_danger("You pull the [src] down and rip it to shreds!"), null, 5)
+	qdel(src)

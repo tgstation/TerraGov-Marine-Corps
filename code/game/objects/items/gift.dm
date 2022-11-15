@@ -15,7 +15,6 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	desc = "A wrapped bundle of joy, you'll have to get closer to see who it's addressed to."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "gift0"
-	inhand_icon_state = "gift0"
 	resistance_flags = RESIST_ALL
 	///if true the present can be opened by anybody
 	var/freepresent = FALSE
@@ -35,8 +34,8 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 /obj/item/a_gift/attack_self(mob/M)
 	if(present_receiver == null)
 		get_recipient()
-	to_chat(user, span_warning("You start unwrapping the present, trying to locate any sign of who the present belongs to..."))
-	if(!do_after(user, 4 SECONDS))
+	to_chat(M, span_warning("You start unwrapping the present, trying to locate any sign of who the present belongs to..."))
+	if(!do_after(M, 4 SECONDS))
 		return
 	if(!freepresent && present_receiver != M)
 		if(tgui_alert(M, "This present is addressed to [present_receiver]. Open it anyways?", "Continue?", list("Yes", "No")) != "No")
@@ -54,11 +53,12 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	spawnpresent(M)
 
 /obj/item/a_gift/proc/get_recipient(mob/M)
+	var/list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND, ZTRAIT_RESERVED))
 	var/list/eligible_targets = list()
 	for(var/z in z_levels)
 		for(var/i in GLOB.alive_human_list)
 			var/mob/living/carbon/human/potential_gift_receiver = i
-			if(!istype(possible_target) || !possible_target.client)
+			if(!istype(potential_gift_receiver) || !potential_gift_receiver.client)
 				continue
 			eligible_targets += potential_gift_receiver
 	if(!length(eligible_targets))
@@ -72,17 +72,16 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	if(!QDELETED(I)) //might contain something like metal rods that might merge with a stack on the ground
 		M.balloon_alert_to_viewers("Found a [I]")
 		M.put_in_hands(I)
-		I.add_fingerprint(M)
 	else
 		M.balloon_alert_to_viewers("Nothing inside [M]'s gift" ,ignored_mobs = M)
-		M.balloon_alert(user, "Nothing inside")
+		M.balloon_alert(M, "Nothing inside")
 
 /obj/item/a_gift/proc/get_gift_type()
 	var/gift_type_list = list(/obj/item/weapon/claymore/mercsword/commissar_sword,
 		/obj/item/weapon/claymore/mercsword,
 		/obj/item/weapon/claymore/mercsword/machete,
 		/obj/item/weapon/energy/sword/blue,
-		/obj/item/weapon/energy/esword,
+		/obj/item/weapon/holo/esword,
 		/obj/item/toy/sword,
 		/obj/item/toy/dice/d20,
 		/obj/item/toy/plush/rouny,
@@ -95,11 +94,11 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		/obj/item/storage/fancy/crayons,
 		/obj/item/storage/backpack/holding,
 		/obj/item/storage/belt/champion,
-		/obj/item/soap/deluxe,
+		/obj/item/tool/soap/deluxe,
 		/obj/item/tool/pickaxe/diamond,
 		/obj/item/tool/pen/invisible,
 		/obj/item/explosive/grenade/smokebomb,
-		/obj/item/grown/corncob,
+		/obj/item/corncob,
 		/obj/item/spacecash/c500,
 		/obj/item/spacecash/c100,
 		/obj/item/coin/diamond,
@@ -108,7 +107,6 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		/obj/item/clothing/glasses/sunglasses/aviator/yellow,
 		/obj/item/clothing/head/boonie,
 		/obj/item/clothing/mask/cigarette/pipe/cobpipe,
-		/obj/item/book/manual/wiki/barman_recipes,
 		/obj/item/book/manual/chef_recipes,
 		/obj/item/clothing/head/helmet/space/santahat,
 		/obj/item/instrument/bikehorn,
@@ -152,7 +150,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		/obj/item/ore/coal)
 
 	gift_type_list += subtypesof(/obj/item/clothing/head/collectable)
-	gift_type_list += subtypesof(/obj/item/toy) - (((typesof(/obj/item/toy/cards) - /obj/item/toy/cards/deck) + /obj/item/toy/figure + /obj/item/toy/ammo)) //All toys, except for abstract types and syndicate cards.
+	gift_type_list += subtypesof(/obj/item/toy) //All toys, except for abstract types and syndicate cards.
 
 	var/gift_type = pick(gift_type_list)
 
@@ -166,10 +164,6 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 /obj/item/a_gift/anything/get_gift_type()
 	if(!GLOB.possible_gifts.len)
 		var/list/gift_types_list = subtypesof(/obj/item)
-		for(var/V in gift_types_list)
-			var/obj/item/I = V
-			if((!initial(I.icon_state)) || (!initial(I.inhand_icon_state)) || (initial(I.item_flags) & ABSTRACT))
-				gift_types_list -= V
 		GLOB.possible_gifts = gift_types_list
 	var/gift_type = pick(GLOB.possible_gifts)
 

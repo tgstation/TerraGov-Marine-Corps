@@ -620,7 +620,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	construction = SKILL_CONSTRUCTION_MASTER
 	firearms = SKILL_FIREARMS_TRAINED
 	smartgun = SKILL_SMART_MASTER
-	medical = SKILL_MEDICAL_TRAINED
+	medical = SKILL_MEDICAL_PRACTICED
 	cqc = SKILL_CQC_MASTER
 	surgery = SKILL_SURGERY_TRAINED
 	melee_weapons = SKILL_MELEE_SUPER

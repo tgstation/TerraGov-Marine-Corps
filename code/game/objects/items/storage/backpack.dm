@@ -83,7 +83,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	storage_slots = null
 	max_w_class = 4
-	max_storage_space = 400 // can store a ton of shit!
+	max_storage_space = 60 // can store a ton of shit!
 	flags_item = NODROP|DELONDROP
 
 /obj/item/storage/backpack/cultpack

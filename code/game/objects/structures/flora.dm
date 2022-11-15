@@ -125,6 +125,7 @@
 
 /obj/structure/flora/tree/pine/xmas/presents/Initialize(mapload)
 	. = ..()
+	icon_state = "pinepresents"
 	if(!took_presents)
 		took_presents = list()
 
