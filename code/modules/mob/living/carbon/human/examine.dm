@@ -1,7 +1,7 @@
 /mob/living/carbon/human/examine(mob/user)
 	SHOULD_CALL_PARENT(FALSE)
 	if (isxeno(user))
-		var/msg = "<span class='info'>*---------*\nThis is "
+		var/msg = "<span class='info'>This is "
 		if(icon)
 			msg += "[icon2html(icon, user)] "
 		msg += "<b>[name]</b>!\n"
@@ -26,7 +26,7 @@
 			msg += "Transvitox: 40% brute/burn injuries received are converted to toxin\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
 			msg += "Hemodile: 20% stamina damage received, when damaged, and slowed by 25% (inject neurotoxin for 50% slow)\n"
-		msg += "*---------*</span>"
+		msg += "</span>"
 		return list(msg)
 
 	var/skipgloves = 0
@@ -60,7 +60,7 @@
 	var/t_has = p_have()
 	var/t_is = p_are()
 
-	var/msg = "<span class='info'>*---------*\nThis is "
+	var/msg = "<span class='info'>This is "
 
 	if(icon)
 		msg += "[icon2html(icon, user)] " //fucking BYOND: this should stop dreamseeker crashing if we -somehow- examine somebody before their icon is generated
@@ -525,7 +525,7 @@
 	if(has_status_effect(STATUS_EFFECT_ADMINSLEEP))
 		msg += span_highdanger("<B>This player has been slept by staff.</B>\n")
 
-	msg += "*---------*</span>"
+	msg += "</span>"
 
 	return list(msg)
 

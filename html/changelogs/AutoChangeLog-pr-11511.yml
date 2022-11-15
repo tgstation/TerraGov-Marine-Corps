@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - rscadd: "Adds supply drop event to HvH"
+  - rscadd: "Added a supply drop specific SOM burst shotgun"

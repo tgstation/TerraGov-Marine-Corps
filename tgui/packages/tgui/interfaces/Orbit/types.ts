@@ -1,4 +1,4 @@
-import { BooleanLike } from "common/react";
+import { BooleanLike } from 'common/react';
 
 export type OrbitData = {
   auto_observe: BooleanLike;
