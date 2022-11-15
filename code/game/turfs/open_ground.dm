@@ -29,7 +29,6 @@
 	barefootstep = FOOTSTEP_WATER
 	mediumxenofootstep = FOOTSTEP_WATER
 	heavyxenofootstep = FOOTSTEP_WATER
-	draw_minimap = TRUE
 	minimap_color = MINIMAP_WATER
 
 /obj/effect/river_overlay
