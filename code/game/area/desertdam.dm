@@ -11,6 +11,7 @@
 //NorthEastern Lab Section
 /area/desert_dam/interior/lab_northeast
 	ceiling = CEILING_DEEP_UNDERGROUND
+	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
 /area/desert_dam/interior/lab_northeast
 	name = "Northeastern Lab"
 	icon_state = "purple"
@@ -62,12 +63,15 @@
 /area/desert_dam/interior/lab_northeast/east_lab_security_checkpoint
 	name = "East Lab Security Checkpoint"
 	icon_state = "purple"
+	minimap_color = MINIMAP_AREA_SEC_CAVE
 /area/desert_dam/interior/lab_northeast/east_lab_security_office
 	name = "East Lab Security Office"
 	icon_state = "security"
+	minimap_color = MINIMAP_AREA_SEC_CAVE
 /area/desert_dam/interior/lab_northeast/east_lab_security_armory
 	name = "East Lab Armory"
 	icon_state = "armory"
+	minimap_color = MINIMAP_AREA_SEC_CAVE
 /area/desert_dam/interior/lab_northeast/east_lab_xenobiology
 	name = "East Lab Xenobiology"
 	icon_state = "red"
@@ -188,12 +192,9 @@
 /area/desert_dam/interior/caves/northern_caves
 	name = "Northern Caves"
 	icon_state = "red"
-	minimap_color = MINIMAP_AREA_CAVES
 /area/desert_dam/interior/caves/east_caves
 	name = "Eastern Caves"
 	icon_state = "red"
-	minimap_color = MINIMAP_AREA_CAVES
-
 /area/desert_dam/interior/caves/central_caves
 	name = "Central Caves"
 	icon_state = "yellow"
@@ -206,7 +207,6 @@
 /area/desert_dam/interior/caves/central_caves/entrances/west_tunnel_entrance
 	name = "Western Central Tunnel Entrance"
 	icon_state = "red"
-
 /area/desert_dam/interior/caves/temple
 	name = "Sand Temple"
 	icon_state = "green"
@@ -249,6 +249,7 @@
 /area/desert_dam/building/administration/control_room
 	name = "Administration Landing Control Room"
 	icon_state = "yellow"
+	minimap_color = MINIMAP_AREA_COMMAND
 /area/desert_dam/building/administration/lobby
 	name = "Administration Lobby"
 	icon_state = "green"
@@ -674,33 +675,29 @@
 
 /area/desert_dam/exterior/landing
 	always_unpowered = FALSE
+	minimap_color = MINIMAP_AREA_LZ
 
 //Landing Pad for the Alamo. THIS IS NOT THE SHUTTLE AREA
 /area/desert_dam/exterior/landing/landing_pad_one
 	name = "Airstrip Landing Pad"
 	icon_state = "landing_pad"
-	minimap_color = MINIMAP_AREA_LZ
 /area/desert_dam/exterior/landing/landing_pad_one_external
 	name = "Airstrip Landing Valley"
 	icon_state = "landing_pad_ext"
-	minimap_color = MINIMAP_AREA_COLONY
 
 
 //Landing Pad for the Normandy. THIS IS NOT THE SHUTTLE AREA
 /area/desert_dam/exterior/landing/landing_pad_two
 	name = "Eastern Aerodrome Landing Pad"
 	icon_state = "landing_pad"
-	minimap_color = MINIMAP_AREA_LZ
 /area/desert_dam/exterior/landing/landing_pad_two_external
 	name = "Eastern Landing Valley"
 	icon_state = "landing_pad_ext"
-	minimap_color = MINIMAP_AREA_COLONY
 
 //Landing Pad for the abandoned tradeship, not used for transit. THIS IS NOT THE SHUTTLE AREA
 /area/desert_dam/exterior/landing/landing_pad_three
 	name = "Aerodrome Landing Pad"
 	icon_state = "landing_pad"
-	minimap_color = MINIMAP_AREA_LZ
 /area/desert_dam/exterior/landing/landing_pad_three_external
 	name = "Aerodrome Landing Valley"
 	icon_state = "landing_pad_ext"
@@ -751,7 +748,6 @@
 /area/desert_dam/exterior/valley/valley_crashsite
 	name = "Crash Site Valley"
 	icon_state = "yellow"
-	minimap_color = MINIMAP_AREA_CAVES
 /area/desert_dam/exterior/valley/north_valley_dam
 	name = "North Dam Valley"
 	icon_state = "valley"
