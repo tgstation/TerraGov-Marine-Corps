@@ -1200,6 +1200,15 @@
 	resistance_flags = RESIST_ALL
 	layer = ABOVE_MOB_LAYER
 
+/obj/structure/prop/vehicle/apc/Initialize()
+	. = ..()
+	if(dir == EAST || dir == WEST)
+		bound_height = 64
+		pixel_y = -20
+	else
+		bound_width = 64
+		pixel_x = -34
+
 /obj/structure/prop/vehicle/apc/med
 	icon_state = "apc_base_med"
 

@@ -50,6 +50,14 @@
 	equip_cooldown = projectile_delay
 	muzzle_flash = new(src, muzzle_iconstate)
 
+/obj/item/mecha_parts/mecha_equipment/weapon/action_checks(atom/target, ignore_cooldown)
+	. = ..()
+	if(!.)
+		return
+	if(HAS_TRAIT(chassis, TRAIT_MELEE_CORE))
+		to_chat(chassis.occupants, span_warning("Error -- Melee Core active."))
+		return FALSE
+
 /obj/item/mecha_parts/mecha_equipment/weapon/action(mob/source, atom/target, list/modifiers)
 	if(!action_checks(target))
 		return FALSE

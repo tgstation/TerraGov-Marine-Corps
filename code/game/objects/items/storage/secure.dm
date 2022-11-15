@@ -105,10 +105,11 @@
 			l_hacking = FALSE
 			return
 
+
 		l_setshort = TRUE
 		l_set = FALSE
 		user.show_message(span_warning(" Internal memory reset.  Please give it a few seconds to reinitialize."))
-		sleep(80)
+		sleep(8 SECONDS)
 		l_setshort = FALSE
 		l_hacking = FALSE
 

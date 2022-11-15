@@ -1,0 +1,4 @@
+author: "QualityVan"
+delete-after: True
+changes:
+  - balance: "First mech slot at 25 marines, second at 65, up from 0/40."

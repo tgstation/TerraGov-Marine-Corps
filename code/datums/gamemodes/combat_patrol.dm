@@ -6,6 +6,7 @@
 	shutters_drop_time = 3 MINUTES
 	flags_xeno_abilities = ABILITY_CRASH
 	time_between_round = 0 HOURS
+	factions = list(FACTION_TERRAGOV, FACTION_SOM)
 	valid_job_types = list(
 		/datum/job/terragov/squad/engineer = 4,
 		/datum/job/terragov/squad/corpsman = 8,
