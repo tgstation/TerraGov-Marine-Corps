@@ -203,8 +203,7 @@
 				span_notice("You remove the holo card on yourself."), null, 3)
 			return
 
-		visible_message(span_notice("[src] examines [p_them()]self."),
-			span_notice("You check yourself for injuries."), null, 3)
+
 		check_self_for_injuries()
 		return
 
@@ -213,6 +212,8 @@
 
 /mob/living/carbon/human/proc/check_self_for_injuries()
 	var/list/final_msg = list()
+	balloon_alert_to_viewers("Examines [p_them()]self.", "You examine yourself")
+	final_msg += span_notice("<b>You check yourself for injuries.</b>")
 
 	for(var/datum/limb/org in limbs)
 		var/status = ""
@@ -302,4 +303,4 @@
 		if(26 to INFINITY)
 			final_msg += span_info("Your body aches all over, it's driving you mad!")
 
-	to_chat(src, final_msg.Join("\n"))
+	to_chat(src, examine_block(final_msg.Join("\n")))
