@@ -268,6 +268,7 @@
 /area/lv624/lazarus/armory
 	name = "\improper Armory"
 	icon_state = "armory"
+	minimap_color = MINIMAP_AREA_SEC
 
 /area/lv624/lazarus/security
 	name = "\improper Security"
@@ -335,6 +336,7 @@
 /area/lv624/lazarus/engineering
 	name = "\improper Engineering"
 	icon_state = "engine_smes"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/lv624/lazarus/comms
 	name = "\improper Communications Relay"
@@ -343,7 +345,7 @@
 /area/lv624/lazarus/secure_storage
 	name = "\improper Secure Storage"
 	icon_state = "storage"
-	minimap_color = MINIMAP_AREA_ENGI
+	minimap_color = MINIMAP_AREA_SEC
 
 /area/lv624/lazarus/internal_affairs
 	name = "\improper Internal Affairs"
@@ -420,8 +422,10 @@
 	name = "\improper Eastern Space Port"
 	icon_state = "landingzone1"
 	flags_area = NO_DROPPOD
+	minimap_color = MINIMAP_AREA_LZ
 
 /area/lv624/lazarus/spaceport2
 	name = "\improper Western Space Port"
 	icon_state = "landingzone2"
 	flags_area = NO_DROPPOD
+	minimap_color = MINIMAP_AREA_LZ
