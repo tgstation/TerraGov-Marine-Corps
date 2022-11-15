@@ -1,4 +1,4 @@
-//Procedures in this file: Generic ribcage opening steps, Removing alien embryo, Fixing internal organs.
+//Procedures in this file: Generic ribcage opening steps, antifat
 //////////////////////////////////////////////////////////////////
 //				GENERIC	RIBCAGE SURGERY							//
 //////////////////////////////////////////////////////////////////
@@ -138,3 +138,55 @@
 	span_notice("You applied \the [tool] to [target]'s [affected.encased]."))
 	target.balloon_alert_to_viewers("Success")
 	affected.surgery_open_stage = 2
+
+/datum/surgery_step/fat_removal
+	allowed_tools = list(
+		/obj/item/tool/surgery/scalpel = 100,
+		/obj/item/tool/kitchen/knife = 75,
+		/obj/item/shard = 50,
+		/obj/item/weapon/combat_knife = 25,
+		/obj/item/stack/throwing_knife = 15,
+		/obj/item/weapon/claymore/mercsword = 1,
+	)
+	min_duration = DEFAT_MIN_DURATION
+	max_duration = DEFAT_MAX_DURATION
+	priority = 2
+	can_infect = TRUE
+	blood_level = 1
+
+/datum/surgery_step/fat_removal/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
+	if(target_zone != BODY_ZONE_CHEST) //Ungas only store fat in their chest cavity, it's science fact
+		return SURGERY_CANNOT_USE
+	if(!affected)
+		return SURGERY_CANNOT_USE
+	if(affected.limb_status & (LIMB_DESTROYED | LIMB_ROBOT))
+		return SURGERY_CANNOT_USE
+	if(affected.surgery_open_stage < 2)
+		return SURGERY_CANNOT_USE
+	if(target.nutrition < NUTRITION_OVERFED)
+		return SURGERY_CANNOT_USE
+	return SURGERY_CAN_USE
+
+/datum/surgery_step/fat_removal/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
+	user.visible_message(span_notice("[user] starts cutting away at [target]'s [affected.display_name] with \the [tool]."), \
+	span_notice("You start carving out the fat from [target]'s [affected.display_name]."))
+	target.custom_pain("Something hurts horribly in your [affected.display_name]!",1)
+	target.balloon_alert_to_viewers("Carving")
+	return ..()
+
+/datum/surgery_step/fat_removal/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
+	user.visible_message(span_notice("[user] finishes slicing up [target]'s [affected.display_name]."), \
+	span_notice("You remove the spare fat from [target]'s [affected.display_name]."))
+	target.balloon_alert_to_viewers("Success")
+	var/nutrition_removed = target.nutrition - (NUTRITION_HUNGRY + 50)
+	affected.take_damage_limb(nutrition_removed / 20, 0, TRUE, updating_health = TRUE)
+	target.set_nutrition(NUTRITION_HUNGRY + 50)
+	return ..()
+
+/datum/surgery_step/fat_removal/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
+	user.visible_message(span_warning("[user]'s hand slips, cutting a gouge into [target]'s [affected.encased]!"), \
+	span_warning("Your hand slips, cutting deep into [target]'s [affected.encased]"))
+	target.balloon_alert_to_viewers("Slipped!")
+	var/nutrition_removed = target.nutrition - (NUTRITION_HUNGRY + 50)
+	affected.take_damage_limb(nutrition_removed / 40, 0, TRUE, updating_health = TRUE)
+	return ..()
