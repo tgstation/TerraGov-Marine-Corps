@@ -85,6 +85,9 @@
 	max_w_class = 4
 	max_storage_space = 60 // can store a ton of shit!
 	flags_item = NODROP|DELONDROP
+	bypass_w_limit = list(
+		/obj/item/weapon/gun/launcher/rocket/m57a4,
+	)
 
 /obj/item/storage/backpack/cultpack
 	name = "trophy rack"

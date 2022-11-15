@@ -352,6 +352,31 @@
 	new /obj/item/flashlight(src)
 	new /obj/item/tool/taperoll/police(src)
 
+/obj/item/storage/belt/coalbelt
+	name = "\improper C-H0H0 Christmas coal rig"
+	desc = "The H0H0 is the standard load-bearing equipment of the Santa Claus. It consists of a large number of pockets that Santa traditionally fills with coal for hitting people who slow down his deliveries."
+	icon_state = "securitybelt"
+	item_state = "security"
+	storage_slots = 10
+	max_w_class = 3
+	max_storage_space = 21
+	can_hold = list(
+		/obj/item/stack/throwing_knife/coal,
+	)
+
+/obj/item/storage/belt/coalbelt/full/Initialize()
+	. = ..()
+	new /obj/item/stack/throwing_knife/coal(src)
+	new /obj/item/stack/throwing_knife/coal(src)
+	new /obj/item/stack/throwing_knife/coal(src)
+	new /obj/item/stack/throwing_knife/coal(src)
+	new /obj/item/stack/throwing_knife/coal(src)
+	new /obj/item/stack/throwing_knife/coal(src)
+	new /obj/item/stack/throwing_knife/coal(src)
+	new /obj/item/stack/throwing_knife/coal(src)
+	new /obj/item/stack/throwing_knife/coal(src)
+	new /obj/item/stack/throwing_knife/coal(src)
+
 /obj/item/storage/belt/security/tactical
 	name = "combat belt"
 	desc = "Can hold security gear like handcuffs and flashes, with more pouches for more storage."

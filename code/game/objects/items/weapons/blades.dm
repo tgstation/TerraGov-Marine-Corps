@@ -356,6 +356,19 @@
 			continue
 		break
 
+/obj/item/stack/throwing_knife/coal
+	name = "\improper weighted coal"
+	icon = 'icons/obj/mining.dmi'
+	icon_state = "Coal ore"
+	desc = "Rumor has it that Santa beans naughty children in the head with coal if they spot him delivering presents. Tightly packed and with a core consisting of discarded fruitcake, Santa's coal packs a surprisingly mean punch when thrown."
+	force = 25
+	throwforce = 40 //less than throwing knife
+	sharp = IS_NOT_SHARP_ITEM
+	stack_name = "stack"
+	singular_name = "coal"
+	throw_speed = 10 //twice as fast though
+	hitsound = 'sound/weapons/punch4.ogg'
+	attack_verb = list("bruised", "smashed", "cracked", "whomped", "walloped", "battered", "smacked")
 
 /obj/item/weapon/chainsword
 	name = "chainsword"

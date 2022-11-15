@@ -140,7 +140,7 @@
 	name = "Santa Claus"
 	jobtype = /datum/job/santa/leader
 
-	belt = /obj/item/storage/belt/security/full
+	belt = /obj/item/storage/belt/coalbelt/full
 	ears = /obj/item/radio/headset/distress/commando
 	w_uniform = /obj/item/clothing/under/marine/veteran/PMC/commando
 	shoes = /obj/item/clothing/shoes/galoshes/santa
