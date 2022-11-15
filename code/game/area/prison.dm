@@ -21,11 +21,13 @@
 	name = "Riot Armory"
 	icon_state = "armory"
 	ceiling = CEILING_UNDERGROUND_METAL
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/prison/security/armory/lethal
 	name = "Lethal Armory"
 	icon_state = "Tactical"
 	ceiling = CEILING_UNDERGROUND_METAL
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/prison/security/armory/highsec_monitoring
 	name = "High-Security Monitoring Armory"
@@ -43,10 +45,12 @@
 /area/prison/security/monitoring/medsec/south
 	name = "Medium-Security Monitoring"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/prison/security/monitoring/medsec/central
 	name = "Central Medium-Security Monitoring"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/prison/security/monitoring/highsec
 	name = "High-Security Monitoring"
@@ -55,10 +59,12 @@
 /area/prison/security/monitoring/maxsec
 	name = "Maximum-Security Monitoring"
 	ceiling = CEILING_UNDERGROUND_METAL
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/prison/security/monitoring/maxsec/panopticon
 	name = "Panopticon Monitoring"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/prison/security/monitoring/protective
 	name = "Protective Custody Monitoring"
@@ -81,6 +87,7 @@
 /area/prison/security/checkpoint/maxsec
 	name = "Maximum-Security Checkpoint"
 	ceiling = CEILING_UNDERGROUND_METAL
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/prison/security/checkpoint/highsec_medsec
 	name = "High-to-Medium-Security Checkpoint"
@@ -88,6 +95,7 @@
 /area/prison/security/checkpoint/maxsec_highsec
 	name = "Maximum-to-High-Security Checkpoint"
 	ceiling = CEILING_UNDERGROUND_METAL
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/prison/security/checkpoint/hangar
 	name = "Main Hangar Traffic Control"
@@ -214,6 +222,7 @@
 	name = "Research-Infirmary Maintenance"
 	icon_state = "maint_research_port"
 	ceiling = CEILING_UNDERGROUND_METAL
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/prison/maintenance/hangar_barracks
 	name = "Hangar-Barracks Maintenance"
@@ -335,21 +344,25 @@
 	name = "Medium-Security Cellblock North"
 	icon_state = "cells_med_n"
 	ceiling = CEILING_UNDERGROUND_METAL
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/prison/cellblock/mediumsec/south
 	name = "Medium-Security Cellblock South"
 	icon_state = "cells_med_s"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/prison/cellblock/mediumsec/east
 	name = "Medium-Security Cellblock East"
 	icon_state = "cells_med_e"
 	ceiling = CEILING_UNDERGROUND_METAL
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/prison/cellblock/mediumsec/west
 	name = "Medium-Security Cellblock West"
 	icon_state = "cells_med_w"
 	ceiling = CEILING_UNDERGROUND_METAL
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/prison/cellblock/highsec/north/north
 	name = "North High-Security Cellblock North"
@@ -371,11 +384,13 @@
 	name = "Maximum-Security Panopticon Cellblock"
 	icon_state = "cells_max_n"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/prison/cellblock/maxsec/south
 	name = "Maximum-Security Suspended Cellblock"
 	icon_state = "cells_max_s"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/prison/cellblock/vip
 	name = "VIP Cells"
@@ -403,16 +418,19 @@
 	name = "Operating Theatre"
 	icon_state = "medbay3"
 	ceiling = CEILING_UNDERGROUND_METAL
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/prison/medbay/morgue
 	name = "Morgue"
 	icon_state = "morgue"
 	ceiling = CEILING_UNDERGROUND_METAL
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/prison/research/
 	name = "Biological Research Department"
 	icon_state = "research"
 	ceiling = CEILING_UNDERGROUND_METAL
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/prison/research/RD
 	name = "Research Director's office"
@@ -422,6 +440,7 @@
 	name = "Classified Research"
 	icon_state = "toxlab"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/prison/research/secret/dissection
 	name = "Dissection"
@@ -498,11 +517,13 @@
 	name = "Tramp Freighter \"Rocinante\""
 	icon_state = "syndie-ship"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/prison/secret
 	name = "Secret Room"
 	icon_state = "tcomsatcham"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/prison/console
 	name = "Shuttle Console"

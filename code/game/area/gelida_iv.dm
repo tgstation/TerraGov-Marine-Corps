@@ -383,6 +383,7 @@
 /area/gelida/caves
 	outside = FALSE
 	ceiling = CEILING_DEEP_UNDERGROUND
+	minimap_color = MINIMAP_AREA_CAVES
 /area/gelida/caves/west_caves
 	name = "Western Caves"
 	icon_state = "yellow"

@@ -6,6 +6,7 @@
 	name = "Caves"
 	icon_state = "away4"
 	ceiling = CEILING_UNDERGROUND
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/icy_caves/caves/northern
 	name = "Northern Caves"

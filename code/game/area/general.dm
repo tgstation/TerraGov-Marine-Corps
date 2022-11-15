@@ -244,6 +244,7 @@
 	name = "Abandoned Asteroid - Underground"
 	icon_state = "cave"
 	requires_power = 0
+	minimap_color = MINIMAP_AREA_CAVES
 
 
 /area/asteroid/artifactroom

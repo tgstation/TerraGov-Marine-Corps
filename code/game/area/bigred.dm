@@ -66,16 +66,19 @@
 	name = "Rusted Prep Area"
 	icon_state = "yellow"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/bigredv2/caves/undergroundrobotics
 	name = "Underground robotics lab"
 	icon_state = "yellow"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/bigredv2/caves/secomplex
 	name = "Underground research complex"
 	icon_state = "yellow"
-	ceiling = CEILING_DEEP_UNDERGROUND_METAL	
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/bigredv2/caves/east
 	name = "Eastern Caves"
@@ -111,6 +114,7 @@
 	icon_state = "engine"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 	outside = FALSE
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/bigredv2/outside/cargo
 	name = "Cargo"
@@ -242,6 +246,7 @@
 	icon_state = "party"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 	outside = FALSE
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/bigredv2/outside/general_offices
 	name = "General Offices"

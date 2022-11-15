@@ -27,7 +27,7 @@ GLOBAL_LIST_INIT(all_minimap_flags, bitfield2list(MINIMAP_FLAG_ALL))
 #define MINIMAP_AREA_ENGI "#c19504e7"
 #define MINIMAP_AREA_MEDBAY "#3dbf75ee"
 #define MINIMAP_AREA_SEC "#a22d2dee"
-#define MINIMAP_AREA_CAVES "#656060b1"
+#define MINIMAP_AREA_CAVES "#3f3c3cef"
 #define MINIMAP_AREA_JUNGLE "#2b5b2bee"
 #define MINIMAP_AREA_COLONY "#6c6767d8"
 #define MINIMAP_AREA_LZ "#ebe5e5ee"
