@@ -367,7 +367,7 @@
 	desc = "A festive Christmas cookie, this one is in the shape of Santa Claus."
 	icon_state = "sugarcookie_santa"
 	filling_color = "#DBC94F"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 10)
 	bitesize = 3
 	tastes = list("cookie" = 1, "coal" = 1, "fruitcake" = 1, "christmas" = 1)
 
