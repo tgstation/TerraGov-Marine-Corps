@@ -461,6 +461,13 @@
 	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range) //first explosion is small to trick xenos into thinking its a minirocket.
 	addtimer(CALLBACK(src, .proc/delayed_detonation, impact), 3 SECONDS)
 
+/**
+ * proc/delayed_detonation(turf/impact)
+ *
+ * this proc is responsable for calculation and executing explosion in cluster like fashion
+ * * (turf/impact): targets impacted turf from first explosion
+ */
+
 /obj/structure/ship_ammo/rocket/fatty/proc/delayed_detonation(turf/impact)
 	var/list/impact_coords = list(list(-3,3),list(0,4),list(3,3),list(-4,0),list(4,0),list(-3,-3),list(0,-4), list(3,-3))
 	for(var/i=1 to 8)
