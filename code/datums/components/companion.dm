@@ -123,12 +123,12 @@
 
 	addtimer(CALLBACK(src, action), 1 SECONDS, TIMER_UNIQUE)
 
-///The slugcat repeats the person's words
+///The slugcat listens for its new name
 /datum/component/companion/proc/update_name(message)
 	emote("listens")
 	RegisterSignal(parent, COMSIG_MOVABLE_HEAR, .proc/handle_update_name, override = TRUE)
 
-/// Does the words repeating action
+///Does the name update action
 /datum/component/companion/proc/handle_update_name(datum/source, message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
 	SIGNAL_HANDLER
 	if(speaker != mob_master)
