@@ -69,7 +69,7 @@
 	var/master_update_message = "I shall follow you [new_mob_master]."
 	if(mob_master)
 		unassign_mob_master()
-		master_update_message = "Farewell [mob_master]. I will now follow [new_mob_master]"
+		master_update_message = "Farewell [mob_master]. I will now follow [new_mob_master]."
 
 	assign_mob_master(new_mob_master, master_update_message)
 
