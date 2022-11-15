@@ -1,15 +1,6 @@
 import { useBackend, useLocalState } from '../../backend';
 import { capitalize } from 'common/string';
-import {
-  Button,
-  Section,
-  Box,
-  Stack,
-  ByondUi,
-  ColorBox,
-  Collapsible,
-  Input,
-} from '../../components';
+import { Button, Section, Box, Stack, ByondUi, ColorBox, Collapsible, Input } from '../../components';
 import { ColorDisplayData, BodypartPickerData, MechVendData, partdefinetofluff } from './data';
 
 const ColorDisplayRow = (props: ColorDisplayData, context) => {
@@ -46,9 +37,9 @@ const BodypartPicker = (props: BodypartPickerData, context) => {
     <Section
       fill
       title={
-        selected_variants[displayingpart]
-        + ' '
-        + partdefinetofluff[displayingpart]
+        selected_variants[displayingpart] +
+        ' ' +
+        partdefinetofluff[displayingpart]
       }>
       <Button
         content="Select"
@@ -84,10 +75,12 @@ export const MechAssembly = (props, context) => {
     'none'
   );
 
-  const left_weapon = all_equipment.weapons
-    .find(o => o.type === selected_equipment.mecha_l_arm);
-  const right_weapon = all_equipment.weapons
-    .find(o => o.type === selected_equipment.mecha_r_arm);
+  const left_weapon = all_equipment.weapons.find(
+    (o) => o.type === selected_equipment.mecha_l_arm
+  );
+  const right_weapon = all_equipment.weapons.find(
+    (o) => o.type === selected_equipment.mecha_r_arm
+  );
 
   const left_weapon_scatter = right_weapon ? right_weapon.scatter : 0;
   const right_weapon_scatter = right_weapon ? right_weapon.scatter : 0;
@@ -111,27 +104,55 @@ export const MechAssembly = (props, context) => {
             />
           </Stack.Item>
           <Stack.Item>
-            <Section title={"Mech parameters"}>
-              <Collapsible color={"transparent"} title={"Integrity: " + current_stats.health}>
-                <Box maxWidth={"160px"}>Determines maximum integrity of mecha.</Box>
+            <Section title={'Mech parameters'}>
+              <Collapsible
+                color={'transparent'}
+                title={'Integrity: ' + current_stats.health}>
+                <Box maxWidth={'160px'}>
+                  Determines maximum integrity of mecha.
+                </Box>
               </Collapsible>
-              <Collapsible color={"transparent"} title={"L scatter angle: " + (current_stats.left_scatter + left_weapon_scatter) + "°"}>
-                <Box maxWidth={"160px"}>Scatter angle for left arm.</Box>
+              <Collapsible
+                color={'transparent'}
+                title={
+                  'L scatter angle: ' +
+                  (current_stats.left_scatter + left_weapon_scatter) +
+                  '°'
+                }>
+                <Box maxWidth={'160px'}>Scatter angle for left arm.</Box>
               </Collapsible>
-              <Collapsible color={"transparent"} title={"R scatter angle: " + (current_stats.right_scatter + right_weapon_scatter) + "°"}>
-                <Box maxWidth={"160px"}>Scatter angle for right arm.</Box>
+              <Collapsible
+                color={'transparent'}
+                title={
+                  'R scatter angle: ' +
+                  (current_stats.right_scatter + right_weapon_scatter) +
+                  '°'
+                }>
+                <Box maxWidth={'160px'}>Scatter angle for right arm.</Box>
               </Collapsible>
-              <Collapsible color={"transparent"} title={"Slowdown: " + current_stats.slowdown}>
-                <Box maxWidth={"160px"}>Determines how fast mecha is compared to base.</Box>
+              <Collapsible
+                color={'transparent'}
+                title={'Slowdown: ' + current_stats.slowdown}>
+                <Box maxWidth={'160px'}>
+                  Determines how fast mecha is compared to base.
+                </Box>
               </Collapsible>
-              <Collapsible color={"transparent"} title={"Extra Accuracy: " + (current_stats.accuracy*100) + "%"}>
-                <Box maxWidth={"160px"}>Determines likeliness of mecha to hit at long ranges.</Box>
+              <Collapsible
+                color={'transparent'}
+                title={'Extra Accuracy: ' + current_stats.accuracy * 100 + '%'}>
+                <Box maxWidth={'160px'}>
+                  Determines likeliness of mecha to hit at long ranges.
+                </Box>
               </Collapsible>
-              <Collapsible color={"transparent"} title={"Power capacity: " + current_stats.power_max}>
-                <Box maxWidth={"160px"}>Determines maximum mecha power.</Box>
+              <Collapsible
+                color={'transparent'}
+                title={'Power capacity: ' + current_stats.power_max}>
+                <Box maxWidth={'160px'}>Determines maximum mecha power.</Box>
               </Collapsible>
-              <Collapsible color={"transparent"} title={"Light range: " + current_stats.light_mod}>
-                <Box maxWidth={"160px"}>Light strength.</Box>
+              <Collapsible
+                color={'transparent'}
+                title={'Light range: ' + current_stats.light_mod}>
+                <Box maxWidth={'160px'}>Light strength.</Box>
               </Collapsible>
             </Section>
           </Stack.Item>
@@ -165,7 +186,8 @@ export const MechAssembly = (props, context) => {
                 act('set_bodypart', {
                   bodypart: selectedBodypart,
                   new_bodytype: 'Recon',
-                })}
+                })
+              }
             />
             <Button
               content="Assault"
@@ -178,7 +200,8 @@ export const MechAssembly = (props, context) => {
                 act('set_bodypart', {
                   bodypart: selectedBodypart,
                   new_bodytype: 'Assault',
-                })}
+                })
+              }
             />
             <Button
               content="Vanguard"
@@ -191,7 +214,8 @@ export const MechAssembly = (props, context) => {
                 act('set_bodypart', {
                   bodypart: selectedBodypart,
                   new_bodytype: 'Vanguard',
-                })}
+                })
+              }
             />
             <Button
               content="ASSEMBLE"
@@ -214,30 +238,52 @@ export const MechAssembly = (props, context) => {
             <BodypartPicker displayingpart="LEG" />
           </Stack.Item>
           <Stack.Item>
-            <Section title={"Mech armor"}>
-              <Collapsible color={"transparent"} title={"Melee Armor: " + current_stats.armor["melee"] + "%"}>
-                <Box maxWidth={"160px"}>Determines maximum integrity of mecha.</Box>
+            <Section title={'Mech armor'}>
+              <Collapsible
+                color={'transparent'}
+                title={'Melee Armor: ' + current_stats.armor['melee'] + '%'}>
+                <Box maxWidth={'160px'}>
+                  Determines maximum integrity of mecha.
+                </Box>
               </Collapsible>
-              <Collapsible color={"transparent"} title={"Bullet Armor: " + current_stats.armor["melee"] + "%"}>
-                <Box maxWidth={"160px"}>Bullet protection.</Box>
+              <Collapsible
+                color={'transparent'}
+                title={'Bullet Armor: ' + current_stats.armor['melee'] + '%'}>
+                <Box maxWidth={'160px'}>Bullet protection.</Box>
               </Collapsible>
-              <Collapsible color={"transparent"} title={"Laser Armor: " + current_stats.armor["laser"] + "%"}>
-                <Box maxWidth={"160px"}>Laser protection.</Box>
+              <Collapsible
+                color={'transparent'}
+                title={'Laser Armor: ' + current_stats.armor['laser'] + '%'}>
+                <Box maxWidth={'160px'}>Laser protection.</Box>
               </Collapsible>
-              <Collapsible color={"transparent"} title={"Energy Armor: " + current_stats.armor["energy"] + "%"}>
-                <Box maxWidth={"160px"}>Protection against SOM weapons.</Box>
+              <Collapsible
+                color={'transparent'}
+                title={'Energy Armor: ' + current_stats.armor['energy'] + '%'}>
+                <Box maxWidth={'160px'}>Protection against SOM weapons.</Box>
               </Collapsible>
-              <Collapsible color={"transparent"} title={"Bomb Armor: " + current_stats.armor["bomb"] + "%"}>
-                <Box maxWidth={"160px"}>Explosion protection.</Box>
+              <Collapsible
+                color={'transparent'}
+                title={'Bomb Armor: ' + current_stats.armor['bomb'] + '%'}>
+                <Box maxWidth={'160px'}>Explosion protection.</Box>
               </Collapsible>
-              <Collapsible color={"transparent"} title={"Bio Armor: " + current_stats.armor["bio"] + "%"}>
-                <Box maxWidth={"160px"}>Protection against chemical attacks.</Box>
+              <Collapsible
+                color={'transparent'}
+                title={'Bio Armor: ' + current_stats.armor['bio'] + '%'}>
+                <Box maxWidth={'160px'}>
+                  Protection against chemical attacks.
+                </Box>
               </Collapsible>
-              <Collapsible color={"transparent"} title={"Fire Armor: " + current_stats.armor["fire"] + "%"}>
-                <Box maxWidth={"160px"}>Protection against incendiary weapons.</Box>
+              <Collapsible
+                color={'transparent'}
+                title={'Fire Armor: ' + current_stats.armor['fire'] + '%'}>
+                <Box maxWidth={'160px'}>
+                  Protection against incendiary weapons.
+                </Box>
               </Collapsible>
-              <Collapsible color={"transparent"} title={"Acid Armor: " + current_stats.armor["acid"] + "%"}>
-                <Box maxWidth={"160px"}>Xeno acid protection.</Box>
+              <Collapsible
+                color={'transparent'}
+                title={'Acid Armor: ' + current_stats.armor['acid'] + '%'}>
+                <Box maxWidth={'160px'}>Xeno acid protection.</Box>
               </Collapsible>
             </Section>
           </Stack.Item>
@@ -262,11 +308,7 @@ export const MechAssembly = (props, context) => {
 
 const ColorSelector = (props, context) => {
   const { act, data } = useBackend<MechVendData>(context);
-  const {
-    selected_primary,
-    selected_secondary,
-    selected_visor,
-  } = data;
+  const { selected_primary, selected_secondary, selected_visor } = data;
   const { type, listtoshow } = props;
   const [selectedBodypart, setSelectedBodypart] = useLocalState(
     context,
@@ -285,19 +327,20 @@ const ColorSelector = (props, context) => {
                   textAlign={'center'}
                   mt={0.5}
                   selected={
-                    listtoshow[title][palette] === selected_visor
-                    || ((listtoshow[title][palette]
-                      === selected_primary[selectedBodypart])
-                      && type === 'primary')
-                    || ((listtoshow[title][palette]
-                      === selected_secondary[selectedBodypart])
-                      && type === 'secondary')
+                    listtoshow[title][palette] === selected_visor ||
+                    (listtoshow[title][palette] ===
+                      selected_primary[selectedBodypart] &&
+                      type === 'primary') ||
+                    (listtoshow[title][palette] ===
+                      selected_secondary[selectedBodypart] &&
+                      type === 'secondary')
                   }
                   onClick={() =>
                     act('set_' + type, {
                       bodypart: selectedBodypart,
                       new_color: palette,
-                    })}
+                    })
+                  }
                 />
               </Stack.Item>
               <Stack.Item>
