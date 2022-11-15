@@ -37,6 +37,7 @@
 	requires_power = 0
 	outside = FALSE
 	flags_area = OB_CAS_IMMUNE
+	minimap_color = MINIMAP_AREA_LZ
 
 /area/shuttle/arrival
 	name = "Abandoned Arrival Shuttle"
