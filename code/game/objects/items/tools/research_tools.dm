@@ -9,7 +9,7 @@
 
 /obj/item/tool/research/xeno_analyzer
 	name = "xenomorph analyzer"
-	desc = "A tool for analyzing xenomorphs for research material. Just click on a xenomorph."
+	desc = "A tool for analyzing xenomorphs for research material. Just click on a xenomorph. Can be used to befriend Newt."
 	icon = 'icons/obj/items/surgery_tools.dmi'
 	icon_state = "predator_bonesaw"
 	///List of rewards for each xeno tier
@@ -33,7 +33,7 @@
 
 /obj/item/tool/research/xeno_analyzer/attack(mob/living/M, mob/living/user)
 	if(M.type == /mob/living/simple_animal/catslug/newt)
-		SEND_SIGNAL(M, COMSIG_MASTER_MOB_CHANGE, user)
+		M.update_companion_master(user)
 		return ..()
 
 	if(!isxeno(M))

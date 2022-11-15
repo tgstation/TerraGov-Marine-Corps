@@ -19,7 +19,7 @@
 
 /mob/living/simple_animal/catslug/Initialize()
 	. = ..()
-	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/slugcat)
+	AddComponent(/datum/component/companion)
 
 /mob/living/simple_animal/catslug/newt
 	name = "Newt"

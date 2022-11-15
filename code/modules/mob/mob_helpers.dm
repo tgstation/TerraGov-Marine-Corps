@@ -471,3 +471,6 @@ mob/proc/get_standard_bodytemperature()
 	var/obj/item/inactive_item = get_inactive_held_item()
 	if(istype(inactive_item))
 		inactive_item.do_unique_action(src)
+
+/mob/proc/update_companion_master(mob/new_mob_master)
+	SEND_SIGNAL(src, COMSIG_MASTER_MOB_CHANGE, new_mob_master)
