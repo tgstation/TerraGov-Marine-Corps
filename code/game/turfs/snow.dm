@@ -11,6 +11,8 @@
 	shoefootstep = FOOTSTEP_SNOW
 	barefootstep = FOOTSTEP_SNOW
 	mediumxenofootstep = FOOTSTEP_SNOW
+	draw_minimap = TRUE
+	minimap_color = MINIMAP_SNOW
 
 /turf/open/floor/plating/ground/snow/Initialize(mapload)
 	. = ..()
@@ -194,6 +196,7 @@
 /turf/open/floor/plating/ground/snow/layer0
 	icon_state = "snow_0"
 	slayer = 0
+	minimap_color = MINIMAP_DIRT
 
 /turf/open/floor/plating/ground/snow/layer1
 	icon_state = "snow_1"
