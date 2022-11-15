@@ -102,9 +102,7 @@ should be alright.
 		return FALSE
 	var/mob/living/carbon/human/owner = user
 	if(!has_attachment(/obj/item/attachable/magnetic_harness))
-		var/obj/item/B = owner.belt	//if they don't have a magharness, are they wearing a harness belt?
-		if(!istype(B, /obj/item/belt_harness))
-			return FALSE
+		return FALSE
 	var/obj/item/I = owner.wear_suit
 	if(!is_type_in_list(I, list(/obj/item/clothing/suit/storage, /obj/item/clothing/suit/armor, /obj/item/clothing/suit/modular)))
 		return FALSE

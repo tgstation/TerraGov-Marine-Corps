@@ -236,7 +236,7 @@
 //Harness Belts
 /obj/item/belt_harness
 	name = "gun sling"
-	desc = "A leather sling with a spot to attach a gun. Should keep you from losing your weapon, hopefully."
+	desc = "A leather sling with a clip to attach something. Should keep you from losing your weapon, hopefully."
 	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "gun_sling"
 	item_state = "gun_sling"
@@ -245,17 +245,112 @@
 	time_to_equip = 2 SECONDS
 	time_to_unequip = 1 SECONDS
 	flags_inventory = NOQUICKEQUIP
+	///The item hooked into the belt, to be automatically reequipped
+	var/obj/item/attached_item
+	///Whether our attached item is being forcefully returned after a throw
+	var/recoiling = FALSE
+
+/obj/item/belt_harness/equipped(mob/user, slot)
+	. = ..()
+	RegisterSignal(user, COMSIG_MOB_THROW, .proc/on_owner_throw)
+
+/obj/item/belt_harness/unequipped(mob/unequipper, slot)
+	if(attached_item)
+		detach_item(unequipper)
+	UnregisterSignal(unequipper, COMSIG_MOB_THROW)
+	return ..()
+
+/obj/item/belt_harness/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(.)
+		return
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/huser = user
+	if(huser.belt != src)
+		return
+	if(attached_item)
+		if(attached_item == I)
+			detach_item(user)
+			return
+		to_chat(user, span_notice("[src] already has \a [attached_item] hooked into it!"))
+		return
+	attach_item(I, user)
+
+///Set up the link between belt and object
+/obj/item/belt_harness/proc/attach_item(obj/item/to_attach, mob/user)
+	RegisterSignal(to_attach, COMSIG_ITEM_REMOVED_INVENTORY, .proc/begin_catch)
+	RegisterSignal(to_attach, COMSIG_PARENT_QDELETING, .proc/detach_item)
+	attached_item = to_attach
+	playsound(src,'sound/machines/click.ogg', 15, FALSE, 1)
+	to_chat(user, span_notice("[src] clicks as you hook \the [attached_item] into it."))
+
+///Clean out attachment refs/signals
+/obj/item/belt_harness/proc/detach_item(mob/user)
+	if(!attached_item)
+		return
+	UnregisterSignal(attached_item, list(COMSIG_ITEM_REMOVED_INVENTORY, COMSIG_PARENT_QDELETING))
+	to_chat(user, span_notice("[src] clicks as \the [attached_item] unhook[attached_item.p_s()] from it."))
+	attached_item = null
+	recoiling = FALSE
+	playsound(src,'sound/machines/click.ogg', 15, FALSE, 1)
+
+///Signal handler, to see if our attached_item is being thrown
+/obj/item/belt_harness/proc/on_owner_throw(source, atom/target)
+	SIGNAL_HANDLER
+	if(!ishuman(source))
+		return
+	var/mob/living/carbon/human/huser = source
+	if(huser.get_active_held_item() == attached_item)
+		recoiling = TRUE
+
+///Signal handler, to pull our attached_item back after a delay
+/obj/item/belt_harness/proc/begin_catch(source, mob/user)
+	SIGNAL_HANDLER
+	addtimer(CALLBACK(src, .proc/try_to_catch, source, user), 0.2 SECONDS, TIMER_UNIQUE)
+
+///Actually returns the item, if it's in a suitable state
+/obj/item/belt_harness/proc/try_to_catch(source, mob/user)
+	if(!attached_item || attached_item != source)
+		return FALSE
+	if(!isturf(attached_item.loc)) //Probably in storage somewhere
+		detach_item(user)
+		return
+	if(user.equip_to_slot_if_possible(attached_item, SLOT_S_STORE, warning = FALSE))
+		. = TRUE
+	if(user.equip_to_slot_if_possible(attached_item, SLOT_BACK, warning = FALSE))
+		. = TRUE
+	if(!.)
+		detach_item(user) //Couldn't catch it, goodbye
+		return
+	if(!recoiling) //Don't use this for infinite thrown weapons.
+		if(!.)
+			detach_item(user)
+		return
+	if(!.)
+		detach_item(user)
+		return
+	if(!recoiling)
+		return
+	recoiling = FALSE
+	user.visible_message(span_notice("[attached_item] smack[attached_item.p_s()] [user] in the face as it slingshots back to [user.p_them()]"),\
+		span_warning("[attached_item] smack[attached_item.p_s()] you in the face as [src] pulls it back to you."))
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/huser = user
+	huser.Knockdown(15)
 
 /obj/item/belt_harness/marine
 	name = "\improper M45 pattern belt harness"
-	desc = "A shoulder worn strap with clamps that can attach to a gun. Should keep you from losing your weapon, hopefully."
+	desc = "A shoulder worn strap with clamps that can attach to most anything. Should keep you from losing your weapon, hopefully."
 	icon_state = "heavy_harness"
 	item_state = "heavy_harness"
 
-/obj/item/belt_harness/marine/equipped(mob/living/carbon/human/user, slot)
+/obj/item/belt_harness/marine/equipped(mob/user, slot)
 	. = ..()
 	if(slot == SLOT_BELT)
 		playsound(src,'sound/machines/click.ogg', 15, FALSE, 1)
+		to_chat(user, span_danger("!!REMEMBER TO ATTACH YOUR WEAPON TO YOUR HARNESS OR IT WON'T WORK!!"))
 
 /obj/item/compass
 	name = "compass"
