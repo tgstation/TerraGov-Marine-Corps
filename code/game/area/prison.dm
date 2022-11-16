@@ -325,6 +325,7 @@
 
 /area/prison/cellblock/
 	ceiling = CEILING_METAL
+	minimap_color = MINIMAP_AREA_CELL_LOW
 
 /area/prison/cellblock/lowsec/nw
 	name = "Northwest Low-Security Cellblock"
@@ -345,30 +346,32 @@
 /area/prison/cellblock/mediumsec
 	name = "Medium-Security Cellblock"
 	icon_state = "cells_med"
+	minimap_color = MINIMAP_AREA_CELL_MED
 
 /area/prison/cellblock/mediumsec/north
 	name = "Medium-Security Cellblock North"
 	icon_state = "cells_med_n"
 	ceiling = CEILING_UNDERGROUND_METAL
-	minimap_color = MINIMAP_AREA_CAVES
 
 /area/prison/cellblock/mediumsec/south
 	name = "Medium-Security Cellblock South"
 	icon_state = "cells_med_s"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
-	minimap_color = MINIMAP_AREA_CAVES
 
 /area/prison/cellblock/mediumsec/east
 	name = "Medium-Security Cellblock East"
 	icon_state = "cells_med_e"
 	ceiling = CEILING_UNDERGROUND_METAL
-	minimap_color = MINIMAP_AREA_CAVES
 
 /area/prison/cellblock/mediumsec/west
 	name = "Medium-Security Cellblock West"
 	icon_state = "cells_med_w"
 	ceiling = CEILING_UNDERGROUND_METAL
-	minimap_color = MINIMAP_AREA_CAVES
+
+/area/prison/cellblock/highsec
+	name = "North High-Security Cellblock"
+	icon_state = "cells_high_nn"
+	minimap_color = MINIMAP_AREA_CELL_HIGH
 
 /area/prison/cellblock/highsec/north/north
 	name = "North High-Security Cellblock North"
@@ -390,21 +393,23 @@
 	name = "Maximum-Security Panopticon Cellblock"
 	icon_state = "cells_max_n"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
-	minimap_color = MINIMAP_AREA_CAVES
+	minimap_color = MINIMAP_AREA_CELL_MAX
 
 /area/prison/cellblock/maxsec/south
 	name = "Maximum-Security Suspended Cellblock"
 	icon_state = "cells_max_s"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
-	minimap_color = MINIMAP_AREA_CAVES
+	minimap_color = MINIMAP_AREA_CELL_MAX
 
 /area/prison/cellblock/vip
 	name = "VIP Cells"
 	icon_state = "cells_vip"
+	minimap_color = MINIMAP_AREA_CELL_VIP
 
 /area/prison/cellblock/protective
 	name = "Protective Custody"
 	icon_state = "cells_protective"
+	minimap_color = MINIMAP_AREA_CELL_VIP
 
 /area/prison/disposal
 	name = "Disposals"
