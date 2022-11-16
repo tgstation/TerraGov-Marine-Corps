@@ -129,6 +129,7 @@
 			owner.balloon_alert(owner, "Cannot dig, needs empty hand")
 		return FALSE
 
+
 /datum/action/xeno_action/build_tunnel/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
 	to_chat(X, span_notice("We are ready to dig a tunnel again."))
@@ -137,6 +138,14 @@
 /datum/action/xeno_action/build_tunnel/action_activate()
 	var/turf/T = get_turf(owner)
 	var/mob/living/carbon/xenomorph/hivelord/X = owner
+
+	var/input = tgui_input_text(usr, "Name your tunnel", multiline = FALSE, encode = FALSE)
+	if(CHAT_FILTER_CHECK(input))
+		to_chat(usr, span_warning("That announcement contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[input]\"</span>"))
+		return FALSE
+	if(NON_ASCII_CHECK(input))
+		to_chat(usr, span_warning("That announcement contained characters prohibited in IC chat! Consider reviewing the server rules."))
+		return FALSE
 
 	X.balloon_alert(X, "Digging...")
 	X.visible_message(span_xenonotice("[X] begins digging out a tunnel entrance."), \
@@ -165,11 +174,10 @@
 
 	to_chat(X, span_xenonotice("We now have <b>[LAZYLEN(X.tunnels)] of [HIVELORD_TUNNEL_SET_LIMIT]</b> tunnels."))
 
-	var/msg = stripped_input(X, "Give your tunnel a descriptive name:", "Tunnel Name")
-	newt.tunnel_desc = "[get_area(newt)] (X: [newt.x], Y: [newt.y])"
-	newt.name += " [msg]"
+	newt.tunnel_desc = "[get_area(newt)]"
+	newt.name += "[ input]"
 
-	xeno_message("[X.name] has built a new tunnel named [newt.name] at [newt.tunnel_desc]!", "xenoannounce", 5, X.hivenumber)
+	xeno_message("[X.name] has built a new tunnel named [newt.name] at [get_area(newt)]!", "xenoannounce", 5, X.hivenumber)
 
 	if(LAZYLEN(X.tunnels) > HIVELORD_TUNNEL_SET_LIMIT) //if we exceed the limit, delete the oldest tunnel set.
 		var/obj/structure/xeno/tunnel/old_tunnel = X.tunnels[1]
