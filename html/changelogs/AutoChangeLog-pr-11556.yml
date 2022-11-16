@@ -1,0 +1,6 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - qol: "Improved minimap readability"
+  - bugfix: "Fixed fences not showing on the minimap"
+  - bugfix: "Civil war contested areas will no longer display on the minimap"
