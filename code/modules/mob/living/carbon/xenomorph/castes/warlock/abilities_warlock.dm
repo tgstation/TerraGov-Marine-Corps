@@ -114,7 +114,7 @@
 		return
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(xeno_owner.selected_ability != src)
-		select()
+		action_activate()
 		return
 	if(owner.do_actions || !target)
 		return FALSE
