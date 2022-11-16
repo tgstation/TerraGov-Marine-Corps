@@ -1,4 +1,85 @@
 // ***************************************
+// *********** Psychic shield
+// ***************************************
+/datum/action/xeno_action/activable/psychic_shield
+	name = "Psychic Shield"
+	action_icon_state = "fling"
+	mechanics_text = "Creates a protective field of psychic energy in front of you."
+	cooldown_timer = 12 SECONDS
+	plasma_cost = 100
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_FLING,
+	)
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	var/obj/effect/xeno/shield/active_shield
+
+
+/datum/action/xeno_action/activable/psychic_shield/on_cooldown_finish()
+	to_chat(owner, span_notice("We gather enough mental strength to create a psychic shield again."))
+	return ..()
+
+/datum/action/xeno_action/activable/psychic_shield/use_ability(atom/A)
+	. = ..()
+	//GLOB.round_statistics.psychic_flings++
+	//SSblackbox.record_feedback("tally", "round_statistics", 1, "psychic_flings")
+	//var/mob/living/carbon/xenomorph/owner_xeno = owner
+	owner.visible_message("A strange and violent psychic aura is suddenly emitted from \the [owner]!")
+	playsound(owner,'sound/effects/magic.ogg', 75, 1)
+
+	//var/turf/facing = get_step(owner, owner.dir)
+	active_shield = new(get_step(owner, owner.dir), owner)
+
+	//maybe add some thing to light fling mobs caught in the deploying shield
+	add_cooldown()
+
+/obj/effect/xeno/shield
+	icon = 'icons/Xeno/Effects.dmi'
+	icon_state = "alienegg_fire"
+	resistance_flags = RESIST_ALL
+	layer = ABOVE_MOB_LAYER
+	var/mob/living/carbon/xenomorph/owner
+
+/obj/effect/xeno/shield/Initialize(loc, creator)
+	. = ..()
+	owner = creator
+	dir = owner.dir
+	if(dir == EAST || dir == WEST)
+		bound_height = 96
+		bound_y = -32
+	else
+		bound_width = 96
+		bound_x = -32
+
+/obj/effect/xeno/shield/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+	if(!(cardinal_move & REVERSE_DIR(dir)))
+		if(!uncrossing)
+			proj.uncross_scheduled += src
+		return FALSE
+	if (uncrossing)
+		return FALSE
+	reflect_projectile(proj)
+	return FALSE
+
+///COPY PORTAL SIGNAL STUFF INSTEAD OF SHITTY BULLET_ACT, SO WE DON'T NEED A NEW PROJECTILE
+/obj/effect/xeno/shield/proc/reflect_projectile(obj/projectile/proj)
+	playsound(loc, 'sound/effects/portal.ogg', 20)
+	var/new_range = proj.proj_max_range - proj.distance_travelled
+
+	if(new_range <= 0)
+		proj.ammo.do_at_max_range(proj)
+		qdel(proj)
+		return
+	var/perpendicular_angle = Get_Angle(src, get_step(src, dir)) //the angle src is facing
+	var/new_angle = (perpendicular_angle + (perpendicular_angle - proj.dir_angle - 180))
+	if(new_angle < 0)
+		new_angle += 360
+	else if(new_angle > 360)
+		new_angle -= 360
+	proj.firer = src
+	proj.fire_at(shooter = src, source = src, range = new_range, angle = new_angle, recursivity = TRUE) //loc_override = loc //note investigate hitscan issue
+
+
+// ***************************************
 // *********** psychic crush
 // ***************************************
 /datum/action/xeno_action/activable/psy_crush
@@ -159,7 +240,6 @@
 	anchored = TRUE
 	resistance_flags = RESIST_ALL
 	layer = FLY_LAYER
-
 
 
 // ***************************************

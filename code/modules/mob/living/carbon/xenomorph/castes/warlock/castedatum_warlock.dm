@@ -1,4 +1,4 @@
-/datum/xeno_caste/shrike
+/datum/xeno_caste/warlock
 	caste_name = "Warlock"
 	display_name = "Warlock"
 	upgrade_name = ""
@@ -28,13 +28,14 @@
 		/datum/action/xeno_action/activable/plant_weeds, //just while testing
 		/datum/action/xeno_action/activable/psy_crush,
 		/datum/action/xeno_action/activable/psy_blast,
+		/datum/action/xeno_action/activable/psychic_shield,
 	)
 
-/datum/xeno_caste/shrike/young
+/datum/xeno_caste/warlock/young
 	upgrade_name = "Young"
 	upgrade = XENO_UPGRADE_ZERO
 
-/datum/xeno_caste/shrike/mature
+/datum/xeno_caste/warlock/mature
 	upgrade_name = "Mature"
 	caste_desc = "A powerful psychic xeno. It looks a little more dangerous."
 
@@ -48,7 +49,7 @@
 	soft_armor = list(MELEE = 35, BULLET = 35, LASER = 35, ENERGY = 35, BOMB = 20, BIO = 15, FIRE = 35, ACID = 15)
 	aura_strength = 2.5
 
-/datum/xeno_caste/shrike/elder
+/datum/xeno_caste/warlock/elder
 	upgrade_name = "Elder"
 	caste_desc = "A powerful psychic xeno. It looks pretty strong."
 
@@ -63,7 +64,7 @@
 	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 20, BIO = 18, FIRE = 40, ACID = 18)
 	aura_strength = 2.8
 
-/datum/xeno_caste/shrike/ancient
+/datum/xeno_caste/warlock/ancient
 	upgrade_name = "Ancient"
 	caste_desc = "An unstoppable psychic manifestion of the hive's fury."
 	ancient_message = "Our full powers are unleashed, the physical world is our plaything."
@@ -77,7 +78,7 @@
 	upgrade_threshold = TIER_TWO_ANCIENT_THRESHOLD
 	soft_armor = list(MELEE = 45, BULLET = 45, LASER = 45, ENERGY = 45, BOMB = 20, BIO = 23, FIRE = 45, ACID = 20)
 
-/datum/xeno_caste/shrike/primordial
+/datum/xeno_caste/warlock/primordial
 	upgrade_name = "Primordial"
 	caste_desc = "An overwhelming psychic beacon. The air around it seems to dance with barely contained power."
 	primordial_message = "We are the unbridled psychic power of the hive. Our strength is umatched."
@@ -97,4 +98,5 @@
 		/datum/action/xeno_action/activable/plant_weeds, //just while testing
 		/datum/action/xeno_action/activable/psy_crush,
 		/datum/action/xeno_action/activable/psy_blast,
+		/datum/action/xeno_action/activable/psychic_shield,
 	)
