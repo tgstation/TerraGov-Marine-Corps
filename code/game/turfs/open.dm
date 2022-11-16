@@ -3,6 +3,7 @@
 //turfs with density = FALSE
 /turf/open
 	plane = FLOOR_PLANE
+	minimap_color = MINIMAP_AREA_COLONY
 	var/allow_construction = TRUE //whether you can build things like barricades on this turf.
 	var/slayer = 0 //snow layer
 	var/wet = 0 //whether the turf is wet (only used by floors).
@@ -328,6 +329,7 @@
 	light_range = 2
 	light_power = 1.4
 	light_color = LIGHT_COLOR_LAVA
+	minimap_color = MINIMAP_LAVA
 
 /turf/open/lavaland/lava/is_weedable()
 	return FALSE
