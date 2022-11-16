@@ -8,7 +8,7 @@
 	cooldown_timer = 12 SECONDS
 	plasma_cost = 100
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_FLING,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_SHIELD,
 	)
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	var/obj/effect/xeno/shield/active_shield
@@ -60,7 +60,6 @@
 	reflect_projectile(proj)
 	return FALSE
 
-///COPY PORTAL SIGNAL STUFF INSTEAD OF SHITTY BULLET_ACT, SO WE DON'T NEED A NEW PROJECTILE
 /obj/effect/xeno/shield/proc/reflect_projectile(obj/projectile/proj)
 	playsound(loc, 'sound/effects/portal.ogg', 20)
 	var/new_range = proj.proj_max_range - proj.distance_travelled
@@ -91,7 +90,7 @@
 	cooldown_timer = 5 SECONDS //placeholder
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CENTRIFUGAL_FORCE,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_CRUSH,
 	)
 	///The number of times we can expand our effect radius. Effectively a max radius
 	var/max_interations = 5 //maybe tie this to maturity
@@ -110,10 +109,11 @@
 
 /datum/action/xeno_action/activable/psy_crush/use_ability(atom/target)
 	//note: can probs just make alt action activate a new proc, and call it here if timer is active.
+	if(channel_loop_timer) //you're already channeling
+		early_trigger()
+		return
 	if(owner.do_actions)
 		return FALSE
-	if(channel_loop_timer) //you're already channeling
-		return
 	if(!can_use_action(TRUE)) //stunned or whatever
 		return fail_activate()
 	if(!check_distance(target))
@@ -127,7 +127,8 @@
 	do_channel(target_turf) //start channeling
 	RegisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)), .proc/stop_crush)
 
-/datum/action/xeno_action/activable/psy_crush/alternate_action_activate()
+///activates crush early
+/datum/action/xeno_action/activable/psy_crush/proc/early_trigger()
 	if(!can_use_action() || !length(target_turfs))
 		owner.visible_message(span_xenowarning("\The [owner] is unable to unleash their power!"), \
 			span_xenowarning("We fail to unleash our power!"))
@@ -253,7 +254,7 @@
 	cooldown_timer = 5 SECONDS //placeholder
 	plasma_cost = 60 //placeholder
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BOMBARD,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_BLAST,
 	)
 	target_flags = XABB_MOB_TARGET //todo:what does this actually do?
 
