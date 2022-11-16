@@ -29,8 +29,7 @@
 	var/mob/living/carbon/xenomorph/queen/Q = owner
 
 	//Preferring the use of multiline input as the message box is larger and easier to quickly proofread before sending to hive.
-	var/input = stripped_multiline_input(Q, "Maximum message length: [MAX_BROADCAST_LEN]", "Hive Message", "", MAX_BROADCAST_LEN, TRUE)
-	//Newlines are of course stripped and replaced with a space.
+	var/input = tgui_input_text(usr, "Hive Message", multiline = TRUE, encode = FALSE)
 	input = capitalize(trim(replacetext(input, "\n", " ")))
 	if(!input)
 		return
