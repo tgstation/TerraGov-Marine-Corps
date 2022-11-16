@@ -202,7 +202,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Constructs a tower that increases the rate of evolution point generation by 1.25 times per tower."
 	psypoint_cost = 300
 	icon = "evotower"
-	flags_upgrade = ABILITY_DISTRESS
+	flags_upgrade = ABILITY_ALL_GAMEMODE
 	building_type = /obj/structure/xeno/evotower
 
 /datum/hive_upgrade/building/maturitytower
@@ -210,7 +210,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Constructs a tower that increases the rate of maturity point generation by 1.2 times per tower."
 	psypoint_cost = 300
 	icon = "maturitytower"
-	flags_upgrade = ABILITY_DISTRESS
+	flags_upgrade = ABILITY_ALL_GAMEMODE
 	building_type = /obj/structure/xeno/maturitytower
 
 /datum/hive_upgrade/building/pherotower
@@ -218,7 +218,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Constructs a tower that emanates a selectable type of pheromone."
 	psypoint_cost = 150
 	icon = "pherotower"
-	flags_upgrade = ABILITY_DISTRESS
+	flags_upgrade = ABILITY_ALL_GAMEMODE
 	building_type = /obj/structure/xeno/pherotower
 	building_loc = 0 //This results in spawning the structure under the user.
 	building_time = 5 SECONDS
@@ -239,7 +239,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Places a acid spitting resin turret under you. Must be at least 6 tiles away from other turrets, not near fog and on a weeded area."
 	icon = "acidturret"
 	psypoint_cost = XENO_TURRET_PRICE
-	flags_gamemode = ABILITY_DISTRESS
+	flags_gamemode = ABILITY_ALL_GAMEMODE
 	///How long to build one turret
 	var/build_time = 10 SECONDS
 	///What type of turret is built
