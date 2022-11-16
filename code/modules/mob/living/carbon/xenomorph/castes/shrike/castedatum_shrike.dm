@@ -69,8 +69,6 @@
 		/datum/action/xeno_action/rally_minion,
 		/datum/action/xeno_action/set_agressivity,
 		/datum/action/xeno_action/blessing_menu,
-		/datum/action/xeno_action/activable/psy_crush,
-		/datum/action/xeno_action/activable/psy_blast,
 	)
 
 /datum/xeno_caste/shrike/young
