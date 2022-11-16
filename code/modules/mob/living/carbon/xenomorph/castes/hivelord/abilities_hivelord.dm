@@ -129,7 +129,6 @@
 			owner.balloon_alert(owner, "Cannot dig, needs empty hand")
 		return FALSE
 
-
 /datum/action/xeno_action/build_tunnel/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
 	to_chat(X, span_notice("We are ready to dig a tunnel again."))
