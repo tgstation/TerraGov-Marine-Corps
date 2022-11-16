@@ -112,7 +112,11 @@
 	if(channel_loop_timer) //you're already channeling
 		early_trigger()
 		return
-	if(owner.do_actions)
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	if(xeno_owner.selected_ability != src)
+		select()
+		return
+	if(owner.do_actions || !target)
 		return FALSE
 	if(!can_use_action(TRUE)) //stunned or whatever
 		return fail_activate()
@@ -260,38 +264,29 @@
 
 /datum/action/xeno_action/activable/psy_blast/on_cooldown_finish()
 	to_chat(owner, span_notice("We feel our strength return. We are ready to unleash a psychic blast again."))
-	var/mob/living/carbon/xenomorph/X = owner
 	return ..()
 
 /datum/action/xeno_action/activable/psy_blast/on_activation()
 	var/mob/living/carbon/xenomorph/X = owner
 	X.visible_message(span_notice("\The [X] prepares to fire!"), \
 		span_notice("We prepare to fire."), null, 5) //placeholder
-	RegisterSignal(X, COMSIG_MOB_ATTACK_RANGED, /datum/action/xeno_action/activable/psy_blast/proc.on_ranged_attack)
-
 
 /datum/action/xeno_action/activable/psy_blast/on_deactivation()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.selected_ability == src)
 		to_chat(X, span_notice("We relax our stance."))
-	UnregisterSignal(X, COMSIG_MOB_ATTACK_RANGED)
-
-
-/datum/action/xeno_action/activable/psy_blast/proc/on_ranged_attack(mob/living/carbon/xenomorph/X, atom/A, params)
-	SIGNAL_HANDLER
-	if(can_use_ability(A))
-		INVOKE_ASYNC(src, .proc/use_ability, A)
 
 /datum/action/xeno_action/activable/psy_blast/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
-	var/turf/T = get_turf(A)
-	var/turf/S = get_turf(owner)
-	if(!isturf(T) || T.z != S.z)
-		if(!silent)
-			to_chat(owner, span_warning("This is not a valid target."))
+	var/mob/living/carbon/xenomorph/X = owner
+	if(!X.check_state())
 		return FALSE
+	//if(X.ammo?.spit_cost > X.plasma_stored)
+	//	if(!silent)
+	//		to_chat(X, span_warning("We need [X.ammo?.spit_cost - X.plasma_stored] more plasma!"))
+	//	return FALSE
 
 /datum/action/xeno_action/activable/psy_blast/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
