@@ -1,7 +1,7 @@
 /datum/game_mode/infestation/crash
 	name = "Crash"
 	config_tag = "Crash"
-	flags_round_type = MODE_INFESTATION|MODE_XENO_SPAWN_PROTECT|MODE_DEAD_GRAB_FORBIDDEN
+	flags_round_type = MODE_INFESTATION|MODE_XENO_SPAWN_PROTECT|MODE_DEAD_GRAB_FORBIDDEN|MODE_PSY_POINTS|MODE_PSY_POINTS_ADVANCED
 	flags_xeno_abilities = ABILITY_CRASH
 	valid_job_types = list(
 		/datum/job/terragov/squad/standard = -1,
@@ -78,6 +78,8 @@
 
 /datum/game_mode/infestation/crash/post_setup()
 	. = ..()
+	SSpoints.add_psy_points(XENO_HIVE_NORMAL, 4 * XENO_TURRET_PRICE)
+
 	for(var/i in GLOB.xeno_resin_silo_turfs)
 		new /obj/structure/xeno/silo(i)
 
