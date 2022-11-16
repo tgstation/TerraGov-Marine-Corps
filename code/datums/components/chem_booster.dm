@@ -237,7 +237,7 @@
 /datum/component/chem_booster/proc/on_off(datum/source)
 	SIGNAL_HANDLER
 	if(boost_on)
-		update_module_icon(FALSE)
+		send_toggle_signal(FALSE)
 		STOP_PROCESSING(SSobj, src)
 		wearer.clear_fullscreen("degeneration")
 		vali_necro_timer = world.time - processing_start
@@ -267,7 +267,7 @@
 		wearer.balloon_alert(wearer, "Insufficient green blood to begin operation")
 		return
 
-	update_module_icon(TRUE)
+	send_toggle_signal(TRUE)
 	boost_on = TRUE
 	processing_start = world.time
 	START_PROCESSING(SSobj, src)
@@ -279,22 +279,8 @@
 		meds_beaker.reagents.trans_to(wearer, 30)
 	setup_bonus_effects()
 
-///Updates the module on the armor to glow or not
-/datum/component/chem_booster/proc/update_module_icon(var/on_off)
-	var/obj/item/clothing/suit/modular/parent_armor = parent
-	var/obj/item/armor_module/module/chemsystem/chemsystem_icon = parent_armor.attachments_by_slot[ATTACHMENT_SLOT_MODULE]
-	if(isnull(chemsystem_icon))
-		return
-	if(on_off)
-		chemsystem_icon.icon_state = "mod_chemsystem_active"
-		chemsystem_icon.item_state = "mod_chemsystem_active_a"
-		chemsystem_icon.update_icon()
-		parent_armor.update_icon()
-		return
-	chemsystem_icon.icon_state = "mod_chemsystem"
-	chemsystem_icon.item_state = "mod_chemsystem_a"
-	chemsystem_icon.update_icon()
-	parent_armor.update_icon()
+/datum/component/chem_booster/proc/send_toggle_signal(toggle)
+	SEND_SIGNAL(src, COMSIG_CHEMSYSTEM_TOGGLE, toggle)
 
 ///Updates the boost amount of the suit and effect_str of reagents if component is on. "amount" is the final level you want to set the boost to.
 /datum/component/chem_booster/proc/update_boost(amount)
