@@ -237,7 +237,7 @@
 /datum/component/chem_booster/proc/on_off(datum/source)
 	SIGNAL_HANDLER
 	if(boost_on)
-		send_toggle_signal(FALSE)
+		SEND_SIGNAL(src, COMSIG_CHEMSYSTEM_TOGGLE, FALSE)
 		STOP_PROCESSING(SSobj, src)
 		wearer.clear_fullscreen("degeneration")
 		vali_necro_timer = world.time - processing_start
@@ -267,7 +267,7 @@
 		wearer.balloon_alert(wearer, "Insufficient green blood to begin operation")
 		return
 
-	send_toggle_signal(TRUE)
+	SEND_SIGNAL(src, COMSIG_CHEMSYSTEM_TOGGLE, TRUE)
 	boost_on = TRUE
 	processing_start = world.time
 	START_PROCESSING(SSobj, src)
@@ -278,9 +278,6 @@
 		to_chat(wearer, get_meds_beaker_contents())
 		meds_beaker.reagents.trans_to(wearer, 30)
 	setup_bonus_effects()
-
-/datum/component/chem_booster/proc/send_toggle_signal(toggle)
-	SEND_SIGNAL(src, COMSIG_CHEMSYSTEM_TOGGLE, toggle)
 
 ///Updates the boost amount of the suit and effect_str of reagents if component is on. "amount" is the final level you want to set the boost to.
 /datum/component/chem_booster/proc/update_boost(amount)
