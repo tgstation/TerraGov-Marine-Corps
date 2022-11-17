@@ -49,7 +49,7 @@
 	icon_state = "rebreather"
 	item_state = "rebreather"
 	flags_armor_protection = NONE
-	flags_inventory = COVERMOUTH|COVEREYES|ALLOWINTERNALS|BLOCKGASEFFECT |ALLOWREBREATH
+	flags_inventory = COVERMOUTH|COVEREYES|ALLOWINTERNALS|BLOCKGASEFFECT
 	flags_inv_hide = HIDELOWHAIR
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
@@ -74,7 +74,7 @@
 	flags_armor_protection = NONE
 	flags_armor_protection = FACE
 	flags_inv_hide = HIDEFACE|HIDELOWHAIR
-	flags_inventory = COVERMOUTH|COVEREYES|ALLOWINTERNALS|BLOCKGASEFFECT |ALLOWREBREATH
+	flags_inventory = COVERMOUTH|COVEREYES|ALLOWINTERNALS|BLOCKGASEFFECT
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 
@@ -89,11 +89,11 @@
 	active = !active
 	icon_state = "[initial(icon_state)][!active ? "_down" : ""]"
 	if(!active)
-		DISABLE_BITFIELD(flags_inventory, (COVERMOUTH|ALLOWREBREATH))
+		DISABLE_BITFIELD(flags_inventory, (COVERMOUTH))
 		DISABLE_BITFIELD(flags_inv_hide, (HIDEFACE|HIDELOWHAIR))
 		DISABLE_BITFIELD(flags_armor_protection, FACE)
 	else
-		ENABLE_BITFIELD(flags_inventory, (COVERMOUTH|ALLOWREBREATH))
+		ENABLE_BITFIELD(flags_inventory, (COVERMOUTH))
 		ENABLE_BITFIELD(flags_inv_hide, (HIDEFACE|HIDELOWHAIR))
 		ENABLE_BITFIELD(flags_armor_protection, FACE)
 	to_chat(usr, "You [active ? "pull [src] up to cover your face" : "pull [src] off your face"].")

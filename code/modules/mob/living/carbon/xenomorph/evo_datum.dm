@@ -68,7 +68,6 @@
 	var/mob/living/carbon/xenomorph/xeno = usr
 	switch(action)
 		if("evolve")
-			SStgui.close_user_uis(usr, src, "main")
 			var/datum/xeno_caste/caste = GLOB.xeno_caste_datums[text2path(params["path"])][XENO_UPGRADE_BASETYPE]
 			xeno.do_evolve(caste.caste_type_path, caste.display_name) // All the checks for can or can't are handled inside do_evolve
 			return TRUE

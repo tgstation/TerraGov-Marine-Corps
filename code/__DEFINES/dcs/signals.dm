@@ -33,6 +33,7 @@
 
 #define COMSIG_GLOB_AI_GOAL_SET "!ai_goal_set"
 #define COMSIG_GLOB_AI_MINION_RALLY "!ai_minion_rally"
+#define COMSIG_GLOB_HIVE_TARGET_DRAINED "!hive_target_drained"
 
 
 /// Sent when a marine dropship enters transit level
@@ -85,6 +86,12 @@
 // /datum/limb signals
 #define COMSIG_LIMB_DESTROYED "limb_destroyed"
 #define COMSIG_LIMB_UNDESTROYED "limb_undestroyed"
+
+// /datum/aura_bearer signals
+//From /datum/aura_bearer/New(), fires on the aura_bearer's emitter. Provides a list of aura types started.
+#define COMSIG_AURA_STARTED "aura_started"
+//From /datum/aura_bearer/stop_emitting(), fires on the aura_bearer's emitter. Provides a list of aura types finished.
+#define COMSIG_AURA_FINISHED "aura_finished"
 
 /// Admin helps
 /// From /datum/admin_help/RemoveActive().
@@ -187,6 +194,8 @@
 
 
 // /atom/movable signals
+#define COMSIG_MOVABLE_PRE_MOVE "movable_pre_move"				//from base of atom/movable/Move(): (/atom, new_loc, direction)
+	#define COMPONENT_MOVABLE_BLOCK_PRE_MOVE (1<<0)
 #define COMSIG_MOVABLE_MOVED "movable_moved"					//from base of atom/movable/Moved(): (/atom, movement_dir, forced, old_locs)
 #define COMSIG_MOVABLE_PULL_MOVED "movable_pull_moved"		//base base of atom/movable/Moved() (/atom, movement_dir, forced, old_locs)
 ///from base of atom/movable/Cross(): (/atom/movable)
@@ -247,6 +256,7 @@
 
 #define COMSIG_UNMANNED_TURRET_UPDATED "unmanned_turret_update" /// from /obj/vehicle/unmanned/attackby: (newtype)
 #define COMSIG_UNMANNED_ABILITY_UPDATED "unmanned_ability_update"
+#define COMSIG_UNMANNED_COORDINATES "unmanned_coordinates"
 
 // /obj/item signals
 #define COMSIG_ITEM_APPLY_CUSTOM_OVERLAY "item_apply_custom_overlay" //from base of obj/item/apply_custom(): (/image/standing)
@@ -287,7 +297,8 @@
 
 #define COMSIG_ITEM_HYDRO_CANNON_TOGGLED "hydro_cannon_toggled"
 
-#define COMSIG_NEW_REAGENT_ADD "new_reagent_add"					//from add_reagent(): (/datum/reagent, amount); it is sent when a reagent gets added for the first time to a holder
+#define COMSIG_NEW_REAGENT_ADD "new_reagent_add"					//from add_reagent(): (reagent_path, amount); it is sent when a reagent gets added for the first time to a holder
+#define COMSIG_REAGENT_DELETING "reagent_deleting"					//from /datum/reagents/del_reagent(): (reagent_path) When a reagent is entirely removed from its holder
 
 #define COMSIG_CLOTHING_MECHANICS_INFO "clothing_mechanics_info"	//from base of /obj/item/clothing/get_mechanics_info()
 	#define COMPONENT_CLOTHING_MECHANICS_TINTED (1<<0)
@@ -319,6 +330,7 @@
 #define COMSIG_GUN_AUTOFIREDELAY_MODIFIED "gun_firedelay_modified"
 #define COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED "gun_burstamount_modified"
 #define COMSIG_GUN_BURST_SHOT_DELAY_MODIFIED "gun_burstdelay_modified"
+#define COMSIG_GUN_AUTO_BURST_SHOT_DELAY_MODIFIED "gun_auto_burstdelay_modified"
 #define COMSIG_GUN_USER_UNSET "gun_user_unset"
 #define COMSIG_GUN_USER_SET "gun_user_set"
 #define COMSIG_MOB_GUN_FIRED "mob_gun_fired"
@@ -327,6 +339,9 @@
 #define COMSIG_XENO_FIRE "xeno_fire"
 #define COMSIG_XENO_STOP_FIRE "xeno_stop_fire"
 #define COMSIG_XENO_AUTOFIREDELAY_MODIFIED "xeno_firedelay_modified"
+
+#define COMSIG_MECH_FIRE "mech_fire"
+#define COMSIG_MECH_STOP_FIRE "mech_stop_fire"
 
 
 // /obj/item/clothing signals
@@ -362,6 +377,7 @@
 #define COMSIG_MOB_EXAMINATE "mob_examinate"
 #define COMSIG_MOB_UPDATE_SIGHT "mob_update_sight"				//from base of /mob/update_sight(): ()
 #define COMSIG_MOB_HUD_CREATED "mob_hud_created"				//from base of mob/create_mob_hud(): ()
+#define COMSIG_MOB_KEYBINDINGS_UPDATED "mob_bindings_changed"   //from base of datum/preferences/ui_act(): (/datum/keybinding)
 
 #define COMSIG_MOB_SHIELD_DETATCH "mob_shield_detatched"
 #define COMSIG_MOB_ITEM_ATTACK "mob_item_attack"				//from base of /obj/item/attack(): (mob/target, /obj/item/attacking_item)
@@ -377,6 +393,14 @@
 #define COMSIG_MOB_ITEM_AFTERATTACK "mob_item_afterattack"		//from base of obj/item/afterattack(): (atom/target, mob/user, has_proximity, click_parameters)
 #define COMSIG_MOB_ITEM_AFTERATTACK_ALTERNATE "mob_item_afterattack_alternate" //from base of obj/item/afterattack_alternate(): (atom/target, mob/user, has_proximity, click_parameters)
 #define COMSIG_MOB_SAY "mob_say" 								// from /mob/living/say(): (proc args list)
+	// used to access COMSIG_MOB_SAY argslist
+	#define SPEECH_MESSAGE 1
+	// #define SPEECH_BUBBLE_TYPE 2
+	#define SPEECH_SPANS 3
+	// #define SPEECH_SANITIZE 4
+	#define SPEECH_LANGUAGE 5
+	/* #define SPEECH_IGNORE_SPAM 6
+	#define SPEECH_FORCED 7 */
 #define COMSIG_MOB_DEADSAY "mob_deadsay" 							// from /mob/living/say_dead(): (proc args list)
 	#define MOB_DEADSAY_SIGNAL_INTERCEPT (1<<0)
 #define COMSIG_MOB_LOGIN "mob_login"							//from /mob/Login(): ()
@@ -400,6 +424,9 @@
 ///from /mob/living/proc/set_lying_angle
 #define COMSIG_LIVING_SET_LYING_ANGLE "living_set_lying_angle"
 
+/// From mob/living/treat_message(): (list/message_args)
+#define COMSIG_LIVING_TREAT_MESSAGE "living_treat_message"
+
 //ALL OF THESE DO NOT TAKE INTO ACCOUNT WHETHER AMOUNT IS 0 OR LOWER AND ARE SENT REGARDLESS!
 #define COMSIG_LIVING_STATUS_STUN "living_stun"					//from base of mob/living/Stun() (amount, update, ignore)
 #define COMSIG_LIVING_STATUS_KNOCKDOWN "living_knockdown"		//from base of mob/living/Knockdown() (amount, update, ignore)
@@ -410,15 +437,17 @@
 #define COMSIG_LIVING_STATUS_CONFUSED "living_confused"			//from base of mob/living/Confused() (amount, update, ignore)
 #define COMSIG_LIVING_STATUS_STAGGER "living_stagger"			//from base of mob/living/adjust_stagger() (amount, update, ignore)
 #define COMSIG_LIVING_STATUS_SLOWDOWN "living_slowdown"			//from base of mob/living/set_slowdown() (amount, update)
-
 	#define COMPONENT_NO_STUN (1<<0)			//For all of them
+
+///from end of fully_heal(): (admin_revive)
+#define COMSIG_LIVING_POST_FULLY_HEAL "living_post_fully_heal"
 
 #define COMSIG_LIVING_STATUS_MUTE "living_mute"					//from base of mob/living/Mute()
 	#define COMPONENT_NO_MUTE (1<<0)
 
 #define COMSIG_LIVING_ADD_VENTCRAWL "living_add_ventcrawl"
-#define COMSIG_LIVING_WEEDS_AT_LOC_CREATED "living_weeds_at_loc_created"	///from obj/effect/alien/weeds/Initialize()
-#define COMSIG_LIVING_WEEDS_ADJACENT_REMOVED "living_weeds_adjacent_removed"	///from obj/effect/alien/weeds/Destroy()
+#define COMSIG_LIVING_WEEDS_AT_LOC_CREATED "living_weeds_at_loc_created"	///from obj/alien/weeds/Initialize()
+#define COMSIG_LIVING_WEEDS_ADJACENT_REMOVED "living_weeds_adjacent_removed"	///from obj/alien/weeds/Destroy()
 
 //mob/living/carbon signals
 #define COMSIG_CARBON_SWAPPED_HANDS "carbon_swapped_hands"
@@ -455,12 +484,12 @@
 #define COMSIG_WARRIOR_USED_GRAPPLE_TOSS "warrior_used_grapple_toss"
 
 #define COMSIG_XENOABILITY_HUNTER_MARK "xenoability_hunter_mark"
-#define COMSIG_XENOABILITY_SWAP "xenoability_swap"
 #define COMSIG_XENOABILITY_PSYCHIC_TRACE "xenoability_psychic_trace"
 
 #define COMSIG_XENOMORPH_PLASMA_REGEN "xenomorph_plasma_regen"
 #define COMSIG_XENOMORPH_HEALTH_REGEN "xenomorph_health_regen"
 #define COMSIG_XENOMORPH_SUNDER_REGEN "xenomorph_sunder_regen"
+#define COMSIG_XENOMORPH_RESIN_JELLY_APPLIED "xenomorph_resin_jelly_applied"
 
 #define COMSIG_XENOMORPH_REST "xenomorph_rest"
 #define COMSIG_XENOMORPH_UNREST "xenomorph_unrest"
@@ -502,12 +531,15 @@
 #define COMSIG_XENOMORPH_FIRE_BURNING "xenomorph_fire_burning"
 #define COMSIG_XENOMORPH_TAKING_DAMAGE "xenomorph_taking_damage" // (target, damagetaken)
 
-#define COMSIG_XENOMORPH_BRUTE_DAMAGE "xenomorph_brute_damage"
-#define COMSIG_XENOMORPH_BURN_DAMAGE "xenomorph_burn_damage"
+#define COMSIG_XENOMORPH_BRUTE_DAMAGE "xenomorph_brute_damage" // (amount, amount_mod, passive)
+#define COMSIG_XENOMORPH_BURN_DAMAGE "xenomorph_burn_damage" // (amount, amount_mod, passive)
 
 #define COMSIG_XENOMORPH_EVOLVED "xenomorph_evolved"
 #define COMSIG_XENOMORPH_DEEVOLVED "xenomorph_deevolved"
 #define COMSIG_XENOMORPH_WATCHXENO "xenomorph_watchxeno"
+
+#define COMSIG_XENOMORPH_LEADERSHIP "xenomorph_leadership"
+#define COMSIG_XENOMORPH_QUEEN_PLASMA "xenomorph_queen_plasma"
 
 #define COMSIG_XENOMORPH_CORE_RETURN "xenomorph_core_return"
 #define COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM "xenomorph_hivemind_change_form"
@@ -583,6 +615,16 @@
 #define COMSIG_KB_HOLD_RUN_MOVE_INTENT_UP "keybinding_hold_run_move_intent_up"
 #define COMSIG_KB_EMOTE "keybinding_emote"
 #define COMSIG_KB_TOGGLE_MINIMAP "toggle_minimap"
+#define COMSIG_KB_SELFHARM "keybind_selfharm"
+
+// mecha keybinds
+#define COMSIG_MECHABILITY_TOGGLE_INTERNALS "mechability_toggle_internals"
+#define COMSIG_MECHABILITY_TOGGLE_STRAFE "mechability_toggle_strafe"
+#define COMSIG_MECHABILITY_VIEW_STATS "mechability_view_stats"
+#define COMSIG_MECHABILITY_SMOKE "mechability_smoke"
+#define COMSIG_MECHABILITY_TOGGLE_ZOOM "mechability_toggle_zoom"
+#define COMSIG_MECHABILITY_SKYFALL "mechability_skyfall"
+#define COMSIG_MECHABILITY_STRIKE "mechability_strike"
 
 // xeno abilities for keybindings
 
@@ -611,6 +653,10 @@
 #define COMSIG_XENOABILITY_RALLY_MINION "xenoability_rally_minion"
 #define COMSIG_XENOABILITY_MINION_BEHAVIOUR "xenoability_minion_behavior"
 
+#define COMSIG_XENOABILITY_ESSENCE_LINK "xenoability_essence_link"
+#define COMSIG_XENOABILITY_ESSENCE_LINK_REMOVE "xenoability_essence_link_remove"
+#define COMSIG_XENOABILITY_ENHANCEMENT "xenoability_enhancement"
+
 #define COMSIG_XENOABILITY_LONG_RANGE_SIGHT "xenoability_long_range_sight"
 #define COMSIG_XENOABILITY_TOGGLE_BOMB "xenoability_toggle_bomb"
 #define COMSIG_XENOABILITY_TOGGLE_BOMB_RADIAL "xenoability_toggle_bomb_radial"
@@ -622,6 +668,7 @@
 #define COMSIG_XENOABILITY_SPAWN_HUGGER "xenoability_spawn_hugger"
 #define COMSIG_XENOABILITY_SWITCH_HUGGER "xenoability_switch_hugger"
 #define COMSIG_XENOABILITY_CHOOSE_HUGGER "xenoability_choose_hugger"
+#define COMSIG_XENOABILITY_DROP_ALL_HUGGER "xenoability_drop_all_hugger"
 
 #define COMSIG_XENOABILITY_STOMP "xenoability_stomp"
 #define COMSIG_XENOABILITY_TOGGLE_CHARGE "xenoability_toggle_charge"
@@ -661,6 +708,7 @@
 #define COMSIG_XENOABILITY_HEALING_INFUSION "xenoability_healing_infusion"
 
 #define COMSIG_XENOABILITY_TOGGLE_STEALTH "xenoability_toggle_stealth"
+#define COMSIG_XENOABILITY_TOGGLE_DISGUISE "xenoability_toggle_disguise"
 #define COMSIG_XENOABILITY_MIRAGE "xenoability_mirage"
 
 #define COMSIG_XENOABILITY_SCREECH "xenoability_screech"
@@ -711,12 +759,21 @@
 #define COMSIG_XENOABILITY_BANISH "xenoability_banish"
 #define COMSIG_XENOABILITY_RECALL "xenoability_recall"
 #define COMSIG_XENOABILITY_TIMESTOP "xenoability_timestop"
+#define COMSIG_XENOABILITY_REWIND "xenoability_rewind"
 
 #define COMSIG_XENOABILITY_NIGHTFALL "xenoability_nightfall"
 #define COMSIG_XENOABILITY_GRAVITY_CRUSH "xenoability_gravity_crush"
 #define COMSIG_XENOABILITY_HIVE_SUMMON "xenoability_hive_summon"
 
 #define COMSIG_XENOABILITY_SCATTER_SPIT "xenoability_scatter_spit"
+
+#define COMSIG_XENOABILITY_WEB_SPIT "xenoability_web_spit"
+#define COMSIG_XENOABILITY_BURROW "xenoability_burrow"
+#define COMSIG_XENOABILITY_LEASH_BALL "xenoability_leash_ball"
+#define COMSIG_XENOABILITY_CREATE_SPIDERLING "xenoability_create_spiderling"
+#define COMSIG_XENOABILITY_SPIDER_SWARM "xenoability_spider_swarm"
+#define COMSIG_XENOABILITY_ATTACH_SPIDERLINGS "xenoability_attach_spiderlings"
+#define COMSIG_XENOABILITY_WEB_HOOK "xenoability_web_hook"
 
 // throw parry signals
 #define COMSIG_THROW_PARRY_CHECK "throw_parry_check"
@@ -740,6 +797,15 @@
 #define COMSIG_KB_AIMMODE "keybinding_aimmode"
 #define COMSIG_KB_FIREMODE "keybind_firemode"
 #define COMSIG_KB_GIVE "keybind_give"
+#define COMSIG_KB_MOVEORDER "keybind_moveorder"
+#define COMSIG_KB_HOLDORDER "keybind_holdorder"
+#define COMSIG_KB_FOCUSORDER "keybind_focusorder"
+#define COMSIG_KB_RALLYORDER "keybind_rallyorder"
+#define COMSIG_KB_SENDORDER "keybind_sendorder"
+#define COMSIG_KB_ATTACKORDER "keybind_attackorder"
+#define COMSIG_KB_DEFENDORDER "keybind_defendorder"
+#define COMSIG_KB_RETREATORDER "keybind_retreatorder"
+
 
 // human modules signals for keybindings
 #define COMSIG_KB_VALI_CONFIGURE "keybinding_vali_configure"
@@ -757,14 +823,26 @@
 #define COMSIG_OBSTRUCTED_MOVE "unable_to_step_towards_thing" //Tried to step in a direction and there was a obstruction
 	#define COMSIG_OBSTACLE_DEALT_WITH (1<<0)
 
-#define COMSIG_PATHFINDER_SET_ATOM_TO_WALK_TO "set_atom_to_walk_to"
-
 // /datum/song signals
 
 ///sent to the instrument when a song starts playing
 #define COMSIG_SONG_START "song_start"
 ///sent to the instrument when a song stops playing
 #define COMSIG_SONG_END "song_end"
+
+// /obj/vehicle/sealed/mecha signals
+
+///sent from mecha action buttons to the mecha they're linked to
+#define COMSIG_MECHA_ACTION_TRIGGER "mecha_action_activate"
+
+///sent from clicking while you have no equipment selected. Sent before cooldown and adjacency checks, so you can use this for infinite range things if you want.
+#define COMSIG_MECHA_MELEE_CLICK "mecha_action_melee_click"
+	/// Prevents click from happening.
+	#define COMPONENT_CANCEL_MELEE_CLICK (1<<0)
+///sent from clicking while you have equipment selected.
+#define COMSIG_MECHA_EQUIPMENT_CLICK "mecha_action_equipment_click"
+	/// Prevents click from happening.
+	#define COMPONENT_CANCEL_EQUIPMENT_CLICK (1<<0)
 
 /*******Non-Signal Component Related Defines*******/
 
@@ -788,4 +866,8 @@
 #define COMSIG_DISABLE_BURST_FIRE "disable_burst_fire"
 
 //Signals for ais
-#define ESCORTING_ATOM_BEHAVIOUR_CHANGED "escorting_behaviour_changed"
+#define COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED "escorting_behaviour_changed"
+#define COMSIG_ESCORTED_ATOM_CHANGING "escorted_atom_changing"
+
+/// from datum ui_act (usr, action)
+#define COMSIG_UI_ACT "COMSIG_UI_ACT"

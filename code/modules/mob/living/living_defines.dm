@@ -39,7 +39,14 @@
 	var/drowsyness = 0
 
 	var/last_staminaloss_dmg = 0
+	/// Maximum amount of stamina a mob can have. Different from the stamina buffer because stamina has a positive and negative part
+	var/max_stamina = 0
+	/// How much stamina can you regen
 	var/max_stamina_buffer = 0
+	/// How fast does a mob regen its stamina. Shouldn't go below 0.
+	var/stamina_regen_multiplier = 1
+	/// Maps modifiers by name to a value, applied additively to stamina_regen_multiplier
+	var/list/stamina_regen_modifiers
 	var/is_dizzy = FALSE
 	var/druggy = 0
 
@@ -79,12 +86,12 @@
 	var/tinttotal = TINT_NONE
 
 	var/list/status_effects //a list of all status effects the mob has
-
+	///Assoc list mapping aura types to strength, based on what we've received since the last life tick. Handled in handle_status_effects()
+	var/list/received_auras
+	///List of strings for auras this mob is currently emitting via ssAura
+	var/list/emitted_auras
 	var/list/stun_absorption //lazy list
 
-	//Speech
-	var/stuttering = 0
-	var/slurring = 0
 
 	var/resting = FALSE
 

@@ -41,6 +41,11 @@
 /obj/structure/largecrate/guns/merc,
 /turf/open/floor/tile/yellow/full,
 /area/deathmatch)
+"gY" = (
+/obj/effect/spawner/random/plushie/nospawnninetynine{
+	},
+/turf/open/floor/tile/dark,
+/area/deathmatch)
 "ht" = (
 /obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
 /turf/open/floor/tile,
@@ -200,6 +205,11 @@
 "wI" = (
 /obj/structure/cargo_container,
 /turf/open/floor/plating/ground/dirt,
+/area/deathmatch)
+"xb" = (
+/obj/effect/spawner/random/plushie/nospawnninetyfive{
+	},
+/turf/open/floor/tile/yellow/full,
 /area/deathmatch)
 "xg" = (
 /obj/vehicle/train/cargo/trolley,
@@ -1715,7 +1725,7 @@ Ba
 Zr
 DN
 xn
-xn
+gY
 cm
 YD
 YD
@@ -2020,7 +2030,7 @@ FE
 hH
 Pr
 Yh
-Pr
+xb
 SF
 FE
 hH

@@ -7,7 +7,9 @@
 	mechanics_text = "Announces a message to the hive."
 	plasma_cost = 50
 	cooldown_timer = 10 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_QUEEN_HIVE_MESSAGE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_HIVE_MESSAGE,
+	)
 	use_state_flags = XACT_USE_LYING
 
 //Parameters used when displaying hive message to all xenos
@@ -67,7 +69,9 @@
 	plasma_cost = 250
 	cooldown_timer = 100 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
-	keybind_signal = COMSIG_XENOABILITY_SCREECH
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SCREECH,
+	)
 
 /datum/action/xeno_action/activable/screech/on_cooldown_finish()
 	to_chat(owner, span_warning("We feel our throat muscles vibrate. We are ready to screech again."))
@@ -143,29 +147,8 @@
 	UnregisterSignal(L, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_WATCHXENO))
 	return ..()
 
-/datum/action/xeno_action/watch_xeno/action_activate()
-	if(overwatch_active)
-		stop_overwatch()
-		return
-	select_xeno()
-
 /datum/action/xeno_action/watch_xeno/should_show()
-	return isxenoqueen(owner) //Only the queen should have the button for overwatch. All else uses chat (F).
-
-/datum/action/xeno_action/watch_xeno/proc/select_xeno(mob/living/carbon/xenomorph/selected_xeno)
-	var/mob/living/carbon/xenomorph/X = owner
-
-	if(QDELETED(selected_xeno))
-		if(!isxenoqueen(X))
-			return
-		var/list/possible_xenos = X.hive.get_watchable_xenos(X)
-		selected_xeno = tgui_input_list(X, "Target", "Watch which xenomorph?", possible_xenos)
-		if(QDELETED(selected_xeno) || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || is_centcom_level(selected_xeno.z))
-			if(!X.observed_xeno)
-				return
-			stop_overwatch()
-			return
-	start_overwatch(selected_xeno)
+	return FALSE // Overwatching now done through hive status UI!
 
 /datum/action/xeno_action/watch_xeno/proc/start_overwatch(mob/living/carbon/xenomorph/target)
 	if(!can_use_action()) // Check for action now done here as action_activate pipeline has been bypassed with signal activation.
@@ -173,6 +156,9 @@
 
 	var/mob/living/carbon/xenomorph/watcher = owner
 	var/mob/living/carbon/xenomorph/old_xeno = watcher.observed_xeno
+	if(old_xeno == target)
+		stop_overwatch(TRUE)
+		return
 	if(old_xeno)
 		stop_overwatch(FALSE)
 	watcher.observed_xeno = target
@@ -184,7 +170,7 @@
 	RegisterSignal(watcher, COMSIG_MOVABLE_MOVED, .proc/on_movement)
 	RegisterSignal(watcher, COMSIG_XENOMORPH_TAKING_DAMAGE, .proc/on_damage_taken)
 	overwatch_active = TRUE
-	add_selected_frame()
+	set_toggle(TRUE)
 
 /datum/action/xeno_action/watch_xeno/proc/stop_overwatch(do_reset_perspective = TRUE)
 	var/mob/living/carbon/xenomorph/watcher = owner
@@ -198,11 +184,11 @@
 		watcher.reset_perspective()
 	UnregisterSignal(watcher, list(COMSIG_MOVABLE_MOVED, COMSIG_XENOMORPH_TAKING_DAMAGE))
 	overwatch_active = FALSE
-	remove_selected_frame()
+	set_toggle(FALSE)
 
 /datum/action/xeno_action/watch_xeno/proc/on_list_xeno_selection(datum/source, mob/living/carbon/xenomorph/selected_xeno)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, .proc/select_xeno, selected_xeno)
+	INVOKE_ASYNC(src, .proc/start_overwatch, selected_xeno)
 
 /datum/action/xeno_action/watch_xeno/proc/on_xeno_evolution(datum/source, mob/living/carbon/xenomorph/new_xeno)
 	SIGNAL_HANDLER
@@ -237,7 +223,9 @@
 	action_icon_state = "toggle_queen_zoom"
 	mechanics_text = "Zoom out for a larger view around wherever you are looking."
 	plasma_cost = 0
-	keybind_signal = COMSIG_XENOABILITY_TOGGLE_QUEEN_ZOOM
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_QUEEN_ZOOM,
+	)
 
 
 /datum/action/xeno_action/toggle_queen_zoom/action_activate()
@@ -282,60 +270,60 @@
 	action_icon_state = "xeno_lead"
 	mechanics_text = "Make a target Xenomorph a leader."
 	plasma_cost = 200
-	keybind_signal = COMSIG_XENOABILITY_XENO_LEADERS
 	use_state_flags = XACT_USE_LYING
 
+/datum/action/xeno_action/set_xeno_lead/should_show()
+	return FALSE // Leadership now set through hive status UI!
 
-/datum/action/xeno_action/set_xeno_lead/action_activate()
-	var/mob/living/carbon/xenomorph/queen/X = owner
-	if(!X.hive)
+/datum/action/xeno_action/set_xeno_lead/give_action(mob/living/L)
+	. = ..()
+	RegisterSignal(L, COMSIG_XENOMORPH_LEADERSHIP, .proc/try_use_action)
+
+/datum/action/xeno_action/set_xeno_lead/remove_action(mob/living/L)
+	. = ..()
+	UnregisterSignal(L, COMSIG_XENOMORPH_LEADERSHIP)
+
+/// Signal handler for the set_xeno_lead action that checks can_use
+/datum/action/xeno_action/set_xeno_lead/proc/try_use_action(datum/source, mob/living/carbon/xenomorph/target)
+	SIGNAL_HANDLER
+	if(!can_use_action())
 		return
+	INVOKE_ASYNC(src, .proc/select_xeno_leader, target)
 
-	select_xeno_leader()
-
-
-/datum/action/xeno_action/set_xeno_lead/proc/select_xeno_leader(mob/living/carbon/xenomorph/selected_xeno, feedback = TRUE)
+/// Check if there is an empty slot and promote the passed xeno to a hive leader
+/datum/action/xeno_action/set_xeno_lead/proc/select_xeno_leader(mob/living/carbon/xenomorph/selected_xeno)
 	var/mob/living/carbon/xenomorph/queen/xeno_ruler = owner
-	if(QDELETED(selected_xeno))
-		var/list/possible_xenos = xeno_ruler.hive.get_leaderable_xenos()
-
-		selected_xeno = tgui_input_list(xeno_ruler, "Target", "Watch which xenomorph?", possible_xenos)
-		if(QDELETED(selected_xeno) || selected_xeno.stat == DEAD || is_centcom_level(selected_xeno.z))
-			return
 
 	if(selected_xeno.queen_chosen_lead)
-		unset_xeno_leader(selected_xeno, feedback)
+		unset_xeno_leader(selected_xeno)
 		return
 
 	if(xeno_ruler.xeno_caste.queen_leader_limit <= length(xeno_ruler.hive.xeno_leader_list))
-		if(feedback)
-			xeno_ruler.balloon_alert(xeno_ruler, "No more leadership slots")
+		xeno_ruler.balloon_alert(xeno_ruler, "No more leadership slots")
 		return
 
-	set_xeno_leader(selected_xeno, feedback)
+	set_xeno_leader(selected_xeno)
 
-
-/datum/action/xeno_action/set_xeno_lead/proc/unset_xeno_leader(mob/living/carbon/xenomorph/selected_xeno, feedback = TRUE)
+/// Remove the passed xeno's leadership
+/datum/action/xeno_action/set_xeno_lead/proc/unset_xeno_leader(mob/living/carbon/xenomorph/selected_xeno)
 	var/mob/living/carbon/xenomorph/xeno_ruler = owner
-	if(feedback)
-		xeno_ruler.balloon_alert(xeno_ruler, "Xeno demoted")
-		selected_xeno.balloon_alert(selected_xeno, "Leadership removed")
+	xeno_ruler.balloon_alert(xeno_ruler, "Xeno demoted")
+	selected_xeno.balloon_alert(selected_xeno, "Leadership removed")
 	selected_xeno.hive.remove_leader(selected_xeno)
 	selected_xeno.hud_set_queen_overwatch()
 	selected_xeno.handle_xeno_leader_pheromones(xeno_ruler)
 
 	selected_xeno.update_leader_icon(FALSE)
 
-/datum/action/xeno_action/set_xeno_lead/proc/set_xeno_leader(mob/living/carbon/xenomorph/selected_xeno, feedback = TRUE)
+/// Promote the passed xeno to a hive leader, should not be called direct
+/datum/action/xeno_action/set_xeno_lead/proc/set_xeno_leader(mob/living/carbon/xenomorph/selected_xeno)
 	var/mob/living/carbon/xenomorph/xeno_ruler = owner
 	if(!(selected_xeno.xeno_caste.can_flags & CASTE_CAN_BE_LEADER))
-		if(feedback)
-			xeno_ruler.balloon_alert(xeno_ruler, "Xeno cannot lead")
+		xeno_ruler.balloon_alert(xeno_ruler, "Xeno cannot lead")
 		return
-	if(feedback)
-		xeno_ruler.balloon_alert(xeno_ruler, "Xeno promoted")
-		selected_xeno.balloon_alert(selected_xeno, "Promoted to leader")
-		to_chat(selected_xeno, span_xenoannounce("[xeno_ruler] has selected us as a Hive Leader. The other Xenomorphs must listen to us. We will also act as a beacon for the Queen's pheromones."))
+	xeno_ruler.balloon_alert(xeno_ruler, "Xeno promoted")
+	selected_xeno.balloon_alert(selected_xeno, "Promoted to leader")
+	to_chat(selected_xeno, span_xenoannounce("[xeno_ruler] has selected us as a Hive Leader. The other Xenomorphs must listen to us. We will also act as a beacon for the Queen's pheromones."))
 
 	xeno_ruler.hive.add_leader(selected_xeno)
 	selected_xeno.hud_set_queen_overwatch()
@@ -343,6 +331,45 @@
 	notify_ghosts("\ [xeno_ruler] has designated [selected_xeno] as a Hive Leader", source = selected_xeno, action = NOTIFY_ORBIT)
 
 	selected_xeno.update_leader_icon(TRUE)
+
+// ***************************************
+// *********** Queen Acidic Salve
+// ***************************************
+/datum/action/xeno_action/activable/psychic_cure/queen_give_heal
+	name = "Heal"
+	action_icon_state = "heal_xeno"
+	mechanics_text = "Apply a minor heal to the target."
+	cooldown_timer = 5 SECONDS
+	plasma_cost = 150
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_HEAL,
+	)
+	heal_range = HIVELORD_HEAL_RANGE
+	target_flags = XABB_MOB_TARGET
+
+/datum/action/xeno_action/activable/psychic_cure/queen_give_heal/use_ability(atom/target)
+	if(owner.do_actions)
+		return FALSE
+	if(!do_mob(owner, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+		return FALSE
+	target.visible_message(span_xenowarning("\the [owner] vomits acid over [target], mending their wounds!"))
+	playsound(target, "alien_drool", 25)
+	new /obj/effect/temp_visual/telekinesis(get_turf(target))
+	var/mob/living/carbon/xenomorph/patient = target
+	patient.salve_healing()
+	owner.changeNext_move(CLICK_CD_RANGE)
+	succeed_activate()
+	add_cooldown()
+
+/// Heals the target.
+/mob/living/carbon/xenomorph/proc/salve_healing()
+	var/amount = 50
+	if(recovery_aura)
+		amount += recovery_aura * maxHealth * 0.01
+	var/remainder = max(0, amount - getBruteLoss())
+	adjustBruteLoss(-amount)
+	adjustFireLoss(-remainder, updating_health = TRUE)
+	adjust_sunder(-amount/20)
 
 // ***************************************
 // *********** Queen plasma
@@ -353,10 +380,11 @@
 	mechanics_text = "Give plasma to a target Xenomorph (you must be overwatching them.)"
 	plasma_cost = 150
 	cooldown_timer = 8 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA,
+	)
 	use_state_flags = XACT_USE_LYING
 	target_flags = XABB_MOB_TARGET
-
 
 /datum/action/xeno_action/activable/queen_give_plasma/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
@@ -369,7 +397,7 @@
 		if(!silent)
 			receiver.balloon_alert(owner, "Cannot give plasma, dead")
 		return FALSE
-	if(!(receiver.xeno_caste.can_flags & CASTE_CAN_BE_GIVEN_PLASMA))
+	if(!CHECK_BITFIELD(receiver.xeno_caste.can_flags, CASTE_CAN_BE_GIVEN_PLASMA))
 		if(!silent)
 			receiver.balloon_alert(owner, "Cannot give plasma")
 			return FALSE
@@ -384,45 +412,30 @@
 		return FALSE
 
 
+/datum/action/xeno_action/activable/queen_give_plasma/give_action(mob/living/L)
+	. = ..()
+	RegisterSignal(L, COMSIG_XENOMORPH_QUEEN_PLASMA, .proc/try_use_ability)
+
+/datum/action/xeno_action/activable/queen_give_plasma/remove_action(mob/living/L)
+	. = ..()
+	UnregisterSignal(L, COMSIG_XENOMORPH_QUEEN_PLASMA)
+
+/// Signal handler for the queen_give_plasma action that checks can_use
+/datum/action/xeno_action/activable/queen_give_plasma/proc/try_use_ability(datum/source, mob/living/carbon/xenomorph/target)
+	SIGNAL_HANDLER
+	if(!can_use_ability(target, FALSE, XACT_IGNORE_SELECTED_ABILITY))
+		return
+	use_ability(target)
+
 /datum/action/xeno_action/activable/queen_give_plasma/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/receiver = target
 	add_cooldown()
 	receiver.gain_plasma(300)
 	succeed_activate()
-	receiver.balloon_alert_to_viewers("Plasma given from Queen")
-
-
-// ***************************************
-// *********** Queen order
-// ***************************************
-/datum/action/xeno_action/queen_order
-	name = "Give Order"
-	action_icon_state = "queen_order"
-	plasma_cost = 100
-	use_state_flags = XACT_USE_LYING
-
-/datum/action/xeno_action/queen_order/action_activate()
-	var/mob/living/carbon/xenomorph/queen/X = owner
-	if(!X.check_concious_state())
-		return
-	if(X.observed_xeno)
-		var/mob/living/carbon/xenomorph/target = X.observed_xeno
-		if(target.stat != DEAD && target.client)
-			if(X.check_plasma(100))
-				var/input = stripped_input(X, "This message will be sent to the overwatched xeno.", "Queen Order", "")
-				if(!input)
-					return
-				var/queen_order = span_xenoannounce("<b>[X]</b> reaches you:\"[input]\"")
-				if(!X.check_state() || !X.check_plasma(100) || X.observed_xeno != target || target.stat == DEAD)
-					return
-				if(target.client)
-					X.use_plasma(100)
-					to_chat(target, "[queen_order]")
-					log_game("[key_name(X)] has given the following Queen order to [key_name(target)]: [input]")
-					message_admins("[ADMIN_TPMONTY(X)] has given the following Queen order to [ADMIN_TPMONTY(target)]: [input]")
-
-	else
-		to_chat(X, span_warning("We must overwatch the Xenomorph we want to give orders to."))
+	receiver.balloon_alert_to_viewers("Queen plasma", ignored_mobs = GLOB.alive_human_list)
+	if (get_dist(owner, receiver) > 7)
+		// Out of screen transfer.
+		owner.balloon_alert(owner, "Transferred plasma")
 
 // ***************************************
 // *********** Queen deevolve
@@ -432,7 +445,9 @@
 	action_icon_state = "xeno_deevolve"
 	mechanics_text = "De-evolve a target Xenomorph of Tier 2 or higher to the next lowest tier."
 	plasma_cost = 600
-	keybind_signal = COMSIG_XENOABILITY_DEEVOLVE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DEEVOLVE,
+	)
 	use_state_flags = XACT_USE_LYING
 
 /datum/action/xeno_action/deevolve/action_activate()
@@ -442,8 +457,6 @@
 		return
 
 	var/mob/living/carbon/xenomorph/T = X.observed_xeno
-	if(!X.check_plasma(600)) // check plasma gives an error message itself
-		return
 
 	if(T.is_ventcrawling)
 		T.balloon_alert(X, "Cannot deevolve, ventcrawling")
@@ -472,7 +485,7 @@
 		T.balloon_alert(X, "De-evolution reason required")
 		return
 
-	if(!X.check_concious_state() || !X.check_plasma(600) || X.observed_xeno != T)
+	if(!X.check_concious_state() || X.observed_xeno != T)
 		return
 
 	if(T.is_ventcrawling)

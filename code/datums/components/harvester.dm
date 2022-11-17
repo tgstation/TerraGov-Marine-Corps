@@ -24,7 +24,7 @@
 	var/obj/item/item_parent = parent
 
 	reagent_select_action = new
-	item_parent.actions += reagent_select_action
+	LAZYADD(item_parent.actions, reagent_select_action)
 
 	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/examine)
 	RegisterSignal(parent, COMSIG_ITEM_UNIQUE_ACTION, .proc/activate_blade)
@@ -34,7 +34,7 @@
 
 /datum/component/harvester/Destroy(force, silent)
 	var/obj/item/item_parent = parent
-	item_parent.actions -= reagent_select_action
+	LAZYREMOVE(item_parent.actions, reagent_select_action)
 	QDEL_NULL(reagent_select_action)
 	return ..()
 
@@ -142,10 +142,10 @@
 	to_chat(user, span_rose("You prepare to stab <b>[target != user ? "[target]" : "yourself"]</b>!"))
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	if((target != user) && do_after(user, 2 SECONDS, TRUE, target, BUSY_ICON_DANGER))
-		target.heal_overall_damage(12.5, 0, TRUE)
+		target.heal_overall_damage(12.5, 0, updating_health = TRUE)
 	else
 		target.adjustStaminaLoss(-30)
-		target.heal_overall_damage(6, 0, TRUE)
+		target.heal_overall_damage(6, 0, updating_health = TRUE)
 
 ///Signal handler calling when user is filling the harvester
 /datum/component/harvester/proc/attackby(datum/source, obj/item/cont, mob/user)

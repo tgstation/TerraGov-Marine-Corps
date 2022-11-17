@@ -14,14 +14,14 @@
 
 /datum/surgery_step/cut_limb/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
 	if(!affected)
-		return 0
+		return SURGERY_CANNOT_USE
 	if(affected.limb_status & LIMB_DESTROYED) //already missing
-		return 0
+		return SURGERY_CANNOT_USE
 	if(affected.surgery_open_stage) //avoids conflict with sawing skull open
-		return 0
+		return SURGERY_CANNOT_USE
 	if(target_zone == "chest" || target_zone == "groin" || target_zone == "head") //can't amputate the chest
-		return 0
-	return 1
+		return SURGERY_CANNOT_USE
+	return SURGERY_CAN_USE
 
 /datum/surgery_step/cut_limb/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_notice("[user] is beginning to cut off [target]'s [affected.display_name] with \the [tool].") , \

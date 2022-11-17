@@ -8,7 +8,7 @@
 	maxHealth = 35
 	health = 35
 	see_in_dark = 8
-	flags_pass = PASSTABLE | PASSMOB
+	flags_pass = PASSTABLE | PASSMOB | PASSXENO
 	tier = XENO_TIER_ZERO  //Larva's don't count towards Pop limits
 	upgrade = XENO_UPGRADE_INVALID
 	gib_chance = 25
@@ -25,7 +25,7 @@
 /mob/living/carbon/xenomorph/larva/a_intent_change()
 	return
 
-/mob/living/carbon/xenomorph/larva/start_pulling(atom/movable/AM, suppress_message = FALSE)
+/mob/living/carbon/xenomorph/larva/start_pulling(atom/movable/AM, force = move_force, suppress_message = FALSE)
 	return FALSE
 
 /mob/living/carbon/xenomorph/larva/pull_response(mob/puller)
@@ -84,3 +84,8 @@
 	log_game("[key_name(src)] died as a Larva at [AREACOORD(src)].")
 	message_admins("[ADMIN_TPMONTY(src)] died as a Larva.")
 	return ..()
+
+/mob/living/carbon/xenomorph/larva/spec_evolution_boost()
+	if(!loc_weeds_type)
+		return 0
+	return 1

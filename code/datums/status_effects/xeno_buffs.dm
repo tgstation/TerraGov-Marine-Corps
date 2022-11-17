@@ -1,3 +1,6 @@
+// ***************************************
+// *********** Resin Jelly
+// ***************************************
 /datum/status_effect/resin_jelly_coating
 	id = "resin jelly"
 	duration = 15 SECONDS
@@ -24,6 +27,303 @@
 	owner.heal_limb_damage(0, 5)
 	return ..()
 
+// ***************************************
+// *********** Essence Link
+// ***************************************
+/obj/effect/ebeam/essence_link
+	name = "essence link beam"
+
+/datum/status_effect/stacking/essence_link
+	id = "xeno_essence_link"
+	tick_interval = 2 SECONDS
+	stacks = 0
+	stack_decay = -1 //Not meant to decay.
+	max_stacks = 3
+	consumed_on_threshold = FALSE
+	consumed_on_fadeout = FALSE
+	alert_type = null
+	/// The owner of the link.
+	var/mob/living/carbon/xenomorph/link_owner
+	/// Whom the owner is linked to.
+	var/mob/living/carbon/xenomorph/link_target
+	/// References the Essence Link action and its vars.
+	var/datum/action/xeno_action/activable/essence_link/essence_link_action
+	/// If the target xeno was within range.
+	var/was_within_range = TRUE
+	/// Cooldown for passive attunement increase.
+	COOLDOWN_DECLARE(attunement_increase)
+	/// Delay between plasma warnings. Plasma warnings are issued if there's not enough plasma for the passive regeneration.
+	var/plasma_warning_cooldown = 20 SECONDS
+	/// Cooldown for the plasma warning.
+	COOLDOWN_DECLARE(plasma_warning)
+	/// The beam used to represent the link between linked xenos.
+	var/datum/beam/current_beam
+
+/datum/status_effect/stacking/essence_link/on_creation(mob/living/new_owner, stacks_to_apply, mob/living/carbon/link_target)
+	link_owner = new_owner
+	src.link_target = link_target
+	essence_link_action = link_owner.actions_by_path[/datum/action/xeno_action/activable/essence_link]
+	ADD_TRAIT(link_owner, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
+	ADD_TRAIT(link_target, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
+	RegisterSignal(link_owner, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), .proc/end_link)
+	RegisterSignal(link_target, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), .proc/end_link)
+	toggle_link(TRUE)
+	to_chat(link_owner, span_xenonotice("We have established an Essence Link with [link_target]. Stay within [DRONE_ESSENCE_LINK_RANGE] tiles to maintain it."))
+	to_chat(link_target, span_xenonotice("[link_owner] has established an Essence Link with us. Stay within [DRONE_ESSENCE_LINK_RANGE] tiles to maintain it."))
+	return ..()
+
+/datum/status_effect/stacking/essence_link/add_stacks(stacks_added)
+	. = ..()
+	essence_link_action.update_button_icon()
+	link_owner.balloon_alert(link_owner, "Attunement: [stacks]/[max_stacks]")
+	COOLDOWN_START(src, attunement_increase, essence_link_action.attunement_cooldown)
+	update_beam()
+
+/datum/status_effect/stacking/essence_link/on_remove()
+	to_chat(link_owner, span_xenonotice("The Essence Link between us and [link_target] has been cancelled."))
+	to_chat(link_target, span_xenonotice("The Essence Link between us and [link_owner] has been cancelled."))
+	toggle_link(FALSE)
+	essence_link_action.end_ability()
+	UnregisterSignal(link_owner, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED))
+	UnregisterSignal(link_target, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED))
+	REMOVE_TRAIT(link_owner, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
+	REMOVE_TRAIT(link_target, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
+	return ..()
+
+/datum/status_effect/stacking/essence_link/tick()
+	var/within_range = get_dist(link_owner, link_target) <= DRONE_ESSENCE_LINK_RANGE
+	if(within_range != was_within_range) // Toggles the link depending on whether the linked xenos are still in range or not.
+		was_within_range = within_range
+		toggle_link(was_within_range)
+		link_owner.balloon_alert(link_owner, was_within_range ? ("Link reestablished") : ("Link faltering"))
+		link_target.balloon_alert(link_target, was_within_range ? ("Link reestablished") : ("Link faltering"))
+
+	if(stacks < max_stacks && COOLDOWN_CHECK(src, attunement_increase))
+		add_stacks(1)
+
+	var/remaining_health = link_target.maxHealth - (link_target.getBruteLoss() + link_target.getFireLoss())
+	if(stacks < 1 || !was_within_range || remaining_health >= link_target.maxHealth)
+		return
+	var/heal_amount = link_target.maxHealth * (DRONE_ESSENCE_LINK_REGEN * stacks)
+	var/plasma_cost = heal_amount * 2
+	if(link_owner.plasma_stored < plasma_cost)
+		if(!COOLDOWN_CHECK(src, plasma_warning))
+			return
+		link_owner.balloon_alert(link_owner, "No plasma for link")
+		link_target.balloon_alert(link_target, "No plasma for link")
+		COOLDOWN_START(src, plasma_warning, plasma_warning_cooldown)
+		return
+	link_target.adjustFireLoss(-max(0, heal_amount - link_target.getBruteLoss()), passive = TRUE)
+	link_target.adjustBruteLoss(-heal_amount, passive = TRUE)
+	link_owner.use_plasma(plasma_cost)
+
+/// Shares the Resin Jelly buff with the linked xeno.
+/datum/status_effect/stacking/essence_link/proc/share_jelly(datum/source)
+	SIGNAL_HANDLER
+	var/mob/living/carbon/xenomorph/buff_owner
+	var/mob/living/carbon/xenomorph/buff_target
+
+	if(stacks < 1)
+		return
+
+	if(source == link_target)
+		buff_owner = link_target
+		buff_target = link_owner
+	else
+		buff_owner = link_owner
+		buff_target = link_target
+
+	buff_owner.balloon_alert(buff_owner, "Buff shared")
+	buff_target.balloon_alert(buff_target, "Buff shared")
+	buff_target.visible_message(span_notice("[buff_target]'s chitin begins to gleam with an unseemly glow..."), \
+		span_xenonotice("Through the Essence Link, [buff_owner] has shared their resin jelly with us."))
+	INVOKE_ASYNC(buff_target, /mob/living/carbon/xenomorph.proc/emote, "roar")
+	buff_target.apply_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING)
+
+/// Shares heals with the linked xeno.
+/datum/status_effect/stacking/essence_link/proc/share_heal(datum/source, amount, amount_mod, passive)
+	SIGNAL_HANDLER
+	var/mob/living/carbon/xenomorph/heal_target
+
+	// Besides the stacks check, also prevents actual damage, decimals of 0, and passive healing.
+	if(stacks < 1 || amount > -1 || passive)
+		return
+
+	if(source == link_target)
+		heal_target = link_owner
+	else
+		heal_target = link_target
+
+	new /obj/effect/temp_visual/healing(get_turf(heal_target))
+	var/heal_amount = clamp(abs(amount) * (DRONE_ESSENCE_LINK_SHARED_HEAL * stacks), 0, heal_target.maxHealth)
+	heal_target.adjustFireLoss(-max(0, heal_amount - heal_target.getBruteLoss()), passive = TRUE)
+	heal_target.adjustBruteLoss(-heal_amount, passive = TRUE)
+	heal_target.adjust_sunder(-heal_amount/20)
+	heal_target.balloon_alert(heal_target, "Shared heal: +[heal_amount]")
+
+/// Toggles the link signals on or off.
+/datum/status_effect/stacking/essence_link/proc/toggle_link(toggle)
+	if(!toggle)
+		UnregisterSignal(link_owner, list(COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
+		UnregisterSignal(link_target, list(COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
+		toggle_beam(FALSE)
+		return
+	RegisterSignal(link_owner, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, .proc/share_jelly)
+	RegisterSignal(link_target, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, .proc/share_jelly)
+	RegisterSignal(link_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), .proc/share_heal)
+	RegisterSignal(link_target, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), .proc/share_heal)
+	toggle_beam(TRUE)
+
+/// Toggles the effect beam on or off.
+/datum/status_effect/stacking/essence_link/proc/toggle_beam(toggle)
+	if(!toggle)
+		QDEL_NULL(current_beam)
+		return
+	current_beam = link_owner.beam(link_target, icon_state= "medbeam", beam_type = /obj/effect/ebeam/essence_link)
+	update_beam()
+
+/// Updates the link's appearance.
+/datum/status_effect/stacking/essence_link/proc/update_beam()
+	current_beam?.visuals.alpha = round(255 / (max_stacks+1 - stacks))
+
+/// Ends the link prematurely.
+/datum/status_effect/stacking/essence_link/proc/end_link(datum/source)
+	SIGNAL_HANDLER
+	essence_link_action.end_ability()
+
+// ***************************************
+// *********** Salve Regeneration
+// ***************************************
+/datum/status_effect/salve_regen
+	id = "salve regen"
+	duration = 15 SECONDS
+	tick_interval = 2 SECONDS
+	status_type = STATUS_EFFECT_REFRESH
+	alert_type = null
+	/// The owner of this buff.
+	var/mob/living/carbon/xenomorph/buff_owner
+
+/datum/status_effect/salve_regen/on_apply()
+	buff_owner = owner
+	if(!isxeno(buff_owner))
+		return FALSE
+	buff_owner.balloon_alert(buff_owner, "Salve regeneration")
+	return TRUE
+
+/datum/status_effect/salve_regen/on_remove()
+	buff_owner.balloon_alert(buff_owner, "Salve regeneration ended")
+	return ..()
+
+/datum/status_effect/salve_regen/tick()
+	new /obj/effect/temp_visual/healing(get_turf(buff_owner))
+	var/heal_amount = buff_owner.maxHealth * 0.01
+	buff_owner.adjustFireLoss(-max(0, heal_amount - buff_owner.getBruteLoss()), passive = TRUE)
+	buff_owner.adjustBruteLoss(-heal_amount, passive = TRUE)
+	buff_owner.adjust_sunder(-1)
+	return ..()
+
+// ***************************************
+// *********** Enhancement
+// ***************************************
+/particles/drone_enhancement
+	icon = 'icons/effects/particles/generic_particles.dmi'
+	icon_state = "fire"
+	color = "#9828CC"
+	width = 100
+	height = 100
+	count = 1000
+	spawning = 3
+	lifespan = 9
+	fade = 12
+	grow = 0.04
+	velocity = list(0, 0)
+	position = generator("circle", 16, 16, NORMAL_RAND)
+	drift = generator("vector", list(0, -0.15), list(0, 0.15))
+	gravity = list(0, 0.8)
+	scale = generator("vector", list(0.1, 0.1), list(0.6,0.6), NORMAL_RAND)
+	rotation = 0
+	spin = generator("num", 10, 20)
+
+/datum/status_effect/drone_enhancement
+	id = "drone enhancement"
+	duration = -1
+	tick_interval = 2 SECONDS
+	alert_type = null
+	/// Used to track who is giving this buff to the owner.
+	var/mob/living/carbon/xenomorph/buffing_xeno
+	/// Used to track who is the owner of this buff.
+	var/mob/living/carbon/xenomorph/buffed_xeno
+	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
+	var/obj/effect/abstract/particle_holder/particle_holder
+	/// References the Essence Link action and its vars.
+	var/datum/action/xeno_action/activable/essence_link/essence_link_action
+	/// References the Enhancement action and its vars.
+	var/datum/action/xeno_action/enhancement/enhancement_action
+	/// If the target xeno was within range.
+	var/was_within_range = TRUE
+	/// The plasma cost per tick of this ability.
+	var/plasma_cost
+
+/datum/status_effect/drone_enhancement/on_creation(mob/living/new_owner, mob/living/carbon/new_target)
+	buffed_xeno = new_owner
+	buffing_xeno = new_target
+	essence_link_action = buffing_xeno.actions_by_path[/datum/action/xeno_action/activable/essence_link]
+	enhancement_action = buffing_xeno.actions_by_path[/datum/action/xeno_action/enhancement]
+	plasma_cost = round(buffing_xeno.xeno_caste.plasma_max * 0.1)
+	RegisterSignal(buffed_xeno, COMSIG_MOB_DEATH, .proc/handle_death)
+	RegisterSignal(buffing_xeno, COMSIG_MOB_DEATH, .proc/handle_death)
+	INVOKE_ASYNC(buffed_xeno, /mob/living/carbon/xenomorph.proc/emote, "roar2")
+	toggle_buff(TRUE)
+	return ..()
+
+/datum/status_effect/drone_enhancement/on_remove()
+	buffed_xeno.balloon_alert(buffed_xeno, "Enhancement inactive")
+	buffing_xeno.balloon_alert(buffing_xeno, "Enhancement inactive")
+	UnregisterSignal(buffed_xeno, COMSIG_MOB_DEATH)
+	UnregisterSignal(buffing_xeno, COMSIG_MOB_DEATH)
+	toggle_buff(FALSE)
+	return ..()
+
+/datum/status_effect/drone_enhancement/tick()
+	var/within_range = get_dist(buffed_xeno, buffing_xeno) <= DRONE_ESSENCE_LINK_RANGE
+	if(within_range != was_within_range)
+		was_within_range = within_range
+		toggle_buff(was_within_range)
+
+	if(buffing_xeno.plasma_stored < plasma_cost)
+		enhancement_action.end_ability()
+		return
+	buffing_xeno.use_plasma(plasma_cost)
+
+/// Toggles the buff on or off.
+/datum/status_effect/drone_enhancement/proc/toggle_buff(toggle)
+	if(!toggle)
+		buffed_xeno.xeno_melee_damage_modifier = initial(buffed_xeno.xeno_melee_damage_modifier)
+		buffed_xeno.remove_movespeed_modifier(MOVESPEED_ID_ENHANCEMENT)
+		toggle_particles(FALSE)
+		return
+	buffed_xeno.xeno_melee_damage_modifier = enhancement_action.damage_multiplier
+	buffed_xeno.add_movespeed_modifier(MOVESPEED_ID_ENHANCEMENT, TRUE, 0, NONE, FALSE, enhancement_action.speed_addition)
+	toggle_particles(TRUE)
+
+/// Toggles particles on or off, adjusting their positioning to fit the buff's owner.
+/datum/status_effect/drone_enhancement/proc/toggle_particles(toggle)
+	var/particle_x = abs(buffed_xeno.pixel_x)
+	if(!toggle)
+		QDEL_NULL(particle_holder)
+		return
+	particle_holder = new(buffed_xeno, /particles/drone_enhancement)
+	particle_holder.pixel_x = particle_x
+	particle_holder.pixel_y = -3
+
+/// Removes the status effect on death.
+/datum/status_effect/drone_enhancement/proc/handle_death()
+	SIGNAL_HANDLER
+	enhancement_action.end_ability()
+
+// ***************************************
+// *********** Rejuvenate
+// ***************************************
 /obj/screen/alert/status_effect/xeno_rejuvenate
 	name = "Rejuvenation"
 	desc = "Your health is being restored."
@@ -65,7 +365,7 @@
 	to_chat(owner_xeno, span_notice("We feel our wounds close up."))
 
 	var/amount = owner_xeno.maxHealth * GORGER_REJUVENATE_HEAL
-	HEAL_XENO_DAMAGE(owner_xeno, amount)
+	HEAL_XENO_DAMAGE(owner_xeno, amount, FALSE)
 	tick_damage = 0
 
 ///Handles damage received when the status effect is active
@@ -89,6 +389,9 @@
 	amount = min(amount * redirect_mod, remaining_health); \
 	amount_mod += amount
 
+// ***************************************
+// *********** Psychic Link
+// ***************************************
 /datum/status_effect/xeno_psychic_link
 	id = "xeno_psychic_link"
 	tick_interval = 2 SECONDS
@@ -190,6 +493,9 @@
 #define HIGN_THRESHOLD 0.6
 #define KNOCKDOWN_DURATION 1 SECONDS
 
+// ***************************************
+// *********** Carnage
+// ***************************************
 /obj/screen/alert/status_effect/xeno_carnage
 	name = "Carnage"
 	desc = "Your attacks restore health."
@@ -246,7 +552,7 @@
 /datum/status_effect/xeno_carnage/proc/do_carnage_slash(datum/source, mob/living/target, damage)
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	var/owner_heal = healing_on_hit
-	HEAL_XENO_DAMAGE(owner_xeno, owner_heal)
+	HEAL_XENO_DAMAGE(owner_xeno, owner_heal, FALSE)
 	adjustOverheal(owner_xeno, owner_heal * 0.5)
 
 	if(plasma_mod >= HIGN_THRESHOLD)
@@ -262,7 +568,7 @@
 			if(target_xeno == owner_xeno)
 				continue
 			var/heal_amount = healing_on_hit
-			HEAL_XENO_DAMAGE(target_xeno, heal_amount)
+			HEAL_XENO_DAMAGE(target_xeno, heal_amount, FALSE)
 			new /obj/effect/temp_visual/telekinesis(get_turf(target_xeno))
 			to_chat(target_xeno, span_notice("You feel your wounds being restored by [owner_xeno]'s pheromones."))
 
@@ -272,6 +578,9 @@
 #undef HIGN_THRESHOLD
 #undef KNOCKDOWN_DURATION
 
+// ***************************************
+// *********** Feast
+// ***************************************
 /obj/screen/alert/status_effect/xeno_feast
 	name = "Feast"
 	desc = "Your health is being restored at the cost of plasma."
@@ -304,11 +613,13 @@
 		X.remove_status_effect(STATUS_EFFECT_XENO_FEAST)
 		return
 	var/heal_amount = X.maxHealth*0.08
-	HEAL_XENO_DAMAGE(X, heal_amount)
+	HEAL_XENO_DAMAGE(X, heal_amount, FALSE)
 	adjustOverheal(X, heal_amount / 2)
 	X.use_plasma(plasma_drain)
 
-///Plasma fruit buff
+// ***************************************
+// *********** Plasma Fruit buff
+// ***************************************
 /datum/status_effect/plasma_surge
 	id = "plasma_surge"
 	alert_type = /obj/screen/alert/status_effect/plasma_surge
@@ -354,7 +665,9 @@
 	desc = "You have accelerated plasma regeneration."
 	icon_state = "drunk" //Close enough
 
-//HEALING INFUSION buff for Hivelord
+// ***************************************
+// *********** Healing Infusion
+// ***************************************
 /datum/status_effect/healing_infusion
 	id = "healing_infusion"
 	alert_type = /obj/screen/alert/status_effect/healing_infusion

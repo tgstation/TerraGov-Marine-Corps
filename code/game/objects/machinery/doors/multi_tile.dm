@@ -9,6 +9,18 @@
 
 	return ..()
 
+/obj/machinery/door/airlock/multi_tile/handle_weldingtool_overlay(removing = FALSE)
+	if(!removing)
+		if(dir & NORTH|SOUTH)
+			add_overlay(GLOB.welding_sparks_multitiledoor_vertical)
+		else
+			add_overlay(GLOB.welding_sparks_multitiledoor_horizontal)
+	else
+		if(dir & NORTH|SOUTH)
+			cut_overlay(GLOB.welding_sparks_multitiledoor_vertical)
+		else
+			cut_overlay(GLOB.welding_sparks_multitiledoor_horizontal)
+
 
 ///Due to inheritance from parent we need no icon_state, just icon
 /obj/machinery/door/airlock/multi_tile/glass
@@ -108,6 +120,9 @@
 
 /obj/machinery/door/airlock/multi_tile/mainship/generic/rnr
 	name = "\improper Rest and Recreation"
+
+/obj/machinery/door/airlock/multi_tile/mainship/generic/mechbay
+	name = "\improper Mech Pilot's Office"
 
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric
 	name = "\improper Airlock"

@@ -10,7 +10,9 @@
 	use_state_flags = XACT_USE_CRESTED
 	cooldown_timer = 12 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
-	keybind_signal = COMSIG_XENOABILITY_TAIL_SWEEP
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAIL_SWEEP,
+	)
 
 /datum/action/xeno_action/tail_sweep/can_use_action(silent, override_flags)
 	. = ..()
@@ -92,7 +94,9 @@
 	cooldown_timer = 10 SECONDS
 	plasma_cost = 80
 	use_state_flags = XACT_USE_CRESTED|XACT_USE_FORTIFIED
-	keybind_signal = COMSIG_XENOABILITY_FORWARD_CHARGE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FORWARD_CHARGE,
+	)
 	///How far can we charge
 	var/range = 4
 	///How long is the windup before charging
@@ -192,7 +196,9 @@
 	ability_name = "toggle crest defense"
 	use_state_flags = XACT_USE_FORTIFIED|XACT_USE_CRESTED // duh
 	cooldown_timer = 1 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_CREST_DEFENSE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CREST_DEFENSE,
+	)
 	var/last_crest_bonus = 0
 
 /datum/action/xeno_action/toggle_crest_defense/on_xeno_upgrade()
@@ -240,6 +246,7 @@
 		GLOB.round_statistics.defender_crest_lowerings++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_crest_lowerings")
 		var/defensebonus = X.xeno_caste.crest_defense_armor
+		ADD_TRAIT(X, TRAIT_STAGGERIMMUNE, CREST_DEFENSE_TRAIT) //Can now endure impacts/damages that would make lesser xenos flinch
 		X.soft_armor = X.soft_armor.modifyAllRatings(defensebonus)
 		X.soft_armor = X.soft_armor.setRating(bomb = 30)
 		last_crest_bonus = defensebonus
@@ -249,6 +256,7 @@
 			to_chat(X, span_xenowarning("We raise our crest."))
 		GLOB.round_statistics.defender_crest_raises++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_crest_raises")
+		REMOVE_TRAIT(X, TRAIT_STAGGERIMMUNE, CREST_DEFENSE_TRAIT)
 		X.soft_armor = X.soft_armor.modifyAllRatings(-last_crest_bonus)
 		X.soft_armor = X.soft_armor.setRating(bomb = 20)
 		last_crest_bonus = 0
@@ -265,7 +273,9 @@
 	ability_name = "fortify"
 	use_state_flags = XACT_USE_FORTIFIED|XACT_USE_CRESTED // duh
 	cooldown_timer = 1 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_FORTIFY
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FORTIFY,
+	)
 	var/last_fortify_bonus = 0
 
 /datum/action/xeno_action/fortify/on_xeno_upgrade()
@@ -339,7 +349,9 @@
 	plasma_cost = 160
 	cooldown_timer = 1 MINUTES
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
-	keybind_signal = COMSIG_XENOABILITY_REGENERATE_SKIN
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REGENERATE_SKIN,
+	)
 
 /datum/action/xeno_action/regenerate_skin/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -362,7 +374,7 @@
 
 	X.do_jitter_animation(1000)
 	X.set_sunder(0)
-	X.heal_overall_damage(25, 25, TRUE)
+	X.heal_overall_damage(25, 25, updating_health = TRUE)
 	add_cooldown()
 	return succeed_activate()
 
@@ -379,7 +391,9 @@
 	use_state_flags = XACT_USE_CRESTED
 	cooldown_timer = 30 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
-	keybind_signal = COMSIG_XENOABILITY_CENTRIFUGAL_FORCE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CENTRIFUGAL_FORCE,
+	)
 	///bool whether we should take a random step this tick
 	var/step_tick = FALSE
 	///timer hash for the timer we use when spinning

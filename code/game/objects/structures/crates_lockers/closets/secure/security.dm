@@ -189,7 +189,6 @@
 	new /obj/item/storage/belt/security(src)
 	new /obj/item/flash(src)
 	new /obj/item/reagent_containers/spray/pepper(src)
-	new /obj/item/explosive/grenade/flashbang(src)
 	new /obj/item/weapon/baton(src)
 	new /obj/item/weapon/gun/energy/taser(src)
 	new /obj/item/clothing/glasses/sunglasses/sechud(src)

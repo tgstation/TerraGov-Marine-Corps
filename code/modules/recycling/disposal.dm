@@ -368,11 +368,11 @@
 	if(wrapcheck == 1)
 		H.tomail = 1
 
-	sleep(10)
+	sleep(1 SECONDS)
 	if(last_sound < world.time + 1)
 		playsound(src, 'sound/machines/disposalflush.ogg', 15, 0)
 		last_sound = world.time
-	sleep(5) //Wait for animation to finish
+	sleep(0.5 SECONDS) //Wait for animation to finish
 
 	disposal_pressure = 0
 
@@ -490,7 +490,7 @@
 				H.take_overall_damage(20) //Horribly maim any living creature jumping down disposals.  c'est la vie
 				UPDATEHEALTH(H)
 
-		sleep(1) //Was 1
+		sleep(0.1 SECONDS) //Was 1
 		var/obj/structure/disposalpipe/curr = loc
 		last = curr
 		curr = curr.transfer(src)
@@ -722,7 +722,7 @@
 		var/atom/wloc = I.loc
 		user.visible_message(span_notice("[user] starts slicing [src]."),
 		span_notice("You start slicing [src]."))
-		sleep(30)
+		sleep(3 SECONDS)
 		if(!W.isOn() || user.loc != uloc || wloc != I.loc)
 			to_chat(user, span_warning("You must stay still while welding [src]."))
 			return
@@ -1215,7 +1215,7 @@
 		var/atom/wloc = I.loc
 		user.visible_message(span_notice("[user] starts slicing [src]."),
 		span_notice("You start slicing [src]."))
-		sleep(30)
+		sleep(3 SECONDS)
 		if(!W.isOn() || user.loc != uloc && wloc != I.loc)
 			to_chat(user, span_warning("You must stay still while welding the pipe."))
 			return
@@ -1293,7 +1293,7 @@
 
 	flick("outlet-open", src)
 	playsound(src, 'sound/machines/warning-buzzer.ogg', 25, 0)
-	sleep(20) //Wait until correct animation frame
+	sleep(2 SECONDS) //Wait until correct animation frame
 	playsound(src, 'sound/machines/hiss.ogg', 25, 0)
 
 	if(H)

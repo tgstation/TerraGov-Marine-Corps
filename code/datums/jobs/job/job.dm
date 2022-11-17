@@ -204,13 +204,15 @@ GLOBAL_PROTECT(exp_specialmap)
 	current_positions += amount
 	for(var/index in jobworth)
 		var/datum/job/scaled_job = SSjob.GetJobType(index)
-		if(!(scaled_job in SSjob.active_joinable_occupations))
+		if(!(index in SSticker.mode.valid_job_types))
 			continue
 		if(isxenosjob(scaled_job))
 			if(respawn && (SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN))
 				continue
 			GLOB.round_statistics.larva_from_marine_spawning += jobworth[index] / scaled_job.job_points_needed
 		scaled_job.add_job_points(jobworth[index])
+	var/datum/hive_status/normal_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	normal_hive.update_tier_limits()
 	return TRUE
 
 /datum/job/proc/free_job_positions(amount)
@@ -275,6 +277,9 @@ GLOBAL_PROTECT(exp_specialmap)
 	skills = getSkillsType(job.return_skills_type(player?.prefs))
 	faction = job.faction
 	job.announce(src)
+	GLOB.round_statistics.total_humans_created[faction]++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_humans_created[faction]")
+
 
 
 /mob/living/carbon/human/apply_assigned_role_to_spawn(datum/job/assigned_role, client/player, datum/squad/assigned_squad, admin_action = FALSE)

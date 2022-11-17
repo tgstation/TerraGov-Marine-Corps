@@ -245,6 +245,7 @@
 
 	if(!regression && !do_after(src, 25, FALSE, null, BUSY_ICON_CLOCK))
 		to_chat(src, span_warning("We quiver, but nothing happens. We must hold still while evolving."))
+		return
 
 	if(new_caste_type == /mob/living/carbon/xenomorph/queen)
 		if(hive.living_xeno_queen) //Do another check after the tick.
@@ -269,6 +270,7 @@
 	if(!isturf(loc)) //cdel'd or moved into something
 		return
 
+	SStgui.close_user_uis(src) //Force close all UIs upon evolution.
 
 	//From there, the new xeno exists, hopefully
 	var/mob/living/carbon/xenomorph/new_xeno = new new_caste_type(get_turf(src))
@@ -279,10 +281,9 @@
 		if(new_xeno)
 			qdel(new_xeno)
 		return
-	if(tier != XENO_TIER_ONE || !regression )
-		new_xeno.upgrade_xeno(upgrade, TRUE)
-	if(!regression && upgrade != XENO_UPGRADE_INVALID)
-		new_xeno.upgrade_xeno(new_xeno.upgrade_prev(), TRUE)
+	new_xeno.upgrade_stored = upgrade_stored
+	while(new_xeno.upgrade_stored >= new_xeno.xeno_caste.upgrade_threshold && new_xeno.upgrade_possible())
+		new_xeno.upgrade_xeno(new_xeno.upgrade_next(), TRUE)
 
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_EVOLVED, new_xeno)
 
@@ -354,3 +355,7 @@
 	if(status_flags & INCORPOREAL)
 		return
 	return ..()
+
+///Handles special conditions that influence a caste's evolution point gain, such as larva gaining a bonus if on weed.
+/mob/living/carbon/xenomorph/proc/spec_evolution_boost()
+	return 0

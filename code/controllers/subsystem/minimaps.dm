@@ -49,12 +49,15 @@ SUBSYSTEM_DEF(minimaps)
 				if(location.density)
 					icon_gen.DrawBox(location.minimap_color, xval, yval)
 					continue
-				var/atom/movable/alttarget = locate(/obj/machinery/door) in location||locate(/obj/structure/fence) in location
+				var/atom/movable/alttarget = (locate(/obj/machinery/door) in location) || (locate(/obj/structure/fence) in location)
 				if(alttarget)
 					icon_gen.DrawBox(alttarget.minimap_color, xval, yval)
 					continue
 				var/area/turfloc = location.loc
-				icon_gen.DrawBox(turfloc.minimap_color, xval, yval)
+				if(turfloc.minimap_color)
+					icon_gen.DrawBox(BlendRGB(location.minimap_color, turfloc.minimap_color, 0.5), xval, yval)
+					continue
+				icon_gen.DrawBox(location.minimap_color, xval, yval)
 		icon_gen.Scale(480*2,480*2) //scale it up x2 to make it easer to see
 		icon_gen.Crop(1, 1, min(icon_gen.Width(), 480), min(icon_gen.Height(), 480)) //then cut all the empty pixels
 
@@ -242,7 +245,7 @@ SUBSYSTEM_DEF(minimaps)
 /datum/controller/subsystem/minimaps/proc/on_z_change(atom/movable/source, oldz, newz)
 	SIGNAL_HANDLER
 	for(var/flag in GLOB.all_minimap_flags)
-		if(!minimaps_by_z["[oldz]"].images_assoc["[flag]"][source])
+		if(!minimaps_by_z["[oldz]"]?.images_assoc["[flag]"][source])
 			continue
 		//see previous byond bug comments http://www.byond.com/forum/post/2661309
 		var/ref_old = minimaps_by_z["[oldz]"].images_assoc["[flag]"][source]
@@ -400,6 +403,10 @@ SUBSYSTEM_DEF(minimaps)
 	minimap_flags = MINIMAP_FLAG_MARINE_REBEL
 	marker_flags = MINIMAP_FLAG_MARINE_REBEL
 
+/datum/action/minimap/som
+	minimap_flags = MINIMAP_FLAG_MARINE_SOM
+	marker_flags = MINIMAP_FLAG_MARINE_SOM
+
 /datum/action/minimap/observer
-	minimap_flags = MINIMAP_FLAG_XENO|MINIMAP_FLAG_MARINE|MINIMAP_FLAG_MARINE_REBEL|MINIMAP_FLAG_EXCAVATION_ZONE
+	minimap_flags = MINIMAP_FLAG_XENO|MINIMAP_FLAG_MARINE|MINIMAP_FLAG_MARINE_REBEL|MINIMAP_FLAG_MARINE_SOM|MINIMAP_FLAG_EXCAVATION_ZONE
 	marker_flags = NONE

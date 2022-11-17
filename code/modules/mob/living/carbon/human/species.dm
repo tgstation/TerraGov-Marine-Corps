@@ -55,7 +55,7 @@
 
 	/// new maxHealth [/mob/living/carbon/human/var/maxHealth] of the human mob once species is applied
 	var/total_health = 100
-	var/max_stamina_buffer = 50
+	var/max_stamina = 50
 
 	var/cold_level_1 = BODYTEMP_COLD_DAMAGE_LIMIT_ONE  	// Cold damage level 1 below this point.
 	var/cold_level_2 = BODYTEMP_COLD_DAMAGE_LIMIT_TWO  	// Cold damage level 2 below this point.
@@ -236,13 +236,6 @@
 			H.dropItemToGround(thing)
 	for(var/newtrait in inherent_traits)
 		ADD_TRAIT(H, newtrait, SPECIES_TRAIT)
-	var/datum/reagents/R
-	if(species_flags & NO_CHEM_METABOLIZATION)
-		R = new /datum/reagents(0)
-	else
-		R = new /datum/reagents(1000)
-	H.reagents = R
-	R.my_atom = H
 
 //special things to change after we're no longer that species
 /datum/species/proc/post_species_loss(mob/living/carbon/human/H)
@@ -438,10 +431,10 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 	has_organ = list()
 
 
-	screams = list(MALE = "robot_scream", FEMALE = "robot_scream")
-	paincries = list(MALE = "robot_pain", FEMALE = "robot_pain")
-	goredcries = list(MALE = "robot_scream", FEMALE = "robot_scream")
-	warcries = list(MALE = "robot_warcry", FEMALE = "robot_warcry")
+	screams = list(MALE = "robot_scream", FEMALE = "robot_scream", PLURAL = "robot_scream", NEUTER = "robot_scream")
+	paincries = list(MALE = "robot_pain", FEMALE = "robot_pain", PLURAL = "robot_pain", NEUTER = "robot_pain")
+	goredcries = list(MALE = "robot_scream", FEMALE = "robot_scream", PLURAL = "robot_scream", NEUTER = "robot_scream")
+	warcries = list(MALE = "robot_warcry", FEMALE = "robot_warcry", PLURAL = "robot_warcry", NEUTER = "robot_warcry")
 	death_message = "shudders violently whilst spitting out error text before collapsing, their visual sensor darkening..."
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 	joinable_roundstart = TRUE
@@ -523,7 +516,7 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 	return TRUE
 
 
-/datum/species/early_synthetic //cosmetic differences only
+/datum/species/early_synthetic // Worse at medical, better at engineering.
 	name = "Early Synthetic"
 	name_plural = "Early Synthetics"
 	icobase = 'icons/mob/human_races/r_synthetic.dmi'

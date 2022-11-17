@@ -64,7 +64,7 @@
 
 	traumatic_shock += reagent_shock_modifier
 
-	if(slurring)
+	if(has_status_effect(/datum/status_effect/speech/slurring/drunk))
 		traumatic_shock -= 10
 	if(analgesic)
 		traumatic_shock = 0
@@ -87,7 +87,6 @@
 		//Internal organs hurt too
 		for(var/datum/internal_organ/O in M.internal_organs)
 			if(O.damage) 											traumatic_shock += O.damage * 1.5
-			if(O.germ_level >= INFECTION_LEVEL_ONE) 				traumatic_shock += O.germ_level * 0.05
 
 		if(M.protection_aura)
 			traumatic_shock -= 20 + M.protection_aura * 20 //-40 pain for SLs, -80 for Commanders

@@ -1,0 +1,5 @@
+author: "QualityVan"
+delete-after: True
+changes:
+  - bugfix: "Spawning in aged xenos via admin tools will give them the proper upgrade_stored for their maturity level"
+  - bugfix: "Draining the hive threat target give you the necessary stored age for ancient instead of setting you ancient and leaving it too low"

@@ -187,8 +187,8 @@
 	taste_multi = 1
 
 /datum/reagent/toxin/plantbgone/reaction_obj(obj/O, volume)
-	if(istype(O,/obj/effect/alien/weeds))
-		var/obj/effect/alien/A = O
+	if(istype(O,/obj/alien/weeds))
+		var/obj/alien/A = O
 		A.take_damage(min(0.5 * volume))
 	else if(istype(O,/obj/structure/glowshroom)) //even a small amount is enough to kill it
 		qdel(O)
@@ -326,22 +326,6 @@
 
 /datum/reagent/toxin/pain/on_mob_life(mob/living/L, metabolism)
 	L.reagent_pain_modifier = volume
-	return ..()
-
-/datum/reagent/toxin/beer2	//disguised as normal beer
-	name = "Beer"
-	description = "An alcoholic beverage made from malted grains, hops, yeast, and water. The fermentation appears to be incomplete." //If the players manage to analyze this, they deserve to know something is wrong.
-	color = "#664300" // rgb: 102, 67, 0
-	custom_metabolism = REAGENTS_METABOLISM * 2.5
-	taste_description = "piss water"
-
-/datum/reagent/toxin/beer2/on_mob_life(mob/living/L, metabolism)
-	switch(current_cycle)
-		if(1 to 50)
-			L.Sleeping(10 SECONDS)
-		if(51 to INFINITY)
-			L.Sleeping(10 SECONDS)
-			L.adjustToxLoss((current_cycle/2 - 25)*effect_str)
 	return ..()
 
 /datum/reagent/toxin/plasticide
@@ -497,7 +481,7 @@
 		L.adjustOxyLoss(stamina_excess_damage * 0.5)
 		L.Losebreath(2) //So the oxy loss actually means something.
 
-	L.stuttering = max(L.stuttering, 1)
+	L.set_timed_status_effect(2 SECONDS, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
 
 	if(current_cycle < 21) //Additional effects at higher cycles
 		return ..()
@@ -521,16 +505,11 @@
 
 /datum/reagent/toxin/xeno_hemodile/on_mob_life(mob/living/L, metabolism)
 
-	var/slowdown_multiplier = 1
+	var/slowdown_multiplier = 0.5 //Because hemodile is obviously in blood already
 
-	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox)) //Each other Defiler toxin increases the multiplier by 2x; 2x if we have 1 combo chem, 4x if we have 2
-		slowdown_multiplier *= 2
-
-	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
-		slowdown_multiplier *= 2
-
-	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_ozelomelyn))
-		slowdown_multiplier *= 2
+	for(var/datum/reagent/current_reagent AS in L.reagents.reagent_list) //Cycle through all chems
+		if(is_type_in_typecache(current_reagent, GLOB.defiler_toxins_typecache_list)) //For each xeno toxin reagent, double the strength multiplier
+			slowdown_multiplier *= 2 //Each other Defiler toxin increases the multiplier by 2x; 2x if we have 1 combo chem, 4x if we have 2
 
 	switch(slowdown_multiplier) //Description varies in severity and probability with the multiplier
 		if(0 to 1 && prob(10))
@@ -562,20 +541,18 @@
 	RegisterSignal(L, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/transvitox_human_damage_taken)
 
 /datum/reagent/toxin/xeno_transvitox/on_mob_life(mob/living/L, metabolism)
-	var/fire_loss = L.getFireLoss()
+	var/fire_loss = L.getFireLoss(TRUE)
 	if(!fire_loss) //If we have no burn damage, cancel out
 		return ..()
 
 	if(prob(10))
 		to_chat(L, span_warning("You notice your wounds crusting over with disgusting green ichor.") )
 
-	var/tox_cap_multiplier = 1
+	var/tox_cap_multiplier = 0.5 //Because transvitox is obviously in blood already
 
-	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)) //Each other Defiler toxin doubles the multiplier
-		tox_cap_multiplier *= 2
-
-	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
-		tox_cap_multiplier *= 2
+	for(var/datum/reagent/current_reagent AS in L.reagents.reagent_list) //Cycle through all chems
+		if(is_type_in_typecache(current_reagent, GLOB.defiler_toxins_typecache_list)) //For each xeno toxin reagent, double the strength multiplier
+			tox_cap_multiplier *= 2 //Each other Defiler toxin doubles the multiplier
 
 	var/tox_loss = L.getToxLoss()
 	if(tox_loss > DEFILER_TRANSVITOX_CAP) //If toxin levels are already at their cap, cancel out
@@ -594,19 +571,17 @@
 /datum/reagent/toxin/xeno_transvitox/proc/transvitox_human_damage_taken(mob/living/L, damage)
 	SIGNAL_HANDLER
 
-	var/tox_cap_multiplier = 1
+	var/tox_cap_multiplier = 0.5 //Because transvitox is obviously in blood already
 
-	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)) //Each other Defiler toxin doubles the multiplier
-		tox_cap_multiplier *= 2
-
-	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
-		tox_cap_multiplier *= 2
+	for(var/datum/reagent/current_reagent AS in L.reagents.reagent_list) //Cycle through all chems
+		if(is_type_in_typecache(current_reagent, GLOB.defiler_toxins_typecache_list)) //For each xeno toxin reagent, double the strength multiplier
+			tox_cap_multiplier *= 2 //Each other Defiler toxin doubles the multiplier
 
 	var/tox_loss = L.getToxLoss()
 	if(tox_loss > DEFILER_TRANSVITOX_CAP) //If toxin levels are already at their cap, cancel out
 		return
 
-	L.setToxLoss(clamp(tox_loss + min(L.getBruteLoss() * 0.1 * tox_cap_multiplier, damage * 0.1 * tox_cap_multiplier), tox_loss, DEFILER_TRANSVITOX_CAP)) //Deal bonus tox damage equal to a % of the lesser of the damage taken or the target's brute damage; capped at DEFILER_TRANSVITOX_CAP.
+	L.setToxLoss(clamp(tox_loss + min(L.getBruteLoss(TRUE) * 0.1 * tox_cap_multiplier, damage * 0.1 * tox_cap_multiplier), tox_loss, DEFILER_TRANSVITOX_CAP)) //Deal bonus tox damage equal to a % of the lesser of the damage taken or the target's brute damage; capped at DEFILER_TRANSVITOX_CAP.
 
 /datum/reagent/toxin/xeno_sanguinal //deals brute damage and causes persistant bleeding. Causes additional damage for each other xeno chem in the system
 	name = "Sanguinal"
@@ -619,7 +594,7 @@
 	toxpwr = 0
 
 /datum/reagent/toxin/xeno_sanguinal/on_mob_life(mob/living/L, metabolism)
-	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)) //Each other Defiler toxin doubles the multiplier
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
 		L.adjustStaminaLoss(DEFILER_SANGUINAL_DAMAGE)
 
 	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
@@ -628,7 +603,7 @@
 	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
 		L.adjustFireLoss(DEFILER_SANGUINAL_DAMAGE)
 
-	L.apply_damage(DEFILER_SANGUINAL_DAMAGE, BRUTE, sharp = TRUE) //Causes brute damage
+	L.apply_damage(DEFILER_SANGUINAL_DAMAGE, BRUTE, sharp = TRUE)
 
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
@@ -694,3 +669,53 @@
 		return
 	H.do_jitter_animation(1000)
 	addtimer(CALLBACK(H, /mob/living/carbon/human.proc/revive_to_crit, TRUE, TRUE), SSticker.mode?.zombie_transformation_time)
+
+
+//SOM nerve agent
+/datum/reagent/toxin/satrapine
+	name = "Satrapine"
+	description = "A nerve agent designed to incapacitate targets through debilitating pain. Its severity increases over time, causing various lung complications, and will purge common painkillers. Based on a chemical agent originally used against rebelling Martian colonists, improved by the SOM for their own use."
+	reagent_state = LIQUID
+	color = "#cfb000"
+	overdose_threshold = 10000
+	custom_metabolism = REAGENTS_METABOLISM
+	scannable = TRUE
+	toxpwr = 0
+	purge_list = list(
+		/datum/reagent/medicine/tramadol,
+		/datum/reagent/medicine/paracetamol,
+		/datum/reagent/medicine/inaprovaline,
+	)
+	purge_rate = 1
+
+/datum/reagent/toxin/satrapine/on_mob_life(mob/living/L, metabolism)
+	switch(current_cycle)
+		if(1 to 10)
+			L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
+		if(11 to 20)
+			L.reagent_pain_modifier -= PAIN_REDUCTION_HEAVY
+			L.jitter(4)
+		if(21 to 30)
+			L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_HEAVY
+			L.jitter(6)
+		if(31 to INFINITY)
+			L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_HEAVY * 1.5 //bad times ahead
+			L.jitter(8)
+
+	if(current_cycle > 21)
+		L.adjustStaminaLoss(effect_str)
+		if(iscarbon(L) && prob(min(current_cycle - 10,30)))
+			L.emote("me", 1, "coughs up blood!")
+			L:drip(10)
+		if(prob(min(current_cycle - 5,30)))
+			L.emote("me", 1, "gasps for air!")
+			L.Losebreath(4)
+		if(L.eye_blurry < 30)
+			L.adjust_blurriness(1.3)
+	else
+		L.adjustStaminaLoss(0.5*effect_str)
+		if(prob(20))
+			L.emote("gasp")
+			L.Losebreath(3)
+
+	return ..()

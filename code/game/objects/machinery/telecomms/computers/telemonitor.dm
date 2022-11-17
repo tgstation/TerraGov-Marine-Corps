@@ -19,6 +19,8 @@
 	var/temp = ""				// temporary feedback messages
 	circuit = /obj/item/circuitboard/computer/comm_monitor
 
+/obj/machinery/computer/telecomms/monitor/preset
+	network = "tcommsat"
 
 /obj/machinery/computer/telecomms/monitor/interact(mob/user)
 	. = ..()
