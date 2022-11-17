@@ -244,6 +244,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REJUVENATE,
 	)
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	use_state_flags = XACT_USE_STAGGERED
 
 /datum/action/xeno_action/activable/rejuvenate/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
@@ -410,6 +411,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FEAST,
 	)
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	use_state_flags = XACT_USE_STAGGERED
 
 /datum/action/xeno_action/activable/feast/can_use_ability(atom/target, silent, override_flags)
 	. = ..()

@@ -7,7 +7,7 @@
 	plane = BLACKNESS_PLANE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	invisibility = INVISIBILITY_LIGHTING
-	minimap_color = MINIMAP_AREA
+	minimap_color = null
 
 	var/flags_alarm_state = NONE
 
@@ -316,9 +316,3 @@
 
 /area/return_gas()
 	return gas_type
-
-///Set this area as a contested zone, that will monitors which faction controls it.
-/area/proc/set_to_contested()
-	if(SSminimaps.initialized)
-		stack_trace("An area was set as contested after SSminimap was initiliazed, it won't be colored")
-	minimap_color = MINIMAP_AREA_CONTESTED_ZONE

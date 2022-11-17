@@ -1,0 +1,4 @@
+author: "RipGrayson"
+delete-after: True
+changes:
+  - balance: "Mechs now take damage from standing in lava."

@@ -34,8 +34,6 @@
 	var/blood_type
 	blood_volume = BLOOD_VOLUME_NORMAL
 
-	var/overeatduration = 0		// How long this guy is overeating
-
 	// halucination vars
 	var/hal_screwyhud = SCREWYHUD_NONE
 	var/next_hallucination = 0

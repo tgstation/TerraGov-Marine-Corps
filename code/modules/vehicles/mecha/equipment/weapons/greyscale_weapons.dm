@@ -155,7 +155,7 @@
 	projectiles_cache = 120
 	projectiles_cache_max = 120
 	variance = 6
-	projectile_delay = 1.5 SECONDS
+	projectile_delay = 2.0 SECONDS
 	slowdown = 0.3
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_SHOTGUN
