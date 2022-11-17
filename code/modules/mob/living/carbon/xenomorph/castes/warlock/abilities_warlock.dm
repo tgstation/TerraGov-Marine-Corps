@@ -128,7 +128,8 @@
 		span_xenowarning("We start channeling our psychic might!"))
 	var/turf/target_turf = get_turf(target)
 	target_turfs += target_turf
-	effect_list += new /obj/effect/xeno/crush_warning(turf_to_check)
+	effect_list += new /obj/effect/xeno/crush_warning(target_turf)
+	owner.add_movespeed_modifier(MOVESPEED_ID_WARLOCK_CHANNELING, TRUE, 0, NONE, TRUE, 0.9)
 	do_channel(target_turf) //start channeling
 	RegisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)), .proc/stop_crush)
 
@@ -139,7 +140,6 @@
 			span_xenowarning("We fail to unleash our power!"))
 		return
 	crush(target_turfs[1])
-	//addtimer(CALLBACK(src, .proc/crush, target_turfs[1]), 1)
 
 /datum/action/xeno_action/activable/psy_crush/proc/check_distance(atom/target, silent)
 	var/dist = get_dist(owner, target)
@@ -176,7 +176,7 @@
 	target_turfs += turfs_to_add
 	current_iterations ++
 	if(can_use_action(X, XACT_IGNORE_COOLDOWN))
-		channel_loop_timer = addtimer(CALLBACK(src, .proc/do_channel, target), 10, TIMER_STOPPABLE)
+		channel_loop_timer = addtimer(CALLBACK(src, .proc/do_channel, target), 8, TIMER_STOPPABLE)
 		return
 	stop_crush(target)
 
@@ -224,6 +224,7 @@
 	current_iterations = 0
 	target_turfs = list()
 	effect_list = list()
+	owner.remove_movespeed_modifier(MOVESPEED_ID_WARLOCK_CHANNELING)
 	add_cooldown()
 	UnregisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)))
 
