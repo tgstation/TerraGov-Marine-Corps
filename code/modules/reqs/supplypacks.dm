@@ -1655,17 +1655,17 @@ FACTORY
 	contains = list(/obj/machinery/factory/reconstructor)
 	cost = 5
 
-datum/supply_packs/factory/driller
+/datum/supply_packs/factory/driller
 	name = "Industrial driller"
 	contains = list(/obj/machinery/factory/driller)
 	cost = 5
 
-datum/supply_packs/factory/galvanizer
+/datum/supply_packs/factory/galvanizer
 	name = "Industrial galvanizer"
 	contains = list(/obj/machinery/factory/galvanizer)
 	cost = 5
 
-datum/supply_packs/factory/compressor
+/datum/supply_packs/factory/compressor
 	name = "Industrial compressor"
 	contains = list(/obj/machinery/factory/driller)
 	cost = 5
