@@ -11,6 +11,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_SHIELD,
 	)
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	use_state_flags = XACT_USE_BUSY
 	var/obj/effect/xeno/shield/active_shield
 
 
@@ -20,6 +21,8 @@
 
 /datum/action/xeno_action/activable/psychic_shield/use_ability(atom/A)
 	. = ..()
+	if(active_shield)
+		cancel_shield()
 	//GLOB.round_statistics.psychic_flings++
 	//SSblackbox.record_feedback("tally", "round_statistics", 1, "psychic_flings")
 	//var/mob/living/carbon/xenomorph/owner_xeno = owner
@@ -30,6 +33,15 @@
 	active_shield = new(get_step(owner, owner.dir), owner)
 
 	//maybe add some thing to light fling mobs caught in the deploying shield
+	succeed_activate()
+	if(!do_after(owner, 5 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_action, FALSE, XACT_USE_BUSY)))
+		cancel_shield()
+		return
+	cancel_shield()
+
+/datum/action/xeno_action/activable/psychic_shield/proc/cancel_shield()
+	qdel(active_shield)
+	active_shield = null
 	add_cooldown()
 
 /obj/effect/xeno/shield
