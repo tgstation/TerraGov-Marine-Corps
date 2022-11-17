@@ -22,31 +22,74 @@
 /datum/action/xeno_action/activable/psychic_shield/use_ability(atom/A)
 	. = ..()
 	if(active_shield)
+		if(can_use_action(FALSE, XACT_USE_BUSY))
+			shield_blast()
 		cancel_shield()
-	//GLOB.round_statistics.psychic_flings++
-	//SSblackbox.record_feedback("tally", "round_statistics", 1, "psychic_flings")
-	//var/mob/living/carbon/xenomorph/owner_xeno = owner
+		return
 	owner.visible_message("A strange and violent psychic aura is suddenly emitted from \the [owner]!")
 	playsound(owner,'sound/effects/magic.ogg', 75, 1)
 
-	//var/turf/facing = get_step(owner, owner.dir)
 	active_shield = new(get_step(owner, owner.dir), owner)
-
-	//maybe add some thing to light fling mobs caught in the deploying shield
 	succeed_activate()
+	//GLOB.round_statistics.psychic_flings++
+	//SSblackbox.record_feedback("tally", "round_statistics", 1, "psychic_flings")
 	if(!do_after(owner, 5 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_action, FALSE, XACT_USE_BUSY)))
 		cancel_shield()
 		return
 	cancel_shield()
 
+///Removes the shield and resets the ability
 /datum/action/xeno_action/activable/psychic_shield/proc/cancel_shield()
 	qdel(active_shield)
 	active_shield = null
 	add_cooldown()
 
+///AOE knockback triggerable by ending the shield early
+/datum/action/xeno_action/activable/psychic_shield/proc/shield_blast()
+	var/turf/lower_left
+	var/turf/upper_right
+	switch(active_shield.dir)
+		if(NORTH)
+			lower_left = locate(owner.x - 1, owner.y + 1, owner.z)
+			upper_right = locate(owner.x + 1, owner.y + 2, owner.z)
+		if(SOUTH)
+			lower_left = locate(owner.x - 1, owner.y - 2, owner.z)
+			upper_right = locate(owner.x + 1, owner.y - 1, owner.z)
+		if(WEST)
+			lower_left = locate(owner.x - 2, owner.y - 1, owner.z)
+			upper_right = locate(owner.x - 1, owner.y + 1, owner.z)
+		if(EAST)
+			lower_left = locate(owner.x + 1, owner.y - 1, owner.z)
+			upper_right = locate(owner.x + 2, owner.y + 1, owner.z)
+
+	for(var/turf/affected_tile in block(lower_left, upper_right)) //everything in the 2x3 block is found.
+		affected_tile.Shake(4, 4, 2 SECONDS)
+		for(var/i in affected_tile)
+			var/atom/movable/affected = i
+			if(!ishuman(affected) && !istype(affected, /obj/item) && !isdroid(affected))
+				affected.Shake(4, 4, 20)
+				continue
+			if(ishuman(affected)) //if they're human, they also should get knocked off their feet from the blast.
+				var/mob/living/carbon/human/H = affected
+				if(H.stat == DEAD) //unless they are dead, then the blast mysteriously ignores them.
+					continue
+				H.apply_effects(1, 1) 	// Stun
+				shake_camera(H, 2, 1)
+			var/throwlocation = affected.loc //first we get the target's location
+			for(var/x in 1 to 6)
+				throwlocation = get_step(throwlocation, owner.dir) //then we find where they're being thrown to, checking tile by tile.
+			affected.throw_at(throwlocation, 6, 1, owner, TRUE)
+
+	owner.visible_message(span_xenowarning("[owner] sends out a huge blast of psychic energy!"), \
+	span_xenowarning("We send out a huge blast of psychic energy!"))
+
+	playsound(owner,'sound/effects/bamf.ogg', 75, TRUE)
+	playsound(owner, "alien_roar", 50)
+	succeed_activate()
+
 /obj/effect/xeno/shield
-	icon = 'icons/Xeno/Effects.dmi'
-	icon_state = "alienegg_fire"
+	icon = 'icons/Xeno/96x96.dmi'
+	icon_state = "shield"
 	resistance_flags = RESIST_ALL
 	layer = ABOVE_MOB_LAYER
 	var/mob/living/carbon/xenomorph/owner
@@ -58,9 +101,11 @@
 	if(dir == EAST || dir == WEST)
 		bound_height = 96
 		bound_y = -32
+		pixel_y = -32
 	else
 		bound_width = 96
 		bound_x = -32
+		pixel_x = -32
 
 /obj/effect/xeno/shield/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	if(!(cardinal_move & REVERSE_DIR(dir)))
@@ -88,7 +133,6 @@
 		new_angle -= 360
 	proj.firer = src
 	proj.fire_at(shooter = src, source = src, range = new_range, angle = new_angle, recursivity = TRUE) //loc_override = loc //note investigate hitscan issue
-
 
 // ***************************************
 // *********** psychic crush

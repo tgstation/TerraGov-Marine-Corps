@@ -29,6 +29,7 @@
 		/datum/action/xeno_action/activable/psy_crush,
 		/datum/action/xeno_action/activable/psy_blast,
 		/datum/action/xeno_action/activable/psychic_shield,
+		/datum/action/xeno_action/activable/transfer_plasma/drone,
 	)
 
 /datum/xeno_caste/warlock/young
@@ -99,4 +100,5 @@
 		/datum/action/xeno_action/activable/psy_crush,
 		/datum/action/xeno_action/activable/psy_blast,
 		/datum/action/xeno_action/activable/psychic_shield,
+		/datum/action/xeno_action/activable/transfer_plasma/drone,
 	)
