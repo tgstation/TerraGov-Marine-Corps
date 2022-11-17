@@ -128,6 +128,7 @@
 		span_xenowarning("We start channeling our psychic might!"))
 	var/turf/target_turf = get_turf(target)
 	target_turfs += target_turf
+	effect_list += new /obj/effect/xeno/crush_warning(turf_to_check)
 	do_channel(target_turf) //start channeling
 	RegisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)), .proc/stop_crush)
 
@@ -137,14 +138,15 @@
 		owner.visible_message(span_xenowarning("\The [owner] is unable to unleash their power!"), \
 			span_xenowarning("We fail to unleash our power!"))
 		return
-	addtimer(CALLBACK(src, .proc/crush, target_turfs[1]), 1)
+	crush(target_turfs[1])
+	//addtimer(CALLBACK(src, .proc/crush, target_turfs[1]), 1)
 
 /datum/action/xeno_action/activable/psy_crush/proc/check_distance(atom/target, silent)
 	var/dist = get_dist(owner, target)
 	if(dist > ability_range)
 		to_chat(owner, span_warning("Too far for our reach... We need to be [dist - ability_range] steps closer!"))
 		return FALSE
-	else if(!line_of_sight(owner, target))
+	else if(!line_of_sight(owner, target, 9))
 		to_chat(owner, span_warning("We can't focus properly without a clear line of sight!"))
 		return FALSE
 	return TRUE
@@ -178,21 +180,6 @@
 		return
 	stop_crush(target)
 
-/// stops channeling and unregisters all listeners, resetting the ability
-/datum/action/xeno_action/activable/psy_crush/proc/stop_crush(turf/target)
-	SIGNAL_HANDLER
-	to_chat(owner, span_warning("We stop.")) //debug only
-	if(channel_loop_timer)
-		deltimer(channel_loop_timer)
-		channel_loop_timer = null
-	for(var/obj/effect/xeno/crush_warning/current_effect AS in effect_list)
-		qdel(current_effect)
-	current_iterations = 0
-	target_turfs = list()
-	effect_list = list()
-	add_cooldown()
-	UnregisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)))
-
 ///crushes all turfs in the AOE
 /datum/action/xeno_action/activable/psy_crush/proc/crush(turf/target)
 	//note: do we need a check to see if we have sufficient plasma, due to the override?
@@ -213,8 +200,11 @@
 				var/block = carbon_victim.get_soft_armor(BOMB)
 				carbon_victim.apply_damage(35, BRUTE, blocked = block)
 				carbon_victim.apply_damage(50, STAMINA, blocked = block)
-				carbon_victim.adjust_stagger(5)
-				carbon_victim.add_slowdown(5)
+				carbon_victim.adjust_stagger(6)
+				carbon_victim.add_slowdown(8)
+			else if(ismecha(i))
+				var/obj/vehicle/sealed/mecha/mecha_victim = i
+				mecha_victim.ex_act(EXPLODE_HEAVY)
 			else if(isobj(i))
 				var/obj/obj_victim = i
 				if(istype(obj_victim, /obj/alien))
@@ -222,13 +212,20 @@
 				obj_victim.ex_act(EXPLODE_LIGHT)
 	stop_crush(target)
 
-///Remove all filters of items in filters_applied
-/datum/action/xeno_action/activable/psy_crush/proc/remove_all_filters()
-	for(var/atom/thing AS in filters_applied)
-		if(QDELETED(thing))
-			continue
-		thing.remove_filter("crushblur")
-	filters_applied.Cut()
+/// stops channeling and unregisters all listeners, resetting the ability
+/datum/action/xeno_action/activable/psy_crush/proc/stop_crush(turf/target)
+	SIGNAL_HANDLER
+	to_chat(owner, span_warning("We stop.")) //debug only
+	if(channel_loop_timer)
+		deltimer(channel_loop_timer)
+		channel_loop_timer = null
+	for(var/obj/effect/xeno/crush_warning/current_effect AS in effect_list)
+		qdel(current_effect)
+	current_iterations = 0
+	target_turfs = list()
+	effect_list = list()
+	add_cooldown()
+	UnregisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)))
 
 ///Apply a filter on all items in the list of turfs
 /datum/action/xeno_action/activable/psy_crush/proc/apply_filters(list/turfs)
@@ -238,6 +235,14 @@
 		for(var/atom/movable/item AS in targeted.contents)
 			item.add_filter("crushblur", 1, radial_blur_filter(0.3))
 			filters_applied += item
+
+///Remove all filters of items in filters_applied
+/datum/action/xeno_action/activable/psy_crush/proc/remove_all_filters()
+	for(var/atom/thing AS in filters_applied)
+		if(QDELETED(thing))
+			continue
+		thing.remove_filter("crushblur")
+	filters_applied.Cut()
 
 /obj/effect/xeno/crush_warning
 	icon = 'icons/xeno/Effects.dmi'
