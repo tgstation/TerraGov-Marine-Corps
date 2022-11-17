@@ -330,6 +330,18 @@
 
 /datum/action/xeno_action/activable/psy_blast/on_activation()
 	var/mob/living/carbon/xenomorph/X = owner
+	var/list/spit_types = X.xeno_caste.spit_types
+	var/found_pos = spit_types.Find(X.ammo?.type)
+	if(!found_pos)
+		X.ammo = GLOB.ammo_list[spit_types[1]]
+	else
+		X.ammo = GLOB.ammo_list[spit_types[(found_pos%length(spit_types))+1]]	//Loop around if we would exceed the length
+	//var/datum/ammo/xeno/boiler_gas/selected_ammo = X.ammo
+	to_chat(X, span_notice("Brain laser swapped"))
+	update_button_icon()
+
+	//current
+	//var/mob/living/carbon/xenomorph/X = owner
 	X.visible_message(span_notice("\The [X] prepares to fire!"), \
 		span_notice("We prepare to fire."), null, 5) //placeholder
 
@@ -370,9 +382,8 @@
 	span_xenowarning("We launch a huge blast of psychic energy!"), null, 5)
 
 	var/obj/projectile/hitscan/P = new /obj/projectile/hitscan(X.loc)
-	var/datum/ammo/ammo_type = /datum/ammo/energy/psy_blast
+	var/datum/ammo/ammo_type = X.ammo
 	P.effect_icon = initial(ammo_type.hitscan_effect_icon)
-	//P.generate_bullet(X.ammo) //readd this when we make the beno
 	P.generate_bullet(ammo_type)
 	P.fire_at(target, X, null, P.ammo.max_range, P.ammo.shell_speed)
 	playsound(X, 'sound/weapons/guns/fire/volkite_4.ogg', 50)
@@ -387,3 +398,10 @@
 
 	succeed_activate()
 	add_cooldown()
+
+
+/datum/action/xeno_action/activable/psy_blast/update_button_icon()
+	var/mob/living/carbon/xenomorph/X = owner
+	var/datum/ammo/energy/xeno/ammo_type = X.ammo
+	action_icon_state = ammo_type.icon_key
+	return ..()

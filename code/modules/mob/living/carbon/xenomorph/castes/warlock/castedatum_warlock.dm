@@ -15,6 +15,7 @@
 	max_health = 325
 	evolution_threshold = 180
 	upgrade_threshold = TIER_TWO_YOUNG_THRESHOLD
+	spit_types = list(/datum/ammo/energy/xeno/psy_blast)
 
 	deevolves_to = /mob/living/carbon/xenomorph/wraith
 	caste_flags = CASTE_IS_INTELLIGENT
@@ -90,6 +91,7 @@
 	plasma_max = 925
 	plasma_gain = 45
 	max_health = 400
+	spit_types = list(/datum/ammo/energy/xeno/psy_blast, /datum/ammo/energy/xeno/psy_blast/psy_lance)
 	soft_armor = list(MELEE = 45, BULLET = 45, LASER = 45, ENERGY = 45, BOMB = 20, BIO = 23, FIRE = 45, ACID = 20)
 
 	actions = list(
@@ -102,3 +104,5 @@
 		/datum/action/xeno_action/activable/psychic_shield,
 		/datum/action/xeno_action/activable/transfer_plasma/drone,
 	)
+
+//gotta make one the child of the other for some dumb fuck reason, reee.

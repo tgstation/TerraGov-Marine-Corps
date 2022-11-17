@@ -2474,7 +2474,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	drop_nade(T.density ? get_step_towards(T, P) : T)
 
 //psyblast// lots of placeholder stuff
-/datum/ammo/energy/psy_blast
+
+/datum/ammo/energy/xeno
+	///Key used for icon to display when swapping ammo types.
+	var/icon_key = BOILER_GLOB_NEURO
+
+/datum/ammo/energy/xeno/psy_blast
 	name = "psychic blast"
 	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN
 	damage = 35
@@ -2483,14 +2488,16 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 30
 	accurate_range = 15
 	hitscan_effect_icon = "beam_darkt"
+	icon_key = BOILER_GLOB_NEURO
+	icon_state = "boiler_gas"
 	///The AOE for drop_nade
-	var/range = 3
+	var/aoe_range = 3
 
-/datum/ammo/energy/psy_blast/drop_nade(turf/T, obj/projectile/P)
+/datum/ammo/energy/xeno/psy_blast/drop_nade(turf/T, obj/projectile/P)
 	if(!T || !isturf(T))
 		return
 	playsound(T, 'sound/effects/EMPulse.ogg', 50)
-	for(var/atom/movable/victim in view(range, T))
+	for(var/atom/movable/victim in view(aoe_range, T))
 		if(victim.anchored)
 			continue
 		if(isliving(victim))
@@ -2505,20 +2512,46 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		if(T == get_turf(victim))
 			throw_dir = get_dir(P.starting_turf, T)
 		victim.safe_throw_at(get_ranged_target_turf(T, throw_dir, 5), 4, 1, spin = TRUE) //flings em
-	new /obj/effect/temp_visual/shockwave(T, range + 2)
+	new /obj/effect/temp_visual/shockwave(T, aoe_range + 2)
 
-/datum/ammo/energy/psy_blast/on_hit_mob(mob/M, obj/projectile/P)
+/datum/ammo/energy/xeno/psy_blast/on_hit_mob(mob/M, obj/projectile/P)
 	drop_nade(get_turf(M), P)
 
-/datum/ammo/energy/psy_blast/on_hit_obj(obj/O, obj/projectile/P)
+/datum/ammo/energy/xeno/psy_blast/on_hit_obj(obj/O, obj/projectile/P)
 	drop_nade(get_turf(O), P)
 
-/datum/ammo/energy/psy_blast/on_hit_turf(turf/T, obj/projectile/P)
+/datum/ammo/energy/xeno/psy_blast/on_hit_turf(turf/T, obj/projectile/P)
 	drop_nade(T.density ? get_step_towards(T, P) : T, P)
 
-/datum/ammo/energy/psy_blast/do_at_max_range(turf/T, obj/projectile/P)
+/datum/ammo/energy/xeno/psy_blast/do_at_max_range(turf/T, obj/projectile/P)
 	drop_nade(T.density ? get_step_towards(T, P) : T, P)
 
+/datum/ammo/energy/xeno/psy_blast/psy_lance
+	name = "psychic blast"
+	flags_ammo_behavior = AMMO_XENO|AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_PASS_THROUGH_MOB
+	damage = 60
+	penetration = 50
+	accuracy = 100
+	sundering = 1
+	max_range = 30
+	accurate_range = 15
+	hitscan_effect_icon = "beam_darkt"
+	icon_key = BOILER_GLOB_NEURO_LANCE
+	icon_state = "boiler_gas2"
+
+/datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_obj(obj/O, obj/projectile/P)
+	if(ismecha(O))
+		var/obj/vehicle/sealed/mecha/mech_victim = O
+		mech_victim.take_damage(rand(200, 400), BRUTE, "bomb", 0)
+
+/datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_mob(mob/M, obj/projectile/P)
+	staggerstun(M, P, stagger = 1, slowdown = 1, knockback = 1)
+
+/datum/ammo/energy/xeno/psy_blast/on_hit_turf(turf/T, obj/projectile/P)
+	return
+
+/datum/ammo/energy/xeno/psy_blast/do_at_max_range(turf/T, obj/projectile/P)
+	return
 /datum/ammo/energy/lasgun/marine/mech
 	name = "superheated laser bolt"
 	damage = 45

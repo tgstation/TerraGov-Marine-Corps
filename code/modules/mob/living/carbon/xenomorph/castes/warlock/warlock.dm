@@ -28,3 +28,6 @@
 	if(prob(20+abs(3*upgrade_as_number())))
 		use_plasma(min(rand(1,2), plasma_stored))
 
+/mob/living/carbon/xenomorph/warlock/Initialize()
+	. = ..()
+	ammo = GLOB.ammo_list[/datum/ammo/energy/xeno/psy_blast]
