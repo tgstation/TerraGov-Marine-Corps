@@ -3,10 +3,11 @@
 // ***************************************
 /datum/action/xeno_action/activable/psychic_shield
 	name = "Psychic Shield"
+	ability_name = "psychic shield"
 	action_icon_state = "fling"
 	mechanics_text = "Creates a protective field of psychic energy in front of you."
 	cooldown_timer = 12 SECONDS
-	plasma_cost = 100
+	plasma_cost = 180
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_SHIELD,
 	)
@@ -22,9 +23,12 @@
 /datum/action/xeno_action/activable/psychic_shield/use_ability(atom/A)
 	. = ..()
 	if(active_shield)
+		if(plasma_cost > X.plasma_stored)
+			if(!silent)
+				to_chat(X, span_warning("We need [selected_ammo.plasma_cost - X.plasma_stored] more plasma!"))
+			return FALSE
 		if(can_use_action(FALSE, XACT_USE_BUSY))
 			shield_blast()
-		cancel_shield()
 		return
 	owner.visible_message("A strange and violent psychic aura is suddenly emitted from \the [owner]!")
 	playsound(owner,'sound/effects/magic.ogg', 75, 1)
@@ -78,7 +82,7 @@
 			var/throwlocation = affected.loc //first we get the target's location
 			for(var/x in 1 to 6)
 				throwlocation = get_step(throwlocation, owner.dir) //then we find where they're being thrown to, checking tile by tile.
-			affected.throw_at(throwlocation, 6, 1, owner, TRUE)
+			affected.throw_at(throwlocation, 4, 1, owner, TRUE)
 
 	owner.visible_message(span_xenowarning("[owner] sends out a huge blast of psychic energy!"), \
 	span_xenowarning("We send out a huge blast of psychic energy!"))
@@ -316,9 +320,9 @@
 	name = "Psychic blast"
 	action_icon_state = "bombard"
 	mechanics_text = "Launch a blast of psychic energy. Must remain stationary for a few seconds to use."
-	ability_name = "bombard"
+	ability_name = "psychic blast"
 	cooldown_timer = 5 SECONDS //placeholder
-	plasma_cost = 60 //placeholder
+	plasma_cost = 160 //placeholder
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_BLAST,
 	)
@@ -328,27 +332,23 @@
 	to_chat(owner, span_notice("We feel our strength return. We are ready to unleash a psychic blast again."))
 	return ..()
 
-/datum/action/xeno_action/activable/psy_blast/on_activation()
-	var/mob/living/carbon/xenomorph/X = owner
-	var/list/spit_types = X.xeno_caste.spit_types
-	var/found_pos = spit_types.Find(X.ammo?.type)
-	if(!found_pos)
-		X.ammo = GLOB.ammo_list[spit_types[1]]
-	else
-		X.ammo = GLOB.ammo_list[spit_types[(found_pos%length(spit_types))+1]]	//Loop around if we would exceed the length
-	//var/datum/ammo/xeno/boiler_gas/selected_ammo = X.ammo
-	to_chat(X, span_notice("Brain laser swapped"))
-	update_button_icon()
-
-	//current
-	//var/mob/living/carbon/xenomorph/X = owner
-	X.visible_message(span_notice("\The [X] prepares to fire!"), \
-		span_notice("We prepare to fire."), null, 5) //placeholder
-
-/datum/action/xeno_action/activable/psy_blast/on_deactivation()
+/datum/action/xeno_action/activable/psy_blast/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.selected_ability == src)
-		to_chat(X, span_notice("We relax our stance."))
+		var/list/spit_types = X.xeno_caste.spit_types
+		if(length(spit_types) <= 1)
+			return ..()
+		var/found_pos = spit_types.Find(X.ammo?.type)
+		if(!found_pos)
+			X.ammo = GLOB.ammo_list[spit_types[1]]
+		else
+			X.ammo = GLOB.ammo_list[spit_types[(found_pos%length(spit_types))+1]]	//Loop around if we would exceed the length
+		var/datum/ammo/energy/xeno/selected_ammo = X.ammo
+		plasma_cost = selected_ammo.plasma_cost
+		to_chat(X, span_notice(selected_ammo.select_text))
+		update_button_icon()
+	return ..()
+
 
 /datum/action/xeno_action/activable/psy_blast/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -357,10 +357,11 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	if(!X.check_state())
 		return FALSE
-	//if(X.ammo?.spit_cost > X.plasma_stored)
-	//	if(!silent)
-	//		to_chat(X, span_warning("We need [X.ammo?.spit_cost - X.plasma_stored] more plasma!"))
-	//	return FALSE
+	var/datum/ammo/energy/xeno/selected_ammo = X.ammo
+	if(selected_ammo.plasma_cost > X.plasma_stored)
+		if(!silent)
+			to_chat(X, span_warning("We need [selected_ammo.plasma_cost - X.plasma_stored] more plasma!"))
+		return FALSE
 
 /datum/action/xeno_action/activable/psy_blast/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -372,7 +373,7 @@
 	to_chat(X, span_xenonotice("We channel our psychic power."))
 
 	if(!do_after(X, 1 SECONDS, FALSE, target, BUSY_ICON_DANGER))
-		to_chat(X, span_warning("We decide not to launch."))
+		to_chat(X, span_warning("Our focus is disrupted."))
 		return fail_activate()
 
 	if(!can_use_ability(target, FALSE))
@@ -382,7 +383,7 @@
 	span_xenowarning("We launch a huge blast of psychic energy!"), null, 5)
 
 	var/obj/projectile/hitscan/P = new /obj/projectile/hitscan(X.loc)
-	var/datum/ammo/ammo_type = X.ammo
+	var/datum/ammo/energy/xeno/ammo_type = X.ammo
 	P.effect_icon = initial(ammo_type.hitscan_effect_icon)
 	P.generate_bullet(ammo_type)
 	P.fire_at(target, X, null, P.ammo.max_range, P.ammo.shell_speed)

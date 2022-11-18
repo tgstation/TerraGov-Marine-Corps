@@ -2478,6 +2478,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/xeno
 	///Key used for icon to display when swapping ammo types.
 	var/icon_key = BOILER_GLOB_NEURO
+	///This text will show up when this ammo type is selected by a xeno. Span proc should be applied when this var is used.
+	var/select_text
+	///Plasma cost to fire this projectile
+	var/plasma_cost
 
 /datum/ammo/energy/xeno/psy_blast
 	name = "psychic blast"
@@ -2487,9 +2491,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 1
 	max_range = 30
 	accurate_range = 15
-	hitscan_effect_icon = "beam_darkt"
+	hitscan_effect_icon = "beam_cult"
 	icon_key = BOILER_GLOB_NEURO
 	icon_state = "boiler_gas"
+	select_text = "We will now fire a psychic blast. These have an area of effect."
+	plasma_cost = 160
 	///The AOE for drop_nade
 	var/aoe_range = 3
 
@@ -2528,30 +2534,34 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/xeno/psy_blast/psy_lance
 	name = "psychic blast"
-	flags_ammo_behavior = AMMO_XENO|AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_PASS_THROUGH_MOB
+	flags_ammo_behavior = AMMO_XENO|AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_PASS_THROUGH_MOVABLE
 	damage = 60
 	penetration = 50
 	accuracy = 100
-	sundering = 1
-	max_range = 30
-	accurate_range = 15
-	hitscan_effect_icon = "beam_darkt"
+	sundering = 5
+	max_range = 12
+	hitscan_effect_icon = "beam_hcult"
 	icon_key = BOILER_GLOB_NEURO_LANCE
 	icon_state = "boiler_gas2"
+	select_text = "We will now fire a psychic lance. These are powerful piercing beams, particular strong against armored targets."
+	plasma_cost = 250
 
 /datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_obj(obj/O, obj/projectile/P)
 	if(ismecha(O))
 		var/obj/vehicle/sealed/mecha/mech_victim = O
-		mech_victim.take_damage(rand(200, 400), BRUTE, "bomb", 0)
+		mech_victim.take_damage(rand(200, 400), BURN, ENERGY, 0, armour_penetration = penetration)
+	else
+		O.ex_act(EXPLODE_HEAVY)
 
 /datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_mob(mob/M, obj/projectile/P)
-	staggerstun(M, P, stagger = 1, slowdown = 1, knockback = 1)
+	staggerstun(M, P, stagger = 2, slowdown = 2, knockback = 1)
 
 /datum/ammo/energy/xeno/psy_blast/on_hit_turf(turf/T, obj/projectile/P)
 	return
 
 /datum/ammo/energy/xeno/psy_blast/do_at_max_range(turf/T, obj/projectile/P)
 	return
+
 /datum/ammo/energy/lasgun/marine/mech
 	name = "superheated laser bolt"
 	damage = 45
