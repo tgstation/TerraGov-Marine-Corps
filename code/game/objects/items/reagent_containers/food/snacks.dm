@@ -344,6 +344,9 @@
 	bitesize = 3
 	tastes = list("cookie" = 1, "sugar" = 4)
 
+/obj/item/reagent_containers/food/snacks/christmas_cookieone/special
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/medicine/bicaridine = 10, /datum/reagent/medicine/kelotane = 5)
+
 /obj/item/reagent_containers/food/snacks/christmas_cookietwo
 	name = "christmas cookie"
 	desc = "A festive Christmas cookie, this one is in the shape of a tree."
@@ -352,6 +355,9 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
 	bitesize = 3
 	tastes = list("cookie" = 1, "christmas" = 2, "pine trees" = 1)
+
+/obj/item/reagent_containers/food/snacks/christmas_cookietwo/special
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/medicine/bicaridine = 5, /datum/reagent/medicine/kelotane = 10)
 
 /obj/item/reagent_containers/food/snacks/christmas_cookiethree
 	name = "christmas cookie"
@@ -362,6 +368,9 @@
 	bitesize = 3
 	tastes = list("cookie" = 1, "christmas" = 2, "mistletoe" = 1)
 
+/obj/item/reagent_containers/food/snacks/christmas_cookiethree/special
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/medicine/bicaridine = 5, /datum/reagent/medicine/kelotane = 5, /datum/reagent/iron = 10, /datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/sugar = 5)
+
 /obj/item/reagent_containers/food/snacks/christmas_cookiefour
 	name = "christmas cookie"
 	desc = "A festive Christmas cookie, this one is in the shape of Santa Claus."
@@ -370,6 +379,9 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 10)
 	bitesize = 3
 	tastes = list("cookie" = 1, "coal" = 1, "fruitcake" = 1, "christmas" = 1)
+
+/obj/item/reagent_containers/food/snacks/christmas_cookiefour/special
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/medicine/bicaridine = 5, /datum/reagent/medicine/kelotane = 5, /datum/reagent/medicine/tricordrazine = 5)
 
 /obj/item/reagent_containers/food/snacks/christmas_cookiefive
 	name = "christmas cookie"
@@ -380,6 +392,9 @@
 	bitesize = 3
 	tastes = list("cookie" = 1, "christmas" = 2, "presents" = 1)
 
+/obj/item/reagent_containers/food/snacks/christmas_cookiefive/special
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/medicine/kelotane = 5, /datum/reagent/medicine/tricordrazine = 10)
+
 /obj/item/reagent_containers/food/snacks/christmas_cookiesix
 	name = "christmas cookie"
 	desc = "A festive Christmas cookie, this one is in the shape of a present."
@@ -389,6 +404,9 @@
 	bitesize = 3
 	tastes = list("cookie" = 1, "christmas" = 2, "wrapping paper" = 1)
 
+/obj/item/reagent_containers/food/snacks/christmas_cookiesix/special
+		list_reagents = list(/datum/reagent/medicine/tramadol = 10, /datum/reagent/medicine/tricordrazine = 5, /datum/reagent/medicine/oxycodone = 10)
+
 /obj/item/reagent_containers/food/snacks/christmas_cookieseven
 	name = "christmas cookie"
 	desc = "A festive Christmas cookie, this one is in the shape of a candy cane."
@@ -397,6 +415,9 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/toxin/minttoxin = 1)
 	bitesize = 3
 	tastes = list("cookie" = 1, "christmas" = 2, "mint" = 2)
+
+/obj/item/reagent_containers/food/snacks/christmas_cookieseven
+	list_reagents = list(/datum/reagent/medicine/dylovene = 5, /datum/reagent/medicine/tricordrazine = 5, /datum/reagent/medicine/bicaridine = 10)
 
 /obj/item/reagent_containers/food/snacks/chocolatebar
 	name = "Chocolate Bar"

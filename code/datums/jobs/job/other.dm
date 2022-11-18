@@ -150,7 +150,7 @@
 	head = /obj/item/clothing/head/helmet/space/santahat/special
 	glasses = /obj/item/clothing/glasses/thermal/eyepatch //santa lost one of his eyes in a vicious reindeer accident circa '32
 	r_store = /obj/item/storage/pouch/magazine/pistol/large
-	l_store = /obj/item/storage/pouch/medkit
+	l_store = /obj/item/storage/pouch/santaspouch
 	back = /obj/item/storage/backpack/santabag
 	suit_store = /obj/item/weapon/gun/launcher/rocket/m57a4
 
@@ -184,12 +184,14 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/PMC, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/PMC, SLOT_IN_BACKPACK)
 
-	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/packet/ryetalyn, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/elite, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/elite, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/advanced/bruise_pack, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/advanced/burn_pack, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/oxycodone, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/christmas_cookieone/special, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/christmas_cookietwo/special, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/christmas_cookiethree/special, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/christmas_cookiefour/special, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/christmas_cookiefive/special, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/christmas_cookiesix/special, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/christmas_cookieseven/special, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/drinks/bottle/eggnog/special, SLOT_IN_L_POUCH)
 
 	H.equip_to_slot_or_del(new /obj/item/hailer, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
