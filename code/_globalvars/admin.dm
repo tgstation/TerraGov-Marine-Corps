@@ -15,8 +15,11 @@ GLOBAL_VAR_INIT(motd, "")
 GLOBAL_VAR_INIT(non_ascii_regex, regex("\[^\\x00-\\x7F]", "g"))
 GLOBAL_PROTECT(non_ascii_regex)
 
+GLOBAL_VAR_INIT(non_ascii_cyrillic_regex, regex(@"[^\x00-\x7F\u0410-\u044F\u0401\u0451]", "g"))
+GLOBAL_PROTECT(non_ascii_cyrillic_regex)
+
 ///Returns true if this contains text that is not ASCII
-#define NON_ASCII_CHECK(text) (findtext_char(text, GLOB.non_ascii_regex))
+#define NON_ASCII_CYRILLIC_CHECK(text) (findtext_char(text, GLOB.non_ascii_cyrillic_regex))
 
 GLOBAL_LIST_EMPTY(custom_loadouts)
 
