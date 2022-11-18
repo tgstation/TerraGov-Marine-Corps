@@ -26,6 +26,7 @@
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
 	html_description = {"
 		<b>Difficulty</b>: Hard<br /><br />
@@ -114,6 +115,7 @@ Godspeed, captain! And remember, you are not above the law."})
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
 	html_description = {"
 		<b>Difficulty</b>:Very Hard<br /><br />
@@ -205,6 +207,7 @@ Make the TGMC proud!"})
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
 	html_description = {"
 		<b>Difficulty</b>: Medium<br /><br />
@@ -284,6 +287,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE_STRONG,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
 	html_description = {"
 		<b>Difficulty</b>: Medium<br /><br />
@@ -359,7 +363,7 @@ Though you are a warrant officer, your authority is limited to the dropship and 
 	req_admin_notify = TRUE
 	paygrade = "E3"
 	comm_title = "MCH"
-	total_positions = 1
+	total_positions = 0
 	skills_type = /datum/skills/mech_pilot
 	access = list(ACCESS_MARINE_WO, ACCESS_MARINE_PREP, ACCESS_MARINE_MECH, ACCESS_CIVILIAN_PUBLIC)
 	minimal_access = list(ACCESS_MARINE_WO, ACCESS_MARINE_PREP, ACCESS_MARINE_MECH, ACCESS_CIVILIAN_PUBLIC, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
@@ -367,11 +371,12 @@ Though you are a warrant officer, your authority is limited to the dropship and 
 	outfit = /datum/outfit/job/command/mech_pilot
 	exp_requirements = XP_REQ_EXPERT
 	exp_type = EXP_TYPE_REGULAR_ALL
-	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP
+	job_points_needed = 40
+	job_points = 15
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
 	html_description = {"
 		<b>Difficulty</b>:Very Hard<br /><br />
@@ -444,6 +449,7 @@ You can serve your Division in a variety of roles, so choose carefully."})
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
 	html_description = {"
 		<b>Difficulty</b>: Hard<br /><br />
@@ -533,6 +539,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
 	html_description = {"
 		<b>Difficulty</b>: Medium<br /><br />
@@ -626,6 +633,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
 	html_description = {"
 		<b>Difficulty</b>: Medium<br /><br />
@@ -719,6 +727,7 @@ A happy ship is a well-functioning ship."})
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
 	html_description = {"
 		<b>Difficulty</b>: Hard<br /><br />
@@ -806,6 +815,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
 	html_description = {"
 		<b>Difficulty</b>: Medium<br /><br />
@@ -892,6 +902,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
 	html_description = {"
 		<b>Difficulty</b>: Medium<br /><br />
@@ -983,6 +994,7 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
 	html_description = {"
 		<b>Difficulty</b>: Hard (varies)<br /><br />
@@ -1057,6 +1069,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE_STRONG,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
 	html_description = {"
 		<b>Difficulty</b>: Soul Crushing<br /><br />
@@ -1149,6 +1162,7 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
 	html_description = {"
 		<b>Difficulty</b>: Easy<br /><br />

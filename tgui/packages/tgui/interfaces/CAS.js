@@ -8,12 +8,8 @@ export const CAS = (props, context) => {
   return (
     <Window>
       <Window.Content scrollable>
-        {data.screen_mode === 0 && (
-          <WeaponSelection />
-        )}
-        {data.screen_mode === 1 && (
-          <FiringMode />
-        )}
+        {data.screen_mode === 0 && <WeaponSelection />}
+        {data.screen_mode === 1 && <FiringMode />}
       </Window.Content>
     </Window>
   );
@@ -25,14 +21,12 @@ const WeaponSelection = (props, context) => {
   return (
     <Section title="Equipment Installed">
       {data.equipment_data.length > 0 ? (
-        data.equipment_data.map(equipment => (
-          <Box
-            key={equipment.id}>
+        data.equipment_data.map((equipment) => (
+          <Box key={equipment.id}>
             <Button
-              onClick={() => act(
-                'equip_interact',
-                { equip_interact: equipment.eqp_tag }
-              )}
+              onClick={() =>
+                act('equip_interact', { equip_interact: equipment.eqp_tag })
+              }
               disabled={!equipment.is_interactable}>
               {equipment.name}
             </Button>
@@ -51,12 +45,8 @@ const FiringMode = (props, context) => {
   return (
     <>
       <Section
-        title={"Weapon Selected: "+data.selected_eqp}
-        buttons={
-          <Button onClick={() => act('deselect')}>
-            Deselect
-          </Button>
-        }>
+        title={'Weapon Selected: ' + data.selected_eqp}
+        buttons={<Button onClick={() => act('deselect')}>Deselect</Button>}>
         {!data.selected_eqp_ammo_name ? (
           <Box color="bad">No ammo loaded</Box>
         ) : (
@@ -71,25 +61,28 @@ const FiringMode = (props, context) => {
                   average: [0, 0.5],
                   bad: [-Infinity, 0],
                 }}
-                value={data.selected_eqp_ammo_amt
-                  / data.selected_eqp_max_ammo_amt}
-                content={data.selected_eqp_ammo_amt
-                  +" / "
-                  +data.selected_eqp_max_ammo_amt} />
+                value={
+                  data.selected_eqp_ammo_amt / data.selected_eqp_max_ammo_amt
+                }
+                content={
+                  data.selected_eqp_ammo_amt +
+                  ' / ' +
+                  data.selected_eqp_max_ammo_amt
+                }
+              />
             </LabeledList.Item>
           </LabeledList>
         )}
       </Section>
       <Section title="Available Targets">
         {data.targets_data.length > 0 ? (
-          data.targets_data.map(target => (
+          data.targets_data.map((target) => (
             <Box key={target.id}>
               <Button
                 disabled={!data.shuttle_mode}
-                onClick={() => act(
-                  'open_fire',
-                  { open_fire: target.target_tag }
-                )}>
+                onClick={() =>
+                  act('open_fire', { open_fire: target.target_tag })
+                }>
                 {target.target_name}
               </Button>
             </Box>

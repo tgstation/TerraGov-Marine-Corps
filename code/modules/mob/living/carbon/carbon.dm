@@ -273,7 +273,7 @@
 		var/slide_dir = dir
 		for(var/i=1, i<=slide_steps, i++)
 			step(src, slide_dir)
-			sleep(2)
+			sleep(0.2 SECONDS)
 			if(!lying_angle)
 				break
 

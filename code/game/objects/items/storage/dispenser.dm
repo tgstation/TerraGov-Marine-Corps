@@ -6,6 +6,8 @@
 	anchored = TRUE
 	max_integrity = 250
 	resistance_flags = XENO_DAMAGEABLE
+	throwpass = TRUE
+	coverage = 60
 	///list of human mobs we're currently affecting in our area.
 	var/list/mob/living/carbon/human/affecting_list
 	///if the dispenser has finished deploying and is fully active and can be used.
@@ -112,8 +114,8 @@
 	icon_state = "dispenser"
 	flags_equip_slot = ITEM_SLOT_BACK
 	max_w_class = 6
-	max_storage_space = 63
-	max_integrity = 200
+	max_storage_space = 48
+	max_integrity = 250
 
 /obj/item/storage/backpack/dispenser/Initialize(mapload, ...)
 	. = ..()

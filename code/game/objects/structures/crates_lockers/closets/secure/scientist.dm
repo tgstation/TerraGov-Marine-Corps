@@ -10,7 +10,7 @@
 
 	New()
 		..()
-		sleep(2)
+		sleep(0.2 SECONDS)
 		new /obj/item/clothing/under/marine/officer/researcher(src)
 		new /obj/item/clothing/under/marine/officer/researcher(src)
 		new /obj/item/clothing/suit/storage/labcoat(src)
@@ -35,7 +35,7 @@
 
 	New()
 		..()
-		sleep(2)
+		sleep(0.2 SECONDS)
 		new /obj/item/clothing/suit/bio_suit/scientist(src)
 		new /obj/item/clothing/head/bio_hood/scientist(src)
 		new /obj/item/clothing/under/rank/research_director(src)

@@ -391,8 +391,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/pistol/mech
 	name = "super-heavy pistol bullet"
-	damage = 40
-	penetration = 15
+	damage = 45
+	penetration = 20
 	sundering = 1
 
 /datum/ammo/bullet/pistol/mech/burst
@@ -1059,20 +1059,23 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "buckshot"
 	hud_state = "shotgun_buckshot"
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/mech/spread
-	bonus_projectiles_amount = 4
-	bonus_projectiles_scatter = 10
+	bonus_projectiles_amount = 2
+	bonus_projectiles_scatter = 5
 	accuracy_var_low = 10
 	accuracy_var_high = 10
 	max_range = 10
-	damage = 60
+	damage = 100
 	damage_falloff = 4
 
 /datum/ammo/bullet/shotgun/mech/spread
 	name = "super-heavy additional buckshot"
 	icon_state = "buckshot"
 	max_range = 10
-	damage = 50
+	damage = 75
 	damage_falloff = 4
+
+/datum/ammo/bullet/shotgun/mech/on_hit_mob(mob/M, obj/projectile/proj)
+	staggerstun(M, proj, weaken = 1, stagger = 1, knockback = 2, slowdown = 0.5, max_range = 3)
 
 /*
 //================================================
@@ -1268,7 +1271,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/minigun/mech
 	name = "vulcan bullet"
-	damage = 30
+	damage = 20
 	penetration = 20
 	sundering = 0.5
 
@@ -1463,14 +1466,17 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/tx54/mech
 	name = "30mm fragmentation grenade"
 	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/mech
-	damage = 30
-	penetration = 20
+	damage = 15
+	penetration = 10
 	projectile_greyscale_colors = "#4f0303"
 
 /datum/ammo/bullet/tx54_spread/mech
-	damage = 20
+	damage = 15
 	penetration = 10
-	sundering = 1
+	sundering = 0.5
+
+/datum/ammo/bullet/tx54_spread/mech/on_hit_mob(mob/M, obj/projectile/proj)
+	staggerstun(M, proj, max_range = 3, stagger = 0, slowdown = 0.2, shake = 0)
 
 //10-gauge Micro rail shells - aka micronades
 /datum/ammo/bullet/micro_rail
@@ -2043,7 +2049,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	drop_nade(T.density ? P.loc : T)
 
 /datum/ammo/mortar
-	name = "80mm"
+	name = "80mm shell"
 	icon_state = "mortar"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
 	shell_speed = 1.10
@@ -2085,7 +2091,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	playsound(T, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4)
 
 /datum/ammo/mortar/howi
-	name = "150mm"
+	name = "150mm shell"
 	icon_state = "howi"
 	shell_speed = 1.25
 
@@ -2098,7 +2104,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
 
 /datum/ammo/mortar/smoke/howi
-	name = "150mm"
+	name = "150mm shell"
 	icon_state = "howi"
 	shell_speed = 1.25
 
@@ -2140,6 +2146,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/mortar/rocket/minelayer/drop_nade(turf/T)
 	var/obj/item/explosive/mine/mine = new /obj/item/explosive/mine(T)
 	mine.deploy_mine(null, TGMC_LOYALIST_IFF)
+
+/datum/ammo/mortar/rocket/mlrs
+	shell_speed = 2.5
+
+/datum/ammo/mortar/rocket/mlrs/drop_nade(turf/T)
+	explosion(T, 0, 0, 4, 2, small_animation = TRUE)
 
 /*
 //================================================

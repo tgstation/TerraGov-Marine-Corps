@@ -37,45 +37,34 @@ export const MedScanner = (props, context) => {
   const chemicals = Object.values(chemicals_lists);
   const limb_data = Object.values(limb_data_lists);
   return (
-    <Window
-      width={500}
-      height={500}>
+    <Window width={500} height={500}>
       <Window.Content>
-        <Section title={"Patient: " + patient}>
+        <Section title={'Patient: ' + patient}>
           {hugged ? (
             <NoticeBox danger>
               Patient has been implanted with an alien embryo!
             </NoticeBox>
           ) : null}
-          {ssd ? (
-            <NoticeBox warning>
-              {ssd}
-            </NoticeBox>
-          ) : null}
+          {ssd ? <NoticeBox warning>{ssd}</NoticeBox> : null}
           <LabeledList>
-            <LabeledList.Item
-              label="Health">
+            <LabeledList.Item label="Health">
               <ProgressBar
-                value={health/100}
+                value={health / 100}
                 ranges={{
                   good: [0.4, Infinity],
                   average: [0.2, 0.4],
                   bad: [-Infinity, 0.2],
-                }} />
+                }}
+              />
             </LabeledList.Item>
             {dead ? (
-              <LabeledList.Item
-                label="Revivable">
-                <Box
-                  color={revivable ? "green" : "red"}
-                  bold={1}
-                >
-                  {revivable ? "TRUE" : "False"}
+              <LabeledList.Item label="Revivable">
+                <Box color={revivable ? 'green' : 'red'} bold={1}>
+                  {revivable ? 'TRUE' : 'False'}
                 </Box>
               </LabeledList.Item>
             ) : null}
-            <LabeledList.Item
-              label="Damage">
+            <LabeledList.Item label="Damage">
               <Box inline>
                 <ProgressBar
                   value={total_brute}
@@ -84,10 +73,11 @@ export const MedScanner = (props, context) => {
                     good: [-Infinity, 50],
                     average: [50, 100],
                     bad: [100, Infinity],
-                  }}>Brute:{total_brute}
+                  }}>
+                  Brute:{total_brute}
                 </ProgressBar>
               </Box>
-              <Box inline width={"5px"} />
+              <Box inline width={'5px'} />
               <Box inline>
                 <ProgressBar
                   value={total_burn}
@@ -96,10 +86,11 @@ export const MedScanner = (props, context) => {
                     good: [-Infinity, 50],
                     average: [50, 100],
                     bad: [100, Infinity],
-                  }}>Burn:{total_burn}
+                  }}>
+                  Burn:{total_burn}
                 </ProgressBar>
               </Box>
-              <Box inline width={"5px"} />
+              <Box inline width={'5px'} />
               <Box inline>
                 <ProgressBar
                   value={toxin}
@@ -108,10 +99,11 @@ export const MedScanner = (props, context) => {
                     good: [-Infinity, 50],
                     average: [50, 100],
                     bad: [100, Infinity],
-                  }}>Toxin:{toxin}
+                  }}>
+                  Toxin:{toxin}
                 </ProgressBar>
               </Box>
-              <Box inline width={"5px"} />
+              <Box inline width={'5px'} />
               <Box inline>
                 <ProgressBar
                   value={oxy}
@@ -120,10 +112,11 @@ export const MedScanner = (props, context) => {
                     good: [-Infinity, 50],
                     average: [50, 100],
                     bad: [100, Infinity],
-                  }}>Oxygen:{oxy}
+                  }}>
+                  Oxygen:{oxy}
                 </ProgressBar>
               </Box>
-              <Box inline width={"5px"} />
+              <Box inline width={'5px'} />
               <Box inline>
                 <ProgressBar
                   value={clone}
@@ -132,7 +125,8 @@ export const MedScanner = (props, context) => {
                     good: [-Infinity, 50],
                     average: [50, 100],
                     bad: [100, Infinity],
-                  }}>Cloneloss:{clone}
+                  }}>
+                  Cloneloss:{clone}
                 </ProgressBar>
               </Box>
             </LabeledList.Item>
@@ -141,201 +135,188 @@ export const MedScanner = (props, context) => {
         {has_chemicals ? (
           <Section title="Chemical Contents">
             {has_unknown_chemicals ? (
-              <NoticeBox warning>
-                Unknown reagents detected.
-              </NoticeBox>
+              <NoticeBox warning>Unknown reagents detected.</NoticeBox>
             ) : null}
             <LabeledList>
-              {
-                chemicals.map(chemical => (
-                  <LabeledList.Item
-                    key={chemical.name}>
-                    <Box inline
-                      color={chemical.dangerous ? "red" : "white"}
-                      bold={chemical.dangerous}>
-                      {chemical.amount + "u " + chemical.name}
+              {chemicals.map((chemical) => (
+                <LabeledList.Item key={chemical.name}>
+                  <Box
+                    inline
+                    color={chemical.dangerous ? 'red' : 'white'}
+                    bold={chemical.dangerous}>
+                    {chemical.amount + 'u ' + chemical.name}
+                  </Box>
+                  <Box inline width={'5px'} />
+                  {chemical.od ? (
+                    <Box inline color={'red'} bold={1}>
+                      {'OD'}
                     </Box>
-                    <Box inline width={"5px"} />
-                    {chemical.od ? (
-                      <Box inline
-                        color={"red"}
-                        bold={1}>
-                        {"OD"}
-                      </Box>
-                    ) : null}
-                  </LabeledList.Item>
-                ))
-              }
+                  ) : null}
+                </LabeledList.Item>
+              ))}
             </LabeledList>
           </Section>
         ) : null}
         {limbs_damaged ? (
           <Section title="Limbs Damaged">
             <LabeledList>
-              {
-                limb_data.map(limb => (
-                  <LabeledList.Item
-                    key={limb.name}
-                    label={limb.name}>
-                    {limb.missing ? (
-                      <Box inline
-                        color={"red"}
-                        bold={1}>
-                        MISSING
-                      </Box>
-                    ) : (
-                      <>
-                        {limb.brute > 0 ? (
-                          <>
-                            <Box inline>
-                              <ProgressBar
-                                value={limb.brute}
-                                maxvalue={limb.brute}
-                                ranges={{
-                                  good: [-Infinity, 20],
-                                  average: [20, 50],
-                                  bad: [50, Infinity],
-                                }}>Brute:{limb.brute}
-                              </ProgressBar>
-                            </Box>
-                            <Box inline width={"5px"} />
-                          </>
-                        ) : null}
-                        {limb.burn > 0 ? (
-                          <>
-                            <Box inline>
-                              <ProgressBar
-                                value={limb.burn}
-                                maxvalue={limb.burn}
-                                ranges={{
-                                  good: [-Infinity, 20],
-                                  average: [20, 50],
-                                  bad: [50, Infinity],
-                                }}>Burn:{limb.burn}
-                              </ProgressBar>
-                            </Box>
-                            <Box inline width={"5px"} />
-                          </>
-                        ) : null}
-                        {!limb.bandaged ? (
-                          <>
-                            <Box inline color={"green"}>
-                              Unbandaged
-                            </Box>
-                            <Box inline width={"5px"} />
-                          </>
-                        ) : null}
-                        {!limb.salved ? (
-                          <>
-                            <Box inline color={"orange"}>
-                              Unsalved
-                            </Box>
-                            <Box inline width={"5px"} />
-                          </>
-                        ) : null}
-                        {limb.bleeding ? (
-                          <>
-                            <Box inline color={"red"} bold={1}>
-                              Bleeding
-                            </Box>
-                            <Box inline width={"5px"} />
-                          </>
-                        ) : null}
-                        {limb.limb_status ? (
-                          <>
-                            <Box inline color={(limb.limb_status === "Splinted") ? "green" : "red"} bold={1}>
-                              {limb.limb_status}
-                            </Box>
-                            <Box inline width={"5px"} />
-                          </>
-                        ) : null}
-                        {limb.open_incision ? (
-                          <>
-                            <Box inline color={"red"} bold={1}>
-                              Open Surgical Incision
-                            </Box>
-                            <Box inline width={"5px"} />
-                          </>
-                        ) : null}
-                        {limb.infected ? (
-                          <>
-                            <Box inline color={(limb.infected === 1) ? "olive" : "brown"} bold={1}>
-                              {limb.infected === 1 ? "Infected" : "Necrotizing"}
-                            </Box>
-                            <Box inline width={"5px"} />
-                          </>
-                        ) : null}
-                        {limb.implant ? (
-                          <>
-                            <Box inline color={"white"} bold={1}>
-                              Implant
-                            </Box>
-                            <Box inline width={"5px"} />
-                          </>
-                        ) : null}
-                      </>
-                    )}
-                  </LabeledList.Item>
-                ))
-              }
+              {limb_data.map((limb) => (
+                <LabeledList.Item key={limb.name} label={limb.name}>
+                  {limb.missing ? (
+                    <Box inline color={'red'} bold={1}>
+                      MISSING
+                    </Box>
+                  ) : (
+                    <>
+                      {limb.brute > 0 ? (
+                        <>
+                          <Box inline>
+                            <ProgressBar
+                              value={limb.brute}
+                              maxvalue={limb.brute}
+                              ranges={{
+                                good: [-Infinity, 20],
+                                average: [20, 50],
+                                bad: [50, Infinity],
+                              }}>
+                              Brute:{limb.brute}
+                            </ProgressBar>
+                          </Box>
+                          <Box inline width={'5px'} />
+                        </>
+                      ) : null}
+                      {limb.burn > 0 ? (
+                        <>
+                          <Box inline>
+                            <ProgressBar
+                              value={limb.burn}
+                              maxvalue={limb.burn}
+                              ranges={{
+                                good: [-Infinity, 20],
+                                average: [20, 50],
+                                bad: [50, Infinity],
+                              }}>
+                              Burn:{limb.burn}
+                            </ProgressBar>
+                          </Box>
+                          <Box inline width={'5px'} />
+                        </>
+                      ) : null}
+                      {!limb.bandaged ? (
+                        <>
+                          <Box inline color={'green'}>
+                            Unbandaged
+                          </Box>
+                          <Box inline width={'5px'} />
+                        </>
+                      ) : null}
+                      {!limb.salved ? (
+                        <>
+                          <Box inline color={'orange'}>
+                            Unsalved
+                          </Box>
+                          <Box inline width={'5px'} />
+                        </>
+                      ) : null}
+                      {limb.bleeding ? (
+                        <>
+                          <Box inline color={'red'} bold={1}>
+                            Bleeding
+                          </Box>
+                          <Box inline width={'5px'} />
+                        </>
+                      ) : null}
+                      {limb.limb_status ? (
+                        <>
+                          <Box
+                            inline
+                            color={
+                              limb.limb_status === 'Splinted' ? 'green' : 'red'
+                            }
+                            bold={1}>
+                            {limb.limb_status}
+                          </Box>
+                          <Box inline width={'5px'} />
+                        </>
+                      ) : null}
+                      {limb.open_incision ? (
+                        <>
+                          <Box inline color={'red'} bold={1}>
+                            Open Surgical Incision
+                          </Box>
+                          <Box inline width={'5px'} />
+                        </>
+                      ) : null}
+                      {limb.infected ? (
+                        <>
+                          <Box
+                            inline
+                            color={limb.infected === 1 ? 'olive' : 'brown'}
+                            bold={1}>
+                            {limb.infected === 1 ? 'Infected' : 'Necrotizing'}
+                          </Box>
+                          <Box inline width={'5px'} />
+                        </>
+                      ) : null}
+                      {limb.implant ? (
+                        <>
+                          <Box inline color={'white'} bold={1}>
+                            Implant
+                          </Box>
+                          <Box inline width={'5px'} />
+                        </>
+                      ) : null}
+                    </>
+                  )}
+                </LabeledList.Item>
+              ))}
             </LabeledList>
           </Section>
         ) : null}
         {damaged_organs.length ? (
           <Section title="Organ Damaged">
             <LabeledList>
-              {
-                damaged_organs.map(organ => (
-                  <LabeledList.Item
-                    key={organ.name}
-                    label={organ.name[0].toUpperCase() + organ.name.slice(1)}>
-                    <Box inline
-                      color={organ.status === "Bruised" ? "orange" : "red"}
-                      bold={1}>
-                      {organ.status + " with " + organ.damage + " damage"}
-                    </Box>
-                  </LabeledList.Item>
-                ))
-              }
+              {damaged_organs.map((organ) => (
+                <LabeledList.Item
+                  key={organ.name}
+                  label={organ.name[0].toUpperCase() + organ.name.slice(1)}>
+                  <Box
+                    inline
+                    color={organ.status === 'Bruised' ? 'orange' : 'red'}
+                    bold={1}>
+                    {organ.status + ' with ' + organ.damage + ' damage'}
+                  </Box>
+                </LabeledList.Item>
+              ))}
             </LabeledList>
           </Section>
-        ) : null }
-        {(blood_amount < 560 || internal_bleeding) ?(
+        ) : null}
+        {blood_amount < 560 || internal_bleeding ? (
           <Section>
             <LabeledList>
-              <LabeledList.Item
-                label={"Blood Type: " + blood_type}>
+              <LabeledList.Item label={'Blood Type: ' + blood_type}>
                 <ProgressBar
-                  value={blood_amount/560}
+                  value={blood_amount / 560}
                   ranges={{
                     good: [0.9, Infinity],
                     average: [0.7, 0.8],
                     bad: [-Infinity, 0.7],
-                  }} />
+                  }}
+                />
               </LabeledList.Item>
-              <LabeledList.Item
-                label={"Body Temperature"}>
+              <LabeledList.Item label={'Body Temperature'}>
                 {body_temperature}
               </LabeledList.Item>
-              <LabeledList.Item
-                label={"Pulse"}>
-                {pulse}
-              </LabeledList.Item>
+              <LabeledList.Item label={'Pulse'}>{pulse}</LabeledList.Item>
             </LabeledList>
-            {internal_bleeding ?(
-              <NoticeBox
-                color={"red"}
-                warning>
+            {internal_bleeding ? (
+              <NoticeBox color={'red'} warning>
                 Internal Bleeding Detected!
               </NoticeBox>
             ) : null}
           </Section>
         ) : null}
-        {infection ? (
-          <NoticeBox warning>
-            {infection}
-          </NoticeBox>
-        ) : null}
+        {infection ? <NoticeBox warning>{infection}</NoticeBox> : null}
         {implants ? (
           <NoticeBox info>
             There are {implants} unknown implants detected within the patient.

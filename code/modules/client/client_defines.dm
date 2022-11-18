@@ -111,5 +111,6 @@
 	/// Messages currently seen by this client
 	var/list/seen_messages
 
+
 	show_popup_menus = TRUE // right click menu no longer shows up
 	control_freak = CONTROL_FREAK_MACROS

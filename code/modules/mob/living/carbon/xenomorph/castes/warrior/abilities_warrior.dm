@@ -77,7 +77,7 @@
 	if(!.)
 		return FALSE
 
-	if(get_dist_euclide_square(A, owner) > 36)
+	if(get_dist_euclide_square(A, owner) > 20)
 		if(!silent)
 			to_chat(owner, span_xenonotice("You are too far!"))
 		return FALSE
@@ -380,7 +380,7 @@
 			to_chat(owner, span_xenodanger("We can't harm our sister!"))
 		return FALSE
 
-	if(!isliving(A) && !isstructure(A) && !ismachinery(A) && !isuav(A))
+	if(!isliving(A) && !isstructure(A) && !ismachinery(A) && !isvehicle(A))
 		if(!silent)
 			to_chat(owner, span_xenodanger("We can't punch this target!"))
 		return FALSE

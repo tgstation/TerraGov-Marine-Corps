@@ -73,9 +73,9 @@
 /datum/action/xeno_action/activable/essence_link/proc/end_ability()
 	var/mob/living/carbon/xenomorph/X = owner
 	var/datum/action/xeno_action/enhancement/enhancement_action = X.actions_by_path[/datum/action/xeno_action/enhancement]
-	enhancement_action.end_ability()
+	enhancement_action?.end_ability()
 	X.remove_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK)
-	existing_link = null
+	QDEL_NULL(existing_link)
 	linked_target = null
 	add_cooldown()
 
@@ -164,9 +164,17 @@
 		return FALSE
 	return ..()
 
+/datum/action/xeno_action/enhancement/action_activate()
+	if(existing_enhancement)
+		end_ability()
+		return succeed_activate()
+	essence_link_action.existing_link.add_stacks(-1)
+	essence_link_action.linked_target.apply_status_effect(STATUS_EFFECT_XENO_ENHANCEMENT, owner)
+	existing_enhancement = essence_link_action.linked_target.has_status_effect(STATUS_EFFECT_XENO_ENHANCEMENT)
+	succeed_activate()
+
 /// Ends the ability if the Enhancement buff is removed.
 /datum/action/xeno_action/enhancement/proc/end_ability()
 	if(existing_enhancement)
-		essence_link_action.linked_target.remove_status_effect(STATUS_EFFECT_XENO_ENHANCEMENT)
-		existing_enhancement = null
+		QDEL_NULL(existing_enhancement)
 		add_cooldown()

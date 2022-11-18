@@ -580,7 +580,7 @@
 							else
 								occupant.reagents.add_reagent(/datum/reagent/medicine/spaceacillin, inject_per_second)
 								amount -= inject_per_second
-								sleep(10)
+								sleep(1 SECONDS)
 
 					if(ADSURGERY_FACIAL) // dumb but covers for incomplete facial surgery
 						say("Beginning Facial Reconstruction Surgery.")
@@ -627,7 +627,7 @@
 	while(heal_brute||heal_burn||heal_toxin||filtering||blood_transfer)
 		if(!surgery)
 			break
-		sleep(20)
+		sleep(2 SECONDS)
 		if(prob(5))
 			visible_message("[src] beeps as it continues working.")
 

@@ -24,12 +24,12 @@ GLOBAL_LIST_EMPTY(surgery_steps)
 	var/can_infect = 0 //Evil infection stuff that will make everyone hate me
 	var/blood_level = 0 //How much blood this step can get on surgeon. 1 - hands, 2 - full body
 
-	//Returns how well tool is suited for this step
-	proc/tool_quality(obj/item/tool)
-		for(var/T in allowed_tools)
-			if(istype(tool, T))
-				return allowed_tools[T]
-		return 0
+///Returns how well tool is suited for this step
+/datum/surgery_step/proc/tool_quality(obj/item/tool)
+	for(var/T in allowed_tools)
+		if(istype(tool, T))
+			return allowed_tools[T]
+	return 0
 
 //Checks if this step applies to the user mob at all
 /datum/surgery_step/proc/is_valid_target(mob/living/carbon/target)

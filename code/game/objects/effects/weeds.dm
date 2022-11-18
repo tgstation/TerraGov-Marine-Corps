@@ -40,6 +40,7 @@
 		if(!istype(node))
 			CRASH("Weed created with non-weed node. Type: [node.type]")
 		set_parent_node(node)
+		color_variant = node.color_variant
 	update_icon()
 	AddElement(/datum/element/accelerate_on_crossed)
 	if(!swapped)
@@ -243,10 +244,32 @@
 /obj/alien/weeds/node/set_parent_node(atom/node)
 	CRASH("set_parent_node was called on a /obj/alien/weeds/node, node are not supposed to have node themselves")
 
+/obj/alien/weeds/node/update_icon_state()
+	. = ..()
+	var/my_dir = 0
+	for (var/check_dir in GLOB.cardinals)
+		var/turf/check = get_step(src, check_dir)
+
+		if (!istype(check))
+			continue
+		if(istype(check, /turf/closed/wall/resin))
+			my_dir |= check_dir
+
+		else if (locate(/obj/alien/weeds) in check)
+			my_dir |= check_dir
+
+	if (my_dir == 15) //weeds in all four directions
+		icon_state = "weed[rand(0,15)]"
+	else if(my_dir == 0) //no weeds in any direction
+		icon_state = "base"
+	else
+		icon_state = "weed_dir[my_dir]"
+	icon_state += color_variant
+
 /obj/alien/weeds/node/update_overlays()
 	. = ..()
 	overlays.Cut()
-	overlays += node_icon
+	overlays += node_icon + "[rand(0,5)]"
 
 //Sticky weed node
 /obj/alien/weeds/node/sticky

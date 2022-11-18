@@ -6,43 +6,39 @@ export const Crew = (props, context) => {
   const { act, data } = useBackend(context);
 
   return (
-    <Window
-      title="Pod Launcher"
-      width={1000}
-      height={700}>
+    <Window title="Pod Launcher" width={1000} height={700}>
       <Window.Content>
         <Section title="Supplypod bay">
           <Button
             onClick={() => act('bay', { bay: 1 })}
-            disabled={data.bayNumber===1}>
+            disabled={data.bayNumber === 1}>
             Bay #1
           </Button>
           <Button
             onClick={() => act('bay', { bay: 2 })}
-            disabled={data.bayNumber===2}>
+            disabled={data.bayNumber === 2}>
             Bay #2
           </Button>
           <Button
             onClick={() => act('bay', { bay: 3 })}
-            disabled={data.bayNumber===3}>
+            disabled={data.bayNumber === 3}>
             Bay #3
           </Button>
           <Button
             onClick={() => act('bay', { bay: 4 })}
-            disabled={data.bayNumber===4}>
+            disabled={data.bayNumber === 4}>
             Bay #4
           </Button>
           <Button
             onClick={() => act('bay', { bay: 5 })}
-            disabled={data.bayNumber===5}>
+            disabled={data.bayNumber === 5}>
             Bay #5
           </Button>
         </Section>
         <Section title="Teleport to">
           <Button onClick={() => act('teleportCentcom')}>{data.bay}</Button>
-          <Button
-            onClick={() => act('teleportBack')} disabled={!data.oldArea}>
-            {data.oldArea ? data.oldArea : "where you were"}
+          <Button onClick={() => act('teleportBack')} disabled={!data.oldArea}>
+            {data.oldArea ? data.oldArea : 'where you were'}
           </Button>
         </Section>
         <Section title="Launch clones">
@@ -71,15 +67,9 @@ export const Crew = (props, context) => {
           <Button onClick={() => act('effectQuiet')}>Quiet Landing</Button>
           <Button onClick={() => act('effectReverse')}>Reverse Mode</Button>
           <Button onClick={() => act('effectMissile')}>Missile Mode</Button>
-          <Button onClick={() => act('effectCircle')}>
-            Any Descent Angle
-          </Button>
-          <Button onClick={() => act('effectBurst')}>
-            Machine Gun Mode
-          </Button>
-          <Button onClick={() => act('effectTarget')}>
-            Specific Target
-          </Button>
+          <Button onClick={() => act('effectCircle')}>Any Descent Angle</Button>
+          <Button onClick={() => act('effectBurst')}>Machine Gun Mode</Button>
+          <Button onClick={() => act('effectTarget')}>Specific Target</Button>
         </Section>
         <Section title="Customization">
           <Button onClick={() => act('effectName')}>Custom Name</Button>
@@ -98,9 +88,7 @@ export const Crew = (props, context) => {
           <Button onClick={() => act('leavingSound')}>
             Custom Leaving Sound
           </Button>
-          <Button onClick={() => act('soundVolume')}>
-            Admin Sound Volume
-          </Button>
+          <Button onClick={() => act('soundVolume')}>Admin Sound Volume</Button>
         </Section>
         <Section title="Delay timers">
           <Button onClick={() => act('fallDuration')}>
@@ -133,11 +121,9 @@ export const Crew = (props, context) => {
           <Button onClick={() => act('styleGondola')}>Gondola</Button>
           <Button onClick={() => act('styleSeeThrough')}>See-Through</Button>
         </Section>
-        <Section title={"Action " + data.numObjects + " turfs in " + data.bay}>
+        <Section title={'Action ' + data.numObjects + ' turfs in ' + data.bay}>
           <Button onClick={() => act('refresh')}>Refresh Pod Bay</Button>
-          <Button onClick={() => act('giveLauncher')}>
-            Enter Launch Mode
-          </Button>
+          <Button onClick={() => act('giveLauncher')}>Enter Launch Mode</Button>
           <Button onClick={() => act('clearBay')}>Clear Selected Bay</Button>
         </Section>
       </Window.Content>

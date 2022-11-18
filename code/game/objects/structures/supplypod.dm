@@ -129,7 +129,7 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 				var/obj/item/organ/O = IO.remove(H)
 				O.forceMove(T)
 				O.throw_at(destination, 2, 3)
-				sleep(1)
+				sleep(0.1 SECONDS)
 
 		if(effectGib)
 			L.adjustBruteLoss(5000)

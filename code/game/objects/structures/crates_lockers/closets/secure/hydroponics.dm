@@ -11,7 +11,7 @@
 
 	New()
 		..()
-		sleep(2)
+		sleep(0.2 SECONDS)
 		switch(rand(1,2))
 			if(1)
 				new /obj/item/clothing/suit/apron(src)
