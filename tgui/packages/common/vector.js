@@ -44,5 +44,5 @@ export const vecLength = (vec) => {
 };
 
 export const vecNormalize = (vec) => {
-  return vecDivide(vec, veclength_char(vec));
+  return vecDivide(vec, vecLength(vec));
 };

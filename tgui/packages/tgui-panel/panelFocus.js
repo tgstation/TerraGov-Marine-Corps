@@ -29,7 +29,7 @@ export const setupPanelFocusHacks = () => {
   window.addEventListener('mouseup', (e) => {
     if (clickStartPos) {
       const clickEndPos = [e.screenX, e.screenY];
-      const dist = veclength_char(vecSubtract(clickEndPos, clickStartPos));
+      const dist = vecLength(vecSubtract(clickEndPos, clickStartPos));
       if (dist >= MIN_SELECTION_DISTANCE) {
         focusStolen = true;
       }
