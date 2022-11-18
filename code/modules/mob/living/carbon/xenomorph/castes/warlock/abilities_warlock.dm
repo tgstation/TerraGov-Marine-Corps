@@ -6,8 +6,8 @@
 	ability_name = "psychic shield"
 	action_icon_state = "psy_shield"
 	mechanics_text = "Creates a protective field of psychic energy in front of you."
-	cooldown_timer = 12 SECONDS
-	plasma_cost = 180
+	cooldown_timer = 8 SECONDS
+	plasma_cost = 200
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_SHIELD,
 	)
@@ -148,10 +148,10 @@
 /datum/action/xeno_action/activable/psy_crush
 	name = "psychic crush"
 	action_icon_state = "psy_crush"
-	mechanics_text = "Channel our psychic force to crush everything in an area of effect." //placeholder
+	mechanics_text = "Channel our psychic force to crush our enemies. The longer we channel, the larger the area."
 	ability_name = "psychic crush"
-	plasma_cost = 25
-	cooldown_timer = 8 SECONDS //placeholder
+	plasma_cost = 35
+	cooldown_timer = 8 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_CRUSH,
@@ -328,12 +328,12 @@
 	action_icon_state = "psy_blast"
 	mechanics_text = "Launch a blast of psychic energy. Must remain stationary for a few seconds to use."
 	ability_name = "psychic blast"
-	cooldown_timer = 10 SECONDS //placeholder
-	plasma_cost = 180 //placeholder
+	cooldown_timer = 6 SECONDS
+	plasma_cost = 230
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_BLAST,
 	)
-	target_flags = XABB_MOB_TARGET //todo:what does this actually do?
+	target_flags = XABB_MOB_TARGET
 
 /datum/action/xeno_action/activable/psy_blast/on_cooldown_finish()
 	to_chat(owner, span_notice("We feel our strength return. We are ready to unleash a psychic blast again."))
