@@ -146,7 +146,7 @@ SUBSYSTEM_DEF(mapping)
 		parsed_maps[pm] = total_z  // save the start Z of this file
 		total_z += bounds[MAP_MAXZ] - bounds[MAP_MINZ] + 1
 
-	if (!length(traits))  // null or empty - default
+	if (!length_char(traits))  // null or empty - default
 		for (var/i in 1 to total_z)
 			traits += list(default_traits)
 	else if (total_z != traits.len)  // mismatch
@@ -250,16 +250,16 @@ SUBSYSTEM_DEF(mapping)
 			continue
 
 		t = trim(t)
-		if (length(t) == 0)
+		if (length_char(t) == 0)
 			continue
 		else if (t[1] == "#")
 			continue
 
-		var/pos = findtext(t, " ")
+		var/pos = findtext_char(t, " ")
 		var/name = null
 
 		if (pos)
-			name = lowertext(copytext(t, 1, pos))
+			name = lowertext(copytext_char(t, 1, pos))
 
 		else
 			name = lowertext(t)

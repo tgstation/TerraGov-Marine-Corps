@@ -65,7 +65,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 /datum/action/xeno_action/toggle_bomb/can_use_action(silent = FALSE, override_flags)
 	. = ..()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
-	if(length(X.xeno_caste.spit_types) > 2)
+	if(length_char(X.xeno_caste.spit_types) > 2)
 		return	//They might just be skipping past a invalid type
 	if((X.corrosive_ammo + X.neuro_ammo) >= X.xeno_caste.max_ammo)
 		if((X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive && X.neuro_ammo==0) || (X.ammo.type == /datum/ammo/xeno/boiler_gas && X.corrosive_ammo==0))
@@ -80,7 +80,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	if(!found_pos)
 		X.ammo = GLOB.ammo_list[spit_types[1]]
 	else
-		X.ammo = GLOB.ammo_list[spit_types[(found_pos%length(spit_types))+1]]	//Loop around if we would exceed the length
+		X.ammo = GLOB.ammo_list[spit_types[(found_pos%length_char(spit_types))+1]]	//Loop around if we would exceed the length
 	var/datum/ammo/xeno/boiler_gas/boiler_glob = X.ammo
 	to_chat(X, span_notice(boiler_glob.select_text))
 	update_button_icon()
@@ -90,7 +90,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 	if(!can_use_action())
 		return
-	if(length(X.xeno_caste.spit_types) <= 2)	//If we only have two or less glob types, we just use default select anyways.
+	if(length_char(X.xeno_caste.spit_types) <= 2)	//If we only have two or less glob types, we just use default select anyways.
 		action_activate()
 		return
 	INVOKE_ASYNC(src, .proc/select_glob_radial)

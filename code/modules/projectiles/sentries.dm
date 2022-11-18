@@ -193,7 +193,7 @@
 	var/rounds_max
 	rounds_max = gun.max_rounds
 	. = list(
-		"name" = copytext(name, 2),
+		"name" = copytext_char(name, 2),
 		"rounds_max" = rounds_max,
 		"fire_mode" = gun.gun_firemode,
 		"health_max" = max_integrity,
@@ -393,7 +393,7 @@
 /obj/machinery/deployable/mounted/sentry/proc/check_next_shot(datum/source, atom/gun_target, obj/item/weapon/gun/gun)
 	SIGNAL_HANDLER
 	var/obj/item/weapon/gun/internal_gun = internal_item
-	if(CHECK_BITFIELD(internal_gun.reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && length(internal_gun.chamber_items))
+	if(CHECK_BITFIELD(internal_gun.reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && length_char(internal_gun.chamber_items))
 		INVOKE_ASYNC(internal_gun, /obj/item/weapon/gun.proc/do_unique_action)
 	if(!CHECK_BITFIELD(internal_gun.flags_item, IS_DEPLOYED) || get_dist(src, gun_target) > range || (!CHECK_BITFIELD(get_dir(src, gun_target), dir) && !CHECK_BITFIELD(internal_gun.turret_flags, TURRET_RADIAL)) || !check_target_path(gun_target))
 		internal_gun.stop_fire()

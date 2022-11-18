@@ -41,7 +41,7 @@
 	var/key
 	var/list/models = cached_map.grid_models
 	for(key in models)
-		if(findtext(models[key], "[/obj/docking_port/mobile]")) // Yay compile time checks
+		if(findtext_char(models[key], "[/obj/docking_port/mobile]")) // Yay compile time checks
 			break // This works by assuming there will ever only be one mobile dock in a template at most
 
 	for(var/i in cached_map.gridSets)
@@ -49,8 +49,8 @@
 		var/ycrd = gset.ycrd
 		for(var/line in gset.gridLines)
 			var/xcrd = gset.xcrd
-			for(var/j in 1 to length(line) step cached_map.key_len)
-				if(key == copytext(line, j, j + cached_map.key_len))
+			for(var/j in 1 to length_char(line) step cached_map.key_len)
+				if(key == copytext_char(line, j, j + cached_map.key_len))
 					port_x_offset = xcrd
 					port_y_offset = ycrd
 					return
@@ -67,7 +67,7 @@
 		var/turf/place = turfs[i]
 		if(istype(place, /turf/open/space)) // This assumes all shuttles are loaded in a single spot then moved to their real destination.
 			continue
-		if(length(place.baseturfs) < 2) // Some snowflake shuttle shit
+		if(length_char(place.baseturfs) < 2) // Some snowflake shuttle shit
 			continue
 		place.baseturfs.Insert(3, /turf/baseturf_skipover/shuttle)
 

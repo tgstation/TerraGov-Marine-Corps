@@ -50,7 +50,7 @@
 /datum/component/harvester/proc/examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 	var/output = ""
-	if(length(loaded_reagents))
+	if(length_char(loaded_reagents))
 		output += "It currently holds:<br>"
 		for(var/datum/reagent/reagent_type AS in loaded_reagents)
 			output += "<span style='color:[initial(reagent_type.color)];font-weight:bold'>[initial(reagent_type.name)]</span> - [loaded_reagents[reagent_type]]\n"
@@ -78,7 +78,7 @@
 		user.balloon_alert(user, "empty")
 		return
 
-	if(length(container.reagents.reagent_list) > 1)
+	if(length_char(container.reagents.reagent_list) > 1)
 		user.balloon_alert(user, "homogeneous mixture required")
 		return
 
@@ -103,7 +103,7 @@
 	container.reagents.remove_reagent(reagent_to_load, added_amount)
 	loaded_reagents[reagent_to_load] += added_amount
 	user.balloon_alert(user, "[loaded_reagents[reagent_to_load]]u")
-	if(length(loaded_reagents) == 1)
+	if(length_char(loaded_reagents) == 1)
 		update_selected_reagent(reagent_to_load)
 
 ///Handles behavior when activating the weapon

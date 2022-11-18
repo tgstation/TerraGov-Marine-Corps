@@ -3,7 +3,7 @@
 	//Capitalization
 	message = capitalize(message)
 	//checks for and apply punctuation
-	var/end = copytext(message, length(message))
+	var/end = copytext_char(message, length_char(message))
 	if(!(end in list("!", ".", "?", ":", "\"", "-")))
 		message += "."
 

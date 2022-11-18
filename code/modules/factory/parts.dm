@@ -26,7 +26,7 @@
 ///once the part is processed this proc updates iconstate, result, completion etc
 /obj/item/factory_part/proc/advance_stage()
 	stage++
-	if(length(recipe) < stage)
+	if(length_char(recipe) < stage)
 		GLOB.round_statistics.req_items_produced[result]++
 		new result(loc)
 		qdel(src)

@@ -36,7 +36,7 @@ KEYBINDINGS
 	button.name = name
 	if(desc)
 		button.desc = desc
-	if(length(keybinding_signals) == 1)
+	if(length_char(keybinding_signals) == 1)
 		visual_references[VREF_MUTABLE_MAPTEXT] = mutable_appearance(null, null, ACTION_LAYER_MAPTEXT, FLOAT_PLANE)
 	else
 		var/list/maptext_list = list()
@@ -92,7 +92,7 @@ KEYBINDINGS
 	// The cutting needs to be done /BEFORE/ the string maptext gets changed
 	// Since byond internally recognizes it as a different image, and doesn't cut it properly
 	var/mutable_appearance/reference = null
-	if(length(keybinding_signals) == 1)
+	if(length_char(keybinding_signals) == 1)
 		reference = visual_references[VREF_MUTABLE_ACTION_STATE]
 		button.cut_overlay(reference)
 		reference.maptext = MAPTEXT(key_string)

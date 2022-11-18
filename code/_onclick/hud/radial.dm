@@ -134,18 +134,18 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	page_data = list(null)
 	var/list/current = list()
 	var/list/choices_left = choices.Copy()
-	while(length(choices_left))
-		if(length(current) == max_elements)
+	while(length_char(choices_left))
+		if(length_char(current) == max_elements)
 			page_data[page] = current
 			page++
 			page_data.len++
 			current = list()
-		if(paged && length(current) == max_elements - 1)
+		if(paged && length_char(current) == max_elements - 1)
 			current += NEXT_PAGE_ID
 			continue
 		else
 			current += popleft(choices_left)
-	if(paged && length(current) < max_elements)
+	if(paged && length_char(current) < max_elements)
 		current += NEXT_PAGE_ID
 
 	page_data[page] = current
@@ -155,11 +155,11 @@ GLOBAL_LIST_EMPTY(radial_menus)
 
 /datum/radial_menu/proc/update_screen_objects(anim = FALSE)
 	var/list/page_choices = page_data[current_page]
-	var/angle_per_element = round(zone / length(page_choices))
-	for(var/i in 1 to length(elements))
+	var/angle_per_element = round(zone / length_char(page_choices))
+	for(var/i in 1 to length_char(elements))
 		var/obj/screen/radial/E = elements[i]
 		var/angle = WRAP(starting_angle + (i - 1) * angle_per_element,0,360)
-		if(i > length(page_choices))
+		if(i > length_char(page_choices))
 			HideElement(E)
 		else
 			SetElement(E,page_choices[i],angle,anim = anim,anim_order = i)
@@ -225,7 +225,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	return "c_[choices.len]"
 
 /datum/radial_menu/proc/set_choices(list/new_choices, use_tooltips)
-	if(length(choices))
+	if(length_char(choices))
 		Reset()
 	for(var/E in new_choices)
 		var/id = get_next_id()
@@ -293,7 +293,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	and list values are movables/icons/images used for element icons
 */
 /proc/show_radial_menu(mob/user, atom/anchor, list/choices, uniqueid, radius, datum/callback/custom_check, require_near = FALSE, tooltips = FALSE)
-	if(!user || !anchor || !length(choices))
+	if(!user || !anchor || !length_char(choices))
 		return
 	if(!uniqueid)
 		uniqueid = "defmenu_[REF(user)]_[REF(anchor)]"

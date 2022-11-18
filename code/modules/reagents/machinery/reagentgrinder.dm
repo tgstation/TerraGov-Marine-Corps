@@ -83,7 +83,7 @@
 		updateUsrDialog()
 		return FALSE
 
-	else if(length(holdingitems) >= limit)
+	else if(length_char(holdingitems) >= limit)
 		to_chat(user, "The machine cannot hold anymore items.")
 		return TRUE
 
@@ -92,11 +92,11 @@
 			I.contents -= G
 			G.forceMove(src)
 			holdingitems += G
-			if(length(holdingitems) >= limit)
+			if(length_char(holdingitems) >= limit)
 				to_chat(user, "You fill the All-In-One grinder to the brim.")
 				break
 
-		if(!length(I.contents))
+		if(!length_char(I.contents))
 			to_chat(user, "You empty the plant bag into the All-In-One grinder.")
 
 		updateUsrDialog()

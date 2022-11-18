@@ -228,13 +228,13 @@ Vehicles are placed on the map by a spawner or admin verb
 	var/list/blocked = list() //What couldn't move this time
 
 
-	if(length(blocked) == length(objs))
+	if(length_char(blocked) == length_char(objs))
 		return FALSE //No more things can move, return false
 
-	else if(length(blocked))
+	else if(length_char(blocked))
 		return try_move(blocked, direction, is_rotation) //Some things moved, retry the others
 
-	else if(!length(blocked))
+	else if(!length_char(blocked))
 		return TRUE //Everything finished moving, return true
 
 	else

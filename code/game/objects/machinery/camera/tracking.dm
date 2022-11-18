@@ -9,7 +9,7 @@
 
 	for(var/obj/machinery/camera/C in L)
 		var/list/tempnetwork = C.network & available_networks
-		if(length(tempnetwork))
+		if(length_char(tempnetwork))
 			T[text("[][]", C.c_tag, (C.can_use() ? null : " (Deactivated)"))] = C
 
 	return T
@@ -154,7 +154,7 @@
 	var/obj/machinery/camera/a
 	var/obj/machinery/camera/b
 
-	for(var/i = length(L), i > 0, i--)
+	for(var/i = length_char(L), i > 0, i--)
 		for(var/j = 1 to i - 1)
 			a = L[j]
 			b = L[j + 1]

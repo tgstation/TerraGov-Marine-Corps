@@ -85,7 +85,7 @@ GLOBAL_DATUM_INIT(cameranet, /datum/cameranet, new)
 		for(var/datum/camerachunk/chunk AS in add)
 			chunk.add(eye)
 
-		if(!length(eye.visibleCameraChunks))
+		if(!length_char(eye.visibleCameraChunks))
 			var/client/client = eye.GetViewerClient()
 			if(client && eye.use_static)
 				client.images -= obscured
@@ -166,7 +166,7 @@ GLOBAL_DATUM_INIT(cameranet, /datum/cameranet, new)
 	if(!statclick)
 		statclick = new /obj/effect/statclick/debug(null, "Initializing...", src)
 
-	stat(name, statclick.update("Cameras: [length(GLOB.cameranet.cameras)] | Chunks: [length(GLOB.cameranet.chunks)]"))
+	stat(name, statclick.update("Cameras: [length_char(GLOB.cameranet.cameras)] | Chunks: [length_char(GLOB.cameranet.chunks)]"))
 
 /obj/effect/overlay/camera_static
 	name = "static"

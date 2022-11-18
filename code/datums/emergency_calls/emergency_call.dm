@@ -31,11 +31,11 @@
 	var/alignement_factor = 0
 
 /datum/game_mode/proc/initialize_emergency_calls()
-	if(length(all_calls)) //It's already been set up.
+	if(length_char(all_calls)) //It's already been set up.
 		return
 
 	var/list/total_calls = typesof(/datum/emergency_call)
-	if(!length(total_calls))
+	if(!length_char(total_calls))
 		CRASH("No distress Datums found.")
 
 	for(var/x in total_calls)
@@ -178,10 +178,10 @@
 			continue
 		valid_candidates += M
 
-	message_admins("Distress beacon: [name] got [length(candidates)] candidates, [length(valid_candidates)] of them were valid.")
+	message_admins("Distress beacon: [name] got [length_char(candidates)] candidates, [length_char(valid_candidates)] of them were valid.")
 
-	if(mob_min && length(valid_candidates) < mob_min)
-		message_admins("Aborting distress beacon [name], not enough candidates. Found: [length(valid_candidates)]. Minimum required: [mob_min].")
+	if(mob_min && length_char(valid_candidates) < mob_min)
+		message_admins("Aborting distress beacon [name], not enough candidates. Found: [length_char(valid_candidates)]. Minimum required: [mob_min].")
 		SSticker.mode.waiting_for_candidates = FALSE
 		members.Cut() //Empty the members list.
 		candidates.Cut()
@@ -196,16 +196,16 @@
 		return
 
 	var/list/datum/mind/picked_candidates = list()
-	if(length(valid_candidates) > mob_max)
+	if(length_char(valid_candidates) > mob_max)
 		for(var/i in 1 to mob_max)
-			if(!length(valid_candidates)) //We ran out of candidates.
+			if(!length_char(valid_candidates)) //We ran out of candidates.
 				break
 			picked_candidates += pick_n_take(valid_candidates) //Get a random candidate, then remove it from the candidates list.
 
 		for(var/datum/mind/M in valid_candidates)
 			if(M.current)
 				to_chat(M.current, span_warning("You didn't get selected to join the distress team. Better luck next time!"))
-		message_admins("Distress beacon: [length(valid_candidates)] valid candidates were not selected.")
+		message_admins("Distress beacon: [length_char(valid_candidates)] valid candidates were not selected.")
 	else
 		picked_candidates = valid_candidates // save some time
 		message_admins("Distress beacon: All valid candidates were selected.")
@@ -230,8 +230,8 @@
 	spawn_items()
 
 	if(mob_min > 0)
-		if(length(picked_candidates))
-			max_medics = max(round(length(picked_candidates) * 0.25), 1)
+		if(length_char(picked_candidates))
+			max_medics = max(round(length_char(picked_candidates) * 0.25), 1)
 			for(var/i in picked_candidates)
 				var/datum/mind/candidate_mind = i
 				members += candidate_mind

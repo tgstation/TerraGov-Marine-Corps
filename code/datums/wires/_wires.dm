@@ -110,12 +110,12 @@
 
 
 /datum/wires/proc/is_all_cut()
-	if(length(cut_wires) == length(wires))
+	if(length_char(cut_wires) == length_char(wires))
 		return TRUE
 
 
 /datum/wires/proc/is_dud(wire)
-	return findtext(wire, WIRE_DUD_PREFIX, 1, length(WIRE_DUD_PREFIX) + 1)
+	return findtext_char(wire, WIRE_DUD_PREFIX, 1, length_char(WIRE_DUD_PREFIX) + 1)
 
 
 /datum/wires/proc/is_dud_color(color)
@@ -143,7 +143,7 @@
 
 
 /datum/wires/proc/cut_random()
-	cut(wires[rand(1, length(wires))])
+	cut(wires[rand(1, length_char(wires))])
 
 
 /datum/wires/proc/cut_all()

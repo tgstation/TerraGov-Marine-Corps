@@ -78,7 +78,7 @@ SUBSYSTEM_DEF(spawning)
 		var/turf/spawnpoint = get_turf(spawner)
 		var/list/squad = list()
 		for(var/b = 0 to spawnerdata[spawner].spawnamount)
-			if(length(spawnerdata[spawner].spawnedmobs) >= spawnerdata[spawner].max_allowed_mobs)
+			if(length_char(spawnerdata[spawner].spawnedmobs) >= spawnerdata[spawner].max_allowed_mobs)
 				break
 			var/spawntype = pick(spawnerdata[spawner].spawntypes)
 			var/mob/newmob = new spawntype(spawnpoint)

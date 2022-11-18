@@ -67,8 +67,8 @@
 		var/new_key = ckeyEx(stripped_input(usr, "Enter your desired display name.", "Stealth Mode", M.client.key, 26))
 		if(!new_key)
 			return
-		if(length(new_key) >= 26)
-			new_key = copytext(new_key, 1, 26)
+		if(length_char(new_key) >= 26)
+			new_key = copytext_char(new_key, 1, 26)
 		M.client.holder.fakekey = new_key
 		M.client.create_stealth_key()
 
@@ -321,13 +321,13 @@
 
 	var/files = flist(folder)
 	for(var/next in files)
-		if(copytext(next, -1, 0) == "/")
+		if(copytext_char(next, -1, 0) == "/")
 			to_chat(usr, "Going deeper: [folder][next]")
 			usr.client.holder.recursive_download(folder + next)
 		else
 			log_admin("[key_name(usr)] accessed file: [folder][next].")
 			to_chat(usr, "Downloading: [folder][next]")
-			var/fil = replacetext("[folder][next]", "/", "_")
+			var/fil = replacetext_char("[folder][next]", "/", "_")
 			usr << ftp(file(folder + next), fil)
 
 
@@ -349,7 +349,7 @@
 				continue
 		path += choice
 
-		if(copytext(path, -1, 0) != "/")		//didn't choose a directory, no need to iterate again
+		if(copytext_char(path, -1, 0) != "/")		//didn't choose a directory, no need to iterate again
 			return FALSE
 
 		switch(alert("Is this the folder you want to download?:", "Server Logs", "Yes", "No", "Cancel"))
@@ -490,7 +490,7 @@
 	msg = emoji_parse(copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN))
 
 	var/list/pinged_admin_clients = check_admin_pings(msg, TRUE)
-	if(length(pinged_admin_clients) && pinged_admin_clients[ADMINSAY_PING_UNDERLINE_NAME_INDEX])
+	if(length_char(pinged_admin_clients) && pinged_admin_clients[ADMINSAY_PING_UNDERLINE_NAME_INDEX])
 		msg = pinged_admin_clients[ADMINSAY_PING_UNDERLINE_NAME_INDEX]
 		pinged_admin_clients -= ADMINSAY_PING_UNDERLINE_NAME_INDEX
 
@@ -556,7 +556,7 @@
 				html = "<span class='[color]'>[span_prefix("[holder.rank.name]:")] [key_name_admin(src, TRUE, FALSE, FALSE)] [ADMIN_JMP(mob)] [ADMIN_FLW(mob)]: <span class='message linkify'>[msg]</span></span>")
 
 	var/list/pinged_admin_clients = check_admin_pings(msg)
-	if(length(pinged_admin_clients) && pinged_admin_clients[ADMINSAY_PING_UNDERLINE_NAME_INDEX])
+	if(length_char(pinged_admin_clients) && pinged_admin_clients[ADMINSAY_PING_UNDERLINE_NAME_INDEX])
 		msg = pinged_admin_clients[ADMINSAY_PING_UNDERLINE_NAME_INDEX]
 		pinged_admin_clients -= ADMINSAY_PING_UNDERLINE_NAME_INDEX
 
@@ -1096,9 +1096,9 @@
 	var/datum/admin_help/ticket = C ? C.current_ticket : GLOB.ahelp_tickets.CKey2ActiveTicket(target)
 	var/compliant_msg = trim(lowertext(msg))
 	var/tgs_tagged = "[sender](TGS/External)"
-	var/list/splits = splittext(compliant_msg, " ")
-	if(length(splits) && splits[1] == "ticket")
-		if(length(splits) < 2)
+	var/list/splits = splittext_char(compliant_msg, " ")
+	if(length_char(splits) && splits[1] == "ticket")
+		if(length_char(splits) < 2)
 			return IRC_AHELP_USAGE
 		switch(splits[2])
 			if("close")
@@ -1135,7 +1135,7 @@
 			if("reopen")
 				if(ticket)
 					return "Error: [target] already has ticket #[ticket.id] open"
-				if(length(splits) < 3)
+				if(length_char(splits) < 3)
 					return "Error: No ticket id specified. [IRC_AHELP_USAGE]"
 				var/id = text2num(splits[3])
 				if(isnull(id))
@@ -1151,7 +1151,7 @@
 				return "Ticket #[id] successfully reopened"
 			if("list")
 				var/list/tickets = GLOB.ahelp_tickets.TicketsByCKey(target)
-				if(!length(tickets))
+				if(!length_char(tickets))
 					return "None"
 				. = ""
 				for(var/I in tickets)

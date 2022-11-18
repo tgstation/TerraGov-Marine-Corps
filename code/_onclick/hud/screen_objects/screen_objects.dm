@@ -196,7 +196,7 @@
 	var/best = 0
 	var/bestpressure = 0
 
-	for(var/i = 1 to length(tankcheck))
+	for(var/i = 1 to length_char(tankcheck))
 		if(!istype(tankcheck[i], /obj/item/tank))
 			continue
 
@@ -320,14 +320,14 @@
 
 
 /obj/screen/storage/proc/update_fullness(obj/item/storage/S)
-	if(!length(S.contents))
+	if(!length_char(S.contents))
 		color = null
 		return
 
 	var/total_w = 0
 	for(var/obj/item/I in S)
 		total_w += I.w_class
-	var/fullness = round(10 * max(length(S.contents) / S.storage_slots, total_w / S.max_storage_space))
+	var/fullness = round(10 * max(length_char(S.contents) / S.storage_slots, total_w / S.max_storage_space))
 	switch(fullness)
 		if(10)
 			color = "#ff0000"
@@ -735,7 +735,7 @@
 	rounds = num2text(rounds)
 
 	//Handle the amount of rounds
-	switch(length(rounds))
+	switch(length_char(rounds))
 		if(1)
 			overlays += image('icons/mob/ammoHUD.dmi', src, "o[rounds[1]]")
 		if(2)

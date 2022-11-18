@@ -14,7 +14,7 @@
 		if(!mixcolor)
 			mixcolor = R.color
 
-		else if (length(mixcolor) >= length(R.color))
+		else if (length_char(mixcolor) >= length_char(R.color))
 			mixcolor = BlendRGB(mixcolor, R.color, vol_temp/vol_counter)
 		else
 			mixcolor = BlendRGB(R.color, mixcolor, vol_temp/vol_counter)

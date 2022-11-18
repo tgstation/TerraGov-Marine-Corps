@@ -81,14 +81,14 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 
 /obj/machinery/telecomms/proc/is_freq_listening(datum/signal/signal)
 	// return TRUE if found, FALSE if not found
-	return signal && (!length(freq_listening) || (signal.frequency in freq_listening))
+	return signal && (!length_char(freq_listening) || (signal.frequency in freq_listening))
 
 
 /obj/machinery/telecomms/Initialize(mapload)
 	. = ..()
 	GLOB.telecomms_list += src
 	start_processing()
-	if(mapload && length(autolinkers))
+	if(mapload && length_char(autolinkers))
 		return INITIALIZE_HINT_LATELOAD
 
 

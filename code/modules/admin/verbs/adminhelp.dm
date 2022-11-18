@@ -62,7 +62,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			ticket_list = resolved_tickets
 		else
 			CRASH("Invalid ticket state: [new_ticket.state]")
-	var/num_closed = length(ticket_list)
+	var/num_closed = length_char(ticket_list)
 	if(num_closed)
 		for(var/I in 1 to num_closed)
 			var/datum/admin_help/AH = ticket_list[I]
@@ -893,17 +893,17 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /proc/send2tgs_adminless_only(source, msg, requiredflags = R_BAN)
 	var/list/adm = get_admin_counts(requiredflags)
 	var/list/activemins = adm["present"]
-	. = length(activemins)
+	. = length_char(activemins)
 	if(. <= 0)
 		var/final = ""
 		var/list/afkmins = adm["afk"]
 		var/list/stealthmins = adm["stealth"]
 		var/list/powerlessmins = adm["noflags"]
 		var/list/allmins = adm["total"]
-		if(!length(afkmins) && !length(stealthmins) && !length(powerlessmins))
+		if(!length_char(afkmins) && !length_char(stealthmins) && !length_char(powerlessmins))
 			final = "[msg] - No admins online"
 		else
-			final = "[msg] - No available admins - Stealth: ([english_list(stealthmins)]) | AFK: ([english_list(afkmins)]) | Mentors: ([english_list(powerlessmins)]) | Total: [length(allmins)]"
+			final = "[msg] - No available admins - Stealth: ([english_list(stealthmins)]) | AFK: ([english_list(afkmins)]) | Mentors: ([english_list(powerlessmins)]) | Total: [length_char(allmins)]"
 		send2adminchat(source, final)
 
 
@@ -914,10 +914,10 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	var/list/stealthmins = adm["stealth"]
 	var/list/powerlessmins = adm["noflags"]
 	var/list/allmins = adm["total"]
-	if(!length(activemins) && !length(afkmins) && !length(stealthmins) && !length(powerlessmins))
+	if(!length_char(activemins) && !length_char(afkmins) && !length_char(stealthmins) && !length_char(powerlessmins))
 		return "No admins online"
 
-	return "Present admins: ([english_list(activemins)]) | Stealth: ([english_list(stealthmins)]) | AFK: ([english_list(afkmins)]) | Mentors: ([english_list(powerlessmins)]) | Total: [length(allmins)]"
+	return "Present admins: ([english_list(activemins)]) | Stealth: ([english_list(stealthmins)]) | AFK: ([english_list(afkmins)]) | Mentors: ([english_list(powerlessmins)]) | Total: [length_char(allmins)]"
 
 
 /proc/keywords_lookup(msg, external)
@@ -925,7 +925,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	var/list/adminhelp_ignored_words = list("unknown", "the", "a", "an", "of", "monkey", "alien", "as", "i")
 
 	//explode the input msg into a list
-	var/list/msglist = splittext(msg, " ")
+	var/list/msglist = splittext_char(msg, " ")
 
 	//generate keywords lookup
 	var/list/surnames = list()
@@ -939,10 +939,10 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			indexing += M.mind.name
 
 		for(var/string in indexing)
-			var/list/L = splittext(string, " ")
+			var/list/L = splittext_char(string, " ")
 			var/surname_found = 0
 			//surnames
-			for(var/i = length(L), i >= 1, i--)
+			for(var/i = length_char(L), i >= 1, i--)
 				var/word = ckey(L[i])
 				if(word)
 					surnames[word] = M
@@ -1000,7 +1000,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
  */
 /proc/check_admin_pings(msg, adminonly = FALSE)
 	//explode the input msg into a list
-	var/list/msglist = splittext(msg, " ")
+	var/list/msglist = splittext_char(msg, " ")
 	var/list/admins_to_ping = list()
 
 	var/i = 0
@@ -1008,7 +1008,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		i++
 		if(word[1] != "@")
 			continue
-		var/ckey_check = lowertext(copytext(word, 2))
+		var/ckey_check = lowertext(copytext_char(word, 2))
 		var/client/client_check = GLOB.directory[ckey_check]
 		if(client_check?.holder)
 			if(adminonly && (!(client_check.holder.rank.rights & R_ASAY)))
@@ -1016,6 +1016,6 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			msglist[i] = "<u>[word]</u>"
 			admins_to_ping[ckey_check] = client_check
 
-	if(length(admins_to_ping))
+	if(length_char(admins_to_ping))
 		admins_to_ping[ADMINSAY_PING_UNDERLINE_NAME_INDEX] = jointext(msglist, " ") // without tuples, we must make do!
 		return admins_to_ping

@@ -628,7 +628,7 @@
 /obj/effect/spawner/random_set/Initialize()
 	. = ..()
 	if(!prob(spawn_nothing_percentage))
-		var/choice = rand(1, length(option_list)) //chooses an item on the option_list
+		var/choice = rand(1, length_char(option_list)) //chooses an item on the option_list
 		spawned_gear_list = option_list[choice] //sets it as the thing(s) to spawn
 		for(var/typepath in spawned_gear_list)
 			if(spawned_gear_list[typepath])

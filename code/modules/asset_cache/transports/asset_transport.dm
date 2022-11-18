@@ -46,7 +46,7 @@
 			stack_trace(error_msg)
 			log_asset(error_msg)
 		else
-			if (length(ACI.namespace))
+			if (length_char(ACI.namespace))
 				return ACI
 			return OACI
 

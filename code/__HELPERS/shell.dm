@@ -19,13 +19,13 @@
 				shelleo_id = "[seo_id]"
 				break
 		if(!shelleo_id)
-			shelleo_id = "[length(shelleo_ids) + 1]"
+			shelleo_id = "[length_char(shelleo_ids) + 1]"
 			shelleo_ids += shelleo_id
 			shelleo_ids[shelleo_id] = TRUE
 		out_file = "[SHELLEO_NAME][shelleo_id][SHELLEO_OUT]"
 		err_file = "[SHELLEO_NAME][shelleo_id][SHELLEO_ERR]"
 		if(world.system_type == UNIX)
-			errorcode = shell("[interpreter] \"[replacetext(command, "\"", "\\\"")]\" > [out_file] 2> [err_file]")
+			errorcode = shell("[interpreter] \"[replacetext_char(command, "\"", "\\\"")]\" > [out_file] 2> [err_file]")
 		else
 			errorcode = shell("[interpreter] \"[command]\" > [out_file] 2> [err_file]")
 		if(fexists(out_file))
@@ -50,11 +50,11 @@
 	var/last_good = 1
 	var/bad_chars = 1
 	do
-		bad_chars = bad_chars_regex.Find(url)
-		scrubbed_url += copytext(url, last_good, bad_chars)
+		bad_chars = bad_chars_regex.Find_char(url)
+		scrubbed_url += copytext_char(url, last_good, bad_chars)
 		if(bad_chars)
 			bad_match = url_encode(bad_chars_regex.match)
 			scrubbed_url += bad_match
-			last_good = bad_chars + length(bad_chars_regex.match)
+			last_good = bad_chars + length_char(bad_chars_regex.match)
 	while(bad_chars)
 	. = scrubbed_url

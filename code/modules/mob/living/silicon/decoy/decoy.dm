@@ -70,7 +70,7 @@
 			language = message_language
 		message = copytext_char(message, 3)
 
-		if(findtext(message, " ", 1, 2))
+		if(findtext_char(message, " ", 1, 2))
 			message = copytext_char(message, 2)
 
 	if(!language)

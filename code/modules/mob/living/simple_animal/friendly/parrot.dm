@@ -281,8 +281,8 @@
 
 /mob/living/simple_animal/parrot/handle_automated_speech()
 	. = ..()
-	if(length(speech_buffer) && prob(speech_shuffle_rate)) //shuffle out a phrase and add in a new one
-		if(length(speak))
+	if(length_char(speech_buffer) && prob(speech_shuffle_rate)) //shuffle out a phrase and add in a new one
+		if(length_char(speak))
 			speak -= pick(speak)
 
 		speak += pick(speech_buffer)
@@ -313,10 +313,10 @@
 		parrot_sleep_dur = parrot_sleep_max
 
 		//Cycle through message modes for the headset
-		if(length(speak))
+		if(length_char(speak))
 			var/list/newspeak = list()
 
-			if(length(available_channels) && ears)
+			if(length_char(available_channels) && ears)
 				for(var/possible_phrase in speak)
 
 					//50/50 chance to not use the radio at all

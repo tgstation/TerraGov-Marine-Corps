@@ -53,7 +53,7 @@
 		var/datum/space_level/D = A
 		if (D.linkage == CROSSLINKED)
 			possible_transtitons += D.z_value
-	if(!length(possible_transtitons))
+	if(!length_char(possible_transtitons))
 		return
 	var/_z = pick(possible_transtitons)
 

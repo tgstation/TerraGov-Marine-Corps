@@ -109,7 +109,7 @@
 
 	if(istype(I, /obj/item/tool/pen) || istype(I, /obj/item/flashlight/pen))
 		var/tmp_label = stripped_input(user, "Enter a label for [name]", "Label", label_text)
-		if(length(tmp_label) > MAX_NAME_LEN)
+		if(length_char(tmp_label) > MAX_NAME_LEN)
 			to_chat(user, span_warning("The label can be at most [MAX_NAME_LEN] characters long."))
 			return
 

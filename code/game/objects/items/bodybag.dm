@@ -161,7 +161,7 @@
 		return
 	if(!ishuman(usr))
 		return
-	if(length(contents))
+	if(length_char(contents))
 		return FALSE
 	visible_message(span_notice("[usr] folds up [name]."))
 	if(QDELETED(foldedbag_instance))

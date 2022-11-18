@@ -33,7 +33,7 @@ PROCESSING_SUBSYSTEM_DEF(dcs)
 	var/list/fullid = list("[eletype]")
 	var/list/named_arguments = list()
 
-	for(var/i in initial(eletype.id_arg_index) to length(arguments))
+	for(var/i in initial(eletype.id_arg_index) to length_char(arguments))
 		var/key = arguments[i]
 
 		if(istext(key))
@@ -52,7 +52,7 @@ PROCESSING_SUBSYSTEM_DEF(dcs)
 		else
 			fullid += REF(key)
 
-	if(length(named_arguments))
+	if(length_char(named_arguments))
 		named_arguments = sortTim(named_arguments, /proc/cmp_text_asc)
 		fullid += named_arguments
 

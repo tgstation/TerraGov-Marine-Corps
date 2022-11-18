@@ -14,8 +14,8 @@ SUBSYSTEM_DEF(egrill)
 /datum/controller/subsystem/egrill/fire(resumed)
 	if(!resumed)
 		currentrun = processing.Copy()
-	while(length(currentrun))
-		var/obj/O = currentrun[length(currentrun)]
+	while(length_char(currentrun))
+		var/obj/O = currentrun[length_char(currentrun)]
 		currentrun.len--
 		var/turf/T = get_turf(O)
 		var/obj/structure/cable/C = T.get_cable_node()

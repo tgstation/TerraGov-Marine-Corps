@@ -54,7 +54,7 @@
 	viewer_client?.images += balloon_alert
 
 	var/duration_mult = 1
-	var/duration_length = length(text) - BALLOON_TEXT_CHAR_LIFETIME_INCREASE_MIN
+	var/duration_length = length_char(text) - BALLOON_TEXT_CHAR_LIFETIME_INCREASE_MIN
 
 	if(duration_length > 0)
 		duration_mult += duration_length*BALLOON_TEXT_CHAR_LIFETIME_INCREASE_MULT

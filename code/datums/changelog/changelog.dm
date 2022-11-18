@@ -26,7 +26,7 @@
 	var/regex/ymlRegex = regex(@"\.yml", "g")
 
 	for(var/archive_file in flist("[global.config.directory]/../html/changelogs/archive/"))
-		var/archive_date = ymlRegex.Replace(archive_file, "")
+		var/archive_date = ymlRegex.Replace_char(archive_file, "")
 		data["dates"] = list(archive_date) + data["dates"]
 
 	return data

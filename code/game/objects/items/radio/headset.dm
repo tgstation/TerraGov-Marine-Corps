@@ -90,8 +90,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	if(loc == user)
 		// construction of frequency description
 		var/list/avail_chans = list("Use [RADIO_KEY_COMMON] for the currently tuned frequency")
-		if(length(channels))
-			for(var/i in 1 to length(channels))
+		if(length_char(channels))
+			for(var/i in 1 to length_char(channels))
 				if(i == 1)
 					if(channels[i] in GLOB.channel_tokens)
 						avail_chans += "use [MODE_TOKEN_DEPARTMENT] or [GLOB.channel_tokens[channels[i]]] for [lowertext(channels[i])]"

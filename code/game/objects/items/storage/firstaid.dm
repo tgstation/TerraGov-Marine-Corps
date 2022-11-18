@@ -310,7 +310,7 @@
 	if(isturf(loc))
 		return
 	var/mutable_appearance/number = mutable_appearance()
-	number.maptext = MAPTEXT(length(contents))
+	number.maptext = MAPTEXT(length_char(contents))
 	. += number
 	if(!description_overlay)
 		return

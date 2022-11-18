@@ -6,7 +6,7 @@ import { Modal } from '../types';
 export const handleViewHistory = function (this: Modal) {
   const { channel } = this.state;
   const { historyCounter } = this.fields;
-  if (historyCounter > 0 && getHistoryLength()) {
+  if (historyCounter > 0 && getHistorylength_char()) {
     this.fields.value = getHistoryAt(historyCounter);
     if (channel < 2) {
       this.timers.typingThrottle();

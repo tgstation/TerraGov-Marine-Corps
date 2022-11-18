@@ -87,7 +87,7 @@
 	. = ..()
 
 	if(istype(I, /obj/item/tool/pen))
-		var/t = copytext(stripped_input(user, "What would you like the label to be?", name, null), 1, MAX_MESSAGE_LEN)
+		var/t = copytext_char(stripped_input(user, "What would you like the label to be?", name, null), 1, MAX_MESSAGE_LEN)
 		if(!t)
 			return
 

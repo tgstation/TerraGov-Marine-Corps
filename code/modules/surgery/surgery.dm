@@ -191,7 +191,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 
 //Comb Sort. This works apparently, so we're keeping it that way
 /proc/sort_surgeries()
-	var/gap = length(GLOB.surgery_steps)
+	var/gap = length_char(GLOB.surgery_steps)
 	var/swapped = 1
 	while(gap > 1 || swapped)
 		swapped = 0
@@ -199,7 +199,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 			gap = round(gap / 1.247330950103979)
 		if(gap < 1)
 			gap = 1
-		for(var/i = 1; gap + i <= length(GLOB.surgery_steps); i++)
+		for(var/i = 1; gap + i <= length_char(GLOB.surgery_steps); i++)
 			var/datum/surgery_step/l = GLOB.surgery_steps[i]		//Fucking hate
 			var/datum/surgery_step/r = GLOB.surgery_steps[gap+i]	//how lists work here
 			if(l.priority < r.priority)

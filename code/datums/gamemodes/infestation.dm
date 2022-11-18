@@ -56,11 +56,11 @@
 			for(var/mob/living/carbon/xenomorph/xeno in parsed_xenos)
 				if(xeno.xeno_caste.caste_flags & CASTE_NOT_IN_BIOSCAN)
 					parsed_xenos -= xeno
-			counts[trait][FACTION_XENO] += length(parsed_xenos)
-			counts[trait][FACTION_TERRAGOV] += length(GLOB.humans_by_zlevel["[i]"])
-			if(length(GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[i]"]))
+			counts[trait][FACTION_XENO] += length_char(parsed_xenos)
+			counts[trait][FACTION_TERRAGOV] += length_char(GLOB.humans_by_zlevel["[i]"])
+			if(length_char(GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[i]"]))
 				locations[trait][FACTION_XENO] = get_area(pick(GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[i]"]))
-			if(length(GLOB.humans_by_zlevel["[i]"]))
+			if(length_char(GLOB.humans_by_zlevel["[i]"]))
 				locations[trait][FACTION_TERRAGOV] = get_area(pick(GLOB.humans_by_zlevel["[i]"]))
 
 	var/numHostsPlanet	= counts[ZTRAIT_GROUND][FACTION_TERRAGOV]
@@ -222,7 +222,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 
 		SEND_SOUND(M, ghost_track)
 
-	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal xenos spawned: [GLOB.round_statistics.total_xenos_created]\nTotal humans spawned: [GLOB.round_statistics.total_humans_created]")
+	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length_char(GLOB.clients)]\nTotal xenos spawned: [GLOB.round_statistics.total_xenos_created]\nTotal humans spawned: [GLOB.round_statistics.total_humans_created]")
 
 	announce_xenomorphs()
 	announce_medal_awards()

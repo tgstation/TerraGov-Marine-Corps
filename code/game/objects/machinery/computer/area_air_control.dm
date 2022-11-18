@@ -21,7 +21,7 @@
 	if(.)
 		return
 	var/dat = {"
-	<html>
+	<html><meta charset='UTF-8'>
 		<head>
 			<style type="text/css">
 				a.green:link

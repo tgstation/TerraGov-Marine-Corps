@@ -189,7 +189,7 @@
 
 		var/list/tempnetwork = text2list(input, ",")
 		tempnetwork = difflist(tempnetwork, GLOB.restricted_camera_networks, 1)
-		if(!length(tempnetwork))
+		if(!length_char(tempnetwork))
 			to_chat(user, "No network found please hang up and try your call again.")
 			return
 

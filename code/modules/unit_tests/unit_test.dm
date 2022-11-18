@@ -86,7 +86,7 @@ GLOBAL_VAR(test_log)
 		var/datum/unit_test/test_to_run = _test_to_run
 		if (initial(test_to_run.focus))
 			focused_tests += test_to_run
-		if(length(focused_tests))
+		if(length_char(focused_tests))
 			tests_to_run = focused_tests
 
 	var/list/test_results = list()

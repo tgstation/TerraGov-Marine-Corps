@@ -220,7 +220,7 @@
 		var/datum/autolathe/recipe/making
 		var/make_loc = get_step(loc, get_dir(src,usr))
 
-		if(index > 0 && index <= length(GLOB.autolathe_recipes))
+		if(index > 0 && index <= length_char(GLOB.autolathe_recipes))
 			making = GLOB.autolathe_recipes[index]
 
 		//Exploit detection, not sure if necessary after rewrite.

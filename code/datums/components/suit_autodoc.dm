@@ -234,7 +234,7 @@
 	chemicals into the user and sets the cooldown again
 */
 /datum/component/suit_autodoc/proc/inject_chems(list/chems, mob/living/carbon/human/H, cooldown_type, damage, threshold, treatment_message, message_prefix)
-	if(!length(chems) || TIMER_COOLDOWN_CHECK(src, cooldown_type) || damage < threshold)
+	if(!length_char(chems) || TIMER_COOLDOWN_CHECK(src, cooldown_type) || damage < threshold)
 		return
 
 	var/drugs

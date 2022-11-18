@@ -100,7 +100,7 @@
 	orbiter.stop_orbit(src)
 	orbiter.orbiting = null
 	orbiter.glide_size = 8 //Reset to the default for atom/movable as ours was matched to the orbit target
-	if(!refreshing && !length(orbiters) && !QDELING(src))
+	if(!refreshing && !length_char(orbiters) && !QDELING(src))
 		qdel(src)
 
 // This proc can receive signals by either the thing being directly orbited or anything holding it

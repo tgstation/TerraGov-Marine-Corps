@@ -205,7 +205,7 @@
 
 /obj/item/clothing/suit/modular/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(!istype(I, /obj/item/facepaint) || !length(icon_state_variants))
+	if(!istype(I, /obj/item/facepaint) || !length_char(icon_state_variants))
 		return
 	var/obj/item/facepaint/paint = I
 	if(paint.uses < 1)
@@ -433,7 +433,7 @@
 	if(.)
 		return
 
-	if(colorable_allowed == NOT_COLORABLE || (!length(colorable_colors) && colorable_colors == COLOR_WHEEL_NOT_ALLOWED) && greyscale_config)
+	if(colorable_allowed == NOT_COLORABLE || (!length_char(colorable_colors) && colorable_colors == COLOR_WHEEL_NOT_ALLOWED) && greyscale_config)
 		return
 
 	if(!istype(I, /obj/item/facepaint))
@@ -444,7 +444,7 @@
 		to_chat(user, span_warning("\the [paint] is out of color!"))
 		return
 
-	if(!greyscale_config && length(icon_state_variants))
+	if(!greyscale_config && length_char(icon_state_variants))
 		paint.uses--
 		var/variant = tgui_input_list(user, "Choose a color.", "Color", icon_state_variants)
 

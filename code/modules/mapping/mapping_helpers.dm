@@ -19,7 +19,7 @@
 /obj/effect/baseturf_helper/LateInitialize()
 	if(!baseturf_to_replace)
 		baseturf_to_replace = typecacheof(/turf/open/space)
-	else if(!length(baseturf_to_replace))
+	else if(!length_char(baseturf_to_replace))
 		baseturf_to_replace = list(baseturf_to_replace = TRUE)
 	else if(baseturf_to_replace[baseturf_to_replace[1]] != TRUE) // It's not associative
 		var/list/formatted = list()
@@ -35,7 +35,7 @@
 
 /obj/effect/baseturf_helper/proc/replace_baseturf(turf/thing)
 	var/list/baseturf_cache = thing.baseturfs
-	if(length(baseturf_cache))
+	if(length_char(baseturf_cache))
 		for(var/i in baseturf_cache)
 			if(baseturf_to_replace[i])
 				baseturf_cache -= i

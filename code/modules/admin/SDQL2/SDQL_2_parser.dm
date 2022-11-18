@@ -76,14 +76,14 @@
 
 
 /datum/SDQL_parser/proc/token(i)
-	if(i <= length(query))
+	if(i <= length_char(query))
 		return query[i]
 	else
 		return null
 
 
 /datum/SDQL_parser/proc/tokens(i, num)
-	if(i + num <= length(query))
+	if(i + num <= length_char(query))
 		return query.Copy(i, i + num)
 	else
 		return null
@@ -98,7 +98,7 @@
 	if(tokenl(i) == "using")
 		i = option_assignments(i + 1, node, options)
 	query(i, node)
-	if(length(options))
+	if(length_char(options))
 		node["options"] = options
 
 
@@ -508,7 +508,7 @@
 
 //call_function:	<function name> ['(' [arguments] ')']
 /datum/SDQL_parser/proc/call_function(i, list/node, list/arguments)
-	if(length(tokenl(i)))
+	if(length_char(tokenl(i)))
 		var/procname = ""
 		if(tokenl(i) == "global" && token(i + 1) == ".") // Global proc.
 			i += 2
@@ -591,8 +591,8 @@
 	if(token(i) == "null")
 		node += "null"
 		i++
-	else if(lowertext(copytext(token(i), 1, 3)) == "0x" && isnum(hex2num(copytext(token(i), 3))))//3 == length("0x") + 1
-		node += hex2num(copytext(token(i), 3))
+	else if(lowertext(copytext_char(token(i), 1, 3)) == "0x" && isnum(hex2num(copytext_char(token(i), 3))))//3 == length_char("0x") + 1
+		node += hex2num(copytext_char(token(i), 3))
 		i++
 	else if(isnum(text2num(token(i))))
 		node += text2num(token(i))
@@ -602,7 +602,7 @@
 	else if(token(i)[1] == "\[") // Start a list.
 		i = array(i, node)
 
-	else if(copytext(token(i), 1, 3) == "@\[")//3 == length("@\[") + 1
+	else if(copytext_char(token(i), 1, 3) == "@\[")//3 == length_char("@\[") + 1
 		i = selectors_array(i, node)
 
 	else if(token(i)[1] == "/")

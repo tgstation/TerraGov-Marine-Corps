@@ -45,7 +45,7 @@
 	var/list/raw = json_decode(file2text(json_config))
 	ReadIconStateConfiguration(raw)
 
-	if(!length(icon_states))
+	if(!length_char(icon_states))
 		CRASH("The json configuration [DebugName()] is missing any icon_states.")
 
 	icon_cache = list()
@@ -60,7 +60,7 @@
 /datum/greyscale_config/proc/ReadIconStateConfiguration(list/data)
 	for(var/state in data)
 		var/list/raw_layers = data[state]
-		if(!length(raw_layers))
+		if(!length_char(raw_layers))
 			stack_trace("The json configuration [DebugName()] for icon state '[state]' is missing any layers.")
 			continue
 		if(icon_states[state])
@@ -81,7 +81,7 @@
 	var/list/output = list()
 	for(var/list/group as anything in data)
 		output += ReadLayerGroup(group)
-	if(length(output)) // Adding lists to lists unwraps the top level so here we are
+	if(length_char(output)) // Adding lists to lists unwraps the top level so here we are
 		output = list(output)
 	return output
 
@@ -91,8 +91,8 @@
 	var/list/to_process = list()
 	for(var/state in icon_states)
 		to_process += icon_states[state]
-	while(length(to_process))
-		var/current = to_process[length(to_process)]
+	while(length_char(to_process))
+		var/current = to_process[length_char(to_process)]
 		to_process.len--
 		if(islist(current))
 			to_process += current
@@ -104,7 +104,7 @@
 		for(var/id in layer.color_ids)
 			color_groups["[id]"] = TRUE
 
-	expected_colors = length(color_groups)
+	expected_colors = length_char(color_groups)
 
 /// Actually create the icon and color it in, handles caching
 /datum/greyscale_config/proc/Generate(color_string, list/render_steps)
@@ -113,8 +113,8 @@
 	if(new_icon && !render_steps)
 		return icon(new_icon)
 	var/list/colors = ParseColorString(color_string)
-	if(length(colors) != expected_colors)
-		CRASH("[DebugName()] expected [expected_colors] color arguments but only received [length(colors)]")
+	if(length_char(colors) != expected_colors)
+		CRASH("[DebugName()] expected [expected_colors] color arguments but only received [length_char(colors)]")
 	var/icon/icon_bundle = new
 	for(var/icon_state in icon_states)
 		var/icon/generated_icon = GenerateLayerGroup(colors, icon_states[icon_state], render_steps)
@@ -157,6 +157,6 @@
 
 /datum/greyscale_config/proc/ParseColorString(color_string)
 	. = list()
-	var/list/split_colors = splittext(color_string, "#")
-	for(var/color in 2 to length(split_colors))
+	var/list/split_colors = splittext_char(color_string, "#")
+	for(var/color in 2 to length_char(split_colors))
 		. += "#[split_colors[color]]"

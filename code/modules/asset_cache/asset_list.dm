@@ -146,7 +146,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		var/fname = "data/spritesheets/[name]_[size_id].png"
 		fcopy(size[SPRSZ_ICON], fname)
 		var/error = rustg_dmi_strip_metadata(fname)
-		if(length(error))
+		if(length_char(error))
 			stack_trace("Failed to strip [name]_[size_id].png: [error]")
 		size[SPRSZ_STRIPPED] = icon(fname)
 		fdel(fname)
@@ -177,7 +177,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 
 /datum/asset/spritesheet/proc/Insert(sprite_name, icon/I, icon_state="", dir=SOUTH, frame=1, moving=FALSE)
 	I = icon(I, icon_state=icon_state, dir=dir, frame=frame, moving=moving)
-	if (!I || !length(icon_states(I)))  // that direction or state doesn't exist
+	if (!I || !length_char(icon_states(I)))  // that direction or state doesn't exist
 		return
 	var/size_id = "[I.Width()]x[I.Height()]"
 	var/size = sizes[size_id]
@@ -196,7 +196,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		sprites[sprite_name] = list(size_id, 0)
 
 /datum/asset/spritesheet/proc/InsertAll(prefix, icon/I, list/directions)
-	if (length(prefix))
+	if (length_char(prefix))
 		prefix = "[prefix]-"
 
 	if (!directions)

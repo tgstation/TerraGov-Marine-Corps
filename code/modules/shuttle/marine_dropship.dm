@@ -442,7 +442,7 @@
 			if(H.faction == FACTION_XENO)
 				continue
 			humans_on_ground++
-	if(length(GLOB.alive_human_list) && ((humans_on_ground / length(GLOB.alive_human_list)) > ALIVE_HUMANS_FOR_CALLDOWN))
+	if(length_char(GLOB.alive_human_list) && ((humans_on_ground / length_char(GLOB.alive_human_list)) > ALIVE_HUMANS_FOR_CALLDOWN))
 		to_chat(user, span_warning("There's too many tallhosts still on the ground. They interfere with our psychic field. We must dispatch them before we are able to do this."))
 		return FALSE
 	return TRUE
@@ -456,7 +456,7 @@
 			continue
 		if(S.id == "lz1" || S.id == "lz2")
 			lzs[S] = get_dist(S, A)
-	if(!length(lzs))
+	if(!length_char(lzs))
 		stack_trace("couldn't find any lzs to call down the dropship to")
 		return FALSE
 	var/obj/docking_port/stationary/closest = lzs[1]
@@ -549,7 +549,7 @@
 			reardoor++
 	if(!reardoor)
 		.["rear"] = 0
-	else if(reardoor==length(shuttle.rear_airlocks))
+	else if(reardoor==length_char(shuttle.rear_airlocks))
 		.["rear"] = 2
 		locked++
 	else
@@ -562,7 +562,7 @@
 			leftdoor++
 	if(!leftdoor)
 		.["left"] = 0
-	else if(leftdoor==length(shuttle.left_airlocks))
+	else if(leftdoor==length_char(shuttle.left_airlocks))
 		.["left"] = 2
 		locked++
 	else
@@ -575,7 +575,7 @@
 			rightdoor++
 	if(!rightdoor)
 		.["right"] = 0
-	else if(rightdoor==length(shuttle.right_airlocks))
+	else if(rightdoor==length_char(shuttle.right_airlocks))
 		.["right"] = 2
 		locked++
 	else
@@ -1416,11 +1416,11 @@
 		to_chat(usr, span_warning("[src] is unresponsive."))
 		return FALSE
 
-	if(!length(GLOB.active_nuke_list) && tgui_alert(usr, "Are you sure you want to launch the shuttle? Without sufficiently dealing with the threat, you will be in direct violation of your orders!", "Are you sure?", list("Yes", "Cancel")) != "Yes")
+	if(!length_char(GLOB.active_nuke_list) && tgui_alert(usr, "Are you sure you want to launch the shuttle? Without sufficiently dealing with the threat, you will be in direct violation of your orders!", "Are you sure?", list("Yes", "Cancel")) != "Yes")
 		return TRUE
 
-	log_admin("[key_name(usr)] is launching the canterbury[!length(GLOB.active_nuke_list)? " early" : ""].")
-	message_admins("[ADMIN_TPMONTY(usr)] is launching the canterbury[!length(GLOB.active_nuke_list)? " early" : ""].")
+	log_admin("[key_name(usr)] is launching the canterbury[!length_char(GLOB.active_nuke_list)? " early" : ""].")
+	message_admins("[ADMIN_TPMONTY(usr)] is launching the canterbury[!length_char(GLOB.active_nuke_list)? " early" : ""].")
 
 	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
 	#ifndef TESTING

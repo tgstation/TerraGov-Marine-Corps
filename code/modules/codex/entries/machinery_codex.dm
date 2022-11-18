@@ -35,7 +35,7 @@
 	else
 		machinery_strings += "This cannot be wrenched to allow it to be moved."
 
-	if(length(component_parts) > 0)
+	if(length_char(component_parts) > 0)
 		machinery_strings += "<U>It is made from the following parts</U>:"
 		for(var/X in component_parts)
 			var/obj/A = X

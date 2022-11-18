@@ -1,4 +1,10 @@
-import { KEY_BACKSPACE, KEY_DELETE, KEY_DOWN, KEY_TAB, KEY_UP } from 'common/keycodes';
+import {
+  KEY_BACKSPACE,
+  KEY_DELETE,
+  KEY_DOWN,
+  KEY_TAB,
+  KEY_UP,
+} from 'common/keycodes';
 import { isAlphanumeric, getHistoryLength } from '../helpers';
 import { Modal } from '../types';
 
@@ -21,7 +27,7 @@ export const handleKeyDown = function (
   }
   if (event.keyCode === KEY_UP || event.keyCode === KEY_DOWN) {
     event.preventDefault();
-    if (getHistoryLength()) {
+    if (getHistorylength_char()) {
       this.events.onArrowKeys(event.keyCode, value);
     }
     return;

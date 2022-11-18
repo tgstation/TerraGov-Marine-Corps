@@ -20,7 +20,7 @@
 			if(!istype(possible_target) || !possible_target.client || issynth(possible_target))
 				continue
 			eligible_targets += possible_target
-	if(!length(eligible_targets))
+	if(!length_char(eligible_targets))
 		return //everyone is dead or evac'd
 	set_target(pick(eligible_targets))
 

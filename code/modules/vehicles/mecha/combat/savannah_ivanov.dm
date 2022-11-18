@@ -40,7 +40,7 @@
 	var/gunner_present = return_amount_of_controllers_with_flag(VEHICLE_CONTROL_EQUIPMENT) > 0
 	var/list/mob/drivers = return_drivers()
 	var/leap_state
-	if(length(drivers))
+	if(length_char(drivers))
 		var/datum/action/vehicle/sealed/mecha/skyfall/action = LAZYACCESSASSOC(occupant_actions, drivers[1], /datum/action/vehicle/sealed/mecha/skyfall)
 		leap_state = action.skyfall_charge_level > 2 ? "leap_" : ""
 	return "[base_icon_state]_[leap_state][gunner_present]_[driver_present]"

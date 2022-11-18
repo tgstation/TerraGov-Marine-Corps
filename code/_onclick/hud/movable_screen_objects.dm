@@ -24,13 +24,13 @@
 		return
 
 	//Split screen-loc up into X+Pixel_X and Y+Pixel_Y
-	var/list/screen_loc_params = splittext(PM["screen-loc"], ",")
+	var/list/screen_loc_params = splittext_char(PM["screen-loc"], ",")
 
 	//Split X+Pixel_X up into list(X, Pixel_X)
-	var/list/screen_loc_X = splittext(screen_loc_params[1],":")
+	var/list/screen_loc_X = splittext_char(screen_loc_params[1],":")
 
 	//Split Y+Pixel_Y up into list(Y, Pixel_Y)
-	var/list/screen_loc_Y = splittext(screen_loc_params[2],":")
+	var/list/screen_loc_Y = splittext_char(screen_loc_params[2],":")
 
 	if(snap2grid) //Discard Pixel Values
 		screen_loc = "[screen_loc_X[1]],[screen_loc_Y[1]]"

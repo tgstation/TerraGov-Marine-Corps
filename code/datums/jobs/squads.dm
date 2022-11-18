@@ -235,7 +235,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 
 /datum/squad/proc/get_total_members()
-	return length(marines_list)
+	return length_char(marines_list)
 
 
 /datum/squad/proc/insert_into_squad(mob/living/carbon/human/new_squaddie, give_radio = FALSE)

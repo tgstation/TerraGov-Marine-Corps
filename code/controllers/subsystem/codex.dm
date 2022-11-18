@@ -91,10 +91,10 @@ SUBSYSTEM_DEF(codex)
 			results = list()
 			for(var/entry_title in entries_by_string)
 				var/datum/codex_entry/entry = entries_by_string[entry_title]
-				if(findtext(entry.display_name, searching) || \
-					findtext(entry.lore_text, searching) || \
-					findtext(entry.mechanics_text, searching) || \
-					findtext(entry.antag_text, searching))
+				if(findtext_char(entry.display_name, searching) || \
+					findtext_char(entry.lore_text, searching) || \
+					findtext_char(entry.mechanics_text, searching) || \
+					findtext_char(entry.antag_text, searching))
 					results |= entry
 		search_cache[searching] = dd_sortedObjectList(results)
 	return search_cache[searching]

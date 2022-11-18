@@ -76,15 +76,15 @@
 
 /datum/verbs/proc/Generate_list(...)
 	. = list()
-	if(length(children))
+	if(length_char(children))
 		for(var/thing in children)
 			var/datum/verbs/child = thing
 			var/list/childlist = child.Generate_list(arglist(args))
 			if(childlist)
 				var/childname = "[child]"
 				if(childname == "[child.type]")
-					var/list/tree = splittext(childname, "/")
-					childname = tree[length(tree)]
+					var/list/tree = splittext_char(childname, "/")
+					childname = tree[length_char(tree)]
 				.[child.type] = "parent=[url_encode(type)];name=[childname]"
 				. += childlist
 
@@ -96,9 +96,9 @@
 		entry["parent"] = "[type]"
 		entry["name"] = verbpath.desc
 		if(verbpath.name[1] == "@")
-			entry["command"] = copytext(verbpath.name, length(verbpath.name[1]) + 1)
+			entry["command"] = copytext_char(verbpath.name, length_char(verbpath.name[1]) + 1)
 		else
-			entry["command"] = replacetext(verbpath.name, " ", "-")
+			entry["command"] = replacetext_char(verbpath.name, " ", "-")
 
 		.[verbpath] = HandleVerb(arglist(list(entry, verbpath) + args))
 

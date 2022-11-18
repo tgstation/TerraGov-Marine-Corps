@@ -114,7 +114,7 @@
 		var/datum/stack_recipe_list/srl = recipe_list[recipes_sublist]
 		recipe_list = srl.recipes
 	var/t1 = "Amount Left: [get_amount()]<br>"
-	for(var/i in 1 to length(recipe_list))
+	for(var/i in 1 to length_char(recipe_list))
 		var/E = recipe_list[i]
 		if(isnull(E))
 			t1 += "<hr>"

@@ -150,7 +150,7 @@
 				victim.UpdateDamageIcon()
 
 			// Inject some chems.
-			if(length(seed.chems) && ishuman(victim))
+			if(length_char(seed.chems) && ishuman(victim))
 				to_chat(victim, span_danger("You feel something seeping into your skin!"))
 				for(var/rid in seed.chems)
 					var/injecting = clamp(seed.potency * 0.2, 1, 5)

@@ -83,7 +83,7 @@ GLOBAL_PROTECT(exp_specialmap)
 		remembered_info += "<b>Your account number is:</b> #[bank_account.account_number]"
 		remembered_info += "<b>Your account pin is:</b> [bank_account.remote_access_pin]"
 		remembered_info += "<b>Your account funds are:</b> $[bank_account.money]"
-		if(length(bank_account.transaction_log))
+		if(length_char(bank_account.transaction_log))
 			var/datum/transaction/transaction_datum = bank_account.transaction_log[1]
 			remembered_info += "<b>Your account was created:</b> [transaction_datum.time], [transaction_datum.date] at [transaction_datum.source_terminal]"
 		M.mind.store_memory(remembered_info.Join("<br>"))

@@ -67,7 +67,7 @@
 			continue
 		valid_docks += potential_crash_site
 
-	if(!length(valid_docks))
+	if(!length_char(valid_docks))
 		CRASH("No valid crash sides found!")
 	var/obj/docking_port/stationary/crashmode/actual_crash_site = pick(valid_docks)
 
@@ -150,7 +150,7 @@
 			message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]") //xenos wiped out ALL the marines
 			round_finished = MODE_INFESTATION_X_MAJOR
 			return TRUE
-		if(marines_evac == CRASH_EVAC_COMPLETED || (!length(GLOB.active_nuke_list) && marines_evac != CRASH_EVAC_NONE))
+		if(marines_evac == CRASH_EVAC_COMPLETED || (!length_char(GLOB.active_nuke_list) && marines_evac != CRASH_EVAC_NONE))
 			message_admins("Round finished: [MODE_INFESTATION_X_MINOR]") //marines evaced without a nuke
 			round_finished = MODE_INFESTATION_X_MINOR
 			return TRUE

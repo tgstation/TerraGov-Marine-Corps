@@ -90,7 +90,7 @@ Key procs
 //Returns the id's movespeed modifier if any.
 /mob/proc/get_movespeed_modifier(id)
 	var/list/data = movespeed_modification[id]
-	if(!length(data))
+	if(!length_char(data))
 		return 0
 	return data[MOVESPEED_DATA_INDEX_MULTIPLICATIVE_SLOWDOWN]
 

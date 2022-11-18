@@ -57,7 +57,7 @@
 			listening = FALSE
 			say("Your voice pattern is saved.", message_language)
 		if(VOICE_SENSOR_MODE)
-			if(length(raw_message))
+			if(length_char(raw_message))
 				addtimer(CALLBACK(src, .proc/pulse, 0), 10)
 
 
@@ -65,7 +65,7 @@
 	. = FALSE
 	switch(mode)
 		if(INCLUSIVE_MODE)
-			if(findtext(raw_message, recorded))
+			if(findtext_char(raw_message, recorded))
 				. = TRUE
 		if(EXCLUSIVE_MODE)
 			if(raw_message == recorded)
@@ -74,12 +74,12 @@
 			if(speaker.GetVoice() == recorded)
 				. = TRUE
 		if(VOICE_SENSOR_MODE)
-			if(length(raw_message))
+			if(length_char(raw_message))
 				. = TRUE
 
 
 /obj/item/assembly/voice/multitool_act(mob/living/user, obj/item/I)
-	mode %= length(modes)
+	mode %= length_char(modes)
 	mode++
 	to_chat(user, span_notice("You set [src] into [modes[mode]] mode."))
 	listening = FALSE

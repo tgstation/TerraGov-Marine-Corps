@@ -69,7 +69,7 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/fire()
 	switch(current_state)
 		if(GAME_STATE_STARTUP)
-			if(Master.initializations_finished_with_no_players_logged_in && !length(GLOB.clients))
+			if(Master.initializations_finished_with_no_players_logged_in && !length_char(GLOB.clients))
 				return
 			if(isnull(start_at))
 				start_at = time_left || world.time + (CONFIG_GET(number/lobby_countdown) * 10)
@@ -338,9 +338,9 @@ SUBSYSTEM_DEF(ticker)
 
 	if(selected_tip)
 		tip = selected_tip
-	else if(prob(95) && length(ALLTIPS))
+	else if(prob(95) && length_char(ALLTIPS))
 		tip = pick(ALLTIPS)
-	else if(length(SSstrings.get_list_from_file("tips/meme")))
+	else if(length_char(SSstrings.get_list_from_file("tips/meme")))
 		tip = pick(SSstrings.get_list_from_file("tips/meme"))
 
 	if(tip)
@@ -348,7 +348,7 @@ SUBSYSTEM_DEF(ticker)
 
 
 /datum/controller/subsystem/ticker/proc/check_queue()
-	if(!length(queued_players))
+	if(!length_char(queued_players))
 		return
 	var/hpc = CONFIG_GET(number/hard_popcap)
 	if(!hpc)

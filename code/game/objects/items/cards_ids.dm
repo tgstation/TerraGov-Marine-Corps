@@ -323,8 +323,8 @@
 			to_chat(user, span_notice("It reads: \"[fallen_names[1]] - [fallen_assignements[1]]\"."))
 		else
 			var/msg = "<span class='notice'> It reads: "
-			for(var/x = 1 to length(fallen_names))
-				if (x == length(fallen_names))
+			for(var/x = 1 to length_char(fallen_names))
+				if (x == length_char(fallen_names))
 					msg += "\"[fallen_names[x]] - [fallen_assignements[x]]\""
 				else
 					msg += "\"[fallen_names[x]] - [fallen_assignements[x]]\", "

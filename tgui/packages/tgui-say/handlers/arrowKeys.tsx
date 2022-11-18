@@ -9,7 +9,7 @@ export const handleArrowKeys = function (
   value: string
 ) {
   const { historyCounter } = this.fields;
-  if (direction === KEY_UP && historyCounter < getHistoryLength()) {
+  if (direction === KEY_UP && historyCounter < getHistorylength_char()) {
     if (!historyCounter) {
       this.fields.tempHistory = value;
     }

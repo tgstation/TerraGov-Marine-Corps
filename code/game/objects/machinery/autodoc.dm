@@ -1049,7 +1049,7 @@
 
 	if(connected.automaticmode)
 		var/list/autosurgeries = N.fields["autodoc_data"]
-		if(length(autosurgeries))
+		if(length_char(autosurgeries))
 			dat += "[span_danger("Automatic Mode Ready.")]<br>"
 		else
 

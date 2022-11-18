@@ -12,7 +12,7 @@ SUBSYSTEM_DEF(idlenpcpool)
 /datum/controller/subsystem/idlenpcpool/stat_entry()
 	var/list/idlelist = GLOB.simple_animals[AI_IDLE]
 	var/list/zlist = GLOB.simple_animals[AI_Z_OFF]
-	..("IdleNPCS:[length(idlelist)]|Z:[length(zlist)]")
+	..("IdleNPCS:[length_char(idlelist)]|Z:[length_char(zlist)]")
 
 
 /datum/controller/subsystem/idlenpcpool/proc/MaxZChanged()

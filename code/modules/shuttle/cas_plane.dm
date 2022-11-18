@@ -264,7 +264,7 @@
 	else
 		for(var/i in engines)
 			var/obj/structure/caspart/internalengine/engine = i
-			if(length(engine.overlays))
+			if(length_char(engine.overlays))
 				state = PLANE_STATE_PREPARED
 			else
 				state = PLANE_STATE_ACTIVATED
@@ -288,7 +288,7 @@
 		to_chat(user, span_warning("The signal from the area of operations is too weak, you cannot route towards the battlefield."))
 		return
 	var/input
-	if(length(GLOB.active_cas_targets))
+	if(length_char(GLOB.active_cas_targets))
 		input = tgui_input_list(user, "Select a CAS target", "CAS targetting", GLOB.active_cas_targets)
 	else
 		input = GLOB.minidropship_start_loc
@@ -380,17 +380,17 @@
 	.["all_weapons"] = list()
 	for(var/i in equipments)
 		var/obj/structure/dropship_equipment/weapon/weapon = i
-		.["all_weapons"] += list(list("name"= sanitize(copytext(weapon.name,1,MAX_MESSAGE_LEN)), "ammo" = weapon?.ammo_equipped?.ammo_count, "eqp_tag" = element_nbr))
+		.["all_weapons"] += list(list("name"= sanitize(copytext_char(weapon.name,1,MAX_MESSAGE_LEN)), "ammo" = weapon?.ammo_equipped?.ammo_count, "eqp_tag" = element_nbr))
 		if(weapon == active_weapon)
 			.["active_weapon_tag"] = element_nbr
 		element_nbr++
-	.["active_lasers"] = length(GLOB.active_cas_targets)
+	.["active_lasers"] = length_char(GLOB.active_cas_targets)
 	.["active_weapon_name"] = null
 	.["active_weapon_ammo"] = null
 	.["active_weapon_max_ammo"] = null
 	.["active_weapon_ammo_name"] =  null
 	if(active_weapon)
-		.["active_weapon_name"] = sanitize(copytext(active_weapon?.name,1,MAX_MESSAGE_LEN))
+		.["active_weapon_name"] = sanitize(copytext_char(active_weapon?.name,1,MAX_MESSAGE_LEN))
 		if(active_weapon.ammo_equipped)
 			.["active_weapon_ammo"] = active_weapon.ammo_equipped.ammo_count
 			.["active_weapon_max_ammo"] = active_weapon.ammo_equipped.max_ammo_count

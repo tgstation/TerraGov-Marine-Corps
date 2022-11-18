@@ -12,7 +12,7 @@
 	var/_raw_response
 
 /datum/http_request/proc/prepare(method, url, body = "", list/headers, output_file)
-	if (!length(headers))
+	if (!length_char(headers))
 		headers = ""
 	else
 		headers = json_encode(headers)

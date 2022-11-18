@@ -20,18 +20,18 @@
 
 
 /proc/sanitize_islist(value, default)
-	if(length(value))
+	if(length_char(value))
 		return value
 	if(default)
 		return default
 
 /// Sanitize the custom emote list
 /proc/sanitize_is_full_emote_list(value)
-	if(length(value) == CUSTOM_EMOTE_SLOTS)
+	if(length_char(value) == CUSTOM_EMOTE_SLOTS)
 		return value
 	if(!value)
 		value = list()
-	for(var/i in (length(value)+1) to CUSTOM_EMOTE_SLOTS)
+	for(var/i in (length_char(value)+1) to CUSTOM_EMOTE_SLOTS)
 		var/datum/custom_emote/emote = new
 		emote.id = i
 		value += emote
@@ -42,7 +42,7 @@
 		return value
 	if(default)
 		return default
-	if(length(L))
+	if(length_char(L))
 		return L[1]
 
 
@@ -85,7 +85,7 @@
 		return default
 
 	var/start = 1 + (text2ascii(color, 1) == 35)
-	var/len = length(color)
+	var/len = length_char(color)
 	var/char = ""
 	// RRGGBB -> RGB but awful
 	var/convert_to_shorthand = desired_format == 3 && length_char(color) > 3
@@ -103,9 +103,9 @@
 				. += lowertext(char)
 			else
 				break
-		i += length(char)
+		i += length_char(char)
 		if(convert_to_shorthand && i <= len) //skip next one
-			i += length(color[i])
+			i += length_char(color[i])
 
 	if(length_char(.) != desired_format)
 		if(default)

@@ -40,7 +40,7 @@
 
 
 /obj/machinery/disposal/Destroy()
-	if(length(contents))
+	if(length_char(contents))
 		eject()
 	if(trunk)
 		if(trunk.linked == src)
@@ -75,7 +75,7 @@
 
 	else if(mode <= 0)
 		if(isscrewdriver(I))
-			if(length(contents))
+			if(length_char(contents))
 				to_chat(user, span_warning("Eject the contents first!"))
 				return
 			if(mode == 0) //It's off but still not unscrewed
@@ -89,7 +89,7 @@
 				to_chat(user, span_notice("You attach the screws around the power connection."))
 				return
 		else if(iswelder(I) && mode == -1)
-			if(length(contents))
+			if(length_char(contents))
 				to_chat(user, span_warning("Eject the contents first!"))
 				return
 			var/obj/item/tool/weldingtool/W = I

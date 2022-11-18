@@ -238,7 +238,7 @@ ColorTone(rgb, tone)
 		start++ // skip opening #
 	var/ch
 	var/digits = 0
-	for(var/i = start to length(rgb))
+	for(var/i = start to length_char(rgb))
 		ch = text2ascii(rgb, i)
 		switch(ch)
 			if(-INFINITY to 47, 58 to 64, 71 to 96, 103 to INFINITY)
@@ -314,7 +314,7 @@ ColorTone(rgb, tone)
 		start++ // skip opening #
 	var/ch
 	var/digits = 0
-	for(var/i = start to length(hsv))
+	for(var/i = start to length_char(hsv))
 		ch = text2ascii(hsv, i)
 		switch(ch)
 			if(-INFINITY to 47, 58 to 64, 71 to 96, 103 to INFINITY)
@@ -472,7 +472,7 @@ ColorTone(rgb, tone)
 				mid = g
 		hue += dir * round((mid-lo) * 255 / (hi-lo))
 
-	return hsv(hue, sat, val, (length(RGB) > 3 ? RGB[4] : null))
+	return hsv(hue, sat, val, (length_char(RGB) > 3 ? RGB[4] : null))
 
 
 /proc/hsv(hue, sat, val, alpha)
@@ -516,11 +516,11 @@ ColorTone(rgb, tone)
 	var/list/HSV2 = ReadHSV(hsv2)
 
 	// add missing alpha if needed
-	if(length(HSV1) < length(HSV2))
+	if(length_char(HSV1) < length_char(HSV2))
 		HSV1 += 255
-	else if(length(HSV2) < length(HSV1))
+	else if(length_char(HSV2) < length_char(HSV1))
 		HSV2 += 255
-	var/usealpha = length(HSV1) > 3
+	var/usealpha = length_char(HSV1) > 3
 
 	// normalize hsv values in case anything is screwy
 	if(!HSV1[3])
@@ -593,11 +593,11 @@ ColorTone(rgb, tone)
 	var/list/RGB2 = ReadRGB(rgb2)
 
 	// add missing alpha if needed
-	if(length(RGB1) < length(RGB2))
+	if(length_char(RGB1) < length_char(RGB2))
 		RGB1 += 255
-	else if(length(RGB2) < length(RGB1))
+	else if(length_char(RGB2) < length_char(RGB1))
 		RGB2 += 255
-	var/usealpha = length(RGB1) > 3
+	var/usealpha = length_char(RGB1) > 3
 
 	var/r = round(RGB1[1] + (RGB2[1] - RGB1[1]) * amount, 1)
 	var/g = round(RGB1[2] + (RGB2[2] - RGB1[2]) * amount, 1)
@@ -658,14 +658,14 @@ ColorTone(rgb, tone)
 	// decompress hue
 	HSV[1] += round(HSV[1] / 255)
 
-	return hsv(HSV[1], HSV[2], HSV[3], (length(HSV) > 3 ? HSV[4] : null))
+	return hsv(HSV[1], HSV[2], HSV[3], (length_char(HSV) > 3 ? HSV[4] : null))
 
 
 // Convert an rgb color to grayscale
 /proc/GrayScale(rgb)
 	var/list/RGB = ReadRGB(rgb)
 	var/gray = RGB[1] * 0.3 + RGB[2] * 0.59 + RGB[3] * 0.11
-	return (length(RGB) > 3) ? rgb(gray, gray, gray, RGB[4]) : rgb(gray, gray, gray)
+	return (length_char(RGB) > 3) ? rgb(gray, gray, gray, RGB[4]) : rgb(gray, gray, gray)
 
 
 // Change grayscale color to black->tone->white range
@@ -755,7 +755,7 @@ ColorTone(rgb, tone)
 		var/exist = FALSE
 		var/static/list/checkdirs = list(NORTH, EAST, WEST)
 		for(var/i in checkdirs)		//Not using GLOB for a reason.
-			if(length(icon_states(icon(curicon, curstate, i))))
+			if(length_char(icon_states(icon(curicon, curstate, i))))
 				exist = TRUE
 				break
 		if(!exist)
@@ -769,7 +769,7 @@ ColorTone(rgb, tone)
 
 	var/curblend = A.blend_mode || defblend
 
-	if(length(A.overlays) || length(A.underlays))
+	if(length_char(A.overlays) || length_char(A.underlays))
 		var/icon/flat = BLANK
 		// Layers will be a sorted list of icons/overlays, based on the order in which they are displayed
 		var/list/layers = list()
@@ -785,7 +785,7 @@ ColorTone(rgb, tone)
 		// Loop through the underlays, then overlays, sorting them into the layers list
 		for(var/process_set in 0 to 1)
 			var/list/process = process_set ? A.overlays : A.underlays
-			for(var/i in 1 to length(process))
+			for(var/i in 1 to length_char(process))
 				var/image/current = process[i]
 				if(!current)
 					continue
@@ -911,7 +911,7 @@ ColorTone(rgb, tone)
 /proc/sort_atoms_by_layer(list/L)
 	// Comb sort icons based on levels
 	var/list/result = L.Copy()
-	var/gap = length(L)
+	var/gap = length_char(L)
 	var/swapped = TRUE
 	while(gap > 1 || swapped)
 		swapped = FALSE
@@ -919,7 +919,7 @@ ColorTone(rgb, tone)
 			gap = round(gap / 1.3) // 1.3 is the emperic comb sort coefficient
 		if(gap < 1)
 			gap = 1
-		for(var/i = 1; gap + i <= length(result); i++)
+		for(var/i = 1; gap + i <= length_char(result); i++)
 			var/atom/l = result[i]		//Fucking hate
 			var/atom/r = result[gap+i]	//how lists work here
 			if(l.layer > r.layer)		//no "result[i].layer" for me
@@ -950,8 +950,8 @@ ColorTone(rgb, tone)
 	var/savefile/dummySave = new("tmp/dummySave.sav")
 	WRITE_FILE(dummySave["dummy"], icon)
 	var/iconData = dummySave.ExportText("dummy")
-	var/list/partial = splittext(iconData, "{")
-	. = replacetext(copytext_char(partial[2], 3, -5), "\n", "")  //if cleanup fails we want to still return the correct base64
+	var/list/partial = splittext_char(iconData, "{")
+	. = replacetext_char(copytext_char(partial[2], 3, -5), "\n", "")  //if cleanup fails we want to still return the correct base64
 	dummySave.Unlock()
 	dummySave = null
 	fdel("tmp/dummySave.sav")  //if you get the idea to try and make this more optimized, make sure to still call unlock on the savefile after every write to unlock it.
@@ -973,7 +973,7 @@ ColorTone(rgb, tone)
 		targets = list(target)
 	else
 		targets = target
-		if(!length(targets))
+		if(!length_char(targets))
 			return
 	if(!isicon(I))
 		if(isfile(thing)) //special snowflake
@@ -1107,7 +1107,7 @@ GLOBAL_LIST_EMPTY(transformation_animation_objects)
 	//Disappearing part
 	var/top_part_filter = filter(type="alpha",icon=icon('icons/effects/alphacolors.dmi',"white"),y=0)
 	filters += top_part_filter
-	var/filter_index = length(filters)
+	var/filter_index = length_char(filters)
 	animate(filters[filter_index],y=-32,time=time)
 	//Appearing part
 	var/obj/effect/overlay/appearing_part = new
@@ -1144,7 +1144,7 @@ GLOBAL_LIST_EMPTY(transformation_animation_objects)
 		qdel(A)
 	transformation_objects.Cut()
 	GLOB.transformation_animation_objects -= src
-	if(filters && length(filters) >= filter_index)
+	if(filters && length_char(filters) >= filter_index)
 		filters -= filters[filter_index]
 
 /**

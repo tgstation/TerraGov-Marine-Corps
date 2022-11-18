@@ -298,7 +298,7 @@
 	return revision
 
 /datum/tgs_api/v5/ChatBroadcast(message, list/channels)
-	if(!length(channels))
+	if(!length_char(channels))
 		channels = ChatChannelInfo()
 
 	var/list/ids = list()

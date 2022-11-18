@@ -51,7 +51,7 @@
 /obj/item/explosive/grenade/chem_grenade/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_SCREWDRIVER)
 		if(stage == CG_WIRED)
-			if(!length(beakers))
+			if(!length_char(beakers))
 				to_chat(user, span_warning("You need to add at least one beaker before locking the [initial(name)] assembly!"))
 			else
 				stage_change(CG_READY)
@@ -69,7 +69,7 @@
 		if(is_type_in_list(I, banned_containers))
 			to_chat(user, span_warning("[src] is too small to fit [I]!")) // this one hits home huh anon?
 			return
-		if(length(beakers) == 2)
+		if(length_char(beakers) == 2)
 			to_chat(user, span_warning("[src] can not hold more containers!"))
 			return
 		else
@@ -113,7 +113,7 @@
 		to_chat(user, span_notice("You unlock the [initial(name)] assembly."))
 
 	else if(stage == CG_WIRED && I.tool_behaviour == TOOL_WRENCH)
-		if(length(beakers))
+		if(length_char(beakers))
 			for(var/obj/O in beakers)
 				O.forceMove(drop_location())
 				if(!O.reagents)
@@ -139,17 +139,17 @@
 	display_timer = (stage == CG_READY && !nadeassembly)	//show/hide the timer based on assembly state
 	. = ..()
 	if(user.skills.getRating("medical") > SKILL_MEDICAL_NOVICE)
-		if(length(beakers))
+		if(length_char(beakers))
 			. += span_notice("You scan the grenade and detect the following reagents:")
 			for(var/obj/item/reagent_containers/glass/G in beakers)
 				for(var/datum/reagent/R in G.reagents.reagent_list)
 					. += span_notice("[R.volume] units of [R.name] in the [G.name].")
-			if(length(beakers) == 1)
+			if(length_char(beakers) == 1)
 				. += span_notice("You detect no second beaker in the grenade.")
 		else
 			. += span_notice("You scan the grenade, but detect nothing.")
-	else if(stage != CG_READY && length(beakers))
-		if(length(beakers) == 2 && beakers[1].name == beakers[2].name)
+	else if(stage != CG_READY && length_char(beakers))
+		if(length_char(beakers) == 2 && beakers[1].name == beakers[2].name)
 			. += span_notice("You see two [beakers[1].name]s inside the grenade.")
 		else
 			for(var/obj/item/reagent_containers/glass/G in beakers)
@@ -189,7 +189,7 @@
 
 	if(!chem_splash(detonation_turf, affected_area, reactants, ignition_temp, threatscale) && !no_splash)
 		playsound(src, 'sound/items/screwdriver2.ogg', 50, 1)
-		if(length(beakers))
+		if(length_char(beakers))
 			for(var/obj/O in beakers)
 				O.forceMove(drop_location())
 			beakers = list()

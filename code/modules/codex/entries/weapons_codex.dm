@@ -80,7 +80,7 @@
 		attach_strings += "This will allow you to overcharge your weapon."
 	if(charge_mod)
 		attach_strings += "Charge cost: [charge_mod]."
-	if(length(gun_firemode_list_mod) > 0)
+	if(length_char(gun_firemode_list_mod) > 0)
 		attach_strings += "This will allow for additional firemodes."
 
 

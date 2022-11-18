@@ -135,7 +135,7 @@
 			if(mech.equip_by_category[MECHA_L_ARM])
 				return FALSE
 		return TRUE
-	return length(mech.equip_by_category[equipment_slot]) < mech.max_equip_by_category[equipment_slot]
+	return length_char(mech.equip_by_category[equipment_slot]) < mech.max_equip_by_category[equipment_slot]
 
 /obj/item/mecha_parts/mecha_equipment/proc/attach(obj/vehicle/sealed/mecha/M, attach_right = FALSE)
 	LAZYADD(M.flat_equipment, src)

@@ -183,7 +183,7 @@
 	if(istype(I, /obj/item/mortal_shell))
 		var/obj/item/mortal_shell/mortar_shell = I
 
-		if(length(chamber_items) >= max_rounds)
+		if(length_char(chamber_items) >= max_rounds)
 			user.balloon_alert(user, "You cannot fit more in there.")
 			return
 
@@ -314,7 +314,7 @@
 		user.balloon_alert(user, "The gun is still firing.")
 		return
 
-	if(length(chamber_items) <= 0)
+	if(length_char(chamber_items) <= 0)
 		user.balloon_alert(user, "There is nothing loaded.")
 		return
 
@@ -353,12 +353,12 @@
 		firing_spread = max_spread
 	var/list/turf_list = list()
 	var/obj/in_chamber
-	var/next_chamber_position = length(chamber_items)
+	var/next_chamber_position = length_char(chamber_items)
 	var/amount_to_fire = fire_amount
 	if(!amount_to_fire)
-		amount_to_fire = length(chamber_items)
-	if(amount_to_fire > length(chamber_items))
-		amount_to_fire = length(chamber_items)
+		amount_to_fire = length_char(chamber_items)
+	if(amount_to_fire > length_char(chamber_items))
+		amount_to_fire = length_char(chamber_items)
 	for(var/turf/spread_turf in RANGE_TURFS(firing_spread, target))
 		turf_list += spread_turf
 	for(var/i = 1 to amount_to_fire)

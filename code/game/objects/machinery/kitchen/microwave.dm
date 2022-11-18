@@ -97,7 +97,7 @@
 		ENABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER)
 
 	else if(is_type_in_list(I, acceptable_items))
-		if(length(contents) >= max_n_of_items)
+		if(length_char(contents) >= max_n_of_items)
 			to_chat(user, span_warning("This [src] is full of ingredients, you cannot put more."))
 			return TRUE
 

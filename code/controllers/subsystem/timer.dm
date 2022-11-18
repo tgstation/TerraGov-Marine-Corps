@@ -58,13 +58,13 @@ SUBSYSTEM_DEF(timer)
 	bucket_resolution = world.tick_lag
 
 /datum/controller/subsystem/timer/stat_entry(msg)
-	msg = "B:[bucket_count] P:[length(second_queue)] H:[length(hashes)] C:[length(clienttime_timers)] S:[length(timer_id_dict)] RST:[bucket_reset_count]"
+	msg = "B:[bucket_count] P:[length_char(second_queue)] H:[length_char(hashes)] C:[length_char(clienttime_timers)] S:[length_char(timer_id_dict)] RST:[bucket_reset_count]"
 	return ..()
 
 /datum/controller/subsystem/timer/proc/dump_timer_buckets(full = TRUE)
 	var/list/to_log = list("Timer bucket reset. world.time: [world.time], head_offset: [head_offset], practical_offset: [practical_offset]")
 	if (full)
-		for (var/i in 1 to length(bucket_list))
+		for (var/i in 1 to length_char(bucket_list))
 			var/datum/timedevent/bucket_head = bucket_list[i]
 			if (!bucket_head)
 				continue
@@ -110,7 +110,7 @@ SUBSYSTEM_DEF(timer)
 	if (next_clienttime_timer_index)
 		clienttime_timers.Cut(1, next_clienttime_timer_index+1)
 		next_clienttime_timer_index = 0
-	for (next_clienttime_timer_index in 1 to length(clienttime_timers))
+	for (next_clienttime_timer_index in 1 to length_char(clienttime_timers))
 		if (MC_TICK_CHECK)
 			next_clienttime_timer_index--
 			break
@@ -147,7 +147,7 @@ SUBSYSTEM_DEF(timer)
 		resumed = FALSE
 
 	// Check for when we have to reset buckets, typically from auto-reset
-	if ((length(bucket_list) != BUCKET_LEN) || (world.tick_lag != bucket_resolution))
+	if ((length_char(bucket_list) != BUCKET_LEN) || (world.tick_lag != bucket_resolution))
 		reset_buckets()
 		bucket_list = src.bucket_list
 		resumed = FALSE
@@ -188,7 +188,7 @@ SUBSYSTEM_DEF(timer)
 			bucket_list[practical_offset] = null // Just in case
 			practical_offset++
 			var/i = 0
-			for (i in 1 to length(second_queue))
+			for (i in 1 to length_char(second_queue))
 				timer = second_queue[i]
 				if (timer.timeToRun >= TIMER_MAX(src))
 					i--
@@ -268,7 +268,7 @@ SUBSYSTEM_DEF(timer)
 
 	// If there are no timers being tracked by the subsystem,
 	// there is no need to do any further rebuilding
-	if (!length(alltimers))
+	if (!length_char(alltimers))
 		return
 
 	// Sort all timers by time to run
@@ -287,7 +287,7 @@ SUBSYSTEM_DEF(timer)
 	// secondary queue
 	var/new_bucket_count
 	var/i = 1
-	for (i in 1 to length(alltimers))
+	for (i in 1 to length_char(alltimers))
 		var/datum/timedevent/timer = alltimers[i]
 		if (!timer)
 			continue
@@ -464,9 +464,9 @@ SUBSYSTEM_DEF(timer)
 	else if(bucket_joined)
 		timer_subsystem.bucket_count--
 	else
-		var/l = length(second_queue)
+		var/l = length_char(second_queue)
 		second_queue -= src
-		if(l == length(second_queue))
+		if(l == length_char(second_queue))
 			timer_subsystem.bucket_count--
 
 	// Remove the timed event from the bucket, ensuring to maintain

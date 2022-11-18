@@ -15,7 +15,7 @@
 
 
 /mob/new_player/Initialize()
-	if(length(GLOB.newplayer_start))
+	if(length_char(GLOB.newplayer_start))
 		var/turf/spawn_loc = get_turf(pick(GLOB.newplayer_start))
 		forceMove(spawn_loc)
 	else
@@ -79,7 +79,7 @@
 
 		if(SSticker.current_state == GAME_STATE_PREGAME)
 			stat("Time To Start:", "[SSticker.time_left > 0 ? SSticker.GetTimeLeft() : "(DELAYED)"]")
-			stat("Players: [length(GLOB.player_list)]", "Players Ready: [length(GLOB.ready_players)]")
+			stat("Players: [length_char(GLOB.player_list)]", "Players Ready: [length_char(GLOB.ready_players)]")
 			for(var/i in GLOB.player_list)
 				if(isnewplayer(i))
 					var/mob/new_player/N = i
@@ -213,7 +213,7 @@
 			else
 				position_amount = job_datum.current_positions
 			dept_dat += "<a class='job[command_bold]' href='byond://?src=[REF(src)];lobby_choice=SelectedJob;job_selected=[REF(job_datum)]'>[job_datum.title] ([position_amount])</a>"
-		if(!length(dept_dat))
+		if(!length_char(dept_dat))
 			dept_dat += span_nopositions("No positions open.")
 		dat += jointext(dept_dat, "")
 		dat += "</fieldset><br>"
@@ -368,7 +368,7 @@
 
 	var/failed = FALSE
 
-	if(length(GLOB.latejoin))
+	if(length_char(GLOB.latejoin))
 		var/i = pick(GLOB.latejoin)
 		var/turf/T = get_turf(i)
 		if(!T)
@@ -435,7 +435,7 @@
 	else
 		relevant_cap = max(hpc, epc)
 
-	if(length(SSticker.queued_players) || (relevant_cap && living_player_count() >= relevant_cap && !(check_rights(R_ADMIN, FALSE) || GLOB.deadmins[ckey])))
+	if(length_char(SSticker.queued_players) || (relevant_cap && living_player_count() >= relevant_cap && !(check_rights(R_ADMIN, FALSE) || GLOB.deadmins[ckey])))
 		to_chat(usr, span_danger("[CONFIG_GET(string/hard_popcap_message)]"))
 
 		var/queue_position = SSticker.queued_players.Find(usr)
@@ -445,6 +445,6 @@
 			to_chat(usr, span_notice("There are [queue_position - 1] players in front of you in the queue to join the game."))
 		else
 			SSticker.queued_players += usr
-			to_chat(usr, span_notice("You have been added to the queue to join the game. Your position in queue is [length(SSticker.queued_players)]."))
+			to_chat(usr, span_notice("You have been added to the queue to join the game. Your position in queue is [length_char(SSticker.queued_players)]."))
 		return
 	late_choices()

@@ -13,7 +13,7 @@
 /proc/tgui_input_list(mob/user, message, title = "Select", list/items, default, timeout = 0)
 	if (!user)
 		user = usr
-	if(!length(items))
+	if(!length_char(items))
 		return
 	if (!istype(user))
 		if (istype(user, /client))

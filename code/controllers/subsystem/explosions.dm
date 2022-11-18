@@ -51,16 +51,16 @@ SUBSYSTEM_DEF(explosions)
 	msg += "} "
 
 	msg += "AMT:{"
-	msg += "LT:[length(lowTurf)]|"
-	msg += "MT:[length(medTurf)]|"
-	msg += "HT:[length(highTurf)]|"
-	msg += "FT:[length(flameturf)]||"
+	msg += "LT:[length_char(lowTurf)]|"
+	msg += "MT:[length_char(medTurf)]|"
+	msg += "HT:[length_char(highTurf)]|"
+	msg += "FT:[length_char(flameturf)]||"
 
-	msg += "LO:[length(lowMovAtom)]|"
-	msg += "MO:[length(medMovAtom)]|"
-	msg += "HO:[length(highMovAtom)]|"
+	msg += "LO:[length_char(lowMovAtom)]|"
+	msg += "MO:[length_char(medMovAtom)]|"
+	msg += "HO:[length_char(highMovAtom)]|"
 
-	msg += "TO:[length(throwTurf)]"
+	msg += "TO:[length_char(throwTurf)]"
 
 	msg += "} "
 	..(msg)
@@ -310,7 +310,7 @@ This way we'll be able to draw the explosion's expansion path without having to 
 	throwTurf -= T
 
 /datum/controller/subsystem/explosions/fire(resumed = FALSE)
-	if(!(length(lowTurf) || length(medTurf) || length(highTurf) || length(flameturf) || length(throwTurf) || length(lowMovAtom) || length(medMovAtom) || length(highMovAtom)))
+	if(!(length_char(lowTurf) || length_char(medTurf) || length_char(highTurf) || length_char(flameturf) || length_char(throwTurf) || length_char(lowMovAtom) || length_char(medMovAtom) || length_char(highMovAtom)))
 		return
 	var/timer
 	Master.current_ticklimit = TICK_LIMIT_RUNNING //force using the entire tick if we need it.
@@ -366,7 +366,7 @@ This way we'll be able to draw the explosion's expansion path without having to 
 		flameturf.Cut()
 		cost_flameturf = MC_AVERAGE(cost_flameturf, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
 
-		if(length(low_turf) || length(med_turf) || length(high_turf))
+		if(length_char(low_turf) || length_char(med_turf) || length_char(high_turf))
 			Master.laggy_byond_map_update_incoming()
 
 	if(currentpart == SSEXPLOSIONS_MOVABLES)

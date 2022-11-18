@@ -38,10 +38,10 @@
 		if("03","23")
 			modifyer = "rd"
 	var/day_string = "[time2text(world.timeofday, "DD")][modifyer]"
-	if(copytext(day_string, 1, 2) == "0")
-		day_string = copytext(day_string,2)
+	if(copytext_char(day_string, 1, 2) == "0")
+		day_string = copytext_char(day_string,2)
 	var/full_date = time2text(world.timeofday, "Day, Month DD of YYYY")
-	var/day_loc = findtext(full_date, time2text(world.timeofday, "DD"))
+	var/day_loc = findtext_char(full_date, time2text(world.timeofday, "DD"))
 	var/hourminute_string = time2text(world.timeofday, "hh:mm")
 
 	var/datum/player_info/P = new
@@ -52,7 +52,7 @@
 		P.author = CONFIG_GET(string/server_name) ? "[CONFIG_GET(string/server_name)] Bot" : "Adminbot"
 		P.rank = "Silicon"
 	P.content = note
-	P.timestamp = "[hourminute_string] [copytext(full_date, 1, day_loc)][day_string][copytext(full_date, day_loc + 2)]"
+	P.timestamp = "[hourminute_string] [copytext_char(full_date, 1, day_loc)][day_string][copytext_char(full_date, day_loc + 2)]"
 	P.hidden = FALSE
 
 	infos += P
@@ -83,7 +83,7 @@
 	var/savefile/info = new("data/player_saves/[key[1]]/[key]/info.sav")
 	var/list/infos
 	info >> infos
-	if(!infos || length(infos) < index)
+	if(!infos || length_char(infos) < index)
 		return
 
 	var/datum/player_info/item = infos[index]
@@ -104,7 +104,7 @@
 	var/savefile/info = new("data/player_saves/[key[1]]/[key]/info.sav")
 	var/list/infos
 	info >> infos
-	if(!infos || length(infos) < index)
+	if(!infos || length_char(infos) < index)
 		return
 
 	var/datum/player_info/item = infos[index]
@@ -125,7 +125,7 @@
 	var/savefile/info = new("data/player_saves/[key[1]]/[key]/info.sav")
 	var/list/infos
 	info >> infos
-	if(!infos || length(infos) < index)
+	if(!infos || length_char(infos) < index)
 		return
 
 	var/datum/player_info/item = infos[index]
@@ -146,7 +146,7 @@
 	var/savefile/info = new("data/player_saves/[key[1]]/[key]/info.sav")
 	var/list/infos
 	info >> infos
-	if(!infos || length(infos) < index)
+	if(!infos || length_char(infos) < index)
 		return
 
 	var/datum/player_info/item = infos[index]
@@ -181,7 +181,7 @@
 
 	var/key = usr.key
 
-	var/dat = "<html><head><title>Info on [key]</title></head>"
+	var/dat = "<html><meta charset='UTF-8'><head><title>Info on [key]</title></head>"
 	dat += "<body>"
 
 	key = ckey(key)

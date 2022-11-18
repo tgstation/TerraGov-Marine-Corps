@@ -325,7 +325,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(statpanel("Status"))
 		if(SSticker.current_state == GAME_STATE_PREGAME)
 			stat("Time To Start:", "[SSticker.time_left > 0 ? SSticker.GetTimeLeft() : "(DELAYED)"]")
-			stat("Players: [length(GLOB.player_list)]", "Players Ready: [length(GLOB.ready_players)]")
+			stat("Players: [length_char(GLOB.player_list)]", "Players Ready: [length_char(GLOB.ready_players)]")
 			for(var/i in GLOB.player_list)
 				if(isnewplayer(i))
 					var/mob/new_player/N = i
@@ -487,7 +487,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 		observers[name] = O
 
-	if(!length(observers))
+	if(!length_char(observers))
 		to_chat(usr, span_warning("There are no ghosts at the moment."))
 		return
 
@@ -535,7 +535,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 		xenos[name] = X
 
-	if(!length(xenos))
+	if(!length_char(xenos))
 		to_chat(usr, span_warning("There are no xenos at the moment."))
 		return
 
@@ -591,7 +591,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 		humans[name] = H
 
-	if(!length(humans))
+	if(!length_char(humans))
 		to_chat(usr, span_warning("There are no living humans at the moment."))
 		return
 
@@ -627,7 +627,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 		dead[name] = M
 
-	if(!length(dead))
+	if(!length_char(dead))
 		to_chat(usr, span_warning("There are no dead mobs at the moment."))
 		return
 
@@ -652,7 +652,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	set category = "Ghost"
 	set name = "Take Offered Mob"
 
-	if(!length(GLOB.offered_mob_list))
+	if(!length_char(GLOB.offered_mob_list))
 		to_chat(src, span_warning("There are currently no mobs being offered."))
 		return
 

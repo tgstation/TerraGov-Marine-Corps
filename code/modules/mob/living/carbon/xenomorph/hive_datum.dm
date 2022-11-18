@@ -70,7 +70,7 @@
 	. = ..()
 	.["hive_max_tier_two"] = tier2_xeno_limit
 	.["hive_max_tier_three"] = tier3_xeno_limit
-	.["hive_minion_count"] = length(xenos_by_tier[XENO_TIER_MINION])
+	.["hive_minion_count"] = length_char(xenos_by_tier[XENO_TIER_MINION])
 
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	.["hive_larva_current"] = xeno_job.job_points
@@ -273,7 +273,7 @@
 	for(var/t in xenos_by_tier)
 		if(t == XENO_TIER_MINION)
 			continue
-		. += length(xenos_by_tier[t])
+		. += length_char(xenos_by_tier[t])
 
 /datum/hive_status/proc/post_add(mob/living/carbon/xenomorph/X)
 	X.color = color
@@ -304,7 +304,7 @@
 	return ((get_total_xeno_number() + stored_larva) < xenos_per_queen)
 
 /datum/hive_status/proc/get_total_tier_zeros()
-	return length(xenos_by_tier[XENO_TIER_ZERO])
+	return length_char(xenos_by_tier[XENO_TIER_ZERO])
 
 /datum/hive_status/normal/get_total_tier_zeros()
 	. = ..()
@@ -599,11 +599,11 @@
 	var/mob/living/carbon/xenomorph/successor
 
 	var/list/candidates = xenos_by_typepath[/mob/living/carbon/xenomorph/queen]
-	if(length(candidates)) //Priority to the queens.
+	if(length_char(candidates)) //Priority to the queens.
 		successor = candidates[1] //First come, first serve.
 	else
 		candidates = xenos_by_typepath[/mob/living/carbon/xenomorph/shrike]
-		if(length(candidates))
+		if(length_char(candidates))
 			successor = candidates[1]
 
 	var/announce = TRUE
@@ -804,8 +804,8 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/list/possible_mothers = list()
 	var/list/possible_silos = list()
 	SEND_SIGNAL(src, COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, possible_mothers, possible_silos) //List variable passed by reference, and hopefully populated.
-	if(!length(possible_mothers))
-		if(length(possible_silos))
+	if(!length_char(possible_mothers))
+		if(length_char(possible_silos))
 			return attempt_to_spawn_larva_in_silo(xeno_candidate, possible_silos, larva_already_reserved)
 		if(SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN && !SSsilo.can_fire) // Distress mode & prior to shutters opening, so let the queue bypass silos if needed
 			return do_spawn_larva(xeno_candidate, pick(GLOB.spawns_by_job[/datum/job/xenomorph]), larva_already_reserved)
@@ -813,7 +813,7 @@ to_chat will check for valid clients itself already so no need to double check f
 		return FALSE
 
 	var/mob/living/carbon/xenomorph/chosen_mother
-	if(length(possible_mothers) > 1)
+	if(length_char(possible_mothers) > 1)
 		chosen_mother = tgui_input_list(xeno_candidate, "Available Mothers", null, possible_mothers)
 	else
 		chosen_mother = possible_mothers[1]
@@ -828,7 +828,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	xeno_candidate.playsound_local(xeno_candidate, 'sound/ambience/votestart.ogg', 50)
 	window_flash(xeno_candidate.client)
 	var/obj/structure/xeno/silo/chosen_silo
-	if(length(possible_silos) > 1)
+	if(length_char(possible_silos) > 1)
 		chosen_silo = tgui_input_list(xeno_candidate, "Available Egg Silos", "Spawn location", possible_silos, timeout = 20 SECONDS)
 		if(!chosen_silo)
 			return FALSE
@@ -984,7 +984,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/list/possible_mothers = list()
 	var/list/possible_silos = list()
 	SEND_SIGNAL(src, COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, possible_mothers, possible_silos)
-	if(stored_larva > 0 && !LAZYLEN(candidate) && (length(possible_mothers) || length(possible_silos) || (SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN && SSmonitor.gamestate == SHUTTERS_CLOSED)))
+	if(stored_larva > 0 && !LAZYLEN(candidate) && (length_char(possible_mothers) || length_char(possible_silos) || (SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN && SSmonitor.gamestate == SHUTTERS_CLOSED)))
 		attempt_to_spawn_larva(observer)
 		return
 	if(LAZYFIND(candidate, observer))
@@ -1014,7 +1014,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/list/possible_mothers = list()
 	var/list/possible_silos = list()
 	SEND_SIGNAL(src, COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, possible_mothers, possible_silos)
-	if(!length(possible_mothers) && !length(possible_silos) && (!(SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN) || SSsilo.can_fire))
+	if(!length_char(possible_mothers) && !length_char(possible_silos) && (!(SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN) || SSsilo.can_fire))
 		return
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = round(xeno_job.total_positions - xeno_job.current_positions)
@@ -1054,10 +1054,10 @@ to_chat will check for valid clients itself already so no need to double check f
 ///updates and sets the t2 and t3 xeno limits
 /datum/hive_status/proc/update_tier_limits()
 	var/zeros = get_total_tier_zeros()
-	var/ones = length(xenos_by_tier[XENO_TIER_ONE])
-	var/twos = length(xenos_by_tier[XENO_TIER_TWO])
-	var/threes = length(xenos_by_tier[XENO_TIER_THREE])
-	var/fours = length(xenos_by_tier[XENO_TIER_FOUR])
+	var/ones = length_char(xenos_by_tier[XENO_TIER_ONE])
+	var/twos = length_char(xenos_by_tier[XENO_TIER_TWO])
+	var/threes = length_char(xenos_by_tier[XENO_TIER_THREE])
+	var/fours = length_char(xenos_by_tier[XENO_TIER_FOUR])
 
 	tier3_xeno_limit = max(threes, FLOOR(((zeros + ones + twos + fours) * (evotowers.len * 0.2 + 1)) / 3 + 1, 1))
 	tier2_xeno_limit = max((twos + zeros + ones + fours) * (evotowers.len * 0.2 + 1) + 1 - threes)

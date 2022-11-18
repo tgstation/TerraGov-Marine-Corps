@@ -92,7 +92,7 @@
 		to_chat(src, span_warning("Wireless interface disabled, unable to interact with announcement PA."))
 		return
 
-	var/list/words = splittext(trim(message), " ")
+	var/list/words = splittext_char(trim(message), " ")
 	var/list/incorrect_words = list() //needed so we can show the user what words we don't have
 
 	if(words.len > 30)
@@ -120,7 +120,7 @@
 		play_vox_word(word, src.z, null)
 
 ///play vox words for mobs on our zlevel
-/proc/play_vox_word(word, z_level, mob/only_listener) 
+/proc/play_vox_word(word, z_level, mob/only_listener)
 
 	word = lowertext(word)
 

@@ -43,7 +43,7 @@
 		for(var/type in xeno_caste.evolves_to)
 			xeno_strings += "[GLOB.xeno_caste_datums[type][XENO_UPGRADE_BASETYPE].caste_name]"
 
-	if(length(actions))
+	if(length_char(actions))
 		xeno_strings += "<br><U>This has the following abilities</U>:"
 		for(var/datum/action/xeno_action/A in actions)
 			xeno_strings += "<U>[A.name]</U>: [A.mechanics_text]<br>"

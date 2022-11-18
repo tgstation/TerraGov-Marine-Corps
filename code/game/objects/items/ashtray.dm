@@ -16,7 +16,7 @@
 	. = ..()
 
 	if(istype(I, /obj/item/trash/cigbutt) || istype(I, /obj/item/clothing/mask/cigarette) || istype(I, /obj/item/tool/match))
-		if(length(contents) >= max_butts)
+		if(length_char(contents) >= max_butts)
 			to_chat(user, "This ashtray is full.")
 			return
 
@@ -45,12 +45,12 @@
 
 
 /obj/item/ashtray/update_icon()
-	if(length(contents) >= max_butts)
+	if(length_char(contents) >= max_butts)
 		icon_state = icon_full
 		desc = empty_desc + " It's stuffed full."
 		return
 
-	if(length(contents) >= max_butts / 2)
+	if(length_char(contents) >= max_butts / 2)
 		icon_state = icon_half
 		desc = empty_desc + " It's half-filled."
 		return

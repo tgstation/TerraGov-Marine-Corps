@@ -134,7 +134,7 @@
 /// Handle use_power() machine checks
 /datum/component/mobile_power/proc/use_power(obj/machinery/machine, amount, chan, list/power_sources)
 	SIGNAL_HANDLER
-	if(length(power_sources))
+	if(length_char(power_sources))
 		return // something else already provided power
 	var/obj/machinery/power/port_gen/PG = parent
 	if((power_used + amount) > (PG.power_gen * PG.power_output))

@@ -49,7 +49,7 @@
 
 
 /obj/machinery/computer/security/Destroy()
-	if(length(watchers))
+	if(length_char(watchers))
 		for(var/mob/M in watchers)
 			M.unset_interaction() //to properly reset the view of the users if the console is deleted.
 	return ..()
@@ -151,7 +151,7 @@
 			stack_trace("Camera in a cameranet has a non-list camera network")
 			continue
 		var/list/tempnetwork = C.network & network
-		if(length(tempnetwork) && C.c_tag)
+		if(length_char(tempnetwork) && C.c_tag)
 			valid_cams["[C.c_tag]"] = C
 	return valid_cams
 

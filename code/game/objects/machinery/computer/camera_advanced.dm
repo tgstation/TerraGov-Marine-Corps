@@ -133,20 +133,20 @@
 		var/camera_location
 		var/turf/myturf = get_turf(src)
 		if(eyeobj.use_static)
-			if((!length(z_lock) || (myturf.z in z_lock)) && GLOB.cameranet.checkTurfVis(myturf))
+			if((!length_char(z_lock) || (myturf.z in z_lock)) && GLOB.cameranet.checkTurfVis(myturf))
 				camera_location = myturf
 			else
 				for(var/i in GLOB.cameranet.cameras)
 					var/obj/machinery/camera/C = i
-					if(!C.can_use() || length(z_lock) && !(C.z in z_lock))
+					if(!C.can_use() || length_char(z_lock) && !(C.z in z_lock))
 						continue
 					var/list/network_overlap = networks & C.network
-					if(length(network_overlap))
+					if(length_char(network_overlap))
 						camera_location = get_turf(C)
 						break
 		else
 			camera_location = myturf
-			if(length(z_lock) && !(myturf.z in z_lock))
+			if(length_char(z_lock) && !(myturf.z in z_lock))
 				camera_location = locate(round(world.maxx / 2), round(world.maxy / 2), z_lock[1])
 
 		if(camera_location)
@@ -371,7 +371,7 @@
 
 	for(var/i in GLOB.cameranet.cameras)
 		var/obj/machinery/camera/C = i
-		if(length(origin.z_lock) && !(C.z in origin.z_lock))
+		if(length_char(origin.z_lock) && !(C.z in origin.z_lock))
 			continue
 		valid_cams += C
 
@@ -382,7 +382,7 @@
 	for(var/i in valid_cams)
 		var/obj/machinery/camera/C = i
 		var/list/tempnetwork = C.network & origin.networks
-		if(length(tempnetwork))
+		if(length_char(tempnetwork))
 			T["[C.c_tag][C.can_use() ? "" : " (Deactivated)"]"] = C
 
 	playsound(origin, 'sound/machines/terminal_prompt.ogg', 25, 0)

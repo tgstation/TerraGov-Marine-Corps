@@ -61,7 +61,7 @@ SUBSYSTEM_DEF(advanced_pathfinding)
 			return
 
 /datum/controller/subsystem/advanced_pathfinding/stat_entry()
-	..("Node pathfinding : [length(node_pathfinding_to_do)] || Tile pathfinding : [length(tile_pathfinding_to_do)]")
+	..("Node pathfinding : [length_char(node_pathfinding_to_do)] || Tile pathfinding : [length_char(tile_pathfinding_to_do)]")
 
 #define NODE_PATHING "node_pathing" //Looking through the network of nodes the best node path
 #define TILE_PATHING "tile_pathing" //Looking the best tile path
@@ -120,7 +120,7 @@ GLOBAL_LIST_EMPTY(goal_nodes)
 		paths_checked[current_atom] = current_path
 		paths_to_check -= current_atom
 		//We looked through all atoms, we didn't find a way to get to our end points
-		if(!length(paths_to_check) || length(paths_checked) > PATHFINDER_MAX_TRIES)
+		if(!length_char(paths_to_check) || length_char(paths_checked) > PATHFINDER_MAX_TRIES)
 			return
 		//We created a atom path for each adjacent atom, we sort every atoms by their heuristic score
 		sortTim(paths_to_check, /proc/cmp_path_step, TRUE) //Very cheap cause almost sorted

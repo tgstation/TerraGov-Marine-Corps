@@ -186,7 +186,7 @@
 	X.balloon_alert(X, "Keep still...")
 
 	X.emitting_gas = TRUE //We gain bump movement immunity while we're emitting gas.
-	
+
 	X.icon_state = "Defiler Power Up"
 
 	if(!do_after(X, DEFILER_GAS_CHANNEL_TIME, TRUE, null, BUSY_ICON_HOSTILE))
@@ -200,7 +200,7 @@
 
 	add_cooldown()
 	succeed_activate()
-	
+
 	if(X.stagger) //If we got staggered, return
 		to_chat(X, span_xenowarning("We try to emit toxins but are staggered!"))
 		return fail_activate()
@@ -364,7 +364,7 @@
 /datum/action/xeno_action/select_reagent/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 	var/i = GLOB.defiler_toxin_type_list.Find(X.selected_reagent)
-	if(length(GLOB.defiler_toxin_type_list) == i)
+	if(length_char(GLOB.defiler_toxin_type_list) == i)
 		X.selected_reagent = GLOB.defiler_toxin_type_list[1]
 	else
 		X.selected_reagent = GLOB.defiler_toxin_type_list[i+1]

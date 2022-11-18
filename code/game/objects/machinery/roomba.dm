@@ -67,7 +67,7 @@
 	var/list/dirs = CARDINAL_DIRS - REVERSE_DIR(dir)
 	var/turf/selection
 	var/newdir
-	for(var/i=1 to length(dirs))
+	for(var/i=1 to length_char(dirs))
 		newdir = pick_n_take(dirs)
 		selection = get_step(src, newdir)
 		if(!selection.density)

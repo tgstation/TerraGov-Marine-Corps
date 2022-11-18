@@ -30,7 +30,7 @@
 		if(0) // --- Main Menu ---
 			dat += "<br>[temp]<br><br>"
 			dat += "<br>Current Network: <a href='?src=[REF(src)];network=1'>[network]</a><br>"
-			if(length(machinelist))
+			if(length_char(machinelist))
 				dat += "<br>Detected Network Entities:<ul>"
 				for(var/obj/machinery/telecomms/T in machinelist)
 					dat += "<li><a href='?src=[REF(src)];viewmachine=[T.id]'>[REF(T)] [T.name]</a> ([T.id])</li>"
@@ -77,23 +77,23 @@
 			if("mainmenu")
 				screen = 0
 			if("probe")
-				if(length(machinelist))
+				if(length_char(machinelist))
 					temp = "<font color = #f97c75>- FAILED: CANNOT PROBE WHEN BUFFER FULL -</font color>"
 				else
 					for(var/obj/machinery/telecomms/T in urange(25, src))
 						if(T.network == network)
 							LAZYADD(machinelist, T)
-					if(!length(machinelist))
+					if(!length_char(machinelist))
 						temp = "<font color = #f97c75>- FAILED: UNABLE TO LOCATE NETWORK ENTITIES IN \[[network]\] -</font color>"
 					else
-						temp = "<font color = #88bff7>- [length(machinelist)] ENTITIES LOCATED & BUFFERED -</font color>"
+						temp = "<font color = #88bff7>- [length_char(machinelist)] ENTITIES LOCATED & BUFFERED -</font color>"
 
 					screen = 0
 
 	else if(href_list["network"])
 		var/newnet = stripped_input(usr, "Which network do you want to view?", "Comm Monitor", network)
 		if(newnet && ((usr in range(1, src)) || issilicon(usr)))
-			if(length(newnet) > 15)
+			if(length_char(newnet) > 15)
 				temp = "<font color = #f97c75>- FAILED: NETWORK TAG STRING TOO LENGHTLY -</font color>"
 			else
 				network = newnet

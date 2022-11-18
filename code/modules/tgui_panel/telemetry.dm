@@ -53,7 +53,7 @@
 	if(!payload)
 		return
 	telemetry_connections = payload["connections"]
-	var/len = length(telemetry_connections)
+	var/len = length_char(telemetry_connections)
 	if(len == 0)
 		return
 	if(len > TGUI_TELEMETRY_MAX_CONNECTIONS)

@@ -3,7 +3,7 @@
 	var/targeted_by = null			// Used so cleanbots can't claim a mess.
 
 /obj/effect/decal/cleanable/Initialize()
-	if (random_icon_states && length(src.random_icon_states) > 0)
+	if (random_icon_states && length_char(src.random_icon_states) > 0)
 		src.icon_state = pick(src.random_icon_states)
 	return ..()
 

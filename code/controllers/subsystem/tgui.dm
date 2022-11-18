@@ -37,7 +37,7 @@ SUBSYSTEM_DEF(tgui)
 	close_all_uis()
 
 /datum/controller/subsystem/tgui/stat_entry(msg)
-	msg = "P:[length(open_uis)]"
+	msg = "P:[length_char(open_uis)]"
 	return ..()
 
 /datum/controller/subsystem/tgui/fire(resumed = FALSE)
@@ -254,7 +254,7 @@ SUBSYSTEM_DEF(tgui)
  */
 /datum/controller/subsystem/tgui/proc/update_user_uis(mob/user, datum/src_object)
 	var/count = 0
-	if(length(user?.tgui_open_uis) == 0)
+	if(length_char(user?.tgui_open_uis) == 0)
 		return count
 	for(var/datum/tgui/ui in user.tgui_open_uis)
 		if(isnull(src_object) || ui.src_object == src_object)
@@ -274,7 +274,7 @@ SUBSYSTEM_DEF(tgui)
  */
 /datum/controller/subsystem/tgui/proc/close_user_uis(mob/user, datum/src_object)
 	var/count = 0
-	if(length(user?.tgui_open_uis) == 0)
+	if(length_char(user?.tgui_open_uis) == 0)
 		return count
 	for(var/datum/tgui/ui in user.tgui_open_uis)
 		if(isnull(src_object) || ui.src_object == src_object)
@@ -318,7 +318,7 @@ SUBSYSTEM_DEF(tgui)
 		ui.user.tgui_open_uis.Remove(ui)
 	var/list/uis = open_uis_by_src[key]
 	uis.Remove(ui)
-	if(length(uis) == 0)
+	if(length_char(uis) == 0)
 		open_uis_by_src.Remove(key)
 	return TRUE
 
@@ -346,7 +346,7 @@ SUBSYSTEM_DEF(tgui)
  */
 /datum/controller/subsystem/tgui/proc/on_transfer(mob/source, mob/target)
 	// The old mob had no open UIs.
-	if(length(source?.tgui_open_uis) == 0)
+	if(length_char(source?.tgui_open_uis) == 0)
 		return FALSE
 	if(isnull(target.tgui_open_uis) || !istype(target.tgui_open_uis, /list))
 		target.tgui_open_uis = list()

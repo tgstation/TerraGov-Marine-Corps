@@ -202,9 +202,9 @@
 		GLOB.player_details[ckey] = player_details
 
 	. = ..()	//calls mob.Login()
-	if(length(GLOB.stickybanadminexemptions))
+	if(length_char(GLOB.stickybanadminexemptions))
 		GLOB.stickybanadminexemptions -= ckey
-		if (!length(GLOB.stickybanadminexemptions))
+		if (!length_char(GLOB.stickybanadminexemptions))
 			restore_stickybans()
 
 	if(SSinput.initialized)
@@ -308,8 +308,8 @@
 		var/datum/verbs/menu/topmenu = thing
 		var/topmenuname = "[topmenu]"
 		if(topmenuname == "[topmenu.type]")
-			var/list/tree = splittext(topmenuname, "/")
-			topmenuname = tree[length(tree)]
+			var/list/tree = splittext_char(topmenuname, "/")
+			topmenuname = tree[length_char(tree)]
 		winset(src, "[topmenu.type]", "parent=menu;name=[url_encode(topmenuname)]")
 		var/list/entries = topmenu.Generate_list(src)
 		for(var/child in entries)
@@ -365,7 +365,7 @@
 			message_staff("Mentor logout: [key_name(src)].")
 		holder.owner = null
 		GLOB.admins -= src
-		if (!length(GLOB.admins) && SSticker.IsRoundInProgress()) //Only report this stuff if we are currently playing.
+		if (!length_char(GLOB.admins) && SSticker.IsRoundInProgress()) //Only report this stuff if we are currently playing.
 			var/cheesy_message = pick(
 				"I have no admins online!",\
 				"I'm all alone :(",\
@@ -464,7 +464,7 @@
 #if (PRELOAD_RSC == 0)
 	var/static/next_external_rsc = 0
 	var/list/external_rsc_urls = CONFIG_GET(keyed_list/external_rsc_urls)
-	if(length(external_rsc_urls))
+	if(length_char(external_rsc_urls))
 		next_external_rsc = WRAP(next_external_rsc+1, 1, external_rsc_urls.len+1)
 		preload_rsc = external_rsc_urls[next_external_rsc]
 #endif
@@ -566,7 +566,7 @@
 			log_access(reject_message)
 			message_admins(span_adminnotice("[reject_message]"))
 			var/message = CONFIG_GET(string/panic_bunker_message)
-			message = replacetext(message, "%minutes%", living_recs)
+			message = replacetext_char(message, "%minutes%", living_recs)
 			to_chat(src, message)
 			var/list/connectiontopic_a = params2list(connectiontopic)
 			var/list/panic_addr = CONFIG_GET(string/panic_server_address)

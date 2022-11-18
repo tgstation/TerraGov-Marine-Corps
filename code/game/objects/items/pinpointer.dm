@@ -15,7 +15,7 @@
 	tracked_list = GLOB.xeno_critical_structure
 
 /obj/item/pinpointer/proc/set_target(mob/living/user)
-	if(!length(tracked_list))
+	if(!length_char(tracked_list))
 		to_chat(user, span_warning("No traceable signals found!"))
 		return
 	target = tgui_input_list(user, "Select the item you wish to track.", "Pinpointer", tracked_list)

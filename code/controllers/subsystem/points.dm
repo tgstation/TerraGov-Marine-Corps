@@ -93,7 +93,7 @@ SUBSYSTEM_DEF(points)
 	if(cost > supply_points[user.faction])
 		return
 	var/obj/docking_port/mobile/supply_shuttle = SSshuttle.getShuttle(SHUTTLE_SUPPLY)
-	if(length(shoppinglist[O.faction]) >= supply_shuttle.return_number_of_turfs())
+	if(length_char(shoppinglist[O.faction]) >= supply_shuttle.return_number_of_turfs())
 		return
 	requestlist -= "[O.id]"
 	deniedrequests -= "[O.id]"
@@ -152,7 +152,7 @@ SUBSYSTEM_DEF(points)
 		for(var/pack in access_packs[access])
 			AO.pack += pack
 
-	if(length(O.pack))
+	if(length_char(O.pack))
 		. += O
 	else
 		qdel(O)
@@ -165,7 +165,7 @@ SUBSYSTEM_DEF(points)
 	if(cost > supply_points[user.faction])
 		return
 	var/list/datum/supply_order/orders = process_cart(user, shopping_cart)
-	for(var/i in 1 to length(orders))
+	for(var/i in 1 to length_char(orders))
 		orders[i].authorised_by = user.real_name
 		LAZYADDASSOCSIMPLE(shoppinglist[user.faction], "[orders[i].id]", orders[i])
 	supply_points[user.faction] -= cost
@@ -173,16 +173,16 @@ SUBSYSTEM_DEF(points)
 
 /datum/controller/subsystem/points/proc/submit_request(mob/living/user, reason)
 	var/list/ckey_shopping_cart = request_shopping_cart[user.ckey]
-	if(!length(ckey_shopping_cart))
+	if(!length_char(ckey_shopping_cart))
 		return
-	if(length(ckey_shopping_cart) > 20)
+	if(length_char(ckey_shopping_cart) > 20)
 		return
 	if(NON_ASCII_CHECK(reason))
 		return
-	if(length(reason) > MAX_LENGTH_REQ_REASON)
-		reason = copytext(reason, 1, MAX_LENGTH_REQ_REASON)
+	if(length_char(reason) > MAX_LENGTH_REQ_REASON)
+		reason = copytext_char(reason, 1, MAX_LENGTH_REQ_REASON)
 	var/list/datum/supply_order/orders = process_cart(user, ckey_shopping_cart)
-	for(var/i in 1 to length(orders))
+	for(var/i in 1 to length_char(orders))
 		orders[i].reason = reason
 		requestlist["[orders[i].id]"] = orders[i]
 	ckey_shopping_cart.Cut()

@@ -40,7 +40,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 /proc/gib_stack_trace()
 	stack_trace_storage = list()
 	stack_trace()
-	stack_trace_storage.Cut(1, min(3, length(stack_trace_storage)))
+	stack_trace_storage.Cut(1, min(3, length_char(stack_trace_storage)))
 	. = stack_trace_storage
 	stack_trace_storage = null
 
@@ -219,10 +219,10 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 
 //Returns whether or not a player is a guest using their ckey as an input
 /proc/IsGuestKey(key)
-	if (findtext(key, "Guest-", 1, 7) != 1) //was findtextEx
+	if (findtext_char(key, "Guest-", 1, 7) != 1) //was findtextEx
 		return FALSE
 
-	var/i, ch, len = length(key)
+	var/i, ch, len = length_char(key)
 
 	for (i = 7, i <= len, ++i) //we know the first 6 chars are Guest-
 		ch = text2ascii(key, i)
@@ -497,7 +497,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 /atom/proc/GetAllContents()
 	. = list(src)
 	var/i = 0
-	while(i < length(.))
+	while(i < length_char(.))
 		var/atom/A = .[++i]
 		. += A.contents
 
@@ -505,7 +505,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 /atom/proc/get_all_contents_type(type)
 	var/list/processing_list = list(src)
 	. = list()
-	while(length(processing_list))
+	while(length_char(processing_list))
 		var/atom/A = processing_list[1]
 		processing_list.Cut(1, 2)
 		processing_list += A.contents
@@ -683,11 +683,11 @@ GLOBAL_LIST_INIT(common_tools, typecacheof(list(
 /proc/params2turf(scr_loc, turf/origin, client/C)
 	if(!scr_loc || !origin)
 		return
-	var/tX = splittext(scr_loc, ",")
-	var/tY = splittext(tX[2], ":")
+	var/tX = splittext_char(scr_loc, ",")
+	var/tY = splittext_char(tX[2], ":")
 	var/tZ = origin.z
 	tY = tY[1]
-	tX = splittext(tX[1], ":")
+	tX = splittext_char(tX[1], ":")
 	tX = tX[1]
 	var/list/actual_view = getviewsize(C ? C.view : WORLD_VIEW)
 	tX = clamp(origin.x + text2num(tX) - round(actual_view[1] * 0.5) + (round(C?.pixel_x / 32)) - 1, 1, world.maxx)
@@ -778,7 +778,7 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 	return FALSE
 
 /proc/format_text(text)
-	return replacetext(replacetext(text,"\proper ",""),"\improper ","")
+	return replacetext_char(replacetext_char(text,"\proper ",""),"\improper ","")
 
 ///Returns a string based on the weight class define used as argument
 /proc/weight_class_to_text(w_class)
@@ -859,7 +859,7 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 /world/proc/PushUsr(mob/M, datum/callback/CB, ...)
 	var/temp = usr
 	usr = M
-	if (length(args) > 2)
+	if (length_char(args) > 2)
 		. = CB.Invoke(arglist(args.Copy(3)))
 	else
 		. = CB.Invoke()
@@ -875,11 +875,11 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 	if(!isnull(value) && value != "")
 		matches = filter_fancy_list(matches, value)
 
-	if(!length(matches))
+	if(!length_char(matches))
 		return
 
 	var/chosen
-	if(length(matches) == 1)
+	if(length_char(matches) == 1)
 		chosen = matches[1]
 	else
 		chosen = input("Select a type", "Pick Type", matches[1]) as null|anything in matches
@@ -937,7 +937,7 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 
 // Bucket a value within boundary
 /proc/get_bucket(bucket_size, max, current, min = 0, list/boundary_terms)
-	if(length(boundary_terms) == 2)
+	if(length_char(boundary_terms) == 2)
 		if(current >= max)
 			return boundary_terms[1]
 		if(current < min)
@@ -947,7 +947,7 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 
 
 /atom/proc/GetAllContentsIgnoring(list/ignore_typecache)
-	if(!length(ignore_typecache))
+	if(!length_char(ignore_typecache))
 		return GetAllContents()
 	var/list/processing = list(src)
 	. = list()
@@ -1283,7 +1283,7 @@ GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))
 /proc/check_path(atom/start, atom/end, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE)
 	var/list/path_to_target = getline(start, end)
 	var/line_count = 1
-	while(line_count < length(path_to_target))
+	while(line_count < length_char(path_to_target))
 		if(LinkBlocked(path_to_target[line_count], path_to_target[line_count + 1], bypass_window, projectile, bypass_xeno))
 			return FALSE
 		line_count ++

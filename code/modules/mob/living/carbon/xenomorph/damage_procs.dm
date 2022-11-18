@@ -164,7 +164,7 @@
 		if(!decal) //Let's not stack blood, it just makes lagggggs.
 			add_splatter_floor(T) //Drop some on the ground first.
 		else
-			if(decal.random_icon_states && length(decal.random_icon_states) > 0) //If there's already one, just randomize it so it changes.
+			if(decal.random_icon_states && length_char(decal.random_icon_states) > 0) //If there's already one, just randomize it so it changes.
 				decal.icon_state = pick(decal.random_icon_states)
 
 		if(!(xeno_caste.caste_flags & CASTE_ACID_BLOOD))

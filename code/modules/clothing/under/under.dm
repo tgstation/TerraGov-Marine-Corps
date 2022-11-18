@@ -205,12 +205,12 @@
 		return
 	if(usr.stat)
 		return
-	if(!length(adjustment_variants))
+	if(!length_char(adjustment_variants))
 		to_chat(usr, span_warning("You cannot roll down the uniform!"))
 		return
 	var/variant = null
-	if(!current_variant || length(adjustment_variants) > 1)
-		if(length(adjustment_variants) == 1)
+	if(!current_variant || length_char(adjustment_variants) > 1)
+		if(length_char(adjustment_variants) == 1)
 			variant = adjustment_variants[1]
 		else
 			var/list/selection_list = list("Normal" = null)

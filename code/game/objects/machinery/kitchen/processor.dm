@@ -42,7 +42,7 @@
 		to_chat(user, span_warning("The processor is in the process of processing."))
 		return TRUE
 
-	if(length(contents))
+	if(length_char(contents))
 		to_chat(user, span_warning("Something is already in the processing chamber."))
 		return TRUE
 

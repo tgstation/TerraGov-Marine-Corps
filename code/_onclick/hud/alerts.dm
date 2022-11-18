@@ -174,7 +174,7 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 	if(!screenmob.client)
 		return
 	var/list/alerts = mymob.alerts
-	if(!length(alerts))
+	if(!length_char(alerts))
 		return FALSE
 	if(!hud_shown)
 		for(var/category in alerts)

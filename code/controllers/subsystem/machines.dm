@@ -26,7 +26,7 @@ SUBSYSTEM_DEF(machines)
 			propagate_network(PC,PC.powernet)
 
 /datum/controller/subsystem/machines/stat_entry()
-	..("PN:[length(powernets)]|PM:[length(processing)]")
+	..("PN:[length_char(powernets)]|PM:[length_char(processing)]")
 
 /datum/controller/subsystem/machines/fire(resumed = FALSE)
 	if (!resumed)
@@ -38,8 +38,8 @@ SUBSYSTEM_DEF(machines)
 	var/list/currentrun = src.currentrun
 
 	var/seconds = wait * 0.1
-	while(length(currentrun))
-		var/obj/machinery/thing = currentrun[length(currentrun)]
+	while(length_char(currentrun))
+		var/obj/machinery/thing = currentrun[length_char(currentrun)]
 		currentrun.len--
 		if(!QDELETED(thing) && thing.process(seconds) != PROCESS_KILL)
 			if(thing.use_power)

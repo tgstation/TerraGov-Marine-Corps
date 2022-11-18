@@ -16,7 +16,7 @@ SUBSYSTEM_DEF(mobs)
 	var/crate = 1
 
 /datum/controller/subsystem/mobs/stat_entry()
-	..("P:[length(processing)]")
+	..("P:[length_char(processing)]")
 
 /datum/controller/subsystem/mobs/proc/stop_processing(mob/living/L)
 	if(!CHECK_BITFIELD(L.datum_flags, DF_ISPROCESSING))
@@ -51,11 +51,11 @@ SUBSYSTEM_DEF(mobs)
 			var/most_idx = 1
 			var/least_idx = 1
 			for(var/i in 1 to 4)
-				if(length(crates[i]) > most)
-					most = length(crates[i])
+				if(length_char(crates[i]) > most)
+					most = length_char(crates[i])
 					most_idx = i
-				if(length(crates[i]) < least)
-					least = length(crates[i])
+				if(length_char(crates[i]) < least)
+					least = length_char(crates[i])
 					least_idx = i
 			if(least_idx != most_idx)
 				for(var/i in 1 to ((most-least)/2))

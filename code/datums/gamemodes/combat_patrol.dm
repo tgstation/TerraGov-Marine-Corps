@@ -72,9 +72,9 @@
 
 /datum/game_mode/combat_patrol/get_joinable_factions(should_look_balance)
 	if(should_look_balance)
-		if(length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) > length(GLOB.alive_human_list_faction[FACTION_SOM]) * MAX_UNBALANCED_RATIO_TWO_HUMAN_FACTIONS)
+		if(length_char(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) > length_char(GLOB.alive_human_list_faction[FACTION_SOM]) * MAX_UNBALANCED_RATIO_TWO_HUMAN_FACTIONS)
 			return list(FACTION_SOM)
-		if(length(GLOB.alive_human_list_faction[FACTION_SOM]) > length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) * MAX_UNBALANCED_RATIO_TWO_HUMAN_FACTIONS)
+		if(length_char(GLOB.alive_human_list_faction[FACTION_SOM]) > length_char(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) * MAX_UNBALANCED_RATIO_TWO_HUMAN_FACTIONS)
 			return list(FACTION_TERRAGOV)
 	return list(FACTION_TERRAGOV, FACTION_SOM)
 
@@ -145,8 +145,8 @@
 	var/list/player_list = count_humans(count_flags = COUNT_IGNORE_ALIVE_SSD)
 	var/list/som_list = player_list[1]
 	var/list/tgmc_list = player_list[2]
-	var/num_som = length(player_list[1])
-	var/num_tgmc = length(player_list[2])
+	var/num_som = length_char(player_list[1])
+	var/num_tgmc = length_char(player_list[2])
 	var/tgmc_location
 	var/som_location
 
@@ -243,10 +243,10 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 
 	///pulls the number of marines and SOM, both dead and alive
 	var/list/player_list = count_humans(count_flags = COUNT_IGNORE_ALIVE_SSD)
-	var/num_som = length(player_list[1])
-	var/num_tgmc = length(player_list[2])
-	var/num_dead_som = length(player_list[3])
-	var/num_dead_marines = length(player_list[4])
+	var/num_som = length_char(player_list[1])
+	var/num_tgmc = length_char(player_list[2])
+	var/num_dead_som = length_char(player_list[3])
+	var/num_dead_marines = length_char(player_list[4])
 
 	if(num_tgmc && num_som && !max_time_reached)
 		return //fighting is ongoing
@@ -286,7 +286,7 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 	to_chat(world, span_round_header("|[round_finished]|"))
 	to_chat(world, span_round_body("Thus ends the story of the brave men and women of both the TGMC and SOM, and their struggle on [SSmapping.configs[GROUND_MAP].map_name]."))
 
-	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal TGMC spawned: [GLOB.round_statistics.total_humans_created[FACTION_TERRAGOV]]\nTotal SOM spawned: [GLOB.round_statistics.total_humans_created[FACTION_SOM]]")
+	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length_char(GLOB.clients)]\nTotal TGMC spawned: [GLOB.round_statistics.total_humans_created[FACTION_TERRAGOV]]\nTotal SOM spawned: [GLOB.round_statistics.total_humans_created[FACTION_SOM]]")
 
 	announce_medal_awards()
 	announce_round_stats()

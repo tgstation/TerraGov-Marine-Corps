@@ -211,7 +211,7 @@
 			output += "</div></div>"
 		else
 			output += "</div></div><hr><a href='?_src_=holder;[HrefToken()];addpolloption=[REF(poll)]'>Add Option</a><br>"
-			if(length(poll.options))
+			if(length_char(poll.options))
 				for(var/o in poll.options)
 					var/datum/poll_option/option = o
 					option_count++
@@ -305,7 +305,7 @@
 				error_state += "Multiple choice options allowed cannot be negative."
 		else
 			error_state += "Multiple choice poll was selected but no number of allowed options was provided."
-	if(submit_ready && poll.poll_type != POLLTYPE_TEXT && !length(poll.options))
+	if(submit_ready && poll.poll_type != POLLTYPE_TEXT && !length_char(poll.options))
 		error_state += "This poll type requires at least one option."
 	if(error_state.len)
 		if(poll.edit_ready)
@@ -706,7 +706,7 @@
 		new /datum/poll_question(query_load_polls.item[1], query_load_polls.item[2], query_load_polls.item[3], query_load_polls.item[4], query_load_polls.item[5], query_load_polls.item[6], query_load_polls.item[7], query_load_polls.item[8], query_load_polls.item[9], query_load_polls.item[10], query_load_polls.item[11], query_load_polls.item[12], query_load_polls.item[13], TRUE)
 		poll_ids += query_load_polls.item[1]
 	qdel(query_load_polls)
-	if(length(poll_ids))
+	if(length_char(poll_ids))
 		var/datum/db_query/query_load_poll_options = SSdbcore.NewQuery("SELECT id, text, minval, maxval, descmin, descmid, descmax, default_percentage_calc, pollid FROM [format_table_name("poll_option")] WHERE pollid IN ([jointext(poll_ids, ",")])")
 		if(!query_load_poll_options.Execute())
 			qdel(query_load_poll_options)

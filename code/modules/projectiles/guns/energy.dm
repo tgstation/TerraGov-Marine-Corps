@@ -106,7 +106,7 @@
 		to_chat(user, "[icon2html(src, user)] You need an appropriate lens to enable overcharge mode.")
 		return
 	if(overcharge == FALSE)
-		if(!length(chamber_items))
+		if(!length_char(chamber_items))
 			playsound(user, 'sound/machines/buzz-two.ogg', 15, 0, 2)
 			to_chat(user, span_warning("You attempt to toggle on [src]'s overcharge mode but you have no battery loaded."))
 			return
@@ -326,7 +326,7 @@
 	to_chat(user, initial(choice.message_to_user))
 	user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 
-	if(!in_chamber || !length(chamber_items))
+	if(!in_chamber || !length_char(chamber_items))
 		return
 	QDEL_NULL(in_chamber)
 

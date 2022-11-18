@@ -259,7 +259,7 @@
 		for(var/atom/movable/AM AS in strafed)
 			AM.ex_act(EXPLODE_LIGHT)
 
-	if(length(strafelist))
+	if(length_char(strafelist))
 		addtimer(CALLBACK(src, .proc/strafe_turfs, strafelist), 2)
 
 
@@ -357,7 +357,7 @@
 /obj/structure/ship_ammo/laser_battery/proc/process_lazer(list/lazertargets)
 	laser_burn(lazertargets[1])
 	lazertargets -= lazertargets[1]
-	if(length(lazertargets))
+	if(length_char(lazertargets))
 		INVOKE_NEXT_TICK(src, .proc/process_lazer, lazertargets)
 
 ///Lazer ammo acts on the turf passed in

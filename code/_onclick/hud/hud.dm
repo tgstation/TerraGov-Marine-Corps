@@ -255,13 +255,13 @@
 
 ///Add an ammo hud to the user informing of the ammo count of ammo_owner
 /datum/hud/proc/add_ammo_hud(datum/ammo_owner, list/ammo_type, ammo_count)
-	if(length(ammo_hud_list) >= MAXHUD_POSSIBLE)
+	if(length_char(ammo_hud_list) >= MAXHUD_POSSIBLE)
 		return
 	if(ammo_hud_list[ammo_owner])
 		return
 	var/obj/screen/ammo/ammo_hud = new
 	ammo_hud_list[ammo_owner] = ammo_hud
-	ammo_hud.screen_loc = ammo_hud.ammo_screen_loc_list[length(ammo_hud_list)]
+	ammo_hud.screen_loc = ammo_hud.ammo_screen_loc_list[length_char(ammo_hud_list)]
 	ammo_hud.add_hud(mymob, ammo_owner)
 	ammo_hud.update_hud(mymob, ammo_type, ammo_count)
 

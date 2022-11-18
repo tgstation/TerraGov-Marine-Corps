@@ -35,10 +35,10 @@
 	if(!.)
 		return
 	//chance to go crazy and start wacking stuff
-	if(!length(enemies) && prob(1))
+	if(!length_char(enemies) && prob(1))
 		Retaliate()
 
-	if(length(enemies) && prob(10))
+	if(length_char(enemies) && prob(10))
 		enemies = list()
 		LoseTarget()
 		visible_message(span_notice("[src] calms down."))

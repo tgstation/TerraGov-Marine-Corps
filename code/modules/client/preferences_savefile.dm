@@ -437,11 +437,11 @@
 	preferred_slot	= sanitize_inlist(preferred_slot, SLOT_DRAW_ORDER, initial(preferred_slot))
 	preferred_slot_alt	= sanitize_inlist(preferred_slot_alt, SLOT_DRAW_ORDER, initial(preferred_slot_alt))
 	if(gender == MALE)
-		underwear		= sanitize_integer(underwear, 1, length(GLOB.underwear_m), initial(underwear))
+		underwear		= sanitize_integer(underwear, 1, length_char(GLOB.underwear_m), initial(underwear))
 	else
-		underwear		= sanitize_integer(underwear, 1, length(GLOB.underwear_f), initial(underwear))
-	undershirt		= sanitize_integer(undershirt, 1, length(GLOB.undershirt_t), initial(undershirt))
-	backpack		= sanitize_integer(backpack, 1, length(GLOB.backpacklist), initial(backpack))
+		underwear		= sanitize_integer(underwear, 1, length_char(GLOB.underwear_f), initial(underwear))
+	undershirt		= sanitize_integer(undershirt, 1, length_char(GLOB.undershirt_t), initial(undershirt))
+	backpack		= sanitize_integer(backpack, 1, length_char(GLOB.backpacklist), initial(backpack))
 
 	h_style			= sanitize_inlist(h_style, GLOB.hair_styles_list, initial(h_style))
 	r_hair			= sanitize_integer(r_hair, 0, 255, initial(r_hair))
@@ -520,11 +520,11 @@
 	preferred_slot	= sanitize_inlist(preferred_slot, SLOT_DRAW_ORDER, initial(preferred_slot))
 	preferred_slot_alt	= sanitize_inlist(preferred_slot_alt, SLOT_DRAW_ORDER, initial(preferred_slot_alt))
 	if(gender == MALE)
-		underwear		= sanitize_integer(underwear, 1, length(GLOB.underwear_m), initial(underwear))
+		underwear		= sanitize_integer(underwear, 1, length_char(GLOB.underwear_m), initial(underwear))
 	else
-		underwear		= sanitize_integer(underwear, 1, length(GLOB.underwear_f), initial(underwear))
-	undershirt		= sanitize_integer(undershirt, 1, length(GLOB.undershirt_t), initial(undershirt))
-	backpack		= sanitize_integer(backpack, 1, length(GLOB.backpacklist), initial(backpack))
+		underwear		= sanitize_integer(underwear, 1, length_char(GLOB.underwear_f), initial(underwear))
+	undershirt		= sanitize_integer(undershirt, 1, length_char(GLOB.undershirt_t), initial(undershirt))
+	backpack		= sanitize_integer(backpack, 1, length_char(GLOB.backpacklist), initial(backpack))
 
 	h_style			= sanitize_inlist(h_style, GLOB.hair_styles_list, initial(h_style))
 	r_hair			= sanitize_integer(r_hair, 0, 255, initial(r_hair))

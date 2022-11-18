@@ -56,7 +56,7 @@
 		"x_coords" = supply_beacon?.drop_location.x,
 		"y_coords" = supply_beacon?.drop_location.y
 	)
-	.["supplies_count"] = length(supplies)
+	.["supplies_count"] = length_char(supplies)
 	.["next_fire"] = COOLDOWN_TIMELEFT(src, next_fire)
 	.["x_offset"] = x_offset
 	.["y_offset"] = y_offset
@@ -98,7 +98,7 @@
 				to_chat(usr, "[icon2html(src, usr)] [span_warning("There was an issue with that beacon. Check it's still active.")]")
 				return
 
-			if(!length(supplies))
+			if(!length_char(supplies))
 				to_chat(usr, "[icon2html(src, usr)] [span_warning("There wasn't any supplies found on the squads supply pad. Double check the pad.")]")
 				return
 
@@ -135,8 +135,8 @@
 		stack_trace("Trying to send a supply drop without a supply beacon")
 		return
 
-	if(!length(supplies) || length(supplies) > MAX_SUPPLY_DROPS)
-		stack_trace("Trying to send a supply drop with an invalid amount of items [length(supplies)]")
+	if(!length_char(supplies) || length_char(supplies) > MAX_SUPPLY_DROPS)
+		stack_trace("Trying to send a supply drop with an invalid amount of items [length_char(supplies)]")
 		return
 
 	if(!istype(supply_beacon.drop_location) || isspaceturf(supply_beacon.drop_location) || supply_beacon.drop_location.density)

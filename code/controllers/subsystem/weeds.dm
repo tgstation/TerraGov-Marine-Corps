@@ -12,7 +12,7 @@ SUBSYSTEM_DEF(weeds)
 	var/list/spawn_attempts_by_node = list()
 
 /datum/controller/subsystem/weeds/stat_entry()
-	return ..("Nodes: [length(pending)]")
+	return ..("Nodes: [length_char(pending)]")
 
 /datum/controller/subsystem/weeds/fire(resumed = FALSE)
 	if(!resumed)

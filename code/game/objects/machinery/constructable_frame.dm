@@ -98,7 +98,7 @@
 				state = 2
 				circuit.forceMove(loc)
 				circuit = null
-				if(!length(components))
+				if(!length_char(components))
 					to_chat(user, span_notice("You remove the circuit board."))
 				else
 					to_chat(user, span_notice("You remove the circuit board and other components."))

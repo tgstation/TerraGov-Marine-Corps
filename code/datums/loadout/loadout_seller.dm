@@ -58,7 +58,7 @@
 		id.marine_buy_choices[category] = min(buying_choices_left[category], id.marine_buy_choices[category])
 	id.marine_points = available_points
 	do_equip_loadout(user)
-	if(length(unique_items_list))
+	if(length_char(unique_items_list))
 		id.marine_buy_choices[CAT_ESS] = 0
 		sell_rest_of_essential_kit(loadout, user)
 

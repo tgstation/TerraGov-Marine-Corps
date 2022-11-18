@@ -41,9 +41,9 @@
 		return FALSE
 	if(players_amt < min_players)
 		return FALSE
-	if(length(gamemode_blacklist) && (gamemode in gamemode_blacklist))
+	if(length_char(gamemode_blacklist) && (gamemode in gamemode_blacklist))
 		return FALSE
-	if(length(gamemode_whitelist) && !(gamemode in gamemode_whitelist))
+	if(length_char(gamemode_whitelist) && !(gamemode in gamemode_whitelist))
 		return FALSE
 	return TRUE
 

@@ -72,7 +72,7 @@
 		return
 
 	if(accept_check(I))
-		if(length(contents) >= max_n_of_items)
+		if(length_char(contents) >= max_n_of_items)
 			to_chat(user, span_notice("\The [src] is full."))
 			return TRUE
 		else if(!user.drop_held_item())
@@ -111,7 +111,7 @@
 			user.visible_message(span_notice("[user] loads \the [src] with \the [P]."), \
 				span_notice("You load \the [src] with \the [P]."))
 
-			if(length(P.contents) > 0)
+			if(length_char(P.contents) > 0)
 				to_chat(user, span_notice("Some items are refused."))
 
 		updateUsrDialog()

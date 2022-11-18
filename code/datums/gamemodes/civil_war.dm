@@ -88,9 +88,9 @@
 
 /datum/game_mode/civil_war/get_joinable_factions(should_look_balance)
 	if(should_look_balance)
-		if(length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) > length(GLOB.alive_human_list_faction[FACTION_TERRAGOV_REBEL]) * MAX_UNBALANCED_RATIO_TWO_HUMAN_FACTIONS)
+		if(length_char(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) > length_char(GLOB.alive_human_list_faction[FACTION_TERRAGOV_REBEL]) * MAX_UNBALANCED_RATIO_TWO_HUMAN_FACTIONS)
 			return list(FACTION_TERRAGOV_REBEL)
-		if(length(GLOB.alive_human_list_faction[FACTION_TERRAGOV_REBEL]) > length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) * MAX_UNBALANCED_RATIO_TWO_HUMAN_FACTIONS)
+		if(length_char(GLOB.alive_human_list_faction[FACTION_TERRAGOV_REBEL]) > length_char(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) * MAX_UNBALANCED_RATIO_TWO_HUMAN_FACTIONS)
 			return list(FACTION_TERRAGOV)
 	return list(FACTION_TERRAGOV, FACTION_TERRAGOV_REBEL)
 
@@ -124,7 +124,7 @@
 	to_chat(world, span_round_header("|[round_finished]|"))
 	to_chat(world, span_round_body("Thus ends the story of the brave men and women of the [SSmapping.configs[SHIP_MAP].map_name] and their struggle on [SSmapping.configs[GROUND_MAP].map_name]."))
 
-	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal xenos spawned: [GLOB.round_statistics.total_xenos_created]\nTotal humans spawned: [GLOB.round_statistics.total_humans_created]")
+	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length_char(GLOB.clients)]\nTotal xenos spawned: [GLOB.round_statistics.total_xenos_created]\nTotal humans spawned: [GLOB.round_statistics.total_humans_created]")
 
 	announce_medal_awards()
 	announce_round_stats()

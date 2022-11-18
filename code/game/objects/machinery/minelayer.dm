@@ -42,7 +42,7 @@
 
 ///this proc is used to check for valid turfs and throw mines
 /obj/machinery/deployable/minelayer/proc/throw_mine(list/turf/list_of_turfs)
-	if(!stored_amount > 0 || !length(list_of_turfs))
+	if(!stored_amount > 0 || !length_char(list_of_turfs))
 		playsound(loc, 'sound/machines/twobeep.ogg', 25, 1)
 		return
 	var/turf/target_turf = pick_n_take(list_of_turfs)

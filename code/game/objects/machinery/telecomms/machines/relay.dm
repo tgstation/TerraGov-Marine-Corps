@@ -54,7 +54,7 @@
 
 /obj/machinery/telecomms/relay/Initialize(mapload)
 	. = ..()
-	if(length(autolinkers)) //We want lateloaded presets to autolink (lateloaded aways/ruins/shuttles)
+	if(length_char(autolinkers)) //We want lateloaded presets to autolink (lateloaded aways/ruins/shuttles)
 		return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/telecomms/relay/preset/station

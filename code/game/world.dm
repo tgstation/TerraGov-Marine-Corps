@@ -87,7 +87,7 @@ GLOBAL_VAR(restart_counter)
 		if(GLOB.round_id)
 			GLOB.log_directory += "[GLOB.round_id]"
 		else
-			var/timestamp = replacetext(time_stamp(), ":", ".")
+			var/timestamp = replacetext_char(time_stamp(), ":", ".")
 			GLOB.log_directory += "[timestamp]"
 	else
 		GLOB.log_directory = "data/logs/[override_dir]"
@@ -149,9 +149,9 @@ GLOBAL_VAR(restart_counter)
 		return
 
 	var/list/filtering_whitelist = CONFIG_GET(keyed_list/topic_filtering_whitelist)
-	var/host = splittext(addr, ":")
+	var/host = splittext_char(addr, ":")
 	if(!filtering_whitelist[host[1]]) // We only ever check the host, not the port (if provided)
-		if(length(T) >= MAX_TOPIC_LEN)
+		if(length_char(T) >= MAX_TOPIC_LEN)
 			log_admin_private("[addr] banned from topic calls for a round for too long status message")
 			bannedsourceaddrs[addr] = TOPIC_BANNED
 			return
@@ -214,7 +214,7 @@ GLOBAL_VAR(restart_counter)
 		var/datum/map_config/next_gound_map
 		var/datum/map_config/next_ship_map
 
-		if(length(SSmapping.next_map_configs)) //To avoid a bad index, let's check if there's actually a list.
+		if(length_char(SSmapping.next_map_configs)) //To avoid a bad index, let's check if there's actually a list.
 			next_gound_map = SSmapping.next_map_configs[GROUND_MAP]
 			next_ship_map = SSmapping.next_map_configs[SHIP_MAP]
 
@@ -232,10 +232,10 @@ GLOBAL_VAR(restart_counter)
 			msg += "Game Mode: [SSticker.mode.name]"
 			msg += "Round End State: [SSticker.mode.round_finished]"
 
-		if(length(GLOB.clients))
-			msg += "Players: [length(GLOB.clients)]"
+		if(length_char(GLOB.clients))
+			msg += "Players: [length_char(GLOB.clients)]"
 
-		if(length(msg))
+		if(length_char(msg))
 			send2chat(msg.Join(" | "), CONFIG_GET(string/end_of_round_channel))
 
 	Master.Shutdown()
@@ -307,9 +307,9 @@ GLOBAL_VAR(restart_counter)
 	*/
 	var/discord_url = CONFIG_GET(string/discordurl)
 	var/webmap_host = CONFIG_GET(string/webmap_host)
-	var/shipname = length(SSmapping?.configs) && SSmapping.configs[SHIP_MAP] ? SSmapping.configs[SHIP_MAP].map_name : "Lost in space..."
-	var/map_name = length(SSmapping.configs) && SSmapping.configs[GROUND_MAP] ? SSmapping.configs[GROUND_MAP].map_name : "Loading..."
-	var/ground_map_file = length(SSmapping.configs) && SSmapping.configs[GROUND_MAP] ? SSmapping.configs[GROUND_MAP].map_file : ""
+	var/shipname = length_char(SSmapping?.configs) && SSmapping.configs[SHIP_MAP] ? SSmapping.configs[SHIP_MAP].map_name : "Lost in space..."
+	var/map_name = length_char(SSmapping.configs) && SSmapping.configs[GROUND_MAP] ? SSmapping.configs[GROUND_MAP].map_name : "Loading..."
+	var/ground_map_file = length_char(SSmapping.configs) && SSmapping.configs[GROUND_MAP] ? SSmapping.configs[GROUND_MAP].map_file : ""
 
 	var/new_status = ""
 	new_status += "<b><a href='[discord_url ? discord_url : "#"]'>[server_name] &#8212; [shipname]</a></b>"

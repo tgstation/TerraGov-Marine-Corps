@@ -37,7 +37,7 @@
 		qdel(src)
 		return
 
-	if(length(keys_held) >= HELD_KEY_BUFFER_LENGTH && !keys_held[_key])
+	if(length_char(keys_held) >= HELD_KEY_BUFFER_LENGTH && !keys_held[_key])
 		keyUp(keys_held[1]) //We are going over the number of possible held keys, so let's remove the first one.
 
 	//the time a key was pressed isn't actually used anywhere (as of 2019-9-10) but this allows easier access usage/checking
@@ -79,7 +79,7 @@
 	set instant = TRUE
 	set hidden = TRUE
 
-	for(var/i in 1 to length(keys_held))
+	for(var/i in 1 to length_char(keys_held))
 		if(keys_held[i] == _key)
 			keys_held[i] = null
 			break

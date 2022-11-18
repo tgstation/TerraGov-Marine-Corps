@@ -68,21 +68,21 @@ SUBSYSTEM_DEF(vote)
 		if(votes > greatest_votes)
 			greatest_votes = votes
 	//default-vote for everyone who didn't vote
-	if(!CONFIG_GET(flag/default_no_vote) && length(choices))
+	if(!CONFIG_GET(flag/default_no_vote) && length_char(choices))
 		var/list/non_voters = GLOB.directory.Copy()
 		non_voters -= voted
 		for (var/non_voter_ckey in non_voters)
 			var/client/C = non_voters[non_voter_ckey]
 			if(!C || C.is_afk())
 				non_voters -= non_voter_ckey
-		if(length(non_voters) > 0)
+		if(length_char(non_voters) > 0)
 			if(mode == "restart")
-				choices["Continue Playing"] += length(non_voters)
+				choices["Continue Playing"] += length_char(non_voters)
 				if(choices["Continue Playing"] >= greatest_votes)
 					greatest_votes = choices["Continue Playing"]
 			else if(mode == "gamemode")
 				if(GLOB.master_mode in choices)
-					choices[GLOB.master_mode] += length(non_voters)
+					choices[GLOB.master_mode] += length_char(non_voters)
 					if(choices[GLOB.master_mode] >= greatest_votes)
 						greatest_votes = choices[GLOB.master_mode]
 	. = list()
@@ -96,25 +96,25 @@ SUBSYSTEM_DEF(vote)
 /datum/controller/subsystem/vote/proc/announce_result()
 	var/list/winners = get_result()
 	var/text
-	if(length(winners) > 0)
+	if(length_char(winners) > 0)
 		if(question)
 			text += "<b>[question]</b>"
 		else
 			text += "<b>[capitalize(mode)] Vote</b>"
-		for(var/i = 1 to length(choices))
+		for(var/i = 1 to length_char(choices))
 			var/votes = choices[choices[i]]
 			if(!votes)
 				votes = 0
 			text += "\n<b>[choices[i]]:</b> [votes]"
 		if(mode != "custom")
-			if(length(winners) > 1)
+			if(length_char(winners) > 1)
 				text = "\n<b>Vote Tied Between:</b>"
 				for(var/option in winners)
 					text += "\n\t[option]"
 			. = pick(winners)
 			text += "\n<b>Vote Result: [.]</b>"
 		else
-			text += "\n<b>Did not vote:</b> [length(GLOB.clients) - length(voted)]"
+			text += "\n<b>Did not vote:</b> [length_char(GLOB.clients) - length_char(voted)]"
 	else
 		text += "<b>Vote Result: Inconclusive - No Votes!</b>"
 	log_vote(text)
@@ -191,7 +191,7 @@ SUBSYSTEM_DEF(vote)
 		return
 	if(CONFIG_GET(flag/no_dead_vote) && usr.stat == DEAD && !usr.client.holder)
 		return
-	if(!vote || vote < 1 || vote > length(choices))
+	if(!vote || vote < 1 || vote > length_char(choices))
 		return
 	if(!(usr.ckey in voted))
 		choices_by_ckey[usr.ckey] = list(vote)
@@ -242,7 +242,7 @@ SUBSYSTEM_DEF(vote)
 			if("gamemode")
 				multiple_vote = TRUE
 				for(var/datum/game_mode/mode AS in config.votable_modes)
-					var/players = length(GLOB.clients)
+					var/players = length_char(GLOB.clients)
 					if(mode.time_between_round && (world.realtime - SSpersistence.last_modes_round_date[mode.name]) < mode.time_between_round)
 						continue
 					if(players > mode.maximum_players)
@@ -270,7 +270,7 @@ SUBSYSTEM_DEF(vote)
 						if(VM.map_name in next_gamemode.blacklist_ground_maps)
 							continue
 					if(VM.config_max_users || VM.config_min_users)
-						var/players = length(GLOB.clients)
+						var/players = length_char(GLOB.clients)
 						if(VM.config_max_users && players > VM.config_max_users)
 							continue
 						if(VM.config_min_users && players < VM.config_min_users)
@@ -299,7 +299,7 @@ SUBSYSTEM_DEF(vote)
 						if(VM.map_name in next_gamemode.blacklist_ship_maps)
 							continue
 					if(VM.config_max_users || VM.config_min_users)
-						var/players = length(GLOB.clients)
+						var/players = length_char(GLOB.clients)
 						if(VM.config_max_users && players > VM.config_max_users)
 							continue
 						if(VM.config_min_users && players < VM.config_min_users)
@@ -320,16 +320,16 @@ SUBSYSTEM_DEF(vote)
 				multiple_vote = tgui_alert(usr, "Allow multiple voting?", "Multiple voting", list("Yes", "No")) == "Yes" ? TRUE : FALSE
 			else
 				return FALSE
-		if(!length(choices))
+		if(!length_char(choices))
 			to_chat(usr, span_warning("No choices available for that vote"))
 			reset()
 			return FALSE
 		mode = vote_type
-		if(length(choices) == 1)
+		if(length_char(choices) == 1)
 			result(choices[1])
 			reset()
 			return FALSE
-		if(length(choices) == 2)
+		if(length_char(choices) == 2)
 			multiple_vote = FALSE
 		initiator = initiator_key
 		started_time = world.time

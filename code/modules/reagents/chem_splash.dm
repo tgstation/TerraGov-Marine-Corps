@@ -6,7 +6,7 @@
 
 
 /proc/chem_splash(turf/epicenter, affected_range = 3, list/datum/reagents/reactants = list(), extra_heat = 0, threatscale = 1)
-	if(!isturf(epicenter) || !length(reactants) || threatscale <= 0)
+	if(!isturf(epicenter) || !length_char(reactants) || threatscale <= 0)
 		return
 	var/has_reagents
 	var/total_reagents
@@ -26,7 +26,7 @@
 		R.trans_to(splash_holder, R.total_volume, threatscale, 1, 1)
 		total_temp += R.chem_temp
 
-	splash_holder.chem_temp = (total_temp / length(reactants)) + extra_heat // Average temperature of reagents + extra heat.
+	splash_holder.chem_temp = (total_temp / length_char(reactants)) + extra_heat // Average temperature of reagents + extra heat.
 	splash_holder.handle_reactions() // React them now.
 
 	if(splash_holder.total_volume && affected_range >= 0)	//The possible reactions didnt use up all reagents, so we spread it around.
@@ -64,7 +64,7 @@
 					continue
 				reactable |= A
 
-		if(!length(reactable)) //Nothing to react with. Probably means we're in nullspace.
+		if(!length_char(reactable)) //Nothing to react with. Probably means we're in nullspace.
 			return
 
 		for(var/thing in reactable)

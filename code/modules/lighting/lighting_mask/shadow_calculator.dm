@@ -573,9 +573,9 @@
 //Input: Group list(list(list(x,y), list(x,y)), list(list(x, y)))
 //Output: Coordinates list(list(left, bottom), list(right, top))
 /atom/movable/lighting_mask/proc/calculate_corners_in_group(list/group)
-	if(length(group) == 0)
+	if(length_char(group) == 0)
 		CRASH("Calculate_corners_in_group called on a group of length 0. Critical error.")
-	if(length(group) == 1)
+	if(length_char(group) == 1)
 		var/x = group[1][1]
 		var/y = group[1][2]
 		return list(
@@ -633,10 +633,10 @@
 		var/list/y_components = ungrouped_things[x_key]
 		var/pointer = y_components[1]
 		var/list/group = list(list(text2num(x_key), y_components[1]))
-		for(var/i in 2 to length(y_components))
+		for(var/i in 2 to length_char(y_components))
 			var/next = y_components[i]
 			if(next != pointer + 1)
-				if(length(group) == 1)
+				if(length_char(group) == 1)
 					//Add the element in group to horizontal
 					COORD_LIST_ADD(horizontal_atoms, pointer, text2num(x_key))
 					DEBUG_HIGHLIGHT(text2num(x_key), pointer, "#FFFF00")
@@ -647,7 +647,7 @@
 			group += list(list(text2num(x_key), next))
 			DEBUG_HIGHLIGHT(text2num(x_key), next, "#FF0000")
 			pointer = next
-		if(length(group) == 1)
+		if(length_char(group) == 1)
 			//Add the element in group to horizontal
 			COORD_LIST_ADD(horizontal_atoms, pointer, text2num(x_key))
 			DEBUG_HIGHLIGHT(text2num(x_key), pointer, "#FFFF00")
@@ -660,7 +660,7 @@
 		var/list/x_components = horizontal_atoms[y_key]
 		var/pointer = x_components[1]
 		var/list/group = list(list(x_components[1], text2num(y_key)))
-		for(var/i in 2 to length(x_components))
+		for(var/i in 2 to length_char(x_components))
 			var/next = x_components[i]
 			if(next != pointer + 1)
 				. += list(group)

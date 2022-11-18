@@ -46,7 +46,7 @@ GLOBAL_DATUM_INIT(sortInstance, /datum/sortInstance, new())
 
 	//March over the array finding natural runs
 	//Extend any short natural runs to runs of length minRun
-	var/minRun = minRunLength(remaining)
+	var/minRun = minRunlength_char(remaining)
 
 	do
 			//identify next run
@@ -167,7 +167,7 @@ reverse a descending sequence without violating stability.
 
 //Returns the minimum acceptable run length for an array of the specified length.
 //Natural runs shorter than this will be extended with binarySort
-/datum/sortInstance/proc/minRunLength(n)
+/datum/sortInstance/proc/minRunlength_char(n)
 	//ASSERT(n >= 0)
 	var/r = 0	//becomes 1 if any bits are shifted off
 	while(n >= MIN_MERGE)
@@ -578,7 +578,7 @@ reverse a descending sequence without violating stability.
 		binarySort(start, end, start/*+initRunLen*/)
 		return
 
-	var/minRun = minRunLength(remaining)
+	var/minRun = minRunlength_char(remaining)
 
 	do
 		var/runLen = (remaining <= minRun) ? remaining : minRun

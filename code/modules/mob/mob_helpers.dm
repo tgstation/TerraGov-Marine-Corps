@@ -137,10 +137,10 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 	if(probability <= 0)
 		return phrase
 	phrase = html_decode(phrase)
-	var/leng = length(phrase)
+	var/leng = length_char(phrase)
 	. = ""
 	var/char = ""
-	for(var/i = 1, i <= leng, i += length(char))
+	for(var/i = 1, i <= leng, i += length_char(char))
 		char = phrase[i]
 		if(char == " " || !prob(probability))
 			. += char
@@ -154,11 +154,11 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
  */
 /proc/slur(phrase)
 	phrase = html_decode(phrase)
-	var/leng = length(phrase)
+	var/leng = length_char(phrase)
 	. = ""
 	var/newletter = ""
 	var/rawchar = ""
-	for(var/i = 1, i <= leng, i += length(rawchar))
+	for(var/i = 1, i <= leng, i += length_char(rawchar))
 		rawchar = newletter = phrase[i]
 		if(rand(1, 3) == 3)
 			var/lowerletter = lowertext(newletter)
@@ -185,11 +185,11 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 ///Adds stuttering to the message passed in, todo remove, deprecated
 /proc/stutter(phrase)
 	phrase = html_decode(phrase)
-	var/leng = length(phrase)
+	var/leng = length_char(phrase)
 	. = ""
 	var/newletter = ""
 	var/rawchar
-	for(var/i = 1, i <= leng, i += length(rawchar))
+	for(var/i = 1, i <= leng, i += length_char(rawchar))
 		rawchar = newletter = phrase[i]
 		if(prob(80) && !(lowertext(newletter) in list("a", "e", "i", "o", "u", " ")))
 			if(prob(10))
@@ -212,8 +212,8 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 	. = ""
 	var/rawchar = ""
 	var/letter = ""
-	var/lentext = length(text)
-	for(var/i = 1, i <= lentext, i += length(rawchar))
+	var/lentext = length_char(text)
+	for(var/i = 1, i <= lentext, i += length_char(rawchar))
 		rawchar = letter = text[i]
 		if(prob(chance))
 			if(replace_characters)
@@ -357,7 +357,7 @@ mob/proc/get_standard_bodytemperature()
 	return BODYTEMP_NORMAL
 
 /mob/log_message(message, message_type, color=null, log_globally = TRUE)
-	if(!length(message))
+	if(!length_char(message))
 		stack_trace("Empty message")
 		return
 
@@ -378,7 +378,7 @@ mob/proc/get_standard_bodytemperature()
 		else
 			colored_message = "<font color='[color]'>[message]</font>"
 
-	var/list/timestamped_message = list("[length(logging[smessage_type]) + 1]\[[stationTimestamp()]\] [key_name(src)] [loc_name(src)]" = colored_message)
+	var/list/timestamped_message = list("[length_char(logging[smessage_type]) + 1]\[[stationTimestamp()]\] [key_name(src)] [loc_name(src)]" = colored_message)
 
 	logging[smessage_type] += timestamped_message
 

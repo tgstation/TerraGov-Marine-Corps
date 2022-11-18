@@ -132,7 +132,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	return ..()
 
 /obj/docking_port/mobile/supply/proc/buy(mob/user)
-	if(!length(SSpoints.shoppinglist[faction]))
+	if(!length_char(SSpoints.shoppinglist[faction]))
 		return
 	log_game("Supply pack orders have been purchased by [key_name(user)]")
 
@@ -162,7 +162,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		var/obj/item/paper/manifest/slip = new /obj/item/paper/manifest(A)
 		slip.info = "<h3>Automatic Storage Retrieval Manifest</h3><hr><br>"
 		slip.info +="Order #[SO.id]<br>"
-		slip.info +="[length(SO.pack)] PACKAGES IN THIS SHIPMENT<br>"
+		slip.info +="[length_char(SO.pack)] PACKAGES IN THIS SHIPMENT<br>"
 		slip.info +="CONTENTS:<br><ul>"
 		slip.update_icon()
 
@@ -176,7 +176,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 				A.req_access += text2num(SP.access)
 
 			if(SP.randomised_num_contained)
-				if(length(SP.contains))
+				if(length_char(SP.contains))
 					for(var/j in 1 to SP.randomised_num_contained)
 						contains += pick(SP.contains)
 			else
@@ -365,7 +365,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 			cost += SP.cost
 		.["requests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
 	.["deniedrequests"] = list()
-	for(var/i in length(SSpoints.deniedrequests) to 1 step -1)
+	for(var/i in length_char(SSpoints.deniedrequests) to 1 step -1)
 		var/datum/supply_order/SO = SSpoints.deniedrequests[SSpoints.deniedrequests[i]]
 		if(SO.faction != user.faction)
 			continue
@@ -377,7 +377,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 			cost += SP.cost
 		.["deniedrequests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
 	.["approvedrequests"] = list()
-	for(var/i in length(SSpoints.approvedrequests) to 1 step -1)
+	for(var/i in length_char(SSpoints.approvedrequests) to 1 step -1)
 		var/datum/supply_order/SO = SSpoints.approvedrequests[SSpoints.approvedrequests[i]]
 		if(SO.faction != user.faction)
 			continue
@@ -561,7 +561,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 			cost += SP.cost
 		.["requests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
 	.["deniedrequests"] = list()
-	for(var/i in length(SSpoints.deniedrequests) to 1 step -1)
+	for(var/i in length_char(SSpoints.deniedrequests) to 1 step -1)
 		var/datum/supply_order/SO = SSpoints.deniedrequests[SSpoints.deniedrequests[i]]
 		if(SO.faction != user.faction)
 			continue
@@ -573,7 +573,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 			cost += SP.cost
 		.["deniedrequests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
 	.["approvedrequests"] = list()
-	for(var/i in length(SSpoints.approvedrequests) to 1 step -1)
+	for(var/i in length_char(SSpoints.approvedrequests) to 1 step -1)
 		var/datum/supply_order/SO = SSpoints.approvedrequests[SSpoints.approvedrequests[i]]
 		if(SO.faction != user.faction)
 			continue

@@ -168,7 +168,7 @@ round(cos_inv_third+sqrt3_sin, 0.001), round(cos_inv_third-sqrt3_sin, 0.001), ro
 /proc/color_matrix_add(list/A, list/B)
 	if(!istype(A) || !istype(B))
 		return color_matrix_identity()
-	if(length(A) != 20 || length(B) != 20)
+	if(length_char(A) != 20 || length_char(B) != 20)
 		return color_matrix_identity()
 	var/list/output = list()
 	output.len = 20
@@ -181,7 +181,7 @@ round(cos_inv_third+sqrt3_sin, 0.001), round(cos_inv_third-sqrt3_sin, 0.001), ro
 /proc/color_matrix_multiply(list/A, list/B)
 	if(!istype(A) || !istype(B))
 		return color_matrix_identity()
-	if(length(A) != 20 || length(B) != 20)
+	if(length_char(A) != 20 || length_char(B) != 20)
 		return color_matrix_identity()
 	var/list/output = list()
 	output.len = 20

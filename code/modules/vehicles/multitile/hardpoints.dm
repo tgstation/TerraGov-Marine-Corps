@@ -131,7 +131,7 @@ Currently only has the tank hardpoints
 	if(!max_clips)
 		to_chat(user, span_warning("This module does not have room for additional ammo."))
 		return FALSE
-	else if(length(backup_clips) >= max_clips)
+	else if(length_char(backup_clips) >= max_clips)
 		to_chat(user, span_warning("The reloader is full."))
 		return FALSE
 	else if(!istype(A, starter_ammo))
@@ -332,7 +332,7 @@ Currently only has the tank hardpoints
 	if(chained <= 0)
 		chained = 1
 
-	next_use = world.time + (chained > length(chain_delays) ? 0.5 : chain_delays[chained]) * owner.misc_ratios["prim_cool"]
+	next_use = world.time + (chained > length_char(chain_delays) ? 0.5 : chain_delays[chained]) * owner.misc_ratios["prim_cool"]
 	if(!prob(owner.accuracies["primary"] * 100 * owner.misc_ratios["prim_acc"]))
 		A = get_step(A, pick(GLOB.cardinals))
 	var/obj/projectile/P = new

@@ -28,7 +28,7 @@
 	. = ..()
 	attachments_allowed = string_list(attachments_allowed)
 	starting_attachments = string_list(starting_attachments)
-	if(!length(attachments_allowed) || !length(attachments_by_slot))
+	if(!length_char(attachments_allowed) || !length_char(attachments_by_slot))
 		return
 	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachments_allowed, attachment_offsets, starting_attachments, null, null, null)
 

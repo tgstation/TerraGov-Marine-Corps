@@ -99,7 +99,7 @@
 
 /obj/machinery/computer/proc/decode(text)
 	// Adds line breaks
-	text = replacetext(text, "\n", "<BR>")
+	text = replacetext_char(text, "\n", "<BR>")
 	return text
 
 /obj/machinery/computer/welder_act(mob/living/user, obj/item/I)

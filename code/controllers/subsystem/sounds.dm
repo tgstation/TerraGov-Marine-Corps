@@ -35,7 +35,7 @@ SUBSYSTEM_DEF(sounds)
 	for(var/i in 1 to using_channels_max)
 		channel_list += i
 	channel_random_low = 1
-	channel_reserve_high = length(channel_list)
+	channel_reserve_high = length_char(channel_list)
 
 /// Removes a channel from using list.
 /datum/controller/subsystem/sounds/proc/free_sound_channel(channel)
@@ -44,7 +44,7 @@ SUBSYSTEM_DEF(sounds)
 	using_channels -= text_channel
 	if(using != TRUE)		// datum channel
 		using_channels_by_datum[using] -= channel
-		if(!length(using_channels_by_datum[using]))
+		if(!length_char(using_channels_by_datum[using]))
 			using_channels_by_datum -= using
 	free_channel(channel)
 
@@ -130,6 +130,6 @@ SUBSYSTEM_DEF(sounds)
 
 /// How many channels we have left.
 /datum/controller/subsystem/sounds/proc/available_channels_left()
-	return length(channel_list) - random_channels_min
+	return length_char(channel_list) - random_channels_min
 
 #undef DATUMLESS

@@ -113,7 +113,7 @@
 		if(C.c_tag == "Unknown")
 			continue // dropped headsets havee an unknown tag
 		var/list/tempnetwork = C.network & network
-		if(length(tempnetwork))
+		if(length_char(tempnetwork))
 			valid_cams["[C.c_tag]"] = C
 	return valid_cams
 

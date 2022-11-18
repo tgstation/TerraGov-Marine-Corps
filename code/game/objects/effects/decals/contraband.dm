@@ -18,7 +18,7 @@
 /obj/item/contraband/poster/Initialize(mapload, given_serial)
 	. = ..()
 	if(!given_serial)
-		serial_number = rand(1, length(GLOB.poster_designs))
+		serial_number = rand(1, length_char(GLOB.poster_designs))
 	else
 		serial_number = given_serial
 	name += " - No. [serial_number]"
@@ -51,7 +51,7 @@ obj/structure/sign/poster/New(var/serial)
 	serial_number = serial
 
 	if(serial_number == loc)
-		serial_number = rand(1, length(GLOB.poster_designs))	//This is for the mappers that want individual posters without having to use rolled posters.
+		serial_number = rand(1, length_char(GLOB.poster_designs))	//This is for the mappers that want individual posters without having to use rolled posters.
 
 	var/designtype = GLOB.poster_designs[serial_number]
 	var/datum/poster/design=new designtype

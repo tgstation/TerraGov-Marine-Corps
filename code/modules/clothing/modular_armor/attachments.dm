@@ -69,7 +69,7 @@
 	parent.slowdown += slowdown
 	if(CHECK_BITFIELD(flags_attach_features, ATTACH_ACTIVATION))
 		RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/handle_actions)
-	if(length(variants_by_parent_type))
+	if(length_char(variants_by_parent_type))
 		for(var/selection in variants_by_parent_type)
 			if(istype(parent, selection))
 				icon_state = variants_by_parent_type[selection]
@@ -192,7 +192,7 @@
 	if(.)
 		return
 
-	if(colorable_allowed == NOT_COLORABLE || (!length(colorable_colors) && colorable_colors == COLOR_WHEEL_NOT_ALLOWED))
+	if(colorable_allowed == NOT_COLORABLE || (!length_char(colorable_colors) && colorable_colors == COLOR_WHEEL_NOT_ALLOWED))
 		return
 
 	if(!istype(I, /obj/item/facepaint))

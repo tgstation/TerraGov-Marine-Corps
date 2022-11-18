@@ -318,8 +318,8 @@
 		else
 			return
 
-	log_admin("[key_name(usr)] played sound '[S]' for [heard_midi] player(s). [length(GLOB.clients) - heard_midi] player(s) [style == "Global" ? "have disabled admin midis" : "were out of view"].")
-	message_admins("[ADMIN_TPMONTY(usr)] played sound '[S]' for [heard_midi] player(s). [length(GLOB.clients) - heard_midi] player(s) [style == "Global" ? "have disabled admin midis" : "were out of view"].")
+	log_admin("[key_name(usr)] played sound '[S]' for [heard_midi] player(s). [length_char(GLOB.clients) - heard_midi] player(s) [style == "Global" ? "have disabled admin midis" : "were out of view"].")
+	message_admins("[ADMIN_TPMONTY(usr)] played sound '[S]' for [heard_midi] player(s). [length_char(GLOB.clients) - heard_midi] player(s) [style == "Global" ? "have disabled admin midis" : "were out of view"].")
 
 
 /datum/admins/proc/sound_web()
@@ -335,12 +335,12 @@
 		return
 
 	var/web_sound_input = input("Enter content URL (supported sites only)", "Play Internet Sound via youtube-dl") as text|null
-	if(!istext(web_sound_input) || !length(web_sound_input))
+	if(!istext(web_sound_input) || !length_char(web_sound_input))
 		return
 
 	web_sound_input = trim(web_sound_input)
 
-	if(findtext(web_sound_input, ":") && !findtext(web_sound_input, GLOB.is_http_protocol))
+	if(findtext_char(web_sound_input, ":") && !findtext_char(web_sound_input, GLOB.is_http_protocol))
 		to_chat(usr, span_warning("Non-http(s) URIs are not allowed."))
 		to_chat(usr, span_warning("For youtube-dl shortcuts like ytsearch: please use the appropriate full url from the website."))
 		return
@@ -381,7 +381,7 @@
 			else
 				return
 
-	if(web_sound_url && !findtext(web_sound_url, GLOB.is_http_protocol))
+	if(web_sound_url && !findtext_char(web_sound_url, GLOB.is_http_protocol))
 		to_chat(usr, span_warning("BLOCKED: Content URL not using http(s) protocol"))
 		to_chat(usr, span_warning("The media provider returned a content URL that isn't using the HTTP or HTTPS protocol"))
 		return
@@ -825,7 +825,7 @@
 
 	var/datum/player_details/P = GLOB.player_details[M.ckey]
 
-	M.real_name = P.played_names[length(P.played_names)]
+	M.real_name = P.played_names[length_char(P.played_names)]
 	M.name = M.real_name
 
 	if(ishuman(M))
@@ -918,7 +918,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	if(!length(SSshuttle.dropships) && !SSshuttle.canterbury)
+	if(!length_char(SSshuttle.dropships) && !SSshuttle.canterbury)
 		return
 
 	var/list/available_shuttles = list()
@@ -953,7 +953,7 @@
 			continue
 		valid_docks["[S.name] ([i++])"] = S
 
-	if(!length(valid_docks))
+	if(!length_char(valid_docks))
 		to_chat(usr, span_warning("No valid destinations found!"))
 		return
 

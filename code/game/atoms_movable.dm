@@ -334,7 +334,7 @@
 
 /atom/movable/proc/Moved(atom/old_loc, movement_dir, forced = FALSE, list/old_locs)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, old_loc, movement_dir, forced, old_locs)
-	if(length(client_mobs_in_contents))
+	if(length_char(client_mobs_in_contents))
 		update_parallax_contents()
 
 	if(pulledby)

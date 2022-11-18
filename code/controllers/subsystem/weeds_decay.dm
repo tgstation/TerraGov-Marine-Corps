@@ -8,7 +8,7 @@ SUBSYSTEM_DEF(weeds_decay)
 	var/list/obj/alien/weeds/decaying_list = list()
 
 /datum/controller/subsystem/weeds_decay/stat_entry()
-	return ..("Decay Nodes: [length(decaying_list)]")
+	return ..("Decay Nodes: [length_char(decaying_list)]")
 
 /datum/controller/subsystem/weeds_decay/fire(resumed = FALSE)
 	for(var/obj/alien/weeds/weed AS in decaying_list)

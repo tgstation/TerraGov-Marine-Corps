@@ -8,7 +8,7 @@
  * 1) Copy and paste your list of runtimes from Dream Daemon into input.exe
  * 2) Run RuntimeCondenser.exe
  * 3) Open output.txt for a condensed report of the runtimes
- * 
+ *
  * How to compile:
  * Requires visual c++ compiler 2012 or any linux compiler with c++11 support.
  * Windows:
@@ -70,8 +70,8 @@ unsigned int totalHardDels = 0;
 bool endofbuffer = false;
 //like substr, but returns an empty string if the string is smaller then start, rather then an exception.
 inline string safe_substr(string * S, size_t start = 0, size_t end = string::npos) {
-	if (start > S->length())
-		start = S->length();
+	if (start > S->length_char())
+		start = S->length_char();
 	return S->substr(start, end);
 }
 //getline() is slow as fucking balls. this is quicker because we prefill a buffer rather then read 1 byte at a time searching for newlines, lowering on i/o calls and overhead. (110MB/s vs 40MB/s on a 1.8GB file pre-filled into the disk cache)
@@ -104,7 +104,7 @@ inline string * readline(FILE * f) {
 			pos = i+1;
 			return s;
 		}
-		
+
 	}
 	string * s = new string(&buf[pos], size-pos);
 	pos = 0;
@@ -119,7 +119,7 @@ inline void forward_progress(FILE * inputFile) {
 	currentLine	= nextLine;
 	nextLine = readline(inputFile);
 	//strip out any timestamps.
-	if (nextLine->length() >= 10) {
+	if (nextLine->length_char() >= 10) {
 		if ((*nextLine)[0] == '[' && (*nextLine)[3] == ':' && (*nextLine)[6] == ':' && (*nextLine)[9] == ']')
 			nextLine->erase(0, 10);
 	}
@@ -160,9 +160,9 @@ bool readFromFile() {
 		}
 		//Found a runtime!
 		if (safe_substr(currentLine, 0, 14) == "runtime error:") {
-			if (currentLine->length() <= 17) { //empty runtime, check next line.
+			if (currentLine->length_char() <= 17) { //empty runtime, check next line.
 				//runtime is on the line before this one. (byond bug)
-				if (nextLine->length() < 2) {
+				if (nextLine->length_char() < 2) {
 					string_send(lastLine, nextLine);
 				}
 				forward_progress(inputFile);
@@ -172,7 +172,7 @@ bool readFromFile() {
 			}
 			//we assign this to the right container in a moment.
 			unordered_map<string,runtime> * storage_container;
-			
+
 			//runtime is actually an infinite loop
 			if (safe_substr(currentLine, 15, 23) == "Infinite loop suspected" || safe_substr(currentLine, 15, 31) == "Maximum recursion level reached") {
 				//use our infinite loop container.
@@ -186,18 +186,18 @@ bool readFromFile() {
 				storage_container = &storedRuntime;
 				totalRuntimes++;
 			}
-			
+
 			string key = *currentLine;
 			bool procfound = false; //so other things don't have to bother checking for this again.
 			if (safe_substr(nextLine, 0, 10) == "proc name:") {
 				key += *nextLine;
 				procfound = true;
 			}
-			
+
 			//(get the address of a runtime from (a pointer to a container of runtimes)) to then store in a pointer to a runtime.
 			//(and who said pointers were hard.)
 			runtime* R = &((*storage_container)[key]);
-			
+
 			//new
 			if (R->text != *currentLine) {
 				R->text = *currentLine;
@@ -225,22 +225,22 @@ bool readFromFile() {
 						forward_progress(inputFile);
 					}
 				}
-			
+
 			} else { //existed already
 				R->count++;
 				if (procfound)
 					forward_progress(inputFile);
 			}
-			
+
 		} else if (safe_substr(currentLine, 0, 7) == "Path : ") {
 			string deltype = safe_substr(currentLine, 7);
 			if (deltype.substr(deltype.size()-1,1) == " ") //some times they have a single trailing space.
 				deltype = deltype.substr(0, deltype.size()-1);
-			
+
 			unsigned int failures = strtoul(safe_substr(nextLine, 11).c_str(), NULL, 10);
 			if (failures <= 0)
 				continue;
-			
+
 			totalHardDels += failures;
 			harddel* D = &storedHardDel[deltype];
 			if (D->type != deltype) {
@@ -265,13 +265,13 @@ bool hardDelComp(const harddel &a, const harddel &b) {
 bool writeToFile() {
 	//Open and clear the file
 	ofstream outputFile("Output.txt", ios::trunc);
-	
+
 	if(outputFile.is_open()) {
 		outputFile << "Note: The source file, src and usr are all from the FIRST of the identical runtimes. Everything else is cropped.\n\n";
 		if(storedInfiniteLoop.size() > 0)
 			outputFile << "Total unique infinite loops: " << storedInfiniteLoop.size() << endl;
 
-		if(totalInfiniteLoops > 0) 
+		if(totalInfiniteLoops > 0)
 			outputFile << "Total infinite loops: " << totalInfiniteLoops << endl << endl;
 
 		outputFile << "Total unique runtimes: " << storedRuntime.size() << endl;
@@ -294,17 +294,17 @@ bool writeToFile() {
 			outputFile << "** Infinite loops **";
 			for (int i=0; i < infiniteLoops.size(); i++) {
 				runtime* R = &infiniteLoops[i];
-				outputFile << endl << endl << "The following infinite loop has occurred " << R->count << " time(s).\n"; 
+				outputFile << endl << endl << "The following infinite loop has occurred " << R->count << " time(s).\n";
 				outputFile << R->text << endl;
-				if(R->proc.length()) 
+				if(R->proc.length_char())
 					outputFile << R->proc << endl;
-				if(R->source.length()) 
+				if(R->source.length_char())
 					outputFile << R->source << endl;
-				if(R->usr.length()) 
+				if(R->usr.length_char())
 					outputFile << R->usr << endl;
-				if(R->src.length()) 
+				if(R->src.length_char())
 					outputFile << R->src << endl;
-				if(R->loc.length()) 
+				if(R->loc.length_char())
 					outputFile << R->loc << endl;
 			}
 			outputFile << endl << endl; //For spacing
@@ -321,21 +321,21 @@ bool writeToFile() {
 		sort(runtimes.begin(), runtimes.end(), runtimeComp);
 		for (int i=0; i < runtimes.size(); i++) {
 			runtime* R = &runtimes[i];
-			outputFile << endl << endl << "The following runtime has occurred " << R->count << " time(s).\n"; 
+			outputFile << endl << endl << "The following runtime has occurred " << R->count << " time(s).\n";
 			outputFile << R->text << endl;
-			if(R->proc.length()) 
+			if(R->proc.length_char())
 				outputFile << R->proc << endl;
-			if(R->source.length()) 
+			if(R->source.length_char())
 				outputFile << R->source << endl;
-			if(R->usr.length()) 
+			if(R->usr.length_char())
 				outputFile << R->usr << endl;
-			if(R->src.length()) 
+			if(R->src.length_char())
 				outputFile << R->src << endl;
-			if(R->loc.length()) 
+			if(R->loc.length_char())
 				outputFile << R->loc << endl;
 		}
 		outputFile << endl << endl; //For spacing
-		
+
 		//and finally, hard deletes
 		if(totalHardDels > 0) {
 			outputFile << endl << "** Hard deletions **";

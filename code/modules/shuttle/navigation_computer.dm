@@ -313,7 +313,7 @@
 		if(CHECK_BITFIELD(O.resistance_flags, DROPSHIP_IMMUNE))
 			return SHUTTLE_DOCKER_BLOCKED
 
-	if(length(whitelist_turfs))
+	if(length_char(whitelist_turfs))
 		var/turf_type = hidden_turf_info ? hidden_turf_info[2] : T.type
 		if(!is_type_in_typecache(turf_type, whitelist_turfs))
 			return SHUTTLE_DOCKER_BLOCKED

@@ -73,7 +73,7 @@
 			for(var/datum/data/record/t in GLOB.datacore.general)
 				personnel_list["[t.fields["name"]]: [t.fields["rank"]]"] = t.fields["photo_front"]
 
-			if(!length(personnel_list))
+			if(!length_char(personnel_list))
 				to_chat(src, span_warning("No suitable records found. Aborting."))
 				return
 

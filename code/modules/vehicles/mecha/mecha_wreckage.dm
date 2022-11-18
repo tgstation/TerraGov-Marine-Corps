@@ -50,7 +50,7 @@
 /obj/structure/mecha_wreckage/welder_act(mob/living/user, obj/item/I)
 	..()
 	. = TRUE
-	if(salvage_num <= 0 || !length(welder_salvage))
+	if(salvage_num <= 0 || !length_char(welder_salvage))
 		to_chat(user, span_notice("You don't see anything that can be cut with [I]!"))
 		return
 	if(!I.use_tool(src, user, 0, volume=50))

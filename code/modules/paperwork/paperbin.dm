@@ -20,7 +20,7 @@
 	if(.)
 		return
 	var/response = ""
-	if(!length(papers))
+	if(!length_char(papers))
 		response = tgui_alert(user, "Do you take regular paper, or Carbon copy paper?", "Paper type request", list("Regular", "Carbon-Copy", "Cancel"))
 		if(response != "Regular" && response != "Carbon-Copy")
 			return
@@ -33,8 +33,8 @@
 	update_icon()
 
 	var/obj/item/paper/P
-	if(length(papers))	//If there's any custom paper on the stack, use that instead of creating a new paper.
-		P = papers[length(papers)]
+	if(length_char(papers))	//If there's any custom paper on the stack, use that instead of creating a new paper.
+		P = papers[length_char(papers)]
 		papers -= P
 	else if(response == "Regular")
 		P = new /obj/item/paper

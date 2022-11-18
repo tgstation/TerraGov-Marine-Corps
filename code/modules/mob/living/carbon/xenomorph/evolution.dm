@@ -143,8 +143,8 @@
 		return
 
 	// used below
-	var/no_room_tier_two = length(hive.xenos_by_tier[XENO_TIER_TWO]) >= hive.tier2_xeno_limit
-	var/no_room_tier_three = length(hive.xenos_by_tier[XENO_TIER_THREE]) >= hive.tier3_xeno_limit
+	var/no_room_tier_two = length_char(hive.xenos_by_tier[XENO_TIER_TWO]) >= hive.tier2_xeno_limit
+	var/no_room_tier_three = length_char(hive.xenos_by_tier[XENO_TIER_THREE]) >= hive.tier3_xeno_limit
 
 	if(new_caste_type == /mob/living/carbon/xenomorph/queen) //Special case for dealing with queenae
 		if(is_banned_from(ckey, ROLE_XENO_QUEEN))
@@ -189,7 +189,7 @@
 			to_chat(src, span_warning("You are jobbanned from Queen-like roles."))
 			return
 
-		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/shrike]))
+		if(length_char(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/shrike]))
 			to_chat(src, span_warning("There already is a living Shrike. The hive cannot contain more than one psychic energy repository."))
 			return
 
@@ -198,7 +198,7 @@
 			return
 
 	else if(new_caste_type == /mob/living/carbon/xenomorph/hivemind) //Special case for dealing with hiveminds - this may be subject to heavy change, such as multiple hiveminds potentially being an option
-		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind]))
+		if(length_char(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind]))
 			to_chat(src, span_warning("There cannot be two manifestations of the hivemind's will at once."))
 			return
 
@@ -213,7 +213,7 @@
 
 
 	else
-		var/potential_queens = length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva]) + length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/drone])
+		var/potential_queens = length_char(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva]) + length_char(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/drone])
 
 		if(regression)
 			//Nothing, go on as normal.
@@ -252,11 +252,11 @@
 			to_chat(src, span_warning("There already is a Queen."))
 			return
 	else if(new_caste_type == /mob/living/carbon/xenomorph/shrike)
-		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/shrike]))
+		if(length_char(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/shrike]))
 			to_chat(src, span_warning("There already is a Shrike."))
 			return
 	else if(new_caste_type == /mob/living/carbon/xenomorph/hivemind) //Special case for dealing with hiveminds - this may be subject to heavy change, such as multiple hiveminds potentially being an option
-		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind]))
+		if(length_char(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind]))
 			to_chat(src, span_warning("There cannot be two manifestations of the hivemind's will at once."))
 			return
 	else if(!regression) // these shouldnt be checked if trying to become a queen.

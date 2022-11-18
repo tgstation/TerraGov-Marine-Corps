@@ -29,7 +29,7 @@
 			new spawn_type(src)
 
 /obj/item/storage/fancy/update_icon_state()
-	icon_state = "[icon_type]box[length(contents)]"
+	icon_state = "[icon_type]box[length_char(contents)]"
 
 /obj/item/storage/fancy/remove_from_storage(obj/item/W, atom/new_location, mob/user)
 	. = ..()
@@ -39,13 +39,13 @@
 
 /obj/item/storage/fancy/examine(mob/user)
 	. = ..()
-	switch(length(contents))
+	switch(length_char(contents))
 		if(0)
 			. += "There are no [icon_type]s left in the box."
 		if(1)
 			. += "There is one [icon_type] left in the box."
 		if(2 to INFINITY)
-			. += "There are [length(contents)] [icon_type]s in the box."
+			. += "There are [length_char(contents)] [icon_type]s in the box."
 
 
 /*
@@ -288,7 +288,7 @@
 	update_icon()
 
 /obj/item/storage/lockbox/vials/update_icon(itemremoved = 0)
-	icon_state = "vialbox[length(contents)-itemremoved]"
+	icon_state = "vialbox[length_char(contents)-itemremoved]"
 
 /obj/item/storage/lockbox/vials/update_overlays()
 	. = ..()

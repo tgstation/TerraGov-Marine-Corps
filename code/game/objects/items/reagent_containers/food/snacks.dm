@@ -14,7 +14,7 @@
 	var/list/tastes // for example list("crisps" = 2, "salt" = 1)
 
 /obj/item/reagent_containers/food/snacks/create_reagents(max_vol, new_flags, list/init_reagents, data)
-	if(!length(tastes) || !length(init_reagents))
+	if(!length_char(tastes) || !length_char(init_reagents))
 		return ..()
 	if(reagents)
 		qdel(reagents)
@@ -179,7 +179,7 @@
 			return
 		if(!user.transferItemToLoc(I, src))
 			return
-		if(length(contents) > max_items)
+		if(length_char(contents) > max_items)
 			to_chat(user, span_warning("[src] is full, you can't stuff [I] inside."))
 			return
 		to_chat(user, span_notice("You slip [I] inside of [src]."))
@@ -2333,7 +2333,7 @@
 		for(var/obj/item/pizzabox/i in box.boxes)
 			boxestoadd += i
 
-		if((length(boxes) + 1) + length(boxestoadd) > 5)
+		if((length_char(boxes) + 1) + length_char(boxestoadd) > 5)
 			to_chat(user, span_warning("The stack is too high!"))
 			return
 

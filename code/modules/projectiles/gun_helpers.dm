@@ -167,7 +167,7 @@ should be alright.
 		return
 	to_chat(user, span_notice("You start a tactical reload."))
 	var/tac_reload_time = max(0.25 SECONDS, 0.75 SECONDS - user.skills.getRating("firearms") * 5)
-	if(length(chamber_items))
+	if(length_char(chamber_items))
 		if(!do_after(user, tac_reload_time, TRUE, new_magazine, ignore_turf_checks = TRUE) && loc == user)
 			return
 		unload(user)
@@ -366,10 +366,10 @@ should be alright.
 	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))//can't toggle mid burst
 		return
 
-	if(!length(gun_firemode_list))
+	if(!length_char(gun_firemode_list))
 		CRASH("[src] called do_toggle_firemode() with an empty gun_firemode_list")
 
-	if(length(gun_firemode) == 1)
+	if(length_char(gun_firemode) == 1)
 		return
 
 	if(new_firemode)
@@ -378,7 +378,7 @@ should be alright.
 		gun_firemode = new_firemode
 	else
 		var/mode_index = gun_firemode_list.Find(gun_firemode)
-		if(++mode_index <= length(gun_firemode_list))
+		if(++mode_index <= length_char(gun_firemode_list))
 			gun_firemode = gun_firemode_list[mode_index]
 		else
 			gun_firemode = gun_firemode_list[1]
@@ -394,9 +394,9 @@ should be alright.
 /obj/item/weapon/gun/proc/add_firemode(added_firemode, mob/user)
 	gun_firemode_list += added_firemode
 
-	switch(length(gun_firemode_list))
+	switch(length_char(gun_firemode_list))
 		if(0)
-			CRASH("add_firemode called with a resulting gun_firemode_list length of [length(gun_firemode_list)].")
+			CRASH("add_firemode called with a resulting gun_firemode_list length of [length_char(gun_firemode_list)].")
 		if(1) //No need to toggle anything if there's a single firemode.
 			return
 		if(2)
@@ -411,9 +411,9 @@ should be alright.
 
 
 /obj/item/weapon/gun/proc/remove_firemode(removed_firemode, mob/user)
-	switch(length(gun_firemode_list))
+	switch(length_char(gun_firemode_list))
 		if(0, 1)
-			CRASH("remove_firemode called with gun_firemode_list length [length(gun_firemode_list)].")
+			CRASH("remove_firemode called with gun_firemode_list length [length_char(gun_firemode_list)].")
 		if(2)
 			LAZYREMOVE(actions_types, /datum/action/item_action/firemode)
 			var/datum/action/old_action = locate(/datum/action/item_action/firemode) in actions
@@ -434,7 +434,7 @@ should be alright.
 	if(burst_amount > 1 && !(GUN_FIREMODE_BURSTFIRE in  gun_firemode_list))
 		gun_firemode_list += GUN_FIREMODE_BURSTFIRE
 
-	switch(length(gun_firemode_list))
+	switch(length_char(gun_firemode_list))
 		if(0)
 			CRASH("[src] called setup_firemodes() with an empty gun_firemode_list")
 		if(1)
@@ -559,7 +559,7 @@ should be alright.
 	// rail attachment use the button to toggle flashlight instead.
 	//	if(rail && (rail.flags_attach_features & ATTACH_ACTIVATION) )
 	//		usable_attachments += rail
-	if(!length(attachments_by_slot))
+	if(!length_char(attachments_by_slot))
 		balloon_alert(usr, "No usable attachments")
 		return
 
@@ -571,11 +571,11 @@ should be alright.
 		if(attachable.flags_attach_features & ATTACH_ACTIVATION)
 			usable_attachments += attachment
 
-	if(!length(usable_attachments)) //No usable attachments.
+	if(!length_char(usable_attachments)) //No usable attachments.
 		balloon_alert(usr, "No usable attachments")
 		return
 	var/obj/item/attachable/usable_attachment
-	if(length(usable_attachments) == 1)
+	if(length_char(usable_attachments) == 1)
 		usable_attachment = usable_attachments[1]
 	else
 		usable_attachment = tgui_input_list(usr, "Which attachment to activate?", null, usable_attachments)

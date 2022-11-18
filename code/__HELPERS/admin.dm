@@ -27,7 +27,7 @@ params
 		if((ignore_afk || !C.is_afk()) && check_other_rights(C, rank_required, FALSE))
 			active_admins.Add(C)
 
-	if(!length(active_admins)) // If no admin just return the default option
+	if(!length_char(active_admins)) // If no admin just return the default option
 		log_admin("Admin Approval: '[admin_message]' was answered with [default_option] due to lack of online admin.")
 		send2tgs_adminless_only("Approval", "'[admin_message]' was answered with [default_option] due to lack of online admin")
 		return

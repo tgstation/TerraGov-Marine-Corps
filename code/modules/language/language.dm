@@ -40,7 +40,7 @@
 
 
 /datum/language/proc/get_random_name(gender, name_count = 2, syllable_count = 4, syllable_divisor = 2)
-	if(!length(syllables))
+	if(!length_char(syllables))
 		return GLOB.namepool[/datum/namepool].get_random_name(gender)
 
 	var/full_name = ""
@@ -67,12 +67,12 @@
 /datum/language/proc/add_to_cache(input, scrambled_text)
 	// Add it to cache, cutting old entries if the list is too long
 	scramble_cache[input] = scrambled_text
-	if(length(scramble_cache) > SCRAMBLE_CACHE_LEN)
-		scramble_cache.Cut(1, length(scramble_cache) - SCRAMBLE_CACHE_LEN - 1)
+	if(length_char(scramble_cache) > SCRAMBLE_CACHE_LEN)
+		scramble_cache.Cut(1, length_char(scramble_cache) - SCRAMBLE_CACHE_LEN - 1)
 
 
 /datum/language/proc/scramble(input)
-	if(!length(syllables))
+	if(!length_char(syllables))
 		return stars(input)
 
 	// If the input is cached already, move it to the end of the cache and return it

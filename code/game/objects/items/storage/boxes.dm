@@ -350,7 +350,7 @@
 
 /obj/item/storage/box/explosive_mines/update_icon_state()
 	icon_state = initial(icon_state)
-	if(!length(contents))
+	if(!length_char(contents))
 		icon_state += "_e"
 
 /obj/item/storage/box/explosive_mines/large
@@ -376,7 +376,7 @@
 
 /obj/item/storage/box/m94/update_icon()
 	icon_state = initial(icon_state)
-	if(!length(contents))
+	if(!length_char(contents))
 		icon_state += "_e"
 
 /obj/item/storage/box/m94/cas

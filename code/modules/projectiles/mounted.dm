@@ -20,7 +20,7 @@
 /obj/machinery/deployable/mounted/update_icon_state(mob/user)
 	. = ..()
 	var/obj/item/weapon/gun/gun = internal_item
-	if(!length(gun.chamber_items) || !gun.chamber_items[gun.current_chamber_position])
+	if(!length_char(gun.chamber_items) || !gun.chamber_items[gun.current_chamber_position])
 		icon_state = default_icon_state + "_e"
 	else
 		icon_state = default_icon_state
@@ -88,7 +88,7 @@
 	ADD_TRAIT(src, TRAIT_GUN_RELOADING, GUN_TRAIT)
 
 	var/obj/item/weapon/gun/gun = internal_item
-	if(length(gun.chamber_items))
+	if(length_char(gun.chamber_items))
 		gun.unload(user)
 		update_icon_state()
 

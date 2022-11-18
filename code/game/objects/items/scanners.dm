@@ -156,7 +156,7 @@ REAGENT SCANNER
 			"od" = reagent.overdosed,
 			"dangerous" = reagent.overdosed || istype(reagent, /datum/reagent/toxin)
 		)
-	data["has_chemicals"] = length(patient.reagents.reagent_list)
+	data["has_chemicals"] = length_char(patient.reagents.reagent_list)
 	data["chemicals_lists"] = chemicals_lists
 
 	var/list/limb_data_lists = list()
@@ -184,7 +184,7 @@ REAGENT SCANNER
 			if(limb.hidden)
 				unknown_implants++
 			var/implant = FALSE
-			if(length(limb.implants))
+			if(length_char(limb.implants))
 				for(var/I in limb.implants)
 					if(is_type_in_list(I, GLOB.known_implants))
 						continue
@@ -216,7 +216,7 @@ REAGENT SCANNER
 			current_list["limb_status"] = limb_status
 			limb_data_lists["[limb.name]"] = current_list
 		data["limb_data_lists"] = limb_data_lists
-		data["limbs_damaged"] = length(limb_data_lists)
+		data["limbs_damaged"] = length_char(limb_data_lists)
 		data["internal_bleeding"] = internal_bleeding
 		data["infection"] = infection_message
 		data["body_temperature"] = "[round(human_patient.bodytemperature*1.8-459.67, 0.1)] degrees F ([round(human_patient.bodytemperature-T0C, 0.1)] degrees C)"

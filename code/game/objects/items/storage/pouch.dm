@@ -565,11 +565,11 @@
 /obj/item/storage/pouch/flare/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/storage/box/m94))
 		var/obj/item/storage/box/m94/M = I
-		if(!length(M.contents))
+		if(!length_char(M.contents))
 			to_chat(user, span_warning("[M] is empty."))
 			return
 
-		if(length(contents) >= storage_slots)
+		if(length_char(contents) >= storage_slots)
 			to_chat(user, span_warning("[src] is full."))
 			return
 
@@ -579,7 +579,7 @@
 			return
 
 		for(var/obj/item/IM in M)
-			if(length(contents) >= storage_slots)
+			if(length_char(contents) >= storage_slots)
 				break
 
 			M.remove_from_storage(IM)
@@ -735,7 +735,7 @@
 				to_chat(user, span_warning("[M] is empty."))
 				return
 
-			if(length(contents) >= storage_slots)
+			if(length_char(contents) >= storage_slots)
 				to_chat(user, span_warning("[src] is full."))
 				return
 
@@ -744,7 +744,7 @@
 			if(!do_after(user, 1.5 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 				return
 
-			for(var/x in 1 to (storage_slots - length(contents)))
+			for(var/x in 1 to (storage_slots - length_char(contents)))
 				var/cont = handle_item_insertion(M.create_handful(), 1, user)
 				if(!cont)
 					break

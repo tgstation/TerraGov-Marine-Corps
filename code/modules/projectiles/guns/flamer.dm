@@ -170,11 +170,11 @@
 		light_pilot(FALSE)
 		return
 	//recursive checks
-	if(!length(old_turfs) || iteration > range || !current_target || (current_target in old_turfs))
+	if(!length_char(old_turfs) || iteration > range || !current_target || (current_target in old_turfs))
 		return
 
 	var/list/turf/turfs_to_ignite = list()
-	if(iteration > length(path_to_target))
+	if(iteration > length_char(path_to_target))
 		return
 	var/turf/turf_to_check = get_turf(src)
 	if(iteration > 1)
@@ -222,7 +222,7 @@
 
 ///Checks and lights the turfs in turfs_to_burn
 /obj/item/weapon/gun/flamer/proc/burn_list(list/turf/turfs_to_burn)
-	if(!length(turfs_to_burn) || !length(chamber_items))
+	if(!length_char(turfs_to_burn) || !length_char(chamber_items))
 		return FALSE
 
 	var/datum/ammo/flamethrower/loaded_ammo = CHECK_BITFIELD(flags_flamer_features, FLAMER_USES_GUN_FLAMES) ? ammo_datum_type : get_magazine_default_ammo(chamber_items[current_chamber_position])

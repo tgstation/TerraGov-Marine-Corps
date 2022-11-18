@@ -38,7 +38,7 @@
 	var/amount = idle_power_usage
 
 	if(scrubbing & SCRUBBING)
-		amount += idle_power_usage * length(filter_types)
+		amount += idle_power_usage * length_char(filter_types)
 	else //scrubbing == SIPHONING
 		amount = active_power_usage
 
@@ -115,7 +115,7 @@
 				cut_overlay(GLOB.welding_sparks)
 				return TRUE
 			else
-				cut_overlay(GLOB.welding_sparks)	
+				cut_overlay(GLOB.welding_sparks)
 		else
 			to_chat(user, span_warning("[WT] needs to be on to start this task."))
 			cut_overlay(GLOB.welding_sparks)

@@ -1,22 +1,22 @@
 #define LAZYINITLIST(L) if (!L) L = list()
-#define UNSETEMPTY(L) if (L && !length(L)) L = null
-#define LAZYREMOVE(L, I) if(L) { L -= I; if(!length(L)) { L = null; } }
+#define UNSETEMPTY(L) if (L && !length_char(L)) L = null
+#define LAZYREMOVE(L, I) if(L) { L -= I; if(!length_char(L)) { L = null; } }
 #define LAZYADD(L, I) if(!L) { L = list(); } L += I;
 #define LAZYDISTINCTADD(L, I) if(!L) { L = list(); } L |= I;
 #define LAZYOR(L, I) if(!L) { L = list(); } L |= I;
 #define LAZYFIND(L, V) L ? L.Find(V) : 0
-#define LAZYACCESS(L, I) (L ? (isnum(I) ? (I > 0 && I <= length(L) ? L[I] : null) : L[I]) : null)
+#define LAZYACCESS(L, I) (L ? (isnum(I) ? (I > 0 && I <= length_char(L) ? L[I] : null) : L[I]) : null)
 #define LAZYSET(L, K, V) if(!L) { L = list(); } L[K] = V;
-#define LAZYLEN(L) length(L)
+#define LAZYLEN(L) length_char(L)
 #define LAZYCLEARLIST(L) if(L) L.Cut()
 #define SANITIZE_LIST(L) ( islist(L) ? L : list() )
 #define reverseList(L) reverseRange(L.Copy())
 #define LAZYADDASSOCSIMPLE(L, K, V) if(!L) { L = list(); } L[K] += V;
 #define LAZYADDASSOC(L, K, V) if(!L) { L = list(); } L[K] += list(V);
-#define LAZYREMOVEASSOC(L, K, V) if(L) { if(L[K]) { L[K] -= V; if(!length(L[K])) L -= K; } if(!length(L)) L = null; }
+#define LAZYREMOVEASSOC(L, K, V) if(L) { if(L[K]) { L[K] -= V; if(!length_char(L[K])) L -= K; } if(!length_char(L)) L = null; }
 #define LAZYACCESSASSOC(L, I, K) L ? L[I] ? L[I][K] ? L[I][K] : null : null : null
 #define LAZYINCREMENT(L, K) if(!L) { L = list(); } L[K]++;
-#define LAZYDECREMENT(L, K) if(L) { if(L[K]) { L[K]--; if(!L[K]) L -= K; } if(!length(L)) L = null; }
+#define LAZYDECREMENT(L, K) if(L) { if(L[K]) { L[K]--; if(!L[K]) L -= K; } if(!length_char(L)) L = null; }
 /// Performs an insertion on the given lazy list with the given key and value. If the value already exists, a new one will not be made.
 #define LAZYORASSOCLIST(lazy_list, key, value) \
 	LAZYINITLIST(lazy_list); \
@@ -24,7 +24,7 @@
 	lazy_list[key] |= value;
 
 //Checks for specific types in specifically structured (Assoc "type" = TRUE) lists ('typecaches')
-#define is_type_in_typecache(A, L) (A && length(L) && L[(ispath(A) ? A : A:type)])
+#define is_type_in_typecache(A, L) (A && length_char(L) && L[(ispath(A) ? A : A:type)])
 
 /// Passed into BINARY_INSERT to compare keys
 #define COMPARE_KEY __BIN_LIST[__BIN_MID]
@@ -43,7 +43,7 @@
 #define BINARY_INSERT(INPUT, LIST, TYPECONT, COMPARE, COMPARISON, COMPTYPE) \
 	do {\
 		var/list/__BIN_LIST = LIST;\
-		var/__BIN_CTTL = length(__BIN_LIST);\
+		var/__BIN_CTTL = length_char(__BIN_LIST);\
 		if(!__BIN_CTTL) {\
 			__BIN_LIST += INPUT;\
 		} else {\
@@ -70,7 +70,7 @@
 // IN: Object to be inserted
 // LIST: List to insert object into
 #define BINARY_INSERT_NUM(IN, LIST) \
-	var/__BIN_CTTL = length(LIST);\
+	var/__BIN_CTTL = length_char(LIST);\
 	if(!__BIN_CTTL) {\
 		LIST += IN;\
 	} else {\
@@ -94,7 +94,7 @@
 
 //Returns a list in plain english as a string
 /proc/english_list(list/L, nothing_text = "nothing", and_text = " and ", comma_text = ", ", final_comma_text = "" )
-	var/total = length(L)
+	var/total = length_char(L)
 	if(!total)
 		return "[nothing_text]"
 	else if(total == 1)
@@ -119,7 +119,7 @@
 	if(!istype(L))
 		return
 
-	if(isnum(index) && ISINTEGER(index) && ISINRANGE(index, 1, length(L)))
+	if(isnum(index) && ISINTEGER(index) && ISINRANGE(index, 1, length_char(L)))
 		return L[index]
 
 	else if(index in L)
@@ -127,7 +127,7 @@
 
 
 //Return either pick(list) or null if list is not of type /list or is empty
-#define SAFEPICK(L) (length(L) ? pick(L) : null)
+#define SAFEPICK(L) (length_char(L) ? pick(L) : null)
 
 
 //Checks if the list is empty
@@ -203,7 +203,7 @@
 //Pick a random element from the list and remove it from the list.
 /proc/pick_n_take(list/L)
 	RETURN_TYPE(L[_].type)
-	if(!length(L))
+	if(!length_char(L))
 		return
 
 	var/picked = pick(L)
@@ -225,7 +225,7 @@
 
 //Returns the next element in parameter list after first appearance of parameter element. If it is the last element of the list or not present in list, returns first element.
 /proc/next_in_list(element, list/L)
-	for(var/i in 1 to length(L)-1)
+	for(var/i in 1 to length_char(L)-1)
 		if(L[i] == element)
 			return L[i + 1]
 	return L[1]
@@ -237,8 +237,8 @@
 		return
 	L = L.Copy()
 
-	for(var/i in 1 to length(L)-1)
-		L.Swap(i,rand(i, length(L)))
+	for(var/i in 1 to length_char(L)-1)
+		L.Swap(i,rand(i, length_char(L)))
 
 	return L
 
@@ -394,13 +394,13 @@
 
 
 /proc/reverseRange(list/L, start = 1, end = 0)
-	if(length(L))
-		start = start % length(L)
-		end = end % (length(L) + 1)
+	if(length_char(L))
+		start = start % length_char(L)
+		end = end % (length_char(L) + 1)
 		if(start <= 0)
-			start += length(L)
+			start += length_char(L)
 		if(end <= 0)
-			end += length(L) + 1
+			end += length_char(L) + 1
 
 		--end
 		while(start < end)
@@ -465,11 +465,11 @@
 	return TRUE
 
 #define LAZY_LISTS_OR(left_list, right_list)\
-	( length(left_list)\
-		? length(right_list)\
+	( length_char(left_list)\
+		? length_char(right_list)\
 			? (left_list | right_list)\
 			: left_list.Copy()\
-		: length(right_list)\
+		: length_char(right_list)\
 			? right_list.Copy()\
 			: null\
 	)
@@ -510,7 +510,7 @@
 	if(!islist(L))
 		return L
 	. = L.Copy()
-	for(var/i in 1 to length(L))
+	for(var/i in 1 to length_char(L))
 		var/key = .[i]
 		if(isnum(key))
 			// numbers cannot ever be associative keys
@@ -537,8 +537,8 @@
 	if(!L)
 		return
 
-	for(var/i in 1 to length(L)-1)
-		L.Swap(i, rand(i, length(L)))
+	for(var/i in 1 to length_char(L)-1)
+		L.Swap(i, rand(i, length_char(L)))
 
 
 //same, but returns nothing and acts on list in place (also handles associated values properly)

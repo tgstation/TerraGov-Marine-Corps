@@ -12,7 +12,7 @@
 		return
 	last_tgs_check = rtod
 	var/server = CONFIG_GET(string/server)
-	return "Round ID: [GLOB.round_id] | Round Time: [gameTimestamp("hh:mm")] | Players: [length(GLOB.clients)] | Ground Map: [length(SSmapping.configs) ? SSmapping.configs[GROUND_MAP].map_name : "Loading..."] | Ship Map: [length(SSmapping.configs) ? SSmapping.configs[SHIP_MAP].map_name : "Loading..."] | Mode: [GLOB.master_mode] | Round Status: [SSticker.HasRoundStarted() ? (SSticker.IsRoundInProgress() ? "Active" : "Finishing") : "Starting"] | Link: [server ? server : "<byond://[world.internet_address]:[world.port]>"]"
+	return "Round ID: [GLOB.round_id] | Round Time: [gameTimestamp("hh:mm")] | Players: [length_char(GLOB.clients)] | Ground Map: [length_char(SSmapping.configs) ? SSmapping.configs[GROUND_MAP].map_name : "Loading..."] | Ship Map: [length_char(SSmapping.configs) ? SSmapping.configs[SHIP_MAP].map_name : "Loading..."] | Mode: [GLOB.master_mode] | Round Status: [SSticker.HasRoundStarted() ? (SSticker.IsRoundInProgress() ? "Active" : "Finishing") : "Starting"] | Link: [server ? server : "<byond://[world.internet_address]:[world.port]>"]"
 
 
 /datum/tgs_chat_command/ahelp
@@ -22,8 +22,8 @@
 
 
 /datum/tgs_chat_command/ahelp/Run(datum/tgs_chat_user/sender, params)
-	var/list/all_params = splittext(params, " ")
-	if(length(all_params) < 2)
+	var/list/all_params = splittext_char(params, " ")
+	if(length_char(all_params) < 2)
 		return "Insufficient parameters"
 	var/target = all_params[1]
 	all_params.Cut(1, 2)
@@ -80,7 +80,7 @@
 	var/list/text_res = results.Copy(1, 3)
 	var/list/refs = results[4]
 	var/list/names = results[5]
-	. = "[text_res.Join("\n")][length(refs) ? "\nRefs: [refs.Join(" ")]" : ""][length(names) ? "\nText: [replacetext(names.Join(" "), "<br>", "")]" : ""]"
+	. = "[text_res.Join("\n")][length_char(refs) ? "\nRefs: [refs.Join(" ")]" : ""][length_char(names) ? "\nText: [replacetext_char(names.Join(" "), "<br>", "")]" : ""]"
 
 
 /datum/tgs_chat_command/reload_admins

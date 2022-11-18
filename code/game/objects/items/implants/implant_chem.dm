@@ -22,7 +22,7 @@
 
 
 /obj/item/implant/chem/on_hear(datum/source, message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
-	if(findtext(message, activation_phrase))
+	if(findtext_char(message, activation_phrase))
 		activate()
 
 /obj/item/implant/chem/activate(accidental = FALSE)

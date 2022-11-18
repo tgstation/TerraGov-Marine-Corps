@@ -62,10 +62,10 @@ GLOBAL_PROTECT(exp_to_update)
 	if(!CONFIG_GET(flag/use_exp_tracking))
 		return "Tracking is disabled in the server configuration file."
 	var/list/play_records = prefs.exp
-	if(!length(play_records))
+	if(!length_char(play_records))
 		set_exp_from_db()
 		play_records = prefs.exp
-		if(!length(play_records))
+		if(!length_char(play_records))
 			return "[key] has no records."
 	var/return_text = list()
 	return_text += "<UL>"
@@ -117,11 +117,11 @@ GLOBAL_PROTECT(exp_to_update)
 			else
 				var/xp_req = job.get_exp_req_amount()
 				jobs_locked += "[job.title] [get_exp_format(text2num(calc_exp_type(job.get_exp_req_type())))] / [get_exp_format(xp_req)] as [job.get_exp_req_type()])"
-	if(length(jobs_unlocked))
+	if(length_char(jobs_unlocked))
 		return_text += "<BR><BR>Jobs Unlocked:<UL><LI>"
 		return_text += jobs_unlocked.Join("</LI><LI>")
 		return_text += "</LI></UL>"
-	if(length(jobs_locked))
+	if(length_char(jobs_locked))
 		return_text += "<BR><BR>Jobs Not Unlocked:<UL><LI>"
 		return_text += jobs_locked.Join("</LI><LI>")
 		return_text += "</LI></UL>"
@@ -130,7 +130,7 @@ GLOBAL_PROTECT(exp_to_update)
 
 /client/proc/get_exp(role)
 	var/list/play_records = prefs.exp
-	if(!length(play_records))
+	if(!length_char(play_records))
 		return 0
 	return text2num(play_records[role])
 

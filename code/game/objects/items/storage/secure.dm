@@ -59,7 +59,7 @@
 		return
 
 	if(href_list["type"] == "E")
-		if(!l_set && length(code) == 5 && !l_setshort && code != "ERROR")
+		if(!l_set && length_char(code) == 5 && !l_setshort && code != "ERROR")
 			l_code = code
 			l_set = TRUE
 		else if(code == l_code && l_set)
@@ -77,7 +77,7 @@
 			close(usr)
 		else
 			code += href_list["type"]
-			if(length(code) > 5)
+			if(length_char(code) > 5)
 				code = "ERROR"
 
 	updateUsrDialog()

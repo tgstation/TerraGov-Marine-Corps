@@ -382,9 +382,9 @@
 			AE = new(loc)
 			if(!req_access)
 				check_access()
-			if(length(req_access))
+			if(length_char(req_access))
 				AE.conf_access = req_access
-			else if(length(req_one_access))
+			else if(length_char(req_one_access))
 				AE.conf_access = req_one_access
 				AE.one_access = TRUE
 

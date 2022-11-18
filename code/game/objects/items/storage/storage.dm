@@ -285,14 +285,14 @@
 		return
 
 	// Taking something out of the storage screen (including clicking on item border overlay)
-	var/list/screen_loc_params = splittext(PL["screen-loc"], ",")
-	var/list/screen_loc_X = splittext(screen_loc_params[1],":")
+	var/list/screen_loc_params = splittext_char(PL["screen-loc"], ",")
+	var/list/screen_loc_X = splittext_char(screen_loc_params[1],":")
 	var/click_x = text2num(screen_loc_X[1]) * 32 + text2num(screen_loc_X[2]) - 144
 
-	for(var/i = 1 to length(S.click_border_start))
+	for(var/i = 1 to length_char(S.click_border_start))
 		if(S.click_border_start[i] > click_x || click_x > S.click_border_end[i])
 			continue
-		if(length(S.contents) < i)
+		if(length_char(S.contents) < i)
 			continue
 		I = S.contents[i]
 		I.attack_hand(usr)
@@ -355,7 +355,7 @@
 			to_chat(usr, span_notice("[src] is full, make some space."))
 		return FALSE //Storage item is full
 
-	if(length(can_hold))
+	if(length_char(can_hold))
 		if(!is_type_in_typecache(W, can_hold))
 			if(warning)
 				to_chat(usr, span_notice("[src] cannot hold [W]."))
@@ -582,20 +582,20 @@
 
 //finds a stored item to draw
 /obj/item/storage/do_quick_equip()
-	if(!length(contents))
+	if(!length_char(contents))
 		return FALSE //we don't want to equip the storage item itself
-	var/obj/item/W = contents[length(contents)]
+	var/obj/item/W = contents[length_char(contents)]
 	remove_from_storage(W, user = src)
 	return W
 
 /obj/item/storage/Initialize(mapload, ...)
 	. = ..()
 	PopulateContents()
-	if(length(can_hold))
+	if(length_char(can_hold))
 		can_hold = typecacheof(can_hold)
-	else if(length(cant_hold))
+	else if(length_char(cant_hold))
 		cant_hold = typecacheof(cant_hold)
-	if(length(bypass_w_limit))
+	if(length_char(bypass_w_limit))
 		bypass_w_limit = typecacheof(bypass_w_limit)
 
 	if(!allow_quick_gather)
@@ -769,7 +769,7 @@
 
 /obj/item/storage/recalculate_storage_space()
 	var/list/lookers = can_see_content()
-	if(!length(lookers))
+	if(!length_char(lookers))
 		return
 	orient2hud()
 	for(var/X in lookers)
@@ -791,11 +791,11 @@
 
 ///attempts to get the first possible object from this container
 /obj/item/storage/proc/attempt_draw_object(mob/living/user)
-	if(!ishuman(user) || user.incapacitated() || !length(contents) || isturf(loc))
+	if(!ishuman(user) || user.incapacitated() || !length_char(contents) || isturf(loc))
 		return
 	if(user.get_active_held_item())
 		return //User is already holding something.
-	var/obj/item/drawn_item = contents[length(contents)]
+	var/obj/item/drawn_item = contents[length_char(contents)]
 	drawn_item.attack_hand(user)
 
 /obj/item/storage/proc/PopulateContents()

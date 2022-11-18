@@ -37,7 +37,7 @@
 	var/list/data = list()
 	var/list/color_data = list()
 	data["colors"] = color_data
-	for(var/i in 1 to length(split_colors))
+	for(var/i in 1 to length_char(split_colors))
 		color_data += list(list(
 			"index" = i,
 			"value" = split_colors[i]
@@ -77,9 +77,9 @@
 			refresh_preview()
 
 /datum/greyscale_modify_menu/proc/ReadColorsFromString(colorString)
-	var/list/raw_colors = splittext(colorString, "#")
+	var/list/raw_colors = splittext_char(colorString, "#")
 	split_colors = list()
-	for(var/i in 2 to length(raw_colors))
+	for(var/i in 2 to length_char(raw_colors))
 		split_colors += "#[raw_colors[i]]"
 
 /datum/greyscale_modify_menu/proc/refresh_preview()

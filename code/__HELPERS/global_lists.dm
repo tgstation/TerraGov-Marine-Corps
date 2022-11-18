@@ -155,7 +155,7 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 		var/datum/chemical_reaction/D = new path()
 		var/list/reaction_ids = list()
 
-		if(length(D.required_reagents))
+		if(length_char(D.required_reagents))
 			for(var/result in D.results)
 
 			for(var/reaction in D.required_reagents)

@@ -30,7 +30,7 @@
 		layer = ABOVE_TABLE_LAYER
 	if(set_dir)
 		setDir(set_dir)
-	if(length(req_access))
+	if(length_char(req_access))
 		icon_state = "[icon_state]"
 		base_state = icon_state
 	var/static/list/connections = list(
@@ -175,9 +175,9 @@
 			E = new(loc)
 			if(!req_access)
 				check_access()
-			if(length(req_access))
+			if(length_char(req_access))
 				E.conf_access = req_access
-			else if(length(req_one_access))
+			else if(length_char(req_one_access))
 				E.conf_access = req_one_access
 				E.one_access = TRUE
 		else

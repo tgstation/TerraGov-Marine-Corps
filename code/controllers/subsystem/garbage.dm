@@ -68,7 +68,7 @@ SUBSYSTEM_DEF(garbage)
 /datum/controller/subsystem/garbage/stat_entry(msg)
 	var/list/counts = list()
 	for (var/list/L in queues)
-		counts += length(L)
+		counts += length_char(L)
 	msg += "Q:[counts.Join(",")]|D:[delslasttick]|G:[gcedlasttick]|"
 	msg += "GR:"
 	if (!(delslasttick+gcedlasttick))
@@ -153,9 +153,9 @@ SUBSYSTEM_DEF(garbage)
 
 	//We do this rather then for(var/refID in queue) because that sort of for loop copies the whole list.
 	//Normally this isn't expensive, but the gc queue can grow to 40k items, and that gets costly/causes overrun.
-	for (var/i in 1 to length(queue))
+	for (var/i in 1 to length_char(queue))
 		var/list/L = queue[i]
-		if (length(L) < 2)
+		if (length_char(L) < 2)
 			count++
 			if (MC_TICK_CHECK)
 				return

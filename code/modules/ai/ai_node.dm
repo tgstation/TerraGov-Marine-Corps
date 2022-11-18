@@ -78,7 +78,7 @@
  */
 /obj/effect/ai_node/proc/get_best_adj_node(list/weight_modifiers, identifier)
 	//No weight modifiers, return a adjacent random node
-	if(!length(weight_modifiers) || !identifier)
+	if(!length_char(weight_modifiers) || !identifier)
 		return adjacent_nodes[pick(adjacent_nodes)]
 
 	var/obj/effect/ai_node/node_to_return

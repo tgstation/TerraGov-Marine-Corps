@@ -12,7 +12,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	for(var/type in subtypesof(/datum/seed))
 		var/datum/seed/S = new type
 		GLOB.seed_types[S.name] = S
-		S.uid = "[length(GLOB.seed_types)]"
+		S.uid = "[length_char(GLOB.seed_types)]"
 		S.roundstart = TRUE
 
 	//Might as well mask the gene types while we're at it.

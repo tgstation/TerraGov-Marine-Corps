@@ -13,7 +13,7 @@
 			continue
 		valid_hairstyles[hairstyle] = GLOB.hair_styles_list[hairstyle]
 
-	if(!length(valid_hairstyles))
+	if(!length_char(valid_hairstyles))
 		return "Crewcut"
 
 	return pick(valid_hairstyles)
@@ -32,7 +32,7 @@
 
 		valid_facialhairstyles[facialhairstyle] = GLOB.facial_hair_styles_list[facialhairstyle]
 
-	if(!length(valid_facialhairstyles))
+	if(!length_char(valid_facialhairstyles))
 		return "Shaved"
 
 	return pick(valid_facialhairstyles)

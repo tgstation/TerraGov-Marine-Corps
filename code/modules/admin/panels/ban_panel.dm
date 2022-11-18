@@ -439,7 +439,7 @@
 			changes += list("Duration" = "[href_list["oldduration"]] MINUTE to [duration] [interval]")
 		if(reason != href_list["oldreason"])
 			changes += list("Reason" = "[href_list["oldreason"]]<br>to<br>[reason]")
-		if(!length(changes))
+		if(!length_char(changes))
 			error_state += "No changes were detected."
 	else
 		severity = href_list["radioseverity"]
@@ -450,7 +450,7 @@
 				roles_to_ban += "Server"
 			if("role")
 				href_list.Remove("Command", "Police", "Engineering", "Medical", "Marines", "Requisitions", "Silicon", "Abstract", "Antagonist Positions") //remove the role banner hidden input values
-				if(href_list[length(href_list)] == "roleban_delimiter")
+				if(href_list[length_char(href_list)] == "roleban_delimiter")
 					error_state += "Role ban was selected but no roles to ban were selected."
 				else
 					var/delimiter_pos = href_list.Find("roleban_delimiter")
@@ -459,7 +459,7 @@
 						roles_to_ban |= key
 			else
 				error_state += "No ban type was selected."
-	if(length(error_state))
+	if(length_char(error_state))
 		to_chat(usr, span_danger("Ban not [edit_id ? "edited" : "created"] because the following errors were present:\n[error_state.Join("\n")]"))
 		return
 	if(edit_id)

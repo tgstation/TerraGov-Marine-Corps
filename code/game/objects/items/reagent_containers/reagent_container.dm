@@ -36,7 +36,7 @@
 	if(.)
 		return
 
-	if(!length(possible_transfer_amounts))
+	if(!length_char(possible_transfer_amounts))
 		return
 
 	var/N = tgui_input_list(user, "Amount per transfer from this:", "[src]", possible_transfer_amounts)

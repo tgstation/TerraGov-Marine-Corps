@@ -100,7 +100,7 @@
 		//oh boy, so basically, because of a bug in byond, sometimes stickyban matches don't trigger here, so we can't exempt admins.
 		//	Whitelisting the ckey with the byond whitelist field doesn't work.
 		//	So we instead have to remove every stickyban than later re-add them.
-		if (!length(GLOB.stickybanadminexemptions))
+		if (!length_char(GLOB.stickybanadminexemptions))
 			for (var/banned_ckey in world.GetConfig("ban"))
 				GLOB.stickybanadmintexts[banned_ckey] = world.GetConfig("ban", banned_ckey)
 				world.SetConfig("ban", banned_ckey, null)

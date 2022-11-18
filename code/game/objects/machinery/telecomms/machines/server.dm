@@ -25,7 +25,7 @@
 		totaltraffic += traffic // add current traffic to total traffic
 
 	// Delete particularly old logs
-	if(length(log_entries) >= 400)
+	if(length_char(log_entries) >= 400)
 		log_entries.Cut(1, 2)
 
 	var/datum/comm_log_entry/log = new

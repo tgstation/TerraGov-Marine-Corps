@@ -27,7 +27,7 @@
 /// Get a window id based on the provided pool index
 #define TGUI_WINDOW_ID(index) "tgui-window-[index]"
 /// Get a pool index of the provided window id
-#define TGUI_WINDOW_INDEX(window_id) text2num(copytext(window_id, 13))
+#define TGUI_WINDOW_INDEX(window_id) text2num(copytext_char(window_id, 13))
 
 /// Creates a message packet for sending via output()
 // This is {"type":type,"payload":payload}, but pre-encoded. This is much faster

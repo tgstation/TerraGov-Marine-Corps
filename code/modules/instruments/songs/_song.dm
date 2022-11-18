@@ -90,7 +90,7 @@
 	var/debug_mode = FALSE
 	/// Max sound channels to occupy
 	var/max_sound_channels = CHANNELS_PER_INSTRUMENT
-	/// Current channels, so we can save a length() call.
+	/// Current channels, so we can save a length_char() call.
 	var/using_sound_channels = 0
 	/// Last channel to play. text.
 	var/last_channel_played
@@ -134,7 +134,7 @@
 	src.parent = parent
 	if(instrument_ids)
 		allowed_instrument_ids = islist(instrument_ids)? instrument_ids : list(instrument_ids)
-	if(length(allowed_instrument_ids))
+	if(length_char(allowed_instrument_ids))
 		set_instrument(allowed_instrument_ids[1])
 	hearing_mobs = list()
 	volume = clamp(volume, min_volume, max_volume)
@@ -208,7 +208,7 @@
 		to_chat(user, span_warning("An error has occured with [src]. Please reset the instrument."))
 		return
 	compile_chords()
-	if(!length(compiled_chords))
+	if(!length_char(compiled_chords))
 		to_chat(user, span_warning("Song is empty."))
 		return
 	playing = TRUE
@@ -242,16 +242,16 @@
  * Processes our song.
  */
 /datum/song/proc/process_song(wait)
-	if(!length(compiled_chords) || should_stop_playing(user_playing))
+	if(!length_char(compiled_chords) || should_stop_playing(user_playing))
 		stop_playing()
 		return
 	var/list/chord = compiled_chords[current_chord]
 	if(++elapsed_delay >= delay_by)
 		play_chord(chord)
 		elapsed_delay = 0
-		delay_by = tempodiv_to_delay(chord[length(chord)])
+		delay_by = tempodiv_to_delay(chord[length_char(chord)])
 		current_chord++
-		if(current_chord > length(compiled_chords))
+		if(current_chord > length_char(compiled_chords))
 			if(repeat)
 				repeat--
 				current_chord = 1
@@ -279,7 +279,7 @@
  */
 /datum/song/proc/play_chord(list/chord)
 	// last value is timing information
-	for(var/i in 1 to (length(chord) - 1))
+	for(var/i in 1 to (length_char(chord) - 1))
 		legacy? playkey_legacy(chord[i][1], chord[i][2], chord[i][3], user_playing) : playkey_synth(chord[i], user_playing)
 
 /**

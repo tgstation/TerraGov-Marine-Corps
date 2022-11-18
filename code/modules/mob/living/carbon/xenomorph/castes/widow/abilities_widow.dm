@@ -88,7 +88,7 @@
 		ADD_TRAIT(snared_victim, TRAIT_LEASHED, src)
 		beams += beam(snared_victim, "beam_web", 'icons/effects/beam.dmi', INFINITY, INFINITY)
 		RegisterSignal(snared_victim, COMSIG_MOVABLE_PRE_MOVE, .proc/check_dist)
-	if(!length(beams))
+	if(!length_char(beams))
 		return INITIALIZE_HINT_QDEL
 	QDEL_IN(src, leash_life)
 
@@ -142,7 +142,7 @@
 /datum/action/xeno_action/create_spiderling/action_activate()
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
-	if(length(spiderlings) >= X.xeno_caste.max_spiderlings)
+	if(length_char(spiderlings) >= X.xeno_caste.max_spiderlings)
 		X.balloon_alert(X, "Max Spiderlings")
 		return fail_activate()
 	if(!do_after(X, 0.5 SECONDS, TRUE, X, BUSY_ICON_DANGER))
@@ -259,7 +259,7 @@
 		return
 	var/mob/living/carbon/xenomorph/widow/X = owner
 	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = X.actions_by_path[/datum/action/xeno_action/create_spiderling]
-	if(!(length(create_spiderling_action.spiderlings)))
+	if(!(length_char(create_spiderling_action.spiderlings)))
 		X.balloon_alert(X, "No spiderlings")
 		return fail_activate()
 	var/list/mob/living/carbon/xenomorph/spiderling/remaining_spiderlings = create_spiderling_action.spiderlings.Copy()

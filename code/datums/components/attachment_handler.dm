@@ -32,7 +32,7 @@
 	attachable_overlays += slots
 
 	var/obj/parent_object = parent
-	if(length(starting_attachments) && parent_object.loc) //Attaches starting attachments if the object is not instantiated in nullspace. If it is created in null space, such as in a loadout vendor. It wont create default attachments.
+	if(length_char(starting_attachments) && parent_object.loc) //Attaches starting attachments if the object is not instantiated in nullspace. If it is created in null space, such as in a loadout vendor. It wont create default attachments.
 		for(var/starting_attachment_type in starting_attachments)
 			attach_without_user(attachment = new starting_attachment_type(parent_object))
 
@@ -56,7 +56,7 @@
 	var/list/attachment_data = list()
 	SEND_SIGNAL(attachment, COMSIG_ITEM_IS_ATTACHING, attacher, attachment_data)
 
-	if(!length(attachment_data)) //Something has to provide attaching data here to continue.
+	if(!length_char(attachment_data)) //Something has to provide attaching data here to continue.
 		return
 
 	if(!bypass_checks)
@@ -166,7 +166,7 @@
 
 ///Checks the current slots of the parent and if there are attachments that can be removed in those slots. Basically it makes sure theres room for the attachment.
 /datum/component/attachment_handler/proc/can_attach(obj/item/attachment, mob/living/user, list/attachment_data)
-	if(!length(slots)) //If there is no slots, it cannot be attached to. Currently this has no use. But I had a thought about making attachments that can add/remove slots.
+	if(!length_char(slots)) //If there is no slots, it cannot be attached to. Currently this has no use. But I had a thought about making attachments that can add/remove slots.
 		return FALSE
 
 	var/slot = attachment_data[SLOT]
@@ -208,7 +208,7 @@
 			continue
 		attachments_to_remove += current_attachment
 
-	if(!length(attachments_to_remove))
+	if(!length_char(attachments_to_remove))
 		to_chat(living_user, span_warning("There are no attachments that can be removed from [parent]!"))
 		return
 
@@ -217,7 +217,7 @@
 ///Does the detach, shows the user the removable attachments and handles the do_after.
 /datum/component/attachment_handler/proc/do_detach(mob/living/user, list/attachments_to_remove)
 	//If there is only one attachment to remove, then that will be the attachment_to_remove. If there is more than one it gives the user a list to select from.
-	var/obj/item/attachment_to_remove = length(attachments_to_remove) == 1 ? attachments_to_remove[1] : tgui_input_list(user, "Choose an attachment", "Choose attachment", attachments_to_remove)
+	var/obj/item/attachment_to_remove = length_char(attachments_to_remove) == 1 ? attachments_to_remove[1] : tgui_input_list(user, "Choose an attachment", "Choose attachment", attachments_to_remove)
 	if(!attachment_to_remove)
 		return
 

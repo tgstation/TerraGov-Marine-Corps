@@ -258,7 +258,7 @@
 
 /datum/tgs_api/v4/ChatBroadcast(message, list/channels)
 	var/list/ids
-	if(length(channels))
+	if(length_char(channels))
 		ids = list()
 		for(var/I in channels)
 			var/datum/tgs_chat_channel/channel = I

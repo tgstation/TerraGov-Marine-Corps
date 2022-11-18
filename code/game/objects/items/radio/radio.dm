@@ -179,7 +179,7 @@
 
 	// From the channel, determine the frequency and get a reference to it.
 	var/freq
-	if(channel && length(channels))
+	if(channel && length_char(channels))
 		if(channel == MODE_DEPARTMENT)
 			channel = channels[1]
 		freq = secure_radio_connections[channel]

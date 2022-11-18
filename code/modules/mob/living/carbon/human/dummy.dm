@@ -67,17 +67,17 @@ GLOBAL_LIST_EMPTY(dummy_mob_list)
 	species.create_organs(src)
 	if(species.base_color && default_colour)
 		//Apply colour.
-		r_skin = hex2num(copytext(species.base_color,2,4))
-		g_skin = hex2num(copytext(species.base_color,4,6))
-		b_skin = hex2num(copytext(species.base_color,6,8))
+		r_skin = hex2num(copytext_char(species.base_color,2,4))
+		g_skin = hex2num(copytext_char(species.base_color,4,6))
+		b_skin = hex2num(copytext_char(species.base_color,6,8))
 	else
 		r_skin = 0
 		g_skin = 0
 		b_skin = 0
 	if(species.hair_color)
-		r_hair = hex2num(copytext(species.hair_color, 2, 4))
-		g_hair = hex2num(copytext(species.hair_color, 4, 6))
-		b_hair = hex2num(copytext(species.hair_color, 6, 8))
+		r_hair = hex2num(copytext_char(species.hair_color, 2, 4))
+		g_hair = hex2num(copytext_char(species.hair_color, 4, 6))
+		b_hair = hex2num(copytext_char(species.hair_color, 6, 8))
 	INVOKE_ASYNC(src, .proc/regenerate_icons)
 	INVOKE_ASYNC(src, .proc/update_body)
 	INVOKE_ASYNC(src, .proc/restore_blood)

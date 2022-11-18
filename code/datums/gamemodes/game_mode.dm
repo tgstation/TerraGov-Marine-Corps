@@ -70,7 +70,7 @@
 		// start a gamemode vote, in theory this should never happen.
 		addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote.proc/initiate_vote, "gamemode", "SERVER"), 10 SECONDS)
 		return FALSE
-	if(length(GLOB.ready_players) < required_players && !bypass_checks)
+	if(length_char(GLOB.ready_players) < required_players && !bypass_checks)
 		to_chat(world, "<b>Unable to start [name].</b> Not enough players, [required_players] players needed.")
 		return FALSE
 	if(!set_valid_job_types() && !bypass_checks)
@@ -174,7 +174,7 @@
 		living.notransform = TRUE
 		livings += living
 
-	if(length(livings))
+	if(length_char(livings))
 		addtimer(CALLBACK(src, .proc/release_characters, livings), 1 SECONDS, TIMER_CLIENT_TIME)
 
 
@@ -290,7 +290,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 	CONFIG_SET(flag/allow_synthetic_gun_use, TRUE)
 
-	if(!length(spawns))
+	if(!length_char(spawns))
 		to_chat(world, "<br><br><h1>[span_danger("End of Round Deathmatch initialization failed, please do not grief.")]</h1><br><br>")
 		return
 
@@ -306,13 +306,13 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 			continue
 
 		var/turf/picked
-		if(length(spawns))
+		if(length_char(spawns))
 			picked = pick(spawns)
 			spawns -= picked
 		else
 			spawns = GLOB.deathmatch.Copy()
 
-			if(!length(spawns))
+			if(!length_char(spawns))
 				to_chat(world, "<br><br><h1>[span_danger("End of Round Deathmatch initialization failed, please do not grief.")]</h1><br><br>")
 				return
 
@@ -388,14 +388,14 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	return
 
 /datum/game_mode/proc/announce_medal_awards()
-	if(!length(GLOB.medal_awards))
+	if(!length_char(GLOB.medal_awards))
 		return
 
 	var/dat =  span_round_body("Medal Awards:")
 
 	for(var/recipient in GLOB.medal_awards)
 		var/datum/recipient_awards/RA = GLOB.medal_awards[recipient]
-		for(var/i in 1 to length(RA.medal_names))
+		for(var/i in 1 to length_char(RA.medal_names))
 			dat += "<br><b>[RA.recipient_rank] [recipient]</b> is awarded [RA.posthumous[i] ? "posthumously " : ""]the [span_boldnotice("[RA.medal_names[i]]")]: \'<i>[RA.medal_citations[i]]</i>\'."
 
 	to_chat(world, dat)
@@ -477,11 +477,11 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		dat += "[GLOB.round_statistics.points_from_mining] requisitions points gained from mining."
 	if(GLOB.round_statistics.points_from_research)
 		dat += "[GLOB.round_statistics.points_from_research] requisitions points gained from research."
-	if(length(GLOB.round_statistics.req_items_produced))
+	if(length_char(GLOB.round_statistics.req_items_produced))
 		var/produced = "Requisitions produced: "
 		for(var/atom/movable/path AS in GLOB.round_statistics.req_items_produced)
 			produced += "[GLOB.round_statistics.req_items_produced[path]] [initial(path.name)]"
-			if(path == GLOB.round_statistics.req_items_produced[length(GLOB.round_statistics.req_items_produced)]) //last element
+			if(path == GLOB.round_statistics.req_items_produced[length_char(GLOB.round_statistics.req_items_produced)]) //last element
 				produced += "."
 			else
 				produced += ","
@@ -633,7 +633,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 			SSjob.active_joinable_occupations += job
 		SSjob.set_active_joinable_occupations_by_category()
 		return TRUE
-	if(!length(valid_job_types))
+	if(!length_char(valid_job_types))
 		SSjob.active_occupations = SSjob.joinable_occupations.Copy()
 		SSjob.active_joinable_occupations = SSjob.joinable_occupations.Copy()
 		SSjob.set_active_joinable_occupations_by_category()
@@ -646,7 +646,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 			continue
 		job.total_positions = valid_job_types[job.type] //Same for this one, direct value assignment.
 		SSjob.active_occupations += job
-	if(!length(SSjob.active_occupations))
+	if(!length_char(SSjob.active_occupations))
 		to_chat(world, span_boldnotice("Error, game mode has only invalid jobs assigned."))
 		return FALSE
 	SSjob.active_joinable_occupations = SSjob.active_occupations.Copy()
@@ -667,7 +667,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		var/datum/squad/squad = SSjob.squads[key]
 		if(squad.faction == FACTION_TERRAGOV)
 			preferred_squads[squad.name] = 0
-	if(!length(preferred_squads))
+	if(!length_char(preferred_squads))
 		to_chat(world, span_boldnotice("Error, no squads found."))
 		return FALSE
 	for(var/mob/new_player/player AS in GLOB.new_player_list)
@@ -692,13 +692,13 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 /datum/game_mode/proc/scale_roles()
 	if(SSjob.ssjob_flags & SSJOB_OVERRIDE_JOBS_START)
 		return FALSE
-	if(length(SSjob.active_squads[FACTION_TERRAGOV]))
+	if(length_char(SSjob.active_squads[FACTION_TERRAGOV]))
 		scale_squad_jobs()
 	return TRUE
 
 /datum/game_mode/proc/scale_squad_jobs()
 	var/datum/job/scaled_job = SSjob.GetJobType(/datum/job/terragov/squad/leader)
-	scaled_job.total_positions = length(SSjob.active_squads[FACTION_TERRAGOV])
+	scaled_job.total_positions = length_char(SSjob.active_squads[FACTION_TERRAGOV])
 
 ///Return the list of joinable factions, with regards with the current round balance
 /datum/game_mode/proc/get_joinable_factions(should_look_balance)

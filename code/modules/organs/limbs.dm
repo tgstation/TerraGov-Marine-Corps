@@ -244,7 +244,7 @@
 				possible_points += parent
 			if(children)
 				possible_points += children
-			if(length(forbidden_limbs))
+			if(length_char(forbidden_limbs))
 				possible_points -= forbidden_limbs
 			if(possible_points.len)
 				//And pass the damage around, but not the chance to cut the limb off.

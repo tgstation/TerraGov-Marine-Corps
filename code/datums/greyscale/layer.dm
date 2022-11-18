@@ -47,13 +47,13 @@
 		CRASH("Configured icon state \[[icon_state]\] was not found in [icon_file]. Double check your json configuration.")
 	icon = new(icon_file, json_data["icon_state"])
 
-	if(length(color_ids) > 1)
+	if(length_char(color_ids) > 1)
 		CRASH("Icon state layers can not have more than one color id")
 
 /datum/greyscale_layer/icon_state/InternalGenerate(list/colors, list/render_steps)
 	. = ..()
 	var/icon/new_icon = icon(icon)
-	if(length(colors))
+	if(length_char(colors))
 		new_icon.Blend(colors[1], ICON_MULTIPLY)
 	return new_icon
 

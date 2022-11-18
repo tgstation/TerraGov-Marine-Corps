@@ -44,7 +44,7 @@
  * * external_list - list of reagent types = amounts
  */
 /datum/reagents/proc/log_list(external_list)
-	if((external_list && !length(external_list)) || !length(reagent_list))
+	if((external_list && !length_char(external_list)) || !length_char(reagent_list))
 		return "no reagents"
 
 	var/list/data = list()
@@ -806,7 +806,7 @@
 
 /proc/get_random_reagent_id()	// Returns a random reagent ID minus blacklisted reagents
 	var/static/list/random_reagents = list()
-	if(!length(random_reagents))
+	if(!length_char(random_reagents))
 		for(var/thing  in subtypesof(/datum/reagent))
 			var/datum/reagent/R = thing
 			if(initial(R.can_synth))

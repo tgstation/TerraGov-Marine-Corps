@@ -268,7 +268,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 /datum/action/xeno_action/choose_hugger_type/alternate_action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 	var/i = GLOB.hugger_type_list.Find(X.selected_hugger_type)
-	if(length(GLOB.hugger_type_list) == i)
+	if(length_char(GLOB.hugger_type_list) == i)
 		X.selected_hugger_type = GLOB.hugger_type_list[1]
 	else
 		X.selected_hugger_type = GLOB.hugger_type_list[i+1]

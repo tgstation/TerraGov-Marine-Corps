@@ -56,7 +56,7 @@
 		return
 
 	var/list/adm = get_admin_counts(R_ADMIN)
-	if(length(adm["present"]) > 0)
+	if(length_char(adm["present"]) > 0)
 		return // Let an admin deal with it.
 
 	var/ff_cooldown = CONFIG_GET(number/ff_damage_reset)

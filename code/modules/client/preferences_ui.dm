@@ -352,7 +352,7 @@
 			if(!C)
 				return
 
-			if(length(gear))
+			if(length_char(gear))
 				for(var/gear_name in gear)
 					if(GLOB.gear_datums[gear_name])
 						var/datum/gear/G = GLOB.gear_datums[gear_name]
@@ -411,17 +411,17 @@
 			var/new_color = input(user, "Choose your character's hair colour:", "Hair Color") as null|color
 			if(!new_color)
 				return
-			r_hair = hex2num(copytext(new_color, 2, 4))
-			g_hair = hex2num(copytext(new_color, 4, 6))
-			b_hair = hex2num(copytext(new_color, 6, 8))
+			r_hair = hex2num(copytext_char(new_color, 2, 4))
+			g_hair = hex2num(copytext_char(new_color, 4, 6))
+			b_hair = hex2num(copytext_char(new_color, 6, 8))
 
 		if("grad_color")
 			var/new_grad = input(user, "Choose your character's secondary hair color:", "Gradient Color") as null|color
 			if(!new_grad)
 				return
-			r_grad = hex2num(copytext(new_grad, 2, 4))
-			g_grad = hex2num(copytext(new_grad, 4, 6))
-			b_grad = hex2num(copytext(new_grad, 6, 8))
+			r_grad = hex2num(copytext_char(new_grad, 2, 4))
+			g_grad = hex2num(copytext_char(new_grad, 4, 6))
+			b_grad = hex2num(copytext_char(new_grad, 6, 8))
 
 		if("grad_style")
 			var/list/valid_grads = list()
@@ -455,17 +455,17 @@
 			var/facial_color = input(user, "Choose your character's facial-hair colour:", "Facial Hair Color") as null|color
 			if(!facial_color)
 				return
-			r_facial = hex2num(copytext(facial_color, 2, 4))
-			g_facial = hex2num(copytext(facial_color, 4, 6))
-			b_facial = hex2num(copytext(facial_color, 6, 8))
+			r_facial = hex2num(copytext_char(facial_color, 2, 4))
+			g_facial = hex2num(copytext_char(facial_color, 4, 6))
+			b_facial = hex2num(copytext_char(facial_color, 6, 8))
 
 		if("eyecolor")
 			var/eyecolor = input(user, "Choose your character's eye colour:", "Character Preference") as null|color
 			if(!eyecolor)
 				return
-			r_eyes = hex2num(copytext(eyecolor, 2, 4))
-			g_eyes = hex2num(copytext(eyecolor, 4, 6))
-			b_eyes = hex2num(copytext(eyecolor, 6, 8))
+			r_eyes = hex2num(copytext_char(eyecolor, 2, 4))
+			g_eyes = hex2num(copytext_char(eyecolor, 4, 6))
+			b_eyes = hex2num(copytext_char(eyecolor, 6, 8))
 
 		if("citizenship")
 			var/choice = tgui_input_list(ui.user, "Where do you hail from?", "Place of Origin", CITIZENSHIP_CHOICES)
@@ -608,7 +608,7 @@
 			var/old_key = params["old_key"]
 			if(key_bindings[old_key])
 				key_bindings[old_key] -= kb_name
-				if(!length(key_bindings[old_key]))
+				if(!length_char(key_bindings[old_key]))
 					key_bindings -= old_key
 
 			if(!params["key"])
@@ -640,7 +640,7 @@
 				if(!(kb_name in key_bindings[key]))
 					continue
 				key_bindings[key] -= kb_name
-				if(!length(key_bindings[key]))
+				if(!length_char(key_bindings[key]))
 					key_bindings -= key
 					continue
 				key_bindings[key] = sortList(key_bindings[key])
@@ -652,11 +652,11 @@
 			var/kb_name = params["name"]
 			if(!kb_name)
 				return
-			var/list/part = splittext(kb_name, ":")
+			var/list/part = splittext_char(kb_name, ":")
 			var/id = text2num(part[2])
 			var/datum/custom_emote/emote = custom_emotes[id]
 			var/new_message = params["sentence"]
-			if(length(new_message) > 300)
+			if(length_char(new_message) > 300)
 				return
 			emote.message = new_message
 			custom_emotes[id] = emote
@@ -665,7 +665,7 @@
 			var/kb_name = params["name"]
 			if(!kb_name)
 				return
-			var/list/part = splittext(kb_name, ":")
+			var/list/part = splittext_char(kb_name, ":")
 			var/id = text2num(part[2])
 			var/datum/custom_emote/emote = custom_emotes[id]
 			emote.spoken_emote = !emote.spoken_emote
@@ -685,7 +685,7 @@
 					continue
 				ban_details = i
 				break //we only want to get the most recent ban's details
-			if(!length(ban_details))
+			if(!length_char(ban_details))
 				return
 
 			var/expires = "This is a permanent ban."

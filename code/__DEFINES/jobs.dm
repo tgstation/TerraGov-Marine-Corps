@@ -170,7 +170,7 @@ GLOBAL_LIST_INIT(jobs_fallen_all, typecacheof(list(/datum/job/fallen)))
 #define COCOON_ORIGIN "xenos from cocoon that reached its endlife"
 #define SILO_ORIGIN "xenos from silo generation"
 
-#define SQUAD_MAX_POSITIONS(total_positions) CEILING(total_positions / length(SSjob.active_squads), 1)
+#define SQUAD_MAX_POSITIONS(total_positions) CEILING(total_positions / length_char(SSjob.active_squads), 1)
 
 /// How many points a marine can spend in job specific vendors by default
 #define DEFAULT_TOTAL_BUY_POINTS 45

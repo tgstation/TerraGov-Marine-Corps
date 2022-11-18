@@ -69,7 +69,7 @@
 	TIMER_COOLDOWN_START(ui.user, COOLDOWN_LOADOUT_VISUALIZATION, 1 SECONDS) //Anti spam cooldown
 	switch(action)
 		if("saveLoadout")
-			if(length(loadouts_data) >= MAXIMUM_LOADOUT * 2)
+			if(length_char(loadouts_data) >= MAXIMUM_LOADOUT * 2)
 				to_chat(ui.user, span_warning("You've reached the maximum number of loadouts saved, please delete some before saving new ones"))
 				return
 			var/loadout_name = params["loadout_name"]
@@ -87,8 +87,8 @@
 			var/loadout_id = params["loadout_id"]
 			if(isnull(loadout_id))
 				return
-			var/list/items = splittext(loadout_id, "//")
-			if(length(items) != 3)
+			var/list/items = splittext_char(loadout_id, "//")
+			if(length_char(items) != 3)
 				to_chat(ui.user, span_warning("Wrong format!"))
 				return
 			var/datum/loadout/loadout = load_player_loadout(items[1], items[2], items[3])

@@ -127,7 +127,7 @@
 		return FALSE
 	str_val = trim(str_val)
 	var/list/new_list = list()
-	var/list/values = splittext(str_val," ")
+	var/list/values = splittext_char(str_val," ")
 	for(var/I in values)
 		var/temp = text2num(I)
 		if(isnull(temp))
@@ -157,14 +157,14 @@
 		return FALSE
 
 	str_val = trim(str_val)
-	var/key_pos = findtext(str_val, splitter)
+	var/key_pos = findtext_char(str_val, splitter)
 	var/key_name = null
 	var/key_value = null
 
 	if(key_pos || value_mode == VALUE_MODE_FLAG)
-		key_name = lowertext(copytext(str_val, 1, key_pos))
+		key_name = lowertext(copytext_char(str_val, 1, key_pos))
 		if(key_pos)
-			key_value = copytext(str_val, key_pos + length(str_val[key_pos]))
+			key_value = copytext_char(str_val, key_pos + length_char(str_val[key_pos]))
 		var/new_key
 		var/new_value
 		var/continue_check_value

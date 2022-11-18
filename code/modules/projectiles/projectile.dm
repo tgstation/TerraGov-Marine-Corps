@@ -523,7 +523,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				break
 			if(ammo.flags_ammo_behavior & AMMO_LEAVE_TURF)
 				ammo.on_leave_turf(turf_crossed_by, firer, src)
-		if(length(uncross_scheduled)) //Time to exit the last turf entered, if the diagonal movement didn't handle it already.
+		if(length_char(uncross_scheduled)) //Time to exit the last turf entered, if the diagonal movement didn't handle it already.
 			for(var/j in uncross_scheduled)
 				var/atom/movable/thing_to_uncross = j
 				if(QDELETED(thing_to_uncross))
@@ -1117,7 +1117,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				break
 			if(ammo.flags_ammo_behavior & AMMO_LEAVE_TURF)
 				ammo.on_leave_turf(turf_crossed_by, firer, src)
-		if(length(uncross_scheduled)) //Time to exit the last turf entered, if the diagonal movement didn't handle it already.
+		if(length_char(uncross_scheduled)) //Time to exit the last turf entered, if the diagonal movement didn't handle it already.
 			for(var/atom/movable/thing_to_uncross AS in uncross_scheduled)
 				if(QDELETED(thing_to_uncross))
 					continue
@@ -1261,7 +1261,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	for(var/mob/possible_target in src)
 		mob_list += possible_target
 
-	if(!length(mob_list))
+	if(!length_char(mob_list))
 		return FALSE
 
 	var/mob/picked_mob = pick(mob_list)

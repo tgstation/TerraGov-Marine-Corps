@@ -197,7 +197,7 @@
 				return
 			var/list/expNames = list("Devastation", "Heavy Damage", "Light Damage", "Flash")
 			var/list/boomInput = list()
-			for(var/i in 1 to length(expNames))
+			for(var/i in 1 to length_char(expNames))
 				boomInput.Add(input("[expNames[i]] Range", "Enter the [expNames[i]] range of the explosion. WARNING: This ignores the bomb cap!", 0) as null|num)
 				if(isnull(boomInput[i]))
 					return
@@ -611,7 +611,7 @@
 	numTurfs = 0
 	acceptableTurfs = list()
 	for(var/turf/T in orderedArea)
-		if(length(typecache_filter_list_reverse(T.contents, ignored_atoms)))
+		if(length_char(typecache_filter_list_reverse(T.contents, ignored_atoms)))
 			acceptableTurfs.Add(T)
 			numTurfs ++
 
@@ -622,7 +622,7 @@
 				for(var/turf/T in acceptableTurfs)
 					launchList |= typecache_filter_list_reverse(T.contents, ignored_atoms)
 			if(1)
-				if(launchCounter > length(acceptableTurfs))
+				if(launchCounter > length_char(acceptableTurfs))
 					launchCounter = 1
 				for(var/atom/movable/O in acceptableTurfs[launchCounter].contents)
 					launchList |= typecache_filter_list_reverse(acceptableTurfs[launchCounter].contents, ignored_atoms)
@@ -655,7 +655,7 @@
 /datum/podlauncher/proc/updateSelector()
 	if(launchChoice == 1 && !isemptylist(acceptableTurfs) && !temp_pod.reversing && !temp_pod.effectMissile)
 		var/index = launchCounter + 1
-		if(index > length(acceptableTurfs))
+		if(index > length_char(acceptableTurfs))
 			index = 1
 		selector.forceMove(acceptableTurfs[index])
 	else

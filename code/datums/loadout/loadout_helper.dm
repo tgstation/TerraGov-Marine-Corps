@@ -164,7 +164,7 @@
 
 /proc/convert_loadouts_list(list/loadouts_data)
 	var/list/new_loadouts_data = list()
-	for(var/i = 1 to length(loadouts_data) step 2)
+	for(var/i = 1 to length_char(loadouts_data) step 2)
 		var/next_loadout_data = list()
 		next_loadout_data += loadouts_data[i]
 		next_loadout_data += loadouts_data[++i]

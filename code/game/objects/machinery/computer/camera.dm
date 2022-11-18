@@ -73,7 +73,7 @@
 		if(is_living)
 			concurrent_users += user_ref
 		// Turn on the console
-		if(length(concurrent_users) == 1 && is_living)
+		if(length_char(concurrent_users) == 1 && is_living)
 			playsound(src, 'sound/machines/terminal_on.ogg', 25, FALSE)
 			use_power(active_power_usage)
 		// Register map objects
@@ -147,7 +147,7 @@
 	// Unregister map objects
 	user.client.clear_map(map_name)
 	// Turn off the console
-	if(length(concurrent_users) == 0 && is_living)
+	if(length_char(concurrent_users) == 0 && is_living)
 		active_camera = null
 		playsound(src, 'sound/machines/terminal_off.ogg', 25, FALSE)
 		use_power(0)
@@ -172,6 +172,6 @@
 			stack_trace("Camera in a cameranet has a non-list camera network")
 			continue
 		var/list/tempnetwork = C.network & network
-		if(length(tempnetwork))
+		if(length_char(tempnetwork))
 			valid_cams["[C.c_tag]"] = C
 	return valid_cams

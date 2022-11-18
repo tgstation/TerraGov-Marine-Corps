@@ -189,7 +189,7 @@
 		hearer.Hear(rendered, virt, language, message, frequency, spans)
 
 	var/spans_part = ""
-	if(length(spans))
+	if(length_char(spans))
 		spans_part = "(spans:"
 		for(var/S in spans)
 			spans_part = "[spans_part] [S]"

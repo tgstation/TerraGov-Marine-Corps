@@ -377,7 +377,7 @@
 
 
 /proc/sticky_banned_ckeys()
-	if (SSdbcore.Connect() || length(SSstickyban.dbcache))
+	if (SSdbcore.Connect() || length_char(SSstickyban.dbcache))
 		if (SSstickyban.dbcacheexpire < world.time)
 			SSstickyban.Populatedbcache()
 		if (SSstickyban.dbcacheexpire)
@@ -390,7 +390,7 @@
 	. = list()
 	if (!ckey)
 		return null
-	if (SSdbcore.Connect() || length(SSstickyban.dbcache))
+	if (SSdbcore.Connect() || length_char(SSstickyban.dbcache))
 		if (SSstickyban.dbcacheexpire < world.time)
 			SSstickyban.Populatedbcache()
 		if (SSstickyban.dbcacheexpire)
@@ -410,7 +410,7 @@
 
 	. = stickyban2list(world.GetConfig("ban", ckey)) || stickyban2list(world.GetConfig("ban", ckey(ckey))) || list()
 
-	if (!length(.))
+	if (!length_char(.))
 		return null
 
 /proc/stickyban2list(ban, strictdb = TRUE)
@@ -418,22 +418,22 @@
 		return null
 	. = params2list(ban)
 	if (.["keys"])
-		var/keys = splittext(.["keys"], ",")
+		var/keys = splittext_char(.["keys"], ",")
 		var/ckeys = list()
 		for (var/key in keys)
 			var/ckey = ckey(key)
 			ckeys[ckey] = ckey //to make searching faster.
 		.["keys"] = ckeys
 	if (.["whitelist"])
-		var/keys = splittext(.["whitelist"], ",")
+		var/keys = splittext_char(.["whitelist"], ",")
 		var/ckeys = list()
 		for (var/key in keys)
 			var/ckey = ckey(key)
 			ckeys[ckey] = ckey //to make searching faster.
 		.["whitelist"] = ckeys
-	.["type"] = splittext(.["type"], ",")
-	.["IP"] = splittext(.["IP"], ",")
-	.["computer_id"] = splittext(.["computer_id"], ",")
+	.["type"] = splittext_char(.["type"], ",")
+	.["IP"] = splittext_char(.["IP"], ",")
+	.["computer_id"] = splittext_char(.["computer_id"], ",")
 	. -= "fromdb"
 
 

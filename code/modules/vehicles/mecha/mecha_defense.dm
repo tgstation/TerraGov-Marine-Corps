@@ -206,7 +206,7 @@
 	var/damage_taken = take_damage(attacking_item.force, attacking_item.damtype, MELEE, 1)
 	try_damage_component(damage_taken, user.zone_selected)
 
-	var/hit_verb = length(attacking_item.attack_verb) ? "[pick(attacking_item.attack_verb)]" : "hit"
+	var/hit_verb = length_char(attacking_item.attack_verb) ? "[pick(attacking_item.attack_verb)]" : "hit"
 	user.visible_message(
 		span_danger("[user] [hit_verb][plural_s(hit_verb)] [src] with [attacking_item][damage_taken ? "." : ", without leaving a mark!"]"),
 		span_danger("You [hit_verb] [src] with [attacking_item][damage_taken ? "." : ", without leaving a mark!"]"),

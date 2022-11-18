@@ -196,7 +196,7 @@
 				target += M
 		if(name == string)
 			target += src
-		if(!length(target))
+		if(!length_char(target))
 			to_chat(src, span_warning("Target is not on or near any active cameras on the station."))
 			return
 
@@ -429,7 +429,7 @@
 		SEND_SIGNAL(ai, COMSIG_REMOTECONTROL_TOGGLE, ai)
 		clear_vehicle()
 		return
-	if(!length(GLOB.unmanned_vehicles))
+	if(!length_char(GLOB.unmanned_vehicles))
 		to_chat(ai, "<span class='warning'>No unmanned vehicles detected</span>")
 		return
 	var/obj/vehicle/unmanned/new_vehicle = tgui_input_list(ai, "What vehicle do you want to control?","vehicle choice", GLOB.unmanned_vehicles)

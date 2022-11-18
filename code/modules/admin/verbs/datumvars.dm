@@ -126,8 +126,8 @@
 			/mob = "M"
 		)
 		for (var/tn in TYPES_SHORTCUTS)
-			if(copytext(typename, 1, length("[tn]/") + 1) == "[tn]/" /*findtextEx(typename,"[tn]/",1,2)*/ )
-				typename = TYPES_SHORTCUTS[tn] + copytext(typename, length("[tn]/"))
+			if(copytext_char(typename, 1, length_char("[tn]/") + 1) == "[tn]/" /*findtextEx_char(typename,"[tn]/",1,2)*/ )
+				typename = TYPES_SHORTCUTS[tn] + copytext_char(typename, length_char("[tn]/"))
 				break
 		.[typename] = type
 
@@ -150,7 +150,7 @@
 	var/list/matches = new
 	for(var/key in L)
 		var/value = L[key]
-		if(findtext("[key]", filter) || findtext("[value]", filter))
+		if(findtext_char("[key]", filter) || findtext_char("[value]", filter))
 			matches[key] = value
 	return matches
 
@@ -202,7 +202,7 @@
 			src << browse_rsc(sprite, "vv[hash].png")
 
 	title = "[D] ([REF(D)]) = [type]"
-	var/formatted_type = replacetext("[type]", "/", "<wbr>/")
+	var/formatted_type = replacetext_char("[type]", "/", "<wbr>/")
 
 	var/sprite_text
 	if(sprite)
@@ -292,7 +292,7 @@
 				variable_html += D.vv_get_var(V)
 
 	var/html = {"
-<html>
+<html><meta charset='UTF-8'>
 	<head>
 		<title>[title]</title>
 		<style>
@@ -573,8 +573,8 @@
 
 		if(istype(DA, /datum/controller/global_vars) && !DA.vv_edit_var(name, L))
 			item = "[VV_HTML_ENCODE(name)] = /list ([L.len])"
-		else if(length(L) > 0  && !(name == "underlays" || name == "overlays" || length(L) > (IS_NORMAL_LIST(L) ? 50 : 150)))
-			for(var/i in 1 to length(L))
+		else if(length_char(L) > 0  && !(name == "underlays" || name == "overlays" || length_char(L) > (IS_NORMAL_LIST(L) ? 50 : 150)))
+			for(var/i in 1 to length_char(L))
 				var/key = L[i]
 				var/val
 				if(IS_NORMAL_LIST(L) && !isnum(key))
@@ -1084,7 +1084,7 @@
 		if(!istype(L))
 			return
 
-		if(!length(L.language_holder.languages))
+		if(!length_char(L.language_holder.languages))
 			to_chat(usr, span_warning("This mob knows no languages."))
 			return
 

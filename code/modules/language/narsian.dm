@@ -34,7 +34,7 @@
 	for(var/syllable in base_syllables) //we only do this once, since there's only ever a single one of each language datum.
 		for(var/target_syllable in base_syllables)
 			if(syllable != target_syllable) //don't combine with yourself
-				if(length(syllable) + length(target_syllable) > 8) //if the resulting syllable would be very long, don't put anything between it
+				if(length_char(syllable) + length_char(target_syllable) > 8) //if the resulting syllable would be very long, don't put anything between it
 					syllables += "[syllable][target_syllable]"
 				else if(prob(80)) //we'll be minutely different each round.
 					syllables += "[syllable]'[target_syllable]"

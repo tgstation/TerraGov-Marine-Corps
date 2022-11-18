@@ -30,20 +30,20 @@ SUBSYSTEM_DEF(evacuation)
 	dest_rods = list()
 	for(var/obj/machinery/self_destruct/rod/I in dest_master.loc.loc)
 		dest_rods += I
-	if(!length(dest_rods))
+	if(!length_char(dest_rods))
 		stack_trace("SSevacuation: Could not find any dest_rods.")
 		qdel(dest_master)
 		dest_master = null
 		return FALSE
 
-	dest_cooldown = SELF_DESTRUCT_ROD_STARTUP_TIME / length(dest_rods)
+	dest_cooldown = SELF_DESTRUCT_ROD_STARTUP_TIME / length_char(dest_rods)
 	dest_master.desc = "The main operating panel for a self-destruct system. It requires very little user input, but the final safety mechanism is manually unlocked.\nAfter the initial start-up sequence, [dest_rods.len] control rods must be armed, followed by manually flipping the detonation switch."
 
 /datum/controller/subsystem/evacuation/fire()
 	process_evacuation()
 	if(dest_status != NUKE_EXPLOSION_ACTIVE)
 		return
-	if(!dest_master.loc || dest_master.active_state != SELF_DESTRUCT_MACHINE_ARMED || dest_index > length(dest_rods))
+	if(!dest_master.loc || dest_master.active_state != SELF_DESTRUCT_MACHINE_ARMED || dest_index > length_char(dest_rods))
 		return
 
 	var/obj/machinery/self_destruct/rod/I = dest_rods[dest_index]
@@ -52,7 +52,7 @@ SUBSYSTEM_DEF(evacuation)
 
 	I.toggle()
 
-	if(++dest_index > length(dest_rods))
+	if(++dest_index > length_char(dest_rods))
 		return
 
 	I = dest_rods[dest_index]
@@ -68,8 +68,8 @@ SUBSYSTEM_DEF(evacuation)
 		if(EVACUATION_STATUS_IN_PROGRESS)
 			if(world.time < pod_cooldown + EVACUATION_POD_LAUNCH_COOLDOWN)
 				return
-			if(!length(pod_list)) // none left to pick from to evac
-				if(!length(SSshuttle.escape_pods)) // no valid pods left, all have launched/exploded
+			if(!length_char(pod_list)) // none left to pick from to evac
+				if(!length_char(SSshuttle.escape_pods)) // no valid pods left, all have launched/exploded
 					announce_evac_completion()
 				return
 			var/obj/docking_port/mobile/escape_pod/P = pick_n_take(pod_list)

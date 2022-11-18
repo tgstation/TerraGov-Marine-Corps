@@ -306,7 +306,7 @@
 	var/datum/preferences/P = C.prefs
 	var/list/gear = P.gear
 
-	if(!length(gear))
+	if(!length_char(gear))
 		return
 
 	for(var/i in GLOB.gear_datums)

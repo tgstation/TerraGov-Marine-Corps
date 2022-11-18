@@ -130,7 +130,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 
 	var/list/slots = get_activatable_hardpoints()
 
-	if(!length(slots))
+	if(!length_char(slots))
 		to_chat(usr, span_warning("All of the modules can't be activated or are broken."))
 		return
 
@@ -158,14 +158,14 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	//TODO: make this a proc so I don't keep repeating this code
 	var/list/slots = get_activatable_hardpoints()
 
-	if(!length(slots))
+	if(!length_char(slots))
 		to_chat(usr, span_warning("All of the modules can't be reloaded or are broken."))
 		return
 
 	var/slot = tgui_input_list(usr, "Select a slot.", null, slots)
 
 	var/obj/item/hardpoint/HP = hardpoints[slot]
-	if(!length(HP?.backup_clips))
+	if(!length_char(HP?.backup_clips))
 		to_chat(usr, span_warning("That module is either missing or has no remaining backup clips."))
 		return
 

@@ -75,45 +75,45 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 			department = 1
 		if(!department && !(name in heads) && (rank in GLOB.jobs_regular_all))
 			misc[name] = rank
-	if(length(heads) > 0)
+	if(length_char(heads) > 0)
 		dat += "<tr><th colspan=3>Command</th></tr>"
 		for(var/name in heads)
 			dat += "<tr[even ? " class='alt'" : ""]><td>[heads[name]]</td><td>[name]</td><td>[isactive[name]]</td></tr>"
 			even = !even
-	if(length(support) > 0)
+	if(length_char(support) > 0)
 		dat += "<tr><th colspan=3>Auxiliary Support Staff</th></tr>"
 		for(var/name in support)
 			dat += "<tr[even ? " class='alt'" : ""]><td>[support[name]]</td><td>[name]</td><td>[isactive[name]]</td></tr>"
 			even = !even
-	if(length(mar) > 0)
+	if(length_char(mar) > 0)
 		dat += "<tr><th colspan=3>Marine Personnel</th></tr>"
 		for(var/j in list("Alpha","Bravo","Charlie", "Delta"))
-			if(length(squads[j]))
+			if(length_char(squads[j]))
 				dat += "<tr><th colspan=3>[j]</th></tr>"
 			for(var/name in mar)
 				if(squads[name] == j)
 					dat += "<tr[even ? " class='alt'" : ""]><td>[mar[name]]</td><td>[name]</td><td>[isactive[name]]</td></tr>"
 					even = !even
-	if(length(eng) > 0)
+	if(length_char(eng) > 0)
 		dat += "<tr><th colspan=3>Engineering</th></tr>"
 		for(var/name in eng)
 			dat += "<tr[even ? " class='alt'" : ""]><td>[eng[name]]</td><td>[name]</td><td>[isactive[name]]</td></tr>"
 			even = !even
-	if(length(med) > 0)
+	if(length_char(med) > 0)
 		dat += "<tr><th colspan=3>Medical</th></tr>"
 		for(var/name in med)
 			dat += "<tr[even ? " class='alt'" : ""]><td>[med[name]]</td><td>[name]</td><td>[isactive[name]]</td></tr>"
 			even = !even
 	// misc guys
-	if(length(misc) > 0)
+	if(length_char(misc) > 0)
 		dat += "<tr><th colspan=3>Miscellaneous</th></tr>"
 		for(var/name in misc)
 			dat += "<tr[even ? " class='alt'" : ""]><td>[misc[name]]</td><td>[name]</td><td>[isactive[name]]</td></tr>"
 			even = !even
 
 	dat += "</table>"
-	dat = replacetext(dat, "\n", "") // so it can be placed on paper correctly
-	dat = replacetext(dat, "\t", "")
+	dat = replacetext_char(dat, "\n", "") // so it can be placed on paper correctly
+	dat = replacetext_char(dat, "\t", "")
 
 	return dat
 

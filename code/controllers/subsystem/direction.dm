@@ -47,7 +47,7 @@ SUBSYSTEM_DEF(direction)
 /datum/controller/subsystem/direction/stat_entry()
 	var/mobcount = 0
 	for(var/L in processing_mobs)
-		mobcount += length(processing_mobs[L])
+		mobcount += length_char(processing_mobs[L])
 	return ..("P:[mobcount]")
 
 

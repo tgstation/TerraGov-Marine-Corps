@@ -34,7 +34,7 @@
 			H.say("Incoming call.")
 			LAZYADD(H.holo_calls, src)
 
-	if(!length(dialed_holopads))
+	if(!length_char(dialed_holopads))
 		calling_pad.say("Connection failure.")
 		qdel(src)
 		return
@@ -94,7 +94,7 @@
 
 	LAZYREMOVE(H.holo_calls, src)
 	dialed_holopads -= H
-	if(!length(dialed_holopads))
+	if(!length_char(dialed_holopads))
 		if(graceful)
 			calling_holopad.say("Call rejected.")
 		qdel(src)

@@ -10,14 +10,14 @@ SUBSYSTEM_DEF(stickyban)
 
 
 /datum/controller/subsystem/stickyban/Initialize(timeofday)
-	if (length(GLOB.stickybanadminexemptions))
+	if (length_char(GLOB.stickybanadminexemptions))
 		restore_stickybans()
 	var/list/bannedkeys = sticky_banned_ckeys()
 	//sanitize the sticky ban list
 
 	//delete db bans that no longer exist in the database and add new legacy bans to the database
-	if (SSdbcore.Connect() || length(SSstickyban.dbcache))
-		if (length(GLOB.stickybanadminexemptions))
+	if (SSdbcore.Connect() || length_char(SSstickyban.dbcache))
+		if (length_char(GLOB.stickybanadminexemptions))
 			restore_stickybans()
 		for (var/oldban in (world.GetConfig("ban") - bannedkeys))
 			var/ckey = ckey(oldban)
@@ -33,7 +33,7 @@ SUBSYSTEM_DEF(stickyban)
 				bannedkeys += ckey
 			world.SetConfig("ban", oldban, null)
 
-	if (length(GLOB.stickybanadminexemptions)) //the previous loop can sleep
+	if (length_char(GLOB.stickybanadminexemptions)) //the previous loop can sleep
 		restore_stickybans()
 
 	for (var/bannedkey in bannedkeys)
@@ -171,7 +171,7 @@ SUBSYSTEM_DEF(stickyban)
 	var/list/sqlips = list()
 
 	if (ban["keys"])
-		var/list/keys = splittext(ban["keys"], ",")
+		var/list/keys = splittext_char(ban["keys"], ",")
 		for (var/key in keys)
 			var/list/sqlckey = list()
 			sqlckey["stickyban"] = ckey
@@ -180,7 +180,7 @@ SUBSYSTEM_DEF(stickyban)
 			sqlckeys[++sqlckeys.len] = sqlckey
 
 	if (ban["whitelist"])
-		var/list/keys = splittext(ban["whitelist"], ",")
+		var/list/keys = splittext_char(ban["whitelist"], ",")
 		for (var/key in keys)
 			var/list/sqlckey = list()
 			sqlckey["stickyban"] = ckey
@@ -189,7 +189,7 @@ SUBSYSTEM_DEF(stickyban)
 			sqlckeys[++sqlckeys.len] = sqlckey
 
 	if (ban["computer_id"])
-		var/list/cids = splittext(ban["computer_id"], ",")
+		var/list/cids = splittext_char(ban["computer_id"], ",")
 		for (var/cid in cids)
 			var/list/sqlcid = list()
 			sqlcid["stickyban"] = ckey
@@ -197,20 +197,20 @@ SUBSYSTEM_DEF(stickyban)
 			sqlcids[++sqlcids.len] = sqlcid
 
 	if (ban["IP"])
-		var/list/ips = splittext(ban["IP"], ",")
+		var/list/ips = splittext_char(ban["IP"], ",")
 		for (var/ip in ips)
 			var/list/sqlip = list()
 			sqlip["stickyban"] = ckey
 			sqlip["matched_ip"] = ip
 			sqlips[++sqlips.len] = sqlip
 
-	if (length(sqlckeys))
+	if (length_char(sqlckeys))
 		SSdbcore.MassInsert(format_table_name("stickyban_matched_ckey"), sqlckeys, ignore_errors = TRUE)
 
-	if (length(sqlcids))
+	if (length_char(sqlcids))
 		SSdbcore.MassInsert(format_table_name("stickyban_matched_cid"), sqlcids, ignore_errors = TRUE)
 
-	if (length(sqlips))
+	if (length_char(sqlips))
 		SSdbcore.MassInsert(format_table_name("stickyban_matched_ip"), sqlips, ignore_errors = TRUE)
 
 

@@ -46,7 +46,7 @@
 		log_admin_private("[key_name(usr)] has tried to elevate permissions!")
 		message_admins("[ADMIN_TPMONTY(usr)] has tried to elevate permissions!")
 		return
-	var/list/keywords = splittext(group, " ")
+	var/list/keywords = splittext_char(group, " ")
 	var/flag = 0
 	for(var/k in keywords)
 		switch(k)

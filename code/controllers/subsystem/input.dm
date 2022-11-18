@@ -30,7 +30,7 @@ SUBSYSTEM_DEF(input)
 
 /datum/controller/subsystem/input/proc/refresh_client_macro_sets()
 	var/list/clients = GLOB.clients
-	for(var/i in 1 to length(clients))
+	for(var/i in 1 to length_char(clients))
 		var/client/user = clients[i]
 		user.set_macros()
 		user.update_special_keybinds()

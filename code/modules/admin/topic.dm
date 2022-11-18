@@ -86,7 +86,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			thing_to_check = C.related_accounts_cid
 		else
 			thing_to_check = C.related_accounts_ip
-		thing_to_check = splittext(thing_to_check, ", ")
+		thing_to_check = splittext_char(thing_to_check, ", ")
 
 
 		var/list/dat = list("Related accounts by [uppertext(href_list["showrelatedacc"])]:")
@@ -833,7 +833,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!F)
 			return
 
-		var/dat = "<html><head><title>Fax Message: [F.title]</title></head>"
+		var/dat = "<html><meta charset='UTF-8'><head><title>Fax Message: [F.title]</title></head>"
 		dat += "<body>[F.message]</body></html>"
 
 		usr << browse(dat, "window=fax")
@@ -945,7 +945,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				else
 					message_body = sanitize(message_body)
 
-				message_body = replacetext(message_body, "\n", "<br />") // Lets just always do this one
+				message_body = replacetext_char(message_body, "\n", "<br />") // Lets just always do this one
 				fax_message = generate_templated_fax(dep, subject, addressed_to, message_body, sent_by, department)
 				if(!fax_message)
 					return
@@ -1133,15 +1133,15 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!paths)
 			to_chat(usr, span_warning("The path list you sent is empty."))
 			return
-		if(length(paths) > 5)
+		if(length_char(paths) > 5)
 			to_chat(usr, span_warning("Select fewer object types, (max 5)."))
 			return
 
-		var/list/offset = splittext(href_list["offset"],",")
+		var/list/offset = splittext_char(href_list["offset"],",")
 		var/number = clamp(text2num(href_list["object_count"]), 1, 100)
-		var/X = length(offset) > 0 ? text2num(offset[1]) : 0
-		var/Y = length(offset) > 1 ? text2num(offset[2]) : 0
-		var/Z = length(offset) > 2 ? text2num(offset[3]) : 0
+		var/X = length_char(offset) > 0 ? text2num(offset[1]) : 0
+		var/Y = length_char(offset) > 1 ? text2num(offset[2]) : 0
+		var/Z = length_char(offset) > 2 ? text2num(offset[3]) : 0
 		var/obj_dir = text2num(href_list["object_dir"])
 		if(obj_dir && !(obj_dir in list(1,2,4,8,5,6,9,10)))
 			obj_dir = null
@@ -1956,9 +1956,9 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				if(!change || !istype(H))
 					return
 				previous = "#[num2hex(H.r_hair)][num2hex(H.g_hair)][num2hex(H.b_hair)]"
-				H.r_hair = hex2num(copytext(change, 2, 4))
-				H.g_hair = hex2num(copytext(change, 4, 6))
-				H.b_hair = hex2num(copytext(change, 6, 8))
+				H.r_hair = hex2num(copytext_char(change, 2, 4))
+				H.g_hair = hex2num(copytext_char(change, 4, 6))
+				H.b_hair = hex2num(copytext_char(change, 6, 8))
 			if("facialhairstyle")
 				change = input("Select the facial hair style.", "Edit Appearance") as null|anything in sortList(GLOB.facial_hair_styles_list)
 				if(!change || !istype(H))
@@ -1970,25 +1970,25 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				if(!change || !istype(H))
 					return
 				previous = "#[num2hex(H.r_facial)][num2hex(H.g_facial)][num2hex(H.b_facial)]"
-				H.r_facial = hex2num(copytext(change, 2, 4))
-				H.g_facial = hex2num(copytext(change, 4, 6))
-				H.b_facial = hex2num(copytext(change, 6, 8))
+				H.r_facial = hex2num(copytext_char(change, 2, 4))
+				H.g_facial = hex2num(copytext_char(change, 4, 6))
+				H.b_facial = hex2num(copytext_char(change, 6, 8))
 			if("eyecolor")
 				change = input("Select the eye color.", "Edit Appearance") as null|color
 				if(!change || !istype(H))
 					return
 				previous = "#[num2hex(H.r_eyes)][num2hex(H.g_eyes)][num2hex(H.b_eyes)]"
-				H.r_eyes = hex2num(copytext(change, 2, 4))
-				H.g_eyes = hex2num(copytext(change, 4, 6))
-				H.b_eyes = hex2num(copytext(change, 6, 8))
+				H.r_eyes = hex2num(copytext_char(change, 2, 4))
+				H.g_eyes = hex2num(copytext_char(change, 4, 6))
+				H.b_eyes = hex2num(copytext_char(change, 6, 8))
 			if("bodycolor")
 				change = input("Select the body color.", "Edit Appearance") as null|color
 				if(!change || !istype(H))
 					return
 				previous = "#[num2hex(H.r_skin)][num2hex(H.g_skin)][num2hex(H.b_skin)]"
-				H.r_skin = hex2num(copytext(change, 2, 4))
-				H.g_skin = hex2num(copytext(change, 4, 6))
-				H.b_skin = hex2num(copytext(change, 6, 8))
+				H.r_skin = hex2num(copytext_char(change, 2, 4))
+				H.g_skin = hex2num(copytext_char(change, 4, 6))
+				H.b_skin = hex2num(copytext_char(change, 6, 8))
 			if("gender")
 				change = input("Select the gender.", "Edit Appearance") as null|anything in sortList(GLOB.genders)
 				if(!change || !istype(H))

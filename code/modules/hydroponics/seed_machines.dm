@@ -104,7 +104,7 @@
 			to_chat(user, "There is already a data disk loaded.")
 			return
 
-		if(length(B.genes) && !disk_needs_genes)
+		if(length_char(B.genes) && !disk_needs_genes)
 			to_chat(user, "That disk already has gene data loaded.")
 			return
 		else if(disk_needs_genes)

@@ -143,7 +143,7 @@
 				return
 
 			var/turf/T = loc
-			if(length(T.contents) > 25)
+			if(length_char(T.contents) > 25)
 				to_chat(usr, span_warning("The floor is too cluttered, make some space."))
 				if(icon_deny)
 					flick(icon_deny, src)

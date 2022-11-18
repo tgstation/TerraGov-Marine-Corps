@@ -2,32 +2,32 @@
  * Compiles our lines into "chords" with filenames for legacy playback. This makes there have to be a bit of lag at the beginning of the song, but repeats will not have to parse it again, and overall playback won't be impacted by as much lag.
  */
 /datum/song/proc/compile_legacy()
-	if(!length(src.lines))
+	if(!length_char(src.lines))
 		return
 	var/list/lines = src.lines		//cache for hyepr speed!
 	compiled_chords = list()
 	var/list/octaves = list(3, 3, 3, 3, 3, 3, 3)
 	var/list/accents = list("n", "n", "n", "n", "n", "n", "n")
 	for(var/line in lines)
-		var/list/chords = splittext(lowertext(line), ",")
+		var/list/chords = splittext_char(lowertext(line), ",")
 		for(var/chord in chords)
 			var/list/compiled_chord = list()
 			var/tempodiv = 1
-			var/list/notes_tempodiv = splittext(chord, "/")
-			var/len = length(notes_tempodiv)
+			var/list/notes_tempodiv = splittext_char(chord, "/")
+			var/len = length_char(notes_tempodiv)
 			if(len >= 2)
 				tempodiv = text2num(notes_tempodiv[2])
 			if(len)			//some dunkass is going to do ,,,, to make 3 rests instead of ,/1 because there's no standardization so let's be prepared for that.
-				var/list/notes = splittext(notes_tempodiv[1], "-")
+				var/list/notes = splittext_char(notes_tempodiv[1], "-")
 				for(var/note in notes)
-					if(length(note) == 0)
+					if(length_char(note) == 0)
 						continue
 					// 1-7, A-G
 					var/key = text2ascii(note) - 96
 					if((key < 1) || (key > 7))
 						continue
-					for(var/i in 2 to length(note))
-						var/oct_acc = copytext(note, i, i + 1)
+					for(var/i in 2 to length_char(note))
+						var/oct_acc = copytext_char(note, i, i + 1)
 						var/num = text2num(oct_acc)
 						if(!num)		//it's an accidental
 							accents[key] = oct_acc		//if they misspelled it/fucked up that's on them lmao, no safety checks.
@@ -35,7 +35,7 @@
 							octaves[key] = clamp(num, octave_min, octave_max)
 					compiled_chord[++compiled_chord.len] = list(key, accents[key], octaves[key])
 			compiled_chord += tempodiv		//this goes last
-			if(length(compiled_chord))
+			if(length_char(compiled_chord))
 				compiled_chords[++compiled_chords.len] = compiled_chord
 
 /**

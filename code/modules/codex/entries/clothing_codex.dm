@@ -112,7 +112,7 @@ GLOBAL_LIST_INIT(string_equip_flags, list("suit slot" = ITEM_SLOT_OCLOTHING,
 /obj/item/armor_module/storage/uniform/get_mechanics_info()
 	. = ..()
 	. += "<br>This item has an internal inventory of [storage.storage_slots] slots."
-	if(length(storage.bypass_w_limit))
+	if(length_char(storage.bypass_w_limit))
 		. += "<br><br><U>You can also carry the following special items in this</U>:"
 		for(var/X in storage.bypass_w_limit)
 			var/obj/B = X
@@ -124,7 +124,7 @@ GLOBAL_LIST_INIT(string_equip_flags, list("suit slot" = ITEM_SLOT_OCLOTHING,
 		return
 	. += "<br><br>This item has an internal inventory of [pockets.storage_slots] slots."
 	. += "<br>It can carry weight [pockets.max_w_class] things or lighter."
-	if(length(pockets.bypass_w_limit))
+	if(length_char(pockets.bypass_w_limit))
 		. += "<br><U>You can also carry the following special items in this internal inventory</U>:"
 		for(var/X in pockets.bypass_w_limit)
 			var/obj/B = X

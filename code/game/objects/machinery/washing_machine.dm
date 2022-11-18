@@ -127,7 +127,7 @@
 			to_chat(user, "This item does not fit.")
 			return
 
-		if(length(contents) >= 5)
+		if(length_char(contents) >= 5)
 			to_chat(user, span_notice("The washing machine is full."))
 			return
 

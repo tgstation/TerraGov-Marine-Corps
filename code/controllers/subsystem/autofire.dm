@@ -51,7 +51,7 @@ SUBSYSTEM_DEF(automatedfire)
 		resumed = FALSE
 
 	// Check for when we have to reset buckets, typically from auto-reset
-	if ((length(bucket_list) != BUCKET_LEN) || (world.tick_lag != bucket_resolution))
+	if ((length_char(bucket_list) != BUCKET_LEN) || (world.tick_lag != bucket_resolution))
 		reset_buckets()
 		bucket_list = src.bucket_list
 		resumed = FALSE

@@ -217,7 +217,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	ui_interact(user)
 
 /datum/preferences/proc/UpdateJobPreference(mob/user, role, desiredLvl)
-	if(!length(SSjob?.joinable_occupations))
+	if(!length_char(SSjob?.joinable_occupations))
 		return
 
 	var/datum/job/job = SSjob.GetJob(role)

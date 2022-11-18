@@ -217,7 +217,7 @@
 	if(X.selected_ability != src)
 		return ..()
 	var/i = buildable_structures.Find(X.selected_resin)
-	if(length(buildable_structures) == i)
+	if(length_char(buildable_structures) == i)
 		X.selected_resin = buildable_structures[1]
 	else
 		X.selected_resin = buildable_structures[i+1]
@@ -984,7 +984,7 @@
 			continue
 		target_list += possible_target
 
-	if(!length(target_list))
+	if(!length_char(target_list))
 		to_chat(X, span_warning("There's nobody nearby to whisper to."))
 		return
 

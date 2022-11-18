@@ -44,7 +44,7 @@
 
 	else if(href_list["allitems"])
 
-		if(!length(GLOB.cryoed_item_list))
+		if(!length_char(GLOB.cryoed_item_list))
 			to_chat(usr, span_warning("There is nothing to recover from storage."))
 			updateUsrDialog()
 			return
@@ -314,4 +314,4 @@
 	if(!do_after(X, 2 SECONDS))
 		return
 	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
-	go_out()	
+	go_out()

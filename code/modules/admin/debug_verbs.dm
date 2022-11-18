@@ -39,9 +39,9 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		to_chat(starting_client, span_warning("Error: callproc_datum(): owner of proc no longer exists."))
 		return
 
-	log_admin("[key_name(usr)] called [A]'s [procname]() with [length(lst) ? "the arguments [list2params(lst)]" : "no arguments"].")
-	message_admins("[ADMIN_TPMONTY(usr)] called [A]'s [procname]() with [length(lst) ? "the arguments [list2params(lst)]" : "no arguments"].")
-	admin_ticket_log(A, "[key_name_admin(usr)] called [A]'s [procname]() with [length(lst) ? "the arguments [list2params(lst)]" : "no arguments"].")
+	log_admin("[key_name(usr)] called [A]'s [procname]() with [length_char(lst) ? "the arguments [list2params(lst)]" : "no arguments"].")
+	message_admins("[ADMIN_TPMONTY(usr)] called [A]'s [procname]() with [length_char(lst) ? "the arguments [list2params(lst)]" : "no arguments"].")
+	admin_ticket_log(A, "[key_name_admin(usr)] called [A]'s [procname]() with [length_char(lst) ? "the arguments [list2params(lst)]" : "no arguments"].")
 
 	var/returnval = WrapAdminProcCall(A, procname, lst) // Pass the lst as an argument list to the proc
 	. = starting_client.holder.get_callproc_returnval(returnval, procname)
@@ -77,11 +77,11 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		return
 
 	//strip away everything but the proc name
-	var/list/proclist = splittext(procname, "/")
-	if(!length(proclist))
+	var/list/proclist = splittext_char(procname, "/")
+	if(!length_char(proclist))
 		return
 
-	procname = proclist[length(proclist)]
+	procname = proclist[length_char(proclist)]
 
 	var/proctype = "proc"
 	if("verb" in proclist)
@@ -112,14 +112,14 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 				type = MESSAGE_TYPE_DEBUG,
 				html = "<font color='red'>Error: callproc(): owner of proc no longer exists.</font>")
 			return
-		log_admin("[key_name(usr)] called [target]'s [procname]() with [length(lst) ? "the arguments [list2params(lst)]" : "no arguments"].")
-		message_admins("[ADMIN_TPMONTY(usr)] called [target]'s [procname]() with [length(lst) ? "the arguments [list2params(lst)]" : "no arguments"].")
-		admin_ticket_log(target, "[key_name(usr)] called [target]'s [procname]() with [length(lst) ? "the arguments [list2params(lst)]" : "no arguments"].")
+		log_admin("[key_name(usr)] called [target]'s [procname]() with [length_char(lst) ? "the arguments [list2params(lst)]" : "no arguments"].")
+		message_admins("[ADMIN_TPMONTY(usr)] called [target]'s [procname]() with [length_char(lst) ? "the arguments [list2params(lst)]" : "no arguments"].")
+		admin_ticket_log(target, "[key_name(usr)] called [target]'s [procname]() with [length_char(lst) ? "the arguments [list2params(lst)]" : "no arguments"].")
 		returnval = WrapAdminProcCall(target, procname, lst) // Pass the lst as an argument list to the proc
 	else
 		//this currently has no hascall protection. wasn't able to get it working.
-		log_admin("[key_name(usr)] called [procname]() with [length(lst) ? "the arguments [list2params(lst)]" : "no arguments"].")
-		message_admins("[ADMIN_TPMONTY(usr)] called [procname]() with [length(lst) ? "the arguments [list2params(lst)]" : "no arguments"].")
+		log_admin("[key_name(usr)] called [procname]() with [length_char(lst) ? "the arguments [list2params(lst)]" : "no arguments"].")
+		message_admins("[ADMIN_TPMONTY(usr)] called [procname]() with [length_char(lst) ? "the arguments [list2params(lst)]" : "no arguments"].")
 		returnval = WrapAdminProcCall(GLOBAL_PROC, procpath, lst) // Pass the lst as an argument list to the proc
 
 	. = usr.client.holder.get_callproc_returnval(returnval, procname)
@@ -132,7 +132,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if(islist(returnval))
 		var/list/returnedlist = returnval
 		. = "<span class='notice'>"
-		if(length(returnedlist))
+		if(length_char(returnedlist))
 			var/assoc_check = returnedlist[1]
 			if(istext(assoc_check) && (returnedlist[assoc_check] != null))
 				. += "[procname] returned an associative list:"
@@ -315,7 +315,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if(!check_rights(R_SPAWN) || !object)
 		return
 
-	var/list/preparsed = splittext(object,":")
+	var/list/preparsed = splittext_char(object,":")
 	var/path = preparsed[1]
 	var/amount = 1
 	if(preparsed.len > 1)

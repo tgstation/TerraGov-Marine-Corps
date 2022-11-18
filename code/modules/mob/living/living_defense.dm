@@ -257,7 +257,7 @@
 	. = damage
 	var/list/affecting_shields = list()
 	SEND_SIGNAL(src, COMSIG_LIVING_SHIELDCALL, affecting_shields, damage_type)
-	if(length(affecting_shields) > 1)
+	if(length_char(affecting_shields) > 1)
 		sortTim(affecting_shields, /proc/cmp_numeric_dsc, associative = TRUE)
 	for(var/shield in affecting_shields)
 		var/datum/callback/shield_check = shield

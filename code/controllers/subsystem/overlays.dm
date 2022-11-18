@@ -19,7 +19,7 @@ SUBSYSTEM_DEF(overlays)
 
 
 /datum/controller/subsystem/overlays/stat_entry()
-	..("Ov:[length(queue)]")
+	..("Ov:[length_char(queue)]")
 
 
 /datum/controller/subsystem/overlays/Recover()

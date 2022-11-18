@@ -39,7 +39,7 @@ SUBSYSTEM_DEF(job)
 	squads.Cut()
 	var/list/all_jobs = subtypesof(/datum/job)
 	var/list/all_squads = subtypesof(/datum/squad)
-	if(!length(all_jobs))
+	if(!length_char(all_jobs))
 		to_chat(world, span_boldnotice("Error setting up jobs, no job datums found"))
 		return FALSE
 
@@ -74,13 +74,13 @@ SUBSYSTEM_DEF(job)
 
 
 /datum/controller/subsystem/job/proc/GetJob(rank)
-	if(!length(occupations))
+	if(!length_char(occupations))
 		CRASH("GetJob called with no occupations")
 	return name_occupations[rank]
 
 
 /datum/controller/subsystem/job/proc/GetJobType(jobtype)
-	if(!length(occupations))
+	if(!length_char(occupations))
 		CRASH("GetJobType called with no occupations")
 	return type_occupations[jobtype]
 
@@ -150,9 +150,9 @@ SUBSYSTEM_DEF(job)
 			continue
 		unassigned += player
 
-	initial_players_assigned += length(GLOB.ready_players)
+	initial_players_assigned += length_char(GLOB.ready_players)
 
-	JobDebug("DO, Len: [length(unassigned)]")
+	JobDebug("DO, Len: [length_char(unassigned)]")
 	if(!initial_players_assigned)
 		clean_roundstart_occupations()
 		return FALSE
@@ -162,7 +162,7 @@ SUBSYSTEM_DEF(job)
 	//Jobs will use the default access unless the population is below a certain level.
 	var/mat = CONFIG_GET(number/minimal_access_threshold)
 	if(mat)
-		if(length(unassigned) > mat)
+		if(length_char(unassigned) > mat)
 			CONFIG_SET(flag/jobs_have_minimal_access, FALSE)
 		else
 			CONFIG_SET(flag/jobs_have_minimal_access, TRUE)
@@ -287,7 +287,7 @@ SUBSYSTEM_DEF(job)
 	var/epc = CONFIG_GET(number/extreme_popcap)
 	if(hpc || epc)
 		var/relevent_cap = max(hpc, epc)
-		if((initial_players_assigned - length(unassigned)) >= relevent_cap)
+		if((initial_players_assigned - length_char(unassigned)) >= relevent_cap)
 			return TRUE
 	return FALSE
 
@@ -337,15 +337,15 @@ SUBSYSTEM_DEF(job)
 /datum/controller/subsystem/job/proc/SendToLateJoin(mob/M, datum/job/assigned_role)
 	switch(assigned_role.faction)
 		if(FACTION_TERRAGOV_REBEL)
-			if(length(GLOB.latejoinrebel))
+			if(length_char(GLOB.latejoinrebel))
 				SendToAtom(M, pick(GLOB.latejoinrebel))
 				return
 		if(FACTION_SOM)
-			if(length(GLOB.latejoinsom))
+			if(length_char(GLOB.latejoinsom))
 				SendToAtom(M, pick(GLOB.latejoinsom))
 				return
 		else
-			if(length(GLOB.latejoin))
+			if(length_char(GLOB.latejoin))
 				SendToAtom(M, pick(GLOB.latejoin))
 				return
 	message_admins("Unable to send mob [M] to late join!")
@@ -363,15 +363,15 @@ SUBSYSTEM_DEF(job)
 
 /datum/controller/subsystem/job/proc/add_active_occupation(datum/job/occupation)
 	active_joinable_occupations += occupation
-	if(length(active_joinable_occupations) > 1)
+	if(length_char(active_joinable_occupations) > 1)
 		sortTim(active_joinable_occupations, /proc/cmp_job_display_asc)
 	active_joinable_occupations_by_category[occupation.job_category] += list(occupation)
-	if(length(active_joinable_occupations_by_category[occupation.job_category]) > 1)
+	if(length_char(active_joinable_occupations_by_category[occupation.job_category]) > 1)
 		sortTim(active_joinable_occupations_by_category[occupation.job_category], /proc/cmp_job_display_asc)
 
 /datum/controller/subsystem/job/proc/remove_active_occupation(datum/job/occupation)
 	active_joinable_occupations -= occupation
 	if(active_joinable_occupations_by_category[occupation.job_category])
 		active_joinable_occupations_by_category[occupation.job_category] -= occupation
-		if(!length(active_joinable_occupations_by_category[occupation.job_category]))
+		if(!length_char(active_joinable_occupations_by_category[occupation.job_category]))
 			active_joinable_occupations_by_category -= occupation.job_category

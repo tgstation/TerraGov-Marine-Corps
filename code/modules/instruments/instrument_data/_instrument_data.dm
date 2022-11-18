@@ -65,8 +65,8 @@
 	if(instrument_flags & INSTRUMENT_LEGACY)
 		return legacy_instrument_path && legacy_instrument_ext
 	else if(instrument_flags & INSTRUMENT_DO_NOT_AUTOSAMPLE)
-		return length(samples)
-	return (length(samples) >= 128)
+		return length_char(samples)
+	return (length_char(samples) >= 128)
 
 /datum/instrument/Destroy()
 	SSinstruments.instrument_data -= id
@@ -83,7 +83,7 @@
  * Calculating them on the fly would be unperformant, so we do it during init and keep it all cached in a list.
  */
 /datum/instrument/proc/calculate_samples()
-	if(!length(real_samples))
+	if(!length_char(real_samples))
 		CRASH("No real samples defined for [id] [type] on calculate_samples() call.")
 	var/list/real_keys = list()
 	samples = list()
@@ -91,7 +91,7 @@
 		real_keys += text2num(key)
 	sortTim(real_keys, /proc/cmp_numeric_asc, associative = FALSE)
 
-	for(var/i in 1 to (length(real_keys) - 1))
+	for(var/i in 1 to (length_char(real_keys) - 1))
 		var/from_key = real_keys[i]
 		var/to_key = real_keys[i+1]
 		var/sample1 = real_samples[num2text(from_key)]
@@ -104,7 +104,7 @@
 
 	// Fill in 0 to first key and last key to 127
 	var/first_key = real_keys[1]
-	var/last_key = real_keys[length(real_keys)]
+	var/last_key = real_keys[length_char(real_keys)]
 	var/first_sample = real_samples[num2text(first_key)]
 	var/last_sample = real_samples[num2text(last_key)]
 	for(var/key in LOWEST_KEY to (first_key - 1))

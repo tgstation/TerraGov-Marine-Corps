@@ -200,7 +200,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 				action_to_update.give_action(living_user)
 
 	//custom attachment icons for specific guns
-	if(length(variants_by_parent_type))
+	if(length_char(variants_by_parent_type))
 		for(var/selection in variants_by_parent_type)
 			if(istype(master_gun, selection))
 				icon_state = variants_by_parent_type[selection]

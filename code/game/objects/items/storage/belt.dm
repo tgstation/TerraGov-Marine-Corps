@@ -554,7 +554,7 @@
 				to_chat(user, span_warning("[M] is empty."))
 				return
 
-			if(length(contents) >= storage_slots)
+			if(length_char(contents) >= storage_slots)
 				to_chat(user, span_warning("[src] is full."))
 				return
 
@@ -563,7 +563,7 @@
 			if(!do_after(user, 1.5 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 				return
 
-			for(var/x in 1 to (storage_slots - length(contents)))
+			for(var/x in 1 to (storage_slots - length_char(contents)))
 				var/cont = handle_item_insertion(M.create_handful(), 1, user)
 				if(!cont)
 					break
@@ -688,7 +688,7 @@
 	if(!draw_mode || !ishuman(user) && !contents.len)
 		open(user)
 
-	if(!length(contents))
+	if(!length_char(contents))
 		return
 
 	var/obj/item/I = contents[contents.len]
@@ -867,7 +867,7 @@
 	else
 		playsound(src,sheatheSound, 15, 1)
 		underlays -= gun_underlay
-		icon_state = copytext(icon_state,1,-2)
+		icon_state = copytext_char(icon_state,1,-2)
 		item_state = icon_state
 		qdel(gun_underlay)
 		gun_underlay = null
@@ -888,7 +888,7 @@
 	for(var/obj/item/ammo_magazine/mag in contents)
 		if(!(mag.type in gun.allowed_ammo_types))
 			continue
-		if(user.l_hand && user.r_hand || length(gun.chamber_items))
+		if(user.l_hand && user.r_hand || length_char(gun.chamber_items))
 			gun.tactical_reload(mag, user)
 		else
 			gun.reload(mag, user)

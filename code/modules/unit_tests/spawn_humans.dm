@@ -9,7 +9,7 @@
 	sleep(5 SECONDS)
 
 	for(var/i in humans)
-		if(!length(outfits_to_test))
+		if(!length_char(outfits_to_test))
 			break
 		var/mob/living/carbon/human/H = i
 		H.equipOutfit(outfits_to_test[outfits_to_test.len])

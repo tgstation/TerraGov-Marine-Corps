@@ -314,7 +314,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 				return FALSE
 			if(!(initial(new_type.mech_flags) & EXOSUIT_MODULE_GREYSCALE))
 				return FALSE
-			if(length(selected_equipment[MECHA_POWER]) >= equipment_max[MECHA_POWER])
+			if(length_char(selected_equipment[MECHA_POWER]) >= equipment_max[MECHA_POWER])
 				return FALSE
 			selected_equipment[MECHA_POWER] += new_type
 			return TRUE
@@ -325,7 +325,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 				return FALSE
 			if(!(initial(new_type.mech_flags) & EXOSUIT_MODULE_GREYSCALE))
 				return FALSE
-			if(length(selected_equipment[MECHA_ARMOR]) >= equipment_max[MECHA_ARMOR])
+			if(length_char(selected_equipment[MECHA_ARMOR]) >= equipment_max[MECHA_ARMOR])
 				return FALSE
 			selected_equipment[MECHA_ARMOR] += new_type
 			return TRUE
@@ -336,7 +336,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 				return FALSE
 			if(!(initial(new_type.mech_flags) & EXOSUIT_MODULE_GREYSCALE))
 				return FALSE
-			if(length(selected_equipment[MECHA_UTILITY]) >= equipment_max[MECHA_UTILITY])
+			if(length_char(selected_equipment[MECHA_UTILITY]) >= equipment_max[MECHA_UTILITY])
 				return FALSE
 			selected_equipment[MECHA_UTILITY] += new_type
 			return TRUE

@@ -16,7 +16,7 @@
 	<b>Integrity:</b> Implant will be degraded by the body's immune system and thus occasionally malfunction."}
 
 /obj/item/implant/neurostim/on_hear(datum/source, message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
-	if(findtext(message, phrase))
+	if(findtext_char(message, phrase))
 		activate()
 
 /obj/item/implant/neurostim/activate(accidental = FALSE)

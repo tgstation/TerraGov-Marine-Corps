@@ -5,7 +5,7 @@
 	GLOB.offered_mob_list -= src
 	for(var/alert in alerts)
 		clear_alert(alert, TRUE)
-	if(length(observers))
+	if(length_char(observers))
 		for(var/i in observers)
 			var/mob/dead/D = i
 			D.reset_perspective(null)
@@ -48,8 +48,8 @@
 		if(GLOB.round_id)
 			stat("Round ID:", GLOB.round_id)
 		stat("Operation Time:", stationTimestamp("hh:mm"))
-		stat("Current Map:", length(SSmapping.configs) ? SSmapping.configs[GROUND_MAP].map_name : "Loading...")
-		stat("Current Ship:", length(SSmapping.configs) ? SSmapping.configs[SHIP_MAP].map_name : "Loading...")
+		stat("Current Map:", length_char(SSmapping.configs) ? SSmapping.configs[GROUND_MAP].map_name : "Loading...")
+		stat("Current Ship:", length_char(SSmapping.configs) ? SSmapping.configs[SHIP_MAP].map_name : "Loading...")
 		stat("Game Mode:", "[GLOB.master_mode]")
 
 	if(statpanel("Game"))
@@ -61,7 +61,7 @@
 		if(client.holder.rank.rights & (R_DEBUG))
 			if(statpanel("MC"))
 				stat("CPU:", "[world.cpu]")
-				stat("Instances:", "[num2text(length(world.contents), 10)]")
+				stat("Instances:", "[num2text(length_char(world.contents), 10)]")
 				stat("World Time:", "[world.time]")
 				GLOB.stat_entry()
 				config.stat_entry()
@@ -82,7 +82,7 @@
 		if(client.holder.rank.rights & (R_ADMIN|R_MENTOR))
 			if(statpanel("Tickets"))
 				GLOB.ahelp_tickets.stat_entry()
-		if(length(GLOB.sdql2_queries))
+		if(length_char(GLOB.sdql2_queries))
 			if(statpanel("SDQL2"))
 				stat("Access Global SDQL2 List", GLOB.sdql2_vv_statobj)
 				for(var/i in GLOB.sdql2_queries)
@@ -103,7 +103,7 @@
 					continue
 				if(A.invisibility > see_invisible)
 					continue
-				if(length(overrides) && (A in overrides))
+				if(length_char(overrides) && (A in overrides))
 					continue
 				statpanel(listed_turf.name, null, A)
 

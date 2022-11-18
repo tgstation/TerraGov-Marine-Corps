@@ -25,7 +25,7 @@
 		if(0) // --- Main Menu ---
 			dat += "<br>[temp]<br>"
 			dat += "<br>Current Network: <a href='?src=[REF(src)];network=1'>[network]</a><br>"
-			if(length(servers))
+			if(length_char(servers))
 				dat += "<br>Detected Telecommunication Servers:<ul>"
 				for(var/obj/machinery/telecomms/T in servers)
 					dat += "<li><a href='?src=[REF(src)];viewserver=[T.id]'>[REF(T)] [T.name]</a> ([T.id])</li>"
@@ -129,16 +129,16 @@
 			if("mainmenu")
 				screen = 0
 			if("scan")
-				if(length(servers))
+				if(length_char(servers))
 					temp = "<font color = #f97c75>- FAILED: CANNOT PROBE WHEN BUFFER FULL -</font color>"
 				else
 					for(var/obj/machinery/telecomms/server/T in urange(25, src))
 						if(T.network == network)
 							servers.Add(T)
-					if(!length(servers))
+					if(!length_char(servers))
 						temp = "<font color = #f97c75>- FAILED: UNABLE TO LOCATE SERVERS IN \[[network]\] -</font color>"
 					else
-						temp = "<font color = #88bff7>- [length(servers)] SERVERS PROBED & BUFFERED -</font color>"
+						temp = "<font color = #88bff7>- [length_char(servers)] SERVERS PROBED & BUFFERED -</font color>"
 					screen = 0
 
 	else if(href_list["delete"])
@@ -158,7 +158,7 @@
 	else if(href_list["network"])
 		var/newnet = stripped_input(usr, "Which network do you want to view?", "Comm Monitor", network)
 		if(newnet && ((usr in range(1, src)) || issilicon(usr)))
-			if(length(newnet) > 15)
+			if(length_char(newnet) > 15)
 				temp = "<font color = #f97c75>- FAILED: NETWORK TAG STRING TOO LENGHTLY -</font color>"
 			else
 				network = newnet

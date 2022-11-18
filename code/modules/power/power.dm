@@ -157,7 +157,7 @@
 
 	cables[C] = TRUE //associated list for performance reasons
 
-	while(index <= length(cables))
+	while(index <= length_char(cables))
 		working_cable = cables[index]
 		index++
 

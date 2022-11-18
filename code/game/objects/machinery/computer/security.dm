@@ -279,7 +279,7 @@ What a mess.*/
 			for(var/datum/data/record/R in GLOB.datacore.general)
 				var/temptext = R.fields["name"] + " " + R.fields["id"] + " " + R.fields["fingerprint"] + " " + R.fields["rank"]
 				for(var/i = 1, i<=components.len, i++)
-					if(findtext(temptext,components[i]))
+					if(findtext_char(temptext,components[i]))
 						var/prelist = new/list(2)
 						prelist[1] = R
 						Perp += prelist

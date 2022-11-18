@@ -266,7 +266,7 @@
 #define isclientedaghost(living) (isaghost(living) && GLOB.directory[copytext_char(living.ckey, 2)] && living.get_ghost())
 
 // Shuttles
-#define isshuttleturf(T) (length(T.baseturfs) && (/turf/baseturf_skipover/shuttle in T.baseturfs))
+#define isshuttleturf(T) (length_char(T.baseturfs) && (/turf/baseturf_skipover/shuttle in T.baseturfs))
 #define isdropshiparea(A) (istype(A, /area/shuttle/dropship))
 
 // Xeno hives

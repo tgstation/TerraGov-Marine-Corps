@@ -35,22 +35,22 @@
 	if(max_storage_space)
 		storage_strings += "It can carry [max_storage_space] weight of stuff."
 
-	if(max_w_class && !length(can_hold))
+	if(max_w_class && !length_char(can_hold))
 		storage_strings += "It can carry weight [max_w_class] things or lighter."
 
-	if(length(can_hold))
+	if(length_char(can_hold))
 		storage_strings += "<br><U>You can only carry the following in this</U>:"
 		for(var/X in can_hold)
 			var/obj/item/A = X
 			storage_strings += "[initial(A.name)]"
 
-	if(length(bypass_w_limit))
+	if(length_char(bypass_w_limit))
 		storage_strings += "<br><U>You can also carry the following special items in this</U>:"
 		for(var/X in bypass_w_limit)
 			var/obj/item/A = X
 			storage_strings += "[initial(A.name)]"
 
-	if(length(cant_hold))
+	if(length_char(cant_hold))
 		storage_strings += "<br><U>You can specifically not carry these things in this</U>:"
 		for(var/X in cant_hold)
 			var/obj/item/A = X
@@ -73,4 +73,4 @@
 	mechanics_text = "It's a belt for holding your tools"
 	lore_text = "Although it looks and feels like leather, the last cow was killed to make a steak dinner for the queen of France."
 	antag_text = "I don't see how this could be used for antagonistic purposes."
-	
+

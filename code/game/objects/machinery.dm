@@ -67,7 +67,7 @@
 /obj/machinery/deconstruct(disassembled = TRUE)
 	if(!(flags_atom & NODECONSTRUCT))
 		on_deconstruction()
-		if(length(component_parts))
+		if(length_char(component_parts))
 			spawn_frame(disassembled)
 			for(var/i in component_parts)
 				var/obj/item/I = i

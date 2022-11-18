@@ -325,7 +325,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 		return //we don't wanna kill gods...or do we ?
 
 	var/list/datum/limb/parts = get_damageable_limbs()
-	var/partcount = length(parts)
+	var/partcount = length_char(parts)
 	if(!partcount)
 		return
 	damage = damage / partcount //damage all limbs equally.

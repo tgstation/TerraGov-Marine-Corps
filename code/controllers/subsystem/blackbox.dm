@@ -76,7 +76,7 @@ SUBSYSTEM_DEF(blackbox)
 			"json" = json_encode(FV.json)
 		))
 
-	if (!length(sqlrowlist))
+	if (!length_char(sqlrowlist))
 		return
 
 	SSdbcore.MassInsert(format_table_name("feedback"), sqlrowlist, ignore_errors = TRUE, delayed = TRUE, special_columns = special_columns)
@@ -129,11 +129,11 @@ SUBSYSTEM_DEF(blackbox)
 				return
 			if(!islist(FV.json["data"]))
 				FV.json["data"] = list()
-			var/pos = length(FV.json["data"]) + 1
-			FV.json["data"]["[length(FV.json["data"]) + 1]"] = list()
+			var/pos = length_char(FV.json["data"]) + 1
+			FV.json["data"]["[length_char(FV.json["data"]) + 1]"] = list()
 			for(var/i in data)
 				if(islist(data[i]))
-					FV.json["data"]["[length(FV.json["data"])]"]["[i]"] = data[i]
+					FV.json["data"]["[length_char(FV.json["data"])]"]["[i]"] = data[i]
 				else
 					FV.json["data"]["[pos]"]["[i]"] = "[data[i]]"
 		else
@@ -152,7 +152,7 @@ SUBSYSTEM_DEF(blackbox)
 
 
 /datum/controller/subsystem/blackbox/proc/record_feedback_recurse_list(list/L, list/key_list, increment, depth = 1)
-	if(depth == length(key_list))
+	if(depth == length_char(key_list))
 		if(L.Find(key_list[depth]))
 			L["[key_list[depth]]"] += increment
 		else

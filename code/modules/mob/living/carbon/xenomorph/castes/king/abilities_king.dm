@@ -149,7 +149,7 @@
 /datum/action/xeno_action/psychic_summon/can_use_action(silent, override_flags)
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
-	if(length(X.hive.get_all_xenos()) <= 1)
+	if(length_char(X.hive.get_all_xenos()) <= 1)
 		if(!silent)
 			to_chat(owner, span_notice("We have no hive to call. We are alone on our throne of nothing."))
 		return FALSE
@@ -171,7 +171,7 @@
 	for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
 		sister.remove_filter("summonoutline")
 		sister.forceMove(get_turf(X))
-	log_game("[key_name(owner)] has summoned hive ([length(allxenos)] Xenos) in [AREACOORD(owner)]")
+	log_game("[key_name(owner)] has summoned hive ([length_char(allxenos)] Xenos) in [AREACOORD(owner)]")
 	X.emote("roar")
 
 	add_cooldown()

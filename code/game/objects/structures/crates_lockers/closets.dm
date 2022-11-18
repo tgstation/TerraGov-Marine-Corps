@@ -134,7 +134,7 @@
 
 
 /obj/structure/closet/proc/insert(atom/movable/thing_to_insert)
-	if(length(contents) >= storage_capacity)
+	if(length_char(contents) >= storage_capacity)
 		return CLOSET_INSERT_END
 	if(!thing_to_insert.closet_insertion_allowed(src))
 		return CLOSET_INSERT_FAIL

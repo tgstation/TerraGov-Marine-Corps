@@ -15,7 +15,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 			. = VV_NUM
 
 	else if (istext(var_value))
-		if (findtext(var_value, "\n"))
+		if (findtext_char(var_value, "\n"))
 			. = VV_MESSAGE
 		else
 			. = VV_TEXT
@@ -256,7 +256,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 			.["type"] = /list
 
 /client/proc/vv_parse_text(O, new_var)
-	if(O && findtext(new_var,"\["))
+	if(O && findtext_char(new_var,"\["))
 		var/process_vars = alert(usr,"\[] detected in string, process as variables?","Process Variables?","Yes","No")
 		if(process_vars == "Yes")
 			. = string2listofvars(new_var, O)
@@ -269,7 +269,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 	if (!ispath(type))
 		return null
 	var/list/subtypes = subtypesof(type)
-	if (!length(subtypes))
+	if (!length_char(subtypes))
 		return FALSE
 
 	switch(alert("Strict object type detection?", "Type detection", "Strictly this type","This type and subtypes", "Cancel"))
@@ -301,12 +301,12 @@ GLOBAL_PROTECT(VVpixelmovement)
 		//	fancy type with the base type removed from the begaining,
 		//	the type with the base type removed from the begaining
 		var/fancytype = types[D.type]
-		if (findtext(fancytype, types[type]))
-			fancytype = copytext(fancytype, length(types[type]) + 1)
-		var/shorttype = copytext("[D.type]", length("[type]") + 1)
+		if (findtext_char(fancytype, types[type]))
+			fancytype = copytext_char(fancytype, length_char(types[type]) + 1)
+		var/shorttype = copytext_char("[D.type]", length_char("[type]") + 1)
 		if (length_char(shorttype) > length_char(fancytype))
 			shorttype = fancytype
-		if (!length(shorttype))
+		if (!length_char(shorttype))
 			shorttype = "/"
 
 		.["[D]([shorttype])[REF(D)]#[i]"] = D
@@ -322,7 +322,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 	if(class == VV_TEXT || class == VV_MESSAGE)
 		var/list/varsvars = vv_parse_text(O, var_value)
 		for(var/V in varsvars)
-			var_value = replacetext(var_value,"\[[V]]","[O.vars[V]]")
+			var_value = replacetext_char(var_value,"\[[V]]","[O.vars[V]]")
 
 	return var_value
 
@@ -337,7 +337,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 	if(class == VV_TEXT || class == VV_MESSAGE)
 		var/list/varsvars = vv_parse_text(O, var_value)
 		for(var/V in varsvars)
-			var_value = replacetext(var_value,"\[[V]]","[O.vars[V]]")
+			var_value = replacetext_char(var_value,"\[[V]]","[O.vars[V]]")
 
 	if (O)
 		L = L.Copy()
@@ -364,7 +364,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 		to_chat(src, "Not a List.")
 		return
 
-	if(length(L) > 1000)
+	if(length_char(L) > 1000)
 		var/confirm = alert(src, "The list you're trying to edit is very long, continuing may crash the server.", "Warning", "Continue", "Abort")
 		if(confirm != "Continue")
 			return
@@ -372,7 +372,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 
 
 	var/list/names = list()
-	for (var/i in 1 to length(L))
+	for (var/i in 1 to length_char(L))
 		var/key = L[i]
 		var/value
 		if (IS_NORMAL_LIST(L) && !isnum(key))
@@ -503,7 +503,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 		if(VV_TEXT)
 			var/list/varsvars = vv_parse_text(O, new_var)
 			for(var/V in varsvars)
-				new_var = replacetext(new_var,"\[[V]]","[O.vars[V]]")
+				new_var = replacetext_char(new_var,"\[[V]]","[O.vars[V]]")
 
 
 	if(assoc)
@@ -616,7 +616,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 		if(VV_TEXT)
 			var/list/varsvars = vv_parse_text(O, var_new)
 			for(var/V in varsvars)
-				var_new = replacetext(var_new,"\[[V]]","[O.vars[V]]")
+				var_new = replacetext_char(var_new,"\[[V]]","[O.vars[V]]")
 
 
 	if(!O.vv_edit_var(variable, var_new))
@@ -715,7 +715,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 		if(VV_RESTORE_DEFAULT)
 			to_chat(src, "Finding items...")
 			var/list/items = get_all_of_type(O.type, method)
-			to_chat(src, "Changing [length(items)] items...")
+			to_chat(src, "Changing [length_char(items)] items...")
 			for(var/thing in items)
 				if (!thing)
 					continue
@@ -730,18 +730,18 @@ GLOBAL_PROTECT(VVpixelmovement)
 			var/list/varsvars = vv_parse_text(O, new_value)
 			var/pre_processing = new_value
 			var/unique
-			if (length(varsvars))
+			if (length_char(varsvars))
 				unique = alert(usr, "Process vars unique to each instance, or same for all?", "Variable Association", "Unique", "Same")
 				if(unique == "Unique")
 					unique = TRUE
 				else
 					unique = FALSE
 					for(var/V in varsvars)
-						new_value = replacetext(new_value,"\[[V]]","[O.vars[V]]")
+						new_value = replacetext_char(new_value,"\[[V]]","[O.vars[V]]")
 
 			to_chat(src, "Finding items...")
 			var/list/items = get_all_of_type(O.type, method)
-			to_chat(src, "Changing [length(items)] items...")
+			to_chat(src, "Changing [length_char(items)] items...")
 			for(var/thing in items)
 				if (!thing)
 					continue
@@ -749,7 +749,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 				if(unique)
 					new_value = pre_processing
 					for(var/V in varsvars)
-						new_value = replacetext(new_value,"\[[V]]","[D.vars[V]]")
+						new_value = replacetext_char(new_value,"\[[V]]","[D.vars[V]]")
 
 				if (D.vv_edit_var(variable, new_value) != FALSE)
 					accepted++
@@ -769,7 +769,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 			var/type = value["type"]
 			to_chat(src, "Finding items...")
 			var/list/items = get_all_of_type(O.type, method)
-			to_chat(src, "Changing [length(items)] items...")
+			to_chat(src, "Changing [length_char(items)] items...")
 			for(var/thing in items)
 				if (!thing)
 					continue
@@ -787,7 +787,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 		else
 			to_chat(src, "Finding items...")
 			var/list/items = get_all_of_type(O.type, method)
-			to_chat(src, "Changing [length(items)] items...")
+			to_chat(src, "Changing [length_char(items)] items...")
 			for(var/thing in items)
 				if (!thing)
 					continue

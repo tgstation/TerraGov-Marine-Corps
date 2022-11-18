@@ -6,7 +6,7 @@
 	gamemode_blacklist = list("Crash", "Combat Patrol", "Sensor Capture")
 
 /datum/round_event_control/intel_computer/can_spawn_event(players_amt, gamemode)
-	if(length(GLOB.intel_computers) <= 0)
+	if(length_char(GLOB.intel_computers) <= 0)
 		return FALSE
 	return ..()
 

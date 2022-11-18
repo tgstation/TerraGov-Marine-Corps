@@ -163,7 +163,7 @@
 		balloon_alert(user, "Failed to link with destination")
 		return TRUE
 
-	if(length(contents))
+	if(length_char(contents))
 		balloon_alert(user, "[src] not empty")
 		to_chat(user, span_warning("Maximum weight surpassed. Empty [src] in order to extract it."))
 		return TRUE
@@ -203,7 +203,7 @@
 			linked_extraction_point = target
 			balloon_alert(user, "Extraction point linked")
 		return
-	if(length(allowed_target_tags) && !(target.tag in allowed_target_tags))
+	if(length_char(allowed_target_tags) && !(target.tag in allowed_target_tags))
 		return
 	if(must_be_used_outdoors)
 		var/area/target_area = get_area(target)

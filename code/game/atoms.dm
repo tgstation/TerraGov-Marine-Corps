@@ -245,7 +245,7 @@ directive is properly returned.
 	var/list/result = examinify.examine(src) // if a tree is examined but no client is there to see it, did the tree ever really exist?
 
 	if(result.len)
-		for(var/i in 1 to (length(result) - 1))
+		for(var/i in 1 to (length_char(result) - 1))
 			result[i] += "\n"
 
 	to_chat(src, examine_block(span_infoplain(result.Join())))
@@ -286,7 +286,7 @@ directive is properly returned.
 	if((get_dist(user,src) <= 2) && reagents)
 		if(reagents.reagent_flags & TRANSPARENT)
 			. += "It contains:"
-			if(length(reagents.reagent_list)) // TODO: Implement scan_reagent and can_see_reagents() to show each individual reagent
+			if(length_char(reagents.reagent_list)) // TODO: Implement scan_reagent and can_see_reagents() to show each individual reagent
 				var/total_volume = 0
 				for(var/datum/reagent/R in reagents.reagent_list)
 					total_volume += R.volume
@@ -303,7 +303,7 @@ directive is properly returned.
 				return
 			if(user.skills.getRating("medical") >= SKILL_MEDICAL_NOVICE)
 				. += "It contains these reagents:"
-				if(length(reagents.reagent_list))
+				if(length_char(reagents.reagent_list))
 					for(var/datum/reagent/R in reagents.reagent_list)
 						. += "[R.volume] units of [R.name]"
 				else
@@ -338,7 +338,7 @@ directive is properly returned.
 		if(managed_overlays)
 			cut_overlay(managed_overlays)
 			managed_overlays = null
-		if(length(new_overlays))
+		if(length_char(new_overlays))
 			managed_overlays = new_overlays
 			add_overlay(new_overlays)
 
@@ -874,9 +874,9 @@ Proc for attack log creation, because really why not
 	if(!LAZYACCESS(fingerprints, M.key))
 		LAZYSET(fingerprints, M.key, "First: [M.real_name] | [current_time] | [type] [special ? "| [special]" : ""]")
 	else
-		var/laststamppos = findtext(LAZYACCESS(fingerprints, M.key), " Last: ")
+		var/laststamppos = findtext_char(LAZYACCESS(fingerprints, M.key), " Last: ")
 		if(laststamppos)
-			LAZYSET(fingerprints, M.key, copytext(fingerprints[M.key], 1, laststamppos))
+			LAZYSET(fingerprints, M.key, copytext_char(fingerprints[M.key], 1, laststamppos))
 		fingerprints[M.key] += " Last: [M.real_name] | [current_time] | [type] [special ? " | [special]" : ""]"
 
 	return TRUE

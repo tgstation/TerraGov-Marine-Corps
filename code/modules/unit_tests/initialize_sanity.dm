@@ -1,5 +1,5 @@
 /datum/unit_test/initialize_sanity/Run()
-	if(length(SSatoms.BadInitializeCalls))
+	if(length_char(SSatoms.BadInitializeCalls))
 		Fail("Bad Initialize() calls detected. Please read logs.")
 		var/list/init_failures_to_text = list(
 			"[BAD_INIT_QDEL_BEFORE]" = "Qdeleted Before Initialized",

@@ -330,7 +330,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 		var/dat
 
 		dat += "<table style='width:100%; padding:4px;'><tr>"
-		for(var/i in 1 to length(GLOB.tagger_locations))
+		for(var/i in 1 to length_char(GLOB.tagger_locations))
 			dat += "<td><a href='?src=\ref[src];nextTag=[GLOB.tagger_locations[i]]'>[GLOB.tagger_locations[i]]</a></td>"
 
 			if (i%4==0)
