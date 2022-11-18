@@ -2476,8 +2476,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 //psyblast// lots of placeholder stuff
 
 /datum/ammo/energy/xeno
-	///Key used for icon to display when swapping ammo types.
-	var/icon_key = BOILER_GLOB_NEURO
 	///This text will show up when this ammo type is selected by a xeno. Span proc should be applied when this var is used.
 	var/select_text
 	///Plasma cost to fire this projectile
@@ -2492,10 +2490,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 30
 	accurate_range = 15
 	hitscan_effect_icon = "beam_cult"
-	icon_key = BOILER_GLOB_NEURO
-	icon_state = "boiler_gas"
+	icon_state = "psy_blast"
 	select_text = "We will now fire a psychic blast. These have an area of effect."
-	plasma_cost = 160
+	plasma_cost = 180
 	///The AOE for drop_nade
 	var/aoe_range = 3
 
@@ -2533,7 +2530,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	drop_nade(T.density ? get_step_towards(T, P) : T, P)
 
 /datum/ammo/energy/xeno/psy_blast/psy_lance
-	name = "psychic blast"
+	name = "psychic lance"
 	flags_ammo_behavior = AMMO_XENO|AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_PASS_THROUGH_MOVABLE
 	damage = 60
 	penetration = 50
@@ -2541,8 +2538,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 5
 	max_range = 12
 	hitscan_effect_icon = "beam_hcult"
-	icon_key = BOILER_GLOB_NEURO_LANCE
-	icon_state = "boiler_gas2"
+	icon_state = "psy_lance"
 	select_text = "We will now fire a psychic lance. These are powerful piercing beams, particular strong against armored targets."
 	plasma_cost = 250
 
@@ -2556,10 +2552,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, stagger = 2, slowdown = 2, knockback = 1)
 
-/datum/ammo/energy/xeno/psy_blast/on_hit_turf(turf/T, obj/projectile/P)
+/datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_turf(turf/T, obj/projectile/P)
 	return
 
-/datum/ammo/energy/xeno/psy_blast/do_at_max_range(turf/T, obj/projectile/P)
+/datum/ammo/energy/xeno/psy_blast/psy_lance/do_at_max_range(turf/T, obj/projectile/P)
 	return
 
 /datum/ammo/energy/lasgun/marine/mech

@@ -4,7 +4,7 @@
 /datum/action/xeno_action/activable/psychic_shield
 	name = "Psychic Shield"
 	ability_name = "psychic shield"
-	action_icon_state = "fling"
+	action_icon_state = "psy_shield"
 	mechanics_text = "Creates a protective field of psychic energy in front of you."
 	cooldown_timer = 12 SECONDS
 	plasma_cost = 180
@@ -23,17 +23,19 @@
 /datum/action/xeno_action/activable/psychic_shield/use_ability(atom/A)
 	. = ..()
 	if(active_shield)
-		if(plasma_cost > X.plasma_stored)
-			if(!silent)
-				to_chat(X, span_warning("We need [selected_ammo.plasma_cost - X.plasma_stored] more plasma!"))
+		var/mob/living/carbon/xenomorph/xeno_owner = owner
+		if(plasma_cost > xeno_owner.plasma_stored)
+			to_chat(xeno_owner, span_warning("We need [plasma_cost - xeno_owner.plasma_stored] more plasma!"))
 			return FALSE
 		if(can_use_action(FALSE, XACT_USE_BUSY))
 			shield_blast()
+			cancel_shield()
 		return
 	owner.visible_message("A strange and violent psychic aura is suddenly emitted from \the [owner]!")
 	playsound(owner,'sound/effects/magic.ogg', 75, 1)
 
 	active_shield = new(get_step(owner, owner.dir), owner)
+	action_icon_state = "psy_shield_reflect"
 	succeed_activate()
 	//GLOB.round_statistics.psychic_flings++
 	//SSblackbox.record_feedback("tally", "round_statistics", 1, "psychic_flings")
@@ -46,6 +48,7 @@
 /datum/action/xeno_action/activable/psychic_shield/proc/cancel_shield()
 	qdel(active_shield)
 	active_shield = null
+	action_icon_state = "psy_shield"
 	add_cooldown()
 
 ///AOE knockback triggerable by ending the shield early
@@ -121,6 +124,7 @@
 	reflect_projectile(proj)
 	return FALSE
 
+///Reflects projectiles based on their relative incoming angle
 /obj/effect/xeno/shield/proc/reflect_projectile(obj/projectile/proj)
 	playsound(loc, 'sound/effects/portal.ogg', 20)
 	var/new_range = proj.proj_max_range - proj.distance_travelled
@@ -143,11 +147,11 @@
 // ***************************************
 /datum/action/xeno_action/activable/psy_crush
 	name = "psychic crush"
-	action_icon_state = "centrifugal_force"
+	action_icon_state = "psy_crush"
 	mechanics_text = "Channel our psychic force to crush everything in an area of effect." //placeholder
 	ability_name = "psychic crush"
-	plasma_cost = 20
-	cooldown_timer = 5 SECONDS //placeholder
+	plasma_cost = 25
+	cooldown_timer = 8 SECONDS //placeholder
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_CRUSH,
@@ -190,6 +194,7 @@
 	target_turfs += target_turf
 	effect_list += new /obj/effect/xeno/crush_warning(target_turf)
 	owner.add_movespeed_modifier(MOVESPEED_ID_WARLOCK_CHANNELING, TRUE, 0, NONE, TRUE, 0.9)
+	action_icon_state = "psy_crush_activate"
 	do_channel(target_turf) //start channeling
 	RegisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)), .proc/stop_crush)
 
@@ -201,6 +206,7 @@
 		return
 	crush(target_turfs[1])
 
+///Checks if the owner is close enough/can see the target
 /datum/action/xeno_action/activable/psy_crush/proc/check_distance(atom/target, silent)
 	var/dist = get_dist(owner, target)
 	if(dist > ability_range)
@@ -214,8 +220,8 @@
 ///Increases the area of effect, or triggers the crush if we've reached max iterations
 /datum/action/xeno_action/activable/psy_crush/proc/do_channel(turf/target)
 	channel_loop_timer = null
-	var/mob/living/carbon/xenomorph/X = owner
-	if(!check_distance(target) || isnull(X) || X.stat == DEAD)
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	if(!check_distance(target) || isnull(xeno_owner) || xeno_owner.stat == DEAD)
 		stop_crush(target)
 		return
 	if(current_iterations >= max_interations)
@@ -235,7 +241,7 @@
 			effect_list += new /obj/effect/xeno/crush_warning(turf_to_check)
 	target_turfs += turfs_to_add
 	current_iterations ++
-	if(can_use_action(X, XACT_IGNORE_COOLDOWN))
+	if(can_use_action(xeno_owner, XACT_IGNORE_COOLDOWN))
 		channel_loop_timer = addtimer(CALLBACK(src, .proc/do_channel, target), 8, TIMER_STOPPABLE)
 		return
 	stop_crush(target)
@@ -285,6 +291,7 @@
 	target_turfs = list()
 	effect_list = list()
 	owner.remove_movespeed_modifier(MOVESPEED_ID_WARLOCK_CHANNELING)
+	action_icon_state = "psy_crush"
 	add_cooldown()
 	UnregisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)))
 
@@ -318,11 +325,11 @@
 // ***************************************
 /datum/action/xeno_action/activable/psy_blast
 	name = "Psychic blast"
-	action_icon_state = "bombard"
+	action_icon_state = "psy_blast"
 	mechanics_text = "Launch a blast of psychic energy. Must remain stationary for a few seconds to use."
 	ability_name = "psychic blast"
-	cooldown_timer = 5 SECONDS //placeholder
-	plasma_cost = 160 //placeholder
+	cooldown_timer = 10 SECONDS //placeholder
+	plasma_cost = 180 //placeholder
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_BLAST,
 	)
@@ -333,19 +340,19 @@
 	return ..()
 
 /datum/action/xeno_action/activable/psy_blast/action_activate()
-	var/mob/living/carbon/xenomorph/X = owner
-	if(X.selected_ability == src)
-		var/list/spit_types = X.xeno_caste.spit_types
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	if(xeno_owner.selected_ability == src)
+		var/list/spit_types = xeno_owner.xeno_caste.spit_types
 		if(length(spit_types) <= 1)
 			return ..()
-		var/found_pos = spit_types.Find(X.ammo?.type)
+		var/found_pos = spit_types.Find(xeno_owner.ammo.type)
 		if(!found_pos)
-			X.ammo = GLOB.ammo_list[spit_types[1]]
+			xeno_owner.ammo = GLOB.ammo_list[spit_types[1]]
 		else
-			X.ammo = GLOB.ammo_list[spit_types[(found_pos%length(spit_types))+1]]	//Loop around if we would exceed the length
-		var/datum/ammo/energy/xeno/selected_ammo = X.ammo
+			xeno_owner.ammo = GLOB.ammo_list[spit_types[(found_pos%length(spit_types))+1]]	//Loop around if we would exceed the length
+		var/datum/ammo/energy/xeno/selected_ammo = xeno_owner.ammo
 		plasma_cost = selected_ammo.plasma_cost
-		to_chat(X, span_notice(selected_ammo.select_text))
+		to_chat(xeno_owner, span_notice(selected_ammo.select_text))
 		update_button_icon()
 	return ..()
 
@@ -354,55 +361,55 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	var/mob/living/carbon/xenomorph/X = owner
-	if(!X.check_state())
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	if(!xeno_owner.check_state())
 		return FALSE
-	var/datum/ammo/energy/xeno/selected_ammo = X.ammo
-	if(selected_ammo.plasma_cost > X.plasma_stored)
+	var/datum/ammo/energy/xeno/selected_ammo = xeno_owner.ammo
+	if(selected_ammo.plasma_cost > xeno_owner.plasma_stored)
 		if(!silent)
-			to_chat(X, span_warning("We need [selected_ammo.plasma_cost - X.plasma_stored] more plasma!"))
+			to_chat(xeno_owner, span_warning("We need [selected_ammo.plasma_cost - xeno_owner.plasma_stored] more plasma!"))
 		return FALSE
 
 /datum/action/xeno_action/activable/psy_blast/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/turf/target = get_turf(A)
 
 	if(!istype(target))
 		return
 
-	to_chat(X, span_xenonotice("We channel our psychic power."))
+	to_chat(xeno_owner, span_xenonotice("We channel our psychic power."))
 
-	if(!do_after(X, 1 SECONDS, FALSE, target, BUSY_ICON_DANGER))
-		to_chat(X, span_warning("Our focus is disrupted."))
+	if(!do_after(xeno_owner, 1 SECONDS, FALSE, target, BUSY_ICON_DANGER))
+		to_chat(xeno_owner, span_warning("Our focus is disrupted."))
 		return fail_activate()
 
 	if(!can_use_ability(target, FALSE))
 		return fail_activate()
 
-	X.visible_message(span_xenowarning("\The [X] launches a blast of psychic energy!"), \
+	xeno_owner.visible_message(span_xenowarning("\The [xeno_owner] launches a blast of psychic energy!"), \
 	span_xenowarning("We launch a huge blast of psychic energy!"), null, 5)
 
-	var/obj/projectile/hitscan/P = new /obj/projectile/hitscan(X.loc)
-	var/datum/ammo/energy/xeno/ammo_type = X.ammo
+	var/obj/projectile/hitscan/P = new /obj/projectile/hitscan(xeno_owner.loc)
+	var/datum/ammo/energy/xeno/ammo_type = xeno_owner.ammo
 	P.effect_icon = initial(ammo_type.hitscan_effect_icon)
 	P.generate_bullet(ammo_type)
-	P.fire_at(target, X, null, P.ammo.max_range, P.ammo.shell_speed)
-	playsound(X, 'sound/weapons/guns/fire/volkite_4.ogg', 50)
-	//if(istype(X.ammo, /datum/ammo/xeno/shrike_gas/corrosive))
+	P.fire_at(target, xeno_owner, null, P.ammo.max_range, P.ammo.shell_speed)
+	playsound(xeno_owner, 'sound/weapons/guns/fire/volkite_4.ogg', 50)
+	//if(istype(xeno_owner.ammo, /datum/ammo/xeno/shrike_gas/corrosive))
 	//	GLOB.round_statistics.shrike_acid_smokes++
 	//	SSblackbox.record_feedback("tally", "round_statistics", 1, "shrike_acid_smokes")
-	//	X.corrosive_ammo--
+	//	xeno_owner.corrosive_ammo--
 	//else
 	//	GLOB.round_statistics.shrike_neuro_smokes++
 	//	SSblackbox.record_feedback("tally", "round_statistics", 1, "shrike_neuro_smokes")
-	//	X.neuro_ammo--
+	//	xeno_owner.neuro_ammo--
 
 	succeed_activate()
 	add_cooldown()
 
 
 /datum/action/xeno_action/activable/psy_blast/update_button_icon()
-	var/mob/living/carbon/xenomorph/X = owner
-	var/datum/ammo/energy/xeno/ammo_type = X.ammo
-	action_icon_state = ammo_type.icon_key
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	var/datum/ammo/energy/xeno/ammo_type = xeno_owner.ammo
+	action_icon_state = ammo_type.icon_state
 	return ..()
