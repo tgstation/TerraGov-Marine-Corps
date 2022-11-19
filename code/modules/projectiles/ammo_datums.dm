@@ -2508,13 +2508,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			if(living_victim.stat == DEAD)
 				continue
 			if(!isxeno(living_victim))
-				living_victim.apply_damage(35, BURN, blocked = living_victim.get_soft_armor(ENERGY), updating_health = TRUE) //does a bit of burn, maybe add soft cc.
+				living_victim.apply_damage(35, BURN, blocked = living_victim.get_soft_armor(ENERGY), updating_health = TRUE)
+				staggerstun(living_victim, P, 9, slowdown = 1)
 		else
-			victim.ex_act(EXPLODE_LIGHT) //blows up non living, placeholder
+			victim.ex_act(EXPLODE_LIGHT)
 		var/throw_dir = get_dir(T, victim)
 		if(T == get_turf(victim))
 			throw_dir = get_dir(P.starting_turf, T)
-		victim.safe_throw_at(get_ranged_target_turf(T, throw_dir, 5), 4, 1, spin = TRUE) //flings em
+		victim.safe_throw_at(get_ranged_target_turf(T, throw_dir, 5), 4, 1, spin = TRUE)
 	new /obj/effect/temp_visual/shockwave(T, aoe_range + 2)
 
 /datum/ammo/energy/xeno/psy_blast/on_hit_mob(mob/M, obj/projectile/P)
@@ -2550,7 +2551,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		O.ex_act(EXPLODE_HEAVY)
 
 /datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_mob(mob/M, obj/projectile/P)
-	staggerstun(M, P, stagger = 2, slowdown = 2, knockback = 1)
+	staggerstun(M, P, 9, stagger = 2, slowdown = 2, knockback = 1)
 
 /datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_turf(turf/T, obj/projectile/P)
 	return
