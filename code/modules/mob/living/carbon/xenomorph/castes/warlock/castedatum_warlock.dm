@@ -2,7 +2,7 @@
 	caste_name = "Warlock"
 	display_name = "Warlock"
 	upgrade_name = ""
-	caste_desc = "A powerfully psychic xeno. The Warlock devestates the enemies of the hive with it's psychic might, but is physically very frail."
+	caste_desc = "A powerful psychic xeno. The Warlock devastates enemies of the hive with its psychic might, but it's physically very frail."
 	caste_type_path = /mob/living/carbon/xenomorph/warlock
 
 	tier = XENO_TIER_THREE
@@ -80,7 +80,7 @@
 /datum/xeno_caste/warlock/primordial
 	upgrade_name = "Primordial"
 	caste_desc = "An overwhelming psychic beacon. The air around it seems to dance with barely contained power."
-	primordial_message = "We are the unbridled psychic power of the hive. Our strength is umatched."
+	primordial_message = "We are the unbridled psychic power of the hive. Our strength is unmatched."
 	upgrade = XENO_UPGRADE_FOUR
 
 	melee_damage = 23

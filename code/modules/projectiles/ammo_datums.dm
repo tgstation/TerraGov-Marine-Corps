@@ -2491,7 +2491,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accurate_range = 15
 	hitscan_effect_icon = "beam_cult"
 	icon_state = "psy_blast"
-	select_text = "We will now fire a psychic blast. These have an area of effect."
+	select_text = "We will now fire a psychic blast. These have an area of effect knockback when struck."
 	plasma_cost = 230
 	///The AOE for drop_nade
 	var/aoe_range = 3
@@ -2540,7 +2540,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 12
 	hitscan_effect_icon = "beam_hcult"
 	icon_state = "psy_lance"
-	select_text = "We will now fire a psychic lance. These are powerful piercing beams, particular strong against armored targets."
+	select_text = "We will now fire a psychic lance. These are powerful piercing beams, particularly strong against armored targets."
 	plasma_cost = 300
 
 /datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_obj(obj/O, obj/projectile/P)

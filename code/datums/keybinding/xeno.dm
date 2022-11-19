@@ -739,19 +739,19 @@
 	xeno.vent_crawl()
 
 /datum/keybinding/xeno/psychic_shield
-	name = "Psychic shield"
-	full_name = "Warlock: Psychic shield"
-	description = "Channel our psychic power into a shield to reflect projectiles."
+	name = "Psychic Shield"
+	full_name = "Warlock: Psychic Shield"
+	description = "Channel a psychic shield at your current location that can reflect most projectiles. Activate again while the shield is active to detonate the shield forcibly, producing knockback."
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_SHIELD
 
 /datum/keybinding/xeno/psychic_blast
-	name = "Psychic blast"
-	full_name = "Warlock: Psychic blast"
-	description = "Unleash a devestating blast of psychic energy after a short charge-up."
+	name = "Psychic Blast"
+	full_name = "Warlock: Psychic Blast"
+	description = "Fire a lightly-damaging AOE psychic beam which knocks back enemies after a short charge-up."
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_BLAST
 
 /datum/keybinding/xeno/psychic_crush
-	name = "Psychic crush"
-	full_name = "Warlock: Psychic crush"
-	description = "Channel our psychic power before unleashing it to crush enemies over an area."
+	name = "Psychic Crush"
+	full_name = "Warlock: Psychic Crush"
+	description = "Channel an expanding AOE crush effect, activating it again pre-maturely crushes enemies over an area."
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CRUSH
