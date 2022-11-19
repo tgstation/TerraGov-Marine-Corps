@@ -415,10 +415,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 		O = victim.internal_organs_by_name[i]
 		O.take_damage(debuff, TRUE)
 
-	if(!young.weak)
-		young.adjust_weakness(15)
-		young.counter = 120
-		victim.visible_message(self_message = span_userdanger("You feel like your insides are moving with great speed!"))
+	young.change_modifier(2.5, 20, 40, TRUE)
 
 	if(young.stage <= 1)
 		victim.throw_at(owner, 2, 1, owner)
