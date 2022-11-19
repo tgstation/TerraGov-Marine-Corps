@@ -5,13 +5,13 @@ $include dbconfig.txt
 $include resources.txt
 
 ## Server name: This appears at the top of the screen in-game.
-SERVER_NAME Something
+SERVER_NAME Lost Bay Marine Corps
 
 ## Hosted by name for unix platforms.
 HOSTEDBY yournamehere
 
 ## The title of the main window.
-TITLE Change Me
+TITLE Lost Bay Marine Corps
 
 ## Put on byond hub: Uncomment this to put your server on the byond hub.
 #HUB

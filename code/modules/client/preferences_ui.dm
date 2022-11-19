@@ -614,7 +614,7 @@
 			if(!params["key"])
 				return
 			var/mods = params["key_mods"]
-			var/full_key = params["key"]
+			var/full_key = convert_ru_key_to_en_key(params["key"])
 			var/Altmod = ("ALT" in mods) ? "Alt" : ""
 			var/Ctrlmod = ("CONTROL" in mods) ? "Ctrl" : ""
 			var/Shiftmod = ("SHIFT" in mods) ? "Shift" : ""
