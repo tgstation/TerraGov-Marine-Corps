@@ -2473,7 +2473,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/lasgun/marine/heavy_laser/do_at_max_range(turf/T, obj/projectile/P)
 	drop_nade(T.density ? get_step_towards(T, P) : T)
 
-//psyblast// lots of placeholder stuff
 
 /datum/ammo/energy/xeno
 	///This text will show up when this ammo type is selected by a xeno. Span proc should be applied when this var is used.
