@@ -1,15 +1,16 @@
 GLOBAL_LIST_INIT(exp_jobsmap, list(
 	EXP_TYPE_REGULAR_ALL = list("titles" = GLOB.jobs_regular_all),
-	EXP_TYPE_COMMAND = list("titles" = GLOB.jobs_command),
+	EXP_TYPE_MARINES = list("titles" = GLOB.jobs_marines),
 	EXP_TYPE_ENGINEERING = list("titles" = GLOB.jobs_engineering),
 	EXP_TYPE_MEDICAL = list("titles" = GLOB.jobs_medical),
-	EXP_TYPE_MARINES = list("titles" = GLOB.jobs_marines),
 	EXP_TYPE_REQUISITIONS = list("titles" = GLOB.jobs_requisitions),
+	EXP_TYPE_COMMAND = list("titles" = GLOB.jobs_command),
+	EXP_TYPE_XENO = list("titles" = GLOB.jobs_xeno),
 ))
 
 GLOBAL_LIST_INIT(exp_specialmap, list(
 	EXP_TYPE_LIVING = list(),
-	EXP_TYPE_SPECIAL = list(ROLE_XENOMORPH, ROLE_XENO_QUEEN),
+	EXP_TYPE_SPECIAL = list(),
 	EXP_TYPE_GHOST = list(),
 	EXP_TYPE_ADMIN = list()
 ))

@@ -125,11 +125,13 @@ GLOBAL_LIST_INIT(jobs_fallen_all, typecacheof(list(/datum/job/fallen)))
 #define EXP_TYPE_LIVING "Living"
 #define EXP_TYPE_REGULAR_ALL "Any"
 #define EXP_TYPE_COMMAND "Command"
+#define EXP_TYPE_OFFICERS "Officers"
 #define EXP_TYPE_ENGINEERING "Engineering"
 #define EXP_TYPE_MEDICAL "Medical"
 #define EXP_TYPE_MARINES "Marines"
 #define EXP_TYPE_REQUISITIONS "Requisitions"
 #define EXP_TYPE_SILICON "Silicon"
+#define EXP_TYPE_XENO "Xeno"
 #define EXP_TYPE_SPECIAL "Special"
 #define EXP_TYPE_GHOST "Ghost"
 #define EXP_TYPE_ADMIN "Admin"
@@ -143,11 +145,12 @@ GLOBAL_LIST_INIT(jobs_fallen_all, typecacheof(list(/datum/job/fallen)))
 #define CRYO_CHARLIE "Charlie Squad"
 #define CRYO_DELTA "Delta Squad"
 
-
-#define XP_REQ_UNSEASONED 60
-#define XP_REQ_INTERMEDIATE 180
-#define XP_REQ_EXPERIENCED 600
-#define XP_REQ_EXPERT 900
+// In minutes
+#define XP_REQ_NOVICE 300
+#define XP_REQ_UNSEASONED 600
+#define XP_REQ_INTERMEDIATE 1500
+#define XP_REQ_EXPERIENCED 6000
+#define XP_REQ_EXPERT 6000
 #define XP_REQ_SURVIVOR 18000
 
 // how much a job is going to contribute towards burrowed larva. see config for points required to larva. old balance was 1 larva per 3 humans.
