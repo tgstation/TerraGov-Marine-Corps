@@ -70,6 +70,8 @@
 	new /obj/item/clothing/suit/surgical(src)
 	new /obj/item/clothing/suit/surgical(src)
 	new /obj/item/storage/box/trampop(src)
+	new /obj/item/clothing/head/tgmcberet/medical(src)
+	new /obj/item/clothing/head/tgmcberet/medical(src)
 	if(is_mainship_level(z))
 		new /obj/item/radio/headset/mainship/doc(src)
 

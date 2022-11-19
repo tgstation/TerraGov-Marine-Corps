@@ -595,3 +595,49 @@ SUBSYSTEM_DEF(ru_items)
 	icon = 'icons/obj/clothing/squad_hb.dmi'
 	item_icons = list(
 		slot_head_str = 'icons/mob/squadhb.dmi')
+
+/obj/item/clothing/head/tgmcberet/hijab
+	name = "\improper Black hijab"
+	desc = "Encompassing cloth headwear worn by some human cultures and religions."
+	icon = 'icons/obj/clothing/squad_hb.dmi'
+	item_icons = list(
+		slot_head_str = 'icons/mob/squadhb.dmi')
+	icon_state = "hijab_black"
+	flags_inv_hide = HIDEEARS|HIDEALLHAIR
+
+/obj/item/clothing/head/tgmcberet/hijab/grey
+	name = "\improper Grey hijab"
+	icon_state = "hijab_grey"
+
+/obj/item/clothing/head/tgmcberet/hijab/red
+	name = "\improper Red hijab"
+	icon_state = "hijab_red"
+
+/obj/item/clothing/head/tgmcberet/hijab/blue
+	name = "\improper Blue hijab"
+	icon_state = "hijab_blue"
+
+/obj/item/clothing/head/tgmcberet/hijab/brown
+	name = "\improper Brown hijab"
+	icon_state = "hijab_brown"
+
+/obj/item/clothing/head/tgmcberet/hijab/white
+	name = "\improper White hijab"
+	icon_state = "hijab_white"
+
+/obj/item/clothing/head/tgmcberet/hijab/turban
+	name = "\improper White hijab"
+	desc = "A sturdy cloth, worn around the head."
+	icon_state = "turban_black"
+
+/obj/item/clothing/head/tgmcberet/hijab/turban/white
+	name = "\improper White hijab"
+	icon_state = "turban_white"
+
+/obj/item/clothing/head/tgmcberet/hijab/turban/red
+	name = "\improper Red hijab"
+	icon_state = "turban_red"
+
+/obj/item/clothing/head/tgmcberet/hijab/turban/blue
+	name = "\improper Blue hijab"
+	icon_state = "turban_blue"
