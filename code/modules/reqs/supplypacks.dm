@@ -575,11 +575,6 @@ WEAPONS
 	contains = list(/obj/item/big_ammo_box/smg)
 	cost = 5
 
-/datum/supply_packs/weapons/vector
-	name = "Vector"
-	contains = list(/obj/item/weapon/gun/smg/vector)
-	cost = 30
-
 /*******************************************************************************
 EXPLOSIVES
 *******************************************************************************/
