@@ -179,7 +179,7 @@
 	desc = "A blue storage barrel"
 	icon_state = "barrel_blue"
 
-/obj/structure/largecrate/random/barrel/red
+/obj/structure/largecrate/random/barrel/red //lame non explosive version
 	name = "red barrel"
 	desc = "A red storage barrel"
 	icon_state = "barrel_red"
