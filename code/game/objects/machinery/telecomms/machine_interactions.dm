@@ -135,14 +135,15 @@
 	if(href_list["change_freq"] && isadmin(usr))
 		var/newfreq = input(usr, "Specify a new frequency for new signals to change to. Enter null to turn off frequency changing. Decimals assigned automatically.", src, network) as null|num
 		if(newfreq)
+			message_admins("[usr] has assigned new frequency [newfreq] at [src] in[ADMIN_VERBOSEJMP(loc)]")
+			log_game("[usr] has assigned new frequency [newfreq] at [src] in [AREACOORD(loc)]")
 			if(findtext(num2text(newfreq), "."))
 				newfreq *= 10 // shift the decimal one place
 			if(newfreq < 10000)
 				change_frequency = newfreq
 				temp = "<font color = #efef88>-% New frequency to change to assigned: \"[newfreq] GHz\" %-</font>"
-				message_admins("[usr] has assigned new frequency [newfreq] at [src] in[ADMIN_VERBOSEJMP(loc)]")
-				log_game("[usr] has assigned new frequency [newfreq] at [src] in [AREACOORD(loc)]")
 		else
+			message_admins("[usr] has attempted to assign new frequency [newfreq] at [src] in[ADMIN_VERBOSEJMP(loc)]")
 			change_frequency = 0
 			temp = "<font color = #efef88>-% Frequency changing deactivated %-</font>"
 
@@ -175,6 +176,7 @@
 					log_game("[usr] assigned new telecomms ID [id] to [src] at [AREACOORD(loc)]")
 				else
 					message_admins("[usr] attemped to assign new telecomms ID [id] to [src] in [ADMIN_VERBOSEJMP(loc)]")
+					log_game("[usr] attemped to assign new telecomms ID [id] to [src] at [AREACOORD(loc)]")
 			if("network")
 				var/newnet = stripped_input(usr, "Specify the new network for this machine. This will break all current links.", src, network)
 				if(newnet)
@@ -191,6 +193,7 @@
 							log_game("[usr] has assigned new telecomms network to [newnet] at [src] in [AREACOORD(loc)]")
 						else
 							message_admins("[usr] attemped to change network to [newnet] at [src] in [ADMIN_VERBOSEJMP(loc)]")
+							log_game("[usr] attemped to change network to [newnet] at [src] in [AREACOORD(loc)]")
 			if("freq")
 				var/newfreq = input(usr, "Specify a new frequency to filter (GHz). Decimals assigned automatically.", src, network) as null|num
 				if(newfreq && isadmin(usr))
@@ -203,6 +206,7 @@
 						log_game("[usr] has assigned new frequency filter [newfreq] at [src] in [AREACOORD(loc)]")
 					else
 						message_admins("[usr] attemped to assign assigned new frequency filter [newfreq] at [src] in [ADMIN_VERBOSEJMP(loc)]")
+						log_game("[usr] attemped to assign assigned new frequency filter [newfreq] at [src] in [AREACOORD(loc)]")
 
 	else if(href_list["delete"])
 		var/x = text2num(href_list["delete"])
@@ -213,6 +217,7 @@
 			freq_listening.Remove(x)
 		else
 			message_admins("[usr] Tried to remove frequency filter [x] at [src] in [ADMIN_VERBOSEJMP(loc)]")
+			log_game("[usr] Tried to remove frequency filter [x] at [src] in [AREACOORD(loc)]")
 
 	else if(href_list["unlink"] && isadmin(usr))
 		if(text2num(href_list["unlink"]) <= length(links))
