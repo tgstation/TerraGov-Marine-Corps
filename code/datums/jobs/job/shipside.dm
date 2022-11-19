@@ -15,7 +15,7 @@
 	selection_color = "#ccccff"
 	total_positions = 1
 
-		exp_requirements = XP_REQ_EXPERT
+	exp_requirements = XP_REQ_EXPERT
 	exp_type = EXP_TYPE_REGULAR_ALL
 
 	skills_type = /datum/skills/captain
@@ -1183,7 +1183,7 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 	total_positions = 1
 	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_REGULAR_ALL
-	
+
 	selection_color = "#92c255"
 	supervisors = "your laws and the human crew"
 	display_order = JOB_DISPLAY_ORDER_AI
