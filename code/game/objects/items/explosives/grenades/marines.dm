@@ -462,3 +462,23 @@
 	else
 		icon_state = initial(icon_state)
 		set_light(0)
+
+/obj/item/explosive/grenade/flaregun
+	name = "\improper M60 FLHA Flare"
+	desc = "The M60 FLHA is a flare equipped with a small parachute. Based off the same platform as the M40 HEDP. It CANNOT be detonated by hand or normal grenade launchers. Use a flare gun."
+	icon_state = "grenade_flaregun"
+	item_state = "grenade_smoke"
+	det_time = 0
+	dangerous = FALSE
+	hud_state = "grenade_smoke"
+	dangerous = FALSE
+	icon_state_mini = "grenade_blue"
+
+/obj/item/explosive/grenade/flaregun/attack_self(mob/user)
+	to_chat(user, span_warning("You can't use this without a flaregun!"))
+	return
+
+/obj/item/explosive/grenade/flaregun/prime()
+	new /obj/effect/temp_visual/above_flare(loc)
+	playsound(loc, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4)
+	qdel(src)

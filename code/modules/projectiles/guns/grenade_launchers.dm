@@ -206,7 +206,7 @@ The Grenade Launchers
 	gun_skill_category = GUN_SKILL_PISTOLS
 	fire_delay = 0.5 SECONDS
 	default_ammo_type = /obj/item/explosive/grenade/flare
-	allowed_ammo_types = list(/obj/item/explosive/grenade/flare, /obj/item/explosive/grenade/flare/cas)
+	allowed_ammo_types = list(/obj/item/explosive/grenade/flare, /obj/item/explosive/grenade/flare/cas, /obj/item/explosive/grenade/flaregun)
 	attachable_allowed = list(/obj/item/attachable/scope/unremovable/flaregun)
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/flaregun)
 
