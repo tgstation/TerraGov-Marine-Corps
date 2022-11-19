@@ -679,7 +679,7 @@ GLOBAL_PROTECT(admin_verbs_log)
 		return FALSE
 	return TRUE
 
-/proc/IsAdmin(mob/user)
+/proc/isadmin(mob/user)
 	if(!isobserver(user))
 		return FALSE
 	if(!user.client)

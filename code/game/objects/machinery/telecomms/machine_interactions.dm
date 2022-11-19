@@ -116,12 +116,12 @@
 	if(href_list["receive"])
 		receiving = !receiving
 		temp = "<font color = #efef88>-% Receiving mode changed. %-</font>"
-		message_admins("[usr] has changed the receiving mode at [src] in [ADMIN_VERBOSEJMP(target)]")
+		message_admins("[usr] has changed the receiving mode at [src] in [ADMIN_VERBOSEJMP(loc)]")
 		log_game("[usr] has changed the receiving mode at [src] in [AREACOORD(target)]")
 	if(href_list["broadcast"])
 		broadcasting = !broadcasting
 		temp = "<font color = #efef88>-% Broadcasting mode changed. %-</font>"
-		message_admins("[usr] has changed the broadcasting mode at [src] in [ADMIN_VERBOSEJMP(target)]")
+		message_admins("[usr] has changed the broadcasting mode at [src] in [ADMIN_VERBOSEJMP(loc)]")
 		log_game("[usr] has changed the broadcasting mode at [src] in [AREACOORD(target)]")
 
 
@@ -132,7 +132,7 @@
 
 
 /obj/machinery/telecomms/bus/Options_Topic(href, href_list)
-	if(href_list["change_freq"] && IsAdmin(usr))
+	if(href_list["change_freq"] && isadmin(usr))
 		var/newfreq = input(usr, "Specify a new frequency for new signals to change to. Enter null to turn off frequency changing. Decimals assigned automatically.", src, network) as null|num
 		if(newfreq)
 			if(findtext(num2text(newfreq), "."))
@@ -140,7 +140,7 @@
 			if(newfreq < 10000)
 				change_frequency = newfreq
 				temp = "<font color = #efef88>-% New frequency to change to assigned: \"[newfreq] GHz\" %-</font>"
-				message_admins("[usr] has assigned new frequency [newfreq] at [src] in[ADMIN_VERBOSEJMP(target)]")
+				message_admins("[usr] has assigned new frequency [newfreq] at [src] in[ADMIN_VERBOSEJMP(loc)]")
 				log_game("[usr] has assigned new frequency [newfreq] at [src] in [AREACOORD(target)]")
 		else
 			change_frequency = 0
@@ -163,63 +163,63 @@
 			if("toggle")
 				toggled = !toggled
 				temp = "<font color = #efef88>-% [src] has been [toggled ? "activated" : "deactivated"].</font>"
-				message_admins("[usr] has toggled telecomms power to [src] at [ADMIN_VERBOSEJMP(target)]")
+				message_admins("[usr] has toggled telecomms power to [src] at [ADMIN_VERBOSEJMP(loc)]")
 				log_game("[usr] has toggled telecomms power to [src] at [AREACOORD(target)]")
 				update_power()
 			if("id")
 				var/newid = reject_bad_text(stripped_input(usr, "Specify the new ID for this machine", src, id, MAX_MESSAGE_LEN))
-				if(newid && IsAdmin(usr))
+				if(newid && isadmin(usr))
 					id = newid
 					temp = "<font color = #efef88>-% New ID assigned: \"[id]\" %-</font>"
-					message_admins("[usr] has assigned new telecomms ID [id] to [src] at [ADMIN_VERBOSEJMP(target)]")
+					message_admins("[usr] has assigned new telecomms ID [id] to [src] at [ADMIN_VERBOSEJMP(loc)]")
 					log_game("[usr] assigned new telecomms ID [id] to [src] at [AREACOORD(target)]")
 				else
-					message_admins("[usr] attemped to assign new telecomms ID [id] to [src] in [ADMIN_VERBOSEJMP(target)]")
+					message_admins("[usr] attemped to assign new telecomms ID [id] to [src] in [ADMIN_VERBOSEJMP(loc)]")
 			if("network")
 				var/newnet = stripped_input(usr, "Specify the new network for this machine. This will break all current links.", src, network)
 				if(newnet)
 					if(length(newnet) > 15)
 						temp = "<font color = #efef88>-% Too many characters in new network tag %-</font>"
 					else
-						if(IsAdmin(usr))
+						if(isadmin(usr))
 							for(var/obj/machinery/telecomms/T in links)
 								LAZYREMOVE(T.links, src)
 							network = newnet
 							links = list()
 							temp = "<font color = #efef88>-% New network tag assigned: \"[network]\" %-</font>"
-							message_admins("[usr] has assigned new telecomms network to [newnet] at [src] in [ADMIN_VERBOSEJMP(target)]")
+							message_admins("[usr] has assigned new telecomms network to [newnet] at [src] in [ADMIN_VERBOSEJMP(loc)]")
 							log_game("[usr] has assigned new telecomms network to [newnet] at [src] in [AREACOORD(target)]")
 						else
-							message_admins("[usr] attemped to change network to [newnet] at [src] in [ADMIN_VERBOSEJMP(target)]")
+							message_admins("[usr] attemped to change network to [newnet] at [src] in [ADMIN_VERBOSEJMP(loc)]")
 			if("freq")
 				var/newfreq = input(usr, "Specify a new frequency to filter (GHz). Decimals assigned automatically.", src, network) as null|num
-				if(newfreq && IsAdmin(usr))
+				if(newfreq && isadmin(usr))
 					if(findtext(num2text(newfreq), "."))
 						newfreq *= 10 // shift the decimal one place
 					if(!(newfreq in freq_listening) && newfreq < 10000)
 						freq_listening.Add(newfreq)
 						temp = "<font color = #efef88>-% New frequency filter assigned: \"[newfreq] GHz\" %-</font>"
-						message_admins("[usr] has assigned new frequency filter [newfreq] at [src] in [ADMIN_VERBOSEJMP(target)]")
+						message_admins("[usr] has assigned new frequency filter [newfreq] at [src] in [ADMIN_VERBOSEJMP(loc)]")
 						log_game("[usr] has assigned new frequency filter [newfreq] at [src] in [AREACOORD(target)]")
 					else
-						message_admins("[usr] attemped to assign assigned new frequency filter [newfreq] at [src] in [ADMIN_VERBOSEJMP(target)]")
+						message_admins("[usr] attemped to assign assigned new frequency filter [newfreq] at [src] in [ADMIN_VERBOSEJMP(loc)]")
 
 	else if(href_list["delete"])
 		var/x = text2num(href_list["delete"])
 		temp = "<font color = #efef88>-% Removed frequency filter [x] %-</font>"
-		message_admins("[usr] Removed frequency filter [x] at [src] in [ADMIN_VERBOSEJMP(target)]")
+		message_admins("[usr] Removed frequency filter [x] at [src] in [ADMIN_VERBOSEJMP(loc)]")
 		log_game("[usr] Removed frequency filter [x] at [src] in [AREACOORD(target)]")
-		if(IsAdmin(usr))
+		if(isadmin(usr))
 			freq_listening.Remove(x)
 		else
-			message_admins("[usr] Tried to remove frequency filter [x] at [src] in [ADMIN_VERBOSEJMP(target)]")
+			message_admins("[usr] Tried to remove frequency filter [x] at [src] in [ADMIN_VERBOSEJMP(loc)]")
 
-	else if(href_list["unlink"] && IsAdmin(usr))
+	else if(href_list["unlink"] && isadmin(usr))
 		if(text2num(href_list["unlink"]) <= length(links))
 			var/obj/machinery/telecomms/T = links[text2num(href_list["unlink"])]
 			if(T)
 				temp = "<font color = #efef88>-% Removed [REF(T)] [T.name] from linked entities. %-</font>"
-				message_admins("[usr] Removed [REF(T)] [T.name] at [src] in [ADMIN_VERBOSEJMP(target)]")
+				message_admins("[usr] Removed [REF(T)] [T.name] at [src] in [ADMIN_VERBOSEJMP(loc)]")
 				log_game("[usr] Removed [REF(T)] [T.name] at [src] in [AREACOORD(target)]")
 				// Remove link entries from both T and src.
 				if(T.links)

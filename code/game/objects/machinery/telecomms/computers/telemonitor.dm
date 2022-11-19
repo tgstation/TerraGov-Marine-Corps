@@ -97,12 +97,12 @@
 				temp = "<font color = #f97c75>- FAILED: NETWORK TAG STRING TOO LENGHTLY -</font color>"
 			else
 				message_admins("[usr] attemped to change network to [newnet] at [src] in [ADMIN_VERBOSEJMP(target)]")
-				if(IsAdmin(usr))
+				if(isadmin(usr))
 					network = newnet
 					screen = 0
 					machinelist = list()
 					temp = "<font color = #88bff7>- NEW NETWORK TAG SET IN ADDRESS \[[network]\] -</font color>"
-					message_admins("[usr] has assigned new network tag to [newnet] at [src] in [ADMIN_VERBOSEJMP(target)]")
-					log_game("[usr] has assigned new network tag to [newnet] at [src] in [AREACOORD(target)]")
+					message_admins("[usr] has assigned new network tag to [newnet] at [src] in [ADMIN_VERBOSEJMP(loc)]")
+					log_game("[usr] has assigned new network tag to [newnet] at [src] in [AREACOORD(loc)]")
 
 	updateUsrDialog()
