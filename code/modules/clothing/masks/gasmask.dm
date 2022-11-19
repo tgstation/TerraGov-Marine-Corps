@@ -36,6 +36,13 @@
 			HM.playsound_local(user, "gasbreath", 20, 1)
 			TIMER_COOLDOWN_START(src, COOLDOWN_GAS_BREATH, 10 SECONDS)
 
+/obj/item/clothing/mask/gas/ancient
+	icon_state = "fullgas"
+	item_state = "fullgas"
+	name = "Ancient gas mask"
+	desc = "INCOMING!NO MAN'S LAND!"
+	flags_inv_hide = HIDEEARS|HIDEFACE|HIDEALLHAIR
+
 /obj/item/clothing/mask/gas/tactical
 	name = "Tactical gas mask"
 	icon_state = "gas_alt_tactical"

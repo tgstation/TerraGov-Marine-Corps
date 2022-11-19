@@ -106,6 +106,20 @@
 	flags_armor_protection = FACE
 	w_class = WEIGHT_CLASS_SMALL
 
+/obj/item/clothing/mask/balaclava/blueskull
+	name = "Blue skull balaclava"
+	desc = "Totally not a ripoff from a famous shooter"
+	icon_state = "blue_skull_balaclava"
+	item_state = "balaclava"
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/clothing/mask/balaclava/blackskull
+	name = "Black skull balaclava"
+	desc = "Totally not a ripoff from a famous shooter"
+	icon_state = "black_skull_balaclava"
+	item_state = "balaclava"
+	w_class = WEIGHT_CLASS_SMALL
+
 /obj/item/clothing/mask/balaclava/tactical
 	name = "green balaclava"
 	desc = "Designed to both hide identities and keep your face comfy and warm."

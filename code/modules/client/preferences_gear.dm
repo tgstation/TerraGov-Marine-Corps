@@ -124,10 +124,21 @@ GLOBAL_LIST_EMPTY(gear_datums)
 
 /datum/gear/booniehat
 	display_name = "TGMC boonie hat"
-	path = /obj/item/clothing/head/boonie
+	path = /obj/item/clothing/head/booniehat
 	cost = 3
 	slot = SLOT_HEAD
 
+/datum/gear/booniehatdg
+	display_name = "Dark Green TGMC boonie hat"
+	path = /obj/item/clothing/head/boonie/booniehatdg
+	cost = 3
+	slot = SLOT_HEAD
+
+/datum/gear/booniehattan
+	display_name = "Tan TGMC boonie hat"
+	path = /obj/item/clothing/head/boonie/booniehattan
+	cost = 3
+	slot = SLOT_HEAD
 
 /datum/gear/eyepatch
 	display_name = "Eyepatch"
@@ -183,6 +194,23 @@ GLOBAL_LIST_EMPTY(gear_datums)
 	cost = 2
 	slot = SLOT_WEAR_MASK
 
+/datum/gear/ancient
+	display_name = "Ancient Gasmask"
+	path = /obj/item/clothing/mask/gas/ancient
+	cost = 2
+	slot = SLOT_WEAR_MASK
+
+/datum/gear/blueskull
+	display_name = "Blue Skull Balaclava"
+	path = /obj/item/clothing/mask/balaclava/blackskull
+	cost = 2
+	slot = SLOT_WEAR_MASK
+
+/datum/gear/blackskull
+	display_name = "Black Skull Balaclava"
+	path = /obj/item/clothing/mask/balaclava/blueskull
+	cost = 2
+	slot = SLOT_WEAR_MASK
 
 /datum/gear/bgoggles
 	display_name = "Ballistic goggles"
