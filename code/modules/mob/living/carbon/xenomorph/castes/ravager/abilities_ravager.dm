@@ -300,7 +300,7 @@
 	rage_power = (1-(X.health/X.maxHealth)) * RAVAGER_RAGE_POWER_MULTIPLIER //Calculate the power of our rage; scales with difference between current and max HP
 
 	if(X.health < 0) //If we're at less than 0 HP, it's time to max rage.
-		rage_power = 0.5
+		rage_power = 0.75
 
 	var/rage_power_radius = CEILING(rage_power * 7, 1) //Define radius of the SFX
 
