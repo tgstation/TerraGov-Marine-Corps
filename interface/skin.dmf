@@ -169,7 +169,7 @@ window "mapwindow"
 		right-click = true
 		saved-params = "icon-size"
 		zoom-mode = distort
-		style=".center { text-align: center; } .maptext { font-family: 'MS Serif'; font-size: 7px; -dm-text-outline: 1px black; color: white; line-height: 1.1; } .command_headset { font-weight: bold; font-size: 8px; } .small, .italics { font-size: 6px; } .big, .reallybig, .extremelybig { font-size: 8px; } .yell { font-weight: bold; } .menutext { font-size: 11px; -dm-text-outline: 0.5px black; color: white; line-height: 1.1; } .menutitle { font-size: 14px; -dm-text-outline: 0.5px black; color: white; line-height: 1.1; }"
+		style=".center { text-align: center; } .maptext { font-family: 'MS Serif'; font-size: 7px; -dm-text-outline: 1px black; color: white; line-height: 1.1; } .command_headset { font-weight: bold; font-size: 8px; } .small, .italics { font-size: 6px; } .big, .reallybig, .extremelybig { font-size: 8px; } .yell { font-weight: bold; } .menutext { font-size: 9px; -dm-text-outline: 0.5px black; color: white; line-height: 1.1; } .menutitle { font-size: 12px; -dm-text-outline: 0.5px black; color: white; line-height: 1.1; }"
 
 window "infowindow"
 	elem "infowindow"
