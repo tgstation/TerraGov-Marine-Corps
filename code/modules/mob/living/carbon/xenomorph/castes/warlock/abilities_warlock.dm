@@ -182,12 +182,8 @@
 	if(xeno_owner.selected_ability != src)
 		action_activate()
 		return
-	if(owner.do_actions || !target)
-		return FALSE
-	if(!can_use_action(TRUE))
+	if(owner.do_actions || !target || !can_use_action(TRUE) || !check_distance(target))
 		return fail_activate()
-	if(!check_distance(target))
-		return FALSE
 	if(!do_after(owner, 0.5 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_action, FALSE, XACT_USE_BUSY)))
 		return fail_activate()
 	owner.visible_message(span_xenowarning("\The [owner] starts channeling their psychic might!"), \
@@ -243,9 +239,10 @@
 ///crushes all turfs in the AOE
 /datum/action/xeno_action/activable/psy_crush/proc/crush(turf/target)
 	//note: do we need a check to see if we have sufficient plasma, due to the override?
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/crush_cost = plasma_cost * current_iterations
 	if(crush_cost > xeno_owner.plasma_stored)
-		to_chat(xeno_owner, span_warning("We need [selected_ammo.plasma_cost - xeno_owner.plasma_stored] more plasma!"))
+		to_chat(xeno_owner, span_warning("We need [crush_cost - xeno_owner.plasma_stored] more plasma!"))
 		return
 	if(!check_distance(target))
 		stop_crush(target)

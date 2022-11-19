@@ -7,7 +7,7 @@
 
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE
-	wound_type = "overmind"
+	wound_type = "warlock"
 	melee_damage = 20
 	speed = -0.3
 	plasma_max = 1400
