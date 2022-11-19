@@ -46,8 +46,8 @@
 	active_shield = new(target_turf, owner)
 	action_icon_state = "psy_shield_reflect"
 	succeed_activate()
-	//GLOB.round_statistics.psy_shields++
-	//SSblackbox.record_feedback("tally", "round_statistics", 1, "psy_shields")
+	GLOB.round_statistics.psy_shields++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "psy_shields")
 	if(!do_after(owner, 5 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_action, FALSE, XACT_USE_BUSY)))
 		cancel_shield()
 		return
@@ -99,8 +99,8 @@
 
 	playsound(owner,'sound/effects/bamf.ogg', 75, TRUE)
 	playsound(owner, "alien_roar", 50)
-	//GLOB.round_statistics.psy_shield_blasts++
-	//SSblackbox.record_feedback("tally", "round_statistics", 1, "psy_shield_blasts")
+	GLOB.round_statistics.psy_shield_blasts++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "psy_shield_blasts")
 	succeed_activate()
 
 /obj/effect/xeno/shield
@@ -305,8 +305,8 @@
 		for(var/atom/movable/item AS in targeted.contents)
 			item.add_filter("crushblur", 1, radial_blur_filter(0.3))
 			filters_applied += item
-	//GLOB.round_statistics.psy_crushes++
-	//SSblackbox.record_feedback("tally", "round_statistics", 1, "psy_crushes")
+	GLOB.round_statistics.psy_crushes++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "psy_crushes")
 
 ///Remove all filters of items in filters_applied
 /datum/action/xeno_action/activable/psy_crush/proc/remove_all_filters()
@@ -403,12 +403,12 @@
 	projectile.generate_bullet(ammo_type)
 	projectile.fire_at(target, xeno_owner, null, projectile.ammo.max_range, projectile.ammo.shell_speed)
 	playsound(xeno_owner, 'sound/weapons/guns/fire/volkite_4.ogg', 50)
-	//if(istype(xeno_owner.ammo, /datum/ammo/energy/xeno/psy_blast))
-	//	GLOB.round_statistics.psy_blasts++
-	//	SSblackbox.record_feedback("tally", "round_statistics", 1, "psy_blasts")
-	//else
-	//	GLOB.round_statistics.psy_lances++
-	//	SSblackbox.record_feedback("tally", "round_statistics", 1, "psy_lances")
+	if(istype(xeno_owner.ammo, /datum/ammo/energy/xeno/psy_blast))
+		GLOB.round_statistics.psy_blasts++
+		SSblackbox.record_feedback("tally", "round_statistics", 1, "psy_blasts")
+	else
+		GLOB.round_statistics.psy_lances++
+		SSblackbox.record_feedback("tally", "round_statistics", 1, "psy_lances")
 
 	succeed_activate()
 	add_cooldown()
