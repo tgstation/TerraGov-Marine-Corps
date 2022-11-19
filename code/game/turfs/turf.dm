@@ -648,6 +648,8 @@
 	return TRUE
 
 
+/turf/open/lavaland/basalt/can_dig_xeno_tunnel()
+	return TRUE
 
 
 
