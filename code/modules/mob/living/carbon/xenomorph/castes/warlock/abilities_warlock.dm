@@ -207,13 +207,10 @@
 	RegisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)), .proc/stop_crush)
 
 ///Checks if the owner is close enough/can see the target
-/datum/action/xeno_action/activable/psy_crush/proc/check_distance(atom/target, silent)
+/datum/action/xeno_action/activable/psy_crush/proc/check_distance(atom/target)
 	var/dist = get_dist(owner, target)
 	if(dist > ability_range)
 		to_chat(owner, span_warning("Too far for our reach... We need to be [dist - ability_range] steps closer!"))
-		return FALSE
-	else if(!line_of_sight(owner, target, 9))
-		to_chat(owner, span_warning("We can't focus properly without a clear line of sight!"))
 		return FALSE
 	return TRUE
 
