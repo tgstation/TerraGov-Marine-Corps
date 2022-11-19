@@ -9,9 +9,6 @@
 	set name = "Rest"
 	set category = "IC"
 
-	if(incapacitated(TRUE))
-		return
-
 	if(!resting)
 		if(is_ventcrawling)
 			return FALSE
@@ -23,10 +20,7 @@
 		get_up()
 
 /mob/living/proc/get_up()
-	if(!incapacitated(TRUE))
-		set_resting(FALSE, FALSE)
-	else
-		to_chat(src, span_notice("You fail to get up."))
+	set_resting(FALSE, FALSE)
 
 /mob/living/proc/set_resting(rest, silent = TRUE)
 	if(status_flags & INCORPOREAL)

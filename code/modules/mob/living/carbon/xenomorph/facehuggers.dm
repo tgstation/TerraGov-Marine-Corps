@@ -49,7 +49,7 @@
 	///The timer to go active
 	var/activetimer
 	///Time to become active after impacting on a direct thrown hit
-	var/impact_time = 1.5 SECONDS
+	var/impact_time = 1.25 SECONDS
 	///Time to become active again
 	var/activate_time = 2 SECONDS
 	///Time to recover after jumping
@@ -689,10 +689,10 @@
 	name = "neuro hugger"
 	desc = "This strange creature has a single prominent sharp proboscis."
 	color = COLOR_DARK_ORANGE
-	impact_time = 1 SECONDS
-	activate_time = 1.5 SECONDS
-	jump_cooldown = 1.5 SECONDS
-	proximity_time = 0.5 SECONDS
+	impact_time = 0.5 SECONDS
+	activate_time = 1 SECONDS
+	jump_cooldown = 1 SECONDS
+	proximity_time = 0.25 SECONDS
 
 /obj/item/clothing/mask/facehugger/combat/neuro/Attach(mob/M, mob/user)
 	if(!combat_hugger_check_target(M))
@@ -714,10 +714,10 @@
 	name = "acid hugger"
 	desc = "This repulsive looking thing is bloated with throbbing, putrescent green sacks of flesh."
 	color = COLOR_GREEN
-	impact_time = 1 SECONDS
-	activate_time = 1.5 SECONDS
-	jump_cooldown = 1.5 SECONDS
-	proximity_time = 0.5 SECONDS
+	impact_time = 0.5 SECONDS
+	activate_time = 1 SECONDS
+	jump_cooldown = 1 SECONDS
+	proximity_time = 0.25 SECONDS
 
 /obj/item/clothing/mask/facehugger/combat/acid/Attach(mob/M, mob/user)
 	if(!combat_hugger_check_target(M))
@@ -744,10 +744,10 @@
 	name = "resin hugger"
 	desc = "This truly bizzare, bloated creature drips with purple, viscous resin."
 	color = COLOR_STRONG_VIOLET
-	impact_time = 1 SECONDS
-	activate_time = 1.5 SECONDS
-	jump_cooldown = 1.5 SECONDS
-	proximity_time = 0.5 SECONDS
+	impact_time = 0.5 SECONDS
+	activate_time = 1 SECONDS
+	jump_cooldown = 1 SECONDS
+	proximity_time = 0.25 SECONDS
 
 /obj/item/clothing/mask/facehugger/combat/resin/Attach(mob/M, mob/user)
 	if(!combat_hugger_check_target(M))
