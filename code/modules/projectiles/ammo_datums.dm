@@ -570,6 +570,20 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 30
 	sundering = 3
 
+/datum/ammo/bullet/smg/acp
+	name = "submachinegun ACP bullet"
+	hud_state = "smg"
+	hud_state_empty = "smg_empty"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	accuracy_var_low = 7
+	accuracy_var_high = 7
+	damage = 20
+	accurate_range = 4
+	damage_falloff = 1
+	sundering = 0.5
+	penetration = 0
+	shrapnel_chance = 25
+
 /datum/ammo/bullet/smg/incendiary
 	name = "incendiary submachinegun bullet"
 	hud_state = "smg_fire"
