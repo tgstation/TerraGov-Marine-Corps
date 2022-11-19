@@ -370,14 +370,13 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 			A.balloon_alert(owner, "He's not infected")
 		return FALSE
 
-	if(isliving(A))
-		var/mob/living/livingtarget = A
-		if(livingtarget.stat == DEAD)
-			if(!silent)
-				livingtarget.balloon_alert(owner, "He's dead")
-			return FALSE
+	var/mob/living/livingtarget = A
+	if(livingtarget.stat == DEAD)
+		if(!silent)
+			livingtarget.balloon_alert(owner, "He's dead")
+		return FALSE
 
-	if(!line_of_sight(owner, A))
+	if(!line_of_sight(owner, A, 9))
 		if(!silent)
 			A.balloon_alert(owner, "Need line of sight")
 		return FALSE
