@@ -173,11 +173,11 @@
 	///timer hash for the timer we use when charging up
 	var/channel_loop_timer
 	///List of turfs in the effect radius
-	var/list/target_turfs = list()
+	var/list/target_turfs
 	///list of effects used to visualise area of effect
-	var/list/effect_list = list()
+	var/list/effect_list
 	/// A list of all things that had a fliter applied
-	var/list/filters_applied = list()
+	var/list/filters_applied
 	///max range at which we can cast out ability
 	var/ability_range = 9
 
@@ -197,7 +197,9 @@
 	owner.visible_message(span_xenowarning("\The [owner] starts channeling their psychic might!"), \
 		span_xenowarning("We start channeling our psychic might!"))
 	var/turf/target_turf = get_turf(target)
+	LAZYINITLIST(target_turfs)
 	target_turfs += target_turf
+	LAZYINITLIST(effect_list)
 	effect_list += new /obj/effect/xeno/crush_warning(target_turf)
 	owner.add_movespeed_modifier(MOVESPEED_ID_WARLOCK_CHANNELING, TRUE, 0, NONE, TRUE, 0.9)
 	action_icon_state = "psy_crush_activate"
@@ -287,8 +289,8 @@
 		channel_loop_timer = null
 	QDEL_LIST(effect_list)
 	current_iterations = 0
-	target_turfs = list()
-	effect_list = list()
+	target_turfs = null
+	effect_list = null
 	owner.remove_movespeed_modifier(MOVESPEED_ID_WARLOCK_CHANNELING)
 	action_icon_state = "psy_crush"
 	add_cooldown()
@@ -296,6 +298,7 @@
 
 ///Apply a filter on all items in the list of turfs
 /datum/action/xeno_action/activable/psy_crush/proc/apply_filters(list/turfs)
+	LAZYINITLIST(filters_applied)
 	for(var/turf/targeted AS in turfs)
 		targeted.add_filter("crushblur", 1, radial_blur_filter(0.3))
 		filters_applied += targeted
@@ -311,7 +314,7 @@
 		if(QDELETED(thing))
 			continue
 		thing.remove_filter("crushblur")
-	filters_applied.Cut()
+	filters_applied = null
 
 /datum/action/xeno_action/activable/psy_crush/on_cooldown_finish()
 	owner.balloon_alert(owner, "Crush ready")
