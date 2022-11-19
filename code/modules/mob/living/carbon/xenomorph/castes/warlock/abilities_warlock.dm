@@ -94,7 +94,7 @@
 				shake_camera(H, 2, 1)
 			var/throwlocation = affected.loc
 			for(var/x in 1 to 6)
-				throwlocation = get_step(throwlocation, owner.dir)
+				throwlocation = get_step(throwlocation, active_shield.dir)
 			affected.throw_at(throwlocation, 4, 1, owner, TRUE)
 
 	owner.visible_message(span_xenowarning("[owner] sends out a huge blast of psychic energy!"), \
