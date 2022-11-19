@@ -37,8 +37,8 @@
 	active_shield = new(get_step(owner, owner.dir), owner)
 	action_icon_state = "psy_shield_reflect"
 	succeed_activate()
-	//GLOB.round_statistics.psychic_flings++
-	//SSblackbox.record_feedback("tally", "round_statistics", 1, "psychic_flings")
+	//GLOB.round_statistics.psy_shields++
+	//SSblackbox.record_feedback("tally", "round_statistics", 1, "psy_shields")
 	if(!do_after(owner, 5 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_action, FALSE, XACT_USE_BUSY)))
 		cancel_shield()
 		return
@@ -76,15 +76,15 @@
 			if(!ishuman(affected) && !istype(affected, /obj/item) && !isdroid(affected))
 				affected.Shake(4, 4, 20)
 				continue
-			if(ishuman(affected)) //if they're human, they also should get knocked off their feet from the blast.
+			if(ishuman(affected))
 				var/mob/living/carbon/human/H = affected
-				if(H.stat == DEAD) //unless they are dead, then the blast mysteriously ignores them.
+				if(H.stat == DEAD)
 					continue
-				H.apply_effects(1, 1) 	// Stun
+				H.apply_effects(1, 1)
 				shake_camera(H, 2, 1)
-			var/throwlocation = affected.loc //first we get the target's location
+			var/throwlocation = affected.loc
 			for(var/x in 1 to 6)
-				throwlocation = get_step(throwlocation, owner.dir) //then we find where they're being thrown to, checking tile by tile.
+				throwlocation = get_step(throwlocation, owner.dir)
 			affected.throw_at(throwlocation, 4, 1, owner, TRUE)
 
 	owner.visible_message(span_xenowarning("[owner] sends out a huge blast of psychic energy!"), \
@@ -92,6 +92,8 @@
 
 	playsound(owner,'sound/effects/bamf.ogg', 75, TRUE)
 	playsound(owner, "alien_roar", 50)
+	//GLOB.round_statistics.psy_shield_blasts++
+	//SSblackbox.record_feedback("tally", "round_statistics", 1, "psy_shield_blasts")
 	succeed_activate()
 
 /obj/effect/xeno/shield
@@ -157,7 +159,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_CRUSH,
 	)
 	///The number of times we can expand our effect radius. Effectively a max radius
-	var/max_interations = 5 //maybe tie this to maturity
+	var/max_interations = 5
 	///How many times we have expanded our effect radius
 	var/current_iterations = 0
 	///timer hash for the timer we use when charging up
@@ -172,9 +174,9 @@
 	var/ability_range = 9
 
 /datum/action/xeno_action/activable/psy_crush/use_ability(atom/target)
-	//note: can probs just make alt action activate a new proc, and call it here if timer is active.
-	if(channel_loop_timer) //you're already channeling
-		early_trigger()
+	if(channel_loop_timer)
+		if(length(target_turfs)) //it shouldn't be possible to do this without any turfs, but just in case
+			crush(target_turfs[1])
 		return
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(xeno_owner.selected_ability != src)
@@ -182,11 +184,11 @@
 		return
 	if(owner.do_actions || !target)
 		return FALSE
-	if(!can_use_action(TRUE)) //stunned or whatever
+	if(!can_use_action(TRUE))
 		return fail_activate()
 	if(!check_distance(target))
 		return FALSE
-	if(!do_after(owner, 0.5 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_action, FALSE, XACT_USE_BUSY))) //windup
+	if(!do_after(owner, 0.5 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_action, FALSE, XACT_USE_BUSY)))
 		return fail_activate()
 	owner.visible_message(span_xenowarning("\The [owner] starts channeling their psychic might!"), \
 		span_xenowarning("We start channeling our psychic might!"))
@@ -195,16 +197,8 @@
 	effect_list += new /obj/effect/xeno/crush_warning(target_turf)
 	owner.add_movespeed_modifier(MOVESPEED_ID_WARLOCK_CHANNELING, TRUE, 0, NONE, TRUE, 0.9)
 	action_icon_state = "psy_crush_activate"
-	do_channel(target_turf) //start channeling
+	do_channel(target_turf)
 	RegisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)), .proc/stop_crush)
-
-///activates crush early
-/datum/action/xeno_action/activable/psy_crush/proc/early_trigger()
-	if(!can_use_action() || !length(target_turfs))
-		owner.visible_message(span_xenowarning("\The [owner] is unable to unleash their power!"), \
-			span_xenowarning("We fail to unleash our power!"))
-		return
-	crush(target_turfs[1])
 
 ///Checks if the owner is close enough/can see the target
 /datum/action/xeno_action/activable/psy_crush/proc/check_distance(atom/target, silent)
@@ -227,7 +221,7 @@
 	if(current_iterations >= max_interations)
 		crush(target)
 		return
-	playsound(target, 'sound/effects/woosh_swoosh.ogg', 30 + (current_iterations * 10)) //Sound effects
+	playsound(target, 'sound/effects/woosh_swoosh.ogg', 30 + (current_iterations * 10))
 
 	succeed_activate()
 
@@ -249,6 +243,10 @@
 ///crushes all turfs in the AOE
 /datum/action/xeno_action/activable/psy_crush/proc/crush(turf/target)
 	//note: do we need a check to see if we have sufficient plasma, due to the override?
+	var/crush_cost = plasma_cost * current_iterations
+	if(crush_cost > xeno_owner.plasma_stored)
+		to_chat(xeno_owner, span_warning("We need [selected_ammo.plasma_cost - xeno_owner.plasma_stored] more plasma!"))
+		return
 	if(!check_distance(target))
 		stop_crush(target)
 		return
@@ -281,7 +279,6 @@
 /// stops channeling and unregisters all listeners, resetting the ability
 /datum/action/xeno_action/activable/psy_crush/proc/stop_crush(turf/target)
 	SIGNAL_HANDLER
-	to_chat(owner, span_warning("We stop.")) //debug only
 	if(channel_loop_timer)
 		deltimer(channel_loop_timer)
 		channel_loop_timer = null
@@ -303,6 +300,8 @@
 		for(var/atom/movable/item AS in targeted.contents)
 			item.add_filter("crushblur", 1, radial_blur_filter(0.3))
 			filters_applied += item
+	//GLOB.round_statistics.psy_crushes++
+	//SSblackbox.record_feedback("tally", "round_statistics", 1, "psy_crushes")
 
 ///Remove all filters of items in filters_applied
 /datum/action/xeno_action/activable/psy_crush/proc/remove_all_filters()
@@ -395,14 +394,12 @@
 	P.generate_bullet(ammo_type)
 	P.fire_at(target, xeno_owner, null, P.ammo.max_range, P.ammo.shell_speed)
 	playsound(xeno_owner, 'sound/weapons/guns/fire/volkite_4.ogg', 50)
-	//if(istype(xeno_owner.ammo, /datum/ammo/xeno/shrike_gas/corrosive))
-	//	GLOB.round_statistics.shrike_acid_smokes++
-	//	SSblackbox.record_feedback("tally", "round_statistics", 1, "shrike_acid_smokes")
-	//	xeno_owner.corrosive_ammo--
+	//if(istype(xeno_owner.ammo, /datum/ammo/energy/xeno/psy_blast))
+	//	GLOB.round_statistics.psy_blasts++
+	//	SSblackbox.record_feedback("tally", "round_statistics", 1, "psy_blasts")
 	//else
-	//	GLOB.round_statistics.shrike_neuro_smokes++
-	//	SSblackbox.record_feedback("tally", "round_statistics", 1, "shrike_neuro_smokes")
-	//	xeno_owner.neuro_ammo--
+	//	GLOB.round_statistics.psy_lances++
+	//	SSblackbox.record_feedback("tally", "round_statistics", 1, "psy_lances")
 
 	succeed_activate()
 	add_cooldown()
