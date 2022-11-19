@@ -284,6 +284,10 @@ Good luck, but do not expect to survive."})
 
 	exp_requirements = XP_REQ_SURVIVOR
 	exp_type = EXP_TYPE_ALL
+	job_points_needed = 5
+	jobworth = list(
+		/datum/job/xenomorph = LARVA_POINTS_REGULAR/2,
+	)
 
 	html_description = {"
 		<b>Difficulty</b>: Hard<br /><br />
