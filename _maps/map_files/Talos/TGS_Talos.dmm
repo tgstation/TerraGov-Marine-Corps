@@ -9018,7 +9018,7 @@
 "hap" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/platform,
-/turf/open/floor/mainship/orange,
+/turf/open/floor/mainship/red,
 /area/mainship/hallways/hangar)
 "hay" = (
 /obj/structure/cable,
@@ -10789,7 +10789,7 @@
 /obj/structure/platform{
 	dir = 1
 	},
-/turf/open/floor/mainship/blue{
+/turf/open/floor/mainship/purple{
 	dir = 1
 	},
 /area/mainship/hallways/hangar)
@@ -13003,7 +13003,7 @@
 /area/mainship/hallways/port_hallway)
 "kqo" = (
 /obj/item/radio/intercom/general{
-	pixel_x = -10
+	pixel_x = -22
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
@@ -18976,6 +18976,12 @@
 /obj/machinery/chem_dispenser,
 /turf/open/floor/mainship/sterile/plain,
 /area/mainship/medical/medical_science)
+"oEl" = (
+/obj/item/radio/intercom/general{
+	pixel_x = -10
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/hangar)
 "oEt" = (
 /obj/machinery/vending/weapon,
 /obj/machinery/light/small,
@@ -21287,12 +21293,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/mainship/living/pilotbunks)
-"qjM" = (
-/obj/item/radio/intercom/general{
-	pixel_x = -22
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/hangar)
 "qjV" = (
 /obj/machinery/light{
 	dir = 1
@@ -62317,7 +62317,7 @@ eRD
 iwc
 hXx
 iwc
-kqo
+oEl
 qVS
 lOm
 lOm
@@ -62831,7 +62831,7 @@ hXx
 iwc
 hXx
 iwc
-qjM
+kqo
 miL
 qVS
 qVS
