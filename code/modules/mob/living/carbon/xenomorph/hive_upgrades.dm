@@ -305,7 +305,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Places a Psychic Echo chamber that tallhosts can detect, then after a summon time selects a random sister to take over the mind of the gravity manipulating King."
 	icon = "king"
 	flags_gamemode = ABILITY_DISTRESS
-	psypoint_cost = 1800
+	psypoint_cost = 1200
 
 /datum/hive_upgrade/xenos/king/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
 	. = ..()
