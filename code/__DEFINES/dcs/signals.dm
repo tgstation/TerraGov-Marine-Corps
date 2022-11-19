@@ -319,7 +319,7 @@
 #define COMSIG_ARMOR_MODULE_DETACHED "armor_module_detached"
 
 // vali specific
-#define COMSIG_CHEMSYSTEM_TOGGLE "chemsystem_toggle"
+#define COMSIG_CHEMSYSTEM_TOGGLED "chemsystem_toggled"
 
 // /obj/item/helmet_module signals
 #define COMSIG_HELMET_MODULE_ATTACHING "helmet_module_attaching"

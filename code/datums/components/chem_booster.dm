@@ -236,8 +236,8 @@
 ///Handles turning on/off the processing part of the component, along with the negative effects related to this
 /datum/component/chem_booster/proc/on_off(datum/source)
 	SIGNAL_HANDLER
+	SEND_SIGNAL(src, COMSIG_CHEMSYSTEM_TOGGLED, boost_on)
 	if(boost_on)
-		SEND_SIGNAL(src, COMSIG_CHEMSYSTEM_TOGGLE, FALSE)
 		STOP_PROCESSING(SSobj, src)
 		wearer.clear_fullscreen("degeneration")
 		vali_necro_timer = world.time - processing_start
@@ -267,7 +267,6 @@
 		wearer.balloon_alert(wearer, "Insufficient green blood to begin operation")
 		return
 
-	SEND_SIGNAL(src, COMSIG_CHEMSYSTEM_TOGGLE, TRUE)
 	boost_on = TRUE
 	processing_start = world.time
 	START_PROCESSING(SSobj, src)

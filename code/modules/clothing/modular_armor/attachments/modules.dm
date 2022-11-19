@@ -251,11 +251,11 @@
 /obj/item/armor_module/module/chemsystem/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
 	var/datum/component/chem_booster/chemsystem = parent.AddComponent(/datum/component/chem_booster)
-	RegisterSignal(chemsystem, COMSIG_CHEMSYSTEM_TOGGLE, .proc/update_module_icon)
+	RegisterSignal(chemsystem, COMSIG_CHEMSYSTEM_TOGGLED, .proc/update_module_icon)
 
 /obj/item/armor_module/module/chemsystem/on_detach(obj/item/detaching_from, mob/user)
 	var/datum/component/chem_booster/chemsystem = parent.GetComponent(/datum/component/chem_booster)
-	UnregisterSignal(chemsystem, COMSIG_CHEMSYSTEM_TOGGLE)
+	UnregisterSignal(chemsystem, COMSIG_CHEMSYSTEM_TOGGLED)
 	chemsystem.RemoveComponent()
 	return ..()
 
