@@ -31,10 +31,20 @@
 			shield_blast()
 			cancel_shield()
 		return
-	owner.visible_message("A strange and violent psychic aura is suddenly emitted from \the [owner]!")
+	var/turf/target_turf = get_step(owner, owner.dir)
+	if(target_turf.density)
+		owner.balloon_alert(owner, "Obstructed by [target_turf]")
+		return
+	for(var/atom/movable/affected in target_turf)
+		if(affected.density)
+			owner.balloon_alert(owner, "Obstructed by [affected]")
+			return
+
+	owner.visible_message(span_xenowarning("A strange psychic aura shimmers into life in front of \the [owner]!"), \
+	span_xenowarning("We form a barrier in front of us, we must hold still!"))
 	playsound(owner,'sound/effects/magic.ogg', 75, 1)
 
-	active_shield = new(get_step(owner, owner.dir), owner)
+	active_shield = new(target_turf, owner)
 	action_icon_state = "psy_shield_reflect"
 	succeed_activate()
 	//GLOB.round_statistics.psy_shields++
@@ -49,6 +59,7 @@
 	qdel(active_shield)
 	active_shield = null
 	action_icon_state = "psy_shield"
+	to_chat(owner, span_notice("Our shield fades."))
 	add_cooldown()
 
 ///AOE knockback triggerable by ending the shield early
@@ -69,10 +80,9 @@
 			lower_left = locate(owner.x + 1, owner.y - 1, owner.z)
 			upper_right = locate(owner.x + 2, owner.y + 1, owner.z)
 
-	for(var/turf/affected_tile in block(lower_left, upper_right)) //everything in the 2x3 block is found.
+	for(var/turf/affected_tile AS in block(lower_left, upper_right)) //everything in the 2x3 block is found.
 		affected_tile.Shake(4, 4, 2 SECONDS)
-		for(var/i in affected_tile)
-			var/atom/movable/affected = i
+		for(var/atom/movable/affected in affected_tile)
 			if(!ishuman(affected) && !istype(affected, /obj/item) && !isdroid(affected))
 				affected.Shake(4, 4, 20)
 				continue
@@ -150,7 +160,7 @@
 /datum/action/xeno_action/activable/psy_crush
 	name = "psychic Crush"
 	action_icon_state = "psy_crush"
-	mechanics_text = "Channel our psychic force to crush our enemies. The longer we channel, the larger the area."
+	mechanics_text = "Channel an expanding AOE crush effect, activating it again pre-maturely crushes enemies over an area. The longer it is channeled, the larger area it will affect, but will consume more plasma."
 	ability_name = "psychic crush"
 	plasma_cost = 35
 	cooldown_timer = 8 SECONDS
