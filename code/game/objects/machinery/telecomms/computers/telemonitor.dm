@@ -96,7 +96,7 @@
 			if(length(newnet) > 15)
 				temp = "<font color = #f97c75>- FAILED: NETWORK TAG STRING TOO LENGHTLY -</font color>"
 			else
-				message_admins("[usr] attemped to change network to [newnet] at [src] in [ADMIN_VERBOSEJMP(target)]")
+				message_admins("[usr] attemped to change network to [newnet] at [src] in [ADMIN_VERBOSEJMP(loc)]")
 				if(isadmin(usr))
 					network = newnet
 					screen = 0
