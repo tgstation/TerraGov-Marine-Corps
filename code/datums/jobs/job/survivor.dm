@@ -7,6 +7,9 @@
 	skills_type = /datum/skills/civilian/survivor
 	faction = FACTION_TERRAGOV
 
+	exp_requirements = XP_REQ_SURVIVOR
+	exp_type = EXP_TYPE_LIVING
+
 /datum/job/survivor/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
 	. = ..()
 
