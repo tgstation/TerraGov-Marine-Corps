@@ -247,6 +247,8 @@
 	icon_state = "mod_chemsystem"
 	item_state = "mod_chemsystem_a"
 	slot = ATTACHMENT_SLOT_MODULE
+	///Lets us keep track of what icon state we're in
+	var/chemsystem_icon_state = FALSE
 
 /obj/item/armor_module/module/chemsystem/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
@@ -262,16 +264,16 @@
 ///Updates the module on the armor to glow or not
 /obj/item/armor_module/module/chemsystem/proc/update_module_icon(datum/source, toggle)
 	SIGNAL_HANDLER
-	if(toggle)
-		icon_state = "mod_chemsystem_active"
-		item_state = "mod_chemsystem_active_a"
-		update_icon()
-		parent.update_icon()
-		return
-	icon_state = "mod_chemsystem"
-	item_state = "mod_chemsystem_a"
+	chemsystem_icon_state = toggle
 	update_icon()
 	parent.update_icon()
+
+/obj/item/armor_module/module/chemsystem/update_icon_state()
+	. = ..()
+	if(chemsystem_icon_state)
+		icon_state = "mod_chemsystem_active"
+		return
+	icon_state = initial(icon_state)
 
 /obj/item/armor_module/module/eshield
 	name = "Arrowhead Energy Shield System"
