@@ -7,6 +7,10 @@
 
 	if((resistance_flags & INDESTRUCTIBLE) || obj_integrity <= 0)
 		return
+	if(istype(src, /obj/structure/closet/crate) && z == 1)
+		return
+	if(istype(src, /obj/structure/largecrate/supply) && z == 1)
+		return
 	damage_amount = run_obj_armor(damage_amount, damage_type, damage_flag, attack_dir, armour_penetration)
 
 	if(damage_amount < DAMAGE_PRECISION)

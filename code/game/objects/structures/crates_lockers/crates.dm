@@ -9,6 +9,7 @@
 	mob_storage_capacity = 0
 	var/rigged = 0
 	closet_flags = CLOSET_ALLOW_OBJS|CLOSET_ALLOW_DENSE_OBJ
+	flags_atom = PREVENT_CONTENTS_EXPLOSION
 
 /obj/structure/closet/crate/can_open()
 	return 1
@@ -33,6 +34,10 @@
 	if(opened)
 		return 0
 	if(!can_open())
+		return 0
+
+	var/turf/T = get_turf(src)
+	if(LAZYLEN(T.contents) > 50)
 		return 0
 
 	if(rigged && locate(/obj/item/electropack) in src)
