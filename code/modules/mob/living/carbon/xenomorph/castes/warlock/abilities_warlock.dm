@@ -13,11 +13,12 @@
 	)
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	use_state_flags = XACT_USE_BUSY
+	///The actual shield object created by this ability
 	var/obj/effect/xeno/shield/active_shield
 
 
 /datum/action/xeno_action/activable/psychic_shield/on_cooldown_finish()
-	to_chat(owner, span_notice("We gather enough mental strength to create a psychic shield again."))
+	owner.balloon_alert(owner, "Shield ready")
 	return ..()
 
 /datum/action/xeno_action/activable/psychic_shield/use_ability(atom/A)
@@ -26,6 +27,7 @@
 		var/mob/living/carbon/xenomorph/xeno_owner = owner
 		if(plasma_cost > xeno_owner.plasma_stored)
 			to_chat(xeno_owner, span_warning("We need [plasma_cost - xeno_owner.plasma_stored] more plasma!"))
+			owner.balloon_alert(owner, "Low plasma!")
 			return FALSE
 		if(can_use_action(FALSE, XACT_USE_BUSY))
 			shield_blast()
@@ -39,9 +41,6 @@
 		if(affected.density)
 			owner.balloon_alert(owner, "Obstructed by [affected]")
 			return
-
-	owner.visible_message(span_xenowarning("A strange psychic aura shimmers into life in front of \the [owner]!"), \
-	span_xenowarning("We form a barrier in front of us, we must hold still!"))
 	playsound(owner,'sound/effects/magic.ogg', 75, 1)
 
 	active_shield = new(target_turf, owner)
@@ -56,10 +55,8 @@
 
 ///Removes the shield and resets the ability
 /datum/action/xeno_action/activable/psychic_shield/proc/cancel_shield()
-	qdel(active_shield)
-	active_shield = null
+	QDEL_NULL(active_shield)
 	action_icon_state = "psy_shield"
-	to_chat(owner, span_notice("Our shield fades."))
 	add_cooldown()
 
 ///AOE knockback triggerable by ending the shield early
@@ -111,6 +108,7 @@
 	icon_state = "shield"
 	resistance_flags = RESIST_ALL
 	layer = ABOVE_MOB_LAYER
+	///Who created the shield
 	var/mob/living/carbon/xenomorph/owner
 
 /obj/effect/xeno/shield/Initialize(loc, creator)
@@ -152,7 +150,7 @@
 	else if(new_angle > 360)
 		new_angle -= 360
 	proj.firer = src
-	proj.fire_at(shooter = src, source = src, range = new_range, angle = new_angle, recursivity = TRUE) //loc_override = loc //note investigate hitscan issue
+	proj.fire_at(shooter = src, source = src, range = new_range, angle = new_angle, recursivity = TRUE)
 
 // ***************************************
 // *********** psychic crush
@@ -211,6 +209,7 @@
 	var/dist = get_dist(owner, target)
 	if(dist > ability_range)
 		to_chat(owner, span_warning("Too far for our reach... We need to be [dist - ability_range] steps closer!"))
+		owner.balloon_alert(owner, "Too far!")
 		return FALSE
 	return TRUE
 
@@ -250,12 +249,12 @@
 	var/crush_cost = plasma_cost * current_iterations
 	if(crush_cost > xeno_owner.plasma_stored)
 		to_chat(xeno_owner, span_warning("We need [crush_cost - xeno_owner.plasma_stored] more plasma!"))
+		owner.balloon_alert(owner, "Low plasma!")
 		return
 	if(!check_distance(target))
 		stop_crush(target)
 		return
 	succeed_activate(plasma_cost * current_iterations)
-	to_chat(owner, span_warning("We unleash our psychic might!"))
 	playsound(target, 'sound/effects/EMPulse.ogg', 70)
 	apply_filters(target_turfs)
 	addtimer(CALLBACK(src, .proc/remove_all_filters), 2 SECONDS, TIMER_STOPPABLE)
@@ -286,8 +285,7 @@
 	if(channel_loop_timer)
 		deltimer(channel_loop_timer)
 		channel_loop_timer = null
-	for(var/obj/effect/xeno/crush_warning/current_effect AS in effect_list)
-		qdel(current_effect)
+	QDEL_LIST(effect_list)
 	current_iterations = 0
 	target_turfs = list()
 	effect_list = list()
@@ -315,6 +313,10 @@
 		thing.remove_filter("crushblur")
 	filters_applied.Cut()
 
+/datum/action/xeno_action/activable/psy_crush/on_cooldown_finish()
+	owner.balloon_alert(owner, "Crush ready")
+	return ..()
+
 /obj/effect/xeno/crush_warning
 	icon = 'icons/xeno/Effects.dmi'
 	icon_state = "crush_warning"
@@ -339,7 +341,7 @@
 	target_flags = XABB_MOB_TARGET
 
 /datum/action/xeno_action/activable/psy_blast/on_cooldown_finish()
-	to_chat(owner, span_notice("We feel our strength return. We are ready to unleash a psychic blast again."))
+	owner.balloon_alert(owner, "Psy blast ready")
 	return ..()
 
 /datum/action/xeno_action/activable/psy_blast/action_activate()
@@ -356,6 +358,7 @@
 		var/datum/ammo/energy/xeno/selected_ammo = xeno_owner.ammo
 		plasma_cost = selected_ammo.plasma_cost
 		to_chat(xeno_owner, span_notice(selected_ammo.select_text))
+		owner.balloon_alert(owner, "[selected_ammo]")
 		update_button_icon()
 	return ..()
 
@@ -371,6 +374,8 @@
 	if(selected_ammo.plasma_cost > xeno_owner.plasma_stored)
 		if(!silent)
 			to_chat(xeno_owner, span_warning("We need [selected_ammo.plasma_cost - xeno_owner.plasma_stored] more plasma!"))
+			owner.balloon_alert(owner, "Low plasma!")
+
 		return FALSE
 
 /datum/action/xeno_action/activable/psy_blast/use_ability(atom/A)
@@ -389,14 +394,11 @@
 	if(!can_use_ability(target, FALSE))
 		return fail_activate()
 
-	xeno_owner.visible_message(span_xenowarning("\The [xeno_owner] launches a blast of psychic energy!"), \
-	span_xenowarning("We launch a huge blast of psychic energy!"), null, 5)
-
-	var/obj/projectile/hitscan/P = new /obj/projectile/hitscan(xeno_owner.loc)
+	var/obj/projectile/hitscan/projectile = new /obj/projectile/hitscan(xeno_owner.loc)
 	var/datum/ammo/energy/xeno/ammo_type = xeno_owner.ammo
-	P.effect_icon = initial(ammo_type.hitscan_effect_icon)
-	P.generate_bullet(ammo_type)
-	P.fire_at(target, xeno_owner, null, P.ammo.max_range, P.ammo.shell_speed)
+	projectile.effect_icon = initial(ammo_type.hitscan_effect_icon)
+	projectile.generate_bullet(ammo_type)
+	projectile.fire_at(target, xeno_owner, null, projectile.ammo.max_range, projectile.ammo.shell_speed)
 	playsound(xeno_owner, 'sound/weapons/guns/fire/volkite_4.ogg', 50)
 	//if(istype(xeno_owner.ammo, /datum/ammo/energy/xeno/psy_blast))
 	//	GLOB.round_statistics.psy_blasts++

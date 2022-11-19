@@ -90,13 +90,3 @@
 	max_health = 375
 	spit_types = list(/datum/ammo/energy/xeno/psy_blast, /datum/ammo/energy/xeno/psy_blast/psy_lance)
 	soft_armor = list(MELEE = 42, BULLET = 42, LASER = 42, ENERGY = 40, BOMB = 10, BIO = 35, FIRE = 35, ACID = 35)
-
-	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/watch_xeno,
-		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/activable/psy_crush,
-		/datum/action/xeno_action/activable/psy_blast,
-		/datum/action/xeno_action/activable/psychic_shield,
-		/datum/action/xeno_action/activable/transfer_plasma/drone,
-	)
