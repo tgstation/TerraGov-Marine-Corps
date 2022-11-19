@@ -1742,8 +1742,9 @@
 /turf/open/floor/plating,
 /area/mainship/hull/upper_hull)
 "bsF" = (
-/obj/item/radio/intercom/general,
-/turf/open/floor/plating/plating_catwalk,
+/turf/open/floor/mainship/terragov/north{
+	dir = 8
+	},
 /area/mainship/hallways/hangar)
 "bsK" = (
 /obj/machinery/landinglight/ds1{
@@ -5814,9 +5815,6 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/item/radio/intercom/general{
-	dir = 4
-	},
 /turf/open/floor/mainship/blue/full,
 /area/mainship/hallways/hangar)
 "epZ" = (
@@ -6673,8 +6671,7 @@
 	},
 /area/mainship/shipboard/firing_range)
 "eUq" = (
-/obj/structure/platform_decoration,
-/turf/open/floor/mainship,
+/turf/open/floor/mainship/orange,
 /area/mainship/hallways/hangar)
 "eUy" = (
 /obj/structure/disposalpipe/segment{
@@ -7408,11 +7405,9 @@
 /turf/open/floor/plating,
 /area/mainship/hull/starboard_hull)
 "fzW" = (
-/obj/structure/platform_decoration,
-/obj/structure/platform_decoration{
+/turf/open/floor/mainship/blue{
 	dir = 1
 	},
-/turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "fAl" = (
 /obj/machinery/door/airlock/mainship/marine/general/engi,
@@ -8312,9 +8307,8 @@
 	},
 /area/mainship/shipboard/brig)
 "guh" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/mainship/orange{
-	dir = 8
+/turf/open/floor/mainship/terragov/north{
+	dir = 9
 	},
 /area/mainship/hallways/hangar)
 "gun" = (
@@ -8389,13 +8383,7 @@
 /turf/closed/wall/mainship/gray/outer,
 /area/mainship/living/basketball)
 "gxP" = (
-/obj/structure/platform{
-	dir = 4
-	},
-/obj/structure/platform{
-	dir = 8
-	},
-/turf/open/floor/prison/rampbottom{
+/turf/open/floor/mainship/terragov/north{
 	dir = 1
 	},
 /area/mainship/hallways/hangar)
@@ -8475,8 +8463,8 @@
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/cafeteria)
 "gBA" = (
-/turf/open/floor/mainship/red{
-	dir = 4
+/turf/open/floor/mainship/terragov/north{
+	dir = 5
 	},
 /area/mainship/hallways/hangar)
 "gBI" = (
@@ -8610,9 +8598,6 @@
 "gID" = (
 /obj/machinery/light{
 	dir = 4
-	},
-/obj/item/radio/intercom/general{
-	dir = 8
 	},
 /turf/open/floor/mainship/red/full,
 /area/mainship/hallways/hangar)
@@ -9870,13 +9855,7 @@
 /turf/closed/wall/mainship/gray,
 /area/mainship/shipboard/ex_firing_range)
 "hMv" = (
-/obj/structure/platform{
-	dir = 4
-	},
-/obj/structure/platform{
-	dir = 8
-	},
-/turf/open/floor/prison/rampbottom,
+/turf/open/floor/mainship/terragov/north,
 /area/mainship/hallways/hangar)
 "hMY" = (
 /obj/machinery/iv_drip,
@@ -10207,8 +10186,8 @@
 	},
 /area/mainship/command/cic)
 "ibW" = (
-/turf/open/floor/mainship/purple{
-	dir = 4
+/turf/open/floor/mainship/terragov/north{
+	dir = 6
 	},
 /area/mainship/hallways/hangar)
 "icv" = (
@@ -10723,9 +10702,6 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/radio/intercom/general{
-	dir = 8
-	},
 /turf/open/floor/mainship/purple/full,
 /area/mainship/hallways/hangar)
 "iCj" = (
@@ -10791,14 +10767,9 @@
 /turf/closed/wall/mainship/gray,
 /area/mainship/engineering/ce_room)
 "iER" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/platform_decoration{
-	dir = 8
-	},
-/obj/structure/platform_decoration{
+/turf/open/floor/prison/rampbottom{
 	dir = 4
 	},
-/turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "iFp" = (
 /obj/structure/flora/ausbushes/ppflowers,
@@ -12476,9 +12447,6 @@
 /area/mainship/command/cic)
 "jWB" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/platform_decoration{
-	dir = 4
-	},
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
 	},
@@ -12489,6 +12457,9 @@
 	dir = 6
 	},
 /obj/structure/cable,
+/obj/item/radio/intercom/general{
+	pixel_y = 17
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "jWC" = (
@@ -13000,8 +12971,8 @@
 	},
 /area/mainship/hallways/port_hallway)
 "kqo" = (
-/obj/structure/platform_decoration{
-	dir = 8
+/obj/item/radio/intercom/general{
+	pixel_y = 17
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
@@ -13053,9 +13024,9 @@
 	},
 /area/mainship/engineering/ce_room)
 "ktd" = (
-/obj/machinery/holopad,
-/obj/effect/ai_node,
-/turf/open/floor/mainship/silver/full,
+/turf/open/floor/mainship/terragov{
+	dir = 1
+	},
 /area/mainship/hallways/hangar)
 "ktn" = (
 /obj/structure/disposalpipe/segment{
@@ -13476,9 +13447,8 @@
 /turf/open/floor/grass,
 /area/mainship/living/starboard_garden)
 "kJP" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/mainship/blue{
-	dir = 8
+/turf/open/floor/mainship/terragov/north{
+	dir = 10
 	},
 /area/mainship/hallways/hangar)
 "kJQ" = (
@@ -15680,7 +15650,6 @@
 /area/mainship/living/cafeteria)
 "mor" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/radio/intercom/general,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -15691,6 +15660,9 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/item/radio/intercom/general{
+	pixel_y = 17
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "mov" = (
@@ -24133,7 +24105,7 @@
 	input_tag = "mix_in";
 	name = "Mixed Air Control";
 	output_tag = "mix_out";
-	sensors = list("mix_sensor" = "Tank")
+	sensors = list("mix_sensor"="Tank")
 	},
 /turf/open/floor/prison/yellow{
 	dir = 1
@@ -24302,7 +24274,7 @@
 /obj/machinery/computer/general_air_control/large_tank_control{
 	name = "Nitrogen Control Console";
 	output_tag = "nit_out";
-	sensors = list("nit_sensor" = "Tank")
+	sensors = list("nit_sensor"="Tank")
 	},
 /turf/open/floor/prison/yellow{
 	dir = 1
@@ -24315,7 +24287,7 @@
 /obj/machinery/computer/general_air_control/large_tank_control{
 	name = "Oxygen Supply Console";
 	output_tag = "oxyvent";
-	sensors = list("oxy_sensor" = "Tank")
+	sensors = list("oxy_sensor"="Tank")
 	},
 /turf/open/floor/prison/yellow{
 	dir = 1
@@ -26103,9 +26075,6 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/obj/structure/platform_decoration{
-	dir = 1
-	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "ufV" = (
@@ -26908,7 +26877,7 @@
 	input_tag = "waste_in";
 	name = "Waste Tank Control";
 	output_tag = "waste_out";
-	sensors = list("waste_sensor" = "Tank")
+	sensors = list("waste_sensor"="Tank")
 	},
 /obj/machinery/light/small{
 	dir = 4
@@ -30597,9 +30566,6 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/item/radio/intercom/general{
-	dir = 4
-	},
 /turf/open/floor/mainship/orange/full,
 /area/mainship/hallways/hangar)
 "xOU" = (
@@ -30764,6 +30730,11 @@
 "xWR" = (
 /turf/closed/wall/mainship/gray,
 /area/mainship/command/cic)
+"xWS" = (
+/turf/open/floor/mainship/terragov/north{
+	dir = 4
+	},
+/area/mainship/hallways/hangar)
 "xWV" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 6
@@ -62298,7 +62269,7 @@ eRD
 iwc
 hXx
 iwc
-bsF
+kqo
 qVS
 lOm
 lOm
@@ -62808,7 +62779,7 @@ ybI
 ybI
 ybI
 miL
-eUq
+hXx
 iwc
 hXx
 iwc
@@ -63065,11 +63036,11 @@ ybI
 ybI
 ybI
 miL
-jrw
+eUq
 xOS
-hXx
+iER
 epX
-gjn
+fzW
 miL
 qVS
 qVS
@@ -63322,11 +63293,11 @@ oUo
 ybI
 ybI
 evf
-jrw
+eUq
 guh
-hXx
+bsF
 kJP
-gjn
+fzW
 evf
 qVS
 kjf
@@ -63579,11 +63550,11 @@ neA
 dEl
 neA
 eAk
-fzW
+miL
 gxP
 ktd
 hMv
-iER
+miL
 jkz
 jMD
 ePx
@@ -63836,11 +63807,11 @@ xgk
 dsu
 xgk
 qlj
-jrw
+eUq
 gBA
-hXx
+xWS
 ibW
-gjn
+fzW
 iZr
 wfg
 wfg
@@ -64093,11 +64064,11 @@ xgk
 xgk
 dsu
 qlj
-jrw
+eUq
 gID
-hXx
+ipG
 iCg
-gjn
+fzW
 iZr
 wfg
 vxU
