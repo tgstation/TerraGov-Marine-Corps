@@ -124,7 +124,7 @@
 /obj/effect/landmark/weed_node
 	name = "xeno weed node spawn landmark"
 	icon = 'icons/Xeno/weeds.dmi'
-	icon_state = "weednode"
+	icon_state = "weednode0"
 
 /obj/effect/landmark/weed_node/Initialize()
 	GLOB.xeno_weed_node_turfs += loc
@@ -425,8 +425,6 @@
 
 /obj/effect/landmark/sensor_tower/Initialize()
 	. = ..()
-	var/area/area_to_control = get_area(src)
-	area_to_control.set_to_contested()
 	GLOB.sensor_towers += loc
 	return INITIALIZE_HINT_QDEL
 

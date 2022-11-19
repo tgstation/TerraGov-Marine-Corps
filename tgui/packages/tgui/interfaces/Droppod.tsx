@@ -5,18 +5,16 @@ import { Window } from '../layouts';
 const DROPPOD_READY = 1;
 
 type DropData = {
-  occupant: string
-  target_x: number
-  target_y: number
-  drop_state: number
-}
+  occupant: string;
+  target_x: number;
+  target_y: number;
+  drop_state: number;
+};
 
 export const Droppod = (props, context) => {
   const { data } = useBackend<DropData>(context);
   return (
-    <Window
-      width={450}
-      height={250}>
+    <Window width={450} height={250}>
       <Window.Content scrollable>
         {data.drop_state === DROPPOD_READY ? (
           <PreDeploy />
@@ -33,11 +31,7 @@ export const Droppod = (props, context) => {
 
 const PreDeploy = (props, context) => {
   const { act, data } = useBackend<DropData>(context);
-  const {
-    target_x,
-    target_y,
-    occupant,
-  } = data;
+  const { target_x, target_y, occupant } = data;
   return (
     <Section title={`Welcome, ${occupant}`}>
       <LabeledList>
@@ -57,19 +51,22 @@ const PreDeploy = (props, context) => {
           <Button
             content="Check drop point validity"
             color="blue"
-            onClick={() => act('check_droppoint')} />
+            onClick={() => act('check_droppoint')}
+          />
         </LabeledList.Item>
         <LabeledList.Item label="Launching">
           <Button
             content="LAUNCH DROPPOD"
             color="red"
-            onClick={() => act('launch')} />
+            onClick={() => act('launch')}
+          />
         </LabeledList.Item>
         <LabeledList.Item label="Exit Drop pod">
           <Button
             content="Exit Pod"
             color="green"
-            onClick={() => act('exitpod')} />
+            onClick={() => act('exitpod')}
+          />
         </LabeledList.Item>
       </LabeledList>
     </Section>

@@ -27,7 +27,7 @@
 /datum/preferences/proc/update_preferences(current_version, savefile/S)
 	if(current_version < 39)
 		key_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key)
-		parent.update_movement_keys(src)
+		parent.update_special_keybinds(src)
 		to_chat(parent, span_userdanger("Empty keybindings, setting to default"))
 
 	// Add missing keybindings for T L O M for when they were removed as defaults

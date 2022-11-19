@@ -732,7 +732,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		to_y += 10
 		pickup_animation.pixel_x += 6 * (prob(50) ? 1 : -1) //6 to the right or left, helps break up the straight upward move
 
-	flick_overlay(pickup_animation, GLOB.clients, 4)
+	flick_overlay_view(pickup_animation, src, 4)
 	var/matrix/animation_matrix = new(pickup_animation.transform)
 	animation_matrix.Turn(pick(-30, 30))
 	animation_matrix.Scale(0.65)

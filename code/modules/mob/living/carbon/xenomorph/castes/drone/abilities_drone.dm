@@ -164,6 +164,15 @@
 		return FALSE
 	return ..()
 
+/datum/action/xeno_action/enhancement/action_activate()
+	if(existing_enhancement)
+		end_ability()
+		return succeed_activate()
+	essence_link_action.existing_link.add_stacks(-1)
+	essence_link_action.linked_target.apply_status_effect(STATUS_EFFECT_XENO_ENHANCEMENT, owner)
+	existing_enhancement = essence_link_action.linked_target.has_status_effect(STATUS_EFFECT_XENO_ENHANCEMENT)
+	succeed_activate()
+
 /// Ends the ability if the Enhancement buff is removed.
 /datum/action/xeno_action/enhancement/proc/end_ability()
 	if(existing_enhancement)

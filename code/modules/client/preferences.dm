@@ -201,7 +201,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		var/datum/custom_emote/emote = new
 		emote.id = i
 		custom_emotes += emote
-	C.update_movement_keys(src)
+	C.update_special_keybinds(src)
 	loadout_manager = new
 
 

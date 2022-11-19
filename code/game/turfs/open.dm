@@ -3,6 +3,7 @@
 //turfs with density = FALSE
 /turf/open
 	plane = FLOOR_PLANE
+	minimap_color = MINIMAP_AREA_COLONY
 	var/allow_construction = TRUE //whether you can build things like barricades on this turf.
 	var/slayer = 0 //snow layer
 	var/wet = 0 //whether the turf is wet (only used by floors).
@@ -328,6 +329,7 @@
 	light_range = 2
 	light_power = 1.4
 	light_color = LIGHT_COLOR_LAVA
+	minimap_color = MINIMAP_LAVA
 
 /turf/open/lavaland/lava/is_weedable()
 	return FALSE
@@ -382,13 +384,18 @@
 		STOP_PROCESSING(SSobj, src)
 
 /turf/open/lavaland/lava/proc/burn_stuff(AM)
-	. = 0
+	. = FALSE
 
 	var/thing_to_check = src
 	if (AM)
 		thing_to_check = list(AM)
 	for(var/thing in thing_to_check)
-		if(isobj(thing))
+		if(ismecha(thing))
+			var/obj/vehicle/sealed/mecha/burned_mech = thing
+			burned_mech.take_damage(rand(40, 120), BURN)
+			. = TRUE
+
+		else if(isobj(thing))
 			var/obj/O = thing
 			O.fire_act(10000, 1000)
 
@@ -403,7 +410,7 @@
 				if(!CHECK_BITFIELD(L.flags_pass, PASSFIRE))//Pass fire allow to cross lava without igniting
 					L.adjust_fire_stacks(20)
 					L.IgniteMob()
-				. = 1
+				. = TRUE
 
 /turf/open/lavaland/lava/attackby(obj/item/C, mob/user, params)
 	..()

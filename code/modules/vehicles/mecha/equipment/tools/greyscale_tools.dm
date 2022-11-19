@@ -31,17 +31,20 @@
 
 /obj/item/mecha_parts/mecha_equipment/generator/greyscale
 	name = "phoron engine"
-	desc = "An advanced Nanotrasen phoron engine core prototype designed for TGMC advanced mech exosuits. Uses solid phoron as fuel, click engine to refuel. The increased power generation comes at a cost to speed due to the weight."
+	desc = "An advanced Nanotrasen phoron engine core prototype designed for TGMC advanced mech exosuits. Uses solid phoron as fuel, click engine to refuel. The lightest engine mechs can use at a cost of recharge rate and max fuel capacity."
 	icon_state = "phoron_engine"
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
-	rechargerate = 100
-	slowdown = 0.2
+	rechargerate = 5
+	slowdown = 0.3
+	max_fuel = 30000
 
 /obj/item/mecha_parts/mecha_equipment/generator/greyscale/upgraded
 	name = "fusion engine"
-	desc = "A highly experimental phoron fusion core. Generates more power at the same consumption rate, but slows you down even more than the standard phoron engine. Uses solid phoron as fuel, click engine to refuel. Nanotrasen does not take any responsibility in case of detonation."
+	desc = "A highly experimental phoron fusion core. Generates more power at the same consumption rate, but slows you down even more than the standard phoron engine. Uses solid phoron as fuel, click engine to refuel. The heaviest engine mechs can use at a cost of speed due to weight."
 	icon_state = "phoron_engine_adv"
-	slowdown = 0.4
+	rechargerate = 10
+	slowdown = 0.6
+	max_fuel = 60000
 
 /obj/item/mecha_parts/mecha_equipment/energy_optimizer
 	name = "energy optimizer"
