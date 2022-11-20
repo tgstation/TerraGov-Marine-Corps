@@ -88,7 +88,7 @@ export const MechAssembly = (props, context) => {
   return (
     <Stack>
       <Stack.Item>
-        <Stack vertical>
+        <Stack vertical maxWidth={'166px'}>
           <Stack.Item>
             <BodypartPicker displayingpart="R_ARM" />
           </Stack.Item>
@@ -230,7 +230,7 @@ export const MechAssembly = (props, context) => {
         </Stack>
       </Stack.Item>
       <Stack.Item>
-        <Stack vertical>
+        <Stack vertical maxWidth={'166px'}>
           <Stack.Item>
             <BodypartPicker displayingpart="L_ARM" />
           </Stack.Item>
@@ -318,7 +318,7 @@ const ColorSelector = (props, context) => {
   return (
     <Section title={capitalize(type) + ' colors'}>
       {Object.keys(listtoshow).map((title) => (
-        <Collapsible ml={1} minWidth={23} key={title} title={title}>
+        <Collapsible ml={1} minWidth={21} key={title} title={title}>
           {Object.keys(listtoshow[title]).map((palette) => (
             <Stack justify="space-between" key={palette} fill>
               <Stack.Item>
