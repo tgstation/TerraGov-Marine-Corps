@@ -18150,9 +18150,11 @@
 /turf/open/floor/prison,
 /area/sulaco/bar)
 "kSg" = (
-/obj/item/radio/intercom/general,
-/turf/open/floor/prison,
-/area/sulaco/hallway/central_hall)
+/obj/structure/prop/holidays/wreath{
+	dir = 10
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/research)
 "kSh" = (
 /obj/machinery/camera/autoname/mainship,
 /obj/machinery/light/mainship{
@@ -19909,6 +19911,10 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/bar)
+"ndF" = (
+/obj/item/radio/intercom/general,
+/turf/open/floor/prison,
+/area/sulaco/hallway/central_hall)
 "nfk" = (
 /obj/machinery/door/airlock/mainship/generic,
 /obj/structure/cable,
@@ -23072,6 +23078,12 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria/kitchen)
+"rdo" = (
+/obj/structure/prop/holidays/wreath{
+	dir = 10
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/hallway/evac)
 "ref" = (
 /obj/machinery/computer/camera_advanced/overwatch/req,
 /turf/open/floor/prison/plate,
@@ -54054,7 +54066,7 @@ llt
 lWx
 aRL
 aRh
-aoi
+ndF
 aon
 arc
 avr
@@ -54567,8 +54579,8 @@ aVc
 aRh
 aFW
 aOb
-aRh
 kSg
+aoi
 jGA
 arc
 crv
@@ -55338,7 +55350,7 @@ jsB
 tao
 tus
 aOW
-aRh
+kSg
 sTR
 dez
 arg
@@ -71035,7 +71047,7 @@ aaw
 aJe
 ioy
 djr
-aHc
+rdo
 aHP
 aHP
 aHP
@@ -71043,7 +71055,7 @@ aIc
 aHP
 aHP
 aHP
-aHc
+rdo
 aHP
 aHP
 aHP
