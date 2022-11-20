@@ -41,8 +41,8 @@
 	mouse_opacity = initial(mouse_opacity)
 	..()
 
-/obj/item/storage/backpack/OnVend(mob/living/carbon/human/user, faction)
-	if (!user.equip_to_appropriate_slot(src))
+/obj/item/storage/backpack/on_vend(faction)
+	if (!usr.equip_to_appropriate_slot(src))
 		..()
 
 /*

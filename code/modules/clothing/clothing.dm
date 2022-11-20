@@ -54,8 +54,8 @@
 		human_unequipper.adjust_mob_accuracy(-accuracy_mod)
 	return ..()
 
-/obj/item/clothing/OnVend(mob/living/carbon/human/user, faction)
-	if (!user.equip_to_appropriate_slot(src))
+/obj/item/clothing/on_vend(faction)
+	if (!usr.equip_to_appropriate_slot(src))
 		..()
 
 //Updates the icons of the mob wearing the clothing item, if any.

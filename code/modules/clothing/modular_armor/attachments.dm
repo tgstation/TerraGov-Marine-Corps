@@ -110,8 +110,8 @@
 /obj/item/armor_module/proc/activate(mob/living/user)
 	return
 
-/obj/item/armor_module/OnVend(mob/living/carbon/human/user, faction)
-	for(var/obj/item/module_receiver in user.get_all_slot_items())
+/obj/item/armor_module/on_vend(faction)
+	for(var/obj/item/module_receiver in usr.get_all_slot_items())
 		SEND_SIGNAL(module_receiver, COMSIG_MARINE_VENDOR_MODULE_VENDED, src)
 		if (parent)
 			return //module has been inserted, so exit
@@ -261,6 +261,6 @@
 	SIGNAL_HANDLER
 	examine_list += "Right click the [parent] with paint to color the [src]"
 
-/obj/item/armor_module/armor/OnVend(mob/living/carbon/human/user, faction)
+/obj/item/armor_module/armor/on_vend(faction)
 	..()
 	limit_colorable_colors(faction)
