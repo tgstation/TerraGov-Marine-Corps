@@ -23,6 +23,10 @@
 	mouse_opacity = initial(mouse_opacity)
 	..()
 
+/obj/item/storage/belt/OnVend(mob/living/carbon/human/user, faction)
+	if (!user.equip_to_appropriate_slot(src))
+		..()
+
 /obj/item/storage/belt/champion
 	name = "championship belt"
 	desc = "Proves to the world that you are the strongest!"
