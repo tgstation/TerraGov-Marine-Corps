@@ -1,5 +1,5 @@
 export const tabs = ['Mecha Assembly', 'Weapons'];
-export const equipTabs = ["Weapons", "Power", "Armor", "Utility"];
+export const equipTabs = ['Weapons', 'Power', 'Armor', 'Utility'];
 
 export const partdefinetofluff = {
   'CHEST': 'Torso',
