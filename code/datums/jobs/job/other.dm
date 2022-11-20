@@ -128,7 +128,7 @@
 	shoes = /obj/item/clothing/shoes/ruggedboot
 	wear_suit = /obj/item/clothing/suit/space/elf
 	gloves = /obj/item/clothing/gloves/ruggedgloves
-	head = /obj/item/clothing/head/helmet/space/santahat/special
+	head = /obj/item/clothing/head/helmet/space/elf
 	glasses = /obj/item/clothing/glasses/welding
 	r_store = /obj/item/storage/pouch/construction/equippedengineer
 	l_store = /obj/item/storage/pouch/magazine/pistol
