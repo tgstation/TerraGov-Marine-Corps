@@ -158,7 +158,7 @@
 /turf/open/floor/plating,
 /area/mainship/hull/starboard_hull)
 "aaG" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/mainship/red{
 	dir = 1
 	},

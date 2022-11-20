@@ -1,4 +1,6 @@
 export const tabs = ['Mecha Assembly', 'Weapons'];
+export const equipTabs = ['Weapons', 'Power', 'Armor', 'Utility'];
+
 export const partdefinetofluff = {
   'CHEST': 'Torso',
   'HEAD': 'Head',
@@ -6,9 +8,9 @@ export const partdefinetofluff = {
   'R_ARM': 'Right arm',
   'LEG': 'Legs',
 };
-export const MECHA_UTILITY = "mecha_utility";
-export const MECHA_POWER = "mecha_power";
-export const MECHA_ARMOR = "mecha_armor";
+export const MECHA_UTILITY = 'mecha_utility';
+export const MECHA_POWER = 'mecha_power';
+export const MECHA_ARMOR = 'mecha_armor';
 
 export type MechVendData = {
   mech_view: string;
@@ -20,9 +22,9 @@ export type MechVendData = {
   selected_visor: string;
   selected_variants: SimpleStringList;
   selected_name: string;
-  current_stats: MechStatData,
-  all_equipment: AllEquipment,
-  selected_equipment: SelectedEquip,
+  current_stats: MechStatData;
+  all_equipment: AllEquipment;
+  selected_equipment: SelectedEquip;
 };
 
 type MaxEquip = {
@@ -34,7 +36,7 @@ type AllEquipment = {
   ammo: MechAmmo[];
   armor: MechArmor[];
   utility: MechUtility[];
-  power: MechPower[],
+  power: MechPower[];
 };
 
 export type MechWeapon = {
@@ -47,12 +49,12 @@ export type MechWeapon = {
   burst_count: number;
   scatter: number;
   slowdown: number;
-  burst_amount: number,
-  damage?: number,
-  armor_pierce?: number,
-  projectiles?: number,
-  cache_max?: number,
-  ammo_type?: string,
+  burst_amount: number;
+  damage?: number;
+  armor_pierce?: number;
+  projectiles?: number;
+  cache_max?: number;
+  ammo_type?: string;
 };
 
 type MechAmmo = {
@@ -60,7 +62,7 @@ type MechAmmo = {
   name: string;
   icon_state: string;
   ammo_count: string;
-  ammo_type?: string,
+  ammo_type?: string;
 };
 
 export type MechArmor = {
@@ -86,9 +88,9 @@ export type MechPower = {
 type SelectedEquip = {
   mecha_l_arm: string;
   mecha_r_arm: string;
-  mecha_utility: string[],
-  mecha_power: string[],
-  mecha_armor: string[],
+  mecha_utility: string[];
+  mecha_power: string[];
+  mecha_armor: string[];
 };
 
 type MechStatData = {
@@ -98,8 +100,8 @@ type MechStatData = {
   right_scatter: number;
   health: number;
   slowdown: number;
-  armor: string[],
-  power_max: number,
+  armor: string[];
+  power_max: number;
 };
 
 export type BodypartPickerData = {
@@ -117,4 +119,3 @@ type ColorData = {
 type SimpleStringList = {
   [key: string]: string;
 };
-

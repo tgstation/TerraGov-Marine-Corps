@@ -136,7 +136,8 @@
 	GLOB.directory[ckey] = src
 
 	// Instantiate tgui panel
-	tgui_panel = new(src)
+	tgui_panel = new(src, "browseroutput")
+
 
 	GLOB.ahelp_tickets.ClientLogin(src)
 
@@ -208,7 +209,7 @@
 
 	if(SSinput.initialized)
 		set_macros()
-		update_movement_keys()
+		update_special_keybinds()
 
 	// Initialize tgui panel
 	tgui_panel.initialize()
@@ -389,6 +390,7 @@
 		movingmob.client_mobs_in_contents -= mob
 		UNSETEMPTY(movingmob.client_mobs_in_contents)
 		movingmob = null
+	SSping.currentrun -= src
 	QDEL_NULL(tooltips)
 	Master.UpdateTickRate()
 	SSambience.ambience_listening_clients -= src
@@ -781,7 +783,7 @@
 	view_size.set_view_radius_to(clamp(change, min, max), clamp(change, min, max))
 
 
-/client/proc/update_movement_keys(datum/preferences/direct_prefs)
+/client/proc/update_special_keybinds(datum/preferences/direct_prefs)
 	var/datum/preferences/D = prefs || direct_prefs
 	if(!D?.key_bindings)
 		return

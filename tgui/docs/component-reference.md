@@ -76,8 +76,6 @@ to understand what this is about.
 - Lower case names are native browser events and should be used sparingly,
 for example when you need an explicit IE8 support. **DO NOT** use
 lowercase event handlers unless you really know what you are doing.
-- [Button](#button) component does not support the lowercase `onclick` event.
-Use the camel case `onClick` instead.
 
 ## `tgui/components`
 
@@ -233,6 +231,7 @@ over the button.
   - `top` - align content to the ceiling of the button box.
   - `middle` - align content on the middle of the button box.
   - `bottom` - align content on the ground of the button box.
+
 ### `Button.Checkbox`
 
 A ghetto checkbox, made entirely using existing Button API.
@@ -665,8 +664,20 @@ to perform some sort of action), there is a way to do that:
 
 **Props:**
 
+- `className: string` - Applies a CSS class to the element.
 - `label: string|InfernoNode` - Item label.
-- `color: string` - Sets the color of the text.
+- `labelWrap: boolean` - Lets the label wrap and makes it not take the minimum width.
+- `labelColor: string` - Sets the color of the label.
+- `color: string` - Sets the color of the content text.
+- `textAlign: string` - Align the content text.
+  - `left` (default)
+  - `center`
+  - `right`
+- `verticalAlign: string` - Align both the label and the content vertically.
+  - `baseline` (default)
+  - `top`
+  - `middle`
+  - `bottom`
 - `buttons: any` - Buttons to render aside the content.
 - `children: any` - Content of this labeled item.
 

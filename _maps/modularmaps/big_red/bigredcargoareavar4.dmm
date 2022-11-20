@@ -216,7 +216,7 @@
 /area/bigredv2/caves/west)
 "pG" = (
 /obj/machinery/light,
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "pR" = (
@@ -724,7 +724,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "UP" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "Vv" = (

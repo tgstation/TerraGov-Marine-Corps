@@ -98,12 +98,12 @@
 	L.adjustStaminaLoss(-effect_str)
 	return ..()
 
-/datum/reagent/paracetamol/overdose_process(mob/living/L, metabolism)
+/datum/reagent/medicine/paracetamol/overdose_process(mob/living/L, metabolism)
 	L.hallucination = max(L.hallucination, 2)
 	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_LIGHT
 	L.apply_damage(0.5*effect_str, TOX)
 
-/datum/reagent/paracetamol/overdose_crit_process(mob/living/L, metabolism)
+/datum/reagent/medicine/paracetamol/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(3*effect_str, TOX)
 
 /datum/reagent/medicine/tramadol
@@ -145,7 +145,7 @@
 	to_chat(L, span_userdanger("You feel a burst of energy revitalize you all of a sudden! You can do anything!"))
 
 /datum/reagent/medicine/oxycodone/on_mob_life(mob/living/L, metabolism)
-	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
+	L.reagent_pain_modifier += PAIN_REDUCTION_SUPER_HEAVY
 	L.apply_damage(0.2*effect_str, TOX)
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
@@ -545,7 +545,7 @@
 /datum/reagent/medicine/arithrazine/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(effect_str, TOX)
 
-/datum/reagent/arithrazine/overdose_crit_process(mob/living/L, metabolism)
+/datum/reagent/medicine/arithrazine/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(effect_str, effect_str, 2*effect_str)
 
 /datum/reagent/medicine/russian_red
@@ -659,7 +659,7 @@
 /datum/reagent/medicine/peridaxon_plus/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(15*effect_str, TOX)
 
-/datum/reagent/peridaxon_plus/overdose_crit_process(mob/living/L, metabolism)
+/datum/reagent/medicine/peridaxon_plus/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(15*effect_str, TOX) //Ya triple-clicked. Ya shouldn'ta did that.
 
 /datum/reagent/medicine/bicaridine

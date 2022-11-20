@@ -690,6 +690,9 @@
 	burst_scatter_mult = 2 // 2x4=8
 	accuracy_mult = 1
 
+/obj/item/weapon/gun/shotgun/zx76/standard
+	starting_attachment_types = list(/obj/item/attachable/bayonet, /obj/item/attachable/magnetic_harness, /obj/item/attachable/verticalgrip)
+
 //-------------------------------------------------------
 //V-51 SOM shotgun
 
@@ -736,6 +739,19 @@
 /obj/item/weapon/gun/shotgun/som/support
 	default_ammo_type = /datum/ammo/bullet/shotgun/flechette
 	starting_attachment_types = list(/obj/item/attachable/bayonet, /obj/item/attachable/magnetic_harness)
+
+/obj/item/weapon/gun/shotgun/som/burst
+	name = "\improper V-51B assault shotgun"
+	desc = "V-51B custom. An upgraded version of the standard SOM shotgun with a burst fire mode and a snazzy paintjob. Rare as it is deadly."
+	icon_state = "v51b"
+	burst_amount = 2
+	burst_delay = 0.5 SECONDS
+	extra_delay = -0.2 SECONDS
+	default_ammo_type = /datum/ammo/bullet/shotgun/flechette
+
+/obj/item/weapon/gun/shotgun/som/burst/pointman
+	default_ammo_type = /datum/ammo/bullet/shotgun/flechette
+	starting_attachment_types = list(/obj/item/attachable/bayonet, /obj/item/attachable/motiondetector)
 
 //-------------------------------------------------------
 //Inbuilt launcher for the V-31

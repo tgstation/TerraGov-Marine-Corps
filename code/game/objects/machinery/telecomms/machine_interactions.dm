@@ -195,8 +195,8 @@
 				temp = "<font color = #efef88>-% Removed [REF(T)] [T.name] from linked entities. %-</font>"
 				// Remove link entries from both T and src.
 				if(T.links)
-					LAZYREMOVE(T.links, src)
-				LAZYREMOVE(links, T)
+					T.links.Remove(src)
+				links.Remove(T)
 
 			else
 				temp = "<font color = #efef88>-% Unable to locate machine to unlink from, try again. %-</font>"

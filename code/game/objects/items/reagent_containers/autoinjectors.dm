@@ -54,7 +54,7 @@
 	description_overlay = "Cb"
 
 /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced
-	name = "Advanced combat autoinjector"
+	name = "advanced combat autoinjector"
 	desc = "An autoinjector loaded with 2 doses of advanced healing and painkilling chemicals. Intended for use in active combat."
 	icon_state = "Lilac"
 	amount_per_transfer_from_this = 15
@@ -255,7 +255,7 @@
 	description_overlay = "Pe+"
 
 /obj/item/reagent_containers/hypospray/autoinjector/russian_red
-	name = "Emergency autoinjector"
+	name = "emergency autoinjector"
 	desc = "An autoinjector loaded with a single use of Russian Red. Restores a significant amount of stamina and heals a large amount of damage, but causes slight permanent damage."
 	icon_state = "Redwood"
 	amount_per_transfer_from_this = 15
