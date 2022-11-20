@@ -22,7 +22,7 @@
 /obj/item/clothing/head/helmet/space/santahat
 	name = "Santa's hat"
 	desc = "Ho ho ho. Merrry X-mas!"
-	icon_state = "santahat"
+	icon_state = "santahat2"
 	flags_inventory = NOPRESSUREDMAGE|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEYES
 	flags_armor_protection = HEAD

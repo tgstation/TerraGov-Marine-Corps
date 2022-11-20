@@ -416,7 +416,7 @@
 	bitesize = 3
 	tastes = list("cookie" = 1, "christmas" = 2, "mint" = 2)
 
-/obj/item/reagent_containers/food/snacks/christmas_cookieseven
+/obj/item/reagent_containers/food/snacks/christmas_cookieseven/special
 	list_reagents = list(/datum/reagent/medicine/dylovene = 5, /datum/reagent/medicine/tricordrazine = 5, /datum/reagent/medicine/bicaridine = 10)
 
 /obj/item/reagent_containers/food/snacks/chocolatebar
