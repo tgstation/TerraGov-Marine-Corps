@@ -166,9 +166,6 @@
 			else
 				vended_items += new idx(loc)
 
-			for (var/obj/item/vended_item in vended_items)
-				vended_item.OnVend(usr, faction)
-
 			if(icon_vend)
 				flick(icon_vend, src)
 
@@ -178,11 +175,14 @@
 				var/mob/living/carbon/human/H = usr
 				if(!istype(H.job, /datum/job/terragov/command/fieldcommander))
 					var/headset_type = H.faction == FACTION_TERRAGOV ? /obj/item/radio/headset/mainship/marine : /obj/item/radio/headset/mainship/marine/rebel
-					new headset_type(loc, H.assigned_squad, vendor_role)
+					vended_items += new headset_type(loc, H.assigned_squad, vendor_role)
 					if(!istype(H.job, /datum/job/terragov/squad/engineer))
-						new /obj/item/clothing/gloves/marine(loc, H.assigned_squad, vendor_role)
+						vended_items += new /obj/item/clothing/gloves/marine(loc, H.assigned_squad, vendor_role)
 					if(istype(H.job, /datum/job/terragov/squad/leader))
-						new /obj/item/hud_tablet(loc, vendor_role, H.assigned_squad)
+						vended_items += new /obj/item/hud_tablet(loc, vendor_role, H.assigned_squad)
+
+			for (var/obj/item/vended_item in vended_items)
+				vended_item.OnVend(usr, faction)
 
 			if(use_points && (item_category in I.marine_points))
 				I.marine_points[item_category] -= cost
