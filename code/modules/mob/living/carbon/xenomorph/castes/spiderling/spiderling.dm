@@ -34,6 +34,7 @@
 /datum/ai_behavior/spiderling/New(loc, parent_to_assign, escorted_atom, can_heal = FALSE)
 	. = ..()
 	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/go_to_target)
+	RegisterSignal(escorted_atom, COMSIG_MOB_DEATH, .proc/spiderling_rage)
 
 /// Signal handler to check if we can attack what our escorted_atom is attacking
 /datum/ai_behavior/spiderling/proc/go_to_target(source, mob/living/target)
@@ -78,3 +79,12 @@
 		UnregisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE)
 		UnregisterSignal(atom_to_walk_to, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING))
 	return ..()
+
+/datum/ai_behavior/spiderling/proc/spiderling_rage()
+	var/mob/living/carbon/xenomorph/spiderling/x = src
+	x.emote("roar")
+	var/list/mob/living/carbon/human/nearby_humans = view(5, x)
+	x.xeno_caste.speed -= SPIDERLING_RAGE_SPEED
+	x.xeno_caste.attack_delay -= SPIDERLING_RAGE_ATTACK_SPEED
+	change_action(MOVING_TO_ATOM, pick(nearby_humans))
+	QDEL_IN(x, 10)
