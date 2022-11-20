@@ -26,12 +26,13 @@
 
 /datum/component/companion/RegisterWithParent()
 	. = ..()
-	RegisterSignal(parent, COMSIG_MASTER_MOB_CHANGE, .proc/handle_master_change)
+	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/handle_attackby)
 
 /datum/component/companion/UnregisterFromParent()
 	. = ..()
-	unassign_mob_master()
-	UnregisterSignal(parent, COMSIG_MASTER_MOB_CHANGE)
+	if(mob_master)
+		unassign_mob_master()
+	UnregisterSignal(parent, COMSIG_PARENT_ATTACKBY)
 
 ///The mob gives a note to the mob_master containing available commands
 /datum/component/companion/proc/help()
@@ -56,27 +57,28 @@
 	emote("...")
 	qdel(source)
 
-///Handles changing the AI's mob_master
-/datum/component/companion/proc/handle_master_change(datum/source, atom/movable/new_mob_master)
+///Handles what the companion does when interacted with with an item
+/datum/component/companion/proc/handle_attackby(datum/source, obj/item/I, mob/user, params)
 	SIGNAL_HANDLER
-	if(mob_master == new_mob_master)
+	if(!istype(I, /obj/item/tool/research/xeno_analyzer))
 		return
 
-	if(!new_mob_master)
-		unassign_mob_master("Farewell [mob_master]...")
+	if(!user || mob_master == user)
 		return
 
-	var/master_update_message = "I shall follow you [new_mob_master]."
+	var/master_update_message = "I shall follow you [user]."
 	if(mob_master)
+		master_update_message = "Farewell [mob_master]. I will now follow [user]."
 		unassign_mob_master()
-		master_update_message = "Farewell [mob_master]. I will now follow [new_mob_master]."
 
-	assign_mob_master(new_mob_master, master_update_message)
+	assign_mob_master(user, master_update_message)
+	return COMPONENT_NO_AFTERATTACK
 
 ///Handles assigning a new master mob
 /datum/component/companion/proc/assign_mob_master(atom/movable/new_mob_master, hello_message)
 	mob_master = new_mob_master
 	RegisterSignal(parent, COMSIG_MOVABLE_HEAR, .proc/handle_mob_master_speech)
+	RegisterSignal(mob_master, COMSIG_PARENT_QDELETING, .proc/unassign_mob_master)
 	var/mob/living/mob_parent = parent
 	if(isanimal(parent))
 		var/mob/living/simple_animal/animal_parent = parent
@@ -90,6 +92,7 @@
 ///Handles unassigning a master mob and cleaning up things related to that
 /datum/component/companion/proc/unassign_mob_master(goodbye_message)
 	UnregisterSignal(parent, COMSIG_MOVABLE_HEAR)
+	UnregisterSignal(mob_master, COMSIG_PARENT_QDELETING)
 	if(goodbye_message)
 		say(goodbye_message)
 	mob_master = null

@@ -869,7 +869,6 @@
 //Signals for ais
 #define COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED "escorting_behaviour_changed"
 #define COMSIG_ESCORTED_ATOM_CHANGING "escorted_atom_changing"
-#define COMSIG_MASTER_MOB_CHANGE "master_mob_change"
 #define COMSIG_POINT_TO_ATOM "point_to_atom"
 
 /// from datum ui_act (usr, action)

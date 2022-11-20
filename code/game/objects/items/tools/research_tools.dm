@@ -32,10 +32,6 @@
 	)
 
 /obj/item/tool/research/xeno_analyzer/attack(mob/living/M, mob/living/user)
-	if(M.type == /mob/living/simple_animal/catslug/newt)
-		M.update_companion_master(user)
-		return ..()
-
 	if(!isxeno(M))
 		return ..()
 
