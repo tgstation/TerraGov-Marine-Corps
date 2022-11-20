@@ -909,6 +909,12 @@ GLOBAL_VAR_INIT(automute_on, null)
 		holder.filteriffic = new /datum/filter_editor(in_atom)
 		holder.filteriffic.ui_interact(mob)
 
+///opens the particle editor UI for the in_atom object for this client
+/client/proc/open_particle_editor(atom/movable/in_atom)
+	if(holder)
+		holder.particle_test = new /datum/particle_editor(in_atom)
+		holder.particle_test.ui_interact(mob)
+
 ///updates with the ambience preferrences of the user
 /client/proc/update_ambience_pref()
 	if(prefs.toggles_sound & SOUND_AMBIENCE)
