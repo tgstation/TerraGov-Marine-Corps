@@ -344,3 +344,10 @@
 	pixel_x = -60
 	pixel_y = -50
 	alpha = 70
+
+/obj/effect/overlay/eye
+	icon = 'icons/effects/160x160.dmi'
+	icon_state = "time"
+	pixel_x = -60
+	pixel_y = -50
+	alpha = 70

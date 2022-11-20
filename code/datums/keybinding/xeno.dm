@@ -660,16 +660,32 @@
 	keybind_signal = COMSIG_XENOABILITY_TIMESTOP
 
 /datum/keybinding/xeno/nightfall
+	hotkey_keys = list("F")
 	name = "nightfall"
 	full_name = "King: Nightfall"
 	description = "Shut down all nearby electric lights for 10 seconds"
 	keybind_signal = COMSIG_XENOABILITY_NIGHTFALL
 
-/datum/keybinding/xeno/gravity_crush
-	name = "gravity_crush"
-	full_name = "King: Gravity Crush"
+/datum/keybinding/xeno/petrify
+	hotkey_keys = list("Space")
+	name = "petrify"
+	full_name = "King: Petrify"
 	description = "Increases the localized gravity in an area and crushes everything in it."
-	keybind_signal = COMSIG_XENOABILITY_GRAVITY_CRUSH
+	keybind_signal = COMSIG_XENOABILITY_PETRIFY
+
+/datum/keybinding/xeno/off_guard
+	hotkey_keys = list("Q")
+	name = "off_guard"
+	full_name = "King: Off-guard"
+	description = "Increases the localized gravity in an area and crushes everything in it."
+	keybind_signal = COMSIG_XENOABILITY_OFFGUARD
+
+/datum/keybinding/xeno/zero_form_beam
+	hotkey_keys = list("E")
+	name = "zero_form_beam"
+	full_name = "King: Zero-form beam"
+	description = "Increases the localized gravity in an area and crushes everything in it."
+	keybind_signal = COMSIG_XENOABILITY_ZEROFORMBEAM
 
 /datum/keybinding/xeno/psychic_summon
 	name = "psychic_summon"

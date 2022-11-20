@@ -32,104 +32,193 @@
 
 
 // ***************************************
-// *********** Gravity Crush
+// *********** Petrify
 // ***************************************
-#define WINDUP_GRAV 1 SECONDS
-
-/datum/action/xeno_action/activable/gravity_crush
-	name = "Gravity Crush"
-	action_icon_state = "fortify"
-	mechanics_text = "Increases the localized gravity in an area and crushes everything in it."
-	ability_name = "Gravity crush"
-	plasma_cost = 200
+#define PETRIFY_RANGE 5
+#define PETRIFY_DURATION 7 SECONDS
+#define PETRIFY_WINDUP_TIME 3 SECONDS
+/datum/action/xeno_action/petrify
+	name = "Petrify"
+	action_icon_state = "stomp"
+	mechanics_text = "After a windup, petrifies all humans looking at you. While petrified humans are immune to damage, but also can't attack."
+	ability_name = "petrify"
+	plasma_cost = 100
 	cooldown_timer = 30 SECONDS
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_GRAVITY_CRUSH,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PETRIFY,
 	)
-	/// How far can we use gravity crush
-	var/king_crush_dist = 5
-	/// A list of all things that had a fliter applied
-	var/list/filters_applied = list()
 
-/datum/action/xeno_action/activable/gravity_crush/on_cooldown_finish()
-	to_chat(owner, span_warning("Our psychic aura restores itself. We are ready to gravity crush again."))
-	return ..()
-
-/datum/action/xeno_action/activable/gravity_crush/can_use_ability(atom/A, silent, override_flags)
+/datum/action/xeno_action/petrify/can_use_action(silent, override_flags)
 	. = ..()
-	if(!.)
-		return
-	if(!line_of_sight(owner, A, king_crush_dist))
-		if(!silent)
-			to_chat(owner, span_warning("We must get closer to crush, our mind cannot reach this far."))
+	if(LAZYACCESS(owner.do_actions, src))
+		owner.balloon_alert(owner, "already busy")
 		return FALSE
 
-/datum/action/xeno_action/activable/gravity_crush/use_ability(atom/A)
-	owner.face_atom(A) //Face towards the target so we don't look silly
-	var/list/turfs = RANGE_TURFS(1, A)
-	playsound(A, 'sound/effects/bomb_fall.ogg', 50, FALSE)
-	apply_filters(turfs)
-	if(!do_after(owner, WINDUP_GRAV, FALSE, owner, BUSY_ICON_DANGER))
-		remove_all_filters()
-		//Consume plasma when cancelling
-		succeed_activate()
+/datum/action/xeno_action/petrify/action_activate()
+	var/mob/living/carbon/xenomorph/X = owner
+
+	var/obj/effect/overlay/eye/eye = new // tivi todo
+	owner.vis_contents -= eye
+	if(!do_after(owner, PETRIFY_WINDUP_TIME, FALSE, owner, BUSY_ICON_DANGER))
+		owner.vis_contents -= eye
 		return
-	do_grav_crush(turfs)
-	remove_all_filters()
-	succeed_activate()
+	owner.vis_contents -= eye
+
+	var/list/mob/living/carbon/human/humans = list()
+	for(var/mob/living/carbon/human/human in view(PETRIFY_RANGE, X))
+		humans += human
+		human.notransform = TRUE
+		human.status_flags |= GODMODE
+		human.add_atom_colour(COLOR_GRAY, TEMPORARY_COLOUR_PRIORITY)
+		human.log_message("has been petrified by [owner] for [PETRIFY_DURATION] ticks", LOG_ATTACK, color="pink")
+		human.balloon_alert(human, "petrified") // tivi todo remove
+	addtimer(CALLBACK(src, .proc/end_visuals), 5, TIMER_CLIENT_TIME)
+	if(!length(humans))
+		return
+	addtimer(CALLBACK(src, .proc/end_effects, humans), PETRIFY_DURATION)
 	add_cooldown()
-	A.visible_message(span_warning("[A] collapses inward as its gravity suddenly increases!"))
+	succeed_activate()
 
-///Remove all filters of items in filters_applied
-/datum/action/xeno_action/activable/gravity_crush/proc/remove_all_filters()
-	for(var/atom/thing AS in filters_applied)
-		if(QDELETED(thing))
-			continue
-		thing.remove_filter("crushblur")
-	filters_applied.Cut()
+///ends all combat-relazted effects
+/datum/action/xeno_action/petrify/proc/end_effects(list/humans)
+	for(var/mob/living/carbon/human/human AS in humans)
+		human.notransform = FALSE
+		human.status_flags &= ~GODMODE
+		human.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, COLOR_GRAY)
 
-///Apply a filter on all items in the list of turfs
-/datum/action/xeno_action/activable/gravity_crush/proc/apply_filters(list/turfs)
-	for(var/turf/targeted AS in turfs)
-		targeted.add_filter("crushblur", 1, radial_blur_filter(0.3))
-		filters_applied += targeted
-		for(var/atom/movable/item AS in targeted.contents)
-			item.add_filter("crushblur", 1, radial_blur_filter(0.3))
-			filters_applied += item
+///cleans up visual effects
+/datum/action/xeno_action/petrify/proc/end_visuals()
 
-///Will crush every item on the turfs (unless they are a friendly xeno or dead)
-/datum/action/xeno_action/activable/gravity_crush/proc/do_grav_crush(list/turfs)
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	for(var/turf/targeted AS in turfs)
-		for(var/atom/movable/item AS in targeted.contents)
-			if(isliving(item))
-				var/mob/living/mob_crushed = item
-				if(mob_crushed.stat == DEAD)//No abuse of that mechanic for some permadeath
-					continue
-				if(isxeno(mob_crushed))
-					var/mob/living/carbon/xenomorph/xeno = mob_crushed
-					if(xeno.hive == xeno_owner.hive)
-						continue
-				mob_crushed.ex_act(EXPLODE_LIGHT)
+// ***************************************
+// *********** Off-Guard
+// ***************************************
+/datum/action/xeno_action/activable/off_guard
+	name = "Off-guard"
+	action_icon_state = "stomp"
+	mechanics_text = "After a windup, petrifies all humans looking at you. While petrified humans are immune to damage, but also can't attack."
+	ability_name = "off guard"
+	plasma_cost = 100
+	cooldown_timer = 20 SECONDS
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	target_flags = XABB_MOB_TARGET
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_OFFGUARD,
+	)
+
+
+/datum/action/xeno_action/activable/off_guard/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!ishuman(A))
+		if(!silent)
+			A.balloon_alert(owner, "not human")
+		return FALSE
+
+/datum/action/xeno_action/activable/off_guard/use_ability(atom/target)
+	var/mob/living/carbon/human/human_target = target
+	human_target.apply_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_DEBUFF, 20)
+	human_target.log_message("has been off-guarded by [owner]", LOG_ATTACK, color="pink")
+	human_target.balloon_alert_to_viewers("confused")
+
+	add_cooldown()
+	succeed_activate()
+
+
+// ***************************************
+// *********** Zero form energy beam
+// ***************************************
+#define ZEROFORM_BEAM_RANGE 10
+#define ZEROFORM_CHARGE_TIME 2 SECONDS
+/datum/action/xeno_action/zero_form_beam
+	name = "Zero-Form Energy Beam"
+	action_icon_state = "stomp"
+	mechanics_text = "After a windup, petrifies all humans looking at you. While petrified humans are immune to damage, but also can't attack."
+	ability_name = "zero form energy beam"
+	plasma_cost = 50
+	cooldown_timer = 10 SECONDS
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ZEROFORMBEAM,
+	)
+	///list of turfs we are hitting while shooting our beam
+	var/list/turf/targets
+	///ref to beam that is currently active
+	var/datum/beam/beam
+	///particle holder for the particle visual effects
+	var/obj/effect/abstract/particle_holder/particles
+	// tivi todo
+	var/datum/looping_sound/sound_loop
+	///ref to looping timer for the fire loop
+	var/timer_ref
+
+/datum/action/xeno_action/zero_form_beam/New(Target)
+	. = ..()
+	sound_loop = new
+
+/obj/effect/ebeam/zeroform/Initialize()
+	. = ..()
+	alpha = 0
+	animate(src, alpha = 255, time = ZEROFORM_CHARGE_TIME)
+
+/datum/action/xeno_action/zero_form_beam/can_use_action(silent, override_flags)
+	. = ..()
+	if(LAZYACCESS(owner.do_actions, src))
+		if(!silent)
+			owner.balloon_alert(owner, "already busy")
+		return FALSE
+
+/datum/action/xeno_action/zero_form_beam/action_activate()
+	if(timer_ref)
+		stop_beaming()
+		return
+
+	var/turf/check_turf = get_step(owner, owner.dir)
+	LAZYINITLIST(targets)
+	while(check_turf && length(targets) < ZEROFORM_BEAM_RANGE)
+		targets += check_turf
+		check_turf = get_step(check_turf, owner.dir)
+	if(!LAZYLEN(targets))
+		return
+
+	particles = new(owner, /particles/zero_form)
+	beam = owner.beam(targets[length(targets)], "plasmabeam", beam_type = /obj/effect/ebeam/zeroform)
+	if(!do_after(owner, ZEROFORM_CHARGE_TIME, FALSE, owner, BUSY_ICON_DANGER))
+		QDEL_NULL(beam)
+		QDEL_NULL(particles)
+		targets = null
+		return fail_activate()
+	RegisterSignal(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE), .proc/stop_beaming)
+	execute_attack()
+
+/// recursive proc for firing the actual beam
+/datum/action/xeno_action/zero_form_beam/proc/execute_attack()
+	if(!can_use_action(TRUE))
+		stop_beaming()
+		return
+	succeed_activate()
+	for(var/turf/target AS in targets)
+		for(var/mob/living/carbon/human/blasted in target)
+			if(blasted.stat == DEAD)
 				continue
-			item.ex_act(EXPLODE_HEAVY)	//crushing without damaging the nearby area
+			blasted.take_overall_damage(0, 15, updating_health = TRUE)
+	addtimer(CALLBACK(src, .proc/execute_attack), 3, TIMER_STOPPABLE)
 
-/datum/action/xeno_action/activable/gravity_crush/ai_should_start_consider()
-	return TRUE
+///ends and cleans up beam
+/datum/action/xeno_action/zero_form_beam/proc/stop_beaming()
+	SIGNAL_HANDLER
+	QDEL_NULL(beam)
+	QDEL_NULL_IN(src, particles, (particles.particles.lifespan + particles.particles.fade))
+	deltimer(timer_ref)
+	timer_ref = null
+	targets = null
+	add_cooldown()
 
-/datum/action/xeno_action/activable/gravity_crush/ai_should_use(atom/target)
-	if(!iscarbon(target))
-		return FALSE
-	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
-		return FALSE
-	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
-		return FALSE
-	return TRUE
+/particles/zero_form
+
 
 // ***************************************
 // *********** Psychic Summon
 // ***************************************
-
 /datum/action/xeno_action/psychic_summon
 	name = "Psychic Summon"
 	action_icon_state = "stomp"
@@ -151,7 +240,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	if(length(X.hive.get_all_xenos()) <= 1)
 		if(!silent)
-			to_chat(owner, span_notice("We have no hive to call. We are alone on our throne of nothing."))
+			owner.balloon_alert(owner, "noone to call")
 		return FALSE
 
 /datum/action/xeno_action/psychic_summon/action_activate()
@@ -163,7 +252,7 @@
 	for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
 		sister.add_filter("summonoutline", 2, outline_filter(1, COLOR_VIOLET))
 
-	if(!do_after(X, 15 SECONDS, FALSE, X, BUSY_ICON_HOSTILE))
+	if(!do_after(X, 10 SECONDS, FALSE, X, BUSY_ICON_HOSTILE))
 		for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
 			sister.remove_filter("summonoutline")
 		return fail_activate()
