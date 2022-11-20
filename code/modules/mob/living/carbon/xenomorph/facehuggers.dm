@@ -78,6 +78,7 @@
 		COMSIG_ATOM_EXITED = .proc/on_exited,
 	)
 	AddElement(/datum/element/connect_loc, connections)
+	AddComponent(/datum/component/clothing_tint, TINT_BLIND)
 
 ///Registers the source of our facehugger for the purpose of anti-shuffle mechanics
 /obj/item/clothing/mask/facehugger/proc/facehugger_register_source(mob/living/carbon/xenomorph/S)
