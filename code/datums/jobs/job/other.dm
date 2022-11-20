@@ -213,8 +213,8 @@
 	. = ..()
 
 
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/christmas_cookieone, SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/christmas_cookietwo, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/christmas_cookieone/special, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/christmas_cookietwo/special, SLOT_IN_HEAD)
 
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_pistol, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_pistol, SLOT_IN_R_POUCH)
