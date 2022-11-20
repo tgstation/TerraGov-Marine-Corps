@@ -34,24 +34,37 @@
 	var/obj/parent_object = parent
 	if(length(starting_attachments) && parent_object.loc) //Attaches starting attachments if the object is not instantiated in nullspace. If it is created in null space, such as in a loadout vendor. It wont create default attachments.
 		for(var/starting_attachment_type in starting_attachments)
-			attach_without_user(attachment = new starting_attachment_type(parent_object))
+			try_attach(new starting_attachment_type(parent_object))
 
 	update_parent_overlay()
 
 	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/start_handle_attachment) //For attaching.
-	RegisterSignal(parent, list(COMSIG_LOADOUT_VENDOR_VENDED_GUN_ATTACHMENT, COMSIG_LOADOUT_VENDOR_VENDED_ATTACHMENT_GUN, COMSIG_LOADOUT_VENDOR_VENDED_ARMOR_ATTACHMENT), .proc/attach_without_user)
+	RegisterSignal(parent, list(COMSIG_MARINE_VENDOR_MODULE_VENDED, COMSIG_LOADOUT_VENDOR_VENDED_GUN_ATTACHMENT, COMSIG_LOADOUT_VENDOR_VENDED_ATTACHMENT_GUN, COMSIG_LOADOUT_VENDOR_VENDED_ARMOR_ATTACHMENT), .proc/attach_without_user)
 
 	RegisterSignal(parent, COMSIG_CLICK_ALT, .proc/start_detach) //For Detaching
 	RegisterSignal(parent, COMSIG_PARENT_QDELETING, .proc/clean_references) //Dels attachments.
 	RegisterSignal(parent, COMSIG_ITEM_APPLY_CUSTOM_OVERLAY, .proc/apply_custom)
 	RegisterSignal(parent, COMSIG_ITEM_UNEQUIPPED, .proc/remove_overlay)
 
+//Checks if this can receive the attachment, and if the attachment is attachable to this
+/datum/component/attachment_handler/proc/attachment_is_compatible(obj/attachment, list/attachment_data, mob/attacher)
+	if(can_attach && !can_attach.Invoke(attachment))
+		return FALSE
+	if(attachment_data[CAN_ATTACH])
+		var/datum/callback/attachment_can_attach = CALLBACK(attachment, attachment_data[CAN_ATTACH])
+		if(!attachment_can_attach.Invoke(parent, attacher))
+			return FALSE
+	var/slot = attachment_data[SLOT]
+	if(!(slot in slots) || !(attachment.type in attachables_allowed))
+		return FALSE
+	return TRUE
+
 ///Starts processing the attack, and whether or not the attachable can attack.
 /datum/component/attachment_handler/proc/start_handle_attachment(datum/source, obj/attacking, mob/attacker)
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(src, .proc/handle_attachment, attacking, attacker)
 
-/datum/component/attachment_handler/proc/handle_attachment(obj/attachment, mob/attacher, bypass_checks = FALSE)
+/datum/component/attachment_handler/proc/handle_attachment(obj/attachment, mob/attacher)
 
 	var/list/attachment_data = list()
 	SEND_SIGNAL(attachment, COMSIG_ITEM_IS_ATTACHING, attacher, attachment_data)
@@ -59,21 +72,13 @@
 	if(!length(attachment_data)) //Something has to provide attaching data here to continue.
 		return
 
-	if(!bypass_checks)
-		if(can_attach && !can_attach.Invoke(attachment))
-			return
-		if(attachment_data[CAN_ATTACH])
-			var/datum/callback/attachment_can_attach = CALLBACK(attachment, attachment_data[CAN_ATTACH])
-			if(!attachment_can_attach.Invoke(parent, attacher))
-				return
-		if(!do_attach(attachment, attacher, attachment_data))
-			return
-
-	var/slot = attachment_data[SLOT]
-	if(!attacher && (!(slot in slots) || !(attachment.type in attachables_allowed))) //No more black market attachment combos.
-		QDEL_NULL(attachment)
+	if (!attachment_is_compatible(attachment, attachment_data))
 		return
 
+	if(!do_attach(attachment, attacher, attachment_data))
+		return
+
+	var/slot = attachment_data[SLOT]
 	var/obj/item/old_attachment = slots[slot]
 
 	finish_handle_attachment(attachment, attachment_data, attacher)
@@ -279,7 +284,24 @@
 ///This is for other objects to be able to attach things without the need for a user.
 /datum/component/attachment_handler/proc/attach_without_user(datum/source, obj/item/attachment)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, .proc/handle_attachment, attachment, null, TRUE)
+	try_attach(attachment)
+
+//Attaches attachment if compatible and the slot is empty
+/datum/component/attachment_handler/proc/try_attach(obj/attachment)
+	var/list/attachment_data = list()
+	SEND_SIGNAL(attachment, COMSIG_ITEM_IS_ATTACHING, null, attachment_data)
+
+	if(!length(attachment_data))
+		return
+	if (!attachment_is_compatible(attachment, attachment_data))
+		return
+
+	var/slot = attachment_data[SLOT]
+	var/current_attachment = slots[slot]
+	if(current_attachment)
+		return
+
+	finish_handle_attachment(attachment, attachment_data, null)
 
 ///This updates the overlays of the parent and apllies the right ones.
 /datum/component/attachment_handler/proc/update_parent_overlay(datum/source)

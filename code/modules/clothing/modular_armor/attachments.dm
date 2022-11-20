@@ -110,6 +110,13 @@
 /obj/item/armor_module/proc/activate(mob/living/user)
 	return
 
+/obj/item/armor_module/OnVend(mob/living/carbon/human/user, faction)
+	for(var/obj/item/module_receiver in user.get_all_slot_items())
+		SEND_SIGNAL(module_receiver, COMSIG_MARINE_VENDOR_MODULE_VENDED, src)
+		if (parent)
+			return //module has been inserted, so exit
+	..() //module could not be inserted, fallback to parent behavior
+
 /**
  *  These are the basic type for armor armor_modules. What seperates these from /armor_module is that these are designed to be recolored.
  *  These include Leg plates, Chest plates, Shoulder Plates and Visors. This could be expanded to anything that functions like armor and has greyscale functionality.
