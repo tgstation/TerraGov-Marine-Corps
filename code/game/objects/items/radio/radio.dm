@@ -24,6 +24,7 @@
 	var/use_command = FALSE  // If true, broadcasts will be large and BOLD.
 	var/command = FALSE  // If true, use_command can be toggled at will.
 	var/independent = FALSE  // If true, can say/hear over non common channels without working tcomms equipment (for ERTs mostly).
+	var/bypass = FALSE // if true, you will bypass like independent but without ERT only freqencies
 
 	materials = list(/datum/material/metal = 25, /datum/material/glass = 25)
 
@@ -195,7 +196,7 @@
 	// Construct the signal
 	var/datum/signal/subspace/vocal/signal = new(src, freq, speaker, language, message, spans)
 
-	if (independent && freq >= MIN_ERT_FREQ && freq <= MAX_ERT_FREQ)
+	if (independent && freq >= MIN_ERT_FREQ && freq <= MAX_ERT_FREQ || bypass)
 		signal.data["compression"] = 0
 		signal.transmission_method = TRANSMISSION_SUPERSPACE
 		signal.levels = list(0)  // reaches all Z-levels
