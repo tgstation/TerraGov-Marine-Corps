@@ -507,6 +507,7 @@
 #define COMSIG_XENOMORPH_ABILITY_ON_UPGRADE "xenomorph_ability_on_upgrade"
 
 #define COMSIG_XENOMORPH_GRAB "xenomorph_grab"
+#define COMSIG_XENOMORPH_ATTACK_OBJ "xenomorph_attack_obj"
 #define COMSIG_XENOMORPH_ATTACK_BARRICADE "xenomorph_attack_barricade"
 #define COMSIG_XENOMORPH_ATTACK_CLOSET "xenomorph_attack_closet"
 #define COMSIG_XENOMORPH_ATTACK_RAZORWIRE "xenomorph_attack_razorwire"
