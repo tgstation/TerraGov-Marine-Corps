@@ -80,11 +80,20 @@
 		UnregisterSignal(atom_to_walk_to, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING))
 	return ..()
 
+/// This happens when the spiderlings mother dies, they move faster and will attack any nearby marines
 /datum/ai_behavior/spiderling/proc/spiderling_rage()
-	var/mob/living/carbon/xenomorph/spiderling/x = src
+	var/mob/living/carbon/xenomorph/spiderling/x = mob_parent
+	var/list/mob/living/carbon/human/possible_victims = list()
+	for(var/mob/living/carbon/human/victim in view(SPIDERLING_RAGE_RANGE, x))
+		if(get_dist(x, victim) > SPIDERLING_RAGE_RANGE)
+			continue
+		if(victim.stat == DEAD)
+			continue
+		possible_victims += victim
+	if(isnull(possible_victims))
+		qdel(x)
+		return
 	x.emote("roar")
-	var/list/mob/living/carbon/human/nearby_humans = view(5, x)
-	x.xeno_caste.speed -= SPIDERLING_RAGE_SPEED
-	x.xeno_caste.attack_delay -= SPIDERLING_RAGE_ATTACK_SPEED
-	change_action(MOVING_TO_ATOM, pick(nearby_humans))
-	QDEL_IN(x, 10)
+	x.next_move_slowdown -= SPIDERLING_RAGE_SPEED
+	change_action(MOVING_TO_ATOM, pick(possible_victims))
+	QDEL_IN(x, 10 SECONDS)
