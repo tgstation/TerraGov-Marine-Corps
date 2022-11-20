@@ -88,7 +88,7 @@ export const MechAssembly = (props, context) => {
   return (
     <Stack>
       <Stack.Item>
-        <Stack vertical maxWidth={"166px"}>
+        <Stack vertical maxWidth={'166px'}>
           <Stack.Item>
             <BodypartPicker displayingpart="R_ARM" />
           </Stack.Item>
@@ -230,7 +230,7 @@ export const MechAssembly = (props, context) => {
         </Stack>
       </Stack.Item>
       <Stack.Item>
-        <Stack vertical maxWidth={"166px"}>
+        <Stack vertical maxWidth={'166px'}>
           <Stack.Item>
             <BodypartPicker displayingpart="L_ARM" />
           </Stack.Item>
