@@ -2475,6 +2475,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 
 /datum/ammo/energy/xeno
+	barricade_clear_distance = 0
 	///This text will show up when this ammo type is selected by a xeno. Span proc should be applied when this var is used.
 	var/select_text
 	///Plasma cost to fire this projectile

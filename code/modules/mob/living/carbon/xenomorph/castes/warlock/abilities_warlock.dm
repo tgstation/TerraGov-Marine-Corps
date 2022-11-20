@@ -390,7 +390,6 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_BLAST,
 	)
-	target_flags = XABB_MOB_TARGET
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 	///The particle type that will be created when using this ability
