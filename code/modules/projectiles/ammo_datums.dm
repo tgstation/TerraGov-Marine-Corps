@@ -2479,6 +2479,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/select_text
 	///Plasma cost to fire this projectile
 	var/plasma_cost
+	///Particle type used when this ammo is used
+	var/particles/channel_particle
 
 /datum/ammo/energy/xeno/psy_blast
 	name = "psychic blast"
@@ -2492,6 +2494,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "psy_blast"
 	select_text = "We will now fire a psychic blast. These have an area of effect knockback when struck."
 	plasma_cost = 230
+	channel_particle = /particles/warlock_charge/psy_blast
 	///The AOE for drop_nade
 	var/aoe_range = 3
 
@@ -2541,6 +2544,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "psy_lance"
 	select_text = "We will now fire a psychic lance. These are powerful piercing beams, particularly strong against armored targets."
 	plasma_cost = 300
+	channel_particle = /particles/warlock_charge/psy_blast/psy_lance
 
 /datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_obj(obj/O, obj/projectile/P)
 	if(ismecha(O))

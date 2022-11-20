@@ -1,3 +1,35 @@
+/particles/warlock_charge
+	icon = 'icons/effects/particles/generic_particles.dmi'
+	icon_state = "lemon"
+	width = 100
+	height = 100
+	count = 300
+	spawning = 15
+	lifespan = 8
+	fade = 12
+	grow = -0.02
+	velocity = list(0, 3)
+	position = generator("circle", 15, 17, NORMAL_RAND)
+	drift = generator("vector", list(0, -0.5), list(0, 0.2))
+	gravity = list(0, 3)
+	scale = generator("vector", list(0.1, 0.1), list(0.5,0.5), NORMAL_RAND)
+	color = "#56498f"
+
+/particles/warlock_charge/psy_blast
+	width = 250
+	height = 250
+	color = "#970f0f"
+	drift = null
+	gravity = null
+	spawning = 20
+	lifespan = 12
+
+/particles/warlock_charge/psy_blast/psy_lance
+	color = "#CB0166"
+	spawning = 30
+
+
+
 // ***************************************
 // *********** Psychic shield
 // ***************************************
@@ -180,6 +212,10 @@
 	var/list/filters_applied
 	///max range at which we can cast out ability
 	var/ability_range = 9
+	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
+	var/obj/effect/abstract/particle_holder/particle_holder
+	///The particle type this ability uses
+	var/channel_particle = /particles/warlock_charge
 
 /datum/action/xeno_action/activable/psy_crush/use_ability(atom/target)
 	if(channel_loop_timer)
@@ -196,13 +232,20 @@
 		return fail_activate()
 	owner.visible_message(span_xenowarning("\The [owner] starts channeling their psychic might!"), \
 		span_xenowarning("We start channeling our psychic might!"))
+
+	particle_holder = new(owner, channel_particle)
+	particle_holder.pixel_x = 16
+	particle_holder.pixel_y = 5
+
 	var/turf/target_turf = get_turf(target)
 	LAZYINITLIST(target_turfs)
 	target_turfs += target_turf
 	LAZYINITLIST(effect_list)
 	effect_list += new /obj/effect/xeno/crush_warning(target_turf)
+
 	owner.add_movespeed_modifier(MOVESPEED_ID_WARLOCK_CHANNELING, TRUE, 0, NONE, TRUE, 0.9)
 	action_icon_state = "psy_crush_activate"
+
 	do_channel(target_turf)
 	RegisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)), .proc/stop_crush)
 
@@ -252,6 +295,7 @@
 	if(crush_cost > xeno_owner.plasma_stored)
 		to_chat(xeno_owner, span_warning("We need [crush_cost - xeno_owner.plasma_stored] more plasma!"))
 		owner.balloon_alert(owner, "Low plasma!")
+		stop_crush(target)
 		return
 	if(!check_distance(target))
 		stop_crush(target)
@@ -294,6 +338,7 @@
 	owner.remove_movespeed_modifier(MOVESPEED_ID_WARLOCK_CHANNELING)
 	action_icon_state = "psy_crush"
 	add_cooldown()
+	QDEL_NULL(particle_holder)
 	UnregisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)))
 
 ///Apply a filter on all items in the list of turfs
@@ -342,6 +387,10 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_BLAST,
 	)
 	target_flags = XABB_MOB_TARGET
+	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
+	var/obj/effect/abstract/particle_holder/particle_holder
+	///The particle type that will be created when using this ability
+	var/particles/particle_type = /particles/warlock_charge/psy_blast
 
 /datum/action/xeno_action/activable/psy_blast/on_cooldown_finish()
 	owner.balloon_alert(owner, "Psy blast ready")
@@ -360,6 +409,7 @@
 			xeno_owner.ammo = GLOB.ammo_list[spit_types[(found_pos%length(spit_types))+1]]	//Loop around if we would exceed the length
 		var/datum/ammo/energy/xeno/selected_ammo = xeno_owner.ammo
 		plasma_cost = selected_ammo.plasma_cost
+		particle_type = selected_ammo.channel_particle
 		to_chat(xeno_owner, span_notice(selected_ammo.select_text))
 		owner.balloon_alert(owner, "[selected_ammo]")
 		update_button_icon()
@@ -390,11 +440,14 @@
 
 	to_chat(xeno_owner, span_xenonotice("We channel our psychic power."))
 
+	generate_particles(target, 7)
 	if(!do_after(xeno_owner, 1 SECONDS, FALSE, target, BUSY_ICON_DANGER))
 		to_chat(xeno_owner, span_warning("Our focus is disrupted."))
+		QDEL_NULL(particle_holder)
 		return fail_activate()
 
 	if(!can_use_ability(target, FALSE))
+		QDEL_NULL(particle_holder)
 		return fail_activate()
 
 	var/obj/projectile/hitscan/projectile = new /obj/projectile/hitscan(xeno_owner.loc)
@@ -412,10 +465,24 @@
 
 	succeed_activate()
 	add_cooldown()
-
+	QDEL_NULL_IN(src, particle_holder, 5)
 
 /datum/action/xeno_action/activable/psy_blast/update_button_icon()
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/datum/ammo/energy/xeno/ammo_type = xeno_owner.ammo
 	action_icon_state = ammo_type.icon_state
 	return ..()
+
+//Generates particles and directs them towards target
+/datum/action/xeno_action/activable/psy_blast/proc/generate_particles(atom/target, velocity)
+	var/angle = Get_Angle(owner, target)
+	var/x_component = sin(angle) * velocity
+	var/y_component = cos(angle) * velocity
+
+	particle_holder = new(owner, particle_type)
+
+	particle_holder.pixel_x = 16
+	particle_holder.pixel_y = 0
+	particle_holder.particles.velocity = list(x_component * 0.5, y_component * 0.5)
+	particle_holder.particles.gravity = list(x_component, y_component)
+	particle_holder.particles.rotation = angle
