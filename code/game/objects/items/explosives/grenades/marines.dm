@@ -479,6 +479,6 @@
 	return
 
 /obj/item/explosive/grenade/flaregun/prime()
-	new /obj/effect/temp_visual/above_flare(loc)
+	new /obj/effect/temp_visual/above_flare/flaregun(loc)
 	playsound(loc, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4)
 	qdel(src)

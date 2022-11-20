@@ -93,3 +93,7 @@
 	loc.visible_message(span_warning("You see a tiny flash, and then a blindingly bright light from a flare as it lights off in the sky!"))
 	playsound(loc, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4)
 	animate(src, time = duration, pixel_y = 0)
+
+/obj/effect/temp_visual/above_flare/flaregun
+	light_range = 9 // Lower range and duration than the normal CAS Flare.
+	duration = 40 SECONDS
