@@ -38,6 +38,8 @@
 	if(!leader)
 		leader = H
 		var/datum/job/J = SSjob.GetJobType(/datum/job/santa/leader)
+		H.name = "Santa Claus"
+		H.real_name = H.name
 		H.apply_assigned_role_to_spawn(J)
 		H.set_nutrition(NUTRITION_OVERFED * 2)
 		H.grant_language(/datum/language/xenocommon)
@@ -46,4 +48,6 @@
 
 	var/datum/job/J = SSjob.GetJobType(/datum/job/santa)
 	H.apply_assigned_role_to_spawn(J)
+	H.name = "Elf" += " [rand(1,999)"
+	H.real_name = H.name
 	to_chat(H, span_notice("You are a member of Santa's loyal workforce, assist Santa in whatever way you can!"))
