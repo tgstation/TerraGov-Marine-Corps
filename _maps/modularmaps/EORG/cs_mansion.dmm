@@ -42,7 +42,7 @@
 /turf/open/floor/grime,
 /area/deathmatch)
 "bJ" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/wood,
 /area/deathmatch)
 "ck" = (
@@ -394,6 +394,7 @@
 "to" = (
 /obj/structure/table/gamblingtable,
 /obj/effect/spawner/random/plushie/nospawnninetyfive{
+	
 	},
 /turf/open/floor/wood,
 /area/deathmatch)
@@ -1031,6 +1032,7 @@
 "Tz" = (
 /obj/structure/closet/cabinet,
 /obj/effect/spawner/random/plushie/nospawnninetyfive{
+	
 	},
 /turf/open/floor/wood,
 /area/deathmatch)

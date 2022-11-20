@@ -4,6 +4,7 @@
 /area/template_noop)
 "ab" = (
 /turf/closed/wall/mainship/white{
+	
 	},
 /area/shuttle/big_ert)
 "ac" = (
@@ -58,7 +59,7 @@
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "ak" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /obj/machinery/door_control{
 	id = "top_ERTLARGE";
 	name = "shutter controller";

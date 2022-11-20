@@ -9187,7 +9187,7 @@
 /turf/closed/wall/r_wall,
 /area/gelida/indoors/c_block/mining)
 "fOc" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/plating,
 /area/gelida/indoors/c_block/mining)
 "fOp" = (
@@ -18197,7 +18197,7 @@
 /turf/open/floor/plating,
 /area/gelida/indoors/b_block/bar)
 "lCL" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/prison/cleanmarked,
 /area/gelida/indoors/lone_buildings/spaceport)
 "lCR" = (
@@ -26811,7 +26811,7 @@
 /turf/open/floor/prison/sterilewhite/full,
 /area/gelida/indoors/a_block/bridges/corpo)
 "qWS" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/lone_buildings/storage_blocks)
 "qWU" = (
@@ -30009,7 +30009,7 @@
 /turf/open/floor/plating,
 /area/gelida/caves/west_caves)
 "sUw" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/lone_buildings/spaceport)
 "sUO" = (
@@ -30551,7 +30551,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/east_central_street)
 "tme" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/plating,
 /area/gelida/landing_zone_2)
 "tmg" = (
@@ -32854,7 +32854,7 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/a_block/dorm_north)
 "uRq" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /obj/machinery/light{
 	dir = 4
 	},
