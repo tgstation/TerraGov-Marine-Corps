@@ -10,11 +10,9 @@
 	var/stage = 0
 	///How developed the embryo is, if it ages up highly enough it has a chance to burst.
 	var/counter = 0
-	//Individual abilities can acquire additional effects if there is no weakness. (See Carrier Call of Younger ability)
-	var/modifier = 0
-	var/modifier_time = 0
 	///How long before the larva is kicked out, * SSobj wait
 	var/larva_autoburst_countdown = 20
+	var/boost_timer = 0
 	var/hivenumber = XENO_HIVE_NORMAL
 	var/admin = FALSE
 
@@ -79,9 +77,9 @@
 	if(affected_mob.reagents.get_reagent_amount(/datum/reagent/medicine/larvaway))
 		counter -= 1 //Halves larval growth progress, for some tradeoffs. Larval toxin purges this
 
-	if(modifier_time)
-		counter += modifier
-		change_modifier(new_time = -1)
+	if(boost_timer)
+		counter += 2.5
+		adjust_boost_timer(-1)
 
 	if(stage < 5 && counter >= 120)
 		counter = 0
@@ -236,29 +234,12 @@
 		return
 	emote("burstscream")
 
-/obj/item/alien_embryo/proc/change_modifier(new_mod = 0, new_time = 0, capped = 0, override_mod = FALSE, override_time = FALSE)
-	if(new_mod)
-		adjust_modifier(new_mod, override_mod)
-
-	if(new_time)
-		adjust_mod_timer(new_time, capped, override_time)
-
-	if(modifier_time == 0)
-		modifier = 0
-
-
-/obj/item/alien_embryo/proc/adjust_modifier(amount, override_mod = FALSE)
-	if(override_mod)
-		modifier = amount
-	else
-		modifier += amount
-
-/obj/item/alien_embryo/proc/adjust_mod_timer(amount, capped = 0, override_time = FALSE)
+/obj/item/alien_embryo/proc/adjust_boost_timer(amount, capped = 0, override_time = FALSE)
 	if(override_time)
-		modifier_time = amount
+		boost_timer = max(amount, 0)
 	else
-		modifier_time = max(modifier_time + amount, 0)
+		boost_timer = max(boost_timer + amount, 0)
 
-	if(capped)
-		modifier_time = min(modifier_time, capped)
-
+	if(capped > 0)
+		boost_timer = min(boost_timer, capped)
+	return

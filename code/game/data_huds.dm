@@ -256,7 +256,7 @@
 	if(status_flags & XENO_HOST)
 		var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in src
 		if(E)
-			if(E.modifier)
+			if(E.boost_timer)
 				infection_hud.icon_state = "infectedmodifier[E.stage]"
 			else
 				infection_hud.icon_state = "infected[E.stage]"

@@ -414,8 +414,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 		O = victim.internal_organs_by_name[i]
 		O.take_damage(debuff, TRUE)
 
-	young.change_modifier(2.5, 20, 40, TRUE)
-
+	young.adjust_boost_timer(20, 40)
 	if(young.stage <= 1)
 		victim.throw_at(owner, 2, 1, owner)
 	else if(young.stage > 1 && young.stage <= 5)
