@@ -13,7 +13,7 @@
 	drift = generator("vector", list(0, -0.5), list(0, 0.2))
 	gravity = list(0, 3)
 	scale = generator("vector", list(0.1, 0.1), list(0.5,0.5), NORMAL_RAND)
-	color = "#56498f"
+	color = "#6a59b3"
 
 /particles/warlock_charge/psy_blast
 	width = 250
@@ -226,7 +226,7 @@
 	if(xeno_owner.selected_ability != src)
 		action_activate()
 		return
-	if(owner.do_actions || !target || !can_use_action(TRUE) || !check_distance(target))
+	if(owner.do_actions || !target || !can_use_action(TRUE) || !check_distance(target, TRUE))
 		return fail_activate()
 	if(!do_after(owner, 0.5 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_action, FALSE, XACT_USE_BUSY)))
 		return fail_activate()
@@ -250,11 +250,15 @@
 	RegisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)), .proc/stop_crush)
 
 ///Checks if the owner is close enough/can see the target
-/datum/action/xeno_action/activable/psy_crush/proc/check_distance(atom/target)
+/datum/action/xeno_action/activable/psy_crush/proc/check_distance(atom/target, sight_needed)
 	var/dist = get_dist(owner, target)
 	if(dist > ability_range)
 		to_chat(owner, span_warning("Too far for our reach... We need to be [dist - ability_range] steps closer!"))
 		owner.balloon_alert(owner, "Too far!")
+		return FALSE
+	else if(sight_needed && !line_of_sight(owner, target, 9))
+		to_chat(owner, span_warning("We can't focus properly without a clear line of sight!"))
+		owner.balloon_alert(owner, "Out of sight!")
 		return FALSE
 	return TRUE
 
