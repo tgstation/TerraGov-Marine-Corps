@@ -246,6 +246,10 @@
 	time_to_unequip = 1 SECONDS
 	flags_inventory = NOQUICKEQUIP
 
+/obj/item/belt_harness/OnVend(mob/living/carbon/human/user, faction)
+	if (!user.equip_to_appropriate_slot(src))
+		..()
+
 /obj/item/belt_harness/marine
 	name = "\improper M45 pattern belt harness"
 	desc = "A shoulder worn strap with clamps that can attach to a gun. Should keep you from losing your weapon, hopefully."

@@ -82,6 +82,10 @@
 	remove_from_storage(W, user = src)
 	return W
 
+/obj/item/storage/holster/OnVend(mob/living/carbon/human/user, faction)
+	if (!user.equip_to_appropriate_slot(src))
+		..()
+
 //backpack type holster items
 /obj/item/storage/holster/backholster
 	name = "backpack holster"
