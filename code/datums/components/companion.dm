@@ -1,4 +1,13 @@
-/// Companion module
+///Wrapper for say
+#define SAY(message) SSspeech_controller.queue_say_for_mob(parent, message, SPEECH_CONTROLLER_QUEUE_SAY_VERB)
+///Wrapper for emote
+#define EMOTE(message) SSspeech_controller.queue_say_for_mob(parent, message, SPEECH_CONTROLLER_QUEUE_EMOTE_VERB)
+
+/**
+ * Companion component
+ *
+ * This component defines behaviour for a mob to follow another mob and react to stuff it does.
+ */
 /datum/component/companion
 	///The mob this mob is following
 	var/mob/mob_master
@@ -38,23 +47,23 @@
 /datum/component/companion/proc/help()
 	var/mob/mob_parent = parent
 	if(!mob_parent.CanReach(mob_master))
-		say("Come closer.")
+		SAY("Come closer.")
 		return
 
 	var/obj/item/paper/brassnote/new_note = new
 	new_note.info = commands_info
 	if(mob_master.put_in_any_hand_if_possible(new_note))
 		RegisterSignal(new_note, COMSIG_ITEM_DROPPED, .proc/clear_note)
-		emote("passes note")
+		EMOTE("passes note")
 		return
 	else
 		qdel(new_note)
-		say("Your hands are full.")
+		SAY("Your hands are full.")
 
 ///Deletes the created commands note
 /datum/component/companion/proc/clear_note(datum/source)
 	SIGNAL_HANDLER
-	emote("...")
+	EMOTE("...")
 	qdel(source)
 
 ///Handles what the companion does when interacted with with an item
@@ -84,7 +93,7 @@
 		var/mob/living/simple_animal/animal_parent = parent
 		animal_parent.toggle_ai(AI_OFF)
 	if(hello_message)
-		say(hello_message)
+		SAY(hello_message)
 	mob_parent.AddComponent(/datum/component/ai_controller, /datum/ai_behavior, mob_master)
 	///This needs to be after the AI component as that sets the intent to harm
 	mob_parent.a_intent = INTENT_HELP
@@ -94,7 +103,7 @@
 	UnregisterSignal(parent, COMSIG_MOVABLE_HEAR)
 	UnregisterSignal(mob_master, COMSIG_PARENT_QDELETING)
 	if(goodbye_message)
-		say(goodbye_message)
+		SAY(goodbye_message)
 	mob_master = null
 	var/mob/living/mob_parent = parent
 	mob_parent.a_intent = INTENT_HARM
@@ -115,20 +124,20 @@
 	var/calling_name = copytext(raw_message, 1, length(name) + 1)
 	if(name != calling_name)
 		if(prob(10))
-			say(raw_message)
+			SAY(raw_message)
 		return
 
 	var/command = lowertext(copytext(raw_message, length(name) + 3, length(raw_message)))
 	var/action = on_hear_behaviours[command]
 	if(!action)
-		emote("nods")
+		EMOTE("nods")
 		return
 
 	addtimer(CALLBACK(src, action), 1 SECONDS, TIMER_UNIQUE)
 
 ///The slugcat listens for its new name
 /datum/component/companion/proc/update_name(message)
-	emote("listens")
+	EMOTE("listens")
 	RegisterSignal(parent, COMSIG_MOVABLE_HEAR, .proc/handle_update_name, override = TRUE)
 
 ///Does the name update action
@@ -137,14 +146,14 @@
 	if(speaker != mob_master)
 		return
 	var/new_name = copytext(raw_message, 1, length(raw_message))
-	addtimer(CALLBACK(src, .proc/say, "[new_name]", SPEECH_CONTROLLER_QUEUE_SAY_VERB), 1 SECONDS, TIMER_UNIQUE)
+	addtimer(CALLBACK(SSspeech_controller, /datum/controller/subsystem/speech_controller.proc/queue_say_for_mob, parent, "[new_name]", SPEECH_CONTROLLER_QUEUE_SAY_VERB), 1 SECONDS, TIMER_UNIQUE)
 	var/mob/living/mob_parent = parent
 	mob_parent.name = new_name
 	RegisterSignal(parent, COMSIG_MOVABLE_HEAR, .proc/handle_mob_master_speech, override = TRUE)
 
 ///The slugcat repeats the person's words
 /datum/component/companion/proc/repeat_speech(message)
-	emote("listens")
+	EMOTE("listens")
 	RegisterSignal(parent, COMSIG_MOVABLE_HEAR, .proc/handle_repeat_speech, override = TRUE)
 
 ///Does the words repeating action
@@ -152,17 +161,9 @@
 	SIGNAL_HANDLER
 	if(speaker != mob_master)
 		return
-	addtimer(CALLBACK(src, .proc/say, raw_message, SPEECH_CONTROLLER_QUEUE_SAY_VERB), 1 SECONDS, TIMER_UNIQUE)
+	addtimer(CALLBACK(SSspeech_controller, /datum/controller/subsystem/speech_controller.proc/queue_say_for_mob, parent, raw_message, SPEECH_CONTROLLER_QUEUE_SAY_VERB), 1 SECONDS, TIMER_UNIQUE)
 	RegisterSignal(parent, COMSIG_MOVABLE_HEAR, .proc/handle_mob_master_speech, override = TRUE)
 
 ///Removes the current master_mob through a command
 /datum/component/companion/proc/goodbye()
 	unassign_mob_master("Farewell [mob_master]...")
-
-///Wrapper for say
-/datum/component/companion/proc/say(message)
-	SSspeech_controller.queue_say_for_mob(parent, message, SPEECH_CONTROLLER_QUEUE_SAY_VERB)
-
-///Wrapper for emote
-/datum/component/companion/proc/emote(message)
-	SSspeech_controller.queue_say_for_mob(parent, message, SPEECH_CONTROLLER_QUEUE_EMOTE_VERB)
