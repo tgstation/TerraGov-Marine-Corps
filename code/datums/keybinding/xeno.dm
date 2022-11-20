@@ -45,6 +45,7 @@
 	full_name = "Place acid well"
 	description = "Builds acid well on your tile."
 	keybind_signal = COMSIG_XENOABILITY_PLACE_ACID_WELL
+	hotkey_keys = list("G")
 
 /datum/keybinding/xeno/emit_recovery
 	name = "emit_recovery"
