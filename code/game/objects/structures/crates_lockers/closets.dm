@@ -198,7 +198,7 @@
 			X.visible_message(span_danger("\The [X] smashes \the [src]!"), \
 			span_danger("We smash \the [src]!"), null, 5)
 			take_damage(damage_amount, damage_type, damage_flag, effects, null, armor_penetration)
-		. = ..()
+		return ..()
 	else if(!opened)
 		X.changeNext_move(0) // opening an unlocked closet does not trigger attack cooldown
 		return attack_hand(X)
