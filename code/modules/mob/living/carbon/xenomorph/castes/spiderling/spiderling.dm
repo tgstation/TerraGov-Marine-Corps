@@ -39,8 +39,6 @@
 /// Signal handler to check if we can attack the obj's that our escorted_atom is attacking
 /datum/ai_behavior/spiderling/proc/go_to_obj_target(source, obj/target)
 	SIGNAL_HANDLER
-	if(isnull(target))
-		return
 	if(target.obj_integrity <= 0)
 		return
 	change_action(MOVING_TO_ATOM, target)
