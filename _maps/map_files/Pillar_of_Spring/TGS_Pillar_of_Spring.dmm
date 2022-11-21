@@ -8150,7 +8150,7 @@
 /area/mainship/command/cic)
 "vL" = (
 /obj/effect/spawner/random/present{
-	pixel_x = -4;
+	pixel_x = 7;
 	pixel_y = 3
 	},
 /turf/open/floor/mainship/terragov/north{
@@ -16847,7 +16847,10 @@
 	pixel_x = 4;
 	pixel_y = 7
 	},
-/obj/effect/spawner/random/present,
+/obj/effect/spawner/random/present{
+	pixel_x = -7;
+	pixel_y = -10
+	},
 /turf/open/floor/mainship/terragov/north{
 	dir = 8
 	},
