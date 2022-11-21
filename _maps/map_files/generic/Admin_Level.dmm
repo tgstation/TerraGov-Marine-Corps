@@ -10115,7 +10115,7 @@
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/storage/primary)
 "nwK" = (
-/obj/machinery/computer/mech_builder,
+/obj/machinery/computer/mech_builder/valhalla,
 /turf/open/floor/tile/vault{
 	dir = 5
 	},

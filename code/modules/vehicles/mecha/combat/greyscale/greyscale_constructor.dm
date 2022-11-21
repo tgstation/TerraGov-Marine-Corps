@@ -136,8 +136,6 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	var/list/current_stats
 	///cooldown check that will stop players from interacting with the mech builder unless the timer ends
 	var/locked = FALSE
-	var/obj/vehicle/sealed/mecha/combat/greyscale/linked_mech
-
 	/// list(STRING-list(STRING-STRING)) of primary and secondary palettes. first string is category, second is name
 	var/static/list/available_colors = ARMOR_PALETTES_LIST
 	/// list(STRING-list(STRING-STRING)) of visor palettes. first string is category, second is name
@@ -176,26 +174,11 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	current_stats["slowdown"] = slowdown
 	current_stats["armor"] = armor
 
-/obj/machinery/computer/mech_builder/update_icon()
-	..()
-
-	// Cooldown
-	if(locked)
-		icon_state = "[initial(icon_state)]_cd"
-
-		if(machine_stat & (BROKEN|DISABLED))
-			icon_state += "b"
-
-		else if(machine_stat & NOPOWER)
-			icon_state += "0"
-
 /obj/machinery/computer/mech_builder/can_interact(mob/user)
 	. = ..()
 	if(!.)
 		return
 	if(user.skills.getRating("large_vehicle") < SKILL_LARGE_VEHICLE_TRAINED)
-		return FALSE
-	if(locked)
 		return FALSE
 
 /obj/machinery/computer/mech_builder/ui_interact(mob/user, datum/tgui/ui)
@@ -301,6 +284,9 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 			selected_name = new_name
 
 		if("assemble")
+			if(locked)
+				tgui_alert(usr, "You cant assemble a new mech when the computer is locked!")
+				return FALSE
 			for(var/key in selected_primary)
 				if(isnull(selected_primary[key]))
 					return FALSE
@@ -391,19 +377,6 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 				return FALSE
 			new new_ammo(get_turf(src))
 
-//these two procs lock and unlock the computer, it takes 20 minutes after a mech dies until a new mech can be created
-/obj/machinery/computer/mech_builder/proc/lock()
-	if(locked)
-		addtimer(CALLBACK(src, .proc/unlock), 20 MINUTES)
-		return
-	locked = TRUE
-	update_icon()
-
-/obj/machinery/computer/mech_builder/proc/unlock()
-	linked_mech = 0
-	locked = FALSE
-	update_icon()
-
 ///Actually deploys mech after a short delay to let people spot it coming down
 /obj/machinery/computer/mech_builder/proc/deploy_mech()
 	var/turf/assemble_turf = get_step(src, dir)
@@ -429,8 +402,8 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 
 	mech.pixel_y = 240
 	animate(mech, time=4 SECONDS, pixel_y=initial(mech.pixel_y), easing=SINE_EASING|EASE_OUT)
-	linked_mech = mech
-	linked_mech.linked_builder = src
+	if(!istype(src, /obj/machinery/computer/mech_builder/valhalla))
+		mech.linked_builder = src
 
 ///updates the current_stats data for the UI
 /obj/machinery/computer/mech_builder/proc/update_stats(selected_part, old_bodytype, new_bodytype)
@@ -476,3 +449,36 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 		if(slot == MECH_GREY_HEAD)
 			new_overlays += icon2appearance(SSgreyscale.GetColoredIconByType(initial(typepath.visor_config), selected_visor))
 	mech_view.overlays = new_overlays
+
+// MECH BUILDER LOCKING SYSTEM
+
+///variant of the mech builder with no cooldown, used in valhalla
+/obj/machinery/computer/mech_builder/valhalla
+	name = "valhalla mech computer"
+	desc = "A magic mech computer that can summon mechs with no cooldown."
+
+/obj/machinery/computer/mech_builder/update_icon()
+	..()
+
+	// Cooldown
+	if(locked)
+		icon_state = "[initial(icon_state)]_cd"
+
+		if(machine_stat & (BROKEN|DISABLED))
+			icon_state += "b"
+
+		else if(machine_stat & NOPOWER)
+			icon_state += "0"
+
+///these two procs lock and unlock the computer, it takes 20 minutes after a mech dies until a new mech can be created
+/obj/machinery/computer/mech_builder/proc/lock()
+	if(!istype(src, /obj/machinery/computer/mech_builder/valhalla)) //if the computer is in valhalla, dont lock it
+		if(locked)
+			addtimer(CALLBACK(src, .proc/unlock), 20 MINUTES)
+			return
+		locked = TRUE
+		update_icon()
+
+/obj/machinery/computer/mech_builder/proc/unlock()
+	locked = FALSE
+	update_icon()
