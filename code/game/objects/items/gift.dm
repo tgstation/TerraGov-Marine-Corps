@@ -41,9 +41,12 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		if(tgui_alert(M, "This present is addressed to [present_receiver]. Open it anyways?", "Continue?", list("Yes", "No")) != "No")
 			M.visible_message(span_notice("[M] tears into [present_receiver]'s gift with reckless abandon!"))
 			M.balloon_alert_to_viewers("Open's [present_receiver]'s gift" ,ignored_mobs = M)
-			if(prob(75))
+			if(prob(70) || HAS_TRAIT(M, TRAIT_CHRISTMAS_GRINCH))
 				GLOB.round_statistics.presents_grinched += 1
-				new /obj/item/ore/coal(get_turf(M))
+				spawnpresent(M, TRUE)
+				if(!HAS_TRAIT(M, TRAIT_CHRISTMAS_GRINCH))
+					GLOB.round_statistics.number_of_grinches += 1
+					ADD_TRAIT(M, TRAIT_CHRISTMAS_GRINCH, TRAIT_CHRISTMAS_GRINCH) //bad present openers are effectively cursed to receive nothing but coal for the rest of the round
 			else
 				spawnpresent(M)
 			qdel(src)
@@ -65,8 +68,12 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		freepresent = TRUE //nobody alive, anybody can open it
 	present_receiver = (pick(eligible_targets))
 
-/obj/item/a_gift/proc/spawnpresent(mob/M)
-	var/obj/item/I = new contains_type(get_turf(M))
+/obj/item/a_gift/proc/spawnpresent(mob/M, spawncoal = FALSE)
+	if(spawncoal || HAS_TRAIT(M, TRAIT_CHRISTMAS_GRINCH))
+		var/obj/item/C = new /obj/item/ore/coal(get_turf(M))
+		M.put_in_hands(C)
+		M.balloon_alert_to_viewers("Received a piece of [C]")
+		return
 	if(!freepresent)
 		GLOB.round_statistics.presents_delivered += 1
 	if(!QDELETED(I)) //might contain something like metal rods that might merge with a stack on the ground
@@ -135,6 +142,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		/obj/item/storage/belt/utility/full,
 		/obj/item/clothing/tie/horrible,
 		/obj/item/card/emag_broken,
+		/obj/item/tweezers,
 		/obj/item/tool/pickaxe/plasmacutter,
 		/obj/item/clothing/glasses/night/imager_goggles,
 		/obj/item/clothing/suit/poncho,
@@ -143,6 +151,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		/obj/item/clothing/suit/costume/snowman,
 		/obj/item/clothing/head/snowman,
 		/obj/item/toy/crossbow,
+		/obj/item/a_gift/anything,
 		/obj/item/toy/prize/durand,
 		/obj/item/stack/sheet/mineral/phoron/small_stack,
 		/obj/item/stack/sheet/metal/small_stack,
@@ -158,6 +167,16 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	gift_type_list += subtypesof(/obj/item/reagent_containers/food)
 	gift_type_list += subtypesof(/obj/item/tool)
 	gift_type_list += subtypesof(/obj/item/storage/box)
+	gift_type_list += subtypesof(/obj/item/organ)
+	gift_type_list += subtypesof(/obj/item/research_resource)
+	gift_type_list += subtypesof(/obj/item/robot_parts)
+	gift_type_list += subtypesof(/obj/item/seeds)
+	gift_type_list += subtypesof(/obj/item/stock_parts)
+	gift_type_list += subtypesof(/obj/item/box/loot)
+	gift_type_list += subtypesof(/obj/item/storage/pill_bottle)
+	gift_type_list += subtypesof(/obj/item/toolbox)
+	gift_type_list += subtypesof(/obj/item/tank)
+	gift_type_list += subtypesof(/obj/item/trash)
 	var/gift_type = pick(gift_type_list)
 
 	return gift_type
