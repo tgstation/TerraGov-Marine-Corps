@@ -79,7 +79,7 @@
 		..()
 		return 1
 
-/obj/machinery/computer/update_icon()
+/obj/machinery/computer/update_icon_state()
 	..()
 	icon_state = initial(icon_state)
 

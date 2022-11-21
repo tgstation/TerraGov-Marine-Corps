@@ -457,18 +457,11 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	name = "valhalla mech computer"
 	desc = "A magic mech computer that can summon mechs with no cooldown."
 
-/obj/machinery/computer/mech_builder/update_icon()
+/obj/machinery/computer/mech_builder/update_icon_state()
 	..()
 
-	// Cooldown
 	if(locked)
-		icon_state = "[initial(icon_state)]_cd"
-
-		if(machine_stat & (BROKEN|DISABLED))
-			icon_state += "b"
-
-		else if(machine_stat & NOPOWER)
-			icon_state += "0"
+		icon_state = "[icon_state]_cd"
 
 ///these two procs lock and unlock the computer, it takes 20 minutes after a mech dies until a new mech can be created
 /obj/machinery/computer/mech_builder/proc/lock()
