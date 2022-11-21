@@ -2503,6 +2503,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	if(!T || !isturf(T))
 		return
 	playsound(T, 'sound/effects/EMPulse.ogg', 50)
+	var/aoe_damage = 25
+	if(isxeno(P.firer))
+		var/mob/living/carbon/xenomorph/xeno_firer = P.firer
+		aoe_damage = xeno_firer.xeno_caste.blast_strength
 	for(var/atom/movable/victim in view(aoe_range, T))
 		if(victim.anchored)
 			continue
@@ -2511,7 +2515,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			if(living_victim.stat == DEAD)
 				continue
 			if(!isxeno(living_victim))
-				living_victim.apply_damage(35, BURN, blocked = living_victim.get_soft_armor(ENERGY), updating_health = TRUE)
+				living_victim.apply_damage(aoe_damage, BURN, blocked = living_victim.get_soft_armor(ENERGY), updating_health = TRUE)
 				staggerstun(living_victim, P, 9, slowdown = 1)
 		else
 			victim.ex_act(EXPLODE_LIGHT)
@@ -2552,7 +2556,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		var/obj/vehicle/sealed/mecha/mech_victim = O
 		mech_victim.take_damage(rand(200, 400), BURN, ENERGY, 0, armour_penetration = penetration)
 	else
-		O.ex_act(EXPLODE_HEAVY)
+		O.take_damage(150, BURN, ENERGY, 0, armour_penetration = penetration)
 
 /datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, 9, stagger = 2, slowdown = 2, knockback = 1)

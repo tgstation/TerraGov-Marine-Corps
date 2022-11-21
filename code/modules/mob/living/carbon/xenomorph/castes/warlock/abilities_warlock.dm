@@ -80,7 +80,7 @@
 	succeed_activate()
 	GLOB.round_statistics.psy_shields++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "psy_shields")
-	if(!do_after(owner, 5 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_action, FALSE, XACT_USE_BUSY)))
+	if(!do_after(owner, 6 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_action, FALSE, XACT_USE_BUSY)))
 		cancel_shield()
 		return
 	cancel_shield()
@@ -141,7 +141,7 @@
 	icon = 'icons/Xeno/96x96.dmi'
 	icon_state = "shield"
 	resistance_flags = BANISH_IMMUNE|UNACIDABLE|PLASMACUTTER_IMMUNE
-	max_integrity = 600
+	max_integrity = 350
 	layer = ABOVE_MOB_LAYER
 	///Who created the shield
 	var/mob/living/carbon/xenomorph/owner
@@ -150,7 +150,11 @@
 /obj/effect/xeno/shield/Initialize(loc, creator)
 	. = ..()
 	owner = creator
+	if(!owner)
+		return //badmins go home
 	dir = owner.dir
+	max_integrity = owner.xeno_caste.shield_strength
+	obj_integrity = max_integrity
 	if(dir == EAST || dir == WEST)
 		bound_height = 96
 		bound_y = -32
@@ -256,7 +260,7 @@
 		return
 	if(owner.do_actions || !target || !can_use_action(TRUE) || !check_distance(target, TRUE))
 		return fail_activate()
-	if(!do_after(owner, 0.5 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_action, FALSE, XACT_USE_BUSY)))
+	if(!do_after(owner, 0.8 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_action, FALSE, XACT_USE_BUSY)))
 		return fail_activate()
 	owner.visible_message(span_xenowarning("\The [owner] starts channeling their psychic might!"), \
 		span_xenowarning("We start channeling our psychic might!"))
@@ -315,7 +319,7 @@
 	target_turfs += turfs_to_add
 	current_iterations ++
 	if(can_use_action(xeno_owner, XACT_IGNORE_COOLDOWN))
-		channel_loop_timer = addtimer(CALLBACK(src, .proc/do_channel, target), 8, TIMER_STOPPABLE)
+		channel_loop_timer = addtimer(CALLBACK(src, .proc/do_channel, target), 0.5 SECONDS, TIMER_STOPPABLE)
 		return
 	stop_crush(target)
 
@@ -343,18 +347,18 @@
 				if(isxeno(carbon_victim) || carbon_victim.stat == DEAD)
 					continue
 				var/block = carbon_victim.get_soft_armor(BOMB)
-				carbon_victim.apply_damage(35, BRUTE, blocked = block)
-				carbon_victim.apply_damage(50, STAMINA, blocked = block)
+				carbon_victim.apply_damage(xeno_owner.xeno_caste.crush_strength, BRUTE, blocked = block)
+				carbon_victim.apply_damage(xeno_owner.xeno_caste.crush_strength * 1.5, STAMINA, blocked = block)
 				carbon_victim.adjust_stagger(6)
 				carbon_victim.add_slowdown(8)
 			else if(ismecha(i))
 				var/obj/vehicle/sealed/mecha/mecha_victim = i
-				mecha_victim.ex_act(EXPLODE_HEAVY)
+				mecha_victim.take_damage(xeno_owner.xeno_caste.crush_strength * 5, BOMB)
 			else if(isobj(i))
 				var/obj/obj_victim = i
 				if(istype(obj_victim, /obj/alien))
 					continue
-				obj_victim.ex_act(EXPLODE_LIGHT)
+				obj_victim.take_damage(xeno_owner.xeno_caste.crush_strength * 2, BOMB)
 	stop_crush(target)
 
 /// stops channeling and unregisters all listeners, resetting the ability
