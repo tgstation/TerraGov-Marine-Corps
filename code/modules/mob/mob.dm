@@ -355,12 +355,6 @@
 	put_in_hands(found)
 	return TRUE
 
-/mob/proc/get_all_slot_items()
-	var/list/equipment = list()
-	for (var/slot in SLOT_EQUIP_ORDER)
-		equipment += get_item_by_slot(slot)
-	return equipment
-
 /mob/proc/show_inv(mob/user)
 	user.set_interaction(src)
 	var/dat = {"

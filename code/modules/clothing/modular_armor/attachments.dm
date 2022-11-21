@@ -93,11 +93,17 @@
 /obj/item/armor_module/proc/handle_actions(datum/source, mob/user, slot)
 	SIGNAL_HANDLER
 	if(prefered_slot && (slot != prefered_slot))
-		LAZYREMOVE(actions_types, /datum/action/item_action/toggle)
-		var/datum/action/item_action/toggle/old_action = locate(/datum/action/item_action/toggle) in actions
-		old_action?.remove_action(user)
-		actions = null
+		remove_actions(user)
 		return
+	add_actions(user)
+
+/obj/item/armor_module/proc/remove_actions(mob/user)
+	LAZYREMOVE(actions_types, /datum/action/item_action/toggle)
+	var/datum/action/item_action/toggle/old_action = locate(/datum/action/item_action/toggle) in actions
+	old_action?.remove_action(user)
+	actions = null
+
+/obj/item/armor_module/proc/add_actions(mob/user)
 	LAZYADD(actions_types, /datum/action/item_action/toggle)
 	var/datum/action/item_action/toggle/new_action = new(src)
 	new_action.give_action(user)
@@ -111,10 +117,12 @@
 	return
 
 /obj/item/armor_module/on_vend(faction)
-	for(var/obj/item/module_receiver in usr.get_all_slot_items())
+	for(var/obj/item/module_receiver in usr.get_equipped_items())
 		SEND_SIGNAL(module_receiver, COMSIG_MARINE_VENDOR_MODULE_VENDED, src)
-		if (parent)
-			return //module has been inserted, so exit
+		if (parent) //module sucessfully attached
+			SEND_SIGNAL(parent, COMSIG_ITEM_EQUIPPED_TO_SLOT, usr, null)
+			add_actions(usr)
+			return
 	..() //module could not be inserted, fallback to parent behavior
 
 /**
