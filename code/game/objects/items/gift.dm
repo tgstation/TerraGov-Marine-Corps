@@ -39,22 +39,23 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		. += "This present is addressed to [present_receiver_name]."
 
 /obj/item/a_gift/attack_self(mob/M)
-	if(present_receiver == null)
+	if(present_receiver == null && !freepresent)
 		get_recipient() //generate owner of gift
 	to_chat(M, span_warning("You start unwrapping the present, trying to locate any sign of who the present belongs to..."))
 	if(!do_after(M, 4 SECONDS))
 		return
 	if(!freepresent && present_receiver != M)
 		if(tgui_alert(M, "This present is addressed to [present_receiver_name]. Open it anyways?", "Continue?", list("Yes", "No")) != "No")
-			M.visible_message(span_notice("[M] tears into [present_receiver]'s gift with reckless abandon!"))
-			M.balloon_alert_to_viewers("Open's [present_receiver]'s gift" ,ignored_mobs = M)
-			log_game("[M] has opened a present that didn't belong to them at [AREACOORD(loc)]")
+			M.visible_message(span_notice("[M] tears into [present_receiver_name]'s gift with reckless abandon!"))
+			M.balloon_alert_to_viewers("Open's [present_receiver_name]'s gift" ,ignored_mobs = M)
+			log_game("[M] has opened a present that belonged to [present_receiver_name] at [AREACOORD(loc)]")
 			if(prob(70) || HAS_TRAIT(M, TRAIT_CHRISTMAS_GRINCH))
 				GLOB.round_statistics.presents_grinched += 1
 				if(!HAS_TRAIT(M, TRAIT_CHRISTMAS_GRINCH))
 					GLOB.round_statistics.number_of_grinches += 1
 					ADD_TRAIT(M, TRAIT_CHRISTMAS_GRINCH, TRAIT_CHRISTMAS_GRINCH) //bad present openers are effectively cursed to receive nothing but coal for the rest of the round
-				spawnpresent(M) //they now have the grinch trait, the present will spawn coal
+					to_chat(M, span_warning("Your heart feels three sizes smaller..."))
+				spawnpresent(M) //they have the grinch trait, the presents will always spawn coal
 			else
 				spawnpresent(M, TRUE) //they got lucky, the present will open as normal but with a STOLEN label on examine
 			qdel(src)
@@ -80,6 +81,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 /obj/item/a_gift/proc/spawnpresent(mob/M, stolen_gift)
 	if(HAS_TRAIT(M, TRAIT_CHRISTMAS_GRINCH))
 		var/obj/item/C = new /obj/item/ore/coal(get_turf(M))
+		to_chat(M, span_warning("You feel the icy tug of Santa's magic envelop the present before you can open it!"))
 		M.put_in_hands(C)
 		M.balloon_alert_to_viewers("Received a piece of [C]")
 		return
