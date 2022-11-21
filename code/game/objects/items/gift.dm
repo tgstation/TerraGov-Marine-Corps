@@ -22,6 +22,8 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	var/present_receiver = null
 	///item contained in this gift
 	var/obj/item/contains_type
+	///real name of the present receiver
+	var/present_receiver_name = null
 
 /obj/item/a_gift/Initialize(mapload)
 	. = ..()
@@ -38,7 +40,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	if(!do_after(M, 4 SECONDS))
 		return
 	if(!freepresent && present_receiver != M)
-		if(tgui_alert(M, "This present is addressed to [present_receiver]. Open it anyways?", "Continue?", list("Yes", "No")) != "No")
+		if(tgui_alert(M, "This present is addressed to [present_receiver_name]. Open it anyways?", "Continue?", list("Yes", "No")) != "No")
 			M.visible_message(span_notice("[M] tears into [present_receiver]'s gift with reckless abandon!"))
 			M.balloon_alert_to_viewers("Open's [present_receiver]'s gift" ,ignored_mobs = M)
 			if(prob(70) || HAS_TRAIT(M, TRAIT_CHRISTMAS_GRINCH))
@@ -67,6 +69,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	if(!length(eligible_targets))
 		freepresent = TRUE //nobody alive, anybody can open it
 	present_receiver = (pick(eligible_targets))
+	present_receiver_name = present_receiver.real_name
 
 /obj/item/a_gift/proc/spawnpresent(mob/M, spawncoal = FALSE)
 	if(spawncoal || HAS_TRAIT(M, TRAIT_CHRISTMAS_GRINCH))
