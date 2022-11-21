@@ -27,7 +27,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	. = ..()
 	pixel_x = rand(-10,10)
 	pixel_y = rand(-10,10)
-	icon_state = "gift[rand(0,4)]"
+	icon_state = "gift[rand(0,8)]"
 
 	contains_type = get_gift_type()
 
