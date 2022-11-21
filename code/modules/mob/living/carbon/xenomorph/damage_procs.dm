@@ -86,6 +86,10 @@
 	if(!damage) //If we've actually taken damage, check whether we alert the hive
 		return
 
+	if(isobj(pulling))
+		stop_pulling()
+
+
 	if(!COOLDOWN_CHECK(src, xeno_health_alert_cooldown))
 		return
 	//If we're alive and health is less than either the alert threshold, or the alert trigger percent, whichever is greater, and we're not on alert cooldown, trigger the hive alert
