@@ -431,7 +431,7 @@
 "bi" = (
 /obj/structure/ship_ammo/heavygun,
 /obj/effect/decal/cleanable/blood/writing{
-	desc = "It looks like a writing in blood. It says, "We live as we dream, alone."";
+	desc = "It looks like a writing in blood. It says, 'We live as we dream, alone.'";
 	dir = 4
 	},
 /turf/open/floor/mainship/cargo,
@@ -699,7 +699,7 @@
 /obj/structure/droppod,
 /obj/structure/dropprop,
 /obj/effect/decal/cleanable/blood/writing{
-	desc = "It looks like a writing in blood. It says, "I am missing and forgotten."";
+	desc = "It looks like a writing in blood. It says, 'I am missing and forgotten.'";
 	dir = 4
 	},
 /turf/open/floor/mainship/cargo,
@@ -3843,7 +3843,7 @@
 	},
 /obj/structure/punching_bag,
 /obj/effect/decal/cleanable/blood/writing{
-	desc = "It looks like a writing in blood. It says, "I don't want to be a marine anymore."";
+	desc = "It looks like a writing in blood. It says, 'I don't want to be a marine anymore.'";
 	dir = 4
 	},
 /turf/open/floor/plating/mainship,
@@ -4514,7 +4514,7 @@
 	},
 /obj/item/tool/pen,
 /obj/effect/decal/cleanable/blood/writing{
-	desc = "It looks like a writing in blood. It says, "Fathers bury their sons in war."";
+	desc = "It looks like a writing in blood. It says, 'Fathers bury their sons in war.'";
 	dir = 4
 	},
 /turf/open/floor/mainship/floor,
@@ -5024,7 +5024,7 @@
 /area/mainship/squads/general)
 "op" = (
 /obj/effect/decal/cleanable/blood/writing{
-	desc = "It looks like a writing in blood. It says, "We are the monsters all along."";
+	desc = "It looks like a writing in blood. It says, 'We are the monsters all along.'";
 	dir = 4
 	},
 /turf/open/floor/mainship/floor,
@@ -11599,7 +11599,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/blood/writing{
-	desc = "It looks like a writing in blood. It says, "Don't trust the marines."";
+	desc = "It looks like a writing in blood. It says, 'Don't trust the marines.'";
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -13417,7 +13417,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/blood/writing{
-	desc = "It looks like a writing in blood. It says, "The gates of Hel are open when this armory is opened."";
+	desc = "It looks like a writing in blood. It says, 'The gates of Hel are open when this armory is opened.'";
 	dir = 4
 	},
 /turf/open/floor/plating/mainship,
@@ -15250,7 +15250,7 @@
 /area/mainship/engineering/upper_engineering)
 "Re" = (
 /obj/effect/decal/cleanable/blood/writing{
-	desc = "It looks like a writing in blood. It says, "If you see this, you will join the dead."";
+	desc = "It looks like a writing in blood. It says, 'If you see this, you will join the dead.'";
 	dir = 4
 	},
 /turf/open/floor/plating/mainship,
@@ -18132,7 +18132,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood/writing{
-	desc = "It looks like a writing in blood. It says, "I went back to sleep, but I will come back to the same nightmare."";
+	desc = "It looks like a writing in blood. It says, 'I went back to sleep, but I will come back to the same nightmare.'";
 	dir = 4
 	},
 /turf/open/floor/mainship,
