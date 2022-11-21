@@ -764,7 +764,7 @@
 /obj/effect/spawner/random/present
 	name = "Random present spawner"
 	icon_state = "random_present"
-	spawn_nothing_percentage = 85
+	spawn_nothing_percentage = 75
 
 /obj/effect/spawner/random/present/item_to_spawn()
 		return pick(/obj/item/a_gift,\
