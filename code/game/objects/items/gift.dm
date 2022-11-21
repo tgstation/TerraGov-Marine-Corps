@@ -107,12 +107,18 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		/obj/item/weapon/claymore/mercsword/machete,
 		/obj/item/weapon/energy/sword/blue,
 		/obj/item/weapon/holo/esword,
+		/obj/item/weapon/gun/revolver/mateba,
+		/obj/item/weapon/gun/pistol/heavy,
 		/obj/item/toy/sword,
+		/obj/item/weapon/claymore,
 		/obj/item/toy/dice/d20,
 		/obj/item/toy/plush/rouny,
 		/obj/item/toy/spinningtoy,
 		/obj/item/toy/syndicateballoon,
 		/obj/item/storage/wallet,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/burstfire_assembly,
 		/obj/item/storage/wallet/random,
 		/obj/item/megaphone,
 		/obj/item/storage/box/snappops,
@@ -124,17 +130,18 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		/obj/item/tool/pen/invisible,
 		/obj/item/explosive/grenade/smokebomb,
 		/obj/item/corncob,
+		/obj/item/weapon/gun/launcher/rocket/m57a4/xmas, //terribly OP but there's only a 1/1000 chance of getting it instead of something useless
 		/obj/item/spacecash/c500,
 		/obj/item/spacecash/c100,
 		/obj/item/coin/diamond,
 		/obj/item/cell/infinite,
+		/obj/item/ashtray,
 		/obj/item/assembly/mousetrap/armed,
 		/obj/item/clothing/glasses/sunglasses/aviator/yellow,
 		/obj/item/clothing/head/boonie,
 		/obj/item/clothing/mask/cigarette/pipe/cobpipe,
 		/obj/item/book/manual/chef_recipes,
 		/obj/item/clothing/head/helmet/space/santahat,
-		/obj/item/instrument/bikehorn,
 		/obj/item/toy/beach_ball,
 		/obj/item/toy/beach_ball/holoball,
 		/obj/item/weapon/banhammer,
@@ -143,21 +150,11 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		/obj/item/clothing/suit/space/syndicate/black/red,
 		/obj/item/reagent_containers/food/snacks/grown/ambrosiadeus,
 		/obj/item/reagent_containers/food/snacks/grown/ambrosiavulgaris,
-		/obj/item/instrument/violin,
 		/obj/item/tool/shovel/etool,
-		/obj/item/instrument/piano_synth,
-		/obj/item/instrument/banjo,
-		/obj/item/instrument/guitar,
-		/obj/item/instrument/glockenspiel,
-		/obj/item/instrument/accordion,
 		/obj/item/stack/barbed_wire/small_stack,
-		/obj/item/instrument/trumpet,
-		/obj/item/instrument/saxophone,
-		/obj/item/instrument/trombone,
-		/obj/item/instrument/recorder,
-		/obj/item/instrument/harmonica,
 		/obj/item/storage/toolbox/syndicate,
 		/obj/item/storage/belt/utility/full,
+		/obj/item/clothing/mask/facehugger/lamarr,
 		/obj/item/clothing/tie/horrible,
 		/obj/item/card/emag_broken,
 		/obj/item/tweezers,
@@ -169,10 +166,27 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		/obj/item/clothing/suit/costume/snowman,
 		/obj/item/clothing/head/snowman,
 		/obj/item/toy/crossbow,
+		/obj/item/bodybag,
+		/obj/item/pinpointer,
 		/obj/item/a_gift/anything,
 		/obj/item/toy/prize/durand,
 		/obj/item/stack/sheet/mineral/phoron/small_stack,
 		/obj/item/stack/sheet/metal/small_stack,
+		/obj/item/jetpack_marine,
+		/obj/item/loot_box,
+		/obj/item/phone,
+		/obj/item/binoculars,
+		/obj/item/clock,
+		/obj/item/bananapeel,
+		/obj/item/cane,
+		/obj/item/staff,
+		/obj/item/staff/broom,
+		/obj/item/staff/gentcane,
+		/obj/item/staff/stick,
+		/obj/item/skub,
+		/obj/item/ectoplasm,
+		/obj/item/multitool,
+		/obj/item/lightreplacer,
 		/obj/item/stack/sheet/plasteel/small_stack,
 		/obj/item/ore/coal)
 
@@ -183,6 +197,8 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	gift_type_list += subtypesof(/obj/item/clothing/gloves)
 	gift_type_list += subtypesof(/obj/item/clothing/mask)
 	gift_type_list += subtypesof(/obj/item/reagent_containers/food)
+	gift_type_list += subtypesof(/obj/item/reagent_containers/spray)
+	gift_type_list += subtypesof(/obj/item/reagent_containers/blood)
 	gift_type_list += subtypesof(/obj/item/tool)
 	gift_type_list += subtypesof(/obj/item/storage/box)
 	gift_type_list += subtypesof(/obj/item/organ)
@@ -195,6 +211,14 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	gift_type_list += subtypesof(/obj/item/storage/toolbox)
 	gift_type_list += subtypesof(/obj/item/tank)
 	gift_type_list += subtypesof(/obj/item/trash)
+	gift_type_list += subtypesof(/obj/item/instrument)
+	gift_type_list += subtypesof(/obj/item/paper)
+	gift_type_list += subtypesof(/obj/item/weapon/gun/shotgun)
+	gift_type_list += subtypesof(/obj/item/weapon/gun/flamer)
+	gift_type_list += subtypesof(/obj/item/weapon/gun/energy)
+	gift_type_list += subtypesof(/obj/item/portable_vendor)
+	gift_type_list += subtypesof(/obj/item/shard)
+	gift_type_list += subtypesof(/obj/item/minerupgrade)
 	var/gift_type = pick(gift_type_list)
 
 	return gift_type
@@ -203,6 +227,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 /obj/item/a_gift/anything
 	name = "christmas gift"
 	desc = "It could be anything!"
+	freepresent = TRUE
 
 /obj/item/a_gift/anything/get_gift_type()
 	if(!GLOB.possible_gifts.len)
