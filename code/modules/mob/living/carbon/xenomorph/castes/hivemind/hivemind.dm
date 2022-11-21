@@ -116,39 +116,7 @@
 	TIMER_COOLDOWN_START(src, COOLDOWN_HIVEMIND_MANIFESTATION, TIME_TO_TRANSFORM)
 	invisibility = 0
 	flick(status_flags & INCORPOREAL ? "Hivemind_materialisation" : "Hivemind_materialisation_reverse", src)
-	addtimer(CALLBACK(src, .proc/do_change_form), TIME_TO_TRANSFORM)
-
-///Finish the form changing of the hivemind and give the needed stats
-/mob/living/carbon/xenomorph/hivemind/proc/do_change_form()
-	LAZYCLEARLIST(movespeed_modification)
-	update_movespeed()
-	if(status_flags & INCORPOREAL)
-		status_flags = NONE
-		upgrade = XENO_UPGRADE_ZERO
-		resistance_flags = BANISH_IMMUNE
-		flags_pass = NONE
-		density = TRUE
-		throwpass = FALSE
-		upgrade = XENO_UPGRADE_MANIFESTATION
-		set_datum(FALSE)
-		update_wounds()
-		update_icon()
-		update_action_buttons()
-		return
-	invisibility = initial(invisibility)
-	status_flags = initial(status_flags)
-	upgrade = initial(upgrade)
-	resistance_flags = initial(resistance_flags)
-	flags_pass = initial(flags_pass)
-	density = initial(flags_pass)
-	throwpass = initial(throwpass)
-	upgrade = XENO_UPGRADE_BASETYPE
-	set_datum(FALSE)
-	update_wounds()
-	update_icon()
-	update_action_buttons()
-
-
+	addtimer(CALLBACK(src, .proc/toggle_intangibility, TRUE, TRUE), TIME_TO_TRANSFORM)
 
 /mob/living/carbon/xenomorph/hivemind/flamer_fire_act(burnlevel)
 	return_to_core()
@@ -176,7 +144,7 @@
 
 /mob/living/carbon/xenomorph/hivemind/proc/return_to_core()
 	if(!(status_flags & INCORPOREAL) && !TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
-		do_change_form()
+		toggle_intangibility(TRUE, TRUE)
 	forceMove(get_turf(core))
 
 ///Start the teleportation process to send the hivemind manifestation to the selected turf

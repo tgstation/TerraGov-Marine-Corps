@@ -3103,6 +3103,8 @@ datum/ammo/bullet/revolver/tp44
 	damage_falloff = 0
 	incendiary_strength = 30 //Firestacks cap at 20, but that's after armor.
 	bullet_color = LIGHT_COLOR_FIRE
+	var/ignite_shape = SINGLE
+	var/ignite_range = 1
 	var/fire_color = "red"
 	var/burntime = 17
 	var/burnlevel = 31
@@ -3111,7 +3113,15 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/flamethrower/drop_flame(turf/T)
 	if(!istype(T))
 		return
-	T.ignite(burntime, burnlevel, fire_color, 0, 0, burn_flags)
+	
+	switch(ignite_shape)
+		if(SINGLE)
+			T.ignite(burntime, burnlevel, fire_color, 0, 0, burn_flags)
+		if(NO_CORNERS)
+			for(var/turf/turf in range(ignite_range, T))
+				var/dir = get_dir(T, turf)
+				if(dir in GLOB.cardinals)
+					turf.ignite(burntime, burnlevel, fire_color, 0, 0, burn_flags)
 
 /datum/ammo/flamethrower/on_hit_mob(mob/M, obj/projectile/P)
 	drop_flame(get_turf(M))
@@ -3143,6 +3153,19 @@ datum/ammo/bullet/revolver/tp44
 	burntime = 40
 	burnlevel = 46
 	bullet_color = COLOR_NAVY
+
+/datum/ammo/flamethrower/dragon_fire
+	name = "resin fireball"
+	burn_flags =  BURN_HUMANS|BURN_SNOW
+	max_range = 10
+	shell_speed = 2
+	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_SKIPS_ALIENS
+	bullet_color = COLOR_PURPLE
+	ignite_shape = NO_CORNERS
+	ignite_range = 2
+	// fire_color = "purple" todo
+	var/added_spit_delay = 0
+	var/spit_cost = 150
 
 /datum/ammo/water
 	name = "water"

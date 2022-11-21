@@ -249,3 +249,19 @@
 		owner.underlays -= status_underlay
 	QDEL_NULL(status_overlay)
 	return ..()
+
+// Guarantees that it's a xeno you're messing with, and includes a type for convenience
+/datum/status_effect/xeno
+	// Same as owner, but typed for a xenomorph
+	var/mob/living/carbon/xenomorph/owner_xeno
+
+/datum/status_effect/xeno/on_creation(mob/living/new_owner, ...)
+	if(!isxeno(new_owner))
+		return
+	. = ..()
+	owner_xeno = owner
+
+/datum/status_effect/xeno/on_remove()
+	if (owner_xeno)
+		owner_xeno = null
+	. = ..()

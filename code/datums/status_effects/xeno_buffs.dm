@@ -448,3 +448,55 @@
 	name = "Healing Infusion"
 	desc = "You have accelerated natural healing."
 	icon_state = "healing_infusion"
+
+#define PIXELS_TO_DISSAPPEAR 200
+/datum/status_effect/xeno/dragon_flight
+	id = "Flight"
+	var/takeoff_delay = 5
+	var/flap_delay = 0.5 SECONDS
+	var/taking_off = TRUE
+	var/shadow
+
+/datum/status_effect/xeno/dragon_flight/on_apply()
+	. = ..()
+	take_off()
+
+/datum/status_effect/xeno/dragon_flight/on_remove()
+	if(taking_off)
+		taking_off = FALSE
+		reset_pixel_y()
+	if(owner.status_flags & INCORPOREAL)
+		owner_xeno.toggle_intangibility()
+	if(shadow)
+		qdel(shadow)
+/datum/status_effect/xeno/dragon_flight/proc/take_off()
+	//Queues up 
+	for(var/step in 1 to takeoff_delay)
+		owner.pixel_y = owner.pixel_y - 1
+		// Give give both the current step and the amount left as args, and delay it so it happens nicely after eachother
+		addtimer(CALLBACK(src, .proc/flap, step, takeoff_delay), step * flap_delay)
+
+/datum/status_effect/xeno/dragon_flight/proc/flap(current_step, total_steps)
+	// We want to reach out of the view screen within the steps left
+	if(!taking_off)
+		return
+	var/percentage_left = current_step / total_steps
+	var/pixels_y_to_move = percentage_left * PIXELS_TO_DISSAPPEAR
+	playsound(owner, 'sound/effects/woosh_swoosh.ogg', vary=TRUE, sound_range=14)
+	// Don't dip down on the first step, howabouts
+	if(current_step != 1)
+		animate(owner, pixel_y = owner.pixel_y - pixels_y_to_move / 2, flags = ANIMATION_RELATIVE)
+	// owner.pixel_y = owner.pixel_y + 2
+	animate(owner, pixel_y = pixels_y_to_move, flags = ANIMATION_RELATIVE)
+	if (current_step == total_steps)
+		finish_take_off()
+
+/datum/status_effect/xeno/dragon_flight/proc/reset_pixel_y()
+	owner.pixel_y = initial(owner.pixel_y)
+
+/datum/status_effect/xeno/dragon_flight/proc/finish_take_off()
+	taking_off = FALSE
+	reset_pixel_y()
+	owner_xeno.toggle_intangibility()
+
+#undef PIXELS_TO_DISSAPPEAR

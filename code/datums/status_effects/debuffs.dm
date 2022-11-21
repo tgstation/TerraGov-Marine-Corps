@@ -334,12 +334,16 @@
 	var/mob/living/carbon/human/person
 	var/mutable_appearance/fire_effect
 
-/datum/status_effect/dragon_fire/on_apply()
-	. = ..()
+/datum/status_effect/dragon_fire/on_creation(mob/living/new_owner, ...)
 	if(!ishuman(owner))
 		qdel(src)
 		CRASH("[src.type] somehow applied on a invalid type: [owner.type] [owner]")
 	person = owner
+	// Don't want it to start processing with null vars
+	. = ..()
+
+/datum/status_effect/dragon_fire/on_apply()
+	. = ..()
 	// Let's not have double fire
 	person.ExtinguishMob()
 	fire_effect = mutable_appearance('icons/mob/OnFire.dmi', "Standing_medium", -FIRE_LAYER)

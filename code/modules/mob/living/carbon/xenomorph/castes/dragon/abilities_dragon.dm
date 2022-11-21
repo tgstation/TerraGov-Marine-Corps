@@ -1,10 +1,7 @@
-/datum/ammo/flamethrower/dragon_fire
-	fire_color = "purple"
-	burn_flags = BURN_HUMANS|BURN_SNOW
 
 /obj/flamer_fire/resin
 	burnflags = BURN_HUMANS|BURN_SNOW
-	color = "purple"
+	color = COLOR_PURPLE
 
 #define DRAGON_TAIL_STAB_DELAY 1.5 SECONDS
 /datum/action/xeno_action/activable/tail_stab
@@ -17,6 +14,8 @@
 
 /datum/action/xeno_action/activable/tail_stab/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
+	if(!.)
+		return FALSE
 	if(owner.do_actions)
 		return FALSE
 	var/mob/living/carbon/human/target_human = target
@@ -39,10 +38,12 @@
 	owner_xeno.face_atom(target)
 	target.Immobilize(DRAGON_TAIL_STAB_DELAY)
 	target.apply_status_effect(STATUS_EFFECT_DRAGONFIRE, 10)
-	if(!do_after(owner_xeno, DRAGON_TAIL_STAB_DELAY, extra_checks=CALLBACK(.proc/can_use_ability, target)))
+
+	if(!do_after(owner_xeno, DRAGON_TAIL_STAB_DELAY, extra_checks=CALLBACK(.proc/line_of_sight, owner, target, 2)))
 		owner_xeno.balloon_alert(owner_xeno, "You give up on lighting [target] on fire!")
 		add_cooldown(3 SECONDS)
 		return succeed_activate()
+
 	owner_xeno.balloon_alert_to_viewers("has set [target] on fire with their tail!")
 	target.apply_status_effect(STATUS_EFFECT_DRAGONFIRE, 40)
 	add_cooldown()
@@ -51,9 +52,8 @@
 #undef DRAGON_TAIL_STAB_DELAY
 
 /datum/action/xeno_action/activable/xeno_spit/fireball
-	name = "Shoot selected Projectile"
-	mechanics_text = "Belch the selected projectile at your foes."
-
+	name = "Spit a fireball"
+	mechanics_text = "Belch a fiery fireball at your foes."
 
 /datum/action/xeno_action/activable/flight
 	name = "Skycall"
@@ -66,6 +66,8 @@
 
 /datum/action/xeno_action/activable/flight/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
+	if(!.)
+		return FALSE
 	if(owner.do_actions)
 		return FALSE
 	var/invalid_area = FALSE
@@ -80,27 +82,8 @@
 		return FALSE
 
 /datum/action/xeno_action/activable/flight/on_activation()
-
-// Mostly re-used from hivemind
-/mob/living/carbon/xenomorph/proc/toggle_flight(invincibility = TRUE)
-	if(status_flags & INCORPOREAL)
-		invisibility = initial(invisibility)
-		status_flags = initial(status_flags)
-		// upgrade = initial(upgrade)
-		resistance_flags = initial(resistance_flags)
-		flags_pass = initial(flags_pass)
-		density = initial(flags_pass)
-		throwpass = initial(throwpass)
-	else
-		invisibility = INVISIBILITY_MAXIMUM
-		status_flags = invincibility ? GODMODE | INCORPOREAL : INCORPOREAL
-		// upgrade = XENO_UPGRADE_ZERO
-		resistance_flags = BANISH_IMMUNE
-		flags_pass = NONE
-		density = TRUE
-		throwpass = FALSE
-		// Do following shadow here
-
-	update_wounds()
-	update_icon()
-	update_action_buttons()
+	var/mob/living/carbon/xenomorph/owner_xeno = owner
+	// A status effect for better edge case handling
+	owner_xeno.apply_status_effect(STATUS_EFFECT_FLIGHT)
+	if(!do_after(owner_xeno, 10 SECONDS))
+		owner_xeno.remove_status_effect(STATUS_EFFECT_FLIGHT)

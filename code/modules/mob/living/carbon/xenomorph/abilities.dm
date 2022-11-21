@@ -730,7 +730,8 @@
 				break
 			X.ammo = GLOB.ammo_list[X.xeno_caste.spit_types[i+1]]
 			break
-	to_chat(X, span_notice("We will now spit [X.ammo.name] ([X.ammo.spit_cost] plasma)."))
+	if (X.ammo.name && X.ammo.spit_cost)
+		to_chat(X, span_notice("We will now spit [X.ammo.name] ([X.ammo.spit_cost] plasma)."))
 	X.update_spits(TRUE)
 	update_button_icon()
 
@@ -792,7 +793,8 @@
 	playsound(X.loc, sound_to_play, 25, 1)
 
 	var/obj/projectile/newspit = new /obj/projectile(current_turf)
-	plasma_cost = X.ammo.spit_cost
+	if(X.ammo?.spit_cost)
+		plasma_cost = X.ammo.spit_cost
 	newspit.generate_bullet(X.ammo, X.ammo.damage * SPIT_UPGRADE_BONUS(X))
 	newspit.def_zone = X.get_limbzone_target()
 	newspit.fire_at(current_target, X, null, X.ammo.max_range, X.ammo.shell_speed)
