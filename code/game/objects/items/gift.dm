@@ -19,7 +19,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	///if true the present can be opened by anybody
 	var/freepresent = FALSE
 	///who is the present addressed to?
-	var/present_receiver = null
+	var/mob/living/carbon/human/present_receiver = null
 	///item contained in this gift
 	var/obj/item/contains_type
 	///real name of the present receiver
@@ -57,7 +57,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 					to_chat(M, span_warning("Your heart feels three sizes smaller..."))
 				spawnpresent(M) //they have the grinch trait, the presents will always spawn coal
 			else
-				spawnpresent(M, TRUE) //they got lucky, the present will open as normal but with a STOLEN label on examine
+				spawnpresent(M, TRUE) //they got lucky, the present will open as normal but with a STOLEN label in the desc
 			qdel(src)
 		return
 
@@ -85,19 +85,21 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		M.put_in_hands(C)
 		M.balloon_alert_to_viewers("Received a piece of [C]")
 		return
-	if(!freepresent)
-		GLOB.round_statistics.presents_delivered += 1
-	if(!QDELETED(I)) //might contain something like metal rods that might merge with a stack on the ground
-		M.balloon_alert_to_viewers("Found a [I]")
+	else
+		var/obj/item/I = new contains_type(get_turf(M))
+		if(QDELETED(I)) //might contain something like metal rods that might merge with a stack on the ground
+			M.balloon_alert_to_viewers("Nothing inside [M]'s gift" ,ignored_mobs = M)
+			M.balloon_alert(M, "Nothing inside")
+			return
+		if(!freepresent)
+			GLOB.round_statistics.presents_delivered += 1
 		if(!stolen_gift)
 			I.desc += "Property of [M.real_name]."
 		else
 			I.color = COLOR_SOFT_RED
 			I.desc += "The word 'STOLEN' is visible in bright red and green ink."
+		M.balloon_alert_to_viewers("Found a [I]")
 		M.put_in_hands(I)
-	else
-		M.balloon_alert_to_viewers("Nothing inside [M]'s gift" ,ignored_mobs = M)
-		M.balloon_alert(M, "Nothing inside")
 
 /obj/item/a_gift/proc/get_gift_type()
 	var/gift_type_list = list(/obj/item/weapon/claymore/mercsword/commissar_sword,
@@ -188,9 +190,9 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	gift_type_list += subtypesof(/obj/item/robot_parts)
 	gift_type_list += subtypesof(/obj/item/seeds)
 	gift_type_list += subtypesof(/obj/item/stock_parts)
-	gift_type_list += subtypesof(/obj/item/box/loot)
+	gift_type_list += subtypesof(/obj/item/storage/box/loot)
 	gift_type_list += subtypesof(/obj/item/storage/pill_bottle)
-	gift_type_list += subtypesof(/obj/item/toolbox)
+	gift_type_list += subtypesof(/obj/item/storage/toolbox)
 	gift_type_list += subtypesof(/obj/item/tank)
 	gift_type_list += subtypesof(/obj/item/trash)
 	var/gift_type = pick(gift_type_list)
