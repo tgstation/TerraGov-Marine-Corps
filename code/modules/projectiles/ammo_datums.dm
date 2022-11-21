@@ -1690,8 +1690,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/rocket/ap
 	name = "kinetic penetrator"
 	hud_state = "rocket_ap"
-	damage = 360
-	damage_falloff = 0.5
+	damage = 340
 	accurate_range = 15
 	penetration = 200
 	sundering = 0
