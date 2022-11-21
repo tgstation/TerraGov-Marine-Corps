@@ -12,7 +12,7 @@
 	///Delay added to mob's move_delay when pulling it.
 	var/drag_delay = 3
 	///Wind-up before the mob can pull an object.
-	var/drag_windup = 5 SECONDS
+	var/drag_windup = 3 SECONDS
 	var/throwing = FALSE
 	var/thrower = null
 	var/turf/throw_source = null
