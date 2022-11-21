@@ -28,7 +28,22 @@
 	color = "#CB0166"
 	spawning = 30
 
-
+/particles/crush_warning
+	icon = 'icons/effects/particles/generic_particles.dmi'
+	icon_state = "lemon"
+	width = 36
+	height = 45
+	count = 50
+	spawning = 5
+	lifespan = 8
+	fade = 10
+	grow = -0.04
+	velocity = list(0, 0.2)
+	position = generator("sphere", 15, 17, NORMAL_RAND)
+	drift = generator("vector", list(-0.5, -0.5), list(0.5, 0.5))
+	gravity = list(0, 0.6)
+	scale = generator("vector", list(0.3, 0.3), list(0.7,0.7), NORMAL_RAND)
+	color = "#4b3f7e"
 
 // ***************************************
 // *********** Psychic shield
@@ -407,6 +422,15 @@
 	anchored = TRUE
 	resistance_flags = RESIST_ALL
 	layer = FLY_LAYER
+	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
+	var/obj/effect/abstract/particle_holder/particle_holder
+	///The particle type this ability uses
+	var/channel_particle = /particles/crush_warning
+
+/obj/effect/xeno/crush_warning/Initialize()
+	. = ..()
+	particle_holder = new(src, channel_particle)
+	particle_holder.pixel_y = 0
 
 
 // ***************************************
