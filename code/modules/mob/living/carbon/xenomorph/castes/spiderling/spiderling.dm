@@ -84,16 +84,13 @@
 /datum/ai_behavior/spiderling/proc/spiderling_rage()
 	var/mob/living/carbon/xenomorph/spiderling/x = mob_parent
 	var/list/mob/living/carbon/human/possible_victims = list()
-	for(var/mob/living/carbon/human/victim in view(SPIDERLING_RAGE_RANGE, x))
-		if(get_dist(x, victim) > SPIDERLING_RAGE_RANGE)
-			continue
+	for(var/mob/living/carbon/human/victim in cheap_get_humans_near(x, SPIDERLING_RAGE_RANGE))
 		if(victim.stat == DEAD)
 			continue
 		possible_victims += victim
-	if(isnull(possible_victims))
+	if(!length.possible_victims)
 		qdel(x)
 		return
 	x.emote("roar")
-	x.next_move_slowdown -= SPIDERLING_RAGE_SPEED
 	change_action(MOVING_TO_ATOM, pick(possible_victims))
 	QDEL_IN(x, 10 SECONDS)
