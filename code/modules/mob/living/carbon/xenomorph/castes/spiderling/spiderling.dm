@@ -88,7 +88,7 @@
 		if(victim.stat == DEAD)
 			continue
 		possible_victims += victim
-	if(!length.possible_victims)
+	if(!length(possible_victims))
 		qdel(x)
 		return
 	x.emote("roar")
