@@ -103,8 +103,6 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 
 /obj/item/a_gift/proc/get_gift_type()
 	var/gift_type_list = list(/obj/item/weapon/claymore/mercsword/commissar_sword,
-		/obj/item/weapon/claymore/mercsword,
-		/obj/item/weapon/claymore/mercsword/machete,
 		/obj/item/weapon/energy/sword/blue,
 		/obj/item/weapon/holo/esword,
 		/obj/item/weapon/gun/revolver/mateba,
@@ -136,7 +134,6 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		/obj/item/coin/diamond,
 		/obj/item/cell/infinite,
 		/obj/item/ashtray,
-		/obj/item/assembly/mousetrap/armed,
 		/obj/item/clothing/glasses/sunglasses/aviator/yellow,
 		/obj/item/clothing/head/boonie,
 		/obj/item/clothing/mask/cigarette/pipe/cobpipe,
@@ -158,6 +155,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		/obj/item/clothing/tie/horrible,
 		/obj/item/card/emag_broken,
 		/obj/item/tweezers,
+		/obj/item/taperecorder,
 		/obj/item/tool/pickaxe/plasmacutter,
 		/obj/item/clothing/glasses/night/imager_goggles,
 		/obj/item/clothing/suit/poncho,
@@ -167,7 +165,9 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		/obj/item/clothing/head/snowman,
 		/obj/item/toy/crossbow,
 		/obj/item/bodybag,
+		/obj/item/weapon/nullrod,
 		/obj/item/pinpointer,
+		/obj/item/blueprints,
 		/obj/item/a_gift/anything,
 		/obj/item/toy/prize/durand,
 		/obj/item/stack/sheet/mineral/phoron/small_stack,
@@ -219,6 +219,16 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	gift_type_list += subtypesof(/obj/item/portable_vendor)
 	gift_type_list += subtypesof(/obj/item/shard)
 	gift_type_list += subtypesof(/obj/item/minerupgrade)
+	gift_type_list += subtypesof(/obj/item/weapon/shield)
+	gift_type_list += subtypesof(/obj/item/weapon/claymore)
+	gift_type_list += subtypesof(/obj/item/bedsheet)
+	gift_type_list += subtypesof(/obj/item/assembly)
+	gift_type_list += subtypesof(/obj/item/book)
+	gift_type_list += subtypesof(/obj/item/cell)
+	gift_type_list += subtypesof(/obj/item/circuitboard)
+	gift_type_list += subtypesof(/obj/item/clothing/glasses)
+	gift_type_list += subtypesof(/obj/item/armor_module/module)
+	gift_type_list += subtypesof(/obj/item/armor_module/storage)
 	var/gift_type = pick(gift_type_list)
 
 	return gift_type
