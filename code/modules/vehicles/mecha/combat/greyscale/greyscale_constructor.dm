@@ -403,7 +403,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	mech.pixel_y = 240
 	animate(mech, time=4 SECONDS, pixel_y=initial(mech.pixel_y), easing=SINE_EASING|EASE_OUT)
 	if(!istype(src, /obj/machinery/computer/mech_builder/valhalla))
-		mech.linked_builder = src
+		RegisterSignal(mech, COMSIG_PARENT_QDELETING, .proc/lock, override = TRUE)
 
 ///updates the current_stats data for the UI
 /obj/machinery/computer/mech_builder/proc/update_stats(selected_part, old_bodytype, new_bodytype)
