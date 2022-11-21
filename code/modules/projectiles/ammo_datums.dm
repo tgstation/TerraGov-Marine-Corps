@@ -2515,10 +2515,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			if(living_victim.stat == DEAD)
 				continue
 			if(!isxeno(living_victim))
-				living_victim.apply_damage(aoe_damage, BURN, blocked = living_victim.get_soft_armor(ENERGY), updating_health = TRUE)
+				living_victim.apply_damage(aoe_damage, BURN, blocked = living_victim.get_soft_armor(ENERGY) - penetration, updating_health = TRUE)
 				staggerstun(living_victim, P, 9, slowdown = 1)
-		else
-			victim.ex_act(EXPLODE_LIGHT)
+		else if(isobj(victim))
+			var/obj/obj_victim = victim
+			obj_victim.take_damage(aoe_damage, BURN, ENERGY, 0, armour_penetration = penetration)
 		var/throw_dir = get_dir(T, victim)
 		if(T == get_turf(victim))
 			throw_dir = get_dir(P.starting_turf, T)
