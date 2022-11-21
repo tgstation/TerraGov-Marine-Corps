@@ -89,8 +89,13 @@
 			continue
 		possible_victims += victim
 	if(!length(possible_victims))
-		qdel(x)
+		kill_parent()
 		return
 	x.emote("roar")
 	change_action(MOVING_TO_ATOM, pick(possible_victims))
-	QDEL_IN(x, 10 SECONDS)
+	addtimer(CALLBACK(src, .proc/kill_parent), 10 SECONDS)
+
+///This kills the spiderling
+/datum/ai_behavior/spiderling/proc/kill_parent()
+	var/mob/living/carbon/xenomorph/spiderling/spiderling_parent = mob_parent
+	spiderling_parent.death(gibbing = FALSE)
