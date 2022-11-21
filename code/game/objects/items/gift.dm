@@ -33,9 +33,14 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 
 	contains_type = get_gift_type()
 
+/obj/item/a_gift/examine(mob/user)
+	. = ..()
+	if(present_receiver)
+		. += "This present is addressed to [present_receiver_name]."
+
 /obj/item/a_gift/attack_self(mob/M)
 	if(present_receiver == null)
-		get_recipient()
+		get_recipient() //generate owner of gift
 	to_chat(M, span_warning("You start unwrapping the present, trying to locate any sign of who the present belongs to..."))
 	if(!do_after(M, 4 SECONDS))
 		return
@@ -43,14 +48,15 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		if(tgui_alert(M, "This present is addressed to [present_receiver_name]. Open it anyways?", "Continue?", list("Yes", "No")) != "No")
 			M.visible_message(span_notice("[M] tears into [present_receiver]'s gift with reckless abandon!"))
 			M.balloon_alert_to_viewers("Open's [present_receiver]'s gift" ,ignored_mobs = M)
+			log_game("[M] has opened a present that didn't belong to them at [AREACOORD(loc)]")
 			if(prob(70) || HAS_TRAIT(M, TRAIT_CHRISTMAS_GRINCH))
 				GLOB.round_statistics.presents_grinched += 1
-				spawnpresent(M, TRUE)
 				if(!HAS_TRAIT(M, TRAIT_CHRISTMAS_GRINCH))
 					GLOB.round_statistics.number_of_grinches += 1
 					ADD_TRAIT(M, TRAIT_CHRISTMAS_GRINCH, TRAIT_CHRISTMAS_GRINCH) //bad present openers are effectively cursed to receive nothing but coal for the rest of the round
+				spawnpresent(M) //they now have the grinch trait, the present will spawn coal
 			else
-				spawnpresent(M)
+				spawnpresent(M, TRUE) //they got lucky, the present will open as normal but with a STOLEN label on examine
 			qdel(src)
 		return
 
@@ -69,10 +75,10 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	if(!length(eligible_targets))
 		freepresent = TRUE //nobody alive, anybody can open it
 	present_receiver = (pick(eligible_targets))
-	present_receiver_name = present_receiver.real_name
+	present_receiver_name = present_receiver.real_name //assign real name for maximum readability on examine
 
-/obj/item/a_gift/proc/spawnpresent(mob/M, spawncoal = FALSE)
-	if(spawncoal || HAS_TRAIT(M, TRAIT_CHRISTMAS_GRINCH))
+/obj/item/a_gift/proc/spawnpresent(mob/M, stolen_gift)
+	if(HAS_TRAIT(M, TRAIT_CHRISTMAS_GRINCH))
 		var/obj/item/C = new /obj/item/ore/coal(get_turf(M))
 		M.put_in_hands(C)
 		M.balloon_alert_to_viewers("Received a piece of [C]")
@@ -81,6 +87,11 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		GLOB.round_statistics.presents_delivered += 1
 	if(!QDELETED(I)) //might contain something like metal rods that might merge with a stack on the ground
 		M.balloon_alert_to_viewers("Found a [I]")
+		if(!stolen_gift)
+			I.desc += "Property of [M.real_name]."
+		else
+			I.color = COLOR_SOFT_RED
+			I.desc += "The word 'STOLEN' is visible in bright red and green ink."
 		M.put_in_hands(I)
 	else
 		M.balloon_alert_to_viewers("Nothing inside [M]'s gift" ,ignored_mobs = M)

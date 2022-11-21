@@ -124,6 +124,9 @@
 "aaz" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/tool/wirecutters,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/mainship/red{
 	dir = 9
 	},
@@ -1972,6 +1975,9 @@
 /obj/item/reagent_containers/food/drinks/flask/barflask,
 /obj/item/reagent_containers/food/drinks/bottle/davenport,
 /obj/item/reagent_containers/food/drinks/bottle/eggnog,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/carpet/side{
 	dir = 1
 	},
@@ -3305,6 +3311,9 @@
 /obj/effect/decal/warning_stripes,
 /obj/item/toy/beach_ball/basketball,
 /obj/machinery/holopad,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/wood,
 /area/mainship/living/basketball)
 "bir" = (
@@ -10791,6 +10800,14 @@
 	dir = 8
 	},
 /area/mainship/command/bridge)
+"ghV" = (
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 4
+	},
+/area/mainship/hallways/hangar)
 "gia" = (
 /obj/machinery/door/airlock/mainship/generic{
 	name = "Kitchen"
@@ -12715,6 +12732,9 @@
 /area/mainship/medical/surgery_hallway)
 "jkR" = (
 /obj/item/reagent_containers/food/snacks/grown/poppy,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/starboard_garden)
 "jnG" = (
@@ -14221,6 +14241,9 @@
 /obj/item/camera_film,
 /obj/item/camera,
 /obj/structure/table/fancywoodentable,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
 "lJf" = (
@@ -16193,6 +16216,9 @@
 /obj/structure/table/mainship/nometal,
 /obj/item/paper,
 /obj/item/taperecorder,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/repair_bay)
 "oKV" = (
@@ -18696,6 +18722,9 @@
 	dir = 1
 	},
 /obj/effect/spawner/random/christmas_food,
+/obj/effect/spawner/random/present{
+	pixel_y = 5
+	},
 /turf/open/floor/wood,
 /area/mainship/medical/surgery_hallway)
 "sqW" = (
@@ -43968,7 +43997,7 @@ rbR
 bgb
 bea
 bea
-bea
+ghV
 juB
 bgb
 bgb
