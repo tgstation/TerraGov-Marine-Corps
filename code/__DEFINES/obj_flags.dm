@@ -17,3 +17,6 @@
 #define PROJECTILE_IMMUNE (1<<8) //Cannot be hit by projectiles
 
 #define RESIST_ALL (UNACIDABLE|INDESTRUCTIBLE)
+
+//projectile flags
+#define PROJECTILE_FROZEN (1<<0) //indicates a projectile is no longer moving

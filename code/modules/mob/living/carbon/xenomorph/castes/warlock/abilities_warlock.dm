@@ -87,12 +87,14 @@
 
 ///Removes the shield and resets the ability
 /datum/action/xeno_action/activable/psychic_shield/proc/cancel_shield()
+	active_shield.release_projectiles()
 	QDEL_NULL(active_shield)
 	action_icon_state = "psy_shield"
 	add_cooldown()
 
 ///AOE knockback triggerable by ending the shield early
 /datum/action/xeno_action/activable/psychic_shield/proc/shield_blast()
+	active_shield.reflect_projectiles()
 	var/turf/lower_left
 	var/turf/upper_right
 	switch(active_shield.dir)
@@ -138,10 +140,12 @@
 /obj/effect/xeno/shield
 	icon = 'icons/Xeno/96x96.dmi'
 	icon_state = "shield"
-	resistance_flags = RESIST_ALL
+	resistance_flags = BANISH_IMMUNE|UNACIDABLE|PLASMACUTTER_IMMUNE
+	max_integrity = 600
 	layer = ABOVE_MOB_LAYER
 	///Who created the shield
 	var/mob/living/carbon/xenomorph/owner
+	var/list/frozen_projectiles = list()
 
 /obj/effect/xeno/shield/Initialize(loc, creator)
 	. = ..()
@@ -161,28 +165,52 @@
 		if(!uncrossing)
 			proj.uncross_scheduled += src
 		return FALSE
-	if (uncrossing)
+	if(uncrossing)
 		return FALSE
-	reflect_projectile(proj)
-	return FALSE
+
+	return TRUE
+
+/obj/effect/xeno/shield/do_projectile_hit(obj/projectile/proj)
+	proj.flags_projectile_behavior |= PROJECTILE_FROZEN
+	proj.iff_signal = null
+	frozen_projectiles += proj
+	take_damage(proj.damage, proj.ammo.damage_type, proj.ammo.armor_type, 0, turn(proj.dir, 180), proj.ammo.penetration)
+
+/obj/effect/xeno/shield/Destroy()
+	. = ..()
+	release_projectiles()
+	if(owner)
+		owner.apply_effects(weaken = 0.5)
+
+///Unfeezes the projectiles on their original path
+/obj/effect/xeno/shield/proc/release_projectiles()
+	for(var/obj/projectile/proj AS in frozen_projectiles)
+		proj.flags_projectile_behavior &= ~PROJECTILE_FROZEN
+		if(istype(proj, /obj/projectile/hitscan))
+			proj.projectile_batch_move(FALSE)
+			qdel(proj)
+		else
+			START_PROCESSING(SSprojectiles, proj)
 
 ///Reflects projectiles based on their relative incoming angle
-/obj/effect/xeno/shield/proc/reflect_projectile(obj/projectile/proj)
+/obj/effect/xeno/shield/proc/reflect_projectiles()
 	playsound(loc, 'sound/effects/portal.ogg', 20)
-	var/new_range = proj.proj_max_range - proj.distance_travelled
+	var/perpendicular_angle = Get_Angle(get_turf(src), get_step(src, dir)) //the angle src is facing, get_turf because pixel_x or y messes with the angle
+	for(var/obj/projectile/proj AS in frozen_projectiles)
+		proj.flags_projectile_behavior &= ~PROJECTILE_FROZEN
+		var/new_range = proj.proj_max_range - proj.distance_travelled
+		if(new_range <= 0)
+			proj.ammo.do_at_max_range(proj)
+			qdel(proj)
+			continue
+		var/new_angle = (perpendicular_angle + (perpendicular_angle - proj.dir_angle - 180))
+		if(new_angle < 0)
+			new_angle += 360
+		else if(new_angle > 360)
+			new_angle -= 360
+		proj.firer = src
+		proj.fire_at(shooter = src, source = src, range = new_range, angle = new_angle, recursivity = TRUE)
 
-	if(new_range <= 0)
-		proj.ammo.do_at_max_range(proj)
-		qdel(proj)
-		return
-	var/perpendicular_angle = Get_Angle(src, get_step(src, dir)) //the angle src is facing
-	var/new_angle = (perpendicular_angle + (perpendicular_angle - proj.dir_angle - 180))
-	if(new_angle < 0)
-		new_angle += 360
-	else if(new_angle > 360)
-		new_angle -= 360
-	proj.firer = src
-	proj.fire_at(shooter = src, source = src, range = new_range, angle = new_angle, recursivity = TRUE)
 
 // ***************************************
 // *********** psychic crush
