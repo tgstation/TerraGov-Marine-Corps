@@ -388,7 +388,6 @@
 	REMOVE_TRAIT(src, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	dead_ticks = 0
 	chestburst = 0
-	headbitten = FALSE
 	update_body()
 	update_hair()
 	return ..()
