@@ -136,6 +136,8 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	var/list/current_stats
 	///cooldown check that will stop players from interacting with the mech builder unless the timer ends
 	var/locked = FALSE
+	///cooldown time after mech is destroyed
+	var/lock_timer = 20 MINUTES
 	/// list(STRING-list(STRING-STRING)) of primary and secondary palettes. first string is category, second is name
 	var/static/list/available_colors = ARMOR_PALETTES_LIST
 	/// list(STRING-list(STRING-STRING)) of visor palettes. first string is category, second is name
@@ -402,8 +404,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 
 	mech.pixel_y = 240
 	animate(mech, time=4 SECONDS, pixel_y=initial(mech.pixel_y), easing=SINE_EASING|EASE_OUT)
-	if(!istype(src, /obj/machinery/computer/mech_builder/valhalla))
-		RegisterSignal(mech, COMSIG_PARENT_QDELETING, .proc/lock, override = TRUE)
+	RegisterSignal(mech, COMSIG_PARENT_QDELETING, .proc/lock, override = TRUE)
 
 ///updates the current_stats data for the UI
 /obj/machinery/computer/mech_builder/proc/update_stats(selected_part, old_bodytype, new_bodytype)
@@ -456,6 +457,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 /obj/machinery/computer/mech_builder/valhalla
 	name = "valhalla mech computer"
 	desc = "A magic mech computer that can summon mechs with no cooldown."
+	lock_timer = 5 SECONDS
 
 /obj/machinery/computer/mech_builder/update_icon_state()
 	..()
@@ -463,14 +465,13 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	if(locked)
 		icon_state = "[icon_state]_cd"
 
-///these two procs lock and unlock the computer, it takes 20 minutes after a mech dies until a new mech can be created
+///these two procs lock and unlock the computer
 /obj/machinery/computer/mech_builder/proc/lock()
-	if(!istype(src, /obj/machinery/computer/mech_builder/valhalla)) //if the computer is in valhalla, dont lock it
-		if(locked)
-			addtimer(CALLBACK(src, .proc/unlock), 20 MINUTES)
-			return
-		locked = TRUE
-		update_icon()
+	if(locked)
+		addtimer(CALLBACK(src, .proc/unlock), lock_timer)
+		return
+	locked = TRUE
+	update_icon()
 
 /obj/machinery/computer/mech_builder/proc/unlock()
 	locked = FALSE
