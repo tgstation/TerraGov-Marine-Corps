@@ -28509,7 +28509,7 @@
 /area/gelida/indoors/a_block/fitness)
 "saH" = (
 /obj/structure/showcase{
-	desc = "The display model for a Nanotrasen generation one synthetic. It almost feels like the eyes on this one follow you.";
+	desc = "The display model for a NanoTrasen generation one synthetic. It almost feels like the eyes on this one follow you.";
 	name = "Display synthetic"
 	},
 /obj/structure/window/reinforced,
