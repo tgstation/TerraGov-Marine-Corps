@@ -689,9 +689,9 @@ EXPLOSIVES
 	cost = 45
 
 /datum/supply_packs/explosives/mlrs_rockets
-	name = "TA-40L MLRS Rocket Pack (x8)"
+	name = "TA-40L MLRS Rocket Pack (x16)"
 	contains = list(/obj/item/storage/box/mlrs_rockets)
-	cost = 3
+	cost = 6
 
 /datum/supply_packs/explosives/howitzer
 	name = "MG-100Y howitzer"
@@ -1745,3 +1745,48 @@ FACTORY
 	name = "Railgun magazine assembly refill"
 	contains = list(/obj/item/factory_refill/railgun_magazine_refill)
 	cost = 20
+
+/datum/supply_packs/factory/minigun_powerpack_refill
+	name = "Minigun powerpack assembly refill"
+	contains = list(/obj/item/factory_refill/minigun_powerpack_refill)
+	cost = 25
+
+/datum/supply_packs/factory/razornade_refill
+	name = "Razornade assembly refill"
+	contains = list(/obj/item/factory_refill/razornade_refill)
+	cost = 50
+
+/datum/supply_packs/factory/amr_magazine_refill
+	name = "T-26 AMR magazine assembly refill"
+	contains = list(/obj/item/factory_refill/amr_magazine_refill)
+	cost = 40
+
+/datum/supply_packs/factory/amr_magazine_incend_refill
+	name = "T-26 AMR magazine assembly refill"
+	contains = list(/obj/item/factory_refill/amr_magazine_incend_refill)
+	cost = 40
+
+/datum/supply_packs/factory/amr_magazine_flak_refill
+	name = "T-26 AMR magazine assembly refill"
+	contains = list(/obj/item/factory_refill/amr_magazine_flak_refill)
+	cost = 40
+
+/datum/supply_packs/factory/howitzer_shell_he_refill
+	name = "Howitzer HE shell assembly refill"
+	contains = list(/obj/item/factory_refill/howitzer_shell_he_refill)
+	cost = 80
+
+/datum/supply_packs/factory/howitzer_shell_incen_refill
+	name = "Howitzer Incendiary shell assembly refill"
+	contains = list(/obj/item/factory_refill/howitzer_shell_incen_refill)
+	cost = 80
+
+/datum/supply_packs/factory/howitzer_shell_wp_refill
+	name = "Howitzer WP shell assembly refill"
+	contains = list(/obj/item/factory_refill/howitzer_shell_wp_refill)
+	cost = 100
+
+/datum/supply_packs/factory/howitzer_shell_tfoot_refill
+	name = "Howitzer Tanglefoot shell assembly refill"
+	contains = list(/obj/item/factory_refill/howitzer_shell_tfoot_refill)
+	cost = 100

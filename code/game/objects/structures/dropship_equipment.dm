@@ -44,6 +44,10 @@
 		return TRUE
 	if(installed_equipment)
 		return TRUE
+	for(var/atom/thing_to_check AS in loc)
+		if(thing_to_check.density)
+			balloon_alert(user, "Blocked by [thing_to_check]")
+			return TRUE
 	playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
 	if(!do_after(user, 7 SECONDS, FALSE, src))
 		return TRUE

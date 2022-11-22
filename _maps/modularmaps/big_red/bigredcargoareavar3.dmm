@@ -204,7 +204,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "nq" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "pJ" = (
@@ -352,7 +352,7 @@
 /area/bigredv2/outside/nw)
 "Av" = (
 /obj/machinery/light,
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "AE" = (

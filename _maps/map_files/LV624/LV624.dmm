@@ -17048,7 +17048,7 @@
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle9)
 "rxC" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/marking/warning{
 	dir = 9
 	},
@@ -20116,7 +20116,7 @@
 	},
 /area/lv624/lazarus/spaceport2)
 "vbH" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /obj/item/explosive/grenade/incendiary,
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
@@ -21029,7 +21029,7 @@
 	},
 /area/lv624/lazarus/sleep_male)
 "wfu" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /obj/machinery/light/small{
 	dir = 8
 	},
