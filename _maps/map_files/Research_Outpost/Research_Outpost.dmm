@@ -5995,7 +5995,7 @@
 	},
 /area/outpost/caves/north_west)
 "Bw" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/tile/dark/brown2{
 	dir = 5
 	},
@@ -8073,7 +8073,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_east)
 "Ls" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /obj/machinery/light{
 	dir = 8
 	},
