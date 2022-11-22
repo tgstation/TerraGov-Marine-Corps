@@ -462,7 +462,7 @@
 	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/standard_agls
 	scatter = 0
-	fire_delay = 1.2 SECONDS
+	fire_delay = 1 SECONDS
 	burst_amount = 0
 	accuracy_mult = 1.2 //it's got a bipod
 	flags_item = IS_DEPLOYABLE|TWOHANDED
@@ -484,7 +484,6 @@
 
 	deploy_time = 6 SECONDS
 	undeploy_time = 3 SECONDS
-	deployed_item = /obj/machinery/deployable/mounted
 
 	max_integrity = 500
 	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 75, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
