@@ -51,6 +51,8 @@
 
 /datum/action/xeno_action/petrify/can_use_action(silent, override_flags)
 	. = ..()
+	if(!.)
+		return
 	if(LAZYACCESS(owner.do_actions, src))
 		owner.balloon_alert(owner, "already busy")
 		return FALSE
@@ -128,6 +130,8 @@
 
 /datum/action/xeno_action/activable/off_guard/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
+	if(!.)
+		return
 	if(!ishuman(A))
 		if(!silent)
 			A.balloon_alert(owner, "not human")
@@ -192,6 +196,8 @@
 
 /datum/action/xeno_action/zero_form_beam/can_use_action(silent, override_flags)
 	. = ..()
+	if(!.)
+		return
 	if(LAZYACCESS(owner.do_actions, src))
 		if(!silent)
 			owner.balloon_alert(owner, "already busy")
@@ -210,7 +216,19 @@
 	if(!LAZYLEN(targets))
 		return
 
-	particles = new(owner, /particles/zero_form)
+	var/particles_type
+	switch(owner.dir)
+		if(WEST)
+			particles_type = /particles/zero_form/west
+		if(EAST)
+			particles_type = /particles/zero_form/east
+		if(NORTH)
+			particles_type = /particles/zero_form/north
+		if(SOUTH)
+			particles_type = /particles/zero_form/south
+		else
+			particles_type = /particles/zero_form
+	particles = new(owner, particles_type)
 	beam = owner.beam(targets[length(targets)], "plasmabeam", beam_type = /obj/effect/ebeam/zeroform)
 	sound_loop.start(owner)
 	if(!do_after(owner, ZEROFORM_CHARGE_TIME, FALSE, owner, BUSY_ICON_DANGER))
@@ -239,14 +257,40 @@
 	SIGNAL_HANDLER
 	sound_loop.stop(owner)
 	QDEL_NULL(beam)
-	QDEL_NULL_IN(src, particles, (particles.particles.lifespan + particles.particles.fade))
+	particles.particles.spawning = 0
+	QDEL_NULL_IN(src, particles, 40)
 	deltimer(timer_ref)
 	timer_ref = null
 	targets = null
 	add_cooldown()
 
 /particles/zero_form
+	width = 400
+	height = 400
+	spawning = 5
 
+	fadein = generator(GEN_NUM, 5, 10, NORMAL_RAND)
+	lifespan = generator(GEN_NUM, 10, 20, NORMAL_RAND)
+	fade = generator(GEN_NUM, 5, 10, NORMAL_RAND)
+
+	gradient = list(1, "#C3B1E1", 2, "#800080", "loop")
+	color = 0.3
+
+/particles/zero_form/west
+	gravity = list(-1, 0)
+	position = generator(GEN_VECTOR, list(16, 18), list(16, -18), SQUARE_RAND)
+
+/particles/zero_form/east
+	gravity = list(1, 0)
+	position = generator(GEN_VECTOR, list(16, 18), list(16, -18), SQUARE_RAND)
+
+/particles/zero_form/north
+	gravity = list(0, 1)
+	position = generator(GEN_VECTOR, list(-2, 16), list(34, 16), SQUARE_RAND)
+
+/particles/zero_form/south
+	gravity = list(0, -1)
+	position = generator(GEN_VECTOR, list(-2, 16), list(34, 16), SQUARE_RAND)
 
 // ***************************************
 // *********** Psychic Summon
@@ -269,6 +313,8 @@
 
 /datum/action/xeno_action/psychic_summon/can_use_action(silent, override_flags)
 	. = ..()
+	if(!.)
+		return
 	var/mob/living/carbon/xenomorph/X = owner
 	if(length(X.hive.get_all_xenos()) <= 1)
 		if(!silent)

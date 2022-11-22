@@ -44,30 +44,31 @@
 
 // tivi todo
 /particles/gun_skill
+	count = 100
+	spawning = 3
+	gravity = list(0, -0.03)
 	icon = 'icons/effects/particles/generic_particles.dmi'
+	lifespan = 20
+	fade = 10
+	color = 1
+	color_change = 0.05
+	position = generator(GEN_SPHERE, 0, 14, NORMAL_RAND)
 
 /particles/gun_skill/accuracy
 	icon_state = list("cross" = 1, "x" = 1)
 
 /particles/gun_skill/accuracy/buff
-	gradient = list(1, "#00ff00", 3, "#ff0", "loop", "space" = COLORSPACE_HSV)
-	color = 1
-	color_change = 0.1
+	gradient = list(1, "#00ff00", 2, "#ff0", "loop")
 
 /particles/gun_skill/accuracy/debuff
-	gradient = list(1, "#f00", 3, "#ff0", "loop", "space" = COLORSPACE_HSV)
-	color = 1
-	color_change = 0.1
+	gradient = list(1, "#f00", 2, "#ff0", "loop")
 
 /particles/gun_skill/scatter
-	icon_state = list("up_arrow" = 1, "down_arrow" = 1)
 
 /particles/gun_skill/scatter/buff
-	gradient = list(1, "#00ff00", 3, "#ff0", "loop", "space" = COLORSPACE_HSV)
-	color = 1
-	color_change = 0.1
+	icon_state = "up_arrow"
+	gradient = list(1, "#00ff00", 2, "#ff0", "loop")
 
 /particles/gun_skill/scatter/debuff
-	gradient = list(1, "#f00", 3, "#ff0", "loop", "space" = COLORSPACE_HSV)
-	color = 1
-	color_change = 0.1
+	icon_state = "down_arrow"
+	gradient = list(1, "#f00", 2, "#ff0", "loop")
