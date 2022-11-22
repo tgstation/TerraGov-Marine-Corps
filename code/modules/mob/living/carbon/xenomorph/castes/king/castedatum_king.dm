@@ -45,7 +45,6 @@
 		/datum/action/xeno_action/activable/nightfall,
 		/datum/action/xeno_action/petrify,
 		/datum/action/xeno_action/activable/off_guard,
-		/datum/action/xeno_action/zero_form_beam,
 		/datum/action/xeno_action/psychic_summon,
 		/datum/action/xeno_action/pheromones,
 		/datum/action/xeno_action/pheromones/emit_recovery,
@@ -138,3 +137,51 @@
 
 	// *** Pheromones *** //
 	aura_strength = 6
+
+/datum/xeno_caste/king/primordial
+	caste_desc = "An avatar of death. Running won't help you now."
+	primordial_message = "Death cannot create, but you definitely know how to destroy."
+	upgrade = XENO_UPGRADE_FOUR
+
+	// *** Melee Attacks *** //
+	melee_damage = 30
+
+	// *** Speed *** //
+	speed = -0.3
+
+	// *** Plasma *** //
+	plasma_max = 1200
+	plasma_gain = 70
+
+	// *** Health *** //
+	max_health = 700
+
+	// *** Defense *** //
+	soft_armor = list(MELEE = 65, BULLET = 65, LASER = 65, ENERGY = 65, BOMB = 100, BIO = 60, FIRE = 100, ACID = 60)
+
+	// *** Ranged Attack *** //
+	spit_delay = 1.1 SECONDS
+
+	// *** Pheromones *** //
+	aura_strength = 6
+
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/watch_xeno,
+		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/cocoon,
+		/datum/action/xeno_action/activable/plant_weeds,
+		/datum/action/xeno_action/activable/corrosive_acid/strong,
+		/datum/action/xeno_action/activable/nightfall,
+		/datum/action/xeno_action/petrify,
+		/datum/action/xeno_action/activable/off_guard,
+		/datum/action/xeno_action/zero_form_beam,
+		/datum/action/xeno_action/psychic_summon,
+		/datum/action/xeno_action/pheromones,
+		/datum/action/xeno_action/pheromones/emit_recovery,
+		/datum/action/xeno_action/pheromones/emit_warding,
+		/datum/action/xeno_action/pheromones/emit_frenzy,
+		/datum/action/xeno_action/rally_hive,
+		/datum/action/xeno_action/rally_minion,
+		/datum/action/xeno_action/set_agressivity,
+	)

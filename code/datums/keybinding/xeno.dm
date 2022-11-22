@@ -667,24 +667,24 @@
 	keybind_signal = COMSIG_XENOABILITY_NIGHTFALL
 
 /datum/keybinding/xeno/petrify
-	hotkey_keys = list("Space")
+	hotkey_keys = list("E")
 	name = "petrify"
 	full_name = "King: Petrify"
-	description = "Increases the localized gravity in an area and crushes everything in it."
+	description = "Petrifies all humans within views. While petrified humans can neither be damaged or take any actions."
 	keybind_signal = COMSIG_XENOABILITY_PETRIFY
 
 /datum/keybinding/xeno/off_guard
 	hotkey_keys = list("Q")
 	name = "off_guard"
 	full_name = "King: Off-guard"
-	description = "Increases the localized gravity in an area and crushes everything in it."
+	description = "Muddles the mind of an enemy, increasing their scatter for a while."
 	keybind_signal = COMSIG_XENOABILITY_OFFGUARD
 
 /datum/keybinding/xeno/zero_form_beam
-	hotkey_keys = list("E")
+	hotkey_keys = list("R")
 	name = "zero_form_beam"
 	full_name = "King: Zero-form beam"
-	description = "Increases the localized gravity in an area and crushes everything in it."
+	description = "After a windup, concentrates the hives energy into a forward-facing beam that pierces everything, but only hurts living beings."
 	keybind_signal = COMSIG_XENOABILITY_ZEROFORMBEAM
 
 /datum/keybinding/xeno/psychic_summon

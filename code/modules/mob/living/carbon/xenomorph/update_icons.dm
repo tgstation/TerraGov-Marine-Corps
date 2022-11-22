@@ -2,6 +2,7 @@
 /mob/living/carbon/xenomorph/apply_overlay(cache_index)
 	var/image/I = overlays_standing[cache_index]
 	if(I)
+		//TODO THIS SHOULD USE THE API!
 		overlays += I
 
 /mob/living/carbon/xenomorph/remove_overlay(cache_index)

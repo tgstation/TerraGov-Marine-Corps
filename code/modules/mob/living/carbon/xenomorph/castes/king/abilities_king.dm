@@ -39,7 +39,7 @@
 #define PETRIFY_WINDUP_TIME 3 SECONDS
 /datum/action/xeno_action/petrify
 	name = "Petrify"
-	action_icon_state = "stomp"
+	action_icon_state = "petrify"
 	mechanics_text = "After a windup, petrifies all humans looking at you. While petrified humans are immune to damage, but also can't attack."
 	ability_name = "petrify"
 	plasma_cost = 100
@@ -56,26 +56,43 @@
 		return FALSE
 
 /datum/action/xeno_action/petrify/action_activate()
-	var/mob/living/carbon/xenomorph/X = owner
-
-	var/obj/effect/overlay/eye/eye = new // tivi todo
-	owner.vis_contents -= eye
+	var/obj/effect/overlay/eye/eye = new
+	owner.vis_contents += eye
+	flick("eye_opening", eye)
+	playsound(owner, 'sound/effects/petrify_charge.ogg', 50)
 	if(!do_after(owner, PETRIFY_WINDUP_TIME, FALSE, owner, BUSY_ICON_DANGER))
-		owner.vis_contents -= eye
+		flick("eye_closing", eye)
+		addtimer(CALLBACK(src, .proc/remove_eye, eye), 7, TIMER_CLIENT_TIME)
 		return
-	owner.vis_contents -= eye
-
+	playsound(owner, 'sound/effects/petrify_activate.ogg', 50)
 	var/list/mob/living/carbon/human/humans = list()
-	for(var/mob/living/carbon/human/human in view(PETRIFY_RANGE, X))
+	for(var/mob/living/carbon/human/human in view(PETRIFY_RANGE, owner))
+		if(human.stat != CONSCIOUS)
+			continue
+		if(is_blind(human))
+			continue
 		humans += human
 		human.notransform = TRUE
 		human.status_flags |= GODMODE
 		human.add_atom_colour(COLOR_GRAY, TEMPORARY_COLOUR_PRIORITY)
 		human.log_message("has been petrified by [owner] for [PETRIFY_DURATION] ticks", LOG_ATTACK, color="pink")
-		human.balloon_alert(human, "petrified") // tivi todo remove
-	addtimer(CALLBACK(src, .proc/end_visuals), 5, TIMER_CLIENT_TIME)
+		human.balloon_alert(human, "petrified") // tivi todo remove?
+		var/image/stone_overlay = image('icons/effects/effects.dmi', null, "petrified_overlay")
+		stone_overlay.filters += filter(arglist(alpha_mask_filter(render_source="*[REF(human)]",flags=MASK_INVERSE)))
+		var/mutable_appearance/mask = mutable_appearance()
+		mask.appearance = human.appearance
+		mask.render_target = "*[REF(human)]"
+		mask.alpha = 125
+		stone_overlay.overlays += mask
+		human.overlays += stone_overlay
+		humans[human] = stone_overlay
+
 	if(!length(humans))
+		flick("eye_closing", eye)
+		addtimer(CALLBACK(src, .proc/remove_eye, eye), 7, TIMER_CLIENT_TIME)
 		return
+	addtimer(CALLBACK(src, .proc/remove_eye, eye), 10, TIMER_CLIENT_TIME)
+	flick("eye_explode", eye)
 	addtimer(CALLBACK(src, .proc/end_effects, humans), PETRIFY_DURATION)
 	add_cooldown()
 	succeed_activate()
@@ -86,17 +103,19 @@
 		human.notransform = FALSE
 		human.status_flags &= ~GODMODE
 		human.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, COLOR_GRAY)
+		human.overlays -= humans[human]
 
-///cleans up visual effects
-/datum/action/xeno_action/petrify/proc/end_visuals()
+///callback for removing the eye from viscontents
+/datum/action/xeno_action/petrify/proc/remove_eye(obj/effect/eye)
+	owner.vis_contents -= eye
 
 // ***************************************
 // *********** Off-Guard
 // ***************************************
 /datum/action/xeno_action/activable/off_guard
 	name = "Off-guard"
-	action_icon_state = "stomp"
-	mechanics_text = "After a windup, petrifies all humans looking at you. While petrified humans are immune to damage, but also can't attack."
+	action_icon_state = "off_guard"
+	mechanics_text = "Muddles the mind of an enemy, making it harder for them to focus their aim for a while."
 	ability_name = "off guard"
 	plasma_cost = 100
 	cooldown_timer = 20 SECONDS
@@ -113,12 +132,18 @@
 		if(!silent)
 			A.balloon_alert(owner, "not human")
 		return FALSE
+	var/mob/living/carbon/human/target = A
+	if(target.stat == DEAD)
+		if(!silent)
+			target.balloon_alert(owner, "already dead")
+		return FALSE
 
 /datum/action/xeno_action/activable/off_guard/use_ability(atom/target)
 	var/mob/living/carbon/human/human_target = target
 	human_target.apply_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_DEBUFF, 20)
 	human_target.log_message("has been off-guarded by [owner]", LOG_ATTACK, color="pink")
 	human_target.balloon_alert_to_viewers("confused")
+	playsound(human_target, 'sound/effects/off_guard_ability.ogg', 50)
 
 	add_cooldown()
 	succeed_activate()
@@ -129,12 +154,13 @@
 // ***************************************
 #define ZEROFORM_BEAM_RANGE 10
 #define ZEROFORM_CHARGE_TIME 2 SECONDS
+#define ZEROFORM_TICK_RATE 0.3 SECONDS
 /datum/action/xeno_action/zero_form_beam
 	name = "Zero-Form Energy Beam"
-	action_icon_state = "stomp"
-	mechanics_text = "After a windup, petrifies all humans looking at you. While petrified humans are immune to damage, but also can't attack."
+	action_icon_state = "zero_form_beam"
+	mechanics_text = "After a windup, concentrates the hives energy into a forward-facing beam that pierces everything, but only hurts living beings."
 	ability_name = "zero form energy beam"
-	plasma_cost = 50
+	plasma_cost = 25
 	cooldown_timer = 10 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
@@ -147,9 +173,13 @@
 	///particle holder for the particle visual effects
 	var/obj/effect/abstract/particle_holder/particles
 	// tivi todo
-	var/datum/looping_sound/sound_loop
+	var/datum/looping_sound/zero_form_beam/sound_loop
 	///ref to looping timer for the fire loop
 	var/timer_ref
+
+/datum/action/xeno_action/zero_form_beam/Destroy()
+	QDEL_NULL(sound_loop)
+	return ..()
 
 /datum/action/xeno_action/zero_form_beam/New(Target)
 	. = ..()
@@ -182,6 +212,7 @@
 
 	particles = new(owner, /particles/zero_form)
 	beam = owner.beam(targets[length(targets)], "plasmabeam", beam_type = /obj/effect/ebeam/zeroform)
+	sound_loop.start(owner)
 	if(!do_after(owner, ZEROFORM_CHARGE_TIME, FALSE, owner, BUSY_ICON_DANGER))
 		QDEL_NULL(beam)
 		QDEL_NULL(particles)
@@ -201,11 +232,12 @@
 			if(blasted.stat == DEAD)
 				continue
 			blasted.take_overall_damage(0, 15, updating_health = TRUE)
-	addtimer(CALLBACK(src, .proc/execute_attack), 3, TIMER_STOPPABLE)
+	timer_ref = addtimer(CALLBACK(src, .proc/execute_attack), ZEROFORM_TICK_RATE, TIMER_STOPPABLE)
 
 ///ends and cleans up beam
 /datum/action/xeno_action/zero_form_beam/proc/stop_beaming()
 	SIGNAL_HANDLER
+	sound_loop.stop(owner)
 	QDEL_NULL(beam)
 	QDEL_NULL_IN(src, particles, (particles.particles.lifespan + particles.particles.fade))
 	deltimer(timer_ref)

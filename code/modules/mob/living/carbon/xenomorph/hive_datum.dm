@@ -5,7 +5,10 @@
 	var/mob/living/carbon/xenomorph/queen/living_xeno_queen
 	var/mob/living/carbon/xenomorph/living_xeno_ruler
 	var/xeno_queen_timer
-	var/xenos_per_queen = 8 //Minimum number of xenos to support a queen.
+	/// minimum amount of xenos needed to support a queen
+	var/xenos_per_queen = 8
+	/// minimum amount of xenos needed to support a king
+	var/xenos_per_king = 15
 	var/color = null
 	var/prefix = ""
 	var/hive_flags = NONE
@@ -25,8 +28,6 @@
 	var/tier2_xeno_limit
 	///Queue of all observer wanting to join xeno side
 	var/list/mob/dead/observer/candidate
-	///Its an int showing the count of living kings
-	var/king_present = 0
 
 	///Reference to upgrades available and purchased by this hive.
 	var/datum/hive_purchases/purchases = new
@@ -302,6 +303,14 @@
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
 	return ((get_total_xeno_number() + stored_larva) < xenos_per_queen)
+
+/datum/hive_status/proc/can_hive_have_a_king()
+	return (get_total_xeno_number() < xenos_per_king)
+
+/datum/hive_status/normal/can_hive_have_a_king()
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
+	return ((get_total_xeno_number() + stored_larva) < xenos_per_king)
 
 /datum/hive_status/proc/get_total_tier_zeros()
 	return length(xenos_by_tier[XENO_TIER_ZERO])
