@@ -9,10 +9,10 @@
 	fade = 12
 	grow = -0.02
 	velocity = list(0, 3)
-	position = generator("circle", 15, 17, NORMAL_RAND)
-	drift = generator("vector", list(0, -0.5), list(0, 0.2))
+	position = generator(GEN_CIRCLE, 15, 17, NORMAL_RAND)
+	drift = generator(GEN_VECTOR, list(0, -0.5), list(0, 0.2))
 	gravity = list(0, 3)
-	scale = generator("vector", list(0.1, 0.1), list(0.5,0.5), NORMAL_RAND)
+	scale = generator(GEN_VECTOR, list(0.1, 0.1), list(0.5, 0.5), NORMAL_RAND)
 	color = "#6a59b3"
 
 /particles/warlock_charge/psy_blast
@@ -39,10 +39,10 @@
 	fade = 10
 	grow = -0.04
 	velocity = list(0, 0.2)
-	position = generator("sphere", 15, 17, NORMAL_RAND)
-	drift = generator("vector", list(-0.5, -0.5), list(0.5, 0.5))
+	position = generator(GEN_SPHERE, 15, 17, NORMAL_RAND)
+	drift = generator(GEN_VECTOR, list(-0.5, -0.5), list(0.5, 0.5))
 	gravity = list(0, 0.6)
-	scale = generator("vector", list(0.3, 0.3), list(0.7,0.7), NORMAL_RAND)
+	scale = generator(GEN_VECTOR, list(0.3, 0.3), list(0.7, 0.7), NORMAL_RAND)
 	color = "#4b3f7e"
 
 // ***************************************
@@ -73,8 +73,7 @@
 	if(active_shield)
 		var/mob/living/carbon/xenomorph/xeno_owner = owner
 		if(plasma_cost > xeno_owner.plasma_stored)
-			to_chat(xeno_owner, span_warning("We need [plasma_cost - xeno_owner.plasma_stored] more plasma!"))
-			owner.balloon_alert(owner, "Low plasma!")
+			owner.balloon_alert(owner, "[plasma_cost - xeno_owner.plasma_stored] more plasma!")
 			return FALSE
 		if(can_use_action(FALSE, XACT_USE_BUSY))
 			shield_blast()
@@ -84,7 +83,7 @@
 	if(target_turf.density)
 		owner.balloon_alert(owner, "Obstructed by [target_turf]")
 		return
-	for(var/atom/movable/affected in target_turf)
+	for(var/atom/movable/affected AS in target_turf)
 		if(affected.density)
 			owner.balloon_alert(owner, "Obstructed by [affected]")
 			return
@@ -143,8 +142,7 @@
 				throwlocation = get_step(throwlocation, active_shield.dir)
 			affected.throw_at(throwlocation, 4, 1, owner, TRUE)
 
-	owner.visible_message(span_xenowarning("[owner] sends out a huge blast of psychic energy!"), \
-	span_xenowarning("We send out a huge blast of psychic energy!"))
+	owner.visible_message(span_xenowarning("[owner] sends out a huge blast of psychic energy!"), span_xenowarning("We send out a huge blast of psychic energy!"))
 
 	playsound(owner,'sound/effects/bamf.ogg', 75, TRUE)
 	playsound(owner, "alien_roar", 50)
@@ -160,17 +158,18 @@
 	layer = ABOVE_MOB_LAYER
 	///Who created the shield
 	var/mob/living/carbon/xenomorph/owner
+	///All the projectiles currently frozen by this obj
 	var/list/frozen_projectiles = list()
 
 /obj/effect/xeno/shield/Initialize(loc, creator)
 	. = ..()
 	owner = creator
 	if(!owner)
-		return //badmins go home
+		return
 	dir = owner.dir
 	max_integrity = owner.xeno_caste.shield_strength
 	obj_integrity = max_integrity
-	if(dir == EAST || dir == WEST)
+	if(dir & (EAST|WEST))
 		bound_height = 96
 		bound_y = -32
 		pixel_y = -32
@@ -198,8 +197,7 @@
 /obj/effect/xeno/shield/Destroy()
 	. = ..()
 	release_projectiles()
-	if(owner)
-		owner.apply_effects(weaken = 0.5)
+	owner.apply_effects(weaken = 0.5)
 
 ///Unfeezes the projectiles on their original path
 /obj/effect/xeno/shield/proc/release_projectiles()
@@ -277,8 +275,7 @@
 		return fail_activate()
 	if(!do_after(owner, 0.8 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_action, FALSE, XACT_USE_BUSY)))
 		return fail_activate()
-	owner.visible_message(span_xenowarning("\The [owner] starts channeling their psychic might!"), \
-		span_xenowarning("We start channeling our psychic might!"))
+	owner.visible_message(span_xenowarning("\The [owner] starts channeling their psychic might!"), span_xenowarning("We start channeling our psychic might!"))
 
 	particle_holder = new(owner, channel_particle)
 	particle_holder.pixel_x = 16
@@ -300,11 +297,9 @@
 /datum/action/xeno_action/activable/psy_crush/proc/check_distance(atom/target, sight_needed)
 	var/dist = get_dist(owner, target)
 	if(dist > ability_range)
-		to_chat(owner, span_warning("Too far for our reach... We need to be [dist - ability_range] steps closer!"))
 		owner.balloon_alert(owner, "Too far!")
 		return FALSE
 	else if(sight_needed && !line_of_sight(owner, target, 9))
-		to_chat(owner, span_warning("We can't focus properly without a clear line of sight!"))
 		owner.balloon_alert(owner, "Out of sight!")
 		return FALSE
 	return TRUE
@@ -344,8 +339,7 @@
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/crush_cost = plasma_cost * current_iterations
 	if(crush_cost > xeno_owner.plasma_stored)
-		to_chat(xeno_owner, span_warning("We need [crush_cost - xeno_owner.plasma_stored] more plasma!"))
-		owner.balloon_alert(owner, "Low plasma!")
+		owner.balloon_alert(owner, "[crush_cost - xeno_owner.plasma_stored] more plasma!")
 		stop_crush(target)
 		return
 	if(!check_distance(target))
@@ -356,7 +350,7 @@
 	apply_filters(target_turfs)
 	addtimer(CALLBACK(src, .proc/remove_all_filters), 2 SECONDS, TIMER_STOPPABLE)
 	for(var/turf/effected_turf AS in target_turfs)
-		for(var/i AS in effected_turf)
+		for(var/i in effected_turf)
 			if(iscarbon(i))
 				var/mob/living/carbon/carbon_victim = i
 				if(isxeno(carbon_victim) || carbon_victim.stat == DEAD)
@@ -469,7 +463,6 @@
 		var/datum/ammo/energy/xeno/selected_ammo = xeno_owner.ammo
 		plasma_cost = selected_ammo.plasma_cost
 		particle_type = selected_ammo.channel_particle
-		to_chat(xeno_owner, span_notice(selected_ammo.select_text))
 		owner.balloon_alert(owner, "[selected_ammo]")
 		update_button_icon()
 	return ..()
@@ -485,8 +478,7 @@
 	var/datum/ammo/energy/xeno/selected_ammo = xeno_owner.ammo
 	if(selected_ammo.plasma_cost > xeno_owner.plasma_stored)
 		if(!silent)
-			to_chat(xeno_owner, span_warning("We need [selected_ammo.plasma_cost - xeno_owner.plasma_stored] more plasma!"))
-			owner.balloon_alert(owner, "Low plasma!")
+			owner.balloon_alert(owner, "[selected_ammo.plasma_cost - xeno_owner.plasma_stored] more plasma!")
 
 		return FALSE
 

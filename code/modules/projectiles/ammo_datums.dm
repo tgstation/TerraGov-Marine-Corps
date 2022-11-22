@@ -2476,8 +2476,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/xeno
 	barricade_clear_distance = 0
-	///This text will show up when this ammo type is selected by a xeno. Span proc should be applied when this var is used.
-	var/select_text
 	///Plasma cost to fire this projectile
 	var/plasma_cost
 	///Particle type used when this ammo is used
@@ -2493,7 +2491,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accurate_range = 15
 	hitscan_effect_icon = "beam_cult"
 	icon_state = "psy_blast"
-	select_text = "We will now fire a psychic blast. These have an area of effect knockback when struck."
 	plasma_cost = 230
 	channel_particle = /particles/warlock_charge/psy_blast
 	///The AOE for drop_nade
@@ -2548,7 +2545,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 12
 	hitscan_effect_icon = "beam_hcult"
 	icon_state = "psy_lance"
-	select_text = "We will now fire a psychic lance. These are powerful piercing beams, particularly strong against armored targets."
 	plasma_cost = 300
 	channel_particle = /particles/warlock_charge/psy_blast/psy_lance
 

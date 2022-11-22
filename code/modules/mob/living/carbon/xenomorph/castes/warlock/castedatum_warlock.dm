@@ -89,7 +89,7 @@
 /datum/xeno_caste/warlock/primordial
 	upgrade_name = "Primordial"
 	caste_desc = "An overwhelming psychic beacon. The air around it seems to dance with barely contained power."
-	primordial_message = "We are the unbridled psychic power of the hive. Our strength is unmatched."
+	primordial_message = "We see the beauty of the unlimited psychic power of the hive. Enlighten the tallhosts to its majesty."
 	upgrade = XENO_UPGRADE_FOUR
 
 	melee_damage = 23
