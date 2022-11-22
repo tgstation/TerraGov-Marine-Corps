@@ -324,6 +324,8 @@
 		for(var/turf/turf_to_check AS in turfs_to_check)
 			if((turf_to_check in target_turfs) || (turf_to_check in turfs_to_add))
 				continue
+			if(LinkBlocked(current_turf, turf_to_check, projectile = TRUE))
+				continue
 			turfs_to_add += turf_to_check
 			effect_list += new /obj/effect/xeno/crush_warning(turf_to_check)
 	target_turfs += turfs_to_add
