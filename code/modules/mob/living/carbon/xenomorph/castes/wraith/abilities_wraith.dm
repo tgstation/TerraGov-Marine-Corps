@@ -219,7 +219,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		var/mob/living/stasis_target = banishment_target
 		stasis_target.apply_status_effect(/datum/status_effect/incapacitating/unconscious) //Force the target to KO
 		stasis_target.notransform = TRUE //Stasis
-		stasis_target.overlay_fullscreen("banish", /obj/screen/fullscreen/blind) //Force the blind overlay
+		stasis_target.overlay_fullscreen("banish", /atom/movable/screen/fullscreen/blind) //Force the blind overlay
 
 	if(!reserved_area) //If we don't have a reserved area, set one
 		reserved_area = SSmapping.RequestBlockReservation(3,3, SSmapping.transit.z_value, /datum/turf_reservation/banish)
@@ -237,7 +237,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		contained_living += living_contents
 		living_contents.apply_status_effect(/datum/status_effect/incapacitating/unconscious)
 		living_contents.notransform = TRUE
-		living_contents.overlay_fullscreen("banish", /obj/screen/fullscreen/blind)
+		living_contents.overlay_fullscreen("banish", /atom/movable/screen/fullscreen/blind)
 
 	banishment_target.forceMove(target_turf)
 

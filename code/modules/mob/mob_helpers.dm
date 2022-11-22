@@ -411,7 +411,7 @@ mob/proc/get_standard_bodytemperature()
 	if(!source)
 		return
 
-	var/obj/screen/alert/notify_action/A = O.throw_alert("[REF(source)]_notify_action", /obj/screen/alert/notify_action)
+	var/atom/movable/screen/alert/notify_action/A = O.throw_alert("[REF(source)]_notify_action", /atom/movable/screen/alert/notify_action)
 	if(!A)
 		return
 	if (header)

@@ -446,7 +446,7 @@
 		faction = FACTION_ZOMBIE
 	heal_limbs(- health)
 	set_stat(CONSCIOUS)
-	overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /obj/screen/fullscreen/black)
-	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /obj/screen/fullscreen/spawning_in)
+	overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /atom/movable/screen/fullscreen/black)
+	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
 	REMOVE_TRAIT(src, TRAIT_IS_RESURRECTING, REVIVE_TO_CRIT_TRAIT)
 	SSmobs.start_processing(src)
