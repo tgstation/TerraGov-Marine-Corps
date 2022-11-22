@@ -400,6 +400,7 @@
 		/obj/item/storage/box/loot/mortar_pack,
 		/obj/item/storage/box/loot/howitzer_pack,
 		/obj/item/storage/box/loot/sentry_pack,
+		/obj/item/storage/box/loot/agl_pack,
 	)
 	uncommon_list = list(
 		/obj/item/storage/box/loot/materials_pack,
