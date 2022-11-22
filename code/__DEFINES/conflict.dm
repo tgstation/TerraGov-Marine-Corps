@@ -60,6 +60,7 @@
 #define AMMO_PASS_THROUGH_TURF (1<<19) //If the projectile passes through walls causing damage to them
 #define AMMO_PASS_THROUGH_MOVABLE (1<<20) //If the projectile passes through mobs and objects causing damage to them
 #define AMMO_PASS_THROUGH_MOB (1<<21) //If the projectile passes through mobs only causing damage to them
+#define AMMO_RICOCHETS (1<<22) //Ricochets on dense turf hit
 
 //Gun defines for gun related thing. More in the projectile folder.
 //flags_gun_features

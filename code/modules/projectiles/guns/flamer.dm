@@ -139,7 +139,7 @@
 	message_to_user = "You set the laser rifle's charge mode to over fire."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	radial_icon_state = "flamer_over"
-	fire_delay = 0.2 SECONDS
+	fire_delay = 0.15 SECONDS
 
 /obj/item/weapon/gun/flamer/big_flamer
 	name = "\improper FL-240 incinerator unit"

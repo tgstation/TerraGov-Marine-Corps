@@ -61,6 +61,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/fire_burst_damage = 10
 	///Base fire stacks added on hit if the projectile has AMMO_INCENDIARY
 	var/incendiary_strength = 10
+	var/ricochet_amount = FALSE
 
 /datum/ammo/proc/do_at_max_range(turf/T, obj/projectile/proj)
 	return
@@ -3237,8 +3238,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_type = BURN
 	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_FLAME|AMMO_EXPLOSIVE
 	armor_type = "fire"
-	max_range = 6
-	damage = 5
+	max_range = 4
+	damage = 6
 	damage_falloff = 0
 	incendiary_strength = 30 //Firestacks cap at 20, but that's after armor.
 	shell_speed = 0.6
@@ -3276,64 +3277,19 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flame_radius(1, T, 5, 0.4 SECONDS)
 
 /datum/ammo/flamethrower/bounce
-	bonus_projectiles_type = /datum/ammo/flamethrower
-
-/datum/ammo/flamethrower/bounce/on_hit_turf(turf/T, obj/projectile/proj)
-	. = ..()
-	var/surface_angle = round(Get_Angle(T, proj.loc))
-	switch(surface_angle)
-		if(0, 360)
-			surface_angle = 0
-		if(1 to 44)
-			surface_angle = 0
-		if(45)
-			surface_angle = 180
-		if(46 to 89)
-			surface_angle = 0
-		if(90)
-			surface_angle = 90
-		if(91 to 134)
-			surface_angle = 90
-		if(135)
-			surface_angle = 90
-		if(136 to 179)
-			surface_angle = 90
-		if(180)
-			surface_angle = 0
-		if(181 to 224)
-			surface_angle = 0
-		if(225)
-			surface_angle = 0
-		if(226 to 269)
-			surface_angle = 90
-		if(270)
-			surface_angle = 90
-		if(271 to 314)
-			surface_angle = 0
-		if(315)
-			surface_angle = 90
-		if(316 to 359)
-			surface_angle = 90
-
-	var/ricochet_angle = 2 * surface_angle - proj.dir_angle + 180
-	to_chat(proj.firer, "<font size=6 color=red>[ricochet_angle] ricochet</font>")
-	to_chat(proj.firer, "<font size=6 color=red>[surface_angle] surface</font>")
-	to_chat(proj.firer, "<font size=6 color=red>[proj.dir_angle] projectile</font>")
-	to_chat(proj.firer, "<font size=6 color=red>[Get_Angle(T, proj.loc)] surfaceproj</font>")
-	bonus_projectiles_amount = 1
-	fire_directionalburst(proj, proj.firer, proj.shot_from, 3, proj.projectile_speed, ricochet_angle + rand(-20, 20))
-	bonus_projectiles_amount = 0
+	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_FLAME|AMMO_EXPLOSIVE|AMMO_RICOCHETS
 
 /datum/ammo/flamethrower/over
 	icon_state = "flamer_over"
 	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_FLAME|AMMO_EXPLOSIVE|AMMO_IFF
-	max_range = 4
+	max_range = 5
+	shell_speed = 0.3
 
 /datum/ammo/flamethrower/blue
 	name = "blue flame"
 	hud_state = "flame_blue"
 	fire_color = "blue"
-	damage = 7
+	damage = 8
 	burntime = 0.5 SECONDS
 	burnlevel = 46
 	bullet_color = COLOR_BRIGHT_BLUE
