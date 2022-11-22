@@ -17712,7 +17712,6 @@
 /area/gelida/caves/west_caves)
 "lnb" = (
 /obj/machinery/atm{
-	name = "Weyland-Yutani Automatic Teller Machine";
 	pixel_y = 30
 	},
 /obj/structure/bed/chair{
@@ -28510,7 +28509,7 @@
 /area/gelida/indoors/a_block/fitness)
 "saH" = (
 /obj/structure/showcase{
-	desc = "The display model for a Weyland Yutani generation one synthetic. It almost feels like the eyes on this one follow you.";
+	desc = "The display model for a Nanotrasen generation one synthetic. It almost feels like the eyes on this one follow you.";
 	name = "Display synthetic"
 	},
 /obj/structure/window/reinforced,
