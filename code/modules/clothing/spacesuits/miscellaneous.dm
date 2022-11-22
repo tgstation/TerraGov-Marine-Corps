@@ -55,7 +55,7 @@
 /obj/item/clothing/head/helmet/space/santahat/special
 	name = "Santa's hat"
 	desc = "Ho ho ho. Merrry X-mas to all! Now you're all gonna die!"
-	soft_armor = list(MELEE = 75, BULLET = 45, LASER = 35, ENERGY = 20, BOMB = 90, BIO = 80, FIRE = 20, ACID = 50)
+	soft_armor = list(MELEE = 75, BULLET = 45, LASER = 35, ENERGY = 20, BOMB = 90, BIO = 85, FIRE = 20, ACID = 50)
 	flags_item = NODROP|DELONDROP
 
 /obj/item/clothing/suit/space/elf

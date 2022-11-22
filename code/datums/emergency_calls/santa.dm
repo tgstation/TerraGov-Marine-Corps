@@ -1,9 +1,9 @@
 //Santa is back in town
 /datum/emergency_call/santa
 	name = "Santa's Workshop"
-	base_probability = 20
+	base_probability = 24
 	mob_max = 15 //santa gets extra help because he's the only one with decent gear
-	mob_min = 5
+	mob_min = 4
 	alignement_factor = -1
 
 
@@ -43,7 +43,7 @@
 		H.apply_assigned_role_to_spawn(J)
 		H.set_nutrition(NUTRITION_OVERFED * 2)
 		H.grant_language(/datum/language/xenocommon)
-		to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are Santa Claus! Punish all naughty aliens with overwhelming firepower, starting with their queen hiding on the ship.")]</p>")
+		to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are Santa Claus! Punish all naughty individuals with overwhelming firepower, starting with the alien queen hiding on the ship.")]</p>")
 		return
 
 	var/datum/job/J = SSjob.GetJobType(/datum/job/santa)
