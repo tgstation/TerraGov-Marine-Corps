@@ -353,7 +353,7 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 /mob/proc/get_eye_protection()
 	return 0
 
-mob/proc/get_standard_bodytemperature()
+/mob/proc/get_standard_bodytemperature()
 	return BODYTEMP_NORMAL
 
 /mob/log_message(message, message_type, color=null, log_globally = TRUE)
