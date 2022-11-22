@@ -13,6 +13,8 @@
 
 	///Reference to filteriffic tgui holder datum
 	var/datum/filter_editor/filteriffic
+	///Reference to particle editor tgui holder datum
+	var/datum/particle_editor/particle_test
 
 	///Whether this admin is currently deadminned or not
 	var/deadmined = FALSE
