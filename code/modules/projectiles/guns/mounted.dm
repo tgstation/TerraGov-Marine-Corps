@@ -486,5 +486,5 @@
 	undeploy_time = 3 SECONDS
 
 	max_integrity = 500
-	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 75, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 75, "bio" = 100, "fire" = 0, "acid" = 0)
 
