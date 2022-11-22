@@ -41,8 +41,6 @@
 	id = "gun_skill_scatter_debuff"
 	particles = /particles/gun_skill/scatter/debuff
 
-
-// tivi todo
 /particles/gun_skill
 	count = 100
 	spawning = 3

@@ -78,7 +78,6 @@
 		human.status_flags |= GODMODE
 		human.add_atom_colour(COLOR_GRAY, TEMPORARY_COLOUR_PRIORITY)
 		human.log_message("has been petrified by [owner] for [PETRIFY_DURATION] ticks", LOG_ATTACK, color="pink")
-		human.balloon_alert(human, "petrified") // tivi todo remove?
 		var/image/stone_overlay = image('icons/effects/effects.dmi', null, "petrified_overlay")
 		stone_overlay.filters += filter(arglist(alpha_mask_filter(render_source="*[REF(human)]",flags=MASK_INVERSE)))
 		var/mutable_appearance/mask = mutable_appearance()
@@ -176,7 +175,7 @@
 	var/datum/beam/beam
 	///particle holder for the particle visual effects
 	var/obj/effect/abstract/particle_holder/particles
-	// tivi todo
+	// sound loop for the looping sound lazor beam
 	var/datum/looping_sound/zero_form_beam/sound_loop
 	///ref to looping timer for the fire loop
 	var/timer_ref
