@@ -457,7 +457,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 /obj/machinery/computer/mech_builder/admin
 	name = "valhalla mech computer"
 	desc = "A magic mech computer that can assemble new mechs almost instantly."
-	lock_timer = 5 SECONDS
+	lock_timer = 2 SECONDS
 
 /obj/machinery/computer/mech_builder/update_icon_state()
 	. = ..()
