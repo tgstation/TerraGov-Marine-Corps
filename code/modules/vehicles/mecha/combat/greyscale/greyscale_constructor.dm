@@ -454,13 +454,13 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 // MECH BUILDER LOCKING SYSTEM
 
 ///variant of the mech builder with no cooldown, used in valhalla
-/obj/machinery/computer/mech_builder/valhalla
+/obj/machinery/computer/mech_builder/admin
 	name = "valhalla mech computer"
 	desc = "A magic mech computer that can assemble new mechs almost instantly."
 	lock_timer = 5 SECONDS
 
 /obj/machinery/computer/mech_builder/update_icon_state()
-	..()
+	. = ..()
 
 	if(locked)
 		icon_state = "[icon_state]_cd"
