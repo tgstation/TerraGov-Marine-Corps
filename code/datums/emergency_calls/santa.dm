@@ -4,7 +4,6 @@
 	base_probability = 24
 	mob_max = 15 //santa gets extra help because he's the only one with decent gear
 	mob_min = 4
-	alignement_factor = -1
 
 
 /datum/emergency_call/santa/print_backstory(mob/living/carbon/human/H)
@@ -43,7 +42,10 @@
 		H.apply_assigned_role_to_spawn(J)
 		H.set_nutrition(NUTRITION_OVERFED * 2)
 		H.grant_language(/datum/language/xenocommon)
-		to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are Santa Claus! Punish all naughty individuals with overwhelming firepower, starting with the alien queen hiding on the ship.")]</p>")
+		if(GLOB.round_statistics.number_of_grinches >= 5)
+			to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are Santa Claus! Punish all naughty </b>marines and aliens</b> with overwhelming firepower, starting with their commanders hiding on the ship.")]</p>")
+		else
+			to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are Santa Claus! Punish all the naughty </b>aliens</b> with overwhelming firepower, starting with their cowardly queen hiding on the ship.")]</p>")
 		return
 
 	var/datum/job/J = SSjob.GetJobType(/datum/job/santa)
