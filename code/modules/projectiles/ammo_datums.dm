@@ -3187,8 +3187,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/drain_multiplier = 0.05
 	/// Flat plasma to drain, unaffected by caste plasma amount.
 	var/plasma_drain = 25
+	/// How much stagger this pepperball type causes.
+	var/stagger_amount = 1
 
 /datum/ammo/bullet/pepperball/on_hit_mob(mob/living/victim, obj/projectile/proj)
+	staggerstun(victim, proj, max_range = 21, stagger = stagger_amount, shake = 0)
 	if(isxeno(victim))
 		var/mob/living/carbon/xenomorph/X = victim
 		X.use_plasma(drain_multiplier * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit)
@@ -3198,6 +3201,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 40
 	drain_multiplier = 0.03
 	plasma_drain = 15
+	stagger_amount = 0
 
 /datum/ammo/alloy_spike
 	name = "alloy spike"
