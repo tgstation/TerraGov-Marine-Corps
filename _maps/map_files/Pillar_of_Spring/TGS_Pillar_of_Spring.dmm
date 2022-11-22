@@ -4811,7 +4811,7 @@
 "nL" = (
 /obj/item/stool,
 /obj/effect/decal/cleanable/blood,
-/obj/effect/landmark/corpsespawner/prisoner,
+/obj/effect/landmark/corpsespawner/prisoner/regular,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "nM" = (
@@ -17900,7 +17900,7 @@
 	},
 /area/mainship/squads/general)
 "Yj" = (
-/obj/effect/landmark/corpsespawner/chef,
+/obj/effect/landmark/corpsespawner/chef/regular,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "Yk" = (
@@ -45338,7 +45338,7 @@ lR
 lR
 rn
 NS
-lv
+NH
 wi
 uH
 uH
@@ -47651,7 +47651,7 @@ NS
 NS
 NS
 NS
-lv
+NH
 wi
 Rh
 Rh
@@ -49197,11 +49197,11 @@ JF
 tR
 tR
 tR
-tR
-tR
-tR
-tR
-tR
+lK
+KD
+KD
+KD
+aK
 tR
 av
 io
@@ -49453,12 +49453,12 @@ BQ
 JF
 tR
 tR
+lK
+hY
 tR
 tR
 tR
-tR
-tR
-tR
+RH
 tR
 av
 io
@@ -49710,12 +49710,12 @@ BQ
 JF
 tR
 tR
-tR
+JP
 tR
 Df
 tR
 tR
-tR
+RH
 tR
 uI
 io
@@ -49967,12 +49967,12 @@ BQ
 JF
 tR
 tR
+zA
+Rk
 tR
 tR
 tR
-tR
-tR
-tR
+RH
 tR
 av
 io
@@ -50225,11 +50225,11 @@ JF
 tR
 tR
 tR
-tR
-tR
-tR
-tR
-tR
+zA
+xl
+xl
+xl
+Ds
 tR
 av
 io
