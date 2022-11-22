@@ -237,12 +237,12 @@
 	fade = 12
 	grow = 0.04
 	velocity = list(0, 0)
-	position = generator("circle", 16, 16, NORMAL_RAND)
-	drift = generator("vector", list(0, -0.15), list(0, 0.15))
+	position = generator(GEN_CIRCLE, 16, 16, NORMAL_RAND)
+	drift = generator(GEN_VECTOR, list(0, -0.15), list(0, 0.15))
 	gravity = list(0, 0.8)
-	scale = generator("vector", list(0.1, 0.1), list(0.6,0.6), NORMAL_RAND)
+	scale = generator(GEN_VECTOR, list(0.1, 0.1), list(0.6,0.6), NORMAL_RAND)
 	rotation = 0
-	spin = generator("num", 10, 20)
+	spin = generator(GEN_NUM, 10, 20)
 
 /datum/status_effect/drone_enhancement
 	id = "drone enhancement"
