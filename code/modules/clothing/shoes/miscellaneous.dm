@@ -86,10 +86,16 @@
 	name = "Santa's boots"
 	desc = "Made from high quality reindeer leather, Santa owns only the finest footwear."
 	icon_state = "santa_galoshes"
-	soft_armor = list(MELEE = 80, BULLET = 60, LASER = 50, ENERGY = 25, BOMB = 50, BIO = 10, FIRE = 25, ACID = 25)
+	soft_armor = list(MELEE = 80, BULLET = 90, LASER = 90, ENERGY = 85, BOMB = 120, BIO = 85, FIRE = 75, ACID = 40)
 	flags_armor_protection = FEET
 	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
 	flags_item = NODROP|DELONDROP
+	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
+	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
+	flags_cold_protection = FEET
+	flags_heat_protection = FEET
+	siemens_coefficient = 0.2
+	resistance_flags = UNACIDABLE
 
 /obj/item/clothing/shoes/clown_shoes
 	desc = "The prankster's standard-issue clowning shoes. Damn they're huge!"

@@ -48,15 +48,21 @@
 
 /obj/item/clothing/suit/space/santa/special //for ERT, when santa has to give presents to REALLY naughty children
 	desc = "That's not red dye. That's red blood."
-	soft_armor = list(MELEE = 75, BULLET = 50, LASER = 40, ENERGY = 25, BOMB = 90, BIO = 70, FIRE = 20, ACID = 50)
+	soft_armor = list(MELEE = 85, BULLET = 90, LASER = 90, ENERGY = 85, BOMB = 120, BIO = 85, FIRE = 75, ACID = 40)
 	slowdown = 1
 	flags_item = NODROP|DELONDROP
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	supporting_limbs = CHEST | GROIN | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_LEFT | LEG_RIGHT | FOOT_LEFT | FOOT_RIGHT | HEAD
+	resistance_flags = UNACIDABLE
 
 /obj/item/clothing/head/helmet/space/santahat/special
 	name = "Santa's hat"
 	desc = "Ho ho ho. Merrry X-mas to all! Now you're all gonna die!"
-	soft_armor = list(MELEE = 75, BULLET = 45, LASER = 35, ENERGY = 20, BOMB = 90, BIO = 85, FIRE = 20, ACID = 50)
+	soft_armor = list(MELEE = 85, BULLET = 90, LASER = 90, ENERGY = 85, BOMB = 120, BIO = 85, FIRE = 75, ACID = 40)
 	flags_item = NODROP|DELONDROP
+	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ|BLOCKGASEFFECT
 
 /obj/item/clothing/suit/space/elf
 	name = "Elf suit"

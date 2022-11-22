@@ -102,9 +102,11 @@
 	name = "\improper Santa's beard"
 	desc = "A dense mat of hair surrounding Santa's mouth, in addition to lending Santa a sense of authority, it's also dense enough to repel harmful gases and facehuggers."
 	icon_state = "s_beard"
-	anti_hug = 6
+	anti_hug = 15
 	breathy = FALSE
 	flags_item = NODROP|DELONDROP
+	flags_inventory = COVERMOUTH|ALLOWINTERNALS|BLOCKGASEFFECT
+	soft_armor = list(MELEE = 25, BULLET = 35, LASER = 25, ENERGY = 25, BOMB = 95, BIO = 85, FIRE = 25, ACID = 25) //if he ever shaved you could use santa's facial hair as a bombvest
 	modifies_speech = TRUE
 
 /obj/item/clothing/mask/gas/swat/santa/handle_speech(datum/source, list/speech_args)
