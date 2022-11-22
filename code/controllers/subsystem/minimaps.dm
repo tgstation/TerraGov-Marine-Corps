@@ -49,12 +49,15 @@ SUBSYSTEM_DEF(minimaps)
 				if(location.density)
 					icon_gen.DrawBox(location.minimap_color, xval, yval)
 					continue
-				var/atom/movable/alttarget = locate(/obj/machinery/door) in location||locate(/obj/structure/fence) in location
+				var/atom/movable/alttarget = (locate(/obj/machinery/door) in location) || (locate(/obj/structure/fence) in location)
 				if(alttarget)
 					icon_gen.DrawBox(alttarget.minimap_color, xval, yval)
 					continue
 				var/area/turfloc = location.loc
-				icon_gen.DrawBox(turfloc.minimap_color, xval, yval)
+				if(turfloc.minimap_color)
+					icon_gen.DrawBox(BlendRGB(location.minimap_color, turfloc.minimap_color, 0.5), xval, yval)
+					continue
+				icon_gen.DrawBox(location.minimap_color, xval, yval)
 		icon_gen.Scale(480*2,480*2) //scale it up x2 to make it easer to see
 		icon_gen.Crop(1, 1, min(icon_gen.Width(), 480), min(icon_gen.Height(), 480)) //then cut all the empty pixels
 

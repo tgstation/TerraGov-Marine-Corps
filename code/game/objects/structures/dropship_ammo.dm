@@ -446,18 +446,36 @@
 
 /obj/structure/ship_ammo/rocket/fatty
 	name = "\improper SM-17 'Fatty'"
-	desc = "The SM-17 'Fatty', an experimental missile utilising a supercooled tanglefoot payload. Harmless to marines, but destroys resin walls around the impact site. Moving this will require some sort of lifter."
+	desc = "The SM-17 'Fatty' is the most devestating rocket in TGMC arsenal, only second after its big cluster brother in Orbital Cannon. These rocket are also known for highest number of Friendly-on-Friendly incidents due to secondary cluster explosions as well as range of these explosions, TGMC recommends pilots to encourage usage of signal flares or laser for 'Fatty' support. Moving this will require some sort of lifter."
 	icon_state = "fatty"
 	ammo_id = "f"
-	point_cost = 150
+	point_cost = 250
+	devastating_explosion_range = 2
+	heavy_explosion_range = 3
+	light_explosion_range = 4
+	prediction_type = CAS_AMMO_EXPLOSIVE
 	cas_effect = /obj/effect/overlay/blinking_laser/fatty
 
 /obj/structure/ship_ammo/rocket/fatty/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
-	var/list/to_check = filled_turfs(impact, 3, "square")
+	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range) //first explosion is small to trick xenos into thinking its a minirocket.
+	addtimer(CALLBACK(src, .proc/delayed_detonation, impact), 3 SECONDS)
 
-	for(var/turf/closed/wall/resin/wall in to_check)
-		wall.take_damage(2000)
+/**
+ * proc/delayed_detonation(turf/impact)
+ *
+ * this proc is responsable for calculation and executing explosion in cluster like fashion
+ * * (turf/impact): targets impacted turf from first explosion
+ */
+
+/obj/structure/ship_ammo/rocket/fatty/proc/delayed_detonation(turf/impact)
+	var/list/impact_coords = list(list(-3,3),list(0,4),list(3,3),list(-4,0),list(4,0),list(-3,-3),list(0,-4), list(3,-3))
+	for(var/i=1 to 8)
+		var/list/coords = impact_coords[i]
+		var/turf/detonation_target = locate(impact.x+coords[1],impact.y+coords[2],impact.z)
+		detonation_target.ceiling_debris_check(2)
+		explosion(detonation_target, devastating_explosion_range, heavy_explosion_range, light_explosion_range, adminlog = FALSE, small_animation = TRUE)
+	qdel(src)
 
 /obj/structure/ship_ammo/rocket/napalm
 	name = "\improper XN-99 'Napalm'"

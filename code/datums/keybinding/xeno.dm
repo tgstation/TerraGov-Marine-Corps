@@ -40,6 +40,13 @@
 	description = "Builds whatever you’ve selected with (choose resin structure) on your tile."
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN
 
+/datum/keybinding/xeno/place_acid_well
+	name = "place_acid_well"
+	full_name = "Place acid well"
+	description = "Builds acid well on your tile."
+	keybind_signal = COMSIG_XENOABILITY_PLACE_ACID_WELL
+	hotkey_keys = list("G")
+
 /datum/keybinding/xeno/emit_recovery
 	name = "emit_recovery"
 	full_name = "Emit Recovery Pheromones"
