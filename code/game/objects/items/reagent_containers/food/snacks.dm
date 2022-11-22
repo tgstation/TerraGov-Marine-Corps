@@ -345,6 +345,7 @@
 	tastes = list("cookie" = 1, "sugar" = 4)
 
 /obj/item/reagent_containers/food/snacks/christmas_cookieone/special
+	desc = "A festive Christmas cookie. This one is filled with Christmas magic."
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/medicine/bicaridine = 10, /datum/reagent/medicine/kelotane = 5)
 
 /obj/item/reagent_containers/food/snacks/christmas_cookietwo
@@ -357,6 +358,7 @@
 	tastes = list("cookie" = 1, "christmas" = 2, "pine trees" = 1)
 
 /obj/item/reagent_containers/food/snacks/christmas_cookietwo/special
+	desc = "A festive Christmas cookie, this one is in the shape of a tree. It feels magical, like a freshly decorated Christmas tree."
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/medicine/bicaridine = 5, /datum/reagent/medicine/kelotane = 10)
 
 /obj/item/reagent_containers/food/snacks/christmas_cookiethree
@@ -369,6 +371,7 @@
 	tastes = list("cookie" = 1, "christmas" = 2, "mistletoe" = 1)
 
 /obj/item/reagent_containers/food/snacks/christmas_cookiethree/special
+	desc = "A festive Christmas cookie, this one is in the shape of a teddy bear. It feels magical, like a favorite stuffed toy."
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/medicine/bicaridine = 5, /datum/reagent/medicine/kelotane = 5, /datum/reagent/iron = 10, /datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/sugar = 5)
 
 /obj/item/reagent_containers/food/snacks/christmas_cookiefour
@@ -381,6 +384,7 @@
 	tastes = list("cookie" = 1, "coal" = 1, "fruitcake" = 1, "christmas" = 1)
 
 /obj/item/reagent_containers/food/snacks/christmas_cookiefour/special
+	desc = "A festive Christmas cookie, this one is in the shape of Santa Claus. It feels magical, like Santa's sleigh ride."
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/medicine/bicaridine = 5, /datum/reagent/medicine/kelotane = 5, /datum/reagent/medicine/tricordrazine = 5)
 
 /obj/item/reagent_containers/food/snacks/christmas_cookiefive
@@ -393,6 +397,7 @@
 	tastes = list("cookie" = 1, "christmas" = 2, "presents" = 1)
 
 /obj/item/reagent_containers/food/snacks/christmas_cookiefive/special
+	desc = "A festive Christmas cookie, this one is in the shape of a stocking bursting with presents. It feels magical, like a fresh gift waiting under a pine tree."
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/medicine/kelotane = 5, /datum/reagent/medicine/tricordrazine = 10)
 
 /obj/item/reagent_containers/food/snacks/christmas_cookiesix
@@ -405,7 +410,8 @@
 	tastes = list("cookie" = 1, "christmas" = 2, "wrapping paper" = 1)
 
 /obj/item/reagent_containers/food/snacks/christmas_cookiesix/special
-		list_reagents = list(/datum/reagent/medicine/tramadol = 10, /datum/reagent/medicine/tricordrazine = 5, /datum/reagent/medicine/oxycodone = 10)
+	desc = "A festive Christmas cookie, this one is in the shape of a present. It feels magical, like fresh wrapping paper and gifts."
+	list_reagents = list(/datum/reagent/medicine/tramadol = 10, /datum/reagent/medicine/tricordrazine = 5, /datum/reagent/medicine/oxycodone = 10)
 
 /obj/item/reagent_containers/food/snacks/christmas_cookieseven
 	name = "christmas cookie"
@@ -417,6 +423,7 @@
 	tastes = list("cookie" = 1, "christmas" = 2, "mint" = 2)
 
 /obj/item/reagent_containers/food/snacks/christmas_cookieseven/special
+	desc = "A festive Christmas cookie, this one is in the shape of a candy cane. It feels magical, like Christmas mint cookies."
 	list_reagents = list(/datum/reagent/medicine/dylovene = 5, /datum/reagent/medicine/tricordrazine = 5, /datum/reagent/medicine/bicaridine = 10)
 
 /obj/item/reagent_containers/food/snacks/chocolatebar
