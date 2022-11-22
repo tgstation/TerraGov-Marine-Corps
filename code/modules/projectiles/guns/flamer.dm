@@ -493,12 +493,12 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 	fade = 1 SECONDS
 	grow = -0.01
 	velocity = list(0, 0)
-	position = generator("box", list(-16, -16), list(16, 16), NORMAL_RAND)
-	drift = generator("vector", list(0, -0.2), list(0, 0.2))
+	position = generator(GEN_BOX, list(-16, -16), list(16, 16), NORMAL_RAND)
+	drift = generator(GEN_VECTOR, list(0, -0.2), list(0, 0.2))
 	gravity = list(0, 0.95)
-	scale = generator("vector", list(0.3, 0.3), list(1,1), NORMAL_RAND)
+	scale = generator(GEN_VECTOR, list(0.3, 0.3), list(1,1), NORMAL_RAND)
 	rotation = 30
-	spin = generator("num", -20, 20)
+	spin = generator(GEN_NUM, -20, 20)
 
 /particles/flamer_fire/New(set_color)
 	..()
