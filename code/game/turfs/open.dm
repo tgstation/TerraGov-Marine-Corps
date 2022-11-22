@@ -125,7 +125,7 @@
 		else if(isxeno(C))
 			if(isxenoboiler(C))
 				beachwater_slowdown = -0.5
-			else if(isxenowwarlock(C))
+			else if(isxenowarlock(C))
 				beachwater_slowdown = 0
 			else
 				beachwater_slowdown = 1.3
