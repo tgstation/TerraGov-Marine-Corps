@@ -14,7 +14,7 @@
 	locked = TRUE
 	var/smashed = 0
 
-/obj/structure/closet/fireaxecabinet/attackby(obj/item/O, var/mob/user)  //Marker -Agouri
+/obj/structure/closet/fireaxecabinet/attackby(obj/item/O, mob/user)  //Marker -Agouri
 	//..() //That's very useful, Erro
 	//how do we still have this shitcode AND THE STUPID FUCKING TILDE AS WELL 10 YEARS LATER
 	var/hasaxe = 0       //gonna come in handy later~
