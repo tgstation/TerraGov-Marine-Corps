@@ -105,6 +105,15 @@
 	anti_hug = 6
 	breathy = FALSE
 	flags_item = NODROP|DELONDROP
+	modifies_speech = TRUE
+
+/obj/item/clothing/mask/gas/swat/santa/handle_speech(datum/source, list/speech_args)
+	var/message = speech_args[SPEECH_MESSAGE]
+	if(message[1] != "*")
+		message = replacetext(message, "snacks", "cookies")
+		if(prob(25))
+			message += " HO HO HO!"
+	speech_args[SPEECH_MESSAGE] = message
 
 /obj/item/clothing/mask/gas/syndicate
 	name = "syndicate mask"
