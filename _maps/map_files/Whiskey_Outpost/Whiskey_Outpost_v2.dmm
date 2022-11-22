@@ -2480,7 +2480,7 @@
 	},
 /area/whiskey_outpost/outside/east)
 "lN" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/plating/warning{
 	dir = 1
 	},
@@ -8223,7 +8223,7 @@
 /obj/effect/decal/warning_stripes/thick{
 	dir = 4
 	},
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/plating,
 /area/whiskey_outpost)
 "WO" = (

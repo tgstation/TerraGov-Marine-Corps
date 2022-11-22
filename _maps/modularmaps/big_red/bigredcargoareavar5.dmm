@@ -348,7 +348,7 @@
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/nw)
 "yf" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "ym" = (
@@ -724,7 +724,7 @@
 /area/bigredv2/caves/rock)
 "UG" = (
 /obj/machinery/light,
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "UL" = (

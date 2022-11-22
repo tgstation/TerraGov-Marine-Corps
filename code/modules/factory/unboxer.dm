@@ -183,3 +183,58 @@
 	desc = "A box with round metal plates inside. Used to refill Unboxers."
 	refill_type = /obj/item/factory_part/railgun_magazine
 	refill_amount = 20
+
+/obj/item/factory_refill/minigun_powerpack_refill
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/minigun_powerpack
+	refill_amount = 10
+
+/obj/item/factory_refill/razornade_refill
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/razornade
+	refill_amount = 30
+
+/obj/item/factory_refill/amr_magazine_refill
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/amr_magazine
+	refill_amount = 20
+
+/obj/item/factory_refill/amr_magazine_incend_refill
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/amr_magazine_incend
+	refill_amount = 20
+
+/obj/item/factory_refill/amr_magazine_flak_refill
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/amr_magazine_flak
+	refill_amount = 20
+
+/obj/item/factory_refill/howitzer_shell_he_refill
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/howitzer_shell_he
+	refill_amount = 30
+
+/obj/item/factory_refill/howitzer_shell_incen_refill
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/howitzer_shell_incen
+	refill_amount = 30
+
+/obj/item/factory_refill/howitzer_shell_wp_refill
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/howitzer_shell_wp
+	refill_amount = 30
+
+/obj/item/factory_refill/howitzer_shell_tfoot_refill
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/howitzer_shell_tfoot
+	refill_amount = 30
+

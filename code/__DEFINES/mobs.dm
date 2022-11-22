@@ -713,6 +713,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 //Spiderling defines
 #define TIME_TO_DISSOLVE 5 SECONDS
+#define SPIDERLING_RAGE_RANGE 10 // how close a nearby human has to be in order to be targeted
 
 //misc
 
