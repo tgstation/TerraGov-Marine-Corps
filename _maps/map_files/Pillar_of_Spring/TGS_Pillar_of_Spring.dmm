@@ -44,6 +44,10 @@
 /obj/item/reagent_containers/food/snacks/brainburger,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
+"ah" = (
+/obj/structure/closet/toolcloset,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/hangar)
 "ai" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/item/stack/conveyor/thirty,
@@ -450,11 +454,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "bi" = (
-/obj/structure/ship_ammo/heavygun,
-/obj/effect/decal/cleanable/blood/writing{
-	desc = "It looks like a writing in blood. It says, 'We live as we dream, alone.'";
-	dir = 4
-	},
+/obj/structure/closet/emcloset,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "bj" = (
@@ -737,14 +737,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
 "bT" = (
-/obj/structure/droppod,
-/obj/structure/dropprop,
-/obj/effect/decal/cleanable/blood/writing{
-	desc = "It looks like a writing in blood. It says, 'I am missing and forgotten.'";
-	dir = 4
-	},
-/obj/item/lightreplacer,
-/obj/effect/spawner/random/present,
+/obj/item/tool/taperoll/engineering,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "bU" = (
@@ -1316,9 +1309,12 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/stern_hallway)
 "dw" = (
-/obj/structure/closet/emcloset,
-/turf/open/floor/mainship/cargo,
-/area/mainship/hallways/hangar)
+/obj/effect/decal/cleanable/blood/writing{
+	desc = "It looks like a writing in blood. It says, 'If you see this, you will join the dead.'";
+	dir = 4
+	},
+/turf/open/floor/mainship/floor,
+/area/sulaco/showers)
 "dx" = (
 /obj/machinery/light/mainship,
 /obj/structure/prop/holidays/string_lights{
@@ -1444,6 +1440,11 @@
 /obj/item/clothing/head/warning_cone,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"dO" = (
+/obj/structure/lattice,
+/obj/item/clothing/mask/gas,
+/turf/open/space,
+/area/space)
 "dP" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/fancy/cigarettes/kpack,
@@ -1570,6 +1571,12 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/grunt_rnr)
+"ei" = (
+/obj/item/stack/tile/plasteel,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 6
+	},
+/area/mainship/engineering/engineering_workshop)
 "ej" = (
 /obj/machinery/door/poddoor/shutters/mainship/selfdestruct,
 /obj/machinery/keycard_auth,
@@ -2075,6 +2082,10 @@
 "fB" = (
 /turf/closed/wall/mainship/outer,
 /area/mainship/hallways/port_hallway)
+"fC" = (
+/obj/machinery/holopad,
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/engineering_workshop)
 "fD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
@@ -3976,7 +3987,7 @@
 "kK" = (
 /obj/machinery/light/mainship,
 /obj/structure/closet/emcloset,
-/turf/open/floor/mainship/cargo,
+/turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "kL" = (
 /obj/machinery/light/mainship{
@@ -4093,10 +4104,6 @@
 	dir = 4
 	},
 /obj/structure/punching_bag,
-/obj/effect/decal/cleanable/blood/writing{
-	desc = "It looks like a writing in blood. It says, 'I don't want to be a marine anymore.'";
-	dir = 4
-	},
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/firing_range)
 "la" = (
@@ -4225,6 +4232,17 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
+"lw" = (
+/obj/structure/rack,
+/obj/item/tool/wrench,
+/obj/item/tool/crowbar,
+/obj/item/tool/screwdriver,
+/obj/item/paper/factoryhowto,
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/engineering_workshop)
 "lx" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -4656,10 +4674,6 @@
 	dir = 4
 	},
 /area/mainship/living/pilotbunks)
-"mD" = (
-/obj/item/tool/taperoll/engineering,
-/turf/open/floor/mainship/mono,
-/area/mainship/engineering/engineering_workshop)
 "mE" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/cargo/arrow{
@@ -4819,6 +4833,10 @@
 	},
 /obj/item/tool/pen,
 /obj/effect/spawner/random/present,
+/obj/effect/decal/cleanable/blood/writing{
+	desc = "It looks like a writing in blood. It says, 'If you see this, you will join the dead.'";
+	dir = 4
+	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/numbertwobunks)
 "mZ" = (
@@ -5327,12 +5345,9 @@
 	},
 /area/mainship/squads/general)
 "op" = (
-/obj/effect/decal/cleanable/blood/writing{
-	desc = "It looks like a writing in blood. It says, 'We are the monsters all along.'";
-	dir = 4
-	},
-/turf/open/floor/mainship/floor,
-/area/sulaco/showers)
+/obj/docking_port/stationary/marine_dropship/crash_target,
+/turf/open/floor/plating,
+/area/mainship/hallways/hangar)
 "oq" = (
 /obj/machinery/door/airlock/mainship/maint,
 /obj/machinery/door/firedoor/mainship,
@@ -5477,6 +5492,16 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
+"oM" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/writing{
+	desc = "It looks like a writing in blood. It says, 'If you see this, you will join the dead.'";
+	dir = 4
+	},
+/turf/open/floor/plating/mainship,
+/area/mainship/command/cic)
 "oN" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
@@ -6343,6 +6368,12 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/living/numbertwobunks)
+"re" = (
+/obj/item/stack/tile/plasteel,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 4
+	},
+/area/mainship/engineering/engineering_workshop)
 "rf" = (
 /obj/effect/soundplayer,
 /obj/machinery/door/poddoor/shutters/mainship/selfdestruct{
@@ -6636,6 +6667,21 @@
 	dir = 8
 	},
 /area/mainship/hallways/aft_hallway)
+"rO" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/storage/backpack/industrial,
+/obj/item/tool/shovel/snow,
+/obj/item/tool/shovel/snow,
+/obj/item/tool/shovel/snow,
+/obj/item/tool/shovel/snow,
+/obj/item/stack/rods{
+	amount = 40
+	},
+/obj/item/stack/rods{
+	amount = 40
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/engineering_workshop)
 "rP" = (
 /obj/structure/prop/holidays/string_lights{
 	dir = 8
@@ -6677,18 +6723,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/stern_hallway)
 "rU" = (
-/obj/machinery/door/airlock/mainship/maint/free_access,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/effect/decal/tracks/wheels/bloody{
-	dir = 4
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
+/obj/structure/closet/bodybag,
+/obj/effect/landmark/corpsespawner/marine/burst,
+/turf/open/floor/cult,
+/area/medical/morgue)
 "rV" = (
 /obj/structure/window/framed/mainship,
 /obj/structure/cable,
@@ -6756,6 +6794,10 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
+"sf" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/engineering_workshop)
 "sg" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/christmas_food{
@@ -7568,19 +7610,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/hangar/droppod)
-"ul" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/power/apc/mainship,
-/turf/open/floor/mainship/orange{
-	dir = 1
-	},
-/area/mainship/engineering/engineering_workshop)
 "um" = (
 /obj/structure/rack,
 /turf/open/floor/mainship/blue/full,
@@ -9938,10 +9967,18 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
 "Ax" = (
-/obj/structure/lattice,
-/obj/item/tank/jetpack/oxygen,
-/turf/open/space,
-/area/space)
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/power/apc/mainship,
+/turf/open/floor/mainship/orange{
+	dir = 1
+	},
+/area/mainship/engineering/engineering_workshop)
 "Ay" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/wood,
@@ -10261,12 +10298,20 @@
 /turf/open/floor/wood,
 /area/mainship/living/numbertwobunks)
 "Bp" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/decal/tracks/wheels/bloody,
-/turf/open/floor/plating/plating_catwalk,
+/obj/machinery/door/airlock/mainship/maint/free_access,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/effect/decal/tracks/wheels/bloody{
+	dir = 4
+	},
+/obj/effect/decal/tracks/wheels/bloody{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "Bq" = (
 /obj/machinery/light/mainship{
@@ -10628,6 +10673,13 @@
 	},
 /turf/open/floor/mainship/black,
 /area/mainship/squads/general)
+"Ct" = (
+/obj/effect/decal/cleanable/blood/writing{
+	desc = "It looks like a writing in blood. It says, 'If you see this, you will join the dead.'";
+	dir = 4
+	},
+/turf/open/floor/plating/mainship,
+/area/mainship/hallways/starboard_hallway)
 "Cu" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -11807,7 +11859,7 @@
 "Fv" = (
 /obj/machinery/light/mainship,
 /obj/structure/closet/firecloset,
-/turf/open/floor/mainship/cargo,
+/turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "Fx" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -11815,6 +11867,11 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/bridgebunks)
+"Fy" = (
+/obj/structure/lattice,
+/obj/item/tank/jetpack/oxygen,
+/turf/open/space,
+/area/space)
 "Fz" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
@@ -12253,7 +12310,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/blood/writing{
-	desc = "It looks like a writing in blood. It says, 'Don't trust the marines.'";
+	desc = "It looks like a writing in blood. It says, 'If you see this, you will join the dead.'";
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -12778,6 +12835,12 @@
 "Id" = (
 /turf/closed/wall/mainship,
 /area/mainship/living/pilotbunks)
+"Ie" = (
+/obj/machinery/vending/cola,
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
+/area/mainship/engineering/engineering_workshop)
 "If" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
@@ -13760,17 +13823,6 @@
 /obj/item/reagent_containers/food/drinks/bottle/eggnog,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
-"KO" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/frame/fire_alarm,
-/obj/item/tool/taperoll/engineering,
-/obj/machinery/light/mainship{
-	dir = 8
-	},
-/obj/item/lightreplacer,
-/obj/effect/spawner/random/present,
-/turf/open/floor/mainship/mono,
-/area/mainship/engineering/engineering_workshop)
 "KP" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/chem_dispenser/beer{
@@ -14940,6 +14992,12 @@
 	},
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/req)
+"NV" = (
+/obj/item/stack/tile/plasteel,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 9
+	},
+/area/mainship/engineering/engineering_workshop)
 "NW" = (
 /obj/structure/bed/chair/comfy/black,
 /turf/open/floor/mainship/red/full,
@@ -16091,12 +16149,20 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/upper_engineering)
 "Re" = (
-/obj/effect/decal/cleanable/blood/writing{
-	desc = "It looks like a writing in blood. It says, 'If you see this, you will join the dead.'";
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/plating/mainship,
-/area/mainship/hallways/starboard_hallway)
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
+"Rf" = (
+/obj/item/stack/tile/plasteel,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 1
+	},
+/area/mainship/engineering/engineering_workshop)
 "Rg" = (
 /turf/open/floor/plating/mainship,
 /area/mainship/hallways/starboard_hallway)
@@ -16467,6 +16533,17 @@
 "Sf" = (
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/lower_medical)
+"Sg" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/clothing/glasses/welding,
+/obj/item/frame/table,
+/obj/item/frame/table,
+/obj/item/frame/table,
+/obj/item/lightreplacer,
+/obj/item/lightreplacer,
+/obj/item/lightreplacer,
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/engineering_workshop)
 "Sh" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/mainship{
@@ -17950,6 +18027,10 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/sulaco/showers)
+"VY" = (
+/obj/effect/landmark/corpsespawner/engineer/regular,
+/turf/open/floor/mainship_hull,
+/area/space)
 "VZ" = (
 /obj/structure/mirror,
 /obj/structure/sink,
@@ -18987,6 +19068,16 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
+"YH" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/radio,
+/obj/item/light_bulb/tube,
+/obj/item/light_bulb/tube,
+/obj/item/light_bulb/tube,
+/obj/item/clothing/glasses/meson,
+/obj/item/clothing/gloves/yellow,
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/engineering_workshop)
 "YI" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
@@ -19066,16 +19157,13 @@
 	},
 /area/mainship/squads/general)
 "YT" = (
-/obj/effect/landmark/start/latejoin,
-/obj/machinery/light/mainship{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/blood/writing{
-	desc = "It looks like a writing in blood. It says, 'I went back to sleep, but I will come back to the same nightmare.'";
-	dir = 4
-	},
-/turf/open/floor/mainship,
-/area/mainship/living/cryo_cells)
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/decal/tracks/wheels/bloody,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/lower_hull)
 "YU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -19229,6 +19317,12 @@
 /obj/item/tool/crowbar/red,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
+"Zn" = (
+/obj/item/stack/tile/plasteel,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 10
+	},
+/area/mainship/engineering/engineering_workshop)
 "Zo" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -19343,6 +19437,10 @@
 /obj/structure/table/woodentable,
 /obj/item/storage/bible,
 /obj/effect/spawner/random/present,
+/obj/effect/decal/cleanable/blood/writing{
+	desc = "It looks like a writing in blood. It says, 'If you see this, you will join the dead.'";
+	dir = 4
+	},
 /turf/open/floor/wood,
 /area/mainship/living/chapel)
 "ZF" = (
@@ -41693,7 +41791,7 @@ dn
 fX
 il
 SP
-Ha
+rU
 ti
 JA
 sk
@@ -42007,7 +42105,7 @@ HE
 TD
 LN
 XD
-en
+VY
 Ci
 Ci
 yC
@@ -42267,7 +42365,7 @@ XD
 Ci
 Ci
 EO
-Ax
+Fy
 bQ
 bQ
 bQ
@@ -42733,7 +42831,7 @@ JA
 Bh
 JA
 JA
-rU
+Bp
 JA
 JA
 JA
@@ -42781,7 +42879,7 @@ XD
 Ci
 Ci
 EO
-KR
+dO
 bQ
 bQ
 bQ
@@ -42991,9 +43089,9 @@ tZ
 RD
 RD
 rr
-Bp
-Bp
-Bp
+YT
+YT
+YT
 tK
 RD
 Xy
@@ -46282,7 +46380,7 @@ Uh
 cB
 Tp
 Vc
-dw
+bi
 BQ
 fM
 BQ
@@ -46298,7 +46396,7 @@ UR
 Ev
 LL
 zi
-dw
+bi
 pH
 Pn
 BQ
@@ -47561,7 +47659,7 @@ cB
 xt
 xt
 xt
-bT
+xt
 Lw
 dr
 VL
@@ -50395,8 +50493,8 @@ tR
 JP
 av
 io
-oF
-BQ
+Re
+by
 Fv
 Vc
 nz
@@ -50652,9 +50750,9 @@ tR
 JP
 uI
 io
-oF
+Re
 BQ
-pH
+ah
 Vc
 yh
 Tv
@@ -50909,7 +51007,7 @@ tR
 JP
 av
 io
-oF
+Re
 BQ
 kK
 Vc
@@ -51006,7 +51104,7 @@ ic
 Iz
 jJ
 eD
-YF
+lw
 TF
 hg
 Wk
@@ -51245,7 +51343,7 @@ oT
 eN
 Qs
 iG
-LV
+oM
 va
 wl
 lA
@@ -51516,12 +51614,12 @@ id
 Kr
 Zh
 ps
-sf
+NV
 Jx
-mD
+bT
 Jx
-cT
-PM
+Zn
+rO
 Fn
 Wk
 AA
@@ -51740,7 +51838,7 @@ vX
 Rg
 Rg
 Rg
-Re
+Ct
 Rg
 Rg
 Rg
@@ -51772,13 +51870,13 @@ mu
 ok
 vb
 xY
-ul
-rO
+Ax
+Rf
 KM
 KM
 OQ
 Vj
-gu
+YH
 jj
 Wk
 GG
@@ -52544,7 +52642,7 @@ KM
 KM
 KM
 cq
-rO
+Rf
 Zm
 Sx
 Sx
@@ -52799,14 +52897,14 @@ Wk
 hf
 KM
 KM
-GL
+sf
 My
 DU
-mD
-dM
-dM
-TX
-jD
+bT
+re
+re
+ei
+Sg
 Xm
 Wk
 GG
@@ -52974,7 +53072,7 @@ tR
 tR
 Yt
 NX
-tR
+op
 tR
 tR
 tR
@@ -53060,7 +53158,7 @@ KM
 IT
 KM
 KM
-Ym
+fC
 KM
 KM
 KM
@@ -53313,7 +53411,7 @@ Wk
 yD
 YG
 ld
-WP
+Ie
 KI
 XE
 jE
@@ -53728,7 +53826,7 @@ GG
 Vc
 Ql
 Ql
-bi
+Ql
 BM
 ev
 YR
@@ -55023,7 +55121,7 @@ Vc
 TP
 BM
 Aq
-dw
+bi
 Jr
 pH
 BQ
@@ -55038,7 +55136,7 @@ UM
 BQ
 BQ
 av
-dw
+bi
 Jr
 pH
 Le
@@ -55300,7 +55398,7 @@ Vc
 Vc
 Le
 wh
-op
+dw
 vs
 VX
 Le
@@ -60230,7 +60328,6 @@ nK
 jD
 KC
 mJ
-YT
 qc
 qc
 GL
