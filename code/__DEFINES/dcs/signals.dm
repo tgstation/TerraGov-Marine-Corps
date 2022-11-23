@@ -871,3 +871,7 @@
 
 /// from datum ui_act (usr, action)
 #define COMSIG_UI_ACT "COMSIG_UI_ACT"
+
+/// From reequip datums
+#define COMSIG_REEQUIP_SUCCESS "reequip success"
+#define COMSIG_REEQUIP_FAILURE "reequip failure"

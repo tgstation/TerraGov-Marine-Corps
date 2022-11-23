@@ -245,18 +245,23 @@
 	time_to_equip = 2 SECONDS
 	time_to_unequip = 1 SECONDS
 	flags_inventory = NOQUICKEQUIP
-	///The item hooked into the belt, to be automatically reequipped
-	var/obj/item/attached_item
+	///The current attacher. Gets remade for every new item
+	var/datum/component/reequip/attacher_component
 	///Whether our attached item is being forcefully returned after a throw
 	var/recoiling = FALSE
+
+/obj/item/belt_harness/examine(mob/user, distance, infix, suffix)
+	. = ..()
+	if(attacher_component)
+		. += "There is \a [attacher_component.parent] hooked into it."
 
 /obj/item/belt_harness/equipped(mob/user, slot)
 	. = ..()
 	RegisterSignal(user, COMSIG_MOB_THROW, .proc/on_owner_throw)
 
 /obj/item/belt_harness/unequipped(mob/unequipper, slot)
-	if(attached_item)
-		detach_item(unequipper)
+	if(attacher_component)
+		detach_item(attacher_component.parent, unequipper)
 	UnregisterSignal(unequipper, COMSIG_MOB_THROW)
 	return ..()
 
@@ -264,36 +269,43 @@
 	. = ..()
 	if(.)
 		return
+	if(!istype(I))
+		return
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/huser = user
 	if(huser.belt != src)
+		to_chat(user, span_notice("You need to be wearing [src] to attach something to it!"))
 		return
-	if(attached_item)
-		if(attached_item == I)
-			detach_item(user)
+	if(attacher_component)
+		if(attacher_component.parent == I)
+			detach_item(I, user)
 			return
-		to_chat(user, span_notice("[src] already has \a [attached_item] hooked into it!"))
+		to_chat(user, span_notice("[src] already has \a [attacher_component.parent] hooked into it!"))
 		return
 	attach_item(I, user)
 
 ///Set up the link between belt and object
 /obj/item/belt_harness/proc/attach_item(obj/item/to_attach, mob/user)
-	RegisterSignal(to_attach, COMSIG_ITEM_REMOVED_INVENTORY, .proc/begin_catch)
-	RegisterSignal(to_attach, COMSIG_PARENT_QDELETING, .proc/detach_item)
-	attached_item = to_attach
+	attacher_component = to_attach.AddComponent(/datum/component/reequip, list(SLOT_S_STORE, SLOT_BACK))
+	RegisterSignal(attacher_component, list(COMSIG_REEQUIP_FAILURE, COMSIG_PARENT_QDELETING), .proc/detach_item)
+	RegisterSignal(attacher_component, COMSIG_REEQUIP_SUCCESS, .proc/catch_success)
 	playsound(src,'sound/machines/click.ogg', 15, FALSE, 1)
-	to_chat(user, span_notice("[src] clicks as you hook \the [attached_item] into it."))
+	to_chat(user, span_notice("[src] clicks as you hook \the [to_attach] into it."))
 
 ///Clean out attachment refs/signals
-/obj/item/belt_harness/proc/detach_item(mob/user)
-	if(!attached_item)
+/obj/item/belt_harness/proc/detach_item(obj/item/to_detach, mob/user)
+	SIGNAL_HANDLER
+	if(!attacher_component)
 		return
-	UnregisterSignal(attached_item, list(COMSIG_ITEM_REMOVED_INVENTORY, COMSIG_PARENT_QDELETING))
-	to_chat(user, span_notice("[src] clicks as \the [attached_item] unhook[attached_item.p_s()] from it."))
-	attached_item = null
+	UnregisterSignal(attacher_component, list(COMSIG_REEQUIP_FAILURE, COMSIG_REEQUIP_SUCCESS, COMSIG_PARENT_QDELETING))
+	if(user && to_detach)
+		to_chat(user, span_notice("[src] clicks as \the [to_detach] unhook[to_detach.p_s()] from it."))
+		playsound(src,'sound/machines/click.ogg', 15, FALSE, 1)
+	if(!QDELING(attacher_component)) //We might've come here from parent qdeling, so we can't just qdel_null it
+		qdel(attacher_component)
+	attacher_component = null
 	recoiling = FALSE
-	playsound(src,'sound/machines/click.ogg', 15, FALSE, 1)
 
 ///Signal handler, to see if our attached_item is being thrown
 /obj/item/belt_harness/proc/on_owner_throw(source, atom/target)
@@ -301,40 +313,16 @@
 	if(!ishuman(source))
 		return
 	var/mob/living/carbon/human/huser = source
-	if(huser.get_active_held_item() == attached_item)
+	if(huser.get_active_held_item() == attacher_component?.parent)
 		recoiling = TRUE
 
-///Signal handler, to pull our attached_item back after a delay
-/obj/item/belt_harness/proc/begin_catch(source, mob/user)
-	SIGNAL_HANDLER
-	addtimer(CALLBACK(src, .proc/try_to_catch, source, user), 0.2 SECONDS, TIMER_UNIQUE)
-
-///Actually returns the item, if it's in a suitable state
-/obj/item/belt_harness/proc/try_to_catch(source, mob/user)
-	if(!attached_item || attached_item != source)
-		return FALSE
-	if(!isturf(attached_item.loc)) //Probably in storage somewhere
-		detach_item(user)
-		return
-	if(user.equip_to_slot_if_possible(attached_item, SLOT_S_STORE, warning = FALSE))
-		. = TRUE
-	if(user.equip_to_slot_if_possible(attached_item, SLOT_BACK, warning = FALSE))
-		. = TRUE
-	if(!.)
-		detach_item(user) //Couldn't catch it, goodbye
-		return
-	if(!recoiling) //Don't use this for infinite thrown weapons.
-		if(!.)
-			detach_item(user)
-		return
-	if(!.)
-		detach_item(user)
-		return
+///Slaps you in the face if you throw the attached item and it returns
+/obj/item/belt_harness/proc/catch_success(source, obj/item/caught, mob/user)
 	if(!recoiling)
 		return
 	recoiling = FALSE
-	user.visible_message(span_notice("[attached_item] smack[attached_item.p_s()] [user] in the face as it slingshots back to [user.p_them()]"),\
-		span_warning("[attached_item] smack[attached_item.p_s()] you in the face as [src] pulls it back to you."))
+	user.visible_message(span_notice("[caught] smack[caught.p_s()] [user] in the face as it slingshots back to [user.p_them()]"),\
+		span_warning("[caught] smack[caught.p_s()] you in the face as [src] pulls [caught.p_them()] back to you."))
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/huser = user
