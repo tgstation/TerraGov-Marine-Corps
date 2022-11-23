@@ -507,6 +507,9 @@
 /turf/closed/shuttle/dropship2/enginefive
 	icon_state = "shuttle_interior_backengine5"
 
+/turf/closed/shuttle/dropship2/engine_sidealt
+	icon_state = "shuttle_side_engine_alt"
+
 /turf/closed/shuttle/dropship2/fins
 	icon_state = "shuttle_exterior_fins"
 
@@ -521,6 +524,18 @@
 
 /turf/closed/shuttle/dropship2/wall
 	icon_state = "shuttle_interior_wall"
+
+/turf/closed/shuttle/dropship2/walltwo
+	icon_state = "shuttle_wall_left"
+
+/turf/closed/shuttle/dropship2/walltwo/alt
+	icon_state = "shuttle_wall_left_alt"
+
+/turf/closed/shuttle/dropship2/wallthree
+	icon_state = "shuttle_wall_right"
+
+/turf/closed/shuttle/dropship2/wallthree/alt
+	icon_state = "shuttle_wall_right_alt"
 
 /turf/closed/shuttle/dropship2/interiorwindow
 	icon_state = "shuttle_interior_inwards"
@@ -557,6 +572,12 @@
 
 /turf/closed/shuttle/dropship2/glassfour
 	icon_state = "shuttle_glass4"
+
+/turf/closed/shuttle/dropship2/glassfive
+	icon_state = "shuttle_glass5"
+
+/turf/closed/shuttle/dropship2/glasssix
+	icon_state = "shuttle_glass6"
 
 /turf/closed/shuttle/dropship2/rearcorner/alt
 	icon_state = "shuttle_rearcorner_alt"
