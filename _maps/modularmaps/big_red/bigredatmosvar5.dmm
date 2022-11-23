@@ -763,9 +763,7 @@
 /area/bigredv2/outside/s)
 "OG" = (
 /obj/structure/cryofeed,
-/turf/open/floor/bcircuit/anim{
-	icon_state = "bcircuitoff"
-	},
+/turf/open/floor/bcircuit/anim,
 /area/bigredv2/outside/filtration_plant)
 "Qe" = (
 /obj/effect/landmark/weed_node,
@@ -893,9 +891,7 @@
 /obj/structure/cryofeed/right{
 	name = "\improper coolant feed"
 	},
-/turf/open/floor/bcircuit/anim{
-	icon_state = "bcircuitoff"
-	},
+/turf/open/floor/bcircuit/anim,
 /area/bigredv2/outside/filtration_plant)
 "WO" = (
 /obj/effect/landmark/lv624/fog_blocker,

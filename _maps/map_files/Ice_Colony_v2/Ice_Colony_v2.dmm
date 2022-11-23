@@ -22050,15 +22050,13 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/security/armory)
 "bQG" = (
-/turf/closed/shuttle/ert{
-	icon_state = "leftengine_2";
-	opacity = 0
+/turf/closed/shuttle/ert/engines/left{
+	dir = 1;
 	},
 /area/ice_colony/underground/responsehangar)
 "bQH" = (
-/turf/closed/shuttle/ert{
-	icon_state = "rightengine_2";
-	opacity = 0
+/turf/closed/shuttle/ert/engines/right{
+	dir = 1;
 	},
 /area/ice_colony/underground/responsehangar)
 "bQI" = (
@@ -22082,10 +22080,7 @@
 	},
 /area/ice_colony/surface/excavationbarracks)
 "bQN" = (
-/turf/closed/shuttle/ert{
-	icon_state = "leftengine_1";
-	opacity = 0
-	},
+/turf/closed/shuttle/ert/engines/left,
 /area/ice_colony/underground/responsehangar)
 "bQO" = (
 /turf/closed/shuttle/ert{
@@ -22131,10 +22126,7 @@
 	},
 /area/ice_colony/underground/responsehangar)
 "bQV" = (
-/turf/closed/shuttle/ert{
-	icon_state = "rightengine_1";
-	opacity = 0
-	},
+/turf/closed/shuttle/ert/engines/right,
 /area/ice_colony/underground/responsehangar)
 "bQW" = (
 /obj/structure/cable,

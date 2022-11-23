@@ -2293,9 +2293,7 @@
 /area/orion_outpost/surface/building/administration)
 "mu" = (
 /obj/structure/cable,
-/turf/open/floor/plating/ground/desertdam/grate{
-	icon_state = "catwalk-223"
-	},
+/turf/open/floor/plating/ground/desertdam/grate/alternate,
 /area/orion_outpost/surface/building/engineering)
 "mw" = (
 /obj/structure/platform{
@@ -2863,9 +2861,7 @@
 /turf/open/floor/plating/ground/concrete/lines,
 /area/orion_outpost/surface/building/vehicledepot)
 "pc" = (
-/turf/open/floor/plating/ground/desertdam/grate{
-	icon_state = "catwalk-223"
-	},
+/turf/open/floor/plating/ground/desertdam/grate/alternate,
 /area/orion_outpost/surface/building/engineering)
 "pe" = (
 /obj/structure/cable,
@@ -5551,9 +5547,7 @@
 /area/orion_outpost/ground/outpostnw)
 "CJ" = (
 /obj/effect/spawner/random/gun/rifles,
-/turf/open/floor/plating/ground/desertdam/grate{
-	icon_state = "catwalk-223"
-	},
+/turf/open/floor/plating/ground/desertdam/grate/alternate,
 /area/orion_outpost/surface/building/engineering)
 "CK" = (
 /obj/effect/decal/cleanable/blood,
@@ -5936,9 +5930,7 @@
 /area/orion_outpost/surface/building/medbay)
 "ES" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/desertdam/grate{
-	icon_state = "catwalk-223"
-	},
+/turf/open/floor/plating/ground/desertdam/grate/alternate,
 /area/orion_outpost/surface/building/engineering)
 "ET" = (
 /obj/machinery/camera/autoname/lz_camera,
@@ -6075,7 +6067,7 @@
 /area/orion_outpost/surface/building/administration)
 "FL" = (
 /obj/effect/attach_point/weapon/dropship1{
-	dir = 8;
+	dir = 8
 	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
@@ -6449,7 +6441,7 @@
 /area/orion_outpost/surface/building/monitor)
 "HG" = (
 /obj/effect/attach_point/weapon/dropship1{
-	dir = 8;
+	dir = 8
 	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8

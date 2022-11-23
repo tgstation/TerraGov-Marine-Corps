@@ -470,6 +470,100 @@
 /turf/closed/shuttle/dropship2/transparent
 	opacity = FALSE
 
+/turf/closed/shuttle/dropship2/edge
+	icon_state = "shuttle_interior_edge"
+
+/turf/closed/shuttle/dropship2/edge/alt
+	icon_state = "shuttle_interior_edgealt"
+
+/turf/closed/shuttle/dropship2/aisle
+	icon_state = "shuttle_interior_aisle"
+
+/turf/closed/shuttle/dropship2/door
+	icon_state = "shuttle_rear_door"
+
+/turf/closed/shuttle/dropship2/window
+	icon_state = "shuttle_window_glass"
+	opacity = FALSE
+
+/turf/closed/shuttle/dropship2/panel
+	icon_state = "shuttle_interior_panel"
+
+/turf/closed/shuttle/dropship2/engineone
+	icon_state = "shuttle_interior_backengine"
+
+/turf/closed/shuttle/dropship2/engineone/alt
+	icon_state = "shuttle_engine_alt"
+
+/turf/closed/shuttle/dropship2/enginetwo
+	icon_state = "shuttle_interior_backengine2"
+
+/turf/closed/shuttle/dropship2/enginethree
+	icon_state = "shuttle_interior_backengine3"
+
+/turf/closed/shuttle/dropship2/enginefour
+	icon_state = "shuttle_interior_backengine4"
+
+/turf/closed/shuttle/dropship2/enginefive
+	icon_state = "shuttle_interior_backengine5"
+
+/turf/closed/shuttle/dropship2/fins
+	icon_state = "shuttle_exterior_fins"
+
+/turf/closed/shuttle/dropship2/panels
+	icon_state = "shuttle_exterior_panels"
+
+/turf/closed/shuttle/dropship2/corners
+	icon_state = "shuttle_exterior_corners"
+
+/turf/closed/shuttle/dropship2/front
+	icon_state = "shuttle_exterior_front"
+
+/turf/closed/shuttle/dropship2/wall
+	icon_state = "shuttle_interior_wall"
+
+/turf/closed/shuttle/dropship2/interiorwindow
+	icon_state = "shuttle_interior_inwards"
+
+/turf/closed/shuttle/dropship2/interiormisc
+	icon_state = "shuttle_interior_threeside"
+
+/turf/closed/shuttle/dropship2/cornersalt
+	icon_state = "shuttle_interior_corneralt"
+
+/turf/closed/shuttle/dropship2/cornersalt2
+	icon_state = "shuttle_interior_alt2"
+
+/turf/closed/shuttle/dropship2/finleft
+	icon_state = "shuttle_exterior_finnleft"
+
+/turf/closed/shuttle/dropship2/finright
+	icon_state = "shuttle_exterior_finnright"
+
+/turf/closed/shuttle/dropship2/finback
+	icon_state = "shuttle_exterior_finback"
+
+/turf/closed/shuttle/dropship2/rearcorner
+	icon_state = "shuttle_rearcorner"
+
+/turf/closed/shuttle/dropship2/glassone
+	icon_state = "shuttle_glass1"
+
+/turf/closed/shuttle/dropship2/glasstwo
+	icon_state = "shuttle_glass2"
+
+/turf/closed/shuttle/dropship2/glassthree
+	icon_state = "shuttle_glass3"
+
+/turf/closed/shuttle/dropship2/glassfour
+	icon_state = "shuttle_glass4"
+
+/turf/closed/shuttle/dropship2/rearcorner/alt
+	icon_state = "shuttle_rearcorner_alt"
+
+/turf/closed/shuttle/dropship2/transparent
+	opacity = FALSE
+
 /turf/closed/shuttle/tadpole
 	name = "\improper Tadpole"
 	icon = 'icons/turf/dropship2.dmi'

@@ -1,4 +1,8 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ay" = (
+/obj/structure/dropship_piece/two/engine/leftbottom,
+/turf/closed/shuttle/dropship2/engineone,
+/area/shuttle/dropship/normandy)
 "bi" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
@@ -6,9 +10,7 @@
 /turf/open/shuttle/dropship/four,
 /area/shuttle/dropship/normandy)
 "cK" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "105"
-	},
+/turf/closed/shuttle/dropship2/glassone,
 /area/shuttle/dropship/normandy)
 "cW" = (
 /obj/structure/bed/chair/dropship/passenger,
@@ -19,7 +21,9 @@
 /area/shuttle/dropship/normandy)
 "fz" = (
 /obj/structure/dropship_piece/two/engine/leftbottom,
-/turf/template_noop,
+/turf/closed/shuttle/dropship2/engineone{
+	dir = 4
+	},
 /area/shuttle/dropship/normandy)
 "fJ" = (
 /obj/structure/bed/chair/dropship/passenger{
@@ -93,9 +97,7 @@
 /turf/open/shuttle/dropship/six,
 /area/shuttle/dropship/normandy)
 "pB" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "108"
-	},
+/turf/closed/shuttle/dropship2/glassfour,
 /area/shuttle/dropship/normandy)
 "qP" = (
 /turf/closed/shuttle/dropship2/transparent{
@@ -103,8 +105,8 @@
 	},
 /area/shuttle/dropship/normandy)
 "qW" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "33"
+/turf/closed/shuttle/dropship2/enginethree{
+	dir = 4
 	},
 /area/shuttle/dropship/normandy)
 "rG" = (
@@ -118,17 +120,13 @@
 	},
 /area/shuttle/dropship/normandy)
 "sh" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "26"
-	},
+/turf/closed/shuttle/dropship2/enginetwo,
 /area/shuttle/dropship/normandy)
 "th" = (
 /turf/open/shuttle/dropship/five,
 /area/shuttle/dropship/normandy)
 "ud" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "110"
-	},
+/turf/closed/shuttle/dropship2/engineone/alt,
 /area/shuttle/dropship/normandy)
 "ur" = (
 /obj/structure/bed/chair/dropship/pilot{
@@ -166,8 +164,8 @@
 /turf/template_noop,
 /area/shuttle/dropship/normandy)
 "AM" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "22"
+/turf/closed/shuttle/dropship2/enginetwo{
+	dir = 4
 	},
 /area/shuttle/dropship/normandy)
 "Bd" = (
@@ -190,8 +188,8 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/normandy)
 "CN" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "111"
+/turf/closed/shuttle/dropship2/engineone/alt{
+	dir = 1
 	},
 /area/shuttle/dropship/normandy)
 "Dz" = (
@@ -209,24 +207,20 @@
 	},
 /area/shuttle/dropship/normandy)
 "Fn" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "107"
-	},
+/turf/closed/shuttle/dropship2/glassthree,
 /area/shuttle/dropship/normandy)
 "FH" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "112"
+/turf/closed/shuttle/dropship2/engineone/alt{
+	dir = 4
 	},
 /area/shuttle/dropship/normandy)
 "Gg" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "113"
+/turf/closed/shuttle/dropship2/engineone/alt{
+	dir = 8
 	},
 /area/shuttle/dropship/normandy)
 "Ii" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "28"
-	},
+/turf/closed/shuttle/dropship2/enginethree,
 /area/shuttle/dropship/normandy)
 "Iv" = (
 /turf/closed/shuttle/dropship2{
@@ -234,9 +228,7 @@
 	},
 /area/shuttle/dropship/normandy)
 "Js" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "106"
-	},
+/turf/closed/shuttle/dropship2/glasstwo,
 /area/shuttle/dropship/normandy)
 "JK" = (
 /turf/closed/shuttle/dropship2/transparent{
@@ -248,7 +240,9 @@
 /area/shuttle/dropship/normandy)
 "Mg" = (
 /obj/structure/dropship_piece/two/engine/rightbottom,
-/turf/template_noop,
+/turf/closed/shuttle/dropship2/engineone{
+	dir = 8
+	},
 /area/shuttle/dropship/normandy)
 "OZ" = (
 /turf/closed/shuttle/dropship2{
@@ -280,8 +274,8 @@
 /turf/open/shuttle/dropship/eight,
 /area/shuttle/dropship/normandy)
 "Su" = (
-/turf/closed/shuttle/dropship2{
-	icon_state = "30"
+/turf/closed/shuttle/dropship2/enginethree{
+	dir = 8
 	},
 /area/shuttle/dropship/normandy)
 "SV" = (
@@ -450,7 +444,7 @@ Zp
 FH
 Bd
 sh
-fz
+ay
 Zp
 "}
 (9,1,1) = {"

@@ -4481,10 +4481,7 @@
 /area/mainship/medical/operating_room_two)
 "nf" = (
 /obj/structure/lattice,
-/turf/closed/shuttle/ert{
-	icon_state = "rightengine_1";
-	opacity = 0
-	},
+/turf/closed/shuttle/ert/engines/right,
 /area/space)
 "ng" = (
 /obj/structure/cable,
@@ -8890,10 +8887,7 @@
 /area/mainship/squads/general)
 "zX" = (
 /obj/structure/lattice,
-/turf/closed/shuttle/ert{
-	icon_state = "leftengine_1";
-	opacity = 0
-	},
+/turf/closed/shuttle/ert/engines/left,
 /area/space)
 "zY" = (
 /obj/machinery/vending/weapon,
@@ -12313,9 +12307,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/bridgebunks)
 "JZ" = (
-/turf/closed/shuttle/ert{
-	icon_state = "rightengine_2";
-	opacity = 0
+/turf/closed/shuttle/ert/engines/right{
+	dir = 1;
 	},
 /area/space)
 "Ka" = (
@@ -14722,9 +14715,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "Rb" = (
-/turf/closed/shuttle/ert{
-	icon_state = "leftengine_2";
-	opacity = 0
+/turf/closed/shuttle/ert/engines/left{
+	dir = 1;
 	},
 /area/space)
 "Rc" = (
