@@ -35,8 +35,8 @@
 // *********** Petrify
 // ***************************************
 #define PETRIFY_RANGE 5
-#define PETRIFY_DURATION 7 SECONDS
-#define PETRIFY_WINDUP_TIME 3 SECONDS
+#define PETRIFY_DURATION 5 SECONDS
+#define PETRIFY_WINDUP_TIME 2.5 SECONDS
 /datum/action/xeno_action/petrify
 	name = "Petrify"
 	action_icon_state = "petrify"
@@ -197,6 +197,10 @@
 	. = ..()
 	if(!.)
 		return
+	if(SSmonitor.gamestate == SHUTTERS_CLOSED && is_ground_level(owner.z))
+		if(!silent)
+			owner.balloon_alert("too early")
+		return FALSE
 	if(LAZYACCESS(owner.do_actions, src))
 		if(!silent)
 			owner.balloon_alert(owner, "already busy")
