@@ -7,6 +7,8 @@
 	opacity = FALSE
 	open_layer = CATWALK_LAYER
 	closed_layer = WINDOW_LAYER
+	smoothing_behavior = null
+	smoothing_groups = null
 
 	var/obj/docking_port/mobile/supply/linked_pad
 
