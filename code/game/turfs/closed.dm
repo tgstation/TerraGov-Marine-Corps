@@ -540,6 +540,9 @@
 /turf/closed/shuttle/dropship2/interiorwindow
 	icon_state = "shuttle_interior_inwards"
 
+/turf/closed/shuttle/dropship2/singlewindow
+	icon_state = "shuttle_single_window"
+
 /turf/closed/shuttle/dropship2/interiormisc
 	icon_state = "shuttle_interior_threeside"
 

@@ -26,8 +26,8 @@
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "cO" = (
-/turf/open/ground/coast{
-	dir = 4
+/turf/open/ground/coast/corner{
+	dir = 1
 	},
 /area/lv624/ground/caves/central2)
 "dp" = (
@@ -125,8 +125,8 @@
 /turf/open/floor/tile/dark,
 /area/lv624/ground/caves/central1)
 "kp" = (
-/turf/open/ground/coast{
-	dir = 1;
+/turf/open/ground/coast/corner{
+	dir = 4
 	},
 /area/lv624/ground/caves/central2)
 "kE" = (
@@ -181,8 +181,7 @@
 /obj/structure/table/woodentable,
 /obj/effect/spawner/random/ammo/shotgun,
 /turf/open/floor/carpet/side{
-	dir = 10;
-
+	dir = 10
 	},
 /area/lv624/ground/caves/central2)
 "op" = (
@@ -204,12 +203,11 @@
 	},
 /area/lv624/ground/caves/central1)
 "ph" = (
-/turf/open/floor/wood/two,
+/turf/open/floor/wood/broken/two,
 /area/lv624/ground/caves/central2)
 "pi" = (
-/turf/open/ground/coast{
-	dir = 8;
-	icon_state = "beachcorner2"
+/turf/open/ground/coast/corner2{
+	dir = 8
 	},
 /area/lv624/ground/caves/central2)
 "pD" = (
@@ -231,7 +229,7 @@
 /area/lv624/ground/caves/central2)
 "pR" = (
 /turf/open/ground/coast/corner{
-	dir = 8;
+	dir = 8
 	},
 /area/lv624/ground/caves/central2)
 "qq" = (
@@ -244,9 +242,7 @@
 	pixel_x = 5;
 	pixel_y = 2
 	},
-/turf/open/floor/carpet/side{
-
-	},
+/turf/open/floor/carpet/side,
 /area/lv624/ground/caves/central2)
 "qI" = (
 /obj/structure/table/woodentable,
@@ -376,8 +372,7 @@
 /obj/structure/table/woodentable,
 /obj/effect/spawner/random/ammo/shotgun,
 /turf/open/floor/carpet/side{
-	dir = 1;
-
+	dir = 1
 	},
 /area/lv624/ground/caves/central2)
 "yy" = (
@@ -410,8 +405,7 @@
 /obj/structure/table/woodentable,
 /obj/item/flashlight/lantern,
 /turf/open/floor/carpet/side{
-	dir = 6;
-
+	dir = 6
 	},
 /area/lv624/ground/caves/central2)
 "Dm" = (
@@ -456,8 +450,7 @@
 	pixel_x = 3
 	},
 /turf/open/floor/carpet/side{
-	dir = 9;
-
+	dir = 9
 	},
 /area/lv624/ground/caves/central2)
 "GZ" = (
@@ -597,7 +590,7 @@
 /area/lv624/ground/caves/central2)
 "QN" = (
 /turf/open/ground/coast{
-	dir = 4;
+	dir = 4
 	},
 /area/lv624/ground/caves/central2)
 "QO" = (
@@ -699,8 +692,7 @@
 /obj/structure/table/woodentable,
 /obj/item/tool/candle,
 /turf/open/floor/carpet/side{
-	dir = 5;
-
+	dir = 5
 	},
 /area/lv624/ground/caves/central2)
 "Yt" = (
@@ -1109,8 +1101,8 @@ GF
 Yv
 Yv
 ve
-cO
-cO
+QN
+QN
 pR
 Yv
 Yv
@@ -1533,7 +1525,7 @@ Hb
 Hb
 pi
 lb
-QN
+kp
 Yv
 Yv
 Yv
@@ -1566,7 +1558,7 @@ Hb
 jb
 Hb
 pi
-QN
+kp
 Yv
 Yv
 Yv
@@ -1600,7 +1592,7 @@ QX
 Hb
 Hb
 pi
-QN
+kp
 Yv
 Hy
 Yv
@@ -1631,10 +1623,10 @@ vk
 vk
 GF
 pE
+cO
+lb
+lb
 kp
-lb
-lb
-QN
 Yv
 Yv
 zK
