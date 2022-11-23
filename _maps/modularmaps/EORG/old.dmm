@@ -118,11 +118,10 @@
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "aC" = (
-/obj/structure/bed/chair/dropship/pilot{
-	dir = 1;
-	icon_state = "pilot_chair"
-	},
 /obj/effect/landmark/deathmatch,
+/obj/structure/bed/chair/dropship/pilot{
+	dir = 1
+	},
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "aD" = (
@@ -155,9 +154,7 @@
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "aJ" = (
-/turf/open/floor/plating/ground/dirtgrassborder{
-	icon_state = "grassdirt_corner"
-	},
+/turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/deathmatch)
 "aK" = (
 /obj/structure/jungle/vines/heavy,
@@ -227,8 +224,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/spawner/random/plushie/nospawnninetyfive{
-	},
+/obj/effect/spawner/random/plushie/nospawnninetyfive,
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "aX" = (
@@ -551,8 +547,7 @@
 /area/deathmatch)
 "ci" = (
 /obj/structure/closet/walllocker/medical_wall/full{
-	dir = 1;
-	icon_state = "medical_wall"
+	dir = 1
 	},
 /turf/open/floor/plating/scorched,
 /area/deathmatch)
@@ -616,8 +611,7 @@
 "Ab" = (
 /obj/structure/bed,
 /obj/item/bedsheet,
-/obj/effect/spawner/random/plushie/nospawnninetyfive{
-	},
+/obj/effect/spawner/random/plushie/nospawnninetyfive,
 /turf/open/floor,
 /area/deathmatch)
 "PJ" = (

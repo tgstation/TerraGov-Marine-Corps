@@ -18274,8 +18274,7 @@
 /turf/open/floor/prison/plate,
 /area/shuttle/distress/arrive_2)
 "nae" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-21";
+/obj/structure/flora/pottedplant/twentyone{
 	pixel_x = 31
 	},
 /turf/closed/wall/mainship/gray/outer,

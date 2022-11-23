@@ -6,9 +6,7 @@
 /turf/open/floor,
 /area/tdome)
 "aaR" = (
-/turf/open/floor/mainship{
-	icon_state = "test_floor5"
-	},
+/turf/open/floor/mainship/plate/outline,
 /area/centcom/supplypod/podStorage)
 "acu" = (
 /turf/open/floor/tile/dark,
@@ -227,9 +225,7 @@
 	},
 /area/centcom/valhalla/bridge)
 "arj" = (
-/turf/open/floor/mainship{
-	icon_state = "test_floor5"
-	},
+/turf/open/floor/mainship/plate/outline,
 /area/centcom/supplypod/flyMeToTheMoon)
 "arT" = (
 /obj/machinery/computer/crew,
@@ -861,10 +857,9 @@
 /area/centcom/valhalla/secondary/exit)
 "aZs" = (
 /obj/structure/window/framed/colony/reinforced/hull,
-/obj/structure/sign/directions/engineering{
+/obj/structure/sign/doors{
 	desc = "A sign that shows there are doors here. There are doors everywhere!";
-	icon_state = "doors";
-	name = "WARNING: PRESSURIZED DOORS"
+	name = "WARNING: EXTERNAL AIRLOCK"
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla/bridge)
@@ -923,9 +918,8 @@
 /turf/open/floor/plating,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "baT" = (
-/obj/structure/sign/directions/engineering{
+/obj/structure/sign/doors{
 	desc = "A sign that shows there are doors here. There are doors everywhere!";
-	icon_state = "doors";
 	name = "WARNING: PRESSURIZED DOORS"
 	},
 /turf/closed/wall/r_wall/unmeltable,
@@ -1887,16 +1881,10 @@
 /area/centcom/valhalla/crew_quarters/heads/hop)
 "cxp" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
-/obj/item/clothing/under/suit_jacket{
-	desc = "All the class of a trenchcoat without the security fibers.";
-	icon_state = "detective";
-	name = "trenchcoat"
-	},
 /obj/item/clothing/under/lawyer/purpsuit,
-/obj/item/clothing/head/fedora{
-	icon_state = "detective"
-	},
+/obj/item/clothing/head/fedora,
 /obj/item/clothing/under/lawyer/female,
+/obj/item/clothing/under/suit_jacket/detective,
 /turf/open/floor/wood,
 /area/centcom/valhalla/crew_quarters)
 "cxq" = (
@@ -3366,9 +3354,8 @@
 	},
 /area/centcom/valhalla/ai_monitored/storage/secure)
 "ekB" = (
-/obj/structure/sign/directions/engineering{
+/obj/structure/sign/doors{
 	desc = "A sign that shows there are doors here. There are doors everywhere!";
-	icon_state = "doors";
 	name = "WARNING: EXTERNAL AIRLOCK"
 	},
 /obj/structure/window/framed/colony/reinforced/hull,
@@ -4997,9 +4984,8 @@
 	},
 /area/centcom/valhalla/port)
 "gDk" = (
-/obj/structure/sign/directions/engineering{
+/obj/structure/sign/doors{
 	desc = "A sign that shows there are doors here. There are doors everywhere!";
-	icon_state = "doors";
 	name = "WARNING: PRESSURIZED DOORS"
 	},
 /turf/closed/wall/r_wall,
@@ -6263,9 +6249,8 @@
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/quartermaster/miningdock)
 "irn" = (
-/obj/structure/sign/directions/engineering{
+/obj/structure/sign/doors{
 	desc = "A sign that shows there are doors here. There are doors everywhere!";
-	icon_state = "doors";
 	name = "WARNING: EXTERNAL AIRLOCK"
 	},
 /obj/structure/window/framed/colony/reinforced/hull,
@@ -9649,10 +9634,9 @@
 	},
 /area/centcom/valhalla/teleporter)
 "mXN" = (
-/obj/structure/sign/directions/engineering{
+/obj/structure/sign/doors{
 	desc = "A sign that shows there are doors here. There are doors everywhere!";
-	icon_state = "doors";
-	name = "WARNING: PRESSURIZED DOORS"
+	name = "WARNING: EXTERNAL AIRLOCK"
 	},
 /turf/closed/wall,
 /area/centcom/valhalla/crew_quarters/cafeteria)
@@ -10125,10 +10109,9 @@
 /turf/open/floor/plating,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "nDm" = (
-/obj/structure/sign/directions/engineering{
+/obj/structure/sign/doors{
 	desc = "A sign that shows there are doors here. There are doors everywhere!";
-	icon_state = "doors";
-	name = "WARNING: PRESSURIZED DOORS"
+	name = "WARNING: EXTERNAL AIRLOCK"
 	},
 /turf/open/floor/tile/cafe,
 /area/centcom/valhalla/crew_quarters/cafeteria)
@@ -10700,15 +10683,9 @@
 /area/tdome)
 "oov" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
-/obj/item/clothing/under/suit_jacket{
-	desc = "All the class of a trenchcoat without the security fibers.";
-	icon_state = "detective";
-	name = "trenchcoat"
-	},
 /obj/item/clothing/under/lawyer/purpsuit,
-/obj/item/clothing/head/fedora{
-	icon_state = "detective"
-	},
+/obj/item/clothing/head/fedora,
+/obj/item/clothing/under/suit_jacket/detective,
 /turf/open/floor/carpet/side{
 	dir = 9
 	},
@@ -12037,9 +12014,7 @@
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/engine/engineering)
 "qqX" = (
-/obj/structure/device/piano{
-	icon_state = "piano"
-	},
+/obj/structure/device/piano/full,
 /turf/open/floor/wood,
 /area/centcom/valhalla/crew_quarters/theatre)
 "qrx" = (
@@ -12468,9 +12443,8 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/maint/free_access,
-/obj/structure/sign/directions/engineering{
+/obj/structure/sign/doors{
 	desc = "A sign that shows there are doors here. There are doors everywhere!";
-	icon_state = "doors";
 	name = "WARNING: EXTERNAL AIRLOCK"
 	},
 /obj/machinery/door_control/unmeltable{
@@ -13733,9 +13707,8 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/centcom/valhalla/exterior)
 "sqZ" = (
-/obj/structure/sign/directions/engineering{
+/obj/structure/sign/doors{
 	desc = "A sign that shows there are doors here. There are doors everywhere!";
-	icon_state = "doors";
 	name = "WARNING: BLAST DOORS"
 	},
 /turf/closed/mineral/smooth,
@@ -14672,13 +14645,9 @@
 /area/centcom/valhalla/crew_quarters)
 "tAQ" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
-/obj/item/clothing/under/suit_jacket{
-	desc = "All the class of a trenchcoat without the security fibers.";
-	icon_state = "greydet";
-	name = "trenchcoat"
-	},
 /obj/item/clothing/under/lawyer/black,
 /obj/item/clothing/head/fedora,
+/obj/item/clothing/under/suit_jacket/detective/alt,
 /turf/open/floor/grimy,
 /area/centcom/valhalla/crew_quarters)
 "tAV" = (
@@ -16374,20 +16343,10 @@
 /area/centcom/valhalla/engine/engineering)
 "vKP" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
-/obj/item/clothing/under/suit_jacket{
-	desc = "All the class of a trenchcoat without the security fibers.";
-	icon_state = "greydet";
-	name = "trenchcoat"
-	},
-/obj/item/clothing/under/suit_jacket{
-	desc = "All the class of a trenchcoat without the security fibers.";
-	icon_state = "detective";
-	name = "trenchcoat"
-	},
 /obj/item/clothing/head/fedora,
-/obj/item/clothing/head/fedora{
-	icon_state = "detective"
-	},
+/obj/item/clothing/head/fedora,
+/obj/item/clothing/under/suit_jacket/detective,
+/obj/item/clothing/under/suit_jacket/detective/alt,
 /turf/open/floor/plating,
 /area/centcom/valhalla/port)
 "vLH" = (
@@ -18547,9 +18506,8 @@
 /area/centcom/valhalla/primary/fore)
 "xTR" = (
 /obj/structure/window/framed/colony/reinforced/hull,
-/obj/structure/sign/directions/engineering{
+/obj/structure/sign/doors{
 	desc = "A sign that shows there are doors here. There are doors everywhere!";
-	icon_state = "doors";
 	name = "WARNING: EXTERNAL AIRLOCK"
 	},
 /turf/open/floor/plating,

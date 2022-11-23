@@ -153,11 +153,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
-"aw" = (
-/turf/open/floor/plating/icefloor/warnplate/corner{
-	dir = 1;
-	},
-/area/mainship/hallways/hangar)
 "ax" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -1889,7 +1884,7 @@
 /area/mainship/hallways/port_hallway)
 "fv" = (
 /turf/open/floor/plating/icefloor/warnplate/corner{
-	dir = 1;
+	dir = 1
 	},
 /area/mainship/hallways/hangar)
 "fw" = (
@@ -2554,13 +2549,6 @@
 	dir = 4
 	},
 /area/mainship/medical/lower_medical)
-"hn" = (
-/obj/machinery/mech_bay_recharge_port{
-	icon_state = "recharge_floor"
-	},
-/obj/vehicle/unmanned/droid,
-/turf/open/floor/mainship/floor,
-/area/mainship/command/airoom)
 "ho" = (
 /obj/machinery/light/mainship{
 	dir = 1
@@ -9734,10 +9722,7 @@
 /area/mainship/hull/lower_hull)
 "Bt" = (
 /obj/vehicle/unmanned/droid,
-/obj/machinery/mech_bay_recharge_port{
-	icon_state = "recharge_floor"
-	},
-/turf/open/floor/mainship/floor,
+/turf/open/floor/mech_bay_recharge_floor,
 /area/mainship/command/airoom)
 "Bu" = (
 /obj/machinery/disposal,
@@ -10514,7 +10499,7 @@
 /area/mainship/hull/lower_hull)
 "DH" = (
 /turf/closed/shuttle/ert/engines/left{
-	dir = 1;
+	dir = 1
 	},
 /area/space)
 "DI" = (
@@ -11611,7 +11596,7 @@
 /area/mainship/hull/lower_hull)
 "GH" = (
 /turf/closed/shuttle/ert/engines/right{
-	dir = 1;
+	dir = 1
 	},
 /area/space)
 "GI" = (
@@ -53055,7 +53040,7 @@ tR
 tR
 JP
 tR
-aw
+fv
 KD
 KD
 KD
@@ -53143,7 +53128,7 @@ pK
 pK
 pK
 JY
-hn
+Bt
 nw
 Nr
 NS
