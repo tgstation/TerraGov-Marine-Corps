@@ -394,8 +394,11 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	if(!can_use_ability(A))
 		return fail_activate()
 
+	///Finding embryo in the target
 	var/obj/item/alien_embryo/young = locate() in victim
+	///How long the target will be under debuff. Depends on the stage of the embryo
 	var/debuff = young.stage + 1
+	///How much stamina damage will be done. Depending on stage of embryo and carrier maturity.
 	var/stamina_dmg = (victim.maxHealth + victim.max_stamina) * (debuff + caster.xeno_caste.aura_strength) * 0.1
 
 	caster.emote("roar5")
