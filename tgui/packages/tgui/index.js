@@ -15,6 +15,7 @@ import './styles/themes/ntos.scss';
 import './styles/themes/paper.scss';
 import './styles/themes/retro.scss';
 import './styles/themes/syndicate.scss';
+import './styles/themes/som.scss';
 import './styles/themes/xeno.scss';
 
 import { perf } from 'common/perf';
@@ -51,24 +52,16 @@ const setupApp = () => {
   setupHotKeys();
   captureExternalLinks();
 
-  // Subscribe for state updates
+  // Re-render UI on store updates
   store.subscribe(renderApp);
 
-  // Dispatch incoming messages
-  window.update = msg => store.dispatch(Byond.parseJson(msg));
-
-  // Process the early update queue
-  while (true) {
-    const msg = window.__updateQueue__.shift();
-    if (!msg) {
-      break;
-    }
-    window.update(msg);
-  }
+  // Dispatch incoming messages as store actions
+  Byond.subscribe((type, payload) => store.dispatch({ type, payload }));
 
   // Enable hot module reloading
   if (module.hot) {
     setupHotReloading();
+    // prettier-ignore
     module.hot.accept([
       './components',
       './debug',

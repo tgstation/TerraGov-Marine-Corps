@@ -53,6 +53,7 @@
 #define SKILL_CONSTRUCTION_PLASTEEL 2	//plasteel barricade,(RO, SL)
 #define SKILL_CONSTRUCTION_ADVANCED 3	//windows and girder construction (combat engi, CO)
 #define SKILL_CONSTRUCTION_MASTER 4	//building machine&computer frames (MT, CE)
+#define SKILL_CONSTRUCTION_INHUMAN 5	//Early synth level.
 
 
 
@@ -63,6 +64,7 @@
 #define SKILL_ENGINEER_PLASTEEL 2	//plasteel barricade repair
 #define SKILL_ENGINEER_ENGI 3	//hacking&&planet engine fixing&&apc building (combat engi)
 #define SKILL_ENGINEER_MASTER 4	//Telecomms fixing, faster engine fixing (ST)
+#define SKILL_ENGINEER_INHUMAN 5	//Early synth level.
 //higher levels give faster engine repair.
 
 
@@ -114,8 +116,8 @@
 //leadership skill
 #define SKILL_LEAD_NOVICE 0 //Anyone but the above. Using SL items is possible but painfully slow
 #define SKILL_LEAD_BEGINNER 1 //All non-Standard Marines
-#define SKILL_LEAD_TRAINED 2 //SL
-#define SKILL_LEAD_EXPERT 3 //SOs
+#define SKILL_LEAD_TRAINED 2 //PO, CMO, etc
+#define SKILL_LEAD_EXPERT 3 //SL, SO
 #define SKILL_LEAD_MASTER 4 //XO, CO
 
 
@@ -144,7 +146,7 @@
 #define GUN_SKILL_HEAVY_WEAPONS "heavy_weapons"
 #define GUN_SKILL_SMARTGUN "smartgun"
 
-//multitile vehicle skills
+//multitile and mech vehicle skills
 #define SKILL_LARGE_VEHICLE_DEFAULT 0
 #define SKILL_LARGE_VEHICLE_TRAINED 1
 

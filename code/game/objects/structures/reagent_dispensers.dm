@@ -7,6 +7,8 @@
 	icon_state = "watertank"
 	density = TRUE
 	anchored = FALSE
+	resistance_flags = XENO_DAMAGEABLE
+	max_integrity = 100
 	///high chance to block bullets, offset by being unanchored
 	coverage = 80
 	///maximum tank capacity used to set reagents in initialize
@@ -205,8 +207,14 @@
 	playsound(src, 'sound/effects/glob.ogg', 25, 1)
 
 
-/obj/structure/reagent_dispensers/fueltank/flamer_fire_act()
+/obj/structure/reagent_dispensers/fueltank/flamer_fire_act(burnlevel)
 	explode()
+
+/obj/structure/reagent_dispensers/fueltank/barrel
+	name = "red barrel"
+	desc = "A red fuel barrel"
+	icon = 'icons/obj/structures/crates.dmi'
+	icon_state = "barrel_red"
 
 /obj/structure/reagent_dispensers/water_cooler
 	name = "water cooler"

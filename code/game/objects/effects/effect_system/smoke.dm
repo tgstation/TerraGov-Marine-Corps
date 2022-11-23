@@ -199,7 +199,7 @@
 		lifetime = smoke_time
 
 /datum/effect_system/smoke_spread/start()
-	if(QDELETED(location) && !QDELETED(holder))
+	if(!QDELETED(holder))
 		location = get_turf(holder)
 	new smoke_type(location, range, lifetime, src)
 
@@ -257,6 +257,15 @@
 	opacity = FALSE
 	icon_state = "sparks"
 	icon = 'icons/effects/effects.dmi'
+
+//SOM nerve agent smoke
+/obj/effect/particle_effect/smoke/satrapine
+	color = "#b02828"
+	lifetime = 6
+	spread_speed = 7
+	expansion_speed = 3
+	strength = 1.5
+	smoke_traits = SMOKE_SATRAPINE|SMOKE_GASP|SMOKE_COUGH
 
 /////////////////////////////////////////
 // BOILER SMOKES
@@ -327,7 +336,7 @@
 /datum/effect_system/smoke_spread/bad
 	smoke_type = /obj/effect/particle_effect/smoke/bad
 
-datum/effect_system/smoke_spread/tactical
+/datum/effect_system/smoke_spread/tactical
 	smoke_type = /obj/effect/particle_effect/smoke/tactical
 
 /datum/effect_system/smoke_spread/sleepy
@@ -338,6 +347,9 @@ datum/effect_system/smoke_spread/tactical
 
 /datum/effect_system/smoke_spread/plasmaloss
 	smoke_type = /obj/effect/particle_effect/smoke/plasmaloss
+
+/datum/effect_system/smoke_spread/satrapine
+	smoke_type = /obj/effect/particle_effect/smoke/satrapine
 
 /datum/effect_system/smoke_spread/xeno
 	smoke_type = /obj/effect/particle_effect/smoke/xeno

@@ -26,6 +26,10 @@
 					ExtinguishMob()
 				return TRUE
 
+			if(istype(wear_mask, /obj/item/clothing/mask/facehugger) && H != src)
+				H.stripPanelUnequip(wear_mask, src, SLOT_WEAR_MASK)
+				return TRUE
+
 			if(health >= get_crit_threshold())
 				help_shake_act(H)
 				return TRUE
@@ -83,6 +87,8 @@
 
 		if(INTENT_HARM)
 			// See if they can attack, and which attacks to use.
+			if(H == src && !H.do_self_harm)
+				return FALSE
 			var/datum/unarmed_attack/attack = H.species.unarmed
 			if(!attack.is_usable(H))
 				attack = H.species.secondary_unarmed
@@ -105,7 +111,7 @@
 			var/damage = rand(1, max_dmg)
 
 			var/datum/limb/affecting = get_limb(ran_zone(H.zone_selected))
-			var/armor_block = run_armor_check(affecting, "melee")
+			var/armor_block = get_soft_armor("melee", affecting)
 
 			playsound(loc, attack.attack_sound, 25, TRUE)
 
@@ -160,7 +166,7 @@
 			var/randn = rand(1, 100) + skills.getRating("cqc") * 5 - H.skills.getRating("cqc") * 5
 
 			if (randn <= 25)
-				apply_effect(3, WEAKEN, run_armor_check(affecting, "melee"))
+				apply_effect(3, WEAKEN, get_soft_armor("melee", affecting))
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 				visible_message(span_danger("[H] has pushed [src]!"), null, null, 5)
 				log_combat(user, src, "pushed")
@@ -197,8 +203,7 @@
 				span_notice("You remove the holo card on yourself."), null, 3)
 			return
 
-		visible_message(span_notice("[src] examines [p_them()]self."),
-			span_notice("You check yourself for injuries."), null, 3)
+
 		check_self_for_injuries()
 		return
 
@@ -207,6 +212,8 @@
 
 /mob/living/carbon/human/proc/check_self_for_injuries()
 	var/list/final_msg = list()
+	balloon_alert_to_viewers("Examines [p_them()]self.", "You examine yourself")
+	final_msg += span_notice("<b>You check yourself for injuries.</b>")
 
 	for(var/datum/limb/org in limbs)
 		var/status = ""
@@ -250,20 +257,18 @@
 			status += " <b>(SPLINTED)</b>"
 		if(org.limb_status & LIMB_STABILIZED)
 			status += " <b>(STABILIZED)</b>"
-		if(org.limb_status & LIMB_MUTATED)
-			status = "weirdly shapen."
 		if(org.limb_status & LIMB_NECROTIZED)
 			status = "rotting"
 		if(org.limb_status & LIMB_DESTROYED)
 			status = "MISSING!"
 
-		if(brute_treated == FALSE && brutedamage > 0)
+		if(brute_treated && brutedamage > 0)
 			treat = "(Bandaged"
-			if(burn_treated == FALSE && burndamage > 0)
+			if(burn_treated && burndamage > 0)
 				treat += " and Salved)"
 			else
 				treat += ")"
-		else if(burn_treated == FALSE && burndamage > 0)
+		else if(burn_treated && burndamage > 0)
 			treat += "(Salved)"
 		var/msg = "My [org.display_name] is [status]. [treat]"
 		final_msg += status=="OK" ? span_notice(msg) : span_warning (msg)
@@ -298,4 +303,4 @@
 		if(26 to INFINITY)
 			final_msg += span_info("Your body aches all over, it's driving you mad!")
 
-	to_chat(src, final_msg.Join("\n"))
+	to_chat(src, examine_block(final_msg.Join("\n")))

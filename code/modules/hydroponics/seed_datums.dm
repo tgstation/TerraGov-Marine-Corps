@@ -144,8 +144,6 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 		list("seed-greengrapes",        "greengrape"),
 		list("seed-peanut",             "peanut"),
 		list("seed-cabbage",            "cabbage"),
-		list("seed-shand",              "shand"),
-		list("seed-mtear",              "mtear"),
 		list("seed-banana",             "banana"),
 		list("seed-corn",               "corn"),
 		list("seed-potato",             "potato"),
@@ -193,7 +191,6 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	if(additional_chems)
 		var/list/possible_chems = list(
 			/datum/reagent/medicine/bicaridine,
-			/datum/reagent/medicine/hyperzine,
 			/datum/reagent/medicine/cryoxadone,
 			/datum/reagent/blood,
 			/datum/reagent/water,
@@ -214,7 +211,6 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 			/datum/reagent/medicine/synaptizine,
 			/datum/reagent/impedrezene,
 			/datum/reagent/medicine/hyronalin,
-			/datum/reagent/medicine/peridaxon,
 			/datum/reagent/toxin,
 			/datum/reagent/medicine/rezadone,
 			/datum/reagent/medicine/ethylredoxrazine,
@@ -936,7 +932,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	mutants = null
 	packet_icon = "seed-ambrosiadeus"
 	plant_icon = "ambrosiadeus"
-	chems = list(/datum/reagent/consumable/nutriment = list(1), /datum/reagent/medicine/research/somolent = list(5,10), /datum/reagent/medicine/synaptizine = list(1,8,1), /datum/reagent/medicine/hyperzine = list(1,10,1), /datum/reagent/space_drugs = list(1,10))
+	chems = list(/datum/reagent/consumable/nutriment = list(1), /datum/reagent/medicine/research/somolent = list(5,10), /datum/reagent/medicine/synaptizine = list(1,8,1), /datum/reagent/medicine/hyronalin = list(1,10,1), /datum/reagent/space_drugs = list(1,10))
 
 //Mushrooms/varieties.
 /datum/seed/mushroom
@@ -1213,38 +1209,6 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	yield = 4
 	potency = 10
 	growth_stages = 1
-
-/datum/seed/shand
-	name = "shand"
-	seed_name = "S'randar's hand"
-	display_name = "S'randar's hand leaves"
-	packet_icon = "seed-shand"
-	products = list(/obj/item/stack/medical/heal_pack/gauze/tajaran)
-	plant_icon = "shand"
-	chems = list(/datum/reagent/medicine/bicaridine = list(0,10))
-
-	lifespan = 50
-	maturation = 3
-	production = 5
-	yield = 4
-	potency = 10
-	growth_stages = 3
-
-/datum/seed/mtear
-	name = "mtear"
-	seed_name = "Messa's tear"
-	display_name = "Messa's tear leaves"
-	packet_icon = "seed-mtear"
-	products = list(/obj/item/stack/medical/heal_pack/ointment/tajaran)
-	plant_icon = "mtear"
-	chems = list(/datum/reagent/consumable/honey = list(1,10), /datum/reagent/medicine/kelotane = list(3,5))
-
-	lifespan = 50
-	maturation = 3
-	production = 5
-	yield = 4
-	potency = 10
-	growth_stages = 3
 
 /datum/seed/banana
 	name = "banana"

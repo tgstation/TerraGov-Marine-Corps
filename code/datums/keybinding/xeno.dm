@@ -40,11 +40,12 @@
 	description = "Builds whatever you’ve selected with (choose resin structure) on your tile."
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN
 
-/datum/keybinding/xeno/secrete_resin_silo
-	name = "secrete_resin_silo"
-	full_name = "Secrete Resin Silo"
-	description = "Builds a resin silo."
-	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN_SILO
+/datum/keybinding/xeno/place_acid_well
+	name = "place_acid_well"
+	full_name = "Place acid well"
+	description = "Builds acid well on your tile."
+	keybind_signal = COMSIG_XENOABILITY_PLACE_ACID_WELL
+	hotkey_keys = list("G")
 
 /datum/keybinding/xeno/emit_recovery
 	name = "emit_recovery"
@@ -112,12 +113,29 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_POUNCE
 
+/datum/keybinding/xeno/essence_link
+	name = "essence_link"
+	full_name = "Drone: Essence Link"
+	description = "Establish a link of plasma with a sister."
+	keybind_signal = COMSIG_XENOABILITY_ESSENCE_LINK
+
+/datum/keybinding/xeno/essence_link_remove
+	name = "essence_link_remove"
+	full_name = "Drone: End Essence Link"
+	description = "Forcibly end an Essence Link."
+	keybind_signal = COMSIG_XENOABILITY_ESSENCE_LINK_REMOVE
+
+/datum/keybinding/xeno/enhancement
+	name = "enhancement"
+	full_name = "Drone: Enhancement"
+	description = "Using an Essence Link, increase a sister's capabilities beyond their limits."
+	keybind_signal = COMSIG_XENOABILITY_ENHANCEMENT
+
 /datum/keybinding/xeno/nurogasnade
 	name = "neurogas"
 	full_name = "Sentinel: Neurogas Grenade"
 	description = "Throws a gas emitting grenade at the targetted area"
 	keybind_signal = COMSIG_XENOABILITY_NEUROGAS_GRENADE
-
 
 /datum/keybinding/xeno/plow_charge
 	name = "plow_charge"
@@ -196,6 +214,12 @@
 	full_name = "Carrier: Choose Hugger"
 	description = "Prompt a wheel to choose which hugger you will deploy with the Throw Hugger ability."
 	keybind_signal = COMSIG_XENOABILITY_CHOOSE_HUGGER
+
+/datum/keybinding/xeno/drop_all_hugger
+	name = "drop_all_hugger"
+	full_name = "Carrier: Drop All Facehuggers"
+	description = "Drop all stored huggers in a fit of panic. Uses all remaining plasma!"
+	keybind_signal = COMSIG_XENOABILITY_DROP_ALL_HUGGER
 
 /datum/keybinding/xeno/stomp
 	name = "stomp"
@@ -365,17 +389,17 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_STEALTH
 
+/datum/keybinding/xeno/toggle_disguise
+	name = "toggle_disguise"
+	full_name = "Hunter: Toggle Disguise"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_TOGGLE_DISGUISE
+
 /datum/keybinding/xeno/mirage
 	name = "mirage"
 	full_name = "Hunter: Mirage"
 	description = "Creates multiple mirror images of the xeno."
 	keybind_signal = COMSIG_XENOABILITY_MIRAGE
-
-/datum/keybinding/xeno/haunt
-	name = "impair senses"
-	full_name = "Hunter: Silence"
-	description = "Impairs the ability of hostile living creatures we can see in a 5x5 area. Targets will be unable to speak and hear for 10 seconds."
-	keybind_signal = COMSIG_XENOABILITY_HAUNT
 
 /datum/keybinding/xeno/psychic_whisper
 	name = "psychic_whisper"
@@ -431,12 +455,6 @@
 	full_name = "Queen: Screech"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_SCREECH
-
-/datum/keybinding/xeno/watch_xeno
-	name = "watch_xeno"
-	full_name = "Queen: Watch Xeno"
-	description = ""
-	keybind_signal = COMSIG_XENOABILITY_WATCH_XENO
 
 /datum/keybinding/xeno/toggle_queen_zoom
 	name = "toggle_queen_zoom"
@@ -606,6 +624,12 @@
 	description = "Fires a scattershot of 6 acid globules which create acid puddles on impact or at the end of their range."
 	keybind_signal = COMSIG_XENOABILITY_SCATTER_SPIT
 
+/datum/keybinding/xeno/rewind
+	name = "rewind"
+	full_name = "Wraith: Time Shift"
+	description = "Save the location and status of the target. When the time is up, the target location and status are restored"
+	keybind_signal = COMSIG_XENOABILITY_REWIND
+
 /datum/keybinding/xeno/portal
 	name = "portal"
 	full_name = "Wraith: Portal"
@@ -668,15 +692,51 @@
 
 /datum/keybinding/xeno/sow
 	name = "sow"
-	full_name = "Drone : Sow"
+	full_name = "Hivelord : Sow"
 	description = "Plant the seeds of an alien plant."
 	keybind_signal = COMSIG_XENOABILITY_DROP_PLANT
 
 /datum/keybinding/xeno/sow_select_plant
 	name = "choose_plant"
-	full_name = "Drone : Choose plant"
+	full_name = "Hivelord : Choose plant"
 	description = "Pick what type of plant to sow."
 	keybind_signal = COMSIG_XENOABILITY_CHOOSE_PLANT
+
+/datum/keybinding/xeno/burrow
+	name = "burrow"
+	full_name = "Widow: Burrow"
+	description = "Dig to the ground, making you invisible."
+	keybind_signal = COMSIG_XENOABILITY_BURROW
+
+/datum/keybinding/xeno/web_spit
+	name = "Web Spit"
+	full_name = "Widow: Web Spit"
+	description = "Spit web at your target. Hitting the target will impede their functions depending on their hit location."
+	keybind_signal = COMSIG_XENOABILITY_WEB_SPIT
+
+/datum/keybinding/xeno/leash_ball
+	name = "Leash Ball"
+	full_name = "Widow: Leash Ball"
+	description = "Spit a huge web ball of web that snares groups of targets for a brief while."
+	keybind_signal = COMSIG_XENOABILITY_LEASH_BALL
+
+/datum/keybinding/xeno/create_spiderling
+	name = "Birth Spiderling"
+	full_name = "Widow: Birth Spiderling"
+	description = "Give birth to a spiderling after a short charge-up."
+	keybind_signal = COMSIG_XENOABILITY_CREATE_SPIDERLING
+
+/datum/keybinding/xeno/attach_spiderlings
+	name = "Attach Spiderlings"
+	full_name = "Widow: Attach Spiderlings"
+	description = "Scoop up and carry your spawn with you."
+	keybind_signal = COMSIG_XENOABILITY_ATTACH_SPIDERLINGS
+
+/datum/keybinding/xeno/web_hook
+	name = "Web Hook"
+	full_name = "Widow: Web Hook"
+	description = "Shoot a strong web and pull yourself towards whatever it hits."
+	keybind_signal = COMSIG_XENOABILITY_WEB_HOOK
 
 /datum/keybinding/xeno/vent/down(client/user)
 	. = ..()

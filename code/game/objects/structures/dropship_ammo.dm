@@ -71,11 +71,6 @@
 			return TRUE
 		return ..()
 
-
-	examine(mob/user)
-		..()
-		to_chat(user, "Moving this will require some sort of lifter.")
-
 //what to show to the user that examines the weapon we're loaded on.
 /obj/structure/ship_ammo/proc/show_loaded_desc(mob/user)
 	return "It's loaded with \a [src]."
@@ -209,7 +204,7 @@
 /obj/structure/ship_ammo/heavygun
 	name = "\improper 30mm ammo crate"
 	icon_state = "30mm_crate"
-	desc = "A crate full of 30mm bullets used on the dropship heavy guns."
+	desc = "A crate full of 30mm bullets used on the dropship heavy guns. Moving this will require some sort of lifter."
 	equipment_type = /obj/structure/dropship_equipment/weapon/heavygun
 	travelling_time =  6 SECONDS
 	ammo_count = 200
@@ -229,9 +224,7 @@
 	. += "It has [ammo_count] round\s."
 
 /obj/structure/ship_ammo/heavygun/show_loaded_desc(mob/user)
-	if(ammo_count)
-		return "It's loaded with \a [src] containing [ammo_count] round\s."
-	return "It's loaded with an empty [name]."
+	return "It's loaded with \a [src] containing [ammo_count] round\s."
 
 /obj/structure/ship_ammo/heavygun/get_turfs_to_impact(turf/impact, attackdir = NORTH)
 	var/turf/beginning = impact
@@ -273,26 +266,55 @@
 /obj/structure/ship_ammo/heavygun/highvelocity
 	name = "high-velocity 30mm ammo crate"
 	icon_state = "30mm_crate_hv"
-	desc = "A crate full of 30mm high-velocity bullets used on the dropship heavy guns."
-	travelling_time = 5 SECONDS
+	desc = "A crate full of 30mm high-velocity bullets used on the dropship heavy guns. Moving this will require some sort of lifter."
+	travelling_time = 3 SECONDS
 	point_cost = 150
 
-/obj/structure/ship_ammo/heavygun/railgun
+
+//railgun
+/obj/structure/ship_ammo/railgun
 	name = "Railgun Ammo"
-	desc = "This is not meant to exist"
+	desc = "This is not meant to exist. Moving this will require some sort of lifter."
+	icon_state = "30mm_crate_hv"
+	icon = 'icons/Marine/mainship_props.dmi'
+	equipment_type = /obj/structure/dropship_equipment/weapon/minirocket_pod
 	ammo_count = 400
 	max_ammo_count = 400
-	ammo_used_per_firing = 40
-	bullet_spread_range = 5
+	ammo_name = "railgun"
+	ammo_used_per_firing = 10
+	travelling_time = 0 SECONDS
+	transferable_ammo = TRUE
 	point_cost = 0
+	ammo_type = RAILGUN_AMMO
+	devastating_explosion_range = 0
+	heavy_explosion_range = 2
+	light_explosion_range = 4
+	prediction_type = CAS_AMMO_EXPLOSIVE
 
+/obj/structure/ship_ammo/railgun/detonate_on(turf/impact, attackdir = NORTH)
+	impact.ceiling_debris_check(2)
+	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, adminlog = FALSE, small_animation = TRUE, color = COLOR_CYAN)//no messaging admin, that'd spam them.
+	var/datum/effect_system/expl_particles/P = new
+	P.set_up(4, 0, impact)
+	P.start()
+	if(!ammo_count)
+		QDEL_IN(src, travelling_time) //deleted after last railgun has fired and impacted the ground.
+
+/obj/structure/ship_ammo/railgun/show_loaded_desc(mob/user)
+	// to_chat(user, "It's loaded with \a [src] containing [ammo_count] slug\s.")
+	return "It's loaded with \a [src] containing [ammo_count] slug\s."
+
+
+/obj/structure/ship_ammo/railgun/examine(mob/user)
+	. = ..()
+	. += "It has [ammo_count] slug\s."
 
 //laser battery
 
 /obj/structure/ship_ammo/laser_battery
 	name = "high-capacity laser battery"
 	icon_state = "laser_battery"
-	desc = "A high-capacity laser battery used to power laser beam weapons."
+	desc = "A high-capacity laser battery used to power laser beam weapons. Moving this will require some sort of lifter."
 	travelling_time = 1 SECONDS
 	ammo_count = 100
 	max_ammo_count = 100
@@ -302,7 +324,7 @@
 	transferable_ammo = TRUE
 	ammo_used_per_firing = 10
 	warning_sound = 'sound/effects/nightvision.ogg'
-	point_cost = 150
+	point_cost = 85
 	///The length of the beam that will come out of when we fire do both ends xxxoxxx where o is where you click
 	var/laze_radius = 4
 	ammo_type = CAS_LASER_BATTERY
@@ -314,9 +336,7 @@
 
 
 /obj/structure/ship_ammo/laser_battery/show_loaded_desc(mob/user)
-	if(ammo_count)
-		return "It's loaded with \a [src] at [round(100*ammo_count/max_ammo_count)]% charge."
-	return "It's loaded with an empty [name]."
+	return "It's loaded with \a [src] at [round(100*ammo_count/max_ammo_count)]% charge."
 
 /obj/structure/ship_ammo/laser_battery/get_turfs_to_impact(turf/epicenter, attackdir = NORTH)
 	var/turf/beginning = epicenter
@@ -374,7 +394,7 @@
 //this one is air-to-air only
 /obj/structure/ship_ammo/rocket/widowmaker
 	name = "\improper AIM-224 'Widowmaker'"
-	desc = "The AIM-224 is the latest in air to air missile technology. Earning the nickname of 'Widowmaker' from various dropship pilots after improvements to its guidence warhead prevents it from being jammed leading to its high kill rate. Not well suited for ground bombardment, but its high velocity makes it reach its target quickly."
+	desc = "The AIM-224 is the latest in air to air missile technology. Earning the nickname of 'Widowmaker' from various dropship pilots after improvements to its guidence warhead prevents it from being jammed leading to its high kill rate. Not well suited for ground bombardment, but its high velocity makes it reach its target quickly. Moving this will require some sort of lifter."
 	icon_state = "single"
 	travelling_time = 3 SECONDS //not powerful, but reaches target fast
 	ammo_id = ""
@@ -392,7 +412,7 @@
 
 /obj/structure/ship_ammo/rocket/banshee
 	name = "\improper AGM-227 'Banshee'"
-	desc = "The AGM-227 missile is a mainstay of the overhauled dropship fleet against any mobile or armored ground targets. It's earned the nickname of 'Banshee' from the sudden wail that it emitts right before hitting a target. Useful to clear out large areas."
+	desc = "The AGM-227 missile is a mainstay of the overhauled dropship fleet against any mobile or armored ground targets. It's earned the nickname of 'Banshee' from the sudden wail that it emitts right before hitting a target. Useful to clear out large areas. Moving this will require some sort of lifter."
 	icon_state = "banshee"
 	ammo_id = "b"
 	point_cost = 150
@@ -410,7 +430,7 @@
 
 /obj/structure/ship_ammo/rocket/keeper
 	name = "\improper GBU-67 'Keeper II'"
-	desc = "The GBU-67 'Keeper II' is the latest in a generation of laser guided weaponry that spans all the way back to the 20th century. Earning its nickname from a shortening of 'Peacekeeper' which comes from the program that developed its guidance system and the various uses of it during peacekeeping conflicts. Its payload is designed to devastate armored targets."
+	desc = "The GBU-67 'Keeper II' is the latest in a generation of laser guided weaponry that spans all the way back to the 20th century. Earning its nickname from a shortening of 'Peacekeeper' which comes from the program that developed its guidance system and the various uses of it during peacekeeping conflicts. Its payload is designed to devastate armored targets. Moving this will require some sort of lifter."
 	icon_state = "keeper"
 	ammo_id = "k"
 	point_cost = 300
@@ -426,10 +446,10 @@
 
 /obj/structure/ship_ammo/rocket/fatty
 	name = "\improper SM-17 'Fatty'"
-	desc = "The SM-17 'Fatty', an experimental missile utilising a supercooled tanglefoot payload. Harmless to marines, but destroys resin walls around the impact site."
+	desc = "The SM-17 'Fatty', an experimental missile utilising a supercooled tanglefoot payload. Harmless to marines, but destroys resin walls around the impact site. Moving this will require some sort of lifter."
 	icon_state = "fatty"
 	ammo_id = "f"
-	point_cost = 200
+	point_cost = 150
 	cas_effect = /obj/effect/overlay/blinking_laser/fatty
 
 /obj/structure/ship_ammo/rocket/fatty/detonate_on(turf/impact, attackdir = NORTH)
@@ -441,7 +461,7 @@
 
 /obj/structure/ship_ammo/rocket/napalm
 	name = "\improper XN-99 'Napalm'"
-	desc = "The XN-99 'Napalm' is an incendiary rocket used to turn specific targeted areas into giant balls of fire for a long time."
+	desc = "The XN-99 'Napalm' is an incendiary rocket used to turn specific targeted areas into giant balls of fire for a long time. Moving this will require some sort of lifter."
 	icon_state = "napalm"
 	ammo_id = "n"
 	point_cost = 200
@@ -466,7 +486,7 @@
 
 /obj/structure/ship_ammo/minirocket
 	name = "mini rocket stack"
-	desc = "A pack of laser guided mini rockets."
+	desc = "A pack of explosive laser guided mini rockets. Moving this will require some sort of lifter."
 	icon_state = "minirocket"
 	icon = 'icons/Marine/mainship_props.dmi'
 	equipment_type = /obj/structure/dropship_equipment/weapon/minirocket_pod
@@ -499,8 +519,8 @@
 	S.start()
 
 /obj/structure/ship_ammo/minirocket/show_loaded_desc(mob/user)
-	if(ammo_count)
-		to_chat(user, "It's loaded with \a [src] containing [ammo_count] minirocket\s.")
+	// to_chat(user, "It's loaded with \a [src] containing [ammo_count] minirocket\s.")
+	return "It's loaded with \a [src] containing [ammo_count] minirocket\s."
 
 /obj/structure/ship_ammo/minirocket/examine(mob/user)
 	. = ..()
@@ -509,7 +529,7 @@
 
 /obj/structure/ship_ammo/minirocket/incendiary
 	name = "incendiary mini rocket stack"
-	desc = "A pack of laser guided incendiary mini rockets."
+	desc = "A pack of laser guided incendiary mini rockets. Moving this will require some sort of lifter."
 	icon_state = "minirocket_inc"
 	point_cost = 200
 	light_explosion_range = 3 //Slightly weaker than standard minirockets
@@ -523,7 +543,7 @@
 
 /obj/structure/ship_ammo/minirocket/smoke
 	name = "smoke mini rocket stack"
-	desc = "A pack of laser guided screening smoke mini rockets."
+	desc = "A pack of laser guided screening smoke mini rockets. Moving this will require some sort of lifter."
 	icon_state = "minirocket_smoke"
 	point_cost = 25
 	cas_effect = /obj/effect/overlay/blinking_laser/smoke
@@ -542,7 +562,7 @@
 
 /obj/structure/ship_ammo/minirocket/tangle
 	name = "Tanglefoot mini rocket stack"
-	desc = "A pack of laser guided mini rockets loaded with plasma-draining Tanglefoot gas."
+	desc = "A pack of laser guided mini rockets loaded with plasma-draining Tanglefoot gas. Moving this will require some sort of lifter."
 	icon_state = "minirocket_tfoot"
 	point_cost = 150
 	devastating_explosion_range = 0
@@ -562,7 +582,7 @@
 
 /obj/structure/ship_ammo/minirocket/illumination
 	name = "illumination rocket-launched flare stack"
-	desc = "A pack of laser guided mini rockets, each loaded with a payload of white-star illuminant and a parachute, while extremely ineffective at damaging the enemy, it is very effective at lighting the battlefield so marines can damage the enemy."
+	desc = "A pack of laser guided mini rockets, each loaded with a payload of white-star illuminant and a parachute, while extremely ineffective at damaging the enemy, it is very effective at lighting the battlefield so marines can damage the enemy. Moving this will require some sort of lifter."
 	icon_state = "minirocket_ilm"
 	point_cost = 25 // Not a real rocket, so its cheap
 	cas_effect = /obj/effect/overlay/blinking_laser/flare
@@ -582,22 +602,4 @@
 		QDEL_IN(src, travelling_time) //deleted after last minirocket has fired and impacted the ground.
 
 /obj/structure/ship_ammo/minirocket/illumination/proc/drop_cas_flare(turf/impact)
-	new /obj/effect/cas_flare(impact)
-
-/obj/effect/cas_flare
-	name = "illumination flare"
-	desc = "Report this if you actually see this FUCK"
-	icon_state = "" //No sprite
-	invisibility = INVISIBILITY_MAXIMUM
-	resistance_flags = RESIST_ALL
-	light_color = COLOR_VERY_SOFT_YELLOW
-	light_system = HYBRID_LIGHT
-	light_power = 8 //Magnesium/sodium fires (White star) really are bright
-
-/obj/effect/cas_flare/Initialize()
-	. = ..()
-	var/turf/T = get_turf(src)
-	set_light(light_power)
-	T.visible_message(span_warning("You see a tiny flash, and then a blindingly bright light from a flare as it lights off in the sky!"))
-	playsound(T, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4) // stolen from the mortar i'm not even sorry
-	QDEL_IN(src, rand(70 SECONDS, 90 SECONDS)) // About the same burn time as a flare, considering it requires it's own CAS run.
+	new /obj/effect/temp_visual/above_flare(impact)

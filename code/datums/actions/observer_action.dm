@@ -37,9 +37,9 @@
 /datum/action/observer_action/join_larva_queue/action_activate()
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	if(HS.add_to_larva_candidate_queue(owner))
-		add_selected_frame()
+		set_toggle(TRUE)
 		return
-	remove_selected_frame()
+	set_toggle(FALSE)
 
 /datum/action/observer_action/take_ssd_mob
 	name = "Take SSD mob"
@@ -57,7 +57,7 @@
 			continue
 		if(isxeno(ssd_mob))
 			var/mob/living/carbon/xenomorph/potential_minion = ssd_mob
-			if((potential_minion.xeno_caste.caste_flags & CASTE_IS_A_MINION) && !potential_minion.hive.upgrades_by_name[GHOSTS_CAN_TAKE_MINIONS].times_bought)
+			if((potential_minion.xeno_caste.caste_flags & CASTE_IS_A_MINION) && !potential_minion.hive.purchases.upgrades_by_name[GHOSTS_CAN_TAKE_MINIONS].times_bought)
 				continue
 		free_ssd_mobs += ssd_mob
 
@@ -65,12 +65,16 @@
 		to_chat(owner, span_warning("There aren't any SSD mobs."))
 		return FALSE
 
-	var/mob/living/new_mob = tgui_input_list(owner, null, "Available Mobs", free_ssd_mobs)
+	var/mob/living/new_mob = tgui_input_list(owner, "Pick a mob", "Available Mobs", free_ssd_mobs)
 	if(!istype(new_mob) || !owner.client)
 		return FALSE
 
 	if(new_mob.stat == DEAD)
 		to_chat(owner, span_warning("You cannot join if the mob is dead."))
+		return FALSE
+
+	if(HAS_TRAIT(new_mob, TRAIT_POSSESSING))
+		to_chat(owner, span_warning("That mob is currently possessing a different mob."))
 		return FALSE
 
 	if(new_mob.client)

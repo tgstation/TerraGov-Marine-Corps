@@ -83,7 +83,7 @@
 	explosion(loc, light_impact_range = src.light_impact_range, small_animation = TRUE)
 	qdel(src)
 
-/obj/item/explosive/grenade/flamer_fire_act()
+/obj/item/explosive/grenade/flamer_fire_act(burnlevel)
 	activate()
 
 /obj/item/explosive/grenade/attack_hand(mob/living/user)
@@ -92,3 +92,52 @@
 		return
 	walk(src, null, null)
 	return
+
+
+////RAD GRENADE - TOTALLY RAD MAN
+
+/obj/item/explosive/grenade/rad
+	name = "\improper V-40 rad grenade"
+	desc = "Rad grenades release an extremely potent but short lived burst of radiation, debilitating organic life and frying electronics in a moderate radius. After the initial detonation, the radioactive effects linger for a time. Handle with extreme care."
+	icon_state = "grenade_rad" //placeholder
+	item_state = "grenade_rad" //placeholder
+	icon_state_mini = "grenade_red" //placeholder
+	det_time =  40 //default
+	arm_sound = 'sound/weapons/armbomb.ogg' //placeholder
+	hud_state = "grenade_he" //placeholder
+	///The range for the grenade's full effect
+	var/inner_range = 4
+	///The range range for the grenade's weak effect
+	var/outer_range = 7
+	///The potency of the grenade
+	var/rad_strength = 20
+
+/obj/item/explosive/grenade/rad/prime()
+	var/turf/impact_turf = get_turf(src)
+	playsound(impact_turf, 'sound/effects/portal_opening.ogg', 50, 1)
+
+	for(var/mob/living/victim in hearers(outer_range, src))
+		var/strength
+		var/datum/looping_sound/geiger/geiger_counter = new(null, FALSE)
+		if(get_dist(victim, impact_turf) <= inner_range)
+			strength = rad_strength
+			geiger_counter.severity = 3
+		else
+			strength = rad_strength * 0.6
+			geiger_counter.severity = 2
+		irradiate(victim, strength)
+		geiger_counter.start(victim)
+
+	qdel(src)
+
+///Applies the actual effects of the rad grenade
+/obj/item/explosive/grenade/rad/proc/irradiate(mob/living/victim, strength)
+	var/rad_penetration = max((100 - victim.get_soft_armor(BIO)) / 100, 0.25)
+	var/effective_strength = strength * rad_penetration //strength with rad armor taken into account
+	victim.adjustCloneLoss(effective_strength)
+	victim.adjustStaminaLoss(effective_strength * 7)
+	victim.adjust_stagger(effective_strength / 2)
+	victim.add_slowdown(effective_strength / 2)
+	victim.blur_eyes(effective_strength) //adds a visual indicator that you've just been irradiated
+	victim.adjust_radiation(effective_strength * 20) //Radiation status effect, duration is in deciseconds
+	to_chat(victim, span_warning("Your body tingles as you suddenly feel the strength drain from your body!"))

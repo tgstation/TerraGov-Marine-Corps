@@ -3,17 +3,18 @@
 	outside = FALSE
 
 /area/icy_caves/caves/
-	name ="Caves"
+	name = "Caves"
 	icon_state = "away4"
 	ceiling = CEILING_UNDERGROUND
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/icy_caves/caves/northern
-	name ="Northern Caves"
+	name = "Northern Caves"
 	icon_state = "cave"
 	ceiling = CEILING_DEEP_UNDERGROUND
 
 /area/icy_caves/caves/crashed_ship
-	name ="Crashed Ship"
+	name = "Crashed Ship"
 	icon_state = "red"
 	ceiling = CEILING_DEEP_UNDERGROUND
 
@@ -35,9 +36,11 @@
 
 /area/icy_caves/caves/northwestmonorail/morgue
 	name = "Northwestern Monorail Station Morgue"
+	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
 
 /area/icy_caves/caves/northwestmonorail/medbay
 	name = "Northwestern Monorail Station Medbay"
+	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
 
 /area/icy_caves/caves/underground_cafeteria
 	name = "Underground Cafeteria"
@@ -53,6 +56,7 @@
 	name = "Cave Weapons Vault"
 	icon_state = "icy_vault"
 	ceiling = CEILING_DEEP_UNDERGROUND
+	minimap_color = MINIMAP_AREA_SEC_CAVE
 
 /area/icy_caves/caves/alienstuff
 	name = "Extraterrestrial Organisms and Plant Life Exhibit"
@@ -60,37 +64,43 @@
 	ceiling = CEILING_DEEP_UNDERGROUND
 
 /area/icy_caves/caves/south
-	name ="Southern Caves"
+	name = "Southern Caves"
 	icon_state = "cave"
 
 /area/icy_caves/caves/east
-	name ="Eastern Caves"
+	name = "Eastern Caves"
 	icon_state = "cave"
 
 /area/icy_caves/caves/west
-	name ="Western Caves"
+	name = "Western Caves"
 	icon_state = "cave"
 
+/area/icy_caves/caves/rock
+	name = "Enclosed Area"
+	icon_state = "transparent"
+
 /area/icy_caves/outpost/
-	name ="Outpost"
+	name = "Outpost"
 	icon_state = "Sleep"
 	ceiling = CEILING_METAL
 
 /area/icy_caves/outpost/dorms
-	name ="Dormitories"
+	name = "Dormitories"
 	icon_state = "Sleep"
 
 /area/icy_caves/outpost/engineering
-	name ="Engineering"
+	name = "Engineering"
 	icon_state = "engine_smes"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/icy_caves/outpost/garage
-	name ="Garage"
+	name = "Garage"
 	icon_state = "garage"
 
 /area/icy_caves/outpost/medbay
 	name = "\improper Medbay"
 	icon_state = "medbay"
+	minimap_color = MINIMAP_AREA_MEDBAY
 
 /area/icy_caves/outpost/refinery
 	name = "\improper Refinery"
@@ -99,10 +109,12 @@
 /area/icy_caves/outpost/security
 	name = "\improper Security"
 	icon_state = "security"
+	minimap_color = MINIMAP_AREA_SEC
 
 /area/icy_caves/outpost/research
 	name = "\improper Research Post"
 	icon_state = "blue"
+	minimap_color = MINIMAP_AREA_RESEARCH
 
 /area/icy_caves/outpost/recreation
 	name = "\improper Recreation"
@@ -129,11 +141,13 @@
 	name = "\improper Landing Zone One"
 	icon_state = "green"
 	ceiling = CEILING_NONE
+	minimap_color = MINIMAP_AREA_LZ
 
 /area/icy_caves/outpost/LZ2
 	name = "\improper Landing Zone Two"
 	icon_state = "blue"
 	ceiling = CEILING_NONE
+	minimap_color = MINIMAP_AREA_LZ
 
 /area/icy_caves/outpost/outside
 	name = "\improper Colony Grounds"

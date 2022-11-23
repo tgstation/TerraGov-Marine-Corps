@@ -79,9 +79,7 @@
 		var/obj/item/weapon/gun/gun = I
 		if(!CHECK_BITFIELD(gun.reciever_flags, AMMO_RECIEVER_MAGAZINES))
 			return ..()
-		if(!gun.reload(src, user))
-			return
-		gun.RegisterSignal(src, COMSIG_ITEM_REMOVED_INVENTORY, /obj/item/weapon/gun.proc/drop_connected_mag)
+		gun.reload(src, user)
 		return
 
 	if(!CHECK_BITFIELD(flags_magazine, MAGAZINE_REFILLABLE)) //and a refillable magazine
@@ -169,7 +167,6 @@
 		user.put_in_hands(new_handful)
 		to_chat(user, span_notice("You grab <b>[rounds]</b> round\s from [src]."))
 		update_icon() //Update the other one.
-		user?.hud_used.update_ammo_hud(user, src)
 		if(current_rounds <= 0 && CHECK_BITFIELD(flags_magazine, MAGAZINE_HANDFUL))
 			user.temporarilyRemoveItemFromInventory(src)
 			qdel(src)
@@ -209,7 +206,7 @@
 	default_ammo = source.default_ammo
 
 //~Art interjecting here for explosion when using flamer procs.
-/obj/item/ammo_magazine/flamer_fire_act()
+/obj/item/ammo_magazine/flamer_fire_act(burnlevel)
 	if(!current_rounds)
 		return
 	explosion(loc, 0, 0, 1, 2, throw_range = FALSE, small_animation = TRUE) //blow it up.
@@ -237,6 +234,36 @@
 	icon_state = "shotgun buckshot shell"
 	current_rounds = 5
 	default_ammo = /datum/ammo/bullet/shotgun/buckshot
+	caliber = CALIBER_12G
+
+/obj/item/ammo_magazine/handful/micro_grenade
+	name = "handful of airburst micro grenades (10g)"
+	icon_state = "micro_grenade_airburst"
+	current_rounds = 3
+	max_rounds = 3
+	default_ammo = /datum/ammo/bullet/micro_rail/airburst
+	caliber = CALIBER_10G_RAIL
+
+/obj/item/ammo_magazine/handful/micro_grenade/dragonbreath
+	name = "handful of dragon's breath micro grenades (10g)"
+	icon_state = "micro_grenade_incendiary"
+	default_ammo = /datum/ammo/bullet/micro_rail/dragonbreath
+
+/obj/item/ammo_magazine/handful/micro_grenade/cluster
+	name = "handful of clustermunition micro grenades (10g)"
+	icon_state = "micro_grenade_cluster"
+	default_ammo = /datum/ammo/bullet/micro_rail/cluster
+
+/obj/item/ammo_magazine/handful/micro_grenade/smoke_burst
+	name = "handful of smoke burst micro grenades (10g)"
+	icon_state = "micro_grenade_smoke"
+	default_ammo = /datum/ammo/bullet/micro_rail/smoke_burst
+
+/obj/item/ammo_magazine/handful/flechette
+	name = "handful of shotgun flechette shells (12g)"
+	icon_state = "shotgun flechette shell"
+	current_rounds = 5
+	default_ammo = /datum/ammo/bullet/shotgun/flechette
 	caliber = CALIBER_12G
 
 //----------------------------------------------------------------//
@@ -267,12 +294,13 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	var/max_casings = 16
 	var/current_icon = 0
 	var/number_of_states = 10 //How many variations of this item there are.
+	var/initial_icon_state = "cartridge_" //holder for icon_state so we can do random variations without effecting mapper visibility
 
 /obj/item/ammo_casing/Initialize()
 	. = ..()
 	pixel_x = rand(-2, 2) //Want to move them just a tad.
 	pixel_y = rand(-2, 2)
-	icon_state += "[rand(1, number_of_states)]" //Set the icon to it.
+	icon_state = initial_icon_state += "[rand(1, number_of_states)]" //Set the icon to it.
 
 //This does most of the heavy lifting. It updates the icon and name if needed, then changes .dir to simulate new casings.
 /obj/item/ammo_casing/update_icon()
@@ -296,11 +324,12 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 /obj/item/ammo_casing/cartridge
 	name = "spent cartridge"
-	icon_state = "cartridge_"
+	icon_state = "cartridge"
 
 /obj/item/ammo_casing/shell
 	name = "spent shell"
-	icon_state = "shell_"
+	initial_icon_state = "shell_"
+	icon_state = "shell"
 
 
 
@@ -317,8 +346,8 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	flags_equip_slot = ITEM_SLOT_BACK
 	var/base_icon_state = "big_ammo_box"
 	var/default_ammo = /datum/ammo/bullet/rifle
-	var/bullet_amount = 800
-	var/max_bullet_amount = 800
+	var/bullet_amount = 2400
+	var/max_bullet_amount = 2400
 	var/caliber = CALIBER_10X24_CASELESS
 
 /obj/item/big_ammo_box/update_icon_state()
@@ -384,7 +413,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 				qdel(AM)
 
 //explosion when using flamer procs.
-/obj/item/big_ammo_box/flamer_fire_act()
+/obj/item/big_ammo_box/flamer_fire_act(burnlevel)
 	if(!bullet_amount)
 		return
 	explosion(loc, 0, 0, 1, 2, throw_range = FALSE, small_animation = TRUE) //blow it up.
@@ -504,6 +533,9 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	icon_state = "big_ammo_box_m25"
 	base_icon_state = "big_ammo_box_m25"
 	default_ammo = /datum/ammo/bullet/smg
+	bullet_amount = 4500
+	max_bullet_amount = 4500
+	caliber = CALIBER_10X20_CASELESS
 
 /obj/item/shotgunbox/buckshot
 	name = "Buckshot Ammo Box"

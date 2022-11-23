@@ -132,6 +132,10 @@
 	if(!signal || !on)
 		return
 
+	var/turf/location = get_turf(signal.source)
+	if(location.z != z)
+		return
+
 	if(signal.data["code"] != code)
 		return
 

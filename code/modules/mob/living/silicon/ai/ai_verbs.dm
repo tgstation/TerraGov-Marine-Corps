@@ -111,7 +111,8 @@
 				"default" = 'icons/mob/ai.dmi',
 				"floating face" = 'icons/mob/ai.dmi',
 				"xeno_queen" = 'icons/mob/ai.dmi',
-				"void_horror" = 'icons/mob/ai.dmi'
+				"void_horror" = 'icons/mob/ai.dmi',
+				"holo4" = 'icons/mob/ai.dmi'
 				)
 
 			hologram = tgui_input_list(src, "Please select a hologram:", null, icon_list)

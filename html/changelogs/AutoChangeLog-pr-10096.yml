@@ -1,8 +1,0 @@
-author: "novaepee"
-delete-after: True
-changes: 
-  - rscadd: "Add more lights around PoS medbay."
-  - rscdel: "Remove rogue cameras in PoS"
-  - rscadd: "briefing in PoS. lel"
-  - bugfix: "PoS' chem not being able to be accessible to corpsman.
-expansion: polish up PoS' morgue."

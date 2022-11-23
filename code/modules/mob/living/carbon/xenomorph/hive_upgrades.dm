@@ -11,6 +11,71 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	XENO_TIER_FOUR = PRIMORDIAL_TIER_FOUR,
 ))
 
+/datum/hive_purchases
+	interaction_flags = INTERACT_UI_INTERACT
+	///Flat list of upgrades we can buy
+	var/list/buyable_upgrades = list()
+	///Assocative list name = upgraderef
+	var/list/datum/hive_upgrade/upgrades_by_name = list()
+
+// ***************************************
+// *********** UI for hive store/blessing menu
+// ***************************************
+
+///Initializing hive status with all relevant to be purchased upgrades.
+/datum/hive_purchases/proc/setup_upgrades()
+	for(var/type in subtypesof(/datum/hive_upgrade))
+		var/datum/hive_upgrade/upgrade = new type
+		if(upgrade.name == "Error upgrade") //defaultname just skip it its probably organisation
+			continue
+		if(!(SSticker.mode.flags_xeno_abilities & upgrade.flags_gamemode))
+			continue
+		buyable_upgrades += upgrade
+		upgrades_by_name[upgrade.name] = upgrade
+
+/datum/hive_purchases/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "BlessingMenu", "Queen Mothers Blessings")
+		ui.open()
+
+/datum/hive_purchases/ui_state(mob/user)
+	return GLOB.conscious_state
+
+/datum/hive_purchases/ui_assets(mob/user)
+	. = ..()
+	. += get_asset_datum(/datum/asset/spritesheet/blessingmenu)
+
+/datum/hive_purchases/ui_data(mob/user)
+	. = ..()
+
+	var/mob/living/carbon/xenomorph/X = user
+
+	.["upgrades"] = list()
+	for(var/datum/hive_upgrade/upgrade AS in buyable_upgrades)
+		.["upgrades"] += list(list("name" = upgrade.name, "desc" = upgrade.desc, "category" = upgrade.category,\
+		"cost" = upgrade.psypoint_cost, "times_bought" = upgrade.times_bought, "iconstate" = upgrade.icon))
+	.["psypoints"] = SSpoints.xeno_points_by_hive[X.hive.hivenumber]
+
+/datum/hive_purchases/ui_static_data(mob/user)
+	. = ..()
+	.["categories"] = GLOB.upgrade_categories
+
+/datum/hive_purchases/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	switch(action)
+		if("buy")
+			var/buying = params["buyname"]
+			var/datum/hive_upgrade/upgrade = upgrades_by_name[buying]
+			var/mob/living/carbon/xenomorph/user = usr
+			if(!upgrade.can_buy(user, FALSE))
+				return
+			if(!upgrade.on_buy(user))
+				return
+			log_game("[key_name(user)] has purchased \a [upgrade] Blessing for [upgrade.psypoint_cost] psypoints for the [user.hive.hivenumber] hive")
+			if(upgrade.flags_upgrade & UPGRADE_FLAG_MESSAGE_HIVE)
+				xeno_message("[user] has purchased \a [upgrade] Blessing", "xenoannounce", 5, user.hivenumber)
+
 /datum/hive_upgrade
 	///name of the upgrade, string, used in ui
 	var/name = "Error upgrade"
@@ -62,28 +127,42 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	category = "Buildings"
 	///The type of building created
 	var/building_type
+	///The location to spawn the building at. Southwest of the xeno by default.
+	var/building_loc = SOUTHWEST
+	///Building time, in seconds. 10 by default.
+	var/building_time = 10 SECONDS
 
 /datum/hive_upgrade/building/can_buy(mob/living/carbon/xenomorph/buyer, silent)
 	. = ..()
 	if(!.)
 		return
-	var/turf/buildloc = get_step(buyer, SOUTHWEST)
+	var/turf/buildloc = get_step(buyer, building_loc)
 	if(!buildloc)
 		return FALSE
 
-	if(buildloc.density)
+	if(!buildloc.is_weedable())
 		if(!silent)
-			to_chat(buyer, span_xenowarning("You cannot build in a dense location!"))
+			to_chat(buyer, span_warning("We can't do that here."))
+		return FALSE
+
+	var/obj/alien/weeds/alien_weeds = locate() in buildloc
+
+	if(!alien_weeds)
+		if(!silent)
+			to_chat(buyer, span_warning("We can only shape on weeds. We must find some resin before we start building!"))
+		return FALSE
+
+	if(!buildloc.check_alien_construction(buyer, silent) || !buildloc.check_disallow_alien_fortification(buyer, silent))
 		return FALSE
 
 /datum/hive_upgrade/building/on_buy(mob/living/carbon/xenomorph/buyer)
-	if(!do_after(buyer, 10 SECONDS, TRUE, buyer, BUSY_ICON_BUILD))
+	if(!do_after(buyer, building_time, TRUE, buyer, BUSY_ICON_BUILD))
 		return FALSE
 
 	if(!can_buy(buyer, FALSE))
 		return FALSE
 
-	var/turf/buildloc = get_step(buyer, SOUTHWEST)
+	var/turf/buildloc = get_step(buyer, building_loc)
 
 	var/atom/built = new building_type(buildloc, buyer.hivenumber)
 	to_chat(buyer, span_notice("We build \a [built] for [psypoint_cost] psy points."))
@@ -104,7 +183,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	if(!.)
 		return
 
-	var/turf/buildloc = get_step(buyer, SOUTHWEST)
+	var/turf/buildloc = get_step(buyer, building_loc)
 	if(!buildloc)
 		return FALSE
 
@@ -117,6 +196,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 		if(get_dist(silo, buyer) < 15)
 			to_chat(buyer, span_xenowarning("Another silo is too close!"))
 			return FALSE
+
 /datum/hive_upgrade/building/evotower
 	name = "Evolution Tower"
 	desc = "Constructs a tower that increases the rate of evolution point generation by 1.25 times per tower."
@@ -132,6 +212,16 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	icon = "maturitytower"
 	flags_upgrade = ABILITY_DISTRESS
 	building_type = /obj/structure/xeno/maturitytower
+
+/datum/hive_upgrade/building/pherotower
+	name = "Pheromone Tower"
+	desc = "Constructs a tower that emanates a selectable type of pheromone."
+	psypoint_cost = 150
+	icon = "pherotower"
+	flags_upgrade = ABILITY_DISTRESS
+	building_type = /obj/structure/xeno/pherotower
+	building_loc = 0 //This results in spawning the structure under the user.
+	building_time = 5 SECONDS
 
 /datum/hive_upgrade/building/spawner
 	name = "Spawner"
@@ -169,9 +259,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	if(!T.is_weedable())
 		return FALSE
 
-	var/obj/effect/alien/weeds/alien_weeds = locate() in T
-
-	if(!alien_weeds)
+	if(!buyer.loc_weeds_type)
 		if(!silent)
 			to_chat(buyer, span_xenowarning("No weeds here!"))
 		return FALSE

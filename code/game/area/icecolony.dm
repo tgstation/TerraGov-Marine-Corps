@@ -23,11 +23,11 @@
 /area/ice_colony/exterior
 	name = "Ice Colony"
 	icon_state = "cliff_blocked"
-	requires_power = 1
-	always_unpowered = 1
-	power_light = 0
-	power_equip = 0
-	power_environ = 0
+	requires_power = TRUE
+	always_unpowered = TRUE
+	power_light = FALSE
+	power_equip = FALSE
+	power_environ = FALSE
 	ambience = list('sound/ambience/ambispace.ogg')
 	temperature = ICE_COLONY_TEMPERATURE
 	minimap_color = MINIMAP_AREA_COLONY
@@ -56,12 +56,16 @@
 	name = "Aerodrome Landing Pad"
 	icon_state = "landing_pad"
 	outside = FALSE
+	always_unpowered = FALSE
+	minimap_color = MINIMAP_AREA_LZ
 
 //Landing Pad for the Vindi. THIS IS NOT THE SHUTTLE AREA
 /area/ice_colony/exterior/surface/landing_pad2
 	name = "Emergency Landing Pad"
 	icon_state = "landing_pad"
 	outside = FALSE
+	always_unpowered = FALSE
+	minimap_color = MINIMAP_AREA_LZ
 
 //Everything around the physical landing pad
 /area/ice_colony/exterior/surface/landing_pad_external
@@ -240,11 +244,12 @@
 /area/ice_colony/surface/command
 	name = "Colony Administration"
 	icon_state = "bridge"
-	minimap_color = MINIMAP_AREA_SEC
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/ice_colony/surface/command/checkpoint
 	name = "Colony Administration Security Checkpoint"
 	icon_state = "security"
+	minimap_color = MINIMAP_AREA_SEC_CAVE
 
 /area/ice_colony/surface/command/control
 	name = "Colony Control Center"
@@ -380,6 +385,7 @@
 /area/ice_colony/surface/hangar/checkpoint
 	name = "Aerodrome Hangar Security Checkpoint"
 	icon_state = "security"
+	minimap_color = MINIMAP_AREA_SEC_CAVE
 
 /*
 * Surface - Hydroponics
@@ -417,6 +423,7 @@
 /area/ice_colony/surface/substation
 	name = "Surface Power Substation"
 	icon_state = "dk_yellow"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/ice_colony/surface/substation/smes
 	name = "Surface Power Substation SMES"
@@ -436,9 +443,9 @@
 */
 
 /area/ice_colony/surface/research
-
 	name = "Omicron Dome"
 	icon_state = "toxlab"
+	minimap_color = MINIMAP_AREA_RESEARCH
 
 /area/ice_colony/surface/research/tech_storage
 	name = "Omicron Dome Technical Storage"
@@ -491,6 +498,7 @@
 	icon_state = "explored"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 	outside = FALSE
+	minimap_color = MINIMAP_AREA_CAVES
 
 /*
 * Underground - Crew Areas
@@ -544,10 +552,12 @@
 /area/ice_colony/underground/command
 	name = "Underground Colonial Administration"
 	icon_state = "bridge"
+	minimap_color = MINIMAP_AREA_COMMAND_CAVE
 
 /area/ice_colony/underground/command/checkpoint
 	name = "Underground Colonial Administration Lobby"
 	icon_state = "security"
+	minimap_color = MINIMAP_AREA_SEC_CAVE
 
 /area/ice_colony/underground/command/center
 	name = "Underground Colonial Administration Command Center"
@@ -568,6 +578,7 @@
 /area/ice_colony/underground/engineering
 	name = "Underground Engineering"
 	icon_state = "engine_hallway"
+	minimap_color = MINIMAP_AREA_ENGI_CAVE
 
 /area/ice_colony/underground/engineering/locker
 	name = "Underground Engineering Locker Room"
@@ -639,6 +650,7 @@
 /area/ice_colony/underground/medical
 	name = "Underground Medical Laboratory"
 	icon_state = "medbay"
+	minimap_color = MINIMAP_AREA_MEDBAY_CAVE
 
 /area/ice_colony/underground/medical/lobby
 	name = "Underground Medical Laboratory Lobby"
@@ -670,10 +682,12 @@
 /area/ice_colony/underground/reception/checkpoint_north
 	name = "Underground Reception Northern Security Checkpoint"
 	icon_state = "security"
+	minimap_color = MINIMAP_AREA_SEC_CAVE
 
 /area/ice_colony/underground/reception/checkpoint_south
 	name = "Underground Reception Southern Security Checkpoint"
 	icon_state = "security"
+	minimap_color = MINIMAP_AREA_SEC_CAVE
 
 /area/ice_colony/underground/reception/toilet_men
 	name = "Underground Reception Men's Restroom"
@@ -710,6 +724,7 @@
 /area/ice_colony/underground/research
 	name = "Theta-V Research Laboratory"
 	icon_state = "anolab"
+	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
 
 /area/ice_colony/underground/research/work
 	name = "Theta-V Research Laboratory Work Station"
@@ -730,6 +745,7 @@
 /area/ice_colony/underground/security
 	name = "Underground Security Center"
 	icon_state = "security"
+	minimap_color = MINIMAP_AREA_SEC_CAVE
 
 /area/ice_colony/underground/security/marshal
 	name = "Marshal's Office"
@@ -781,7 +797,7 @@
 /area/ice_colony/underground/storage
 	name = "Underground Technical Storage"
 	icon_state = "storage"
-	minimap_color = MINIMAP_AREA_ENGI
+	minimap_color = MINIMAP_AREA_ENGI_CAVE
 
 /area/ice_colony/underground/storage/highsec
 	name = "Underground High Security Technical Storage"

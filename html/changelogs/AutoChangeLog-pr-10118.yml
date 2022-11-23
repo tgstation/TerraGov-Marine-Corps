@@ -1,7 +1,0 @@
-author: "Arctrooper8"
-delete-after: True
-changes: 
-  - bugfix: "Synths no longer have organs that they cannot fix"
-  - bugfix: "Combat robots can now have their heads reattached."
-  - bugfix: "You can now actually see synthetic/robotic heads on the ground for retrieval."
-  - bugfix: "Head reattachment surgery no longer makes you bald."

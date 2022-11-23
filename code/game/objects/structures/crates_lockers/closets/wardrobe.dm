@@ -93,19 +93,6 @@
 	new /obj/item/clothing/shoes/black(src)
 	new /obj/item/clothing/shoes/black(src)
 
-/obj/structure/closet/wardrobe/xenos
-	name = "xenos wardrobe"
-	icon_state = "green"
-	icon_closed = "green"
-
-/obj/structure/closet/wardrobe/xenos/PopulateContents()
-	new /obj/item/clothing/suit/unathi/mantle(src)
-	new /obj/item/clothing/suit/unathi/robe(src)
-	new /obj/item/clothing/shoes/sandal(src)
-	new /obj/item/clothing/shoes/sandal(src)
-	new /obj/item/clothing/shoes/sandal(src)
-
-
 /obj/structure/closet/wardrobe/orange
 	name = "prison wardrobe"
 	desc = "It's a storage unit for prisoner attire."

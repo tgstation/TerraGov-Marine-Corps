@@ -199,7 +199,20 @@
 			var/mob/living/L = O
 			L.IgniteMob()
 
+/obj/proc/handle_weldingtool_overlay(removing = FALSE)
+	if(!removing)
+		add_overlay(GLOB.welding_sparks)
+	else
+		cut_overlay(GLOB.welding_sparks)
 
+/obj/item/tool/weldingtool/use_tool(atom/target, mob/living/user, delay, amount, volume, datum/callback/extra_checks)
+	if(isobj(target))
+		var/obj/O = target
+		O.handle_weldingtool_overlay()
+		. = ..()
+		O.handle_weldingtool_overlay(TRUE)
+	else
+		. = ..()
 
 /obj/item/tool/weldingtool/attack_self(mob/user as mob)
 	if(!status)
@@ -251,7 +264,7 @@
 			welding = 1
 			if(M)
 				to_chat(M, span_notice("You switch [src] on."))
-			set_light(LIGHTER_LUMINOSITY)
+			set_light(1, LIGHTER_LUMINOSITY)
 			weld_tick += 8 //turning the tool on does not consume fuel directly, but it advances the process that regularly consumes fuel.
 			force = 15
 			damtype = BURN
@@ -385,7 +398,10 @@
 
 	else if(istype(I, /obj/item/ammo_magazine/flamer_tank))
 		var/obj/item/ammo_magazine/flamer_tank/FT = I
-		if(!reagents.total_volume)
+		if(FT.current_rounds == FT.max_rounds || !reagents.total_volume)
+			return ..()
+		if(FT.default_ammo != /datum/ammo/flamethrower)
+			to_chat(user, span_warning("Not the right kind of fuel!"))
 			return ..()
 
 		//Reworked and much simpler equation; fuel capacity minus the current amount, with a check for insufficient fuel

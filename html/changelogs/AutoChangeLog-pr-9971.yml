@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes: 
-  - refactor: "quick equip now actually draws from or stores into everything you'd expect it to, and does so in a more sane order"

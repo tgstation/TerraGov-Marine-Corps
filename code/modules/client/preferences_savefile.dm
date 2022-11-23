@@ -27,7 +27,7 @@
 /datum/preferences/proc/update_preferences(current_version, savefile/S)
 	if(current_version < 39)
 		key_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key)
-		parent.update_movement_keys(src)
+		parent.update_special_keybinds(src)
 		to_chat(parent, span_userdanger("Empty keybindings, setting to default"))
 
 	// Add missing keybindings for T L O M for when they were removed as defaults
@@ -375,6 +375,7 @@
 	READ_FILE(S["ethnicity"], ethnicity)
 	READ_FILE(S["good_eyesight"], good_eyesight)
 	READ_FILE(S["preferred_squad"], preferred_squad)
+	READ_FILE(S["preferred_squad_som"], preferred_squad_som)
 	READ_FILE(S["alternate_option"], alternate_option)
 	READ_FILE(S["job_preferences"], job_preferences)
 	READ_FILE(S["preferred_slot"], preferred_slot)
@@ -407,7 +408,6 @@
 
 	READ_FILE(S["citizenship"], citizenship)
 	READ_FILE(S["religion"], religion)
-	READ_FILE(S["nanotrasen_relation"], nanotrasen_relation)
 
 	READ_FILE(S["med_record"], med_record)
 	READ_FILE(S["sec_record"], sec_record)
@@ -431,6 +431,7 @@
 	ethnicity		= sanitize_ethnicity(ethnicity)
 	good_eyesight	= sanitize_integer(good_eyesight, FALSE, TRUE, initial(good_eyesight))
 	preferred_squad	= sanitize_inlist(preferred_squad, SELECTABLE_SQUADS, initial(preferred_squad))
+	preferred_squad_som	= sanitize_inlist(preferred_squad_som, SELECTABLE_SQUADS_SOM, initial(preferred_squad_som))
 	alternate_option= sanitize_integer(alternate_option, 0, 2, initial(alternate_option))
 	job_preferences = SANITIZE_LIST(job_preferences)
 	preferred_slot	= sanitize_inlist(preferred_slot, SLOT_DRAW_ORDER, initial(preferred_slot))
@@ -465,7 +466,6 @@
 
 	citizenship		= sanitize_inlist(citizenship, CITIZENSHIP_CHOICES, initial(citizenship))
 	religion		= sanitize_inlist(religion, RELIGION_CHOICES, initial(religion))
-	nanotrasen_relation = sanitize_inlist(nanotrasen_relation, CORP_RELATIONS, initial(nanotrasen_relation))
 
 	med_record		= sanitize_text(med_record, initial(med_record))
 	sec_record		= sanitize_text(sec_record, initial(sec_record))
@@ -514,6 +514,7 @@
 	ethnicity		= sanitize_ethnicity(ethnicity)
 	good_eyesight	= sanitize_integer(good_eyesight, FALSE, TRUE, initial(good_eyesight))
 	preferred_squad	= sanitize_inlist(preferred_squad, SELECTABLE_SQUADS, initial(preferred_squad))
+	preferred_squad_som	= sanitize_inlist(preferred_squad_som, SELECTABLE_SQUADS_SOM, initial(preferred_squad_som))
 	alternate_option= sanitize_integer(alternate_option, 0, 2, initial(alternate_option))
 	job_preferences = SANITIZE_LIST(job_preferences)
 	preferred_slot	= sanitize_inlist(preferred_slot, SLOT_DRAW_ORDER, initial(preferred_slot))
@@ -548,7 +549,6 @@
 
 	citizenship		= sanitize_inlist(citizenship, CITIZENSHIP_CHOICES, initial(citizenship))
 	religion		= sanitize_inlist(religion, RELIGION_CHOICES, initial(religion))
-	nanotrasen_relation = sanitize_inlist(nanotrasen_relation, CORP_RELATIONS, initial(nanotrasen_relation))
 
 	med_record		= sanitize_text(med_record, initial(med_record))
 	sec_record		= sanitize_text(sec_record, initial(sec_record))
@@ -571,6 +571,7 @@
 	WRITE_FILE(S["ethnicity"], ethnicity)
 	WRITE_FILE(S["good_eyesight"], good_eyesight)
 	WRITE_FILE(S["preferred_squad"], preferred_squad)
+	WRITE_FILE(S["preferred_squad_som"], preferred_squad_som)
 	WRITE_FILE(S["alternate_option"], alternate_option)
 	WRITE_FILE(S["job_preferences"], job_preferences)
 	WRITE_FILE(S["preferred_slot"], preferred_slot)
@@ -603,7 +604,6 @@
 
 	WRITE_FILE(S["citizenship"], citizenship)
 	WRITE_FILE(S["religion"], religion)
-	WRITE_FILE(S["nanotrasen_relation"], nanotrasen_relation)
 
 	WRITE_FILE(S["med_record"], med_record)
 	WRITE_FILE(S["sec_record"], sec_record)

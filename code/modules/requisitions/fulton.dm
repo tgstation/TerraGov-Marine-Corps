@@ -50,21 +50,21 @@
 	if(user.do_actions)
 		return FALSE
 	if(active)
-		to_chat(user, span_warning("The fulton device is not yet ready to extract again. Wait a moment."))
+		balloon_alert(user, "Fulton not ready")
 		return FALSE
 	user.visible_message(span_notice("[user] starts attaching [src] to [spirited_away]."),\
 	span_notice("You start attaching the pack to [spirited_away]..."), null, 5)
 	if(!do_after(user, 5 SECONDS, TRUE, spirited_away))
 		return FALSE
 	if(!isturf(spirited_away.loc))
-		to_chat(user, span_warning("The fulton device cannot extract [spirited_away]. Place it on the ground."))
+		balloon_alert(user, "Must extract on the ground")
 		return FALSE
 	if(spirited_away.anchored)
-		to_chat(user, span_warning("[spirited_away] is anchored, it cannot be extracted!"))
+		balloon_alert(user, "Cannot extract anchored")
 		return FALSE
 	var/area/bathhouse = get_area(spirited_away)
 	if(bathhouse.ceiling >= CEILING_METAL)
-		to_chat(user, span_warning("You cannot extract [spirited_away] while indoors!"))
+		balloon_alert(user, "Cannot extract indoors")
 		return FALSE
 	return TRUE
 
@@ -116,10 +116,11 @@
 //Overrides.
 /mob/living/carbon/xenomorph/fulton_act(mob/living/user, obj/item/I)
 	if(!SSpoints)
-		to_chat(user, span_notice("Failure to form link with destination target."))
+		balloon_alert(user, "Failed to link with destination")
 		return TRUE
 
 	if(stat != DEAD)
+		balloon_alert(user, "Target still alive")
 		to_chat(user, span_warning("The extraction device buzzes, complaining. This one seems to be alive still."))
 		return TRUE
 
@@ -129,9 +130,10 @@
 
 /mob/living/carbon/human/fulton_act(mob/living/user, obj/item/I)
 	if(!can_sell_human_body(src, user.faction))
-		to_chat(user, span_notice("High command is not interested in this target."))
+		balloon_alert(user, "High command not interested")
 		return TRUE
 	if(stat != DEAD)
+		balloon_alert(user, "Target still alive")
 		to_chat(user, span_warning("The extraction device buzzes, complaining. This one seems to be alive still."))
 		return TRUE
 	var/obj/item/fulton_extraction_pack/ext_pack = I
@@ -142,14 +144,14 @@
 /obj/structure/table/fulton_act(mob/living/user, obj/item/I)
 	if(!flipped)
 		return FALSE //Place it in.
-	to_chat(user, span_warning("Cannot extract [src]."))
+	balloon_alert(user, "Cannot extract")
 	return TRUE
 
 
 /obj/structure/closet/fulton_act(mob/living/user, obj/item/I)
 	if(opened)
 		return FALSE //Place it in.
-	to_chat(user, span_warning("Cannot extract [src]."))
+	balloon_alert(user, "Cannot extract")
 	return TRUE
 
 
@@ -158,10 +160,11 @@
 		return FALSE //Place it in.
 
 	if(!SSpoints)
-		to_chat(user, span_warning("Failure to form link with destination target."))
+		balloon_alert(user, "Failed to link with destination")
 		return TRUE
 
 	if(length(contents))
+		balloon_alert(user, "[src] not empty")
 		to_chat(user, span_warning("Maximum weight surpassed. Empty [src] in order to extract it."))
 		return TRUE
 
@@ -189,27 +192,27 @@
 	if(!isturf(target.loc) || !ismovableatom(target))
 		return FALSE
 	if(active)
-		to_chat(user, span_warning("The fulton device is not yet ready to extract again. Wait a moment."))
+		balloon_alert(user, "Fulton not ready")
 		return FALSE
 	. = TRUE
 	if(istype(target, /obj/structure/fulton_extraction_point))
 		if(linked_extraction_point && linked_extraction_point == target)
 			linked_extraction_point = null
-			to_chat(user, span_notice("Extraction point unlinked."))
+			balloon_alert(user, "Extraction point unlinked")
 		else
 			linked_extraction_point = target
-			to_chat(user, span_notice("Extraction point linked."))
+			balloon_alert(user, "Extraction point linked")
 		return
 	if(length(allowed_target_tags) && !(target.tag in allowed_target_tags))
 		return
 	if(must_be_used_outdoors)
 		var/area/target_area = get_area(target)
 		if(target_area.ceiling >= CEILING_METAL)
-			to_chat(user, span_warning("You cannot extract [target] while indoors!"))
+			balloon_alert(user, "Cannot extract indoors")
 			return
 	var/atom/movable/movable_target = target
 	if(care_about_anchored && movable_target.anchored)
-		to_chat(user, span_warning("[target] is anchored, it cannot be extracted!"))
+		balloon_alert(user, "Cannot extract anchored")
 		return FALSE
 	if(do_after_time && (user.do_actions || !do_after(user, do_after_time, TRUE, target)))
 		return

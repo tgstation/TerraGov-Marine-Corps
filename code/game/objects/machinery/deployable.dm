@@ -3,11 +3,10 @@
 	hud_possible = list(MACHINE_HEALTH_HUD)
 	obj_flags = CAN_BE_HIT
 	throwpass = FALSE
-
-	///Item that is deployed to create src.
-	var/obj/item/internal_item
 	///Since /obj/machinery/deployable aquires its sprites from an item and are set in New(), initial(icon_state) would return null. This var exists as a substitute.
 	var/default_icon_state
+	///Item that is deployed to create src.
+	var/obj/item/internal_item
 
 /obj/machinery/deployable/Initialize(mapload, _internal_item, deployer)
 	. = ..()
@@ -34,6 +33,11 @@
 		sentry_status_hud.remove_from_hud(src)
 	return ..()
 
+/obj/machinery/deployable/get_internal_item()
+	return internal_item
+
+/obj/machinery/deployable/clear_internal_item()
+	internal_item = null
 
 /obj/machinery/deployable/update_icon()
 	. = ..()
@@ -71,17 +75,21 @@
 
 	user.visible_message(span_notice("[user] begins repairing damage to [src]."),
 	span_notice("You begin repairing the damage to [src]."))
+	add_overlay(GLOB.welding_sparks)
 	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 
 	if(!do_after(user, weld_time, TRUE, src, BUSY_ICON_FRIENDLY))
+		cut_overlay(GLOB.welding_sparks)
 		return TRUE
 
 	if(!WT.remove_fuel(2, user))
 		to_chat(user, span_warning("Not enough fuel to finish the task."))
+		cut_overlay(GLOB.welding_sparks)
 		return TRUE
 
 	user.visible_message(span_notice("[user] repairs some damage on [src]."),
 	span_notice("You repair [src]."))
+	cut_overlay(GLOB.welding_sparks)
 	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 	repair_damage(120)
 	update_icon()
@@ -93,6 +101,7 @@
 	if(CHECK_BITFIELD(item.flags_item, DEPLOYED_NO_PICKUP))
 		to_chat(user, span_notice("The [src] is anchored in place and cannot be disassembled."))
 		return
+	operator?.unset_interaction()
 	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user)
 
 /obj/machinery/deployable/Destroy()
@@ -112,7 +121,7 @@
 	if(over_object != user || !in_range(src, user))
 		return
 	if(CHECK_BITFIELD(internal_item.flags_item, DEPLOYED_WRENCH_DISASSEMBLE))
-		to_chat(user, "<span class = 'notice'>You cannot disassemble [src] without a wrench.</span>")
+		to_chat(user, span_notice("You cannot disassemble [src] without a wrench."))
 		return
 	disassemble(user)
 

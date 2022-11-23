@@ -1,7 +1,9 @@
+#define LAVA_TILE_BURN_DAMAGE 20
 
 //turfs with density = FALSE
 /turf/open
 	plane = FLOOR_PLANE
+	minimap_color = MINIMAP_AREA_COLONY
 	var/allow_construction = TRUE //whether you can build things like barricades on this turf.
 	var/slayer = 0 //snow layer
 	var/wet = 0 //whether the turf is wet (only used by floors).
@@ -257,6 +259,9 @@
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "plating"
 
+/turf/open/floor/plating/heatinggrate
+	icon_state = "heatinggrate"
+
 /turf/open/shuttle/brig // Added this floor tile so that I have a seperate turf to check in the shuttle -- Polymorph
 	name = "Brig floor"        // Also added it into the 2x3 brig area of the shuttle.
 	icon_state = "floor4"
@@ -324,6 +329,7 @@
 	light_range = 2
 	light_power = 1.4
 	light_color = LIGHT_COLOR_LAVA
+	minimap_color = MINIMAP_LAVA
 
 /turf/open/lavaland/lava/is_weedable()
 	return FALSE
@@ -378,13 +384,18 @@
 		STOP_PROCESSING(SSobj, src)
 
 /turf/open/lavaland/lava/proc/burn_stuff(AM)
-	. = 0
+	. = FALSE
 
 	var/thing_to_check = src
 	if (AM)
 		thing_to_check = list(AM)
 	for(var/thing in thing_to_check)
-		if(isobj(thing))
+		if(ismecha(thing))
+			var/obj/vehicle/sealed/mecha/burned_mech = thing
+			burned_mech.take_damage(rand(40, 120), BURN)
+			. = TRUE
+
+		else if(isobj(thing))
 			var/obj/O = thing
 			O.fire_act(10000, 1000)
 
@@ -395,11 +406,11 @@
 				continue
 
 			if(!L.on_fire || L.getFireLoss() <= 200)
-				L.take_overall_damage(null, 20, clamp(L.getarmor(null, "fire"), 0, 80))
+				L.take_overall_damage(0, LAVA_TILE_BURN_DAMAGE * clamp(L.get_fire_resist(), 0.2, 1), updating_health = TRUE)
 				if(!CHECK_BITFIELD(L.flags_pass, PASSFIRE))//Pass fire allow to cross lava without igniting
 					L.adjust_fire_stacks(20)
 					L.IgniteMob()
-				. = 1
+				. = TRUE
 
 /turf/open/lavaland/lava/attackby(obj/item/C, mob/user, params)
 	..()

@@ -1,0 +1,4 @@
+author: "Ben10083"
+delete-after: True
+changes:
+  - bugfix: "Mech Pilot added to support section in crew manifest."

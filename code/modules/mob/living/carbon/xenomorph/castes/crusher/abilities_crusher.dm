@@ -9,7 +9,9 @@
 	plasma_cost = 100
 	cooldown_timer = 20 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
-	keybind_signal = COMSIG_XENOABILITY_STOMP
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_STOMP,
+	)
 
 /datum/action/xeno_action/activable/stomp/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -67,7 +69,9 @@
 	ability_name = "crest toss"
 	plasma_cost = 75
 	cooldown_timer = 12 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_CRESTTOSS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CRESTTOSS,
+	)
 	target_flags = XABB_MOB_TARGET
 
 /datum/action/xeno_action/activable/cresttoss/on_cooldown_finish()
@@ -104,6 +108,9 @@
 		if(L.mob_size >= MOB_SIZE_BIG) //Penalize toss distance for big creatures
 			toss_distance = FLOOR(toss_distance * 0.5, 1)
 			big_mob_message = ", struggling mightily to heft its bulk"
+	else if(ismecha(A))
+		toss_distance = FLOOR(toss_distance * 0.5, 1)
+		big_mob_message = ", struggling mightily to heft its bulk"
 
 	if(X.a_intent == INTENT_HARM) //If we use the ability on hurt intent, we throw them in front; otherwise we throw them behind.
 		for(var/x in 1 to toss_distance)
@@ -173,7 +180,9 @@
 	ability_name = "rapid advance"
 	plasma_cost = 175
 	cooldown_timer = 30 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_ADVANCE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ADVANCE,
+	)
 
 /datum/action/xeno_action/activable/advance/on_cooldown_finish()
 	to_chat(owner, span_xenowarning("<b>We can now rapidly charge forward again.</b>"))

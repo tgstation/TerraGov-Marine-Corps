@@ -97,7 +97,7 @@
 	icon_state = "t64"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle/standard_br
-	max_rounds = 35
+	max_rounds = 36
 	icon_state_mini = "mag_rifle_big"
 
 /obj/item/ammo_magazine/rifle/standard_br/incendiary
@@ -107,7 +107,7 @@
 	caliber = CALIBER_10x265_CASELESS
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle/standard_br/incendiary
-	max_rounds = 35
+	max_rounds = 36
 	icon_state_mini = "mag_rifle_big_red"
 
 //-------------------------------------------------------
@@ -243,30 +243,15 @@
 //SMARTMACHINEGUN AMMUNITION
 
 /obj/item/ammo_magazine/standard_smartmachinegun
-	name = "\improper T-29 drum magazine (10x26mm HP)"
-	desc = "A 10mm drum magazine."
+	name = "\improper SG-29 drum magazine"
+	desc = "A wide drum magazine carefully filled to capacity with 10x26mm specialized smart rounds."
 	caliber = CALIBER_10x26_CASELESS
-	icon_state = "t29"
+	icon_state = "sg29"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/smartmachinegun
-	max_rounds = 200
+	max_rounds = 250
 	reload_delay = 2.5 SECONDS
-	icon_state_mini = "mag_t29"
-
-//-------------------------------------------------------
-//T-25 SMARTRIFLE
-
-/obj/item/ammo_magazine/rifle/standard_smartrifle
-	name = "\improper T-25 magazine (10x26mm HP)"
-	desc = "A 10mm assault rifle magazine."
-	caliber = CALIBER_10x26_CASELESS
-	icon_state = "t25"
-	w_class = WEIGHT_CLASS_NORMAL
-	default_ammo = /datum/ammo/bullet/smartmachinegun
-	max_rounds = 100
-	icon_state_mini = "mag_rifle_big"
-
-
+	icon_state_mini = "mag_sg29"
 
 //-------------------------------------------------------
 //Sectoid Rifle
@@ -292,10 +277,10 @@
 	icon_state_mini = "mag_sniper"
 
 //-------------------------------------------------------
-//Marine magazine automatic sniper, or the GL-81.
+//Marine magazine automatic sniper, or the SR-81.
 /obj/item/ammo_magazine/rifle/autosniper
-	name = "\improper GL-81 automatic sniper rifle magazine"
-	desc = "A box magazine filled with low pressure 8.6x70mm rifle rounds for the GL-81."
+	name = "\improper SR-81 automatic sniper rifle magazine"
+	desc = "A box magazine filled with low pressure 8.6x70mm rifle rounds for the SR-81."
 	caliber = CALIBER_86X70
 	icon_state = "t81"
 	default_ammo = /datum/ammo/bullet/sniper/auto
@@ -387,3 +372,47 @@
 	default_ammo = /datum/ammo/tx54/incendiary
 	icon_state = "tx54_airburst"
 	greyscale_colors = "#fa7923"
+
+//-------------------------------------------------------
+//V-31 SOM rifle
+
+/obj/item/ammo_magazine/rifle/som
+	name = "\improper V-31 magazine (10x24mm)"
+	desc = "A 10mm rifle magazine designed for the V-31."
+	caliber = CALIBER_10X24_CASELESS
+	icon_state = "v31"
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/bullet/rifle
+	max_rounds = 50
+	icon_state_mini = "mag_rifle_big"
+
+/obj/item/ammo_magazine/rifle/som/ap
+	name = "\improper V-31 AP magazine (10x24mm)"
+	desc = "A 10mm rifle magazine designed for the V-31, loaded with armor piercing rounds."
+	caliber = CALIBER_10X24_CASELESS
+	icon_state = "v31_ap"
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/bullet/rifle/ap
+	max_rounds = 50
+	icon_state_mini = "mag_rifle_big_green"
+
+/obj/item/ammo_magazine/rifle/som/incendiary
+	name = "\improper V-31 incendiary magazine (10x24mm)"
+	desc = "A 10mm rifle magazine designed for the V-31, loaded with incendiary rounds."
+	icon_state = "v31_incend"
+	default_ammo = /datum/ammo/bullet/rifle/incendiary
+	icon_state_mini = "mag_rifle_big_red"
+
+//-------------------------------------------------------
+//V-41 Machine Gun
+
+/obj/item/ammo_magazine/som_mg
+	name = "\improper V-41 box magazine (10x26mm)"
+	desc = "A drum magazine for the V-41 machinegun."
+	icon_state = "v41"
+	caliber = CALIBER_10x26_CASELESS
+	default_ammo = /datum/ammo/bullet/rifle/som_machinegun
+	w_class = WEIGHT_CLASS_NORMAL
+	max_rounds = 200
+	reload_delay = 3 SECONDS
+	icon_state_mini = "mag_gpmg"

@@ -74,7 +74,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 /obj/vehicle/multitile/root/cm_armored/Initialize()
 	. = ..()
 	GLOB.tank_list += src
-	set_light(15)
+	set_light(0.01)
 
 
 /obj/vehicle/multitile/root/cm_armored/Destroy()
@@ -398,10 +398,10 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 		playsound(src, 'sound/effects/metal_crash.ogg', 35)
 		C.lastsound = world.time
 
-/obj/effect/alien/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
+/obj/alien/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
 	take_damage(40)
 
-/obj/effect/alien/weeds/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
+/obj/alien/weeds/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
 	return
 
 /obj/vehicle/multitile/hitbox/cm_armored/Move(atom/A, direction)

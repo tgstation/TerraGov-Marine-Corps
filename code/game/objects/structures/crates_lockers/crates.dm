@@ -54,6 +54,9 @@
 		climbable = 0 //Open crate is not a surface that works when climbing around
 	return 1
 
+/obj/structure/closet/crate/break_open()
+	open()
+
 /obj/structure/closet/crate/close()
 	if(!opened)
 		return 0
@@ -112,23 +115,6 @@
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		rigged = FALSE
 
-
-/obj/structure/closet/crate/ex_act(severity)
-	switch(severity)
-		if(EXPLODE_DEVASTATE)
-			for(var/obj/O in src.contents)
-				qdel(O)
-			qdel(src)
-		if(EXPLODE_HEAVY)
-			for(var/obj/O in src.contents)
-				if(prob(50))
-					qdel(O)
-			qdel(src)
-		if(EXPLODE_LIGHT)
-			if (prob(50))
-				qdel(src)
-
-
 /obj/structure/closet/crate/alpha
 	name = "alpha squad crate"
 	desc = "A crate with alpha squad's symbol on it. "
@@ -177,6 +163,36 @@
 	icon_state = "closed_explosives"
 	icon_opened = "open_explosives"
 	icon_closed = "closed_explosives"
+
+/obj/structure/closet/crate/explosives/whiskeyoutpost/Initialize()
+	. = ..()
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/upp(src)
+	new /obj/item/explosive/grenade/upp(src)
+	new /obj/item/explosive/grenade/upp(src)
+	new /obj/item/explosive/grenade/phosphorus/upp(src)
+	new /obj/item/explosive/grenade/phosphorus/upp(src)
+	new /obj/item/explosive/grenade/phosphorus/upp(src)
+	new /obj/item/explosive/grenade/phosphorus/upp(src)
+
+/obj/structure/closet/crate/explosives/whiskeyoutposttwo/Initialize()
+	. = ..()
+	new /obj/structure/closet/crate/explosives(src)
+	new /obj/item/storage/box/visual/grenade/razorburn(src)
+	new /obj/item/storage/box/visual/grenade/razorburn(src)
+	new /obj/item/storage/box/visual/grenade/M15(src)
+	new /obj/item/storage/box/visual/grenade/phosphorus(src)
+	new /obj/item/explosive/grenade/incendiary/molotov(src)
+	new /obj/item/explosive/grenade/incendiary/molotov(src)
 
 /obj/structure/closet/crate/freezer
 	name = "freezer crate"
@@ -282,6 +298,7 @@
 /obj/structure/closet/crate/trashcart
 	name = "Trash Cart"
 	desc = "A heavy, metal trashcart with wheels."
+	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "closed_trashcart"
 	icon_opened = "open_trashcart"
 	icon_closed = "closed_trashcart"
@@ -305,8 +322,12 @@
 /obj/structure/closet/crate/miningcar
 	desc = "A mining car. This one doesn't work on rails, but has to be dragged."
 	name = "Mining car (not for rails)"
-	icon_state = "miningcar"
+	icon_state = "closed_mcart"
 	density = TRUE
-	icon_opened = "miningcaropen"
-	icon_closed = "miningcar"
+	icon_opened = "open_mcart"
+	icon_closed = "closed_mcart"
 
+/obj/structure/closet/crate/miningcar/stripe
+	icon_state = "closed_mcart_y"
+	icon_opened = "open_mcart_y"
+	icon_closed = "closed_mcart_y"

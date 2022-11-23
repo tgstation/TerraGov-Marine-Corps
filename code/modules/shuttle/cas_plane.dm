@@ -64,7 +64,7 @@
 	switch(owner.state)
 		if(PLANE_STATE_DEACTIVATED)
 			set_cockpit_overlay("cockpit_opening")//flick doesnt work here, thanks byond
-			sleep(7)
+			sleep(0.7 SECONDS)
 			set_cockpit_overlay("cockpit_open")
 			owner.state = PLANE_STATE_ACTIVATED
 			return
@@ -119,6 +119,9 @@
 ///Eject the user, use forced = TRUE to do so instantly
 /obj/structure/caspart/caschair/proc/eject_user(forced = FALSE)
 	if(!forced)
+		if(SSmapping.level_trait(z, ZTRAIT_RESERVED))
+			to_chat(occupant, span_notice("Getting out of the cockpit while flying seems like a bad idea to you."))
+			return
 		to_chat(occupant, span_notice("You start getting out of the cockpit."))
 		if(!do_after(occupant, 2 SECONDS, TRUE, src))
 			return

@@ -2,7 +2,7 @@
 	name = "security camera"
 	desc = "It's used to monitor rooms."
 	icon = 'icons/obj/machines/monitors.dmi'
-	icon_state = "camera"
+	icon_state = "camera_icon"
 	use_power = ACTIVE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 10
@@ -23,6 +23,7 @@
 
 /obj/machinery/camera/Initialize(mapload, newDir)
 	. = ..()
+	icon_state = "camera"
 
 	if(newDir)
 		setDir(newDir)
@@ -284,7 +285,7 @@
 			if(cam == src)
 				return
 	if(on)
-		set_light(AI_CAMERA_LUMINOSITY)
+		set_light(AI_CAMERA_LUMINOSITY, AI_CAMERA_LUMINOSITY)
 	else
 		set_light(0)
 

@@ -63,7 +63,6 @@
 			.["good_eyesight"] = good_eyesight
 			.["citizenship"] = citizenship
 			.["religion"] = religion
-			.["nanotrasen_relation"] = nanotrasen_relation
 			.["h_style"] = h_style
 			.["grad_style"] = grad_style
 			.["f_style"] = f_style
@@ -91,6 +90,7 @@
 		if(JOB_PREFERENCES)
 			.["job_preferences"] = job_preferences
 			.["preferred_squad"] = preferred_squad
+			.["preferred_squad_som"] = preferred_squad_som
 			.["alternate_option"] = alternate_option
 			.["special_occupation"] = be_special
 		if(GAME_SETTINGS)
@@ -115,6 +115,8 @@
 			.["show_typing"] = show_typing
 			.["tooltips"] = tooltips
 			.["widescreenpref"] = widescreenpref
+			.["radialmedicalpref"] = toggles_gameplay & RADIAL_MEDICAL
+			.["radialstackspref"] = toggles_gameplay & RADIAL_STACKS
 			.["scaling_method"] = scaling_method
 			.["pixel_size"] = pixel_size
 			.["parallax"] = parallax
@@ -146,6 +148,7 @@
 				"underwear" = list(
 					"male" = GLOB.underwear_m,
 					"female" = GLOB.underwear_f,
+					"plural" = GLOB.underwear_f + GLOB.underwear_m,
 				),
 				"undershirt" = GLOB.undershirt_t,
 				"backpack" = GLOB.backpacklist,
@@ -160,6 +163,7 @@
 				)
 		if(JOB_PREFERENCES)
 			.["squads"] = SELECTABLE_SQUADS
+			.["squads_som"] = SELECTABLE_SQUADS_SOM
 			.["jobs"] = list()
 			for(var/datum/job/job AS in SSjob.joinable_occupations)
 				var/rank = job.title
@@ -241,7 +245,7 @@
 		if("synthetic_type")
 			var/choice = tgui_input_list(ui.user, "What kind of synthetic do you want to play with?", "Synthetic type choice", SYNTH_TYPES)
 			if(choice)
-				ethnicity = choice
+				synthetic_type = choice
 
 		if("xeno_name")
 			var/newValue = params["newValue"]
@@ -310,6 +314,7 @@
 		if("jobreset")
 			job_preferences = list()
 			preferred_squad = "None"
+			preferred_squad_som = "None"
 			alternate_option = 2 // return to lobby
 
 		if("underwear")
@@ -463,25 +468,26 @@
 			b_eyes = hex2num(copytext(eyecolor, 6, 8))
 
 		if("citizenship")
-			var/choice = tgui_input_list(ui.user, "What nationality should you have?", "Nationality choice", CITIZENSHIP_CHOICES)
+			var/choice = tgui_input_list(ui.user, "Where do you hail from?", "Place of Origin", CITIZENSHIP_CHOICES)
 			if(choice)
 				citizenship = choice
 
 		if("religion")
-			var/choice = tgui_input_list(ui.user, "What gods do you worship to?", "Religion choice", RELIGION_CHOICES)
+			var/choice = tgui_input_list(ui.user, "What religion do you belive in?", "Belief", RELIGION_CHOICES)
 			if(choice)
 				religion = choice
-
-		if("corporation")
-			var/choice = tgui_input_list(ui.user, "How loyal are you to the corporation?", "Corporation choice", CORP_RELATIONS)
-			if(choice)
-				nanotrasen_relation = choice
 
 		if("squad")
 			var/new_squad = params["newValue"]
 			if(!(new_squad in SELECTABLE_SQUADS))
 				return
 			preferred_squad = new_squad
+
+		if("squad_som")
+			var/new_squad_som = params["newValue"]
+			if(!(new_squad_som in SELECTABLE_SQUADS_SOM))
+				return
+			preferred_squad_som = new_squad_som
 
 		if("med_record")
 			var/new_record = trim(html_encode(params["medicalDesc"]), MAX_MESSAGE_LEN)
@@ -622,8 +628,10 @@
 
 			key_bindings[full_key] += list(kb_name)
 			key_bindings[full_key] = sortList(key_bindings[full_key])
-			current_client.update_movement_keys()
+			current_client.update_special_keybinds()
 			save_keybinds()
+			if(user)
+				SEND_SIGNAL(user, COMSIG_MOB_KEYBINDINGS_UPDATED, GLOB.keybindings_by_name[kb_name])
 			return TRUE
 
 		if("clear_keybind")
@@ -636,7 +644,7 @@
 					key_bindings -= key
 					continue
 				key_bindings[key] = sortList(key_bindings[key])
-			current_client.update_movement_keys()
+			current_client.update_special_keybinds()
 			save_keybinds()
 			return TRUE
 
@@ -664,7 +672,7 @@
 
 		if("reset-keybindings")
 			key_bindings = GLOB.hotkey_keybinding_list_by_key
-			current_client.update_movement_keys()
+			current_client.update_special_keybinds()
 			save_keybinds()
 
 		if("bancheck")
@@ -691,6 +699,12 @@
 		if("widescreenpref")
 			widescreenpref = !widescreenpref
 			user.client.view_size.set_default(get_screen_size(widescreenpref))
+
+		if("radialmedicalpref")
+			toggles_gameplay ^= RADIAL_MEDICAL
+
+		if("radialstackspref")
+			toggles_gameplay ^= RADIAL_STACKS
 
 		if("pixel_size")
 			switch(pixel_size)

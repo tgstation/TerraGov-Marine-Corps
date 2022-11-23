@@ -19,6 +19,18 @@
 /obj/effect/decal/warning_stripes/medical
 	icon_state = "medical"
 
+/obj/effect/decal/warning_stripes/stripedsquare
+	icon_state = "stripe_square"
+
+/obj/effect/decal/warning_stripes/stripedsquare/border
+	icon_state = "stripe_square_border"
+
+/obj/effect/decal/warning_stripes/stripedsquare/tile
+	icon_state = "stripe_square_tile"
+
+/obj/effect/decal/warning_stripes/stripedsquare/tile/border
+	icon_state = "stripe_square_tile_border"
+
 /obj/effect/decal/warning_stripes/firingrange
 	icon_state = "firingrange"
 

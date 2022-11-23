@@ -129,6 +129,13 @@
 	dir = 4
 	},
 /area/bigredv2/outside/c)
+"C" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 8
+	},
+/area/bigredv2/outside/c)
 "E" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
@@ -190,6 +197,17 @@
 "U" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/c)
+"V" = (
+/obj/effect/ai_node,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 1
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
+"W" = (
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
 "X" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -210,10 +228,10 @@
 t
 j
 L
-L
-L
+W
+o
 Z
-J
+C
 Q
 a
 "}
@@ -281,7 +299,7 @@ S
 e
 g
 y
-X
+E
 "}
 (8,1,1) = {"
 U
@@ -292,7 +310,7 @@ h
 e
 H
 y
-E
+V
 "}
 (9,1,1) = {"
 U
@@ -303,7 +321,7 @@ h
 e
 m
 y
-i
+X
 "}
 (10,1,1) = {"
 U
@@ -375,7 +393,7 @@ i
 U
 x
 w
-w
+W
 o
 J
 A

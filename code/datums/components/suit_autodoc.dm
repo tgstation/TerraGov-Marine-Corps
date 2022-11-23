@@ -190,7 +190,7 @@
 	if(!enabled)
 		return
 	enabled = FALSE
-	toggle_action.remove_selected_frame()
+	toggle_action.set_toggle(FALSE)
 	UnregisterSignals(wearer)
 	STOP_PROCESSING(SSobj, src)
 	if(!silent)
@@ -206,7 +206,7 @@
 	if(enabled)
 		return
 	enabled = TRUE
-	toggle_action.add_selected_frame()
+	toggle_action.set_toggle(TRUE)
 	RegisterSignals(wearer)
 	START_PROCESSING(SSobj, src)
 	if(!silent)
@@ -355,7 +355,6 @@
 	<BR>
 	<B>Integrated Health Analyzer:</B><BR>
 	<A href='byond://?src=[REF(src)];analyzer=1'>Scan Wearer</A><BR>
-	<A href='byond://?src=[REF(src)];toggle_mode=1'>Turn Scanner HUD Mode: [analyzer.hud_mode ? "Off" : "On"]</A><BR>
 	<BR>
 	<B>Damage Trigger Threshold (Max [SUIT_AUTODOC_DAM_MAX], Min [SUIT_AUTODOC_DAM_MIN]):</B><BR>
 	<A href='byond://?src=[REF(src)];automed_damage=-50'>-50</A>
@@ -406,13 +405,6 @@
 	else if(href_list["analyzer"]) //Integrated scanner
 		analyzer.attack(wearer, wearer, TRUE)
 
-	else if(href_list["toggle_mode"]) //Integrated scanner
-		analyzer.hud_mode = !analyzer.hud_mode
-		if(analyzer.hud_mode)
-			wearer.balloon_alert(wearer, "The scanner now shows results on the hud")
-		else
-			wearer.balloon_alert(wearer, "The scanner no longer shows results on the hud")
-
 	else if(href_list["automed_damage"])
 		damage_threshold += text2num(href_list["automed_damage"])
 		damage_threshold = round(damage_threshold)
@@ -436,11 +428,14 @@
 /datum/action/suit_autodoc/toggle
 	name = "Toggle Suit Automedic"
 	action_icon_state = "suit_toggle"
+	action_type = ACTION_TOGGLE
 
 /datum/action/suit_autodoc/scan
 	name = "User Medical Scan"
 	action_icon_state = "suit_scan"
-	keybind_signal = COMSIG_KB_SUITANALYZER
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_KB_SUITANALYZER,
+	)
 
 /datum/action/suit_autodoc/configure
 	name = "Configure Suit Automedic"
