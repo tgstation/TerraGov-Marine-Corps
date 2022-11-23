@@ -4280,33 +4280,9 @@
 	},
 /area/icy_caves/caves/cavesbrig)
 "us" = (
-<<<<<<< HEAD
-/obj/structure/prop/vehicle/tank/north/base{
-	dir = 1
-	},
-/obj/structure/prop/vehicle/tank/north/turret{
-	dir = 1
-	},
-/obj/structure/prop/vehicle/tank/north/decoration/cupolaone{
-	dir = 1
-	},
-/obj/structure/prop/vehicle/tank/north/armor/snowplow{
-	dir = 1
-	},
-/obj/structure/prop/vehicle/tank/north/barrel/minigunbroken{
-	dir = 1
-	},
-/obj/structure/prop/vehicle/tank/north/decoration/damagedhardpointframe,
-/turf/open/shuttle/dropship/seven,
-/area/space)
-"ut" = (
-/obj/machinery/door/window/secure{
-	dir = 2
-=======
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/singlePart{
 	dir = 5
->>>>>>> master
 	},
 /area/icy_caves/caves/rock)
 "uv" = (
@@ -5627,16 +5603,10 @@
 	dir = 8
 	},
 /area/icy_caves/outpost/garage)
-<<<<<<< HEAD
-"Ae" = (
-/turf/closed/ice_rock/eastWall,
-/area/icy_caves/caves/northern)
-=======
 "Af" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/eastWall,
 /area/icy_caves/caves/rock)
->>>>>>> master
 "Ah" = (
 /obj/effect/landmark/corpsespawner/security{
 	corpsebelt = /obj/item/weapon/gun/revolver/cmb;
@@ -14510,11 +14480,7 @@ Fk
 NW
 XD
 NW
-<<<<<<< HEAD
-us
-=======
 aA
->>>>>>> master
 fs
 UZ
 qI

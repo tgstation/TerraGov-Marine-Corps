@@ -10,7 +10,8 @@
 	pixel_x = -7;
 	pixel_y = 11
 	},
-/turf/open/floor/wood/broken{
+/turf/open/floor/wood{
+	icon_state = "wood-broken1"
 	},
 /area/lv624/ground/caves/central2)
 "aT" = (
@@ -20,42 +21,10 @@
 "dx" = (
 /turf/open/ground/coast/corner,
 /area/lv624/ground/caves/central2)
-<<<<<<< HEAD
-"dE" = (
-/obj/structure/barricade/sandbags{
-	dir = 1
-	},
-/obj/effect/spawner/random/trash,
-/turf/open/floor/wood,
-/area/lv624/ground/caves/central2)
-"dP" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/wood,
-/area/lv624/ground/caves/central2)
-"dY" = (
-/obj/effect/decal/cleanable/blood/splatter,
-/obj/effect/landmark/corpsespawner/colonist,
-/turf/open/floor/wood,
-/area/lv624/ground/caves/central2)
-"eG" = (
-/obj/structure/table/woodentable,
-/obj/effect/spawner/random/gun/machineguns{
-	pixel_x = -2;
-	pixel_y = 6
-	},
-/obj/effect/spawner/random/ammo/machinegun,
-/turf/open/floor/wood/broken/four{
-	},
-/area/lv624/ground/caves/central2)
-"fl" = (
-/turf/closed/mineral,
-/area/lv624/ground/caves/central1)
-=======
 "eu" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central3)
->>>>>>> master
 "fs" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
@@ -92,7 +61,8 @@
 	},
 /area/lv624/ground/caves/central1)
 "iX" = (
-/turf/open/floor/wood/broken/three{
+/turf/open/floor/wood{
+	icon_state = "wood-broken3"
 	},
 /area/lv624/ground/caves/central2)
 "jd" = (
@@ -232,30 +202,10 @@
 /obj/structure/barricade/sandbags{
 	dir = 1
 	},
-/turf/open/floor/wood/broken/six{
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
 	},
 /area/lv624/ground/caves/central2)
-<<<<<<< HEAD
-"uk" = (
-/obj/effect/decal/cleanable/blood/drip,
-/turf/open/floor/wood/broken/six{
-	},
-/area/lv624/ground/caves/central2)
-"vd" = (
-/obj/effect/ai_node,
-/turf/open/floor/wood/broken{
-	},
-/area/lv624/ground/caves/central2)
-"vD" = (
-/obj/structure/table/woodentable,
-/obj/effect/spawner/random/ammo/machinegun{
-	pixel_x = -5;
-	pixel_y = 6
-	},
-/turf/open/floor/wood,
-/area/lv624/ground/caves/central2)
-=======
->>>>>>> master
 "wg" = (
 /turf/open/ground/coast{
 	dir = 9
@@ -304,13 +254,8 @@
 /area/lv624/ground/caves/central1)
 "AT" = (
 /obj/effect/decal/cleanable/blood/drip,
-<<<<<<< HEAD
-/turf/open/floor/wood/broken/four{
-	},
-=======
 /obj/item/stack/sheet/wood,
 /turf/open/floor/wood,
->>>>>>> master
 /area/lv624/ground/caves/central2)
 "Bf" = (
 /obj/machinery/door/airlock/mainship/secure/locked/free_access{
@@ -387,7 +332,8 @@
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "Jh" = (
-/turf/open/floor/wood/broken/seven{
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
 	},
 /area/lv624/ground/caves/central2)
 "JW" = (
@@ -441,7 +387,8 @@
 /area/lv624/ground/caves/central2)
 "Nl" = (
 /obj/item/paper/crumpled/bloody,
-/turf/open/floor/wood/broken/seven{
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
 	},
 /area/lv624/ground/caves/central2)
 "Np" = (
@@ -552,42 +499,6 @@
 /obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
-<<<<<<< HEAD
-"Wh" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central2)
-"WG" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/wood/broken/six{
-	},
-/area/lv624/ground/caves/central2)
-"Xd" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central1)
-"Xg" = (
-/obj/effect/decal/cleanable/blood/drip,
-/obj/structure/table/woodentable,
-/obj/effect/spawner/random/ammo/machinegun,
-/turf/open/floor/wood,
-/area/lv624/ground/caves/central2)
-"Xn" = (
-/obj/effect/decal/cleanable/blood/drip,
-/obj/effect/spawner/random/gun/sidearms,
-/turf/open/floor/wood/broken{
-	},
-/area/lv624/ground/caves/central2)
-"XG" = (
-/obj/item/ammo_casing/shell,
-/obj/structure/table/woodentable,
-/obj/effect/spawner/random/gun/machineguns{
-	pixel_x = 2;
-	pixel_y = 4
-	},
-/obj/effect/spawner/random/ammo/machinegun,
-=======
 "Ww" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/smooth,
@@ -597,7 +508,6 @@
 /area/lv624/ground/caves/central1)
 "Yv" = (
 /obj/effect/ai_node,
->>>>>>> master
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "Yz" = (
@@ -619,7 +529,8 @@
 	},
 /area/lv624/ground/caves/central2)
 "Za" = (
-/turf/open/floor/wood/broken/six{
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
 	},
 /area/lv624/ground/caves/central2)
 "Zg" = (

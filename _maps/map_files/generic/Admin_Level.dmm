@@ -933,7 +933,8 @@
 /turf/closed/wall/r_wall/unmeltable,
 /area/centcom/valhalla/bridge)
 "bbJ" = (
-/turf/open/floor/wood/broken/five{
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
 	},
 /area/centcom/valhalla/library)
 "bbO" = (
@@ -2700,7 +2701,8 @@
 /turf/open/floor/plating,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "dAJ" = (
-/turf/open/floor/plating/dmg3{
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
 	},
 /area/centcom/valhalla/security/brig/interiorcavern)
 "dBm" = (
@@ -2726,7 +2728,8 @@
 /area/tdome)
 "dDH" = (
 /obj/effect/ai_node,
-/turf/open/floor/plating/dmg3{
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
 	},
 /area/centcom/valhalla/port)
 "dDK" = (
@@ -3341,7 +3344,8 @@
 	},
 /obj/structure/table,
 /obj/machinery/recharger/nopower,
-/turf/open/floor/wood/broken/two{
+/turf/open/floor/wood{
+	icon_state = "wood-broken2"
 	},
 /area/centcom/valhalla/crew_quarters/captain)
 "egz" = (
@@ -3422,7 +3426,8 @@
 "elO" = (
 /obj/structure/table,
 /obj/item/taperecorder,
-/turf/open/floor/wood/broken/six{
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
 	},
 /area/centcom/valhalla/library)
 "eoT" = (
@@ -4524,7 +4529,8 @@
 	pixel_x = 42;
 	pixel_y = -42
 	},
-/turf/open/floor/wood/broken/six{
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
 	},
 /area/centcom/valhalla/crew_quarters/heads/hop)
 "fST" = (
@@ -5558,7 +5564,8 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/centcom/valhalla/medical/medbay)
 "hrC" = (
-/turf/open/floor/wood/broken/two{
+/turf/open/floor/wood{
+	icon_state = "wood-broken2"
 	},
 /area/centcom/valhalla/port)
 "htq" = (
@@ -8528,7 +8535,8 @@
 "lrW" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
-/turf/open/floor/wood/broken/two{
+/turf/open/floor/wood{
+	icon_state = "wood-broken2"
 	},
 /area/centcom/valhalla/port)
 "lsy" = (
@@ -9809,7 +9817,8 @@
 /turf/open/floor/plating,
 /area/tdome/tdome2)
 "ndy" = (
-/turf/open/floor/plating/dmg3{
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
 	},
 /area/centcom/valhalla/central)
 "ndM" = (
@@ -10689,7 +10698,8 @@
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/primary/aft)
 "ojA" = (
-/turf/open/floor/plating/dmg3{
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
 	},
 /area/centcom/valhalla/fore)
 "ojF" = (
@@ -11009,7 +11019,8 @@
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "oJB" = (
-/turf/open/floor/wood/broken/six{
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
 	},
 /area/centcom/valhalla/port)
 "oJI" = (
@@ -11410,7 +11421,8 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
 	},
-/turf/open/floor/wood/broken/two{
+/turf/open/floor/wood{
+	icon_state = "wood-broken2"
 	},
 /area/centcom/valhalla/library)
 "pio" = (
@@ -11844,7 +11856,8 @@
 /area/centcom/valhalla/engine/engineering)
 "pZK" = (
 /obj/structure/bed/stool,
-/turf/open/floor/wood/broken/two{
+/turf/open/floor/wood{
+	icon_state = "wood-broken2"
 	},
 /area/centcom/valhalla/port)
 "pZY" = (
@@ -11968,7 +11981,8 @@
 "qhV" = (
 /obj/structure/bed/stool,
 /obj/effect/ai_node,
-/turf/open/floor/wood/broken/five{
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
 	},
 /area/centcom/valhalla/port)
 "qia" = (
@@ -12024,7 +12038,8 @@
 /turf/open/floor/plating,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "qlR" = (
-/turf/open/floor/wood/broken/five{
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
 	},
 /area/centcom/valhalla/port)
 "qlV" = (
@@ -12119,7 +12134,8 @@
 	},
 /area/centcom/valhalla/secondary/exit)
 "qsw" = (
-/turf/open/floor/wood/broken/six{
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
 	},
 /area/centcom/valhalla/crew_quarters/theatre)
 "qsK" = (
@@ -12770,7 +12786,8 @@
 	},
 /area/centcom/valhalla/secondary/exit)
 "qZP" = (
-/turf/open/floor/wood/broken/seven{
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
 	},
 /area/centcom/valhalla/library)
 "qZR" = (
@@ -13254,7 +13271,8 @@
 /obj/machinery/alarm{
 	dir = 1
 	},
-/turf/open/floor/wood/broken/five{
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
 	},
 /area/centcom/valhalla/crew_quarters/theatre)
 "rIl" = (
@@ -13536,7 +13554,8 @@
 	},
 /area/centcom/valhalla/crew_quarters/theatre)
 "scd" = (
-/turf/open/floor/wood/broken/two{
+/turf/open/floor/wood{
+	icon_state = "wood-broken2"
 	},
 /area/centcom/valhalla/library)
 "sch" = (
@@ -15150,7 +15169,8 @@
 /turf/open/floor/grimy,
 /area/centcom/valhalla/crew_quarters)
 "tZJ" = (
-/turf/open/floor/plating/dmg3{
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
 	},
 /area/centcom/valhalla/starboard)
 "tZZ" = (
@@ -15434,7 +15454,8 @@
 /turf/open/floor/plating,
 /area/centcom/valhalla/security/checkpoint)
 "usm" = (
-/turf/open/floor/wood/broken/seven{
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
 	},
 /area/centcom/valhalla/crew_quarters/theatre)
 "usE" = (
@@ -16552,7 +16573,8 @@
 /obj/machinery/computer/security/telescreen/entertainment{
 	pixel_y = -32
 	},
-/turf/open/floor/wood/broken/seven{
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
 	},
 /area/centcom/valhalla/crew_quarters)
 "vQc" = (
@@ -17521,7 +17543,8 @@
 /obj/structure/paper_bin,
 /obj/item/tool/pen,
 /obj/item/tool/stamp/hop,
-/turf/open/floor/wood/broken/five{
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
 	},
 /area/centcom/valhalla/crew_quarters/heads/hop)
 "wKu" = (
@@ -17621,7 +17644,8 @@
 /area/centcom/valhalla/primary/port)
 "wQr" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood/broken/seven{
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
 	},
 /area/centcom/valhalla/port)
 "wQw" = (
@@ -17954,12 +17978,14 @@
 	},
 /area/centcom/valhalla/primary/starboard)
 "xil" = (
-/turf/open/floor/plating/dmg3{
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
 	},
 /area/centcom/valhalla/port)
 "xiF" = (
 /obj/effect/ai_node,
-/turf/open/floor/wood/broken/five{
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
 	},
 /area/centcom/valhalla/crew_quarters/theatre)
 "xjS" = (
@@ -18004,7 +18030,8 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
 	},
-/turf/open/floor/wood/broken/five{
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
 	},
 /area/centcom/valhalla/port)
 "xkO" = (
@@ -18098,7 +18125,8 @@
 /area/centcom/valhalla/medical/medbay)
 "xpm" = (
 /obj/item/target/alien,
-/turf/open/floor/plating/dmg3{
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
 	},
 /area/centcom/valhalla/security/brig/interiorcavern)
 "xpE" = (

@@ -36,11 +36,7 @@
 "cH" = (
 /obj/effect/spawner/random/trash,
 /obj/machinery/light{
-<<<<<<< HEAD
-	dir = 4;
-=======
 	dir = 8
->>>>>>> master
 	},
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
@@ -993,11 +989,8 @@
 "VW" = (
 /obj/machinery/light{
 	dir = 4;
-<<<<<<< HEAD
-=======
 	icon_state = "tube1";
 	
->>>>>>> master
 	},
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)

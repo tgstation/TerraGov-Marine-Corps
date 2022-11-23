@@ -1994,31 +1994,9 @@
 /obj/effect/ai_node,
 /obj/effect/decal/grassdecal/corner2,
 /turf/open/floor/plating/ground/dirt,
-<<<<<<< HEAD
-/area/whiskey_outpost/outside/north)
-"iI" = (
-/obj/item/weapon/gun/sentry/premade,
-/turf/open/floor/plating/platebot,
-/area/whiskey_outpost/outside/west)
-"iJ" = (
-/obj/structure/flora/ausbushes/leafybush,
-/turf/open/floor/plating/ground/dirt,
-/area/whiskey_outpost/outside/east)
-"iK" = (
-/obj/structure/dropship_piece/one/cockpit/left,
-/turf/open/floor/plating/ground/dirt,
-/area/whiskey_outpost/outside/east)
-"iL" = (
-/turf/closed/shuttle/dropship1/window{
-	},
-/area/whiskey_outpost/outside/east)
-"iM" = (
-/obj/structure/dropship_piece/one/cockpit/right,
-=======
 /area/whiskey_outpost/outside/south)
 "jx" = (
 /obj/structure/flora/ausbushes/fullgrass,
->>>>>>> master
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)
 "jy" = (
@@ -2827,34 +2805,10 @@
 /obj/structure/bed/roller,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
-<<<<<<< HEAD
-"np" = (
-/turf/closed/shuttle/dropship1/enginefour,
-/area/whiskey_outpost/outside/south)
-"nq" = (
-/turf/closed/shuttle/dropship1/enginefour{
-	dir = 1
-	},
-/area/whiskey_outpost/outside/south)
-"nr" = (
-/obj/effect/ai_node,
-/turf/open/ground/jungle/path,
-/area/whiskey_outpost/outside/west)
-"ns" = (
-/obj/structure/platform{
-	dir = 8
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/whiskey_outpost/outside/north)
-"nt" = (
-/obj/structure/flora/ausbushes/grassybush,
-/obj/structure/platform{
-=======
 "nE" = (
 /obj/machinery/marine_selector/clothes,
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
->>>>>>> master
 	dir = 8
 	},
 /obj/machinery/light{
@@ -2890,20 +2844,12 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "nL" = (
-<<<<<<< HEAD
-/turf/closed/shuttle/dropship1/enginethree,
-/area/whiskey_outpost/outside/south)
-"nM" = (
-/turf/closed/shuttle/dropship1/enginethree{
-	dir = 1
-=======
 /turf/open/floor/plating/dmg3,
 /area/whiskey_outpost/outside/east)
 "nM" = (
 /obj/machinery/marine_selector/clothes,
 /obj/structure/window/reinforced{
 	dir = 8
->>>>>>> master
 	},
 /obj/structure/window/reinforced,
 /turf/open/floor/plating/asteroidfloor,
@@ -2943,18 +2889,8 @@
 /turf/open/floor/plating/dmg1,
 /area/whiskey_outpost/outside/east)
 "nT" = (
-<<<<<<< HEAD
-/turf/closed/shuttle/dropship1/enginetwo{
-	dir = 1
-	},
-/area/whiskey_outpost/outside/south)
-"nU" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "24"
-=======
 /turf/open/floor/plating/asteroidwarning{
 	dir = 1
->>>>>>> master
 	},
 /area/whiskey_outpost)
 "nV" = (
@@ -2967,17 +2903,12 @@
 	},
 /area/whiskey_outpost)
 "nW" = (
-<<<<<<< HEAD
-/turf/closed/shuttle/dropship1/enginetwo,
-/area/whiskey_outpost/outside/south)
-=======
 /obj/structure/window/reinforced,
 /obj/machinery/loadout_vendor,
 /turf/open/floor/mainship/blue{
 	dir = 4
 	},
 /area/whiskey_outpost)
->>>>>>> master
 "nX" = (
 /obj/structure/barricade/sandbags{
 	dir = 8

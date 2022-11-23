@@ -58,57 +58,17 @@
 /obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
-<<<<<<< HEAD
-"ek" = (
-/obj/machinery/light,
-/obj/effect/ai_node,
-/turf/open/floor/asteroidfloor{
-	},
-/area/bigredv2/outside/s)
 "em" = (
 /turf/closed/wall,
 /area/bigredv2/outside/filtration_plant)
-"et" = (
-/obj/machinery/computer3/server/rack,
-/obj/effect/decal/warning_stripes/box/threeside{
-	dir = 1
-	},
-/turf/open/floor,
-/area/bigredv2/outside/filtration_plant)
-"ew" = (
-/obj/structure/cargo_container/ch_red{
-	dir = 1
-	},
-/obj/effect/landmark/lv624/fog_blocker,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "bot"
-	},
-/area/bigredv2/outside/s)
-"eC" = (
-/obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/asteroidfloor{
-	},
-/area/bigredv2/outside/s)
-"eD" = (
-/obj/effect/ai_node,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "bot"
-	},
-/area/bigredv2/outside/filtration_plant)
-=======
-"em" = (
-/turf/closed/wall,
-/area/bigredv2/outside/filtration_plant)
->>>>>>> master
 "eE" = (
 /obj/machinery/light,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "eH" = (
-/turf/open/floor/asteroidfloor{
+/turf/open/floor{
+	dir = 1;
+	icon_state = "asteroidfloor"
 	},
 /area/bigredv2/outside/s)
 "eQ" = (
@@ -288,8 +248,9 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "nG" = (
-/turf/open/floor/marking/asteroidwarning{
+/turf/open/floor{
 	dir = 8;
+	icon_state = "asteroidwarning"
 	},
 /area/bigredv2/outside/s)
 "nO" = (
@@ -519,15 +480,6 @@
 /obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
-<<<<<<< HEAD
-"AF" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/marking/asteroidwarning{
-	dir = 4;
-	},
-/area/bigredv2/outside/s)
-=======
->>>>>>> master
 "AH" = (
 /obj/structure/cargo_container/ch_red{
 	dir = 4
@@ -537,14 +489,6 @@
 	icon_state = "bot"
 	},
 /area/bigredv2/outside/s)
-<<<<<<< HEAD
-"AZ" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/asteroidfloor{
-	},
-/area/bigredv2/outside/s)
-=======
->>>>>>> master
 "Bq" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -613,21 +557,8 @@
 /area/bigredv2/outside/filtration_plant)
 "FG" = (
 /obj/effect/decal/cleanable/dirt,
-<<<<<<< HEAD
-/obj/structure/reagent_dispensers/fueltank,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "bot"
-	},
-/area/bigredv2/outside/s)
-"Go" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/marking/asteroidwarning{
-	dir = 4;
-=======
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
->>>>>>> master
 	},
 /obj/structure/cable,
 /turf/open/floor,
@@ -640,23 +571,9 @@
 "GD" = (
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
-<<<<<<< HEAD
-"GF" = (
-/obj/effect/landmark/lv624/fog_blocker,
-/turf/open/floor/marking/asteroidwarning{
-	dir = 4;
-	},
-/area/bigredv2/outside/s)
-"GW" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/effect/landmark/weed_node,
-=======
 "Ha" = (
 /obj/effect/decal/warning_stripes/box/threeside,
 /obj/machinery/computer3/server/rack,
->>>>>>> master
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "Hd" = (
@@ -686,8 +603,9 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/se)
 "Is" = (
-/turf/open/floor/marking/asteroidwarning{
+/turf/open/floor{
 	dir = 4;
+	icon_state = "asteroidwarning"
 	},
 /area/bigredv2/outside/s)
 "Iy" = (
@@ -732,17 +650,7 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
-<<<<<<< HEAD
-"Ko" = (
-/obj/effect/landmark/lv624/fog_blocker,
-/turf/open/floor/marking/asteroidwarning{
-	dir = 8;
-	},
-/area/bigredv2/outside/s)
-"KB" = (
-=======
 "KR" = (
->>>>>>> master
 /obj/effect/ai_node,
 /turf/open/floor,
 /area/bigredv2/outside/s)
@@ -796,7 +704,9 @@
 "NN" = (
 /obj/machinery/light,
 /obj/effect/ai_node,
-/turf/open/floor/asteroidfloor{
+/turf/open/floor{
+	dir = 1;
+	icon_state = "asteroidfloor"
 	},
 /area/bigredv2/outside/s)
 "NR" = (
@@ -892,24 +802,18 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
-<<<<<<< HEAD
-"UV" = (
-/obj/effect/landmark/lv624/fog_blocker,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/asteroidfloor{
-=======
 "TP" = (
 /obj/effect/ai_node,
 /turf/open/floor{
 	dir = 1;
 	icon_state = "asteroidfloor"
->>>>>>> master
 	},
 /area/bigredv2/outside/s)
 "UH" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/marking/asteroidwarning{
+/turf/open/floor{
 	dir = 8;
+	icon_state = "asteroidwarning"
 	},
 /area/bigredv2/outside/s)
 "UL" = (

@@ -6269,12 +6269,8 @@
 	dir = 1
 	},
 /obj/effect/ai_node,
-<<<<<<< HEAD
-/turf/open/floor/wood/broken/six{
-=======
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
->>>>>>> master
 	},
 /area/lv624/lazarus/research)
 "eSF" = (
@@ -8307,7 +8303,8 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/wood/broken/six{
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
 	},
 /area/lv624/lazarus/captain)
 "hlt" = (
@@ -12815,7 +12812,8 @@
 /area/lv624/lazarus/corporate_affairs)
 "msV" = (
 /obj/item/trash/cheesie,
-/turf/open/floor/wood/broken/four{
+/turf/open/floor/wood{
+	icon_state = "wood-broken4"
 	},
 /area/lv624/lazarus/captain)
 "msZ" = (
@@ -19495,7 +19493,8 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor/wood/broken/four{
+/turf/open/floor/wood{
+	icon_state = "wood-broken4"
 	},
 /area/lv624/lazarus/captain)
 "ulX" = (

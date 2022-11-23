@@ -147,10 +147,7 @@
 "jR" = (
 /obj/machinery/light{
 	dir = 1;
-<<<<<<< HEAD
-=======
 	icon_state = "tube1"
->>>>>>> master
 	},
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/plating,
@@ -393,10 +390,7 @@
 "Ef" = (
 /obj/machinery/light{
 	dir = 1;
-<<<<<<< HEAD
-=======
 	icon_state = "tube1"
->>>>>>> master
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)

@@ -314,8 +314,9 @@
 	dir = 1
 	},
 /obj/structure/dropship_piece/two/corner/rearleft,
-/turf/closed/shuttle/ert/engines/right{
-	dir = 1;
+/turf/closed/shuttle/ert{
+	icon_state = "rightengine_2";
+	opacity = 0
 	},
 /area/icarus/interior/lztwo)
 "asa" = (
@@ -343,8 +344,9 @@
 	dir = 1
 	},
 /obj/structure/dropship_piece/two/corner/rearright,
-/turf/closed/shuttle/ert/engines/right{
-	dir = 1;
+/turf/closed/shuttle/ert{
+	icon_state = "rightengine_2";
+	opacity = 0
 	},
 /area/icarus/interior/lztwo)
 "atL" = (
@@ -354,8 +356,9 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/icarus/interior/research)
 "atV" = (
-/turf/closed/shuttle/ert/engines/right{
-	dir = 1;
+/turf/closed/shuttle/ert{
+	icon_state = "rightengine_2";
+	opacity = 0
 	},
 /area/icarus/interior/lztwo)
 "aux" = (
@@ -394,7 +397,9 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/icarus/exterior/swcaves)
 "axd" = (
-/turf/closed/shuttle/ert/engines/right{
+/turf/closed/shuttle/ert{
+	icon_state = "rightengine_1";
+	opacity = 0
 	},
 /area/icarus/interior/lztwo)
 "axT" = (
@@ -1212,8 +1217,9 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/scrapyardone)
 "bvF" = (
-/turf/closed/shuttle/ert/engines/left{
-	dir = 1;
+/turf/closed/shuttle/ert{
+	icon_state = "leftengine_2";
+	opacity = 0
 	},
 /area/icarus/interior/shipbaytwo)
 "bvG" = (
@@ -3551,8 +3557,8 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/bridge)
 "eRO" = (
-/turf/closed/shuttle/dropship1/window{
-	dir = 8
+/turf/closed/shuttle/dropship3/transparent{
+	icon_state = "98"
 	},
 /area/icarus/interior/lzone)
 "eRV" = (
@@ -4291,8 +4297,8 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/shipbayone)
 "fLN" = (
-/turf/closed/shuttle/dropship1/window{
-	dir = 8
+/turf/closed/shuttle/dropship3/transparent{
+	icon_state = "98"
 	},
 /area/icarus/interior/shipbayone)
 "fLV" = (
@@ -4710,7 +4716,8 @@
 /turf/open/floor/plating,
 /area/icarus/interior/hangartwo)
 "grX" = (
-/turf/closed/shuttle/dropship1/window{
+/turf/closed/shuttle/dropship3/transparent{
+	icon_state = "96"
 	},
 /area/icarus/interior/scrapyardone)
 "gse" = (
@@ -5747,7 +5754,8 @@
 /turf/open/floor/mainship/floor,
 /area/icarus/interior/lzone)
 "hKl" = (
-/turf/closed/shuttle/dropship1/window{
+/turf/closed/shuttle/dropship3/transparent{
+	icon_state = "96"
 	},
 /area/icarus/interior/shipbayone)
 "hKu" = (
@@ -6791,7 +6799,9 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/icarus/interior/library)
 "iTb" = (
-/turf/closed/shuttle/ert/engines/left{
+/turf/closed/shuttle/ert{
+	icon_state = "leftengine_1";
+	opacity = 0
 	},
 /area/icarus/interior/lztwo)
 "iTf" = (
@@ -7747,8 +7757,8 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/shipbayconnector)
 "kdb" = (
-/turf/closed/shuttle/dropship1/window{
-	dir = 4
+/turf/closed/shuttle/dropship3/transparent{
+	icon_state = "97"
 	},
 /area/icarus/interior/scrapyardone)
 "kdE" = (
@@ -7785,8 +7795,9 @@
 /turf/open/floor/plating,
 /area/icarus/interior/cargoholdingtwo)
 "kfz" = (
-/turf/closed/shuttle/ert/engines/right{
-	dir = 1;
+/turf/closed/shuttle/ert{
+	icon_state = "rightengine_2";
+	opacity = 0
 	},
 /area/icarus/interior/shipbaytwo)
 "kfL" = (
@@ -9029,7 +9040,9 @@
 /turf/open/floor/plating,
 /area/icarus/interior/shipbayconnector)
 "lCB" = (
-/turf/closed/shuttle/ert/engines/left{
+/turf/closed/shuttle/ert{
+	icon_state = "leftengine_1";
+	opacity = 0
 	},
 /area/icarus/interior/shipbaytwo)
 "lCH" = (
@@ -11279,7 +11292,8 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/shipbayone)
 "oAN" = (
-/turf/closed/shuttle/dropship1/window{
+/turf/closed/shuttle/dropship3/transparent{
+	icon_state = "96"
 	},
 /area/icarus/interior/lzone)
 "oAO" = (
@@ -14854,8 +14868,9 @@
 /obj/structure/shuttle/engine/router{
 	dir = 1
 	},
-/turf/closed/shuttle/ert/engines/right{
-	dir = 1;
+/turf/closed/shuttle/ert{
+	icon_state = "rightengine_2";
+	opacity = 0
 	},
 /area/icarus/interior/shipbaytwo)
 "sTY" = (
@@ -15284,8 +15299,8 @@
 /turf/closed/wall/mainship,
 /area/icarus/interior/cargoholdingtwo)
 "tzL" = (
-/turf/closed/shuttle/dropship1/window{
-	dir = 4
+/turf/closed/shuttle/dropship3/transparent{
+	icon_state = "97"
 	},
 /area/icarus/interior/shipbayone)
 "tzO" = (
@@ -15310,8 +15325,8 @@
 /turf/open/ground/river,
 /area/icarus/exterior/northeastcaves)
 "tAI" = (
-/turf/closed/shuttle/dropship1/window{
-	dir = 4
+/turf/closed/shuttle/dropship3/transparent{
+	icon_state = "97"
 	},
 /area/icarus/interior/lzone)
 "tAP" = (
@@ -17174,7 +17189,9 @@
 /turf/open/floor/mainship/tcomms,
 /area/icarus/interior/bridge)
 "vZM" = (
-/turf/closed/shuttle/ert/engines/right{
+/turf/closed/shuttle/ert{
+	icon_state = "rightengine_1";
+	opacity = 0
 	},
 /area/icarus/interior/shipbaytwo)
 "wbD" = (
