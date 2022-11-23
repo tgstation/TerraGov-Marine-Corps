@@ -101,10 +101,11 @@
 
 ///Removes the shield and resets the ability
 /datum/action/xeno_action/activable/psychic_shield/proc/cancel_shield()
-	active_shield.release_projectiles()
-	QDEL_NULL(active_shield)
 	action_icon_state = "psy_shield"
 	add_cooldown()
+	if(active_shield)
+		active_shield.release_projectiles()
+		QDEL_NULL(active_shield)
 
 ///AOE knockback triggerable by ending the shield early
 /datum/action/xeno_action/activable/psychic_shield/proc/shield_blast()
