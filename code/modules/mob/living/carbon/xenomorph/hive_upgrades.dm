@@ -351,7 +351,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 /datum/hive_upgrade/primordial/tier_four
 	name = PRIMORDIAL_TIER_FOUR
 	desc = "Unlocks the primordial for the last tier"
-	psypoint_cost = 600
+	psypoint_cost = 300
 	icon = "primoqueen"
 
 /datum/hive_upgrade/primordial/tier_three
