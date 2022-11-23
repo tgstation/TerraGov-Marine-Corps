@@ -254,7 +254,6 @@
 					break
 
 		UnregisterSignal(wearer, COMSIG_MOB_DEATH, .proc/on_off)
-		boost_on = FALSE
 		wearer.balloon_alert(wearer, "Halting green blood injection")
 		COOLDOWN_START(src, chemboost_activation_cooldown, 10 SECONDS)
 		setup_bonus_effects()
@@ -268,7 +267,6 @@
 		wearer.balloon_alert(wearer, "Insufficient green blood to begin operation")
 		return
 
-	boost_on = TRUE
 	processing_start = world.time
 	START_PROCESSING(SSobj, src)
 	RegisterSignal(wearer, COMSIG_MOB_DEATH, .proc/on_off)
