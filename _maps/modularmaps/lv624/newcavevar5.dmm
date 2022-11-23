@@ -131,7 +131,6 @@
 "kp" = (
 /turf/open/ground/coast{
 	dir = 1;
-	icon_state = "beachcorner"
 	},
 /area/lv624/ground/caves/central2)
 "kE" = (
@@ -187,7 +186,7 @@
 /obj/effect/spawner/random/ammo/shotgun,
 /turf/open/floor/carpet/side{
 	dir = 10;
-	
+
 	},
 /area/lv624/ground/caves/central2)
 "op" = (
@@ -239,9 +238,8 @@
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "pR" = (
-/turf/open/ground/coast{
+/turf/open/ground/coast/corner{
 	dir = 8;
-	icon_state = "beachcorner"
 	},
 /area/lv624/ground/caves/central2)
 "qq" = (
@@ -255,7 +253,7 @@
 	pixel_y = 2
 	},
 /turf/open/floor/carpet/side{
-	
+
 	},
 /area/lv624/ground/caves/central2)
 "qI" = (
@@ -338,9 +336,7 @@
 	},
 /area/lv624/ground/caves/central2)
 "ve" = (
-/turf/open/ground/coast{
-	icon_state = "beachcorner"
-	},
+/turf/open/ground/coast/corner,
 /area/lv624/ground/caves/central2)
 "vi" = (
 /obj/item/ammo_casing/shell,
@@ -407,7 +403,7 @@
 /obj/effect/spawner/random/ammo/shotgun,
 /turf/open/floor/carpet/side{
 	dir = 1;
-	
+
 	},
 /area/lv624/ground/caves/central2)
 "yy" = (
@@ -441,7 +437,7 @@
 /obj/item/flashlight/lantern,
 /turf/open/floor/carpet/side{
 	dir = 6;
-	
+
 	},
 /area/lv624/ground/caves/central2)
 "Dm" = (
@@ -489,7 +485,7 @@
 	},
 /turf/open/floor/carpet/side{
 	dir = 9;
-	
+
 	},
 /area/lv624/ground/caves/central2)
 "GZ" = (
@@ -638,7 +634,6 @@
 "QN" = (
 /turf/open/ground/coast{
 	dir = 4;
-	icon_state = "beachcorner"
 	},
 /area/lv624/ground/caves/central2)
 "QO" = (
@@ -747,7 +742,7 @@
 /obj/item/tool/candle,
 /turf/open/floor/carpet/side{
 	dir = 5;
-	
+
 	},
 /area/lv624/ground/caves/central2)
 "Yt" = (

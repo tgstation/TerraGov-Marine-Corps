@@ -134,10 +134,11 @@
 /turf/open/floor/plating/dmg1
 	icon_state = "platingdmg1"
 
-
 /turf/open/floor/plating/dmg2
 	icon_state = "platingdmg2"
 
-
 /turf/open/floor/plating/dmg3
 	icon_state = "platingdmg3"
+
+/turf/open/floor/plating/scorched
+	icon_state = "panelscorched"

@@ -13196,12 +13196,9 @@
 	},
 /area/mainship/medical/surgery_hallway)
 "lto" = (
-/obj/machinery/door/poddoor/mainship{
-	density = 0;
-	icon_state = "pdoor0";
+/obj/machinery/door/poddoor/mainship/open{
 	id = "CIC Lockdown";
 	name = "\improper Combat Information Center Blast Door";
-	opacity = 0
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -14177,13 +14174,10 @@
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
-/obj/machinery/door/poddoor/mainship{
-	density = 0;
+/obj/machinery/door/poddoor/mainship/open{
 	dir = 2;
-	icon_state = "pdoor0";
 	id = "Brig Lockdown";
 	name = "\improper Brig Lockdown Podlocks";
-	opacity = 0
 	},
 /turf/open/floor/plating,
 /area/mainship/living/tankerbunks)
@@ -15906,12 +15900,9 @@
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
 "pTq" = (
-/obj/machinery/door/poddoor/mainship{
-	density = 0;
-	icon_state = "pdoor0";
+/obj/machinery/door/poddoor/mainship/open{
 	id = "CIC Lockdown";
 	name = "\improper Combat Information Center Blast Door";
-	opacity = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -17017,12 +17008,9 @@
 /area/mainship/hallways/bow_hallway)
 "rDz" = (
 /obj/structure/window/framed/mainship/requisitions,
-/obj/machinery/door/poddoor/mainship{
-	density = 0;
-	icon_state = "pdoor0";
+/obj/machinery/door/poddoor/mainship/open{
 	id = "CIC Lockdown";
 	name = "\improper Combat Information Center Blast Door";
-	opacity = 0
 	},
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/plating,

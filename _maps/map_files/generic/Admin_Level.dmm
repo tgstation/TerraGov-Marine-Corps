@@ -71,9 +71,7 @@
 /area/centcom/valhalla/hydroponics)
 "aik" = (
 /obj/structure/girder,
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/scorched,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "ajh" = (
 /obj/machinery/alarm,
@@ -1012,9 +1010,7 @@
 /obj/effect/decal/warning_stripes/thick{
 	dir = 4
 	},
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/scorched,
 /area/centcom/valhalla/port)
 "biW" = (
 /obj/structure/lattice,
@@ -1121,9 +1117,7 @@
 /area/centcom/valhalla/security/brig/interiorcavern)
 "bnV" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/plating{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/plating/dmg1,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "boq" = (
 /turf/open/floor/plating,
@@ -1315,9 +1309,7 @@
 	name = "Carton of Estus"
 	},
 /obj/effect/decal/remains/human,
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/scorched,
 /area/centcom/valhalla/chapel/main)
 "bGv" = (
 /obj/effect/decal/warning_stripes/thick{
@@ -2412,9 +2404,7 @@
 /area/centcom/valhalla/security/brig/interiorcavern)
 "dhA" = (
 /obj/item/stack/sheet/metal/small_stack,
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/scorched,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "dhJ" = (
 /obj/effect/decal/warning_stripes/thick{
@@ -2576,9 +2566,7 @@
 	},
 /area/tdome/tdomeobserve)
 "drS" = (
-/turf/open/floor/plating{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/plating/dmg1,
 /area/centcom/valhalla/fore)
 "dsS" = (
 /obj/structure/sign/securearea,
@@ -2701,9 +2689,7 @@
 /turf/open/floor/plating,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "dAJ" = (
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
+/turf/open/floor/plating/dmg3,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "dBm" = (
 /obj/structure/table,
@@ -2716,9 +2702,7 @@
 /turf/open/floor/plating,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "dBD" = (
-/turf/open/floor/plating{
-	icon_state = "platingdmg2"
-	},
+/turf/open/floor/plating/dmg2,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "dDv" = (
 /obj/machinery/camera/autoname/thunderdome/hidden,
@@ -2728,9 +2712,7 @@
 /area/tdome)
 "dDH" = (
 /obj/effect/ai_node,
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
+/turf/open/floor/plating/dmg3,
 /area/centcom/valhalla/port)
 "dDK" = (
 /obj/structure/table/reinforced,
@@ -3244,9 +3226,7 @@
 /area/centcom/valhalla/secondary/exit)
 "dXi" = (
 /obj/item/stack/sheet/metal/large_stack,
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/scorched,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "dXm" = (
 /obj/structure/table,
@@ -3366,9 +3346,7 @@
 /area/centcom/valhalla/ai_monitored/storage/secure)
 "eiB" = (
 /obj/effect/decal/warning_stripes/thick,
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/scorched,
 /area/centcom/valhalla/port)
 "ejA" = (
 /obj/structure/table/reinforced,
@@ -3650,9 +3628,7 @@
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla/crew_quarters/heads/hop)
 "eFA" = (
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/scorched,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "eGd" = (
 /obj/machinery/door/firedoor{
@@ -3722,9 +3698,7 @@
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "eMT" = (
-/turf/open/floor/plating{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/plating/dmg1,
 /area/centcom/valhalla/starboard)
 "eNk" = (
 /obj/machinery/computer/med_data{
@@ -4206,9 +4180,7 @@
 	},
 /area/centcom/valhalla/crew_quarters/theatre)
 "fvU" = (
-/turf/open/floor/plating{
-	icon_state = "platingdmg2"
-	},
+/turf/open/floor/plating/dmg2,
 /area/centcom/valhalla/fore)
 "fwP" = (
 /obj/structure/sign/securearea,
@@ -4228,9 +4200,7 @@
 /area/centcom/valhalla/chapel/main)
 "fxP" = (
 /obj/effect/ai_node,
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/scorched,
 /area/centcom/valhalla/maintenance/starboardsolar)
 "fyp" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
@@ -5354,9 +5324,7 @@
 /area/centcom/valhalla/security/brig)
 "hdN" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/scorched,
 /area/centcom/valhalla/central)
 "hdP" = (
 /obj/effect/decal/warning_stripes/thick{
@@ -6127,9 +6095,7 @@
 /turf/closed/wall,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "icW" = (
-/turf/open/floor/plating{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/plating/dmg1,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "idh" = (
 /obj/machinery/portable_atmospherics/hydroponics,
@@ -6956,9 +6922,7 @@
 /area/tdome/tdomeadmin)
 "jrN" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/scorched,
 /area/centcom/valhalla/port)
 "jrR" = (
 /obj/structure/window/framed/colony/reinforced,
@@ -8052,9 +8016,7 @@
 "kJw" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/scorched,
 /area/centcom/valhalla/port)
 "kJx" = (
 /obj/effect/decal/warning_stripes/thick,
@@ -8339,9 +8301,7 @@
 /area/centcom/valhalla/port)
 "lgF" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/plating/dmg1,
 /area/centcom/valhalla/port)
 "lgU" = (
 /turf/closed/wall,
@@ -9129,9 +9089,7 @@
 /turf/open/floor/tile/neutral/full,
 /area/centcom/valhalla/crew_quarters/cafeteria)
 "mid" = (
-/turf/open/floor/plating{
-	icon_state = "platingdmg2"
-	},
+/turf/open/floor/plating/dmg2,
 /area/centcom/valhalla/maintenance/starboardsolar)
 "mjv" = (
 /obj/effect/decal/tile/yellow{
@@ -9584,9 +9542,7 @@
 /area/ai_multicam_room)
 "mQf" = (
 /obj/structure/sign/nosmoking_1,
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/scorched,
 /area/centcom/valhalla/central)
 "mQt" = (
 /obj/machinery/alarm{
@@ -9615,9 +9571,7 @@
 /area/centcom/valhalla/teleporter)
 "mSm" = (
 /obj/effect/ai_node,
-/turf/open/floor/plating{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/plating/dmg1,
 /area/centcom/valhalla/port)
 "mSG" = (
 /obj/item/storage/box/lights/mixed,
@@ -9730,9 +9684,7 @@
 /area/centcom/valhalla/storage/eva)
 "mZo" = (
 /obj/effect/decal/cleanable/blood/splatter,
-/turf/open/floor/plating{
-	icon_state = "platingdmg2"
-	},
+/turf/open/floor/plating/dmg2,
 /area/centcom/valhalla/fore)
 "mZM" = (
 /obj/effect/decal/cleanable/blood/oil,
@@ -9747,9 +9699,7 @@
 /turf/open/floor/plating/airless,
 /area/centcom/valhalla/exterior)
 "nbd" = (
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/scorched,
 /area/centcom/valhalla/fore)
 "nbQ" = (
 /obj/structure/table,
@@ -9817,9 +9767,7 @@
 /turf/open/floor/plating,
 /area/tdome/tdome2)
 "ndy" = (
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
+/turf/open/floor/plating/dmg3,
 /area/centcom/valhalla/central)
 "ndM" = (
 /obj/structure/table,
@@ -10698,9 +10646,7 @@
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/primary/aft)
 "ojA" = (
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
+/turf/open/floor/plating/dmg3,
 /area/centcom/valhalla/fore)
 "ojF" = (
 /obj/structure/table,
@@ -10820,9 +10766,7 @@
 /area/centcom/valhalla/primary/port)
 "otM" = (
 /obj/effect/ai_node,
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/scorched,
 /area/centcom/valhalla/starboard)
 "oul" = (
 /mob/living/simple_animal/hostile/retaliate/goat{
@@ -10908,9 +10852,7 @@
 /area/centcom/valhalla/starboard)
 "oxZ" = (
 /obj/effect/spawner/random/trash,
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/scorched,
 /area/centcom/valhalla/starboard)
 "oAl" = (
 /obj/structure/table,
@@ -11380,9 +11322,7 @@
 /turf/open/floor/marking/delivery,
 /area/centcom/valhalla/secondary/exit)
 "pfh" = (
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/scorched,
 /area/centcom/valhalla/maintenance/starboardsolar)
 "pfu" = (
 /obj/structure/prop/mainship/pipeprop/pump/on{
@@ -11427,9 +11367,7 @@
 /area/centcom/valhalla/library)
 "pio" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating{
-	icon_state = "platingdmg2"
-	},
+/turf/open/floor/plating/dmg2,
 /area/centcom/valhalla/port)
 "pjm" = (
 /obj/effect/decal/tile/yellow{
@@ -11519,9 +11457,7 @@
 /turf/open/floor/plating,
 /area/centcom/valhalla/quartermaster/miningdock)
 "pqq" = (
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/scorched,
 /area/centcom/valhalla/starboard)
 "prD" = (
 /obj/machinery/door/airlock/external{
@@ -12726,9 +12662,7 @@
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "qUU" = (
-/turf/open/floor/plating{
-	icon_state = "platingdmg2"
-	},
+/turf/open/floor/plating/dmg2,
 /area/centcom/valhalla/port)
 "qVp" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
@@ -13420,9 +13354,7 @@
 /turf/open/floor/plating,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "rQF" = (
-/turf/open/floor/plating{
-	icon_state = "platingdmg2"
-	},
+/turf/open/floor/plating/dmg2,
 /area/centcom/valhalla/starboard)
 "rRM" = (
 /obj/machinery/firealarm{
@@ -13560,9 +13492,7 @@
 /area/centcom/valhalla/library)
 "sch" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating{
-	icon_state = "platingdmg2"
-	},
+/turf/open/floor/plating/dmg2,
 /area/centcom/valhalla/central)
 "scz" = (
 /obj/machinery/light_switch,
@@ -13639,9 +13569,7 @@
 /area/centcom/valhalla/bridge)
 "sjM" = (
 /obj/effect/ai_node,
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/scorched,
 /area/centcom/valhalla/central)
 "sjT" = (
 /turf/closed/wall/r_wall/unmeltable,
@@ -14384,9 +14312,7 @@
 /turf/open/floor/tile/lightred,
 /area/centcom/valhalla/medical/medbay)
 "tgW" = (
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/scorched,
 /area/centcom/valhalla/port)
 "tgY" = (
 /obj/effect/ai_node,
@@ -15169,9 +15095,7 @@
 /turf/open/floor/grimy,
 /area/centcom/valhalla/crew_quarters)
 "tZJ" = (
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
+/turf/open/floor/plating/dmg3,
 /area/centcom/valhalla/starboard)
 "tZZ" = (
 /turf/open/floor/tile/dark,
@@ -16401,9 +16325,7 @@
 /turf/open/floor/marking/delivery,
 /area/centcom/valhalla/secondary/exit)
 "vGB" = (
-/turf/open/floor/plating{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/plating/dmg1,
 /area/centcom/valhalla/maintenance/starboardsolar)
 "vGG" = (
 /obj/structure/prop/mainship/pipeprop{
@@ -17278,9 +17200,7 @@
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/checkpoint)
 "wtb" = (
-/turf/open/floor/plating{
-	icon_state = "platingdmg2"
-	},
+/turf/open/floor/plating/dmg2,
 /area/centcom/valhalla/central)
 "wtu" = (
 /turf/open/floor/marking/delivery,
@@ -17801,9 +17721,7 @@
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla/medical/morgue)
 "wXk" = (
-/turf/open/floor/plating{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/plating/dmg1,
 /area/centcom/valhalla/port)
 "wXW" = (
 /turf/open/floor/mainship/sterile/side{
@@ -17978,9 +17896,7 @@
 	},
 /area/centcom/valhalla/primary/starboard)
 "xil" = (
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
+/turf/open/floor/plating/dmg3,
 /area/centcom/valhalla/port)
 "xiF" = (
 /obj/effect/ai_node,
@@ -18005,9 +17921,7 @@
 /area/centcom/valhalla/primary/starboard)
 "xjT" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/plating/dmg1,
 /area/centcom/valhalla/starboard)
 "xkj" = (
 /obj/effect/ai_node,
@@ -18125,9 +18039,7 @@
 /area/centcom/valhalla/medical/medbay)
 "xpm" = (
 /obj/item/target/alien,
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
+/turf/open/floor/plating/dmg3,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "xpE" = (
 /obj/structure/table,
@@ -18244,9 +18156,7 @@
 /area/centcom/valhalla/engine/atmos_monitoring)
 "xzG" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/scorched,
 /area/centcom/valhalla/starboard)
 "xzU" = (
 /turf/open/floor/plating,
@@ -18514,9 +18424,7 @@
 /area/centcom/valhalla/primary/starboard)
 "xLZ" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating{
-	icon_state = "platingdmg2"
-	},
+/turf/open/floor/plating/dmg2,
 /area/centcom/valhalla/starboard)
 "xMI" = (
 /turf/open/floor/tile/neutral{
@@ -18705,9 +18613,7 @@
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/engine/engineering)
 "xUt" = (
-/turf/open/floor/plating{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/plating/dmg1,
 /area/centcom/valhalla/central)
 "xUy" = (
 /obj/structure/window/reinforced{
@@ -18775,9 +18681,7 @@
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/engine/break_room)
 "xWW" = (
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/scorched,
 /area/centcom/valhalla/central)
 "xXb" = (
 /obj/effect/decal/tile/black,
@@ -19009,9 +18913,7 @@
 "ygo" = (
 /obj/effect/ai_node,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/scorched,
 /area/centcom/valhalla/port)
 "ygB" = (
 /turf/open/floor/tile/dark,

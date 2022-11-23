@@ -39,7 +39,6 @@
 "bE" = (
 /turf/open/ground/coast{
 	dir = 4;
-	icon_state = "beachcorner"
 	},
 /area/lv624/ground/sand3)
 "bM" = (
@@ -75,9 +74,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/river3)
 "dH" = (
-/turf/open/ground/coast{
-	icon_state = "beachcorner2"
-	},
+/turf/open/ground/coast/corner2,
 /area/lv624/ground/river3)
 "er" = (
 /obj/structure/jungle/vines,
@@ -88,9 +85,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand9)
 "gO" = (
-/turf/open/ground/coast{
-	icon_state = "beachcorner"
-	},
+/turf/open/ground/coast/corner,
 /area/lv624/ground/river3)
 "hm" = (
 /obj/structure/jungle/plantbot1/alien,
@@ -146,7 +141,6 @@
 /obj/effect/ai_node,
 /turf/open/ground/coast{
 	dir = 4;
-	icon_state = "beachcorner"
 	},
 /area/lv624/ground/sand6)
 "nE" = (
@@ -156,7 +150,6 @@
 	},
 /turf/open/ground/coast{
 	dir = 1;
-	icon_state = "beachcorner"
 	},
 /area/lv624/ground/river3)
 "oo" = (
@@ -507,9 +500,7 @@
 	pixel_y = 1;
 	icon_state = "Med3"
 	},
-/turf/open/ground/coast{
-	icon_state = "beachcorner"
-	},
+/turf/open/ground/coast/corner,
 /area/lv624/ground/river3)
 "IU" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -644,14 +635,11 @@
 	pixel_y = 1;
 	icon_state = "Hvy3"
 	},
-/turf/open/ground/coast{
-	icon_state = "beachcorner"
-	},
+/turf/open/ground/coast/corner,
 /area/lv624/ground/river3)
 "QC" = (
 /turf/open/ground/coast{
 	dir = 1;
-	icon_state = "beachcorner"
 	},
 /area/lv624/ground/river3)
 "QK" = (
@@ -684,9 +672,8 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "SL" = (
-/turf/open/ground/coast{
+/turf/open/ground/coast/corner{
 	dir = 8;
-	icon_state = "beachcorner"
 	},
 /area/lv624/ground/river3)
 "SR" = (
@@ -737,7 +724,6 @@
 "Ww" = (
 /turf/open/ground/coast{
 	dir = 4;
-	icon_state = "beachcorner"
 	},
 /area/lv624/ground/sand6)
 "WD" = (
@@ -804,9 +790,7 @@
 	pixel_y = 1;
 	icon_state = "Light1"
 	},
-/turf/open/ground/coast{
-	icon_state = "beachcorner"
-	},
+/turf/open/ground/coast/corner,
 /area/lv624/ground/river3)
 "ZP" = (
 /obj/structure/jungle/vines{

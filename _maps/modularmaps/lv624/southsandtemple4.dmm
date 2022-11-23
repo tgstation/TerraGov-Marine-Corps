@@ -38,7 +38,6 @@
 "bE" = (
 /turf/open/ground/coast{
 	dir = 4;
-	icon_state = "beachcorner"
 	},
 /area/lv624/ground/sand3)
 "bM" = (
@@ -75,9 +74,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand9)
 "gO" = (
-/turf/open/ground/coast{
-	icon_state = "beachcorner"
-	},
+/turf/open/ground/coast/corner,
 /area/lv624/ground/river3)
 "hm" = (
 /obj/structure/jungle/plantbot1/alien,
@@ -166,7 +163,6 @@
 /obj/effect/ai_node,
 /turf/open/ground/coast{
 	dir = 4;
-	icon_state = "beachcorner"
 	},
 /area/lv624/ground/sand6)
 "rI" = (
@@ -576,7 +572,6 @@
 "QC" = (
 /turf/open/ground/coast{
 	dir = 1;
-	icon_state = "beachcorner"
 	},
 /area/lv624/ground/river3)
 "QK" = (
@@ -602,9 +597,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
 "SL" = (
-/turf/open/ground/coast{
+/turf/open/ground/coast/corner{
 	dir = 8;
-	icon_state = "beachcorner"
 	},
 /area/lv624/ground/sand9)
 "SR" = (
@@ -659,7 +653,6 @@
 "Ww" = (
 /turf/open/ground/coast{
 	dir = 4;
-	icon_state = "beachcorner"
 	},
 /area/lv624/ground/sand6)
 "WD" = (

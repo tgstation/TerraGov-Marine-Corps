@@ -49,9 +49,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
 "fY" = (
-/turf/open/ground/coast{
+/turf/open/ground/coast/corner{
 	dir = 8;
-	icon_state = "beachcorner"
 	},
 /area/lv624/ground/river3)
 "gh" = (
@@ -128,7 +127,6 @@
 "lu" = (
 /turf/open/ground/coast{
 	dir = 1;
-	icon_state = "beachcorner"
 	},
 /area/lv624/ground/river3)
 "lP" = (
@@ -231,14 +229,11 @@
 /obj/effect/ai_node,
 /turf/open/ground/coast{
 	dir = 4;
-	icon_state = "beachcorner"
 	},
 /area/lv624/ground/sand6)
 "rh" = (
 /obj/effect/ai_node,
-/turf/open/ground/coast{
-	icon_state = "beachcorner"
-	},
+/turf/open/ground/coast/corner,
 /area/lv624/ground/river3)
 "sy" = (
 /obj/structure/girder,
@@ -338,9 +333,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "zE" = (
-/turf/open/ground/coast{
-	icon_state = "beachcorner2"
-	},
+/turf/open/ground/coast/corner2,
 /area/lv624/ground/river3)
 "Ai" = (
 /obj/structure/glowshroom,
@@ -349,13 +342,10 @@
 "AQ" = (
 /turf/open/ground/coast{
 	dir = 4;
-	icon_state = "beachcorner"
 	},
 /area/lv624/ground/river3)
 "BW" = (
-/turf/open/ground/coast{
-	icon_state = "beachcorner"
-	},
+/turf/open/ground/coast/corner,
 /area/lv624/ground/river3)
 "Cf" = (
 /obj/structure/jungle/vines{
@@ -434,7 +424,6 @@
 "JK" = (
 /turf/open/ground/coast{
 	dir = 4;
-	icon_state = "beachcorner"
 	},
 /area/lv624/ground/sand6)
 "Kb" = (
@@ -545,7 +534,6 @@
 "SD" = (
 /turf/open/ground/coast{
 	dir = 4;
-	icon_state = "beachcorner"
 	},
 /area/lv624/ground/sand3)
 "SJ" = (

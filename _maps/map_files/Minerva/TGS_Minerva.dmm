@@ -1150,9 +1150,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
 "dk" = (
-/obj/structure/flora/pottedplant/twentyone{
-	icon_state = "plant-10"
-	},
+/obj/structure/flora/pottedplant/ten,
 /turf/open/floor/mainship/black,
 /area/mainship/hallways/starboard_hallway)
 "dl" = (
@@ -2096,9 +2094,7 @@
 	},
 /area/mainship/living/briefing)
 "fU" = (
-/obj/structure/flora/pottedplant/twentyone{
-	icon_state = "plant-14"
-	},
+/obj/structure/flora/pottedplant/fourteen,
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
@@ -3909,9 +3905,7 @@
 	},
 /area/mainship/medical/chemistry)
 "lm" = (
-/obj/structure/flora/pottedplant/twentyone{
-	icon_state = "plant-12"
-	},
+/obj/structure/flora/pottedplant/twelve,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
 "lo" = (
@@ -4134,9 +4128,7 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
-/obj/structure/flora/pottedplant/twentyone{
-	icon_state = "plant-09"
-	},
+/obj/structure/flora/pottedplant/nine,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
 "lV" = (
@@ -4307,9 +4299,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/living/tankerbunks)
 "mB" = (
-/obj/structure/flora/pottedplant/twentyone{
-	icon_state = "plant-12"
-	},
+/obj/structure/flora/pottedplant/twelve,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -7727,9 +7717,7 @@
 	},
 /area/mainship/hallways/hangar)
 "wK" = (
-/obj/structure/flora/pottedplant/twentyone{
-	icon_state = "plant-09"
-	},
+/obj/structure/flora/pottedplant/nine,
 /turf/open/floor/mainship/black,
 /area/mainship/hallways/hangar)
 "wL" = (
@@ -8138,9 +8126,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
 "xW" = (
-/obj/structure/flora/pottedplant/twentyone{
-	icon_state = "plant-12"
-	},
+/obj/structure/flora/pottedplant/twelve,
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
@@ -9977,9 +9963,7 @@
 /turf/open/floor/mainship/black,
 /area/mainship/living/briefing)
 "Dn" = (
-/obj/structure/flora/pottedplant/twentyone{
-	icon_state = "plant-09"
-	},
+/obj/structure/flora/pottedplant/nine,
 /turf/open/floor/mainship/black,
 /area/mainship/living/briefing)
 "Do" = (
@@ -11629,9 +11613,7 @@
 	},
 /area/mainship/living/briefing)
 "HU" = (
-/obj/structure/flora/pottedplant/twentyone{
-	icon_state = "plant-10"
-	},
+/obj/structure/flora/pottedplant/ten,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
 "HV" = (
@@ -12629,15 +12611,11 @@
 	},
 /area/mainship/living/grunt_rnr)
 "KT" = (
-/obj/structure/flora/pottedplant/twentyone{
-	icon_state = "plant-14"
-	},
+/obj/structure/flora/pottedplant/fourteen,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
 "KU" = (
-/obj/structure/flora/pottedplant/twentyone{
-	icon_state = "plant-09"
-	},
+/obj/structure/flora/pottedplant/nine,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
 "KV" = (

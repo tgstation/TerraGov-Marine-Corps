@@ -19328,9 +19328,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/lower_medical/rebel)
 "rkc" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-05"
-	},
+/obj/structure/flora/pottedplant/five,
 /obj/machinery/vending/security,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
@@ -21590,9 +21588,7 @@
 /turf/open/floor/plating,
 /area/mainship/command/corporateliaison/rebel)
 "tiP" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-05"
-	},
+/obj/structure/flora/pottedplant/five,
 /obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop/rebel)
@@ -25242,9 +25238,7 @@
 /turf/open/floor/plating/mainship,
 /area/mainship/hull/lower_hull)
 "wps" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-18"
-	},
+/obj/structure/flora/pottedplant/eighteen,
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
@@ -25412,9 +25406,7 @@
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "wwI" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-18"
-	},
+/obj/structure/flora/pottedplant/eighteen,
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks/rebel)

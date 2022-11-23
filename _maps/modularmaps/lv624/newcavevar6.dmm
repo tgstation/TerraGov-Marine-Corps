@@ -139,7 +139,6 @@
 "ir" = (
 /turf/open/ground/coast{
 	dir = 1;
-	icon_state = "beachcorner"
 	},
 /area/lv624/ground/caves/central2)
 "iL" = (
@@ -218,9 +217,8 @@
 /turf/open/ground/coast,
 /area/lv624/ground/caves/central2)
 "qv" = (
-/turf/open/ground/coast{
+/turf/open/ground/coast/corner{
 	dir = 8;
-	icon_state = "beachcorner"
 	},
 /area/lv624/ground/caves/central2)
 "qz" = (
@@ -262,7 +260,6 @@
 "tE" = (
 /turf/open/ground/coast{
 	dir = 4;
-	icon_state = "beachcorner"
 	},
 /area/lv624/ground/caves/central2)
 "ui" = (
@@ -592,9 +589,7 @@
 	},
 /area/lv624/ground/caves/central2)
 "OG" = (
-/turf/open/ground/coast{
-	icon_state = "beachcorner"
-	},
+/turf/open/ground/coast/corner,
 /area/lv624/ground/caves/central2)
 "OX" = (
 /obj/effect/ai_node,

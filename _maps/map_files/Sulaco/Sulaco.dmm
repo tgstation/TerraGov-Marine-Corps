@@ -25000,9 +25000,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/sulaco/command/ai)
 "wnS" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-05"
-	},
+/obj/structure/flora/pottedplant/five,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hydro)
 "woe" = (
@@ -26004,9 +26002,7 @@
 "xMz" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship,
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-05"
-	},
+/obj/structure/flora/pottedplant/five,
 /turf/open/floor/tile/hydro,
 /area/sulaco/hydro)
 "xMC" = (
