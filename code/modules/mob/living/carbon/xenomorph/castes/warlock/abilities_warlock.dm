@@ -230,7 +230,7 @@
 			new_angle -= 360
 		proj.firer = src
 		proj.fire_at(shooter = src, source = src, range = new_range, angle = new_angle, recursivity = TRUE)
-	frozen_projectiles.cut()
+	frozen_projectiles.Cut()
 
 
 // ***************************************
