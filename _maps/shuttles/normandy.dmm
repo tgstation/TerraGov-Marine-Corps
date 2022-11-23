@@ -3,9 +3,7 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
 	},
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin4"
-	},
+/turf/open/shuttle/dropship/four,
 /area/shuttle/dropship/normandy)
 "cK" = (
 /turf/closed/shuttle/dropship2/transparent{
@@ -66,9 +64,7 @@
 /obj/machinery/door/poddoor/shutters/transit{
 	dir = 1
 	},
-/turf/open/shuttle/dropship/floor{
-	icon_state = "rasputin14"
-	},
+/turf/open/shuttle/dropship/floor/alt,
 /area/shuttle/dropship/normandy)
 "mf" = (
 /obj/machinery/telecomms/relay/preset/telecomms/onboard,
@@ -94,9 +90,7 @@
 "oB" = (
 /obj/structure/bed/chair/dropship/passenger,
 /obj/item/radio/intercom/dropship/normandy,
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin6"
-	},
+/turf/open/shuttle/dropship/six,
 /area/shuttle/dropship/normandy)
 "pB" = (
 /turf/closed/shuttle/dropship2/transparent{
@@ -150,8 +144,8 @@
 /area/shuttle/dropship/normandy)
 "xX" = (
 /turf/closed/shuttle/dropship2/transparent{
-	icon_state = "109";
-	dir = 1
+	dir = 1;
+	icon_state = "109"
 	},
 /area/shuttle/dropship/normandy)
 "yx" = (
@@ -186,9 +180,7 @@
 	dir = 1
 	},
 /obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/ds2,
-/turf/open/shuttle/dropship/floor{
-	icon_state = "rasputin14"
-	},
+/turf/open/shuttle/dropship/floor/alt,
 /area/shuttle/dropship/normandy)
 "Cq" = (
 /obj/machinery/door/poddoor/shutters/transit{
@@ -309,14 +301,14 @@
 /area/shuttle/dropship/normandy)
 "Wg" = (
 /turf/closed/shuttle/dropship2{
-	icon_state = "103";
-	dir = 1
+	dir = 1;
+	icon_state = "103"
 	},
 /area/shuttle/dropship/normandy)
 "Wk" = (
 /turf/closed/shuttle/dropship2{
-	icon_state = "104";
-	dir = 1
+	dir = 1;
+	icon_state = "104"
 	},
 /area/shuttle/dropship/normandy)
 "XK" = (

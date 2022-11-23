@@ -169,9 +169,7 @@
 /area/deathmatch)
 "aM" = (
 /obj/structure/closet/walllocker/medical_wall/full,
-/turf/open/floor{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/scorched,
 /area/deathmatch)
 "aN" = (
 /obj/structure/closet/walllocker/hydrant/full,
@@ -556,9 +554,7 @@
 	dir = 1;
 	icon_state = "medical_wall"
 	},
-/turf/open/floor{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/scorched,
 /area/deathmatch)
 "cj" = (
 /obj/structure/closet/toolcloset,

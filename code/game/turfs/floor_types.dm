@@ -481,6 +481,9 @@
 /turf/open/floor/tile/damaged/panel
 	icon_state = "panelscorched"
 
+/turf/open/floor/tile/damaged/thermite
+	icon_state = "wall_thermite"
+
 /turf/open/floor/tile/damaged/three
 	icon_state = "damaged3"
 

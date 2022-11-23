@@ -154,9 +154,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "aw" = (
-/turf/open/floor/plating{
+/turf/open/floor/plating/icefloor/warnplate/corner{
 	dir = 1;
-	icon_state = "warnplatecorner"
 	},
 /area/mainship/hallways/hangar)
 "ax" = (
@@ -1891,6 +1890,11 @@
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/port_hallway)
+"fv" = (
+/turf/open/floor/plating/icefloor/warnplate/corner{
+	dir = 1;
+	},
+/area/mainship/hallways/hangar)
 "fw" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -2797,9 +2801,8 @@
 /turf/open/floor/plating,
 /area/mainship/living/tankerbunks)
 "hY" = (
-/turf/open/floor/plating{
-	dir = 4;
-	icon_state = "warnplatecorner"
+/turf/open/floor/plating/icefloor/warnplate/corner{
+	dir = 4
 	},
 /area/mainship/hallways/hangar)
 "hZ" = (
@@ -4223,9 +4226,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
 "mj" = (
-/obj/structure/prop/mainship/name_stencil{
-	icon_state = "TGMC3"
-	},
+/obj/structure/prop/mainship/name_stencil/M,
 /turf/open/floor/mainship_hull,
 /area/space)
 "mk" = (
@@ -6108,9 +6109,7 @@
 /area/mainship/squads/general)
 "ru" = (
 /obj/effect/decal/warning_stripes/thin,
-/turf/open/shuttle/escapepod{
-	icon_state = "floor8"
-	},
+/turf/open/shuttle/escapepod/eight,
 /area/mainship/command/self_destruct)
 "rv" = (
 /obj/machinery/vending/weapon,
@@ -6434,9 +6433,7 @@
 	dir = 1
 	},
 /obj/effect/ai_node,
-/turf/open/shuttle/escapepod{
-	icon_state = "floor11"
-	},
+/turf/open/shuttle/escapepod/eleven,
 /area/mainship/command/self_destruct)
 "sq" = (
 /obj/item/weapon/gun/pistol/vp70,
@@ -8163,8 +8160,7 @@
 /area/mainship/hallways/hangar)
 "xb" = (
 /obj/effect/attach_point/weapon/dropship1{
-	dir = 8;
-	icon_state = "equip_base_l_wing"
+	dir = 8
 	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
@@ -10196,6 +10192,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
+"CM" = (
+/turf/open/floor/plating/icefloor/warnplate/corner,
+/area/mainship/hallways/hangar)
 "CN" = (
 /turf/open/floor/mainship/sterile/purple/side{
 	dir = 4
@@ -11710,9 +11709,7 @@
 	},
 /area/mainship/command/self_destruct)
 "GY" = (
-/obj/structure/prop/mainship/name_stencil{
-	icon_state = "TGMC4"
-	},
+/obj/structure/prop/mainship/name_stencil/C,
 /turf/open/floor/mainship_hull,
 /area/space)
 "GZ" = (
@@ -13687,9 +13684,7 @@
 /turf/closed/wall/mainship/outer,
 /area/mainship/hallways/hangar)
 "MH" = (
-/obj/structure/prop/mainship/name_stencil{
-	icon_state = "TGMC2"
-	},
+/obj/structure/prop/mainship/name_stencil/G,
 /turf/open/floor/mainship_hull,
 /area/space)
 "MI" = (
@@ -15297,9 +15292,8 @@
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/stern_hallway)
 "Rk" = (
-/turf/open/floor/plating{
-	dir = 8;
-	icon_state = "warnplatecorner"
+/turf/open/floor/plating/icefloor/warnplate/corner{
+	dir = 8
 	},
 /area/mainship/hallways/hangar)
 "Rl" = (
@@ -18282,9 +18276,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/shuttle/escapepod{
-	icon_state = "floor11"
-	},
+/turf/open/shuttle/escapepod/eleven,
 /area/mainship/command/self_destruct)
 "Zl" = (
 /obj/machinery/light_switch{
@@ -46125,7 +46117,7 @@ BQ
 Gd
 tR
 tR
-KL
+CM
 xl
 Ds
 KD
@@ -48939,7 +48931,7 @@ BQ
 JF
 tR
 tR
-KL
+CM
 xl
 xl
 xl
@@ -49195,7 +49187,7 @@ MG
 BQ
 JF
 tR
-KL
+CM
 Ds
 tR
 tR
@@ -50223,7 +50215,7 @@ MG
 BQ
 JF
 tR
-aw
+fv
 aK
 tR
 tR
@@ -50481,7 +50473,7 @@ BQ
 JF
 tR
 tR
-aw
+fv
 KD
 KD
 KD
@@ -50753,7 +50745,7 @@ tR
 tR
 tR
 tR
-KL
+CM
 Ds
 KD
 JP
@@ -51777,7 +51769,7 @@ Vc
 yj
 rC
 Cf
-KL
+CM
 xl
 xl
 xl
@@ -52291,7 +52283,7 @@ Vc
 xo
 oF
 Sj
-aw
+fv
 KD
 KD
 KD
@@ -53323,7 +53315,7 @@ tR
 tR
 tR
 tR
-aw
+fv
 aK
 xl
 JP

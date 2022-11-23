@@ -43,9 +43,7 @@
 /turf/open/floor/plating,
 /area/shuttle/escape_pod)
 "l" = (
-/turf/open/shuttle/escapepod{
-	icon_state = "floor10"
-	},
+/turf/open/shuttle/escapepod/ten,
 /area/shuttle/escape_pod)
 "m" = (
 /turf/open/shuttle/escapepod/cornerone{

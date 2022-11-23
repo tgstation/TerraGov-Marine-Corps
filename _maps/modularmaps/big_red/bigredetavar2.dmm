@@ -1,8 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "al" = (
-/turf/open/floor/plating{
-	icon_state = "wood-broken3"
-	},
+/turf/open/floor/wood/broken/three,
 /area/bigredv2/outside/general_offices)
 "am" = (
 /obj/item/shard,
@@ -25,9 +23,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/ne)
 "aV" = (
-/turf/open/floor/plating{
-	icon_state = "wood-broken4"
-	},
+/turf/open/floor/wood/broken/four,
 /area/bigredv2/outside/general_offices)
 "bd" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
@@ -102,9 +98,7 @@
 /turf/open/floor/plating/dmg1,
 /area/bigredv2/outside/ne)
 "ef" = (
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin6"
-	},
+/turf/open/shuttle/dropship/six,
 /area/bigredv2/outside/general_offices)
 "ej" = (
 /turf/open/floor/plating/dmg3,
@@ -199,9 +193,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/caves/northeast)
 "hH" = (
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin7"
-	},
+/turf/open/shuttle/dropship/seven,
 /area/bigredv2/outside/general_offices)
 "hM" = (
 /obj/effect/decal/cleanable/dirt,
@@ -236,9 +228,7 @@
 /turf/open/floor/plating/dmg1,
 /area/bigredv2/outside/general_offices)
 "jj" = (
-/turf/open/floor{
-	icon_state = "wall_thermite"
-	},
+/turf/open/floor/tile/damaged/thermite,
 /area/bigredv2/outside/general_offices)
 "js" = (
 /obj/effect/landmark/weed_node,
@@ -293,9 +283,7 @@
 /area/bigredv2/outside/general_offices)
 "lt" = (
 /obj/effect/spawner/gibspawner/human,
-/turf/open/floor/plating{
-	icon_state = "wood-broken6"
-	},
+/turf/open/floor/wood/broken/six,
 /area/bigredv2/outside/general_offices)
 "mc" = (
 /turf/closed/shuttle/dropship2{
@@ -330,9 +318,7 @@
 /area/bigredv2/outside/general_offices)
 "nj" = (
 /obj/structure/bed,
-/turf/open/floor/plating{
-	icon_state = "wood-broken6"
-	},
+/turf/open/floor/wood/broken/six,
 /area/bigredv2/outside/general_offices)
 "nr" = (
 /obj/effect/ai_node,
@@ -353,9 +339,7 @@
 /area/bigredv2/caves/northeast)
 "oH" = (
 /obj/item/stack/sheet/wood,
-/turf/open/floor/plating{
-	icon_state = "wood-broken2"
-	},
+/turf/open/floor/wood/broken/two,
 /area/bigredv2/outside/general_offices)
 "oI" = (
 /obj/effect/decal/cleanable/blood/six{
@@ -399,9 +383,7 @@
 	},
 /area/bigredv2/outside/general_offices)
 "qa" = (
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin4"
-	},
+/turf/open/shuttle/dropship/four,
 /area/bigredv2/outside/general_offices)
 "qd" = (
 /obj/structure/prop/mainship/suit_storage_prop,
@@ -432,9 +414,7 @@
 /area/bigredv2/outside/ne)
 "rc" = (
 /obj/structure/girder,
-/turf/open/floor{
-	icon_state = "wall_thermite"
-	},
+/turf/open/floor/tile/damaged/thermite,
 /area/bigredv2/outside/general_offices)
 "rV" = (
 /obj/machinery/light{
@@ -492,9 +472,7 @@
 /area/bigredv2/outside/bar)
 "sV" = (
 /obj/structure/table,
-/turf/open/floor/plating{
-	icon_state = "wood-broken5"
-	},
+/turf/open/floor/wood/broken/five,
 /area/bigredv2/outside/general_offices)
 "tf" = (
 /turf/closed/shuttle/dropship2{
@@ -695,9 +673,7 @@
 	},
 /area/bigredv2/outside/general_offices)
 "CV" = (
-/turf/open/floor{
-	icon_state = "wall_thermite"
-	},
+/turf/open/floor/tile/damaged/thermite,
 /area/bigredv2/outside/hydroponics)
 "Dp" = (
 /obj/effect/decal/cleanable/blood,
@@ -828,9 +804,7 @@
 /turf/open/floor/plating/dmg3,
 /area/bigredv2/outside/hydroponics)
 "Jg" = (
-/turf/open/floor/plating{
-	icon_state = "wood-broken6"
-	},
+/turf/open/floor/wood/broken/six,
 /area/bigredv2/outside/general_offices)
 "JP" = (
 /turf/closed/shuttle/dropship2{
@@ -874,9 +848,7 @@
 	dir = 8;
 	icon_state = "tube1"
 	},
-/turf/open/floor/plating{
-	icon_state = "wood-broken3"
-	},
+/turf/open/floor/wood/broken/three,
 /area/bigredv2/outside/general_offices)
 "Mi" = (
 /turf/closed/shuttle/dropship2{
@@ -933,9 +905,7 @@
 	dir = 1;
 
 	},
-/turf/open/floor{
-	icon_state = "wall_thermite"
-	},
+/turf/open/floor/tile/damaged/thermite,
 /area/bigredv2/outside/general_offices)
 "Qq" = (
 /turf/open/shuttle/dropship/floor,
@@ -1077,9 +1047,7 @@
 	},
 /area/bigredv2/outside/general_offices)
 "Vu" = (
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin8"
-	},
+/turf/open/shuttle/dropship/eight,
 /area/bigredv2/outside/general_offices)
 "Wm" = (
 /obj/structure/cable,
@@ -1107,9 +1075,7 @@
 /area/bigredv2/outside/general_offices)
 "Xo" = (
 /obj/effect/decal/cleanable/blood/oil/streak,
-/turf/open/floor{
-	icon_state = "wall_thermite"
-	},
+/turf/open/floor/tile/damaged/thermite,
 /area/bigredv2/outside/general_offices)
 "XC" = (
 /obj/machinery/door/airlock/mainship/engineering{

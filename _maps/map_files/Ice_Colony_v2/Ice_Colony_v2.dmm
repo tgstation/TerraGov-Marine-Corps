@@ -7527,12 +7527,9 @@
 /area/ice_colony/surface/command)
 "aJE" = (
 /obj/structure/window_frame/colony/reinforced,
-/obj/machinery/door/poddoor/mainship{
-	density = 0;
+/obj/machinery/door/poddoor/mainship/open{
 	dir = 1;
-	icon_state = "pdoor0";
 	name = "\improper Forced Blast Door";
-	opacity = 0
 	},
 /turf/open/floor/plating,
 /area/ice_colony/surface/command)
@@ -12897,9 +12894,7 @@
 /turf/open/shuttle/dropship/floor,
 /area/ice_colony/underground/responsehangar)
 "biP" = (
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin6"
-	},
+/turf/open/shuttle/dropship/six,
 /area/ice_colony/underground/responsehangar)
 "biR" = (
 /obj/structure/cable,
@@ -15156,11 +15151,8 @@
 /area/ice_colony/surface/bar/canteen)
 "bse" = (
 /obj/machinery/door/poddoor/mainship{
-	density = 0;
-	icon_state = "pdoor0";
 	id = "Colony_PMC_Hangar";
 	name = "\improper Forced Blast Door";
-	opacity = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -18470,9 +18462,8 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
-/obj/structure/showcase{
+/obj/structure/showcase/coinpress{
 	desc = "A stand with a plastic display of some kind of weird machine.";
-	icon_state = "coinpress0"
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/storage/highsec)
@@ -19659,9 +19650,7 @@
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/treatment)
 "bId" = (
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin4"
-	},
+/turf/open/shuttle/dropship/four,
 /area/ice_colony/underground/responsehangar)
 "bIe" = (
 /obj/structure/window/framed/colony/reinforced,
@@ -22566,9 +22555,8 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/east)
 "bSJ" = (
-/turf/open/floor/plating{
+/turf/open/floor/plating/icefloor/warnplate/corner{
 	dir = 1;
-	icon_state = "warnplatecorner"
 	},
 /area/ice_colony/underground/maintenance/east)
 "bSK" = (
@@ -27788,7 +27776,6 @@
 "iDS" = (
 /obj/effect/attach_point/weapon/dropship1{
 	dir = 8;
-	icon_state = "equip_base_l_wing"
 	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8

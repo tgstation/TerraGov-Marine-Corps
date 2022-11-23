@@ -5421,8 +5421,7 @@
 /area/magmoor/compound/east)
 "dZS" = (
 /obj/structure/table/mainship,
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-18";
+/obj/structure/flora/pottedplant/eighteen{
 	pixel_y = 10
 	},
 /turf/open/floor/mainship/mono,
@@ -8513,8 +8512,7 @@
 /area/magmoor/cargo/storage/south)
 "gfZ" = (
 /obj/structure/table/mainship,
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-18";
+/obj/structure/flora/pottedplant/eighteen{
 	pixel_y = 10
 	},
 /turf/open/floor/mainship/purple,
@@ -8764,8 +8762,7 @@
 /area/magmoor/research)
 "gnN" = (
 /obj/structure/table/woodentable,
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-18";
+/obj/structure/flora/pottedplant/eighteen{
 	pixel_y = 10
 	},
 /turf/open/floor/mainship/green{
@@ -9163,8 +9160,7 @@
 /area/magmoor/research)
 "gHq" = (
 /obj/structure/table/woodentable,
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-15";
+/obj/structure/flora/pottedplant/fifteen{
 	pixel_y = 10
 	},
 /turf/open/floor/mainship/green{
@@ -10714,8 +10710,7 @@
 /area/magmoor/cave/northwest)
 "hOH" = (
 /obj/structure/table/mainship,
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-18";
+/obj/structure/flora/pottedplant/eighteen{
 	pixel_y = 10
 	},
 /turf/open/floor/mainship/sterile/corner{
@@ -21427,7 +21422,6 @@
 "prN" = (
 /obj/effect/attach_point/weapon/dropship1{
 	dir = 8;
-	icon_state = "equip_base_l_wing"
 	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
@@ -24115,7 +24109,6 @@
 "rcV" = (
 /obj/effect/attach_point/weapon/dropship1{
 	dir = 8;
-	icon_state = "equip_base_l_wing"
 	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
@@ -24903,8 +24896,7 @@
 /area/magmoor/cave/northwest)
 "rDB" = (
 /obj/structure/table/woodentable,
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-15";
+/obj/structure/flora/pottedplant/fifteen{
 	pixel_y = 10
 	},
 /turf/open/floor/mainship/green{
@@ -30483,8 +30475,7 @@
 /area/magmoor/compound/east)
 "vaW" = (
 /obj/structure/table/reinforced,
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-15";
+/obj/structure/flora/pottedplant/fifteen{
 	pixel_y = 10
 	},
 /turf/open/floor/mainship/mono,
@@ -32665,8 +32656,7 @@
 /area/magmoor/civilian/arrival/east)
 "woV" = (
 /obj/structure/table/reinforced,
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-15";
+/obj/structure/flora/pottedplant/fifteen{
 	pixel_y = 10
 	},
 /turf/open/floor/mainship/mono,
@@ -36078,8 +36068,7 @@
 /area/magmoor/compound/northeast)
 "yhr" = (
 /obj/structure/table/woodentable,
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-18";
+/obj/structure/flora/pottedplant/eighteen{
 	pixel_y = 10
 	},
 /turf/open/floor/mainship/green{

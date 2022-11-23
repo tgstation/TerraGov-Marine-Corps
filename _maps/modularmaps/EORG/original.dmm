@@ -441,7 +441,6 @@
 "bN" = (
 /obj/effect/attach_point/weapon/dropship1{
 	dir = 8;
-	icon_state = "equip_base_l_wing"
 	},
 /obj/structure/dropship_piece/one/wing/left/bottom,
 /turf/open/ground/coast{
@@ -685,7 +684,6 @@
 "cJ" = (
 /obj/effect/attach_point/weapon/dropship1{
 	dir = 4;
-	icon_state = "equip_base_r_wing"
 	},
 /obj/structure/dropship_piece/one/wing/right/bottom,
 /turf/open/ground/grass,
