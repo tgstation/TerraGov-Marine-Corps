@@ -193,11 +193,14 @@
 	proj.iff_signal = null
 	frozen_projectiles += proj
 	take_damage(proj.damage, proj.ammo.damage_type, proj.ammo.armor_type, 0, turn(proj.dir, 180), proj.ammo.penetration)
+	if(obj_integrity <= 0)
+		release_projectiles()
+		owner.apply_effects(weaken = 0.5)
 
-/obj/effect/xeno/shield/Destroy()
-	. = ..()
+/obj/effect/xeno/shield/obj_destruction()
 	release_projectiles()
 	owner.apply_effects(weaken = 0.5)
+	return ..()
 
 ///Unfeezes the projectiles on their original path
 /obj/effect/xeno/shield/proc/release_projectiles()
@@ -227,6 +230,7 @@
 			new_angle -= 360
 		proj.firer = src
 		proj.fire_at(shooter = src, source = src, range = new_range, angle = new_angle, recursivity = TRUE)
+	frozen_projectiles.cut()
 
 
 // ***************************************
