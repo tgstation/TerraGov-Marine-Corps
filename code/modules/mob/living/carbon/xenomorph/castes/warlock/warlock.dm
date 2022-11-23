@@ -16,10 +16,6 @@
 	drag_delay = 3
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_ZERO
-	inherent_verbs = list(
-		/mob/living/carbon/xenomorph/proc/vent_crawl,
-		/mob/living/carbon/xenomorph/proc/hijack,
-	)
 
 /mob/living/carbon/xenomorph/warlock/Initialize()
 	. = ..()
