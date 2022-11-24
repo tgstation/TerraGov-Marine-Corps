@@ -533,7 +533,7 @@
 
 //Generates particles and directs them towards target
 /datum/action/xeno_action/activable/psy_blast/proc/generate_particles(atom/target, velocity)
-	var/angle = Get_Angle(owner, target)
+	var/angle = Get_Angle(get_turf(owner), target) //pixel offsets effect angles
 	var/x_component = sin(angle) * velocity
 	var/y_component = cos(angle) * velocity
 
