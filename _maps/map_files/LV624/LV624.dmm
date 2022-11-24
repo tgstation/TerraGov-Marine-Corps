@@ -4333,7 +4333,6 @@
 "cIq" = (
 /obj/structure/table/woodentable,
 /obj/machinery/atm{
-	name = "NanoTrasen Automatic Teller Machine";
 	pixel_y = 30
 	},
 /obj/item/reagent_containers/food/drinks/flask/vacuumflask,
@@ -6927,7 +6926,6 @@
 	dir = 1
 	},
 /obj/machinery/atm{
-	name = "Automatic Teller Machine";
 	pixel_y = 30
 	},
 /turf/open/floor/tile/white,
@@ -17799,7 +17797,6 @@
 /obj/item/clothing/suit/redtag,
 /obj/structure/closet/athletic_mixed,
 /obj/machinery/atm{
-	name = "Weyland Yutani Automatic Teller Machine";
 	pixel_y = 30
 	},
 /turf/open/floor/tile/purple/whitepurplecorner{
