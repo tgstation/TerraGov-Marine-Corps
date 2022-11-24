@@ -867,7 +867,6 @@
 #include "code\game\objects\machinery\squad_supply\supply_console.dm"
 #include "code\game\objects\machinery\squad_supply\supply_pads.dm"
 #include "code\game\objects\machinery\telecomms\broadcasting.dm"
-#include "code\game\objects\machinery\telecomms\machine_interactions.dm"
 #include "code\game\objects\machinery\telecomms\telecomunications.dm"
 #include "code\game\objects\machinery\telecomms\computers\logbrowser.dm"
 #include "code\game\objects\machinery\telecomms\computers\telemonitor.dm"
