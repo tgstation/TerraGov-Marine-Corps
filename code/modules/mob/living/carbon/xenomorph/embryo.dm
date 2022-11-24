@@ -12,7 +12,7 @@
 	var/counter = 0
 	///How long before the larva is kicked out, * SSobj wait
 	var/larva_autoburst_countdown = 20
-	///How long will the embryo's growth rate be increased (by 2.5 per tick)
+	///How long will the embryo's growth rate be increased
 	var/boost_timer = 0
 	var/hivenumber = XENO_HIVE_NORMAL
 	var/admin = FALSE
@@ -235,10 +235,8 @@
 		return
 	emote("burstscream")
 
-/////Adjusts the growth acceleration timer
-///amount - how many ticks will be added to boost_timer
-///capped - if there is, the sum of current boost_timer and amount will not exceed this number.
-///override_time - instead of adding amount to boost_timer, overwrites it
+
+///Adjusts the growth acceleration timer
 /obj/item/alien_embryo/proc/adjust_boost_timer(amount, capped = 0, override_time = FALSE)
 	if(override_time)
 		boost_timer = max(amount, 0)
