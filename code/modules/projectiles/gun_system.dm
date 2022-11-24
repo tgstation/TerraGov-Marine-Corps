@@ -334,8 +334,6 @@
 /*
  * Heat Mechanics Vars
 */
-	///If the gun uses overheat mechanics.
-	var/use_heat = FALSE
 	///Current heat of the gun.
 	var/heat_level = 0
 	///Max heat of the gun.
@@ -346,8 +344,8 @@
 	var/cool_amount = 5
 	///Amount of time the gun is unable to fire after it has overheated.
 	var/cooldown_time = 5 SECONDS
-	///If the gun is overheated.
-	var/overheated = FALSE
+	///If the gun is cooling down.
+	var/cooling_down = FALSE
 	///Stores the timer for overheat.
 	var/overheat_timer
 	///Smoke particles on overheat.
@@ -376,7 +374,7 @@
 		AddElement(/datum/element/attachment, slot, icon, .proc/on_attach, .proc/on_detach, .proc/activate, .proc/can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, "firearms", SKILL_FIREARMS_DEFAULT, 'sound/machines/click.ogg')
 
 	muzzle_flash = new(src, muzzleflash_iconstate)
-	if(use_heat)
+	if(flags_gun_features & GUN_OVERHEATS)
 		heat_overlay = image(icon, icon_state = icon_state + "_overheat")
 
 	if(deployable_item)
@@ -481,8 +479,8 @@
 		for(var/datum/action/action AS in master_gun.actions)
 			action.update_button_icon()
 
-	if(use_heat)
-		if(overheated)
+	if(flags_gun_features & GUN_OVERHEATS)
+		if(cooling_down)
 			if(overheat_smoke)
 				return
 			overlays += heat_overlay
@@ -924,7 +922,7 @@
 
 	if(fire_animation) //Fires gun firing animation if it has any. ex: rotating barrel
 		flick("[fire_animation]", src)
-	if(use_heat)
+	if(flags_gun_features & GUN_OVERHEATS)
 		heat_level += heat_amount
 		START_PROCESSING(SSobj, src)
 
@@ -1574,11 +1572,9 @@
 	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_ATTACHMENT) && !master_gun && CHECK_BITFIELD(flags_gun_features, GUN_ATTACHMENT_FIRE_ONLY))
 		to_chat(user, span_notice("You cannot fire [src] without it attached to a gun!"))
 		return FALSE
-	if(heat_level >= max_heat || overheated)
+	if(heat_level >= max_heat || cooling_down)
 		user.balloon_alert(user, "The gun is overheated!")
-		if(!overheat_timer)
-			overheated = TRUE
-			overheat_timer = addtimer(CALLBACK(src, .proc/cooldown), cooldown_time, TIMER_STOPPABLE)
+
 		return FALSE
 	return TRUE
 
@@ -1801,10 +1797,8 @@
 	if(heat_level <= 0)
 		heat_level = 0
 		STOP_PROCESSING(SSobj, src)
-	update_icon()
-
 ///Allows the gun to fire after overheat timer is over
 /obj/item/weapon/gun/proc/cooldown()
-	overheated = FALSE
+	cooling_down = FALSE
 	deltimer(overheat_timer)
 	overheat_timer = null
