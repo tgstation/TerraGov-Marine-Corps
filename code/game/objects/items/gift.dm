@@ -45,7 +45,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	if(!do_after(M, 4 SECONDS))
 		return
 	if(!freepresent && present_receiver != M)
-		if(tgui_alert(M, "This present is addressed to [present_receiver_name]. Open it anyways?", "Continue?", list("Yes", "No")) != "No")
+		if(tgui_alert(M, "This present is addressed to [present_receiver_name]. Open it anyways?", "Continue?", list("Yes", "No")) != "Yes")
 			M.visible_message(span_notice("[M] tears into [present_receiver_name]'s gift with reckless abandon!"))
 			M.balloon_alert_to_viewers("Open's [present_receiver_name]'s gift" ,ignored_mobs = M)
 			log_game("[M] has opened a present that belonged to [present_receiver_name] at [AREACOORD(loc)]")
@@ -54,7 +54,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 				if(!HAS_TRAIT(M, TRAIT_CHRISTMAS_GRINCH))
 					GLOB.round_statistics.number_of_grinches += 1
 					ADD_TRAIT(M, TRAIT_CHRISTMAS_GRINCH, TRAIT_CHRISTMAS_GRINCH) //bad present openers are effectively cursed to receive nothing but coal for the rest of the round
-					to_chat(M, span_warning("Your heart feels three sizes smaller..."))
+					to_chat(M, span_boldannounce("Your heart feels three sizes smaller..."))
 				spawnpresent(M) //they have the grinch trait, the presents will always spawn coal
 			else
 				spawnpresent(M, TRUE) //they got lucky, the present will open as normal but with a STOLEN label in the desc
@@ -81,7 +81,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 /obj/item/a_gift/proc/spawnpresent(mob/M, stolen_gift)
 	if(HAS_TRAIT(M, TRAIT_CHRISTMAS_GRINCH))
 		var/obj/item/C = new /obj/item/ore/coal(get_turf(M))
-		to_chat(M, span_warning("You feel the icy tug of Santa's magic envelop the present before you can open it!"))
+		to_chat(M, span_boldannounce("You feel the icy tug of Santa's magic envelop the present before you can open it!"))
 		M.put_in_hands(C)
 		M.balloon_alert_to_viewers("Received a piece of [C]")
 		return
@@ -94,10 +94,10 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		if(!freepresent)
 			GLOB.round_statistics.presents_delivered += 1
 		if(!stolen_gift)
-			I.desc += "Property of [M.real_name]."
+			I.desc += " Property of [M.real_name]."
 		else
 			I.color = COLOR_SOFT_RED
-			I.desc += "The word 'STOLEN' is visible in bright red and green ink."
+			I.desc += " The word 'STOLEN' is visible in bright red and green ink."
 		M.balloon_alert_to_viewers("Found a [I]")
 		M.put_in_hands(I)
 
@@ -128,7 +128,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		/obj/item/tool/pen/invisible,
 		/obj/item/explosive/grenade/smokebomb,
 		/obj/item/corncob,
-		/obj/item/weapon/gun/launcher/rocket/m57a4/xmas, //terribly OP but there's only a 1/1000 chance of getting it instead of something useless
+		/obj/item/weapon/gun/launcher/rocket/m57a4/xmas,
 		/obj/item/spacecash/c500,
 		/obj/item/spacecash/c100,
 		/obj/item/coin/diamond,

@@ -130,10 +130,11 @@
 	gloves = /obj/item/clothing/gloves/ruggedgloves
 	head = /obj/item/clothing/head/helmet/space/elf
 	glasses = /obj/item/clothing/glasses/welding
-	r_store = /obj/item/storage/pouch/construction/equippedengineer
-	l_store = /obj/item/storage/pouch/magazine/pistol
+	l_store = /obj/item/storage/pouch/construction/equippedengineer
+	r_store = /obj/item/storage/pouch/pistol/vp70
 	back = /obj/item/storage/backpack/industrial
-	suit_store = /obj/item/weapon/twohanded/spear/candycane/elf
+	suit_store = /obj/item/weapon/gun/pistol/vp70
+	r_hand = /obj/item/weapon/twohanded/spear/candycane/elf
 
 
 /datum/outfit/job/santa/leader //he's done ho ho ho ing around
@@ -216,9 +217,9 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/christmas_cookieone/special, SLOT_IN_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/christmas_cookietwo/special, SLOT_IN_HEAD)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_pistol, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_pistol, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_pistol, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_R_POUCH)
 
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/PMC, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/PMC, SLOT_IN_BACKPACK)
@@ -231,7 +232,5 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/PMC, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/PMC, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_pistol, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_pistol, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_pistol, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new 	/obj/item/weapon/gun/pistol/standard_pistol, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new 	/obj/item/weapon/gun/pistol/standard_pistol, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new 	/obj/item/weapon/gun/pistol/vp70, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new 	/obj/item/weapon/gun/pistol/vp70, SLOT_IN_BACKPACK)

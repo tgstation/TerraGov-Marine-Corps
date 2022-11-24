@@ -223,16 +223,6 @@
 		var/mob/M = src.loc
 		M.update_inv_wear_mask()
 
-/obj/item/clothing/mask/equipped(mob/M, slot)
-	. = ..()
-	if (slot == ITEM_SLOT_MASK && modifies_speech)
-		RegisterSignal(M, COMSIG_MOB_SAY, .proc/handle_speech)
-	else
-		UnregisterSignal(M, COMSIG_MOB_SAY)
-
-/obj/item/clothing/mask/proc/handle_speech()
-	SIGNAL_HANDLER
-
 ////////////////////////////////////////////////////////////////////////
 //Shoes
 /obj/item/clothing/shoes

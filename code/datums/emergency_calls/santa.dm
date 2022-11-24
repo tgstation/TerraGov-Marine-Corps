@@ -43,8 +43,8 @@
 		H.real_name = H.name
 		H.apply_assigned_role_to_spawn(J)
 		H.set_nutrition(NUTRITION_OVERFED * 2)
-		var/datum/action/innate/summon_present/santamagic = new
-		santamagic.give_action(H)
+		//var/datum/action/innate/summon_present/santamagic = new
+		//santamagic.give_action(H)
 		H.grant_language(/datum/language/xenocommon)
 		if(GLOB.round_statistics.number_of_grinches >= 5)
 			to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are Santa Claus! Punish all naughty </b>marines and aliens</b> with overwhelming firepower, starting with their commanders hiding on the ship.")]</p>")
@@ -58,7 +58,7 @@
 	H.real_name = H.name
 	to_chat(H, span_notice("You are a member of Santa's loyal workforce, assist Santa in whatever way you can!"))
 
-/datum/action/innate/summon_present
+/* /datum/action/innate/summon_present
 	name = "Summon present"
 	action_icon_state = "rally"
 	verb_name = "rally to"
@@ -79,3 +79,4 @@
 	if(owner.stat)
 		to_chat(owner, span_warning("You can not issue an order in your current state."))
 		return FALSE
+*/
