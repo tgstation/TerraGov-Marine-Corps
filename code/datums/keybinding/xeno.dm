@@ -613,7 +613,7 @@
 
 /datum/keybinding/xeno/scatter_spit
 	name = "scatter_spit"
-	full_name = "Spitter: Scatter Spit"
+	full_name = "Scatter Spit"
 	description = "Fires a scattershot of 6 acid globules which create acid puddles on impact or at the end of their range."
 	keybind_signal = COMSIG_XENOABILITY_SCATTER_SPIT
 

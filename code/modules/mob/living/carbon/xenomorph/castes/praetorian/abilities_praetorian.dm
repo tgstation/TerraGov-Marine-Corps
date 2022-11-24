@@ -125,6 +125,49 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		do_acid_cone_spray(next_normal_turf, distance_left - 2, facing, (distance_left < 5) ? CONE_PART_MIDDLE : CONE_PART_MIDDLE_DIAG, spray)
 
 // ***************************************
+// *********** Scatterspit
+// ***************************************
+
+/datum/action/xeno_action/activable/scatter_spit/praetorian
+	name = "Scatter Spit"
+	action_icon_state = "scatter_spit"
+	mechanics_text = "Spits a spread of acid projectiles that splatter on the ground."
+	ability_name = "scatter spit"
+	plasma_cost = 250
+	cooldown_timer = 0.5 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SCATTER_SPIT,
+	)
+
+/datum/action/xeno_action/activable/scatter_spit/praetorian/use_ability(atom/target)
+	var/mob/living/carbon/xenomorph/X = owner
+
+	if(!do_after(X, 0.5 SECONDS, TRUE, target, BUSY_ICON_DANGER))
+		return fail_activate()
+
+	//Shoot at the thing
+	playsound(X.loc, 'sound/effects/blobattack.ogg', 50, 1)
+
+	var/datum/ammo/xeno/acid/heavy/scatter/scatter_spit = GLOB.ammo_list[/datum/ammo/xeno/acid/heavy/scatter]
+
+	var/obj/projectile/newspit = new /obj/projectile(get_turf(X))
+	newspit.generate_bullet(scatter_spit, scatter_spit.damage * SPIT_UPGRADE_BONUS(X))
+	newspit.def_zone = X.get_limbzone_target()
+
+	newspit.fire_at(target, X, null, newspit.ammo.max_range)
+
+	succeed_activate()
+	add_cooldown()
+
+	GLOB.round_statistics.spitter_scatter_spits++ //Statistics
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "spitter_scatter_spits")
+
+/datum/action/xeno_action/activable/scatter_spit/on_cooldown_finish()
+	to_chat(owner, span_xenodanger("Our auxiliary sacks fill to bursting; we can use scatter spit again."))
+	owner.playsound_local(owner, 'sound/voice/alien_drool1.ogg', 25, 0, 1)
+	return ..()
+
+// ***************************************
 // *********** Acid dash
 // ***************************************
 /datum/action/xeno_action/activable/acid_dash
@@ -156,7 +199,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/mob/living/carbon/xenomorph/X = owner
 	SIGNAL_HANDLER
 	if(recast_available)
-		addtimer(CALLBACK(src, .proc/dash_complete), 2 SECONDS) //Delayed recursive call, this time you won't gain a recast so it will go on cooldown in 2 SECONDS.
+		addtimer(CALLBACK(src, .proc/dash_complete), 6 SECONDS) //Delayed recursive call, this time you won't gain a recast so it will go on cooldown in 6 SECONDS.
 		recast = TRUE
 	else
 		recast = FALSE
