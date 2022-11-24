@@ -40,6 +40,6 @@
 	return ..()
 
 ///Fills list_to_fill with attachment_data
-/datum/element/attachment/proc/on_attaching(datum/source, mob/attacher, list/list_to_fill)
+/datum/element/attachment/proc/on_attaching(datum/source, list/list_to_fill)
 	SIGNAL_HANDLER
 	list_to_fill.Add(attachment_data)

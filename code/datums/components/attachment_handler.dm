@@ -31,119 +31,170 @@
 	attachable_overlays = overlays //This is incase the parent wishes to have a stored reference to this list.
 	attachable_overlays += slots
 
-	var/obj/parent_object = parent
+	var/obj/parent_object = parent //TODO: check if this canbe cleaned
 	if(length(starting_attachments) && parent_object.loc) //Attaches starting attachments if the object is not instantiated in nullspace. If it is created in null space, such as in a loadout vendor. It wont create default attachments.
 		for(var/starting_attachment_type in starting_attachments)
-			try_attach(new starting_attachment_type(parent_object))
+			try_attach_if_slot_free(new starting_attachment_type(parent_object))
 
 	update_parent_overlay()
 
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/start_handle_attachment) //For attaching.
+	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/start_mob_attempt_attach) //For attaching.
 	RegisterSignal(parent, list(COMSIG_MARINE_VENDOR_MODULE_VENDED, COMSIG_LOADOUT_VENDOR_VENDED_GUN_ATTACHMENT, COMSIG_LOADOUT_VENDOR_VENDED_ATTACHMENT_GUN, COMSIG_LOADOUT_VENDOR_VENDED_ARMOR_ATTACHMENT), .proc/attach_without_user)
 
-	RegisterSignal(parent, COMSIG_CLICK_ALT, .proc/start_detach) //For Detaching
+	RegisterSignal(parent, COMSIG_CLICK_ALT, .proc/start_mob_attempt_detatch) //For Detaching
 	RegisterSignal(parent, COMSIG_PARENT_QDELETING, .proc/clean_references) //Dels attachments.
 	RegisterSignal(parent, COMSIG_ITEM_APPLY_CUSTOM_OVERLAY, .proc/apply_custom)
 	RegisterSignal(parent, COMSIG_ITEM_UNEQUIPPED, .proc/remove_overlay)
 
-//Checks if this can receive the attachment, and if the attachment is attachable to this
+///Gets info about an attachment, can return null
+/datum/component/attachment_handler/proc/get_attachment_data(obj/attachment)
+	var/list/attachment_data = list()
+	SEND_SIGNAL(attachment, COMSIG_ITEM_IS_ATTACHING, attachment_data)
+	return attachment_data
+
+///Checks if this can receive the attachment, and if the attachment is attachable to this
 /datum/component/attachment_handler/proc/attachment_is_compatible(obj/attachment, list/attachment_data, mob/attacher)
 	if(can_attach && !can_attach.Invoke(attachment))
 		return FALSE
+
 	if(attachment_data[CAN_ATTACH])
 		var/datum/callback/attachment_can_attach = CALLBACK(attachment, attachment_data[CAN_ATTACH])
 		if(!attachment_can_attach.Invoke(parent, attacher))
 			return FALSE
-	var/slot = attachment_data[SLOT]
-	if(!(slot in slots) || !(attachment.type in attachables_allowed))
+
+	//Is this an allowed attachment (or is the attachment supposed to bypass this check)
+	if (!(attachment.type in attachables_allowed) && !CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_BYPASS_ALLOWED_LIST))
 		return FALSE
+
+	var/slot = attachment_data[SLOT]
+	if(!(slot in slots)) //does this have an appropriate attachment slot for the attachment?
+		return FALSE
+
 	return TRUE
 
-///Starts processing the attack, and whether or not the attachable can attack.
-/datum/component/attachment_handler/proc/start_handle_attachment(datum/source, obj/attacking, mob/attacker)
-	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, .proc/handle_attachment, attacking, attacker)
+///Checks if there is an attachment in a slot that cannot be removed
+/datum/component/attachment_handler/proc/has_unremovable_attachment(slot)
+	var/list/attachment_data = attachment_data_by_slot[slot]
+	if (!attachment_data)
+		return TRUE //no attachment found
 
-/datum/component/attachment_handler/proc/handle_attachment(obj/attachment, mob/attacher)
+	return attachment_can_detatch(attachment_data)
 
-	var/list/attachment_data = list()
-	SEND_SIGNAL(attachment, COMSIG_ITEM_IS_ATTACHING, attacher, attachment_data)
+///Is the attachment allowed to detatch?
+/datum/component/attachment_handler/proc/attachment_can_detatch(attachment_data)
+	return CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_REMOVABLE)
 
-	if(!length(attachment_data)) //Something has to provide attaching data here to continue.
-		return
+///Gives the player a UI where they can select an attachment, returns the selected attachment
+/datum/component/attachment_handler/proc/player_select_attachment(mob/user, list/attachment_options)
+	return INVOKE_ASYNC(.proc/tgui_input_list, user, "Choose an attachment", "Choose attachment", attachment_options)
 
-	if (!attachment_is_compatible(attachment, attachment_data))
-		return
-
-	if(!do_attach(attachment, attacher, attachment_data))
-		return
-
+///Attaches an attachment. This is an unsafe proc, check if the attachment is allowed to attach first.
+/datum/component/attachment_handler/proc/attach(obj/item/attachment, list/attachment_data, mob/attacher) //TODO: this all looks ugly?
 	var/slot = attachment_data[SLOT]
-	var/obj/item/old_attachment = slots[slot]
+	var/obj/item/current_attachment = slots[slot]
 
-	finish_handle_attachment(attachment, attachment_data, attacher)
+	if(current_attachment) //If there is an attachment is the slot we are attaching to, detatch it
+		var/list/current_attachment_data_by_slot = attachment_data_by_slot[slot]
+		detach(current_attachment, current_attachment_data_by_slot, attacher)
 
-	if(!attacher)
-		return
-	attacher.temporarilyRemoveItemFromInventory(attachment)
+	attachment.forceMove(parent) //TODO: What is this doing
 
-	//Re-try putting old attachment into hands, now that we've cleared them
-	if(old_attachment)
-		attacher.put_in_hands(old_attachment)
-
-
-///Finishes setting up the attachment. This is where the attachment actually attaches. This can be called directly to bypass any checks to directly attach an object.
-/datum/component/attachment_handler/proc/finish_handle_attachment(obj/item/attachment, list/attachment_data, mob/attacker)
-	var/slot = attachment_data[SLOT]
-
-	if(slots[slot]) //Checks for an attachment in the current slot.
-		var/obj/item/current_attachment = slots[slot]
-		finish_detach(current_attachment, attachment_data_by_slot[slot], attacker) //Removes the current attachment.
-
-	attachment.forceMove(parent)
+	//Sets the new attachment
 	slots[slot] = attachment
 	attachment_data_by_slot[slot] = attachment_data
 
 	RegisterSignal(attachment, COMSIG_ATOM_UPDATE_ICON, .proc/update_parent_overlay)
 
 	var/obj/parent_obj = parent
-	///The gun has another gun attached to it
-	if(isgun(attachment) && isgun(parent) )
+	//The gun has another gun attached to it
+	if(isgun(attachment) && isgun(parent))
 		parent_obj:gunattachment = attachment
 
-	on_attach?.Invoke(attachment, attacker)
+	on_attach?.Invoke(attachment, attacher)
 
 	if(attachment_data[ON_ATTACH])
 		var/datum/callback/attachment_on_attach = CALLBACK(attachment, attachment_data[ON_ATTACH])
-		attachment_on_attach.Invoke(parent, attacker)
-	SEND_SIGNAL(attachment, COMSIG_ATTACHMENT_ATTACHED, parent, attacker)
-	SEND_SIGNAL(parent, COMSIG_ATTACHMENT_ATTACHED_TO_ITEM, attachment, attacker)
+		attachment_on_attach.Invoke(parent, attacher)
+	SEND_SIGNAL(attachment, COMSIG_ATTACHMENT_ATTACHED, parent, attacher)
+	SEND_SIGNAL(parent, COMSIG_ATTACHMENT_ATTACHED_TO_ITEM, attachment, attacher)
 
 	update_parent_overlay()
-	if(!CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_APPLY_ON_MOB))
-		return
 
-	if(!ismob(parent_obj.loc))
-		return
 	var/mob/wearing_mob = parent_obj.loc
-	wearing_mob.regenerate_icons() ///Theres probably a better way to do this.
+	if(ismob(wearing_mob) && CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_APPLY_ON_MOB))
+		wearing_mob.regenerate_icons() //Theres probably a better way to do this.
 
-///This is the do_after and user checks for attaching.
-/datum/component/attachment_handler/proc/do_attach(obj/item/attachment, mob/attacher, list/attachment_data)
-	if(!isliving(attacher))
-		return FALSE
+///Detatches an attachment. This is an unsafe proc, check if the attachment is allowed to detatch first.
+/datum/component/attachment_handler/proc/detach(obj/item/attachment, list/attachment_data, mob/living/user) //TODO: this all looks ugly?
+	var/slot = attachment_data[SLOT]
+	slots[slot] = null //Sets the slot the attachment is being removed from to null.
+	attachment_data_by_slot[slot] = null
 
-	var/mob/living/user = attacher
+	on_detach?.Invoke(attachment, user)
 
-	if(!can_attach(attachment, user, attachment_data))
-		return FALSE
+	if(attachment_data[ON_DETACH])
+		var/datum/callback/attachment_on_detach = CALLBACK(attachment, attachment_data[ON_DETACH])
+		attachment_on_detach.Invoke(parent, user)
+
+	UnregisterSignal(attachment, COMSIG_ATOM_UPDATE_ICON)
+	update_parent_overlay()
+
+	if(!user) //TODO: Why??
+		QDEL_NULL(attachment)
+		return
+
+	user.put_in_hands(attachment)
+
+	SEND_SIGNAL(attachment, COMSIG_ATTACHMENT_DETACHED, parent, user)
+	SEND_SIGNAL(parent, COMSIG_ATTACHMENT_DETACHED_FROM_ITEM, attachment, user)
+
+/datum/component/attachment_handler/proc/play_attach_sound(mob/attacher, list/attachment_data)
+	playsound(attacher, attachment_data[ATTACH_SOUND], 15, 1, 4)
+
+///Run when parent is attacked by an attachment, starts mob's attempt to attach
+/datum/component/attachment_handler/proc/start_mob_attempt_attach(datum/source, obj/attacking, mob/attacker)
+	SIGNAL_HANDLER
+	mob_attempt_attach(attacking, attacker)
+
+///Makes a mob attempt to attach an attachment, replacing the current if able
+/datum/component/attachment_handler/proc/mob_attempt_attach(obj/attachment, mob/attacher)
+	var/list/attachment_data = get_attachment_data(attachment)
+	if(!length(attachment_data))
+		return
+
+	if(!attachment_is_compatible(attachment, attachment_data))
+		to_chat(attacher, span_warning("You cannot attach [attachment] to [parent]!"))
+		return
+
+	var/slot = attachment_data[SLOT]
+	var/obj/item/old_attachment = slots[slot]
+
+	if(has_unremovable_attachment(slot))
+		to_chat(attacher, span_warning("You cannot remove [old_attachment] from [parent] to make room for [attachment]!"))
+		return
 
 	if(!CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_NO_HANDS))
-		var/obj/item/in_hand = user.get_inactive_held_item()
+		var/obj/item/in_hand = attacher.get_inactive_held_item()
 		if(in_hand != parent)
-			to_chat(user, span_warning("You have to hold [parent] to do that!"))
-			return FALSE
+			to_chat(attacher, span_warning("You have to hold [parent] to do that!"))
+			return
 
+	if(!INVOKE_ASYNC(src, .proc/do_attach, attachment, attacher, attachment_data))
+		return
+
+	attacher.visible_message(span_notice("[attacher] attaches [attachment] to [parent]."),
+	span_notice("You attach [attachment] to [parent]."), null, 4)
+	play_attach_sound(attacher, attachment_data) //TODO: should sound be played here or in attach()
+
+	attach(attachment, attachment_data, attacher)
+	attacher.temporarilyRemoveItemFromInventory(attachment) //TODO: What is this doing?
+
+	//Re-try putting old attachment into hands, now that we've cleared them
+	if(old_attachment)
+		attacher.put_in_hands(old_attachment)
+
+///This is the do_after for attaching.
+/datum/component/attachment_handler/proc/do_attach(obj/item/attachment, mob/attacher, list/attachment_data)
 	var/do_after_icon_type = BUSY_ICON_GENERIC
 	var/attach_delay = attachment_data[ATTACH_DELAY]
 
@@ -151,88 +202,66 @@
 	var/skill_upper_threshold = attachment_data[ATTACH_SKILL_UPPER_THRESHOLD]
 
 	if(skill_used) //This is so we can make many attachments with different skills used to attach.
-		if(user.skills.getRating(skill_used))
-			user.visible_message(span_notice("[user] begins attaching [attachment] to [parent]."),
+		var/attacher_skill = attacher.skills.getRating(skill_used)
+		if(attacher_skill)
+			attacher.visible_message(span_notice("[attacher] begins attaching [attachment] to [parent]."),
 			span_notice("You begin attaching [attachment] to [parent]."), null, 4)
-			if(skill_upper_threshold && user.skills.getRating(skill_used) >= skill_upper_threshold) //See if the attacher is super skilled/panzerelite born to defeat never retreat etc
+			if(skill_upper_threshold && attacher_skill >= skill_upper_threshold) //See if the attacher is super skilled/panzerelite born to defeat never retreat etc
 				attach_delay *= 0.5
-		else //If the user has no training, attaching takes twice as long and they fumble about.
+		else //If the attacher has no training, attaching takes twice as long and they fumble about.
 			attach_delay *= 2
-			user.visible_message(span_notice("[user] begins fumbling about, trying to attach [attachment] to [parent]."),
+			attacher.visible_message(span_notice("[attacher] begins fumbling about, trying to attach [attachment] to [parent]."),
 			span_notice("You begin fumbling about, trying to attach [attachment] to [parent]."), null, 4)
 			do_after_icon_type = BUSY_ICON_UNSKILLED
 
-	if(!do_after(user, attach_delay, TRUE, parent, do_after_icon_type))
-		return FALSE
-	user.visible_message(span_notice("[user] attaches [attachment] to [parent]."),
-	span_notice("You attach [attachment] to [parent]."), null, 4)
-	playsound(user, attachment_data[ATTACH_SOUND], 15, 1, 4)
-	return TRUE
+	return do_after(attacher, attach_delay, TRUE, parent, do_after_icon_type)
 
-///Checks the current slots of the parent and if there are attachments that can be removed in those slots. Basically it makes sure theres room for the attachment.
-/datum/component/attachment_handler/proc/can_attach(obj/item/attachment, mob/living/user, list/attachment_data)
-	if(!length(slots)) //If there is no slots, it cannot be attached to. Currently this has no use. But I had a thought about making attachments that can add/remove slots.
-		return FALSE
-
-	var/slot = attachment_data[SLOT]
-
-	if(!(slot in slots) || (!(attachment.type in attachables_allowed) && !CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_BYPASS_ALLOWED_LIST))) //If theres no slot on parent, or if the attachment type isnt allowed, returns FALSE.
-		to_chat(user, span_warning("You cannot attach [attachment] to [parent]!"))
-		return FALSE
-
-	if(!slots[slot]) //If the slot is empty theres room.
-		return TRUE
-
-	var/list/current_attachment_data = attachment_data_by_slot[slot]
-
-	if(!CHECK_BITFIELD(current_attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_REMOVABLE)) //If the slots attachment is unremovable.
-		to_chat(user, span_warning("You cannot remove [slots[slot]] from [parent] to make room for [attachment]!"))
-		return FALSE
-
-	return TRUE //Removal of a current attachment is done in finish_handle_attachment.
-
-///Starts with the detach, is called when the user Alt-Clicks the parent.
-/datum/component/attachment_handler/proc/start_detach(datum/source, mob/user)
+///Starts a mob's attempt to detach something from the parent, is called when the user Alt-Clicks the parent.
+/datum/component/attachment_handler/proc/start_mob_attempt_detatch(datum/source, mob/user)
 	SIGNAL_HANDLER
-	var/mob/living/living_user = user
+	mob_attempt_detatch(user)
 
-	if(living_user.get_active_held_item() != parent && living_user.get_inactive_held_item() != parent)
-		to_chat(living_user, span_warning("You must be holding [parent] to field strip it!"))
-		return
-	if((living_user.get_active_held_item() == parent && living_user.get_inactive_held_item()) || (living_user.get_inactive_held_item() == parent && living_user.get_active_held_item()))
-		to_chat(living_user, span_warning("You need a free hand to field strip [parent]!"))
-		return
-
-	var/list/attachments_to_remove = list()
-	for(var/key in slots) //Gets a list of the attachments that can be removed.
-		var/obj/item/current_attachment = slots[key]
-		if(!current_attachment)
-			continue
-		var/list/current_attachment_data = attachment_data_by_slot[key]
-		if(!CHECK_BITFIELD(current_attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_REMOVABLE))
-			continue
-		attachments_to_remove += current_attachment
-
-	if(!length(attachments_to_remove))
-		to_chat(living_user, span_warning("There are no attachments that can be removed from [parent]!"))
+///Makes a mob attempt to detatch an attachment, based on a menu selection
+/datum/component/attachment_handler/proc/mob_attempt_detatch(mob/user)
+	if(!user.is_holding(parent))
+		to_chat(user, span_warning("You must be holding [parent] to field strip it!"))
 		return
 
-	INVOKE_ASYNC(src, .proc/do_detach, living_user, attachments_to_remove)
+	if(user.get_active_held_item() && user.get_inactive_held_item()) //Check if both hands are full
+		to_chat(user, span_warning("You need a free hand to field strip [parent]!"))
+		return
 
-///Does the detach, shows the user the removable attachments and handles the do_after.
-/datum/component/attachment_handler/proc/do_detach(mob/living/user, list/attachments_to_remove)
-	//If there is only one attachment to remove, then that will be the attachment_to_remove. If there is more than one it gives the user a list to select from.
-	var/obj/item/attachment_to_remove = length(attachments_to_remove) == 1 ? attachments_to_remove[1] : tgui_input_list(user, "Choose an attachment", "Choose attachment", attachments_to_remove)
+	var/list/removable_attachments = list()
+	for(var/slot in slots) //TODO: can we directly iterate through attachments here?
+		var/current_attachment = slots[slot]
+		if(current_attachment && !has_unremovable_attachment(slot))
+			removable_attachments += current_attachment
+
+	if(!length(removable_attachments))
+		to_chat(user, span_warning("There are no attachments that can be removed from [parent]!"))
+		return
+
+	//If there is only 1 attachment, default to removing it, otherwise ask player to select one
+	var/obj/attachment_to_remove = length(removable_attachments) == 1 ? removable_attachments[1] : player_select_attachment(user, removable_attachments)
+
 	if(!attachment_to_remove)
 		return
 
-	var/list/attachment_data
-	for(var/key in slots)
-		if(slots[key] != attachment_to_remove)
-			continue
-		attachment_data = attachment_data_by_slot[key]
-		break
+	if (!do_detach(user, removable_attachments))
+		return
 
+	var/attachment_data = get_attachment_data(attachment_to_remove)
+	if (!length(attachment_data)) //TODO: can this ever actually run? will it crash if we skip this check?
+		return
+
+	user.visible_message(span_notice("[user] detaches [attachment_to_remove] to [parent]."),
+	span_notice("You detach [attachment_to_remove] to [parent]."), null, 4)
+	play_attach_sound(user, attachment_data)
+
+	detach(attachment_to_remove, attachment_data, user)
+
+///This is the do_after for detatching
+/datum/component/attachment_handler/proc/do_detach(obj/item/attachment, mob/attacher, list/attachment_data)
 	var/do_after_icon_type = BUSY_ICON_GENERIC
 	var/detach_delay = attachment_data[DETACH_DELAY]
 
@@ -240,59 +269,31 @@
 	var/skill_upper_threshold = attachment_data[ATTACH_SKILL_UPPER_THRESHOLD]
 
 	if(skill_used) //Same as up in do_attach
-		if(user.skills.getRating(skill_used))
-			user.visible_message(span_notice("[user] begins detaching [attachment_to_remove] from [parent]."),
-			span_notice("You begin detaching [attachment_to_remove] from [parent]."), null, 4)
-			if(skill_upper_threshold && user.skills.getRating(skill_used) >= skill_upper_threshold)
+		var/attacher_skill = attacher.skills.getRating(skill_used)
+		if(attacher_skill)
+			attacher.visible_message(span_notice("[attacher] begins detaching [attachment] from [parent]."),
+			span_notice("You begin detaching [attachment] from [parent]."), null, 4)
+			if(skill_upper_threshold && attacher_skill >= skill_upper_threshold)
 				detach_delay *= 0.5
 		else
 			detach_delay *= 2
-			user.visible_message(span_notice("[user] begins fumbling about, trying to detach [attachment_to_remove] from [parent]."),
-			span_notice("You begin fumbling about, trying to detach [attachment_to_remove] from [parent]."), null, 4)
+			attacher.visible_message(span_notice("[attacher] begins fumbling about, trying to detach [attachment] from [parent]."),
+			span_notice("You begin fumbling about, trying to detach [attachment] from [parent]."), null, 4)
 			do_after_icon_type = BUSY_ICON_UNSKILLED
 
-	if(!do_after(user, detach_delay, TRUE, parent, do_after_icon_type))
-		return
-
-	user.visible_message(span_notice("[user] detaches [attachment_to_remove] to [parent]."),
-	span_notice("You detach [attachment_to_remove] to [parent]."), null, 4)
-	playsound(user, attachment_data[ATTACH_SOUND], 15, 1, 4)
-
-	finish_detach(attachment_to_remove, attachment_data, user)
-
-///Actually detaches the attachment. This can be called directly to bypass checks.
-/datum/component/attachment_handler/proc/finish_detach(obj/item/attachment, list/attachment_data, mob/living/user)
-	slots[attachment_data[SLOT]] = null //Sets the slot the attachment is being removed from to null.
-	attachment_data_by_slot[attachment_data[SLOT]] = null
-	on_detach?.Invoke(attachment, user)
-	UnregisterSignal(attachment, COMSIG_ATOM_UPDATE_ICON)
-	update_parent_overlay()
-
-	if(!user)
-		QDEL_NULL(attachment)
-		return
-
-	if(attachment_data[ON_DETACH])
-		var/datum/callback/attachment_on_detach = CALLBACK(attachment, attachment_data[ON_DETACH])
-		attachment_on_detach.Invoke(parent, user)
-
-	user.put_in_hands(attachment)
-
-	SEND_SIGNAL(attachment, COMSIG_ATTACHMENT_DETACHED, parent, user)
-	SEND_SIGNAL(parent, COMSIG_ATTACHMENT_DETACHED_FROM_ITEM, attachment, user)
+	return INVOKE_ASYNC(src, .proc/do_after, attacher, detach_delay, TRUE, parent, do_after_icon_type)
 
 ///This is for other objects to be able to attach things without the need for a user.
 /datum/component/attachment_handler/proc/attach_without_user(datum/source, obj/item/attachment)
 	SIGNAL_HANDLER
-	try_attach(attachment)
+	try_attach_if_slot_free(attachment)
 
-//Attaches attachment if compatible and the slot is empty
-/datum/component/attachment_handler/proc/try_attach(obj/attachment)
-	var/list/attachment_data = list()
-	SEND_SIGNAL(attachment, COMSIG_ITEM_IS_ATTACHING, null, attachment_data)
-
+///Attaches attachment if compatible and the slot is empty
+/datum/component/attachment_handler/proc/try_attach_if_slot_free(obj/attachment) //TODO: this may need fixing w/ new helpers after refactor
+	var/list/attachment_data = get_attachment_data(attachment)
 	if(!length(attachment_data))
 		return
+
 	if (!attachment_is_compatible(attachment, attachment_data))
 		return
 
@@ -301,7 +302,7 @@
 	if(current_attachment)
 		return
 
-	finish_handle_attachment(attachment, attachment_data, null)
+	attach(attachment, attachment_data, null) //TODO: does this break stuff if attacher is null?
 
 ///This updates the overlays of the parent and apllies the right ones.
 /datum/component/attachment_handler/proc/update_parent_overlay(datum/source)
