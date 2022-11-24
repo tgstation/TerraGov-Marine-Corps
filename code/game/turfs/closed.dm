@@ -410,6 +410,7 @@
 	icon_state = "swall0"
 	smoothing_behavior = CARDINAL_SMOOTHING
 	smoothing_groups = SMOOTH_ESCAPESHUTTLE
+	walltype = "swall"
 
 /turf/closed/banish_space //Brazil
 	plane = PLANE_SPACE
