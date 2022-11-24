@@ -17,11 +17,9 @@
 	var/glass = 0 // 0 = glass can be installed. -1 = glass can't be installed. 1 = glass is already installed. Text = mineral plating is installed instead.
 	var/created_name = null
 
-	New()
-
-		..()
-
-		update_state()
+/obj/structure/door_assembly/Initialize()
+	. = ..()
+	update_state()
 
 /obj/structure/door_assembly/door_assembly_com
 	base_icon_state = "com"

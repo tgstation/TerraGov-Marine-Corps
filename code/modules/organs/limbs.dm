@@ -375,6 +375,7 @@
 		return 1
 	return 0
 
+//TODO limbs should probably be on slow process
 /datum/limb/process()
 
 	// Process wounds, doing healing etc. Only do this every few ticks to save processing power
@@ -891,6 +892,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 /datum/limb/proc/is_malfunctioning()
 	return ((limb_status & LIMB_ROBOT) && (get_damage() > min_broken_damage))
 
+// todo this proc sucks lmao just redo it from scratch
 //for arms and hands
 /datum/limb/proc/process_grasp(obj/item/c_hand, hand_name)
 	if (!c_hand)
@@ -1016,9 +1018,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 	body_part = ARM_LEFT
 	cover_index = 7
 
-	process()
-		..()
-		process_grasp(owner.l_hand, "left hand")
+/datum/limb/l_arm/process()
+	..()
+	process_grasp(owner.l_hand, "left hand")
 
 /datum/limb/l_leg
 	name = "l_leg"
@@ -1039,9 +1041,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 	body_part = ARM_RIGHT
 	cover_index = 7
 
-	process()
-		..()
-		process_grasp(owner.r_hand, "right hand")
+/datum/limb/r_arm/process()
+	..()
+	process_grasp(owner.r_hand, "right hand")
 
 /datum/limb/r_leg
 	name = "r_leg"
@@ -1082,9 +1084,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 	body_part = HAND_RIGHT
 	cover_index = 2
 
-	process()
-		..()
-		process_grasp(owner.r_hand, "right hand")
+/datum/limb/r_arm/process()
+	..()
+	process_grasp(owner.r_hand, "right hand")
 
 /datum/limb/hand/l_hand
 	name = "l_hand"
@@ -1095,9 +1097,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 	body_part = HAND_LEFT
 	cover_index = 2
 
-	process()
-		..()
-		process_grasp(owner.l_hand, "left hand")
+/datum/limb/l_hand/process()
+	..()
+	process_grasp(owner.l_hand, "left hand")
 
 /datum/limb/head
 	name = "head"

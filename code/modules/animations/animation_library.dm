@@ -105,7 +105,7 @@ Can look good elsewhere as well.*/
 	return speed
 
 //Fadeout when something gets hit. Not completely done yet, as offset doesn't want to cooperate.
-proc/animation_destruction_knock_fade(atom/A, speed = 7, x_n = rand(10,18), y_n = rand(10,18))
+/proc/animation_destruction_knock_fade(atom/A, speed = 7, x_n = rand(10,18), y_n = rand(10,18))
 	A.flags_atom |= NOINTERACT
 	A.mouse_opacity = 0
 	A.density = FALSE
