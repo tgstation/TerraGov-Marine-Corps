@@ -42,34 +42,34 @@
 	///CAS impact prediction type to use. Explosive, incendiary, etc
 	var/prediction_type = CAS_AMMO_HARMLESS
 
-	attackby(obj/item/I, mob/user)
-
-		if(istype(I, /obj/item/powerloader_clamp))
-			var/obj/item/powerloader_clamp/PC = I
-			if(PC.linked_powerloader)
-				if(PC.loaded)
-					if(istype(PC.loaded, /obj/structure/ship_ammo))
-						var/obj/structure/ship_ammo/SA = PC.loaded
-						if(SA.transferable_ammo && SA.ammo_count > 0 && SA.type == type)
-							if(ammo_count < max_ammo_count)
-								var/transf_amt = min(max_ammo_count - ammo_count, SA.ammo_count)
-								ammo_count += transf_amt
-								SA.ammo_count -= transf_amt
-								playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
-								to_chat(user, span_notice("You transfer [transf_amt] [ammo_name] to [src]."))
-								if(!SA.ammo_count)
-									PC.loaded = null
-									PC.update_icon()
-									qdel(SA)
-				else
-					forceMove(PC.linked_powerloader)
-					PC.loaded = src
-					playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
-					PC.update_icon()
-					to_chat(user, span_notice("You grab [PC.loaded] with [PC]."))
-					update_icon()
-			return TRUE
-		return ..()
+// todo this needs a refactor and needs to call parent first not last
+/obj/structure/ship_ammo/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/powerloader_clamp))
+		var/obj/item/powerloader_clamp/PC = I
+		if(PC.linked_powerloader)
+			if(PC.loaded)
+				if(istype(PC.loaded, /obj/structure/ship_ammo))
+					var/obj/structure/ship_ammo/SA = PC.loaded
+					if(SA.transferable_ammo && SA.ammo_count > 0 && SA.type == type)
+						if(ammo_count < max_ammo_count)
+							var/transf_amt = min(max_ammo_count - ammo_count, SA.ammo_count)
+							ammo_count += transf_amt
+							SA.ammo_count -= transf_amt
+							playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
+							to_chat(user, span_notice("You transfer [transf_amt] [ammo_name] to [src]."))
+							if(!SA.ammo_count)
+								PC.loaded = null
+								PC.update_icon()
+								qdel(SA)
+			else
+				forceMove(PC.linked_powerloader)
+				PC.loaded = src
+				playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
+				PC.update_icon()
+				to_chat(user, span_notice("You grab [PC.loaded] with [PC]."))
+				update_icon()
+		return TRUE
+	return ..()
 
 //what to show to the user that examines the weapon we're loaded on.
 /obj/structure/ship_ammo/proc/show_loaded_desc(mob/user)

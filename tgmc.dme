@@ -676,7 +676,6 @@
 #include "code\game\objects\items\reagent_containers\jerrycan.dm"
 #include "code\game\objects\items\reagent_containers\pill.dm"
 #include "code\game\objects\items\reagent_containers\reagent_container.dm"
-#include "code\game\objects\items\reagent_containers\robodropper.dm"
 #include "code\game\objects\items\reagent_containers\spray.dm"
 #include "code\game\objects\items\reagent_containers\syringes.dm"
 #include "code\game\objects\items\reagent_containers\food\cans.dm"

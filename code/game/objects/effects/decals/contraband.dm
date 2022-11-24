@@ -46,7 +46,7 @@
 		if(WEST)
 			pixel_x = -30
 
-obj/structure/sign/poster/New(var/serial)
+/obj/structure/sign/poster/New(serial)
 
 	serial_number = serial
 

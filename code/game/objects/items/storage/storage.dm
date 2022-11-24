@@ -302,15 +302,15 @@
 	var/obj/item/sample_object
 	var/number
 
-	New(obj/item/sample)
-		if(!istype(sample))
-			qdel(src)
-		sample_object = sample
-		number = 1
+/datum/numbered_display/New(obj/item/sample)
+	if(!istype(sample))
+		qdel(src)
+	sample_object = sample
+	number = 1
 
-	Destroy()
-		sample_object = null
-		. = ..()
+/datum/numbered_display/Destroy()
+	sample_object = null
+	return ..()
 
 //This proc determins the size of the inventory to be displayed. Please touch it only if you know what you're doing.
 /obj/item/storage/proc/orient2hud()
