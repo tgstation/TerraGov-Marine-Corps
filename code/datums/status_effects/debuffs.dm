@@ -97,7 +97,7 @@
 //SLEEPING
 /datum/status_effect/incapacitating/sleeping
 	id = "sleeping"
-	alert_type = /obj/screen/alert/status_effect/asleep
+	alert_type = /atom/movable/screen/alert/status_effect/asleep
 	var/mob/living/carbon/carbon_owner
 	var/mob/living/carbon/human/human_owner
 
@@ -244,7 +244,7 @@
 	else if(duration > 0)
 		apply_status_effect(effect, duration)
 
-/obj/screen/alert/status_effect/asleep
+/atom/movable/screen/alert/status_effect/asleep
 	name = "Asleep"
 	desc = "You've fallen asleep. Wait a bit and you should wake up. Unless you don't, considering how helpless you are."
 	icon_state = "asleep"
@@ -252,7 +252,7 @@
 //ADMIN SLEEP
 /datum/status_effect/incapacitating/adminsleep
 	id = "adminsleep"
-	alert_type = /obj/screen/alert/status_effect/adminsleep
+	alert_type = /atom/movable/screen/alert/status_effect/adminsleep
 	duration = -1
 
 /datum/status_effect/incapacitating/adminsleep/on_apply()
@@ -265,7 +265,7 @@
 	REMOVE_TRAIT(owner, TRAIT_KNOCKEDOUT, TRAIT_STATUS_EFFECT(id))
 	return ..()
 
-/obj/screen/alert/status_effect/adminsleep
+/atom/movable/screen/alert/status_effect/adminsleep
 	name = "Admin Slept"
 	desc = "You've been slept by an Admin."
 	icon_state = "asleep"
@@ -273,9 +273,9 @@
 //CONFUSED
 /datum/status_effect/incapacitating/confused
 	id = "confused"
-	alert_type = /obj/screen/alert/status_effect/confused
+	alert_type = /atom/movable/screen/alert/status_effect/confused
 
-/obj/screen/alert/status_effect/confused
+/atom/movable/screen/alert/status_effect/confused
 	name = "Confused"
 	desc = "You're dazed and confused."
 	icon_state = "asleep"
@@ -343,9 +343,9 @@
 //MUTE
 /datum/status_effect/mute
 	id = "mute"
-	alert_type = /obj/screen/alert/status_effect/mute
+	alert_type = /atom/movable/screen/alert/status_effect/mute
 
-/obj/screen/alert/status_effect/mute
+/atom/movable/screen/alert/status_effect/mute
 	name = "Muted"
 	desc = "You can't speak!"
 	icon_state = "mute"
@@ -381,7 +381,7 @@
 	id = "irradiated"
 	status_type = STATUS_EFFECT_REFRESH
 	tick_interval = 20
-	alert_type = /obj/screen/alert/status_effect/irradiated
+	alert_type = /atom/movable/screen/alert/status_effect/irradiated
 	///Some effects only apply to carbons
 	var/mob/living/carbon/carbon_owner
 
@@ -414,7 +414,7 @@
 		if(organ)
 			organ.take_damage(5)
 
-/obj/screen/alert/status_effect/irradiated
+/atom/movable/screen/alert/status_effect/irradiated
 	name = "Irradiated"
 	desc = "You've been irradiated! The effects of the radiation will continue to harm you until purged from your system."
 	icon_state = "radiation"

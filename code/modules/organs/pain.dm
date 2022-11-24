@@ -1,5 +1,5 @@
 /mob/proc/flash_pain()
-	overlay_fullscreen("pain", /obj/screen/fullscreen/pain, 2)
+	overlay_fullscreen("pain", /atom/movable/screen/fullscreen/pain, 2)
 	clear_fullscreen("pain")
 
 ///TODO MOVE ME OR EVEN BETTER GET RID OF ME

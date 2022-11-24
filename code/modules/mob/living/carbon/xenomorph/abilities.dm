@@ -1063,7 +1063,7 @@
 /datum/action/xeno_action/rally_hive/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 
-	xeno_message("Our leader [X] is rallying the hive to [AREACOORD_NO_Z(X.loc)]!", "xenoannounce", 6, X.hivenumber, FALSE, X, 'sound/voice/alien_distantroar_3.ogg',TRUE,null,/obj/screen/arrow/leader_tracker_arrow)
+	xeno_message("Our leader [X] is rallying the hive to [AREACOORD_NO_Z(X.loc)]!", "xenoannounce", 6, X.hivenumber, FALSE, X, 'sound/voice/alien_distantroar_3.ogg',TRUE,null,/atom/movable/screen/arrow/leader_tracker_arrow)
 	notify_ghosts("\ [X] is rallying the hive to [AREACOORD_NO_Z(X.loc)]!", source = X, action = NOTIFY_JUMP)
 
 	succeed_activate()
