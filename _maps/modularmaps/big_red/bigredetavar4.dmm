@@ -784,8 +784,6 @@
 /obj/effect/decal/cleanable/blood/oil,
 /obj/machinery/light{
 	dir = 4;
-	icon_state = "tube1";
-	
 	},
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
@@ -989,8 +987,6 @@
 "VW" = (
 /obj/machinery/light{
 	dir = 4;
-	icon_state = "tube1";
-	
 	},
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)

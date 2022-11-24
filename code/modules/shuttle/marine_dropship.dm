@@ -765,6 +765,9 @@
 /turf/open/shuttle/dropship/floor
 	icon_state = "rasputin15"
 
+/turf/open/shuttle/dropship/floor/alt
+	icon_state = "rasputin14"
+
 /obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override)
 	. = ..()
 	if(!istype(port, /obj/docking_port/mobile/marine_dropship))
