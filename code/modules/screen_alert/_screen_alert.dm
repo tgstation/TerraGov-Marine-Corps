@@ -5,19 +5,19 @@
  * * text: text we want to be displayed
  * * alert_type: typepath for screen text type we want to play here
  */
-/mob/proc/play_screen_text(text, alert_type = /obj/screen/text/screen_text)
+/mob/proc/play_screen_text(text, alert_type = /atom/movable/screen/text/screen_text)
 	if(!client)
 		return
-	var/obj/screen/text/screen_text/text_box = new alert_type()
+	var/atom/movable/screen/text/screen_text/text_box = new alert_type()
 	text_box.text_to_play = text
 	LAZYADD(client.screen_texts, text_box)
 	if(LAZYLEN(client.screen_texts) == 1) //lets only play one at a time, for thematic effect and prevent overlap
-		INVOKE_ASYNC(text_box, /obj/screen/text/screen_text.proc/play_to_client, client)
+		INVOKE_ASYNC(text_box, /atom/movable/screen/text/screen_text.proc/play_to_client, client)
 		return
 	client.screen_texts += text_box
 
 
-/obj/screen/text/screen_text
+/atom/movable/screen/text/screen_text
 	icon = null
 	icon_state = null
 	alpha = 255
@@ -51,7 +51,7 @@
  * Arguments:
  * * player: client to play to
  */
-/obj/screen/text/screen_text/proc/play_to_client(client/player)
+/atom/movable/screen/text/screen_text/proc/play_to_client(client/player)
 	player?.screen += src
 	if(fade_in_time)
 		animate(src, alpha = 255)
@@ -78,7 +78,7 @@
 	addtimer(CALLBACK(src, .proc/after_play, player), fade_out_delay)
 
 ///handles post-play effects like fade out after the fade out delay
-/obj/screen/text/screen_text/proc/after_play(client/player)
+/atom/movable/screen/text/screen_text/proc/after_play(client/player)
 	if(!fade_out_time)
 		end_play(player)
 		return
@@ -86,7 +86,7 @@
 	addtimer(CALLBACK(src, .proc/end_play, player), fade_out_time)
 
 ///ends the play then deletes this screen object and plays the next one in queue if it exists
-/obj/screen/text/screen_text/proc/end_play(client/player)
+/atom/movable/screen/text/screen_text/proc/end_play(client/player)
 	player.screen -= src
 	LAZYREMOVE(player.screen_texts, src)
 	qdel(src)

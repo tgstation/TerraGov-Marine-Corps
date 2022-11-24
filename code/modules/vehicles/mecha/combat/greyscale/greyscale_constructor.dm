@@ -63,7 +63,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 			"ammo_type" = initial(ammo.ammo_type),
 		))
 
-/obj/screen/mech_builder_view
+/atom/movable/screen/mech_builder_view
 	name = "Mech preview"
 	del_on_map_removal = FALSE
 	layer = OBJ_LAYER
@@ -71,16 +71,16 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	///list of plane masters to apply to owners
 	var/list/plane_masters = list()
 
-/obj/screen/mech_builder_view/Initialize(mapload)
+/atom/movable/screen/mech_builder_view/Initialize(mapload)
 	. = ..()
 	assigned_map = "mech_preview_[REF(src)]"
 	set_position(1, 1)
-	for(var/plane_master_type in subtypesof(/obj/screen/plane_master) - /obj/screen/plane_master/blackness)
-		var/obj/screen/plane_master/plane_master = new plane_master_type()
+	for(var/plane_master_type in subtypesof(/atom/movable/screen/plane_master) - /atom/movable/screen/plane_master/blackness)
+		var/atom/movable/screen/plane_master/plane_master = new plane_master_type()
 		plane_master.screen_loc = "[assigned_map]:CENTER"
 		plane_masters += plane_master
 
-/obj/screen/mech_builder_view/Destroy()
+/atom/movable/screen/mech_builder_view/Destroy()
 	QDEL_LIST(plane_masters)
 	return ..()
 
@@ -129,7 +129,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	///List of max equipment that we're allowed to attach while using this console
 	var/equipment_max = MECH_GREYSCALE_MAX_EQUIP
 	///reference to the mech screen object
-	var/obj/screen/mech_builder_view/mech_view
+	var/atom/movable/screen/mech_builder_view/mech_view
 	///bool if the mech is currently assembling, stops Ui actions
 	var/currently_assembling = FALSE
 	///list of stat data that will be sent to the UI

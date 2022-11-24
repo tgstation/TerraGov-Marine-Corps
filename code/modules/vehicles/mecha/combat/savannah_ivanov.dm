@@ -272,7 +272,7 @@
 	RegisterSignal(chassis, COMSIG_MECHA_EQUIPMENT_CLICK, .proc/on_equipment_click)
 	owner.client.mouse_pointer_icon = 'icons/effects/supplypod_down_target.dmi'
 	owner.update_mouse_pointer()
-	owner.overlay_fullscreen("ivanov", /obj/screen/fullscreen/ivanov_display, 1)
+	owner.overlay_fullscreen("ivanov", /atom/movable/screen/fullscreen/ivanov_display, 1)
 	SEND_SOUND(owner, 'sound/machines/terminal_on.ogg') //spammable so I don't want to make it audible to anyone else
 
 /**

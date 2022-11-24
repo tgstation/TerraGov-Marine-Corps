@@ -699,7 +699,7 @@ to_chat will check for valid clients itself already so no need to double check f
 */
 
 ///Used for Hive Message alerts
-/datum/hive_status/proc/xeno_message(message = null, span_class = "xenoannounce", size = 5, force = FALSE, atom/target = null, sound = null, apply_preferences = FALSE, filter_list = null, arrow_type = /obj/screen/arrow/leader_tracker_arrow, arrow_color, report_distance)
+/datum/hive_status/proc/xeno_message(message = null, span_class = "xenoannounce", size = 5, force = FALSE, atom/target = null, sound = null, apply_preferences = FALSE, filter_list = null, arrow_type = /atom/movable/screen/arrow/leader_tracker_arrow, arrow_color, report_distance)
 
 	if(!force && !can_xeno_message())
 		return
@@ -721,7 +721,7 @@ to_chat will check for valid clients itself already so no need to double check f
 			X.playsound_local(X, sound, max(size * 20, 60), 0, 1)
 
 		if(target) //Apply tracker arrow to point to the subject of the message if applicable
-			var/obj/screen/arrow/arrow_hud = new arrow_type
+			var/atom/movable/screen/arrow/arrow_hud = new arrow_type
 			//Prepare the tracker object and set its parameters
 			arrow_hud.add_hud(X, target)
 			if(arrow_color) //Set the arrow to our custom colour if applicable

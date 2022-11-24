@@ -284,7 +284,7 @@ SUBSYSTEM_DEF(minimaps)
 
 
 /**
- * Fetches a /obj/screen/minimap instance or creates on if none exists
+ * Fetches a /atom/movable/screen/minimap instance or creates on if none exists
  * Note this does not destroy them when the map is unused, might be a potential thing to do?
  * Arguments:
  * * zlevel: zlevel to fetch map for
@@ -294,14 +294,14 @@ SUBSYSTEM_DEF(minimaps)
 	var/hash = "[zlevel]-[flags]"
 	if(hashed_minimaps[hash])
 		return hashed_minimaps[hash]
-	var/obj/screen/minimap/map = new(null, zlevel, flags)
+	var/atom/movable/screen/minimap/map = new(null, zlevel, flags)
 	if (!map.icon) //Don't wanna save an unusable minimap for a z-level.
 		CRASH("Empty and unusable minimap generated for '[zlevel]-[flags]'") //Can be caused by atoms calling this proc before minimap subsystem initializing.
 	hashed_minimaps[hash] = map
 	return map
 
 ///Default HUD screen minimap object
-/obj/screen/minimap
+/atom/movable/screen/minimap
 	name = "Minimap"
 	icon = null
 	icon_state = ""
@@ -309,7 +309,7 @@ SUBSYSTEM_DEF(minimaps)
 	screen_loc = "1,1"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
-/obj/screen/minimap/Initialize(mapload, target, flags)
+/atom/movable/screen/minimap/Initialize(mapload, target, flags)
 	. = ..()
 	if(!SSminimaps.minimaps_by_z["[target]"])
 		return
@@ -330,7 +330,7 @@ SUBSYSTEM_DEF(minimaps)
 	///boolean as to whether the minimap is currently shown
 	var/minimap_displayed = FALSE
 	///Minimap object we'll be displaying
-	var/obj/screen/minimap/map
+	var/atom/movable/screen/minimap/map
 	///This is mostly for the AI & other things which do not move groundside.
 	var/default_overwatch_level = 0
 

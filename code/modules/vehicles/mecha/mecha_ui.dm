@@ -1,5 +1,5 @@
 /// A preview of the mech for the UI
-/obj/screen/mech_view
+/atom/movable/screen/mech_view
 	name = "mechview"
 	del_on_map_removal = FALSE
 	layer = OBJ_LAYER
@@ -10,17 +10,17 @@
 	///list of plane masters to apply to owners
 	var/list/plane_masters = list()
 
-/obj/screen/mech_view/Initialize(mapload, obj/vehicle/sealed/mecha/newowner)
+/atom/movable/screen/mech_view/Initialize(mapload, obj/vehicle/sealed/mecha/newowner)
 	. = ..()
 	owner = newowner
 	assigned_map = "mech_view_[REF(owner)]"
 	set_position(1, 1)
-	for(var/plane_master_type in subtypesof(/obj/screen/plane_master) - /obj/screen/plane_master/blackness)
-		var/obj/screen/plane_master/plane_master = new plane_master_type()
+	for(var/plane_master_type in subtypesof(/atom/movable/screen/plane_master) - /atom/movable/screen/plane_master/blackness)
+		var/atom/movable/screen/plane_master/plane_master = new plane_master_type()
 		plane_master.screen_loc = "[assigned_map]:CENTER"
 		plane_masters += plane_master
 
-/obj/screen/mech_view/Destroy()
+/atom/movable/screen/mech_view/Destroy()
 	QDEL_LIST(plane_masters)
 	owner = null
 	return ..()

@@ -12,7 +12,7 @@ KEYBINDINGS
 	var/name = "Generic Action"
 	var/desc
 	var/datum/target = null
-	var/obj/screen/action_button/button = null
+	var/atom/movable/screen/action_button/button = null
 	var/mob/owner
 	var/action_icon = 'icons/mob/actions.dmi'
 	var/action_icon_state = "default"
@@ -225,7 +225,7 @@ KEYBINDINGS
 			if(A.should_show())
 				A.update_button_icon()
 				button_number++
-				var/obj/screen/action_button/B = A.button
+				var/atom/movable/screen/action_button/B = A.button
 				B.screen_loc = B.get_button_screen_loc(button_number)
 				if(reload_screen)
 					client.screen += B
