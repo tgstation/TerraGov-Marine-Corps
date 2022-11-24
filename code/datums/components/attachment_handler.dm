@@ -47,7 +47,7 @@
 	RegisterSignal(parent, COMSIG_ITEM_UNEQUIPPED, .proc/remove_overlay)
 
 ///Gets info about an attachment, can return null
-/datum/component/attachment_handler/proc/get_attachment_data(obj/attachment)
+/datum/component/attachment_handler/proc/get_attachment_data(obj/attachment) //can this actually return null? do we need to check for it every time we get it? will it crahs if we dont?
 	var/list/attachment_data = list()
 	SEND_SIGNAL(attachment, COMSIG_ITEM_IS_ATTACHING, attachment_data)
 	return attachment_data
@@ -73,7 +73,7 @@
 	return TRUE
 
 ///Checks if there is an attachment in a slot that cannot be removed
-/datum/component/attachment_handler/proc/has_unremovable_attachment(slot)
+/datum/component/attachment_handler/proc/has_unremovable_attachment(slot) //TODO: maybe needs better way to check
 	var/list/attachment_data = attachment_data_by_slot[slot]
 	if (!attachment_data)
 		return TRUE //no attachment found
@@ -86,7 +86,7 @@
 
 ///Gives the player a UI where they can select an attachment, returns the selected attachment
 /datum/component/attachment_handler/proc/player_select_attachment(mob/user, list/attachment_options)
-	return INVOKE_ASYNC(.proc/tgui_input_list, user, "Choose an attachment", "Choose attachment", attachment_options)
+	return tgui_input_list(user, "Choose an attachment", "Choose attachment", attachment_options)
 
 ///Attaches an attachment. This is an unsafe proc, check if the attachment is allowed to attach first.
 /datum/component/attachment_handler/proc/attach(obj/item/attachment, list/attachment_data, mob/attacher) //TODO: this all looks ugly?
@@ -154,7 +154,7 @@
 ///Run when parent is attacked by an attachment, starts mob's attempt to attach
 /datum/component/attachment_handler/proc/start_mob_attempt_attach(datum/source, obj/attacking, mob/attacker)
 	SIGNAL_HANDLER
-	mob_attempt_attach(attacking, attacker)
+	INVOKE_ASYNC(src, .proc/mob_attempt_attach, attacking, attacker)
 
 ///Makes a mob attempt to attach an attachment, replacing the current if able
 /datum/component/attachment_handler/proc/mob_attempt_attach(obj/attachment, mob/attacher)
@@ -179,7 +179,7 @@
 			to_chat(attacher, span_warning("You have to hold [parent] to do that!"))
 			return
 
-	if(!INVOKE_ASYNC(src, .proc/do_attach, attachment, attacher, attachment_data))
+	if(!do_attach(attachment, attacher, attachment_data))
 		return
 
 	attacher.visible_message(span_notice("[attacher] attaches [attachment] to [parent]."),
@@ -219,7 +219,7 @@
 ///Starts a mob's attempt to detach something from the parent, is called when the user Alt-Clicks the parent.
 /datum/component/attachment_handler/proc/start_mob_attempt_detatch(datum/source, mob/user)
 	SIGNAL_HANDLER
-	mob_attempt_detatch(user)
+	INVOKE_ASYNC(src, .proc/mob_attempt_detatch, user)
 
 ///Makes a mob attempt to detatch an attachment, based on a menu selection
 /datum/component/attachment_handler/proc/mob_attempt_detatch(mob/user)
@@ -247,10 +247,11 @@
 	if(!attachment_to_remove)
 		return
 
-	if (!do_detach(user, removable_attachments))
+	var/attachment_data = get_attachment_data(attachment_to_remove)
+	if (!do_detach(attachment_to_remove, user, attachment_data))
 		return
 
-	var/attachment_data = get_attachment_data(attachment_to_remove)
+
 	if (!length(attachment_data)) //TODO: can this ever actually run? will it crash if we skip this check?
 		return
 
@@ -281,7 +282,7 @@
 			span_notice("You begin fumbling about, trying to detach [attachment] from [parent]."), null, 4)
 			do_after_icon_type = BUSY_ICON_UNSKILLED
 
-	return INVOKE_ASYNC(src, .proc/do_after, attacher, detach_delay, TRUE, parent, do_after_icon_type)
+	return do_after(attacher, detach_delay, TRUE, parent, do_after_icon_type)
 
 ///This is for other objects to be able to attach things without the need for a user.
 /datum/component/attachment_handler/proc/attach_without_user(datum/source, obj/item/attachment)
