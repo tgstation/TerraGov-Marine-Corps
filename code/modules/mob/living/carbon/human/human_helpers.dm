@@ -200,7 +200,7 @@
 	var/protection = (prot["head"] + prot["arms"] + prot["feet"] + prot["legs"] + prot["groin"] + prot["chest"] + prot["hands"])/7
 	return protection
 
-mob/living/carbon/human/get_standard_bodytemperature()
+/mob/living/carbon/human/get_standard_bodytemperature()
 	return species.body_temperature
 
 /mob/living/carbon/human/get_policy_keywords()
