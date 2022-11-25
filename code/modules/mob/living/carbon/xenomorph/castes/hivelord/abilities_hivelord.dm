@@ -12,6 +12,7 @@
 		/turf/closed/wall/resin/regenerating/thick,
 		/obj/alien/resin/sticky,
 		/obj/structure/mineral_door/resin/thick,
+		/obj/structure/bed/nest,
 	)
 	///the maximum range of the ability
 	var/max_range = 1

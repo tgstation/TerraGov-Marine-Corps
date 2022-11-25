@@ -188,6 +188,7 @@
 		/turf/closed/wall/resin/regenerating,
 		/obj/alien/resin/sticky,
 		/obj/structure/mineral_door/resin,
+		/obj/structure/bed/nest,
 		)
 
 /datum/action/xeno_action/activable/secrete_resin/update_button_icon()

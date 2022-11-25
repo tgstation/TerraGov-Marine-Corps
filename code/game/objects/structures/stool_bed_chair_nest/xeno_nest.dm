@@ -1,9 +1,9 @@
-#define NEST_RESIST_TIME 2.5 SECONDS
+#define NEST_RESIST_TIME 1 MINUTES
 #define NEST_UNBUCKLED_COOLDOWN 5 SECONDS
 
 ///Alium nests. Essentially beds with an unbuckle delay that only aliums can buckle mobs to.
 /obj/structure/bed/nest
-	name = "alien nest"
+	name = ALIEN_NEST
 	desc = "It's a gruesome pile of thick, sticky resin shaped like a nest."
 	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "nest"
@@ -47,9 +47,6 @@
 		if(TIMER_COOLDOWN_CHECK(H, COOLDOWN_NEST))
 			to_chat(user, span_warning("[H] was recently unbuckled. Wait a bit."))
 			return FALSE
-		if(!H.lying_angle)
-			to_chat(user, span_warning("[H] is resisting, ground [H.p_them()]."))
-			return FALSE
 
 	user.visible_message(span_warning("[user] pins [buckling_mob] into [src], preparing the securing resin."),
 	span_warning("[user] pins [buckling_mob] into [src], preparing the securing resin."))
@@ -60,9 +57,6 @@
 		return FALSE
 	if(LAZYLEN(buckled_mobs))
 		to_chat(user, span_warning("There's already someone in [src]."))
-		return FALSE
-	if(ishuman(buckling_mob) && !buckling_mob.lying_angle) //Improperly stunned Marines won't be nested
-		to_chat(user, span_warning("[buckling_mob] is resisting, ground [buckling_mob.p_them()]."))
 		return FALSE
 
 	buckling_mob.visible_message(span_xenonotice("[user] secretes a thick, vile resin, securing [buckling_mob] into [src]!"),

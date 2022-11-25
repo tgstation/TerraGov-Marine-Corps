@@ -24,6 +24,7 @@
 #define RESIN_WALL "resin wall"
 #define STICKY_RESIN "sticky resin"
 #define RESIN_DOOR "resin door"
+#define ALIEN_NEST "alien nest"
 
 //Xeno reagents defines
 #define DEFILER_NEUROTOXIN "Neurotoxin"
@@ -104,7 +105,8 @@ GLOBAL_LIST_INIT(plant_images_list, list(
 GLOBAL_LIST_INIT(resin_images_list, list(
 		RESIN_WALL = image('icons/mob/actions.dmi', icon_state = RESIN_WALL),
 		STICKY_RESIN = image('icons/mob/actions.dmi', icon_state = STICKY_RESIN),
-		RESIN_DOOR = image('icons/mob/actions.dmi', icon_state = RESIN_DOOR)
+		RESIN_DOOR = image('icons/mob/actions.dmi', icon_state = RESIN_DOOR),
+		ALIEN_NEST = image('icons/mob/actions.dmi', icon_state = ALIEN_NEST)
 		))
 
 //xeno upgrade flags
