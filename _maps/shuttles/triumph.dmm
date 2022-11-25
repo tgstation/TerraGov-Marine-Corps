@@ -20,46 +20,59 @@
 /area/shuttle/dropship/triumph)
 "ae" = (
 /obj/structure/dropship_piece/one/cockpit/left,
+/obj/structure/prop/holidays/string_lights/corner,
 /turf/template_noop,
 /area/shuttle/dropship/triumph)
 "af" = (
-/turf/closed/shuttle/dropship1/window,
+/obj/structure/prop/holidays/string_lights,
+/turf/closed/shuttle/dropship3/transparent{
+	icon_state = "96"
+	},
 /area/shuttle/dropship/triumph)
 "ag" = (
-/turf/closed/shuttle/dropship1/window{
-	dir = 4
+/obj/structure/prop/holidays/string_lights,
+/turf/closed/shuttle/dropship3/transparent{
+	icon_state = "97"
 	},
 /area/shuttle/dropship/triumph)
 "ah" = (
-/turf/closed/shuttle/dropship1/window{
-	dir = 8
+/obj/structure/prop/holidays/string_lights,
+/turf/closed/shuttle/dropship3/transparent{
+	icon_state = "98"
 	},
 /area/shuttle/dropship/triumph)
 "ai" = (
 /obj/structure/dropship_piece/one/cockpit/right,
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 1
+	},
 /turf/template_noop,
 /area/shuttle/dropship/triumph)
 "aj" = (
-/turf/closed/shuttle/dropship1/cornersalt{
+/obj/structure/prop/holidays/string_lights{
 	dir = 4
+	},
+/turf/closed/shuttle/dropship3{
+	icon_state = "92"
 	},
 /area/shuttle/dropship/triumph)
 "ak" = (
 /obj/machinery/computer/security/dropship/three,
-/turf/closed/shuttle/dropship1/panel,
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/triumph)
 "al" = (
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/triumph)
 "am" = (
 /obj/machinery/computer/dropship_weapons/dropship3,
-/turf/closed/shuttle/dropship1/panel{
-	dir = 4
-	},
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/triumph)
 "an" = (
-/turf/closed/shuttle/dropship1/cornersalt{
+/obj/structure/prop/holidays/string_lights{
 	dir = 8
+	},
+/turf/closed/shuttle/dropship3{
+	icon_state = "94"
 	},
 /area/shuttle/dropship/triumph)
 "ao" = (
@@ -80,8 +93,11 @@
 /turf/template_noop,
 /area/shuttle/dropship/triumph)
 "ar" = (
-/turf/closed/shuttle/dropship1/interiorwindow{
+/obj/structure/prop/holidays/string_lights/corner{
 	dir = 4
+	},
+/turf/closed/shuttle/dropship3/transparent{
+	icon_state = "86"
 	},
 /area/shuttle/dropship/triumph)
 "as" = (
@@ -89,6 +105,9 @@
 	dir = 1
 	},
 /obj/machinery/light,
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/triumph)
 "at" = (
@@ -106,11 +125,17 @@
 	pixel_x = -6;
 	pixel_y = -16
 	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/triumph)
 "av" = (
-/turf/closed/shuttle/dropship1/interiorwindow{
-	dir = 1
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 8
+	},
+/turf/closed/shuttle/dropship3/transparent{
+	icon_state = "89"
 	},
 /area/shuttle/dropship/triumph)
 "aw" = (
@@ -128,11 +153,30 @@
 /turf/template_noop,
 /area/shuttle/dropship/triumph)
 "ay" = (
-/turf/closed/shuttle/dropship1/cornersalt2,
+/obj/structure/prop/holidays/string_lights/corner,
+/turf/closed/shuttle/dropship3{
+	icon_state = "75"
+	},
+/area/shuttle/dropship/triumph)
+"az" = (
+/obj/structure/prop/holidays/string_lights,
+/turf/closed/shuttle/dropship3{
+	icon_state = "76"
+	},
+/area/shuttle/dropship/triumph)
+"aA" = (
+/obj/structure/prop/holidays/string_lights,
+/turf/closed/shuttle/dropship3{
+	icon_state = "81"
+	},
 /area/shuttle/dropship/triumph)
 "aB" = (
-/turf/closed/shuttle/dropship1/interiormisc{
-	dir = 4
+/obj/structure/prop/holidays/string_lights,
+/obj/structure/prop/holidays/wreath{
+	dir = 8
+	},
+/turf/closed/shuttle/dropship3{
+	icon_state = "78"
 	},
 /area/shuttle/dropship/triumph)
 "aC" = (
@@ -140,16 +184,26 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/triumph)
 "aD" = (
-/turf/closed/shuttle/dropship1/interiormisc{
+/obj/structure/prop/holidays/string_lights,
+/obj/structure/prop/holidays/wreath{
 	dir = 8
+	},
+/turf/closed/shuttle/dropship3{
+	icon_state = "80"
 	},
 /area/shuttle/dropship/triumph)
 "aE" = (
-/turf/closed/shuttle/dropship1/edge,
+/obj/structure/prop/holidays/string_lights,
+/turf/closed/shuttle/dropship3{
+	icon_state = "77"
+	},
 /area/shuttle/dropship/triumph)
 "aF" = (
-/turf/closed/shuttle/dropship1/cornersalt2{
+/obj/structure/prop/holidays/string_lights/corner{
 	dir = 1
+	},
+/turf/closed/shuttle/dropship3{
+	icon_state = "83"
 	},
 /area/shuttle/dropship/triumph)
 "aG" = (
@@ -157,8 +211,11 @@
 /turf/template_noop,
 /area/shuttle/dropship/triumph)
 "aH" = (
-/turf/closed/shuttle/dropship1/finleft{
+/obj/structure/prop/holidays/string_lights{
 	dir = 4
+	},
+/turf/closed/shuttle/dropship3{
+	icon_state = "72"
 	},
 /area/shuttle/dropship/triumph)
 "aI" = (
@@ -169,10 +226,20 @@
 /area/shuttle/dropship/triumph)
 "aJ" = (
 /obj/item/radio/intercom/dropship/triumph,
-/turf/open/shuttle/dropship/six,
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin6"
+	},
 /area/shuttle/dropship/triumph)
 "aK" = (
 /turf/open/shuttle/dropship/five,
+/area/shuttle/dropship/triumph)
+"aL" = (
+/obj/structure/prop/holidays/string_lights/cap{
+	dir = 1
+	},
+/turf/open/shuttle/dropship{
+	icon_state = "floor8"
+	},
 /area/shuttle/dropship/triumph)
 "aM" = (
 /obj/item/radio/intercom/dropship/triumph,
@@ -185,8 +252,11 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/triumph)
 "aO" = (
-/turf/closed/shuttle/dropship1/finright{
-	dir = 4
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/shuttle/dropship3{
+	icon_state = "73"
 	},
 /area/shuttle/dropship/triumph)
 "aP" = (
@@ -194,20 +264,31 @@
 /turf/template_noop,
 /area/shuttle/dropship/triumph)
 "aQ" = (
-/turf/closed/shuttle/dropship1/finleft{
-	dir = 8
+/turf/closed/shuttle/dropship3/transparent{
+	icon_state = "66"
 	},
 /area/shuttle/dropship/triumph)
 "aR" = (
-/turf/closed/shuttle/dropship1/finleft{
-	dir = 1
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/turf/closed/shuttle/dropship3{
+	icon_state = "67"
 	},
 /area/shuttle/dropship/triumph)
 "aS" = (
 /turf/open/shuttle/dropship/three,
 /area/shuttle/dropship/triumph)
 "aT" = (
-/turf/closed/shuttle/dropship1/aisle,
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/shuttle/dropship3{
+	icon_state = "68"
+	},
 /area/shuttle/dropship/triumph)
 "aU" = (
 /obj/structure/bed/chair/dropship/passenger{
@@ -220,36 +301,57 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/triumph)
 "aV" = (
-/turf/closed/shuttle/dropship1/finright{
-	dir = 1
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/shuttle/dropship3{
+	icon_state = "69"
 	},
 /area/shuttle/dropship/triumph)
 "aW" = (
-/turf/closed/shuttle/dropship1/finright{
-	dir = 8
+/turf/closed/shuttle/dropship3/transparent{
+	icon_state = "70"
 	},
 /area/shuttle/dropship/triumph)
 "aX" = (
-/obj/effect/attach_point/weapon/dropship1{
+/obj/effect/attach_point/weapon/dropship3{
 	dir = 8;
+	icon_state = "equip_base_l_wing"
 	},
 /obj/structure/dropship_piece/one/wing/left/bottom,
 /turf/template_noop,
 /area/shuttle/dropship/triumph)
 "aY" = (
-/turf/closed/shuttle/dropship1/finleft,
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/turf/closed/shuttle/dropship3{
+	icon_state = "62"
+	},
 /area/shuttle/dropship/triumph)
 "aZ" = (
-/turf/closed/shuttle/dropship1/aisle{
+/obj/structure/prop/holidays/string_lights{
 	dir = 4
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/shuttle/dropship3{
+	icon_state = "63"
 	},
 /area/shuttle/dropship/triumph)
 "ba" = (
-/turf/closed/shuttle/dropship1/finright,
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/shuttle/dropship3{
+	icon_state = "64"
+	},
 /area/shuttle/dropship/triumph)
 "bb" = (
-/obj/effect/attach_point/weapon/dropship1{
+/obj/effect/attach_point/weapon/dropship3{
 	dir = 4;
+	icon_state = "equip_base_r_wing"
 	},
 /obj/structure/dropship_piece/one/wing/right/bottom,
 /turf/template_noop,
@@ -277,22 +379,41 @@
 	},
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/triumph)
+"bf" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/turf/closed/shuttle/dropship3{
+	icon_state = "52"
+	},
+/area/shuttle/dropship/triumph)
 "bg" = (
 /obj/docking_port/mobile/marine_dropship/three,
-/turf/closed/shuttle/dropship1/aisle{
-	dir = 8
+/obj/structure/prop/holidays/string_lights/cap,
+/turf/closed/shuttle/dropship3{
+	icon_state = "53"
 	},
 /area/shuttle/dropship/triumph)
 "bh" = (
-/turf/closed/shuttle/dropship1/edge/alt,
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/shuttle/dropship3{
+	icon_state = "54"
+	},
 /area/shuttle/dropship/triumph)
 "bi" = (
-/turf/closed/shuttle/dropship1/edge/alt{
-	dir = 8
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 4
+	},
+/turf/closed/shuttle/dropship3{
+	icon_state = "50"
 	},
 /area/shuttle/dropship/triumph)
 "bj" = (
-/turf/open/shuttle/dropship/four,
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin4"
+	},
 /area/shuttle/dropship/triumph)
 "bk" = (
 /obj/item/radio/intercom/dropship/triumph,
@@ -301,20 +422,36 @@
 "bl" = (
 /turf/open/shuttle/dropship/eight,
 /area/shuttle/dropship/triumph)
+"bm" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 8
+	},
+/turf/closed/shuttle/dropship3{
+	icon_state = "51"
+	},
+/area/shuttle/dropship/triumph)
 "bn" = (
 /obj/structure/dropship_piece/one/corner/middleleft,
 /turf/template_noop,
 /area/shuttle/dropship/triumph)
 "bo" = (
-/turf/closed/shuttle/dropship1/cornersalt,
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/turf/closed/shuttle/dropship3{
+	icon_state = "47"
+	},
 /area/shuttle/dropship/triumph)
 "bp" = (
 /obj/structure/bed/chair/dropship/passenger,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/triumph)
 "bq" = (
-/turf/closed/shuttle/dropship1/cornersalt{
-	dir = 1
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/shuttle/dropship3{
+	icon_state = "48"
 	},
 /area/shuttle/dropship/triumph)
 "br" = (
@@ -330,8 +467,11 @@
 /turf/template_noop,
 /area/shuttle/dropship/triumph)
 "bu" = (
-/turf/closed/shuttle/dropship1/edge/alt{
-	dir = 1
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/turf/closed/shuttle/dropship3{
+	icon_state = "42"
 	},
 /area/shuttle/dropship/triumph)
 "bv" = (
@@ -357,16 +497,21 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/triumph)
 "by" = (
-/turf/closed/shuttle/dropship1/edge/alt{
-	dir = 4
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/shuttle/dropship3{
+	icon_state = "43"
 	},
 /area/shuttle/dropship/triumph)
 "bB" = (
-/turf/closed/shuttle/dropship1/enginefour,
+/turf/closed/shuttle/dropship3/transparent{
+	icon_state = "34"
+	},
 /area/shuttle/dropship/triumph)
 "bC" = (
-/turf/closed/shuttle/dropship1/enginefour{
-	dir = 1
+/turf/closed/shuttle/dropship3/transparent{
+	icon_state = "35"
 	},
 /area/shuttle/dropship/triumph)
 "bD" = (
@@ -380,71 +525,89 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/triumph)
 "bE" = (
-/turf/closed/shuttle/dropship1/enginefour{
-	dir = 4
+/turf/closed/shuttle/dropship3/transparent{
+	icon_state = "38"
 	},
 /area/shuttle/dropship/triumph)
 "bF" = (
-/turf/closed/shuttle/dropship1/enginefour{
-	dir = 8
+/turf/closed/shuttle/dropship3/transparent{
+	icon_state = "39"
 	},
 /area/shuttle/dropship/triumph)
 "bG" = (
 /obj/effect/attach_point/fuel/dropship3,
-/turf/closed/shuttle/dropship1/enginethree,
+/turf/closed/shuttle/dropship3/transparent{
+	icon_state = "28"
+	},
 /area/shuttle/dropship/triumph)
 "bH" = (
-/turf/closed/shuttle/dropship1/enginethree{
-	dir = 1
+/turf/closed/shuttle/dropship3/transparent{
+	icon_state = "29"
 	},
 /area/shuttle/dropship/triumph)
 "bI" = (
-/turf/closed/shuttle/dropship1/wall{
+/obj/structure/prop/holidays/string_lights{
 	dir = 4
+	},
+/turf/closed/shuttle/dropship3{
+	icon_state = "30"
 	},
 /area/shuttle/dropship/triumph)
 "bJ" = (
-/turf/closed/shuttle/dropship1/wall{
+/obj/structure/prop/holidays/string_lights{
 	dir = 8
+	},
+/turf/closed/shuttle/dropship3{
+	icon_state = "31"
 	},
 /area/shuttle/dropship/triumph)
 "bK" = (
-/turf/closed/shuttle/dropship1/enginethree{
-	dir = 8
+/turf/closed/shuttle/dropship3/transparent{
+	icon_state = "32"
 	},
 /area/shuttle/dropship/triumph)
 "bL" = (
 /obj/effect/attach_point/fuel/dropship3{
 	pixel_x = -32
 	},
-/turf/closed/shuttle/dropship1/enginethree{
-	dir = 4
+/turf/closed/shuttle/dropship3/transparent{
+	icon_state = "33"
 	},
 /area/shuttle/dropship/triumph)
 "bM" = (
-/turf/closed/shuttle/dropship1/enginetwo,
+/turf/closed/shuttle/dropship3/transparent{
+	icon_state = "22"
+	},
 /area/shuttle/dropship/triumph)
 "bN" = (
-/turf/closed/shuttle/dropship1/enginetwo{
-	dir = 1
+/turf/closed/shuttle/dropship3/transparent{
+	icon_state = "23"
 	},
 /area/shuttle/dropship/triumph)
 "bO" = (
-/turf/closed/shuttle/dropship1/wall,
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/turf/closed/shuttle/dropship3{
+	icon_state = "24"
+	},
 /area/shuttle/dropship/triumph)
 "bP" = (
-/turf/closed/shuttle/dropship1/wall{
-	dir = 1
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/shuttle/dropship3{
+	icon_state = "25"
 	},
 /area/shuttle/dropship/triumph)
 "bQ" = (
-/turf/closed/shuttle/dropship1/enginetwo{
-	dir = 4
+/turf/closed/shuttle/dropship3/transparent{
+	icon_state = "26"
 	},
 /area/shuttle/dropship/triumph)
 "bR" = (
-/turf/closed/shuttle/dropship1/enginetwo{
-	dir = 8
+/turf/closed/shuttle/dropship3/transparent{
+	icon_state = "27"
 	},
 /area/shuttle/dropship/triumph)
 "bS" = (
@@ -460,7 +623,9 @@
 /turf/template_noop,
 /area/shuttle/dropship/triumph)
 "bX" = (
-/turf/closed/shuttle/dropship1/interiormisc,
+/turf/closed/shuttle/dropship3{
+	icon_state = "10"
+	},
 /area/shuttle/dropship/triumph)
 "bY" = (
 /obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/ds1,
@@ -476,8 +641,8 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/triumph)
 "ca" = (
-/turf/closed/shuttle/dropship1/interiormisc{
-	dir = 1
+/turf/closed/shuttle/dropship3{
+	icon_state = "14"
 	},
 /area/shuttle/dropship/triumph)
 "cb" = (
@@ -516,10 +681,54 @@
 /obj/structure/dropship_piece/one/rearwing/rightrrbottom,
 /turf/template_noop,
 /area/shuttle/dropship/triumph)
+"fS" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 9
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/triumph)
+"hz" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 5
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/triumph)
 "Ki" = (
 /obj/machinery/computer/shuttle/marine_dropship/three,
-/turf/closed/shuttle/dropship1/panel{
-	dir = 1
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/triumph)
+"Lj" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 8
+	},
+/turf/closed/shuttle/dropship3{
+	icon_state = "43"
+	},
+/area/shuttle/dropship/triumph)
+"NP" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 4
+	},
+/turf/closed/shuttle/dropship3{
+	icon_state = "42"
+	},
+/area/shuttle/dropship/triumph)
+"Zx" = (
+/obj/machinery/telecomms/relay/preset/telecomms/onboard,
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/shuttle/dropship3{
+	icon_state = "63"
 	},
 /area/shuttle/dropship/triumph)
 
@@ -557,7 +766,7 @@ aR
 aY
 ac
 ac
-bu
+bf
 bi
 bn
 bt
@@ -574,20 +783,20 @@ ao
 ao
 ao
 aq
-aE
+az
 aI
 aI
 aI
 al
 al
 aI
-aI
+hz
 bo
 bu
 bu
 bI
 bO
-bu
+NP
 bW
 ao
 cf
@@ -597,7 +806,7 @@ aa
 ae
 aj
 ar
-aE
+aA
 aJ
 aS
 aS
@@ -610,7 +819,7 @@ bv
 bD
 be
 aI
-aI
+hz
 bX
 cc
 cg
@@ -644,10 +853,10 @@ ag
 Ki
 at
 aC
-aK
+aL
 aT
 aZ
-aZ
+Zx
 aZ
 bg
 bk
@@ -702,7 +911,7 @@ bx
 aN
 bd
 aN
-aN
+fS
 ca
 cd
 ci
@@ -712,20 +921,20 @@ ao
 ao
 ao
 aw
-aE
+az
 aN
 aU
 aN
 al
 al
 aN
-aN
+fS
 bq
 by
-bh
+by
 bJ
 bP
-by
+Lj
 cb
 ao
 cj
@@ -742,7 +951,7 @@ ba
 bc
 bc
 bh
-by
+bm
 br
 bs
 bE

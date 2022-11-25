@@ -3034,7 +3034,8 @@
 /area/sulaco/bridge)
 "apn" = (
 /obj/structure/table/mainship/nometal,
-/obj/structure/flora/pottedplant/fifteen{
+/obj/structure/flora/pottedplant{
+	icon_state = "plant-15";
 	pixel_y = 10
 	},
 /turf/open/floor/prison/red{
@@ -10756,6 +10757,7 @@
 "bwn" = (
 /obj/effect/attach_point/weapon/dropship1{
 	dir = 8;
+	icon_state = "equip_base_l_wing"
 	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
@@ -13373,6 +13375,7 @@
 "eNh" = (
 /obj/effect/attach_point/weapon/dropship2{
 	dir = 4;
+	icon_state = "equip_base_r_wing"
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar/cas)
@@ -17097,8 +17100,9 @@
 /turf/open/floor/plating,
 /area/sulaco/maintenance/upperdeck_north_maint)
 "jBs" = (
-/turf/open/floor/plating/icefloor/warnplate/corner{
+/turf/open/floor/plating{
 	dir = 4;
+	icon_state = "warnplatecorner"
 	},
 /area/sulaco/hangar)
 "jBX" = (
@@ -19231,7 +19235,9 @@
 	},
 /area/sulaco/marine)
 "mno" = (
-/obj/structure/prop/mainship/name_stencil/M,
+/obj/structure/prop/mainship/name_stencil{
+	icon_state = "TGMC3"
+	},
 /turf/open/floor/mainship_hull/gray,
 /area/space)
 "mnO" = (
@@ -19830,7 +19836,8 @@
 /turf/open/floor/prison/plate,
 /area/shuttle/distress/arrive_2)
 "nae" = (
-/obj/structure/flora/pottedplant/twentyone{
+/obj/structure/flora/pottedplant{
+	icon_state = "plant-21";
 	pixel_x = 31
 	},
 /turf/closed/wall/mainship/gray/outer,
@@ -20449,7 +20456,9 @@
 /turf/open/floor/prison,
 /area/sulaco/cargo)
 "nTc" = (
-/obj/structure/prop/mainship/name_stencil/G,
+/obj/structure/prop/mainship/name_stencil{
+	icon_state = "TGMC2"
+	},
 /turf/open/floor/mainship_hull/gray,
 /area/space)
 "nTz" = (
@@ -20874,7 +20883,9 @@
 	},
 /area/sulaco/hangar/droppod)
 "orU" = (
-/obj/structure/prop/mainship/name_stencil/C,
+/obj/structure/prop/mainship/name_stencil{
+	icon_state = "TGMC4"
+	},
 /turf/open/floor/mainship_hull/gray,
 /area/space)
 "osb" = (
@@ -24805,6 +24816,7 @@
 "sYa" = (
 /obj/effect/attach_point/weapon/dropship2{
 	dir = 8;
+	icon_state = "equip_base_l_wing"
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar/cas)
@@ -27479,7 +27491,9 @@
 /turf/open/floor/mainship/tcomms,
 /area/sulaco/command/ai)
 "wnS" = (
-/obj/structure/flora/pottedplant/five,
+/obj/structure/flora/pottedplant{
+	icon_state = "plant-05"
+	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hydro)
 "woe" = (
@@ -27766,8 +27780,9 @@
 /turf/open/floor/prison/kitchen,
 /area/sulaco/cafeteria)
 "wKu" = (
-/turf/open/floor/plating/icefloor/warnplate/corner{
+/turf/open/floor/plating{
 	dir = 8;
+	icon_state = "warnplatecorner"
 	},
 /area/sulaco/hangar)
 "wKB" = (
@@ -28573,7 +28588,9 @@
 "xMz" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship,
-/obj/structure/flora/pottedplant/five,
+/obj/structure/flora/pottedplant{
+	icon_state = "plant-05"
+	},
 /turf/open/floor/tile/hydro,
 /area/sulaco/hydro)
 "xMC" = (

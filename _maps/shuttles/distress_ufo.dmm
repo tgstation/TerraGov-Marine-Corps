@@ -3,27 +3,36 @@
 /turf/template_noop,
 /area/template_noop)
 "b" = (
+/obj/structure/prop/holidays/string_lights/corner,
 /turf/closed/shuttle/ert{
 	icon_state = "stan20"
 	},
 /area/shuttle/ert)
 "c" = (
+/obj/structure/prop/holidays/string_lights,
 /turf/closed/shuttle/ert{
 	icon_state = "stan21"
 	},
 /area/shuttle/ert)
 "d" = (
 /obj/docking_port/mobile/ert,
+/obj/structure/prop/holidays/string_lights,
 /turf/closed/shuttle/ert{
 	icon_state = "stan27"
 	},
 /area/shuttle/ert)
 "e" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 1
+	},
 /turf/closed/shuttle/ert{
 	icon_state = "stan25"
 	},
 /area/shuttle/ert)
 "f" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 6
+	},
 /turf/closed/shuttle/ert{
 	icon_state = "stan22"
 	},
@@ -39,11 +48,17 @@
 /turf/open/floor/podhatch/floor,
 /area/shuttle/ert)
 "i" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 10
+	},
 /turf/closed/shuttle/ert{
 	icon_state = "stan23"
 	},
 /area/shuttle/ert)
 "j" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
 /turf/closed/shuttle/ert,
 /area/shuttle/ert)
 "k" = (
@@ -69,6 +84,9 @@
 /turf/open/floor/light,
 /area/shuttle/ert)
 "o" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
 /turf/closed/shuttle/ert{
 	icon_state = "stan5"
 	},
@@ -104,6 +122,9 @@
 	},
 /area/shuttle/ert)
 "v" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 4
+	},
 /turf/closed/shuttle/ert{
 	icon_state = "stan8"
 	},
@@ -111,6 +132,9 @@
 "w" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
 	},
 /turf/open/floor/light,
 /area/shuttle/ert)
@@ -121,9 +145,15 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
 	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
 /turf/open/floor/light,
 /area/shuttle/ert)
 "z" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 8
+	},
 /turf/closed/shuttle/ert{
 	icon_state = "stan9"
 	},
@@ -147,13 +177,47 @@
 	},
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert)
+"E" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 4
+	},
+/turf/closed/shuttle/ert,
+/area/shuttle/ert)
+"J" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/effect/landmark/distress_item,
+/obj/structure/prop/holidays/string_lights{
+	dir = 9
+	},
+/turf/open/floor/light,
+/area/shuttle/ert)
+"V" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 8
+	},
+/turf/closed/shuttle/ert{
+	icon_state = "stan5"
+	},
+/area/shuttle/ert)
+"W" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/effect/landmark/distress_item,
+/obj/structure/prop/holidays/string_lights{
+	dir = 5
+	},
+/turf/open/floor/light,
+/area/shuttle/ert)
 
 (1,1,1) = {"
 a
 b
 j
 j
-j
+E
 u
 a
 "}
@@ -162,7 +226,7 @@ b
 f
 k
 p
-k
+W
 v
 u
 "}
@@ -198,7 +262,7 @@ e
 i
 n
 s
-n
+J
 z
 A
 "}
@@ -207,7 +271,7 @@ a
 e
 o
 o
-o
+V
 A
 a
 "}

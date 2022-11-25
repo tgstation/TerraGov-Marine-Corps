@@ -65,7 +65,9 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/shuttle/dropship/six,
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin6"
+	},
 /area/shuttle/ert)
 "l" = (
 /turf/open/shuttle/dropship{
@@ -131,7 +133,9 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert)
 "v" = (
-/turf/open/shuttle/dropship/four,
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin4"
+	},
 /area/shuttle/ert)
 "w" = (
 /turf/open/shuttle/dropship/eight,
@@ -226,21 +230,27 @@
 	},
 /area/shuttle/ert)
 "O" = (
-/turf/closed/shuttle/ert/engines/left{
-	dir = 1;
+/turf/closed/shuttle/ert{
+	icon_state = "leftengine_2";
+	opacity = 0
 	},
 /area/shuttle/ert)
 "Q" = (
-/turf/closed/shuttle/ert/engines/right{
+/turf/closed/shuttle/ert{
+	icon_state = "rightengine_1";
+	opacity = 0
 	},
 /area/shuttle/ert)
 "R" = (
-/turf/closed/shuttle/ert/engines/left{
+/turf/closed/shuttle/ert{
+	icon_state = "leftengine_1";
+	opacity = 0
 	},
 /area/shuttle/ert)
 "S" = (
-/turf/closed/shuttle/ert/engines/right{
-	dir = 1;
+/turf/closed/shuttle/ert{
+	icon_state = "rightengine_2";
+	opacity = 0
 	},
 /area/shuttle/ert)
 "U" = (
