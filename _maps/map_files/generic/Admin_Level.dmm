@@ -22,6 +22,12 @@
 	},
 /turf/open/floor/grass,
 /area/centcom/valhalla/hydroponics)
+"adh" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/wall/mainship,
+/area/tdome)
 "adx" = (
 /obj/structure/table,
 /obj/item/toy/dice,
@@ -71,6 +77,15 @@
 /obj/structure/girder,
 /turf/open/floor/plating/scorched,
 /area/centcom/valhalla/security/brig/interiorcavern)
+"aiG" = (
+/obj/structure/table/woodentable,
+/obj/effect/spawner/random/christmas_food{
+	pixel_x = 5;
+	pixel_y = 4
+	},
+/obj/effect/spawner/random/christmas_food,
+/turf/open/floor/wood,
+/area/tdome/tdomeobserve)
 "ajh" = (
 /obj/machinery/alarm,
 /obj/effect/ai_node,
@@ -490,6 +505,12 @@
 /obj/structure/sign/securearea,
 /turf/closed/wall,
 /area/centcom/valhalla/secondary/exit)
+"aEy" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/turf/closed/wall/mainship,
+/area/tdome)
 "aFd" = (
 /obj/structure/table,
 /obj/item/clipboard,
@@ -725,6 +746,11 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/valhalla/crew_quarters/heads/hop)
+"aVf" = (
+/obj/structure/rack/nometal,
+/obj/effect/spawner/random_set/christmas_costume,
+/turf/open/floor/plating,
+/area/tdome)
 "aVk" = (
 /obj/machinery/door/airlock/mainship/generic/bathroom,
 /turf/open/floor/mainship/sterile/white,
@@ -1107,6 +1133,12 @@
 /obj/effect/decal/sandedge/corner2,
 /turf/open/floor/plating,
 /area/centcom/valhalla/security/brig/interiorcavern)
+"bnH" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 6
+	},
+/turf/closed/wall/mainship,
+/area/tdome)
 "bnV" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/dmg1,
@@ -1192,6 +1224,12 @@
 /obj/item/toy/deck/kotahi,
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
+"bzo" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 1
+	},
+/turf/closed/wall/mainship,
+/area/tdome)
 "bzq" = (
 /obj/effect/decal/warning_stripes/box/small{
 	dir = 1
@@ -1848,6 +1886,12 @@
 	},
 /turf/open/floor/freezer,
 /area/centcom/valhalla/crew_quarters/toilet)
+"cug" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
+/turf/open/floor,
+/area/tdome)
 "cuM" = (
 /turf/open/floor/carpet/side{
 	dir = 5
@@ -2141,6 +2185,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/white,
 /area/centcom/valhalla/crew_quarters/captain)
+"cNx" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
+/turf/open/floor,
+/area/tdome)
 "cNG" = (
 /obj/machinery/door/airlock/mainship/generic/bathroom,
 /turf/open/floor/grimy,
@@ -2422,6 +2473,15 @@
 	},
 /turf/closed/wall/r_wall/unmeltable,
 /area/centcom/valhalla/crew_quarters/captain)
+"dke" = (
+/obj/machinery/igniter,
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
+/turf/open/floor/tile/blue/taupeblue{
+	dir = 4
+	},
+/area/tdome)
 "dkn" = (
 /obj/item/radio/intercom{
 	broadcasting = 1;
@@ -3484,6 +3544,15 @@
 	dir = 4
 	},
 /area/tdome)
+"eyb" = (
+/obj/machinery/igniter,
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
+/turf/open/floor/tile/red/redtaupe{
+	dir = 8
+	},
+/area/tdome)
 "eys" = (
 /obj/machinery/door_control/old/valhalla{
 	id = "cargounload";
@@ -4254,6 +4323,13 @@
 	},
 /turf/open/floor/tile/neutral/corner,
 /area/centcom/valhalla/secondary/entry)
+"fEQ" = (
+/obj/structure/prop/holidays/string_lights/corner,
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/wall/mainship,
+/area/tdome)
 "fHt" = (
 /turf/open/floor/tile/neutral/corner{
 	dir = 8
@@ -4288,6 +4364,15 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/neutral/corner,
 /area/centcom/valhalla/primary/fore)
+"fIA" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 4
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/wall/mainship,
+/area/tdome)
 "fIC" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /obj/effect/decal/warning_stripes/thick{
@@ -4561,6 +4646,15 @@
 "fWu" = (
 /turf/closed/mineral/smooth/indestructible,
 /area/centcom/valhalla/exterior)
+"fXe" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/wall/mainship,
+/area/tdome)
 "fXm" = (
 /obj/effect/decal/tile/black{
 	dir = 8
@@ -6604,6 +6698,12 @@
 "iZD" = (
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/engine/engineering)
+"iZL" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/tdome)
 "iZT" = (
 /obj/machinery/computer/security/telescreen,
 /obj/structure/table,
@@ -6856,6 +6956,13 @@
 	},
 /turf/open/floor/tile/neutral/corner,
 /area/centcom/valhalla/starboard_hallway)
+"jrb" = (
+/obj/structure/rack/nometal,
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/tdome)
 "jru" = (
 /obj/effect/decal/tile/blue{
 	dir = 8
@@ -7245,6 +7352,14 @@
 	dir = 1
 	},
 /area/centcom/valhalla/secondary/entry)
+"jNI" = (
+/obj/structure/table/woodentable,
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_y = 32
+	},
+/obj/effect/spawner/random/christmas_food,
+/turf/open/floor/wood,
+/area/tdome/tdomeobserve)
 "jNR" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/regular,
@@ -7518,6 +7633,7 @@
 /area/centcom/valhalla/engine/engineering)
 "keG" = (
 /obj/structure/table,
+/obj/effect/spawner/random/christmas_food,
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "keP" = (
@@ -7952,7 +8068,7 @@
 /area/centcom/valhalla/primary/aft)
 "kHt" = (
 /obj/structure/table/woodentable,
-/obj/structure/reagent_dispensers/beerkeg,
+/obj/item/reagent_containers/food/drinks/bottle/eggnog,
 /turf/open/floor/wood,
 /area/tdome/tdomeobserve)
 "kIe" = (
@@ -8015,6 +8131,15 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla/security/brig/interiorcavern)
+"kKs" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/turf/closed/wall/mainship,
+/area/tdome)
 "kKv" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/window{
@@ -9845,6 +9970,14 @@
 	},
 /turf/closed/wall/r_wall,
 /area/centcom/valhalla/storage/eva)
+"nkm" = (
+/obj/structure/rack/nometal,
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
+/obj/effect/spawner/random_set/christmas_costume,
+/turf/open/floor/plating,
+/area/tdome)
 "nkB" = (
 /obj/effect/decal/warning_stripes/thick{
 	dir = 5
@@ -10424,6 +10557,18 @@
 /obj/effect/decal/warning_stripes/thick,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig/interiorcavern)
+"nZT" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 8
+	},
+/turf/closed/wall/mainship,
+/area/tdome)
+"oas" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 10
+	},
+/turf/closed/wall/mainship,
+/area/tdome)
 "obe" = (
 /obj/machinery/body_scanconsole,
 /turf/open/floor/mainship/sterile/corner{
@@ -10696,6 +10841,16 @@
 	},
 /turf/open/floor/tile/neutral/corner,
 /area/centcom/valhalla/primary/port)
+"orM" = (
+/obj/structure/window/framed/mainship/hull,
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/structure/prop/holidays/string_lights,
+/turf/open/floor,
+/area/tdome)
 "osF" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8
@@ -11326,6 +11481,10 @@
 	},
 /turf/open/floor/wood/broken/two,
 /area/centcom/valhalla/library)
+"pin" = (
+/obj/structure/prop/holidays/string_lights/corner,
+/turf/closed/wall/mainship,
+/area/tdome)
 "pio" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/dmg2,
@@ -12013,6 +12172,10 @@
 /obj/item/tool/handheld_charger,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/engine/engineering)
+"qqw" = (
+/obj/structure/prop/holidays/string_lights,
+/turf/closed/wall/mainship,
+/area/tdome)
 "qqX" = (
 /obj/structure/device/piano/full,
 /turf/open/floor/wood,
@@ -12139,6 +12302,12 @@
 /obj/machinery/status_display/ai,
 /turf/closed/wall,
 /area/centcom/valhalla/chapel/main)
+"qzi" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 5
+	},
+/turf/open/floor/plating,
+/area/tdome)
 "qzu" = (
 /obj/machinery/status_display/ai,
 /turf/closed/wall,
@@ -12484,6 +12653,22 @@
 "qPB" = (
 /turf/open/floor/tile/neutral/corner,
 /area/centcom/valhalla/primary/central_one)
+"qQj" = (
+/obj/item/a_gift/anything{
+	pixel_x = 3;
+	pixel_y = -6
+	},
+/obj/item/a_gift/anything{
+	pixel_x = -6;
+	pixel_y = -6
+	},
+/obj/item/a_gift/anything{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/a_gift/anything,
+/turf/open/floor/podhatch/floor,
+/area/tdome)
 "qQt" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -13827,6 +14012,19 @@
 /obj/effect/landmark/itemspawner/gladiator,
 /turf/open/floor/plating,
 /area/centcom/valhalla/port)
+"sBD" = (
+/obj/item/a_gift/anything{
+	pixel_x = 1;
+	pixel_y = -4
+	},
+/obj/item/a_gift/anything{
+	pixel_y = 9
+	},
+/obj/item/a_gift/anything{
+	pixel_x = 10
+	},
+/turf/open/floor/podhatch/floor,
+/area/tdome)
 "sCM" = (
 /obj/effect/decal/warning_stripes/thick,
 /obj/structure/rack,
@@ -14170,6 +14368,7 @@
 	name = "Thunderdome Flash"
 	},
 /obj/machinery/camera/autoname/thunderdome/hidden,
+/obj/structure/flora/tree/pine/xmas/presents/unlimited,
 /turf/open/floor/podhatch/floor,
 /area/tdome)
 "sYY" = (
@@ -14438,6 +14637,11 @@
 /area/centcom/valhalla/engine/atmos_monitoring)
 "tsg" = (
 /obj/structure/table/woodentable,
+/obj/effect/spawner/random/christmas_food{
+	pixel_x = -5;
+	pixel_y = -3
+	},
+/obj/effect/spawner/random/christmas_food,
 /turf/open/floor/wood,
 /area/tdome/tdomeobserve)
 "tsS" = (
@@ -14952,6 +15156,12 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/primary/aft)
+"tTJ" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 4
+	},
+/turf/closed/wall/mainship,
+/area/tdome)
 "tUF" = (
 /obj/structure/table/reinforced,
 /obj/structure/paper_bin,
@@ -15481,6 +15691,15 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
 /area/centcom/valhalla/comms)
+"uEu" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 8
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/turf/closed/wall/mainship,
+/area/tdome)
 "uEH" = (
 /obj/structure/girder,
 /obj/effect/decal/warning_stripes/box,
@@ -16197,6 +16416,8 @@
 /area/centcom/valhalla/primary/central_one)
 "vFf" = (
 /obj/structure/table/reinforced,
+/obj/effect/spawner/random/christmas_food,
+/obj/effect/spawner/random/christmas_food,
 /turf/open/floor/tile/white,
 /area/tdome/tdomeobserve)
 "vFA" = (
@@ -17034,6 +17255,15 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/medical/medbay)
+"wou" = (
+/obj/structure/window/framed/mainship/hull,
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
+/obj/structure/prop/holidays/string_lights,
+/turf/open/floor,
+/area/tdome)
 "woP" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /obj/effect/decal/warning_stripes/thick/corner{
@@ -17995,6 +18225,15 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor/mainship/sterile/white,
 /area/centcom/valhalla/crew_quarters/kitchen)
+"xqZ" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 1
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/turf/closed/wall/mainship,
+/area/tdome)
 "xrI" = (
 /turf/open/space/basic,
 /area/space)
@@ -18284,6 +18523,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/primary/fore)
+"xKT" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 9
+	},
+/turf/open/floor/plating,
+/area/tdome)
 "xKU" = (
 /obj/structure/sign/fixedinplace/engineering{
 	pixel_y = 10
@@ -19213,14 +19458,14 @@ osF
 xrI
 xrI
 xrI
-lIC
-lIC
-lIC
-lIC
-lIC
-lIC
-lIC
-lIC
+pin
+aEy
+aEy
+aEy
+aEy
+aEy
+aEy
+tTJ
 lIC
 xrI
 xrI
@@ -19351,14 +19596,14 @@ lIC
 lIC
 lIC
 lIC
-lIC
+qqw
 xtI
 xtI
 xtI
 xtI
 xtI
 xtI
-xtI
+iZL
 lIC
 xrI
 xrI
@@ -19487,18 +19732,18 @@ lof
 lof
 fLA
 fLA
-lIC
-lIC
-lIC
+pin
+aEy
+bnH
 xtI
 xtI
 xtI
 xtI
 xtI
 xtI
-xtI
-lIC
-lIC
+qzi
+aEy
+tTJ
 lIC
 xrI
 xrI
@@ -19625,7 +19870,7 @@ dIY
 dIY
 dIY
 ubt
-lIC
+qqw
 meN
 xtI
 gBi
@@ -19636,7 +19881,7 @@ gBi
 gBi
 gBi
 xtI
-meN
+jrb
 lIC
 xrI
 xrI
@@ -19763,7 +20008,7 @@ dIY
 dIY
 dIY
 vhr
-lIC
+qqw
 meN
 xtI
 gBi
@@ -19774,7 +20019,7 @@ gBi
 gBi
 gBi
 xtI
-meN
+nkm
 lIC
 xrI
 xrI
@@ -19901,8 +20146,8 @@ dIY
 dIY
 dIY
 vhr
-lIC
-meN
+qqw
+aVf
 xtI
 gBi
 gBi
@@ -19912,7 +20157,7 @@ gBi
 gBi
 gBi
 xtI
-meN
+jrb
 lIC
 xrI
 xrI
@@ -20039,7 +20284,7 @@ dIY
 dIY
 dIY
 rPr
-lIC
+qqw
 meN
 xtI
 gBi
@@ -20050,7 +20295,7 @@ gBi
 gBi
 gBi
 xtI
-meN
+jrb
 lIC
 xrI
 xrI
@@ -20177,7 +20422,7 @@ lIC
 qUt
 rMb
 dIY
-lIC
+qqw
 meN
 xtI
 gBi
@@ -20188,7 +20433,7 @@ gBi
 gBi
 gBi
 xtI
-meN
+jrb
 lIC
 xrI
 osF
@@ -20315,9 +20560,9 @@ lIC
 uaI
 uaI
 vFf
-lIC
-lIC
-lIC
+bzo
+fEQ
+fXe
 hGe
 hGe
 hGe
@@ -20325,8 +20570,8 @@ hGe
 hGe
 hGe
 hGe
-lIC
-lIC
+fIA
+nZT
 lIC
 lIC
 lIC
@@ -20454,7 +20699,7 @@ aJX
 wrn
 wrn
 wrn
-mJp
+wou
 tFt
 pBq
 pBq
@@ -20463,7 +20708,7 @@ dDv
 pBq
 pBq
 pBq
-tFt
+eyb
 mJp
 uUF
 kMT
@@ -20592,7 +20837,7 @@ nOQ
 qpT
 wrn
 qpT
-mJp
+wou
 oHd
 oHd
 oHd
@@ -20601,7 +20846,7 @@ oHd
 oHd
 oHd
 oHd
-oHd
+cug
 mJp
 vnF
 kMT
@@ -20730,7 +20975,7 @@ ped
 aDr
 iZT
 aDr
-mJp
+wou
 oHd
 oHd
 oHd
@@ -20739,7 +20984,7 @@ oHd
 oHd
 oHd
 oHd
-oHd
+cug
 mJp
 eLQ
 kaA
@@ -20868,7 +21113,7 @@ neC
 aDr
 gxT
 aDr
-mJp
+wou
 oHd
 oHd
 oHd
@@ -20877,7 +21122,7 @@ oHd
 oHd
 oHd
 oHd
-oHd
+cug
 mJp
 eLQ
 cFt
@@ -20997,16 +21242,16 @@ xrI
 xrI
 lIC
 ibs
-dFG
+jNI
 tsg
-tsg
+aiG
 mcr
 lIC
 qvl
 aDr
 iZT
 aDr
-mJp
+wou
 oHd
 oHd
 oHd
@@ -21015,7 +21260,7 @@ oHd
 oHd
 oHd
 oHd
-oHd
+cug
 mJp
 eLQ
 kaA
@@ -21144,7 +21389,7 @@ vuf
 sEd
 wrn
 sEd
-mJp
+wou
 oHd
 oHd
 aaB
@@ -21153,7 +21398,7 @@ wSO
 wSO
 lzH
 oHd
-oHd
+cug
 mJp
 tiO
 keG
@@ -21282,12 +21527,12 @@ vuf
 wrn
 wrn
 wrn
-mJp
+wou
 oHd
 oHd
 vef
 tGL
-tGL
+qQj
 tGL
 daE
 oHd
@@ -21420,7 +21665,7 @@ wrn
 wrn
 wrn
 qsK
-mJp
+wou
 oHd
 oHd
 vef
@@ -21429,7 +21674,7 @@ sYL
 tGL
 daE
 oHd
-oHd
+cug
 mJp
 beG
 kMT
@@ -21558,12 +21803,12 @@ wrn
 wrn
 wrn
 wrn
-mJp
+wou
 oHd
 oHd
 vef
 tGL
-tGL
+sBD
 tGL
 daE
 oHd
@@ -21696,7 +21941,7 @@ wrn
 qpT
 wrn
 qpT
-mJp
+wou
 oHd
 oHd
 onv
@@ -21705,7 +21950,7 @@ kuQ
 kuQ
 sYH
 oHd
-oHd
+cug
 mJp
 vnF
 keG
@@ -21834,7 +22079,7 @@ wrn
 aDr
 iZT
 aDr
-mJp
+wou
 oHd
 oHd
 oHd
@@ -21843,7 +22088,7 @@ oHd
 oHd
 oHd
 oHd
-oHd
+cug
 mJp
 eLQ
 kaA
@@ -21972,7 +22217,7 @@ wrn
 aDr
 gxT
 aDr
-mJp
+wou
 oHd
 oHd
 oHd
@@ -21981,7 +22226,7 @@ oHd
 oHd
 oHd
 oHd
-oHd
+cug
 mJp
 eLQ
 cFt
@@ -22110,7 +22355,7 @@ wrn
 aDr
 iZT
 aDr
-mJp
+wou
 oHd
 oHd
 oHd
@@ -22119,7 +22364,7 @@ oHd
 oHd
 oHd
 oHd
-oHd
+cug
 mJp
 eLQ
 kaA
@@ -22248,7 +22493,7 @@ wRc
 sEd
 wrn
 vBB
-fOQ
+orM
 dNn
 dNn
 dNn
@@ -22257,7 +22502,7 @@ dNn
 dNn
 dNn
 dNn
-dNn
+cNx
 fOQ
 glQ
 oNJ
@@ -22386,7 +22631,7 @@ rxq
 tpZ
 uez
 jla
-mJp
+wou
 nQD
 slv
 slv
@@ -22395,7 +22640,7 @@ evE
 slv
 slv
 slv
-nQD
+dke
 mJp
 kMT
 kMT
@@ -22523,9 +22768,9 @@ lIC
 lIC
 lIC
 lIC
-lIC
-lIC
-lIC
+pin
+xqZ
+kKs
 bZu
 bZu
 bZu
@@ -22533,8 +22778,8 @@ bZu
 bZu
 bZu
 bZu
-lIC
-lIC
+uEu
+tTJ
 lIC
 lIC
 lIC
@@ -22661,7 +22906,7 @@ xrI
 xrI
 xrI
 xrI
-lIC
+qqw
 meN
 xtI
 uwK
@@ -22672,7 +22917,7 @@ uwK
 uwK
 uwK
 xtI
-meN
+jrb
 lIC
 xrI
 xrI
@@ -22799,7 +23044,7 @@ xrI
 xrI
 xrI
 xrI
-lIC
+qqw
 meN
 xtI
 uwK
@@ -22810,7 +23055,7 @@ uwK
 uwK
 uwK
 xtI
-meN
+nkm
 lIC
 xrI
 xrI
@@ -22937,7 +23182,7 @@ xrI
 xrI
 xrI
 xrI
-lIC
+qqw
 meN
 xtI
 uwK
@@ -22948,7 +23193,7 @@ uwK
 uwK
 uwK
 xtI
-meN
+jrb
 lIC
 xrI
 xrI
@@ -23075,8 +23320,8 @@ xrI
 xrI
 xrI
 xrI
-lIC
-meN
+qqw
+aVf
 xtI
 uwK
 uwK
@@ -23086,7 +23331,7 @@ uwK
 uwK
 uwK
 xtI
-meN
+jrb
 lIC
 xrI
 xrI
@@ -23213,7 +23458,7 @@ xrI
 xrI
 xrI
 xrI
-lIC
+qqw
 meN
 xtI
 uwK
@@ -23224,7 +23469,7 @@ uwK
 uwK
 uwK
 xtI
-meN
+nkm
 lIC
 xrI
 xrI
@@ -23351,18 +23596,18 @@ xrI
 wQi
 xrI
 xrI
-lIC
-lIC
-lIC
+bzo
+adh
+oas
 xtI
 xtI
 xtI
 xtI
 xtI
 xtI
-xtI
-lIC
-lIC
+xKT
+nZT
+nZT
 lIC
 xrI
 xrI
@@ -23491,14 +23736,14 @@ xrI
 xrI
 xrI
 xrI
-lIC
+qqw
 xtI
 xtI
 xtI
 xtI
 xtI
 xtI
-xtI
+iZL
 lIC
 xrI
 xrI
@@ -23629,14 +23874,14 @@ xrI
 xrI
 xrI
 xrI
-lIC
-lIC
-lIC
-lIC
-lIC
-lIC
-lIC
-lIC
+bzo
+adh
+adh
+adh
+adh
+adh
+adh
+nZT
 lIC
 xrI
 xrI
