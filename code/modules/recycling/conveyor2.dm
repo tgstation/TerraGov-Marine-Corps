@@ -7,8 +7,9 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "conveyor_map"
 	name = "conveyor belt"
-	desc = "A conveyor belt."
+	desc = "A conveyor belt. It can be rotated with a <b>wrench</b>. It can be reversed with a <b>screwdriver</b>. The belt can be flipped with a <b>wirecutter</b>."
 	layer = FIREDOOR_OPEN_LAYER
+	max_integrity = 50
 	resistance_flags = XENO_DAMAGEABLE
 	var/operating = 0	// 1 if running forward, -1 if backwards, 0 if off
 	var/operable = 1	// true if can operate (no broken segments in this belt run)
@@ -18,7 +19,11 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 
 	var/list/affecting	// the list of all items that will be moved this ptick
 	var/id = ""			// the control ID	- must match controller ID
-	var/verted = 1		// Inverts the direction the conveyor belt moves.
+	/// Inverts the direction the conveyor belt moves when false.
+	var/verted = FALSE
+	/// Is the conveyor's belt flipped? Useful mostly for conveyor belt corners. It makes the belt point in the other direction, rather than just going in reverse.
+	var/flipped = FALSE
+	/// Are we currently conveying items?
 	var/conveying = FALSE
 
 /obj/machinery/conveyor/centcom_auto
@@ -27,6 +32,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 /obj/machinery/conveyor/inverted //Directions inverted so you can use different corner pieces.
 	icon_state = "conveyor_map_inverted"
 	verted = -1
+	flipped = TRUE
 
 /obj/machinery/conveyor/inverted/Initialize(mapload)
 	. = ..()
@@ -98,7 +104,11 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		if(SOUTHWEST)
 			forwards = WEST
 			backwards = NORTH
-	if(verted == -1)
+	if(verted)
+		var/temp = forwards
+		forwards = backwards
+		backwards = temp
+	if(flipped)
 		var/temp = forwards
 		forwards = backwards
 		backwards = temp
@@ -112,7 +122,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	if(machine_stat & BROKEN)
 		icon_state = "conveyor-broken"
 	else
-		icon_state = "conveyor[operating * verted]"
+		icon_state = "conveyor[verted ? -operating : operating ][flipped ? "-flipped" : ""]"
 
 /obj/machinery/conveyor/proc/update()
 	if(machine_stat & BROKEN || !operable || machine_stat & NOPOWER)
@@ -182,14 +192,20 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 /obj/machinery/conveyor/screwdriver_act(mob/living/user, obj/item/I)
 	if(machine_stat & BROKEN)
 		return TRUE
-	verted = verted * -1
+	verted = !verted
 	update_move_direction()
-	to_chat(user, span_notice("You reverse [src]'s direction."))
-	return TRUE
+	to_chat(user, span_notice("You set [src]'s direction [verted ? "backwards" : "back to default"]."))
+
+/obj/machinery/conveyor/wirecutter_act(mob/living/user, obj/item/I)
+	if(machine_stat & BROKEN)
+		return TRUE
+	flipped = !flipped
+	update_move_direction()
+	to_chat(user, span_notice("You flip [src]'s belt [flipped ? "around" : "back to normal"]."))
 
 /obj/machinery/conveyor/attackby(obj/item/I, mob/living/user, def_zone)
 	. = ..()
-	if(!.)
+	if(!. && user.a_intent != INTENT_HELP) //if we aren't in help mode drop item on conveyor
 		user.transferItemToLoc(I, drop_location())
 
 // attack with hand, move pulled object onto conveyor

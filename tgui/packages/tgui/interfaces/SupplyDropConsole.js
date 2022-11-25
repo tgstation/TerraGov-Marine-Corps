@@ -5,27 +5,23 @@ import { Window } from '../layouts';
 export const SupplyDropConsole = (_props, context) => {
   const { act, data } = useBackend(context);
 
-
   const timeLeft = data.next_fire;
   const timeLeftPct = timeLeft / data.launch_cooldown;
 
   const beacon = data.current_beacon;
 
-  const canFire = (beacon.name
-    && data.supplies_count
-    && timeLeft === 0);
+  const canFire = beacon.name && data.supplies_count && timeLeft === 0;
 
   return (
-    <Window
-      width={350}
-      height={350}>
+    <Window width={350} height={350}>
       <Window.Content scrollable>
         <Section title="Supply drop">
           <LabeledList>
             <LabeledList.Item label={'Current beacon'}>
-              <Button
-                onClick={() => act("select_beacon")}>
-                {data.current_beacon.name ? data.current_beacon.name : "No beacon selected"}
+              <Button onClick={() => act('select_beacon')}>
+                {data.current_beacon.name
+                  ? data.current_beacon.name
+                  : 'No beacon selected'}
               </Button>
             </LabeledList.Item>
             <Divider />

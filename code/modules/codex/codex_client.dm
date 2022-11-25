@@ -1,4 +1,4 @@
-/client/verb/search_codex(searching as text)
+/client/verb/search_codex(searching as null|text)
 
 	set name = "Search Codex"
 	set category = "IC"
@@ -12,7 +12,7 @@
 		return
 
 	if(!searching)
-		searching = input("Enter a search string.", "Codex Search") as text|null
+		searching = tgui_input_text(usr, "Enter a search string.", "Codex Search", encode = FALSE)
 		if(!searching)
 			return
 

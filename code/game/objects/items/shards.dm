@@ -97,7 +97,7 @@
 		return
 	var/mob/living/carbon/human/H = M
 
-	if(H.species.species_flags & ROBOTIC_LIMBS || H.species.insulated)
+	if(H.species.species_flags & ROBOTIC_LIMBS || H.species.species_flags & IS_INSULATED)
 		return
 
 	if(!H.shoes && !(H.wear_suit?.flags_armor_protection & FEET))

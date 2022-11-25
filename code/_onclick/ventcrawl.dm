@@ -27,7 +27,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 	if(pipes.len == 1)
 		pipe = pipes[1]
 	else
-		pipe = input("Crawl Through Vent", "Pick a pipe") as null|anything in pipes
+		pipe = tgui_input_list(usr, "Crawl Through Vent", "Pick a pipe",  pipes)
 	if(!incapacitated() && pipe)
 		return pipe
 
@@ -94,12 +94,13 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 				playsound(src, get_sfx("alien_ventpass"), 35, TRUE)
 
 			forceMove(vent_found)
+			update_pipe_vision()
 	else
 		to_chat(src, span_warning("This ventilation duct is not connected to anything!"))
 
 
 /mob/living/proc/add_ventcrawl(obj/machinery/atmospherics/starting_machine)
-	if(!istype(starting_machine) || !starting_machine.can_see_pipes())
+	if(!istype(starting_machine) || !starting_machine.can_see_pipes)
 		return
 	var/list/totalMembers = list()
 	for(var/datum/pipeline/P in starting_machine.returnPipenets())

@@ -35,12 +35,25 @@
 	 * after the end of the last round with the gamemode type
 	 */
 	var/time_between_round = 0
+	///What factions are used in this gamemode, typically TGMC and xenos
+	var/list/factions = list(FACTION_TERRAGOV, FACTION_ALIEN)
 
 //Distress call variables.
 	var/list/datum/emergency_call/all_calls = list() //initialized at round start and stores the datums.
 	var/datum/emergency_call/picked_call = null //Which distress call is currently active
 	var/on_distress_cooldown = FALSE
 	var/waiting_for_candidates = FALSE
+	/// Ponderation rate of silos output. 1 is normal, 2 is twice
+	var/silo_scaling = 1
+
+	///If the gamemode has a whitelist of valid ship maps. Whitelist overrides the blacklist
+	var/list/whitelist_ship_maps
+	///If the gamemode has a blacklist of disallowed ship maps
+	var/list/blacklist_ship_maps = list(MAP_COMBAT_PATROL_BASE, MAP_TWIN_PILLARS)
+	///If the gamemode has a whitelist of valid ground maps. Whitelist overrides the blacklist
+	var/list/whitelist_ground_maps
+	///If the gamemode has a blacklist of disallowed ground maps
+	var/list/blacklist_ground_maps = list(MAP_WHISKEY_OUTPOST)
 
 
 /datum/game_mode/New()
@@ -101,7 +114,7 @@
 
 	for(var/hivenum in GLOB.hive_datums)
 		var/datum/hive_status/hive = GLOB.hive_datums[hivenum]
-		hive.setup_upgrades()
+		hive.purchases.setup_upgrades()
 	return TRUE
 
 
@@ -269,7 +282,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 /datum/game_mode/proc/grant_eord_respawn(datum/dcs, mob/source)
 	SIGNAL_HANDLER
-	source.verbs += /mob/proc/eord_respawn
+	source.verbs |= /mob/proc/eord_respawn
 
 /datum/game_mode/proc/end_of_round_deathmatch()
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_LOGIN, .proc/grant_eord_respawn) // New mobs can now respawn into EORD
@@ -283,6 +296,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 	for(var/i in GLOB.player_list)
 		var/mob/M = i
+		M.verbs |= /mob/proc/eord_respawn
 		if(isnewplayer(M))
 			continue
 		if(!(M.client?.prefs?.be_special & BE_DEATHMATCH))
@@ -327,7 +341,21 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		else if(ishuman(L))
 			var/mob/living/carbon/human/H = L
 			if(!H.w_uniform)
-				var/job = pick(/datum/job/clf/leader, /datum/job/freelancer/leader, /datum/job/upp/leader, /datum/job/som/leader, /datum/job/pmc/leader, /datum/job/freelancer/standard, /datum/job/som/standard, /datum/job/clf/standard)
+				var/job = pick(
+					/datum/job/clf/leader,
+					/datum/job/clf/standard,
+					/datum/job/freelancer/leader,
+					/datum/job/freelancer/grenadier,
+					/datum/job/freelancer/standard,
+					/datum/job/upp/leader,
+					/datum/job/upp/heavy,
+					/datum/job/upp/standard,
+					/datum/job/som/ert/leader,
+					/datum/job/som/ert/veteran,
+					/datum/job/som/ert/standard,
+					/datum/job/pmc/leader,
+					/datum/job/pmc/standard,
+				)
 				var/datum/job/J = SSjob.GetJobType(job)
 				H.apply_assigned_role_to_spawn(J)
 				H.regenerate_icons()
@@ -351,6 +379,14 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 /datum/game_mode/proc/get_siloless_collapse_countdown()
 	return
 
+///Provides the amount of time left before the game ends, used for the stat panel
+/datum/game_mode/proc/game_end_countdown()
+	return
+
+///Provides the amount of time left before the next respawn wave, used for the stat panel
+/datum/game_mode/proc/wave_countdown()
+	return
+
 /datum/game_mode/proc/announce_medal_awards()
 	if(!length(GLOB.medal_awards))
 		return
@@ -367,22 +403,30 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 /datum/game_mode/proc/announce_round_stats()
 	var/list/dat = list({"[span_round_body("The end of round statistics are:")]<br>
-		<br>There were [GLOB.round_statistics.total_bullets_fired] total bullets fired.
-		<br>[GLOB.round_statistics.total_bullet_hits_on_marines] bullets managed to hit marines. For a [(GLOB.round_statistics.total_bullet_hits_on_marines / max(GLOB.round_statistics.total_bullets_fired, 1)) * 100]% friendly fire rate!"})
-	if(GLOB.round_statistics.total_bullet_hits_on_xenos)
-		dat += "[GLOB.round_statistics.total_bullet_hits_on_xenos] bullets managed to hit xenomorphs. For a [(GLOB.round_statistics.total_bullet_hits_on_xenos / max(GLOB.round_statistics.total_bullets_fired, 1)) * 100]% accuracy total!"
+		<br>There were [GLOB.round_statistics.total_projectiles_fired[FACTION_TERRAGOV]] total projectiles fired.
+		<br>[GLOB.round_statistics.total_projectile_hits[FACTION_TERRAGOV] ? GLOB.round_statistics.total_projectile_hits[FACTION_TERRAGOV] : "No"] projectiles managed to hit marines. For a [(GLOB.round_statistics.total_projectile_hits[FACTION_TERRAGOV] / max(GLOB.round_statistics.total_projectiles_fired[FACTION_TERRAGOV], 1)) * 100]% friendly fire rate!"})
+	if(GLOB.round_statistics.total_projectile_hits[FACTION_XENO])
+		dat += "[GLOB.round_statistics.total_projectile_hits[FACTION_XENO]] projectiles managed to hit xenomorphs. For a [(GLOB.round_statistics.total_projectile_hits[FACTION_XENO] / max(GLOB.round_statistics.total_projectiles_fired[FACTION_TERRAGOV], 1)) * 100]% accuracy total!"
 	if(GLOB.round_statistics.grenades_thrown)
 		dat += "[GLOB.round_statistics.grenades_thrown] total grenades exploding."
 	else
 		dat += "No grenades exploded."
-	if(GLOB.round_statistics.total_human_deaths)
-		dat += "[GLOB.round_statistics.total_human_deaths] people were killed, among which [GLOB.round_statistics.total_human_revives] were revived and [GLOB.round_statistics.total_human_respawns] respawned. For a [(GLOB.round_statistics.total_human_revives / max(GLOB.round_statistics.total_human_deaths, 1)) * 100]% revival rate and a [(GLOB.round_statistics.total_human_respawns / max(GLOB.round_statistics.total_human_deaths, 1)) * 100]% respawn rate."
+	if(GLOB.round_statistics.mortar_shells_fired)
+		dat += "[GLOB.round_statistics.mortar_shells_fired] mortar shells were fired."
+	if(GLOB.round_statistics.howitzer_shells_fired)
+		dat += "[GLOB.round_statistics.howitzer_shells_fired] howitzer shells were fired."
+	if(GLOB.round_statistics.rocket_shells_fired)
+		dat += "[GLOB.round_statistics.rocket_shells_fired] rocket artillery shells were fired."
+	if(GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV])
+		dat += "[GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV]] people were killed, among which [GLOB.round_statistics.total_human_revives[FACTION_TERRAGOV]] were revived and [GLOB.round_statistics.total_human_respawns] respawned. For a [(GLOB.round_statistics.total_human_revives[FACTION_TERRAGOV] / max(GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV], 1)) * 100]% revival rate and a [(GLOB.round_statistics.total_human_respawns / max(GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV], 1)) * 100]% respawn rate."
+	if(SSevacuation.human_escaped)
+		dat += "[SSevacuation.human_escaped] marines manage to evacuate, among [SSevacuation.initial_human_on_ship] that were on ship when xenomorphs arrived."
 	if(GLOB.round_statistics.now_pregnant)
 		dat += "[GLOB.round_statistics.now_pregnant] people infected among which [GLOB.round_statistics.total_larva_burst] burst. For a [(GLOB.round_statistics.total_larva_burst / max(GLOB.round_statistics.now_pregnant, 1)) * 100]% successful delivery rate!"
 	if(GLOB.round_statistics.queen_screech)
 		dat += "[GLOB.round_statistics.queen_screech] Queen screeches."
-	if(GLOB.round_statistics.warrior_limb_rips)
-		dat += "[GLOB.round_statistics.warrior_limb_rips] limbs ripped off by Warriors."
+	if(GLOB.round_statistics.warrior_lunges)
+		dat += "[GLOB.round_statistics.warrior_lunges] Warriors lunges."
 	if(GLOB.round_statistics.crusher_stomp_victims)
 		dat += "[GLOB.round_statistics.crusher_stomp_victims] people stomped by crushers."
 	if(GLOB.round_statistics.praetorian_spray_direct_hits)
@@ -394,7 +438,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	if(GLOB.round_statistics.trap_holes)
 		dat += "[GLOB.round_statistics.trap_holes] holes for acid and huggers were made."
 	if(GLOB.round_statistics.sentinel_neurotoxin_stings)
-		dat += "[GLOB.round_statistics.sentinel_neurotoxin_stings] number of times Sentinels stung."
+		dat += "[GLOB.round_statistics.sentinel_neurotoxin_stings] number of times neurotoxin sting was used."
 	if(GLOB.round_statistics.defiler_defiler_stings)
 		dat += "[GLOB.round_statistics.defiler_defiler_stings] number of times Defilers stung."
 	if(GLOB.round_statistics.defiler_neurogas_uses)
@@ -403,10 +447,6 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		dat += "[GLOB.round_statistics.defiler_reagent_slashes] number of times Defilers struck an enemy with their reagent slash."
 	if(GLOB.round_statistics.xeno_unarmed_attacks && GLOB.round_statistics.xeno_bump_attacks)
 		dat += "[GLOB.round_statistics.xeno_bump_attacks] bump attacks, which made up [(GLOB.round_statistics.xeno_bump_attacks / GLOB.round_statistics.xeno_unarmed_attacks) * 100]% of all attacks ([GLOB.round_statistics.xeno_unarmed_attacks])."
-	if(GLOB.round_statistics.xeno_headbites)
-		dat += "[GLOB.round_statistics.xeno_headbites] number of times victims headbitten."
-	if(GLOB.round_statistics.xeno_silo_corpses)
-		dat += "[GLOB.round_statistics.xeno_silo_corpses] number of corpses fed to resin silos."
 	if(GLOB.round_statistics.xeno_rally_hive)
 		dat += "[GLOB.round_statistics.xeno_rally_hive] number of times xeno leaders rallied the hive."
 	if(GLOB.round_statistics.hivelord_healing_infusions)
@@ -433,6 +473,10 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		dat += "[GLOB.round_statistics.larva_from_marine_spawning] larvas came from marine spawning."
 	if(GLOB.round_statistics.larva_from_siloing_body)
 		dat += "[GLOB.round_statistics.larva_from_siloing_body] larvas came from siloing bodies."
+	if(GLOB.round_statistics.points_from_mining)
+		dat += "[GLOB.round_statistics.points_from_mining] requisitions points gained from mining."
+	if(GLOB.round_statistics.points_from_research)
+		dat += "[GLOB.round_statistics.points_from_research] requisitions points gained from research."
 	if(length(GLOB.round_statistics.req_items_produced))
 		var/produced = "Requisitions produced: "
 		for(var/atom/movable/path AS in GLOB.round_statistics.req_items_produced)
@@ -458,7 +502,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 			var/mob/living/carbon/human/H = i
 			if(!istype(H)) // Small fix?
 				continue
-			if(count_flags & COUNT_IGNORE_HUMAN_SSD && !H.client)
+			if(count_flags & COUNT_IGNORE_HUMAN_SSD && !H.client && H.afk_status == MOB_DISCONNECTED)
 				continue
 			if(H.status_flags & XENO_HOST)
 				continue
@@ -475,7 +519,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 			var/mob/living/carbon/xenomorph/X = i
 			if(!istype(X)) // Small fix?
 				continue
-			if(count_flags & COUNT_IGNORE_XENO_SSD && !X.client)
+			if(count_flags & COUNT_IGNORE_XENO_SSD && !X.client && X.afk_status == MOB_DISCONNECTED)
 				continue
 			if(count_flags & COUNT_IGNORE_XENO_SPECIAL_AREA && is_xeno_in_forbidden_zone(X))
 				continue

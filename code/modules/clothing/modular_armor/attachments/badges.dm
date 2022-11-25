@@ -6,6 +6,10 @@
 	icon_state = "in_hand"
 	slot = ATTACHMENT_SLOT_BADGE
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_APPLY_ON_MOB|ATTACH_NO_HANDS|ATTACH_SAME_ICON
+	colorable_allowed = COLOR_WHEEL_ONLY
+	flags_item_map_variant = NONE
+	colorable_colors = list()
+
 	///List of selectable styles for where the badge is worn.
 	var/list/style_list = list(
 		"Beret Front",
@@ -36,7 +40,7 @@
 
 /obj/item/armor_module/armor/badge/examine(mob/user)
 	. = ..()
-	to_chat(user, span_notice("Its current style is set to [current_style]"))
+	. += span_notice("Its current style is set to [current_style]")
 
 /obj/item/armor_module/armor/badge/limit_colorable_colors(faction)
 	return

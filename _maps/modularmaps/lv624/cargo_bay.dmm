@@ -338,8 +338,6 @@
 /area/lv624/lazarus/quartstorage)
 "Nb" = (
 /obj/structure/largecrate,
-/obj/item/explosive/grenade/flashbang,
-/obj/item/explosive/grenade/flashbang,
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "Ne" = (

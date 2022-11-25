@@ -10,3 +10,4 @@ GLOBAL_DATUM_INIT(new_player_state, /datum/ui_state/new_player_state, new)
 	if(isnewplayer(user) || check_rights_for(user.client, R_ADMIN))
 		return UI_INTERACTIVE
 	return UI_CLOSE
+

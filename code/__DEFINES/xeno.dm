@@ -1,13 +1,35 @@
 //Xeno structure flags
 #define IGNORE_WEED_REMOVAL (1<<0)
+#define HAS_OVERLAY (1<<1)
+#define CRITICAL_STRUCTURE (1<<2)
+#define DEPART_DESTRUCTION_IMMUNE (1<<3)
 
-//Weeds define
+//Weeds defines
 #define WEED "weed sac"
 #define STICKY_WEED "sticky weed sac"
 #define RESTING_WEED "resting weed sac"
+#define AUTOMATIC_WEEDING "repeating"
 
 #define XENO_TURRET_ACID_ICONSTATE "acid_turret"
 #define XENO_TURRET_STICKY_ICONSTATE "resin_turret"
+
+//Plant defines
+#define HEAL_PLANT "life fruit"
+#define ARMOR_PLANT "hard fruit"
+#define PLASMA_PLANT "power fruit"
+#define STEALTH_PLANT "night shade"
+#define STEALTH_PLANT_PASSIVE_CAMOUFLAGE_ALPHA 64
+
+//Resin defines
+#define RESIN_WALL "resin wall"
+#define STICKY_RESIN "sticky resin"
+#define RESIN_DOOR "resin door"
+
+//Xeno reagents defines
+#define DEFILER_NEUROTOXIN "Neurotoxin"
+#define DEFILER_HEMODILE "Hemodile"
+#define DEFILER_TRANSVITOX "Transvitox"
+#define DEFILER_OZELOMELYN "Ozelomelyn"
 
 #define TRAP_HUGGER "hugger"
 #define TRAP_SMOKE_NEURO "neurotoxin gas"
@@ -18,30 +40,71 @@
 
 //List of weed types
 GLOBAL_LIST_INIT(weed_type_list, typecacheof(list(
-		/obj/effect/alien/weeds/node,
-		/obj/effect/alien/weeds/node/sticky,
-		/obj/effect/alien/weeds/node/resting,
+		/obj/alien/weeds/node,
+		/obj/alien/weeds/node/sticky,
+		/obj/alien/weeds/node/resting,
 		)))
 
 //List of weeds with probability of spawning
 GLOBAL_LIST_INIT(weed_prob_list, list(
-		/obj/effect/alien/weeds/node = 80,
-		/obj/effect/alien/weeds/node/sticky = 5,
-		/obj/effect/alien/weeds/node/resting = 10,
+		/obj/alien/weeds/node = 80,
+		/obj/alien/weeds/node/sticky = 5,
+		/obj/alien/weeds/node/resting = 10,
 		))
 
 //List of weed images
-GLOBAL_LIST_INIT(weed_images_list,  list(
+GLOBAL_LIST_INIT(weed_images_list, list(
 		WEED = image('icons/mob/actions.dmi', icon_state = WEED),
 		STICKY_WEED = image('icons/mob/actions.dmi', icon_state = STICKY_WEED),
 		RESTING_WEED = image('icons/mob/actions.dmi', icon_state = RESTING_WEED),
+		AUTOMATIC_WEEDING = image('icons/mob/actions.dmi', icon_state = AUTOMATIC_WEEDING)
 		))
 
-//List of Defiler toxin types
+//List of pheromone images
+GLOBAL_LIST_INIT(pheromone_images_list, list(
+		AURA_XENO_RECOVERY = image('icons/mob/actions.dmi', icon_state = AURA_XENO_RECOVERY),
+		AURA_XENO_WARDING = image('icons/mob/actions.dmi', icon_state = AURA_XENO_WARDING),
+		AURA_XENO_FRENZY = image('icons/mob/actions.dmi', icon_state = AURA_XENO_FRENZY),
+		))
+
+//List of Defiler toxin types available for selection
 GLOBAL_LIST_INIT(defiler_toxin_type_list, list(
-		/datum/reagent/toxin/xeno_neurotoxin,
+		/datum/reagent/toxin/xeno_ozelomelyn,
 		/datum/reagent/toxin/xeno_hemodile,
 		/datum/reagent/toxin/xeno_transvitox,
+		/datum/reagent/toxin/xeno_neurotoxin,
+		))
+
+//List of toxins improving defile's damage
+GLOBAL_LIST_INIT(defiler_toxins_typecache_list, typecacheof(list(
+		/datum/reagent/toxin/xeno_ozelomelyn,
+		/datum/reagent/toxin/xeno_hemodile,
+		/datum/reagent/toxin/xeno_transvitox,
+		/datum/reagent/toxin/xeno_neurotoxin,
+		/datum/reagent/toxin/xeno_sanguinal,
+		)))
+
+//List of plant types
+GLOBAL_LIST_INIT(plant_type_list, list(
+		/obj/structure/xeno/plant/heal_fruit,
+		/obj/structure/xeno/plant/armor_fruit,
+		/obj/structure/xeno/plant/plasma_fruit,
+		/obj/structure/xeno/plant/stealth_plant
+		))
+
+//List of plant images
+GLOBAL_LIST_INIT(plant_images_list, list(
+		HEAL_PLANT = image('icons/Xeno/plants.dmi', icon_state = "heal_fruit"),
+		ARMOR_PLANT = image('icons/Xeno/plants.dmi', icon_state = "armor_fruit"),
+		PLASMA_PLANT = image('icons/Xeno/plants.dmi', icon_state = "plasma_fruit"),
+		STEALTH_PLANT = image('icons/Xeno/plants.dmi', icon_state = "stealth_plant")
+		))
+
+//List of resin structure images
+GLOBAL_LIST_INIT(resin_images_list, list(
+		RESIN_WALL = image('icons/mob/actions.dmi', icon_state = RESIN_WALL),
+		STICKY_RESIN = image('icons/mob/actions.dmi', icon_state = STICKY_RESIN),
+		RESIN_DOOR = image('icons/mob/actions.dmi', icon_state = RESIN_DOOR)
 		))
 
 //xeno upgrade flags
@@ -49,24 +112,7 @@ GLOBAL_LIST_INIT(defiler_toxin_type_list, list(
 #define UPGRADE_FLAG_MESSAGE_HIVE (1<<0)
 #define UPGRADE_FLAG_ONETIME (1<<0)
 
-
-//xeno primordial defines
-#define PRIMORDIAL_QUEEN "Primordial Queen"
-#define PRIMORDIAL_SHRIKE "Primordial Shrike"
-#define PRIMORDIAL_DEFILER "Primordial Defiler"
-#define PRIMORDIAL_SENTINEL "Primordial Sentinel"
-#define PRIMORDIAL_SPITTER "Primordial Spitter"
-#define PRIMORDIAL_RAVAGER "Primordial Ravager"
-#define PRIMORDIAL_CRUSHER "Primordial Crusher"
-#define PRIMORDIAL_GORGER "Primordial Gorger"
-#define PRIMORDIAL_HUNTER "Primordial Hunter"
-#define PRIMORDIAL_DEFENDER "Primordial Defender"
-#define PRIMORDIAL_RUNNER "Primordial Runner"
-#define PRIMORDIAL_WRAITH "Primordial Wraith"
-#define PRIMORDIAL_HIVELORD "Primordial Hivelord"
-#define PRIMORDIAL_WARRIOR "Primordial Warrior"
-#define PRIMORDIAL_BULL "Primordial Bull"
-#define PRIMORDIAL_BOILER "Primordial Boiler"
+#define GHOSTS_CAN_TAKE_MINIONS "Smart Minions"
 
 GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
 	/mob/living/carbon/xenomorph/beetle/ai,
@@ -75,18 +121,18 @@ GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
 ))
 
 ///Heals a xeno, respecting different types of damage
-#define HEAL_XENO_DAMAGE(xeno, amount) do { \
+#define HEAL_XENO_DAMAGE(xeno, amount, passive) do { \
 	var/fire_loss = xeno.getFireLoss(); \
 	if(fire_loss) { \
 		var/fire_heal = min(fire_loss, amount); \
 		amount -= fire_heal;\
-		xeno.adjustFireLoss(-fire_heal, TRUE); \
+		xeno.adjustFireLoss(-fire_heal, TRUE, passive); \
 	} \
 	var/brute_loss = xeno.getBruteLoss(); \
 	if(brute_loss) { \
 		var/brute_heal = min(brute_loss, amount); \
 		amount -= brute_heal; \
-		xeno.adjustBruteLoss(-brute_heal, TRUE); \
+		xeno.adjustBruteLoss(-brute_heal, TRUE, passive); \
 	} \
 } while(FALSE)
 

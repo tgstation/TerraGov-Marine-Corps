@@ -52,7 +52,7 @@
 
 /area/bigredv2/caves/rock
 	name = "Enclosed Area"
-	icon_state = "white"
+	icon_state = "transparent"
 
 /area/bigredv2/caves/north
 	name = "Northern Caves"
@@ -61,6 +61,22 @@
 /area/bigredv2/caves/south
 	name = "Southern Caves"
 	icon_state = "south"
+
+/area/bigredv2/caves/rustedpreparea
+	name = "Rusted Prep Area"
+	icon_state = "yellow"
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+
+/area/bigredv2/caves/undergroundrobotics
+	name = "Underground robotics lab"
+	icon_state = "yellow"
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+
+/area/bigredv2/caves/secomplex
+	name = "Underground research complex"
+	icon_state = "yellow"
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
 
 /area/bigredv2/caves/east
 	name = "Eastern Caves"
@@ -96,6 +112,7 @@
 	icon_state = "engine"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 	outside = FALSE
+	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
 
 /area/bigredv2/outside/cargo
 	name = "Cargo"
@@ -128,6 +145,7 @@
 	icon_state = "bridge"
 	ceiling = CEILING_METAL
 	outside = FALSE
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/bigredv2/outside/filtration_plant
 	name = "Filtration Plant"
@@ -161,6 +179,12 @@
 	ceiling = CEILING_METAL
 	outside = FALSE
 
+/area/bigredv2/outside/southcheckpoint
+	name = "South Checkpoint"
+	icon_state = "courtroom"
+	ceiling = CEILING_METAL
+	outside = FALSE
+
 /area/bigredv2/outside/hydroponics
 	name = "Hydroponics"
 	icon_state = "garden"
@@ -184,6 +208,7 @@
 	icon_state = "green"
 	ceiling = CEILING_NONE
 	outside = FALSE
+	minimap_color = MINIMAP_AREA_LZ
 
 /area/bigredv2/outside/telecomm
 	name = "Telecommunications"
@@ -221,6 +246,7 @@
 	icon_state = "party"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 	outside = FALSE
+	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
 
 /area/bigredv2/outside/general_offices
 	name = "General Offices"

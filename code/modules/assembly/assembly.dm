@@ -113,4 +113,4 @@
 
 /obj/item/assembly/examine(mob/user)
 	. = ..()
-	to_chat(user, span_notice("\The [src] [secured? "is secured and ready to be used!" : "can be attached to other things."]"))
+	. += span_notice("\The [src] [secured? "is secured and ready to be used!" : "can be attached to other things."]")

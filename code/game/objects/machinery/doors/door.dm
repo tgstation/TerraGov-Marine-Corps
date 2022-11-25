@@ -6,12 +6,13 @@
 	anchored = TRUE
 	opacity = TRUE
 	density = TRUE
+	throwpass = FALSE
 	move_resist = MOVE_FORCE_VERY_STRONG
 	layer = DOOR_OPEN_LAYER
 	explosion_block = 2
 	resistance_flags = DROPSHIP_IMMUNE
 	minimap_color = MINIMAP_DOOR
-	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
+	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 20, ENERGY = 20, BOMB = 10, BIO = 100, FIRE = 80, ACID = 70)
 	var/open_layer = DOOR_OPEN_LAYER
 	var/closed_layer = DOOR_CLOSED_LAYER
 	var/id
@@ -26,6 +27,8 @@
 	var/not_weldable = FALSE // stops people welding the door if true
 	var/openspeed = 10 //How many seconds does it take to open it? Default 1 second. Use only if you have long door opening animations
 	var/list/fillers
+	smoothing_behavior = CARDINAL_SMOOTHING
+	smoothing_groups = SMOOTH_GENERAL_STRUCTURES
 
 	//Multi-tile doors
 	dir = EAST
@@ -77,6 +80,10 @@
 			bumpopen(M)
 		return
 
+	if(isuav(AM))
+		try_to_activate_door(AM)
+		return
+
 	if(isobj(AM))
 		var/obj/O = AM
 		for(var/m in O.buckled_mobs)
@@ -108,15 +115,17 @@
 		return
 	return try_to_activate_door(user)
 
-/obj/machinery/door/proc/try_to_activate_door(mob/user)
+/obj/machinery/door/proc/try_to_activate_door(atom/user)
 	if(operating)
 		return
-	var/can_open
+	var/can_open = !Adjacent(user) || !requiresID() || ismob(user) && allowed(user)
 	if(!Adjacent(user))
 		can_open = TRUE
 	if(!requiresID())
 		can_open = TRUE
-	if(allowed(user))
+	if(ismob(user) && allowed(user))
+		can_open = TRUE
+	if(isuav(user))
 		can_open = TRUE
 	if(can_open)
 		if(density)
@@ -178,15 +187,9 @@
 
 /obj/machinery/door/proc/open()
 	SIGNAL_HANDLER_DOES_SLEEP
-	if(!density)
-		return TRUE
-	if(operating > 0 || !loc)
+	if(operating || welded || locked || !loc)
 		return FALSE
-	if(!SSticker)
-		return FALSE
-	if(!operating)
-		operating = TRUE
-
+	operating = TRUE
 	do_animate("opening")
 	icon_state = "door0"
 	set_opacity(FALSE)
@@ -239,18 +242,6 @@
 /obj/machinery/door/proc/autoclose()
 	if(!density && !operating && !locked && !welded && autoclose)
 		close()
-
-/obj/machinery/door/Move(new_loc, new_dir)
-	. = ..()
-
-	if(width > 1)
-		var/turf/T = get_turf(src)
-		var/expansion_dir = initial(dir)
-
-		for(var/t in fillers)
-			var/obj/effect/opacifier/O = t
-			T = get_step(T,expansion_dir)
-			O.loc = T
 
 /obj/machinery/door/morgue
 	icon = 'icons/obj/doors/doormorgue.dmi'

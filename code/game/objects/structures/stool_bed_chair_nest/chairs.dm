@@ -10,6 +10,12 @@
 	max_integrity = 20
 	var/propelled = 0 //Check for fire-extinguisher-driven chairs
 
+/obj/structure/bed/chair/alt
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "chair_alt"
+
+/obj/structure/bed/chair/nometal
+	dropmetal = FALSE
 
 /obj/structure/bed/chair/proc/handle_rotation(direction) //Making this into a seperate proc so office chairs can call it on Move()
 	handle_layer()
@@ -87,13 +93,16 @@
 
 		user.visible_message(span_notice("[user] begins welding down \the [src]."),
 		span_notice("You begin welding down \the [src]."))
+		add_overlay(GLOB.welding_sparks)
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		if(!do_after(user, 50, TRUE, src, BUSY_ICON_FRIENDLY))
+			cut_overlay(GLOB.welding_sparks)
 			to_chat(user, span_warning("You need to stand still!"))
 			return
 		user.visible_message(span_notice("[user] welds down \the [src]."),
 		span_notice("You weld down \the [src]."))
-		if(buildstacktype)
+		cut_overlay(GLOB.welding_sparks)
+		if(buildstacktype && dropmetal)
 			new buildstacktype(loc, buildstackamount)
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		qdel(src)
@@ -150,6 +159,28 @@
 /obj/structure/bed/chair/sofa/corner
 	icon_state = "sofacorner"
 
+/obj/structure/bed/chair/sofa/corsat
+	name = "comfy sofa"
+	desc = "It looks comfy."
+	icon_state = "couch_hori2"
+
+/obj/structure/bed/chair/sofa/corsat/left
+	icon_state = "couch_hori1"
+
+/obj/structure/bed/chair/sofa/corsat/right
+	icon_state = "couch_hori3"
+
+/obj/structure/bed/chair/sofa/corsat/verticaltop
+	icon_state = "couch_vet3"
+
+/obj/structure/bed/chair/sofa/corsat/verticalmiddle
+	icon_state = "couch_vet2"
+
+/obj/structure/bed/chair/sofa/corsat/verticalsouth
+	icon_state = "couch_vet1"
+
+//cm benches do not have corners
+
 
 /obj/structure/bed/chair/pew
 	name = "chapel pew"
@@ -157,6 +188,8 @@
 	icon_state = "pews"
 
 /obj/structure/bed/chair/office
+	name = "Office Chair"
+	desc = "A novel idea of a spinning chair with wheels on the bottom, for office work only."
 	anchored = FALSE
 	buckle_flags = CAN_BUCKLE
 	drag_delay = 1 //Pulling something on wheels is easy
@@ -172,7 +205,7 @@
 	unbuckle_mob(occupant)
 
 	var/def_zone = ran_zone()
-	var/blocked = occupant.run_armor_check(def_zone, "melee")
+	var/blocked = occupant.get_soft_armor("melee", def_zone)
 	occupant.throw_at(A, 3, propelled)
 	occupant.apply_effect(6, STUN, blocked)
 	occupant.apply_effect(6, WEAKEN, blocked)
@@ -183,7 +216,7 @@
 	if(isliving(A))
 		var/mob/living/victim = A
 		def_zone = ran_zone()
-		blocked = victim.run_armor_check(def_zone, "melee")
+		blocked = victim.get_soft_armor("melee", def_zone)
 		victim.apply_effect(6, STUN, blocked)
 		victim.apply_effect(6, WEAKEN, blocked)
 		victim.apply_effect(6, STUTTER, blocked)
@@ -256,7 +289,7 @@
 			chair_state = DROPSHIP_CHAIR_BROKEN
 		else
 			chair_state = DROPSHIP_CHAIR_FOLDED
-		sleep(5) // animation length
+		sleep(0.5 SECONDS) // animation length
 		icon_state = "shuttle_chair_new_folded"
 
 /obj/structure/bed/chair/dropship/passenger/proc/unfold_up()
@@ -266,7 +299,7 @@
 	flick("shuttle_chair_new_unfolding", src)
 	is_animating = 0
 	chair_state = DROPSHIP_CHAIR_UNFOLDED
-	sleep(5)
+	sleep(0.5 SECONDS)
 	icon_state = "shuttle_chair"
 
 /obj/structure/bed/chair/dropship/passenger/rotate()
@@ -326,7 +359,9 @@
 		playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
 		user.visible_message(span_warning("[user] begins repairing \the [src]."),
 		span_warning("You begin repairing \the [src]."))
+		add_overlay(GLOB.welding_sparks)
 		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
+			cut_overlay(GLOB.welding_sparks)
 			return
 
 		user.visible_message(span_warning("[user] repairs \the [src]."),

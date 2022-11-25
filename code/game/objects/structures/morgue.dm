@@ -13,6 +13,7 @@
 	var/tray_path = /obj/structure/morgue_tray
 	var/morgue_open = 0
 	anchored = TRUE
+	coverage = 20
 
 /obj/structure/morgue/Initialize()
 	. = ..()
@@ -215,7 +216,7 @@
 			qdel(O)
 
 		new /obj/effect/decal/cleanable/ash(src)
-		sleep(30)
+		sleep(3 SECONDS)
 		cremating = 0
 		update_icon()
 		playsound(src.loc, 'sound/machines/ding.ogg', 25, 1)

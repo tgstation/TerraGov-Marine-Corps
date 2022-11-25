@@ -40,6 +40,13 @@
 		else
 			return ..()
 
+/obj/item/explosive/grenade/chem_grenade/razorburn_smol/attackby(obj/item/I, mob/user, params)
+	to_chat(user, span_notice("The [initial(name)] is hermetically sealed, and does not open."))
+	return
+
+/obj/item/explosive/grenade/chem_grenade/razorburn_large/attackby(obj/item/I, mob/user, params)
+	to_chat(user, span_notice("The [initial(name)] is hermetically sealed, and does not open."))
+	return
 
 /obj/item/explosive/grenade/chem_grenade/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_SCREWDRIVER)
@@ -133,20 +140,20 @@
 	. = ..()
 	if(user.skills.getRating("medical") > SKILL_MEDICAL_NOVICE)
 		if(length(beakers))
-			to_chat(user, span_notice("You scan the grenade and detect the following reagents:"))
+			. += span_notice("You scan the grenade and detect the following reagents:")
 			for(var/obj/item/reagent_containers/glass/G in beakers)
 				for(var/datum/reagent/R in G.reagents.reagent_list)
-					to_chat(user, span_notice("[R.volume] units of [R.name] in the [G.name]."))
+					. += span_notice("[R.volume] units of [R.name] in the [G.name].")
 			if(length(beakers) == 1)
-				to_chat(user, span_notice("You detect no second beaker in the grenade."))
+				. += span_notice("You detect no second beaker in the grenade.")
 		else
-			to_chat(user, span_notice("You scan the grenade, but detect nothing."))
+			. += span_notice("You scan the grenade, but detect nothing.")
 	else if(stage != CG_READY && length(beakers))
 		if(length(beakers) == 2 && beakers[1].name == beakers[2].name)
-			to_chat(user, span_notice("You see two [beakers[1].name]s inside the grenade."))
+			. += span_notice("You see two [beakers[1].name]s inside the grenade.")
 		else
 			for(var/obj/item/reagent_containers/glass/G in beakers)
-				to_chat(user, span_notice("You see a [G.name] inside the grenade."))
+				. += span_notice("You see a [G.name] inside the grenade.")
 
 
 /obj/item/explosive/grenade/chem_grenade/proc/stage_change(N)
@@ -235,6 +242,7 @@
 	name = "Razorburn Grenade"
 	desc = "Contains construction nanites ready to turn a small area into razorwire after a few seconds. DO NOT ENTER AREA WHILE ACTIVE."
 	icon_state = "grenade_razorburn"
+	item_state = "grenade_razorburn"
 	stage = CG_READY
 	icon_state_mini = "grenade_chem_yellow"
 

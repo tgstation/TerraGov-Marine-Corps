@@ -10,6 +10,7 @@
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_is_bag"
 	slot = ATTACHMENT_SLOT_STORAGE
+	w_class = WEIGHT_CLASS_BULKY
 	///Internal storage of the module. Its parent is switched to the parent item when attached.
 	var/obj/item/storage/internal/storage = /obj/item/storage/internal/modular
 	///If TRUE it will add extra overlays for the items within.
@@ -74,7 +75,6 @@
 	max_w_class = WEIGHT_CLASS_TINY
 	bypass_w_limit = list(
 		/obj/item/clothing/glasses,
-		/obj/item/reagent_containers/food/drinks/flask,
 	)
 
 	cant_hold = list(
@@ -109,6 +109,28 @@
 	icon_state = "mod_mag_bag"
 	storage =  /obj/item/storage/internal/modular/ammo_mag
 	slowdown = 0.1
+
+/obj/item/armor_module/storage/ammo_mag/freelancer/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/rifle/m16(storage)
+	new /obj/item/ammo_magazine/rifle/m16(storage)
+	new /obj/item/ammo_magazine/rifle/m16(storage)
+	new /obj/item/ammo_magazine/rifle/m16(storage)
+
+/obj/item/armor_module/storage/ammo_mag/freelancer_two/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/rifle/tx11(storage)
+	new /obj/item/ammo_magazine/rifle/tx11(storage)
+	new /obj/item/ammo_magazine/rifle/tx11(storage)
+	new /obj/item/ammo_magazine/rifle/tx11(storage)
+
+/obj/item/armor_module/storage/ammo_mag/freelancer_three/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/rifle/tx54(storage)
+	new /obj/item/ammo_magazine/rifle/tx54(storage)
+	new /obj/item/ammo_magazine/rifle/tx54/incendiary(storage)
+	new /obj/item/ammo_magazine/rifle/tx54/incendiary(storage)
+
 
 /obj/item/storage/internal/modular/ammo_mag
 	max_storage_space = 15
@@ -147,6 +169,7 @@
 		/obj/item/stack/rods,
 		/obj/item/stack/cable_coil,
 		/obj/item/stack/sandbags_empty,
+		/obj/item/stack/sandbags,
 		/obj/item/stack/razorwire,
 		/obj/item/tool/shovel/etool,
 		/obj/item/tool/wrench,
@@ -169,6 +192,7 @@
 		/obj/item/detpack,
 		/obj/item/circuitboard,
 		/obj/item/lightreplacer,
+		/obj/item/tool/surgery/solderingtool,
 	)
 	cant_hold = list()
 
@@ -177,6 +201,22 @@
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Can hold a substantial variety of medical supplies and apparatus, but cannot hold as much as a medkit could."
 	icon_state = "mod_medic_bag"
 	storage =  /obj/item/storage/internal/modular/medical
+
+/obj/item/armor_module/storage/medical/freelancer/Initialize()
+	. = ..()
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(storage)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(storage)
+	new /obj/item/storage/pill_bottle/meralyne(storage)
+	new /obj/item/storage/pill_bottle/dermaline(storage)
+	new /obj/item/storage/pill_bottle/tramadol(storage)
+
+/obj/item/armor_module/storage/medical/basic/Initialize()
+	. = ..()
+	new /obj/item/storage/pill_bottle/packet/bicaridine(storage)
+	new /obj/item/storage/pill_bottle/packet/kelotane(storage)
+	new /obj/item/storage/pill_bottle/packet/tramadol(storage)
+	new /obj/item/stack/medical/splint(storage)
+	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(storage)
 
 /obj/item/storage/internal/modular/medical
 	max_storage_space = 30
@@ -194,6 +234,22 @@
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/stack/medical,
 		/obj/item/tweezers,
+		/obj/item/tool/surgery/solderingtool,
+	)
+
+/obj/item/armor_module/storage/injector
+	name = "Injector Storage module"
+	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Can hold a substantial variety of injectors."
+	icon_state = "mod_injector_bag"
+	storage =  /obj/item/storage/internal/modular/injector
+
+/obj/item/storage/internal/modular/injector
+	max_storage_space = 10
+	storage_slots = 10
+	max_w_class = WEIGHT_CLASS_TINY
+	can_hold = list(
+		/obj/item/reagent_containers/syringe,
+		/obj/item/reagent_containers/hypospray/autoinjector,
 	)
 
 /obj/item/armor_module/storage/integrated
@@ -208,6 +264,21 @@
 	storage_slots = null
 	max_storage_space = 15
 	max_w_class = WEIGHT_CLASS_NORMAL
+
+/obj/item/armor_module/storage/grenade
+	name = "Grenade Storage module"
+	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Can hold a respectable amount of grenades."
+	icon_state = "mod_grenade_harness"
+	storage =  /obj/item/storage/internal/modular/grenade
+
+/obj/item/storage/internal/modular/grenade
+	max_storage_space = 12
+	storage_slots = 6
+	max_w_class = WEIGHT_CLASS_SMALL
+	can_hold = list(
+		/obj/item/explosive/grenade,
+		/obj/item/reagent_containers/food/drinks/cans,
+	)
 
 /obj/item/armor_module/storage/helmet
 	name = "Jaeger Pattern helmet storage"

@@ -66,3 +66,7 @@
 		to_chat(src, span_warning("You can't do that right now."))
 		return
 	return ..()
+
+/mob/living/carbon/xenomorph/defender/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/throw_parry)

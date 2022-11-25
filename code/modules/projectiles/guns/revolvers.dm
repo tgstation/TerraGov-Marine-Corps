@@ -23,7 +23,7 @@
 	max_chamber_items = 7
 	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver)
 
-	movement_acc_penalty_mult = 2
+	movement_acc_penalty_mult = 3
 	fire_delay = 2
 	accuracy_mult_unwielded = 0.85
 	scatter_unwielded = 25
@@ -32,14 +32,6 @@
 
 	placed_overlay_iconstate = "revolver"
 
-	///Sound played when revolvers chamber is spun.
-	var/spin_sound = 'sound/effects/spin.ogg'
-	///Sound played when thud?
-	var/thud_sound = 'sound/effects/thud.ogg'
-	///Delay between gun tricks
-	var/trick_delay = 6
-	///Time of last trick
-	var/recent_trick //So they're not spamming tricks.
 	///If the gun is able to play Russian Roulette
 	var/russian_roulette = FALSE //God help you if you do this.
 	///Whether the chamber can be spun for Russian Roulette. If False the chamber can be spun.
@@ -60,99 +52,14 @@
 	if(zoom)
 		to_chat(usr, span_warning("You cannot conceviably do that while looking down \the [src]'s scope!"))
 		return
-	revolver_trick(usr)
-
-/obj/item/weapon/gun/revolver/proc/revolver_throw_catch(mob/living/carbon/human/user)
-	set waitfor = 0
-	user.visible_message("[user] deftly flicks [src] and tosses it into the air!",span_notice(" You flick and toss [src] into the air!"))
-	var/img_layer = MOB_LAYER+0.1
-	var/image/trick = image(icon,user,icon_state,img_layer)
-	switch(pick(1,2))
-		if(1) animation_toss_snatch(trick)
-		if(2) animation_toss_flick(trick, pick(1,-1))
-
-	invisibility = 100
-	for(var/mob/M in viewers(user))
-		SEND_IMAGE(M, trick)
-	sleep(5)
-	trick.loc = null
-	if(!loc || !user)
-		return
-	invisibility = 0
-	playsound(user, thud_sound, 25, 1)
-	if(user.get_inactive_held_item())
-		user.visible_message("[user] catches [src] with the same hand!",span_notice(" You catch [src] as it spins in to your hand!"))
-		return
-	user.visible_message("[user] catches [src] with his other hand!",span_notice(" You snatch [src] with your other hand! Awesome!"))
-	user.temporarilyRemoveItemFromInventory(src)
-	user.put_in_inactive_hand(src)
-	user.swap_hand()
-	user.update_inv_l_hand(0)
-	user.update_inv_r_hand()
-
-/obj/item/weapon/gun/revolver/proc/revolver_trick(mob/living/carbon/human/user)
-	if(world.time < (recent_trick + trick_delay) )
-		return FALSE //Don't spam it.
-	if(!istype(user))
-		return FALSE //Not human.
-	var/chance = -5
-	chance = user.health < 6 ? 0 : user.health - 5
-
-	//Pain is largely ignored, since it deals its own effects on the mob. We're just concerned with health.
-	//And this proc will only deal with humans for now.
-
-	var/obj/item/weapon/gun/revolver/double = user.get_inactive_held_item()
-	if(prob(chance))
-		switch(rand(1,7))
-			if(1)
-				revolver_basic_spin(user, -1)
-			if(2)
-				revolver_basic_spin(user, 1)
-			if(3)
-				revolver_throw_catch(user)
-			if(4)
-				revolver_basic_spin(user, 1)
-			if(5)
-				var/arguments[] = istype(double) ? list(user, 1, double) : list(user, -1)
-				revolver_basic_spin(arglist(arguments))
-			if(6)
-				var/arguments[] = istype(double) ? list(user, -1, double) : list(user, 1)
-				revolver_basic_spin(arglist(arguments))
-			if(7)
-				if(istype(double))
-					spawn(0)
-						double.revolver_throw_catch(user)
-					revolver_throw_catch(user)
-				else
-					revolver_throw_catch(user)
-	else
-		if(prob(10))
-			to_chat(user, span_warning("You fumble with [src] like an idiot... Uncool."))
-		else
-			user.visible_message(span_info("<b>[user]</b> fumbles with [src] like a huge idiot!"))
-
-	recent_trick = world.time //Turn on the delay for the next trick.
-
-	return TRUE
-
-/obj/item/weapon/gun/revolver/proc/revolver_basic_spin(mob/living/carbon/human/user, direction = 1, obj/item/weapon/gun/revolver/double)
-	set waitfor = 0
-	playsound(user, spin_sound, 25, 1)
-	if(double)
-		user.visible_message("[user] deftly flicks and spins [src] and [double]!",span_notice(" You flick and spin [src] and [double]!"))
-		animation_wrist_flick(double, 1)
-	else
-		user.visible_message("[user] deftly flicks and spins [src]!",span_notice(" You flick and spin [src]!"))
-	animation_wrist_flick(src, direction)
-	sleep(3)
-	if(loc && user) playsound(user, thud_sound, 25, 1)
+	do_trick(usr)
 
 //-------------------------------------------------------
-//TP-44 COMBAT REVOLVER
+//R-44 COMBAT REVOLVER
 
 /obj/item/weapon/gun/revolver/standard_revolver
-	name = "\improper TP-44 combat revolver"
-	desc = "The TP-44 standard combat revolver, produced by Terran Armories. A sturdy and hard hitting firearm that loads .44 Magnum rounds. Holds 7 rounds in the cylinder. Due to an error in the cylinder rotation system the fire rate of the gun is much faster than intended, it ended up being billed as a feature of the system."
+	name = "\improper R-44 combat revolver"
+	desc = "The R-44 standard combat revolver, produced by Terran Armories. A sturdy and hard hitting firearm that loads .44 Magnum rounds. Holds 7 rounds in the cylinder. Due to an error in the cylinder rotation system the fire rate of the gun is much faster than intended, it ended up being billed as a feature of the system."
 	icon_state = "tp44"
 	item_state = "tp44"
 	caliber =  CALIBER_44 //codex
@@ -174,13 +81,21 @@
 		/obj/item/attachable/shoulder_mount,
 	)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 13, "rail_y" = 23, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 19)
-	fire_delay = 0.2 SECONDS
+	fire_delay = 0.15 SECONDS
+	akimbo_additional_delay = 0.6 // Ends up as 0.249, so it'll get moved up to 0.25.
 	accuracy_mult_unwielded = 0.85
 	accuracy_mult = 1
 	scatter_unwielded = 15
-	scatter = 0
+	scatter = -1
 	recoil = 0
 	recoil_unwielded = 0.75
+
+/obj/item/weapon/gun/revolver/standard_revolver/Initialize(mapload, spawn_empty)
+	. = ..()
+	if(round(rand(1, 10), 1) != 1)
+		return
+	base_gun_icon = "tp44cool"
+	update_icon()
 
 //-------------------------------------------------------
 //RUSSIAN REVOLVER //Based on the 7.62mm Russian revolvers.
@@ -245,8 +160,8 @@
 //Mateba is pretty well known. The cylinder folds up instead of to the side. This has a non-marine version and a marine version.
 
 /obj/item/weapon/gun/revolver/mateba
-	name = "\improper TL-24 autorevolver"
-	desc = "The TL-24 is the rather rare autorevolver used by the TGMC issued in rather small numbers to backline personnel and officers it uses recoil to spin the cylinder. Uses heavy .454 rounds."
+	name = "\improper R-24 'Mateba' autorevolver"
+	desc = "The R-24 is the rather rare autorevolver used by the TGMC issued in rather small numbers to backline personnel and officers it uses recoil to spin the cylinder. Uses heavy .454 rounds."
 	icon_state = "mateba"
 	item_state = "mateba"
 	fire_animation = "mateba_fire"
@@ -265,32 +180,27 @@
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/lace,
-		/obj/item/attachable/mateba_longbarrel,
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/shoulder_mount,
 	)
-	starting_attachment_types = list(
-		/obj/item/attachable/mateba_longbarrel,
-	)
+
 	attachable_offset = list("muzzle_x" = 20, "muzzle_y" = 18,"rail_x" = 16, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 22, "stock_y" = 15)
 
-	damage_mult = 0.80
-	damage_falloff_mult = 1.5
 	fire_delay = 0.2 SECONDS
 	aim_fire_delay = 0.3 SECONDS
 	recoil = 0
 	accuracy_mult = 1.1
-	scatter = 10
+	scatter = 0
 	accuracy_mult_unwielded = 0.6
-	scatter_unwielded = 20
+	scatter_unwielded = 7
 
 /obj/item/weapon/gun/revolver/mateba/notmarine
 	name = "\improper Mateba autorevolver"
 	desc = "The Mateba is a powerful, fast-firing revolver that uses its own recoil to rotate the cylinders. Uses .454 rounds."
 
 
-/obj/item/weapon/gun/revolver/mateba/captain
-	name = "\improper TL-24 autorevolver special"
+/obj/item/weapon/gun/revolver/mateba/custom
+	name = "\improper R-24 autorevolver special"
 	desc = "The Mateba is a powerful, fast-firing revolver that uses its own recoil to rotate the cylinders. This one appears to have had more love and care put into it. Uses .454 rounds."
 	icon_state = "mateba"
 	item_state = "mateba"
@@ -361,7 +271,7 @@
 
 	fire_delay = 0.35 SECONDS
 	recoil = 0
-	scatter = 9 // Only affects buckshot considering marksman has -15 scatter.
+	scatter = 8 // Only affects buckshot considering marksman has -15 scatter.
 	damage_falloff_mult = 1.2
 
 
@@ -382,10 +292,10 @@
 
 
 //-------------------------------------------------------
-//M-44, based off the SAA.
+//R-44, based off the SAA.
 
 /obj/item/weapon/gun/revolver/single_action/m44
-	name = "\improper M-44 SAA revolver"
+	name = "\improper R-44 SAA revolver"
 	desc = "A uncommon revolver occasionally carried by civilian law enforcement that's very clearly based off a modernized Single Action Army. Has to be manully primed with each shot. Uses .44 Magnum rounds."
 	icon_state = "m44"
 	item_state = "m44"

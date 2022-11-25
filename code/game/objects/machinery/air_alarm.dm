@@ -593,8 +593,8 @@ table tr:first-child th:first-child { border: none;}
 		var/list/selected = TLV["temperature"]
 		var/max_temperature = min(selected[3] - T0C, MAX_TEMPERATURE)
 		var/min_temperature = max(selected[2] - T0C, MIN_TEMPERATURE)
-		var/input_temperature = input("What temperature would you like the system to mantain? (Capped between [min_temperature]C and [max_temperature]C)", "Thermostat Controls") as num|null
-		if(!input_temperature || input_temperature > max_temperature || input_temperature < min_temperature)
+		var/input_temperature = tgui_input_number(usr, "What temperature would you like the system to mantain? (Capped between [min_temperature]C and [max_temperature]C)", "Thermostat Controls", max_value = max_temperature, min_value = min_temperature)
+		if(!input_temperature)
 			to_chat(usr, "Temperature must be between [min_temperature]C and [max_temperature]C")
 		else
 			target_temperature = input_temperature + T0C
@@ -619,7 +619,7 @@ table tr:first-child th:first-child { border: none;}
 				var/threshold = text2num(href_list["var"])
 				var/list/selected = TLV[env]
 				var/list/thresholds = list("lower bound", "low warning", "high warning", "upper bound")
-				var/newval = input("Enter [thresholds[threshold]] for [env]", "Alarm triggers", selected[threshold]) as null|num
+				var/newval = tgui_input_number(usr, "Enter [thresholds[threshold]] for [env]", "Alarm Triggers", selected[threshold])
 				if (isnull(newval) || ..() || (locked && !issilicon(usr)))
 					return
 				if (newval<0)
@@ -740,13 +740,7 @@ table tr:first-child th:first-child { border: none;}
 
 				user.visible_message(span_notice("[user] pries out [src]'s circuits."),
 				span_notice("You pry out [src]'s circuits."))
-				var/obj/item/circuitboard/airalarm/circuit
-				if(!electronics)
-					circuit = new /obj/item/circuitboard/airalarm(loc)
-				else
-					circuit = new electronics(loc)
-					if(electronics.is_general_board)
-						circuit.set_general()
+				new /obj/item/circuitboard/airalarm(loc)
 				electronics = null
 				buildstage = 0
 				update_icon()
@@ -766,11 +760,11 @@ table tr:first-child th:first-child { border: none;}
 				qdel(src)
 
 /obj/machinery/alarm/examine(mob/user)
-	..()
+	. = ..()
 	if (buildstage < 2)
-		to_chat(user, "It is not wired.")
+		. += "It is not wired."
 	if (buildstage < 1)
-		to_chat(user, "The circuit is missing.")
+		. += "The circuit is missing."
 
 /obj/machinery/alarm/monitor
 	apply_danger_level = FALSE

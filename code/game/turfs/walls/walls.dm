@@ -9,19 +9,11 @@
 	opacity = TRUE
 	explosion_block = 2
 
-	tiles_with = list(
-		/turf/closed/wall,
-		/obj/structure/window/framed,
-		/obj/structure/window_frame,
-		/obj/structure/girder,
-		/obj/machinery/door,
-	)
+	smoothing_behavior = CARDINAL_SMOOTHING
+	smoothing_groups = SMOOTH_GENERAL_STRUCTURES|SMOOTH_XENO_STRUCTURES
+	walltype = "metal"
 
-	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
-
-	var/walltype = "metal"
-	var/junctiontype //when walls smooth with one another, the type of junction each wall is.
-
+	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 100, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 	var/wall_integrity
 	var/max_integrity = 1000 //Wall will break down to girders if damage reaches this point
@@ -47,10 +39,6 @@
 	if(isnull(wall_integrity))
 		wall_integrity = max_integrity
 
-	//smooth wall stuff
-	relativewall()
-	relativewall_neighbours()
-
 	for(var/obj/item/explosive/mine/M in src)
 		if(M)
 			visible_message(span_warning("\The [M] is sealed inside the wall as it is built"))
@@ -70,8 +58,8 @@
 			T = get_step(src, i)
 
 			//update junction type of nearby walls
-			if(iswallturf(T))
-				T.relativewall()
+			if(T.smoothing_behavior)
+				T.smooth_self()
 
 			//nearby glowshrooms updated
 			for(var/obj/structure/glowshroom/shroom in T)
@@ -85,7 +73,7 @@
 			if(istype(O, /obj/structure/sign/poster))
 				var/obj/structure/sign/poster/P = O
 				P.roll_and_drop(src)
-			if(istype(O, /obj/effect/alien/weeds))
+			if(istype(O, /obj/alien/weeds))
 				qdel(O)
 
 
@@ -115,36 +103,37 @@
 
 	if(wall_integrity == max_integrity)
 		if (acided_hole)
-			to_chat(user, span_warning("It looks fully intact, except there's a large hole that could've been caused by some sort of acid."))
+			. += span_warning("It looks fully intact, except there's a large hole that could've been caused by some sort of acid.")
 		else
-			to_chat(user, span_notice("It looks fully intact."))
+			. += span_notice("It looks fully intact.")
 	else
 		var/integ = wall_integrity / max_integrity
 		if(integ >= 0.6)
-			to_chat(user, span_warning("It looks slightly damaged."))
+			. += span_warning("It looks slightly damaged.")
 		else if(integ >= 0.3)
-			to_chat(user, span_warning("It looks moderately damaged."))
+			. += span_warning("It looks moderately damaged.")
 		else
-			to_chat(user, span_danger("It looks heavily damaged."))
+			. += span_danger("It looks heavily damaged.")
 
 		if (acided_hole)
-			to_chat(user, span_warning("There's a large hole in the wall that could've been caused by some sort of acid."))
+			. += span_warning("There's a large hole in the wall that could've been caused by some sort of acid.")
 
+	// todo why does this not use defines?
 	switch(d_state)
 		if(1)
-			to_chat(user, span_info("The outer plating has been sliced open. A screwdriver should remove the support lines."))
+			. += span_info("The outer plating has been sliced open. A screwdriver should remove the support lines.")
 		if(2)
-			to_chat(user, span_info("The support lines have been removed. A blowtorch should slice through the metal cover."))
+			. += span_info("The support lines have been removed. A blowtorch should slice through the metal cover.")
 		if(3)
-			to_chat(user, span_info("The metal cover has been sliced through. A crowbar should pry it off."))
+			. += span_info("The metal cover has been sliced through. A crowbar should pry it off.")
 		if(4)
-			to_chat(user, span_info("The metal cover has been removed. A wrench will remove the anchor bolts."))
+			. += span_info("The metal cover has been removed. A wrench will remove the anchor bolts.")
 		if(5)
-			to_chat(user, span_info("The anchor bolts have been removed. Wirecutters will take care of the hydraulic lines."))
+			. += span_info("The anchor bolts have been removed. Wirecutters will take care of the hydraulic lines.")
 		if(6)
-			to_chat(user, span_info("Hydraulic lines are gone. A crowbar will pry off the inner sheath."))
+			. += span_info("Hydraulic lines are gone. A crowbar will pry off the inner sheath.")
 		if(7)
-			to_chat(user, span_info("The inner sheath is gone. A blowtorch should finish off this wall."))
+			. += span_info("The inner sheath is gone. A blowtorch should finish off this wall.")
 
 #define BULLETHOLE_STATES 10 //How many variations of bullethole patterns there are
 #define BULLETHOLE_MAX 8 * 3 //Maximum possible bullet holes.
@@ -260,7 +249,7 @@
 		return
 	if(devastated)
 		make_girder(TRUE)
-	else if (explode)
+	else if(explode)
 		make_girder(TRUE)
 	else
 		make_girder(FALSE)
@@ -339,15 +328,7 @@
 		to_chat(user, "[span_warning("[src] is much too tough for you to do anything to it with [I]")].")
 
 	else if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
-		var/obj/item/tool/pickaxe/plasmacutter/P = I
-		if(!P.start_cut(user, name, src))
-			return
-
-		if(!do_after(user, P.calc_delay(user), TRUE, src, BUSY_ICON_HOSTILE))
-			return
-
-		P.cut_apart(user, name, src)
-		dismantle_wall()
+		return
 
 	else if(wall_integrity < max_integrity && iswelder(I))
 		var/obj/item/tool/weldingtool/WT = I
@@ -357,12 +338,15 @@
 
 		user.visible_message(span_notice("[user] starts repairing the damage to [src]."),
 		span_notice("You start repairing the damage to [src]."))
+		add_overlay(GLOB.welding_sparks)
 		playsound(src, 'sound/items/welder.ogg', 25, 1)
 		if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || !iswallturf(src) || !WT?.isOn())
+			cut_overlay(GLOB.welding_sparks)
 			return
 
 		user.visible_message(span_notice("[user] finishes repairing the damage to [src]."),
 		span_notice("You finish repairing the damage to [src]."))
+		cut_overlay(GLOB.welding_sparks)
 		repair_damage(250)
 
 	else
@@ -374,16 +358,20 @@
 					playsound(src, 'sound/items/welder.ogg', 25, 1)
 					user.visible_message(span_notice("[user] begins slicing through the outer plating."),
 					span_notice("You begin slicing through the outer plating."))
+					add_overlay(GLOB.welding_sparks)
 
 					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
+						cut_overlay(GLOB.welding_sparks)
 						return
 
 					if(!iswallturf(src) || !WT?.isOn())
+						cut_overlay(GLOB.welding_sparks)
 						return
 
 					d_state = 1
 					user.visible_message(span_notice("[user] slices through the outer plating."),
 					span_notice("You slice through the outer plating."))
+					cut_overlay(GLOB.welding_sparks)
 			if(1)
 				if(isscrewdriver(I))
 					user.visible_message(span_notice("[user] begins removing the support lines."),
@@ -404,17 +392,21 @@
 					var/obj/item/tool/weldingtool/WT = I
 					user.visible_message(span_notice("[user] begins slicing through the metal cover."),
 					span_notice("You begin slicing through the metal cover."))
+					add_overlay(GLOB.welding_sparks)
 					playsound(src, 'sound/items/welder.ogg', 25, 1)
 
 					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
+						cut_overlay(GLOB.welding_sparks)
 						return
 
 					if(!iswallturf(src) || !WT?.isOn())
+						cut_overlay(GLOB.welding_sparks)
 						return
 
 					d_state = 3
 					user.visible_message(span_notice("[user] presses firmly on the cover, dislodging it."),
 					span_notice("You press firmly on the cover, dislodging it."))
+					cut_overlay(GLOB.welding_sparks)
 			if(3)
 				if(iscrowbar(I))
 					user.visible_message(span_notice("[user] struggles to pry off the cover."),
@@ -481,16 +473,20 @@
 					user.visible_message(span_notice("[user] begins slicing through the final layer."),
 					span_notice("You begin slicing through the final layer."))
 					playsound(src, 'sound/items/welder.ogg', 25, 1)
+					add_overlay(GLOB.welding_sparks)
 
 					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
+						cut_overlay(GLOB.welding_sparks)
 						return
 
 					if(!iswallturf(src) || !WT?.isOn())
+						cut_overlay(GLOB.welding_sparks)
 						return
 
 					new /obj/item/stack/rods(src)
 					user.visible_message(span_notice("The support rods drop out as [user] slices through the final layer."),
 					span_notice("The support rods drop out as you slice through the final layer."))
+					cut_overlay(GLOB.welding_sparks)
 					dismantle_wall()
 
 		return attack_hand(user)

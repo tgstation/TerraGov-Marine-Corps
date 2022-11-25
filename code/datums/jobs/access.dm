@@ -55,7 +55,7 @@
 		if(0)
 			return ALL_ACCESS
 		if(1)
-			return list(ACCESS_MARINE_CAPTAIN, ACCESS_MARINE_COMMANDER, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_TANK, ACCESS_MARINE_BRIDGE)//command
+			return list(ACCESS_MARINE_CAPTAIN, ACCESS_MARINE_COMMANDER, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_MECH, ACCESS_MARINE_BRIDGE)//command
 		if(2)
 			return list(ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_REMOTEBUILD)//engineering and maintenance
 		if(3)
@@ -150,8 +150,8 @@
 			return "Dropship Piloting"
 		if(ACCESS_MARINE_PILOT)
 			return "Pilot Gear"
-		if(ACCESS_MARINE_TANK)
-			return "Tank"
+		if(ACCESS_MARINE_MECH)
+			return "Mech"
 		if(ACCESS_CIVILIAN_RESEARCH)
 			return "Civilian Research"
 		if(ACCESS_CIVILIAN_LOGISTICS)
@@ -225,8 +225,16 @@
 			. = size ? "APS " : "Assets Protection Specialist"
 		if("PMCDSL")
 			. = size ? "APTL " : "Assets Protection Team Leader"
-		if("NT")
-			. = size ? (gender == FEMALE ? "Ms. " : "Mr. ") : "Junior Executive"
+		if("NT1")
+			. = size ? "INT " : "Corporate Intern"
+		if("NT2")
+			. = size ? "ASSOC " : "Corporate Associate"
+		if("NT3")
+			. = size ? "PTNR " : "Corporate Partner"
+		if("NT4")
+			. = size ? "ANLST " : "Corporate Analyst"
+		if("NT5")
+			. = size ? "SPVR " : "Corporate Supervisor"
 		if("E1")
 			. = size ? "PVT " : "Private"
 		if("E2")
@@ -322,6 +330,8 @@
 		if("FRE2")
 			. = size ? "FRE " : "Freelancer Medic"
 		if("FRE3")
+			. = size ? "FRE " : "Freelancer Veteran"
+		if("FRE4")
 			. = size ? "FRE " : "Freelancer Leader"
 		if("CLF1")
 			. = size ? "CLF " : "CLF Standard"

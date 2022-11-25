@@ -1,0 +1,185 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"f" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile/dark{
+	
+	},
+/area/bigredv2/outside/se)
+"h" = (
+/turf/closed/wall,
+/area/bigredv2/outside/se)
+"k" = (
+/turf/open/floor/podhatch/floor,
+/area/bigredv2/outside/se)
+"u" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark{
+	
+	},
+/area/bigredv2/outside/se)
+"C" = (
+/turf/closed/wall,
+/area/bigredv2/caves/east)
+"D" = (
+/turf/open/floor/tile/dark{
+	
+	},
+/area/bigredv2/outside/se)
+"E" = (
+/turf/open/floor/podhatch/floor,
+/area/bigredv2/caves/rock)
+"I" = (
+/turf/closed/wall,
+/area/bigredv2/caves/rock)
+"U" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/closed/mineral/smooth/bigred,
+/area/bigredv2/caves/rock)
+"W" = (
+/turf/closed/mineral/smooth/bigred,
+/area/bigredv2/caves/rock)
+
+(1,1,1) = {"
+h
+W
+I
+I
+U
+W
+I
+W
+W
+W
+"}
+(2,1,1) = {"
+h
+u
+D
+W
+D
+D
+D
+W
+W
+W
+"}
+(3,1,1) = {"
+D
+D
+D
+u
+D
+D
+u
+D
+W
+W
+"}
+(4,1,1) = {"
+h
+W
+u
+D
+W
+W
+W
+W
+W
+W
+"}
+(5,1,1) = {"
+W
+E
+D
+D
+u
+D
+W
+W
+W
+W
+"}
+(6,1,1) = {"
+W
+I
+I
+I
+D
+I
+I
+I
+W
+W
+"}
+(7,1,1) = {"
+h
+D
+D
+D
+D
+D
+D
+W
+W
+W
+"}
+(8,1,1) = {"
+D
+f
+D
+D
+D
+D
+W
+W
+W
+W
+"}
+(9,1,1) = {"
+D
+D
+D
+D
+W
+W
+W
+W
+W
+W
+"}
+(10,1,1) = {"
+h
+D
+f
+f
+W
+W
+W
+W
+W
+W
+"}
+(11,1,1) = {"
+h
+f
+D
+D
+D
+D
+D
+k
+W
+W
+"}
+(12,1,1) = {"
+C
+C
+I
+I
+I
+I
+I
+I
+W
+W
+"}

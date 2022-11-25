@@ -1,7 +1,9 @@
+#define LAVA_TILE_BURN_DAMAGE 20
 
 //turfs with density = FALSE
 /turf/open
 	plane = FLOOR_PLANE
+	minimap_color = MINIMAP_AREA_COLONY
 	var/allow_construction = TRUE //whether you can build things like barricades on this turf.
 	var/slayer = 0 //snow layer
 	var/wet = 0 //whether the turf is wet (only used by floors).
@@ -60,8 +62,8 @@
 
 
 /turf/open/examine(mob/user)
-	..()
-	ceiling_desc(user)
+	. = ..()
+	. += ceiling_desc()
 
 /turf/open/river
 	can_bloody = FALSE
@@ -191,6 +193,7 @@
 	shoefootstep = FOOTSTEP_PLATING
 	barefootstep = FOOTSTEP_HARD
 	mediumxenofootstep = FOOTSTEP_PLATING
+	smoothing_behavior = NO_SMOOTHING
 
 
 /turf/open/shuttle/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)
@@ -207,17 +210,44 @@
 	name = "floor"
 	icon_state = "rasputin1"
 
+/turf/open/shuttle/dropship/two
+	icon_state = "rasputin2"
+
 /turf/open/shuttle/dropship/three
 	icon_state = "rasputin3"
 
+/turf/open/shuttle/dropship/four
+	icon_state = "rasputin4"
+
 /turf/open/shuttle/dropship/five
 	icon_state = "rasputin5"
+
+/turf/open/shuttle/dropship/six
+	icon_state = "rasputin6"
 
 /turf/open/shuttle/dropship/seven
 	icon_state = "rasputin7"
 
 /turf/open/shuttle/dropship/eight
 	icon_state = "rasputin8"
+
+/turf/open/shuttle/dropship/nine
+	icon_state = "rasputin9"
+
+/turf/open/shuttle/dropship/ten
+	icon_state = "rasputin10"
+
+/turf/open/shuttle/dropship/eleven
+	icon_state = "rasputin11"
+
+/turf/open/shuttle/dropship/twelve
+	icon_state = "rasputin12"
+
+/turf/open/shuttle/dropship/thirteen
+	icon_state = "rasputin13"
+
+/turf/open/shuttle/dropship/fourteen
+	icon_state = "floor6"
 
 /turf/open/shuttle/dropship/grating
 	icon = 'icons/turf/elevator.dmi'
@@ -228,6 +258,9 @@
 	name = "plating"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "plating"
+
+/turf/open/floor/plating/heatinggrate
+	icon_state = "heatinggrate"
 
 /turf/open/shuttle/brig // Added this floor tile so that I have a seperate turf to check in the shuttle -- Polymorph
 	name = "Brig floor"        // Also added it into the 2x3 brig area of the shuttle.
@@ -255,6 +288,51 @@
 /turf/open/shuttle/escapepod/six
 	icon_state = "floor6"
 
+/turf/open/shuttle/escapepod/seven
+	icon_state = "floor7"
+
+/turf/open/shuttle/escapepod/eight
+	icon_state = "floor8"
+
+/turf/open/shuttle/escapepod/nine
+	icon_state = "floor9"
+
+/turf/open/shuttle/escapepod/ten
+	icon_state = "floor10"
+
+/turf/open/shuttle/escapepod/eleven
+	icon_state = "floor11"
+
+/turf/open/shuttle/escapepod/twelve
+	icon_state = "floor12"
+
+/turf/open/shuttle/escapepod/wallone
+	icon_state = "wall1"
+
+/turf/open/shuttle/escapepod/walltwo
+	icon_state = "wall2"
+
+/turf/open/shuttle/escapepod/wallthree
+	icon_state = "wall3"
+
+/turf/open/shuttle/escapepod/wallfour
+	icon_state = "wall4"
+
+/turf/open/shuttle/escapepod/wallfive
+	icon_state = "wall5"
+
+/turf/open/shuttle/escapepod/walleleven
+	icon_state = "wall11"
+
+/turf/open/shuttle/escapepod/walltwelve
+	icon_state = "wall12"
+
+/turf/open/shuttle/escapepod/cornerone
+	icon_state = "corner1"
+
+/turf/open/shuttle/escapepod/cornertwo
+	icon_state = "corner2"
+
 // Elevator floors
 /turf/open/shuttle/elevator
 	icon = 'icons/turf/elevator.dmi'
@@ -278,6 +356,7 @@
 	light_range = 2
 	light_power = 1.4
 	light_color = LIGHT_COLOR_LAVA
+	minimap_color = MINIMAP_LAVA
 
 /turf/open/lavaland/lava/is_weedable()
 	return FALSE
@@ -332,13 +411,18 @@
 		STOP_PROCESSING(SSobj, src)
 
 /turf/open/lavaland/lava/proc/burn_stuff(AM)
-	. = 0
+	. = FALSE
 
 	var/thing_to_check = src
 	if (AM)
 		thing_to_check = list(AM)
 	for(var/thing in thing_to_check)
-		if(isobj(thing))
+		if(ismecha(thing))
+			var/obj/vehicle/sealed/mecha/burned_mech = thing
+			burned_mech.take_damage(rand(40, 120), BURN)
+			. = TRUE
+
+		else if(isobj(thing))
 			var/obj/O = thing
 			O.fire_act(10000, 1000)
 
@@ -349,11 +433,11 @@
 				continue
 
 			if(!L.on_fire || L.getFireLoss() <= 200)
-				L.take_overall_damage(null, 20, clamp(L.getarmor(null, "fire"), 0, 80))
+				L.take_overall_damage(0, LAVA_TILE_BURN_DAMAGE * clamp(L.get_fire_resist(), 0.2, 1), updating_health = TRUE)
 				if(!CHECK_BITFIELD(L.flags_pass, PASSFIRE))//Pass fire allow to cross lava without igniting
 					L.adjust_fire_stacks(20)
 					L.IgniteMob()
-				. = 1
+				. = TRUE
 
 /turf/open/lavaland/lava/attackby(obj/item/C, mob/user, params)
 	..()

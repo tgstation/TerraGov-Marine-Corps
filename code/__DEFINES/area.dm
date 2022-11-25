@@ -14,3 +14,5 @@
 #define NO_DROPPOD (1<<2)
 ///Make this area immune to cas/ob laser. Explosions can still go through if the ob is called in a nearby area
 #define OB_CAS_IMMUNE (1<<3)
+///Prevent wraith from portaling there, and hivemind to weed there when shutters are closed
+#define MARINE_BASE (1<<4)

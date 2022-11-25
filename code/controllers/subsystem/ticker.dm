@@ -123,6 +123,8 @@ SUBSYSTEM_DEF(ticker)
 				addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote/proc/automatic_vote), 2 SECONDS)
 				addtimer(CALLBACK(src, .proc/Reboot), CONFIG_GET(number/vote_period) * 3 + 9 SECONDS)
 				Master.SetRunLevel(RUNLEVEL_POSTGAME)
+				for(var/client/C AS in GLOB.clients)
+					C.mob?.update_sight() // To reveal ghosts
 
 
 /datum/controller/subsystem/ticker/proc/setup()
@@ -342,7 +344,7 @@ SUBSYSTEM_DEF(ticker)
 		tip = pick(SSstrings.get_list_from_file("tips/meme"))
 
 	if(tip)
-		to_chat(world, "<br>[span_tip("[html_encode(tip)]")]<br>")
+		to_chat(world, "<br>[span_tip(examine_block("[html_encode(tip)]"))]<br>")
 
 
 /datum/controller/subsystem/ticker/proc/check_queue()

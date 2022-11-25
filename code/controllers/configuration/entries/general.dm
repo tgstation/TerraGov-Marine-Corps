@@ -38,6 +38,10 @@ Basics, the most important.
 
 /datum/config_entry/string/python_path
 
+/datum/config_entry/string/end_of_round_channel
+	config_entry_value = "game-updates"
+	protection = CONFIG_ENTRY_LOCKED|CONFIG_ENTRY_HIDDEN
+
 /datum/config_entry/string/restart_message
 
 /datum/config_entry/flag/guest_ban
@@ -91,6 +95,9 @@ Administrative related.
 
 /datum/config_entry/flag/log_game
 
+/// log mech data
+/datum/config_entry/flag/log_mecha
+
 /datum/config_entry/flag/log_asset
 
 /datum/config_entry/flag/log_vote
@@ -104,6 +111,8 @@ Administrative related.
 /datum/config_entry/flag/log_world_topic
 
 /datum/config_entry/flag/log_manifest
+
+/datum/config_entry/flag/log_timers_on_bucket_reset // logs all timers in buckets on automatic bucket reset (Useful for timer debugging)
 
 /datum/config_entry/flag/allow_admin_ooccolor // Allows admins to customize their OOC color.
 
@@ -412,4 +421,8 @@ This maintains a list of ip addresses that are able to bypass topic filtering.
 
 /datum/config_entry/number/hard_deletes_overrun_limit
 	config_entry_value = 0
+	min_val = 0
+
+/datum/config_entry/number/ai_anti_stuck_lag_time_dilation_threshold
+	config_entry_value = 20
 	min_val = 0

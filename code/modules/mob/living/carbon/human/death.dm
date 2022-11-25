@@ -22,7 +22,7 @@
 
 
 /mob/living/carbon/human/gib_animation()
-	new /obj/effect/overlay/temp/gib_animation(loc, src, species ? species.gibbed_anim : "gibbed-h")
+	new /obj/effect/overlay/temp/gib_animation(loc, 0, src, species ? species.gibbed_anim : "gibbed-h")
 
 /mob/living/carbon/human/spawn_gibs()
 	if(species)
@@ -40,12 +40,14 @@
 
 
 /mob/living/carbon/human/dust_animation()
-	new /obj/effect/overlay/temp/dust_animation(loc, src, "dust-h")
+	new /obj/effect/overlay/temp/dust_animation(loc, 0, src, "dust-h")
 
 
 /mob/living/carbon/human/death(gibbing, deathmessage, silent, special_death_message)
 	if(stat == DEAD)
 		return ..()
+	if(species.death_message)
+		deathmessage = species.death_message
 	if(!silent && species.death_sound)
 		playsound(loc, species.death_sound, 50, TRUE)
 	return ..()
@@ -60,9 +62,8 @@
 
 	remove_typing_indicator()
 
-	if(SSticker && SSticker.current_state == GAME_STATE_PLAYING) //game has started, to ignore the map placed corpses.
-		GLOB.round_statistics.total_human_deaths++
-		SSblackbox.record_feedback("tally", "round_statistics", 1, "total_human_deaths")
+	GLOB.round_statistics.total_human_deaths[faction]++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_human_deaths[faction]")
 
 	GLOB.dead_human_list += src
 	GLOB.alive_human_list -= src

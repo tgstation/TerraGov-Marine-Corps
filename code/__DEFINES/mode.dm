@@ -23,7 +23,7 @@
 #define EVACUATION_STATUS_IN_PROGRESS 2
 #define EVACUATION_STATUS_COMPLETE 3
 
-#define EVACUATION_AUTOMATIC_DEPARTURE 3 MINUTES //All pods automatically depart in 10 minutes, unless they are full or unable to launch for some reason.
+#define EVACUATION_AUTOMATIC_DEPARTURE 8 MINUTES //All pods automatically depart in 10 minutes, unless they are full or unable to launch for some reason.
 #define EVACUATION_ESTIMATE_DEPARTURE ((evac_time + EVACUATION_AUTOMATIC_DEPARTURE - world.time) * 0.1)
 #define EVACUATION_POD_LAUNCH_COOLDOWN 5 SECONDS
 
@@ -52,6 +52,7 @@
 #define MODE_WIN_POINTS (1<<16)
 #define MODE_NO_PERMANENT_WOUNDS (1<<17)
 #define MODE_SPAWNING_MINIONS (1<<18)
+#define MODE_SOM_OPFOR (1<<19)
 
 #define MODE_LANDMARK_RANDOM_ITEMS (1<<0)
 #define MODE_LANDMARK_SPAWN_XENO_TURRETS (1<<1)
@@ -69,12 +70,19 @@
 #define MODE_CIVIL_WAR_REBEL_MAJOR "Rebel Major Victory"
 #define MODE_CIVIL_WAR_DRAW "Civil War Draw"
 
+#define MODE_COMBAT_PATROL_MARINE_MAJOR "Marine Major Victory"
+#define MODE_COMBAT_PATROL_MARINE_MINOR "Marine Minor Victory"
+#define MODE_COMBAT_PATROL_SOM_MAJOR "Sons of Mars Major Victory"
+#define MODE_COMBAT_PATROL_SOM_MINOR "Sons of Mars Minor Victory"
+#define MODE_COMBAT_PATROL_DRAW "DRAW: Mutual Annihilation"
+
 #define CRASH_EVAC_NONE "CRASH_EVAC_NONE"
 #define CRASH_EVAC_INPROGRESS "CRASH_EVAC_INPROGRESS"
 #define CRASH_EVAC_COMPLETED "CRASH_EVAC_COMPLETED"
-#define CRASH_NUKE_NONE "CRASH_NUKE_NONE"
-#define CRASH_NUKE_INPROGRESS "CRASH_NUKE_INPROGRESS"
-#define CRASH_NUKE_COMPLETED "CRASH_NUKE_COMPLETED"
+
+#define INFESTATION_NUKE_NONE "INFESTATION_NUKE_NONE"
+#define INFESTATION_NUKE_INPROGRESS "INFESTATION_NUKE_INPROGRESS"
+#define INFESTATION_NUKE_COMPLETED "INFESTATION_NUKE_COMPLETED"
 
 #define SURVIVOR_WEAPONS list(\
 				list(/obj/item/weapon/gun/smg/mp7, /obj/item/ammo_magazine/smg/mp7),\
@@ -98,7 +106,9 @@
 
 #define EVACUATION_TIME_LOCK 30 MINUTES
 
-#define DISTRESS_TIME_LOCK 10 MINUTES
+//Distress mode collapse duration
+#define DISTRESS_ORPHAN_HIVEMIND 5 MINUTES
+#define DISTRESS_SILO_COLLAPSE 5 MINUTES
 
 #define SHUTTLE_HIJACK_LOCK 30 MINUTES
 
@@ -109,10 +119,10 @@
 #define SUPPLY_POINT_MARINE_SPAWN 2.5
 
 #define AFK_TIMER 5 MINUTES
-#define TIME_BEFORE_TAKING_BODY 5 MINUTES
+#define TIME_BEFORE_TAKING_BODY 1 MINUTES
 
-#define DEATHTIME_CHECK(M) ((world.time - GLOB.key_to_time_of_death[M.key]) < SSticker.mode?.respawn_time)
-#define DEATHTIME_MESSAGE(M) to_chat(M, span_warning("You have been dead for [(world.time - GLOB.key_to_time_of_death[M.key]) * 0.1] second\s.</span><br><span class='warning'>You must wait [SSticker.mode?.respawn_time * 0.1] seconds before rejoining the game!"))
+#define DEATHTIME_CHECK(M) ((world.time - GLOB.key_to_time_of_role_death[M.key]) < SSticker.mode?.respawn_time)
+#define DEATHTIME_MESSAGE(M) to_chat(M, span_warning("You have been dead for [(world.time - GLOB.key_to_time_of_role_death[M.key]) * 0.1] second\s.</span><br><span class='warning'>You must wait [SSticker.mode?.respawn_time * 0.1] seconds before rejoining the game!"))
 
 #define COUNT_IGNORE_HUMAN_SSD (1<<0)
 #define COUNT_IGNORE_XENO_SSD (1<<1)
@@ -148,12 +158,9 @@
 #define INFESTATION_MARINE_CRASHING 1
 #define INFESTATION_DROPSHIP_CAPTURED_XENOS 2
 
-#define COCOONED_DEATH "cocoon_death"
-#define HEADBITE_DEATH "headbite_death"
-
 #define DISTRESS_LARVA_POINTS_NEEDED 8
 #define CRASH_LARVA_POINTS_NEEDED 10
 
 #define FREE_XENO_AT_START 2
 
-#define MAX_UNBALANCED_RATIO_TWO_HUMAN_FACTIONS 1.2
+#define MAX_UNBALANCED_RATIO_TWO_HUMAN_FACTIONS 1.1

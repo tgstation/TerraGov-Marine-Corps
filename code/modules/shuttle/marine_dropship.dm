@@ -8,7 +8,6 @@
 	width = 11
 	height = 21
 
-
 /obj/docking_port/stationary/marine_dropship/on_crash()
 	for(var/obj/machinery/power/apc/A AS in GLOB.apcs_list) //break APCs
 		if(!is_mainship_level(A.z))
@@ -16,6 +15,8 @@
 		if(prob(A.crash_break_probability))
 			A.overload_lighting()
 			A.set_broken()
+		for(var/obj/effect/soundplayer/alarmplayer AS in GLOB.ship_alarms)
+			alarmplayer.deltalarm.stop(alarmplayer)	//quiet the delta klaxon alarms
 		CHECK_TICK
 
 	for(var/i in GLOB.alive_living_list) //knock down mobs
@@ -65,11 +66,8 @@
 	for(var/turf/T in range(3, rear)+range(3, left)+range(3, right)+range(2, front))
 		T.empty(/turf/open/floor/plating)
 
-	/*
-	explosion(front, 2, 4, 7, 0)
-	explosion(rear, 3, 5, 8, 0)
-	explosion(left, 3, 5, 8, 0)
-	explosion(right, 3, 5, 8, 0)*/
+	SSmonitor.process_human_positions()
+	SSevacuation.initial_human_on_ship = SSmonitor.human_on_ship
 
 /obj/docking_port/stationary/marine_dropship/crash_target
 	name = "dropshipcrash"
@@ -83,12 +81,22 @@
 	name = "Landing Zone One"
 	id = "lz1"
 
+/obj/docking_port/stationary/marine_dropship/lz1/Initialize(mapload)
+	. = ..()
+	var/area/area = get_area(src)
+	area.flags_area |= MARINE_BASE
+
 /obj/docking_port/stationary/marine_dropship/lz1/prison
 	name = "LZ1: Main Hangar"
 
 /obj/docking_port/stationary/marine_dropship/lz2
 	name = "Landing Zone Two"
 	id = "lz2"
+
+/obj/docking_port/stationary/marine_dropship/lz2/Initialize(mapload)
+	. = ..()
+	var/area/area = get_area(src)
+	area.flags_area |= MARINE_BASE
 
 /obj/docking_port/stationary/marine_dropship/lz2/prison
 	name = "LZ2: Civ Residence Hangar"
@@ -148,6 +156,8 @@
 	var/time_between_cycle = 0
 	///The timer to launch the dropship in automatic mode
 	var/cycle_timer
+	///If first landing is false intro sequence wont play
+	var/static/first_landing = TRUE
 
 /obj/docking_port/mobile/marine_dropship/register()
 	. = ..()
@@ -159,6 +169,13 @@
 		return
 	// pull the shuttle from datum/source, and state info from the shuttle itself
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DROPSHIP_TRANSIT)
+	if(first_landing)
+		first_landing = FALSE
+		var/op_name = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
+		for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
+			if(human.faction != FACTION_TERRAGOV)
+				return
+			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name]</u></span><br>" + "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "36th Marine LRPRR Platoon<br>" + "[human.job.title], [human]", /atom/movable/screen/text/screen_text/picture)
 
 /obj/docking_port/mobile/marine_dropship/proc/lockdown_all()
 	lockdown_airlocks("rear")
@@ -413,9 +430,6 @@
 		playsound(user, "alien_roar", 50)
 		priority_announce("Alamo lockdown protocol compromised. Interference preventing remote control", "Dropship Lock Alert")
 		return FALSE
-	if(D.hijack_state == HIJACK_STATE_CALLED_DOWN)
-		to_chat(user, span_warning("The bird's mind is already tampered with!"))
-		return FALSE
 	if(D.mode != SHUTTLE_IDLE && D.mode != SHUTTLE_RECHARGING)
 		to_chat(user, span_warning("The bird's mind is currently active. We need to wait until it's more vulnerable..."))
 		return FALSE
@@ -484,6 +498,7 @@
 		M.unlock_all()
 		dat += "<A href='?src=[REF(src)];abduct=1'>Capture the [M]</A><br>"
 		if(M.hijack_state != HIJACK_STATE_CALLED_DOWN)
+			to_chat(X, span_xenowarning("We corrupt the bird's controls, unlocking the doors and preventing it from flight."))
 			M.set_hijack_state(HIJACK_STATE_CALLED_DOWN)
 			M.do_start_hijack_timer()
 
@@ -663,6 +678,9 @@
 			else
 				to_chat(X, span_xenowarning("We can't do that right now."))
 				return
+		var/confirm = tgui_alert(usr, "Would you like to hijack the metal bird?", "Hijack the bird?", list("Yes", "No"))
+		if(confirm != "Yes")
+			return
 		var/obj/docking_port/stationary/marine_dropship/crash_target/CT = pick(SSshuttle.crash_targets)
 		if(!CT)
 			return
@@ -746,6 +764,9 @@
 
 /turf/open/shuttle/dropship/floor
 	icon_state = "rasputin15"
+
+/turf/open/shuttle/dropship/floor/alt
+	icon_state = "rasputin14"
 
 /obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override)
 	. = ..()
@@ -940,6 +961,48 @@
 /obj/structure/dropship_piece/two/front/left
 	icon_state = "blue_fl"
 
+/obj/structure/dropship_piece/tadpole
+	name = "\improper Tadpole"
+
+/obj/structure/dropship_piece/tadpole/rearleft
+	icon_state = "blue_rear_lc"
+
+/obj/structure/dropship_piece/tadpole/rearright
+	icon_state = "blue_rear_rc"
+
+/obj/structure/dropship_piece/tadpole/cockpit
+	desc = "The nose part of the tadpole, able to be destroyed."
+	max_integrity = 500
+	resistance_flags = XENO_DAMAGEABLE | DROPSHIP_IMMUNE
+	opacity = FALSE
+	layer = BELOW_OBJ_LAYER
+	throwpass = FALSE
+
+/obj/structure/dropship_piece/tadpole/cockpit/left
+	icon_state = "blue_cockpit_fl"
+
+/obj/structure/dropship_piece/tadpole/cockpit/right
+	icon_state = "blue_cockpit_fr"
+
+/obj/structure/dropship_piece/tadpole/cockpit/window
+	icon = 'icons/turf/dropship2.dmi'
+	icon_state = "1"
+
+/obj/structure/dropship_piece/tadpole/engine
+	icon_state = "tadpole_engine"
+	density = FALSE
+	opacity = FALSE
+
+/obj/structure/dropship_piece/tadpole/tadpole_nose
+	icon_state = "blue_front"
+	opacity = FALSE
+	density = FALSE
+
+/obj/structure/dropship_piece/tadpole/tadpole_nose/right
+	icon_state = "blue_fr"
+
+/obj/structure/dropship_piece/tadpole/tadpole_nose/left
+	icon_state = "blue_fl"
 
 /obj/structure/dropship_piece/two/cockpit/left
 	icon_state = "blue_cockpit_fl"

@@ -12,11 +12,15 @@
 	var/list/blood_DNA
 
 	var/flags_pass = NONE
+	///whether items can be thrown past, or projectiles can fire past this atom.
 	var/throwpass = FALSE
 
-	var/resistance_flags = NONE
+	var/resistance_flags = PROJECTILE_IMMUNE
 
 	var/germ_level = GERM_LEVEL_AMBIENT // The higher the germ level, the more germ on the atom.
+
+	///If non-null, overrides a/an/some in all cases
+	var/article
 
 	///overlays that should remain on top and not normally removed when using cut_overlay functions, like c4.
 	var/list/priority_overlays
@@ -88,8 +92,11 @@
 	var/chat_color_darkened
 	///HUD images that this mob can provide.
 	var/list/hud_possible
-	///Reference to atom being orbited
-	var/atom/orbit_target
+
+	///Whether this atom smooths with things around it, and what type of smoothing if any.
+	var/smoothing_behavior = NO_SMOOTHING
+	///Bitflags to mark the members of specific smoothing groups, in where they all smooth with each other.
+	var/smoothing_groups = NONE
 
 	///The color this atom will be if we choose to draw it on the minimap
 	var/minimap_color = MINIMAP_SOLID
@@ -226,7 +233,7 @@ directive is properly returned.
 
 
 //mob verbs are faster than object verbs. See https://secure.byond.com/forum/?post=1326139&page=2#comment8198716 for why this isn't atom/verb/examine()
-/mob/verb/examinate(atom/A as mob|obj|turf in view())
+/mob/verb/examinate(atom/examinify as mob|obj|turf in view())
 	set name = "Examine"
 	set category = "IC"
 
@@ -234,77 +241,89 @@ directive is properly returned.
 		to_chat(src, span_notice("Something is there but you can't see it."))
 		return
 
-	face_atom(A)
-	A.examine(src)
+	face_atom(examinify)
+	var/list/result = examinify.examine(src) // if a tree is examined but no client is there to see it, did the tree ever really exist?
 
+	if(result.len)
+		for(var/i in 1 to (length(result) - 1))
+			result[i] += "\n"
+
+	to_chat(src, examine_block(span_infoplain(result.Join())))
+	SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, examinify)
+
+/**
+ * Get the name of this object for examine
+ *
+ * You can override what is returned from this proc by registering to listen for the
+ * [COMSIG_ATOM_GET_EXAMINE_NAME] signal
+ */
+/atom/proc/get_examine_name(mob/user)
+	. = "\a [src]"
+	var/list/override = list(gender == PLURAL ? "some" : "a", " ", "[name]")
+	if(article)
+		. = "[article] [src]"
+		override[EXAMINE_POSITION_ARTICLE] = article
+	if(SEND_SIGNAL(src, COMSIG_ATOM_GET_EXAMINE_NAME, user, override) & COMPONENT_EXNAME_CHANGED)
+		. = override.Join("")
+
+///Generate the full examine string of this atom (including icon for goonchat)
+/atom/proc/get_examine_string(mob/user, thats = FALSE)
+	return "[icon2html(src, user)] [thats? "That's ":""][get_examine_name(user)]"
 
 /atom/proc/examine(mob/user)
 	SHOULD_CALL_PARENT(TRUE)
-	if(!istype(src, /obj/item))
-		to_chat(user, "[icon2html(src, user)] That's \a [src].")
-
-	else // No component signaling, dropping it here.
-		var/obj/item/I = src
-		var/size
-		switch(I.w_class)
-			if(1)
-				size = "tiny"
-			if(2)
-				size = "small"
-			if(3)
-				size = "normal-sized"
-			if(4 to 5)
-				size = "bulky"
-			if(6 to INFINITY)
-				size = "huge"
-		to_chat(user, "This is a [blood_color ? blood_color != "#030303" ? "bloody " : "oil-stained " : ""][icon2html(src, user)][src.name]. It is a [size] item.")
-
+	var/examine_string = get_examine_string(user, thats = TRUE)
+	if(examine_string)
+		. = list("[examine_string].")
+	else
+		. = list()
 
 	if(desc)
-		to_chat(user, desc)
+		. += desc
+	if(user.can_use_codex() && SScodex.get_codex_entry(get_codex_value()))
+		. += span_notice("The codex has <a href='?_src_=codex;show_examined_info=[REF(src)];show_to=[REF(user)]'>relevant information</a> available.")
 
-	if(get_dist(user,src) <= 2)
-		if(reagents)
-			if(CHECK_BITFIELD(reagents.reagent_flags, TRANSPARENT))
-				to_chat(user, "It contains these reagents:")
-				if(reagents.reagent_list.len) // TODO: Implement scan_reagent and can_see_reagents() to show each individual reagent
-					var/total_volume = 0
+	if((get_dist(user,src) <= 2) && reagents)
+		if(reagents.reagent_flags & TRANSPARENT)
+			. += "It contains:"
+			if(length(reagents.reagent_list)) // TODO: Implement scan_reagent and can_see_reagents() to show each individual reagent
+				var/total_volume = 0
+				for(var/datum/reagent/R in reagents.reagent_list)
+					total_volume += R.volume
+				. +=  span_notice("[total_volume] units of various reagents.")
+			else
+				. += "Nothing."
+		else if(CHECK_BITFIELD(reagents.reagent_flags, AMOUNT_VISIBLE))
+			if(reagents.total_volume)
+				. += span_notice("It has [reagents.total_volume] unit\s left.")
+			else
+				. += span_warning("It's empty.")
+		else if(CHECK_BITFIELD(reagents.reagent_flags, AMOUNT_SKILLCHECK))
+			if(isxeno(user))
+				return
+			if(user.skills.getRating("medical") >= SKILL_MEDICAL_NOVICE)
+				. += "It contains these reagents:"
+				if(length(reagents.reagent_list))
 					for(var/datum/reagent/R in reagents.reagent_list)
-						total_volume += R.volume
-					to_chat(user, span_notice("[total_volume] units of various reagents."))
+						. += "[R.volume] units of [R.name]"
 				else
-					to_chat(user, "<span class='notice'>Nothing.")
-			else if(CHECK_BITFIELD(reagents.reagent_flags, AMOUNT_VISIBLE))
-				if(reagents.total_volume)
-					to_chat(user, span_notice("It has [reagents.total_volume] unit\s left."))
-				else
-					to_chat(user, span_warning("It's empty."))
-			else if(CHECK_BITFIELD(reagents.reagent_flags, AMOUNT_SKILLCHECK))
-				if(isxeno(user))
-					return
-				if(user.skills.getRating("medical") >= SKILL_MEDICAL_NOVICE)
-					to_chat(user, "It contains these reagents:")
-					if(reagents.reagent_list.len)
-						for(var/datum/reagent/R in reagents.reagent_list)
-							to_chat(user, "[R.volume] units of [R.name]")
-					else
-						to_chat(user, "Nothing.")
-				else
-					to_chat(user, "You don't know what's in it.")
-			else if(reagents.reagent_flags & AMOUNT_ESTIMEE)
-				var/obj/item/reagent_containers/C = src
-				if(!reagents.total_volume)
-					to_chat(user, span_notice("\The [src] is empty!"))
-				else if (reagents.total_volume<= C.volume*0.3)
-					to_chat(user, span_notice("\The [src] is almost empty!"))
-				else if (reagents.total_volume<= C.volume*0.6)
-					to_chat(user, span_notice("\The [src] is half full!"))
-				else if (reagents.total_volume<= C.volume*0.9)
-					to_chat(user, span_notice("\The [src] is almost full!"))
-				else
-					to_chat(user, span_notice("\The [src] is full!"))
+					. += "Nothing."
+			else
+				. += "You don't know what's in it."
+		else if(reagents.reagent_flags & AMOUNT_ESTIMEE)
+			var/obj/item/reagent_containers/C = src
+			if(!reagents.total_volume)
+				. += span_notice("\The [src] is empty!")
+			else if (reagents.total_volume<= C.volume*0.3)
+				. += span_notice("\The [src] is almost empty!")
+			else if (reagents.total_volume<= C.volume*0.6)
+				. += span_notice("\The [src] is half full!")
+			else if (reagents.total_volume<= C.volume*0.9)
+				. += span_notice("\The [src] is almost full!")
+			else
+				. += span_notice("\The [src] is full!")
 
-	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user)
+	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .)
 
 
 /// Updates the icon of the atom
@@ -405,8 +424,8 @@ directive is properly returned.
 	return //For handling the effects of explosions on contents that would not normally be effected
 
 
-//Generalized Fire Proc.
-/atom/proc/flamer_fire_act()
+///Generalized Fire Proc. Burn level is the base fire damage being received.
+/atom/proc/flamer_fire_act(burnlevel)
 	return
 
 
@@ -452,6 +471,8 @@ directive is properly returned.
 			log_admin_private_asay(log_text)
 		if(LOG_GAME)
 			log_game(log_text)
+		if(LOG_MECHA)
+			log_mecha(log_text)
 		else
 			stack_trace("Invalid individual logging type: [message_type]. Defaulting to [LOG_GAME] (LOG_GAME).")
 			log_game(log_text)
@@ -519,7 +540,7 @@ Proc for attack log creation, because really why not
 	var/do_initialize = SSatoms.initialized
 	if(do_initialize != INITIALIZATION_INSSATOMS)
 		args[1] = do_initialize == INITIALIZATION_INNEW_MAPLOAD
-		if(SSatoms.InitAtom(src, args))
+		if(SSatoms.InitAtom(src, FALSE, args))
 			//we were deleted
 			return
 
@@ -566,8 +587,7 @@ Proc for attack log creation, because really why not
 
 /obj/item/update_filters()
 	. = ..()
-	for(var/X in actions)
-		var/datum/action/A = X
+	for(var/datum/action/A AS in actions)
 		A.update_button_icon()
 
 ///returns a filter in the managed filters list by name
@@ -694,19 +714,24 @@ Proc for attack log creation, because really why not
 		update_light()
 	if(loc)
 		SEND_SIGNAL(loc, COMSIG_ATOM_INITIALIZED_ON, src) //required since spawning something doesn't call Move hence it doesn't call Entered.
-		if(isturf(loc) && opacity)
-			var/turf/T = loc
-			T.directional_opacity = ALL_CARDINALS // No need to recalculate it in this case, it's guaranteed to be on afterwards anyways.
+		if(isturf(loc))
+			if(opacity)
+				var/turf/T = loc
+				T.directional_opacity = ALL_CARDINALS // No need to recalculate it in this case, it's guaranteed to be on afterwards anyways.
+
+			if(smoothing_behavior)
+				smooth_self()
+				smooth_neighbors()
 
 	return INITIALIZE_HINT_NORMAL
 
 
-//called if Initialize returns INITIALIZE_HINT_LATELOAD
+///called if Initialize returns INITIALIZE_HINT_LATELOAD
 /atom/proc/LateInitialize(mapload)
-	return
+	set waitfor = FALSE
 
 
-//called when the turf the atom resides on is ChangeTurfed
+///called when the turf the atom resides on is ChangeTurfed
 /atom/proc/HandleTurfChange(turf/T)
 	for(var/a in src)
 		var/atom/A = a

@@ -19,123 +19,126 @@
 	icon_file='icons/obj/items/chemistry.dmi'
 	json_config = 'code/datums/greyscale/json_configs/pillbottleround.json'
 
+/datum/greyscale_config/pillbottlebubble
+	icon_file='icons/obj/items/chemistry.dmi'
+	json_config = 'code/datums/greyscale/json_configs/pillbottlebubble.json'
+
+/datum/greyscale_config/pillbottlespire
+	icon_file='icons/obj/items/chemistry.dmi'
+	json_config = 'code/datums/greyscale/json_configs/pillbottlespire.json'
+
+/datum/greyscale_config/pillbottlecrate
+	icon_file='icons/obj/items/chemistry.dmi'
+	json_config = 'code/datums/greyscale/json_configs/pillbottlecrate.json'
+
+/datum/greyscale_config/pillbottlebox
+	icon_file='icons/obj/items/chemistry.dmi'
+	json_config = 'code/datums/greyscale/json_configs/pillbottlebox.json'
+
 
 /*
  * MODULAR HELMETS
  */
-/datum/greyscale_config/modularhelmet_infantry
+
+/datum/greyscale_config/modularhelmet
 	icon_file = 'icons/mob/modular/infantry.dmi'
 	json_config = 'code/datums/greyscale/json_configs/modularhelmet.json'
-
-/datum/greyscale_config/modularhelmet_infantry_open
-	icon_file = 'icons/mob/modular/infantry.dmi'
+/datum/greyscale_config/modularhelmet/infantry_open
 	json_config = 'code/datums/greyscale/json_configs/modularhelmet_infantry_open.json'
 
-/datum/greyscale_config/modularhelmet_assault
+/datum/greyscale_config/modularhelmet/assault
 	icon_file = 'icons/mob/modular/assault.dmi'
-	json_config = 'code/datums/greyscale/json_configs/modularhelmet.json'
 
-/datum/greyscale_config/modularhelmet_eod
+/datum/greyscale_config/modularhelmet/eod
 	icon_file = 'icons/mob/modular/eod.dmi'
-	json_config = 'code/datums/greyscale/json_configs/modularhelmet.json'
 
-/datum/greyscale_config/modularhelmet_eva
+/datum/greyscale_config/modularhelmet/eva
 	icon_file = 'icons/mob/modular/eva.dmi'
-	json_config = 'code/datums/greyscale/json_configs/modularhelmet.json'
 
-/datum/greyscale_config/modularhelmet_eva_skull
-	icon_file = 'icons/mob/modular/eva.dmi'
-	json_config = 'code/datums/greyscale/json_configs/modularhelmet.json'
-
-/datum/greyscale_config/modularhelmet_scout
+/datum/greyscale_config/modularhelmet/scout
 	icon_file = 'icons/mob/modular/scout.dmi'
-	json_config = 'code/datums/greyscale/json_configs/modularhelmet.json'
 
-/datum/greyscale_config/modularhelmet_skirmisher
+/datum/greyscale_config/modularhelmet/skirmisher
 	icon_file = 'icons/mob/modular/skirmisher.dmi'
-	json_config = 'code/datums/greyscale/json_configs/modularhelmet.json'
+
+/datum/greyscale_config/modularhelmet/helljumper
+	icon_file = 'icons/mob/modular/helljumper.dmi'
+
 
 /*
  * MODULAR CHESTS
  */
-/datum/greyscale_config/modularchest_infantry
+/datum/greyscale_config/modularchest
 	icon_file = 'icons/mob/modular/infantry.dmi'
 	json_config = 'code/datums/greyscale/json_configs/modularchest.json'
 
-/datum/greyscale_config/modularchest_assault
+/datum/greyscale_config/modularchest/assault
 	icon_file = 'icons/mob/modular/assault.dmi'
-	json_config = 'code/datums/greyscale/json_configs/modularchest.json'
 
-/datum/greyscale_config/modularchest_eod
+/datum/greyscale_config/modularchest/eod
 	icon_file = 'icons/mob/modular/eod.dmi'
-	json_config = 'code/datums/greyscale/json_configs/modularchest.json'
 
-/datum/greyscale_config/modularchest_eva
+/datum/greyscale_config/modularchest/eva
 	icon_file = 'icons/mob/modular/eva.dmi'
-	json_config = 'code/datums/greyscale/json_configs/modularchest.json'
 
-/datum/greyscale_config/modularchest_scout
+/datum/greyscale_config/modularchest/scout
 	icon_file = 'icons/mob/modular/scout.dmi'
-	json_config = 'code/datums/greyscale/json_configs/modularchest.json'
 
-/datum/greyscale_config/modularchest_skirmisher
+/datum/greyscale_config/modularchest/skirmisher
 	icon_file = 'icons/mob/modular/skirmisher.dmi'
-	json_config = 'code/datums/greyscale/json_configs/modularchest.json'
+
+/datum/greyscale_config/modularchest/helljumper
+	icon_file = 'icons/mob/modular/helljumper.dmi'
 
 /*
  * MODULAR ARMS
  */
-/datum/greyscale_config/modulararms_infantry
+/datum/greyscale_config/modulararms
 	icon_file = 'icons/mob/modular/infantry.dmi'
 	json_config = 'code/datums/greyscale/json_configs/modularshoulders.json'
 
-/datum/greyscale_config/modulararms_assault
+/datum/greyscale_config/modulararms/assault
 	icon_file = 'icons/mob/modular/assault.dmi'
-	json_config = 'code/datums/greyscale/json_configs/modularshoulders_partialcolor.json'
 
-/datum/greyscale_config/modulararms_eod
+/datum/greyscale_config/modulararms/eod
 	icon_file = 'icons/mob/modular/eod.dmi'
-	json_config = 'code/datums/greyscale/json_configs/modularshoulders_partialcolor.json'
 
-/datum/greyscale_config/modulararms_eva
+/datum/greyscale_config/modulararms/eva
 	icon_file = 'icons/mob/modular/eva.dmi'
-	json_config = 'code/datums/greyscale/json_configs/modularshoulders_partialcolor.json'
 
-/datum/greyscale_config/modulararms_scout
+/datum/greyscale_config/modulararms/scout
 	icon_file = 'icons/mob/modular/scout.dmi'
-	json_config = 'code/datums/greyscale/json_configs/modularshoulders.json'
 
-/datum/greyscale_config/modulararms_skirmisher
+/datum/greyscale_config/modulararms/skirmisher
 	icon_file = 'icons/mob/modular/skirmisher.dmi'
-	json_config = 'code/datums/greyscale/json_configs/modularshoulders.json'
+
+/datum/greyscale_config/modulararms/helljumper
+	icon_file = 'icons/mob/modular/helljumper.dmi'
 
 /*
  * MODULAR LEGS
  */
-/datum/greyscale_config/modularlegs_infantry
+/datum/greyscale_config/modularlegs
 	icon_file = 'icons/mob/modular/infantry.dmi'
 	json_config = 'code/datums/greyscale/json_configs/modularlegs.json'
 
-/datum/greyscale_config/modularlegs_assault
+/datum/greyscale_config/modularlegs/assault
 	icon_file = 'icons/mob/modular/assault.dmi'
-	json_config = 'code/datums/greyscale/json_configs/modularlegs.json'
 
-/datum/greyscale_config/modularlegs_eod
+/datum/greyscale_config/modularlegs/eod
 	icon_file = 'icons/mob/modular/eod.dmi'
-	json_config = 'code/datums/greyscale/json_configs/modularlegs.json'
 
-/datum/greyscale_config/modularlegs_eva
+/datum/greyscale_config/modularlegs/eva
 	icon_file = 'icons/mob/modular/eva.dmi'
-	json_config = 'code/datums/greyscale/json_configs/modularlegs.json'
 
-/datum/greyscale_config/modularlegs_scout
+/datum/greyscale_config/modularlegs/scout
 	icon_file = 'icons/mob/modular/scout.dmi'
-	json_config = 'code/datums/greyscale/json_configs/modularlegs.json'
 
-/datum/greyscale_config/modularlegs_skirmisher
+/datum/greyscale_config/modularlegs/skirmisher
 	icon_file = 'icons/mob/modular/skirmisher.dmi'
-	json_config = 'code/datums/greyscale/json_configs/modularlegs.json'
 
+/datum/greyscale_config/modularlegs/helljumper
+	icon_file = 'icons/mob/modular/helljumper.dmi'
 
 /*
  * MODULAR VISORS
@@ -154,19 +157,48 @@
 /datum/greyscale_config/modular_helmet_visor/eva
 	icon_file = 'icons/mob/modular/eva.dmi'
 
+/datum/greyscale_config/modular_helmet_visor/eva/skull
+	json_config = 'code/datums/greyscale/json_configs/modular_visor_skull.json'
+
 /datum/greyscale_config/modular_helmet_visor/scout
 	icon_file = 'icons/mob/modular/scout.dmi'
 
 /datum/greyscale_config/modular_helmet_visor/skirmisher
 	icon_file = 'icons/mob/modular/skirmisher.dmi'
 
-/datum/greyscale_config/modular_helmet_visor_skull
-	icon_file = 'icons/mob/modular/eva.dmi'
-	json_config = 'code/datums/greyscale/json_configs/modular_visor_skull.json'
+/datum/greyscale_config/modular_helmet_visor/helljumper
+	icon_file = 'icons/mob/modular/helljumper.dmi'
+
 
 /datum/greyscale_config/xenogrenade
 	icon_file = 'icons/obj/items/grenade.dmi'
 	json_config = 'code/datums/greyscale/json_configs/xenogrenade.json'
+
+//Capes and cape higlights
+/datum/greyscale_config/cape
+	icon_file = 'icons/mob/modular/capes/full.dmi'
+	json_config = 'code/datums/greyscale/json_configs/cape.json'
+
+/datum/greyscale_config/cape/half
+	icon_file = 'icons/mob/modular/capes/half.dmi'
+	json_config = 'code/datums/greyscale/json_configs/cape_no_hood.json'
+
+/datum/greyscale_config/cape/scarf
+	icon_file = 'icons/mob/modular/capes/scarf.dmi'
+
+/datum/greyscale_config/cape/short
+	icon_file = 'icons/mob/modular/capes/short.dmi'
+
+/datum/greyscale_config/cape_highlight
+	icon_file = 'icons/mob/modular/capes/full.dmi'
+	json_config = 'code/datums/greyscale/json_configs/cape_highlight.json'
+
+/datum/greyscale_config/cape_highlight/half
+	icon_file = 'icons/mob/modular/capes/half.dmi'
+	json_config = 'code/datums/greyscale/json_configs/cape_highlight_no_hood.json'
+
+/datum/greyscale_config/cape_highlight/scarf
+	icon_file = 'icons/mob/modular/capes/scarf.dmi'
 
 /*
  * COLORABLE BADGES
@@ -201,3 +233,76 @@
 /datum/greyscale_config/protein
 	json_config = 'code/datums/greyscale/json_configs/protein.json'
 	icon_file = 'icons/obj/items/food.dmi'
+
+///AMMO - for both bullets and magazines
+/datum/greyscale_config/ammo
+	json_config = 'code/datums/greyscale/json_configs/ammo.json'
+	icon_file = 'icons/obj/items/ammo.dmi'
+
+///PROJECTILES
+/datum/greyscale_config/projectile
+	json_config = 'code/datums/greyscale/json_configs/projectiles.json'
+	icon_file = 'icons/obj/items/projectiles.dmi'
+
+/*
+ * MECHS
+ */
+//MEDIUM
+/datum/greyscale_config/mech_assault
+	icon_file = 'icons/mecha/mech_assault.dmi'
+	json_config = 'code/datums/greyscale/json_configs/mech_arm.json'
+
+/datum/greyscale_config/mech_assault/arms
+	json_config = 'code/datums/greyscale/json_configs/mech_arm.json'
+
+/datum/greyscale_config/mech_assault/legs
+	json_config = 'code/datums/greyscale/json_configs/mech_legs.json'
+
+/datum/greyscale_config/mech_assault/torso
+	json_config = 'code/datums/greyscale/json_configs/mech_torso.json'
+
+/datum/greyscale_config/mech_assault/head
+	json_config = 'code/datums/greyscale/json_configs/mech_head.json'
+
+/datum/greyscale_config/mech_assault/visor
+	json_config = 'code/datums/greyscale/json_configs/mech_visor.json'
+
+//LIGHT
+/datum/greyscale_config/mech_recon
+	icon_file = 'icons/mecha/mech_recon.dmi'
+	json_config = 'code/datums/greyscale/json_configs/mech_arm.json'
+
+/datum/greyscale_config/mech_recon/arms
+	json_config = 'code/datums/greyscale/json_configs/mech_arm.json'
+
+/datum/greyscale_config/mech_recon/legs
+	json_config = 'code/datums/greyscale/json_configs/mech_legs.json'
+
+/datum/greyscale_config/mech_recon/torso
+	json_config = 'code/datums/greyscale/json_configs/mech_torso.json'
+
+/datum/greyscale_config/mech_recon/head
+	json_config = 'code/datums/greyscale/json_configs/mech_head.json'
+
+/datum/greyscale_config/mech_recon/visor
+	json_config = 'code/datums/greyscale/json_configs/mech_visor.json'
+
+//HEAVY
+/datum/greyscale_config/mech_vanguard
+	icon_file = 'icons/mecha/mech_vanguard.dmi'
+	json_config = 'code/datums/greyscale/json_configs/mech_arm.json'
+
+/datum/greyscale_config/mech_vanguard/arms
+	json_config = 'code/datums/greyscale/json_configs/mech_arm.json'
+
+/datum/greyscale_config/mech_vanguard/legs
+	json_config = 'code/datums/greyscale/json_configs/mech_legs.json'
+
+/datum/greyscale_config/mech_vanguard/torso
+	json_config = 'code/datums/greyscale/json_configs/mech_torso.json'
+
+/datum/greyscale_config/mech_vanguard/head
+	json_config = 'code/datums/greyscale/json_configs/mech_head.json'
+
+/datum/greyscale_config/mech_vanguard/visor
+	json_config = 'code/datums/greyscale/json_configs/mech_visor.json'

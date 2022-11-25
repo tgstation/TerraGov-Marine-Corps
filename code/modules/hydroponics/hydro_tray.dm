@@ -7,9 +7,11 @@
 	density = TRUE
 	anchored = TRUE
 	volume = 100
-	throwpass = 1
+	coverage = 40
 	layer = BELOW_OBJ_LAYER
 	resistance_flags = XENO_DAMAGEABLE
+	max_integrity = 40
+	soft_armor = list(MELEE = 0, BULLET = 80, LASER = 80, ENERGY = 80, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 	var/draw_warnings = 1 //Set to 0 to stop it from drawing the alert lights.
 

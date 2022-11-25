@@ -6,10 +6,11 @@
 	hit_sound = 'sound/effects/grillehit.ogg'
 	density = TRUE
 	anchored = TRUE
+	coverage = 10
 	flags_atom = CONDUCT
 	layer = OBJ_LAYER
 	resistance_flags = XENO_DAMAGEABLE
-	soft_armor = list("melee" = 50, "bullet" = 70, "laser" = 70, "energy" = 100, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 0, "acid" = 0)
+	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 100, BOMB = 10, BIO = 100, FIRE = 0, ACID = 0)
 	max_integrity = 10
 
 /obj/structure/grille/Initialize()
@@ -143,19 +144,10 @@
 
 //MARINE SHIP GRILLE
 
-/obj/structure/grille/mainship
-	icon = 'icons/turf/mainship.dmi'
+/obj/structure/grille/smoothing
 	icon_state = "grille0"
-	tiles_with = list(
-		/turf/closed/wall,
-		/obj/machinery/door/airlock,
-		/obj/structure/grille/mainship,
-	)
+	smoothing_behavior = CARDINAL_SMOOTHING
+	smoothing_groups = SMOOTH_GENERAL_STRUCTURES
 
-/obj/structure/grille/mainship/Initialize()
-	. = ..()
-	relativewall()
-	relativewall_neighbours()
-
-/obj/structure/grille/mainship/update_icon()
-	relativewall()
+/obj/structure/grille/smoothing/update_icon()
+	smooth_self()

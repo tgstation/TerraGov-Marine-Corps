@@ -19,6 +19,8 @@
 		H.add_hud_to(src)
 		H = GLOB.huds[DATA_HUD_SQUAD_REBEL]
 		H.add_hud_to(src)
+		H = GLOB.huds[DATA_HUD_SQUAD_SOM]
+		H.add_hud_to(src)
 	if(ghost_xenohud)
 		H = GLOB.huds[DATA_HUD_XENO_STATUS]
 		H.add_hud_to(src)
@@ -33,12 +35,11 @@
 	update_icon(client.prefs.ghost_form)
 	updateghostimages()
 
-	if(!length(actions))
-		for(var/path in subtypesof(/datum/action/observer_action))
+	for(var/path in subtypesof(/datum/action/observer_action))
+		if(!actions_by_path[path])
 			var/datum/action/observer_action/A = new path()
 			A.give_action(src)
-		var/datum/action/toggle_rightclick/rclick = new
-		rclick.give_action(src)
+	if(!actions_by_path[/datum/action/minimap/observer])
 		var/datum/action/minimap/observer/mini = new
 		mini.give_action(src)
 

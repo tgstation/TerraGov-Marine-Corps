@@ -64,7 +64,7 @@
 	switch(owner.state)
 		if(PLANE_STATE_DEACTIVATED)
 			set_cockpit_overlay("cockpit_opening")//flick doesnt work here, thanks byond
-			sleep(7)
+			sleep(0.7 SECONDS)
 			set_cockpit_overlay("cockpit_open")
 			owner.state = PLANE_STATE_ACTIVATED
 			return
@@ -119,16 +119,31 @@
 ///Eject the user, use forced = TRUE to do so instantly
 /obj/structure/caspart/caschair/proc/eject_user(forced = FALSE)
 	if(!forced)
+		if(SSmapping.level_trait(z, ZTRAIT_RESERVED))
+			to_chat(occupant, span_notice("Getting out of the cockpit while flying seems like a bad idea to you."))
+			return
 		to_chat(occupant, span_notice("You start getting out of the cockpit."))
 		if(!do_after(occupant, 2 SECONDS, TRUE, src))
 			return
-		set_cockpit_overlay("cockpit_opening")
-		addtimer(CALLBACK(src, .proc/set_cockpit_overlay, "cockpit_open"), 7)
+	set_cockpit_overlay("cockpit_opening")
+	addtimer(CALLBACK(src, .proc/set_cockpit_overlay, "cockpit_open"), 7)
 	UnregisterSignal(occupant, COMSIG_LIVING_DO_RESIST)
 	occupant.unset_interaction()
-	occupant.forceMove(loc)
+	occupant.forceMove(get_step(loc, WEST))
 	occupant = null
 
+/obj/structure/caspart/caschair/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+	if(!occupant)
+		to_chat(X, span_xenowarning("There is nothing of interest in there."))
+		return
+	if(X.status_flags & INCORPOREAL || X.do_actions)
+		return
+	visible_message(span_warning("[X] begins to pry the [src]'s cover!"), 3)
+	playsound(src,'sound/effects/metal_creaking.ogg', 25, 1)
+	if(!do_after(X, 2 SECONDS))
+		return
+	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
+	eject_user(TRUE)
 
 /obj/structure/caspart/caschair/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
 	if(!istype(port, /obj/docking_port/mobile/marine_dropship/casplane))
@@ -162,7 +177,7 @@
 	///Chair that handles all the ui and click stuff
 	var/obj/structure/caspart/caschair/chair
 	///Camera eye we create when we begin a CAS mission that we fire from
-	var/mob/camera/aiEye/remote/eyeobj
+	var/mob/camera/aiEye/remote/hud/eyeobj
 	///Action to stop the eye
 	var/datum/action/innate/camera_off/cas/off_action
 	///Number for how much fuel we have left, this x15 seconds is how much time we have while flying
@@ -383,7 +398,7 @@
 
 /obj/docking_port/mobile/marine_dropship/casplane/getStatusText()
 	switch(mode)
-		if(SHUTTLE_IDLE||SHUTTLE_RECHARGING)
+		if(SHUTTLE_IDLE, SHUTTLE_RECHARGING)
 			switch(state)
 				if(PLANE_STATE_FLYING)
 					return "In-mission"
@@ -404,17 +419,34 @@
 
 	if(!owner)
 		return
+	if(action == "toggle_engines")
+		if(owner.mode == SHUTTLE_IGNITING)
+			return
+		switch(owner.state)
+			if(PLANE_STATE_ACTIVATED)
+				owner.turn_on_engines()
+			if(PLANE_STATE_PREPARED)
+				owner.turn_off_engines()
+
+	if(owner.state == PLANE_STATE_ACTIVATED)
+		return
 
 	switch(action)
 		if("launch")
+			if(owner.state == PLANE_STATE_FLYING || owner.mode != SHUTTLE_IDLE)
+				return
 			if(owner.fuel_left <= LOW_FUEL_THRESHOLD)
 				to_chat(usr, "<span class='warning'>Unable to launch, low fuel.")
 				return
 			SSshuttle.moveShuttleToDock(owner.id, SSshuttle.generate_transit_dock(owner), TRUE)
 		if("land")
+			if(owner.state != PLANE_STATE_FLYING)
+				return
 			SSshuttle.moveShuttle(owner.id, SHUTTLE_CAS_DOCK, TRUE)
 			owner.end_cas_mission(usr)
 		if("deploy")
+			if(owner.state != PLANE_STATE_FLYING)
+				return
 			owner.begin_cas_mission(usr)
 		if("change_weapon")
 			var/selection = text2num(params["selection"])
@@ -422,17 +454,12 @@
 		if("deselect")
 			owner.active_weapon = null
 			. = TRUE
-		if("toggle_engines")
-			if(owner.mode == SHUTTLE_IGNITING)
-				return
-			switch(owner.state)
-				if(PLANE_STATE_ACTIVATED)
-					owner.turn_on_engines()
-				if(PLANE_STATE_PREPARED)
-					owner.turn_off_engines()
 		if("cycle_attackdir")
-			owner.attackdir = turn(owner.attackdir, 90)
-			. = TRUE
+			if(params["newdir"] == null)
+				owner.attackdir = turn(owner.attackdir, 90)
+				return TRUE
+			owner.attackdir = params["newdir"]
+			return TRUE
 
 
 

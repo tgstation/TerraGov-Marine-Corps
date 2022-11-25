@@ -97,6 +97,14 @@
 
 	to_chat(src, span_notice("You will [(prefs.toggles_gameplay & RADIAL_MEDICAL) ? "now" : "no longer"] use the radial menu for medical purposes."))
 
+/client/verb/toggle_radial_stacks()
+	set category = "Preferences"
+	set name = "Toggle Radial Stacks Wheel"
+
+	prefs.toggles_gameplay ^= RADIAL_STACKS
+	prefs.save_preferences()
+
+	to_chat(src, span_notice("You will [(prefs.toggles_gameplay & RADIAL_STACKS) ? "now" : "no longer"] use the radial menu when interacting with material stacks."))
 
 /client/verb/toggle_lobby_music()
 	set category = "Preferences"
@@ -170,35 +178,8 @@
 	set category = "Preferences"
 	set name = "Set Preferred Slot"
 
-	var/slot = tgui_input_list(usr, "Which slot would you like to draw/equip from?", "Preferred Slot", list("Suit Storage", "Suit Inside", "Belt", "Back", "Boot", "Helmet", "Left Pocket", "Right Pocket", "Webbing", "Belt", "Belt Holster", "Suit Storage Holster", "Back Holster"))
-	switch(slot)
-		if("Suit Storage")
-			prefs.preferred_slot = SLOT_S_STORE
-		if("Suit Inside")
-			prefs.preferred_slot = SLOT_WEAR_SUIT
-		if("Belt")
-			prefs.preferred_slot = SLOT_BELT
-		if("Back")
-			prefs.preferred_slot = SLOT_BACK
-		if("Boot")
-			prefs.preferred_slot = SLOT_IN_BOOT
-		if("Helmet")
-			prefs.preferred_slot = SLOT_IN_HEAD
-		if("Left Pocket")
-			prefs.preferred_slot = SLOT_L_STORE
-		if("Right Pocket")
-			prefs.preferred_slot = SLOT_R_STORE
-		if("Webbing")
-			prefs.preferred_slot = SLOT_IN_ACCESSORY
-		if("Belt")
-			prefs.preferred_slot = SLOT_IN_BELT
-		if("Belt Holster")
-			prefs.preferred_slot = SLOT_IN_HOLSTER
-		if("Suit Storage Holster")
-			prefs.preferred_slot = SLOT_IN_S_HOLSTER
-		if("Back Holster")
-			prefs.preferred_slot = SLOT_IN_B_HOLSTER
-
+	var/slot = tgui_input_list(usr, "Which slot would you like to draw/equip from?", "Preferred Slot", SLOT_FLUFF_DRAW)
+	prefs.preferred_slot = slot_fluff_to_flag(slot)
 	prefs.save_character()
 
 	to_chat(src, span_notice("You will now equip/draw from the [slot] slot first."))

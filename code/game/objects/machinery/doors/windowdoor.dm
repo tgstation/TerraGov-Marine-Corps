@@ -8,7 +8,7 @@
 	obj_flags = CAN_BE_HIT
 	var/base_state = "left"
 	max_integrity = 50
-	soft_armor = list("melee" = 20, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 70, "acid" = 100)
+	soft_armor = list(MELEE = 20, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 100, FIRE = 70, ACID = 100)
 	visible = FALSE
 	use_power = FALSE
 	flags_atom = ON_BORDER
@@ -25,6 +25,9 @@
 
 /obj/machinery/door/window/Initialize(mapload, set_dir)
 	. = ..()
+	if(dir == NORTH)
+		add_overlay(image(icon, "rwindow_overlay", layer = WINDOW_LAYER))
+		layer = ABOVE_TABLE_LAYER
 	if(set_dir)
 		setDir(set_dir)
 	if(length(req_access))
@@ -56,12 +59,8 @@
 
 /obj/machinery/door/window/proc/open_and_close()
 	open()
-	if(check_access(null))
-		sleep(5 SECONDS)
-	else //secure doors close faster
-		sleep(2 SECONDS)
-	close()
-
+	var/time_to_close = check_access(null) ? 5 SECONDS : 2 SECONDS
+	addtimer(CALLBACK(src, .proc/close), time_to_close)
 
 /obj/machinery/door/window/Bumped(atom/movable/bumper)
 	if(operating || !density)
@@ -89,7 +88,7 @@
 /obj/machinery/door/window/CanAllowThrough(atom/movable/mover, turf/target)
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE
-	if(get_dir(loc, target) == dir) //Make sure looking at appropriate border
+	if(get_dir(loc, target) & dir) //Make sure looking at appropriate border
 		return ..()
 	return TRUE
 
@@ -256,6 +255,8 @@
 	icon_state = "rightsecure"
 	base_state = "rightsecure"
 
+/obj/machinery/door/window/secure/bridge/aidoor //special door with similar integrity to protective ai glass
+	max_integrity = 1200
 
 // Req Doors
 /obj/machinery/door/window/secure/req

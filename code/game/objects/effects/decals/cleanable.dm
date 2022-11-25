@@ -8,7 +8,7 @@
 	return ..()
 
 /obj/effect/decal/cleanable/attackby(obj/item/I, mob/user, params)
-	var/obj/effect/alien/weeds/A = locate() in loc
+	var/obj/alien/weeds/A = locate() in loc
 	if(A)
 		return A.attackby(I, user, params)
 	else

@@ -192,13 +192,13 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 /obj/machinery/cloning/vats/examine(mob/user)
 	. = ..()
 	if(!beaker)
-		to_chat(user, span_notice("It doesn't have a beaker attached."))
+		. += span_notice("It doesn't have a beaker attached.")
 		return
 	if(timerid)
-		to_chat(user, span_notice("There is something weird inside."))
+		. += span_notice("There is something weird inside.")
 		return
 	if(occupant)
-		to_chat(user, span_notice("It looks like there is a human in there!"))
+		. += span_notice("It looks like there is a human in there!")
 		return
 
 

@@ -1,0 +1,582 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"bh" = (
+/obj/structure/window/framed/colony,
+/obj/machinery/door/poddoor/shutters/mainship{
+	id = "Chapel";
+	name = "\improper Chapel Shutters"
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/chapel)
+"cb" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/darkred,
+/area/bigredv2/outside/chapel)
+"gy" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/darkred,
+/area/bigredv2/outside/chapel)
+"hE" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 8;
+	on = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/darkred,
+/area/bigredv2/outside/chapel)
+"hN" = (
+/obj/structure/table/woodentable,
+/turf/open/floor/engine/cult,
+/area/bigredv2/outside/chapel)
+"im" = (
+/obj/structure/table/woodentable,
+/obj/item/radio/headset/survivor,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/engine/cult,
+/area/bigredv2/outside/chapel)
+"je" = (
+/obj/structure/closet/wardrobe/chaplain_black,
+/turf/open/floor/engine/cult,
+/area/bigredv2/outside/chapel)
+"jg" = (
+/turf/open/floor/tile/darkish,
+/area/bigredv2/outside/chapel)
+"le" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile/chapel{
+	dir = 4
+	},
+/area/bigredv2/outside/chapel)
+"lU" = (
+/turf/open/floor/tile/chapel{
+	dir = 4
+	},
+/area/bigredv2/outside/chapel)
+"ns" = (
+/obj/item/tool/candle,
+/turf/open/floor/tile/chapel,
+/area/bigredv2/outside/chapel)
+"nQ" = (
+/obj/effect/landmark/start/job/survivor,
+/obj/structure/bed/chair/wood/wings{
+	dir = 8
+	},
+/turf/open/floor/tile/chapel{
+	dir = 4
+	},
+/area/bigredv2/outside/chapel)
+"ow" = (
+/obj/item/tool/kitchen/knife/ritual,
+/turf/open/floor/grayscale/darkred,
+/area/bigredv2/outside/chapel)
+"pK" = (
+/obj/structure/bed/chair/wood/wings{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/ash,
+/turf/open/floor/tile/chapel{
+	dir = 8
+	},
+/area/bigredv2/outside/chapel)
+"pS" = (
+/turf/open/floor/stairs/rampbottom{
+	dir = 1
+	},
+/area/bigredv2/outside/chapel)
+"qq" = (
+/obj/structure/bed/chair/wood/wings{
+	dir = 8
+	},
+/turf/open/floor/tile/chapel{
+	dir = 1
+	},
+/area/bigredv2/outside/chapel)
+"rc" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/six{
+	dir = 4;
+	},
+/turf/open/floor/grayscale/darkred,
+/area/bigredv2/outside/chapel)
+"ru" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4;
+	on = 1
+	},
+/obj/effect/decal/cleanable/blood,
+/obj/item/clothing/head/cardborg,
+/turf/open/floor/engine/cult,
+/area/bigredv2/outside/chapel)
+"sI" = (
+/obj/structure/cable,
+/obj/machinery/power/apc{
+	dir = 1
+	},
+/turf/open/floor/grayscale/darkred,
+/area/bigredv2/outside/chapel)
+"tb" = (
+/obj/effect/decal/cleanable/blood/gibs/body,
+/turf/open/floor/engine/cult,
+/area/bigredv2/outside/chapel)
+"tX" = (
+/obj/effect/ai_node,
+/obj/item/organ/heart,
+/turf/open/floor/engine/cult,
+/area/bigredv2/outside/chapel)
+"uy" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/grayscale/darkred,
+/area/bigredv2/outside/chapel)
+"uV" = (
+/obj/item/tool/candle,
+/turf/open/floor/grayscale/darkred,
+/area/bigredv2/outside/chapel)
+"vc" = (
+/obj/structure/bed/chair/wood/wings{
+	dir = 8
+	},
+/turf/open/floor/tile/chapel,
+/area/bigredv2/outside/chapel)
+"vg" = (
+/obj/machinery/atmospherics/pipe/manifold/green/hidden,
+/obj/structure/cable,
+/obj/effect/decal/cleanable/blood/six{
+	dir = 4;
+	},
+/turf/open/floor/grayscale/darkred,
+/area/bigredv2/outside/chapel)
+"vJ" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/obj/item/tool/candle,
+/turf/open/floor/tile/chapel{
+	dir = 1
+	},
+/area/bigredv2/outside/chapel)
+"vU" = (
+/turf/closed/wall,
+/area/bigredv2/outside/chapel)
+"wa" = (
+/obj/structure/cable,
+/obj/item/tool/candle,
+/turf/open/floor/tile/chapel{
+	dir = 8
+	},
+/area/bigredv2/outside/chapel)
+"xk" = (
+/obj/structure/table/woodentable,
+/obj/effect/landmark/weed_node,
+/obj/item/tool/candle,
+/turf/open/floor/tile/darkish,
+/area/bigredv2/outside/chapel)
+"xw" = (
+/obj/structure/cable,
+/obj/effect/landmark/weed_node,
+/obj/item/trash/candle,
+/turf/open/floor/grayscale/darkred,
+/area/bigredv2/outside/chapel)
+"zF" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/darkred,
+/area/bigredv2/outside/chapel)
+"zI" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/item/tool/candle,
+/turf/open/floor/grayscale/darkred,
+/area/bigredv2/outside/chapel)
+"AD" = (
+/obj/machinery/door_control{
+	dir = 4;
+	id = "Chapel";
+	name = "Storm Shutters"
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/engine/cult,
+/area/bigredv2/outside/chapel)
+"By" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	name = "\improper Chapel"
+	},
+/turf/open/floor/tile/darkish,
+/area/bigredv2/outside/chapel)
+"Cl" = (
+/obj/machinery/alarm{
+	dir = 1
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/darkred,
+/area/bigredv2/outside/chapel)
+"CO" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/stairs/rampbottom,
+/area/bigredv2/outside/chapel)
+"De" = (
+/obj/structure/cable,
+/obj/item/tool/candle,
+/turf/open/floor/grayscale/darkred,
+/area/bigredv2/outside/chapel)
+"Dk" = (
+/obj/structure/table/woodentable,
+/obj/effect/spawner/random/ammo,
+/obj/effect/spawner/random/ammo,
+/turf/open/floor/tile/darkish,
+/area/bigredv2/outside/chapel)
+"Ei" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/table/woodentable,
+/obj/item/storage/bible,
+/turf/open/floor/engine/cult,
+/area/bigredv2/outside/chapel)
+"EZ" = (
+/obj/effect/landmark/weed_node,
+/obj/item/tool/candle,
+/turf/open/floor/grayscale/darkred,
+/area/bigredv2/outside/chapel)
+"FV" = (
+/obj/item/trash/candle,
+/turf/open/floor/engine/cult,
+/area/bigredv2/outside/chapel)
+"ID" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/engine/cult,
+/area/bigredv2/outside/chapel)
+"JD" = (
+/obj/structure/bed/chair/wood/wings{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/ash,
+/turf/open/floor/tile/chapel,
+/area/bigredv2/outside/chapel)
+"Lr" = (
+/obj/structure/table/woodentable,
+/obj/item/tool/candle,
+/turf/open/floor/tile/darkish,
+/area/bigredv2/outside/chapel)
+"NF" = (
+/obj/structure/bed/chair/wood/wings{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/ash,
+/turf/open/floor/tile/chapel{
+	dir = 4
+	},
+/area/bigredv2/outside/chapel)
+"Oe" = (
+/obj/structure/window/framed/colony,
+/obj/machinery/door/poddoor/shutters/mainship{
+	dir = 2;
+	id = "Chapel";
+	name = "\improper Chapel Shutters"
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/chapel)
+"OL" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor/tile/chapel{
+	dir = 8
+	},
+/area/bigredv2/outside/chapel)
+"PY" = (
+/obj/structure/bed/chair/wood/wings{
+	dir = 8
+	},
+/turf/open/floor/tile/chapel{
+	dir = 8
+	},
+/area/bigredv2/outside/chapel)
+"Qt" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/obj/effect/decal/cleanable/blood/six{
+	dir = 1;
+	},
+/turf/open/floor/grayscale/darkred,
+/area/bigredv2/outside/chapel)
+"Sg" = (
+/turf/open/floor/tile/chapel,
+/area/bigredv2/outside/chapel)
+"Sv" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/chainofcommand,
+/turf/open/floor/engine/cult,
+/area/bigredv2/outside/chapel)
+"SE" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor/grayscale/darkred,
+/area/bigredv2/outside/chapel)
+"Te" = (
+/turf/open/floor/grayscale/darkred,
+/area/bigredv2/outside/chapel)
+"TT" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/item/trash/candle,
+/turf/open/floor/grayscale/darkred,
+/area/bigredv2/outside/chapel)
+"TV" = (
+/obj/structure/cable,
+/turf/open/floor/grayscale/darkred,
+/area/bigredv2/outside/chapel)
+"TZ" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/grayscale/darkred,
+/area/bigredv2/outside/chapel)
+"VH" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/trash/candle,
+/turf/open/floor/grayscale/darkred,
+/area/bigredv2/outside/chapel)
+"VS" = (
+/obj/effect/decal/cleanable/blood/six{
+	dir = 1;
+	},
+/turf/open/floor/tile/chapel{
+	dir = 8
+	},
+/area/bigredv2/outside/chapel)
+"Xm" = (
+/obj/structure/cable,
+/turf/open/floor/tile/chapel{
+	dir = 1
+	},
+/area/bigredv2/outside/chapel)
+"Xt" = (
+/turf/open/floor/engine/cult,
+/area/bigredv2/outside/chapel)
+"XR" = (
+/obj/effect/decal/cleanable/blood/six{
+	dir = 1;
+	},
+/turf/open/floor/tile/chapel{
+	dir = 1
+	},
+/area/bigredv2/outside/chapel)
+"Zz" = (
+/obj/structure/bed/chair/wood/wings{
+	dir = 8
+	},
+/turf/open/floor/tile/chapel{
+	dir = 4
+	},
+/area/bigredv2/outside/chapel)
+
+(1,1,1) = {"
+vU
+vU
+bh
+bh
+bh
+bh
+bh
+vU
+vU
+"}
+(2,1,1) = {"
+vU
+je
+ID
+FV
+tX
+FV
+Xt
+AD
+vU
+"}
+(3,1,1) = {"
+Oe
+Te
+pS
+tb
+ru
+tb
+CO
+Te
+vU
+"}
+(4,1,1) = {"
+Oe
+Te
+im
+Sv
+Ei
+hN
+hN
+Te
+vU
+"}
+(5,1,1) = {"
+vU
+VH
+XR
+VS
+Qt
+XR
+VS
+Te
+vU
+"}
+(6,1,1) = {"
+Oe
+uV
+NF
+JD
+cb
+NF
+JD
+Te
+vU
+"}
+(7,1,1) = {"
+Oe
+zF
+qq
+pK
+TT
+qq
+pK
+zF
+vU
+"}
+(8,1,1) = {"
+vU
+uy
+Zz
+JD
+rc
+nQ
+vc
+Te
+vU
+"}
+(9,1,1) = {"
+Oe
+Te
+qq
+PY
+gy
+qq
+PY
+Te
+vU
+"}
+(10,1,1) = {"
+Oe
+ow
+Zz
+vc
+cb
+NF
+JD
+sI
+vU
+"}
+(11,1,1) = {"
+vU
+uy
+qq
+PY
+zI
+qq
+PY
+TV
+vU
+"}
+(12,1,1) = {"
+Oe
+EZ
+Zz
+vc
+rc
+Zz
+vc
+xw
+vU
+"}
+(13,1,1) = {"
+Oe
+uV
+qq
+PY
+gy
+qq
+PY
+De
+vU
+"}
+(14,1,1) = {"
+vU
+uy
+Zz
+vc
+cb
+Zz
+vc
+TV
+vU
+"}
+(15,1,1) = {"
+By
+SE
+vJ
+OL
+vg
+Xm
+wa
+TV
+vU
+"}
+(16,1,1) = {"
+jg
+TZ
+lU
+Sg
+hE
+le
+ns
+Te
+vU
+"}
+(17,1,1) = {"
+vU
+Te
+xk
+Lr
+zF
+Dk
+Dk
+Cl
+vU
+"}
+(18,1,1) = {"
+vU
+vU
+vU
+vU
+vU
+vU
+vU
+vU
+vU
+"}

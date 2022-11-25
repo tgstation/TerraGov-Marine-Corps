@@ -2,7 +2,7 @@
 	name = "\improper Airlock"
 	icon = 'icons/obj/doors/Doorint.dmi'
 	icon_state = "door_closed"
-	soft_armor = list("melee" = 20, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 100, "acid" = 0)
+	soft_armor = list(MELEE = 20, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, FIRE = 100, ACID = 0)
 	power_channel = ENVIRON
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
@@ -34,10 +34,6 @@
 	var/secured_wires = 0	//for mapping use
 	var/no_panel = 0 //the airlock has no panel that can be screwdrivered open
 	var/emergency = FALSE
-
-	tiles_with = list(
-		/turf/closed/wall,
-	)
 
 /obj/machinery/door/airlock/bumpopen(mob/living/user) //Airlocks now zap you when you 'bump' them open when they're electrified. --NeoFite
 	if(issilicon(user))
@@ -101,7 +97,7 @@
 /obj/machinery/door/airlock/proc/handlePowerRestore()
 	var/cont = TRUE
 	while(cont)
-		sleep(10)
+		sleep(1 SECONDS)
 		if(QDELETED(src))
 			return
 		cont = FALSE
@@ -155,7 +151,7 @@
 		return 0	//Already shocked someone recently?
 	if(..())
 		hasShocked = 1
-		sleep(10)
+		sleep(1 SECONDS)
 		hasShocked = 0
 		return 1
 	else
@@ -391,12 +387,6 @@
 			else if(length(req_one_access))
 				AE.conf_access = req_one_access
 				AE.one_access = TRUE
-		else
-			AE = electronics
-			if(electronics.is_general_board)
-				AE.set_general()
-			AE.forceMove(loc)
-			electronics = null
 
 		if(operating == -1)
 			AE.icon_state = "door_electronics_smoked"
@@ -438,26 +428,19 @@
 		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 	update_icon()
 
-
-///obj/machinery/door/airlock/phoron/attackby(C as obj, mob/user as mob)
-//	if(C)
-//		ignite(is_hot(C))
-//	..()
-
 /obj/machinery/door/airlock/open(forced = FALSE)
-	if(operating || welded || locked || !loc)
+	if(!forced && (!hasPower() || wires.is_cut(WIRE_OPEN)))
 		return FALSE
-	if(!forced)
-		if(!hasPower() || wires.is_cut(WIRE_OPEN))
-			return FALSE
-	use_power(active_power_usage)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
+	. = ..()
+	if(!.)
+		return
+	use_power(active_power_usage)
 	if(istype(src, /obj/machinery/door/airlock/glass))
 		playsound(loc, 'sound/machines/windowdoor.ogg', 25, 1)
 	else
 		playsound(loc, 'sound/machines/airlock.ogg', 25, 0)
 	if(istype(closeOther, /obj/machinery/door/airlock) && !closeOther.density)
 		closeOther.close()
-	return ..()
 
 /obj/machinery/door/airlock/close(forced = FALSE)
 	if(operating || welded || locked)
@@ -466,11 +449,9 @@
 		if(!hasPower() || wires.is_cut(WIRE_BOLTS))
 			return
 	if(safe)
-		for(var/turf/turf in locs)
+		for(var/turf/turf AS in locs)
 			if(locate(/mob/living) in turf)
-			//	playsound(src.loc, 'sound/machines/buzz-two.ogg', 25, 0)	//THE BUZZING IT NEVER STOPS	-Pete
-				spawn (60 + openspeed)
-					close()
+				addtimer(CALLBACK(src, .proc/close), 6 SECONDS)
 				return
 
 	for(var/turf/turf in locs)
@@ -499,7 +480,7 @@
 	return ..()
 
 /obj/machinery/door/airlock/proc/lock(forced = FALSE)
-	if (operating || locked)
+	if ((operating && !forced) || locked)
 		return
 
 	locked = TRUE
@@ -507,7 +488,7 @@
 	update_icon()
 
 /obj/machinery/door/airlock/proc/unlock(forced = FALSE)
-	if (operating || !locked)
+	if ((operating && !forced) || !locked)
 		return
 
 	if(forced || hasPower()) //only can raise bolts if power's on
@@ -528,9 +509,6 @@
 				src.closeOther = A
 				break
 
-	// fix smoothing
-	relativewall_neighbours()
-
 
 /obj/machinery/door/airlock/Destroy()
 	QDEL_NULL(wires)
@@ -545,7 +523,7 @@
 
 
 /obj/machinery/door/airlock/proc/update_nearby_icons()
-	relativewall_neighbours()
+	smooth_neighbors()
 
 
 /obj/machinery/door/airlock/proc/set_electrified(seconds, mob/user)
@@ -568,7 +546,7 @@
 
 /obj/machinery/door/airlock/proc/electrified_loop()
 	while(secondsElectrified > MACHINE_NOT_ELECTRIFIED)
-		sleep(10)
+		sleep(1 SECONDS)
 		if(QDELETED(src))
 			return
 

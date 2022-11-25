@@ -1,0 +1,637 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aA" = (
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"ce" = (
+/obj/structure/bookcase{
+	density = 0
+	},
+/obj/item/book/manual/engineering_construction,
+/obj/item/book/manual/engineering_guide,
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"da" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/power/apc,
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"dg" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/corpsespawner/security,
+/turf/open/floor/carpet/side{
+	dir = 4;
+	},
+/area/bigredv2/outside/library)
+"eF" = (
+/obj/structure/bookcase{
+	density = 0
+	},
+/obj/item/book/manual/barman_recipes,
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"gS" = (
+/obj/structure/table/woodentable,
+/obj/item/book/manual/hydroponics_beekeeping,
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"iU" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 8;
+	on = 1
+	},
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"iX" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/carpet/side{
+	dir = 5;
+	},
+/area/bigredv2/outside/library)
+"jD" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	locked = 1;
+	name = "\improper Library"
+	},
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"li" = (
+/obj/machinery/door_control{
+	dir = 8;
+	id = "Library";
+	name = "Storm Shutters"
+	},
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"lB" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"mP" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/carpet/side{
+	dir = 4;
+	},
+/area/bigredv2/outside/library)
+"oL" = (
+/turf/open/floor/carpet/side{
+	dir = 1;
+	},
+/area/bigredv2/outside/library)
+"pO" = (
+/obj/structure/window/framed/colony,
+/obj/machinery/door/poddoor/shutters/mainship{
+	id = "Library";
+	name = "\improper Library Shutters"
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/library)
+"pV" = (
+/obj/structure/table/woodentable,
+/obj/item/toy/dice/d20,
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"ql" = (
+/obj/structure/window/framed/colony,
+/obj/machinery/door/poddoor/shutters/mainship{
+	dir = 2;
+	id = "Library";
+	name = "\improper Library Shutters"
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/library)
+"qr" = (
+/obj/structure/bookcase{
+	density = 0
+	},
+/obj/item/book/manual/detective,
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"qY" = (
+/obj/structure/bookcase{
+	density = 0
+	},
+/obj/item/book/manual/ripley_build_and_repair,
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"ua" = (
+/turf/open/floor/carpet/side{
+	},
+/area/bigredv2/outside/library)
+"uo" = (
+/obj/structure/bookcase{
+	density = 0
+	},
+/obj/item/book/manual/engineering_particle_accelerator,
+/obj/item/book/manual/engineering_singularity_safety,
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"vg" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"vJ" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"xn" = (
+/obj/structure/bookcase{
+	density = 0
+	},
+/obj/item/book/manual/hydroponics_beekeeping,
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"xz" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/carpet/side{
+	dir = 6;
+	},
+/area/bigredv2/outside/library)
+"yu" = (
+/obj/structure/bookcase{
+	density = 0
+	},
+/obj/item/book/manual/evaguide,
+/obj/item/book/manual/marine_law,
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"yy" = (
+/turf/closed/wall,
+/area/bigredv2/outside/library)
+"yG" = (
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/bigredv2/outside/e)
+"yM" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/carpet,
+/area/bigredv2/outside/library)
+"yV" = (
+/obj/effect/ai_node,
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"AJ" = (
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"AN" = (
+/turf/open/floor/carpet/side{
+	dir = 9;
+	},
+/area/bigredv2/outside/library)
+"AY" = (
+/obj/structure/bookcase{
+	density = 0
+	},
+/obj/item/book/manual/chef_recipes,
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"Bm" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
+	locked = 1;
+	name = "\improper Greenhouse Storage"
+	},
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"Cn" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 8
+	},
+/area/bigredv2/outside/e)
+"Dt" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/machinery/door/airlock/mainship/generic{
+	locked = 1;
+	name = "\improper Library Backroom"
+	},
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"Ey" = (
+/obj/structure/bed/chair/wood/normal{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"EI" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"Fe" = (
+/obj/structure/bookcase{
+	density = 0
+	},
+/obj/item/book/manual/engineering_guide,
+/obj/item/book/manual/nuclear,
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"Ft" = (
+/obj/structure/table/woodentable,
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"FB" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"FH" = (
+/obj/machinery/alarm{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"Ht" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/turf/open/floor/carpet/side{
+	},
+/area/bigredv2/outside/library)
+"HF" = (
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"JC" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/carpet/side{
+	},
+/area/bigredv2/outside/library)
+"JQ" = (
+/obj/structure/bookcase{
+	density = 0
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/landmark/weed_node,
+/obj/item/book/manual/engineering_singularity_safety,
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"KJ" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"Mb" = (
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"MU" = (
+/obj/structure/bed/chair/wood/normal,
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"Nc" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"Nh" = (
+/obj/structure/bookcase{
+	density = 0
+	},
+/obj/item/book/manual/medical_cloning,
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"NC" = (
+/turf/open/floor/carpet/side{
+	dir = 5;
+	},
+/area/bigredv2/outside/library)
+"NO" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"NR" = (
+/obj/structure/table/woodentable,
+/obj/item/paper,
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"OB" = (
+/obj/structure/bookcase{
+	density = 0
+	},
+/obj/effect/landmark/weed_node,
+/obj/item/book/manual/engineering_guide,
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"PW" = (
+/obj/structure/bookcase{
+	density = 0
+	},
+/obj/item/book/manual/atmospipes,
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"QC" = (
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/bigredv2/outside/e)
+"Sj" = (
+/turf/open/floor/carpet/side{
+	dir = 10;
+	},
+/area/bigredv2/outside/library)
+"Sy" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/carpet/side{
+	dir = 4;
+	},
+/area/bigredv2/outside/library)
+"SK" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"VR" = (
+/obj/structure/bookcase{
+	density = 0
+	},
+/obj/item/book/manual/engineering_construction,
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"Wf" = (
+/turf/open/floor/carpet/side{
+	dir = 8;
+	},
+/area/bigredv2/outside/library)
+"WJ" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/carpet/side{
+	dir = 4;
+	},
+/area/bigredv2/outside/library)
+"WY" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"YQ" = (
+/obj/structure/bookcase{
+	density = 0
+	},
+/obj/item/book/manual/engineering_construction,
+/obj/item/book/manual/marine_law,
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+"ZP" = (
+/obj/structure/bookcase{
+	density = 0
+	},
+/obj/item/book/manual/robotics_cyborgs,
+/obj/item/book/manual/security_space_law,
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
+
+(1,1,1) = {"
+yy
+yy
+yy
+yy
+Bm
+yy
+yy
+yy
+yy
+yy
+yy
+yy
+yy
+yy
+yy
+yy
+yy
+yy
+"}
+(2,1,1) = {"
+yy
+AY
+AJ
+ZP
+EI
+OB
+AJ
+ce
+FH
+JQ
+AJ
+xn
+AJ
+VR
+NO
+AJ
+yy
+QC
+"}
+(3,1,1) = {"
+yy
+eF
+AJ
+qr
+EI
+PW
+AJ
+uo
+AJ
+YQ
+AJ
+Nh
+AJ
+qr
+AJ
+AJ
+ql
+QC
+"}
+(4,1,1) = {"
+yy
+Nh
+AJ
+aA
+vg
+AN
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Sj
+AJ
+ql
+QC
+"}
+(5,1,1) = {"
+yy
+yu
+WY
+vJ
+HF
+iX
+WJ
+dg
+mP
+mP
+WJ
+Sy
+mP
+yM
+JC
+Mb
+yy
+QC
+"}
+(6,1,1) = {"
+yy
+FB
+AJ
+vg
+AJ
+AJ
+AJ
+AJ
+AJ
+AJ
+AJ
+uo
+yV
+oL
+Ht
+SK
+jD
+Cn
+"}
+(7,1,1) = {"
+yy
+vJ
+lB
+Nc
+li
+AJ
+MU
+NR
+pV
+Ey
+AJ
+AJ
+AJ
+oL
+ua
+AJ
+AJ
+yG
+"}
+(8,1,1) = {"
+yy
+Dt
+yy
+yy
+yy
+AJ
+MU
+Ft
+gS
+Ey
+AJ
+Fe
+AJ
+oL
+ua
+Mb
+yy
+QC
+"}
+(9,1,1) = {"
+yy
+iU
+Ft
+Ft
+yy
+AJ
+NO
+AJ
+AJ
+AJ
+NO
+qY
+AJ
+NC
+xz
+AJ
+ql
+QC
+"}
+(10,1,1) = {"
+yy
+da
+NO
+AJ
+yy
+KJ
+AJ
+AJ
+AJ
+KJ
+AJ
+AJ
+KJ
+AJ
+AJ
+AJ
+ql
+QC
+"}
+(11,1,1) = {"
+yy
+yy
+yy
+yy
+yy
+yy
+yy
+pO
+pO
+yy
+pO
+pO
+yy
+pO
+pO
+yy
+yy
+QC
+"}

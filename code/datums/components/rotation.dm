@@ -109,7 +109,7 @@
 /datum/component/simple_rotation/proc/ExamineMessage(datum/source, mob/user)
 	SIGNAL_HANDLER
 	if(rotation_flags & ROTATION_ALTCLICK)
-		to_chat(user, span_notice("Alt-click to rotate it clockwise."))
+		. += span_notice("Alt-click to rotate it clockwise.")
 
 
 /datum/component/simple_rotation/proc/HandRot(datum/source, mob/user, rotation = default_rotation_direction)

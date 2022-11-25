@@ -70,8 +70,8 @@
 				// not its contents. BS12
 				if(get_dist(D, A_turf) == 1 && A_turf.density)
 					D.reagents.reaction(A_turf)
-				sleep(2)
-			sleep(3)
+				sleep(0.2 SECONDS)
+			sleep(0.3 SECONDS)
 		qdel(D)
 
 
@@ -130,9 +130,9 @@
 	list_reagents = list(/datum/reagent/consumable/capsaicin/condensed = 40)
 
 /obj/item/reagent_containers/spray/pepper/examine(mob/user)
-	..()
+	. = ..()
 	if(get_dist(user,src) <= 1)
-		to_chat(user, "The safety is [safety ? "on" : "off"].")
+		. += "The safety is [safety ? "on" : "off"]."
 
 /obj/item/reagent_containers/spray/pepper/attack_self(mob/user)
 	safety = !safety
@@ -195,7 +195,7 @@
 				D.reagents.reaction(get_turf(D))
 				for(var/atom/t in get_turf(D))
 					D.reagents.reaction(t, VAPOR)
-				sleep(2)
+				sleep(0.2 SECONDS)
 			qdel(D)
 
 

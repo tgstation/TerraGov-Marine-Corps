@@ -146,10 +146,9 @@
 	if(!.)
 		return
 	var/obj/item/armor_module/armor/armor = .
-	if(seller.faction == FACTION_NEUTRAL)
+	if(greyscale_colors)
 		armor.set_greyscale_colors(greyscale_colors)
-		return
-	armor.limit_colorable_colors(seller.faction)
+	armor.update_icon()
 
 /datum/item_representation/armor_module/storage
 	///Storage repressentation of storage modules.

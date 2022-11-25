@@ -22,6 +22,25 @@
 		"Another day, another trash. Gosh, i would have left these marines in the cryo.",
 		"Another stinky sock. They really don't know the basics of hygiene",
 		"This is the most DISGUSTING room i have ever seen",
+		"Those marine bastards are gonna pay for trashing up my ship.",
+		"Ughh, and I thought I was trashy.",
+		"Lucky you, cleaned by the best!",
+		"Time to start piling up the trash!",
+		"Clean and sweep until it is done.",
+		"Another day another crayon.",
+		"What are you? Some bottom feeding, ship trashing crayon eater?",
+		"The fifth element is always Roomby!",
+		"Hail to the roomba, baby!",
+		"Come clean some!",
+		"Walk now and live, stay and sweep!",
+		"Cant we all just clean together?",
+		"Cmon hurry up, I know you got a ship to trash.",
+		"Damn, here I was minding my own business, just enjoying my clean ship and you people have to trash the place up on me.",
+		"This cant be good for me, but I feel great!",
+		"Gyah, I feel like I'll get robotic hepatitis if I touch anything on this ship.",
+		"I think I will need to keep an eye out for these marines, They are definetly hazardous to my mental health.",
+		"Sorry folks, the space bible backs me up on this one.",
+		"You just know there's gonna be some variety of pickled crayons in here somewhere.",
 	)
 
 /obj/machinery/roomba/Initialize(mapload)
@@ -36,7 +55,7 @@
 
 /obj/machinery/roomba/examine(mob/user, distance, infix, suffix)
 	. = ..()
-	to_chat(user, "A panel on the top says it has cleaned [counter] items!")
+	. += "A panel on the top says it has cleaned [counter] items!"
 
 ///Turns the roomba around when it leaves an area to make sure it doesnt wander off
 /obj/machinery/roomba/proc/turn_around(datum/target)
@@ -95,10 +114,9 @@
 			continue
 		sucked_one = TRUE
 		sucker.store_in_cryo()
-		GLOB.cryoed_item_list[CRYO_REQ] += sucker
 		counter++
 	stuck_counter = 0
-	if(sucked_one && prob(2))
+	if(sucked_one && prob(10))
 		say(pick(sentences))
 
 /obj/machinery/roomba/attack_hand(mob/living/user)
@@ -135,3 +153,9 @@
 	claymore = null
 	RemoveElement(/datum/element/connect_loc)
 	cut_overlays()
+
+/obj/machinery/roomba/valhalla/suck_items()
+	for(var/obj/item/sucker in loc)
+		if(sucker.flags_item & NO_VACUUM)
+			continue
+		qdel(sucker)

@@ -1,9 +1,9 @@
 #define UPLOAD_LIMIT 1000000	//Restricts client uploads to the server to 1MB
 #define UPLOAD_LIMIT_ADMIN 10000000	//Restricts admin uploads to the server to 10MB
 
-#define MAX_RECOMMENDED_CLIENT 1566
-#define MIN_RECOMMENDED_CLIENT 1526
-#define REQUIRED_CLIENT_MAJOR 513
+#define MAX_RECOMMENDED_CLIENT 1589
+#define MIN_RECOMMENDED_CLIENT 1575
+#define REQUIRED_CLIENT_MAJOR 514
 #define REQUIRED_CLIENT_MINOR 1493
 
 #define LIMITER_SIZE 5
@@ -136,7 +136,8 @@
 	GLOB.directory[ckey] = src
 
 	// Instantiate tgui panel
-	tgui_panel = new(src)
+	tgui_panel = new(src, "browseroutput")
+
 
 	GLOB.ahelp_tickets.ClientLogin(src)
 
@@ -208,7 +209,7 @@
 
 	if(SSinput.initialized)
 		set_macros()
-		update_movement_keys()
+		update_special_keybinds()
 
 	// Initialize tgui panel
 	tgui_panel.initialize()
@@ -228,7 +229,7 @@
 
 	if(byond_build < MIN_RECOMMENDED_CLIENT)
 		to_chat(src, span_userdanger("Your version of byond has known client crash issues, it's recommended you update your version."))
-		to_chat(src, span_danger("Please download a new version of byond. If [byond_build] is the latest, you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions."))
+		to_chat(src, span_danger("Please download a new version of byond. You can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download 514.[MIN_RECOMMENDED_CLIENT]."))
 
 	if(byond_build < 1555)
 		to_chat(src, span_userdanger("Your version of byond might have rendering lag issues, it is recommended you update your version to above Byond version 1555 if you encounter them."))
@@ -236,7 +237,7 @@
 
 	if(byond_build > MAX_RECOMMENDED_CLIENT)
 		to_chat(src, span_userdanger("Your version of byond is likely to be very buggy."))
-		to_chat(src, span_danger("Please download a old version of byond. If [byond_build] is the latest, you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions."))
+		to_chat(src, span_danger("It is recommended you install an older version of byond. You can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download 514.[MAX_RECOMMENDED_CLIENT]."))
 
 	if(num2text(byond_build) in GLOB.blacklisted_builds)
 		log_access("Failed login: [key] - blacklisted byond version")
@@ -347,6 +348,9 @@
 //////////////////
 /client/Del()
 	if(!gc_destroyed)
+		// Yes this is the same as what's found in qdel(). Yes it does need to be here
+		// Get off my back
+		SEND_SIGNAL(src, COMSIG_PARENT_QDELETING, TRUE)
 		Destroy()
 	return ..()
 
@@ -386,6 +390,7 @@
 		movingmob.client_mobs_in_contents -= mob
 		UNSETEMPTY(movingmob.client_mobs_in_contents)
 		movingmob = null
+	SSping.currentrun -= src
 	QDEL_NULL(tooltips)
 	Master.UpdateTickRate()
 	SSambience.ambience_listening_clients -= src
@@ -444,10 +449,6 @@
 			to_chat(src, span_danger("Your previous click was ignored because you've done too many in a second"))
 			return
 
-//Hijack for FC.
-	if(prefs.focus_chat)
-		winset(src, null, "input.focus=true")
-
 	return ..()
 
 //checks if a client is afk
@@ -477,6 +478,12 @@
 		if (CONFIG_GET(flag/asset_simple_preload))
 			addtimer(CALLBACK(SSassets.transport, /datum/asset_transport.proc/send_assets_slow, src, SSassets.transport.preload), 5 SECONDS)
 
+#if (PRELOAD_RSC == 0)
+		for (var/name in GLOB.vox_sounds)
+			var/file = GLOB.vox_sounds[name]
+			Export("##action=load_rsc", file)
+			stoplag()
+#endif
 
 //Hook, override it to run code when dir changes
 //Like for /atoms, but clients are their own snowflake FUCK
@@ -488,7 +495,7 @@
 	var/pos = 0
 	for(var/D in GLOB.cardinals)
 		pos++
-		var/obj/screen/O = LAZYACCESS(char_render_holders, "[D]")
+		var/atom/movable/screen/O = LAZYACCESS(char_render_holders, "[D]")
 		if(!O)
 			O = new
 			LAZYSET(char_render_holders, "[D]", O)
@@ -500,7 +507,7 @@
 
 /client/proc/clear_character_previews()
 	for(var/index in char_render_holders)
-		var/obj/screen/S = char_render_holders[index]
+		var/atom/movable/screen/S = char_render_holders[index]
 		screen -= S
 		qdel(S)
 	char_render_holders = null
@@ -776,7 +783,7 @@
 	view_size.set_view_radius_to(clamp(change, min, max), clamp(change, min, max))
 
 
-/client/proc/update_movement_keys(datum/preferences/direct_prefs)
+/client/proc/update_special_keybinds(datum/preferences/direct_prefs)
 	var/datum/preferences/D = prefs || direct_prefs
 	if(!D?.key_bindings)
 		return
@@ -901,6 +908,12 @@ GLOBAL_VAR_INIT(automute_on, null)
 	if(holder)
 		holder.filteriffic = new /datum/filter_editor(in_atom)
 		holder.filteriffic.ui_interact(mob)
+
+///opens the particle editor UI for the in_atom object for this client
+/client/proc/open_particle_editor(atom/movable/in_atom)
+	if(holder)
+		holder.particle_test = new /datum/particle_editor(in_atom)
+		holder.particle_test.ui_interact(mob)
 
 ///updates with the ambience preferrences of the user
 /client/proc/update_ambience_pref()

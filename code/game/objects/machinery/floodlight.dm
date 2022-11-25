@@ -4,10 +4,11 @@
 	icon_state = "flood00"
 	anchored = TRUE
 	density = TRUE
-	light_system = HYBRID_LIGHT
-	light_power = 5
+	coverage = 25
+	light_system = STATIC_LIGHT
+	light_power = SQRTWO
 	///The brightness of the floodlight
-	var/brightness_on = 7
+	var/brightness_on = 8
 
 /obj/machinery/floodlight/Initialize()
 	. = ..()
@@ -43,7 +44,7 @@
 	desc = "A powerful light stationed near landing zones to provide better visibility."
 	icon_state = "flood01"
 	use_power = 0
-	brightness_on = 5
+	brightness_on = 6
 
 /obj/machinery/floodlight/landing/Initialize()
 	. = ..()
@@ -85,7 +86,7 @@
 	icon_state = "floodlightcombat_off"
 	anchored = FALSE
 	density = TRUE
-	light_power = 5
+	light_power = SQRTWO
 	light_system = STATIC_LIGHT
 	///the cell powering this floodlight
 	var/obj/item/cell/cell
@@ -108,9 +109,9 @@
 /obj/machinery/floodlightcombat/examine(mob/user)
 	. = ..()
 	if(!cell)
-		to_chat(user, span_notice("It has no cell installed"))
+		. += span_notice("It has no cell installed")
 		return
-	to_chat(user, span_notice("[cell] has [cell.charge / cell.maxcharge]% charge left"))
+	. += span_notice("[cell] has [CEILING(cell.charge / cell.maxcharge * 100, 1)]% charge left")
 
 /// Handles the wrench act .
 /obj/machinery/floodlightcombat/wrench_act(mob/living/user, obj/item/I)
@@ -199,7 +200,7 @@
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	X.visible_message(span_danger("[X] slashes \the [src]!"), \
 	span_danger("We slash \the [src]!"), null, 5)
-	playsound(loc, "alien_claw_metal", 25, 1)	
+	playsound(loc, "alien_claw_metal", 25, 1)
 	turn_light(X, FALSE, forced = TRUE)
 
 /obj/machinery/floodlightcombat/update_icon_state()

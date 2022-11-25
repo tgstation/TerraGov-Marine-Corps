@@ -22,7 +22,7 @@
 	create_reagents(max_water, AMOUNT_VISIBLE, list(/datum/reagent/water = max_water))
 
 /obj/item/tool/extinguisher/mini
-	name = "fire extinguisher"
+	name = "mini fire extinguisher"
 	desc = "A light and compact fibreglass-framed model fire extinguisher."
 	icon_state = "miniFE0"
 	item_state = "miniFE"
@@ -34,8 +34,8 @@
 	sprite_name = "miniFE"
 
 /obj/item/tool/extinguisher/examine(mob/user)
-	..()
-	to_chat(user, "The safety is [safety ? "on" : "off"].")
+	. = ..()
+	. += "The safety is [safety ? "on" : "off"]."
 
 /obj/item/tool/extinguisher/attack_self(mob/user as mob)
 	safety = !safety

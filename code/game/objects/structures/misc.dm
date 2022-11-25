@@ -5,6 +5,7 @@
 	desc = "A stand with the empty body of a cyborg bolted to it."
 	density = TRUE
 	anchored = TRUE
+	coverage = 15
 
 /obj/structure/showcase/two
 	icon_state = "showcase_2"
@@ -22,6 +23,9 @@
 
 /obj/structure/showcase/six
 	icon_state = "showcase_6"
+
+/obj/structure/showcase/coinpress
+	icon_state = "coinpress0"
 
 /obj/machinery/showcase/mulebot
 	name = "Mulebot"
@@ -56,6 +60,7 @@
 	icon_state = "mopbucket"
 	anchored = FALSE
 	resistance_flags = XENO_DAMAGEABLE
+	max_integrity = 40
 	var/amount_per_transfer_from_this = 5 //Shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
 
 /obj/structure/mopbucket/Initialize()
@@ -63,8 +68,8 @@
 	create_reagents(100, OPENCONTAINER)
 
 /obj/structure/mopbucket/examine(mob/user)
-	..()
-	to_chat(user, "It contains [reagents.total_volume] unit\s of water!")
+	. = ..()
+	. += "It contains [reagents.total_volume] unit\s of water!"
 
 /obj/structure/mopbucket/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -103,59 +108,61 @@
 
 //ICE COLONY RESEARCH DECORATION-----------------------//
 //Most of icons made by ~Morrinn
-obj/structure/xenoautopsy
+/obj/structure/xenoautopsy
 	name = "Research thingies"
 	icon = 'icons/obj/alien_autopsy.dmi'
 	icon_state = "jarshelf_9"
 
-obj/structure/xenoautopsy/jar_shelf
+/obj/structure/xenoautopsy/jar_shelf
 	name = "jar shelf"
 	icon_state = "jarshelf_0"
 	var/randomise = 1 //Random icon
 
-	New()
-		if(randomise)
-			icon_state = "jarshelf_[rand(0,9)]"
+/obj/structure/xenoautopsy/jar_shelf/Initialize()
+	. = ..()
+	if(randomise)
+		icon_state = "jarshelf_[rand(0,9)]"
 
-obj/structure/xenoautopsy/tank
+/obj/structure/xenoautopsy/tank
 	name = "cryo tank"
 	icon_state = "tank_empty"
 	desc = "It is empty."
 
-obj/structure/xenoautopsy/tank/escaped
+/obj/structure/xenoautopsy/tank/escaped
 	name = "broken cryo tank"
 	icon_state = "tank_escaped"
 	desc = "Something broke it..."
 
-obj/structure/xenoautopsy/tank/broken
+/obj/structure/xenoautopsy/tank/broken
 	icon_state = "tank_broken"
 	desc = "Something broke it..."
 
-obj/structure/xenoautopsy/tank/alien
+/obj/structure/xenoautopsy/tank/alien
 	icon_state = "tank_alien"
 	desc = "There is something big inside..."
 
-obj/structure/xenoautopsy/tank/hugger
+/obj/structure/xenoautopsy/tank/hugger
 	icon_state = "tank_hugger"
 	desc = "There is something spider-like inside..."
 
-obj/structure/xenoautopsy/tank/larva
+/obj/structure/xenoautopsy/tank/larva
 	icon_state = "tank_larva"
 	desc = "There is something worm-like inside..."
 
-obj/item/alienjar
+/obj/item/alienjar
 	name = "sample jar"
 	icon = 'icons/obj/alien_autopsy.dmi'
 	icon_state = "jar_sample"
 	desc = "Used to store organic samples inside for preservation."
 
-	New()
-		var/image/I
-		I = image('icons/obj/alien_autopsy.dmi', "sample_[rand(0,11)]")
-		I.layer = src.layer - 0.1
-		overlays += I
-		pixel_x += rand(-3,3)
-		pixel_y += rand(-3,3)
+/obj/item/alienjar/Initialize()
+	. = ..()
+
+	var/image/sample_image = image('icons/obj/alien_autopsy.dmi', "sample_[rand(0,11)]")
+	sample_image.layer = layer - 0.1
+	add_overlay(sample_image)
+	pixel_x += rand(-3,3)
+	pixel_y += rand(-3,3)
 
 
 
@@ -171,11 +178,24 @@ obj/item/alienjar
 	density = FALSE
 	opacity = FALSE
 
+/obj/structure/stairs/seamless
+	icon_state = "stairs_seamless"
+
+/obj/structure/stairs/seamless/platform
+	icon_state = "railstairs_seamless"
+
+/obj/structure/stairs/seamless/platform/alt
+	icon_state = "railstairs_seamless_vert"
+
+
 /obj/structure/stairs/corner
 	icon_state = "staircorners"
 
 /obj/structure/stairs/cornerdark //darker version for the darkened ramp bottoms
 	icon_state = "staircornersdark"
+
+/obj/structure/stairs/cornerdark/seamless //darker version for the darkened ramp bottoms
+	icon_state = "staircorners_seamless"
 
 /obj/structure/stairs/railstairs
 	icon = 'icons/obj/structures/railstairs.dmi'
@@ -190,6 +210,7 @@ obj/item/alienjar
 	anchored = TRUE
 	layer = MOB_LAYER
 	resistance_flags = XENO_DAMAGEABLE
+	max_integrity = 100
 
 /obj/structure/plasticflaps/CanAllowThrough(atom/A, turf/T)
 	. = ..()

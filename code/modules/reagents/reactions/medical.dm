@@ -38,7 +38,7 @@
 /datum/chemical_reaction/ryetalyn
 	name = "Ryetalyn"
 	results = list(/datum/reagent/medicine/ryetalyn = 2)
-	required_reagents = list(/datum/reagent/medicine/arithrazine = 1, /datum/reagent/carbon = 1)
+	required_reagents = list(/datum/reagent/medicine/arithrazine = 1, /datum/reagent/carbon = 1, /datum/reagent/medicine/lemoline = 1)
 
 /datum/chemical_reaction/cryoxadone
 	name = "Cryoxadone"
@@ -116,7 +116,7 @@
 /datum/chemical_reaction/synaptizine
 	name = "Synaptizine"
 	results = list(/datum/reagent/medicine/synaptizine = 3)
-	required_reagents = list(/datum/reagent/consumable/sugar = 1, /datum/reagent/lithium = 1, /datum/reagent/water = 1)
+	required_reagents = list(/datum/reagent/consumable/sugar = 1, /datum/reagent/lithium = 1, /datum/reagent/water = 1, /datum/reagent/medicine/lemoline = 1)
 
 /datum/chemical_reaction/leporazine
 	name = "Leporazine"
@@ -127,7 +127,7 @@
 /datum/chemical_reaction/hyronalin
 	name = "Hyronalin"
 	results = list(/datum/reagent/medicine/hyronalin = 2)
-	required_reagents = list(/datum/reagent/radium = 1, /datum/reagent/medicine/dylovene = 1)
+	required_reagents = list(/datum/reagent/radium = 1, /datum/reagent/medicine/dylovene = 1, /datum/reagent/medicine/lemoline = 1)
 
 /datum/chemical_reaction/arithrazine
 	name = "Arithrazine"
@@ -139,22 +139,21 @@
 	results = list(/datum/reagent/medicine/kelotane = 2)
 	required_reagents = list(/datum/reagent/silicon = 1, /datum/reagent/carbon = 1)
 
-/datum/chemical_reaction/peridaxon
-	name = "Peridaxon"
-	results = list(/datum/reagent/medicine/peridaxon = 2)
-	required_reagents = list(/datum/reagent/medicine/bicaridine = 2, /datum/reagent/medicine/clonexadone = 2)
-	required_catalysts = list(/datum/reagent/toxin/phoron = 5)
-
 /datum/chemical_reaction/peridaxon_plus
 	name = "Peridaxon Plus"
 	results = list(/datum/reagent/medicine/peridaxon_plus = 1)
-	required_reagents = list(/datum/reagent/medicine/peridaxon = 5, /datum/reagent/medicine/ryetalyn = 5, /datum/reagent/toxin/phoron = 5)
+	required_reagents = list(/datum/reagent/medicine/ryetalyn = 5, /datum/reagent/toxin/phoron = 5)
 
 /datum/chemical_reaction/quickclot
 	name = "Quick-Clot"
 	results = list(/datum/reagent/medicine/quickclot = 1)
 	required_reagents = list(/datum/reagent/medicine/kelotane = 2, /datum/reagent/medicine/clonexadone = 2)
 	required_catalysts = list(/datum/reagent/toxin/phoron = 5)
+
+/datum/chemical_reaction/quickclotplus
+	name = "Quick-Clot Plus"
+	results = list(/datum/reagent/medicine/quickclotplus = 1)
+	required_reagents = list(/datum/reagent/medicine/quickclot = 2, /datum/reagent/medicine/lemoline = 2, /datum/reagent/iron = 2)
 
 /datum/chemical_reaction/hypervene //New purge chem.
 	name = "Hypervene"

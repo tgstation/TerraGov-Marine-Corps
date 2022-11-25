@@ -150,19 +150,73 @@ GLOBAL_LIST_INIT(claymore_recipe, list(
 	. = ..()
 	recipe = GLOB.claymore_recipe
 
-GLOBAL_LIST_INIT(sg_rifle_ammobox, list(
+GLOBAL_LIST_INIT(IFF_ammo, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CONSTRUCTOR, STEP_ICON_STATE = "bulletbox"),
 	))
 
-/obj/item/factory_part/smartgunner_rifle_box
+/obj/item/factory_part/smartgunner_minigun_box
 	name = "IFF bullet box"
 	desc = "A box with unfinished smart-rounds inside"
-	result = /obj/item/ammo_magazine/packet/t25
+	result = /obj/item/ammo_magazine/packet/smart_minigun
 
-/obj/item/factory_part/smartgunner_rifle_box/Initialize()
+/obj/item/factory_part/smartgunner_minigun_box/Initialize()
 	. = ..()
-	recipe = GLOB.sg_rifle_ammobox
+	recipe = GLOB.IFF_ammo
+
+/obj/item/factory_part/smartgunner_machinegun_magazine
+	name = "IFF drums box"
+	desc = "A box with unfinished smart-rounds inside and empty drums inside"
+	result = /obj/item/ammo_magazine/standard_smartmachinegun
+
+/obj/item/factory_part/smartgunner_machinegun_magazine/Initialize()
+	. = ..()
+	recipe = GLOB.IFF_ammo
+
+/obj/item/factory_part/auto_sniper_magazine
+	name = "IFF high caliber bullet box"
+	desc = "A box with unfinished high caliber smart-rounds inside"
+	result = /obj/item/ammo_magazine/rifle/autosniper
+
+/obj/item/factory_part/auto_sniper_magazine/Initialize()
+	. = ..()
+	recipe = GLOB.IFF_ammo
+
+/obj/item/factory_part/scout_rifle_magazine
+	name = "IFF high velocity bullet box"
+	desc = "A box with unfinished high velocity smart-rounds inside"
+	result = /obj/item/ammo_magazine/rifle/tx8
+
+/obj/item/factory_part/scout_rifle_magazine/Initialize()
+	. = ..()
+	recipe = GLOB.IFF_ammo
+
+/obj/item/factory_part/amr_magazine
+	name = "IFF antimaterial bullet box"
+	desc = "A box with unfinished antimaterial rifle rounds inside"
+	result = /obj/item/ammo_magazine/sniper
+
+/obj/item/factory_part/amr_magazine/Initialize()
+	. = ..()
+	recipe = GLOB.IFF_ammo
+
+/obj/item/factory_part/AMR_magazine_incend
+	name = "IFF antimaterial Incendiary bullet box"
+	desc = "A box with unfinished antimaterial Incendiary rifle rounds inside"
+	result = /obj/item/ammo_magazine/sniper/incendiary
+
+/obj/item/factory_part/amr_magazine_incend/Initialize()
+	. = ..()
+	recipe = GLOB.IFF_ammo
+
+/obj/item/factory_part/amr_magazine_flak
+	name = "IFF antimaterial Flak bullet box"
+	desc = "A box with unfinished antimaterial rifle Flak rounds inside"
+	result = /obj/item/ammo_magazine/sniper/flak
+
+/obj/item/factory_part/amr_magazine_flak/Initialize()
+	. = ..()
+	recipe = GLOB.IFF_ammo
 
 GLOBAL_LIST_INIT(mateba_speedloader, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
@@ -193,17 +247,72 @@ GLOBAL_LIST_INIT(railgun_magazine, list(
 	. = ..()
 	recipe = GLOB.railgun_magazine
 
-GLOBAL_LIST_INIT(scout_rifle_magazine, list(
+GLOBAL_LIST_INIT(minigun_powerpack, list(
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CONSTRUCTOR, STEP_ICON_STATE = "cutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_FORMER, STEP_ICON_STATE = "hotplate"),
+	))
+/obj/item/factory_part/minigun_powerpack
+	name = "Minigun powerpack"
+	desc = "A powerpack with unfinished minigun rounds inside"
+	result = /obj/item/ammo_magazine/minigun_powerpack
+
+/obj/item/factory_part/minigun_powerpack/Initialize()
+	. = ..()
+	recipe = GLOB.minigun_powerpack
+
+GLOBAL_LIST_INIT(razornade, list(
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_FORMER, STEP_ICON_STATE = "roundplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "cutplate"),
+	))
+/obj/item/factory_part/razornade
+	name = "Razorfoam grenade"
+	desc = "An unfinished Razorfoam grenade casing"
+	result = /obj/item/explosive/grenade/chem_grenade/razorburn_smol
+
+/obj/item/factory_part/razornade/Initialize()
+	. = ..()
+	recipe = GLOB.razornade
+
+GLOBAL_LIST_INIT(howitzer_shell, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "cutplate"),
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_FORMER, STEP_ICON_STATE = "hotplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CONSTRUCTOR, STEP_ICON_STATE = "rockettube"),
 	))
+/obj/item/factory_part/howitzer_shell_he
+	name = "Howitzer shell"
+	desc = "An unfinished High Explosive Howitzer shell"
+	result = /obj/item/mortal_shell/howitzer/he
 
-/obj/item/factory_part/scout_rifle_magazine
-	name = "IFF high velocity bullet box"
-	desc = "A box with unfinished high velocity smart-rounds inside"
-	result = /obj/item/ammo_magazine/rifle/tx8
-
-/obj/item/factory_part/scout_rifle_magazine/Initialize()
+/obj/item/factory_part/howitzer_shell_he/Initialize()
 	. = ..()
-	recipe = GLOB.scout_rifle_magazine
+	recipe = GLOB.howitzer_shell
+
+/obj/item/factory_part/howitzer_shell_incen
+	name = "Howitzer shell"
+	desc = "An unfinished Incendiary Howitzer shell"
+	result = /obj/item/mortal_shell/howitzer/incendiary
+
+/obj/item/factory_part/howitzer_shell_incen/Initialize()
+	. = ..()
+	recipe = GLOB.howitzer_shell
+
+/obj/item/factory_part/howitzer_shell_wp
+	name = "Howitzer shell"
+	desc = "An unfinished White Phosphorus Howitzer shell"
+	result = /obj/item/mortal_shell/howitzer/white_phos
+
+/obj/item/factory_part/howitzer_shell_wp/Initialize()
+	. = ..()
+	recipe = GLOB.howitzer_shell
+
+/obj/item/factory_part/howitzer_shell_tfoot
+	name = "Howitzer shell"
+	desc = "An unfinished High Explosive Howitzer shell"
+	result = /obj/item/mortal_shell/howitzer/plasmaloss
+
+/obj/item/factory_part/howitzer_shell_tfoot/Initialize()
+	. = ..()
+	recipe = GLOB.howitzer_shell

@@ -1,3 +1,4 @@
+
 /datum/action/xeno_action
 	var/plasma_cost = 0
 	var/mechanics_text = "This ability not found in codex." //codex. If you are going to add an explanation for an ability. don't use stats, give a very brief explanation of how to use it.
@@ -6,37 +7,29 @@
 	var/cooldown_timer
 	var/ability_name
 	var/keybind_flags
-	var/image/cooldown_image
-	var/keybind_signal
 	var/cooldown_id
 	var/target_flags = NONE
 	/// flags to restrict a xeno ability to certain gamemode
 	var/gamemode_flags = ABILITY_ALL_GAMEMODE
-	///Alternative keybind signal, to use the action differently
-	var/alternate_keybind_signal
 
 /datum/action/xeno_action/New(Target)
 	. = ..()
 	if(plasma_cost)
 		name = "[name] ([plasma_cost])"
-	button.overlays += image('icons/mob/actions.dmi', button, action_icon_state)
-	cooldown_image = image('icons/effects/progressicons.dmi', null, "busy_clock")
+	var/image/cooldown_image = image('icons/effects/progressicons.dmi', null, "busy_clock", ACTION_LAYER_CLOCK)
+	var/mutable_appearance/empowered_appearence = mutable_appearance('icons/mob/actions.dmi', "borders_center", ACTION_LAYER_EMPOWERED, FLOAT_PLANE)
 	cooldown_image.pixel_y = 7
 	cooldown_image.appearance_flags = RESET_COLOR|RESET_ALPHA
+	visual_references[VREF_IMAGE_XENO_CLOCK] = cooldown_image
+	visual_references[VREF_MUTABLE_EMPOWERED_FRAME] = empowered_appearence
 
 /datum/action/xeno_action/give_action(mob/living/L)
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = L
 	X.xeno_abilities += src
-	if(keybind_signal)
-		RegisterSignal(L, keybind_signal, .proc/keybind_activation)
-	if(alternate_keybind_signal)
-		RegisterSignal(L, alternate_keybind_signal, .proc/alternate_action_activate)
 	RegisterSignal(L, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE, .proc/on_xeno_upgrade)
 
 /datum/action/xeno_action/remove_action(mob/living/L)
-	if(keybind_signal)
-		UnregisterSignal(L, keybind_signal)
 	UnregisterSignal(L, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE)
 	if(cooldown_id)
 		deltimer(cooldown_id)
@@ -44,15 +37,15 @@
 	X.xeno_abilities -= src
 	return ..()
 
-
-/datum/action/xeno_action/proc/keybind_activation()
-	SIGNAL_HANDLER
-	if(can_use_action())
-		INVOKE_ASYNC(src, .proc/action_activate)
-	return COMSIG_KB_ACTIVATED
-
 /datum/action/xeno_action/proc/on_xeno_upgrade()
 	return
+
+///Adds an outline around the ability button
+/datum/action/xeno_action/proc/add_empowered_frame()
+	button.cut_overlay(visual_references[VREF_MUTABLE_EMPOWERED_FRAME])
+
+/datum/action/xeno_action/proc/remove_empowered_frame()
+	button.add_overlay(visual_references[VREF_MUTABLE_EMPOWERED_FRAME])
 
 /datum/action/xeno_action/can_use_action(silent = FALSE, override_flags)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -62,57 +55,67 @@
 
 	if(!(flags_to_check & XACT_IGNORE_COOLDOWN) && !action_cooldown_check())
 		if(!silent)
-			to_chat(owner, span_warning("We can't use [ability_name] yet, we must wait [cooldown_remaining()] seconds!"))
+			X.balloon_alert(X, "Wait [cooldown_remaining()] sec")
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_INCAP) && X.incapacitated())
 		if(!silent)
-			to_chat(owner, span_warning("We can't do this while incapacitated!"))
+			X.balloon_alert(X, "Cannot while incapacitated")
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_LYING) && X.lying_angle)
 		if(!silent)
-			to_chat(owner, span_warning("We can't do this while lying down!"))
+			X.balloon_alert(X, "Cannot while lying down")
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_BUCKLED) && X.buckled)
 		if(!silent)
-			to_chat(owner, span_warning("We can't do this while buckled!"))
+			X.balloon_alert(X, "Cannot while buckled")
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_STAGGERED) && X.stagger)
 		if(!silent)
-			to_chat(owner, span_warning("We can't do this while staggered!"))
+			X.balloon_alert(X, "Cannot while staggered")
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_FORTIFIED) && X.fortify)
 		if(!silent)
-			to_chat(owner, span_warning("We can't do this while fortified!"))
+			X.balloon_alert(X, "Cannot while fortified")
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_CRESTED) && X.crest_defense)
 		if(!silent)
-			to_chat(owner, span_warning("We can't do this while in crest defense!"))
+			X.balloon_alert(X, "Cannot while in crest defense")
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_NOTTURF) && !isturf(X.loc))
 		if(!silent)
-			to_chat(owner, span_warning("We can't do this here!"))
+			X.balloon_alert(X, "Cannot do this here")
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_BUSY) && X.do_actions)
 		if(!silent)
-			to_chat(owner, span_warning("We're busy doing something right now!"))
+			X.balloon_alert(X, "Cannot, busy")
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_AGILITY) && X.agility)
 		if(!silent)
-			to_chat(owner, span_warning("We can't do this in agility mode!"))
+			X.balloon_alert(X, "Cannot in agility mode")
+		return FALSE
+
+	if(!(flags_to_check & XACT_USE_BURROWED) && HAS_TRAIT(X, TRAIT_BURROWED))
+		if(!silent)
+			X.balloon_alert(X, "Cannot while burrowed")
 		return FALSE
 
 	if(!(flags_to_check & XACT_IGNORE_PLASMA) && X.plasma_stored < plasma_cost)
 		if(!silent)
-			to_chat(owner, span_warning("We don't have enough plasma, we need [plasma_cost - X.plasma_stored] more."))
+			X.balloon_alert(X, "Need [plasma_cost - X.plasma_stored] more plasma")
+		return FALSE
+	if(!(flags_to_check & XACT_USE_CLOSEDTURF) && isclosedturf(get_turf(X)))
+		if(!silent)
+			//Not converted to balloon alert as xeno.dm's balloon alert is simultaneously called and will overlap.
+			to_chat(owner, span_warning("We can't do this while in a solid object!"))
 		return FALSE
 
 	return TRUE
@@ -157,8 +160,7 @@
 		return
 	last_use = world.time
 	cooldown_id = addtimer(CALLBACK(src, .proc/on_cooldown_finish), cooldown_length, TIMER_STOPPABLE)
-	button.overlays += cooldown_image
-	update_button_icon()
+	button.add_overlay(visual_references[VREF_IMAGE_XENO_CLOCK])
 
 
 /datum/action/xeno_action/proc/cooldown_remaining()
@@ -170,10 +172,9 @@
 	cooldown_id = null
 	if(!button)
 		CRASH("no button object on finishing xeno action cooldown")
-	button.overlays -= cooldown_image
-	update_button_icon()
+	button.cut_overlay(visual_references[VREF_IMAGE_XENO_CLOCK])
 
-/datum/action/xeno_action/update_button_icon()
+/datum/action/xeno_action/handle_button_status_visuals()
 	if(!can_use_action(TRUE, XACT_IGNORE_COOLDOWN))
 		button.color = "#80000080" // rgb(128,0,0,128)
 	else if(!action_cooldown_check())
@@ -181,6 +182,8 @@
 	else
 		button.color = "#ffffffff" // rgb(255,255,255,255)
 
+/datum/action/xeno_action/activable
+	action_type = ACTION_SELECT
 
 /datum/action/xeno_action/activable/Destroy()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -211,13 +214,13 @@
 
 /datum/action/xeno_action/activable/proc/deselect()
 	var/mob/living/carbon/xenomorph/X = owner
-	remove_selected_frame()
+	set_toggle(FALSE)
 	X.selected_ability = null
 	on_deactivation()
 
 /datum/action/xeno_action/activable/proc/select()
 	var/mob/living/carbon/xenomorph/X = owner
-	add_selected_frame()
+	set_toggle(TRUE)
 	X.selected_ability = src
 	on_activation()
 

@@ -12,7 +12,7 @@
 	///by default Zlevel 2, groundside is targetted
 	var/targetted_zlevel = 2
 	///minimap obj ref that we will display to users
-	var/obj/screen/minimap/map
+	var/atom/movable/screen/minimap/map
 
 /obj/machinery/cic_maptable/Destroy()
 	map = null
@@ -31,3 +31,11 @@
 /obj/machinery/cic_maptable/on_unset_interaction(mob/user)
 	. = ..()
 	user.client.screen -= map
+
+/obj/machinery/cic_maptable/droppod_maptable
+	name = "Athena tactical map console"
+	desc = "A map that display the planetside AO, specialized in revealing potential areas to drop pod. This is especially useful to see where the frontlines and marines are at so that anyone droppodding can decide where to land. Pray that your land nav skills are robust to not get lost!"
+	icon_state = "droppodtable"
+
+/obj/machinery/cic_maptable/som_maptable
+	allowed_flags = MINIMAP_FLAG_MARINE_SOM

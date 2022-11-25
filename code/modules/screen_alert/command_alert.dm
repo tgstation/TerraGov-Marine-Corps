@@ -1,6 +1,6 @@
 #define MAX_COMMAND_MESSAGE_LEN 300
 
-/obj/screen/text/screen_text/command_order
+/atom/movable/screen/text/screen_text/command_order
 	maptext_height = 64
 	maptext_width = 480
 	maptext_x = 0
@@ -15,6 +15,9 @@
 /datum/action/innate/message_squad
 	name = "Send Order"
 	action_icon_state = "screen_order_marine"
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_KB_SENDORDER,
+	)
 	///What skill is needed to have this action
 	var/skill_name = "leadership"
 	///What minimum level in that skill is needed to have that action
@@ -51,8 +54,8 @@
 	deadchat_broadcast(" has sent the command order \"[text]\"", human_owner, human_owner)
 	if(human_owner.assigned_squad)
 		for(var/mob/living/carbon/human/marine AS in human_owner.assigned_squad.marines_list)
-			marine.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>SQUAD ORDERS UPDATED:</u></span><br>" + text, /obj/screen/text/screen_text/command_order)
+			marine.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>SQUAD ORDERS UPDATED:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
 		return
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		if(human.faction == human_owner.faction)
-			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>ORDERS UPDATED:</u></span><br>" + text, /obj/screen/text/screen_text/command_order)
+			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>ORDERS UPDATED:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)

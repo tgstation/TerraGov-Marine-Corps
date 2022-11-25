@@ -27,7 +27,7 @@
 
 /obj/item/assembly/voice/examine(mob/user)
 	. = ..()
-	to_chat(user, span_notice("Use a multitool to swap between \"inclusive\", \"exclusive\", \"recognizer\", and \"voice sensor\" mode."))
+	. += span_notice("Use a multitool to swap between \"inclusive\", \"exclusive\", \"recognizer\", and \"voice sensor\" mode.")
 
 
 /obj/item/assembly/voice/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)

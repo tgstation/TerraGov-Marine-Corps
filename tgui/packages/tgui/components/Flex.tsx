@@ -26,15 +26,7 @@ export const computeFlexClassName = (props: FlexProps) => {
 };
 
 export const computeFlexProps = (props: FlexProps) => {
-  const {
-    className,
-    direction,
-    wrap,
-    align,
-    justify,
-    inline,
-    ...rest
-  } = props;
+  const { className, direction, wrap, align, justify, inline, ...rest } = props;
   return computeBoxProps({
     style: {
       ...rest.style,
@@ -47,15 +39,11 @@ export const computeFlexProps = (props: FlexProps) => {
   });
 };
 
-export const Flex = props => {
+export const Flex = (props) => {
   const { className, ...rest } = props;
   return (
     <div
-      className={classes([
-        className,
-        computeFlexClassName(rest),
-        computeBoxClassName(rest),
-      ])}
+      className={classes([className, computeFlexClassName(rest)])}
       {...computeFlexProps(rest)}
     />
   );
@@ -80,24 +68,31 @@ export const computeFlexItemClassName = (props: FlexItemProps) => {
 };
 
 export const computeFlexItemProps = (props: FlexItemProps) => {
+  // prettier-ignore
   const {
     className,
     style,
     grow,
     order,
     shrink,
-    // IE11: Always set basis to specified width, which fixes certain
-    // bugs when rendering tables inside the flex.
-    basis = props.width,
+    basis,
     align,
     ...rest
   } = props;
+  // prettier-ignore
+  const computedBasis = basis
+    // IE11: Set basis to specified width if it's known, which fixes certain
+    // bugs when rendering tables inside the flex.
+    ?? props.width
+    // If grow is used, basis should be set to 0 to be consistent with
+    // flex css shorthand `flex: 1`.
+    ?? (grow !== undefined ? 0 : undefined);
   return computeBoxProps({
     style: {
       ...style,
       'flex-grow': grow !== undefined && Number(grow),
       'flex-shrink': shrink !== undefined && Number(shrink),
-      'flex-basis': unit(basis),
+      'flex-basis': unit(computedBasis),
       'order': order,
       'align-self': align,
     },
@@ -105,15 +100,11 @@ export const computeFlexItemProps = (props: FlexItemProps) => {
   });
 };
 
-const FlexItem = props => {
+const FlexItem = (props) => {
   const { className, ...rest } = props;
   return (
     <div
-      className={classes([
-        className,
-        computeFlexItemClassName(props),
-        computeBoxClassName(props),
-      ])}
+      className={classes([className, computeFlexItemClassName(props)])}
       {...computeFlexItemProps(rest)}
     />
   );

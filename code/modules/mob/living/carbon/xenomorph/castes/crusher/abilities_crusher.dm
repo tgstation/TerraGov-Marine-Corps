@@ -9,7 +9,9 @@
 	plasma_cost = 100
 	cooldown_timer = 20 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
-	keybind_signal = COMSIG_XENOABILITY_STOMP
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_STOMP,
+	)
 
 /datum/action/xeno_action/activable/stomp/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -67,7 +69,9 @@
 	ability_name = "crest toss"
 	plasma_cost = 75
 	cooldown_timer = 12 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_CRESTTOSS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CRESTTOSS,
+	)
 	target_flags = XABB_MOB_TARGET
 
 /datum/action/xeno_action/activable/cresttoss/on_cooldown_finish()
@@ -104,6 +108,9 @@
 		if(L.mob_size >= MOB_SIZE_BIG) //Penalize toss distance for big creatures
 			toss_distance = FLOOR(toss_distance * 0.5, 1)
 			big_mob_message = ", struggling mightily to heft its bulk"
+	else if(ismecha(A))
+		toss_distance = FLOOR(toss_distance * 0.5, 1)
+		big_mob_message = ", struggling mightily to heft its bulk"
 
 	if(X.a_intent == INTENT_HARM) //If we use the ability on hurt intent, we throw them in front; otherwise we throw them behind.
 		for(var/x in 1 to toss_distance)
@@ -128,14 +135,6 @@
 			if (!temp)
 				break
 			T = temp //Throw target
-
-	//The target location deviates up to 1 tile in any direction //No.
-	/*var/scatter_x = rand(-1,1)
-	var/scatter_y = rand(-1,1)
-	var/turf/new_target = locate(T.x + round(scatter_x),T.y + round(scatter_y),T.z) //Locate an adjacent turf.
-	if(new_target)
-		T = new_target//Looks like we found a turf.
-	*/
 
 	X.icon_state = "Crusher Charging"  //Momentarily lower the crest for visual effect
 
@@ -177,14 +176,16 @@
 /datum/action/xeno_action/activable/advance
 	name = "Rapid Advance"
 	action_icon_state = "crest_defense"
-	mechanics_text = "Fling an adjacent target over and behind you. Also works over barricades."
+	mechanics_text = "Charges up the crushers charge in place, then unleashes the full bulk of the crusher at the target location. Does not crush in diagonal directions."
 	ability_name = "rapid advance"
 	plasma_cost = 175
 	cooldown_timer = 30 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_ADVANCE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ADVANCE,
+	)
 
 /datum/action/xeno_action/activable/advance/on_cooldown_finish()
-	to_chat(owner, span_xenowarning("<b>We can now rapidly cgareg forward again.</b>"))
+	to_chat(owner, span_xenowarning("<b>We can now rapidly charge forward again.</b>"))
 	playsound(owner, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
 	return ..()
 
@@ -206,15 +207,18 @@
 	X.set_canmove(TRUE)
 
 	var/datum/action/xeno_action/ready_charge/charge = X.actions_by_path[/datum/action/xeno_action/ready_charge]
+	var/aimdir = get_dir(X,A)
 	if(charge)
+		charge.do_stop_momentum(FALSE) //Reset charge so next_move_limit check_momentum() does not cuck us and 0 out steps_taken
 		charge.do_start_crushing()
 		charge.valid_steps_taken = charge.max_steps_buildup - 1
+		charge.charge_dir = aimdir //Set dir so check_momentum() does not cuck us
 	for(var/i=0 to get_dist(X, A))
-		var/aimdir = get_dir(X,A)
 		if(i % 2)
 			playsound(X, "alien_charge", 50)
 			new /obj/effect/temp_visual/xenomorph/afterimage(get_turf(X), X)
 		X.Move(get_step(X, aimdir), aimdir)
+		aimdir = get_dir(X,A)
 	succeed_activate()
 	add_cooldown()
 

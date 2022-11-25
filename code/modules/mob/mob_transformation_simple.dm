@@ -74,7 +74,6 @@
 		b_eyes = client.prefs.b_eyes
 		age = client.prefs.age
 		ethnicity = client.prefs.ethnicity
-		body_type = client.prefs.body_type
 		flavor_text = client.prefs.flavor_text
 		update_body()
 		update_hair()

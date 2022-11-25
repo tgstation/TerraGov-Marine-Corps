@@ -38,13 +38,15 @@
 #define INITIALIZE_HINT_NORMAL 0    //Nothing happens
 #define INITIALIZE_HINT_LATELOAD 1  //Call LateInitialize
 #define INITIALIZE_HINT_QDEL 2  //Call qdel on the atom
+///Call qdel with a force of TRUE after initialization
+#define INITIALIZE_HINT_QDEL_FORCE 3
 
 //type and all subtypes should always call Initialize in New()
 #define INITIALIZE_IMMEDIATE(X) ##X/New(loc, ...){\
 	..();\
 	if(!(flags_atom & INITIALIZED)) {\
 		args[1] = TRUE;\
-		SSatoms.InitAtom(src, args);\
+		SSatoms.InitAtom(src, FALSE, args);\
 	}\
 }
 
@@ -67,7 +69,8 @@
 #define INIT_ORDER_MAPPING 9
 #define INIT_ORDER_PERSISTENCE 7 //before assets because some assets take data from SSPersistence, such as vendor items
 #define INIT_ORDER_ATOMS 6
-#define INIT_ORDER_MACHINES 5
+#define INIT_ORDER_MODULARMAPPING 5
+#define INIT_ORDER_MACHINES 4
 #define INIT_ORDER_AI_NODES 3
 #define INIT_ORDER_TIMER 1
 #define INIT_ORDER_DEFAULT 0
@@ -88,6 +91,7 @@
 // If the subsystem isn't listed here it's either DEFAULT or PROCESS (if it's a processing subsystem child)
 
 #define FIRE_PRIORITY_ACTION_STATES 5
+#define FIRE_PRIORITY_PING 10
 #define FIRE_PRIORITY_IDLE_NPC 10
 #define FIRE_PRIORITY_ADVANCED_PATHFINDING 10
 #define FIRE_PRIORITY_SERVER_MAINT 10
@@ -116,6 +120,7 @@
 #define FIRE_PRIORITY_OVERLAYS 500
 #define FIRE_PRIORITY_EXPLOSIONS 666
 #define FIRE_PRIORITY_TIMER 700
+#define FIRE_PRIORITY_SPEECH_CONTROLLER 900
 #define FIRE_PRIORITY_INPUT 1000 // This must always always be the max highest priority. Player input must never be lost.
 
 // SS runlevels

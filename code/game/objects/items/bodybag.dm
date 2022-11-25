@@ -218,11 +218,11 @@
 		to_chat(bodybag_occupant, span_danger("You jolt out of [name] upon being hit!"))
 		open()
 
-/obj/structure/closet/bodybag/flamer_fire_act()
+/obj/structure/closet/bodybag/flamer_fire_act(burnlevel)
 	if(!opened && bodybag_occupant)
 		to_chat(bodybag_occupant, span_danger("The intense heat forces you out of [name]!"))
 		open()
-		bodybag_occupant.flamer_fire_act()
+		bodybag_occupant.flamer_fire_act(burnlevel)
 
 /obj/structure/closet/bodybag/ex_act(severity)
 	if(!opened && bodybag_occupant)
@@ -327,14 +327,13 @@
 		return
 	if(!hasHUD(user,"medical"))
 		return
-	for(var/r in GLOB.datacore.medical)
-		var/datum/data/record/medical_record = r
+	for(var/datum/data/record/medical_record AS in GLOB.datacore.medical)
 		if(medical_record.fields["name"] != bodybag_occupant.real_name)
 			continue
 		if(!(medical_record.fields["last_scan_time"]))
-			to_chat(user, "<span class = 'deptradio'>No scan report on record</span>\n")
+			. += "<span class = 'deptradio'>No scan report on record</span>"
 		else
-			to_chat(user, "<span class = 'deptradio'><a href='?src=\ref[src];scanreport=1'>Scan from [medical_record.fields["last_scan_time"]]</a></span>\n")
+			. += "<span class = 'deptradio'><a href='?src=\ref[src];scanreport=1'>Scan from [medical_record.fields["last_scan_time"]]</a></span>"
 		break
 
 
@@ -372,7 +371,7 @@
 	desc = "A tarp carried by TGMC Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camoflauge, and smell dampening."
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "jungletarp_folded"
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_SMALL
 	unfoldedbag_path = /obj/structure/closet/bodybag/tarp
 	var/serial_number //Randomized serial number used to stop point macros and such.
 

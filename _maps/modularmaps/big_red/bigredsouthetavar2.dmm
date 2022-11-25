@@ -1,0 +1,302 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"h" = (
+/turf/closed/mineral/smooth/bigred,
+/area/bigredv2/caves/rock)
+"l" = (
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/nanotrasen_lab/inside)
+"n" = (
+/turf/closed/mineral/smooth/bigred/indestructible,
+/area/space)
+"u" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/closed/mineral/smooth/bigred,
+/area/bigredv2/caves/rock)
+"v" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/south)
+"N" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/nanotrasen_lab/inside)
+"O" = (
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/south)
+
+(1,1,1) = {"
+l
+u
+h
+v
+O
+O
+v
+h
+h
+n
+"}
+(2,1,1) = {"
+l
+u
+h
+O
+O
+O
+O
+h
+h
+n
+"}
+(3,1,1) = {"
+l
+u
+h
+O
+v
+O
+O
+v
+h
+n
+"}
+(4,1,1) = {"
+l
+u
+h
+O
+O
+O
+O
+O
+h
+n
+"}
+(5,1,1) = {"
+l
+u
+h
+O
+v
+O
+v
+O
+h
+n
+"}
+(6,1,1) = {"
+l
+u
+h
+O
+O
+O
+O
+O
+h
+n
+"}
+(7,1,1) = {"
+l
+u
+h
+v
+O
+O
+O
+v
+h
+n
+"}
+(8,1,1) = {"
+l
+u
+h
+O
+O
+O
+O
+O
+h
+n
+"}
+(9,1,1) = {"
+l
+u
+h
+h
+O
+v
+O
+v
+h
+n
+"}
+(10,1,1) = {"
+l
+u
+h
+h
+O
+O
+O
+O
+h
+n
+"}
+(11,1,1) = {"
+l
+u
+h
+h
+O
+O
+O
+O
+h
+n
+"}
+(12,1,1) = {"
+l
+u
+h
+h
+v
+O
+v
+O
+h
+n
+"}
+(13,1,1) = {"
+l
+u
+h
+h
+O
+O
+O
+O
+h
+n
+"}
+(14,1,1) = {"
+l
+u
+h
+h
+v
+O
+v
+O
+h
+n
+"}
+(15,1,1) = {"
+l
+u
+h
+h
+O
+O
+O
+O
+h
+n
+"}
+(16,1,1) = {"
+l
+u
+h
+h
+v
+O
+O
+O
+h
+n
+"}
+(17,1,1) = {"
+l
+u
+h
+h
+O
+v
+O
+v
+h
+n
+"}
+(18,1,1) = {"
+l
+u
+h
+h
+O
+O
+O
+O
+h
+n
+"}
+(19,1,1) = {"
+l
+u
+h
+h
+v
+O
+O
+v
+h
+n
+"}
+(20,1,1) = {"
+l
+u
+h
+h
+O
+O
+O
+O
+h
+n
+"}
+(21,1,1) = {"
+l
+u
+h
+h
+v
+O
+O
+h
+h
+n
+"}
+(22,1,1) = {"
+l
+u
+h
+h
+O
+O
+O
+h
+h
+n
+"}
+(23,1,1) = {"
+N
+u
+h
+h
+O
+O
+v
+h
+h
+n
+"}

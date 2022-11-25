@@ -22,6 +22,22 @@
 	shoefootstep = FOOTSTEP_SAND
 	barefootstep = FOOTSTEP_SAND
 	mediumxenofootstep = FOOTSTEP_SAND
+	minimap_color = MINIMAP_DIRT
+
+/turf/open/floor/plating/ground/dirt/dug
+	icon_state = "desert_dug"
+
+/turf/open/floor/plating/ground/dirt/typezero
+	icon_state = "desert0"
+
+/turf/open/floor/plating/ground/dirt/typeone
+	icon_state = "desert1"
+
+/turf/open/floor/plating/ground/dirt/typetwo
+	icon_state = "desert2"
+
+/turf/open/floor/plating/ground/dirt/typethree
+	icon_state = "desert3"
 
 /turf/open/floor/plating/ground/dirt/Initialize()
 	. = ..()
@@ -73,6 +89,17 @@
 	barefootstep = FOOTSTEP_GRASS
 	mediumxenofootstep = FOOTSTEP_GRASS
 
+/turf/open/ground/grasspatch
+	name = "grass"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "grass1"
+	shoefootstep = FOOTSTEP_GRASS
+	barefootstep = FOOTSTEP_GRASS
+	mediumxenofootstep = FOOTSTEP_GRASS
+
+/turf/open/ground/grasspatch/grassyellow
+	color = "#ffb682"
+
 /turf/open/ground/grass/grass2
 	icon_state = "grass2"
 
@@ -96,6 +123,16 @@
 // Big Red
 
 
+/turf/open/floor/plating/ground/fakesnow
+	name = "shallow snow"
+	icon = 'icons/turf/snow2.dmi'
+	icon_state = "snow_1"
+	minimap_color = MINIMAP_SNOW
+
+/turf/open/floor/plating/ground/fakesnow/alt
+	name = "deep snow"
+	icon = 'icons/turf/snow2.dmi'
+	icon_state = "snow_2"
 
 /turf/open/floor/plating/ground/mars
 	icon = 'icons/turf/bigred.dmi'
@@ -103,11 +140,15 @@
 	mediumxenofootstep = FOOTSTEP_SAND
 	barefootstep = FOOTSTEP_SAND
 	shoefootstep = FOOTSTEP_SAND
+	minimap_color = MINIMAP_MARS_DIRT
 
 /turf/open/floor/plating/ground/mars/random/cave
 
 	name = "cave"
 	icon_state = "mars_cave"
+
+/turf/open/floor/plating/ground/mars/random/cave/darker
+	color = "#948a7c"
 
 /turf/open/floor/plating/ground/mars/random/cave/rock
 	name = "cave"
@@ -150,6 +191,7 @@
 	shoefootstep = FOOTSTEP_ICE
 	barefootstep = FOOTSTEP_ICE
 	mediumxenofootstep = FOOTSTEP_ICE
+	minimap_color = MINIMAP_ICE
 
 //Randomize ice floor sprite
 /turf/open/floor/plating/ground/ice/Initialize()
@@ -164,6 +206,7 @@
 	mediumxenofootstep = FOOTSTEP_CONCRETE
 	barefootstep = FOOTSTEP_CONCRETE
 	shoefootstep = FOOTSTEP_CONCRETE
+	minimap_color = MINIMAP_AREA_COLONY
 
 /turf/open/floor/plating/ground/concrete/lines
 	icon_state = "concrete_lines"
@@ -182,6 +225,9 @@
 	name = "grate"
 	icon = 'icons/turf/catwalks.dmi'
 	icon_state = "catwalk-159"
+
+/turf/open/floor/plating/ground/desertdam/grate/alternate
+	icon_state = "catwalk-255"
 
 //desert floor
 /turf/open/floor/plating/ground/desertdam/desert
@@ -213,13 +259,37 @@
 	name = "concrete"
 	icon_state = "cement_sunbleached5"
 
-/turf/open/floor/plating/ground/desertdam/asphalt/corner
+/turf/open/floor/plating/ground/desertdam/asphalt/twoside
 	name = "asphalt"
-	icon_state = "sunbleached_asphalt_corner"
+	icon_state = "cement_sunbleached_twoside"
+
+/turf/open/floor/plating/ground/desertdam/asphalt/threeside
+	name = "asphalt"
+	icon_state = "cement_sunbleached_threeside"
 
 /turf/open/floor/plating/ground/desertdam/asphalt/edge
 	name = "asphalt"
-	icon_state = "sunbleached_asphalt_edge"
+	icon_state = "cement_sunbleached_edge"
+
+/turf/open/floor/plating/ground/desertdam/asphalt/open
+	name = "asphalt"
+	icon_state = "cement_sunbleached_open"
+
+/turf/open/floor/plating/ground/desertdam/asphalt/tile
+	name = "asphalt"
+	icon_state = "tile"
+
+/turf/open/floor/plating/ground/desertdam/asphalt/edge/regular
+	name = "asphalt"
+	icon_state = "cement_edge"
+
+/turf/open/floor/plating/ground/desertdam/asphalt/twoside/regular
+	name = "asphalt"
+	icon_state = "cement_twoside"
+
+/turf/open/floor/plating/ground/desertdam/asphalt/threeside/regular
+	name = "asphalt"
+	icon_state = "cement_threeside"
 
 
 //CAVE

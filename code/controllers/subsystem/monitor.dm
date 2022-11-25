@@ -18,6 +18,8 @@ SUBSYSTEM_DEF(monitor)
 	var/human_on_ground = 0
 	///The number of humans being in either lz1 or lz2
 	var/human_in_FOB = 0
+	///The number of humans on the ship
+	var/human_on_ship = 0
 	///The number of time most of humans are in FOB consecutively
 	var/humans_all_in_FOB_counter = 0
 	///TRUE if we detect a state of FOB hugging
@@ -67,13 +69,14 @@ SUBSYSTEM_DEF(monitor)
 		GLOB.xeno_stat_multiplicator_buff = proposed_balance_buff
 		apply_balance_changes()
 
-	//Balance spawners output
-	for(var/silo in GLOB.xeno_resin_silos)
-		SSspawning.spawnerdata[silo].required_increment = 2 * max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER)/SSspawning.wait
-		SSspawning.spawnerdata[silo].max_allowed_mobs = max(1, MAX_SPAWNABLE_MOB_PER_PLAYER * SSmonitor.maximum_connected_players_count * 0.5)
-	for(var/spawner in GLOB.xeno_spawner)
-		SSspawning.spawnerdata[spawner].required_increment = max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER)/SSspawning.wait
-		SSspawning.spawnerdata[spawner].max_allowed_mobs = max(2, MAX_SPAWNABLE_MOB_PER_PLAYER * SSmonitor.maximum_connected_players_count)
+	if(SSticker.mode?.flags_round_type & MODE_SPAWNING_MINIONS)
+		//Balance spawners output
+		for(var/silo in GLOB.xeno_resin_silos)
+			SSspawning.spawnerdata[silo].required_increment = 2 * max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER) / SSspawning.wait
+			SSspawning.spawnerdata[silo].max_allowed_mobs = max(1, MAX_SPAWNABLE_MOB_PER_PLAYER * SSmonitor.maximum_connected_players_count * 0.5)
+		for(var/spawner in GLOB.xeno_spawner)
+			SSspawning.spawnerdata[spawner].required_increment = max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER) / SSspawning.wait
+			SSspawning.spawnerdata[spawner].max_allowed_mobs = max(2, MAX_SPAWNABLE_MOB_PER_PLAYER * SSmonitor.maximum_connected_players_count)
 
 
 	//Automatic respawn buff, if a stalemate is detected and a lot of ghosts are waiting to play
@@ -81,7 +84,7 @@ SUBSYSTEM_DEF(monitor)
 		SSsilo.larva_spawn_rate_temporary_buff = 0
 		return
 	for(var/mob/dead/observer/observer AS in GLOB.observer_list)
-		GLOB.key_to_time_of_death[observer.key] -= 5 MINUTES //If we are in a constant stalemate, every 5 minutes we remove 5 minutes of respawn time to become a marine
+		GLOB.key_to_time_of_role_death[observer.key] -= 5 MINUTES //If we are in a constant stalemate, every 5 minutes we remove 5 minutes of respawn time to become a marine
 	message_admins("Stalemate detected, respawn buff system in action : 5 minutes were removed from the respawn time of everyone, xeno won : [length(GLOB.observer_list) * 0.75 * 5] larvas")
 	log_game("5 minutes were removed from the respawn time of everyone, xeno won : [length(GLOB.observer_list) * 0.75 * 5] larvas")
 	//This will be in effect for 5 SSsilo runs. For 30 ghosts that makes 1 new larva every 2.5 minutes
@@ -130,6 +133,7 @@ SUBSYSTEM_DEF(monitor)
 /datum/controller/subsystem/monitor/proc/process_human_positions()
 	human_on_ground = 0
 	human_in_FOB = 0
+	human_on_ship = 0
 	for(var/human in GLOB.alive_human_list)
 		var/turf/TU = get_turf(human)
 		var/area/myarea = TU.loc
@@ -137,6 +141,8 @@ SUBSYSTEM_DEF(monitor)
 			human_on_ground++
 			if(myarea.flags_area & NEAR_FOB)
 				human_in_FOB++
+		else if(is_mainship_level(TU.z))
+			human_on_ship++
 
 ///Check if we are in a FOB camping situation
 /datum/controller/subsystem/monitor/proc/FOB_hugging_check()

@@ -94,14 +94,14 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 			switch(T.state)
 				if(0)
 					icon_state = "light_on"
-					set_light(5)
+					set_light(5,5)
 				if(1)
 					var/num = pick("1", "2", "3", "4")
 					icon_state = "light_on_flicker[num]"
-					set_light(5)
+					set_light(5,5)
 				if(2)
 					icon_state = "light_on_broken"
-					set_light(5)
+					set_light(5,5)
 				if(3)
 					icon_state = "light_off"
 					set_light(0)
@@ -512,6 +512,7 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 			to_chat(user, span_warning("You need more welding fuel to complete this task."))
 			return
 
+		flick("floorweld", src)
 		to_chat(user, span_warning("You fix some dents on the broken plating."))
 		playsound(src, 'sound/items/welder.ogg', 25, 1)
 		icon_state = "plating"

@@ -59,7 +59,7 @@
 /obj/machinery/holopad/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		to_chat(user, "<span class='notice'>The status display reads: Current projection range: <b>[holo_range]</b> units.<span>")
+		. += span_notice("The status display reads: Current projection range: <b>[holo_range]</b> units.")
 
 
 /obj/machinery/holopad/interact(mob/user)
@@ -259,7 +259,7 @@
 		Hologram.layer = FLY_LAYER//Above all the other objects/mobs. Or the vast majority of them.
 		Hologram.anchored = TRUE
 		Hologram.name = "[user.name] (Hologram)"//If someone decides to right click.
-		Hologram.set_light(2)	//hologram lighting
+		Hologram.set_light(1, 2)	//hologram lighting
 		move_hologram()
 
 		set_holo(user, Hologram)
@@ -292,7 +292,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	use_power = total_users > 0 ? ACTIVE_POWER_USE : IDLE_POWER_USE
 	active_power_usage = HOLOPAD_PASSIVE_POWER_USAGE + (HOLOGRAM_POWER_USAGE * total_users)
 	if(total_users)
-		set_light(2)
+		set_light(1, 2)
 	else
 		set_light(0)
 	update_icon()

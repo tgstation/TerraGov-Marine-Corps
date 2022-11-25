@@ -43,8 +43,6 @@
 			to_chat(M, span_notice("You are a survivor of the attack on the colony. You suspected something was wrong and tried to warn others, but it was too late..."))
 		if(MAP_ICY_CAVES)
 			to_chat(M, span_notice("You are a survivor of the attack on the icy cave system. You worked or lived on the site, and managed to avoid the alien attacks... until now."))
-		if(MAP_BARRENQUILLA_MINING)
-			to_chat(M, span_notice("You are a survivor of the attack on the facility. The site manager's greed caught up to him, and you're caught in the crossfire..."))
 		if(MAP_RESEARCH_OUTPOST)
 			to_chat(M, span_notice("You are a survivor of the attack on the outpost. But you question yourself: are you truely safe now?"))
 		if(MAP_MAGMOOR_DIGSITE)

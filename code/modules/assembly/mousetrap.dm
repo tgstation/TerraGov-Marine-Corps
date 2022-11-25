@@ -15,7 +15,7 @@
 
 /obj/item/assembly/mousetrap/examine(mob/user)
 	. = ..()
-	to_chat(user, span_notice("The pressure plate is [armed ? "primed" : "safe"]."))
+	. += span_notice("The pressure plate is [armed ? "primed" : "safe"].")
 
 
 /obj/item/assembly/mousetrap/activate()

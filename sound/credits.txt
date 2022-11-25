@@ -1,7 +1,0 @@
-[Pack: Footsteps](https://freesound.org/people/soundmary/packs/7395/)  by [soundmary](https://freesound.org/people/soundmary/) used under (CC BY 3.0)[https://creativecommons.org/licenses/by/3.0/] / Multiple files made from original
-
-All sounds added/remixed from this PR https://github.com/tgstation/TerraGov-Marine-Corps/pull/5261 are from the following games:
-Call Of Duty series, Halo series, Insurgency, Counter Strike: Global Offensive, Team Fortress 2, Ghost in the Shell Stand Alone Complex - First Assault Online, Fallout series, Aliens Vs. Predator (2010) and others that I may have forgot.
-They are used under the CC-BY-NC-SA 3.0 license.
-
-The sound used from this PR https://github.com/tgstation/TerraGov-Marine-Corps/pull/5604 is taken from https://freesound.org/people/nicStage/sounds/127731/ under CC Attribution

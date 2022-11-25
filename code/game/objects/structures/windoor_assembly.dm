@@ -52,7 +52,7 @@
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE
 
-	if(get_dir(loc, target) == dir) //Make sure looking at appropriate border
+	if(get_dir(loc, target) & dir) //Make sure looking at appropriate border
 		return FALSE
 
 /obj/structure/windoor_assembly/proc/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
@@ -207,8 +207,6 @@
 				else
 					name = "Wired Windoor Assembly"
 				var/obj/item/circuitboard/airlock/ae = electronics
-				if(electronics.is_general_board)
-					ae.set_general()
 				electronics = null
 				ae.forceMove(loc)
 

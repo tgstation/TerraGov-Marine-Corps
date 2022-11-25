@@ -443,22 +443,6 @@ Currently only has the tank hardpoints
 	P.fire_at(T, owner, src, P.ammo.max_range, P.ammo.shell_speed)
 	ammo.current_rounds--
 
-/obj/item/hardpoint/secondary/m56cupola
-	name = "M56 Cupola"
-	desc = "A secondary weapon for tanks that shoots bullets"
-
-	max_integrity = 350
-	point_cost = 50
-
-	icon_state = "m56_cupola"
-
-	disp_icon = "tank"
-	disp_icon_state = "m56cupola"
-
-	starter_ammo = /obj/item/ammo_magazine/tank/m56_cupola
-	max_clips = 1
-	max_angle = 90
-
 /obj/item/hardpoint/secondary/m56cupola/broken
 	obj_integrity = 0
 	buyable = FALSE
@@ -976,17 +960,6 @@ Currently only has the tank hardpoints
 	default_ammo = /datum/ammo/rocket/ap //Fun fact, AP rockets seem to be a straight downgrade from normal rockets. Maybe I'm missing something...
 	max_rounds = 5
 	point_cost = 100
-
-
-/obj/item/ammo_magazine/tank/m56_cupola
-	name = "M56 Cupola Magazine"
-	desc = "A secondary armament MG magazine"
-	caliber = CALIBER_10X28 //Correlates to smartguns
-	icon_state = "big_ammo_box"
-	w_class = 12
-	default_ammo = /datum/ammo/bullet/smartgun
-	max_rounds = 1000
-	point_cost = 10
 
 /obj/item/ammo_magazine/tank/tank_glauncher
 	name = "Grenade Launcher Magazine"

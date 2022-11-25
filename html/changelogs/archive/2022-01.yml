@@ -1,0 +1,484 @@
+2022-01-01:
+  novaepee:
+  - bugfix: Vahalla now has fire extinguisher
+  - bugfix: update mini fire extinguisher desc so that you can tell the difference
+      between the two
+  - bugfix: Put Walten back in Sulaco
+  - rscadd: Every shipside maps follow PoS Alamo LZ tiles
+  - bugfix: Researcher now have medical comm and can see where extraction sites are.
+      My bad
+  private-tristan:
+  - balance: replaced shrike and drone's larval sting with neurotoxin sting.
+  - rscdel: removed larval accelerant from the game.
+2022-01-02:
+  novaepee:
+  - rscadd: Queen gets neurotoxin sting.
+  - qol: PMC SG spawns with mag harness on SG-29
+  - bugfix: Big Red LZ2 NOW doesn't let Alamo clip through wall.
+2022-01-04:
+  BraveMole:
+  - bugfix: Fix marine shoes sprite
+  Ocelot:
+  - imageadd: Resprites nearly all the standard weapons.
+  RipGrayson:
+  - imageadd: Added modern replacements for all old computer sprites.
+  - imagedel: Removed all old computer sprites.
+  - rscadd: Added various props for use on space station maps.
+  - expansion: Valhalla is now a proper space station, with all the proper amenities.
+  - soundadd: Added sounds for the supermatter.
+  - imageadd: Added a number of icons relating to space station props.
+  SplinterGP:
+  - bugfix: blue fire sprite should now use the correct sprite for the fire level,
+      instead of using lvl 2 sprite before than 1
+  novaepee:
+  - bugfix: storage modules don't give more armor as intended. Now you can't have
+      200+ or possibly 300+ bio armor to spawn
+  - balance: marines don't stack bio armor like no tomorrow, so expect the sentinel
+      castes to give you a harder time
+  - qol: Synthetic can see themselves in minimap
+  - imagedel: Gone with the old, in with the new.
+  - bugfix: fixed carrier_wounded_2's west direction
+  - rscadd: T-25 has point blank
+  - balance: T-25 has point blank
+  - qol: You can tell the difference between surplus armor and surplus clothing!
+  - soundadd: From the ashes of cart vendors, which we used to use to dispense Jaegar
+      armor, arise new sprites for surplus armor and surplus clothing.
+  - rscadd: A new title art from Zaha, your own trial admin!
+  - imageadd: ibit
+2022-01-05:
+  EvilMelonTheSecond:
+  - rscadd: Added supply channel to all headsets. Toggle by activating in hand
+  Walarks:
+  - balance: psychic link is now channel-able while moving
+  - bugfix: fixes signal loop in psychic link damage redirect
+  novaepee:
+  - balance: T-25 now cannot take keymaster, mini flamethrower, and UGL
+  - balance: Decrease reagent_transfer_amount in light of marines losing 200+ bio;
+      Sent will not be oppressive but still good.
+  - rscadd: SADAR spawns with mini scope
+  - balance: SADAR spawns with mini scope
+  - rscadd: Add catslug for research. Cute pet.
+  - rscdel: Delete some hazard signs in Big Red
+2022-01-06:
+  BraveMole:
+  - balance: King can use mass teleport when young
+  HiddenGuardian:
+  - bugfix: Made it so you couldn't deploy the BaS while it being a no drop
+  RipGrayson:
+  - imageadd: Added some new sprites for newscasters.
+  Vondiech:
+  - expansion: 19 more lines for the roomba to pick from when sucking up items.
+  - balance: The roomba saying a sentence after sucking something up has went from
+      2 percent to 10 percent.
+  - bugfix: Hive Message now checks and filters ascii.
+2022-01-07:
+  novaepee:
+  - imageadd: Overmind Sprites
+2022-01-08:
+  BraveMole:
+  - bugfix: No more sound when a ghost open a storage
+  - bugfix: Prevent stocking in vendors that are broken/unpowered
+  - bugfix: Fix hivemind abilities being useable while unmanifested
+  - bugfix: Fix cocoon psy point output
+  - bugfix: Fix ugl being reloadable in storage
+  - qol: Pill bottles show how many pills they have in overlays
+  - bugfix: Fix runtime with hive call
+  Pariah919:
+  - balance: vali tools like spear and sword no longer have bump attack.
+  RipGrayson:
+  - imageadd: Ported fancy conveyor sprites from Eris.
+  Waselon:
+  - rscadd: Added rocket sledge
+  - imageadd: added rocket sledge sprites
+  - code_imp: changed welder pack and engieneer satchel to refuel rocket sledge
+  hyper2snyper:
+  - bugfix: Fixes an issue where you could overcharge lasgun cells.
+  - bugfix: Fixes the carbine scatter exploit.
+  - bugfix: AI with Auto-spit will no longer infinitely target things.
+  - bugfix: Calls the correct checks on auto-spit, no more spitting from vents and
+      the like.
+  - bugfix: Mk221 unique action will eject shells again.
+  - bugfix: UGL cant be fired one handed now.
+  - code_imp: Makes the greyscale palettes for jaeger armor and helmets cache at round
+      initialization. This is much more performant.
+  novaepee:
+  - bugfix: Change "sentinels stung" to "neurotoxin sting was used" in roundend statistics
+  - rscadd: Show roundend statistics on how many times warrior lunges.
+  - rscdel: roundend statistics on headbite and siloing bodies. Hunt is dead.
+2022-01-09:
+  BraveMole:
+  - bugfix: Protect ai nodes and pipe from tadpole crushing
+  RipGrayson:
+  - bugfix: The Pillar of Spring now has cryo consoles.
+  SpaceLoveSs13:
+  - imageadd: 'Copege emoji now with :copege: option available'
+  Three333Digit:
+  - balance: sentries no longer use power cells
+  - balance: radial mode reduces the range of the sentry by 2 tiles
+  novaepee:
+  - balance: change plasma_cost on King's psychic summon, meaning he can psychic summon
+      at young
+  - bugfix: King can use psychic summon from young and mature now
+2022-01-10:
+  BraveMole:
+  - bugfix: Ghosts can no longer steal aghosted bodies
+  - balance: Prevent using the suicide vest when cloaked
+  - bugfix: Scorpions can spit again
+  - balance: Mantis and beetle no longer flee from fights when low health
+  - balance: Beetle hp from 400 to 260
+  - balance: Mantis hp from 200 to 150
+  - balance: Beetle forward charge only stuns for 2 seconds, 30 seconds of cooldown
+      (it was 4 seconds, 10 seconds before)
+  - balance: Mantis ravage cooldown upped from 6 seconds to 30 seconds
+  - balance: Scorpion spit deal less damage, and the firerate is reduced
+  - balance: Minions spawn rate divided by two. Minions maxium mob by spawner divided
+      by two
+  EvilMelonTheSecond:
+  - rscadd: Added half rolled sleeves to marine uniforms
+  hyper2snyper:
+  - rscadd: Adds 11 new Jaeger Colors.
+  - balance: Plasma pistol accuracy increased to 1 from .8 (wielded) and .35 (unwielded)
+  - balance: Plasma pistol gains its t47 scope again
+  - balance: Plasma pistol range increased to 14 from 7
+  - balance: Plasma pistol fire damage tripled if the projectile hits a wall.
+  - qol: Plasma pistol fire will now ignite any mobs on top of it.
+  - balance: Miniflamer now will not do any bonus damage to mobs hit in the initial
+      fire stream.
+  - bugfix: Miniflamer can now be connected to the backpack fuel tank once more.
+  vilereaver41:
+  - balance: slight changes to map around silos
+  - balance: deleted some silos and moved some
+2022-01-11:
+  BraveMole:
+  - rscdel: Remove vendor malfunction from explosions
+  - balance: You can push/shuffle diagonally
+  - bugfix: Xeno can evolve while resting again
+  - balance: Savage makes more damage but cost more plasma (proportional to the amount
+      of plasma stored)
+  - bugfix: Charge and similar xeno abilities will no longer be used by ai xenos when
+      they can't see the target
+  - balance: Give queen the command minion ability
+  - bugfix: Acid splatter no longer damage dead marines
+  hyper2snyper:
+  - bugfix: Fixes the V10 pump shotgun sprites.
+  - bugfix: Removes an unused barrel for the dragonov.
+  - bugfix: Fixes an issue of being able to load infinite flares into the flaregun.
+  - bugfix: GLs update their icon when loaded properly.
+  - bugfix: M42C mags get their sprites back.
+2022-01-12:
+  BraveMole:
+  - qol: Laser guns can now use tactical reload
+  - bugfix: No longer possible to stack ammo with tactical reload exploit
+  - bugfix: Fix railgun being able to take two rounds in chambers
+  - bugfix: Fix lasguns ejecting mag at 1 round remaining
+  SplinterGP:
+  - admin: now roles with rights to color changing will have access to change their
+      color and show it as opposed to all showing but only changing with rights to  R_FUN
+  hyper2snyper:
+  - bugfix: Miniflamers vended from the loadout vendor will have the proper attachments
+      equipped.
+2022-01-13:
+  Waselon:
+  - bugfix: fixes harvester bicardine attack
+2022-01-14:
+  BraveMole:
+  - qol: Xeno no longer kill weeds when clicking it
+  - bugfix: Fix bipod exploit
+  - bugfix: Prevent ais from nocliping through shutters
+  - qol: Gun attachment are activated by default when you attach them
+  Waselon:
+  - balance: rocket hammer balance pass
+  novaepee:
+  - bugfix: RO, CIC, and AI can now talk in req radio again
+  - balance: Deletes screenshake from A19 impact.
+  - rscadd: Researcher FINALLY get researcher minimap icon!
+  - imageadd: funny researcher minimap_icon
+  - rscadd: Soldering tool to help squad engineers heal combat robots; you can locate
+      it in essential kits.
+  - balance: xenomorphs' pain hub on marines are less reliant on stamina damage.
+2022-01-15:
+  RenovatedAtol:
+  - rscadd: possibility to send large crates via supply drop
+2022-01-16:
+  Lewdcifer:
+  - balance: Drain gas nade box removed from requisitions's vendor.
+  - balance: Explosion screenshake reduced.
+  - balance: CAS tanglefoot rocket cost 50 > 150.
+  - rscdel: Projectile screenshake removed.
+  SplinterGP:
+  - bugfix: fixed autofire getting burst fire debuff on guns that has burst fire
+  nova_epee and Fitz 'Pancake' Sholl:
+  - bugfix: Dress uniform to the intended sprites. I choose not to delete the old
+      dress uniform.
+  - imageadd: Add service uniform; say thanks to Fitz 'Pancake' Sholl!
+  - rscadd: Make it easy to get service and dress uniform without having to click
+      so much buttons.
+2022-01-17:
+  Bizzonium:
+  - bugfix: Ported fixes of SStimer subsystem from RU SS220 Paradise
+  - config: 'Added a new config var: flag/log_timers_on_bucket_reset'
+  - bugfix: fixed potential bucket corruption in timer reset_buckets
+  - bugfix: timers not removing from second queue on init
+  EvilMelonTheSecond:
+  - rscdel: Moved wallnanomed contraband inventory to normal inventory, removed hyperzine
+  Pariah919:
+  - rscadd: Added new xenomorph chemical, Ozemolyn, purges chemical and does minor
+      toxin damage to capped amount. Sting for Queen/Shrike/Drone. Gaseous form for
+      Defiler, gas is transparent.
+  - balance: neurotoxin no longer purges. Removed neuro sting from shrike, queen and
+      drone.
+  RenovatedAtol:
+  - rscadd: SG-29 drums factory
+  - rscadd: 'T-81 magazine factory tweak: moved around tx8 ammo factory recipe'
+  - rscdel: old tx8 ammo recipe
+  SplinterGP:
+  - expansion: General speak and other text/number inputs have been converted to TGUI,
+      option to disable, swap submit/cancel and bigger buttons have been added to
+      game settings on character setup.
+  - bugfix: UI's shoulnd't crash anymore when reloading a TGUI UI(F5) and should send
+      full data needed.
+  Verlurk:
+  - bugfix: Nanotrasen now send you the updated leaflet with your factory pack - now
+      with 73% less spelling errors!
+  Waselon:
+  - balance: railgun projectiles now penetrate stuff
+  - code_imp: added support for piercing projectiles
+  novaepee:
+  - bugfix: Cowboy's reinforced leather jacket has suit slot now
+  - bugfix: spelling error on reinforced REATHER jacket with webbing
+  - rscadd: You can now color flak jackets! Thank you, Jeff, for the sprites. Also,
+      loadout for flak jacket is boink, so make new loadout.
+  - imageadd: Colored flak jackets!
+  - rscadd: add milk in soda dispenser
+  - balance: marines have access to milk; JUICE UP, BOYS AND GIRLS!
+  - qol: you can finally make Bihexajuline in all shipside maps; if there isn't a
+      soda dispenser nearby medical, I will change that in another PR.
+  - balance: revert minion spawn rate nerf, so for 50 players, each spawner can generate
+      7 mobs
+  vilereaver41:
+  - balance: LZ2 semi redone to make it more appealing for marines
+  - balance: some LZ1 changes
+  - balance: moved crash disk locations
+  - balance: removed some silos like that one in the nuke disk area and replaced them
+      elsewhere
+  - balance: caves have been fully pre wedded as they should
+  - rscadd: new area northeast of caves transit station (not pre wedded)
+  yyzsong:
+  - balance: Window frames may now be slashed
+2022-01-18:
+  novaepee:
+  - rscdel: UA 571-C Base defense sentry voucher; old object of an old engineer meta
+2022-01-19:
+  AzonStarfall:
+  - bugfix: Minerva hangar has been retrofitted for increased usability.
+  Bizzonium:
+  - bugfix: sanitized and fixed bugged SQL requests
+  BraveMole:
+  - qol: You can tactical reload gun attachments
+  EvilMelonTheSecond:
+  - rscdel: Autolathe contraband items removed
+  - balance: Highcap Industrial Welder now costs 5 in engivendor
+  Otterwatch:
+  - rscadd: Added Paladin and Mk221 to seasonal weapons as an entire new season.
+  - rscdel: Removed Paladin and Mk221 from Shotgun weapon tab in marine vendor.
+  Pariah919:
+  - rscadd: you can get a reqtorio starter kit for FREE at the operations vendor.
+  - rscdel: reqtorio starter kit removed from req
+  - balance: Reqtorio machines are cheaper, spec gun refill packs are much more expensive,
+      claymores and WP boxes are much more expensive.
+  - balance: TX-11 and T-18 extra delay removed.
+  RenovatedAtol:
+  - rscadd: More hotkeys and signals for hotkeys
+  breadhunt:
+  - balance: Explosions no longer blow grenades inside grenade boxes. The FOB is safe
+      once more
+  novaepee:
+  - bugfix: you can see title_painting16 now in title screen.
+  - rscadd: overlay on suit toggle button when turning on and off suit light
+  - qol: now you know if your armor light is on or not
+2022-01-20:
+  Notamaniac:
+  - bugfix: The Global narrate verb is fixed.
+  - bugfix: The revolver toss trick should no longer bug inventories out if you quick
+      equip it while it's in the air.
+  RenovatedAtol:
+  - bugfix: turret ammo
+2022-01-21:
+  novaepee:
+  - imageadd: new ammo hub for energy weapons; sprites are from Locke!
+2022-01-22:
+  BraveMole:
+  - balance: Cryoing no longer delete the marine, it just stores it until a ghost
+      takes it
+  - rscadd: Ghosts can assume control of minions if the hive upgrade "Smart Minions"
+      is bought. It is 500 psy points
+  Notamaniac:
+  - bugfix: The unmanned tank drones can now be repaired with a welder
+  - bugfix: Sentry kit boxes can only hold sentries and their respective ammo now,
+      crushing the horrible meta of being able to carry 5 backpacks by hand, or 5
+      other objects of large and dubious size.
+  Pariah919:
+  - balance: Heavy level explosions break resin walls instantly, light explosions
+      deal far more damage to resin walls.
+  Semoro:
+  - bugfix: Avoid timer scheduling too far events into short queue
+  Three333Digit:
+  - balance: combat robots are insulated
+  Waselon:
+  - rscadd: added x-ray laser rifle
+  - imageadd: added sprites for x-ray rifle
+  novaepee:
+  - rscadd: T-27 ammo box; now you can truly hold down the line.
+  - balance: That T-27 is going to get a lot of ammo.
+  - imageadd: Thank you, TheOneAndMightyRed, for giving T-27 ammo box sprites!
+  vilereaver41:
+  - balance: opacity for transvitox and hemodile no longer 60 but 255
+2022-01-23:
+  yyzsong:
+  - balance: increases the price of the IFF sniper
+2022-01-24:
+  Pariah919:
+  - balance: Revolver fires at 0.15 when non akimboed, and has knockback again.
+  RipGrayson:
+  - bugfix: Added excavation sites to Chigusa.
+  Three333Digit:
+  - rscdel: combat robots no longer have organs
+  ivanmixo:
+  - rscadd: Added a yes/no prompt for hijacking the alamo
+  - rscadd: Hijacking the alamo by clicking the console as a hive ruler now gives
+      out a line in chat so you can be sure you actually did it
+  novaepee:
+  - rscadd: Sulaco medbay now has a break room with access to a soda dispenser. Yeah,
+      you go get that tomato juice and soon to be milk.
+  - balance: Access to soda dispenser, which contains tomato juice and soon to be
+      milk
+  - imageadd: New Synthetic vendor sprites
+  - rscadd: give 4 roller beds in Theseus
+  - rscadd: Give free conveyor belts in req for free reqtorio
+  - rscadd: hazard signs to help FOB engineers
+2022-01-25:
+  BraveMole:
+  - rscdel: Remove right click setting action
+  - bugfix: Runner pounce no longer pushes the target
+  - bugfix: Xeno no longer pushes in bumpslash
+  - rscadd: Add valhalla specific ban
+  - code_imp: Fix one crash runtime + add logging to jobs and larva
+  RipGrayson:
+  - code_imp: Added population dependent mapping insert support.
+  novaepee:
+  - rscadd: plasma pistol ammoHUD
+  - bugfix: plasma pistol ammoHUD
+  - imageadd: plasma pistol ammoHUD LOL
+  - rscadd: All miner upgrades are now in Operational Supply
+  - rscadd: You can get more miner upgrades in supply order
+  - rscdel: No more being able to produce infinite miner upgrades in autolathe
+  - qol: miner upgrades in Operational Supply
+2022-01-26:
+  BraveMole:
+  - bugfix: Fix buckled bag not moving with roller bed
+  - balance: Xenos can force marine to go out from cryo, sleeper, autodoc
+  KrabSpider:
+  - bugfix: After 3 tries. The repeater is no longer inverted on the left hand.
+  Notamaniac:
+  - bugfix: Scopes should no longer attempt to zoom you in when being detached.
+2022-01-27:
+  BraveMole:
+  - bugfix: Fix zombie players resurecting in xeno faction
+  - bugfix: Fix laser pistol having automatic fire mode
+  - code_imp: Disable advanced pathfinding if a flag is present
+  - bugfix: Fix wraith primo against hitscan projectiles
+  Mechanelize:
+  - qol: Fixed vent overlap in LV624 Fitness Dome
+  Notamaniac:
+  - bugfix: The sprites for the MR25 holster should work now. What, you didn't know
+      we still had those?
+  RipGrayson:
+  - bugfix: Added two CL shutter override buttons in Theseus CIC.
+  - bugfix: Added a photocopier to Theseus CL office.
+  SplinterGP:
+  - balance: scatter now always happen, its value being the max angle that your gun
+      scatter will go(to any side).
+  - balance: due to scatter change most gun scatter value has been changed.
+  Three333Digit:
+  - bugfix: combat robot armor now has the same armor values as marine armor
+  TiviPlus:
+  - rscadd: New wraith effects that should stop crashing
+  - refactor: refactored rendering
+  Waselon:
+  - code_imp: thrown items respect mob armor
+  - balance: throwing knifes throwforce changed from 35 to 45
+  novaepee:
+  - rscadd: New tips.
+  - rscdel: Old tips.
+  - code_imp: Change Operational Vendor and Synthetic Vendor's icon pathway
+2022-01-28:
+  Verlurk:
+  - balance: Xenomorph analyzer is now useable by all, with a delay to reflect lack
+      of skill.
+  Waselon:
+  - balance: transvitox and hemodile bonus spread radius was removed
+  hyper2snyper:
+  - rscadd: If a Defender is fortified and has 100+ bullet armor, bullets will reflect
+      off of it.
+  novaepee:
+  - rscdel: Remove free plasma cutters from req in preparation of MJP's rework; it
+      must be done so that engineer players can adapt NOW than later.
+  - rscadd: Synthetic has plasma cutter. Find it in vendor.
+  - balance: Remove free plasma cutters from req
+2022-01-29:
+  Arctrooper8:
+  - bugfix: Hemodile and Transvitox now block sentry line of sight like other defiler
+      gases
+  BraveMole:
+  - rscdel: Remove light neuro
+  - code_imp: Fix a sleep in pathfinding
+  - balance: Windup for snatch from 0,5 sec to 1 sec, it is now interruptible by damage
+      as well
+  - balance: Using snatch slow down the runner a lot.
+  - qol: As a snatching runner you can activate snatch again to release the object
+  SplinterGP:
+  - bugfix: hive blessing menu tabs is fixed and won't go over each other.
+  novaepee:
+  - rscadd: cryotubes in LV-624! Go fix that APC.
+2022-01-30:
+  BraveMole:
+  - bugfix: Fix wraith primo overlay issue
+  - rscadd: Add teleporters pad to req. You buy them in pairs, and they can teleport
+      marines/equipment on the same z level. Requires to be anchored, and have power
+      (either area power OR internal cell power).
+  Lewdcifer:
+  - balance: TX-8 impact ammo; 45 > 30 pen, stagger and knockback removed, shots pierce
+      through targets.
+  MrStonedOne:
+  - bugfix: Fix the mc getting completely chaotic due to background ticker subsystems
+  Pariah919:
+  - balance: T-81 Autosniper fires 500ms slower.
+  - balance: Fire deals more damage to walls, light explosions deal a decent bit less
+      now.
+  TiviPlus:
+  - rscdel: Removed defender ricochet
+  - bugfix: fixed invis weather
+2022-01-31:
+  Arctrooper8:
+  - balance: Contrand has now been removed from all vendors, their contents are now
+      (mostly) available without being hacked.
+  - rscdel: Deleted Tool storage vendor at JPR's request, and the general circuit
+      (not at JPR's request for that one though)
+  - qol: Engineers now start with an APC circuit and have had the iron build menu
+      improved, office chairs now have a description too!
+  - refactor: Makes vending lists nicer to look at while removing contraband lists
+  BraveMole:
+  - bugfix: Fix spit timing
+  - qol: Buy upgrade button in hive blessing menu no longer disabled
+  - balance: Wraith's time stop range down to a 3x3 square
+  - balance: Plasma cost down to 150 from 200
+  - balance: Shock is stacking faster but also disappearing faster
+  Lewdcifer:
+  - qol: Psychic Link will not cancel itself due to distance, instead toggles on/off
+  RipGrayson:
+  - rscadd: Implemented Rohesie's smoothing system.
+  - imageadd: Created new cave wall sprites.
+  - imageadd: Ported jungle wall sprites from CM.
+  - imageadd: Ported cult wall sprites from CM.
+  - imageadd: Ported a set of wall sprites from Eris to replace old Sulaco walls.
+  - imagedel: Deleted old Sulaco wall graphics.

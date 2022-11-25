@@ -16,15 +16,14 @@
 		to_chat(src,"<b>[span_deadsay("<p style='font-size:1.5em'>[species.special_death_message]</p>")]</b>")
 	return ..()
 
-/mob/living/carbon/Move(NewLoc, direct)
+/mob/living/carbon/Moved(oldLoc, dir)
 	. = ..()
-	if(.)
-		if(nutrition && stat != DEAD)
-			adjust_nutrition(-HUNGER_FACTOR * 0.1 * ((m_intent == MOVE_INTENT_RUN) ? 2 : 1))
+	if(nutrition && stat != DEAD)
+		adjust_nutrition(-HUNGER_FACTOR * 0.1 * ((m_intent == MOVE_INTENT_RUN) ? 2 : 1))
 
-		// Moving around increases germ_level faster
-		if(germ_level < GERM_LEVEL_MOVE_CAP && prob(8))
-			germ_level++
+	// Moving around increases germ_level faster
+	if(germ_level < GERM_LEVEL_MOVE_CAP && prob(8))
+		germ_level++
 
 /mob/living/carbon/relaymove(mob/user, direction)
 	if(user.incapacitated(TRUE))
@@ -164,7 +163,7 @@
 		return
 	if(stat || !target)
 		return
-	if(target.type == /obj/screen)
+	if(target.type == /atom/movable/screen)
 		return
 
 	var/atom/movable/thrown_thing
@@ -274,7 +273,7 @@
 		var/slide_dir = dir
 		for(var/i=1, i<=slide_steps, i++)
 			step(src, slide_dir)
-			sleep(2)
+			sleep(0.2 SECONDS)
 			if(!lying_angle)
 				break
 
@@ -286,7 +285,7 @@
 	.["Regenerate Icons"] = "?_src_=vars;[HrefToken()];regenerateicons=[REF(src)]"
 
 /mob/living/carbon/update_tracking(mob/living/carbon/C)
-	var/obj/screen/LL_dir = hud_used.SL_locator
+	var/atom/movable/screen/LL_dir = hud_used.SL_locator
 
 	if(C.z != src.z || get_dist(src, C) < 1 || src == C)
 		LL_dir.icon_state = ""
@@ -296,7 +295,7 @@
 		LL_dir.transform = turn(LL_dir.transform, Get_Angle(src, C))
 
 /mob/living/carbon/clear_leader_tracking()
-	var/obj/screen/LL_dir = hud_used.SL_locator
+	var/atom/movable/screen/LL_dir = hud_used.SL_locator
 	LL_dir.icon_state = "SL_locator_off"
 
 

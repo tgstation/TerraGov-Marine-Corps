@@ -187,8 +187,8 @@
 	taste_multi = 1
 
 /datum/reagent/toxin/plantbgone/reaction_obj(obj/O, volume)
-	if(istype(O,/obj/effect/alien/weeds))
-		var/obj/effect/alien/A = O
+	if(istype(O,/obj/alien/weeds))
+		var/obj/alien/A = O
 		A.take_damage(min(0.5 * volume))
 	else if(istype(O,/obj/structure/glowshroom)) //even a small amount is enough to kill it
 		qdel(O)
@@ -328,22 +328,6 @@
 	L.reagent_pain_modifier = volume
 	return ..()
 
-/datum/reagent/toxin/beer2	//disguised as normal beer
-	name = "Beer"
-	description = "An alcoholic beverage made from malted grains, hops, yeast, and water. The fermentation appears to be incomplete." //If the players manage to analyze this, they deserve to know something is wrong.
-	color = "#664300" // rgb: 102, 67, 0
-	custom_metabolism = REAGENTS_METABOLISM * 2.5
-	taste_description = "piss water"
-
-/datum/reagent/toxin/beer2/on_mob_life(mob/living/L, metabolism)
-	switch(current_cycle)
-		if(1 to 50)
-			L.Sleeping(10 SECONDS)
-		if(51 to INFINITY)
-			L.Sleeping(10 SECONDS)
-			L.adjustToxLoss((current_cycle/2 - 25)*effect_str)
-	return ..()
-
 /datum/reagent/toxin/plasticide
 	name = "Plasticide"
 	description = "Liquid plastic, do not eat."
@@ -441,6 +425,8 @@
 	reagent_state = LIQUID
 	color = "#535E66" // rgb: 83, 94, 102
 	custom_metabolism = REAGENTS_METABOLISM * 5
+	medbayblacklist = TRUE
+	reactindeadmob = FALSE
 
 /datum/reagent/toxin/nanites/on_mob_add(mob/living/L, metabolism)
 	to_chat(L, span_userdanger("Your body begins to twist and deform! Get out of the razorburn!"))
@@ -466,17 +452,9 @@
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
 	custom_metabolism = REAGENTS_METABOLISM * 2
-	purge_list = list(/datum/reagent/medicine)
-	purge_rate = 1
 	overdose_threshold = 10000 //Overdosing for neuro is what happens when you run out of stamina to avoid its oxy and toxin damage
 	scannable = TRUE
 	toxpwr = 0
-
-/datum/reagent/toxin/xeno_neurotoxin/light
-	name = "Light Neurotoxin"
-	description = "A debilitating nerve toxin. Impedes motor control in high doses. Causes progressive loss of mobility over time. This one seems to be weaker enough to not remove other chemicals."
-	purge_rate = 0
-
 
 /datum/reagent/toxin/xeno_neurotoxin/on_mob_life(mob/living/L, metabolism)
 	var/power
@@ -503,7 +481,7 @@
 		L.adjustOxyLoss(stamina_excess_damage * 0.5)
 		L.Losebreath(2) //So the oxy loss actually means something.
 
-	L.stuttering = max(L.stuttering, 1)
+	L.set_timed_status_effect(2 SECONDS, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
 
 	if(current_cycle < 21) //Additional effects at higher cycles
 		return ..()
@@ -513,39 +491,7 @@
 	if(L.eye_blurry < 30) //So we don't have the visual acuity of Mister Magoo forever
 		L.adjust_blurriness(1.3)
 
-
 	return ..()
-
-/datum/reagent/toxin/xeno_neurotoxin/light/on_mob_life(mob/living/L, metabolism)
-	. = .. ()
-	switch(current_cycle)
-		if(21 to 45)
-			purge_rate = 0.2
-		if(46 to INFINITY)
-			purge_rate = 1
-
-/datum/reagent/toxin/xeno_growthtoxin
-	name = "Larval Accelerant"
-	description = "A metabolic accelerant that dramatically increases the rate of larval growth in a host."
-	reagent_state = LIQUID
-	color = "#CF3600" // rgb: 207, 54, 0
-	purge_list = list(/datum/reagent/medicine)
-	purge_rate = 3
-	overdose_threshold = REAGENTS_OVERDOSE
-	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
-	toxpwr = 0
-	scannable = TRUE
-
-/datum/reagent/toxin/xeno_growthtoxin/on_mob_life(mob/living/L)
-	L.jitter(1) //So unga know to get treated
-	return ..()
-
-/datum/reagent/toxin/xeno_growthtoxin/overdose_process(mob/living/L, metabolism)
-	L.adjustOxyLoss(2)
-	L.jitter(4)
-
-/datum/reagent/toxin/xeno_growthtoxin/overdose_crit_process(mob/living/L, metabolism)
-	L.Losebreath(2)
 
 /datum/reagent/toxin/xeno_hemodile //Slows its victim. The slow becomes twice as strong with each other xeno toxin in the victim's system.
 	name = "Hemodile"
@@ -559,13 +505,11 @@
 
 /datum/reagent/toxin/xeno_hemodile/on_mob_life(mob/living/L, metabolism)
 
-	var/slowdown_multiplier = 1
+	var/slowdown_multiplier = 0.5 //Because hemodile is obviously in blood already
 
-	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox)) //Each other Defiler toxin increases the multiplier by 2x; 2x if we have 1 combo chem, 4x if we have 2
-		slowdown_multiplier *= 2
-
-	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
-		slowdown_multiplier *= 2
+	for(var/datum/reagent/current_reagent AS in L.reagents.reagent_list) //Cycle through all chems
+		if(is_type_in_typecache(current_reagent, GLOB.defiler_toxins_typecache_list)) //For each xeno toxin reagent, double the strength multiplier
+			slowdown_multiplier *= 2 //Each other Defiler toxin increases the multiplier by 2x; 2x if we have 1 combo chem, 4x if we have 2
 
 	switch(slowdown_multiplier) //Description varies in severity and probability with the multiplier
 		if(0 to 1 && prob(10))
@@ -597,20 +541,18 @@
 	RegisterSignal(L, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/transvitox_human_damage_taken)
 
 /datum/reagent/toxin/xeno_transvitox/on_mob_life(mob/living/L, metabolism)
-	var/fire_loss = L.getFireLoss()
+	var/fire_loss = L.getFireLoss(TRUE)
 	if(!fire_loss) //If we have no burn damage, cancel out
 		return ..()
 
 	if(prob(10))
 		to_chat(L, span_warning("You notice your wounds crusting over with disgusting green ichor.") )
 
-	var/tox_cap_multiplier = 1
+	var/tox_cap_multiplier = 0.5 //Because transvitox is obviously in blood already
 
-	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)) //Each other Defiler toxin doubles the multiplier
-		tox_cap_multiplier *= 2
-
-	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
-		tox_cap_multiplier *= 2
+	for(var/datum/reagent/current_reagent AS in L.reagents.reagent_list) //Cycle through all chems
+		if(is_type_in_typecache(current_reagent, GLOB.defiler_toxins_typecache_list)) //For each xeno toxin reagent, double the strength multiplier
+			tox_cap_multiplier *= 2 //Each other Defiler toxin doubles the multiplier
 
 	var/tox_loss = L.getToxLoss()
 	if(tox_loss > DEFILER_TRANSVITOX_CAP) //If toxin levels are already at their cap, cancel out
@@ -629,19 +571,17 @@
 /datum/reagent/toxin/xeno_transvitox/proc/transvitox_human_damage_taken(mob/living/L, damage)
 	SIGNAL_HANDLER
 
-	var/tox_cap_multiplier = 1
+	var/tox_cap_multiplier = 0.5 //Because transvitox is obviously in blood already
 
-	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)) //Each other Defiler toxin doubles the multiplier
-		tox_cap_multiplier *= 2
-
-	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
-		tox_cap_multiplier *= 2
+	for(var/datum/reagent/current_reagent AS in L.reagents.reagent_list) //Cycle through all chems
+		if(is_type_in_typecache(current_reagent, GLOB.defiler_toxins_typecache_list)) //For each xeno toxin reagent, double the strength multiplier
+			tox_cap_multiplier *= 2 //Each other Defiler toxin doubles the multiplier
 
 	var/tox_loss = L.getToxLoss()
 	if(tox_loss > DEFILER_TRANSVITOX_CAP) //If toxin levels are already at their cap, cancel out
 		return
 
-	L.setToxLoss(clamp(tox_loss + min(L.getBruteLoss() * 0.1 * tox_cap_multiplier, damage * 0.1 * tox_cap_multiplier), tox_loss, DEFILER_TRANSVITOX_CAP)) //Deal bonus tox damage equal to a % of the lesser of the damage taken or the target's brute damage; capped at DEFILER_TRANSVITOX_CAP.
+	L.setToxLoss(clamp(tox_loss + min(L.getBruteLoss(TRUE) * 0.1 * tox_cap_multiplier, damage * 0.1 * tox_cap_multiplier), tox_loss, DEFILER_TRANSVITOX_CAP)) //Deal bonus tox damage equal to a % of the lesser of the damage taken or the target's brute damage; capped at DEFILER_TRANSVITOX_CAP.
 
 /datum/reagent/toxin/xeno_sanguinal //deals brute damage and causes persistant bleeding. Causes additional damage for each other xeno chem in the system
 	name = "Sanguinal"
@@ -654,7 +594,7 @@
 	toxpwr = 0
 
 /datum/reagent/toxin/xeno_sanguinal/on_mob_life(mob/living/L, metabolism)
-	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)) //Each other Defiler toxin doubles the multiplier
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
 		L.adjustStaminaLoss(DEFILER_SANGUINAL_DAMAGE)
 
 	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
@@ -663,13 +603,35 @@
 	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
 		L.adjustFireLoss(DEFILER_SANGUINAL_DAMAGE)
 
-	L.apply_damage(DEFILER_SANGUINAL_DAMAGE, BRUTE, sharp = TRUE) //Causes brute damage
+	L.apply_damage(DEFILER_SANGUINAL_DAMAGE, BRUTE, sharp = TRUE)
 
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		C.drip(DEFILER_SANGUINAL_DAMAGE) //Causes bleeding
 
 	return ..()
+
+/datum/reagent/toxin/xeno_ozelomelyn // deals capped toxloss and purges at a rapid rate
+	name = "Ozelomelyn"
+	description = "A potent Xenomorph chemical that quickly purges other chemicals in a bloodstream, causing small scale poisoning in a organism that won't progress. Appears to be strangely water based.."
+	reagent_state = LIQUID
+	color = "#f1ddcf"
+	custom_metabolism = 1.5 // metabolizes decently quickly. A sting does 15 at the same rate as neurotoxin.
+	overdose_threshold = 10000
+	scannable = TRUE
+	toxpwr = 0 // This is going to do slightly snowflake tox damage.
+	purge_list = list(/datum/reagent/medicine)
+	purge_rate = 5
+
+/datum/reagent/toxin/xeno_ozelomelyn/on_mob_life(mob/living/L, metabolism)
+	if(L.getToxLoss() < 40) // if our toxloss is below 40, do 0.75 tox damage.
+		L.adjustToxLoss(0.75)
+		if(prob(15))
+			to_chat(L, span_warning("Your veins feel like water and you can feel a growing itchy feeling in them!") )
+		return ..()
+	if(prob(15))
+		to_chat(L, span_warning("Your veins feel like water..") )
+		return ..()
 
 /datum/reagent/zombium
 	name = "Zombium"
@@ -707,3 +669,53 @@
 		return
 	H.do_jitter_animation(1000)
 	addtimer(CALLBACK(H, /mob/living/carbon/human.proc/revive_to_crit, TRUE, TRUE), SSticker.mode?.zombie_transformation_time)
+
+
+//SOM nerve agent
+/datum/reagent/toxin/satrapine
+	name = "Satrapine"
+	description = "A nerve agent designed to incapacitate targets through debilitating pain. Its severity increases over time, causing various lung complications, and will purge common painkillers. Based on a chemical agent originally used against rebelling Martian colonists, improved by the SOM for their own use."
+	reagent_state = LIQUID
+	color = "#cfb000"
+	overdose_threshold = 10000
+	custom_metabolism = REAGENTS_METABOLISM
+	scannable = TRUE
+	toxpwr = 0
+	purge_list = list(
+		/datum/reagent/medicine/tramadol,
+		/datum/reagent/medicine/paracetamol,
+		/datum/reagent/medicine/inaprovaline,
+	)
+	purge_rate = 1
+
+/datum/reagent/toxin/satrapine/on_mob_life(mob/living/L, metabolism)
+	switch(current_cycle)
+		if(1 to 10)
+			L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
+		if(11 to 20)
+			L.reagent_pain_modifier -= PAIN_REDUCTION_HEAVY
+			L.jitter(4)
+		if(21 to 30)
+			L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_HEAVY
+			L.jitter(6)
+		if(31 to INFINITY)
+			L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_HEAVY * 1.5 //bad times ahead
+			L.jitter(8)
+
+	if(current_cycle > 21)
+		L.adjustStaminaLoss(effect_str)
+		if(iscarbon(L) && prob(min(current_cycle - 10,30)))
+			L.emote("me", 1, "coughs up blood!")
+			L:drip(10)
+		if(prob(min(current_cycle - 5,30)))
+			L.emote("me", 1, "gasps for air!")
+			L.Losebreath(4)
+		if(L.eye_blurry < 30)
+			L.adjust_blurriness(1.3)
+	else
+		L.adjustStaminaLoss(0.5*effect_str)
+		if(prob(20))
+			L.emote("gasp")
+			L.Losebreath(3)
+
+	return ..()

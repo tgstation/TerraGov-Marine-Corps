@@ -7,6 +7,10 @@
 	icon_state = "watertank"
 	density = TRUE
 	anchored = FALSE
+	resistance_flags = XENO_DAMAGEABLE
+	max_integrity = 100
+	///high chance to block bullets, offset by being unanchored
+	coverage = 80
 	///maximum tank capacity used to set reagents in initialize
 	var/tank_volume = 1000
 	///Current amount we will transfer every time we click on this
@@ -83,12 +87,11 @@
 /obj/structure/reagent_dispensers/fueltank/examine(mob/user)
 	. = ..()
 	if(user != loc)
-
 		return
 	if(modded)
-		to_chat(user, span_warning(" Fuel faucet is wrenched open, leaking the fuel!"))
+		. += span_warning(" Fuel faucet is wrenched open, leaking the fuel!")
 	if(rig)
-		to_chat(user, span_notice("There is some kind of device rigged to the tank."))
+		. += span_notice("There is some kind of device rigged to the tank.")
 
 /obj/structure/reagent_dispensers/fueltank/attack_hand(mob/living/user)
 	. = ..()
@@ -188,9 +191,9 @@
 		explode()
 	return ..()
 
-/obj/structure/reagent_dispensers/fueltank/Move()
+/obj/structure/reagent_dispensers/fueltank/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
 	. = ..()
-	if (. && modded)
+	if (modded)
 		leak_fuel(amount_per_transfer_from_this/10.0)
 
 ///Leaks fuel when the valve is opened, leaving behind burnable splotches
@@ -204,8 +207,14 @@
 	playsound(src, 'sound/effects/glob.ogg', 25, 1)
 
 
-/obj/structure/reagent_dispensers/fueltank/flamer_fire_act()
+/obj/structure/reagent_dispensers/fueltank/flamer_fire_act(burnlevel)
 	explode()
+
+/obj/structure/reagent_dispensers/fueltank/barrel
+	name = "red barrel"
+	desc = "A red fuel barrel"
+	icon = 'icons/obj/structures/crates.dmi'
+	icon_state = "barrel_red"
 
 /obj/structure/reagent_dispensers/water_cooler
 	name = "water cooler"
@@ -217,6 +226,7 @@
 	anchored = TRUE
 	tank_volume = 500
 	list_reagents = list(/datum/reagent/water = 500)
+	coverage = 20
 
 
 /obj/structure/reagent_dispensers/beerkeg
@@ -225,6 +235,7 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "beertankTEMP"
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer = 1000)
+	coverage = 30
 
 
 /obj/structure/reagent_dispensers/wallmounted

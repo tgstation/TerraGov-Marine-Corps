@@ -24,6 +24,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/ui_style_alpha = 230
 	var/tgui_fancy = TRUE
 	var/tgui_lock = FALSE
+	var/tgui_input = TRUE
+	var/tgui_input_big_buttons = FALSE
+	var/tgui_input_buttons_swap = FALSE
 	var/toggles_deadchat = TOGGLES_DEADCHAT_DEFAULT
 	var/toggles_chat = TOGGLES_CHAT_DEFAULT
 	var/toggles_sound = TOGGLES_SOUND_DEFAULT
@@ -37,8 +40,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/show_typing = TRUE
 	var/windowflashing = TRUE
-	var/focus_chat = FALSE
-	var/clientfps = 0
+	var/clientfps = 60
 
 	// Custom Keybindings
 	var/list/key_bindings = null
@@ -53,7 +55,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/list/chem_macros = list()
 
 	//Synthetic specific preferences
-	var/synthetic_name = "David"
+	var/synthetic_name = "Undefined"
 	var/synthetic_type = "Synthetic"
 
 	//Xenomorph specific preferences
@@ -69,11 +71,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/age = 20
 	var/species = "Human"
 	var/ethnicity = "Western"
-	var/body_type = "Mesomorphic (Average)"
 	var/good_eyesight = TRUE
 	var/preferred_squad = "None"
+	///Your preferred squad, when playing SOM
+	var/preferred_squad_som = "None"
 	var/alternate_option = RETURN_TO_LOBBY
 	var/preferred_slot = SLOT_S_STORE
+	var/preferred_slot_alt = SLOT_BACK
 	var/list/gear
 	var/list/job_preferences = list()
 
@@ -108,9 +112,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/moth_wings = "Plain"
 
 	//Lore
-	var/citizenship = "TerraGov"
+	var/citizenship = "Earth Born"
 	var/religion = "None"
-	var/nanotrasen_relation = "Neutral"
 	var/flavor_text = ""
 	var/med_record = ""
 	var/sec_record = ""
@@ -155,8 +158,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	/// New TGUI Preference preview
 	var/map_name = "player_pref_map"
-	var/obj/screen/map_view/screen_main
-	var/obj/screen/background/screen_bg
+	var/atom/movable/screen/map_view/screen_main
+	var/atom/movable/screen/background/screen_bg
 
 	/// If unique action will only act on the item in the active hand. If false, it will try to act on the item on the inactive hand as well in certain conditions.
 	var/unique_action_use_active_hand = TRUE
@@ -198,7 +201,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		var/datum/custom_emote/emote = new
 		emote.id = i
 		custom_emotes += emote
-	C.update_movement_keys(src)
+	C.update_special_keybinds(src)
 	loadout_manager = new
 
 

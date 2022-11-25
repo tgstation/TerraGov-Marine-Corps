@@ -43,8 +43,8 @@
 	failmsg = "The [name]'s refill light blinks red."
 
 /obj/item/lightreplacer/examine(mob/user)
-	..()
-	to_chat(user, "It has [uses] lights remaining.")
+	. = ..()
+	. += "It has [uses] lights remaining."
 
 /obj/item/lightreplacer/attackby(obj/item/I, mob/user, params)
 	. = ..()

@@ -2,13 +2,37 @@
 	"": [
 		{
 			"type": "icon_state",
-			"icon_state": "helmet",
+			"icon_state": "helmet_color_1",
 			"blend_mode": "overlay",
 			"color_ids": [ 1 ]
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "helmet_nocolor",
+			"icon_state": "helmet_color_2",
+			"blend_mode": "overlay",
+			"color_ids": [ 2 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "helmet_color_3",
+			"blend_mode": "overlay",
+			"color_ids": [ 3 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "helmet_color_4",
+			"blend_mode": "overlay",
+			"color_ids": [ 4 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "helmet_color_5",
+			"blend_mode": "overlay",
+			"color_ids": [ 5 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "helmet_no_color",
 			"blend_mode": "overlay"
 		}
 	]

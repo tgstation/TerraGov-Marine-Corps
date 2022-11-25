@@ -47,8 +47,8 @@
 	name = "energy sword"
 	desc = "May the force be within you."
 	icon_state = "sword0"
-	force = 3.0
-	throwforce = 5.0
+	force = 10
+	throwforce = 12
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
@@ -112,6 +112,8 @@
 /obj/item/weapon/energy/sword/red
 	sword_color = "red"
 
+/obj/item/weapon/energy/sword/blue
+	sword_color = "blue"
 
 
 

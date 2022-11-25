@@ -123,7 +123,7 @@
 			A.client.eye = A.eyeobj
 		else
 			user.reset_perspective(C)
-			user.overlay_fullscreen("flash", /obj/screen/fullscreen/flash/noise)
+			user.overlay_fullscreen("flash", /atom/movable/screen/fullscreen/flash/noise)
 			user.clear_fullscreen("flash", 5)
 		watchers[user] = C
 		use_power(active_power_usage)
@@ -151,9 +151,8 @@
 			stack_trace("Camera in a cameranet has a non-list camera network")
 			continue
 		var/list/tempnetwork = C.network & network
-		if(length(tempnetwork))
+		if(length(tempnetwork) && C.c_tag)
 			valid_cams["[C.c_tag]"] = C
-			// valid_cams["[C.c_tag][(C.status ? null : " (Deactivated)")]"] = C
 	return valid_cams
 
 

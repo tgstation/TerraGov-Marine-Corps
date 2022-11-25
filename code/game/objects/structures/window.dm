@@ -7,7 +7,7 @@
 	density = TRUE
 	anchored = TRUE
 	layer = WINDOW_LAYER
-	flags_atom = ON_BORDER
+	flags_atom = ON_BORDER|DIRLOCK
 	resistance_flags = XENO_DAMAGEABLE | DROPSHIP_IMMUNE
 	coverage = 20
 	var/dismantle = FALSE //If we're dismantling the window properly no smashy smashy
@@ -21,6 +21,7 @@
 	var/junction = 0 //Because everything is terrible, I'm making this a window-level var
 	var/damageable = TRUE
 	var/deconstructable = TRUE
+	throwpass = FALSE
 
 //I hate this as much as you do
 /obj/structure/window/full
@@ -78,7 +79,7 @@
 	. = ..()
 	if(CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE
-	if(!is_full_window() && !(get_dir(loc, target) == dir))
+	if(!is_full_window() && !(get_dir(loc, target) & dir))
 		return TRUE
 
 /obj/structure/window/proc/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
@@ -229,11 +230,6 @@
 
 	setDir(turn(dir, 270))
 
-/obj/structure/window/Move()
-	var/ini_dir = dir
-	. = ..()
-	setDir(ini_dir)
-
 //This proc is used to update the icons of nearby windows.
 /obj/structure/window/proc/update_nearby_icons()
 	update_icon()
@@ -309,6 +305,31 @@
 	reinf = TRUE
 	explosion_block = EXPLOSION_BLOCK_PROC
 	real_explosion_block = 2
+	layer = ABOVE_MOB_LAYER
+	///are we tinted or not
+	var/tinted = FALSE
+
+/obj/structure/window/reinforced/Initialize(mapload)
+	. = ..()
+	if(dir == NORTH)
+		add_overlay(image(icon, "rwindow_overlay", layer = WINDOW_LAYER))
+		layer = WINDOW_FRAME_LAYER
+	if(dir == WEST || dir == EAST)
+		var/turf/adj = get_step(src, SOUTH)
+		if(isclosedturf(adj))
+			return
+		if(locate(/obj/structure) in adj)
+			return
+		if(locate(/obj/machinery) in adj)
+			return
+		if(tinted)
+			add_overlay(image(icon, "twindowstake", layer = ABOVE_ALL_MOB_LAYER))
+			return
+		add_overlay(image(icon, "windowstake", layer = ABOVE_ALL_MOB_LAYER))
+
+/obj/structure/window/reinforced/windowstake/Initialize(mapload)
+	. = ..()
+	add_overlay(image(icon, "windowstake", layer = ABOVE_ALL_MOB_LAYER))
 
 /obj/structure/window/reinforced/toughened
 	name = "safety glass"
@@ -334,6 +355,7 @@
 	icon_state = "twindow"
 	basestate = "twindow"
 	opacity = TRUE
+	tinted =  TRUE
 
 /obj/structure/window/reinforced/tinted/frosted
 	name = "frosted window"
@@ -363,25 +385,16 @@
 	static_frame = TRUE
 	flags_atom = NONE //This is not a border object; it takes up the entire tile.
 	explosion_block = 2
-	var/window_frame //For perspective windows,so the window frame doesn't magically dissapear
-	var/list/tiles_special = list(/obj/machinery/door/airlock,
-		/obj/structure/window/framed,
-		/obj/structure/girder,
-		/obj/structure/window_frame)
-	tiles_with = list(
-		/turf/closed/wall,
-	)
-
-/obj/structure/window/framed/Initialize()
-	relativewall()
-	relativewall_neighbours()
-	. = ..()
+	smoothing_behavior = CARDINAL_SMOOTHING
+	smoothing_groups = SMOOTH_GENERAL_STRUCTURES
+	///For perspective windows,so the window frame doesn't magically disappear.
+	var/window_frame
 
 /obj/structure/window/framed/update_nearby_icons()
-	relativewall_neighbours()
+	smooth_neighbors()
 
 /obj/structure/window/framed/update_icon()
-	relativewall()
+	smooth_self()
 
 
 /obj/structure/window/framed/deconstruct(disassembled = TRUE)
@@ -403,6 +416,10 @@
 	window_frame = /obj/structure/window_frame/mainship
 
 /obj/structure/window/framed/mainship/canterbury //So we can wallsmooth properly.
+	smoothing_groups = SMOOTH_CANTERBURY
+
+/obj/structure/window/framed/mainship/escapeshuttle
+	smoothing_groups = SMOOTH_ESCAPESHUTTLE
 
 /obj/structure/window/framed/mainship/toughened
 	name = "safety glass"
@@ -430,8 +447,7 @@
 	max_integrity = 1000000 //Failsafe, shouldn't matter
 
 /obj/structure/window/framed/mainship/hull/canterbury //So we can wallsmooth properly.
-	tiles_with = list(/turf/closed/wall/mainship/outer/canterbury)
-	tiles_special = list(/obj/structure/window/framed/mainship/hull/canterbury)
+	smoothing_groups = SMOOTH_CANTERBURY
 
 /obj/structure/window/framed/mainship/requisitions
 	name = "kevlar-weave infused bulletproof window"
@@ -445,6 +461,7 @@
 	window_frame = /obj/structure/window_frame/mainship/white
 
 /obj/structure/window/framed/mainship/white/canterbury //So we can wallsmooth properly.
+	smoothing_groups = SMOOTH_CANTERBURY
 
 /obj/structure/window/framed/mainship/gray
 	icon_state = "gray_window0"
@@ -466,6 +483,15 @@
 	damageable = FALSE
 	deconstructable = FALSE
 	resistance_flags = RESIST_ALL
+
+/obj/structure/window/framed/mainship/white/toughened/hull
+	name = "hull window"
+	icon_state = "white_rwindow0"
+	desc = "A glass window with a special rod matrice inside a wall frame. This one was made out of exotic materials to prevent hull breaches. No way to get through here."
+	damageable = FALSE
+	deconstructable = FALSE
+	resistance_flags = RESIST_ALL
+
 /obj/structure/window/framed/colony
 	name = "window"
 	icon_state = "col_window0"
@@ -548,10 +574,18 @@
 	desc = "A glass window with a special rod matrice inside a wall frame. This one has an automatic shutter system to prevent any atmospheric breach."
 	max_integrity = 200
 	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
+	resistance_flags = BANISH_IMMUNE
 
 /obj/structure/window/framed/prison/reinforced/hull/Initialize()
 	. = ..()
 	AddElement(/datum/element/windowshutter)
+
+/obj/structure/window/framed/prison/reinforced/nonshutter_hull
+	name = "hull window"
+	desc = "A glass window with a special rod matrice inside a wall frame. This one was made out of exotic materials to prevent hull breaches. No way to get through here."
+	damageable = FALSE
+	deconstructable = FALSE
+	resistance_flags = RESIST_ALL
 
 // dont even ask
 /obj/structure/window/framed/prison/reinforced/hull/tyson

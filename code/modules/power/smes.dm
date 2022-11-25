@@ -32,11 +32,11 @@
 	var/obj/machinery/power/terminal/terminal
 
 /obj/machinery/power/smes/examine(user)
-	..()
+	. = ..()
 	if(!terminal)
-		to_chat(user, span_warning("This SMES has no power terminal!"))
+		. += span_warning("This SMES has no power terminal!")
 	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-		to_chat(user, span_notice("The maintenance hatch is open."))
+		. += span_notice("The maintenance hatch is open.")
 
 /obj/machinery/power/smes/Initialize()
 	. = ..()
@@ -293,7 +293,7 @@
 			var/target = params["target"]
 			var/adjust = text2num(params["adjust"])
 			if(target == "input")
-				target = input("New input target (0-[input_level_max]):", name, input_level) as num|null
+				target = tgui_input_number(usr, "New input target (0-[input_level_max]):", name, input_level)
 				if(!isnull(target) && !..())
 					. = TRUE
 			else if(target == "min")
@@ -314,7 +314,7 @@
 			var/target = params["target"]
 			var/adjust = text2num(params["adjust"])
 			if(target == "input")
-				target = input("New output target (0-[output_level_max]):", name, output_level) as num|null
+				target = tgui_input_number(usr, "New output target (0-[output_level_max]):", name, output_level)
 				if(!isnull(target) && !..())
 					. = TRUE
 			else if(target == "min")
@@ -352,7 +352,7 @@
 			if("max")
 				input_level = input_level_max
 			if("set")
-				input_level = input(usr, "Enter new input level (0-[input_level_max])", "SMES Input Power Control", input_level) as num
+				input_level = tgui_input_number(usr, "Enter new input level (0-[input_level_max])", "SMES Input Power Control", input_level)
 		input_level = clamp(input_level,0,input_level_max)
 
 	else if( href_list["output"] )
@@ -362,7 +362,7 @@
 			if("max")
 				output_level = output_level_max
 			if("set")
-				output_level = input(usr, "Enter new output level (0-[output_level_max])", "SMES Output Power Control", output_level) as num
+				output_level = tgui_input_number(usr, "Enter new output level (0-[output_level_max])", "SMES Output Power Control", output_level)
 		output_level = clamp(output_level,0,output_level_max)
 
 

@@ -13,6 +13,9 @@
 	GLOB.alive_xeno_list -= src
 	GLOB.dead_xeno_list += src
 
+	QDEL_NULL(current_aura)
+	QDEL_NULL(leader_current_aura)
+
 	hive?.on_xeno_death(src)
 	hive.update_tier_limits() //Update our tier limits.
 
@@ -71,6 +74,8 @@
 /mob/living/carbon/xenomorph/proc/xeno_death_alert()
 	if(is_centcom_level(z))
 		return
+	if(xeno_caste.caste_flags & CASTE_DO_NOT_ANNOUNCE_DEATH)
+		return
 	var/area/A = get_area(src)
 	xeno_message("Hive: \The [src] has <b>died</b>[A? " at [A]":""]!", "xenoannounce", xeno_caste.caste_flags & CASTE_DO_NOT_ALERT_LOW_LIFE ? 2 : 5, hivenumber)
 
@@ -89,10 +94,10 @@
 	return ..()
 
 /mob/living/carbon/xenomorph/gib_animation()
-	new /obj/effect/overlay/temp/gib_animation/xeno(loc, src, xeno_caste.gib_flick, icon)
+	new /obj/effect/overlay/temp/gib_animation/xeno(loc, 0, src, xeno_caste.gib_flick, icon)
 
 /mob/living/carbon/xenomorph/spawn_gibs()
 	xgibs(get_turf(src))
 
 /mob/living/carbon/xenomorph/dust_animation()
-	new /obj/effect/overlay/temp/dust_animation(loc, src, "dust-a")
+	new /obj/effect/overlay/temp/dust_animation(loc, 0, src, "dust-a")

@@ -5,48 +5,26 @@
 	layer = ABOVE_TABLE_LAYER
 	density = TRUE
 	anchored = TRUE
+	coverage = 20
 	var/broken = 0
 	var/processing = 0
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 500
 
-
+/obj/machinery/processor/nopower
+	use_power = NO_POWER_USE
 
 /datum/food_processor_process
 	var/input
 	var/output
 	var/time = 40
-	process(loc, what)
-		if (src.output && loc)
-			new src.output(loc)
-		if (what)
-			qdel(what)
 
-	/* objs */
-	meat
-		input = /obj/item/reagent_containers/food/snacks/meat
-		output = /obj/item/reagent_containers/food/snacks/meatball
-
-	potato
-		input = /obj/item/reagent_containers/food/snacks/grown/potato
-		output = /obj/item/reagent_containers/food/snacks/rawsticks
-
-	carrot
-		input = /obj/item/reagent_containers/food/snacks/grown/carrot
-		output = /obj/item/reagent_containers/food/snacks/carrotfries
-
-	soybeans
-		input = /obj/item/reagent_containers/food/snacks/grown/soybeans
-		output = /obj/item/reagent_containers/food/snacks/soydope
-
-	wheat
-		input = /obj/item/reagent_containers/food/snacks/grown/wheat
-		output = /obj/item/reagent_containers/food/snacks/flour
-
-	spaghetti
-		input = /obj/item/reagent_containers/food/snacks/flour
-		output = /obj/item/reagent_containers/food/snacks/spagetti
+/datum/food_processor_process/process(loc, what)
+	if (src.output && loc)
+		new src.output(loc)
+	if (what)
+		qdel(what)
 
 
 /obj/machinery/processor/proc/select_recipe(X)

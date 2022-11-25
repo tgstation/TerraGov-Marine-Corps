@@ -63,13 +63,13 @@
 
 	switch(state)
 		if(STATE_WRENCHED)
-			to_chat(user, span_info("You can secure it in place with a <b>welder</b>, or removed with a <b>wrench</b>."))
+			. += span_info("You can secure it in place with a <b>welder</b>, or removed with a <b>wrench</b>.")
 		if(STATE_WELDED)
-			to_chat(user, span_info("You can add <b>wires</b> to it, or <b>unweld</b> it from the wall."))
+			. += span_info("You can add <b>wires</b> to it, or <b>unweld</b> it from the wall.")
 		if(STATE_WIRED)
-			to_chat(user, span_info("You can complete it with a <b>screwdriver</b>, or <b>unwire</b> it to start removal."))
+			. += span_info("You can complete it with a <b>screwdriver</b>, or <b>unwire</b> it to start removal.")
 		if(STATE_FINISHED)
-			to_chat(user, span_boldwarning("You shouldn't be seeing this, tell a coder!"))
+			. += span_boldwarning("You shouldn't be seeing this, tell a coder!")
 
 
 /obj/structure/camera_assembly/Initialize(mapload, newDir)

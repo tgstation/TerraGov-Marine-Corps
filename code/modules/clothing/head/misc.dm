@@ -14,6 +14,7 @@
 	desc = "Smells nice."
 	item_state = "hairflower"
 	flags_armor_protection = NONE
+	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/clothing/head/powdered_wig
 	name = "powdered wig"
@@ -148,18 +149,25 @@
 	item_state = "hgpiratecap"
 	flags_armor_protection = NONE
 	flags_item = SYNTH_RESTRICTED
-	soft_armor = list("melee" = 50, "bullet" = 80, "laser" = 50, "energy" = 10, "bomb" = 50, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
+	soft_armor = list(MELEE = 50, BULLET = 80, LASER = 50, ENERGY = 10, BOMB = 50, BIO = 0, FIRE = 10, ACID = 10)
 
-/obj/item/clothing/head/bandanna
-	name = "pirate bandanna"
-	desc = "Yarr."
-	icon_state = "bandanna"
-	item_state = "bandanna"
+/obj/item/clothing/head/bandanna/brown
+	name = "brown bandanna"
+	desc = "Typically worn by heavy-weapon operators, mercenaries and scouts, the bandanna serves as a lightweight and comfortable hat."
+	icon_state = "bandanna_brown"
+	item_state = "bandanna_brown"
+
+/obj/item/clothing/head/bandanna/grey
+	name = "grey bandanna"
+	desc = "Show off the bleak side of your soul."
+	icon_state = "bandanna_grey"
+	item_state = "bandanna_grey"
 
 /obj/item/clothing/head/bandanna/red
 	name = "red bandanna"
 	desc = "For when it comes crashing down and it hurts inside."
 	icon_state = "bandanna_red"
+	item_state = "bandanna_red"
 
 /obj/item/clothing/head/bowler
 	name = "bowler-hat"
@@ -240,10 +248,22 @@
 	anti_hug = 10 //Lel
 
 /obj/item/clothing/head/white_dress
-	name = "White Dress Hat"
-	desc = "The white dress hat for your dress uniform."
+	name = "Dress White Cap"
+	desc = "The dress white cap for your dress uniform."
 	icon_state = "white_dress" //with thanks to Baystation12
 	item_state = "white_dress" //with thanks to Baystation12
+
+/obj/item/clothing/head/garrisoncap
+	name = "Garrison Cap"
+	desc = "The garrison cap for your service uniform. It reminds you of a shur for the external female genitalia."
+	icon_state = "garrisoncap" //with thanks to Fitz 'Pancake' Sholl
+	item_state = "garrisoncap" //with thanks to Fitz 'Pancake' Sholl
+
+/obj/item/clothing/head/servicecap
+	name = "Service Cap"
+	desc = "The service cap for your service uniform. Technically, this is for officers, but the BX is full of these cap, so why not grab one?"
+	icon_state = "servicecap" //with thanks to Fitz 'Pancake' Sholl
+	item_state = "servicecap" //with thanks to Fitz 'Pancake' Sholl
 
 /obj/item/clothing/head/techpriest
 	name = "Techpriest hood"

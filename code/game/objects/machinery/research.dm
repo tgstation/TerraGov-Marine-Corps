@@ -80,7 +80,7 @@
 
 /obj/machinery/researchcomp/examine(user)
 	. = ..()
-	to_chat(user, span_notice(allowed_resources_desc))
+	. += span_notice(allowed_resources_desc)
 
 ///Creates the description of usable resources for starting research
 /obj/machinery/researchcomp/proc/construct_insertable_resources_desc()
@@ -107,6 +107,7 @@
 /obj/machinery/researchcomp/ui_static_data(mob/user)
 	. = ..()
 
+	.["acquired_points"] = GLOB.round_statistics.points_from_research
 	.["anchored"] = anchored
 	.["researching"] = researching
 	if(!init_resource)
@@ -308,11 +309,12 @@
 
 /obj/item/research_product/supply_export(faction_selling)
 	SSpoints.supply_points[faction_selling] += export_points
+	GLOB.round_statistics.points_from_research += export_points
 	return new /datum/export_report(export_points, name, faction_selling)
 
 /obj/item/research_product/money/examine(user)
 	. = ..()
-	to_chat(user, span_notice("Rewards export points, as the name suggests."))
+	. += span_notice("Rewards export points, as the name suggests.")
 
 /obj/item/research_product/money/basic
 	name = "credits - 5"

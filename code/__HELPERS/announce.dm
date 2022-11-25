@@ -28,7 +28,7 @@
 	var/s = sound(sound, channel = CHANNEL_ANNOUNCEMENTS)
 	for(var/i in receivers)
 		var/mob/M = i
-		if(!isnewplayer(M) && !isdeaf(M))
+		if(!isnewplayer(M))
 			to_chat(M, announcement)
 			SEND_SOUND(M, s)
 

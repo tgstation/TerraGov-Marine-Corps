@@ -53,11 +53,11 @@
 
 /obj/item/weapon/powerfist/examine(user)
 	. = ..()
-	to_chat(user, "It's power setting is set to [setting].")
+	. += "It's power setting is set to [setting]."
 	if(cell)
-		to_chat(user, "It has [cell.charge] power remaining.")
+		. += "It has [cell.charge] power remaining."
 	else
-		to_chat(user, "There is no cell installed!")
+		. += "There is no cell installed!"
 
 /obj/item/weapon/powerfist/attack_self(mob/user)
 	. = ..()

@@ -111,7 +111,8 @@
 				"default" = 'icons/mob/ai.dmi',
 				"floating face" = 'icons/mob/ai.dmi',
 				"xeno_queen" = 'icons/mob/ai.dmi',
-				"void_horror" = 'icons/mob/ai.dmi'
+				"void_horror" = 'icons/mob/ai.dmi',
+				"holo4" = 'icons/mob/ai.dmi'
 				)
 
 			hologram = tgui_input_list(src, "Please select a hologram:", null, icon_list)
@@ -282,7 +283,7 @@
 		to_chat(src, "Radio not detected.")
 		return
 
-	var/chan = input("Select a channel:") as null|anything in list("Default", "None") + radio.channels
+	var/chan = tgui_input_list(usr, "Select a channel:", "", list("Default", "None") + radio.channels )
 	if(!chan)
 		return
 

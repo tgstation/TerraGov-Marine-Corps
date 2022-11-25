@@ -282,21 +282,21 @@
 		if(L.reagent_check(R) != TRUE)
 			if(can_overdose)
 				if(R.overdose_threshold)
-					if(R.volume >= R.overdose_threshold && !R.overdosed)
+					if(R.volume > R.overdose_threshold && !R.overdosed)
 						R.overdosed = TRUE
 						need_mob_update += R.on_overdose_start(L, quirks)
 				if(R.overdose_crit_threshold)
-					if(R.volume >= R.overdose_crit_threshold && !R.overdosed_crit)
+					if(R.volume > R.overdose_crit_threshold && !R.overdosed_crit)
 						R.overdosed_crit = TRUE
 						need_mob_update += R.on_overdose_crit_start(L, quirks)
 				if(R.addiction_threshold)
-					if(R.volume >= R.addiction_threshold && !is_type_in_list(R, cached_addictions))
+					if(R.volume > R.addiction_threshold && !is_type_in_list(R, cached_addictions))
 						var/datum/reagent/new_reagent = new R.type()
 						cached_addictions.Add(new_reagent)
-				if(R.volume < R.overdose_threshold && R.overdosed && R.overdose_threshold)
+				if(R.volume <= R.overdose_threshold && R.overdosed && R.overdose_threshold)
 					R.overdosed = FALSE
 					need_mob_update += R.on_overdose_stop(L, quirks)
-				if(R.volume < R.overdose_crit_threshold && R.overdosed_crit && R.overdose_crit_threshold)
+				if(R.volume <= R.overdose_crit_threshold && R.overdosed_crit && R.overdose_crit_threshold)
 					R.overdosed_crit = FALSE
 				if(R.overdosed)
 					need_mob_update += R.overdose_process(L, quirks) //Small OD
@@ -462,21 +462,21 @@
 			del_reagent(R.type)
 			update_total()
 
-/datum/reagents/proc/del_reagent(reagent)
-	var/list/cached_reagents = reagent_list
-	for(var/_reagent in cached_reagents)
-		var/datum/reagent/R = _reagent
-		if (R.type == reagent)
-			if(my_atom && isliving(my_atom))
-				var/mob/living/L = my_atom
-				R.on_mob_delete(L, L.get_reagent_tags())
-			qdel(R)
-			reagent_list -= R
-			update_total()
-			if(my_atom)
-				my_atom.on_reagent_change(DEL_REAGENT)
-	return 1
 
+///Remove a reagent datum with the type provided from this container. True if one is removed, false otherwise.
+/datum/reagents/proc/del_reagent(type_to_remove)
+	var/datum/reagent/reagent_to_remove = locate(type_to_remove) in reagent_list
+	if(!reagent_to_remove)
+		return FALSE
+	SEND_SIGNAL(src, COMSIG_REAGENT_DELETING, type_to_remove)
+	if(isliving(my_atom))
+		var/mob/living/L = my_atom
+		reagent_to_remove.on_mob_delete(L, L.get_reagent_tags())
+	reagent_list -= reagent_to_remove
+	qdel(reagent_to_remove)
+	update_total()
+	my_atom?.on_reagent_change(DEL_REAGENT)
+	return TRUE
 
 
 /datum/reagents/proc/update_total()
@@ -519,9 +519,11 @@
 		var/datum/reagent/R = reagent
 		switch(react_type)
 			if("LIVING")
+				var/mob/living/L = A
+				if(!R.reactindeadmob && L.stat == DEAD)
+					return
 				var/touch_protection = 0
 				if(method == VAPOR)
-					var/mob/living/L = A
 					touch_protection = CLAMP01(1 -  L.get_permeability_protection())
 				R.reaction_mob(A, method, R.volume * volume_modifier, show_message, touch_protection)
 			if("TURF")
@@ -581,19 +583,19 @@
 	////
 
 	//add the reagent to the existing if it exists
-	for(var/A in cached_reagents)
-		var/datum/reagent/R = A
-		if (R.type == reagent)
-			R.volume += amount
-			update_total()
-			if(my_atom)
-				my_atom.on_reagent_change(ADD_REAGENT)
-			R.on_merge(data, amount)
-			if(!no_react)
-				handle_reactions()
-			return TRUE
+	var/datum/reagent/existing_reagent = locate(reagent) in cached_reagents
+	if(existing_reagent)
+		existing_reagent.volume += amount
+		update_total()
+		if(my_atom)
+			my_atom.on_reagent_change(ADD_REAGENT)
+		existing_reagent.on_merge(data, amount)
+		if(!no_react)
+			handle_reactions()
+		return TRUE
 
 	//otherwise make a new one
+	SEND_SIGNAL(src, COMSIG_NEW_REAGENT_ADD, reagent, amount)
 	var/datum/reagent/R = new D.type(data)
 	cached_reagents += R
 	R.holder = src
@@ -610,7 +612,6 @@
 		my_atom.on_reagent_change(ADD_REAGENT)
 	if(!no_react)
 		handle_reactions()
-	SEND_SIGNAL(src, COMSIG_NEW_REAGENT_ADD, reagent, amount)
 	return TRUE
 
 /datum/reagents/proc/add_reagent_list(list/list_reagents, list/data=null) //// Like add_reagent but you can enter a list. Format it like this: list(/datum/reagent/toxin = 10, /datum/reagent/consumable/ethanol/beer = 15)

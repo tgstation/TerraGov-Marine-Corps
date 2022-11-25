@@ -12,6 +12,7 @@
 	icon_state = "nuclearbomb0"
 	density = TRUE
 	anchored = TRUE
+	coverage = 20
 	flags_atom = CRITICAL_ATOM
 	resistance_flags = RESIST_ALL
 	layer = BELOW_MOB_LAYER
@@ -37,7 +38,8 @@
 	GLOB.nuke_list += src
 	countdown = new(src)
 	name = "[initial(name)] ([UNIQUEID])"
-	SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "nuke")
+	update_minimap_icon()
+	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/disable_on_hijack)
 
 
 /obj/machinery/nuclearbomb/Destroy()
@@ -62,6 +64,7 @@
 	GLOB.active_nuke_list += src
 	countdown.start()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_START, src)
+	update_minimap_icon()
 	notify_ghosts("[usr] enabled the [src], it has [timeleft] seconds on the timer.", source = src, action = NOTIFY_ORBIT, extra_large = TRUE)
 
 
@@ -71,6 +74,7 @@
 	countdown.stop()
 	GLOB.active_nuke_list -= src
 	timeleft = initial(timeleft)
+	update_minimap_icon()
 	return ..()
 
 
@@ -79,6 +83,7 @@
 
 	if(safety)
 		timer_enabled = FALSE
+		update_minimap_icon()
 		return
 
 	if(exploded)
@@ -91,6 +96,14 @@
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_EXPLODED, z)
 	return TRUE
 
+/// Permanently disables this nuke, for use on hijack
+/obj/machinery/nuclearbomb/proc/disable_on_hijack()
+	desc += " A strong interference renders this inoperable."
+	machine_stat |= BROKEN
+	anchored = FALSE
+	if(timer_enabled)
+		timer_enabled = FALSE
+		stop_processing()
 
 /obj/machinery/nuclearbomb/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -314,6 +327,10 @@
 /obj/machinery/nuclearbomb/proc/get_time_left()
 	return timeleft
 
+///Change minimap icon if its on or off
+/obj/machinery/nuclearbomb/proc/update_minimap_icon()
+	SSminimaps.remove_marker(src)
+	SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "nuke[timer_enabled ? "_on" : "_off"]", 'icons/UI_icons/map_blips_large.dmi')
 
 #undef NUKE_STAGE_NONE
 #undef NUKE_STAGE_COVER_REMOVED

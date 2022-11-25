@@ -78,12 +78,6 @@
 	return ..()
 
 
-/mob/living/simple_animal/handle_status_effects()
-	. = ..()
-	if(stuttering)
-		stuttering = 0
-
-
 /mob/living/simple_animal/updatehealth()
 	. = ..()
 	health = clamp(health, 0, maxHealth)
@@ -100,7 +94,7 @@
 	med_hud_set_status()
 
 
-/mob/living/simple_animal/revive()
+/mob/living/simple_animal/revive(admin_revive = FALSE)
 	. = ..()
 	icon = initial(icon)
 	icon_state = icon_living
@@ -156,7 +150,7 @@
 /mob/living/simple_animal/gib_animation()
 	if(!icon_gib)
 		return
-	new /obj/effect/overlay/temp/gib_animation/animal(loc, src, icon_gib)
+	new /obj/effect/overlay/temp/gib_animation/animal(loc, 0, src, icon_gib)
 
 
 /mob/living/simple_animal/proc/set_varspeed(var_value)
@@ -276,7 +270,7 @@
 		visible_message(span_warning("[src] looks unharmed."))
 		return FALSE
 	else
-		apply_damage(damage, damagetype, null, getarmor(null, armorcheck))
+		apply_damage(damage, damagetype, blocked = get_soft_armor(armorcheck))
 		UPDATEHEALTH(src)
 		return TRUE
 

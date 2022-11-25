@@ -59,7 +59,7 @@ $_gen_map: (
   'pink': $pink,
   'brown': $brown,
   'grey': $grey,
-  'light-grey': $grey,
+  'light-grey': $light-grey,
   'good': $good,
   'average': $average,
   'bad': $bad,
@@ -73,6 +73,7 @@ $bg-map-keys: map.keys($_gen_map) !default;
 
 $fg-map: ();
 @each $color-name in $fg-map-keys {
+  // prettier-ignore
   $fg-map: map-merge($fg-map, (
     $color-name: fg(map.get($_gen_map, $color-name)),
   ));
@@ -80,6 +81,7 @@ $fg-map: ();
 
 $bg-map: ();
 @each $color-name in $bg-map-keys {
+  // prettier-ignore
   $bg-map: map-merge($bg-map, (
     $color-name: bg(map.get($_gen_map, $color-name)),
   ));

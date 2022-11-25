@@ -75,9 +75,9 @@
 	. = ..()
 
 /obj/item/reagent_containers/food/snacks/csandwich/examine(mob/user)
-	..()
+	. = ..()
 	var/obj/item/O = pick(contents)
-	to_chat(user, span_notice("You think you can see [O.name] in there."))
+	. += span_notice("You think you can see [O] in there.")
 
 /obj/item/reagent_containers/food/snacks/csandwich/attack(mob/M as mob, mob/user as mob, def_zone)
 

@@ -14,23 +14,24 @@
 	melee_damage = 12
 
 	// *** Speed *** //
-	speed = -1
+	speed = -0.5
 
 	// *** Plasma *** //
 	plasma_max = 1500// 20 spits
 	plasma_gain = 10
 
 	// *** Health *** //
-	max_health = 150
+	max_health = 130
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_DO_NOT_ALERT_LOW_LIFE
+	caste_flags = CASTE_DO_NOT_ALERT_LOW_LIFE|CASTE_IS_A_MINION
+	can_flags = CASTE_CAN_BE_QUEEN_HEALED
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
+	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 0, BIO = 15, FIRE = 15, ACID = 15)
 
 	// *** Ranged Attack *** //
-	spit_delay = 1.3 SECONDS
+	spit_delay = 1.8 SECONDS
 	spit_types = list(/datum/ammo/xeno/acid/passthrough)
 
 	minimap_icon = "xenominion"
