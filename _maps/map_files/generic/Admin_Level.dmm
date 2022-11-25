@@ -1583,7 +1583,7 @@
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/snacks/rofflewaffles,
 /obj/item/reagent_containers/food/snacks/larvasoup,
-/obj/effect/spawner/random/sugary_snack{
+/obj/effect/spawner/random/christmas_food{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -1648,7 +1648,7 @@
 /obj/item/tool/kitchen/utensil/fork{
 	pixel_x = -14
 	},
-/obj/effect/spawner/random/sugary_snack{
+/obj/effect/spawner/random/christmas_food{
 	pixel_x = -2;
 	pixel_y = 1
 	},
@@ -2404,7 +2404,7 @@
 /obj/item/reagent_containers/food/snacks/no_raisin{
 	pixel_x = 6
 	},
-/obj/effect/spawner/random/sugary_snack{
+/obj/effect/spawner/random/christmas_food{
 	pixel_x = -2;
 	pixel_y = 7
 	},
@@ -2589,7 +2589,7 @@
 /obj/item/tool/kitchen/utensil/fork{
 	pixel_x = 14
 	},
-/obj/effect/spawner/random/sugary_snack{
+/obj/effect/spawner/random/christmas_food{
 	pixel_x = -4;
 	pixel_y = 5
 	},
@@ -3056,7 +3056,7 @@
 /obj/item/tool/kitchen/utensil/fork{
 	pixel_x = 14
 	},
-/obj/effect/spawner/random/sugary_snack{
+/obj/effect/spawner/random/christmas_food{
 	pixel_y = 5
 	},
 /turf/open/floor/tile/cafe,
@@ -4020,7 +4020,7 @@
 /obj/item/tool/kitchen/utensil/fork{
 	pixel_x = 14
 	},
-/obj/effect/spawner/random/sugary_snack{
+/obj/effect/spawner/random/christmas_food{
 	pixel_x = 2;
 	pixel_y = 6
 	},
@@ -5779,7 +5779,7 @@
 /obj/item/reagent_containers/food/snacks/meatpizzaslice{
 	pixel_x = 3
 	},
-/obj/effect/spawner/random/sugary_snack{
+/obj/effect/spawner/random/christmas_food{
 	pixel_x = 2;
 	pixel_y = 5
 	},
@@ -8660,7 +8660,7 @@
 	pixel_x = -4;
 	pixel_y = 1
 	},
-/obj/effect/spawner/random/sugary_snack{
+/obj/effect/spawner/random/christmas_food{
 	pixel_y = 5
 	},
 /turf/open/floor/tile/cafe,
@@ -10542,7 +10542,7 @@
 	pixel_x = 3;
 	pixel_y = 9
 	},
-/obj/effect/spawner/random/sugary_snack{
+/obj/effect/spawner/random/christmas_food{
 	pixel_x = 3;
 	pixel_y = 3
 	},
@@ -11255,7 +11255,7 @@
 "oTY" = (
 /obj/structure/table,
 /obj/item/flashlight/lamp,
-/obj/effect/spawner/random/sugary_snack,
+/obj/effect/spawner/random/christmas_food,
 /turf/open/floor/grimy,
 /area/centcom/valhalla/primary/aft)
 "oUp" = (
@@ -12290,7 +12290,7 @@
 /obj/item/tool/kitchen/utensil/fork{
 	pixel_x = -14
 	},
-/obj/effect/spawner/random/sugary_snack{
+/obj/effect/spawner/random/christmas_food{
 	pixel_y = 4
 	},
 /turf/open/floor/tile/cafe,
@@ -12308,7 +12308,7 @@
 /obj/item/tool/kitchen/utensil/fork{
 	pixel_x = 14
 	},
-/obj/effect/spawner/random/sugary_snack{
+/obj/effect/spawner/random/christmas_food{
 	pixel_x = -2;
 	pixel_y = 7
 	},
@@ -12912,7 +12912,7 @@
 /obj/item/tool/kitchen/utensil/fork{
 	pixel_x = 14
 	},
-/obj/effect/spawner/random/sugary_snack{
+/obj/effect/spawner/random/christmas_food{
 	pixel_y = 2
 	},
 /turf/open/floor/tile/cafe,
@@ -13409,7 +13409,7 @@
 	pixel_x = 1;
 	pixel_y = 7
 	},
-/obj/effect/spawner/random/sugary_snack{
+/obj/effect/spawner/random/christmas_food{
 	pixel_x = 1;
 	pixel_y = 3
 	},
@@ -14193,7 +14193,7 @@
 /obj/item/tool/kitchen/utensil/fork{
 	pixel_x = -14
 	},
-/obj/effect/spawner/random/sugary_snack{
+/obj/effect/spawner/random/christmas_food{
 	pixel_x = 2
 	},
 /obj/effect/ai_node,
@@ -14297,7 +14297,7 @@
 	},
 /obj/item/reagent_containers/food/drinks/britcup,
 /obj/effect/spawner/random/drink_alcohol_bottle,
-/obj/effect/spawner/random/sugary_snack,
+/obj/effect/spawner/random/christmas_food,
 /turf/open/floor/tile/cafe,
 /area/centcom/valhalla/crew_quarters/cafeteria)
 "sPt" = (
@@ -14747,7 +14747,7 @@
 /obj/item/tool/kitchen/utensil/fork{
 	pixel_x = -14
 	},
-/obj/effect/spawner/random/sugary_snack{
+/obj/effect/spawner/random/christmas_food{
 	pixel_x = -2;
 	pixel_y = 7
 	},
@@ -14842,7 +14842,7 @@
 /obj/item/tool/kitchen/utensil/fork{
 	pixel_x = 14
 	},
-/obj/effect/spawner/random/sugary_snack{
+/obj/effect/spawner/random/christmas_food{
 	pixel_x = 3;
 	pixel_y = 2
 	},
@@ -15094,7 +15094,7 @@
 	},
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/snacks/milosoup,
-/obj/effect/spawner/random/sugary_snack,
+/obj/effect/spawner/random/christmas_food,
 /turf/open/floor/tile/cafe,
 /area/centcom/valhalla/crew_quarters/cafeteria)
 "tMS" = (
@@ -15722,7 +15722,7 @@
 /obj/item/tool/kitchen/utensil/fork{
 	pixel_x = -13
 	},
-/obj/effect/spawner/random/sugary_snack{
+/obj/effect/spawner/random/christmas_food{
 	pixel_y = 2
 	},
 /turf/open/floor/tile/cafe,
@@ -15796,7 +15796,7 @@
 /obj/item/tool/kitchen/utensil/fork{
 	pixel_x = 14
 	},
-/obj/effect/spawner/random/sugary_snack{
+/obj/effect/spawner/random/christmas_food{
 	pixel_x = -3
 	},
 /turf/open/floor/tile/cafe,
@@ -16479,7 +16479,7 @@
 /obj/item/tool/kitchen/utensil/fork{
 	pixel_x = -14
 	},
-/obj/effect/spawner/random/sugary_snack{
+/obj/effect/spawner/random/christmas_food{
 	pixel_x = -4;
 	pixel_y = 3
 	},
@@ -17186,7 +17186,7 @@
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/snacks/sliceable/cheesecake,
 /obj/item/reagent_containers/food/snacks/lemoncakeslice,
-/obj/effect/spawner/random/sugary_snack{
+/obj/effect/spawner/random/christmas_food{
 	pixel_y = 3
 	},
 /turf/open/floor/tile/cafe,
