@@ -71,9 +71,7 @@
 /obj/structure/prop/holidays/string_lights{
 	dir = 4
 	},
-/turf/closed/shuttle/ert{
-	icon_state = "nt14"
-	},
+/turf/open/shuttle/dropship/six,
 /area/shuttle/ert/pmc)
 "rE" = (
 /turf/closed/shuttle/ert{
@@ -135,9 +133,11 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin6"
-	},
+/obj/effect/landmark/distress,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/ert/pmc)
+"v" = (
+/turf/open/shuttle/dropship/four,
 /area/shuttle/ert/pmc)
 "xo" = (
 /obj/effect/landmark/distress,
@@ -268,9 +268,8 @@
 	icon_state = "nt20"
 	},
 /area/shuttle/ert/pmc)
-"Ro" = (
-/obj/machinery/light{
-	dir = 1
+"O" = (
+/turf/closed/shuttle/ert/engines/right{
 	},
 /turf/open/shuttle/dropship/seven,
 /area/shuttle/ert/pmc)
@@ -289,9 +288,8 @@
 	icon_state = "nt25"
 	},
 /area/shuttle/ert/pmc)
-"TH" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 4
+"T" = (
+/turf/closed/shuttle/ert/engines/left{
 	},
 /obj/effect/landmark/distress,
 /turf/open/shuttle/dropship/floor,
@@ -302,21 +300,14 @@
 	opacity = 0
 	},
 /area/shuttle/ert/pmc)
-"Va" = (
-/obj/structure/prop/holidays/string_lights{
-	dir = 8
-	},
-/turf/closed/shuttle/ert{
-	icon_state = "nt15"
+"V" = (
+/turf/closed/shuttle/ert/engines/left{
+	dir = 1;
 	},
 /area/shuttle/ert/pmc)
-"VP" = (
-/obj/structure/rack,
-/obj/effect/landmark/distress_item,
-/obj/item/storage/firstaid/regular,
-/obj/item/storage/belt/lifesaver/full,
-/obj/structure/prop/holidays/string_lights{
-	dir = 5
+"W" = (
+/turf/closed/shuttle/ert/engines/right{
+	dir = 1;
 	},
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/pmc)

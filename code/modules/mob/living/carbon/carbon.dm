@@ -163,7 +163,7 @@
 		return
 	if(stat || !target)
 		return
-	if(target.type == /obj/screen)
+	if(target.type == /atom/movable/screen)
 		return
 
 	var/atom/movable/thrown_thing
@@ -285,7 +285,7 @@
 	.["Regenerate Icons"] = "?_src_=vars;[HrefToken()];regenerateicons=[REF(src)]"
 
 /mob/living/carbon/update_tracking(mob/living/carbon/C)
-	var/obj/screen/LL_dir = hud_used.SL_locator
+	var/atom/movable/screen/LL_dir = hud_used.SL_locator
 
 	if(C.z != src.z || get_dist(src, C) < 1 || src == C)
 		LL_dir.icon_state = ""
@@ -295,7 +295,7 @@
 		LL_dir.transform = turn(LL_dir.transform, Get_Angle(src, C))
 
 /mob/living/carbon/clear_leader_tracking()
-	var/obj/screen/LL_dir = hud_used.SL_locator
+	var/atom/movable/screen/LL_dir = hud_used.SL_locator
 	LL_dir.icon_state = "SL_locator_off"
 
 

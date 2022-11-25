@@ -402,10 +402,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 
 // Human Overlay Indexes
-#define HEADBITE_LAYER 30
-#define LASER_LAYER 29 //For sniper targeting laser
-#define MOTH_WINGS_LAYER 28
-#define MUTANTRACE_LAYER 27
+#define LASER_LAYER 28 //For sniper targeting laser
+#define MOTH_WINGS_LAYER 27
 #define MUTATIONS_LAYER 26
 #define DAMAGE_LAYER 25
 #define UNIFORM_LAYER 24
@@ -433,7 +431,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define TARGETED_LAYER 2 //for target sprites when held at gun point, and holo cards.
 #define FIRE_LAYER 1 //If you're on fire
 
-#define TOTAL_LAYERS 30
+#define TOTAL_LAYERS 28
 
 #define MOTH_WINGS_BEHIND_LAYER 1
 
@@ -713,6 +711,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 //Spiderling defines
 #define TIME_TO_DISSOLVE 5 SECONDS
+#define SPIDERLING_RAGE_RANGE 10 // how close a nearby human has to be in order to be targeted
 
 //misc
 
