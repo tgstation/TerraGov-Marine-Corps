@@ -281,6 +281,8 @@
 
 	icon_state_variants = list()
 
+	current_variant = ""
+
 /obj/item/clothing/suit/modular/xenonauten/pilot
 	name = "\improper TerraGov standard flak jacket"
 	desc = "A flak jacket used by dropship pilots to protect themselves while flying in the cockpit. Excels in protecting the wearer against high-velocity solid projectiles."
