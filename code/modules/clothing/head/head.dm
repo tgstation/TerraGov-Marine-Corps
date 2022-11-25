@@ -25,6 +25,7 @@
 	icon_state = "beanie_cargo"
 	flags_inv_hide = HIDETOPHAIR
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
+	species_exception = list(/datum/species/robot, /datum/species/synthetic, /datum/species/human)
 
 
 /obj/item/clothing/head/tgmcberet
@@ -148,6 +149,7 @@
 	icon_state = "booniehat"
 	item_state = "booniehat"
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
+	species_exception = list(/datum/species/robot, /datum/species/synthetic, /datum/species/human, /datum/species/early_synthetic, /datum/species/zombie)
 
 /obj/item/clothing/head/boonie/booniehatdg
 	name = "Dark Green Boonie Hat"
@@ -155,6 +157,7 @@
 	icon_state = "booniehatdg"
 	item_state = "booniehatdg"
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
+	species_exception = list(/datum/species/robot, /datum/species/synthetic, /datum/species/human, /datum/species/early_synthetic, /datum/species/zombie)
 
 /obj/item/clothing/head/boonie/booniehattan
 	name = "Tan Boonie Hat"
@@ -162,6 +165,7 @@
 	icon_state = "booniehattan"
 	item_state = "booniehattan"
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
+	species_exception = list(/datum/species/robot, /datum/species/synthetic, /datum/species/human, /datum/species/early_synthetic, /datum/species/zombie)
 
 /obj/item/clothing/head/slouch
 	name = "\improper TGMC slouch hat"
@@ -169,6 +173,7 @@
 	icon_state = "slouch_hat"
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
+	species_exception = list(/datum/species/robot, /datum/species/synthetic, /datum/species/human, /datum/species/early_synthetic, /datum/species/zombie)
 
 /obj/item/clothing/head/headband
 	name = "\improper Cyan headband"
@@ -181,6 +186,10 @@
 	icon_state = "headband"
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
 	flags_armor_features = ARMOR_NO_DECAP
+	species_exception = list(/datum/species/robot, /datum/species/synthetic, /datum/species/human, /datum/species/early_synthetic, /datum/species/zombie)
+
+/obj/item/clothing/head/headband
+	species_exception = list(/datum/species/robot, /datum/species/synthetic, /datum/species/human, /datum/species/early_synthetic, /datum/species/zombie)
 
 /obj/item/clothing/head/headband/red
 	name = "\improper Red headband"
@@ -211,6 +220,7 @@
 	name = "\improper Chief Medical hat"
 	desc = "A somewhat fancy hat, typically worn by those who wish to command medical respect."
 	icon_state = "cmohat"
+	species_exception = list(/datum/species/robot, /datum/species/synthetic, /datum/species/human, /datum/species/early_synthetic, /datum/species/zombie)
 
 
 /*============================BERETS=================================*/

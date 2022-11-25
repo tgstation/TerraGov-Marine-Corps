@@ -111,6 +111,7 @@
 	item_state = "justicered"
 	flags_inventory = COVERMOUTH|COVEREYES
 	flags_inv_hide = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEALLHAIR
+	species_exception = list(/datum/species/robot, /datum/species/synthetic, /datum/species/human, /datum/species/early_synthetic, /datum/species/zombie)
 
 /obj/item/clothing/head/justice/blue
 	icon_state = "justiceblue"
@@ -134,6 +135,7 @@
 	icon_state = "flat_cap"
 	item_state = "detective"
 	siemens_coefficient = 0.9
+	species_exception = list(/datum/species/robot, /datum/species/synthetic, /datum/species/human, /datum/species/early_synthetic, /datum/species/zombie)
 
 /obj/item/clothing/head/pirate
 	name = "pirate hat"
@@ -141,6 +143,7 @@
 	icon_state = "pirate"
 	item_state = "pirate"
 	flags_armor_protection = NONE
+	species_exception = list(/datum/species/robot, /datum/species/synthetic, /datum/species/human, /datum/species/early_synthetic, /datum/species/zombie)
 
 /obj/item/clothing/head/hgpiratecap
 	name = "pirate hat"
@@ -150,6 +153,9 @@
 	flags_armor_protection = NONE
 	flags_item = SYNTH_RESTRICTED
 	soft_armor = list(MELEE = 50, BULLET = 80, LASER = 50, ENERGY = 10, BOMB = 50, BIO = 0, FIRE = 10, ACID = 10)
+
+/obj/item/clothing/head/bandanna
+	species_exception = list(/datum/species/robot, /datum/species/synthetic, /datum/species/human, /datum/species/early_synthetic, /datum/species/zombie)
 
 /obj/item/clothing/head/bandanna/brown
 	name = "brown bandanna"
@@ -175,6 +181,7 @@
 	icon_state = "bowler"
 	item_state = "bowler"
 	flags_armor_protection = NONE
+	species_exception = list(/datum/species/robot, /datum/species/synthetic, /datum/species/human, /datum/species/early_synthetic, /datum/species/zombie)
 
 //stylish bs12 hats
 
@@ -184,36 +191,42 @@
 	item_state = "bowler_hat"
 	desc = "For the gentleman of distinction."
 	flags_armor_protection = NONE
+	species_exception = list(/datum/species/robot, /datum/species/synthetic, /datum/species/human, /datum/species/early_synthetic, /datum/species/zombie)
 
 /obj/item/clothing/head/beaverhat
 	name = "beaver hat"
 	icon_state = "beaver_hat"
 	item_state = "beaver_hat"
 	desc = "Soft felt makes this hat both comfortable and elegant."
+	species_exception = list(/datum/species/robot, /datum/species/synthetic, /datum/species/human, /datum/species/early_synthetic, /datum/species/zombie)
 
 /obj/item/clothing/head/boaterhat
 	name = "boater hat"
 	icon_state = "boater_hat"
 	item_state = "boater_hat"
 	desc = "The ultimate in summer fashion."
+	species_exception = list(/datum/species/robot, /datum/species/synthetic, /datum/species/human, /datum/species/early_synthetic, /datum/species/zombie)
 
 /obj/item/clothing/head/fedora
 	name = "\improper fedora"
 	icon_state = "fedora"
 	item_state = "fedora"
 	desc = "A sharp, stylish hat."
+	species_exception = list(/datum/species/robot, /datum/species/synthetic, /datum/species/human, /datum/species/early_synthetic, /datum/species/zombie)
 
 /obj/item/clothing/head/feathertrilby
 	name = "\improper feather trilby"
 	icon_state = "feather_trilby"
 	item_state = "feather_trilby"
 	desc = "A sharp, stylish hat with a feather."
+	species_exception = list(/datum/species/robot, /datum/species/synthetic, /datum/species/human, /datum/species/early_synthetic, /datum/species/zombie)
 
 /obj/item/clothing/head/fez
 	name = "\improper fez"
 	icon_state = "fez"
 	item_state = "fez"
 	desc = "You should wear a fez. Fezzes are cool."
+	species_exception = list(/datum/species/robot, /datum/species/synthetic, /datum/species/human, /datum/species/early_synthetic, /datum/species/zombie)
 
 //end bs12 hats
 

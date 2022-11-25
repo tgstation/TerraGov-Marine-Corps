@@ -7,6 +7,7 @@
 	item_state = "chefhat"
 	desc = "The commander in chef's head wear."
 	siemens_coefficient = 0.9
+	species_exception = list(/datum/species/robot, /datum/species/synthetic, /datum/species/human, /datum/species/early_synthetic, /datum/species/zombie)
 
 //Captain: This probably shouldn't be space-worthy
 /obj/item/clothing/head/caphat
@@ -16,6 +17,7 @@
 	item_state = "caphat"
 	siemens_coefficient = 0.9
 	anti_hug = 1
+	species_exception = list(/datum/species/robot, /datum/species/synthetic, /datum/species/human, /datum/species/early_synthetic, /datum/species/zombie)
 
 //Captain: This probably shouldn't be space-worthy
 /obj/item/clothing/head/helmet/cap
@@ -39,6 +41,7 @@
 	flags_inv_hide = HIDEEARS|HIDEALLHAIR
 	siemens_coefficient = 0.9
 	flags_armor_protection = HEAD|EYES
+	species_exception = list(/datum/species/robot, /datum/species/synthetic, /datum/species/human, /datum/species/early_synthetic, /datum/species/zombie)
 
 //Chaplain
 /obj/item/clothing/head/nun_hood
@@ -48,6 +51,7 @@
 	flags_inventory = COVEREYES
 	flags_inv_hide = HIDEEARS|HIDEALLHAIR
 	siemens_coefficient = 0.9
+	species_exception = list(/datum/species/robot, /datum/species/synthetic, /datum/species/human, /datum/species/early_synthetic, /datum/species/zombie)
 
 //Mime
 /obj/item/clothing/head/beret
@@ -57,6 +61,7 @@
 	siemens_coefficient = 0.9
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
 	flags_armor_features = ARMOR_NO_DECAP
+	species_exception = list(/datum/species/robot, /datum/species/synthetic, /datum/species/human, /datum/species/early_synthetic, /datum/species/zombie)
 
 //Security
 /obj/item/clothing/head/beret/sec
@@ -92,6 +97,7 @@
 	desc = "A cap surgeons wear during operations. Keeps their hair from tickling your internal organs."
 	icon_state = "surgcap_blue"
 	flags_inv_hide = HIDETOPHAIR
+	species_exception = list(/datum/species/robot, /datum/species/synthetic, /datum/species/human, /datum/species/early_synthetic, /datum/species/zombie)
 
 /obj/item/clothing/head/surgery/purple
 	desc = "A cap surgeons wear during operations. Keeps their hair from tickling your internal organs. This one is deep purple."
@@ -117,6 +123,7 @@
 	soft_armor = list(MELEE = 50, BULLET = 5, LASER = 25, ENERGY = 10, BOMB = 0, BIO = 0, FIRE = 10, ACID = 10)
 	siemens_coefficient = 0.9
 	flags_armor_protection = NONE
+	species_exception = list(/datum/species/robot, /datum/species/synthetic, /datum/species/human, /datum/species/early_synthetic, /datum/species/zombie)
 
 /obj/item/clothing/head/det_hat/black
 	icon_state = "detective2"
