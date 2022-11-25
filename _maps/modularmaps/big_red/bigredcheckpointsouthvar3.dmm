@@ -9,7 +9,6 @@
 "c" = (
 /obj/machinery/light{
 	dir = 8;
-	icon_state = "tube1"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -25,7 +24,6 @@
 "e" = (
 /obj/machinery/door/airlock/mainship/security/glass{
 	dir = 4;
-	icon_state = "door_locked";
 	locked = 1;
 	name = "\improper Checkpoint Office"
 	},
@@ -214,7 +212,6 @@
 "X" = (
 /obj/machinery/light{
 	dir = 8;
-	icon_state = "tube1"
 	},
 /obj/machinery/vending/security,
 /turf/open/floor/tile/dark{

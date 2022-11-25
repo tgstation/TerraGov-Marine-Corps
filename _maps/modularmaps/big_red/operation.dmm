@@ -1139,7 +1139,6 @@
 "NT" = (
 /obj/structure/bed/chair,
 /obj/machinery/atm{
-	name = "Weyland Yutani Automatic Teller Machine";
 	pixel_y = 30
 	},
 /turf/open/floor,
@@ -1378,7 +1377,6 @@
 /area/bigredv2/outside/admin_building)
 "Wp" = (
 /obj/machinery/atm{
-	name = "Weyland Yutani Automatic Teller Machine";
 	pixel_y = 30
 	},
 /turf/open/floor/tile/dark/red2{

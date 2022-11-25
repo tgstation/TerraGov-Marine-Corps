@@ -1150,9 +1150,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
 "dk" = (
-/obj/structure/flora/pottedplant/twentyone{
-	icon_state = "plant-10"
-	},
+/obj/structure/flora/pottedplant/ten,
 /turf/open/floor/mainship/black,
 /area/mainship/hallways/starboard_hallway)
 "dl" = (
@@ -2096,9 +2094,7 @@
 	},
 /area/mainship/living/briefing)
 "fU" = (
-/obj/structure/flora/pottedplant/twentyone{
-	icon_state = "plant-14"
-	},
+/obj/structure/flora/pottedplant/fourteen,
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
@@ -3909,9 +3905,7 @@
 	},
 /area/mainship/medical/chemistry)
 "lm" = (
-/obj/structure/flora/pottedplant/twentyone{
-	icon_state = "plant-12"
-	},
+/obj/structure/flora/pottedplant/twelve,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
 "lo" = (
@@ -4134,9 +4128,7 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
-/obj/structure/flora/pottedplant/twentyone{
-	icon_state = "plant-09"
-	},
+/obj/structure/flora/pottedplant/nine,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
 "lV" = (
@@ -4307,9 +4299,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/living/tankerbunks)
 "mB" = (
-/obj/structure/flora/pottedplant/twentyone{
-	icon_state = "plant-12"
-	},
+/obj/structure/flora/pottedplant/twelve,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -4445,9 +4435,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/starboard_hull)
 "mU" = (
-/obj/structure/prop/mainship/name_stencil{
-	icon_state = "TGMC2"
-	},
+/obj/structure/prop/mainship/name_stencil/G,
 /turf/open/floor/mainship_hull,
 /area/space)
 "mX" = (
@@ -4493,10 +4481,7 @@
 /area/mainship/medical/operating_room_two)
 "nf" = (
 /obj/structure/lattice,
-/turf/closed/shuttle/ert{
-	icon_state = "rightengine_1";
-	opacity = 0
-	},
+/turf/closed/shuttle/ert/engines/right,
 /area/space)
 "ng" = (
 /obj/structure/cable,
@@ -5623,9 +5608,7 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "qq" = (
-/obj/structure/prop/mainship/name_stencil{
-	icon_state = "TGMC3"
-	},
+/obj/structure/prop/mainship/name_stencil/M,
 /turf/open/floor/mainship_hull,
 /area/space)
 "qr" = (
@@ -6464,9 +6447,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
 "tg" = (
-/obj/structure/prop/mainship/name_stencil{
-	icon_state = "TGMC4"
-	},
+/obj/structure/prop/mainship/name_stencil/C,
 /turf/open/floor/mainship_hull,
 /area/space)
 "th" = (
@@ -7727,9 +7708,7 @@
 	},
 /area/mainship/hallways/hangar)
 "wK" = (
-/obj/structure/flora/pottedplant/twentyone{
-	icon_state = "plant-09"
-	},
+/obj/structure/flora/pottedplant/nine,
 /turf/open/floor/mainship/black,
 /area/mainship/hallways/hangar)
 "wL" = (
@@ -8138,9 +8117,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
 "xW" = (
-/obj/structure/flora/pottedplant/twentyone{
-	icon_state = "plant-12"
-	},
+/obj/structure/flora/pottedplant/twelve,
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
@@ -8910,10 +8887,7 @@
 /area/mainship/squads/general)
 "zX" = (
 /obj/structure/lattice,
-/turf/closed/shuttle/ert{
-	icon_state = "leftengine_1";
-	opacity = 0
-	},
+/turf/closed/shuttle/ert/engines/left,
 /area/space)
 "zY" = (
 /obj/machinery/vending/weapon,
@@ -9256,7 +9230,6 @@
 "AU" = (
 /obj/effect/attach_point/weapon/dropship2{
 	dir = 8;
-	icon_state = "equip_base_l_wing"
 	},
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
@@ -9278,7 +9251,6 @@
 "AY" = (
 /obj/effect/attach_point/weapon/dropship2{
 	dir = 4;
-	icon_state = "equip_base_r_wing"
 	},
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
@@ -9977,9 +9949,7 @@
 /turf/open/floor/mainship/black,
 /area/mainship/living/briefing)
 "Dn" = (
-/obj/structure/flora/pottedplant/twentyone{
-	icon_state = "plant-09"
-	},
+/obj/structure/flora/pottedplant/nine,
 /turf/open/floor/mainship/black,
 /area/mainship/living/briefing)
 "Do" = (
@@ -11629,9 +11599,7 @@
 	},
 /area/mainship/living/briefing)
 "HU" = (
-/obj/structure/flora/pottedplant/twentyone{
-	icon_state = "plant-10"
-	},
+/obj/structure/flora/pottedplant/ten,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
 "HV" = (
@@ -12339,9 +12307,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/bridgebunks)
 "JZ" = (
-/turf/closed/shuttle/ert{
-	icon_state = "rightengine_2";
-	opacity = 0
+/turf/closed/shuttle/ert/engines/right{
+	dir = 1;
 	},
 /area/space)
 "Ka" = (
@@ -12629,15 +12596,11 @@
 	},
 /area/mainship/living/grunt_rnr)
 "KT" = (
-/obj/structure/flora/pottedplant/twentyone{
-	icon_state = "plant-14"
-	},
+/obj/structure/flora/pottedplant/fourteen,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
 "KU" = (
-/obj/structure/flora/pottedplant/twentyone{
-	icon_state = "plant-09"
-	},
+/obj/structure/flora/pottedplant/nine,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
 "KV" = (
@@ -12852,7 +12815,6 @@
 "LB" = (
 /obj/effect/attach_point/weapon/dropship1{
 	dir = 8;
-	icon_state = "equip_base_l_wing"
 	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
@@ -14753,9 +14715,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "Rb" = (
-/turf/closed/shuttle/ert{
-	icon_state = "leftengine_2";
-	opacity = 0
+/turf/closed/shuttle/ert/engines/left{
+	dir = 1;
 	},
 /area/space)
 "Rc" = (
@@ -15006,9 +14967,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
 "RQ" = (
-/turf/open/floor/plating{
+/turf/open/floor/plating/icefloor/warnplate/corner{
 	dir = 4;
-	icon_state = "warnplatecorner"
 	},
 /area/mainship/hallways/hangar)
 "RR" = (
@@ -15029,9 +14989,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
 "RU" = (
-/turf/open/floor/plating{
+/turf/open/floor/plating/icefloor/warnplate/corner{
 	dir = 8;
-	icon_state = "warnplatecorner"
 	},
 /area/mainship/hallways/hangar)
 "RV" = (

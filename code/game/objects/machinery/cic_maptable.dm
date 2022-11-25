@@ -12,7 +12,7 @@
 	///by default Zlevel 2, groundside is targetted
 	var/targetted_zlevel = 2
 	///minimap obj ref that we will display to users
-	var/obj/screen/minimap/map
+	var/atom/movable/screen/minimap/map
 
 /obj/machinery/cic_maptable/Destroy()
 	map = null

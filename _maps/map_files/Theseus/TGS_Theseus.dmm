@@ -158,7 +158,7 @@
 /turf/open/floor/plating,
 /area/mainship/hull/starboard_hull)
 "aaG" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
@@ -8181,13 +8181,10 @@
 	dir = 2
 	},
 /obj/structure/cable,
-/obj/machinery/door/poddoor/mainship{
-	density = 0;
+/obj/machinery/door/poddoor/mainship/open{
 	dir = 2;
-	icon_state = "pdoor0";
 	id = "CIC Lockdown";
 	name = "\improper Combat Information Center Blast Door";
-	opacity = 0
 	},
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -9152,9 +9149,7 @@
 	},
 /area/mainship/squads/req)
 "etF" = (
-/obj/structure/prop/mainship/name_stencil{
-	icon_state = "TGMC2"
-	},
+/obj/structure/prop/mainship/name_stencil/G,
 /turf/open/floor/mainship_hull,
 /area/space)
 "eus" = (
@@ -9245,9 +9240,7 @@
 	},
 /area/mainship/medical/lower_medical)
 "eAS" = (
-/obj/structure/prop/mainship/name_stencil{
-	icon_state = "TGMC3"
-	},
+/obj/structure/prop/mainship/name_stencil/M,
 /turf/open/floor/mainship_hull,
 /area/space)
 "eCj" = (
@@ -9271,9 +9264,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/port_hull)
 "eFi" = (
-/obj/structure/prop/mainship/name_stencil{
-	icon_state = "TGMC4"
-	},
+/obj/structure/prop/mainship/name_stencil/C,
 /turf/open/floor/mainship_hull,
 /area/space)
 "eFu" = (
@@ -12006,7 +11997,6 @@
 "jjN" = (
 /obj/effect/attach_point/weapon/dropship1{
 	dir = 8;
-	icon_state = "equip_base_l_wing"
 	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
@@ -13196,12 +13186,9 @@
 	},
 /area/mainship/medical/surgery_hallway)
 "lto" = (
-/obj/machinery/door/poddoor/mainship{
-	density = 0;
-	icon_state = "pdoor0";
+/obj/machinery/door/poddoor/mainship/open{
 	id = "CIC Lockdown";
 	name = "\improper Combat Information Center Blast Door";
-	opacity = 0
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -14177,13 +14164,10 @@
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
-/obj/machinery/door/poddoor/mainship{
-	density = 0;
+/obj/machinery/door/poddoor/mainship/open{
 	dir = 2;
-	icon_state = "pdoor0";
 	id = "Brig Lockdown";
 	name = "\improper Brig Lockdown Podlocks";
-	opacity = 0
 	},
 /turf/open/floor/plating,
 /area/mainship/living/tankerbunks)
@@ -15906,12 +15890,9 @@
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
 "pTq" = (
-/obj/machinery/door/poddoor/mainship{
-	density = 0;
-	icon_state = "pdoor0";
+/obj/machinery/door/poddoor/mainship/open{
 	id = "CIC Lockdown";
 	name = "\improper Combat Information Center Blast Door";
-	opacity = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -17017,12 +16998,9 @@
 /area/mainship/hallways/bow_hallway)
 "rDz" = (
 /obj/structure/window/framed/mainship/requisitions,
-/obj/machinery/door/poddoor/mainship{
-	density = 0;
-	icon_state = "pdoor0";
+/obj/machinery/door/poddoor/mainship/open{
 	id = "CIC Lockdown";
 	name = "\improper Combat Information Center Blast Door";
-	opacity = 0
 	},
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/plating,
@@ -19869,9 +19847,8 @@
 /turf/open/floor/mainship_hull,
 /area/space)
 "wQl" = (
-/turf/open/floor/plating{
+/turf/open/floor/plating/icefloor/warnplate/corner{
 	dir = 4;
-	icon_state = "warnplatecorner"
 	},
 /area/mainship/hallways/hangar)
 "wQK" = (
@@ -19917,9 +19894,8 @@
 /turf/open/floor/mainship_hull,
 /area/space)
 "wVm" = (
-/turf/open/floor/plating{
+/turf/open/floor/plating/icefloor/warnplate/corner{
 	dir = 8;
-	icon_state = "warnplatecorner"
 	},
 /area/mainship/hallways/hangar)
 "wVv" = (

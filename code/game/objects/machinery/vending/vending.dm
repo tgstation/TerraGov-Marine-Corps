@@ -173,7 +173,7 @@
 /obj/machinery/vending/Initialize(mapload, ...)
 	. = ..()
 	wires = new /datum/wires/vending(src)
-	slogan_list = text2list(product_slogans, ";")
+	slogan_list = splittext(product_slogans, ";")
 
 	// So not all machines speak at the exact same time.
 	// The first time this machine says something will be at slogantime + this random value,

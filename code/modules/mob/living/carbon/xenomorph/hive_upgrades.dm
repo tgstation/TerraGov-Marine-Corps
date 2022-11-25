@@ -324,7 +324,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 		return FALSE
 	var/obj/structure/resin/king_pod = new /obj/structure/resin/king_pod(get_turf(buyer), buyer.hivenumber)
 	log_game("[key_name(buyer)] has created a pod in [AREACOORD(buyer)]")
-	xeno_message("<B>[buyer] has created a king pod at [get_area(buyer)]. Defend it until the Queen Mother summons a king!</B>", hivenumber = buyer.hivenumber, target = king_pod, arrow_type = /obj/screen/arrow/leader_tracker_arrow)
+	xeno_message("<B>[buyer] has created a king pod at [get_area(buyer)]. Defend it until the Queen Mother summons a king!</B>", hivenumber = buyer.hivenumber, target = king_pod, arrow_type = /atom/movable/screen/arrow/leader_tracker_arrow)
 	priority_announce("WARNING: Psychic anomaly detected at [get_area(buyer)]. Assault of the area reccomended.", "TGMC Intel Division")
 	return ..()
 

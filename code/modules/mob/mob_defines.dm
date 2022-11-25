@@ -63,7 +63,7 @@
 	var/list/progressbars //for stacking do_after bars
 	var/list/progbar_towers //for stacking the total pixel height of the aboves.
 	var/list/fullscreens = list()
-	var/list/alerts = list() // contains /obj/screen/alert only, used by alerts.dm
+	var/list/alerts = list() // contains /atom/movable/screen/alert only, used by alerts.dm
 	var/list/datum/action/actions = list()
 	var/list/actions_by_path = list()
 	var/lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE

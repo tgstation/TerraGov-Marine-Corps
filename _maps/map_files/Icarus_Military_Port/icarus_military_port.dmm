@@ -31,9 +31,7 @@
 "abf" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/structure/cable,
-/turf/open/shuttle/dropship/floor{
-	icon_state = "rasputin14"
-	},
+/turf/open/shuttle/dropship/floor/alt,
 /area/icarus/interior/shipbaytwo)
 "abh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -173,9 +171,7 @@
 	},
 /area/icarus/interior/lztwo)
 "ajE" = (
-/turf/open/shuttle/dropship/floor{
-	icon_state = "rasputin14"
-	},
+/turf/open/shuttle/dropship/floor/alt,
 /area/icarus/interior/lztwo)
 "akh" = (
 /obj/effect/landmark/corpsespawner,
@@ -282,9 +278,7 @@
 /area/space)
 "aqX" = (
 /obj/structure/bed/chair/dropship/passenger,
-/turf/open/shuttle/dropship/floor{
-	icon_state = "rasputin14"
-	},
+/turf/open/shuttle/dropship/floor/alt,
 /area/icarus/interior/lztwo)
 "arb" = (
 /turf/closed/wall/mainship,
@@ -2799,9 +2793,7 @@
 "dKH" = (
 /obj/structure/bed/chair/dropship/passenger,
 /obj/effect/ai_node,
-/turf/open/shuttle/dropship/floor{
-	icon_state = "rasputin14"
-	},
+/turf/open/shuttle/dropship/floor/alt,
 /area/icarus/interior/lztwo)
 "dMm" = (
 /obj/effect/landmark/weed_node,
@@ -5414,7 +5406,7 @@
 /turf/open/floor/mainship/floor,
 /area/icarus/interior/cargo)
 "hqU" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
@@ -6700,9 +6692,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/bridge)
 "iOU" = (
-/obj/structure/showcase{
-	icon_state = "bus"
-	},
+/obj/structure/prop/mainship/telecomms/bus,
 /turf/open/floor/podhatch/floor,
 /area/icarus/interior/telecomms)
 "iOV" = (
@@ -6714,9 +6704,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/lzone)
 "iQb" = (
-/obj/structure/showcase{
-	icon_state = "broadcaster_send"
-	},
+/obj/structure/prop/mainship/telecomms,
 /turf/open/floor/podhatch/floor,
 /area/icarus/interior/telecomms)
 "iQs" = (
@@ -7781,9 +7769,7 @@
 /area/icarus/interior/shipbaytwo)
 "kex" = (
 /obj/docking_port/stationary/crashmode,
-/turf/open/shuttle/dropship/floor{
-	icon_state = "rasputin14"
-	},
+/turf/open/shuttle/dropship/floor/alt,
 /area/icarus/interior/shipbaytwo)
 "keC" = (
 /obj/machinery/computer3/server/rack,
@@ -9686,9 +9672,7 @@
 	},
 /obj/machinery/power/geothermal/bigred,
 /obj/structure/cable,
-/turf/open/shuttle/dropship/floor{
-	icon_state = "rasputin14"
-	},
+/turf/open/shuttle/dropship/floor/alt,
 /area/icarus/interior/shipbaytwo)
 "msf" = (
 /obj/machinery/door/poddoor/four_tile_hor,
@@ -10526,9 +10510,7 @@
 /area/icarus/interior/disposals)
 "nBp" = (
 /obj/structure/cable,
-/turf/open/shuttle/dropship/floor{
-	icon_state = "rasputin14"
-	},
+/turf/open/shuttle/dropship/floor/alt,
 /area/icarus/interior/shipbaytwo)
 "nBq" = (
 /obj/structure/cable,
@@ -14327,9 +14309,7 @@
 	dir = 1
 	},
 /obj/structure/dropship_piece/two/corner/rearright,
-/turf/open/shuttle/dropship/floor{
-	icon_state = "rasputin14"
-	},
+/turf/open/shuttle/dropship/floor/alt,
 /area/icarus/interior/shipbaytwo)
 "sle" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -15395,9 +15375,7 @@
 /area/icarus/interior/cargoholding)
 "tGC" = (
 /obj/effect/landmark/excavation_site_spawner,
-/turf/open/shuttle/dropship/floor{
-	icon_state = "rasputin14"
-	},
+/turf/open/shuttle/dropship/floor/alt,
 /area/icarus/interior/shipbaytwo)
 "tHd" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -15721,9 +15699,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/turf/open/shuttle/dropship/floor{
-	icon_state = "rasputin14"
-	},
+/turf/open/shuttle/dropship/floor/alt,
 /area/icarus/interior/shipbaytwo)
 "tXL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -16070,9 +16046,7 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
-/turf/open/shuttle/dropship/floor{
-	icon_state = "rasputin14"
-	},
+/turf/open/shuttle/dropship/floor/alt,
 /area/icarus/interior/shipbaytwo)
 "uyg" = (
 /obj/structure/bed/chair/dropship/passenger{
@@ -17132,9 +17106,7 @@
 /area/icarus/interior/swcaveslz)
 "vVL" = (
 /obj/structure/bed/chair/dropship/passenger,
-/turf/open/shuttle/dropship/floor{
-	icon_state = "rasputin14"
-	},
+/turf/open/shuttle/dropship/floor/alt,
 /area/icarus/interior/shipbaytwo)
 "vWd" = (
 /obj/structure/window/framed/mainship/canterbury,
@@ -18622,9 +18594,7 @@
 /turf/open/space/basic,
 /area/space)
 "xFw" = (
-/turf/open/shuttle/dropship/floor{
-	icon_state = "rasputin14"
-	},
+/turf/open/shuttle/dropship/floor/alt,
 /area/icarus/interior/shipbaytwo)
 "xFG" = (
 /turf/open/floor/mainship_hull/dir{

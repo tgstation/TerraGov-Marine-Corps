@@ -158,8 +158,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	/// New TGUI Preference preview
 	var/map_name = "player_pref_map"
-	var/obj/screen/map_view/screen_main
-	var/obj/screen/background/screen_bg
+	var/atom/movable/screen/map_view/screen_main
+	var/atom/movable/screen/background/screen_bg
 
 	/// If unique action will only act on the item in the active hand. If false, it will try to act on the item on the inactive hand as well in certain conditions.
 	var/unique_action_use_active_hand = TRUE
