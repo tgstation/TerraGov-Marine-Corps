@@ -2085,6 +2085,9 @@
 /obj/item/explosive/grenade/chem_grenade/cleaner,
 /obj/item/explosive/grenade/chem_grenade/cleaner,
 /obj/structure/table,
+/obj/item/prop/mainship/candle/short{
+	pixel_y = 5
+	},
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "cGi" = (
@@ -2477,6 +2480,20 @@
 /obj/machinery/igniter,
 /obj/structure/prop/holidays/string_lights{
 	dir = 1
+	},
+/obj/item/prop/mainship/candle{
+	pixel_y = 3
+	},
+/obj/item/prop/mainship/candle/short{
+	pixel_x = -12
+	},
+/obj/item/prop/mainship/candle/short{
+	pixel_x = 3;
+	pixel_y = 18
+	},
+/obj/item/prop/mainship/candle/short{
+	pixel_x = -13;
+	pixel_y = 14
 	},
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 4
@@ -3548,6 +3565,18 @@
 /obj/machinery/igniter,
 /obj/structure/prop/holidays/string_lights{
 	dir = 1
+	},
+/obj/item/prop/mainship/candle{
+	pixel_x = 3
+	},
+/obj/item/prop/mainship/candle/short{
+	pixel_x = 11
+	},
+/obj/item/prop/mainship/candle/short{
+	pixel_x = -8
+	},
+/obj/item/prop/mainship/candle/short{
+	pixel_y = 14
 	},
 /turf/open/floor/tile/red/redtaupe{
 	dir = 8
@@ -10458,6 +10487,17 @@
 /area/centcom/valhalla/chapel/main)
 "nQD" = (
 /obj/machinery/igniter,
+/obj/item/prop/mainship/candle,
+/obj/item/prop/mainship/candle/short{
+	pixel_y = -14
+	},
+/obj/item/prop/mainship/candle/short{
+	pixel_x = -11
+	},
+/obj/item/prop/mainship/candle/short{
+	pixel_x = -12;
+	pixel_y = -10
+	},
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 4
 	},
@@ -14971,6 +15011,19 @@
 /area/centcom/valhalla/port)
 "tFt" = (
 /obj/machinery/igniter,
+/obj/item/prop/mainship/candle,
+/obj/item/prop/mainship/candle/short{
+	pixel_x = 13;
+	pixel_y = -2
+	},
+/obj/item/prop/mainship/candle/short{
+	pixel_x = 1;
+	pixel_y = -13
+	},
+/obj/item/prop/mainship/candle/short{
+	pixel_x = 16;
+	pixel_y = -15
+	},
 /turf/open/floor/tile/red/redtaupe{
 	dir = 8
 	},
