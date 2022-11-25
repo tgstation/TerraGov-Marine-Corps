@@ -134,7 +134,6 @@ GLOBAL_LIST_INIT(jobs_fallen_all, typecacheof(list(/datum/job/fallen)))
 #define EXP_TYPE_SPECIAL "Special"
 #define EXP_TYPE_GHOST "Ghost"
 #define EXP_TYPE_ADMIN "Admin"
-#define EXP_TYPE_XENO "Admin"
 
 // hypersleep bay flags
 #define CRYO_MED "Medical"
