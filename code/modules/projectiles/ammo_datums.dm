@@ -2487,8 +2487,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 35
 	penetration = 10
 	sundering = 1
-	max_range = 30
-	accurate_range = 15
+	max_range = 7
+	accurate_range = 7
 	hitscan_effect_icon = "beam_cult"
 	icon_state = "psy_blast"
 	plasma_cost = 230
@@ -2513,14 +2513,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 				continue
 			if(!isxeno(living_victim))
 				living_victim.apply_damage(aoe_damage, BURN, blocked = living_victim.get_soft_armor(ENERGY) - penetration, updating_health = TRUE)
-				staggerstun(living_victim, P, 9, slowdown = 1)
+				staggerstun(living_victim, P, 10, slowdown = 1)
 		else if(isobj(victim))
 			var/obj/obj_victim = victim
 			obj_victim.take_damage(aoe_damage, BURN, ENERGY, 0, armour_penetration = penetration)
 		var/throw_dir = get_dir(T, victim)
 		if(T == get_turf(victim))
 			throw_dir = get_dir(P.starting_turf, T)
-		victim.safe_throw_at(get_ranged_target_turf(T, throw_dir, 5), 4, 1, spin = TRUE)
+		victim.safe_throw_at(get_ranged_target_turf(T, throw_dir, 5), 3, 1, spin = TRUE)
 	new /obj/effect/temp_visual/shockwave(T, aoe_range + 2)
 
 /datum/ammo/energy/xeno/psy_blast/on_hit_mob(mob/M, obj/projectile/P)

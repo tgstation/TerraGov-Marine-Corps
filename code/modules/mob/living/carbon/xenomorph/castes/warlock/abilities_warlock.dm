@@ -261,7 +261,7 @@
 	/// A list of all things that had a fliter applied
 	var/list/filters_applied
 	///max range at which we can cast out ability
-	var/ability_range = 9
+	var/ability_range = 7
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 	///The particle type this ability uses
@@ -365,8 +365,8 @@
 				var/block = carbon_victim.get_soft_armor(BOMB)
 				carbon_victim.apply_damage(xeno_owner.xeno_caste.crush_strength, BRUTE, blocked = block)
 				carbon_victim.apply_damage(xeno_owner.xeno_caste.crush_strength * 1.5, STAMINA, blocked = block)
-				carbon_victim.adjust_stagger(6)
-				carbon_victim.add_slowdown(8)
+				carbon_victim.adjust_stagger(5)
+				carbon_victim.add_slowdown(6)
 			else if(ismecha(i))
 				var/obj/vehicle/sealed/mecha/mecha_victim = i
 				mecha_victim.take_damage(xeno_owner.xeno_caste.crush_strength * 5, BOMB)
@@ -374,7 +374,7 @@
 				var/obj/obj_victim = i
 				if(istype(obj_victim, /obj/alien))
 					continue
-				obj_victim.take_damage(xeno_owner.xeno_caste.crush_strength * 2, BOMB)
+				obj_victim.take_damage(xeno_owner.xeno_caste.crush_strength, BOMB)
 	stop_crush(target)
 
 /// stops channeling and unregisters all listeners, resetting the ability
