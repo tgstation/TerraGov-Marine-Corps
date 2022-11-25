@@ -44,7 +44,7 @@
 		return
 	if(bomb_message)
 		activator.say("[bomb_message]!!")
-	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_DANGER, ignore_turf_checks = TRUE))
+	if(!do_after(user, 0.5 SECONDS, TRUE, src, BUSY_ICON_DANGER, ignore_turf_checks = TRUE))
 		return FALSE
 	var/turf/target = get_turf(loc)
 	if(bomb_message) //Checks for a non null bomb message.
