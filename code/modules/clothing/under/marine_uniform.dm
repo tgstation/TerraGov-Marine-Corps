@@ -85,7 +85,18 @@
 	desc = "Originated from Orion Military Outpost. Designed for ship and urban environments, they're meant for recon, stealth, and evac operations. They come with a built in cassette player hearable only to the user to help pass time, during any possible long waits. They're the definition of over-funded ideas, least they look neat. It is very likely that a boot fresh from boot camp to buy this at the BX with his E-1 pay because of how tacticool it looks."
 	icon_state = "orion_fatigues"
 	item_state = "orion_fatigues"
-	adjustment_variants = list()
+	adjustment_variants = list(
+		"Down" = "_d",
+	)
+
+/obj/item/clothing/under/marine/red_fatigue
+	name = "\improper Big Red fatigues"
+	desc = "Originated from Big Red. Designed for dry, low humid, and Mars-eqse environments, they're meant for recon, stealth, and evac operations. They come with a built in cassette player hearable only to the user to help pass time, during any possible long waits. They make you feel like one with the desert, forged by the beating Sun. Rumors had it that it can recycle your sweat and urine for drinkable water!"
+	icon_state = "orion_fatigues"
+	item_state = "orion_fatigues"
+	adjustment_variants = list(
+		"Down" = "_d",
+	)
 
 /obj/item/clothing/under/marine/officer
 	name = "marine officer uniform"
