@@ -446,27 +446,27 @@
 		to_chat(user, span_warning("\the [paint] is out of color!"))
 		return
 
+	var/xmashat = tgui_input_list(user, "Do you want a xmas hat ?", "Pick Xmas hat color", list("None", "Red", "Green"))
+
+	switch(xmashat)
+		if("None")
+			xmashat_color = null
+		if("Red")
+			xmashat_color = "xmasred"
+		if("Green")
+			xmashat_color = "xmasgreen"
+
 	if(!greyscale_config && length(icon_state_variants))
 		paint.uses--
 		var/variant = tgui_input_list(user, "Choose a color.", "Color", icon_state_variants)
 
-		var/xmashat = tgui_input_list(user, "Do you want a xmas hat ?", "Pick Xmas hat color", list("None", "Red", "Green"))
-
-		if(!variant || !xmashat)
+		if(!variant)
 			return
 
 		if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 			return
 
-		switch(xmashat)
-			if("None")
-				xmashat_color = null
-			if("Red")
-				xmashat_color = "xmasred"
-			if("Green")
-				xmashat_color = "xmasgreen"
-		if(variant)
-			current_variant = variant
+		current_variant = variant
 		update_icon()
 		return
 
@@ -524,7 +524,7 @@
 	. = ..()
 
 	if(xmashat_color)
-		standing.overlays += image('icons/mob/modular/modular_armor.dmi', icon_state = "[xmashat_color]")
+		standing.overlays += mutable_appearance('icons/mob/modular/modular_armor.dmi', icon_state = "[xmashat_color]")
 	if(attachments_by_slot[ATTACHMENT_SLOT_STORAGE] && istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
 		var/obj/item/armor_module/storage/storage_module = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
 		if(storage_module.show_storage)
