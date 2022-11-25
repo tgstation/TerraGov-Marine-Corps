@@ -41,6 +41,9 @@
 /obj/effect/decal/tile/full/darkgray
 	color = "#818181"
 
+/obj/effect/decal/tile/full/darkgray2
+	color = "#d1d3cd"
+
 /obj/effect/decal/tile/full/white
 	color = "#f7eeee"
 
@@ -106,6 +109,9 @@
 
 /obj/effect/decal/tile/corsatstraight/white
 	color = "#d3d3d3"
+
+/obj/effect/decal/tile/corsatstraight/gray
+	color = "#d3d3d3c0"
 
 /obj/effect/decal/tile/corsatcorner
 	icon_state = "corsatlinecorner"

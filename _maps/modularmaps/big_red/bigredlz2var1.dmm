@@ -137,7 +137,6 @@
 "kC" = (
 /obj/effect/attach_point/weapon/dropship1{
 	dir = 8;
-	icon_state = "equip_base_l_wing"
 	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8

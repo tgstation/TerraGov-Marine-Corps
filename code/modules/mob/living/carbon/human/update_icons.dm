@@ -682,15 +682,6 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	overlays_standing[BURST_LAYER]	= standing
 	apply_overlay(BURST_LAYER)
 
-/mob/living/carbon/human/update_headbite()
-	remove_overlay(HEADBITE_LAYER)
-	var/mutable_appearance/standing
-	if(headbitten)
-		standing = mutable_appearance('icons/Xeno/Effects.dmi', "headbite_stand", -HEADBITE_LAYER)
-
-	overlays_standing[HEADBITE_LAYER]	= standing
-	apply_overlay(HEADBITE_LAYER)
-
 /mob/living/carbon/human/update_fire()
 	remove_overlay(FIRE_LAYER)
 	if(on_fire)

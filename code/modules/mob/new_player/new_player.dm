@@ -314,15 +314,15 @@
 	if(!is_banned_from(summoner.ckey, "Appearance") && summoner.client)
 		summoner.client.prefs.copy_to(src)
 	update_names_joined_list(real_name)
-	overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /obj/screen/fullscreen/black)
-	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /obj/screen/fullscreen/spawning_in)
+	overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /atom/movable/screen/fullscreen/black)
+	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
 
 /mob/living/silicon/ai/on_spawn(mob/new_player/summoner)
 	if(!is_banned_from(summoner.ckey, "Appearance") && summoner.client?.prefs?.ai_name)
 		fully_replace_character_name(real_name, summoner.client.prefs.ai_name)
 	update_names_joined_list(real_name)
-	overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /obj/screen/fullscreen/black)
-	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /obj/screen/fullscreen/spawning_in)
+	overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /atom/movable/screen/fullscreen/black)
+	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
 
 
 /mob/new_player/proc/transfer_character()
