@@ -268,6 +268,8 @@
 	barefootstep = FOOTSTEP_CONCRETE
 	shoefootstep = FOOTSTEP_CONCRETE
 
+/turf/open/floor/concrete/ex_act() //Fixes black tile explosion issue
+
 /turf/open/floor/concrete/lines
 	icon_state = "concrete_lines"
 

@@ -21,8 +21,7 @@
 // Volcano
 /area/magmoor/volcano
 	name = "Magmoor Central Fissure"
-	ceiling = CEILING_NONE
-	outside = TRUE
+	ceiling = CEILING_DEEP_UNDERGROUND
 	flags_area = NO_DROPPOD
 
 //Caves
