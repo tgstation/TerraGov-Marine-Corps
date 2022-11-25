@@ -43,7 +43,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	speed = -0.4
-	plasma_max = 1600
+	plasma_max = 1500
 	plasma_gain = 70
 	max_health = 335
 	upgrade_threshold = TIER_THREE_MATURE_THRESHOLD
@@ -60,7 +60,7 @@
 
 	melee_damage = 23
 	speed = -0.5
-	plasma_max = 1800
+	plasma_max = 1600
 	plasma_gain = 80
 	max_health = 350
 	upgrade_threshold = TIER_THREE_ELDER_THRESHOLD
@@ -77,7 +77,7 @@
 
 	melee_damage = 23
 	speed = -0.6
-	plasma_max = 2000
+	plasma_max = 1700
 	plasma_gain = 90
 	max_health = 375
 	upgrade_threshold = TIER_THREE_ANCIENT_THRESHOLD
@@ -94,7 +94,7 @@
 
 	melee_damage = 23
 	speed = -0.6
-	plasma_max = 2000
+	plasma_max = 1700
 	plasma_gain = 90
 	max_health = 375
 	spit_types = list(/datum/ammo/energy/xeno/psy_blast, /datum/ammo/energy/xeno/psy_blast/psy_lance)
