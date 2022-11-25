@@ -452,6 +452,8 @@
 
 		var/xmashat = tgui_input_list(user, "Do you want a xmas hat ?", "Pick Xmas hat color", list("None", "Red", "Green"))
 
+		if(!variant || !xmashat)
+			return
 
 		if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 			return
