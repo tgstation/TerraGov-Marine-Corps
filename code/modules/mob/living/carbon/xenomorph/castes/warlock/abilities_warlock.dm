@@ -281,8 +281,11 @@
 		return
 	if(owner.do_actions || !target || !can_use_action(TRUE) || !check_distance(target, TRUE))
 		return fail_activate()
+	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_CRUSH_ABILITY_TRAIT)
 	if(!do_after(owner, 0.8 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_action, FALSE, XACT_USE_BUSY)))
+		REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_CRUSH_ABILITY_TRAIT)
 		return fail_activate()
+	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_CRUSH_ABILITY_TRAIT)
 	owner.visible_message(span_xenowarning("\The [owner] starts channeling their psychic might!"), span_xenowarning("We start channeling our psychic might!"))
 
 	particle_holder = new(owner, channel_particle)
@@ -300,7 +303,7 @@
 
 	do_channel(target_turf)
 	xeno_owner.update_glow(3, 3, "#6a59b3")
-	RegisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)), .proc/stop_crush)
+	RegisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED)), .proc/stop_crush)
 
 ///Checks if the owner is close enough/can see the target
 /datum/action/xeno_action/activable/psy_crush/proc/check_distance(atom/target, sight_needed)
@@ -397,7 +400,7 @@
 	xeno_owner.update_glow()
 	add_cooldown()
 	QDEL_NULL(particle_holder)
-	UnregisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)))
+	UnregisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED)))
 
 ///Apply a filter on all items in the list of turfs
 /datum/action/xeno_action/activable/psy_crush/proc/apply_filters(list/turfs)
@@ -505,16 +508,19 @@
 	to_chat(xeno_owner, span_xenonotice("We channel our psychic power."))
 
 	generate_particles(target, 7)
+	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
 	var/datum/ammo/energy/xeno/ammo_type = xeno_owner.ammo
 	xeno_owner.update_glow(3, 3, ammo_type.glow_color)
 
 	if(!do_after(xeno_owner, 1 SECONDS, FALSE, target, BUSY_ICON_DANGER))
 		to_chat(xeno_owner, span_warning("Our focus is disrupted."))
 		end_channel()
+		REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
 		return fail_activate()
 
 	if(!can_use_ability(target, FALSE))
 		end_channel()
+		REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
 		return fail_activate()
 
 	var/obj/projectile/hitscan/projectile = new /obj/projectile/hitscan(xeno_owner.loc)
@@ -531,6 +537,7 @@
 
 	succeed_activate()
 	add_cooldown()
+	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
 	addtimer(CALLBACK(src, .proc/end_channel), 5)
 
 /datum/action/xeno_action/activable/psy_blast/update_button_icon()
