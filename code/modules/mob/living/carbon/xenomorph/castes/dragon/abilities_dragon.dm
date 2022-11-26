@@ -1,8 +1,4 @@
 
-/obj/flamer_fire/resin
-	burnflags = BURN_HUMANS|BURN_SNOW
-	color = COLOR_PURPLE
-
 #define DRAGON_TAIL_STAB_DELAY 1.5 SECONDS
 /datum/action/xeno_action/activable/tail_stab
 	name = "Tail Stab"

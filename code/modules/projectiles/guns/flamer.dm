@@ -517,16 +517,15 @@ GLOBAL_DATUM_INIT(flamer_particles, /particles/flamer_fire, new)
 	var/firelevel = 12 //Tracks how much "fire" there is. Basically the timer of how long the fire burns
 	var/burnlevel = 10 //Tracks how HOT the fire is. This is basically the heat level of the fire and determines the temperature.
 	var/flame_color = "red"
-	var/burnflags = BURN_XENOBUILDINGS|BURN_XENOS|BURN_HUMANS|BURN_SNOW|IGNITES_MOBS // Determines what things it causes damage to, marines, xenos, their buildings or not, and if it can set mobs on fire+
+	var/burnflags = BURN_XENOBUILDINGS|BURN_XENOS|BURN_HUMANS|BURN_SNOW|IGNITES_MOBS // Determines what things it causes damage to, marines, xenos, their buildings or not, and if it can set mobs on fire
+	var/light_intensity = 3
 
 /obj/flamer_fire/Initialize(mapload, fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0, burn_flags)
 	. = ..()
 	particles = GLOB.flamer_particles
-
+	particles.color = flame_color
 	if(f_color)
 		flame_color = f_color
-
-	icon_state = "[flame_color]_2"
 	if(fire_lvl)
 		firelevel = fire_lvl
 	if(burn_lvl)
@@ -574,7 +573,7 @@ GLOBAL_DATUM_INIT(flamer_particles, /particles/flamer_fire, new)
 		return
 
 	firelevel -= 20 //Water level extinguish
-	updateicon()
+	update_icon()
 	if(firelevel < 1) //Extinguish if our firelevel is less than 1
 		qdel(src)
 
@@ -597,9 +596,7 @@ GLOBAL_DATUM_INIT(flamer_particles, /particles/flamer_fire, new)
 	return ..()
 
 
-/obj/flamer_fire/proc/updateicon()
-	var/light_color = "LIGHT_COLOR_LAVA"
-	var/light_intensity = 3
+/obj/flamer_fire/update_icon()
 	switch(flame_color)
 		if("red")
 			light_color = LIGHT_COLOR_LAVA
@@ -628,7 +625,7 @@ GLOBAL_DATUM_INIT(flamer_particles, /particles/flamer_fire, new)
 		qdel(src)
 		return
 
-	updateicon()
+	update_icon()
 
 	if(!firelevel)
 		qdel(src)
@@ -667,6 +664,32 @@ GLOBAL_DATUM_INIT(flamer_particles, /particles/flamer_fire, new)
 	adjustFireLoss(min(burnlevel, rand(10 , burnlevel))) //Including the fire should be way stronger.
 	to_chat(src, span_warning("You are burned!"))
 
+// Variant of flamer fire without fire amount stages, but has smoothing
+/obj/flamer_fire/smoothed
+	mouse_opacity = MOUSE_OPACITY_OPAQUE
+	icon_state = "gray"
+	color = COLOR_ORANGE
+	smoothing_groups = SMOOTH_FIRE
+	smoothing_behavior = CARDINAL_SMOOTHING
+	light_color = null
+	fire_level = 500
+
+/obj/flamer_fire/smoothed/Initialize(mapload, fire_lvl, burn_lvl, f_color, fire_stacks, fire_damage, burn_flags)
+	. = ..()
+	smooth_neighbors()
+
+/obj/flamer_fire/smoothed/update_icon()
+	if(!light_color)
+		light_color = flame_color
+	set_light_range_power_color(light_intensity, light_power, light_color)
+	smooth_self()
+
+/obj/flamer_fire/smoothed/handle_icon_junction(junction)
+	icon_state = "[initial(icon_state)][junction]"
+
+/obj/flamer_fire/smoothed/resin
+	burnflags = BURN_HUMANS|BURN_SNOW
+	color = COLOR_PURPLE
 
 /mob/living/carbon/xenomorph/flamer_fire_act(burnlevel, damage_flags)
 	if(!CHECK_BITFIELD(damage_flags, BURN_XENOS))

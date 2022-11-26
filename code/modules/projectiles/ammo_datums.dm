@@ -3104,7 +3104,7 @@ datum/ammo/bullet/revolver/tp44
 	incendiary_strength = 30 //Firestacks cap at 20, but that's after armor.
 	bullet_color = LIGHT_COLOR_FIRE
 	var/ignite_shape = SINGLE
-	var/ignite_range = 1
+	var/ignite_range = 0
 	var/fire_color = "red"
 	var/burntime = 17
 	var/burnlevel = 31
@@ -3158,12 +3158,12 @@ datum/ammo/bullet/revolver/tp44
 	name = "resin fireball"
 	burn_flags =  BURN_HUMANS|BURN_SNOW
 	max_range = 10
-	shell_speed = 2
+	shell_speed = 0.3
 	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_SKIPS_ALIENS
 	bullet_color = COLOR_PURPLE
 	ignite_shape = NO_CORNERS
-	ignite_range = 2
-	// fire_color = "purple" todo
+	ignite_range = 1
+	fire_color = "purple"
 	var/added_spit_delay = 0
 	var/spit_cost = 150
 

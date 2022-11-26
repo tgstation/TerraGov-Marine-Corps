@@ -1060,7 +1060,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 						var/obj/flamer_fire/FF = atm
 						if(FF.firelevel > 20)
 							FF.firelevel -= 20
-							FF.updateicon()
+							FF.update_icon()
 						else
 							qdel(atm)
 						continue

@@ -7,4 +7,4 @@
 
 // Shape to ignite in for the flamethrower projectile
 #define SINGLE "single" // One tile, doesnt' spread
-#define NO_CORNERS "NO_CORNERS" // Middle, with every tile right next to it besides the diagonal corners lit
+#define NO_CORNERS "NO_CORNERS" // Center tile and expanding along cardinals alone

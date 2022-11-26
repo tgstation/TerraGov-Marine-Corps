@@ -452,7 +452,7 @@
 #define PIXELS_TO_DISSAPPEAR 200
 /datum/status_effect/xeno/dragon_flight
 	id = "Flight"
-	var/takeoff_delay = 5
+	var/takeoff_delay = 10
 	var/flap_delay = 0.5 SECONDS
 	var/taking_off = TRUE
 	var/shadow
