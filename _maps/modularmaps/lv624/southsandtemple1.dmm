@@ -7,9 +7,6 @@
 "aw" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand6)
-"aJ" = (
-/turf/open/ground/coast/corner,
-/area/lv624/ground/river3)
 "aS" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -32,9 +29,8 @@
 /turf/open/floor/plating/ground/dirt/typethree,
 /area/lv624/lazarus/sandtemple)
 "bE" = (
-/turf/open/ground/coast{
-	dir = 4;
-	icon_state = "beachcorner"
+/turf/open/ground/coast/corner{
+	dir = 4
 	},
 /area/lv624/ground/sand3)
 "bM" = (
@@ -68,24 +64,19 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/river3)
 "dH" = (
-/turf/open/floor/plating/ground/dirtgrassborder{
-	dir = 4;
-	icon_state = "grassdirt_corner2"
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
+	dir = 4
 	},
 /area/lv624/ground/river3)
 "er" = (
-/turf/open/floor/plating/ground/dirtgrassborder{
-	icon_state = "grassdirt_corner"
-	},
+/turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/lv624/lazarus/sandtemple)
 "fi" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand9)
 "gO" = (
-/turf/open/ground/coast{
-	icon_state = "beachcorner"
-	},
+/turf/open/ground/coast/corner,
 /area/lv624/ground/river3)
 "hm" = (
 /obj/structure/jungle/plantbot1/alien,
@@ -134,9 +125,8 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle8)
 "mt" = (
-/turf/open/ground/coast{
-	dir = 8;
-	icon_state = "beachcorner2"
+/turf/open/ground/coast/corner2{
+	dir = 8
 	},
 /area/lv624/ground/sand6)
 "nE" = (
@@ -230,9 +220,8 @@
 /area/lv624/ground/sand6)
 "um" = (
 /obj/effect/ai_node,
-/turf/open/ground/coast{
-	dir = 4;
-	icon_state = "beachcorner"
+/turf/open/ground/coast/corner{
+	dir = 4
 	},
 /area/lv624/ground/sand6)
 "uu" = (
@@ -248,9 +237,7 @@
 /obj/structure/platform_decoration{
 	dir = 4
 	},
-/turf/open/floor/plating/ground/dirtgrassborder{
-	icon_state = "desert_dug"
-	},
+/turf/open/floor/plating/ground/dirt/dug,
 /area/lv624/ground/sand6)
 "uN" = (
 /obj/effect/landmark/weed_node,
@@ -302,9 +289,8 @@
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle8)
 "yW" = (
-/turf/open/floor/plating/ground/dirtgrassborder{
-	dir = 8;
-	icon_state = "grassdirt_corner"
+/turf/open/floor/plating/ground/dirtgrassborder/corner{
+	dir = 8
 	},
 /area/lv624/lazarus/sandtemple)
 "zx" = (
@@ -333,9 +319,8 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "Bo" = (
-/turf/open/floor/plating/ground/dirtgrassborder{
-	dir = 1;
-	icon_state = "grassdirt_corner"
+/turf/open/floor/plating/ground/dirtgrassborder/corner{
+	dir = 1
 	},
 /area/lv624/lazarus/sandtemple)
 "BP" = (
@@ -367,11 +352,6 @@
 "DU" = (
 /turf/open/ground/coast{
 	dir = 9
-	},
-/area/lv624/ground/river3)
-"Er" = (
-/turf/open/ground/coast{
-	dir = 1
 	},
 /area/lv624/ground/river3)
 "ED" = (
@@ -552,9 +532,8 @@
 	dir = 1
 	},
 /obj/structure/jungle/vines,
-/turf/open/ground/coast{
-	dir = 8;
-	icon_state = "beachcorner2"
+/turf/open/ground/coast/corner{
+	dir = 1
 	},
 /area/lv624/ground/sand6)
 "PV" = (
@@ -568,15 +547,13 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
 "Qt" = (
-/turf/open/floor/plating/ground/dirtgrassborder{
-	dir = 4;
-	icon_state = "grassdirt_corner"
+/turf/open/floor/plating/ground/dirtgrassborder/corner{
+	dir = 4
 	},
 /area/lv624/lazarus/sandtemple)
 "QC" = (
 /turf/open/ground/coast{
-	dir = 1;
-	icon_state = "beachcorner"
+	dir = 1
 	},
 /area/lv624/ground/river3)
 "QK" = (
@@ -589,9 +566,7 @@
 	},
 /area/lv624/ground/river3)
 "Ri" = (
-/turf/open/floor/plating/ground/dirtgrassborder{
-	icon_state = "grass1"
-	},
+/turf/open/ground/grass,
 /area/lv624/lazarus/sandtemple)
 "RZ" = (
 /turf/open/floor/plating/ground/dirt/typeone,
@@ -601,9 +576,8 @@
 /turf/open/floor/plating/ground/dirt/typetwo,
 /area/lv624/lazarus/sandtemple)
 "SL" = (
-/turf/open/ground/coast{
-	dir = 8;
-	icon_state = "beachcorner"
+/turf/open/ground/coast/corner{
+	dir = 8
 	},
 /area/lv624/ground/river3)
 "SR" = (
@@ -625,9 +599,8 @@
 /obj/structure/platform_decoration{
 	dir = 4
 	},
-/turf/open/floor/plating/ground/dirtgrassborder{
-	dir = 1;
-	icon_state = "grassdirt_corner"
+/turf/open/floor/plating/ground/dirtgrassborder/corner{
+	dir = 1
 	},
 /area/lv624/ground/river3)
 "Vh" = (
@@ -650,9 +623,8 @@
 /turf/open/ground/river,
 /area/lv624/ground/river3)
 "Ww" = (
-/turf/open/ground/coast{
-	dir = 4;
-	icon_state = "beachcorner"
+/turf/open/ground/coast/corner{
+	dir = 4
 	},
 /area/lv624/ground/sand6)
 "WD" = (
@@ -812,7 +784,7 @@ AP
 AP
 AP
 AP
-QC
+ps
 Lg
 "}
 (5,1,1) = {"
@@ -1029,7 +1001,7 @@ aw
 iB
 aw
 aw
-aJ
+gO
 ab
 WO
 Wn
@@ -1176,7 +1148,7 @@ Ue
 Wn
 Wn
 Wn
-Er
+QC
 uO
 "}
 (19,1,1) = {"
@@ -1215,7 +1187,7 @@ HW
 zx
 zx
 zx
-aJ
+gO
 pw
 Wn
 Wn
@@ -1277,7 +1249,7 @@ Wn
 Wn
 Wn
 Wn
-Er
+QC
 QQ
 Vj
 lD

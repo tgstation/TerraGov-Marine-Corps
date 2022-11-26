@@ -6170,8 +6170,7 @@
 "aDw" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
-	dir = 2;
-	icon_state = "pipe-u"
+	dir = 2
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 9
@@ -7527,12 +7526,9 @@
 /area/ice_colony/surface/command)
 "aJE" = (
 /obj/structure/window_frame/colony/reinforced,
-/obj/machinery/door/poddoor/mainship{
-	density = 0;
+/obj/machinery/door/poddoor/mainship/open{
 	dir = 1;
-	icon_state = "pdoor0";
-	name = "\improper Forced Blast Door";
-	opacity = 0
+	name = "\improper Forced Blast Door"
 	},
 /turf/open/floor/plating,
 /area/ice_colony/surface/command)
@@ -7965,8 +7961,7 @@
 "aMe" = (
 /obj/structure/table/gamblingtable{
 	dir = 4;
-	flipped = 1;
-	icon_state = "gambleflip0"
+	flipped = 1
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
@@ -10476,21 +10471,13 @@
 	},
 /area/ice_colony/surface/hangar/beta)
 "aXt" = (
-/obj/structure/closet/secure_closet/personal{
-	icon_broken = "secure_broken_police";
-	icon_closed = "secure_closed_police";
-	icon_locked = "secure_locked_police";
-	icon_off = "secure_closed_police";
-	icon_opened = "secure_open_police";
-	icon_state = "secure_locked_police";
-	name = "PMC Equipment Locker"
-	},
 /obj/item/clothing/under/marine/veteran/PMC,
 /obj/item/clothing/head/helmet/marine/veteran/PMC,
 /obj/item/clothing/gloves/marine/veteran/PMC,
 /obj/item/clothing/mask/gas/PMC/damaged,
 /obj/item/clothing/suit/storage/marine/veteran/PMC,
 /obj/item/weapon/gun/smg/m25/elite,
+/obj/structure/closet/secure_closet/personal,
 /turf/open/floor/tile/dark/red2{
 	dir = 9
 	},
@@ -10988,13 +10975,10 @@
 	},
 /area/ice_colony/underground/westroadtunnel)
 "aZU" = (
-/obj/machinery/door/poddoor/shutters/mainship{
-	density = 0;
+/obj/machinery/door/poddoor/shutters/mainship/open{
 	dir = 2;
-	icon_state = "shutter0";
 	id = "Do not open";
-	name = "\improper Tunnel Shutters";
-	opacity = 0
+	name = "\improper Tunnel Shutters"
 	},
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
@@ -11016,25 +11000,19 @@
 /area/ice_colony/surface/research)
 "aZZ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/poddoor/shutters/mainship{
-	density = 0;
+/obj/machinery/door/poddoor/shutters/mainship/open{
 	dir = 2;
-	icon_state = "shutter0";
 	id = "Do not open";
-	name = "\improper Tunnel Shutters";
-	opacity = 0
+	name = "\improper Tunnel Shutters"
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/ice_colony/underground/westroadtunnel)
 "baa" = (
-/obj/machinery/door/poddoor/shutters/mainship{
-	density = 0;
+/obj/machinery/door/poddoor/shutters/mainship/open{
 	dir = 2;
-	icon_state = "shutter0";
 	id = "Do not open";
-	name = "\improper Tunnel Shutters";
-	opacity = 0
+	name = "\improper Tunnel Shutters"
 	},
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
@@ -12897,9 +12875,7 @@
 /turf/open/shuttle/dropship/floor,
 /area/ice_colony/underground/responsehangar)
 "biP" = (
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin6"
-	},
+/turf/open/shuttle/dropship/six,
 /area/ice_colony/underground/responsehangar)
 "biR" = (
 /obj/structure/cable,
@@ -15156,11 +15132,8 @@
 /area/ice_colony/surface/bar/canteen)
 "bse" = (
 /obj/machinery/door/poddoor/mainship{
-	density = 0;
-	icon_state = "pdoor0";
 	id = "Colony_PMC_Hangar";
-	name = "\improper Forced Blast Door";
-	opacity = 0
+	name = "\improper Forced Blast Door"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -15689,13 +15662,10 @@
 /area/ice_colony/underground/medical/or)
 "bup" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/poddoor/shutters/mainship{
-	density = 0;
+/obj/machinery/door/poddoor/shutters/mainship/open{
 	dir = 2;
-	icon_state = "shutter0";
 	id = "Do not open";
-	name = "\improper Tunnel Shutters";
-	opacity = 0
+	name = "\improper Tunnel Shutters"
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
@@ -18470,9 +18440,8 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
-/obj/structure/showcase{
-	desc = "A stand with a plastic display of some kind of weird machine.";
-	icon_state = "coinpress0"
+/obj/structure/showcase/coinpress{
+	desc = "A stand with a plastic display of some kind of weird machine."
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/storage/highsec)
@@ -19659,9 +19628,7 @@
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/treatment)
 "bId" = (
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin4"
-	},
+/turf/open/shuttle/dropship/four,
 /area/ice_colony/underground/responsehangar)
 "bIe" = (
 /obj/structure/window/framed/colony/reinforced,
@@ -19938,9 +19905,7 @@
 	},
 /area/ice_colony/underground/command/checkpoint)
 "bIY" = (
-/turf/open/shuttle/dropship{
-	icon_state = "floor8"
-	},
+/turf/open/shuttle/dropship/five,
 /area/ice_colony/underground/responsehangar)
 "bIZ" = (
 /obj/structure/disposalpipe/segment/corner{
@@ -20439,12 +20404,10 @@
 /area/ice_colony/underground/security/brig)
 "bKR" = (
 /obj/structure/table,
-/obj/item/tool/stamp{
-	icon_state = "stamp-ce"
-	},
 /obj/machinery/firealarm{
 	dir = 8
 	},
+/obj/item/tool/stamp/ce,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/reception)
 "bKS" = (
@@ -22015,15 +21978,13 @@
 /turf/closed/wall/r_wall/unmeltable,
 /area/ice_colony/underground/maintenance/east)
 "bQx" = (
-/turf/closed/shuttle/ert{
-	icon_state = "leftengine_3";
-	opacity = 0
+/turf/closed/shuttle/ert/engines/left{
+	dir = 4
 	},
 /area/ice_colony/underground/responsehangar)
 "bQy" = (
-/turf/closed/shuttle/ert{
-	icon_state = "rightengine_3";
-	opacity = 0
+/turf/closed/shuttle/ert/engines/right{
+	dir = 4
 	},
 /area/ice_colony/underground/responsehangar)
 "bQz" = (
@@ -22061,15 +22022,13 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/security/armory)
 "bQG" = (
-/turf/closed/shuttle/ert{
-	icon_state = "leftengine_2";
-	opacity = 0
+/turf/closed/shuttle/ert/engines/left{
+	dir = 1
 	},
 /area/ice_colony/underground/responsehangar)
 "bQH" = (
-/turf/closed/shuttle/ert{
-	icon_state = "rightengine_2";
-	opacity = 0
+/turf/closed/shuttle/ert/engines/right{
+	dir = 1
 	},
 /area/ice_colony/underground/responsehangar)
 "bQI" = (
@@ -22093,10 +22052,7 @@
 	},
 /area/ice_colony/surface/excavationbarracks)
 "bQN" = (
-/turf/closed/shuttle/ert{
-	icon_state = "leftengine_1";
-	opacity = 0
-	},
+/turf/closed/shuttle/ert/engines/left,
 /area/ice_colony/underground/responsehangar)
 "bQO" = (
 /turf/closed/shuttle/ert{
@@ -22142,10 +22098,7 @@
 	},
 /area/ice_colony/underground/responsehangar)
 "bQV" = (
-/turf/closed/shuttle/ert{
-	icon_state = "rightengine_1";
-	opacity = 0
-	},
+/turf/closed/shuttle/ert/engines/right,
 /area/ice_colony/underground/responsehangar)
 "bQW" = (
 /obj/structure/cable,
@@ -22566,9 +22519,8 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/east)
 "bSJ" = (
-/turf/open/floor/plating{
-	dir = 1;
-	icon_state = "warnplatecorner"
+/turf/open/floor/plating/icefloor/warnplate/corner{
+	dir = 1
 	},
 /area/ice_colony/underground/maintenance/east)
 "bSK" = (
@@ -22991,9 +22943,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/item/ammo_casing/bullet{
-	icon_state = "casing_7"
-	},
+/obj/item/ammo_casing/bullet,
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
@@ -24470,9 +24420,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
-/obj/item/ammo_casing/bullet{
-	icon_state = "casing_7"
-	},
+/obj/item/ammo_casing/bullet,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/command/checkpoint)
 "cdf" = (
@@ -24546,9 +24494,7 @@
 /area/ice_colony/surface/hangar/beta)
 "ceE" = (
 /obj/structure/cable,
-/obj/item/ammo_casing/bullet{
-	icon_state = "casing_7"
-	},
+/obj/item/ammo_casing/bullet,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
 "cfx" = (
@@ -25283,7 +25229,6 @@
 "dFU" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/item/ammo_casing/bullet{
-	icon_state = "casing_10";
 	pixel_x = 29;
 	pixel_y = 9
 	},
@@ -27124,9 +27069,7 @@
 /area/ice_colony/exterior/surface/valley/southeast)
 "hit" = (
 /obj/effect/landmark/start/job/survivor,
-/turf/open/shuttle/dropship{
-	icon_state = "floor8"
-	},
+/turf/open/shuttle/dropship/five,
 /area/ice_colony/underground/responsehangar)
 "hiV" = (
 /obj/structure/cable,
@@ -27787,8 +27730,7 @@
 /area/ice_colony/underground/maintenance/central)
 "iDS" = (
 /obj/effect/attach_point/weapon/dropship1{
-	dir = 8;
-	icon_state = "equip_base_l_wing"
+	dir = 8
 	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
@@ -31099,9 +31041,6 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/storage)
 "oqf" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "N-corner"
-	},
 /turf/open/floor/tile/dark/purple2{
 	dir = 6
 	},

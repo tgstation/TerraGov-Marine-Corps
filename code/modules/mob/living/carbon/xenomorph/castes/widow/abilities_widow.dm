@@ -56,7 +56,7 @@
 	icon_state = "aoe_leash"
 	desc = "Sticky and icky. Destroy it when you are stuck!"
 	destroy_sound = "alien_resin_break"
-	max_integrity = 25
+	max_integrity = 75
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	throwpass = FALSE
@@ -286,7 +286,7 @@
 	mechanics_text = "Shoot out a web and pull it to traverse forward"
 	action_icon_state = "web_hook"
 	plasma_cost = 200
-	cooldown_timer = 20 SECONDS
+	cooldown_timer = 10 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_WEB_HOOK,
 	)

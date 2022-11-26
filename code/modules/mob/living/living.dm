@@ -505,10 +505,10 @@
 /mob/living/proc/get_permeability_protection()
 	return LIVING_PERM_COEFF
 
-/mob/proc/flash_act(intensity = 1, bypass_checks, type = /obj/screen/fullscreen/flash, duration)
+/mob/proc/flash_act(intensity = 1, bypass_checks, type = /atom/movable/screen/fullscreen/flash, duration)
 	return
 
-/mob/living/carbon/flash_act(intensity = 1, bypass_checks, type = /obj/screen/fullscreen/flash, duration = 40)
+/mob/living/carbon/flash_act(intensity = 1, bypass_checks, type = /atom/movable/screen/fullscreen/flash, duration = 40)
 	if( bypass_checks || (get_eye_protection() < intensity && !(disabilities & BLIND)) )
 		overlay_fullscreen_timer(duration, 20, "flash", type)
 		return TRUE
@@ -529,7 +529,7 @@
 	else if(eye_blind == 1)
 		adjust_blindness(-1)
 	if(tinttotal)
-		overlay_fullscreen("tint", /obj/screen/fullscreen/impaired, tinttotal)
+		overlay_fullscreen("tint", /atom/movable/screen/fullscreen/impaired, tinttotal)
 		return TRUE
 	else
 		clear_fullscreen("tint", 0)
@@ -724,6 +724,7 @@ below 100 is not dizzy
 	var/obj/visual = new /obj/effect/overlay/temp/point/big(our_tile, 0, invisibility)
 	animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + A.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + A.pixel_y, time = 1.7, easing = EASE_OUT)
 	visible_message("<b>[src]</b> points to [A]")
+	SEND_SIGNAL(src, COMSIG_POINT_TO_ATOM, A)
 	return TRUE
 
 

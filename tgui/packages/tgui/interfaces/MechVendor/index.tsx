@@ -19,7 +19,7 @@ export const MechVendor = (props, context) => {
   );
 
   return (
-    <Window title={'Mecha Assembler'}>
+    <Window title={'Mecha Assembler'} width={1440} height={650}>
       {showDesc ? (
         <Modal width="500px">
           <Section

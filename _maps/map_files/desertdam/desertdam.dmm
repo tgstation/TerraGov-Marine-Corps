@@ -7603,7 +7603,6 @@
 /area/desert_dam/exterior/valley/south_valley_dam)
 "aUv" = (
 /obj/machinery/atm{
-	name = "NanoTrasen Automatic Teller Machine";
 	pixel_y = 30
 	},
 /turf/open/floor/prison/red{
@@ -25382,7 +25381,6 @@
 /area/desert_dam/building/hydroponics/hydroponics_breakroom)
 "cTP" = (
 /obj/machinery/atm{
-	name = "NanoTrasen Automatic Teller Machine";
 	pixel_y = 30
 	},
 /turf/open/floor/prison/sterilewhite,
@@ -28172,7 +28170,6 @@
 /area/desert_dam/building/dorms/hallway_northwing)
 "dxj" = (
 /obj/machinery/atm{
-	name = "NanoTrasen Automatic Teller Machine";
 	pixel_y = 30
 	},
 /turf/open/floor/prison/green/corner{
@@ -29459,7 +29456,6 @@
 /area/desert_dam/building/dorms/pool)
 "dIM" = (
 /obj/machinery/atm{
-	name = "NanoTrasen Automatic Teller Machine";
 	pixel_y = 30
 	},
 /obj/structure/cable,
@@ -60326,7 +60322,6 @@
 /area/desert_dam/interior/dam_interior/south_tunnel)
 "uCR" = (
 /obj/machinery/atm{
-	name = "NanoTrasen Automatic Teller Machine";
 	pixel_y = 30
 	},
 /obj/effect/decal/cleanable/dirt,

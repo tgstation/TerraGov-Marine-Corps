@@ -1,16 +1,11 @@
 import { useBackend, useLocalState } from '../../backend';
 import { classes } from 'common/react';
-import { Button, Section, Box, Stack, Collapsible } from '../../components';
-import { MechVendData, MechWeapon, MechArmor, MechPower, MechUtility, MECHA_ARMOR, MECHA_POWER, MECHA_UTILITY } from './data';
+import { Button, Section, Box, Stack, Collapsible, Tabs, Divider } from '../../components';
+import { MechVendData, equipTabs, MechWeapon, MechArmor, MechPower, MechUtility, MECHA_ARMOR, MECHA_POWER, MECHA_UTILITY } from './data';
 
 const SelectedEquipment = (props, context) => {
   const { act, data } = useBackend<MechVendData>(context);
   const { equip_max, all_equipment, selected_equipment } = data;
-  const [showDesc, setShowDesc] = useLocalState<MechWeapon | null>(
-    context,
-    'showDesc',
-    null
-  );
   const selected_left = all_equipment.weapons.find(
     (o) => o.type === selected_equipment.mecha_l_arm
   );
@@ -174,6 +169,132 @@ const SelectedEquipment = (props, context) => {
   );
 };
 
+const EquipPanelContent = (props, context) => {
+  const [equipmentTab, setequipmentTab] = useLocalState(
+    context,
+    'equipmentTab',
+    equipTabs[0]
+  );
+  {
+    switch (equipmentTab) {
+      case 'Weapons':
+        return <WeaponsTab />;
+      case 'Power':
+        return <PowerTab />;
+      case 'Armor':
+        return <ArmorTab />;
+      case 'Utility':
+        return <UtilityTab />;
+      default:
+        return null;
+    }
+  }
+};
+
+const WeaponsTab = (props, context) => {
+  const { act, data } = useBackend<MechVendData>(context);
+  const { weapons } = data.all_equipment;
+  const midway = Math.ceil(weapons.length / 2);
+  const firstweapons = weapons.slice(0, midway);
+  const secondweapons = weapons.slice(midway);
+  return (
+    <Stack.Item>
+      <Stack>
+        <Stack.Item>
+          <WeaponModuleList listtoshow={firstweapons} />
+        </Stack.Item>
+        <Stack.Item>
+          <WeaponModuleList listtoshow={secondweapons} />
+        </Stack.Item>
+      </Stack>
+    </Stack.Item>
+  );
+};
+
+const PowerTab = (props, context) => {
+  const { act, data } = useBackend<MechVendData>(context);
+  const { all_equipment, selected_equipment, equip_max } = data;
+  return (
+    <Stack.Item>
+      <Section>
+        {all_equipment.power.map((module) => (
+          <Collapsible
+            key={module.type}
+            title={module.name}
+            buttons={
+              <Button
+                disabled={
+                  selected_equipment.mecha_power.length >=
+                  equip_max[MECHA_POWER]
+                }
+                onClick={() => act('add_power', { type: module.type })}>
+                Add
+              </Button>
+            }>
+            <Section title={'Description'}>{module.desc}</Section>
+          </Collapsible>
+        ))}
+      </Section>
+    </Stack.Item>
+  );
+};
+
+const ArmorTab = (props, context) => {
+  const { act, data } = useBackend<MechVendData>(context);
+  const { all_equipment, selected_equipment, equip_max } = data;
+  return (
+    <Stack.Item>
+      <Section>
+        {all_equipment.armor.map((module) => (
+          <Collapsible
+            key={module.type}
+            title={module.name}
+            buttons={
+              <Button
+                disabled={
+                  selected_equipment.mecha_armor.length >=
+                  equip_max[MECHA_ARMOR]
+                }
+                onClick={() => act('add_armor', { type: module.type })}>
+                Add
+              </Button>
+            }>
+            <Section title={'Description'}>{module.desc}</Section>
+          </Collapsible>
+        ))}
+      </Section>
+    </Stack.Item>
+  );
+};
+
+const UtilityTab = (props, context) => {
+  const { act, data } = useBackend<MechVendData>(context);
+  const { all_equipment, selected_equipment, equip_max } = data;
+  return (
+    <Stack.Item>
+      <Section>
+        {all_equipment.utility.map((module) => (
+          <Collapsible
+            key={module.type}
+            title={module.name}
+            buttons={
+              <Button
+                disabled={
+                  selected_equipment.mecha_utility.length >=
+                  equip_max[MECHA_UTILITY]
+                }
+                onClick={() => act('add_utility', { type: module.type })}>
+                Add
+              </Button>
+            }>
+            <Section title={'Description'}>{module.desc}</Section>
+          </Collapsible>
+        ))}
+      </Section>
+    </Stack.Item>
+  );
+};
+
 const WeaponModuleList = (props, context) => {
   const { act, data } = useBackend<MechVendData>(context);
   const { listtoshow } = props;
@@ -184,7 +305,7 @@ const WeaponModuleList = (props, context) => {
   );
   const { all_equipment, selected_equipment } = data;
   return (
-    <Section title={'Weapon modules'}>
+    <Section>
       {listtoshow.map((module) => {
         const ammoobject = all_equipment.ammo.find(
           (o) => o.ammo_type === module.ammo_type
@@ -257,88 +378,33 @@ const WeaponModuleList = (props, context) => {
 };
 
 export const MechWeapons = (props, context) => {
-  const { act, data } = useBackend<MechVendData>(context);
-  const [showDesc, setShowDesc] = useLocalState<MechWeapon | null>(
+  const [equipmentTab, setequipmentTab] = useLocalState(
     context,
-    'showDesc',
-    null
+    'equipmentTab',
+    ''
   );
-  const { all_equipment, selected_equipment, equip_max } = data;
-  const midway = Math.ceil(all_equipment.weapons.length / 2);
-  const firstweapons = all_equipment.weapons.slice(0, midway);
-  const secondweapons = all_equipment.weapons.slice(midway);
   return (
     <Stack>
       <Stack.Item>
         <SelectedEquipment />
       </Stack.Item>
       <Stack.Item>
-        <WeaponModuleList listtoshow={firstweapons} />
-      </Stack.Item>
-      <Stack.Item>
-        <WeaponModuleList listtoshow={secondweapons} />
-      </Stack.Item>
-      <Stack.Item>
-        <Section title={'Power modules'}>
-          {all_equipment.power.map((module) => (
-            <Collapsible
-              key={module.type}
-              title={module.name}
-              buttons={
-                <Button
-                  disabled={
-                    selected_equipment.mecha_power.length >=
-                    equip_max[MECHA_POWER]
-                  }
-                  onClick={() => act('add_power', { type: module.type })}>
-                  Add
-                </Button>
-              }>
-              <Section title={'Ammo'}>{module.desc}</Section>
-            </Collapsible>
-          ))}
-        </Section>
-      </Stack.Item>
-      <Stack.Item>
-        <Section title={'Armor modules'}>
-          {all_equipment.armor.map((module) => (
-            <Collapsible
-              key={module.type}
-              title={module.name}
-              buttons={
-                <Button
-                  disabled={
-                    selected_equipment.mecha_armor.length >=
-                    equip_max[MECHA_ARMOR]
-                  }
-                  onClick={() => act('add_armor', { type: module.type })}>
-                  Add
-                </Button>
-              }>
-              <Section title={'Description'}>{module.desc}</Section>
-            </Collapsible>
-          ))}
-        </Section>
-      </Stack.Item>
-      <Stack.Item>
-        <Section title={'Utility modules'}>
-          {all_equipment.utility.map((module) => (
-            <Collapsible
-              key={module.type}
-              title={module.name}
-              buttons={
-                <Button
-                  disabled={
-                    selected_equipment.mecha_utility.length >=
-                    equip_max[MECHA_UTILITY]
-                  }
-                  onClick={() => act('add_utility', { type: module.type })}>
-                  Add
-                </Button>
-              }>
-              <Section title={'Description'}>{module.desc}</Section>
-            </Collapsible>
-          ))}
+        <Section lineHeight={1.75} maxWidth={'1120px'} fontSize={'13px'}>
+          <Tabs fluid>
+            {equipTabs.map((tabname) => {
+              return (
+                <Tabs.Tab
+                  key={tabname}
+                  selected={tabname === equipmentTab}
+                  fontSize="130%"
+                  onClick={() => setequipmentTab(tabname)}>
+                  {tabname}
+                </Tabs.Tab>
+              );
+            })}
+          </Tabs>
+          <Divider />
+          <EquipPanelContent />
         </Section>
       </Stack.Item>
     </Stack>

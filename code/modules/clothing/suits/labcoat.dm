@@ -19,84 +19,84 @@
 		/obj/item/tank/emergency_oxygen,
 	)
 
-	verb/toggle()
-		set name = "Toggle Labcoat Buttons"
-		set category = "Object"
-		set src in usr
+/obj/item/clothing/suit/storage/labcoat/verb/toggle()
+	set name = "Toggle Labcoat Buttons"
+	set category = "Object"
+	set src in usr
 
-		if(!usr.canmove || usr.stat || usr.restrained())
-			return 0
+	if(!usr.canmove || usr.stat || usr.restrained())
+		return 0
 
-		//Why???
-		switch(icon_state)
-			if("labcoat_open")
-				src.icon_state = "labcoat"
-				src.item_state = "labcoat"
-				to_chat(usr, "You button up the labcoat.")
-			if("labcoat")
-				src.icon_state = "labcoat_open"
-				src.item_state = "labcoat_open"
-				to_chat(usr, "You unbutton the labcoat.")
-			if("labcoat_cmo_open")
-				src.icon_state = "labcoat_cmo"
-				src.item_state = "labcoat_cmo"
-				to_chat(usr, "You button up the labcoat.")
-			if("labcoat_cmo")
-				src.icon_state = "labcoat_cmo_open"
-				src.item_state = "labcoat_cmo_open"
-				to_chat(usr, "You unbutton the labcoat.")
-			if("labcoat_gen_open")
-				src.icon_state = "labcoat_gen"
-				src.item_state = "labcoat_gen"
-				to_chat(usr, "You button up the labcoat.")
-			if("labcoat_gen")
-				src.icon_state = "labcoat_gen_open"
-				src.item_state = "labcoat_gen_open"
-				to_chat(usr, "You unbutton the labcoat.")
-			if("labcoat_chem_open")
-				src.icon_state = "labcoat_chem"
-				src.item_state = "labcoat_chem"
-				to_chat(usr, "You button up the labcoat.")
-			if("labcoat_chem")
-				src.icon_state = "labcoat_chem_open"
-				src.item_state = "labcoat_chem_open"
-				to_chat(usr, "You unbutton the labcoat.")
-			if("labcoat_viro_open")
-				src.icon_state = "labcoat_viro"
-				src.item_state = "labcoat_viro"
-				to_chat(usr, "You button up the labcoat.")
-			if("labcoat_viro")
-				src.icon_state = "labcoat_viro_open"
-				src.item_state = "labcoat_viro_open"
-				to_chat(usr, "You unbutton the labcoat.")
-			if("labcoat_sci_open")
-				src.icon_state = "labcoat_sci"
-				src.item_state = "labcoat_sci"
-				to_chat(usr, "You button up the labcoat.")
-			if("labcoat_sci")
-				src.icon_state = "labcoat_sci_open"
-				src.item_state = "labcoat_sci_open"
-				to_chat(usr, "You unbutton the labcoat.")
-			if("labcoat_mad_open")
-				src.icon_state = "labcoat_mad"
-				src.item_state = "labcoat_mad"
-				to_chat(usr, "You button up the labcoat.")
-			if("labcoat_mad")
-				src.icon_state = "labcoat_mad_open"
-				src.item_state = "labcoat_mad_open"
-				to_chat(usr, "You unbutton the labcoat.")
-			if("labcoat_researcher_open")
-				src.icon_state = "labcoat_researcher"
-				src.item_state = "labcoat_researcher"
-				to_chat(usr, "You button up the labcoat.")
-			if("labcoat_researcher")
-				src.icon_state = "labcoat_researcher_open"
-				src.item_state = "labcoat_researcher_open"
-				to_chat(usr, "You unbutton the labcoat.")
-			else
-				to_chat(usr, "You attempt to button-up the velcro on your [src], before promptly realising how silly you are.")
-				return
-		update_clothing_icon()	//so our overlays update
+	//Why??? // the fact this todo was here with baycode should tell you how bad it is
+	switch(icon_state)
+		if("labcoat_open")
+			src.icon_state = "labcoat"
+			src.item_state = "labcoat"
+			to_chat(usr, "You button up the labcoat.")
+		if("labcoat")
+			src.icon_state = "labcoat_open"
+			src.item_state = "labcoat_open"
+			to_chat(usr, "You unbutton the labcoat.")
+		if("labcoat_cmo_open")
+			src.icon_state = "labcoat_cmo"
+			src.item_state = "labcoat_cmo"
+			to_chat(usr, "You button up the labcoat.")
+		if("labcoat_cmo")
+			src.icon_state = "labcoat_cmo_open"
+			src.item_state = "labcoat_cmo_open"
+			to_chat(usr, "You unbutton the labcoat.")
+		if("labcoat_gen_open")
+			src.icon_state = "labcoat_gen"
+			src.item_state = "labcoat_gen"
+			to_chat(usr, "You button up the labcoat.")
+		if("labcoat_gen")
+			src.icon_state = "labcoat_gen_open"
+			src.item_state = "labcoat_gen_open"
+			to_chat(usr, "You unbutton the labcoat.")
+		if("labcoat_chem_open")
+			src.icon_state = "labcoat_chem"
+			src.item_state = "labcoat_chem"
+			to_chat(usr, "You button up the labcoat.")
+		if("labcoat_chem")
+			src.icon_state = "labcoat_chem_open"
+			src.item_state = "labcoat_chem_open"
+			to_chat(usr, "You unbutton the labcoat.")
+		if("labcoat_viro_open")
+			src.icon_state = "labcoat_viro"
+			src.item_state = "labcoat_viro"
+			to_chat(usr, "You button up the labcoat.")
+		if("labcoat_viro")
+			src.icon_state = "labcoat_viro_open"
+			src.item_state = "labcoat_viro_open"
+			to_chat(usr, "You unbutton the labcoat.")
+		if("labcoat_sci_open")
+			src.icon_state = "labcoat_sci"
+			src.item_state = "labcoat_sci"
+			to_chat(usr, "You button up the labcoat.")
+		if("labcoat_sci")
+			src.icon_state = "labcoat_sci_open"
+			src.item_state = "labcoat_sci_open"
+			to_chat(usr, "You unbutton the labcoat.")
+		if("labcoat_mad_open")
+			src.icon_state = "labcoat_mad"
+			src.item_state = "labcoat_mad"
+			to_chat(usr, "You button up the labcoat.")
+		if("labcoat_mad")
+			src.icon_state = "labcoat_mad_open"
+			src.item_state = "labcoat_mad_open"
+			to_chat(usr, "You unbutton the labcoat.")
+		if("labcoat_researcher_open")
+			src.icon_state = "labcoat_researcher"
+			src.item_state = "labcoat_researcher"
+			to_chat(usr, "You button up the labcoat.")
+		if("labcoat_researcher")
+			src.icon_state = "labcoat_researcher_open"
+			src.item_state = "labcoat_researcher_open"
+			to_chat(usr, "You unbutton the labcoat.")
+		else
+			to_chat(usr, "You attempt to button-up the velcro on your [src], before promptly realising how silly you are.")
+			return
+	update_clothing_icon()	//so our overlays update
 
 /obj/item/clothing/suit/storage/labcoat/cmo
 	name = "chief medical officer's labcoat"

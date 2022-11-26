@@ -12,12 +12,12 @@
 		return
 
 	if(!glasses)
-		overlay_fullscreen("nearsighted", /obj/screen/fullscreen/impaired, 1)
+		overlay_fullscreen("nearsighted", /atom/movable/screen/fullscreen/impaired, 1)
 		return
 
 	var/obj/item/clothing/glasses/G = glasses
 	if(!G.prescription)
-		overlay_fullscreen("nearsighted", /obj/screen/fullscreen/impaired, 1)
+		overlay_fullscreen("nearsighted", /atom/movable/screen/fullscreen/impaired, 1)
 	else
 		clear_fullscreen("nearsighted")
 

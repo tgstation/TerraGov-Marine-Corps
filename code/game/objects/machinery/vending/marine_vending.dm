@@ -197,6 +197,7 @@
 			/obj/item/assembly/signaler = -1,
 			/obj/item/binoculars = -1,
 			/obj/item/compass = -1,
+			/obj/item/tool/hand_labeler = -1,
 		),
 	)
 
@@ -1238,7 +1239,6 @@
 	products = list(
 		"Standard" = list(
 			/obj/item/clothing/under/marine/robotic = -1,
-			/obj/item/clothing/under/marine = -1,
 			/obj/item/clothing/under/marine/standard = -1,
 			/obj/item/clothing/under/marine/camo = -1,
 			/obj/item/clothing/under/marine/camo/desert = -1,

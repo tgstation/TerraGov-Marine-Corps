@@ -8,6 +8,7 @@
 	jobworth = list(/datum/job/survivor/rambo = SURVIVOR_POINTS_REGULAR)
 	job_points_needed  = 10 //Redefined via config.
 	faction = FACTION_XENO
+	exp_type = EXP_TYPE_SPECIAL
 	html_description = {"
 		<b>Difficulty</b>: Variable<br /><br />
 		<b>You answer to the</b> acting Hive leader<br /><br />

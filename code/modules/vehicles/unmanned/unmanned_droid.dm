@@ -11,7 +11,7 @@
 	unmanned_flags = HAS_LIGHTS|OVERLAY_TURRET
 	/// Existing signal for Supply console.
 	var/datum/supply_beacon/beacon_datum
-	/// Action to activate suppply antenna. 
+	/// Action to activate suppply antenna.
 	var/datum/action/antenna/antenna
 	/// The mob controlling the droid remotely
 	var/datum/weakref/remote_user
@@ -35,7 +35,7 @@
 		remote_user = WEAKREF(user)
 		playsound(src, 'sound/machines/drone/weapons_engaged.ogg', 70)
 		START_PROCESSING(SSslowprocess, src)
-		user.overlay_fullscreen("machine", /obj/screen/fullscreen/machine)
+		user.overlay_fullscreen("machine", /atom/movable/screen/fullscreen/machine)
 		antenna.give_action(user)
 		RegisterSignal(user, COMSIG_UNMANNED_COORDINATES, .proc/activate_antenna)
 	else
