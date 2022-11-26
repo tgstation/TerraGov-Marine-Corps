@@ -351,6 +351,8 @@
 	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_ATTACHMENT))
 		AddElement(/datum/element/attachment, slot, icon, .proc/on_attach, .proc/on_detach, .proc/activate, .proc/can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, "firearms", SKILL_FIREARMS_DEFAULT, 'sound/machines/click.ogg')
 
+	RegisterSignal(src, COMSIG_ATTACHMENT_ATTACHED_TO_ITEM, .proc/attachment_attached)
+
 	muzzle_flash = new(src, muzzleflash_iconstate)
 
 	if(deployable_item)
@@ -1749,3 +1751,8 @@
 	playsound(loc, "alien_claw_metal", 25, 1)
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	to_chat(X, span_warning("We disable the metal thing's lights.") )
+
+/obj/item/weapon/gun/proc/attachment_attached(datum/source, obj/attachment, mob/attacher)
+	var/obj/item/weapon/gun/gun_attachment = attachment
+	if(isgun(attachment))
+		gunattachment = gun_attachment

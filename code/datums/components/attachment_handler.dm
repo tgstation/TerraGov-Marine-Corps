@@ -110,11 +110,6 @@
 
 	RegisterSignal(attachment, COMSIG_ATOM_UPDATE_ICON, .proc/update_parent_overlay)
 
-	var/obj/parent_obj = parent
-	//The gun has another gun attached to it
-	if(isgun(attachment) && isgun(parent))
-		parent_obj:gunattachment = attachment
-
 	on_attach?.Invoke(attachment, attacher)
 
 	if(attachment_data[ON_ATTACH])
@@ -125,6 +120,7 @@
 
 	update_parent_overlay()
 
+	var/obj/parent_obj = parent
 	var/mob/wearing_mob = parent_obj.loc
 	if(ismob(wearing_mob) && CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_APPLY_ON_MOB))
 		wearing_mob.regenerate_icons() //Theres probably a better way to do this.
