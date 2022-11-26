@@ -446,7 +446,7 @@
 		to_chat(user, span_warning("\the [paint] is out of color!"))
 		return
 
-	var/xmashat = tgui_input_list(user, "Do you want a xmas hat ?", "Pick Xmas hat color", list("None", "Red", "Green"))
+	var/xmashat = tgui_input_list(user, "Do you want a xmas hat?", "Pick Xmas hat color", list("None", "Red", "Green"))
 
 	switch(xmashat)
 		if("None")
