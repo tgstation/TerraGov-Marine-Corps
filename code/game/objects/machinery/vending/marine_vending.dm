@@ -1143,7 +1143,6 @@
 			/obj/item/clothing/suit/modular/xenonauten/heavy = -1,
 			/obj/item/clothing/suit/modular = -1,
 			/obj/item/clothing/suit/modular/xenonauten/rownin = -1,
-			/obj/item/clothing/suit/storage/marine/harness = -1,
 			/obj/item/clothing/suit/storage/marine/harness/cowboy = -1,
 			/obj/item/clothing/suit/storage/marine/cowboy = -1,
 			/obj/item/clothing/suit/modular/xenonauten/pilot = -1,
