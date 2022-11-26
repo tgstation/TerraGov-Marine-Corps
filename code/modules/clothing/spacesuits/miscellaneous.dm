@@ -37,6 +37,7 @@
 	icon_state = "elfhat"
 	soft_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 15, BIO = 10, FIRE = 10, ACID = 10)
 	flags_item = NODROP|DELONDROP
+	flags_armor_features = ARMOR_NO_DECAP
 
 /obj/item/clothing/suit/space/santa
 	name = "Santa's suit"
@@ -116,6 +117,7 @@
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	flags_inv_hide = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEALLHAIR
 	soft_armor = list(MELEE = 20, BULLET = 20, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 15, FIRE = 0, ACID = 5)
+	flags_armor_features = ARMOR_NO_DECAP
 
 /obj/item/clothing/head/helmet/space/compression
 	name = "\improper MK.50 compression helmet"
