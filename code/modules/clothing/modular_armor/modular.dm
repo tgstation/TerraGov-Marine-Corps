@@ -505,8 +505,7 @@
 	if(!new_color || !do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return
 
-	if(new_color)
-		set_greyscale_colors(new_color)
+	set_greyscale_colors(new_color)
 
 	paint.uses--
 	update_icon()
