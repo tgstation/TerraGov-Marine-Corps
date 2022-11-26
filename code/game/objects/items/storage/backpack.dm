@@ -404,14 +404,14 @@
 	item_state = "commander_cloak" //with thanks to Baystation12
 
 /obj/item/storage/backpack/marine/satchel/officer_cloak_red
-	name = "Officer Cloak - Red"
-	desc = "A dashing cloak as befitting an officer, with fancy red trim."
+	name = "Officer blue Cloak"
+	desc = "A dashing cloak as befitting an officer, with fancy blue trim."
 	icon_state = "officer_cloak_red" //with thanks to Baystation12
 	item_state = "officer_cloak_red" //with thanks to Baystation12
 
 /obj/item/storage/backpack/marine/satchel/captain_cloak_red
-	name = "Captain's Cloak - Red"
-	desc = "An opulent cloak detailed with your many accomplishments, with fancy red trim."
+	name = "Captain's blue Cloak"
+	desc = "An opulent cloak detailed with your many accomplishments, with fancy blue trim."
 	icon_state = "commander_cloak_red" //with thanks to Baystation12
 	item_state = "commander_cloak_red" //with thanks to Baystation12
 
