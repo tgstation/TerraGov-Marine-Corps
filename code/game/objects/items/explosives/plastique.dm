@@ -54,7 +54,33 @@
 		user.drop_held_item()
 		var/location
 		location = target
-		forceMove(location)
+		var/user_turf = get_turf(user)
+		if(isturf(target) && user_turf != (get_turf(target))) //we position the c4 differently so it can't be seen from the other side of the solid turf we're blowing up
+			forceMove(user_turf)
+			var/direction_to_target = get_dir(user_turf, target)
+			switch(direction_to_target)
+				if(NORTH)
+					pixel_y = 32
+				if(SOUTH)
+					pixel_y = -32
+				if(EAST)
+					pixel_x = 32
+				if(WEST)
+					pixel_x = -32
+				if(NORTHEAST)
+					pixel_x = 32
+					pixel_y = 32
+				if(NORTHWEST)
+					pixel_x = -32
+					pixel_y = 32
+				if(SOUTHEAST)
+					pixel_x = 32
+					pixel_y = -32
+				if(SOUTHWEST)
+					pixel_x = -32
+					pixel_y = -32
+		else
+			forceMove(location)
 		armed = TRUE
 
 		log_combat(user, target, "attached [src] to")
@@ -68,10 +94,7 @@
 		if(ismovableatom(plant_target))
 			var/atom/movable/T = plant_target
 			T.vis_contents += src
-		detonation_pending = addtimer(CALLBACK(src, .proc/detonate), timer*10, TIMER_STOPPABLE)
-		var/beeping_timer = ((timer*10) - 27)
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, get_turf(target), 'sound/items/countdown.ogg', 40, TRUE), beeping_timer)
-
+		detonation_pending = addtimer(CALLBACK(src, .proc/warning_sound, target, 'sound/items/countdown.ogg', 20, TRUE), ((timer*10) - 27), TIMER_STOPPABLE)
 
 /obj/item/explosive/plastique/attack(mob/M as mob, mob/user as mob, def_zone)
 	return
@@ -90,10 +113,10 @@
 		if(ismovableatom(plant_target))
 			var/atom/movable/T = plant_target
 			T.vis_contents -= src
-			forceMove(plant_target.loc)
-		else
-			forceMove(plant_target)
 
+		forceMove(get_turf(user))
+		pixel_y = 0
+		pixel_x = 0
 		deltimer(detonation_pending)
 
 		user.visible_message(span_warning("[user] disarmed [src] on [plant_target]!"),
@@ -110,14 +133,20 @@
 
 /obj/item/explosive/plastique/proc/detonate()
 	if(QDELETED(plant_target))
-		playsound(loc, 'sound/weapons/ring.ogg', 200, FALSE)
+		playsound(plant_target, 'sound/weapons/ring.ogg', 100, FALSE, 25)
 		explosion(plant_target, 0, 0, 0, 1)
 		qdel(src)
 		return
 	explosion(plant_target, 0, 0, 1, 0, 0, 1, 0, 1)
-	playsound(loc, pick('sound/effects/explosion_small1.ogg','sound/effects/explosion_small2.ogg','sound/effects/explosion_small3.ogg'), 100, FALSE, 25)
+	playsound(plant_target, sound(get_sfx("explosion_small")), 100, FALSE, 25)
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
-	smoke.set_up(smokeradius, loc, 2)
+	smoke.set_up(smokeradius, plant_target, 2)
 	smoke.start()
 	plant_target.ex_act(EXPLODE_DEVASTATE)
 	qdel(src)
+
+///Triggers a warning beep prior to the actual detonation, while also setting the actual detonation timer
+/obj/item/explosive/plastique/proc/warning_sound()
+	if(armed)
+		playsound(plant_target, 'sound/items/countdown.ogg', 20, TRUE, 5)
+		detonation_pending = addtimer(CALLBACK(src, .proc/detonate), 27, TIMER_STOPPABLE)

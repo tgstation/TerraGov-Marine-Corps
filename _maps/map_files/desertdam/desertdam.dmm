@@ -2695,11 +2695,11 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_labs)
 "apC" = (
-/obj/structure/shuttle/window,
 /obj/machinery/door/poddoor/shutters/mainship/open{
 	id = "vehicle1door";
 	name = "Shutters"
 	},
+/obj/structure/window/framed/mainship/canterbury,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/tri_trans1/alpha)
 "apG" = (
@@ -6625,9 +6625,7 @@
 /area/desert_dam/exterior/valley/valley_labs)
 "aMP" = (
 /obj/effect/turf_overlay/shuttle/heater,
-/turf/closed/wall/sulaco{
-	color = "#e0e0e0"
-	},
+/turf/closed/shuttle/escapeshuttle,
 /area/desert_dam/interior/dam_interior/hanger)
 "aMV" = (
 /obj/effect/decal/cleanable/dirt,
@@ -6895,11 +6893,11 @@
 	},
 /area/desert_dam/building/warehouse/loading)
 "aOX" = (
-/obj/structure/shuttle/window,
 /obj/machinery/door/poddoor/shutters/mainship/open{
 	id = "vehicle1door";
 	name = "Shutters"
 	},
+/obj/structure/window/framed/mainship/canterbury,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/tri_trans2/alpha)
 "aPa" = (
@@ -7605,7 +7603,6 @@
 /area/desert_dam/exterior/valley/south_valley_dam)
 "aUv" = (
 /obj/machinery/atm{
-	name = "NanoTrasen Automatic Teller Machine";
 	pixel_y = 30
 	},
 /turf/open/floor/prison/red{
@@ -10209,7 +10206,9 @@
 	},
 /area/desert_dam/building/water_treatment_two/lobby)
 "bjA" = (
-/obj/machinery/door/airlock/unpowered/shuttle,
+/obj/machinery/door/airlock/engineering/evac{
+	dir = 1
+	},
 /turf/open/shuttle/dropship/fourteen,
 /area/desert_dam/interior/dam_interior/hanger)
 "bjB" = (
@@ -18756,9 +18755,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/interior/dam_interior/south_tunnel)
 "chl" = (
-/turf/closed/wall/sulaco{
-	color = "#e0e0e0"
-	},
+/turf/closed/shuttle/escapeshuttle,
 /area/shuttle/tri_trans2/alpha)
 "chm" = (
 /obj/structure/platform{
@@ -25384,7 +25381,6 @@
 /area/desert_dam/building/hydroponics/hydroponics_breakroom)
 "cTP" = (
 /obj/machinery/atm{
-	name = "NanoTrasen Automatic Teller Machine";
 	pixel_y = 30
 	},
 /turf/open/floor/prison/sterilewhite,
@@ -28174,7 +28170,6 @@
 /area/desert_dam/building/dorms/hallway_northwing)
 "dxj" = (
 /obj/machinery/atm{
-	name = "NanoTrasen Automatic Teller Machine";
 	pixel_y = 30
 	},
 /turf/open/floor/prison/green/corner{
@@ -29461,7 +29456,6 @@
 /area/desert_dam/building/dorms/pool)
 "dIM" = (
 /obj/machinery/atm{
-	name = "NanoTrasen Automatic Teller Machine";
 	pixel_y = 30
 	},
 /obj/structure/cable,
@@ -42387,9 +42381,7 @@
 /area/desert_dam/interior/dam_interior/tech_storage)
 "kEs" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/closed/wall/sulaco{
-	color = "#e0e0e0"
-	},
+/turf/closed/shuttle/escapeshuttle,
 /area/desert_dam/interior/dam_interior/hanger)
 "kEX" = (
 /obj/structure/window/framed/colony/reinforced,
@@ -42441,6 +42433,12 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_civilian)
+"kFS" = (
+/obj/machinery/door/airlock/engineering/evac{
+	dir = 8
+	},
+/turf/open/shuttle/dropship/fourteen,
+/area/desert_dam/interior/dam_interior/hanger)
 "kFT" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -51544,9 +51542,7 @@
 /area/desert_dam/building/hydroponics/hydroponics)
 "pJo" = (
 /obj/effect/turf_underlay/shuttle/floor6,
-/turf/closed/wall/sulaco{
-	color = "#e0e0e0"
-	},
+/turf/closed/shuttle/escapeshuttle,
 /area/desert_dam/interior/dam_interior/hanger)
 "pJq" = (
 /turf/open/floor/plating/warning{
@@ -52267,9 +52263,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/building/hydroponics/hydroponics)
 "qbS" = (
-/turf/closed/wall/sulaco{
-	color = "#e0e0e0"
-	},
+/turf/closed/shuttle/escapeshuttle,
 /area/desert_dam/interior/dam_interior/hanger)
 "qcc" = (
 /obj/structure/table/reinforced,
@@ -60328,7 +60322,6 @@
 /area/desert_dam/interior/dam_interior/south_tunnel)
 "uCR" = (
 /obj/machinery/atm{
-	name = "NanoTrasen Automatic Teller Machine";
 	pixel_y = 30
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -64316,9 +64309,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/desert_dam/exterior/valley/valley_crashsite)
 "wNs" = (
-/turf/closed/wall/sulaco{
-	color = "#e0e0e0"
-	},
+/turf/closed/shuttle/escapeshuttle,
 /area/shuttle/tri_trans1/alpha)
 "wNu" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -66077,9 +66068,7 @@
 /obj/effect/turf_overlay/shuttle/platform{
 	dir = 1
 	},
-/turf/closed/wall/sulaco{
-	color = "#e0e0e0"
-	},
+/turf/closed/shuttle/escapeshuttle,
 /area/desert_dam/interior/dam_interior/hanger)
 "xKd" = (
 /obj/structure/disposalpipe/segment,
@@ -72566,7 +72555,7 @@ qbS
 qbS
 qbS
 qbS
-bjA
+kFS
 qbS
 qbS
 cgw
@@ -73502,7 +73491,7 @@ qbS
 qbS
 qbS
 qbS
-bjA
+kFS
 qbS
 qbS
 bhP

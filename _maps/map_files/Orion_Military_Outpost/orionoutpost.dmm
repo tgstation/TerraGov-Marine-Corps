@@ -144,8 +144,8 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/canteen)
 "bc" = (
-/obj/structure/desertdam/decals/road/edge{
-	icon_state = "road_edge_decal1"
+/obj/structure/desertdam/decals/road{
+	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outposts)
@@ -343,12 +343,6 @@
 	icon_state = "stan25"
 	},
 /area/orion_outpost/surface/building/crashedufo)
-"cf" = (
-/obj/structure/window/framed/mainship/spaceworthy{
-	icon_state = "col_window1"
-	},
-/turf/open/floor/mainship_hull,
-/area/orion_outpost/surface/building/tadpolepad)
 "cg" = (
 /obj/structure/flora/ausbushes/reedbush,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -387,7 +381,7 @@
 /area/orion_outpost/surface/building/cargo)
 "cq" = (
 /obj/structure/desertdam/decals/road/edge{
-	icon_state = "road_edge_decal8"
+	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostw)
@@ -464,9 +458,8 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outpostse)
 "cT" = (
-/obj/structure/desertdam/decals/road/stop{
-	dir = 1;
-	icon_state = "stop_decal5"
+/obj/structure/desertdam/decals/road/line{
+	dir = 1
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostse)
@@ -570,11 +563,10 @@
 /turf/open/ground/grasspatch/grassyellow,
 /area/orion_outpost/ground/outposts)
 "dw" = (
-/obj/structure/desertdam/decals/road/stop{
-	dir = 1;
-	icon_state = "stop_decal5"
-	},
 /obj/effect/landmark/weed_node,
+/obj/structure/desertdam/decals/road/line{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostw)
 "dx" = (
@@ -1090,12 +1082,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/cargo)
-"gb" = (
-/obj/structure/window/framed/mainship/spaceworthy{
-	icon_state = "col_window12"
-	},
-/turf/open/floor/mainship_hull,
-/area/orion_outpost/surface/building/tadpolepad)
 "gc" = (
 /obj/structure/platform_decoration{
 	dir = 4
@@ -1153,12 +1139,6 @@
 /obj/machinery/autodoc_console,
 /turf/open/floor/mainship/sterile/dark,
 /area/orion_outpost/surface/building/medbay)
-"gp" = (
-/obj/structure/window/framed/mainship/spaceworthy{
-	icon_state = "col_window1"
-	},
-/turf/open/floor/mainship_hull,
-/area/orion_outpost/ground/outpostse)
 "gq" = (
 /obj/structure/cargo_container/hd,
 /turf/open/floor/mainship/mono,
@@ -1330,9 +1310,8 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/command)
 "hx" = (
-/obj/structure/desertdam/decals/road/stop{
-	dir = 1;
-	icon_state = "stop_decal5"
+/obj/structure/desertdam/decals/road/line{
+	dir = 1
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outposts)
@@ -1488,8 +1467,8 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/cargo)
 "it" = (
-/obj/structure/desertdam/decals/road/edge{
-	icon_state = "road_edge_decal1"
+/obj/structure/desertdam/decals/road{
+	dir = 8
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/concrete,
@@ -1534,12 +1513,6 @@
 /obj/item/storage/firstaid/adv,
 /turf/open/floor/mainship/sterile/corner,
 /area/orion_outpost/surface/building/medbay)
-"iD" = (
-/obj/structure/window/framed/mainship/spaceworthy{
-	icon_state = "col_window12"
-	},
-/turf/open/floor/mainship_hull,
-/area/orion_outpost/ground/outpostse)
 "iJ" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer3/laptop,
@@ -1674,12 +1647,6 @@
 /obj/structure/sink,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/canteen)
-"jr" = (
-/obj/structure/window/framed/mainship/spaceworthy{
-	icon_state = "col_window6"
-	},
-/turf/open/floor/mainship_hull,
-/area/orion_outpost/ground/outpostse)
 "js" = (
 /obj/machinery/cic_maptable,
 /turf/open/floor/mainship/mono,
@@ -2237,8 +2204,8 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/bunker)
 "ma" = (
-/obj/structure/desertdam/decals/road/edge{
-	icon_state = "road_edge_decal4"
+/obj/structure/desertdam/decals/road{
+	dir = 1
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
@@ -2326,9 +2293,7 @@
 /area/orion_outpost/surface/building/administration)
 "mu" = (
 /obj/structure/cable,
-/turf/open/floor/plating/ground/desertdam/grate{
-	icon_state = "catwalk-223"
-	},
+/turf/open/floor/plating/ground/desertdam/grate/alternate,
 /area/orion_outpost/surface/building/engineering)
 "mw" = (
 /obj/structure/platform{
@@ -2428,13 +2393,12 @@
 	},
 /area/orion_outpost/surface/building/crashedufo)
 "mX" = (
-/obj/structure/desertdam/decals/road/stop{
-	dir = 8;
-	icon_state = "stop_decal5"
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
+	},
+/obj/structure/desertdam/decals/road/line{
+	dir = 1
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostnw)
@@ -2609,9 +2573,8 @@
 	},
 /area/orion_outpost/surface/building/armory)
 "nF" = (
-/obj/structure/desertdam/decals/road/stop{
-	dir = 8;
-	icon_state = "stop_decal5"
+/obj/structure/desertdam/decals/road/line{
+	dir = 1
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostnw)
@@ -2898,9 +2861,7 @@
 /turf/open/floor/plating/ground/concrete/lines,
 /area/orion_outpost/surface/building/vehicledepot)
 "pc" = (
-/turf/open/floor/plating/ground/desertdam/grate{
-	icon_state = "catwalk-223"
-	},
+/turf/open/floor/plating/ground/desertdam/grate/alternate,
 /area/orion_outpost/surface/building/engineering)
 "pe" = (
 /obj/structure/cable,
@@ -2999,9 +2960,7 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/command)
 "pz" = (
-/obj/structure/desertdam/decals/road/edge{
-	icon_state = "road_edge_decal9"
-	},
+/obj/structure/desertdam/decals/road/edge/long,
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outposts)
 "pB" = (
@@ -3230,11 +3189,10 @@
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/surface/building/cargo)
 "qA" = (
-/obj/structure/desertdam/decals/road/stop{
-	dir = 4;
-	icon_state = "stop_decal5"
-	},
 /obj/effect/landmark/weed_node,
+/obj/structure/desertdam/decals/road/line{
+	dir = 4
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outposte)
 "qB" = (
@@ -3585,11 +3543,10 @@
 	},
 /area/orion_outpost/ground/outpostcent)
 "sk" = (
-/obj/structure/desertdam/decals/road/stop{
-	dir = 4;
-	icon_state = "stop_decal5"
-	},
 /obj/structure/cable,
+/obj/structure/desertdam/decals/road/line{
+	dir = 4
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/surface/building/vehicledepot)
 "sl" = (
@@ -3766,17 +3723,14 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/bunker)
 "sZ" = (
-/obj/structure/desertdam/decals/road/stop{
-	dir = 1;
-	icon_state = "stop_decal5"
-	},
 /obj/structure/cable,
+/obj/structure/desertdam/decals/road/line{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostw)
 "ta" = (
-/obj/structure/desertdam/decals/road/edge{
-	icon_state = "road_edge_decal9"
-	},
+/obj/structure/desertdam/decals/road/edge/long,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostw)
@@ -4351,7 +4305,7 @@
 /area/orion_outpost/surface/building/atc)
 "wj" = (
 /obj/structure/desertdam/decals/road/edge{
-	icon_state = "road_edge_decal7"
+	dir = 1
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostw)
@@ -4531,9 +4485,7 @@
 /turf/open/floor/wood,
 /area/orion_outpost/surface/building/barracks)
 "xj" = (
-/obj/structure/showcase{
-	icon_state = "broadcaster_send"
-	},
+/obj/structure/prop/mainship/telecomms,
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
@@ -4962,7 +4914,7 @@
 /turf/open/floor/plating/dmg1,
 /area/orion_outpost/ground/outpostse)
 "zx" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 4
 	},
@@ -4978,7 +4930,7 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/armory)
 "zB" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/plating/ground/concrete/lines,
 /area/orion_outpost/surface/building/cargo)
 "zC" = (
@@ -5229,8 +5181,8 @@
 /turf/open/ground/grasspatch/grassyellow,
 /area/orion_outpost/ground/outpostse)
 "AU" = (
-/obj/structure/desertdam/decals/road/edge{
-	icon_state = "road_edge_decal4"
+/obj/structure/desertdam/decals/road{
+	dir = 1
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outposts)
@@ -5341,12 +5293,6 @@
 /obj/effect/spawner/random/gun/rifles,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/engineering)
-"BC" = (
-/obj/structure/window/framed/mainship/spaceworthy{
-	icon_state = "col_window6"
-	},
-/turf/open/floor/mainship_hull,
-/area/orion_outpost/surface/building/tadpolepad)
 "BD" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
@@ -5501,7 +5447,7 @@
 /turf/open/ground/grasspatch/grassyellow,
 /area/orion_outpost/ground/outposts)
 "Cp" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 5
 	},
@@ -5601,9 +5547,7 @@
 /area/orion_outpost/ground/outpostnw)
 "CJ" = (
 /obj/effect/spawner/random/gun/rifles,
-/turf/open/floor/plating/ground/desertdam/grate{
-	icon_state = "catwalk-223"
-	},
+/turf/open/floor/plating/ground/desertdam/grate/alternate,
 /area/orion_outpost/surface/building/engineering)
 "CK" = (
 /obj/effect/decal/cleanable/blood,
@@ -5687,9 +5631,7 @@
 /turf/open/floor/mainship/blue,
 /area/orion_outpost/surface/building/administration)
 "Dk" = (
-/obj/structure/desertdam/decals/road/edge{
-	icon_state = "road_edge_decal9"
-	},
+/obj/structure/desertdam/decals/road/edge/long,
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostw)
 "Dl" = (
@@ -5988,9 +5930,7 @@
 /area/orion_outpost/surface/building/medbay)
 "ES" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/desertdam/grate{
-	icon_state = "catwalk-223"
-	},
+/turf/open/floor/plating/ground/desertdam/grate/alternate,
 /area/orion_outpost/surface/building/engineering)
 "ET" = (
 /obj/machinery/camera/autoname/lz_camera,
@@ -6127,8 +6067,7 @@
 /area/orion_outpost/surface/building/administration)
 "FL" = (
 /obj/effect/attach_point/weapon/dropship1{
-	dir = 8;
-	icon_state = "equip_base_l_wing"
+	dir = 8
 	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
@@ -6502,8 +6441,7 @@
 /area/orion_outpost/surface/building/monitor)
 "HG" = (
 /obj/effect/attach_point/weapon/dropship1{
-	dir = 8;
-	icon_state = "equip_base_l_wing"
+	dir = 8
 	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
@@ -6621,9 +6559,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostw)
 "Iq" = (
-/obj/structure/window/framed/mainship/spaceworthy{
-	icon_state = "col_window10"
-	},
+/obj/structure/window/framed/colony,
 /turf/open/floor/mainship_hull,
 /area/orion_outpost/surface/building/tadpolepad)
 "Ir" = (
@@ -7051,8 +6987,8 @@
 	},
 /area/orion_outpost/surface/landing_pad_2)
 "KA" = (
-/obj/structure/desertdam/decals/road/edge{
-	icon_state = "road_edge_decal10"
+/obj/structure/desertdam/decals/road/edge/long{
+	dir = 1
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostw)
@@ -7153,9 +7089,7 @@
 	},
 /area/orion_outpost/surface/building/administration)
 "Ld" = (
-/obj/structure/showcase{
-	icon_state = "broadcaster_send"
-	},
+/obj/structure/prop/mainship/telecomms,
 /turf/open/floor/mainship/black{
 	dir = 10
 	},
@@ -7251,8 +7185,8 @@
 	},
 /area/orion_outpost/surface/building/vehicledepot)
 "Lv" = (
-/obj/structure/desertdam/decals/road/edge{
-	icon_state = "road_edge_decal2"
+/obj/structure/desertdam/decals/road{
+	dir = 4
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostw)
@@ -7296,8 +7230,8 @@
 	},
 /area/orion_outpost/surface/building/command)
 "LE" = (
-/obj/structure/desertdam/decals/road/edge{
-	icon_state = "road_edge_decal2"
+/obj/structure/desertdam/decals/road{
+	dir = 4
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outposts)
@@ -7384,8 +7318,8 @@
 /turf/closed/mineral/smooth,
 /area/orion_outpost/ground/outpostw)
 "Mg" = (
-/obj/structure/desertdam/decals/road/edge{
-	icon_state = "road_edge_decal4"
+/obj/structure/desertdam/decals/road{
+	dir = 1
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostw)
@@ -7425,8 +7359,8 @@
 	},
 /area/orion_outpost/ground/outpostse)
 "Ms" = (
-/obj/structure/desertdam/decals/road/edge{
-	icon_state = "road_edge_decal1"
+/obj/structure/desertdam/decals/road{
+	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostw)
@@ -7553,9 +7487,7 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/command)
 "Nb" = (
-/obj/structure/desertdam/decals/road/edge{
-	icon_state = "road_edge_decal9"
-	},
+/obj/structure/desertdam/decals/road/edge/long,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outposts)
@@ -7622,9 +7554,7 @@
 	},
 /area/orion_outpost/surface/building/prep)
 "Np" = (
-/obj/structure/showcase{
-	icon_state = "bus"
-	},
+/obj/structure/prop/mainship/telecomms/bus,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -7877,8 +7807,8 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/surface/building/vehicledepot)
 "OA" = (
-/obj/structure/desertdam/decals/road/edge{
-	icon_state = "road_edge_decal2"
+/obj/structure/desertdam/decals/road{
+	dir = 4
 	},
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/concrete,
@@ -7905,12 +7835,11 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/administration)
 "OF" = (
-/obj/structure/desertdam/decals/road/stop{
-	dir = 1;
-	icon_state = "stop_decal5"
-	},
 /obj/effect/landmark/corpsespawner/marine,
 /obj/effect/decal/cleanable/blood,
+/obj/structure/desertdam/decals/road/line{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostse)
 "OG" = (
@@ -8106,9 +8035,7 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/ammodepot)
 "PD" = (
-/obj/structure/window/framed/mainship/spaceworthy{
-	icon_state = "col_window10"
-	},
+/obj/structure/window/framed/colony,
 /turf/open/floor/mainship_hull,
 /area/orion_outpost/ground/outpostse)
 "PE" = (
@@ -8404,9 +8331,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/ground/outpostcent)
 "Rn" = (
-/obj/structure/desertdam/decals/road/stop{
-	dir = 4;
-	icon_state = "stop_decal5"
+/obj/structure/desertdam/decals/road/line{
+	dir = 4
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outposte)
@@ -8816,9 +8742,8 @@
 	},
 /area/orion_outpost/surface/building/barracks)
 "Ts" = (
-/obj/structure/desertdam/decals/road/stop{
-	dir = 4;
-	icon_state = "stop_decal5"
+/obj/structure/desertdam/decals/road/line{
+	dir = 4
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostsw)
@@ -9021,7 +8946,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/surface/building/vehicledepot)
 "Uv" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 10
 	},
@@ -9165,12 +9090,11 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/command)
 "Vg" = (
-/obj/structure/desertdam/decals/road/stop{
-	dir = 4;
-	icon_state = "stop_decal5"
-	},
 /obj/structure/cable,
 /obj/effect/spawner/random/gun/rifles,
+/obj/structure/desertdam/decals/road/line{
+	dir = 4
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/surface/building/vehicledepot)
 "Vh" = (
@@ -9444,9 +9368,8 @@
 	},
 /area/orion_outpost/surface/building/cargo)
 "Ww" = (
-/obj/structure/desertdam/decals/road/stop{
-	dir = 1;
-	icon_state = "stop_decal5"
+/obj/structure/desertdam/decals/road/line{
+	dir = 1
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostw)
@@ -9908,8 +9831,8 @@
 /turf/closed/mineral/smooth/indestructible,
 /area/orion_outpost/ground/outpostsw)
 "Za" = (
-/obj/structure/desertdam/decals/road/edge{
-	icon_state = "road_edge_decal10"
+/obj/structure/desertdam/decals/road/edge/long{
+	dir = 1
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outposts)
@@ -9954,11 +9877,10 @@
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/surface/landing_pad2_external)
 "Zk" = (
-/obj/structure/desertdam/decals/road/stop{
-	dir = 4;
-	icon_state = "stop_decal5"
-	},
 /obj/machinery/door/poddoor/mainship/open,
+/obj/structure/desertdam/decals/road/line{
+	dir = 4
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/surface/building/vehicledepot)
 "Zl" = (
@@ -21825,8 +21747,8 @@ aQ
 sF
 QV
 Nn
-BC
-cf
+Iq
+Iq
 Ab
 HQ
 Ql
@@ -21957,7 +21879,7 @@ aQ
 Tu
 uH
 Nn
-gb
+Iq
 iS
 pw
 Kk
@@ -22090,7 +22012,7 @@ Hw
 ot
 Nn
 Iq
-cf
+Iq
 Ah
 OJ
 OJ
@@ -23558,8 +23480,8 @@ qi
 VX
 Tm
 Tm
-jr
-gp
+PD
+PD
 KU
 qu
 Rk
@@ -23690,7 +23612,7 @@ el
 Dg
 Tm
 Tm
-iD
+PD
 Yg
 HB
 Jk
@@ -23823,7 +23745,7 @@ kN
 Tm
 Tm
 PD
-gp
+PD
 VS
 cs
 lf

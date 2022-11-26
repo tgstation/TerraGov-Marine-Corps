@@ -33,7 +33,7 @@ SUBSYSTEM_DEF(input)
 	for(var/i in 1 to length(clients))
 		var/client/user = clients[i]
 		user.set_macros()
-		user.update_movement_keys()
+		user.update_special_keybinds()
 
 /datum/controller/subsystem/input/fire()
 	for(var/mob/user as anything in GLOB.player_list)

@@ -1,0 +1,5 @@
+author: "Penwin0"
+delete-after: True
+changes:
+  - bugfix: "Drone link is now removed on death"
+  - bugfix: "Drone link removal by alt-use of the link ability now works"

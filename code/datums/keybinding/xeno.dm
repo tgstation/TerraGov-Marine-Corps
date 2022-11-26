@@ -40,6 +40,13 @@
 	description = "Builds whatever you’ve selected with (choose resin structure) on your tile."
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN
 
+/datum/keybinding/xeno/place_acid_well
+	name = "place_acid_well"
+	full_name = "Place acid well"
+	description = "Builds acid well on your tile."
+	keybind_signal = COMSIG_XENOABILITY_PLACE_ACID_WELL
+	hotkey_keys = list("G")
+
 /datum/keybinding/xeno/emit_recovery
 	name = "emit_recovery"
 	full_name = "Emit Recovery Pheromones"
@@ -106,12 +113,29 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_POUNCE
 
+/datum/keybinding/xeno/essence_link
+	name = "essence_link"
+	full_name = "Drone: Essence Link"
+	description = "Establish a link of plasma with a sister."
+	keybind_signal = COMSIG_XENOABILITY_ESSENCE_LINK
+
+/datum/keybinding/xeno/essence_link_remove
+	name = "essence_link_remove"
+	full_name = "Drone: End Essence Link"
+	description = "Forcibly end an Essence Link."
+	keybind_signal = COMSIG_XENOABILITY_ESSENCE_LINK_REMOVE
+
+/datum/keybinding/xeno/enhancement
+	name = "enhancement"
+	full_name = "Drone: Enhancement"
+	description = "Using an Essence Link, increase a sister's capabilities beyond their limits."
+	keybind_signal = COMSIG_XENOABILITY_ENHANCEMENT
+
 /datum/keybinding/xeno/nurogasnade
 	name = "neurogas"
 	full_name = "Sentinel: Neurogas Grenade"
 	description = "Throws a gas emitting grenade at the targetted area"
 	keybind_signal = COMSIG_XENOABILITY_NEUROGAS_GRENADE
-
 
 /datum/keybinding/xeno/plow_charge
 	name = "plow_charge"
@@ -166,6 +190,12 @@
 	full_name = "Carrier: Throw Hugger"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_THROW_HUGGER
+
+/datum/keybinding/xeno/call_younger
+	name = "call_younger"
+	full_name = "Carrier: Call of Younger"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_CALL_YOUNGER
 
 /datum/keybinding/xeno/place_trap
 	name = "place_trap"
@@ -668,13 +698,13 @@
 
 /datum/keybinding/xeno/sow
 	name = "sow"
-	full_name = "Drone : Sow"
+	full_name = "Hivelord : Sow"
 	description = "Plant the seeds of an alien plant."
 	keybind_signal = COMSIG_XENOABILITY_DROP_PLANT
 
 /datum/keybinding/xeno/sow_select_plant
 	name = "choose_plant"
-	full_name = "Drone : Choose plant"
+	full_name = "Hivelord : Choose plant"
 	description = "Pick what type of plant to sow."
 	keybind_signal = COMSIG_XENOABILITY_CHOOSE_PLANT
 

@@ -1,0 +1,4 @@
+author: "Zar000"
+delete-after: True
+changes:
+  - balance: "leash ball hp 25->75"

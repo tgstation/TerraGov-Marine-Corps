@@ -29,6 +29,7 @@
 	barefootstep = FOOTSTEP_WATER
 	mediumxenofootstep = FOOTSTEP_WATER
 	heavyxenofootstep = FOOTSTEP_WATER
+	minimap_color = MINIMAP_WATER
 
 /obj/effect/river_overlay
 	name = "river_overlay"
@@ -51,12 +52,9 @@
 	if(iscarbon(arrived))
 		var/mob/living/carbon/C = arrived
 		var/river_slowdown = 1.75
+		C.clean_mob()
 
-		if(ishuman(C))
-			var/mob/living/carbon/human/H = C
-			cleanup(H)
-
-		else if(isxeno(C))
+		if(isxeno(C))
 			if(!isxenoboiler(C))
 				river_slowdown = 1.3
 			else
@@ -66,21 +64,6 @@
 			C.ExtinguishMob()
 
 		C.next_move_slowdown += river_slowdown
-
-
-/turf/open/ground/river/proc/cleanup(mob/living/carbon/human/H)
-	if(H.back?.clean_blood())
-		H.update_inv_back()
-	if(H.wear_suit?.clean_blood())
-		H.update_inv_wear_suit()
-	if(H.w_uniform?.clean_blood())
-		H.update_inv_w_uniform()
-	if(H.gloves?.clean_blood())
-		H.update_inv_gloves()
-	if(H.shoes?.clean_blood())
-		H.update_inv_shoes()
-	H.clean_blood()
-
 
 /turf/open/ground/river/poison/Initialize()
 	. = ..()

@@ -50,11 +50,12 @@
 			ability.sound_loop.stop(chassis)
 	//tgmc end
 	if(chassis.leg_overload_mode)
-		chassis.move_delay = min(1, round(chassis.move_delay * 0.5))
+		chassis.speed_mod = min(chassis.move_delay-1, round(chassis.move_delay * 0.5))
+		chassis.move_delay -= chassis.speed_mod
 		chassis.step_energy_drain = max(chassis.overload_step_energy_drain_min,chassis.step_energy_drain*chassis.leg_overload_coeff)
 		chassis.balloon_alert(owner,"leg actuators overloaded")
 	else
-		chassis.move_delay = initial(chassis.move_delay)
+		chassis.move_delay += chassis.speed_mod
 		chassis.step_energy_drain = chassis.normal_step_energy_drain
 		chassis.balloon_alert(owner, "you disable the overload")
 	update_button_icon()

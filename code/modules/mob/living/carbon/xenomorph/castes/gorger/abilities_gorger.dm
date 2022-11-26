@@ -133,7 +133,7 @@
 	target_human.apply_damage(damage = 4, damagetype = BRUTE, def_zone = BODY_ZONE_HEAD, blocked = 0, sharp = TRUE, edge = FALSE, updating_health = TRUE);\
 \
 	var/drain_healing = GORGER_DRAIN_HEAL;\
-	HEAL_XENO_DAMAGE(owner_xeno, drain_healing);\
+	HEAL_XENO_DAMAGE(owner_xeno, drain_healing, TRUE);\
 	adjustOverheal(owner_xeno, drain_healing);\
 	owner_xeno.gain_plasma(owner_xeno.xeno_caste.drain_plasma_gain)
 
@@ -210,7 +210,7 @@
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	var/mob/living/carbon/xenomorph/target_xeno = target
 	var/heal_amount = target_xeno.maxHealth * GORGER_TRANSFUSION_HEAL
-	HEAL_XENO_DAMAGE(target_xeno, heal_amount)
+	HEAL_XENO_DAMAGE(target_xeno, heal_amount, FALSE)
 	adjustOverheal(target_xeno, heal_amount)
 	if(target_xeno.overheal)
 		target_xeno.balloon_alert(owner_xeno, "Overheal: [target_xeno.overheal]/[target_xeno.xeno_caste.overheal_max]")
@@ -244,6 +244,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REJUVENATE,
 	)
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	use_state_flags = XACT_USE_STAGGERED
 
 /datum/action/xeno_action/activable/rejuvenate/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
@@ -410,6 +411,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FEAST,
 	)
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	use_state_flags = XACT_USE_STAGGERED
 
 /datum/action/xeno_action/activable/feast/can_use_ability(atom/target, silent, override_flags)
 	. = ..()

@@ -24,12 +24,12 @@ GLOBAL_LIST_EMPTY(surgery_steps)
 	var/can_infect = 0 //Evil infection stuff that will make everyone hate me
 	var/blood_level = 0 //How much blood this step can get on surgeon. 1 - hands, 2 - full body
 
-	//Returns how well tool is suited for this step
-	proc/tool_quality(obj/item/tool)
-		for(var/T in allowed_tools)
-			if(istype(tool, T))
-				return allowed_tools[T]
-		return 0
+///Returns how well tool is suited for this step
+/datum/surgery_step/proc/tool_quality(obj/item/tool)
+	for(var/T in allowed_tools)
+		if(istype(tool, T))
+			return allowed_tools[T]
+	return 0
 
 //Checks if this step applies to the user mob at all
 /datum/surgery_step/proc/is_valid_target(mob/living/carbon/target)
@@ -71,7 +71,8 @@ GLOBAL_LIST_EMPTY(surgery_steps)
 /datum/surgery_step/proc/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	return null
 
-proc/spread_germs_to_organ(datum/limb/E, mob/living/carbon/human/user)
+//TODO why is this not a proc on the actual limb??
+/proc/spread_germs_to_organ(datum/limb/E, mob/living/carbon/human/user)
 	if(!istype(user) || !istype(E))
 		return
 
@@ -110,7 +111,7 @@ proc/spread_germs_to_organ(datum/limb/E, mob/living/carbon/human/user)
 		E.germ_level += 100
 
 
-proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
+/proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 	if(!istype(M))
 		return FALSE
 	if(user.a_intent == INTENT_HARM) //Check for Hippocratic Oath

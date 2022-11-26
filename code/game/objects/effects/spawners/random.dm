@@ -669,7 +669,7 @@
 	)
 
 //random rifles
-obj/effect/spawner/random_set/rifle
+/obj/effect/spawner/random_set/rifle
 	name = "Random rifle set spawner"
 	icon_state = "random_rifle"
 

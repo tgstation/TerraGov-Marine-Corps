@@ -13,7 +13,7 @@
 	use_state_flags = XACT_USE_LYING
 
 //Parameters used when displaying hive message to all xenos
-/obj/screen/text/screen_text/queen_order
+/atom/movable/screen/text/screen_text/queen_order
 	maptext_height = 128 //Default 64 doubled in height
 	maptext_width = 456 //Default 480 shifted right by 12
 	maptext_x = 12 //Half of 24
@@ -50,7 +50,7 @@
 	for(var/mob/living/carbon/xenomorph/X AS in Q.hive.get_all_xenos())
 		SEND_SOUND(X, queen_sound)
 		//Display the queen's hive message at the top of the game screen.
-		X.play_screen_text(queens_word, /obj/screen/text/screen_text/queen_order)
+		X.play_screen_text(queens_word, /atom/movable/screen/text/screen_text/queen_order)
 		//In case in combat, couldn't read fast enough, or needs to copy paste into a translator. Here's the old hive message.
 		to_chat(X, span_xenoannounce("<h2 class='alert'>The words of the queen reverberate in your head...</h2><br>[span_alert(input)]<br><br>"))
 
@@ -331,6 +331,45 @@
 	notify_ghosts("\ [xeno_ruler] has designated [selected_xeno] as a Hive Leader", source = selected_xeno, action = NOTIFY_ORBIT)
 
 	selected_xeno.update_leader_icon(TRUE)
+
+// ***************************************
+// *********** Queen Acidic Salve
+// ***************************************
+/datum/action/xeno_action/activable/psychic_cure/queen_give_heal
+	name = "Heal"
+	action_icon_state = "heal_xeno"
+	mechanics_text = "Apply a minor heal to the target."
+	cooldown_timer = 5 SECONDS
+	plasma_cost = 150
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_HEAL,
+	)
+	heal_range = HIVELORD_HEAL_RANGE
+	target_flags = XABB_MOB_TARGET
+
+/datum/action/xeno_action/activable/psychic_cure/queen_give_heal/use_ability(atom/target)
+	if(owner.do_actions)
+		return FALSE
+	if(!do_mob(owner, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+		return FALSE
+	target.visible_message(span_xenowarning("\the [owner] vomits acid over [target], mending their wounds!"))
+	playsound(target, "alien_drool", 25)
+	new /obj/effect/temp_visual/telekinesis(get_turf(target))
+	var/mob/living/carbon/xenomorph/patient = target
+	patient.salve_healing()
+	owner.changeNext_move(CLICK_CD_RANGE)
+	succeed_activate()
+	add_cooldown()
+
+/// Heals the target.
+/mob/living/carbon/xenomorph/proc/salve_healing()
+	var/amount = 50
+	if(recovery_aura)
+		amount += recovery_aura * maxHealth * 0.01
+	var/remainder = max(0, amount - getBruteLoss())
+	adjustBruteLoss(-amount)
+	adjustFireLoss(-remainder, updating_health = TRUE)
+	adjust_sunder(-amount/20)
 
 // ***************************************
 // *********** Queen plasma

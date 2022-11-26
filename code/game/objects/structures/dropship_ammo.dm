@@ -42,34 +42,34 @@
 	///CAS impact prediction type to use. Explosive, incendiary, etc
 	var/prediction_type = CAS_AMMO_HARMLESS
 
-	attackby(obj/item/I, mob/user)
-
-		if(istype(I, /obj/item/powerloader_clamp))
-			var/obj/item/powerloader_clamp/PC = I
-			if(PC.linked_powerloader)
-				if(PC.loaded)
-					if(istype(PC.loaded, /obj/structure/ship_ammo))
-						var/obj/structure/ship_ammo/SA = PC.loaded
-						if(SA.transferable_ammo && SA.ammo_count > 0 && SA.type == type)
-							if(ammo_count < max_ammo_count)
-								var/transf_amt = min(max_ammo_count - ammo_count, SA.ammo_count)
-								ammo_count += transf_amt
-								SA.ammo_count -= transf_amt
-								playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
-								to_chat(user, span_notice("You transfer [transf_amt] [ammo_name] to [src]."))
-								if(!SA.ammo_count)
-									PC.loaded = null
-									PC.update_icon()
-									qdel(SA)
-				else
-					forceMove(PC.linked_powerloader)
-					PC.loaded = src
-					playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
-					PC.update_icon()
-					to_chat(user, span_notice("You grab [PC.loaded] with [PC]."))
-					update_icon()
-			return TRUE
-		return ..()
+// todo this needs a refactor and needs to call parent first not last
+/obj/structure/ship_ammo/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/powerloader_clamp))
+		var/obj/item/powerloader_clamp/PC = I
+		if(PC.linked_powerloader)
+			if(PC.loaded)
+				if(istype(PC.loaded, /obj/structure/ship_ammo))
+					var/obj/structure/ship_ammo/SA = PC.loaded
+					if(SA.transferable_ammo && SA.ammo_count > 0 && SA.type == type)
+						if(ammo_count < max_ammo_count)
+							var/transf_amt = min(max_ammo_count - ammo_count, SA.ammo_count)
+							ammo_count += transf_amt
+							SA.ammo_count -= transf_amt
+							playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
+							to_chat(user, span_notice("You transfer [transf_amt] [ammo_name] to [src]."))
+							if(!SA.ammo_count)
+								PC.loaded = null
+								PC.update_icon()
+								qdel(SA)
+			else
+				forceMove(PC.linked_powerloader)
+				PC.loaded = src
+				playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
+				PC.update_icon()
+				to_chat(user, span_notice("You grab [PC.loaded] with [PC]."))
+				update_icon()
+		return TRUE
+	return ..()
 
 //what to show to the user that examines the weapon we're loaded on.
 /obj/structure/ship_ammo/proc/show_loaded_desc(mob/user)
@@ -293,7 +293,7 @@
 
 /obj/structure/ship_ammo/railgun/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
-	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, adminlog = FALSE, small_animation = TRUE)//no messaging admin, that'd spam them.
+	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, adminlog = FALSE, small_animation = TRUE, color = COLOR_CYAN)//no messaging admin, that'd spam them.
 	var/datum/effect_system/expl_particles/P = new
 	P.set_up(4, 0, impact)
 	P.start()
@@ -446,18 +446,36 @@
 
 /obj/structure/ship_ammo/rocket/fatty
 	name = "\improper SM-17 'Fatty'"
-	desc = "The SM-17 'Fatty', an experimental missile utilising a supercooled tanglefoot payload. Harmless to marines, but destroys resin walls around the impact site. Moving this will require some sort of lifter."
+	desc = "The SM-17 'Fatty' is the most devestating rocket in TGMC arsenal, only second after its big cluster brother in Orbital Cannon. These rocket are also known for highest number of Friendly-on-Friendly incidents due to secondary cluster explosions as well as range of these explosions, TGMC recommends pilots to encourage usage of signal flares or laser for 'Fatty' support. Moving this will require some sort of lifter."
 	icon_state = "fatty"
 	ammo_id = "f"
-	point_cost = 150
+	point_cost = 250
+	devastating_explosion_range = 2
+	heavy_explosion_range = 3
+	light_explosion_range = 4
+	prediction_type = CAS_AMMO_EXPLOSIVE
 	cas_effect = /obj/effect/overlay/blinking_laser/fatty
 
 /obj/structure/ship_ammo/rocket/fatty/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
-	var/list/to_check = filled_turfs(impact, 3, "square")
+	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range) //first explosion is small to trick xenos into thinking its a minirocket.
+	addtimer(CALLBACK(src, .proc/delayed_detonation, impact), 3 SECONDS)
 
-	for(var/turf/closed/wall/resin/wall in to_check)
-		wall.take_damage(2000)
+/**
+ * proc/delayed_detonation(turf/impact)
+ *
+ * this proc is responsable for calculation and executing explosion in cluster like fashion
+ * * (turf/impact): targets impacted turf from first explosion
+ */
+
+/obj/structure/ship_ammo/rocket/fatty/proc/delayed_detonation(turf/impact)
+	var/list/impact_coords = list(list(-3,3),list(0,4),list(3,3),list(-4,0),list(4,0),list(-3,-3),list(0,-4), list(3,-3))
+	for(var/i=1 to 8)
+		var/list/coords = impact_coords[i]
+		var/turf/detonation_target = locate(impact.x+coords[1],impact.y+coords[2],impact.z)
+		detonation_target.ceiling_debris_check(2)
+		explosion(detonation_target, devastating_explosion_range, heavy_explosion_range, light_explosion_range, adminlog = FALSE, small_animation = TRUE)
+	qdel(src)
 
 /obj/structure/ship_ammo/rocket/napalm
 	name = "\improper XN-99 'Napalm'"
@@ -602,23 +620,4 @@
 		QDEL_IN(src, travelling_time) //deleted after last minirocket has fired and impacted the ground.
 
 /obj/structure/ship_ammo/minirocket/illumination/proc/drop_cas_flare(turf/impact)
-	new /obj/effect/cas_flare(impact)
-
-/obj/effect/cas_flare
-	name = "illumination flare"
-	desc = "Report this if you actually see this FUCK"
-	icon_state = "" //No sprite
-	invisibility = INVISIBILITY_MAXIMUM
-	resistance_flags = RESIST_ALL
-	light_color = COLOR_VERY_SOFT_YELLOW
-	light_system = STATIC_LIGHT
-	light_range = 12
-	light_power = 8 //Magnesium/sodium fires (White star) really are bright
-
-/obj/effect/cas_flare/Initialize()
-	. = ..()
-	var/turf/T = get_turf(src)
-	set_light(light_range, light_power)
-	T.visible_message(span_warning("You see a tiny flash, and then a blindingly bright light from a flare as it lights off in the sky!"))
-	playsound(T, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4) // stolen from the mortar i'm not even sorry
-	QDEL_IN(src, rand(70 SECONDS, 90 SECONDS)) // About the same burn time as a flare, considering it requires it's own CAS run.
+	new /obj/effect/temp_visual/above_flare(impact)

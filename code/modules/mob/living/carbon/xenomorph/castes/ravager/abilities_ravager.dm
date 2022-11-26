@@ -116,14 +116,15 @@
 	for(var/atom/movable/ravaged AS in atoms_to_ravage)
 		if(!(ravaged.resistance_flags & XENO_DAMAGEABLE))
 			continue
-		if(!ravaged.anchored)
-			step_away(ravaged, X, 1, 2)
 		if(!ishuman(ravaged))
 			ravaged.attack_alien(X, X.xeno_caste.melee_damage)
+			if(!ravaged.anchored)
+				step_away(ravaged, X, 1, 2)
 			continue
 		var/mob/living/carbon/human/attacking = ravaged
 		if(attacking.stat == DEAD)
 			continue
+		step_away(attacking, X, 1, 2)
 		attacking.attack_alien_harm(X, X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier * 0.25, FALSE, TRUE, FALSE, TRUE)
 		shake_camera(attacking, 2, 1)
 		attacking.Paralyze(1 SECONDS)
@@ -338,8 +339,8 @@
 
 		if(rage_power >= RAVAGER_RAGE_SUPER_RAGE_THRESHOLD) //If we're super pissed it's time to get crazy
 
-			var/obj/screen/plane_master/floor/OT = L.hud_used.plane_masters["[FLOOR_PLANE]"]
-			var/obj/screen/plane_master/game_world/GW = L.hud_used.plane_masters["[GAME_PLANE]"]
+			var/atom/movable/screen/plane_master/floor/OT = L.hud_used.plane_masters["[FLOOR_PLANE]"]
+			var/atom/movable/screen/plane_master/game_world/GW = L.hud_used.plane_masters["[GAME_PLANE]"]
 
 			addtimer(CALLBACK(OT, /atom.proc/remove_filter, "rage_outcry"), 1 SECONDS)
 			GW.add_filter("rage_outcry", 2, radial_blur_filter(0.07))

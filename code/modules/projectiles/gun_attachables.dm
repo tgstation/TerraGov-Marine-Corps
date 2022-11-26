@@ -1022,6 +1022,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "AR-11 stock"
 	icon_state = "tx11stock"
 
+/obj/item/attachable/stock/som_mg_stock
+	name = "\improper V-41 stock"
+	desc = "A irremovable V-41 machine gun stock."
+	icon_state = "v41stock"
+	pixel_shift_x = 0
+	pixel_shift_y = 0
+
 //Underbarrel
 
 /obj/item/attachable/verticalgrip
@@ -1251,20 +1258,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		action.update_button_icon()
 
 	update_icon()
-
-/obj/item/attachable/mateba_longbarrel
-	name = "Mateba long barrel"
-	desc = "A longer barrel for the Mateba, makes the gun more accurate and deal more damage on impact."
-	icon_state = "mateba_barrel"
-	slot = ATTACHMENT_BARREL_MOD
-	damage_mod = 0.20
-	scatter_mod = -2
-	damage_falloff_mod = -0.5
-	pixel_shift_x = 0
-	pixel_shift_y = 0
-	size_mod = 1
-	detach_delay = 0
-	gun_attachment_offset_mod = list("muzzle_x" = 8)
 
 /obj/item/attachable/buildasentry
 	name = "\improper Build-A-Sentry Attachment System"

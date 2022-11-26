@@ -602,9 +602,7 @@
 	if(!iscarbon(L))
 		return ..()
 	var/mob/living/carbon/C = L
-	if(C.nutrition > 50)
-		C.overeatduration = 0
-		C.adjust_nutrition(-10)
+	C.adjust_nutrition(-10)
 	if(prob(20))
 		C.adjustToxLoss(0.1)
 	else

@@ -167,7 +167,7 @@
 		to_chat(usr, span_warning("Target is no longer valid."))
 		return
 
-	L.revive()
+	L.revive(TRUE)
 
 	log_admin("[key_name(usr)] revived [key_name(L)].")
 	message_admins("[ADMIN_TPMONTY(usr)] revived [ADMIN_TPMONTY(L)].")
@@ -191,7 +191,7 @@
 		to_chat(usr, span_warning("Target is no longer valid."))
 		return
 
-	L.revive()
+	L.revive(TRUE)
 
 	log_admin("[key_name(usr)] revived [key_name(L)].")
 	message_admins("[ADMIN_TPMONTY(usr)] revived [ADMIN_TPMONTY(L)].")

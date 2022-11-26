@@ -289,7 +289,7 @@
 			chair_state = DROPSHIP_CHAIR_BROKEN
 		else
 			chair_state = DROPSHIP_CHAIR_FOLDED
-		sleep(5) // animation length
+		sleep(0.5 SECONDS) // animation length
 		icon_state = "shuttle_chair_new_folded"
 
 /obj/structure/bed/chair/dropship/passenger/proc/unfold_up()
@@ -299,7 +299,7 @@
 	flick("shuttle_chair_new_unfolding", src)
 	is_animating = 0
 	chair_state = DROPSHIP_CHAIR_UNFOLDED
-	sleep(5)
+	sleep(0.5 SECONDS)
 	icon_state = "shuttle_chair"
 
 /obj/structure/bed/chair/dropship/passenger/rotate()

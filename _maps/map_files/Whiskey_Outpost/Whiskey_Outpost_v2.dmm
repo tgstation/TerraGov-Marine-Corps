@@ -70,8 +70,8 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/whiskey_outpost)
 "as" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "36"
+/turf/closed/shuttle/dropship1/edge/alt{
+	dir = 1
 	},
 /area/whiskey_outpost/outside/east)
 "at" = (
@@ -1068,8 +1068,8 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/whiskey_outpost/outside/north)
 "fa" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "27"
+/turf/closed/shuttle/dropship1/enginetwo{
+	dir = 8
 	},
 /area/whiskey_outpost/outside/south)
 "fb" = (
@@ -2054,6 +2054,7 @@
 /area/whiskey_outpost/outside/west)
 "jK" = (
 /obj/structure/dropship_piece/one/corner/middleleft,
+/obj/structure/dropship_piece/one/corner/rearleft,
 /turf/open/ground/coast{
 	dir = 1
 	},
@@ -2475,12 +2476,12 @@
 /turf/open/floor/plating/asteroidplating,
 /area/whiskey_outpost/outside/north)
 "lL" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "73"
+/turf/closed/shuttle/dropship1/finright{
+	dir = 4
 	},
 /area/whiskey_outpost/outside/east)
 "lN" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/plating/warning{
 	dir = 1
 	},
@@ -2631,9 +2632,7 @@
 /turf/open/floor/mainship/sterile,
 /area/whiskey_outpost)
 "mC" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "28"
-	},
+/turf/closed/shuttle/dropship1/enginethree,
 /area/whiskey_outpost/outside/south)
 "mD" = (
 /obj/structure/dropship_piece/one/wing/left/bottom,
@@ -2680,8 +2679,8 @@
 /turf/open/floor/plating/asteroidplating,
 /area/whiskey_outpost/outside/north)
 "mR" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "69"
+/turf/closed/shuttle/dropship1/finright{
+	dir = 1
 	},
 /area/whiskey_outpost/outside/east)
 "mT" = (
@@ -2714,8 +2713,8 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "mX" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "70"
+/turf/closed/shuttle/dropship1/finright{
+	dir = 8
 	},
 /area/whiskey_outpost/outside/east)
 "mY" = (
@@ -2765,9 +2764,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/east)
 "nq" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "64"
-	},
+/turf/closed/shuttle/dropship1/finright,
 /area/whiskey_outpost/outside/east)
 "nr" = (
 /obj/structure/flora/ausbushes/grassybush,
@@ -3123,8 +3120,8 @@
 /turf/open/floor/plating/warning,
 /area/whiskey_outpost/outside/north)
 "oO" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "29"
+/turf/closed/shuttle/dropship1/enginethree{
+	dir = 1
 	},
 /area/whiskey_outpost/outside/south)
 "oP" = (
@@ -3570,15 +3567,11 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	name = "\improper Canteen"
 	},
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "qB" = (
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
-/area/whiskey_outpost)
+/turf/closed/shuttle/dropship1/edge/alt,
+/area/whiskey_outpost/outside/east)
 "qD" = (
 /obj/machinery/door/airlock/mainship/engineering{
 	dir = 2;
@@ -3604,11 +3597,6 @@
 /obj/structure/largecrate/guns/russian,
 /turf/open/floor/prison,
 /area/whiskey_outpost)
-"qN" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "52"
-	},
-/area/whiskey_outpost/outside/south)
 "qP" = (
 /obj/structure/table/mainship,
 /obj/item/tool/handheld_charger,
@@ -4211,14 +4199,12 @@
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/south)
 "ur" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "23"
+/turf/closed/shuttle/dropship1/enginetwo{
+	dir = 1
 	},
 /area/whiskey_outpost/outside/south)
 "uu" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "47"
-	},
+/turf/closed/shuttle/dropship1/cornersalt,
 /area/whiskey_outpost/outside/east)
 "uv" = (
 /obj/effect/decal/grassdecal/corner2{
@@ -4343,11 +4329,6 @@
 	},
 /turf/open/floor/marking/bot,
 /area/whiskey_outpost)
-"uX" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "63"
-	},
-/area/whiskey_outpost/outside/east)
 "vb" = (
 /obj/structure/platform,
 /obj/structure/platform{
@@ -4654,8 +4635,8 @@
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/west)
 "wR" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "31"
+/turf/closed/shuttle/dropship1/wall{
+	dir = 8
 	},
 /area/whiskey_outpost/outside/south)
 "wT" = (
@@ -4947,9 +4928,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "yP" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "62"
-	},
+/turf/closed/shuttle/dropship1/finleft,
 /area/whiskey_outpost/outside/east)
 "yQ" = (
 /obj/structure/barricade/sandbags,
@@ -4987,9 +4966,7 @@
 	},
 /area/whiskey_outpost)
 "zh" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "24"
-	},
+/turf/closed/shuttle/dropship1/wall,
 /area/whiskey_outpost/outside/south)
 "zi" = (
 /obj/machinery/marine_selector/clothes,
@@ -5030,13 +5007,13 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)
 "zt" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "56"
+/turf/closed/shuttle/dropship1/aisle{
+	dir = 4
 	},
 /area/whiskey_outpost/outside/east)
 "zv" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "38"
+/turf/closed/shuttle/dropship1/enginefour{
+	dir = 4
 	},
 /area/whiskey_outpost/outside/south)
 "zw" = (
@@ -5093,8 +5070,8 @@
 /turf/open/floor/plating,
 /area/whiskey_outpost/outside/south)
 "zU" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "22"
+/turf/closed/shuttle/dropship1/enginetwo{
+	dir = 4
 	},
 /area/whiskey_outpost/outside/south)
 "zX" = (
@@ -5124,8 +5101,8 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "Ac" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "32"
+/turf/closed/shuttle/dropship1/enginethree{
+	dir = 8
 	},
 /area/whiskey_outpost/outside/south)
 "Af" = (
@@ -5225,8 +5202,8 @@
 /turf/open/floor/plating,
 /area/whiskey_outpost/outside/north)
 "AA" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "10"
+/turf/closed/shuttle/dropship1/interiormisc{
+	dir = 1
 	},
 /area/whiskey_outpost/outside/south)
 "AB" = (
@@ -5407,8 +5384,8 @@
 /turf/open/floor/mainship/sterile,
 /area/whiskey_outpost)
 "BA" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "52"
+/turf/closed/shuttle/dropship1/edge/alt{
+	dir = 1
 	},
 /area/whiskey_outpost/outside/south)
 "BB" = (
@@ -5717,9 +5694,7 @@
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/south)
 "DC" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "19"
-	},
+/turf/closed/shuttle/dropship1/edge/alt,
 /area/whiskey_outpost/outside/south)
 "DF" = (
 /obj/structure/rack,
@@ -5959,8 +5934,8 @@
 	},
 /area/whiskey_outpost)
 "Fr" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "39"
+/turf/closed/shuttle/dropship1/enginefour{
+	dir = 8
 	},
 /area/whiskey_outpost/outside/south)
 "Fs" = (
@@ -6653,8 +6628,8 @@
 /turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "KI" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "33"
+/turf/closed/shuttle/dropship1/enginethree{
+	dir = 4
 	},
 /area/whiskey_outpost/outside/south)
 "KJ" = (
@@ -6732,11 +6707,6 @@
 /obj/item/reagent_containers/food/snacks/worm,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
-"Lj" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "76"
-	},
-/area/whiskey_outpost/outside/east)
 "Lk" = (
 /obj/structure/girder/displaced,
 /turf/open/floor/plating,
@@ -6821,6 +6791,11 @@
 	dir = 1
 	},
 /area/whiskey_outpost/outside/east)
+"LY" = (
+/obj/structure/dropship_piece/one/engine/lefttop,
+/obj/structure/dropship_piece/one/engine/lefttop,
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost/outside/south)
 "Mb" = (
 /obj/effect/ai_node,
 /turf/open/floor/wood,
@@ -6924,8 +6899,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/east)
 "MI" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "25"
+/turf/closed/shuttle/dropship1/wall{
+	dir = 1
 	},
 /area/whiskey_outpost/outside/south)
 "MJ" = (
@@ -7066,8 +7041,8 @@
 /turf/open/floor/plating/platebot,
 /area/whiskey_outpost)
 "Nx" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "53"
+/turf/closed/shuttle/dropship1/aisle{
+	dir = 8
 	},
 /area/whiskey_outpost/outside/east)
 "NA" = (
@@ -7103,8 +7078,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "NK" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "30"
+/turf/closed/shuttle/dropship1/wall{
+	dir = 4
 	},
 /area/whiskey_outpost/outside/south)
 "NN" = (
@@ -7318,8 +7293,8 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/whiskey_outpost)
 "Pq" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "35"
+/turf/closed/shuttle/dropship1/enginefour{
+	dir = 1
 	},
 /area/whiskey_outpost/outside/south)
 "Pt" = (
@@ -7626,9 +7601,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "RY" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "68"
-	},
+/turf/closed/shuttle/dropship1/aisle,
 /area/whiskey_outpost/outside/east)
 "Sc" = (
 /obj/item/weapon/gun/minigun_nest,
@@ -7685,8 +7658,8 @@
 /turf/open/ground/grass,
 /area/whiskey_outpost/outside/north)
 "So" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "51"
+/turf/closed/shuttle/dropship1/edge{
+	dir = 8
 	},
 /area/whiskey_outpost/outside/east)
 "St" = (
@@ -7719,9 +7692,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/east)
 "SF" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "96"
-	},
+/turf/closed/shuttle/dropship1/window,
 /area/whiskey_outpost/outside/east)
 "SH" = (
 /obj/machinery/landinglight/ds1/delaythree{
@@ -7747,8 +7718,8 @@
 	},
 /area/whiskey_outpost/outside/north)
 "SS" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "92"
+/turf/closed/shuttle/dropship1/cornersalt{
+	dir = 4
 	},
 /area/whiskey_outpost/outside/east)
 "SU" = (
@@ -7760,9 +7731,8 @@
 /turf/open/ground/jungle/impenetrable/nobush,
 /area/whiskey_outpost/outside/south)
 "Ta" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "93a"
-	},
+/obj/machinery/computer/security/dropship/one,
+/turf/open/floor/plating/dmg3,
 /area/whiskey_outpost/outside/east)
 "Tc" = (
 /turf/open/ground/coast{
@@ -7814,8 +7784,8 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/whiskey_outpost)
 "Tx" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "94"
+/turf/closed/shuttle/dropship1/cornersalt{
+	dir = 8
 	},
 /area/whiskey_outpost/outside/east)
 "Ty" = (
@@ -7966,9 +7936,7 @@
 	},
 /area/whiskey_outpost/outside/south)
 "UB" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "86"
-	},
+/turf/closed/shuttle/dropship1/interiorwindow,
 /area/whiskey_outpost/outside/east)
 "UG" = (
 /obj/structure/dropship_piece/one/rearwing/leftlbottom,
@@ -7991,8 +7959,8 @@
 /turf/open/shuttle/dropship/floor,
 /area/whiskey_outpost/outside/east)
 "UN" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "89"
+/turf/closed/shuttle/dropship1/interiorwindow{
+	dir = 1
 	},
 /area/whiskey_outpost/outside/east)
 "US" = (
@@ -8081,6 +8049,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/east)
 "Vw" = (
+/obj/structure/dropship_piece/one/corner/middleright,
 /obj/structure/dropship_piece/one/corner/middleright,
 /turf/open/ground/coast/corner{
 	dir = 8
@@ -8223,7 +8192,7 @@
 /obj/effect/decal/warning_stripes/thick{
 	dir = 4
 	},
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/plating,
 /area/whiskey_outpost)
 "WO" = (
@@ -8246,9 +8215,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/west)
 "WU" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "75"
-	},
+/turf/closed/shuttle/dropship1/cornersalt2,
 /area/whiskey_outpost/outside/east)
 "WV" = (
 /obj/effect/ai_node,
@@ -8264,9 +8231,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/east)
 "Xd" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "82"
-	},
+/turf/closed/shuttle/dropship1/edge,
 /area/whiskey_outpost/outside/east)
 "Xe" = (
 /obj/structure/platform_decoration{
@@ -8277,16 +8242,15 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/north)
 "Xf" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "79"
-	},
+/obj/machinery/door/airlock/hatch/cockpit,
+/turf/open/shuttle/dropship/floor,
 /area/whiskey_outpost/outside/east)
 "Xh" = (
 /turf/open/floor/plating,
 /area/whiskey_outpost/outside/west)
 "Xi" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "83"
+/turf/closed/shuttle/dropship1/cornersalt2{
+	dir = 1
 	},
 /area/whiskey_outpost/outside/east)
 "Xm" = (
@@ -8344,6 +8308,7 @@
 /area/whiskey_outpost/outside/east)
 "XG" = (
 /obj/structure/dropship_piece/one/engine/righttop,
+/obj/structure/dropship_piece/one/engine/righttop,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "XH" = (
@@ -8386,13 +8351,11 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/east)
 "XX" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "34"
-	},
+/turf/closed/shuttle/dropship1/enginefour,
 /area/whiskey_outpost/outside/south)
 "XY" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "72"
+/turf/closed/shuttle/dropship1/finleft{
+	dir = 4
 	},
 /area/whiskey_outpost/outside/east)
 "XZ" = (
@@ -8454,9 +8417,7 @@
 /obj/machinery/door/airlock/mainship/maint/free_access{
 	dir = 2
 	},
-/turf/open/floor/mainship{
-	icon_state = "dark_sterile"
-	},
+/turf/open/floor/mainship/sterile/dark,
 /area/whiskey_outpost)
 "YF" = (
 /obj/structure/lattice,
@@ -8585,8 +8546,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/east)
 "ZG" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "48"
+/turf/closed/shuttle/dropship1/cornersalt{
+	dir = 1
 	},
 /area/whiskey_outpost/outside/east)
 "ZH" = (
@@ -8605,13 +8566,13 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "ZS" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "66"
+/turf/closed/shuttle/dropship1/finleft{
+	dir = 8
 	},
 /area/whiskey_outpost/outside/east)
 "ZT" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "67"
+/turf/closed/shuttle/dropship1/finleft{
+	dir = 1
 	},
 /area/whiskey_outpost/outside/east)
 "ZV" = (
@@ -15247,7 +15208,7 @@ yw
 yw
 yw
 yw
-qB
+yw
 gt
 gt
 gt
@@ -22836,7 +22797,7 @@ Ne
 Eo
 gU
 Tc
-gx
+LY
 XX
 mC
 EN
@@ -23110,8 +23071,8 @@ nZ
 kY
 kY
 uu
-qN
-qN
+BA
+BA
 NK
 zh
 BA
@@ -23230,7 +23191,7 @@ RD
 SD
 SS
 UB
-Lj
+Xd
 Ya
 ZX
 Sw
@@ -23367,7 +23328,7 @@ RE
 SF
 Ta
 UL
-Lj
+Xd
 Yt
 sx
 nZ
@@ -23508,7 +23469,7 @@ Xf
 Yt
 RY
 zt
-uX
+zt
 Jf
 Jf
 Jf
@@ -23641,7 +23602,7 @@ Sw
 Sw
 Sw
 UL
-Lj
+Xd
 Sw
 kY
 Sw
@@ -23778,7 +23739,7 @@ RN
 kP
 Tx
 UN
-Lj
+Xd
 ZZ
 ZX
 Sw
@@ -24067,7 +24028,7 @@ Hw
 GI
 Kr
 Je
-So
+qB
 Vw
 gx
 zv

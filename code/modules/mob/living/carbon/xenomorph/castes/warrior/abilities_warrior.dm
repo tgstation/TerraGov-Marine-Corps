@@ -77,7 +77,7 @@
 	if(!.)
 		return FALSE
 
-	if(get_dist_euclide_square(A, owner) > 36)
+	if(get_dist_euclide_square(A, owner) > 20)
 		if(!silent)
 			to_chat(owner, span_xenonotice("You are too far!"))
 		return FALSE
@@ -380,7 +380,7 @@
 			to_chat(owner, span_xenodanger("We can't harm our sister!"))
 		return FALSE
 
-	if(!isliving(A) && !isstructure(A) && !ismachinery(A) && !isuav(A))
+	if(!isliving(A) && !isstructure(A) && !ismachinery(A) && !isvehicle(A))
 		if(!silent)
 			to_chat(owner, span_xenodanger("We can't punch this target!"))
 		return FALSE
@@ -490,7 +490,7 @@
 
 /mob/living/punch_act(mob/living/carbon/xenomorph/warrior/X, damage, target_zone, push = TRUE, punch_description = "powerful", stagger_stacks = 3, slowdown_stacks = 3)
 	if(pulledby == X) //If we're being grappled by the Warrior punching us, it's gonna do extra damage and debuffs; combolicious
-		damage *= 2
+		damage *= 1.5
 		slowdown_stacks *= 2
 		stagger_stacks *= 2
 		ParalyzeNoChain(0.5 SECONDS)
@@ -504,10 +504,6 @@
 		if (!L || (L.limb_status & LIMB_DESTROYED))
 			target_zone = BODY_ZONE_CHEST
 			L =  carbon_victim.get_limb(target_zone)
-
-		if(L.limb_status & LIMB_SPLINTED) //If they have it splinted, the splint won't hold.
-			L.remove_limb_flags(LIMB_SPLINTED)
-			to_chat(src, span_danger("The splint on your [L.display_name] comes apart!"))
 
 		L.take_damage_limb(damage, 0, FALSE, FALSE, get_soft_armor("melee", target_zone))
 	else

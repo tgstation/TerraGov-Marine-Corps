@@ -392,7 +392,6 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	name = MECH_PILOT
 	engineer = SKILL_ENGINEER_ENGI
 	powerloader = SKILL_POWERLOADER_PRO
-	leadership = SKILL_LEAD_TRAINED
 	large_vehicle = SKILL_LARGE_VEHICLE_TRAINED
 
 /datum/skills/ce
