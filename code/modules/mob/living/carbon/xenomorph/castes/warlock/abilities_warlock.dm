@@ -69,7 +69,6 @@
 	return ..()
 
 /datum/action/xeno_action/activable/psychic_shield/use_ability(atom/A)
-	. = ..()
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(active_shield)
 		if(plasma_cost > xeno_owner.plasma_stored)
@@ -79,6 +78,7 @@
 			shield_blast()
 			cancel_shield()
 		return
+
 	var/turf/target_turf = get_step(owner, owner.dir)
 	if(target_turf.density)
 		owner.balloon_alert(owner, "Obstructed by [target_turf]")
@@ -87,14 +87,17 @@
 		if(affected.density)
 			owner.balloon_alert(owner, "Obstructed by [affected]")
 			return
+
+	succeed_activate()
 	playsound(owner,'sound/effects/magic.ogg', 75, 1)
 
-	active_shield = new(target_turf, owner)
 	action_icon_state = "psy_shield_reflect"
 	xeno_owner.update_glow(3, 3, "#5999b3")
-	succeed_activate()
+
 	GLOB.round_statistics.psy_shields++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "psy_shields")
+
+	active_shield = new(target_turf, owner)
 	if(!do_after(owner, 6 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_action, FALSE, XACT_USE_BUSY)))
 		cancel_shield()
 		return
@@ -112,7 +115,12 @@
 
 ///AOE knockback triggerable by ending the shield early
 /datum/action/xeno_action/activable/psychic_shield/proc/shield_blast()
+	succeed_activate()
+
 	active_shield.reflect_projectiles()
+
+	owner.visible_message(span_xenowarning("[owner] sends out a huge blast of psychic energy!"), span_xenowarning("We send out a huge blast of psychic energy!"))
+
 	var/turf/lower_left
 	var/turf/upper_right
 	switch(active_shield.dir)
@@ -146,13 +154,12 @@
 				throwlocation = get_step(throwlocation, active_shield.dir)
 			affected.throw_at(throwlocation, 4, 1, owner, TRUE)
 
-	owner.visible_message(span_xenowarning("[owner] sends out a huge blast of psychic energy!"), span_xenowarning("We send out a huge blast of psychic energy!"))
-
 	playsound(owner,'sound/effects/bamf.ogg', 75, TRUE)
 	playsound(owner, "alien_roar", 50)
+
 	GLOB.round_statistics.psy_shield_blasts++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "psy_shield_blasts")
-	succeed_activate()
+
 
 /obj/effect/xeno/shield
 	icon = 'icons/Xeno/96x96.dmi'
@@ -275,22 +282,28 @@
 		if(length(target_turfs)) //it shouldn't be possible to do this without any turfs, but just in case
 			crush(target_turfs[1])
 		return
+
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(xeno_owner.selected_ability != src)
 		action_activate()
 		return
 	if(owner.do_actions || !target || !can_use_action(TRUE) || !check_distance(target, TRUE))
 		return fail_activate()
+
 	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_CRUSH_ABILITY_TRAIT)
 	if(!do_after(owner, 0.8 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_action, FALSE, XACT_USE_BUSY)))
 		REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_CRUSH_ABILITY_TRAIT)
 		return fail_activate()
-	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_CRUSH_ABILITY_TRAIT)
+
 	owner.visible_message(span_xenowarning("\The [owner] starts channeling their psychic might!"), span_xenowarning("We start channeling our psychic might!"))
+	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_CRUSH_ABILITY_TRAIT)
+	owner.add_movespeed_modifier(MOVESPEED_ID_WARLOCK_CHANNELING, TRUE, 0, NONE, TRUE, 0.9)
 
 	particle_holder = new(owner, channel_particle)
 	particle_holder.pixel_x = 16
 	particle_holder.pixel_y = 5
+
+	xeno_owner.update_glow(3, 3, "#6a59b3")
 
 	var/turf/target_turf = get_turf(target)
 	LAZYINITLIST(target_turfs)
@@ -298,12 +311,9 @@
 	LAZYINITLIST(effect_list)
 	effect_list += new /obj/effect/xeno/crush_warning(target_turf)
 
-	owner.add_movespeed_modifier(MOVESPEED_ID_WARLOCK_CHANNELING, TRUE, 0, NONE, TRUE, 0.9)
 	action_icon_state = "psy_crush_activate"
-
-	do_channel(target_turf)
-	xeno_owner.update_glow(3, 3, "#6a59b3")
 	RegisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED)), .proc/stop_crush)
+	do_channel(target_turf)
 
 ///Checks if the owner is close enough/can see the target
 /datum/action/xeno_action/activable/psy_crush/proc/check_distance(atom/target, sight_needed)
@@ -326,9 +336,9 @@
 	if(current_iterations >= max_interations)
 		crush(target)
 		return
-	playsound(target, 'sound/effects/woosh_swoosh.ogg', 30 + (current_iterations * 10))
 
 	succeed_activate()
+	playsound(target, 'sound/effects/woosh_swoosh.ogg', 30 + (current_iterations * 10))
 
 	var/list/turfs_to_add = list()
 	for(var/turf/current_turf AS in target_turfs)
@@ -345,11 +355,11 @@
 	if(can_use_action(xeno_owner, XACT_IGNORE_COOLDOWN))
 		channel_loop_timer = addtimer(CALLBACK(src, .proc/do_channel, target), 0.5 SECONDS, TIMER_STOPPABLE)
 		return
+
 	stop_crush(target)
 
 ///crushes all turfs in the AOE
 /datum/action/xeno_action/activable/psy_crush/proc/crush(turf/target)
-	//note: do we need a check to see if we have sufficient plasma, due to the override?
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/crush_cost = plasma_cost * current_iterations
 	if(crush_cost > xeno_owner.plasma_stored)
@@ -359,10 +369,12 @@
 	if(!check_distance(target))
 		stop_crush(target)
 		return
-	succeed_activate(plasma_cost * current_iterations)
+
+	succeed_activate(crush_cost)
 	playsound(target, 'sound/effects/EMPulse.ogg', 70)
 	apply_filters(target_turfs)
 	addtimer(CALLBACK(src, .proc/remove_all_filters), 2 SECONDS, TIMER_STOPPABLE)
+
 	for(var/turf/effected_turf AS in target_turfs)
 		for(var/i in effected_turf)
 			if(iscarbon(i))
@@ -518,11 +530,14 @@
 		REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
 		return fail_activate()
 
+	succeed_activate()
+
 	var/obj/projectile/hitscan/projectile = new /obj/projectile/hitscan(xeno_owner.loc)
 	projectile.effect_icon = initial(ammo_type.hitscan_effect_icon)
 	projectile.generate_bullet(ammo_type)
 	projectile.fire_at(target, xeno_owner, null, projectile.ammo.max_range, projectile.ammo.shell_speed)
 	playsound(xeno_owner, 'sound/weapons/guns/fire/volkite_4.ogg', 50)
+
 	if(istype(xeno_owner.ammo, /datum/ammo/energy/xeno/psy_blast))
 		GLOB.round_statistics.psy_blasts++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "psy_blasts")
@@ -530,7 +545,6 @@
 		GLOB.round_statistics.psy_lances++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "psy_lances")
 
-	succeed_activate()
 	add_cooldown()
 	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
 	addtimer(CALLBACK(src, .proc/end_channel), 5)
