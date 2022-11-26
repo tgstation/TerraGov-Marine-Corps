@@ -53,7 +53,7 @@
 	ability_name = "psychic shield"
 	action_icon_state = "psy_shield"
 	mechanics_text = "Channel a psychic shield at your current location that can reflect most projectiles. Activate again while the shield is active to detonate the shield forcibly, producing knockback. Must remain static to use."
-	cooldown_timer = 8 SECONDS
+	cooldown_timer = 10 SECONDS
 	plasma_cost = 200
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_SHIELD,
@@ -147,7 +147,7 @@
 				var/mob/living/carbon/human/H = affected
 				if(H.stat == DEAD)
 					continue
-				H.apply_effects(1, 1)
+				H.apply_effects(0.5, 0.5)
 				shake_camera(H, 2, 1)
 			var/throwlocation = affected.loc
 			for(var/x in 1 to 6)
