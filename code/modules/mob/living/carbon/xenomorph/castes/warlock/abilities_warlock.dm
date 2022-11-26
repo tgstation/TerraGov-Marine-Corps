@@ -512,13 +512,8 @@
 	var/datum/ammo/energy/xeno/ammo_type = xeno_owner.ammo
 	xeno_owner.update_glow(3, 3, ammo_type.glow_color)
 
-	if(!do_after(xeno_owner, 1 SECONDS, FALSE, target, BUSY_ICON_DANGER))
+	if(!do_after(xeno_owner, 1 SECONDS, FALSE, target, BUSY_ICON_DANGER) || !can_use_ability(target, FALSE))
 		to_chat(xeno_owner, span_warning("Our focus is disrupted."))
-		end_channel()
-		REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
-		return fail_activate()
-
-	if(!can_use_ability(target, FALSE))
 		end_channel()
 		REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
 		return fail_activate()
