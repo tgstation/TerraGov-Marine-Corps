@@ -2729,8 +2729,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/xeno/toxin/heavy //Praetorian
 	name = "neurotoxic splash"
 	added_spit_delay = 0
-	spit_cost = 300
-	damage = 40
+	spit_cost = 200
+	damage = 80
 	smoke_strength = 0.9
 	reagent_transfer_amount = 18
 	smoke_range = 1
