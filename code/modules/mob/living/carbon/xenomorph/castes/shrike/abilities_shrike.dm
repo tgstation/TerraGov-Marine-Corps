@@ -307,6 +307,10 @@
 	plasma_cost = 400
 	cooldown_timer = 2 MINUTES
 
+	keybinding_signals = list(
+	    KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_ACID_WELL,
+	)
+
 /datum/action/xeno_action/place_acidwell/can_use_action(silent = FALSE, override_flags)
 	. = ..()
 	var/turf/T = get_turf(owner)
