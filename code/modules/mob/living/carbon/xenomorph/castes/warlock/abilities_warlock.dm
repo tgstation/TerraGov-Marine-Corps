@@ -70,8 +70,8 @@
 
 /datum/action/xeno_action/activable/psychic_shield/use_ability(atom/A)
 	. = ..()
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(active_shield)
-		var/mob/living/carbon/xenomorph/xeno_owner = owner
 		if(plasma_cost > xeno_owner.plasma_stored)
 			owner.balloon_alert(owner, "[plasma_cost - xeno_owner.plasma_stored] more plasma!")
 			return FALSE
@@ -91,6 +91,7 @@
 
 	active_shield = new(target_turf, owner)
 	action_icon_state = "psy_shield_reflect"
+	xeno_owner.update_glow(3, 3, "#5999b3")
 	succeed_activate()
 	GLOB.round_statistics.psy_shields++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "psy_shields")
@@ -101,7 +102,9 @@
 
 ///Removes the shield and resets the ability
 /datum/action/xeno_action/activable/psychic_shield/proc/cancel_shield()
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	action_icon_state = "psy_shield"
+	xeno_owner.update_glow()
 	add_cooldown()
 	if(active_shield)
 		active_shield.release_projectiles()
@@ -296,6 +299,7 @@
 	action_icon_state = "psy_crush_activate"
 
 	do_channel(target_turf)
+	xeno_owner.update_glow(3, 3, "#6a59b3")
 	RegisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)), .proc/stop_crush)
 
 ///Checks if the owner is close enough/can see the target
@@ -380,6 +384,7 @@
 /// stops channeling and unregisters all listeners, resetting the ability
 /datum/action/xeno_action/activable/psy_crush/proc/stop_crush(turf/target)
 	SIGNAL_HANDLER
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(channel_loop_timer)
 		deltimer(channel_loop_timer)
 		channel_loop_timer = null
@@ -389,6 +394,7 @@
 	effect_list = null
 	owner.remove_movespeed_modifier(MOVESPEED_ID_WARLOCK_CHANNELING)
 	action_icon_state = "psy_crush"
+	xeno_owner.update_glow()
 	add_cooldown()
 	QDEL_NULL(particle_holder)
 	UnregisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)))
@@ -499,17 +505,19 @@
 	to_chat(xeno_owner, span_xenonotice("We channel our psychic power."))
 
 	generate_particles(target, 7)
+	var/datum/ammo/energy/xeno/ammo_type = xeno_owner.ammo
+	xeno_owner.update_glow(3, 3, ammo_type.glow_color)
+
 	if(!do_after(xeno_owner, 1 SECONDS, FALSE, target, BUSY_ICON_DANGER))
 		to_chat(xeno_owner, span_warning("Our focus is disrupted."))
-		QDEL_NULL(particle_holder)
+		end_channel()
 		return fail_activate()
 
 	if(!can_use_ability(target, FALSE))
-		QDEL_NULL(particle_holder)
+		end_channel()
 		return fail_activate()
 
 	var/obj/projectile/hitscan/projectile = new /obj/projectile/hitscan(xeno_owner.loc)
-	var/datum/ammo/energy/xeno/ammo_type = xeno_owner.ammo
 	projectile.effect_icon = initial(ammo_type.hitscan_effect_icon)
 	projectile.generate_bullet(ammo_type)
 	projectile.fire_at(target, xeno_owner, null, projectile.ammo.max_range, projectile.ammo.shell_speed)
@@ -523,7 +531,7 @@
 
 	succeed_activate()
 	add_cooldown()
-	QDEL_NULL_IN(src, particle_holder, 5)
+	addtimer(CALLBACK(src, .proc/end_channel), 5)
 
 /datum/action/xeno_action/activable/psy_blast/update_button_icon()
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
@@ -544,3 +552,9 @@
 	particle_holder.particles.velocity = list(x_component * 0.5, y_component * 0.5)
 	particle_holder.particles.gravity = list(x_component, y_component)
 	particle_holder.particles.rotation = angle
+
+///Cleans up when the channel finishes or is cancelled
+/datum/action/xeno_action/activable/psy_blast/proc/end_channel()
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	QDEL_NULL(particle_holder)
+	xeno_owner.update_glow()

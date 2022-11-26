@@ -2480,6 +2480,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/plasma_cost
 	///Particle type used when this ammo is used
 	var/particles/channel_particle
+	///The colour the xeno glows when using this ammo type
+	var/glow_color
 
 /datum/ammo/energy/xeno/psy_blast
 	name = "psychic blast"
@@ -2493,6 +2495,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "psy_blast"
 	plasma_cost = 230
 	channel_particle = /particles/warlock_charge/psy_blast
+	glow_color = "#9e1f1f"
 	///The AOE for drop_nade
 	var/aoe_range = 3
 
@@ -2547,6 +2550,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "psy_lance"
 	plasma_cost = 300
 	channel_particle = /particles/warlock_charge/psy_blast/psy_lance
+	glow_color = "#CB0166"
 
 /datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_obj(obj/O, obj/projectile/P)
 	if(ismecha(O))
