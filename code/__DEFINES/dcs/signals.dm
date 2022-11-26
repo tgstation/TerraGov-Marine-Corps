@@ -318,6 +318,9 @@
 #define COMSIG_ARMOR_MODULE_ATTACHING "armor_module_attaching"
 #define COMSIG_ARMOR_MODULE_DETACHED "armor_module_detached"
 
+// vali specific
+#define COMSIG_CHEMSYSTEM_TOGGLED "chemsystem_toggled"
+
 // /obj/item/helmet_module signals
 #define COMSIG_HELMET_MODULE_ATTACHING "helmet_module_attaching"
 #define COMSIG_HELMET_MODULE_DETACHED "helmet_module_detached"
@@ -874,6 +877,7 @@
 //Signals for ais
 #define COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED "escorting_behaviour_changed"
 #define COMSIG_ESCORTED_ATOM_CHANGING "escorted_atom_changing"
+#define COMSIG_POINT_TO_ATOM "point_to_atom"
 
 /// from datum ui_act (usr, action)
 #define COMSIG_UI_ACT "COMSIG_UI_ACT"

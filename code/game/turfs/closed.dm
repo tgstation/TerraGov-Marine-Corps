@@ -45,6 +45,9 @@
 	smoothing_behavior = DIAGONAL_SMOOTHING
 	smoothing_groups = SMOOTH_MINERAL_STRUCTURES
 
+/turf/closed/mineral/smooth/outdoor
+	open_turf_type = /turf/open/floor/plating/ground/mars/random/dirt
+
 /turf/closed/mineral/smooth/indestructible
 	resistance_flags = RESIST_ALL
 
@@ -604,6 +607,7 @@
 	icon_state = "swall0"
 	smoothing_behavior = CARDINAL_SMOOTHING
 	smoothing_groups = SMOOTH_ESCAPESHUTTLE
+	walltype = "swall"
 
 /turf/closed/banish_space //Brazil
 	plane = PLANE_SPACE
