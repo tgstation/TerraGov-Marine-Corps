@@ -30,8 +30,6 @@
 	if(original)
 		qdel(original)
 
-	print_backstory(H)
-
 	//
 	//Santa himself is a discount deathsquad leader, his elves are just fodder though and very poorly equipped
 	//
@@ -54,4 +52,5 @@
 	H.apply_assigned_role_to_spawn(J)
 	H.name = "Elf [rand(1,999)]"
 	H.real_name = H.name
+	print_backstory(H)
 	to_chat(H, span_notice("You are a member of Santa's loyal workforce, assist Santa in whatever way you can!"))
