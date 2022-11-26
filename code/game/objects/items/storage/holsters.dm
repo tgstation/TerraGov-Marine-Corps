@@ -229,6 +229,8 @@
 	desc = "A large leather scabbard used to carry a sword. Appears to be a reproduction, rather than original. It can be strapped to the waist or armor."
 	icon_state = "officer_sheath"
 	base_icon = "officer_sheath"
+	draw_sound = 'sound/items/unsheath.ogg'
+	sheathe_sound = 'sound/items/sheath.ogg'
 	flags_equip_slot = ITEM_SLOT_BELT
 	holsterable_allowed = list(/obj/item/weapon/claymore/mercsword/officersword)
 	can_hold = list(/obj/item/weapon/claymore/mercsword/officersword)

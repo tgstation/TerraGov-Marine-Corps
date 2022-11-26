@@ -115,9 +115,12 @@
 	desc = "This appears to be a rather old blade that has been well taken care of, it is probably a family heirloom. Oddly despite its probable non-combat purpose it is sharpened and not blunt."
 	icon_state = "officer_sword"
 	item_state = "officer_sword"
-	force = 75
-	attack_speed = 12
+	force = 80
+	attack_speed = 5
+	sharp = IS_SHARP_ITEM_ACCURATE
 	w_class = WEIGHT_CLASS_BULKY
+	hitsound = 'sound/weapons/rapierhit.ogg'
+	attack_verb = list("slash", "cut")
 
 /obj/item/weapon/claymore/mercsword/machete/equipped(mob/user, slot)
 	. = ..()
