@@ -1049,6 +1049,9 @@
 	var/turf/target_turf = get_turf(remote_eye)
 	var/area/target_area = get_area(target_turf)
 
+	if(retracting) //We're already retracting a rope!
+		return
+
 	if(origin.disabled || target_turf.density || target_area.ceiling >= CEILING_DEEP_UNDERGROUND)
 		playsound(origin, 'sound/machines/buzz-two.ogg', 25)
 		return
@@ -1191,6 +1194,8 @@
 
 ///Feedback for when PO manually retracts the rope. Leads back into retract_rope after sounds and balloon alerts are done.
 /obj/structure/dropship_equipment/rappel_system/proc/pre_retract()
+	if(retracting) //We're already retracting!
+		return
 	retracting = TRUE
 	playsound(src, 'sound/machines/hiss.ogg', 25)
 	rope.balloon_alert_to_viewers("The rope starts reeling into the sky...")
@@ -1257,7 +1262,7 @@
 	user.forceMove(get_turf(parent_system))
 
 	playsound(get_turf(src), 'sound/effects/rappel.ogg', 50, TRUE)
-	retracting = TRUE
+	parent_system.retracting = TRUE
 	parent_system.retract_rope()
 
 
