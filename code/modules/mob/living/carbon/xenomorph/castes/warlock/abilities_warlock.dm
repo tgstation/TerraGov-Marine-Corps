@@ -444,6 +444,7 @@
 	anchored = TRUE
 	resistance_flags = RESIST_ALL
 	layer = FLY_LAYER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 	///The particle type this ability uses

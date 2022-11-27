@@ -10,7 +10,7 @@
 	wall_smash = FALSE
 	health = 320
 	maxHealth = 320
-	plasma_stored = 1600
+	plasma_stored = 1400
 	pixel_x = -16
 	old_x = -16
 	drag_delay = 3

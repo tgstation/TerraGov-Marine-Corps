@@ -2509,7 +2509,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	channel_particle = /particles/warlock_charge/psy_blast
 	glow_color = "#9e1f1f"
 	///The AOE for drop_nade
-	var/aoe_range = 3
+	var/aoe_range = 2
 
 /datum/ammo/energy/xeno/psy_blast/drop_nade(turf/T, obj/projectile/P)
 	if(!T || !isturf(T))
@@ -2569,9 +2569,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		var/obj/vehicle/sealed/mecha/mech_victim = O
 		mech_victim.take_damage(rand(200, 400), BURN, ENERGY, 0, armour_penetration = penetration)
 	else
-		O.take_damage(150, BURN, ENERGY, 0, armour_penetration = penetration)
+		O.take_damage(damage, BURN, ENERGY, 0, armour_penetration = penetration)
 
 /datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_mob(mob/M, obj/projectile/P)
+	if(!isxeno(M))
+		return
 	staggerstun(M, P, 9, stagger = 2, slowdown = 2, knockback = 1)
 
 /datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_turf(turf/T, obj/projectile/P)
