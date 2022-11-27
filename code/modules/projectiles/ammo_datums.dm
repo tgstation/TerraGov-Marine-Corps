@@ -456,12 +456,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/revolver/tp44
 	name = "standard revolver bullet"
-	damage = 30
-	penetration = 20
-	sundering = 1.5
+	damage = 40
+	penetration = 15
+	sundering = 1
 
 /datum/ammo/bullet/revolver/tp44/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, stagger = 0, slowdown = 0.5, knockback = 1, shake = 0)
+	staggerstun(M, P, stagger = 0, slowdown = 0, knockback = 1, shake = 0)
 
 /datum/ammo/bullet/revolver/small
 	name = "small revolver bullet"
@@ -1664,7 +1664,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shell_speed = 2
 	accuracy = 40
 	accurate_range = 20
-	max_range = 30
+	max_range = 14
 	damage = 200
 	penetration = 100
 	sundering = 100
@@ -1686,13 +1686,20 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/rocket/do_at_max_range(turf/T, obj/projectile/P)
 	drop_nade(T.density ? P.loc : T)
 
+/datum/ammo/rocket/unguided
+	damage = 100
+	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING // We want this one to specifically go over onscreen range.
+
+/datum/ammo/rocket/unguided/drop_nade(turf/T)
+	explosion(T, 0, 7, 0, 2)
+
 /datum/ammo/rocket/ap
-	name = "anti-armor rocket"
+	name = "kinetic penetrator"
 	hud_state = "rocket_ap"
-	damage_falloff = 0
+	damage = 340
 	accurate_range = 15
-	penetration = 150
-	damage = 325
+	penetration = 200
+	sundering = 0
 
 /datum/ammo/rocket/ap/drop_nade(turf/T)
 	explosion(T, flash_range = 1)
@@ -1793,6 +1800,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 75
 	max_range = 30
 	sundering = 100
+
+/datum/ammo/rocket/wp/unguided
+	damage = 100
+	flags_ammo_behavior = AMMO_ROCKET|AMMO_INCENDIARY|AMMO_SUNDERING
+	effect_radius = 5
 
 /datum/ammo/rocket/recoilless
 	name = "high explosive shell"

@@ -82,9 +82,11 @@
 	base_category = DROPSHIP_WEAPON
 
 /obj/effect/attach_point/weapon/dropship1
+	icon_state = "equip_base_l_wing"
 	ship_tag = SHUTTLE_ALAMO
 
 /obj/effect/attach_point/weapon/dropship2
+	icon_state = "equip_base_l_wing"
 	ship_tag = SHUTTLE_NORMANDY
 
 /obj/effect/attach_point/weapon/dropship3

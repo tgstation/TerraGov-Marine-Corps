@@ -191,6 +191,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_THROW_HUGGER
 
+/datum/keybinding/xeno/call_younger
+	name = "call_younger"
+	full_name = "Carrier: Call of Younger"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_CALL_YOUNGER
+
 /datum/keybinding/xeno/place_trap
 	name = "place_trap"
 	full_name = "Carrier: Place Trap"

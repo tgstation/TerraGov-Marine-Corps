@@ -244,17 +244,77 @@
 /obj/structure/flora/pottedplant/two
 	icon_state = "plant-02"
 
+/obj/structure/flora/pottedplant/three
+	icon_state = "plant-03"
+
+/obj/structure/flora/pottedplant/four
+	icon_state = "plant-04"
+
+/obj/structure/flora/pottedplant/five
+	icon_state = "plant-05"
+
+/obj/structure/flora/pottedplant/six
+	icon_state = "plant-06"
+
+/obj/structure/flora/pottedplant/seven
+	icon_state = "plant-07"
+
+/obj/structure/flora/pottedplant/eight
+	icon_state = "plant-08"
+
+/obj/structure/flora/pottedplant/nine
+	icon_state = "plant-09"
+
 /obj/structure/flora/pottedplant/ten
 	icon_state = "plant-10"
 
+/obj/structure/flora/pottedplant/eleven
+	icon_state = "plant-11"
+
+/obj/structure/flora/pottedplant/twelve
+	icon_state = "plant-12"
+
+/obj/structure/flora/pottedplant/thirteen
+	icon_state = "plant-13"
+
+/obj/structure/flora/pottedplant/fourteen
+	icon_state = "plant-14"
+
+/obj/structure/flora/pottedplant/fifteen
+	icon_state = "plant-15"
+
+/obj/structure/flora/pottedplant/sixteen
+	icon_state = "plant-16"
+
+/obj/structure/flora/pottedplant/seventeen
+	icon_state = "plant-17"
+
 /obj/structure/flora/pottedplant/eighteen
 	icon_state = "plant-18"
+
+/obj/structure/flora/pottedplant/nineteen
+	icon_state = "plant-19"
+
+/obj/structure/flora/pottedplant/twenty
+	icon_state = "plant-19"
 
 /obj/structure/flora/pottedplant/twentyone
 	icon_state = "plant-21"
 
 /obj/structure/flora/pottedplant/twentytwo
 	icon_state = "plant-22"
+
+/obj/structure/flora/pottedplant/twentythree
+	icon_state = "plant-23"
+
+/obj/structure/flora/pottedplant/twentyfour
+	icon_state = "plant-24"
+
+/obj/structure/flora/pottedplant/twentyfive
+	icon_state = "plant-25"
+
+/obj/structure/flora/pottedplant/twentyfive
+	icon_state = "plant-26"
 
 //newbushes
 

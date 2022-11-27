@@ -12,8 +12,6 @@
 			msg += "This creature is impregnated. \n"
 		else if(chestburst == 2)
 			msg += "A larva escaped from this creature.\n"
-		if (headbitten)
-			msg += "This creature has been purged of vital organs in the head.\n"
 		if(istype(wear_mask, /obj/item/clothing/mask/facehugger))
 			msg += "It has a little one on its face.\n"
 		if(on_fire)
@@ -443,9 +441,6 @@
 
 	if(chestburst == 2)
 		msg += "[span_warning("<b>[t_He] has a giant hole in [t_his] chest!</b>")]\n"
-
-	if(headbitten)
-		msg += "[span_warning("<b>[t_He] has a giant hole in [t_his] head!</b>")]\n"
 
 
 	for(var/i in embedded_objects)

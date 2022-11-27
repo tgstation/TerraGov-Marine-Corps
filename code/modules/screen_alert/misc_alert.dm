@@ -1,4 +1,4 @@
-/obj/screen/text/screen_text/picture
+/atom/movable/screen/text/screen_text/picture
 	maptext_height = 64
 	maptext_width = 480
 	maptext_x = 66
@@ -17,25 +17,25 @@
 	///x offset of image
 	var/image_to_play_offset_x = 0
 
-/obj/screen/text/screen_text/picture/Initialize()
+/atom/movable/screen/text/screen_text/picture/Initialize()
 	. = ..()
 	overlays += image('icons/UI_Icons/screen_alert_images.dmi', icon_state = image_to_play, pixel_y = image_to_play_offset_y, pixel_x = image_to_play_offset_x)
 
-/obj/screen/text/screen_text/picture/tdf
+/atom/movable/screen/text/screen_text/picture/tdf
 	image_to_play = "tdf"
 
-/obj/screen/text/screen_text/picture/shokk
+/atom/movable/screen/text/screen_text/picture/shokk
 	image_to_play = "shokk"
 
-/obj/screen/text/screen_text/picture/blackop
+/atom/movable/screen/text/screen_text/picture/blackop
 	image_to_play = "blackops"
 
-/obj/screen/text/screen_text/picture/potrait
+/atom/movable/screen/text/screen_text/picture/potrait
 	screen_loc = "LEFT,TOP-3"
 	image_to_play = "overwatch"
 	image_to_play_offset_y = 0
 	maptext_y = 0
 	letters_per_update = 2
 
-/obj/screen/text/screen_text/picture/potrait/som_over
+/atom/movable/screen/text/screen_text/picture/potrait/som_over
 	image_to_play = "overwatch_som"

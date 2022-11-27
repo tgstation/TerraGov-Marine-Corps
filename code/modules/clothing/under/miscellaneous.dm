@@ -148,6 +148,12 @@
 	icon_state = "black_suit"
 	item_state = "bl_suit"
 
+/obj/item/clothing/under/suit_jacket/detective
+	icon_state = "detective"
+
+/obj/item/clothing/under/suit_jacket/detective/alt
+	icon_state = "greydet"
+
 /obj/item/clothing/under/suit_jacket/really_black
 	name = "executive suit"
 	desc = "A formal black suit and red tie, intended for the station's finest."

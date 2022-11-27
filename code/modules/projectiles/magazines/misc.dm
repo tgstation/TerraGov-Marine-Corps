@@ -151,7 +151,7 @@
 	name = "packet of .45-70"
 	desc = "A packet containing 50 rounds of .45-70 Government."
 	caliber = CALIBER_4570
-	icon_state = "box_44rim_mag"
+	icon_state = "box_4570rim_mag"
 	default_ammo = /datum/ammo/bullet/rifle/repeater
 	w_class = WEIGHT_CLASS_SMALL
 	current_rounds = 50
