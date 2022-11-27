@@ -975,8 +975,10 @@
 	var/disabled = FALSE
 	///Smoke particle holder for when it's disabled
 	var/obj/effect/abstract/particle_holder/disabled_smoke
-	///Whether the rappel is currently being retracted or not
+	///Whether the system is currently retracting a rope or not
 	var/retracting = FALSE
+	///If it is, whether or not to interrupt a ret
+	var/interrupt_retract = FALSE
 	///Whether a xeno is currently disabling the system or not
 	var/hooked = FALSE
 
@@ -1075,6 +1077,7 @@
 
 ///Feedback for when PO manually retracts the rope. Leads back into retract_rope after sounds and balloon alerts are done.
 /obj/structure/dropship_equipment/rappel_system/proc/pre_retract()
+	retracting = TRUE
 	playsound(src, 'sound/machines/hiss.ogg', 25)
 	rope.balloon_alert_to_viewers("The rope starts reeling into the sky...")
 	balloon_alert_to_viewers("The system hums as ropes start reeling in.")
@@ -1083,6 +1086,11 @@
 
 ///Undeploys the rappel and locks the hatch. Rappel cannot be retracted if it is currently being attacked (hooked)
 /obj/structure/dropship_equipment/rappel_system/proc/retract_rope()
+	retracting = FALSE
+	if(interrupt_retract == TRUE)
+		interrupt_retract = FALSE
+		return
+
 	if(hooked)
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 25)
 		return
@@ -1144,7 +1152,7 @@
 	. = ..()
 	parent_system.hooked = TRUE //Stops the pilot bringing up the rappel to prevent it being disabled
 	if(parent_system.retracting == TRUE)
-		parent_system.retracting = FALSE
+		parent_system.interrupt_retract = TRUE
 
 	X.balloon_alert_to_viewers("[X] tears at the rappel!","You start tearing up [src] to disable the host's sky-rope system!")
 	step(X, get_dir(X, src))
@@ -1155,6 +1163,7 @@
 		parent_system.balloon_alert_to_viewers("The system stops buckling.")
 		return
 
+	interrupt_retract = FALSE
 	parent_system.hooked = FALSE
 
 	playsound(src, 'sound/effects/metal_crash.ogg', 50, TRUE)
