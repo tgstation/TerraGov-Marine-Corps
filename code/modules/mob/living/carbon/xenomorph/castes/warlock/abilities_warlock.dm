@@ -251,7 +251,7 @@
 // *********** psychic crush
 // ***************************************
 /datum/action/xeno_action/activable/psy_crush
-	name = "psychic Crush"
+	name = "Psychic Crush"
 	action_icon_state = "psy_crush"
 	mechanics_text = "Channel an expanding AOE crush effect, activating it again pre-maturely crushes enemies over an area. The longer it is channeled, the larger area it will affect, but will consume more plasma."
 	ability_name = "psychic crush"
