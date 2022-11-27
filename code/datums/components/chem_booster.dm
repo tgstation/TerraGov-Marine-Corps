@@ -258,24 +258,24 @@
 		COOLDOWN_START(src, chemboost_activation_cooldown, 10 SECONDS)
 		setup_bonus_effects()
 		return
+	else
+		if(!COOLDOWN_CHECK(src, chemboost_activation_cooldown))
+			wearer.balloon_alert(wearer, "You need to wait another [COOLDOWN_TIMELEFT(src, chemboost_activation_cooldown)/10] seconds")
+			return
 
-	if(!COOLDOWN_CHECK(src, chemboost_activation_cooldown))
-		wearer.balloon_alert(wearer, "You need to wait another [COOLDOWN_TIMELEFT(src, chemboost_activation_cooldown)/10] seconds")
-		return
+		if(resource_storage_current < resource_drain_amount)
+			wearer.balloon_alert(wearer, "Insufficient green blood to begin operation")
+			return
 
-	if(resource_storage_current < resource_drain_amount)
-		wearer.balloon_alert(wearer, "Insufficient green blood to begin operation")
-		return
-
-	processing_start = world.time
-	START_PROCESSING(SSobj, src)
-	RegisterSignal(wearer, COMSIG_MOB_DEATH, .proc/on_off)
-	playsound(get_turf(wearer), 'sound/effects/bubbles.ogg', 30, 1)
-	to_chat(wearer, span_notice("Commensing green blood injection.<b>[(automatic_meds_use && meds_beaker.reagents.total_volume) ? " Adding additional reagents." : ""]</b>"))
-	if(automatic_meds_use)
-		to_chat(wearer, get_meds_beaker_contents())
-		meds_beaker.reagents.trans_to(wearer, 30)
-	setup_bonus_effects()
+		processing_start = world.time
+		START_PROCESSING(SSobj, src)
+		RegisterSignal(wearer, COMSIG_MOB_DEATH, .proc/on_off)
+		playsound(get_turf(wearer), 'sound/effects/bubbles.ogg', 30, 1)
+		to_chat(wearer, span_notice("Commensing green blood injection.<b>[(automatic_meds_use && meds_beaker.reagents.total_volume) ? " Adding additional reagents." : ""]</b>"))
+		if(automatic_meds_use)
+			to_chat(wearer, get_meds_beaker_contents())
+			meds_beaker.reagents.trans_to(wearer, 30)
+		setup_bonus_effects()
 
 ///Updates the boost amount of the suit and effect_str of reagents if component is on. "amount" is the final level you want to set the boost to.
 /datum/component/chem_booster/proc/update_boost(amount)
