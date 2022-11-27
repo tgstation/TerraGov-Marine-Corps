@@ -126,7 +126,7 @@
 			if(isxenoboiler(C))
 				beachwater_slowdown = -0.5
 			else if(isxenowarlock(C))
-				beachwater_slowdown = 0
+				beachwater_slowdown = 0 //they float over the water
 			else
 				beachwater_slowdown = 1.3
 

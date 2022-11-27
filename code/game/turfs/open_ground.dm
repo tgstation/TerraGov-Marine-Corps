@@ -55,10 +55,12 @@
 		C.clean_mob()
 
 		if(isxeno(C))
-			if(!isxenoboiler(C))
-				river_slowdown = 1.3
-			else
+			if(isxenoboiler(C))
 				river_slowdown = -0.5
+			else if(isxenowarlock(C))
+				river_slowdown = 0 //they float over the water
+			else
+				river_slowdown = 1.3
 
 		if(C.on_fire)
 			C.ExtinguishMob()
