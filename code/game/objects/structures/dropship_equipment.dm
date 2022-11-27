@@ -1093,8 +1093,6 @@
 	var/obj/effect/abstract/particle_holder/disabled_smoke
 	///Whether the system is currently retracting a rope or not
 	var/retracting = FALSE
-	///If it is, whether or not to interrupt a ret
-	var/interrupt_retract = FALSE
 	///Whether a xeno is currently disabling the system or not
 	var/hooked = FALSE
 
@@ -1150,6 +1148,7 @@
 		playsound(target_turf, 'sound/effects/rappel.ogg', 50, TRUE)
 		playsound(src, 'sound/effects/rappel.ogg', 50, TRUE)
 		user.forceMove(target_turf)
+		rappel_animation(user)
 
 	flick("rappel_hatch_closing", src)
 	icon_state = "rappel_hatch_unlocked"
@@ -1158,7 +1157,6 @@
 	user.client.perspective = MOB_PERSPECTIVE
 	user.client.eye = user
 
-	rappel_animation(user)
 
 ///Human animation for dropping down
 /obj/structure/dropship_equipment/rappel_system/proc/rappel_animation(mob/living/carbon/human/user)
@@ -1202,10 +1200,9 @@
 
 ///Undeploys the rappel and locks the hatch. Rappel cannot be retracted if it is currently being attacked (hooked)
 /obj/structure/dropship_equipment/rappel_system/proc/retract_rope()
-	retracting = FALSE
-	if(interrupt_retract == TRUE)
-		interrupt_retract = FALSE
+	if(!retracting)
 		return
+	retracting = FALSE
 
 	if(hooked)
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 25)
@@ -1225,7 +1222,7 @@
 	addtimer(CALLBACK(src, .proc/reel_in), 0.4 SECONDS)
 
 
-///Part 2 of retract_rope(), moves the rope back into the system after the rope animation has completed.
+///Part 2 of retract_rope(), moves the rope back into the system after the rope animation has completed. Unbuckles any mobs which were attached to it.
 /obj/structure/dropship_equipment/rappel_system/proc/reel_in()
 	rope.forceMove(src)
 
@@ -1260,15 +1257,17 @@
 	user.forceMove(get_turf(parent_system))
 
 	playsound(get_turf(src), 'sound/effects/rappel.ogg', 50, TRUE)
+	retracting = TRUE
 	parent_system.retract_rope()
 
 
 ///Rappel destruction, xeno mains rejoice
 /obj/effect/rappel_rope/tadpole/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 	. = ..()
-	parent_system.hooked = TRUE //Stops the pilot bringing up the rappel to prevent it being disabled
+	//Stops the pilot bringing up the rappel to prevent it being disabled
+	parent_system.hooked = TRUE
 	if(parent_system.retracting == TRUE)
-		parent_system.interrupt_retract = TRUE
+		parent_system.retracting = FALSE
 
 	X.balloon_alert_to_viewers("[X] tears at the rappel!","You start tearing up [src] to disable the host's sky-rope system!")
 	step(X, get_dir(X, src))
@@ -1279,7 +1278,6 @@
 		parent_system.balloon_alert_to_viewers("The system stops buckling.")
 		return
 
-	interrupt_retract = FALSE
 	parent_system.hooked = FALSE
 
 	playsound(src, 'sound/effects/metal_crash.ogg', 50, TRUE)
@@ -1305,6 +1303,7 @@
 
 	parent_system.disabled = TRUE
 	parent_system.hooked = FALSE //Snapping the rope un-hooks it and reels it back into the system
+	parent_system.retracting = TRUE
 	parent_system.retract_rope()
 
 
