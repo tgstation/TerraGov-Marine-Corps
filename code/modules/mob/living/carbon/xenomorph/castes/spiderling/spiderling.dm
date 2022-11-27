@@ -36,6 +36,7 @@
 	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/go_to_target)
 	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_ATTACK_OBJ, .proc/go_to_obj_target)
 	RegisterSignal(escorted_atom, COMSIG_MOB_DEATH, .proc/spiderling_rage)
+	RegisterSignal(escorted_atom, COMSIG_LIVING_DO_RESIST, .proc/parent_resist)
 
 /// Signal handler to check if we can attack the obj's that our escorted_atom is attacking
 /datum/ai_behavior/spiderling/proc/go_to_obj_target(source, obj/target)
@@ -111,3 +112,7 @@
 /datum/ai_behavior/spiderling/proc/kill_parent()
 	var/mob/living/carbon/xenomorph/spiderling/spiderling_parent = mob_parent
 	spiderling_parent.death(gibbing = FALSE)
+
+/datum/ai_behavior/spiderling/proc/parent_resist()
+	var/mob/living/carbon/xenomorph/spiderling/spiderling_parent = mob_parent
+	spiderling_parent.do_resist()
