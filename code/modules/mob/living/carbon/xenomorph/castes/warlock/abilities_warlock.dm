@@ -79,6 +79,9 @@
 			cancel_shield()
 		return
 
+	if(A)
+		owner.dir = get_cardinal_dir(owner, A) //if activated by mouse click, we face the atom clicked
+
 	var/turf/target_turf = get_step(owner, owner.dir)
 	if(target_turf.density)
 		owner.balloon_alert(owner, "Obstructed by [target_turf]")
