@@ -22,7 +22,7 @@
 	plasma_icon_state = "fury"
 
 	// *** Health *** //
-	max_health = 290
+	max_health = 325
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_YOUNG_THRESHOLD
@@ -82,13 +82,13 @@
 	plasma_gain = 5
 
 	// *** Health *** //
-	max_health = 310
+	max_health = 350
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_MATURE_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 40, BULLET = 45, LASER = 40, ENERGY = 40, BOMB = 10, BIO = 35, FIRE = 55, ACID = 35)
+	soft_armor = list(MELEE = 40, BULLET = 45, LASER = 40, ENERGY = 40, BOMB = 15, BIO = 35, FIRE = 55, ACID = 35)
 
 /datum/xeno_caste/ravager/elder
 	upgrade_name = "Elder"
@@ -108,13 +108,13 @@
 	plasma_regen_limit = 0.6
 
 	// *** Health *** //
-	max_health = 330
+	max_health = 375
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_ELDER_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 45, BULLET = 50, LASER = 45, ENERGY = 45, BOMB = 10, BIO = 38, FIRE = 65, ACID = 38)
+	soft_armor = list(MELEE = 45, BULLET = 50, LASER = 45, ENERGY = 45, BOMB = 20, BIO = 38, FIRE = 65, ACID = 38)
 
 /datum/xeno_caste/ravager/ancient
 	upgrade_name = "Ancient"
@@ -133,13 +133,13 @@
 	plasma_gain = 15
 
 	// *** Health *** //
-	max_health = 350
+	max_health = 400
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 50, BULLET = 55, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 40, FIRE = 70, ACID = 40)
+	soft_armor = list(MELEE = 50, BULLET = 55, LASER = 50, ENERGY = 50, BOMB = 25, BIO = 40, FIRE = 70, ACID = 40)
 
 /datum/xeno_caste/ravager/primordial
 	upgrade_name = "Primordial"
@@ -158,10 +158,10 @@
 	plasma_gain = 15
 
 	// *** Health *** //
-	max_health = 350
+	max_health = 400
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 50, BULLET = 55, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 40, FIRE = 70, ACID = 40)
+	soft_armor = list(MELEE = 50, BULLET = 55, LASER = 50, ENERGY = 50, BOMB = 25, BIO = 40, FIRE = 70, ACID = 40)
 
 	// *** Abilities *** //
 	actions = list(
