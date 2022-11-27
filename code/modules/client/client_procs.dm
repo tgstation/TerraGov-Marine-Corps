@@ -208,7 +208,6 @@
 			restore_stickybans()
 
 	if(SSinput.initialized)
-		set_macros()
 		update_special_keybinds()
 
 	// Initialize tgui panel
@@ -782,11 +781,20 @@
 /client/proc/rescale_view(change, min, max)
 	view_size.set_view_radius_to(clamp(change, min, max), clamp(change, min, max))
 
-
+/**
+  * Updates the keybinds for special keys
+  *
+  * Handles adding macros for the keys that need it
+  * And adding movement keys to the clients movement_keys list
+  * At the time of writing this, communication(OOC, Say, IC) require macros
+  * Arguments:
+  * * direct_prefs - the preference we're going to get keybinds from
+  */
 /client/proc/update_special_keybinds(datum/preferences/direct_prefs)
 	var/datum/preferences/D = prefs || direct_prefs
 	if(!D?.key_bindings)
 		return
+	set_macros() // reset macros
 	movement_keys = list()
 	for(var/key in D.key_bindings)
 		for(var/kb_name in D.key_bindings[key])
@@ -799,6 +807,18 @@
 					movement_keys[key] = WEST
 				if("South")
 					movement_keys[key] = SOUTH
+				if("Say")
+					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=say")
+				if("OOC")
+					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=ooc")
+				if("LOOC")
+					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=looc")
+				if("MOOC")
+					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=mooc")
+				if("XOOC")
+					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=xooc")
+				if("Me")
+					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=me")
 
 
 /client/proc/change_view(new_size)
