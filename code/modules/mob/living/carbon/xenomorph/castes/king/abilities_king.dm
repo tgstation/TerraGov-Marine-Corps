@@ -49,14 +49,6 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PETRIFY,
 	)
 
-/datum/action/xeno_action/petrify/can_use_action(silent, override_flags)
-	. = ..()
-	if(!.)
-		return
-	if(LAZYACCESS(owner.do_actions, src))
-		owner.balloon_alert(owner, "already busy")
-		return FALSE
-
 /datum/action/xeno_action/petrify/action_activate()
 	var/obj/effect/overlay/eye/eye = new
 	owner.vis_contents += eye
@@ -68,7 +60,7 @@
 		return
 	playsound(owner, 'sound/effects/petrify_activate.ogg', 50)
 	var/list/mob/living/carbon/human/humans = list()
-	for(var/mob/living/carbon/human/human in view(PETRIFY_RANGE, owner))
+	for(var/mob/living/carbon/human/human in view(PETRIFY_RANGE, owner.loc))
 		if(human.stat != CONSCIOUS)
 			continue
 		if(is_blind(human))
@@ -113,6 +105,7 @@
 // ***************************************
 // *********** Off-Guard
 // ***************************************
+#define OFF_GUARD_RANGE 8
 /datum/action/xeno_action/activable/off_guard
 	name = "Off-guard"
 	action_icon_state = "off_guard"
@@ -134,6 +127,10 @@
 	if(!ishuman(A))
 		if(!silent)
 			A.balloon_alert(owner, "not human")
+		return FALSE
+	if((A.z != owner.z) || get_dist(owner, A) > OFF_GUARD_RANGE)
+		if(!silent)
+			A.balloon_alert(owner, "too far")
 		return FALSE
 	var/mob/living/carbon/human/target = A
 	if(target.stat == DEAD)
@@ -201,10 +198,6 @@
 		if(!silent)
 			owner.balloon_alert("too early")
 		return FALSE
-	if(LAZYACCESS(owner.do_actions, src))
-		if(!silent)
-			owner.balloon_alert(owner, "already busy")
-		return FALSE
 
 /datum/action/xeno_action/zero_form_beam/action_activate()
 	if(timer_ref)
@@ -258,6 +251,7 @@
 ///ends and cleans up beam
 /datum/action/xeno_action/zero_form_beam/proc/stop_beaming()
 	SIGNAL_HANDLER
+	UnregisterSignal(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE))
 	sound_loop.stop(owner)
 	QDEL_NULL(beam)
 	particles.particles.spawning = 0
