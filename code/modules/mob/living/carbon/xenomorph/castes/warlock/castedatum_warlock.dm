@@ -18,7 +18,6 @@
 	spit_types = list(/datum/ammo/energy/xeno/psy_blast)
 
 	deevolves_to = /mob/living/carbon/xenomorph/wraith
-	caste_flags = CASTE_IS_INTELLIGENT
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_BECOME_KING
 	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 25, FIRE = 25, ACID = 25)
 	minimap_icon = "warlock"
