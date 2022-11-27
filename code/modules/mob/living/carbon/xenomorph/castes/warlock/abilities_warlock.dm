@@ -376,7 +376,7 @@
 	succeed_activate(crush_cost)
 	playsound(target, 'sound/effects/EMPulse.ogg', 70)
 	apply_filters(target_turfs)
-	addtimer(CALLBACK(src, .proc/remove_all_filters), 2 SECONDS, TIMER_STOPPABLE)
+	addtimer(CALLBACK(src, .proc/remove_all_filters), 1 SECONDS, TIMER_STOPPABLE)
 
 	for(var/turf/effected_turf AS in target_turfs)
 		for(var/i in effected_turf)
