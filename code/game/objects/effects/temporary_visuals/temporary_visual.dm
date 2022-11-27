@@ -81,7 +81,7 @@
 	layer = FLY_LAYER
 	resistance_flags = RESIST_ALL
 	mouse_opacity = 0
-	light_system = HYBRID_LIGHT
+	light_system = STATIC_LIGHT
 	light_power = 12
 	light_range = 12 //Way brighter than most lights
 	pixel_y = 150
