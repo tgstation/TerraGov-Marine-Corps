@@ -397,7 +397,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 
 	currently_assembling = FALSE
 	balloon_alert_to_viewers("Beep. Machine ready for use.")
-	playsound(src, 'sound/machines/two_tones_beep.ogg', 30, 1)
+	playsound(src, 'sound/machines/chime.ogg', 30, 1)
 
 ///updates the current_stats data for the UI
 /obj/machinery/computer/mech_builder/proc/update_stats(selected_part, old_bodytype, new_bodytype)
@@ -443,7 +443,3 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 		if(slot == MECH_GREY_HEAD)
 			new_overlays += icon2appearance(SSgreyscale.GetColoredIconByType(initial(typepath.visor_config), selected_visor))
 	mech_view.overlays = new_overlays
-
-///called when ready to assemble new mechs
-/obj/machinery/computer/mech_builder/proc/on_cooldown_end()
-
