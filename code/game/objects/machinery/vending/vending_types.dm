@@ -33,35 +33,35 @@
 	icon_state = "boozeomat"        //////////////18 drink entities below, plus the glasses, in case someone wants to edit the number of bottles
 	icon_deny = "boozeomat-deny"
 	products = list(
-		/obj/item/reagent_containers/food/drinks/bottle/gin = 5,
-		/obj/item/reagent_containers/food/drinks/bottle/whiskey = 5,
-		/obj/item/reagent_containers/food/drinks/bottle/tequila = 5,
-		/obj/item/reagent_containers/food/drinks/bottle/vodka = 5,
-		/obj/item/reagent_containers/food/drinks/bottle/vermouth = 5,
-		/obj/item/reagent_containers/food/drinks/bottle/rum = 5,
-		/obj/item/reagent_containers/food/drinks/bottle/wine = 5,
-		/obj/item/reagent_containers/food/drinks/bottle/cognac = 5,
-		/obj/item/reagent_containers/food/drinks/bottle/kahlua = 5,
-		/obj/item/reagent_containers/food/drinks/cans/beer = 6,
-		/obj/item/reagent_containers/food/drinks/cans/ale = 6,
-		/obj/item/reagent_containers/food/drinks/bottle/orangejuice = 4,
-		/obj/item/reagent_containers/food/drinks/bottle/tomatojuice = 4,
-		/obj/item/reagent_containers/food/drinks/bottle/limejuice = 4,
-		/obj/item/reagent_containers/food/drinks/bottle/cream = 4,
-		/obj/item/reagent_containers/food/drinks/cans/tonic = 8,
-		/obj/item/reagent_containers/food/drinks/cans/cola = 8,
-		/obj/item/reagent_containers/food/drinks/cans/sodawater = 15,
-		/obj/item/reagent_containers/food/drinks/flask/barflask = 2,
-		/obj/item/reagent_containers/food/drinks/flask/vacuumflask = 2,
-		/obj/item/reagent_containers/food/drinks/drinkingglass = 30,
-		/obj/item/reagent_containers/food/drinks/ice = 9,
-		/obj/item/reagent_containers/food/drinks/bottle/melonliquor = 2,
-		/obj/item/reagent_containers/food/drinks/bottle/bluecuracao = 2,
-		/obj/item/reagent_containers/food/drinks/bottle/absinthe = 2,
-		/obj/item/reagent_containers/food/drinks/bottle/grenadine = 5,
-		/obj/item/reagent_containers/food/drinks/cans/aspen = 20,
-		/obj/item/reagent_containers/food/drinks/bottle/davenport = 3,
-		/obj/item/reagent_containers/food/drinks/tea = 10,
+		/obj/item/reagent_containers/food/drinks/bottle/gin = -1,
+		/obj/item/reagent_containers/food/drinks/bottle/whiskey = -1,
+		/obj/item/reagent_containers/food/drinks/bottle/tequila = -1,
+		/obj/item/reagent_containers/food/drinks/bottle/vodka = -1,
+		/obj/item/reagent_containers/food/drinks/bottle/vermouth = -1,
+		/obj/item/reagent_containers/food/drinks/bottle/rum = -1,
+		/obj/item/reagent_containers/food/drinks/bottle/wine = -1,
+		/obj/item/reagent_containers/food/drinks/bottle/cognac = -1,
+		/obj/item/reagent_containers/food/drinks/bottle/kahlua = -1,
+		/obj/item/reagent_containers/food/drinks/cans/beer = -1,
+		/obj/item/reagent_containers/food/drinks/cans/ale = -1,
+		/obj/item/reagent_containers/food/drinks/bottle/orangejuice = -1,
+		/obj/item/reagent_containers/food/drinks/bottle/tomatojuice = -1,
+		/obj/item/reagent_containers/food/drinks/bottle/limejuice = -1,
+		/obj/item/reagent_containers/food/drinks/bottle/cream = -1,
+		/obj/item/reagent_containers/food/drinks/cans/tonic = -1,
+		/obj/item/reagent_containers/food/drinks/cans/cola = -1,
+		/obj/item/reagent_containers/food/drinks/cans/sodawater = -1,
+		/obj/item/reagent_containers/food/drinks/flask/barflask = -1,
+		/obj/item/reagent_containers/food/drinks/flask/vacuumflask = -1,
+		/obj/item/reagent_containers/food/drinks/drinkingglass = -1,
+		/obj/item/reagent_containers/food/drinks/ice = -1,
+		/obj/item/reagent_containers/food/drinks/bottle/melonliquor = -1,
+		/obj/item/reagent_containers/food/drinks/bottle/bluecuracao = -1,
+		/obj/item/reagent_containers/food/drinks/bottle/absinthe = -1,
+		/obj/item/reagent_containers/food/drinks/bottle/grenadine = -1,
+		/obj/item/reagent_containers/food/drinks/cans/aspen = -1,
+		/obj/item/reagent_containers/food/drinks/bottle/davenport = -1,
+		/obj/item/reagent_containers/food/drinks/tea = -1,
 	)
 	vend_delay = 15
 	idle_power_usage = 211
@@ -88,11 +88,11 @@
 	vending_sound = 'sound/machines/vending_coffee.ogg'
 	vend_delay = 34
 	products = list(
-		/obj/item/reagent_containers/food/drinks/coffee = 20,
-		/obj/item/reagent_containers/food/drinks/coffee/cafe_latte = 20,
-		/obj/item/reagent_containers/food/drinks/tea = 25,
-		/obj/item/reagent_containers/food/drinks/h_chocolate = 25,
-		/obj/item/reagent_containers/food/drinks/ice = 10,
+		/obj/item/reagent_containers/food/drinks/coffee = -1,
+		/obj/item/reagent_containers/food/drinks/coffee/cafe_latte = -1,
+		/obj/item/reagent_containers/food/drinks/tea = -1,
+		/obj/item/reagent_containers/food/drinks/h_chocolate = -1,
+		/obj/item/reagent_containers/food/drinks/ice = -1,
 	)
 
 /obj/machinery/vending/snack
@@ -102,15 +102,15 @@
 	product_ads = "Kepler Crisps! Try a snack that's out of this world!;Eat an EAT!"
 	icon_state = "snack"
 	products = list(
-		/obj/item/reagent_containers/food/snacks/packaged_burger = 12,
-		/obj/item/reagent_containers/food/snacks/packaged_burrito = 12,
-		/obj/item/reagent_containers/food/snacks/packaged_hdogs =12,
-		/obj/item/reagent_containers/food/snacks/kepler_crisps = 12,
-		/obj/item/reagent_containers/food/snacks/enrg_bar = 12,
-		/obj/item/reagent_containers/food/snacks/wrapped/booniebars = 6,
-		/obj/item/reagent_containers/food/snacks/wrapped/chunk = 6,
-		/obj/item/reagent_containers/food/snacks/wrapped/barcardine = 6,
-		/obj/item/reagent_containers/food/snacks/lollipop = 12,
+		/obj/item/reagent_containers/food/snacks/packaged_burger = -1,
+		/obj/item/reagent_containers/food/snacks/packaged_burrito = -1,
+		/obj/item/reagent_containers/food/snacks/packaged_hdogs = -1,
+		/obj/item/reagent_containers/food/snacks/kepler_crisps = -1,
+		/obj/item/reagent_containers/food/snacks/enrg_bar = -1,
+		/obj/item/reagent_containers/food/snacks/wrapped/booniebars = -1,
+		/obj/item/reagent_containers/food/snacks/wrapped/chunk = -1,
+		/obj/item/reagent_containers/food/snacks/wrapped/barcardine = -1,
+		/obj/item/reagent_containers/food/snacks/lollipop = -1,
 	)
 
 /obj/machinery/vending/cola
@@ -120,16 +120,16 @@
 	product_slogans = "Souto Soda: Have a Souto and be taken away to a tropical paradise!;Souto Classic. You can't beat that tangerine goodness!;Souto Cherry. The sweet flavor of a cool winter morning!;Souto Lime. For that sweet and sour flavor that you know and love!;Souto Grape. There's nothing better than a grape soda.;Nanotrasen Fruit Beer. Nothing came from that lawsuit!;Nanotrasen Spring Water. It came from a spring!"
 	product_ads = "Souto Classic. You can't beat that tangerine goodness!;Souto Cherry. The sweet flavor of a cool winter morning!;Souto Lime. For that sweet and sour flavor that you know and love!;Souto Grape. There's nothing better than a grape soda.;Nanotrasen Fruit Beer. Nothing came from that lawsuit!;Nanotrasen Spring Water. It came from a spring!"
 	products = list(
-		/obj/item/reagent_containers/food/drinks/cans/souto = 10,
-		/obj/item/reagent_containers/food/drinks/cans/souto/diet = 10,
-		/obj/item/reagent_containers/food/drinks/cans/souto/cherry = 10,
-		/obj/item/reagent_containers/food/drinks/cans/souto/cherry/diet = 10,
-		/obj/item/reagent_containers/food/drinks/cans/souto/lime = 10,
-		/obj/item/reagent_containers/food/drinks/cans/souto/lime/diet = 10,
-		/obj/item/reagent_containers/food/drinks/cans/souto/grape = 10,
-		/obj/item/reagent_containers/food/drinks/cans/souto/grape/diet = 10,
-		/obj/item/reagent_containers/food/drinks/cans/waterbottle = 10,
-		/obj/item/reagent_containers/food/drinks/cans/cola = 10,
+		/obj/item/reagent_containers/food/drinks/cans/souto = -1,
+		/obj/item/reagent_containers/food/drinks/cans/souto/diet = -1,
+		/obj/item/reagent_containers/food/drinks/cans/souto/cherry = -1,
+		/obj/item/reagent_containers/food/drinks/cans/souto/cherry/diet = -1,
+		/obj/item/reagent_containers/food/drinks/cans/souto/lime = -1,
+		/obj/item/reagent_containers/food/drinks/cans/souto/lime/diet = -1,
+		/obj/item/reagent_containers/food/drinks/cans/souto/grape = -1,
+		/obj/item/reagent_containers/food/drinks/cans/souto/grape/diet = -1,
+		/obj/item/reagent_containers/food/drinks/cans/waterbottle = -1,
+		/obj/item/reagent_containers/food/drinks/cans/cola = -1,
 	)
 
 	prices = list(
