@@ -13,6 +13,7 @@
 	var/targetted_zlevel = 2
 	///minimap obj ref that we will display to users
 	var/atom/movable/screen/minimap/map
+	///timer to check if we're in range of the map table still.
 
 /obj/machinery/cic_maptable/Destroy()
 	map = null
@@ -27,6 +28,19 @@
 	if(!map)
 		map = SSminimaps.fetch_minimap_object(targetted_zlevel, allowed_flags)
 	user.client.screen += map
+	if(isobserver(user))
+		RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/on_move)
+
+
+//Bugfix to handle cases for ghosts/observers that dont automatically close uis on move.
+/obj/machinery/cic_maptable/proc/on_move(mob/dead/observer/source, oldloc)
+	SIGNAL_HANDLER
+	if(!istype(source))
+		CRASH("on_move called by non observer")
+	if(Adjacent(source))
+		return
+	UnregisterSignal(source, COMSIG_MOVABLE_MOVED)
+	source.unset_interaction()
 
 /obj/machinery/cic_maptable/on_unset_interaction(mob/user)
 	. = ..()
