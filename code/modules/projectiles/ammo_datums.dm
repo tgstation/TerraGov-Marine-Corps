@@ -2520,8 +2520,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		var/mob/living/carbon/xenomorph/xeno_firer = P.firer
 		aoe_damage = xeno_firer.xeno_caste.blast_strength
 	for(var/atom/movable/victim in get_hear(aoe_range, T))
-		if(victim.anchored)
-			continue
 		if(isliving(victim))
 			var/mob/living/living_victim = victim
 			if(living_victim.stat == DEAD)
@@ -2531,7 +2529,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 				staggerstun(living_victim, P, 10, slowdown = 1)
 		else if(isobj(victim))
 			var/obj/obj_victim = victim
+			if(!(obj_victim.resistance_flags & XENO_DAMAGEABLE))
+				continue
 			obj_victim.take_damage(aoe_damage, BURN, ENERGY, 0, armour_penetration = penetration)
+		if(victim.anchored)
+			continue
 		var/throw_dir = get_dir(T, victim)
 		if(T == get_turf(victim))
 			throw_dir = get_dir(P.starting_turf, T)
