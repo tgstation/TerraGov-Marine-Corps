@@ -182,6 +182,18 @@
 	resistance_flags = UNACIDABLE
 	layer = ABOVE_TURF_LAYER
 
+/obj/structure/prop/mainship/name_stencil/T
+	icon_state = "TGMC1"
+
+/obj/structure/prop/mainship/name_stencil/G
+	icon_state = "TGMC2"
+
+/obj/structure/prop/mainship/name_stencil/M
+	icon_state = "TGMC3"
+
+/obj/structure/prop/mainship/name_stencil/C
+	icon_state = "TGMC4"
+
 /obj/structure/prop/mainship/name_stencil/Initialize()
 	. = ..()
 	name = SSmapping.configs[SHIP_MAP].map_name

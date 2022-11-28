@@ -125,7 +125,7 @@
 	if(status_flags & INCORPOREAL)
 		status_flags = NONE
 		resistance_flags = BANISH_IMMUNE
-		flags_pass = NONE
+		flags_pass = PASSTABLE | PASSMOB | PASSXENO
 		density = TRUE
 		throwpass = FALSE
 		hive.xenos_by_upgrade[upgrade] -= src

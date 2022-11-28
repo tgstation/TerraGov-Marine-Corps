@@ -259,6 +259,24 @@
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "plating"
 
+// NECESSARY FOR LAGMOOR EXPERIENCE
+// Colony tiles
+/turf/open/floor/concrete
+	name = "concrete"
+	icon = 'icons/turf/concrete.dmi'
+	icon_state = "concrete0"
+	mediumxenofootstep = FOOTSTEP_CONCRETE
+	barefootstep = FOOTSTEP_CONCRETE
+	shoefootstep = FOOTSTEP_CONCRETE
+
+/turf/open/floor/concrete/ex_act() //Fixes black tile explosion issue
+
+/turf/open/floor/concrete/lines
+	icon_state = "concrete_lines"
+
+/turf/open/floor/concrete/edge
+	icon_state = "concrete_edge"
+
 /turf/open/floor/plating/heatinggrate
 	icon_state = "heatinggrate"
 
@@ -305,6 +323,33 @@
 
 /turf/open/shuttle/escapepod/twelve
 	icon_state = "floor12"
+
+/turf/open/shuttle/escapepod/wallone
+	icon_state = "wall1"
+
+/turf/open/shuttle/escapepod/walltwo
+	icon_state = "wall2"
+
+/turf/open/shuttle/escapepod/wallthree
+	icon_state = "wall3"
+
+/turf/open/shuttle/escapepod/wallfour
+	icon_state = "wall4"
+
+/turf/open/shuttle/escapepod/wallfive
+	icon_state = "wall5"
+
+/turf/open/shuttle/escapepod/walleleven
+	icon_state = "wall11"
+
+/turf/open/shuttle/escapepod/walltwelve
+	icon_state = "wall12"
+
+/turf/open/shuttle/escapepod/cornerone
+	icon_state = "corner1"
+
+/turf/open/shuttle/escapepod/cornertwo
+	icon_state = "corner2"
 
 // Elevator floors
 /turf/open/shuttle/elevator

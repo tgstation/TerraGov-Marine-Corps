@@ -197,7 +197,7 @@
 	/// Ui size, so you can make the UI bigger if you let it load a lot of stuff
 	var/ui_y = 600
 	/// ref to screen object that displays in the middle of the UI
-	var/obj/screen/mech_view/ui_view
+	var/atom/movable/screen/mech_view/ui_view
 
 /obj/item/radio/mech //this has to go somewhere
 	subspace_transmission = TRUE
@@ -432,22 +432,22 @@
 				if(0.75 to INFINITY)
 					occupant.clear_alert(ALERT_CHARGE)
 				if(0.5 to 0.75)
-					occupant.throw_alert(ALERT_CHARGE, /obj/screen/alert/lowcell, 1)
+					occupant.throw_alert(ALERT_CHARGE, /atom/movable/screen/alert/lowcell, 1)
 				if(0.25 to 0.5)
-					occupant.throw_alert(ALERT_CHARGE, /obj/screen/alert/lowcell, 2)
+					occupant.throw_alert(ALERT_CHARGE, /atom/movable/screen/alert/lowcell, 2)
 				if(0.01 to 0.25)
-					occupant.throw_alert(ALERT_CHARGE, /obj/screen/alert/lowcell, 3)
+					occupant.throw_alert(ALERT_CHARGE, /atom/movable/screen/alert/lowcell, 3)
 				else
-					occupant.throw_alert(ALERT_CHARGE, /obj/screen/alert/emptycell)
+					occupant.throw_alert(ALERT_CHARGE, /atom/movable/screen/alert/emptycell)
 
 		var/integrity = obj_integrity/max_integrity*100
 		switch(integrity)
 			if(30 to 45)
-				occupant.throw_alert(ALERT_MECH_DAMAGE, /obj/screen/alert/low_mech_integrity, 1)
+				occupant.throw_alert(ALERT_MECH_DAMAGE, /atom/movable/screen/alert/low_mech_integrity, 1)
 			if(15 to 35)
-				occupant.throw_alert(ALERT_MECH_DAMAGE, /obj/screen/alert/low_mech_integrity, 2)
+				occupant.throw_alert(ALERT_MECH_DAMAGE, /atom/movable/screen/alert/low_mech_integrity, 2)
 			if(-INFINITY to 15)
-				occupant.throw_alert(ALERT_MECH_DAMAGE, /obj/screen/alert/low_mech_integrity, 3)
+				occupant.throw_alert(ALERT_MECH_DAMAGE, /atom/movable/screen/alert/low_mech_integrity, 3)
 			else
 				occupant.clear_alert(ALERT_MECH_DAMAGE)
 		var/atom/checking = occupant.loc

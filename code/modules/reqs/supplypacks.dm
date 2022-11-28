@@ -368,6 +368,12 @@ WEAPONS
 	cost = 6
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/weapons/rpg_regular_unguided
+	name = "RL-152 SADAR HE rocket (Unguided)"
+	contains = list(/obj/item/ammo_magazine/rocket/sadar/unguided)
+	cost = 6
+	available_against_xeno_only = TRUE
+
 /datum/supply_packs/weapons/rpg_ap
 	name = "RL-152 SADAR AP rocket"
 	contains = list(/obj/item/ammo_magazine/rocket/sadar/ap)
@@ -377,6 +383,12 @@ WEAPONS
 /datum/supply_packs/weapons/rpg_wp
 	name = "RL-152 SADAR WP rocket"
 	contains = list(/obj/item/ammo_magazine/rocket/sadar/wp)
+	cost = 5
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/weapons/rpg_wp_unguided
+	name = "RL-152 SADAR WP rocket (Unguided)"
+	contains = list(/obj/item/ammo_magazine/rocket/sadar/wp/unguided)
 	cost = 5
 	available_against_xeno_only = TRUE
 
@@ -1653,6 +1665,21 @@ FACTORY
 /datum/supply_packs/factory/reconstructor
 	name = "Industrial reconstructor"
 	contains = list(/obj/machinery/factory/reconstructor)
+	cost = 5
+
+/datum/supply_packs/factory/driller
+	name = "Industrial driller"
+	contains = list(/obj/machinery/factory/driller)
+	cost = 5
+
+/datum/supply_packs/factory/galvanizer
+	name = "Industrial galvanizer"
+	contains = list(/obj/machinery/factory/galvanizer)
+	cost = 5
+
+/datum/supply_packs/factory/compressor
+	name = "Industrial compressor"
+	contains = list(/obj/machinery/factory/driller)
 	cost = 5
 
 /datum/supply_packs/factory/unboxer

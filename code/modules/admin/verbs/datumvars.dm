@@ -948,6 +948,10 @@
 		C?.open_filter_editor(locate(href_list["filteredit"]))
 		return
 
+	if(href_list["modify_particles"] && check_rights(R_VAREDIT))
+		var/client/C = usr.client
+		C?.open_particle_editor(locate(href_list["modify_particles"]))
+
 	else if(href_list["rotatedatum"])
 		if(!check_rights(R_DEBUG))
 			return

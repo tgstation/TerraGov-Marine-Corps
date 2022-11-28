@@ -696,6 +696,7 @@
 	.["Send"] = "?_src_=vars;[HrefToken()];sendatom=[REF(src)]"
 	.["Delete All Instances"] = "?_src_=vars;[HrefToken()];delall=[REF(src)]"
 	.["Update Icon"] = "?_src_=vars;[HrefToken()];updateicon=[REF(src)]"
+	.["Edit Particles"] = "?_src_=vars;[HrefToken()];modify_particles=[REF(src)]"
 
 
 /atom/movable/proc/get_language_holder(shadow = TRUE)

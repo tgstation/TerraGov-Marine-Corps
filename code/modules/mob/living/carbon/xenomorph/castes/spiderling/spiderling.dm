@@ -34,6 +34,7 @@
 /datum/ai_behavior/spiderling/New(loc, parent_to_assign, escorted_atom, can_heal = FALSE)
 	. = ..()
 	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/go_to_target)
+	RegisterSignal(escorted_atom, COMSIG_MOB_DEATH, .proc/spiderling_rage)
 
 /// Signal handler to check if we can attack what our escorted_atom is attacking
 /datum/ai_behavior/spiderling/proc/go_to_target(source, mob/living/target)
@@ -78,3 +79,23 @@
 		UnregisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE)
 		UnregisterSignal(atom_to_walk_to, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING))
 	return ..()
+
+/// This happens when the spiderlings mother dies, they move faster and will attack any nearby marines
+/datum/ai_behavior/spiderling/proc/spiderling_rage()
+	var/mob/living/carbon/xenomorph/spiderling/x = mob_parent
+	var/list/mob/living/carbon/human/possible_victims = list()
+	for(var/mob/living/carbon/human/victim in cheap_get_humans_near(x, SPIDERLING_RAGE_RANGE))
+		if(victim.stat == DEAD)
+			continue
+		possible_victims += victim
+	if(!length(possible_victims))
+		kill_parent()
+		return
+	x.emote("roar")
+	change_action(MOVING_TO_ATOM, pick(possible_victims))
+	addtimer(CALLBACK(src, .proc/kill_parent), 10 SECONDS)
+
+///This kills the spiderling
+/datum/ai_behavior/spiderling/proc/kill_parent()
+	var/mob/living/carbon/xenomorph/spiderling/spiderling_parent = mob_parent
+	spiderling_parent.death(gibbing = FALSE)
