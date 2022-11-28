@@ -76,3 +76,26 @@
 	var/mob/living/carbon/xenomorph/hivemind/hivemind = source
 	hivemind.jump(selected_xeno)
 
+/datum/action/xeno_action/sow/hivemind
+	cooldown_timer = 70 SECONDS
+
+/datum/action/xeno_action/sow/hivemind/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
+	if (owner.status_flags & INCORPOREAL)
+		return FALSE
+	return ..()
+
+/datum/action/xeno_action/blessing_menu/hivemind/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
+	if (owner.status_flags & INCORPOREAL)
+		return FALSE
+	return ..()
+
+/datum/action/xeno_action/place_acidwell/hivemind/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
+	if (owner.status_flags & INCORPOREAL)
+		return FALSE
+	return ..()
+
+/datum/action/xeno_action/place_jelly_pod/hivemind/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
+	if (owner.status_flags & INCORPOREAL)
+		return FALSE
+	return ..()
+
