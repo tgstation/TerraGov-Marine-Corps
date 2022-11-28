@@ -315,6 +315,7 @@
 #define COMSIG_LOADOUT_VENDOR_VENDED_ARMOR_ATTACHMENT "loadout_vended_armor_attachment" //from base of /datum/item_representation/armor_module/proc/install_on_armor() : (/obj/item/attachment)
 
 #define COMSIG_MARINE_VENDOR_MODULE_VENDED "marine_vendor_module_vended"
+#define COMSIG_MODULE_DIRECTLY_EQUIPPED "module_directly_equipped"
 
 // /obj/item/armor_module signals
 #define COMSIG_ARMOR_MODULE_ATTACHING "armor_module_attaching"

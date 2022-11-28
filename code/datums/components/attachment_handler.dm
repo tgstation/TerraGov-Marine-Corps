@@ -126,7 +126,7 @@
 		wearing_mob.regenerate_icons() //Theres probably a better way to do this.
 
 ///Detatches an attachment. This is an unsafe proc, check if the attachment is allowed to detatch first.
-/datum/component/attachment_handler/proc/detach(obj/attachment, list/attachment_data, mob/living/user)
+/datum/component/attachment_handler/proc/detach(obj/attachment, list/attachment_data, mob/user)
 	var/slot = attachment_data[SLOT]
 	slots[slot] = null //Sets the slot the attachment is being removed from to null.
 	attachment_data_by_slot[slot] = null

@@ -67,7 +67,7 @@
 	parent.hard_armor = parent.hard_armor.attachArmor(hard_armor)
 	parent.soft_armor = parent.soft_armor.attachArmor(soft_armor)
 	parent.slowdown += slowdown
-	if(CHECK_BITFIELD(flags_attach_features, ATTACH_ACTIVATION))
+	if(has_actions())
 		RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/handle_actions)
 	if(length(variants_by_parent_type))
 		for(var/selection in variants_by_parent_type)
@@ -76,6 +76,10 @@
 				base_icon = variants_by_parent_type[selection]
 
 	update_icon()
+
+///Checks if this is supposed to give the player action buttons
+/obj/item/armor_module/proc/has_actions()
+	return CHECK_BITFIELD(flags_attach_features, ATTACH_ACTIVATION)
 
 /// Called when the module is removed from the armor.
 /obj/item/armor_module/proc/on_detach(obj/item/detaching_from, mob/user)
@@ -117,13 +121,16 @@
 	return
 
 /obj/item/armor_module/on_vend(faction)
-	for(var/obj/item/module_receiver in usr.get_equipped_items())
-		SEND_SIGNAL(module_receiver, COMSIG_MARINE_VENDOR_MODULE_VENDED, src)
-		if (parent) //module sucessfully attached
-			SEND_SIGNAL(parent, COMSIG_ITEM_EQUIPPED_TO_SLOT, usr, null)
-			add_actions(usr)
-			return
-	..() //module could not be inserted, fallback to parent behavior
+	for(var/slot in SLOT_ALL)
+		var/obj/equipment = usr.get_item_by_slot(slot)
+		if(equipment)
+			SEND_SIGNAL(equipment, COMSIG_MARINE_VENDOR_MODULE_VENDED, src, usr)
+			if(equipment == parent) //module sucessfully attached
+				SEND_SIGNAL(parent, COMSIG_MODULE_DIRECTLY_EQUIPPED, usr, slot)
+				if(has_actions())
+					handle_actions(null, usr, slot)
+				return
+	..() //module could not be inserted, fall back to parent behavior
 
 /**
  *  These are the basic type for armor armor_modules. What seperates these from /armor_module is that these are designed to be recolored.
