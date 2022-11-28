@@ -255,7 +255,7 @@
 	action_icon_state = "psy_crush"
 	mechanics_text = "Channel an expanding AOE crush effect, activating it again pre-maturely crushes enemies over an area. The longer it is channeled, the larger area it will affect, but will consume more plasma."
 	ability_name = "psychic crush"
-	plasma_cost = 35
+	plasma_cost = 40
 	cooldown_timer = 12 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
@@ -356,7 +356,7 @@
 	target_turfs += turfs_to_add
 	current_iterations ++
 	if(can_use_action(xeno_owner, XACT_IGNORE_COOLDOWN))
-		channel_loop_timer = addtimer(CALLBACK(src, .proc/do_channel, target), 0.5 SECONDS, TIMER_STOPPABLE)
+		channel_loop_timer = addtimer(CALLBACK(src, .proc/do_channel, target), 0.6 SECONDS, TIMER_STOPPABLE)
 		return
 
 	stop_crush(target)
@@ -392,11 +392,6 @@
 			else if(ismecha(i))
 				var/obj/vehicle/sealed/mecha/mecha_victim = i
 				mecha_victim.take_damage(xeno_owner.xeno_caste.crush_strength * 5, BOMB)
-			else if(isobj(i))
-				var/obj/obj_victim = i
-				if(istype(obj_victim, /obj/alien))
-					continue
-				obj_victim.take_damage(xeno_owner.xeno_caste.crush_strength, BOMB)
 	stop_crush(target)
 
 /// stops channeling and unregisters all listeners, resetting the ability
