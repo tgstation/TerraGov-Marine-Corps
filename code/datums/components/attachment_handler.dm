@@ -41,7 +41,7 @@
 	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/start_mob_attempt_attach) //For attaching.
 	RegisterSignal(parent, list(COMSIG_MARINE_VENDOR_MODULE_VENDED, COMSIG_LOADOUT_VENDOR_VENDED_GUN_ATTACHMENT, COMSIG_LOADOUT_VENDOR_VENDED_ATTACHMENT_GUN, COMSIG_LOADOUT_VENDOR_VENDED_ARMOR_ATTACHMENT), .proc/attach_without_user)
 
-	RegisterSignal(parent, COMSIG_CLICK_ALT, .proc/start_mob_attempt_detatch) //For Detaching
+	RegisterSignal(parent, COMSIG_CLICK_ALT, .proc/start_mob_attempt_detach) //For Detaching
 	RegisterSignal(parent, COMSIG_PARENT_QDELETING, .proc/clean_references) //Dels attachments.
 	RegisterSignal(parent, COMSIG_ITEM_APPLY_CUSTOM_OVERLAY, .proc/apply_custom)
 	RegisterSignal(parent, COMSIG_ITEM_UNEQUIPPED, .proc/remove_overlay)
@@ -98,7 +98,7 @@
 	var/slot = attachment_data[SLOT]
 	var/obj/current_attachment = attachment_in_slot(slot)
 
-	if(current_attachment) //If there is an attachment is the slot we are attaching to, detatch it
+	if(current_attachment) //If there is an attachment is the slot we are attaching to, detach it
 		var/list/current_attachment_data_by_slot = attachment_data_by_slot[slot]
 		detach(current_attachment, current_attachment_data_by_slot, attacher)
 
@@ -125,7 +125,7 @@
 	if(ismob(wearing_mob) && CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_APPLY_ON_MOB))
 		wearing_mob.regenerate_icons() //Theres probably a better way to do this.
 
-///Detatches an attachment. This is an unsafe proc, check if the attachment is allowed to detatch first.
+///detaches an attachment. This is an unsafe proc, check if the attachment is allowed to detach first.
 /datum/component/attachment_handler/proc/detach(obj/attachment, list/attachment_data, mob/user)
 	var/slot = attachment_data[SLOT]
 	slots[slot] = null //Sets the slot the attachment is being removed from to null.
@@ -212,12 +212,12 @@
 	return do_after(attacher, attach_delay, TRUE, parent, do_after_icon_type)
 
 ///Starts a mob's attempt to detach something from the parent, is called when the user Alt-Clicks the parent.
-/datum/component/attachment_handler/proc/start_mob_attempt_detatch(datum/source, mob/user)
+/datum/component/attachment_handler/proc/start_mob_attempt_detach(datum/source, mob/user)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, .proc/mob_attempt_detatch, user)
+	INVOKE_ASYNC(src, .proc/mob_attempt_detach, user)
 
-///Makes a mob attempt to detatch an attachment, based on a menu selection
-/datum/component/attachment_handler/proc/mob_attempt_detatch(mob/user)
+///Makes a mob attempt to detach an attachment, based on a menu selection
+/datum/component/attachment_handler/proc/mob_attempt_detach(mob/user)
 	if(!user.is_holding(parent))
 		to_chat(user, span_warning("You must be holding [parent] to field strip it!"))
 		return
@@ -253,7 +253,7 @@
 
 	detach(attachment_to_remove, attachment_data, user)
 
-///This is the do_after for detatching
+///This is the do_after for detaching
 /datum/component/attachment_handler/proc/do_detach(obj/attachment, mob/attacher, list/attachment_data)
 	var/do_after_icon_type = BUSY_ICON_GENERIC
 	var/detach_delay = attachment_data[DETACH_DELAY]
