@@ -2228,6 +2228,10 @@
 	force = 2
 	throwforce = 2
 
+/obj/item/reagent_containers/food/snacks/fruitcakeslice/Initialize()
+	. = ..()
+	icon_state = "fruitcake_slice1"
+
 /obj/item/reagent_containers/food/snacks/sliceable/pumpkinpie
 	name = "Pumpkin Pie"
 	desc = "A delicious treat for the autumn months."
