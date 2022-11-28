@@ -134,8 +134,6 @@
 		guntree = TRUE
 		icon_state = "pinepresents_gun"
 		desc = "Reach in and seize your means of freedom!"
-		///populate potential gun list
-		var/gun_spawn_list = subtypesof(/obj/item/weapon/gun)
 
 /obj/structure/flora/tree/pine/xmas/presents/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
@@ -155,6 +153,8 @@
 		to_chat(user, span_warning("There are no presents with your name on."))
 		return
 	if(guntree)
+		///populate potential gun list
+		var/gun_spawn_list = subtypesof(/obj/item/weapon/gun)
 		var/mob/living/carbon/human/present_receiver = user
 		var/obj/item/G = pick(gun_spawn_list)
 		G.desc += " Property of [present_receiver.real_name]."
