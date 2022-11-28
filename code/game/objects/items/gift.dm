@@ -87,6 +87,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		return
 	else
 		var/obj/item/I = new contains_type(get_turf(M))
+		log_game("[M] has opened a present that contained a [I] at [AREACOORD(loc)]")
 		if(QDELETED(I)) //might contain something like metal rods that might merge with a stack on the ground
 			M.balloon_alert_to_viewers("Nothing inside [M]'s gift" ,ignored_mobs = M)
 			M.balloon_alert(M, "Nothing inside")
@@ -96,7 +97,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		if(!stolen_gift)
 			I.desc += " Property of [M.real_name]."
 		else
-			I.color = COLOR_SOFT_RED
+			I.color = pick(COLOR_SOFT_RED, COLOR_GREEN, COLOR_LIME, COLOR_RED_LIGHT)
 			I.desc += " The word 'STOLEN' is visible in bright red and green ink."
 		M.balloon_alert_to_viewers("Found a [I]")
 		M.put_in_hands(I)

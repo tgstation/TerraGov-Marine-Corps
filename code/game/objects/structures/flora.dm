@@ -122,12 +122,20 @@
 	var/gift_type = /obj/item/a_gift/free
 	var/unlimited = FALSE
 	var/static/list/took_presents //shared between all xmas trees
+	///meme version of tree that only dispenses guns not presents
+	var/guntree = FALSE
 
 /obj/structure/flora/tree/pine/xmas/presents/Initialize(mapload)
 	. = ..()
 	icon_state = "pinepresents"
 	if(!took_presents)
 		took_presents = list()
+	if(!guntree && prob(1))
+		guntree = TRUE
+		icon_state = "pinepresents_gun"
+		desc = "Reach in and seize your means of freedom!"
+		///populate potential gun list
+		var/gun_spawn_list = subtypesof(/obj/item/weapon/gun)
 
 /obj/structure/flora/tree/pine/xmas/presents/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
@@ -138,13 +146,22 @@
 	to_chat(user, span_warning("You start rummaging through the pile of presents underneath the tree, trying to locate a gift addressed to you..."))
 	if(!do_after(user, 4 SECONDS))
 		return
-	if(isxeno(user) || prob(1)) //Santa hates xenos, he also hates really unlucky marines
+	if(isxeno(user) || prob(1) || HAS_TRAIT(user, TRAIT_CHRISTMAS_GRINCH)) //Santa hates xenos, he also hates really unlucky marines and grinches
 		to_chat(user, span_warning("After a bit of rummaging, you locate a small parcel with your name on it, it splits open to reveal coal."))
 		new /obj/item/ore/coal(get_turf(user))
 		took_presents[user.ckey] = TRUE
 		return
 	if(took_presents[user.ckey] && !unlimited)
 		to_chat(user, span_warning("There are no presents with your name on."))
+		return
+	if(guntree)
+		var/mob/living/carbon/human/present_receiver = user
+		var/obj/item/G = pick(gun_spawn_list)
+		G.desc += " Property of [present_receiver.real_name]."
+		present_receiver.balloon_alert_to_viewers("Got a [G]")
+		present_receiver.put_in_hands(G)
+		took_presents[present_receiver.ckey] = TRUE
+		log_game("[present_receiver] has obtained a [G] from the gun tree at [AREACOORD(loc)]")
 		return
 	to_chat(user, span_warning("After a bit of rummaging, you locate a gift with your name on it!"))
 
@@ -157,6 +174,9 @@
 /obj/structure/flora/tree/pine/xmas/presents/unlimited
 	desc = "A wonderous decorated Christmas tree. It has an endless supply of presents!"
 	unlimited = TRUE
+
+/obj/structure/flora/tree/pine/xmas/presents/guntree //mostly for admin spawn
+	guntree = TRUE
 
 /obj/structure/flora/tree/dead
 	icon = 'icons/obj/flora/deadtrees.dmi'

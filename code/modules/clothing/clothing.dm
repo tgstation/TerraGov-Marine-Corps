@@ -215,8 +215,6 @@
 	var/anti_hug = 0
 	var/toggleable = FALSE
 	active = TRUE
-	//does this mask modify verbal speech of whoever is wearing it
-	var/modifies_speech = FALSE
 
 /obj/item/clothing/mask/update_clothing_icon()
 	if (ismob(src.loc))

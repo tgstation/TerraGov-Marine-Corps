@@ -50,6 +50,7 @@
 	name = "Tactical coifed Santa beard"
 	desc = "A cheap imitation of the real thing, the dense hairs still filter harmful gases out of the air via Christmas magic."
 	icon_state = "s_beard"
+	breathy = FALSE
 
 /obj/item/clothing/mask/gas/PMC
 	name = "\improper M8 pattern armored balaclava"
@@ -107,7 +108,6 @@
 	flags_item = NODROP|DELONDROP
 	flags_inventory = COVERMOUTH|ALLOWINTERNALS|BLOCKGASEFFECT
 	soft_armor = list(MELEE = 25, BULLET = 35, LASER = 25, ENERGY = 25, BOMB = 95, BIO = 85, FIRE = 25, ACID = 25) //if he ever shaved you could use santa's facial hair as a bombvest
-	modifies_speech = TRUE
 
 /obj/item/clothing/mask/gas/syndicate
 	name = "syndicate mask"
