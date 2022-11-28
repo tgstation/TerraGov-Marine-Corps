@@ -13,7 +13,6 @@
 	var/targetted_zlevel = 2
 	///minimap obj ref that we will display to users
 	var/atom/movable/screen/minimap/map
-	///timer to check if we're in range of the map table still.
 
 /obj/machinery/cic_maptable/Destroy()
 	map = null
