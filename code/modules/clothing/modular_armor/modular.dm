@@ -527,7 +527,8 @@
 
 /obj/item/clothing/head/modular/on_vend(faction)
 	..()
-	limit_colorable_colors(faction)
+	if(faction)
+		limit_colorable_colors(faction)
 
 /obj/item/clothing/head/modular/marine
 	name = "Jaeger Pattern Infantry Helmet"

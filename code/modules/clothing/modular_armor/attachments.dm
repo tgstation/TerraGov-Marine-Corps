@@ -278,4 +278,5 @@
 
 /obj/item/armor_module/armor/on_vend(faction)
 	..()
-	limit_colorable_colors(faction)
+	if(faction)
+		limit_colorable_colors(faction)
