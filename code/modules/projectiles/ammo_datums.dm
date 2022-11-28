@@ -2477,7 +2477,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	drop_nade(get_turf(M))
 
 /datum/ammo/energy/lasgun/marine/heavy_laser/on_hit_obj(obj/O, obj/projectile/P)
-	drop_nade(get_turf(O))
+	drop_nade(O.density ? get_step_towards(O, P) : O, P)
 
 /datum/ammo/energy/lasgun/marine/heavy_laser/on_hit_turf(turf/T, obj/projectile/P)
 	drop_nade(T.density ? get_step_towards(T, P) : T)
@@ -2519,7 +2519,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	if(isxeno(P.firer))
 		var/mob/living/carbon/xenomorph/xeno_firer = P.firer
 		aoe_damage = xeno_firer.xeno_caste.blast_strength
-	for(var/atom/movable/victim in view(aoe_range, T))
+	for(var/atom/movable/victim in get_hear(aoe_range, T))
 		if(victim.anchored)
 			continue
 		if(isliving(victim))
@@ -2542,7 +2542,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	drop_nade(get_turf(M), P)
 
 /datum/ammo/energy/xeno/psy_blast/on_hit_obj(obj/O, obj/projectile/P)
-	drop_nade(get_turf(O), P)
+	drop_nade(O.density ? get_step_towards(O, P) : O, P)
 
 /datum/ammo/energy/xeno/psy_blast/on_hit_turf(turf/T, obj/projectile/P)
 	drop_nade(T.density ? get_step_towards(T, P) : T, P)
