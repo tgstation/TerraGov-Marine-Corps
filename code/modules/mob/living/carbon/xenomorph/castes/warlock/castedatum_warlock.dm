@@ -11,7 +11,7 @@
 	melee_damage = 17
 	speed = -0.3
 	plasma_max = 1400
-	plasma_gain = 50
+	plasma_gain = 40
 	max_health = 320
 	evolution_threshold = 180
 	upgrade_threshold = TIER_THREE_YOUNG_THRESHOLD
@@ -43,7 +43,7 @@
 
 	speed = -0.4
 	plasma_max = 1500
-	plasma_gain = 60
+	plasma_gain = 40
 	max_health = 335
 	upgrade_threshold = TIER_THREE_MATURE_THRESHOLD
 	soft_armor = list(MELEE = 35, BULLET = 35, LASER = 35, ENERGY = 35, BOMB = 0, BIO = 29, FIRE = 29, ACID = 29)
@@ -60,7 +60,7 @@
 	melee_damage = 20
 	speed = -0.5
 	plasma_max = 1600
-	plasma_gain = 70
+	plasma_gain = 50
 	max_health = 350
 	upgrade_threshold = TIER_THREE_ELDER_THRESHOLD
 	soft_armor = list(MELEE = 39, BULLET = 39, LASER = 39, ENERGY = 37, BOMB = 5, BIO = 32, FIRE = 32, ACID = 32)
@@ -77,7 +77,7 @@
 	melee_damage = 20
 	speed = -0.6
 	plasma_max = 1700
-	plasma_gain = 80
+	plasma_gain = 60
 	max_health = 375
 	upgrade_threshold = TIER_THREE_ANCIENT_THRESHOLD
 	soft_armor = list(MELEE = 42, BULLET = 42, LASER = 42, ENERGY = 40, BOMB = 10, BIO = 35, FIRE = 35, ACID = 35)
@@ -94,7 +94,7 @@
 	melee_damage = 20
 	speed = -0.6
 	plasma_max = 1700
-	plasma_gain = 80
+	plasma_gain = 60
 	max_health = 375
 	spit_types = list(/datum/ammo/energy/xeno/psy_blast, /datum/ammo/energy/xeno/psy_blast/psy_lance)
 	soft_armor = list(MELEE = 42, BULLET = 42, LASER = 42, ENERGY = 40, BOMB = 10, BIO = 35, FIRE = 35, ACID = 35)
