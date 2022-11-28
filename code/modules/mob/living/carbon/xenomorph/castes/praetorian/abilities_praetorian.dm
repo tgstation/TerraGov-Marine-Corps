@@ -133,7 +133,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	action_icon_state = "scatter_spit"
 	mechanics_text = "Spits a spread of acid projectiles that splatter on the ground."
 	ability_name = "scatter spit"
-	plasma_cost = 250
+	plasma_cost = 280
 	cooldown_timer = 0.5 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SCATTER_SPIT,
@@ -226,7 +226,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	if(!(target.flags_pass))
 		target.flags_pass &= ~PASSMOB
 
-	target.ParalyzeNoChain(0.5 SECONDS) //Extremely brief, we don't want them to take 289732 ticks of acid
+	target.ParalyzeNoChain(0.1 SECONDS) //Extremely brief, we don't want them to take 289732 ticks of acid
 
 	to_chat(target, span_highdanger("The [owner] tackles us, sending us behind them!"))
 	owner.visible_message(span_xenodanger("\The [owner] tackles [target], swapping location with them!"), \
