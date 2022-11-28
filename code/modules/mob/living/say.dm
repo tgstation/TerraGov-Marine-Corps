@@ -256,15 +256,6 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 		else
 			AM.Hear(rendered, src, message_language, message, , spans, message_mode)
 
-	//speech bubble
-	var/list/speech_bubble_recipients = list()
-	for(var/mob/M in listening)
-		if(M.client && !M.client.prefs.chat_on_map)
-			speech_bubble_recipients.Add(M.client)
-	var/image/I = image('icons/mob/talk.dmi', src, "[bubble_type][say_test(message)]", FLY_LAYER)
-	I.appearance_flags = APPEARANCE_UI_TRANSFORM
-	INVOKE_ASYNC(GLOBAL_PROC, /.proc/animate_speech_bubble, I, speech_bubble_recipients, TYPING_INDICATOR_LIFETIME)
-
 
 /mob/living/GetVoice()
 	return name
