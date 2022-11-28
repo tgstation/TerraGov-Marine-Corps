@@ -2230,7 +2230,7 @@
 
 /obj/item/reagent_containers/food/snacks/fruitcakeslice/Initialize()
 	. = ..()
-	icon_state = "fruitcake_slice1"
+	icon_state = "fruitcake_slice[rand(1,3)]"
 
 /obj/item/reagent_containers/food/snacks/sliceable/pumpkinpie
 	name = "Pumpkin Pie"

@@ -131,7 +131,7 @@
 	list_reagents = list(/datum/reagent/consumable/ethanol/eggnog = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/eggnog/special
-	name = "\improper Claus's Own Eggnog"
+	name = "\improper Claus' Own Eggnog"
 	desc = "A thick mix of custard and alcohol, perfect for celebrating the holiday season. It feels alive, as if imbued with Christmas magic."
 	list_reagents = list(/datum/reagent/consumable/ethanol/eggnog = 40, /datum/reagent/medicine/bicaridine = 15, /datum/reagent/medicine/kelotane = 15, /datum/reagent/medicine/tramadol = 15, /datum/reagent/medicine/inaprovaline = 15)
 
