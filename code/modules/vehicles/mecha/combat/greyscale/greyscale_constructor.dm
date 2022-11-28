@@ -181,8 +181,6 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 		return FALSE
 
 /obj/machinery/computer/mech_builder/ui_interact(mob/user, datum/tgui/ui)
-	if(currently_assembling)
-		return
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(ui)
 		return
@@ -219,6 +217,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	data["selected_name"] = selected_name
 	data["selected_equipment"] = selected_equipment
 	data["current_stats"] = current_stats
+	data["currently_assembling"] = currently_assembling
 	return data
 
 /obj/machinery/computer/mech_builder/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -292,10 +291,9 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 			if(isnull(selected_visor))
 				return FALSE
 			currently_assembling = TRUE
-			addtimer(CALLBACK(src, .proc/deploy_mech), 1 SECONDS)
+			addtimer(CALLBACK(src, .proc/deploy_mech), 60 SECONDS)
 			playsound(get_step(src, dir), 'sound/machines/elevator_move.ogg', 50, 0)
-			ui.close()
-			return FALSE
+			return TRUE
 
 		if("add_weapon")
 			var/obj/item/mecha_parts/mecha_equipment/weapon/new_type = text2path(params["type"])
@@ -382,7 +380,6 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 		var/datum/mech_limb/limb = new limb_type()
 		limb.update_colors(selected_primary[slot], selected_secondary[slot], selected_visor)
 		limb.attach(mech, slot)
-	currently_assembling = FALSE
 	if(selected_equipment[MECHA_L_ARM])
 		var/new_type = selected_equipment[MECHA_L_ARM]
 		var/obj/item/mecha_parts/mecha_equipment/weapon/new_gun = new new_type
@@ -397,6 +394,10 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 
 	mech.pixel_y = 240
 	animate(mech, time=4 SECONDS, pixel_y=initial(mech.pixel_y), easing=SINE_EASING|EASE_OUT)
+
+	currently_assembling = FALSE
+	balloon_alert_to_viewers("Beep. Machine ready for use.")
+	playsound(src, 'sound/machines/two_tones_beep.ogg', 30, 1)
 
 ///updates the current_stats data for the UI
 /obj/machinery/computer/mech_builder/proc/update_stats(selected_part, old_bodytype, new_bodytype)
@@ -442,3 +443,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 		if(slot == MECH_GREY_HEAD)
 			new_overlays += icon2appearance(SSgreyscale.GetColoredIconByType(initial(typepath.visor_config), selected_visor))
 	mech_view.overlays = new_overlays
+
+///called when ready to assemble new mechs
+/obj/machinery/computer/mech_builder/proc/on_cooldown_end()
+

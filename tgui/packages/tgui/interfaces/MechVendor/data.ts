@@ -25,6 +25,7 @@ export type MechVendData = {
   current_stats: MechStatData;
   all_equipment: AllEquipment;
   selected_equipment: SelectedEquip;
+  currently_assembling: boolean;
 };
 
 type MaxEquip = {
