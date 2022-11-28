@@ -8,7 +8,7 @@
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "warlock"
-	melee_damage = 17
+	melee_damage = 16
 	speed = -0.2
 	plasma_max = 1400
 	plasma_gain = 40
@@ -57,7 +57,7 @@
 
 	upgrade = XENO_UPGRADE_TWO
 
-	melee_damage = 20
+	melee_damage = 17
 	speed = -0.4
 	plasma_max = 1600
 	plasma_gain = 50
@@ -74,7 +74,7 @@
 	ancient_message = "Our full powers are unleashed, the physical world is our plaything."
 	upgrade = XENO_UPGRADE_THREE
 
-	melee_damage = 20
+	melee_damage = 18
 	speed = -0.5
 	plasma_max = 1700
 	plasma_gain = 60
@@ -91,7 +91,7 @@
 	primordial_message = "We see the beauty of the unlimited psychic power of the hive. Enlighten the tallhosts to its majesty."
 	upgrade = XENO_UPGRADE_FOUR
 
-	melee_damage = 20
+	melee_damage = 18
 	speed = -0.5
 	plasma_max = 1700
 	plasma_gain = 60
