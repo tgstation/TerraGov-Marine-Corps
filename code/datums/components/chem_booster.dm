@@ -236,7 +236,16 @@
 ///Handles turning on/off the processing part of the component, along with the negative effects related to this
 /datum/component/chem_booster/proc/on_off(datum/source)
 	SIGNAL_HANDLER
-	if(boost_on)
+	if(!boost_on)
+		if(!COOLDOWN_CHECK(src, chemboost_activation_cooldown))
+			wearer.balloon_alert(wearer, "You need to wait another [COOLDOWN_TIMELEFT(src, chemboost_activation_cooldown)/10] seconds")
+			return
+		if(resource_storage_current < resource_drain_amount)
+			wearer.balloon_alert(wearer, "Insufficient green blood to begin operation")
+			return
+	boost_on = !boost_on
+	SEND_SIGNAL(src, COMSIG_CHEMSYSTEM_TOGGLED, boost_on)
+	if(!boost_on)
 		STOP_PROCESSING(SSobj, src)
 		wearer.clear_fullscreen("degeneration")
 		vali_necro_timer = world.time - processing_start
@@ -254,25 +263,18 @@
 		wearer.balloon_alert(wearer, "Halting green blood injection")
 		COOLDOWN_START(src, chemboost_activation_cooldown, 10 SECONDS)
 		setup_bonus_effects()
-		boost_on = FALSE
+		return
 
-	else if(COOLDOWN_CHECK(src, chemboost_activation_cooldown))
-		if(resource_storage_current >= resource_drain_amount)
-			processing_start = world.time
-			START_PROCESSING(SSobj, src)
-			RegisterSignal(wearer, COMSIG_MOB_DEATH, .proc/on_off)
-			playsound(get_turf(wearer), 'sound/effects/bubbles.ogg', 30, 1)
-			to_chat(wearer, span_notice("Commensing green blood injection.<b>[(automatic_meds_use && meds_beaker.reagents.total_volume) ? " Adding additional reagents." : ""]</b>"))
-			if(automatic_meds_use)
-				to_chat(wearer, get_meds_beaker_contents())
-				meds_beaker.reagents.trans_to(wearer, 30)
-			setup_bonus_effects()
-			boost_on = TRUE
-		else
-			wearer.balloon_alert(wearer, "Insufficient green blood to begin operation")
-	else
-		wearer.balloon_alert(wearer, "You need to wait another [COOLDOWN_TIMELEFT(src, chemboost_activation_cooldown)/10] seconds")
-	SEND_SIGNAL(src, COMSIG_CHEMSYSTEM_TOGGLED, boost_on)
+	processing_start = world.time
+	START_PROCESSING(SSobj, src)
+	RegisterSignal(wearer, COMSIG_MOB_DEATH, .proc/on_off)
+	playsound(get_turf(wearer), 'sound/effects/bubbles.ogg', 30, 1)
+	to_chat(wearer, span_notice("Commensing green blood injection.<b>[(automatic_meds_use && meds_beaker.reagents.total_volume) ? " Adding additional reagents." : ""]</b>"))
+	if(automatic_meds_use)
+		to_chat(wearer, get_meds_beaker_contents())
+		meds_beaker.reagents.trans_to(wearer, 30)
+	setup_bonus_effects()
+
 
 ///Updates the boost amount of the suit and effect_str of reagents if component is on. "amount" is the final level you want to set the boost to.
 /datum/component/chem_booster/proc/update_boost(amount)
