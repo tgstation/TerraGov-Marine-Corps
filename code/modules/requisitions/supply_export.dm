@@ -35,9 +35,9 @@
 		if(JOB_CAT_CIVILIAN)
 			. = 1
 		if(JOB_CAT_ENGINEERING, JOB_CAT_MEDICAL, JOB_CAT_REQUISITIONS)
-			. = 20
+			. = 15
 		if(JOB_CAT_MARINE)
-			. = 30
+			. = 10
 		if(JOB_CAT_SILICON)
 			. = 80
 		if(JOB_CAT_COMMAND)
