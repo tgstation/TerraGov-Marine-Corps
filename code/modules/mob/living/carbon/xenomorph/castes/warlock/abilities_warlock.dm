@@ -63,6 +63,11 @@
 	///The actual shield object created by this ability
 	var/obj/effect/xeno/shield/active_shield
 
+/datum/action/xeno_action/activable/psychic_shield/remove_action(mob/M)
+	if(active_shield)
+		active_shield.release_projectiles()
+		QDEL_NULL(active_shield)
+	return ..()
 
 /datum/action/xeno_action/activable/psychic_shield/on_cooldown_finish()
 	owner.balloon_alert(owner, "Shield ready")
@@ -535,7 +540,7 @@
 	projectile.effect_icon = initial(ammo_type.hitscan_effect_icon)
 	projectile.generate_bullet(ammo_type)
 	projectile.fire_at(target, xeno_owner, null, projectile.ammo.max_range, projectile.ammo.shell_speed)
-	playsound(xeno_owner, 'sound/weapons/guns/fire/volkite_4.ogg', 50)
+	playsound(xeno_owner, 'sound/weapons/guns/fire/volkite_4.ogg', 40)
 
 	if(istype(xeno_owner.ammo, /datum/ammo/energy/xeno/psy_blast))
 		GLOB.round_statistics.psy_blasts++
