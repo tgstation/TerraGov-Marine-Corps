@@ -423,8 +423,8 @@ GLOBAL_LIST_INIT(module, list(
 	recipe = GLOB.module
 
 /obj/item/factory_part/surt
-	name = "Hades Incendiary Insulation System"
-	desc = "An unfinished Hades Incendiary Insulation System module"
+	name = "Surt Pyrotechnical Insulation System"
+	desc = "An unfinished Surt Pyrotechnical Insulation System module"
 	result = list(/obj/item/armor_module/module/fire_proof)
 
 /obj/item/factory_part/module_surt/Initialize()
