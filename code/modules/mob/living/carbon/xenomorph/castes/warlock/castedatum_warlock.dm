@@ -13,7 +13,6 @@
 	plasma_max = 1400
 	plasma_gain = 40
 	max_health = 320
-	evolution_threshold = 180
 	upgrade_threshold = TIER_THREE_YOUNG_THRESHOLD
 	spit_types = list(/datum/ammo/energy/xeno/psy_blast)
 
