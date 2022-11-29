@@ -277,9 +277,9 @@ GLOBAL_LIST_INIT(razornade, list(
 
 GLOBAL_LIST_INIT(howitzer_shell, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "cutplate"),
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_FORMER, STEP_ICON_STATE = "hotplate"),
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CONSTRUCTOR, STEP_ICON_STATE = "rockettube"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_DRILLER, STEP_ICON_STATE = "cutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_COMPRESSOR, STEP_ICON_STATE = "hotplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_GALVANIZER, STEP_ICON_STATE = "rockettube"),
 	))
 /obj/item/factory_part/howitzer_shell_he
 	name = "Howitzer shell"
@@ -316,3 +316,113 @@ GLOBAL_LIST_INIT(howitzer_shell, list(
 /obj/item/factory_part/howitzer_shell_tfoot/Initialize()
 	. = ..()
 	recipe = GLOB.howitzer_shell
+
+GLOBAL_LIST_INIT(swat_mask, list(
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_COMPRESSOR, STEP_ICON_STATE = "cutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_GALVANIZER, STEP_ICON_STATE = "cutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "roundplate"),
+	))
+
+/obj/item/factory_part/swat_mask
+	name = "SWAT mask"
+	desc = "An unfinished SWAT mask assembly"
+	result = /obj/item/clothing/mask/gas/swat
+
+/obj/item/factory_part/swat_mask/Initialize()
+	. = ..()
+	recipe = GLOB.swat_mask
+
+GLOBAL_LIST_INIT(optical_imager, list(
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "hotplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_COMPRESSOR, STEP_ICON_STATE = "roundplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_GALVANIZER, STEP_ICON_STATE = "cutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_FLATTER, STEP_ICON_STATE = "uncutplate"),
+	))
+
+/obj/item/factory_part/optical_imager
+	name = "Optical Imagers"
+	desc = "An unfinished pair of Optical Imagers assembly"
+	result = /obj/item/clothing/glasses/night/imager_goggles
+
+/obj/item/factory_part/optical_imager/Initialize()
+	. = ..()
+	recipe = GLOB.optical_imager
+
+GLOBAL_LIST_INIT(meds, list(
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_FLATTER, STEP_ICON_STATE = "uncutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_COMPRESSOR, STEP_ICON_STATE = "cutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_DRILLER, STEP_ICON_STATE = "roundplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_GALVANIZER, STEP_ICON_STATE = "bulletbox"),
+	))
+
+/obj/item/factory_part/med_rig
+	name = "M276 pattern medical storage rig"
+	desc = "An unfinished M276 pattern medical storage rig"
+	result = /obj/item/storage/belt/rig/medical
+
+/obj/item/factory_part/med_rig/Initialize()
+	. = ..()
+	recipe = GLOB.meds
+
+/obj/item/factory_part/med_lifesaver
+	name = "M276 pattern lifesaver bag"
+	desc = "An unfinished M276 pattern lifesaver bag"
+	result = /obj/item/storage/belt/lifesaver/full
+
+/obj/item/factory_part/med_lifesaver/Initialize()
+	. = ..()
+	recipe = GLOB.meds
+
+GLOBAL_LIST_INIT(module, list(
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "cutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_FLATTER, STEP_ICON_STATE = "roundplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_DRILLER, STEP_ICON_STATE = "uncutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "hotplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_COMPRESSOR, STEP_ICON_STATE = "roundplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_GALVANIZER, STEP_ICON_STATE = "cutplate"),
+	))
+
+/obj/item/factory_part/module_valk
+	name = "Valkyrie Automedical Armor System"
+	desc = "An unfinished Valkyrie Automedical Armor System module"
+	result = /obj/item/armor_module/module/valkyrie_autodoc
+
+/obj/item/factory_part/module_valk/Initialize()
+	. = ..()
+	recipe = GLOB.module
+
+/obj/item/factory_part/module_mimir2
+	name = "Mark 2 Mimir Environmental Resistance System"
+	desc = "An unfinished Mark 2 Mimir Environmental Resistance System module"
+	result = /obj/item/armor_module/module/mimir_environment_protection || /obj/item/armor_module/module/mimir_environment_protection/mimir_helmet
+
+/obj/item/factory_part/module_mimir2/Initialize()
+	. = ..()
+	recipe = GLOB.module
+
+/obj/item/factory_part/module_tyr2
+	name = "Mark 2 Tyr Armor Reinforcement"
+	desc = "An unfinished Mark 2 Tyr Armor Reinforcement module"
+	result = /obj/item/armor_module/module/tyr_extra_armor
+
+/obj/item/factory_part/module_tyr2/Initialize()
+	. = ..()
+	recipe = GLOB.module
+
+/obj/item/factory_part/module_hlin
+	name = "Hlin Explosive Compensation Module"
+	desc = "An unfinished Hlin Explosive Compensation module"
+	result = /obj/item/armor_module/module/hlin_explosive_armor
+
+/obj/item/factory_part/module_hlin/Initialize()
+	. = ..()
+	recipe = GLOB.module
+
+/obj/item/factory_part/surt
+	name = "Hades Incendiary Insulation System"
+	desc = "An unfinished Hades Incendiary Insulation System module"
+	result = /obj/item/armor_module/module/fire_proof
+
+/obj/item/factory_part/module_surt/Initialize()
+	. = ..()
+	recipe = GLOB.module

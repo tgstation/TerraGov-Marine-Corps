@@ -238,3 +238,56 @@
 	refill_type = /obj/item/factory_part/howitzer_shell_tfoot
 	refill_amount = 30
 
+/obj/item/factory_refill/swat_mask_refill
+	name = "box of rounded metal plates"
+	desc = "A box of round metal plates inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/swat_mask
+	refill_amount = 20
+
+/obj/item/factory_refill/optical_imager_refill
+	name = "box of rounded metal plates"
+	desc = "A box of round metal plates inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/optical_imager
+	refill_amount = 20
+
+/obj/item/factory_refill/med_rig_refill
+	name = "box of rounded metal plates"
+	desc = "A box of round metal plates inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/med_rig
+	refill_amount = 15
+
+/obj/item/factory_refill/med_lifesaver_refill
+	name = "box of rounded metal plates"
+	desc = "A box of round metal plates inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/med_lifesaver
+	refill_amount = 15
+
+/obj/item/factory_refill/module_valk_refill
+	name = "box of rounded metal plates"
+	desc = "A box of round metal plates inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/module_valk
+	refill_amount = 10
+
+/obj/item/factory_refill/module_mimir2_refill
+	name = "box of rounded metal plates"
+	desc = "A box of round metal plates inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/module_mimir2
+	refill_amount = 10
+
+/obj/item/factory_refill/module_tyr2_refill
+	name = "box of rounded metal plates"
+	desc = "A box of round metal plates inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/module_tyr2
+	refill_amount = 10
+
+/obj/item/factory_refill/module_hlin_refill
+	name = "box of rounded metal plates"
+	desc = "A box of round metal plates inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/module_hlin
+	refill_amount = 10
+
+/obj/item/factory_refill/module_surt_refill
+	name = "box of rounded metal plates"
+	desc = "A box of round metal plates inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/module_surt
+	refill_amount = 10
