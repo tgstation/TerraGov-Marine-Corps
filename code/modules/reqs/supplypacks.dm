@@ -697,7 +697,7 @@ EXPLOSIVES
 /datum/supply_packs/explosives/howitzer
 	name = "MG-100Y howitzer"
 	contains = list(/obj/item/mortar_kit/howitzer)
-	cost = 60
+	cost = 75
 
 /datum/supply_packs/explosives/howitzer_ammo_he
 	name = "MG-100Y howitzer HE shell (x2)"
@@ -708,6 +708,11 @@ EXPLOSIVES
 	name = "MG-100Y howitzer incendiary shell (x2)"
 	contains = list(/obj/item/mortal_shell/howitzer/incendiary, /obj/item/mortal_shell/howitzer/incendiary)
 	cost = 4
+
+/datum/supply_packs/explosives/mortar_ammo_mustard
+	name = "MG-100Y howitzer X-50 'Mustard' smoke shell"
+	contains = list(/obj/item/mortal_shell/howitzer/mustard)
+	cost = 5
 
 /datum/supply_packs/explosives/mortar_ammo_wp
 	name = "MG-100Y howitzer white phosporous smoke shell"

@@ -34,7 +34,7 @@
 	///Minimum range to fire
 	var/minimum_range = 15
 	///Time it takes for the mortar to cool off to fire
-	var/cool_off_time = 1 SECONDS
+	var/cool_off_time = 20 SECONDS
 	///How long to wait before next shot
 	var/fire_delay = 0.1 SECONDS
 	///Amount of shells that can be loaded
@@ -441,6 +441,7 @@
 	pixel_x = -16
 	anchored = FALSE // You can move this.
 	offset_per_turfs = 25
+	cool_off_time = 45 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/howitzer_fire.ogg'
 	reload_sound = 'sound/weapons/guns/interact/tat36_reload.ogg'
 	fall_sound = 'sound/weapons/guns/misc/howitzer_whistle.ogg'
@@ -448,6 +449,7 @@
 	allowed_shells = list(
 		/obj/item/mortal_shell/howitzer,
 		/obj/item/mortal_shell/howitzer/white_phos,
+		/obj/item/mortal_shell/howitzer/mustard,
 		/obj/item/mortal_shell/howitzer/he,
 		/obj/item/mortal_shell/howitzer/incendiary,
 		/obj/item/mortal_shell/howitzer/plasmaloss,
@@ -600,6 +602,13 @@
 	desc = "An 150mm artillery shell, loaded with a 'spotting' gas that sets anything it hits aflame, whatever is hit by this will have their day, skin and future ruined, with a demand for a warcrime tribunal."
 	icon_state = "howitzer_ammo_wp"
 	ammo_type = /datum/ammo/mortar/smoke/howi/wp
+
+/obj/item/mortal_shell/howitzer/mustard
+	name = "\improper 150mm chemical X-50 'Mustard' artillery shell"
+	desc = "An 150mm artillery shell, loaded with an experimental gas known as X-50 which chokes, burns and lasts a long time. Known better as 'Mustard Gas' due to the bright yellow colorant it uses to denote its location to troops, whatever is hit by this will have their day, skin and future ruined, with a demand for a warcrime tribunal."
+	icon_state = "howitzer_ammo_wp"
+	ammo_type = /datum/ammo/mortar/smoke/howi/mustard
+
 
 /obj/item/mortal_shell/rocket
 	ammo_type = /datum/ammo/mortar/rocket

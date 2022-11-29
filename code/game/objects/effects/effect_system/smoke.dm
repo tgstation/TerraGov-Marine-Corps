@@ -237,6 +237,13 @@
 	color = "#DBCBB9"
 	smoke_traits = SMOKE_GASP|SMOKE_BLISTERING|SMOKE_OXYLOSS|SMOKE_PLASMALOSS|SMOKE_FOUL
 
+/obj/effect/particle_effect/smoke/phosphorus/mustard
+	opacity = TRUE
+	color = "#FFDB58"
+	smoke_traits = SMOKE_GASP|SMOKE_BLISTERING|SMOKE_OXYLOSS|SMOKE_PLASMALOSS|SMOKE_FOUL
+	lifetime = 120 // Just lasts for basically an insane amount of time.
+	strength = 2
+
 ///////////////////////////////////////////
 // Plasma draining smoke
 //////////////////////////////////////////
@@ -344,6 +351,9 @@
 
 /datum/effect_system/smoke_spread/phosphorus
 	smoke_type = /obj/effect/particle_effect/smoke/phosphorus
+
+/datum/effect_system/smoke_spread/mustard
+	smoke_type = /obj/effect/particle_effect/smoke/phosphorus/mustard
 
 /datum/effect_system/smoke_spread/plasmaloss
 	smoke_type = /obj/effect/particle_effect/smoke/plasmaloss

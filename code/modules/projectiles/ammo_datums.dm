@@ -2090,10 +2090,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/mortar/howi
 	name = "150mm shell"
 	icon_state = "howi"
-	shell_speed = 1.25
+	shell_speed = 0.75
 
 /datum/ammo/mortar/howi/drop_nade(turf/T)
-	explosion(T, 1, 6, 7, 12)
+	explosion(T, 4, 8, 0, 12)
 
 /datum/ammo/mortar/howi/incend/drop_nade(turf/T)
 	explosion(T, 0, 3, 0, 3, throw_range = 0, small_animation = TRUE)
@@ -2105,6 +2105,16 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "howi"
 	shell_speed = 1.25
 
+/datum/ammo/mortar/smoke/howi/mustard
+	smoketype = /datum/effect_system/smoke_spread/mustard
+
+/datum/ammo/mortar/smoke/howi/mustard/drop_nade(turf/T)
+	var/datum/effect_system/smoke_spread/smoke = new smoketype()
+	explosion(T, 0, 0, 1, 0, throw_range = 0)
+	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
+	smoke.set_up(14, T, 13)
+	smoke.start()
+
 /datum/ammo/mortar/smoke/howi/wp
 	smoketype = /datum/effect_system/smoke_spread/phosphorus
 
@@ -2114,7 +2124,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
 	smoke.set_up(6, T, 7)
 	smoke.start()
-	flame_radius(4, T)
+	flame_radius(5, T)
 	flame_radius(1, T, burn_intensity = 45, burn_duration = 75, burn_damage = 15, fire_stacks = 75)
 
 /datum/ammo/mortar/smoke/howi/plasmaloss
