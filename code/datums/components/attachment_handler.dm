@@ -34,12 +34,13 @@
 	var/obj/parent_object = parent
 	if(parent_object.loc) //Attaches starting attachments if the object is not instantiated in nullspace. If it is created in null space, such as in a loadout vendor. It wont create default attachments.
 		for(var/starting_attachment_type in starting_attachments)
-			try_attach_if_slot_free(new starting_attachment_type(parent_object), null)
+			attach_on_spawn(attachment = new starting_attachment_type(parent_object))
 
 	update_parent_overlay()
 
 	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/start_mob_attempt_attach) //For attaching.
-	RegisterSignal(parent, list(COMSIG_MARINE_VENDOR_MODULE_VENDED, COMSIG_LOADOUT_VENDOR_VENDED_GUN_ATTACHMENT, COMSIG_LOADOUT_VENDOR_VENDED_ATTACHMENT_GUN, COMSIG_LOADOUT_VENDOR_VENDED_ARMOR_ATTACHMENT), .proc/attach_without_user)
+	RegisterSignal(parent, list(COMSIG_LOADOUT_VENDOR_VENDED_GUN_ATTACHMENT, COMSIG_LOADOUT_VENDOR_VENDED_ATTACHMENT_GUN, COMSIG_LOADOUT_VENDOR_VENDED_ARMOR_ATTACHMENT), .proc/attach_on_spawn)
+	RegisterSignal(parent, COMSIG_MARINE_VENDOR_MODULE_VENDED, .proc/vendor_attempt_attach)
 
 	RegisterSignal(parent, COMSIG_CLICK_ALT, .proc/start_mob_attempt_detach) //For Detaching
 	RegisterSignal(parent, COMSIG_PARENT_QDELETING, .proc/clean_references) //Dels attachments.
@@ -276,24 +277,31 @@
 
 	return do_after(attacher, detach_delay, TRUE, parent, do_after_icon_type)
 
-///This is for other objects to be able to attach things without the need for a user.
-/datum/component/attachment_handler/proc/attach_without_user(datum/source, obj/attachment, mob/attacher)
+///Attempts to attach an attachment if the slot is free
+///Deletes the attachment on fail, to prevent failed attachments from being left in nullspace
+/datum/component/attachment_handler/proc/attach_on_spawn(datum/source, obj/attachment)
+	SIGNAL_HANDLER
+	if(!try_attach_if_slot_free(attachment, null))
+		qdel(attachment)
+
+/datum/component/attachment_handler/proc/vendor_attempt_attach(datum/source, obj/attachment, mob/attacher)
 	SIGNAL_HANDLER
 	try_attach_if_slot_free(attachment, attacher)
 
 ///Attaches attachment if compatible and the slot is empty
-/datum/component/attachment_handler/proc/try_attach_if_slot_free(obj/attachment, mob/attacher) //TODO: this may need fixing w/ new helpers after refactor
+/datum/component/attachment_handler/proc/try_attach_if_slot_free(obj/attachment, mob/attacher)
 	if (!is_compatible_attachment(attachment, attacher))
-		return
+		return FALSE
 
 	var/list/attachment_data = get_attachment_data(attachment)
 	var/slot = attachment_data[SLOT]
 
 	var/current_attachment = attachment_in_slot(slot)
 	if(current_attachment)
-		return
+		return FALSE
 
 	attach(attachment, attachment_data, attacher)
+	return TRUE
 
 ///This updates the overlays of the parent and apllies the right ones.
 /datum/component/attachment_handler/proc/update_parent_overlay(datum/source)
