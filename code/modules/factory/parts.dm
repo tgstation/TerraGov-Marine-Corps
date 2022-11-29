@@ -396,8 +396,8 @@ GLOBAL_LIST_INIT(module, list(
 	name = "Mark 2 Mimir Environmental Resistance System"
 	desc = "An unfinished Mark 2 Mimir Environmental Resistance System module"
 	result = list(
-	/obj/item/armor_module/module/mimir_environment_protection,
-	/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet
+		/obj/item/armor_module/module/mimir_environment_protection,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 	)
 
 /obj/item/factory_part/module_mimir2/Initialize()
