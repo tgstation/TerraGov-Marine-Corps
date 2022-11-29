@@ -273,7 +273,7 @@
 
 /obj/item/clothing/suit/modular/xenonauten/rownin
 	name = "\improper Rownin Skeleton"
-	desc = "A light armor, if you can even called it that, made by SSgt Rownin for dedicated marines that want to travel light and have agility in exchange of protection. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	desc = "A light armor, if you can even called it that, for dedicated marines that want to travel light and have agility in exchange of protection. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	icon_state = "rownin_skeleton"
 	item_state = "rownin_skeleton"
