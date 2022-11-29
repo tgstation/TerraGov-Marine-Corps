@@ -10,7 +10,7 @@
 
 /obj/item/factory_refill/Initialize()
 	. = ..()
-	var/obj/path = initial(refill_type.result)
+	var/preview_item = initial(refill_type.preview_item)
 	var/matrix/shift = matrix().Scale(0.4,0.4)
 	var/image/result_image = image(initial(path.icon), initial(path.icon_state), pixel_x = 6, pixel_y = -6)
 	result_image.transform = shift
