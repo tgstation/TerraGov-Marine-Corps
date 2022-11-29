@@ -1848,6 +1848,6 @@ FACTORY
 	cost = 60
 
 /datum/supply_packs/factory/module_surt_refill
-	name = "Hades Incendiary Insulation System assembly refill"
+	name = "Surt Pyrotechnical Insulation System assembly refill"
 	contains = list(/obj/item/factory_refill/module_surt_refill)
 	cost = 60
