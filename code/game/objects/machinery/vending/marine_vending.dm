@@ -1244,6 +1244,8 @@
 			/obj/item/clothing/under/marine/camo/desert = -1,
 			/obj/item/clothing/under/marine/camo/snow = -1,
 			/obj/item/clothing/under/marine/orion_fatigue = -1,
+			/obj/item/clothing/under/marine/red_fatigue = -1,
+			/obj/item/clothing/under/marine/lv_fatigue = -1,
 			/obj/item/clothing/under/marine/jaeger = -1,
 			/obj/item/clothing/gloves/marine = -1,
 			/obj/item/clothing/shoes/marine/full = -1,
