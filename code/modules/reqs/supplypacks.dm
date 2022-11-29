@@ -1809,45 +1809,45 @@ FACTORY
 
 /datum/supply_packs/factory/swat_mask_refill
 	name = "SWAT mask assembly refill"
-	containst = list(/obj/item/factory_refill/swat_mask_refill)
+	contains = list(/obj/item/factory_refill/swat_mask_refill)
 	cost = 50
 
 /datum/supply_packs/factory/optical_imager_refill
 	name = "Optical imager assembly refill"
-	containst = list(/obj/item/factory_refill/optical_imager_refill)
+	contains = list(/obj/item/factory_refill/optical_imager_refill)
 	cost = 50
 
 /datum/supply_packs/factory/med_rig_refill
 	name = "M276 pattern medical storage rig assembly refill"
-	containst = list(/obj/item/factory_refill/med_rig_refill)
+	contains = list(/obj/item/factory_refill/med_rig_refill)
 	cost = 50
 
 /datum/supply_packs/factory/med_lifesaver_refill
 	name = "M276 pattern pattern lifesaver bag assembly refill"
-	containst = list(/obj/item/factory_refill/med_livesaver_refill)
+	contains = list(/obj/item/factory_refill/med_livesaver_refill)
 	cost = 50
 
 /datum/supply_packs/factory/module_valk_refill
 	name = "Valkyrie Automedical Armor System assembly refill"
-	containst = list(/obj/item/factory_refill/module_valk_refill)
+	contains = list(/obj/item/factory_refill/module_valk_refill)
 	cost = 60
 
 /datum/supply_packs/factory/module_mimir2_refill
 	name = "Mark 2 Mimir Environmental Resistance System assembly refill"
-	containst = list(/obj/item/factory_refill/module_mimir2_refill)
+	contains = list(/obj/item/factory_refill/module_mimir2_refill)
 	cost = 60
 
 /datum/supply_packs/factory/module_tyr2_refill
 	name = "Mark 2 Tyr Armor Reinforcement assembly refill"
-	containst = list(/obj/item/factory_refill/module_tyr2_refill)
+	contains = list(/obj/item/factory_refill/module_tyr2_refill)
 	cost = 60
 
 /datum/supply_packs/factory/module_hlin_refill
 	name = "Hlin Explosive Compensation Module assembly refill"
-	containst = list(/obj/item/factory_refill/module_hlin_refill)
+	contains = list(/obj/item/factory_refill/module_hlin_refill)
 	cost = 60
 
 /datum/supply_packs/factory/module_surt_refill
 	name = "Hades Incendiary Insulation System assembly refill"
-	containst = list(/obj/item/factory_refill/module_surt_refill)
+	contains = list(/obj/item/factory_refill/module_surt_refill)
 	cost = 60
