@@ -1824,7 +1824,7 @@ FACTORY
 
 /datum/supply_packs/factory/med_lifesaver_refill
 	name = "M276 pattern pattern lifesaver bag assembly refill"
-	contains = list(/obj/item/factory_refill/med_livesaver_refill)
+	contains = list(/obj/item/factory_refill/med_lifesaver_refill)
 	cost = 50
 
 /datum/supply_packs/factory/module_valk_refill
