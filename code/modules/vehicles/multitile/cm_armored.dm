@@ -512,12 +512,11 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	M.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	playsound(loc, "alien_claw_metal", 25, 1)
 
-	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_TANK)
-
 	M.visible_message(span_danger("\The [M] slashes [src]!"), \
 	span_danger("We slash [src]!"))
 
 	take_damage_type(damage * ( (isxenoravager(M)) ? 2 : 1 ), "slash", M) //Ravs do a bitchin double damage
+	return ..()
 
 //Special case for entering the vehicle without using the verb
 /obj/vehicle/multitile/root/cm_armored/attack_hand(mob/living/user)

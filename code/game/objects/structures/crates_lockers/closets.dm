@@ -16,6 +16,7 @@
 	max_integrity = 200
 	coverage = 40
 	soft_armor = list(MELEE = 20, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 10, BIO = 0, FIRE = 70, ACID = 60)
+	resistance_flags = XENO_DAMAGEABLE
 	var/icon_closed = "closed"
 	var/icon_opened = "open"
 	var/overlay_welded = "welded"
@@ -185,23 +186,11 @@
 		qdel(src)
 
 /obj/structure/closet/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	if(X.status_flags & INCORPOREAL)
-		return FALSE
-
-	if(X.a_intent == INTENT_HARM && !CHECK_BITFIELD(resistance_flags, RESIST_ALL))
-		X.do_attack_animation(src, ATTACK_EFFECT_SMASH)
-		if(!opened && prob(70))
-			break_open()
-			X.visible_message(span_danger("\The [X] smashes \the [src] open!"), \
-			span_danger("We smash \the [src] open!"), null, 5)
-		else
-			X.visible_message(span_danger("\The [X] smashes \the [src]!"), \
-			span_danger("We smash \the [src]!"), null, 5)
-			take_damage(damage_amount, damage_type, damage_flag, effects, null, armor_penetration)
-		SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_CLOSET)
-	else if(!opened)
-		X.changeNext_move(0) // opening an unlocked closet does not trigger attack cooldown
-		return attack_hand(X)
+	. = ..()
+	if(!.)
+		return
+	if(X.a_intent == INTENT_HARM && !opened && prob(70))
+		break_open()
 
 /obj/structure/closet/attackby(obj/item/I, mob/user, params)
 	if(user in src)
