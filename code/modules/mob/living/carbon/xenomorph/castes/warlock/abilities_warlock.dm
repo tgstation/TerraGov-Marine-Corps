@@ -280,6 +280,8 @@
 	var/list/filters_applied
 	///max range at which we can cast out ability
 	var/ability_range = 7
+	///Holder for the orb visual effect
+	var/obj/effect/xeno/crush_orb/orb
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 	///The particle type this ability uses
@@ -318,6 +320,7 @@
 	target_turfs += target_turf
 	LAZYINITLIST(effect_list)
 	effect_list += new /obj/effect/xeno/crush_warning(target_turf)
+	orb = new /obj/effect/xeno/crush_orb(target_turf)
 
 	action_icon_state = "psy_crush_activate"
 	RegisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED)), .proc/stop_crush)
@@ -339,7 +342,7 @@
 	channel_loop_timer = null
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(!check_distance(target) || isnull(xeno_owner) || xeno_owner.stat == DEAD)
-		stop_crush(target)
+		stop_crush()
 		return
 	if(current_iterations >= max_interations)
 		crush(target)
@@ -364,7 +367,7 @@
 		channel_loop_timer = addtimer(CALLBACK(src, .proc/do_channel, target), 0.6 SECONDS, TIMER_STOPPABLE)
 		return
 
-	stop_crush(target)
+	stop_crush()
 
 ///crushes all turfs in the AOE
 /datum/action/xeno_action/activable/psy_crush/proc/crush(turf/target)
@@ -372,15 +375,17 @@
 	var/crush_cost = plasma_cost * current_iterations
 	if(crush_cost > xeno_owner.plasma_stored)
 		owner.balloon_alert(owner, "[crush_cost - xeno_owner.plasma_stored] more plasma!")
-		stop_crush(target)
+		stop_crush()
 		return
 	if(!check_distance(target))
-		stop_crush(target)
+		stop_crush()
 		return
 
 	succeed_activate(crush_cost)
 	playsound(target, 'sound/effects/EMPulse.ogg', 70)
 	apply_filters(target_turfs)
+	orb.icon_state = "crush_hard" //used as a check in stop_crush
+	flick("crush_hard", orb)
 	addtimer(CALLBACK(src, .proc/remove_all_filters), 1 SECONDS, TIMER_STOPPABLE)
 
 	for(var/turf/effected_turf AS in target_turfs)
@@ -397,16 +402,21 @@
 			else if(ismecha(i))
 				var/obj/vehicle/sealed/mecha/mecha_victim = i
 				mecha_victim.take_damage(xeno_owner.xeno_caste.crush_strength * 5, BOMB)
-	stop_crush(target)
+	stop_crush()
 
 /// stops channeling and unregisters all listeners, resetting the ability
-/datum/action/xeno_action/activable/psy_crush/proc/stop_crush(turf/target)
+/datum/action/xeno_action/activable/psy_crush/proc/stop_crush()
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(channel_loop_timer)
 		deltimer(channel_loop_timer)
 		channel_loop_timer = null
 	QDEL_LIST(effect_list)
+	if(orb.icon_state != "crush_hard") //we failed to crush
+		flick("crush_smooth", orb)
+		QDEL_IN(orb, 0.5 SECONDS)
+	else
+		QDEL_IN(orb, 0.4 SECONDS)
 	current_iterations = 0
 	target_turfs = null
 	effect_list = null
@@ -446,7 +456,7 @@
 	icon_state = "crush_warning"
 	anchored = TRUE
 	resistance_flags = RESIST_ALL
-	layer = FLY_LAYER
+	layer = ABOVE_ALL_MOB_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
@@ -458,6 +468,18 @@
 	particle_holder = new(src, channel_particle)
 	particle_holder.pixel_y = 0
 
+/obj/effect/xeno/crush_orb
+	icon = 'icons/xeno/2x2building.dmi'
+	icon_state = "orb_idle"
+	anchored = TRUE
+	resistance_flags = RESIST_ALL
+	layer = FLY_LAYER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	pixel_x = -16
+
+/obj/effect/xeno/crush_orb/Initialize()
+	. = ..()
+	flick("orb_charge", src)
 
 // ***************************************
 // *********** Psyblast
