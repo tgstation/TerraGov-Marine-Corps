@@ -275,7 +275,6 @@
 		meds_beaker.reagents.trans_to(wearer, 30)
 	setup_bonus_effects()
 
-
 ///Updates the boost amount of the suit and effect_str of reagents if component is on. "amount" is the final level you want to set the boost to.
 /datum/component/chem_booster/proc/update_boost(amount)
 	boost_amount = amount
