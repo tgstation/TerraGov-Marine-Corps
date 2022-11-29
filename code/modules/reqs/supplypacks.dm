@@ -1679,7 +1679,7 @@ FACTORY
 
 /datum/supply_packs/factory/compressor
 	name = "Industrial compressor"
-	contains = list(/obj/machinery/factory/driller)
+	contains = list(/obj/machinery/factory/compressor)
 	cost = 5
 
 /datum/supply_packs/factory/unboxer
