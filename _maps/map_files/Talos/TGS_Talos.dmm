@@ -15407,9 +15407,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/living/numbertwobunks)
 "lSZ" = (
-/obj/structure/flora/pottedplant/twentyone{
-	icon_state = "plant-12"
-	},
+/obj/structure/closet/secure_closet/CMO,
 /turf/open/floor/wood,
 /area/mainship/medical/lower_medical)
 "lTo" = (
@@ -15490,7 +15488,9 @@
 /turf/open/floor/wood,
 /area/mainship/medical/lower_medical)
 "lYz" = (
-/obj/machinery/computer/crew,
+/obj/machinery/computer/camera_advanced/overwatch/alpha{
+	name = "CMO Overwatch Console"
+	},
 /turf/open/floor/wood,
 /area/mainship/medical/lower_medical)
 "lYP" = (
@@ -15926,10 +15926,10 @@
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/medical/lounge)
 "mpa" = (
-/obj/machinery/computer/med_data,
 /obj/machinery/alarm{
 	dir = 8
 	},
+/obj/machinery/computer/crew,
 /turf/open/floor/wood,
 /area/mainship/medical/lower_medical)
 "mpD" = (
@@ -16145,11 +16145,11 @@
 /obj/machinery/power/apc/mainship{
 	dir = 8
 	},
-/obj/structure/closet/secure_closet/CMO,
 /obj/machinery/light/mainship{
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/machinery/computer/med_data,
 /turf/open/floor/wood,
 /area/mainship/medical/lower_medical)
 "mwv" = (
@@ -50460,7 +50460,7 @@ lhv
 rRQ
 sJR
 lIv
-lSZ
+fJj
 cnm
 kfF
 mKS
@@ -51234,7 +51234,7 @@ lIv
 omF
 shJ
 peI
-fJj
+lSZ
 mMV
 cZa
 tQK
