@@ -425,7 +425,7 @@ You can serve your Division in a variety of roles, so choose carefully."})
 	exp_type_department = EXP_TYPE_ENGINEERING
 
 
-//Chief Ship Engineer
+//Chief Ship Enginer
 /datum/job/terragov/engineering/chief
 	title = CHIEF_SHIP_ENGINEER
 	paygrade = "O2"
