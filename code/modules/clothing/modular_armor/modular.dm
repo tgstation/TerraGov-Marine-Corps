@@ -116,6 +116,25 @@
 	. = ..()
 	update_icon() //Update for greyscale.
 
+/obj/item/clothing/suit/modular/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	var/obj/item/facepaint/paint = I
+	if (!istype(paint))
+		return
+
+	var/datum/component/attachment_handler/handler = GetComponent(/datum/component/attachment_handler)
+	if (!handler)
+		return
+
+	var/list/armor_modules = handler.all_attachments()
+	if (length(armor_modules) == 0)
+		to_chat(user, span_warning("There are no parts on the [src] to paint!"))
+		return
+
+	var/obj/item/armor_module/armor/armor_to_paint = tgui_input_list(user, "Choose module", "Paint a module", armor_modules)
+	armor_to_paint?.apply_paint(I, user)
+
 /obj/item/clothing/suit/modular/update_icon()
 	. = ..()
 	if(current_variant)

@@ -214,6 +214,9 @@
 	if(.)
 		return
 
+	apply_paint(I, user)
+
+/obj/item/armor_module/armor/proc/apply_paint(obj/item/I, mob/user)
 	if(colorable_allowed == NOT_COLORABLE || (!length(colorable_colors) && colorable_colors == COLOR_WHEEL_NOT_ALLOWED))
 		return
 

@@ -57,6 +57,16 @@
 /datum/component/attachment_handler/proc/attachment_in_slot(slot)
 	return slots[slot]
 
+/datum/component/attachment_handler/proc/all_attachments()
+	var/list/attachments = list()
+
+	for(var/slot in slots)
+		var/attachment = attachment_in_slot(slot)
+		if (attachment)
+			attachments += attachment
+
+	return attachments
+
 ///Checks if an object is an attachment
 /datum/component/attachment_handler/proc/is_attachment(obj/attachment)
 	return get_attachment_data(attachment) != null
@@ -228,9 +238,8 @@
 		return
 
 	var/list/removable_attachments = list()
-	for (var/slot in slots)
-		var/obj/attachment = attachment_in_slot(slot)
-		if(attachment && attachment_is_removable(attachment))
+	for (var/attachment in all_attachments())
+		if(attachment_is_removable(attachment))
 			removable_attachments += attachment
 
 	if(!length(removable_attachments))
