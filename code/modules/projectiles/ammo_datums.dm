@@ -1270,8 +1270,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/minigun/mech
 	name = "vulcan bullet"
-	damage = 20
-	penetration = 20
+	damage = 30
+	penetration = 10
 	sundering = 0.5
 
 /datum/ammo/bullet/dual_cannon
