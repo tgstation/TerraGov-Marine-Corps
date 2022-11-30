@@ -1,0 +1,4 @@
+author: "Blundir"
+delete-after: True
+changes:
+  - bugfix: "two weird white dots removed from the tablet"
