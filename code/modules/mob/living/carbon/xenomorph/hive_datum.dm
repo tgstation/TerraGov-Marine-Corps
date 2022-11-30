@@ -22,7 +22,6 @@
 	///list of phero towers
 	var/list/obj/structure/xeno/pherotower/pherotowers = list()
 	var/tier3_xeno_limit
-	var/tier2_xeno_limit
 	///Queue of all observer wanting to join xeno side
 	var/list/mob/dead/observer/candidate
 	///Its an int showing the count of living kings
@@ -68,7 +67,6 @@
 
 /datum/hive_status/ui_data(mob/user)
 	. = ..()
-	.["hive_max_tier_two"] = tier2_xeno_limit
 	.["hive_max_tier_three"] = tier3_xeno_limit
 	.["hive_minion_count"] = length(xenos_by_tier[XENO_TIER_MINION])
 
@@ -1060,7 +1058,6 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/fours = length(xenos_by_tier[XENO_TIER_FOUR])
 
 	tier3_xeno_limit = max(threes, FLOOR(((zeros + ones + twos + fours) * (evotowers.len * 0.2 + 1)) / 3 + 1, 1))
-	tier2_xeno_limit = max(twos, (zeros + ones + fours) * (evotowers.len * 0.2 + 1) + 1 - threes)
 
 // ***************************************
 // *********** Corrupted Xenos

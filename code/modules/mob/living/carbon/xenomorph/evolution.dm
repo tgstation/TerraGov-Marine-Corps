@@ -143,7 +143,6 @@
 		return
 
 	// used below
-	var/no_room_tier_two = length(hive.xenos_by_tier[XENO_TIER_TWO]) >= hive.tier2_xeno_limit
 	var/no_room_tier_three = length(hive.xenos_by_tier[XENO_TIER_THREE]) >= hive.tier3_xeno_limit
 
 	if(new_caste_type == /mob/living/carbon/xenomorph/queen) //Special case for dealing with queenae
@@ -217,9 +216,6 @@
 
 		if(regression)
 			//Nothing, go on as normal.
-		else if(tier == XENO_TIER_ONE && no_room_tier_two)
-			to_chat(src, span_warning("The hive cannot support another Tier 2, wait for either more aliens to be born or someone to die."))
-			return
 		else if(tier == XENO_TIER_TWO && no_room_tier_three)
 			to_chat(src, span_warning("The hive cannot support another Tier 3, wait for either more aliens to be born or someone to die."))
 			return
@@ -260,10 +256,7 @@
 			to_chat(src, span_warning("There cannot be two manifestations of the hivemind's will at once."))
 			return
 	else if(!regression) // these shouldnt be checked if trying to become a queen.
-		if(tier == XENO_TIER_ONE && no_room_tier_two)
-			to_chat(src, span_warning("Another sister evolved meanwhile. The hive cannot support another Tier 2."))
-			return
-		else if(tier == XENO_TIER_TWO && no_room_tier_three)
+		if(tier == XENO_TIER_TWO && no_room_tier_three)
 			to_chat(src, span_warning("Another sister evolved meanwhile. The hive cannot support another Tier 3."))
 			return
 

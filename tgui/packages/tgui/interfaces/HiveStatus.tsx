@@ -6,7 +6,6 @@ import { round } from 'common/math';
 type InputPack = {
   // ------- Hive info --------
   hive_name: string;
-  hive_max_tier_two: number;
   hive_max_tier_three: number;
   hive_larva_current: number;
   hive_larva_threshold: number;
@@ -385,7 +384,6 @@ type PyramidCalc = {
 const PopulationPyramid = (_props, context) => {
   const { act, data } = useBackend<InputPack>(context);
   const {
-    hive_max_tier_two,
     hive_max_tier_three,
     hive_minion_count,
     hive_primos,
@@ -488,12 +486,7 @@ const PopulationPyramid = (_props, context) => {
       <Flex direction="column-reverse" align={compact_disp ? 'left' : 'center'}>
         {pyramid_data.map((tier_info, tier) => {
           // Hardcoded tier check for limited slots.
-          const max_slots =
-            tier === 2
-              ? hive_max_tier_two
-              : 0 + tier === 3
-                ? hive_max_tier_three
-                : 0;
+          const max_slots = tier === 3 ? hive_max_tier_three : 0;
           const TierSlots = (_props, _context) => {
             return (
               <Box
@@ -503,8 +496,7 @@ const PopulationPyramid = (_props, context) => {
               </Box>
             );
           };
-          const slot_text =
-            tier === 2 || tier === 3 ? <TierSlots /> : tier_info.total;
+          const slot_text = tier === 3 ? <TierSlots /> : tier_info.total;
           // Praetorian name way too long. Clips into Rav.
           const row_width = tier === 3 ? 8 : 7;
           const primordial = primos[tier] ? (
