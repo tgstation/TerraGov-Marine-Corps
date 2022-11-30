@@ -15,14 +15,6 @@
 	burst_amount = 3
 	burst_delay = 0.2 SECONDS
 	accuracy_mult_unwielded = 0.6
-	scatter_increase = 0.5
-	scatter_decay = 1
-	scatter_decay_unwielded = 0.5
-	scatter_increase_unwielded = 2
-	max_scatter = 10
-	max_scatter_unwielded = 20
-	min_scatter = 0
-	min_scatter_unwielded = 5
 	scatter = 0
 	scatter_unwielded = 13
 	recoil_unwielded = 4
