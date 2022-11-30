@@ -222,7 +222,7 @@
 
 /datum/action/harvester/reagent_select
 	name = "Select Reagent"
-	var/image/selected_reagent_overlay
+	selected_reagent_overlay
 
 /datum/action/harvester/reagent_select/New(Target)
 	. = ..()

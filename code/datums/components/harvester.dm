@@ -1,6 +1,5 @@
 #define MAX_LOADABLE_REAGENT_AMOUNT 30
 #define NO_REAGENT_COLOR "#FFFFFF"
-
 /datum/component/harvester
 	///reagent selected for actions
 	var/datum/reagent/selected_reagent
