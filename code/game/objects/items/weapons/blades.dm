@@ -78,6 +78,47 @@
 	. = ..()
 	. += jointext(codex_info, "<br>")
 
+/obj/item/weapon/vali_knife
+	name = "\improper HP-S Harvester knife"
+	desc = "TerraGov Marine Corps' experimental High Point-Singularity 'Harvester' knife. An advanced version of the HP-S Harvester blade, shrunken down to the size of the standard issue boot knife. It trades the harvester blades size and power for a smaller form, with the side effect of a miniscule chemical storage, yet it still keeps its ability to apply debilitating effects to its targets. Activate after loading to prime a single use of an effect. It also harvests substances from alien lifeforms it strikes when connected to the Vali system."
+	icon_state = "vali_knife_icon"
+	item_state = "vali_knife"
+	force = 25
+	throwforce = 15
+	throw_speed = 3
+	throw_range = 6
+	attack_speed = 8
+	w_class = WEIGHT_CLASS_SMALL
+	flags_item = DRAINS_XENO
+
+	var/force_wielded = 40
+
+	var/codex_info = {"<b>Reagent info:</b><BR>
+	Bicaridine - heal your target for 10 brute. Usable on both dead and living targets.<BR>
+	Kelotane - produce a cone of flames<BR>
+	Tramadol - slow your target for 2 seconds<BR>
+	<BR>
+	<b>Tips:</b><BR>
+	> Needs to be connected to the Vali system to collect green blood. You can connect it though the Vali system's configurations menu.<BR>
+	> Filled by liquid reagent containers. Emptied by using an empty liquid reagent container.<BR>
+	> Toggle unique action (SPACE by default) to load a single-use of the reagent effect after the blade has been filled up."}
+
+/obj/item/weapon/vali_knife/Initialize()
+	. = ..()
+	AddComponent(/datum/component/harvester_knife)
+
+/obj/item/weapon/vali_knife/equipped(mob/user, slot)
+	. = ..()
+	toggle_item_bump_attack(user, FALSE)
+
+/obj/item/weapon/vali_knife/dropped(mob/user)
+	. = ..()
+	toggle_item_bump_attack(user, FALSE)
+
+/obj/item/weapon/vali_knife/get_mechanics_info()
+	. = ..()
+	. += jointext(codex_info, "<br>")
+
 /obj/item/weapon/claymore/mercsword
 	name = "combat sword"
 	desc = "A dusty sword commonly seen in historical museums. Where you got this is a mystery, for sure. Only a mercenary would be nuts enough to carry one of these. Sharpened to deal massive damage."
