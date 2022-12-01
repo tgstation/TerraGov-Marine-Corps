@@ -55,7 +55,7 @@
 
 		src.visible_message(span_warning(" [src] has been hit by [O]."), null, null, 5)
 
-		apply_damage(modify_by_armor(throw_damage, MELEE, def_zone = BODY_ZONE_CHEST), BRUTE, BODY_ZONE_CHEST, 0, is_sharp(O), has_edge(O), updating_health = TRUE)
+		apply_damage(modify_by_armor(throw_damage, MELEE, def_zone = BODY_ZONE_CHEST), dtype, BODY_ZONE_CHEST, 0, is_sharp(O), has_edge(O), updating_health = TRUE)
 
 		if(O.item_fire_stacks)
 			fire_stacks += O.item_fire_stacks

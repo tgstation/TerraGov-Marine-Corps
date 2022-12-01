@@ -447,7 +447,7 @@
 		to_chat(user, span_warning("\The [src] doesn't have enough fuel!"))
 		return ..()
 
-	M.apply_damage(modify_by_armor(additional_damage, MELEE, def_zone = user.zone_selected), BRUTE, user.zone_selected, updating_health = TRUE)
+	M.apply_damage(M.modify_by_armor(additional_damage, MELEE, def_zone = user.zone_selected), BRUTE, user.zone_selected, updating_health = TRUE)
 	M.visible_message(span_danger("[user]'s rocket sledge hits [M.name], smashing them!"), span_userdanger("You [user]'s rocket sledge smashes you!"))
 
 	if(reagents.get_reagent_amount(/datum/reagent/fuel) < fuel_used * 2)

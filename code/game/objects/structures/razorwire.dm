@@ -59,9 +59,7 @@
 	if(!M.density)
 		return
 	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
-	var/armor_block = null
-	var/def_zone = ran_zone()
-	M.apply_damage(modify_by_armor(RAZORWIRE_BASE_DAMAGE, MELEE), BRUTE, updating_health = TRUE)
+	M.apply_damage(M.modify_by_armor(RAZORWIRE_BASE_DAMAGE, MELEE), BRUTE, updating_health = TRUE)
 	razorwire_tangle(M)
 
 /obj/structure/razorwire/proc/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
@@ -111,7 +109,7 @@
 	do_razorwire_untangle(entangled)
 	visible_message(span_danger("[entangled] disentangles from [src]!"))
 	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, TRUE)
-	entangled.apply_damage(modify_by_armor(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_MED, MELEE), BRUTE, updating_health = TRUE)
+	entangled.apply_damage(entangled.modify_by_armor(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_MED, MELEE), BRUTE, updating_health = TRUE)
 	return TRUE
 
 

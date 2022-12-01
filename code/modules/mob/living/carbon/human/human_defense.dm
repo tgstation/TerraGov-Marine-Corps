@@ -161,7 +161,7 @@ Contains most of the procs that are called when a mob is attacked by something
 			return TRUE
 		if(1 to 25)
 			armor_verb = " [p_their(TRUE)] armor has deflected most of the blow!"
-			if(26 to 50)
+		if(26 to 50)
 			armor_verb = " [p_their(TRUE)] armor has absorbed part of the impact!"
 		if(51 to 75)
 			armor_verb = " [p_their(TRUE)] armor has softened the hit!"
@@ -230,7 +230,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	if(affecting.limb_status & LIMB_DESTROYED)
 		hit_report += "(delimbed [affecting.display_name])"
 	else if(I.damtype == BRUTE && !(I.flags_item & (NODROP|DELONDROP)))
-		if (!armor && weapon_sharp && prob(I.embedding.embed_chance))
+		if (percentage_penetration && weapon_sharp && prob(I.embedding.embed_chance))
 			I.embed_into(src, affecting)
 			hit_report += "(embedded in [affecting.display_name])"
 
