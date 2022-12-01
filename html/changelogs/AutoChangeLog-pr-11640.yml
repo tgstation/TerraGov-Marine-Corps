@@ -1,0 +1,4 @@
+author: "psykzz"
+delete-after: True
+changes:
+  - balance: "hivemind is shunted back to core when the manifestation dies without weeds nearby"

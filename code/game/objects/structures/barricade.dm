@@ -124,7 +124,6 @@
 		span_danger("The barbed wire slices into us!"), null, 5)
 		X.apply_damage(10, updating_health = TRUE)
 
-	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_BARRICADE)
 	return ..()
 
 /obj/structure/barricade/attackby(obj/item/I, mob/user, params)

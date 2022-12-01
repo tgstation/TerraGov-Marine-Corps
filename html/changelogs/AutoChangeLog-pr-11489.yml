@@ -1,0 +1,4 @@
+author: "SplinterGP"
+delete-after: True
+changes:
+  - rscadd: "Adds more depth to scatter mechanics, now gun scatter increases the more you shoot up to a maximum and"
