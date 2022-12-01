@@ -414,9 +414,9 @@
 	QDEL_LIST(effect_list)
 	if(orb.icon_state != "crush_hard") //we failed to crush
 		flick("crush_smooth", orb)
-		QDEL_NULL_IN(orb, 0.5 SECONDS)
+		QDEL_NULL_IN(orb, orb, 0.5 SECONDS)
 	else
-		QDEL_NULL_IN(orb, 0.4 SECONDS)
+		QDEL_NULL_IN(orb, orb, 0.4 SECONDS)
 	current_iterations = 0
 	target_turfs = null
 	effect_list = null
