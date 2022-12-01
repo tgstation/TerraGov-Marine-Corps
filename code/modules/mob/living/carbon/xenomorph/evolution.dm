@@ -222,7 +222,7 @@
 			return
 
 		if(hive.can_hive_have_a_king())
-			to_chat(src, span_warning("The hivemind is too weak to sustain a King. Gather more xenos. [hive.xenos_per_queen] are required."))
+			to_chat(src, span_warning("The hivemind is too weak to sustain a King. Gather more xenos. [hive.xenos_per_king] are required."))
 			return FALSE
 
 		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/king]))
