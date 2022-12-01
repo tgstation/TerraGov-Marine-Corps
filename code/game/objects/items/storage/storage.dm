@@ -786,6 +786,10 @@
 /obj/item/storage/AltClick(mob/user)
 	attempt_draw_object(user)
 
+/obj/item/storage/AltRightClick(mob/user)
+	if(Adjacent(usr))
+		open(user)
+
 /obj/item/storage/attack_hand_alternate(mob/living/user)
 	attempt_draw_object(user)
 
