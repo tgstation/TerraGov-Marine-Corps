@@ -80,8 +80,8 @@
 			/obj/item/weapon/twohanded/spear/tactical/harvester = -1,
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/shield/riot/marine = 6,
-			/obj/item/weapon/combat_knife/vali_knife = 6,
 			/obj/item/weapon/shield/riot/marine/deployable = 6,
+			/obj/item/weapon/combat_knife/vali_knife = 12,
 		),
 		"Sidearm" = list(
 			/obj/item/weapon/gun/pistol/standard_pistol = -1,
