@@ -61,7 +61,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/scatter_unwielded_mod = 0
 	///Maximum scatter
 	var/max_scatter_mod = 0
-	///Maximum scatter when wielded
+	///Maximum scatter when unwielded
 	var/max_scatter_unwielded_mod = 0
 	///How much scatter decays every X seconds
 	var/scatter_decay_mod = 0
