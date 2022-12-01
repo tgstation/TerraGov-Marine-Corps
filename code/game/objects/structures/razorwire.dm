@@ -208,7 +208,6 @@
 
 	X.apply_damage(RAZORWIRE_BASE_DAMAGE * 0.7, updating_health = TRUE) //About a third as damaging as actually entering
 	update_icon()
-	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_RAZORWIRE)
 	return ..()
 
 /obj/structure/razorwire/ex_act(severity)

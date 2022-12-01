@@ -72,17 +72,19 @@
 	var/turf/T = loc
 	if(!istype(T))
 		return
-	if(status_flags & INCORPOREAL || loc_weeds_type)
-		if(health < minimum_health + maxHealth)
-			setBruteLoss(0)
-			setFireLoss(-minimum_health)
-		if((health >= maxHealth)) //can't regenerate.
-			updatehealth() //Update health-related stats, like health itself (using brute and fireloss), health HUD and status.
-			return
-		heal_wounds(XENO_RESTING_HEAL)
-		updatehealth()
+	// If manifested and off weeds, lets deal some damage.
+	if(!(status_flags & INCORPOREAL) && !loc_weeds_type)
+		adjustBruteLoss(20 * XENO_RESTING_HEAL, TRUE)
 		return
-	adjustBruteLoss(20 * XENO_RESTING_HEAL, TRUE)
+	// If not manifested
+	if(health < minimum_health + maxHealth)
+		setBruteLoss(0)
+		setFireLoss(-minimum_health)
+	if(health >= maxHealth) //can't regenerate.
+		updatehealth() //Update health-related stats, like health itself (using brute and fireloss), health HUD and status.
+		return
+	heal_wounds(XENO_RESTING_HEAL)
+	updatehealth()
 
 /mob/living/carbon/xenomorph/hivemind/Destroy()
 	if(!QDELETED(core))
@@ -125,7 +127,7 @@
 	if(status_flags & INCORPOREAL)
 		status_flags = NONE
 		resistance_flags = BANISH_IMMUNE
-		flags_pass = NONE
+		flags_pass = PASSTABLE | PASSMOB | PASSXENO
 		density = TRUE
 		throwpass = FALSE
 		hive.xenos_by_upgrade[upgrade] -= src
@@ -148,6 +150,7 @@
 	update_wounds()
 	update_icon()
 	update_action_buttons()
+	handle_weeds_adjacent_removed()
 
 /mob/living/carbon/xenomorph/hivemind/flamer_fire_act(burnlevel)
 	return_to_core()

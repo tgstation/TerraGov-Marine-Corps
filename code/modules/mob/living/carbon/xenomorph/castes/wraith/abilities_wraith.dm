@@ -291,6 +291,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/turf/return_turf = get_turf(portal)
 	if(!return_turf)
 		return_turf = locate(backup_coordinates[1], backup_coordinates[2], backup_coordinates[3])
+	banishment_target.resistance_flags = initial(banishment_target.resistance_flags)
+	banishment_target.status_flags = initial(banishment_target.status_flags) //Remove stasis and temp invulerability
 	banishment_target.forceMove(return_turf)
 
 	var/list/all_contents = banishment_target.GetAllContents()
@@ -305,8 +307,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		living_contents.forceMove(return_turf)
 	contained_living.Cut()
 
-	banishment_target.resistance_flags = initial(banishment_target.resistance_flags)
-	banishment_target.status_flags = initial(banishment_target.status_flags) //Remove stasis and temp invulerability
 	teleport_debuff_aoe(banishment_target)
 	banishment_target.add_filter("wraith_banishment_filter", 3, list("type" = "blur", 5))
 	addtimer(CALLBACK(banishment_target, /atom.proc/remove_filter, "wraith_banishment_filter"), 1 SECONDS)
@@ -563,7 +563,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /// Signal handler teleporting crossing atoms
 /obj/effect/wraith_portal/proc/teleport_atom/(datum/source, atom/movable/crosser)
 	SIGNAL_HANDLER
-	if(!linked_portal || !COOLDOWN_CHECK(src, portal_cooldown) || crosser.anchored || ishuman(crosser))
+	if(!linked_portal || !COOLDOWN_CHECK(src, portal_cooldown) || crosser.anchored || (crosser.resistance_flags & PORTAL_IMMUNE))
 		return
 	COOLDOWN_START(linked_portal, portal_cooldown, 1)
 	crosser.flags_pass &= ~PASSMOB
