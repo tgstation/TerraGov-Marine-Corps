@@ -61,14 +61,14 @@
 	playsound(owner, 'sound/effects/petrify_activate.ogg', 50)
 	var/list/mob/living/carbon/human/humans = list()
 	for(var/mob/living/carbon/human/human in view(PETRIFY_RANGE, owner.loc))
-		if(human.stat != CONSCIOUS)
-			continue
 		if(is_blind(human))
 			continue
 		humans += human
 		human.notransform = TRUE
 		human.status_flags |= GODMODE
 		human.add_atom_colour(COLOR_GRAY, TEMPORARY_COLOUR_PRIORITY)
+		ADD_TRAIT(human, TRAIT_HANDS_BLOCKED, REF(src))
+		human.move_resist = MOVE_FORCE_OVERPOWERING
 		human.log_message("has been petrified by [owner] for [PETRIFY_DURATION] ticks", LOG_ATTACK, color="pink")
 		var/image/stone_overlay = image('icons/effects/effects.dmi', null, "petrified_overlay")
 		stone_overlay.filters += filter(arglist(alpha_mask_filter(render_source="*[REF(human)]",flags=MASK_INVERSE)))
@@ -96,6 +96,8 @@
 		human.notransform = FALSE
 		human.status_flags &= ~GODMODE
 		human.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, COLOR_GRAY)
+		REMOVE_TRAIT(human, TRAIT_HANDS_BLOCKED, REF(src))
+		human.move_resist = initial(human.move_resist)
 		human.overlays -= humans[human]
 
 ///callback for removing the eye from viscontents
@@ -225,13 +227,14 @@
 		else
 			particles_type = /particles/zero_form
 	particles = new(owner, particles_type)
-	beam = owner.beam(targets[length(targets)], "plasmabeam", beam_type = /obj/effect/ebeam/zeroform)
-	sound_loop.start(owner)
+	beam = owner.loc.beam(targets[length(targets)], "plasmabeam", beam_type = /obj/effect/ebeam/zeroform)
+	playsound(owner, 'sound/effects/king_beam_charge.ogg', 80)
 	if(!do_after(owner, ZEROFORM_CHARGE_TIME, FALSE, owner, BUSY_ICON_DANGER))
 		QDEL_NULL(beam)
 		QDEL_NULL(particles)
 		targets = null
 		return fail_activate()
+	sound_loop.start(owner)
 	RegisterSignal(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE), .proc/stop_beaming)
 	execute_attack()
 

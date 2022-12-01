@@ -280,6 +280,10 @@
 		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind]))
 			to_chat(src, span_warning("There cannot be two manifestations of the hivemind's will at once."))
 			return
+	else if(new_caste_type == /mob/living/carbon/xenomorph/king)
+		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/king]))
+			to_chat(src, span_warning("There cannot be two kings at once."))
+			return
 	else if(!regression) // these shouldnt be checked if trying to become a queen.
 		if(tier == XENO_TIER_ONE && no_room_tier_two)
 			to_chat(src, span_warning("Another sister evolved meanwhile. The hive cannot support another Tier 2."))
