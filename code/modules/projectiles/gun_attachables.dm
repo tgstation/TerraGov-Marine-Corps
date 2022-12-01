@@ -53,6 +53,22 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/scatter_mod 	= 0
 	///Increases or decreases scatter chance but for onehanded firing.
 	var/scatter_unwielded_mod = 0
+	///Maximum scatter
+	var/max_scatter_mod = 0
+	///Maximum scatter when unwielded
+	var/max_scatter_unwielded_mod = 0
+	///How much scatter decays every X seconds
+	var/scatter_decay_mod = 0
+	///How much scatter decays every X seconds when wielded
+	var/scatter_decay_unwielded_mod = 0
+	///How much scatter increases per shot
+	var/scatter_increase_mod = 0
+	///How much scatter increases per shot when wielded
+	var/scatter_increase_unwielded_mod = 0
+	///Minimum scatter
+	var/min_scatter_mod = 0
+	///Minimum scatter when unwielded
+	var/min_scatter_unwielded_mod = 0
 	///If positive, adds recoil, if negative, lowers it. Recoil can't go below 0.
 	var/recoil_mod 		= 0
 	///If positive, adds recoil, if negative, lowers it. but for onehanded firing. Recoil can't go below 0.
@@ -155,6 +171,14 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.w_class						+= size_mod
 	master_gun.scatter						+= scatter_mod
 	master_gun.scatter_unwielded			+= scatter_unwielded_mod
+	master_gun.max_scatter                  += max_scatter_mod
+	master_gun.max_scatter_unwielded        += max_scatter_unwielded_mod
+	master_gun.scatter_decay                += scatter_decay_mod
+	master_gun.scatter_decay_unwielded      += scatter_decay_unwielded_mod
+	master_gun.scatter_increase             += scatter_increase_mod
+	master_gun.scatter_increase_unwielded   += scatter_increase_unwielded_mod
+	master_gun.min_scatter                  += min_scatter_mod
+	master_gun.min_scatter_unwielded        += min_scatter_unwielded_mod
 	master_gun.aim_speed_modifier			+= initial(master_gun.aim_speed_modifier)*aim_mode_movement_mult
 	master_gun.iff_marine_damage_falloff	+= shot_marine_damage_falloff
 	master_gun.add_aim_mode_fire_delay(name, initial(master_gun.aim_fire_delay) * aim_mode_delay_mod)
@@ -221,6 +245,14 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.w_class						-= size_mod
 	master_gun.scatter						-= scatter_mod
 	master_gun.scatter_unwielded			-= scatter_unwielded_mod
+	master_gun.max_scatter                  -= max_scatter_mod
+	master_gun.max_scatter_unwielded        -= max_scatter_unwielded_mod
+	master_gun.scatter_decay                -= scatter_decay_mod
+	master_gun.scatter_decay_unwielded      -= scatter_decay_unwielded_mod
+	master_gun.scatter_increase             -= scatter_increase_mod
+	master_gun.scatter_increase_unwielded   -= scatter_increase_unwielded_mod
+	master_gun.min_scatter                  -= min_scatter_mod
+	master_gun.min_scatter_unwielded        -= min_scatter_unwielded_mod
 	master_gun.aim_speed_modifier			-= initial(master_gun.aim_speed_modifier)*aim_mode_movement_mult
 	master_gun.iff_marine_damage_falloff	-= shot_marine_damage_falloff
 	master_gun.remove_aim_mode_fire_delay(name)
