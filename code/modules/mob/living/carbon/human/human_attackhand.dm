@@ -111,7 +111,6 @@
 			var/damage = rand(1, max_dmg)
 
 			var/datum/limb/affecting = get_limb(ran_zone(H.zone_selected))
-			var/armor_block = get_soft_armor("melee", affecting)
 
 			playsound(loc, attack.attack_sound, 25, TRUE)
 
@@ -119,11 +118,11 @@
 			var/list/hit_report = list()
 			if(damage >= 5 && prob(50))
 				visible_message(span_danger("[H] has weakened [src]!"), null, null, 5)
-				apply_effect(3, WEAKEN, armor_block)
+				apply_effect(modify_by_armor(3, MELEE, def_zone = affecting), WEAKEN)
 				hit_report += "(KO)"
 
 			damage += attack.damage
-			apply_damage(damage, BRUTE, affecting, armor_block, attack.sharp, attack.edge, updating_health = TRUE)
+			apply_damage(modify_by_armor(damage, MELEE, def_zone = affecting), BRUTE, affecting, 0, attack.sharp, attack.edge, updating_health = TRUE)
 
 			hit_report += "(RAW DMG: [damage])"
 
@@ -166,7 +165,7 @@
 			var/randn = rand(1, 100) + skills.getRating("cqc") * 5 - H.skills.getRating("cqc") * 5
 
 			if (randn <= 25)
-				apply_effect(3, WEAKEN, get_soft_armor("melee", affecting))
+				apply_effect(modify_by_armor(3, MELEE, affecting), WEAKEN)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 				visible_message(span_danger("[H] has pushed [src]!"), null, null, 5)
 				log_combat(user, src, "pushed")

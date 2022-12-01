@@ -61,8 +61,7 @@
 	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
 	var/armor_block = null
 	var/def_zone = ran_zone()
-	armor_block = M.get_soft_armor("melee", def_zone)
-	M.apply_damage(RAZORWIRE_BASE_DAMAGE, BRUTE, def_zone, armor_block, TRUE, updating_health = TRUE)
+	M.apply_damage(modify_by_armor(RAZORWIRE_BASE_DAMAGE, MELEE), BRUTE, updating_health = TRUE)
 	razorwire_tangle(M)
 
 /obj/structure/razorwire/proc/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
@@ -112,9 +111,7 @@
 	do_razorwire_untangle(entangled)
 	visible_message(span_danger("[entangled] disentangles from [src]!"))
 	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, TRUE)
-	var/def_zone = ran_zone()
-	var/armor_block = entangled.get_soft_armor("melee", def_zone)
-	entangled.apply_damage(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_MED, BRUTE, def_zone, armor_block, TRUE, updating_health = TRUE) //Apply damage as we tear free
+	entangled.apply_damage(modify_by_armor(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_MED, MELEE), BRUTE, updating_health = TRUE)
 	return TRUE
 
 
