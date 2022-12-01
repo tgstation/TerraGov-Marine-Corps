@@ -17,8 +17,6 @@
 #define BULLET_FEEDBACK_SHRAPNEL (1<<4)
 #define BULLET_FEEDBACK_IMMUNE (1<<5)
 
-#define PROJECTILE_HIT (1<<1)
-
 #define DAMAGE_REDUCTION_COEFFICIENT(armor) (0.1/((armor*armor*0.0001)+0.1)) //Armor offers diminishing returns.
 
 #define PROJECTILE_HIT_CHECK(thing_to_hit, projectile, cardinal_move, uncrossing, hit_atoms) (!(thing_to_hit.resistance_flags & PROJECTILE_IMMUNE) && thing_to_hit.projectile_hit(projectile, cardinal_move, uncrossing) && !(thing_to_hit in hit_atoms))
@@ -1426,7 +1424,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 /mob/living/proc/get_sunder()
 	return 0
 
-#undef PROJECTILE_HIT
 
 #undef BULLET_FEEDBACK_PEN
 #undef BULLET_FEEDBACK_SOAK

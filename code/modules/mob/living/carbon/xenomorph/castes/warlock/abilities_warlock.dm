@@ -414,9 +414,9 @@
 	QDEL_LIST(effect_list)
 	if(orb.icon_state != "crush_hard") //we failed to crush
 		flick("crush_smooth", orb)
-		QDEL_IN(orb, 0.5 SECONDS)
+		QDEL_NULL_IN(orb, 0.5 SECONDS)
 	else
-		QDEL_IN(orb, 0.4 SECONDS)
+		QDEL_NULL_IN(orb, 0.4 SECONDS)
 	current_iterations = 0
 	target_turfs = null
 	effect_list = null
@@ -543,7 +543,7 @@
 	if(!istype(target))
 		return
 
-	to_chat(xeno_owner, span_xenonotice("We channel our psychic power."))
+	owner.balloon_alert(owner, "We channel our psychic power")
 
 	generate_particles(target, 7)
 	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
@@ -551,7 +551,7 @@
 	xeno_owner.update_glow(3, 3, ammo_type.glow_color)
 
 	if(!do_after(xeno_owner, 1 SECONDS, FALSE, target, BUSY_ICON_DANGER) || !can_use_ability(target, FALSE))
-		to_chat(xeno_owner, span_warning("Our focus is disrupted."))
+		owner.balloon_alert(owner, "Our focus is disrupted")
 		end_channel()
 		REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
 		return fail_activate()
