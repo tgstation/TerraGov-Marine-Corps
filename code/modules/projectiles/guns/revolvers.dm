@@ -160,7 +160,7 @@
 //Mateba is pretty well known. The cylinder folds up instead of to the side. This has a non-marine version and a marine version.
 
 /obj/item/weapon/gun/revolver/mateba
-	name = "\improper R-24 autorevolver"
+	name = "\improper R-24 'Mateba' autorevolver"
 	desc = "The R-24 is the rather rare autorevolver used by the TGMC issued in rather small numbers to backline personnel and officers it uses recoil to spin the cylinder. Uses heavy .454 rounds."
 	icon_state = "mateba"
 	item_state = "mateba"
@@ -180,24 +180,19 @@
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/lace,
-		/obj/item/attachable/mateba_longbarrel,
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/shoulder_mount,
 	)
-	starting_attachment_types = list(
-		/obj/item/attachable/mateba_longbarrel,
-	)
+
 	attachable_offset = list("muzzle_x" = 20, "muzzle_y" = 18,"rail_x" = 16, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 22, "stock_y" = 15)
 
-	damage_mult = 0.80
-	damage_falloff_mult = 1.5
 	fire_delay = 0.2 SECONDS
 	aim_fire_delay = 0.3 SECONDS
 	recoil = 0
 	accuracy_mult = 1.1
-	scatter = 5
+	scatter = 0
 	accuracy_mult_unwielded = 0.6
-	scatter_unwielded = 20
+	scatter_unwielded = 7
 
 /obj/item/weapon/gun/revolver/mateba/notmarine
 	name = "\improper Mateba autorevolver"

@@ -1,0 +1,4 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes:
+  - bugfix: "Widow can now watch other xenos as queen mother intended."

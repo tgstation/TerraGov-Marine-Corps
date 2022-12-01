@@ -88,7 +88,7 @@
 	maxcharge = 1800
 	w_class = WEIGHT_CLASS_NORMAL
 	icon_state_mini = "mag_cell"
-	charge_overlay = "volkite"
+	charge_overlay = "volkite_big"
 	reload_delay = 0
 	self_recharge = TRUE
 	charge_amount = 24

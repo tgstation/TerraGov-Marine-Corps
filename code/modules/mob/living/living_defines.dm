@@ -80,7 +80,6 @@
 	var/fire_stacks = 0 //Tracks how many stacks of fire we have on, max is
 
 	var/chestburst = 0 // 0: normal, 1: bursting, 2: bursted.
-	var/headbitten = FALSE //false: normal, true: brain removed
 	var/metabolism_efficiency = 1 //more or less efficiency to metabolize helpful/harmful reagents and (TODO) regulate body temperature..
 
 	var/tinttotal = TINT_NONE
@@ -92,9 +91,6 @@
 	var/list/emitted_auras
 	var/list/stun_absorption //lazy list
 
-	//Speech
-	var/stuttering = 0
-	var/slurring = 0
 
 	var/resting = FALSE
 

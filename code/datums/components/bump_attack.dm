@@ -20,7 +20,8 @@
 	if(has_button)
 		toggle_action = new()
 		toggle_action.give_action(parent)
-		toggle_action.update_button_icon(active)
+		toggle_action.attacking = active
+		toggle_action.update_button_icon()
 		RegisterSignal(toggle_action, COMSIG_ACTION_TRIGGER, .proc/living_activation_toggle)
 	living_activation_toggle(should_enable = enabled, silent_activation = silent_activation)
 
@@ -39,7 +40,8 @@
 	var/mob/living/bumper = parent
 	if(!silent_activation)
 		bumper.balloon_alert(bumper, "Will now [should_enable ? "attack" : "push"] enemies in your way.")
-	toggle_action?.update_button_icon(should_enable)
+	toggle_action?.attacking = active
+	toggle_action?.update_button_icon()
 	if(should_enable)
 		active = TRUE
 		RegisterSignal(bumper, COMSIG_MOVABLE_BUMP, bump_action_path)

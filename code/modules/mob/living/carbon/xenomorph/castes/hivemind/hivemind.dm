@@ -72,17 +72,19 @@
 	var/turf/T = loc
 	if(!istype(T))
 		return
-	if(status_flags & INCORPOREAL || loc_weeds_type)
-		if(health < minimum_health + maxHealth)
-			setBruteLoss(0)
-			setFireLoss(-minimum_health)
-		if((health >= maxHealth)) //can't regenerate.
-			updatehealth() //Update health-related stats, like health itself (using brute and fireloss), health HUD and status.
-			return
-		heal_wounds(XENO_RESTING_HEAL)
-		updatehealth()
+	// If manifested and off weeds, lets deal some damage.
+	if(!(status_flags & INCORPOREAL) && !loc_weeds_type)
+		adjustBruteLoss(20 * XENO_RESTING_HEAL, TRUE)
 		return
-	adjustBruteLoss(20 * XENO_RESTING_HEAL, TRUE)
+	// If not manifested
+	if(health < minimum_health + maxHealth)
+		setBruteLoss(0)
+		setFireLoss(-minimum_health)
+	if(health >= maxHealth) //can't regenerate.
+		updatehealth() //Update health-related stats, like health itself (using brute and fireloss), health HUD and status.
+		return
+	heal_wounds(XENO_RESTING_HEAL)
+	updatehealth()
 
 /mob/living/carbon/xenomorph/hivemind/Destroy()
 	if(!QDELETED(core))
@@ -124,31 +126,31 @@
 	update_movespeed()
 	if(status_flags & INCORPOREAL)
 		status_flags = NONE
-		upgrade = XENO_UPGRADE_ZERO
 		resistance_flags = BANISH_IMMUNE
-		flags_pass = NONE
+		flags_pass = PASSTABLE | PASSMOB | PASSXENO
 		density = TRUE
 		throwpass = FALSE
+		hive.xenos_by_upgrade[upgrade] -= src
 		upgrade = XENO_UPGRADE_MANIFESTATION
 		set_datum(FALSE)
+		hive.xenos_by_upgrade[upgrade] += src
 		update_wounds()
 		update_icon()
 		update_action_buttons()
 		return
-	invisibility = initial(invisibility)
 	status_flags = initial(status_flags)
-	upgrade = initial(upgrade)
 	resistance_flags = initial(resistance_flags)
 	flags_pass = initial(flags_pass)
 	density = initial(flags_pass)
 	throwpass = initial(throwpass)
+	hive.xenos_by_upgrade[upgrade] -= src
 	upgrade = XENO_UPGRADE_BASETYPE
 	set_datum(FALSE)
+	hive.xenos_by_upgrade[upgrade] += src
 	update_wounds()
 	update_icon()
 	update_action_buttons()
-
-
+	handle_weeds_adjacent_removed()
 
 /mob/living/carbon/xenomorph/hivemind/flamer_fire_act(burnlevel)
 	return_to_core()
@@ -310,7 +312,7 @@
 	icon = 'icons/Xeno/weeds.dmi'
 	icon_state = "weed_hivemind4"
 	var/mob/living/carbon/xenomorph/hivemind/parent
-	xeno_structure_flags = CRITICAL_STRUCTURE
+	xeno_structure_flags = CRITICAL_STRUCTURE|DEPART_DESTRUCTION_IMMUNE
 	///The cooldown of the alert hivemind gets when a hostile is near it's core
 	COOLDOWN_DECLARE(hivemind_proxy_alert_cooldown)
 	///The hive this core belongs to

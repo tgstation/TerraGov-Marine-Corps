@@ -103,42 +103,42 @@
 	name = "box of LMG bullets"
 	desc = "A box of rather large LMG bullets."
 	icon_state = "lmg_ammo"
-	rounds = 160
+	rounds = 300
 	ammo_type = MECHA_AMMO_GREY_LMG
 
 /obj/item/mecha_ammo/vendable/rifle
 	name = "box of rifle bullets"
 	desc = "A box of large rocket-assisted rifle bullets. it has \"DO NOT USE AS FIRECRACKERS\" written on the side."
 	icon_state = "assaultrifle_ammo"
-	rounds = 50
+	rounds = 250
 	ammo_type = MECHA_AMMO_RIFLE
 
 /obj/item/mecha_ammo/vendable/burstrifle
 	name = "box of burstrifle bullets"
 	desc = "A box of large rocket-assisted burstrifle bullets. it has \"DO NOT USE AS FIRECRACKERS\" written on the side."
 	icon_state = "burstrifle_ammo"
-	rounds = 72
+	rounds = 250
 	ammo_type = MECHA_AMMO_BURSTRIFLE
 
 /obj/item/mecha_ammo/vendable/shotgun
 	name = "box of shotgun shells"
 	desc = "A box of large shotgun shells. Sadly they only fit into mech-sized weapons."
 	icon_state = "shotgun_ammo"
-	rounds = 10
+	rounds = 20
 	ammo_type = MECHA_AMMO_SHOTGUN
 
 /obj/item/mecha_ammo/vendable/lightcannon
 	name = "box of light cannon bullets"
 	desc = "A box of light cannon shells. For being light the box is rather heavy."
 	icon_state = "lightcannon_ammo"
-	rounds = 60
+	rounds = 100
 	ammo_type = MECHA_AMMO_LIGHTCANNON
 
 /obj/item/mecha_ammo/vendable/heavycannon
 	name = "heavy cannon shell"
 	desc = "A massive tank shell for loading into mech cannons."
 	icon_state = "heavycannon_ammo"
-	rounds = 1
+	rounds = 5
 	ammo_type = MECHA_AMMO_HEAVYCANNON
 	direct_load = TRUE
 	qdel_on_empty = TRUE
@@ -147,7 +147,7 @@
 	name = "box of SMG bullets"
 	desc = "A box of normal SMG bullets, but bigger!"
 	icon_state = "smg_ammo"
-	rounds = 120
+	rounds = 320
 	ammo_type = MECHA_AMMO_SMG
 
 /obj/item/mecha_ammo/vendable/burstpistol
@@ -161,7 +161,7 @@
 	name = "box of pistol bullets"
 	desc = "Bigger version of the small pistol bullets most marines use."
 	icon_state = "pistol_ammo"
-	rounds = 100
+	rounds = 200
 	ammo_type = MECHA_AMMO_PISTOL
 
 /obj/item/mecha_ammo/vendable/rpg
@@ -184,14 +184,14 @@
 	name = "box of sniper bullets"
 	desc = "A box of anti-tank bullets for shooting at small armored vehicles, and small armored creatures."
 	icon_state = "sniper_ammo"
-	rounds = 15
+	rounds = 30
 	ammo_type = MECHA_AMMO_SNIPER
 
 /obj/item/mecha_ammo/vendable/grenade
 	name = "grenade rack"
 	desc = "A rack filled with rows of grenades secured with plastic."
 	icon_state = "grenadelauncher_ammo"
-	rounds = 10
+	rounds = 20
 	direct_load = TRUE
 	ammo_type = MECHA_AMMO_GRENADE
 

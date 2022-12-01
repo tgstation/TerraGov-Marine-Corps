@@ -142,7 +142,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 		<b>Duty</b>: Tend the injuries of your fellow marines or related personnel, keep them at fighting strength.
 	"}
 
-datum/job/som/squad/medic/radio_help_message(mob/M)
+/datum/job/som/squad/medic/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"\nYou must tend the wounds of your squad mates and make sure they are healthy and active.
 You may not be a fully-fledged doctor, but you stand between life and death when it matters."})

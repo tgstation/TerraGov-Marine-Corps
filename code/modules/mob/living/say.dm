@@ -301,16 +301,12 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 
 
 /mob/living/proc/treat_message(message)
-	if(stuttering)
-		message = stutter(message)
-
-	if(slurring)
-		message = slur(message)
-
-		// check for and apply punctuation
+	// check for and apply punctuation
 	var/end = copytext(message, length(message))
 	if(!(end in list("!", ".", "?", ":", "\"", "-")))
 		message += "."
+
+	SEND_SIGNAL(src, COMSIG_LIVING_TREAT_MESSAGE, args)
 
 	message = capitalize(message)
 
@@ -346,7 +342,7 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 		. = verb_whisper
 	else if(message_mode == MODE_WHISPER_CRIT)
 		. = "[verb_whisper] in [p_their()] last breath"
-	else if(stuttering)
+	else if(has_status_effect(/datum/status_effect/speech/stutter))
 		. = "stammers"
 	else if(message_mode == MODE_SING)
 		. = verb_sing

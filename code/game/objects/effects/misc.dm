@@ -37,31 +37,6 @@
 	desc = "This looks like a projection of something."
 	anchored = TRUE
 
-
-/obj/effect/shut_controller
-	name = "shut controller"
-	var/moving = null
-	var/list/parts = list(  )
-
-
-
-
-//Exhaust effect
-/obj/effect/engine_exhaust
-	name = "engine exhaust"
-	icon = 'icons/effects/effects.dmi'
-	icon_state = "exhaust"
-	anchored = TRUE
-
-	New(var/turf/nloc, var/ndir, var/temp)
-		setDir(ndir)
-		..(nloc)
-
-		spawn(20)
-			loc = null
-
-
-
 /obj/effect/rune/attunement
 	luminosity = 5
 

@@ -8,7 +8,9 @@
 	ability_name = "toggle agility"
 	cooldown_timer = 0.5 SECONDS
 	use_state_flags = XACT_USE_AGILITY
-	keybind_signal = COMSIG_XENOABILITY_TOGGLE_AGILITY
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_AGILITY,
+	)
 	var/last_agility_bonus = 0
 
 /datum/action/xeno_action/toggle_agility/on_xeno_upgrade()
@@ -58,7 +60,9 @@
 	ability_name = "lunge"
 	plasma_cost = 25
 	cooldown_timer = 20 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_LUNGE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LUNGE,
+	)
 	target_flags = XABB_MOB_TARGET
 	/// The target of our lunge, we keep it to check if we are adjacent everytime we move
 	var/atom/lunge_target
@@ -73,7 +77,7 @@
 	if(!.)
 		return FALSE
 
-	if(get_dist_euclide_square(A, owner) > 36)
+	if(get_dist_euclide_square(A, owner) > 20)
 		if(!silent)
 			to_chat(owner, span_xenonotice("You are too far!"))
 		return FALSE
@@ -169,7 +173,9 @@
 	ability_name = "fling"
 	plasma_cost = 18
 	cooldown_timer = 20 SECONDS //Shared cooldown with Grapple Toss
-	keybind_signal = COMSIG_XENOABILITY_FLING
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FLING,
+	)
 	target_flags = XABB_MOB_TARGET
 
 /datum/action/xeno_action/activable/fling/on_cooldown_finish()
@@ -268,7 +274,9 @@
 	ability_name = "grapple toss"
 	plasma_cost = 18
 	cooldown_timer = 20 SECONDS //Shared cooldown with Fling
-	keybind_signal = COMSIG_XENOABILITY_GRAPPLE_TOSS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_GRAPPLE_TOSS,
+	)
 	target_flags = XABB_TURF_TARGET
 
 /datum/action/xeno_action/activable/toss/on_cooldown_finish()
@@ -344,7 +352,9 @@
 	ability_name = "punch"
 	plasma_cost = 12
 	cooldown_timer = 10 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_PUNCH
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PUNCH,
+	)
 	target_flags = XABB_MOB_TARGET
 	///The punch range, 1 would be adjacent.
 	var/range = 1
@@ -370,7 +380,7 @@
 			to_chat(owner, span_xenodanger("We can't harm our sister!"))
 		return FALSE
 
-	if(!isliving(A) && !isstructure(A) && !ismachinery(A) && !isuav(A))
+	if(!isliving(A) && !isstructure(A) && !ismachinery(A) && !isvehicle(A))
 		if(!silent)
 			to_chat(owner, span_xenodanger("We can't punch this target!"))
 		return FALSE
@@ -480,7 +490,7 @@
 
 /mob/living/punch_act(mob/living/carbon/xenomorph/warrior/X, damage, target_zone, push = TRUE, punch_description = "powerful", stagger_stacks = 3, slowdown_stacks = 3)
 	if(pulledby == X) //If we're being grappled by the Warrior punching us, it's gonna do extra damage and debuffs; combolicious
-		damage *= 2
+		damage *= 1.5
 		slowdown_stacks *= 2
 		stagger_stacks *= 2
 		ParalyzeNoChain(0.5 SECONDS)
@@ -495,11 +505,9 @@
 			target_zone = BODY_ZONE_CHEST
 			L =  carbon_victim.get_limb(target_zone)
 
-		if(L.limb_status & LIMB_SPLINTED) //If they have it splinted, the splint won't hold.
-			L.remove_limb_flags(LIMB_SPLINTED)
-			to_chat(src, span_danger("The splint on your [L.display_name] comes apart!"))
-
-	apply_damage(modify_by_armor(damage, MELEE, def_zone = target_zone), BRUTE, target_zone, updating_health = TRUE)
+		L.take_damage_limb(modify_by_armor(damage, MELEE, def_zone = target_zone), 0, FALSE, FALSE)
+	else
+		apply_damage(modify_by_armor(damage, MELEE, def_zone = target_zone), BRUTE, target_zone, updating_health = TRUE)
 
 	if(push)
 		var/facing = get_dir(X, src)
@@ -559,7 +567,9 @@
 	mechanics_text = "Precisely strike your target from further away, heavily slowing them."
 	plasma_cost = 10
 	range = 2
-	keybind_signal = COMSIG_XENOABILITY_JAB
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_JAB,
+	)
 
 /datum/action/xeno_action/activable/punch/jab/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner

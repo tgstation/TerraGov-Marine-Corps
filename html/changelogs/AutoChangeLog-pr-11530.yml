@@ -1,0 +1,4 @@
+author: "RipGrayson"
+delete-after: True
+changes:
+  - bugfix: "Fixed the weed landmark icon to properly display while mapping"

@@ -44,7 +44,6 @@
 		current_turf.flags_atom &= ~ AI_BLOCKED
 	return ..()
 
-
 /obj/machinery/proc/is_operational()
 	return !(machine_stat & (NOPOWER|BROKEN|MAINT|DISABLED))
 

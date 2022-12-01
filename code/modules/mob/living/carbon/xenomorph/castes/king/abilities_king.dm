@@ -9,7 +9,9 @@
 	mechanics_text = "Shut down all electrical lights nearby for 10 seconds."
 	cooldown_timer = 45 SECONDS
 	plasma_cost = 100
-	keybind_signal = COMSIG_XENOABILITY_NIGHTFALL
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_NIGHTFALL,
+	)
 	/// How far nightfall will have an effect
 	var/range = 12
 	/// How long till the lights go on again
@@ -41,7 +43,9 @@
 	ability_name = "Gravity crush"
 	plasma_cost = 200
 	cooldown_timer = 30 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_GRAVITY_CRUSH
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_GRAVITY_CRUSH,
+	)
 	/// How far can we use gravity crush
 	var/king_crush_dist = 5
 	/// A list of all things that had a fliter applied
@@ -134,7 +138,9 @@
 	plasma_cost = 900 //uses all an young kings plasma
 	cooldown_timer = 10 MINUTES
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
-	keybind_signal = COMSIG_XENOABILITY_HIVE_SUMMON
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HIVE_SUMMON,
+	)
 
 /datum/action/xeno_action/activable/psychic_summon/on_cooldown_finish()
 	to_chat(owner, span_warning("The hives power swells. We may summon our sisters again."))

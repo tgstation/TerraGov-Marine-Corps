@@ -210,6 +210,12 @@
 /obj/structure/reagent_dispensers/fueltank/flamer_fire_act(burnlevel)
 	explode()
 
+/obj/structure/reagent_dispensers/fueltank/barrel
+	name = "red barrel"
+	desc = "A red fuel barrel"
+	icon = 'icons/obj/structures/crates.dmi'
+	icon_state = "barrel_red"
+
 /obj/structure/reagent_dispensers/water_cooler
 	name = "water cooler"
 	desc = "A machine that dispenses water to drink."

@@ -56,11 +56,11 @@
 /obj/item/jetpack_marine/ui_action_click(mob/user, datum/action/item_action/action)
 	if(selected)
 		UnregisterSignal(user, COMSIG_MOB_MIDDLE_CLICK)
-		action.remove_selected_frame()
+		action.set_toggle(FALSE)
 		UnregisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE)
 	else
 		RegisterSignal(user, COMSIG_MOB_MIDDLE_CLICK, .proc/can_use_jetpack)
-		action.add_selected_frame()
+		action.set_toggle(TRUE)
 		SEND_SIGNAL(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, user)
 		RegisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, .proc/unselect)
 	selected = !selected
@@ -78,7 +78,7 @@
 			continue
 		var/datum/action/item_action/iaction = action
 		if(iaction?.holder_item == src)
-			iaction.remove_selected_frame()
+			iaction.set_toggle(FALSE)
 
 
 ///remove the flame overlay

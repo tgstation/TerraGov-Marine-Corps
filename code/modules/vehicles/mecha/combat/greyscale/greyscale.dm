@@ -9,7 +9,7 @@
 	fade = 1 SECONDS
 	velocity = list(0, 0.3, 0)
 	position = list(5, 32, 0)
-	drift = generator("sphere", 0, 1, NORMAL_RAND)
+	drift = generator(GEN_SPHERE, 0, 1, NORMAL_RAND)
 	friction = 0.2
 	gravity = list(0, 0.95)
 	grow = 0.05
@@ -26,7 +26,7 @@
 	max_equip_by_category = MECH_GREYSCALE_MAX_EQUIP
 	internal_damage_threshold = 15
 	internal_damage_probability = 5
-	possible_int_damage = MECHA_INT_FIRE|MECHA_INT_CONTROL_LOST|MECHA_INT_SHORT_CIRCUIT
+	possible_int_damage = MECHA_INT_FIRE|MECHA_INT_SHORT_CIRCUIT
 	/// keyed list. values are types at init, otherwise instances of mecha limbs, order is layer order as well
 	var/list/datum/mech_limb/limbs = list(
 		MECH_GREY_TORSO = null,
@@ -112,12 +112,12 @@
 
 	for(var/key in render_order)
 		if(key == MECHA_R_ARM)
-			var/obj/item/mecha_parts/mecha_equipment/weapon/right_gun = equip_by_category[MECHA_R_ARM]
+			var/obj/item/mecha_parts/mecha_equipment/right_gun = equip_by_category[MECHA_R_ARM]
 			if(right_gun)
 				. += image('icons/mecha/mech_gun_overlays.dmi', right_gun.icon_state + "_right", pixel_x=-32)
 			continue
 		if(key == MECHA_L_ARM)
-			var/obj/item/mecha_parts/mecha_equipment/weapon/left_gun = equip_by_category[MECHA_L_ARM]
+			var/obj/item/mecha_parts/mecha_equipment/left_gun = equip_by_category[MECHA_L_ARM]
 			if(left_gun)
 				. += image('icons/mecha/mech_gun_overlays.dmi', left_gun.icon_state + "_left", pixel_x=-32)
 			continue

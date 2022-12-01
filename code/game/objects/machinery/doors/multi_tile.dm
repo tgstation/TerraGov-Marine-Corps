@@ -68,6 +68,12 @@
 	icon = 'icons/obj/doors/Door2x1_secure.dmi'
 	openspeed = 34
 
+/obj/machinery/door/airlock/multi_tile/secure/indestructible
+	name = "Secure Airlock"
+	icon = 'icons/obj/doors/Door2x1_secure.dmi'
+	openspeed = 34
+	resistance_flags = RESIST_ALL
+
 /obj/machinery/door/airlock/multi_tile/secure2
 	name = "Secure Airlock"
 	icon = 'icons/obj/doors/Door2x1_secure2.dmi'
@@ -120,6 +126,9 @@
 
 /obj/machinery/door/airlock/multi_tile/mainship/generic/rnr
 	name = "\improper Rest and Recreation"
+
+/obj/machinery/door/airlock/multi_tile/mainship/generic/mechbay
+	name = "\improper Mech Pilot's Office"
 
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric
 	name = "\improper Airlock"

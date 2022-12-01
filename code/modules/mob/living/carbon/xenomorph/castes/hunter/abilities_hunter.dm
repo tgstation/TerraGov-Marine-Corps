@@ -7,7 +7,9 @@
 	mechanics_text = "Become harder to see, almost invisible if you stand still, and ready a sneak attack. Uses plasma to move."
 	ability_name = "stealth"
 	plasma_cost = 10
-	keybind_signal = COMSIG_XENOABILITY_TOGGLE_STEALTH
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_STEALTH,
+	)
 	cooldown_timer = HUNTER_STEALTH_COOLDOWN
 	var/last_stealth = null
 	var/stealth = FALSE
@@ -57,17 +59,7 @@
 	// TODO: attack_alien() overrides are a mess and need a lot of work to make them require parentcalling
 	RegisterSignal(owner, list(
 		COMSIG_XENOMORPH_GRAB,
-		COMSIG_XENOMORPH_ATTACK_BARRICADE,
-		COMSIG_XENOMORPH_ATTACK_CLOSET,
-		COMSIG_XENOMORPH_ATTACK_RAZORWIRE,
-		COMSIG_XENOMORPH_ATTACK_BED,
-		COMSIG_XENOMORPH_ATTACK_NEST,
-		COMSIG_XENOMORPH_ATTACK_TABLE,
-		COMSIG_XENOMORPH_ATTACK_RACK,
-		COMSIG_XENOMORPH_ATTACK_SENTRY,
-		COMSIG_XENOMORPH_ATTACK_M56_POST,
-		COMSIG_XENOMORPH_ATTACK_M56,
-		COMSIG_XENOMORPH_ATTACK_TANK,
+		COMSIG_XENOMORPH_ATTACK_OBJ,
 		COMSIG_XENOMORPH_THROW_HIT,
 		COMSIG_XENOMORPH_FIRE_BURNING,
 		COMSIG_LIVING_ADD_VENTCRAWL), .proc/cancel_stealth)
@@ -94,17 +86,7 @@
 		COMSIG_XENOMORPH_ATTACK_LIVING,
 		COMSIG_XENOMORPH_DISARM_HUMAN,
 		COMSIG_XENOMORPH_GRAB,
-		COMSIG_XENOMORPH_ATTACK_BARRICADE,
-		COMSIG_XENOMORPH_ATTACK_CLOSET,
-		COMSIG_XENOMORPH_ATTACK_RAZORWIRE,
-		COMSIG_XENOMORPH_ATTACK_BED,
-		COMSIG_XENOMORPH_ATTACK_NEST,
-		COMSIG_XENOMORPH_ATTACK_TABLE,
-		COMSIG_XENOMORPH_ATTACK_RACK,
-		COMSIG_XENOMORPH_ATTACK_SENTRY,
-		COMSIG_XENOMORPH_ATTACK_M56_POST,
-		COMSIG_XENOMORPH_ATTACK_M56,
-		COMSIG_XENOMORPH_ATTACK_TANK,
+		COMSIG_XENOMORPH_ATTACK_OBJ,
 		COMSIG_XENOMORPH_THROW_HIT,
 		COMSIG_XENOMORPH_FIRE_BURNING,
 		COMSIG_LIVING_ADD_VENTCRAWL,
@@ -219,7 +201,9 @@
 /datum/action/xeno_action/stealth/disguise
 	name = "Disguise"
 	mechanics_text = "Disguise yourself as the enemy. Uses plasma to move. Select your disguise with Hunter's Mark."
-	keybind_signal = COMSIG_XENOABILITY_TOGGLE_DISGUISE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_DISGUISE,
+	)
 	///the regular appearance of the hunter
 	var/old_appearance
 
@@ -280,7 +264,9 @@
 	action_icon_state = "hunter_mark"
 	mechanics_text = "Psychically mark a creature you have line of sight to, allowing you to sense its direction, distance and location with Psychic Trace."
 	plasma_cost = 25
-	keybind_signal = COMSIG_XENOABILITY_HUNTER_MARK
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HUNTER_MARK,
+	)
 	cooldown_timer = 60 SECONDS
 	///the target marked
 	var/atom/movable/marked_target
@@ -361,7 +347,9 @@
 	action_icon_state = "toggle_queen_zoom"
 	mechanics_text = "Psychically ping the creature you marked, letting you know its direction, distance and location, and general condition."
 	plasma_cost = 1 //Token amount
-	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_TRACE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_TRACE,
+	)
 	cooldown_timer = HUNTER_PSYCHIC_TRACE_COOLDOWN
 
 /datum/action/xeno_action/psychic_trace/can_use_action(silent = FALSE, override_flags)
@@ -387,7 +375,7 @@
 	to_chat(X, span_xenodanger("We sense our quarry <b>[mark.marked_target]</b> is currently located in <b>[AREACOORD_NO_Z(mark.marked_target)]</b> and is <b>[get_dist(X, mark.marked_target)]</b> tiles away. It is <b>[calculate_mark_health(mark.marked_target)]</b> and <b>[mark.marked_target.status_flags & XENO_HOST ? "impregnated" : "barren"]</b>."))
 	X.playsound_local(X, 'sound/effects/ghost2.ogg', 10, 0, 1)
 
-	var/obj/screen/arrow/hunter_mark_arrow/arrow_hud = new
+	var/atom/movable/screen/arrow/hunter_mark_arrow/arrow_hud = new
 	//Prepare the tracker object and set its parameters
 	arrow_hud.add_hud(X, mark.marked_target) //set the tracker parameters
 	arrow_hud.process() //Update immediately
@@ -429,7 +417,9 @@
 	mechanics_text = "Create mirror images of ourselves. Reactivate to swap with an illusion."
 	ability_name = "mirage"
 	plasma_cost = 50
-	keybind_signal = COMSIG_XENOABILITY_MIRAGE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_MIRAGE,
+	)
 	cooldown_timer = 30 SECONDS
 	///How long will the illusions live
 	var/illusion_life_time = 10 SECONDS
