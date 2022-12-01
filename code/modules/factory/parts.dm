@@ -356,21 +356,28 @@ GLOBAL_LIST_INIT(meds, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_GALVANIZER, STEP_ICON_STATE = "req_bag2"),
 	))
 
-/obj/item/factory_part/med_rig
-	name = "M276 pattern medical storage rig"
-	desc = "An unfinished M276 pattern medical storage rig"
-	result = list(/obj/item/storage/belt/rig/medical)
+/obj/item/factory_part/med_advpack
+	name = "Advanced First-Aid kit"
+	desc = "An unfinished Advanced First-Aid kit"
+	result = list(
+		/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
+		/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
+		/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
+		/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
+		/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
+		/obj/item/stack/medical/heal_pack/advanced/burn_pack,
+		/obj/item/stack/medical/heal_pack/advanced/burn_pack,
+		/obj/item/stack/medical/heal_pack/advanced/burn_pack,
+		/obj/item/stack/medical/heal_pack/advanced/burn_pack,
+		/obj/item/stack/medical/heal_pack/advanced/burn_pack,
+		/obj/item/stack/medical/splint,
+		/obj/item/stack/medical/splint,
+		/obj/item/stack/medical/splint,
+		/obj/item/stack/medical/splint,
+		/obj/item/stack/medical/splint,
+	)
 
-/obj/item/factory_part/med_rig/Initialize()
-	. = ..()
-	recipe = GLOB.meds
-
-/obj/item/factory_part/med_lifesaver
-	name = "M276 pattern lifesaver bag"
-	desc = "An unfinished M276 pattern lifesaver bag"
-	result = list(/obj/item/storage/belt/lifesaver/full)
-
-/obj/item/factory_part/med_lifesaver/Initialize()
+/obj/item/factory_part/med_advpack/Initialize()
 	. = ..()
 	recipe = GLOB.meds
 

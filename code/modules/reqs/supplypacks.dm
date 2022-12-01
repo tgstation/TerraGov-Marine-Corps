@@ -1817,14 +1817,9 @@ FACTORY
 	contains = list(/obj/item/factory_refill/optical_imager_refill)
 	cost = 50
 
-/datum/supply_packs/factory/med_rig_refill
-	name = "M276 pattern medical storage rig assembly refill"
-	contains = list(/obj/item/factory_refill/med_rig_refill)
-	cost = 50
-
-/datum/supply_packs/factory/med_lifesaver_refill
-	name = "M276 pattern pattern lifesaver bag assembly refill"
-	contains = list(/obj/item/factory_refill/med_lifesaver_refill)
+/datum/supply_packs/factory/med_advpack
+	name = "Advanced medical pack assembly refill"
+	contains = list(/obj/item/factory_refill/med_advpack_refill)
 	cost = 50
 
 /datum/supply_packs/factory/module_valk_refill

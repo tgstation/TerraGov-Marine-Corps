@@ -250,16 +250,10 @@
 	refill_type = /obj/item/factory_part/optical_imager
 	refill_amount = 20
 
-/obj/item/factory_refill/med_rig_refill
+/obj/item/factory_refill/med_advpack_refill
 	name = "box of rounded metal plates"
 	desc = "A box of round metal plates inside. Used to refill Unboxers."
-	refill_type = /obj/item/factory_part/med_rig
-	refill_amount = 15
-
-/obj/item/factory_refill/med_lifesaver_refill
-	name = "box of rounded metal plates"
-	desc = "A box of round metal plates inside. Used to refill Unboxers."
-	refill_type = /obj/item/factory_part/med_lifesaver
+	refill_type = /obj/item/factory_part/med_advpack
 	refill_amount = 15
 
 /obj/item/factory_refill/module_valk_refill
