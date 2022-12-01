@@ -44,6 +44,15 @@
 		if(OOC_CHANNEL)
 			client.ooc(entry)
 			return TRUE
+		if(LOOC_CHANNEL)
+			client.looc(entry)
+			return TRUE
+		if(MOOC_CHANNEL)
+			client.ooc(entry)
+			return TRUE
+		if(XOOC_CHANNEL)
+			client.xooc(entry)
+			return TRUE
 	return FALSE
 
 /**
