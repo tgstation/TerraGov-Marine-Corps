@@ -398,10 +398,10 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 		playsound(src, 'sound/effects/metal_crash.ogg', 35)
 		C.lastsound = world.time
 
-/obj/effect/alien/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
+/obj/alien/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
 	take_damage(40)
 
-/obj/effect/alien/weeds/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
+/obj/alien/weeds/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
 	return
 
 /obj/vehicle/multitile/hitbox/cm_armored/Move(atom/A, direction)
@@ -512,12 +512,11 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	M.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	playsound(loc, "alien_claw_metal", 25, 1)
 
-	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_TANK)
-
 	M.visible_message(span_danger("\The [M] slashes [src]!"), \
 	span_danger("We slash [src]!"))
 
 	take_damage_type(damage * ( (isxenoravager(M)) ? 2 : 1 ), "slash", M) //Ravs do a bitchin double damage
+	return ..()
 
 //Special case for entering the vehicle without using the verb
 /obj/vehicle/multitile/root/cm_armored/attack_hand(mob/living/user)

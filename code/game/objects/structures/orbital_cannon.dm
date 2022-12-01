@@ -79,7 +79,7 @@
 
 	ob_cannon_busy = TRUE
 
-	sleep(10)
+	sleep(1 SECONDS)
 
 	ob_cannon_busy = FALSE
 
@@ -110,7 +110,7 @@
 
 	ob_cannon_busy = TRUE
 
-	sleep(10)
+	sleep(1 SECONDS)
 
 	ob_cannon_busy = FALSE
 
@@ -155,7 +155,7 @@
 
 	ob_cannon_busy = TRUE
 
-	sleep(6)
+	sleep(0.6 SECONDS)
 
 	ob_cannon_busy = FALSE
 
@@ -410,7 +410,7 @@
 	for(var/i = 1 to total_amt)
 		var/turf/U = pick_n_take(turf_list)
 		explosion(U, 1, 4, 6, 6, throw_range = 0, adminlog = FALSE, small_animation = TRUE) //rocket barrage
-		sleep(1)
+		sleep(0.1 SECONDS)
 
 /obj/structure/ob_ammo/warhead/plasmaloss
 	name = "\improper Plasma draining orbital warhead"

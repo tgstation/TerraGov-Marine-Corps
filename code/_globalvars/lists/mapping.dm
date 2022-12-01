@@ -8,6 +8,7 @@ GLOBAL_LIST_INIT(diagonal_smoothing_conversion, list(\
 //Spawnpoints.
 GLOBAL_LIST_EMPTY(latejoin)
 GLOBAL_LIST_EMPTY(latejoinrebel)
+GLOBAL_LIST_EMPTY(latejoinsom)
 GLOBAL_LIST_EMPTY(latejoin_gateway)
 GLOBAL_LIST_EMPTY(latejoin_cryo)
 
@@ -28,7 +29,6 @@ GLOBAL_LIST_EMPTY(fog_blockers)
 GLOBAL_LIST_EMPTY(huntergames_primary_spawns)
 GLOBAL_LIST_EMPTY(huntergames_secondary_spawns)
 
-GLOBAL_LIST_EMPTY(jobspawn_overrides)					//These will take precedence over normal spawnpoints if created.
 
 GLOBAL_LIST_EMPTY(newplayer_start)
 GLOBAL_LIST_EMPTY(tdome1)

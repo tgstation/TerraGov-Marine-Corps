@@ -40,6 +40,8 @@
 	user.visible_message(span_danger("[user] is falling on the [src.name]! It looks like [user.p_theyre()] trying to commit suicide."))
 	return(BRUTELOSS)
 
+//vali weapons
+
 /obj/item/weapon/claymore/harvester
 	name = "\improper HP-S Harvester blade"
 	desc = "TerraGov Marine Corps' experimental High Point-Singularity 'Harvester' blade. An advanced weapon that trades sheer force for the ability to apply a variety of debilitating effects when loaded with certain reagents. Activate after loading to prime a single use of an effect. It also harvests substances from alien lifeforms it strikes when connected to the Vali system."
@@ -49,8 +51,6 @@
 	attack_speed = 12
 	w_class = WEIGHT_CLASS_BULKY
 	flags_item = DRAINS_XENO
-
-	var/force_wielded = 40
 
 	var/codex_info = {"<b>Reagent info:</b><BR>
 	Bicaridine - heal your target for 10 brute. Usable on both dead and living targets.<BR>
@@ -221,6 +221,41 @@
 							span_danger("[user] is slitting [user.p_their()] stomach open with the [name]! It looks like [user.p_theyre()] trying to commit seppuku.")))
 	return (BRUTELOSS)
 
+/obj/item/weapon/combat_knife/vali_knife
+	name = "\improper HP-S Harvester knife"
+	desc = "TerraGov Marine Corps' experimental High Point-Singularity 'Harvester' knife. An advanced version of the HP-S Harvester blade, shrunken down to the size of the standard issue boot knife. It trades the harvester blades size and power for a smaller form, with the side effect of a miniscule chemical storage, yet it still keeps its ability to apply debilitating effects to its targets. Activate after loading to prime a single use of an effect. It also harvests substances from alien lifeforms it strikes when connected to the Vali system."
+	icon_state = "vali_knife_icon"
+	item_state = "vali_knife"
+	force = 25
+	throwforce = 15
+	flags_item = DRAINS_XENO
+
+	var/codex_info = {"<b>Reagent info:</b><BR>
+	Bicaridine - heal your target for 10 brute. Usable on both dead and living targets.<BR>
+	Kelotane - produce a cone of flames<BR>
+	Tramadol - slow your target for 2 seconds<BR>
+	<BR>
+	<b>Tips:</b><BR>
+	> Needs to be connected to the Vali system to collect green blood. You can connect it though the Vali system's configurations menu.<BR>
+	> Filled by liquid reagent containers. Emptied by using an empty liquid reagent container.<BR>
+	> Toggle unique action (SPACE by default) to load a single-use of the reagent effect after the blade has been filled up."}
+
+/obj/item/weapon/combat_knife/vali_knife/Initialize()
+	. = ..()
+	AddComponent(/datum/component/harvester, 5)
+
+/obj/item/weapon/combat_knife/vali_knife/equipped(mob/user, slot)
+	. = ..()
+	toggle_item_bump_attack(user, FALSE)
+
+/obj/item/weapon/combat_knife/vali_knife/dropped(mob/user)
+	. = ..()
+	toggle_item_bump_attack(user, FALSE)
+
+/obj/item/weapon/combat_knife/vali_knife/get_mechanics_info()
+	. = ..()
+	. += jointext(codex_info, "<br>")
+
 /obj/item/weapon/combat_knife/upp
 	name = "\improper Type 30 survival knife"
 	icon_state = "upp_knife"
@@ -231,6 +266,48 @@
 	throw_speed = 2
 	throw_range = 8
 
+/obj/item/weapon/karambit
+	name = "karambit"
+	icon = 'icons/obj/items/weapons.dmi'
+	icon_state = "karambit"
+	item_state = "karambit"
+	desc = "A small high quality knife with a curved blade, good for slashing and hooking. This one has a mottled red finish."
+	flags_atom = CONDUCT
+	sharp = IS_SHARP_ITEM_ACCURATE
+	materials = list(/datum/material/metal = 200)
+	force = 30
+	w_class = WEIGHT_CLASS_SMALL
+	throwforce = 20
+	throw_speed = 3
+	throw_range = 6
+	attack_speed = 8
+	hitsound = 'sound/weapons/slash.ogg'
+	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut", "hooked")
+
+//Try to do a fancy trick with your cool knife
+/obj/item/weapon/karambit/attack_self(mob/user)
+	. = ..()
+	if(!user.dextrous)
+		to_chat(user, span_warning("You don't have the dexterity to do this."))
+		return
+	if(user.incapacitated() || !isturf(user.loc))
+		to_chat(user, span_warning("You can't do this right now."))
+		return
+	if(user.do_actions)
+		return
+	do_trick(user)
+
+/obj/item/weapon/karambit/fade
+	icon = 'icons/obj/items/weapons.dmi'
+	icon_state = "karambit_fade"
+	item_state = "karambit_fade"
+	desc = "A small high quality knife with a curved blade, good for slashing and hooking. This one has been painted by airbrushing transparent paints that fade together over a chrome base coat."
+
+/obj/item/weapon/karambit/case_hardened
+	icon = 'icons/obj/items/weapons.dmi'
+	icon_state = "karambit_case_hardened"
+	item_state = "karambit_case_hardened"
+	desc = "A small high quality knife with a curved blade, good for slashing and hooking. This one has been color case-hardened through the application of wood charcoal at high temperatures."
 
 /obj/item/stack/throwing_knife
 	name ="\improper M11 throwing knife"

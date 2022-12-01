@@ -52,7 +52,11 @@
 		counts[trait] = list(FACTION_TERRAGOV = 0, FACTION_XENO = 0)
 		locations[trait] = list(FACTION_TERRAGOV = 0, FACTION_XENO = 0)
 		for(var/i in SSmapping.levels_by_trait(trait))
-			counts[trait][FACTION_XENO] += length(GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[i]"])
+			var/list/parsed_xenos = GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[i]"]?.Copy()
+			for(var/mob/living/carbon/xenomorph/xeno in parsed_xenos)
+				if(xeno.xeno_caste.caste_flags & CASTE_NOT_IN_BIOSCAN)
+					parsed_xenos -= xeno
+			counts[trait][FACTION_XENO] += length(parsed_xenos)
 			counts[trait][FACTION_TERRAGOV] += length(GLOB.humans_by_zlevel["[i]"])
 			if(length(GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[i]"]))
 				locations[trait][FACTION_XENO] = get_area(pick(GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[i]"]))
@@ -302,7 +306,8 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		var/mob/M = x
 		if(isobserver(M) || isnewplayer(M))
 			continue
-		shake_camera(M, 110, 4)
+		if(M.z == z_level)
+			shake_camera(M, 110, 4)
 
 	var/datum/cinematic/crash_nuke/C = /datum/cinematic/crash_nuke
 	var/nuketime = initial(C.runtime) + initial(C.cleanup_time)

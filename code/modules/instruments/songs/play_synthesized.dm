@@ -64,7 +64,7 @@
 		var/mob/M = i
 		if(M?.client?.prefs?.toggles_sound & SOUND_INSTRUMENTS_OFF)
 			continue
-		M.playsound_local(get_turf(parent), null, volume, FALSE, K.frequency, null, channel, null, copy)
+		M.playsound_local(get_turf(parent), null, volume, FALSE, K.frequency, null, FALSE, channel, copy)
 		// Could do environment and echo later but not for now
 
 /**

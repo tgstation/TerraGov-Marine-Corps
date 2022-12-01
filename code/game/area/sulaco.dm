@@ -144,6 +144,10 @@
 	name = "Sulaco Maintenance"
 	icon_state = "fmaint"
 
+/area/sulaco/mechpilotquarters
+	name = "Sulaco Mech Pilot Quarters"
+	icon_state = "blueold"
+
 /area/sulaco/engineering
 	name = "Sulaco Engineering"
 	icon_state = "engine"

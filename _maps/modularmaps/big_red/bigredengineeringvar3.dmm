@@ -276,7 +276,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "op" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "oE" = (
 /turf/open/floor/plating/ground/mars/dirttosand{

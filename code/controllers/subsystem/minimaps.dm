@@ -49,12 +49,15 @@ SUBSYSTEM_DEF(minimaps)
 				if(location.density)
 					icon_gen.DrawBox(location.minimap_color, xval, yval)
 					continue
-				var/atom/movable/alttarget = locate(/obj/machinery/door) in location||locate(/obj/structure/fence) in location
+				var/atom/movable/alttarget = (locate(/obj/machinery/door) in location) || (locate(/obj/structure/fence) in location)
 				if(alttarget)
 					icon_gen.DrawBox(alttarget.minimap_color, xval, yval)
 					continue
 				var/area/turfloc = location.loc
-				icon_gen.DrawBox(turfloc.minimap_color, xval, yval)
+				if(turfloc.minimap_color)
+					icon_gen.DrawBox(BlendRGB(location.minimap_color, turfloc.minimap_color, 0.5), xval, yval)
+					continue
+				icon_gen.DrawBox(location.minimap_color, xval, yval)
 		icon_gen.Scale(480*2,480*2) //scale it up x2 to make it easer to see
 		icon_gen.Crop(1, 1, min(icon_gen.Width(), 480), min(icon_gen.Height(), 480)) //then cut all the empty pixels
 
@@ -242,7 +245,7 @@ SUBSYSTEM_DEF(minimaps)
 /datum/controller/subsystem/minimaps/proc/on_z_change(atom/movable/source, oldz, newz)
 	SIGNAL_HANDLER
 	for(var/flag in GLOB.all_minimap_flags)
-		if(!minimaps_by_z["[oldz]"].images_assoc["[flag]"][source])
+		if(!minimaps_by_z["[oldz]"]?.images_assoc["[flag]"][source])
 			continue
 		//see previous byond bug comments http://www.byond.com/forum/post/2661309
 		var/ref_old = minimaps_by_z["[oldz]"].images_assoc["[flag]"][source]
@@ -281,7 +284,7 @@ SUBSYSTEM_DEF(minimaps)
 
 
 /**
- * Fetches a /obj/screen/minimap instance or creates on if none exists
+ * Fetches a /atom/movable/screen/minimap instance or creates on if none exists
  * Note this does not destroy them when the map is unused, might be a potential thing to do?
  * Arguments:
  * * zlevel: zlevel to fetch map for
@@ -291,14 +294,14 @@ SUBSYSTEM_DEF(minimaps)
 	var/hash = "[zlevel]-[flags]"
 	if(hashed_minimaps[hash])
 		return hashed_minimaps[hash]
-	var/obj/screen/minimap/map = new(null, zlevel, flags)
+	var/atom/movable/screen/minimap/map = new(null, zlevel, flags)
 	if (!map.icon) //Don't wanna save an unusable minimap for a z-level.
 		CRASH("Empty and unusable minimap generated for '[zlevel]-[flags]'") //Can be caused by atoms calling this proc before minimap subsystem initializing.
 	hashed_minimaps[hash] = map
 	return map
 
 ///Default HUD screen minimap object
-/obj/screen/minimap
+/atom/movable/screen/minimap
 	name = "Minimap"
 	icon = null
 	icon_state = ""
@@ -306,7 +309,7 @@ SUBSYSTEM_DEF(minimaps)
 	screen_loc = "1,1"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
-/obj/screen/minimap/Initialize(mapload, target, flags)
+/atom/movable/screen/minimap/Initialize(mapload, target, flags)
 	. = ..()
 	if(!SSminimaps.minimaps_by_z["[target]"])
 		return
@@ -327,7 +330,7 @@ SUBSYSTEM_DEF(minimaps)
 	///boolean as to whether the minimap is currently shown
 	var/minimap_displayed = FALSE
 	///Minimap object we'll be displaying
-	var/obj/screen/minimap/map
+	var/atom/movable/screen/minimap/map
 	///This is mostly for the AI & other things which do not move groundside.
 	var/default_overwatch_level = 0
 
@@ -400,6 +403,10 @@ SUBSYSTEM_DEF(minimaps)
 	minimap_flags = MINIMAP_FLAG_MARINE_REBEL
 	marker_flags = MINIMAP_FLAG_MARINE_REBEL
 
+/datum/action/minimap/som
+	minimap_flags = MINIMAP_FLAG_MARINE_SOM
+	marker_flags = MINIMAP_FLAG_MARINE_SOM
+
 /datum/action/minimap/observer
-	minimap_flags = MINIMAP_FLAG_XENO|MINIMAP_FLAG_MARINE|MINIMAP_FLAG_MARINE_REBEL|MINIMAP_FLAG_EXCAVATION_ZONE
+	minimap_flags = MINIMAP_FLAG_XENO|MINIMAP_FLAG_MARINE|MINIMAP_FLAG_MARINE_REBEL|MINIMAP_FLAG_MARINE_SOM|MINIMAP_FLAG_EXCAVATION_ZONE
 	marker_flags = NONE

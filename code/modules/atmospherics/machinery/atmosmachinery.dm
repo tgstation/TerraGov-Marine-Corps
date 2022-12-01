@@ -249,7 +249,9 @@
 
 
 /obj/machinery/atmospherics/proc/climb_out(mob/living/user, turf/T)
-
+	if(T.density)
+		to_chat(user, span_notice("You cannot climb out, the exit is blocked!"))
+		return
 	if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_VENTCRAWL))
 		return FALSE
 	var/silent_crawl = FALSE

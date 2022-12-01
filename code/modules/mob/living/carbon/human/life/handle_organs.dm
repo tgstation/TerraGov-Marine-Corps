@@ -15,13 +15,6 @@
 		if(nutrition > 0 && stat != DEAD)
 			adjust_nutrition(-HUNGER_FACTOR)
 
-		if(nutrition > NUTRITION_OVERFED)
-			if(overeatduration < 600) //Capped so people don't take forever to unfat
-				overeatduration++
-		else
-			if(overeatduration > 1)
-				overeatduration -= 2	//Doubled the unfat rate
-
 	var/leg_tally = 0
 
 	last_dam = getBruteLoss() + getFireLoss() + getToxLoss()
@@ -53,9 +46,9 @@
 					E.germ_level++
 
 	//Hard to stay upright
-	if(leg_tally > 1 && prob(2.5 * leg_tally))
+	if(leg_tally > 0 && prob(2.5 * leg_tally))
 		if(!(species.species_flags & NO_PAIN))
 			emote("pain")
 		visible_message(span_warning("[src] collapses to the ground!"),	\
 			span_danger("Your legs give out from under you!"))
-		Knockdown(3 SECONDS)
+		Knockdown(1 SECONDS)

@@ -266,6 +266,14 @@
 	template_height = 15
 	keepcentered = TRUE
 
+/datum/map_template/modular/lv624/dome_internal_affairs
+	name = "LV auxillary botany dome"
+	mappath = "_maps/modularmaps/lv624/auxbotany.dmm"
+	modular_id = "lvdome"
+	template_width = 15
+	template_height = 15
+	keepcentered = TRUE
+
 /datum/map_template/modular/bigred/eastone
 	name = "Big red east caves"
 	mappath = "_maps/modularmaps/big_red/bigredcavevar1.dmm"
@@ -848,14 +856,14 @@
 	template_width = 23
 	template_height = 10
 
-datum/map_template/modular/bigred/southetafour
+/datum/map_template/modular/bigred/southetafour
 	name = "Big red southwest eta"
 	mappath = "_maps/modularmaps/big_red/bigredsouthetavar4.dmm"
 	modular_id = "brsoutheta"
 	template_width = 23
 	template_height = 10
 
-datum/map_template/modular/bigred/southetafive
+/datum/map_template/modular/bigred/southetafive
 	name = "Big red southwest eta"
 	mappath = "_maps/modularmaps/big_red/bigredsouthetavar5.dmm"
 	modular_id = "brsoutheta"

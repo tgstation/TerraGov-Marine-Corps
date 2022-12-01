@@ -134,7 +134,7 @@
 				msg_holder = "Strong"
 			if(4.0 to INFINITY)
 				msg_holder = "Very strong"
-		stat("[FRENZY] pheromone strength:", msg_holder)
+		stat("[AURA_XENO_FRENZY] pheromone strength:", msg_holder)
 	if(warding_aura)
 		switch(warding_aura)
 			if(-INFINITY to 1.0)
@@ -147,7 +147,7 @@
 				msg_holder = "Strong"
 			if(4.0 to INFINITY)
 				msg_holder = "Very strong"
-		stat("[WARDING] pheromone strength:", msg_holder)
+		stat("[AURA_XENO_WARDING] pheromone strength:", msg_holder)
 	if(recovery_aura)
 		switch(recovery_aura)
 			if(-INFINITY to 1.0)
@@ -160,7 +160,7 @@
 				msg_holder = "Strong"
 			if(4.0 to INFINITY)
 				msg_holder = "Very strong"
-		stat("[RECOVERY] pheromone strength:", msg_holder)
+		stat("[AURA_XENO_RECOVERY] pheromone strength:", msg_holder)
 
 	if(hivenumber == XENO_HIVE_NORMAL)
 		var/hivemind_countdown = SSticker.mode?.get_hivemind_collapse_countdown()
@@ -221,17 +221,18 @@
 
 
 /mob/living/carbon/xenomorph/proc/update_progression()
-	if(!upgrade_possible()) //upgrade possible
-		return
-	if(upgrade_stored >= xeno_caste.upgrade_threshold)
-		if(!incapacitated())
-			upgrade_xeno(upgrade_next())
-		return
 	// Upgrade is increased based on marine to xeno population taking stored_larva as a modifier.
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-	var/upgrade_points = 1 + (stored_larva/6) + hive.get_upgrade_boost()
-	upgrade_stored = min(upgrade_stored + upgrade_points, xeno_caste.upgrade_threshold)
+	upgrade_stored += 1 + (stored_larva/6) + hive.get_upgrade_boost() //Do this regardless of whether we can upgrade so age accrues at primo
+	if(!upgrade_possible())
+		return
+	if(upgrade_stored < xeno_caste.upgrade_threshold)
+		return
+	if(incapacitated())
+		return
+	upgrade_xeno(upgrade_next())
+
 
 /mob/living/carbon/xenomorph/proc/update_evolving()
 	if(!client || !ckey) // stop evolve progress for ssd/ghosted xenos
@@ -362,13 +363,11 @@
 
 //When the Queen's pheromones are updated, or we add/remove a leader, update leader pheromones
 /mob/living/carbon/xenomorph/proc/handle_xeno_leader_pheromones(mob/living/carbon/xenomorph/queen/Q)
+	QDEL_NULL(leader_current_aura)
 	if(QDELETED(Q) || !queen_chosen_lead || !Q.current_aura || Q.loc.z != loc.z) //We are no longer a leader, or the Queen attached to us has dropped from her ovi, disabled her pheromones or even died
-		leader_aura_strength = 0
-		leader_current_aura = ""
 		to_chat(src, span_xenowarning("Our pheromones wane. The Queen is no longer granting us her pheromones."))
 	else
-		leader_aura_strength = Q.xeno_caste.aura_strength
-		leader_current_aura = Q.current_aura
+		leader_current_aura = SSaura.add_emitter(src, Q.current_aura.aura_types.Copy(), Q.current_aura.range, Q.current_aura.strength, Q.current_aura.duration, Q.current_aura.faction)
 		to_chat(src, span_xenowarning("Our pheromones have changed. The Queen has new plans for the Hive."))
 
 

@@ -427,11 +427,11 @@
 	return
 
 
-/mob/living/start_pulling(atom/movable/AM, suppress_message = FALSE)
+/mob/living/start_pulling(atom/movable/AM, force = move_force, suppress_message = FALSE)
 	if(QDELETED(AM) || QDELETED(usr) || src == AM || !isturf(loc) || !Adjacent(AM) || status_flags & INCORPOREAL)	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return FALSE
 
-	if(!AM.can_be_pulled(src))
+	if(!AM.can_be_pulled(src, force))
 		return FALSE
 
 	if(throwing || incapacitated())
@@ -583,7 +583,7 @@
 	return ""
 
 /mob/proc/flash_weak_pain()
-	overlay_fullscreen("pain", /obj/screen/fullscreen/pain, 1)
+	overlay_fullscreen("pain", /atom/movable/screen/fullscreen/pain, 1)
 	clear_fullscreen("pain")
 
 ///Called to update the stat var, returns a boolean to indicate if it has been handled.
@@ -809,7 +809,7 @@
 	if(!hud_used)
 		return
 
-	var/obj/screen/plane_master/lighting/L = hud_used.plane_masters["[LIGHTING_PLANE]"]
+	var/atom/movable/screen/plane_master/lighting/L = hud_used.plane_masters["[LIGHTING_PLANE]"]
 	if(L)
 		L.alpha = lighting_alpha
 

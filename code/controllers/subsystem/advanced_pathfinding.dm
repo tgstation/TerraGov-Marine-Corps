@@ -2,11 +2,50 @@ SUBSYSTEM_DEF(advanced_pathfinding)
 	name = "Advanced_pathfinding"
 	priority = FIRE_PRIORITY_ADVANCED_PATHFINDING
 	wait = 1 SECONDS
-	flags = SS_NO_INIT
 	///List of ai_behaviour datum asking for a tile pathfinding
 	var/list/datum/ai_behavior/tile_pathfinding_to_do = list()
 	///List of ai_behaviour datum asking for a tile pathfinding
 	var/list/datum/ai_behavior/node_pathfinding_to_do = list()
+
+/datum/controller/subsystem/advanced_pathfinding/Initialize(start_timeofday)
+	. = ..()
+	var/list/nodes = list()
+	for(var/obj/effect/ai_node/ai_node AS in GLOB.all_nodes)
+		nodes += list(ai_node.serialize())
+	rustg_register_nodes_astar(json_encode(nodes))
+
+#ifdef TESTING
+#define BENCHMARK_LOOP while(world.timeofday < end_time)
+#define BENCHMARK_RESET end_time = world.timeofday + duration
+
+/// Run a benchmark comparing dm pathfinding with rust one. Will freeze server for 2 * run_number seconds
+/datum/controller/subsystem/advanced_pathfinding/proc/benchmark(run_number)
+	var/duration = 1 SECONDS
+	var/end_time = world.timeofday + duration
+
+	var/dm_iterations = 0
+	var/rust_iterations = 0
+
+	for(var/i in 1 to run_number)
+		var/obj/effect/ai_node/start_node = pick(GLOB.all_nodes)
+		var/obj/effect/ai_node/goal_node = pick(GLOB.all_nodes)
+
+		while (start_node.z != goal_node.z || goal_node == start_node)
+			goal_node = pick(GLOB.all_nodes)
+
+		BENCHMARK_LOOP
+			get_path(start_node, goal_node)
+			dm_iterations++
+		BENCHMARK_RESET
+
+		BENCHMARK_LOOP
+			rustg_generate_path_astar("[start_node.unique_id]", "[goal_node.unique_id]")
+			rust_iterations++
+		BENCHMARK_RESET
+
+	message_admins("Average number of iterations for dm pathfinding in one sec : [dm_iterations/run_number]")
+	message_admins("Average number of iterations for rust pathfinding in one sec : [rust_iterations/run_number]")
+#endif //TESTING
 
 /datum/controller/subsystem/advanced_pathfinding/fire()
 	for(var/datum/ai_behavior/ai_behavior AS in tile_pathfinding_to_do)
@@ -17,6 +56,7 @@ SUBSYSTEM_DEF(advanced_pathfinding)
 	for(var/datum/ai_behavior/ai_behavior AS in node_pathfinding_to_do)
 		ai_behavior.look_for_node_path()
 		node_pathfinding_to_do -= ai_behavior
+		ai_behavior.registered_for_node_pathfinding = FALSE
 		if (MC_TICK_CHECK)
 			return
 
@@ -126,6 +166,7 @@ GLOBAL_LIST_EMPTY(goal_nodes)
 
 /obj/effect/ai_node/goal/LateInitialize()
 	make_adjacents(TRUE)
+	rustg_add_node_astar(json_encode(serialize()))
 
 /obj/effect/ai_node/goal/Destroy()
 	. = ..()

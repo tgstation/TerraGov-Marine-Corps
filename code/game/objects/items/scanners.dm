@@ -308,8 +308,8 @@ REAGENT SCANNER
 	throw_speed = 4
 	throw_range = 20
 
-	var/details = 0
-	var/recent_fail = 0
+	var/details = FALSE
+	var/recent_fail = TRUE
 
 /obj/item/mass_spectrometer/Initialize(mapload)
 	. = ..()
@@ -327,39 +327,37 @@ REAGENT SCANNER
 	if (crit_fail)
 		to_chat(user, span_warning("This device has critically failed and is no longer functional!"))
 		return
-	if(reagents.total_volume)
-		var/list/blood_traces = list()
-		for(var/datum/reagent/R in reagents.reagent_list)
-			if(R.type != /datum/reagent/blood)
-				reagents.clear_reagents()
-				to_chat(user, span_warning("The sample was contaminated! Please insert another sample"))
-				return
-			else
-				blood_traces = params2list(R.data["trace_chem"])
-				break
-		var/dat = "Trace Chemicals Found: "
-		for(var/R in blood_traces)
-			if(prob(reliability))
-				if(details)
-					dat += "[R] ([blood_traces[R]] units) "
-				else
-					dat += "[R] "
-				recent_fail = 0
-			else
-				if(recent_fail)
-					crit_fail = 1
-					reagents.clear_reagents()
-					return
-				else
-					recent_fail = 1
-		to_chat(user, "[dat]")
-		reagents.clear_reagents()
+	if(!reagents.total_volume)
+		return
+	var/list/blood_traces
+	for(var/datum/reagent/R in reagents.reagent_list)
+		if(R.type != /datum/reagent/blood)
+			reagents.clear_reagents()
+			to_chat(user, span_warning("The sample was contaminated! Please insert another sample"))
+			return
+		else
+			blood_traces = params2list(R.data["trace_chem"])
+			break
+	var/dat = "Trace Chemicals Found: "
+	for(var/R in blood_traces)
+		if(prob(reliability))
+			dat += "\n\t[R][details ? " ([blood_traces[R]] units)" : "" ]"
+			recent_fail = FALSE
+		else if(recent_fail)
+			crit_fail = TRUE
+			reagents.clear_reagents()
+			to_chat(user, span_warning("Device malfunction occured. Please consult manual for manufacturer contact and warranty."))
+			return
+		else
+			recent_fail = TRUE
+	to_chat(user, "[dat]")
+	reagents.clear_reagents()
 
 
 /obj/item/mass_spectrometer/adv
 	name = "advanced mass-spectrometer"
 	icon_state = "adv_spectrometer"
-	details = 1
+	details = TRUE
 
 
 /obj/item/reagent_scanner
@@ -375,7 +373,7 @@ REAGENT SCANNER
 	throw_range = 20
 
 	var/details = FALSE
-	var/recent_fail = 0
+	var/recent_fail = FALSE
 
 /obj/item/reagent_scanner/afterattack(obj/O, mob/user as mob, proximity)
 	if(!proximity)
@@ -387,27 +385,22 @@ REAGENT SCANNER
 	if (crit_fail)
 		to_chat(user, span_warning("This device has critically failed and is no longer functional!"))
 		return
-
-	if(!isnull(O.reagents))
-		var/dat = ""
-		if(O.reagents.reagent_list.len > 0)
-			var/one_percent = O.reagents.total_volume / 100
-			for (var/datum/reagent/R in O.reagents.reagent_list)
-				if(prob(reliability))
-					dat += "\n \t [span_notice(" [R][details ? ": [R.volume / one_percent]%" : ""]")]"
-					recent_fail = 0
-				else if(recent_fail)
-					crit_fail = 1
-					dat = null
-					break
-				else
-					recent_fail = 1
-		if(dat)
-			to_chat(user, span_notice("Chemicals found: [dat]"))
+	if(!O.reagents || !O.reagents.reagent_list.len)
+		to_chat(user, span_notice("No chemical agents found in [O]"))
+		return
+	var/dat = ""
+	var/one_percent = O.reagents.total_volume / 100
+	for (var/datum/reagent/R in O.reagents.reagent_list)
+		if(prob(reliability))
+			dat += "\n \t [span_notice(" [R.name][details ? ": [R.volume / one_percent]%" : ""]")]"
+			recent_fail = FALSE
+		else if(recent_fail)
+			crit_fail = TRUE
+			to_chat(user, span_warning("Device malfunction occured. Please consult manual for manufacturer contact and warranty."))
+			return
 		else
-			to_chat(user, span_notice("No active chemical agents found in [O]."))
-	else
-		to_chat(user, span_notice("No significant chemical agents found in [O]."))
+			recent_fail = TRUE
+	to_chat(user, span_notice("Chemicals found: [dat]"))
 
 /obj/item/reagent_scanner/adv
 	name = "advanced reagent scanner"

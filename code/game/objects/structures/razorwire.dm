@@ -109,7 +109,6 @@
 	SIGNAL_HANDLER
 	if((entangled.flags_pass & PASSSMALLSTRUCT) || entangled.status_flags & INCORPOREAL)
 		return
-	entangled.next_move_slowdown += RAZORWIRE_SLOWDOWN //big slowdown
 	do_razorwire_untangle(entangled)
 	visible_message(span_danger("[entangled] disentangles from [src]!"))
 	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, TRUE)
@@ -209,7 +208,6 @@
 
 	X.apply_damage(RAZORWIRE_BASE_DAMAGE * 0.7, updating_health = TRUE) //About a third as damaging as actually entering
 	update_icon()
-	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_RAZORWIRE)
 	return ..()
 
 /obj/structure/razorwire/ex_act(severity)

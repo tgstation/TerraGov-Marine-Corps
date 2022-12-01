@@ -199,7 +199,7 @@
 		lifetime = smoke_time
 
 /datum/effect_system/smoke_spread/start()
-	if(QDELETED(location) && !QDELETED(holder))
+	if(!QDELETED(holder))
 		location = get_turf(holder)
 	new smoke_type(location, range, lifetime, src)
 
@@ -336,7 +336,7 @@
 /datum/effect_system/smoke_spread/bad
 	smoke_type = /obj/effect/particle_effect/smoke/bad
 
-datum/effect_system/smoke_spread/tactical
+/datum/effect_system/smoke_spread/tactical
 	smoke_type = /obj/effect/particle_effect/smoke/tactical
 
 /datum/effect_system/smoke_spread/sleepy

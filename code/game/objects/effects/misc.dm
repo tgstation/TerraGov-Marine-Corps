@@ -37,42 +37,40 @@
 	desc = "This looks like a projection of something."
 	anchored = TRUE
 
-
-/obj/effect/shut_controller
-	name = "shut controller"
-	var/moving = null
-	var/list/parts = list(  )
-
-
-
-
-//Exhaust effect
-/obj/effect/engine_exhaust
-	name = "engine exhaust"
-	icon = 'icons/effects/effects.dmi'
-	icon_state = "exhaust"
-	anchored = TRUE
-
-	New(var/turf/nloc, var/ndir, var/temp)
-		setDir(ndir)
-		..(nloc)
-
-		spawn(20)
-			loc = null
-
-
-
 /obj/effect/rune/attunement
 	luminosity = 5
 
+/obj/effect/soundplayer
+	anchored = TRUE
+	opacity = FALSE
+	density = TRUE
+	icon_state = "speaker"
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	var/datum/looping_sound/alarm_loop/deltalarm
 
+/obj/effect/soundplayer/Initialize()
+	. = ..()
+	deltalarm = new(null, FALSE)
+	GLOB.ship_alarms += src
+	icon_state = ""
+
+/obj/effect/soundplayer/Destroy()
+	. = ..()
+	QDEL_NULL(deltalarm)
+	GLOB.ship_alarms -= src
 
 /obj/effect/forcefield
 	anchored = TRUE
 	opacity = FALSE
 	density = TRUE
 	icon_state = "blocker"
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	resistance_flags = RESIST_ALL
 
+/obj/effect/forcefield/Initialize()
+	. = ..()
+	if(icon_state == "blocker")
+		icon_state = ""
 
 /obj/effect/forcefield/fog
 	name = "dense fog"
@@ -81,14 +79,10 @@
 	icon_state = "smoke"
 	opacity = TRUE
 
-
 /obj/effect/forcefield/fog/Initialize()
 	. = ..()
 	dir  = pick(CARDINAL_DIRS)
 	GLOB.fog_blockers += src
-	if(icon_state == "blocker")
-		icon_state = ""
-
 
 /obj/effect/forcefield/fog/Destroy()
 	GLOB.fog_blockers -= src
@@ -126,6 +120,7 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "smoke"
 	density = FALSE
+	resistance_flags = RESIST_ALL|PROJECTILE_IMMUNE
 
 /obj/effect/forcefield/fog/passable_fog/Initialize()
 	. = ..()

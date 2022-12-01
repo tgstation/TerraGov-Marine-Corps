@@ -32,6 +32,12 @@
 	color = "#888888"
 	},
 /area/deathmatch)
+"fF" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/plushie/nospawnninetyfive{
+	},
+/turf/open/floor/plating/asteroidplating,
+/area/deathmatch)
 "hw" = (
 /obj/effect/landmark/deathmatch,
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -432,6 +438,12 @@
 /turf/open/floor/stairs/rampbottom{
 	dir = 4
 	},
+/area/deathmatch)
+"ZA" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/random/plushie/nospawnninetyfive{
+	},
+/turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "ZH" = (
 /obj/effect/forcefield{
@@ -934,7 +946,7 @@ od
 od
 Sf
 Fp
-tF
+fF
 tf
 kR
 Fp
@@ -1824,7 +1836,7 @@ od
 Mn
 vW
 My
-Fc
+ZA
 od
 Fp
 Fp

@@ -44,7 +44,7 @@
 ///Make sure that the code compiles with AI_VOX undefined
 #ifdef AI_VOX
 ///cooldown between vox announcements, divide by 10 to get the time in seconds
-#define VOX_DELAY 600
+#define VOX_DELAY 400
 /mob/living/silicon/ai/proc/announcement_help() //displays a list of available vox words for the user to make sentences with, players can click the words to hear a preview of how they sound
 
 	if(incapacitated())
@@ -114,6 +114,7 @@
 
 	log_game("[key_name(src)] made a vocal announcement with the following message: [message].")
 	log_talk(message, LOG_SAY, tag="VOX Announcement")
+	to_chat(src, span_notice("The following vocal announcement has been made: [message]."))
 
 	for(var/word in words) //play vox sounds to the rest of our zlevel
 		play_vox_word(word, src.z, null)
@@ -132,11 +133,10 @@
 	///If there is no single listener, broadcast to everyone in the same z level
 		if(!only_listener)
 			///Play voice for all mobs in the z level
-			for(var/mob/M in GLOB.player_list)
+			var/list/receivers = (GLOB.alive_human_list + GLOB.ai_list + GLOB.observer_list)
+			for(var/mob/M in receivers)
 				if(!isdeaf(M))
-					var/turf/T = get_turf(M)
-					if(T.z == z_level)
-						SEND_SOUND(M, voice)
+					SEND_SOUND(M, voice)
 		else
 			SEND_SOUND(only_listener, voice)
 		return TRUE

@@ -26,6 +26,7 @@
 	max_integrity = 40
 
 /obj/structure/table/mainship/nometal
+	parts = /obj/item/frame/table/nometal
 	dropmetal = FALSE
 
 /obj/structure/table/deconstruct(disassembled)
@@ -257,11 +258,6 @@
 	if(I.loc != loc)
 		step(I, get_dir(I, src))
 
-/obj/structure/table/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_TABLE)
-	return ..()
-
-
 /obj/structure/table/wrench_act(mob/living/user, obj/item/I)
 	. = ..()
 	if(reinforced && table_status != TABLE_STATUS_WEAKENED)
@@ -492,18 +488,21 @@
 	name = "fancy wooden table"
 	desc = "An expensive fancy wood surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
 	icon_state = "fwoodtable"
+	table_prefix = "fwood"
 	parts = /obj/item/frame/table/fancywood
 
 /obj/structure/table/rusticwoodentable
 	name = "rustic wooden table"
 	desc = "A rustic wooden surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
 	icon_state = "pwoodtable"
+	table_prefix = "pwood"
 	parts = /obj/item/frame/table/rusticwood
 
 /obj/structure/table/black
 	name = "black metal table"
 	desc = "A sleek black metallic surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
 	icon_state = "blacktable"
+	table_prefix = "black"
 	parts = /obj/item/frame/table
 
 /*
@@ -640,10 +639,6 @@
 	user.drop_held_item()
 	if(I.loc != loc)
 		step(I, get_dir(I, src))
-
-/obj/structure/rack/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_RACK)
-	return ..()
 
 /obj/structure/rack/attackby(obj/item/I, mob/user, params)
 	. = ..()

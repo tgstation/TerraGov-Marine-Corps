@@ -12,9 +12,10 @@
 	var/list/blood_DNA
 
 	var/flags_pass = NONE
+	///whether items can be thrown past, or projectiles can fire past this atom.
 	var/throwpass = FALSE
 
-	var/resistance_flags = NONE
+	var/resistance_flags = PROJECTILE_IMMUNE
 
 	var/germ_level = GERM_LEVEL_AMBIENT // The higher the germ level, the more germ on the atom.
 
@@ -243,7 +244,11 @@ directive is properly returned.
 	face_atom(examinify)
 	var/list/result = examinify.examine(src) // if a tree is examined but no client is there to see it, did the tree ever really exist?
 
-	to_chat(src, span_infoplain(result.Join("\n")))
+	if(result.len)
+		for(var/i in 1 to (length(result) - 1))
+			result[i] += "\n"
+
+	to_chat(src, examine_block(span_infoplain(result.Join())))
 	SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, examinify)
 
 /**
@@ -267,7 +272,11 @@ directive is properly returned.
 
 /atom/proc/examine(mob/user)
 	SHOULD_CALL_PARENT(TRUE)
-	. = list("[get_examine_string(user, TRUE)].")
+	var/examine_string = get_examine_string(user, thats = TRUE)
+	if(examine_string)
+		. = list("[examine_string].")
+	else
+		. = list()
 
 	if(desc)
 		. += desc
@@ -462,6 +471,8 @@ directive is properly returned.
 			log_admin_private_asay(log_text)
 		if(LOG_GAME)
 			log_game(log_text)
+		if(LOG_MECHA)
+			log_mecha(log_text)
 		else
 			stack_trace("Invalid individual logging type: [message_type]. Defaulting to [LOG_GAME] (LOG_GAME).")
 			log_game(log_text)

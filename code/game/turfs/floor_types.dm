@@ -195,6 +195,23 @@
 /turf/open/floor/mainship/terragov/north
 	icon_state = "logo_directional_north"
 
+/turf/open/floor/mainship/som
+	icon_state = "somn"
+
+/turf/open/floor/mainship/som/nw
+	icon_state = "somnw"
+
+/turf/open/floor/mainship/som/ne
+	icon_state = "somne"
+
+/turf/open/floor/mainship/som/s
+	icon_state = "soms"
+
+/turf/open/floor/mainship/som/se
+	icon_state = "somse"
+
+/turf/open/floor/mainship/som/sw
+	icon_state = "somsw"
 
 // RESEARCH STUFF
 
@@ -305,6 +322,31 @@
 /turf/open/floor/wood/broken
 	icon_state = "wood-broken1"
 	burnt = TRUE
+
+/turf/open/floor/wood/broken/two
+	icon_state = "wood-broken2"
+	burnt = TRUE
+
+/turf/open/floor/wood/broken/three
+	icon_state = "wood-broken3"
+	burnt = TRUE
+
+/turf/open/floor/wood/broken/four
+	icon_state = "wood-broken4"
+	burnt = TRUE
+
+/turf/open/floor/wood/broken/five
+	icon_state = "wood-broken5"
+	burnt = TRUE
+
+/turf/open/floor/wood/broken/six
+	icon_state = "wood-broken6"
+	burnt = TRUE
+
+/turf/open/floor/wood/broken/seven
+	icon_state = "wood-broken7"
+	burnt = TRUE
+
 
 /turf/open/floor/vault
 	icon_state = "rockvault"
@@ -438,6 +480,9 @@
 
 /turf/open/floor/tile/damaged/panel
 	icon_state = "panelscorched"
+
+/turf/open/floor/tile/damaged/thermite
+	icon_state = "wall_thermite"
 
 /turf/open/floor/tile/damaged/three
 	icon_state = "damaged3"
@@ -818,6 +863,9 @@
 /turf/open/floor/prison/sterilewhite
 	icon_state = "sterile_white"
 
+/turf/open/floor/prison/sterilewhite/full
+	icon_state = "sterile_white_full"
+
 /turf/open/floor/prison/whitepurple
 	icon_state = "whitepurple"
 
@@ -836,6 +884,11 @@
 /turf/open/floor/prison/whitegreen/full
 	icon_state = "whitegreenfull"
 
+/turf/open/floor/prison/greenblue
+	icon_state = "greenblue"
+
+/turf/open/floor/prison/greenbluecorner
+	icon_state = "greenbluecorner"
 /turf/open/floor/prison/darkred
 	icon_state = "darkred2"
 
@@ -872,6 +925,9 @@
 /turf/open/floor/prison/darkbrown/full
 	icon_state = "darkbrownfull2"
 
+/turf/open/floor/prison/whitegreenfull2
+	icon_state = "whitegreenfull2"
+
 /turf/open/floor/prison/green
 	icon_state = "green"
 
@@ -890,6 +946,8 @@
 /turf/open/floor/prison/blue/corner
 	icon_state = "bluecorner"
 
+/turf/open/floor/prison/blue/plate
+	icon_state = "blueplate"
 /turf/open/floor/prison/yellow
 	icon_state = "yellow"
 
@@ -918,11 +976,18 @@
 	icon = 'icons/turf/shuttle.dmi'
 	icon_state = "floor7"
 
+/turf/open/floor/prison/redfloor
+	icon = 'icons/turf/shuttle.dmi'
+	icon_state = "floor6"
+
 /turf/open/floor/prison/bluefloor
 	icon = 'icons/turf/shuttle.dmi'
 	icon_state = "floor"
 
 /////// grayscale floor for easy recoloring /////
+
+/turf/open/floor/placeholderturf
+	icon_state = "placeholderturf"
 
 /turf/open/floor/grayscale
 	icon_state = "grayfloor"

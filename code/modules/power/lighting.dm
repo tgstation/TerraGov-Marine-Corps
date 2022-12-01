@@ -147,6 +147,25 @@
 	/// true if rigged to explode
 	var/rigged = FALSE
 
+/obj/machinery/light/mainship
+	base_state = "tube"
+
+/obj/machinery/light/mainship/Initialize()
+	. = ..()
+	GLOB.mainship_lights += src
+
+/obj/machinery/light/mainship/Destroy()
+	. = ..()
+	GLOB.mainship_lights -= src
+
+/obj/machinery/light/mainship/small
+	icon_state = "bulb1"
+	base_state = "bulb"
+	fitting = "bulb"
+	brightness = 4
+	desc = "A small lighting fixture."
+	light_type = /obj/item/light_bulb/bulb
+
 // the smaller bulb light fixture
 
 /obj/machinery/light/small

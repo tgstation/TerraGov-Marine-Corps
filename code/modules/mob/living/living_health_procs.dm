@@ -290,7 +290,7 @@
 	GLOB.alive_xeno_list += src
 	GLOB.dead_xeno_list -= src
 
-/mob/living/proc/revive()
+/mob/living/proc/revive(admin_revive = FALSE)
 	for(var/i in embedded_objects)
 		var/obj/item/embedded = i
 		embedded.unembed_ourself()
@@ -342,9 +342,10 @@
 	hud_used?.show_hud(hud_used.hud_version)
 
 	SSmobs.start_processing(src)
+	SEND_SIGNAL(src, COMSIG_LIVING_POST_FULLY_HEAL, admin_revive)
 
 
-/mob/living/carbon/revive()
+/mob/living/carbon/revive(admin_revive = FALSE)
 	set_nutrition(400)
 	setTraumatic_Shock(0)
 	setShock_Stage(0)
@@ -358,7 +359,7 @@
 	return ..()
 
 
-/mob/living/carbon/human/revive()
+/mob/living/carbon/human/revive(admin_revive = FALSE)
 	restore_all_organs()
 
 	if(species && !(species.species_flags & NO_BLOOD))
@@ -387,13 +388,12 @@
 	REMOVE_TRAIT(src, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	dead_ticks = 0
 	chestburst = 0
-	headbitten = FALSE
 	update_body()
 	update_hair()
 	return ..()
 
 
-/mob/living/carbon/xenomorph/revive()
+/mob/living/carbon/xenomorph/revive(admin_revive = FALSE)
 	plasma_stored = xeno_caste.plasma_max
 	stagger = 0
 	sunder = 0
@@ -445,7 +445,7 @@
 		faction = FACTION_ZOMBIE
 	heal_limbs(- health)
 	set_stat(CONSCIOUS)
-	overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /obj/screen/fullscreen/black)
-	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /obj/screen/fullscreen/spawning_in)
+	overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /atom/movable/screen/fullscreen/black)
+	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
 	REMOVE_TRAIT(src, TRAIT_IS_RESURRECTING, REVIVE_TO_CRIT_TRAIT)
 	SSmobs.start_processing(src)

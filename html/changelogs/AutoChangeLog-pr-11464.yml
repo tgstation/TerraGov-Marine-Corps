@@ -1,0 +1,6 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - qol: "bomb vest can no longer spam progress bars"
+  - qol: "bomb vest warcry is set with right click instead of ctrl click"
+  - admin: "improvced bomb vest logging"

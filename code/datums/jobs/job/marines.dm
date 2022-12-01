@@ -12,7 +12,7 @@
 		return
 	var/mob/living/carbon/human/human_spawn = C
 	if(!(human_spawn.species.species_flags & ROBOTIC_LIMBS))
-		human_spawn.set_nutrition(rand(60, 250))
+		human_spawn.set_nutrition(250)
 	if(!human_spawn.assigned_squad)
 		CRASH("after_spawn called for a marine without an assigned_squad")
 	to_chat(M, {"\nYou have been assigned to: <b><font size=3 color=[human_spawn.assigned_squad.color]>[lowertext(human_spawn.assigned_squad.name)] squad</font></b>.
@@ -34,6 +34,7 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
 	html_description = {"
 		<b>Difficulty</b>: Easy<br /><br />
@@ -127,7 +128,12 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	display_order = JOB_DISPLAY_ORDER_SUQAD_ENGINEER
 	outfit = /datum/outfit/job/marine/engineer
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
-	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_MEDIUM, /datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR)
+	jobworth = list(
+		/datum/job/xenomorph = LARVA_POINTS_REGULAR, 
+		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_MEDIUM, 
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR, 
+		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
+	)
 	html_description = {"
 		<b>Difficulty</b>: Medium<br /><br />
 		<b>You answer to the</b> acting Squad Leader<br /><br />
@@ -145,7 +151,11 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	outfit = /datum/outfit/job/marine/engineer/rebel
 	access = list(ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_ENGPREP_REBEL, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_REMOTEBUILD_REBEL, ACCESS_MARINE_ENGINEERING_REBEL)
 	minimal_access = list(ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_ENGPREP_REBEL, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_DROPSHIP_REBEL, ACCESS_MARINE_REMOTEBUILD_REBEL, ACCESS_MARINE_ENGINEERING_REBEL)
-	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_MEDIUM, /datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR)
+	jobworth = list(
+		/datum/job/xenomorph = LARVA_POINTS_REGULAR, 
+		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_MEDIUM,
+		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR
+	)
 
 /datum/job/terragov/squad/engineer/radio_help_message(mob/M)
 	. = ..()
@@ -217,7 +227,12 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	display_order = JOB_DISPLAY_ORDER_SQUAD_CORPSMAN
 	outfit = /datum/outfit/job/marine/corpsman
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
-	jobworth = list(/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR, /datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_MEDIUM)
+	jobworth = list(
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR, 
+		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR, 
+		/datum/job/xenomorph = LARVA_POINTS_REGULAR, 
+		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_MEDIUM
+	)
 	html_description = {"
 		<b>Difficulty</b>: Hard<br /><br />
 		<b>You answer to the</b> acting Squad Leader<br /><br />
@@ -235,7 +250,11 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	outfit = /datum/outfit/job/marine/corpsman/rebel
 	access = list(ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_MEDPREP_REBEL, ACCESS_MARINE_MEDBAY_REBEL)
 	minimal_access = list(ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_MEDPREP_REBEL, ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)
-	jobworth = list(/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR, /datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_MEDIUM)
+	jobworth = list(
+		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR, 
+		/datum/job/xenomorph = LARVA_POINTS_REGULAR, 
+		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_MEDIUM
+	)
 
 /datum/job/terragov/squad/corpsman/radio_help_message(mob/M)
 	. = ..()
@@ -246,7 +265,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	name = SQUAD_CORPSMAN
 	jobtype = /datum/job/terragov/squad/corpsman
 
-	id = /obj/item/card/id/dogtag
+	id = /obj/item/card/id/dogtag/corpsman
 	back = /obj/item/storage/backpack/marine/corpsman
 
 /datum/outfit/job/marine/corpsman/rebel
@@ -314,7 +333,9 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	display_order = JOB_DISPLAY_ORDER_SQUAD_SMARTGUNNER
 	outfit = /datum/outfit/job/marine/smartgunner
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
-	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR)
+	jobworth = list(
+		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
+	)
 	job_points_needed  = 10 //Redefined via config.
 	html_description = {"
 		<b>Difficulty</b>: Medium<br /><br />
@@ -358,7 +379,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	name = SQUAD_SMARTGUNNER
 	jobtype = /datum/job/terragov/squad/smartgunner
 
-	id = /obj/item/card/id/dogtag
+	id = /obj/item/card/id/dogtag/smartgun
 	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/job/marine/smartgunner/rebel
@@ -410,7 +431,9 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	exp_requirements = XP_REQ_UNSEASONED
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
-	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_STRONG)
+	jobworth = list(
+		/datum/job/xenomorph = LARVA_POINTS_STRONG,
+	)
 	job_points_needed  = 10 //Redefined via config.
 
 
@@ -448,6 +471,7 @@ You can serve a variety of roles, so choose carefully."})
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_HIGH,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
 	html_description = {"
 		<b>Difficulty</b>: Hard<br /><br />
@@ -481,7 +505,7 @@ You are also in charge of communicating with command and letting them know about
 	name = SQUAD_LEADER
 	jobtype = /datum/job/terragov/squad/leader
 
-	id = /obj/item/card/id/dogtag
+	id = /obj/item/card/id/dogtag/leader
 	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/job/marine/leader/rebel
@@ -555,7 +579,11 @@ You are also in charge of communicating with command and letting them know about
 	outfit = /datum/outfit/job/marine/vatgrown
 	total_positions = 0
 	job_flags = JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
-	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR)
+	jobworth = list(
+		/datum/job/xenomorph = LARVA_POINTS_REGULAR, 
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR, 
+		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
+	)
 	minimap_icon = "private"
 
 /datum/job/terragov/squad/vatgrown/rebel
@@ -563,7 +591,10 @@ You are also in charge of communicating with command and letting them know about
 	outfit = /datum/outfit/job/marine/vatgrown/rebel
 	access = list(ACCESS_MARINE_PREP_REBEL)
 	minimal_access = list(ACCESS_MARINE_PREP_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)
-	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR)
+	jobworth = list(
+		/datum/job/xenomorph = LARVA_POINTS_REGULAR, 
+		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
+	)
 
 /datum/job/terragov/squad/vatgrown/return_spawn_type(datum/preferences/prefs)
 	return /mob/living/carbon/human/species/vatgrown

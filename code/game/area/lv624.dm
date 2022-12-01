@@ -195,6 +195,7 @@
 /area/lv624/ground/caves/rock //catchall for closed turfs we want immune to rain/easily visible to map editing tools
 	name = "Enclosed Area"
 	icon_state = "transparent"
+	minimap_color = null
 
 /area/lv624/ground/caves/west1
 	name = "Western Caves"
@@ -267,6 +268,7 @@
 /area/lv624/lazarus/armory
 	name = "\improper Armory"
 	icon_state = "armory"
+	minimap_color = MINIMAP_AREA_SEC
 
 /area/lv624/lazarus/security
 	name = "\improper Security"
@@ -276,6 +278,7 @@
 /area/lv624/lazarus/captain
 	name = "\improper Commandant's Quarters"
 	icon_state = "captain"
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/lv624/lazarus/hop
 	name = "\improper Head of Personnel's Office"
@@ -334,6 +337,7 @@
 /area/lv624/lazarus/engineering
 	name = "\improper Engineering"
 	icon_state = "engine_smes"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/lv624/lazarus/comms
 	name = "\improper Communications Relay"
@@ -342,7 +346,7 @@
 /area/lv624/lazarus/secure_storage
 	name = "\improper Secure Storage"
 	icon_state = "storage"
-	minimap_color = MINIMAP_AREA_ENGI
+	minimap_color = MINIMAP_AREA_SEC
 
 /area/lv624/lazarus/internal_affairs
 	name = "\improper Internal Affairs"
@@ -359,6 +363,7 @@
 /area/lv624/lazarus/research
 	name = "\improper Research Lab"
 	icon_state = "toxlab"
+	minimap_color = MINIMAP_AREA_RESEARCH
 
 /area/lv624/lazarus/fitness
 	name = "\improper Fitness Room"
@@ -368,6 +373,9 @@
 	name = "\improper Hydroponics"
 	icon_state = "hydro"
 	ceiling = CEILING_GLASS
+
+/area/lv624/lazarus/hydroponics/aux
+	name = "\improper Auxillary Hydroponics"
 
 /area/lv624/lazarus/bar
 	name = "\improper Bar"
@@ -416,8 +424,10 @@
 	name = "\improper Eastern Space Port"
 	icon_state = "landingzone1"
 	flags_area = NO_DROPPOD
+	minimap_color = MINIMAP_AREA_LZ
 
 /area/lv624/lazarus/spaceport2
 	name = "\improper Western Space Port"
 	icon_state = "landingzone2"
 	flags_area = NO_DROPPOD
+	minimap_color = MINIMAP_AREA_LZ
