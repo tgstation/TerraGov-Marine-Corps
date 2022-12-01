@@ -67,7 +67,7 @@
 /obj/item/clothing/shoes/marine/update_icon_state()
 	icon_state = initial(icon_state)
 	for(var/atom/item_in_pocket AS in pockets.contents)
-		if(istype(item_in_pocket, /obj/item/weapon/combat_knife,) || istype(item_in_pocket, /obj/item/attachable/bayonetknife) || istype(item_in_pocket, /obj/item/stack/throwing_knife))
+		if(istype(item_in_pocket, /obj/item/weapon/combat_knife) || istype(item_in_pocket, /obj/item/attachable/bayonetknife) || istype(item_in_pocket, /obj/item/stack/throwing_knife))
 			icon_state += "-knife"
 
 /obj/item/clothing/shoes/marine/full
