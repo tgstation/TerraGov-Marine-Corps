@@ -163,7 +163,7 @@
 	icon = 'icons/obj/items/grenade.dmi'
 	icon_state = "ags_grenade"
 	item_state = "ags_grenade"
-	det_time = 10
+	det_time = 20
 
 
 /obj/item/explosive/grenade/smokebomb
