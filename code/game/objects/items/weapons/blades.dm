@@ -228,10 +228,6 @@
 	item_state = "vali_knife"
 	force = 25
 	throwforce = 15
-	throw_speed = 3
-	throw_range = 6
-	attack_speed = 8
-	w_class = WEIGHT_CLASS_SMALL
 	flags_item = DRAINS_XENO
 
 	var/codex_info = {"<b>Reagent info:</b><BR>
