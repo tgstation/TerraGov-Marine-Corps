@@ -369,11 +369,11 @@ GLOBAL_LIST_INIT(mlrs_rocket, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_GALVANIZER, STEP_ICON_STATE = "rockettube"),
 	))
 
-/obj/item/factory_part/mlrs_rockets
+/obj/item/factory_part/mlrs_rocket
 	name = "MLRS rocket"
 	desc = "An unfinished high explosive rocket"
 	result = /obj/item/storage/box/mlrs_rockets
 
 /obj/item/factory_part/mlrs_rockets/Initialize()
 	. = ..()
-	recipe = GLOB.mlrs_rockets
+	recipe = GLOB.mlrs_rocket

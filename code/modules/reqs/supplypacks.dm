@@ -1827,7 +1827,7 @@ FACTORY
 	contains = list(/obj/item/factory_refill/mortar_shell_flare_refill)
 	cost = 15
 
-/datum/supply_packs/factory/mlrs_rockets_refill
-name = "MLRS High Explosive rocket assembly refill"
-contains = list(/obj/item/factory_refill/mlrs_rockets_refill)
-cost = 24
+/datum/supply_packs/factory/mlrs_rocket_refill
+	name = "MLRS High Explosive rocket assembly refill"
+	contains = list(/obj/item/factory_refill/mlrs_rocket_refill)
+	cost = 24

@@ -261,8 +261,8 @@
 	refill_type = /obj/item/factory_part/mortar_shell_flare
 	refill_amount = 30
 
-/obj/item/factory_refill/mlrs_rockets_refill
+/obj/item/factory_refill/mlrs_rocket_refill
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Unboxers."
-	refill_type = /obj/item/factory_part/mlrs_rockets
+	refill_type = /obj/item/factory_part/mlrs_rocket
 	refill_amount = 6
