@@ -244,7 +244,7 @@
 		else if(new_angle > 360)
 			new_angle -= 360
 		proj.firer = src
-		proj.fire_at(shooter = src, source = src, range = new_range, angle = new_angle, recursivity = TRUE)
+		proj.fire_at(shooter = src, source = src, angle = new_angle, recursivity = TRUE)
 	frozen_projectiles.Cut()
 
 
