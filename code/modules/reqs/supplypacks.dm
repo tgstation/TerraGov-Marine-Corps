@@ -1806,3 +1806,28 @@ FACTORY
 	name = "Howitzer Tanglefoot shell assembly refill"
 	contains = list(/obj/item/factory_refill/howitzer_shell_tfoot_refill)
 	cost = 100
+
+/datum/supply_packs/factory/mortar_shell_he_refill
+	name = "Mortar High Explosive shell assembly refill"
+	contains = list(/obj/item/factory_refill/mortar_shell_he_refill)
+	cost = 60
+
+/datum/supply_packs/factory/mortar_shell_incen_refill
+	name = "Mortar Incendiary shell assembly refill"
+	contains = list(/obj/item/factory_refill/mortar_shell_incen_refill)
+	cost = 60
+
+/datum/supply_packs/factory/mortar_shell_tfoot_refill
+	name = "Mortar Tanglefoot Gas shell assembly refill"
+	contains = list(/obj/item/factory_refill/mortar_shell_tfoot_refill)
+	cost = 80
+
+/datum/supply_packs/factory/mortar_shell_flare_refill
+	name = "Mortar High Explosive shell assembly refill"
+	contains = list(/obj/item/factory_refill/mortar_shell_flare_refill)
+	cost = 15
+
+/datum/supply_packs/factory/mlrs_rockets_refill
+name = "MLRS High Explosive rocket assembly refill"
+contains = list(/obj/item/factory_refill/mlrs_rockets_refill)
+cost = 24

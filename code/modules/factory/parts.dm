@@ -360,3 +360,20 @@ GLOBAL_LIST_INIT(mortar_shell, list(
 /obj/item/factory_part/mortar_shell_tfoot/Initialize()
 	. = ..()
 	recipe = GLOB.mortar_shell
+
+GLOBAL_LIST_INIT(mlrs_rocket, list(
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "cutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_DRILLER, STEP_ICON_STATE = "hotplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_COMPRESSOR, STEP_ICON_STATE = "rockettube"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_GALVANIZER, STEP_ICON_STATE = "rockettube"),
+	))
+
+/obj/item/factory_part/mlrs_rockets
+	name = "MLRS rocket"
+	desc = "An unfinished high explosive rocket"
+	result = /obj/item/storage/box/mlrs_rockets
+
+/obj/item/factory_part/mlrs_rockets/Initialize()
+	. = ..()
+	recipe = GLOB.mlrs_rockets
