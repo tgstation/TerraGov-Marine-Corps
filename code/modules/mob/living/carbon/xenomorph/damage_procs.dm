@@ -14,12 +14,11 @@
 		return
 
 	var/bomb_armor = soft_armor.getRating("bomb")
-	var/bomb_damage_multiplier = modify_by_armor(1, BOMB)
-	var/bomb_slow_multiplier = modify_by_armor(0.7, BOMB)
-	var/bomb_sunder_multiplier = modify_by_armor(1, BOMB)
-
 	if(bomb_armor >= 100)
 		return //immune
+
+	var/bomb_slow_multiplier = modify_by_armor(0.7, BOMB)
+	var/bomb_sunder_multiplier = modify_by_armor(1, BOMB)
 
 	//lowered to account for new armor values but keep old gibs
 	//probs needs to be a define somewhere

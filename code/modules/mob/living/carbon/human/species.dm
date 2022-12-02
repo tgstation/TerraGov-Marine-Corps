@@ -891,7 +891,7 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 	if(isnum(blocked))
 		damage -= clamp(damage * (blocked - penetration) * 0.01, 0, damage)
 	else
-		damage = modify_by_armor(damage, blocked, penetration, def_zone)
+		damage = victim.modify_by_armor(damage, blocked, penetration, def_zone)
 
 	if(victim.protection_aura)
 		damage = round(damage * ((10 - victim.protection_aura) / 10))
