@@ -681,6 +681,15 @@ GLOBAL_PROTECT(admin_verbs_log)
 		return FALSE
 	return TRUE
 
+/proc/isadmin(mob/user)
+	if(!isobserver(user))
+		return FALSE
+	if(!user.client)
+		return FALSE
+	if(!check_other_rights(user.client, R_ADMIN, FALSE)) // Are they allowed?
+		return FALSE
+	return TRUE
+
 
 /datum/admins/proc/apicker(text, title, list/targets)
 	if(!check_rights(NONE))

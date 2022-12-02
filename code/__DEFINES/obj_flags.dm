@@ -15,5 +15,6 @@
 #define BANISH_IMMUNE (1<<6) //is immune it wraith's banish ability
 #define PLASMACUTTER_IMMUNE (1<<7) //is immune to being cut by a plasmacutter
 #define PROJECTILE_IMMUNE (1<<8) //Cannot be hit by projectiles
+#define PORTAL_IMMUNE (1<<9) //Cannot be teleported by wraith's portals
 
 #define RESIST_ALL (UNACIDABLE|INDESTRUCTIBLE)

@@ -139,10 +139,5 @@
 /obj/structure/bed/nest/fire_act()
 	take_damage(50, BURN, "fire")
 
-/obj/structure/bed/nest/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_NEST)
-	return ..()
-
-
 #undef NEST_RESIST_TIME
 #undef NEST_UNBUCKLED_COOLDOWN
