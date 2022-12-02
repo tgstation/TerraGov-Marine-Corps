@@ -1790,17 +1790,17 @@ FACTORY
 /datum/supply_packs/factory/howitzer_shell_he_refill
 	name = "Howitzer HE shell assembly refill"
 	contains = list(/obj/item/factory_refill/howitzer_shell_he_refill)
-	cost = 80
+	cost = 40
 
 /datum/supply_packs/factory/howitzer_shell_incen_refill
 	name = "Howitzer Incendiary shell assembly refill"
 	contains = list(/obj/item/factory_refill/howitzer_shell_incen_refill)
-	cost = 80
+	cost = 40
 
 /datum/supply_packs/factory/howitzer_shell_wp_refill
 	name = "Howitzer WP shell assembly refill"
 	contains = list(/obj/item/factory_refill/howitzer_shell_wp_refill)
-	cost = 100
+	cost = 110
 
 /datum/supply_packs/factory/howitzer_shell_tfoot_refill
 	name = "Howitzer Tanglefoot shell assembly refill"
@@ -1810,17 +1810,17 @@ FACTORY
 /datum/supply_packs/factory/mortar_shell_he_refill
 	name = "Mortar High Explosive shell assembly refill"
 	contains = list(/obj/item/factory_refill/mortar_shell_he_refill)
-	cost = 60
+	cost = 15
 
 /datum/supply_packs/factory/mortar_shell_incen_refill
 	name = "Mortar Incendiary shell assembly refill"
 	contains = list(/obj/item/factory_refill/mortar_shell_incen_refill)
-	cost = 60
+	cost = 15
 
 /datum/supply_packs/factory/mortar_shell_tfoot_refill
 	name = "Mortar Tanglefoot Gas shell assembly refill"
 	contains = list(/obj/item/factory_refill/mortar_shell_tfoot_refill)
-	cost = 80
+	cost = 20
 
 /datum/supply_packs/factory/mortar_shell_flare_refill
 	name = "Mortar High Explosive shell assembly refill"
