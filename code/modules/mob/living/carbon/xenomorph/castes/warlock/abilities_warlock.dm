@@ -237,11 +237,7 @@
 	var/perpendicular_angle = Get_Angle(get_turf(src), get_step(src, dir)) //the angle src is facing, get_turf because pixel_x or y messes with the angle
 	for(var/obj/projectile/proj AS in frozen_projectiles)
 		proj.flags_projectile_behavior &= ~PROJECTILE_FROZEN
-		var/new_range = proj.proj_max_range - proj.distance_travelled
-		if(new_range <= 0)
-			proj.ammo.do_at_max_range(proj)
-			qdel(proj)
-			continue
+		proj.distance_travelled = 0 //we're effectively firing it fresh
 		var/new_angle = (perpendicular_angle + (perpendicular_angle - proj.dir_angle - 180))
 		if(new_angle < 0)
 			new_angle += 360
