@@ -180,11 +180,9 @@
 			playsound(loc, M.attack_sound, 25, 1)
 		visible_message(span_danger("[M] [M.attacktext] [src]!"))
 		log_combat(M, src, "attacked")
-		var/damage = M.melee_damage
 		var/dam_zone = pick("chest", "l_hand", "r_hand", "l_leg", "r_leg")
 		var/datum/limb/affecting = get_limb(ran_zone(dam_zone))
-		var/armor = get_soft_armor("melee", affecting)
-		apply_damage(damage, BRUTE, affecting, armor, updating_health = TRUE)
+		apply_damage(M.melee_damage, BRUTE, affecting, MELEE, updating_health = TRUE)
 
 /mob/living/carbon/human/show_inv(mob/living/user)
 	var/obj/item/clothing/under/suit
