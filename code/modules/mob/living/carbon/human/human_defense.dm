@@ -177,7 +177,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 	user.do_attack_animation(src, used_item = I)
 
-	apply_damage(damage, I.damtype, affecting, armor, weapon_sharp, weapon_edge, updating_health = TRUE)
+	apply_damage(damage, I.damtype, affecting, MELEE, weapon_sharp, weapon_edge, updating_health = TRUE, I.penetration)
 
 	var/list/hit_report = list("(RAW DMG: [damage])")
 

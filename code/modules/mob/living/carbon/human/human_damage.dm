@@ -320,7 +320,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 	if(update)
 		UpdateDamageIcon()
 
-/mob/living/carbon/human/take_overall_damage_armored(damage, damagetype, armortype, sharp = FALSE, edge = FALSE, updating_health = FALSE)
+/mob/living/carbon/human/take_overall_damage_armored(damage, damagetype, armortype, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration)
 	if(status_flags & GODMODE)
 		return //we don't wanna kill gods...or do we ?
 
@@ -331,7 +331,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 	damage = damage / partcount //damage all limbs equally.
 	while(parts.len)
 		var/datum/limb/picked = pick_n_take(parts)
-		apply_damage(damage, damagetype, picked, get_soft_armor(armortype, picked), sharp, edge, updating_health)
+		apply_damage(damage, damagetype, picked, armortype, sharp, edge, updating_health, penetration)
 
 ////////////////////////////////////////////
 
