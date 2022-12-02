@@ -888,10 +888,10 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 
 ///damage override at the species level, called by /mob/living/proc/apply_damage
 /datum/species/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, mob/living/carbon/human/victim)
-	if(isnum(armor))
-		damage -= clamp(damage * armor * 0.01, 0, damage)
+	if(isnum(blocked))
+		damage -= clamp(damage * blocked * 0.01, 0, damage)
 	else
-		damage = modify_by_armor(damage, armor, penetration, def_zone)
+		damage = modify_by_armor(damage, blocked, penetration, def_zone)
 
 	if(victim.protection_aura)
 		damage = round(damage * ((10 - victim.protection_aura) / 10))

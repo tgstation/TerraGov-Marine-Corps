@@ -23,17 +23,17 @@
 	* Damage - How much damage to take
 	* Damage_type - What type of damage to take, brute, burn
 	* Def_zone - Where to take the damage if its brute or burn
-	* Armor type - what type of armor to check on the target. Can be overridden if required
+	* blocked - what type of armor to check on the target. Can be overridden with a specific number
 	Returns
 	standard 0 if fail
 */
-/mob/living/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone, armor = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE)
+/mob/living/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE)
 	if(status_flags & (GODMODE))
 		return
-	if(isnum(armor))
-		damage -= clamp(damage * armor * 0.01, 0, damage)
+	if(isnum(blocked))
+		damage -= clamp(damage * blocked * 0.01, 0, damage)
 	else
-		damage = modify_by_armor(damage, armor, penetration, def_zone)
+		damage = modify_by_armor(damage, blocked, penetration, def_zone)
 
 	if(!damage) //no damage
 		return 0
@@ -56,17 +56,17 @@
 	return damage
 
 ///Used to apply multiple types of damage to a mob at the same time
-/mob/living/proc/apply_damages(brute = 0, burn = 0, tox = 0, oxy = 0, clone = 0, def_zone = null, armor = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE)
+/mob/living/proc/apply_damages(brute = 0, burn = 0, tox = 0, oxy = 0, clone = 0, def_zone = null, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE)
 	if(brute)
-		apply_damage(brute, BRUTE, def_zone, armor, sharp, edge)
+		apply_damage(brute, BRUTE, def_zone, blocked, sharp, edge)
 	if(burn)
-		apply_damage(burn, BURN, def_zone, armor, sharp, edge)
+		apply_damage(burn, BURN, def_zone, blocked, sharp, edge)
 	if(tox)
-		apply_damage(tox, TOX, def_zone, armor, sharp, edge)
+		apply_damage(tox, TOX, def_zone, blocked, sharp, edge)
 	if(oxy)
-		apply_damage(oxy, OXY, def_zone, armor, sharp, edge)
+		apply_damage(oxy, OXY, def_zone, blocked, sharp, edge)
 	if(clone)
-		apply_damage(clone, CLONE, def_zone, armor, sharp, edge)
+		apply_damage(clone, CLONE, def_zone, blocked, sharp, edge)
 	if(updating_health)
 		updatehealth()
 	return TRUE
