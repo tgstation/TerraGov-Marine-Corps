@@ -454,8 +454,10 @@
 	RegisterSignal(gun_user, COMSIG_KB_UNLOADGUN, .proc/unload_gun)
 	RegisterSignal(gun_user, COMSIG_KB_FIREMODE, .proc/do_toggle_firemode)
 	RegisterSignal(gun_user, COMSIG_KB_GUN_SAFETY, .proc/toggle_gun_safety_keybind)
+	/* Scatter increase per shot code.
 	scatter = min_scatter
 	scatter_unwielded = min_scatter_unwielded
+	*/
 
 
 ///Null out gun user to prevent hard del
@@ -1620,12 +1622,16 @@
 
 	if(((flags_item & WIELDED) && wielded_stable()) || CHECK_BITFIELD(flags_item, IS_DEPLOYED) || (master_gun && CHECK_BITFIELD(master_gun.flags_item, WIELDED) && master_gun.wielded_stable()))
 		gun_accuracy_mult = accuracy_mult
+		/* Scatter increase per shot code.
 		scatter = max(max(min_scatter, 0), min((scatter + scatter_increase) - ((world.time - last_fired - 1) * scatter_decay), max_scatter))
+		*/
 		gun_scatter = scatter
 		wielded_fire = TRUE
 	else
+		/* Scatter increase per shot code.
 		scatter_unwielded = max(min_scatter_unwielded, min((scatter + scatter_increase_unwielded) - ((world.time - last_fired - 1) * scatter_decay_unwielded), max_scatter_unwielded))
 		gun_scatter = scatter_unwielded
+		*/
 
 	if(user && world.time - user.last_move_time < 5) //if you moved during the last half second, you have some penalties to accuracy and scatter
 		if(wielded_fire)
