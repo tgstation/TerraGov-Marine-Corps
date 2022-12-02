@@ -1,3 +1,6 @@
+obj/effect/turf_decal
+	icon = 'icons/turf/floors.dmi'
+
 /obj/effect/turf_decal/stripes/line
 	icon_state = "warningline"
 

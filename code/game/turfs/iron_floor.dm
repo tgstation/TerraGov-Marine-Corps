@@ -51,8 +51,8 @@
 	floor_tile = /obj/item/stack/tile/iron/corner
 
 /turf/open/floor/iron/large
-	icon_state = "floor_large"
-	base_icon_state = "floor_large"
+	icon_state = "floor_large3"
+	base_icon_state = "floor_large3"
 	floor_tile = /obj/item/stack/tile/iron/large
 
 /turf/open/floor/iron/textured
@@ -191,8 +191,8 @@
 	initial_gas_mix = AIRLESS_ATMOS
 
 /turf/open/floor/iron/white
-	icon_state = "white"
-	base_icon_state = "white"
+	icon_state = "white2"
+	base_icon_state = "white2"
 	floor_tile = /obj/item/stack/tile/iron/white
 
 /turf/open/floor/iron/white/smooth_edge
@@ -216,8 +216,8 @@
 	floor_tile = /obj/item/stack/tile/iron/white/smooth_large
 
 /turf/open/floor/iron/white/side
-	icon_state = "whitehall"
-	base_icon_state = "whitehall"
+	icon_state = "whitehall2"
+	base_icon_state = "whitehall2"
 	floor_tile = /obj/item/stack/tile/iron/white_side
 
 /turf/open/floor/iron/white/corner
@@ -452,3 +452,15 @@
 	base_icon_state = "sepia"
 	desc = "Well, the flow of time is normal on these tiles, weird."
 	floor_tile = /obj/item/stack/tile/iron/sepia
+
+/turf/open/floor/glass
+	name = "glass floor"
+	desc = "Don't jump on it, or do, I'm not your mom."
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "glass-0"
+
+/turf/open/floor/glass/reinforced
+	name = "reinforced glass floor"
+	desc = "Do jump on it, it can take it."
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "reinf_glass-0"
