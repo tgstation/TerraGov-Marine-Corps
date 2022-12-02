@@ -3,17 +3,20 @@
 		return
 	return ..()
 
+/mob/living/carbon/xenomorph/modify_by_armor(damage_amount, armor_type, penetration, def_zone)
+	var/hard_armor_modifier = get_hard_armor(armor_type, def_zone) * get_sunder()
+	hard_armor_modifier = hard_armor_modifier - (hard_armor_modifier * penetration * 0.01)
+	var/soft_armor_modifier = min((1 - ((get_soft_armor(armor_type, def_zone) - penetration) * get_sunder() * 0.01)), 1)
+	return clamp(((damage_amount - hard_armor_modifier) * soft_armor_modifier), 0, damage_amount)
+
 /mob/living/carbon/xenomorph/ex_act(severity)
 	if(status_flags & (INCORPOREAL|GODMODE))
 		return
 
-
 	var/bomb_armor = soft_armor.getRating("bomb")
-	var/bomb_effective_armor = (bomb_armor/100)*get_sunder()
-	var/bomb_damage_multiplier = max(0, 1 - bomb_effective_armor)
-	var/bomb_slow_multiplier = max(0, 1 - 3.5*bomb_effective_armor)
-	var/bomb_sunder_multiplier = max(0, 1 - bomb_effective_armor)
-
+	var/bomb_damage_multiplier = modify_by_armor(1, BOMB)
+	var/bomb_slow_multiplier = modify_by_armor(0.7, BOMB)
+	var/bomb_sunder_multiplier = modify_by_armor(1, BOMB)
 
 	if(bomb_armor >= 100)
 		return //immune
@@ -31,15 +34,11 @@
 	adjust_stagger(max(0, ex_slowdown - 2)) //Stagger 2 less than slowdown
 
 	//Sunder
-	var/sunder_loss = 50*(3 - severity) * bomb_sunder_multiplier
-	adjust_sunder(max(0, sunder_loss))
+	adjust_sunder(max(0, 50 * (3 - severity) * bomb_sunder_multiplier))
 
 	//Damage
 	var/ex_damage = 40 + rand(0, 20) + 50*(4 - severity)  //changed so overall damage stays similar
-	ex_damage *= bomb_damage_multiplier
-
-	apply_damage(ex_damage/2, BRUTE, updating_health = TRUE)
-	apply_damage(ex_damage/2, BURN, updating_health = TRUE)
+	apply_damages(ex_damage * 0.5, ex_damage * 0.5, blocked = BOMB, updating_health = TRUE)
 
 
 /mob/living/carbon/xenomorph/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration)
