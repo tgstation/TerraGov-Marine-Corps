@@ -1790,12 +1790,12 @@ FACTORY
 /datum/supply_packs/factory/howitzer_shell_he_refill
 	name = "Howitzer HE shell assembly refill"
 	contains = list(/obj/item/factory_refill/howitzer_shell_he_refill)
-	cost = 90
+	cost = 80
 
 /datum/supply_packs/factory/howitzer_shell_incen_refill
 	name = "Howitzer Incendiary shell assembly refill"
 	contains = list(/obj/item/factory_refill/howitzer_shell_incen_refill)
-	cost = 90
+	cost = 80
 
 /datum/supply_packs/factory/howitzer_shell_wp_refill
 	name = "Howitzer WP shell assembly refill"
