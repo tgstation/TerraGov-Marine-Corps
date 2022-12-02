@@ -456,6 +456,7 @@
 	desc = "The AGLS-37 automatic grenade launching IFF capable system, it's too heavy to be wielded or operated without the tripod. On the back, it reads: \"The Explosions and Fragmentation from this weapon ARE NOT friendly fire capable. Kauser is not obligated to buy you new body parts for you or your friends if you lose them.\"\nCan be deployed with Crtl-Click. It CANNOT be turned once deployed, due to a lack of swivels, pick it up to move your cone of fire. Can be repaired with a blowtorch once deployed."
 	w_class = WEIGHT_CLASS_HUGE
 	flags_equip_slot = ITEM_SLOT_BACK
+	caliber = CALIBER_40MM
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "ags"
 	fire_sound = 'sound/weapons/guns/fire/ags.ogg'
@@ -465,8 +466,8 @@
 	fire_delay = 1 SECONDS
 	burst_amount = 0
 	accuracy_mult = 1.2 //it's got a bipod
-	flags_item = IS_DEPLOYABLE|TWOHANDED
-	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|DEPLOYED_NO_ROTATE|GUN_WIELDED_FIRING_ONLY|GUN_IFF
+	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_ROTATE
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 
 	attachable_allowed = list(
@@ -484,6 +485,7 @@
 
 	deploy_time = 6 SECONDS
 	undeploy_time = 3 SECONDS
+	deployable_item = /obj/machinery/deployable/mounted
 
 	max_integrity = 500
 	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 75, "bio" = 100, "fire" = 0, "acid" = 0)

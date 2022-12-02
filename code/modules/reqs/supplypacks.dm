@@ -191,7 +191,7 @@ WEAPONS
 
 /datum/supply_packs/weapons/ags_emplacement
 	name = "AGLS-37 Mounted Automated Grenade Launcher"
-	contains = list(/obj/item/storage/box/tl102)
+	contains = list(/obj/item/weapon/gun/standard_agls)
 	cost = 70
 
 /datum/supply_packs/weapons/ags_highexplo

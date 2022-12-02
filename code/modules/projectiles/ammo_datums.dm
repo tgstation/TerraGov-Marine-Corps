@@ -1648,7 +1648,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/ags_shrapnel
 	name = "40mm fragmentation grenade"
-	icon_state = "40mm_nade"
+	icon_state = "grenade_projectile"
 	hud_state = "grenade_frag"
 	hud_state_empty = "grenade_empty"
 	handful_icon_state = "40mm_grenade"
@@ -3382,7 +3382,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/grenade_container/ags_grenade
 	name = "40mm grenade shell"
-	icon_state = "40mm_nade"
+	icon_state = "grenade_projectile"
 	hud_state = "grenade_he"
 	hud_state_empty = "grenade_empty"
 	handful_icon_state = "40mm_grenade"
