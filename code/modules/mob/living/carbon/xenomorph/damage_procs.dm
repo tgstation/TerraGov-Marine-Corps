@@ -42,11 +42,11 @@
 	apply_damage(ex_damage/2, BURN, updating_health = TRUE)
 
 
-/mob/living/carbon/xenomorph/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE)
+/mob/living/carbon/xenomorph/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration)
 	if(status_flags & (GODMODE) ||damagetype != (BRUTE|BURN)) //can probs stick the damtype before a call parent and remove a bunch of this
 		return
 	if(isnum(blocked))
-		damage -= clamp(damage * blocked * 0.01, 0, damage)
+		damage -= clamp(damage * (blocked - penetration) * 0.01, 0, damage)
 	else
 		damage = modify_by_armor(damage, blocked, penetration, def_zone)
 

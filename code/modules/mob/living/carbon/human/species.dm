@@ -887,9 +887,9 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 		equip_slots |= SLOT_IN_ACCESSORY
 
 ///damage override at the species level, called by /mob/living/proc/apply_damage
-/datum/species/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, mob/living/carbon/human/victim)
+/datum/species/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration, mob/living/carbon/human/victim)
 	if(isnum(blocked))
-		damage -= clamp(damage * blocked * 0.01, 0, damage)
+		damage -= clamp(damage * (blocked - penetration) * 0.01, 0, damage)
 	else
 		damage = modify_by_armor(damage, blocked, penetration, def_zone)
 

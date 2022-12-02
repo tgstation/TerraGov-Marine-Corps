@@ -27,11 +27,11 @@
 	Returns
 	standard 0 if fail
 */
-/mob/living/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE)
+/mob/living/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration)
 	if(status_flags & (GODMODE))
 		return
 	if(isnum(blocked))
-		damage -= clamp(damage * blocked * 0.01, 0, damage)
+		damage -= clamp(damage * (blocked - penetration) * 0.01, 0, damage)
 	else
 		damage = modify_by_armor(damage, blocked, penetration, def_zone)
 
@@ -56,17 +56,17 @@
 	return damage
 
 ///Used to apply multiple types of damage to a mob at the same time
-/mob/living/proc/apply_damages(brute = 0, burn = 0, tox = 0, oxy = 0, clone = 0, def_zone = null, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE)
+/mob/living/proc/apply_damages(brute = 0, burn = 0, tox = 0, oxy = 0, clone = 0, def_zone = null, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration)
 	if(brute)
-		apply_damage(brute, BRUTE, def_zone, blocked, sharp, edge)
+		apply_damage(brute, BRUTE, def_zone, blocked, sharp, edge, FALSE, penetration)
 	if(burn)
-		apply_damage(burn, BURN, def_zone, blocked, sharp, edge)
+		apply_damage(burn, BURN, def_zone, blocked, sharp, edge, FALSE, penetration)
 	if(tox)
-		apply_damage(tox, TOX, def_zone, blocked, sharp, edge)
+		apply_damage(tox, TOX, def_zone, blocked, sharp, edge, FALSE, penetration)
 	if(oxy)
-		apply_damage(oxy, OXY, def_zone, blocked, sharp, edge)
+		apply_damage(oxy, OXY, def_zone, blocked, sharp, edge, FALSE, penetration)
 	if(clone)
-		apply_damage(clone, CLONE, def_zone, blocked, sharp, edge)
+		apply_damage(clone, CLONE, def_zone, blocked, sharp, edge, FALSE, penetration)
 	if(updating_health)
 		updatehealth()
 	return TRUE
