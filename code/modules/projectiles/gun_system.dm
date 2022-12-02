@@ -1627,11 +1627,12 @@
 		*/
 		gun_scatter = scatter
 		wielded_fire = TRUE
+	/* Scatter increase per shot code.
 	else
-		/* Scatter increase per shot code.
+		
 		scatter_unwielded = max(min_scatter_unwielded, min((scatter + scatter_increase_unwielded) - ((world.time - last_fired - 1) * scatter_decay_unwielded), max_scatter_unwielded))
 		gun_scatter = scatter_unwielded
-		*/
+	*/
 
 	if(user && world.time - user.last_move_time < 5) //if you moved during the last half second, you have some penalties to accuracy and scatter
 		if(wielded_fire)
