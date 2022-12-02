@@ -794,8 +794,7 @@
 	var/affecting = ran_zone(null, 0)
 	if(!affecting) //Still nothing??
 		affecting = BODY_ZONE_CHEST //Gotta have a torso?!
-	var/armor_block = victim.get_soft_armor("melee", affecting)
-	victim.apply_damage(CARRIER_SLASH_HUGGER_DAMAGE, BRUTE, affecting, armor_block) //Crap base damage after armour...
+	victim.apply_damage(CARRIER_SLASH_HUGGER_DAMAGE, BRUTE, affecting, MELEE) //Crap base damage after armour...
 	victim.visible_message(span_danger("[src] frantically claws at [victim]!"),span_danger("[src] frantically claws at you!"))
 	leaping = FALSE
 	go_active() //Slashy boys recover *very* fast.
