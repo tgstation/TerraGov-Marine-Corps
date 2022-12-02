@@ -1443,9 +1443,9 @@
 
 /obj/structure/prop/tgbrokenvendor/Initialize()
 	. = ..() //todo convert this into a switch statement
-	if(vendorstate = VENDOR_BROKEN)
+	if(vendorstate == VENDOR_BROKEN)
 		icon_state += "-broken"
-	if(vendorstate = VENDOR_BLANK)
+	if(vendorstate == VENDOR_BLANK)
 		icon_state += "-off"
 
 /obj/structure/prop/tgbrokenvendor/snackbrokebed

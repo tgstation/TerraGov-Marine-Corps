@@ -1,4 +1,4 @@
-obj/effect/turf_decal
+/obj/effect/turf_decal
 	icon = 'icons/turf/floors.dmi'
 	layer = ABOVE_TURF_LAYER
 
