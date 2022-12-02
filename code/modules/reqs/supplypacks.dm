@@ -700,13 +700,13 @@ EXPLOSIVES
 	cost = 60
 
 /datum/supply_packs/explosives/howitzer_ammo_he
-	name = "MG-100Y howitzer HE shell (x2)"
-	contains = list(/obj/item/mortal_shell/howitzer/he, /obj/item/mortal_shell/howitzer/he)
+	name = "MG-100Y howitzer HE shell"
+	contains = list(/obj/item/mortal_shell/howitzer/he)
 	cost = 4
 
 /datum/supply_packs/explosives/howitzer_ammo_incend
-	name = "MG-100Y howitzer incendiary shell (x2)"
-	contains = list(/obj/item/mortal_shell/howitzer/incendiary, /obj/item/mortal_shell/howitzer/incendiary)
+	name = "MG-100Y howitzer incendiary shell"
+	contains = list(/obj/item/mortal_shell/howitzer/incendiary)
 	cost = 4
 
 /datum/supply_packs/explosives/mortar_ammo_wp
@@ -1790,17 +1790,17 @@ FACTORY
 /datum/supply_packs/factory/howitzer_shell_he_refill
 	name = "Howitzer HE shell assembly refill"
 	contains = list(/obj/item/factory_refill/howitzer_shell_he_refill)
-	cost = 40
+	cost = 90
 
 /datum/supply_packs/factory/howitzer_shell_incen_refill
 	name = "Howitzer Incendiary shell assembly refill"
 	contains = list(/obj/item/factory_refill/howitzer_shell_incen_refill)
-	cost = 40
+	cost = 90
 
 /datum/supply_packs/factory/howitzer_shell_wp_refill
 	name = "Howitzer WP shell assembly refill"
 	contains = list(/obj/item/factory_refill/howitzer_shell_wp_refill)
-	cost = 110
+	cost = 100
 
 /datum/supply_packs/factory/howitzer_shell_tfoot_refill
 	name = "Howitzer Tanglefoot shell assembly refill"
