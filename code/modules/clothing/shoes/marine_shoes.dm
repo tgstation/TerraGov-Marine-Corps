@@ -75,7 +75,7 @@
 
 /obj/item/storage/internal/shoes/boot_knife/full/Initialize()
 	. = ..()
-	new /obj/item/attachable/bayonetknife(src)
+	new /obj/item/weapon/combat_knife(src)
 
 /obj/item/clothing/shoes/marine/pyro
 	name = "flame-resistant combat boots"
