@@ -115,7 +115,7 @@
 	hud_type = DATA_HUD_MEDICAL_ADVANCED
 	actions_types = list(/datum/action/item_action/toggle)
 
-/obj/item/clothing/glasses/hud/medgsunlasses
+/obj/item/clothing/glasses/hud/medsunglasses
 	name = "\improper HealthMate sunglasses"
 	desc = "A pair of designer sunglasses. This pair has been fitted with an internal HealthMate HUD projector."
 	icon_state = "medsunglasses"

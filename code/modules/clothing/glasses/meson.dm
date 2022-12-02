@@ -43,3 +43,11 @@
 	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/glasses.dmi')
 	toggleable = TRUE
 	actions_types = list(/datum/action/item_action/toggle)
+
+/obj/item/clothing/glasses/meson/sunglasses
+	name = "\improper Meson sunglasses"
+	desc = "A pair of designer sunglasses. This pair has been fitted with an optical meson scanner."
+	icon_state = "mesonsunglasses"
+	item_state = "mesonsunglasses"
+	deactive_state = "degoggles_mesonsunglasses"
+	prescription = TRUE
