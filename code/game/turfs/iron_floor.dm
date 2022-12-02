@@ -174,22 +174,6 @@
 	icon_state = "dark_herringbone"
 	base_icon_state = "dark_herringbone"
 	floor_tile = /obj/item/stack/tile/iron/dark/herringbone
-
-/turf/open/floor/iron/dark/airless
-	initial_gas_mix = AIRLESS_ATMOS
-
-/turf/open/floor/iron/dark/telecomms
-	initial_gas_mix = TCOMMS_ATMOS
-
-/turf/open/floor/iron/dark/side/airless
-	initial_gas_mix = AIRLESS_ATMOS
-
-/turf/open/floor/iron/dark/corner/airless
-	initial_gas_mix = AIRLESS_ATMOS
-
-/turf/open/floor/iron/checker/airless
-	initial_gas_mix = AIRLESS_ATMOS
-
 /turf/open/floor/iron/white
 	icon_state = "white2"
 	base_icon_state = "white2"

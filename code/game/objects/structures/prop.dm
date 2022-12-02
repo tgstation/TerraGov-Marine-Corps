@@ -1,3 +1,5 @@
+#define VENDOR_BROKEN "vendor_broken"
+#define VENDOR_BLANK "vendor_blank"
 //----- Marine ship machinery file -----//
 // Put any new machines in here before map is released and everything moved to their proper positions.
 
@@ -1428,3 +1430,197 @@
 	pixel_y = -15
 	resistance_flags = RESIST_ALL
 	layer = ABOVE_MOB_LAYER
+
+//TG BROKEN VENDOR PROPS
+//USE THESE OUTSIDE OF A TG THEMED MAP AND I'LL BREAK YOUR KNEECAPS
+/obj/structure/prop/tgbrokenvendor
+	name = "\improper Broken vendor"
+	icon = 'icons/obj/tg_vending_props.dmi'
+	desc = "The insides of this vendor are visible and rusted through, you get the feeling there's no fixing this machine."
+	density = TRUE
+	///var to control vendor appearance, can be vendor_broken, vendor_working or vendor_blank
+	var/vendorstate = VENDOR_BROKEN
+
+/obj/structure/prop/tgbrokenvendor/Initialize()
+	. = ..() //todo convert this into a switch statement
+	if(vendorstate = VENDOR_BROKEN)
+		icon_state += "-broken"
+	if(vendorstate = VENDOR_BLANK)
+		icon_state += "-off"
+
+/obj/structure/prop/tgbrokenvendor/snackbrokebed
+	icon_state = "snack"
+
+/obj/structure/prop/tgbrokenvendor/snackbrokeblue
+	icon_state = "snackblue"
+
+/obj/structure/prop/tgbrokenvendor/snackbrokeorange
+	icon_state = "snackorange"
+
+/obj/structure/prop/tgbrokenvendor/snackbrokegreen
+	icon_state = "snackgreen"
+
+/obj/structure/prop/tgbrokenvendor/snackbroketeal
+	icon_state = "snackteal"
+
+/obj/structure/prop/tgbrokenvendor/smartfridge
+	icon_state = "smartfridge"
+
+/obj/structure/prop/tgbrokenvendor/dinnerware
+	icon_state = "dinnerware"
+
+/obj/structure/prop/tgbrokenvendor/cigs
+	icon_state = "cigs"
+
+/obj/structure/prop/tgbrokenvendor/generic
+	icon_state = "generic"
+
+/obj/structure/prop/tgbrokenvendor/sec
+	icon_state = "sec"
+
+/obj/structure/prop/tgbrokenvendor/nutri
+	icon_state = "nutri"
+
+/obj/structure/prop/tgbrokenvendor/seeds
+	icon_state = "seeds"
+
+/obj/structure/prop/tgbrokenvendor/cola
+	icon_state = "cola-machine"
+
+/obj/structure/prop/tgbrokenvendor/colablack
+	icon_state = "cola_black"
+
+/obj/structure/prop/tgbrokenvendor/colared
+	icon_state = "cola_red"
+
+/obj/structure/prop/tgbrokenvendor/spaceup
+	icon_state = "space_up"
+
+/obj/structure/prop/tgbrokenvendor/pwrgame
+	icon_state = "starkist"
+
+/obj/structure/prop/tgbrokenvendor/starkist
+	icon_state = "pwr_game"
+
+/obj/structure/prop/tgbrokenvendor/soda
+	icon_state = "starkist"
+
+/obj/structure/prop/tgbrokenvendor/sovietsoda
+	icon_state = "sovietsoda"
+
+/obj/structure/prop/tgbrokenvendor/coffee
+	icon_state = "coffee"
+
+/obj/structure/prop/tgbrokenvendor/boozeomat
+	icon_state = "boozeomat"
+
+/obj/structure/prop/tgbrokenvendor/magivend
+	icon_state = "MagiVend"
+
+/obj/structure/prop/tgbrokenvendor/med
+	icon_state = "med"
+
+/obj/structure/prop/tgbrokenvendor/drug
+	icon_state = "drug"
+
+/obj/structure/prop/tgbrokenvendor/engi
+	icon_state = "engi"
+
+/obj/structure/prop/tgbrokenvendor/robotics
+	icon_state = "robotics"
+
+/obj/structure/prop/tgbrokenvendor/cart
+	icon_state = "cart"
+
+/obj/structure/prop/tgbrokenvendor/theater
+	icon_state = "theater"
+
+/obj/structure/prop/tgbrokenvendor/clothes
+	icon_state = "clothes"
+
+/obj/structure/prop/tgbrokenvendor/liberationstation
+	icon_state = "liberationstation"
+
+/obj/structure/prop/tgbrokenvendor/syndi
+	icon_state = "syndi"
+
+/obj/structure/prop/tgbrokenvendor/ntdonk
+	icon_state = "ntdonk"
+
+/obj/structure/prop/tgbrokenvendor/games
+	icon_state = "games"
+
+/obj/structure/prop/tgbrokenvendor/bardrobe
+	icon_state = "bardrobe"
+
+/obj/structure/prop/tgbrokenvendor/secdrobe
+	icon_state = "secdrobe"
+
+/obj/structure/prop/tgbrokenvendor/chefdrobe
+	icon_state = "chefdrobe"
+
+/obj/structure/prop/tgbrokenvendor/medidrobe
+	icon_state = "medidrobe"
+
+/obj/structure/prop/tgbrokenvendor/chemdrobe
+	icon_state = "chemdrobe"
+
+/obj/structure/prop/tgbrokenvendor/genedrobe
+	icon_state = "genedrobe"
+
+/obj/structure/prop/tgbrokenvendor/virodrobe
+	icon_state = "virodrobe"
+
+/obj/structure/prop/tgbrokenvendor/scidrobe
+	icon_state = "scidrobe"
+
+/obj/structure/prop/tgbrokenvendor/robodrobe
+	icon_state = "robodrobe"
+
+/obj/structure/prop/tgbrokenvendor/chapdrobe
+	icon_state = "chapdrobe"
+
+/obj/structure/prop/tgbrokenvendor/engidrobe
+	icon_state = "engidrobe"
+
+/obj/structure/prop/tgbrokenvendor/atmosdrobe
+	icon_state = "atmosdrobe"
+
+/obj/structure/prop/tgbrokenvendor/hydrodrobe
+	icon_state = "hydrodrobe"
+
+/obj/structure/prop/tgbrokenvendor/cargodrobe
+	icon_state = "cargodrobe"
+
+/obj/structure/prop/tgbrokenvendor/curadrobe
+	icon_state = "curadrobe"
+
+/obj/structure/prop/tgbrokenvendor/janidrobe
+	icon_state = "janidrobe"
+
+/obj/structure/prop/tgbrokenvendor/lawdrobe
+	icon_state = "lawdrobe"
+
+/obj/structure/prop/tgbrokenvendor/detdrobe
+	icon_state = "detdrobe"
+
+/obj/structure/prop/tgbrokenvendor/parts
+	icon_state = "parts"
+
+/obj/structure/prop/tgbrokenvendor/custom
+	icon_state = "custom"
+
+/obj/structure/prop/tgbrokenvendor/greed
+	icon_state = "greed"
+
+/obj/structure/prop/tgbrokenvendor/centdrobe
+	icon_state = "centdrobe"
+
+/obj/structure/prop/tgbrokenvendor/shamblersjuice
+	icon_state = "shamblers_juice"
+
+/obj/structure/prop/tgbrokenvendor/modularpc
+	icon_state = "modularpc"
+
+#undef VENDOR_BROKEN
+#undef VENDOR_BLANK
