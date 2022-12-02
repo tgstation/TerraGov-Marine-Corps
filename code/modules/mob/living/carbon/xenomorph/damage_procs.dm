@@ -42,29 +42,25 @@
 	apply_damage(ex_damage/2, BURN, updating_health = TRUE)
 
 
-/mob/living/carbon/xenomorph/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE)
-	if(status_flags & (GODMODE))
+/mob/living/carbon/xenomorph/apply_damage(damage = 0, damagetype = BRUTE, def_zone, armor = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE)
+	if(status_flags & (GODMODE) ||damagetype != (BRUTE|BURN)) //can probs stick the damtype before a call parent and remove a bunch of this
 		return
-	var/hit_percent = (100 - blocked) * 0.01
-
-	if(hit_percent <= 0) //total negation
-		return 0
-
-	damage *= CLAMP01(hit_percent) //Percentage reduction
+	if(isnum(armor))
+		damage -= clamp(damage * armor * 0.01, 0, damage)
+	else
+		damage = modify_by_armor(damage, armor, penetration, def_zone)
 
 	if(!damage) //no damage
 		return 0
 
-	//We still want to check for blood splash before we get to the damage application.
-	var/chancemod = 0
-	if(sharp)
-		chancemod += 10
-	if(edge) //Pierce weapons give the most bonus
-		chancemod += 12
-	if(def_zone != "chest") //Which it generally will be, vs xenos
-		chancemod += 5
-
 	if(damage > 12) //Light damage won't splash.
+		var/chancemod = 0
+		if(sharp)
+			chancemod += 10
+		if(edge) //Pierce weapons give the most bonus
+			chancemod += 12
+		if(def_zone != "chest") //Which it generally will be, vs xenos
+			chancemod += 5
 		check_blood_splash(damage, damagetype, chancemod)
 
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_TAKING_DAMAGE, damage)
@@ -82,9 +78,6 @@
 		updatehealth()
 
 	regen_power = -xeno_caste.regen_delay //Remember, this is in deciseconds.
-
-	if(!damage) //If we've actually taken damage, check whether we alert the hive
-		return
 
 	if(!COOLDOWN_CHECK(src, xeno_health_alert_cooldown))
 		return
