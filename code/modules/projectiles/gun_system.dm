@@ -454,8 +454,6 @@
 	RegisterSignal(gun_user, COMSIG_KB_UNLOADGUN, .proc/unload_gun)
 	RegisterSignal(gun_user, COMSIG_KB_FIREMODE, .proc/do_toggle_firemode)
 	RegisterSignal(gun_user, COMSIG_KB_GUN_SAFETY, .proc/toggle_gun_safety_keybind)
-	scatter = min_scatter
-	scatter_unwielded = min_scatter_unwielded
 
 
 ///Null out gun user to prevent hard del
