@@ -14658,10 +14658,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/port_hull)
-"nKG" = (
-/obj/structure/dropship_equipment/rappel_system,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
 "nKK" = (
 /obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship/mono,
@@ -42829,7 +42825,7 @@ uns
 uns
 uns
 qiO
-nKG
+lvI
 bgb
 fZA
 aVk

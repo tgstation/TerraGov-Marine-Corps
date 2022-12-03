@@ -153,7 +153,7 @@
 "ax" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/dropship_equipment/operatingtable,
+/obj/structure/dropship_equipment/mg_holder,
 /turf/open/floor/mainship/office,
 /area/mainship/hallways/hangar)
 "ay" = (
@@ -7150,7 +7150,7 @@
 "uC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/dropship_equipment/rappel_system,
+/obj/structure/dropship_equipment/operatingtable,
 /turf/open/floor/mainship/office,
 /area/mainship/hallways/hangar)
 "uE" = (
@@ -12873,14 +12873,6 @@
 	dir = 1
 	},
 /area/mainship/command/airoom)
-"KV" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/item/storage/briefcase/inflatable,
-/obj/structure/closet/crate,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
 "KW" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
@@ -14285,7 +14277,13 @@
 "Pe" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/dropship_equipment/mg_holder,
+/obj/machinery/power/port_gen/pacman,
+/obj/item/stack/sheet/mineral/phoron{
+	amount = 25
+	},
+/obj/item/stack/sheet/mineral/phoron{
+	amount = 25
+	},
 /turf/open/floor/mainship/office,
 /area/mainship/hallways/hangar)
 "Pf" = (
@@ -17606,13 +17604,8 @@
 "Yp" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/power/port_gen/pacman,
-/obj/item/stack/sheet/mineral/phoron{
-	amount = 25
-	},
-/obj/item/stack/sheet/mineral/phoron{
-	amount = 25
-	},
+/obj/item/storage/briefcase/inflatable,
+/obj/structure/closet/crate,
 /turf/open/floor/mainship/office,
 /area/mainship/hallways/hangar)
 "Yq" = (
@@ -49644,7 +49637,7 @@ OC
 nH
 nH
 gH
-KV
+av
 JF
 BQ
 BQ

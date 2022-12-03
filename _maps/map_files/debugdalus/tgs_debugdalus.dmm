@@ -2536,10 +2536,6 @@
 /obj/machinery/cic_maptable,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
-"nBv" = (
-/obj/structure/dropship_equipment/rappel_system,
-/turf/open/floor/mainship,
-/area/mainship/hallways/hangar)
 "nHZ" = (
 /obj/item/dropship_points_voucher,
 /obj/item/dropship_points_voucher,
@@ -3828,7 +3824,7 @@ dwY
 dwY
 dwY
 dwY
-nBv
+dwY
 dwY
 acD
 aji
