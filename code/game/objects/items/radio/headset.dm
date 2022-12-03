@@ -476,6 +476,12 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	hud_type = DATA_HUD_SQUAD_REBEL
 	minimap_type = /datum/action/minimap/marine/rebel
 
+/obj/item/radio/headset/mainship/mcom/som
+	frequency = RADIO_CHANNEL_SOM
+	keyslot = /obj/item/encryptionkey/mcom/som
+	hud_type = DATA_HUD_SQUAD_SOM
+	minimap_type = /datum/action/minimap/som
+
 /obj/item/radio/headset/mainship/mcom/silicon
 	name = "silicon radio"
 	keyslot = /obj/item/encryptionkey/mcom/ai
