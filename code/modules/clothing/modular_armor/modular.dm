@@ -111,7 +111,6 @@
 	var/current_variant
 	///Uniform type that is allowed to be worn with this.
 	var/allowed_uniform_type = /obj/item/clothing/under/marine
-	var/xmashat_color
 
 /obj/item/clothing/suit/modular/Initialize()
 	. = ..()
@@ -396,6 +395,8 @@
 	var/list/icon_state_variants = list()
 	///Current varient selected.
 	var/current_variant
+	var/xmashat_color
+
 
 /obj/item/clothing/head/modular/Initialize()
 	. = ..()
