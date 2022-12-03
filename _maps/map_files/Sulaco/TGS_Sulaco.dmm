@@ -10483,7 +10483,7 @@
 /area/sulaco/cargo/prep)
 "bwn" = (
 /obj/effect/attach_point/weapon/dropship1{
-	dir = 8;
+	dir = 8
 	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
@@ -12887,7 +12887,7 @@
 /area/sulaco/hallway/central_hall)
 "eNh" = (
 /obj/effect/attach_point/weapon/dropship2{
-	dir = 4;
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar/cas)
@@ -15780,6 +15780,10 @@
 	dir = 8
 	},
 /area/sulaco/hallway/central_hall)
+"iOS" = (
+/obj/structure/closet/crate/construction,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "iPn" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -16294,7 +16298,7 @@
 /area/sulaco/maintenance/upperdeck_north_maint)
 "jBs" = (
 /turf/open/floor/plating/icefloor/warnplate/corner{
-	dir = 4;
+	dir = 4
 	},
 /area/sulaco/hangar)
 "jBX" = (
@@ -16978,7 +16982,7 @@
 /turf/open/floor/prison,
 /area/sulaco/briefing)
 "ktZ" = (
-/obj/structure/closet/crate/construction,
+/obj/structure/dropship_equipment/rappel_system,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "kut" = (
@@ -18236,6 +18240,10 @@
 /obj/structure/largecrate/guns/merc,
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
+"mjd" = (
+/obj/item/spare_cord,
+/turf/open/floor/prison,
+/area/sulaco/hangar/storage)
 "mju" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/hangar/cas)
@@ -23430,7 +23438,7 @@
 /area/sulaco/hangar)
 "sYa" = (
 /obj/effect/attach_point/weapon/dropship2{
-	dir = 8;
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar/cas)
@@ -26148,7 +26156,7 @@
 /area/sulaco/cafeteria)
 "wKu" = (
 /turf/open/floor/plating/icefloor/warnplate/corner{
-	dir = 8;
+	dir = 8
 	},
 /area/sulaco/hangar)
 "wKB" = (
@@ -65546,7 +65554,7 @@ aPF
 gQS
 kOr
 ktZ
-pWS
+mjd
 aUL
 jYO
 vfb
@@ -66571,7 +66579,7 @@ aPZ
 aSl
 aPF
 aPF
-aPF
+iOS
 kOr
 aTt
 pWS

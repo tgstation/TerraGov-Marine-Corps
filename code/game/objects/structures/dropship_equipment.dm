@@ -1090,7 +1090,7 @@
 	desc = "A system that deploys rappel ropes to go up or down fast, without the need for the Tadpole to land. You need to designate the rappel point at the navigation computer."
 	dropship_equipment_flags = IS_INTERACTABLE
 	icon_state = "rappel_hatch_locked"
-	point_cost = 100
+	point_cost = 300
 	coverage = 0
 	max_integrity = 300
 	anchored = TRUE

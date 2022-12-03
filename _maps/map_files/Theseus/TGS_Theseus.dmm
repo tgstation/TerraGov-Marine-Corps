@@ -8184,7 +8184,7 @@
 /obj/machinery/door/poddoor/mainship/open{
 	dir = 2;
 	id = "CIC Lockdown";
-	name = "\improper Combat Information Center Blast Door";
+	name = "\improper Combat Information Center Blast Door"
 	},
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -11996,7 +11996,7 @@
 /area/mainship/hallways/bow_hallway)
 "jjN" = (
 /obj/effect/attach_point/weapon/dropship1{
-	dir = 8;
+	dir = 8
 	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
@@ -12381,6 +12381,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
+/obj/item/spare_cord,
 /turf/open/floor/mainship/orange{
 	dir = 6
 	},
@@ -13188,7 +13189,7 @@
 "lto" = (
 /obj/machinery/door/poddoor/mainship/open{
 	id = "CIC Lockdown";
-	name = "\improper Combat Information Center Blast Door";
+	name = "\improper Combat Information Center Blast Door"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -14167,7 +14168,7 @@
 /obj/machinery/door/poddoor/mainship/open{
 	dir = 2;
 	id = "Brig Lockdown";
-	name = "\improper Brig Lockdown Podlocks";
+	name = "\improper Brig Lockdown Podlocks"
 	},
 /turf/open/floor/plating,
 /area/mainship/living/tankerbunks)
@@ -14221,6 +14222,10 @@
 	dir = 4
 	},
 /area/mainship/medical/medical_science)
+"mXx" = (
+/obj/structure/dropship_equipment/rappel_system,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "mYJ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
@@ -15892,7 +15897,7 @@
 "pTq" = (
 /obj/machinery/door/poddoor/mainship/open{
 	id = "CIC Lockdown";
-	name = "\improper Combat Information Center Blast Door";
+	name = "\improper Combat Information Center Blast Door"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -17000,7 +17005,7 @@
 /obj/structure/window/framed/mainship/requisitions,
 /obj/machinery/door/poddoor/mainship/open{
 	id = "CIC Lockdown";
-	name = "\improper Combat Information Center Blast Door";
+	name = "\improper Combat Information Center Blast Door"
 	},
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/plating,
@@ -19848,7 +19853,7 @@
 /area/space)
 "wQl" = (
 /turf/open/floor/plating/icefloor/warnplate/corner{
-	dir = 4;
+	dir = 4
 	},
 /area/mainship/hallways/hangar)
 "wQK" = (
@@ -19895,7 +19900,7 @@
 /area/space)
 "wVm" = (
 /turf/open/floor/plating/icefloor/warnplate/corner{
-	dir = 8;
+	dir = 8
 	},
 /area/mainship/hallways/hangar)
 "wVv" = (
@@ -42801,7 +42806,7 @@ uns
 uns
 uns
 qiO
-lvI
+qYe
 bgb
 fZA
 aVk
@@ -43058,7 +43063,7 @@ uns
 uns
 uns
 qiO
-qYe
+mXx
 bgb
 qae
 aVk

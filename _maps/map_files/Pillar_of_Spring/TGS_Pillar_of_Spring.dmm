@@ -153,10 +153,23 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"aw" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/machinery/power/port_gen/pacman,
+/obj/item/stack/sheet/mineral/phoron{
+	amount = 25
+	},
+/obj/item/stack/sheet/mineral/phoron{
+	amount = 25
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "ax" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/dropship_equipment/mg_holder,
+/obj/structure/dropship_equipment/operatingtable,
 /turf/open/floor/mainship/office,
 /area/mainship/hallways/hangar)
 "ay" = (
@@ -7280,7 +7293,7 @@
 "uC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/dropship_equipment/operatingtable,
+/obj/structure/dropship_equipment/rappel_system,
 /turf/open/floor/mainship/office,
 /area/mainship/hallways/hangar)
 "uE" = (
@@ -14495,13 +14508,7 @@
 "Pe" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/power/port_gen/pacman,
-/obj/item/stack/sheet/mineral/phoron{
-	amount = 25
-	},
-/obj/item/stack/sheet/mineral/phoron{
-	amount = 25
-	},
+/obj/structure/dropship_equipment/mg_holder,
 /turf/open/floor/mainship/office,
 /area/mainship/hallways/hangar)
 "Pf" = (
@@ -16155,6 +16162,7 @@
 /obj/effect/decal/warning_stripes/thin,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/item/spare_cord,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "TH" = (
@@ -17901,8 +17909,8 @@
 "Yp" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/item/storage/briefcase/inflatable,
 /obj/structure/closet/crate,
+/obj/item/storage/briefcase/inflatable,
 /turf/open/floor/mainship/office,
 /area/mainship/hallways/hangar)
 "Yq" = (
@@ -49956,7 +49964,7 @@ OC
 nH
 nH
 gH
-av
+aw
 JF
 BQ
 BQ

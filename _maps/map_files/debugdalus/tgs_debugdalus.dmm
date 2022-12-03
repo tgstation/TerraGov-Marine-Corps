@@ -101,8 +101,7 @@
 /turf/open/floor/mainship,
 /area/mainship/command/self_destruct)
 "aay" = (
-/turf/open/shuttle/escapepod/eleven{
-	},
+/turf/open/shuttle/escapepod/eleven,
 /area/mainship/command/self_destruct)
 "aaz" = (
 /obj/machinery/marine_selector/clothes/leader,
@@ -374,8 +373,7 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "abC" = (
-/turf/open/shuttle/escapepod/eight{
-	},
+/turf/open/shuttle/escapepod/eight,
 /area/mainship/command/self_destruct)
 "abD" = (
 /obj/structure/window/reinforced{
@@ -1190,13 +1188,13 @@
 /area/mainship/command/cic)
 "afC" = (
 /obj/effect/attach_point/weapon/dropship2{
-	dir = 8;
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "afD" = (
 /obj/effect/attach_point/weapon/dropship2{
-	dir = 4;
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
@@ -2396,6 +2394,10 @@
 /obj/structure/ship_rail_gun,
 /turf/open/floor/mainship,
 /area/mainship/shipboard/weapon_room)
+"gGs" = (
+/obj/structure/dropship_equipment/rappel_system,
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "gOE" = (
 /obj/machinery/light,
 /turf/open/floor/mainship,
@@ -2549,6 +2551,10 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
+"pEr" = (
+/obj/item/spare_cord,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "qko" = (
@@ -3759,7 +3765,7 @@ ada
 dwY
 dwY
 dwY
-dwY
+gGs
 acs
 dwY
 ljx
@@ -3819,7 +3825,7 @@ dwY
 dwY
 dwY
 dwY
-dwY
+pEr
 dwY
 dwY
 acD
