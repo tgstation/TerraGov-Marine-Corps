@@ -422,6 +422,24 @@
 	desc = "Heavy duty shielded air compressor designed to pressurize tanks above the safe limit."
 	icon_state = "tank_compressor-open"
 
+/obj/structure/prop/mainship/generator
+	name = "field generator"
+	desc = "A large thermal battery that projects a high amount of energy when powered."
+	icon = 'icons/obj/machines/field_generator.dmi'
+	icon_state = "Field_Gen"
+	anchored = FALSE
+	density = TRUE
+	use_power = NO_POWER_USE
+	max_integrity = 500
+	//100% immune to lasers and energy projectiles since it absorbs their energy.
+	soft_armor = list(MELEE = 25, BULLET = 10, LASER = 100, ENERGY = 100, BOMB = 0, BIO = 0, FIRE = 50, ACID = 70)
+
+/obj/structure/prop/mainship/generator/shieldgen
+	name = "anti-breach shielding projector"
+	desc = "Used to seal minor hull breaches."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "shieldoff"
+
 /obj/structure/prop/mainship/cannon_cable_connector
 	name = "\improper Cannon cable connector"
 	desc = "A connector for the large cannon cables."
