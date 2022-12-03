@@ -59,7 +59,7 @@
 	LAZYADD(buckled_mobs, buckling_mob)
 	if(buckle_lying != -1)
 		ADD_TRAIT(buckling_mob, TRAIT_FLOORED, BUCKLE_TRAIT)
-	buckling_mob.throw_alert("buckled", /obj/screen/alert/restrained/buckled)
+	buckling_mob.throw_alert("buckled", /atom/movable/screen/alert/restrained/buckled)
 	post_buckle_mob(buckling_mob, silent)
 
 	RegisterSignal(buckling_mob, COMSIG_LIVING_DO_RESIST, .proc/resisted_against)

@@ -15,7 +15,7 @@
 	},
 /area/lv624/lazarus/quartstorage)
 "cE" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/tile/brown{
 	dir = 9
 	},
@@ -104,7 +104,7 @@
 	},
 /area/lv624/lazarus/quartstorage)
 "mX" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/tile/brown{
 	dir = 4
 	},
@@ -201,7 +201,7 @@
 "Ad" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/tile/neutral,
 /area/lv624/lazarus/quartstorage)
 "Bv" = (
@@ -212,7 +212,7 @@
 /turf/open/floor/tile/neutral,
 /area/lv624/lazarus/quartstorage)
 "Cp" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/tile/neutral,
 /area/lv624/lazarus/quartstorage)
 "Ct" = (
@@ -274,7 +274,7 @@
 	},
 /area/lv624/lazarus/quartstorage)
 "Ic" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/tile/brown{
 	dir = 0
 	},
@@ -307,7 +307,7 @@
 /area/lv624/lazarus/quartstorage)
 "JF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /obj/machinery/light/small{
 	dir = 1
 	},

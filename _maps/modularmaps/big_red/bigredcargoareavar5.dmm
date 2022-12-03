@@ -348,7 +348,7 @@
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/nw)
 "yf" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "ym" = (
@@ -404,7 +404,6 @@
 "AC" = (
 /obj/machinery/light{
 	dir = 8;
-	icon_state = "tube1"
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
@@ -424,7 +423,6 @@
 "Cq" = (
 /obj/machinery/light{
 	dir = 1;
-	icon_state = "tube1"
 	},
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/plating,
@@ -489,7 +487,6 @@
 "Gb" = (
 /obj/machinery/light{
 	dir = 1;
-	icon_state = "tube1"
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
@@ -724,7 +721,7 @@
 /area/bigredv2/caves/rock)
 "UG" = (
 /obj/machinery/light,
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "UL" = (

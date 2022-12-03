@@ -237,12 +237,12 @@
 	fade = 12
 	grow = 0.04
 	velocity = list(0, 0)
-	position = generator("circle", 16, 16, NORMAL_RAND)
-	drift = generator("vector", list(0, -0.15), list(0, 0.15))
+	position = generator(GEN_CIRCLE, 16, 16, NORMAL_RAND)
+	drift = generator(GEN_VECTOR, list(0, -0.15), list(0, 0.15))
 	gravity = list(0, 0.8)
-	scale = generator("vector", list(0.1, 0.1), list(0.6,0.6), NORMAL_RAND)
+	scale = generator(GEN_VECTOR, list(0.1, 0.1), list(0.6,0.6), NORMAL_RAND)
 	rotation = 0
-	spin = generator("num", 10, 20)
+	spin = generator(GEN_NUM, 10, 20)
 
 /datum/status_effect/drone_enhancement
 	id = "drone enhancement"
@@ -324,7 +324,7 @@
 // ***************************************
 // *********** Rejuvenate
 // ***************************************
-/obj/screen/alert/status_effect/xeno_rejuvenate
+/atom/movable/screen/alert/status_effect/xeno_rejuvenate
 	name = "Rejuvenation"
 	desc = "Your health is being restored."
 	icon_state = "xeno_rejuvenate"
@@ -332,7 +332,7 @@
 /datum/status_effect/xeno_rejuvenate
 	id = "xeno_rejuvenate"
 	tick_interval = 2 SECONDS
-	alert_type = /obj/screen/alert/status_effect/xeno_rejuvenate
+	alert_type = /atom/movable/screen/alert/status_effect/xeno_rejuvenate
 	///Amount of damage taken before reduction kicks in
 	var/tick_damage_limit
 	///Amount of damage taken this tick
@@ -496,14 +496,14 @@
 // ***************************************
 // *********** Carnage
 // ***************************************
-/obj/screen/alert/status_effect/xeno_carnage
+/atom/movable/screen/alert/status_effect/xeno_carnage
 	name = "Carnage"
 	desc = "Your attacks restore health."
 	icon_state = "xeno_carnage"
 
 /datum/status_effect/xeno_carnage
 	id = "xeno_carnage"
-	alert_type = /obj/screen/alert/status_effect/xeno_carnage
+	alert_type = /atom/movable/screen/alert/status_effect/xeno_carnage
 	///Effects modifier based on plasma amount on status application
 	var/plasma_mod
 	///Plasma gain on attack
@@ -581,14 +581,14 @@
 // ***************************************
 // *********** Feast
 // ***************************************
-/obj/screen/alert/status_effect/xeno_feast
+/atom/movable/screen/alert/status_effect/xeno_feast
 	name = "Feast"
 	desc = "Your health is being restored at the cost of plasma."
 	icon_state = "xeno_feast"
 
 /datum/status_effect/xeno_feast
 	id = "xeno_feast"
-	alert_type = /obj/screen/alert/status_effect/xeno_feast
+	alert_type = /atom/movable/screen/alert/status_effect/xeno_feast
 	///Amount of plasma drained per tick, removes effect if available plasma is less
 	var/plasma_drain
 
@@ -596,7 +596,7 @@
 	owner = new_owner
 	duration = set_duration
 	src.plasma_drain = plasma_drain
-	owner.overlay_fullscreen("xeno_feast", /obj/screen/fullscreen/bloodlust)
+	owner.overlay_fullscreen("xeno_feast", /atom/movable/screen/fullscreen/bloodlust)
 	owner.add_filter("[id]2", 2, outline_filter(2, "#61132360"))
 	owner.add_filter("[id]1", 1, wave_filter(0.72, 0.24, 0.4, 0.5))
 	return ..()
@@ -622,7 +622,7 @@
 // ***************************************
 /datum/status_effect/plasma_surge
 	id = "plasma_surge"
-	alert_type = /obj/screen/alert/status_effect/plasma_surge
+	alert_type = /atom/movable/screen/alert/status_effect/plasma_surge
 	///How much plasma do we instantly restore
 	var/flat_amount_restored
 	///How much extra plasma should we regenerate over time as a % of our base regen, 1 being twice the regen
@@ -660,7 +660,7 @@
 	owner.remove_filter("plasma_surge_infusion_outline")
 	UnregisterSignal(owner, COMSIG_XENOMORPH_PLASMA_REGEN)
 
-/obj/screen/alert/status_effect/plasma_surge
+/atom/movable/screen/alert/status_effect/plasma_surge
 	name = "Plasma Surge"
 	desc = "You have accelerated plasma regeneration."
 	icon_state = "drunk" //Close enough
@@ -670,7 +670,7 @@
 // ***************************************
 /datum/status_effect/healing_infusion
 	id = "healing_infusion"
-	alert_type = /obj/screen/alert/status_effect/healing_infusion
+	alert_type = /atom/movable/screen/alert/status_effect/healing_infusion
 	//Buff ends whenever we run out of either health or sunder ticks, or time, whichever comes first
 	///Health recovery ticks
 	var/health_ticks_remaining
@@ -757,7 +757,7 @@
 
 	patient.adjust_sunder(-1.8 * (1 + patient.recovery_aura * 0.05)) //5% bonus per rank of our recovery aura
 
-/obj/screen/alert/status_effect/healing_infusion
+/atom/movable/screen/alert/status_effect/healing_infusion
 	name = "Healing Infusion"
 	desc = "You have accelerated natural healing."
 	icon_state = "healing_infusion"

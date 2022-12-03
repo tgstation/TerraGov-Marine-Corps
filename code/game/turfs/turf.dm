@@ -56,7 +56,6 @@
 	///Lazylist of movable atoms providing opacity sources.
 	var/list/atom/movable/opacity_sources
 
-
 /turf/Initialize(mapload)
 	SHOULD_CALL_PARENT(FALSE) // anti laggies
 	if(flags_atom & INITIALIZED)
@@ -321,6 +320,8 @@
 	else
 		for(var/dirn in GLOB.alldirs)
 			var/turf/D = get_step(W,dirn)
+			if(isnull(D))
+				continue
 			D.smooth_self()
 			D.smooth_neighbors()
 	return W
@@ -517,6 +518,9 @@
 /turf/proc/is_weedable()
 	return !density
 
+/turf/closed/wall/is_weedable()
+	return TRUE
+
 /turf/open/space/is_weedable()
 	return FALSE
 
@@ -643,7 +647,8 @@
 /turf/open/floor/prison/can_dig_xeno_tunnel()
 	return TRUE
 
-
+/turf/open/lavaland/basalt/can_dig_xeno_tunnel()
+	return TRUE
 
 
 

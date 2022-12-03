@@ -139,7 +139,8 @@
 //Since Xenos change names like they change shoes, we need somewhere to hammer in all those legos
 //We set their name first, then update their real_name AND their mind name
 /mob/living/carbon/xenomorph/proc/generate_name()
-	name = "[hive.prefix][xeno_caste.upgrade_name] [xeno_caste.display_name] ([nicknumber])"
+	var/prefix = (hive.prefix || xeno_caste.upgrade_name) ? "[hive.prefix][xeno_caste.upgrade_name] " : ""
+	name = prefix + "[xeno_caste.display_name] ([nicknumber])"
 
 	//Update linked data so they show up properly
 	real_name = name
@@ -347,7 +348,7 @@
 /mob/living/carbon/xenomorph/update_tracking(mob/living/carbon/xenomorph/X) //X is unused, but we keep that function so it can be called with marines one
 	if(!hud_used?.locate_leader)
 		return
-	var/obj/screen/LL_dir = hud_used.locate_leader
+	var/atom/movable/screen/LL_dir = hud_used.locate_leader
 	if(!tracked)
 		if(hive.living_xeno_ruler)
 			set_tracked(hive.living_xeno_ruler)
@@ -376,7 +377,7 @@
 	if(!hud_used?.locate_leader)
 		return
 
-	var/obj/screen/LL_dir = hud_used.locate_leader
+	var/atom/movable/screen/LL_dir = hud_used.locate_leader
 	LL_dir.icon_state = "trackoff"
 
 

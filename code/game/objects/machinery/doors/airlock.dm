@@ -97,7 +97,7 @@
 /obj/machinery/door/airlock/proc/handlePowerRestore()
 	var/cont = TRUE
 	while(cont)
-		sleep(10)
+		sleep(1 SECONDS)
 		if(QDELETED(src))
 			return
 		cont = FALSE
@@ -151,7 +151,7 @@
 		return 0	//Already shocked someone recently?
 	if(..())
 		hasShocked = 1
-		sleep(10)
+		sleep(1 SECONDS)
 		hasShocked = 0
 		return 1
 	else
@@ -546,7 +546,7 @@
 
 /obj/machinery/door/airlock/proc/electrified_loop()
 	while(secondsElectrified > MACHINE_NOT_ELECTRIFIED)
-		sleep(10)
+		sleep(1 SECONDS)
 		if(QDELETED(src))
 			return
 

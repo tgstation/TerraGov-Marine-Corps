@@ -64,7 +64,7 @@
 	},
 /area/bigredv2/outside/nw)
 "fA" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "fF" = (
@@ -245,7 +245,7 @@
 /area/bigredv2/outside/nw)
 "tb" = (
 /obj/machinery/light,
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "th" = (
@@ -277,7 +277,6 @@
 "tZ" = (
 /obj/machinery/light{
 	dir = 1;
-	icon_state = "tube1"
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
@@ -445,7 +444,6 @@
 "Dy" = (
 /obj/machinery/light{
 	dir = 8;
-	icon_state = "tube1"
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
@@ -543,7 +541,6 @@
 "Js" = (
 /obj/machinery/light{
 	dir = 1;
-	icon_state = "tube1"
 	},
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/plating,

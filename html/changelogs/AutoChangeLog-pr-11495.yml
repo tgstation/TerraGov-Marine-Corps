@@ -1,0 +1,4 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes:
+  - balance: "Mechs take the same damage from crusher charge as anchored objects."

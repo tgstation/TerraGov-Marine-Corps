@@ -3,7 +3,8 @@
  * SPDX-License-Identifier: MIT
  */
 
-html, body {
+html,
+body {
   padding: 0;
   margin: 0;
   height: 100%;
@@ -103,13 +104,13 @@ a.popt {
   color: #333;
 }
 
-.popup input[type=text]:hover,
-.popup input[type=text]:active,
-.popup input[type=text]:focus {
+.popup input[type='text']:hover,
+.popup input[type='text']:active,
+.popup input[type='text']:focus {
   border-color: green;
 }
 
-.popup input[type=submit] {
+.popup input[type='submit'] {
   padding: 5px 10px;
   background: #999;
   color: #ddd;
@@ -118,9 +119,9 @@ a.popt {
   font-weight: bold;
 }
 
-.popup input[type=submit]:hover,
-.popup input[type=submit]:focus,
-.popup input[type=submit]:active {
+.popup input[type='submit']:hover,
+.popup input[type='submit']:focus,
+.popup input[type='submit']:active {
   background: #aaa;
   cursor: pointer;
 }
@@ -145,7 +146,7 @@ a.popt {
   text-align: center;
 }
 
-.highlightPopup input[type=text] {
+.highlightPopup input[type='text'] {
   display: block;
   width: 215px;
   text-align: left;
@@ -153,17 +154,14 @@ a.popt {
 }
 
 .highlightPopup input.highlightColor {
-  background-color: #FFFF00;
+  background-color: #ffff00;
 }
 
 .highlightPopup input.highlightTermSubmit {
   margin-top: 5px;
 }
 
-
-
 /* ADMIN CONTEXT MENU */
-
 
 .contextMenu {
   background-color: #ddd;
@@ -183,10 +181,7 @@ a.popt {
   background-color: #ccc;
 }
 
-
-
 /* ADMIN FILTER MESSAGES MENU */
-
 
 .filterMessages {
   padding: 5px;
@@ -210,21 +205,13 @@ a.popt {
   margin-top: -2px;
 }
 
-
-
-
 /*****************************************
 *
 * OUTPUT ACTUALLY RELATED TO MESSAGES
 *
 ******************************************/
 
-
-
-
-
 /* MOTD */
-
 
 .motd {
   color: #638500;
@@ -257,7 +244,6 @@ a.popt {
 
 /* ADD HERE FOR BOLD */
 
-
 .bold,
 .name,
 .prefix,
@@ -270,31 +256,31 @@ a.popt {
   font-weight: bold;
 }
 
-
-
 /* ADD HERE FOR ITALIC */
-
 
 .italic,
 .italics {
   font-style: italic;
 }
 
-
-
 /* OUTPUT COLORS */
-
 
 .highlight {
   background: yellow;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: #0000ff;
   font-family: Georgia, Verdana, sans-serif;
 }
 
-h1.alert, h2.alert {
+h1.alert,
+h2.alert {
   color: #000000;
 }
 
@@ -306,12 +292,13 @@ em {
 .ooc {
   font-weight: bold;
 }
-.colorooc	{
+.colorooc {
   color: #002eb8;
   font-weight: bold;
 }
 
-.looc	{color: #6699CC;
+.looc {
+  color: #6699cc;
   font-weight: bold;
 }
 
@@ -323,11 +310,11 @@ em {
   color: #800080;
   font-weight: bold;
 }
-.headcoderooc	{
+.headcoderooc {
   color: #000064;
   font-weight: bold;
 }
-.headminooc	{
+.headminooc {
   color: #640000;
   font-weight: bold;
 }
@@ -336,10 +323,10 @@ em {
   font-weight: bold;
 }
 .senioradminooc {
-  color: #8C3141;
+  color: #8c3141;
   font-weight: bold;
 }
-.adminooc	{
+.adminooc {
   color: #b4001e;
   font-weight: bold;
 }
@@ -352,7 +339,7 @@ em {
   font-weight: bold;
 }
 .eventminooc {
-  color: #A58A63;
+  color: #a58a63;
   font-weight: bold;
 }
 .mentorooc {
@@ -360,18 +347,18 @@ em {
   font-weight: bold;
 }
 .maintainerooc {
-  color: #7760E6;
+  color: #7760e6;
   font-weight: bold;
 }
 .contributorooc {
   color: #0064ff;
   font-weight: bold;
 }
-.otherooc	{
+.otherooc {
   color: #643200;
   font-weight: bold;
 }
-.msay	{
+.msay {
   color: #775c40;
   font-weight: bold;
 }
@@ -380,7 +367,7 @@ em {
   font-weight: bold;
 }
 .headminmsay {
-  color: #402A14;
+  color: #402a14;
   font-weight: bold;
 }
 .adminsay {
@@ -392,12 +379,12 @@ em {
   color: #386aff;
   font-weight: bold;
 }
-.asay	{
-  color: #9611D4;
+.asay {
+  color: #9611d4;
   font-weight: bold;
 }
 .headminasay {
-  color: #5A0A7F;
+  color: #5a0a7f;
   font-weight: bold;
 }
 .boldannounce {
@@ -405,11 +392,11 @@ em {
   font-weight: bold;
 }
 
-.staffpmin	{
+.staffpmin {
   color: red;
   font-weight: bold;
 }
-.staffpmout	{
+.staffpmout {
   color: blue;
   font-weight: bold;
 }
@@ -421,7 +408,9 @@ em {
   font-weight: bold;
 }
 
-.say, .emote, .infoplain {
+.say,
+.emote,
+.infoplain {
 }
 
 .deadsay {
@@ -429,68 +418,68 @@ em {
 }
 
 .radio {
-  color: #4E4E4E;
+  color: #4e4e4e;
 }
 
-.deptradio{
+.deptradio {
   color: #993399;
 }
-.comradio{
+.comradio {
   color: #004080;
 }
-.syndradio{
-  color: #6D3F40;
+.syndradio {
+  color: #6d3f40;
 }
-.centradio{
-  color: #5C5C8A;
+.centradio {
+  color: #5c5c8a;
 }
-.airadio{
-  color: #FF00FF;
+.airadio {
+  color: #ff00ff;
 }
 
-.casradio{
-  color: #A30000;
+.casradio {
+  color: #a30000;
 }
-.engradio{
-  color: #A66300;
+.engradio {
+  color: #a66300;
 }
-.medradio{
+.medradio {
   color: #008160;
 }
-.sciradio{
+.sciradio {
   color: #993399;
 }
-.supradio{
-  color: #5F4519;
+.supradio {
+  color: #5f4519;
 }
 
-.alpharadio{
-  color: #EA0000;
+.alpharadio {
+  color: #ea0000;
 }
-.bravoradio{
-  color: #C68610;
+.bravoradio {
+  color: #c68610;
 }
-.charlieradio{
-  color: #AA55AA;
+.charlieradio {
+  color: #aa55aa;
 }
-.deltaradio{
-  color: #007FCF;
+.deltaradio {
+  color: #007fcf;
 }
 
-.zuluradio{
-  color: #FF6A00;
+.zuluradio {
+  color: #ff6a00;
 }
-.yankeeradio{
+.yankeeradio {
   color: #009999;
 }
-.xrayradio{
+.xrayradio {
   color: #008000;
 }
-.whiskeyradio{
-  color: #CC00CC;
+.whiskeyradio {
+  color: #cc00cc;
 }
 
-.binarysay{
+.binarysay {
   color: #20c20e;
   background-color: #000000;
   display: block;
@@ -498,7 +487,8 @@ em {
 .binarysay a {
   color: #00ff00;
 }
-.binarysay a:active, .binarysay a:visited {
+.binarysay a:active,
+.binarysay a:visited {
   color: #88ff88;
 }
 
@@ -506,127 +496,131 @@ em {
   font-weight: bold;
 }
 
-.alert{
+.alert {
   color: #ff0000;
 }
-h1.alert, h2.alert{
+h1.alert,
+h2.alert {
   color: #000000;
 }
 
-
-.attack{
+.attack {
   color: #ff0000;
 }
-.moderate{
-  color: #CC0000;
+.moderate {
+  color: #cc0000;
 }
-.disarm{
+.disarm {
   color: #990000;
 }
-.passive{
+.passive {
   color: #660000;
 }
 
-.scanner{
+.scanner {
   color: #ff0000;
 }
-.scannerb{
+.scannerb {
   color: #ff0000;
   font-weight: bold;
 }
-.scannerburn{
+.scannerburn {
   color: #ffa500;
 }
-.scannerburnb	{
+.scannerburnb {
   color: #ffa500;
   font-weight: bold;
 }
-.rose	{
+.rose {
   color: #ff5050;
 }
-.info{
-  color: #0000CC;
+.info {
+  color: #0000cc;
 }
-.debuginfo{
-  color: #493D26;
+.debuginfo {
+  color: #493d26;
   font-style: italic;
 }
-.notice{
+.notice {
   color: #000099;
 }
-.xenonotice{
+.xenonotice {
   color: #2a623d;
 }
-.boldnotice{
+.boldnotice {
   color: #000099;
   font-weight: bold;
 }
-.warning{
+.warning {
   color: #ff0000;
   font-style: italic;
 }
-.xenowarning{
+.xenowarning {
   color: #2a623d;
   font-style: italic;
 }
-.danger{
+.danger {
   color: #ff0000;
   font-weight: bold;
 }
-.userdanger{color: #ff0000;
-	font-weight: bold;
+.userdanger {
+  color: #ff0000;
+  font-weight: bold;
   font-size: 3em;
 }
-.xenodanger{
+.xenodanger {
   color: #2a623d;
   font-weight: bold;
 }
-.avoidharm{
-  color:	#72a0e5;
+.avoidharm {
+  color: #72a0e5;
   font-weight: bold;
 }
-.highdanger{
+.highdanger {
   color: #ff0000;
-  font-weight: bold; font-size: 1.5em;
+  font-weight: bold;
+  font-size: 1.5em;
 }
-.xenohighdanger{
+.xenohighdanger {
   color: #2a623d;
-  font-weight: bold; font-size: 1.5em;
+  font-weight: bold;
+  font-size: 1.5em;
 }
-.xenoannounce{
+.xenoannounce {
   color: #1a472a;
   font-family: book-antiqua;
   font-weight: bold;
   font-style: italic;
   font-size: 1.5em;
 }
-.hivemind{
+.hivemind {
   color: purple;
 }
-.xenoqueen{
+.xenoqueen {
   font-size: 1.4em;
 }
-.xenoshrike{
+.xenoshrike {
   font-size: 1.2em;
 }
-.xenohivemind{
+.xenohivemind {
   font-size: 1.2em;
 }
-.xenoleader{
+.xenoleader {
   font-size: 1.2em;
 }
-.ordercic{
-  font-weight: bold; font-size: 2em;
+.ordercic {
+  font-weight: bold;
+  font-size: 2em;
 }
 
-.alien{
+.alien {
   color: #543354;
 }
-.newscaster{
+.newscaster {
   color: #800000;
 }
 
-.role_header{
+.role_header {
   color: #db0000;
   display: block;
   text-align: center;
@@ -634,17 +628,17 @@ h1.alert, h2.alert{
   font-family: trebuchet-ms;
   font-size: 1.5em;
 }
-.role_body{
+.role_body {
   color: #000099;
   display: block;
   text-align: center;
 }
-.round_setup{
+.round_setup {
   color: #db0000;
   font-family: impact;
   font-size: 1.25em;
 }
-.round_header{
+.round_header {
   color: #db0000;
   display: block;
   text-align: center;
@@ -652,66 +646,68 @@ h1.alert, h2.alert{
   font-weight: bold;
   font-size: 2em;
 }
-.round_body{
+.round_body {
   color: #001427;
   display: block;
   text-align: center;
   font-family: trebuchet-ms;
-  font-weight: bold; font-size: 1.5em;
+  font-weight: bold;
+  font-size: 1.5em;
 }
-.event_announcement{
+.event_announcement {
   color: #600d48;
   font-family: arial-narrow;
   font-weight: bold;
   font-size: 1.5em;
 }
-.seasons_announce		{
-  color: #1ABC9C;
+.seasons_announce {
+  color: #1abc9c;
   font-size: 1em;
 }
-.season_additional_info	{
+.season_additional_info {
   color: #283747;
 }
 
-.centerbold{
+.centerbold {
   text-align: center;
   font-weight: bold;
 }
 
-.rough{
-  font-family: trebuchet-ms, cursive, sans-serif;}
-.say_quote{
+.rough {
+  font-family: trebuchet-ms, cursive, sans-serif;
+}
+.say_quote {
   font-family: Georgia, Verdana, sans-serif;
 }
-.command_headset{
+.command_headset {
   font-weight: bold;
   font-size: 18px;
 }
-.robot{
-  font-family: "Courier New", cursive, sans-serif;
+.robot {
+  font-family: 'Courier New', cursive, sans-serif;
 }
 
 .green {
   color: #29b245;
 }
 
-.nicegreen{
+.nicegreen {
   color: #14a833;
 }
 
 .red {
-  color: #FF0000;
+  color: #ff0000;
 }
 
 .blue {
-  color: #0000FF;
+  color: #0000ff;
 }
 
 .nicegreen {
   color: #14a833;
 }
 
-.shadowling{
+.shadowling {
   color: #3b2769;
 }
 .cult {
@@ -737,7 +733,7 @@ h1.alert, h2.alert{
 }
 
 .colossus {
-  color: #7F282A;
+  color: #7f282a;
   font-size: 310%;
 }
 
@@ -791,7 +787,7 @@ h1.alert, h2.alert{
 }
 
 .deconversion_message {
-  color: #5000A0;
+  color: #5000a0;
   font-size: 185%;
   font-style: italic;
 }
@@ -807,15 +803,15 @@ h1.alert, h2.alert{
 }
 
 .sans {
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
 }
 
 .papyrus {
-  font-family: "Papyrus", cursive, sans-serif;
+  font-family: 'Papyrus', cursive, sans-serif;
 }
 
 .robot {
-  font-family: "Courier New", cursive, sans-serif;
+  font-family: 'Courier New', cursive, sans-serif;
 }
 
 .command_headset {
@@ -840,30 +836,30 @@ h1.alert, h2.alert{
 }
 
 .greentext {
-  color: #00FF00;
+  color: #00ff00;
   font-size: 185%;
 }
 
 .redtext {
-  color: #FF0000;
+  color: #ff0000;
   font-size: 185%;
 }
 
 .clown {
-  color: #FF69Bf;
+  color: #ff69bf;
   font-size: 160%;
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
   font-weight: bold;
 }
 
 .singing {
-  font-family: "Trebuchet MS", cursive, sans-serif;
+  font-family: 'Trebuchet MS', cursive, sans-serif;
   font-style: italic;
 }
 
 .his_grace {
-  color: #15D512;
-  font-family: "Courier New", cursive, sans-serif;
+  color: #15d512;
+  font-family: 'Courier New', cursive, sans-serif;
   font-style: italic;
 }
 
@@ -937,14 +933,14 @@ h1.alert, h2.alert{
 }
 
 .mind_control {
-  color: #A00D6F;
+  color: #a00d6f;
   font-size: 100%;
   font-weight: bold;
   font-style: italic;
 }
 
 .slime {
-  color: #00CED1;
+  color: #00ced1;
 }
 
 .drone {
@@ -956,11 +952,11 @@ h1.alert, h2.alert{
 }
 
 .swarmer {
-  color: #2C75FF;
+  color: #2c75ff;
 }
 
 .resonate {
-  color: #298F85;
+  color: #298f85;
 }
 
 .monkeyhive {
@@ -988,10 +984,7 @@ h1.alert, h2.alert{
   font-weight: bold;
 }
 
-
-
 /* HELPER CLASSES */
-
 
 .text-normal {
   font-weight: normal;
@@ -1013,4 +1006,16 @@ h1.alert, h2.alert{
 
 .ml-3 {
   margin-left: 3em;
+}
+
+.examine_block {
+  background: #f2f7fa;
+  border: 1px solid #111a27;
+  margin: 0.5em;
+  padding: 0.5em 0.75em;
+}
+
+.tooltip {
+  font-style: italic;
+  border-bottom: 1px dashed #000;
 }

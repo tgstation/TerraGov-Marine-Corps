@@ -59,17 +59,7 @@
 	// TODO: attack_alien() overrides are a mess and need a lot of work to make them require parentcalling
 	RegisterSignal(owner, list(
 		COMSIG_XENOMORPH_GRAB,
-		COMSIG_XENOMORPH_ATTACK_BARRICADE,
-		COMSIG_XENOMORPH_ATTACK_CLOSET,
-		COMSIG_XENOMORPH_ATTACK_RAZORWIRE,
-		COMSIG_XENOMORPH_ATTACK_BED,
-		COMSIG_XENOMORPH_ATTACK_NEST,
-		COMSIG_XENOMORPH_ATTACK_TABLE,
-		COMSIG_XENOMORPH_ATTACK_RACK,
-		COMSIG_XENOMORPH_ATTACK_SENTRY,
-		COMSIG_XENOMORPH_ATTACK_M56_POST,
-		COMSIG_XENOMORPH_ATTACK_M56,
-		COMSIG_XENOMORPH_ATTACK_TANK,
+		COMSIG_XENOMORPH_ATTACK_OBJ,
 		COMSIG_XENOMORPH_THROW_HIT,
 		COMSIG_XENOMORPH_FIRE_BURNING,
 		COMSIG_LIVING_ADD_VENTCRAWL), .proc/cancel_stealth)
@@ -96,17 +86,7 @@
 		COMSIG_XENOMORPH_ATTACK_LIVING,
 		COMSIG_XENOMORPH_DISARM_HUMAN,
 		COMSIG_XENOMORPH_GRAB,
-		COMSIG_XENOMORPH_ATTACK_BARRICADE,
-		COMSIG_XENOMORPH_ATTACK_CLOSET,
-		COMSIG_XENOMORPH_ATTACK_RAZORWIRE,
-		COMSIG_XENOMORPH_ATTACK_BED,
-		COMSIG_XENOMORPH_ATTACK_NEST,
-		COMSIG_XENOMORPH_ATTACK_TABLE,
-		COMSIG_XENOMORPH_ATTACK_RACK,
-		COMSIG_XENOMORPH_ATTACK_SENTRY,
-		COMSIG_XENOMORPH_ATTACK_M56_POST,
-		COMSIG_XENOMORPH_ATTACK_M56,
-		COMSIG_XENOMORPH_ATTACK_TANK,
+		COMSIG_XENOMORPH_ATTACK_OBJ,
 		COMSIG_XENOMORPH_THROW_HIT,
 		COMSIG_XENOMORPH_FIRE_BURNING,
 		COMSIG_LIVING_ADD_VENTCRAWL,
@@ -395,7 +375,7 @@
 	to_chat(X, span_xenodanger("We sense our quarry <b>[mark.marked_target]</b> is currently located in <b>[AREACOORD_NO_Z(mark.marked_target)]</b> and is <b>[get_dist(X, mark.marked_target)]</b> tiles away. It is <b>[calculate_mark_health(mark.marked_target)]</b> and <b>[mark.marked_target.status_flags & XENO_HOST ? "impregnated" : "barren"]</b>."))
 	X.playsound_local(X, 'sound/effects/ghost2.ogg', 10, 0, 1)
 
-	var/obj/screen/arrow/hunter_mark_arrow/arrow_hud = new
+	var/atom/movable/screen/arrow/hunter_mark_arrow/arrow_hud = new
 	//Prepare the tracker object and set its parameters
 	arrow_hud.add_hud(X, mark.marked_target) //set the tracker parameters
 	arrow_hud.process() //Update immediately

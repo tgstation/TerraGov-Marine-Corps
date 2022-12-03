@@ -9,12 +9,12 @@
 	fade = 12
 	grow = 0.04
 	velocity = list(0, 0)
-	position = generator("circle", 15, 15, NORMAL_RAND)
-	drift = generator("vector", list(0, -0.15), list(0, 0.15))
+	position = generator(GEN_CIRCLE, 15, 15, NORMAL_RAND)
+	drift = generator(GEN_VECTOR, list(0, -0.15), list(0, 0.15))
 	gravity = list(0, 0.8)
-	scale = generator("vector", list(0.3, 0.3), list(0.9,0.9), NORMAL_RAND)
+	scale = generator(GEN_VECTOR, list(0.3, 0.3), list(0.9,0.9), NORMAL_RAND)
 	rotation = 0
-	spin = generator("num", 10, 20)
+	spin = generator(GEN_NUM, 10, 20)
 
 /particles/xeno_slash/neurotoxin
 	color = "#BF8F42"
@@ -39,12 +39,12 @@
 	fade = 12
 	grow = -0.01
 	velocity = list(0, 0)
-	position = generator("circle", 15, 17, NORMAL_RAND)
-	drift = generator("vector", list(0, -0.2), list(0, 0.2))
+	position = generator(GEN_CIRCLE, 15, 17, NORMAL_RAND)
+	drift = generator(GEN_VECTOR, list(0, -0.2), list(0, 0.2))
 	gravity = list(0, 0.95)
-	scale = generator("vector", list(0.3, 0.3), list(0.9,0.9), NORMAL_RAND)
+	scale = generator(GEN_VECTOR, list(0.3, 0.3), list(0.9,0.9), NORMAL_RAND)
 	rotation = 0
-	spin = generator("num", -20, 20)
+	spin = generator(GEN_NUM, -20, 20)
 
 /particles/xeno_smoke/neurotoxin
 	color = "#BF8F42"
@@ -186,7 +186,7 @@
 	X.balloon_alert(X, "Keep still...")
 
 	X.emitting_gas = TRUE //We gain bump movement immunity while we're emitting gas.
-	
+
 	X.icon_state = "Defiler Power Up"
 
 	if(!do_after(X, DEFILER_GAS_CHANNEL_TIME, TRUE, null, BUSY_ICON_HOSTILE))
@@ -200,7 +200,7 @@
 
 	add_cooldown()
 	succeed_activate()
-	
+
 	if(X.stagger) //If we got staggered, return
 		to_chat(X, span_xenowarning("We try to emit toxins but are staggered!"))
 		return fail_activate()

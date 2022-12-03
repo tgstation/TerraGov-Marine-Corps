@@ -1,0 +1,4 @@
+author: "psykzz"
+delete-after: True
+changes:
+  - bugfix: "maptable closes when observers move away."
