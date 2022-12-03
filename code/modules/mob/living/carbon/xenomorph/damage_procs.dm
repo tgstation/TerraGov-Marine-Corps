@@ -17,8 +17,9 @@
 	if(bomb_armor >= 100)
 		return //immune
 
-	var/bomb_slow_multiplier = modify_by_armor(0.7, BOMB)
-	var/bomb_sunder_multiplier = modify_by_armor(1, BOMB)
+	var/bomb_effective_armor = (bomb_armor/100)*get_sunder()
+	var/bomb_slow_multiplier = max(0, 1 - 3.5*bomb_effective_armor)
+	var/bomb_sunder_multiplier = max(0, 1 - bomb_effective_armor)
 
 	//lowered to account for new armor values but keep old gibs
 	//probs needs to be a define somewhere
@@ -41,7 +42,9 @@
 
 
 /mob/living/carbon/xenomorph/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration)
-	if(status_flags & (GODMODE) ||damagetype != (BRUTE||BURN))
+	if(status_flags & GODMODE)
+		return
+	if(damagetype != (BRUTE||BURN))
 		return
 	if(isnum(blocked))
 		damage -= clamp(damage * (blocked - penetration) * 0.01, 0, damage)

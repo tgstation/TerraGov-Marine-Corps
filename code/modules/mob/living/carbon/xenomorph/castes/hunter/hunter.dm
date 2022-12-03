@@ -9,8 +9,6 @@
 	plasma_stored = 50
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_ZERO
-	gib_anim = "Hunter Gibs"
-	gib_flick = "Hunter Gibbed"
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 	)
