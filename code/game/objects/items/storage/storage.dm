@@ -581,11 +581,11 @@
 		qdel(I)
 
 //finds a stored item to draw
-/obj/item/storage/do_quick_equip()
+/obj/item/storage/do_quick_equip(mob/user)
 	if(!length_char(contents))
 		return FALSE //we don't want to equip the storage item itself
-	var/obj/item/W = contents[length_char(contents)]
-	remove_from_storage(W, user = src)
+	var/obj/item/W = contents[length(contents)]
+	remove_from_storage(W, null, user)
 	return W
 
 /obj/item/storage/Initialize(mapload, ...)
