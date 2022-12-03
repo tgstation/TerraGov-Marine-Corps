@@ -54,9 +54,9 @@
 
 	if(isxeno(C))
 		var/mob/living/carbon/xenomorph/xeno = C
-		xeno.next_move_slowdown += xeno.snow_slowdown
+		xeno.next_move_slowdown += xeno.xeno_caste.snow_slowdown
 	else
-		C.next_move_slowdown + 1.75
+		C.next_move_slowdown += 1.75
 
 	if(C.on_fire)
 		C.ExtinguishMob()

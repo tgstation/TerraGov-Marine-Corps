@@ -84,8 +84,8 @@
 			C.next_move_slowdown += 0.5 * slayer
 			return ..()
 		var/mob/living/carbon/xenomorph/xeno = C
-		xeno.next_move_slowdown += xeno.snow_slowdown * slayer
-		if(X.is_charging >= CHARGE_ON) // chargers = snow plows
+		xeno.next_move_slowdown += xeno.xeno_caste.snow_slowdown * slayer
+		if(xeno.is_charging >= CHARGE_ON) // chargers = snow plows
 			slayer = 0
 			update_icon(1, 0)
 	return ..()

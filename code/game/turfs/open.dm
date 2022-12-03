@@ -119,25 +119,12 @@
 
 	if(isxeno(C))
 		var/mob/living/carbon/xenomorph/xeno = C
-		xeno.next_move_slowdown += xeno.snow_slowdown
+		xeno.next_move_slowdown += xeno.xeno_caste.snow_slowdown
 	else
-		C.next_move_slowdown + 1.75
+		C.next_move_slowdown += 1.75
 
 	if(C.on_fire)
 		C.ExtinguishMob()
-
-/turf/open/beach/water/proc/cleanup(mob/living/carbon/human/H)
-	if(H.back?.clean_blood())
-		H.update_inv_back()
-	if(H.wear_suit?.clean_blood())
-		H.update_inv_wear_suit()
-	if(H.w_uniform?.clean_blood())
-		H.update_inv_w_uniform()
-	if(H.gloves?.clean_blood())
-		H.update_inv_gloves()
-	if(H.shoes?.clean_blood())
-		H.update_inv_shoes()
-	H.clean_blood()
 
 /turf/open/beach/water2
 	name = "water"
