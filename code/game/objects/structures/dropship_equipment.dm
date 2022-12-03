@@ -4,7 +4,7 @@
 #define DROPSHIP_ELECTRONICS "dropship_electronics"
 #define DROPSHIP_FUEL_EQP "dropship_fuel_equipment"
 #define DROPSHIP_COMPUTER "dropship_computer"
-#define RAPPEL_REPAIR_TIME 5 MINUTES
+#define RAPPEL_REPAIR_TIME 10 MINUTES
 
 
 //the bases onto which you attach dropship equipments.
