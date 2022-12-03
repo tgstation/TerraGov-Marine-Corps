@@ -2021,10 +2021,6 @@
 /obj/structure/sign/poster,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
-"fI" = (
-/obj/structure/dropship_equipment/rappel_system,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
 "fJ" = (
 /obj/machinery/door/airlock/multi_tile/mainship/research,
 /turf/open/floor/mainship/silver/full,
@@ -25234,7 +25230,7 @@ mp
 aW
 VC
 Pu
-fI
+VC
 VC
 aW
 mp
