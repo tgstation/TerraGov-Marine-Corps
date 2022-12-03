@@ -1647,7 +1647,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 
 /datum/ammo/ags_shrapnel
-	name = "40mm fragmentation grenade"
+	name = "fragmentation grenade"
 	icon_state = "grenade_projectile"
 	hud_state = "grenade_frag"
 	hud_state_empty = "grenade_empty"
