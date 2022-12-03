@@ -183,8 +183,6 @@
 /obj/effect/xeno/shield/Initialize(loc, creator)
 	. = ..()
 	owner = creator
-	if(!owner)
-		return
 	dir = owner.dir
 	max_integrity = owner.xeno_caste.shield_strength
 	obj_integrity = max_integrity
@@ -199,13 +197,8 @@
 
 /obj/effect/xeno/shield/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	if(!(cardinal_move & REVERSE_DIR(dir)))
-		if(!uncrossing)
-			proj.uncross_scheduled += src
 		return FALSE
-	if(uncrossing)
-		return FALSE
-
-	return TRUE
+	return !uncrossing
 
 /obj/effect/xeno/shield/do_projectile_hit(obj/projectile/proj)
 	proj.flags_projectile_behavior |= PROJECTILE_FROZEN
@@ -324,11 +317,10 @@
 
 ///Checks if the owner is close enough/can see the target
 /datum/action/xeno_action/activable/psy_crush/proc/check_distance(atom/target, sight_needed)
-	var/dist = get_dist(owner, target)
-	if(dist > ability_range)
+	if(get_dist(owner, target) > ability_range)
 		owner.balloon_alert(owner, "Too far!")
 		return FALSE
-	else if(sight_needed && !line_of_sight(owner, target, 9))
+	if(sight_needed && !line_of_sight(owner, target, 9))
 		owner.balloon_alert(owner, "Out of sight!")
 		return FALSE
 	return TRUE
@@ -385,9 +377,9 @@
 	addtimer(CALLBACK(src, .proc/remove_all_filters), 1 SECONDS, TIMER_STOPPABLE)
 
 	for(var/turf/effected_turf AS in target_turfs)
-		for(var/i in effected_turf)
-			if(iscarbon(i))
-				var/mob/living/carbon/carbon_victim = i
+		for(var/victim in effected_turf)
+			if(iscarbon(victim))
+				var/mob/living/carbon/carbon_victim = victim
 				if(isxeno(carbon_victim) || carbon_victim.stat == DEAD)
 					continue
 				var/block = carbon_victim.get_soft_armor(BOMB)
@@ -395,8 +387,8 @@
 				carbon_victim.apply_damage(xeno_owner.xeno_caste.crush_strength * 1.5, STAMINA, blocked = block)
 				carbon_victim.adjust_stagger(5)
 				carbon_victim.add_slowdown(6)
-			else if(ismecha(i))
-				var/obj/vehicle/sealed/mecha/mecha_victim = i
+			else if(ismecha(victim))
+				var/obj/vehicle/sealed/mecha/mecha_victim = victim
 				mecha_victim.take_damage(xeno_owner.xeno_caste.crush_strength * 5, BOMB)
 	stop_crush()
 
