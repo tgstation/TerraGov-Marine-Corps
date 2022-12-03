@@ -1052,7 +1052,7 @@
 	if(origin.retracting) //We're already retracting a rope!
 		return
 
-	if(origin.disabled || target_turf.density || target_area.ceiling >= CEILING_DEEP_UNDERGROUND)
+	if(origin.disabled || origin.cord_damaged || target_turf.density || target_area.ceiling >= CEILING_DEEP_UNDERGROUND)
 		playsound(origin, 'sound/machines/buzz-two.ogg', 25)
 		return
 	if(origin.hooked)
@@ -1088,10 +1088,12 @@
 	density = FALSE
 	///The rappeling rope we use
 	var/obj/effect/rappel_rope/tadpole/rope
-	///Whether marines can use the rope or not (i.e, if the rope)
+	///Whether marines can use the rope or not (i.e, if the rope is deployed)
 	var/unlocked = FALSE
 	///Whether xenos have temporarily disabled the system or not
 	var/disabled = FALSE
+	///Whether the system's cord needs replacing or not
+	var/cord_damaged = FALSE
 	///Smoke particle holder for when it's disabled
 	var/obj/effect/abstract/particle_holder/disabled_smoke
 	///Whether the system is currently retracting a rope or not
@@ -1110,10 +1112,23 @@
 	. = ..()
 	QDEL_NULL(rope)
 
+
+/obj/structure/dropship_equipment/rappel_system/examine(mob/user)
+	. = ..()
+	if(disabled)
+		. += "It's smoking. It'll take some time for its self-repair function to kick in."
+	if(cord_damaged)
+		. += "The rappel's cord is completely broken and needs replacing."
+
+
 ///Human interaction with the rappel system; this is how people rappel down
 /obj/structure/dropship_equipment/rappel_system/attack_hand(mob/living/carbon/human/user)
 	if(disabled)
 		balloon_alert(user, "The system is disabled!")
+		return
+
+	if(cord_damaged)
+		balloon_alert(user, "The cord needs replacing!")
 		return
 
 	if(!is_reserved_level(z))
@@ -1130,12 +1145,12 @@
 
 	var/turf/target_turf = get_turf(rope)
 	if(target_turf.density)
-		balloon_alert(src, "You can't rappel into a wall!")
+		balloon_alert(user, "You can't rappel into a wall!")
 		return
 
 	var/area/target_area = get_area(target_turf)
 	if(target_area.ceiling >= CEILING_DEEP_UNDERGROUND)
-		balloon_alert(src, "The rappel is too deep underground!")
+		balloon_alert(user, "The rappel is too deep underground!")
 		return
 
 	rope.icon_state = "rope_rappeling"
@@ -1147,7 +1162,7 @@
 	user.client.perspective = EYE_PERSPECTIVE
 	user.client.eye = target_turf
 
-	if(do_after(user, 5 SECONDS, TRUE, target_turf, BUSY_ICON_GENERIC) && !user.lying_angle && !user.anchored && unlocked && !disabled)
+	if(do_after(user, 5 SECONDS, TRUE, target_turf, BUSY_ICON_GENERIC) && !user.lying_angle && !user.anchored && unlocked && !disabled && !cord_damaged)
 		playsound(target_turf, 'sound/effects/rappel.ogg', 50, TRUE)
 		playsound(src, 'sound/effects/rappel.ogg', 50, TRUE)
 		user.forceMove(target_turf)
@@ -1160,6 +1175,22 @@
 	user.client.perspective = MOB_PERSPECTIVE
 	user.client.eye = user
 
+/obj/structure/dropship_equipment/rappel_system/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/spare_cord))
+		if(!cord_damaged)
+			balloon_alert(user, "The cord isn't damaged.")
+			return
+		balloon_alert(user, "You start replacing the rappel cord...")
+		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+			return
+		cord_damaged = FALSE
+		icon_state = "rappel_hatch_locked"
+		balloon_alert(user, "You replace the rappel cord.")
+		QDEL_NULL(I)
+
+	//TODO: make this call attack_hand if they're human - and for ghosts
 
 ///Human animation for dropping down
 /obj/structure/dropship_equipment/rappel_system/proc/rappel_animation(mob/living/carbon/human/user)
@@ -1176,7 +1207,7 @@
 
 ///Deploys the rappel and unlocks the hatch so that people can drop down
 /obj/structure/dropship_equipment/rappel_system/proc/deploy_rope(turf/target)
-	if(!rope || disabled || unlocked || hooked)
+	if(!rope || disabled || cord_damaged || unlocked || hooked)
 		return
 
 	rope.forceMove(target)
@@ -1307,15 +1338,23 @@
 	addtimer(CALLBACK(src, .proc/self_repair), RAPPEL_REPAIR_TIME)
 
 	parent_system.disabled = TRUE
+	parent_system.cord_damaged = TRUE
 	parent_system.hooked = FALSE //Snapping the rope un-hooks it and reels it back into the system
 	parent_system.retracting = TRUE
 	parent_system.retract_rope()
 
 
-///Disabled rappels repair themselves after a while
+///Disabled rappels repair themselves after a while. The cord still needs replacing, though!
 /obj/effect/rappel_rope/tadpole/proc/self_repair()
 	parent_system.disabled = FALSE
 	QDEL_NULL(parent_system.disabled_smoke)
 	parent_system.balloon_alert_to_viewers("[parent_system] pings happily as it finishes its self-repair cycle.")
 	playsound(parent_system, 'sound/machines/ping.ogg', 50, FALSE)
-	parent_system.icon_state = "rappel_hatch_locked"
+
+//Replacement rappel cord, necessary to fully repair a damaged rappel system. You get one for free, and then you have to buy extra from requisitions - or get an entirely new module from the dropship fab.
+/obj/item/spare_cord
+	name = "Surplus rappel system cord box"
+	desc = "A box full of expensive, plasteel-infused spare rappel cord for a rappel system. Click on a rappel system to replace any damaged cord, making the system functional again."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "cordbox"
+	w_class = WEIGHT_CLASS_BULKY

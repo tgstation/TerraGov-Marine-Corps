@@ -125,6 +125,12 @@ OPERATIONS
 	containertype = /obj/structure/closet/crate/secure/explosives
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/weapons/specdemo
+	name = "Spare rappel system cord"
+	contains = list()
+	cost = 30
+	available_against_xeno_only = TRUE
+
 /datum/supply_packs/operations/cas_voucher
 	name = "150 dropship fabricator points"
 	contains = list(/obj/item/dropship_points_voucher)
