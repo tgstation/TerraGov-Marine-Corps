@@ -622,10 +622,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	return FALSE
 
-///Signal handler to tell the projectile to move again
+///Tells the projectile to move again
 /obj/projectile/proc/resume_move(datum/source)
 	SIGNAL_HANDLER
-	UnregisterSignal(source, COMSIG_TURF_RESUME_PROJECTILE_MOVE)
+	if(source)
+		UnregisterSignal(source, COMSIG_TURF_RESUME_PROJECTILE_MOVE)
 	START_PROCESSING(SSprojectiles, src)
 
 

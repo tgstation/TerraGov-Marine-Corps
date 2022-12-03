@@ -218,11 +218,7 @@
 /obj/effect/xeno/shield/proc/release_projectiles()
 	for(var/obj/projectile/proj AS in frozen_projectiles)
 		proj.flags_projectile_behavior &= ~PROJECTILE_FROZEN
-		if(istype(proj, /obj/projectile/hitscan))
-			proj.projectile_batch_move(FALSE)
-			qdel(proj)
-		else
-			START_PROCESSING(SSprojectiles, proj)
+		proj.resume_move()
 
 ///Reflects projectiles based on their relative incoming angle
 /obj/effect/xeno/shield/proc/reflect_projectiles()
