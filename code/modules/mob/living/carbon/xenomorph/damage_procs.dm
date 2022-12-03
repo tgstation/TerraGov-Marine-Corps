@@ -4,9 +4,9 @@
 	return ..()
 
 /mob/living/carbon/xenomorph/modify_by_armor(damage_amount, armor_type, penetration, def_zone)
-	var/hard_armor_modifier = get_hard_armor(armor_type, def_zone) * get_sunder()
+	var/hard_armor_modifier = get_hard_armor(armor_type, def_zone)
 	hard_armor_modifier = hard_armor_modifier - (hard_armor_modifier * penetration * 0.01)
-	var/soft_armor_modifier = min((1 - ((get_soft_armor(armor_type, def_zone) - penetration) * get_sunder() * 0.01)), 1)
+	var/soft_armor_modifier = min((1 - ((get_soft_armor(armor_type, def_zone) - penetration) * 0.01)), 1)
 	return clamp(((damage_amount - hard_armor_modifier) * soft_armor_modifier), 0, damage_amount)
 
 /mob/living/carbon/xenomorph/ex_act(severity)
@@ -41,7 +41,7 @@
 
 
 /mob/living/carbon/xenomorph/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration)
-	if(status_flags & (GODMODE) ||damagetype != (BRUTE|BURN)) //can probs stick the damtype before a call parent and remove a bunch of this
+	if(status_flags & (GODMODE) ||damagetype != (BRUTE||BURN))
 		return
 	if(isnum(blocked))
 		damage -= clamp(damage * (blocked - penetration) * 0.01, 0, damage)
