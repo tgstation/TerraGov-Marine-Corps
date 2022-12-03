@@ -2,7 +2,7 @@
  * Base class for all random spawners.
  */
 /obj/effect/spawner/random
-	icon = 'icons/effects/random_spawners.dmi'
+	icon = 'icons/effects/landmarks_static.dmi'
 	icon_state = "loot"
 	layer = OBJ_LAYER
 	/// Stops persistent lootdrop spawns from being shoved into lockers

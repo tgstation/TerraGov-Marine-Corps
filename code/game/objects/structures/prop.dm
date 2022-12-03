@@ -1418,6 +1418,20 @@
 	QDEL_NULL(chatter_loop)
 	return ..()
 
+/obj/structure/prop/mainship/railing
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "railing"
+
+/obj/structure/prop/mainship/railing/corner
+	icon_state = "railing_corner"
+
+/obj/structure/prop/mainship/solar
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "sp_base"
+
+/obj/structure/prop/mainship/solar/tracker
+	icon_state = "tracker_base"
+
 /obj/structure/prop/vehicle/som_mech
 	name = "Marauder assault mech"
 	desc = "A heavily armed mech used by the SOM to spearhead an assault, this one seems to be non-functional."
@@ -1545,7 +1559,7 @@
 	icon_state = "syndi"
 
 /obj/structure/prop/tgbrokenvendor/ntdonk
-	icon_state = "ntdonk"
+	icon_state = "nt-donk"
 
 /obj/structure/prop/tgbrokenvendor/games
 	icon_state = "games"
@@ -1587,7 +1601,7 @@
 	icon_state = "atmosdrobe"
 
 /obj/structure/prop/tgbrokenvendor/hydrodrobe
-	icon_state = "hydrodrobe"
+	icon_state = "hydrobe"
 
 /obj/structure/prop/tgbrokenvendor/cargodrobe
 	icon_state = "cargodrobe"
