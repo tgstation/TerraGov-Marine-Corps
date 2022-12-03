@@ -1078,7 +1078,7 @@
 /obj/structure/dropship_equipment/rappel_system
 	equip_category = DROPSHIP_CREW_WEAPON
 	name = "rappel deployment system"
-	desc = "A system that deploys rappel ropes to go up or down fast, without the need for the tadpole to land. You need to designate the rappel point at the navigation computer."
+	desc = "A system that deploys rappel ropes to go up or down fast, without the need for the Tadpole to land. You need to designate the rappel point at the navigation computer."
 	dropship_equipment_flags = IS_INTERACTABLE
 	icon_state = "rappel_hatch_locked"
 	point_cost = 100
