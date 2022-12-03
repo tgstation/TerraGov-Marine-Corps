@@ -430,7 +430,7 @@
 	apply_damage(damage, BURN, null, ACID, updating_health = TRUE)
 
 /mob/living/carbon/human/apply_acid_spray_damage(damage)
-	take_overall_damage_armored(damage, BURN, ACID, updating_health = TRUE)
+	take_overall_damage(damage, BURN, ACID, updating_health = TRUE)
 	emote("scream")
 	Paralyze(20)
 

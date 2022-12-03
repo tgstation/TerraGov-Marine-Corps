@@ -611,7 +611,7 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 			span_danger("You avoid [user]'s bite!"), span_hear("You hear jaws snapping shut!"))
 		to_chat(user, span_danger("Your bite misses [victim]!"))
 		return TRUE
-	victim.take_overall_damage(rand(10, 20), updating_health = TRUE)
+	victim.apply_damage(rand(10, 20), BRUTE, "chest", updating_health = TRUE)
 	victim.visible_message(span_danger("[name] bites [victim]!"),
 		span_userdanger("[name] bites you!"), span_hear("You hear a chomp!"))
 	to_chat(user, span_danger("You bite [victim]!"))
