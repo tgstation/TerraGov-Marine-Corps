@@ -111,6 +111,7 @@
 	var/current_variant
 	///Uniform type that is allowed to be worn with this.
 	var/allowed_uniform_type = /obj/item/clothing/under/marine
+	var/xmashat_color
 
 /obj/item/clothing/suit/modular/Initialize()
 	. = ..()
@@ -455,6 +456,16 @@
 		to_chat(user, span_warning("\the [paint] is out of color!"))
 		return
 
+	var/xmashat = tgui_input_list(user, "Do you want a xmas hat?", "Pick Xmas hat color", list("None", "Red", "Green"))
+
+	switch(xmashat)
+		if("None")
+			xmashat_color = null
+		if("Red")
+			xmashat_color = "xmasred"
+		if("Green")
+			xmashat_color = "xmasgreen"
+
 	if(!greyscale_config && length(icon_state_variants))
 		paint.uses--
 		var/variant = tgui_input_list(user, "Choose a color.", "Color", icon_state_variants)
@@ -519,6 +530,8 @@
 
 /obj/item/clothing/head/modular/apply_custom(mutable_appearance/standing)
 	. = ..()
+	if(xmashat_color)
+		standing.overlays += mutable_appearance('icons/mob/modular/modular_armor.dmi', icon_state = "[xmashat_color]")
 	if(attachments_by_slot[ATTACHMENT_SLOT_STORAGE] && istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
 		var/obj/item/armor_module/storage/storage_module = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
 		if(storage_module.show_storage)
