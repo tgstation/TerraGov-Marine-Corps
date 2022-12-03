@@ -222,6 +222,10 @@
 	var/vent_exit_speed = XENO_DEFAULT_VENT_EXIT_TIME
 	///Whether the caste enters and crawls through vents silently
 	var/silent_vent_crawl = FALSE
+	///how much water slows down this caste
+	var/water_slowdown = 1.3
+	///how much snow slows down this caste
+	var/snow_slowdown = 0.25
 
 ///Add needed component to the xeno
 /datum/xeno_caste/proc/on_caste_applied(mob/xenomorph)

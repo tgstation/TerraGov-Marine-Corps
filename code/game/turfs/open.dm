@@ -112,29 +112,19 @@
 
 /turf/open/beach/water/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
-	if(has_catwalk)
+	if(has_catwalk || !iscarbon(arrived))
 		return
-	if(iscarbon(arrived))
-		var/mob/living/carbon/C = arrived
-		var/beachwater_slowdown = 1.75
+	var/mob/living/carbon/C = arrived
+	C.clean_mob()
 
-		if(ishuman(C))
-			var/mob/living/carbon/human/H = arrived
-			cleanup(H)
+	if(isxeno(C))
+		var/mob/living/carbon/xenomorph/xeno = C
+		xeno.next_move_slowdown += xeno.snow_slowdown
+	else
+		C.next_move_slowdown + 1.75
 
-		else if(isxeno(C))
-			if(isxenoboiler(C))
-				beachwater_slowdown = -0.5
-			else if(isxenowarlock(C))
-				beachwater_slowdown = 0 //they float over the water
-			else
-				beachwater_slowdown = 1.3
-
-		if(C.on_fire)
-			C.ExtinguishMob()
-
-		C.next_move_slowdown += beachwater_slowdown
-
+	if(C.on_fire)
+		C.ExtinguishMob()
 
 /turf/open/beach/water/proc/cleanup(mob/living/carbon/human/H)
 	if(H.back?.clean_blood())

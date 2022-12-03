@@ -30,6 +30,9 @@
 		/datum/action/xeno_action/activable/transfer_plasma/drone,
 	)
 
+	water_slowdown = 0
+	snow_slowdown = 0
+
 /datum/xeno_caste/warlock/young
 	upgrade_name = "Young"
 	upgrade = XENO_UPGRADE_ZERO
