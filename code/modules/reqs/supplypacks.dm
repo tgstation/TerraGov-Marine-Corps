@@ -195,12 +195,12 @@ WEAPONS
 	cost = 70
 
 /datum/supply_packs/weapons/ags_highexplo
-	name = "AGLS-37 AGL high explosive grenades"
+	name = "AGLS-37 AGL High Explosive Grenades"
 	contains = list(/obj/item/ammo_magazine/standard_agls)
 	cost = 4
 
 /datum/supply_packs/weapons/ags_frag
-	name = "AGLS-37 AGL fragmentation grenades"
+	name = "AGLS-37 AGL Fragmentation Grenades"
 	contains = list(/obj/item/ammo_magazine/standard_agls/fragmentation)
 	cost = 4
 

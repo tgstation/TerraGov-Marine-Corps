@@ -3381,7 +3381,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "smoke_shell"
 
 /datum/ammo/grenade_container/ags_grenade
-	name = "40mm grenade shell"
+	name = "grenade shell"
 	icon_state = "grenade_projectile"
 	hud_state = "grenade_he"
 	hud_state_empty = "grenade_empty"
