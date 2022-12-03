@@ -1049,7 +1049,7 @@
 	var/turf/target_turf = get_turf(remote_eye)
 	var/area/target_area = get_area(target_turf)
 
-	if(retracting) //We're already retracting a rope!
+	if(origin.retracting) //We're already retracting a rope!
 		return
 
 	if(origin.disabled || target_turf.density || target_area.ceiling >= CEILING_DEEP_UNDERGROUND)
