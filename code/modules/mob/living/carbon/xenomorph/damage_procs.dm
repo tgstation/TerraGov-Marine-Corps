@@ -52,14 +52,7 @@
 		return 0
 
 	if(damage > 12) //Light damage won't splash.
-		var/chancemod = 0
-		if(sharp)
-			chancemod += 10
-		if(edge) //Pierce weapons give the most bonus
-			chancemod += 12
-		if(def_zone != "chest") //Which it generally will be, vs xenos
-			chancemod += 5
-		check_blood_splash(damage, damagetype, chancemod)
+		check_blood_splash(damage, damagetype, 0, 1, sharp, edge)
 
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_TAKING_DAMAGE, damage)
 
@@ -137,12 +130,16 @@
 
 #undef HANDLE_OVERHEAL
 
-/mob/living/carbon/xenomorph/proc/check_blood_splash(damage = 0, damtype = BRUTE, chancemod = 0, radius = 1)
+/mob/living/carbon/xenomorph/proc/check_blood_splash(damage = 0, damtype = BRUTE, chancemod = 0, radius = 1, sharp = FALSE, edge = FALSE)
 	if(!damage)
 		return FALSE
-	var/chance = 20 //base chance
+	var/chance = 25 //base chance
 	if(damtype == BRUTE)
 		chance += 5
+	if(sharp)
+		chancemod += 10
+	if(edge) //Pierce weapons give the most bonus
+		chancemod += 12
 	chance += chancemod + (damage * 0.33)
 	var/turf/T = loc
 	if(!T || !istype(T))
