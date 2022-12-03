@@ -1362,7 +1362,7 @@
 
 //Replacement rappel cord, necessary to fully repair a damaged rappel system. You get one for free, and then you have to buy extra from requisitions - or get an entirely new module from the dropship fab.
 /obj/item/spare_cord
-	name = "Surplus rappel system cord box"
+	name = "Replacement rappel cord box"
 	desc = "A box full of expensive, plasteel-infused spare rappel cord for a rappel system. Click on a rappel system to replace any damaged cord, making the system functional again."
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "cordbox"
