@@ -143,15 +143,6 @@
 		/obj/item/flashlight,
 	)
 
-/obj/effect/spawner/random/structure/grille
-	name = "grille spawner"
-	icon_state = "grille"
-	spawn_loot_chance = 90
-	loot = list( // 80% chance normal grille, 10% chance of broken, 10% chance of nothing
-		/obj/structure/grille = 8,
-		/obj/structure/grille/broken = 1,
-	)
-
 /obj/effect/spawner/random/technology_scanner
 	name = "Random Scanner"
 	icon = 'icons/obj/items/items.dmi'
@@ -850,3 +841,127 @@
 
 /obj/effect/spawner/random/plushie/nospawnninetynine
 	spawn_loot_chance = 1
+
+/obj/effect/spawner/random/plant
+	name = "Random potted plant spawner"
+	icon_state = "random_plant"
+	loot = list(
+		/obj/structure/flora/pottedplant,
+		/obj/structure/flora/pottedplant/one,
+		/obj/structure/flora/pottedplant/two,
+		/obj/structure/flora/pottedplant/three,
+		/obj/structure/flora/pottedplant/four,
+		/obj/structure/flora/pottedplant/five,
+		/obj/structure/flora/pottedplant/six,
+		/obj/structure/flora/pottedplant/seven,
+		/obj/structure/flora/pottedplant/eight,
+		/obj/structure/flora/pottedplant/ten,
+		/obj/structure/flora/pottedplant/eleven,
+		/obj/structure/flora/pottedplant/twelve,
+		/obj/structure/flora/pottedplant/thirteen,
+		/obj/structure/flora/pottedplant/fourteen,
+		/obj/structure/flora/pottedplant/fifteen,
+		/obj/structure/flora/pottedplant/sixteen,
+		/obj/structure/flora/pottedplant/seventeen,
+		/obj/structure/flora/pottedplant/eighteen,
+		/obj/structure/flora/pottedplant/twenty,
+		/obj/structure/flora/pottedplant/twentyone,
+		/obj/structure/flora/pottedplant/twentytwo,
+		/obj/structure/flora/pottedplant/twentythree,
+		/obj/structure/flora/pottedplant/twentyfour,
+		/obj/structure/flora/pottedplant/twentyfive,
+		/obj/structure/flora/pottedplant/twentysix,
+	)
+
+///STRUCTURE SPAWNERS BELOW THIS LINE
+
+/obj/effect/spawner/random/structure/grille
+	name = "grille spawner"
+	icon_state = "random_grille"
+	spawn_loot_chance = 90
+	loot = list( // 80% chance normal grille, 10% chance of broken, 10% chance of nothing
+		/obj/structure/grille = 8,
+		/obj/structure/grille/broken = 1,
+	)
+
+/obj/effect/spawner/random/structure/closet
+	name = "closet spawner"
+	icon_state = "random_closet"
+	spawn_loot_chance = 80
+	loot = list(
+		/obj/structure/closet/emcloset,
+		/obj/structure/closet/emcloset/legacy,
+		/obj/structure/closet/firecloset,
+		/obj/structure/closet/firecloset/full,
+		/obj/structure/closet/gimmick/russian,
+		/obj/structure/closet/gmcloset,
+		/obj/structure/closet/jcloset,
+		/obj/structure/closet/l3closet,
+		/obj/structure/closet/l3closet/general,
+		/obj/structure/closet/l3closet/janitor,
+		/obj/structure/closet/l3closet/scientist,
+		/obj/structure/closet/l3closet/security,
+		/obj/structure/closet/l3closet/virology,
+		/obj/structure/closet/lasertag,
+		/obj/structure/closet/lasertag/blue,
+		/obj/structure/closet/lasertag/red,
+		/obj/structure/closet/lasertag,
+		/obj/structure/closet/malf,
+		/obj/structure/closet/malf/suits,
+		/obj/structure/closet/masks,
+		/obj/structure/closet/open,
+		/obj/structure/closet/radiation,
+	)
+
+/obj/effect/spawner/random/structure/securecloset
+	name = "secure closet spawner"
+	icon_state = "random_closet"
+	spawn_loot_chance = 75
+	loot = list(
+		/obj/structure/closet/secure_closet,
+		/obj/structure/closet/emcloset/legacy,
+		/obj/structure/closet/firecloset,
+		/obj/structure/closet/firecloset/full,
+		/obj/structure/closet/gimmick/russian,
+		/obj/structure/closet/gmcloset,
+		/obj/structure/closet/jcloset,
+		/obj/structure/closet/l3closet,
+		/obj/structure/closet/l3closet/general,
+		/obj/structure/closet/l3closet/janitor,
+		/obj/structure/closet/l3closet/scientist,
+		/obj/structure/closet/l3closet/security,
+		/obj/structure/closet/l3closet/virology,
+		/obj/structure/closet/lasertag,
+		/obj/structure/closet/lasertag/blue,
+		/obj/structure/closet/lasertag/red,
+		/obj/structure/closet/lasertag,
+		/obj/structure/closet/malf,
+		/obj/structure/closet/malf/suits,
+		/obj/structure/closet/masks,
+		/obj/structure/closet/open,
+		/obj/structure/closet/radiation,
+	)
+
+/obj/effect/spawner/random/structure/piano/random_piano
+	name = "random piano spawner"
+	icon_state = "random_piano"
+	loot = list(
+		/obj/structure/device/broken_piano,
+		/obj/structure/device/piano/full,
+	)
+
+/obj/effect/spawner/random/structure/piano/random_tank_holder
+	name = "random tankholder spawner"
+	icon_state = "random_tank_holder"
+	loot = list(
+		/obj/structure/tankholder,
+		/obj/structure/tankholder/oxygen,
+		/obj/structure/tankholder/oxygentwo,
+		/obj/structure/tankholder/oxygenthree,
+		/obj/structure/tankholder/generic,
+		/obj/structure/tankholder/extinguisher,
+		/obj/structure/tankholder/foamextinguisher,
+		/obj/structure/tankholder/anesthetic,
+		/obj/structure/tankholder/emergencyoxygen,
+		/obj/structure/tankholder/emergencyoxygentwo,
+	)

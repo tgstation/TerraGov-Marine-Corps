@@ -391,6 +391,37 @@
 /obj/structure/prop/mainship/cannon_cables/ex_act()
 	return
 
+/obj/structure/prop/mainship/research
+	icon = 'icons/obj/machines/research.dmi'
+
+/obj/structure/prop/mainship/research/circuit_imprinter
+	name = "Circuit Imprinter"
+	icon_state = "circuit_imprinter"
+
+/obj/structure/prop/mainship/research/mechafab
+	icon_state = "mechfab1"
+	name = "Exosuit Fabricator"
+	desc = "Nothing is being built."
+
+/obj/structure/prop/mainship/research/destructive_analyzer
+	name = "Destructive Analyzer"
+	icon_state = "d_analyzer"
+
+/obj/structure/prop/mainship/research/tdoppler
+	name = "tachyon-doppler array"
+	desc = "A highly precise directional sensor array which measures the release of quants from decaying tachyons. The doppler shifting of the mirror-image formed by these quants can reveal the size, location and temporal affects of energetic disturbances within a large radius ahead of the array.\n"
+	icon_state = "tdoppler"
+
+/obj/structure/prop/mainship/research/explosivecompressor
+	name = "anomaly refinery"
+	desc = "An advanced machine capable of implosion-compressing raw anomaly cores into finished artifacts. Also equipped with state of the art bomb prediction software."
+	icon_state = "explosive_compressor"
+
+/obj/structure/prop/mainship/research/tankcompressor
+	name = "Tank Compressor"
+	desc = "Heavy duty shielded air compressor designed to pressurize tanks above the safe limit."
+	icon_state = "tank_compressor-open"
+
 /obj/structure/prop/mainship/cannon_cable_connector
 	name = "\improper Cannon cable connector"
 	desc = "A connector for the large cannon cables."

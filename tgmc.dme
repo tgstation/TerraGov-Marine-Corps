@@ -1680,8 +1680,6 @@
 #include "code\modules\reqs\supplypacks.dm"
 #include "code\modules\requisitions\fulton.dm"
 #include "code\modules\requisitions\supply_export.dm"
-#include "code\modules\research\circuitprinter.dm"
-#include "code\modules\research\destructive_analyzer.dm"
 #include "code\modules\research\protolathe.dm"
 #include "code\modules\research\rdconsole.dm"
 #include "code\modules\research\rdmachines.dm"
