@@ -842,11 +842,11 @@
 		return ..()
 
 //Will only draw the specific holstered item, not ammo etc.
-/obj/item/storage/belt/gun/do_quick_equip()
+/obj/item/storage/belt/gun/do_quick_equip(mob/user)
 	if(!current_gun)
 		return FALSE
 	var/obj/item/W = current_gun
-	remove_from_storage(W, user = src)
+	remove_from_storage(W, null, user)
 	return W
 
 /obj/item/storage/belt/gun/proc/update_gun_icon() //We do not want to use regular update_icon as it's called for every item inserted. Not worth the icon math.
