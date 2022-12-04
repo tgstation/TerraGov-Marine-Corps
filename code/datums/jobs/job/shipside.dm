@@ -375,8 +375,8 @@ Though you are a warrant officer, your authority is limited to the dropship and 
 	job_points_needed = 40
 	job_points = 15
 	jobworth = list(
-		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
-		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/xenomorph = LARVA_POINTS_STRONG,
+		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_MEDIUM,
 	)
 	html_description = {"
 		<b>Difficulty</b>:Very Hard<br /><br />
