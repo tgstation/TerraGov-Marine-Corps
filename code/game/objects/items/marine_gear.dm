@@ -246,6 +246,7 @@
 	time_to_unequip = 1 SECONDS
 	flags_inventory = NOQUICKEQUIP
 
+///When vended, tries to equip itself. Else, fallback to parent behavior.
 /obj/item/belt_harness/on_vend(mob/user, faction)
 	if (!user.equip_to_appropriate_slot(src))
 		return ..()

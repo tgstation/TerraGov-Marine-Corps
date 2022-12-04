@@ -575,10 +575,14 @@
 	resistance_flags = INDESTRUCTIBLE
 	lock_flags = JOB_LOCK
 
+///Spawns a set of objects from specified typepaths. For vendors to spawn multiple items while only needing one path.
 /obj/effect/vendor_bundle
+	///The set of typepaths to spawn
 	var/list/gear_to_spawn
+	///Records the gear objects that have been spawned, so vendors can see what they just vended
 	var/list/spawned_gear
 
+///Spawns the gear from this vendor_bundle. Deletes itself after spawning gear; can be disabled to check what has been spawned (must then delete the bundle yourself)
 /obj/effect/vendor_bundle/Initialize(mapload, autodelete = TRUE)
 	. = ..()
 	for(var/typepath in gear_to_spawn)

@@ -536,6 +536,7 @@
 	. += "<br><br />This is a piece of modular armor, It can equip different attachments.<br />"
 	. += "<br>It currently has [attachments_by_slot[ATTACHMENT_SLOT_HEAD_MODULE] ? attachments_by_slot[ATTACHMENT_SLOT_HEAD_MODULE] : "nothing"] installed."
 
+///When vended, limits the paintable colors based on the vending machine's faction
 /obj/item/clothing/head/modular/on_vend(mob/user, faction)
 	. = ..()
 	if(faction)
