@@ -158,7 +158,8 @@
 	succeed_activate()
 	add_cooldown()
 	addtimer(CALLBACK(owner, /mob.proc/update_icons), 1 SECONDS)
-	owner.icon_state = "Shrike Screeching"
+	var/mob/living/carbon/xenomorph/xeno = owner
+	owner.icon_state = "[xeno.xeno_caste.caste_name][xeno.is_a_rouny ? " rouny" : ""] Screeching"
 	if(target) // Keybind use doesn't have a target
 		owner.face_atom(target)
 
