@@ -2387,6 +2387,15 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 8.5
 	hitscan_effect_icon = "beam_particle"
 
+/datum/ammo/energy/lasgun/marine/autolaser/swarm
+	name = "swarm laser bolt"
+	icon_state = "swarm_laser"
+	hud_state = "laser_swarm"
+	damage = 1
+	max_range = 8
+	penetration = 200
+	sundering = 1
+
 /datum/ammo/energy/lasgun/marine/sniper
 	name = "sniper laser bolt"
 	hud_state = "laser_sniper"

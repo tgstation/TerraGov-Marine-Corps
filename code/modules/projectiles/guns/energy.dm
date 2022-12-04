@@ -734,6 +734,7 @@
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/energy_mg_mode/standard,
 		"Efficiency mode" = /datum/lasrifle/base/energy_mg_mode/standard/efficiency,
+		"Swarm mode" = /datum/lasrifle/base/swarm_mg_mode/standard/swarm,
 	)
 
 /datum/lasrifle/base/energy_mg_mode/standard
@@ -750,6 +751,12 @@
 	fire_delay = 0.15 SECONDS
 	rounds_per_shot = 3
 	message_to_user = "You set the machine laser's charge mode to efficiency mode."
+
+/datum/lasrifle/base/swarm_mg_mode/standard/swarm
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser/swarm
+	fire_delay = 1
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
+	message_to_user = "You set the machine laser's charge mode to swarm mode."
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/xray
 	name = "\improper Terra Experimental X-Ray laser rifle"
