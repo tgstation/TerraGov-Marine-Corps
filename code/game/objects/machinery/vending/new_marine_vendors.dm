@@ -576,13 +576,13 @@
 	lock_flags = JOB_LOCK
 
 /obj/effect/vendor_bundle
-	var/list/gear_to_spawn = list()
-	var/list/spawned_gear = list()
+	var/list/gear_to_spawn
+	var/list/spawned_gear
 
 /obj/effect/vendor_bundle/Initialize(mapload, autodelete = TRUE)
 	. = ..()
 	for(var/typepath in gear_to_spawn)
-		spawned_gear += new typepath(loc)
+		LAZYADD(spawned_gear, new typepath(loc))
 	if (autodelete)
 		qdel(src)
 
