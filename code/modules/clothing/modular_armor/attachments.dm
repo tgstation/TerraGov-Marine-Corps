@@ -67,7 +67,7 @@
 	parent.hard_armor = parent.hard_armor.attachArmor(hard_armor)
 	parent.soft_armor = parent.soft_armor.attachArmor(soft_armor)
 	parent.slowdown += slowdown
-	if(has_actions())
+	if(CHECK_BITFIELD(flags_attach_features, ATTACH_ACTIVATION))
 		RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/handle_actions)
 	if(length(variants_by_parent_type))
 		for(var/selection in variants_by_parent_type)
@@ -76,10 +76,6 @@
 				base_icon = variants_by_parent_type[selection]
 
 	update_icon()
-
-///Checks if this is supposed to give the player action buttons
-/obj/item/armor_module/proc/has_actions()
-	return CHECK_BITFIELD(flags_attach_features, ATTACH_ACTIVATION)
 
 /// Called when the module is removed from the armor.
 /obj/item/armor_module/proc/on_detach(obj/item/detaching_from, mob/user)
@@ -97,17 +93,11 @@
 /obj/item/armor_module/proc/handle_actions(datum/source, mob/user, slot)
 	SIGNAL_HANDLER
 	if(prefered_slot && (slot != prefered_slot))
-		remove_actions(user)
+		LAZYREMOVE(actions_types, /datum/action/item_action/toggle)
+		var/datum/action/item_action/toggle/old_action = locate(/datum/action/item_action/toggle) in actions
+		old_action?.remove_action(user)
+		actions = null
 		return
-	add_actions(user)
-
-/obj/item/armor_module/proc/remove_actions(mob/user)
-	LAZYREMOVE(actions_types, /datum/action/item_action/toggle)
-	var/datum/action/item_action/toggle/old_action = locate(/datum/action/item_action/toggle) in actions
-	old_action?.remove_action(user)
-	actions = null
-
-/obj/item/armor_module/proc/add_actions(mob/user)
 	LAZYADD(actions_types, /datum/action/item_action/toggle)
 	var/datum/action/item_action/toggle/new_action = new(src)
 	new_action.give_action(user)
@@ -119,18 +109,6 @@
 ///Called on ui_action_click. Used for activating the module.
 /obj/item/armor_module/proc/activate(mob/living/user)
 	return
-
-/obj/item/armor_module/on_vend(faction)
-	for(var/slot in SLOT_ALL)
-		var/obj/equipment = usr.get_item_by_slot(slot)
-		if(equipment)
-			SEND_SIGNAL(equipment, COMSIG_MARINE_VENDOR_MODULE_VENDED, src, usr)
-			if(equipment == parent) //module sucessfully attached
-				SEND_SIGNAL(parent, COMSIG_MODULE_DIRECTLY_EQUIPPED, usr, slot)
-				if(has_actions())
-					handle_actions(null, usr, slot)
-				return
-	..() //module could not be inserted, fall back to parent behavior
 
 /**
  *  These are the basic type for armor armor_modules. What seperates these from /armor_module is that these are designed to be recolored.
@@ -214,9 +192,6 @@
 	if(.)
 		return
 
-	apply_paint(I, user)
-
-/obj/item/armor_module/armor/proc/apply_paint(obj/item/I, mob/user)
 	if(colorable_allowed == NOT_COLORABLE || (!length(colorable_colors) && colorable_colors == COLOR_WHEEL_NOT_ALLOWED))
 		return
 

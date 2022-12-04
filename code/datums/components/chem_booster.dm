@@ -113,7 +113,7 @@
 	. = ..()
 	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/examine)
 	RegisterSignal(parent, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), .proc/dropped)
-	RegisterSignal(parent, list(COMSIG_ITEM_EQUIPPED_TO_SLOT, COMSIG_MODULE_DIRECTLY_EQUIPPED), .proc/equipped)
+	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED_TO_SLOT, .proc/equipped)
 
 /datum/component/chem_booster/UnregisterFromParent()
 	. = ..()
