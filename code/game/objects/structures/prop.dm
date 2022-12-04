@@ -429,7 +429,6 @@
 	icon_state = "Field_Gen"
 	anchored = FALSE
 	density = TRUE
-	use_power = NO_POWER_USE
 	max_integrity = 500
 	//100% immune to lasers and energy projectiles since it absorbs their energy.
 	soft_armor = list(MELEE = 25, BULLET = 10, LASER = 100, ENERGY = 100, BOMB = 0, BIO = 0, FIRE = 50, ACID = 70)
@@ -440,11 +439,30 @@
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "shieldoff"
 
+/obj/structure/prop/mainship/generator/tesla_coil
+	name = "tesla coil"
+	desc = "For the union!"
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "coil_open0"
+
+/obj/structure/prop/mainship/generator/ground_rod
+	name = "grounding rod"
+	desc = "Keeps an area from being fried by Edison's Bane, does not work against handheld Tesla cannons commonly issued by paramilitaries."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "grounding_rod_open0"
+
 /obj/structure/prop/mainship/cannon_cable_connector
 	name = "\improper Cannon cable connector"
 	desc = "A connector for the large cannon cables."
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "cannon_cable_connector"
+	density = TRUE
+
+/obj/structure/prop/mainship/reflector
+	name = "\improper reflector"
+	desc = "An angled mirror for reflecting laser beams."
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "reflector_prop"
 	density = TRUE
 
 /obj/structure/prop/mainship/cannon_cable_connector/ex_act()
@@ -1684,6 +1702,42 @@
 
 /obj/structure/prop/tgbrokenvendor/modularpc
 	icon_state = "modularpc"
+
+/obj/machinery/computer/broken
+	name = "broken computer"
+	desc = "A busted PC, the internals look fried, there's no fixing this one."
+	icon_state = "broken_computer1"
+	resistance_flags = RESIST_ALL
+	density = TRUE
+
+/obj/machinery/computer/broken/two
+	icon_state = "broken_computer2"
+
+/obj/machinery/computer/broken/three
+	icon_state = "broken_computer3"
+
+/obj/machinery/computer/broken/four
+	icon_state = "broken_computer4"
+
+/obj/machinery/computer/broken/five
+	icon_state = "broken_computer5"
+
+/obj/machinery/computer/broken/six
+	icon_state = "broken_computer6"
+
+/obj/machinery/computer/broken/seven
+	icon_state = "broken_computer7"
+
+/obj/machinery/computer/broken/eight
+	icon_state = "broken_computer8"
+
+obj/machinery/computer/broken/nine
+	icon_state = "broken_computer9"
+
+obj/machinery/computer/solars
+	name = "Port Quarter Solar Control"
+	desc = "A controller for solar panel arrays."
+	icon_state = "solar"
 
 #undef VENDOR_BROKEN
 #undef VENDOR_BLANK

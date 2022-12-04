@@ -950,7 +950,7 @@
 		/obj/structure/device/piano/full,
 	)
 
-/obj/effect/spawner/random/structure/piano/random_tank_holder
+/obj/effect/spawner/random/structure/random_tank_holder
 	name = "random tankholder spawner"
 	icon_state = "random_tank_holder"
 	loot = list(
@@ -964,4 +964,19 @@
 		/obj/structure/tankholder/anesthetic,
 		/obj/structure/tankholder/emergencyoxygen,
 		/obj/structure/tankholder/emergencyoxygentwo,
+	)
+
+/obj/effect/spawner/random/structure/random_broken_computer
+	name = "random broken computer spawner"
+	icon_state = "random_broke_computer"
+	loot = list(
+		/obj/machinery/computer/broken = 20,
+		/obj/machinery/computer/broken/two = 5,
+		/obj/machinery/computer/broken/three = 20,
+		/obj/machinery/computer/broken/four = 5,
+		/obj/machinery/computer/broken/five = 20,
+		/obj/machinery/computer/broken/six = 20,
+		/obj/machinery/computer/broken/seven = 1,
+		/obj/machinery/computer/broken/eight = 50,
+		/obj/machinery/computer/broken/nine = 40,
 	)
