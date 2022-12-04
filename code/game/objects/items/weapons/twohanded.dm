@@ -248,6 +248,59 @@
 	sharp = IS_SHARP_ITEM_SIMPLE
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "stabbed", "jabbed", "torn", "gored")
+	var/current_angle = 45	//Based on what direction the tip of the spear is pointed at in the sprite; maybe someone makes a spear that points northwest
+
+/obj/item/weapon/twohanded/spear/throw_at(atom/target, range, speed, thrower, spin, flying)
+	spin = FALSE
+	//Find the direction the spear is to be thrown, then rotate it based on that angle
+	var/rotation_value
+	switch(get_dir(thrower, target))
+		if(NORTH)
+			rotation_value = 0 - current_angle
+		if(NORTHEAST)
+			rotation_value = 45 - current_angle
+		if(EAST)
+			rotation_value = 90 - current_angle
+		if(SOUTHEAST)
+			rotation_value = 135 - current_angle
+		if(SOUTH)
+			rotation_value = 180 - current_angle
+		if(SOUTHWEST)
+			rotation_value = 225 - current_angle
+		if(WEST)
+			rotation_value = 270 - current_angle
+		if(NORTHWEST)
+			rotation_value = 315 - current_angle
+	current_angle += rotation_value
+	var/matrix/rotate_me = matrix()
+	rotate_me.Turn(rotation_value)
+	src.transform = rotate_me
+	. = ..()
+
+//Same thing as atom/movable but removing the bouncing from hitting a turf
+/obj/item/weapon/twohanded/spear/throw_impact(atom/hit_atom, speed)
+	if(isliving(hit_atom))
+		var/mob/living/M = hit_atom
+		M.hitby(src, speed)
+	else if(isobj(hit_atom)) // Thrown object hits another object and moves it
+		var/obj/O = hit_atom
+		if(!O.anchored)
+			step(O, dir)
+		O.hitby(src, speed)
+	else if(isturf(hit_atom))
+		set_throwing(FALSE)
+	SEND_SIGNAL(src, COMSIG_MOVABLE_IMPACT, hit_atom)
+
+/obj/item/weapon/twohanded/spear/pickup(mob/user)
+	. = ..()
+	//Reset the angle of the spear when picked up off the ground so it doesn't stay lopsided
+	if(initial(current_angle) != current_angle)
+		var/matrix/rotate_me = matrix()
+		rotate_me.Turn(initial(current_angle) - current_angle)
+		//Rotate the object in the opposite direction because for some unfathomable reason, the above Turn() is applied twice; it just works
+		rotate_me.Turn(-(initial(current_angle) - current_angle))
+		src.transform = rotate_me
+		current_angle = initial(current_angle)	//Reset the angle
 
 /obj/item/weapon/twohanded/spear/tactical
 	name = "M-23 spear"
