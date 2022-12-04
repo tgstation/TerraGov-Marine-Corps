@@ -82,8 +82,8 @@
 	remove_from_storage(W, user = src)
 	return W
 
-/obj/item/storage/holster/on_vend(faction)
-	if (!usr.equip_to_appropriate_slot(src))
+/obj/item/storage/holster/on_vend(mob/user, faction)
+	if (!user.equip_to_appropriate_slot(src))
 		return ..()
 
 //backpack type holster items

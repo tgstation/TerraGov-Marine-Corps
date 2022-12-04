@@ -149,8 +149,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	channels[RADIO_CHANNEL_REQUISITIONS] = !channels[RADIO_CHANNEL_REQUISITIONS]
 	to_chat(user, span_notice("You toggle supply comms [channels[RADIO_CHANNEL_REQUISITIONS] ? "on" : "off"]."))
 
-/obj/item/radio/headset/on_vend(faction)
-	if (!usr.equip_to_appropriate_slot(src))
+/obj/item/radio/headset/on_vend(mob/user, faction)
+	if (!user.equip_to_appropriate_slot(src))
 		return ..()
 
 /obj/item/radio/headset/survivor

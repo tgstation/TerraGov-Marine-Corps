@@ -254,7 +254,7 @@
 	SIGNAL_HANDLER
 	examine_list += "Right click the [parent] with paint to color the [src]"
 
-/obj/item/armor_module/armor/on_vend(faction)
+/obj/item/armor_module/armor/on_vend(mob/user, faction)
 	. = ..()
 	if(faction)
 		limit_colorable_colors(faction)

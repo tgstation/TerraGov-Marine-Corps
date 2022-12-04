@@ -246,8 +246,8 @@
 	time_to_unequip = 1 SECONDS
 	flags_inventory = NOQUICKEQUIP
 
-/obj/item/belt_harness/on_vend(faction)
-	if (!usr.equip_to_appropriate_slot(src))
+/obj/item/belt_harness/on_vend(mob/user, faction)
+	if (!user.equip_to_appropriate_slot(src))
 		return ..()
 
 /obj/item/belt_harness/marine

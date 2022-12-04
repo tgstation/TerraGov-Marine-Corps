@@ -23,8 +23,8 @@
 	mouse_opacity = initial(mouse_opacity)
 	..()
 
-/obj/item/storage/belt/on_vend(faction)
-	if (!usr.equip_to_appropriate_slot(src))
+/obj/item/storage/belt/on_vend(mob/user, faction)
+	if (!user.equip_to_appropriate_slot(src))
 		return ..()
 
 /obj/item/storage/belt/champion

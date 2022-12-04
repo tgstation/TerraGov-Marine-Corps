@@ -1356,6 +1356,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	user.update_inv_l_hand(0)
 	user.update_inv_r_hand()
 
-/obj/item/proc/on_vend(faction)
-	if(usr.put_in_any_hand_if_possible(src, warning = FALSE))
+/obj/item/proc/on_vend(mob/user, faction)
+	if(user.put_in_any_hand_if_possible(src, warning = FALSE))
 		pickup(usr)

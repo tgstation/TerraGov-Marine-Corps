@@ -184,7 +184,7 @@
 						vended_items += new /obj/item/hud_tablet(loc, vendor_role, H.assigned_squad)
 
 			for (var/obj/item/vended_item in vended_items)
-				vended_item.on_vend(faction)
+				vended_item.on_vend(usr, faction)
 
 			if(use_points && (item_category in I.marine_points))
 				I.marine_points[item_category] -= cost
