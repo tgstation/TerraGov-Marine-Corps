@@ -537,7 +537,7 @@
 	. += "<br>It currently has [attachments_by_slot[ATTACHMENT_SLOT_HEAD_MODULE] ? attachments_by_slot[ATTACHMENT_SLOT_HEAD_MODULE] : "nothing"] installed."
 
 /obj/item/clothing/head/modular/on_vend(faction)
-	..()
+	. = ..()
 	if(faction)
 		limit_colorable_colors(faction)
 

@@ -151,7 +151,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/on_vend(faction)
 	if (!usr.equip_to_appropriate_slot(src))
-		..()
+		return ..()
 
 /obj/item/radio/headset/survivor
 	freqlock = TRUE

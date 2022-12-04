@@ -255,6 +255,6 @@
 	examine_list += "Right click the [parent] with paint to color the [src]"
 
 /obj/item/armor_module/armor/on_vend(faction)
-	..()
+	. = ..()
 	if(faction)
 		limit_colorable_colors(faction)

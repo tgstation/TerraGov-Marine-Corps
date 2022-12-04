@@ -84,7 +84,7 @@
 
 /obj/item/storage/holster/on_vend(faction)
 	if (!usr.equip_to_appropriate_slot(src))
-		..()
+		return ..()
 
 //backpack type holster items
 /obj/item/storage/holster/backholster

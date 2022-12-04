@@ -25,7 +25,7 @@
 
 /obj/item/storage/belt/on_vend(faction)
 	if (!usr.equip_to_appropriate_slot(src))
-		..()
+		return ..()
 
 /obj/item/storage/belt/champion
 	name = "championship belt"

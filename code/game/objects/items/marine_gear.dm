@@ -248,7 +248,7 @@
 
 /obj/item/belt_harness/on_vend(faction)
 	if (!usr.equip_to_appropriate_slot(src))
-		..()
+		return ..()
 
 /obj/item/belt_harness/marine
 	name = "\improper M45 pattern belt harness"

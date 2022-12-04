@@ -56,7 +56,7 @@
 
 /obj/item/clothing/on_vend(faction)
 	if (!usr.equip_to_appropriate_slot(src))
-		..()
+		return ..()
 
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()

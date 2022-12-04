@@ -33,7 +33,7 @@
 
 /obj/item/storage/pouch/on_vend(faction)
 	if (!usr.equip_to_appropriate_slot(src))
-		..()
+		return ..()
 
 
 
