@@ -2391,7 +2391,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING
 	name = "swarm laser bolt"
 	icon_state = "swarm_laser"
-	hud_state = "laser_swarm"
+	hud_state = "plasma_sphere"
 	max_range = 40
 	shell_speed = 0.1
 	damage = 15

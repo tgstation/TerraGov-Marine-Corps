@@ -751,11 +751,13 @@
 	fire_delay = 0.15 SECONDS
 	rounds_per_shot = 3
 	message_to_user = "You set the machine laser's charge mode to efficiency mode."
+	radial_icon_state = "laser_disabler"
 
 /datum/lasrifle/base/energy_mg_mode/standard/swarm
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser/swarm
 	fire_delay = 0.15 SECONDS
 	message_to_user = "You set the machine laser's charge mode to swarm mode."
+	radial_icon_state = "laser_swarm"
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/xray
 	name = "\improper Terra Experimental X-Ray laser rifle"
