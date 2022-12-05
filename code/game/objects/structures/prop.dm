@@ -66,6 +66,45 @@
 		icon_state += "0"
 
 
+/obj/machinery/prop/mainship/computer/aiupload
+	name = "\improper AI upload console"
+	desc = "Used to upload laws to the AI."
+
+	icon_state = "aiupload"
+
+/obj/machinery/prop/mainship/computer/dna
+	icon_state = "dna"
+
+/obj/structure/prop/mainship/massdiver
+	name = "mass driver"
+	desc = "The finest in spring-loaded piston toy technology, now on a space station near you."
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "mass_driver"
+
+/obj/structure/prop/mainship/shieldwall
+	name = "shield wall generator"
+	desc = "A shield generator."
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "shield_wall_gen"
+
+/obj/structure/prop/mainship/dnascanner
+	name = "\improper DNA scanner"
+	desc = "It scans DNA structures."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "scanner"
+
+/obj/structure/prop/mainship/gateway
+	name = "gateway"
+	desc = "A mysterious gateway built by unknown hands, it allows for faster than light travel to far-flung locations."
+	icon = 'icons/obj/gateway.dmi'
+	icon_state = "portal_frame"
+
+/obj/structure/prop/mainship/gravitygenerator
+	name = "gravitational generator"
+	desc = "A device which produces a graviton field when set up."
+	icon = 'icons/obj/gravity_generator.dmi'
+	icon_state = "on_8"
+
 //Nonpower using props
 
 /obj/structure/prop/mainship
@@ -388,6 +427,9 @@
 /obj/structure/prop/mainship/protolathe/service
 	name = "Service Protolathe"
 
+/obj/structure/prop/mainship/protolathe/cargo
+	name = "Cargo Protolathe"
+
 /obj/structure/prop/mainship/cannon_cables/ex_act()
 	return
 
@@ -467,14 +509,6 @@
 
 /obj/structure/prop/mainship/cannon_cable_connector/ex_act()
 	return
-
-/obj/structure/prop/mainship/propcarp
-	name = "space carp"
-	desc = "A ferocious, fang-bearing creature that resembles a fish."
-	icon = 'icons/Marine/mainship_props.dmi'
-	icon_state = "carpprop"
-	density = TRUE
-
 /obj/structure/prop/mainship/prop_sec
 	name = "Security Officer"
 	desc = "A NT security officer guarding the perimeter. They look rather busy and pays no attention to you."
@@ -521,6 +555,13 @@
 	icon_state = "silo"
 	density = TRUE
 
+/obj/structure/prop/mainship/propcarp
+	name = "space carp"
+	desc = "A ferocious, fang-bearing creature that resembles a fish."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "carpprop"
+	density = TRUE
+
 /obj/structure/prop/mainship/propcarp/Initialize(mapload) //slightly randomize carp to simulate life
 	. = ..()
 	var/pickedrotate = pick(0,1,2,4,8,10)
@@ -562,15 +603,30 @@
 	name = "pneumatic tube"
 	desc = "A pneumatic tube commonly used for transportation on NanoTrasen research stations."
 	icon = 'icons/Marine/mainship_props.dmi'
-	icon_state = "tubeprop"
+	icon_state = "tubepropstraight"
 	resistance_flags = RESIST_ALL
-	layer = ABOVE_TURF_LAYER //so our fake prop can visually pass under glass panels
+	layer = ABOVE_OBJ_LAYER //so our fake prop can visually pass under glass panels
 
 /obj/structure/prop/mainship/tubeprop/decorative
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "decorative"
 	resistance_flags = RESIST_ALL
 	mouse_opacity = 0
+
+/obj/structure/prop/mainship/tubeprop/end
+	icon_state = "tubepropend"
+
+/obj/structure/prop/mainship/tubeprop/diagonal
+	icon_state = "tubepropdiagonal"
+
+/obj/structure/prop/mainship/tubeprop/decorativediagonal
+	icon_state = "decorative_diag"
+
+/obj/structure/prop/mainship/tubeprop/tubejunction
+	icon_state = "tubejunction"
+
+/obj/structure/prop/mainship/tubeprop/tubecurved
+	icon_state = "tubecurved"
 
 /obj/structure/prop/mainship/meterprop/
 	name = "meter"
@@ -680,6 +736,12 @@
 		MECH_GREY_R_ARM = MECH_VANGUARD,
 	)
 
+/obj/structure/prop/mainship/chimney
+	name = "fireplace"
+	desc = "A large stone brick fireplace."
+	icon = 'icons/Marine/mainship_props64.dmi'
+	icon_state = "fireplace"
+
 //items props
 
 /obj/item/prop
@@ -756,6 +818,16 @@
 				"'Peacekeeper' Core AI Module",
 				"'H.O.G.A.N.' Core AI Module",
 	)
+
+/obj/item/prop/aicard
+	name = "intelliCard"
+	desc = "A storage device for AIs. Patent pending."
+	icon_state = "aicard"
+
+/obj/item/prop/aicard/Initialize()
+	. = ..()
+	if(prob(50))
+		icon_state = "aicard-404"
 
 /obj/item/prop/dogtag
 	name = "John Doe" //generic name

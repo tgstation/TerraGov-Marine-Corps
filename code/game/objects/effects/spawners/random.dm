@@ -915,31 +915,31 @@
 
 /obj/effect/spawner/random/structure/securecloset
 	name = "secure closet spawner"
-	icon_state = "random_closet"
-	spawn_loot_chance = 75
+	icon_state = "random_secure_closet"
+	spawn_loot_chance = 65
 	loot = list(
 		/obj/structure/closet/secure_closet,
-		/obj/structure/closet/emcloset/legacy,
-		/obj/structure/closet/firecloset,
-		/obj/structure/closet/firecloset/full,
-		/obj/structure/closet/gimmick/russian,
-		/obj/structure/closet/gmcloset,
-		/obj/structure/closet/jcloset,
-		/obj/structure/closet/l3closet,
-		/obj/structure/closet/l3closet/general,
-		/obj/structure/closet/l3closet/janitor,
-		/obj/structure/closet/l3closet/scientist,
-		/obj/structure/closet/l3closet/security,
-		/obj/structure/closet/l3closet/virology,
-		/obj/structure/closet/lasertag,
-		/obj/structure/closet/lasertag/blue,
-		/obj/structure/closet/lasertag/red,
-		/obj/structure/closet/lasertag,
-		/obj/structure/closet/malf,
-		/obj/structure/closet/malf/suits,
-		/obj/structure/closet/masks,
-		/obj/structure/closet/open,
-		/obj/structure/closet/radiation,
+		/obj/structure/closet/secure_closet/CMO,
+		/obj/structure/closet/secure_closet/RD,
+		/obj/structure/closet/secure_closet/animal,
+		/obj/structure/closet/secure_closet/atmos_personal,
+		/obj/structure/closet/secure_closet/bar,
+		/obj/structure/closet/secure_closet/chemical/colony,
+		/obj/structure/closet/secure_closet/courtroom,
+		/obj/structure/closet/secure_closet/detective,
+		/obj/structure/closet/secure_closet/engineering_chief,
+		/obj/structure/closet/secure_closet/engineering_electrical,
+		/obj/structure/closet/secure_closet/engineering_personal,
+		/obj/structure/closet/secure_closet/engineering_welding,
+		/obj/structure/closet/secure_closet/hydroponics,
+		/obj/structure/closet/secure_closet/hos,
+		/obj/structure/closet/secure_closet/marshal,
+		/obj/structure/closet/secure_closet/medical1,
+		/obj/structure/closet/secure_closet/medical2,
+		/obj/structure/closet/secure_closet/medical3,
+		/obj/structure/closet/secure_closet/miner,
+		/obj/structure/closet/secure_closet/security/cargo,
+		/obj/structure/closet/secure_closet/scientist,
 	)
 
 /obj/effect/spawner/random/structure/piano/random_piano
@@ -980,3 +980,78 @@
 		/obj/machinery/computer/broken/eight = 50,
 		/obj/machinery/computer/broken/nine = 40,
 	)
+
+/obj/effect/spawner/random/structure/girder
+	name = "girder spawner"
+	icon_state = "random_girder"
+	spawn_loot_chance = 90
+	loot = list(
+		/obj/structure/girder = 7,
+		/obj/structure/girder/displaced = 2,
+		/obj/structure/girder/reinforced = 1,
+	)
+
+/obj/effect/spawner/random/structure/crate
+	name = "crate spawner"
+	icon_state = "random_crate"
+	spawn_loot_chance = 75
+	loot = list(
+		/obj/structure/closet/crate,
+		/obj/structure/closet/crate/freezer,
+		/obj/structure/closet/crate/freezer/rations,
+		/obj/structure/closet/crate/hydroponics,
+		/obj/structure/closet/crate/hydroponics/prespawned,
+		/obj/structure/closet/crate/internals,
+		/obj/structure/closet/crate/medical,
+		/obj/structure/closet/crate/plastic,
+		/obj/structure/closet/crate/radiation,
+		/obj/structure/closet/crate/science,
+		/obj/structure/closet/crate/solar,
+		/obj/structure/closet/crate/trashcart,
+	)
+
+/obj/effect/spawner/random/structure/canister
+	name = "air canister spawner"
+	icon_state = "random_canister"
+	loot = list( // use this for emergency storage areas and maint
+		/obj/machinery/portable_atmospherics/canister/air = 4,
+		/obj/machinery/portable_atmospherics/canister/oxygen = 1,
+	)
+
+/obj/effect/spawner/random/structure/tank
+	name = "tank spawner"
+	icon_state = "random_watertank"
+	loot = list( // use this for emergency storage areas and maint
+		/obj/structure/reagent_dispensers/fueltank = 5,
+		/obj/structure/reagent_dispensers/watertank = 4,
+	)
+
+/obj/effect/spawner/random/structure/atmospherics_portable
+	name = "portable atmospherics machine spawner"
+	icon_state = "random_heater"
+	loot = list(
+		/obj/machinery/space_heater = 8,
+		/obj/machinery/portable_atmospherics/pump = 1,
+		/obj/machinery/portable_atmospherics/scrubber = 1,
+	)
+
+/obj/effect/spawner/random/structure/table_or_rack
+	name = "table or rack spawner"
+	icon_state = "random_table_spawner"
+	loot = list(
+		/obj/effect/spawner/random/structure/table,
+		/obj/structure/rack,
+	)
+
+/obj/effect/spawner/random/structure/table
+	name = "table spawner"
+	icon_state = "random_table"
+	spawn_loot_chance = 75
+	loot_subtype_path = /obj/structure/table
+	loot = list()
+
+/obj/effect/spawner/random/structure/bedsheet
+	name = "bedsheet spawner"
+	icon_state = "random_bedsheet"
+	loot_subtype_path = /obj/item/bedsheet
+	loot = list()
