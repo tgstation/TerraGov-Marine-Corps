@@ -2491,13 +2491,112 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	drop_nade(get_turf(M))
 
 /datum/ammo/energy/lasgun/marine/heavy_laser/on_hit_obj(obj/O, obj/projectile/P)
-	drop_nade(get_turf(O))
+	drop_nade(O.density ? get_step_towards(O, P) : O, P)
 
 /datum/ammo/energy/lasgun/marine/heavy_laser/on_hit_turf(turf/T, obj/projectile/P)
-	drop_nade(T.density ? P.loc : T)
+	drop_nade(T.density ? get_step_towards(T, P) : T)
 
 /datum/ammo/energy/lasgun/marine/heavy_laser/do_at_max_range(turf/T, obj/projectile/P)
-	drop_nade(T.density ? P.loc : T)
+	drop_nade(T.density ? get_step_towards(T, P) : T)
+
+
+/datum/ammo/energy/xeno
+	barricade_clear_distance = 0
+	///Plasma cost to fire this projectile
+	var/plasma_cost
+	///Particle type used when this ammo is used
+	var/particles/channel_particle
+	///The colour the xeno glows when using this ammo type
+	var/glow_color
+
+/datum/ammo/energy/xeno/psy_blast
+	name = "psychic blast"
+	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN
+	damage = 35
+	penetration = 10
+	sundering = 1
+	max_range = 7
+	accurate_range = 7
+	hitscan_effect_icon = "beam_cult"
+	icon_state = "psy_blast"
+	plasma_cost = 230
+	channel_particle = /particles/warlock_charge/psy_blast
+	glow_color = "#9e1f1f"
+	///The AOE for drop_nade
+	var/aoe_range = 2
+
+/datum/ammo/energy/xeno/psy_blast/drop_nade(turf/T, obj/projectile/P)
+	if(!T || !isturf(T))
+		return
+	playsound(T, 'sound/effects/EMPulse.ogg', 50)
+	var/aoe_damage = 25
+	if(isxeno(P.firer))
+		var/mob/living/carbon/xenomorph/xeno_firer = P.firer
+		aoe_damage = xeno_firer.xeno_caste.blast_strength
+	for(var/atom/movable/victim in get_hear(aoe_range, T))
+		if(isliving(victim))
+			var/mob/living/living_victim = victim
+			if(living_victim.stat == DEAD)
+				continue
+			if(!isxeno(living_victim))
+				living_victim.apply_damage(aoe_damage, BURN, blocked = living_victim.get_soft_armor(ENERGY) - penetration, updating_health = TRUE)
+				staggerstun(living_victim, P, 10, slowdown = 1)
+		else if(isobj(victim))
+			var/obj/obj_victim = victim
+			if(!(obj_victim.resistance_flags & XENO_DAMAGEABLE))
+				continue
+			obj_victim.take_damage(aoe_damage, BURN, ENERGY, 0, armour_penetration = penetration)
+		if(victim.anchored)
+			continue
+		var/throw_dir = get_dir(T, victim)
+		if(T == get_turf(victim))
+			throw_dir = get_dir(P.starting_turf, T)
+		victim.safe_throw_at(get_ranged_target_turf(T, throw_dir, 5), 3, 1, spin = TRUE)
+	new /obj/effect/temp_visual/shockwave(T, aoe_range + 2)
+
+/datum/ammo/energy/xeno/psy_blast/on_hit_mob(mob/M, obj/projectile/P)
+	drop_nade(get_turf(M), P)
+
+/datum/ammo/energy/xeno/psy_blast/on_hit_obj(obj/O, obj/projectile/P)
+	drop_nade(O.density ? get_step_towards(O, P) : O, P)
+
+/datum/ammo/energy/xeno/psy_blast/on_hit_turf(turf/T, obj/projectile/P)
+	drop_nade(T.density ? get_step_towards(T, P) : T, P)
+
+/datum/ammo/energy/xeno/psy_blast/do_at_max_range(turf/T, obj/projectile/P)
+	drop_nade(T.density ? get_step_towards(T, P) : T, P)
+
+/datum/ammo/energy/xeno/psy_blast/psy_lance
+	name = "psychic lance"
+	flags_ammo_behavior = AMMO_XENO|AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_PASS_THROUGH_MOVABLE
+	damage = 60
+	penetration = 50
+	accuracy = 100
+	sundering = 5
+	max_range = 12
+	hitscan_effect_icon = "beam_hcult"
+	icon_state = "psy_lance"
+	plasma_cost = 300
+	channel_particle = /particles/warlock_charge/psy_blast/psy_lance
+	glow_color = "#CB0166"
+
+/datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_obj(obj/O, obj/projectile/P)
+	if(ismecha(O))
+		var/obj/vehicle/sealed/mecha/mech_victim = O
+		mech_victim.take_damage(rand(200, 400), BURN, ENERGY, 0, armour_penetration = penetration)
+	else
+		O.take_damage(damage, BURN, ENERGY, 0, armour_penetration = penetration)
+
+/datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_mob(mob/M, obj/projectile/P)
+	if(!isxeno(M))
+		return
+	staggerstun(M, P, 9, stagger = 2, slowdown = 2, knockback = 1)
+
+/datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_turf(turf/T, obj/projectile/P)
+	return
+
+/datum/ammo/energy/xeno/psy_blast/psy_lance/do_at_max_range(turf/T, obj/projectile/P)
+	return
 
 /datum/ammo/energy/lasgun/marine/mech
 	name = "superheated laser bolt"

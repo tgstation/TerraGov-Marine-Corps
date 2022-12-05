@@ -18,3 +18,7 @@
 #define PORTAL_IMMUNE (1<<9) //Cannot be teleported by wraith's portals
 
 #define RESIST_ALL (UNACIDABLE|INDESTRUCTIBLE)
+
+//projectile flags
+#define PROJECTILE_FROZEN (1<<0) //indicates a projectile is no longer moving
+#define PROJECTILE_HIT (1<<1)
