@@ -219,7 +219,9 @@ export const MechAssembly = (props, context) => {
               }
             />
             <Button
-              content={!!cooldown_left ? `BUSY (${cooldown_left} seconds)` : 'ASSEMBLE'}
+              content={
+                cooldown_left ? `BUSY (${cooldown_left} seconds)` : 'ASSEMBLE'
+              }
               disabled={cooldown_left && cooldown_left > 0}
               fluid
               mt={2}
