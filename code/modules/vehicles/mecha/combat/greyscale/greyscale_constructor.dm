@@ -223,7 +223,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	if(.)
 		return
 
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_MECHA))
+	if(S_TIMER_COOLDOWN_TIMELEFT(src, COOLDOWN_MECHA))
 		return FALSE
 	var/selected_part = params["bodypart"]
 	if(selected_part && !(selected_part in selected_primary))
@@ -290,7 +290,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 				return FALSE
 			addtimer(CALLBACK(src, .proc/deploy_mech), 1 SECONDS)
 			playsound(get_step(src, dir), 'sound/machines/elevator_move.ogg', 50, 0)
-			TIMER_COOLDOWN_START(src, COOLDOWN_MECHA, 5 MINUTES)
+			S_TIMER_COOLDOWN_START(src, COOLDOWN_MECHA, 5 MINUTES)
 			return TRUE
 
 		if("add_weapon")
