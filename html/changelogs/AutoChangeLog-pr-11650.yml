@@ -1,0 +1,8 @@
+author: "Blundir"
+delete-after: True
+changes:
+  - rscadd: "Meson eyepatch and its crafting recipe"
+  - rscadd: "Meson sunglasses and its crafting recipe"
+  - rscadd: "Medhud sunglasses and its crafting recipe"
+  - rscadd: "Optical imager sunglasses and its crafting recipe"
+  - rscadd: "Optical imager eyepatch and its crafting recipe"
