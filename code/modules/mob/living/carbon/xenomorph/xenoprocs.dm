@@ -575,3 +575,11 @@
 		SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, xeno_caste.minimap_icon, overlay_iconstates=list(xeno_caste.minimap_leadered_overlay))
 	else
 		SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, xeno_caste.minimap_icon)
+
+///updates the xeno's glow, based on the ability being used
+/mob/living/carbon/xenomorph/proc/update_glow(range, power, color)
+	if(!range || !power || !color)
+		set_light_on(FALSE)
+		return
+	set_light_range_power_color(range, power, color)
+	set_light_on(TRUE)
