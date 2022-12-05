@@ -130,8 +130,6 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	var/equipment_max = MECH_GREYSCALE_MAX_EQUIP
 	///reference to the mech screen object
 	var/atom/movable/screen/mech_builder_view/mech_view
-	///bool if the mech is currently assembling, stops Ui actions
-	var/currently_assembling = FALSE
 	///list of stat data that will be sent to the UI
 	var/list/current_stats
 
@@ -217,7 +215,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	data["selected_name"] = selected_name
 	data["selected_equipment"] = selected_equipment
 	data["current_stats"] = current_stats
-	data["currently_assembling"] = currently_assembling
+	data["cooldown_left"] = S_TIMER_COOLDOWN_TIMELEFT(src, COOLDOWN_MECHA)
 	return data
 
 /obj/machinery/computer/mech_builder/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -225,7 +223,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	if(.)
 		return
 
-	if(currently_assembling)
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_MECHA))
 		return FALSE
 	var/selected_part = params["bodypart"]
 	if(selected_part && !(selected_part in selected_primary))
@@ -290,9 +288,9 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 					return FALSE
 			if(isnull(selected_visor))
 				return FALSE
-			currently_assembling = TRUE
-			addtimer(CALLBACK(src, .proc/deploy_mech), 60 SECONDS)
+			addtimer(CALLBACK(src, .proc/deploy_mech), 1 SECONDS)
 			playsound(get_step(src, dir), 'sound/machines/elevator_move.ogg', 50, 0)
+			TIMER_COOLDOWN_START(src, COOLDOWN_MECHA, 5 MINUTES)
 			return TRUE
 
 		if("add_weapon")
@@ -395,8 +393,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	mech.pixel_y = 240
 	animate(mech, time=4 SECONDS, pixel_y=initial(mech.pixel_y), easing=SINE_EASING|EASE_OUT)
 
-	currently_assembling = FALSE
-	balloon_alert_to_viewers("Beep. Machine ready for use.")
+	balloon_alert_to_viewers("Beep. Mecha ready for use.")
 	playsound(src, 'sound/machines/chime.ogg', 30, 1)
 
 ///updates the current_stats data for the UI

@@ -68,7 +68,7 @@ export const MechAssembly = (props, context) => {
     current_stats,
     all_equipment,
     selected_equipment,
-    currently_assembling,
+    cooldown_left,
   } = data;
   const [selectedBodypart, setSelectedBodypart] = useLocalState(
     context,
@@ -219,8 +219,8 @@ export const MechAssembly = (props, context) => {
               }
             />
             <Button
-              content={currently_assembling ? 'BUSY' : 'ASSEMBLE'}
-              disabled={currently_assembling}
+              content={!!cooldown_left ? `BUSY (${cooldown_left} seconds)` : 'ASSEMBLE'}
+              disabled={cooldown_left && cooldown_left > 0}
               fluid
               mt={2}
               color={'red'}
