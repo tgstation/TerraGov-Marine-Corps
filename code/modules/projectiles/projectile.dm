@@ -17,9 +17,6 @@
 #define BULLET_FEEDBACK_SHRAPNEL (1<<4)
 #define BULLET_FEEDBACK_IMMUNE (1<<5)
 
-#define PROJECTILE_HIT 1
-#define PROJECTILE_FROZEN 2
-
 #define DAMAGE_REDUCTION_COEFFICIENT(armor) (0.1/((armor*armor*0.0001)+0.1)) //Armor offers diminishing returns.
 
 #define PROJECTILE_HIT_CHECK(thing_to_hit, projectile, cardinal_move, uncrossing, hit_atoms) (!(thing_to_hit.resistance_flags & PROJECTILE_IMMUNE) && thing_to_hit.projectile_hit(projectile, cardinal_move, uncrossing) && !(thing_to_hit in hit_atoms))
@@ -46,6 +43,9 @@
 	///greyscale support
 	greyscale_config = null
 	greyscale_colors = null
+
+	///Any special effects applied to this projectile
+	var/flags_projectile_behavior = NONE
 
 	var/hitsound = null
 	var/datum/ammo/ammo //The ammo data which holds most of the actual info.
@@ -314,7 +314,8 @@
 	var/first_moves = projectile_speed
 	switch(projectile_batch_move(first_move))
 		if(PROJECTILE_HIT) //Hit on first movement.
-			qdel(src)
+			if(!(flags_projectile_behavior & PROJECTILE_FROZEN))
+				qdel(src)
 			return
 		if(PROJECTILE_FROZEN)
 			invisibility = 0
@@ -323,7 +324,8 @@
 	first_moves -= first_move
 	switch(first_moves && projectile_batch_move(first_moves))
 		if(PROJECTILE_HIT) //First movement batch happens on the same tick.
-			qdel(src)
+			if(!(flags_projectile_behavior & PROJECTILE_FROZEN))
+				qdel(src)
 			return
 		if(PROJECTILE_FROZEN)
 			return
@@ -348,7 +350,8 @@
 
 	switch(projectile_batch_move(required_moves))
 		if(PROJECTILE_HIT) //Hit on first movement.
-			qdel(src)
+			if(!(flags_projectile_behavior & PROJECTILE_FROZEN))
+				qdel(src)
 			return PROCESS_KILL
 		if(PROJECTILE_FROZEN)
 			return PROCESS_KILL
@@ -619,10 +622,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	return FALSE
 
-///Signal handler to tell the projectile to move again
+///Tells the projectile to move again
 /obj/projectile/proc/resume_move(datum/source)
 	SIGNAL_HANDLER
-	UnregisterSignal(source, COMSIG_TURF_RESUME_PROJECTILE_MOVE)
+	if(source)
+		UnregisterSignal(source, COMSIG_TURF_RESUME_PROJECTILE_MOVE)
 	START_PROCESSING(SSprojectiles, src)
 
 
@@ -995,7 +999,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	x_offset = round(sin(dir_angle), 0.01)
 	y_offset = round(cos(dir_angle), 0.01)
-	if(projectile_batch_move(!recursivity) == PROJECTILE_FROZEN)
+	if(projectile_batch_move(!recursivity) == PROJECTILE_FROZEN || (flags_projectile_behavior & PROJECTILE_FROZEN))
 		var/atom/movable/hitscan_projectile_effect/laser_effect = new /atom/movable/hitscan_projectile_effect(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 1.01, effect_icon)
 		RegisterSignal(loc, COMSIG_TURF_RESUME_PROJECTILE_MOVE, .proc/resume_move)
 		laser_effect.RegisterSignal(loc, COMSIG_TURF_RESUME_PROJECTILE_MOVE, /atom/movable/hitscan_projectile_effect.proc/remove_effect)
@@ -1421,8 +1425,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 /mob/living/proc/get_sunder()
 	return 0
 
-#undef PROJECTILE_HIT
-#undef PROJECTILE_FROZEN
 
 #undef BULLET_FEEDBACK_PEN
 #undef BULLET_FEEDBACK_SOAK

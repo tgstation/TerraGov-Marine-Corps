@@ -88,6 +88,11 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/larva_from_psydrain = 0
 	var/larva_from_siloing_body = 0
 	var/req_items_produced = list()
-	var/presents_delivered = 0
-	var/presents_grinched = 0
+	var/psy_crushes = 0
+	var/psy_blasts = 0
+	var/psy_lances = 0
+	var/psy_shields = 0
+	var/psy_shield_blasts = 0
 	var/number_of_grinches = 0
+	var/presents_grinched = 0
+	var/presents_delivered = 0

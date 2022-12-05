@@ -473,6 +473,16 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		dat += "[GLOB.round_statistics.larva_from_marine_spawning] larvas came from marine spawning."
 	if(GLOB.round_statistics.larva_from_siloing_body)
 		dat += "[GLOB.round_statistics.larva_from_siloing_body] larvas came from siloing bodies."
+	if(GLOB.round_statistics.psy_crushes)
+		dat += "[GLOB.round_statistics.psy_crushes] number of times Warlocks used Psychic Crush."
+	if(GLOB.round_statistics.psy_blasts)
+		dat += "[GLOB.round_statistics.psy_blasts] number of times Warlocks used Psychic Blast."
+	if(GLOB.round_statistics.psy_lances)
+		dat += "[GLOB.round_statistics.psy_lances] number of times Warlocks used Psychic Lance."
+	if(GLOB.round_statistics.psy_shields)
+		dat += "[GLOB.round_statistics.psy_shields] number of times Warlocks used Psychic Shield."
+	if(GLOB.round_statistics.psy_shield_blasts)
+		dat += "[GLOB.round_statistics.psy_shield_blasts] number of times Warlocks detonated a Psychic Shield."
 	if(GLOB.round_statistics.points_from_mining)
 		dat += "[GLOB.round_statistics.points_from_mining] requisitions points gained from mining."
 	if(GLOB.round_statistics.points_from_research)
