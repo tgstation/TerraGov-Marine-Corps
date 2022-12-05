@@ -183,6 +183,12 @@
 		/obj/item/storage/toolbox/emergency = 2,
 	)
 
+/obj/effect/spawner/random/bedsheet
+	name = "bedsheet spawner"
+	icon_state = "random_bedsheet"
+	loot_subtype_path = /obj/item/bedsheet
+	loot = list()
+
 /obj/effect/spawner/random/tech_supply
 	name = "Random Tech Supply"
 	icon_state = "random_cell"
@@ -942,7 +948,7 @@
 		/obj/structure/closet/secure_closet/scientist,
 	)
 
-/obj/effect/spawner/random/structure/piano/random_piano
+/obj/effect/spawner/random/structure/random_piano
 	name = "random piano spawner"
 	icon_state = "random_piano"
 	loot = list(
@@ -1050,8 +1056,33 @@
 	loot_subtype_path = /obj/structure/table
 	loot = list()
 
-/obj/effect/spawner/random/structure/bedsheet
-	name = "bedsheet spawner"
-	icon_state = "random_bedsheet"
-	loot_subtype_path = /obj/item/bedsheet
-	loot = list()
+/obj/effect/spawner/random/structure/broken_reinforced_window
+	name = "broken reinforced window spawner"
+	icon_state = "random_col_rwindow"
+	spawn_loot_chance = 90
+	loot = list(
+		/obj/structure/window_frame/colony/reinforced = 9,
+		/obj/structure/window/framed/colony/reinforced = 1,
+	)
+
+/obj/effect/spawner/random/structure/broken_window
+	name = "broken window spawner"
+	icon_state = "random_col_window"
+	spawn_loot_chance = 90
+	loot = list(
+		/obj/structure/window_frame/colony = 9,
+		/obj/structure/window/framed/colony = 1,
+	)
+
+/obj/effect/spawner/random/structure/barrel
+	name = "barrel spawner"
+	icon_state = "random_barrel"
+	loot = list(
+		/obj/structure/largecrate/random/barrel/blue = 20,
+		/obj/structure/largecrate/random/barrel/red = 10,
+		/obj/structure/largecrate/random/barrel/green = 20,
+		/obj/structure/largecrate/random/barrel/red = 20,
+		/obj/structure/largecrate/random/barrel/white = 20,
+		/obj/structure/largecrate/random/barrel/yellow = 20,
+		/obj/structure/reagent_dispensers/fueltank/barrel = 1,
+	)

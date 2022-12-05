@@ -2,7 +2,7 @@
 
 /area/station/
 	name = "Station Areas"
-	icon = 'icons/area/areas_station.dmi'
+	icon = 'icons/turf/areas_station.dmi'
 	icon_state = "station"
 
 //Maintenance

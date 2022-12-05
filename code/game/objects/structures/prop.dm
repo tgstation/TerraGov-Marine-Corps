@@ -1803,10 +1803,10 @@
 /obj/machinery/computer/broken/eight
 	icon_state = "broken_computer8"
 
-obj/machinery/computer/broken/nine
+/obj/machinery/computer/broken/nine
 	icon_state = "broken_computer9"
 
-obj/machinery/computer/solars
+/obj/machinery/computer/solars
 	name = "Port Quarter Solar Control"
 	desc = "A controller for solar panel arrays."
 	icon_state = "solar"
