@@ -442,18 +442,12 @@
 	action_icon_state = "rage"
 	mechanics_text = "Toggle on to enable boosting on "
 	ability_name = "Vampirism"
-	plasma_cost = 0 //We're limited by cooldowns, not plasma
-	cooldown_timer = 0.5 SECONDS
+	plasma_cost = 0 //We're limited by nothing, rip and tear
+	cooldown_timer = 5 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_VAMPIRISM,
 	)
-	///timer hash for timer to clear last attacked
-	var/clear_timer
-	///int of how stacked we are on leeching
-	var/leech_count
-	///list of mob = timer_key of mobs we are actively leeching
-	var/mob/living/last_leeched
 
 /datum/action/xeno_action/vampirism/New(Target)
 	..()
@@ -465,7 +459,6 @@
 	action_icon_state = xeno.vampirism ? "neuroclaws_on" : "neuroclaws_off"
 	button.cut_overlay(visual_references[VREF_MUTABLE_RAV_LEECH])
 	var/mutable_appearance/number = visual_references[VREF_MUTABLE_RAV_LEECH]
-	number.maptext = MAPTEXT("[leech_count]")
 	visual_references[VREF_MUTABLE_RAV_LEECH] = number
 	button.add_overlay(visual_references[VREF_MUTABLE_RAV_LEECH])
 	return ..()
@@ -475,7 +468,6 @@
 	var/mob/living/carbon/xenomorph/xeno = L
 	xeno.vampirism = TRUE
 	RegisterSignal(L, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/on_slash)
-	RegisterSignal(L, COMSIG_XENOMORPH_HEALTH_REGEN, .proc/on_regen)
 
 /datum/action/xeno_action/vampirism/remove_action(mob/living/L)
 	. = ..()
@@ -491,38 +483,17 @@
 		UnregisterSignal(xeno, COMSIG_XENOMORPH_ATTACK_LIVING)
 	to_chat(xeno, span_xenonotice("You will now[xeno.vampirism ? "" : " no longer"] heal from attacking"))
 
-///called on regen, handles regen rate reduction
-/datum/action/xeno_action/vampirism/proc/on_regen(mob/living/carbon/xenomorph/dracula, list/heal_data)
-	SIGNAL_HANDLER
-	if(!leech_count)
-		return
-	//heals 10% extra per leeched
-	var/heal_mod = 1 + (leech_count/10)
-
-	heal_data[1] = (heal_data[1] * heal_mod)
-
 ///Adds the slashed mob to tracked damage mobs
-/datum/action/xeno_action/vampirism/proc/on_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
+/datum/action/xeno_action/vampirism/proc/on_slash(datum/source, mob/living/target, damage)
 	SIGNAL_HANDLER
 	if(target.stat == DEAD)
 		return
 	if(!ishuman(target)) // no farming on animals/dead
 		return
-	if(last_leeched == target)
+	if(!COOLDOWN_CHECK(src, cooldown_timer))
 		return
-	addtimer(CALLBACK(src, .proc/end_leech), VAMPIRISM_MOB_DURATION)
-	leech_count++
-	last_leeched = target
-	deltimer(clear_timer)
-	clear_timer = addtimer(CALLBACK(src, .proc/clear_leeched), VAMPIRISM_MOB_DURATION, TIMER_STOPPABLE)
+	var/mob/living/carbon/xenomorph/x = owner
+	x.adjustBruteLoss(-((x.xeno_caste.max_health - x.health) / 4))
+	x.adjustFireLoss(-((x.xeno_caste.max_health - x.health) / 4))
 	update_button_icon()
-
-///Called when the leech effect is supposed to end
-/datum/action/xeno_action/vampirism/proc/end_leech()
-	leech_count--
-	update_button_icon()
-
-///Called when last_leeched mob is deleted
-/datum/action/xeno_action/vampirism/proc/clear_leeched()
-	SIGNAL_HANDLER
-	last_leeched = null
+	add_cooldown()
