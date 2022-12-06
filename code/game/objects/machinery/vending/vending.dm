@@ -855,8 +855,8 @@
 	. = TRUE
 
 
-/obj/machinery/vending/take_damage(dam)
-	if(density && dam >= knockdown_threshold)
+/obj/machinery/vending/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", effects = TRUE, attack_dir, armour_penetration = 0)
+	if(density && damage_amount >= knockdown_threshold)
 		tip_over()
 	return ..()
 

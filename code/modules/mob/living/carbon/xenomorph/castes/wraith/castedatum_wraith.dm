@@ -28,6 +28,7 @@
 	evolves_to = list(
 		/mob/living/carbon/xenomorph/defiler,
 		/mob/living/carbon/xenomorph/ravager,
+		/mob/living/carbon/xenomorph/warlock,
 	)
 	deevolves_to = /mob/living/carbon/xenomorph/runner
 
