@@ -69,6 +69,8 @@
 		/datum/action/xeno_action/activable/spray_acid/line/boiler,
 	)
 
+	water_slowdown = -0.5
+
 /datum/xeno_caste/boiler/young
 	upgrade_name = "Young"
 

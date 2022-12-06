@@ -1,4 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes:
-  - rscadd: "Adjusted tcomms, added more logging."

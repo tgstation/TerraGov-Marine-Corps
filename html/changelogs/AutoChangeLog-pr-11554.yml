@@ -1,4 +1,0 @@
-author: "lorianss"
-delete-after: True
-changes:
-  - rscadd: "Xenomorphs can quickly build acid wells, as well as collapse the top panel with abilities (since all abilities can be used using keyboard shortcuts)."
