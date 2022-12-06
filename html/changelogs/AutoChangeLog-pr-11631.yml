@@ -1,5 +1,0 @@
-author: "novaepee"
-delete-after: True
-changes:
-  - rscadd: "Combat canteen has more possible transfer amounts"
-  - balance: "More options on transfer amounts for combat canteen will inevitably change how marine consume from combat canteen"

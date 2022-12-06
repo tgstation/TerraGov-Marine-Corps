@@ -1,4 +1,0 @@
-author: "psykzz"
-delete-after: True
-changes:
-  - code_imp: "send order now uses a TGUI input if the player has them enabled"

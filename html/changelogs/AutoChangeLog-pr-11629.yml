@@ -1,4 +1,0 @@
-author: "tyeagg"
-delete-after: True
-changes:
-  - rscadd: "added smart pipes mapping helper for mappers"

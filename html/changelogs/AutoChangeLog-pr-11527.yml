@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - qol: "The mech builder UI preview now updates color changes"
-  - bugfix: "The mech builder ui is now less wide to fit on smaller screens"
