@@ -1,6 +1,0 @@
-author: "Blundir"
-delete-after: True
-changes:
-  - rscadd: "mech pilot's hud icon addition"
-  - bugfix: "captain's hud icon is now shown"
-  - bugfix: "blood red beret is now correctly showing up in the loadout menu"
