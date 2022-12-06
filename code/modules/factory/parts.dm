@@ -333,22 +333,6 @@ GLOBAL_LIST_INIT(swat_mask, list(
 	. = ..()
 	recipe = GLOB.swat_mask
 
-GLOBAL_LIST_INIT(optical_imager, list(
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "hotplate"),
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_COMPRESSOR, STEP_ICON_STATE = "roundplate"),
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_GALVANIZER, STEP_ICON_STATE = "steelingot"),
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_FLATTER, STEP_ICON_STATE = "unfinished_imager"),
-	))
-
-/obj/item/factory_part/optical_imager
-	name = "Optical Imagers"
-	desc = "An unfinished pair of Optical Imagers assembly"
-	result = list(/obj/item/clothing/glasses/night/imager_goggles)
-
-/obj/item/factory_part/optical_imager/Initialize()
-	. = ..()
-	recipe = GLOB.optical_imager
-
 GLOBAL_LIST_INIT(meds, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_FLATTER, STEP_ICON_STATE = "uncutplate"),
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_COMPRESSOR, STEP_ICON_STATE = "req_bag3"),
@@ -384,7 +368,7 @@ GLOBAL_LIST_INIT(meds, list(
 GLOBAL_LIST_INIT(module, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "cutplate"),
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_FLATTER, STEP_ICON_STATE = "roundplate"),
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_DRILLER, STEP_ICON_STATE = "uncutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_DRILLER, STEP_ICON_STATE = "uncutplate"),+
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "barrelplate"),
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_COMPRESSOR, STEP_ICON_STATE = "unfinished_module_top"),
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_GALVANIZER, STEP_ICON_STATE = "unfinished_module_bottom"),
