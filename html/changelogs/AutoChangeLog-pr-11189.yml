@@ -1,9 +1,0 @@
-author: "tyeagg"
-delete-after: True
-changes:
-  - qol: "fixes issue of camera being 1 tile short of where your aiming since your in the same tile of the gun"
-  - qol: "you can turn 360 in mounted gun without a care about obstacle blocking you"
-  - qol: "nobody can move the gun if the gun is movable and if your manning it"
-  - qol: "reload without getting off amounted gun"
-  - balance: "mounted guns will no longer act as a shield if your manning it"
-  - balance: "mounted guns now use coverage instead of completely stopping a projectile if it hits it"

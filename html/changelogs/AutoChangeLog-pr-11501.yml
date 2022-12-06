@@ -1,5 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes:
-  - bugfix: "Autoinjectors can't absorb pills"
-  - spellcheck: "Lowercased autoinjectors/hypos"

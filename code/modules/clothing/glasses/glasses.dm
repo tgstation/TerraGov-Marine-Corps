@@ -77,8 +77,21 @@
 		qdel(I)
 		qdel(src)
 		user.put_in_hands(P)
+	else if(istype(I, /obj/item/clothing/glasses/meson))
+		var/obj/item/clothing/glasses/meson/eyepatch/P = new
+		to_chat(user, span_notice("You fasten the meson projector to the inside of the eyepatch."))
+		qdel(I)
+		qdel(src)
+		user.put_in_hands(P)
+	else if(istype(I, /obj/item/clothing/glasses/night/imager_goggles))
+		var/obj/item/clothing/glasses/night/imager_goggles/eyepatch/P = new
+		to_chat(user, span_notice("You fasten the optical scanner to the inside of the eyepatch."))
+		qdel(I)
+		qdel(src)
+		user.put_in_hands(P)
 
 		update_icon(user)
+
 
 /obj/item/clothing/glasses/monocle
 	name = "monocle"
@@ -323,6 +336,30 @@
 /obj/item/clothing/glasses/sunglasses/fake
 	desc = "A pair of designer sunglasses. Doesn't seem like it'll block flashes."
 	eye_protection = 0
+
+/obj/item/clothing/glasses/sunglasses/fake/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/clothing/glasses/hud/health))
+		var/obj/item/clothing/glasses/hud/medsunglasses/P = new
+		to_chat(user, span_notice("You fasten the medical hud projector to the inside of the glasses."))
+		qdel(I)
+		qdel(src)
+		user.put_in_hands(P)
+	else if(istype(I, /obj/item/clothing/glasses/night/imager_goggles))
+		var/obj/item/clothing/glasses/night/imager_goggles/sunglasses/P = new
+		to_chat(user, span_notice("You fasten the optical imager scaner to the inside of the glasses."))
+		qdel(I)
+		qdel(src)
+		user.put_in_hands(P)
+	else if(istype(I, /obj/item/clothing/glasses/meson))
+		var/obj/item/clothing/glasses/meson/sunglasses/P = new
+		to_chat(user, span_notice("You fasten the optical meson scaner to the inside of the glasses."))
+		qdel(I)
+		qdel(src)
+		user.put_in_hands(P)
+
+		update_icon(user)
 
 /obj/item/clothing/glasses/sunglasses/fake/prescription
 	name = "prescription sunglasses"

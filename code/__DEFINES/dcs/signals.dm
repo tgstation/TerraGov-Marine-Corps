@@ -510,17 +510,7 @@
 #define COMSIG_XENOMORPH_ABILITY_ON_UPGRADE "xenomorph_ability_on_upgrade"
 
 #define COMSIG_XENOMORPH_GRAB "xenomorph_grab"
-#define COMSIG_XENOMORPH_ATTACK_BARRICADE "xenomorph_attack_barricade"
-#define COMSIG_XENOMORPH_ATTACK_CLOSET "xenomorph_attack_closet"
-#define COMSIG_XENOMORPH_ATTACK_RAZORWIRE "xenomorph_attack_razorwire"
-#define COMSIG_XENOMORPH_ATTACK_BED "xenomorph_attack_bed"
-#define COMSIG_XENOMORPH_ATTACK_NEST "xenomorph_attack_nest"
-#define COMSIG_XENOMORPH_ATTACK_TABLE "xenomorph_attack_table"
-#define COMSIG_XENOMORPH_ATTACK_RACK "xenomorph_attack_rack"
-#define COMSIG_XENOMORPH_ATTACK_SENTRY "xenomorph_attack_sentry"
-#define COMSIG_XENOMORPH_ATTACK_M56_POST "xenomorph_attack_m56_post"
-#define COMSIG_XENOMORPH_ATTACK_M56 "xenomorph_attack_m56"
-#define COMSIG_XENOMORPH_ATTACK_TANK "xenomorph_attack_tank"
+#define COMSIG_XENOMORPH_ATTACK_OBJ "xenomorph_attack_obj"
 #define COMSIG_XENOMORPH_ATTACK_LIVING "xenomorph_attack_living"
 	#define COMSIG_XENOMORPH_BONUS_APPLIED (1<<0)
 
@@ -781,6 +771,10 @@
 #define COMSIG_XENOABILITY_SPIDER_SWARM "xenoability_spider_swarm"
 #define COMSIG_XENOABILITY_ATTACH_SPIDERLINGS "xenoability_attach_spiderlings"
 #define COMSIG_XENOABILITY_WEB_HOOK "xenoability_web_hook"
+
+#define COMSIG_XENOABILITY_PSYCHIC_SHIELD "xenoability_psychic_shield"
+#define COMSIG_XENOABILITY_PSYCHIC_BLAST "xenoability_psychic_blast"
+#define COMSIG_XENOABILITY_PSYCHIC_CRUSH "xenoability_psychic_crush"
 
 // throw parry signals
 #define COMSIG_THROW_PARRY_CHECK "throw_parry_check"
