@@ -252,24 +252,24 @@
 
 /obj/item/weapon/twohanded/spear/throw_at(atom/target, range, speed, thrower, spin, flying)
 	spin = FALSE
-	//Find the direction the spear is to be thrown, then rotate it based on that angle
-	var/rotation_value
-	switch(get_dir(thrower, target))
-		if(NORTH)
+	//Find the angle the spear is to be thrown at, then rotate it based on that angle at 45 degree increments
+	var/rotation_value = (Get_Angle(thrower, get_turf(target)))
+	switch(rotation_value)
+		if(337.5 to 360, 0 to 22.5)
 			rotation_value = 0 - current_angle
-		if(NORTHEAST)
+		if(22.5 to 67.5)
 			rotation_value = 45 - current_angle
-		if(EAST)
+		if(67.5 to 112.5)
 			rotation_value = 90 - current_angle
-		if(SOUTHEAST)
+		if(112.5 to 157.5)
 			rotation_value = 135 - current_angle
-		if(SOUTH)
+		if(157.5 to 202.5)
 			rotation_value = 180 - current_angle
-		if(SOUTHWEST)
+		if(202.5 to 247.5)
 			rotation_value = 225 - current_angle
-		if(WEST)
+		if(247.5 to 292.5)
 			rotation_value = 270 - current_angle
-		if(NORTHWEST)
+		if(292.5 to 337.5)
 			rotation_value = 315 - current_angle
 	current_angle += rotation_value
 	var/matrix/rotate_me = matrix()
