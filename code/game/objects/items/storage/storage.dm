@@ -787,7 +787,7 @@
 	attempt_draw_object(user)
 
 /obj/item/storage/AltRightClick(mob/user)
-	if(Adjacent(usr))
+	if(Adjacent(user))
 		open(user)
 
 /obj/item/storage/attack_hand_alternate(mob/living/user)
