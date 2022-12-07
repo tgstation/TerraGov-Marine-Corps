@@ -18,3 +18,8 @@
 	if(!force)
 		return FALSE
 	return ..()
+
+/mob/living/carbon/xenomorph/widow/post_unbuckle_mob(mob/living/M)
+	M.layer = initial(M.layer)
+	M.pixel_x = rand(-8, 8)
+	M.pixel_y = rand(-8, 8)
