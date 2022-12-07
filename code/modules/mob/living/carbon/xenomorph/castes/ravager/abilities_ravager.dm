@@ -437,6 +437,16 @@
 // ***************************************
 // *********** Vampirism
 // ***************************************
+
+/particles/xeno_slash/vampirism
+	color = "#ff0000"
+	grow = list(-0.2 ,0.5)
+	fade = 15
+	gravity = list(0, -5)
+	velocity = list(1000, 1000)
+	friction = 50
+	lifespan = 15
+
 /datum/action/xeno_action/vampirism
 	name = "Toggle vampirism"
 	action_icon_state = "rage"
@@ -450,6 +460,8 @@
 	)
 	var/heal_delay = 2 SECONDS // how long we have to wait before healing again
 	COOLDOWN_DECLARE(last_healed)
+	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
+	var/obj/effect/abstract/particle_holder/particle_holder
 
 /datum/action/xeno_action/vampirism/New(Target)
 	..()
@@ -499,3 +511,9 @@
 	x.adjustFireLoss(-((x.xeno_caste.max_health - x.health) / 4))
 	update_button_icon()
 	COOLDOWN_START(src, last_healed, heal_delay)
+	play_particles(x)
+
+/datum/action/xeno_action/vampirism/proc/play_particles(attacker)
+	particle_holder = new(attacker, /particles/xeno_slash/vampirism)
+	QDEL_IN(particle_holder, 5 SECONDS)
+
