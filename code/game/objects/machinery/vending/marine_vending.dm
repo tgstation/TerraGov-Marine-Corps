@@ -821,9 +821,6 @@
 			/obj/machinery/factory/flatter = 1,
 			/obj/machinery/factory/former = 1,
 			/obj/machinery/factory/reconstructor = 1,
-			/obj/machinery/factory/driller = 1,
-			/obj/machinery/factory/galvanizer - 1,
-			/obj/machinery/factory/compressor = 1,
 			/obj/machinery/unboxer = 1,
 		),
 		"Grenade Boxes" = list(
