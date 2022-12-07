@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - rscadd: "Adds melee core for mechs: makes melee weapons more powerful and makes the mech faster, but makes it unable to use guns"

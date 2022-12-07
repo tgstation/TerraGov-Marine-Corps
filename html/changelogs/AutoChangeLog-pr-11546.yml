@@ -1,6 +1,0 @@
-author: "KacperRaid"
-delete-after: True
-changes:
-  - rscadd: "Adds prediction to first explosion for Fatty"
-  - balance: "Instead of walls, Fatty now remove lives (also brings back cluster explosion)"
-  - balance: "Changes price back to 250 points"

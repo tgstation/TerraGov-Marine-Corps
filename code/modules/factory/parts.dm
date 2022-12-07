@@ -425,3 +425,63 @@ GLOBAL_LIST_INIT(module, list(
 /obj/item/factory_part/module_surt/Initialize()
 	. = ..()
 	recipe = GLOB.module
+GLOBAL_LIST_INIT(mortar_shell, list(
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "cutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_DRILLER, STEP_ICON_STATE = "hotplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CONSTRUCTOR, STEP_ICON_STATE = "rockettube"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_GALVANIZER, STEP_ICON_STATE = "rockettube"),
+	))
+
+/obj/item/factory_part/mortar_shell_he
+	name = "Mortar shell"
+	desc = "An unfinished High Explosive Mortar shell"
+	result = /obj/item/mortal_shell/he
+
+/obj/item/factory_part/mortar_shell_he/Initialize()
+	. = ..()
+	recipe = GLOB.mortar_shell
+
+/obj/item/factory_part/mortar_shell_incen
+	name = "Mortar shell"
+	desc = "An unfinished Incendiary Mortar shell"
+	result = /obj/item/mortal_shell/incendiary
+
+/obj/item/factory_part/mortar_shell_incen/Initialize()
+	. = ..()
+	recipe = GLOB.mortar_shell
+
+/obj/item/factory_part/mortar_shell_flare
+	name = "Mortar shell"
+	desc = "An unfinished Flare Mortar shell"
+	result = /obj/item/mortal_shell/flare
+
+/obj/item/factory_part/mortar_shell_flare/Initialize()
+	. = ..()
+	recipe = GLOB.mortar_shell
+
+/obj/item/factory_part/mortar_shell_tfoot
+	name = "Mortar shell"
+	desc = "An unfinished Flare Mortar shell"
+	result = /obj/item/mortal_shell/plasmaloss
+
+/obj/item/factory_part/mortar_shell_tfoot/Initialize()
+	. = ..()
+	recipe = GLOB.mortar_shell
+
+GLOBAL_LIST_INIT(mlrs_rocket, list(
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "cutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_DRILLER, STEP_ICON_STATE = "hotplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_COMPRESSOR, STEP_ICON_STATE = "rockettube"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_GALVANIZER, STEP_ICON_STATE = "rockettube"),
+	))
+
+/obj/item/factory_part/mlrs_rocket
+	name = "MLRS rocket"
+	desc = "An unfinished high explosive rocket"
+	result = /obj/item/storage/box/mlrs_rockets
+
+/obj/item/factory_part/mlrs_rockets/Initialize()
+	. = ..()
+	recipe = GLOB.mlrs_rocket
