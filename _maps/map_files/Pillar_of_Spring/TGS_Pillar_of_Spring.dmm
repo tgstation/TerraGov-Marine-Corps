@@ -337,6 +337,13 @@
 	},
 /turf/open/floor/mainship/sterile/plain,
 /area/mainship/living/pilotbunks)
+"aT" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/docking_port/stationary/marine_dropship/crash_target,
+/turf/open/floor/mainship/black{
+	dir = 10
+	},
+/area/mainship/squads/general)
 "aU" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
@@ -19068,21 +19075,15 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "YH" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/machinery/vending/weapon,
-/obj/docking_port/stationary/marine_dropship/crash_target,
-/turf/open/floor/mainship/black{
-	dir = 1
-	},
-/area/mainship/squads/general)
+/obj/structure/table/mainship/nometal,
+/obj/item/radio,
+/obj/item/light_bulb/tube,
+/obj/item/light_bulb/tube,
+/obj/item/light_bulb/tube,
+/obj/item/clothing/glasses/meson,
+/obj/item/clothing/gloves/yellow,
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/engineering_workshop)
 "YI" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
@@ -56724,7 +56725,7 @@ Eo
 Eo
 xT
 zh
-YH
+WN
 IQ
 IQ
 xT
@@ -57491,7 +57492,7 @@ II
 cR
 gl
 pv
-gl
+aT
 II
 cR
 ON

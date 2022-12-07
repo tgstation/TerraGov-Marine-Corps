@@ -318,7 +318,7 @@
 	dir = 8
 	},
 /obj/machinery/door_control{
-	id = "starboard_umbilical_outer";
+	id = "port_umbilical_outer";
 	name = "outer door-control";
 	pixel_y = 32
 	},
@@ -446,17 +446,6 @@
 /area/shuttle/canterbury)
 "bA" = (
 /turf/open/floor/mainship,
-/area/shuttle/canterbury)
-"bC" = (
-/obj/structure/barricade/plasteel{
-	dir = 4
-	},
-/obj/machinery/door_control{
-	id = "starboard_umbilical_outer";
-	name = "outer door-control";
-	pixel_y = 32
-	},
-/turf/open/floor/mainship/stripesquare,
 /area/shuttle/canterbury)
 "bD" = (
 /obj/structure/cable,
@@ -923,6 +912,11 @@
 	},
 /obj/structure/prop/holidays/stocking{
 	pixel_y = 26
+	},
+/obj/machinery/door_control{
+	id = "starboard_umbilical_outer";
+	name = "outer door-control";
+	pixel_y = 32
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/shuttle/canterbury)
@@ -1595,7 +1589,7 @@ Uo
 Mp
 Mj
 Kk
-ab
+Rj
 bU
 bU
 bU
@@ -1628,7 +1622,7 @@ Uo
 Mp
 Ui
 Xp
-ab
+Rv
 bi
 DH
 DH
@@ -2090,8 +2084,8 @@ Uo
 Mp
 vW
 cR
-ab
-bC
+Rv
+sq
 hc
 hc
 hc
@@ -2123,7 +2117,7 @@ Uo
 Mp
 ql
 te
-ab
+Km
 bV
 bV
 bV

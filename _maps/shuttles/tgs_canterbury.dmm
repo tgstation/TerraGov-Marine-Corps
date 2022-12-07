@@ -156,6 +156,7 @@
 /obj/item/binoculars,
 /obj/item/facepaint/sniper,
 /obj/machinery/alarm,
+/obj/item/wrapping_paper,
 /obj/machinery/door_control{
 	dir = 4;
 	id = "port_umbilical_outer";
@@ -201,11 +202,19 @@
 /obj/structure/largecrate/supply/supplies/sandbags,
 /obj/machinery/alarm,
 /obj/machinery/door_control{
+	dir = 8;
+	id = "starboard_umbilical_outer";
+	name = "outer door-control"
+	},
+/turf/open/floor/mainship/cargo,
+/area/shuttle/canterbury)
+"az" = (
+/obj/machinery/door_control{
 	dir = 4;
 	id = "port_umbilical_outer";
 	name = "outer door-control"
 	},
-/turf/open/floor/mainship/cargo,
+/turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "aA" = (
 /obj/structure/barricade/plasteel{
@@ -1143,8 +1152,8 @@ an
 aa
 aa
 aa
-an
-an
+Ua
+ve
 aH
 aH
 aH
@@ -1311,7 +1320,7 @@ aJ
 vg
 aD
 be
-aD
+az
 aJ
 aD
 ci
@@ -1419,8 +1428,8 @@ cm
 aa
 aa
 aa
-an
-an
+Mi
+LF
 aK
 aK
 aK
