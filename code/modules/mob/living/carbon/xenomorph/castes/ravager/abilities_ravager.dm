@@ -448,6 +448,8 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_VAMPIRISM,
 	)
+	var/heal_delay = 2 SECONDS // how long we have to wait before healing again
+	COOLDOWN_DECLARE(last_healed)
 
 /datum/action/xeno_action/vampirism/New(Target)
 	..()
@@ -490,10 +492,10 @@
 		return
 	if(!ishuman(target)) // no farming on animals/dead
 		return
-	if(!COOLDOWN_CHECK(src, cooldown_timer))
+	if(!COOLDOWN_CHECK(src, last_healed))
 		return
 	var/mob/living/carbon/xenomorph/x = owner
 	x.adjustBruteLoss(-((x.xeno_caste.max_health - x.health) / 4))
 	x.adjustFireLoss(-((x.xeno_caste.max_health - x.health) / 4))
 	update_button_icon()
-	add_cooldown()
+	COOLDOWN_START(src, last_healed, heal_delay)
