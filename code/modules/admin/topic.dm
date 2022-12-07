@@ -432,6 +432,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/defiler, location, null, delmob)
 			if("gorger")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/gorger, location, null, delmob)
+			if("warlock")
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/warlock, location, null, delmob)
 			if("shrike")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/shrike, location, null, delmob)
 			if("hivemind")
