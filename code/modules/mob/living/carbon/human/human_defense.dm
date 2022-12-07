@@ -390,10 +390,12 @@ Contains most of the procs that are called when a mob is attacked by something
 	var/reduction = max(min(1, reduce_within_sight - reduce_prot_aura), 0.1) // Capped at 90% reduction
 	var/stamina_damage = LERP(140, 70, dist_pct) * reduction //Max 140 under Queen, 130 beside Queen, 70 at the edge. Reduction of 10 per tile distance from Queen.
 	var/stun_duration = (LERP(1, 0.4, dist_pct) * reduction) * 20 //Max 1.5 beside Queen, 0.4 at the edge.
+	var/stagger_amount = LERP(15, 3, dist_pct) * reduction // 15 Next to queen , 3 at max distance.
 
 	to_chat(src, span_danger("An ear-splitting guttural roar tears through your mind and makes your world convulse!"))
 	Stun(stun_duration)
 	Paralyze(stun_duration)
+	adjust_stagger(stagger_amount)
 	apply_damage(stamina_damage, STAMINA, updating_health = TRUE)
 	if(!ear_deaf)
 		adjust_ear_damage(deaf = stun_duration)  //Deafens them temporarily
