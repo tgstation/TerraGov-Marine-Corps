@@ -441,11 +441,13 @@
 /particles/xeno_slash/vampirism
 	color = "#ff0000"
 	grow = list(-0.2 ,0.5)
-	fade = 15
+	fade = 10
 	gravity = list(0, -5)
 	velocity = list(1000, 1000)
 	friction = 50
-	lifespan = 15
+	lifespan = 10
+	position = generator(GEN_SPHERE, 10, 30, NORMAL_RAND)
+	scale = generator(GEN_VECTOR, list(1, 1), list(0.9, 0.9), NORMAL_RAND)
 
 /datum/action/xeno_action/vampirism
 	name = "Toggle vampirism"
@@ -515,5 +517,7 @@
 
 /datum/action/xeno_action/vampirism/proc/play_particles(attacker)
 	particle_holder = new(attacker, /particles/xeno_slash/vampirism)
-	QDEL_IN(particle_holder, 5 SECONDS)
+	particle_holder.pixel_y = 18
+	particle_holder.pixel_x = 18
+	QDEL_IN(particle_holder, 2 SECONDS)
 
