@@ -990,10 +990,10 @@
 /obj/effect/spawner/random/structure/girder
 	name = "girder spawner"
 	icon_state = "random_girder"
-	spawn_loot_chance = 90
+	spawn_loot_chance = 75
 	loot = list(
-		/obj/structure/girder = 7,
-		/obj/structure/girder/displaced = 2,
+		/obj/structure/girder = 3,
+		/obj/structure/girder/displaced = 7,
 		/obj/structure/girder/reinforced = 1,
 	)
 
@@ -1085,4 +1085,13 @@
 		/obj/structure/largecrate/random/barrel/white = 20,
 		/obj/structure/largecrate/random/barrel/yellow = 20,
 		/obj/structure/reagent_dispensers/fueltank/barrel = 1,
+	)
+
+/obj/effect/spawner/random/structure/chair_or_metal //only works for south facing chairs due to lack of proper directional spawning
+	name = "chair or metal spawner"
+	icon_state = "random_chair"
+	spawn_loot_chance = 95
+	loot = list(
+		/obj/structure/bed/chair = 8,
+		/obj/item/stack/sheet/metal = 2,
 	)
