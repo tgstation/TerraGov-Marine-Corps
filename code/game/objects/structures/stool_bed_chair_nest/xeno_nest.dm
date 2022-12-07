@@ -28,9 +28,20 @@
 
 
 /obj/structure/bed/nest/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	if(X.a_intent != INTENT_HARM)
-		return attack_hand(X)
-	return ..()
+	if(X.status_flags & INCORPOREAL)
+		return
+
+	X.visible_message(span_xenonotice("\The [X] starts tearing down \the [src]!"), \
+	span_xenonotice("We start to tear down \the [src]."))
+	if(!do_after(X, 4 SECONDS, TRUE, X, BUSY_ICON_GENERIC))
+		return
+	if(!istype(src)) // Prevent jumping to other turfs if do_after completes with the wall already gone
+		return
+	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+	X.visible_message(span_xenonotice("\The [X] tears down \the [src]!"), \
+	span_xenonotice("We tear down \the [src]."))
+	playsound(src, "alien_resin_break", 25)
+	take_damage(max_integrity) // Ensure its destroyed
 
 
 /obj/structure/bed/nest/user_buckle_mob(mob/living/buckling_mob, mob/user, check_loc = TRUE, silent)
