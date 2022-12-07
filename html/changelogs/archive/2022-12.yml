@@ -273,3 +273,15 @@
   - balance: remove the extra sentries and hsg in crash
   - rscadd: change name of marine platoon for distress and nuclear
   - rscadd: added smart pipes mapping helper for mappers
+2022-12-07:
+  Lumipharon:
+  - bugfix: Spiderlings no longer lose their pixel offsets when unbuckling from widow
+  QualityVan:
+  - balance: Inaprov pills changed to 15u
+  - balance: Inaprov, RR, and neuraline don't unbreak organs
+  RipGrayson:
+  - bugfix: Adjusted a crash location on LV624 that could crush the green disk generator
+  - bugfix: Adjusted a crash location on the Pillar of Spring that could destroy the
+      hull of the ship and lead to space.
+  - bugfix: Changed the button locations on both Canterbury variations so they can't
+      be melted from the outside.
