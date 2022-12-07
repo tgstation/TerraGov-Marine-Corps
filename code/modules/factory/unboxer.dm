@@ -244,3 +244,31 @@
 	refill_type = /obj/item/factory_part/howitzer_shell_tfoot
 	refill_amount = 30
 
+/obj/item/factory_refill/mortar_shell_he_refill
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/mortar_shell_he
+	refill_amount = 30
+
+/obj/item/factory_refill/mortar_shell_incen_refill
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/mortar_shell_incen
+	refill_amount = 30
+
+/obj/item/factory_refill/mortar_shell_tfoot_refill
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/mortar_shell_tfoot
+	refill_amount = 30
+/obj/item/factory_refill/mortar_shell_flare_refill
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/mortar_shell_flare
+	refill_amount = 30
+
+/obj/item/factory_refill/mlrs_rocket_refill
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/mlrs_rocket
+	refill_amount = 6
