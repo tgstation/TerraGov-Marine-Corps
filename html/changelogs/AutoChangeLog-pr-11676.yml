@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Slight reduction in V-31 base accuracy"
+  - balance: "Reduced AP rifle ammo AP to 25 from 30"

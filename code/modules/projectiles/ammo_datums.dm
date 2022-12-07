@@ -604,7 +604,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "armor-piercing rifle bullet"
 	hud_state = "rifle_ap"
 	damage = 20
-	penetration = 30
+	penetration = 25
 	sundering = 3
 
 /datum/ammo/bullet/rifle/hv
@@ -2386,6 +2386,16 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "efficient machine laser bolt"
 	damage = 8.5
 	hitscan_effect_icon = "beam_particle"
+
+/datum/ammo/energy/lasgun/marine/autolaser/swarm
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING
+	name = "swarm laser bolt"
+	icon_state = "swarm_laser"
+	hud_state = "plasma_sphere"
+	max_range = 40
+	shell_speed = 0.1
+	damage = 15
+	bullet_color = COLOR_TESLA_BLUE
 
 /datum/ammo/energy/lasgun/marine/sniper
 	name = "sniper laser bolt"
