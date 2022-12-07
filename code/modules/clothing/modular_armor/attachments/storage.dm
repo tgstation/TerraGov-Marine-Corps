@@ -31,6 +31,7 @@
 	time_to_equip = parent.time_to_equip
 	time_to_unequip = parent.time_to_unequip
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, .proc/open_storage)
+	RegisterSignal(parent, COMSIG_CLICK_ALT_RIGHT, .proc/open_storage)	//Open storage if the armor is alt right clicked
 	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/insert_item)
 	storage.master_item = parent
 
