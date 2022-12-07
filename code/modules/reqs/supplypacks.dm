@@ -1812,10 +1812,6 @@ FACTORY
 	contains = list(/obj/item/factory_refill/swat_mask_refill)
 	cost = 50
 
-	name = "Optical imager assembly refill"
-	contains = list(/obj/item/factory_refill/optical_imager_refill)
-	cost = 50
-
 /datum/supply_packs/factory/med_advpack
 	name = "Advanced medical pack assembly refill"
 	contains = list(/obj/item/factory_refill/med_advpack_refill)

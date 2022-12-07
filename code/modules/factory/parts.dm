@@ -14,7 +14,7 @@
 	///reference to a glob list containing the recipe
 	var/list/recipe
 	///What result we become when we've run through all our machines
-	var/list/result = list(/obj/item/violin)
+	var/result = /obj/item/violin
 
 /obj/item/factory_part/Initialize()
 	..()
@@ -27,9 +27,13 @@
 /obj/item/factory_part/proc/advance_stage()
 	stage++
 	if(length(recipe) < stage)
-		for(var/production AS in result)
-			GLOB.round_statistics.req_items_produced[production]++
-			new production(loc)
+		if(islist(result))
+			for(var/production AS in result)
+				GLOB.round_statistics.req_items_produced[production]++
+				new production(loc)
+		else
+			GLOB.round_statistics.req_items_produced[result]++
+			new result(loc)
 		qdel(src)
 		return
 	next_machine = recipe[stage][STEP_NEXT_MACHINE]
@@ -44,7 +48,7 @@ GLOBAL_LIST_INIT(phosnade_recipe, list(
 /obj/item/factory_part/phosnade
 	name = "Phosphorus Grenade assembly"
 	desc = "A incomplete phosphorus grenade assembly"
-	result = list(/obj/item/explosive/grenade/phosphorus)
+	result = /obj/item/explosive/grenade/phosphorus
 
 /obj/item/factory_part/phosnade/Initialize()
 	. = ..()
@@ -59,7 +63,7 @@ GLOBAL_LIST_INIT(bignade_recipe,  list(
 /obj/item/factory_part/bignade
 	name = "M15 grenade assembly"
 	desc = "An incomplete M15 grenade"
-	result = list(/obj/item/explosive/grenade/m15)
+	result = /obj/item/explosive/grenade/m15
 
 /obj/item/factory_part/bignade/Initialize()
 	. = ..()
@@ -73,7 +77,7 @@ GLOBAL_LIST_INIT(pizza_recipe,  list(
 /obj/item/factory_part/pizza
 	name = "Unfinished pizza"
 	desc = "Wait I dont think thats how you make pizza..."
-	result = list(/obj/item/reagent_containers/food/snacks/mre_pack/meal4/req)
+	result = /obj/item/reagent_containers/food/snacks/mre_pack/meal4/req
 
 /obj/item/factory_part/pizza/Initialize()
 	. = ..()
@@ -89,7 +93,7 @@ GLOBAL_LIST_INIT(sadar_ammo_recipe, list(
 /obj/item/factory_part/sadar_wp
 	name = "SADAR WP missile asssembly"
 	desc = "An unfinished white phosphorus missile."
-	result = list(/obj/item/ammo_magazine/rocket/sadar/wp)
+	result = /obj/item/ammo_magazine/rocket/sadar/wp
 
 /obj/item/factory_part/sadar_wp/Initialize()
 	. = ..()
@@ -159,7 +163,7 @@ GLOBAL_LIST_INIT(IFF_ammo, list(
 /obj/item/factory_part/smartgunner_minigun_box
 	name = "IFF bullet box"
 	desc = "A box with unfinished smart-rounds inside"
-	result = list(/obj/item/ammo_magazine/packet/smart_minigun)
+	result = /obj/item/ammo_magazine/packet/smart_minigun
 
 /obj/item/factory_part/smartgunner_minigun_box/Initialize()
 	. = ..()
@@ -168,7 +172,7 @@ GLOBAL_LIST_INIT(IFF_ammo, list(
 /obj/item/factory_part/smartgunner_machinegun_magazine
 	name = "IFF drums box"
 	desc = "A box with unfinished smart-rounds inside and empty drums inside"
-	result = list(/obj/item/ammo_magazine/standard_smartmachinegun)
+	result = /obj/item/ammo_magazine/standard_smartmachinegun
 
 /obj/item/factory_part/smartgunner_machinegun_magazine/Initialize()
 	. = ..()
@@ -177,7 +181,7 @@ GLOBAL_LIST_INIT(IFF_ammo, list(
 /obj/item/factory_part/auto_sniper_magazine
 	name = "IFF high caliber bullet box"
 	desc = "A box with unfinished high caliber smart-rounds inside"
-	result = list(/obj/item/ammo_magazine/rifle/autosniper)
+	result = /obj/item/ammo_magazine/rifle/autosniper
 
 /obj/item/factory_part/auto_sniper_magazine/Initialize()
 	. = ..()
@@ -186,7 +190,7 @@ GLOBAL_LIST_INIT(IFF_ammo, list(
 /obj/item/factory_part/scout_rifle_magazine
 	name = "IFF high velocity bullet box"
 	desc = "A box with unfinished high velocity smart-rounds inside"
-	result = list(/obj/item/ammo_magazine/rifle/tx8)
+	result = /obj/item/ammo_magazine/rifle/tx8
 
 /obj/item/factory_part/scout_rifle_magazine/Initialize()
 	. = ..()
@@ -195,7 +199,7 @@ GLOBAL_LIST_INIT(IFF_ammo, list(
 /obj/item/factory_part/amr_magazine
 	name = "IFF antimaterial bullet box"
 	desc = "A box with unfinished antimaterial rifle rounds inside"
-	result = list(/obj/item/ammo_magazine/sniper)
+	result = /obj/item/ammo_magazine/sniper
 
 /obj/item/factory_part/amr_magazine/Initialize()
 	. = ..()
@@ -204,7 +208,7 @@ GLOBAL_LIST_INIT(IFF_ammo, list(
 /obj/item/factory_part/AMR_magazine_incend
 	name = "IFF antimaterial Incendiary bullet box"
 	desc = "A box with unfinished antimaterial Incendiary rifle rounds inside"
-	result = list(/obj/item/ammo_magazine/sniper/incendiary)
+	result = /obj/item/ammo_magazine/sniper/incendiary
 
 /obj/item/factory_part/amr_magazine_incend/Initialize()
 	. = ..()
@@ -213,7 +217,7 @@ GLOBAL_LIST_INIT(IFF_ammo, list(
 /obj/item/factory_part/amr_magazine_flak
 	name = "IFF antimaterial Flak bullet box"
 	desc = "A box with unfinished antimaterial rifle Flak rounds inside"
-	result = list(/obj/item/ammo_magazine/sniper/flak)
+	result = /obj/item/ammo_magazine/sniper/flak
 
 /obj/item/factory_part/amr_magazine_flak/Initialize()
 	. = ..()
@@ -227,7 +231,7 @@ GLOBAL_LIST_INIT(mateba_speedloader, list(
 /obj/item/factory_part/mateba_speedloader
 	name = "\improper Mateba speed loader (.454)"
 	desc = "A speedloader with unfinished hand cannon rounds inside"
-	result = list(/obj/item/ammo_magazine/revolver/mateba)
+	result = /obj/item/ammo_magazine/revolver/mateba
 
 /obj/item/factory_part/mateba_speedloader/Initialize()
 	. = ..()
@@ -242,7 +246,7 @@ GLOBAL_LIST_INIT(railgun_magazine, list(
 /obj/item/factory_part/railgun_magazine
 	name = "Railgun round"
 	desc = "An unfinished magnetically propelled steel rod"
-	result = list(/obj/item/ammo_magazine/railgun)
+	result = /obj/item/ammo_magazine/railgun
 
 /obj/item/factory_part/railgun_magazine/Initialize()
 	. = ..()
@@ -256,7 +260,7 @@ GLOBAL_LIST_INIT(minigun_powerpack, list(
 /obj/item/factory_part/minigun_powerpack
 	name = "Minigun powerpack"
 	desc = "A powerpack with unfinished minigun rounds inside"
-	result = list(/obj/item/ammo_magazine/minigun_powerpack)
+	result = /obj/item/ammo_magazine/minigun_powerpack
 
 /obj/item/factory_part/minigun_powerpack/Initialize()
 	. = ..()
@@ -270,7 +274,7 @@ GLOBAL_LIST_INIT(razornade, list(
 /obj/item/factory_part/razornade
 	name = "Razorfoam grenade"
 	desc = "An unfinished Razorfoam grenade casing"
-	result = list(/obj/item/explosive/grenade/chem_grenade/razorburn_smol)
+	result = /obj/item/explosive/grenade/chem_grenade/razorburn_smol
 
 /obj/item/factory_part/razornade/Initialize()
 	. = ..()
@@ -285,7 +289,7 @@ GLOBAL_LIST_INIT(howitzer_shell, list(
 /obj/item/factory_part/howitzer_shell_he
 	name = "Howitzer shell"
 	desc = "An unfinished High Explosive Howitzer shell"
-	result = list(/obj/item/mortal_shell/howitzer/he)
+	result = /obj/item/mortal_shell/howitzer/he
 
 /obj/item/factory_part/howitzer_shell_he/Initialize()
 	. = ..()
@@ -294,7 +298,7 @@ GLOBAL_LIST_INIT(howitzer_shell, list(
 /obj/item/factory_part/howitzer_shell_incen
 	name = "Howitzer shell"
 	desc = "An unfinished Incendiary Howitzer shell"
-	result = list(/obj/item/mortal_shell/howitzer/incendiary)
+	result = /obj/item/mortal_shell/howitzer/incendiary
 
 /obj/item/factory_part/howitzer_shell_incen/Initialize()
 	. = ..()
@@ -303,7 +307,7 @@ GLOBAL_LIST_INIT(howitzer_shell, list(
 /obj/item/factory_part/howitzer_shell_wp
 	name = "Howitzer shell"
 	desc = "An unfinished White Phosphorus Howitzer shell"
-	result = list(/obj/item/mortal_shell/howitzer/white_phos)
+	result = /obj/item/mortal_shell/howitzer/white_phos
 
 /obj/item/factory_part/howitzer_shell_wp/Initialize()
 	. = ..()
@@ -312,7 +316,7 @@ GLOBAL_LIST_INIT(howitzer_shell, list(
 /obj/item/factory_part/howitzer_shell_tfoot
 	name = "Howitzer shell"
 	desc = "An unfinished High Explosive Howitzer shell"
-	result = list(/obj/item/mortal_shell/howitzer/plasmaloss)
+	result = /obj/item/mortal_shell/howitzer/plasmaloss
 
 /obj/item/factory_part/howitzer_shell_tfoot/Initialize()
 	. = ..()
@@ -327,7 +331,7 @@ GLOBAL_LIST_INIT(swat_mask, list(
 /obj/item/factory_part/swat_mask
 	name = "SWAT mask"
 	desc = "An unfinished SWAT mask assembly"
-	result = list(/obj/item/clothing/mask/gas/swat)
+	result = /obj/item/clothing/mask/gas/swat
 
 /obj/item/factory_part/swat_mask/Initialize()
 	. = ..()
@@ -368,7 +372,7 @@ GLOBAL_LIST_INIT(meds, list(
 GLOBAL_LIST_INIT(module, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "cutplate"),
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_FLATTER, STEP_ICON_STATE = "roundplate"),
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_DRILLER, STEP_ICON_STATE = "uncutplate"),+
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_DRILLER, STEP_ICON_STATE = "uncutplate"),
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "barrelplate"),
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_COMPRESSOR, STEP_ICON_STATE = "unfinished_module_top"),
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_GALVANIZER, STEP_ICON_STATE = "unfinished_module_bottom"),
@@ -377,7 +381,7 @@ GLOBAL_LIST_INIT(module, list(
 /obj/item/factory_part/module_valk
 	name = "Valkyrie Automedical Armor System"
 	desc = "An unfinished Valkyrie Automedical Armor System module"
-	result = list(/obj/item/armor_module/module/valkyrie_autodoc)
+	result = /obj/item/armor_module/module/valkyrie_autodoc
 
 /obj/item/factory_part/module_valk/Initialize()
 	. = ..()
@@ -398,7 +402,7 @@ GLOBAL_LIST_INIT(module, list(
 /obj/item/factory_part/module_tyr2
 	name = "Mark 2 Tyr Armor Reinforcement"
 	desc = "An unfinished Mark 2 Tyr Armor Reinforcement module"
-	result = list(/obj/item/armor_module/module/tyr_extra_armor)
+	result = /obj/item/armor_module/module/tyr_extra_armor
 
 /obj/item/factory_part/module_tyr2/Initialize()
 	. = ..()
@@ -407,7 +411,7 @@ GLOBAL_LIST_INIT(module, list(
 /obj/item/factory_part/module_hlin
 	name = "Hlin Explosive Compensation Module"
 	desc = "An unfinished Hlin Explosive Compensation module"
-	result = list(/obj/item/armor_module/module/hlin_explosive_armor)
+	result = /obj/item/armor_module/module/hlin_explosive_armor
 
 /obj/item/factory_part/module_hlin/Initialize()
 	. = ..()
@@ -416,7 +420,7 @@ GLOBAL_LIST_INIT(module, list(
 /obj/item/factory_part/surt
 	name = "Surt Pyrotechnical Insulation System"
 	desc = "An unfinished Surt Pyrotechnical Insulation System module"
-	result = list(/obj/item/armor_module/module/fire_proof)
+	result = /obj/item/armor_module/module/fire_proof
 
 /obj/item/factory_part/module_surt/Initialize()
 	. = ..()
