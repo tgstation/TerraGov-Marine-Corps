@@ -1099,10 +1099,9 @@ GLOBAL_LIST_EMPTY(transformation_animation_objects)
  *
  * result_appearance - End result appearance/atom/image
  * time - Animation duration
- * transform_overlay - Appearance/atom/image of effect that moves along the animation - should be horizonatally centered
- * reset_after - If FALSE, filters won't be reset and helper vis_objects will not be removed after animation duration expires. Cleanup must be handled by the caller!
+ * transform_appearance - Appearance/atom/image of effect that moves along the animation - should be horizonatally centered
  */
-/atom/movable/proc/transformation_animation(result_appearance, time = 3 SECONDS, transform_overlay, reset_after=TRUE)
+/atom/movable/proc/transformation_animation(result_appearance, time = 3 SECONDS, transform_appearance)
 	var/list/transformation_objects = GLOB.transformation_animation_objects[src] || list()
 	//Disappearing part
 	var/top_part_filter = filter(type="alpha",icon=icon('icons/effects/alphacolors.dmi',"white"),y=0)
@@ -1118,9 +1117,9 @@ GLOBAL_LIST_EMPTY(transformation_animation_objects)
 	animate(appearing_part.filters[1],y=-32,time=time)
 	transformation_objects += appearing_part
 	//Transform effect thing - todo make appearance passed in
-	if(transform_overlay)
+	if(transform_appearance)
 		var/obj/transform_effect = new
-		transform_effect.appearance = transform_overlay
+		transform_effect.appearance = transform_appearance
 		transform_effect.vis_flags = VIS_INHERIT_ID
 		transform_effect.pixel_y = 16
 		transform_effect.alpha = 255
@@ -1131,8 +1130,6 @@ GLOBAL_LIST_EMPTY(transformation_animation_objects)
 	GLOB.transformation_animation_objects[src] = transformation_objects
 	for(var/A in transformation_objects)
 		vis_contents += A
-	if(reset_after)
-		addtimer(CALLBACK(src,.proc/_reset_transformation_animation,filter_index),time)
 
 /**
  * Resets filters and removes transformation animations helper objects from vis contents.
