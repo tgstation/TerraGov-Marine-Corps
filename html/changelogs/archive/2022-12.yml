@@ -285,3 +285,14 @@
       hull of the ship and lead to space.
   - bugfix: Changed the button locations on both Canterbury variations so they can't
       be melted from the outside.
+2022-12-08:
+  Lewdcifer:
+  - rscadd: Added Swarm mode to Laser Machine Gun.
+  Lumipharon:
+  - code_imp: Cleaned up some loadout code for quick equip vendors
+  - balance: Slight reduction in V-31 base accuracy
+  - balance: Reduced AP rifle ammo AP to 25 from 30
+  Naaanii:
+  - rscadd: Adds Warlock to admin player panel tab.
+  XElectricX:
+  - qol: Can open suit inventory with alt right click.
