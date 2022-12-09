@@ -311,7 +311,7 @@
 
 	for(var/i in GLOB.gear_datums)
 		var/datum/gear/G = GLOB.gear_datums[i]
-		if(!G || !gear.Find(i))
+		if(!G || !gear.Find(i) || G.allowed_roles && !(job.title in G.allowed_roles))
 			continue
 		equip_to_slot_or_del(new G.path, SLOT_IN_BACKPACK)
 

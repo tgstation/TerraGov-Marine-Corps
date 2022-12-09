@@ -13,6 +13,7 @@ GLOBAL_LIST_EMPTY(gear_datums)
 	var/path               //Path to item.
 	var/cost               //Number of points used.
 	var/slot               //Slot to equip to.
+	var/list/allowed_roles = null //Roles that can spawn with this item.
 
 /datum/gear/flower
 	display_name = "Flower Pin"
