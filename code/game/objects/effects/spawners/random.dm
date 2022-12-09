@@ -1043,7 +1043,7 @@
 
 /obj/effect/spawner/random/structure/table_or_rack
 	name = "table or rack spawner"
-	icon_state = "random_table_spawner"
+	icon_state = "random_rack_or_table_spawner"
 	loot = list(
 		/obj/effect/spawner/random/structure/table,
 		/obj/structure/rack,
@@ -1059,7 +1059,7 @@
 /obj/effect/spawner/random/structure/broken_reinforced_window
 	name = "broken reinforced window spawner"
 	icon_state = "random_col_rwindow"
-	spawn_loot_chance = 90
+	spawn_loot_chance = 70
 	loot = list(
 		/obj/structure/window_frame/colony/reinforced = 9,
 		/obj/structure/window/framed/colony/reinforced = 1,
@@ -1068,7 +1068,7 @@
 /obj/effect/spawner/random/structure/broken_window
 	name = "broken window spawner"
 	icon_state = "random_col_window"
-	spawn_loot_chance = 90
+	spawn_loot_chance = 70
 	loot = list(
 		/obj/structure/window_frame/colony = 9,
 		/obj/structure/window/framed/colony = 1,
@@ -1094,4 +1094,15 @@
 	loot = list(
 		/obj/structure/bed/chair = 8,
 		/obj/item/stack/sheet/metal = 2,
+	)
+
+/obj/effect/spawner/random/structure/machine_frame
+	name = "chair or metal spawner"
+	icon_state = "random_frame"
+	spawn_loot_chance = 50
+	loot = list(
+		/obj/machinery/constructable_frame,
+		/obj/machinery/constructable_frame/state_2,
+		/obj/structure/computer3frame,
+		/obj/item/frame/rack,
 	)

@@ -1584,8 +1584,13 @@
 	resistance_flags = RESIST_ALL
 	layer = ABOVE_MOB_LAYER
 
+/obj/structure/prop/machine_frame3
+	name = "machine frame"
+	icon = 'icons/obj/stock_parts.dmi'
+	icon_state = "box_2"
+
 //TG BROKEN VENDOR PROPS
-//USE THESE OUTSIDE OF A TG THEMED MAP AND I'LL BREAK YOUR KNEECAPS
+//USE THESE SPARINGLY OUTSIDE OF TG THEMED MAPS OR I'LL BREAK YOUR KNEECAPS
 /obj/structure/prop/tgbrokenvendor
 	name = "\improper Broken vendor"
 	icon = 'icons/obj/tg_vending_props.dmi'
