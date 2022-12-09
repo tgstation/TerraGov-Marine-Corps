@@ -27,13 +27,13 @@
 	dir = 1
 	},
 /turf/open/floor/iron/dark,
-/area/station/security/brig)
+/area/deltastation/security/brig)
 "hm" = (
 /turf/closed/wall/r_wall,
 /area/security/nuke_storage)
 "kE" = (
 /turf/closed/wall/r_wall,
-/area/station/maintenance/starboard/lesser)
+/area/deltastation/maintenance/starboard/lesser)
 "kG" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
@@ -45,7 +45,7 @@
 /area/security/nuke_storage)
 "nD" = (
 /turf/closed/wall,
-/area/station/maintenance/starboard/lesser)
+/area/deltastation/maintenance/starboard/lesser)
 "pb" = (
 /obj/structure/cable,
 /obj/structure/window/framed/colony/reinforced,
@@ -54,12 +54,12 @@
 	name = "Detective Privacy Blast Door"
 	},
 /turf/open/floor/plating,
-/area/station/security/detectives_office)
+/area/deltastation/security/detectives_office)
 "pB" = (
 /obj/structure/cable,
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
-/area/station/hallway/primary/central/fore)
+/area/deltastation/hallway/primary/central/fore)
 "pC" = (
 /obj/structure/lattice,
 /obj/structure/grille/smoothing,
@@ -79,12 +79,12 @@
 	},
 /obj/effect/spawner/random/plant,
 /turf/open/floor/iron,
-/area/station/hallway/primary/starboard)
+/area/deltastation/hallway/primary/starboard)
 "sd" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/station/security/brig)
+/area/deltastation/security/brig)
 "tc" = (
 /obj/machinery/status_display,
 /turf/closed/wall/r_wall,
@@ -96,11 +96,11 @@
 "tN" = (
 /obj/machinery/status_display,
 /turf/closed/wall/r_wall,
-/area/station/security/detectives_office)
+/area/deltastation/security/detectives_office)
 "ug" = (
 /obj/structure/reagent_dispensers/wallmounted/peppertank,
 /turf/closed/wall/r_wall,
-/area/station/security/detectives_office)
+/area/deltastation/security/detectives_office)
 "uj" = (
 /obj/structure/cable,
 /obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer2,
@@ -128,7 +128,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/station/security/brig)
+/area/deltastation/security/brig)
 "wp" = (
 /obj/structure/safe,
 /obj/item/clothing/tie/stethoscope,
@@ -157,7 +157,7 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron,
-/area/station/hallway/primary/starboard)
+/area/deltastation/hallway/primary/starboard)
 "yQ" = (
 /obj/machinery/camera{
 	c_tag = "Vault";
@@ -218,11 +218,11 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer4,
 /turf/open/floor/iron/dark,
-/area/station/security/brig)
+/area/deltastation/security/brig)
 "Hk" = (
 /obj/item/storage/secure/safe,
 /turf/closed/wall/r_wall,
-/area/station/security/detectives_office)
+/area/deltastation/security/detectives_office)
 "Hs" = (
 /obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer4,
 /turf/open/floor/gcircuit,
@@ -267,16 +267,16 @@
 /area/space)
 "Oa" = (
 /turf/closed/wall,
-/area/station/hallway/primary/central/fore)
+/area/deltastation/hallway/primary/central/fore)
 "OH" = (
 /turf/closed/wall/r_wall,
-/area/station/security/detectives_office)
+/area/deltastation/security/detectives_office)
 "PQ" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
 /turf/open/floor/iron,
-/area/station/hallway/primary/starboard)
+/area/deltastation/hallway/primary/starboard)
 "PT" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer4{
@@ -305,7 +305,7 @@
 	dir = 4
 	},
 /turf/open/floor/iron,
-/area/station/hallway/primary/central/fore)
+/area/deltastation/hallway/primary/central/fore)
 "ZY" = (
 /turf/template_noop,
 /area/template_noop)
