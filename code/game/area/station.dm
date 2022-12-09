@@ -1054,7 +1054,6 @@
 /area/deltastation/security/detectives_office
 	name = "\improper Detective's Office"
 	icon_state = "detective"
-	ambientsounds = list('sound/ambience/ambidet1.ogg','sound/ambience/ambidet2.ogg')
 
 /area/deltastation/security/detectives_office/private_investigators_office
 	name = "\improper Private Investigator's Office"
