@@ -102,7 +102,7 @@ GLOBAL_LIST_INIT(sadar_ammo_recipe, list(
 /obj/item/factory_part/sadar_ap
 	name = "SADAR AP missile asssembly"
 	desc = "An unfinished sleek missile with an AP warhead."
-	result = list(/obj/item/ammo_magazine/rocket/sadar/ap)
+	result = /obj/item/ammo_magazine/rocket/sadar/ap
 
 /obj/item/factory_part/sadar_ap/Initialize()
 	. = ..()
@@ -111,7 +111,7 @@ GLOBAL_LIST_INIT(sadar_ammo_recipe, list(
 /obj/item/factory_part/sadar_he
 	name = "SADAR HE missile asssembly"
 	desc = "An unfinished squat missile."
-	result = list(/obj/item/ammo_magazine/rocket/sadar)
+	result = /obj/item/ammo_magazine/rocket/sadar
 
 /obj/item/factory_part/sadar_he/Initialize()
 	. = ..()
@@ -126,7 +126,7 @@ GLOBAL_LIST_INIT(recoilless_missile_recipe, list(
 /obj/item/factory_part/light_rr_missile
 	name = "Light Recoilless ammo assembly"
 	desc = "An unfinished recoilless ammo. It has a particularily large booster."
-	result = list(/obj/item/ammo_magazine/rocket/recoilless/light)
+	result = /obj/item/ammo_magazine/rocket/recoilless/light
 
 /obj/item/factory_part/light_rr_missile/Initialize()
 	. = ..()
@@ -135,7 +135,7 @@ GLOBAL_LIST_INIT(recoilless_missile_recipe, list(
 /obj/item/factory_part/normal_rr_missile
 	name = "Standard Recoilless ammo assembly"
 	desc = "An unfinished squat missile. It has a particularily large warhead."
-	result = list(/obj/item/ammo_magazine/rocket/recoilless)
+	result = /obj/item/ammo_magazine/rocket/recoilless
 
 /obj/item/factory_part/normal_rr_missile/Initialize()
 	. = ..()
@@ -149,7 +149,7 @@ GLOBAL_LIST_INIT(claymore_recipe, list(
 /obj/item/factory_part/claymore
 	name = "claymore assembly"
 	desc = "An unfinished claymore"
-	result = list(/obj/item/explosive/mine)
+	result = /obj/item/explosive/mine
 
 /obj/item/factory_part/claymore/Initialize()
 	. = ..()
