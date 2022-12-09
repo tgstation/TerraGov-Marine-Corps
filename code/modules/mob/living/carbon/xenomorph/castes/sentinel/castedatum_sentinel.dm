@@ -47,6 +47,7 @@
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/activable/corrosive_acid/drone,
 		/datum/action/xeno_action/activable/xeno_spit,
+		/datum/action/xeno_action/toxic_slash,
 		/datum/action/xeno_action/activable/neurotox_sting,
 	)
 
@@ -173,6 +174,7 @@
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/activable/corrosive_acid/drone,
 		/datum/action/xeno_action/activable/xeno_spit,
-		/datum/action/xeno_action/activable/neurotox_sting,
+		/datum/action/xeno_action/toxic_slash,
+		/datum/action/xeno_action/activable/drain_sting,
 		/datum/action/xeno_action/activable/neurogas_grenade,
 	)

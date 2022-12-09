@@ -418,3 +418,36 @@
 	name = "Irradiated"
 	desc = "You've been irradiated! The effects of the radiation will continue to harm you until purged from your system."
 	icon_state = "radiation"
+
+// ***************************************
+// *********** Intoxicated
+// ***************************************
+/datum/status_effect/stacking/intoxicated
+	id = "intoxicated"
+	tick_interval = 2 SECONDS
+	stacks = 1
+	max_stacks = 10
+	consumed_on_threshold = FALSE
+	/// Owner of the debuff is limited to carbons.
+	var/mob/living/carbon/debuff_owner
+	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
+	var/obj/effect/abstract/particle_holder/particle_holder
+
+/datum/status_effect/stacking/intoxicated/on_creation(mob/living/new_owner, stacks_to_apply)
+	. = ..()
+	debuff_owner = new_owner
+	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 25)
+	particle_holder = new(debuff_owner, /particles/toxic_slash)
+	particle_holder.pixel_x = -2
+	particle_holder.pixel_y = 0
+
+/datum/status_effect/stacking/intoxicated/on_remove()
+	debuff_owner = null
+	QDEL_NULL(particle_holder)
+	return ..()
+
+/datum/status_effect/stacking/intoxicated/stack_decay_effect()
+	message_admins("intoxicated stacks: [stacks]")
+	var/mob/living/living_owner = debuff_owner
+	living_owner.adjustFireLoss(SENTINEL_INTOXICATED_DAMAGE)
+	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 8)

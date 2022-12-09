@@ -65,6 +65,8 @@
 
 #define STATUS_EFFECT_IRRADIATED /datum/status_effect/irradiated //the affected has been irradiated, harming them over time
 
+#define STATUS_EFFECT_INTOXICATED /datum/status_effect/stacking/intoxicated //Damage over time
+
 /////////////
 // NEUTRAL //
 /////////////

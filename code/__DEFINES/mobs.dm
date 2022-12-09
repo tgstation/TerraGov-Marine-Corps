@@ -681,6 +681,16 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define RUNNER_EVASION_RUN_DELAY 0.5 SECONDS //If the time since the Runner last moved is equal to or greater than this, its Evasion ends.
 #define RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD 120 //If we dodge this much damage times our streak count plus 1 while evading, refresh the cooldown of Evasion.
 
+//Sentinel defines
+#define SENTINEL_TOXIC_SLASH_COUNT 3 //Amount of slashes before the buff runs out
+#define SENTINEL_TOXIC_SLASH_DURATION 5 SECONDS //Duration of the buff
+#define SENTINEL_TOXIC_SLASH_STACKS_PER 2 //Amount of debuff stacks to be applied per slash.
+#define SENTINEL_DRAIN_MULTIPLIER 15 //Amount to multiply Drain Sting's restoration by
+#define SENTINEL_DRAIN_SURGE_DAMAGE_MOD = 1.15 //Damage multiplier provided by Drain Surge.
+#define SENTINEL_DRAIN_SURGE_SPEED_MOD = -0.4 //Speed modifier provided by Drain Surge.
+#define SENTINEL_DRAIN_SURGE_ARMOR_MOD = 20 //Armor modifier provided by Drain Surge.
+#define SENTINEL_INTOXICATED_DAMAGE 2 //Amount of damage per tick dealt by the Intoxicated debuff
+
 //Wraith defines
 
 #define WRAITH_BLINK_DRAG_NONFRIENDLY_MULTIPLIER 20 //The amount we multiply the cooldown by when we teleport while dragging a non-friendly target

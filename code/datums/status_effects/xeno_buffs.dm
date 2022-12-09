@@ -761,3 +761,29 @@
 	name = "Healing Infusion"
 	desc = "You have accelerated natural healing."
 	icon_state = "healing_infusion"
+
+// ***************************************
+// *********** Drain Surge
+// ***************************************
+/datum/status_effect/drain_surge
+	id = "drain surge"
+	duration = 5 SECONDS
+	var/damage_modifier = SENTINEL_DRAIN_SURGE_DAMAGE_MOD
+	var/speed_modifier = SENTINEL_DRAIN_SURGE_SPEED_MOD
+	var/armor_modifier = SENTINEL_DRAIN_SURGE_ARMOR_MOD
+
+/datum/status_effect/drain_surge/on_creation(mob/living/new_owner)
+	var/mob/living/carbon/xenomorph/X = owner
+	X.xeno_melee_damage_modifier = damage_modifier
+	X.add_movespeed_modifier(MOVESPEED_ID_DRAIN_SURGE, TRUE, 0, NONE, FALSE, speed_modifier)
+	X.soft_armor = X.soft_armor.modifyAllRatings(armor_modifier)
+	X.add_filter("drain_surge_outline", 2, outline_filter(1, COLOR_VIBRANT_LIME))
+	return ..()
+
+/datum/status_effect/drain_surge/on_remove()
+	var/mob/living/carbon/xenomorph/X = owner
+	X.xeno_melee_damage_modifier = initial(X.xeno_melee_damage_modifier)
+	X.remove_movespeed_modifier(MOVESPEED_ID_DRAIN_SURGE)
+	X.soft_armor = X.soft_armor.modifyAllRatings(-armor_modifier)
+	X.remove_filter("drain_surge_outline")
+	return ..()
