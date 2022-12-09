@@ -338,3 +338,9 @@ GLOBAL_LIST_EMPTY(gear_datums)
 	path = /obj/item/clothing/glasses/mgoggles/prescription
 	cost = 2
 	slot = SLOT_GLASSES
+
+/datum/gear/pig
+	display_name = "Pig toy"
+	path = /obj/item/toy/plush/pig
+	cost = 5
+	slot = SLOT_IN_BACKPACK

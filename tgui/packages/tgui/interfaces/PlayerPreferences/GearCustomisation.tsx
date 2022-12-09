@@ -11,6 +11,7 @@ export const GearCustomization = (props, context) => {
     11: 'Head',
     9: 'Eyewear',
     10: 'Mouth',
+    22: 'Miscellaneous',
   };
 
   const bySlot = {};
@@ -157,6 +158,30 @@ export const GearCustomization = (props, context) => {
                     content={'Equipped'}
                     checked={backpack - 1 === idx}
                     onClick={() => act('backpack', { newValue: item })}
+                  />
+                </LabeledList.Item>
+              ))}
+            </LabeledList>
+          </Section>
+        </Grid.Column>
+      </Grid>
+      <Grid>
+        <Grid.Column>
+          <Section title={'Miscellaneous'}>
+            <LabeledList>
+              {bySlot['Miscellaneous']?.map((item) => (
+                <LabeledList.Item
+                  key={item.name}
+                  label={`${item.name} (${item.cost})`}>
+                  <Button.Checkbox
+                    inline
+                    content={'Equipped'}
+                    checked={gear.includes(item.name)}
+                    onClick={() =>
+                      gear.includes(item.name)
+                        ? act('loadoutremove', { gear: item.name })
+                        : act('loadoutadd', { gear: item.name })
+                    }
                   />
                 </LabeledList.Item>
               ))}
