@@ -585,6 +585,7 @@
 ///Spawns the gear from this vendor_bundle. Deletes itself after spawning gear; can be disabled to check what has been spawned (must then delete the bundle yourself)
 /obj/effect/vendor_bundle/Initialize(mapload, autodelete = TRUE)
 	. = ..()
+	LAZYINITLIST(gear_to_spawn)
 	for(var/typepath in gear_to_spawn)
 		LAZYADD(spawned_gear, new typepath(loc))
 	if (autodelete)
