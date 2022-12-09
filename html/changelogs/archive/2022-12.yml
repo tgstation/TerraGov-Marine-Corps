@@ -296,3 +296,6 @@
   - rscadd: Adds Warlock to admin player panel tab.
   XElectricX:
   - qol: Can open suit inventory with alt right click.
+2022-12-09:
+  TiviPlus:
+  - bugfix: fixed use-inhand keybind bypassing restrainment
