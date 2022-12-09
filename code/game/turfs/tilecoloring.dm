@@ -1,7 +1,6 @@
 /obj/effect/turf_decal/tile
 	name = "tile decal"
 	icon_state = "tile_corner"
-	layer = TURF_PLATING_DECAL_LAYER
 	alpha = 110
 
 /// Blue tiles
@@ -551,14 +550,9 @@
 	icon_state = "diagonal_edge"
 	name = "colorful diagonal edge"
 
-/obj/effect/turf_decal/tile/random/Initialize(mapload)
-	color = "#[random_short_color()]"
-	. = ..()
-
 /// Trimlines
 
 /obj/effect/turf_decal/trimline
-	layer = TURF_PLATING_DECAL_LAYER
 	alpha = 110
 	icon_state = "trimline_box"
 

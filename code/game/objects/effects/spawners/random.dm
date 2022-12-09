@@ -1103,6 +1103,7 @@
 	loot = list(
 		/obj/machinery/constructable_frame,
 		/obj/machinery/constructable_frame/state_2,
+		/obj/structure/prop/machine_frame3,
 		/obj/structure/computer3frame,
 		/obj/item/frame/rack,
 	)

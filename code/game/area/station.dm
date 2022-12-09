@@ -9,13 +9,6 @@
 
 /area/station/maintenance
 	name = "Generic Maintenance"
-	ambience_index = AMBIENCE_MAINT
-	area_flags = BLOBS_ALLOWED | UNIQUE_AREA | CULT_PERMITTED | PERSISTENT_ENGRAVINGS
-	airlock_wires = /datum/wires/airlock/maint
-	sound_environment = SOUND_AREA_TUNNEL_ENCLOSED
-	forced_ambience = TRUE
-	ambient_buzz = 'sound/ambience/source_corridor2.ogg'
-	ambient_buzz_vol = 20
 
 //Maintenance - Departmental
 
@@ -30,7 +23,6 @@
 /area/station/maintenance/department/crew_quarters/bar
 	name = "Bar Maintenance"
 	icon_state = "maint_bar"
-	sound_environment = SOUND_AREA_WOODFLOOR
 
 /area/station/maintenance/department/crew_quarters/dorms
 	name = "Dormitory Maintenance"
@@ -97,7 +89,6 @@
 /area/station/maintenance/department/science/xenobiology
 	name = "Xenobiology Maintenance"
 	icon_state = "xenomaint"
-	area_flags = VALID_TERRITORY | BLOBS_ALLOWED | UNIQUE_AREA | XENOBIOLOGY_COMPATIBLE | CULT_PERMITTED
 
 //Maintenance - Generic Tunnels
 
@@ -262,7 +253,6 @@
 
 /area/station/hallway
 	icon_state = "hall"
-	sound_environment = SOUND_AREA_STANDARD_STATION
 
 /area/station/hallway/primary
 	name = "\improper Primary Hallway"
@@ -350,9 +340,6 @@
 /area/station/command
 	name = "Command"
 	icon_state = "command"
-	ambientsounds = list('sound/ambience/signal.ogg')
-	airlock_wires = /datum/wires/airlock/command
-	sound_environment = SOUND_AREA_STANDARD_STATION
 
 /area/station/command/bridge
 	name = "\improper Bridge"
@@ -361,17 +348,14 @@
 /area/station/command/meeting_room
 	name = "\improper Heads of Staff Meeting Room"
 	icon_state = "meeting"
-	sound_environment = SOUND_AREA_MEDIUM_SOFTFLOOR
 
 /area/station/command/meeting_room/council
 	name = "\improper Council Chamber"
 	icon_state = "meeting"
-	sound_environment = SOUND_AREA_MEDIUM_SOFTFLOOR
 
 /area/station/command/corporate_showroom
 	name = "\improper Corporate Showroom"
 	icon_state = "showroom"
-	sound_environment = SOUND_AREA_MEDIUM_SOFTFLOOR
 
 /area/station/command/heads_quarters
 	icon_state = "heads_quarters"
@@ -379,12 +363,10 @@
 /area/station/command/heads_quarters/captain
 	name = "\improper Captain's Office"
 	icon_state = "captain"
-	sound_environment = SOUND_AREA_WOODFLOOR
 
 /area/station/command/heads_quarters/captain/private
 	name = "\improper Captain's Quarters"
 	icon_state = "captain_private"
-	sound_environment = SOUND_AREA_WOODFLOOR
 
 /area/station/command/heads_quarters/ce
 	name = "\improper Chief Engineer's Office"
@@ -415,20 +397,16 @@
 /area/station/command/teleporter
 	name = "\improper Teleporter Room"
 	icon_state = "teleporter"
-	ambience_index = AMBIENCE_ENGI
 
 /area/station/command/gateway
 	name = "\improper Gateway"
 	icon_state = "gateway"
-	ambience_index = AMBIENCE_ENGI
 
 //Commons
 
 /area/station/commons
 	name = "\improper Crew Facilities"
 	icon_state = "commons"
-	sound_environment = SOUND_AREA_STANDARD_STATION
-	area_flags = BLOBS_ALLOWED | UNIQUE_AREA | CULT_PERMITTED
 
 /area/station/commons/dorms
 	name = "\improper Dormitories"
@@ -452,7 +430,6 @@
 /area/station/commons/toilet
 	name = "\improper Dormitory Toilets"
 	icon_state = "toilet"
-	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /area/station/commons/toilet/auxiliary
 	name = "\improper Auxiliary Restrooms"
@@ -473,10 +450,6 @@
 /area/station/commons/lounge
 	name = "\improper Bar Lounge"
 	icon_state = "lounge"
-	mood_bonus = 5
-	mood_message = "I love being in the bar!"
-	mood_trait = TRAIT_EXTROVERT
-	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
 
 /area/station/commons/fitness
 	name = "\improper Fitness Room"
@@ -506,7 +479,6 @@
 /area/station/commons/vacant_room
 	name = "\improper Vacant Room"
 	icon_state = "vacant_room"
-	ambience_index = AMBIENCE_MAINT
 
 /area/station/commons/vacant_room/office
 	name = "\improper Vacant Office"
@@ -518,7 +490,6 @@
 
 //Commons - Storage
 /area/station/commons/storage
-	sound_environment = SOUND_AREA_STANDARD_STATION
 
 /area/station/commons/storage/tools
 	name = "\improper Auxiliary Tool Storage"
@@ -547,7 +518,6 @@
 //Service
 
 /area/station/service
-	airlock_wires = /datum/wires/airlock/service
 
 /area/station/service/cafeteria
 	name = "\improper Cafeteria"
@@ -564,7 +534,6 @@
 /area/station/service/kitchen/coldroom
 	name = "\improper Kitchen Cold Room"
 	icon_state = "kitchen_cold"
-	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /area/station/service/kitchen/diner
 	name = "\improper Diner"
@@ -577,20 +546,10 @@
 /area/station/service/bar
 	name = "\improper Bar"
 	icon_state = "bar"
-	mood_bonus = 5
-	mood_message = "I love being in the bar!"
-	mood_trait = TRAIT_EXTROVERT
-	airlock_wires = /datum/wires/airlock/service
-	sound_environment = SOUND_AREA_WOODFLOOR
-
-/area/station/service/bar/Initialize(mapload)
-	. = ..()
-	GLOB.bar_areas += src
 
 /area/station/service/bar/atrium
 	name = "\improper Atrium"
 	icon_state = "bar"
-	sound_environment = SOUND_AREA_WOODFLOOR
 
 /area/station/service/bar/backroom
 	name = "\improper Bar Backroom"
@@ -611,7 +570,6 @@
 /area/station/service/theater
 	name = "\improper Theater"
 	icon_state = "theatre"
-	sound_environment = SOUND_AREA_WOODFLOOR
 
 /area/station/service/theater/abandoned
 	name = "\improper Abandoned Theater"
@@ -620,16 +578,10 @@
 /area/station/service/library
 	name = "\improper Library"
 	icon_state = "library"
-	mood_bonus = 5
-	mood_message = "I love being in the library!"
-	mood_trait = TRAIT_INTROVERT
-	area_flags = CULT_PERMITTED | BLOBS_ALLOWED | UNIQUE_AREA
-	sound_environment = SOUND_AREA_LARGE_SOFTFLOOR
 
 /area/station/service/library/lounge
 	name = "\improper Library Lounge"
 	icon_state = "library_lounge"
-	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
 
 /area/station/service/library/artgallery
 	name = "\improper  Art Gallery"
@@ -654,12 +606,6 @@
 /area/station/service/chapel
 	name = "\improper Chapel"
 	icon_state = "chapel"
-	mood_bonus = 5
-	mood_message = "Being in the chapel brings me peace."
-	mood_trait = TRAIT_SPIRITUAL
-	ambience_index = AMBIENCE_HOLY
-	flags_1 = NONE
-	sound_environment = SOUND_AREA_LARGE_ENCLOSED
 
 /area/station/service/chapel/monastery
 	name = "\improper Monastery"
@@ -671,7 +617,6 @@
 /area/station/service/chapel/asteroid
 	name = "\improper Chapel Asteroid"
 	icon_state = "explored"
-	sound_environment = SOUND_AREA_ASTEROID
 
 /area/station/service/chapel/asteroid/monastery
 	name = "\improper Monastery Asteroid"
@@ -691,19 +636,14 @@
 /area/station/service/lawoffice
 	name = "\improper Law Office"
 	icon_state = "law"
-	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
 
 /area/station/service/janitor
 	name = "\improper Custodial Closet"
 	icon_state = "janitor"
-	area_flags = CULT_PERMITTED | BLOBS_ALLOWED | UNIQUE_AREA
-	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /area/station/service/hydroponics
 	name = "Hydroponics"
 	icon_state = "hydro"
-	airlock_wires = /datum/wires/airlock/service
-	sound_environment = SOUND_AREA_STANDARD_STATION
 
 /area/station/service/hydroponics/upper
 	name = "Upper Hydroponics"
@@ -716,7 +656,6 @@
 /area/station/service/hydroponics/garden/abandoned
 	name = "\improper Abandoned Garden"
 	icon_state = "abandoned_garden"
-	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /area/station/service/hydroponics/garden/monastery
 	name = "\improper Monastery Garden"
@@ -726,9 +665,6 @@
 
 /area/station/engineering
 	icon_state = "engie"
-	ambience_index = AMBIENCE_ENGI
-	airlock_wires = /datum/wires/airlock/engineering
-	sound_environment = SOUND_AREA_LARGE_ENCLOSED
 
 /area/station/engineering/engine_smes
 	name = "\improper Engineering SMES"
@@ -780,7 +716,6 @@
 /area/station/engineering/atmospherics_engine
 	name = "\improper Atmospherics Engine"
 	icon_state = "atmos_engine"
-	area_flags = BLOBS_ALLOWED | UNIQUE_AREA | CULT_PERMITTED
 
 /area/station/engineering/lobby
 	name = "\improper Engineering Lobby"
@@ -789,28 +724,21 @@
 /area/station/engineering/supermatter
 	name = "\improper Supermatter Engine"
 	icon_state = "engine_sm"
-	area_flags = BLOBS_ALLOWED | UNIQUE_AREA | CULT_PERMITTED
-	sound_environment = SOUND_AREA_SMALL_ENCLOSED
-
 /area/station/engineering/supermatter/room
 	name = "\improper Supermatter Engine Room"
 	icon_state = "engine_sm_room"
-	sound_environment = SOUND_AREA_LARGE_ENCLOSED
 
 /area/station/engineering/break_room
 	name = "\improper Engineering Foyer"
 	icon_state = "engine_break"
-	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /area/station/engineering/gravity_generator
 	name = "\improper Gravity Generator Room"
 	icon_state = "grav_gen"
-	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /area/station/engineering/storage
 	name = "Engineering Storage"
 	icon_state = "engine_storage"
-	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /area/station/engineering/storage_shared
 	name = "Shared Engineering Storage"
@@ -827,20 +755,16 @@
 /area/station/engineering/storage/tcomms
 	name = "Telecomms Storage"
 	icon_state = "tcom_storage"
-	area_flags = BLOBS_ALLOWED | UNIQUE_AREA | CULT_PERMITTED
 
 //Engineering - Construction
 
 /area/station/construction
 	name = "\improper Construction Area"
 	icon_state = "construction"
-	ambience_index = AMBIENCE_ENGI
-	sound_environment = SOUND_AREA_STANDARD_STATION
 
 /area/station/construction/mining/aux_base
 	name = "Auxiliary Base Construction"
 	icon_state = "aux_base_construction"
-	sound_environment = SOUND_AREA_MEDIUM_SOFTFLOOR
 
 /area/station/construction/storage_wing
 	name = "\improper Storage Wing"
@@ -851,17 +775,11 @@
 /area/station/solars
 	icon_state = "panels"
 	requires_power = FALSE
-	area_flags = UNIQUE_AREA | AREA_USES_STARLIGHT
-	flags_1 = NONE
-	ambience_index = AMBIENCE_ENGI
-	airlock_wires = /datum/wires/airlock/engineering
-	sound_environment = SOUND_AREA_SPACE
 	base_lighting_alpha = 255
 
 /area/station/solars/fore
 	name = "\improper Fore Solar Array"
 	icon_state = "panelsF"
-	sound_environment = SOUND_AREA_STANDARD_STATION
 
 /area/station/solars/aft
 	name = "\improper Aft Solar Array"
@@ -939,18 +857,10 @@
 /area/station/medical
 	name = "Medical"
 	icon_state = "medbay"
-	ambience_index = AMBIENCE_MEDICAL
-	airlock_wires = /datum/wires/airlock/medbay
-	sound_environment = SOUND_AREA_STANDARD_STATION
-	min_ambience_cooldown = 90 SECONDS
-	max_ambience_cooldown = 180 SECONDS
 
 /area/station/medical/abandoned
 	name = "\improper Abandoned Medbay"
 	icon_state = "abandoned_medbay"
-	ambientsounds = list('sound/ambience/signal.ogg')
-	sound_environment = SOUND_AREA_SMALL_ENCLOSED
-
 /area/station/medical/medbay/central
 	name = "Medbay Central"
 	icon_state = "med_central"
@@ -988,7 +898,6 @@
 /area/station/medical/patients_rooms
 	name = "\improper Patients' Rooms"
 	icon_state = "patients"
-	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
 
 /area/station/medical/patients_rooms/room_a
 	name = "Patient Room A"
@@ -1001,13 +910,10 @@
 /area/station/medical/virology
 	name = "Virology"
 	icon_state = "virology"
-	ambience_index = AMBIENCE_VIROLOGY
 
 /area/station/medical/morgue
 	name = "\improper Morgue"
 	icon_state = "morgue"
-	ambience_index = AMBIENCE_SPOOKY
-	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /area/station/medical/chemistry
 	name = "Chemistry"
@@ -1047,9 +953,6 @@
 /area/station/medical/psychology
 	name = "\improper Psychology Office"
 	icon_state = "psychology"
-	mood_bonus = 3
-	mood_message = "I feel at ease here."
-	ambientsounds = list('sound/ambience/aurora_caelus_short.ogg')
 
 //Security
 ///When adding a new area to the security areas, make sure to add it to /datum/bounty/item/security/paperwork as well!
@@ -1057,9 +960,6 @@
 /area/station/security
 	name = "Security"
 	icon_state = "security"
-	ambience_index = AMBIENCE_DANGER
-	airlock_wires = /datum/wires/airlock/security
-	sound_environment = SOUND_AREA_STANDARD_STATION
 
 /area/station/security/office
 	name = "\improper Security Office"
@@ -1088,12 +988,10 @@
 /area/station/security/courtroom
 	name = "\improper Courtroom"
 	icon_state = "courtroom"
-	sound_environment = SOUND_AREA_LARGE_ENCLOSED
 
 /area/station/security/prison
 	name = "\improper Prison Wing"
 	icon_state = "sec_prison"
-	area_flags = VALID_TERRITORY | BLOBS_ALLOWED | UNIQUE_AREA | CULT_PERMITTED | PERSISTENT_ENGRAVINGS
 
 //Rad proof
 /area/station/security/prison/toilet
@@ -1144,17 +1042,14 @@
 /area/station/security/processing/cremation
 	name = "\improper Security Crematorium"
 	icon_state = "sec_cremation"
-	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /area/station/security/interrogation
 	name = "\improper Interrogation Room"
 	icon_state = "interrogation"
-	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /area/station/security/warden
 	name = "Brig Control"
 	icon_state = "warden"
-	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
 
 /area/station/security/detectives_office
 	name = "\improper Detective's Office"
@@ -1164,7 +1059,6 @@
 /area/station/security/detectives_office/private_investigators_office
 	name = "\improper Private Investigator's Office"
 	icon_state = "investigate_office"
-	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
 
 /area/station/security/range
 	name = "\improper Firing Range"
@@ -1234,18 +1128,14 @@
 /area/station/cargo
 	name = "Quartermasters"
 	icon_state = "quart"
-	airlock_wires = /datum/wires/airlock/service
-	sound_environment = SOUND_AREA_STANDARD_STATION
 
 /area/station/cargo/sorting
 	name = "\improper Delivery Office"
 	icon_state = "cargo_delivery"
-	sound_environment = SOUND_AREA_STANDARD_STATION
 
 /area/station/cargo/warehouse
 	name = "\improper Warehouse"
 	icon_state = "cargo_warehouse"
-	sound_environment = SOUND_AREA_LARGE_ENCLOSED
 
 /area/station/cargo/drone_bay
 	name = "\improper Drone Bay"
@@ -1261,7 +1151,6 @@
 /area/station/cargo/storage
 	name = "\improper Cargo Bay"
 	icon_state = "cargo_bay"
-	sound_environment = SOUND_AREA_LARGE_ENCLOSED
 
 /area/station/cargo/lobby
 	name = "\improper Cargo Lobby"
@@ -1288,8 +1177,6 @@
 /area/station/science
 	name = "\improper Science Division"
 	icon_state = "science"
-	airlock_wires = /datum/wires/airlock/science
-	sound_environment = SOUND_AREA_STANDARD_STATION
 
 /area/station/science/lobby
 	name = "\improper Science Lobby"
@@ -1335,18 +1222,14 @@
 /area/station/science/ordnance/burnchamber
 	name = "\improper Ordnance Burn Chamber"
 	icon_state = "ord_burn"
-	area_flags = BLOBS_ALLOWED | UNIQUE_AREA | CULT_PERMITTED
-
 /area/station/science/ordnance/freezerchamber
 	name = "\improper Ordnance Freezer Chamber"
 	icon_state = "ord_freeze"
-	area_flags = BLOBS_ALLOWED | UNIQUE_AREA | CULT_PERMITTED
 
 // Room for equipments and such
 /area/station/science/ordnance/testlab
 	name = "\improper Ordnance Testing Lab"
 	icon_state = "ord_test"
-	area_flags = BLOBS_ALLOWED | UNIQUE_AREA | CULT_PERMITTED
 
 /area/station/science/ordnance/bomb
 	name = "\improper Ordnance Bomb Site"
@@ -1395,21 +1278,15 @@
 /area/station/science/research/abandoned
 	name = "\improper Abandoned Research Lab"
 	icon_state = "abandoned_sci"
-	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 // Telecommunications Satellite
 
 /area/station/tcommsat
 	icon_state = "tcomsatcham"
-	ambientsounds = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg', 'sound/ambience/ambitech.ogg',\
-											'sound/ambience/ambitech2.ogg', 'sound/ambience/ambitech3.ogg', 'sound/ambience/ambimystery.ogg')
-	airlock_wires = /datum/wires/airlock/engineering
-	network_root_id = STATION_NETWORK_ROOT // They should of unpluged the router before they left
 
 /area/station/tcommsat/computer
 	name = "\improper Telecomms Control Room"
 	icon_state = "tcomsatcomp"
-	sound_environment = SOUND_AREA_MEDIUM_SOFTFLOOR
 
 /area/station/tcommsat/server
 	name = "\improper Telecomms Server Room"
@@ -1423,12 +1300,10 @@
 /area/station/comms
 	name = "\improper Communications Relay"
 	icon_state = "tcomsatcham"
-	sound_environment = SOUND_AREA_STANDARD_STATION
 
 /area/station/server
 	name = "\improper Messaging Server Room"
 	icon_state = "server"
-	sound_environment = SOUND_AREA_STANDARD_STATION
 
 //External Hull Access
 /area/station/maintenance/external
