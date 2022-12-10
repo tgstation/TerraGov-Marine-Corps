@@ -879,6 +879,35 @@
 		/obj/structure/flora/pottedplant/twentysix,
 	)
 
+/obj/effect/spawner/random/metal
+	name = "metal spawner"
+	icon_state = "random_metal"
+	spawn_loot_chance = 80
+	loot = list(
+		/obj/item/stack/sheet/metal/small_stack = 40,
+		/obj/item/stack/sheet/metal/medium_stack = 10,
+		/obj/item/stack/sheet/metal/large_stack = 3,
+	)
+
+/obj/effect/spawner/random/plasteel
+	name = "plasteel spawner"
+	icon_state = "random_plasteel"
+	spawn_loot_chance = 75
+	loot = list(
+		/obj/item/stack/sheet/plasteel/small_stack = 35,
+		/obj/item/stack/sheet/plasteel/medium_stack = 10,
+		/obj/item/stack/sheet/plasteel/large_stack = 3,
+	)
+
+/obj/effect/spawner/random/wood
+	name = "metal spawner"
+	icon_state = "random_wood"
+	spawn_loot_chance = 80
+	loot = list(
+		/obj/item/stack/sheet/wood = 15,
+		/obj/item/stack/sheet/wood/large_stack = 5,
+	)
+
 ///STRUCTURE SPAWNERS BELOW THIS LINE
 
 /obj/effect/spawner/random/structure/grille
@@ -1097,7 +1126,7 @@
 	)
 
 /obj/effect/spawner/random/structure/machine_frame
-	name = "chair or metal spawner"
+	name = "machine frame spawner"
 	icon_state = "random_frame"
 	spawn_loot_chance = 50
 	loot = list(
@@ -1106,4 +1135,13 @@
 		/obj/structure/prop/machine_frame3,
 		/obj/structure/computer3frame,
 		/obj/item/frame/rack,
+	)
+
+/obj/effect/spawner/random/structure/broken_ship_window
+	name = "broken ship window spawner"
+	icon_state = "random_ship_window"
+	spawn_loot_chance = 80
+	loot = list(
+		/obj/structure/window_frame/mainship = 10,
+		/obj/structure/window/framed/mainship = 1,
 	)

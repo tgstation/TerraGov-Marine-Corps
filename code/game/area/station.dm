@@ -1318,6 +1318,18 @@
 /area/deltastation/maintenance/external/port/bow
 	name = "\improper Port Bow External Hull Access"
 
-/area/deltastation/caves/rock
+/area/deltastation/asteroidcaves
+	name = "Unknown Area"
+	icon_state = "bluenew"
+	ceiling = CEILING_DEEP_UNDERGROUND
+	outside = FALSE
+	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambilava3.ogg')
+	minimap_color = MINIMAP_AREA_CAVES
+
+
+/area/deltastation/asteroidcaves/rock
 	name = "Enclosed Area"
 	icon_state = "transparent"
+
+/area/deltastation/asteroidcaves/northcaves
+	icon_state = "bluenew"
