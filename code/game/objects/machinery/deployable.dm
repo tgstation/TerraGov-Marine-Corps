@@ -97,6 +97,10 @@
 
 ///Dissassembles the device
 /obj/machinery/deployable/proc/disassemble(mob/user)
+	for(var/obj/effect/xenomorph/acid/A in loc)
+		if(A.acid_t == src)
+			to_chat(user, "You can't get near that, it's melting!")
+			return
 	var/obj/item/item = internal_item
 	if(CHECK_BITFIELD(item.flags_item, DEPLOYED_NO_PICKUP))
 		to_chat(user, span_notice("The [src] is anchored in place and cannot be disassembled."))
