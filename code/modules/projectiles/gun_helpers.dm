@@ -65,7 +65,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 /obj/item/weapon/gun/pickup(mob/user)
 	..()
 
-	last_fired = world.time
+	last_fired = world.time + pickup_fire_delay
 
 	unwield(user)
 

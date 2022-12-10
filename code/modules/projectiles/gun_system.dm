@@ -232,6 +232,8 @@
 	var/aim_speed_modifier = 6
 	/// Time to enter aim mode, generally one second.
 	var/aim_time = 1 SECONDS
+	///Additional time to fire a weapon from pickup
+	var/pickup_fire_delay = 0
 
 	///How many shots can the weapon shoot in burst? Anything less than 2 and you cannot toggle burst.
 	var/burst_amount = 1

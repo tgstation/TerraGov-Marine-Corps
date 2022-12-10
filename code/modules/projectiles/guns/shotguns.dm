@@ -167,6 +167,7 @@
 	recoil = 2
 	recoil_unwielded = 4
 	aim_slowdown = 0.6
+	pickup_fire_delay = 10
 
 /obj/item/weapon/gun/shotgun/double/sawn
 	name = "sawn-off shotgun"
