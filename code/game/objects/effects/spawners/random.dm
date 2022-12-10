@@ -474,6 +474,7 @@
 /obj/effect/spawner/random/pillbottle
 	name = "Random pill bottle spawner"
 	icon_state = "random_medicine"
+	spawn_loot_chance = 50
 	loot = list(
 		/obj/item/storage/pill_bottle/alkysine = 30,
 		/obj/item/storage/pill_bottle/imidazoline = 10,
@@ -484,6 +485,31 @@
 		/obj/item/storage/pill_bottle/dylovene = 15,
 		/obj/item/storage/pill_bottle/spaceacillin = 10,
 	)
+
+/obj/effect/spawner/random/medbelt
+	name = "Random medical belt spawner"
+	icon_state = "random_medbelt"
+	spawn_loot_chance = 25
+	loot = list(
+		/obj/item/storage/belt/lifesaver = 50,
+		/obj/effect/spawner/random/pillbottle = 15,
+		/obj/item/storage/belt/lifesaver/quick = 10,
+		/obj/item/storage/belt/lifesaver/full = 5,
+	)
+
+/obj/effect/spawner/random/medhud
+	name = "Random med hud spawner"
+	icon_state = "random_medhud"
+	spawn_loot_chance = 25
+	loot = list(
+		/obj/item/clothing/glasses/regular = 30,
+		/obj/item/clothing/glasses/hud/health = 15,
+		/obj/item/clothing/glasses/hud/medgoggles = 15,
+		/obj/item/clothing/glasses/hud/medgoggles/prescription = 10,
+		/obj/item/clothing/glasses/hud/medpatch = 5,
+		/obj/item/clothing/glasses/hud/medsunglasses = 5,
+	)
+
 
 /obj/effect/spawner/random/surgical
 	name = "Random surgical instrument spawner"
@@ -527,6 +553,38 @@
 		/obj/item/stack/cable_coil/twentyfive,
 	)
 
+
+/obj/effect/spawner/random/cigarettes
+	name = "Random cigarette spawner"
+	icon_state = "random_cigarette"
+	spawn_scatter_radius = 3
+	loot = list(
+		/obj/item/storage/fancy/cigarettes/dromedaryco = 30,
+		/obj/item/storage/fancy/cigarettes/kpack = 25,
+		/obj/item/storage/fancy/cigarettes/lady_finger = 25,
+		/obj/item/storage/fancy/cigarettes/luckystars = 25,
+		/obj/item/storage/fancy/chemrettes = 15,
+		/obj/item/storage/fancy/cigar = 15,
+	)
+
+/obj/effect/spawner/random/medbottle
+	name = "Random medical reagent bottle spawner"
+	icon_state = "random_medbottle"
+	spawn_loot_chance = 50
+	spawn_scatter_radius = 1
+	loot = list(
+		/obj/item/reagent_containers/glass/bottle/bicaridine = 30,
+		/obj/item/reagent_containers/glass/bottle/kelotane = 30,
+		/obj/item/reagent_containers/glass/bottle/dylovene = 30,
+		/obj/item/reagent_containers/glass/bottle/spaceacillin = 15,
+		/obj/item/reagent_containers/glass/bottle/dermaline = 15,
+		/obj/item/reagant_containers/glass/bottle/tramadol = 10,
+		/obj/item/reagent_containers/glass/bottle/tricordrazine = 5,
+		/obj/item/reagent_containers/glass/bottle/oxycodone = 5,
+		/obj/item/reagent_containers/glass/bottle/meralyne = 5,
+		/obj/item/reagent_containers/glass/bottle/lemoline = 5,
+		/obj/item/reagent_containers/glass/bottle/meraderm = 1,
+	)
 
 ///BALLISTIC WEAPONS///
 
@@ -884,6 +942,7 @@
 	icon_state = "random_metal"
 	spawn_loot_chance = 80
 	loot = list(
+		/obj/item/stack/sheet/metal = 60,
 		/obj/item/stack/sheet/metal/small_stack = 40,
 		/obj/item/stack/sheet/metal/medium_stack = 10,
 		/obj/item/stack/sheet/metal/large_stack = 3,
@@ -894,6 +953,7 @@
 	icon_state = "random_plasteel"
 	spawn_loot_chance = 75
 	loot = list(
+		/obj/item/stack/sheet/plasteel = 55,
 		/obj/item/stack/sheet/plasteel/small_stack = 35,
 		/obj/item/stack/sheet/plasteel/medium_stack = 10,
 		/obj/item/stack/sheet/plasteel/large_stack = 3,
@@ -906,6 +966,18 @@
 	loot = list(
 		/obj/item/stack/sheet/wood = 15,
 		/obj/item/stack/sheet/wood/large_stack = 5,
+	)
+
+/obj/effect/spawner/random/firstaid
+	name = "firstaid spawner"
+	icon_state = "random_medkit"
+	spawn_loot_chance = 35
+	loot = list(
+		/obj/item/storage/firstaid/regular = 30,
+		/obj/item/storage/firstaid/fire = 15,
+		/obj/item/storage/firstaid/o2 = 10,
+		/obj/item/storage/firstaid/toxin = 10,
+		/obj/item/storage/firstaid/adv = 5,
 	)
 
 ///STRUCTURE SPAWNERS BELOW THIS LINE
@@ -1053,12 +1125,20 @@
 		/obj/machinery/portable_atmospherics/canister/oxygen = 1,
 	)
 
-/obj/effect/spawner/random/structure/tank
+/obj/effect/spawner/random/structure/tank/fuelweighted
+	name = "tank spawner"
+	icon_state = "random_weldtank"
+	loot = list( // use this for emergency storage areas and maint
+		/obj/structure/reagent_dispensers/fueltank = 7,
+		/obj/structure/reagent_dispensers/watertank = 2,
+	)
+
+/obj/effect/spawner/random/structure/tank/waterweighted
 	name = "tank spawner"
 	icon_state = "random_watertank"
 	loot = list( // use this for emergency storage areas and maint
-		/obj/structure/reagent_dispensers/fueltank = 5,
-		/obj/structure/reagent_dispensers/watertank = 4,
+		/obj/structure/reagent_dispensers/fueltank = 3,
+		/obj/structure/reagent_dispensers/watertank = 7,
 	)
 
 /obj/effect/spawner/random/structure/atmospherics_portable
@@ -1108,11 +1188,11 @@
 	icon_state = "random_barrel"
 	loot = list(
 		/obj/structure/largecrate/random/barrel/blue = 20,
-		/obj/structure/largecrate/random/barrel/red = 10,
 		/obj/structure/largecrate/random/barrel/green = 20,
 		/obj/structure/largecrate/random/barrel/red = 20,
 		/obj/structure/largecrate/random/barrel/white = 20,
 		/obj/structure/largecrate/random/barrel/yellow = 20,
+		/obj/structure/largecrate/random/barrel/red = 10,
 		/obj/structure/reagent_dispensers/fueltank/barrel = 1,
 	)
 

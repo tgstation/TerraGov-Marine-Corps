@@ -1320,11 +1320,12 @@
 
 /area/deltastation/asteroidcaves
 	name = "Unknown Area"
-	icon_state = "bluenew"
+	icon_state = "asteroid"
 	ceiling = CEILING_DEEP_UNDERGROUND
 	outside = FALSE
 	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambilava3.ogg')
 	minimap_color = MINIMAP_AREA_CAVES
+	always_unpowered = TRUE
 
 
 /area/deltastation/asteroidcaves/rock
@@ -1332,4 +1333,25 @@
 	icon_state = "transparent"
 
 /area/deltastation/asteroidcaves/northcaves
-	icon_state = "bluenew"
+
+/area/deltastation/asteroidcaves/northeastcaves
+
+/area/deltastation/asteroidcaves/westerncaves
+
+/area/deltastation/asteroidcaves/easterntunnel
+
+/area/deltastation/asteroidcaves/securitycaves
+
+/area/deltastation/asteroidcaves/southtunnel
+
+/area/deltastation/asteroidcaves/ship
+	icon_state = "ship"
+	always_unpowered = FALSE
+
+/area/deltastation/asteroidcaves/derelictnortheast
+	icon_state = "derelict"
+	always_unpowered = FALSE
+
+/area/deltastation/asteroidcaves/derelictwest
+	icon_state = "derelict"
+	always_unpowered = FALSE
