@@ -127,7 +127,7 @@
 #define SLOWDOWN_ARMOR_VERY_HEAVY 1.15
 
 //Fire delay groups.
-#define FIRE_DELAY_GROUP_SHOTGUN (1<<0)
+#define FIRE_DELAY_GROUP_SHOTGUN "fire_delay_group_shotgun"
 
 
 //=================================================
