@@ -1337,18 +1337,6 @@ Imports
 	cost = 5
 	available_against_xeno_only = TRUE
 
-/datum/supply_packs/imports/mbx900
-	name = "MBX 900"
-	contains = list(/obj/item/weapon/gun/shotgun/pump/lever/mbx900)
-	cost = 15
-	available_against_xeno_only = TRUE
-
-/datum/supply_packs/imports/mbx900/buckshot
-	name = "MBX-900 Buckshot Shells"
-	contains = list(/obj/item/ammo_magazine/shotgun/mbx900/buckshot)
-	cost = 5
-	available_against_xeno_only = TRUE
-
 /datum/supply_packs/imports/mosin
 	name = "Mosin Nagant Sniper"
 	contains = list(/obj/item/weapon/gun/shotgun/pump/bolt)
