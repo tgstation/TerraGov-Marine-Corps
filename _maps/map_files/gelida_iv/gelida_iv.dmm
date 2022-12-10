@@ -19837,6 +19837,11 @@
 	},
 /turf/open/ground/river,
 /area/gelida/indoors/a_block/fitness)
+"mJY" = (
+/turf/closed/ice_rock/corners{
+	dir = 9
+	},
+/area/gelida/outdoors/w_rockies)
 "mKd" = (
 /obj/structure/fakeplatform{
 	dir = 8
@@ -42742,7 +42747,7 @@ kuB
 gqh
 lmN
 lby
-nff
+lmN
 nkH
 vhV
 npU
@@ -42766,9 +42771,9 @@ rih
 ojq
 oJT
 oJT
-tQg
+nAJ
 ddP
-ghy
+nAJ
 oJT
 oJT
 daB
@@ -42988,7 +42993,7 @@ otX
 peB
 oJT
 ojq
-ddP
+mJY
 ddP
 bYd
 peB
@@ -43185,8 +43190,8 @@ lmN
 uXf
 lmN
 lmN
-ojq
-tQg
+lmN
+lmN
 nkH
 lmN
 lmN
@@ -43407,7 +43412,7 @@ yiB
 uXf
 jaU
 gqh
-nff
+lmN
 lmN
 nkH
 syU
