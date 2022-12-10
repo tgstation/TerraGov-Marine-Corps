@@ -502,12 +502,10 @@
 		var/datum/limb/L = carbon_victim.get_limb(target_zone)
 
 		if (!L || (L.limb_status & LIMB_DESTROYED))
-			target_zone = BODY_ZONE_CHEST
-			L =  carbon_victim.get_limb(target_zone)
-
-		L.take_damage_limb(damage, 0, FALSE, FALSE, get_soft_armor("melee", target_zone))
+			L =  carbon_victim.get_limb(BODY_ZONE_CHEST)
+		apply_damage(damage, BRUTE, L, MELEE)
 	else
-		apply_damage(damage, BRUTE, target_zone, get_soft_armor("melee", target_zone))
+		apply_damage(damage, BRUTE, blocked = MELEE)
 
 	if(push)
 		var/facing = get_dir(X, src)

@@ -108,12 +108,12 @@
 
 	switch(I.damtype)
 		if(BRUTE)
-			apply_damage(power, BRUTE, user.zone_selected, get_soft_armor("melee", user.zone_selected))
+			apply_damage(power, BRUTE, user.zone_selected, MELEE, I.sharp, I.edge, FALSE, I.penetration)
 		if(BURN)
-			if(apply_damage(power, BURN, user.zone_selected, get_soft_armor("fire", user.zone_selected)))
+			if(apply_damage(power, BURN, user.zone_selected, FIRE, I.sharp, I.edge, FALSE, I.penetration))
 				attack_message_local = "[attack_message_local] It burns!"
 		if(STAMINA)
-			apply_damage(power, STAMINA, user.zone_selected)
+			apply_damage(power, STAMINA, user.zone_selected, MELEE, I.sharp, I.edge, FALSE, I.penetration)
 
 	visible_message(span_danger("[attack_message]"),
 		span_userdanger("[attack_message_local]"), null, COMBAT_MESSAGE_RANGE)
@@ -277,9 +277,9 @@
 
 	switch(I.damtype)
 		if(BRUTE)
-			apply_damage(power, BRUTE, user.zone_selected, get_soft_armor("melee", user.zone_selected))
+			apply_damage(power, BRUTE, user.zone_selected, MELEE, I.sharp, I.edge, FALSE, I.penetration)
 		if(BURN)
-			if(apply_damage(power, BURN, user.zone_selected, get_soft_armor("fire", user.zone_selected)))
+			if(apply_damage(power, BURN, user.zone_selected, FIRE, I.sharp, I.edge, FALSE, I.penetration))
 				attack_message_local = "[attack_message_local] It burns!"
 
 	visible_message(span_danger("[attack_message]"),

@@ -864,7 +864,7 @@ Currently only has the tank hardpoints
 	targ = get_step(M, owner.dir)
 	targ = get_step(M, owner.dir)
 	M.throw_at(targ, 4, 2, src, 1)
-	M.apply_damage(7 + rand(0, 3), BRUTE)
+	M.apply_damage(7 + rand(0, 3), BRUTE, blocked = MELEE)
 
 /////////////////
 // ARMOR SLOTS // END

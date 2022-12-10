@@ -9,6 +9,8 @@
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "hunter" //used to match appropriate wound overlays
+	gib_anim = "Hunter Gibs"
+	gib_flick = "Hunter Gibbed"
 
 	// *** Melee Attacks *** //
 	melee_damage = 21

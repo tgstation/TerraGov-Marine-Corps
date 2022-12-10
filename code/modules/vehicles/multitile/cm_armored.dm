@@ -297,7 +297,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 		T = get_step(T, target_dir)
 		face_atom(T)
 		throw_at(T, 3, 2, C, 1)
-		apply_damage(rand(5, 7.5), BRUTE)
+		apply_damage(rand(5, 7.5), BRUTE, blocked = MELEE)
 		return
 	if(!lying_angle)
 		temp = get_step(T, facing)
@@ -308,7 +308,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 		else
 			throw_at(T, 3, 2, C, 1)
 		ParalyzeNoChain(20)
-		apply_damage(rand(10, 15), BRUTE)
+		apply_damage(rand(10, 15), BRUTE, blocked = MELEE)
 		visible_message(span_danger("[C] bumps into [src], throwing [p_them()] away!"), span_danger("[C] violently bumps into you!"))
 	var/obj/vehicle/multitile/root/cm_armored/CA = C.root
 	var/list/slots = CA.get_activatable_hardpoints()
@@ -337,7 +337,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 /mob/living/carbon/xenomorph/larva/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
 	if(loc == C.loc) // treaded over.
 		ParalyzeNoChain(20)
-		apply_damage(rand(5, 7.5), BRUTE)
+		apply_damage(rand(5, 7.5), BRUTE, blocked = MELEE)
 		return
 	var/obj/vehicle/multitile/root/cm_armored/CA = C.root
 	var/list/slots = CA.get_activatable_hardpoints()

@@ -179,12 +179,12 @@
 
 		if(/datum/reagent/medicine/kelotane)
 			target.flamer_fire_act(10)
-			target.apply_damage(max(0, 20 - 20*target.hard_armor.getRating("fire")), BURN, user.zone_selected, target.get_soft_armor("fire", user.zone_selected))
+			target.apply_damage(max(0, 20 - 20*target.hard_armor.getRating("fire")), BURN, user.zone_selected, FIRE)
 			var/list/cone_turfs = generate_cone(target, 1, 0, 181, Get_Angle(user, target.loc))
 			for(var/turf/checked_turf AS in cone_turfs)
 				for(var/mob/living/victim in checked_turf)
 					victim.flamer_fire_act(10)
-					victim.apply_damage(max(0, 20 - 20*victim.hard_armor.getRating("fire")), BURN, user.zone_selected, victim.get_soft_armor("fire", user.zone_selected))
+					victim.apply_damage(max(0, 20 - 20*victim.hard_armor.getRating("fire")), BURN, user.zone_selected, FIRE)
 
 		if(/datum/reagent/medicine/bicaridine)
 			if(isxeno(target))

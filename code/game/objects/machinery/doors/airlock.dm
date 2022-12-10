@@ -456,7 +456,7 @@
 
 	for(var/turf/turf in locs)
 		for(var/mob/living/M in turf)
-			M.apply_damage(DOOR_CRUSH_DAMAGE, BRUTE)
+			M.apply_damage(DOOR_CRUSH_DAMAGE, BRUTE, blocked = MELEE)
 			M.Stun(10 SECONDS)
 			M.Paralyze(10 SECONDS)
 			if (iscarbon(M))

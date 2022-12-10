@@ -26,7 +26,7 @@
 		return
 	if(swirlie)
 		user.visible_message(span_danger("[user] slams the toilet seat onto [swirlie.name]'s head!"), span_notice("You slam the toilet seat onto [swirlie.name]'s head!"), "You hear reverberating porcelain.")
-		swirlie.apply_damage(8, BRUTE, updating_health = TRUE)
+		swirlie.apply_damage(8, BRUTE, blocked = MELEE, updating_health = TRUE)
 		return
 
 	if(cistern && !open)
@@ -95,7 +95,7 @@
 		else
 			user.visible_message(span_danger("[user] slams [C] into the [src]!"), span_notice("You slam [C] into the [src]!"))
 			log_combat(user, C, "slammed", "", "into the \the [src]")
-			C.apply_damage(8, BRUTE, updating_health = TRUE)
+			C.apply_damage(8, BRUTE, blocked = MELEE, updating_health = TRUE)
 
 	else if(cistern && !issilicon(user)) //STOP PUTTING YOUR MODULES IN THE TOILET.
 		if(I.w_class > 3)
@@ -145,7 +145,7 @@
 			return
 
 		user.visible_message(span_danger("[user] slams [GM] into the [src]!"), span_notice("You slam [GM] into the [src]!"))
-		GM.apply_damage(8, BRUTE)
+		GM.apply_damage(8, blocked = MELEE)
 		UPDATEHEALTH(GM)
 
 
