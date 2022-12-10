@@ -1641,6 +1641,64 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/smoke_burst/do_at_max_range(turf/T, obj/projectile/P)
 	drop_nade(T.density ? P.loc : T)
 
+
+/datum/ammo/ags_shrapnel
+	name = "fragmentation grenade"
+	icon_state = "grenade_projectile"
+	hud_state = "grenade_frag"
+	hud_state_empty = "grenade_empty"
+	handful_icon_state = "40mm_grenade"
+	handful_amount = 1
+	ping = null //no bounce off.
+	sound_bounce	= "rocket_bounce"
+	flags_ammo_behavior = AMMO_ROCKET
+	armor_type = "bomb"
+	damage_falloff = 0.5
+	shell_speed = 2
+	accurate_range = 12
+	max_range = 21
+	damage = 15
+	shrapnel_chance = 0
+	bonus_projectiles_type = /datum/ammo/bullet/ags_spread
+	bonus_projectiles_scatter = 25
+
+
+/datum/ammo/ags_shrapnel/on_hit_mob(mob/M, obj/projectile/proj)
+	bonus_projectiles_amount = 20
+	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, Get_Angle(proj.firer, M) )
+	bonus_projectiles_amount = 0
+
+/datum/ammo/ags_shrapnel/on_hit_obj(obj/O, obj/projectile/proj)
+	bonus_projectiles_amount = 20
+	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, Get_Angle(proj.firer, O) )
+	bonus_projectiles_amount = 0
+
+/datum/ammo/ags_shrapnel/on_hit_turf(turf/T, obj/projectile/proj)
+	bonus_projectiles_amount = 20
+	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, Get_Angle(proj.firer, T) )
+	bonus_projectiles_amount = 0
+
+/datum/ammo/ags_shrapnel/do_at_max_range(obj/projectile/proj)
+	bonus_projectiles_amount = 20
+	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, Get_Angle(proj.firer, get_turf(proj)) )
+	bonus_projectiles_amount = 0
+
+/datum/ammo/bullet/ags_spread
+	name = "Shrapnel"
+	icon_state = "flechette"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	accuracy_var_low = 15
+	accuracy_var_high = 5
+	max_range = 6
+	damage = 25
+	penetration = 20
+	sundering = 1
+	damage_falloff = 0
+
 /*
 //================================================
 					Rocket Ammo
@@ -3438,3 +3496,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "smoke grenade shell"
 	nade_type = /obj/item/explosive/grenade/smokebomb
 	icon_state = "smoke_shell"
+
+/datum/ammo/grenade_container/ags_grenade
+	name = "grenade shell"
+	icon_state = "grenade_projectile"
+	hud_state = "grenade_he"
+	hud_state_empty = "grenade_empty"
+	handful_icon_state = "40mm_grenade"
+	handful_amount = 1
+	max_range = 21
+	nade_type = /obj/item/explosive/grenade/ags
