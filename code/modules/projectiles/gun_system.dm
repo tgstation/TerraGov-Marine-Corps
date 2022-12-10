@@ -261,6 +261,11 @@
 	///what ammo to use for overcharge
 	var/ammo_diff = null
 
+	///Fire delay is applied to a gun group when a gun of that group was dropped
+	var/list/fire_delay_group = null
+	var/fire_group_delay_time = 0
+	var/list/fire_delay_next_fire = null
+
 /*
  *  extra icon and item states or overlays
 */
@@ -1550,6 +1555,11 @@
 	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_ATTACHMENT) && !master_gun && CHECK_BITFIELD(flags_gun_features, GUN_ATTACHMENT_FIRE_ONLY))
 		to_chat(user, span_notice("You cannot fire [src] without it attached to a gun!"))
 		return FALSE
+	if(fire_delay_group)
+		for(var/group in fire_delay_group)
+			var/group_next_fire = LAZYACCESS(user.fire_delay_next_fire, group)
+			if(!isnull(group_next_fire) && world.time < group_next_fire)
+				return FALSE
 	return TRUE
 
 /obj/item/weapon/gun/proc/gun_on_cooldown(mob/user)
