@@ -29,6 +29,7 @@
 	var/track_blood = 0
 	var/feet_blood_color
 	var/datum/skills/skills
+	var/list/fire_delay_next_fire
 
 
 	//Movement

@@ -17,7 +17,7 @@
 	aim_slowdown = 0.35
 	wield_delay = 0.6 SECONDS //Shotguns are really easy to put up to fire, since they are designed for CQC (at least compared to a rifle)
 	fire_delay_group = list(FIRE_DELAY_GROUP_SHOTGUN)
-	fire_group_delay_time = 2 SECONDS
+	fire_group_delay_time = 2 SECONDS + cock_delay
 	gun_skill_category = GUN_SKILL_SHOTGUNS
 	flags_item_map_variant = NONE
 

@@ -262,9 +262,8 @@
 	var/ammo_diff = null
 
 	///Fire delay is applied to a gun group when a gun of that group was dropped
-	var/list/fire_delay_group = null
+	var/list/fire_delay_group
 	var/fire_group_delay_time = 0
-	var/list/fire_delay_next_fire = null
 
 /*
  *  extra icon and item states or overlays

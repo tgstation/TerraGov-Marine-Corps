@@ -70,6 +70,11 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 /obj/item/weapon/gun/pickup(mob/user)
 	..()
 
+	var/delay_left = (last_fired + fire_delay + fire_group_delay_time) - world.time
+	if(fire_delay_group && delay_left > 0)
+		for(var/group in fire_delay_group)
+			LAZYSET(user.fire_delay_next_fire, group, world.time + delay_left)
+
 	unwield(user)
 
 
