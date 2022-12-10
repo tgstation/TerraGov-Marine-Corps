@@ -8,10 +8,10 @@
 	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
-	melee_damage = 16
+	melee_damage = 14
 
 	// *** Speed *** //
-	speed = -0.8
+	speed = -0.9
 
 	// *** Plasma *** //
 	plasma_max = 300
@@ -35,7 +35,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin, /datum/ammo/xeno/acid)
+	spit_types = list(/datum/ammo/xeno/acid/toxic_spit)
 
 	// *** Minimap Icon *** //
 	minimap_icon = "sentinel"
@@ -46,7 +46,7 @@
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/activable/corrosive_acid/drone,
-		/datum/action/xeno_action/activable/xeno_spit,
+		/datum/action/xeno_action/activable/xeno_spit/toxic_spit,
 		/datum/action/xeno_action/toxic_slash,
 		/datum/action/xeno_action/activable/neurotox_sting,
 	)
@@ -63,7 +63,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Speed *** //
-	speed = -0.8
+	speed = -0.9
 
 	// *** Plasma *** //
 	plasma_max = 450
@@ -80,7 +80,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/upgrade1, /datum/ammo/xeno/acid)
+	spit_types = list(/datum/ammo/xeno/acid/toxic_spit/upgrade1)
 
 /datum/xeno_caste/sentinel/elder
 	upgrade_name = "Elder"
@@ -89,10 +89,10 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 17
+	melee_damage = 16
 
 	// *** Speed *** //
-	speed = -0.8
+	speed = -0.9
 
 	// *** Plasma *** //
 	plasma_max = 550
@@ -109,7 +109,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/upgrade2, /datum/ammo/xeno/acid)
+	spit_types = list(/datum/ammo/xeno/acid/toxic_spit/upgrade2)
 
 /datum/xeno_caste/sentinel/ancient
 	upgrade_name = "Ancient"
@@ -118,10 +118,10 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 17
+	melee_damage = 16
 
 	// *** Speed *** //
-	speed = -0.8
+	speed = -0.9
 
 	// *** Plasma *** //
 	plasma_max = 600
@@ -138,7 +138,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/upgrade3, /datum/ammo/xeno/acid)
+	spit_types = list(/datum/ammo/xeno/acid/toxic_spit/upgrade3)
 
 
 
@@ -149,10 +149,10 @@
 	upgrade = XENO_UPGRADE_FOUR
 
 	// *** Melee Attacks *** //
-	melee_damage = 17
+	melee_damage = 16
 
 	// *** Speed *** //
-	speed = -0.8
+	speed = -0.9
 
 	// *** Plasma *** //
 	plasma_max = 600
@@ -166,15 +166,15 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/upgrade3, /datum/ammo/xeno/acid)
+	spit_types = list(/datum/ammo/xeno/acid/toxic_spit/upgrade3)
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/activable/corrosive_acid/drone,
-		/datum/action/xeno_action/activable/xeno_spit,
+		/datum/action/xeno_action/activable/xeno_spit/toxic_spit,
 		/datum/action/xeno_action/toxic_slash,
 		/datum/action/xeno_action/activable/drain_sting,
-		/datum/action/xeno_action/activable/neurogas_grenade,
+		/datum/action/xeno_action/activable/toxic_grenade,
 	)

@@ -426,7 +426,7 @@
 	id = "intoxicated"
 	tick_interval = 2 SECONDS
 	stacks = 1
-	max_stacks = 10
+	max_stacks = 20
 	consumed_on_threshold = FALSE
 	/// Owner of the debuff is limited to carbons.
 	var/mob/living/carbon/debuff_owner
@@ -447,7 +447,6 @@
 	return ..()
 
 /datum/status_effect/stacking/intoxicated/stack_decay_effect()
-	message_admins("intoxicated stacks: [stacks]")
 	var/mob/living/living_owner = debuff_owner
 	living_owner.adjustFireLoss(SENTINEL_INTOXICATED_DAMAGE)
-	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 8)
+	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 6)

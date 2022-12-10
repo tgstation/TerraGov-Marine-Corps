@@ -189,11 +189,13 @@
 	var/static/image/transvitox_image = image('icons/mob/hud.dmi', icon_state = "transvitox")
 	var/static/image/sanguinal_image = image('icons/mob/hud.dmi', icon_state = "sanguinal")
 	var/static/image/ozelomelyn_image = image('icons/mob/hud.dmi', icon_state = "ozelomelyn")
+	var/static/image/intoxicated_image = image('icons/mob/hud.dmi', icon_state = "intoxicated")
 	var/static/image/neurotox_high_image = image('icons/mob/hud.dmi', icon_state = "neurotoxin_high")
 	var/static/image/hemodile_high_image = image('icons/mob/hud.dmi', icon_state = "hemodile_high")
 	var/static/image/transvitox_high_image = image('icons/mob/hud.dmi', icon_state = "transvitox_high")
 	var/static/image/hunter_silence_image = image('icons/mob/hud.dmi', icon_state = "silence_debuff")
 	var/static/image/sanguinal_high_image = image('icons/mob/hud.dmi', icon_state = "sanguinal_high")
+	var/static/image/intoxicated_high_image = image('icons/mob/hud.dmi', icon_state = "intoxicated_high")
 	var/static/image/hive_target_image = image('icons/mob/hud.dmi', icon_state = "hive_target")
 
 	xeno_reagent.overlays.Cut()
@@ -236,8 +238,16 @@
 	if(stat != DEAD)
 		if(IsMute())
 			xeno_debuff.overlays += hunter_silence_image
+
 	if(HAS_TRAIT(src, TRAIT_HIVE_TARGET))
 		xeno_debuff.overlays += hive_target_image
+
+	var/datum/status_effect/stacking/intoxicated/debuff = has_status_effect(STATUS_EFFECT_INTOXICATED)
+	var/intoxicated_amount = debuff.stacks
+	if(intoxicated_amount > 15)
+		xeno_debuff.overlays += intoxicated_high_image
+	else if(intoxicated_amount > 0)
+		xeno_debuff.overlays += intoxicated_image
 
 	hud_list[XENO_DEBUFF_HUD] = xeno_debuff
 

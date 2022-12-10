@@ -1,4 +1,41 @@
 // ***************************************
+// *********** Toxic Spit
+// ***************************************
+/datum/action/xeno_action/activable/xeno_spit/toxic_spit
+	name = "Toxic Spit"
+	mechanics_text = "Spit a toxin at your target up to 7 tiles away, inflicting the Intoxicated debuff and dealing damage over time."
+	ability_name = "toxic spit"
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOXIC_SPIT,
+	)
+
+/datum/ammo/xeno/acid/toxic_spit
+	name = "toxic spit"
+	icon_state = "xeno_toxic"
+	bullet_color = COLOR_PALE_GREEN_GRAY
+	damage = 10
+	spit_cost = 28
+
+/datum/ammo/xeno/acid/toxic_spit/upgrade1
+	damage = 12
+
+/datum/ammo/xeno/acid/toxic_spit/upgrade2
+	damage = 13
+
+/datum/ammo/xeno/acid/toxic_spit/upgrade3
+	damage = 14
+
+/datum/ammo/xeno/acid/toxic_spit/on_hit_mob(mob/M, obj/projectile/P)
+	if(istype(M,/mob/living/carbon))
+		var/mob/living/carbon/C = M
+		if(C.issamexenohive(P.firer))
+			return
+		if(C.has_status_effect(STATUS_EFFECT_INTOXICATED))
+			var/datum/status_effect/stacking/intoxicated/debuff = C.has_status_effect(STATUS_EFFECT_INTOXICATED)
+			debuff.add_stacks(SENTINEL_TOXIC_SPIT_STACKS_PER)
+		C.apply_status_effect(STATUS_EFFECT_INTOXICATED, SENTINEL_TOXIC_SPIT_STACKS_PER)
+
+// ***************************************
 // *********** Toxic Slash
 // ***************************************
 /datum/action/xeno_action/toxic_slash
@@ -7,10 +44,10 @@
 	mechanics_text = "For a short duration the next 3 slashes made will inject a small amount of toxins."
 	ability_name = "toxic slash"
 	cooldown_timer = 10 SECONDS
-	plasma_cost = 100
-	//keybinding_signals = list(
-	//	KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOXIC_SLASH,
-	//)
+	plasma_cost = 150
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOXIC_SLASH,
+	)
 	target_flags = XABB_MOB_TARGET
 	///How many remaining toxic slashes the Sentinel has
 	var/toxic_slash_count = 0
@@ -90,7 +127,7 @@
 	fade = 10
 	grow = 0.2
 	velocity = list(0, 0)
-	position = generator(GEN_CIRCLE, 12, 12, NORMAL_RAND)
+	position = generator(GEN_CIRCLE, 11, 11, NORMAL_RAND)
 	drift = generator(GEN_VECTOR, list(0, -0.15), list(0, 0.15))
 	gravity = list(0, 0.4)
 	scale = generator(GEN_VECTOR, list(0.3, 0.3), list(0.9,0.9), NORMAL_RAND)
@@ -106,11 +143,11 @@
 	action_icon_state = "neuro_sting"
 	mechanics_text = "Drains any Toxicity stacks from the victim, using them to empower ourselves."
 	ability_name = "drain sting"
-	cooldown_timer = 12 SECONDS
-	plasma_cost = 150
-	//keybinding_signals = list(
-	//	KEYBINDING_NORMAL = COMSIG_XENOABILITY_NEUROTOX_STING,
-	//)
+	cooldown_timer = 25 SECONDS
+	plasma_cost = 75
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DRAIN_STING,
+	)
 	target_flags = XABB_MOB_TARGET
 	use_state_flags = XACT_USE_BUCKLED
 
@@ -123,28 +160,28 @@
 		if(!silent)
 			owner.balloon_alert(owner, "Cannot sting")
 		return FALSE
-	if(!owner.Adjacent(A))
+	var/mob/living/carbon/C = A
+	if(!owner.Adjacent(C))
 		owner.balloon_alert(owner, "Cannot reach")
 		return FALSE
-	if(!A.has_status_effect(STATUS_EFFECT_INTOXICATED))
+	if(!C.has_status_effect(STATUS_EFFECT_INTOXICATED))
 		owner.balloon_alert(owner, "Not intoxicated")
 		return FALSE
 
-	var/mob/living/carbon/C = A
-
 /datum/action/xeno_action/activable/drain_sting/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
-	var/datum/status_effect/stacking/intoxicated/debuff = A.has_status_effect(STATUS_EFFECT_INTOXICATED)
-	var/drain_potency = debuff.stacks
-
-	if(debuff.stacks > debuff.max_stacks - 2)
-		X.balloon_alert(X, "We feel elated!")
-		X.emote("roar")
-		X.apply_status_effect(STATUS_EFFECT_DRAIN_SURGE)
-	A.emote("pain")
-	A.AdjustKnockdown(1 SECONDS)
-	HEAL_XENO_DAMAGE(X, drain_potency * SENTINEL_DRAIN_MULTIPLIER, FALSE)
-	X.gain_plasma(drain_potency * SENTINEL_DRAIN_MULTIPLIER)
+	var/mob/living/carbon/C = A
+	var/datum/status_effect/stacking/intoxicated/debuff = C.has_status_effect(STATUS_EFFECT_INTOXICATED)
+	if(debuff.stacks > debuff.max_stacks * 0.75)
+		C.emote("scream")
+		C.AdjustKnockdown(1 SECONDS)
+	var/drain_potency = debuff.stacks * SENTINEL_DRAIN_MULTIPLIER
+	HEAL_XENO_DAMAGE(X, drain_potency, FALSE)
+	X.gain_plasma(drain_potency * 3)
+	playsound(owner.loc, 'sound/effects/alien_tail_swipe1.ogg', 30)
+	C.adjustFireLoss(drain_potency / 5)
+	C.remove_status_effect(STATUS_EFFECT_INTOXICATED)
+	X.do_attack_animation(C, ATTACK_EFFECT_REDSTAB)
 	succeed_activate()
 	add_cooldown()
 
@@ -154,19 +191,19 @@
 	return ..()
 
 // ***************************************
-// *********** Neurogas Grenade
+// *********** Toxic Grenade
 // ***************************************
-/datum/action/xeno_action/activable/neurogas_grenade
-	name = "Throw neurogas grenade"
+/datum/action/xeno_action/activable/toxic_grenade
+	name = "Toxic grenade"
 	action_icon_state = "gas mine"
-	mechanics_text = "Throws a gas emitting grenade at your enemies."
+	mechanics_text = "Throws a ball of resin, containing a toxin that will inflict the Intoxicated debuff, dealing damage over time."
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_NEUROGAS_GRENADE,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOXIC_GRENADE,
 	)
-	plasma_cost = 300
-	cooldown_timer = 1 MINUTES
+	plasma_cost = 250
+	cooldown_timer = 50 SECONDS
 
-/datum/action/xeno_action/activable/neurogas_grenade/use_ability(atom/A)
+/datum/action/xeno_action/activable/toxic_grenade/use_ability(atom/A)
 	. = ..()
 	succeed_activate()
 	add_cooldown()
@@ -179,13 +216,13 @@
 
 
 /obj/item/explosive/grenade/smokebomb/xeno
-	name = "neurogas grenade"
+	name = "toxic grenade"
 	desc = "A fleshy mass that bounces along the ground. It seems to be heating up."
-	greyscale_colors = "#f0be41"
+	greyscale_colors = "#42A500"
 	greyscale_config = /datum/greyscale_config/xenogrenade
-	det_time = 20
+	det_time = 15
 	dangerous = TRUE
-	smoketype = /datum/effect_system/smoke_spread/xeno/neuro/medium
+	smoketype = /datum/effect_system/smoke_spread/xeno/toxic
 	arm_sound = 'sound/voice/alien_yell_alt.ogg'
 	smokeradius = 3
 
