@@ -21,10 +21,12 @@
 	RegisterSignal(parent, COMSIG_ITEM_REMOVED_INVENTORY, .proc/begin_reequip)
 	RegisterSignal(parent, COMSIG_MOVABLE_PRE_THROW, .proc/cancel_throw)
 
+///Blocks any item with this component from being thrown
 /datum/component/reequip/proc/cancel_throw(source)
 	SIGNAL_HANDLER
 	return COMPONENT_MOVABLE_BLOCK_PRE_THROW
 
+///Just holds a delay for the reequip attempt
 /datum/component/reequip/proc/begin_reequip(source, mob/user)
 	SIGNAL_HANDLER
 	addtimer(CALLBACK(src, .proc/catch_wrapper, source, user), reequip_delay)
@@ -35,13 +37,12 @@
 		return
 	SEND_SIGNAL(src, COMSIG_REEQUIP_FAILURE, parent, user)
 
+///Actually equips parent if any slots in slots_to_try are available
 /datum/component/reequip/proc/try_to_catch(source, mob/user)
-	if(!ishuman(user))
-		return
-	if(!isitem(source))
+	if(!ishuman(user) || !isitem(source))
 		return
 	var/obj/item/item_source = source
 	if(!isturf(item_source.loc))
-		return
+		return //In storage or somewhere else we shouldn't pull it from
 	var/mob/living/carbon/human/h_user = user
 	return h_user.equip_in_one_of_slots(parent, slots_to_try, FALSE)
