@@ -246,16 +246,16 @@
 	time_to_unequip = 1 SECONDS
 	flags_inventory = NOQUICKEQUIP
 	///The current attacher. Gets remade for every new item
-	var/datum/component/reequip/attacher_component
+	var/datum/component/reequip/reequip_component
 
 /obj/item/belt_harness/examine(mob/user, distance, infix, suffix)
 	. = ..()
-	if(attacher_component)
-		. += "There is \a [attacher_component.parent] hooked into it."
+	if(reequip_component)
+		. += "There is \a [reequip_component.parent] hooked into it."
 
 /obj/item/belt_harness/unequipped(mob/unequipper, slot)
-	if(attacher_component)
-		detach_item(attacher_component.parent, unequipper)
+	if(reequip_component)
+		detach_item(reequip_component.parent, unequipper)
 	return ..()
 
 /obj/item/belt_harness/attackby(obj/item/I, mob/user, params)
@@ -270,33 +270,33 @@
 	if(huser.belt != src)
 		to_chat(user, span_notice("You need to be wearing [src] to attach something to it!"))
 		return
-	if(attacher_component)
-		if(attacher_component.parent == I)
+	if(reequip_component)
+		if(reequip_component.parent == I)
 			detach_item(I, user)
 			return
-		to_chat(user, span_notice("[src] already has \a [attacher_component.parent] hooked into it!"))
+		to_chat(user, span_notice("[src] already has \a [reequip_component.parent] hooked into it!"))
 		return
 	attach_item(I, user)
 
 ///Set up the link between belt and object
 /obj/item/belt_harness/proc/attach_item(obj/item/to_attach, mob/user)
-	attacher_component = to_attach.AddComponent(/datum/component/reequip, list(SLOT_S_STORE, SLOT_BACK))
-	RegisterSignal(attacher_component, list(COMSIG_REEQUIP_FAILURE, COMSIG_PARENT_QDELETING), .proc/detach_item)
+	reequip_component = to_attach.AddComponent(/datum/component/reequip, list(SLOT_S_STORE, SLOT_BACK))
+	RegisterSignal(reequip_component, list(COMSIG_REEQUIP_FAILURE, COMSIG_PARENT_QDELETING), .proc/detach_item)
 	playsound(src,'sound/machines/click.ogg', 15, FALSE, 1)
 	to_chat(user, span_notice("[src] clicks as you hook \the [to_attach] into it."))
 
 ///Clean out attachment refs/signals
 /obj/item/belt_harness/proc/detach_item(source)
 	SIGNAL_HANDLER
-	if(!attacher_component)
+	if(!reequip_component)
 		return
-	UnregisterSignal(attacher_component, list(COMSIG_REEQUIP_FAILURE, COMSIG_PARENT_QDELETING))
+	UnregisterSignal(reequip_component, list(COMSIG_REEQUIP_FAILURE, COMSIG_PARENT_QDELETING))
 	if(ishuman(loc))
-		to_chat(loc, span_notice("[src] clicks as \the [attacher_component.parent] unhook[attacher_component.parent.p_s()] from it."))
+		to_chat(loc, span_notice("[src] clicks as \the [reequip_component.parent] unhook[reequip_component.parent.p_s()] from it."))
 		playsound(src,'sound/machines/click.ogg', 15, FALSE, 1)
-	if(!QDELING(attacher_component)) //We might've come here from parent qdeling, so we can't just qdel_null it
-		qdel(attacher_component)
-	attacher_component = null
+	if(!QDELING(reequip_component)) //We might've come here from parent qdeling, so we can't just qdel_null it
+		qdel(reequip_component)
+	reequip_component = null
 
 /obj/item/belt_harness/marine
 	name = "\improper M45 pattern belt harness"
