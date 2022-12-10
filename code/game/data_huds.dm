@@ -242,12 +242,14 @@
 	if(HAS_TRAIT(src, TRAIT_HIVE_TARGET))
 		xeno_debuff.overlays += hive_target_image
 
-	var/datum/status_effect/stacking/intoxicated/debuff = has_status_effect(STATUS_EFFECT_INTOXICATED)
-	var/intoxicated_amount = debuff.stacks
-	if(intoxicated_amount > 15)
-		xeno_debuff.overlays += intoxicated_high_image
-	else if(intoxicated_amount > 0)
-		xeno_debuff.overlays += intoxicated_image
+
+	if(has_status_effect(STATUS_EFFECT_INTOXICATED))
+		var/datum/status_effect/stacking/intoxicated/debuff = has_status_effect(STATUS_EFFECT_INTOXICATED)
+		var/intoxicated_amount = debuff.stacks
+		if(intoxicated_amount > 15)
+			xeno_debuff.overlays += intoxicated_high_image
+		else if(intoxicated_amount > 0)
+			xeno_debuff.overlays += intoxicated_image
 
 	hud_list[XENO_DEBUFF_HUD] = xeno_debuff
 
