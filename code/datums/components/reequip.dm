@@ -19,6 +19,11 @@
 	if(_reequip_delay)
 		reequip_delay = _reequip_delay
 	RegisterSignal(parent, COMSIG_ITEM_REMOVED_INVENTORY, .proc/begin_reequip)
+	RegisterSignal(parent, COMSIG_MOVABLE_PRE_THROW, .proc/cancel_throw)
+
+/datum/component/reequip/proc/cancel_throw(source)
+	SIGNAL_HANDLER
+	return COMPONENT_MOVABLE_BLOCK_PRE_THROW
 
 /datum/component/reequip/proc/begin_reequip(source, mob/user)
 	SIGNAL_HANDLER
@@ -27,7 +32,6 @@
 ///Wrapper to ensure signals only come from One Spot
 /datum/component/reequip/proc/catch_wrapper(source, mob/user)
 	if(try_to_catch(parent, user))
-		SEND_SIGNAL(src, COMSIG_REEQUIP_SUCCESS, parent, user)
 		return
 	SEND_SIGNAL(src, COMSIG_REEQUIP_FAILURE, parent, user)
 

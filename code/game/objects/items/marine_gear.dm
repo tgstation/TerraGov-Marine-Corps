@@ -247,22 +247,15 @@
 	flags_inventory = NOQUICKEQUIP
 	///The current attacher. Gets remade for every new item
 	var/datum/component/reequip/attacher_component
-	///Whether our attached item is being forcefully returned after a throw
-	var/recoiling = FALSE
 
 /obj/item/belt_harness/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	if(attacher_component)
 		. += "There is \a [attacher_component.parent] hooked into it."
 
-/obj/item/belt_harness/equipped(mob/user, slot)
-	. = ..()
-	RegisterSignal(user, COMSIG_MOB_THROW, .proc/on_owner_throw)
-
 /obj/item/belt_harness/unequipped(mob/unequipper, slot)
 	if(attacher_component)
 		detach_item(attacher_component.parent, unequipper)
-	UnregisterSignal(unequipper, COMSIG_MOB_THROW)
 	return ..()
 
 /obj/item/belt_harness/attackby(obj/item/I, mob/user, params)
@@ -289,44 +282,21 @@
 /obj/item/belt_harness/proc/attach_item(obj/item/to_attach, mob/user)
 	attacher_component = to_attach.AddComponent(/datum/component/reequip, list(SLOT_S_STORE, SLOT_BACK))
 	RegisterSignal(attacher_component, list(COMSIG_REEQUIP_FAILURE, COMSIG_PARENT_QDELETING), .proc/detach_item)
-	RegisterSignal(attacher_component, COMSIG_REEQUIP_SUCCESS, .proc/catch_success)
 	playsound(src,'sound/machines/click.ogg', 15, FALSE, 1)
 	to_chat(user, span_notice("[src] clicks as you hook \the [to_attach] into it."))
 
 ///Clean out attachment refs/signals
-/obj/item/belt_harness/proc/detach_item(obj/item/to_detach, mob/user)
+/obj/item/belt_harness/proc/detach_item(source)
 	SIGNAL_HANDLER
 	if(!attacher_component)
 		return
-	UnregisterSignal(attacher_component, list(COMSIG_REEQUIP_FAILURE, COMSIG_REEQUIP_SUCCESS, COMSIG_PARENT_QDELETING))
-	if(user && to_detach)
-		to_chat(user, span_notice("[src] clicks as \the [to_detach] unhook[to_detach.p_s()] from it."))
+	UnregisterSignal(attacher_component, list(COMSIG_REEQUIP_FAILURE, COMSIG_PARENT_QDELETING))
+	if(ishuman(loc))
+		to_chat(loc, span_notice("[src] clicks as \the [attacher_component.parent] unhook[attacher_component.parent.p_s()] from it."))
 		playsound(src,'sound/machines/click.ogg', 15, FALSE, 1)
 	if(!QDELING(attacher_component)) //We might've come here from parent qdeling, so we can't just qdel_null it
 		qdel(attacher_component)
 	attacher_component = null
-	recoiling = FALSE
-
-///Signal handler, to see if our attached_item is being thrown
-/obj/item/belt_harness/proc/on_owner_throw(source, atom/target)
-	SIGNAL_HANDLER
-	if(!ishuman(source))
-		return
-	var/mob/living/carbon/human/huser = source
-	if(huser.get_active_held_item() == attacher_component?.parent)
-		recoiling = TRUE
-
-///Slaps you in the face if you throw the attached item and it returns
-/obj/item/belt_harness/proc/catch_success(source, obj/item/caught, mob/user)
-	if(!recoiling)
-		return
-	recoiling = FALSE
-	user.visible_message(span_notice("[caught] smack[caught.p_s()] [user] in the face as it slingshots back to [user.p_them()]"),\
-		span_warning("[caught] smack[caught.p_s()] you in the face as [src] pulls [caught.p_them()] back to you."))
-	if(!ishuman(user))
-		return
-	var/mob/living/carbon/human/huser = user
-	huser.Knockdown(15)
 
 /obj/item/belt_harness/marine
 	name = "\improper M45 pattern belt harness"

@@ -214,6 +214,8 @@
 ///from /obj/vehicle/proc/driver_move, caught by the riding component to check and execute the driver trying to drive the vehicle
 #define COMSIG_RIDDEN_DRIVER_MOVE "driver_move"
 	#define COMPONENT_DRIVER_BLOCK_MOVE (1<<0)
+#define COMSIG_MOVABLE_PRE_THROW "movable_pre_throw"			//from base of atom/movable/throw_at()
+	#define COMPONENT_MOVABLE_BLOCK_PRE_THROW (1<<0)
 #define COMSIG_LIVING_PRE_THROW_IMPACT "movable_living_throw_impact_check" //sent before an item impacts a living mob
 	#define COMPONENT_PRE_THROW_IMPACT_HIT (1<<0)
 #define COMSIG_MOVABLE_POST_THROW "movable_post_throw"			//called on tail of atom/movable/throw_at()
@@ -872,6 +874,5 @@
 /// from datum ui_act (usr, action)
 #define COMSIG_UI_ACT "COMSIG_UI_ACT"
 
-/// From reequip datums
-#define COMSIG_REEQUIP_SUCCESS "reequip success"
+/// From reequip components
 #define COMSIG_REEQUIP_FAILURE "reequip failure"

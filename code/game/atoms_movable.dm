@@ -471,6 +471,9 @@
 	if(!target || !src)
 		return FALSE
 
+	if(SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_THROW) & COMPONENT_MOVABLE_BLOCK_PRE_THROW)
+		return FALSE
+
 	if(spin)
 		animation_spin(5, 1)
 
