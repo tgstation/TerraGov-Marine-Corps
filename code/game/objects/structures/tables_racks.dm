@@ -295,7 +295,7 @@
 
 			if(prob(15))
 				M.Paralyze(10 SECONDS)
-			M.apply_damage(8, BRUTE, "head", updating_health = TRUE)
+			M.apply_damage(8, BRUTE, "head", blocked = MELEE, updating_health = TRUE)
 			user.visible_message(span_danger("[user] slams [M]'s face against [src]!"),
 			span_danger("You slam [M]'s face against [src]!"))
 			log_combat(user, M, "slammed", "", "against \the [src]")

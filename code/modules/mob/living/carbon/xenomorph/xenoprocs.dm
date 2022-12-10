@@ -422,16 +422,15 @@
 		GLOB.round_statistics.praetorian_spray_direct_hits++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "praetorian_spray_direct_hits")
 
-	var/armor_block = get_soft_armor("acid", BODY_ZONE_CHEST)
 	var/damage = X.xeno_caste.acid_spray_damage_on_hit
-	INVOKE_ASYNC(src, .proc/apply_acid_spray_damage, damage, armor_block)
+	INVOKE_ASYNC(src, .proc/apply_acid_spray_damage, damage)
 	to_chat(src, span_xenodanger("\The [X] showers you in corrosive acid!"))
 
-/mob/living/carbon/proc/apply_acid_spray_damage(damage, armor_block)
-	apply_damage(damage, BURN, null, armor_block, updating_health = TRUE)
+/mob/living/carbon/proc/apply_acid_spray_damage(damage)
+	apply_damage(damage, BURN, null, ACID, updating_health = TRUE)
 
-/mob/living/carbon/human/apply_acid_spray_damage(damage, armor_block)
-	take_overall_damage_armored(damage, BURN, "acid", updating_health = TRUE)
+/mob/living/carbon/human/apply_acid_spray_damage(damage)
+	take_overall_damage(damage, BURN, ACID, updating_health = TRUE)
 	emote("scream")
 	Paralyze(20)
 
