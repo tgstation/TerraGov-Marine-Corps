@@ -661,7 +661,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accurate_range_min = 6
 	damage = 40
 	penetration = 20
-	sundering = 10
+	sundering = 5
 
 /datum/ammo/bullet/rifle/tx8/incendiary
 	name = "high velocity incendiary bullet"
@@ -670,7 +670,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 25
 	accuracy = -10
 	penetration = 20
-	sundering = 2.5
+	sundering = 1
 
 /datum/ammo/bullet/rifle/tx8/impact
 	name = "high velocity impact bullet"
@@ -678,7 +678,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOVABLE
 	damage = 25
 	penetration = 30
-	sundering = 5
+	sundering = 2
 
 /datum/ammo/bullet/rifle/tx8/impact/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, max_range = 20, slowdown = 1, shake = 0)
@@ -768,7 +768,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 15
 	damage = 100
 	penetration = 20
-	sundering = 7.5
+	sundering = 5
 
 /datum/ammo/bullet/shotgun/slug/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, weaken = 1, stagger = 2, knockback = 1, slowdown = 2)
@@ -822,7 +822,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 50
 	damage_falloff = 0.5
 	penetration = 15
-	sundering = 7
+	sundering = 5
 
 /datum/ammo/bullet/shotgun/flechette_spread
 	name = "additional flechette"
@@ -834,7 +834,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 40
 	damage_falloff = 1
 	penetration = 25
-	sundering = 5
+	sundering = 3
 
 /datum/ammo/bullet/shotgun/buckshot
 	name = "shotgun buckshot shell"
@@ -1078,7 +1078,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 40
 	damage = 90
 	penetration = 50
-	sundering = 15
+	sundering = 10
 
 /datum/ammo/bullet/sniper/incendiary
 	name = "incendiary sniper bullet"
@@ -1097,7 +1097,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "sniper_flak"
 	damage = 90
 	penetration = 0
-	sundering = 25
+	sundering = 15
 	airburst_multiplier	= 0.2
 
 /datum/ammo/bullet/sniper/flak/on_hit_mob(mob/victim, obj/projectile/proj)
@@ -1110,7 +1110,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	handful_amount = 5
 	damage = 75
 	penetration = 35
-	sundering = 15
+	sundering = 10
 
 /datum/ammo/bullet/sniper/martini
 	name = "crude heavy sniper bullet"
@@ -1132,7 +1132,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy = 20
 	damage = 100
 	penetration = 60
-	sundering = 50
+	sundering = 10
 
 /datum/ammo/bullet/sniper/pfc
 	name = "high caliber rifle bullet"
@@ -1149,7 +1149,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SNIPER
 	damage = 40
 	penetration = 10
-	sundering = 10
+	sundering = 15
 	damage_falloff = 0.25
 
 /datum/ammo/bullet/sniper/pfc/flak/on_hit_mob(mob/M, obj/projectile/P)
@@ -1288,7 +1288,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 14
 	damage = 150
 	penetration = 100
-	sundering = 20
+	sundering = 10
 	bullet_color = COLOR_PULSE_BLUE
 	on_pierce_multiplier = 0.85
 
@@ -1301,7 +1301,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 21
 	damage = 100
 	penetration = 30
-	sundering = 100
+	sundering = 20
 
 /datum/ammo/bullet/railgun/hvap/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, stagger = 2, knockback = 3, shake = 0)
@@ -1311,7 +1311,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE|AMMO_IFF
 	damage = 75
 	penetration = 20
-	sundering = 50
+	sundering = 10
 
 /datum/ammo/bullet/railgun/smart/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, stagger = 3, slowdown = 3, shake = 0)
@@ -1663,7 +1663,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 14
 	damage = 200
 	penetration = 100
-	sundering = 100
+	sundering = 20
 	bullet_color = LIGHT_COLOR_FIRE
 	barricade_clear_distance = 2
 
@@ -1732,7 +1732,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shell_speed = 3
 	penetration = 200
 	damage = 200
-	sundering = 50
+	sundering = 15
 	handful_amount = 1
 
 /datum/ammo/rocket/heavy_rr/drop_nade(turf/T)
@@ -1749,7 +1749,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 200
 	penetration = 75
 	max_range = 20
-	sundering = 100
+	sundering = 20
 	//The radius for the non explosion effects
 	var/effect_radius = 3
 
@@ -1795,7 +1795,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 200
 	penetration = 75
 	max_range = 30
-	sundering = 100
+	sundering = 20
 
 /datum/ammo/rocket/wp/unguided
 	damage = 100
@@ -1815,7 +1815,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 30
 	damage = 100
 	penetration = 50
-	sundering = 50
+	sundering = 15
 
 /datum/ammo/rocket/recoilless/drop_nade(turf/T)
 	explosion(T, 0, 3, 4, 2)
@@ -1838,7 +1838,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 20
 	damage = 75
 	penetration = 50
-	sundering = 25
+	sundering = 10
 
 /datum/ammo/rocket/recoilless/light/drop_nade(turf/T)
 	explosion(T, 0, 1, 8, 1)
@@ -1882,7 +1882,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 20
 	damage = 75
 	penetration = 15
-	sundering = 25
+	sundering = 10
 
 /datum/ammo/rocket/recoilless/low_impact/drop_nade(turf/T)
 	explosion(T, 0, 1, 8, 2)
@@ -1891,7 +1891,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "explosive rocket"
 	damage = 100
 	penetration = 100
-	sundering = 100
+	sundering = 20
 
 /datum/ammo/rocket/som
 	name = "low impact RPG"
@@ -1901,7 +1901,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 20
 	damage = 80
 	penetration = 20
-	sundering = 20
+	sundering = 10
 
 /datum/ammo/rocket/som/drop_nade(turf/T)
 	explosion(T, 0, 3, 6, 2)
@@ -2011,7 +2011,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shell_speed = 4
 	damage = 200
 	penetration = 40
-	sundering = 65
+	sundering = 20
 
 /datum/ammo/rocket/atgun_shell/apcr/drop_nade(turf/T)
 	explosion(T, 0, 0, 0, 1)
@@ -2033,7 +2033,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
 	damage = 50
 	penetration = 50
-	sundering = 25
+	sundering = 10
 
 /datum/ammo/rocket/atgun_shell/he/drop_nade(turf/T)
 	explosion(T, 0, 3, 5, 0)
@@ -2301,7 +2301,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 90 // this is gotta hurt...
 	max_range = 40
 	penetration = 100
-	sundering = 100
+	sundering = 20
 	bullet_color = COLOR_PULSE_BLUE
 
 /datum/ammo/energy/lasgun/M43/practice
