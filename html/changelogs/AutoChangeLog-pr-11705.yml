@@ -1,0 +1,5 @@
+author: "SplinterGP"
+delete-after: True
+changes:
+  - bugfix: "fixes xenos not receiving burn damage"
+  - bugfix: "fixes humans runtiming on getting attacked in melee by another human"

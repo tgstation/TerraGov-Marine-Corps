@@ -721,7 +721,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	if(!loc_b)
 		targeted.status_flags &= ~(INCORPOREAL|GODMODE)
 		REMOVE_TRAIT(owner, TRAIT_IMMOBILE, TIMESHIFT_TRAIT)
-		targeted.take_overall_damage(target_initial_brute_damage - targeted.getBruteLoss(), target_initial_burn_damage - targeted.getFireLoss(), updating_health = TRUE)
+		targeted.heal_overall_damage(targeted.getBruteLoss() - target_initial_brute_damage, targeted.getFireLoss() - target_initial_burn_damage, updating_health = TRUE)
 		if(isxeno(target))
 			var/mob/living/carbon/xenomorph/xeno_target = targeted
 			xeno_target.sunder = target_initial_sunder

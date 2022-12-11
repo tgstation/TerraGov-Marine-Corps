@@ -1,6 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes:
-  - bugfix: "Adjusted a crash location on LV624 that could crush the green disk generator"
-  - bugfix: "Adjusted a crash location on the Pillar of Spring that could destroy the hull of the ship and lead to space."
-  - bugfix: "Changed the button locations on both Canterbury variations so they can't be melted from the outside."
