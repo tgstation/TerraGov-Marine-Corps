@@ -128,7 +128,7 @@
 	fade = 10
 	grow = 0.2
 	velocity = list(0, 0)
-	position = generator(GEN_CIRCLE, 11, 11, NORMAL_RAND)
+	position = generator(GEN_CIRCLE, 10, 10, NORMAL_RAND)
 	drift = generator(GEN_VECTOR, list(0, -0.15), list(0, 0.15))
 	gravity = list(0, 0.4)
 	scale = generator(GEN_VECTOR, list(0.3, 0.3), list(0.9,0.9), NORMAL_RAND)
@@ -177,7 +177,7 @@
 		C.AdjustKnockdown(1 SECONDS)
 		C.adjust_stagger(5)
 		C.adjust_slowdown(5)
-		C.apply_status_effect(STATUS_EFFECT_DRAIN_SURGE)
+		X.apply_status_effect(STATUS_EFFECT_DRAIN_SURGE)
 	var/drain_potency = debuff.stacks * SENTINEL_DRAIN_MULTIPLIER
 	HEAL_XENO_DAMAGE(X, drain_potency, FALSE)
 	X.gain_plasma(drain_potency * 3)

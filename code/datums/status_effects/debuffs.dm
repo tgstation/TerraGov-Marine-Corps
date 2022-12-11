@@ -443,6 +443,7 @@
 	to_chat(debuff_owner, span_danger("Your equipment is affected by acid! Use Resist to deal with it!"))
 	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 25)
 	particle_holder = new(debuff_owner, /particles/toxic_slash)
+	particle_holder.particles.spawning = 1 + round(stacks / 2)
 	particle_holder.pixel_x = -2
 	particle_holder.pixel_y = 0
 
@@ -456,6 +457,7 @@
 	var/debuff_damage = SENTINEL_INTOXICATED_BASE_DAMAGE + round(stacks / 13)
 	debuff_owner.adjustFireLoss(debuff_damage)
 	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 6)
+	particle_holder.particles.spawning = 1 + round(stacks / 2)
 
 /datum/status_effect/stacking/intoxicated/proc/resist_debuff()
 	SIGNAL_HANDLER

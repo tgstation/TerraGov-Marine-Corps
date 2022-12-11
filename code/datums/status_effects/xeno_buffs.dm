@@ -770,6 +770,7 @@
 	duration = 10 SECONDS
 	tick_interval = 2 SECONDS
 	status_type = STATUS_EFFECT_REFRESH
+	alert_type = null
 
 /datum/status_effect/drain_surge/on_apply()
 	if(!isxeno(owner))
@@ -777,12 +778,14 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	X.soft_armor = X.soft_armor.modifyAllRatings(SENTINEL_DRAIN_SURGE_ARMOR_MOD)
 	X.add_filter("drain_surge", 1, outline_filter(1, COLOR_VIBRANT_LIME))
-	owner.balloon_alert(owner, "Drain Surge started")
+	X.visible_message(span_danger("[X]'s chitin glows with a vicious green!"), \
+	span_notice("You imbue your chitinous armor with the toxins of your victim!"), null, 5)
 	return TRUE
 
-/datum/status_effect/resin_jelly_coating/on_remove()
+/datum/status_effect/drain_surge/on_remove()
 	var/mob/living/carbon/xenomorph/X = owner
 	X.soft_armor = X.soft_armor.modifyAllRatings(-SENTINEL_DRAIN_SURGE_ARMOR_MOD)
 	X.remove_filter("drain_surge")
-	owner.balloon_alert(owner, "Drain Surge ended")
+	X.visible_message(span_danger("[X]'s chitin loses its green glow..."), \
+	span_notice("Your chitinous armor loses its glow."), null, 5)
 	return ..()
