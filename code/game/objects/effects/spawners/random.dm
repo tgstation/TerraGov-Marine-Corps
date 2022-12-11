@@ -1250,3 +1250,11 @@
 		/obj/structure/window_frame/mainship = 10,
 		/obj/structure/window/framed/mainship = 1,
 	)
+
+/obj/effect/spawner/random/structure/dead_ai
+	name = "dead ai spawner"
+	icon_state = "random_dead_ai"
+	spawn_loot_chance = 15
+	loot = list(
+		/obj/structure/prop/mainship/deadai,
+	)

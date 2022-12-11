@@ -691,6 +691,16 @@
 /obj/item/storage/box/donkpockets,
 /turf/open/floor/iron/dark,
 /area/deltastation/security/courtroom)
+"ahu" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/prop/mainship/holobarrier,
+/turf/open/space,
+/area/space)
 "ahx" = (
 /obj/structure/table/woodentable,
 /obj/item/flashlight/lamp/green,
@@ -2100,6 +2110,7 @@
 	teleport_z = 1;
 	teleport_z_offset = 1
 	},
+/obj/structure/prop/mainship/holobarrier,
 /turf/open/space,
 /area/space)
 "axD" = (
@@ -7378,7 +7389,7 @@
 	req_access = list("ai_upload")
 	},
 /turf/closed/mineral/smooth/indestructible,
-/area/deltastation/ai_monitored/turret_protected/ai)
+/area/deltastation/asteroidcaves/rock)
 "bEA" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/hypospray,
@@ -8909,7 +8920,7 @@
 	dir = 4
 	},
 /turf/closed/mineral/smooth/indestructible,
-/area/space)
+/area/deltastation/asteroidcaves/rock)
 "bXA" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -13991,12 +14002,12 @@
 /turf/open/floor/iron,
 /area/deltastation/commons/fitness/recreation)
 "dhh" = (
-/obj/structure/window/reinforced,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer4{
 	dir = 4
 	},
 /obj/effect/ai_node,
+/obj/effect/decal/cleanable/glass,
 /turf/open/floor/iron/dark,
 /area/deltastation/ai_monitored/aisat/exterior)
 "dhi" = (
@@ -15527,6 +15538,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/obj/structure/prop/mainship/holobarrier,
 /turf/open/space,
 /area/space)
 "dyg" = (
@@ -16678,6 +16690,7 @@
 /obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer4{
 	dir = 4
 	},
+/obj/item/shard,
 /turf/open/floor/iron/dark,
 /area/deltastation/ai_monitored/aisat/exterior)
 "dJg" = (
@@ -17605,6 +17618,14 @@
 	},
 /turf/open/floor/iron/white,
 /area/deltastation/medical/medbay)
+"dSZ" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/lattice,
+/obj/structure/prop/mainship/holobarrier,
+/turf/open/space,
+/area/space)
 "dTf" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/deltastation/medical/virology)
@@ -19322,12 +19343,13 @@
 /turf/open/floor/iron,
 /area/deltastation/service/hydroponics/garden)
 "ejI" = (
-/obj/machinery/door/airlock/hatch{
-	name = "MiniSat Exterior Access"
-	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/turf_decal/stripes/end{
 	dir = 4
+	},
+/obj/structure/prop/mainship/doorblocker/evac{
+	dir = 4;
+	name = "MiniSat Exterior Access"
 	},
 /turf/open/floor/iron/dark,
 /area/space)
@@ -19979,15 +20001,10 @@
 /turf/closed/wall,
 /area/deltastation/hallway/secondary/exit/departure_lounge)
 "eqM" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer4,
+/obj/structure/grille/smoothing,
+/obj/structure/lattice,
 /turf/closed/mineral/smooth/indestructible,
-/area/deltastation/ai_monitored/aisat/exterior)
+/area/deltastation/asteroidcaves/rock)
 "eqR" = (
 /obj/effect/turf_decal/tile/neutral/half/contrasted,
 /obj/effect/decal/cleanable/dirt,
@@ -23126,7 +23143,7 @@
 	dir = 4
 	},
 /turf/closed/mineral/smooth/indestructible,
-/area/space)
+/area/deltastation/asteroidcaves/rock)
 "faE" = (
 /obj/structure/table/woodentable,
 /turf/open/floor/iron/grimy,
@@ -25053,6 +25070,7 @@
 	teleport_z = 1;
 	teleport_z_offset = 1
 	},
+/obj/structure/prop/mainship/holobarrier,
 /turf/closed/mineral/smooth,
 /area/deltastation/asteroidcaves/rock)
 "ftW" = (
@@ -27511,6 +27529,13 @@
 /obj/effect/decal/warning_stripes/box/empty,
 /turf/open/floor/iron/dark,
 /area/deltastation/engineering/atmos/storage)
+"fVo" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/prop/mainship/holobarrier,
+/turf/open/space,
+/area/space)
 "fVw" = (
 /obj/structure/cable,
 /obj/machinery/door/poddoor/opened{
@@ -27643,6 +27668,12 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/cargo/office)
+"fWC" = (
+/obj/structure/window/reinforced,
+/obj/structure/lattice,
+/obj/structure/prop/mainship/holobarrier,
+/turf/open/space,
+/area/space)
 "fWE" = (
 /obj/effect/ai_node,
 /turf/open/floor/iron,
@@ -27985,6 +28016,13 @@
 	},
 /turf/open/floor/iron/white,
 /area/deltastation/science/lab)
+"gaE" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/prop/mainship/holobarrier,
+/turf/open/space,
+/area/space)
 "gaI" = (
 /obj/effect/landmark/xeno_resin_door{
 	dir = 4
@@ -34692,6 +34730,7 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer4,
 /obj/effect/ai_node,
+/obj/effect/decal/cleanable/glass,
 /turf/open/floor/iron/dark,
 /area/deltastation/ai_monitored/aisat/exterior)
 "hyp" = (
@@ -46673,6 +46712,7 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
 	},
+/obj/effect/decal/cleanable/glass,
 /turf/open/floor/iron/dark,
 /area/space)
 "kmr" = (
@@ -46690,6 +46730,7 @@
 	teleport_z = 1;
 	teleport_z_offset = 1
 	},
+/obj/structure/prop/mainship/holobarrier,
 /turf/open/space,
 /area/space)
 "kmH" = (
@@ -47523,6 +47564,7 @@
 "kwf" = (
 /obj/structure/catwalk,
 /obj/structure/window/reinforced,
+/obj/structure/prop/mainship/holobarrier,
 /turf/open/space,
 /area/space)
 "kwg" = (
@@ -52680,6 +52722,14 @@
 /obj/structure/extinguisher_cabinet,
 /turf/open/floor/iron,
 /area/deltastation/command/corporate_showroom)
+"lDb" = (
+/obj/structure/lattice,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/prop/mainship/holobarrier,
+/turf/open/space,
+/area/space)
 "lDm" = (
 /obj/effect/landmark/xeno_resin_door{
 	dir = 4
@@ -60290,6 +60340,7 @@
 	teleport_z = 1;
 	teleport_z_offset = 1
 	},
+/obj/structure/prop/mainship/holobarrier,
 /turf/open/space,
 /area/space)
 "nqx" = (
@@ -64122,6 +64173,7 @@
 	pixel_x = 24;
 	req_access = list("ai_upload")
 	},
+/obj/effect/spawner/random/structure/dead_ai,
 /turf/open/floor/gcircuit,
 /area/deltastation/ai_monitored/turret_protected/ai)
 "ojb" = (
@@ -65514,6 +65566,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/iron/dark,
 /area/deltastation/ai_monitored/turret_protected/aisat_interior)
+"oAh" = (
+/obj/structure/prop/mainship/holobarrier,
+/turf/open/space,
+/area/space)
 "oAi" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/red{
@@ -70487,6 +70543,7 @@
 	teleport_z = 1;
 	teleport_z_offset = 1
 	},
+/obj/structure/prop/mainship/holobarrier,
 /turf/open/space,
 /area/space)
 "pDq" = (
@@ -71450,6 +71507,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/storage/testroom)
+"pNd" = (
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/prop/mainship/holobarrier,
+/turf/open/space,
+/area/space)
 "pNk" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -77381,6 +77446,15 @@
 	},
 /turf/open/floor/plating,
 /area/deltastation/maintenance/port/fore)
+"rcu" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer4,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/iron/dark,
+/area/deltastation/ai_monitored/aisat/exterior)
 "rcz" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -80057,6 +80131,7 @@
 /obj/structure/catwalk,
 /obj/effect/mapping_helpers/simple_pipes/orange/visible,
 /obj/structure/window/reinforced,
+/obj/structure/prop/mainship/holobarrier,
 /turf/open/space,
 /area/space)
 "rHx" = (
@@ -84415,11 +84490,6 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/port)
-"sEH" = (
-/obj/structure/lattice,
-/obj/structure/window/reinforced,
-/turf/open/space,
-/area/space)
 "sER" = (
 /obj/structure/barricade/wooden,
 /obj/effect/spawner/random/structure/broken_reinforced_window,
@@ -86960,6 +87030,7 @@
 /area/deltastation/science/ordnance/office)
 "thI" = (
 /obj/structure/window/reinforced,
+/obj/structure/prop/mainship/holobarrier,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/space)
 "thL" = (
@@ -91083,6 +91154,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
+/obj/structure/prop/mainship/holobarrier,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/space)
 "ubF" = (
@@ -95732,6 +95804,16 @@
 	},
 /turf/open/floor/iron/dark,
 /area/deltastation/security/warden)
+"vby" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/prop/mainship/holobarrier,
+/turf/open/space,
+/area/space)
 "vbG" = (
 /obj/machinery/light{
 	dir = 1
@@ -104271,10 +104353,9 @@
 /turf/open/floor/iron/cafeteria,
 /area/deltastation/service/kitchen)
 "wRJ" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/closed/mineral/smooth/indestructible,
+/obj/structure/lattice,
+/obj/structure/prop/mainship/holobarrier,
+/turf/open/space,
 /area/space)
 "wRN" = (
 /obj/structure/sign/securearea{
@@ -104851,13 +104932,9 @@
 /turf/open/floor/iron,
 /area/deltastation/science/lab)
 "wYD" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/closed/mineral/smooth/indestructible,
+/obj/structure/window/reinforced,
+/obj/structure/prop/mainship/holobarrier,
+/turf/open/space,
 /area/space)
 "wYL" = (
 /obj/effect/turf_decal/stripes/line{
@@ -105601,11 +105678,12 @@
 /turf/open/floor/grass,
 /area/deltastation/hallway/primary/fore)
 "xif" = (
-/obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/turf/open/space,
+/obj/structure/window/reinforced,
+/obj/structure/prop/mainship/holobarrier,
+/turf/open/space/basic,
 /area/space)
 "xih" = (
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
@@ -108223,12 +108301,10 @@
 /turf/open/floor/wood,
 /area/deltastation/service/electronic_marketing_den)
 "xKb" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer4,
 /obj/effect/ai_node,
+/obj/item/shard,
 /turf/open/floor/iron/dark,
 /area/deltastation/ai_monitored/aisat/exterior)
 "xKf" = (
@@ -108298,9 +108374,7 @@
 "xKH" = (
 /obj/structure/lattice,
 /obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
+/obj/structure/prop/mainship/holobarrier,
 /turf/open/space,
 /area/space)
 "xKI" = (
@@ -120525,9 +120599,9 @@ daY
 ocL
 vWQ
 fJs
-ePa
+vNR
 bEz
-ePa
+vNR
 bwB
 dtk
 xOu
@@ -120777,14 +120851,14 @@ bVB
 moH
 kAa
 qwW
-qwW
-daY
+qOQ
+ePa
 daY
 ocL
 wDV
-ePa
-ePa
-ePa
+vNR
+vNR
+vNR
 wDV
 ocL
 wDV
@@ -121034,15 +121108,15 @@ bVB
 vOS
 eHK
 qwW
-qwW
-qwW
-daY
-daY
-daY
-daY
+qOQ
+qOQ
 ePa
-ePa
-ePa
+daY
+daY
+daY
+vNR
+vNR
+vNR
 daY
 daY
 daY
@@ -121290,19 +121364,19 @@ qci
 bVB
 moH
 env
-gOS
-kFY
-kFY
+bXx
+faB
+faB
 kFY
 gOS
 kFY
 kFY
 bXx
 faB
-faB
-bXx
-kFY
-lxH
+vNR
+qOQ
+fVo
+oAh
 dGs
 kBL
 xiT
@@ -121546,7 +121620,7 @@ bCp
 qci
 ycb
 nva
-gFu
+vNR
 fHl
 fHl
 gFu
@@ -121556,10 +121630,10 @@ rGa
 rGa
 rGa
 sFI
-rGa
-rGa
+nCu
+nCu
 hyn
-kAa
+gaE
 dGs
 abC
 nTH
@@ -121803,20 +121877,20 @@ bCp
 qci
 bCp
 aSs
-hox
-hox
-aSs
-hox
+lsO
 hox
 aSs
 hox
 hox
 aSs
 hox
+hox
 aSs
+hox
+tUA
 xif
 dIY
-mVm
+lDb
 dGs
 dGs
 dGs
@@ -122060,7 +122134,7 @@ bCp
 qci
 qci
 trz
-trz
+eqM
 qwW
 trz
 trz
@@ -122071,10 +122145,10 @@ trz
 trz
 trz
 trz
-nFp
+wRJ
 dhh
-lvv
-kFY
+vby
+fVo
 xKH
 jWT
 ody
@@ -122328,15 +122402,15 @@ qwW
 lxH
 qwW
 trz
-phE
+wYD
 hdp
 xKb
 rnK
-rGa
+rcu
 kvJ
 dcO
 kvJ
-eqM
+bXW
 bXW
 ckG
 tbj
@@ -122586,14 +122660,14 @@ lxH
 qwW
 qwW
 lxH
-xif
+pNd
 kmq
-fEB
+ahu
 dyd
 jBc
 rFd
 njh
-wYD
+agF
 agF
 kEh
 hox
@@ -122843,14 +122917,14 @@ lxH
 qwW
 trz
 trz
-nFp
+fWC
 ejI
-eHK
-sEH
+dSZ
+xKH
 jBc
 pvt
 oZm
-wRJ
+agF
 trz
 trz
 lVX
@@ -124131,7 +124205,7 @@ lxH
 lxH
 lxH
 fCY
-phE
+wYD
 jBc
 dPB
 fqR
@@ -124388,7 +124462,7 @@ lxH
 lxH
 lxH
 fCY
-phE
+wYD
 jBc
 dPB
 njh
@@ -124645,7 +124719,7 @@ lxH
 wxm
 wxm
 fCY
-phE
+wYD
 jBc
 iKH
 njh
@@ -124902,11 +124976,11 @@ lxH
 lxH
 wxm
 fCY
-phE
+wYD
 jBc
 scl
 puB
-kAa
+gaE
 vNR
 vNR
 hRL
@@ -125159,7 +125233,7 @@ qwW
 lxH
 fCY
 lxH
-phE
+wYD
 wly
 gjs
 njh
@@ -129275,7 +129349,7 @@ kwf
 jBc
 qmP
 njh
-kAa
+gaE
 iIc
 vNR
 vNR

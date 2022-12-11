@@ -105,6 +105,41 @@
 	icon = 'icons/obj/gravity_generator.dmi'
 	icon_state = "on_8"
 
+/obj/structure/prop/mainship/holobarrier
+	name = "\improper Engineering holobarrier"
+	desc = "A wonder of subsidized corporate design, this holographic barrier is almost entirely resistant to atmos loss and degradation by melee or ballistic damage. It's also made of space asbestos amd is illegal under the new geneva conventions."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "holosign_engi"
+	density = TRUE
+	resistance_flags = RESIST_ALL
+
+/obj/structure/prop/mainship/deadai
+	name = "\improper deactivated AI"
+	desc = "A standard silicon unit assigned to manage the research duties of NT stations. This one is completely deactivated."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "ai_dead"
+	density = TRUE
+	resistance_flags = RESIST_ALL
+
+
+/obj/structure/prop/mainship/deadai/Initialize()
+	. = ..()
+	icon_state = pick(
+		"ai_dead"
+		"ai-alien_dead"
+		"ai-banned_dead"
+		"ai-clown_dead"
+		"ai-database_dead"
+		"ai-glitchman_dead"
+		"ai-goon_dead"
+		"ai-house_dead"
+		"ai-monochrome_dead"
+		"ai-red_dead"
+		"ai-red october_dead"
+		"ai-static_dead"
+		"ai-hades_dead"
+	)
+
 //Nonpower using props
 
 /obj/structure/prop/mainship
