@@ -44,7 +44,7 @@
 /mob/living/carbon/xenomorph/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration)
 	if(status_flags & GODMODE)
 		return
-	if(damagetype != (BRUTE||BURN))
+	if(damagetype != BRUTE && damagetype != BURN)
 		return
 	if(isnum(blocked))
 		damage -= clamp(damage * (blocked - penetration) * 0.01, 0, damage)
