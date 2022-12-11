@@ -1123,6 +1123,12 @@
 	},
 /turf/open/floor/iron/large,
 /area/deltastation/medical/medbay/lobby)
+"amt" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/decal/cleanable/glass,
+/obj/item/shard,
+/turf/open/floor/iron/dark,
+/area/deltastation/ai_monitored/aisat/exterior)
 "amu" = (
 /obj/effect/spawner/random/structure/broken_reinforced_window,
 /turf/open/floor/plating,
@@ -1309,6 +1315,17 @@
 "aoN" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/deltastation/engineering/supermatter/room)
+"aoO" = (
+/obj/structure/lattice,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/prop/mainship/holobarrier,
+/turf/open/space,
+/area/space)
 "aoW" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
@@ -1439,7 +1456,6 @@
 /turf/open/floor/iron,
 /area/deltastation/engineering/supermatter/room)
 "aqC" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window,
 /turf/open/floor/plating,
 /area/deltastation/engineering/transit_tube)
 "aqD" = (
@@ -2111,6 +2127,10 @@
 	teleport_z_offset = 1
 	},
 /obj/structure/prop/mainship/holobarrier,
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
 /turf/open/space,
 /area/space)
 "axD" = (
@@ -8745,6 +8765,17 @@
 	dir = 1
 	},
 /area/deltastation/science/lobby)
+"bVr" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/prop/mainship/holobarrier,
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
+/turf/open/space,
+/area/space)
 "bVs" = (
 /obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer4,
 /obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer2,
@@ -10122,6 +10153,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/entry)
+"clY" = (
+/obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer2,
+/turf/open/floor/plating,
+/area/deltastation/ai_monitored/turret_protected/ai)
 "cma" = (
 /obj/effect/turf_decal/tile/neutral/diagonal_centre,
 /obj/effect/turf_decal/tile/red/diagonal_centre,
@@ -10837,6 +10872,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark,
 /area/storage/testroom)
+"cuE" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/spawner/random/metal,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/iron/dark,
+/area/deltastation/ai_monitored/turret_protected/aisat_interior)
 "cuO" = (
 /obj/effect/turf_decal/box/corners{
 	dir = 8
@@ -11517,6 +11558,12 @@
 /obj/structure/disposalpipe/segment/corner,
 /turf/open/floor/iron/dark,
 /area/deltastation/science/genetics)
+"cDf" = (
+/obj/structure/window/reinforced,
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/item/shard,
+/turf/open/floor/iron/dark,
+/area/deltastation/ai_monitored/aisat/exterior)
 "cDg" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
@@ -12463,10 +12510,6 @@
 /area/deltastation/hallway/secondary/command)
 "cPj" = (
 /obj/structure/cable,
-/obj/structure/prop/mainship/tubeprop/tubecurved{
-	dir = 6
-	},
-/obj/effect/spawner/random/structure/broken_reinforced_window,
 /turf/open/floor/plating,
 /area/deltastation/engineering/transit_tube)
 "cPu" = (
@@ -13552,6 +13595,10 @@
 /obj/machinery/gibber,
 /turf/open/floor/iron/textured,
 /area/deltastation/service/kitchen/coldroom)
+"dbO" = (
+/obj/machinery/holopad,
+/turf/open/floor/plating,
+/area/deltastation/ai_monitored/turret_protected/ai)
 "dbP" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/structure/closet/emcloset,
@@ -13656,6 +13703,7 @@
 /obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer2,
 /obj/structure/cable/layer3,
 /obj/effect/ai_node,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark,
 /area/deltastation/ai_monitored/aisat/exterior)
 "dcQ" = (
@@ -15152,8 +15200,7 @@
 	network = list("minisat");
 	start_active = 1
 	},
-/obj/effect/turf_decal/tile/neutral/fourcorners,
-/turf/open/floor/iron/dark,
+/turf/open/floor/plating,
 /area/deltastation/ai_monitored/turret_protected/aisat_interior)
 "dtF" = (
 /obj/structure/cable,
@@ -15882,6 +15929,7 @@
 	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer2,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark,
 /area/deltastation/ai_monitored/turret_protected/ai)
 "dBc" = (
@@ -15907,6 +15955,13 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/deltastation/asteroidcaves/derelictwest)
+"dBg" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/prop/mainship/holobarrier,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/deltastation/asteroidcaves/westerncaves)
 "dBm" = (
 /obj/structure/bed/chair,
 /obj/effect/turf_decal/tile/red/half/contrasted{
@@ -17894,6 +17949,15 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/layer4,
 /turf/open/floor/iron/grimy,
 /area/deltastation/command/heads_quarters/hos)
+"dVc" = (
+/obj/structure/window/reinforced,
+/obj/structure/prop/mainship/holobarrier,
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
+/turf/open/space,
+/area/space)
 "dVd" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/spawner/random/plant,
@@ -19542,12 +19606,11 @@
 /turf/open/floor/plating,
 /area/deltastation/maintenance/department/crew_quarters/bar)
 "elk" = (
-/obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer4,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
 	},
-/turf/open/floor/iron/dark,
+/turf/open/floor/plating,
 /area/deltastation/ai_monitored/turret_protected/aisat_interior)
 "elr" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
@@ -20433,6 +20496,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/foamplating,
 /area/deltastation/maintenance/department/science/xenobiology)
+"evJ" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer4,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/iron/dark,
+/area/deltastation/ai_monitored/turret_protected/ai)
 "evK" = (
 /obj/structure/prop/oresilo,
 /obj/machinery/door/firedoor,
@@ -24856,6 +24925,12 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/central/fore)
+"frG" = (
+/obj/effect/spawner/random/plant,
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/iron/dark,
+/area/deltastation/ai_monitored/turret_protected/aisat_interior)
 "frM" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -25071,6 +25146,10 @@
 	teleport_z_offset = 1
 	},
 /obj/structure/prop/mainship/holobarrier,
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
 /turf/closed/mineral/smooth,
 /area/deltastation/asteroidcaves/rock)
 "ftW" = (
@@ -27107,6 +27186,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/entry)
+"fQw" = (
+/obj/effect/decal/sandedge,
+/obj/effect/decal/cleanable/glass,
+/obj/item/shard,
+/turf/open/floor/iron/dark,
+/area/deltastation/ai_monitored/aisat/exterior)
 "fQx" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/airlock/maintenance_hatch{
@@ -30898,6 +30983,7 @@
 "gGe" = (
 /obj/structure/window/reinforced,
 /obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer4,
+/obj/effect/decal/cleanable/glass,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/deltastation/ai_monitored/aisat/exterior)
 "gGh" = (
@@ -35229,6 +35315,12 @@
 	},
 /turf/open/floor/iron,
 /area/ai_monitored/storage/eva)
+"hEo" = (
+/obj/effect/landmark/xeno_resin_door{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/deltastation/ai_monitored/turret_protected/aisat_interior)
 "hEt" = (
 /obj/structure/table,
 /obj/effect/spawner/random/firstaid,
@@ -45247,6 +45339,13 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/command)
+"jUr" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/xeno_resin_door{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/deltastation/ai_monitored/turret_protected/aisat_interior)
 "jUs" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -46283,6 +46382,15 @@
 /obj/machinery/firealarm,
 /turf/open/floor/wood,
 /area/deltastation/command/heads_quarters/captain)
+"kgS" = (
+/obj/structure/catwalk,
+/obj/structure/prop/mainship/holobarrier,
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
+/turf/open/space,
+/area/space)
 "kgU" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -46731,6 +46839,10 @@
 	teleport_z_offset = 1
 	},
 /obj/structure/prop/mainship/holobarrier,
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
 /turf/open/space,
 /area/space)
 "kmH" = (
@@ -47565,6 +47677,10 @@
 /obj/structure/catwalk,
 /obj/structure/window/reinforced,
 /obj/structure/prop/mainship/holobarrier,
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
 /turf/open/space,
 /area/space)
 "kwg" = (
@@ -55263,6 +55379,11 @@
 	},
 /turf/open/floor/iron/dark,
 /area/deltastation/science/robotics/lab)
+"mfa" = (
+/obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer4,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/deltastation/ai_monitored/turret_protected/ai)
 "mfi" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/neutral{
@@ -57747,6 +57868,13 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/commons/fitness/recreation)
+"mIr" = (
+/obj/structure/lattice,
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/decal/cleanable/glass,
+/obj/item/shard,
+/turf/open/floor/iron/dark,
+/area/deltastation/ai_monitored/aisat/exterior)
 "mIH" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer4{
@@ -58577,6 +58705,12 @@
 /obj/effect/turf_decal/siding/wood/corner,
 /turf/open/floor/wood,
 /area/deltastation/command/corporate_showroom)
+"mTM" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/ai_node,
+/obj/structure/lattice,
+/turf/open/floor/iron/dark,
+/area/deltastation/ai_monitored/aisat/exterior)
 "mTN" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/maintenance_hatch{
@@ -58946,6 +59080,7 @@
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer4,
 /obj/machinery/meter,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/deltastation/ai_monitored/turret_protected/aisat_interior)
 "mYE" = (
@@ -60341,6 +60476,10 @@
 	teleport_z_offset = 1
 	},
 /obj/structure/prop/mainship/holobarrier,
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
 /turf/open/space,
 /area/space)
 "nqx" = (
@@ -60571,6 +60710,7 @@
 /area/deltastation/command/bridge)
 "nsS" = (
 /obj/effect/turf_decal/stripes/line,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/deltastation/ai_monitored/turret_protected/aisat_interior)
 "nsU" = (
@@ -61813,6 +61953,13 @@
 /obj/machinery/alarm,
 /turf/open/floor/engine,
 /area/deltastation/science/explab)
+"nHj" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer4,
+/obj/effect/mapping_helpers/simple_pipes/scrubbers/hidden/layer2,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/iron/dark,
+/area/deltastation/ai_monitored/turret_protected/ai)
 "nHr" = (
 /obj/structure/sign/securearea{
 	pixel_y = -32
@@ -66594,7 +66741,6 @@
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/turf_decal/trimline/blue/filled,
-/obj/structure/prop/mainship/tubeprop/end,
 /turf/open/floor/iron/dark,
 /area/deltastation/engineering/transit_tube)
 "oKi" = (
@@ -70061,6 +70207,12 @@
 	dir = 9
 	},
 /area/deltastation/service/chapel)
+"pyh" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/iron/dark,
+/area/deltastation/ai_monitored/turret_protected/ai_upload)
 "pyk" = (
 /obj/structure/cable,
 /obj/structure/window/framed/colony/reinforced,
@@ -70544,6 +70696,10 @@
 	teleport_z_offset = 1
 	},
 /obj/structure/prop/mainship/holobarrier,
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
 /turf/open/space,
 /area/space)
 "pDq" = (
@@ -74413,7 +74569,9 @@
 /area/deltastation/service/theater)
 "quf" = (
 /obj/machinery/teleport/station,
-/obj/machinery/light,
+/obj/machinery/light{
+	dir = 1
+	},
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/iron/dark,
@@ -76276,6 +76434,10 @@
 "qNu" = (
 /turf/closed/wall/r_wall/unmeltable/regular,
 /area/deltastation/service/electronic_marketing_den)
+"qNz" = (
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/deltastation/ai_monitored/turret_protected/ai_upload)
 "qNB" = (
 /obj/structure/sign/securearea,
 /turf/closed/wall/r_wall,
@@ -78867,6 +79029,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/layer4{
 	dir = 1
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark,
 /area/deltastation/ai_monitored/turret_protected/aisat_interior)
 "rso" = (
@@ -78948,13 +79111,14 @@
 	},
 /area/deltastation/security/courtroom)
 "rte" = (
-/obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/shutters/opened{
 	dir = 1;
 	id = "aicorewindow";
 	name = "AI Core Shutters"
 	},
 /obj/structure/cable,
+/obj/effect/spawner/random/structure/broken_reinforced_window,
+/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating,
 /area/deltastation/ai_monitored/turret_protected/ai)
 "rth" = (
@@ -80132,6 +80296,10 @@
 /obj/effect/mapping_helpers/simple_pipes/orange/visible,
 /obj/structure/window/reinforced,
 /obj/structure/prop/mainship/holobarrier,
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
 /turf/open/space,
 /area/space)
 "rHx" = (
@@ -83439,7 +83607,9 @@
 /area/deltastation/maintenance/department/electrical)
 "stK" = (
 /obj/machinery/power/port_gen/pacman,
-/obj/structure/sign/securearea,
+/obj/structure/sign/securearea{
+	dir = 1
+	},
 /obj/machinery/power/terminal{
 	dir = 8
 	},
@@ -83810,6 +83980,11 @@
 /obj/structure/window/reinforced,
 /turf/open/floor/grass,
 /area/deltastation/hallway/secondary/exit/departure_lounge)
+"sxK" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/iron/dark,
+/area/deltastation/ai_monitored/turret_protected/ai)
 "sxS" = (
 /obj/structure/flora/ausbushes/brflowers,
 /obj/structure/flora/ausbushes/sparsegrass,
@@ -84864,6 +85039,10 @@
 	},
 /turf/open/floor/iron/textured,
 /area/deltastation/science/research)
+"sIg" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/deltastation/ai_monitored/turret_protected/ai_upload)
 "sIh" = (
 /obj/structure/table/reinforced,
 /obj/item/analyzer{
@@ -85038,6 +85217,10 @@
 	},
 /turf/open/floor/iron/dark/side,
 /area/space)
+"sKM" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/deltastation/ai_monitored/turret_protected/ai)
 "sKO" = (
 /obj/structure/sign/securearea,
 /turf/closed/wall,
@@ -87031,6 +87214,10 @@
 "thI" = (
 /obj/structure/window/reinforced,
 /obj/structure/prop/mainship/holobarrier,
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/space)
 "thL" = (
@@ -88125,6 +88312,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/carpet,
 /area/deltastation/commons/lounge)
+"tty" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/iron/dark,
+/area/deltastation/ai_monitored/aisat/exterior)
 "ttA" = (
 /obj/structure/bed/stool,
 /turf/open/floor/carpet,
@@ -88944,13 +89136,8 @@
 /turf/open/floor/plating,
 /area/deltastation/maintenance/port/fore)
 "tCS" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
 /obj/effect/spawner/random/plant,
+/obj/effect/decal/cleanable/glass,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/deltastation/ai_monitored/aisat/exterior)
 "tCW" = (
@@ -91155,6 +91342,10 @@
 	dir = 1
 	},
 /obj/structure/prop/mainship/holobarrier,
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/space)
 "ubF" = (
@@ -97117,8 +97308,7 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/security/detectives_office)
 "vqF" = (
-/obj/structure/sign/securearea,
-/turf/closed/wall/r_wall/unmeltable,
+/turf/open/floor/plating,
 /area/deltastation/ai_monitored/turret_protected/aisat_interior)
 "vqK" = (
 /obj/effect/decal/cleanable/dirt,
@@ -99364,7 +99554,6 @@
 /turf/open/floor/plating,
 /area/space)
 "vOS" = (
-/obj/structure/window/reinforced,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/decal/sandedge,
 /turf/open/floor/iron/dark,
@@ -102082,11 +102271,8 @@
 /turf/open/floor/iron/white,
 /area/deltastation/science/research)
 "wue" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/turf/open/floor/iron/dark,
+/turf/open/floor/plating,
 /area/deltastation/ai_monitored/turret_protected/aisat_interior)
 "wui" = (
 /obj/effect/turf_decal/tile/neutral,
@@ -102481,6 +102667,9 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/deltastation/security/warden)
+"wxH" = (
+/turf/open/floor/plating,
+/area/deltastation/ai_monitored/turret_protected/ai)
 "wxJ" = (
 /obj/machinery/light{
 	dir = 1
@@ -105389,8 +105578,16 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark,
 /area/deltastation/ai_monitored/turret_protected/aisat_interior)
+"xfn" = (
+/obj/structure/lattice,
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/iron/dark,
+/area/deltastation/ai_monitored/aisat/exterior)
 "xfo" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -108341,7 +108538,9 @@
 "xKr" = (
 /obj/effect/spawner/random/plant,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/machinery/firealarm,
+/obj/machinery/firealarm{
+	dir = 1
+	},
 /obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/deltastation/ai_monitored/turret_protected/aisat_interior)
@@ -108826,6 +109025,11 @@
 /obj/effect/decal/warning_stripes/box,
 /turf/open/floor/iron,
 /area/deltastation/service/hydroponics)
+"xOU" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/item/shard,
+/turf/open/floor/iron/dark,
+/area/deltastation/ai_monitored/aisat/exterior)
 "xOX" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -109283,6 +109487,7 @@
 	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/mapping_helpers/simple_pipes/supply/hidden/layer4,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark,
 /area/deltastation/ai_monitored/turret_protected/ai)
 "xTU" = (
@@ -110961,6 +111166,10 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/service/hydroponics)
+"yme" = (
+/obj/effect/decal/sandedge,
+/turf/open/floor/iron/dark,
+/area/deltastation/ai_monitored/aisat/exterior)
 "ymi" = (
 /obj/structure/cable,
 /obj/structure/window/framed/colony/reinforced,
@@ -118286,10 +118495,10 @@ daY
 hkH
 rbH
 ofe
-gMA
-hAL
-gMA
-gMA
+wxH
+dbO
+sxK
+sxK
 pNP
 gMA
 hkH
@@ -118297,7 +118506,7 @@ gJA
 rmu
 gJA
 dAn
-gJA
+hEo
 gJA
 aae
 uZk
@@ -118789,7 +118998,7 @@ wxm
 wxm
 bCp
 qci
-bVB
+bCp
 tCS
 dZd
 pay
@@ -118804,7 +119013,7 @@ xvN
 wlI
 dAN
 xvN
-xvN
+clY
 ckX
 kCc
 gJA
@@ -118816,9 +119025,9 @@ bbs
 aae
 lBq
 wak
-xGs
+pyh
 hXK
-xGs
+qNz
 eOc
 mZy
 sVG
@@ -119051,7 +119260,7 @@ kce
 nqW
 kce
 hJh
-cyv
+sKM
 oHc
 nEz
 xME
@@ -119584,7 +119793,7 @@ wXw
 moI
 uCf
 cLO
-aae
+jUr
 cqK
 oaf
 xGs
@@ -119827,23 +120036,23 @@ iDB
 cRt
 hTs
 tly
-ybi
+nHj
 hGu
-hGu
+mfa
 xTO
-hGu
+evJ
 hGu
 eII
 gMA
 rmu
-abC
+frG
 qHS
 vGE
 voE
 auR
 aae
 lBq
-wak
+sIg
 wqu
 hhO
 wak
@@ -120078,7 +120287,7 @@ bCp
 vEW
 tAD
 jCf
-nKY
+dBg
 lxH
 daY
 wDV
@@ -120335,16 +120544,16 @@ qci
 qci
 ycb
 opV
-mVm
+lDb
 qwW
 daY
 ocL
 hkH
 qoz
 hfL
-gMA
+sxK
 hAL
-gMA
+sxK
 gMA
 bPy
 gMA
@@ -120353,7 +120562,7 @@ gJA
 rmu
 gJA
 ydc
-gJA
+hEo
 rmu
 aae
 uZk
@@ -120591,8 +120800,8 @@ bCp
 bCp
 qci
 bVB
-moH
-kAa
+yme
+oAh
 lxH
 daY
 daY
@@ -120848,8 +121057,8 @@ bCp
 bCp
 tsJ
 bVB
-moH
-kAa
+fQw
+gaE
 qwW
 qOQ
 ePa
@@ -120867,7 +121076,7 @@ gJA
 gbF
 hOc
 nuK
-xiT
+vqF
 oAt
 oaS
 fCY
@@ -121106,7 +121315,7 @@ bCp
 qci
 bVB
 vOS
-eHK
+dSZ
 qwW
 qOQ
 qOQ
@@ -121363,7 +121572,7 @@ bCp
 qci
 bVB
 moH
-env
+aoO
 bXx
 faB
 faB
@@ -121379,7 +121588,7 @@ fVo
 oAh
 dGs
 kBL
-xiT
+vqF
 nuK
 xfl
 rcG
@@ -121638,7 +121847,7 @@ dGs
 abC
 nTH
 nuK
-vOY
+cuE
 fAB
 dGs
 eVX
@@ -121895,7 +122104,7 @@ dGs
 dGs
 dGs
 vXo
-dGs
+hEo
 dGs
 dGs
 snS
@@ -124205,7 +124414,7 @@ lxH
 lxH
 lxH
 fCY
-wYD
+dVc
 jBc
 dPB
 fqR
@@ -124462,7 +124671,7 @@ lxH
 lxH
 lxH
 fCY
-wYD
+dVc
 jBc
 dPB
 njh
@@ -124719,7 +124928,7 @@ lxH
 wxm
 wxm
 fCY
-wYD
+dVc
 jBc
 iKH
 njh
@@ -124976,11 +125185,11 @@ lxH
 lxH
 wxm
 fCY
-wYD
+dVc
 jBc
 scl
 puB
-gaE
+bVr
 vNR
 vNR
 hRL
@@ -125233,7 +125442,7 @@ qwW
 lxH
 fCY
 lxH
-wYD
+dVc
 wly
 gjs
 njh
@@ -125491,7 +125700,7 @@ qwW
 kxC
 qCI
 kwf
-jBc
+tty
 iKH
 oAG
 kmr
@@ -126006,7 +126215,7 @@ kAO
 lxH
 kwf
 jBc
-iKH
+tty
 njh
 kmr
 lxH
@@ -126261,8 +126470,8 @@ wxm
 qwW
 kAO
 qwW
-kwf
-tki
+kgS
+amt
 iKH
 vhs
 kmr
@@ -126521,7 +126730,7 @@ wxm
 kwf
 jBc
 dPB
-njh
+cDf
 kmr
 lxH
 qwW
@@ -127033,9 +127242,9 @@ wxm
 kAO
 qwW
 kwf
-tki
-gjs
-vhs
+xfn
+mTM
+mIr
 kmr
 qwW
 qwW
@@ -127291,8 +127500,8 @@ qwW
 lxH
 kwf
 jBc
+xOU
 iKH
-njh
 kmr
 wxm
 qwW
@@ -129349,7 +129558,7 @@ kwf
 jBc
 qmP
 njh
-gaE
+bVr
 iIc
 vNR
 vNR
@@ -129604,7 +129813,7 @@ kHQ
 mpx
 piq
 cPj
-piq
+cPj
 aqC
 mpx
 vNR
