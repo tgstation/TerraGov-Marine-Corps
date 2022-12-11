@@ -464,7 +464,8 @@
 	COOLDOWN_DECLARE(last_healed)
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
-
+	/// ???
+	var/timer_ref
 /datum/action/xeno_action/vampirism/New(Target)
 	..()
 	var/mutable_appearance/leech_appeareace = mutable_appearance(null,null, ACTION_LAYER_IMAGE_ONTOP)
@@ -500,7 +501,7 @@
 	to_chat(xeno, span_xenonotice("You will now[xeno.vampirism ? "" : " no longer"] heal from attacking"))
 
 ///Adds the slashed mob to tracked damage mobs
-/datum/action/xeno_action/vampirism/proc/on_slash(datum/source, mob/living/target, damage, list/damage_mod, armor_pen)
+/datum/action/xeno_action/vampirism/proc/on_slash(datum/source, mob/living/target)
 	SIGNAL_HANDLER
 	if(target.stat == DEAD)
 		return
@@ -508,15 +509,14 @@
 		return
 	if(!COOLDOWN_CHECK(src, last_healed))
 		return
+	if(timeleft(timer_ref) > 0)
+		return
 	var/mob/living/carbon/xenomorph/x = owner
 	x.adjustBruteLoss(-((x.xeno_caste.max_health - x.health) / 4))
 	x.adjustFireLoss(-((x.xeno_caste.max_health - x.health) / 4))
 	update_button_icon()
 	COOLDOWN_START(src, last_healed, heal_delay)
-	particle_holder = new(attacker, /particles/xeno_slash/vampirism)
+	particle_holder = new(x, /particles/xeno_slash/vampirism)
 	particle_holder.pixel_y = 18
 	particle_holder.pixel_x = 18
-	var/timer_ref
-
-	if(timeleft(timer_ref) > 0)
-		return
+	timer_ref = QDEL_NULL_IN(src, particle_holder, last_healed)
