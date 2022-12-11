@@ -513,11 +513,10 @@
 	x.adjustFireLoss(-((x.xeno_caste.max_health - x.health) / 4))
 	update_button_icon()
 	COOLDOWN_START(src, last_healed, heal_delay)
-	play_particles(x)
-
-/datum/action/xeno_action/vampirism/proc/play_particles(attacker)
 	particle_holder = new(attacker, /particles/xeno_slash/vampirism)
 	particle_holder.pixel_y = 18
 	particle_holder.pixel_x = 18
-	QDEL_IN(particle_holder, 2 SECONDS)
+	var/timer_ref
 
+	if(timeleft(timer_ref) > 0)
+		return
