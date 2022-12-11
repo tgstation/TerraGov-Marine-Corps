@@ -1,0 +1,4 @@
+author: "novaepee"
+delete-after: True
+changes:
+  - rscdel: "Remove a tree south of LV-624 hydro bridge"
