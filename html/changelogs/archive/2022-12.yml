@@ -303,3 +303,11 @@
   MLGTASTICa:
   - balance: Evotowers no longer provide 20% more slots , and instead provide 1 T3
       slot and 2 T2 slots for each.
+2022-12-11:
+  GravitronBlue:
+  - bugfix: Deployables covered in acid can no longer be picked up
+  Lumipharon:
+  - refactor: refactored some damage code
+  - bugfix: fixed various minor damage related bugs
+  'Sprites: Gregormack':
+  - imageadd: Updated resin wall sprites
