@@ -148,7 +148,7 @@ Contains most of the procs that are called when a mob is attacked by something
 			log_combat(user, src, "attacked", I, "(FAILED: shield blocked) (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(I.damtype)])")
 			return TRUE
 
-	var/applied_damage = modify_by_armor(damage, MELEE, I.penetration, def_zone)
+	var/applied_damage = modify_by_armor(damage, MELEE, I.penetration, target_zone)
 	var/percentage_penetration = applied_damage / damage * 100
 	var/attack_verb = LAZYLEN(I.attack_verb) ? pick(I.attack_verb) : "attacked"
 	var/armor_verb
