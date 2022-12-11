@@ -13,17 +13,18 @@
 	name = "toxic spit"
 	icon_state = "xeno_toxic"
 	bullet_color = COLOR_PALE_GREEN_GRAY
-	damage = 10
+	damage = 12
 	spit_cost = 28
+	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_SKIPS_ALIENS
 
 /datum/ammo/xeno/acid/toxic_spit/upgrade1
-	damage = 12
+	damage = 14
 
 /datum/ammo/xeno/acid/toxic_spit/upgrade2
-	damage = 13
+	damage = 15
 
 /datum/ammo/xeno/acid/toxic_spit/upgrade3
-	damage = 14
+	damage = 16
 
 /datum/ammo/xeno/acid/toxic_spit/on_hit_mob(mob/M, obj/projectile/P)
 	if(istype(M,/mob/living/carbon))
@@ -155,7 +156,6 @@
 	. = ..()
 	if(!.)
 		return FALSE
-
 	if(!A?.can_sting())
 		if(!silent)
 			owner.balloon_alert(owner, "Cannot sting")
@@ -175,11 +175,15 @@
 	if(debuff.stacks > debuff.max_stacks * 0.75)
 		C.emote("scream")
 		C.AdjustKnockdown(1 SECONDS)
+		C.adjust_stagger(5)
+		C.adjust_slowdown(5)
+		C.apply_status_effect(STATUS_EFFECT_DRAIN_SURGE)
 	var/drain_potency = debuff.stacks * SENTINEL_DRAIN_MULTIPLIER
 	HEAL_XENO_DAMAGE(X, drain_potency, FALSE)
 	X.gain_plasma(drain_potency * 3)
 	playsound(owner.loc, 'sound/effects/alien_tail_swipe1.ogg', 30)
-	C.adjustFireLoss(drain_potency / 5)
+	C.adjustFireLoss(drain_potency / 4)
+	debuff.stacks = round(debuff.stacks - (debuff.max_stacks / 2))
 	C.remove_status_effect(STATUS_EFFECT_INTOXICATED)
 	X.do_attack_animation(C, ATTACK_EFFECT_REDSTAB)
 	succeed_activate()
@@ -207,13 +211,10 @@
 	. = ..()
 	succeed_activate()
 	add_cooldown()
-
 	var/obj/item/explosive/grenade/smokebomb/xeno/nade = new(get_turf(owner))
 	nade.throw_at(A, 5, 1, owner, TRUE)
 	nade.activate(owner)
-
 	owner.visible_message(span_warning("[owner] vomits up a bulbous lump and throws it at [A]!"), span_warning("We vomit up a bulbous lump and throw it at [A]!"))
-
 
 /obj/item/explosive/grenade/smokebomb/xeno
 	name = "toxic grenade"

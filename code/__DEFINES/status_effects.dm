@@ -37,6 +37,8 @@
 
 #define STATUS_EFFECT_HEALING_INFUSION /datum/status_effect/healing_infusion
 
+#define STATUS_EFFECT_DRAIN_SURGE /datum/status_effect/drain_surge
+
 /////////////
 // DEBUFFS //
 /////////////

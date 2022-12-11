@@ -761,3 +761,28 @@
 	name = "Healing Infusion"
 	desc = "You have accelerated natural healing."
 	icon_state = "healing_infusion"
+
+// ***************************************
+// *********** Drain Surge
+// ***************************************
+/datum/status_effect/drain_surge
+	id = "drain surge"
+	duration = 10 SECONDS
+	tick_interval = 2 SECONDS
+	status_type = STATUS_EFFECT_REFRESH
+
+/datum/status_effect/drain_surge/on_apply()
+	if(!isxeno(owner))
+		return FALSE
+	var/mob/living/carbon/xenomorph/X = owner
+	X.soft_armor = X.soft_armor.modifyAllRatings(SENTINEL_DRAIN_SURGE_ARMOR_MOD)
+	X.add_filter("drain_surge", 1, outline_filter(1, COLOR_VIBRANT_LIME))
+	owner.balloon_alert(owner, "Drain Surge started")
+	return TRUE
+
+/datum/status_effect/resin_jelly_coating/on_remove()
+	var/mob/living/carbon/xenomorph/X = owner
+	X.soft_armor = X.soft_armor.modifyAllRatings(-SENTINEL_DRAIN_SURGE_ARMOR_MOD)
+	X.remove_filter("drain_surge")
+	owner.balloon_alert(owner, "Drain Surge ended")
+	return ..()
