@@ -1559,10 +1559,16 @@
 	return ..()
 
 /obj/structure/prop/mainship/railing
+	name = "railing"
+	desc = "Basic railing meant to protect idiots like you from falling."
 	icon = 'icons/Marine/mainship_props.dmi'
+	density = TRUE
 	icon_state = "railing"
 
 /obj/structure/prop/mainship/railing/corner
+	name = "railing"
+	desc = "Basic railing meant to protect idiots like you from falling."
+	density = TRUE
 	icon_state = "railing_corner"
 
 /obj/structure/prop/mainship/solar
@@ -1780,6 +1786,18 @@
 
 /obj/structure/prop/tgbrokenvendor/modularpc
 	icon_state = "modularpc"
+
+/obj/structure/prop/camera
+	name = "broken security camera"
+	desc = "It's used to monitor rooms."
+	icon = 'icons/obj/machines/monitors.dmi'
+	icon_state = "camera_icon"
+	layer = WALL_OBJ_LAYER
+	anchored = TRUE
+
+/obj/machinery/camera/Initialize(mapload, newDir)
+	. = ..()
+	icon_state = "camera1"
 
 /obj/machinery/computer/broken
 	name = "broken computer"

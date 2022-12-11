@@ -960,13 +960,23 @@
 	)
 
 /obj/effect/spawner/random/wood
-	name = "metal spawner"
+	name = "wood spawner"
 	icon_state = "random_wood"
 	spawn_loot_chance = 80
 	loot = list(
 		/obj/item/stack/sheet/wood = 15,
 		/obj/item/stack/sheet/wood/large_stack = 5,
 	)
+
+/obj/effect/spawner/random/glass
+	name = "glass spawner"
+	icon_state = "random_glass"
+	spawn_loot_chance = 90
+	loot = list(
+		/obj/item/stack/sheet/glass = 25,
+		/obj/item/stack/sheet/glass/large_stack = 1,
+	)
+
 
 /obj/effect/spawner/random/firstaid
 	name = "firstaid spawner"
@@ -979,6 +989,21 @@
 		/obj/item/storage/firstaid/toxin = 10,
 		/obj/item/storage/firstaid/adv = 5,
 	)
+
+/obj/effect/spawner/random/folder
+	name = "folder spawner"
+	icon_state = "random_folder"
+	spawn_scatter_radius = 2
+	loot = list(
+		/obj/item/folder/black = 15,
+		/obj/item/folder/black_random = 15,
+		/obj/item/folder/white = 15,
+		/obj/item/folder/red = 10,
+		/obj/item/folder/yellow = 10,
+		/obj/item/folder/blue = 10,
+		/obj/item/folder/grape = 5,
+	)
+
 
 ///STRUCTURE SPAWNERS BELOW THIS LINE
 
