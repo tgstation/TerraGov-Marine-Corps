@@ -780,6 +780,9 @@
 #define COMSIG_XENOABILITY_ATTACH_SPIDERLINGS "xenoability_attach_spiderlings"
 #define COMSIG_XENOABILITY_WEB_HOOK "xenoability_web_hook"
 
+#define COMSIG_XENOABILITY_RETURN_CORE "xenoability_return_core"
+#define COMSIG_XENOABILITY_CHANGE_FORM "xenoability_change_form"
+
 // throw parry signals
 #define COMSIG_THROW_PARRY_CHECK "throw_parry_check"
 #define COMSIG_PARRY_TRIGGER "parry_trigger"
