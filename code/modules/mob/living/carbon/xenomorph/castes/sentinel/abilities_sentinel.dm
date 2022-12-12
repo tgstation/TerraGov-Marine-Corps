@@ -13,6 +13,8 @@
 	name = "toxic spit"
 	icon_state = "xeno_toxic"
 	bullet_color = COLOR_PALE_GREEN_GRAY
+	stagger_stacks = 1.2
+	slowdown_stacks = 1.2
 	damage = 12
 	spit_cost = 28
 	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_SKIPS_ALIENS
@@ -96,7 +98,8 @@
 		return
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/carbon_target = target
-	carbon_target.adjust_stagger(3)
+	carbon_target.adjust_stagger(1.5)
+	carbon_target.adjust_slowdown(1.5)
 	playsound(carbon_target, 'sound/effects/spray3.ogg', 15, TRUE)
 	if(carbon_target.has_status_effect(STATUS_EFFECT_INTOXICATED))
 		var/datum/status_effect/stacking/intoxicated/debuff = carbon_target.has_status_effect(STATUS_EFFECT_INTOXICATED)
@@ -170,8 +173,8 @@
 	if(debuff.stacks > SENTINEL_DRAIN_DEBUFF_REQUIREMENT)
 		C.emote("scream")
 		C.AdjustKnockdown(2 SECONDS)
-		C.adjust_stagger(6)
-		C.adjust_slowdown(6)
+		C.adjust_stagger(5)
+		C.adjust_slowdown(5)
 		X.apply_status_effect(STATUS_EFFECT_DRAIN_SURGE)
 	var/drain_potency = debuff.stacks * SENTINEL_DRAIN_MULTIPLIER
 	C.AdjustKnockdown(1 SECONDS)
