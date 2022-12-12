@@ -1133,7 +1133,7 @@
 /obj/effect/spawner/random/structure/girder
 	name = "girder spawner"
 	icon_state = "random_girder"
-	spawn_loot_chance = 75
+	spawn_loot_chance = 65
 	loot = list(
 		/obj/structure/girder = 3,
 		/obj/structure/girder/displaced = 7,
