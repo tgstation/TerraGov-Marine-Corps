@@ -599,6 +599,19 @@
 	description = "Inject an egg with neurogas, killing the little one inside"
 	keybind_signal = COMSIG_XENOABILITY_INJECT_EGG_NEUROGAS
 
+/datum/keybinding/xeno/return_to_core
+	name = "return to core"
+	full_name = "Hivemind: Return to core"
+	description = "back you to core"
+	keybind_signal = COMSIG_XENOABILITY_RETURN_CORE
+
+/datum/keybinding/xeno/change_form
+	name = "change form"
+	full_name = "Hivemind: Сhange form"
+	description = "Сhange you form"
+	keybind_signal = COMSIG_XENOABILITY_CHANGE_FORM
+
+
 /datum/keybinding/xeno/rally_hive
 	name = "rally_hive"
 	full_name = "Rally Hive"
