@@ -657,6 +657,9 @@
 #define COMSIG_XENOABILITY_RALLY_MINION "xenoability_rally_minion"
 #define COMSIG_XENOABILITY_MINION_BEHAVIOUR "xenoability_minion_behavior"
 
+#define COMSIG_XENOABILITY_RETURN_CORE "xenoability_return_core"
+#define COMSIG_XENOABILITY_CHANGE_FORM "xenoability_change_form"
+
 #define COMSIG_XENOABILITY_ESSENCE_LINK "xenoability_essence_link"
 #define COMSIG_XENOABILITY_ESSENCE_LINK_REMOVE "xenoability_essence_link_remove"
 #define COMSIG_XENOABILITY_ENHANCEMENT "xenoability_enhancement"
@@ -779,9 +782,6 @@
 #define COMSIG_XENOABILITY_SPIDER_SWARM "xenoability_spider_swarm"
 #define COMSIG_XENOABILITY_ATTACH_SPIDERLINGS "xenoability_attach_spiderlings"
 #define COMSIG_XENOABILITY_WEB_HOOK "xenoability_web_hook"
-
-#define COMSIG_XENOABILITY_RETURN_CORE "xenoability_return_core"
-#define COMSIG_XENOABILITY_CHANGE_FORM "xenoability_change_form"
 
 // throw parry signals
 #define COMSIG_THROW_PARRY_CHECK "throw_parry_check"
