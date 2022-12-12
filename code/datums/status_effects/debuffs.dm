@@ -346,7 +346,7 @@
 	. = ..()
 	// Let's not have double fire
 	person.ExtinguishMob()
-	fire_effect = mutable_appearance('icons/mob/OnFire.dmi', "Standing_medium", -FIRE_LAYER)
+	fire_effect = mutable_appearance('icons/mob/OnFire.dmi', "Standing_weak", -FIRE_LAYER)
 	fire_effect.color = "purple"
 	person.overlays_standing[FIRE_LAYER] = fire_effect
 	person.apply_overlay(FIRE_LAYER)

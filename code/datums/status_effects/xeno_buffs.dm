@@ -469,6 +469,8 @@
 		owner_xeno.toggle_intangibility()
 	if(shadow)
 		qdel(shadow)
+
+// TODO: Move this to tick() instead of queueing it up
 /datum/status_effect/xeno/dragon_flight/proc/take_off()
 	//Queues up 
 	for(var/step in 1 to takeoff_delay)

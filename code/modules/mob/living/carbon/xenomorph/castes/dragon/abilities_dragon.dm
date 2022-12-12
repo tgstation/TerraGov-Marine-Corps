@@ -1,5 +1,6 @@
 
 #define DRAGON_TAIL_STAB_DELAY 1.5 SECONDS
+#define DRAGON_TAIL_STAB_RANGE 2
 /datum/action/xeno_action/activable/tail_stab
 	name = "Tail Stab"
 	// action_icon_state = "todo"
@@ -19,7 +20,8 @@
 		if(!silent)
 			owner.balloon_alert("We can't tail stab that!")
 		return FALSE
-	if(!line_of_sight(owner, target, 2))
+	// TODO, replace this with something that deals with densities, not sight
+	if(!line_of_sight(owner, target, DRAGON_TAIL_STAB_RANGE))
 		if(!silent)
 			owner.balloon_alert("You can't reach the target from here!")
 		return FALSE
@@ -34,17 +36,21 @@
 	owner_xeno.face_atom(target)
 	target.Immobilize(DRAGON_TAIL_STAB_DELAY)
 	target.apply_status_effect(STATUS_EFFECT_DRAGONFIRE, 10)
+	var/tail_stab_start_time = world.time
 
-	if(!do_after(owner_xeno, DRAGON_TAIL_STAB_DELAY, extra_checks=CALLBACK(.proc/line_of_sight, owner, target, 2)))
+	if(!do_after(owner_xeno, DRAGON_TAIL_STAB_DELAY))
 		owner_xeno.balloon_alert(owner_xeno, "You give up on lighting [target] on fire!")
-		add_cooldown(3 SECONDS)
-		return succeed_activate()
+		// Remove the remaining stun that's left
+		target.AdjustImmobilized(world.time - tail_stab_start_time - DRAGON_TAIL_STAB_DELAY)
+		add_cooldown(5 SECONDS)
+		return succeed_activate() 
 
 	owner_xeno.balloon_alert_to_viewers("has set [target] on fire with their tail!")
 	target.apply_status_effect(STATUS_EFFECT_DRAGONFIRE, 40)
 	add_cooldown()
 	return succeed_activate()
 
+#undef DRAGON_TAIL_STAB_RANGE
 #undef DRAGON_TAIL_STAB_DELAY
 
 /datum/action/xeno_action/activable/xeno_spit/fireball

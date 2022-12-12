@@ -672,7 +672,7 @@ GLOBAL_DATUM_INIT(flamer_particles, /particles/flamer_fire, new)
 	smoothing_groups = SMOOTH_FIRE
 	smoothing_behavior = CARDINAL_SMOOTHING
 	light_color = null
-	fire_level = 500
+	// firelevel = 500
 
 /obj/flamer_fire/smoothed/Initialize(mapload, fire_lvl, burn_lvl, f_color, fire_stacks, fire_damage, burn_flags)
 	. = ..()
@@ -682,7 +682,10 @@ GLOBAL_DATUM_INIT(flamer_particles, /particles/flamer_fire, new)
 	if(!light_color)
 		light_color = flame_color
 	set_light_range_power_color(light_intensity, light_power, light_color)
-	smooth_self()
+	// How much percentage of the fire lifetime is left
+	var/fire_percentage = firelevel / initial(firelevel)
+	// Gets more seethrough as it's about to go out
+	alpha = clamp(255 * fire_percentage + 20, 0, 255)
 
 /obj/flamer_fire/smoothed/handle_icon_junction(junction)
 	icon_state = "[initial(icon_state)][junction]"
@@ -690,6 +693,7 @@ GLOBAL_DATUM_INIT(flamer_particles, /particles/flamer_fire, new)
 /obj/flamer_fire/smoothed/resin
 	burnflags = BURN_HUMANS|BURN_SNOW
 	color = COLOR_PURPLE
+	firelevel = 24
 
 /mob/living/carbon/xenomorph/flamer_fire_act(burnlevel, damage_flags)
 	if(!CHECK_BITFIELD(damage_flags, BURN_XENOS))
