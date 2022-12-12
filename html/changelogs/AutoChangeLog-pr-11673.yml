@@ -1,6 +1,0 @@
-author: "Blundir"
-delete-after: True
-changes:
-  - rscadd: "Added two new smoking pipes to the game, added them to gear customization panel"
-  - rscadd: "Added existing two smoking pipes to gear customization panel"
-  - rscdel: "Removed different smoking time on different smoking pipes, all pipes now have fixed 400"

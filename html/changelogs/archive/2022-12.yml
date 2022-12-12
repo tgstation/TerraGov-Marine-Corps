@@ -311,3 +311,15 @@
   - bugfix: fixed various minor damage related bugs
   'Sprites: Gregormack':
   - imageadd: Updated resin wall sprites
+2022-12-12:
+  Blundir:
+  - rscadd: Added two new smoking pipes to the game, added them to gear customization
+      panel
+  - rscadd: Added existing two smoking pipes to gear customization panel
+  - rscdel: Removed different smoking time on different smoking pipes, all pipes now
+      have fixed 400
+  SplinterGP:
+  - bugfix: fixes xenos not receiving burn damage
+  - bugfix: fixes humans runtiming on getting attacked in melee by another human
+  novaepee:
+  - rscdel: Remove a tree south of LV-624 hydro bridge
