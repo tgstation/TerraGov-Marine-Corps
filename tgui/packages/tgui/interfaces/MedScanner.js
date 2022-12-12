@@ -249,11 +249,8 @@ export const MedScanner = (props, context) => {
                       ) : null}
                       {limb.infected ? (
                         <>
-                          <Box
-                            inline
-                            color={'olive'}
-                            bold={1}>
-                            {'Infected'}
+                          <Box inline color={'olive'} bold={1}>
+                            Infected
                           </Box>
                           <Box inline width={'5px'} />
                         </>
@@ -261,10 +258,8 @@ export const MedScanner = (props, context) => {
                       {limb.necrotized ? (
                         <>
                           <Box
-                            inline
-                            color={'brown'}
-                            bold={1}>
-                            {'Necrotizing'}
+                            inline color={'brown'} bold={1}>
+                            Necrotizing
                           </Box>
                           <Box inline width={'5px'} />
                         </>
