@@ -17390,7 +17390,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/security/marshal)
 "bAN" = (
-/obj/machinery/r_n_d/destructive_analyzer,
+/obj/structure/prop/mainship/research/destructive_analyzer,
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
@@ -18251,7 +18251,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/storage/highsec)
 "bDF" = (
-/obj/machinery/r_n_d/circuit_imprinter,
+/obj/structure/prop/mainship/research/circuit_imprinter,
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},

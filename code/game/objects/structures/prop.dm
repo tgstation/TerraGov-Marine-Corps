@@ -137,7 +137,7 @@
 		"ai-red_dead",
 		"ai-red october_dead",
 		"ai-static_dead",
-		"ai-hades_dead"
+		"ai-hades_dead",
 	)
 
 //Nonpower using props
@@ -1835,35 +1835,36 @@
 	. = ..()
 	icon_state = "camera1"
 
-/obj/machinery/computer/broken
+/obj/structure/prop/computer/broken
 	name = "broken computer"
 	desc = "A busted PC, the internals look fried, there's no fixing this one."
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "broken_computer1"
 	resistance_flags = RESIST_ALL
 	density = TRUE
 
-/obj/machinery/computer/broken/two
+/obj/structure/prop/computer/broken/two
 	icon_state = "broken_computer2"
 
-/obj/machinery/computer/broken/three
+/obj/structure/prop/computer/broken/three
 	icon_state = "broken_computer3"
 
-/obj/machinery/computer/broken/four
+/obj/structure/prop/computer/broken/four
 	icon_state = "broken_computer4"
 
-/obj/machinery/computer/broken/five
+/obj/structure/prop/computer/broken/five
 	icon_state = "broken_computer5"
 
-/obj/machinery/computer/broken/six
+/obj/structure/prop/computer/broken/six
 	icon_state = "broken_computer6"
 
-/obj/machinery/computer/broken/seven
+/obj/structure/prop/computer/broken/seven
 	icon_state = "broken_computer7"
 
-/obj/machinery/computer/broken/eight
+/obj/structure/prop/computer/broken/eight
 	icon_state = "broken_computer8"
 
-/obj/machinery/computer/broken/nine
+/obj/structure/prop/computer/broken/nine
 	icon_state = "broken_computer9"
 
 /obj/machinery/computer/solars

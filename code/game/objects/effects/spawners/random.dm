@@ -31,6 +31,7 @@
 /obj/effect/spawner/random/Initialize(mapload)
 	. = ..()
 	spawn_loot()
+	qdel(src)
 
 ///If the spawner has any loot defined, randomly picks some and spawns it. Does not cleanup the spawner.
 /obj/effect/spawner/random/proc/spawn_loot(lootcount_override)
@@ -101,7 +102,7 @@
 /obj/item/loot_table_maker
 	icon = 'icons/effects/landmarks_static.dmi'
 	icon_state = "random_loot"
-	var/spawner_to_test = /obj/effect/spawner/random/maintenance //what lootdrop spawner to use the loot pool of
+	var/spawner_to_test = /obj/effect/spawner/random/tool //what lootdrop spawner to use the loot pool of
 	var/loot_count = 180 //180 is about how much maint loot spawns per map as of 11/14/2019
 	//result outputs
 	var/list/spawned_table //list of all items "spawned" and how many
@@ -580,7 +581,7 @@
 		/obj/item/reagent_containers/glass/bottle/dylovene = 30,
 		/obj/item/reagent_containers/glass/bottle/spaceacillin = 15,
 		/obj/item/reagent_containers/glass/bottle/dermaline = 15,
-		/obj/item/reagant_containers/glass/bottle/tramadol = 10,
+		/obj/item/reagent_containers/glass/bottle/tramadol = 10,
 		/obj/item/reagent_containers/glass/bottle/tricordrazine = 5,
 		/obj/item/reagent_containers/glass/bottle/oxycodone = 5,
 		/obj/item/reagent_containers/glass/bottle/meralyne = 5,
@@ -951,7 +952,6 @@
 		/obj/structure/flora/pottedplant/twentythree,
 		/obj/structure/flora/pottedplant/twentyfour,
 		/obj/structure/flora/pottedplant/twentyfive,
-		/obj/structure/flora/pottedplant/twentysix,
 	)
 
 /obj/effect/spawner/random/metal
@@ -1119,15 +1119,15 @@
 	name = "random broken computer spawner"
 	icon_state = "random_broke_computer"
 	loot = list(
-		/obj/machinery/computer/broken = 20,
-		/obj/machinery/computer/broken/two = 5,
-		/obj/machinery/computer/broken/three = 20,
-		/obj/machinery/computer/broken/four = 5,
-		/obj/machinery/computer/broken/five = 20,
-		/obj/machinery/computer/broken/six = 20,
-		/obj/machinery/computer/broken/seven = 1,
-		/obj/machinery/computer/broken/eight = 50,
-		/obj/machinery/computer/broken/nine = 40,
+		/obj/structure/prop/computer/broken = 20,
+		/obj/structure/prop/computer/broken/two = 5,
+		/obj/structure/prop/computer/broken/three = 20,
+		/obj/structure/prop/computer/broken/four = 5,
+		/obj/structure/prop/computer/broken/five = 20,
+		/obj/structure/prop/computer/broken/six = 20,
+		/obj/structure/prop/computer/broken/seven = 1,
+		/obj/structure/prop/computer/broken/eight = 50,
+		/obj/structure/prop/computer/broken/nine = 40,
 	)
 
 /obj/effect/spawner/random/structure/girder
