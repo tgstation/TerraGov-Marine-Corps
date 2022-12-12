@@ -45,7 +45,7 @@
 	mechanics_text = "For a short duration the next 3 slashes made will inject a small amount of toxins."
 	ability_name = "toxic slash"
 	cooldown_timer = 10 SECONDS
-	plasma_cost = 150
+	plasma_cost = 100
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOXIC_SLASH,
 	)
@@ -66,7 +66,7 @@
 	toxic_slash_count = SENTINEL_TOXIC_SLASH_COUNT //Set the number of slashes
 	toxic_slash_duration = addtimer(CALLBACK(src, .proc/toxic_slash_deactivate, X), SENTINEL_TOXIC_SLASH_DURATION, TIMER_STOPPABLE) //Initiate the timer and set the timer ID for reference
 
-	X.balloon_alert(X, "Toxic slash active") //Let the user know
+	X.balloon_alert(X, "Toxic Slash active") //Let the user know
 	X.playsound_local(X, 'sound/voice/alien_drool2.ogg', 25)
 	action_icon_state = "neuroclaws_on"
 
@@ -85,30 +85,25 @@
 	toxic_slash_duration = null
 	QDEL_NULL(particle_holder)
 
-	X.balloon_alert(X, "Toxic slash over") //Let the user know
+	X.balloon_alert(X, "Toxic Slash ended") //Let the user know
 	X.playsound_local(X, 'sound/voice/hiss5.ogg', 25)
 	action_icon_state = "neuroclaws_off"
 
 ///Called when we slash while reagent slash is active
 /datum/action/xeno_action/toxic_slash/proc/toxic_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
 	SIGNAL_HANDLER
-
 	if(!target?.can_sting()) //We only care about targets that we can actually sting
 		return
-
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/carbon_target = target
-
+	carbon_target.adjust_stagger(3)
 	playsound(carbon_target, 'sound/effects/spray3.ogg', 15, TRUE)
 	if(carbon_target.has_status_effect(STATUS_EFFECT_INTOXICATED))
 		var/datum/status_effect/stacking/intoxicated/debuff = carbon_target.has_status_effect(STATUS_EFFECT_INTOXICATED)
 		debuff.add_stacks(SENTINEL_TOXIC_SLASH_STACKS_PER)
 	carbon_target.apply_status_effect(STATUS_EFFECT_INTOXICATED, SENTINEL_TOXIC_SLASH_STACKS_PER)
-
 	X.visible_message(carbon_target, span_danger("[X] spills toxins onto [carbon_target] with their slash!"))
-
 	toxic_slash_count-- //Decrement the toxic slash count
-
 	if(!toxic_slash_count) //Deactivate if we have no toxic slashes remaining
 		toxic_slash_deactivate(X)
 
@@ -156,7 +151,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	if(!A?.can_sting())
+	if(!istype(A, /mob/living/carbon/human))
 		if(!silent)
 			owner.balloon_alert(owner, "Cannot sting")
 		return FALSE
@@ -172,19 +167,19 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/C = A
 	var/datum/status_effect/stacking/intoxicated/debuff = C.has_status_effect(STATUS_EFFECT_INTOXICATED)
-	if(debuff.stacks > debuff.max_stacks * 0.75)
+	if(debuff.stacks > SENTINEL_DRAIN_DEBUFF_REQUIREMENT)
 		C.emote("scream")
-		C.AdjustKnockdown(1 SECONDS)
-		C.adjust_stagger(5)
-		C.adjust_slowdown(5)
+		C.AdjustKnockdown(2 SECONDS)
+		C.adjust_stagger(6)
+		C.adjust_slowdown(6)
 		X.apply_status_effect(STATUS_EFFECT_DRAIN_SURGE)
 	var/drain_potency = debuff.stacks * SENTINEL_DRAIN_MULTIPLIER
+	C.AdjustKnockdown(1 SECONDS)
 	HEAL_XENO_DAMAGE(X, drain_potency, FALSE)
 	X.gain_plasma(drain_potency * 3)
-	playsound(owner.loc, 'sound/effects/alien_tail_swipe1.ogg', 30)
+	playsound(owner.loc, 'sound/effects/alien_tail_swipe1.ogg', 50, 1)
 	C.adjustFireLoss(drain_potency / 4)
-	debuff.stacks = round(debuff.stacks - (debuff.max_stacks / 2))
-	C.remove_status_effect(STATUS_EFFECT_INTOXICATED)
+	debuff.stacks -= SENTINEL_DRAIN_DEBUFF_CONSUMPTION
 	X.do_attack_animation(C, ATTACK_EFFECT_REDSTAB)
 	succeed_activate()
 	add_cooldown()
@@ -204,7 +199,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOXIC_GRENADE,
 	)
-	plasma_cost = 250
+	plasma_cost = 200
 	cooldown_timer = 50 SECONDS
 
 /datum/action/xeno_action/activable/toxic_grenade/use_ability(atom/A)
@@ -225,7 +220,7 @@
 	dangerous = TRUE
 	smoketype = /datum/effect_system/smoke_spread/xeno/toxic
 	arm_sound = 'sound/voice/alien_yell_alt.ogg'
-	smokeradius = 3
+	smokeradius = 4
 
 /obj/item/explosive/grenade/smokebomb/xeno/update_overlays()
 	. = ..()

@@ -426,22 +426,19 @@
 	id = "intoxicated"
 	tick_interval = 2 SECONDS
 	stacks = 1
-	max_stacks = 20
+	max_stacks = 30
 	consumed_on_threshold = FALSE
 	/// Owner of the debuff is limited to carbons.
 	var/mob/living/carbon/debuff_owner
-	/// The amount of stacks to remove every time this status effect is Resisted against.
-	var/resist_stack_removal
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 
 /datum/status_effect/stacking/intoxicated/on_creation(mob/living/new_owner, stacks_to_apply)
 	. = ..()
 	debuff_owner = new_owner
-	resist_stack_removal = max_stacks * 0.2
 	RegisterSignal(debuff_owner, COMSIG_LIVING_DO_RESIST, .proc/resist_debuff)
-	to_chat(debuff_owner, span_danger("Your equipment is affected by acid! Use Resist to deal with it!"))
-	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 25)
+	debuff_owner.balloon_alert(debuff_owner, "Intoxicated. Resist it!")
+	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 30)
 	particle_holder = new(debuff_owner, /particles/toxic_slash)
 	particle_holder.particles.spawning = 1 + round(stacks / 2)
 	particle_holder.pixel_x = -2
@@ -454,15 +451,16 @@
 	return ..()
 
 /datum/status_effect/stacking/intoxicated/stack_decay_effect()
-	var/debuff_damage = SENTINEL_INTOXICATED_BASE_DAMAGE + round(stacks / 13)
+	var/debuff_damage = SENTINEL_INTOXICATED_BASE_DAMAGE + round(stacks / 15)
 	debuff_owner.adjustFireLoss(debuff_damage)
 	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 6)
 	particle_holder.particles.spawning = 1 + round(stacks / 2)
+	if(stacks > max_stacks - 10)
+		debuff_owner.adjust_stagger(3)
 
 /datum/status_effect/stacking/intoxicated/proc/resist_debuff()
 	SIGNAL_HANDLER
-	stacks -= resist_stack_removal
+	stacks -= round(max_stacks * 0.15)
 	debuff_owner.Immobilize(2.5 SECONDS)
 	playsound(debuff_owner.loc, 'sound/effects/slosh.ogg', 25)
-	debuff_owner.visible_message(span_danger("[debuff_owner] splashes their equipment with a special solution, removing the acid."), \
-	span_notice("You splash your equipment with a special solution, removing the acid."), null, 5)
+	debuff_owner.balloon_alert(debuff_owner, "Acid removed")
