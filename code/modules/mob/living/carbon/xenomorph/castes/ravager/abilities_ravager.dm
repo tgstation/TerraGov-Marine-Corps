@@ -464,7 +464,7 @@
 	COOLDOWN_DECLARE(last_healed)
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
-	/// ???
+	/// Ref to our particle deletion timer
 	var/timer_ref
 /datum/action/xeno_action/vampirism/New(Target)
 	..()
@@ -501,7 +501,7 @@
 	to_chat(xeno, span_xenonotice("You will now[xeno.vampirism ? "" : " no longer"] heal from attacking"))
 
 ///Adds the slashed mob to tracked damage mobs
-/datum/action/xeno_action/vampirism/proc/on_slash(datum/source, mob/living/target)
+/datum/action/xeno_action/vampirism/proc/on_slash(datum/source, mob/living/target, damage, list/damage_mod, armor_pen)
 	SIGNAL_HANDLER
 	if(target.stat == DEAD)
 		return
@@ -519,4 +519,4 @@
 	particle_holder = new(x, /particles/xeno_slash/vampirism)
 	particle_holder.pixel_y = 18
 	particle_holder.pixel_x = 18
-	timer_ref = QDEL_NULL_IN(src, particle_holder, last_healed)
+	timer_ref = QDEL_NULL_IN(src, particle_holder, heal_delay)
