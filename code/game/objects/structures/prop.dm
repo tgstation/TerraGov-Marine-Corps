@@ -542,6 +542,7 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "reflector_prop"
 	density = TRUE
+	anchored = FALSE
 
 /obj/structure/prop/mainship/cannon_cable_connector/ex_act()
 	return
