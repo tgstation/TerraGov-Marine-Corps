@@ -176,12 +176,12 @@ REAGENT SCANNER
 						continue
 					internal_bleeding = TRUE
 					break
-			if(limb.limb_status & LIMB_NECROTIZED)
-				infection_message = "Subject's [limb.display_name] has necrotized. Surgery required."
-				necrotized = TRUE
 			if(limb.germ_level > INFECTION_LEVEL_ONE)
 				infection_message = "Infection detected in subject's [limb.display_name]. Antibiotics recommended."
 				infected = TRUE
+			if(limb.limb_status & LIMB_NECROTIZED)
+				infection_message = "Subject's [limb.display_name] has necrotized. Surgery required."
+				necrotized = TRUE
 
 			if(limb.hidden)
 				unknown_implants++
