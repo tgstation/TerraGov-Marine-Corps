@@ -888,6 +888,8 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 
 ///damage override at the species level, called by /mob/living/proc/apply_damage
 /datum/species/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration, mob/living/carbon/human/victim)
+	if(isorgan(def_zone)) //Got sent a limb datum, convert to a zone define
+		def_zone = def_zone.name
 	if(isnum(blocked))
 		damage -= clamp(damage * (blocked - penetration) * 0.01, 0, damage)
 	else
@@ -900,12 +902,9 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 		return 0
 
 	var/datum/limb/organ = null
-	if(isorgan(def_zone))
-		organ = def_zone
-	else
-		if(!def_zone)
-			def_zone = ran_zone(def_zone)
-		organ = victim.get_limb(check_zone(def_zone))
+	if(!def_zone)
+		def_zone = ran_zone(def_zone)
+	organ = victim.get_limb(check_zone(def_zone))
 	if(!organ)
 		return FALSE
 
