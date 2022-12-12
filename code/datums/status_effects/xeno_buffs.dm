@@ -158,7 +158,7 @@
 	var/heal_amount = clamp(abs(amount) * (DRONE_ESSENCE_LINK_SHARED_HEAL * stacks), 0, heal_target.maxHealth)
 	heal_target.adjustFireLoss(-max(0, heal_amount - heal_target.getBruteLoss()), passive = TRUE)
 	heal_target.adjustBruteLoss(-heal_amount, passive = TRUE)
-	heal_target.adjust_sunder(-heal_amount/20)
+	heal_target.adjust_sunder(-heal_amount/5)
 	heal_target.balloon_alert(heal_target, "Shared heal: +[heal_amount]")
 
 /// Toggles the link signals on or off.
