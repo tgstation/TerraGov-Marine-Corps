@@ -148,8 +148,7 @@
 	name = "comfy sofa"
 	desc = "It looks comfy."
 	icon_state = "sofamiddle"
-
-
+	resistance_flags = XENO_DAMAGEABLE
 /obj/structure/bed/chair/sofa/left
 	icon_state = "sofaend_left"
 

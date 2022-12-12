@@ -125,18 +125,18 @@
 /obj/structure/prop/mainship/deadai/Initialize()
 	. = ..()
 	icon_state = pick(
-		"ai_dead"
-		"ai-alien_dead"
-		"ai-banned_dead"
-		"ai-clown_dead"
-		"ai-database_dead"
-		"ai-glitchman_dead"
-		"ai-goon_dead"
-		"ai-house_dead"
-		"ai-monochrome_dead"
-		"ai-red_dead"
-		"ai-red october_dead"
-		"ai-static_dead"
+		"ai_dead",
+		"ai-alien_dead",
+		"ai-banned_dead",
+		"ai-clown_dead",
+		"ai-database_dead",
+		"ai-glitchman_dead",
+		"ai-goon_dead",
+		"ai-house_dead",
+		"ai-monochrome_dead",
+		"ai-red_dead",
+		"ai-red october_dead",
+		"ai-static_dead",
 		"ai-hades_dead"
 	)
 

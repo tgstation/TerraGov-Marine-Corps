@@ -1318,6 +1318,10 @@
 /area/deltastation/maintenance/external/port/bow
 	name = "\improper Port Bow External Hull Access"
 
+/area/deltastation/external/landingzone
+	name = "\improper Delta Station landing zone"
+	icon_state = "ship"
+
 /area/deltastation/asteroidcaves
 	name = "Unknown Area"
 	icon_state = "asteroid"
@@ -1354,4 +1358,8 @@
 
 /area/deltastation/asteroidcaves/derelictwest
 	icon_state = "derelict"
+	always_unpowered = FALSE
+
+/area/deltastation/asteroidcaves/southlz
+	ceiling = CEILING_NONE
 	always_unpowered = FALSE

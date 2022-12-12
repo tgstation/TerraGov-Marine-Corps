@@ -61,5 +61,5 @@ map gelida_iv
 endmap
 
 map deltastation
-	minplayers 65
+	minplayers 60
 endmap

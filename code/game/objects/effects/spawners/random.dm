@@ -546,11 +546,13 @@
 /obj/effect/spawner/random/cable
 	name = "Random cable spawner"
 	icon_state = "random_cable"
+	spawn_scatter_radius = 2
+	spawn_loot_chance = 90
 	loot = list(
-		/obj/item/stack/cable_coil,
-		/obj/item/stack/cable_coil/cut,
-		/obj/item/stack/cable_coil/five,
-		/obj/item/stack/cable_coil/twentyfive,
+		/obj/item/stack/cable_coil = 75,
+		/obj/item/stack/cable_coil/cut = 30,
+		/obj/item/stack/cable_coil/twentyfive = 25,
+		/obj/item/stack/cable_coil/five = 10,
 	)
 
 
@@ -633,6 +635,21 @@
 		/obj/item/weapon/gun/shotgun/pump/t35,
 	)
 
+/obj/effect/spawner/random/gun/egun
+	name = "Random energy gun spawner"
+	icon_state = "random_egun"
+	loot = list(
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle = 25,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_sniper = 25,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine = 25,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser = 25,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = 25,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla = 5,
+		/obj/item/weapon/gun/energy/lasgun/M43 = 5,
+	)
+
+/obj/effect/spawner/random/gun/egun/lowchance
+	spawn_loot_chance = 20
 
 ///random machineguns
 /obj/effect/spawner/random/gun/machineguns
