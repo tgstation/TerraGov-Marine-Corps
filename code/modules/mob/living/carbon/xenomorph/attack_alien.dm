@@ -53,19 +53,18 @@
 /mob/living/proc/get_xeno_slash_zone(mob/living/carbon/xenomorph/X, set_location = FALSE, random_location = FALSE, no_head = FALSE)
 	return
 
-///Returns a zone define
 /mob/living/carbon/get_xeno_slash_zone(mob/living/carbon/xenomorph/X, set_location = FALSE, random_location = FALSE, no_head = FALSE, ignore_destroyed = TRUE)
-	var/affecting
+	var/datum/limb/affecting
 	if(set_location)
-		affecting = set_location
+		affecting = get_limb(set_location)
 	else if(SEND_SIGNAL(X, COMSIG_XENOMORPH_ZONE_SELECT) & COMSIG_ACCURATE_ZONE)
-		affecting = X.zone_selected
+		affecting = get_limb(X.zone_selected)
 	else
-		affecting = ran_zone(X.zone_selected, 70)
-	if(!affecting || (random_location && !set_location) || (ignore_destroyed && !get_limb(affecting).is_usable())) //No organ or it's destroyed, just get a random one
-		affecting = ran_zone(null, 0)
-	if(!affecting || (no_head && affecting == "head") || (ignore_destroyed && !get_limb(affecting).is_usable()))
-		affecting = "chest"
+		affecting = get_limb(ran_zone(X.zone_selected, 70))
+	if(!affecting || (random_location && !set_location) || (ignore_destroyed && !affecting.is_usable())) //No organ or it's destroyed, just get a random one
+		affecting = get_limb(ran_zone(null, 0))
+	if(!affecting || (no_head && affecting == get_limb("head")) || (ignore_destroyed && !affecting.is_usable()))
+		affecting = get_limb("chest")
 	return affecting
 
 /mob/living/proc/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
@@ -77,7 +76,7 @@
 	if(!damage)
 		return FALSE
 
-	var/target_zone = get_xeno_slash_zone(X, set_location, random_location, no_head)
+	var/datum/limb/affecting = get_xeno_slash_zone(X, set_location, random_location, no_head)
 	var/armor_block = 0
 
 	var/list/damage_mod = list()
@@ -128,7 +127,7 @@
 	else //Normal xenomorph friendship with benefits
 		log_combat(X, src, log)
 
-	apply_damage(damage, BRUTE, target_zone, armor_block, TRUE, TRUE, TRUE, armor_pen) //This should slicey dicey
+	apply_damage(damage, BRUTE, affecting, armor_block, TRUE, TRUE, TRUE, armor_pen) //This should slicey dicey
 
 	return TRUE
 
