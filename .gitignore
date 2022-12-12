@@ -32,6 +32,10 @@ tools/BalanceTool/raw.json
 # Ignore compiled linux libs in the root folder, e.g. librust_g.so
 /*.so
 
+# byond-tracy, we intentionally do not ship this and do not want to maintain it
+prof.dll
+libprof.so
+
 #extra map stuff
 /_maps/**/backup/
 /_maps/templates.dm

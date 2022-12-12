@@ -74,7 +74,7 @@
 	if(!isliving(arrived))
 		return
 	var/mob/living/L = arrived
-	L.apply_damage(55, TOX)
+	L.apply_damage(55, TOX, blocked = BIO)
 	UPDATEHEALTH(L)
 
 
