@@ -1598,13 +1598,13 @@
 	name = "railing"
 	desc = "Basic railing meant to protect idiots like you from falling."
 	icon = 'icons/Marine/mainship_props.dmi'
-	density = TRUE
+	density = FALSE
 	icon_state = "railing"
 
 /obj/structure/prop/mainship/railing/corner
 	name = "railing"
 	desc = "Basic railing meant to protect idiots like you from falling."
-	density = TRUE
+	density = FALSE
 	icon_state = "railing_corner"
 
 /obj/structure/prop/mainship/solar
@@ -1831,7 +1831,7 @@
 	layer = WALL_OBJ_LAYER
 	anchored = TRUE
 
-/obj/machinery/camera/Initialize(mapload, newDir)
+/obj/structure/prop/Initialize(mapload, newDir)
 	. = ..()
 	icon_state = "camera1"
 

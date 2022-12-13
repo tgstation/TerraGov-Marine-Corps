@@ -20561,7 +20561,6 @@
 /turf/open/floor/iron/grimy,
 /area/deltastation/service/bar/backroom)
 "ezA" = (
-/obj/machinery/status_display,
 /obj/structure/bed/stool,
 /obj/machinery/light,
 /obj/effect/landmark/weed_node,
@@ -82689,7 +82688,9 @@
 /obj/structure/table/woodentable,
 /obj/structure/paper_bin,
 /obj/item/tool/pen,
-/obj/structure/extinguisher_cabinet,
+/obj/structure/extinguisher_cabinet{
+	dir = 4
+	},
 /turf/open/floor/iron/checker,
 /area/deltastation/security/interrogation)
 "srb" = (

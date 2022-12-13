@@ -959,9 +959,9 @@
 	icon_state = "random_metal"
 	spawn_loot_chance = 80
 	loot = list(
-		/obj/item/stack/sheet/metal = 60,
-		/obj/item/stack/sheet/metal/small_stack = 40,
-		/obj/item/stack/sheet/metal/medium_stack = 10,
+		/obj/item/stack/sheet/metal = 70,
+		/obj/item/stack/sheet/metal/small_stack = 50,
+		/obj/item/stack/sheet/metal/medium_stack = 20,
 		/obj/item/stack/sheet/metal/large_stack = 3,
 	)
 
