@@ -182,8 +182,8 @@
 		visible_message(span_danger("[M] [M.attacktext] [src]!"))
 		log_combat(M, src, "attacked")
 		var/dam_zone = pick("chest", "l_hand", "r_hand", "l_leg", "r_leg")
-		var/datum/limb/affecting = get_limb(ran_zone(dam_zone))
-		apply_damage(M.melee_damage, BRUTE, affecting, MELEE, updating_health = TRUE)
+		dam_zone = ran_zone(dam_zone)
+		apply_damage(M.melee_damage, BRUTE, dam_zone, MELEE, updating_health = TRUE)
 
 /mob/living/carbon/human/show_inv(mob/living/user)
 	var/obj/item/clothing/under/suit
