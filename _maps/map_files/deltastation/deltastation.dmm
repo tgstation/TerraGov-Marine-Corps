@@ -4741,7 +4741,9 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/blue,
-/obj/structure/extinguisher_cabinet,
+/obj/structure/extinguisher_cabinet{
+	dir = 1
+	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor/iron,
 /area/deltastation/service/hydroponics)
@@ -27169,7 +27171,9 @@
 "fUf" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/radio/intercom,
+/obj/item/radio/intercom{
+	dir = 8
+	},
 /turf/open/floor/iron,
 /area/deltastation/cargo/warehouse)
 "fUn" = (
@@ -29424,11 +29428,11 @@
 "gtx" = (
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/reagent_containers/blood{
+/obj/effect/spawner/random/bloodpack{
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/reagent_containers/blood,
+/obj/effect/spawner/random/bloodpack,
 /obj/effect/decal/warning_stripes/box/empty,
 /obj/item/reagent_containers/food/condiment/enzyme{
 	pixel_x = -5
@@ -34796,6 +34800,7 @@
 "hCD" = (
 /obj/structure/table/woodentable,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/sign/securearea,
 /turf/open/floor/iron,
 /area/deltastation/service/kitchen/abandoned)
 "hCE" = (
@@ -45974,7 +45979,9 @@
 	},
 /obj/item/clothing/shoes/magboots,
 /obj/effect/decal/warning_stripes/box,
-/obj/machinery/alarm,
+/obj/machinery/alarm{
+	dir = 8
+	},
 /turf/open/floor/iron,
 /area/deltastation/engineering/storage)
 "khn" = (
@@ -56119,9 +56126,6 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/service/chapel/funeral)
 "mvr" = (
-/obj/machinery/alarm{
-	dir = 1
-	},
 /obj/structure/table/woodentable,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/reagent_containers/food/snacks/chocolateegg,
@@ -66282,10 +66286,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/deltastation/ai_monitored/turret_protected/ai_upload)
-"oKR" = (
-/obj/structure/sign/securearea,
-/turf/closed/wall,
-/area/deltastation/service/kitchen/abandoned)
 "oKS" = (
 /obj/structure/table/reinforced,
 /obj/machinery/microwave{
@@ -70407,7 +70407,7 @@
 	dir = 1
 	},
 /obj/machinery/iv_drip,
-/obj/item/reagent_containers/blood,
+/obj/effect/spawner/random/bloodpack,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/iron,
 /area/deltastation/medical/abandoned)
@@ -72757,11 +72757,11 @@
 /area/deltastation/maintenance/department/medical/morgue)
 "qfx" = (
 /obj/structure/closet/crate/freezer,
-/obj/item/reagent_containers/blood{
+/obj/effect/spawner/random/bloodpack{
 	pixel_x = -3;
 	pixel_y = 3
 	},
-/obj/item/reagent_containers/blood,
+/obj/effect/spawner/random/bloodpack,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4;
@@ -76588,17 +76588,17 @@
 /area/deltastation/service/abandoned_gambling_den/gaming)
 "qWh" = (
 /obj/structure/closet/crate/freezer,
-/obj/item/reagent_containers/blood,
-/obj/item/reagent_containers/blood,
-/obj/item/reagent_containers/blood,
-/obj/item/reagent_containers/blood,
-/obj/item/reagent_containers/blood,
-/obj/item/reagent_containers/blood,
-/obj/item/reagent_containers/blood,
-/obj/item/reagent_containers/blood,
-/obj/item/reagent_containers/blood,
-/obj/item/reagent_containers/blood,
-/obj/item/reagent_containers/blood,
+/obj/effect/spawner/random/bloodpack,
+/obj/effect/spawner/random/bloodpack,
+/obj/effect/spawner/random/bloodpack,
+/obj/effect/spawner/random/bloodpack,
+/obj/effect/spawner/random/bloodpack,
+/obj/effect/spawner/random/bloodpack,
+/obj/effect/spawner/random/bloodpack,
+/obj/effect/spawner/random/bloodpack,
+/obj/effect/spawner/random/bloodpack,
+/obj/effect/spawner/random/bloodpack,
+/obj/effect/spawner/random/bloodpack,
 /turf/open/floor/iron/white,
 /area/deltastation/asteroidcaves/derelictwest)
 "qWi" = (
@@ -78954,15 +78954,15 @@
 /obj/effect/turf_decal/tile/blue/fourcorners,
 /obj/machinery/light,
 /obj/structure/table/mainship,
-/obj/item/reagent_containers/blood{
+/obj/effect/spawner/random/bloodpack{
 	pixel_x = -4;
 	pixel_y = -2
 	},
-/obj/item/reagent_containers/blood{
+/obj/effect/spawner/random/bloodpack{
 	pixel_x = 6;
 	pixel_y = -1
 	},
-/obj/item/reagent_containers/blood,
+/obj/effect/spawner/random/bloodpack,
 /turf/open/floor/iron,
 /area/deltastation/medical/treatment_center)
 "ryq" = (
@@ -89857,6 +89857,9 @@
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 4
 	},
+/obj/machinery/alarm{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/deltastation/maintenance/fore)
 "tSh" = (
@@ -100622,7 +100625,7 @@
 "wji" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table,
-/obj/item/reagent_containers/blood,
+/obj/effect/spawner/random/bloodpack,
 /obj/effect/spawner/random/syringe,
 /obj/effect/spawner/random/syringe{
 	pixel_y = 5
@@ -105988,7 +105991,7 @@
 /obj/machinery/newscaster{
 	dir = 4
 	},
-/turf/closed/wall/r_wall,
+/turf/closed/wall,
 /area/deltastation/maintenance/port/fore)
 "xru" = (
 /obj/effect/turf_decal/stripes/red/line{
@@ -137548,7 +137551,7 @@ tAm
 kME
 tAm
 ppB
-vHM
+flS
 dmH
 qcx
 gRW
@@ -137805,7 +137808,7 @@ rGS
 psu
 tvK
 abT
-vHM
+flS
 flS
 pAs
 flS
@@ -138062,7 +138065,7 @@ pUi
 sIU
 tLP
 ccO
-sHY
+pEE
 oeZ
 xou
 dcL
@@ -138313,13 +138316,13 @@ iDi
 exP
 aMz
 dsm
-iDi
+ppB
 fia
 wEN
 biT
 mYH
 bTe
-nSc
+keZ
 cme
 yhQ
 nvA
@@ -138570,13 +138573,13 @@ esS
 jFR
 eua
 esS
-nSc
-nSc
-nSc
-nSc
+keZ
+keZ
+keZ
+keZ
 xro
-nSc
-nSc
+keZ
+keZ
 tcx
 keZ
 keZ
@@ -155513,7 +155516,7 @@ dVd
 lzP
 asp
 hCD
-oKR
+fnw
 fLm
 ydz
 cmG
@@ -156916,7 +156919,7 @@ oHH
 aTq
 mVs
 lQh
-lQh
+vfs
 lQh
 lQh
 lQh

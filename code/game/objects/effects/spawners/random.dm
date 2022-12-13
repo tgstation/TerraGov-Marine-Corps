@@ -504,6 +504,19 @@
 		/obj/item/storage/box/syringes = 1,
 	)
 
+/obj/effect/spawner/random/bloodpack
+	name = "Random blood spawner"
+	icon_state = "random_bloodpack"
+	spawn_loot_chance = 80
+	loot = list(
+		/obj/item/reagent_containers/blood/empty = 95,
+		/obj/item/reagent_containers/blood/AMinus = 30,
+		/obj/item/reagent_containers/blood/APlus = 30,
+		/obj/item/reagent_containers/blood/BMinus = 30,
+		/obj/item/reagent_containers/blood/BPlus = 30,
+		/obj/item/reagent_containers/blood/OPlus = 30,
+		/obj/item/reagent_containers/blood/OMinus = 5,
+	)
 
 /obj/effect/spawner/random/medbelt
 	name = "Random medical belt spawner"
