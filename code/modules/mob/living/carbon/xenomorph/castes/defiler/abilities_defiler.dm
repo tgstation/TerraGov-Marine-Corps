@@ -132,7 +132,7 @@
 	if(living_target.has_status_effect(STATUS_EFFECT_INTOXICATED))
 		var/datum/status_effect/stacking/intoxicated/debuff = living_target.has_status_effect(STATUS_EFFECT_INTOXICATED)
 		defile_reagent_amount += debuff.stacks
-		debuff.stacks -= SENTINEL_INTOXICATED_DEFILE_COST
+		debuff.stacks -= round(debuff.stacks * 0.5)
 
 	defile_power = defile_reagent_amount * defile_strength_multiplier //Total amount of toxin damage we deal
 

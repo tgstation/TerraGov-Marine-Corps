@@ -426,26 +426,25 @@
 	id = "intoxicated"
 	tick_interval = 2 SECONDS
 	stacks = 1
-	max_stacks = 20
+	max_stacks = 30
 	consumed_on_threshold = FALSE
 	/// Owner of the debuff is limited to carbons.
 	var/mob/living/carbon/debuff_owner
-	/// The amount of stacks to remove every time this status effect is Resisted against.
-	var/resist_stack_removal
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 
 /datum/status_effect/stacking/intoxicated/on_creation(mob/living/new_owner, stacks_to_apply)
 	. = ..()
 	debuff_owner = new_owner
-	resist_stack_removal = max_stacks * 0.2
-	RegisterSignal(debuff_owner, COMSIG_LIVING_DO_RESIST, .proc/resist_debuff)
-	to_chat(debuff_owner, span_danger("Your equipment is affected by acid! Use Resist to deal with it!"))
-	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 25)
+	RegisterSignal(debuff_owner, COMSIG_LIVING_DO_RESIST, .proc/call_resist_debuff)
+	debuff_owner.balloon_alert("Intoxicated")
+	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 30)
 	particle_holder = new(debuff_owner, /particles/toxic_slash)
 	particle_holder.particles.spawning = 1 + round(stacks / 2)
 	particle_holder.pixel_x = -2
 	particle_holder.pixel_y = 0
+	if(HAS_TRAIT(debuff_owner, TRAIT_INTOXICATION_RESISTANT))
+		max_stacks = round(max_stacks / 2)
 
 /datum/status_effect/stacking/intoxicated/on_remove()
 	UnregisterSignal(debuff_owner, COMSIG_LIVING_DO_RESIST)
@@ -454,15 +453,27 @@
 	return ..()
 
 /datum/status_effect/stacking/intoxicated/stack_decay_effect()
-	var/debuff_damage = SENTINEL_INTOXICATED_BASE_DAMAGE + round(stacks / 13)
+	if(HAS_TRAIT(debuff_owner, TRAIT_INTOXICATION_RESISTANT) && stacks > max_stacks) // In the event that TRAIT_INTOXICATION_RESISTANT is added while the status already exists
+		max_stacks = round(max_stacks / 2)
+		stacks = max_stacks
+	var/debuff_damage = SENTINEL_INTOXICATED_BASE_DAMAGE + round(stacks / 10)
 	debuff_owner.adjustFireLoss(debuff_damage)
-	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 6)
+	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 5)
 	particle_holder.particles.spawning = 1 + round(stacks / 2)
+	if(!HAS_TRAIT(debuff_owner, TRAIT_INTOXICATION_RESISTANT))
+		if(stacks >= 10)
+			debuff_owner.adjust_slowdown(1)
+		if(stacks >= 20)
+			debuff_owner.adjust_stagger(1)
+
+/datum/status_effect/stacking/intoxicated/proc/call_resist_debuff()
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, .proc/resist_debuff) // grilled cheese sandwich
 
 /datum/status_effect/stacking/intoxicated/proc/resist_debuff()
-	SIGNAL_HANDLER
-	stacks -= resist_stack_removal
-	debuff_owner.Immobilize(2.5 SECONDS)
-	playsound(debuff_owner.loc, 'sound/effects/slosh.ogg', 25)
-	debuff_owner.visible_message(span_danger("[debuff_owner] splashes their equipment with a special solution, removing the acid."), \
-	span_notice("You splash your equipment with a special solution, removing the acid."), null, 5)
+	if(!do_after(debuff_owner, 3 SECONDS, TRUE, debuff_owner, BUSY_ICON_GENERIC))
+		debuff_owner.balloon_alert("Interrupted")
+		return
+	playsound(debuff_owner.loc, 'sound/effects/slosh.ogg', 30)
+	debuff_owner.balloon_alert("Succeeded")
+	stacks -= SENTINEL_INTOXICATED_RESIST_REDUCTION
