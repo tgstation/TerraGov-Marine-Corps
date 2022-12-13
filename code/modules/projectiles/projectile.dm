@@ -909,7 +909,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	if(proj.ammo.flags_ammo_behavior & AMMO_SUNDERING)
 		if(get_sunder() > 0.5)
-			adjust_sunder(proj.sundering)
+			adjust_sunder(min(proj.sundering, get_sunder() * 100 - 50))
 		else if(proj.ammo.flags_ammo_behavior & AMMO_HARD_SUNDERING)
 			adjust_sunder(proj.sundering)
 
