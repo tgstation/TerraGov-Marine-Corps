@@ -1348,9 +1348,14 @@
 
 /area/deltastation/asteroidcaves/southtunnel
 
+/area/deltastation/asteroidcaves/exteriorasteroids
+	icon_state = "asteroidexterior"
+
 /area/deltastation/asteroidcaves/ship
 	icon_state = "ship"
 	always_unpowered = FALSE
+
+/area/deltastation/asteroidcaves/ship/two
 
 /area/deltastation/asteroidcaves/derelictnortheast
 	icon_state = "derelict"
@@ -1359,6 +1364,8 @@
 /area/deltastation/asteroidcaves/derelictwest
 	icon_state = "derelict"
 	always_unpowered = FALSE
+
+/area/deltastation/asteroidcaves/derelictsatellite
 
 /area/deltastation/asteroidcaves/southlz
 	ceiling = CEILING_NONE
