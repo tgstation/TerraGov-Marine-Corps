@@ -487,6 +487,16 @@
 		/obj/item/storage/pill_bottle/spaceacillin = 10,
 	)
 
+/obj/effect/spawner/random/health_analyzer
+	name = "health analyzer spawner"
+	icon_state = "random_healthanalyzer"
+	spawn_scatter_radius = 1
+	spawn_random_offset = TRUE
+	spawn_loot_chance = 35
+	loot = list(
+		/obj/item/healthanalyzer,
+	)
+
 /obj/effect/spawner/random/syringe
 	name = "Random syringe spawner"
 	icon_state = "random_syringe"
@@ -591,7 +601,7 @@
 /obj/effect/spawner/random/cable
 	name = "Random cable spawner"
 	icon_state = "random_cable"
-	spawn_scatter_radius = 2
+	spawn_random_offset = TRUE
 	spawn_loot_chance = 90
 	loot = list(
 		/obj/item/stack/cable_coil = 75,
@@ -601,10 +611,42 @@
 	)
 
 
+/obj/effect/spawner/random/seeds
+	name = "Random seed spawner"
+	icon_state = "random_seed"
+	spawn_loot_chance = 90
+	loot = list(
+		/obj/item/seeds/appleseed,
+		/obj/item/seeds/bananaseed,
+		/obj/item/seeds/cocoapodseed,
+		/obj/item/seeds/grapeseed,
+		/obj/item/seeds/orangeseed,
+		/obj/item/seeds/sugarcaneseed,
+		/obj/item/seeds/wheatseed,
+		/obj/item/seeds/watermelonseed,
+		/obj/item/seeds/chiliseed,
+		/obj/item/seeds/cornseed,
+		/obj/item/seeds/lemonseed,
+		/obj/item/seeds/peanutseed,
+		/obj/item/seeds/poppyseed,
+		/obj/item/seeds/pumpkinseed,
+		/obj/item/seeds/carrotseed,
+		/obj/item/seeds/wheatseed,
+		/obj/item/seeds/tomatoseed,
+	)
+
+/obj/effect/spawner/random/computercircuit
+	name = "Random computer circuit spawner"
+	icon_state = "random_ccircuit"
+	spawn_loot_chance = 75
+	loot_subtype_path = /obj/item/circuitboard/computer
+	loot = list()
+
 /obj/effect/spawner/random/cigarettes
 	name = "Random cigarette spawner"
 	icon_state = "random_cigarette"
-	spawn_scatter_radius = 3
+	spawn_random_offset = TRUE
+	spawn_scatter_radius = 1
 	loot = list(
 		/obj/item/storage/fancy/cigarettes/dromedaryco = 30,
 		/obj/item/storage/fancy/cigarettes/kpack = 25,
@@ -618,7 +660,7 @@
 	name = "Random medical reagent bottle spawner"
 	icon_state = "random_medbottle"
 	spawn_loot_chance = 50
-	spawn_scatter_radius = 1
+	spawn_random_offset = TRUE
 	loot = list(
 		/obj/item/reagent_containers/glass/bottle/bicaridine = 30,
 		/obj/item/reagent_containers/glass/bottle/kelotane = 30,
@@ -1054,7 +1096,7 @@
 /obj/effect/spawner/random/folder
 	name = "folder spawner"
 	icon_state = "random_folder"
-	spawn_scatter_radius = 2
+	spawn_random_offset = TRUE
 	loot = list(
 		/obj/item/folder/black = 15,
 		/obj/item/folder/black_random = 15,
@@ -1070,6 +1112,7 @@
 	name = "insulated glove spawner"
 	icon_state = "random_insuls"
 	spawn_scatter_radius = 1
+	spawn_random_offset = TRUE
 	spawn_loot_chance = 65
 	loot = list(
 		/obj/item/clothing/gloves/fyellow = 85,
@@ -1116,6 +1159,16 @@
 		/obj/structure/closet/open,
 		/obj/structure/closet/radiation,
 	)
+
+/obj/effect/spawner/random/structure/cabinet
+	name = "cabinet or wood spawner"
+	icon_state = "random_cabinet"
+	spawn_loot_chance = 95
+	loot = list(
+		/obj/structure/closet/cabinet = 85,
+		/obj/effect/spawner/random/wood = 15,
+	)
+
 
 /obj/effect/spawner/random/structure/medicalcloset
 	name = "medical closet spawner"
@@ -1198,6 +1251,30 @@
 		/obj/structure/prop/computer/broken/nine = 40,
 	)
 
+/obj/effect/spawner/random/structure/random_broken_computer/genetics
+	loot = list(
+		/obj/machinery/prop/mainship/computer/dna = 75,
+		/obj/effect/spawner/random/structure/random_broken_computer = 25,
+	)
+
+/obj/effect/spawner/random/structure/random_broken_computer/crewmonitor
+	loot = list(
+		/obj/machinery/prop/mainship/computer/crew = 65,
+		/obj/effect/spawner/random/structure/random_broken_computer = 35,
+	)
+
+/obj/effect/spawner/random/structure/random_broken_computer/solars
+	loot = list(
+		/obj/machinery/computer/solars= 80,
+		/obj/effect/spawner/random/structure/random_broken_computer = 20,
+	)
+
+/obj/effect/spawner/random/structure/random_broken_computer/rdconsole
+	loot = list(
+		/obj/machinery/computer/rdconsole = 85,
+		/obj/effect/spawner/random/structure/random_broken_computer = 15,
+	)
+
 /obj/effect/spawner/random/structure/girder
 	name = "girder spawner"
 	icon_state = "random_girder"
@@ -1230,7 +1307,7 @@
 /obj/effect/spawner/random/structure/canister
 	name = "air canister spawner"
 	icon_state = "random_canister"
-	loot = list( // use this for emergency storage areas and maint
+	loot = list(
 		/obj/machinery/portable_atmospherics/canister/air = 4,
 		/obj/machinery/portable_atmospherics/canister/oxygen = 1,
 	)
@@ -1238,7 +1315,7 @@
 /obj/effect/spawner/random/structure/tank/fuelweighted
 	name = "tank spawner"
 	icon_state = "random_weldtank"
-	loot = list( // use this for emergency storage areas and maint
+	loot = list(
 		/obj/structure/reagent_dispensers/fueltank = 7,
 		/obj/structure/reagent_dispensers/watertank = 2,
 	)
@@ -1246,7 +1323,7 @@
 /obj/effect/spawner/random/structure/tank/waterweighted
 	name = "tank spawner"
 	icon_state = "random_watertank"
-	loot = list( // use this for emergency storage areas and maint
+	loot = list(
 		/obj/structure/reagent_dispensers/fueltank = 3,
 		/obj/structure/reagent_dispensers/watertank = 7,
 	)
