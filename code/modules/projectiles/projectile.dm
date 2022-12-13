@@ -908,8 +908,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			feedback_flags |= (BULLET_FEEDBACK_FIRE)
 
 	if(proj.ammo.flags_ammo_behavior & AMMO_SUNDERING)
-		if(get_sunder() > 0.5)
-			adjust_sunder(min(proj.sundering, get_sunder() * 100 - 50))
+		if(get_sunder() > get_sunder_cap() && !(proj.ammo.flags_ammo_behavior & AMMO_HARD_SUNDERING))
+			adjust_sunder(min(proj.sundering, (get_sunder() - get_sunder_cap()) * 100))
 		else if(proj.ammo.flags_ammo_behavior & AMMO_HARD_SUNDERING)
 			adjust_sunder(proj.sundering)
 
@@ -1407,6 +1407,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	return FALSE
 
 /mob/living/proc/get_sunder()
+	return 0
+
+/mob/living/proc/get_sunder_cap()
 	return 0
 
 

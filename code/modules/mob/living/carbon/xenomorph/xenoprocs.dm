@@ -483,7 +483,7 @@
 		C.reagents.add_reagent(toxin, transfer_amount)
 	while(i++ < count && do_after(src, channel_time, TRUE, C, BUSY_ICON_HOSTILE))
 	return TRUE
-
+adjust_sunder
 
 /atom/proc/can_sting()
 	return FALSE
@@ -518,6 +518,12 @@
 	if(.)
 		return
 	return (sunder * -0.01) + 1
+
+/mob/living/carbon/xenomorph/get_sunder_cap()
+	. = ..()
+	if(.)
+		return
+	return (sunder_hardcap * -0.01) + 1
 
 /mob/living/carbon/xenomorph/adjust_stagger(amount)
 	if(is_charging >= CHARGE_ON) //If we're charging we don't accumulate more stagger stacks.
