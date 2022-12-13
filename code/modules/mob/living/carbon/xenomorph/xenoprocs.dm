@@ -483,7 +483,6 @@
 		C.reagents.add_reagent(toxin, transfer_amount)
 	while(i++ < count && do_after(src, channel_time, TRUE, C, BUSY_ICON_HOSTILE))
 	return TRUE
-adjust_sunder
 
 /atom/proc/can_sting()
 	return FALSE
