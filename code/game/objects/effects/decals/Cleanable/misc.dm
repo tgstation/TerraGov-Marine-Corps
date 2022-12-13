@@ -37,7 +37,7 @@
 	mouse_opacity = 0
 
 /obj/effect/decal/cleanable/glass
-	name = "dirt"
+	name = "broken glass"
 	desc = "This looks hazardous to anyone not wearing shoes."
 	gender = PLURAL
 	density = FALSE

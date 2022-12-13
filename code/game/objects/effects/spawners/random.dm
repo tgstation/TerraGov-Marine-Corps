@@ -487,6 +487,24 @@
 		/obj/item/storage/pill_bottle/spaceacillin = 10,
 	)
 
+/obj/effect/spawner/random/syringe
+	name = "Random syringe spawner"
+	icon_state = "random_syringe"
+	spawn_loot_chance = 60
+	loot = list(
+		/obj/item/reagent_containers/syringe = 40,
+		/obj/item/reagent_containers/syringe/antiviral = 30,
+		/obj/item/reagent_containers/syringe/dylovene = 30,
+		/obj/item/reagent_containers/syringe/inaprovaline = 30,
+		/obj/item/storage/syringe_case/burn = 10,
+		/obj/item/storage/syringe_case/dermaline = 10,
+		/obj/item/storage/syringe_case/meraderm = 5,
+		/obj/item/storage/syringe_case/oxy = 5,
+		/obj/item/storage/syringe_case/tricordrazine = 5,
+		/obj/item/storage/box/syringes = 1,
+	)
+
+
 /obj/effect/spawner/random/medbelt
 	name = "Random medical belt spawner"
 	icon_state = "random_medbelt"
@@ -497,6 +515,19 @@
 		/obj/item/storage/belt/lifesaver/quick = 10,
 		/obj/item/storage/belt/lifesaver/full = 5,
 	)
+
+/obj/effect/spawner/random/engibelt
+	name = "Random engi belt spawner"
+	icon_state = "random_engibelt"
+	spawn_loot_chance = 45
+	loot = list(
+		/obj/item/storage/belt/utility = 50,
+		/obj/effect/spawner/random/tool = 25,
+		/obj/effect/spawner/random/toolbox = 15,
+		/obj/item/storage/belt/utility/full = 10,
+		/obj/item/storage/belt/utility/atmostech = 10,
+	)
+
 
 /obj/effect/spawner/random/medhud
 	name = "Random med hud spawner"
@@ -1022,6 +1053,17 @@
 	)
 
 
+/obj/effect/spawner/random/insulatedgloves
+	name = "insulated glove spawner"
+	icon_state = "random_insuls"
+	spawn_scatter_radius = 1
+	spawn_loot_chance = 65
+	loot = list(
+		/obj/item/clothing/gloves/fyellow = 85,
+		/obj/item/clothing/gloves/yellow = 15,
+	)
+
+
 ///STRUCTURE SPAWNERS BELOW THIS LINE
 
 /obj/effect/spawner/random/structure/grille
@@ -1060,6 +1102,19 @@
 		/obj/structure/closet/masks,
 		/obj/structure/closet/open,
 		/obj/structure/closet/radiation,
+	)
+
+/obj/effect/spawner/random/structure/medicalcloset
+	name = "medical closet spawner"
+	icon_state = "random_medical_closet"
+	spawn_loot_chance = 65
+	loot = list(
+		/obj/structure/closet/secure_closet/medical2/colony = 90,
+		/obj/structure/closet/secure_closet/medical_doctor = 40,
+		/obj/structure/closet/secure_closet/medical1/colony = 20,
+		/obj/structure/closet/secure_closet/chemical/colony = 20,
+		/obj/structure/closet/secure_closet/medical3/colony = 5,
+		/obj/structure/closet/secure_closet/CMO = 1,
 	)
 
 /obj/effect/spawner/random/structure/securecloset
