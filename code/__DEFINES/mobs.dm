@@ -1,14 +1,22 @@
 //Some mob defines below
 #define AI_CAMERA_LUMINOSITY 6
+///Comment out if you don't want VOX to be enabled and have players download the voice sounds.
+#define AI_VOX
+
+//Mob movement define
+#define DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER 1.6
 
 
 //Pain or shock reduction for different reagents
-#define PAIN_REDUCTION_VERY_LIGHT -10 //alkysine
-#define PAIN_REDUCTION_LIGHT -25 //inaprovaline
-#define PAIN_REDUCTION_MEDIUM -40 //synaptizine
-#define PAIN_REDUCTION_HEAVY -50 //paracetamol
-#define PAIN_REDUCTION_VERY_HEAVY -80 //tramadol
-#define PAIN_REDUCTION_FULL -200 //oxycodone, neuraline
+#define PAIN_REDUCTION_VERY_LIGHT -5 //alkysine
+#define PAIN_REDUCTION_LIGHT -15 //inaprovaline
+#define PAIN_REDUCTION_MEDIUM -25 //synaptizine
+#define PAIN_REDUCTION_HEAVY -35 //paracetamol
+#define PAIN_REDUCTION_VERY_HEAVY -50 //tramadol
+#define PAIN_REDUCTION_SUPER_HEAVY -100 //oxycodone
+
+
+#define PAIN_REACTIVITY 0.15
 
 
 //Nutrition
@@ -30,7 +38,7 @@
 #define INFECTION_LEVEL_TWO 500
 #define INFECTION_LEVEL_THREE 800
 
-#define MIN_ANTIBIOTICS 0
+#define MIN_ANTIBIOTICS 0.1
 
 
 #define LIVING_PERM_COEFF 0
@@ -45,9 +53,10 @@
 //Life variables
 #define CARBON_BREATH_DELAY 2 // The interval in life ticks between breathe()
 
-#define CARBON_MAX_OXYLOSS 3 //Defines how much oxyloss humans can get per breath tick. A tile with no air at all (such as space) applies this value, otherwise it's a percentage of it.
-#define CARBON_CRIT_MAX_OXYLOSS (round(SSmobs.wait/5, 0.1)) //The amount of damage you'll get when in critical condition.
-#define CARBON_RECOVERY_OXYLOSS -5 //the amount of oxyloss recovery per successful breath tick.
+///The amount of damage you'll take per tick when you can't breath. Default value is 1
+#define CARBON_CRIT_MAX_OXYLOSS (round(SSmobs.wait/5, 0.1))
+///the amount of oxyloss recovery per successful breath tick.
+#define CARBON_RECOVERY_OXYLOSS -5
 
 #define CARBON_KO_OXYLOSS 50
 #define HUMAN_CRITDRAG_OXYLOSS 3 //the amount of oxyloss taken per tile a human is dragged by a xeno while unconscious
@@ -73,9 +82,8 @@
 
 //disabilities
 #define BLIND (1<<0)
-#define MUTE (1<<1)
-#define DEAF (1<<2)
-#define NEARSIGHTED (1<<3)
+#define DEAF (1<<1)
+#define NEARSIGHTED (1<<2)
 //=================================================
 
 //mob/var/stat things
@@ -141,13 +149,15 @@
 // =============================
 // xeno tiers
 
+#define XENO_TIER_MINION "ai"
 #define XENO_TIER_ZERO "zero" // god forgive me because i wont forgive myself
 #define XENO_TIER_ONE "one"
 #define XENO_TIER_TWO "two"
 #define XENO_TIER_THREE "three"
 #define XENO_TIER_FOUR "four"
 
-GLOBAL_LIST_INIT(xenotiers, list(XENO_TIER_ZERO, XENO_TIER_ONE, XENO_TIER_TWO, XENO_TIER_THREE, XENO_TIER_FOUR))
+GLOBAL_LIST_INIT(xenotiers, list(XENO_TIER_MINION, XENO_TIER_ZERO, XENO_TIER_ONE, XENO_TIER_TWO, XENO_TIER_THREE, XENO_TIER_FOUR))
+GLOBAL_LIST_INIT(tier_as_number, list(XENO_TIER_MINION = -1, XENO_TIER_ZERO = 0, XENO_TIER_ONE = 1, XENO_TIER_TWO = 2, XENO_TIER_THREE = 3, XENO_TIER_FOUR = 4))
 
 // =============================
 // xeno upgrades
@@ -158,14 +168,11 @@ GLOBAL_LIST_INIT(xenotiers, list(XENO_TIER_ZERO, XENO_TIER_ONE, XENO_TIER_TWO, X
 #define XENO_UPGRADE_ONE "one"
 #define XENO_UPGRADE_TWO "two"
 #define XENO_UPGRADE_THREE "three"
+#define XENO_UPGRADE_FOUR "four"
 
-GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVALID, XENO_UPGRADE_ZERO, XENO_UPGRADE_ONE, XENO_UPGRADE_TWO, XENO_UPGRADE_THREE))
+#define XENO_UPGRADE_MANIFESTATION "manifestation" //just for the hivemind
 
-// =============================
-// xeno slashing
-#define XENO_SLASHING_FORBIDDEN 0
-#define XENO_SLASHING_ALLOWED 1
-#define XENO_SLASHING_RESTRICTED 2
+GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVALID, XENO_UPGRADE_ZERO, XENO_UPGRADE_ONE, XENO_UPGRADE_TWO, XENO_UPGRADE_THREE, XENO_UPGRADE_FOUR, XENO_UPGRADE_MANIFESTATION))
 
 //=================================================
 
@@ -180,10 +187,15 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define LIMB_ROBOT (1<<3)
 #define LIMB_SPLINTED (1<<4)
 #define LIMB_NECROTIZED (1<<5) //necrotizing limb, nerves are dead.
-#define LIMB_MUTATED (1<<6) //limb is deformed by mutations
-#define LIMB_AMPUTATED (1<<7) //limb was amputated cleanly or destroyed limb was cleaned up, thus causing no pain
-#define LIMB_REPAIRED (1<<8) //we just repaired the bone, stops the gelling after setting
-#define LIMB_STABILIZED (1<<9) //certain suits will support a broken limb while worn such as the b18
+#define LIMB_AMPUTATED (1<<6) //limb was amputated cleanly or destroyed limb was cleaned up, thus causing no pain
+#define LIMB_REPAIRED (1<<7) //we just repaired the bone, stops the gelling after setting
+#define LIMB_STABILIZED (1<<8) //certain suits will support a broken limb while worn such as the b18
+
+//limb_wound_status
+#define LIMB_WOUND_BANDAGED (1<<0)
+#define LIMB_WOUND_SALVED (1<<1)
+#define LIMB_WOUND_DISINFECTED (1<<2)
+#define LIMB_WOUND_CLAMPED (1<<3)
 
 /////////////////MOVE DEFINES//////////////////////
 #define MOVE_INTENT_WALK 0
@@ -203,8 +215,19 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define ORGAN_EYES 6
 #define ORGAN_APPENDIX 7
 
+#define ORGAN_HEALTHY 0
+#define ORGAN_BRUISED 1
+#define ORGAN_BROKEN 2
+
+//Brain Damage defines
+#define BRAIN_DAMAGE_MILD 20
+#define BRAIN_DAMAGE_SEVERE 100
+#define BRAIN_DAMAGE_DEATH 200
+
 ///////////////SURGERY DEFINES///////////////
-#define SPECIAL_SURGERY_INVALID "special_surgery_invalid"
+#define SURGERY_CANNOT_USE 0
+#define SURGERY_CAN_USE 1
+#define SURGERY_INVALID 2
 
 #define NECRO_TREAT_MIN_DURATION 40
 #define NECRO_TREAT_MAX_DURATION 60
@@ -288,7 +311,13 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define FACIAL_CAUTERISE_MIN_DURATION 60
 #define FACIAL_CAUTERISE_MAX_DURATION 80
 
-#define LIMB_PRINTING_TIME 550
+#define SUTURE_MIN_DURATION 80
+#define SUTURE_MAX_DURATION 90
+
+#define DEFAT_MIN_DURATION 120
+#define DEFAT_MAX_DURATION 150
+
+#define LIMB_PRINTING_TIME 30
 #define LIMB_METAL_AMOUNT 125
 
 //How long it takes for a human to become undefibbable
@@ -300,40 +329,42 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define NO_BREATHE (1<<1)
 #define NO_SCAN (1<<2)
 #define NO_PAIN (1<<3)
-#define NO_SLIP (1<<4)
-#define NO_OVERDOSE (1<<5)
-#define NO_POISON (1<<6)
-#define NO_CHEM_METABOLIZATION (1<<7)
-#define HAS_SKIN_TONE (1<<8)
-#define HAS_SKIN_COLOR (1<<9)
-#define HAS_LIPS (1<<10)
-#define HAS_UNDERWEAR (1<<11)
-#define HAS_NO_HAIR (1<<12)
-#define IS_PLANT (1<<13)
-#define IS_SYNTHETIC (1<<14)
-#define NO_STAMINA (1<<15)
-#define DETACHABLE_HEAD (1<<16)
-#define USES_ALIEN_WEAPONS (1<<17)
-#define NO_DAMAGE_OVERLAY (1<<18)
-#define CAN_VENTCRAWL (1<<19)
+#define NO_OVERDOSE (1<<4)
+#define NO_POISON (1<<5)
+#define NO_CHEM_METABOLIZATION (1<<6)
+#define HAS_SKIN_TONE (1<<7)
+#define HAS_SKIN_COLOR (1<<8)
+#define HAS_LIPS (1<<9)
+#define HAS_UNDERWEAR (1<<10)
+#define HAS_NO_HAIR (1<<11)
+#define IS_PLANT (1<<12)
+#define IS_SYNTHETIC (1<<13)
+#define NO_STAMINA (1<<14)
+#define DETACHABLE_HEAD (1<<15)
+#define USES_ALIEN_WEAPONS (1<<16)
+#define NO_DAMAGE_OVERLAY (1<<17)
+#define CAN_VENTCRAWL (1<<18)
+#define HEALTH_HUD_ALWAYS_DEAD (1<<19)
+#define PARALYSE_RESISTANT (1<<20)
+#define ROBOTIC_LIMBS (1<<21)
+#define GREYSCALE_BLOOD (1<<22)
+#define IS_INSULATED (1<<23)
+
 //=================================================
 
 //Some on_mob_life() procs check for alien races.
 #define IS_HUMAN (1<<0)
 #define IS_XENO (1<<1)
-#define IS_VOX (1<<2)
-#define IS_SKRELL (1<<3)
-#define IS_UNATHI (1<<4)
-#define IS_HORROR (1<<5)
-#define IS_MOTH (1<<6)
-#define IS_SECTOID (1<<7)
-#define IS_MONKEY (1<<8)
+#define IS_MOTH (1<<3)
+#define IS_SECTOID (1<<4)
+#define IS_MONKEY (1<<5)
 //=================================================
 
 //AFK status
 #define MOB_CONNECTED 0
 #define MOB_RECENTLY_DISCONNECTED 1 //Still within the grace period.
 #define MOB_DISCONNECTED 2
+#define MOB_AGHOSTED 3 //This body was just aghosted, do not offer it
 
 //Mob sizes
 #define MOB_SIZE_SMALL 0
@@ -371,10 +402,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 
 // Human Overlay Indexes
-#define HEADBITE_LAYER 30
-#define LASER_LAYER 29 //For sniper targeting laser
-#define MOTH_WINGS_LAYER 28
-#define MUTANTRACE_LAYER 27
+#define LASER_LAYER 28 //For sniper targeting laser
+#define MOTH_WINGS_LAYER 27
 #define MUTATIONS_LAYER 26
 #define DAMAGE_LAYER 25
 #define UNIFORM_LAYER 24
@@ -385,15 +414,16 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define BELT_LAYER 19
 #define GLASSES_LAYER 18
 #define SUIT_LAYER 17 //Possible make this an overlay of somethign required to wear a belt?
-#define SUIT_STORE_LAYER 16
-#define BACK_LAYER 15
-#define HAIR_LAYER 14 //TODO: make part of head layer?
-#define EARS_LAYER 13
-#define FACEMASK_LAYER 12
-#define GOGGLES_LAYER 11	//For putting Ballistic goggles and potentially other things above masks
-#define HEAD_LAYER 10
-#define COLLAR_LAYER 9
-#define HANDCUFF_LAYER 8
+#define HAIR_LAYER 16 //TODO: make part of head layer?
+#define EARS_LAYER 15
+#define FACEMASK_LAYER 14
+#define GOGGLES_LAYER 13	//For putting Ballistic goggles and potentially other things above masks
+#define HEAD_LAYER 12
+#define COLLAR_LAYER 11
+#define SUIT_STORE_LAYER 10
+#define BACK_LAYER 9
+#define CAPE_LAYER 8
+#define HANDCUFF_LAYER 7
 #define L_HAND_LAYER 6
 #define R_HAND_LAYER 5
 #define BURST_LAYER 4 //Chestburst overlay
@@ -401,7 +431,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define TARGETED_LAYER 2 //for target sprites when held at gun point, and holo cards.
 #define FIRE_LAYER 1 //If you're on fire
 
-#define TOTAL_LAYERS 30
+#define TOTAL_LAYERS 28
 
 #define MOTH_WINGS_BEHIND_LAYER 1
 
@@ -424,12 +454,15 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 //Xeno Defines
 
+#define XENO_DEFAULT_VENT_ENTER_TIME 4.5 SECONDS //Standard time for a xeno to enter a vent.
+#define XENO_DEFAULT_VENT_EXIT_TIME 2 SECONDS //Standard time for a xeno to exit a vent.
 #define XENO_DEFAULT_ACID_PUDDLE_DAMAGE 14 //Standard damage dealt by acid puddles
 #define XENO_ACID_WELL_FILL_TIME 2 SECONDS //How long it takes to add a charge to an acid pool
-#define XENO_ACID_WELL_FILL_COST 200 //Cost in plasma to apply a charge to an acid pool
+#define XENO_ACID_WELL_FILL_COST 150 //Cost in plasma to apply a charge to an acid pool
 #define XENO_ACID_WELL_MAX_CHARGES 5 //Maximum number of charges for the acid well
 
 #define HIVE_CAN_HIJACK (1<<0)
+#define HIVE_CAN_COLLAPSE_FROM_SILO (1<<1)
 
 #define XENO_PULL_CHARGE_TIME 2 SECONDS
 #define XENO_SLOWDOWN_REGEN 0.4
@@ -443,11 +476,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define PLASMA_TRANSFER_AMOUNT 100
 
-#define XENO_LARVAL_AMOUNT_RECURRING 10
-#define XENO_LARVAL_CHANNEL_TIME 0.5 SECONDS
-
-#define XENO_NEURO_AMOUNT_RECURRING 10
-#define XENO_NEURO_CHANNEL_TIME 0.5 SECONDS
+#define XENO_NEURO_AMOUNT_RECURRING 5
+#define XENO_NEURO_CHANNEL_TIME 0.25 SECONDS
 
 #define XENO_HEALTH_ALERT_TRIGGER_PERCENT 0.25 //If a xeno is damaged while its current hit points are less than this percent of its maximum, we send out an alert to the hive
 #define XENO_HEALTH_ALERT_TRIGGER_THRESHOLD 50 //If a xeno is damaged while its current hit points are less than this amount, we send out an alert to the hive
@@ -458,6 +488,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define XENO_SILO_DAMAGE_POINTER_DURATION 10 SECONDS //How long the alert directional pointer lasts when silos are damaged
 #define XENO_SILO_DETECTION_COOLDOWN 1 MINUTES
 #define XENO_SILO_DETECTION_RANGE 10//How far silos can detect hostiles
+#define XENO_HIVEMIND_DETECTION_RANGE 10 //How far out (in tiles) can the hivemind detect hostiles
+#define XENO_HIVEMIND_DETECTION_COOLDOWN 1 MINUTES
 
 #define XENO_PARALYZE_NORMALIZATION_MULTIPLIER 5 //Multiplies an input to normalize xeno paralyze duration times.
 #define XENO_STUN_NORMALIZATION_MULTIPLIER 2 //Multiplies an input to normalize xeno stun duration times.
@@ -466,25 +498,40 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CAN_HOLD_TWO_HANDS 1
 #define CAN_HOLD_ONE_HAND 2
 
+#define CASTE_INNATE_HEALING (1<<0) // Xenomorphs heal outside of weeds. Larvas, for example.
+#define CASTE_FIRE_IMMUNE (1<<1)
+#define CASTE_EVOLUTION_ALLOWED (1<<2)
+#define CASTE_IS_INTELLIGENT (1<<3) // A hive leader or able to use more human controls
+#define CASTE_DO_NOT_ALERT_LOW_LIFE (1<<4) //Doesn't alert the hive when at low life, and is quieter when dying
+#define CASTE_HIDE_IN_STATUS (1<<5)
+#define CASTE_QUICK_HEAL_STANDING (1<<6) // Xenomorphs heal standing same if they were resting.
+#define CASTE_INNATE_PLASMA_REGEN (1<<7) // Xenos get full plasma regardless if they are on weeds or not
+#define CASTE_ACID_BLOOD (1<<8) //The acid blood effect which damages humans near xenos that take damage
+#define CASTE_IS_STRONG (1<<9)//can tear open acided walls without being big
+#define CASTE_IS_BUILDER (1<<10) //whether we are classified as a builder caste
+#define CASTE_IS_A_MINION (1<<11) //That's a dumb ai
+#define CASTE_PLASMADRAIN_IMMUNE (1<<12)
+#define CASTE_NOT_IN_BIOSCAN (1<<13) // xenos with this flag aren't registered towards bioscan
+#define CASTE_DO_NOT_ANNOUNCE_DEATH (1<<14) // xenos with this flag wont be announced to hive when dying
+
 #define CASTE_CAN_HOLD_FACEHUGGERS (1<<0)
 #define CASTE_CAN_VENT_CRAWL (1<<1)
 #define CASTE_CAN_BE_QUEEN_HEALED (1<<2)
 #define CASTE_CAN_BE_GIVEN_PLASMA (1<<3)
-#define CASTE_INNATE_HEALING (1<<4) // Xenomorphs heal outside of weeds. Larvas, for example.
-#define CASTE_FIRE_IMMUNE (1<<5)
-#define CASTE_EVOLUTION_ALLOWED (1<<6)
-#define CASTE_IS_INTELLIGENT (1<<7) // A hive leader or able to use more human controls
-#define CASTE_DECAY_PROOF (1<<8)
-#define CASTE_CAN_BE_LEADER (1<<9)
-#define CASTE_HIDE_IN_STATUS (1<<10)
-#define CASTE_QUICK_HEAL_STANDING (1<<11) // Xenomorphs heal standing same if they were resting.
-#define CASTE_CAN_HEAL_WITHOUT_QUEEN (1<<12) // Xenomorphs can heal even without a queen on the same z level
-#define CASTE_INNATE_PLASMA_REGEN (1<<13) // Xenos get full plasma regardless if they are on weeds or not
-#define CASTE_ACID_BLOOD (1<<13) //The acid blood effect which damages humans near xenos that take damage
-#define CASTE_CAN_HOLD_JELLY (1<<14)//whether we can hold fireproof jelly in our hands
-#define CASTE_IS_STRONG (1<<15)//can tear open acided walls without being big
-#define CASTE_CAN_CORRUPT_GENERATOR (1<<16) //Can corrupt a generator
-#define CASTE_IS_BUILDER (1<<17) //whether we are classified as a builder caste
+#define CASTE_CAN_BE_LEADER (1<<4)
+#define CASTE_CAN_HEAL_WITHOUT_QUEEN (1<<5) // Xenomorphs can heal even without a queen on the same z level
+#define CASTE_CAN_HOLD_JELLY (1<<6)//whether we can hold fireproof jelly in our hands
+#define CASTE_CAN_CORRUPT_GENERATOR (1<<7) //Can corrupt a generator
+#define CASTE_CAN_BECOME_KING (1<<8) //Can be choose to become a king
+#define CASTE_CAN_RIDE_CRUSHER (1<<9) //Can ride a crusher
+
+#define HIVE_STATUS_SHOW_EMPTY (1<<0)
+#define HIVE_STATUS_COMPACT_MODE (1<<1)
+#define HIVE_STATUS_SHOW_GENERAL (1<<2)
+#define HIVE_STATUS_SHOW_POPULATION (1<<3)
+#define HIVE_STATUS_SHOW_XENO_LIST (1<<4)
+#define HIVE_STATUS_SHOW_STRUCTURES (1<<5)
+#define HIVE_STATUS_DEFAULTS (HIVE_STATUS_SHOW_EMPTY | HIVE_STATUS_SHOW_GENERAL | HIVE_STATUS_SHOW_POPULATION | HIVE_STATUS_SHOW_XENO_LIST | HIVE_STATUS_SHOW_STRUCTURES)
 
 //Charge-Crush
 #define CHARGE_OFF 0
@@ -510,14 +557,22 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUNTER_POUNCE_SNEAKATTACK_DELAY 30 //3 seconds before we can sneak attack
 #define HANDLE_STEALTH_CHECK 1
 #define HANDLE_SNEAK_ATTACK_CHECK 3
-#define HUNTER_SNEAK_SLASH_ARMOR_PEN 0.8 //1 - this value = the actual penetration
+#define HUNTER_SNEAK_SLASH_ARMOR_PEN 20 //1 - this value = the actual penetration
 #define HUNTER_SNEAK_ATTACK_RUN_DELAY 2 SECONDS
 #define HUNTER_SNEAKATTACK_MAX_MULTIPLIER 2.0
 #define HUNTER_SNEAKATTACK_RUN_REDUCTION 0.2
 #define HUNTER_SNEAKATTACK_WALK_INCREASE 1
 #define HUNTER_SNEAKATTACK_MULTI_RECOVER_DELAY 10
-#define HUNTER_MARK_WINDUP						1 SECONDS //Windup of the Hunter's Mark
-#define HUNTER_PSYCHIC_TRACE_COOLDOWN			5 SECONDS //Cooldown of the Hunter's Psychic Trace, and duration of its arrow
+#define HUNTER_PSYCHIC_TRACE_COOLDOWN 5 SECONDS //Cooldown of the Hunter's Psychic Trace, and duration of its arrow
+#define HUNTER_SILENCE_STAGGER_STACKS 1 //Silence imposes this many stagger stacks
+#define HUNTER_SILENCE_SENSORY_STACKS 7 //Silence imposes this many eyeblur and deafen stacks.
+#define HUNTER_SILENCE_MUTE_DURATION 10 SECONDS //Silence imposes this many seconds of the mute status effect.
+#define HUNTER_SILENCE_RANGE 5 //Range in tiles of the Hunter's Silence.
+#define HUNTER_SILENCE_AOE 2 //AoE size of Silence in tiles
+#define HUNTER_SILENCE_MULTIPLIER 1.5 //Multiplier of stacks vs Hunter's Mark targets
+#define HUNTER_SILENCE_WHIFF_COOLDOWN 3 SECONDS //If we fail to target anyone with Silence, partial cooldown to prevent spam.
+#define HUNTER_SILENCE_COOLDOWN 30 SECONDS //Silence's cooldown
+#define HUNTER_VENT_CRAWL_TIME 2 SECONDS //Hunters can enter vents fast
 
 //Ravager defines:
 #define RAV_CHARGESPEED 2
@@ -527,7 +582,16 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define RAVAGER_ENDURE_DURATION				10 SECONDS
 #define RAVAGER_ENDURE_DURATION_WARNING		0.7
-#define RAVAGER_ENDURE_HP_LIMIT				-200
+#define RAVAGER_ENDURE_HP_LIMIT				-100
+
+#define RAVAGER_RAGE_DURATION							10 SECONDS
+#define RAVAGER_RAGE_WARNING							0.7
+#define RAVAGER_RAGE_POWER_MULTIPLIER					0.5 //How much we multiply our % of missing HP by to determine Rage Power
+#define RAVAGER_RAGE_MIN_HEALTH_THRESHOLD				0.5 //The maximum % of HP we can have to trigger Rage
+#define RAVAGER_RAGE_SUPER_RAGE_THRESHOLD				0.5 //The minimum amount of Rage Power we need to trigger the bonus Rage effects
+#define RAVAGER_RAGE_ENDURE_INCREASE_PER_SLASH			2 SECONDS //The amount of time each slash during Super Rage increases Endure's duration
+
+#define VAMPIRISM_MOB_DURATION 45 SECONDS
 
 //crusher defines
 #define CRUSHER_STOMP_LOWER_DMG 40
@@ -536,23 +600,51 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CRUSHER_CHARGE_RAZORWIRE_MULTI 100
 #define CRUSHER_CHARGE_TANK_MULTI 100
 
+//gorger defines
+#define GORGER_REGURGITATE_DELAY 1 SECONDS
+#define GORGER_DEVOUR_DELAY 2 SECONDS
+#define GORGER_DRAIN_INSTANCES 2 // amuont of times the target is drained
+#define GORGER_DRAIN_DELAY 1 SECONDS // time needed to drain a marine once
+#define GORGER_DRAIN_HEAL 40 // overheal gained each time the target is drained
+#define GORGER_DRAIN_BLOOD_DRAIN 20 // amount of plasma drained when feeding on something
+#define GORGER_TRANSFUSION_HEAL 0.3 // in %
+#define GORGER_REJUVENATE_DURATION -1
+#define GORGER_REJUVENATE_COST 20
+#define GORGER_REJUVENATE_SLOWDOWN 6
+#define GORGER_REJUVENATE_HEAL 0.05 //in %
+#define GORGER_REJUVENATE_THRESHOLD 0.10 //in %
+#define GORGER_PSYCHIC_LINK_CHANNEL 10 SECONDS
+#define GORGER_PSYCHIC_LINK_RANGE 15
+#define GORGER_PSYCHIC_LINK_REDIRECT 0.5 //in %
+#define GORGER_PSYCHIC_LINK_MIN_HEALTH 0.2 //in %
+#define GORGER_CARNAGE_HEAL 0.2
+#define GORGER_CARNAGE_MOVEMENT -0.5
+#define GORGER_FEAST_DURATION -1 // lasts indefinitely, self-cancelled when insufficient plasma left
+
 //carrier defines
 #define CARRIER_HUGGER_THROW_SPEED 2
 #define CARRIER_HUGGER_THROW_DISTANCE 5
-#define CARRIER_SLASH_HUGGER_DAMAGE 23
+#define CARRIER_SLASH_HUGGER_DAMAGE 25
 
 //Defiler defines
 #define DEFILER_GAS_CHANNEL_TIME 0.5 SECONDS
 #define DEFILER_GAS_DELAY 1 SECONDS
-#define DEFILER_STING_CHANNEL_TIME 1.5 SECONDS
-#define DEFILER_CLAW_AMOUNT 6.5
-#define DEFILER_STING_AMOUNT_RECURRING 10
 #define DEFILER_REAGENT_SLASH_COUNT 3
-#define DEFILER_REAGENT_SLASH_INJECT_AMOUNT 4
+#define DEFILER_REAGENT_SLASH_INJECT_AMOUNT 7
 #define DEFILER_REAGENT_SLASH_DURATION 4 SECONDS
+#define DEFILER_TRANSVITOX_CAP 180 //Max toxin damage transvitox will allow
+#define DEFILER_DEFILE_CHANNEL_TIME 0.5 SECONDS //Wind up time for the Defile ability
+#define DEFILER_DEFILE_FAIL_COOLDOWN 5 SECONDS //Time Defile goes on cooldown for when it fails
+#define DEFILER_DEFILE_STRENGTH_MULTIPLIER 0.5 //Base multiplier for determining the power of Defile
+#define DEFILER_SANGUINAL_DAMAGE 1 //Damage dealt per tick per xeno toxin by the sanguinal toxin
+#define DEFILER_SANGUINAL_SMOKE_MULTIPLIER 0.03 //Amount the defile power is multiplied by which determines sanguinal smoke strength/size
+#define TENTACLE_ABILITY_RANGE 5
 
 //Drone defines
 #define DRONE_HEAL_RANGE 1
+#define AUTO_WEEDING_MIN_DIST 4 //How far the xeno must be from the last spot to auto weed
+#define RESIN_SELF_TIME 2 SECONDS //Time it takes to apply resin jelly on themselves
+#define RESIN_OTHER_TIME 1 SECONDS //Time it takes to apply resin jelly to other xenos
 
 //Boiler defines
 #define BOILER_LUMINOSITY_BASE 0
@@ -562,7 +654,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define BOILER_LUMINOSITY_AMMO_CORROSIVE_COLOR LIGHT_COLOR_GREEN
 
 //Hivelord defines
-
 #define HIVELORD_TUNNEL_DISMANTLE_TIME 3 SECONDS
 #define HIVELORD_TUNNEL_MIN_TRAVEL_TIME 2 SECONDS
 #define HIVELORD_TUNNEL_SMALL_MAX_TRAVEL_TIME 4 SECONDS
@@ -574,12 +665,16 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HIVELORD_HEALING_INFUSION_TICKS 10
 
 //Shrike defines
-
 #define SHRIKE_FLAG_PAIN_HUD_ON (1<<0)
 #define SHRIKE_CURE_HEAL_MULTIPLIER 10
 #define SHRIKE_HEAL_RANGE 3
 
 //Drone defines
+#define DRONE_BASE_SALVE_HEAL 50
+#define DRONE_ESSENCE_LINK_WINDUP 3 SECONDS
+#define DRONE_ESSENCE_LINK_RANGE 6 // How far apart the linked xenos can be, in tiles. Going past this deactivates the buff.
+#define DRONE_ESSENCE_LINK_REGEN 0.012 // Amount of health regen given as a percentage.
+#define DRONE_ESSENCE_LINK_SHARED_HEAL 0.1 // The effectiveness of heals when applied to the other linked xeno, as a percentage
 
 //Runner defines
 #define RUNNER_EVASION_DURATION 2 SECONDS //How long Evasion lasts.
@@ -588,32 +683,35 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 //Wraith defines
 
-#define WRAITH_PLACE_WARP_BEACON_WINDUP 3 SECONDS
-#define WRAITH_PLACE_WARP_BEACON_FAIL_COOLDOWN_OVERRIDE 1 SECONDS //When we abort or fail to place a warp beacon, it goes on cooldown for awhile to prevent spam
-
-#define WRAITH_HYPERPOSITION_MIN_WINDUP 0.5 SECONDS
-#define WRAITH_HYPERPOSITION_MAX_WINDUP 5 SECONDS
-#define WRAITH_HYPERPOSITION_COOLDOWN_OVERRIDE 1 SECONDS //When we abort or fail to use hyperposition, it goes on cooldown to prevent spam
-
-#define WRAITH_PHASE_SHIFT_WINDUP 2 SECONDS
-#define WRAITH_PHASE_SHIFT_DURATION 10 SECONDS
-#define WRAITH_PHASE_SHIFT_COOLDOWN 20 SECONDS
-#define WRAITH_PHASE_SHIFT_DURATION_WARNING 0.7
-#define WRAITH_PHASE_SHIFT_ALPHA 128 //50% transparency
-
 #define WRAITH_BLINK_DRAG_NONFRIENDLY_MULTIPLIER 20 //The amount we multiply the cooldown by when we teleport while dragging a non-friendly target
 #define WRAITH_BLINK_DRAG_FRIENDLY_MULTIPLIER 4 //The amount we multiply the cooldown by when we teleport while dragging a friendly target
 #define WRAITH_BLINK_RANGE 3
 
 #define WRAITH_BANISH_BASE_DURATION 10 SECONDS
-#define WRAITH_BANISH_RANGE 3
 #define WRAITH_BANISH_NONFRIENDLY_LIVING_MULTIPLIER 0.5
 #define WRAITH_BANISH_VERY_SHORT_MULTIPLIER 0.3
 
 #define WRAITH_TELEPORT_DEBUFF_STAGGER_STACKS 2 //Stagger and slow stacks applied to adjacent living hostiles before/after a teleport
 #define WRAITH_TELEPORT_DEBUFF_SLOWDOWN_STACKS 3 //Stagger and slow stacks applied to adjacent living hostiles before/after a teleport
 
-#define DEFILER_TRANSVITOX_CAP 180 //Max toxin damage transvitox will allow
+//Warrior defines
+
+#define WARRIOR_COMBO_THRESHOLD 2 //After how many abilities should warrior get an empowered cast (2 meaning the 3rd one is empowered)
+#define WARRIOR_COMBO_FADEOUT_TIME 10 SECONDS //How much time does it take for a combo to completely disappear
+
+//Larva defines
+#define LARVA_VENT_CRAWL_TIME 1 SECONDS //Larva can crawl into vents fast
+
+//Widow Defines
+#define WIDOW_SPEED_BONUS 1 // How much faster widow moves while she has wall_speedup element
+#define BURROW_FIRE_RESIST_MODIFIER 20 // How much fire resistance widow and spiderlings have while burrowed
+#define WIDOW_WEB_HOOK_RANGE 10 // how far the web hook can reach
+#define WIDOW_WEB_HOOK_MIN_RANGE 3 // the minimum range that the hook must travel to use the ability
+#define WIDOW_WEB_HOOK_SPEED 3 // how fast widow yeets herself when using web hook
+
+//Spiderling defines
+#define TIME_TO_DISSOLVE 5 SECONDS
+#define SPIDERLING_RAGE_RANGE 10 // how close a nearby human has to be in order to be targeted
 
 //misc
 
@@ -634,6 +732,11 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define BRAVO_SQUAD_REBEL "bravo_squad_rebel"
 #define CHARLIE_SQUAD_REBEL "charlie_squad_rebel"
 #define DELTA_SQUAD_REBEL "delta_squad_rebel"
+
+#define ZULU_SQUAD "zulu_squad"
+#define YANKEE_SQUAD "yankee_squad"
+#define XRAY_SQUAD "xray_squad"
+#define WHISKEY_SQUAD "whiskey_squad"
 
 #define TYPING_INDICATOR_LIFETIME 3 SECONDS	//Grace period after which typing indicator disappears regardless of text in chatbar.
 
@@ -696,3 +799,29 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 //do_mob() flags
 #define IGNORE_LOC_CHANGE (1<<0)
 #define IGNORE_HAND (1<<1)
+
+#define TIER_ONE_YOUNG_THRESHOLD 60
+#define TIER_ONE_MATURE_THRESHOLD TIER_ONE_YOUNG_THRESHOLD + 120
+#define TIER_ONE_ELDER_THRESHOLD TIER_ONE_MATURE_THRESHOLD + 240
+#define TIER_ONE_ANCIENT_THRESHOLD TIER_ONE_ELDER_THRESHOLD + 240
+
+#define TIER_TWO_YOUNG_THRESHOLD 120
+#define TIER_TWO_MATURE_THRESHOLD TIER_TWO_YOUNG_THRESHOLD + 240
+#define TIER_TWO_ELDER_THRESHOLD TIER_TWO_MATURE_THRESHOLD + 480
+#define TIER_TWO_ANCIENT_THRESHOLD TIER_TWO_ELDER_THRESHOLD + 240
+
+#define TIER_THREE_YOUNG_THRESHOLD 250
+#define TIER_THREE_MATURE_THRESHOLD TIER_THREE_YOUNG_THRESHOLD + 500
+#define TIER_THREE_ELDER_THRESHOLD TIER_THREE_MATURE_THRESHOLD + 1000
+#define TIER_THREE_ANCIENT_THRESHOLD TIER_THREE_ELDER_THRESHOLD + 100
+
+
+// Pheromones and buff orders
+
+#define AURA_XENO_RECOVERY "Recovery"
+#define AURA_XENO_WARDING "Warding"
+#define AURA_XENO_FRENZY "Frenzy"
+
+#define AURA_HUMAN_MOVE "move"
+#define AURA_HUMAN_HOLD "hold"
+#define AURA_HUMAN_FOCUS "focus"

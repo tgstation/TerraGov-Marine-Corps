@@ -1,0 +1,18 @@
+{
+	"": [
+		{
+			"type": "icon_state",
+			"icon_state": "pill_box",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		},
+		[
+			{
+				"type": "icon_state",
+				"icon_state": "pill_box_label",
+				"blend_mode": "overlay",
+				"color_ids": [ 2 ]
+			}
+		]
+	]
+}

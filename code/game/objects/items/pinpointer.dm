@@ -1,5 +1,5 @@
 /obj/item/pinpointer
-	name = "pinpointer"
+	name = "Xeno structure pinpointer"
 	icon_state = "pinoff"
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
@@ -10,17 +10,20 @@
 	var/atom/movable/target
 	var/list/tracked_list
 
+/obj/item/pinpointer/Initialize()
+	. = ..()
+	tracked_list = GLOB.xeno_critical_structure
 
 /obj/item/pinpointer/proc/set_target(mob/living/user)
 	if(!length(tracked_list))
-		to_chat(user, "<span class='warning'>No traceable signals found!</span>")
+		to_chat(user, span_warning("No traceable signals found!"))
 		return
 	target = tgui_input_list(user, "Select the item you wish to track.", "Pinpointer", tracked_list)
 	if(QDELETED(target))
 		return
 	var/turf/pinpointer_loc = get_turf(src)
 	if(target.z != pinpointer_loc.z)
-		to_chat(user, "<span class='warning'>Chosen target signal too weak. Choose another.</span>")
+		to_chat(user, span_warning("Chosen target signal too weak. Choose another."))
 		target = null
 		return
 
@@ -38,7 +41,7 @@
 		return
 	active = TRUE
 	START_PROCESSING(SSobj, src)
-	to_chat(user, "<span class='notice'>You activate the pinpointer</span>")
+	to_chat(user, span_notice("You activate the pinpointer"))
 
 
 /obj/item/pinpointer/proc/deactivate(mob/living/user)
@@ -46,7 +49,7 @@
 	target = null
 	STOP_PROCESSING(SSobj, src)
 	icon_state = "pinoff"
-	to_chat(user, "<span class='notice'>You deactivate the pinpointer</span>")
+	to_chat(user, span_notice("You deactivate the pinpointer"))
 
 
 /obj/item/pinpointer/process()
@@ -66,29 +69,3 @@
 		if(16 to INFINITY)
 			icon_state = "pinonfar"
 
-/obj/item/pinpointer/crash
-	name = "nuke pinpointer"
-	desc = "A pinpointer designed to detect the encrypted emissions of nuclear devices"
-
-
-/obj/item/pinpointer/crash/Initialize()
-	. = ..()
-	tracked_list += GLOB.nuke_disk_generators
-	tracked_list += GLOB.nuke_list
-
-
-/obj/item/pinpointer/crash/examine(mob/user)
-	. = ..()
-	for(var/i in GLOB.nuke_list)
-		var/obj/machinery/nuclearbomb/bomb = i
-		if(!bomb.timer_enabled)
-			continue
-		to_chat(user, "Extreme danger.  Arming signal detected.   Time remaining: [bomb.timeleft]")
-
-/obj/item/pinpointer/pool
-	name = "pool pinpointer"
-	desc = "A pinpointer able to detect the psychic energy emmaning from spawning pools"
-
-/obj/item/pinpointer/pool/Initialize()
-	. = ..()
-	tracked_list = GLOB.xeno_resin_silos

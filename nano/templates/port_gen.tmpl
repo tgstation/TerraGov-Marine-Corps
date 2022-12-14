@@ -21,11 +21,11 @@
 	  <div class="itemContent">
 		<div class="statusValue">
 			{{if data.sheets > 5}}
-				<span class='good'>{{:data.sheets}}</span>
+				[span_good("{{:data.sheets}}")]
 			{{else data.sheets > 0}}
-				<span class='average'>{{:data.sheets}}</span>
+				[span_average("{{:data.sheets}}")]
 			{{else}}
-				<span class='bad'>{{:data.sheets}}</span>
+				[span_bad("{{:data.sheets}}")]
 			{{/if}}
 			&nbsp;
 		</div>
@@ -34,7 +34,7 @@
 		{{/if}}
 	  </div>
 	</div>
-	<div class="item"> 
+	<div class="item">
 	  <div class="itemLabel">
 		Current sheet level:
 	  </div>
@@ -94,7 +94,7 @@
 		{{if data.connected}}
 			<span>{{:data.power_available}}</span>
 		{{else}}
-			<span class='bad'>Unconnected</span>
+			[span_bad("Unconnected")]
 		{{/if}}
 	  </div>
 	</div>

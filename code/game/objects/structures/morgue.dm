@@ -13,16 +13,15 @@
 	var/tray_path = /obj/structure/morgue_tray
 	var/morgue_open = 0
 	anchored = TRUE
+	coverage = 20
 
 /obj/structure/morgue/Initialize()
 	. = ..()
 	connected = new tray_path(src)
 
 /obj/structure/morgue/Destroy()
-	. = ..()
-	if(connected)
-		qdel(connected)
-		connected = null
+	QDEL_NULL(connected)
+	return ..()
 
 /obj/structure/morgue/update_icon()
 	if (morgue_open)
@@ -45,9 +44,6 @@
 		A.forceMove(loc)
 		ex_act(severity)
 	qdel(src)
-
-/obj/structure/morgue/attack_paw(mob/living/carbon/human/user)
-	toggle_morgue(user)
 
 /obj/structure/morgue/attack_hand(mob/living/user)
 	. = ..()
@@ -131,11 +127,8 @@
 		linked_morgue = morgue_source
 
 /obj/structure/morgue_tray/Destroy()
-	. = ..()
 	linked_morgue = null
-
-/obj/structure/morgue_tray/attack_paw(mob/living/carbon/human/user)
-	return src.attack_hand(user)
+	return ..()
 
 /obj/structure/morgue_tray/attack_hand(mob/living/user)
 	. = ..()
@@ -154,7 +147,7 @@
 		return
 	O.forceMove(loc)
 	if (user != O)
-		visible_message("<span class='warning'>[user] stuffs [O] into [src]!</span>", null, null, 3)
+		visible_message(span_warning("[user] stuffs [O] into [src]!"), null, null, 3)
 
 
 
@@ -175,7 +168,7 @@
 
 /obj/structure/morgue/crematorium/toggle_morgue(mob/user)
 	if (cremating)
-		to_chat(user, "<span class='warning'>It's locked.</span>")
+		to_chat(user, span_warning("It's locked."))
 		return
 	..()
 
@@ -198,9 +191,9 @@
 		return
 
 	if(contents.len <= 1) //1 because the tray is inside.
-		visible_message("<span class='warning'> You hear a hollow crackle.</span>")
+		visible_message(span_warning(" You hear a hollow crackle."))
 	else
-		visible_message("<span class='warning'> You hear a roar as the crematorium activates.</span>")
+		visible_message(span_warning(" You hear a roar as the crematorium activates."))
 
 		cremating = 1
 
@@ -223,7 +216,7 @@
 			qdel(O)
 
 		new /obj/effect/decal/cleanable/ash(src)
-		sleep(30)
+		sleep(3 SECONDS)
 		cremating = 0
 		update_icon()
 		playsound(src.loc, 'sound/machines/ding.ogg', 25, 1)
@@ -253,7 +246,7 @@
 				if(!C.cremating)
 					C.cremate(user)
 	else
-		to_chat(user, "<span class='warning'>Access denied.</span>")
+		to_chat(user, span_warning("Access denied."))
 
 
 

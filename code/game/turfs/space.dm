@@ -6,13 +6,10 @@
 	icon_state = "0"
 	can_bloody = FALSE
 	light_power = 0.25
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
-
 
 /turf/open/space/basic/New()	//Do not convert to Initialize
 	//This is used to optimize the map loader
 	return
-
 
 // override for space turfs, since they should never hide anything
 /turf/open/space/levelupdate()
@@ -20,36 +17,39 @@
 		if(O.level == 1)
 			O.hide(FALSE)
 
+/**
+ * Space Initialize
+ *
+ * Doesn't call parent, see [/atom/proc/Initialize].
+ * When adding new stuff to /atom/Initialize, /turf/Initialize, etc
+ * don't just add it here unless space actually needs it.
+ *
+ * There is a lot of work that is intentionally not done because it is not currently used.
+ * This includes stuff like smoothing, blocking camera visibility, etc.
+ * If you are facing some odd bug with specifically space, check if it's something that was
+ * intentionally ommitted from this implementation.
+ */
 /turf/open/space/Initialize(mapload, ...)
 	SHOULD_CALL_PARENT(FALSE) //prevent laggies
 	if(flags_atom & INITIALIZED)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	ENABLE_BITFIELD(flags_atom, INITIALIZED)
-
-	vis_contents.Cut() //removes inherited overlays
-	visibilityChanged()
-
-	var/area/A = loc
-	if(!IS_DYNAMIC_LIGHTING(src) && IS_DYNAMIC_LIGHTING(A))
-		add_overlay(/obj/effect/fullbright)
-
-	if(light_system == STATIC_LIGHT && light_power && light_range)
-		update_light()
-
-	if(opacity)
-		directional_opacity = ALL_CARDINALS
-
-	update_icon()
+	icon_state = SPACE_ICON_STATE(x, y, z)
 
 	return INITIALIZE_HINT_NORMAL
 
+/area/space/Entered(atom/movable/arrived, atom/old_loc)
+	. = ..()
+	if(isliving(arrived))
+		var/mob/living/spaceman = arrived
+		if(!spaceman.has_status_effect(/datum/status_effect/spacefreeze) && !(spaceman.status_flags & INCORPOREAL))
+			spaceman.apply_status_effect(/datum/status_effect/spacefreeze)
 
-/turf/open/space/update_icon_state()
-	icon_state = SPACE_ICON_STATE
-
-
-/turf/open/space/attack_paw(mob/living/carbon/human/user)
-	return src.attack_hand(user)
+/area/space/Exited(atom/movable/leaver, direction)
+	. = ..()
+	if(isliving(leaver))
+		var/mob/living/spaceman = leaver
+		spaceman.remove_status_effect(/datum/status_effect/spacefreeze)
 
 /turf/open/space/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -62,14 +62,14 @@
 		if(!R.use(1))
 			return
 
-		to_chat(user, "<span class='notice'>Constructing support lattice ...</span>")
+		to_chat(user, span_notice("Constructing support lattice ..."))
 		playsound(src, 'sound/weapons/genhit.ogg', 25, 1)
 		ReplaceWithLattice()
 
 	else if(istype(I, /obj/item/stack/tile/plasteel))
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice) in src
 		if(!L)
-			to_chat(user, "<span class='warning'>The plating is going to need some support.</span>")
+			to_chat(user, span_warning("The plating is going to need some support."))
 			return
 
 		var/obj/item/stack/tile/plasteel/S = I
@@ -81,18 +81,25 @@
 		S.use(1)
 
 
-/turf/open/space/Entered(atom/movable/AM, atom/oldloc)
+/turf/open/space/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
-	if(isliving(AM))
-		to_chat(AM, "<span class='danger'>The cold vacuum instantly freezes you, maybe this was a bad idea?</span>")
-		var/mob/living/spaceman = AM
-		spaceman.adjustFireLoss(600) //Death. Space shouldn't be entered.
+	if(isliving(arrived))
+		var/mob/living/spaceman = arrived
+		if(!spaceman.has_status_effect(/datum/status_effect/spacefreeze))
+			spaceman.apply_status_effect(/datum/status_effect/spacefreeze)
+
+/turf/open/space/Exited(atom/movable/leaver, direction)
+	if(isliving(leaver))
+		var/mob/living/spaceman = leaver
+		spaceman.remove_status_effect(/datum/status_effect/spacefreeze)
 
 
 /turf/open/space/sea //used on prison for flavor
 	icon = 'icons/misc/beach.dmi'
 	name = "sea"
 	icon_state = "seadeep"
+	plane = FLOOR_PLANE
 
-/turf/open/space/sea/update_icon_state()
-	return
+/turf/open/space/sea/Initialize(mapload, ...)
+	. = ..()
+	icon_state = "seadeep"

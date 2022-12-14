@@ -21,8 +21,7 @@ All ShuttleMove procs go here
 		return
 
 //	var/shuttle_dir = shuttle.dir
-	for(var/i in contents)
-		var/atom/movable/thing = i
+	for(var/atom/thing AS in contents)
 		SEND_SIGNAL(thing, COMSIG_MOVABLE_SHUTTLE_CRUSH, shuttle)
 		if(ismob(thing))
 			if(isliving(thing))
@@ -34,16 +33,17 @@ All ShuttleMove procs go here
 				if(M.pulledby)
 					M.pulledby.stop_pulling()
 				M.stop_pulling()
-				M.visible_message("<span class='warning'>[shuttle] slams into [M]!</span>")
-//				SSblackbox.record_feedback("tally", "shuttle_gib", 1, M.type)
+				M.visible_message(span_warning("[shuttle] slams into [M]!"))
 				M.gib()
-
-		else //non-living mobs shouldn't be affected by shuttles, which is why this is an else
-//			if(istype(thing, /obj/singularity) && !istype(thing, /obj/singularity/narsie)) //it's a singularity but not a god, ignore it.
-//				continue
-			//if(!thing.anchored)
-			//	step(thing, shuttle_dir)
-			//else
+			continue
+		if(ismovable(thing))
+			var/atom/movable/movable_thing = thing
+			if(movable_thing.flags_atom & SHUTTLE_IMMUNE)
+				var/old_dir = movable_thing.dir
+				movable_thing.abstract_move(src)
+				movable_thing.setDir(old_dir)
+				movable_thing.invisibility = INVISIBILITY_ABSTRACT
+				continue
 			qdel(thing)
 
 // Called on the old turf to move the turf data
@@ -57,14 +57,6 @@ All ShuttleMove procs go here
 		CRASH("A turf queued to move via shuttle somehow had no skipover in baseturfs. [src]([type]):[loc]")
 	var/depth = baseturfs.len - shuttle_boundary + 1
 	newT.CopyOnTop(src, 1, depth, TRUE)
-	//Air stuff
-//	newT.blocks_air = TRUE
-//	newT.air_update_turf(TRUE)
-//	blocks_air = TRUE
-//	air_update_turf(TRUE)
-//	if(isopenturf(newT))
-//		var/turf/open/new_open = newT
-//		new_open.copy_air_with_tile(src)
 
 	return TRUE
 
@@ -106,7 +98,10 @@ All ShuttleMove procs go here
 	if(loc != oldT) // This is for multi tile objects
 		return
 
-	loc = newT
+	if(flags_atom & SHUTTLE_IMMUNE)
+		return
+
+	abstract_move(newT)
 
 	return TRUE
 
@@ -122,7 +117,7 @@ All ShuttleMove procs go here
 	if(rotation)
 		shuttleRotate(rotation)
 
-//	update_parallax_contents()
+	update_parallax_contents()
 
 	return TRUE
 
@@ -136,7 +131,7 @@ All ShuttleMove procs go here
 	var/range = throw_force * 10
 	range = CEILING(rand(range-(range*0.1), range+(range*0.1)), 10)/10
 	var/speed = range/5
-	safe_throw_at(target, range, speed) //, force = MOVE_FORCE_EXTREMELY_STRONG)
+	safe_throw_at(target, range, speed, force = MOVE_FORCE_EXTREMELY_STRONG)
 
 /////////////////////////////////////////////////////////////////////////////////////
 
@@ -158,7 +153,7 @@ All ShuttleMove procs go here
 	//The old turf has now been given back to the area that turf originaly belonged to
 
 	var/area/old_dest_area = newT.loc
-	//parallax_movedir = old_dest_area.parallax_movedir
+	parallax_movedir = old_dest_area.parallax_movedir
 
 	old_dest_area.contents -= newT
 	contents += newT
@@ -167,7 +162,7 @@ All ShuttleMove procs go here
 
 // Called on areas after everything has been moved
 /area/proc/afterShuttleMove(new_parallax_dir)
-	//parallax_movedir = new_parallax_dir
+	parallax_movedir = new_parallax_dir
 	return TRUE
 
 /area/proc/lateShuttleMove()
@@ -250,15 +245,13 @@ All ShuttleMove procs go here
 	if(level==1)
 		hide(T.intact_tile)
 
-/************************************Item move procs************************************/
+/obj/machinery/atmospherics/components/unary/vent_pump/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
+	. = ..()
+	invisibility = initial(invisibility)
 
-///obj/item/storage/pod/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
-//	. = ..()
-	// If the pod was launched, the storage will always open. The CentCom check
-	// ignores the movement of the shuttle from the staging area on CentCom to
-	// the station as it is loaded in.
-//	if (oldT && !is_centcom_level(oldT.z))
-//		unlocked = TRUE
+/obj/machinery/atmospherics/components/unary/vent_scrubber/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
+	. = ..()
+	invisibility = initial(invisibility)
 
 /************************************Mob move procs************************************/
 
@@ -287,11 +280,6 @@ All ShuttleMove procs go here
 	if(knockdown)
 		Paralyze(knockdown)
 
-
-/mob/living/simple_animal/hostile/megafauna/onShuttleMove(turf/newT, turf/oldT, list/movement_force, move_dir, obj/docking_port/stationary/old_dock, obj/docking_port/mobile/moving_dock)
-	. = ..()
-	message_admins("Megafauna [src] [ADMIN_FLW(src)] moved via shuttle from [ADMIN_COORDJMP(oldT)] to [ADMIN_COORDJMP(loc)]")
-
 /************************************Structure move procs************************************/
 
 /obj/structure/grille/beforeShuttleMove(turf/newT, rotation, move_mode, obj/docking_port/mobile/moving_dock)
@@ -319,26 +307,7 @@ All ShuttleMove procs go here
 	if(. & MOVE_AREA)
 		. |= MOVE_CONTENTS
 
-///obj/structure/ladder/beforeShuttleMove(turf/newT, rotation, move_mode, obj/docking_port/mobile/moving_dock)
-//	. = ..()
-//	if (!(resistance_flags & INDESTRUCTIBLE))
-//		disconnect()
-
-///obj/structure/ladder/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
-//	. = ..()
-//	if (!(resistance_flags & INDESTRUCTIBLE))
-//		LateInitialize()
-
-///obj/structure/ladder/onShuttleMove(turf/newT, turf/oldT, list/movement_force, move_dir, obj/docking_port/stationary/old_dock, obj/docking_port/mobile/moving_dock)
-//	if (resistance_flags & INDESTRUCTIBLE)
-//		// simply don't be moved
-//		return FALSE
-//	return ..()
-
 /************************************Misc move procs************************************/
-
-/atom/movable/lighting_object/onShuttleMove()
-	return FALSE
 
 /obj/docking_port/mobile/beforeShuttleMove(turf/newT, rotation, move_mode, obj/docking_port/mobile/moving_dock)
 	. = ..()
@@ -349,10 +318,3 @@ All ShuttleMove procs go here
 	if(!moving_dock.can_move_docking_ports || old_dock == src)
 		return FALSE
 	. = ..()
-
-/obj/docking_port/stationary/public_mining_dock/onShuttleMove(turf/newT, turf/oldT, list/movement_force, move_dir, obj/docking_port/stationary/old_dock, obj/docking_port/mobile/moving_dock)
-	id = "mining_public" //It will not move with the base, but will become enabled as a docking point.
-
-///obj/effect/abstract/proximity_checker/onShuttleMove(turf/newT, turf/oldT, list/movement_force, move_dir, obj/docking_port/stationary/old_dock, obj/docking_port/mobile/moving_dock)
-	//timer so it only happens once
-//	addtimer(CALLBACK(monitor, /datum/proximity_monitor/proc/SetRange, monitor.current_range, TRUE), 0, TIMER_UNIQUE)

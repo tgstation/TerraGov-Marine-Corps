@@ -55,7 +55,7 @@
 		if(0)
 			return ALL_ACCESS
 		if(1)
-			return list(ACCESS_MARINE_CAPTAIN, ACCESS_MARINE_COMMANDER, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_TANK, ACCESS_MARINE_BRIDGE)//command
+			return list(ACCESS_MARINE_CAPTAIN, ACCESS_MARINE_COMMANDER, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_MECH, ACCESS_MARINE_BRIDGE)//command
 		if(2)
 			return list(ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_REMOTEBUILD)//engineering and maintenance
 		if(3)
@@ -65,7 +65,7 @@
 		if(5)
 			return list(ACCESS_MARINE_WO, ACCESS_MARINE_ARMORY, ACCESS_MARINE_BRIG)//security
 		if(6)
-			return list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_SPECPREP)//spess mahreens
+			return list(ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_LEADER,)//spess mahreens
 		if(7)
 			return list(ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)//squads
 		if(8)
@@ -130,8 +130,6 @@
 			return "Marine Squad Engineering"
 		if(ACCESS_MARINE_MEDPREP)
 			return "Marine Squad Medical"
-		if(ACCESS_MARINE_SPECPREP)
-			return "Marine Specialist"
 		if(ACCESS_MARINE_SMARTPREP)
 			return "Marine Smartgunner"
 		if(ACCESS_MARINE_LEADER)
@@ -152,8 +150,8 @@
 			return "Dropship Piloting"
 		if(ACCESS_MARINE_PILOT)
 			return "Pilot Gear"
-		if(ACCESS_MARINE_TANK)
-			return "Tank"
+		if(ACCESS_MARINE_MECH)
+			return "Mech"
 		if(ACCESS_CIVILIAN_RESEARCH)
 			return "Civilian Research"
 		if(ACCESS_CIVILIAN_LOGISTICS)
@@ -162,8 +160,6 @@
 			return "Civilian Engineering"
 		if(ACCESS_CIVILIAN_PUBLIC)
 			return "Civilian"
-		if(ACCESS_IFF_MARINE)
-			return "Crew Identification"
 
 /proc/get_centcom_access_desc(A)
 	switch(A)
@@ -179,8 +175,6 @@
 			return "NT PMC White"
 		if(ACCESS_NT_CORPORATE)
 			return "NT Executive"
-		if(ACCESS_IFF_PMC)
-			return "NT Identification"
 
 
 /proc/get_access_job_name(obj/item/card/id/ID)
@@ -207,8 +201,16 @@
 			. = size ? "" : "Civilian"
 		if("CD")
 			. = size ? "Dr. " : "Doctor"
-		if("CCMO")
+		if("PROF")
 			. = size ? "Prof. " : "Professor"
+		if("RES")
+			. = size ? "RES " : "Medical Resident"
+		if("MD")
+			. = size ? "MD " : "Medical Doctor"
+		if("CHO")
+			. = size ? "CHO " : "Chief Health Officer"
+		if("CMO")
+			. = size ? "CMO " : "Chief Medical Officer"
 		if("CMN")
 			. = size ? "CMN" : "Crewman"
 		if("PMC1")
@@ -223,8 +225,16 @@
 			. = size ? "APS " : "Assets Protection Specialist"
 		if("PMCDSL")
 			. = size ? "APTL " : "Assets Protection Team Leader"
-		if("NT")
-			. = size ? (gender == FEMALE ? "Ms. " : "Mr. ") : "Junior Executive"
+		if("NT1")
+			. = size ? "INT " : "Corporate Intern"
+		if("NT2")
+			. = size ? "ASSOC " : "Corporate Associate"
+		if("NT3")
+			. = size ? "PTNR " : "Corporate Partner"
+		if("NT4")
+			. = size ? "ANLST " : "Corporate Analyst"
+		if("NT5")
+			. = size ? "SPVR " : "Corporate Supervisor"
 		if("E1")
 			. = size ? "PVT " : "Private"
 		if("E2")
@@ -320,6 +330,8 @@
 		if("FRE2")
 			. = size ? "FRE " : "Freelancer Medic"
 		if("FRE3")
+			. = size ? "FRE " : "Freelancer Veteran"
+		if("FRE4")
 			. = size ? "FRE " : "Freelancer Leader"
 		if("CLF1")
 			. = size ? "CLF " : "CLF Standard"

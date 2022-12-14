@@ -5,7 +5,6 @@
 /area/shuttle
 	name = "Shuttle"
 	requires_power = FALSE
-	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 	always_unpowered = FALSE
 //	valid_territory = FALSE
 	icon_state = "shuttle"
@@ -25,6 +24,10 @@
 		new_baseturfs.Insert(1, /turf/baseturf_skipover/shuttle)
 
 ////////////////////////////Single-area shuttles////////////////////////////
+/area/shuttle/dropship/Initialize(mapload, ...)
+	. = ..()
+	var/area/area = get_area(src)
+	area.flags_area |= MARINE_BASE
 
 /area/shuttle/dropship/alamo
 	name = "Dropship Alamo"
@@ -40,6 +43,11 @@
 
 /area/shuttle/minidropship
 	name = "Tadpole Drop Shuttle"
+
+/area/shuttle/minidropship/Initialize(mapload, ...)
+	. = ..()
+	var/area/area = get_area(src)
+	area.flags_area |= MARINE_BASE
 
 /area/shuttle/ert
 	name = "Emergency Response Team"
@@ -59,7 +67,8 @@
 /area/shuttle/transit
 	name = "Hyperspace"
 	desc = "Weeeeee"
-	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED //Different from /tg/
+	base_lighting_alpha = 255
+
 
 /area/shuttle/escape_pod
 	name = "Escape Pod"
@@ -169,6 +178,11 @@
 	name = "Canterbury"
 	requires_power = TRUE
 	always_unpowered = FALSE
+
+/area/shuttle/canterbury/Initialize(mapload, ...)
+	. = ..()
+	var/area/area = get_area(src)
+	area.flags_area |= MARINE_BASE
 
 /area/shuttle/canterbury/cic
 	name = "Combat Information Center"

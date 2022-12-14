@@ -28,16 +28,16 @@
 		leader = H
 		var/datum/job/J = SSjob.GetJobType(/datum/job/imperial/guardsman/sergeant)
 		H.apply_assigned_role_to_spawn(J)
-		to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are a veteran of the Imperial Guard, a sergeant.\nYou lead your men to battle, and have fought many times.</span> <span class='danger'>FOR THE EMPEROR!</span></p>")
+		to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are a veteran of the Imperial Guard, a sergeant.\nYou lead your men to battle, and have fought many times.")] [span_danger("FOR THE EMPEROR!")]</p>")
 		return
 
 	if(medics < max_medics)
 		var/datum/job/J = SSjob.GetJobType(/datum/job/imperial/guardsman/medicae)
 		H.apply_assigned_role_to_spawn(J)
-		to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are a medicae of the Imperial Guard, a medic.\nYou help fellow guardsmen to live, and if they cannot be saved, you end their suffering.</span> <span class='danger'>FOR THE EMPEROR!</span></p>")
+		to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are a medicae of the Imperial Guard, a medic.\nYou help fellow guardsmen to live, and if they cannot be saved, you end their suffering.")] [span_danger("FOR THE EMPEROR!")]</p>")
 		medics++
 		return
 
 	var/datum/job/J = SSjob.GetJobType(/datum/job/imperial/guardsman)
 	H.apply_assigned_role_to_spawn(J)
-	to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are a member of the Imperial Guard, a lowly guardsman.\nThere are many like you, but you are special in your own way.\n</span><span class='danger'>FOR THE EMPEROR!</span></p>")
+	to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are a member of the Imperial Guard, a lowly guardsman.\nThere are many like you, but you are special in your own way.\n")][span_danger("FOR THE EMPEROR!")]</p>")

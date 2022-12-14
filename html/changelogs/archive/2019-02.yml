@@ -9,7 +9,7 @@
   Ghommie:
   - bugfix: Fixes facehuggers not working as intended.
   - refactor: Made facehugger code less of a flextaped 2013 content.
-  - tweak: Facehuggers will ignore human's facehugging immunity (ergo being a synth/zombie)
+  - tweak: Facehuggers will ignore human's facehugging immunity (ergo being a synth/zombies)
       when provoked by an attempt to pick them up or planted by a xeno. It still won't
       be able to impregnate immune mobs.
   - balance: anti-hugging values been fiddled with. RNG shielding has been improved,

@@ -1,8 +1,15 @@
 /obj
-	animate_movement = 2
+	animate_movement = SLIDE_STEPS
 	speech_span = SPAN_ROBOT
 	interaction_flags = INTERACT_OBJ_DEFAULT
+	resistance_flags = NONE
 
+	///damage amount to deal when this obj is attacking something
+	var/force = 0
+	///damage type to deal when this obj is attacking something
+	var/damtype = BRUTE
+	///The amount of armor penetration the object has when attacking something
+	var/penetration = 0
 	var/list/materials
 
 	/// %-reduction-based armor.
@@ -32,13 +39,16 @@
 	///Optimization for dynamic explosion block values, for things whose explosion block is dependent on certain conditions.
 	var/real_explosion_block
 
+	///odds of a projectile hitting the object, if throwpass is true and the object is dense
+	var/coverage = 50
+
 /obj/Initialize()
 	. = ..()
 	if(islist(soft_armor))
 		soft_armor = getArmor(arglist(soft_armor))
 	else if (!soft_armor)
 		// Default bio armor 100 to avoid sentinels getting free damage on sent
-		soft_armor = getArmor(bio = 100)
+		soft_armor = getArmor(bio = 100) // This is here so that walls don't die from NEUROTOXIN
 	else if (!istype(soft_armor, /datum/armor))
 		stack_trace("Invalid type [soft_armor.type] found in .soft_armor during /obj Initialize()")
 
@@ -131,11 +141,6 @@
 	return
 
 
-/obj/attack_paw(mob/living/carbon/human/user)
-	if(buckle_flags & CAN_BUCKLE)
-		return attack_hand(user)
-	return ..()
-
 
 /obj/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
@@ -173,3 +178,11 @@
 			setAnchored(var_value)
 			return TRUE
 	return ..()
+
+///Called to return an internally stored item, currently for the deployable element
+/obj/proc/get_internal_item()
+	return
+
+///Called to clear a stored item var, currently for the deployable element
+/obj/proc/clear_internal_item()
+	return

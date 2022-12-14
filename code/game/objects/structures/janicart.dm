@@ -6,7 +6,9 @@
 	anchored = FALSE
 	density = TRUE
 	drag_delay = 1
-	throwpass = TRUE
+	coverage = 20
+	resistance_flags = XENO_DAMAGEABLE
+	max_integrity = 100
 	//copypaste sorry
 	var/amount_per_transfer_from_this = 5 //shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
 	var/obj/item/storage/bag/trash/mybag
@@ -23,11 +25,11 @@
 	update_icon()
 
 /obj/structure/janitorialcart/examine(mob/user)
-	..()
+	. = ..()
 	if(mybucket)
-		to_chat(user, "Its bucket contains [mybucket.reagents.total_volume] unit\s of liquid.")
+		. += "Its bucket contains [mybucket.reagents.total_volume] unit\s of liquid."
 	else
-		to_chat(user, "It has no bucket.")
+		. += "It has no bucket."
 
 
 /obj/structure/janitorialcart/attackby(obj/item/I, mob/user, params)
@@ -39,7 +41,7 @@
 		I.forceMove(src)
 		update_icon()
 		updateUsrDialog()
-		to_chat(user, "<span class='notice'>You put [I] into [src].</span>")
+		to_chat(user, span_notice("You put [I] into [src]."))
 
 	else if(istype(I, /obj/item/tool/mop))
 		if(I.reagents.total_volume < I.reagents.maximum_volume && mybucket)	//if it's not completely soaked we assume they want to wet it, otherwise store it
@@ -48,7 +50,7 @@
 				return
 
 			mybucket.reagents.trans_to(I, 5)	//
-			to_chat(user, "<span class='notice'>You wet [I] in [mybucket].</span>")
+			to_chat(user, span_notice("You wet [I] in [mybucket]."))
 			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 
 		else if(!mymop)
@@ -57,7 +59,7 @@
 			I.forceMove(src)
 			update_icon()
 			updateUsrDialog()
-			to_chat(user, "<span class='notice'>You put [I] into [src].</span>")
+			to_chat(user, span_notice("You put [I] into [src]."))
 
 	else if(istype(I, /obj/item/reagent_containers/spray) && !myspray)
 		user.drop_held_item()
@@ -65,7 +67,7 @@
 		I.forceMove(src)
 		update_icon()
 		updateUsrDialog()
-		to_chat(user, "<span class='notice'>You put [I] into [src].</span>")
+		to_chat(user, span_notice("You put [I] into [src]."))
 
 	else if(istype(I, /obj/item/lightreplacer) && !myreplacer)
 		user.drop_held_item()
@@ -73,11 +75,11 @@
 		I.forceMove(src)
 		update_icon()
 		updateUsrDialog()
-		to_chat(user, "<span class='notice'>You put [I] into [src].</span>")
+		to_chat(user, span_notice("You put [I] into [src]."))
 
 	else if(istype(I, /obj/item/tool/wet_sign))
 		if(signs >= 4)
-			to_chat(user, "<span class='notice'>[src] can't hold any more signs.</span>")
+			to_chat(user, span_notice("[src] can't hold any more signs."))
 			return
 
 		user.drop_held_item()
@@ -85,7 +87,7 @@
 		signs++
 		update_icon()
 		updateUsrDialog()
-		to_chat(user, "<span class='notice'>You put [I] into [src].</span>")
+		to_chat(user, span_notice("You put [I] into [src]."))
 
 	else if(istype(I, /obj/item/reagent_containers/glass/bucket/janibucket))
 		user.drop_held_item()
@@ -93,7 +95,7 @@
 		I.forceMove(src)
 		update_icon()
 		updateUsrDialog()
-		to_chat(user, "<span class='notice'>You put [I] into [src].</span>")
+		to_chat(user, span_notice("You put [I] into [src]."))
 		return TRUE
 
 	else if(mybag)
@@ -134,34 +136,34 @@
 	if(href_list["garbage"])
 		if(mybag)
 			user.put_in_hands(mybag)
-			to_chat(user, "<span class='notice'>You take [mybag] from [src].</span>")
+			to_chat(user, span_notice("You take [mybag] from [src]."))
 			mybag = null
 	if(href_list["mop"])
 		if(mymop)
 			user.put_in_hands(mymop)
-			to_chat(user, "<span class='notice'>You take [mymop] from [src].</span>")
+			to_chat(user, span_notice("You take [mymop] from [src]."))
 			mymop = null
 	if(href_list["spray"])
 		if(myspray)
 			user.put_in_hands(myspray)
-			to_chat(user, "<span class='notice'>You take [myspray] from [src].</span>")
+			to_chat(user, span_notice("You take [myspray] from [src]."))
 			myspray = null
 	if(href_list["replacer"])
 		if(myreplacer)
 			user.put_in_hands(myreplacer)
-			to_chat(user, "<span class='notice'>You take [myreplacer] from [src].</span>")
+			to_chat(user, span_notice("You take [myreplacer] from [src]."))
 			myreplacer = null
 	if(href_list["bucket"])
 		if(mybucket)
 			user.put_in_hands(mybucket)
-			to_chat(user, "<span class='notice'>You take [mybucket] from [src].</span>")
+			to_chat(user, span_notice("You take [mybucket] from [src]."))
 			mybucket = null
 	if(href_list["sign"])
 		if(signs)
 			var/obj/item/tool/wet_sign/Sign = locate() in src
 			if(Sign)
 				user.put_in_hands(Sign)
-				to_chat(user, "<span class='notice'>You take \a [Sign] from [src].</span>")
+				to_chat(user, span_notice("You take \a [Sign] from [src]."))
 				signs--
 			else
 				warning("[src] signs ([signs]) didn't match contents")

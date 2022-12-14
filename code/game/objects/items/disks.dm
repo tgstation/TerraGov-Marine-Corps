@@ -10,7 +10,7 @@
 	desc = "Better keep this safe."
 	icon_state = "nucleardisk"
 	w_class = WEIGHT_CLASS_TINY
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 
 /obj/item/disk/nuclear/Initialize()
 	. = ..()
@@ -23,14 +23,14 @@
 
 /obj/item/disk/nuclear/red
 	name = "red nuclear authentication disk"
-	icon_state = "datadisk0"
+	icon_state = "datadisk7"
 
 
 /obj/item/disk/nuclear/green
 	name = "green nuclear authentication disk"
-	icon_state = "datadisk3"
+	icon_state = "botanydisk"
 
 
 /obj/item/disk/nuclear/blue
 	name = "blue nuclear authentication disk"
-	icon_state = "datadisk1"
+	icon_state = "datadisk0"

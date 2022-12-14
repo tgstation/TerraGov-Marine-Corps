@@ -16,6 +16,9 @@
 	icon_state = "filingcabinet"
 	density = TRUE
 	anchored = TRUE
+	resistance_flags = XENO_DAMAGEABLE
+	max_integrity = 100
+	soft_armor = list(MELEE = 0, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 
 /obj/structure/filingcabinet/chestdrawer
@@ -41,19 +44,19 @@
 		if(!user.transferItemToLoc(I, src))
 			return
 
-		to_chat(user, "<span class='notice'>You put [I] in [src].</span>")
+		to_chat(user, span_notice("You put [I] in [src]."))
 		icon_state = "[initial(icon_state)]-open"
-		sleep(5)
+		sleep(0.5 SECONDS)
 		icon_state = initial(icon_state)
 		updateUsrDialog()
 
 	else if(iswrench(I))
 		anchored = !anchored
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-		to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
+		to_chat(user, span_notice("You [anchored ? "wrench" : "unwrench"] \the [src]."))
 
 	else
-		to_chat(user, "<span class='notice'>You can't put [I] in [src]!</span>")
+		to_chat(user, span_notice("You can't put [I] in [src]!"))
 
 
 /obj/structure/filingcabinet/attack_hand(mob/living/user)
@@ -61,7 +64,7 @@
 	if(.)
 		return
 	if(contents.len <= 0)
-		to_chat(user, "<span class='notice'>\The [src] is empty.</span>")
+		to_chat(user, span_notice("\The [src] is empty."))
 		return
 
 	user.set_interaction(src)

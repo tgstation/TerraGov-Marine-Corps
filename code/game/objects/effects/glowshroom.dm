@@ -1,13 +1,19 @@
 //separate dm since hydro is getting bloated already
 
-/obj/effect/glowshroom
+/obj/structure/glowshroom
 	name = "glowshroom"
+	desc = "Mycena Bregprox, a species of mushroom that glows in the dark."
 	anchored = TRUE
 	opacity = FALSE
 	density = FALSE
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "glowshroomf"
 	layer = ABOVE_TURF_LAYER
+	max_integrity = 30
+	resistance_flags = XENO_DAMAGEABLE
+	hit_sound = 'sound/effects/attackblob.ogg'
+	destroy_sound = null
+	coverage = 0
 
 	var/endurance = 30
 	var/potency = 30
@@ -18,9 +24,7 @@
 	var/lastTick = 0
 	var/spreaded = 1
 
-/obj/effect/glowshroom/single
-
-/obj/effect/glowshroom/Initialize(mapload, ...)
+/obj/structure/glowshroom/Initialize(mapload, ...)
 	. = ..()
 
 	setDir(CalcDir())
@@ -43,7 +47,7 @@
 	lastTick = world.timeofday
 
 
-/obj/effect/glowshroom/proc/CalcDir(turf/location = loc)
+/obj/structure/glowshroom/proc/CalcDir(turf/location = loc)
 	set background = 1
 	var/direction = 16
 
@@ -52,7 +56,7 @@
 		if(iswallturf(newTurf))
 			direction |= wallDir
 
-	for(var/obj/effect/glowshroom/shroom in location)
+	for(var/obj/structure/glowshroom/shroom in location)
 		if(shroom == src)
 			continue
 		if(shroom.floor) //special

@@ -1,4 +1,5 @@
-#define TRAIT_STATUS_EFFECT(effect_id) "[effect_id]-trait"
+#define BASE_HEAL_RATE -0.0125
+
 
 //Largely negative status effects go here, even if they have small benificial effects
 //STUN EFFECTS
@@ -96,7 +97,7 @@
 //SLEEPING
 /datum/status_effect/incapacitating/sleeping
 	id = "sleeping"
-	alert_type = /obj/screen/alert/status_effect/asleep
+	alert_type = /atom/movable/screen/alert/status_effect/asleep
 	var/mob/living/carbon/carbon_owner
 	var/mob/living/carbon/human/human_owner
 
@@ -126,21 +127,22 @@
 /datum/status_effect/incapacitating/sleeping/tick()
 	if(owner.maxHealth)
 		var/health_ratio = owner.health / owner.maxHealth
-		var/healing = -0.2
+		var/healing = BASE_HEAL_RATE //set for a base of 0.25 healed per 2-second interval asleep in a bed with covers.
 		if((locate(/obj/structure/bed) in owner.loc))
-			healing -= 0.3
+			healing += (2 * BASE_HEAL_RATE)
 		else if((locate(/obj/structure/table) in owner.loc))
-			healing -= 0.1
+			healing += BASE_HEAL_RATE
 		for(var/obj/item/bedsheet/bedsheet in range(owner.loc,0))
 			if(bedsheet.loc != owner.loc) //bedsheets in your backpack/neck don't give you comfort
 				continue
-			healing -= 0.1
+			healing += BASE_HEAL_RATE
 			break //Only count the first bedsheet
-		if(health_ratio > 0.8)
+		if(health_ratio > -0.5)
 			owner.adjustBruteLoss(healing)
 			owner.adjustFireLoss(healing)
 			owner.adjustToxLoss(healing * 0.5, TRUE, TRUE)
-		owner.adjustStaminaLoss(healing)
+			owner.adjustStaminaLoss(healing * 100)
+			owner.adjustCloneLoss(healing * health_ratio * 0.8)
 	if(human_owner && human_owner.drunkenness)
 		human_owner.drunkenness *= 0.997 //reduce drunkenness by 0.3% per tick, 6% per 2 seconds
 	if(prob(20))
@@ -149,7 +151,100 @@
 		if(prob(10) && owner.health > owner.health_threshold_crit)
 			owner.emote("snore")
 
-/obj/screen/alert/status_effect/asleep
+
+
+/**
+ * Adjusts a timed status effect on the mob,taking into account any existing timed status effects.
+ * This can be any status effect that takes into account "duration" with their initialize arguments.
+ *
+ * Positive durations will add deciseconds to the duration of existing status effects
+ * or apply a new status effect of that duration to the mob.
+ *
+ * Negative durations will remove deciseconds from the duration of an existing version of the status effect,
+ * removing the status effect entirely if the duration becomes less than zero (less than the current world time).
+ *
+ * duration - the duration, in deciseconds, to add or remove from the effect
+ * effect - the type of status effect being adjusted on the mob
+ * max_duration - optional - if set, positive durations will only be added UP TO the passed max duration
+ */
+/mob/living/proc/adjust_timed_status_effect(duration, effect, max_duration)
+	if(!isnum(duration))
+		CRASH("adjust_timed_status_effect: called with an invalid duration. (Got: [duration])")
+
+	if(!ispath(effect, /datum/status_effect))
+		CRASH("adjust_timed_status_effect: called with an invalid effect type. (Got: [effect])")
+
+	// If we have a max duration set, we need to check our duration does not exceed it
+	if(isnum(max_duration))
+		if(max_duration <= 0)
+			CRASH("adjust_timed_status_effect: Called with an invalid max_duration. (Got: [max_duration])")
+
+		if(duration >= max_duration)
+			duration = max_duration
+
+	var/datum/status_effect/existing = has_status_effect(effect)
+	if(existing)
+		if(isnum(max_duration) && duration > 0)
+			// Check the duration remaining on the existing status effect
+			// If it's greater than / equal to our passed max duration, we don't need to do anything
+			var/remaining_duration = existing.duration - world.time
+			if(remaining_duration >= max_duration)
+				return
+
+			// Otherwise, add duration up to the max (max_duration - remaining_duration),
+			// or just add duration if it doesn't exceed our max at all
+			existing.duration += min(max_duration - remaining_duration, duration)
+
+		else
+			existing.duration += duration
+
+		// If the duration was decreased and is now less 0 seconds,
+		// qdel it / clean up the status effect immediately
+		// (rather than waiting for the process tick to handle it)
+		if(existing.duration <= world.time)
+			qdel(existing)
+
+	else if(duration > 0)
+		apply_status_effect(effect, duration)
+
+/**
+ * Sets a timed status effect of some kind on a mob to a specific value.
+ * If only_if_higher is TRUE, it will only set the value up to the passed duration,
+ * so any pre-existing status effects of the same type won't be reduced down
+ *
+ * duration - the duration, in deciseconds, of the effect. 0 or lower will either remove the current effect or do nothing if none are present
+ * effect - the type of status effect given to the mob
+ * only_if_higher - if TRUE, we will only set the effect to the new duration if the new duration is longer than any existing duration
+ */
+/mob/living/proc/set_timed_status_effect(duration, effect, only_if_higher = FALSE)
+	if(!isnum(duration))
+		CRASH("set_timed_status_effect: called with an invalid duration. (Got: [duration])")
+
+	if(!ispath(effect, /datum/status_effect))
+		CRASH("set_timed_status_effect: called with an invalid effect type. (Got: [effect])")
+
+	var/datum/status_effect/existing = has_status_effect(effect)
+	if(existing)
+		// set_timed_status_effect to 0 technically acts as a way to clear effects,
+		// though remove_status_effect would achieve the same goal more explicitly.
+		if(duration <= 0)
+			qdel(existing)
+			return
+
+		if(only_if_higher)
+			// If the existing status effect has a higher remaining duration
+			// than what we aim to set it to, don't downgrade it - do nothing (return)
+			var/remaining_duration = existing.duration - world.time
+			if(remaining_duration >= duration)
+				return
+
+		// Set the duration accordingly
+		existing.duration = world.time + duration
+
+	else if(duration > 0)
+		apply_status_effect(effect, duration)
+
+/atom/movable/screen/alert/status_effect/asleep
 	name = "Asleep"
 	desc = "You've fallen asleep. Wait a bit and you should wake up. Unless you don't, considering how helpless you are."
 	icon_state = "asleep"
@@ -157,7 +252,7 @@
 //ADMIN SLEEP
 /datum/status_effect/incapacitating/adminsleep
 	id = "adminsleep"
-	alert_type = /obj/screen/alert/status_effect/adminsleep
+	alert_type = /atom/movable/screen/alert/status_effect/adminsleep
 	duration = -1
 
 /datum/status_effect/incapacitating/adminsleep/on_apply()
@@ -170,17 +265,17 @@
 	REMOVE_TRAIT(owner, TRAIT_KNOCKEDOUT, TRAIT_STATUS_EFFECT(id))
 	return ..()
 
-/obj/screen/alert/status_effect/adminsleep
+/atom/movable/screen/alert/status_effect/adminsleep
 	name = "Admin Slept"
 	desc = "You've been slept by an Admin."
 	icon_state = "asleep"
 
 //CONFUSED
-/datum/status_effect/confused
+/datum/status_effect/incapacitating/confused
 	id = "confused"
-	alert_type = /obj/screen/alert/status_effect/confused
+	alert_type = /atom/movable/screen/alert/status_effect/confused
 
-/obj/screen/alert/status_effect/confused
+/atom/movable/screen/alert/status_effect/confused
 	name = "Confused"
 	desc = "You're dazed and confused."
 	icon_state = "asleep"
@@ -199,7 +294,7 @@
 /datum/status_effect/plasmadrain/tick()
 	var/mob/living/carbon/xenomorph/xenoowner = owner
 	if(xenoowner.plasma_stored >= 0)
-		var/remove_plasma_amount = xenoowner.xeno_caste.plasma_max / 17
+		var/remove_plasma_amount = xenoowner.xeno_caste.plasma_max / 10
 		xenoowner.plasma_stored -= remove_plasma_amount
 		if(xenoowner.plasma_stored <= 0)
 			xenoowner.plasma_stored = 0
@@ -227,7 +322,7 @@
 	return ..()
 
 /datum/status_effect/noplasmaregen/tick()
-	to_chat(owner, "<span class='warning'>You feel too weak to summon new plasma...</span>")
+	to_chat(owner, span_warning("You feel too weak to summon new plasma..."))
 
 /datum/status_effect/incapacitating/harvester_slowdown
 	id = "harvest_slow"
@@ -245,99 +340,81 @@
 	owner.remove_movespeed_modifier(MOVESPEED_ID_HARVEST_TRAM_SLOWDOWN)
 	return ..()
 
+//MUTE
+/datum/status_effect/mute
+	id = "mute"
+	alert_type = /atom/movable/screen/alert/status_effect/mute
 
-//HEALING INFUSION buff for Hivelord
-/datum/status_effect/healing_infusion
-	id = "healing_infusion"
-	alert_type = /obj/screen/alert/status_effect/healing_infusion
-	//Buff ends whenever we run out of either health or sunder ticks, or time, whichever comes first
-	///Health recovery ticks
-	var/health_ticks_remaining
-	///Sunder recovery ticks
-	var/sunder_ticks_remaining
+/atom/movable/screen/alert/status_effect/mute
+	name = "Muted"
+	desc = "You can't speak!"
+	icon_state = "mute"
 
-/datum/status_effect/healing_infusion/on_creation(mob/living/new_owner, set_duration = HIVELORD_HEALING_INFUSION_DURATION, stacks_to_apply = HIVELORD_HEALING_INFUSION_TICKS)
-	if(!isxeno(new_owner))
-		CRASH("something applied [id] on a nonxeno, dont do that")
-
-	duration = set_duration
+/datum/status_effect/mute/on_creation(mob/living/new_owner, set_duration)
 	owner = new_owner
-	health_ticks_remaining = stacks_to_apply //Apply stacks
-	sunder_ticks_remaining = stacks_to_apply
+	if(set_duration) //If the duration is limited, set it
+		duration = set_duration
 	return ..()
 
-
-/datum/status_effect/healing_infusion/on_apply()
+/datum/status_effect/mute/on_apply()
 	. = ..()
 	if(!.)
 		return
-	ADD_TRAIT(owner, TRAIT_HEALING_INFUSION, TRAIT_STATUS_EFFECT(id))
-	owner.add_filter("hivelord_healing_infusion_outline", 3, outline_filter(1, COLOR_VERY_PALE_LIME_GREEN)) //Set our cool aura; also confirmation we have the buff
-	RegisterSignal(owner, COMSIG_XENOMORPH_HEALTH_REGEN, .proc/healing_infusion_regeneration) //Register so we apply the effect whenever the target heals
-	RegisterSignal(owner, COMSIG_XENOMORPH_SUNDER_REGEN, .proc/healing_infusion_sunder_regeneration) //Register so we apply the effect whenever the target heals
+	ADD_TRAIT(owner, TRAIT_MUTED, TRAIT_STATUS_EFFECT(id))
 
-/datum/status_effect/healing_infusion/on_remove()
-	REMOVE_TRAIT(owner, TRAIT_HEALING_INFUSION, TRAIT_STATUS_EFFECT(id))
-	owner.remove_filter("hivelord_healing_infusion_outline") //Remove the aura
-	UnregisterSignal(owner, list(COMSIG_XENOMORPH_HEALTH_REGEN, COMSIG_XENOMORPH_SUNDER_REGEN)) //unregister the signals; party's over
-
-	new /obj/effect/temp_visual/telekinesis(get_turf(owner)) //Wearing off SFX
-	new /obj/effect/temp_visual/healing(get_turf(owner)) //Wearing off SFX
-
-	to_chat(owner, "<span class='xenodanger'>Our regeneration is no longer accelerated.</span>") //Let the target know
-	owner.playsound_local(owner, 'sound/voice/hiss5.ogg', 25)
-
+/datum/status_effect/mute/on_remove()
+	REMOVE_TRAIT(owner, TRAIT_MUTED, TRAIT_STATUS_EFFECT(id))
 	return ..()
 
-///Called when the target xeno regains HP via heal_wounds in life.dm
-/datum/status_effect/healing_infusion/proc/healing_infusion_regeneration(mob/living/carbon/xenomorph/patient)
-	SIGNAL_HANDLER
+/datum/status_effect/spacefreeze
+	id = "spacefreeze"
 
-	if(!health_ticks_remaining)
-		qdel(src)
-		return
+/datum/status_effect/spacefreeze/on_creation(mob/living/new_owner)
+	. = ..()
+	to_chat(new_owner, span_danger("The cold vacuum instantly freezes you, maybe this was a bad idea?"))
 
-	health_ticks_remaining-- //Decrement health ticks
+/datum/status_effect/spacefreeze/tick()
+	owner.adjustFireLoss(40)
 
-	new /obj/effect/temp_visual/healing(get_turf(patient)) //Cool SFX
+///irradiated mob
+/datum/status_effect/irradiated
+	id = "irradiated"
+	status_type = STATUS_EFFECT_REFRESH
+	tick_interval = 20
+	alert_type = /atom/movable/screen/alert/status_effect/irradiated
+	///Some effects only apply to carbons
+	var/mob/living/carbon/carbon_owner
 
-	var/total_heal_amount = 6 + (patient.maxHealth * 0.03) //Base amount 6 HP plus 3% of max
-	if(patient.recovery_aura)
-		total_heal_amount *= (1 + patient.recovery_aura * 0.05) //Recovery aura multiplier; 5% bonus per full level
+/datum/status_effect/irradiated/on_creation(mob/living/new_owner, set_duration)
+	if(isnum(set_duration))
+		duration = set_duration
+	. = ..()
+	if(.)
+		if(iscarbon(owner))
+			carbon_owner = owner
 
-	//Healing pool has been calculated; now to decrement it
-	var/brute_amount = min(patient.bruteloss, total_heal_amount)
-	if(brute_amount)
-		patient.adjustBruteLoss(-brute_amount, updating_health = TRUE)
-		total_heal_amount = max(0, total_heal_amount - brute_amount) //Decrement from our heal pool the amount of brute healed
+/datum/status_effect/irradiated/Destroy()
+	carbon_owner = null
+	return ..()
 
-	if(!total_heal_amount) //no healing left, no need to continue
-		return
+/datum/status_effect/irradiated/tick()
+	var/mob/living/living_owner = owner
+	//Roulette of bad things
+	if(prob(15))
+		living_owner.adjustCloneLoss(2)
+		to_chat(living_owner, span_warning("You feel like you're burning from the inside!"))
+	else
+		living_owner.adjustToxLoss(3)
+	if(prob(15))
+		living_owner.adjust_Losebreath(5)
+	if(prob(15))
+		living_owner.vomit()
+	if(carbon_owner && prob(15))
+		var/datum/internal_organ/organ = pick(carbon_owner.internal_organs)
+		if(organ)
+			organ.take_damage(5)
 
-	var/burn_amount = min(patient.fireloss, total_heal_amount)
-	if(burn_amount)
-		patient.adjustFireLoss(-burn_amount, updating_health = TRUE)
-
-
-///Called when the target xeno regains Sunder via heal_wounds in life.dm
-/datum/status_effect/healing_infusion/proc/healing_infusion_sunder_regeneration(mob/living/carbon/xenomorph/patient)
-	SIGNAL_HANDLER
-
-	if(!sunder_ticks_remaining)
-		qdel(src)
-		return
-
-	if(!locate(/obj/effect/alien/weeds) in patient.loc) //Doesn't work if we're not on weeds
-		return
-
-	sunder_ticks_remaining-- //Decrement sunder ticks
-
-	new /obj/effect/temp_visual/telekinesis(get_turf(patient)) //Visual confirmation
-
-	patient.adjust_sunder(-1.8 * (1 + patient.recovery_aura * 0.05)) //5% bonus per rank of our recovery aura
-
-
-/obj/screen/alert/status_effect/healing_infusion
-	name = "Healing Infusion"
-	desc = "You have accelerated natural healing."
-	icon_state = "healing_infusion"
+/atom/movable/screen/alert/status_effect/irradiated
+	name = "Irradiated"
+	desc = "You've been irradiated! The effects of the radiation will continue to harm you until purged from your system."
+	icon_state = "radiation"

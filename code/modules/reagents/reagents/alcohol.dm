@@ -56,16 +56,16 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	if(istype(O,/obj/item/paper))
 		var/obj/item/paper/paperaffected = O
 		paperaffected.clearpaper()
-		to_chat(usr, "<span class='warning'>The [name] dissolves the ink on the paper.</span>")
+		to_chat(usr, span_warning("The [name] dissolves the ink on the paper."))
 	if(istype(O,/obj/item/book))
 		if(volume > 5)
 			var/obj/item/book/affectedbook = O
 			affectedbook.dat = null
-			to_chat(usr, "<span class='warning'>The [name] dissolves the ink on the book.</span>")
+			to_chat(usr, span_warning("The [name] dissolves the ink on the book."))
 		else
-			to_chat(usr, "<span class='warning'>[O]'s ink is smeared by [name], but doesn't wash away!</span>")
+			to_chat(usr, span_warning("[O]'s ink is smeared by [name], but doesn't wash away!"))
 
-/datum/reagent/consumable/ethanol/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
+/datum/reagent/consumable/ethanol/reaction_mob(mob/living/L, method = TOUCH, volume, show_message = TRUE, touch_protection = 0)
 	. = ..()
 	if(method in list(TOUCH, VAPOR, PATCH))
 		L.adjust_fire_stacks(round(volume * 0.65))
@@ -242,7 +242,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 			if(prob(1))
 				L.emote(pick("twitch","giggle"))
 		if(20 to 59)
-			L.stuttering = max(L.stuttering, 2)
+			L.set_timed_status_effect(4 SECONDS, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
 			L.hallucination = max(L.hallucination, 10)
 			L.jitter(3)
 			L.dizzy(2)
@@ -250,7 +250,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 			if(prob(5))
 				L.emote(pick("twitch","giggle"))
 		if(60 to 119)
-			L.stuttering = max(L.stuttering, 2)
+			L.set_timed_status_effect(4 SECONDS, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
 			L.hallucination = max(L.hallucination, 60)
 			L.jitter(4)
 			L.dizzy(4)
@@ -260,7 +260,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 			if(prob(30))
 				L.adjustToxLoss(0.5)
 		if(120 to 199)
-			L.stuttering = max(L.stuttering, 2)
+			L.set_timed_status_effect(4 SECONDS, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
 			L.hallucination = max(L.hallucination, 60)
 			L.jitter(4)
 			L.dizzy(4)
@@ -276,7 +276,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 					if(istype(E))
 						E.take_damage(2)
 		if(200 to INFINITY)
-			L.stuttering += 1
+			L.set_timed_status_effect(5 SECONDS, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
 			L.adjustToxLoss(1)
 			L.hallucination = max(L.hallucination, 60)
 			L.jitter(4)
@@ -287,7 +287,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 				var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
 				if(istype(E))
 					if(H.species.species_flags ~! NO_PAIN)
-						to_chat(H, "<span class='danger'>You clutch for a moment as you feel a scorching pain covering your abdomen!</span>")
+						to_chat(H, span_danger("You clutch for a moment as you feel a scorching pain covering your abdomen!"))
 						H.Stun(60)
 					E.take_damage(20)
 	return ..()
@@ -727,15 +727,15 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	switch(current_cycle)
 		if(1 to 50)
 			L.dizzy(5)
-			L.stuttering += 2
+			L.adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/stutter)
 		if(51 to 100)
 			L.dizzy(5)
-			L.stuttering += 5
+			L.adjust_timed_status_effect(10 SECONDS, /datum/status_effect/speech/stutter)
 			if(prob(20))
 				L.AdjustConfused(60)
 		if(101 to INFINITY)
 			L.dizzy(6)
-			L.stuttering += 5
+			L.adjust_timed_status_effect(10 SECONDS, /datum/status_effect/speech/stutter)
 			if(prob(20))
 				L.AdjustConfused(10 SECONDS)
 	return ..()

@@ -16,24 +16,29 @@
 	return FALSE
 
 /mob/living/carbon/xenomorph/update_icons()
+	if(HAS_TRAIT(src, TRAIT_MOB_ICON_UPDATE_BLOCKED))
+		return
 	if(stat == DEAD)
-		icon_state = "[xeno_caste.caste_name] Dead"
+		icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Dead"
+	else if(HAS_TRAIT(src, TRAIT_BURROWED))
+		icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Burrowed"
 	else if(lying_angle)
 		if((resting || IsSleeping()) && (!IsParalyzed() && !IsUnconscious() && health > 0))
-			icon_state = "[xeno_caste.caste_name] Sleeping"
+			icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Sleeping"
 		else
-			icon_state = "[xeno_caste.caste_name] Knocked Down"
+			icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Knocked Down"
 	else if(!handle_special_state())
 		if(m_intent == MOVE_INTENT_RUN)
-			icon_state = "[xeno_caste.caste_name] Running"
+			icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Running"
 		else
-			icon_state = "[xeno_caste.caste_name] Walking"
+			icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Walking"
 	update_fire() //the fire overlay depends on the xeno's stance, so we must update it.
 	update_wounds()
 
 	hud_set_plasma()
 	med_hud_set_health()
 	hud_set_sunder()
+	hud_set_firestacks()
 
 /mob/living/carbon/xenomorph/regenerate_icons()
 	..()
@@ -59,7 +64,7 @@
 		if(client && hud_used && hud_used.hud_version != HUD_STYLE_NOHUD)
 			r_hand.screen_loc = ui_rhand
 			client.screen += r_hand
-		
+
 		overlays_standing[X_R_HAND_LAYER] = r_hand.make_worn_icon(inhands = TRUE, slot_name = slot_r_hand_str, default_icon = 'icons/mob/items_righthand_0.dmi', default_layer = X_R_HAND_LAYER)
 		apply_overlay(X_R_HAND_LAYER)
 
@@ -69,7 +74,7 @@
 		if(client && hud_used && hud_used.hud_version != HUD_STYLE_NOHUD)
 			l_hand.screen_loc = ui_lhand
 			client.screen += l_hand
-		
+
 		overlays_standing[X_L_HAND_LAYER] = l_hand.make_worn_icon(inhands = TRUE, slot_name = slot_l_hand_str, default_icon = 'icons/mob/items_lefthand_0.dmi', default_layer = X_L_HAND_LAYER)
 		apply_overlay(X_L_HAND_LAYER)
 
@@ -82,19 +87,17 @@
 	apply_temp_overlay(X_SUIT_LAYER, 1.2 SECONDS)
 
 /mob/living/carbon/xenomorph/update_fire()
-	remove_overlay(X_FIRE_LAYER)
-	if(on_fire)
-		var/image/I
-		if(mob_size == MOB_SIZE_BIG)
-			if((!initial(pixel_y) || lying_angle) && !resting && !IsSleeping())
-				I = image("icon"='icons/Xeno/2x2_Xenos.dmi', "icon_state"="alien_fire", "layer"=-X_FIRE_LAYER)
-			else
-				I = image("icon"='icons/Xeno/2x2_Xenos.dmi', "icon_state"="alien_fire_lying", "layer"=-X_FIRE_LAYER)
-		else
-			I = image("icon"='icons/Xeno/Effects.dmi', "icon_state"="alien_fire", "layer"=-X_FIRE_LAYER)
-
-		overlays_standing[X_FIRE_LAYER] = I
-		apply_overlay(X_FIRE_LAYER)
+	if(!on_fire)
+		fire_overlay.icon_state = ""
+		return
+	if(HAS_TRAIT(src, TRAIT_BURROWED))
+		fire_overlay.icon_state = ""
+		return
+	fire_overlay.layer = layer + 0.4
+	if(mob_size!= MOB_SIZE_BIG || ((!initial(pixel_y) || lying_angle) && !resting && !IsSleeping()))
+		fire_overlay.icon_state = "alien_fire"
+	else
+		fire_overlay.icon_state = "alien_fire_lying"
 
 /mob/living/carbon/xenomorph/proc/apply_alpha_channel(image/I)
 	return I
@@ -104,6 +107,9 @@
 		return
 	var/health_thresholds
 	wound_overlay.layer = layer + 0.3
+	if(HAS_TRAIT(src, TRAIT_MOB_ICON_UPDATE_BLOCKED))
+		wound_overlay.icon_state = "none"
+		return
 	if(health > health_threshold_crit)
 		health_thresholds = CEILING((health * 4) / (maxHealth), 1) //From 1 to 4, in 25% chunks
 		if(health_thresholds > 3)
@@ -144,7 +150,6 @@
 
 /atom/movable/vis_obj/xeno_wounds/Destroy()
 	if(wound_owner)
-		UnregisterSignal(wound_owner, COMSIG_ATOM_DIR_CHANGE)
 		wound_owner = null
 	return ..()
 
@@ -152,3 +157,9 @@
 	SIGNAL_HANDLER
 	if(newdir != dir)
 		dir = newdir
+
+/atom/movable/vis_obj/xeno_wounds/fire_overlay
+	icon = 'icons/Xeno/2x2_Xenos.dmi'
+
+/atom/movable/vis_obj/xeno_wounds/fire_overlay/small
+	icon = 'icons/Xeno/Effects.dmi'

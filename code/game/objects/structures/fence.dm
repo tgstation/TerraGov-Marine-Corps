@@ -6,6 +6,7 @@
 	density = TRUE
 	throwpass = TRUE //So people and xenos can shoot through!
 	anchored = TRUE //We can not be moved.
+	coverage = 5
 	layer = WINDOW_LAYER
 	max_integrity = 150 //Its cheap but still viable to repair, cant be moved around, about 7 runner hits to take down
 	resistance_flags = XENO_DAMAGEABLE
@@ -30,8 +31,8 @@
 
 	if(istype(I, /obj/item/stack/rods) && obj_integrity < max_integrity)
 		if(user.skills.getRating("construction") < SKILL_CONSTRUCTION_PLASTEEL)
-			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to fix [src]'s wiring.</span>",
-			"<span class='notice'>You fumble around figuring out how to fix [src]'s wiring.</span>")
+			user.visible_message(span_notice("[user] fumbles around figuring out how to fix [src]'s wiring."),
+			span_notice("You fumble around figuring out how to fix [src]'s wiring."))
 			var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("construction")
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
@@ -45,7 +46,7 @@
 			to_chat(user, "<span class='warning'>You need more metal rods to repair [src].")
 			return
 
-		user.visible_message("<span class='notice'>[user] starts repairing [src] with [R].</span>",
+		user.visible_message(span_notice("[user] starts repairing [src] with [R]."),
 		"<span class='notice'>You start repairing [src] with [R]")
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 
@@ -62,7 +63,7 @@
 		density = TRUE
 		update_icon()
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
-		user.visible_message("<span class='notice'>[user] repairs [src] with [R].</span>",
+		user.visible_message(span_notice("[user] repairs [src] with [R]."),
 		"<span class='notice'>You repair [src] with [R]")
 
 	else if(cut) //Cut/brokn grilles can't be messed with further than this
@@ -78,33 +79,33 @@
 		user.drop_held_item()
 		switch(state)
 			if(GRAB_PASSIVE)
-				M.visible_message("<span class='warning'>[user] slams [M] against \the [src]!</span>")
-				M.apply_damage(7)
+				M.visible_message(span_warning("[user] slams [M] against \the [src]!"))
+				M.apply_damage(7, blocked = MELEE)
 				UPDATEHEALTH(M)
 				take_damage(10)
 			if(GRAB_AGGRESSIVE)
-				M.visible_message("<span class='danger'>[user] bashes [M] against \the [src]!</span>")
+				M.visible_message(span_danger("[user] bashes [M] against \the [src]!"))
 				if(prob(50))
 					M.Paralyze(20)
-				M.apply_damage(10)
+				M.apply_damage(10, blocked = MELEE)
 				UPDATEHEALTH(M)
 				take_damage(25)
 			if(GRAB_NECK)
-				M.visible_message("<span class='danger'><big>[user] crushes [M] against \the [src]!</big></span>")
+				M.visible_message(span_danger("<big>[user] crushes [M] against \the [src]!</big>"))
 				M.Paralyze(10 SECONDS)
-				M.apply_damage(20)
+				M.apply_damage(20, blocked = MELEE)
 				UPDATEHEALTH(M)
 				take_damage(50)
 
 	else if(iswirecutter(I))
-		user.visible_message("<span class='notice'>[user] starts cutting through [src] with [I].</span>",
+		user.visible_message(span_notice("[user] starts cutting through [src] with [I]."),
 		"<span class='notice'>You start cutting through [src] with [I]")
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 			return
 
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
-		user.visible_message("<span class='notice'>[user] cuts through [src] with [I].</span>",
+		user.visible_message(span_notice("[user] cuts through [src] with [I]."),
 		"<span class='notice'>You cut through [src] with [I]")
 		deconstruct(TRUE)
 
@@ -133,12 +134,7 @@
 /obj/structure/fence/Destroy()
 	density = FALSE
 	update_nearby_icons()
-	. = ..()
-
-/obj/structure/fence/Move()
-	var/ini_dir = dir
-	. = ..()
-	setDir(ini_dir)
+	return ..()
 
 //This proc is used to update the icons of nearby windows.
 /obj/structure/fence/proc/update_nearby_icons()

@@ -12,6 +12,10 @@
 /obj/structure/bed/chair/sofa/left,
 /turf/open/floor/prison/bright_clean/two,
 /area/template_noop)
+"j" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/prison/bright_clean/two,
+/area/template_noop)
 "m" = (
 /obj/item/toy/inflatable_duck,
 /turf/open/nostromowater,
@@ -57,16 +61,21 @@
 /obj/effect/landmark/corpsespawner/scientist,
 /turf/open/floor/prison/bright_clean/two,
 /area/template_noop)
-"F" = (
-/obj/machinery/vending/cigarette,
-/turf/open/floor/prison/bright_clean/two,
-/area/template_noop)
 "I" = (
 /obj/structure/bed/chair/sofa/right,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
 	on = 1
 	},
+/turf/open/floor/prison/bright_clean/two,
+/area/template_noop)
+"K" = (
+/obj/machinery/light/small,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/prison/bright_clean/two,
+/area/template_noop)
+"L" = (
+/obj/machinery/vending/cigarette,
 /turf/open/floor/prison/bright_clean/two,
 /area/template_noop)
 "M" = (
@@ -104,8 +113,8 @@ a
 a
 "}
 (2,1,1) = {"
-F
-a
+L
+j
 a
 a
 a
@@ -192,7 +201,7 @@ a
 a
 a
 a
-V
+K
 "}
 (9,1,1) = {"
 i

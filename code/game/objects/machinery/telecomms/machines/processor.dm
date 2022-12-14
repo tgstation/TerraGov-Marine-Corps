@@ -55,3 +55,48 @@
 	id = "Processor 4"
 	network = "tcommsat"
 	autolinkers = list("processor4")
+
+//proper backup server for CIC
+/obj/machinery/telecomms/processor/preset_four/cicbackup
+	on = 0
+	id = "Backup Processor 4"
+	network = "tcommsat"
+	autolinkers = list("processor4")
+
+/obj/machinery/telecomms/processor/preset_one/rebel
+	id = "Processor 1 rebel"
+	autolinkers = list("processor1_rebel")
+
+
+/obj/machinery/telecomms/processor/preset_two/rebel
+	id = "Processor 2 rebel"
+	autolinkers = list("processor2_rebel")
+
+
+/obj/machinery/telecomms/processor/preset_three/rebel
+	id = "Processor 3 rebel"
+	autolinkers = list("processor3_rebel")
+
+
+/obj/machinery/telecomms/processor/preset_four/rebel
+	id = "Processor 4 rebel"
+	autolinkers = list("processor4_rebel")
+
+/obj/machinery/telecomms/processor/preset_one/som
+	id = "Processor 1 som"
+	autolinkers = list("processor1_som")
+
+
+/obj/machinery/telecomms/processor/preset_two/som
+	id = "Processor 2 som"
+	autolinkers = list("processor2_som")
+
+
+/obj/machinery/telecomms/processor/preset_three/som
+	id = "Processor 3 som"
+	autolinkers = list("processor3_som")
+
+
+/obj/machinery/telecomms/processor/preset_four/som
+	id = "Processor 4 som"
+	autolinkers = list("processor4_som")

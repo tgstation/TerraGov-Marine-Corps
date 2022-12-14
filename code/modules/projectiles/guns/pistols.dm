@@ -12,7 +12,7 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 6
-	movement_acc_penalty_mult = 0
+	movement_acc_penalty_mult = 2
 	wield_delay = 0.2 SECONDS //If you modify your pistol to be two-handed, it will still be fast to aim
 	type_of_casings = "bullet"
 	gun_skill_category = GUN_SKILL_PISTOLS
@@ -27,60 +27,49 @@
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/lace,
+		/obj/item/attachable/buildasentry,
 	)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	actions_types = list(/datum/action/item_action/aim_mode) // all pistols can aim mode
 	aim_speed_modifier = 0.65
-	scatter = 0
-	scatter_unwielded = 0
+	scatter = -2
+	scatter_unwielded = 4
+	akimbo_additional_delay = 0.9
 
-
-/obj/item/weapon/gun/pistol/unique_action(mob/user)
-	return cock(user)
-
-/obj/item/weapon/gun/pistol/get_ammo_type()
-	if(!ammo)
-		return list("unknown", "unknown")
-	else
-		return list(ammo.hud_state, ammo.hud_state_empty)
-
-/obj/item/weapon/gun/pistol/get_ammo_count()
-	if(!current_mag)
-		return in_chamber ? 1 : 0
-	else
-		return in_chamber ? (current_mag.current_rounds + 1) : current_mag.current_rounds
+	placed_overlay_iconstate = "pistol"
 
 //-------------------------------------------------------
-//TP-14 PISTOL
+//P-14 PISTOL
 
 /obj/item/weapon/gun/pistol/standard_pistol
-	name = "\improper TP-14 pistol"
-	desc = "The TP-14, produced by Terran Armories. A reliable sidearm that loads 9x19mm Parabellum Auto munitions. Capable of mounting a limited amount of attachments, and firing at a respectable rate of fire, often as fast as you can pull the trigger. Takes 14-round 9mm magazines."
+	name = "\improper P-14 pistol"
+	desc = "The P-14, produced by Terran Armories. A reliable sidearm that loads 9x19mm Parabellum Auto munitions. Capable of mounting a limited amount of attachments, and firing at a respectable rate of fire, often as fast as you can pull the trigger. Takes 14-round 9mm magazines."
+	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "tp14"
 	item_state = "tp14"
 	caliber = CALIBER_9X19 //codex
 	max_shells = 21 //codex
 	fire_sound = 'sound/weapons/guns/fire/tp14.ogg'
 	reload_sound = 'sound/weapons/guns/interact/tp14_reload.ogg'
-	current_mag = /obj/item/ammo_magazine/pistol/standard_pistol
+	default_ammo_type = /obj/item/ammo_magazine/pistol/standard_pistol
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/standard_pistol)
 
-	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 23, "under_x" = 19, "under_y" = 13, "stock_x" = 21, "stock_y" = 17)
+	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 23, "under_x" = 24, "under_y" = 14, "stock_x" = 21, "stock_y" = 17)
 
-	fire_delay = 0.125 SECONDS
+	fire_delay = 0.15 SECONDS
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.95
-	scatter = -5
-	scatter_unwielded = 0
+	scatter_unwielded = 4
 	recoil = -2
 	recoil_unwielded = -2
-	upper_akimbo_accuracy = 4
-	lower_akimbo_accuracy = 3
+	upper_akimbo_accuracy = 5
+	lower_akimbo_accuracy = 4
 
 //-------------------------------------------------------
-//TX-7 Plasma Pistol
+//PP-7 Plasma Pistol
 /obj/item/weapon/gun/pistol/plasma_pistol
-	name = "\improper TX-7 plasma pistol"
+	name = "\improper PP-7 plasma pistol"
 	desc = "An experimental weapon designed to set the terrain and targets on fire. It hums with power as magnetic fields coil round each other."
 	icon_state = "tx7"
 	item_state = "tx7"
@@ -88,9 +77,9 @@
 	max_shots = 10
 	reload_sound = 'sound/weapons/guns/interact/tp14_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
-	current_mag = /obj/item/ammo_magazine/pistol/plasma_pistol
+	default_ammo_type = /obj/item/ammo_magazine/pistol/plasma_pistol
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/plasma_pistol)
 	type_of_casings = null
-
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 23, "under_x" = 19, "under_y" = 13, "stock_x" = 21, "stock_y" = 17)
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
@@ -98,21 +87,48 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/lace,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
+		/obj/item/attachable/scope/marine,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
 	)
 
 	muzzleflash_iconstate = "muzzle_flash_laser"
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT
+	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS
 	actions_types = list()
 	wield_delay = 0.5 SECONDS
 	muzzle_flash_color = COLOR_GREEN
 
 	fire_delay = 1.5 SECONDS
-	accuracy_mult = 0.8
-	accuracy_mult_unwielded = 0.35
-	scatter = -1
 	scatter_unwielded = 2
 	recoil = -2
 	recoil_unwielded = -2
+
+	slot = ATTACHMENT_SLOT_UNDER
+	attach_delay = 3 SECONDS
+	detach_delay = 3 SECONDS
+	pixel_shift_x = 10
+	pixel_shift_y = 19
+
+	wield_delay_mod	= 0.2 SECONDS
+
+	placed_overlay_iconstate = "tx7"
+
+/obj/item/weapon/gun/pistol/plasma_pistol/can_attach(obj/item/attaching_to, mob/attacher)
+	if(!attachments_by_slot[ATTACHMENT_SLOT_RAIL])
+		return TRUE
+	to_chat(attacher, span_warning("You cannot attach [src] to [attaching_to] while [attachments_by_slot[ATTACHMENT_SLOT_RAIL]] occupies [src]'s rail slot."))
+	return FALSE
+
+/obj/item/weapon/gun/pistol/plasma_pistol/on_attach(obj/item/attached_to, mob/user)
+	flags_gun_features |= GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
+	return ..()
+
+/obj/item/weapon/gun/pistol/plasma_pistol/on_detach(obj/item/attached_to, mob/user)
+	flags_gun_features &= ~GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
+	return ..()
+
 
 /obj/item/weapon/gun/pistol/plasma_pistol/guardsman_pistol
 	name = "\improper Guardsman\'s plasma pistol"
@@ -131,20 +147,26 @@
 	caliber = CALIBER_9X19 //codex
 	max_shells = 14 //codex
 	fire_sound = 'sound/weapons/guns/fire/pistol_service.ogg'
-	current_mag = /obj/item/ammo_magazine/pistol
+	default_ammo_type = /obj/item/ammo_magazine/pistol
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/pistol,
+		/obj/item/ammo_magazine/pistol/hp,
+		/obj/item/ammo_magazine/pistol/ap,
+		/obj/item/ammo_magazine/pistol/incendiary,
+		/obj/item/ammo_magazine/pistol/extended,
+	)
 
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 19,"rail_x" = 19, "rail_y" = 21, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
 
 	fire_delay = 0.2 SECONDS
 	accuracy_mult = 1.15
-	scatter = 0
 
 //-------------------------------------------------------
-// TP-23 service pistol
+// P-23 service pistol
 
 /obj/item/weapon/gun/pistol/standard_heavypistol
-	name = "\improper TP-23 service pistol"
-	desc = "A standard TP-23 chambered in .45 ACP. Has a smaller magazine capacity, but packs a better punch. Has an irremovable laser sight. Uses .45 magazines."
+	name = "\improper P-23 service pistol"
+	desc = "A standard P-23 chambered in .45 ACP. Has a smaller magazine capacity, but packs a better punch. Has an irremovable laser sight. Uses .45 magazines."
 	icon_state = "tp23"
 	item_state = "tp23"
 	caliber = CALIBER_45ACP //codex
@@ -153,7 +175,8 @@
 	unload_sound = 'sound/weapons/guns/interact/colt_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/colt_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/colt_cocked.ogg'
-	current_mag = /obj/item/ammo_magazine/pistol/standard_heavypistol
+	default_ammo_type = /obj/item/ammo_magazine/pistol/standard_heavypistol
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/standard_heavypistol)
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,
@@ -162,23 +185,33 @@
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/lace,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
 	)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 22,"rail_x" = 13, "rail_y" = 24, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
-	fire_delay = 0.175 SECONDS
+	fire_delay = 0.2 SECONDS
 	accuracy_mult = 1.20 //Has a forced laser sight.
 	accuracy_mult_unwielded = 0.95
 	recoil = -2
 	recoil_unwielded = -2
 
+/obj/item/weapon/gun/pistol/standard_heavypistol/suppressed
+	starting_attachment_types = list(/obj/item/attachable/suppressor, /obj/item/attachable/flashlight) //Tacticool
+
+/obj/item/weapon/gun/pistol/standard_heavypistol/tacticool
+	starting_attachment_types = list(/obj/item/attachable/lace, /obj/item/attachable/flashlight) //Tacticool
+
+/obj/item/weapon/gun/pistol/standard_heavypistol/tactical
+	starting_attachment_types = list(/obj/item/attachable/reddot)
 //-------------------------------------------------------
-//M1911
+//P-1911
 
 /obj/item/weapon/gun/pistol/m1911
-	name = "\improper M1911 service pistol"
-	desc = "A M1911 chambered in .45 ACP. An archaic weapon, yet its popular and extremely reliable mechanism provided a template for many semi-automatic pistols to come."
+	name = "\improper P-1911 service pistol"
+	desc = "A P-1911 chambered in .45 ACP. An archaic weapon, yet its popular and extremely reliable mechanism provided a template for many semi-automatic pistols to come."
 	icon_state = "m1911"
 	item_state = "m1911"
 	caliber = CALIBER_45ACP //codex
@@ -187,10 +220,11 @@
 	unload_sound = 'sound/weapons/guns/interact/colt_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/colt_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/colt_cocked.ogg'
-	current_mag = /obj/item/ammo_magazine/pistol/m1911
+	default_ammo_type = /obj/item/ammo_magazine/pistol/m1911
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/m1911)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 17, "rail_y" = 22, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
-
-	fire_delay = 0.175 SECONDS
+	reciever_flags = AMMO_RECIEVER_MAGAZINES
+	fire_delay = 0.2 SECONDS
 	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.85
 	damage_mult = 1.15
@@ -198,8 +232,8 @@
 	recoil_unwielded = -1
 
 /obj/item/weapon/gun/pistol/m1911/custom
-	name = "\improper M1911A1 custom pistol"
-	desc = "A 20th century military firearm that received several modifications. It seems to have been lovingly taken care of and passed down the family. Lacks an auto magazine eject feature."
+	name = "\improper P-1911A1 custom pistol"
+	desc = "A handgun that has received several modifications. It seems to have been lovingly taken care of and passed down for generations. Lacks an auto magazine eject feature."
 	icon_state = "m1911c"
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
@@ -208,17 +242,17 @@
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/quickfire,
 		/obj/item/attachable/lace,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
 	)
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
-	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 12, "rail_y" = 22, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
-
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	fire_delay = 0.15 SECONDS
 
 //-------------------------------------------------------
-//G-22. Blocc
+//P-22. Blocc
 
 /obj/item/weapon/gun/pistol/g22
-	name = "\improper G-22 pistol"
+	name = "\improper P-22 pistol"
 	desc = "A popular police firearm in the modern day. Chambered in 9x19mm."
 	icon_state = "g22"
 	item_state = "g22"
@@ -229,7 +263,8 @@
 	unload_sound = 'sound/weapons/guns/interact/beretta_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/beretta_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/beretta_cocked.ogg'
-	current_mag = /obj/item/ammo_magazine/pistol/g22
+	default_ammo_type = /obj/item/ammo_magazine/pistol/g22
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/g22, /obj/item/ammo_magazine/pistol/g22tranq)
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 	burst_amount = 3
 	accuracy_mult = 1.15
@@ -238,13 +273,13 @@
 	fire_delay = 0.2 SECONDS
 
 /obj/item/weapon/gun/pistol/g22/tranq
-	name = "\improper G-22 custom pistol"
+	name = "\improper P-22 custom pistol"
 	desc = "A 20th century military firearm customized for special forces use, fires tranq darts to take down enemies nonlethally. It does not seem to accept any other attachments."
 	icon_state = "g22"
 	item_state = "g22"
 	caliber = CALIBER_9X19_TRANQUILIZER //codex
 	max_shells = 12 //codex
-	current_mag =/obj/item/ammo_magazine/pistol/g22tranq
+	default_ammo_type = /obj/item/ammo_magazine/pistol/g22tranq
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 21, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
 	starting_attachment_types = list(
 		/obj/item/attachable/lasersight,
@@ -273,7 +308,8 @@
 	unload_sound = 'sound/weapons/guns/interact/deagle_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/deagle_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/deagle_cocked.ogg'
-	current_mag = /obj/item/ammo_magazine/pistol/heavy
+	default_ammo_type = /obj/item/ammo_magazine/pistol/heavy
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/heavy)
 	force = 13
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
@@ -284,18 +320,21 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/lace,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
 	)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 19,"rail_x" = 9, "rail_y" = 23, "under_x" = 22, "under_y" = 14, "stock_x" = 20, "stock_y" = 17)
 
 	fire_delay = 0.7 SECONDS
 	scatter_unwielded = 25
-	damage_mult = 1.2
 	recoil = 1
 	recoil_unwielded = 2
-	scatter = 5
-	scatter_unwielded = 10
+	scatter = 4
+	scatter_unwielded = 7
+	accuracy_mult = 1
+	accuracy_mult_unwielded = 0.7
 
 /obj/item/weapon/gun/pistol/heavy/gold
 	name = "\improper Desert Eagle custom pistol"
@@ -316,7 +355,8 @@
 	unload_sound = 'sound/weapons/guns/interact/c99_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/c99_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/c99_cocked.ogg'
-	current_mag = /obj/item/ammo_magazine/pistol/c99
+	default_ammo_type = /obj/item/ammo_magazine/pistol/c99
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/c99, /obj/item/ammo_magazine/pistol/c99t)
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
@@ -324,24 +364,25 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/lace,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/suppressor/unremovable/invisible,
+		/obj/item/attachable/shoulder_mount,
 	)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 18, "stock_x" = 21, "stock_y" = 18)
 	//Making the gun have an invisible silencer since it's supposed to have one.
 	starting_attachment_types = list(/obj/item/attachable/suppressor/unremovable/invisible)
 
-	fire_delay = 0.175 SECONDS
-	accuracy_mult = 1.65
-	accuracy_mult_unwielded = 1.5
-	scatter = 0
-	scatter_unwielded = 10
+	fire_delay = 0.2 SECONDS
+	accuracy_mult = 1.3
+	scatter_unwielded = 2
 	damage_mult = 1.3
 	aim_slowdown = 0.1
 
 /obj/item/weapon/gun/pistol/c99/tranq
 	desc = "An updated variant of an old eastern design, dating back to from the 20th century. Features an integrated silencer, and chambered in the razor small .22 rounds. This one is usually loaded with special low-recoil .22 dart rounds, which act as a dangerous tranquilizer."
-	current_mag = /obj/item/ammo_magazine/pistol/c99t
+	default_ammo_type = /obj/item/ammo_magazine/pistol/c99t
 
 //-------------------------------------------------------
 //PIZZACHIMP PROTECTION
@@ -354,7 +395,8 @@
 	caliber = CALIBER_22LR //codex
 	max_shells = 5 //codex
 	fire_sound = 'sound/weapons/guns/fire/pistol_holdout.ogg'
-	current_mag = /obj/item/ammo_magazine/pistol/holdout
+	default_ammo_type = /obj/item/ammo_magazine/pistol/holdout
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/holdout)
 	w_class = WEIGHT_CLASS_TINY
 	force = 2
 	attachable_allowed = list(
@@ -367,23 +409,26 @@
 		/obj/item/attachable/lace,
 	)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 25, "muzzle_y" = 20,"rail_x" = 12, "rail_y" = 22, "under_x" = 17, "under_y" = 15, "stock_x" = 22, "stock_y" = 17)
 
 	fire_delay = 0.15 SECONDS
 
 //-------------------------------------------------------
-//TP-17 Pocket pistol. Based on a PMM.
+//P-17 Pocket pistol. Based on a PMM.
 
 /obj/item/weapon/gun/pistol/standard_pocketpistol
-	name = "\improper TP-17 pocket pistol"
+	name = "\improper P-17 pocket pistol"
 	desc = "A tiny pistol used by the TGMC as an emergency handgun meant to be stored about anywhere. Fits in boots. Uses .380 ACP stored in an eight round magazine."
+	icon = 'icons/Marine/gun64.dmi' // This is here here for the empty sprite.
 	icon_state = "tp17"
 	item_state = "tp17"
+	fire_animation = "tp17_fire"
 	caliber = CALIBER_380ACP //codex
 	max_shells = 8 //codex
-	fire_sound = 'sound/weapons/guns/fire/pistol_holdout.ogg'
-	current_mag = /obj/item/ammo_magazine/pistol/standard_pocketpistol
+	fire_sound = 'sound/weapons/guns/fire/tp17.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/pistol/standard_pocketpistol
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/standard_pocketpistol)
 	w_class = WEIGHT_CLASS_TINY
 	force = 5
 	attachable_allowed = list(
@@ -393,16 +438,13 @@
 		/obj/item/attachable/lace,
 	)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
-	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 21, "rail_y" = 13, "under_x" = 17, "under_y" = 15, "stock_x" = 22, "stock_y" = 17)
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 20,"rail_x" = 21, "rail_y" = 15, "under_x" = 17, "under_y" = 15, "stock_x" = 22, "stock_y" = 17)
 
-	fire_delay = 0.125 SECONDS
+	fire_delay = 0.15 SECONDS
 	recoil = -2
 	recoil_unwielded = -2
-	accuracy_mult = 1.1
-	accuracy_mult_unwielded = 1
-	scatter = -10
-	scatter_unwielded = -5
+	scatter_unwielded = 0
 	aim_speed_modifier = 0
 
 
@@ -411,27 +453,30 @@
 
 /obj/item/weapon/gun/pistol/highpower
 	name = "\improper Highpower automag"
-	desc = "A Colonial Marshals issued, powerful semi-automatic pistol chambered in armor piercing 9mm caliber rounds. Used for centuries by law enforcement and criminals alike, recently recreated with this new model."
+	desc = "A powerful semi-automatic pistol chambered in the devastating .50 AE caliber rounds. Used for centuries by law enforcement and criminals alike, recently recreated with this new model."
 	icon_state = "highpower"
 	item_state = "highpower"
-	caliber = CALIBER_9X19 //codex
+	caliber = CALIBER_50AE //codex
 	max_shells = 13 //codex
 	fire_sound = 'sound/weapons/guns/fire/hp.ogg'
 	unload_sound = 'sound/weapons/guns/interact/hp_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/hp_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/hp_cocked.ogg'
-	current_mag = /obj/item/ammo_magazine/pistol/highpower
+	default_ammo_type = /obj/item/ammo_magazine/pistol/highpower
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/highpower)
 	force = 10
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 20,"rail_x" = 8, "rail_y" = 22, "under_x" = 18, "under_y" = 15, "stock_x" = 16, "stock_y" = 15)
 
 	fire_delay = 1 SECONDS
-	damage_mult = 1.5
+	burst_delay = 0.5 SECONDS
+	damage_mult = 1.2
 	recoil = 1
 	recoil_unwielded = 2
-	accuracy_mult = 1.5
-	scatter = 0
-	scatter_unwielded = 15
+	accuracy_mult_unwielded = 0.7
+	scatter = 3
+	scatter_unwielded = 6
 
 //-------------------------------------------------------
 //VP70
@@ -448,7 +493,8 @@
 	unload_sound = 'sound/weapons/guns/interact/vp70_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/vp70_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/vp70_cocked.ogg'
-	current_mag = /obj/item/ammo_magazine/pistol/vp70
+	default_ammo_type = /obj/item/ammo_magazine/pistol/vp70
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/vp70)
 	force = 8
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
@@ -462,7 +508,7 @@
 		/obj/item/attachable/lace,
 	)
 
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 22,"rail_x" = 19, "rail_y" = 23, "under_x" = 21, "under_y" = 16, "stock_x" = 11, "stock_y" = 10)
 
 	fire_delay = 0.2 SECONDS
@@ -472,9 +518,11 @@
 	accuracy_mult_unwielded = 0.95
 	recoil = 0
 	aim_slowdown = 0.2
-	scatter = 5
-	scatter_unwielded = 15
+	scatter = 0
+	scatter_unwielded = 6
 
+/obj/item/weapon/gun/pistol/vp70/tactical
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/lasersight, /obj/item/attachable/compensator)
 
 //-------------------------------------------------------
 //VP78
@@ -491,7 +539,8 @@
 	unload_sound = 'sound/weapons/guns/interact/vp70_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/vp70_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/vp70_cocked.ogg'
-	current_mag = /obj/item/ammo_magazine/pistol/vp78
+	default_ammo_type = /obj/item/ammo_magazine/pistol/vp78
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/vp78)
 	force = 8
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 9, "rail_y" = 24, "under_x" = 23, "under_y" = 13, "stock_x" = 23, "stock_y" = 13)
 
@@ -501,6 +550,59 @@
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.85
 	recoil_unwielded = 3
+
+//-------------------------------------------------------
+//SOM pistol
+
+/obj/item/weapon/gun/pistol/som
+	name = "\improper V-11 pistol"
+	desc = "The standard sidearm used by the Sons of Mars. A reliable and simple weapon that is often seen on the export market on the outer colonies. Typically chambered in 9mm armor piercing rounds."
+	icon_state = "v11"
+	item_state = "v11"
+	caliber = CALIBER_9X19
+	max_shells = 18
+	fire_sound = 'sound/weapons/guns/fire/vp70.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/vp70_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/vp70_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/vp70_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/vp70_cocked.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/pistol/som
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/som, /obj/item/ammo_magazine/pistol/som/incendiary, /obj/item/ammo_magazine/pistol/som/extended)
+	force = 8
+	attachable_allowed = list(
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/burstfire_assembly,
+		/obj/item/attachable/lace,
+	)
+
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
+	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 22,"rail_x" = 6, "rail_y" = 23, "under_x" = 24, "under_y" = 15, "stock_x" = 11, "stock_y" = 10)
+
+	fire_delay = 0.15 SECONDS
+	accuracy_mult = 1.2
+	accuracy_mult_unwielded = 0.95
+	recoil = -2
+	aim_slowdown = 0.1
+	scatter = -1
+	scatter_unwielded = 4
+
+/obj/item/weapon/gun/pistol/som/standard
+	starting_attachment_types = list(
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/reddot,
+	)
+
+/obj/item/weapon/gun/pistol/som/burst
+	default_ammo_type = /obj/item/ammo_magazine/pistol/som/extended
+	starting_attachment_types = list(
+		/obj/item/attachable/burstfire_assembly,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/lace,
+	)
 
 //-------------------------------------------------------
 /*
@@ -516,10 +618,11 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	caliber = CALIBER_9X19 //codex
 	max_shells = 50 //codex
 	fire_sound = 'sound/weapons/guns/fire/beretta.ogg'
-	current_mag = /obj/item/ammo_magazine/pistol/auto9
+	default_ammo_type = /obj/item/ammo_magazine/pistol/auto9
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/auto9)
 	force = 15
 	attachable_allowed = list()
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
 
 
 	fire_delay = 0.1 SECONDS
@@ -537,14 +640,15 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	muzzleflash_iconstate = "muzzle_flash_medium"
 	caliber = CALIBER_70MANKEY //codex
 	max_shells = 300 //codex
-	current_mag = /obj/item/ammo_magazine/pistol/chimp
+	default_ammo_type = /obj/item/ammo_magazine/pistol/chimp
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/chimp)
 	fire_sound = 'sound/weapons/guns/fire/chimp70.ogg'
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 8
 	type_of_casings = null
 	gun_skill_category = GUN_SKILL_PISTOLS
 	attachable_allowed = list()
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_AMMO_COUNTER
 
 	fire_delay = 0.3 SECONDS
 	burst_delay = 0.2 SECONDS
@@ -561,7 +665,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 25
-	movement_acc_penalty_mult = 10
+	movement_acc_penalty_mult = 3
 	wield_delay = 0.2 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/pistol_service.ogg'
 	type_of_casings = "bullet"
@@ -583,11 +687,47 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/stock/rifle,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/attached_gun/shotgun,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/lace,
 	)
+
+
+// Smart pistol, based on Calico M-950
+/obj/item/weapon/gun/pistol/smart_pistol
+	name = "\improper SP-13 smart pistol"
+	desc = "The SP-13 is a latest solution for personal officer defence produced by Terran Armories. A cutting-edge miniaturization technology allows mounting of smartgun IFF system on the pistol, albeit at high manufactoring cost. Unique design feature high-capacity mag on top of the barrel, with integrated sight. As with all smartgun systems, requires special training."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "sp13"
+	item_state = "sp13"
+	caliber = CALIBER_9X19 //codex
+	max_shells = 25 //codex
+	fire_sound = 'sound/weapons/guns/fire/tp14.ogg' //same bullets, same sound
+	reload_sound = 'sound/weapons/guns/interact/tp14_reload.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol)
+	attachable_allowed = list(
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/lace,
+	)
+
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_IFF
+	gun_skill_category = GUN_SKILL_SMARTGUN
+
+	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 23, "under_x" = 19, "under_y" = 13, "stock_x" = 21, "stock_y" = 17)
+
+	aim_slowdown = 0.2
+	wield_delay = 0.4 SECONDS
+	fire_delay = 0.2 SECONDS
+	accuracy_mult = 1.2
+	accuracy_mult_unwielded = 0.85
+	scatter = 3
+	scatter_unwielded = 5
+	recoil = -2
+	recoil_unwielded = -2

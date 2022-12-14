@@ -2,7 +2,7 @@
 	name = "security camera"
 	desc = "It's used to monitor rooms."
 	icon = 'icons/obj/machines/monitors.dmi'
-	icon_state = "camera"
+	icon_state = "camera_icon"
 	use_power = ACTIVE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 10
@@ -23,6 +23,7 @@
 
 /obj/machinery/camera/Initialize(mapload, newDir)
 	. = ..()
+	icon_state = "camera"
 
 	if(newDir)
 		setDir(newDir)
@@ -66,13 +67,13 @@
 	. = ..()
 
 	if(!status)
-		to_chat(user, "<span class='info'>It's currently deactivated.</span>")
+		. += span_info("It's currently deactivated.")
 		if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN) && powered())
-			to_chat(user, "<span class='notice'>You'll need to open its maintenance panel with a <b>screwdriver</b> to turn it back on.</span>")
+			. += span_notice("You'll need to open its maintenance panel with a <b>screwdriver</b> to turn it back on.")
 	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-		to_chat(user, "<span class='info'>Its maintenance panel is currently open.</span>")
+		. += span_info("Its maintenance panel is currently open.")
 		if(!status && powered())
-			to_chat(user, "<span class='info'>It can reactivated with a <b>screwdriver</b>.</span>")
+			. += span_info("It can reactivated with a <b>screwdriver</b>.")
 
 
 /obj/machinery/camera/proc/setViewRange(num = 7)
@@ -89,7 +90,7 @@
 		var/itemname = X.name
 		var/info = X.info
 
-		to_chat(U, "<span class='notice'>You hold \the [itemname] up to the camera...</span>")
+		to_chat(U, span_notice("You hold \the [itemname] up to the camera..."))
 		U.changeNext_move(CLICK_CD_MELEE)
 		for(var/mob/O in GLOB.player_list)
 			if(isAI(O))
@@ -111,7 +112,7 @@
 	if(.)
 		return TRUE
 	TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
-	to_chat(user, "<span class='notice'>You screw the camera's panel [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "closed"].</span>")
+	to_chat(user, span_notice("You screw the camera's panel [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "closed"]."))
 	I.play_tool_sound(src)
 	update_icon()
 	return TRUE
@@ -132,7 +133,7 @@
 		return FALSE
 
 	setViewRange((view_range == initial(view_range)) ? short_range : initial(view_range))
-	to_chat(user, "<span class='notice'>You [(view_range == initial(view_range)) ? "restore" : "mess up"] the camera's focus.</span>")
+	to_chat(user, span_notice("You [(view_range == initial(view_range)) ? "restore" : "mess up"] the camera's focus."))
 	return TRUE
 
 
@@ -143,11 +144,11 @@
 	if(!I.tool_start_check(user, amount = 0))
 		return TRUE
 
-	to_chat(user, "<span class='notice'>You start to weld [src]...</span>")
+	to_chat(user, span_notice("You start to weld [src]..."))
 
 	if(I.use_tool(src, user, 100, volume = 50))
-		user.visible_message("<span class='warning'>[user] unwelds [src], leaving it as just a frame bolted to the wall.</span>",
-			"<span class='warning'>You unweld [src], leaving it as just a frame bolted to the wall</span>")
+		user.visible_message(span_warning("[user] unwelds [src], leaving it as just a frame bolted to the wall."),
+			span_warning("You unweld [src], leaving it as just a frame bolted to the wall"))
 		deconstruct(TRUE)
 
 	return TRUE
@@ -158,18 +159,18 @@
 		return FALSE
 
 	if(obj_integrity <= 0)
-		to_chat(X, "<span class='warning'>The camera is already disabled.</span>")
+		to_chat(X, span_warning("The camera is already disabled."))
 		return
 
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-	X.visible_message("<span class='danger'>[X] slashes \the [src]!</span>", \
-	"<span class='danger'>We slash \the [src]!</span>")
+	X.visible_message(span_danger("[X] slashes \the [src]!"), \
+	span_danger("We slash \the [src]!"))
 	playsound(loc, "alien_claw_metal", 25, 1)
 
 	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		ENABLE_BITFIELD(machine_stat, PANEL_OPEN)
 		update_icon()
-		visible_message("<span class='danger'>\The [src]'s cover swings open, exposing the wires!</span>")
+		visible_message(span_danger("\The [src]'s cover swings open, exposing the wires!"))
 		return
 
 	var/datum/effect_system/spark_spread/sparks = new
@@ -178,7 +179,7 @@
 	sparks.start()
 
 	deactivate()
-	visible_message("<span class='danger'>\The [src]'s wires snap apart in a rain of sparks!</span>")
+	visible_message(span_danger("\The [src]'s wires snap apart in a rain of sparks!"))
 
 
 /obj/machinery/camera/proc/deactivate(mob/user)
@@ -198,10 +199,13 @@
 			M.reset_perspective(null)
 			to_chat(M, "The screen bursts into static.")
 
-	for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
+	if(!powered())
+		return
+
+	for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
 		if(!AI.client)
 			continue
-		to_chat(AI, "<span class='notice'>[src] has been desactived at [myarea]</span>")
+		to_chat(AI, span_notice("[src] has been desactived at [myarea]"))
 
 
 /obj/machinery/camera/update_icon()
@@ -233,9 +237,9 @@
 
 	if(displaymessage)
 		if(user)
-			visible_message("<span class='danger'>[user] [change_msg] [src]!</span>")
+			visible_message(span_danger("[user] [change_msg] [src]!"))
 		else
-			visible_message("<span class='danger'>\The [src] [change_msg]!</span>")
+			visible_message(span_danger("\The [src] [change_msg]!"))
 
 	update_icon() //update Initialize() if you remove this.
 
@@ -281,14 +285,14 @@
 			if(cam == src)
 				return
 	if(on)
-		set_light(AI_CAMERA_LUMINOSITY)
+		set_light(AI_CAMERA_LUMINOSITY, AI_CAMERA_LUMINOSITY)
 	else
 		set_light(0)
 
 
 /obj/machinery/camera/get_remote_view_fullscreens(mob/user)
 	if(view_range == short_range) //unfocused
-		user.overlay_fullscreen("remote_view", /obj/screen/fullscreen/impaired, 2)
+		user.overlay_fullscreen("remote_view", /atom/movable/screen/fullscreen/impaired, 2)
 
 
 /obj/machinery/camera/update_remote_sight(mob/living/user)
@@ -339,7 +343,8 @@
 	icon_state = ""
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	network = list("laser targets")
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
+	view_range = 12
 
 /obj/machinery/camera/laser_cam/Initialize(mapload, laser_name)
 	. = ..()
@@ -352,7 +357,7 @@
 	icon_state = ""
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	network = list("supply beacons")
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 
 /obj/machinery/camera/beacon_cam/bomb
 	network = list("bomb beacons")
@@ -368,10 +373,13 @@
 //Should place them near each corner of your LZs.
 /obj/machinery/camera/autoname/lz_camera
 	name = "landing zone camera"
-	icon_state = ""
+	icon_state = "editor_icon"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	network = list("landing zones")
 
+/obj/machinery/camera/autoname/lz_camera/Initialize(mapload)
+	. = ..()
+	icon_state = "" //remove visibility on map load
 
 /obj/machinery/camera/autoname/lz_camera/emp_act(severity)
 	return
@@ -383,3 +391,15 @@
 
 /obj/machinery/camera/autoname/lz_camera/update_icon()
 	return
+
+//Thunderdome cameras
+/obj/machinery/camera/autoname/thunderdome
+	name = "thunderdome camera"
+	network = list("thunder")
+	resistance_flags = RESIST_ALL
+
+//Special invisible cameras, to get even better angles without looking ugly
+/obj/machinery/camera/autoname/thunderdome/hidden
+
+/obj/machinery/camera/autoname/thunderdome/hidden/update_icon()
+	icon_state = "nothing"

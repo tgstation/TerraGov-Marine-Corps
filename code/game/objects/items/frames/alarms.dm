@@ -30,14 +30,14 @@ Code shamelessly copied from apc_frame
 	var/turf/loc = get_turf(usr)
 	var/area/A = loc.loc
 	if (!isfloorturf(loc))
-		to_chat(usr, "<span class='warning'>Air Alarm cannot be placed on this spot.</span>")
+		to_chat(usr, span_warning("Air Alarm cannot be placed on this spot."))
 		return
 	if (A.requires_power == 0 || A.name == "Space")
-		to_chat(usr, "<span class='warning'>Air Alarm cannot be placed in this area.</span>")
+		to_chat(usr, span_warning("Air Alarm cannot be placed in this area."))
 		return
 
 	if(gotwallitem(loc, ndir))
-		to_chat(usr, "<span class='warning'>There's already an item on this wall!</span>")
+		to_chat(usr, span_warning("There's already an item on this wall!"))
 		return
 
 	new /obj/machinery/alarm(loc, ndir, 1)
@@ -73,14 +73,14 @@ Code shamelessly copied from apc_frame
 	var/turf/loc = get_turf(usr)
 	var/area/A = loc.loc
 	if (!isfloorturf(loc))
-		to_chat(usr, "<span class='warning'>Fire Alarm cannot be placed on this spot.</span>")
+		to_chat(usr, span_warning("Fire Alarm cannot be placed on this spot."))
 		return
 	if (A.requires_power == 0 || A.name == "Space")
-		to_chat(usr, "<span class='warning'>Fire Alarm cannot be placed in this area.</span>")
+		to_chat(usr, span_warning("Fire Alarm cannot be placed in this area."))
 		return
 
 	if(gotwallitem(loc, ndir))
-		to_chat(usr, "<span class='warning'>There's already an item on this wall!</span>")
+		to_chat(usr, span_warning("There's already an item on this wall!"))
 		return
 
 	new /obj/machinery/firealarm(loc, ndir, 1)

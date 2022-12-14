@@ -39,13 +39,13 @@
 	. = ..()
 	if(dirt_amt)
 		var/dirt_name = dirt_type == DIRT_TYPE_SNOW ? "snow" : "dirt"
-		to_chat(user, "It holds [dirt_amt] layer\s of [dirt_name].")
+		. += "It holds [dirt_amt] layer\s of [dirt_name]."
 
 /obj/item/tool/shovel/attack_self(mob/user)
 
 	if(dirt_amt)
 		var/dirt_name = dirt_type == DIRT_TYPE_SNOW ? "snow" : "dirt"
-		to_chat(user, "<span class='notice'>You dump the [dirt_name]!</span>")
+		to_chat(user, span_notice("You dump the [dirt_name]!"))
 		if(dirt_type == DIRT_TYPE_SNOW)
 			var/turf/T = get_turf(user.loc)
 			var/obj/item/stack/snow/S = locate() in T
@@ -75,7 +75,7 @@
 					var/turf/open/floor/plating/ground/snow/ST = T
 					if(!ST.slayer)
 						return
-				to_chat(user, "<span class='notice'>You start digging.</span>")
+				to_chat(user, span_notice("You start digging."))
 				playsound(user.loc, 'sound/effects/thud.ogg', 40, 1, 6)
 				if(!do_after(user, shovelspeed, TRUE, T, BUSY_ICON_BUILD))
 					return
@@ -84,19 +84,18 @@
 					var/turf/open/floor/plating/ground/snow/ST = T
 					if(!ST.slayer)
 						return
-					transf_amt = min(ST.slayer, dirt_amt_per_dig)
-					ST.slayer -= transf_amt
+					ST.slayer -= 1
 					ST.update_icon(1,0)
-					to_chat(user, "<span class='notice'>You dig up some snow.</span>")
+					to_chat(user, span_notice("You dig up some snow."))
 				else
-					to_chat(user, "<span class='notice'>You dig up some dirt.</span>")
+					to_chat(user, span_notice("You dig up some dirt."))
 				dirt_amt = transf_amt
 				dirt_type = turfdirt
 				update_icon()
 
 		else
 			var/turf/T = target
-			to_chat(user, "<span class='notice'>you dump the [dirt_type == DIRT_TYPE_SNOW ? "snow" : "dirt"]!</span>")
+			to_chat(user, span_notice("you dump the [dirt_type == DIRT_TYPE_SNOW ? "snow" : "dirt"]!"))
 			playsound(user.loc, "rustle", 30, 1, 6)
 			if(dirt_type == DIRT_TYPE_SNOW)
 				var/obj/item/stack/snow/S = locate() in T
@@ -132,23 +131,24 @@
 	name = "entrenching tool"
 	desc = "Used to dig holes and bash heads in. Folds in to fit in small spaces. Use a sharp item on it to sharpen it."
 	icon = 'icons/Marine/marine-items.dmi'
-	icon_state = "etool"
-	force = 30
+	icon_state = "etool_c"
+	force = 2
 	throwforce = 2
 	item_state = "crowbar"
-	hitsound = "swing_hit"
-	w_class = WEIGHT_CLASS_BULKY //three for unfolded, 3 for folded. This should keep it outside backpacks until its folded, made it 3 because 2 lets you fit in pockets appearntly.
+	hitsound = "sound/weapons/shovel.ogg"
+	w_class = WEIGHT_CLASS_SMALL //three for unfolded, 3 for folded. This should keep it outside backpacks until its folded, made it 3 because 2 lets you fit in pockets appearntly.
+	folded = TRUE
 	dirt_overlay = "etool_overlay"
 	dirt_amt_per_dig = 5
 	shovelspeed = 20
 
 /obj/item/tool/shovel/etool/update_icon_state()
-	if(folded)
-		icon_state = "etool_c"
-	else if(sharp) 
+	if(!folded && !sharp)
+		icon_state = "etool"
+	else if(sharp)
 		icon_state = "etool_s"
 	else
-		icon_state = "etool"
+		icon_state = "etool_c"
 	..()
 
 /obj/item/tool/shovel/etool/attack_self(mob/user as mob)
@@ -156,34 +156,37 @@
 		to_chat(user, "It has been sharpened and cannot be folded")
 		return
 	folded = !folded
-	if(folded)
-		w_class = WEIGHT_CLASS_NORMAL
-		force = 2
-	else
+	if(!folded)
 		w_class = WEIGHT_CLASS_BULKY
 		force = 30
+	else
+		w_class = WEIGHT_CLASS_SMALL
+		force = 2
 	..()
 
 /obj/item/tool/shovel/etool/attackby(obj/item/I, mob/user, params)
-	if(!I.sharp)
+	if(!I.sharp && !folded)
 		return ..()
 	if(sharp)
-		to_chat(user, "<span class='notice'>The entrenching tool is already sharpened.</span>")
+		to_chat(user, span_notice("The entrenching tool is already sharpened."))
 		return
 	if(folded)
-		to_chat(user, "<span class='notice'>You cannot sharpen the entrenching tool while it is folded.</span>")
+		to_chat(user, span_notice("You cannot sharpen the entrenching tool while it is folded."))
 		return
-	user.visible_message("<span class='notice'>[user] begins to sharpen the [src] with the [I].</span>",
-	"<span class='notice'>You begin to sharpen the [src] with the [I].</span>")
+	if(user.do_actions)
+		to_chat(user, span_notice("You're busy doing something else right now!"))
+		return
+	user.visible_message(span_notice("[user] begins to sharpen the [src] with the [I]."),
+	span_notice("You begin to sharpen the [src] with the [I]."))
 	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
 		return
 	sharp = IS_SHARP_ITEM_SIMPLE
 	name = "sharpened " + name
+	shovelspeed = 10
 	force = 60
 	update_icon()
 
 /obj/item/tool/shovel/etool/examine(mob/user)
 	. = ..()
 	if(sharp)
-		to_chat(user, "<span class='notice'> This one has been sharpened and can no longer be folded.</span>")
-
+		. += span_notice("This one has been sharpened and can no longer be folded.")

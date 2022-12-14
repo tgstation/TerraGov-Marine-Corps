@@ -62,12 +62,15 @@ CENTCOM_BAN_DB https://centcom.melonmesa.com/ban/search
 ## Logging. Recommended you keep all of these on.
 LOG_OOC
 LOG_LOOC
+LOG_XOOC
+LOG_MOOC
 LOG_SAY
 LOG_TELECOMMS
 LOG_HIVEMIND
 LOG_ADMIN
 LOG_ADMINCHAT
 LOG_ACCESS
+#LOG_ASSET
 LOG_GAME
 LOG_VOTE
 LOG_WHISPER
@@ -76,6 +79,7 @@ LOG_ATTACK
 LOG_HREFS
 LOG_RUNTIME
 LOG_MANIFEST
+# LOG_MECHA
 
 ## Gameplay options
 
@@ -87,6 +91,9 @@ LOOC_ENABLED
 BONES_CAN_BREAK
 LIMBS_CAN_BREAK
 
+## Uncomment to give admins the ability to send a maptext popup to players.
+## Only fires when an admin requests it, not every ahelp.
+POPUP_ADMIN_PM
 
 # Topic filtering whitelist
 # Addressed listed below are except from any incoming topic filering
@@ -95,37 +102,8 @@ LIMBS_CAN_BREAK
 ## Only enable this if you have youtube-dl installed!
 # INVOKE_YOUTUBEDL youtube-dl
 
-#Here are the lobby music configs.
-#index link startSecond endSecond
-
-#Space Hero
-LOBBY_MUSIC 1 https://youtu.be/fNdMC6_eUGk 1 180
-#Man of War, the good version
-LOBBY_MUSIC 2 https://youtu.be/EslVBQL3Zt8 1 180
-#Praise the lord and pass the ammunition
-LOBBY_MUSIC 3 https://youtu.be/uV9s1a6AZT0 1 180
-#Blood upon the risers
-LOBBY_MUSIC 4 https://youtu.be/vzrYgDnewSI 1 180
-#Dawson's Christian
-LOBBY_MUSIC 5 https://youtu.be/w34fSnJNP-4 1 180
-#Bomber
-LOBBY_MUSIC 6 https://youtu.be/OlkH687M4YM 1 180
-#Sam Jones
-LOBBY_MUSIC 7 https://youtu.be/-mO7vkdkJhg 1 180
-#Carry On Wayward Son
-LOBBY_MUSIC 8 https://youtu.be/2X_2IdybTV0 1 180
-#Pioneer's Song
-LOBBY_MUSIC 9 https://youtu.be/80VU36nKUZc 1 180
-#Pushin' The Speed Of Light
-LOBBY_MUSIC 10 https://youtu.be/ud6LiVJkwyA 1 180
-#Spilit of Motherwill
-LOBBY_MUSIC 11 https://youtu.be/uB2CFA2RyLE 1 180
-#Space camp song!
-LOBBY_MUSIC 12 https://youtu.be/guXqg_Bnl74 1 180
-#A New Age
-LOBBY_MUSIC 13 https://youtu.be/JUNROUfqJr0 1 180
-#I know the darkness from inside
-LOBBY_MUSIC 14 https://youtu.be/Zo60Lx5KXEI 1 180
+## End of round chat message
+# END_OF_ROUND_CHANNEL game-updates
 
 ## TOPIC RATE LIMITING
 ## This allows you to limit how many topic calls (clicking on an interface window) the client can do in any given game second and/or game minute.
@@ -158,9 +136,12 @@ MINUTE_TOPIC_LIMIT 100
 ##Name of the place to send people rejected by the bunker
 #PANIC_SERVER_NAME [Put the name here]
 
-## Notify admins when a new player connects for the first x days a player's been around. (0 for first connection only, -1 for never)
-##	Requres database
+## Notify admins when a new player connects for the first x days a player's been around on this server. (0 for first connection only, -1 for never)
+##	Requires database
 NOTIFY_NEW_PLAYER_AGE 0
+
+## Notify admins when a new byond account connects for the first x days after its creation. (-1 for never)
+NOTIFY_NEW_ACCOUNT_AGE 7
 
 ##Note: all population caps can be used with each other if desired.
 
@@ -191,9 +172,6 @@ GUEST_BAN
 ## Comment this out to disable checking for the cid randomizer dll. (disabled if database isn't enabled or connected)
 CHECK_RANDOMIZER
 
-##Set this number to the maximum number of players you want, after which game mode votes cannot be started
-MAXIMUM_CLIENTS_FOR_GAMEMODE_VOTE 40
-
 ## Uncomment these to set a custom respawn timer; the delay is in ticks.
 #MARINE_RESPAWN 18000
 #XENO_RESPAWN 1200
@@ -206,9 +184,20 @@ IS_AUTOMATIC_BALANCE_ON
 ##  15x15 would be the standard square view. 21x15 is what goonstation uses for widescreen.
 ##  Setting this to something different from DEFAULT_VIEW_SQUARE will enable widescreen toggles
 ##	Do note that changing this value will affect the title screen. The title screen will have to be updated manually if this is changed.
-DEFAULT_VIEW 15x15
+DEFAULT_VIEW 19x15
 
 ##Default view size, in tiles. Should *always* be square.
 ## The alternative square viewport size if you're using a widescreen view size
 ## You probably shouldn't ever be changing this, but it's here if you want to.
 DEFAULT_VIEW_SQUARE 15x15
+
+## How long in seconds after which a hard delete is treated as causing lag. This can be a float and supports a precision as low as nanoseconds.
+#HARD_DELETES_OVERRUN_THRESHOLD 0.5
+
+## Once a typepath causes overrun from hard deletes this many times, stop hard deleting it on garbage collection failures. (set to 0 to disable)
+#HARD_DELETES_OVERRUN_LIMIT 0
+
+## Uncomment if you think xenos are struggling against the marines
+#XENOS_ON_STRIKE
+
+AI_ANTI_STUCK_LAG_TIME_DILATION_THRESHOLD 20

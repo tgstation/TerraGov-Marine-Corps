@@ -25,11 +25,13 @@
 
 #define COLOR_RED "#FF0000"
 #define COLOR_MOSTLY_PURE_RED "#FF3300"
+#define COLOR_SOMEWHAT_LIGHTER_RED "#da4635"
 #define COLOR_DARK_RED "#A50824"
 #define COLOR_RED_LIGHT "#FF3333"
 #define COLOR_MAROON "#800000"
 #define COLOR_VIVID_RED "#FF3232"
 #define COLOR_LIGHT_GRAYISH_RED "#E4C7C5"
+
 /// Warm but extremely diluted red. rgb(250, 130, 130)
 #define COLOR_SOFT_RED "#FA8282"
 #define COLOR_LASER_RED "#FF8D8D"
@@ -112,8 +114,12 @@ Some defines to generalise colours used in lighting.
 Important note: colors can end up significantly different from the basic html picture, especially when saturated
 */
 
+/// Full white. rgb(255, 255, 255)
+#define LIGHT_COLOR_WHITE "#FFFFFF"
 /// Bright but quickly dissipating neon green. rgb(100, 200, 100)
 #define LIGHT_COLOR_GREEN "#64C864"
+/// Warm red color rgb(250, 66, 66)
+#define LIGHT_COLOR_RED "#ff3b3b"
 /// Electric green. rgb(0, 255, 0)
 #define LIGHT_COLOR_ELECTRIC_GREEN "#00FF00"
 /// Cold, diluted blue. rgb(100, 150, 250)

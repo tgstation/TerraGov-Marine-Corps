@@ -3,7 +3,6 @@
 	species = pick(get_playable_species())
 	synthetic_type = pick(SYNTH_TYPES)
 	ethnicity = random_ethnicity()
-	body_type = random_body_type()
 
 	h_style = random_hair_style(gender, species)
 	f_style = random_facial_hair_style(gender, species)
@@ -11,7 +10,6 @@
 	good_eyesight = pick(list(FALSE, TRUE))
 	citizenship = pick(CITIZENSHIP_CHOICES)
 	religion = pick(RELIGION_CHOICES)
-	nanotrasen_relation = pick(CORP_RELATIONS)
 	randomize_hair_color("hair")
 	randomize_hair_color("grad")
 	randomize_hair_color("facial")
@@ -184,7 +182,6 @@
 	character.age = age
 	character.gender = gender
 	character.ethnicity = ethnicity
-	character.body_type = body_type
 
 	character.r_eyes = r_eyes
 	character.g_eyes = g_eyes

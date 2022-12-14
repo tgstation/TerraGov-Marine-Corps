@@ -21,10 +21,10 @@
 	// Stuff needed to render the map
 	var/map_name
 	var/const/default_map_size = 15
-	var/obj/screen/map_view/cam_screen
+	var/atom/movable/screen/map_view/cam_screen
 	/// All the plane masters that need to be applied.
 	var/list/cam_plane_masters
-	var/obj/screen/background/cam_background
+	var/atom/movable/screen/background/cam_background
 
 /obj/item/hud_tablet/Initialize(mapload, rank, datum/squad/squad)
 	. = ..()
@@ -79,10 +79,12 @@
 	cam_screen.del_on_map_removal = FALSE
 	cam_screen.screen_loc = "[map_name]:1,1"
 	cam_plane_masters = list()
-	for(var/plane in subtypesof(/obj/screen/plane_master))
-		var/obj/screen/instance = new plane()
+	for(var/plane in subtypesof(/atom/movable/screen/plane_master) - /atom/movable/screen/plane_master/blackness)
+		var/atom/movable/screen/plane_master/instance = new plane()
 		instance.assigned_map = map_name
 		instance.del_on_map_removal = FALSE
+		if(instance.blend_mode_override)
+			instance.blend_mode = instance.blend_mode_override
 		instance.screen_loc = "[map_name]:CENTER"
 		cam_plane_masters += instance
 	cam_background = new
@@ -122,14 +124,14 @@
 
 /obj/item/hud_tablet/interact(mob/user)
 	if(!allowed(user))
-		to_chat(user, "<span class='warning'>Access denied, unauthorized user.</span>")
+		to_chat(user, span_warning("Access denied, unauthorized user."))
 		return TRUE
 	return ..()
 
 /obj/item/hud_tablet/ui_interact(mob/user, datum/tgui/ui)
 	// Update UI
 	ui = SStgui.try_update_ui(user, src, ui)
-	
+
 	// Update the camera, showing static if necessary and updating data if the location has moved.
 	update_active_camera_screen()
 
@@ -179,7 +181,7 @@
 
 		if(!selected_camera)
 			return TRUE
-		
+
 		update_active_camera_screen()
 
 		return TRUE
@@ -252,5 +254,13 @@
 	name = "pilot officers's hud tablet"
 	network = list("dropship1", "dropship2")
 	req_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_DROPSHIP)
+	max_view_dist = WORLD_VIEW_NUM
+
+
+/obj/item/hud_tablet/artillery
+	name = "artillery impact hud tablet"
+	desc = "A handy tablet with a live feed to several TGMC satellites. Provides a view of all artillery on the battlefield. Transmits a video of the impact site whenever a shot is fired, so that hits may be observed by the loader or spotter."
+	network = list("terragovartillery") //This shows cameras of all mortars, so don't add this to HvH
+	req_access = list()
 	max_view_dist = WORLD_VIEW_NUM
 

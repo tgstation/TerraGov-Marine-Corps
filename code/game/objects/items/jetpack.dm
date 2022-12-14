@@ -35,9 +35,9 @@
 	if(!ishuman(user))
 		return
 	if(fuel_left == 0)
-		to_chat(user, "The fuel gauge beeps out, it has no fuel left")
+		. += "The fuel gauge is beeping, it has no fuel left!"
 	else
-		to_chat(user, "The fuel gauge meter indicate it has [fuel_left/FUEL_USE] uses left")
+		. += "The fuel gauge meter indicates it has [fuel_left/FUEL_USE] uses left."
 
 /obj/item/jetpack_marine/equipped(mob/user, slot)
 	. = ..()
@@ -51,16 +51,16 @@
 	UnregisterSignal(user, list(COMSIG_MOB_CLICK_ALT_RIGHT, COMSIG_MOB_MIDDLE_CLICK))
 	UnregisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE)
 	selected = FALSE
-	actions.Cut()
+	LAZYCLEARLIST(actions)
 
 /obj/item/jetpack_marine/ui_action_click(mob/user, datum/action/item_action/action)
 	if(selected)
 		UnregisterSignal(user, COMSIG_MOB_MIDDLE_CLICK)
-		action.remove_selected_frame()
+		action.set_toggle(FALSE)
 		UnregisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE)
 	else
 		RegisterSignal(user, COMSIG_MOB_MIDDLE_CLICK, .proc/can_use_jetpack)
-		action.add_selected_frame()
+		action.set_toggle(TRUE)
 		SEND_SIGNAL(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, user)
 		RegisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, .proc/unselect)
 	selected = !selected
@@ -78,7 +78,7 @@
 			continue
 		var/datum/action/item_action/iaction = action
 		if(iaction?.holder_item == src)
-			iaction.remove_selected_frame()
+			iaction.set_toggle(FALSE)
 
 
 ///remove the flame overlay
@@ -89,6 +89,9 @@
 
 ///Make the user fly toward the target atom
 /obj/item/jetpack_marine/proc/use_jetpack(atom/A, mob/living/carbon/human/human_user)
+	if(human_user.buckled)
+		balloon_alert(human_user, "Cannot fly while buckled")
+		return
 	if(!do_after(user = human_user, delay = 0.3 SECONDS, needhand = FALSE, target = A, ignore_turf_checks = TRUE))
 		return
 	TIMER_COOLDOWN_START(src, COOLDOWN_JETPACK, JETPACK_COOLDOWN_TIME)
@@ -122,10 +125,10 @@
 	if(human_user.incapacitated() || human_user.lying_angle)
 		return
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_JETPACK))
-		to_chat(human_user,"<span class='warning'>You cannot use the jetpack yet!</span>")
+		to_chat(human_user,span_warning("You cannot use the jetpack yet!"))
 		return
 	if(fuel_left < FUEL_USE)
-		to_chat(human_user,"<span class='warning'>The jetpack ran out of fuel!</span>")
+		to_chat(human_user,span_warning("The jetpack ran out of fuel!"))
 		return
 	INVOKE_ASYNC(src, .proc/use_jetpack, A, human_user)
 
@@ -141,9 +144,10 @@
 		else
 			. += image('icons/obj/items/jetpack.dmi', src, "+jetpackempty")
 
-/obj/item/jetpack_marine/apply_custom(image/standing)
+/obj/item/jetpack_marine/apply_custom(mutable_appearance/standing)
+	. = ..()
 	if(lit)
-		standing.overlays += image('icons/mob/back.dmi',src,"+jetpack_lit")
+		standing.overlays += mutable_appearance('icons/mob/back.dmi',"+jetpack_lit")
 
 ///Manage the fuel indicator overlay
 /obj/item/jetpack_marine/proc/change_fuel_indicator()
@@ -165,7 +169,7 @@
 		return ..()
 	var/obj/structure/reagent_dispensers/fueltank/FT = target
 	if(FT.reagents.total_volume == 0)
-		to_chat(user, "<span class='warning'>Out of fuel!</span>")
+		to_chat(user, span_warning("Out of fuel!"))
 		return
 
 	var/fuel_transfer_amount = min(FT.reagents.total_volume, (fuel_max - fuel_left))
@@ -175,7 +179,7 @@
 	change_fuel_indicator()
 	update_icon()
 	playsound(loc, 'sound/effects/refill.ogg', 30, 1, 3)
-	to_chat(user, "<span class='notice'>You refill [src] with [target].</span>")
+	to_chat(user, span_notice("You refill [src] with [target]."))
 
 /obj/item/jetpack_marine/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -183,7 +187,7 @@
 		return
 	var/obj/item/ammo_magazine/flamer_tank/FT = I
 	if(FT.current_rounds == 0)
-		to_chat(user, "<span class='warning'>Out of fuel!</span>")
+		to_chat(user, span_warning("Out of fuel!"))
 		return
 
 	var/fuel_transfer_amount = min(FT.current_rounds, (fuel_max - fuel_left))
@@ -192,5 +196,5 @@
 	fuel_indicator = FUEL_INDICATOR_FULL
 	change_fuel_indicator()
 	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-	to_chat(user, "<span class='notice'>You refill [src] with [I].</span>")
+	to_chat(user, span_notice("You refill [src] with [I]."))
 	update_icon()

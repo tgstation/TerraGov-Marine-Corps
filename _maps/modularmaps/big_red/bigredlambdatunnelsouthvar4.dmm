@@ -1,0 +1,339 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/east)
+"f" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northeast)
+"h" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/east)
+"k" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/east)
+"m" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/east)
+"o" = (
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northeast)
+"z" = (
+/turf/open/floor/plating/ground/mars/random/cave/rock,
+/area/bigredv2/caves/east)
+"B" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northeast)
+"C" = (
+/turf/closed/mineral/smooth/bigred,
+/area/bigredv2/caves/rock)
+"G" = (
+/obj/effect/landmark/start/job/xenomorph,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/east)
+"H" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/east)
+"S" = (
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/east)
+"V" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/closed/mineral/smooth/bigred,
+/area/bigredv2/caves/rock)
+
+(1,1,1) = {"
+C
+C
+C
+C
+C
+C
+C
+C
+C
+C
+C
+"}
+(2,1,1) = {"
+C
+C
+C
+C
+C
+C
+C
+C
+C
+C
+C
+"}
+(3,1,1) = {"
+C
+C
+C
+C
+C
+C
+C
+C
+C
+C
+C
+"}
+(4,1,1) = {"
+C
+C
+C
+C
+C
+C
+C
+C
+C
+C
+C
+"}
+(5,1,1) = {"
+C
+C
+C
+C
+C
+C
+C
+C
+C
+C
+C
+"}
+(6,1,1) = {"
+f
+C
+C
+S
+h
+S
+b
+S
+C
+C
+C
+"}
+(7,1,1) = {"
+o
+S
+S
+S
+h
+S
+S
+h
+S
+z
+z
+"}
+(8,1,1) = {"
+B
+h
+S
+S
+S
+S
+S
+S
+S
+m
+k
+"}
+(9,1,1) = {"
+o
+b
+S
+S
+h
+S
+b
+h
+S
+k
+b
+"}
+(10,1,1) = {"
+B
+S
+h
+S
+S
+h
+S
+S
+S
+H
+S
+"}
+(11,1,1) = {"
+f
+S
+h
+S
+S
+S
+S
+k
+k
+S
+G
+"}
+(12,1,1) = {"
+o
+S
+h
+S
+h
+S
+k
+z
+h
+S
+b
+"}
+(13,1,1) = {"
+B
+h
+S
+b
+S
+k
+S
+S
+S
+b
+C
+"}
+(14,1,1) = {"
+C
+S
+S
+C
+h
+k
+C
+C
+S
+C
+C
+"}
+(15,1,1) = {"
+C
+C
+C
+C
+C
+V
+C
+C
+C
+C
+C
+"}
+(16,1,1) = {"
+C
+C
+C
+C
+C
+V
+C
+C
+C
+C
+C
+"}
+(17,1,1) = {"
+C
+C
+C
+C
+C
+V
+C
+C
+C
+C
+C
+"}
+(18,1,1) = {"
+C
+C
+C
+C
+C
+V
+C
+C
+C
+C
+C
+"}
+(19,1,1) = {"
+C
+C
+C
+C
+C
+V
+C
+C
+C
+C
+C
+"}
+(20,1,1) = {"
+C
+C
+C
+C
+C
+V
+C
+C
+C
+C
+C
+"}
+(21,1,1) = {"
+C
+C
+C
+C
+C
+V
+C
+C
+C
+C
+C
+"}
+(22,1,1) = {"
+V
+V
+V
+V
+V
+C
+C
+C
+C
+C
+C
+"}

@@ -7,6 +7,8 @@
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_NOHEADSET|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_SHOW_OPEN_POSITIONS
 	jobworth = list(/datum/job/survivor/rambo = SURVIVOR_POINTS_REGULAR)
 	job_points_needed  = 10 //Redefined via config.
+	faction = FACTION_XENO
+	exp_type = EXP_TYPE_SPECIAL
 	html_description = {"
 		<b>Difficulty</b>: Variable<br /><br />
 		<b>You answer to the</b> acting Hive leader<br /><br />
@@ -14,13 +16,19 @@
 		<b>Gamemode Availability</b>: Crash, Distress<br /><br /><br />
 		<b>Duty</b>: Spread the hive, obey the will of your Hive Leader and the Queen Mother. Kill or capture those who get into your way. Protect the hive whenever possible. Amass your numbers.
 	"}
+	/**
+	 * This is the amount of "free" xeno jobs opened at the start, even before marines job contributes to the total.
+	 * This is a counter to prevent adding more jobs that necessary
+	 */
+	var/free_xeno_at_start = FREE_XENO_AT_START
 
 /datum/job/xenomorph/return_spawn_type(datum/preferences/prefs)
 	return /mob/living/carbon/xenomorph/larva
 
-/datum/job/xenomorph/add_job_points(amount, origin = MARINE_SPAWN_ORIGIN)
-	. = ..()
-	SSblackbox.record_feedback("tally", "round_statistics", 0.125 * amount, origin)
+/datum/job/xenomorph/return_spawn_turf()
+	if(length(GLOB.xeno_resin_silos))
+		return pick(GLOB.xeno_resin_silos)
+	return pick(GLOB.spawns_by_job[/datum/job/xenomorph])
 
 /datum/job/xenomorph/radio_help_message(mob/M)
 	. = ..()
@@ -32,6 +40,10 @@
 	return TRUE
 
 /datum/job/xenomorph/add_job_positions(amount)
+	if(!(SSticker.mode.flags_round_type & MODE_XENO_SPAWN_PROTECT))
+		if(free_xeno_at_start > 0)
+			free_xeno_at_start--
+			return
 	. = ..()
 	if(!.)
 		return

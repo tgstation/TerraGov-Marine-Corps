@@ -33,16 +33,19 @@
 		"Invalid credentials, upgrading permissions through TGMC military override- Permissions upgraded, nuke_fission_timing.exe available",
 		"Downloading nuke_fission_timing.exe to removable storage- nuke_fission_timing.exe downloaded to floppy disk, have a nice day"
 	)
+	///For designating minimap color icon
+	var/disk_color
 
 /obj/machinery/computer/nuke_disk_generator/Initialize()
 	. = ..()
+	update_minimap_icon()
 
 	if(!disk_type)
 		WARNING("disk_type is required to be set before init")
 		return INITIALIZE_HINT_QDEL
 
 	GLOB.nuke_disk_generators += src
-
+	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/set_broken)
 
 /obj/machinery/computer/nuke_disk_generator/Destroy()
 	GLOB.nuke_disk_generators -= src
@@ -56,6 +59,7 @@
 
 	deltimer(current_timer)
 	current_timer = null
+	update_minimap_icon()
 	visible_message("<b>[src]</b> shuts down as it loses power. Any running programs will now exit")
 	return PROCESS_KILL
 
@@ -109,7 +113,7 @@
 
 	if(href_list["generate"])
 		if(printing || current_timer)
-			to_chat(usr, "<span class='warning'>A program is already running.</span>")
+			to_chat(usr, span_warning("A program is already running."))
 			return
 		if(reprintable)
 			printing = TRUE
@@ -130,6 +134,7 @@
 			return
 
 		current_timer = addtimer(CALLBACK(src, .proc/complete_segment), generate_time, TIMER_STOPPABLE)
+		update_minimap_icon()
 
 	updateUsrDialog()
 
@@ -138,30 +143,39 @@
 	playsound(src, 'sound/machines/ping.ogg', 25, 1)
 	current_timer = null
 	completed_segments = min(completed_segments + 1, total_segments)
+	update_minimap_icon()
 
 	if(completed_segments == total_segments)
 		reprintable = TRUE
-		visible_message("<span class='notice'>[src] beeps as it ready to print.</span>")
+		visible_message(span_notice("[src] beeps as it ready to print."))
 		return
 
-	visible_message("<span class='notice'>[src] beeps as it program requires attention.</span>")
+	visible_message(span_notice("[src] beeps as it program requires attention."))
 
 
 /obj/machinery/computer/nuke_disk_generator/proc/print_disc()
 	disk = new disk_type(loc)
-	visible_message("<span class='notice'>[src] beeps as it finishes printing the disc.</span>")
+	visible_message(span_notice("[src] beeps as it finishes printing the disc."))
 	reprintable = TRUE
+
+///Change minimap icon if its on or off
+/obj/machinery/computer/nuke_disk_generator/proc/update_minimap_icon()
+	SSminimaps.remove_marker(src)
+	SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "[disk_color]_disk[current_timer ? "_on" : "_off"]", 'icons/UI_icons/map_blips_large.dmi')
 
 /obj/machinery/computer/nuke_disk_generator/red
 	name = "red nuke disk generator"
 	disk_type = /obj/item/disk/nuclear/red
+	disk_color = "red"
 
 /obj/machinery/computer/nuke_disk_generator/green
 	name = "green nuke disk generator"
 	icon_state = "nuke_green"
 	disk_type = /obj/item/disk/nuclear/green
+	disk_color = "green"
 
 /obj/machinery/computer/nuke_disk_generator/blue
 	name = "blue nuke disk generator"
 	icon_state = "nuke_blue"
 	disk_type = /obj/item/disk/nuclear/blue
+	disk_color = "blue"

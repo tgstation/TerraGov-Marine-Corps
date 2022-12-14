@@ -74,10 +74,10 @@
 				return
 
 
-		visible_message(pick("<span class='danger'>[src] is attempting to bite [p_their()] tongue off! It looks like [p_theyre()] trying to commit suicide.</span>", \
-							"<span class='danger'>[src] is jamming [p_their()] thumbs into [p_their()] eye sockets! It looks like [p_theyre()] trying to commit suicide.</span>", \
-							"<span class='danger'>[src] is twisting [p_their()] own neck! It looks like [p_theyre()] trying to commit suicide.</span>", \
-							"<span class='danger'>[src] is holding [p_their()] breath! It looks like [p_theyre()] trying to commit suicide.</span>"))
+		visible_message(pick(span_danger("[src] is attempting to bite [p_their()] tongue off! It looks like [p_theyre()] trying to commit suicide."), \
+							span_danger("[src] is jamming [p_their()] thumbs into [p_their()] eye sockets! It looks like [p_theyre()] trying to commit suicide."), \
+							span_danger("[src] is twisting [p_their()] own neck! It looks like [p_theyre()] trying to commit suicide."), \
+							span_danger("[src] is holding [p_their()] breath! It looks like [p_theyre()] trying to commit suicide.")))
 		adjustOxyLoss(max(175 - getToxLoss() - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
 		updatehealth()
 
@@ -100,7 +100,7 @@
 
 	if(confirm == "Yes")
 		suiciding = 1
-		viewers(loc) << "<span class='danger'>[src]'s brain is growing dull and lifeless. It looks like it's lost the will to live.</span>"
+		viewers(loc) << span_danger("[src]'s brain is growing dull and lifeless. It looks like it's lost the will to live.")
 		spawn(50)
 			death()
 			suiciding = 0

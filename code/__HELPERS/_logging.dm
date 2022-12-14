@@ -35,6 +35,12 @@
 #define testing(msg)
 #endif
 
+#ifdef REFERENCE_TRACKING_LOG
+#define log_reftracker(msg) log_world("## REF SEARCH [msg]")
+#else
+#define log_reftracker(msg)
+#endif
+
 /* Items with private are stripped from public logs. */
 /proc/log_admin(text)
 	LAZYADD(GLOB.admin_log, "\[[stationTimestamp()]\] ADMIN: [text]")
@@ -73,6 +79,9 @@
 	if(CONFIG_GET(flag/log_game))
 		WRITE_LOG(GLOB.world_game_log, "GAME: [text]")
 
+/proc/log_mecha(text)
+	if (CONFIG_GET(flag/log_mecha))
+		WRITE_LOG(GLOB.world_mecha_log, "MECHA: [text]")
 
 /proc/log_access(text)
 	LAZYADD(GLOB.access_log, "\[[stationTimestamp()]\] ACCESS: [text]")
@@ -81,7 +90,8 @@
 
 
 /proc/log_asset(text)
-	WRITE_LOG(GLOB.world_asset_log, "ASSET: [text]")
+	if(CONFIG_GET(flag/log_asset))
+		WRITE_LOG(GLOB.world_asset_log, "ASSET: [text]")
 
 /proc/log_attack(text)
 	LAZYADD(GLOB.attack_log, "\[[stationTimestamp()]\] ATTACK: [text]")
@@ -124,6 +134,15 @@
 	if(CONFIG_GET(flag/log_ooc))
 		WRITE_LOG(GLOB.world_game_log, "OOC: [text]")
 
+/proc/log_xooc(text)
+	LAZYADD(GLOB.say_log, "\[[stationTimestamp()]\] XOOC: [text]")
+	if(CONFIG_GET(flag/log_xooc))
+		WRITE_LOG(GLOB.world_game_log, "XOOC: [text]")
+
+/proc/log_mooc(text)
+	LAZYADD(GLOB.say_log, "\[[stationTimestamp()]\] MOOC: [text]")
+	if(CONFIG_GET(flag/log_mooc))
+		WRITE_LOG(GLOB.world_game_log, "MOOC: [text]")
 
 /proc/log_looc(text)
 	LAZYADD(GLOB.say_log, "\[[stationTimestamp()]\] LOOC: [text]")
@@ -169,6 +188,8 @@
 	if(CONFIG_GET(flag/log_hrefs))
 		WRITE_LOG(GLOB.world_href_log, "HREF: [text]")
 
+/proc/log_mob_tag(text)
+	WRITE_LOG(GLOB.world_mob_tag_log, "TAG: [text]")
 
 /proc/log_sql(text)
 	WRITE_LOG(GLOB.sql_error_log, "SQL: [text]")
@@ -200,6 +221,7 @@
 
 /proc/log_paper(text)
 	WRITE_LOG(GLOB.world_paper_log, "PAPER: [text]")
+
 
 /**
  * Appends a tgui-related log entry. All arguments are optional.

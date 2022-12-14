@@ -42,8 +42,11 @@
 #define SOUND_AMBIENCE (1<<2)
 #define SOUND_LOBBY (1<<3)
 #define SOUND_INSTRUMENTS_OFF (1<<4)
+#define SOUND_GAS_MASK (1<<5)
+#define SOUND_WEATHER (1<<6)
+#define SOUND_NOENDOFROUND (1<<7)
 
-#define TOGGLES_SOUND_DEFAULT (SOUND_ADMINHELP|SOUND_MIDI|SOUND_AMBIENCE|SOUND_LOBBY)
+#define TOGGLES_SOUND_DEFAULT (SOUND_ADMINHELP|SOUND_MIDI|SOUND_AMBIENCE|SOUND_LOBBY|SOUND_WEATHER)
 
 
 #define CHAT_OOC (1<<0)
@@ -70,6 +73,17 @@
 
 #define RADIAL_MEDICAL (1<<0)
 #define MIDDLESHIFTCLICKING (1<<1)
+#define RADIAL_STACKS (1<<2)
+
+#define PARALLAX_INSANE -1 //for show offs
+#define PARALLAX_HIGH    0 //default.
+#define PARALLAX_MED     1
+#define PARALLAX_LOW     2
+#define PARALLAX_DISABLE 3 //this option must be the highest number
+
+#define PARALLAX_DELAY_DEFAULT world.tick_lag
+#define PARALLAX_DELAY_MED     1
+#define PARALLAX_DELAY_LOW     2
 
 #define PIXEL_SCALING_AUTO 0
 #define PIXEL_SCALING_1X 1
@@ -81,7 +95,7 @@
 #define SCALING_METHOD_DISTORT "distort"
 #define SCALING_METHOD_BLUR "blur"
 
-#define TOGGLES_GAMEPLAY_DEFAULT (RADIAL_MEDICAL|MIDDLESHIFTCLICKING)
+#define TOGGLES_GAMEPLAY_DEFAULT (RADIAL_MEDICAL|MIDDLESHIFTCLICKING|RADIAL_STACKS)
 
 #define CHARACTER_CUSTOMIZATION 1
 #define BACKGROUND_INFORMATION 2
@@ -91,26 +105,27 @@
 #define KEYBIND_SETTINGS 6
 
 #define CITIZENSHIP_CHOICES list(\
-	"TerraGov",\
-	"Limited Service (Colony)",\
-	"Green Card (Foreign)"\
-	)
-
-
-#define CORP_RELATIONS list(\
-	"Loyal",\
-	"Supportive",\
-	"Neutral",\
-	"Skeptical",\
-	"Opposed"\
+	"Earth Born",\
+	"Sol Born",\
+	"Colony Born"\
 	)
 
 
 #define RELIGION_CHOICES list(\
-	"Christianity (Protestant)",\
 	"Christianity (Catholic)",\
-	"Christianity (Orthodox)",\
-	"Christianity (Mormonism)",\
+	"Christianity (Protestant, Anglicanism)",\
+	"Christianity (Protestant, Baptist)",\
+	"Christianity (Protestant, Lutheranism)",\
+	"Christianity (Protestant, Calvinism)",\
+	"Christianity (Protestant, Methodism)",\
+	"Christianity (Protestant, Adventism)",\
+	"Christianity (Protestant, Pentecostalism)",\
+	"Christianity (Protestant, Other)",\
+	"Christianity (Eastern Orthodoxy)",\
+	"Christianity (Oriental Orthodoxy)",\
+	"Christianity (Non-trinitarian Restorationism, Mormonism)",\
+	"Christianity (Non-trinitarian Restorationism, Jehovah's Witnesses)",\
+	"Christianity (Non-trinitarian Restorationism, Oneness Pentecostalism)",\
 	"Christianity (Other)",\
 	"Judaism",\
 	"Islam (Shia)",\
@@ -119,12 +134,11 @@
 	"Hinduism",\
 	"Sikhism",\
 	"Shintoism",\
-	"Wiccanism",\
-	"Paganism (Wicca)",\
-	"Minor Religion",\
+	"Adherents of the Machine God",\
+	"Paganism",\
+	"Other Religion",\
 	"Atheism",\
-	"None",\
-	"Other"\
+	"None"\
 	)
 
 
@@ -133,6 +147,14 @@
 	"Bravo",\
 	"Charlie",\
 	"Delta",\
+	"None"\
+	)
+
+#define SELECTABLE_SQUADS_SOM list(\
+	"Zulu",\
+	"Yankee",\
+	"Xray",\
+	"Whiskey",\
 	"None"\
 	)
 

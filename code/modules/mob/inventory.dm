@@ -22,6 +22,19 @@
 	return l_hand
 
 /**
+ * Checks if this mob is holding a certain type of item in hands
+ * returns TRUEif found FALSE if not
+ * Args:
+ * * typepath: typepath to check for
+ */
+/mob/proc/is_holding_item_of_type(typepath)
+	if(istype(get_active_held_item(), typepath))
+		return TRUE
+	if(istype(get_inactive_held_item(), typepath))
+		return TRUE
+	return FALSE
+
+/**
 	Puts the item into your l_hand if possible and calls all necessary triggers/updates.
 
 	Arguments
@@ -30,6 +43,7 @@
 	Returns TRUE on success.
 */
 /mob/proc/put_in_l_hand(obj/item/W)
+	W.do_pickup_animation(src)
 	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
 		return FALSE
 	if(lying_angle)
@@ -57,6 +71,7 @@
 	Returns TRUE on success.
 */
 /mob/proc/put_in_r_hand(obj/item/W)
+	W.do_pickup_animation(src)
 	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
 		return FALSE
 	if(lying_angle)
@@ -115,6 +130,7 @@
 	Returns TURE if it was able to put the thing into one of our hands.
 */
 /mob/proc/put_in_hands(obj/item/W, del_on_fail = FALSE)
+	W.do_pickup_animation(src)
 	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
 		return FALSE
 	if(!W)
@@ -144,7 +160,6 @@
 		return drop_held_item()
 	return FALSE
 
-
 /**
 	Drops the item in our left hand.
 
@@ -163,7 +178,7 @@
 	Returns TURE if it was successful.
 */
 /mob/proc/drop_r_hand()
-	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
+	if(status_flags & INCORPOREAL) //  things don't have hands
 		return FALSE
 	if(r_hand)
 		return dropItemToGround(r_hand)
@@ -209,6 +224,7 @@
  * For when the item will be immediately placed in a loc other than the ground.
 */
 /mob/proc/transferItemToLoc(obj/item/I, atom/newloc, force = FALSE)
+	I.do_drop_animation(src)
 	return UnEquip(I, force, newloc)
 
 /**
@@ -260,6 +276,7 @@
 
 
 //Outdated but still in use apparently. This should at least be a human proc.
+//this is still in use please fix this mess
 /mob/proc/get_equipped_items()
 	var/list/items = new/list()
 

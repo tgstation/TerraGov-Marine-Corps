@@ -11,14 +11,18 @@
 	var/last_use = 0
 	var/use_delay = 20
 
+	///what we set connect_loc to if parent is a movable
+	var/static/list/item_connections = list(
+		COMSIG_ATOM_ENTERED = .proc/play_squeak_crossed,
+	)
 
 /datum/component/squeak/Initialize(sound_to_play, volume_override, chance_override, step_delay_override, use_delay_override)
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
 	RegisterSignal(parent, list(COMSIG_ATOM_ENTERED, COMSIG_PARENT_ATTACKBY), .proc/play_squeak)
 	if(ismovableatom(parent))
+		AddComponent(/datum/component/connect_loc_behalf, parent, item_connections)
 		RegisterSignal(parent, list(COMSIG_MOVABLE_BUMP, COMSIG_MOVABLE_IMPACT), .proc/play_squeak)
-		RegisterSignal(parent, COMSIG_MOVABLE_CROSSED_BY, .proc/play_squeak_crossed)
 		RegisterSignal(parent, COMSIG_MOVABLE_DISPOSING, .proc/disposing_react)
 		if(isitem(parent))
 			RegisterSignal(parent, COMSIG_ITEM_ATTACK, .proc/play_squeak)
@@ -27,6 +31,8 @@
 			RegisterSignal(parent, COMSIG_ITEM_DROPPED, .proc/on_drop)
 			if(istype(parent, /obj/item/clothing/shoes))
 				RegisterSignal(parent, COMSIG_SHOES_STEP_ACTION, .proc/step_squeak)
+		else if(isstructure(parent))
+			RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, .proc/use_squeak)
 
 	squeak_sound = sound_to_play
 
@@ -39,6 +45,9 @@
 	if(isnum(use_delay_override))
 		use_delay = use_delay_override
 
+/datum/component/squeak/UnregisterFromParent()
+	. = ..()
+	qdel(GetComponent(/datum/component/connect_loc_behalf))
 
 /datum/component/squeak/proc/play_squeak()
 	SIGNAL_HANDLER
@@ -62,7 +71,7 @@
 		steps++
 
 
-/datum/component/squeak/proc/play_squeak_crossed(datum/source, atom/movable/AM, oldloc)
+/datum/component/squeak/proc/play_squeak_crossed(datum/source, atom/movable/AM, oldloc, oldlocs)
 	SIGNAL_HANDLER
 	if(isitem(AM))
 		var/obj/item/I = AM
@@ -76,7 +85,7 @@
 
 	if(isobserver(AM))
 		return
-	
+
 	if(CHECK_MULTIPLE_BITFIELDS(AM.flags_pass, HOVERING))
 		return
 	var/atom/current_parent = parent

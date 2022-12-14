@@ -6,8 +6,8 @@
 							/obj/item/ammo_magazine/smg/m25/ap, \
 							/obj/item/ammo_magazine/smg/m25/ap \
 							), \
-						list(/obj/item/weapon/gun/flamer, \
-							/obj/item/weapon/gun/flamer, \
+						list(/obj/item/weapon/gun/flamer/big_flamer, \
+							/obj/item/weapon/gun/flamer/big_flamer, \
 							/obj/item/ammo_magazine/flamer_tank, \
 							/obj/item/ammo_magazine/flamer_tank \
 							), \

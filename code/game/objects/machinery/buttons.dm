@@ -9,7 +9,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 5
-	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 70)
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 100, FIRE = 90, ACID = 70)
 	var/id = null
 	var/next_activate = 0
 
@@ -46,7 +46,7 @@
 		return
 
 	if(!allowed(user))
-		to_chat(user, "<span class='danger'>Access Denied</span>")
+		to_chat(user, span_danger("Access Denied"))
 		flick("[initial(icon_state)]-denied", src)
 		return
 
@@ -97,13 +97,51 @@
 	desc = "Opens whatever it is linked to. Does not close. Careful on what you release."
 	specialfunctions = DOOR_FLAG_OPEN_ONLY
 
+/obj/machinery/button/door/open_only/Initialize(mapload)
+	. = ..()
+	switch(dir)
+		if(NORTH)
+			pixel_y = -12
+		if(SOUTH)
+			pixel_y = 29
+		if(EAST)
+			pixel_x = -21
+		if(WEST)
+			pixel_x = 21
+
 
 /obj/machinery/button/door/open_only/landing_zone
 	name = "lockdown override"
 	id = "landing_zone"
+	icon_state = "shutterctrl"
 	use_power = NO_POWER_USE
 	resistance_flags = RESIST_ALL
-	req_access = list(ACCESS_MARINE_DROPSHIP)
+	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_DROPSHIP_REBEL)
+	/// Has the shutters alarm been played?
+	var/alarm_played = FALSE
+
+/obj/machinery/button/door/open_only/landing_zone/Initialize(mapload)
+	. = ..()
+	var/area/area = get_area(src)
+	area.flags_area |= MARINE_BASE
+
+/obj/machinery/button/door/open_only/landing_zone/attack_hand(mob/living/user)
+	if((machine_stat & (NOPOWER|BROKEN)))
+		return
+	if(!allowed(user))
+		to_chat(user, span_danger("Access Denied"))
+		flick("[initial(icon_state)]-denied", src)
+		return
+	if(alarm_played)
+		flick("[initial(icon_state)]-denied", src)
+		return
+	use_power(active_power_usage)
+	icon_state = "[initial(icon_state)]1"
+
+	alarm_played = TRUE
+	playsound_z(z, 'sound/effects/shutters_alarm.ogg', 15) // woop woop, shutters opening.
+	addtimer(CALLBACK(src, /atom/movable/.proc/update_icon), 1.5 SECONDS)
+	addtimer(CALLBACK(src, .proc/pulsed), 185)
 
 /obj/machinery/button/door/open_only/landing_zone/pulsed()
 	. = ..()
@@ -161,9 +199,6 @@
 	var/otherarea = null
 	var/id = 1
 
-	attack_paw(mob/user as mob)
-		return
-
 /obj/machinery/medical_help_button
 	name = "Medical attention required"
 	icon = 'icons/obj/stationobjs.dmi'
@@ -191,7 +226,7 @@
 	if(!istype(user))
 		return
 	if(machine_stat & (NOPOWER|BROKEN))
-		to_chat(user, "<span class='warning'>[src] doesn't seem to be working.</span>")
+		to_chat(user, span_warning("[src] doesn't seem to be working."))
 		return
 	if(active)
 		return
@@ -214,5 +249,33 @@
 	else
 		icon_state = "doorctrl0"
 
+/obj/machinery/button/valhalla_button
+	name = "Xeno spawner"
+	resistance_flags = INDESTRUCTIBLE
+	///The xeno created by the spawner
+	var/mob/living/xeno
+	///What spawner is linked with this spawner
+	var/link = CLOSE
+
+/obj/machinery/button/valhalla_button/attack_hand(mob/living/user)
+	var/xeno_wanted = tgui_input_list(user, "What xeno do you want to spawn?", "Xeno spawn", GLOB.all_xeno_types)
+	if(!xeno_wanted)
+		return
+	QDEL_NULL(xeno)
+	xeno = new xeno_wanted(get_turf(GLOB.valhalla_xeno_spawn_landmark[link]))
+	RegisterSignal(xeno, COMSIG_PARENT_QDELETING, .proc/clean_xeno)
+
+/obj/machinery/button/valhalla_button/proc/clean_xeno()
+	SIGNAL_HANDLER
+	xeno = null
+
+/obj/machinery/button/valhalla_button/far
+	link = FAR
+
+/obj/machinery/button/valhalla_button/far2
+	link = FAR2
+
+/obj/machinery/button/valhalla_button/close2
+	link = CLOSE2
 
 #undef DOOR_FLAG_OPEN_ONLY

@@ -49,12 +49,15 @@ SUBSYSTEM_DEF(minimaps)
 				if(location.density)
 					icon_gen.DrawBox(location.minimap_color, xval, yval)
 					continue
-				var/atom/movable/alttarget = locate(/obj/machinery/door) in location||locate(/obj/structure/fence) in location
+				var/atom/movable/alttarget = (locate(/obj/machinery/door) in location) || (locate(/obj/structure/fence) in location)
 				if(alttarget)
 					icon_gen.DrawBox(alttarget.minimap_color, xval, yval)
 					continue
 				var/area/turfloc = location.loc
-				icon_gen.DrawBox(turfloc.minimap_color, xval, yval)
+				if(turfloc.minimap_color)
+					icon_gen.DrawBox(BlendRGB(location.minimap_color, turfloc.minimap_color, 0.5), xval, yval)
+					continue
+				icon_gen.DrawBox(location.minimap_color, xval, yval)
 		icon_gen.Scale(480*2,480*2) //scale it up x2 to make it easer to see
 		icon_gen.Crop(1, 1, min(icon_gen.Width(), 480), min(icon_gen.Height(), 480)) //then cut all the empty pixels
 
@@ -199,15 +202,21 @@ SUBSYSTEM_DEF(minimaps)
  * * zlevel: zlevel we want this atom to be tracked for
  * * hud_flags: tracked HUDs we want this atom to be displayed on
  * * iconstate: iconstate for the blip we want to be used for this tracked atom
- * * icon: icon file we want to use for this blip, 'icons/UI_icons/map_blips.dmi' by efault
+ * * icon: icon file we want to use for this blip, 'icons/UI_icons/map_blips.dmi' by default
+ * * overlay_iconstates: list of iconstates to use as overlay. Used for xeno leader icons.
  */
-/datum/controller/subsystem/minimaps/proc/add_marker(atom/target, zlevel, hud_flags = NONE, iconstate, icon = 'icons/UI_icons/map_blips.dmi')
+/datum/controller/subsystem/minimaps/proc/add_marker(atom/target, zlevel, hud_flags = NONE, iconstate, icon = 'icons/UI_icons/map_blips.dmi', list/overlay_iconstates)
 	if(!isatom(target) || !zlevel || !hud_flags || !iconstate || !icon)
 		CRASH("Invalid marker added to subsystem")
 	if(!initialized)
 		earlyadds += CALLBACK(src, .proc/add_marker, target, zlevel, hud_flags, iconstate, icon)
 		return
+
 	var/image/blip = image(icon, iconstate, pixel_x = MINIMAP_PIXEL_FROM_WORLD(target.x) + minimaps_by_z["[zlevel]"].x_offset, pixel_y = MINIMAP_PIXEL_FROM_WORLD(target.y) + minimaps_by_z["[zlevel]"].y_offset)
+
+	for(var/i in overlay_iconstates)
+		blip.overlays += image(icon, i)
+
 	images_by_source[target] = blip
 	for(var/flag in bitfield2list(hud_flags))
 		minimaps_by_z["[zlevel]"].images_assoc["[flag]"][target] = blip
@@ -218,6 +227,8 @@ SUBSYSTEM_DEF(minimaps)
 		RegisterSignal(target, COMSIG_MOVABLE_MOVED, .proc/on_move)
 	removal_cbs[target] = CALLBACK(src, .proc/removeimage, blip, target)
 	RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/remove_marker)
+
+
 
 /**
  * removes an image from raw tracked lists, invoked by callback
@@ -234,7 +245,7 @@ SUBSYSTEM_DEF(minimaps)
 /datum/controller/subsystem/minimaps/proc/on_z_change(atom/movable/source, oldz, newz)
 	SIGNAL_HANDLER
 	for(var/flag in GLOB.all_minimap_flags)
-		if(!minimaps_by_z["[oldz]"].images_assoc["[flag]"][source])
+		if(!minimaps_by_z["[oldz]"]?.images_assoc["[flag]"][source])
 			continue
 		//see previous byond bug comments http://www.byond.com/forum/post/2661309
 		var/ref_old = minimaps_by_z["[oldz]"].images_assoc["[flag]"][source]
@@ -257,7 +268,7 @@ SUBSYSTEM_DEF(minimaps)
 	images_by_source[source].pixel_y = MINIMAP_PIXEL_FROM_WORLD(source.y) + minimaps_by_z["[source.z]"].y_offset
 
 /**
- * Removes an atom nd it's blip from the subsystem
+ * Removes an atom and it's blip from the subsystem
  */
 /datum/controller/subsystem/minimaps/proc/remove_marker(atom/source)
 	SIGNAL_HANDLER
@@ -273,7 +284,7 @@ SUBSYSTEM_DEF(minimaps)
 
 
 /**
- * Fetches a /obj/screen/minimap instance or creates on if none exists
+ * Fetches a /atom/movable/screen/minimap instance or creates on if none exists
  * Note this does not destroy them when the map is unused, might be a potential thing to do?
  * Arguments:
  * * zlevel: zlevel to fetch map for
@@ -283,14 +294,14 @@ SUBSYSTEM_DEF(minimaps)
 	var/hash = "[zlevel]-[flags]"
 	if(hashed_minimaps[hash])
 		return hashed_minimaps[hash]
-	var/obj/screen/minimap/map = new(null, zlevel, flags)
+	var/atom/movable/screen/minimap/map = new(null, zlevel, flags)
 	if (!map.icon) //Don't wanna save an unusable minimap for a z-level.
 		CRASH("Empty and unusable minimap generated for '[zlevel]-[flags]'") //Can be caused by atoms calling this proc before minimap subsystem initializing.
 	hashed_minimaps[hash] = map
 	return map
 
 ///Default HUD screen minimap object
-/obj/screen/minimap
+/atom/movable/screen/minimap
 	name = "Minimap"
 	icon = null
 	icon_state = ""
@@ -298,7 +309,7 @@ SUBSYSTEM_DEF(minimaps)
 	screen_loc = "1,1"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
-/obj/screen/minimap/Initialize(mapload, target, flags)
+/atom/movable/screen/minimap/Initialize(mapload, target, flags)
 	. = ..()
 	if(!SSminimaps.minimaps_by_z["[target]"])
 		return
@@ -319,7 +330,9 @@ SUBSYSTEM_DEF(minimaps)
 	///boolean as to whether the minimap is currently shown
 	var/minimap_displayed = FALSE
 	///Minimap object we'll be displaying
-	var/obj/screen/minimap/map
+	var/atom/movable/screen/minimap/map
+	///This is mostly for the AI & other things which do not move groundside.
+	var/default_overwatch_level = 0
 
 /datum/action/minimap/Destroy()
 	map = null
@@ -337,7 +350,12 @@ SUBSYSTEM_DEF(minimaps)
 
 /datum/action/minimap/give_action(mob/M)
 	. = ..()
-	RegisterSignal(M, COMSIG_MOVABLE_Z_CHANGED, .proc/on_owner_z_change)
+
+	if(default_overwatch_level)
+		map = SSminimaps.fetch_minimap_object(default_overwatch_level, minimap_flags)
+	else
+		RegisterSignal(M, COMSIG_MOVABLE_Z_CHANGED, .proc/on_owner_z_change)
+	RegisterSignal(M, COMSIG_KB_TOGGLE_MINIMAP, .proc/action_activate)
 	if(!SSminimaps.minimaps_by_z["[M.z]"] || !SSminimaps.minimaps_by_z["[M.z]"].hud_image)
 		return
 	map = SSminimaps.fetch_minimap_object(M.z, minimap_flags)
@@ -347,7 +365,7 @@ SUBSYSTEM_DEF(minimaps)
 	if(minimap_displayed)
 		owner.client.screen -= map
 		minimap_displayed = FALSE
-	UnregisterSignal(M, COMSIG_MOVABLE_Z_CHANGED)
+	UnregisterSignal(M, list(COMSIG_MOVABLE_Z_CHANGED, COMSIG_KB_TOGGLE_MINIMAP))
 
 /**
  * Updates the map when the owner changes zlevel
@@ -360,51 +378,35 @@ SUBSYSTEM_DEF(minimaps)
 	map = null
 	if(!SSminimaps.minimaps_by_z["[newz]"] || !SSminimaps.minimaps_by_z["[newz]"].hud_image)
 		return
+	if(default_overwatch_level)
+		map = SSminimaps.fetch_minimap_object(default_overwatch_level, minimap_flags)
+		return
 	map = SSminimaps.fetch_minimap_object(newz, minimap_flags)
 
 /datum/action/minimap/xeno
 	minimap_flags = MINIMAP_FLAG_XENO
 
+/datum/action/minimap/researcher
+	minimap_flags = MINIMAP_FLAG_MARINE|MINIMAP_FLAG_EXCAVATION_ZONE
+	marker_flags = MINIMAP_FLAG_MARINE
+
 /datum/action/minimap/marine
 	minimap_flags = MINIMAP_FLAG_MARINE
 	marker_flags = MINIMAP_FLAG_MARINE
 
-/datum/action/minimap/alpha
-	minimap_flags = MINIMAP_FLAG_ALPHA
-	marker_flags = MINIMAP_FLAG_ALPHA|MINIMAP_FLAG_MARINE
-
-/datum/action/minimap/bravo
-	minimap_flags = MINIMAP_FLAG_BRAVO
-	marker_flags = MINIMAP_FLAG_BRAVO|MINIMAP_FLAG_MARINE
-
-/datum/action/minimap/charlie
-	minimap_flags = MINIMAP_FLAG_CHARLIE
-	marker_flags = MINIMAP_FLAG_CHARLIE|MINIMAP_FLAG_MARINE
-
-/datum/action/minimap/delta
-	minimap_flags = MINIMAP_FLAG_DELTA
-	marker_flags = MINIMAP_FLAG_DELTA|MINIMAP_FLAG_MARINE
+/datum/action/minimap/ai
+	minimap_flags = MINIMAP_FLAG_MARINE
+	marker_flags = MINIMAP_FLAG_MARINE
+	default_overwatch_level = 2
 
 /datum/action/minimap/marine/rebel
 	minimap_flags = MINIMAP_FLAG_MARINE_REBEL
 	marker_flags = MINIMAP_FLAG_MARINE_REBEL
 
-/datum/action/minimap/alpha/rebel
-	minimap_flags = MINIMAP_FLAG_ALPHA_REBEL
-	marker_flags = MINIMAP_FLAG_ALPHA_REBEL|MINIMAP_FLAG_MARINE_REBEL
-
-/datum/action/minimap/bravo/rebel
-	minimap_flags = MINIMAP_FLAG_BRAVO_REBEL
-	marker_flags = MINIMAP_FLAG_BRAVO_REBEL|MINIMAP_FLAG_MARINE_REBEL
-
-/datum/action/minimap/charlie/rebel
-	minimap_flags = MINIMAP_FLAG_CHARLIE_REBEL
-	marker_flags = MINIMAP_FLAG_CHARLIE_REBEL|MINIMAP_FLAG_MARINE_REBEL
-
-/datum/action/minimap/delta/rebel
-	minimap_flags = MINIMAP_FLAG_DELTA_REBEL
-	marker_flags = MINIMAP_FLAG_DELTA_REBEL|MINIMAP_FLAG_MARINE_REBEL
+/datum/action/minimap/som
+	minimap_flags = MINIMAP_FLAG_MARINE_SOM
+	marker_flags = MINIMAP_FLAG_MARINE_SOM
 
 /datum/action/minimap/observer
-	minimap_flags = MINIMAP_FLAG_XENO|MINIMAP_FLAG_MARINE|MINIMAP_FLAG_MARINE_REBEL
+	minimap_flags = MINIMAP_FLAG_XENO|MINIMAP_FLAG_MARINE|MINIMAP_FLAG_MARINE_REBEL|MINIMAP_FLAG_MARINE_SOM|MINIMAP_FLAG_EXCAVATION_ZONE
 	marker_flags = NONE

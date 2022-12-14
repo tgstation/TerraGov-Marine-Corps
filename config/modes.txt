@@ -7,11 +7,11 @@ mode Crash
 	deploytimelock 45
 endmode
 
-mode Hunt
+mode Distress Signal
 	requiredplayers 2
 endmode
 
-mode Distress Signal
+mode Nuclear War
 	requiredplayers 2
 endmode
 
@@ -22,5 +22,12 @@ endmode
 
 mode Civil War
 	requiredplayers 2
-	votable 0
+endmode
+
+mode Combat Patrol
+	requiredplayers 2
+endmode
+
+mode Sensor Capture
+	requiredplayers 2
 endmode

@@ -95,7 +95,7 @@
 
 /obj/item/trash/fortunecookie/Initialize(mapload, ...)
 	. = ..()
-	desc = "The fortune reads. <br><span class='tip'>[pick(SSstrings.get_list_from_file("tips/marine"))]</span>"
+	desc = "The fortune reads. <br>[span_tip("[pick(SSstrings.get_list_from_file("tips/marine"))]")]"
 
 /obj/item/trash/c_tube
 	name = "cardboard tube"
@@ -152,3 +152,8 @@
 	desc = "It has done its part for the TGMC. Have you?"
 	icon = 'icons/obj/items/trash.dmi'
 	icon_state = "mealpackempty"
+
+/obj/item/trash/mre/som
+	name = "\improper crumbled SOM MFR"
+	desc = "It has done its part for the SOM. Have you?"
+	icon_state = "som_mealpackempty"

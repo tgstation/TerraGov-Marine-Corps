@@ -7,7 +7,7 @@
 	name = "Suit Storage Unit"
 	desc = "An industrial U-Stor-It Storage unit designed to accomodate all kinds of space suits. Its on-board equipment also allows the user to decontaminate the contents through a UV-ray purging cycle. There's a warning label dangling from the control pad, reading \"STRICTLY NO BIOLOGICALS IN THE CONFINES OF THE UNIT\"."
 	icon = 'icons/obj/machines/suitstorage.dmi'
-	icon_state = "suitstorage000000100" //order is: [has helmet][has suit][has human][is open][is locked][is UV cycling][is powered][is dirty/broken] [is superUVcycling]
+	icon_state = "closed" //order is: [has helmet][has suit][has human][is open][is locked][is UV cycling][is powered][is dirty/broken] [is superUVcycling]
 	anchored = TRUE
 	density = TRUE
 	var/obj/item/clothing/suit/space/inserted_suit
@@ -90,7 +90,7 @@
 		dat+= "<font color ='red'><B>Unit is cauterising contents with UV ray. Please wait.</font></B><BR>"
 
 	else
-		dat+= "<span class='notice'><font size = 4><B>U-Stor-It Suit Storage Unit, model DS1900</B></span><BR>"
+		dat+= "[span_notice("<font size = 4><B>U-Stor-It Suit Storage Unit, model DS1900</B>")]<BR>"
 		dat+= "<B>Welcome to the Unit control panel.</B><HR>"
 
 		dat += "<font color='black'>Helmet storage compartment: <B>[inserted_helmet ? inserted_helmet.name : "</font><font color ='grey'>No helmet detected."]</B></font><BR>"
@@ -202,12 +202,12 @@
 	if(!inserted_helmet && !inserted_mask && !inserted_suit) //shit's empty yo
 		to_chat(user, "<font color='red'>Unit storage bays empty. Nothing to disinfect -- Aborting.</font>")
 		return
-	to_chat(user, "<span class='notice'>You start the Unit's cauterisation cycle.</span>")
+	to_chat(user, span_notice("You start the Unit's cauterisation cycle."))
 	isUV = 1
 	update_icon()
 	updateUsrDialog()
 
-	sleep(150)
+	sleep(15 SECONDS)
 
 	if(gc_destroyed)
 		return
@@ -237,49 +237,49 @@
 	if(istype(I, /obj/item/clothing/suit/space))
 		var/obj/item/clothing/suit/space/S = I
 		if(inserted_suit)
-			to_chat(user, "<span class='warning'>The unit already contains a suit.</span>")
+			to_chat(user, span_warning("The unit already contains a suit."))
 			return
 
 		if(!user.transferItemToLoc(S, src))
 			return
 
-		to_chat(user, "<span class='notice'>You load the [S.name] into the storage compartment.</span>")
+		to_chat(user, span_notice("You load the [S.name] into the storage compartment."))
 		inserted_suit = S
 
 	else if(istype(I,/obj/item/clothing/head/helmet))
 		var/obj/item/clothing/head/helmet/H = I
 		if(inserted_helmet)
-			to_chat(user, "<span class='warning'>The unit already contains a helmet.</span>")
+			to_chat(user, span_warning("The unit already contains a helmet."))
 			return
 
 		if(!user.transferItemToLoc(H, src))
 			return
 
-		to_chat(user, "<span class='notice'>You load the [H.name] into the storage compartment.</span>")
+		to_chat(user, span_notice("You load the [H.name] into the storage compartment."))
 		inserted_helmet = H
 
 	else if(istype(I, /obj/item/clothing/mask))
 		var/obj/item/clothing/mask/M = I
 		if(inserted_mask)
-			to_chat(user, "<span class='warning'>The unit already contains a mask.</span>")
+			to_chat(user, span_warning("The unit already contains a mask."))
 			return
 
 		if(!user.transferItemToLoc(M, src))
 			return
 
-		to_chat(user, "<span class='notice'>You load the [M.name] into the storage compartment.</span>")
+		to_chat(user, span_notice("You load the [M.name] into the storage compartment."))
 		inserted_mask = M
 
 	else if(istype(I, /obj/item/tank))
 		var/obj/item/tank/T = I
 		if(inserted_tank)
-			to_chat(user, "<span class='warning'>The unit already contains a tank.</span>")
+			to_chat(user, span_warning("The unit already contains a tank."))
 			return
 
 		if(!user.transferItemToLoc(T, src))
 			return
 
-		to_chat(user, "<span class='notice'>You load the [T.name] into the storage compartment.</span>")
+		to_chat(user, span_notice("You load the [T.name] into the storage compartment."))
 		inserted_tank = T
 
 	update_icon()

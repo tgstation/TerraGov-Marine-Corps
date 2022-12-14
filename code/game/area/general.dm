@@ -2,7 +2,8 @@
 	name = "Space"
 	requires_power = 1
 	always_unpowered = 1
-	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
+	base_lighting_alpha = 255
+
 	power_light = 0
 	power_equip = 0
 	power_environ = 0
@@ -10,13 +11,6 @@
 	temperature = TCMB
 	pressure = 0
 	flags_area = NO_DROPPOD
-
-/area/space/Entered(atom/movable/AM, atom/oldloc)
-	. = ..()
-	if(isliving(AM))
-		to_chat(AM, "<span class='danger'>The cold vacuum instantly freezes you, maybe this was a bad idea?</span>")
-		var/mob/living/spaceman = AM
-		spaceman.adjustFireLoss(600) //Bad idea, spessman.
 
 /area/engine/
 	ambience = list('sound/ambience/ambisin1.ogg','sound/ambience/ambisin2.ogg','sound/ambience/ambisin3.ogg','sound/ambience/ambisin4.ogg')
@@ -41,8 +35,9 @@
 
 /area/shuttle //DO NOT TURN THE dynamic_lighting STUFF ON FOR SHUTTLES. IT BREAKS THINGS.
 	requires_power = 0
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	outside = FALSE
+	flags_area = OB_CAS_IMMUNE
+	minimap_color = MINIMAP_AREA_LZ
 
 /area/shuttle/arrival
 	name = "Abandoned Arrival Shuttle"
@@ -220,7 +215,8 @@
 	name = "start area"
 	icon_state = "start"
 	requires_power = 0
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	static_lighting = FALSE
+	base_lighting_alpha = 255
 
 
 /area/syndicate_mothership
@@ -249,6 +245,7 @@
 	name = "Abandoned Asteroid - Underground"
 	icon_state = "cave"
 	requires_power = 0
+	minimap_color = MINIMAP_AREA_CAVES
 
 
 /area/asteroid/artifactroom
@@ -260,7 +257,8 @@
 	name = "Abandoned Thunderdome"
 	icon_state = "thunder"
 	requires_power = FALSE
-	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
+	base_lighting_alpha = 255
+
 
 
 /area/tdome/tdome1
@@ -286,6 +284,8 @@
 /area/deathmatch
 	name = "End of Round Deathmatch Arena"
 	icon_state = "green"
+	base_lighting_alpha = 255
+
 	requires_power = 0
 
 
@@ -722,7 +722,9 @@
 /area/holodeck
 	name = "Abandoned Holodeck"
 	icon_state = "Holodeck"
-	dynamic_lighting = 0
+	static_lighting = FALSE
+	base_lighting_alpha = 255
+
 
 /area/holodeck/alphadeck
 	name = "Abandoned Holodeck Alpha"
@@ -772,120 +774,6 @@
 /area/holodeck/source_space
 	name = "Abandoned Holodeck - Space"
 
-
-
-
-
-
-
-
-
-
-
-//Engineering
-
-/area/engine
-
-	drone_fabrication
-		name = "Abandoned Drone Fabrication"
-		icon_state = "engine"
-
-	engine_smes
-		name = "Engineering SMES"
-		icon_state = "engine_smes"
-//		requires_power = 0//This area only covers the batteries and they deal with their own power
-
-	engine_room
-		name = "Abandoned Engine Room"
-		icon_state = "engine"
-
-	engine_airlock
-		name = "Abandoned Engine Room Airlock"
-		icon_state = "engine"
-
-	engine_monitoring
-		name = "Abandoned Engine Monitoring Room"
-		icon_state = "engine_monitoring"
-
-	engine_waste
-		name = "Abandoned Engine Waste Handling"
-		icon_state = "engine_waste"
-
-	engineering_monitoring
-		name = "Abandoned Engineering Monitoring Room"
-		icon_state = "engine_monitoring"
-
-	atmos_monitoring
-		name = "Abandoned Atmospherics Monitoring Room"
-		icon_state = "engine_monitoring"
-
-	engineering
-		name = "Engineering"
-		icon_state = "engine_smes"
-
-	engineering_foyer
-		name = "Abandoned Engineering Foyer"
-		icon_state = "engine"
-
-	break_room
-		name = "Abandoned Engineering Break Room"
-		icon_state = "engine"
-
-	hallway
-		name = "Abandoned Engineering Hallway"
-		icon_state = "engine_hallway"
-
-	engine_hallway
-		name = "Abandoned Engine Room Hallway"
-		icon_state = "engine_hallway"
-
-	engine_eva
-		name = "Abandoned Engine EVA"
-		icon_state = "engine_eva"
-
-	engine_eva_maintenance
-		name = "Abandoned Engine EVA Maintenance"
-		icon_state = "engine_eva"
-
-	workshop
-		name = "Abandoned Engineering Workshop"
-		icon_state = "engine_storage"
-
-	locker_room
-		name = "Abandoned Engineering Locker Room"
-		icon_state = "engine_storage"
-
-
-//Solars
-
-/area/solar
-	requires_power = 1
-	always_unpowered = 1
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
-
-	auxport
-		name = "Abandoned Fore Port Solar Array"
-		icon_state = "panelsA"
-
-	auxstarboard
-		name = "Abandoned Fore Starboard Solar Array"
-		icon_state = "panelsA"
-
-	fore
-		name = "Abandoned Fore Solar Array"
-		icon_state = "yellow"
-
-	aft
-		name = "Abandoned Aft Solar Array"
-		icon_state = "aft"
-
-	starboard
-		name = "Abandoned Aft Starboard Solar Array"
-		icon_state = "panelsS"
-
-	port
-		name = "Abandoned Aft Port Solar Array"
-		icon_state = "panelsP"
 
 /area/maintenance/auxsolarport
 	name = "Fore Port Solar Maintenance"
@@ -1382,3 +1270,11 @@
 /area/turret_protected/aisat
 	name = "Abandoned AI Satellite"
 	icon_state = "ai"
+
+/area/sensor_tower_1
+	name = "Sensor tower 1"
+	icon_state = "sensor"
+
+/area/sensor_tower_2
+	name = "Sensor tower 2"
+	icon_state = "sensor"

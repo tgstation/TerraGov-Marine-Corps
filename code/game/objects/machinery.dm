@@ -5,7 +5,6 @@
 	verb_say = "beeps"
 	verb_yell = "blares"
 	anchored = TRUE
-	obj_flags = CAN_BE_HIT
 	destroy_sound = 'sound/effects/metal_crash.ogg'
 	interaction_flags = INTERACT_MACHINE_DEFAULT
 
@@ -22,10 +21,16 @@
 	var/obj/item/circuitboard/circuit // Circuit to be created and inserted when the machinery is created
 	var/mob/living/carbon/human/operator
 
+	///Whether bullets can bypass the object even though it's dense
+	throwpass = TRUE
+
 /obj/machinery/Initialize()
 	. = ..()
 	GLOB.machines += src
 	component_parts = list()
+	var/turf/current_turf = get_turf(src)
+	if(anchored && current_turf && density)
+		current_turf.flags_atom |= AI_BLOCKED
 
 
 /obj/machinery/Destroy()
@@ -34,12 +39,30 @@
 	if(istype(circuit)) //There are some uninitialized legacy path circuits.
 		QDEL_NULL(circuit)
 	operator = null
+	var/turf/current_turf = get_turf(src)
+	if(anchored && current_turf && density)
+		current_turf.flags_atom &= ~ AI_BLOCKED
 	return ..()
-
 
 /obj/machinery/proc/is_operational()
 	return !(machine_stat & (NOPOWER|BROKEN|MAINT|DISABLED))
 
+
+/obj/machinery/proc/default_deconstruction_crowbar(obj/item/crowbar, ignore_panel = 0, custom_deconstruct = FALSE)
+	. = !(flags_atom & NODECONSTRUCT) && crowbar.tool_behaviour == TOOL_CROWBAR
+	if(!. || custom_deconstruct)
+		return
+	crowbar.play_tool_sound(src, 50)
+	deconstruct(TRUE)
+
+/obj/machinery/proc/default_change_direction_wrench(mob/user, obj/item/wrench)
+	if(wrench.tool_behaviour != TOOL_WRENCH)
+		return FALSE
+
+	wrench.play_tool_sound(src, 50)
+	setDir(turn(dir,-90))
+	to_chat(user, span_notice("You rotate [src]."))
+	return TRUE
 
 /obj/machinery/deconstruct(disassembled = TRUE)
 	if(!(flags_atom & NODECONSTRUCT))
@@ -165,10 +188,10 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.getBrainLoss() >= 60)
-			visible_message("<span class='warning'>[H] stares cluelessly at [src] and drools.</span>")
+			visible_message(span_warning("[H] stares cluelessly at [src] and drools."))
 			return FALSE
 		if(prob(H.getBrainLoss()))
-			to_chat(user, "<span class='warning'>You momentarily forget how to use [src].</span>")
+			to_chat(user, span_warning("You momentarily forget how to use [src]."))
 			return FALSE
 
 	return TRUE
@@ -176,6 +199,8 @@
 
 /obj/machinery/attack_ai(mob/living/silicon/ai/user)
 	if(!is_operational())
+		return FALSE
+	if(!(interaction_flags & INTERACT_SILICON_ALLOWED))
 		return FALSE
 	return interact(user)
 
@@ -238,7 +263,7 @@
 	N.fields["last_scan_time"] = od["stationtime"]
 	N.fields["last_scan_result"] = dat
 	N.fields["autodoc_data"] = generate_autodoc_surgery_list(H)
-	visible_message("<span class='notice'>\The [src] pings as it stores the scan report of [H.real_name]</span>")
+	visible_message(span_notice("\The [src] pings as it stores the scan report of [H.real_name]"))
 	playsound(loc, 'sound/machines/ping.ogg', 25, 1)
 	use_power(active_power_usage)
 	return dat
@@ -330,10 +355,9 @@
 
 		dat += "<tr>"
 
-		for(var/datum/wound/W in e.wounds)
-			if(W.internal)
-				internal_bleeding = "Internal bleeding<br>"
-				break
+		for(var/datum/wound/internal_bleeding/IB in e.wounds)
+			internal_bleeding = "Internal bleeding<br>"
+			break
 		if(istype(e, /datum/limb/chest) && occ["lung_ruptured"])
 			lung_ruptured = "Lung ruptured:<br>"
 		if(e.limb_status & LIMB_SPLINTED)
@@ -405,29 +429,8 @@
 		if(i.robotic == ORGAN_ROBOT)
 			mech = "Mechanical:<br>"
 
-		var/infection = "None"
-		switch (i.germ_level)
-			if (1 to INFECTION_LEVEL_ONE + 200)
-				infection = "Mild Infection:<br>"
-			if (INFECTION_LEVEL_ONE + 200 to INFECTION_LEVEL_ONE + 300)
-				infection = "Mild Infection+:<br>"
-			if (INFECTION_LEVEL_ONE + 300 to INFECTION_LEVEL_ONE + 400)
-				infection = "Mild Infection++:<br>"
-			if (INFECTION_LEVEL_TWO to INFECTION_LEVEL_TWO + 100)
-				infection = "Acute Infection:<br>"
-			if (INFECTION_LEVEL_TWO + 100 to INFECTION_LEVEL_TWO + 200)
-				infection = "Acute Infection+:<br>"
-			if (INFECTION_LEVEL_TWO + 200 to INFECTION_LEVEL_TWO + 300)
-				infection = "Acute Infection++:<br>"
-			if (INFECTION_LEVEL_THREE to INFECTION_LEVEL_THREE + 300)
-				infection = "Septic:<br>"
-			if (INFECTION_LEVEL_THREE to INFECTION_LEVEL_THREE + 600)
-				infection = "Septic+:<br>"
-			if (INFECTION_LEVEL_THREE to INFINITY)
-				infection = "Septic++:<br>"
-
 		dat += "<tr>"
-		dat += "<td>[i.name]</td><td>N/A</td><td>[i.damage]</td><td>[infection]:[mech]</td><td></td>"
+		dat += "<td>[i.name]</td><td>N/A</td><td>[i.damage]</td><td>None:[mech]</td><td></td>"
 		dat += "</tr>"
 	dat += "</table>"
 

@@ -38,6 +38,10 @@ Basics, the most important.
 
 /datum/config_entry/string/python_path
 
+/datum/config_entry/string/end_of_round_channel
+	config_entry_value = "game-updates"
+	protection = CONFIG_ENTRY_LOCKED|CONFIG_ENTRY_HIDDEN
+
 /datum/config_entry/string/restart_message
 
 /datum/config_entry/flag/guest_ban
@@ -71,6 +75,10 @@ Administrative related.
 
 /datum/config_entry/flag/log_ooc
 
+/datum/config_entry/flag/log_xooc
+
+/datum/config_entry/flag/log_mooc
+
 /datum/config_entry/flag/log_looc
 
 /datum/config_entry/flag/log_access
@@ -87,6 +95,11 @@ Administrative related.
 
 /datum/config_entry/flag/log_game
 
+/// log mech data
+/datum/config_entry/flag/log_mecha
+
+/datum/config_entry/flag/log_asset
+
 /datum/config_entry/flag/log_vote
 
 /datum/config_entry/flag/log_whisper
@@ -98,6 +111,8 @@ Administrative related.
 /datum/config_entry/flag/log_world_topic
 
 /datum/config_entry/flag/log_manifest
+
+/datum/config_entry/flag/log_timers_on_bucket_reset // logs all timers in buckets on automatic bucket reset (Useful for timer debugging)
 
 /datum/config_entry/flag/allow_admin_ooccolor // Allows admins to customize their OOC color.
 
@@ -151,6 +166,9 @@ Administrative related.
 /datum/config_entry/flag/use_account_age_for_jobs
 
 /datum/config_entry/number/notify_new_player_age
+	min_val = -1
+
+/datum/config_entry/number/notify_new_account_age
 	min_val = -1
 
 /datum/config_entry/flag/allow_shutdown
@@ -211,10 +229,8 @@ Voting
 	integer = FALSE
 	min_val = 0
 
-/datum/config_entry/number/maximum_clients_for_gamemode_vote
-	config_entry_value = 40
-	integer = TRUE
-	min_val = 0
+/// Gives the ability to send players a maptext popup.
+/datum/config_entry/flag/popup_admin_pm
 
 /*
 Master controller and performance related.
@@ -397,3 +413,16 @@ This maintains a list of ip addresses that are able to bypass topic filtering.
 
 /datum/config_entry/flag/is_automatic_balance_on
 	config_entry_value = TRUE
+
+/datum/config_entry/number/hard_deletes_overrun_threshold
+	integer = FALSE
+	min_val = 0
+	config_entry_value = 0.5
+
+/datum/config_entry/number/hard_deletes_overrun_limit
+	config_entry_value = 0
+	min_val = 0
+
+/datum/config_entry/number/ai_anti_stuck_lag_time_dilation_threshold
+	config_entry_value = 20
+	min_val = 0

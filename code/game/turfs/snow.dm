@@ -11,6 +11,7 @@
 	shoefootstep = FOOTSTEP_SNOW
 	barefootstep = FOOTSTEP_SNOW
 	mediumxenofootstep = FOOTSTEP_SNOW
+	minimap_color = MINIMAP_SNOW
 
 /turf/open/floor/plating/ground/snow/Initialize(mapload)
 	. = ..()
@@ -30,21 +31,21 @@
 	if(M.a_intent == INTENT_GRAB)
 
 		if(!slayer)
-			to_chat(M, "<span class='warning'>There is nothing to clear out!</span>")
+			to_chat(M, span_warning("There is nothing to clear out!"))
 			return FALSE
 
-		M.visible_message("<span class='notice'>\The [M] starts clearing out \the [src].</span>", \
-		"<span class='notice'>We start clearing out \the [src].</span>", null, 5)
+		M.visible_message(span_notice("\The [M] starts clearing out \the [src]."), \
+		span_notice("We start clearing out \the [src]."), null, 5)
 		playsound(M.loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
 		if(!do_after(M, 5, FALSE, src, BUSY_ICON_BUILD))
 			return FALSE
 
 		if(!slayer)
-			to_chat(M, "<span class='warning'>There is nothing to clear out!</span>")
+			to_chat(M, span_warning("There is nothing to clear out!"))
 			return
 
-		M.visible_message("<span class='notice'>\The [M] clears out \the [src].</span>", \
-		"<span class='notice'>We clear out \the [src].</span>", null, 5)
+		M.visible_message(span_notice("\The [M] clears out \the [src]."), \
+		span_notice("We clear out \the [src]."), null, 5)
 		slayer = 0
 		update_icon(1, 0)
 
@@ -62,7 +63,7 @@
 		if(!do_after(user,20, TRUE, src, BUSY_ICON_BUILD))
 			return
 
-		user.visible_message("<span class='notice'>[user.name] planted \the [L] into [src].</span>")
+		user.visible_message(span_notice("[user.name] planted \the [L] into [src]."))
 		L.anchored = TRUE
 		L.icon_state = "lightstick_[L.s_color][L.anchored]"
 		user.drop_held_item()
@@ -70,24 +71,23 @@
 		L.y = y
 		L.pixel_x += rand(-5,5)
 		L.pixel_y += rand(-5,5)
-		L.set_light(2)
+		L.set_light(2,1)
 		playsound(user, 'sound/weapons/genhit.ogg', 25, 1)
 
 
-/turf/open/floor/plating/ground/snow/Entered(atom/movable/AM)
-	if(slayer > 0)
-		if(iscarbon(AM))
-			var/mob/living/carbon/C = AM
+/turf/open/floor/plating/ground/snow/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+	if(slayer > 0 && iscarbon(arrived))
+		var/mob/living/carbon/C = arrived
+		if(prob(1))
+			to_chat(C, span_warning("Moving through [src] slows you down."))
+		if(!isxeno(C))
 			C.next_move_slowdown += 0.5 * slayer
-			if(prob(1))
-				to_chat(C, "<span class='warning'>Moving through [src] slows you down.</span>")
-			if(!isxeno(C))
-				return ..()
-			C.next_move_slowdown -= 0.25 * slayer
-			var/mob/living/carbon/xenomorph/X = C
-			if(X.is_charging >= CHARGE_ON) // chargers = snow plows
-				slayer = 0
-				update_icon(1, 0)
+			return ..()
+		var/mob/living/carbon/xenomorph/xeno = C
+		xeno.next_move_slowdown += xeno.xeno_caste.snow_slowdown * slayer
+		if(xeno.is_charging >= CHARGE_ON) // chargers = snow plows
+			slayer = 0
+			update_icon(1, 0)
 	return ..()
 
 
@@ -165,7 +165,7 @@
 	return ..()
 
 //Fire act; fire now melts snow as it should; fire beats ice
-/turf/open/floor/plating/ground/snow/flamer_fire_act(burnlevel, firelevel)
+/turf/open/floor/plating/ground/snow/flamer_fire_act(burnlevel)
 
 	if(!slayer || !burnlevel) //Don't bother if there's no snow to melt or if there's no burn stacks
 		return
@@ -194,6 +194,7 @@
 /turf/open/floor/plating/ground/snow/layer0
 	icon_state = "snow_0"
 	slayer = 0
+	minimap_color = MINIMAP_DIRT
 
 /turf/open/floor/plating/ground/snow/layer1
 	icon_state = "snow_1"

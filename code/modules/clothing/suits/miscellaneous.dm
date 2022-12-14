@@ -47,7 +47,7 @@
 	flags_inv_hide = HIDEJUMPSUIT
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 	flags_item = SYNTH_RESTRICTED
-	soft_armor = list("melee" = 60, "bullet" = 90, "laser" = 60, "energy" = 20, "bomb" = 25, "bio" = 10, "rad" = 10, "fire" = 20, "acid" = 20)
+	soft_armor = list(MELEE = 60, BULLET = 90, LASER = 60, ENERGY = 20, BOMB = 25, BIO = 10, FIRE = 20, ACID = 20)
 
 
 /obj/item/clothing/suit/cyborg_suit
@@ -56,7 +56,6 @@
 	icon_state = "death"
 	item_state = "death"
 	flags_atom = CONDUCT
-	fire_resist = T0C+5200
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 
 /obj/item/clothing/suit/johnny_coat
@@ -163,15 +162,14 @@
 	item_state = "cardborg"
 	flags_armor_protection = CHEST|GROIN
 	flags_inv_hide = HIDEJUMPSUIT
-/* not currently needed thanks to Manzehino who provided a different jumpsuit sprite.
+
+
 /obj/item/clothing/suit/white_dress_jacket
 	name = "White Dress Jacket"
 	desc = "The perfect white jacket to go with your white dress uniform."
 	icon_state = "white_dress_jacket" //with thanks to Baystation12
 	item_state = "white_dress_jacket" //with thanks to Baystation12
 
-* Misc
-*/
 
 /obj/item/clothing/suit/straight_jacket
 	name = "straight jacket"
@@ -179,7 +177,7 @@
 	icon_state = "straight_jacket"
 	item_state = "straight_jacket"
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
+	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 
 
 /obj/item/clothing/suit/straight_jacket/equipped(mob/living/carbon/user, slot)
@@ -336,7 +334,7 @@
 		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
 		/obj/item/attachable/bayonetknife,
-		/obj/item/storage/large_holster/machete
+		/obj/item/storage/holster/blade
 	)
 
 /obj/item/clothing/suit/replica

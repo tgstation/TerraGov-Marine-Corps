@@ -14,7 +14,7 @@
 	var/list/modes
 	var/list/gamemode_cache
 	/// List of all modes that can be voted by the players
-	var/list/votable_modes 
+	var/list/votable_modes
 	var/list/mode_names
 
 	var/motd
@@ -293,7 +293,7 @@
 				currentmode = null
 			else
 				log_config("Unknown command in map vote config: '[command]'")
-	
+
 	votable_modes = list()
 	for(var/datum/game_mode/mode AS in modes)
 		if(mode.votable)

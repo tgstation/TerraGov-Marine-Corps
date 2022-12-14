@@ -38,11 +38,8 @@
 			else
 				req_access = list()
 				req_access += pick(ALL_ACCESS)
-	..()
+	return ..()
 
-
-/obj/structure/closet/secure_closet/attack_paw(mob/living/carbon/human/user)
-	return src.attack_hand(user)
 
 /obj/structure/closet/secure_closet/verb/verb_togglelock()
 	set src in oview(1) // One square distance

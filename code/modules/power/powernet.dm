@@ -24,7 +24,7 @@
 		M.powernet = null
 
 	SSmachines.powernets -= src
-	. = ..()
+	return ..()
 
 /datum/powernet/proc/is_empty()
 	return !cables.len && !nodes.len

@@ -27,6 +27,9 @@
 /datum/item_representation/proc/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
 	if(seller && !bypass_vendor_check && !buy_item_in_vendor(item_type, seller, user))
 		return
+	if(!text2path("[item_type]"))
+		to_chat(user, span_warning("[item_type] in your loadout is an invalid item, it has probably been changed or removed."))
+		return
 	var/obj/item/item = new item_type(master)
 	return item
 
@@ -67,6 +70,8 @@
 		if(!isitem(thing_in_content))
 			continue
 		item_representation_type = item2representation_type(thing_in_content.type)
+		if(item_representation_type == /datum/item_representation/storage) //Storage nested in storage tends to be erased by jatum, so just give the default content
+			item_representation_type = /datum/item_representation
 		contents += new item_representation_type(thing_in_content)
 
 /datum/item_representation/storage/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
@@ -79,11 +84,16 @@
 	var/obj/item/storage/storage = .
 	var/list/obj/item/starting_items = list()
 	for(var/obj/item/I AS in storage.contents)
-		starting_items[I.type] = starting_items[I.type] + 1
+		starting_items[I.type] = starting_items[I.type] + get_item_stack_number(I)
 	storage.delete_contents()
 	for(var/datum/item_representation/item_representation AS in contents)
 		if(!item_representation.bypass_vendor_check && starting_items[item_representation.item_type] > 0)
-			starting_items[item_representation.type] = starting_items[item_representation.item_type] - 1
+			var/amount_to_remove = get_item_stack_representation_amount(item_representation)
+			if(starting_items[item_representation.item_type] < amount_to_remove)
+				amount_to_remove = starting_items[item_representation.item_type]
+				var/datum/item_representation/stack/stack_representation = item_representation
+				stack_representation.amount = amount_to_remove
+			starting_items[item_representation.item_type] = starting_items[item_representation.item_type] - amount_to_remove
 			item_representation.bypass_vendor_check = TRUE
 		var/obj/item/item_to_insert = item_representation.instantiate_object(seller, null, user)
 		if(!item_to_insert)
@@ -92,7 +102,6 @@
 			storage.handle_item_insertion(item_to_insert)
 			continue
 		item_to_insert.forceMove(get_turf(user))
-
 
 /**
  * Allow to representate stacks of item of type /obj/item/stack
@@ -118,3 +127,58 @@
 	stack.update_weight()
 	stack.update_icon()
 	return stack
+
+/**
+ * Allow to representate an id card (/obj/item/card/id)
+ */
+/datum/item_representation/id
+	/// the access of the id
+	var/list/access = list()
+	/// the iff signal registered on the id
+	var/iff_signal = NONE
+
+/datum/item_representation/id/New(obj/item/item_to_copy)
+	if(!item_to_copy)
+		return
+	if(!isidcard(item_to_copy))
+		CRASH("/datum/item_representation/id created from an item that is not an id card")
+	..()
+	var/obj/item/card/id/id_to_copy = item_to_copy
+	access = id_to_copy.access
+	iff_signal = id_to_copy.iff_signal
+
+/datum/item_representation/id/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
+	. = ..()
+	if(!.)
+		return
+	var/obj/item/card/id/id = .
+	id.access = access
+	id.iff_signal = iff_signal
+	return id
+
+/datum/item_representation/boot
+	/// The item stored in the boot
+	var/datum/item_representation/boot_content
+
+/datum/item_representation/boot/New(obj/item/item_to_copy)
+	if(!item_to_copy)
+		return
+	if(!istype(item_to_copy, /obj/item/clothing/shoes/marine))
+		CRASH("/datum/item_representation/boot created from an item that is not a marine boot")
+	..()
+	var/obj/item/clothing/shoes/marine/marine_shoes = item_to_copy
+	for(var/atom/item_in_pocket AS in marine_shoes.pockets.contents)
+		var/item_representation_type = item2representation_type(item_in_pocket.type)
+		boot_content = new item_representation_type(item_in_pocket)
+
+/datum/item_representation/boot/instantiate_object(datum/loadout_seller/seller, master, mob/living/user)
+	. = ..()
+	if(!.)
+		return
+	var/obj/item/clothing/shoes/marine/marine_shoes = .
+	marine_shoes.pockets.delete_contents()
+	var/obj/item/item_in_pocket = boot_content.instantiate_object(seller, master, user)
+	if(!item_in_pocket)
+		return
+	if(marine_shoes.pockets.can_be_inserted(item_in_pocket))
+		marine_shoes.pockets.handle_item_insertion(item_in_pocket)

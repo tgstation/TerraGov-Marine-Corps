@@ -37,10 +37,12 @@
 
 /datum/saymode/holopad
 	key = "h"
-	mode = MODE_HOLOPAD
+	mode = MODE_RELAYED
 
 
 /datum/saymode/holopad/handle_message(mob/living/user, message, datum/language/language)
+	if(SEND_SIGNAL(user, COMSIG_RELAYED_SPEECH, message, language) & COMSIG_RELAYED_SPEECH_DEALT)
+		return
 	if(isAI(user))
 		var/mob/living/silicon/ai/AI = user
 		AI.holopad_talk(message, language)

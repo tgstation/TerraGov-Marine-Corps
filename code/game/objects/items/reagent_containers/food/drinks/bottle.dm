@@ -8,7 +8,6 @@
 	amount_per_transfer_from_this = 10
 	volume = 100
 	item_state = "broken_beer" //Generic held-item sprite until unique ones are made.
-	var/const/duration = 13 //Directly relates to the 'weaken' duration. Lowered by armor (i.e. helmets)
 	var/isGlass = 1 //Whether the 'bottle' is made of glass or not so that milk cartons dont shatter when someone gets hit by it
 
 /obj/item/reagent_containers/food/drinks/bottle/proc/smash(mob/living/target as mob, mob/living/user as mob)
@@ -44,31 +43,23 @@
 
 	var/datum/limb/affecting = user.zone_selected //Find what the player is aiming at
 
-	var/armor_block = 0 //Get the target's armour values for normal attack damage.
-	var/armor_duration = 0 //The more force the bottle has, the longer the duration.
+	//apply damage
+	var/weaken_duration =  target.apply_damage(force, BRUTE, affecting, updating_health = TRUE)
 
-	//Calculating duration and calculating damage.
-	armor_block = target.run_armor_check(affecting, "melee")
-	armor_duration = duration + force - target.getarmor(affecting, "melee")
-
-	//Apply the damage!
-	target.apply_damage(force, BRUTE, affecting, armor_block)
-
-	// You are going to knock someone out for longer if they are not wearing a helmet.
 	if(affecting == "head" && istype(target, /mob/living/carbon/) && !isxeno(target))
 
 		if(target != user)
-			user.visible_message("<span class='danger'>[target] has been hit over the head with a bottle of [name], by [user]!</span>")
+			user.visible_message(span_danger("[target] has been hit over the head with a bottle of [name], by [user]!"))
 		else
-			user.visible_message("<span class='danger'>[user] has hit [user.p_them()]self with the bottle of [name] on the head!</span>")
-		if(armor_duration)
-			target.apply_effect(min(armor_duration, 10) , WEAKEN, armor_block) // Never weaken more than a flash!
+			user.visible_message(span_danger("[user] has hit [user.p_them()]self with the bottle of [name] on the head!"))
+		if(weaken_duration >= force) //if they have armor, no stun
+			target.apply_effect(10, WEAKEN)
 
 	else
 		if(target != user)
-			user.visible_message("<span class='danger'>[target] has been attacked with a bottle of [name], by [user]!</span>")
+			user.visible_message(span_danger("[target] has been attacked with a bottle of [name], by [user]!"))
 		else
-			user.visible_message("<span class='danger'>[user] has attacked [user.p_them()]self with the bottle of [name]!</span>")
+			user.visible_message(span_danger("[user] has attacked [user.p_them()]self with the bottle of [name]!"))
 
 	UPDATEHEALTH(target)
 
@@ -77,13 +68,16 @@
 
 	//The reagents in the bottle splash all over the target, thanks for the idea Nodrak
 	if(reagents)
-		visible_message("<span class='boldnotice'>The contents of the [src] splashes all over [target]!</span>")
+		visible_message(span_boldnotice("The contents of the [src] splashes all over [target]!"))
 		reagents.reaction(target, TOUCH)
 
 	//Finally, smash the bottle. This kills (del) the bottle.
 	smash(target, user)
 
-
+/obj/item/reagent_containers/food/drinks/bottle/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(!CONFIG_GET(flag/fun_allowed))
+		return FALSE
+	attack_hand(X)
 
 /obj/item/reagent_containers/food/drinks/bottle/gin
 	name = "\improper Griffeater Gin"

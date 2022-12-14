@@ -9,8 +9,9 @@
 
 	Note that AI have no need for the adjacency proc, and so this proc is a lot cleaner.
 */
+
 /mob/living/silicon/ai/DblClickOn(atom/A, params)
-	if(control_disabled || incapacitated())
+	if(control_disabled || incapacitated() || controlling)
 		return
 
 	if(ismob(A))
@@ -24,13 +25,16 @@
 		return
 	next_click = world.time + 1
 
-	if(!can_interact_with(A))
+	if(SEND_SIGNAL(src, COMSIG_MOB_CLICKON, A, params) & COMSIG_MOB_CLICK_CANCELED)
+		return
+
+	if(!controlling && !can_interact_with(A))
 		return
 
 	if(multicam_on)
 		var/turf/T = get_turf(A)
 		if(T)
-			for(var/obj/screen/movable/pic_in_pic/ai/P in T.vis_locs)
+			for(var/atom/movable/screen/movable/pic_in_pic/ai/P in T.vis_locs)
 				if(P.ai == src)
 					P.Click(params)
 					break
@@ -44,7 +48,7 @@
 	var/turf/pixel_turf = get_turf_pixel(A)
 	if(isnull(pixel_turf))
 		return
-	if(!can_see(A))
+	if(!controlling && !can_see(A))
 		if(isturf(A)) //On unmodified clients clicking the static overlay clicks the turf underneath
 			return //So there's no point messaging admins
 		message_admins("[ADMIN_LOOKUPFLW(src)] might be running a modified client! (failed can_see on AI click of [A] (Turf Loc: [ADMIN_VERBOSEJMP(pixel_turf)]))")
@@ -58,6 +62,7 @@
 		CtrlShiftClickOn(A)
 		return
 	if(modifiers["middle"])
+		MiddleClickOn(A)
 		return
 	if(modifiers["shift"])
 		ShiftClickOn(A)
@@ -81,6 +86,8 @@
 	it functions and re-insert it above.
 */
 /mob/living/silicon/ai/UnarmedAttack(atom/A, has_proximity, modifiers)
+	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
+		return
 	A.attack_ai(src)
 
 /mob/living/silicon/ai/RangedAttack(atom/A)
@@ -105,6 +112,9 @@
 /mob/living/silicon/ai/CtrlClickOn(atom/A)
 	A.AICtrlClick(src)
 
+/mob/living/silicon/ai/MiddleClickOn(atom/A)
+	A.AIMiddleClick(src)
+
 /*
 	The following criminally helpful code is just the previous code cleaned up;
 	I have no idea why it was in atoms.dm instead of respective files.
@@ -121,40 +131,47 @@
 /atom/proc/AICtrlShiftClick()
 	return
 
+/atom/proc/AIMiddleClick()
+	return
+
 /* Airlocks */
 /obj/machinery/door/airlock/AICtrlClick(mob/living/silicon/ai/user) // Bolts doors
-	if(z != user.z)
+	if(aiControlDisabled)
+		to_chat(user, span_notice("[src] AI remote control has been disabled."))
 		return
-
 	if(locked)
-		bolt_raise(usr)
+		bolt_raise(user)
 	else if(hasPower())
-		bolt_drop(usr)
+		bolt_drop(user)
 
 /obj/machinery/door/airlock/AIShiftClick(mob/living/silicon/ai/user)  // Opens and closes doors!
-	if(z != user.z)
+	if(aiControlDisabled)
+		to_chat(user, span_notice("[src] AI remote control has been disabled."))
 		return
+	user_toggle_open(user)
 
-	user_toggle_open(usr)
+/obj/machinery/door/airlock/dropship_hatch/AICtrlClick(mob/living/silicon/ai/user)
+	return
+
+/obj/machinery/door/airlock/hatch/cockpit/AICtrlClick(mob/living/silicon/ai/user)
+	return
+
 
 
 /* APC */
 /obj/machinery/power/apc/AICtrlClick(mob/living/silicon/ai/user) // turns off/on APCs.
-	if(z != user.z)
-		return
-	toggle_breaker(usr)
+	toggle_breaker(user)
 
 /* Firealarm */
-/obj/machinery/firealarm/AICtrlClick(mob/living/silicon/ai/user) // turn on the fire alarm
-	if(z != user.z)
-		return
-	alarm()
+/obj/machinery/firealarm/AICtrlClick(mob/living/silicon/ai/user) // toggle the fire alarm
+	var/area/A = get_area(src)
+	if(A.flags_alarm_state & ALARM_WARNING_FIRE)
+		reset()
+	else
+		alarm()
 
-/obj/machinery/firealarm/AICtrlShiftClick(mob/living/silicon/ai/user) // turn off the fire alarm
-	if(z != user.z)
-		return
-	reset()
 
+/* Turf */
 
 //
 // Override TurfAdjacent for AltClicking
@@ -179,3 +196,25 @@
 
 	else if(down)
 		TD.move_camera_by_click()
+
+/turf/AIShiftClick(mob/living/silicon/ai/user)
+	if(!user.linked_artillery)
+		to_chat(user, span_notice("No linked mortar found."))
+		return
+
+	var/area/A = get_area(src)
+	if(istype(A) && A.ceiling >= CEILING_UNDERGROUND)
+		to_chat(user, span_warning("You cannot hit the target. It is probably underground."))
+		return
+	to_chat(user, span_notice("Sending targeting information to [user.linked_artillery]. COORDINATES: X:[x] Y:[y]"))
+	user.linked_artillery.recieve_target(src,user)
+
+
+
+/turf/AICtrlClick(mob/living/silicon/ai/user)
+	var/message = "Rangefinding of selected turf at [loc]. COORDINATES: X:[x] Y:[y]"
+	var/area/A = get_area(src)
+	if(istype(A) && A.ceiling >= CEILING_UNDERGROUND)
+		message += " It is underground."
+	to_chat(user, span_notice(message))
+

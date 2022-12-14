@@ -2,5 +2,5 @@
     "map_name": "Whiskey Outpost",
     "map_path": "map_files/Whiskey_Outpost",
     "map_file": "Whiskey_Outpost_v2.dmm",
-    "announce_text": "A faint distress signal has been picked up by our scanners, which have tracked the source to Batallion 140's Supreme Command Center. Through use of emergency bluespace drive tech, the ###SHIPNAME### has jumped within range of the outpost. Senior officers are present and will need to be evacuated in order to completely finish your mission. TGMC, gear up and get ready to respond!"
+    "announce_text": "A faint distress signal has been picked up by our scanners, which have tracked the source to Batallion 140's Supreme Command Center. Through use of emergency bluespace drive tech, the ship has jumped within range of the outpost. Senior officers are present and will need to be evacuated in order to completely finish your mission. TGMC, gear up and get ready to respond!"
 }

@@ -26,7 +26,6 @@
 		if(!GLOB.wire_color_directory[holder_type])
 			randomize()
 			GLOB.wire_color_directory[holder_type] = colors
-			GLOB.wire_name_directory[holder_type] = proper_name
 		else
 			colors = GLOB.wire_color_directory[holder_type]
 
@@ -126,8 +125,8 @@
 	if(user)
 		var/skill = user.skills.getRating("engineer")
 		if(skill < SKILL_ENGINEER_ENGI)
-			user.visible_message("<span class='notice'>[user] fumbles around figuring out the wiring.</span>",
-			"<span class='notice'>You fumble around figuring out the wiring.</span>")
+			user.visible_message(span_notice("[user] fumbles around figuring out the wiring."),
+			span_notice("You fumble around figuring out the wiring."))
 			if(!do_after(user, 2 SECONDS * (SKILL_ENGINEER_ENGI - skill), TRUE, holder, BUSY_ICON_UNSKILLED))
 				return
 
@@ -155,13 +154,13 @@
 /datum/wires/proc/pulse(wire, mob/user)
 	if(is_cut(wire))
 		return
-
-	var/skill = user.skills.getRating("engineer")
-	if(skill < SKILL_ENGINEER_ENGI)
-		user.visible_message("<span class='notice'>[usr] fumbles around figuring out the wiring.</span>",
-		"<span class='notice'>You fumble around figuring out the wiring.</span>")
-		if(!do_after(user, 2 SECONDS * (SKILL_ENGINEER_ENGI - skill), TRUE, holder, BUSY_ICON_UNSKILLED) || is_cut(wire))
-			return
+	if(user) //Signalers skip pulse delay
+		var/skill = user.skills.getRating("engineer")
+		if(skill < SKILL_ENGINEER_ENGI)
+			user.visible_message(span_notice("[usr] fumbles around figuring out the wiring."),
+			span_notice("You fumble around figuring out the wiring."))
+			if(!do_after(user, 2 SECONDS * (SKILL_ENGINEER_ENGI - skill), TRUE, holder, BUSY_ICON_UNSKILLED) || is_cut(wire))
+				return
 
 	on_pulse(wire, user)
 
@@ -189,6 +188,7 @@
 	var/obj/item/assembly/S = get_attached(color)
 	if(!istype(S))
 		return
+
 	assemblies -= color
 	S.connected = null
 	S.forceMove(get_turf(S))
@@ -288,7 +288,7 @@
 				cut_color(target_wire)
 				. = TRUE
 			else
-				to_chat(L, "<span class='warning'>You need wirecutters!</span>")
+				holder.balloon_alert(L, "You need wirecutters!")
 		if("pulse")
 			I = L.is_holding_tool_quality(TOOL_MULTITOOL)
 			if(I || IsAdminGhost(usr))
@@ -297,7 +297,7 @@
 				pulse_color(target_wire, L)
 				. = TRUE
 			else
-				to_chat(L, "<span class='warning'>You need a multitool!</span>")
+				holder.balloon_alert(L, "You need a multitool!")
 		if("attach")
 			if(is_attached(target_wire))
 				I = detach_assembly(target_wire)
@@ -315,6 +315,6 @@
 							A.forceMove(L.drop_location())
 						. = TRUE
 					else
-						to_chat(L, "<span class='warning'>You need an attachable assembly!</span>")
+						holder.balloon_alert(L, "You need an attachable assembly!")
 
 #undef MAXIMUM_EMP_WIRES

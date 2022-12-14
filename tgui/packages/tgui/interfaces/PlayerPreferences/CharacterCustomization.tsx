@@ -1,4 +1,5 @@
 import { useBackend } from '../../backend';
+import { capitalize } from 'common/string';
 import { Button, Section, Flex, LabeledList, Box, ColorBox } from '../../components';
 import { TextFieldPreference, ToggleFieldPreference, SelectFieldPreference } from './FieldPreferences';
 import { ProfilePicture } from './ProfilePicture';
@@ -22,13 +23,19 @@ export const CharacterCustomization = (props, context) => {
   } = data;
 
   const rgbToHex = (red, green, blue) => {
-    const convert = comp => {
+    const convert = (comp) => {
       const hex = comp.toString(16);
       return hex.length === 1 ? `0${hex}` : hex;
     };
     return '#' + convert(red) + convert(green) + convert(blue);
   };
-
+  const genders = ['male', 'female', 'plural', 'neuter'];
+  const genderToName = {
+    'male': 'Male',
+    'female': 'Female',
+    'neuter': 'Object',
+    'plural': 'Other',
+  };
   return (
     <>
       <Section title="Profile">
@@ -77,15 +84,19 @@ export const CharacterCustomization = (props, context) => {
           <Flex.Item>
             <LabeledList>
               <TextFieldPreference label={'Age'} value={'age'} />
-              <ToggleFieldPreference
-                label={'Gender'}
-                value="gender"
-                leftLabel={'Male'}
-                leftValue="male"
-                rightValue="female"
-                rightLabel={'Female'}
-                action={'toggle_gender'}
-              />
+              <LabeledList.Item label={'Gender'}>
+                {genders.map((thisgender) => (
+                  <Button.Checkbox
+                    inline
+                    key={thisgender}
+                    content={capitalize(genderToName[thisgender])}
+                    checked={data['gender'] === thisgender}
+                    onClick={() =>
+                      act('toggle_gender', { newgender: thisgender })
+                    }
+                  />
+                ))}
+              </LabeledList.Item>
               <SelectFieldPreference
                 label={'Hair style'}
                 value={'h_style'}
@@ -97,10 +108,7 @@ export const CharacterCustomization = (props, context) => {
                 noAction
                 extra={
                   <>
-                    <ColorBox
-                      color={rgbToHex(r_hair, g_hair, b_hair)}
-                      mr={1}
-                    />
+                    <ColorBox color={rgbToHex(r_hair, g_hair, b_hair)} mr={1} />
                     <Button icon="edit" onClick={() => act('haircolor')} />
                   </>
                 }
@@ -116,10 +124,7 @@ export const CharacterCustomization = (props, context) => {
                 noAction
                 extra={
                   <>
-                    <ColorBox
-                      color={rgbToHex(r_grad, g_grad, b_grad)}
-                      mr={1}
-                    />
+                    <ColorBox color={rgbToHex(r_grad, g_grad, b_grad)} mr={1} />
                     <Button icon="edit" onClick={() => act('grad_color')} />
                   </>
                 }
@@ -130,10 +135,7 @@ export const CharacterCustomization = (props, context) => {
                 noAction
                 extra={
                   <>
-                    <ColorBox
-                      color={rgbToHex(r_eyes, g_eyes, b_eyes)}
-                      mr={1}
-                    />
+                    <ColorBox color={rgbToHex(r_eyes, g_eyes, b_eyes)} mr={1} />
                     <Button icon="edit" onClick={() => act('eyecolor')} />
                   </>
                 }
@@ -157,21 +159,12 @@ export const CharacterCustomization = (props, context) => {
                 extra={
                   <>
                     <ColorBox
-                      color={rgbToHex(
-                        r_facial,
-                        g_facial,
-                        b_facial
-                      )}
+                      color={rgbToHex(r_facial, g_facial, b_facial)}
                       mr={1}
                     />
                     <Button icon="edit" onClick={() => act('facialcolor')} />
                   </>
                 }
-              />
-              <SelectFieldPreference
-                label={'Body type'}
-                value={'body_type'}
-                action={'body_type'}
               />
             </LabeledList>
           </Flex.Item>
@@ -201,11 +194,6 @@ export const CharacterCustomization = (props, context) => {
                 label={'Religion'}
                 value={'religion'}
                 action={'religion'}
-              />
-              <SelectFieldPreference
-                label={'Corporate Relations'}
-                value={'nanotrasen_relation'}
-                action={'nanotrasen_relation'}
               />
             </LabeledList>
           </Flex.Item>

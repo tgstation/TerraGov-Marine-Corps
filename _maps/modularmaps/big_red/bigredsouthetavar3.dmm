@@ -1,0 +1,320 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"h" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/south)
+"i" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/nanotrasen_lab/inside)
+"n" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/south)
+"v" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/south)
+"x" = (
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/south)
+"J" = (
+/turf/closed/mineral/smooth/bigred/indestructible,
+/area/space)
+"L" = (
+/turf/closed/mineral/smooth/bigred,
+/area/bigredv2/caves/rock)
+"O" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/south)
+"Q" = (
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/nanotrasen_lab/inside)
+"S" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/closed/mineral/smooth/bigred,
+/area/bigredv2/caves/rock)
+"Z" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/south)
+
+(1,1,1) = {"
+Q
+S
+L
+v
+x
+x
+v
+L
+L
+J
+"}
+(2,1,1) = {"
+Q
+S
+L
+x
+x
+x
+x
+L
+L
+J
+"}
+(3,1,1) = {"
+Q
+S
+x
+x
+v
+x
+x
+v
+L
+J
+"}
+(4,1,1) = {"
+Q
+h
+x
+x
+O
+x
+x
+O
+L
+J
+"}
+(5,1,1) = {"
+Q
+n
+x
+x
+v
+x
+v
+x
+L
+J
+"}
+(6,1,1) = {"
+Q
+n
+x
+x
+x
+x
+x
+x
+L
+J
+"}
+(7,1,1) = {"
+Q
+S
+x
+v
+x
+x
+x
+v
+L
+J
+"}
+(8,1,1) = {"
+Q
+S
+L
+x
+x
+x
+x
+x
+L
+J
+"}
+(9,1,1) = {"
+Q
+S
+L
+L
+O
+v
+x
+Z
+L
+J
+"}
+(10,1,1) = {"
+Q
+S
+L
+L
+x
+x
+x
+x
+L
+J
+"}
+(11,1,1) = {"
+Q
+S
+L
+L
+x
+x
+x
+x
+L
+J
+"}
+(12,1,1) = {"
+Q
+S
+L
+L
+v
+x
+v
+x
+L
+J
+"}
+(13,1,1) = {"
+Q
+S
+L
+L
+x
+x
+x
+x
+L
+J
+"}
+(14,1,1) = {"
+Q
+S
+L
+x
+v
+x
+v
+x
+L
+J
+"}
+(15,1,1) = {"
+Q
+S
+x
+x
+O
+x
+x
+O
+L
+J
+"}
+(16,1,1) = {"
+Q
+h
+x
+O
+v
+x
+x
+x
+L
+J
+"}
+(17,1,1) = {"
+Q
+n
+x
+x
+x
+v
+x
+v
+L
+J
+"}
+(18,1,1) = {"
+Q
+n
+x
+x
+x
+x
+x
+x
+L
+J
+"}
+(19,1,1) = {"
+Q
+h
+x
+x
+Z
+x
+x
+Z
+L
+J
+"}
+(20,1,1) = {"
+Q
+S
+L
+L
+x
+x
+x
+x
+L
+J
+"}
+(21,1,1) = {"
+Q
+S
+L
+L
+v
+x
+x
+L
+L
+J
+"}
+(22,1,1) = {"
+Q
+S
+L
+L
+x
+x
+x
+L
+L
+J
+"}
+(23,1,1) = {"
+i
+S
+L
+L
+O
+x
+v
+L
+L
+J
+"}

@@ -102,11 +102,11 @@
 	if(href_list["remove"])
 		if(message)
 			if(!ishuman(usr))
-				to_chat(usr, "<span class='warning'>You can't do it.</span>")
+				to_chat(usr, span_warning("You can't do it."))
 			else
 				message.loc = usr.loc
 				usr.put_in_hands(message)
-				to_chat(usr, "<span class='notice'>You take the paper out of \the [src].</span>")
+				to_chat(usr, span_notice("You take the paper out of \the [src]."))
 				message = null
 	if(href_list["scan"])
 		if(idscan)
@@ -148,11 +148,11 @@
 		if(!message)
 			user.transferItemToLoc(I, src)
 			message = I
-			to_chat(user, "<span class='notice'>You insert the paper into \the [src].</span>")
+			to_chat(user, span_notice("You insert the paper into \the [src]."))
 			flick("faxsend", src)
 			updateUsrDialog()
 		else
-			to_chat(user, "<span class='notice'>There is already something in \the [src].</span>")
+			to_chat(user, span_notice("There is already something in \the [src]."))
 
 	else if(istype(I, /obj/item/card/id))
 		var/obj/item/card/id/idcard = I
@@ -163,7 +163,7 @@
 	else if(iswrench(I))
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		anchored = !anchored
-		to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
+		to_chat(user, span_notice("You [anchored ? "wrench" : "unwrench"] \the [src]."))
 
 
 /obj/machinery/faxmachine/cic

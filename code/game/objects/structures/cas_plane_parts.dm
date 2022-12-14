@@ -7,6 +7,7 @@
 	layer = OBJ_LAYER
 	plane = GAME_PLANE
 	opacity = FALSE
+	resistance_flags = PLASMACUTTER_IMMUNE
 
 /turf/closed/shuttle/cas/computer
 	name = "Condor piloting computer"
@@ -117,6 +118,8 @@
 	density = TRUE
 	appearance_flags = TILE_BOUND|KEEP_TOGETHER
 	opacity = FALSE
+	///you can't shoot it to death
+	coverage = 15
 
 /obj/structure/caspart/leftprong
 	icon_state = "28"
@@ -148,9 +151,9 @@
 /obj/structure/caspart/minigun/examine(mob/user)
 	. = ..()
 	if(static_weapon.ammo_equipped)
-		static_weapon.ammo_equipped.show_loaded_desc(user)
+		. += static_weapon.ammo_equipped.show_loaded_desc(user)
 	else
-		to_chat(user, "It's empty.")
+		. += "It's empty."
 
 /obj/structure/caspart/minigun/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
 	if(!istype(port, /obj/docking_port/mobile/marine_dropship/casplane))

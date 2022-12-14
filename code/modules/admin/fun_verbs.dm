@@ -54,12 +54,12 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/customname = input("What do you want it to be called?.", "Queen Mother Report", "Queen Mother")
-	var/input = input("This should be a message from the ruler of the Xenomorph race.", "Queen Mother Report", "") as message|null
+	var/customname = tgui_input_text(usr, "What do you want it to be called?.", "Queen Mother Report", "Queen Mother", encode = FALSE)
+	var/input = tgui_input_text(usr, "This should be a message from the ruler of the Xenomorph race.", "Queen Mother Report", "", multiline = TRUE, encode = FALSE)
 	if(!input || !customname)
 		return
 
-	var/msg = "<br><h2 class='alert'>[customname]</h2><br><span class='warning'>[input]</span><br><br>"
+	var/msg = "<br><h2 class='alert'>[customname]</h2><br>[span_warning("[input]")]<br><br>"
 
 	for(var/i in (GLOB.xeno_mob_list + GLOB.observer_list))
 		var/mob/M = i
@@ -92,8 +92,8 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/customname = input("What do you want the AI to be called?.", "AI Report", "AI") as text|null
-	var/input = input("This should be a message from the ship's AI.", "AI Report") as message|null
+	var/customname = tgui_input_text(usr, "What do you want the AI to be called?.", "AI Report", "AI", encode = FALSE)
+	var/input = tgui_input_text(usr, "This should be a message from the ship's AI.", "AI Report", multiline = TRUE, encode = FALSE)
 	if(!input || !customname)
 		return
 
@@ -123,8 +123,8 @@
 		return
 
 
-	var/customname = input("Pick a title for the report.", "Title", "TGMC Update") as text|null
-	var/input = input("Please enter anything you want. Anything. Serious.", "What?", "") as message|null
+	var/customname = tgui_input_text(usr, "Pick a title for the report.", "Title", "TGMC Update", encode = FALSE)
+	var/input = tgui_input_text(usr, "Please enter anything you want. Anything. Serious.", "What?", "", multiline = TRUE, encode = FALSE)
 
 	if(!input || !customname)
 		return
@@ -151,7 +151,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/msg = input("Enter the text you wish to appear to everyone.", "Global Narrate") as text
+	var/msg = tgui_input_text(usr, "Enter the text you wish to appear to everyone.", "Global Narrate", multiline = TRUE , encode = FALSE)
 
 	if(!msg)
 		return
@@ -169,7 +169,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/msg = input("Enter the text you wish to appear to your target.", "Direct Narrate") as text
+	var/msg = tgui_input_text(usr, "Enter the text you wish to appear to your target.", "Direct Narrate", multiline = TRUE, encode = FALSE)
 	if(!msg)
 		return
 
@@ -186,7 +186,7 @@
 	if(!check_rights(R_FUN|R_MENTOR))
 		return
 
-	var/msg = input("Subtle PM to [key_name(M)]:", "Subtle Message", "") as text
+	var/msg = tgui_input_text(usr, "Subtle PM to [key_name(M)]:", "Subtle Message", "", multiline = TRUE, encode = FALSE)
 
 	if(!M?.client || !msg)
 		return
@@ -225,7 +225,7 @@
 		else
 			return
 
-	var/msg = input("Subtle PM to [key_name(M)]:", "Subtle Message", "") as text
+	var/msg = tgui_input_text(usr, "Subtle PM to [key_name(M)]:", "Subtle Message", "", multiline = TRUE, encode = FALSE)
 
 	if(!M?.client || !msg)
 		return
@@ -259,7 +259,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/new_info = input(usr, "Set the custom information players get on joining or via the OOC tab.", "Custom Info", GLOB.custom_info) as message|null
+	var/new_info = tgui_input_text(usr, "Set the custom information players get on joining or via the OOC tab.", "Custom info", GLOB.custom_info, multiline = TRUE, encode = FALSE)
 	new_info = noscript(new_info)
 	if(isnull(new_info) || GLOB.custom_info == new_info)
 		return
@@ -272,7 +272,7 @@
 	GLOB.custom_info = new_info
 
 	to_chat(world, "<h1 class='alert'>Custom Information</h1>")
-	to_chat(world, "<span class='alert'>[GLOB.custom_info]</span>")
+	to_chat(world, span_alert("[GLOB.custom_info]"))
 
 	log_admin("[key_name(usr)] has changed the custom event text: [GLOB.custom_info]")
 	message_admins("[ADMIN_TPMONTY(usr)] has changed the custom event text.")
@@ -283,11 +283,11 @@
 	set name = "Custom Info"
 
 	if(!GLOB.custom_info)
-		to_chat(src, "<span class='notice'>There currently is no custom information set.</span>")
+		to_chat(src, span_notice("There currently is no custom information set."))
 		return
 
 	to_chat(src, "<h1 class='alert'>Custom Information</h1>")
-	to_chat(src, "<span class='alert'>[GLOB.custom_info]</span>")
+	to_chat(src, span_alert("[GLOB.custom_info]"))
 
 
 /datum/admins/proc/sound_file(S as sound)
@@ -331,7 +331,7 @@
 
 	var/ytdl = CONFIG_GET(string/invoke_youtubedl)
 	if(!ytdl)
-		to_chat(usr, "<span class='warning'>Youtube-dl was not configured, action unavailable.</span>")
+		to_chat(usr, span_warning("Youtube-dl was not configured, action unavailable."))
 		return
 
 	var/web_sound_input = input("Enter content URL (supported sites only)", "Play Internet Sound via youtube-dl") as text|null
@@ -341,8 +341,8 @@
 	web_sound_input = trim(web_sound_input)
 
 	if(findtext(web_sound_input, ":") && !findtext(web_sound_input, GLOB.is_http_protocol))
-		to_chat(usr, "<span class='warning'>Non-http(s) URIs are not allowed.</span>")
-		to_chat(usr, "<span class='warning'>For youtube-dl shortcuts like ytsearch: please use the appropriate full url from the website.</span>")
+		to_chat(usr, span_warning("Non-http(s) URIs are not allowed."))
+		to_chat(usr, span_warning("For youtube-dl shortcuts like ytsearch: please use the appropriate full url from the website."))
 		return
 
 	var/web_sound_url = ""
@@ -356,14 +356,14 @@
 	var/stderr = output[SHELLEO_STDERR]
 
 	if(errorlevel)
-		to_chat(usr, "<span class='warning'>Youtube-dl URL retrieval FAILED: [stderr]</span>")
+		to_chat(usr, span_warning("Youtube-dl URL retrieval FAILED: [stderr]"))
 		return
 
 	var/list/data = list()
 	try
 		data = json_decode(stdout)
 	catch(var/exception/e)
-		to_chat(usr, "<span class='warning'>Youtube-dl JSON parsing FAILED: [e]: [stdout]</span>")
+		to_chat(usr, span_warning("Youtube-dl JSON parsing FAILED: [e]: [stdout]"))
 		return
 
 	if(data["url"])
@@ -382,8 +382,8 @@
 				return
 
 	if(web_sound_url && !findtext(web_sound_url, GLOB.is_http_protocol))
-		to_chat(usr, "<span class='warning'>BLOCKED: Content URL not using http(s) protocol</span>")
-		to_chat(usr, "<span class='warning'>The media provider returned a content URL that isn't using the HTTP or HTTPS protocol</span>")
+		to_chat(usr, span_warning("BLOCKED: Content URL not using http(s) protocol"))
+		to_chat(usr, span_warning("The media provider returned a content URL that isn't using the HTTP or HTTPS protocol"))
 		return
 
 	var/list/targets
@@ -408,7 +408,7 @@
 		if(C.prefs.toggles_sound & SOUND_MIDI)
 			C.tgui_panel?.play_music(web_sound_url, music_extra_data)
 			if(show)
-				to_chat(C, "<span class='boldnotice'>An admin played: <a href='[data["webpage_url"]]'>[title]</a></span>")
+				to_chat(C, span_boldnotice("An admin played: <a href='[data["webpage_url"]]'>[title]</a>"))
 
 	log_admin("[key_name(usr)] played web sound: [web_sound_input] - [title] - [style]")
 	message_admins("[ADMIN_TPMONTY(usr)] played web sound: [web_sound_input] - [title] - [style]")
@@ -452,7 +452,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/message = input("Global message to send:", "Admin Announce") as message|null
+	var/message = tgui_input_text(usr, "Global message to send:", "Admin Announce", multiline = TRUE, encode = FALSE)
 
 	message = noscript(message)
 
@@ -461,7 +461,7 @@
 
 	log_admin("Announce: [key_name(usr)] : [message]")
 	message_admins("[ADMIN_TPMONTY(usr)] Announces:")
-	to_chat(world, "<span class='event_announcement'><b>[usr.client.holder.fakekey ? "Administrator" : "[usr.client.key] ([usr.client.holder.rank])"] Announces:</b>\n [message]</span>")
+	to_chat(world, span_event_announcement("<b>[usr.client.holder.fakekey ? "Administrator" : "[usr.client.key] ([usr.client.holder.rank])"] Announces:</b>\n [message]"))
 
 
 /datum/admins/proc/force_distress()
@@ -473,10 +473,10 @@
 		return
 
 	if(!SSticker?.mode)
-		to_chat(src, "<span class='warning'>Please wait for the round to begin first.</span>")
+		to_chat(src, span_warning("Please wait for the round to begin first."))
 
 	if(SSticker.mode.waiting_for_candidates)
-		to_chat(src, "<span class='warning'>Please wait for the current beacon to be finalized.</span>")
+		to_chat(src, span_warning("Please wait for the current beacon to be finalized."))
 		return
 
 	if(SSticker.mode.picked_call)
@@ -505,13 +505,13 @@
 	if(!istype(SSticker.mode.picked_call))
 		return
 
-	var/max = input("What should the maximum amount of mobs be?", "Max Mobs", SSticker.mode.picked_call.mob_max) as null|num
+	var/max = tgui_input_number(usr, "What should the maximum amount of mobs be?", "Max mobs", SSticker.mode.picked_call.mob_max)
 	if(!max || max < 1)
 		return
 
 	SSticker.mode.picked_call.mob_max = max
 
-	var/min = input("What should the minimum amount of mobs be?", "Min Mobs", SSticker.mode.picked_call.mob_min) as null|num
+	var/min = tgui_input_number(usr, "What should the minimum amount of mobs be?", "Min Mobs", SSticker.mode.picked_call.mob_min)
 	if(!min || min < 1)
 		min = 0
 
@@ -717,151 +717,6 @@
 	browser.open(FALSE)
 
 
-/datum/admins/proc/outfit_manager()
-	set category = "Fun"
-	set name = "Outfit Manager"
-
-	if(!check_rights(R_FUN))
-		return
-
-	var/dat = "<ul>"
-	for(var/datum/outfit/O in GLOB.custom_outfits)
-		var/vv = FALSE
-		var/datum/outfit/varedit/VO = O
-		if(istype(VO))
-			vv = length(VO.vv_values)
-		dat += "<li>[O.name][vv ? "(VV)" : ""]</li> <a href='?src=holder;[HrefToken()];save_outfit=1;chosen_outfit=[REF(O)]'>Save</a> <a href='?src=holder;[HrefToken()];delete_outfit=1;chosen_outfit=[REF(O)]'>Delete</a>"
-	dat += "</ul>"
-	dat += "<a href='?_src_=holder;[HrefToken()];create_outfit_menu=1'>Create</a><br>"
-	dat += "<a href='?_src_=holder;[HrefToken()];load_outfit=1'>Load from file</a>"
-
-	var/datum/browser/browser = new(usr, "outfitmanager", "<div align='center'>Outfit Manager</div>")
-	browser.set_content(dat)
-	browser.open(FALSE)
-
-
-/datum/admins/proc/create_outfit()
-	if(!check_rights(R_FUN))
-		return
-
-	var/dat = {"<div>Input typepaths and watch the magic happen.</div>
-	<form name="outfit" action="byond://?src=[REF(usr.client.holder)];[HrefToken()]" method="get">
-	<input type="hidden" name="src" value="[REF(usr.client.holder)];[HrefToken()]">
-	[HrefTokenFormField()]
-	<input type="hidden" name="create_outfit_finalize" value="1">
-	<table>
-		<tr>
-			<th>Name:</th>
-			<td>
-				<input type="text" name="outfit_name" value="Custom Outfit">
-			</td>
-		</tr>
-		<tr>
-			<th>Uniform:</th>
-			<td>
-				<input type="text" name="outfit_uniform" value="">
-			</td>
-		</tr>
-		<tr>
-			<th>Suit:</th>
-			<td>
-				<input type="text" name="outfit_suit" value="">
-			</td>
-		</tr>
-		<tr>
-			<th>Back:</th>
-			<td>
-				<input type="text" name="outfit_back" value="">
-			</td>
-		</tr>
-		<tr>
-			<th>Belt:</th>
-			<td>
-				<input type="text" name="outfit_belt" value="">
-			</td>
-		</tr>
-		<tr>
-			<th>Gloves:</th>
-			<td>
-				<input type="text" name="outfit_gloves" value="">
-			</td>
-		</tr>
-		<tr>
-			<th>Shoes:</th>
-			<td>
-				<input type="text" name="outfit_shoes" value="">
-			</td>
-		</tr>
-		<tr>
-			<th>Head:</th>
-			<td>
-				<input type="text" name="outfit_head" value="">
-			</td>
-		</tr>
-		<tr>
-			<th>Mask:</th>
-			<td>
-				<input type="text" name="outfit_mask" value="">
-			</td>
-		</tr>
-		<tr>
-			<th>Ears:</th>
-			<td>
-				<input type="text" name="outfit_ears" value="">
-			</td>
-		</tr>
-		<tr>
-			<th>Glasses:</th>
-			<td>
-				<input type="text" name="outfit_glasses" value="">
-			</td>
-		</tr>
-		<tr>
-			<th>ID:</th>
-			<td>
-				<input type="text" name="outfit_id" value="">
-			</td>
-		</tr>
-		<tr>
-			<th>Left Pocket:</th>
-			<td>
-				<input type="text" name="outfit_l_pocket" value="">
-			</td>
-		</tr>
-		<tr>
-			<th>Right Pocket:</th>
-			<td>
-				<input type="text" name="outfit_r_pocket" value="">
-			</td>
-		</tr>
-		<tr>
-			<th>Suit Store:</th>
-			<td>
-				<input type="text" name="outfit_s_store" value="">
-			</td>
-		</tr>
-		<tr>
-			<th>Right Hand:</th>
-			<td>
-				<input type="text" name="outfit_r_hand" value="">
-			</td>
-		</tr>
-		<tr>
-			<th>Left Hand:</th>
-			<td>
-				<input type="text" name="outfit_l_hand" value="">
-			</td>
-		</tr>
-	</table>
-	<br>
-	<input type="submit" value="Save">
-	</form>"}
-
-	var/datum/browser/browser = new(usr, "create_outfit", "<div align='center'>Create Outfit</div>", 550, 600)
-	browser.set_content(dat)
-	browser.open()
-
-
 /datum/admins/proc/edit_appearance(mob/living/carbon/human/H in GLOB.human_mob_list)
 	set category = "Fun"
 	set name = "Edit Appearance"
@@ -923,7 +778,7 @@
 		return
 
 	if(!istype(L))
-		to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
+		to_chat(usr, span_warning("Target is no longer valid."))
 		return
 
 	L.offer_mob()
@@ -1028,22 +883,33 @@
 		IF.ghostize()
 		return
 
-	if(!isobserver(C.mob))
-		if(is_mentor(C))
-			to_chat(C, "<span class='warning'>Can only become an imaginary friend while observing.</span>")
-			return
-		C.holder.admin_ghost()
+	var/mob/living/friend_owner = C.holder.apicker("Select by:", "Imaginary Friend", list(APICKER_CLIENT, APICKER_LIVING))
+	if(!friend_owner)
+		// nothing was picked, probably canceled
+		return
+	C.holder.create_ifriend(friend_owner)
 
-	var/mob/living/L = C.holder.apicker("Select by:", "Imaginary Friend", list(APICKER_CLIENT, APICKER_LIVING))
-	if(!istype(L) || !isobserver(C.mob))
+/// Handles actually spawning in the friend, if the rest of the checks pass
+/datum/admins/proc/create_ifriend(mob/living/friend_owner, seek_confirm = FALSE)
+	if(!check_rights(R_FUN|R_MENTOR))
+		return
+	if(!istype(friend_owner)) // living only
+		to_chat(usr, span_warning("That creature can not have Imaginary Friends") )
+		return
+	if(seek_confirm && tgui_alert(usr, "Become Imaginary Friend of [friend_owner]?", "Confirm", list("Yes", "No")) != "Yes")
 		return
 
-	var/mob/camera/imaginary_friend/IF = new(get_turf(L), L)
+	var/client/C = usr.client
+	if(!isobserver(C.mob))
+		if(is_mentor(C) && tgui_alert(usr, "You will be unable to return to your old body without admin help. Are you sure?", "Confirm", list("Yes", "No")) != "Yes")
+			return
+		C.holder.admin_ghost()
+	var/mob/camera/imaginary_friend/IF = new(get_turf(friend_owner), friend_owner)
 	C.mob.mind.transfer_to(IF)
 
-	log_admin("[key_name(IF)] started being imaginary friend of [key_name(L)].")
-	message_admins("[ADMIN_TPMONTY(IF)] started being imaginary friend of [ADMIN_TPMONTY(L)].")
-
+	admin_ticket_log(friend_owner, "[key_name_admin(C)] became an imaginary friend of [key_name(friend_owner)]")
+	log_admin("[key_name(IF)] started being imaginary friend of [key_name(friend_owner)].")
+	message_admins("[ADMIN_TPMONTY(IF)] started being imaginary friend of [ADMIN_TPMONTY(friend_owner)].")
 
 /datum/admins/proc/force_dropship()
 	set category = "Fun"
@@ -1072,7 +938,7 @@
 			D = M
 
 	if(!D)
-		to_chat(usr, "<span class='warning'>Unable to find shuttle</span>")
+		to_chat(usr, span_warning("Unable to find shuttle"))
 		return
 
 	if(D.mode != SHUTTLE_IDLE && tgui_alert(usr, "[D.name] is not idle, move anyway?", "Force Dropship", list("Yes", "No")) != "Yes")
@@ -1088,7 +954,7 @@
 		valid_docks["[S.name] ([i++])"] = S
 
 	if(!length(valid_docks))
-		to_chat(usr, "<span class='warning'>No valid destinations found!</span>")
+		to_chat(usr, span_warning("No valid destinations found!"))
 		return
 
 	var/dock = tgui_input_list(usr, "Choose the destination.", "Force Dropship", valid_docks)
@@ -1097,7 +963,7 @@
 
 	var/obj/docking_port/stationary/target = valid_docks[dock]
 	if(!target)
-		to_chat(usr, "<span class='warning'>No valid dock found!</span>")
+		to_chat(usr, span_warning("No valid dock found!"))
 		return
 
 	var/instant = FALSE
@@ -1143,7 +1009,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/tip = input(usr, "Please specify your tip that you want to send to the players.", "Tip") as message|null
+	var/tip = tgui_input_text(usr, "Please specify your tip that you want to send to the players.", "Tip", multiline = TRUE, encode = FALSE)
 	if(!tip)
 		return
 
@@ -1182,7 +1048,7 @@
 		return
 
 	var/turf/T = get_turf(mob)
-	var/z_level = input("Z-Level to target?", "Z-Level", T?.z) as num|null
+	var/z_level = tgui_input_number(usr, "Z-Level to target?", "Z-Level", T?.z)
 	if(!isnum(z_level))
 		return
 
@@ -1191,3 +1057,16 @@
 	message_admins("[key_name_admin(usr)] started weather of type [weather_type] on the z-level [z_level].")
 	log_admin("[key_name(usr)] started weather of type [weather_type] on the z-level [z_level].")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Run Weather")
+
+///client verb to set round end sound
+/client/proc/set_round_end_sound(S as sound)
+	set category = "Fun"
+	set name = "Set Round End Sound"
+	if(!check_rights(R_SOUND))
+		return
+
+	SSticker.SetRoundEndSound(S)
+
+	log_admin("[key_name(src)] set the round end sound to [S]")
+	message_admins("[key_name_admin(src)] set the round end sound to [S]")
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Set Round End Sound") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

@@ -117,7 +117,7 @@
 			msg += "<br>\t<tt>[html_encode(message1)]</tt>"
 		if(message2)
 			msg += "<br>\t<tt>[html_encode(message2)]</tt>"
-		to_chat(user, msg.Join())
+		. += msg.Join()
 
 
 // Pictograph display which the AI can use to emote.
@@ -148,6 +148,8 @@
 		remove_display()
 		return PROCESS_KILL
 
+/// If you are adding more pictures, don't forget to complete the list in AI_verbs.dm
+
 	if(mode == SD_AI_EMOTE)
 		switch(emotion)
 			if("Very Happy")
@@ -170,6 +172,12 @@
 				set_picture("ai_trollface")
 			if("Awesome")
 				set_picture("ai_awesome")
+			if("Fish Tank")
+				set_picture("ai_fishtank")
+			if("Triumvirate")
+				set_picture("ai_tribunal")
+			if("Triumvirate Glitchy")
+				set_picture("ai_tribunal_malf")
 			if("Dorfy")
 				set_picture("ai_urist")
 			if("Thinking")

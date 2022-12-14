@@ -25,16 +25,28 @@
 
 //############################## THE ACTUAL DECALS ###########################
 
-obj/structure/sign/poster
+/obj/structure/sign/poster
 	name = "poster"
 	desc = "A large piece of space-resistant printed paper. "
 	icon = 'icons/obj/contraband.dmi'
+	icon_state = "poster_map"
 	anchored = TRUE
 	var/serial_number	//Will hold the value of src.loc if nobody initialises it
 	var/ruined = 0
 
+/obj/structure/sign/poster/Initialize(mapload)
+	. = ..()
+	switch(dir)
+		if(NORTH)
+			pixel_y = 30
+		if(SOUTH)
+			pixel_y = -30
+		if(EAST)
+			pixel_x = 30
+		if(WEST)
+			pixel_x = -30
 
-obj/structure/sign/poster/New(var/serial)
+/obj/structure/sign/poster/New(serial)
 
 	serial_number = serial
 
@@ -53,10 +65,10 @@ obj/structure/sign/poster/New(var/serial)
 	if(iswirecutter(I))
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		if(ruined)
-			to_chat(user, "<span class='notice'>You remove the remnants of the poster.</span>")
+			to_chat(user, span_notice("You remove the remnants of the poster."))
 			qdel(src)
 		else
-			to_chat(user, "<span class='notice'>You carefully remove the poster from the wall.</span>")
+			to_chat(user, span_notice("You carefully remove the poster from the wall."))
 			roll_and_drop(user.loc)
 
 
@@ -71,7 +83,7 @@ obj/structure/sign/poster/New(var/serial)
 		if("Yes")
 			if(user.loc != temp_loc)
 				return
-			visible_message("<span class='warning'>[user] rips [src] in a single, decisive motion!</span>" )
+			visible_message(span_warning("[user] rips [src] in a single, decisive motion!") )
 			playsound(src.loc, 'sound/items/poster_ripped.ogg', 25, 1)
 			ruined = 1
 			icon_state = "poster_ripped"
@@ -91,20 +103,20 @@ obj/structure/sign/poster/New(var/serial)
 /turf/closed/wall/proc/place_poster(obj/item/contraband/poster/P, mob/user)
 
 	if(!istype(src,/turf/closed/wall))
-		to_chat(user, "<span class='warning'>You can't place this here!</span>")
+		to_chat(user, span_warning("You can't place this here!"))
 		return
 
 	var/stuff_on_wall = 0
 	for(var/obj/O in contents) //Let's see if it already has a poster on it or too much stuff
 		if(istype(O,/obj/structure/sign/poster))
-			to_chat(user, "<span class='notice'>The wall is far too cluttered to place a poster!</span>")
+			to_chat(user, span_notice("The wall is far too cluttered to place a poster!"))
 			return
 		stuff_on_wall++
 		if(stuff_on_wall == 3)
-			to_chat(user, "<span class='notice'>The wall is far too cluttered to place a poster!</span>")
+			to_chat(user, span_notice("The wall is far too cluttered to place a poster!"))
 			return
 
-	to_chat(user, "<span class='notice'>You start placing the poster on the wall...</span>")
+	to_chat(user, span_notice("You start placing the poster on the wall..."))
 
 	//declaring D because otherwise if P gets 'deconstructed' we lose our reference to P.resulting_poster
 	var/obj/structure/sign/poster/D = new(P.serial_number)
@@ -115,11 +127,11 @@ obj/structure/sign/poster/New(var/serial)
 	qdel(P)	//delete it now to cut down on sanity checks afterwards. Agouri's code supports rerolling it anyway
 	playsound(D.loc, 'sound/items/poster_being_created.ogg', 25, 1)
 
-	sleep(17)
+	sleep(1.7 SECONDS)
 	if(!D)	return
 
 	if(istype(src,/turf/closed/wall) && user && user.loc == temp_loc)//Let's check if everything is still there
-		to_chat(user, "<span class='notice'>You place the poster!</span>")
+		to_chat(user, span_notice("You place the poster!"))
 	else
 		D.roll_and_drop(temp_loc)
 

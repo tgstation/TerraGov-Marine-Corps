@@ -1,7 +1,4 @@
 //SULACO AREAS--------------------------------------//
-/area/sulaco
-	ambience = list('sound/ambience/shipambience.ogg')
-	icon_state = "sulaco"
 
 /area/sulaco/bridge
 	name = "Sulaco Bridge"
@@ -43,11 +40,6 @@
 /area/sulaco/medbay/storage
 	name = "Sulaco Medbay Storage"
 	icon_state = "medbay2"
-	ambience = list('sound/ambience/signal.ogg'	)
-
-/area/sulaco/medbay/storage2
-	name = "Sulaco Medbay Storage"
-	icon_state = "medbay3"
 	ambience = list('sound/ambience/signal.ogg'	)
 
 /area/sulaco/medbay/west
@@ -108,9 +100,13 @@
 	name = "Sulaco Main Hallway"
 	icon_state = "hallF"
 
+/area/sulaco/hallway/dropshipprep
+	name = "Sulaco Dropship Prep"
+	icon_state = "red"
+
 /area/sulaco/briefing
 	name = "Sulaco Briefing Room"
-	icon_state = "law"
+	icon_state = "blue-red2"
 
 /area/sulaco/cryosleep
 	name = "Sulaco Cryogenic Storage"
@@ -132,10 +128,6 @@
 	name = "Sulaco Main Cargo Bay"
 	icon_state = "quartstorage"
 
-/area/sulaco/cargo
-	name = "Sulaco Main Cargo Bay"
-	icon_state = "quartstorage"
-
 /area/sulaco/cargo/office
 	name = "Sulaco Cargo Office"
 	icon_state = "quartoffice"
@@ -144,12 +136,17 @@
 	name = "Sulaco Prep Area"
 	icon_state = "red"
 
-/area/sulaco/supply/station
-	name = "Sulaco Supply Station"
+/area/sulaco/firingrange
+	name = "Sulaco Firing Range"
+	icon_state = "red2"
 
 /area/sulaco/maintenance
 	name = "Sulaco Maintenance"
 	icon_state = "fmaint"
+
+/area/sulaco/mechpilotquarters
+	name = "Sulaco Mech Pilot Quarters"
+	icon_state = "blueold"
 
 /area/sulaco/engineering
 	name = "Sulaco Engineering"
@@ -224,29 +221,30 @@
 	name = "Sulaco Liaison's Quarters"
 	icon_state = "red"
 
-/area/sulaco/recroom
-	name = "Sulaco Rec Room"
-	icon_state = "red"
-
 /area/sulaco/morgue
 	name = "Sulaco Morgue"
 	icon_state = "morgue"
 
+/area/sulaco/bar
+	name = "Sulaco Bar"
+	icon_state = "purple"
+
 /area/sulaco/hangar
 	name = "Sulaco Dropship Hangar"
-	icon_state = "mining"
-
-/area/sulaco/hangar/one
-	name = "Sulaco Firing Range"
-	icon_state = "red2"
-
-/area/sulaco/hangar/two
-	name = "Sulaco Atmospherics"
-	icon_state = "blue-red2"
+	icon_state = "hangar"
 
 /area/sulaco/hangar/droppod
 	name = "Sulaco Drop pod bay"
 	icon_state = "storage"
+
+/area/sulaco/hangar/storage
+	name = "Sulaco Hangar Workshop"
+	icon_state = "hangar_storage"
+
+/area/sulaco/hangar/cas
+	name = "Sulaco Hangar CAS Plane"
+	icon_state = "hangar_cas"
+
 
 /area/sulaco/command/eva
 	name = "Sulaco EVA Storage"
@@ -272,22 +270,14 @@
 	name = "Sulaco Maintenance"
 	icon_state = "maintcentral"
 
-/area/sulaco/hub/top
-	name = "Sulaco Maintenance Hub"
-	icon_state = "yellow"
-
-/area/sulaco/hub/bottom
-	name = "Sulaco Maintenance Hub"
-	icon_state = "yellow"
-
 //Drop Pods
 /area/shuttle/drop1
 	ambience = list('sound/ambience/ambigen10.ogg','sound/ambience/ambispace.ogg','sound/ambience/ambisin4.ogg','sound/ambience/signal.ogg')
 
-/area/shuttle/drop1/Enter(atom/movable/O, atom/oldloc)
-	if(istype(O, /obj/structure/barricade))
-		return 0
-	return 1
+/area/shuttle/drop1/Enter(atom/movable/arrived, direction)
+	if(istype(arrived, /obj/structure/barricade))
+		return FALSE
+	return TRUE
 
 /area/shuttle/drop1/sulaco
 	name = "Dropship Alamo"
@@ -320,11 +310,12 @@
 /area/shuttle/drop1/lz1
 	name = "Alamo Landing Zone"
 	icon_state = "away1"
+	flags_area = NONE
 
-/area/shuttle/drop2/Enter(atom/movable/O, atom/oldloc)
-	if(istype(O, /obj/structure/barricade))
-		return 0
-	return 1
+/area/shuttle/drop2/Enter(atom/movable/arrived, direction)
+	if(istype(arrived, /obj/structure/barricade))
+		return FALSE
+	return TRUE
 
 /area/shuttle/drop2/sulaco
 	name = "Dropship Normandy"
@@ -357,6 +348,7 @@
 /area/shuttle/drop2/lz2
 	name = "Normandy Landing Zone"
 	icon_state = "away2"
+	flags_area = NONE
 
 
 

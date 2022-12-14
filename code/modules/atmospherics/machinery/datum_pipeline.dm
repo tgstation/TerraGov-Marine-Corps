@@ -21,6 +21,7 @@
 	if(istype(base, /obj/machinery/atmospherics/pipe))
 		var/obj/machinery/atmospherics/pipe/E = base
 		members += E
+		RegisterSignal(E, COMSIG_PARENT_QDELETING, .proc/clean_members)
 	else
 		addMachineryMember(base)
 	var/list/possible_expansions = list(base)
@@ -41,6 +42,7 @@
 									if(pipenetwarnings == 0)
 										warning("build_pipeline(): further messages about pipenets will be suppressed")
 							members += item
+							RegisterSignal(item, COMSIG_PARENT_QDELETING, .proc/clean_members)
 							possible_expansions += item
 
 							item.parent = src
@@ -51,8 +53,20 @@
 
 			possible_expansions -= borderline
 
+///Signal handler to clean qdeleted member
+/datum/pipeline/proc/clean_members(datum/source)
+	SIGNAL_HANDLER
+	members -= source
+
 /datum/pipeline/proc/addMachineryMember(obj/machinery/atmospherics/components/C)
-	other_atmosmch |= C
+	if(other_atmosmch.Find(C))
+		other_atmosmch += C
+		RegisterSignal(C, COMSIG_PARENT_QDELETING, .proc/clean_machinery_member)
+
+///Signal handler to clean qdeleted machinery member
+/datum/pipeline/proc/clean_machinery_member(datum/source)
+	SIGNAL_HANDLER
+	other_atmosmch -= source
 
 /datum/pipeline/proc/addMember(obj/machinery/atmospherics/A, obj/machinery/atmospherics/N)
 	if(istype(A, /obj/machinery/atmospherics/pipe))
@@ -68,6 +82,7 @@
 			merge(E)
 		if(!members.Find(P))
 			members += P
+			RegisterSignal(P, COMSIG_PARENT_QDELETING, .proc/clean_members)
 	else
 		A.setPipenet(src, N)
 		addMachineryMember(A)
@@ -80,7 +95,7 @@
 		S.parent = src
 	for(var/obj/machinery/atmospherics/components/C in E.other_atmosmch)
 		C.replacePipenet(E, src)
-	other_atmosmch.Add(E.other_atmosmch)
+		addMachineryMember(C)
 	E.members.Cut()
 	E.other_atmosmch.Cut()
 	update = TRUE

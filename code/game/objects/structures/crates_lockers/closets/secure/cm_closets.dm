@@ -35,7 +35,7 @@
 	. = ..()
 	new /obj/item/clothing/suit/storage/marine(src)
 	new /obj/item/storage/belt/marine(src)
-	new /obj/item/clothing/head/helmet/marine(src)
+	new /obj/item/clothing/head/modular/marine/m10x(src)
 	new /obj/item/clothing/under/marine/standard(src)
 
 /obj/structure/closet/secure_closet/marine/standard/alpha
@@ -88,7 +88,7 @@
 	. = ..()
 	new /obj/item/clothing/suit/storage/marine/leader(src)
 	new /obj/item/storage/belt/marine(src)
-	new /obj/item/clothing/head/helmet/marine/leader(src)
+	new /obj/item/clothing/head/modular/marine/m10x/leader(src)
 	new /obj/item/clothing/under/marine/standard(src)
 
 /obj/structure/closet/secure_closet/marine/leader/alpha
@@ -145,9 +145,9 @@
 	. = ..()
 	new /obj/item/storage/belt/utility/full(src)
 	new /obj/item/clothing/glasses/welding(src)
-	new /obj/item/clothing/tie/storage/webbing(src)
+	new /obj/item/armor_module/storage/uniform/webbing(src)
 	new /obj/item/clothing/suit/storage/marine(src)
-	new /obj/item/clothing/head/helmet/marine/tech(src)
+	new /obj/item/clothing/head/modular/marine/m10x(src)
 	new /obj/item/clothing/under/marine/engineer(src)
 
 /obj/structure/closet/secure_closet/marine/engi/alpha
@@ -197,13 +197,13 @@
 
 /obj/structure/closet/secure_closet/marine/medic/PopulateContents()
 	. = ..()
-	new /obj/item/storage/belt/combatLifesaver(src)
+	new /obj/item/storage/belt/lifesaver/full(src)
 	new /obj/item/clothing/glasses/hud/health(src)
-	new /obj/item/clothing/tie/storage/webbing(src)
+	new /obj/item/armor_module/storage/uniform/webbing(src)
 	new /obj/item/roller/medevac(src)
 	new /obj/item/defibrillator(src)
 	new /obj/item/clothing/suit/storage/marine(src)
-	new /obj/item/clothing/head/helmet/marine/corpsman(src)
+	new /obj/item/clothing/head/modular/marine/m10x(src)
 	new /obj/item/clothing/under/marine/corpsman(src)
 
 /obj/structure/closet/secure_closet/marine/medic/alpha
@@ -278,6 +278,9 @@
 	new /obj/item/clothing/under/whites(src)
 	new /obj/item/clothing/head/white_dress(src)
 	new /obj/item/storage/backpack/marine/satchel/captain_cloak(src)
+	new /obj/item/storage/belt/gun/mateba/officer/full(src)
+
+
 
 /obj/structure/closet/secure_closet/securecom
 	name = "captain's secure box"
@@ -329,8 +332,8 @@
 	new /obj/item/clothing/head/helmet/marine/pilot/green(src)
 	new /obj/item/clothing/under/marine/officer/pilot(src)
 	new /obj/item/clothing/shoes/marine(src)
-	new /obj/item/clothing/suit/armor/vest/pilot(src)
-	new /obj/item/storage/large_holster/m25(src)
+	new /obj/item/clothing/suit/modular/xenonauten/pilot(src)
+	new /obj/item/storage/holster/m25/full(src)
 	new /obj/item/storage/backpack/marine/satchel(src)
 	new /obj/item/clothing/gloves/yellow(src)
 	new /obj/item/clothing/glasses/sunglasses/aviator/yellow(src)
@@ -358,10 +361,9 @@
 	new /obj/item/clothing/head/tgmcberet/red(src)
 	new /obj/item/clothing/gloves/black(src)
 	new /obj/item/clothing/gloves/black(src)
-	new /obj/item/clothing/tie/storage/holster/armpit(src)
+	new /obj/item/armor_module/storage/uniform/holster/armpit(src)
 	new /obj/item/clothing/shoes/marine(src)
 	new /obj/item/clothing/under/marine/mp(src)
-	new /obj/item/storage/belt/security/MP(src)
 	new /obj/item/flashlight(src)
 	new /obj/item/clothing/glasses/sunglasses(src)
 	new /obj/item/weapon/gun/energy/taser(src)
@@ -384,11 +386,10 @@
 
 /obj/structure/closet/secure_closet/warrant_officer/PopulateContents()
 	new /obj/item/clothing/head/tgmcberet/wo(src)
-	new /obj/item/clothing/tie/storage/holster/armpit(src)
+	new /obj/item/armor_module/storage/uniform/holster/armpit(src)
 	new /obj/item/clothing/shoes/marine(src)
 	new /obj/item/clothing/under/marine/officer/warrant(src)
 	new /obj/item/clothing/suit/storage/marine/MP/WO(src)
-	new /obj/item/storage/belt/security/MP(src)
 	new /obj/item/flashlight(src)
 	new /obj/item/clothing/glasses/sunglasses(src)
 	new /obj/item/weapon/gun/energy/taser(src)
@@ -410,7 +411,7 @@
 	icon_off = "secure_closed_warrant"
 
 /obj/structure/closet/secure_closet/military_officer_spare/PopulateContents()
-	new /obj/item/clothing/tie/storage/holster/armpit(src)
+	new /obj/item/armor_module/storage/uniform/holster/armpit(src)
 	new /obj/item/storage/backpack/security(src)
 	new /obj/item/clothing/shoes/marine(src)
 	new /obj/item/clothing/under/marine/mp(src)
@@ -419,7 +420,7 @@
 	new /obj/item/flashlight(src)
 	new /obj/item/clothing/glasses/sunglasses(src)
 	new /obj/item/clothing/gloves/black(src)
-	new /obj/item/clothing/tie/storage/holster/waist(src)
+	new /obj/item/armor_module/storage/uniform/holster/waist(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/gloves/white(src)
 	new /obj/item/clothing/under/whites(src)
@@ -443,7 +444,7 @@
 		new /obj/item/radio/headset/mainship/doc(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/shoes/white(src)
-	new /obj/item/storage/belt/medical(src)
+	new /obj/item/storage/belt/lifesaver/full(src)
 	new /obj/item/clothing/under/rank/medical/blue(src)
 	new /obj/item/clothing/under/rank/medical/green(src)
 	new /obj/item/clothing/under/rank/medical/purple(src)
@@ -475,7 +476,7 @@
 	new /obj/item/clothing/head/tgmccap/req(src)
 	new /obj/item/flashlight(src)
 	new /obj/item/storage/backpack/marine/satchel(src)
-	new /obj/item/clothing/tie/storage/webbing(src)
+	new /obj/item/armor_module/storage/uniform/webbing(src)
 	new /obj/item/clothing/suit/storage/marine/MP/RO(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/gloves/white(src)
@@ -501,7 +502,7 @@
 	new /obj/item/clothing/head/beanie(src)
 	new /obj/item/flashlight(src)
 	new /obj/item/storage/backpack/marine/satchel(src)
-	new /obj/item/clothing/tie/storage/webbing(src)
+	new /obj/item/armor_module/storage/uniform/webbing(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/gloves/white(src)
 	new /obj/item/clothing/under/whites(src)

@@ -9,7 +9,7 @@
 	idle_power_usage = 2
 	active_power_usage = 4
 	max_integrity = 150
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 40, "acid" = 0)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 100, BOMB = 0, BIO = 100, FIRE = 40, ACID = 0)
 	var/frequency = 0
 	var/atom/target
 	var/id_tag
@@ -50,8 +50,8 @@
 		. = "The connect error light is blinking."
 
 /obj/machinery/meter/examine(mob/user)
-	..()
-	to_chat(user, status())
+	. = ..()
+	. += status()
 
 
 /obj/machinery/meter/attackby(obj/item/I, mob/user, params)
@@ -60,12 +60,12 @@
 		return wrench_act(user, I)
 
 /obj/machinery/meter/wrench_act(mob/user, obj/item/I)
-	to_chat(user, "<span class='notice'>You begin to unfasten \the [src]...</span>")
+	to_chat(user, span_notice("You begin to unfasten \the [src]..."))
 	if(do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 		user.visible_message(
 			"[user] unfastens \the [src].",
-			"<span class='notice'>You unfasten \the [src].</span>",
-			"<span class='italics'>You hear ratchet.</span>")
+			span_notice("You unfasten \the [src]."),
+			span_italics("You hear ratchet."))
 		deconstruct()
 	return TRUE
 

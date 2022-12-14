@@ -65,7 +65,7 @@
 	height += new_size[2]
 	apply()
 
-///sets the size, which can also be a string and applies it
+///INCREASES the view radius by this.
 /datum/view_data/proc/set_view_radius_to(toAdd)
 	var/list/new_size = getviewsize(toAdd)  //Backward compatability to account
 	width = new_size[1] //for a change in how sizes get calculated. we used to include world.view in

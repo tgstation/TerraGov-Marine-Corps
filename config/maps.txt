@@ -17,6 +17,10 @@ map lv624
 	minplayers 25
 endmap
 
+map desertdam
+	minplayers 90
+endmap
+
 map bigred_v2
 	minplayers 25
 endmap
@@ -41,11 +45,6 @@ map research_outpost
 	maxplayers 40
 endmap
 
-map barrenquilla_mining
-	minplayers 30
-	maxplayers 80
-endmap
-
 map whiskey_outpost_v2
 endmap
 
@@ -53,5 +52,10 @@ map magmoor_digsite_iv
 	minplayers 20
 endmap
 
-map marine_hq
+map orion_outpost
+	maxplayers 40
+endmap
+
+map gelida_iv
+	minplayers 50
 endmap

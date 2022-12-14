@@ -31,8 +31,8 @@
 	var/datum/click_intercept = null // Needs to implement InterceptClickOn(user,params,atom) proc
 	var/move_delay = 0
 	var/area = null
-	var/obj/screen/click_catcher/void = null
-	var/list/char_render_holders			//Should only be a key-value list of north/south/east/west = obj/screen.
+	var/atom/movable/screen/click_catcher/void = null
+	var/list/char_render_holders			//Should only be a key-value list of north/south/east/west = atom/movable/screen.
 	var/mouse_up_icon = null
 	var/mouse_down_icon = null
 	var/click_intercepted = FALSE //Check if current click was intercepted. Reset and return if TRUE. This is because there's no communication between Click(), MouseDown() and MouseUp().
@@ -71,6 +71,10 @@
 	var/codex_on_cooldown = FALSE
 	var/const/max_codex_entries_shown = 10
 
+	//screen_text vars
+	///lazylist of screen_texts for this client, first in this list is the one playing
+	var/list/atom/movable/screen/text/screen_text/screen_texts
+
 	///Amount of keydowns in the last keysend checking interval
 	var/client_keysend_amount = 0
 	///World tick time where client_keysend_amount will reset
@@ -82,16 +86,31 @@
 	///custom movement keys for this client
 	var/list/movement_keys = list()
 
+	var/list/parallax_layers
+	var/list/parallax_layers_cached
+	var/atom/movable/movingmob
+	var/turf/previous_turf
+	///world.time of when we can state animate()ing parallax again
+	var/dont_animate_parallax
+	///world.time of last parallax update
+	var/last_parallax_shift
+	///ds between parallax updates
+	var/parallax_throttle = 0
+	var/parallax_movedir = 0
+	var/parallax_layers_max = 4
+	var/parallax_animate_timer
+
 	/**
 	 * Assoc list with all the active maps - when a screen obj is added to
 	 * a map, it's put in here as well.
 	 *
-	 * Format: list(<mapname> = list(/obj/screen))
+	 * Format: list(<mapname> = list(/atom/movable/screen))
 	 */
 	var/list/screen_maps = list()
 
 	/// Messages currently seen by this client
 	var/list/seen_messages
+
 
 	show_popup_menus = TRUE // right click menu no longer shows up
 	control_freak = CONTROL_FREAK_MACROS

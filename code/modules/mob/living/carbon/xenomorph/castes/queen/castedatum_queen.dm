@@ -23,15 +23,15 @@
 	max_health = 425
 
 	// *** Evolution *** //
-	upgrade_threshold = 350
+	upgrade_threshold = TIER_THREE_YOUNG_THRESHOLD
 
 	// *** Flags *** //
-	caste_flags = CASTE_IS_INTELLIGENT|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_HOLD_JELLY|CASTE_CAN_CORRUPT_GENERATOR|CASTE_IS_BUILDER
-
+	caste_flags = CASTE_IS_INTELLIGENT|CASTE_IS_BUILDER
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
+	can_flags = CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_HOLD_JELLY|CASTE_CAN_CORRUPT_GENERATOR|CASTE_CAN_BE_GIVEN_PLASMA
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = XENO_BOMB_RESIST_3, "bio" = 45, "rad" = 45, "fire" = 100, "acid" = 45)
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 30, BIO = 45, FIRE = 45, ACID = 45)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
@@ -39,41 +39,40 @@
 
 	// *** Pheromones *** //
 	aura_strength = 3.5 //The Queen's aura is strong and stays so, and gets devastating late game. Climbs by 1 to 5
-	aura_allowed = list("frenzy", "warding", "recovery")
 
 	// *** Queen Abilities *** //
-	queen_leader_limit = 2 //Amount of leaders allowed
+	queen_leader_limit = 4 //Amount of leaders allowed
 
 	minimap_icon = "xenoqueen"
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/activable/headbite,
-		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/activable/cocoon,
-		/datum/action/xeno_action/plant_weeds,
+		/datum/action/xeno_action/activable/plant_weeds,
 		/datum/action/xeno_action/activable/secrete_resin,
-		/datum/action/xeno_action/activable/build_silo,
-		/datum/action/xeno_action/activable/build_hunt_den,
-		/datum/action/xeno_action/activable/build_turret,
-		/datum/action/xeno_action/summon_king,
+		/datum/action/xeno_action/blessing_menu,
 		/datum/action/xeno_action/place_acidwell,
-		/datum/action/xeno_action/activable/larval_growth_sting,
 		/datum/action/xeno_action/call_of_the_burrowed,
 		/datum/action/xeno_action/activable/screech,
 		/datum/action/xeno_action/activable/corrosive_acid/strong,
-		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/activable/xeno_spit,
-		/datum/action/xeno_action/activable/psychic_cure/acidic_salve/queen,
-		/datum/action/xeno_action/toggle_pheromones,
+		/datum/action/xeno_action/activable/psychic_cure/queen_give_heal,
+		/datum/action/xeno_action/activable/neurotox_sting/ozelomelyn,
+		/datum/action/xeno_action/pheromones,
+		/datum/action/xeno_action/pheromones/emit_recovery,
+		/datum/action/xeno_action/pheromones/emit_warding,
+		/datum/action/xeno_action/pheromones/emit_frenzy,
 		/datum/action/xeno_action/toggle_queen_zoom,
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/set_xeno_lead,
 		/datum/action/xeno_action/activable/queen_give_plasma,
-		/datum/action/xeno_action/queen_order,
+		/datum/action/xeno_action/hive_message,
 		/datum/action/xeno_action/deevolve,
-		/datum/action/xeno_action/activable/rally_hive,
+		/datum/action/xeno_action/rally_hive,
+		/datum/action/xeno_action/rally_minion,
+		/datum/action/xeno_action/activable/command_minions,
+		/datum/action/xeno_action/set_agressivity,
 	)
 
 
@@ -96,10 +95,10 @@
 	max_health = 450
 
 	// *** Evolution *** //
-	upgrade_threshold = 850
+	upgrade_threshold = TIER_THREE_MATURE_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 55, "bullet" = 55, "laser" = 55, "energy" = 55, "bomb" = XENO_BOMB_RESIST_3, "bio" = 50, "rad" = 50, "fire" = 100, "acid" = 50)
+	soft_armor = list(MELEE = 55, BULLET = 55, LASER = 55, ENERGY = 55, BOMB = 30, BIO = 50, FIRE = 50, ACID = 50)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.2 SECONDS
@@ -108,7 +107,7 @@
 	aura_strength = 4
 
 	// *** Queen Abilities *** //
-	queen_leader_limit = 3
+	queen_leader_limit = 4
 
 /datum/xeno_caste/queen/elder
 	caste_desc = "The biggest and baddest xeno. The Empress controls multiple hives and planets."
@@ -129,10 +128,10 @@
 	max_health = 475
 
 	// *** Evolution *** //
-	upgrade_threshold = 1850
+	upgrade_threshold = TIER_THREE_ELDER_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 60, "bomb" = XENO_BOMB_RESIST_3, "bio" = 55, "rad" = 55, "fire" = 100, "acid" = 55)
+	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 30, BIO = 55, FIRE = 55, ACID = 55)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.2 SECONDS
@@ -141,7 +140,7 @@
 	aura_strength = 4.5
 
 	// *** Queen Abilities *** //
-	queen_leader_limit = 3
+	queen_leader_limit = 4
 
 /datum/xeno_caste/queen/ancient
 	caste_desc = "The most perfect Xeno form imaginable."
@@ -162,10 +161,10 @@
 	max_health = 500
 
 	// *** Evolution *** //
-	upgrade_threshold = 2850
+	upgrade_threshold = TIER_THREE_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 65, "bullet" = 65, "laser" = 65, "energy" = 65, "bomb" = XENO_BOMB_RESIST_3, "bio" = 60, "rad" = 60, "fire" = 100, "acid" = 60)
+	soft_armor = list(MELEE = 65, BULLET = 65, LASER = 65, ENERGY = 65, BOMB = 30, BIO = 60, FIRE = 60, ACID = 60)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.1 SECONDS
@@ -175,3 +174,64 @@
 
 	// *** Queen Abilities *** //
 	queen_leader_limit = 4
+
+//same stats as ancient
+/datum/xeno_caste/queen/primordial
+	caste_desc = "A fearsome Xeno hulk of titanic proportions. Nothing can stand in it's way."
+	primordial_message = "Destiny bows to our will as the universe trembles before us."
+	upgrade = XENO_UPGRADE_FOUR
+	// *** Melee Attacks *** //
+	melee_damage = 23
+
+	// *** Speed *** //
+	speed = -0.3
+
+	// *** Plasma *** //
+	plasma_max = 1200
+	plasma_gain = 70
+
+	// *** Health *** //
+	max_health = 500
+
+	// *** Defense *** //
+	soft_armor = list(MELEE = 65, BULLET = 65, LASER = 65, ENERGY = 65, BOMB = 30, BIO = 60, FIRE = 60, ACID = 60)
+
+	// *** Ranged Attack *** //
+	spit_delay = 1.1 SECONDS
+
+	// *** Pheromones *** //
+	aura_strength = 5
+
+	// *** Queen Abilities *** //
+	queen_leader_limit = 4
+
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/cocoon,
+		/datum/action/xeno_action/activable/plant_weeds,
+		/datum/action/xeno_action/activable/secrete_resin,
+		/datum/action/xeno_action/blessing_menu,
+		/datum/action/xeno_action/place_acidwell,
+		/datum/action/xeno_action/call_of_the_burrowed,
+		/datum/action/xeno_action/activable/screech,
+		/datum/action/xeno_action/activable/corrosive_acid/strong,
+		/datum/action/xeno_action/activable/xeno_spit,
+		/datum/action/xeno_action/activable/psychic_cure/queen_give_heal,
+		/datum/action/xeno_action/activable/neurotox_sting/ozelomelyn,
+		/datum/action/xeno_action/pheromones,
+		/datum/action/xeno_action/pheromones/emit_recovery,
+		/datum/action/xeno_action/pheromones/emit_warding,
+		/datum/action/xeno_action/pheromones/emit_frenzy,
+		/datum/action/xeno_action/toggle_queen_zoom,
+		/datum/action/xeno_action/watch_xeno,
+		/datum/action/xeno_action/set_xeno_lead,
+		/datum/action/xeno_action/activable/queen_give_plasma,
+		/datum/action/xeno_action/hive_message,
+		/datum/action/xeno_action/deevolve,
+		/datum/action/xeno_action/rally_hive,
+		/datum/action/xeno_action/rally_minion,
+		/datum/action/xeno_action/activable/command_minions,
+		/datum/action/xeno_action/set_agressivity,
+		/datum/action/xeno_action/ready_charge/queen_charge,
+	)

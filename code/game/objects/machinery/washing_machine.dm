@@ -39,7 +39,7 @@
 	else
 		state = 5
 	update_icon()
-	sleep(200)
+	sleep(20 SECONDS)
 	for(var/atom/A in contents)
 		A.clean_blood()
 
@@ -62,7 +62,7 @@
 	set category = "Object"
 	set src in usr.loc
 
-	sleep(20)
+	sleep(2 SECONDS)
 	if(state in list(1,3,6) )
 		usr.loc = src.loc
 
@@ -128,11 +128,11 @@
 			return
 
 		if(length(contents) >= 5)
-			to_chat(user, "<span class='notice'>The washing machine is full.</span>")
+			to_chat(user, span_notice("The washing machine is full."))
 			return
 
 		if(!(state in list(1, 3)))
-			to_chat(user, "<span class='notice'>You can't put the item in right now.</span>")
+			to_chat(user, span_notice("You can't put the item in right now."))
 			return
 
 		if(!user.transferItemToLoc(I, src))
@@ -162,7 +162,7 @@
 			crayon = null
 			state = 1
 		if(5)
-			to_chat(user, "<span class='warning'>The [src] is busy.</span>")
+			to_chat(user, span_warning("The [src] is busy."))
 		if(6)
 			state = 7
 		if(7)

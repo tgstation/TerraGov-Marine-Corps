@@ -11,7 +11,7 @@
 /obj/machinery/power/Destroy()
 	disconnect_from_network()
 	addtimer(CALLBACK(GLOBAL_PROC, .proc/update_cable_icons_on_turf, get_turf(src)), 3)
-	. = ..()
+	return ..()
 
 // common helper procs for all power machines
 // All power generation handled in add_avail()
@@ -290,8 +290,7 @@
 	return null
 
 /area/proc/get_apc()
-	for(var/i in GLOB.apcs_list)
-		var/obj/machinery/power/apc/APC = i
+	for(var/obj/machinery/power/apc/APC AS in GLOB.apcs_list)
 		if(APC.area == src)
 			return APC
 

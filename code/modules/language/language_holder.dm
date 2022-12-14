@@ -10,6 +10,7 @@
 
 /datum/language_holder/New(owner)
 	src.owner = owner
+	RegisterSignal(owner, COMSIG_PARENT_QDELETING, .proc/clean_language)
 
 	languages = typecacheof(languages)
 	shadow_languages = typecacheof(shadow_languages)
@@ -21,6 +22,10 @@
 	shadow_languages.Cut()
 	return ..()
 
+///Clean src when it's owner is deleted
+/datum/language_holder/proc/clean_language()
+	SIGNAL_HANDLER
+	qdel(src)
 
 /datum/language_holder/proc/copy(newowner)
 	var/datum/language_holder/copy = new(newowner)
@@ -113,36 +118,17 @@
 
 
 /datum/language_holder/synthetic
-	languages = list(/datum/language/common)
-	shadow_languages = list(/datum/language/machine, /datum/language/xenocommon)
-
-
-/datum/language_holder/unathi
-	languages = list(/datum/language/common, /datum/language/unathi)
-
-
-/datum/language_holder/tajaran
-	languages = list(/datum/language/common, /datum/language/tajaran)
-
-
-/datum/language_holder/skrell
-	languages = list(/datum/language/common, /datum/language/skrell)
-
+	languages = list(/datum/language/common, /datum/language/machine, /datum/language/xenocommon)
 
 /datum/language_holder/moth
 	languages = list(/datum/language/common, /datum/language/moth)
 	selected_default_language = /datum/language/moth
 
-
-/datum/language_holder/vox
-	languages = list(/datum/language/common, /datum/language/vox)
-
-
-/datum/language_holder/machine
-	languages = list(/datum/language/common, /datum/language/machine)
-
 /datum/language_holder/sectoid
 	languages = list(/datum/language/sectoid)
+
+/datum/language_holder/zombie
+	languages = list(/datum/language/zombie)
 
 
 /mob/living/verb/language_menu()

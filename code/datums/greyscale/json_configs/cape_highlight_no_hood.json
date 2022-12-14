@@ -1,0 +1,22 @@
+{
+	"highlight": [
+		{
+			"type": "icon_state",
+			"icon_state": "highlight_color_1",
+			"blend_mode": "overlay",
+			"color_ids": [1]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "highlight_color_2",
+			"blend_mode": "overlay",
+			"color_ids": [2]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "highlight_color_3",
+			"blend_mode": "overlay",
+			"color_ids": [3]
+		}
+	]
+}

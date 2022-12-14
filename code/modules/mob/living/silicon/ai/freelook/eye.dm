@@ -10,7 +10,7 @@
 	var/list/visibleCameraChunks = list()
 	var/mob/living/silicon/ai/ai = null
 	var/relay_speech = TRUE
-	var/use_static = USE_STATIC_OPAQUE
+	var/use_static = TRUE
 	var/static_visibility_range = 16
 	var/ai_detector_visible = TRUE
 	var/ai_detector_color = "#FF0000"
@@ -20,6 +20,28 @@
 	. = ..()
 	GLOB.aiEyes += src
 	setLoc(loc, TRUE)
+
+//Version the normal aiEye that's added to squad HUDs. Visible to marines, not visible to xenos. CAS does this too.
+//This is the one actually used by AI in ai.dm
+/mob/camera/aiEye/hud
+	icon_state = "nothing"
+	var/icon_state_on = "ai_camera"
+	hud_possible = list(SQUAD_HUD_TERRAGOV)
+
+/mob/camera/aiEye/hud/Initialize()
+	. = ..()
+	prepare_huds()
+	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
+	squad_hud.add_to_hud(src)
+
+	var/image/holder = hud_list[SQUAD_HUD_TERRAGOV]
+	if(!holder)
+		return
+	holder.icon = icon
+	holder.icon_state = icon_state_on
+	hud_list[hud_type] = holder
+
+///
 
 
 /mob/camera/aiEye/proc/get_visible_turfs()
@@ -44,10 +66,10 @@
 	if(!force_update && T == get_turf(src))
 		return //we are already here!
 	if(T)
-		forceMove(T)
+		abstract_move(T)
 	else
 		moveToNullspace()
-	if(use_static != USE_STATIC_NONE)
+	if(use_static)
 		ai.camera_visibility(src)
 	if(ai.client && !ai.multicam_on)
 		ai.client.eye = src
@@ -59,6 +81,7 @@
 		ai.light_cameras()
 	if(ai.master_multicam)
 		ai.master_multicam.refresh_view()
+	update_parallax_contents()
 
 
 /mob/camera/aiEye/Move()
@@ -136,7 +159,7 @@
 /mob/living/silicon/ai/proc/create_eye()
 	if(!QDELETED(eyeobj))
 		return
-	eyeobj = new /mob/camera/aiEye()
+	eyeobj = new /mob/camera/aiEye/hud()
 	all_eyes += eyeobj
 	eyeobj.ai = src
 	eyeobj.setLoc(loc)

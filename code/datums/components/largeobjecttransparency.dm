@@ -90,7 +90,7 @@
 		reduceAlpha()
 	amounthidden++
 
-/datum/component/largetransparency/proc/objectLeave(datum/source, atom/leaver)
+/datum/component/largetransparency/proc/objectLeave(datum/source, atom/leaver, direction)
 	SIGNAL_HANDLER
 	if(!(leaver.flags_atom & CRITICAL_ATOM))
 		return
@@ -108,4 +108,4 @@
 	var/atom/par_atom = parent
 	par_atom.alpha = initial_alpha
 	if(toggle_click)
-		par_atom.mouse_opacity = MOUSE_OPACITY_OPAQUE
+		par_atom.mouse_opacity = MOUSE_OPACITY_ICON

@@ -8,14 +8,6 @@
 	w_class = WEIGHT_CLASS_SMALL
 	gas_transfer_coefficient = 0.90
 
-//Monkeys can not take the muzzle off of themself! Call PETA!
-/obj/item/clothing/mask/muzzle/attack_paw(mob/living/carbon/human/user)
-	if (src == user.wear_mask)
-		return
-	return ..()
-
-
-
 /obj/item/clothing/mask/surgical
 	name = "sterile mask"
 	desc = "A sterile mask designed to help prevent the spread of diseases."
@@ -26,7 +18,7 @@
 	flags_armor_protection = NONE
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.01
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 25, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 25, FIRE = 0, ACID = 0)
 
 /obj/item/clothing/mask/fakemoustache
 	name = "fake moustache"
@@ -130,7 +122,7 @@
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_armor_protection = HEAD|FACE
-	flags_inventory = COVERMOUTH|ALLOWREBREATH
+	flags_inventory = COVERMOUTH
 	w_class = WEIGHT_CLASS_SMALL
 	siemens_coefficient = 3.0
 

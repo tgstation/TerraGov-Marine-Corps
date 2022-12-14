@@ -25,14 +25,13 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 	force = 10
 
-/obj/item/weapon/classic_baton/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/weapon/classic_baton/attack(mob/living/M, mob/living/user)
 	. = ..()
 	if(!.)
 		return
 
-	if (M.stuttering < 8)
-		M.stuttering = 8
-	visible_message("<span class='danger'>[M] has been beaten with \the [src] by [user]!</span>", null, "<span class='warning'> You hear someone fall</span>", 2)
+	M.set_timed_status_effect(16 SECONDS, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
+	visible_message(span_danger("[M] has been beaten with \the [src] by [user]!"), null, span_warning(" You hear someone fall"), 2)
 
 //Telescopic baton
 /obj/item/weapon/telebaton
@@ -50,8 +49,8 @@
 /obj/item/weapon/telebaton/attack_self(mob/user as mob)
 	on = !on
 	if(on)
-		user.visible_message("<span class='warning'> With a flick of their wrist, [user] extends their telescopic baton.</span>",\
-		"<span class='warning'> You extend the baton.</span>",\
+		user.visible_message(span_warning(" With a flick of their wrist, [user] extends their telescopic baton."),\
+		span_warning(" You extend the baton."),\
 		"You hear an ominous click.")
 		icon_state = "telebaton_1"
 		item_state = "telebaton_1"
@@ -59,8 +58,8 @@
 		force = 10
 		attack_verb = list("smacked", "struck", "slapped")
 	else
-		user.visible_message("<span class='notice'> [user] collapses their telescopic baton.</span>",\
-		"<span class='notice'> You collapse the baton.</span>",\
+		user.visible_message(span_notice(" [user] collapses their telescopic baton."),\
+		span_notice(" You collapse the baton."),\
 		"You hear a click.")
 		icon_state = "telebaton_0"
 		item_state = "telebaton_0"

@@ -57,7 +57,7 @@
 
 	if(istype(I, /obj/item/coin))
 		var/obj/item/coin/C = I
-		to_chat(user, "<span class='notice'>You add the [C] into the bag.</span>")
+		to_chat(user, span_notice("You add the [C] into the bag."))
 		user.drop_held_item()
 		C.forceMove(src)
 
@@ -65,7 +65,7 @@
 		var/obj/item/moneybag/C = I
 		for(var/obj/O in C.contents)
 			O.forceMove(src)
-		to_chat(user, "<span class='notice'>You empty the [C] into the bag.</span>")
+		to_chat(user, span_notice("You empty the [C] into the bag."))
 
 
 /obj/item/moneybag/Topic(href, href_list)

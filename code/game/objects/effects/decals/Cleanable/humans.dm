@@ -18,6 +18,10 @@
 
 /obj/effect/decal/cleanable/blood/Initialize()
 	. = ..()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
 	update_icon()
 	if(istype(src, /obj/effect/decal/cleanable/blood/gibs))
 		return
@@ -47,9 +51,9 @@
 	if(basecolor == "rainbow") basecolor = "#[pick(list("FF0000","FF7F00","FFFF00","00FF00","0000FF","4B0082","8F00FF"))]"
 	color = basecolor
 
-/obj/effect/decal/cleanable/blood/Crossed(mob/living/carbon/human/perp)
-	. = ..()
-	if (!istype(perp))
+/obj/effect/decal/cleanable/blood/proc/on_cross(datum/source, mob/living/carbon/human/perp, oldloc, oldlocs)
+	SIGNAL_HANDLER
+	if(!istype(perp))
 		return
 	if(amount < 1)
 		return
@@ -97,7 +101,7 @@
 
 	var/taken = rand(1,amount)
 	amount -= taken
-	to_chat(H, "<span class='notice'>You get some of \the [src] on your hands.</span>")
+	to_chat(H, span_notice("You get some of \the [src] on your hands."))
 
 	H.add_blood(basecolor)
 	H.bloody_hands += taken
@@ -119,6 +123,8 @@
 	amount = 0
 	var/drips
 
+/obj/effect/decal/cleanable/blood/six
+	icon_state = "gib6"
 
 /obj/effect/decal/cleanable/blood/drip/tracking_fluid
 	name = "tracking fluid"
@@ -149,8 +155,8 @@
 		icon_state = "writing1"
 
 /obj/effect/decal/cleanable/blood/writing/examine(mob/user)
-	..()
-	to_chat(user, "It reads: <font color='[basecolor]'>\"[message]\"<font>")
+	. = ..()
+	. += "It reads: <font color='[basecolor]'>\"[message]\"<font>"
 
 /obj/effect/decal/cleanable/blood/gibs
 	name = "gibs"
@@ -199,7 +205,7 @@
 	spawn (0)
 		var/direction = pick(directions)
 		for (var/i = 0, i < pick(1, 200; 2, 150; 3, 50; 4), i++)
-			sleep(3)
+			sleep(0.3 SECONDS)
 			if (i > 0)
 				var/obj/effect/decal/cleanable/blood/b = new /obj/effect/decal/cleanable/blood/splatter(src.loc)
 				b.basecolor = src.basecolor
@@ -224,3 +230,18 @@
 /obj/effect/decal/cleanable/mucus/Initialize()
 	. = ..()
 	addtimer(VARSET_CALLBACK(src, dry, TRUE), DRYING_TIME * 2)
+
+/obj/effect/decal/cleanable/blood/humanimprint/one
+	icon_state = "u_madman"
+
+/obj/effect/decal/cleanable/blood/humanimprint/two
+	icon_state = "u_psycopath"
+
+/obj/effect/decal/cleanable/blood/humanimprint/three
+	icon_state = "u_dangerous_l"
+
+/obj/effect/decal/cleanable/blood/humanimprint/four
+	icon_state = "u_madman_l"
+
+/obj/effect/decal/cleanable/blood/humanimprint/five
+	icon_state = "u_psycopath_l"

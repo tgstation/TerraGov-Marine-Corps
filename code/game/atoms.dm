@@ -12,11 +12,15 @@
 	var/list/blood_DNA
 
 	var/flags_pass = NONE
+	///whether items can be thrown past, or projectiles can fire past this atom.
 	var/throwpass = FALSE
 
-	var/resistance_flags = NONE
+	var/resistance_flags = PROJECTILE_IMMUNE
 
 	var/germ_level = GERM_LEVEL_AMBIENT // The higher the germ level, the more germ on the atom.
+
+	///If non-null, overrides a/an/some in all cases
+	var/article
 
 	///overlays that should remain on top and not normally removed when using cut_overlay functions, like c4.
 	var/list/priority_overlays
@@ -48,7 +52,7 @@
 
 	//light stuff
 
-	///Light systems, both shouldn't be active at the same time.
+	///Light systems, only one of the three should be active at the same time.
 	var/light_system = STATIC_LIGHT
 	///Range of the light in tiles. Zero means no light.
 	var/light_range = 0
@@ -59,14 +63,25 @@
 	///Boolean variable for toggleable lights. Has no effect without the proper light_system, light_range and light_power values.
 	var/light_on = FALSE
 	///Our light source. Don't fuck with this directly unless you have a good reason!
-	var/tmp/datum/light_source/light
+	var/tmp/datum/dynamic_light_source/light
 	///Any light sources that are "inside" of us, for example, if src here was a mob that's carrying a flashlight, that flashlight's light source would be part of this list.
-	var/tmp/list/light_sources
+	var/tmp/list/hybrid_light_sources
 
 	///The config type to use for greyscaled sprites. Both this and greyscale_colors must be assigned to work.
 	var/greyscale_config
 	///A string of hex format colors to be used by greyscale sprites, ex: "#0054aa#badcff"
 	var/greyscale_colors
+
+	//Values should avoid being close to -16, 16, -48, 48 etc.
+	//Best keep them within 10 units of a multiple of 32, as when the light is closer to a wall, the probability
+	//that a shadow extends to opposite corners of the light mask square is increased, resulting in more shadow
+	//overlays.
+	///x offset for dynamic lights on this atom
+	var/light_pixel_x
+	///y offset for dynamic lights on this atom
+	var/light_pixel_y
+	///typepath for the lighting maskfor dynamic light sources
+	var/light_mask_type = null
 
 	// popup chat messages
 	/// Last name used to calculate a color for the chatmessage overlays
@@ -77,8 +92,11 @@
 	var/chat_color_darkened
 	///HUD images that this mob can provide.
 	var/list/hud_possible
-	///Reference to atom being orbited
-	var/atom/orbit_target
+
+	///Whether this atom smooths with things around it, and what type of smoothing if any.
+	var/smoothing_behavior = NO_SMOOTHING
+	///Bitflags to mark the members of specific smoothing groups, in where they all smooth with each other.
+	var/smoothing_groups = NONE
 
 	///The color this atom will be if we choose to draw it on the minimap
 	var/minimap_color = MINIMAP_SOLID
@@ -156,12 +174,6 @@ directive is properly returned.
 	SHOULD_CALL_PARENT(TRUE)
 	return !density
 
-/// Returns true or false to allow the mover to move out of the atom
-/atom/proc/CheckExit(atom/movable/mover, turf/target)
-	SHOULD_CALL_PARENT(TRUE)
-	if(!density || !(flags_atom & ON_BORDER) || !(get_dir(mover.loc, target) & dir) || (mover.status_flags & INCORPOREAL))
-		return TRUE
-	return FALSE
 
 // Convenience proc for reagents handling.
 /atom/proc/is_open_container()
@@ -221,85 +233,97 @@ directive is properly returned.
 
 
 //mob verbs are faster than object verbs. See https://secure.byond.com/forum/?post=1326139&page=2#comment8198716 for why this isn't atom/verb/examine()
-/mob/verb/examinate(atom/A as mob|obj|turf in view())
+/mob/verb/examinate(atom/examinify as mob|obj|turf in view())
 	set name = "Examine"
 	set category = "IC"
 
 	if(is_blind(src))
-		to_chat(src, "<span class='notice'>Something is there but you can't see it.</span>")
+		to_chat(src, span_notice("Something is there but you can't see it."))
 		return
 
-	face_atom(A)
-	A.examine(src)
+	face_atom(examinify)
+	var/list/result = examinify.examine(src) // if a tree is examined but no client is there to see it, did the tree ever really exist?
 
+	if(result.len)
+		for(var/i in 1 to (length(result) - 1))
+			result[i] += "\n"
+
+	to_chat(src, examine_block(span_infoplain(result.Join())))
+	SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, examinify)
+
+/**
+ * Get the name of this object for examine
+ *
+ * You can override what is returned from this proc by registering to listen for the
+ * [COMSIG_ATOM_GET_EXAMINE_NAME] signal
+ */
+/atom/proc/get_examine_name(mob/user)
+	. = "\a [src]"
+	var/list/override = list(gender == PLURAL ? "some" : "a", " ", "[name]")
+	if(article)
+		. = "[article] [src]"
+		override[EXAMINE_POSITION_ARTICLE] = article
+	if(SEND_SIGNAL(src, COMSIG_ATOM_GET_EXAMINE_NAME, user, override) & COMPONENT_EXNAME_CHANGED)
+		. = override.Join("")
+
+///Generate the full examine string of this atom (including icon for goonchat)
+/atom/proc/get_examine_string(mob/user, thats = FALSE)
+	return "[icon2html(src, user)] [thats? "That's ":""][get_examine_name(user)]"
 
 /atom/proc/examine(mob/user)
 	SHOULD_CALL_PARENT(TRUE)
-	if(!istype(src, /obj/item))
-		to_chat(user, "[icon2html(src, user)] That's \a [src].")
-
-	else // No component signaling, dropping it here.
-		var/obj/item/I = src
-		var/size
-		switch(I.w_class)
-			if(1)
-				size = "tiny"
-			if(2)
-				size = "small"
-			if(3)
-				size = "normal-sized"
-			if(4 to 5)
-				size = "bulky"
-			if(6 to INFINITY)
-				size = "huge"
-		to_chat(user, "This is a [blood_color ? blood_color != "#030303" ? "bloody " : "oil-stained " : ""][icon2html(src, user)][src.name]. It is a [size] item.")
-
+	var/examine_string = get_examine_string(user, thats = TRUE)
+	if(examine_string)
+		. = list("[examine_string].")
+	else
+		. = list()
 
 	if(desc)
-		to_chat(user, desc)
+		. += desc
+	if(user.can_use_codex() && SScodex.get_codex_entry(get_codex_value()))
+		. += span_notice("The codex has <a href='?_src_=codex;show_examined_info=[REF(src)];show_to=[REF(user)]'>relevant information</a> available.")
 
-	if(get_dist(user,src) <= 2)
-		if(reagents)
-			if(CHECK_BITFIELD(reagents.reagent_flags, TRANSPARENT))
-				to_chat(user, "It contains these reagents:")
-				if(reagents.reagent_list.len) // TODO: Implement scan_reagent and can_see_reagents() to show each individual reagent
-					var/total_volume = 0
+	if((get_dist(user,src) <= 2) && reagents)
+		if(reagents.reagent_flags & TRANSPARENT)
+			. += "It contains:"
+			if(length(reagents.reagent_list)) // TODO: Implement scan_reagent and can_see_reagents() to show each individual reagent
+				var/total_volume = 0
+				for(var/datum/reagent/R in reagents.reagent_list)
+					total_volume += R.volume
+				. +=  span_notice("[total_volume] units of various reagents.")
+			else
+				. += "Nothing."
+		else if(CHECK_BITFIELD(reagents.reagent_flags, AMOUNT_VISIBLE))
+			if(reagents.total_volume)
+				. += span_notice("It has [reagents.total_volume] unit\s left.")
+			else
+				. += span_warning("It's empty.")
+		else if(CHECK_BITFIELD(reagents.reagent_flags, AMOUNT_SKILLCHECK))
+			if(isxeno(user))
+				return
+			if(user.skills.getRating("medical") >= SKILL_MEDICAL_NOVICE)
+				. += "It contains these reagents:"
+				if(length(reagents.reagent_list))
 					for(var/datum/reagent/R in reagents.reagent_list)
-						total_volume += R.volume
-					to_chat(user, "<span class='notice'>[total_volume] units of various reagents.</span>")
+						. += "[R.volume] units of [R.name]"
 				else
-					to_chat(user, "<span class='notice'>Nothing.")
-			else if(CHECK_BITFIELD(reagents.reagent_flags, AMOUNT_VISIBLE))
-				if(reagents.total_volume)
-					to_chat(user, "<span class='notice'>It has [reagents.total_volume] unit\s left.</span>")
-				else
-					to_chat(user, "<span class='warning'>It's empty.</span>")
-			else if(CHECK_BITFIELD(reagents.reagent_flags, AMOUNT_SKILLCHECK))
-				if(isxeno(user))
-					return
-				if(user.skills.getRating("medical") >= SKILL_MEDICAL_NOVICE)
-					to_chat(user, "It contains these reagents:")
-					if(reagents.reagent_list.len)
-						for(var/datum/reagent/R in reagents.reagent_list)
-							to_chat(user, "[R.volume] units of [R.name]")
-					else
-						to_chat(user, "Nothing.")
-				else
-					to_chat(user, "You don't know what's in it.")
-			else if(reagents.reagent_flags & AMOUNT_ESTIMEE)
-				var/obj/item/reagent_containers/C = src
-				if(!reagents.total_volume)
-					to_chat(user, "<span class='notice'>\The [src] is empty!</span>")
-				else if (reagents.total_volume<= C.volume*0.3)
-					to_chat(user, "<span class='notice'>\The [src] is almost empty!</span>")
-				else if (reagents.total_volume<= C.volume*0.6)
-					to_chat(user, "<span class='notice'>\The [src] is half full!</span>")
-				else if (reagents.total_volume<= C.volume*0.9)
-					to_chat(user, "<span class='notice'>\The [src] is almost full!</span>")
-				else
-					to_chat(user, "<span class='notice'>\The [src] is full!</span>")
+					. += "Nothing."
+			else
+				. += "You don't know what's in it."
+		else if(reagents.reagent_flags & AMOUNT_ESTIMEE)
+			var/obj/item/reagent_containers/C = src
+			if(!reagents.total_volume)
+				. += span_notice("\The [src] is empty!")
+			else if (reagents.total_volume<= C.volume*0.3)
+				. += span_notice("\The [src] is almost empty!")
+			else if (reagents.total_volume<= C.volume*0.6)
+				. += span_notice("\The [src] is half full!")
+			else if (reagents.total_volume<= C.volume*0.9)
+				. += span_notice("\The [src] is almost full!")
+			else
+				. += span_notice("\The [src] is full!")
 
-	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user)
+	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .)
 
 
 /// Updates the icon of the atom
@@ -359,6 +383,21 @@ directive is properly returned.
 /atom/proc/relaymove()
 	return
 
+/**
+ * A special case of relaymove() in which the person relaying the move may be "driving" this atom
+ *
+ * This is a special case for vehicles and ridden animals where the relayed movement may be handled
+ * by the riding component attached to this atom. Returns TRUE as long as there's nothing blocking
+ * the movement, or FALSE if the signal gets a reply that specifically blocks the movement
+ */
+/atom/proc/relaydrive(mob/living/user, direction)
+	return !(SEND_SIGNAL(src, COMSIG_RIDDEN_DRIVER_MOVE, user, direction) & COMPONENT_DRIVER_BLOCK_MOVE)
+
+/**
+ * React to being hit by an explosion
+ *
+ * Default behaviour is to call [contents_explosion][/atom/proc/contents_explosion] and send the [COMSIG_ATOM_EX_ACT] signal
+ */
 /atom/proc/ex_act(severity, epicenter_dist, impact_range)
 	if(!(flags_atom & PREVENT_CONTENTS_EXPLOSION))
 		contents_explosion(severity, epicenter_dist, impact_range)
@@ -385,8 +424,8 @@ directive is properly returned.
 	return //For handling the effects of explosions on contents that would not normally be effected
 
 
-//Generalized Fire Proc.
-/atom/proc/flamer_fire_act()
+///Generalized Fire Proc. Burn level is the base fire damage being received.
+/atom/proc/flamer_fire_act(burnlevel)
 	return
 
 
@@ -418,6 +457,10 @@ directive is properly returned.
 			log_dsay(log_text)
 		if(LOG_OOC)
 			log_ooc(log_text)
+		if(LOG_XOOC)
+			log_xooc(log_text)
+		if(LOG_MOOC)
+			log_mooc(log_text)
 		if(LOG_ADMIN)
 			log_admin(log_text)
 		if(LOG_LOOC)
@@ -428,6 +471,8 @@ directive is properly returned.
 			log_admin_private_asay(log_text)
 		if(LOG_GAME)
 			log_game(log_text)
+		if(LOG_MECHA)
+			log_mecha(log_text)
 		else
 			stack_trace("Invalid individual logging type: [message_type]. Defaulting to [LOG_GAME] (LOG_GAME).")
 			log_game(log_text)
@@ -495,7 +540,7 @@ Proc for attack log creation, because really why not
 	var/do_initialize = SSatoms.initialized
 	if(do_initialize != INITIALIZATION_INSSATOMS)
 		args[1] = do_initialize == INITIALIZATION_INNEW_MAPLOAD
-		if(SSatoms.InitAtom(src, args))
+		if(SSatoms.InitAtom(src, FALSE, args))
 			//we were deleted
 			return
 
@@ -542,8 +587,7 @@ Proc for attack log creation, because really why not
 
 /obj/item/update_filters()
 	. = ..()
-	for(var/X in actions)
-		var/datum/action/A = X
+	for(var/datum/action/A AS in actions)
 		A.update_button_icon()
 
 ///returns a filter in the managed filters list by name
@@ -666,23 +710,28 @@ Proc for attack log creation, because really why not
 
 	update_greyscale()
 
-	if(light_system == STATIC_LIGHT && light_power && light_range)
+	if(light_system != MOVABLE_LIGHT && light_power && light_range)
 		update_light()
 	if(loc)
 		SEND_SIGNAL(loc, COMSIG_ATOM_INITIALIZED_ON, src) //required since spawning something doesn't call Move hence it doesn't call Entered.
-		if(isturf(loc) && opacity)
-			var/turf/T = loc
-			T.directional_opacity = ALL_CARDINALS // No need to recalculate it in this case, it's guaranteed to be on afterwards anyways.
+		if(isturf(loc))
+			if(opacity)
+				var/turf/T = loc
+				T.directional_opacity = ALL_CARDINALS // No need to recalculate it in this case, it's guaranteed to be on afterwards anyways.
+
+			if(smoothing_behavior)
+				smooth_self()
+				smooth_neighbors()
 
 	return INITIALIZE_HINT_NORMAL
 
 
-//called if Initialize returns INITIALIZE_HINT_LATELOAD
+///called if Initialize returns INITIALIZE_HINT_LATELOAD
 /atom/proc/LateInitialize(mapload)
-	return
+	set waitfor = FALSE
 
 
-//called when the turf the atom resides on is ChangeTurfed
+///called when the turf the atom resides on is ChangeTurfed
 /atom/proc/HandleTurfChange(turf/T)
 	for(var/a in src)
 		var/atom/A = a
@@ -706,18 +755,32 @@ Proc for attack log creation, because really why not
 	.["Modify Filters"] = "?_src_=vars;[HrefToken()];filteredit=[REF(src)]"
 	.["Modify Greyscale Colors"] = "?_src_=vars;[HrefToken()];modify_greyscale=[REF(src)]"
 
-/atom/Entered(atom/movable/AM, atom/oldloc)
-	SEND_SIGNAL(src, COMSIG_ATOM_ENTERED, AM, oldloc)
+/atom/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+	SEND_SIGNAL(src, COMSIG_ATOM_ENTERED, arrived, old_loc, old_locs)
 
 
-/atom/Exit(atom/movable/AM, atom/newloc)
-	. = ..()
-	if(SEND_SIGNAL(src, COMSIG_ATOM_EXIT, AM, newloc) & COMPONENT_ATOM_BLOCK_EXIT)
+/**
+ * An atom is attempting to exit this atom's contents
+ *
+ * Default behaviour is to send the [COMSIG_ATOM_EXIT]
+ */
+/atom/Exit(atom/movable/leaving, direction, list/knownblockers = list())
+	// Don't call `..()` here, otherwise `Uncross()` gets called.
+	// See the doc comment on `Uncross()` to learn why this is bad.
+	if(SEND_SIGNAL(src, COMSIG_ATOM_EXIT, leaving, direction, knownblockers) & COMPONENT_ATOM_BLOCK_EXIT)
+		for(var/atom/movable/thing AS in knownblockers)
+			var/signalreturn = SEND_SIGNAL(leaving, COMSIG_MOVABLE_PREBUMP_EXIT_MOVABLE, thing)
+			if(signalreturn & COMPONENT_MOVABLE_PREBUMP_STOPPED)
+				return FALSE
+			if(signalreturn & COMPONENT_MOVABLE_PREBUMP_PLOWED)
+				continue // no longer in the way
+			leaving.Bump(thing)
+			return FALSE
 		return FALSE
+	return TRUE
 
-
-/atom/Exited(atom/movable/AM, atom/newloc)
-	SEND_SIGNAL(src, COMSIG_ATOM_EXITED, AM, newloc)
+/atom/Exited(atom/movable/AM, direction)
+	SEND_SIGNAL(src, COMSIG_ATOM_EXITED, AM, direction)
 
 
 // Stacks and storage redefined procs.
@@ -738,7 +801,7 @@ Proc for attack log creation, because really why not
 /atom/proc/multitool_check_buffer(user, obj/item/I, silent = FALSE)
 	if(!istype(I, /obj/item/multitool))
 		if(user && !silent)
-			to_chat(user, "<span class='warning'>[I] has no data buffer!</span>")
+			to_chat(user, span_warning("[I] has no data buffer!"))
 		return FALSE
 	return TRUE
 
@@ -764,7 +827,7 @@ Proc for attack log creation, because really why not
 /atom/proc/fulton_act(mob/living/user, obj/item/I)
 	if(!isturf(loc))
 		return FALSE //Storage screens, worn containers, anything we want to be able to interact otherwise.
-	to_chat(user, "<span class='warning'>Cannot extract [src].</span>")
+	to_chat(user, span_warning("Cannot extract [src]."))
 	return TRUE
 
 ///This proc is called on atoms when they are loaded into a shuttle
@@ -827,23 +890,6 @@ Proc for attack log creation, because really why not
 	add_fingerprint(usr, "topic")
 
 
-/atom/vv_edit_var(var_name, var_value)
-	switch(var_name)
-		if("light_range")
-			set_light(l_range = var_value)
-			return TRUE
-
-		if("light_power")
-			set_light(l_power = var_value)
-			return TRUE
-
-		if("light_color")
-			set_light(l_color = var_value)
-			return TRUE
-
-	return ..()
-
-
 /atom/can_interact(mob/user)
 	. = ..()
 	if(!.)
@@ -879,7 +925,7 @@ Proc for attack log creation, because really why not
  * originated_turf: if not null, will check if the obj_turf is closer than distance_max to originated_turf, and the proc will return if not
  * distance_max: used to check if originated_turf is close to obj.loc
 */
-/atom/proc/turn_light(mob/user = null, toggle_on , cooldown = 1 SECONDS, sparks = FALSE, forced = FALSE)
+/atom/proc/turn_light(mob/user = null, toggle_on , cooldown = 1 SECONDS, sparks = FALSE, forced = FALSE, light_again = FALSE)
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_LIGHT) && !forced)
 		return STILL_ON_COOLDOWN
 	if(cooldown <= 0)
@@ -887,7 +933,7 @@ Proc for attack log creation, because really why not
 	TIMER_COOLDOWN_START(src, COOLDOWN_LIGHT, cooldown)
 	if(toggle_on == light_on)
 		return NO_LIGHT_STATE_CHANGE
-	if(forced && !toggle_on) //Is true when turn light is called by nightfall and the light is already on
+	if(light_again && !toggle_on) //Is true when turn light is called by nightfall and the light is already on
 		addtimer(CALLBACK(src, .proc/reset_light), cooldown + 1)
 	if(sparks && light_on)
 		var/datum/effect_system/spark_spread/spark_system = new

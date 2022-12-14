@@ -43,8 +43,8 @@ GLOBAL_LIST_INIT(base_miss_chance, list(
 	"r_leg" = 10,
 	"l_arm" = 10,
 	"r_arm" = 10,
-	"l_hand" = 15,
-	"r_hand" = 15,
+	"l_hand" = 30,
+	"r_hand" = 30,
 	"l_foot" = 40,
 	"r_foot" = 40,
 	"eyes" = 20,
@@ -150,6 +150,7 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 
 /**
  * Makes you speak like you're drunk
+ * todo remove, deprecated
  */
 /proc/slur(phrase)
 	phrase = html_decode(phrase)
@@ -171,65 +172,17 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 				newletter = "oo"
 			else if(lowerletter == "c")
 				newletter = "k"
-		if(rand(1, 20) == 20)
+		if(prob(5))
 			if(newletter == " ")
 				newletter = "...huuuhhh..."
 			else if(newletter == ".")
 				newletter = " *BURP*."
-		switch(rand(1, 20))
-			if(1)
-				newletter += "'"
-			if(10)
-				newletter += "[newletter]"
-			if(20)
-				newletter += "[newletter][newletter]"
+		if(prob(15))
+			newletter += pick(list("'", "[newletter]", "[newletter][newletter]"))
 		. += "[newletter]"
 	return sanitize(.)
 
-/// Makes you talk like you got cult stunned, which is slurring but with some dark messages
-/proc/cultslur(phrase) // Inflicted on victims of a stun talisman
-	phrase = html_decode(phrase)
-	var/leng = length(phrase)
-	. = ""
-	var/newletter = ""
-	var/rawchar = ""
-	for(var/i = 1, i <= leng, i += length(rawchar))
-		rawchar = newletter = phrase[i]
-		if(rand(1, 2) == 2)
-			var/lowerletter = lowertext(newletter)
-			if(lowerletter == "o")
-				newletter = "u"
-			else if(lowerletter == "t")
-				newletter = "ch"
-			else if(lowerletter == "a")
-				newletter = "ah"
-			else if(lowerletter == "u")
-				newletter = "oo"
-			else if(lowerletter == "c")
-				newletter = " NAR "
-			else if(lowerletter == "s")
-				newletter = " SIE "
-		if(rand(1, 4) == 4)
-			if(newletter == " ")
-				newletter = " no hope... "
-			else if(newletter == "H")
-				newletter = " IT COMES... "
-
-		switch(rand(1, 15))
-			if(1)
-				newletter = "'"
-			if(2)
-				newletter += "agn"
-			if(3)
-				newletter = "fth"
-			if(4)
-				newletter = "nglu"
-			if(5)
-				newletter = "glor"
-		. += newletter
-	return sanitize(.)
-
-///Adds stuttering to the message passed in
+///Adds stuttering to the message passed in, todo remove, deprecated
 /proc/stutter(phrase)
 	phrase = html_decode(phrase)
 	var/leng = length(phrase)
@@ -243,8 +196,6 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 				newletter = "[newletter]-[newletter]-[newletter]-[newletter]"
 			else if(prob(20))
 				newletter = "[newletter]-[newletter]-[newletter]"
-			else if (prob(5))
-				newletter = ""
 			else
 				newletter = "[newletter]-[newletter]"
 		. += newletter
@@ -288,6 +239,21 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 		else
 			animate(pixel_x=rand(min,max), pixel_y=rand(min,max), time=1)
 	animate(pixel_x=oldx, pixel_y=oldy, time=1)
+
+
+///Makes a recoil-like animation on the mob camera.
+/proc/recoil_camera(mob/M, duration, backtime_duration, strength, angle)
+	if(!M?.client)
+		return
+	strength *= world.icon_size
+	var/oldx = M.client.pixel_x
+	var/oldy = M.client.pixel_y
+
+	//get pixels to move the camera in an angle
+	var/mpx = sin(angle) * strength
+	var/mpy = cos(angle) * strength
+	animate(M.client, pixel_x = oldx+mpx, pixel_y = oldy+mpy, time = duration, flags = ANIMATION_RELATIVE)
+	animate(pixel_x = oldx, pixel_y = oldy, time = backtime_duration, easing = BACK_EASING)
 
 
 /proc/findname(msg)
@@ -372,7 +338,8 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 
 
 /mob/proc/restrained(ignore_checks)
-	return
+	SHOULD_CALL_PARENT(TRUE)
+	return HAS_TRAIT(src, TRAIT_HANDS_BLOCKED)
 
 
 /mob/proc/incapacitated(ignore_restrained, restrained_flags)
@@ -386,7 +353,7 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 /mob/proc/get_eye_protection()
 	return 0
 
-mob/proc/get_standard_bodytemperature()
+/mob/proc/get_standard_bodytemperature()
 	return BODYTEMP_NORMAL
 
 /mob/log_message(message, message_type, color=null, log_globally = TRUE)
@@ -435,7 +402,7 @@ mob/proc/get_standard_bodytemperature()
 	var/full_enter_link
 	if (enter_link)
 		full_enter_link = "<a href='byond://?src=[REF(O)];[enter_link]'>[(enter_text) ? "[enter_text]" : "(Claim)"]</a>"
-	to_chat(O, "[(extra_large) ? "<br><hr>" : ""]<span class='deadsay'>[message][(enter_link) ? " [full_enter_link]" : ""][track_link]</span>[(extra_large) ? "<hr><br>" : ""]")
+	to_chat(O, "[(extra_large) ? "<br><hr>" : ""][span_deadsay("[message][(enter_link) ? " [full_enter_link]" : ""][track_link]")][(extra_large) ? "<hr><br>" : ""]")
 	if(ghost_sound)
 		SEND_SOUND(O, sound(ghost_sound, volume = notify_volume, channel = CHANNEL_NOTIFY))
 	if(flashwindow)
@@ -444,7 +411,7 @@ mob/proc/get_standard_bodytemperature()
 	if(!source)
 		return
 
-	var/obj/screen/alert/notify_action/A = O.throw_alert("[REF(source)]_notify_action", /obj/screen/alert/notify_action)
+	var/atom/movable/screen/alert/notify_action/A = O.throw_alert("[REF(source)]_notify_action", /atom/movable/screen/alert/notify_action)
 	if(!A)
 		return
 	if (header)
@@ -491,7 +458,7 @@ mob/proc/get_standard_bodytemperature()
 	. = list("[type]")
 
 
-/// Try to perform a unique action on the current active held item.
+/// Try to perform a unique action on the held items
 /mob/living/carbon/human/proc/do_unique_action()
 	SIGNAL_HANDLER
 	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
@@ -499,8 +466,8 @@ mob/proc/get_standard_bodytemperature()
 		return
 
 	var/obj/item/active_item = get_active_held_item()
-	if(!istype(active_item))
+	if((istype(active_item) && active_item.do_unique_action(src) != COMSIG_KB_NOT_ACTIVATED) || client?.prefs.unique_action_use_active_hand)
 		return
-
-	active_item.unique_action(src)
-
+	var/obj/item/inactive_item = get_inactive_held_item()
+	if(istype(inactive_item))
+		inactive_item.do_unique_action(src)

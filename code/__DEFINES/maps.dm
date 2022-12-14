@@ -107,3 +107,8 @@ require only minor tweaks.
 #define MAP_ARMOR_STYLE_ICE "ice"
 #define MAP_ARMOR_STYLE_JUNGLE "jungle"
 #define MAP_ARMOR_STYLE_PRISON "prison"
+
+#define CLOSE "close"
+#define CLOSE2 "close2"
+#define FAR "far"
+#define FAR2 "far2"

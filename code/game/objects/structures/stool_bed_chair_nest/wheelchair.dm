@@ -28,15 +28,15 @@
 		var/datum/limb/right_hand = driver.get_limb("r_hand")
 		var/working_hands = 2
 		move_delay = initial(move_delay)
-		if(!left_hand || (left_hand.limb_status & LIMB_DESTROYED))
+		if(!left_hand?.is_usable())
 			move_delay += 4 //harder to move a wheelchair with a single hand
 			working_hands--
-		else if((left_hand.limb_status & LIMB_BROKEN) && !(left_hand.limb_status & LIMB_SPLINTED) && !(left_hand.limb_status & LIMB_STABILIZED))
+		else if(left_hand.is_broken())
 			move_delay++
-		if(!right_hand || (right_hand.limb_status & LIMB_DESTROYED))
+		if(!right_hand?.is_usable())
 			move_delay += 4
 			working_hands--
-		else if((right_hand.limb_status & LIMB_BROKEN) && !(right_hand.limb_status & LIMB_SPLINTED) && !(right_hand.limb_status & LIMB_STABILIZED))
+		else if(right_hand.is_broken())
 			move_delay += 2
 		if(!working_hands)
 			return // No hands to drive your chair? Tough luck!
@@ -105,24 +105,24 @@
 			occupant.throw_at(A, 3, propelled)
 
 		var/def_zone = ran_zone()
-		var/blocked = occupant.run_armor_check(def_zone, "melee")
+		var/blocked = occupant.get_soft_armor("melee", def_zone)
 		occupant.throw_at(A, 3, propelled)
 		occupant.apply_effect(6, STUN, blocked)
 		occupant.apply_effect(6, WEAKEN, blocked)
 		occupant.apply_effect(6, STUTTER, blocked)
-		occupant.apply_damage(10, BRUTE, def_zone)
+		occupant.apply_damage(10, BRUTE, def_zone, MELEE)
 		UPDATEHEALTH(occupant)
 		playsound(src.loc, 'sound/weapons/punch1.ogg', 25, 1)
 		if(isliving(A))
 			var/mob/living/victim = A
 			def_zone = ran_zone()
-			blocked = victim.run_armor_check(def_zone, "melee")
+			blocked = victim.get_soft_armor("melee", def_zone)
 			victim.apply_effect(6, STUN, blocked)
 			victim.apply_effect(6, WEAKEN, blocked)
 			victim.apply_effect(6, STUTTER, blocked)
-			victim.apply_damage(10, BRUTE, def_zone)
+			victim.apply_damage(10, BRUTE, def_zone, MELEE)
 			UPDATEHEALTH(victim)
-		occupant.visible_message("<span class='danger'>[occupant] crashed into \the [A]!</span>")
+		occupant.visible_message(span_danger("[occupant] crashed into \the [A]!"))
 
 /obj/structure/bed/chair/wheelchair/proc/create_track()
 	var/obj/effect/decal/cleanable/blood/tracks/B = new(loc)

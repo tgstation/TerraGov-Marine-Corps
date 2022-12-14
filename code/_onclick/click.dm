@@ -329,11 +329,11 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 
 /mob/living/carbon/xenomorph/RightClickOn(atom/A)
 	. = ..()
-	if(!selected_ability)
-		return FALSE
-	A = ability_target(A)
-	if(selected_ability.can_use_ability(A))
-		selected_ability.use_ability(A)
+	if(selected_ability) //If we have a selected ability that we can use, return TRUE
+		A = ability_target(A)
+		if(selected_ability.can_use_ability(A))
+			selected_ability.use_ability(A)
+			return !CHECK_BITFIELD(selected_ability.use_state_flags, XACT_DO_AFTER_ATTACK)
 
 /*
 	Right click
@@ -506,7 +506,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 	SEND_SIGNAL(src, COMSIG_CLICK_CTRL_MIDDLE, A)
 
 
-/obj/screen/proc/scale_to(x1,y1)
+/atom/movable/screen/proc/scale_to(x1,y1)
 	if(!y1)
 		y1 = x1
 	var/matrix/M = new
@@ -514,7 +514,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 	transform = M
 
 
-/obj/screen/click_catcher
+/atom/movable/screen/click_catcher
 	icon = 'icons/mob/screen/generic.dmi'
 	icon_state = "catcher"
 	plane = CLICKCATCHER_PLANE
@@ -526,7 +526,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 #define MAX_SAFE_BYOND_ICON_SCALE_PX (33 * 32)			//Not using world.icon_size on purpose.
 
 
-/obj/screen/click_catcher/proc/UpdateGreed(view_size_x = 15, view_size_y = 15)
+/atom/movable/screen/click_catcher/proc/UpdateGreed(view_size_x = 15, view_size_y = 15)
 	var/icon/newicon = icon('icons/mob/screen/generic.dmi', "catcher")
 	var/ox = min(MAX_SAFE_BYOND_ICON_SCALE_TILES, view_size_x)
 	var/oy = min(MAX_SAFE_BYOND_ICON_SCALE_TILES, view_size_y)
@@ -542,22 +542,18 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 	transform = M
 
 
-/obj/screen/click_catcher/Click(location, control, params)
+/atom/movable/screen/click_catcher/Click(location, control, params)
 	var/list/modifiers = params2list(params)
-	if(modifiers["middle"] && ishuman(usr))
-		var/mob/living/carbon/human/H = usr
-		H.swap_hand()
-	else
-		var/turf/T = params2turf(modifiers["screen-loc"], get_turf(usr.client ? usr.client.eye : usr), usr.client)
-		params += "&catcher=1"
-		if(T)
-			//icon-x/y is relative to the object clicked. click_catcher may occupy several tiles. Here we convert them to the proper offsets relative to the tile.
-			modifiers["icon-x"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-x"])))
-			modifiers["icon-y"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-y"])))
-			T.Click(location, control, list2params(modifiers))
+	var/turf/T = params2turf(modifiers["screen-loc"], get_turf(usr.client ? usr.client.eye : usr), usr.client)
+	params += "&catcher=1"
+	if(T)
+		//icon-x/y is relative to the object clicked. click_catcher may occupy several tiles. Here we convert them to the proper offsets relative to the tile.
+		modifiers["icon-x"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-x"])))
+		modifiers["icon-y"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-y"])))
+		T.Click(location, control, list2params(modifiers))
 	. = TRUE
 
-/obj/screen/click_catcher/MouseMove(location, control, params)//This allow to catch mouse drag on click catcher, aka black tiles
+/atom/movable/screen/click_catcher/MouseMove(location, control, params)//This allow to catch mouse drag on click catcher, aka black tiles
 	return
 
 

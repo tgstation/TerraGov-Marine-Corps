@@ -1,33 +1,13 @@
-
-///***GRENADES***///
-/obj/item/explosive/grenade/frag
-	name = "\improper M40 HEDP grenade"
-	desc = "A small, but deceptively strong high explosive grenade that has been phasing out the M15 fragmentation grenades. Capable of being loaded in the any grenade launcher, or thrown by hand."
-	icon_state = "grenade"
-	det_time = 40
-	item_state = "grenade"
-	underslug_launchable = TRUE
-	icon_state_mini = "grenade_red"
-
-/obj/item/explosive/grenade/frag/prime()
-	explosion(loc, light_impact_range = 4, small_animation = TRUE)
-	qdel(src)
-
-/obj/item/explosive/grenade/frag/flamer_fire_act()
-	activate()
-
-
-
-/obj/item/explosive/grenade/frag/training
+/obj/item/explosive/grenade/training
 	name = "M07 training grenade"
 	desc = "A harmless reusable version of the M40 HEDP, used for training. Capable of being loaded in the any grenade launcher, or thrown by hand."
 	icon_state = "training_grenade"
-	item_state = "grenade"
+	item_state = "training_grenade"
 	hud_state = "grenade_dummy"
 	dangerous = FALSE
 	icon_state_mini = "grenade_white"
 
-/obj/item/explosive/grenade/frag/training/prime()
+/obj/item/explosive/grenade/training/prime()
 	playsound(loc, 'sound/items/detector.ogg', 80, 0, 7)
 	active = FALSE //so we can reuse it
 	overlays.Cut()
@@ -36,60 +16,44 @@
 	throw_range = initial(throw_range)
 
 
-/obj/item/explosive/grenade/frag/training/flamer_fire_act()
+/obj/item/explosive/grenade/training/flamer_fire_act(burnlevel)
 	return
 
 
 
-/obj/item/explosive/grenade/frag/PMC
+/obj/item/explosive/grenade/PMC
 	desc = "A fragmentation grenade produced for private security firms. It explodes 3 seconds after the pin has been pulled."
 	icon_state = "grenade_pmc"
-	item_state = "grenade_ex"
+	item_state = "grenade_pmc"
 	arm_sound = 'sound/weapons/armbombpin.ogg'
 	hud_state = "grenade_frag"
-	underslug_launchable = FALSE
 	icon_state_mini = "grenade_red_white"
+	light_impact_range = 5
 
-/obj/item/explosive/grenade/frag/PMC/prime()
-	explosion(loc, light_impact_range = 5, small_animation = TRUE)
-	qdel(src)
-
-
-/obj/item/explosive/grenade/frag/m15
+/obj/item/explosive/grenade/m15
 	name = "\improper M15 fragmentation grenade"
 	desc = "An outdated TGMC fragmentation grenade. With decades of service in the TGMC, the old M15 Fragmentation Grenade is slowly being replaced with the slightly safer M40 HEDP. It is set to detonate in 4 seconds."
 	icon_state = "grenade_ex"
 	item_state = "grenade_ex"
 	arm_sound = 'sound/weapons/armbombpin.ogg'
 	hud_state = "grenade_frag"
-	underslug_launchable = FALSE
 	icon_state_mini = "grenade_yellow"
+	light_impact_range = 5
 
-/obj/item/explosive/grenade/frag/m15/prime()
-	explosion(loc, light_impact_range = 5, small_animation = TRUE)
-	qdel(src)
-
-
-/obj/item/explosive/grenade/frag/stick
+/obj/item/explosive/grenade/stick
 	name = "\improper Webley Mk15 stick grenade"
 	desc = "A fragmentation grenade produced in the colonies, most commonly using old designs and schematics. It explodes 3 seconds after the pin has been pulled."
 	icon_state = "grenade_stick"
 	item_state = "grenade_stick"
 	arm_sound = 'sound/weapons/armbombpin.ogg'
-	hud_state = "greande_frag"
+	hud_state = "grenade_frag"
 	force = 10
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 15
 	throw_speed = 2
 	throw_range = 7
-	underslug_launchable = FALSE
 
-/obj/item/explosive/grenade/frag/stick/prime()
-	explosion(loc, light_impact_range = 4, small_animation = TRUE)
-	qdel(src)
-
-
-/obj/item/explosive/grenade/frag/upp
+/obj/item/explosive/grenade/upp
 	name = "\improper Type 5 shrapnel grenade"
 	desc = "A fragmentation grenade found within the ranks of the USL. Designed to explode into shrapnel and rupture the bodies of opponents. It explodes 3 seconds after the pin has been pulled."
 	icon_state = "grenade_upp"
@@ -98,34 +62,61 @@
 	hud_state = "greande_frag"
 	throw_speed = 2
 	throw_range = 6
-	underslug_launchable = FALSE
-
-/obj/item/explosive/grenade/frag/upp/prime()
-	explosion(loc, light_impact_range = 4, small_animation = TRUE)
-	qdel(src)
 
 
-/obj/item/explosive/grenade/frag/sectoid
+/obj/item/explosive/grenade/sectoid
 	name = "alien bomb"
 	desc = "An odd, squishy, organ-like grenade. It will explode 3 seconds after squeezing it."
 	icon_state = "alien_grenade"
-	item_state = "grenade_ex"
+	item_state = "alien_grenade"
 	hud_state = "grenade_frag"
-	underslug_launchable = FALSE
+	light_impact_range = 6
 
-/obj/item/explosive/grenade/frag/sectoid/prime()
-	explosion(loc, light_impact_range = 6)// no animation cus space tech and so
-	qdel(src)
+/obj/item/explosive/grenade/sticky
+	name = "\improper M40 adhesive charge grenade"
+	desc = "Designed for use against various fast moving drones, this grenade will adhere to its target before detonating. It's fuse is set to 5 seconds."
+	icon_state = "grenade_sticky"
+	item_state = "grenade_sticky"
+	det_time = 5 SECONDS
+	light_impact_range = 3
+	///Current atom this grenade is attached to, used to remove the overlay.
+	var/atom/stuck_to
+	///Current image overlay applied to stuck_to, used to remove the overlay after detonation.
+	var/image/saved_overlay
 
+/obj/item/explosive/grenade/sticky/throw_impact(atom/hit_atom, speed)
+	. = ..()
+	if(!active || stuck_to || isturf(hit_atom))
+		return
+	var/image/stuck_overlay = image(icon, hit_atom, initial(icon_state) + "_stuck")
+	stuck_overlay.pixel_x = rand(-5, 5)
+	stuck_overlay.pixel_y = rand(-7, 7)
+	hit_atom.add_overlay(stuck_overlay)
+	forceMove(hit_atom)
+	saved_overlay = stuck_overlay
+	stuck_to = hit_atom
+	RegisterSignal(stuck_to, COMSIG_PARENT_QDELETING, .proc/clean_refs)
+
+/obj/item/explosive/grenade/sticky/prime()
+	if(stuck_to)
+		stuck_to.cut_overlay(saved_overlay)
+		clean_refs()
+	return ..()
+
+///Cleans references to prevent hard deletes.
+/obj/item/explosive/grenade/sticky/proc/clean_refs()
+	SIGNAL_HANDLER
+	UnregisterSignal(stuck_to, COMSIG_PARENT_QDELETING)
+	stuck_to = null
+	saved_overlay = null
 
 /obj/item/explosive/grenade/incendiary
 	name = "\improper M40 HIDP incendiary grenade"
 	desc = "The M40 HIDP is a small, but deceptively strong incendiary grenade. It is set to detonate in 4 seconds."
 	icon_state = "grenade_fire"
-	det_time = 40
 	item_state = "grenade_fire"
+	det_time = 40
 	hud_state = "grenade_fire"
-	underslug_launchable = TRUE
 	icon_state_mini = "grenade_orange"
 
 /obj/item/explosive/grenade/incendiary/prime()
@@ -154,7 +145,6 @@
 	icon_state = "molotov"
 	item_state = "molotov"
 	arm_sound = 'sound/items/welder2.ogg'
-	underslug_launchable = FALSE
 
 /obj/item/explosive/grenade/incendiary/molotov/Initialize()
 	. = ..()
@@ -171,83 +161,92 @@
 	name = "\improper M40 HSDP smoke grenade"
 	desc = "The M40 HSDP is a small, but powerful smoke grenade. Based off the same platform as the M40 HEDP. It is set to detonate in 2 seconds."
 	icon_state = "grenade_smoke"
-	det_time = 20
 	item_state = "grenade_smoke"
+	det_time = 20
 	hud_state = "grenade_smoke"
-	underslug_launchable = TRUE
 	dangerous = FALSE
-	var/datum/effect_system/smoke_spread/bad/smoke
 	icon_state_mini = "grenade_blue"
-
-/obj/item/explosive/grenade/smokebomb/Initialize()
-	. = ..()
-	smoke = new(src)
+	/// smoke type created when the grenade is primed
+	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/bad
+	///radius this smoke grenade will encompass
+	var/smokeradius = 7
 
 /obj/item/explosive/grenade/smokebomb/prime()
+	var/datum/effect_system/smoke_spread/smoke = new smoketype()
 	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
-	smoke.set_up(7, loc, 11)
+	smoke.set_up(smokeradius, loc, 11)
 	smoke.start()
 	qdel(src)
 
+///chemical grenades
 
-/obj/item/explosive/grenade/cloakbomb
+//neuro xeno nade
+/obj/item/explosive/grenade/smokebomb/neuro
+	name = "\improper M40-N Neurotoxin smoke grenade"
+	desc = "A smoke grenade containing a concentrated neurotoxin developed by Nanotrasen, supposedly derived from xenomorphs. Banned in some sectors as a chemical weapon, but classed as a less lethal riot control tool by the TGMC."
+	icon_state = "grenade_neuro"
+	item_state = "grenade_neuro"
+	det_time = 40
+	dangerous = TRUE
+	smoketype = /datum/effect_system/smoke_spread/xeno/neuro/medium
+	smokeradius = 6
+
+/obj/item/explosive/grenade/smokebomb/acid
+	name = "\improper M40-A Acid smoke grenade"
+	desc = "A grenade set to release a cloud of extremely acidic smoke developed by Nanotrasen, supposedly derived from xenomorphs. Has a shiny acid resistant shell. Its use is considered a warcrime under several treaties, none of which Terra Gov is a signatory to."
+	icon_state = "grenade_acid"
+	item_state = "grenade_acid"
+	det_time = 40
+	dangerous = TRUE
+	smoketype = /datum/effect_system/smoke_spread/xeno/acid
+	smokeradius = 5
+
+/obj/item/explosive/grenade/smokebomb/satrapine
+	name = "\improper Satrapine smoke grenade"
+	desc = "A smoke grenade containing a nerve agent that can debilitate victims with severe pain, while purging common painkillers."
+	icon_state = "grenade_nerve"
+	item_state = "grenade_nerve"
+	det_time = 40
+	dangerous = TRUE
+	smoketype = /datum/effect_system/smoke_spread/satrapine
+	smokeradius = 6
+
+/obj/item/explosive/grenade/smokebomb/cloak
 	name = "\improper M40-2 SCDP smoke grenade"
 	desc = "A sophisticated version of the M40 HSDP with a slighty improved smoke screen payload. It's set to detonate in 2 seconds."
 	icon_state = "grenade_cloak"
-	det_time = 20
 	item_state = "grenade_cloak"
 	hud_state = "grenade_hide"
-	dangerous = FALSE
-	underslug_launchable = TRUE
-	var/datum/effect_system/smoke_spread/tactical/smoke
 	icon_state_mini = "grenade_green"
+	smoketype = /datum/effect_system/smoke_spread/tactical
 
-/obj/item/explosive/grenade/cloakbomb/Initialize()
-	. = ..()
-	smoke = new(src)
-
-/obj/item/explosive/grenade/cloakbomb/prime()
-	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
-	smoke.set_up(7, loc, 11)
-	smoke.start()
-	qdel(src)
-
-/obj/item/explosive/grenade/drainbomb
+/obj/item/explosive/grenade/smokebomb/drain
 	name = "\improper M40-T smoke grenade"
 	desc = "The M40-T is a small, but powerful Tanglefoot grenade, designed to remove plasma with minimal side effects. Based off the same platform as the M40 HEDP. It is set to detonate in 6 seconds."
-	icon_state = "grenade_smoke"
+	icon_state = "grenade_pgas"
+	item_state = "grenade_pgas"
 	det_time = 60
-	item_state = "grenade_smoke"
-	hud_state = "grenade_smoke"
-	underslug_launchable = TRUE
-	var/datum/effect_system/smoke_spread/plasmaloss/smoke
 	icon_state_mini = "grenade_blue"
-
-/obj/item/explosive/grenade/drainbomb/Initialize()
-	. = ..()
-	smoke = new(src)
-
-/obj/item/explosive/grenade/drainbomb/prime()
-	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
-	smoke.set_up(7, loc, 11)
-	smoke.start()
-	qdel(src)
-
+	dangerous = TRUE
+	smoketype = /datum/effect_system/smoke_spread/plasmaloss
 
 /obj/item/explosive/grenade/phosphorus
 	name = "\improper M40 HPDP grenade"
 	desc = "The M40 HPDP is a small, but powerful phosphorus grenade. It is set to detonate in 2 seconds."
 	icon_state = "grenade_phos"
-	det_time = 20
 	item_state = "grenade_phos"
+	det_time = 20
 	hud_state = "grenade_hide"
-	underslug_launchable = TRUE
 	var/datum/effect_system/smoke_spread/phosphorus/smoke
 	icon_state_mini = "grenade_cyan"
 
 /obj/item/explosive/grenade/phosphorus/Initialize()
 	. = ..()
 	smoke = new(src)
+
+/obj/item/explosive/grenade/phosphorus/Destroy()
+	QDEL_NULL(smoke)
+	return ..()
 
 /obj/item/explosive/grenade/phosphorus/prime()
 	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
@@ -272,16 +271,8 @@
 	hud_state = "grenade_frag"
 	det_time = 40
 	dangerous = TRUE
-	underslug_launchable = TRUE
 	icon_state_mini = "grenade_blue_white"
-
-/obj/item/explosive/grenade/impact/prime()
-	explosion(loc, light_impact_range = 3)
-	qdel(src)
-
-/obj/item/explosive/grenade/impact/flamer_fire_act()
-	explosion(loc, light_impact_range = 3)
-	qdel(src)
+	light_impact_range = 3
 
 /obj/item/explosive/grenade/impact/throw_impact(atom/hit_atom, speed)
 	. = ..()
@@ -294,10 +285,10 @@
 	name = "\improper M40 FLDP grenade"
 	desc = "A TGMC standard issue flare utilizing the standard DP canister chassis. Capable of being loaded in any grenade launcher, or thrown by hand."
 	icon_state = "flare_grenade"
+	item_state = "flare_grenade"
 	det_time = 0
 	throwforce = 1
 	dangerous = FALSE
-	underslug_launchable = TRUE
 	w_class = WEIGHT_CLASS_SMALL
 	hud_state = "grenade_frag"
 	light_system = MOVABLE_LIGHT
@@ -311,11 +302,14 @@
 	. = ..()
 	fuel = rand(lower_fuel_limit, upper_fuel_limit) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
 
-/obj/item/explosive/grenade/flare/flamer_fire_act()
+/obj/item/explosive/grenade/flare/flamer_fire_act(burnlevel)
 	if(!fuel) //it's out of fuel, an empty shell.
 		return
 	if(!active)
 		turn_on()
+
+/obj/item/explosive/grenade/flare/prime()
+	return
 
 /obj/item/explosive/grenade/flare/Destroy()
 	turn_off()
@@ -344,7 +338,7 @@
 	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 	item_fire_stacks = 5
 	heat = 1500
-	damtype = "fire"
+	damtype = BURN
 	update_brightness()
 	playsound(src,'sound/items/flare.ogg', 15, 1)
 	START_PROCESSING(SSobj, src)
@@ -353,13 +347,13 @@
 
 	// Usual checks
 	if(!fuel)
-		to_chat(user, "<span class='notice'>It's out of fuel.</span>")
+		to_chat(user, span_notice("It's out of fuel."))
 		return
 	if(active)
 		return
 
 	// All good, turn it on.
-	user.visible_message("<span class='notice'>[user] activates the flare.</span>", "<span class='notice'>You depress the ignition button, activating it!</span>")
+	user.visible_message(span_notice("[user] activates the flare."), span_notice("You depress the ignition button, activating it!"))
 	turn_on(user)
 	if(iscarbon(user))
 		var/mob/living/carbon/C = usr
@@ -378,15 +372,17 @@
 	throwforce = 10
 	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 	item_fire_stacks = 5
-	damtype = "fire"
+	damtype = BURN
 	START_PROCESSING(SSobj, src)
 
 /obj/item/explosive/grenade/flare/proc/update_brightness()
 	if(active && fuel > 0)
 		icon_state = "[initial(icon_state)]_active"
+		item_state = "[initial(item_state)]_active"
 		set_light_on(TRUE)
 	else
 		icon_state = initial(icon_state)
+		item_state = initial(item_state)
 		set_light_on(FALSE)
 
 /obj/item/explosive/grenade/flare/throw_impact(atom/hit_atom, speed)
@@ -400,12 +396,11 @@
 		var/target_zone = check_zone(L.zone_selected)
 		if(!target_zone || rand(40))
 			target_zone = "chest"
-		if(launched && CHECK_BITFIELD(resistance_flags, ON_FIRE))
-			var/armor_block = L.run_armor_check(target_zone, "fire")
-			L.apply_damage(rand(throwforce*0.75,throwforce*1.25), BURN, target_zone, armor_block, updating_health = TRUE) //Do more damage if launched from a proper launcher and active
+		if(launched && CHECK_BITFIELD(resistance_flags, ON_FIRE) && !L.on_fire)
+			L.apply_damage(rand(throwforce*0.75,throwforce*1.25), BURN, target_zone, FIRE, updating_health = TRUE) //Do more damage if launched from a proper launcher and active
 
 	// Flares instantly burn out nodes when thrown at them.
-	var/obj/effect/alien/weeds/node/N = locate() in loc
+	var/obj/alien/weeds/node/N = locate() in loc
 	if(N)
 		qdel(N)
 		turn_off()
@@ -414,6 +409,7 @@
 	name = "\improper M50 CFDP signal flare"
 	desc = "A TGMC signal flare utilizing the standard DP canister chassis. Capable of being loaded in any grenade launcher, or thrown by hand. When activated, provides a target for CAS pilots."
 	icon_state = "cas_flare_grenade"
+	item_state = "cas_flare_grenade"
 	hud_state = "grenade_frag"
 	lower_fuel_limit = 25
 	upper_fuel_limit = 30
@@ -442,3 +438,26 @@
 /obj/item/explosive/grenade/flare/cas/turn_off()
 	QDEL_NULL(target)
 	return ..()
+
+///Flares that the tadpole flare launcher launches
+/obj/item/explosive/grenade/flare/strongerflare
+	icon_state = "stronger_flare_grenade"
+	lower_fuel_limit = 10
+	upper_fuel_limit = 20
+	light_system = STATIC_LIGHT//movable light has a max range
+	light_color = LIGHT_COLOR_CYAN
+	///The brightness of the flare
+	var/brightness = 12
+
+/obj/item/explosive/grenade/flare/strongerflare/throw_impact(atom/hit_atom, speed)
+	. = ..()
+	anchored = TRUE//prevents marines from picking up and running around with a stronger flare
+
+/obj/item/explosive/grenade/flare/strongerflare/update_brightness()
+	. = ..()
+	if(active && fuel > 0)
+		icon_state = "[initial(icon_state)]_active"
+		set_light(brightness)
+	else
+		icon_state = initial(icon_state)
+		set_light(0)

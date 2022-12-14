@@ -12,6 +12,7 @@
 	icon_state = "nuclearbomb0"
 	density = TRUE
 	anchored = TRUE
+	coverage = 20
 	flags_atom = CRITICAL_ATOM
 	resistance_flags = RESIST_ALL
 	layer = BELOW_MOB_LAYER
@@ -37,6 +38,8 @@
 	GLOB.nuke_list += src
 	countdown = new(src)
 	name = "[initial(name)] ([UNIQUEID])"
+	update_minimap_icon()
+	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/disable_on_hijack)
 
 
 /obj/machinery/nuclearbomb/Destroy()
@@ -61,6 +64,7 @@
 	GLOB.active_nuke_list += src
 	countdown.start()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_START, src)
+	update_minimap_icon()
 	notify_ghosts("[usr] enabled the [src], it has [timeleft] seconds on the timer.", source = src, action = NOTIFY_ORBIT, extra_large = TRUE)
 
 
@@ -70,6 +74,7 @@
 	countdown.stop()
 	GLOB.active_nuke_list -= src
 	timeleft = initial(timeleft)
+	update_minimap_icon()
 	return ..()
 
 
@@ -78,6 +83,7 @@
 
 	if(safety)
 		timer_enabled = FALSE
+		update_minimap_icon()
 		return
 
 	if(exploded)
@@ -90,6 +96,14 @@
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_EXPLODED, z)
 	return TRUE
 
+/// Permanently disables this nuke, for use on hijack
+/obj/machinery/nuclearbomb/proc/disable_on_hijack()
+	desc += " A strong interference renders this inoperable."
+	machine_stat |= BROKEN
+	anchored = FALSE
+	if(timer_enabled)
+		timer_enabled = FALSE
+		stop_processing()
 
 /obj/machinery/nuclearbomb/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -117,7 +131,7 @@
 		return FALSE
 
 	if(!timer_enabled)
-		to_chat(X, "<span class='warning'>\The [src] is soundly asleep. We better not disturb it.</span>")
+		to_chat(X, span_warning("\The [src] is soundly asleep. We better not disturb it."))
 		return
 
 	X.visible_message("[X] begins to slash delicately at the nuke",
@@ -160,12 +174,12 @@
 
 	if(removal_stage < NUKE_STAGE_BOLTS_REMOVED)
 		if(anchored)
-			visible_message("<span class='warning'>With a loud beep, lights flicker on the [src]'s display panel. It's working!</span>")
+			visible_message(span_warning("With a loud beep, lights flicker on the [src]'s display panel. It's working!"))
 		else
 			anchored = TRUE
-			visible_message("<span class='warning'>With a steely snap, bolts slide out of [src] and anchor it to the flooring!</span>")
+			visible_message(span_warning("With a steely snap, bolts slide out of [src] and anchor it to the flooring!"))
 	else
-		visible_message("<span class='warning'>\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.</span>")
+		visible_message(span_warning("\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut."))
 	if(!lighthack)
 		flick("nuclearbombc", src)
 		icon_state = "nuclearbomb1"
@@ -272,10 +286,10 @@
 			if(exploded)
 				return
 			if(safety)
-				to_chat(usr, "<span class='warning'>The safety is still on.</span>")
+				to_chat(usr, span_warning("The safety is still on."))
 				return
 			if(!anchored)
-				to_chat(usr, "<span class='warning'>The anchors are not set.</span>")
+				to_chat(usr, span_warning("The anchors are not set."))
 				return
 			timer_enabled = !timer_enabled
 			if(timer_enabled)
@@ -293,17 +307,17 @@
 		if(href_list["anchor"])
 			if(removal_stage == NUKE_STAGE_BOLTS_REMOVED)
 				anchored = FALSE
-				visible_message("<span class='warning'>\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.</span>")
+				visible_message(span_warning("\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut."))
 				return
 			if(istype(get_area(loc), /area/shuttle))
-				to_chat(usr, "<span class='warning'>This doesn't look like a good spot to anchor the nuke.</span>")
+				to_chat(usr, span_warning("This doesn't look like a good spot to anchor the nuke."))
 				return
 
 			anchored = !anchored
 			if(anchored)
-				visible_message("<span class='warning'>With a steely snap, bolts slide out of [src] and anchor it to the flooring.</span>")
+				visible_message(span_warning("With a steely snap, bolts slide out of [src] and anchor it to the flooring."))
 			else
-				visible_message("<span class='warning'>The anchoring bolts slide back into the depths of [src].</span>")
+				visible_message(span_warning("The anchoring bolts slide back into the depths of [src]."))
 				timer_enabled = FALSE
 				stop_processing()
 
@@ -313,6 +327,10 @@
 /obj/machinery/nuclearbomb/proc/get_time_left()
 	return timeleft
 
+///Change minimap icon if its on or off
+/obj/machinery/nuclearbomb/proc/update_minimap_icon()
+	SSminimaps.remove_marker(src)
+	SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "nuke[timer_enabled ? "_on" : "_off"]", 'icons/UI_icons/map_blips_large.dmi')
 
 #undef NUKE_STAGE_NONE
 #undef NUKE_STAGE_COVER_REMOVED

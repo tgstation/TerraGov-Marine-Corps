@@ -10,7 +10,6 @@
 
 	requires_power = TRUE
 	always_unpowered = TRUE
-	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	power_light = FALSE
 	power_equip = FALSE
 	power_environ = FALSE
@@ -32,3 +31,7 @@
 /area/whiskey_outpost/outside/south
 	name = "Whiskey Outpost South"
 	icon_state = "south"
+
+/area/whiskey_outpost/outside/rock
+	name = "Enclosed Area"
+	icon_state = "transparent"

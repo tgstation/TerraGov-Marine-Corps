@@ -9,7 +9,7 @@
 	wound_type = "ravager" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 26
+	melee_damage = 28
 	attack_delay = 7
 
 	// *** Speed *** //
@@ -17,35 +17,51 @@
 
 	// *** Plasma *** //
 	plasma_max = 600
-	plasma_gain = 20
+	plasma_gain = 5
+	plasma_regen_limit = 0.5
+	plasma_icon_state = "fury"
 
 	// *** Health *** //
 	max_health = 290
 
 	// *** Evolution *** //
-	upgrade_threshold = 250
+	upgrade_threshold = TIER_THREE_YOUNG_THRESHOLD
 
 	deevolves_to = /mob/living/carbon/xenomorph/hunter
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	caste_flags = CASTE_INNATE_PLASMA_REGEN|CASTE_PLASMADRAIN_IMMUNE
+	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_LEADER|CASTE_CAN_BECOME_KING
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 35, "bullet" = 40, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_1, "bio" = 30, "rad" = 30, "fire" = 50, "acid" = 30)
+	soft_armor = list(MELEE = 35, BULLET = 40, LASER = 30, ENERGY = 30, BOMB = 10, BIO = 30, FIRE = 50, ACID = 30)
 
 	// *** Ranged Attack *** //
 	charge_type = CHARGE_TYPE_LARGE
 
+	// *** Minimap Icon *** //
+	minimap_icon = "ravager"
+
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/activable/headbite,
-		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/activable/charge,
 		/datum/action/xeno_action/activable/ravage,
 		/datum/action/xeno_action/endure,
+		/datum/action/xeno_action/rage,
 	)
+
+/datum/xeno_caste/ravager/on_caste_applied(mob/xenomorph)
+	. = ..()
+	xenomorph.AddElement(/datum/element/plasma_on_attack, 1.5)
+	xenomorph.AddElement(/datum/element/plasma_on_attacked, 0.5)
+
+/datum/xeno_caste/ravager/on_caste_removed(mob/xenomorph)
+	. = ..()
+	xenomorph.RemoveElement(/datum/element/plasma_on_attack, 1.5)
+	xenomorph.RemoveElement(/datum/element/plasma_on_attacked, 0.5)
 
 /datum/xeno_caste/ravager/young
 	upgrade_name = "Young"
@@ -63,16 +79,16 @@
 
 	// *** Plasma *** //
 	plasma_max = 700 //Enables using either both abilities at once or one after another
-	plasma_gain = 30
+	plasma_gain = 5
 
 	// *** Health *** //
 	max_health = 310
 
 	// *** Evolution *** //
-	upgrade_threshold = 750
+	upgrade_threshold = TIER_THREE_MATURE_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 40, "bullet" = 45, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_1, "bio" = 35, "rad" = 35, "fire" = 55, "acid" = 35)
+	soft_armor = list(MELEE = 40, BULLET = 45, LASER = 40, ENERGY = 40, BOMB = 10, BIO = 35, FIRE = 55, ACID = 35)
 
 /datum/xeno_caste/ravager/elder
 	upgrade_name = "Elder"
@@ -81,23 +97,24 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 32
+	melee_damage = 30
 
 	// *** Speed *** //
 	speed = -0.9
 
 	// *** Plasma *** //
 	plasma_max = 750
-	plasma_gain = 35
+	plasma_gain = 10
+	plasma_regen_limit = 0.6
 
 	// *** Health *** //
 	max_health = 330
 
 	// *** Evolution *** //
-	upgrade_threshold = 1750
+	upgrade_threshold = TIER_THREE_ELDER_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 45, "bullet" = 50, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_1, "bio" = 38, "rad" = 38, "fire" = 65, "acid" = 38)
+	soft_armor = list(MELEE = 45, BULLET = 50, LASER = 45, ENERGY = 45, BOMB = 10, BIO = 38, FIRE = 65, ACID = 38)
 
 /datum/xeno_caste/ravager/ancient
 	upgrade_name = "Ancient"
@@ -106,20 +123,54 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 32
+	melee_damage = 30
 
 	// *** Speed *** //
 	speed = -1
 
 	// *** Plasma *** //
 	plasma_max = 800
-	plasma_gain = 40
+	plasma_gain = 15
 
 	// *** Health *** //
 	max_health = 350
 
 	// *** Evolution *** //
-	upgrade_threshold = 2750
+	upgrade_threshold = TIER_THREE_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 50, "bullet" = 55, "laser" = 50, "energy" = 50, "bomb" = XENO_BOMB_RESIST_1, "bio" = 40, "rad" = 40, "fire" = 70, "acid" = 40)
+	soft_armor = list(MELEE = 50, BULLET = 55, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 40, FIRE = 70, ACID = 40)
+
+/datum/xeno_caste/ravager/primordial
+	upgrade_name = "Primordial"
+	caste_desc = "Red like the blood of those that try to stop its rampage."
+	primordial_message = "Our frenzy is eternal. Rip and tear, until it is done."
+	upgrade = XENO_UPGRADE_FOUR
+
+	// *** Melee Attacks *** //
+	melee_damage = 30
+
+	// *** Speed *** //
+	speed = -1
+
+	// *** Plasma *** //
+	plasma_max = 800
+	plasma_gain = 15
+
+	// *** Health *** //
+	max_health = 350
+
+	// *** Defense *** //
+	soft_armor = list(MELEE = 50, BULLET = 55, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 40, FIRE = 70, ACID = 40)
+
+	// *** Abilities *** //
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/watch_xeno,
+		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/charge,
+		/datum/action/xeno_action/activable/ravage,
+		/datum/action/xeno_action/endure,
+		/datum/action/xeno_action/rage,
+		/datum/action/xeno_action/vampirism,
+	)

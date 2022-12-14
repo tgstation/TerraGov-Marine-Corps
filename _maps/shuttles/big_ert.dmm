@@ -4,7 +4,7 @@
 /area/template_noop)
 "ab" = (
 /turf/closed/wall/mainship/white{
-	tiles_with = list(/turf/closed/wall/mainship/white,/obj/structure/window/framed/mainship/white)
+	
 	},
 /area/shuttle/big_ert)
 "ac" = (
@@ -59,7 +59,7 @@
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "ak" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /obj/machinery/door_control{
 	id = "top_ERTLARGE";
 	name = "shutter controller";
@@ -198,10 +198,8 @@
 /obj/structure/table/mainship,
 /obj/item/storage/pouch/medkit,
 /obj/item/storage/pouch/medkit,
-/obj/item/storage/pouch/medical,
-/obj/item/storage/pouch/medical,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
+/obj/item/storage/belt/lifesaver/full,
+/obj/item/storage/belt/lifesaver/full,
 /obj/item/reagent_containers/spray/surgery,
 /turf/open/floor/mainship/plate,
 /area/shuttle/big_ert)
@@ -282,7 +280,7 @@
 /obj/item/storage/belt/utility/full,
 /obj/item/storage/backpack/marine/satchel/tech,
 /obj/item/storage/toolbox/electrical,
-/obj/item/clothing/tie/storage/webbing,
+/obj/item/armor_module/storage/uniform/webbing,
 /obj/item/cell/infinite,
 /obj/item/cell/infinite,
 /turf/open/floor/mainship/plate,
@@ -320,7 +318,7 @@
 "bb" = (
 /obj/structure/rack,
 /obj/item/storage/firstaid/regular,
-/obj/item/storage/belt/combatLifesaver,
+/obj/item/storage/belt/lifesaver/full,
 /turf/open/floor/mainship/plate,
 /area/shuttle/big_ert)
 "bc" = (
@@ -683,7 +681,7 @@
 /obj/item/storage/belt/utility/full,
 /obj/item/storage/backpack/marine/engineerpack,
 /obj/item/storage/toolbox/mechanical,
-/obj/item/clothing/tie/storage/webbing,
+/obj/item/armor_module/storage/uniform/webbing,
 /obj/item/clothing/glasses/welding,
 /obj/item/clothing/glasses/welding,
 /turf/open/floor/mainship/plate,
@@ -832,7 +830,7 @@
 /turf/open/floor/mainship/plate,
 /area/shuttle/big_ert)
 "co" = (
-/obj/machinery/door/window/westright{
+/obj/machinery/door/window/right{
 	dir = 2
 	},
 /obj/machinery/shower{

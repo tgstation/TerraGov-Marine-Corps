@@ -24,36 +24,13 @@ Contains most of the procs that are called when a mob is attacked by something
 
 				dropItemToGround(c_hand)
 				if (affected.limb_status & LIMB_ROBOT)
-					emote("me", 1, "drops what they were holding, their [affected.display_name] malfunctioning!")
+					emote("me", 1, "drops what they were holding, [p_their()] [affected.display_name] malfunctioning!")
 				else
 					var/emote_scream = pick("screams in pain and", "lets out a sharp cry and", "cries out and")
-					emote("me", 1, "[(species && species.species_flags & NO_PAIN) ? "" : emote_scream ] drops what they were holding in their [affected.display_name]!")
+					emote("me", 1, "[(species && species.species_flags & NO_PAIN) ? "" : emote_scream ] drops what they were holding in [p_their()] [affected.display_name]!")
 
 	return ..()
 
-
-/mob/living/carbon/human/getarmor(def_zone, type)
-	var/armorval = 0
-	var/total = 0
-
-	if(def_zone)
-		if(isorgan(def_zone))
-			return getarmor_organ(def_zone, type)
-		var/datum/limb/affecting = get_limb(def_zone)
-		return getarmor_organ(affecting, type)
-		//If a specific bodypart is targetted, check how that bodypart is protected and return the value.
-
-	//If you don't specify a bodypart, it checks ALL your bodyparts for protection, and averages out the values
-	else
-		for(var/X in limbs)
-			var/datum/limb/E = X
-			var/weight = GLOB.organ_rel_size[E.name]
-			armorval += getarmor_organ(E, type) * weight
-			total += weight
-			#ifdef DEBUG_HUMAN_EXPLOSIONS
-			to_chat(src, "DEBUG getarmor: total: [total], armorval: [armorval], weight: [weight], name: [E.name]")
-			#endif
-	return round(armorval / max(total, 1), 1)
 
 //this proc returns the Siemens coefficient of electrical resistivity for a particular external organ.
 /mob/living/carbon/human/proc/get_siemens_coefficient_organ(datum/limb/def_zone)
@@ -62,13 +39,15 @@ Contains most of the procs that are called when a mob is attacked by something
 
 	var/siemens_coefficient = 1.0
 
+	if(species.species_flags & IS_INSULATED)
+		siemens_coefficient = 0
+
 	var/list/clothing_items = list(head, wear_mask, wear_suit, w_uniform, gloves, shoes) // What all are we checking?
 	for(var/obj/item/clothing/C in clothing_items)
 		if(istype(C) && (C.flags_armor_protection & def_zone.body_part)) // Is that body part being targeted covered?
 			siemens_coefficient *= C.siemens_coefficient
 
 	return siemens_coefficient
-
 
 /mob/living/carbon/human/proc/add_limb_armor(obj/item/armor_item)
 	for(var/i in limbs)
@@ -94,11 +73,6 @@ Contains most of the procs that are called when a mob is attacked by something
 
 /mob/living/carbon/human/dummy/remove_limb_armor(obj/item/armor_item)
 	return
-
-
-///This proc returns the armour value for a particular external organ.
-/mob/living/carbon/human/proc/getarmor_organ(datum/limb/affected_limb, type)
-	return affected_limb.soft_armor.getRating(type)
 
 
 /mob/living/carbon/human/proc/check_head_coverage()
@@ -174,36 +148,36 @@ Contains most of the procs that are called when a mob is attacked by something
 			log_combat(user, src, "attacked", I, "(FAILED: shield blocked) (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(I.damtype)])")
 			return TRUE
 
-	var/armor = run_armor_check(affecting, "melee")
+	var/applied_damage = modify_by_armor(damage, MELEE, I.penetration, target_zone)
+	var/percentage_penetration = applied_damage / damage * 100
 	var/attack_verb = LAZYLEN(I.attack_verb) ? pick(I.attack_verb) : "attacked"
 	var/armor_verb
-	switch(armor)
-		if(100 to INFINITY)
-			visible_message("<span class='danger'>[src] has been [attack_verb] in the [hit_area] with [I.name] by [user], but the attack is deflected by [p_their()] armor!</span>",\
+	switch(percentage_penetration)
+		if(-INFINITY to 0)
+			visible_message(span_danger("[src] has been [attack_verb] in the [hit_area] with [I.name] by [user], but the attack is deflected by [p_their()] armor!"),\
 			null, null, COMBAT_MESSAGE_RANGE, visible_message_flags = COMBAT_MESSAGE)
 			user.do_attack_animation(src, used_item = I)
 			log_combat(user, src, "attacked", I, "(FAILED: armor blocked) (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(I.damtype)])")
 			return TRUE
-		if(-INFINITY to 25)//Nothing
-		if(25 to 50)
-			armor_verb = " [p_their(TRUE)] armor has softened the hit!"
-		if(50 to 75)
-			armor_verb = " [p_their(TRUE)] armor has absorbed part of the impact!"
-		if(75 to 100)
+		if(1 to 25)
 			armor_verb = " [p_their(TRUE)] armor has deflected most of the blow!"
+		if(26 to 50)
+			armor_verb = " [p_their(TRUE)] armor has absorbed part of the impact!"
+		if(51 to 75)
+			armor_verb = " [p_their(TRUE)] armor has softened the hit!"
 
-	visible_message("<span class='danger'>[src] has been [attack_verb] in the [hit_area] with [I.name] by [user]![armor_verb]</span>",\
+	visible_message(span_danger("[src] has been [attack_verb] in the [hit_area] with [I.name] by [user]![armor_verb]"),\
 	null, null, 5, visible_message_flags = COMBAT_MESSAGE)
 
 	var/weapon_sharp = is_sharp(I)
 	var/weapon_edge = has_edge(I)
-	if((weapon_sharp || weapon_edge) && prob(getarmor(target_zone, "melee")))
+	if((weapon_sharp || weapon_edge) && !prob(modify_by_armor(100, MELEE, def_zone = target_zone)))
 		weapon_sharp = FALSE
 		weapon_edge = FALSE
 
 	user.do_attack_animation(src, used_item = I)
 
-	apply_damage(damage, I.damtype, affecting, armor, weapon_sharp, weapon_edge, updating_health = TRUE)
+	apply_damage(applied_damage, I.damtype, target_zone, 0, weapon_sharp, weapon_edge, updating_health = TRUE)
 
 	var/list/hit_report = list("(RAW DMG: [damage])")
 
@@ -226,9 +200,9 @@ Contains most of the procs that are called when a mob is attacked by something
 		switch(hit_area)
 			if("head")//Harder to score a stun but if you do it lasts a bit longer
 				if(prob(damage) && stat == CONSCIOUS)
-					apply_effect(20, PARALYZE, armor)
-					visible_message("<span class='danger'>[src] has been knocked unconscious!</span>",
-									"<span class='danger'>You have been knocked unconscious!</span>", null, 5)
+					Paralyze(modify_by_armor(16, MELEE, def_zone = affecting))
+					visible_message(span_danger("[src] has been knocked unconscious!"),
+									span_danger("You have been knocked unconscious!"), null, 5)
 					hit_report += "(KO)"
 
 				if(bloody)//Apply blood
@@ -244,9 +218,9 @@ Contains most of the procs that are called when a mob is attacked by something
 
 			if("chest")//Easier to score a stun but lasts less time
 				if(prob((damage + 10)) && !incapacitated())
-					apply_effect(6, WEAKEN, armor)
-					visible_message("<span class='danger'>[src] has been knocked down!</span>",
-									"<span class='danger'>You have been knocked down!</span>", null, 5)
+					apply_effect(modify_by_armor(6, MELEE, def_zone = def_zone), WEAKEN)
+					visible_message(span_danger("[src] has been knocked down!"),
+									span_danger("You have been knocked down!"), null, 5)
 					hit_report += "(KO)"
 
 				if(bloody)
@@ -256,7 +230,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	if(affecting.limb_status & LIMB_DESTROYED)
 		hit_report += "(delimbed [affecting.display_name])"
 	else if(I.damtype == BRUTE && !(I.flags_item & (NODROP|DELONDROP)))
-		if (!armor && weapon_sharp && prob(I.embedding.embed_chance))
+		if (percentage_penetration && weapon_sharp && prob(I.embedding.embed_chance))
 			I.embed_into(src, affecting)
 			hit_report += "(embedded in [affecting.display_name])"
 
@@ -283,13 +257,12 @@ Contains most of the procs that are called when a mob is attacked by something
 
 	if(in_throw_mode && speed <= 5 && put_in_active_hand(thrown_item))
 		thrown_item.throwing = FALSE //Caught in hand.
-		visible_message("<span class='warning'>[src] catches [thrown_item]!</span>", null, null, 5)
+		visible_message(span_warning("[src] catches [thrown_item]!"), null, null, 5)
 		throw_mode_off()
 		if(living_thrower)
 			log_combat(living_thrower, src, "thrown at", thrown_item, "(FAILED: caught)")
 		return
 
-	var/dtype = thrown_item.damtype
 	var/throw_damage = thrown_item.throwforce * speed * 0.2
 
 	var/zone
@@ -306,7 +279,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		zone = get_zone_with_miss_chance(zone, src, 15)
 
 	if(!zone)
-		visible_message("<span class='notice'> \The [thrown_item] misses [src] narrowly!</span>", null, null, 5)
+		visible_message(span_notice(" \The [thrown_item] misses [src] narrowly!"), null, null, 5)
 		if(living_thrower)
 			log_combat(living_thrower, src, "thrown at", thrown_item, "(FAILED: missed)")
 		return
@@ -315,7 +288,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		throw_damage = check_shields(COMBAT_MELEE_ATTACK, throw_damage, "melee")
 		if(!throw_damage)
 			thrown_item.throwing = FALSE // Hit the shield.
-			visible_message("<span class='danger'>[src] deflects \the [thrown_item]!</span>")
+			visible_message(span_danger("[src] deflects \the [thrown_item]!"))
 			if(living_thrower)
 				log_combat(living_thrower, src, "thrown at", thrown_item, "(FAILED: shield blocked)")
 			return
@@ -327,17 +300,16 @@ Contains most of the procs that are called when a mob is attacked by something
 		return
 
 	thrown_item.set_throwing(FALSE) // Hit the limb.
+	var/applied_damage = modify_by_armor(throw_damage, MELEE, thrown_item.penetration, zone)
 
-	var/armor = run_armor_check(affecting, "melee") //I guess "melee" is the best fit here
-
-	if(armor >= 100)
-		visible_message("<span class='notice'>\The [thrown_item] bounces on [src]'s armor!</span>", null, null, 5)
+	if(applied_damage <= 0)
+		visible_message(span_notice("\The [thrown_item] bounces on [src]'s armor!"), null, null, 5)
 		log_combat(living_thrower, src, "thrown at", thrown_item, "(FAILED: armor blocked)")
 		return
 
-	visible_message("<span class='warning'>[src] has been hit in the [affecting.display_name] by \the [thrown_item].</span>", null, null, 5)
+	visible_message(span_warning("[src] has been hit in the [affecting.display_name] by \the [thrown_item]."), null, null, 5)
 
-	apply_damage(throw_damage, dtype, zone, armor, is_sharp(thrown_item), has_edge(thrown_item), updating_health = TRUE)
+	apply_damage(applied_damage, thrown_item.damtype, zone, 0, is_sharp(thrown_item), has_edge(thrown_item), updating_health = TRUE)
 
 	var/list/hit_report = list("(RAW DMG: [throw_damage])")
 
@@ -350,7 +322,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	//thrown weapon embedded object code.
 	if(affecting.limb_status & LIMB_DESTROYED)
 		hit_report += "(delimbed [affecting.display_name])"
-	else if(dtype == BRUTE && is_sharp(thrown_item) && prob(thrown_item.embedding.embed_chance))
+	else if(thrown_item.damtype == BRUTE && is_sharp(thrown_item) && prob(thrown_item.embedding.embed_chance))
 		thrown_item.embed_into(src, affecting)
 		hit_report += "(embedded in [affecting.display_name])"
 
@@ -358,7 +330,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	if(thrown_item.throw_source && speed >= 15)
 		var/momentum = speed * 0.5
 		var/dir = get_dir(thrown_item.throw_source, src)
-		visible_message("<span class='warning'> [src] staggers under the impact!</span>","<span class='warning'> You stagger under the impact!</span>", null, null, 5)
+		visible_message(span_warning(" [src] staggers under the impact!"),span_warning(" You stagger under the impact!"), null, null, 5)
 		throw_at(get_edge_target_turf(src, dir), 1, momentum)
 		hit_report += "(thrown away)"
 
@@ -417,10 +389,95 @@ Contains most of the procs that are called when a mob is attacked by something
 	var/stamina_damage = LERP(140, 70, dist_pct) * reduction //Max 140 under Queen, 130 beside Queen, 70 at the edge. Reduction of 10 per tile distance from Queen.
 	var/stun_duration = (LERP(1, 0.4, dist_pct) * reduction) * 20 //Max 1.5 beside Queen, 0.4 at the edge.
 
-	to_chat(src, "<span class='danger'>An ear-splitting guttural roar tears through your mind and makes your world convulse!</span>")
+	to_chat(src, span_danger("An ear-splitting guttural roar tears through your mind and makes your world convulse!"))
 	Stun(stun_duration)
 	Paralyze(stun_duration)
 	apply_damage(stamina_damage, STAMINA, updating_health = TRUE)
 	if(!ear_deaf)
 		adjust_ear_damage(deaf = stun_duration)  //Deafens them temporarily
-	//Perception distorting effects of the psychic scream
+	//Perception distorting effects of the psychic scream*
+
+/mob/living/carbon/human/attackby(obj/item/I, mob/living/user, params)
+	if(stat != DEAD || I.sharp < IS_SHARP_ITEM_ACCURATE || user.a_intent != INTENT_HARM)
+		return ..()
+	if(!internal_organs_by_name["heart"])
+		to_chat(user, span_notice("[src] no longer has a heart."))
+		return
+	if(!HAS_TRAIT(src, TRAIT_UNDEFIBBABLE))
+		to_chat(user, span_warning("You cannot resolve yourself to destroy [src]'s heart, as [p_they()] can still be saved!"))
+		return
+	to_chat(user, span_notice("You start to remove [src]'s heart, preventing [p_them()] from rising again!"))
+	if(!do_after(user, 2 SECONDS, TRUE, src))
+		return
+	if(!internal_organs_by_name["heart"])
+		to_chat(user, span_notice("The heart is no longer here!"))
+		return
+	log_combat(user, src, "ripped [src]'s heart", I)
+	visible_message(span_notice("[user] ripped off [src]'s heart!"), span_notice("You ripped off [src]'s heart!"))
+	internal_organs_by_name -= "heart"
+	var/obj/item/organ/heart/heart = new
+	heart.die()
+	user.put_in_hands(heart)
+	chestburst = 2
+	update_burst()
+
+/mob/living/carbon/human/welder_act(mob/living/user, obj/item/I)
+	. = ..()
+	if(!hasorgans(src))
+		return ..()
+
+	if(user.a_intent != INTENT_HELP)
+		return ..()
+
+	var/datum/limb/affecting = user.client.prefs.toggles_gameplay & RADIAL_MEDICAL ? radial_medical(src, user) : get_limb(user.zone_selected)
+
+	if(!affecting)
+		return TRUE
+
+	if(!(affecting.limb_status & LIMB_ROBOT))
+		balloon_alert(user, "Limb not robotic")
+		return TRUE
+
+	if(!affecting.brute_dam)
+		balloon_alert(user, "Nothing to fix!")
+		return TRUE
+
+	if(user.do_actions)
+		balloon_alert(user, "Already busy!")
+		return TRUE
+
+	if(!I.tool_use_check(user, 2))
+		return TRUE
+
+	var/repair_time = 1 SECONDS
+	if(src == user)
+		repair_time *= 3
+
+
+	user.visible_message(span_notice("[user] starts to fix some of the dents on [src]'s [affecting.display_name]."),\
+		span_notice("You start fixing some of the dents on [src == user ? "your" : "[src]'s"] [affecting.display_name]."))
+
+	add_overlay(GLOB.welding_sparks)
+	while(do_after(user, repair_time, TRUE, src, BUSY_ICON_BUILD) && I.use_tool(volume = 50, amount = 2))
+		if(!do_after(user, repair_time, TRUE, src, BUSY_ICON_BUILD))
+			user.cut_overlay(GLOB.welding_sparks)
+		user.visible_message(span_warning("\The [user] patches some dents on [src]'s [affecting.display_name]."), \
+			span_warning("You patch some dents on \the [src]'s [affecting.display_name]."))
+		if(affecting.heal_limb_damage(15, robo_repair = TRUE, updating_health = TRUE))
+			UpdateDamageIcon()
+		if(!I.tool_use_check(user, 2))
+			break
+		if(!affecting.brute_dam)
+			var/previous_limb = affecting
+			for(var/datum/limb/checked_limb AS in limbs)
+				if(!(checked_limb.limb_status & LIMB_ROBOT))
+					continue
+				if(!checked_limb.brute_dam)
+					continue
+				affecting = checked_limb
+				break
+			if(previous_limb == affecting)
+				balloon_alert(user, "Dents fully repaired.")
+				break
+	cut_overlay(GLOB.welding_sparks)
+	return TRUE

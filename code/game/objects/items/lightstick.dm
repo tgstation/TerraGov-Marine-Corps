@@ -9,20 +9,26 @@
 	icon_state = "lightstick_blue0"
 	var/s_color = "blue"
 
-/obj/item/lightstick/Crossed(mob/living/L)
+/obj/item/lightstick/Initialize()
 	. = ..()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
+/obj/item/lightstick/proc/on_cross(datum/source, mob/living/L, oldloc, oldlocs)
 	if(!anchored || !istype(L) || isxenolarva(L))
 		return
 	if(L.mob_size != MOB_SIZE_BIG && prob(80))
 		return
-	visible_message("<span class='danger'>[L] tramples the [src]!</span>")
+	visible_message(span_danger("[L] tramples the [src]!"))
 	playsound(src, 'sound/weapons/genhit.ogg', 25, 1)
 	if(isxeno(L) && prob(40))
 		qdel(src)
 		return
 	anchored = FALSE
 	icon_state = "lightstick_[s_color][anchored]"
-	set_light(0)
+	set_light(0,0)
 
 	//Removing from turf
 /obj/item/lightstick/attack_hand(mob/living/user)
@@ -39,7 +45,7 @@
 	anchored = FALSE
 	user.visible_message("[user.name] removes \the [src] from the ground.","You remove the [src] from the ground.")
 	icon_state = "lightstick_[s_color][anchored]"
-	set_light(0)
+	set_light(0,0)
 	playsound(user, 'sound/weapons/genhit.ogg', 25, 1)
 
 /obj/item/lightstick/anchored

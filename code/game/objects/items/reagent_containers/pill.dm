@@ -5,7 +5,7 @@
 /obj/item/reagent_containers/pill
 	name = "pill"
 	icon = 'icons/obj/items/chemistry.dmi'
-	icon_state = null
+	icon_state = "pill1"
 	item_state = "pill"
 	possible_transfer_amounts = null
 	init_reagent_flags = AMOUNT_SKILLCHECK
@@ -16,7 +16,7 @@
 
 /obj/item/reagent_containers/pill/Initialize()
 	. = ..()
-	if(!icon_state)
+	if(icon_state == "pill1")
 		icon_state = pill_id ? GLOB.randomized_pill_icons[pill_id] : pick(GLOB.randomized_pill_icons)
 
 /obj/item/reagent_containers/pill/attack_self(mob/user as mob)
@@ -28,13 +28,14 @@
 
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			if(H.species.species_flags & IS_SYNTHETIC)
-				to_chat(H, "<span class='warning'>You can't eat pills.</span>")
+			if(H.species.species_flags & ROBOTIC_LIMBS)
+				to_chat(H, span_warning("You can't eat pills."))
 				return
 
-		to_chat(M, "<span class='notice'>You swallow [src].</span>")
+		to_chat(M, span_notice("You swallow [src]."))
 		M.dropItemToGround(src) //icon update
 		if(reagents.total_volume)
+			reagents.reaction(M, INGEST)
 			reagents.trans_to(M, reagents.total_volume)
 
 		qdel(src)
@@ -43,11 +44,11 @@
 	else if(ishuman(M) )
 
 		var/mob/living/carbon/human/H = M
-		if(H.species.species_flags & IS_SYNTHETIC)
-			to_chat(user, "<span class='warning'>They have a monitor for a head, where do you think you're going to put that?</span>")
+		if(H.species.species_flags & ROBOTIC_LIMBS)
+			to_chat(user, span_warning("They have a monitor for a head, where do you think you're going to put that?"))
 			return
 
-		user.visible_message("<span class='warning'>[user] attempts to force [M] to swallow [src].</span>")
+		user.visible_message(span_warning("[user] attempts to force [M] to swallow [src]."))
 
 		var/ingestion_time = max(1 SECONDS, 3 SECONDS - 1 SECONDS * user.skills.getRating("medical"))
 
@@ -78,7 +79,7 @@
 
 	if(target.is_refillable())
 		if(target.reagents.holder_full())
-			to_chat(user, "<span class='warning'>[target] is full.</span>")
+			to_chat(user, span_warning("[target] is full."))
 			return
 
 		var/obj/item/reagent_containers/R = null
@@ -90,12 +91,12 @@
 
 		if(target.is_drainable() && !target.reagents.total_volume)
 			if(!R || !liquidate)
-				to_chat(user, "<span class='warning'>[target] is empty! There's nothing to dissolve [src] in.</span>")
+				to_chat(user, span_warning("[target] is empty! There's nothing to dissolve [src] in."))
 				return
-			to_chat(user, "<span class='notice'>[target]'s liquifier instantly reprocesses [src] upon insertion.</span>")
+			to_chat(user, span_notice("[target]'s liquifier instantly reprocesses [src] upon insertion."))
 
 		if(!R || !liquidate)
-			to_chat(user, "<span class='notice'>You dissolve the pill in [target].</span>")
+			to_chat(user, span_notice("You dissolve the pill in [target]."))
 
 		var/rgt_list_text = get_reagent_list_text()
 
@@ -157,9 +158,14 @@
 	list_reagents = list(/datum/reagent/medicine/tramadol = 15)
 	pill_id = 7
 
+/obj/item/reagent_containers/pill/isotonic
+	pill_desc = "A pill with an isotonic solution inside. Used to stimulate blood regeneration."
+	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/iron = 6, /datum/reagent/consumable/sugar = 3)
+	pill_id = 4
+
 /obj/item/reagent_containers/pill/inaprovaline
 	pill_desc = "An inaprovaline pill. Used to stabilize patients."
-	list_reagents = list(/datum/reagent/medicine/inaprovaline = 30)
+	list_reagents = list(/datum/reagent/medicine/inaprovaline = 15)
 	pill_id = 10
 
 /obj/item/reagent_containers/pill/dexalin
@@ -179,7 +185,7 @@
 
 /obj/item/reagent_containers/pill/zoom
 	pill_desc = "A Zoom pill! Gotta go fast!"
-	list_reagents = list(/datum/reagent/medicine/synaptizine = 3, /datum/reagent/medicine/hyperzine = 5, /datum/reagent/consumable/nutriment = 3)
+	list_reagents = list(/datum/reagent/medicine/synaptizine = 3, /datum/reagent/medicine/hyronalin = 5, /datum/reagent/consumable/nutriment = 3)
 	pill_id = 14
 
 /obj/item/reagent_containers/pill/russian_red
@@ -191,11 +197,6 @@
 	pill_desc = "A Ryetalyn pill. A long-duration shield against toxic chemicals."
 	list_reagents = list(/datum/reagent/medicine/ryetalyn = 15)
 	pill_id = 14
-
-/obj/item/reagent_containers/pill/peridaxon
-	pill_desc = "A peridaxon pill. Heals internal organ damage."
-	list_reagents = list(/datum/reagent/medicine/peridaxon = 10)
-	pill_id = 16
 
 /obj/item/reagent_containers/pill/imidazoline
 	pill_desc = "An imidazoline pill. Heals eye damage."

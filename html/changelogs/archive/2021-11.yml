@@ -1,0 +1,214 @@
+2021-11-01:
+  BraveMole:
+  - balance: Beetle forward charge can miss, as it's targeting the turf you are on,
+      and not yourself directly. Just move away or on the side to doge
+  - balance: Beetle get 400 health (from 300 health) to compensate
+  - balance: Mantis is faster
+  - balance: Mantis ravage have a 0.5 seconds of windup
+  KrabSpider:
+  - balance: Tones down the calc for headbutt charge stun to (charge speed x 30) instead
+      of (charge speed x 60)
+  - balance: Bull speed per step on charge increase to 0.15 from 0.10 (~-2 speed at
+      maximum charge)
+  - balance: The minimum steps for Bulls to initiate a charge is now 5 from 6.
+  - balance: Bull plasma multiplier increased to 2 from 1.8
+2021-11-02:
+  BraveMole:
+  - qol: Minions and hivemind no longer alert hive when low health, and the alert
+      will be smaller when they die
+  - balance: Remove body drag from crash
+  - qol: Akimbo doesn't force you to switch hands if the gun in your inactive hand
+      cannot be shot unwielded
+  - qol: Roomba is more expressive
+  David-Stormwell:
+  - balance: Decreased King's health by a average of -100, slashing increase to a
+      max of 30 at ancient.
+  Walarks:
+  - bugfix: fixes runtime when analyzing non-analyzable xenos
+  hyper2snyper:
+  - bugfix: fixes the missing hydro cannon on the marine flamer
+2021-11-05:
+  AzonStarfall:
+  - rscdel: Removed most Dropship Electronics modules, all Fuel modules, and the Dropship
+      Medevac System.
+  - bugfix: Remapped shipmaps to account for module removal.
+  chesse20:
+  - rscadd: Recolor pill bottles with facepaint
+  - expansion: Produce both types of pill bottles with the chem-master
+  - qol: Changed some pill bottle colors to match their earlier appearances.
+2021-11-06:
+  BraveMole:
+  - balance: Scorpions now spit acid that can go through over xenos, rather than neurotox
+  - balance: Minions req reward reduced from 10 to 5 points
+  bowlofcereal:
+  - balance: "r\u0336e\u0336m\u0336o\u0336v\u0336e\u0336s\u0336 \u0336l\u0336a\u0336\
+      s\u0336e\u0336r\u0336g\u0336u\u0336n\u0336 \u0336t\u0336u\u0336r\u0336r\u0336\
+      e\u0336t\u0336s\u0336 \u0336f\u0336r\u0336o\u0336m\u0336 \u0336b\u0336u\u0336\
+      i\u0336l\u0336d\u0336a\u0336s\u0336e\u0336n\u0336t\u0336r\u0336y\u0336 Lowers\
+      \ the accuracy of laser gun turrets"
+2021-11-07:
+  AzonStarfall:
+  - balance: Reduced price of the ZX Burst shotgun from 120 to 80.
+  Sebbe9123:
+  - balance: Removes armor from uniform and base exosuit, adds to armorplates instead.
+2021-11-08:
+  BraveMole:
+  - expansion: Pathfinding improvement
+  - rscdel: Remove hunt
+  - balance: Silo collapse happens 15 minutes after shutter drop
+  - bugfix: Fix pill bottles being empty on loadouts sometimes
+  Walarks:
+  - bugfix: fixes SSexcavations runtime due to low spawner count
+2021-11-09:
+  Lewdcifer:
+  - rscadd: Multiple berets and headbands added to the uniform vendor.
+  - balance: Packaged foods now fit in helmets.
+  - balance: Mantis Armblade implant; 60 > 75 force, 12 > 8 attack speed (faster).
+      Can now bump attack.
+  - bugfix: The tan beret no longer disappears every now and then.
+  Mechanelize:
+  - spellcheck: Fixed an incorrect word for Queen orders
+  hyper2snyper:
+  - refactor: Uniform and webbing/tie refactor
+2021-11-10:
+  BraveMole:
+  - balance: Cas can begin fire mission without an active laser, flare and laser have
+      better view range
+  Lewdcifer:
+  - bugfix: Berets and headbands no longer share names.
+  - bugfix: General storage icon offsets fixed.
+  chesse20:
+  - bugfix: 90% of the pills are no longer missing from the chemmaster
+  jroinc:
+  - balance: Rebalanced pain. It now takes slightly longer to affect you in any way,
+      but it takes more than just popping a pill of Tramadol while missing an arm
+      and having 100 damage to make it go away instantly. Yes, this would have worked
+      before.
+2021-11-11:
+  ivanmixo:
+  - bugfix: Command can't haunt you with rally orders from beyond the grave.
+2021-11-12:
+  ILOVEUNGA:
+  - qol: Health and sunder stats added to xeno gamepanel.
+2021-11-13:
+  BraveMole:
+  - bugfix: Fix sticky weeds not accellerating xeno
+  KrabSpider:
+  - balance: Deletes stagger and screenshake from A19 impact.
+  - balance: Damage increase to 30.
+  SplinterGP:
+  - expansion: helmets now layer under armor.
+  - bugfix: Hlin now appears on xenonauten properly.
+2021-11-14:
+  BraveMole:
+  - bugfix: Fix not being able to take ssd mobs
+  - bugfix: Cas infinite fuel
+  - bugfix: fix dead mobs in ssdmoblist
+2021-11-15:
+  BraveMole:
+  - bugfix: Fix cas not being able to launch mission despite marines already on ground
+  KrabSpider:
+  - balance: Incendiary slugs now deal 65 damage, 10 AP.
+  - balance: incendiary slugs are now as accurate as regular bullets.
+  - code_imp: Removes airburst from incendiary slugs. Adds staggerstun to them.
+  - balance: Incendiary slugs knockback by 2 and slow.
+2021-11-16:
+  AzonStarfall:
+  - bugfix: Fixed SG-29 name in the SG vendor.
+  BraveMole:
+  - bugfix: Fix crash larva delay not existing (now, 2 minutes between each larva)
+  RandomGamer123:
+  - bugfix: The in-chat notification of a new primary/secondary objective now actually
+      shows the proper location of it.
+2021-11-20:
+  KrabSpider:
+  - balance: 10x26.5mm light marksman bullets for the T-64, meaning the T-64 Battle
+      Rifle no longer shares the same caliber or ammo with the T-37 DMR.
+  - balance: extra delay increased to 0.35
+  - imageadd: t-64 ammo packets
+2021-11-21:
+  BraveMole:
+  - code_imp: Make get_hearers_in_view more performant
+  - code_imp: Better perf with cameras
+  - balance: Make it twice as fast to use recurring injection as a xeno. Also, if
+      you fail to inject any toxin, you don't get a cooldown, (plasma is still used).
+  KrabSpider:
+  - balance: kills stam drain from tanglefoot.
+2021-11-22:
+  BraveMole:
+  - code_imp: Pathfinding should no longer murder server in very-high pop
+  DeltaFire15:
+  - bugfix: Fixed Ravager primordial vampirism not working.
+  SplinterGP:
+  - imageadd: added some icons for guns on suit slot to be like on back but on the
+      left side.
+  hyper2snyper:
+  - rscadd: 'New thing: The 7E Chameleon Badge. Colorable Badge that can be found
+      in the surplus uniform vendor. Recolorable by facepaint and restyleable by Alt
+      Click. Can attach to armor, berets, uniform and helmets.'
+2021-11-23:
+  QualityVan:
+  - bugfix: Lunging at an adjacent target as warrior will grab them.
+  Three333Digit:
+  - balance: adds armor to job berets
+2021-11-24:
+  Lewdcifer:
+  - rscadd: New OOC color for eventmins.
+2021-11-25:
+  hyper2snyper:
+  - rscadd: Xeno spit now uses autofire.
+  - rscadd: 'Primordial Spitter: now with an incredible automatic firerate.'
+2021-11-26:
+  BraveMole:
+  - rscadd: Zombie player can rally nearby zombie to make funny waves
+2021-11-27:
+  BraveMole:
+  - bugfix: Minions no longer move when unconcious or dead
+  - bugfix: Minions no longer stuck by opened req railing
+  - refactor: Refactor pathfinding
+  EvilMelonTheSecond:
+  - balance: Light neurotox now has purge if metabolized too long
+  Lewdcifer:
+  - balance: 'C4 rebalance: no skill requirement, deploys faster, mostly silent, creates
+      smoke when detonating, now has a backblast around it, reduced inventory size.
+      C4 made cheaper in reqs, vendors now have more C4 by default.'
+  hyper2snyper:
+  - rscadd: Adds the Shoulder Gun Module, a new gun attachment/armor module that is
+      a t3-4 drop from the researcher console.
+2021-11-28:
+  DeltaFire15:
+  - bugfix: Exiting a cryo tube will no longer cause weird hearing behavior.
+  Franky2025:
+  - expansion: Added damn tomato juice to booze dispensers
+  Three333Digit:
+  - balance: Increases the storage slot of the engineering storage module to 5 The
+      storage module can now hold ~~filled sandbags,~~ razorwire, handheld charger,
+      c4, razorburn grenades, detpack, signaler, circuitboards, and the light replacer
+2021-11-29:
+  Lewdcifer:
+  - balance: 'Plasma Cutter nerf: damage multiplier against resin x4 > x2.'
+  - balance: Metal Foam health 200 > 120.
+  Three333Digit:
+  - balance: Buffs shovel speed of sharpened etool from 20 to 10
+  vilereaver41:
+  - balance: scatter is now 2
+  - balance: projectile damage is now 20 from 10.
+2021-11-30:
+  Pariah919:
+  - balance: tp44 does less damage (-10), plus ten pen. 0 scatter when wielded base
+      from 2.5.
+  hyper2snyper:
+  - rscadd: Adds the GL to BAS
+  - balance: Minigun powerpack is now just a worn magazine like the back fuel tank
+      for the flamer.
+  - bugfix: Fixes attachment weapons using their unwielded stats for firing when attached.
+  - code_imp: Redoes nearly half of the gun code.
+  - refactor: 'Refactors: GLs, Lasguns, Shotguns, Revolvers, TL-127, And reloading/operation
+      in general.'
+  jroinc:
+  - rscdel: Removed stun on oxy and synap expiration, replaced with a 10-second timer.
+  - balance: If you are in crit and are given a dose of inaprov, you will heal 30%
+      of your physical damage instantly and set any organs with more than 15 damage
+      to 15 damage. Russian Red and Neuraline do the same thing, but 20% and 29 damage
+      respectively. All three medicines have a 300-second cooldown before they'll
+      perform the critheal function again.

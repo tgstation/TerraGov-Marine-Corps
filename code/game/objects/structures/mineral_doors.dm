@@ -9,6 +9,7 @@
 	density = TRUE
 	anchored = TRUE
 	opacity = TRUE
+	throwpass = FALSE
 
 	icon = 'icons/obj/doors/mineral_doors.dmi'
 	icon_state = "metal"
@@ -30,9 +31,6 @@
 	. = ..()
 	if(!state)
 		return TryToSwitchState(user)
-
-/obj/structure/mineral_door/attack_paw(mob/living/carbon/human/user)
-	return TryToSwitchState(user)
 
 /obj/structure/mineral_door/attack_hand(mob/living/user)
 	. = ..()
@@ -68,7 +66,7 @@
 	isSwitchingStates = 1
 	playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25, 1)
 	flick("[mineralType]opening",src)
-	sleep(10)
+	sleep(1 SECONDS)
 	density = FALSE
 	opacity = FALSE
 	state = D_OPEN
@@ -80,7 +78,7 @@
 	isSwitchingStates = TRUE
 	playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25, 1)
 	flick("[mineralType]closing",src)
-	sleep(10)
+	sleep(1 SECONDS)
 	density = TRUE
 	opacity = TRUE
 	state = D_CLOSED
@@ -108,7 +106,7 @@
 				else
 					multiplier += PLASMACUTTER_RESIN_MULTIPLIER * 0.5 //Plasma cutters are particularly good at destroying resin structures.
 				P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Minimal energy cost.
-		if(W.damtype == "fire" && is_resin) //Burn damage deals extra vs resin structures (mostly welders).
+		if(W.damtype == BURN && is_resin) //Burn damage deals extra vs resin structures (mostly welders).
 			multiplier += 1
 		user.do_attack_animation(src, used_item = W)
 		hardness -= W.force * multiplier * 0.01
@@ -213,7 +211,7 @@
 	isSwitchingStates = TRUE
 	playsound(loc, 'sound/effects/doorcreaky.ogg', 25, 1)
 	flick("[mineralType]opening",src)
-	sleep(10)
+	sleep(1 SECONDS)
 	density = FALSE
 	opacity = FALSE
 	state = D_OPEN
@@ -224,7 +222,7 @@
 	isSwitchingStates = TRUE
 	playsound(loc, 'sound/effects/doorcreaky.ogg', 25, 1)
 	flick("[mineralType]closing",src)
-	sleep(10)
+	sleep(1 SECONDS)
 	density = TRUE
 	opacity = TRUE
 	state = D_CLOSED

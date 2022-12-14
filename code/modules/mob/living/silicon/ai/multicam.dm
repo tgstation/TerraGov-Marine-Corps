@@ -1,30 +1,30 @@
 //Picture in picture
-/obj/screen/movable/pic_in_pic/ai
+/atom/movable/screen/movable/pic_in_pic/ai
 	var/mob/living/silicon/ai/ai
 	var/mutable_appearance/highlighted_background
 	var/highlighted = FALSE
 	var/mob/camera/aiEye/pic_in_pic/aiEye
 
 
-/obj/screen/movable/pic_in_pic/ai/Initialize()
+/atom/movable/screen/movable/pic_in_pic/ai/Initialize()
 	. = ..()
 	aiEye = new /mob/camera/aiEye/pic_in_pic()
 	aiEye.screen = src
 
 
-/obj/screen/movable/pic_in_pic/ai/Destroy()
+/atom/movable/screen/movable/pic_in_pic/ai/Destroy()
 	set_ai(null)
 	QDEL_NULL(aiEye)
 	return ..()
 
 
-/obj/screen/movable/pic_in_pic/ai/Click()
+/atom/movable/screen/movable/pic_in_pic/ai/Click()
 	. = ..()
 	if(ai)
 		ai.select_main_multicam_window(src)
 
 
-/obj/screen/movable/pic_in_pic/ai/make_backgrounds()
+/atom/movable/screen/movable/pic_in_pic/ai/make_backgrounds()
 	. = ..()
 	highlighted_background = new /mutable_appearance()
 	highlighted_background.icon = 'icons/misc/pic_in_pic.dmi'
@@ -32,7 +32,7 @@
 	highlighted_background.layer = SPACE_LAYER
 
 
-/obj/screen/movable/pic_in_pic/ai/add_background()
+/atom/movable/screen/movable/pic_in_pic/ai/add_background()
 	if((width > 0) && (height > 0))
 		var/matrix/M = matrix()
 		M.Scale(width + 0.5, height + 0.5)
@@ -42,24 +42,24 @@
 		add_overlay(highlighted ? highlighted_background : standard_background)
 
 
-/obj/screen/movable/pic_in_pic/ai/set_view_size(width, height, do_refresh = TRUE)
+/atom/movable/screen/movable/pic_in_pic/ai/set_view_size(width, height, do_refresh = TRUE)
 	aiEye.static_visibility_range =	(round(max(width, height) / 2) + 1)
 	if(ai)
 		ai.camera_visibility(aiEye)
 	return ..()
 
 
-/obj/screen/movable/pic_in_pic/ai/set_view_center(atom/target, do_refresh = TRUE)
+/atom/movable/screen/movable/pic_in_pic/ai/set_view_center(atom/target, do_refresh = TRUE)
 	. = ..()
 	aiEye.setLoc(get_turf(target))
 
 
-/obj/screen/movable/pic_in_pic/ai/refresh_view()
+/atom/movable/screen/movable/pic_in_pic/ai/refresh_view()
 	. = ..()
 	aiEye.setLoc(get_turf(center))
 
 
-/obj/screen/movable/pic_in_pic/ai/proc/highlight()
+/atom/movable/screen/movable/pic_in_pic/ai/proc/highlight()
 	if(highlighted)
 		return
 	highlighted = TRUE
@@ -67,7 +67,7 @@
 	add_overlay(highlighted_background)
 
 
-/obj/screen/movable/pic_in_pic/ai/proc/unhighlight()
+/atom/movable/screen/movable/pic_in_pic/ai/proc/unhighlight()
 	if(!highlighted)
 		return
 	highlighted = FALSE
@@ -75,7 +75,7 @@
 	add_overlay(standard_background)
 
 
-/obj/screen/movable/pic_in_pic/ai/proc/set_ai(mob/living/silicon/ai/new_ai)
+/atom/movable/screen/movable/pic_in_pic/ai/proc/set_ai(mob/living/silicon/ai/new_ai)
 	if(ai)
 		ai.multicam_screens -= src
 		ai.all_eyes -= aiEye
@@ -101,7 +101,9 @@
 /area/ai_multicam_room
 	name = "AI Multicam Room"
 	icon_state = "ai_camera_room"
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	static_lighting = FALSE
+	base_lighting_alpha = 255
+
 	ambience = list()
 
 
@@ -131,7 +133,7 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 	invisibility = INVISIBILITY_OBSERVER
 	mouse_opacity = MOUSE_OPACITY_ICON
 	icon_state = "ai_pip_camera"
-	var/obj/screen/movable/pic_in_pic/ai/screen
+	var/atom/movable/screen/movable/pic_in_pic/ai/screen
 	var/list/cameras_telegraphed = list()
 	var/telegraph_cameras = TRUE
 	var/telegraph_range = 7
@@ -143,7 +145,7 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 
 /mob/camera/aiEye/pic_in_pic/setLoc(turf/T)
 	if(T)
-		forceMove(T)
+		abstract_move(T)
 	else
 		moveToNullspace()
 	if(screen?.ai)
@@ -211,26 +213,26 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 /mob/living/silicon/ai/proc/drop_new_multicam(silent = FALSE)
 	if(!CONFIG_GET(flag/allow_ai_multicam))
 		if(!silent)
-			to_chat(src, "<span class='warning'>This action is currently disabled. Contact an administrator to enable this feature.</span>")
+			to_chat(src, span_warning("This action is currently disabled. Contact an administrator to enable this feature."))
 		return
 	if(!eyeobj)
 		return
 	if(multicam_screens.len >= max_multicams)
 		if(!silent)
-			to_chat(src, "<span class='warning'>Cannot place more than [max_multicams] multicamera windows.</span>")
+			to_chat(src, span_warning("Cannot place more than [max_multicams] multicamera windows."))
 		return
-	var/obj/screen/movable/pic_in_pic/ai/C = new /obj/screen/movable/pic_in_pic/ai()
+	var/atom/movable/screen/movable/pic_in_pic/ai/C = new /atom/movable/screen/movable/pic_in_pic/ai()
 	C.set_view_size(3, 3, FALSE)
 	C.set_view_center(get_turf(eyeobj))
 	C.set_ai(src)
 	if(!silent)
-		to_chat(src, "<span class='notice'>Added new multicamera window.</span>")
+		to_chat(src, span_notice("Added new multicamera window."))
 	return C
 
 
 /mob/living/silicon/ai/proc/toggle_multicam()
 	if(!CONFIG_GET(flag/allow_ai_multicam))
-		to_chat(src, "<span class='warning'>This action is currently disabled. Contact an administrator to enable this feature.</span>")
+		to_chat(src, span_warning("This action is currently disabled. Contact an administrator to enable this feature."))
 		return
 	if(multicam_on)
 		end_multicam()
@@ -242,18 +244,18 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 	if(multicam_on || !isturf(loc))
 		return
 	if(!GLOB.ai_camera_room_landmark)
-		to_chat(src, "<span class='warning'>This function is not available at this time.</span>")
+		to_chat(src, span_warning("This function is not available at this time."))
 		return
 	multicam_on = TRUE
 	refresh_multicam()
-	to_chat(src, "<span class='notice'>Multiple-camera viewing mode activated.</span>")
+	to_chat(src, span_notice("Multiple-camera viewing mode activated."))
 
 
 /mob/living/silicon/ai/proc/refresh_multicam()
 	reset_perspective(GLOB.ai_camera_room_landmark)
 	if(client)
 		for(var/V in multicam_screens)
-			var/obj/screen/movable/pic_in_pic/P = V
+			var/atom/movable/screen/movable/pic_in_pic/P = V
 			P.show_to(client)
 
 
@@ -264,13 +266,13 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 	select_main_multicam_window(null)
 	if(client)
 		for(var/V in multicam_screens)
-			var/obj/screen/movable/pic_in_pic/P = V
+			var/atom/movable/screen/movable/pic_in_pic/P = V
 			P.unshow_to(client)
 	reset_perspective()
-	to_chat(src, "<span class='notice'>Multiple-camera viewing mode deactivated.</span>")
+	to_chat(src, span_notice("Multiple-camera viewing mode deactivated."))
 
 
-/mob/living/silicon/ai/proc/select_main_multicam_window(obj/screen/movable/pic_in_pic/ai/P)
+/mob/living/silicon/ai/proc/select_main_multicam_window(atom/movable/screen/movable/pic_in_pic/ai/P)
 	if(master_multicam == P)
 		return
 

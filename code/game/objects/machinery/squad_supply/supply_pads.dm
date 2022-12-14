@@ -3,6 +3,7 @@
 	name = "Supply Drop Pad"
 	desc = "Place unanchored supplies on here to allow bridge Overwatch officers to drop them on people's heads."
 	icon = 'icons/effects/warning_stripes.dmi'
+	icon_state = "stripe_box_thick"
 	anchored = TRUE
 	density = FALSE
 	resistance_flags = RESIST_ALL

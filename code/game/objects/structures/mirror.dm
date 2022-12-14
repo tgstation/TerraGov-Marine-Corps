@@ -10,17 +10,17 @@
 	resistance_flags = XENO_DAMAGEABLE
 	var/shattered = FALSE
 
-/obj/structure/mirror/Initialize()
+/obj/structure/mirror/Initialize(mapload)
 	. = ..()
 	switch(dir)
 		if(NORTH)
-			pixel_y = 30
+			pixel_y = -14
 		if(SOUTH)
-			pixel_y = -30
+			pixel_y = 27
 		if(EAST)
-			pixel_x = 30
+			pixel_x = -22
 		if(WEST)
-			pixel_x = -30
+			pixel_x = 22
 
 /obj/structure/mirror/broken
 	icon_state = "mirror_broke"

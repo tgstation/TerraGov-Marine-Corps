@@ -5,7 +5,7 @@
 	name = "holopad"
 	desc = "It's a floor-mounted device for projecting holographic images."
 	icon_state = "holopad0"
-	layer = LOW_OBJ_LAYER
+	layer = HOLOPAD_LAYER
 	plane = FLOOR_PLANE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
@@ -30,6 +30,7 @@
 
 /obj/machinery/holopad/Initialize()
 	. = ..()
+	become_hearing_sensitive()
 	if(on_network)
 		holopads += src
 
@@ -37,8 +38,7 @@
 	if(outgoing_call)
 		outgoing_call.ConnectionFailure(src)
 
-	for(var/I in holo_calls)
-		var/datum/holocall/HC = I
+	for(var/datum/holocall/HC AS in holo_calls)
 		HC.ConnectionFailure(src)
 
 	for (var/I in masters)
@@ -59,7 +59,7 @@
 /obj/machinery/holopad/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		to_chat(user, "<span class='notice'>The status display reads: Current projection range: <b>[holo_range]</b> units.<span>")
+		. += span_notice("The status display reads: Current projection range: <b>[holo_range]</b> units.")
 
 
 /obj/machinery/holopad/interact(mob/user)
@@ -84,8 +84,7 @@
 		if(on_network)
 			var/one_answered_call = FALSE
 			var/one_unanswered_call = FALSE
-			for(var/I in holo_calls)
-				var/datum/holocall/HC = I
+			for(var/datum/holocall/HC AS in holo_calls)
 				if(HC.connected_holopad != src)
 					dat += "<a href='?src=[REF(src)];connectcall=[REF(HC)]'>Answer call from [get_area(HC.calling_holopad)]</a><br>"
 					one_unanswered_call = TRUE
@@ -95,8 +94,7 @@
 			if(one_answered_call && one_unanswered_call)
 				dat += "=====================================================<br>"
 			//we loop twice for formatting
-			for(var/I in holo_calls)
-				var/datum/holocall/HC = I
+			for(var/datum/holocall/HC AS in holo_calls)
 				if(HC.connected_holopad == src)
 					dat += "<a href='?src=[REF(src)];disconnectcall=[REF(HC)]'>Disconnect call from [HC.user]</a><br>"
 
@@ -126,10 +124,11 @@
 			temp = "You requested an AI's presence.<BR>"
 			temp += "<A href='?src=[REF(src)];mainmenu=1'>Main Menu</A>"
 			var/area/area = get_area(src)
-			for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
+			for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
 				if(!AI.client)
 					continue
-				to_chat(AI, "<span class='info'>Your presence is requested at <a href='?src=[REF(AI)];jumptoholopad=[REF(src)]'>\the [area]</a>.</span>")
+				to_chat(AI, span_info("Your presence is requested at <a href='?src=[REF(AI)];jumptoholopad=[REF(src)]'>\the [area]</a>."))
+				playsound(AI, 'sound/machines/two_tones_beep.ogg', 30, 1)
 		else
 			temp = "A request for AI presence was already sent recently.<BR>"
 			temp += "<A href='?src=[REF(src)];mainmenu=1'>Main Menu</A>"
@@ -240,7 +239,7 @@
 
 	if(is_operational() && (!AI || AI.eyeobj.loc == loc))//If the projector has power and client eye is on it
 		if (AI && istype(AI.current, /obj/machinery/holopad))
-			to_chat(user, "<span class='danger'>ERROR:</span> \black Image feed in progress.")
+			to_chat(user, "[span_danger("ERROR:")] \black Image feed in progress.")
 			return
 
 		var/obj/effect/overlay/holo_pad_hologram/Hologram = new(loc)//Spawn a blank effect at the location.
@@ -260,15 +259,15 @@
 		Hologram.layer = FLY_LAYER//Above all the other objects/mobs. Or the vast majority of them.
 		Hologram.anchored = TRUE
 		Hologram.name = "[user.name] (Hologram)"//If someone decides to right click.
-		Hologram.set_light(2)	//hologram lighting
+		Hologram.set_light(1, 2)	//hologram lighting
 		move_hologram()
 
 		set_holo(user, Hologram)
-		visible_message("<span class='notice'>A holographic image of [user] flickers to life before your eyes!</span>")
+		visible_message(span_notice("A holographic image of [user] flickers to life before your eyes!"))
 
 		return Hologram
 	else
-		to_chat(user, "<span class='danger'>ERROR:</span> Unable to project hologram.")
+		to_chat(user, "[span_danger("ERROR:")] Unable to project hologram.")
 
 /*This is the proc for special two-way communication between AI and holopad/people talking near holopad.
 For the other part of the code, check silicon say.dm. Particularly robot talk.*/
@@ -293,7 +292,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	use_power = total_users > 0 ? ACTIVE_POWER_USE : IDLE_POWER_USE
 	active_power_usage = HOLOPAD_PASSIVE_POWER_USAGE + (HOLOGRAM_POWER_USAGE * total_users)
 	if(total_users)
-		set_light(2)
+		set_light(1, 2)
 	else
 		set_light(0)
 	update_icon()
@@ -373,7 +372,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 			else
 				transfered = TRUE
 		//All is good.
-		holo.forceMove(new_turf)
+		holo.abstract_move(new_turf)
 		if(!transfered)
 			update_holoray(user,new_turf)
 	return TRUE

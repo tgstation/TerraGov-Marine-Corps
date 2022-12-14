@@ -14,6 +14,8 @@
 	resistance_flags = XENO_DAMAGEABLE
 	hit_sound = 'sound/effects/metalhit.ogg'
 	coverage = 10
+	//determines if we drop metal on deconstruction
+	var/dropmetal = TRUE
 	var/parts = /obj/item/frame/table
 	var/table_status = TABLE_STATUS_FIRM
 	var/sheet_type = /obj/item/stack/sheet/metal
@@ -23,6 +25,10 @@
 	var/flip_cooldown = 0 //If flip cooldown exists, don't allow flipping or putting back. This carries a WORLD.TIME value
 	max_integrity = 40
 
+/obj/structure/table/mainship/nometal
+	parts = /obj/item/frame/table/nometal
+	dropmetal = FALSE
+
 /obj/structure/table/deconstruct(disassembled)
 	if(disassembled)
 		new parts(loc)
@@ -30,18 +36,19 @@
 		if(reinforced)
 			if(prob(50))
 				new /obj/item/stack/rods(loc)
-		new sheet_type(src)
+		if(dropmetal)
+			new sheet_type(src)
 	return ..()
 
 /obj/structure/table/proc/update_adjacent(location = loc)
 	for(var/direction in CARDINAL_ALL_DIRS)
-		var/obj/structure/table/T = locate(/obj/structure/table, get_step(location,direction))
-		if(!T)
+		var/obj/structure/table/table = locate(/obj/structure/table, get_step(location,direction))
+		if(!table)
 			continue
-		T.update_icon()
+		INVOKE_NEXT_TICK(table, /atom/proc.update_icon)
 
 
-/obj/structure/table/Initialize()
+/obj/structure/table/Initialize(mapload)
 	. = ..()
 	for(var/obj/structure/table/evil_table in loc)
 		if(evil_table != src)
@@ -50,20 +57,25 @@
 	if(!flipped)
 		update_icon()
 		update_adjacent()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+		COMSIG_ATOM_EXIT = .proc/on_try_exit,
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
-
-/obj/structure/table/Crossed(atom/movable/O)
-	. = ..()
-	if(istype(O,/mob/living/carbon/xenomorph/ravager))
-		var/mob/living/carbon/xenomorph/M = O
-		if(!M.stat) //No dead xenos jumpin on the bed~
-			visible_message("<span class='danger'>[O] plows straight through [src]!</span>")
-			deconstruct(FALSE)
+/obj/structure/table/proc/on_cross(datum/source, atom/movable/O, oldloc, oldlocs)
+	SIGNAL_HANDLER
+	if(!istype(O,/mob/living/carbon/xenomorph/ravager))
+		return
+	var/mob/living/carbon/xenomorph/M = O
+	if(!M.stat) //No dead xenos jumpin on the bed~
+		visible_message(span_danger("[O] plows straight through [src]!"))
+		deconstruct(FALSE)
 
 /obj/structure/table/Destroy()
 	var/tableloc = loc
-	. = ..()
 	update_adjacent(tableloc) //so neighbouring tables get updated correctly
+	return ..()
 
 /obj/structure/table/update_icon()
 	if(flipped)
@@ -219,10 +231,14 @@
 			return TRUE
 
 
-/obj/structure/table/CheckExit(atom/movable/mover, turf/target)
-	. = ..()
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
-		return TRUE
+/obj/structure/table/proc/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
+	SIGNAL_HANDLER
+	if(CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
+		return NONE
+	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
+		return NONE
+	knownblockers += src
+	return COMPONENT_ATOM_BLOCK_EXIT
 
 //Flipping tables, nothing more, nothing less
 /obj/structure/table/MouseDrop(over_object, src_location, over_location)
@@ -242,25 +258,20 @@
 	if(I.loc != loc)
 		step(I, get_dir(I, src))
 
-/obj/structure/table/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_TABLE)
-	return ..()
-
-
 /obj/structure/table/wrench_act(mob/living/user, obj/item/I)
 	. = ..()
 	if(reinforced && table_status != TABLE_STATUS_WEAKENED)
 		return FALSE
 
-	user.visible_message("<span class='notice'>[user] starts disassembling [src].</span>",
-		"<span class='notice'>You start disassembling [src].</span>")
+	user.visible_message(span_notice("[user] starts disassembling [src]."),
+		span_notice("You start disassembling [src]."))
 
 	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
 	if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 		return TRUE
 
-	user.visible_message("<span class='notice'>[user] disassembles [src].</span>",
-		"<span class='notice'>You disassemble [src].</span>")
+	user.visible_message(span_notice("[user] disassembles [src]."),
+		span_notice("You disassemble [src]."))
 	deconstruct(TRUE)
 	return TRUE
 
@@ -279,22 +290,22 @@
 		var/mob/living/M = G.grabbed_thing
 		if(user.a_intent == INTENT_HARM)
 			if(user.grab_state <= GRAB_AGGRESSIVE)
-				to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
+				to_chat(user, span_warning("You need a better grip to do that!"))
 				return
 
 			if(prob(15))
 				M.Paralyze(10 SECONDS)
-			M.apply_damage(8, BRUTE, "head", updating_health = TRUE)
-			user.visible_message("<span class='danger'>[user] slams [M]'s face against [src]!</span>",
-			"<span class='danger'>You slam [M]'s face against [src]!</span>")
+			M.apply_damage(8, BRUTE, "head", blocked = MELEE, updating_health = TRUE)
+			user.visible_message(span_danger("[user] slams [M]'s face against [src]!"),
+			span_danger("You slam [M]'s face against [src]!"))
 			log_combat(user, M, "slammed", "", "against \the [src]")
 			playsound(loc, 'sound/weapons/tablehit1.ogg', 25, 1)
 
 		else if(user.grab_state >= GRAB_AGGRESSIVE)
 			M.forceMove(loc)
 			M.Paralyze(10 SECONDS)
-			user.visible_message("<span class='danger'>[user] throws [M] on [src].</span>",
-			"<span class='danger'>You throw [M] on [src].</span>")
+			user.visible_message(span_danger("[user] throws [M] on [src]."),
+			span_danger("You throw [M] on [src]."))
 		return
 
 	if(user.a_intent != INTENT_HARM)
@@ -335,11 +346,11 @@
 		return
 
 	if(!flip(get_cardinal_dir(usr, src)))
-		to_chat(usr, "<span class='warning'>[src] won't budge.</span>")
+		to_chat(usr, span_warning("[src] won't budge."))
 		return
 
-	usr.visible_message("<span class='warning'>[usr] flips [src]!</span>",
-	"<span class='warning'>You flip [src]!</span>")
+	usr.visible_message(span_warning("[usr] flips [src]!"),
+	span_warning("You flip [src]!"))
 
 	if(climbable)
 		structure_shaken()
@@ -380,7 +391,7 @@
 		return
 
 	if(!unflipping_check())
-		to_chat(usr, "<span class='warning'>[src] won't budge.</span>")
+		to_chat(usr, span_warning("[src] won't budge."))
 		return
 
 	unflip()
@@ -411,6 +422,7 @@
 	if(dir != NORTH)
 		layer = FLY_LAYER
 	flipped = TRUE
+	coverage = 60
 	flags_atom |= ON_BORDER
 	for(var/D in list(turn(direction, 90), turn(direction, -90)))
 		var/obj/structure/table/T = locate() in get_step(src,D)
@@ -429,6 +441,7 @@
 
 	layer = initial(layer)
 	flipped = FALSE
+	coverage = 10
 	climbable = initial(climbable)
 	flags_atom &= ~ON_BORDER
 	for(var/D in list(turn(dir, 90), turn(dir, -90)))
@@ -443,6 +456,7 @@
 
 /obj/structure/table/flipped
 	flipped = TRUE //Just not to get the icon updated on Initialize()
+	coverage = 60
 
 
 /obj/structure/table/flipped/Initialize()
@@ -469,6 +483,28 @@
 	table_prefix = "wood"
 	hit_sound = 'sound/effects/woodhit.ogg'
 	max_integrity = 20
+
+/obj/structure/table/fancywoodentable
+	name = "fancy wooden table"
+	desc = "An expensive fancy wood surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
+	icon_state = "fwoodtable"
+	table_prefix = "fwood"
+	parts = /obj/item/frame/table/fancywood
+
+/obj/structure/table/rusticwoodentable
+	name = "rustic wooden table"
+	desc = "A rustic wooden surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
+	icon_state = "pwoodtable"
+	table_prefix = "pwood"
+	parts = /obj/item/frame/table/rusticwood
+
+/obj/structure/table/black
+	name = "black metal table"
+	desc = "A sleek black metallic surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
+	icon_state = "blacktable"
+	table_prefix = "black"
+	parts = /obj/item/frame/table
+
 /*
 * Gambling tables
 */
@@ -524,25 +560,31 @@
 		return FALSE
 
 	if(table_status == TABLE_STATUS_FIRM)
-		user.visible_message("<span class='notice'>[user] starts weakening [src].</span>",
-		"<span class='notice'>You start weakening [src]</span>")
+		user.visible_message(span_notice("[user] starts weakening [src]."),
+		span_notice("You start weakening [src]"))
+		add_overlay(GLOB.welding_sparks)
 		playsound(loc, 'sound/items/welder.ogg', 25, TRUE)
 		if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) || !WT.remove_fuel(1, user))
+			cut_overlay(GLOB.welding_sparks)
 			return TRUE
 
-		user.visible_message("<span class='notice'>[user] weakens [src].</span>",
-			"<span class='notice'>You weaken [src]</span>")
+		user.visible_message(span_notice("[user] weakens [src]."),
+			span_notice("You weaken [src]"))
+		cut_overlay(GLOB.welding_sparks)
 		table_status = TABLE_STATUS_WEAKENED
 		return TRUE
 
-	user.visible_message("<span class='notice'>[user] starts welding [src] back together.</span>",
-		"<span class='notice'>You start welding [src] back together.</span>")
+	user.visible_message(span_notice("[user] starts welding [src] back together."),
+		span_notice("You start welding [src] back together."))
+	add_overlay(GLOB.welding_sparks)
 	playsound(loc, 'sound/items/welder.ogg', 25, TRUE)
 	if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) || !WT.remove_fuel(1, user))
+		cut_overlay(GLOB.welding_sparks)
 		return TRUE
 
-	user.visible_message("<span class='notice'>[user] welds [src] back together.</span>",
-		"<span class='notice'>You weld [src] back together.</span>")
+	user.visible_message(span_notice("[user] welds [src] back together."),
+		span_notice("You weld [src] back together."))
+	cut_overlay(GLOB.welding_sparks)
 	table_status = TABLE_STATUS_FIRM
 	return TRUE
 
@@ -568,11 +610,20 @@
 	density = TRUE
 	layer = TABLE_LAYER
 	anchored = TRUE
-	throwpass = TRUE	//You can throw objects over this, despite it's density.
+	throwpass = TRUE	//You can shoot past it
+	coverage = 20
 	climbable = TRUE
+	var/dropmetal = TRUE   //if true drop metal when destroyed; mostly used when we need large amounts of racks without marines hoarding the metal
 	max_integrity = 40
 	resistance_flags = XENO_DAMAGEABLE
 	var/parts = /obj/item/frame/rack
+
+/obj/structure/rack/Initialize()
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 /obj/structure/rack/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
@@ -589,10 +640,6 @@
 	if(I.loc != loc)
 		step(I, get_dir(I, src))
 
-/obj/structure/rack/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_RACK)
-	return ..()
-
 /obj/structure/rack/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
@@ -605,21 +652,25 @@
 		return user.transferItemToLoc(I, loc)
 
 
-/obj/structure/rack/Crossed(atom/movable/O)
-	. = ..()
-	if(istype(O,/mob/living/carbon/xenomorph/ravager))
-		var/mob/living/carbon/xenomorph/M = O
-		if(!M.stat) //No dead xenos jumpin on the bed~
-			visible_message("<span class='danger'>[O] plows straight through [src]!</span>")
-			deconstruct(FALSE)
+/obj/structure/rack/proc/on_cross(datum/source, atom/movable/O, oldloc, oldlocs)
+	SIGNAL_HANDLER
+	if(!istype(O,/mob/living/carbon/xenomorph/ravager))
+		return
+	var/mob/living/carbon/xenomorph/M = O
+	if(!M.stat) //No dead xenos jumpin on the bed~
+		visible_message(span_danger("[O] plows straight through [src]!"))
+		deconstruct(FALSE)
 
 /obj/structure/rack/deconstruct(disassembled = TRUE)
-	if(disassembled && parts)
+	if(disassembled && parts && dropmetal)
 		new parts(loc)
-	else
+	else if(dropmetal)
 		new /obj/item/stack/sheet/metal(loc)
 	density = FALSE
 	return ..()
+
+/obj/structure/rack/nometal
+	dropmetal = FALSE
 
 #undef TABLE_STATUS_WEAKENED
 #undef TABLE_STATUS_FIRM

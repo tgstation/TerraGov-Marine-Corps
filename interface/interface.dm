@@ -4,7 +4,7 @@
 	set hidden = TRUE
 
 	if(!CONFIG_GET(string/wikiurl))
-		to_chat(src, "<span class='warning'>The wiki URL is not set in the server configuration.</span>")
+		to_chat(src, span_warning("The wiki URL is not set in the server configuration."))
 		return
 
 	if(alert("This will open the wiki in your browser. Are you sure?", "Wiki", "Yes", "No") != "Yes")
@@ -18,7 +18,7 @@
 	set hidden = TRUE
 
 	if(!CONFIG_GET(string/forumurl))
-		to_chat(src, "<span class='warning'>The forum URL is not set in the server configuration.</span>")
+		to_chat(src, span_warning("The forum URL is not set in the server configuration."))
 		return
 
 	if(alert("This will open the forum in your browser. Are you sure?", "Forum", "Yes", "No") != "Yes")
@@ -32,7 +32,7 @@
 	set hidden = TRUE
 
 	if(!CONFIG_GET(string/rulesurl))
-		to_chat(src, "<span class='warning'>The rules URL is not set in the server configuration.</span>")
+		to_chat(src, span_warning("The rules URL is not set in the server configuration."))
 		return
 
 	if(alert("This will open the rules in your browser. Are you sure?", "Rules", "Yes", "No") != "Yes")
@@ -46,7 +46,7 @@
 	set hidden = TRUE
 
 	if(!CONFIG_GET(string/discordurl))
-		to_chat(src, "<span class='warning'>The Discord URL is not set in the server configuration.</span>")
+		to_chat(src, span_warning("The Discord URL is not set in the server configuration."))
 		return
 
 	if(alert("This will open our Discord in your browser. Are you sure?", "Discord", "Yes", "No") != "Yes")
@@ -60,7 +60,7 @@
 	set hidden = TRUE
 
 	if(!CONFIG_GET(string/githuburl))
-		to_chat(src, "<span class='warning'>The bug tracker URL is not set in the server configuration.</span>")
+		to_chat(src, span_warning("The bug tracker URL is not set in the server configuration."))
 		return
 
 	if(alert("This will open our bug tracker page in your browser. Are you sure?", "Github", "Yes", "No") != "Yes")
@@ -75,7 +75,7 @@
 
 	var/webmap_host = CONFIG_GET(string/webmap_host)
 	if(!webmap_host)
-		to_chat(src, "<span class='warning'>Webmaps are not setup.</span>")
+		to_chat(src, span_warning("Webmaps are not setup."))
 		return
 	var/map_url
 
@@ -87,7 +87,7 @@
 			map_url = SSmapping.configs[GROUND_MAP].map_file
 
 	if(!map_url)
-		to_chat(src, "<span class='warning'>Mapping subsystem hasn't finished loading yet, try again later.</span>")
+		to_chat(src, span_warning("Mapping subsystem hasn't finished loading yet, try again later."))
 		return
 
 	DIRECT_OUTPUT(src, link("[webmap_host][map_url]"))

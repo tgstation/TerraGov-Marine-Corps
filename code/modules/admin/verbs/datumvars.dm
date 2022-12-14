@@ -10,6 +10,11 @@
 /datum/proc/can_vv_get(var_name)
 	return TRUE
 
+/client/can_vv_get(var_name)
+	if(var_name != "address" && var_name != "computer_id" || check_rights(R_DEBUG))
+		return TRUE
+	return FALSE
+
 
 /datum/proc/vv_edit_var(var_name, var_value) //called whenever a var is edited
 	if(var_name == NAMEOF(src, vars))
@@ -159,9 +164,6 @@
 	.["Mark Object"] = "?_src_=vars;[HrefToken()];[VV_HK_MARK]=[REF(src)]"
 	.["Delete"] = "?_src_=vars;[HrefToken()];[VV_HK_DELETE]=[REF(src)]"
 	.["Show VV To Player"] = "?_src_=vars;[HrefToken()];[VV_HK_EXPOSE]=[REF(src)]"
-	#ifdef REFERENCE_TRACKING
-	.["View References"] = "?_src_=vars;[HrefToken()];[VV_HK_VIEW_REFERENCES]=[REF(src)]"
-	#endif
 
 
 /client/proc/debug_variables(datum/D in world)
@@ -271,7 +273,7 @@
 	if(!islist)
 		for(var/V in D.vars)
 			names += V
-	sleep(1)//For some reason, without this sleep, VVing will cause client to disconnect on certain objects.
+	sleep(0.1 SECONDS)//For some reason, without this sleep, VVing will cause client to disconnect on certain objects.
 
 	var/list/variable_html = list()
 	if(islist)
@@ -547,16 +549,16 @@
 
 	var/item
 	if(isnull(value))
-		item = "[VV_HTML_ENCODE(name)] = <span class='value'>null</span>"
+		item = "[VV_HTML_ENCODE(name)] = [span_value("null")]"
 
 	else if(istext(value))
-		item = "[VV_HTML_ENCODE(name)] = <span class='value'>\"[VV_HTML_ENCODE(value)]\"</span>"
+		item = "[VV_HTML_ENCODE(name)] = [span_value("\"[VV_HTML_ENCODE(value)]\"")]"
 
 	else if(isicon(value))
-		item = "[VV_HTML_ENCODE(name)] = /icon (<span class='value'>[value]</span>)"
+		item = "[VV_HTML_ENCODE(name)] = /icon ([span_value("[value]")])"
 
 	else if(isfile(value))
-		item = "[VV_HTML_ENCODE(name)] = <span class='value'>'[value]'</span>"
+		item = "[VV_HTML_ENCODE(name)] = [span_value("'[value]'")]"
 
 	else if(istype(value, /datum))
 		var/datum/D = value
@@ -594,7 +596,7 @@
 				flags += i
 			item = "[VV_HTML_ENCODE(name)] = [VV_HTML_ENCODE(jointext(flags, ", "))]"
 	else
-		item = "[VV_HTML_ENCODE(name)] = <span class='value'>[VV_HTML_ENCODE(value)]</span>"
+		item = "[VV_HTML_ENCODE(name)] = [span_value("[VV_HTML_ENCODE(value)]")]"
 
 	return "[header][item]</li>"
 
@@ -638,27 +640,15 @@
 
 
 	else if(href_list["delete"])
-		if(!check_rights(R_DEBUG))
+		if(!check_rights(R_VAREDIT))
 			return
 
 		var/datum/D = locate(href_list["delete"])
 		if(!istype(D))
-			to_chat(usr, "<span class='warning'>Unable to locate item.</span>")
+			to_chat(usr, span_warning("Unable to locate item."))
 		usr.client.holder.delete_atom(D)
 		if(isturf(D))  // show the turf that took its place
 			debug_variables(D)
-
-	#ifdef REFERENCE_TRACKING
-	else if(href_list[VV_HK_VIEW_REFERENCES])
-		if(!check_rights(R_DEBUG))
-			return
-		var/datum/D = locate(href_list[VV_HK_TARGET])
-		if(!D)
-			to_chat(usr, "<span class='warning'>Unable to locate item.</span>")
-			return
-		usr.client.holder.view_refs(D)
-		return
-	#endif
 
 	else if(href_list["regenerateicons"])
 		if(!check_rights(R_DEBUG))
@@ -698,7 +688,7 @@
 
 
 	if(href_list["rename"])
-		if(!check_rights(R_DEBUG))
+		if(!check_rights(R_VAREDIT))
 			return
 
 		var/mob/M = locate(href_list["rename"]) in GLOB.mob_list
@@ -720,7 +710,7 @@
 
 
 	else if(href_list["varnameedit"] && href_list["datumedit"])
-		if(!check_rights(R_DEBUG))
+		if(!check_rights(R_VAREDIT))
 			return
 
 		var/datum/D = locate(href_list["datumedit"])
@@ -746,7 +736,7 @@
 
 
 	else if(href_list["varnamechange"] && href_list["datumchange"])
-		if(!check_rights(R_DEBUG))
+		if(!check_rights(R_VAREDIT))
 			return
 
 		var/D = locate(href_list["datumchange"])
@@ -757,7 +747,7 @@
 
 
 	else if(href_list["varnamemass"] && href_list["datummass"])
-		if(!check_rights(R_DEBUG))
+		if(!check_rights(R_VAREDIT))
 			return
 
 		var/datum/D = locate(href_list["datummass"])
@@ -938,7 +928,7 @@
 							if(ID == chosen_id)
 								valid_id = TRUE
 						if(!valid_id)
-							to_chat(usr, "<span class='warning'>A reagent with that ID doesn't exist!</span>")
+							to_chat(usr, span_warning("A reagent with that ID doesn't exist!"))
 				if("Choose ID")
 					chosen_id = input(usr, "Choose a reagent to add.", "Add Reagent") as null|anything in reagent_options
 			if(chosen_id)
@@ -957,6 +947,10 @@
 		var/client/C = usr.client
 		C?.open_filter_editor(locate(href_list["filteredit"]))
 		return
+
+	if(href_list["modify_particles"] && check_rights(R_VAREDIT))
+		var/client/C = usr.client
+		C?.open_particle_editor(locate(href_list["modify_particles"]))
 
 	else if(href_list["rotatedatum"])
 		if(!check_rights(R_DEBUG))
@@ -1033,25 +1027,25 @@
 
 		var/newamt
 		switch(Text)
-			if("brute")
+			if(BRUTE)
 				L.adjustBruteLoss(amount)
 				newamt = L.getBruteLoss()
-			if("fire")
+			if(BURN)
 				L.adjustFireLoss(amount)
 				newamt = L.getFireLoss()
-			if("toxin")
+			if(TOX)
 				L.adjustToxLoss(amount)
 				newamt = L.getToxLoss()
-			if("oxygen")
+			if(OXY)
 				L.adjustOxyLoss(amount)
 				newamt = L.getOxyLoss()
 			if("brain")
 				L.adjustBrainLoss(amount)
 				newamt = L.getBrainLoss()
-			if("clone")
+			if(CLONE)
 				L.adjustCloneLoss(amount)
 				newamt = L.getCloneLoss()
-			if("stamina")
+			if(STAMINA)
 				L.adjustStaminaLoss(amount)
 				newamt = L.getStaminaLoss()
 
@@ -1059,7 +1053,7 @@
 			return
 
 		vv_update_display(L, Text, "[newamt]")
-		admin_ticket_log(L, "<span class='notice'>[key_name(usr)] dealt [amount] amount of [Text] damage to [key_name(L)]</span>")
+		admin_ticket_log(L, span_notice("[key_name(usr)] dealt [amount] amount of [Text] damage to [key_name(L)]"))
 		log_admin("[key_name(usr)] dealt [amount] amount of [Text] damage to [key_name(L)]")
 		message_admins("[ADMIN_TPMONTY(usr)] dealt [amount] amount of [Text] damage to [ADMIN_TPMONTY(L)]")
 
@@ -1077,7 +1071,7 @@
 			return
 
 		if(!istype(L))
-			to_chat(usr, "<span class='warning'>Mob doesn't exist anymore.</span>")
+			to_chat(usr, span_warning("Mob doesn't exist anymore."))
 			return
 
 		L.grant_language(new_language)
@@ -1095,7 +1089,7 @@
 			return
 
 		if(!length(L.language_holder.languages))
-			to_chat(usr, "<span class='warning'>This mob knows no languages.</span>")
+			to_chat(usr, span_warning("This mob knows no languages."))
 			return
 
 		var/rem_language = input("Please choose a language to remove.", "Language", null) as null|anything in L.language_holder.languages
@@ -1104,7 +1098,7 @@
 			return
 
 		if(!L)
-			to_chat(usr, "<span class='warning'>Mob doesn't exist anymore.</span>")
+			to_chat(usr, span_warning("Mob doesn't exist anymore."))
 			return
 
 		L.remove_language(rem_language)
@@ -1173,20 +1167,6 @@
 		log_admin("[key_name(usr)] has sent atom [A] to [AREACOORD(target)].")
 		message_admins("[ADMIN_TPMONTY(usr)] has sent atom [A] to [ADMIN_VERBOSEJMP(target)].")
 
-
-	else if(href_list["copyoutfit"])
-		if(!check_rights(R_SPAWN))
-			return
-		var/mob/living/carbon/human/H = locate(href_list["copyoutfit"])
-		if(!istype(H))
-			return
-
-		H.copy_outfit()
-
-		log_admin("[key_name(usr)] copied the outfit of [key_name(H)].")
-		message_admins("[ADMIN_TPMONTY(usr)] copied the outfit of [ADMIN_TPMONTY(H)].")
-
-
 	else if(href_list["dropeverything"])
 		if(!check_rights(R_DEBUG))
 			return
@@ -1221,12 +1201,12 @@
 
 
 	else if(href_list["playerpanel"])
-		if(!check_rights(R_DEBUG))
+		if(!check_rights(R_BAN))
 			return
 
 		var/mob/M = locate(href_list["playerpanel"])
 		if(!istype(M))
-			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
+			to_chat(usr, span_warning("Target is no longer valid."))
 			return
 
 		usr.client.holder.show_player_panel(M)

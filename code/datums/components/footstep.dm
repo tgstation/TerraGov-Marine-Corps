@@ -58,7 +58,7 @@
 		playsound(T, footstep_sounds, volume)
 		return
 	var/turf_footstep
-	if(locate(/obj/effect/alien/weeds) in T)
+	if(locate(/obj/alien/weeds) in T)
 		turf_footstep = FOOTSTEP_RESIN
 	else switch(footstep_type)
 		if(FOOTSTEP_XENO_MEDIUM)
@@ -77,18 +77,18 @@
 /datum/component/footstep/proc/play_humanstep()
 	SIGNAL_HANDLER
 	var/mob/living/carbon/human/H = parent
-	if (!CHECK_MULTIPLE_BITFIELDS(H.flags_pass, HOVERING))//We don't make step sounds when flying
+	if(CHECK_MULTIPLE_BITFIELDS(H.flags_pass, HOVERING))//We don't make step sounds when flying
 		return
 	var/turf/open/T = prepare_step()
 	if(!T)
 		return
-	if(locate(/obj/effect/alien/weeds) in T)
+	if(locate(/obj/alien/weeds) in T)
 		playsound(T, pick(GLOB.barefootstep[FOOTSTEP_RESIN][1]),
 			GLOB.barefootstep[FOOTSTEP_RESIN][2] * volume,
 			TRUE,
 			GLOB.barefootstep[FOOTSTEP_RESIN][3] + e_range)
 		return
-	if(H.shoes) //are we wearing shoes 
+	if(H.shoes) //are we wearing shoes
 		playsound(T, pick(GLOB.shoefootstep[T.shoefootstep][1]),
 			GLOB.shoefootstep[T.shoefootstep][2] * volume,
 			TRUE,

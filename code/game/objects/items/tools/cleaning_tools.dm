@@ -31,15 +31,15 @@
 	if(!proximity) return
 	if(istype(A, /turf) || istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/overlay) || istype(A, /obj/effect/rune))
 		if(reagents.total_volume < 1)
-			to_chat(user, "<span class='notice'>Your mop is dry!</span>")
+			to_chat(user, span_notice("Your mop is dry!"))
 			return
 
 		var/turf/T = get_turf(A)
-		user.visible_message("<span class='warning'>[user] begins to clean \the [T].</span>")
+		user.visible_message(span_warning("[user] begins to clean \the [T]."))
 
 		if(do_after(user, 40, TRUE, T, BUSY_ICON_GENERIC))
 			T.clean(src)
-			to_chat(user, "<span class='notice'>You have finished mopping!</span>")
+			to_chat(user, span_notice("You have finished mopping!"))
 
 
 /obj/item/tool/wet_sign
@@ -66,7 +66,7 @@
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("warned", "cautioned", "smashed")
-	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 15, "bio" = 10, "rad" = 0, "fire" = 20, "acid" = 20)
+	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 15, BIO = 10, FIRE = 20, ACID = 20)
 
 
 
@@ -82,8 +82,15 @@
 	throw_speed = 4
 	throw_range = 20
 
-/obj/item/tool/soap/Crossed(atom/movable/AM)
+/obj/item/tool/soap/Initialize()
 	. = ..()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
+/obj/item/tool/soap/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs) //TODO JUST USE THE SLIPPERY COMPONENT
+	SIGNAL_HANDLER
 	if (iscarbon(AM))
 		var/mob/living/carbon/C =AM
 		C.slip("soap", 3, 2)
@@ -99,17 +106,21 @@
 	//I couldn't feasibly  fix the overlay bugs caused by cleaning items we are wearing.
 	//So this is a workaround. This also makes more sense from an IC standpoint. ~Carn
 	if(user.client && (target in user.client.screen))
-		to_chat(user, "<span class='notice'>You need to take that [target.name] off before cleaning it.</span>")
+		to_chat(user, span_notice("You need to take that [target.name] off before cleaning it."))
+	else if(isturf(target))
+		to_chat(user, span_notice("You scrub \the [target.name]."))
+		var/turf/target_turf = target
+		target_turf.clean_turf()
 	else if(istype(target,/obj/effect/decal/cleanable))
-		to_chat(user, "<span class='notice'>You scrub \the [target.name] out.</span>")
+		to_chat(user, span_notice("You scrub \the [target.name] out."))
 		qdel(target)
 	else
-		to_chat(user, "<span class='notice'>You clean \the [target.name].</span>")
+		to_chat(user, span_notice("You clean \the [target.name]."))
 		target.clean_blood()
 
 /obj/item/tool/soap/attack(mob/target, mob/user)
 	if(target && user && ishuman(target) && ishuman(user) && !target.stat && !user.stat && user.zone_selected == "mouth" )
-		user.visible_message("<span class='warning'> \the [user] washes \the [target]'s mouth out with soap!</span>")
+		user.visible_message(span_warning(" \the [user] washes \the [target]'s mouth out with soap!"))
 		return
 	..()
 

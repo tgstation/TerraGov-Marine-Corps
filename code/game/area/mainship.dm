@@ -7,6 +7,10 @@
 	icon_state = "mainship"
 	ceiling = CEILING_METAL
 
+/area/mainship/command/bridge
+	name = "Bridge"
+	icon_state = "bridge"
+
 /area/mainship/command/cic
 	name = "Combat Information Center"
 	icon_state = "cic"
@@ -54,6 +58,10 @@
 	icon_state = "lowermonitoring"
 
 /area/mainship/engineering/lower_engine_monitoring/rebel
+
+/area/mainship/engineering/upper_engine_monitoring
+	name = "Engine Reactor Monitoring"
+	icon_state = "uppermonitoring"
 
 /area/mainship/engineering/lower_engineering
 	name = "Engineering Lower"
@@ -133,7 +141,7 @@
 	name = "Firing Range"
 	icon_state = "firingrange"
 
-/area/mainship/shipboard/firing_range/rebel 
+/area/mainship/shipboard/firing_range/rebel
 
 /area/mainship/shipboard/sensors
 	name = "Sensor Room"
@@ -175,6 +183,10 @@
 	name = "Umbilical Aft"
 	icon_state = "aft"
 
+/area/mainship/hallways/bow_hallway
+	name = "Hallway Bow"
+	icon_state = "bow"
+
 /area/mainship/hallways/port_umbilical/rebel
 
 /area/mainship/hallways/aft_hallway
@@ -187,7 +199,7 @@
 	name = "Hallway Stern"
 	icon_state = "stern"
 
-/area/mainship/hallways/stern_hallway/rebel 
+/area/mainship/hallways/stern_hallway/rebel
 
 /area/mainship/hallways/port_hallway
 	name = "Hallway Port"
@@ -268,6 +280,10 @@
 /area/mainship/living/officer_study
 	name = "Officer's Study"
 	icon_state = "officerstudy"
+
+/area/mainship/living/cafeteria
+	name = "Cafeteria"
+	icon_state = "food"
 
 /area/mainship/living/cafeteria_port
 	name = "Cafeteria Port"
@@ -391,6 +407,8 @@
 
 /area/mainship/squads/general/rebel
 
+/area/mainship/squads/general/som
+
 /area/mainship/squads/req
 	name = "Requisitions"
 	icon_state = "req"
@@ -401,8 +419,29 @@
 	name = "Powered"
 	icon_state = "selfdestruct"
 	requires_power = FALSE
-	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 
 /area/mainship/hallways/hangar/droppod
 	name = "Drop Pod Bay"
 	icon_state = "storage"
+
+/area/mainship/living/evacuation
+	name = "Evacuation"
+	icon_state = "departures"
+
+/area/mainship/medical/lounge
+	name = "Medical Lounge"
+	icon_state = "medical"
+
+//combat patrol base
+
+/area/mainship/patrol_base
+	name = "TGMC Combat Patrol Base"
+	icon_state = "req"
+	requires_power = FALSE
+
+/area/mainship/patrol_base/som
+	name = "SOM Combat Patrol Base"
+
+/area/mainship/patrol_base/telecomms
+	name = "Telecommunications"
+	icon_state = "tcomms"

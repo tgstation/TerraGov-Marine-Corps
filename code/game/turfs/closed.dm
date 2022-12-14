@@ -5,14 +5,20 @@
 	density = TRUE
 	opacity = TRUE
 
-
-
-
+///Base state, for icon_state updates.
+	var/walltype
+	///The neighbours
+	var/junctiontype = NONE
+	///used for plasmacutter deconstruction
+	var/open_turf_type = /turf/open/floor/plating
 
 /turf/closed/mineral
 	name = "rock"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock"
+	smoothing_behavior = NONE
+	smoothing_groups = NONE
+	open_turf_type = /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor
 
 /turf/closed/mineral/Initialize(mapload)
 	. = ..()
@@ -31,23 +37,65 @@
 					rock_side.pixel_x -= world.icon_size
 			overlays += rock_side
 
+/turf/closed/mineral/smooth
+	name = "rock"
+	icon = 'icons/turf/walls/lvwall.dmi'
+	icon_state = "lvwall-0-0-0-0"
+	walltype = "lvwall"
+	smoothing_behavior = DIAGONAL_SMOOTHING
+	smoothing_groups = SMOOTH_MINERAL_STRUCTURES
+
+/turf/closed/mineral/smooth/outdoor
+	open_turf_type = /turf/open/floor/plating/ground/mars/random/dirt
+
+/turf/closed/mineral/smooth/indestructible
+	resistance_flags = RESIST_ALL
+
+/turf/closed/mineral/smooth/snowrock
+	icon = 'icons/turf/walls/snowwall.dmi'
+	icon_state = "snowwall-0-0-0-0"
+	walltype = "snowwall"
+
+/turf/closed/mineral/smooth/snowrock/indestructible
+	resistance_flags = RESIST_ALL
+
+/turf/closed/mineral/smooth/bigred
+	icon = 'icons/turf/walls/redwall.dmi'
+	icon_state = "red_wall-0-0-0-0"
+	walltype = "red_wall"
+
+/turf/closed/mineral/smooth/bigred/indestructible
+	resistance_flags = RESIST_ALL
+
 /turf/closed/mineral/bigred
 	name = "rock"
+	icon = 'icons/turf/walls.dmi'
 	icon_state = "redrock"
+	smoothing_behavior = NO_SMOOTHING //big red does not currently have its own 3/4ths cave tileset, so it uses the old one without smoothing
+	smoothing_groups = NONE
 
+/turf/closed/mineral/indestructible
+	name = "impenetrable rock"
+	icon = 'icons/turf/walls.dmi'
+	icon_state = "rock_dark"
+	smoothing_behavior = DIAGONAL_SMOOTHING
+	smoothing_groups = SMOOTH_MINERAL_STRUCTURES
+	resistance_flags = RESIST_ALL
 
 //Ground map dense jungle
 /turf/closed/gm
-	name = "dense jungle"
-	icon = 'icons/turf/ground_map.dmi'
-	icon_state = "wall2"
+	icon = 'icons/turf/walls/jungle.dmi'
+	icon_state = "jungle-0-0-0-0"
 	desc = "Some thick jungle."
+	smoothing_behavior = DIAGONAL_SMOOTHING
+	smoothing_groups = SMOOTH_FLORA
+	walltype = "jungle"
+	open_turf_type = /turf/open/ground/jungle/clear
 
 /turf/closed/gm/tree
 	name = "dense jungle trees"
 	icon_state = "jungletree"
 	desc = "Some thick jungle trees."
-
 
 	//Not yet
 /turf/closed/gm/ex_act(severity)
@@ -55,36 +103,36 @@
 		if(EXPLODE_DEVASTATE)
 			ChangeTurf(/turf/open/ground/grass)
 
-
 /turf/closed/gm/dense
 	name = "dense jungle wall"
-	icon = 'icons/turf/ground_map.dmi'
-	icon_state = "wall2"
-
-/turf/closed/gm/dense/Initialize()
-	. = ..()
-	if(rand(0,15) == 0)
-		icon_state = "wall1"
-	else if (rand(0,20) == 0)
-		icon_state = "wall3"
-	else
-		icon_state = "wall2"
-
+	resistance_flags = PLASMACUTTER_IMMUNE
 
 //desertdam rock
 /turf/closed/desertdamrockwall
 	name = "rockwall"
-	icon = 'icons/turf/desertdam_map.dmi'
-	icon_state = "cavewall1"
+	icon = 'icons/turf/walls/cave.dmi'
+	icon_state = "cave_wall-0-0-0-0"
+	color = "#c9a37b"
+	walltype = "cave_wall"
+	smoothing_behavior = DIAGONAL_SMOOTHING
+	smoothing_groups = SMOOTH_GENERAL_STRUCTURES
+	open_turf_type = /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor
 
 /turf/closed/desertdamrockwall/invincible
 	resistance_flags = RESIST_ALL
+
+/turf/closed/desertdamrockwall/invincible/perimeter
+	name = "wall"
+	icon_state = "pwall"
+	icon = 'icons/turf/shuttle.dmi'
 
 //lava rock
 /turf/closed/brock
 	name = "basalt rock"
 	icon = 'icons/turf/lava.dmi'
 	icon_state = "brock"
+	open_turf_type = /turf/open/lavaland/basalt
+
 
 /turf/closed/brock/Initialize(mapload)
 	. = ..()
@@ -110,6 +158,7 @@
 	icon = 'icons/turf/icewall.dmi'
 	icon_state = "Single"
 	desc = "It is very thick."
+	open_turf_type = /turf/open/floor/plating/ground/ice
 
 /turf/closed/ice/single
 	icon_state = "Single"
@@ -160,27 +209,18 @@
 
 	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
 		var/obj/item/tool/pickaxe/plasmacutter/P = I
-		if(!ismineralturf(src) && !istype(src, /turf/closed/gm/dense) && !istype(src, /turf/closed/glass) && !istype(src, /turf/closed/desertdamrockwall) && !istype(src, /turf/closed/brock))
-			to_chat(user, "<span class='warning'>[P] can't cut through this!</span>")
+		if(CHECK_BITFIELD(resistance_flags, RESIST_ALL) || CHECK_BITFIELD(resistance_flags, PLASMACUTTER_IMMUNE))
+			to_chat(user, span_warning("[P] can't cut through this!"))
 			return
-		if(!P.start_cut(user, name, src))
+		else if(!P.start_cut(user, name, src))
 			return
-
-		if(!do_after(user, PLASMACUTTER_CUT_DELAY, TRUE, src, BUSY_ICON_FRIENDLY))
+		else if(!do_after(user, PLASMACUTTER_CUT_DELAY, TRUE, src, BUSY_ICON_FRIENDLY))
 			return
+		else
+			P.cut_apart(user, name, src) //purely a cosmetic effect
 
-		P.cut_apart(user, name, src)
-
-		if(ismineralturf(src) || istype(src, /turf/closed/desertdamrockwall))
-			ChangeTurf(/turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor)
-		else if(istype(src, /turf/closed/gm/dense))
-			ChangeTurf(/turf/open/ground/jungle/clear)
-		else if(istype(src, /turf/closed/brock))
-			var/choice = rand(1,50)
-			if(choice == 50)
-				ChangeTurf(/turf/open/lavaland/basalt/glowing)
-			else
-				ChangeTurf(/turf/open/lavaland/basalt)
+		//change targetted turf to a new one to simulate deconstruction
+		ChangeTurf(open_turf_type)
 
 //Ice Thin Wall
 /turf/closed/ice/thin
@@ -208,48 +248,14 @@
 /turf/closed/ice/thin/intersection
 	icon_state = "Intersection"
 
-/turf/closed/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
-		var/obj/item/tool/pickaxe/plasmacutter/P = I
-		if(!ismineralturf(src) && !istype(src, /turf/closed/gm/dense) && !istype(src, /turf/closed/ice) && !istype(src, /turf/closed/desertdamrockwall) && !istype(src, /turf/closed/brock))
-			to_chat(user, "<span class='warning'>[P] can't cut through this!</span>")
-			return
-		if(!P.start_cut(user, name, src))
-			return
-
-		if(!do_after(user, PLASMACUTTER_CUT_DELAY, TRUE, src, BUSY_ICON_FRIENDLY))
-			return
-
-		P.cut_apart(user, name, src)
-
-		if(ismineralturf(src) || istype(src, /turf/closed/desertdamrockwall))
-			ChangeTurf(/turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor)
-		else if(istype(src, /turf/closed/gm/dense))
-			ChangeTurf(/turf/open/ground/jungle/clear)
-		else if(istype(src, /turf/closed/brock))
-			var/choice = rand(1,50)
-			if(choice == 50)
-				ChangeTurf(/turf/open/lavaland/basalt/glowing)
-			else
-				ChangeTurf(/turf/open/lavaland/basalt)
-		else
-			ChangeTurf(/turf/open/floor/plating/ground/ice)
-
-
-//Ice Secret Wall
-/turf/closed/ice/secret
-	icon_state = "ice_wall_0"
-	desc = "There is something inside..."
-
-
 //ROCK WALLS------------------------------//
 
 //Icy Rock
 /turf/closed/ice_rock
 	name = "Icy rock"
 	icon = 'icons/turf/rockwall.dmi'
+	resistance_flags = PLASMACUTTER_IMMUNE
+	open_turf_type = /turf/open/floor/plating/ground/ice
 
 /turf/closed/ice_rock/single
 	icon_state = "single"
@@ -308,6 +314,8 @@
 	icon_state = "wall1"
 	icon = 'icons/turf/shuttle.dmi'
 	plane = FLOOR_PLANE
+	smoothing_behavior = NO_SMOOTHING
+	resistance_flags = PLASMACUTTER_IMMUNE
 
 /turf/closed/shuttle/re_corner/notdense
 	icon_state = "re_cornergrass"
@@ -361,6 +369,11 @@
 	icon_state = "stan4"
 	plane = GAME_PLANE
 
+/turf/closed/shuttle/ert/engines/left
+	icon_state = "ertshuttle_exterior_engine_left"
+
+/turf/closed/shuttle/ert/engines/right
+	icon_state = "ertshuttle_exterior_engine_right"
 
 /turf/closed/shuttle/dropship1
 	name = "\improper Alamo"
@@ -370,6 +383,77 @@
 
 /turf/closed/shuttle/dropship1/transparent
 	opacity = FALSE
+
+/turf/closed/shuttle/dropship1/edge
+	icon_state = "shuttle_interior_edge"
+
+/turf/closed/shuttle/dropship1/edge/alt
+	icon_state = "shuttle_interior_edgealt"
+
+/turf/closed/shuttle/dropship1/aisle
+	icon_state = "shuttle_interior_aisle"
+
+/turf/closed/shuttle/dropship1/door
+	icon_state = "shuttle_rear_door"
+
+/turf/closed/shuttle/dropship1/window
+	icon_state = "shuttle_window_glass"
+	opacity = FALSE
+
+/turf/closed/shuttle/dropship1/panel
+	icon_state = "shuttle_interior_panel"
+
+/turf/closed/shuttle/dropship1/engineone
+	icon_state = "shuttle_interior_backengine"
+
+/turf/closed/shuttle/dropship1/enginetwo
+	icon_state = "shuttle_interior_backengine2"
+
+/turf/closed/shuttle/dropship1/enginethree
+	icon_state = "shuttle_interior_backengine3"
+
+/turf/closed/shuttle/dropship1/enginefour
+	icon_state = "shuttle_interior_backengine4"
+
+/turf/closed/shuttle/dropship1/enginefive
+	icon_state = "shuttle_interior_backengine5"
+
+/turf/closed/shuttle/dropship1/fins
+	icon_state = "shuttle_exterior_fins"
+
+/turf/closed/shuttle/dropship1/panels
+	icon_state = "shuttle_exterior_panels"
+
+/turf/closed/shuttle/dropship1/corners
+	icon_state = "shuttle_exterior_corners"
+
+/turf/closed/shuttle/dropship1/front
+	icon_state = "shuttle_exterior_front"
+
+/turf/closed/shuttle/dropship1/wall
+	icon_state = "shuttle_interior_wall"
+
+/turf/closed/shuttle/dropship1/interiorwindow
+	icon_state = "shuttle_interior_inwards"
+
+/turf/closed/shuttle/dropship1/interiormisc
+	icon_state = "shuttle_interior_threeside"
+
+/turf/closed/shuttle/dropship1/cornersalt
+	icon_state = "shuttle_interior_corneralt"
+
+/turf/closed/shuttle/dropship1/cornersalt2
+	icon_state = "shuttle_interior_alt2"
+
+/turf/closed/shuttle/dropship1/finleft
+	icon_state = "shuttle_exterior_finnleft"
+
+/turf/closed/shuttle/dropship1/finright
+	icon_state = "shuttle_exterior_finnright"
+
+/turf/closed/shuttle/dropship1/finback
+	icon_state = "shuttle_exterior_finback"
+
 
 /turf/closed/shuttle/dropship3
 	name = "\improper Triumph"
@@ -389,6 +473,129 @@
 /turf/closed/shuttle/dropship2/transparent
 	opacity = FALSE
 
+/turf/closed/shuttle/dropship2/edge
+	icon_state = "shuttle_interior_edge"
+
+/turf/closed/shuttle/dropship2/edge/alt
+	icon_state = "shuttle_interior_edgealt"
+
+/turf/closed/shuttle/dropship2/aisle
+	icon_state = "shuttle_interior_aisle"
+
+/turf/closed/shuttle/dropship2/door
+	icon_state = "shuttle_rear_door"
+
+/turf/closed/shuttle/dropship2/window
+	icon_state = "shuttle_window_glass"
+	opacity = FALSE
+
+/turf/closed/shuttle/dropship2/panel
+	icon_state = "shuttle_interior_panel"
+
+/turf/closed/shuttle/dropship2/engineone
+	icon_state = "shuttle_interior_backengine"
+
+/turf/closed/shuttle/dropship2/engineone/alt
+	icon_state = "shuttle_engine_alt"
+
+/turf/closed/shuttle/dropship2/enginetwo
+	icon_state = "shuttle_interior_backengine2"
+
+/turf/closed/shuttle/dropship2/enginethree
+	icon_state = "shuttle_interior_backengine3"
+
+/turf/closed/shuttle/dropship2/enginefour
+	icon_state = "shuttle_interior_backengine4"
+
+/turf/closed/shuttle/dropship2/enginefive
+	icon_state = "shuttle_interior_backengine5"
+
+/turf/closed/shuttle/dropship2/engine_sidealt
+	icon_state = "shuttle_side_engine_alt"
+
+/turf/closed/shuttle/dropship2/fins
+	icon_state = "shuttle_exterior_fins"
+
+/turf/closed/shuttle/dropship2/panels
+	icon_state = "shuttle_exterior_panels"
+
+/turf/closed/shuttle/dropship2/corners
+	icon_state = "shuttle_exterior_corners"
+
+/turf/closed/shuttle/dropship2/front
+	icon_state = "shuttle_exterior_front"
+
+/turf/closed/shuttle/dropship2/wall
+	icon_state = "shuttle_interior_wall"
+
+/turf/closed/shuttle/dropship2/walltwo
+	icon_state = "shuttle_wall_left"
+
+/turf/closed/shuttle/dropship2/walltwo/alt
+	icon_state = "shuttle_wall_left_alt"
+
+/turf/closed/shuttle/dropship2/wallthree
+	icon_state = "shuttle_wall_right"
+
+/turf/closed/shuttle/dropship2/wallthree/alt
+	icon_state = "shuttle_wall_right_alt"
+
+/turf/closed/shuttle/dropship2/interiorwindow
+	icon_state = "shuttle_interior_inwards"
+
+/turf/closed/shuttle/dropship2/singlewindow
+	icon_state = "shuttle_single_window"
+
+/turf/closed/shuttle/dropship2/interiormisc
+	icon_state = "shuttle_interior_threeside"
+
+/turf/closed/shuttle/dropship2/cornersalt
+	icon_state = "shuttle_interior_corneralt"
+
+/turf/closed/shuttle/dropship2/cornersalt2
+	icon_state = "shuttle_interior_alt2"
+
+/turf/closed/shuttle/dropship2/finleft
+	icon_state = "shuttle_exterior_finnleft"
+
+/turf/closed/shuttle/dropship2/finright
+	icon_state = "shuttle_exterior_finnright"
+
+/turf/closed/shuttle/dropship2/finback
+	icon_state = "shuttle_exterior_finback"
+
+/turf/closed/shuttle/dropship2/rearcorner
+	icon_state = "shuttle_rearcorner"
+
+/turf/closed/shuttle/dropship2/glassone
+	icon_state = "shuttle_glass1"
+
+/turf/closed/shuttle/dropship2/glasstwo
+	icon_state = "shuttle_glass2"
+
+/turf/closed/shuttle/dropship2/glassthree
+	icon_state = "shuttle_glass3"
+
+/turf/closed/shuttle/dropship2/glassfour
+	icon_state = "shuttle_glass4"
+
+/turf/closed/shuttle/dropship2/glassfive
+	icon_state = "shuttle_glass5"
+
+/turf/closed/shuttle/dropship2/glasssix
+	icon_state = "shuttle_glass6"
+
+/turf/closed/shuttle/dropship2/rearcorner/alt
+	icon_state = "shuttle_rearcorner_alt"
+
+/turf/closed/shuttle/dropship2/transparent
+	opacity = FALSE
+
+/turf/closed/shuttle/tadpole
+	name = "\improper Tadpole"
+	icon = 'icons/turf/dropship2.dmi'
+	icon_state = "1"
+	plane = GAME_PLANE
 
 /turf/closed/shuttle/escapepod
 	name = "wall"
@@ -396,6 +603,11 @@
 	icon_state = "wall0"
 	plane = GAME_PLANE
 
+/turf/closed/shuttle/escapeshuttle
+	icon_state = "swall0"
+	smoothing_behavior = CARDINAL_SMOOTHING
+	smoothing_groups = SMOOTH_ESCAPESHUTTLE
+	walltype = "swall"
 
 /turf/closed/banish_space //Brazil
 	plane = PLANE_SPACE
@@ -405,4 +617,3 @@
 	icon_state = "0"
 	can_bloody = FALSE
 	light_power = 0.25
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED

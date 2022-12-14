@@ -1,0 +1,1698 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"al" = (
+/turf/open/floor/wood/broken/three,
+/area/bigredv2/outside/general_offices)
+"am" = (
+/obj/item/shard,
+/turf/open/floor/plating/dmg1,
+/area/bigredv2/outside/hydroponics)
+"au" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating,
+/area/bigredv2/outside/dorms)
+"aE" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/ne)
+"aV" = (
+/turf/open/floor/wood/broken/four,
+/area/bigredv2/outside/general_offices)
+"bd" = (
+/obj/machinery/atmospherics/pipe/manifold/green/hidden,
+/obj/effect/landmark/weed_node,
+/turf/open/floor,
+/area/bigredv2/outside/general_offices)
+"bl" = (
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 8
+	},
+/area/bigredv2/caves/northeast)
+"bq" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
+/turf/open/floor/plating/dmg1,
+/area/bigredv2/outside/general_offices)
+"bG" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/ne)
+"cx" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/rack,
+/obj/item/stack/sheet/mineral/uranium{
+	amount = 50
+	},
+/turf/open/floor/engine/atmosdark,
+/area/bigredv2/outside/general_offices)
+"cF" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/weed_node,
+/turf/open/floor,
+/area/bigredv2/outside/general_offices)
+"cN" = (
+/turf/closed/shuttle/dropship2/corners,
+/area/bigredv2/outside/general_offices)
+"cW" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/dmg3,
+/area/bigredv2/outside/general_offices)
+"cZ" = (
+/obj/structure/computerframe,
+/turf/open/shuttle/dropship/floor,
+/area/bigredv2/outside/general_offices)
+"dg" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/ne)
+"dE" = (
+/turf/closed/wall,
+/area/bigredv2/outside/bar)
+"dJ" = (
+/turf/open/floor,
+/area/bigredv2/outside/hydroponics)
+"dV" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4;
+	layer = 2.4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/dmg1,
+/area/bigredv2/outside/ne)
+"ef" = (
+/turf/open/shuttle/dropship/six,
+/area/bigredv2/outside/general_offices)
+"ej" = (
+/turf/open/floor/plating/dmg3,
+/area/bigredv2/outside/ne)
+"er" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/dmg1,
+/area/bigredv2/outside/general_offices)
+"ew" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/dmg1,
+/area/bigredv2/outside/ne)
+"ex" = (
+/obj/item/stack/rods,
+/turf/open/floor/plating/dmg3,
+/area/bigredv2/outside/hydroponics)
+"eA" = (
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/bigredv2/caves/northeast)
+"eP" = (
+/obj/structure/window/framed/colony,
+/obj/machinery/door/poddoor/shutters/mainship{
+	dir = 2;
+	id = "Dormitories";
+	name = "\improper Dormitories Shutters"
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/general_offices)
+"eX" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/turf/open/floor,
+/area/bigredv2/outside/general_offices)
+"fa" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor,
+/area/bigredv2/outside/general_offices)
+"fb" = (
+/obj/effect/decal/cleanable/blood/six{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/dmg1,
+/area/bigredv2/outside/general_offices)
+"fd" = (
+/obj/structure/bed/chair/dropship/passenger,
+/turf/open/shuttle/dropship/floor,
+/area/bigredv2/outside/general_offices)
+"fl" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/caves/northeast)
+"fM" = (
+/obj/machinery/vending/snack,
+/turf/open/floor,
+/area/bigredv2/outside/general_offices)
+"gt" = (
+/obj/effect/spawner/gibspawner/human,
+/turf/open/floor/plating/dmg1,
+/area/bigredv2/outside/general_offices)
+"gK" = (
+/turf/closed/wall,
+/area/bigredv2/outside/dorms)
+"gQ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/stack/rods,
+/turf/open/floor/plating/dmg1,
+/area/bigredv2/outside/general_offices)
+"gR" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/caves/northeast)
+"gW" = (
+/obj/item/shard,
+/obj/structure/window_frame/colony/reinforced,
+/turf/open/floor/plating,
+/area/bigredv2/outside/general_offices)
+"gX" = (
+/obj/item/stack/sheet/metal,
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/open/floor/plating,
+/area/bigredv2/caves/northeast)
+"hH" = (
+/turf/open/shuttle/dropship/seven,
+/area/bigredv2/outside/general_offices)
+"hM" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/dmg3,
+/area/bigredv2/outside/general_offices)
+"hU" = (
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/n)
+"ib" = (
+/obj/structure/rack,
+/obj/item/stack/sheet/mineral/plastic,
+/obj/item/stack/sheet/mineral/plastic,
+/obj/item/stack/sheet/mineral/plastic,
+/turf/open/floor/engine/atmosdark,
+/area/bigredv2/outside/general_offices)
+"ig" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/bigredv2/outside/dorms)
+"iE" = (
+/obj/item/stack/sheet/metal,
+/turf/open/floor/plating/dmg3,
+/area/bigredv2/outside/hydroponics)
+"iV" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/dmg1,
+/area/bigredv2/outside/general_offices)
+"jj" = (
+/turf/open/floor/tile/damaged/thermite,
+/area/bigredv2/outside/general_offices)
+"js" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor,
+/area/bigredv2/outside/general_offices)
+"jx" = (
+/turf/open/floor/plating/ground/mars/dirttosand,
+/area/bigredv2/outside/ne)
+"jQ" = (
+/obj/structure/rack,
+/obj/item/restraints/handcuffs,
+/turf/open/shuttle/dropship/floor,
+/area/bigredv2/outside/general_offices)
+"kc" = (
+/obj/structure/bed,
+/turf/open/floor/wood,
+/area/bigredv2/outside/general_offices)
+"kv" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/closed/shuttle/dropship2/corners,
+/area/bigredv2/caves/northeast)
+"kx" = (
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 4
+	},
+/turf/open/floor,
+/area/bigredv2/outside/general_offices)
+"kE" = (
+/obj/machinery/light,
+/obj/effect/ai_node,
+/turf/open/floor/plating/dmg1,
+/area/bigredv2/outside/general_offices)
+"kO" = (
+/obj/effect/spawner/gibspawner/human,
+/turf/open/floor/plating/dmg3,
+/area/bigredv2/outside/hydroponics)
+"kU" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	dir = 4;
+	name = "\improper Dormitories Tool Storage"
+	},
+/turf/open/floor,
+/area/bigredv2/outside/general_offices)
+"le" = (
+/obj/effect/spawner/gibspawner/human,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/ai_node,
+/turf/open/shuttle/dropship/five,
+/area/bigredv2/outside/general_offices)
+"lt" = (
+/obj/effect/spawner/gibspawner/human,
+/turf/open/floor/wood/broken/six,
+/area/bigredv2/outside/general_offices)
+"mc" = (
+/turf/closed/shuttle/dropship2/walltwo,
+/area/bigredv2/outside/general_offices)
+"mg" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/engine/atmosdark,
+/area/bigredv2/outside/general_offices)
+"mm" = (
+/turf/closed/shuttle/dropship2/corners{
+	dir = 1
+	},
+/area/bigredv2/outside/general_offices)
+"mz" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/bigredv2/caves/northeast)
+"mN" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/dmg3,
+/area/bigredv2/outside/hydroponics)
+"nc" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/shuttle/dropship/floor,
+/area/bigredv2/outside/general_offices)
+"nj" = (
+/obj/structure/bed,
+/turf/open/floor/wood/broken/six,
+/area/bigredv2/outside/general_offices)
+"nr" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/scorched,
+/area/bigredv2/outside/general_offices)
+"oc" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/closed/shuttle/dropship2/corners{
+	dir = 1
+	},
+/area/bigredv2/caves/northeast)
+"oC" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/closed/shuttle/dropship2/singlewindow{
+	dir = 1
+	},
+/area/bigredv2/caves/northeast)
+"oH" = (
+/obj/item/stack/sheet/wood,
+/turf/open/floor/wood/broken/two,
+/area/bigredv2/outside/general_offices)
+"oI" = (
+/obj/effect/decal/cleanable/blood/six{
+	dir = 1
+	},
+/turf/open/shuttle/dropship/three,
+/area/bigredv2/outside/general_offices)
+"oU" = (
+/turf/closed/shuttle/ert/engines/left,
+/area/bigredv2/outside/general_offices)
+"ph" = (
+/obj/structure/girder,
+/turf/open/floor/plating/dmg1,
+/area/bigredv2/outside/general_offices)
+"pr" = (
+/turf/open/floor/plating,
+/area/bigredv2/outside/general_offices)
+"pv" = (
+/obj/item/stack/rods,
+/obj/effect/ai_node,
+/turf/open/floor/plating/dmg1,
+/area/bigredv2/outside/general_offices)
+"py" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/dorms)
+"pR" = (
+/obj/machinery/washing_machine,
+/obj/item/clothing/under/darkred,
+/turf/open/floor/freezer,
+/area/bigredv2/outside/general_offices)
+"qa" = (
+/turf/open/shuttle/dropship/four,
+/area/bigredv2/outside/general_offices)
+"qd" = (
+/obj/structure/prop/mainship/suit_storage_prop,
+/turf/open/floor/plating/dmg1,
+/area/bigredv2/outside/general_offices)
+"qg" = (
+/obj/structure/table,
+/turf/open/floor/plating/dmg1,
+/area/bigredv2/outside/general_offices)
+"qs" = (
+/turf/closed/shuttle/ert/engines/left{
+	dir = 1
+	},
+/area/bigredv2/outside/general_offices)
+"qu" = (
+/obj/structure/window/framed/colony,
+/obj/item/shard,
+/turf/open/floor/plating,
+/area/bigredv2/outside/hydroponics)
+"qy" = (
+/turf/closed/mineral/smooth/bigred,
+/area/bigredv2/caves/rock)
+"qY" = (
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 10
+	},
+/area/bigredv2/outside/ne)
+"rc" = (
+/obj/structure/girder,
+/turf/open/floor/tile/damaged/thermite,
+/area/bigredv2/outside/general_offices)
+"rV" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/rack,
+/obj/item/stack/sheet/mineral/silver,
+/obj/item/stack/sheet/mineral/silver{
+	amount = 20
+	},
+/obj/item/stack/sheet/mineral/phoron{
+	amount = 25
+	},
+/turf/open/floor/engine/atmosdark,
+/area/bigredv2/outside/general_offices)
+"sl" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/ground/mars/dirttosand,
+/area/bigredv2/outside/ne)
+"sm" = (
+/obj/structure/rack,
+/obj/item/stack/sheet/mineral/phoron{
+	amount = 25
+	},
+/turf/open/floor/engine/atmosdark,
+/area/bigredv2/outside/general_offices)
+"sn" = (
+/obj/machinery/vending/engivend,
+/turf/open/floor/plating/dmg1,
+/area/bigredv2/outside/general_offices)
+"ss" = (
+/obj/structure/rack,
+/obj/item/stack/sheet/mineral/diamond,
+/turf/open/floor/engine/atmosdark,
+/area/bigredv2/outside/general_offices)
+"su" = (
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/general_offices)
+"sP" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/gibspawner/human,
+/turf/open/floor/plating/dmg1,
+/area/bigredv2/outside/general_offices)
+"sT" = (
+/turf/open/floor/plating,
+/area/bigredv2/outside/bar)
+"sV" = (
+/obj/structure/table,
+/turf/open/floor/wood/broken/five,
+/area/bigredv2/outside/general_offices)
+"tf" = (
+/turf/closed/shuttle/dropship2/cornersalt,
+/area/bigredv2/outside/general_offices)
+"tI" = (
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/bigredv2/outside/general_offices)
+"ul" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/caves/northeast)
+"uo" = (
+/obj/effect/ai_node,
+/turf/open/floor/freezer,
+/area/bigredv2/outside/general_offices)
+"uy" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/bigredv2/outside/general_offices)
+"uS" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/ne)
+"vD" = (
+/turf/closed/shuttle/ert/engines/right,
+/area/bigredv2/outside/general_offices)
+"vK" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/ne)
+"wj" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor,
+/area/bigredv2/outside/general_offices)
+"wm" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/six{
+	dir = 1
+	},
+/turf/open/floor/plating/dmg1,
+/area/bigredv2/outside/general_offices)
+"wq" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4;
+	layer = 2.4
+	},
+/turf/open/floor/plating/scorched,
+/area/bigredv2/outside/ne)
+"ww" = (
+/obj/structure/table,
+/turf/open/floor/wood,
+/area/bigredv2/outside/general_offices)
+"wA" = (
+/obj/effect/decal/cleanable/blood/six{
+	dir = 1
+	},
+/turf/open/floor/plating/dmg3,
+/area/bigredv2/outside/general_offices)
+"wH" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/scorched,
+/area/bigredv2/outside/general_offices)
+"wL" = (
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/caves/northeast)
+"xf" = (
+/obj/structure/closet/l3closet,
+/turf/open/floor/plating/dmg1,
+/area/bigredv2/outside/general_offices)
+"ym" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor,
+/area/bigredv2/outside/general_offices)
+"yC" = (
+/obj/structure/table,
+/obj/item/tool/shovel/spade,
+/turf/open/floor,
+/area/bigredv2/outside/hydroponics)
+"zt" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/oil,
+/turf/open/floor/plating/dmg1,
+/area/bigredv2/outside/general_offices)
+"zI" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/ne)
+"zM" = (
+/turf/open/shuttle/dropship/five,
+/area/bigredv2/outside/general_offices)
+"zO" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/ne)
+"zP" = (
+/obj/structure/rack,
+/obj/item/stack/sheet/mineral/diamond,
+/obj/item/stack/sheet/plasteel{
+	amount = 30;
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/turf/open/floor/engine/atmosdark,
+/area/bigredv2/outside/general_offices)
+"zU" = (
+/obj/item/stack/rods,
+/turf/open/floor/plating/scorched,
+/area/bigredv2/outside/general_offices)
+"Ap" = (
+/obj/machinery/portable_atmospherics/hydroponics,
+/turf/open/floor/tile/green/whitegreenfull,
+/area/bigredv2/outside/hydroponics)
+"AE" = (
+/obj/machinery/door/airlock/mainship/medical/glass{
+	dir = 4;
+	name = "\improper Dormitories Lavatory"
+	},
+/turf/open/floor/freezer,
+/area/bigredv2/outside/general_offices)
+"AN" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/tool,
+/turf/open/floor,
+/area/bigredv2/outside/general_offices)
+"AT" = (
+/obj/effect/decal/cleanable/blood/six{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/shuttle/dropship/three,
+/area/bigredv2/outside/general_offices)
+"Bj" = (
+/turf/open/floor/plating,
+/area/bigredv2/outside/dorms)
+"Bq" = (
+/obj/machinery/light,
+/turf/open/floor/plating/dmg3,
+/area/bigredv2/outside/general_offices)
+"By" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/landmark/corpsespawner/PMC,
+/turf/open/shuttle/dropship/three,
+/area/bigredv2/outside/general_offices)
+"BG" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/tool,
+/turf/open/floor,
+/area/bigredv2/outside/general_offices)
+"BI" = (
+/obj/machinery/door/airlock/mainship/generic,
+/turf/open/shuttle/dropship/three,
+/area/bigredv2/outside/general_offices)
+"Ca" = (
+/obj/effect/landmark/corpsespawner/PMC,
+/turf/open/shuttle/dropship/floor,
+/area/bigredv2/outside/general_offices)
+"Ct" = (
+/obj/machinery/washing_machine,
+/obj/item/clothing/under/brown,
+/turf/open/floor/freezer,
+/area/bigredv2/outside/general_offices)
+"CJ" = (
+/turf/closed/shuttle/dropship2/interiormisc{
+	dir = 4
+	},
+/area/bigredv2/outside/general_offices)
+"CV" = (
+/turf/open/floor/tile/damaged/thermite,
+/area/bigredv2/outside/hydroponics)
+"Dp" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/remains,
+/turf/open/shuttle/dropship/floor,
+/area/bigredv2/outside/general_offices)
+"Dr" = (
+/turf/open/floor/wood,
+/area/bigredv2/outside/general_offices)
+"DG" = (
+/obj/item/stack/rods,
+/turf/open/floor/plating/dmg3,
+/area/bigredv2/outside/general_offices)
+"DU" = (
+/turf/open/floor/plating/dmg3,
+/area/bigredv2/outside/general_offices)
+"Ea" = (
+/obj/item/stack/sheet/metal,
+/turf/open/floor/plating/dmg3,
+/area/bigredv2/outside/ne)
+"Fb" = (
+/obj/structure/rack,
+/obj/item/stack/sheet/mineral/gold,
+/turf/open/floor/engine/atmosdark,
+/area/bigredv2/outside/general_offices)
+"Fh" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/bigredv2/outside/general_offices)
+"Fn" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/six{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/ne)
+"Fu" = (
+/turf/open/floor/plating/scorched,
+/area/bigredv2/outside/general_offices)
+"Fz" = (
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/ne)
+"FI" = (
+/obj/machinery/vending/tool,
+/turf/open/floor/plating/dmg1,
+/area/bigredv2/outside/general_offices)
+"FN" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/turf/open/shuttle/dropship/floor,
+/area/bigredv2/outside/general_offices)
+"FR" = (
+/turf/closed/shuttle/ert/engines/left{
+	dir = 4
+	},
+/area/bigredv2/outside/general_offices)
+"FW" = (
+/turf/open/shuttle/dropship/three,
+/area/bigredv2/outside/general_offices)
+"Gw" = (
+/obj/structure/table,
+/obj/item/paper/hydroponics,
+/turf/open/floor,
+/area/bigredv2/outside/hydroponics)
+"GJ" = (
+/obj/structure/table,
+/obj/structure/bedsheetbin,
+/turf/open/floor/plating,
+/area/bigredv2/outside/general_offices)
+"GU" = (
+/obj/structure/bed/chair/dropship/passenger,
+/obj/effect/landmark/corpsespawner/PMC,
+/turf/open/shuttle/dropship/floor,
+/area/bigredv2/outside/general_offices)
+"GZ" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/ne)
+"Hh" = (
+/turf/open/floor/plating/dmg1,
+/area/bigredv2/outside/general_offices)
+"Hm" = (
+/turf/closed/shuttle/ert/engines/right{
+	dir = 1
+	},
+/area/bigredv2/outside/general_offices)
+"Hn" = (
+/turf/open/floor/plating/dmg1,
+/area/bigredv2/outside/hydroponics)
+"HG" = (
+/obj/machinery/vending/cigarette/colony,
+/turf/open/floor,
+/area/bigredv2/outside/general_offices)
+"If" = (
+/turf/closed/shuttle/ert/engines/right{
+	dir = 4
+	},
+/area/bigredv2/outside/general_offices)
+"Im" = (
+/obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/ds2,
+/turf/open/shuttle/dropship/floor,
+/area/bigredv2/outside/general_offices)
+"IA" = (
+/obj/structure/dispenser/oxygen,
+/turf/open/floor/plating/dmg1,
+/area/bigredv2/outside/general_offices)
+"Jc" = (
+/obj/effect/decal/cleanable/blood/six{
+	dir = 1
+	},
+/turf/open/floor/plating/dmg3,
+/area/bigredv2/outside/hydroponics)
+"Jg" = (
+/turf/open/floor/wood/broken/six,
+/area/bigredv2/outside/general_offices)
+"JP" = (
+/turf/closed/shuttle/dropship2/edge{
+	dir = 1
+	},
+/area/bigredv2/outside/general_offices)
+"JV" = (
+/turf/open/floor/marking/asteroidwarning,
+/area/bigredv2/outside/ne)
+"KO" = (
+/turf/open/floor,
+/area/bigredv2/outside/general_offices)
+"KW" = (
+/obj/machinery/door/airlock/mainship/generic,
+/obj/effect/ai_node,
+/turf/open/shuttle/dropship/three,
+/area/bigredv2/outside/general_offices)
+"KY" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/dmg1,
+/area/bigredv2/outside/hydroponics)
+"LO" = (
+/obj/effect/decal/cleanable/blood/six{
+	dir = 1
+	},
+/turf/open/floor/plating/scorched,
+/area/bigredv2/outside/general_offices)
+"LQ" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/wood/broken/three,
+/area/bigredv2/outside/general_offices)
+"Mi" = (
+/turf/closed/shuttle/dropship2/corners{
+	dir = 4
+	},
+/area/bigredv2/outside/general_offices)
+"Mr" = (
+/turf/open/floor/plating/dmg3,
+/area/bigredv2/outside/hydroponics)
+"Mw" = (
+/obj/machinery/washing_machine,
+/turf/open/floor/freezer,
+/area/bigredv2/outside/general_offices)
+"MP" = (
+/obj/effect/ai_node,
+/turf/open/floor/engine/atmosdark,
+/area/bigredv2/outside/general_offices)
+"Nd" = (
+/obj/machinery/vending/hydronutrients,
+/turf/open/floor,
+/area/bigredv2/outside/hydroponics)
+"Nr" = (
+/obj/structure/table,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/wood,
+/area/bigredv2/outside/general_offices)
+"OT" = (
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/bigredv2/outside/ne)
+"Pi" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/six{
+	dir = 1
+	},
+/turf/open/shuttle/dropship/floor,
+/area/bigredv2/outside/general_offices)
+"Pv" = (
+/obj/structure/table,
+/turf/open/floor,
+/area/bigredv2/outside/general_offices)
+"PM" = (
+/turf/closed/shuttle/dropship2/wallthree,
+/area/bigredv2/outside/general_offices)
+"Qk" = (
+/obj/effect/decal/cleanable/blood/six{
+	dir = 1
+	},
+/turf/open/floor/tile/damaged/thermite,
+/area/bigredv2/outside/general_offices)
+"Qq" = (
+/turf/open/shuttle/dropship/floor,
+/area/bigredv2/outside/general_offices)
+"Qv" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1;
+	name = "\improper Dormitories Bedroom"
+	},
+/turf/open/floor/wood,
+/area/bigredv2/outside/general_offices)
+"Qx" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/gibspawner/human,
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/caves/northeast)
+"QB" = (
+/turf/closed/wall,
+/area/bigredv2/outside/hydroponics)
+"QH" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor,
+/area/bigredv2/outside/general_offices)
+"QR" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/n)
+"RJ" = (
+/turf/closed/wall,
+/area/bigredv2/outside/general_offices)
+"Sf" = (
+/obj/machinery/washing_machine,
+/turf/open/floor/plating/dmg1,
+/area/bigredv2/outside/general_offices)
+"So" = (
+/obj/machinery/washing_machine,
+/obj/item/clothing/under/lightbrown,
+/turf/open/floor/freezer,
+/area/bigredv2/outside/general_offices)
+"Su" = (
+/obj/structure/rack,
+/obj/item/mass_spectrometer/adv,
+/turf/open/floor/engine/atmosdark,
+/area/bigredv2/outside/general_offices)
+"Sw" = (
+/obj/item/clothing/under/darkred,
+/turf/open/floor/freezer,
+/area/bigredv2/outside/general_offices)
+"SC" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/closed/mineral/smooth/bigred,
+/area/bigredv2/caves/rock)
+"Tm" = (
+/obj/structure/window/framed/colony,
+/turf/open/floor/plating,
+/area/bigredv2/outside/hydroponics)
+"TF" = (
+/obj/item/stack/rods,
+/turf/open/floor/plating/dmg1,
+/area/bigredv2/outside/general_offices)
+"TG" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/bigredv2/outside/general_offices)
+"TK" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/bigredv2/outside/ne)
+"TN" = (
+/obj/structure/table,
+/turf/open/floor,
+/area/bigredv2/outside/hydroponics)
+"TY" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/vending/cola,
+/turf/open/floor,
+/area/bigredv2/outside/general_offices)
+"Ub" = (
+/obj/machinery/vending/hydroseeds,
+/turf/open/floor,
+/area/bigredv2/outside/hydroponics)
+"Up" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/wood,
+/area/bigredv2/outside/general_offices)
+"UP" = (
+/turf/open/floor/engine/atmosdark,
+/area/bigredv2/outside/general_offices)
+"UX" = (
+/obj/structure/rack,
+/obj/item/stack/sheet/mineral/uranium{
+	amount = 50
+	},
+/turf/open/floor/engine/atmosdark,
+/area/bigredv2/outside/general_offices)
+"UY" = (
+/obj/item/stack/sheet/plasteel,
+/turf/open/floor/engine/atmosdark,
+/area/bigredv2/outside/general_offices)
+"Vl" = (
+/obj/item/paper/crumpled/bloody,
+/obj/effect/ai_node,
+/obj/effect/decal/cleanable/blood/humanimprint/five,
+/turf/open/shuttle/dropship/three,
+/area/bigredv2/outside/general_offices)
+"Vs" = (
+/turf/closed/shuttle/dropship2/interiormisc{
+	dir = 8
+	},
+/area/bigredv2/outside/general_offices)
+"Vu" = (
+/turf/open/shuttle/dropship/eight,
+/area/bigredv2/outside/general_offices)
+"Wm" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/machinery/door/airlock/mainship/maint/free_access{
+	name = "\improper Bar Maintenance"
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/dorms)
+"Wp" = (
+/obj/structure/rack,
+/turf/open/shuttle/dropship/floor,
+/area/bigredv2/outside/general_offices)
+"Wv" = (
+/turf/closed/shuttle/dropship2/cornersalt{
+	dir = 1
+	},
+/area/bigredv2/outside/general_offices)
+"Xh" = (
+/turf/closed/shuttle/dropship2/corners{
+	dir = 8
+	},
+/area/bigredv2/outside/general_offices)
+"Xo" = (
+/obj/effect/decal/cleanable/blood/oil/streak,
+/turf/open/floor/tile/damaged/thermite,
+/area/bigredv2/outside/general_offices)
+"XC" = (
+/obj/machinery/door/airlock/mainship/engineering{
+	name = "\improper Engineering Storage Airlock"
+	},
+/turf/open/floor/engine/atmosdark,
+/area/bigredv2/outside/general_offices)
+"XL" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/wood,
+/area/bigredv2/outside/general_offices)
+"XT" = (
+/turf/open/floor/freezer,
+/area/bigredv2/outside/general_offices)
+"Yq" = (
+/obj/structure/barricade/wooden{
+	dir = 8
+	},
+/turf/open/floor/plating/dmg3,
+/area/bigredv2/outside/general_offices)
+"Yu" = (
+/turf/open/floor/plating,
+/area/bigredv2/caves/northeast)
+"Za" = (
+/obj/item/stack/sheet/wood,
+/obj/effect/ai_node,
+/turf/open/floor/plating/dmg1,
+/area/bigredv2/outside/general_offices)
+"Zw" = (
+/obj/item/stack/sheet/metal,
+/turf/open/floor/plating/dmg1,
+/area/bigredv2/outside/general_offices)
+"Zx" = (
+/obj/structure/rack,
+/obj/item/stack/sheet/mineral/diamond,
+/obj/item/clothing/under/redcoat,
+/turf/open/floor/engine/atmosdark,
+/area/bigredv2/outside/general_offices)
+"ZH" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/dmg1,
+/area/bigredv2/outside/general_offices)
+"ZL" = (
+/obj/structure/rack,
+/obj/effect/ai_node,
+/turf/open/shuttle/dropship/floor,
+/area/bigredv2/outside/general_offices)
+
+(1,1,1) = {"
+hU
+hU
+eP
+js
+KO
+Fh
+cF
+kx
+wj
+TG
+cF
+wj
+wj
+wj
+bd
+tI
+KO
+fa
+gK
+py
+ig
+Bj
+sT
+dE
+"}
+(2,1,1) = {"
+hU
+hU
+RJ
+RJ
+RJ
+AE
+RJ
+RJ
+RJ
+RJ
+RJ
+RJ
+RJ
+QH
+KO
+KO
+eX
+Pv
+gK
+Bj
+au
+Bj
+sT
+dE
+"}
+(3,1,1) = {"
+hU
+hU
+RJ
+pR
+XT
+XT
+XT
+So
+RJ
+AN
+BG
+BG
+RJ
+KO
+KO
+tI
+RJ
+RJ
+gK
+gK
+Wm
+gK
+dE
+dE
+"}
+(4,1,1) = {"
+hU
+hU
+RJ
+Mw
+XT
+XT
+XT
+Mw
+RJ
+ZH
+er
+Hh
+RJ
+uy
+KO
+KO
+Qv
+Dr
+Up
+RJ
+aE
+JV
+OT
+dE
+"}
+(5,1,1) = {"
+hU
+hU
+RJ
+Mw
+XT
+XT
+XT
+Ct
+RJ
+sn
+er
+Hh
+RJ
+er
+pr
+pr
+RJ
+ww
+kc
+RJ
+GZ
+JV
+TK
+dE
+"}
+(6,1,1) = {"
+hU
+QR
+RJ
+Mw
+Sw
+uo
+XT
+pr
+ph
+FI
+er
+Hh
+rc
+er
+Hh
+Bq
+RJ
+RJ
+RJ
+RJ
+bG
+JV
+OT
+dE
+"}
+(7,1,1) = {"
+qy
+qy
+RJ
+Sf
+pr
+GJ
+iV
+Hh
+rc
+Hh
+iV
+Hh
+kU
+Hh
+Hh
+cW
+Qv
+Dr
+XL
+RJ
+aE
+JV
+OT
+dE
+"}
+(8,1,1) = {"
+SC
+qy
+RJ
+Hh
+Fu
+pr
+DU
+Hh
+jj
+Hh
+er
+er
+KO
+er
+Hh
+DU
+RJ
+Nr
+kc
+RJ
+uS
+JV
+jx
+Fz
+"}
+(9,1,1) = {"
+qy
+SC
+RJ
+Hh
+Hh
+DU
+nr
+Hh
+iV
+Hh
+bq
+Hh
+jj
+Fu
+pv
+Hh
+RJ
+RJ
+RJ
+RJ
+zI
+JV
+OT
+qY
+"}
+(10,1,1) = {"
+qy
+SC
+RJ
+RJ
+RJ
+RJ
+jj
+TF
+jj
+TF
+Hh
+zt
+Xo
+er
+Fu
+er
+Qv
+Jg
+LQ
+rc
+dV
+ej
+Ea
+sl
+"}
+(11,1,1) = {"
+fl
+gX
+cN
+mc
+BI
+mc
+mc
+mc
+BI
+mc
+Mi
+FR
+qs
+oU
+Hh
+DU
+jj
+al
+aV
+Zw
+dV
+ej
+CV
+Hn
+"}
+(12,1,1) = {"
+fl
+Qx
+JP
+Wp
+Qq
+FN
+FN
+FN
+nc
+jQ
+tf
+mc
+mc
+Mi
+fb
+LO
+LO
+sP
+DG
+jj
+wq
+ej
+Mr
+Mr
+"}
+(13,1,1) = {"
+Yu
+kv
+Vs
+ef
+Vl
+By
+oI
+oI
+AT
+qa
+Qq
+Qq
+Qq
+Im
+DU
+Za
+Hh
+DU
+DU
+DU
+ew
+ej
+KY
+mN
+"}
+(14,1,1) = {"
+fl
+oC
+cZ
+le
+fd
+fd
+fd
+GU
+fd
+zM
+FW
+FW
+FW
+FW
+Fu
+Hh
+Hh
+Fu
+Fu
+wH
+ej
+ej
+Mr
+iE
+"}
+(15,1,1) = {"
+ul
+oc
+CJ
+hH
+FW
+FW
+FW
+FW
+FW
+Vu
+Qq
+Dp
+Qq
+Qq
+LO
+wm
+Qk
+wA
+wA
+wA
+Fn
+Fz
+Jc
+kO
+"}
+(16,1,1) = {"
+fl
+gR
+JP
+ZL
+Ca
+Pi
+Pi
+Pi
+Qq
+Wp
+Wv
+PM
+PM
+Xh
+er
+er
+oH
+Fu
+aV
+DU
+vK
+Fz
+ex
+Mr
+"}
+(17,1,1) = {"
+wL
+gR
+mm
+PM
+KW
+PM
+PM
+PM
+BI
+PM
+Xh
+If
+Hm
+vD
+Fu
+Hh
+gQ
+al
+lt
+Fu
+vK
+Fz
+Hn
+Mr
+"}
+(18,1,1) = {"
+wL
+gR
+zU
+Fu
+er
+bq
+Fu
+Hh
+jj
+Hh
+Hh
+Hh
+jj
+er
+iV
+Fu
+rc
+TF
+Zw
+rc
+vK
+Fz
+am
+Ap
+"}
+(19,1,1) = {"
+bl
+SC
+RJ
+DU
+er
+DG
+Hh
+Hh
+TF
+gt
+Hh
+Hh
+Zw
+er
+Fu
+Hh
+Qv
+Jg
+al
+RJ
+Fz
+Fz
+qu
+Ap
+"}
+(20,1,1) = {"
+eA
+SC
+RJ
+qd
+Hh
+Hh
+IA
+qg
+rc
+xf
+xf
+xf
+rc
+Yq
+Yq
+kE
+RJ
+sV
+nj
+RJ
+zO
+Fz
+QB
+Tm
+"}
+(21,1,1) = {"
+eA
+SC
+su
+gW
+XC
+gW
+gW
+su
+su
+su
+su
+su
+su
+wH
+nr
+Yq
+RJ
+RJ
+RJ
+RJ
+dg
+zO
+QB
+Nd
+"}
+(22,1,1) = {"
+mz
+SC
+su
+ib
+UP
+sm
+mg
+cx
+mg
+zP
+UP
+Fb
+su
+hM
+hM
+uy
+RJ
+qy
+Fz
+Fz
+Fz
+Fz
+QB
+Ub
+"}
+(23,1,1) = {"
+eA
+SC
+su
+UP
+UP
+UP
+mg
+mg
+mg
+UP
+mg
+UP
+su
+uy
+uy
+KO
+RJ
+qy
+Fz
+Fz
+Fz
+Fz
+QB
+TN
+"}
+(24,1,1) = {"
+qy
+SC
+su
+UP
+MP
+UP
+UP
+UY
+UP
+MP
+UP
+UY
+su
+ym
+KO
+KO
+RJ
+qy
+qy
+Fz
+Fz
+Fz
+QB
+yC
+"}
+(25,1,1) = {"
+qy
+SC
+su
+Su
+UP
+UX
+UP
+rV
+UP
+Zx
+UP
+ss
+su
+KO
+tI
+KO
+RJ
+qy
+qy
+Fz
+dg
+zO
+QB
+Gw
+"}
+(26,1,1) = {"
+qy
+SC
+su
+su
+su
+su
+su
+su
+su
+su
+su
+su
+su
+TY
+HG
+fM
+RJ
+qy
+qy
+Fz
+Fz
+Fz
+QB
+dJ
+"}

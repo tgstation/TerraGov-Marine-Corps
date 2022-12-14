@@ -1,5 +1,5 @@
 /mob/living/proc/Life()
-	if(stat == DEAD || notransform) //If we're dead or notransform don't bother processing life
+	if(stat == DEAD || notransform || HAS_TRAIT(src, TRAIT_STASIS)) //If we're dead or notransform don't bother processing life
 		return
 
 	handle_status_effects() //all special effects, stun, knockdown, jitteryness, hallucination, sleeping, etc
@@ -11,44 +11,57 @@
 	updatehealth()
 
 
-//this updates all special effects: knockdown, druggy, stuttering, etc..
+//this updates all special effects: knockdown, druggy, etc.., DELETE ME!!
 /mob/living/proc/handle_status_effects()
 	if(no_stun)//anti-chainstun flag for alien tackles
 		no_stun = max(0, no_stun - 1) //decrement by 1.
 
 	handle_drugged()
-	handle_stuttering()
-	handle_slurring()
 	handle_slowdown()
 	handle_stagger()
+
+///Adjusts our stats based on the auras we've received and care about, then cleans out the list for next tick.
+/mob/living/proc/finish_aura_cycle()
+	received_auras.Cut() //Living, of course, doesn't care about any
+
+///Update what auras we'll receive this life tick if it's either new or stronger than current. aura_type as AURA_ define, strength as number.
+/mob/living/proc/receive_aura(aura_type, strength)
+	if(received_auras[aura_type] > strength)
+		return
+	received_auras[aura_type] = strength
+
+///Add a list of auras to our current emitted, update self as needed
+/mob/living/proc/add_emitted_auras(source, aura_list)
+	SIGNAL_HANDLER
+	emitted_auras += aura_list
+	update_aura_overlay()
+
+///Remove a list of auras from our current emitted, update self as needed
+/mob/living/proc/remove_emitted_auras(source, aura_list)
+	SIGNAL_HANDLER
+	emitted_auras -= aura_list
+	update_aura_overlay()
+
+///Bring however we represent emitted auras up to date. Implemented for human and xenomorph.
+/mob/living/proc/update_aura_overlay()
+	return
 
 /mob/living/proc/handle_organs()
 	reagent_shock_modifier = 0
 	reagent_pain_modifier = 0
-
-/mob/living/proc/handle_stuttering()
-	if(stuttering)
-		stuttering = max(stuttering-1, 0)
-	return stuttering
 
 /mob/living/proc/handle_drugged()
 	if(druggy)
 		adjust_drugginess(-1)
 	return druggy
 
-/mob/living/proc/handle_slurring()
-	if(slurring)
-		slurring = max(slurring-1, 0)
-	return slurring
-
-
 /mob/living/proc/handle_staminaloss()
 	if(world.time < last_staminaloss_dmg + 3 SECONDS)
 		return
 	if(staminaloss > 0)
-		adjustStaminaLoss(-maxHealth * 0.2, TRUE, FALSE)
+		adjustStaminaLoss(-maxHealth * 0.2 * stamina_regen_multiplier, TRUE, FALSE)
 	else if(staminaloss > -max_stamina_buffer)
-		adjustStaminaLoss(-max_stamina_buffer * 0.08, TRUE, FALSE)
+		adjustStaminaLoss(-max_stamina * 0.08 * stamina_regen_multiplier, TRUE, FALSE)
 
 
 /mob/living/proc/handle_regular_hud_updates()
@@ -78,6 +91,12 @@
 
 	set_armor_datum()
 	AddElement(/datum/element/gesture)
+	AddElement(/datum/element/keybinding_update)
+	stamina_regen_modifiers = list()
+	received_auras = list()
+	emitted_auras = list()
+	RegisterSignal(src, COMSIG_AURA_STARTED, .proc/add_emitted_auras)
+	RegisterSignal(src, COMSIG_AURA_FINISHED, .proc/remove_emitted_auras)
 
 /mob/living/Destroy()
 	for(var/i in embedded_objects)
@@ -93,6 +112,10 @@
 	GLOB.offered_mob_list -= src
 	SSmobs.stop_processing(src)
 	job = null
+	LAZYREMOVE(GLOB.ssd_living_mobs, src)
+	GLOB.key_to_time_of_death[key] = world.time
+	if(stat != DEAD && job?.job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE))//Only some jobs cost you your respawn timer.
+		GLOB.key_to_time_of_role_death[key] = world.time
 	. = ..()
 	hard_armor = null
 	soft_armor = null
@@ -198,7 +221,7 @@
 	. = ..()
 
 	if(pulledby)
-		if(moving_diagonally != FIRST_DIAG_STEP && get_dist(src, pulledby) > 1 && (pulledby != moving_from_pull))//separated from our puller and not in the middle of a diagonal move.
+		if(get_dist(src, pulledby) > 1 && (pulledby != moving_from_pull))//separated from our puller
 			pulledby.stop_pulling()
 		else if(isliving(pulledby))
 			var/mob/living/living_puller = pulledby
@@ -248,7 +271,7 @@
 		return FALSE
 	TIMER_COOLDOWN_START(src, COOLDOWN_RESIST, CLICK_CD_RESIST)
 	if(pulledby.grab_state >= GRAB_AGGRESSIVE)
-		visible_message("<span class='danger'>[src] resists against [pulledby]'s grip!</span>")
+		visible_message(span_danger("[src] resists against [pulledby]'s grip!"))
 	return resist_grab()
 
 
@@ -259,7 +282,7 @@
 		return FALSE
 	TIMER_COOLDOWN_START(src, COOLDOWN_RESIST, CLICK_CD_RESIST)
 	if(pulledby.grab_state >= GRAB_AGGRESSIVE)
-		visible_message("<span class='danger'>[src] struggles to break free of [pulledby]'s grip!</span>", null, null, 5)
+		visible_message(span_danger("[src] struggles to break free of [pulledby]'s grip!"), null, null, 5)
 	return resist_grab()
 
 
@@ -272,7 +295,7 @@
 		return FALSE
 	playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 7)
 	if(pulledby.grab_state >= GRAB_AGGRESSIVE)
-		visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>", null, null, 5)
+		visible_message(span_danger("[src] has broken free of [pulledby]'s grip!"), null, null, 5)
 	pulledby.stop_pulling()
 	grab_resist_level = 0 //zero it out.
 	return TRUE
@@ -311,22 +334,22 @@
 /mob/living/is_drawable(allowmobs = TRUE)
 	return (allowmobs && can_inject())
 
+#define NO_SWAP 0
+#define SWAPPING 1
+#define PHASING 2
+
 /mob/living/Bump(atom/A)
 	. = ..()
 	if(.) //We are thrown onto something.
-		return
+		return FALSE
 	if(buckled || now_pushing)
 		return
 	if(isliving(A))
 		var/mob/living/L = A
 
-		if(mob_size < L.mob_size) //Can't go around pushing things larger than us.
-			return
-
-
 		if(L.pulledby && L.pulledby != src && L.restrained())
 			if(!(world.time % 5))
-				to_chat(src, "<span class='warning'>[L] is restrained, you cannot push past.</span>")
+				to_chat(src, span_warning("[L] is restrained, you cannot push past."))
 			return
 
 		if(L.pulling)
@@ -334,23 +357,22 @@
 				var/mob/P = L.pulling
 				if(P.restrained())
 					if(!(world.time % 5))
-						to_chat(src, "<span class='warning'>[L] is restraining [P], you cannot push past.</span>")
+						to_chat(src, span_warning("[L] is restraining [P], you cannot push past."))
 					return
 
-		if(moving_diagonally)//no mob swap during diagonal moves.
-			return
-
-		if(!L.buckled && !L.anchored)
-			var/mob_swap = FALSE
+		if(!L.buckled && !L.anchored && !moving_diagonally)
+			var/mob_swap_mode = NO_SWAP
 			//the puller can always swap with its victim if on grab intent
 			if(L.pulledby == src && a_intent == INTENT_GRAB)
-				mob_swap = TRUE
+				mob_swap_mode = SWAPPING
 			//restrained people act if they were on 'help' intent to prevent a person being pulled from being seperated from their puller
-			else if((L.restrained() || L.a_intent == INTENT_HELP) && (restrained() || a_intent == INTENT_HELP))
-				mob_swap = TRUE
-			else if(mob_size > L.mob_size && a_intent == INTENT_HELP) //Larger mobs can shove aside smaller ones.
-				mob_swap = TRUE
-			if(mob_swap)
+			else if((L.restrained() || L.a_intent == INTENT_HELP) && (restrained() || a_intent == INTENT_HELP) && L.move_force < MOVE_FORCE_VERY_STRONG)
+				mob_swap_mode = SWAPPING
+			else if(get_xeno_hivenumber() == L.get_xeno_hivenumber() && (L.flags_pass & PASSXENO || flags_pass & PASSXENO))
+				mob_swap_mode = PHASING
+			else if((move_resist >= MOVE_FORCE_VERY_STRONG || move_resist > L.move_force) && a_intent == INTENT_HELP) //Larger mobs can shove aside smaller ones. Xenos can always shove xenos
+				mob_swap_mode = SWAPPING
+			if(mob_swap_mode)
 				//switch our position with L
 				if(loc && !loc.Adjacent(L.loc))
 					return
@@ -364,7 +386,7 @@
 				flags_pass |= PASSMOB
 
 				var/move_failed = FALSE
-				if(!L.Move(oldloc) || !Move(oldLloc))
+				if(!Move(oldLloc) || (mob_swap_mode == SWAPPING && !L.Move(oldloc)))
 					L.forceMove(oldLloc)
 					forceMove(oldloc)
 					move_failed = TRUE
@@ -377,7 +399,10 @@
 				now_pushing = FALSE
 
 				if(!move_failed)
-					return
+					return TURF_ENTER_ALREADY_MOVED
+
+		if(mob_size < L.mob_size) //Can't go around pushing things larger than us.
+			return
 
 		if(!(L.status_flags & CANPUSH))
 			return
@@ -388,30 +413,60 @@
 			if(!COOLDOWN_CHECK(H,  xeno_push_delay))
 				return
 			COOLDOWN_START(H, xeno_push_delay, XENO_HUMAN_PUSHED_DELAY)
-		PushAM(A)
+		if(PushAM(A))
+			return TURF_ENTER_ALREADY_MOVED
 
 
 //Called when we want to push an atom/movable
-/mob/living/proc/PushAM(atom/movable/AM)
+/mob/living/proc/PushAM(atom/movable/AM, force = move_force)
 	if(AM.anchored)
-		return TRUE
+		return
 	if(now_pushing)
-		return TRUE
-	if(moving_diagonally)// no pushing during diagonal moves.
-		return TRUE
-	if(!client && (mob_size < MOB_SIZE_SMALL))
+		return
+	if(moving_diagonally) // No pushing in diagonal move
+		return
+	if(!client)
 		return
 	now_pushing = TRUE
-	var/t = get_dir(src, AM)
+	var/dir_to_target = get_dir(src, AM)
+
+	// If there's no dir_to_target then the player is on the same turf as the atom they're trying to push.
+	// This can happen when a player is stood on the same turf as a directional window. All attempts to push
+	// the window will fail as get_dir will return 0 and the player will be unable to move the window when
+	// it should be pushable.
+	// In this scenario, we will use the facing direction of the /mob/living attempting to push the atom as
+	// a fallback.
+	if(!dir_to_target)
+		dir_to_target = dir
+
+	var/push_anchored = FALSE
+	if((AM.move_resist * MOVE_FORCE_CRUSH_RATIO) <= force)
+		if(move_crush(AM, move_force, dir_to_target))
+			push_anchored = TRUE
+	if((AM.move_resist * MOVE_FORCE_FORCEPUSH_RATIO) <= force) //trigger move_crush and/or force_push regardless of if we can push it normally
+		if(force_push(AM, move_force, dir_to_target, push_anchored))
+			push_anchored = TRUE
+	if(ismob(AM))
+		var/mob/mob_to_push = AM
+		var/atom/movable/mob_buckle = mob_to_push.buckled
+		// If we can't pull them because of what they're buckled to, make sure we can push the thing they're buckled to instead.
+		// If neither are true, we're not pushing anymore.
+		if(mob_buckle && (mob_buckle.buckle_flags & BUCKLE_PREVENTS_PULL || (force < (mob_buckle.move_resist * MOVE_FORCE_PUSH_RATIO))))
+			now_pushing = FALSE
+			return
+	if((AM.anchored && !push_anchored) || (force < (AM.move_resist * MOVE_FORCE_PUSH_RATIO)))
+		now_pushing = FALSE
+		return
+
 	if(istype(AM, /obj/structure/window))
 		var/obj/structure/window/W = AM
 		if(W.is_full_window())
-			for(var/obj/structure/window/win in get_step(W,t))
+			for(var/obj/structure/window/win in get_step(W, dir_to_target))
 				now_pushing = FALSE
 				return
 	if(pulling == AM)
 		stop_pulling()
-	AM.Move(get_step(AM.loc, t), t, glide_size)
+	AM.Move(get_step(AM.loc, dir_to_target), dir_to_target, glide_size)
 	now_pushing = FALSE
 
 
@@ -444,18 +499,18 @@
 
 /mob/living/proc/offer_mob()
 	GLOB.offered_mob_list += src
-	notify_ghosts("<span class='boldnotice'>A mob is being offered! Name: [name][job ? " Job: [job.title]" : ""] </span>", enter_link = "claim=[REF(src)]", source = src, action = NOTIFY_ORBIT)
+	notify_ghosts(span_boldnotice("A mob is being offered! Name: [name][job ? " Job: [job.title]" : ""] "), enter_link = "claim=[REF(src)]", source = src, action = NOTIFY_ORBIT)
 
 //used in datum/reagents/reaction() proc
 /mob/living/proc/get_permeability_protection()
 	return LIVING_PERM_COEFF
 
-/mob/proc/flash_act(intensity = 1, bypass_checks, type = /obj/screen/fullscreen/flash)
+/mob/proc/flash_act(intensity = 1, bypass_checks, type = /atom/movable/screen/fullscreen/flash, duration)
 	return
 
-/mob/living/carbon/flash_act(intensity = 1, bypass_checks, type = /obj/screen/fullscreen/flash)
+/mob/living/carbon/flash_act(intensity = 1, bypass_checks, type = /atom/movable/screen/fullscreen/flash, duration = 40)
 	if( bypass_checks || (get_eye_protection() < intensity && !(disabilities & BLIND)) )
-		overlay_fullscreen_timer(40, 20, "flash", type)
+		overlay_fullscreen_timer(duration, 20, "flash", type)
 		return TRUE
 
 /mob/living/proc/disable_lights(armor = TRUE, guns = TRUE, flares = TRUE, misc = TRUE, sparks = FALSE, silent = FALSE)
@@ -474,7 +529,7 @@
 	else if(eye_blind == 1)
 		adjust_blindness(-1)
 	if(tinttotal)
-		overlay_fullscreen("tint", /obj/screen/fullscreen/impaired, tinttotal)
+		overlay_fullscreen("tint", /atom/movable/screen/fullscreen/impaired, tinttotal)
 		return TRUE
 	else
 		clear_fullscreen("tint", 0)
@@ -494,12 +549,11 @@
 
 	alpha = 5 // bah, let's make it better, it's a disposable device anyway
 
-	var/datum/atom_hud/security/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
-	SA.remove_from_hud(src)
-	var/datum/atom_hud/xeno_infection/XI = GLOB.huds[DATA_HUD_XENO_INFECTION]
-	XI.remove_from_hud(src)
-	var/datum/atom_hud/xeno_reagents/RE = GLOB.huds[DATA_HUD_XENO_REAGENTS]
-	RE.remove_from_hud(src)
+	GLOB.huds[DATA_HUD_SECURITY_ADVANCED].remove_from_hud(src)
+	GLOB.huds[DATA_HUD_XENO_INFECTION].remove_from_hud(src)
+	GLOB.huds[DATA_HUD_XENO_REAGENTS].remove_from_hud(src)
+	GLOB.huds[DATA_HUD_XENO_DEBUFF].remove_from_hud(src)
+	GLOB.huds[DATA_HUD_XENO_HEART].remove_from_hud(src)
 
 	smokecloaked = TRUE
 
@@ -510,12 +564,11 @@
 
 	alpha = initial(alpha)
 
-	var/datum/atom_hud/security/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
-	SA.add_to_hud(src)
-	var/datum/atom_hud/xeno_infection/XI = GLOB.huds[DATA_HUD_XENO_INFECTION]
-	XI.add_to_hud(src)
-	var/datum/atom_hud/xeno_reagents/RE = GLOB.huds[DATA_HUD_XENO_REAGENTS]
-	RE.add_to_hud(src)
+	GLOB.huds[DATA_HUD_SECURITY_ADVANCED].add_to_hud(src)
+	GLOB.huds[DATA_HUD_XENO_INFECTION].add_to_hud(src)
+	GLOB.huds[DATA_HUD_XENO_REAGENTS].add_to_hud(src)
+	GLOB.huds[DATA_HUD_XENO_DEBUFF].add_to_hud(src)
+	GLOB.huds[DATA_HUD_XENO_HEART].add_to_hud(src)
 
 	smokecloaked = FALSE
 
@@ -562,7 +615,7 @@ below 100 is not dizzy
 			client.pixel_x = amplitude * sin(0.008 * dizziness * world.time)
 			client.pixel_y = amplitude * cos(0.008 * dizziness * world.time)
 
-		sleep(1)
+		sleep(0.1 SECONDS)
 	//endwhile - reset the pixel offsets to zero
 	is_dizzy = FALSE
 	if(client)
@@ -581,22 +634,17 @@ below 100 is not dizzy
 
 /mob/living/proc/take_over(mob/M, bypass)
 	if(!M.mind)
-		to_chat(M, "<span class='warning'>You don't have a mind.</span>")
+		to_chat(M, span_warning("You don't have a mind."))
 		return FALSE
 
 	if(!bypass)
 		if(client)
-			to_chat(M, "<span class='warning'>That mob has already been taken.</span>")
+			to_chat(M, span_warning("That mob has already been taken."))
 			GLOB.offered_mob_list -= src
 			return FALSE
 
 		if(job && is_banned_from(M.ckey, job.title))
-			to_chat(M, "<span class='warning'>You are jobbanned from that role.</span>")
-			return FALSE
-
-		if(stat == DEAD)
-			to_chat(M, "<span class='warning'>That mob has died.</span>")
-			GLOB.offered_mob_list -= src
+			to_chat(M, span_warning("You are jobbanned from that role."))
 			return FALSE
 
 		log_game("[key_name(M)] has taken over [key_name_admin(src)].")
@@ -604,11 +652,8 @@ below 100 is not dizzy
 
 	GLOB.offered_mob_list -= src
 
-	if(isxeno(src))
-		SSticker.mode.transfer_xeno(M, src, TRUE)
-		return TRUE
+	transfer_mob(M)
 
-	M.mind.transfer_to(src, TRUE)
 	fully_replace_character_name(M.real_name, real_name)
 	return TRUE
 
@@ -633,6 +678,8 @@ below 100 is not dizzy
 		return
 
 	update_sight()
+	if (stat == DEAD)
+		animate(client, pixel_x = 0, pixel_y = 0)
 	if(client.eye && client.eye != src)
 		var/atom/AT = client.eye
 		AT.get_remote_view_fullscreens(src)
@@ -640,6 +687,10 @@ below 100 is not dizzy
 		clear_fullscreen("remote_view", 0)
 	update_pipe_vision()
 
+/mob/living/update_sight()
+	if(SSticker.current_state == GAME_STATE_FINISHED && !is_centcom_level(z)) //Reveal ghosts to remaining survivors
+		see_invisible = SEE_INVISIBLE_OBSERVER
+	return ..()
 
 /mob/living/proc/can_track(mob/living/user)
 	//basic fast checks go first. When overriding this proc, I recommend calling ..() at the end.
@@ -669,16 +720,11 @@ below 100 is not dizzy
 	if (!tile)
 		return FALSE
 	var/turf/our_tile = get_turf(src)
-	//Squad Leaders and above have reduced cooldown and get a bigger arrow
-	if(skills.getRating("leadership") < SKILL_LEAD_TRAINED)
-		TIMER_COOLDOWN_START(src, COOLDOWN_POINT, 2.5 SECONDS)
-		var/obj/visual = new /obj/effect/overlay/temp/point(our_tile, invisibility)
-		animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + A.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + A.pixel_y, time = 1.7, easing = EASE_OUT)
-	else
-		TIMER_COOLDOWN_START(src, COOLDOWN_POINT, 1 SECONDS)
-		var/obj/visual = new /obj/effect/overlay/temp/point/big(our_tile, invisibility)
-		animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + A.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + A.pixel_y, time = 1.7, easing = EASE_OUT)
+	TIMER_COOLDOWN_START(src, COOLDOWN_POINT, 1 SECONDS)
+	var/obj/visual = new /obj/effect/overlay/temp/point/big(our_tile, 0, invisibility)
+	animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + A.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + A.pixel_y, time = 1.7, easing = EASE_OUT)
 	visible_message("<b>[src]</b> points to [A]")
+	SEND_SIGNAL(src, COMSIG_POINT_TO_ATOM, A)
 	return TRUE
 
 
@@ -789,7 +835,7 @@ below 100 is not dizzy
 	lying_angle = new_lying
 	update_transform()
 	lying_prev = lying_angle
-
+	SEND_SIGNAL(src, COMSIG_LIVING_SET_LYING_ANGLE)
 	if(lying_angle)
 		density = FALSE
 		drop_all_held_items()
@@ -830,3 +876,88 @@ below 100 is not dizzy
 	else if(. >= GRAB_NECK) //Released from neckgrab.
 		REMOVE_TRAIT(pulling, TRAIT_IMMOBILE, NECKGRAB_TRAIT)
 		REMOVE_TRAIT(pulling, TRAIT_FLOORED, NECKGRAB_TRAIT)
+
+///Set the remote_control and reset the perspective
+/mob/living/proc/set_remote_control(atom/movable/controlled)
+	remote_control = controlled
+	reset_perspective(controlled)
+
+///Swap the active hand
+/mob/living/proc/swap_hand()
+	var/obj/item/wielded_item = get_active_held_item()
+	if(wielded_item && (wielded_item.flags_item & WIELDED)) //this segment checks if the item in your hand is twohanded.
+		var/obj/item/weapon/twohanded/offhand/offhand = get_inactive_held_item()
+		if(offhand && (offhand.flags_item & WIELDED))
+			to_chat(src, span_warning("Your other hand is too busy holding \the [offhand.name]"))
+			return
+		else
+			wielded_item.unwield(src) //Get rid of it.
+	hand = !hand
+	SEND_SIGNAL(src, COMSIG_CARBON_SWAPPED_HANDS)
+	if(hud_used.l_hand_hud_object && hud_used.r_hand_hud_object)
+		hud_used.l_hand_hud_object.update_icon(hand)
+		hud_used.r_hand_hud_object.update_icon(!hand)
+		if(hand)	//This being 1 means the left hand is in use
+			hud_used.l_hand_hud_object.add_overlay("hand_active")
+		else
+			hud_used.r_hand_hud_object.add_overlay("hand_active")
+	return
+
+///Swap to the hand clicked on the hud
+/mob/living/proc/activate_hand(selhand) //0 or "r" or "right" for right hand; 1 or "l" or "left" for left hand.
+
+	if(istext(selhand))
+		selhand = lowertext(selhand)
+
+		if(selhand == "right" || selhand == "r")
+			selhand = 0
+		if(selhand == "left" || selhand == "l")
+			selhand = 1
+
+	if(selhand != src.hand)
+		swap_hand()
+
+///Set the afk status of the mob
+/mob/living/proc/set_afk_status(new_status, afk_timer)
+	switch(new_status)
+		if(MOB_CONNECTED, MOB_DISCONNECTED)
+			if(afk_timer_id)
+				deltimer(afk_timer_id)
+				afk_timer_id = null
+		if(MOB_RECENTLY_DISCONNECTED)
+			if(afk_status == MOB_RECENTLY_DISCONNECTED)
+				if(timeleft(afk_timer_id) <= afk_timer)
+					return
+				deltimer(afk_timer_id) //We'll go with the shorter timer.
+			afk_timer_id = addtimer(CALLBACK(src, .proc/on_sdd_grace_period_end), afk_timer, TIMER_STOPPABLE)
+	afk_status = new_status
+	SEND_SIGNAL(src, COMSIG_CARBON_SETAFKSTATUS, new_status, afk_timer)
+
+///Set the mob as afk after AFK_TIMER
+/mob/living/proc/on_sdd_grace_period_end()
+	if(stat == DEAD)
+		return FALSE
+	if(isclientedaghost(src))
+		return FALSE
+	set_afk_status(MOB_DISCONNECTED)
+	return TRUE
+
+/mob/living/carbon/human/on_sdd_grace_period_end()
+	. = ..()
+	if(!.)
+		return
+	log_admin("[key_name(src)] (Job: [(job) ? job.title : "Unassigned"]) has been away for [AFK_TIMER] minutes.")
+	message_admins("[ADMIN_TPMONTY(src)] (Job: [(job) ? job.title : "Unassigned"]) has been away for [AFK_TIMER] minutes.")
+
+///Transfer the candidate mind into src
+/mob/living/proc/transfer_mob(mob/candidate)
+	if(QDELETED(src))
+		stack_trace("[candidate] was put into a qdeleted mob [src]")
+		return
+	candidate.mind.transfer_to(src, TRUE)
+
+/mob/living/carbon/xenomorph/transfer_mob(mob/candidate)
+	. = ..()
+	if(is_ventcrawling)  //If we are in a vent, fetch a fresh vent map
+		add_ventcrawl(loc)
+		get_up()

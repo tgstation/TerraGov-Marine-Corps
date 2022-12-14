@@ -62,6 +62,31 @@
 	icon_living = "cat2"
 	icon_dead = "cat2_dead"
 
+
+/mob/living/simple_animal/cat/floppa
+	name = "\improper floppa"
+	real_name = "floppa"
+	desc = "A caracal with very floppy ears. Its mere presence inspires fear."
+	icon = 'icons/mob/pets.dmi'
+	icon_state = "floppa"
+	icon_living = "floppa"
+	icon_dead = "floppa_dead"
+	health = 200
+	maxHealth = 200
+
+/mob/living/simple_animal/cat/martin
+	name = "Martin"
+	desc = "Requisition's very own caracal. You wonder how much requisition paid to get this dogdang creature on board."
+	icon = 'icons/mob/pets.dmi'
+	icon_state = "martin"
+	icon_living = "martin"
+	icon_dead = "martin_dead"
+	gender = MALE
+	emote_see = list("shakes its head.", "shivers.", "points at the supply console.", "looks at the abyss that is the ASRS Elevator.", "counts the requisition points.", "looks at the supply drop.", "stares at the marines inside requisition", "wants to order some pizza")
+	health = 200
+	maxHealth = 200
+
+
 /mob/living/simple_animal/cat/Life()
 	if(!stat && !buckled && !client)
 		if(prob(1))
@@ -96,7 +121,7 @@
 	if(H.l_hand && H.r_hand)
 		return
 
-	var/obj/item/cat/C = new
+	var/obj/item/clothing/head/cat/C = new
 	C.name = name
 	C.desc = desc
 	C.icon_state = initial(icon_state)
@@ -105,34 +130,33 @@
 	H.put_in_hands(C)
 
 
-/obj/item/cat
+/obj/item/clothing/head/cat
 	name = "Cat"
 	desc = "Kitty!!"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "cat2"
+	flags_armor_features = ARMOR_NO_DECAP
+	soft_armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 10, BIO = 5, FIRE = 50, ACID = 50)
 	var/mob/living/simple_animal/cat/cat
-	flags_equip_slot = ITEM_SLOT_HEAD
 
-
-/obj/item/cat/Destroy()
+/obj/item/clothing/head/cat/Destroy()
 	if(cat)
 		cat.forceMove(get_turf(src))
 		cat = null
 	return ..()
 
 
-/obj/item/cat/throw_at(atom/target, range, speed, thrower, spin)
+/obj/item/clothing/head/cat/throw_at(atom/target, range, speed, thrower, spin)
 	qdel(src)
 
 
-/obj/item/cat/afterattack(atom/target, mob/user, has_proximity, click_parameters)
+/obj/item/clothing/head/cat/afterattack(atom/target, mob/user, has_proximity, click_parameters)
 	. = ..()
 	qdel(src)
 
 
-/obj/item/cat/dropped(mob/user)
+/obj/item/clothing/head/cat/dropped(mob/user)
 	. = ..()
 	if(loc == user)
 		return
 	qdel(src)
-

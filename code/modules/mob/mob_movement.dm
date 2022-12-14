@@ -4,7 +4,7 @@
 		return TRUE
 	if(ismob(mover) && CHECK_BITFIELD(mover.flags_pass, PASSMOB))
 		return TRUE
-	return (!mover.density || !density || lying_angle)
+	return . || (!mover.density || !density || lying_angle) //Parent handles buckling - if someone's strapped to us it can pass.
 
 
 /client/verb/swap_hand()
@@ -80,7 +80,7 @@
 		return Move_object(direct)
 	if(!isliving(mob))
 		return mob.Move(n, direct)
-	if(mob.stat == DEAD)
+	if(mob.stat == DEAD && !HAS_TRAIT(mob, TRAIT_IS_RESURRECTING))
 		mob.ghostize()
 		return FALSE
 
@@ -101,7 +101,7 @@
 			return
 		else if(L.restrained(RESTRAINED_NECKGRAB))
 			move_delay = world.time + 1 SECONDS //to reduce the spam
-			to_chat(src, "<span class='warning'>You're restrained! You can't move!</span>")
+			to_chat(src, span_warning("You're restrained! You can't move!"))
 			return
 		else
 			move_delay = world.time + 1 SECONDS
@@ -141,7 +141,7 @@
 	. = ..()
 
 	if((direct & (direct - 1)) && mob.loc == n) //moved diagonally successfully
-		add_delay *= 2
+		add_delay *= DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER
 	move_delay += add_delay
 
 #undef MOVEMENT_DELAY_BUFFER
@@ -161,7 +161,7 @@
 
 	//Check to see if we slipped
 	if(prob(Process_Spaceslipping(5)))
-		to_chat(src, "<span class='boldnotice'>You slipped!</span>")
+		to_chat(src, span_boldnotice("You slipped!"))
 		step(src, src.inertia_dir)
 		return 0
 	//If not then we can reset inertia and move
@@ -222,7 +222,7 @@
 
 
 /client/proc/check_has_body_select()
-	return mob?.hud_used?.zone_sel && istype(mob.hud_used.zone_sel, /obj/screen/zone_sel)
+	return mob?.hud_used?.zone_sel && istype(mob.hud_used.zone_sel, /atom/movable/screen/zone_sel)
 
 
 /client/verb/body_toggle_head()
@@ -241,7 +241,7 @@
 		else
 			next_in_line = BODY_ZONE_HEAD
 
-	var/obj/screen/zone_sel/selector = mob.hud_used.zone_sel
+	var/atom/movable/screen/zone_sel/selector = mob.hud_used.zone_sel
 	selector.set_selected_zone(next_in_line, mob)
 
 
@@ -259,7 +259,7 @@
 		else
 			next_in_line = BODY_ZONE_R_ARM
 
-	var/obj/screen/zone_sel/selector = mob.hud_used.zone_sel
+	var/atom/movable/screen/zone_sel/selector = mob.hud_used.zone_sel
 	selector.set_selected_zone(next_in_line, mob)
 
 
@@ -270,7 +270,7 @@
 	if(!check_has_body_select())
 		return
 
-	var/obj/screen/zone_sel/selector = mob.hud_used.zone_sel
+	var/atom/movable/screen/zone_sel/selector = mob.hud_used.zone_sel
 	selector.set_selected_zone(BODY_ZONE_CHEST, mob)
 
 
@@ -288,7 +288,7 @@
 		else
 			next_in_line = BODY_ZONE_L_ARM
 
-	var/obj/screen/zone_sel/selector = mob.hud_used.zone_sel
+	var/atom/movable/screen/zone_sel/selector = mob.hud_used.zone_sel
 	selector.set_selected_zone(next_in_line, mob)
 
 
@@ -306,7 +306,7 @@
 		else
 			next_in_line = BODY_ZONE_R_LEG
 
-	var/obj/screen/zone_sel/selector = mob.hud_used.zone_sel
+	var/atom/movable/screen/zone_sel/selector = mob.hud_used.zone_sel
 	selector.set_selected_zone(next_in_line, mob)
 
 
@@ -317,7 +317,7 @@
 	if(!check_has_body_select())
 		return
 
-	var/obj/screen/zone_sel/selector = mob.hud_used.zone_sel
+	var/atom/movable/screen/zone_sel/selector = mob.hud_used.zone_sel
 	selector.set_selected_zone(BODY_ZONE_PRECISE_GROIN, mob)
 
 
@@ -335,7 +335,7 @@
 		else
 			next_in_line = BODY_ZONE_L_LEG
 
-	var/obj/screen/zone_sel/selector = mob.hud_used.zone_sel
+	var/atom/movable/screen/zone_sel/selector = mob.hud_used.zone_sel
 	selector.set_selected_zone(next_in_line, mob)
 
 
@@ -353,7 +353,7 @@
 	SEND_SIGNAL(src, COMSIG_MOB_TOGGLEMOVEINTENT, m_intent)
 
 	if(hud_used?.static_inventory)
-		for(var/obj/screen/mov_intent/selector in hud_used.static_inventory)
+		for(var/atom/movable/screen/mov_intent/selector in hud_used.static_inventory)
 			selector.update_icon(src)
 
 	return TRUE
@@ -371,6 +371,8 @@
 		return
 	return ..()
 
+/mob/living/carbon/xenomorph/hivemind/toggle_move_intent(new_intent)
+	return
 
 /mob/living/proc/update_move_intent_effects()
 	if(status_flags & INCORPOREAL)

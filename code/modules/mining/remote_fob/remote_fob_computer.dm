@@ -6,7 +6,9 @@
 	desc = "A computer console equipped with camera screen and controls for a planetside deployed construction drone. Materials or equipment vouchers can be added simply by inserting them into the computer."
 	icon = 'icons/Marine/remotefob.dmi'
 	icon_state = "fobpc"
+	interaction_flags = INTERACT_MACHINE_DEFAULT
 	req_one_access = list(ACCESS_MARINE_REMOTEBUILD, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING)
+	resistance_flags = RESIST_ALL
 	networks = FALSE
 	off_action = new/datum/action/innate/camera_off/remote_fob
 	jump_action = null
@@ -60,7 +62,7 @@
 	details +="It has [metal_remaining] sheets of metal remaining.</br>"
 	details +="It has [plasteel_remaining] sheets of plasteel remaining.</br>"
 	details +="It has [sentry_remaining] sentries ready for placement.</br>"
-	to_chat(user, details.Join(" "))
+	. += details.Join(" ")
 
 /obj/machinery/computer/camera_advanced/remote_fob/give_eye_control(mob/user)
 	. = ..()
@@ -94,22 +96,22 @@
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if(!allowed(user))
-		to_chat(user, "<span class='warning'>Access Denied!</span>")
+		to_chat(user, span_warning("Access Denied!"))
 		return
 	if(!drone_creation_allowed)
-		to_chat(user, "<span class='notice'>Communication with the drone impossible due to fuel-residue in deployment zone atmosphere.</span>")
+		to_chat(user, span_notice("Communication with the drone impossible due to fuel-residue in deployment zone atmosphere."))
 		return
 	spawn_spot = FALSE
 	switch(tgui_alert(user, "Summon Drone in:", "FOB Construction Drone Control", list("LZ1","LZ2", "Cancel")))
 		if("LZ1")
 			spawn_spot = locate(/obj/docking_port/stationary/marine_dropship/lz1) in SSshuttle.stationary
 			if(!spawn_spot)
-				to_chat(user, "<span class='warning'>No valid location for drone deployment found.</span>")
+				to_chat(user, span_warning("No valid location for drone deployment found."))
 				return
 		if("LZ2")
 			spawn_spot = locate(/obj/docking_port/stationary/marine_dropship/lz2) in SSshuttle.stationary
 			if(!spawn_spot)
-				to_chat(user, "<span class='warning'>No valid location for drone deployment found.</span>")
+				to_chat(user, span_warning("No valid location for drone deployment found."))
 				return
 		else
 			return
@@ -124,14 +126,6 @@
 /obj/machinery/computer/camera_advanced/remote_fob/attackby(obj/item/attackingitem, mob/user, params)
 	if(istype(attackingitem, /obj/item/stack))
 		var/obj/item/stack/attacking_stack = attackingitem
-		if(istype(attacking_stack, /obj/item/stack/voucher/sentry))
-			var/useamount = attacking_stack.amount
-			sentry_remaining += useamount
-			attacking_stack.use(useamount)
-			to_chat(user, "<span class='notice'>Sentry voucher redeemed.</span>")
-			playsound(src, 'sound/machines/terminal_insert_disc.ogg', 25, FALSE)
-			flick("fobpc-insert", src)
-			return
 		if(istype(attacking_stack, /obj/item/stack/sheet/metal))
 			var/useamount = attacking_stack.amount
 			metal_remaining += useamount
@@ -184,6 +178,8 @@
 		eject_plasteel_action.give_action(user)
 		actions += eject_plasteel_action
 
+	RegisterSignal(user, COMSIG_MOB_CLICKON, .proc/on_controller_click)
+
 	eyeobj.invisibility = 0
 
 /obj/machinery/computer/camera_advanced/remote_fob/remove_eye_control(mob/living/user)
@@ -191,11 +187,17 @@
 	eyeobj.invisibility = INVISIBILITY_ABSTRACT
 	eyeobj.eye_initialized = FALSE
 	eyeobj.unregister_facedir_signals(user)
+	UnregisterSignal(user, COMSIG_MOB_CLICKON)
 	return ..()
 
 /obj/machinery/computer/camera_advanced/remote_fob/check_eye(mob/living/user)
 	if(!drone_creation_allowed)
-		to_chat(user, "<span class='notice'>Communication with the drone has been disrupted.</span>")
+		to_chat(user, span_notice("Communication with the drone has been disrupted."))
 		user.unset_interaction()
 		return
 	return ..()
+
+/// Lets players click a tile while controlling to face it.
+/obj/machinery/computer/camera_advanced/remote_fob/proc/on_controller_click(datum/source, atom/target, turf/location, control, params)
+	SIGNAL_HANDLER
+	eyeobj.facedir(get_dir(eyeobj, target))

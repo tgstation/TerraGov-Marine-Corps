@@ -1,84 +1,63 @@
-///Causes any affecting light sources to be queued for a visibility update, for example a door got opened.
+///Estimates the light power based on the alpha of the light and the range.
+///Assumes a linear fallout at (0, alpha/255) to (range, 0)
+///Used for lightig mask lumcount calculations
+#define LIGHT_POWER_ESTIMATION(alpha, range, distance) max((alpha * (range - distance)) / (255 * range), 0)
+
+/turf
+	///hybrid lights affecting this turf
+	var/tmp/list/atom/movable/lighting_mask/hybrid_lights_affecting
+
+/turf/Destroy(force)
+	if(hybrid_lights_affecting)
+		for(var/atom/movable/lighting_mask/mask AS in hybrid_lights_affecting)
+			LAZYREMOVE(mask.affecting_turfs, src)
+		hybrid_lights_affecting.Cut()
+	return ..()
+
+/// Causes any affecting light sources to be queued for a visibility update, for example a door got opened.
 /turf/proc/reconsider_lights()
-	var/datum/light_source/L
-	var/thing
-	for(thing in affecting_lights)
-		L = thing
-		L.vis_update()
+	//Consider static lights
+	lighting_corner_NE?.vis_update()
+	lighting_corner_SE?.vis_update()
+	lighting_corner_SW?.vis_update()
+	lighting_corner_NW?.vis_update()
 
-
-/turf/proc/lighting_clear_overlay()
-	if(lighting_object)
-		qdel(lighting_object, TRUE)
-
-	var/datum/lighting_corner/C
-	var/thing
-	for(thing in corners)
-		if(!thing)
-			continue
-		C = thing
-		C.update_active()
-
-
-// Builds a lighting object for us, but only if our area is dynamic.
-/turf/proc/lighting_build_overlay()
-	if(lighting_object)
-		qdel(lighting_object, force = TRUE) //Shitty fix for lighting objects persisting after death
-
-	var/area/A = loc
-	if(!IS_DYNAMIC_LIGHTING(A) && !light_sources)
-		return
-
-	if(!lighting_corners_initialised)
-		generate_missing_corners()
-
-	new /atom/movable/lighting_object(src)
-
-	var/thing
-	var/datum/lighting_corner/C
-	var/datum/light_source/S
-	for(thing in corners)
-		if(!thing)
-			continue
-		C = thing
-		if(!C.active) // We would activate the corner, calculate the lighting for it.
-			for(thing in C.affecting)
-				S = thing
-				S.recalc_corner(C)
-			C.active = TRUE
+	//consider dynamic lights
+	for(var/atom/movable/lighting_mask/mask AS in hybrid_lights_affecting)
+		mask.queue_mask_update()
 
 // Used to get a scaled lumcount.
 /turf/proc/get_lumcount(minlum = 0, maxlum = 1)
-	if(!lighting_object)
-		return 1
-
 	var/totallums = 0
-	var/thing
-	var/datum/lighting_corner/L
-	for(thing in corners)
-		if(!thing)
-			continue
-		L = thing
-		totallums += L.lum_r + L.lum_b + L.lum_g
+	if (static_lighting_object)
+		var/datum/static_lighting_corner/L
+		L = lighting_corner_NE
+		if (L)
+			totallums += L.lum_r + L.lum_b + L.lum_g
+		L = lighting_corner_SE
+		if (L)
+			totallums += L.lum_r + L.lum_b + L.lum_g
+		L = lighting_corner_SW
+		if (L)
+			totallums += L.lum_r + L.lum_b + L.lum_g
+		L = lighting_corner_NW
+		if (L)
+			totallums += L.lum_r + L.lum_b + L.lum_g
 
-	totallums /= 12 // 4 corners, each with 3 channels, get the average.
+		totallums /= 12 // 4 corners, each with 3 channels, get the average.
 
-	totallums = (totallums - minlum) / (maxlum - minlum)
+		totallums = (totallums - minlum) / (maxlum - minlum)
 
-	return CLAMP01(totallums)
+		totallums = CLAMP01(totallums)
+	else
+		totallums = 1
 
-
-// Returns a boolean whether the turf is on soft lighting.
-// Soft lighting being the threshold at which point the overlay considers
-// itself as too dark to allow sight and see_in_dark becomes useful.
-// So basically if this returns true the tile is unlit black.
-/turf/proc/is_softly_lit()
-	if(!lighting_object)
-		return FALSE
-
-	return !lighting_object.luminosity
-
-
+	for(var/atom/movable/lighting_mask/mask AS in hybrid_lights_affecting)
+		if(mask.blend_mode == BLEND_ADD)
+			totallums += LIGHT_POWER_ESTIMATION(mask.alpha, mask.radius, get_dist(src, get_turf(mask.attached_atom)))
+		else
+			totallums -= LIGHT_POWER_ESTIMATION(mask.alpha, mask.radius, get_dist(src, get_turf(mask.attached_atom)))
+	return clamp(totallums, 0.0, 1.0)
 
 ///Proc to add movable sources of opacity on the turf and let it handle lighting code.
 /turf/proc/add_opacity_source(atom/movable/new_source)
@@ -105,8 +84,7 @@
 			reconsider_lights()
 		return
 	directional_opacity = NONE
-	for(var/am in opacity_sources)
-		var/atom/movable/opacity_source = am
+	for(var/atom/movable/opacity_source AS in opacity_sources)
 		if(opacity_source.flags_atom & ON_BORDER)
 			directional_opacity |= opacity_source.dir
 		else //If fulltile and opaque, then the whole tile blocks view, no need to continue checking.
@@ -114,25 +92,3 @@
 			break
 	if(. != directional_opacity && (. == ALL_CARDINALS || directional_opacity == ALL_CARDINALS))
 		reconsider_lights() //The lighting system only cares whether the tile is fully concealed from all directions or not.
-
-/turf/proc/change_area(area/old_area, area/new_area)
-	if(SSlighting.initialized)
-		if(new_area.dynamic_lighting != old_area.dynamic_lighting)
-			if(new_area.dynamic_lighting)
-				lighting_build_overlay()
-			else
-				lighting_clear_overlay()
-
-
-/turf/proc/generate_missing_corners()
-	if(!IS_DYNAMIC_LIGHTING(src) && !light_sources)
-		return
-	lighting_corners_initialised = TRUE
-	if(!corners)
-		corners = list(null, null, null, null)
-
-	for(var/i = 1 to 4)
-		if(corners[i]) // Already have a corner on this direction.
-			continue
-
-		corners[i] = new /datum/lighting_corner(src, GLOB.LIGHTING_CORNER_DIAGONAL[i])

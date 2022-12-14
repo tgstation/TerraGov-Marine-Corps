@@ -10,8 +10,6 @@
 	wall_smash = 0
 	health = 300
 	maxHealth = 300
-	amount_grown = 0
-	max_grown = 10
 	plasma_stored = 300
 	pixel_x = -16
 	old_x = -16
@@ -21,12 +19,7 @@
 	upgrade = XENO_UPGRADE_ZERO
 
 	var/breathing_counter = 0
-	var/queen_ability_cooldown = 0
-	var/mob/living/carbon/xenomorph/observed_xeno //the Xenomorph the queen is currently overwatching
 	inherent_verbs = list(
-		/mob/living/carbon/xenomorph/proc/claw_toggle,
-		/mob/living/carbon/xenomorph/queen/proc/set_orders,
-		/mob/living/carbon/xenomorph/queen/proc/hive_Message,
 		/mob/living/carbon/xenomorph/proc/hijack,
 	)
 
@@ -52,8 +45,13 @@
 // *********** Mob overrides
 // ***************************************
 
+/mob/living/carbon/xenomorph/queen/handle_special_state()
+	if(is_charging >= CHARGE_ON)
+		icon_state = "Queen Charging"
+		return TRUE
+	return FALSE
 
-/mob/living/carbon/xenomorph/queen/reset_perspective(atom/A)
+/mob/living/carbon/xenomorph/reset_perspective(atom/A)
 	if (!client)
 		return
 
@@ -75,6 +73,10 @@
 	client.perspective = EYE_PERSPECTIVE
 	client.eye = loc
 
+/mob/living/carbon/xenomorph/queen/upgrade_xeno(newlevel, silent = FALSE)
+	. = ..()
+	hive?.update_leader_pheromones()
+
 // ***************************************
 // *********** Name
 // ***************************************
@@ -88,6 +90,8 @@
 			name = "[hive.prefix]Elder Empress ([nicknumber])"	 //Elder
 		if(XENO_UPGRADE_THREE)
 			name = "[hive.prefix]Ancient Empress ([nicknumber])" //Ancient
+		if(XENO_UPGRADE_FOUR)
+			name = "[hive.prefix]Primordial Empress ([nicknumber])"
 
 	real_name = name
 	if(mind)
@@ -111,32 +115,3 @@
 /mob/living/carbon/xenomorph/queen/proc/is_burrowed_larva_host(datum/source, list/mothers, list/silos)
 	if(!incapacitated(TRUE))
 		mothers += src //Adding us to the list.
-
-// ***************************************
-// *********** Queen Acidic Salve
-// ***************************************
-/datum/action/xeno_action/activable/psychic_cure/acidic_salve/queen
-	heal_range = HIVELORD_HEAL_RANGE
-
-// ***************************************
-// *********** Overwatch (from hivemind chat)
-// ***************************************
-/mob/living/carbon/xenomorph/queen/Topic(href, href_list)
-	. = ..()
-	if(.)
-		return
-
-	if(href_list["watch_xeno_name"])
-		if(!check_state())
-			return
-		var/xeno_name = href_list["watch_xeno_name"]
-		for(var/Y in hive.get_watchable_xenos())
-			var/mob/living/carbon/xenomorph/X = Y
-			if(isnum(X.nicknumber))
-				if(num2text(X.nicknumber) != xeno_name)
-					continue
-			else
-				if(X.nicknumber != xeno_name)
-					continue
-			SEND_SIGNAL(src, COMSIG_XENOMORPH_WATCHXENO, X)
-			break

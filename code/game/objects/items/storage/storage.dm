@@ -12,19 +12,29 @@
 	var/list/can_hold = list() //List of objects which this item can store (if set, it can't store anything else)
 	var/list/cant_hold = list() //List of objects which this item can't store (in effect only if can_hold isn't set)
 	var/list/bypass_w_limit = list() //a list of objects which this item can store despite not passing the w_class limit
+	/**
+	 * Associated list of types and their max count, formatted as
+	 * 	storage_type_limits = list(
+	 * 		/obj/A = 3,
+	 * 	)
+	 *
+	 * Any inserted objects will decrement the allowed count of every listed type which matches or is a parent of that object.
+	 * With entries for both /obj/A and /obj/A/B, inserting a B requires non-zero allowed count remaining for, and reduces, both.
+	 */
+	var/list/storage_type_limits
 	var/list/click_border_start = list() //In slotless storage, stores areas where clicking will refer to the associated item
 	var/list/click_border_end = list()
 	var/max_w_class = 2 //Max size of objects that this object can store (in effect only if can_hold isn't set)
 	var/max_storage_space = 14 //The sum of the storage costs of all the items in this storage item.
 	var/storage_slots = 7 //The number of storage slots in this container.
-	var/obj/screen/storage/boxes = null
-	var/obj/screen/storage/storage_start = null //storage UI
-	var/obj/screen/storage/storage_continue = null
-	var/obj/screen/storage/storage_end = null
-	var/obj/screen/storage/stored_start = null
-	var/obj/screen/storage/stored_continue = null
-	var/obj/screen/storage/stored_end = null
-	var/obj/screen/close/closer = null
+	var/atom/movable/screen/storage/boxes = null
+	var/atom/movable/screen/storage/storage_start = null //storage UI
+	var/atom/movable/screen/storage/storage_continue = null
+	var/atom/movable/screen/storage/storage_end = null
+	var/atom/movable/screen/storage/stored_start = null
+	var/atom/movable/screen/storage/stored_continue = null
+	var/atom/movable/screen/storage/stored_end = null
+	var/atom/movable/screen/close/closer = null
 	var/show_storage_fullness = TRUE //whether our storage box on hud changes color when full.
 	var/use_to_pickup	//Set this to make it possible to use this item in an inverse way, so you can have the item in your hand and click items on the floor to pick them up.
 	var/display_contents_with_number	//Set this to make the storage item group contents of the same type and display them as a number.
@@ -54,7 +64,7 @@
 		open(usr)
 		return
 
-	if(!istype(over_object, /obj/screen))
+	if(!istype(over_object, /atom/movable/screen))
 		return ..()
 
 	//Makes sure that the storage is equipped, so that we can't drag it into our hand from miles away.
@@ -141,12 +151,13 @@
 	if(!opened)
 		orient2hud()
 		opened = 1
-	if (use_sound)
+	if (use_sound && user.stat != DEAD)
 		playsound(src.loc, src.use_sound, 25, 1, 3)
 
 	if (user.s_active)
 		user.s_active.close(user)
 	show_to(user)
+	return TRUE
 
 
 /obj/item/storage/proc/close(mob/user)
@@ -255,7 +266,7 @@
 
 
 
-/obj/screen/storage/Click(location, control, params)
+/atom/movable/screen/storage/Click(location, control, params)
 	if(usr.incapacitated(TRUE))
 		return
 
@@ -287,20 +298,19 @@
 		I.attack_hand(usr)
 		return
 
-
 /datum/numbered_display
 	var/obj/item/sample_object
 	var/number
 
-	New(obj/item/sample)
-		if(!istype(sample))
-			qdel(src)
-		sample_object = sample
-		number = 1
+/datum/numbered_display/New(obj/item/sample)
+	if(!istype(sample))
+		qdel(src)
+	sample_object = sample
+	number = 1
 
-	Destroy()
-		sample_object = null
-		. = ..()
+/datum/numbered_display/Destroy()
+	sample_object = null
+	return ..()
 
 //This proc determins the size of the inventory to be displayed. Please touch it only if you know what you're doing.
 /obj/item/storage/proc/orient2hud()
@@ -342,23 +352,23 @@
 		return FALSE //Means the item is already in the storage item
 	if(storage_slots != null && contents.len >= storage_slots)
 		if(warning)
-			to_chat(usr, "<span class='notice'>[src] is full, make some space.</span>")
+			to_chat(usr, span_notice("[src] is full, make some space."))
 		return FALSE //Storage item is full
 
 	if(length(can_hold))
 		if(!is_type_in_typecache(W, can_hold))
 			if(warning)
-				to_chat(usr, "<span class='notice'>[src] cannot hold [W].</span>")
+				to_chat(usr, span_notice("[src] cannot hold [W]."))
 			return FALSE
 
 	if(is_type_in_typecache(W, cant_hold)) //Check for specific items which this container can't hold.
 		if(warning)
-			to_chat(usr, "<span class='notice'>[src] cannot hold [W].</span>")
+			to_chat(usr, span_notice("[src] cannot hold [W]."))
 		return FALSE
 
 	if(!is_type_in_typecache(W, bypass_w_limit) && W.w_class > max_w_class)
 		if(warning)
-			to_chat(usr, "<span class='notice'>[W] is too long for this [src].</span>")
+			to_chat(usr, span_notice("[W] is too long for this [src]."))
 		return FALSE
 
 	var/sum_storage_cost = W.w_class
@@ -367,14 +377,22 @@
 
 	if(sum_storage_cost > max_storage_space)
 		if(warning)
-			to_chat(usr, "<span class='notice'>[src] is full, make some space.</span>")
+			to_chat(usr, span_notice("[src] is full, make some space."))
 		return FALSE
 
 	if(W.w_class >= w_class && istype(W, /obj/item/storage) && !is_type_in_typecache(W.type, bypass_w_limit))
 		if(!istype(src, /obj/item/storage/backpack/holding))	//bohs should be able to hold backpacks again. The override for putting a boh in a boh is in backpack.dm.
 			if(warning)
-				to_chat(usr, "<span class='notice'>[src] cannot hold [W] as it's a storage item of the same size.</span>")
+				to_chat(usr, span_notice("[src] cannot hold [W] as it's a storage item of the same size."))
 			return FALSE //To prevent the stacking of same sized storage items.
+
+	for(var/limited_type in storage_type_limits)
+		if(!istype(W, limited_type))
+			continue
+		if(storage_type_limits[limited_type] == 0)
+			if(warning)
+				to_chat(usr, span_warning("[src] can't fit any more of those.") )
+			return FALSE
 
 	if(istype(W, /obj/item/tool/hand_labeler))
 		var/obj/item/tool/hand_labeler/L = W
@@ -394,12 +412,16 @@
 	if(!access_delay || !should_access_delay(accessed, user, taking_out))
 		return TRUE
 
+	if(LAZYLEN(user.do_actions))
+		to_chat(user, span_warning("You are busy doing something else!"))
+		return FALSE
+
 	if(!alert_user)
 		return do_after(user, access_delay, TRUE, src, ignore_turf_checks=TRUE)
 
 	to_chat(user, "<span class='notice'>You begin to [taking_out ? "take" : "put"] [accessed] [taking_out ? "out of" : "into"] [src]")
 	if(!do_after(user, access_delay, TRUE, src, ignore_turf_checks=TRUE))
-		to_chat(user, "<span class='warning'>You fumble [accessed]!</span>")
+		to_chat(user, span_warning("You fumble [accessed]!"))
 		return FALSE
 	return TRUE
 
@@ -411,14 +433,14 @@
 	return FALSE
 
 /**
- * This proc handles items being inserted. It does not perform any checks of whether an item can or can't be inserted.     
+ * This proc handles items being inserted. It does not perform any checks of whether an item can or can't be inserted.
  * That's done by can_be_inserted()
  * The stop_warning parameter will stop the insertion message from being displayed. It is intended for cases where you are inserting multiple items at once,
  * such as when picking up all the items on a tile with one click.
  * user can be null, it refers to the potential mob doing the insertion.
  */
 /obj/item/storage/proc/handle_item_insertion(obj/item/item, prevent_warning = 0, mob/user)
-	if(!istype(item)) 
+	if(!istype(item))
 		return FALSE
 	if(!handle_access_delay(item, user, taking_out=FALSE))
 		item.forceMove(item.drop_location())
@@ -434,8 +456,8 @@
 			user.client?.screen -= item
 		if(!prevent_warning)
 			var/visidist = item.w_class >= 3 ? 3 : 1
-			user.visible_message("<span class='notice'>[user] puts [item] into [src].</span>",\
-								"<span class='notice'>You put \the [item] into [src].</span>",\
+			user.visible_message(span_notice("[user] puts [item] into [src]."),\
+								span_notice("You put \the [item] into [src]."),\
 								null, visidist)
 	orient2hud()
 	for(var/mob/M in can_see_content())
@@ -443,11 +465,17 @@
 	if (storage_slots)
 		item.mouse_opacity = 2 //not having to click the item's tiny sprite to take it out of the storage.
 	update_icon()
-	return 1
+	for(var/limited_type in storage_type_limits)
+		if(istype(item, limited_type))
+			storage_type_limits[limited_type] -= 1
+	return TRUE
 
 //Call this proc to handle the removal of an item from the storage item. The item will be moved to the atom sent as new_target
 /obj/item/storage/proc/remove_from_storage(obj/item/item, atom/new_location, mob/user)
 	if(!istype(item))
+		return FALSE
+
+	if(!handle_access_delay(item, user))
 		return FALSE
 
 	for(var/mob/M AS in can_see_content())
@@ -479,7 +507,11 @@
 
 	update_icon()
 
-	return handle_access_delay(item, user)
+	for(var/limited_type in storage_type_limits)
+		if(istype(item, limited_type))
+			storage_type_limits[limited_type] += 1
+
+	return TRUE
 
 //This proc is called when you want to place an item into the storage item.
 /obj/item/storage/attackby(obj/item/I, mob/user, params)
@@ -496,12 +528,12 @@
 		if(draw_mode && ishuman(user) && contents.len)
 			var/obj/item/I = contents[contents.len]
 			I.attack_hand(user)
-		else
-			open(user)
-	else
-		. = ..()
-		for(var/mob/M in content_watchers)
-			close(M)
+			return
+		else if(open(user))
+			return
+	. = ..()
+	for(var/mob/M AS in content_watchers)
+		close(M)
 
 
 /obj/item/storage/attack_ghost(mob/user)
@@ -548,6 +580,13 @@
 		I.on_exit_storage(src)
 		qdel(I)
 
+//finds a stored item to draw
+/obj/item/storage/do_quick_equip(mob/user)
+	if(!length(contents))
+		return FALSE //we don't want to equip the storage item itself
+	var/obj/item/W = contents[length(contents)]
+	remove_from_storage(W, null, user)
+	return W
 
 /obj/item/storage/Initialize(mapload, ...)
 	. = ..()
@@ -573,21 +612,21 @@
 	boxes.layer = HUD_LAYER
 	boxes.plane = HUD_PLANE
 
-	storage_start = new /obj/screen/storage(  )
+	storage_start = new /atom/movable/screen/storage(  )
 	storage_start.name = "storage"
 	storage_start.master = src
 	storage_start.icon_state = "storage_start"
 	storage_start.screen_loc = "7,7 to 10,8"
 	storage_start.layer = HUD_LAYER
 	storage_start.plane = HUD_PLANE
-	storage_continue = new /obj/screen/storage(  )
+	storage_continue = new /atom/movable/screen/storage(  )
 	storage_continue.name = "storage"
 	storage_continue.master = src
 	storage_continue.icon_state = "storage_continue"
 	storage_continue.screen_loc = "7,7 to 10,8"
 	storage_continue.layer = HUD_LAYER
 	storage_continue.plane = HUD_PLANE
-	storage_end = new /obj/screen/storage(  )
+	storage_end = new /atom/movable/screen/storage(  )
 	storage_end.name = "storage"
 	storage_end.master = src
 	storage_end.icon_state = "storage_end"
@@ -669,7 +708,7 @@
 		close(M)
 
 	// Now make the cardboard
-	to_chat(user, "<span class='notice'>You fold [src] flat.</span>")
+	to_chat(user, span_notice("You fold [src] flat."))
 	new foldable(get_turf(src))
 	qdel(src)
 //BubbleWrap END
@@ -746,6 +785,10 @@
 
 /obj/item/storage/AltClick(mob/user)
 	attempt_draw_object(user)
+
+/obj/item/storage/AltRightClick(mob/user)
+	if(Adjacent(user))
+		open(user)
 
 /obj/item/storage/attack_hand_alternate(mob/living/user)
 	attempt_draw_object(user)

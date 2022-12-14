@@ -66,24 +66,145 @@
 	access = list(ACCESS_MARINE_ALPHA_REBEL)
 	radio_freq = FREQ_ALPHA_REBEL
 	faction = FACTION_TERRAGOV_REBEL
+	current_positions = list(
+		REBEL_SQUAD_MARINE = 0,
+		REBEL_SQUAD_ENGINEER = 0,
+		REBEL_SQUAD_CORPSMAN = 0,
+		REBEL_SQUAD_SMARTGUNNER = 0,
+		REBEL_SQUAD_LEADER = 0,
+)
+	max_positions = list(
+		REBEL_SQUAD_MARINE = -1,
+		REBEL_SQUAD_LEADER = 1,
+)
 
 /datum/squad/bravo/rebel
 	id = BRAVO_SQUAD_REBEL
 	access = list(ACCESS_MARINE_BRAVO_REBEL)
 	radio_freq = FREQ_BRAVO_REBEL
 	faction = FACTION_TERRAGOV_REBEL
+	current_positions = list(
+		REBEL_SQUAD_MARINE = 0,
+		REBEL_SQUAD_ENGINEER = 0,
+		REBEL_SQUAD_CORPSMAN = 0,
+		REBEL_SQUAD_SMARTGUNNER = 0,
+		REBEL_SQUAD_LEADER = 0,
+)
+	max_positions = list(
+		REBEL_SQUAD_MARINE = -1,
+		REBEL_SQUAD_LEADER = 1,
+)
 
 /datum/squad/charlie/rebel
 	id = CHARLIE_SQUAD_REBEL
 	access = list(ACCESS_MARINE_CHARLIE_REBEL)
 	radio_freq = FREQ_CHARLIE_REBEL
 	faction = FACTION_TERRAGOV_REBEL
+	current_positions = list(
+		REBEL_SQUAD_MARINE = 0,
+		REBEL_SQUAD_ENGINEER = 0,
+		REBEL_SQUAD_CORPSMAN = 0,
+		REBEL_SQUAD_SMARTGUNNER = 0,
+		REBEL_SQUAD_LEADER = 0,
+)
+	max_positions = list(
+		REBEL_SQUAD_MARINE = -1,
+		REBEL_SQUAD_LEADER = 1,
+)
 
 /datum/squad/delta/rebel
 	id = DELTA_SQUAD_REBEL
 	access = list(ACCESS_MARINE_DELTA_REBEL)
 	radio_freq = FREQ_DELTA_REBEL
 	faction = FACTION_TERRAGOV_REBEL
+	current_positions = list(
+		REBEL_SQUAD_MARINE = 0,
+		REBEL_SQUAD_ENGINEER = 0,
+		REBEL_SQUAD_CORPSMAN = 0,
+		REBEL_SQUAD_SMARTGUNNER = 0,
+		REBEL_SQUAD_LEADER = 0,
+)
+	max_positions = list(
+		REBEL_SQUAD_MARINE = -1,
+		REBEL_SQUAD_LEADER = 1,
+)
+
+//SOM squads
+/datum/squad/zulu
+	name = "Zulu"
+	id = ZULU_SQUAD
+	color = "#FF6A00"
+	access = list(ACCESS_MARINE_ALPHA) //No unique SOM access yet
+	radio_freq = FREQ_ZULU
+	faction = FACTION_SOM
+	current_positions = list(
+		SOM_SQUAD_MARINE = 0,
+		SOM_SQUAD_VETERAN = 0,
+		SOM_SQUAD_CORPSMAN = 0,
+		SOM_SQUAD_ENGINEER = 0,
+		SOM_SQUAD_LEADER = 0,
+)
+	max_positions = list(
+		SOM_SQUAD_MARINE = -1,
+		SOM_SQUAD_LEADER = 1,
+)
+
+/datum/squad/yankee
+	name = "Yankee"
+	id = YANKEE_SQUAD
+	color = "#009999"
+	access = list(ACCESS_MARINE_BRAVO)
+	radio_freq = FREQ_YANKEE
+	faction = FACTION_SOM
+	current_positions = list(
+		SOM_SQUAD_MARINE = 0,
+		SOM_SQUAD_VETERAN = 0,
+		SOM_SQUAD_CORPSMAN = 0,
+		SOM_SQUAD_ENGINEER = 0,
+		SOM_SQUAD_LEADER = 0,
+)
+	max_positions = list(
+		SOM_SQUAD_MARINE = -1,
+		SOM_SQUAD_LEADER = 1,
+)
+
+/datum/squad/xray
+	name = "Xray"
+	id = XRAY_SQUAD
+	color = "#008000"
+	access = list(ACCESS_MARINE_CHARLIE)
+	radio_freq = FREQ_XRAY
+	faction = FACTION_SOM
+	current_positions = list(
+		SOM_SQUAD_MARINE = 0,
+		SOM_SQUAD_VETERAN = 0,
+		SOM_SQUAD_CORPSMAN = 0,
+		SOM_SQUAD_ENGINEER = 0,
+		SOM_SQUAD_LEADER = 0,
+)
+	max_positions = list(
+		SOM_SQUAD_MARINE = -1,
+		SOM_SQUAD_LEADER = 1,
+)
+
+/datum/squad/whiskey
+	name = "Whiskey"
+	id = WHISKEY_SQUAD
+	color = "#CC00CC"
+	access = list(ACCESS_MARINE_DELTA)
+	radio_freq = FREQ_WHISKEY
+	faction = FACTION_SOM
+	current_positions = list(
+		SOM_SQUAD_MARINE = 0,
+		SOM_SQUAD_VETERAN = 0,
+		SOM_SQUAD_CORPSMAN = 0,
+		SOM_SQUAD_ENGINEER = 0,
+		SOM_SQUAD_LEADER = 0,
+)
+	max_positions = list(
+		SOM_SQUAD_MARINE = -1,
+		SOM_SQUAD_LEADER = 1,
+)
 
 GLOBAL_LIST_EMPTY(glovemarkings)
 GLOBAL_LIST_EMPTY(armormarkings)
@@ -133,7 +254,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 	current_positions[new_squaddie.job.title]++
 
-	if(ismarineleaderjob(new_squaddie.job) && !squad_leader)
+	if((ismarineleaderjob(new_squaddie.job) || issommarineleaderjob(new_squaddie.job)) && !squad_leader)
 		squad_leader = new_squaddie
 		SSdirection.set_leader(tracking_id, new_squaddie)
 		SSdirection.start_tracking(TRACKING_ID_MARINE_COMMANDER, new_squaddie)
@@ -228,7 +349,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	SSdirection.stop_tracking(TRACKING_ID_MARINE_COMMANDER, squad_leader)
 
 	//Handle aSL skill level and radio
-	if(!ismarineleaderjob(squad_leader.job))
+	if(!ismarineleaderjob(squad_leader.job) || !issommarineleaderjob(squad_leader.job))
 		squad_leader.skills = squad_leader.skills.setRating(leadership = SKILL_LEAD_NOVICE)
 		if(squad_leader.mind)
 			var/datum/job/J = squad_leader.job
@@ -259,7 +380,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	SSdirection.start_tracking(TRACKING_ID_MARINE_COMMANDER, H)
 
 	//Handle aSL skill level and radio
-	if(!ismarineleaderjob(squad_leader.job))
+	if(!ismarineleaderjob(squad_leader.job) || !issommarineleaderjob(squad_leader.job))
 		squad_leader.skills = squad_leader.skills.setRating(leadership = SKILL_LEAD_EXPERT)
 		squad_leader.comm_title = "aSL"
 		var/obj/item/card/id/ID = squad_leader.get_idcard()
@@ -290,7 +411,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 
 /datum/squad/proc/message_squad(message, mob/living/carbon/human/sender)
-	var/text = "<span class='notice'><B>\[Overwatch\]:</b> [format_message(message, sender)]</span>"
+	var/text = span_notice("<B>\[Overwatch\]:</b> [format_message(message, sender)]")
 	for(var/i in marines_list)
 		var/mob/living/L = i
 		message_member(L, text, sender)
@@ -299,7 +420,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 /datum/squad/proc/message_leader(message, mob/living/carbon/human/sender)
 	if(!squad_leader || squad_leader.stat != CONSCIOUS || !squad_leader.client)
 		return FALSE
-	return message_member(squad_leader, "<span class='notice'><B>\[SL Overwatch\]:</b> [format_message(message, sender)]</span>", sender)
+	return message_member(squad_leader, span_notice("<B>\[SL Overwatch\]:</b> [format_message(message, sender)]"), sender)
 
 
 /datum/squad/proc/message_member(mob/living/target, message, mob/living/carbon/human/sender)
@@ -341,11 +462,15 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	var/strict = player.client.prefs.be_special && (player.client.prefs.be_special & BE_SQUAD_STRICT)
 	//List of all the faction accessible squads
 	var/list/available_squads = SSjob.active_squads[faction]
-	var/datum/squad/preferred_squad = SSjob.squads_by_name[player.client.prefs.preferred_squad]
+	var/datum/squad/preferred_squad
+	if(faction == FACTION_SOM)
+		preferred_squad = LAZYACCESSASSOC(SSjob.squads_by_name, faction, player.client.prefs.preferred_squad_som)
+	else
+		preferred_squad = LAZYACCESSASSOC(SSjob.squads_by_name, faction, player.client.prefs.preferred_squad) //TGMC and rebels use the same squads
 	if(available_squads.Find(preferred_squad) && preferred_squad?.assign_initial(player, job, latejoin))
 		return TRUE
 	if(strict)
-		to_chat(player, "<span class='warning'>That squad is full!</span>")
+		to_chat(player, span_warning("That squad is full!"))
 		return FALSE
 	//If our preferred squad is not available, we try every other squad
 	for(var/datum/squad/squad AS in shuffle(available_squads))

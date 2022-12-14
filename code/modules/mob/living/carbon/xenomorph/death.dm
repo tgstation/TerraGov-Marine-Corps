@@ -13,6 +13,9 @@
 	GLOB.alive_xeno_list -= src
 	GLOB.dead_xeno_list += src
 
+	QDEL_NULL(current_aura)
+	QDEL_NULL(leader_current_aura)
+
 	hive?.on_xeno_death(src)
 	hive.update_tier_limits() //Update our tier limits.
 
@@ -48,22 +51,22 @@
 				if(XENO_TIER_THREE)
 					SSmonitor.stats.elder_T3--
 				if(XENO_TIER_FOUR)
-					SSmonitor.stats.elder_queen--
-		if(XENO_UPGRADE_THREE)
+					SSmonitor.stats.elder_T4--
+		if(XENO_UPGRADE_THREE, XENO_UPGRADE_FOUR)
 			switch(tier)
 				if(XENO_TIER_TWO)
 					SSmonitor.stats.ancient_T2--
 				if(XENO_TIER_THREE)
 					SSmonitor.stats.ancient_T3--
 				if(XENO_TIER_FOUR)
-					SSmonitor.stats.ancient_queen--
+					SSmonitor.stats.ancient_T4--
 
 	if(GetComponent(/datum/component/ai_controller))
 		gib()
 
 	eject_victim()
 
-	to_chat(src,"<b><span class='deadsay'><p style='font-size:1.5em'><big>We have perished.</big><br><small>But it is not the end of us yet... wait until a newborn can rise in this world...</small></p></span></b>")
+	to_chat(src,"<b>[span_deadsay("<p style='font-size:1.5em'><big>We have perished.</big><br><small>But it is not the end of us yet... wait until a newborn can rise in this world...</small></p>")]</b>")
 
 	return ..()
 
@@ -71,8 +74,10 @@
 /mob/living/carbon/xenomorph/proc/xeno_death_alert()
 	if(is_centcom_level(z))
 		return
+	if(xeno_caste.caste_flags & CASTE_DO_NOT_ANNOUNCE_DEATH)
+		return
 	var/area/A = get_area(src)
-	xeno_message("Hive: \The [src] has <b>died</b>[A? " at [A]":""]!", "xenoannounce", 5, hivenumber)
+	xeno_message("Hive: \The [src] has <b>died</b>[A? " at [A]":""]!", "xenoannounce", xeno_caste.caste_flags & CASTE_DO_NOT_ALERT_LOW_LIFE ? 2 : 5, hivenumber)
 
 /mob/living/carbon/xenomorph/gib()
 
@@ -84,15 +89,15 @@
 
 	remains.icon_state = xeno_caste.gib_anim
 
-	check_blood_splash(35, BURN, 65, 2) //Some testing numbers. 35 burn, 65 chance.
+	check_blood_splash(35, BURN, 65, 2)
 
 	return ..()
 
 /mob/living/carbon/xenomorph/gib_animation()
-	new /obj/effect/overlay/temp/gib_animation/xeno(loc, src, xeno_caste.gib_flick, icon)
+	new /obj/effect/overlay/temp/gib_animation/xeno(loc, 0, src, xeno_caste.gib_flick, icon)
 
 /mob/living/carbon/xenomorph/spawn_gibs()
 	xgibs(get_turf(src))
 
 /mob/living/carbon/xenomorph/dust_animation()
-	new /obj/effect/overlay/temp/dust_animation(loc, src, "dust-a")
+	new /obj/effect/overlay/temp/dust_animation(loc, 0, src, "dust-a")

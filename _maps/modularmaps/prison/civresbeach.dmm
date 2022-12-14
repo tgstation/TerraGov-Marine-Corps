@@ -2,6 +2,10 @@
 "a" = (
 /turf/open/beach/water,
 /area/template_noop)
+"d" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/beach/sand,
+/area/template_noop)
 "e" = (
 /obj/item/toy/beach_ball,
 /turf/open/beach/sand,
@@ -60,7 +64,7 @@ g
 S
 S
 S
-S
+d
 S
 t
 a
@@ -148,7 +152,7 @@ a
 "}
 (8,1,1) = {"
 S
-S
+d
 S
 S
 S

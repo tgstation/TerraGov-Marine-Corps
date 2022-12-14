@@ -11,9 +11,11 @@ GLOBAL_LIST_INIT(blocked_remotebuild_objs, typecacheof(list(/obj/machinery/compu
 	use_static = FALSE
 	mouse_opacity = MOUSE_OPACITY_OPAQUE
 	light_system = MOVABLE_LIGHT
-	light_range = 5
+	light_range = 6
 	light_power = 4
 	light_on = TRUE
+	move_delay = 0.2 SECONDS
+	acceleration = FALSE
 
 	var/area/starting_area
 	var/turf/spawnloc
@@ -37,12 +39,12 @@ GLOBAL_LIST_INIT(blocked_remotebuild_objs, typecacheof(list(/obj/machinery/compu
 
 
 /mob/camera/aiEye/remote/fobdrone/relaymove(mob/user, direct)
-	setDir(direct) //This camera eye is visible as a drone, and needs to keep the dir updated
+	setDir(closest_cardinal_dir(direct)) //This camera eye is visible as a drone, and needs to keep the dir updated
 	return ..()
 
 /mob/camera/aiEye/remote/fobdrone/update_remote_sight(mob/living/user)
 	user.see_invisible = FALSE
-	user.sight = SEE_SELF|SEE_BLACKNESS|SEE_TURFS
+	user.sight = SEE_SELF|SEE_TURFS
 	user.lighting_alpha = LIGHTING_PLANE_ALPHA_NV_TRAIT
 	user.see_in_dark = 7
 	return TRUE

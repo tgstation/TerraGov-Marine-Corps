@@ -60,7 +60,7 @@
 	files[fresh.uid] = fresh
 
 /obj/machinery/computer/forensic_scanning/proc/process_card(obj/item/f_card/card)
-		to_chat(usr, "<span class='warning'>Fingerprints are currently unavailable.</span>")
+		to_chat(usr, span_warning("Fingerprints are currently unavailable."))
 		return 0
 
 //Takes a list of forensic records, with key being reference to object, and updates internal database.
@@ -206,7 +206,7 @@
 		if("filter")
 			var/filterstr = stripped_input(usr,"Input the search criteria. Multiple values can be input, separated by a comma.", "Filter setting")
 			if(filterstr)
-				filter_list[href_list["filter"]] = text2list(filterstr,",")
+				filter_list[href_list["filter"]] = splittext(filterstr,",")
 			else
 				filter_list[href_list["filter"]] = null
 		if("screen")

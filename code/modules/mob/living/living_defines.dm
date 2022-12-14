@@ -1,6 +1,6 @@
 /mob/living
 	see_invisible = SEE_INVISIBLE_LIVING
-	flags_atom = CRITICAL_ATOM|PREVENT_CONTENTS_EXPLOSION
+	flags_atom = CRITICAL_ATOM|PREVENT_CONTENTS_EXPLOSION|BUMP_ATTACKABLE
 	var/see_override = 0 //0 for no override, sets see_invisible = see_override in silicon & carbon life process via update_sight()
 
 	var/resize = RESIZE_DEFAULT_SIZE //Badminnery resize
@@ -39,7 +39,14 @@
 	var/drowsyness = 0
 
 	var/last_staminaloss_dmg = 0
+	/// Maximum amount of stamina a mob can have. Different from the stamina buffer because stamina has a positive and negative part
+	var/max_stamina = 0
+	/// How much stamina can you regen
 	var/max_stamina_buffer = 0
+	/// How fast does a mob regen its stamina. Shouldn't go below 0.
+	var/stamina_regen_multiplier = 1
+	/// Maps modifiers by name to a value, applied additively to stamina_regen_multiplier
+	var/list/stamina_regen_modifiers
 	var/is_dizzy = FALSE
 	var/druggy = 0
 
@@ -73,18 +80,17 @@
 	var/fire_stacks = 0 //Tracks how many stacks of fire we have on, max is
 
 	var/chestburst = 0 // 0: normal, 1: bursting, 2: bursted.
-	var/headbitten = FALSE //false: normal, true: brain removed
 	var/metabolism_efficiency = 1 //more or less efficiency to metabolize helpful/harmful reagents and (TODO) regulate body temperature..
 
 	var/tinttotal = TINT_NONE
 
 	var/list/status_effects //a list of all status effects the mob has
-
+	///Assoc list mapping aura types to strength, based on what we've received since the last life tick. Handled in handle_status_effects()
+	var/list/received_auras
+	///List of strings for auras this mob is currently emitting via ssAura
+	var/list/emitted_auras
 	var/list/stun_absorption //lazy list
 
-	//Speech
-	var/stuttering = 0
-	var/slurring = 0
 
 	var/resting = FALSE
 
@@ -96,19 +102,17 @@
 	var/reagent_shock_modifier = 0 //negative values reduce shock/pain
 	var/reagent_pain_modifier = 0 //same as above, except can potentially mask damage
 
-	var/smoke_delay = FALSE
+	///Lazy assoc list of smoke type mapped to the next world time that smoke can affect this mob
+	var/list/smoke_delays
 	var/smokecloaked = FALSE //For the new Smoke Grenade
 
 	var/no_stun = FALSE
-
-	var/fire_resist = 1 //0 to 1; lower is better as it is a multiplier.
 
 	var/ventcrawl_layer = PIPING_LAYER_DEFAULT
 
 	var/grab_resist_level = 0 //Every time we try to resist a grab, we increment this by 1 until it exceeds the grab level, thereby breaking the grab.
 
 	var/datum/job/job
-	var/faction = FACTION_NEUTRAL
 	var/comm_title = ""
 
 	var/blood_volume = 0 //how much blood the mob has
@@ -124,6 +128,10 @@
 	var/slowdown = 0
 	///Temporary inability to use special actions; hurts projectile damage. Regenerates each tick.
 	var/stagger = 0
+	///Id of the timer to set the afk status to MOB_DISCONNECTED
+	var/afk_timer_id
+	///If this mob is afk
+	var/afk_status = MOB_DISCONNECTED
 
 	/// This is the cooldown on suffering additional effects for when we exhaust all stamina
 	COOLDOWN_DECLARE(last_stamina_exhaustion)

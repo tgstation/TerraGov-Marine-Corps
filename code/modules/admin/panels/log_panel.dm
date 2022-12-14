@@ -2,7 +2,7 @@
 	set name = "Log Panel"
 	set category = "Admin"
 
-	if(!check_rights(R_ADMIN))
+	if(!check_rights(R_LOG))
 		return
 
 	var/ref = "[REF(usr.client.holder)];[HrefToken()]"

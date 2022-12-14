@@ -34,6 +34,8 @@
 			continue
 		.["save_slot_names"]["[i]"] = name
 
+	.["unique_action_use_active_hand"] = unique_action_use_active_hand
+
 	switch(tab_index)
 		if(CHARACTER_CUSTOMIZATION)
 			.["r_hair"] = r_hair
@@ -58,11 +60,9 @@
 			.["gender"] = gender
 			.["ethnicity"] = ethnicity
 			.["species"] = species || "Human"
-			.["body_type"] = body_type
 			.["good_eyesight"] = good_eyesight
 			.["citizenship"] = citizenship
 			.["religion"] = religion
-			.["nanotrasen_relation"] = nanotrasen_relation
 			.["h_style"] = h_style
 			.["grad_style"] = grad_style
 			.["f_style"] = f_style
@@ -90,17 +90,21 @@
 		if(JOB_PREFERENCES)
 			.["job_preferences"] = job_preferences
 			.["preferred_squad"] = preferred_squad
+			.["preferred_squad_som"] = preferred_squad_som
 			.["alternate_option"] = alternate_option
+			.["special_occupation"] = be_special
 		if(GAME_SETTINGS)
 			.["ui_style_color"] = ui_style_color
 			.["ui_style"] = ui_style
 			.["ui_style_alpha"] = ui_style_alpha
 			.["windowflashing"] = windowflashing
 			.["auto_fit_viewport"] = auto_fit_viewport
-			.["focus_chat"] = focus_chat
 			.["mute_xeno_health_alert_messages"] = mute_xeno_health_alert_messages
 			.["tgui_fancy"] = tgui_fancy
 			.["tgui_lock"] = tgui_lock
+			.["tgui_input"] = tgui_input
+			.["tgui_input_big_buttons"] = tgui_input_big_buttons
+			.["tgui_input_buttons_swap"] = tgui_input_buttons_swap
 			.["clientfps"] = clientfps
 			.["chat_on_map"] = chat_on_map
 			.["max_chat_length"] = max_chat_length
@@ -111,8 +115,14 @@
 			.["show_typing"] = show_typing
 			.["tooltips"] = tooltips
 			.["widescreenpref"] = widescreenpref
+			.["radialmedicalpref"] = toggles_gameplay & RADIAL_MEDICAL
+			.["radialstackspref"] = toggles_gameplay & RADIAL_STACKS
 			.["scaling_method"] = scaling_method
 			.["pixel_size"] = pixel_size
+			.["parallax"] = parallax
+			.["fullscreen_mode"] = fullscreen_mode
+			.["preferred_slot"] = slot_flag_to_fluff(preferred_slot)
+			.["preferred_slot_alt"] = slot_flag_to_fluff(preferred_slot_alt)
 		if(KEYBIND_SETTINGS)
 			.["is_admin"] = user.client?.holder ? TRUE : FALSE
 			.["key_bindings"] = list()
@@ -138,6 +148,7 @@
 				"underwear" = list(
 					"male" = GLOB.underwear_m,
 					"female" = GLOB.underwear_f,
+					"plural" = GLOB.underwear_f + GLOB.underwear_m,
 				),
 				"undershirt" = GLOB.undershirt_t,
 				"backpack" = GLOB.backpacklist,
@@ -152,6 +163,7 @@
 				)
 		if(JOB_PREFERENCES)
 			.["squads"] = SELECTABLE_SQUADS
+			.["squads_som"] = SELECTABLE_SQUADS_SOM
 			.["jobs"] = list()
 			for(var/datum/job/job AS in SSjob.joinable_occupations)
 				var/rank = job.title
@@ -233,7 +245,7 @@
 		if("synthetic_type")
 			var/choice = tgui_input_list(ui.user, "What kind of synthetic do you want to play with?", "Synthetic type choice", SYNTH_TYPES)
 			if(choice)
-				ethnicity = choice
+				synthetic_type = choice
 
 		if("xeno_name")
 			var/newValue = params["newValue"]
@@ -265,11 +277,10 @@
 			age = clamp(new_age, AGE_MIN, AGE_MAX)
 
 		if("toggle_gender")
-			if(gender == MALE)
-				gender = FEMALE
+			gender = params["newgender"]
+			if(gender == FEMALE)
 				f_style = "Shaved"
 			else
-				gender = MALE
 				underwear = 1
 
 
@@ -280,13 +291,11 @@
 
 		if("species")
 			var/choice = tgui_input_list(ui.user, "What species do you want to play with?", "Species choice", get_playable_species())
-			if(choice)
-				species = choice
-
-		if("body_type")
-			var/choice = tgui_input_list(ui.user, "What body type do you want?", "Body type choice", GLOB.body_types_list)
-			if(choice)
-				body_type = choice
+			if(!choice || species == choice)
+				return
+			species = choice
+			var/datum/species/S = GLOB.all_species[species]
+			real_name = S.random_name(gender)
 
 		if("toggle_eyesight")
 			good_eyesight = !good_eyesight
@@ -305,6 +314,7 @@
 		if("jobreset")
 			job_preferences = list()
 			preferred_squad = "None"
+			preferred_squad_som = "None"
 			alternate_option = 2 // return to lobby
 
 		if("underwear")
@@ -353,9 +363,9 @@
 				if(!islist(gear))
 					gear = list()
 				gear += choice
-				to_chat(user, "<span class='notice'>Added '[choice]' for [C.cost] points ([MAX_GEAR_COST - total_cost] points remaining).</span>")
+				to_chat(user, span_notice("Added '[choice]' for [C.cost] points ([MAX_GEAR_COST - total_cost] points remaining)."))
 			else
-				to_chat(user, "<span class='warning'>Adding '[choice]' will exceed the maximum loadout cost of [MAX_GEAR_COST] points.</span>")
+				to_chat(user, span_warning("Adding '[choice]' will exceed the maximum loadout cost of [MAX_GEAR_COST] points."))
 
 		if("loadoutremove")
 			gear.Remove(params["gear"])
@@ -458,25 +468,26 @@
 			b_eyes = hex2num(copytext(eyecolor, 6, 8))
 
 		if("citizenship")
-			var/choice = tgui_input_list(ui.user, "What nationality should you have?", "Nationality choice", CITIZENSHIP_CHOICES)
+			var/choice = tgui_input_list(ui.user, "Where do you hail from?", "Place of Origin", CITIZENSHIP_CHOICES)
 			if(choice)
 				citizenship = choice
 
 		if("religion")
-			var/choice = tgui_input_list(ui.user, "What gods do you worship to?", "Religion choice", RELIGION_CHOICES)
+			var/choice = tgui_input_list(ui.user, "What religion do you belive in?", "Belief", RELIGION_CHOICES)
 			if(choice)
 				religion = choice
-
-		if("corporation")
-			var/choice = tgui_input_list(ui.user, "How loyal are you to the corporation?", "Corporation choice", CORP_RELATIONS)
-			if(choice)
-				nanotrasen_relation = choice
 
 		if("squad")
 			var/new_squad = params["newValue"]
 			if(!(new_squad in SELECTABLE_SQUADS))
 				return
 			preferred_squad = new_squad
+
+		if("squad_som")
+			var/new_squad_som = params["newValue"]
+			if(!(new_squad_som in SELECTABLE_SQUADS_SOM))
+				return
+			preferred_squad_som = new_squad_som
 
 		if("med_record")
 			var/new_record = trim(html_encode(params["medicalDesc"]), MAX_MESSAGE_LEN)
@@ -516,13 +527,6 @@
 			if(auto_fit_viewport && parent)
 				parent.fit_viewport()
 
-		if("focus_chat")
-			focus_chat = !focus_chat
-			if(focus_chat)
-				winset(user, null, "input.focus=true")
-			else
-				winset(user, null, "map.focus=true")
-
 		if("mute_xeno_health_alert_messages")
 			mute_xeno_health_alert_messages = !mute_xeno_health_alert_messages
 
@@ -531,6 +535,15 @@
 
 		if("tgui_lock")
 			tgui_lock = !tgui_lock
+
+		if("tgui_input")
+			tgui_input = !tgui_input
+
+		if("tgui_input_big_buttons")
+			tgui_input_big_buttons = !tgui_input_big_buttons
+
+		if("tgui_input_buttons_swap")
+			tgui_input_buttons_swap = !tgui_input_buttons_swap
 
 		if("clientfps")
 			var/desiredfps = text2num(params["newValue"])
@@ -560,6 +573,16 @@
 		if("mute_others_combat_messages")
 			mute_others_combat_messages = !mute_others_combat_messages
 
+		if("preferred_slot_select")
+			var/slot = tgui_input_list(usr, "Which slot would you like to draw/equip from?", "Preferred Slot", SLOT_FLUFF_DRAW)
+			preferred_slot = slot_fluff_to_flag(slot)
+			to_chat(src, span_notice("You will now equip/draw from the [slot] slot first."))
+
+		if("preferred_slot_alt_select")
+			var/slot = tgui_input_list(usr, "Which slot would you like to draw/equip from?", "Alternate preferred Slot", SLOT_FLUFF_DRAW)
+			preferred_slot_alt = slot_fluff_to_flag(slot)
+			to_chat(src, span_notice("You will now equip/draw from the [slot] slot first."))
+
 		if("show_typing")
 			show_typing = !show_typing
 			// Need to remove any currently shown
@@ -573,6 +596,10 @@
 			else if(!current_client.tooltips && tooltips)
 				current_client.tooltips = new /datum/tooltip(current_client)
 
+		if("fullscreen_mode")
+			fullscreen_mode = !fullscreen_mode
+			user.client?.set_fullscreen(fullscreen_mode)
+
 		if("set_keybind")
 			var/kb_name = params["keybind_name"]
 			if(!kb_name)
@@ -583,7 +610,7 @@
 				key_bindings[old_key] -= kb_name
 				if(!length(key_bindings[old_key]))
 					key_bindings -= old_key
-			
+
 			if(!params["key"])
 				return
 			var/mods = params["key_mods"]
@@ -601,9 +628,12 @@
 
 			key_bindings[full_key] += list(kb_name)
 			key_bindings[full_key] = sortList(key_bindings[full_key])
-			current_client.update_movement_keys()
+			current_client.update_special_keybinds()
+			save_keybinds()
+			if(user)
+				SEND_SIGNAL(user, COMSIG_MOB_KEYBINDINGS_UPDATED, GLOB.keybindings_by_name[kb_name])
 			return TRUE
-		
+
 		if("clear_keybind")
 			var/kb_name = params["keybinding"]
 			for(var/key in key_bindings)
@@ -614,7 +644,8 @@
 					key_bindings -= key
 					continue
 				key_bindings[key] = sortList(key_bindings[key])
-			current_client.update_movement_keys()
+			current_client.update_special_keybinds()
+			save_keybinds()
 			return TRUE
 
 		if("setCustomSentence")
@@ -641,7 +672,8 @@
 
 		if("reset-keybindings")
 			key_bindings = GLOB.hotkey_keybinding_list_by_key
-			current_client.update_movement_keys()
+			current_client.update_special_keybinds()
+			save_keybinds()
 
 		if("bancheck")
 			var/list/ban_details = is_banned_from_with_details(user.ckey, user.client.address, user.client.computer_id, params["role"])
@@ -659,7 +691,7 @@
 			var/expires = "This is a permanent ban."
 			if(ban_details["expiration_time"])
 				expires = " The ban is for [DisplayTimeText(text2num(ban_details["duration"]) MINUTES)] and expires on [ban_details["expiration_time"]] (server time)."
-			to_chat(user, "<span class='danger'>You, or another user of this computer or connection ([ban_details["key"]]) is banned from playing [params["role"]].<br>The ban reason is: [ban_details["reason"]]<br>This ban (BanID #[ban_details["id"]]) was applied by [ban_details["admin_key"]] on [ban_details["bantime"]] during round ID [ban_details["round_id"]].<br>[expires]</span>")
+			to_chat(user, span_danger("You, or another user of this computer or connection ([ban_details["key"]]) is banned from playing [params["role"]].<br>The ban reason is: [ban_details["reason"]]<br>This ban (BanID #[ban_details["id"]]) was applied by [ban_details["admin_key"]] on [ban_details["bantime"]] during round ID [ban_details["round_id"]].<br>[expires]"))
 
 		if("update-character-preview")
 			update_preview_icon()
@@ -667,6 +699,12 @@
 		if("widescreenpref")
 			widescreenpref = !widescreenpref
 			user.client.view_size.set_default(get_screen_size(widescreenpref))
+
+		if("radialmedicalpref")
+			toggles_gameplay ^= RADIAL_MEDICAL
+
+		if("radialstackspref")
+			toggles_gameplay ^= RADIAL_STACKS
 
 		if("pixel_size")
 			switch(pixel_size)
@@ -682,6 +720,11 @@
 					pixel_size = PIXEL_SCALING_AUTO
 			user.client.view_size.apply() //Let's winset() it so it actually works
 
+		if("parallax")
+			parallax = WRAP(parallax + 1, PARALLAX_INSANE, PARALLAX_DISABLE + 1)
+			if(parent && parent.mob && parent.mob.hud_used)
+				parent.mob.hud_used.update_parallax_pref(parent.mob)
+
 		if("scaling_method")
 			switch(scaling_method)
 				if(SCALING_METHOD_NORMAL)
@@ -692,11 +735,15 @@
 					scaling_method = SCALING_METHOD_NORMAL
 			user.client.view_size.update_zoom_mode()
 
+		if("unique_action_use_active_hand")
+			unique_action_use_active_hand = !unique_action_use_active_hand
+
 		else //  Handle the unhandled cases
 			return
 
 	save_preferences()
 	save_character()
+	save_keybinds()
 	update_preview_icon()
 	ui_interact(user, ui)
 	SEND_SIGNAL(current_client, COMSIG_CLIENT_PREFERENCES_UIACTED)

@@ -4,15 +4,16 @@
  * Used mostly be xenomorphs
  */
 /turf/closed/wall/resin
-	name = "resin wall"
+	name = RESIN_WALL
 	desc = "Weird slime solidified into a wall."
 	icon = 'icons/Xeno/structures.dmi'
 	icon_state = "resin0"
 	walltype = "resin"
 	max_integrity = 200
 	layer = RESIN_STRUCTURE_LAYER
-	tiles_with = list(/turf/closed/wall/resin, /turf/closed/wall/resin/membrane, /obj/structure/mineral_door/resin)
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	smoothing_behavior = CARDINAL_SMOOTHING
+	smoothing_groups = SMOOTH_XENO_STRUCTURES
+	soft_armor = list(MELEE = 0, BULLET = 60, LASER = 60, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 
 /turf/closed/wall/resin/Initialize()
@@ -20,18 +21,8 @@
 	return INITIALIZE_HINT_LATELOAD
 
 
-/turf/closed/wall/resin/LateInitialize(mapload)
-	if(!locate(/obj/effect/alien/weeds) in loc)
-		new /obj/effect/alien/weeds(loc)
-
-
-/turf/closed/wall/resin/ChangeTurf(path, new_baseturf, flags)
-	. = ..()
-	new /obj/effect/alien/weeds(.)
-
-
-/turf/closed/wall/resin/flamer_fire_act()
-	take_damage(50, BURN, "fire")
+/turf/closed/wall/resin/flamer_fire_act(burnlevel)
+	take_damage(burnlevel * 1.25, BURN, "fire")
 
 
 /turf/closed/wall/resin/proc/thicken()
@@ -59,6 +50,8 @@
 	max_integrity = 120
 	opacity = FALSE
 	alpha = 180
+	smoothing_behavior = CARDINAL_SMOOTHING
+	smoothing_groups = SMOOTH_XENO_STRUCTURES
 
 
 /turf/closed/wall/resin/membrane/thicken()
@@ -77,32 +70,32 @@
 /turf/closed/wall/resin/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(500)
+			take_damage(600) // Heavy and devastate instakill walls.
 		if(EXPLODE_HEAVY)
-			take_damage(rand(140, 300))
+			take_damage(rand(400))
 		if(EXPLODE_LIGHT)
-			take_damage(rand(50, 100))
+			take_damage(rand(75, 100))
 
 
 /turf/closed/wall/resin/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
 		return
 
-	X.visible_message("<span class='xenonotice'>\The [X] starts tearing down \the [src]!</span>", \
-	"<span class='xenonotice'>We start to tear down \the [src].</span>")
+	X.visible_message(span_xenonotice("\The [X] starts tearing down \the [src]!"), \
+	span_xenonotice("We start to tear down \the [src]."))
 	if(!do_after(X, 4 SECONDS, TRUE, X, BUSY_ICON_GENERIC))
 		return
 	if(!istype(src)) // Prevent jumping to other turfs if do_after completes with the wall already gone
 		return
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-	X.visible_message("<span class='xenonotice'>\The [X] tears down \the [src]!</span>", \
-	"<span class='xenonotice'>We tear down \the [src].</span>")
+	X.visible_message(span_xenonotice("\The [X] tears down \the [src]!"), \
+	span_xenonotice("We tear down \the [src]."))
 	playsound(src, "alien_resin_break", 25)
 	take_damage(max_integrity) // Ensure its destroyed
 
 
 /turf/closed/wall/resin/attack_hand(mob/living/user)
-	to_chat(user, "<span class='warning'>You scrape ineffectively at \the [src].</span>")
+	to_chat(user, span_warning("You scrape ineffectively at \the [src]."))
 	return TRUE
 
 
@@ -115,7 +108,7 @@
 
 	var/damage = I.force
 	var/multiplier = 1
-	if(I.damtype == "fire") //Burn damage deals extra vs resin structures (mostly welders).
+	if(I.damtype == BURN) //Burn damage deals extra vs resin structures (mostly welders).
 		multiplier += 1
 
 	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
@@ -157,10 +150,10 @@
  * Regenerating walls that start with lower health, but grow to a much higher hp over time
  */
 /turf/closed/wall/resin/regenerating
-	max_integrity = 100
+	max_integrity = 150
 
 	/// Total health possible for a wall after regenerating at max health
-	var/max_upgradable_health = 600
+	var/max_upgradable_health = 300
 	/// How much the walls integrity heals per tick (5 seconds)
 	var/heal_per_tick = 25
 	/// How much the walls max_integrity increases per tick (5 seconds)
@@ -207,4 +200,4 @@
 
 /* Hivelord walls, they start off stronger */
 /turf/closed/wall/resin/regenerating/thick
-	max_integrity = 200
+	max_integrity = 250

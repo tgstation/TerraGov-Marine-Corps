@@ -88,7 +88,7 @@
 		if(!C.use(5))
 			return
 
-		to_chat(user, "<span class='notice'>You add some cable to the potato and slide it inside the battery encasing.</span>")
+		to_chat(user, span_notice("You add some cable to the potato and slide it inside the battery encasing."))
 		var/obj/item/cell/potato/pocell = new /obj/item/cell/potato(user.loc)
 		pocell.maxcharge = potency * 10
 		pocell.charge = pocell.maxcharge
@@ -139,40 +139,6 @@
 	icon_state = "plastellium"
 	filling_color = "#C4C4C4"
 	plantname = "plastic"
-
-/obj/item/reagent_containers/food/snacks/grown/shand
-	name = "S'rendarr's Hand leaf"
-	desc = "A leaf sample from a lowland thicket shrub. Smells strongly like wax."
-	icon_state = "shand"
-	filling_color = "#70C470"
-	plantname = "shand"
-
-/obj/item/reagent_containers/food/snacks/grown/mtear
-	name = "sprig of Messa's Tear"
-	desc = "A mountain climate herb with a soft, cold blue flower, known to contain an abundance of healing chemicals."
-	icon_state = "mtear"
-	filling_color = "#70C470"
-	plantname = "mtear"
-
-/obj/item/reagent_containers/food/snacks/grown/mtear/attack_self(mob/user as mob)
-	if(istype(user.loc,/turf/open/space))
-		return
-	var/obj/item/stack/medical/ointment/tajaran/poultice = new /obj/item/stack/medical/ointment/tajaran(user.loc)
-
-	poultice.heal_burn = potency
-	qdel(src)
-
-	to_chat(user, "<span class='notice'>You mash the petals into a poultice.</span>")
-
-/obj/item/reagent_containers/food/snacks/grown/shand/attack_self(mob/user as mob)
-	if(istype(user.loc,/turf/open/space))
-		return
-	var/obj/item/stack/medical/bruise_pack/tajaran/poultice = new /obj/item/stack/medical/bruise_pack/tajaran(user.loc)
-
-	poultice.heal_brute = potency
-	qdel(src)
-
-	to_chat(user, "<span class='notice'>You mash the leaves into a poultice.</span>")
 
 /obj/item/reagent_containers/food/snacks/grown/glowberries
 	name = "bunch of glow-berries"
@@ -278,7 +244,7 @@
 	. = ..()
 
 	if(I.sharp == IS_SHARP_ITEM_ACCURATE || I.sharp == IS_SHARP_ITEM_BIG)
-		to_chat(user, "<span class='notice'>You carve a face into [src]!</span>")
+		to_chat(user, span_notice("You carve a face into [src]!"))
 		new /obj/item/clothing/head/pumpkinhead(user.loc)
 		qdel(src)
 
@@ -357,7 +323,7 @@
 /obj/item/reagent_containers/food/snacks/grown/tomato/throw_impact(atom/hit_atom)
 	..()
 	new/obj/effect/decal/cleanable/tomato_smudge(src.loc)
-	src.visible_message("<span class='notice'>The [src.name] has been squashed.</span>","<span class='moderate'>You hear a smack.</span>")
+	src.visible_message(span_notice("The [src.name] has been squashed."),span_moderate("You hear a smack."))
 	qdel(src)
 
 
@@ -381,7 +347,7 @@
 /obj/item/reagent_containers/food/snacks/grown/bloodtomato/throw_impact(atom/hit_atom)
 	..()
 	new/obj/effect/decal/cleanable/blood/splatter(src.loc)
-	src.visible_message("<span class='notice'>The [src.name] has been squashed.</span>","<span class='moderate'>You hear a smack.</span>")
+	src.visible_message(span_notice("The [src.name] has been squashed."),span_moderate("You hear a smack."))
 	src.reagents.reaction(get_turf(hit_atom))
 	for(var/atom/A in get_turf(hit_atom))
 		src.reagents.reaction(A)
@@ -396,18 +362,25 @@
 	filling_color = "#586CFC"
 	plantname = "bluetomato"
 
+/obj/item/reagent_containers/food/snacks/grown/bluetomato/Initialize()
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
 /obj/item/reagent_containers/food/snacks/grown/bluetomato/throw_impact(atom/hit_atom)
 	..()
 	new/obj/effect/decal/cleanable/blood/oil(src.loc)
-	src.visible_message("<span class='notice'>The [src.name] has been squashed.</span>","<span class='moderate'>You hear a smack.</span>")
+	src.visible_message(span_notice("The [src.name] has been squashed."),span_moderate("You hear a smack."))
 	src.reagents.reaction(get_turf(hit_atom))
 	for(var/atom/A in get_turf(hit_atom))
 		src.reagents.reaction(A)
 	qdel(src)
 
-/obj/item/reagent_containers/food/snacks/grown/bluetomato/Crossed(atom/movable/AM)
-	. = ..()
-	if (iscarbon(AM))
+/obj/item/reagent_containers/food/snacks/grown/bluetomato/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs)
+	SIGNAL_HANDLER
+	if(iscarbon(AM))
 		var/mob/living/carbon/C = AM
 		C.slip(name, 8, 5)
 
@@ -515,14 +488,14 @@
 /obj/item/reagent_containers/food/snacks/grown/mushroom/glowshroom/attack_self(mob/user as mob)
 	if(istype(user.loc,/turf/open/space))
 		return
-	var/obj/effect/glowshroom/planted = new /obj/effect/glowshroom(user.loc)
+	var/obj/structure/glowshroom/planted = new /obj/structure/glowshroom(user.loc)
 
 	planted.delay = 50
 	planted.endurance = 100
 	planted.potency = potency
 	qdel(src)
 
-	to_chat(user, "<span class='notice'>You plant the glowshroom.</span>")
+	to_chat(user, span_notice("You plant the glowshroom."))
 
 
 // *************************************
@@ -547,7 +520,7 @@
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	if(inner_teleport_radius < 1) //Wasn't potent enough, it just splats.
 		new/obj/effect/decal/cleanable/blood/oil(src.loc)
-		src.visible_message("<span class='notice'>The [src.name] has been squashed.</span>","<span class='moderate'>You hear a smack.</span>")
+		src.visible_message(span_notice("The [src.name] has been squashed."),span_moderate("You hear a smack."))
 		qdel(src)
 		return
 	for(var/turf/T in orange(M,outer_teleport_radius))
@@ -571,7 +544,7 @@
 			s.start()
 			new/obj/effect/decal/cleanable/molten_item(M.loc) //Leaves a pile of goo behind for dramatic effect.
 			M.loc = picked //
-			sleep(1)
+			sleep(0.1 SECONDS)
 			s.set_up(3, 1, M)
 			s.start() //Two set of sparks, one before the teleport and one after.
 		if(2) //Teleports mob the tomato hit instead.
@@ -580,10 +553,10 @@
 				s.start()
 				new/obj/effect/decal/cleanable/molten_item(A.loc) //Leave a pile of goo behind for dramatic effect...
 				A.loc = picked//And teleport them to the chosen location.
-				sleep(1)
+				sleep(0.1 SECONDS)
 				s.set_up(3, 1, A)
 				s.start()
 	new/obj/effect/decal/cleanable/blood/oil(src.loc)
-	src.visible_message("<span class='notice'>The [src.name] has been squashed, causing a distortion in space-time.</span>","<span class='moderate'>You hear a splat and a crackle.</span>")
+	src.visible_message(span_notice("The [src.name] has been squashed, causing a distortion in space-time."),span_moderate("You hear a splat and a crackle."))
 	qdel(src)
 

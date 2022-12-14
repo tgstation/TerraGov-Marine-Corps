@@ -5,6 +5,7 @@
 	icon_state = "pianobroken"
 	anchored = TRUE
 	density = TRUE
+	coverage = 20
 
 /obj/structure/device/broken_moog
 	name = "broken vintage synthesizer"
@@ -13,6 +14,7 @@
 	icon_state = "minimoogbroken"
 	anchored = TRUE
 	density = TRUE
+	coverage = 15
 
 /obj/structure/device/piano
 	name = "space minimoog"
@@ -20,7 +22,10 @@
 	icon_state = "minimoog"
 	anchored = TRUE
 	density = TRUE
+	coverage = 20
 
+/obj/structure/device/piano/full
+	icon_state = "piano"
 
 /obj/structure/device/piano/Initialize()
 	. = ..()

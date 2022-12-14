@@ -16,7 +16,7 @@ SUBSYSTEM_DEF(job)
 	var/list/squads = list()			//List of potential squads.
 	///Assoc list of all joinable squads, categorised by faction
 	var/list/active_squads = list()
-	///assoc list of squad_name_string->squad_reference for easy lookup
+	///assoc list of squad_name_string->squad_reference for easy lookup, categorised in factions
 	var/list/squads_by_name = list()
 
 	var/list/unassigned = list()		//Players who need jobs.
@@ -40,7 +40,7 @@ SUBSYSTEM_DEF(job)
 	var/list/all_jobs = subtypesof(/datum/job)
 	var/list/all_squads = subtypesof(/datum/squad)
 	if(!length(all_jobs))
-		to_chat(world, "<span class='boldnotice'>Error setting up jobs, no job datums found</span>")
+		to_chat(world, span_boldnotice("Error setting up jobs, no job datums found"))
 		return FALSE
 
 	for(var/J in all_jobs)
@@ -69,7 +69,7 @@ SUBSYSTEM_DEF(job)
 		if(!squad)
 			continue
 		squads[squad.id] = squad
-		squads_by_name[squad.name] = squad
+		LAZYSET(squads_by_name[squad.faction], squad.name, squad)
 	return TRUE
 
 
@@ -99,7 +99,7 @@ SUBSYSTEM_DEF(job)
 	if(!job.player_old_enough(player.client))
 		JobDebug("AR player not old enough, Player: [player], Job:[job.title]")
 		return FALSE
-	if(ismarinejob(job))
+	if(ismarinejob(job) || issommarinejob(job))
 		if(!handle_initial_squad(player, job, latejoin, job.faction))
 			JobDebug("Failed to assign marine role to a squad. Player: [player.key] Job: [job.title]")
 			return FALSE
@@ -186,7 +186,7 @@ SUBSYSTEM_DEF(job)
 
 		if(LAZYLEN(occupations_reroll)) //Jobs that were scaled up due to the assignment of other jobs.
 			for(var/reroll_level = JOBS_PRIORITY_HIGH; reroll_level >= level; reroll_level--)
-				assign_players_to_occupations(level, occupations_reroll)
+				assign_players_to_occupations(reroll_level, occupations_reroll)
 			occupations_reroll = null
 
 	JobDebug("DO, Handling unassigned.")
@@ -206,7 +206,10 @@ SUBSYSTEM_DEF(job)
 			RejectPlayer(player)
 		//Choose a faction in advance if needed
 		if(SSticker.mode?.flags_round_type & MODE_TWO_HUMAN_FACTIONS) //Alternates between the two factions
-			faction_rejected = faction_rejected == FACTION_TERRAGOV ? FACTION_TERRAGOV_REBEL : FACTION_TERRAGOV
+			if(SSticker.mode.flags_round_type & MODE_SOM_OPFOR)
+				faction_rejected = faction_rejected == FACTION_TERRAGOV ? FACTION_SOM : FACTION_TERRAGOV
+			else
+				faction_rejected = faction_rejected == FACTION_TERRAGOV ? FACTION_TERRAGOV_REBEL : FACTION_TERRAGOV
 		// Loop through all jobs
 		for(var/datum/job/job AS in occupations_to_assign)
 			// If the player wants that job on this level, then try give it to him.
@@ -265,14 +268,8 @@ SUBSYSTEM_DEF(job)
 
 	//If we joined at roundstart we should be positioned at our workstation
 	var/turf/spawn_turf
-	if(joined_late)
-		if(job.job_flags & JOB_FLAG_OVERRIDELATEJOINSPAWN)
-			spawn_turf = job.return_spawn_turf()
-	else
-		if(length(GLOB.jobspawn_overrides[job.title]))
-			spawn_turf = pick(GLOB.jobspawn_overrides[job.title])
-		else
-			spawn_turf = job.return_spawn_turf()
+	if(!joined_late || job.job_flags & JOB_FLAG_OVERRIDELATEJOINSPAWN)
+		spawn_turf = job.return_spawn_turf()
 	if(spawn_turf)
 		SendToAtom(new_character, spawn_turf)
 	else
@@ -314,7 +311,7 @@ SUBSYSTEM_DEF(job)
 /datum/controller/subsystem/job/Recover()
 	set waitfor = FALSE
 	var/oldjobs = SSjob.occupations
-	sleep(20)
+	sleep(2 SECONDS)
 	for(var/datum/job/J in oldjobs)
 		INVOKE_ASYNC(src, .proc/RecoverJob, J)
 
@@ -338,21 +335,21 @@ SUBSYSTEM_DEF(job)
 
 
 /datum/controller/subsystem/job/proc/SendToLateJoin(mob/M, datum/job/assigned_role)
-	if(isxenosjob(assigned_role) && length(GLOB.xeno_resin_silos))
-		SendToAtom(M, pick(GLOB.xeno_resin_silos))
-		return
-	if(assigned_role && length(GLOB.jobspawn_overrides[assigned_role])) //We're doing something special today.
-		SendToAtom(M, pick(GLOB.jobspawn_overrides[assigned_role]))
-		return
-	if(assigned_role.faction == FACTION_TERRAGOV_REBEL && length(GLOB.latejoinrebel))
-		SendToAtom(M, pick(GLOB.latejoinrebel))
-		return
-	if(length(GLOB.latejoin))
-		SendToAtom(M, pick(GLOB.latejoin))
-		return
+	switch(assigned_role.faction)
+		if(FACTION_TERRAGOV_REBEL)
+			if(length(GLOB.latejoinrebel))
+				SendToAtom(M, pick(GLOB.latejoinrebel))
+				return
+		if(FACTION_SOM)
+			if(length(GLOB.latejoinsom))
+				SendToAtom(M, pick(GLOB.latejoinsom))
+				return
+		else
+			if(length(GLOB.latejoin))
+				SendToAtom(M, pick(GLOB.latejoin))
+				return
 	message_admins("Unable to send mob [M] to late join!")
 	CRASH("Unable to send mob [M] to late join!")
-
 
 /datum/controller/subsystem/job/proc/JobDebug(message)
 	log_manifest(message)

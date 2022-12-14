@@ -7,11 +7,12 @@
 
 /obj/machinery/door/airlock/command
 	name = "\improper Command Airlock"
-	icon = 'icons/obj/doors/Doorcom.dmi'
+	icon = 'icons/obj/doors/mainship/comdoor.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_com
 
 /obj/machinery/door/airlock/command/thunderdome
 	name = "\improper Thunderdome Administration"
+	icon = 'icons/obj/doors/mainship/comdoor.dmi'
 	req_access = list(ACCESS_CIVILIAN_ENGINEERING)
 
 /obj/machinery/door/airlock/security
@@ -21,17 +22,21 @@
 
 /obj/machinery/door/airlock/engineering
 	name = "\improper Engineering Airlock"
-	icon = 'icons/obj/doors/Dooreng.dmi'
+	icon = 'icons/obj/doors/mainship/engidoor.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_eng
+
+/obj/machinery/door/airlock/engineering/evac
+	icon = 'icons/obj/doors/mainship/pod_doors.dmi'
+	icon_state = "door_locked"
 
 /obj/machinery/door/airlock/medical
 	name = "\improper Medical Airlock"
-	icon = 'icons/obj/doors/Doormed.dmi'
+	icon = 'icons/obj/doors/mainship/medidoor.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_med
 
 /obj/machinery/door/airlock/maintenance
 	name = "\improper Maintenance Hatch"
-	icon = 'icons/obj/doors/Doormaint.dmi'
+	icon = 'icons/obj/doors/mainship/maintdoor.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_mai
 
 /obj/machinery/door/airlock/external
@@ -44,13 +49,13 @@
 
 /obj/machinery/door/airlock/glass
 	name = "\improper Glass Airlock"
-	icon = 'icons/obj/doors/Doorglass.dmi'
+	icon = 'icons/obj/doors/mainship/personaldoor.dmi'
 	opacity = FALSE
 	glass = TRUE
 
 /obj/machinery/door/airlock/centcom
 	name = "\improper Airlock"
-	icon = 'icons/obj/doors/Doorele.dmi'
+	icon = 'icons/obj/doors/mainship/securedoor.dmi'
 	opacity = TRUE
 
 /obj/machinery/door/airlock/vault
@@ -61,13 +66,13 @@
 
 /obj/machinery/door/airlock/freezer
 	name = "\improper Freezer Airlock"
-	icon = 'icons/obj/doors/Doorfreezer.dmi'
+	icon = 'icons/obj/doors/mainship/personaldoor.dmi'
 	opacity = TRUE
 	assembly_type = /obj/structure/door_assembly/door_assembly_fre
 
 /obj/machinery/door/airlock/hatch
 	name = "\improper Airtight Hatch"
-	icon = 'icons/obj/doors/Doorhatchele.dmi'
+	icon = 'icons/obj/doors/mainship/securedoor.dmi'
 	opacity = TRUE
 	assembly_type = /obj/structure/door_assembly/door_assembly_hatch
 
@@ -76,27 +81,27 @@
 
 /obj/machinery/door/airlock/maintenance_hatch
 	name = "\improper Maintenance Hatch"
-	icon = 'icons/obj/doors/Doorhatchmaint2.dmi'
+	icon = 'icons/obj/doors/mainship/maintdoor.dmi'
 	opacity = TRUE
 	assembly_type = /obj/structure/door_assembly/door_assembly_mhatch
 
 /obj/machinery/door/airlock/glass_command
 	name = "\improper Command Airlock"
-	icon = 'icons/obj/doors/Doorcomglass.dmi'
+	icon = 'icons/obj/doors/mainship/comdoor.dmi'
 	opacity = FALSE
 	assembly_type = /obj/structure/door_assembly/door_assembly_com
 	glass = TRUE
 
 /obj/machinery/door/airlock/glass_engineering
 	name = "\improper Engineering Airlock"
-	icon = 'icons/obj/doors/Doorengglass.dmi'
+	icon = 'icons/obj/doors/mainship/engidoor.dmi'
 	opacity = FALSE
 	assembly_type = /obj/structure/door_assembly/door_assembly_eng
 	glass = TRUE
 
 /obj/machinery/door/airlock/glass_security
 	name = "\improper Security Airlock"
-	icon = 'icons/obj/doors/Doorsecglass.dmi'
+	icon = 'icons/obj/doors/Doorsec.dmi'
 	opacity = FALSE
 	assembly_type = /obj/structure/door_assembly/door_assembly_sec
 	glass = TRUE
@@ -215,11 +220,6 @@
 	name = "\improper Airlock"
 	icon = 'icons/obj/doors/mainship/comdoor.dmi' //Tiles with is here FOR SAFETY PURPOSES
 	openspeed = 4 //shorter open animation.
-	tiles_with = list(
-		/turf/closed/wall,
-		/obj/structure/window/framed/mainship,
-		/obj/machinery/door/airlock,
-	)
 
 /obj/machinery/door/airlock/mainship/security
 	name = "\improper Security Airlock"
@@ -291,6 +291,7 @@
 
 /obj/machinery/door/airlock/mainship/command/canterbury //For wall-smoothing
 	req_access = list(ACCESS_MARINE_DROPSHIP)
+	smoothing_groups = SMOOTH_CANTERBURY
 
 /obj/machinery/door/airlock/mainship/command/cic
 	name = "\improper Combat Information Center"
@@ -340,7 +341,7 @@
 	icon = 'icons/obj/doors/mainship/securedoor.dmi'
 	req_access = list(ACCESS_MARINE_BRIDGE)
 
-/obj/machinery/door/airlock/mainship/secure/rebel 
+/obj/machinery/door/airlock/mainship/secure/rebel
 	req_access = list(ACCESS_MARINE_BRIDGE_REBEL)
 
 /obj/machinery/door/airlock/mainship/secure/free_access
@@ -369,6 +370,17 @@
 
 /obj/machinery/door/airlock/mainship/secure/evac
 	name = "\improper Evacuation Airlock"
+
+/obj/machinery/door/airlock/mainship/secure/evac/Initialize()
+	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_EVACUATION_STARTED, .proc/force_open)
+
+///Force open that door
+/obj/machinery/door/airlock/mainship/secure/proc/force_open()
+	SIGNAL_HANDLER
+	unlock(TRUE)
+	INVOKE_ASYNC(src, .proc/open, TRUE)
+	lock(TRUE)
 
 /obj/machinery/door/airlock/mainship/secure/rebel/evac
 	name = "\improper Evacuation Airlock"
@@ -417,6 +429,10 @@
 	opacity = FALSE
 	glass = TRUE
 	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ENGINEERING)
+
+/obj/machinery/door/airlock/mainship/engineering/glass
+	name = "\improper Engineering Glass Airlock"
+	icon = 'icons/obj/doors/mainship/engidoor_glass.dmi'
 
 /obj/machinery/door/airlock/mainship/engineering/rebel
 	req_one_access = list(ACCESS_MARINE_LOGISTICS_REBEL, ACCESS_MARINE_ENGINEERING_REBEL)
@@ -550,7 +566,7 @@
 	icon = 'icons/obj/doors/mainship/medidoor.dmi'
 	req_access = list(ACCESS_MARINE_RESEARCH)
 
-/obj/machinery/door/airlock/mainship/research
+/obj/machinery/door/airlock/mainship/research/rebel
 	req_access = list(ACCESS_MARINE_RESEARCH_REBEL)
 
 /obj/machinery/door/airlock/mainship/research/free_access
@@ -656,16 +672,40 @@
 
 /obj/machinery/door/airlock/mainship/generic/pilot/rebel/quarters
 	name = "\improper Pilot's Quarters"
+
+/obj/machinery/door/airlock/mainship/generic/mech_pilot
+	name = "\improper Mech Pilot's Office"
+	req_access = list(ACCESS_MARINE_MECH)
+
+/obj/machinery/door/airlock/mainship/generic/mech_pilot/bunk
+	name = "\improper Mech Pilot's Bunks"
+
 /obj/machinery/door/airlock/mainship/generic/ert
 	name = "\improper Airlock"
 	icon = 'icons/obj/doors/mainship/personaldoor.dmi'
 	interaction_flags = INTERACT_MACHINE_NOSILICON //go away naughty AI
+
+/obj/machinery/door/airlock/mainship/generic/glass
+	name = "\improper Glass Airlock"
+	icon = 'icons/obj/doors/mainship/personaldoor_glass.dmi'
 
 /obj/machinery/door/airlock/mainship/marine
 	name = "\improper Airlock"
 	icon = 'icons/obj/doors/mainship/prepdoor.dmi'
 	opacity = FALSE
 	glass = TRUE
+
+/obj/machinery/door/airlock/mainship/marine/handle_weldingtool_overlay(removing = FALSE)
+	if(!removing)
+		if(dir & NORTH|SOUTH)
+			add_overlay(GLOB.welding_sparks_prepdoor)
+		else
+			add_overlay(GLOB.welding_sparks)
+	else
+		if(dir & NORTH|SOUTH)
+			cut_overlay(GLOB.welding_sparks_prepdoor)
+		else
+			cut_overlay(GLOB.welding_sparks)
 
 /obj/machinery/door/airlock/mainship/marine/canterbury //For wallsmoothing
 
@@ -676,15 +716,8 @@
 	opacity = FALSE
 	glass = TRUE
 
-/obj/machinery/door/airlock/mainship/marine/general/sl/rebel 
+/obj/machinery/door/airlock/mainship/marine/general/sl/rebel
 	req_access = list(ACCESS_MARINE_LEADER_REBEL)
-
-/obj/machinery/door/airlock/mainship/marine/general/spec
-	name = "\improper Specialist Preparations"
-	icon = 'icons/obj/doors/mainship/prepdoor.dmi'
-	req_access = list(ACCESS_MARINE_SPECPREP)
-	opacity = FALSE
-	glass = TRUE
 
 /obj/machinery/door/airlock/mainship/marine/general/smart
 	name = "\improper Smartgunner Preparations"
@@ -744,11 +777,6 @@
 	req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_ALPHA)
 	req_one_access =  null
 
-/obj/machinery/door/airlock/mainship/marine/alpha/spec
-	name = "\improper Alpha Squad Specialist Preparations"
-	req_access = list(ACCESS_MARINE_SPECPREP, ACCESS_MARINE_ALPHA)
-	req_one_access =  null
-
 /obj/machinery/door/airlock/mainship/marine/alpha/engineer
 	name = "\improper Alpha Squad Engineer Preparations"
 	req_access = list(ACCESS_MARINE_ENGPREP, ACCESS_MARINE_ALPHA)
@@ -776,11 +804,6 @@
 /obj/machinery/door/airlock/mainship/marine/bravo/sl
 	name = "\improper Bravo Squad Leader Preparations"
 	req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_BRAVO)
-	req_one_access = null
-
-/obj/machinery/door/airlock/mainship/marine/bravo/spec
-	name = "\improper Bravo Squad Specialist Preparations"
-	req_access = list(ACCESS_MARINE_SPECPREP, ACCESS_MARINE_BRAVO)
 	req_one_access = null
 
 /obj/machinery/door/airlock/mainship/marine/bravo/engineer
@@ -812,11 +835,6 @@
 	req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_CHARLIE)
 	req_one_access = null
 
-/obj/machinery/door/airlock/mainship/marine/charlie/spec
-	name = "\improper Charlie Squad Specialist Preparations"
-	req_access = list(ACCESS_MARINE_SPECPREP, ACCESS_MARINE_CHARLIE)
-	req_one_access = null
-
 /obj/machinery/door/airlock/mainship/marine/charlie/engineer
 	name = "\improper Charlie Squad Engineer Preparations"
 	req_access = list(ACCESS_MARINE_ENGPREP, ACCESS_MARINE_CHARLIE)
@@ -846,11 +864,6 @@
 	req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DELTA)
 	req_one_access = null
 
-/obj/machinery/door/airlock/mainship/marine/delta/spec
-	name = "\improper Delta Squad Specialist Preparations"
-	req_access = list(ACCESS_MARINE_SPECPREP, ACCESS_MARINE_DELTA)
-	req_one_access = null
-
 /obj/machinery/door/airlock/mainship/marine/delta/engineer
 	name = "\improper Delta Squad Engineer Preparations"
 	req_access = list(ACCESS_MARINE_ENGPREP, ACCESS_MARINE_DELTA)
@@ -875,10 +888,9 @@
 	icon = 'icons/obj/doors/mainship/dropship1_side.dmi' //Tiles with is here FOR SAFETY PURPOSES
 	id = "sh_dropship1"
 	openspeed = 4 //shorter open animation.
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	no_panel = TRUE
 	not_weldable = TRUE
-	aiControlDisabled = TRUE
 
 /obj/machinery/door/airlock/dropship_hatch/proc/lockdown()
 	unlock()
@@ -920,10 +932,12 @@
 	icon = 'icons/obj/doors/mainship/dropship1_pilot.dmi'
 	name = "\improper Cockpit"
 	req_access = list(ACCESS_MARINE_DROPSHIP)
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	no_panel = TRUE
 	not_weldable = TRUE
-	aiControlDisabled = TRUE
+
+/obj/machinery/door/airlock/hatch/cockpit/canAIControl(mob/user)
+	return TRUE
 
 /obj/machinery/door/airlock/hatch/cockpit/rebel
 	req_access = list(ACCESS_MARINE_DROPSHIP_REBEL)

@@ -29,6 +29,7 @@
 	barefootstep = FOOTSTEP_WATER
 	mediumxenofootstep = FOOTSTEP_WATER
 	heavyxenofootstep = FOOTSTEP_WATER
+	minimap_color = MINIMAP_WATER
 
 /obj/effect/river_overlay
 	name = "river_overlay"
@@ -44,43 +45,21 @@
 		R.overlays += image("icon"='icons/turf/ground_map.dmi',"icon_state"="riverwater","layer"=RIVER_OVERLAY_LAYER)
 
 
-/turf/open/ground/river/Entered(atom/movable/AM)
+/turf/open/ground/river/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
-	if(has_catwalk)
+	if(has_catwalk || !iscarbon(arrived))
 		return
-	if(iscarbon(AM))
-		var/mob/living/carbon/C = AM
-		var/river_slowdown = 1.75
+	var/mob/living/carbon/C = arrived
+	C.clean_mob()
 
-		if(ishuman(C))
-			var/mob/living/carbon/human/H = AM
-			cleanup(H)
+	if(isxeno(C))
+		var/mob/living/carbon/xenomorph/xeno = C
+		xeno.next_move_slowdown += xeno.xeno_caste.snow_slowdown
+	else
+		C.next_move_slowdown += 1.75
 
-		else if(isxeno(C))
-			if(!isxenoboiler(C))
-				river_slowdown = 1.3
-			else
-				river_slowdown = -0.5
-
-		if(C.on_fire)
-			C.ExtinguishMob()
-
-		C.next_move_slowdown += river_slowdown
-
-
-/turf/open/ground/river/proc/cleanup(mob/living/carbon/human/H)
-	if(H.back?.clean_blood())
-		H.update_inv_back()
-	if(H.wear_suit?.clean_blood())
-		H.update_inv_wear_suit()
-	if(H.w_uniform?.clean_blood())
-		H.update_inv_w_uniform()
-	if(H.gloves?.clean_blood())
-		H.update_inv_gloves()
-	if(H.shoes?.clean_blood())
-		H.update_inv_shoes()
-	H.clean_blood()
-
+	if(C.on_fire)
+		C.ExtinguishMob()
 
 /turf/open/ground/river/poison/Initialize()
 	. = ..()
@@ -90,11 +69,12 @@
 	R.overlays += image("icon"='icons/effects/effects.dmi',"icon_state"="greenglow","layer"=RIVER_OVERLAY_LAYER)
 
 
-/turf/open/ground/river/poison/Entered(mob/living/L)
+/turf/open/ground/river/poison/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
-	if(!istype(L))
+	if(!isliving(arrived))
 		return
-	L.apply_damage(55, TOX)
+	var/mob/living/L = arrived
+	L.apply_damage(55, TOX, blocked = BIO)
 	UPDATEHEALTH(L)
 
 
@@ -126,122 +106,121 @@
 		var/obj/effect/river_overlay/R = new(src)
 		R.overlays += image("icon"='icons/turf/ground_map.dmi',"icon_state"="water","layer"=RIVER_OVERLAY_LAYER)
 
-
-//Desert Map
-
-/turf/open/ground/desertdam //Basic groundmap turf parent
-	name = "desert dirt"
-	icon = 'icons/turf/desertdam_map.dmi'
-	icon_state = "desert0"
-	shoefootstep = FOOTSTEP_SAND
-	barefootstep = FOOTSTEP_SAND
-	mediumxenofootstep = FOOTSTEP_SAND
-
-//River
-/turf/open/ground/desertdam/river
+//Desert River
+/turf/open/ground/river/desertdam
 	name = "river"
+	icon = 'icons/turf/desertdam_map.dmi'
 	shoefootstep = FOOTSTEP_WATER
 	barefootstep = FOOTSTEP_WATER
 	mediumxenofootstep = FOOTSTEP_WATER
 	heavyxenofootstep = FOOTSTEP_WATER
 
+/turf/open/ground/river/desertdam/Initialize() //needed to avoid visual bugs with the river
+	return
+
 //shallow water
-/turf/open/ground/desertdam/river/clean/shallow
+/turf/open/ground/river/desertdam/clean/shallow
 	icon_state = "shallow_water_clean"
 
 //shallow water transition to deep
-/turf/open/ground/desertdam/river/clean/shallow_edge
+/turf/open/ground/river/desertdam/clean/shallow_edge
 	icon_state = "shallow_to_deep_clean_water"
 
-/turf/open/ground/desertdam/river/clean/shallow_edge/alt
+/turf/open/ground/river/desertdam/clean/shallow_edge/corner
+	icon_state = "shallowcorner1"
+
+/turf/open/ground/river/desertdam/clean/shallow_edge/corner2
+	icon_state = "shallowcorner2"
+
+/turf/open/ground/river/desertdam/clean/shallow_edge/alt
 	icon_state = "shallow_to_deep_clean_water1"
 
 //deep water
-/turf/open/ground/desertdam/river/clean/deep_water_clean
+/turf/open/ground/river/desertdam/clean/deep_water_clean
 	icon_state = "deep_water_clean"
 
 //shallow water coast
-/turf/open/ground/desertdam/river/clean/shallow_water_desert_coast
+/turf/open/ground/river/desertdam/clean/shallow_water_desert_coast
 	icon_state = "shallow_water_desert_coast"
 
-/turf/open/ground/desertdam/river/clean/shallow_water_desert_coast/edge
+/turf/open/ground/river/desertdam/clean/shallow_water_desert_coast/edge
 	icon_state = "shallow_water_desert_coast_edge"
 
 //desert floor waterway
-/turf/open/ground/desertdam/river/clean/shallow_water_desert_waterway
+/turf/open/ground/river/desertdam/clean/shallow_water_desert_waterway
 	icon_state = "desert_waterway"
 
-/turf/open/ground/desertdam/river/clean/shallow_water_desert_waterway/edge
+/turf/open/ground/river/desertdam/clean/shallow_water_desert_waterway/edge
 	icon_state = "desert_waterway_edge"
 
 //shallow water cave coast
-/turf/open/ground/desertdam/river/clean/shallow_water_cave_coast
+/turf/open/ground/river/desertdam/clean/shallow_water_cave_coast
 	icon_state = "shallow_water_cave_coast"
 
 //cave floor waterway
-/turf/open/ground/desertdam/river/clean/shallow_water_cave_waterway
+/turf/open/ground/river/desertdam/clean/shallow_water_cave_waterway
 	icon_state = "shallow_water_cave_waterway"
 
-/turf/open/ground/desertdam/river/clean/shallow_water_cave_waterway/edge
+/turf/open/ground/river/desertdam/clean/shallow_water_cave_waterway/edge
 	icon_state = "shallow_water_cave_waterway_edge"
 
 //TOXIC
-/turf/open/ground/desertdam/river/toxic
+/turf/open/ground/river/desertdam/toxic
 	name = "toxic river"
 	icon_state = "shallow_water_toxic"
 
 //shallow water
-/turf/open/ground/desertdam/river/toxic/shallow_water_toxic
+/turf/open/ground/river/desertdam/toxic/shallow_water_toxic
 	icon_state = "shallow_water_toxic"
 
 //shallow water transition to deep
-/turf/open/ground/desertdam/river/toxic/shallow_edge_toxic
+/turf/open/ground/river/desertdam/toxic/shallow_edge_toxic
 	icon_state = "shallow_to_deep_toxic_water"
 
-/turf/open/ground/desertdam/river/toxic/shallow_edge_toxic/alt
+/turf/open/ground/river/desertdam/toxic/shallow_edge_toxic/alt
 	icon_state = "shallow_to_deep_toxic_water1"
 
-/turf/open/ground/desertdam/river/toxic/shallow_edge_toxic/edge
+/turf/open/ground/river/desertdam/toxic/shallow_edge_toxic/edge
 	icon_state = "shallow_to_deep_toxic_edge"
 
 //deep water
-/turf/open/ground/desertdam/river/toxic/deep_water_toxic
+/turf/open/ground/river/desertdam/toxic/deep_water_toxic
 	icon_state = "deep_water_toxic"
 
 //shallow water coast
-/turf/open/ground/desertdam/river/toxic/shallow_water_desert_coast_toxic
+/turf/open/ground/river/desertdam/toxic/shallow_water_desert_coast_toxic
 	icon_state = "shallow_water_desert_coast_toxic"
 
-/turf/open/ground/desertdam/river/toxic/shallow_water_desert_coast_toxic/edge
+/turf/open/ground/river/desertdam/toxic/shallow_water_desert_coast_toxic/edge
 	icon_state = "shallow_water_desert_coast_toxic_edge"
 
 //desert floor waterway
-/turf/open/ground/desertdam/river/toxic/shallow_water_desert_waterway_toxic
+/turf/open/ground/river/desertdam/toxic/shallow_water_desert_waterway_toxic
 	icon_state = "desert_waterway_toxic"
 
-/turf/open/ground/desertdam/river/toxic/shallow_water_desert_waterway_toxic/edge
+/turf/open/ground/river/desertdam/toxic/shallow_water_desert_waterway_toxic/edge
 	icon_state = "desert_waterway_toxic_edge"
 
 //shallow water cave coast
-/turf/open/ground/desertdam/river/toxic/shallow_water_cave_coast_toxic
+/turf/open/ground/river/desertdam/toxic/shallow_water_cave_coast_toxic
 	icon_state = "shallow_water_cave_coast_toxic"
 
-/turf/open/ground/desertdam/river/toxic/shallow_water_cave_coast_toxic/edge
+/turf/open/ground/river/desertdam/toxic/shallow_water_cave_coast_toxic/edge
 	icon_state = "shallow_water_cave_coast_toxic_edge"
 
 //cave floor waterway
-/turf/open/ground/desertdam/river/toxic/shallow_water_cave_waterway_toxic
+/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic
 	icon_state = "shallow_water_cave_waterway_toxic"
 
-/turf/open/ground/desertdam/river/toxic/shallow_water_cave_waterway_toxic/edge
+/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge
 	icon_state = "shallow_water_cave_waterway_toxic_edge"
 
 // Jungle turfs (Whiksey Outpost)
 
 /turf/open/ground/jungle
 	allow_construction = FALSE
-	var/bushes_spawn = TRUE
-	var/plants_spawn = TRUE
+	var/vines_spawn = TRUE
+	var/plants_spawn = FALSE
 	name = "wet grass"
 	desc = "Thick, long wet grass"
 	icon = 'icons/turf/jungle.dmi'
@@ -277,17 +256,17 @@
 			var/obj/structure/jungle_plant/J = new(src)
 			J.pixel_x = rand(-6,6)
 			J.pixel_y = rand(-6,6)
-	if(bushes_spawn && prob(90))
-		new /obj/structure/bush(src)
+	if(vines_spawn && prob(8))
+		new /obj/structure/jungle/vines(src)
 
 
 /turf/open/ground/jungle/proc/Spread(probability, prob_loss = 50)
 	if(probability <= 0)
 		return
 
-	//to_chat(world, "<span class='notice'>Spread([probability])</span>")
+	//to_chat(world, span_notice("Spread([probability])"))
 	for(var/turf/open/ground/jungle/J in orange(1, src))
-		if(!J.bushes_spawn)
+		if(!J.vines_spawn)
 			continue
 
 		var/turf/open/ground/jungle/P
@@ -301,13 +280,13 @@
 
 
 /turf/open/ground/jungle/clear
-	bushes_spawn = FALSE
+	vines_spawn = FALSE
 	plants_spawn = FALSE
 	icon_state = "grass_clear"
 	icon_spawn_state = "grass3"
 
 /turf/open/ground/jungle/path
-	bushes_spawn = FALSE
+	vines_spawn = FALSE
 	name = "dirt"
 	desc = "it is very dirty."
 	icon = 'icons/turf/jungle.dmi'
@@ -322,22 +301,22 @@
 
 
 /turf/open/ground/jungle/impenetrable
-	bushes_spawn = TRUE
+	vines_spawn = TRUE
 	icon_state = "grass_impenetrable"
 	icon_spawn_state = "grass1"
 
 /turf/open/ground/jungle/impenetrable/nobush
-	bushes_spawn = FALSE
+	vines_spawn = FALSE
 
 /turf/open/ground/jungle/impenetrable/Initialize()
 	. = ..()
-	if(bushes_spawn)
+	if(vines_spawn)
 		var/obj/structure/bush/B = new(src)
 		ENABLE_BITFIELD(B.resistance_flags, INDESTRUCTIBLE)
 
 
 /turf/open/ground/jungle/water
-	bushes_spawn = FALSE
+	vines_spawn = FALSE
 	name = "murky water"
 	desc = "thick, murky water"
 	icon = 'icons/misc/beach.dmi'
@@ -356,20 +335,20 @@
 		qdel(B)
 
 
-/turf/open/ground/jungle/water/Entered(atom/movable/AM)
+/turf/open/ground/jungle/water/Entered(atom/movable/arrived, direction)
 	. = ..()
-	if(!istype(AM, /mob/living))
+	if(!istype(arrived, /mob/living))
 		return
-	var/mob/living/L = AM
+	var/mob/living/L = arrived
 	//slip in the murky water if we try to run through it
 	if(prob(10 + (L.m_intent == MOVE_INTENT_RUN ? 40 : 0)))
-		to_chat(L, pick("<span class='notice'> You slip on something slimy.</span>", "<span class='notice'>You fall over into the murk.</span>"))
+		to_chat(L, pick(span_notice(" You slip on something slimy."), span_notice("You fall over into the murk.")))
 		L.Stun(40)
 		L.Paralyze(20)
 
 	//piranhas
 	if(prob(25))
-		to_chat(L, pick("<span class='warning'> Something sharp bites you!</span>","<span class='warning'> Sharp teeth grab hold of you!</span>","<span class='warning'> You feel something take a chunk out of your leg!</span>"))
+		to_chat(L, pick(span_warning(" Something sharp bites you!"),span_warning(" Sharp teeth grab hold of you!"),span_warning(" You feel something take a chunk out of your leg!")))
 		L.apply_damage(1, BRUTE, sharp = TRUE)
 
 

@@ -9,6 +9,7 @@
 		for(var/i in observers)
 			var/mob/dead/D = i
 			D.reset_perspective(null)
+	clear_client_in_contents() //Gotta do this here as well as Logout, since client will be null by the time it gets there, cause of that ghostize
 	ghostize()
 	clear_fullscreens()
 	if(mind)
@@ -37,6 +38,8 @@
 		stack_trace("Invalid type [skills.type] found in .skills during /mob Initialize()")
 	update_config_movespeed()
 	update_movespeed(TRUE)
+	log_mob_tag("\[[tag]\] CREATED: [key_name(src)]")
+	become_hearing_sensitive()
 
 
 /mob/Stat()
@@ -55,7 +58,7 @@
 		stat("Time Dilation:", "[round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)")
 
 	if(client?.holder?.rank?.rights)
-		if(client.holder.rank.rights & (R_ADMIN|R_DEBUG))
+		if(client.holder.rank.rights & (R_DEBUG))
 			if(statpanel("MC"))
 				stat("CPU:", "[world.cpu]")
 				stat("Instances:", "[num2text(length(world.contents), 10)]")
@@ -104,7 +107,7 @@
 					continue
 				statpanel(listed_turf.name, null, A)
 
-/mob/proc/show_message(msg, type, alt_msg, alt_type)
+/mob/proc/show_message(msg, type, alt_msg, alt_type, avoid_highlight)
 	if(!client)
 		return
 
@@ -113,7 +116,7 @@
 	to_chat(src, msg)
 
 
-/mob/living/show_message(msg, type, alt_msg, alt_type)
+/mob/living/show_message(msg, type, alt_msg, alt_type, avoid_highlight)
 	if(!client)
 		return
 
@@ -138,8 +141,8 @@
 
 	if(stat == UNCONSCIOUS && type == EMOTE_AUDIBLE)
 		to_chat(src, "<i>... You can almost hear something ...</i>")
-	else
-		to_chat(src, msg)
+		return
+	to_chat(src, msg, avoid_highlighting = avoid_highlight)
 
 // Show a message to all player mobs who sees this atom
 // Show a message to the src mob (if the src is a mob)
@@ -175,7 +178,7 @@
 		if(M == src && self_message) //the src always see the main message or self message
 			msg = self_message
 
-			if(visible_message_flags & COMBAT_MESSAGE && M.client.prefs.mute_self_combat_messages)
+			if((visible_message_flags & COMBAT_MESSAGE) && M.client.prefs.mute_self_combat_messages)
 				continue
 
 		else
@@ -185,7 +188,7 @@
 
 				msg = blind_message
 
-			if(visible_message_flags & COMBAT_MESSAGE && M.client.prefs.mute_others_combat_messages)
+			if((visible_message_flags & COMBAT_MESSAGE) && M.client.prefs.mute_others_combat_messages)
 				continue
 
 		if(visible_message_flags & EMOTE_MESSAGE && rc_vc_msg_prefs_check(M, visible_message_flags) && !is_blind(M))
@@ -276,7 +279,7 @@
 			qdel(W)
 			return FALSE
 		if(warning)
-			to_chat(src, "<span class='warning'>You are unable to equip that.</span>")
+			to_chat(src, span_warning("You are unable to equip that."))
 		return FALSE
 	if(W.time_to_equip && !ignore_delay)
 		if(!do_after(src, W.time_to_equip, TRUE, W, BUSY_ICON_FRIENDLY))
@@ -318,7 +321,7 @@
 
 	return FALSE
 
-
+///Checks an inventory slot for an item that can be drawn that is directly stored, or inside another storage item, and draws it if possible
 /mob/proc/draw_from_slot_if_possible(slot)
 	if(!slot)
 		return FALSE
@@ -328,54 +331,29 @@
 	if(!I)
 		return FALSE
 
-	if(istype(I, /obj/item/storage/belt/gun))
-		var/obj/item/storage/belt/gun/B = I
-		if(!B.current_gun)
-			return FALSE
-		var/obj/item/W = B.current_gun
-		B.remove_from_storage(W)
-		put_in_hands(W)
-		return TRUE
-	else if(istype(I, /obj/item/clothing/under))
-		var/obj/item/clothing/under/U = I
-		if(!U.hastie)
-			return FALSE
-		var/obj/item/clothing/tie/storage/T = U.hastie
-		if(!istype(T) || !T.hold)
-			return FALSE
-		var/obj/item/storage/internal/S = T.hold
-		if(!length(S.contents))
-			return FALSE
-		var/obj/item/W = S.contents[length(S.contents)]
-		S.remove_from_storage(W)
-		put_in_hands(W)
-		return TRUE
-	else if(istype(I, /obj/item/clothing/suit/storage))
-		var/obj/item/clothing/suit/storage/S = I
-		if(!S.pockets)
-			return FALSE
-		var/obj/item/storage/internal/P = S.pockets
-		if(!length(P.contents))
-			return FALSE
-		var/obj/item/W = P.contents[length(P.contents)]
-		P.remove_from_storage(W)
-		put_in_hands(W)
-		return TRUE
-	else if(istype(I, /obj/item/storage))
-		var/obj/item/storage/S = I
-		if(!length(S.contents))
-			return FALSE
-		var/obj/item/W = S.contents[length(S.contents)]
-		S.remove_from_storage(W)
-		put_in_hands(W)
-		return TRUE
-	else
-		if(CHECK_BITFIELD(I.flags_inventory, NOQUICKEQUIP))
-			return FALSE
-		temporarilyRemoveItemFromInventory(I)
-		put_in_hands(I)
-		return TRUE
+	//Each inventory slot can have more than one define associated with it. This refines the slot down to the item types actually associated with the define.
+	if(slot == SLOT_IN_HOLSTER && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon) || istype(I, /obj/item/storage/belt/gun))))
+		return FALSE
+	if(slot == SLOT_IN_S_HOLSTER && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon) || istype(I, /obj/item/storage/belt/gun) || istype(I, /obj/item/storage/belt/knifepouch))))
+		return FALSE
+	if(slot == SLOT_IN_B_HOLSTER && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon))))
+		return FALSE
+	if(slot == SLOT_IN_ACCESSORY && (!istype(I, /obj/item/clothing/under)))
+		return FALSE
+	if(slot == SLOT_IN_L_POUCH && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon) || istype(I, /obj/item/storage/pouch/pistol))))
+		return FALSE
+	if(slot == SLOT_IN_R_POUCH && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon) || istype(I, /obj/item/storage/pouch/pistol))))
+		return FALSE
 
+	//calls on the item to return a suitable item to be equipped
+	var/obj/item/found = I.do_quick_equip(src)
+	if(!found)
+		return FALSE
+	if(CHECK_BITFIELD(found.flags_inventory, NOQUICKEQUIP))
+		return FALSE
+	temporarilyRemoveItemFromInventory(found)
+	put_in_hands(found)
+	return TRUE
 
 /mob/proc/show_inv(mob/user)
 	user.set_interaction(src)
@@ -436,7 +414,7 @@
 	. = ..()
 	if(.)
 		return
-	if(!ismob(dropping) || isxeno(user) || isxeno(dropping))
+	if(!ismob(dropping) || isxeno(user) || isxeno(dropping) || iszombie(user))
 		return
 	// If not dragged onto myself or dragging my own sprite onto myself
 	if(user != src || dropping == user)
@@ -444,15 +422,16 @@
 	var/mob/dragged = dropping
 	dragged.show_inv(user)
 
+
 /mob/living/carbon/xenomorph/MouseDrop_T(atom/dropping, atom/user)
 	return
 
 
-/mob/living/start_pulling(atom/movable/AM, suppress_message = FALSE)
+/mob/living/start_pulling(atom/movable/AM, force = move_force, suppress_message = FALSE)
 	if(QDELETED(AM) || QDELETED(usr) || src == AM || !isturf(loc) || !Adjacent(AM) || status_flags & INCORPOREAL)	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return FALSE
 
-	if(!AM.can_be_pulled(src))
+	if(!AM.can_be_pulled(src, force))
 		return FALSE
 
 	if(throwing || incapacitated())
@@ -466,7 +445,7 @@
 			return FALSE
 	else if(l_hand && r_hand)
 		if(!suppress_message)
-			to_chat(src, "<span class='warning'>Cannot grab, lacking free hands to do so!</span>")
+			to_chat(src, span_warning("Cannot grab, lacking free hands to do so!"))
 		return FALSE
 
 	AM.add_fingerprint(src, "pull")
@@ -475,9 +454,9 @@
 
 	if(AM.pulledby)
 		if(!suppress_message)
-			AM.visible_message("<span class='danger'>[src] has pulled [AM] from [AM.pulledby]'s grip.</span>",
-				"<span class='danger'>[src] has pulled you from [AM.pulledby]'s grip.</span>", null, null, src)
-			to_chat(src, "<span class='notice'>You pull [AM] from [AM.pulledby]'s grip!</span>")
+			AM.visible_message(span_danger("[src] has pulled [AM] from [AM.pulledby]'s grip."),
+				span_danger("[src] has pulled you from [AM.pulledby]'s grip."), null, null, src)
+			to_chat(src, span_notice("You pull [AM] from [AM.pulledby]'s grip!"))
 		log_combat(AM, AM.pulledby, "pulled from", src)
 		AM.pulledby.stop_pulling() //an object can't be pulled by two mobs at once.
 
@@ -510,7 +489,7 @@
 		do_attack_animation(pulled_mob, ATTACK_EFFECT_GRAB)
 
 		if(!suppress_message)
-			visible_message("<span class='warning'>[src] has grabbed [pulled_mob] passively!</span>", null, null, 5)
+			visible_message(span_warning("[src] has grabbed [pulled_mob] passively!"), null, null, 5)
 
 		if(pulled_mob.mob_size > MOB_SIZE_HUMAN || !(pulled_mob.status_flags & CANPUSH))
 			grab_item.icon_state = "!reinforce"
@@ -586,6 +565,7 @@
 /mob/proc/facedir(ndir)
 	if(!canface())
 		return FALSE
+	SEND_SIGNAL(src, COMSIG_MOB_FACE_DIR, ndir)
 	setDir(ndir)
 	if(buckled && !buckled.anchored)
 		buckled.setDir(ndir)
@@ -603,7 +583,7 @@
 	return ""
 
 /mob/proc/flash_weak_pain()
-	overlay_fullscreen("pain", /obj/screen/fullscreen/pain, 1)
+	overlay_fullscreen("pain", /atom/movable/screen/fullscreen/pain, 1)
 	clear_fullscreen("pain")
 
 ///Called to update the stat var, returns a boolean to indicate if it has been handled.
@@ -679,23 +659,20 @@
 			end_of_conga = TRUE //Only mobs can continue the cycle.
 	var/area/new_area = get_area(destination)
 	for(var/atom/movable/AM in conga_line)
+		var/move_dir = get_dir(AM, destination)
 		var/oldLoc
 		if(AM.loc)
 			oldLoc = AM.loc
-			AM.loc.Exited(AM,destination)
+			AM.loc.Exited(AM, move_dir)
 		AM.loc = destination
-		AM.loc.Entered(AM,oldLoc)
+		AM.loc.Entered(AM, oldLoc)
 		var/area/old_area
 		if(oldLoc)
 			old_area = get_area(oldLoc)
 		if(new_area && old_area != new_area)
-			new_area.Entered(AM,oldLoc)
-		for(var/atom/movable/CR in destination)
-			if(CR in conga_line)
-				continue
-			CR.Crossed(AM)
+			new_area.Entered(AM, oldLoc)
 		if(oldLoc)
-			AM.Moved(oldLoc)
+			AM.Moved(oldLoc, move_dir)
 		var/mob/M = AM
 		if(istype(M))
 			M.reset_perspective(destination)
@@ -720,7 +697,7 @@
 
 /mob/proc/add_emote_overlay(image/emote_overlay, remove_delay = TYPING_INDICATOR_LIFETIME)
 	emote_overlay.appearance_flags = APPEARANCE_UI_TRANSFORM
-	emote_overlay.plane = ABOVE_HUD_PLANE
+	emote_overlay.plane = ABOVE_LIGHTING_PLANE
 	emote_overlay.layer = ABOVE_HUD_LAYER
 	overlays += emote_overlay
 
@@ -819,6 +796,8 @@
 		if(mind.key)
 			log_played_names(mind.key, newname) //Just in case the mind is unsynced at the moment.
 
+	log_mob_tag("\[[tag]\] RENAMED: [key_name(src)]")
+
 	return TRUE
 
 
@@ -826,12 +805,11 @@
 	SEND_SIGNAL(src, COMSIG_MOB_UPDATE_SIGHT)
 	sync_lighting_plane_alpha()
 
-
 /mob/proc/sync_lighting_plane_alpha()
 	if(!hud_used)
 		return
 
-	var/obj/screen/plane_master/lighting/L = hud_used.plane_masters["[LIGHTING_PLANE]"]
+	var/atom/movable/screen/plane_master/lighting/L = hud_used.plane_masters["[LIGHTING_PLANE]"]
 	if(L)
 		L.alpha = lighting_alpha
 
@@ -880,3 +858,21 @@
 		return
 	. = stat //old stat
 	stat = new_stat
+
+///Clears the client in contents list of our current "eye". Prevents hard deletes
+/mob/proc/clear_client_in_contents()
+	if(client?.movingmob) //In the case the client was transferred to another mob and not deleted.
+		client.movingmob.client_mobs_in_contents -= src
+		UNSETEMPTY(client.movingmob.client_mobs_in_contents)
+		client.movingmob = null
+
+/mob/onTransitZ(old_z, new_z)
+	. = ..()
+	if(!client || !hud_used)
+		return
+	if(old_z == new_z)
+		return
+	if(is_ground_level(new_z))
+		hud_used.remove_parallax(src)
+		return
+	hud_used.create_parallax(src)

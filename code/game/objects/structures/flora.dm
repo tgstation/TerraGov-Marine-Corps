@@ -1,6 +1,7 @@
 /obj/structure/flora
 	anchored = TRUE
 	max_integrity = 25
+	coverage = 30
 	var/on_fire = FALSE
 
 /obj/structure/flora/ex_act(severity)
@@ -15,8 +16,8 @@
 				qdel(src)
 
 
-/obj/structure/flora/flamer_fire_act()
-	take_damage(25, BURN, "fire")
+/obj/structure/flora/flamer_fire_act(burnlevel)
+	take_damage(burnlevel, BURN, "fire")
 
 /obj/structure/flora/fire_act()
 	take_damage(25, BURN, "fire")
@@ -68,13 +69,13 @@
 	if(I.hitsound)
 		playsound(get_turf(src), I.hitsound, 50, 0, 0)
 
-	user.visible_message("<span class='notice'>[user] begins to cut down [src] with [I].</span>","<span class='notice'>You begin to cut down [src] with [I].</span>", "You hear the sound of sawing.")
+	user.visible_message(span_notice("[user] begins to cut down [src] with [I]."),span_notice("You begin to cut down [src] with [I]."), "You hear the sound of sawing.")
 	var/cut_force = min(1, I.force)
 	var/cutting_time = clamp(10, 20, 100 / cut_force) SECONDS
 	if(!do_after(user, cutting_time , TRUE, src, BUSY_ICON_BUILD))
 		return
 
-	user.visible_message("<span class='notice'>[user] fells [src] with the [I].</span>","<span class='notice'>You fell [src] with the [I].</span>", "You hear the sound of a tree falling.")
+	user.visible_message(span_notice("[user] fells [src] with the [I]."),span_notice("You fell [src] with the [I]."), "You hear the sound of a tree falling.")
 	playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 10 , 0, 0)
 	for(var/i in 1 to log_amount)
 		new /obj/item/grown/log(get_turf(src))
@@ -84,8 +85,8 @@
 
 	qdel(src)
 
-/obj/structure/flora/tree/flamer_fire_act()
-	take_damage(5, BURN, "fire")
+/obj/structure/flora/tree/flamer_fire_act(burnlevel)
+	take_damage(burnlevel/6, BURN, "fire")
 
 
 /obj/structure/flora/tree/update_overlays()
@@ -129,9 +130,9 @@
 		return
 
 	if(ckeys_that_took[user.ckey])
-		to_chat(user, "<span class='warning'>There are no presents with your name on.</span>")
+		to_chat(user, span_warning("There are no presents with your name on."))
 		return
-	to_chat(user, "<span class='warning'>After a bit of rummaging, you locate a gift with your name on it!</span>")
+	to_chat(user, span_warning("After a bit of rummaging, you locate a gift with your name on it!"))
 	ckeys_that_took[user.ckey] = TRUE
 	var/obj/item/G = new gift_type(src)
 	user.put_in_hands(G)
@@ -209,6 +210,18 @@
 	. = ..()
 	icon_state = "snowgrassall[rand(1, 3)]"
 
+//grayscale tall grass
+/obj/structure/flora/grass/tallgrass
+	name = "tall grass"
+	icon = 'icons/obj/flora/tallgrass.dmi'
+	icon_state = "tallgrass"
+	layer = TALL_GRASS_LAYER
+	opacity = TRUE
+
+/obj/structure/flora/grass/tallgrass/tallgrasscorner
+	name = "tall grass"
+	icon_state = "tallgrass_corner"
+
 //bushes
 /obj/structure/flora/bush
 	name = "bush"
@@ -223,16 +236,85 @@
 /obj/structure/flora/pottedplant
 	name = "potted plant"
 	icon = 'icons/obj/flora/plants.dmi'
-	icon_state = "plant-26"
+	icon_state = "plant-05"
+
+/obj/structure/flora/pottedplant/one
+	icon_state = "plant-01"
+
+/obj/structure/flora/pottedplant/two
+	icon_state = "plant-02"
+
+/obj/structure/flora/pottedplant/three
+	icon_state = "plant-03"
+
+/obj/structure/flora/pottedplant/four
+	icon_state = "plant-04"
+
+/obj/structure/flora/pottedplant/five
+	icon_state = "plant-05"
+
+/obj/structure/flora/pottedplant/six
+	icon_state = "plant-06"
+
+/obj/structure/flora/pottedplant/seven
+	icon_state = "plant-07"
+
+/obj/structure/flora/pottedplant/eight
+	icon_state = "plant-08"
+
+/obj/structure/flora/pottedplant/nine
+	icon_state = "plant-09"
 
 /obj/structure/flora/pottedplant/ten
 	icon_state = "plant-10"
+
+/obj/structure/flora/pottedplant/eleven
+	icon_state = "plant-11"
+
+/obj/structure/flora/pottedplant/twelve
+	icon_state = "plant-12"
+
+/obj/structure/flora/pottedplant/thirteen
+	icon_state = "plant-13"
+
+/obj/structure/flora/pottedplant/fourteen
+	icon_state = "plant-14"
+
+/obj/structure/flora/pottedplant/fifteen
+	icon_state = "plant-15"
+
+/obj/structure/flora/pottedplant/sixteen
+	icon_state = "plant-16"
+
+/obj/structure/flora/pottedplant/seventeen
+	icon_state = "plant-17"
+
+/obj/structure/flora/pottedplant/eighteen
+	icon_state = "plant-18"
+
+/obj/structure/flora/pottedplant/nineteen
+	icon_state = "plant-19"
+
+/obj/structure/flora/pottedplant/twenty
+	icon_state = "plant-19"
 
 /obj/structure/flora/pottedplant/twentyone
 	icon_state = "plant-21"
 
 /obj/structure/flora/pottedplant/twentytwo
 	icon_state = "plant-22"
+
+/obj/structure/flora/pottedplant/twentythree
+	icon_state = "plant-23"
+
+/obj/structure/flora/pottedplant/twentyfour
+	icon_state = "plant-24"
+
+/obj/structure/flora/pottedplant/twentyfive
+	icon_state = "plant-25"
+
+/obj/structure/flora/pottedplant/twentyfive
+	icon_state = "plant-26"
 
 //newbushes
 
@@ -373,10 +455,94 @@
 	icon_tag = "lightgrass"
 	variations = 12
 
+/obj/structure/flora/desert/grass/one
+	icon_state = "lightgrass_1"
+
+/obj/structure/flora/desert/grass/two
+	icon_state = "lightgrass_2"
+
+/obj/structure/flora/desert/grass/three
+	icon_state = "lightgrass_3"
+
+/obj/structure/flora/desert/grass/four
+	icon_state = "lightgrass_4"
+
+/obj/structure/flora/desert/grass/five
+	icon_state = "lightgrass_5"
+
+/obj/structure/flora/desert/grass/six
+	icon_state = "lightgrass_6"
+
+/obj/structure/flora/desert/grass/seven
+	icon_state = "lightgrass_7"
+
+/obj/structure/flora/desert/grass/eight
+	icon_state = "lightgrass_8"
+
+/obj/structure/flora/desert/grass/nine
+	icon_state = "lightgrass_9"
+
+/obj/structure/flora/desert/grass/ten
+	icon_state = "lightgrass_10"
+
+/obj/structure/flora/desert/grass/eleven
+	icon_state = "lightgrass_11"
+
+/obj/structure/flora/desert/grass/twelve
+	icon_state = "lightgrass_12"
+
 /obj/structure/flora/desert/grass/heavy
 	icon_state = "heavygrass_1"
 	icon_tag = "heavygrass"
 	variations = 16
+
+/obj/structure/flora/desert/grass/heavy/one
+	icon_state = "heavygrass_1"
+
+/obj/structure/flora/desert/grass/heavy/two
+	icon_state = "heavygrass_2"
+
+/obj/structure/flora/desert/grass/heavy/three
+	icon_state = "heavygrass_3"
+
+/obj/structure/flora/desert/grass/heavy/four
+	icon_state = "heavygrass_4"
+
+/obj/structure/flora/desert/grass/heavy/five
+	icon_state = "heavygrass_5"
+
+/obj/structure/flora/desert/grass/heavy/six
+	icon_state = "heavygrass_6"
+
+/obj/structure/flora/desert/grass/heavy/seven
+	icon_state = "heavygrass_7"
+
+/obj/structure/flora/desert/grass/heavy/eight
+	icon_state = "heavygrass_8"
+
+/obj/structure/flora/desert/grass/heavy/nine
+	icon_state = "heavygrass_9"
+
+/obj/structure/flora/desert/grass/heavy/ten
+	icon_state = "heavygrass_10"
+
+/obj/structure/flora/desert/grass/heavy/eleven
+	icon_state = "heavygrass_11"
+
+/obj/structure/flora/desert/grass/heavy/twelve
+	icon_state = "heavygrass_12"
+
+/obj/structure/flora/desert/grass/heavy/thirteen
+	icon_state = "heavygrass_13"
+
+/obj/structure/flora/desert/grass/heavy/fourteen
+	icon_state = "heavygrass_14"
+
+/obj/structure/flora/desert/grass/heavy/fifteen
+	icon_state = "heavygrass_15"
+
+/obj/structure/flora/desert/grass/heavy/sixteen
+	icon_state = "heavygrass_16"
 
 //BUSHES
 /obj/structure/flora/desert/bush
@@ -394,10 +560,82 @@
 	icon_tag = "cactus"
 	variations = 12
 
+/obj/structure/flora/desert/cactus/one
+	icon_state = "cactus_1"
+
+/obj/structure/flora/desert/cactus/two
+	icon_state = "cactus_2"
+
+/obj/structure/flora/desert/cactus/three
+	icon_state = "cactus_3"
+
+/obj/structure/flora/desert/cactus/four
+	icon_state = "cactus_4"
+
+/obj/structure/flora/desert/cactus/five
+	icon_state = "cactus_5"
+
+/obj/structure/flora/desert/cactus/six
+	icon_state = "cactus_6"
+
+/obj/structure/flora/desert/cactus/seven
+	icon_state = "cactus_7"
+
+/obj/structure/flora/desert/cactus/eight
+	icon_state = "cactus_8"
+
+/obj/structure/flora/desert/cactus/nine
+	icon_state = "cactus_9"
+
+/obj/structure/flora/desert/cactus/ten
+	icon_state = "cactus_10"
+
+/obj/structure/flora/desert/cactus/eleven
+	icon_state = "cactus_11"
+
+/obj/structure/flora/desert/cactus/twelve
+	icon_state = "cactus_12"
+
 /obj/structure/flora/desert/cactus/multiple
 	name = "cacti"
 	icon_state = "cactus_1"
 	icon_tag = "cacti"
+
+/obj/structure/flora/desert/cactus/multiple/one
+	icon_state = "cacti_1"
+
+/obj/structure/flora/desert/cactus/multiple/two
+	icon_state = "cacti_2"
+
+/obj/structure/flora/desert/cactus/multiple/three
+	icon_state = "cacti_3"
+
+/obj/structure/flora/desert/cactus/multiple/four
+	icon_state = "cacti_4"
+
+/obj/structure/flora/desert/cactus/multiple/five
+	icon_state = "cacti_5"
+
+/obj/structure/flora/desert/cactus/multiple/six
+	icon_state = "cacti_6"
+
+/obj/structure/flora/desert/cactus/multiple/seven
+	icon_state = "cacti_7"
+
+/obj/structure/flora/desert/cactus/multiple/eight
+	icon_state = "cacti_8"
+
+/obj/structure/flora/desert/cactus/multiple/nine
+	icon_state = "cacti_9"
+
+/obj/structure/flora/desert/cactus/multiple/ten
+	icon_state = "cacti_10"
+
+/obj/structure/flora/desert/cactus/multiple/eleven
+	icon_state = "cacti_11"
+
+/obj/structure/flora/desert/cactus/multiple/twelve
+	icon_state = "cacti_12"
 
 
 //Jungle (Whiskey Outpost)
@@ -436,6 +674,7 @@
 	name = "vines"
 	desc = "A mass of twisted vines."
 	icon = 'icons/effects/spacevines.dmi'
+	icon_state = "Light2"
 
 /obj/structure/jungle/vines/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -445,7 +684,7 @@
 
 	var/mob/living/L = user
 
-	to_chat(L, "<span class='warning'>You cut \the [src] away with \the [I].</span>")
+	to_chat(L, span_warning("You cut \the [src] away with \the [I]."))
 	L.do_attack_animation(src, used_item = I)
 	playsound(src, 'sound/effects/vegetation_hit.ogg', 25, 1)
 	qdel(src)
@@ -475,7 +714,7 @@
 	icon = 'icons/obj/flora/rocks2.dmi'
 	density = TRUE
 	max_integrity = 250
-	layer = ABOVE_FLY_LAYER
+	layer = ABOVE_TURF_LAYER
 	coverage = 100
 	icon_state = "basalt"
 

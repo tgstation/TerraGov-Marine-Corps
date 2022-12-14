@@ -1,0 +1,490 @@
+2021-09-01:
+  TiviPlus:
+  - admin: Adminplayer panel improvements
+  lKiseki:
+  - rscadd: Added a custom OOC color for a new admin rank.
+  lbnesquik:
+  - balance: Improved AI skills, they're now a master of all, for whatever the AI
+      can use their skills for.
+2021-09-02:
+  EvilMelonTheSecond:
+  - balance: Combat flashlight is now unacidable
+  QualityVan:
+  - balance: Smoke clouds can apply their effects when you walk into one.
+  - bugfix: Stacked smoke clouds will both apply their effects instead of only one.
+  TiviPlus:
+  - config: split a server config
+  hyper2snyper:
+  - rscadd: Masterkey Shotgun can use more than just Buckshot.
+  - rscadd: Miniflamer now needs a magazine.
+  - rscadd: New Admeme spear called the Tacticool Spear.
+  - rscadd: Plasma Pistol will now double as an underbarrel attachment.
+  - qol: You can fire weapon attachments with Right-Click
+  - imageadd: New Tactical Spear Sprite
+  - code_imp: Gun attachments are now guns.
+  - refactor: Refactored Attachment code.
+  - rscadd: New control scheme for attached weapons. Attachment must be active to
+      be used. Right clicking the gun with an empty hand will unload the active attachment.
+      Right clicking the gun with an object in hand will attempt to reload the active
+      attachment with the object. Right clicking and Middle clicking will fire the
+      Active attachment. Left click will always fire the main gun. Right clicking
+      an adjacent move will attempt to point blank the mob with the active attachment.
+2021-09-03:
+  Anystar1:
+  - rscadd: Captain now has level 1 surgery.
+  BraveMole:
+  - balance: Xeno turret projectiles go faster
+  - balance: 3 jetpacks free in vendors
+  QualityVan:
+  - rscadd: Sprayed sterilizine disinfects existing wounds. It won't help directly
+      with infected limbs though.
+  - balance: Spraying sterilizine on people with existing wounds is more likely to
+      cause pain.
+  - bugfix: Wounds no longer infect limbs more slowly when you have antibiotics
+  - bugfix: Sterilizine made in chemistry works and isn't called 'medicine'.
+  SplinterGP:
+  - config: default config setting of view has been changed to 15x15 other than default
+      19x15, basically only affects local server settings for anyone downloading code
+      from github.
+  hyper2snyper:
+  - rscadd: New pocket pistol, the "R-2395 Derringer". Available in marine vendors.
+  lbnesquik:
+  - rscadd: Added a tip and note to synths referring them towards binary radio
+2021-09-04:
+  QualityVan:
+  - balance: Medical belts can only hold up to three magazines. Their total storage
+      isn't changed.
+  Sebbe9123:
+  - balance: Rebalances Mimir Bio and Acid armor.
+  TiviPlus:
+  - admin: Doors will now only log when the bullet impacts and only send the FF message
+      before the hijack ship launches
+  - rscadd: Add a boxing ring to Pillar
+  hyper2snyper:
+  - balance: Sentries can now shoot past other deployed items and Miners.
+  - bugfix: Fixes the issue with null internal guns on sentries.
+  - bugfix: Fixes Comrade sentry.
+  - code_imp: Updates /deployable and makes armor values dependent on the deploying
+      item.
+2021-09-06:
+  BraveMole:
+  - bugfix: Fix xeno turrets trying to shoot droids on other z levels
+  Pariah919:
+  - soundadd: fart gun returns, the m41a has the old pulse rifle sounds once again.
+  RipGrayson:
+  - rscadd: Added Shigusa Hydroelectric Dam, a map for more than 100 players.
+  - imageadd: Added a new couple icons for shallow water transitions, broken generators,
+      and stairs.
+  - code_imp: Cleaned up some unused turfs.
+  - bugfix: Fixed an unmapped area in Big Red LZ.
+  hyper2snyper:
+  - bugfix: Fixes that thing with the derringer.
+2021-09-07:
+  BraveMole:
+  - refactor: Refactor eggs
+  EvilMelonTheSecond:
+  - balance: Miner reinforcement upgrade protects against non-strong castes
+  QualityVan:
+  - rscadd: You can choose to only remove a single chem recipe instead of all of them
+      when using a dispenser.
+  - bugfix: You can't start fiddling with a chem dispenser while you're busy doing
+      something else.
+  Surrealaser:
+  - balance: Ravager's Rage now has maximum power when used at any negative HP amount
+      instead of -57 HP or less.
+  hyper2snyper:
+  - code_imp: Single Action Revolver Support
+  - refactor: Cock() Refactor and removes some Unique_Action() bloat
+2021-09-08:
+  BraveMole:
+  - expansion: 'Add objectives to Civil War: capture and defend zones on the map (the
+      blue one on minimap)'
+  - expansion: Add barrenquilla and Icy caves to HvH
+  - bugfix: Fix lighter in cigarette packet can be removed
+  Passe2142:
+  - balance: 'Baldur Mk1 loses slowdown, and Mk2 is removed. Also upon inspection
+      now it doesn''t say that it slows down. The name for the Mk1 now is : Baldur
+      Light Amplification System'
+  SplinterGP:
+  - balance: scopes now incur slowdown instead of unscoping when moving away.
+  - qol: you can now change which direction you're scoping with ctrl+wasd(or whatever
+      you use to face without moving).
+  hyper2snyper:
+  - bugfix: Fixes attachment weapons firing when the gun is not in hand.
+  - bugfix: Fixes attachment weapons firing at inventory objects.
+2021-09-09:
+  BraveMole:
+  - code_imp: Repath grenade frag to grenade
+  - balance: Most grenades will prime when subject to fire
+  - bugfix: Fix being able to send two people with one medevac
+  Pariah919:
+  - rscadd: MKH98 rifle, and PPSH/MKH98 seasonal. MKH basically feels like a lower
+      capacity higher mobility AK.
+  hyper2snyper:
+  - bugfix: You can shoot while sprinting again.
+2021-09-10:
+  BraveMole:
+  - bugfix: Fix flaregun shooting nades
+  - rscadd: Roomba roulette. Just click on the roomba!
+  - config: You can vote for civil war now
+  Joniroq:
+  - bugfix: Fixed a mapping oversight on Ice Colony's LZ2, no more cheesing resin
+      walls right up against the shutters.
+  Surrealaser:
+  - balance: Reduced Hunter's Mark plasma cost from 75 to 25.
+  - balance: Removed Hunter's Mark wind up time.
+2021-09-11:
+  BraveMole:
+  - bugfix: AI crusher will no longer have the speed of a runner
+  - expansion: Add ai nodes to EORD
+  MiniMeatwad:
+  - balance: The TP-14 sunder is reduced to 1 from 1.65, and its akimbo scatter range
+      from (30 to 40) to (40 to 50). This will come out as 5 to 15 with attachments
+      instead of -5 to 5.
+  QualityVan:
+  - bugfix: Thrown huggers will crawl into holes or empty eggs.
+  - bugfix: Hatched huggers will jump at people.
+  - bugfix: Planted eggs don't mature instantly.
+  - bugfix: Gas eggs can only be popped once.
+  - qol: Infected limbs are less subtle to their owner.
+  - balance: Wounds with smaller amounts of germs will now disinfect passively over
+      time. Treatment speeds this up.
+  - balance: Fresh wounds won't immediately start infecting the limb they're on.
+  - bugfix: Wounds that worsen now do so more visibly.
+2021-09-12:
+  BraveMole:
+  - bugfix: Flares no longer explode
+  - refactor: Small grenade refactor
+  - qol: Ai will stop processing if you login to a mob with ai. It will resum if you
+      log out
+  MiniMeatwad:
+  - qol: Reduced the quick equip delay for pressing E in hotkey mode. Changes inventory
+      action delay from 150ms to 50ms, which is significantly smoother. The new delay
+      should now only affect you if you're using macros or spamming a key really hard.
+  - code_imp: Changed get_active_held_item()'s next_move to world.time + 1 instead
+      of world.time + 3.
+  QualityVan:
+  - refactor: Repathed non-splint medkits, minimal functional changes.
+  SplinterGP:
+  - balance: magazine ammo belt now has 6 slots from old 5
+2021-09-13:
+  BraveMole:
+  - rscadd: Admin spawned xeno can use abilities in civil war
+  - qol: Add minimap blips for nuke disk generator and nuke
+  - bugfix: You can no longer steal aghosted bodies
+  - bugfix: Spawning as a space agent no longer allow to bypass respawn timer
+  - rscadd: AFK marines can be taken by ghosts
+  - bugfix: Sentry ammo is visible again
+  Bravemole, sprites by Daytona:
+  - rscadd: Hivemind can manifest
+  MiniMeatwad:
+  - rscadd: Adds Team OOC, two new verbs in the OOC tab called XOOC and MOOC for Xeno
+      and Marine.
+  - code_imp: Modified ooc.dm, adding two new verbs.
+  - admin: XOOC and MOOC should have clickable player panel links for admins, and
+      admins can see XOOC and MOOC chat and talk in them.
+  Pariah919:
+  - balance: T-90 has aim mode, and T-19 has better one handed stats (reduced scatter
+      by 3 and accuracy buff by .1), two handed accuracy reduced from 1.5 to 1.2.
+  - balance: machinecarbine scatter reduced by 8 to 12 from 20.
+  - spellcheck: minor tp44 description changes
+  - balance: m44 now works like a proper single action, use unique action to prime
+      it, it has slightly less fire delay and is normal sized from bulky
+  QualityVan:
+  - bugfix: People buckled to beds will lie down.
+  - bugfix: You can move while carrying someone on your back.
+  TiviPlus:
+  - bugfix: droids can be repaired again
+  - code_imp: Updated max reccomended byond versions
+  - bugfix: fixed a deletion bug
+  - bugfix: fixed soe balloon alerts looking wierd
+  - bugfix: fixed some radial menus looking wierd
+  - bugfix: fixed parallax animation
+  - bugfix: fixed some tgui colors maybe being wierd
+  - admin: fixed some missing byond varedit flags
+  - code_imp: TGUI tooltip optimization
+  - rscadd: Marine bikes
+  - rscadd: The bikes must be filled with fuel and require one hand to use, but come
+      with 4 storage slots for items which can be accessed by clicking the bike with
+      an empty hand or dragging the bike onto yourself. The bikes can be repaired
+      with welders.
+  - imageadd: Sprites by thatguythere03#4418
+  hyper2snyper:
+  - rscadd: New Attachment, the Build-A-Sentry. Available in the Engi vendor for 30
+      points a piece, or 1 for 25 points in Req.
+  - rscadd: Simply attach it to the gun and boom, it can be deployed.
+  - rscadd: Changed the controls for deployable guns and sentries. You can see the
+      controls by examining the guns that can be deployed.
+  - balance: Anti-mat sniper can now have its scope removed.
+  - code_imp: Removed an old bitfield that was unused in gun code.
+  - code_imp: Adds a ton of infrastructure for new sentry types.
+  jroinc:
+  - bugfix: Altered some descriptive text for the medscanner and defib.
+  - expansion: Added stuff to sleeping. If you sleep on a bed with sheets and are
+      not in crit, you'll heal 0.25 brute, 0.25 burn, 0.125 toxloss, 25 stamina, and
+      a variable amount of cloneloss (-0.1 to 0.2, depending on your overall health).
+      If you sleep on the floor, you get a quarter of those values.
+2021-09-14:
+  BraveMole:
+  - qol: No longer shooting at adjacent tiles
+  QualityVan:
+  - balance: Marine meds have infinite gauze and ointment
+  - balance: Stacks can't be restocked in vendors unless they have the count they
+      started with.
+  RipGrayson:
+  - rscadd: Added landmark versions of flight computers to both Chigusa Landing Zones,
+      allowing for civil war to be played.
+  - expansion: Chigusa's river is now animated.
+  - rscdel: Removed an unnecessary icon sheet.
+  - balance: Rebalanced both Chigusa LZs to meet TGMC quality standards.
+  - balance: Moved Chigusa LZ2 to the southeast.
+  - balance: Moved Chigusa nuke computers much closer together.
+  - balance: Redid Chigusa fog blockers to be more consistent.
+  - bugfix: You can no longer defy physics by hiding underneath road paint as a runner.
+  - bugfix: Several Chigusa APCs now properly connect to the grid.
+  - bugfix: Chigusa Landing Zones are now longer permanently unpowered despite having
+      a full APC.
+  - bugfix: Fixed a single obscure unmapped tile Chigusa inherited from CM.
+  - imageadd: Added some animation frames for Chigusa's river.
+  TheLeopold:
+  - balance: mini incinerator tank now small item
+  TiviPlus:
+  - code_imp: Backend vehicle multitile prep
+2021-09-15:
+  MiniMeatwad:
+  - admin: Team OOC code now shows keys for admins and has a fakekey check if the
+      admin is using stealthmin.
+  - config: Add LOG_MOOC and LOG_XOOC to the config.
+  - balance: Praetorian acid spit cost and speed changed to be 90 plasma cost and
+      have +2 delay.
+  Pariah919:
+  - spellcheck: ak got renamed to MPi-KM, and has a new description.
+  TGCMbetcher:
+  - rscadd: MK221 added to marine weapon vendor list
+  jroinc:
+  - rscadd: adds chemical WP gas, gunpowder, and ANFO
+  - balance: lowers maximum radius of chemsmoke to around WP-radius. Also raises minimum
+      amount of reactable razorburn to 5/5, from 1/1.
+  - bugfix: fixes napalm and napalm grenades
+2021-09-16:
+  BraveMole:
+  - bugfix: Infinite marine respawn are no more, i hope
+  - admin: Logging when a ghost take an ssd mob
+  - admin: Human names are randomised when taken by a ghost
+  - bugfix: Fix crash maturity not being properly updated
+  Pariah919:
+  - balance: Mosin/SVD have aim mode again.
+  QualityVan:
+  - bugfix: Combat injectors have dylovene instead of ryetalin, so they'll purge toxins
+      more reliably.
+  SplinterGP:
+  - expansion: Jaeger and M10X now have storage which shows certain items stored into
+      it like the original M10 did.
+  - code_imp: cleaned some jaeger overlay rendering code.
+2021-09-17:
+  BraveMole:
+  - expansion: Synth can use loadout vendor
+  - qol: 'As a xeno: if you are on help intent, you will never be blocked by another
+      xeno'
+  - bugfix: Fix not being able to fire at dark zones with attachment
+  - rscdel: All ghosts have actions, kill the pref
+  - balance: You cannot use enemy medevacs
+  TiviPlus:
+  - rscadd: Reqtorio, read the starter kit how to paper for how to use
+  - imageadd: Sprites by Kuro, Ciel, Gohunt, Nerolostshor
+2021-09-18:
+  BraveMole:
+  - rscadd: Hunter can disguise itself as it's marked target, this replaces stealth
+      (fun config)
+  Pariah919:
+  - balance: M16A4 can no longer fit BFA, has less delay between bursts, has no autoburst,
+      aim speed movement is faster and lower base scatter.
+  - balance: prae acid cone plasma cost upped to 400 from 200, cone slowdown halved
+      on use, bomb resistance has been upped overall.
+  - balance: MPi (AK) and storm rifle get magnetic harness, MPi autoejects on empty.
+  - rscadd: Added new seasonal revolver, has shotgun and normal revolver shots.
+  - expansion: seasonal with judge/nagant revolver
+2021-09-19:
+  BraveMole:
+  - server: You cannot vote civil war more than once every 12 hours
+  QualityVan:
+  - bugfix: Medevacs work.
+2021-09-20:
+  BraveMole:
+  - bugfix: Fix motion detector working in pockets
+  - balance: Xenos have slower respawn in crash
+  Pariah919:
+  - bugfix: t-27 inhands are properly alinged
+  - balance: PPsh has lost some weight, has better handling (0.2 less wield delay
+      and wield speed) and gains aim mode. 0.3 fire delay on aim mode and gained mag
+      harness.
+  - rscadd: Added new T-27 MMG, A machinegun meant to be deployed, can be fired while
+      wielded, though I wouldn't recommend it! 100 rounds, T-21 damage, 0.15 fire
+      rate. 80 scatter when held in your hands, 20 when deployed. One second deploy
+      time, and 5 at roundstart.
+  - code_imp: added a variable for deployed guns to have different scatter stats deployed
+      and undeployed.
+  - balance: seasonal guns are 5 points in req overall, magazines 1 point.
+  - qol: some new seasonal guns are added to req in imports
+  SplinterGP:
+  - bugfix: stuff that zooms now has their previous zoom out range that was accidentally
+      changed on view datum refactor.
+  TiviPlus:
+  - admin: Explosion logging tweaks
+  Wayland-Smithy:
+  - bugfix: Fixed new ticket admin/mentor help message double sanitizing.
+  jroinc:
+  - expansion: 'Expands chems and gives the RSR the ability to make some new things.
+
+      Quietus- It''s a long-lasting poison that kills you via oxyloss if you go crit
+      or unconscious for any reason. Somolent- Somolent heals gradually increasing
+      amounts of brute and burn, up to ten total per tick, as long as you''re sleeping.
+      After a while, it heals some cloneloss too. Medical nanites- They let you use
+      blood as a secondary healthbar. Don''t inject without medical aid, and keep
+      an iron pill bottle with you. Stimulon- Makes you go fast. Unpredictable side
+      effects that get worse the longer it''s in you.'
+2021-09-21:
+  BraveMole:
+  - balance: You can no longer switch sides in HvH
+  - qol: change speed weed name to weed
+  Bravemole, sprites by slayer:
+  - rscadd: ZOOOMBIES. Slow movement, fast regen, can come back from the dead. Rip
+      off the heart (use a sharp tool) to prevent it from coming back again and again.
+      Watch out, it spreads...
+  EvilMelonTheSecond:
+  - rscadd: Added an engi backpack for groundside supply requests
+  MiniMeatwad:
+  - balance: Plasmaloss gas now removes 20% of your plasma_max instead of 200 plasma,
+      which is 20% of 1000.
+  - balance: Pepperball gun now removes 5% of your plasma_max instead of 50, which
+      is 5% of 1000.
+  TiviPlus:
+  - qol: centered small eplosions animation
+2021-09-22:
+  BraveMole:
+  - bugfix: Fix twin pillars doors
+  Joniroq:
+  - rscadd: Added Leicester Repeater. Uses .44 caliber rounds. Yeehaw!
+  MiniMeatwad:
+  - code_imp: Click dragging an object onto itself will click on the object instead
+      of doing nothing.
+  - balance: Praetorian acid spray cost is now 300 instead of 400.
+  Pariah919:
+  - balance: ravager upped to 28/30 melee damage respectively. (Young/Mature and Elder/Ancient)
+  QualityVan:
+  - bugfix: Synths don't apply their damage reduction twice anymore.
+  TiviPlus:
+  - bugfix: Fix shuttle lighting & turfs
+2021-09-23:
+  BraveMole:
+  - qol: You can have multiple ammo huds
+  - rscdel: Remove the ability to disable ammo hud
+  - bugfix: Fix energy guns not auto ejecting
+  - bugfix: Fix hivemind slowdown issues
+  - bugfix: Fix corpsespawner looking psydrainable
+  - bugfix: Fix xeno instant evolving
+  - bugfix: Fix loging into ai not giving you full control
+  EvilMelonTheSecond:
+  - bugfix: fixed right clicking radiopack pulling out items
+  SpaceLoveSs13:
+  - balance: self splinting delay is now 3x instead of 4x
+2021-09-25:
+  BraveMole:
+  - bugfix: Fix weed decaying
+  - bugfix: medevac will properly tell you when you forgot to linked it to a beacon
+  - bugfix: Fix not being able to chose weeds
+  sunofang:
+  - rscadd: Made whiskey outpost MUCH nicer.
+2021-09-26:
+  Pariah919:
+  - balance: t27 get's 75 more deployed hp for 200 total.
+  - bugfix: t27 gets the same mounted armor as all other machineguns
+  QualityVan:
+  - balance: 'Marine healthkit pouches from the starting vendors are improved: they
+      come with bkt pills, more tricord, splints, and an inaprovaline autoinjector.
+      They''ve also got an extra storage slot.'
+  RipGrayson:
+  - bugfix: Removed some landing consoles accidentally placed in dorms.
+  TiviPlus:
+  - rscadd: New xeno sticky resin turret, can be selected by right clicking the action
+  - imageadd: Sprites by Ciel/kyranova
+  - bugfix: Emotes and typing indicator no longer show over ui
+  - code_imp: The menu loads faster
+  - rscadd: You can now select Neuter as a gender in preferences, particularily reccomended
+      for robots
+  hyper2snyper:
+  - rscadd: PAS can be recolored using green facepaint.
+  - code_imp: ALT-CLICK will now remove jaeger attachments.
+  - refactor: CHONKY Jaeger refactor. Switching its base to that of the gun attachments.
+  - bugfix: Fixed all my broke shit.
+  - bugfix: Fixes Sentry Stacking in the same tile.
+  - bugfix: Fixes visible invisible sprites for scopes.
+  - bugfix: Fixes a runtime with energy gun sentries not being able to reload after
+      auto-ejecting.
+  - bugfix: Fixes aim mode problems with the deployable weapons.
+  lovegreenstuff:
+  - balance: T39 wielded slowdown buffed from 0.6 to 0.35
+  - balance: Paladin wielded slowdown nerfed from 0.35 to 0.4
+  - balance: Mk221 wielded slowdown nerfed from 0.35 to 0.4
+  - balance: V10 wielded slowdown nerfed from 0.35 to 0.45
+  - balance: T35 wielded slowdown buffed from 0.55 to 0.45
+  - balance: Double barrel wielded slowdown nerfed from 0.35 to 0.6
+2021-09-27:
+  BraveMole:
+  - balance: Space no longer instantly kills you
+  - bugfix: Fix ammo hud breaking when stocking back gun in vendor
+  - bugfix: Fix being able to get all uniform from loadout vendor
+  - bugfix: Fix jelly pod not taking flame damage
+  Pariah919:
+  - balance: shotguns don't get miniflamer anymore
+  - rscadd: the ZX-76 returns in it's (nerfed) glory, avaliable for 100 req points.
+  - balance: zx no longer has rc/eb, deals 10% less damage, burst fire has far more
+      scatter, fires .25 faster.
+  TiviPlus:
+  - rscadd: Nanotrasen is now pleased to say that incompetent "human" marines are
+      being replaced with a new limited production Autonomous Combat Robot model!
+  - rscadd: Robots take more burn damage, less brute damage, process no chems, cant
+      run, can have their head reattached, cant wear anthing but their snowflake armor,
+      have no blood(duh), cant be set on fire
+  - qol: Drastically improved welder and cable repair QOL
+  - imageadd: Sprites by Kuro
+  - soundadd: Sounds provided by slayer
+  - admin: removed admin message from flareguns
+  jroinc:
+  - rscadd: Added two self-recharging cells to engi vendors. Low capacity, but they
+      charge up to full slowly without needing a hand charger.
+2021-09-28:
+  BraveMole:
+  - bugfix: Zombies properly heal internal wounds
+  - balance: Double the healing rate of zombies
+  - bugfix: Zombies can heal from broken bone (has no effect on balance)
+  - bugfix: Fix a runtime that could prevent human zombies from resurrecting
+  EvilMelonTheSecond:
+  - balance: Synth vendor has radiopack as a backpack option
+  Lefunny:
+  - balance: Build a sentry healh goes from 500 to 250
+  - balance: prison station now starts weeded
+  TiviPlus:
+  - balance: Halve weed and building cost before shutters open
+  XSlayer300:
+  - bugfix: Fixed the zombie sprite a little bit.
+2021-09-29:
+  BraveMole:
+  - balance: Remove shrap, IB, organ damage from Civil War
+  Lefunny:
+  - bugfix: I fixed a broken fog area.
+  TiviPlus:
+  - rscadd: Replaced place silo/king/turret with the hive boon menu
+  - imageadd: sprites by ciel/kyranova
+  lovegreenstuff:
+  - balance: masterkey, underbarrel flamer, and underbarrel GL for t39, t35, and v10
+      are now gone
+2021-09-30:
+  BraveMole:
+  - bugfix: Buying a mk2 mimir in req really gets you a mk2
+  TiviPlus:
+  - balance: Civil war votable every 36 hours from 12 hours
+  - balance: buckshot has more falloff
+  - balance: buckshot accurate range(not spread) has been reduced to 3
+  - balance: nerfed high velocity ammo slowdown
+  - rscadd: Primordial tab temporily disabled while abilities are added

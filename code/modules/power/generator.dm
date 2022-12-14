@@ -78,7 +78,7 @@
 
 	if(iswrench(I))
 		anchored = !anchored
-		to_chat(user, "<span class='notice'>You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor.</span>")
+		to_chat(user, span_notice("You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor."))
 		use_power = anchored
 		reconnect()
 

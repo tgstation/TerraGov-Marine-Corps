@@ -1,18 +1,25 @@
 /mob/living/proc/robot_talk(message)
 	log_talk(message, LOG_SAY)
+	//Capitalization
+	message = capitalize(message)
+	//checks for and apply punctuation
+	var/end = copytext(message, length(message))
+	if(!(end in list("!", ".", "?", ":", "\"", "-")))
+		message += "."
+
 	var/desig = "Silicon"
-	if(issilicon(src))
-		var/mob/living/silicon/S = src
+	if(issilicon(src) || issynth(src))
+		var/mob/living/S = src
 		desig = trim_left(S.job.title)
 	var/message_a = say_quote(message)
-	var/rendered = "Robotic Talk, <span class='name'>[name]</span> <span class='message'>[message_a]</span>"
+	var/rendered = "Robotic Talk, [span_name("[name]")] [span_message("[message_a]")]"
 	for(var/mob/M in GLOB.player_list)
 		if(M.binarycheck())
 			if(isAI(M))
-				var/renderedAI = "<span class='binarysay'>Robotic Talk, <a href='?src=[REF(M)];track=[html_encode(name)]'><span class='name'>[name] ([desig])</span></a> <span class='message'>[message_a]</span></span>"
+				var/renderedAI = span_binarysay("Robotic Talk, <a href='?src=[REF(M)];track=[html_encode(name)]'>[span_name("[name] ([desig])")]</a> [span_message("[message_a]")]")
 				to_chat(M, renderedAI)
 			else
-				to_chat(M, "<span class='binarysay'>[rendered]</span>")
+				to_chat(M, span_binarysay("[rendered]"))
 		if(isobserver(M))
 			var/following = src
 			// If the AI talks on binary chat, we still want to follow
@@ -21,7 +28,7 @@
 				var/mob/living/silicon/ai/AI = src
 				following = AI.eyeobj
 			var/link = FOLLOW_LINK(M, following)
-			to_chat(M, "<span class='binarysay'>[link] [rendered]</span>")
+			to_chat(M, span_binarysay("[link] [rendered]"))
 
 
 /mob/living/silicon/binarycheck()

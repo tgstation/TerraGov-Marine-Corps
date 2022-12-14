@@ -27,19 +27,19 @@
 
 	if((A.is_drainable() && !A.is_refillable()) && get_dist(src,A) <= 1)
 		if(!A.reagents.total_volume)
-			to_chat(user, "<span class='warning'>[A] is empty.</span>")
+			to_chat(user, span_warning("[A] is empty."))
 			return
 
 		if(reagents.holder_full())
-			to_chat(user, "<span class='warning'>[src] is full.</span>")
+			to_chat(user, span_warning("[src] is full."))
 			return
 
 		var/trans = A.reagents.trans_to(src, A:amount_per_transfer_from_this)
-		to_chat(user, "<span class='notice'>You fill \the [src] with [trans] units of the contents of \the [A].</span>")
+		to_chat(user, span_notice("You fill \the [src] with [trans] units of the contents of \the [A]."))
 		return
 
 	if(reagents.total_volume < amount_per_transfer_from_this)
-		to_chat(user, "<span class='notice'>[src] is empty!</span>")
+		to_chat(user, span_notice("[src] is empty!"))
 		return
 
 	if(safety)
@@ -70,8 +70,8 @@
 				// not its contents. BS12
 				if(get_dist(D, A_turf) == 1 && A_turf.density)
 					D.reagents.reaction(A_turf)
-				sleep(2)
-			sleep(3)
+				sleep(0.2 SECONDS)
+			sleep(0.3 SECONDS)
 		qdel(D)
 
 
@@ -80,7 +80,7 @@
 		return
 	amount_per_transfer_from_this = next_in_list(amount_per_transfer_from_this, possible_transfer_amounts)
 	spray_size = next_in_list(spray_size, spray_sizes)
-	to_chat(user, "<span class='notice'>You adjusted the pressure nozzle. You'll now use [amount_per_transfer_from_this] units per spray.</span>")
+	to_chat(user, span_notice("You adjusted the pressure nozzle. You'll now use [amount_per_transfer_from_this] units per spray."))
 
 /obj/item/reagent_containers/spray/verb/empty()
 
@@ -91,7 +91,7 @@
 	if (tgui_alert(usr, "Are you sure you want to empty that?", "Empty Bottle:", list("Yes", "No")) != "Yes")
 		return
 	if(isturf(usr.loc))
-		to_chat(usr, "<span class='notice'>You empty \the [src] onto the floor.</span>")
+		to_chat(usr, span_notice("You empty \the [src] onto the floor."))
 		reagents.reaction(usr.loc)
 		addtimer(CALLBACK(reagents, /datum/reagents.proc/clear_reagents), 5)
 
@@ -130,9 +130,9 @@
 	list_reagents = list(/datum/reagent/consumable/capsaicin/condensed = 40)
 
 /obj/item/reagent_containers/spray/pepper/examine(mob/user)
-	..()
+	. = ..()
 	if(get_dist(user,src) <= 1)
-		to_chat(user, "The safety is [safety ? "on" : "off"].")
+		. += "The safety is [safety ? "on" : "off"]."
 
 /obj/item/reagent_containers/spray/pepper/attack_self(mob/user)
 	safety = !safety
@@ -195,7 +195,7 @@
 				D.reagents.reaction(get_turf(D))
 				for(var/atom/t in get_turf(D))
 					D.reagents.reaction(t, VAPOR)
-				sleep(2)
+				sleep(0.2 SECONDS)
 			qdel(D)
 
 

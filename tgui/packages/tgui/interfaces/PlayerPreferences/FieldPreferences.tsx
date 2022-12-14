@@ -2,15 +2,8 @@ import { useBackend } from '../../backend';
 import { Button, Input, LabeledList } from '../../components';
 
 export const TextFieldPreference = (props, context) => {
-  const { act, data } = useBackend(context);
-  const {
-    label,
-    value,
-    action,
-    extra,
-    onFocus,
-    noAction,
-  } = props;
+  const { act, data } = useBackend<any>(context);
+  const { label, value, action, extra, onFocus, noAction } = props;
   const itemLabel = label || value;
 
   const handler = noAction ? () => {} : act;
@@ -21,7 +14,8 @@ export const TextFieldPreference = (props, context) => {
         placeholder={data[value] || ''}
         value={data[value] || value}
         onChange={(e, newValue) =>
-          !onFocus && handler(action || value, { newValue })}
+          !onFocus && handler(action || value, { newValue })
+        }
       />
       {extra ? extra : null}
     </LabeledList.Item>
@@ -29,26 +23,19 @@ export const TextFieldPreference = (props, context) => {
 };
 
 export const SelectFieldPreference = (props, context) => {
-  const { act, data, config } = useBackend(context);
-  const {
-    label,
-    value,
-    action,
-  } = props;
+  const { act, data, config } = useBackend<any>(context);
+  const { label, value, action } = props;
   const itemLabel = label || value;
 
   return (
     <LabeledList.Item label={itemLabel}>
-      <Button
-        content={data[value]}
-        onClick={() => act(action)}
-      />
+      <Button content={data[value]} onClick={() => act(action)} />
     </LabeledList.Item>
   );
 };
 
 export const ToggleFieldPreference = (props, context) => {
-  const { act, data } = useBackend(context);
+  const { act, data } = useBackend<any>(context);
   const {
     label,
     value,
@@ -81,22 +68,13 @@ export const ToggleFieldPreference = (props, context) => {
   );
 };
 
-
 export const LoopingSelectionPreference = (props, context) => {
   const { act } = useBackend<PlayerPreferencesData>(context);
-  const {
-    label,
-    value,
-    action,
-  } = props;
+  const { label, value, action } = props;
 
   return (
     <LabeledList.Item label={label}>
-      <Button
-        inline
-        content={value}
-        onClick={() => act(action)}
-      />
+      <Button inline content={value} onClick={() => act(action)} />
     </LabeledList.Item>
   );
 };

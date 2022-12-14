@@ -24,7 +24,7 @@
 
 /obj/item/clock/examine(mob/user, distance, infix, suffix)
 	. = ..()
-	to_chat(user, "The [src] reads: [GLOB.current_date_string] - [stationTimestamp()]")
+	. += "The [src] reads: [GLOB.current_date_string] - [stationTimestamp()]"
 
 /obj/item/bananapeel
 	name = "banana peel"
@@ -36,8 +36,14 @@
 	throw_speed = 4
 	throw_range = 20
 
-/obj/item/bananapeel/Crossed(AM)
+/obj/item/bananapeel/Initialize()
 	. = ..()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
+/obj/item/bananapeel/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs) //TODO JUST USE THE SLIPPERY COMPONENT
 	if (iscarbon(AM))
 		var/mob/living/carbon/C = AM
 		C.slip(name, 4, 2)
@@ -143,15 +149,21 @@
 	desc = "A small keycard stamped by a Terra Gov logo. It contains points you can redeem at a dropship fabricator. One use only."
 	icon = 'icons/obj/items/card.dmi'
 	icon_state = "centcom"
-	///This is the number of points this thing has to give. 
-	var/extra_points = 100
+	///This is the number of points this thing has to give.
+	var/extra_points = 150
 
 /obj/item/dropship_points_voucher/examine(mob/user)
 	. = ..()
-	to_chat(user, "It contains [extra_points] points.")
+	. += "It contains [extra_points] points."
 
 /obj/item/minerupgrade/automatic
 	name = "mining computer"
 	desc = "A small computer that can automate mining wells, reducing the need for oversight."
 	icon_state = "mining_drill_automaticdisplay"
 	uptype = "mining computer"
+
+/obj/item/ai_target_beacon
+	name = "AI linked remote targeter"
+	desc = "A small set of servos and gears, coupled to a battery, antenna and circuitry. Attach it to a mortar to allow a shipborne AI to remotely target it."
+	icon = 'icons/obj/items/items.dmi'
+	icon_state = "modkit"

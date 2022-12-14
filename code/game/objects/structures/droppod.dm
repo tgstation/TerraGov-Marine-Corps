@@ -13,9 +13,10 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	anchored = TRUE
 	layer = ABOVE_OBJ_LAYER
 	resistance_flags = XENO_DAMAGEABLE
-	soft_armor = list("melee" = 50, "bullet" = 70, "laser" = 70, "energy" = 100, "bomb" = 70, "bio" = 100, "rad" = 100, "fire" = 0, "acid" = 0)
+	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 100, BOMB = 70, BIO = 100, FIRE = 0, ACID = 0)
 	max_integrity = 50
 	flags_atom = PREVENT_CONTENTS_EXPLOSION
+	coverage = 75
 	var/mob/occupant
 	var/target_x = 1
 	var/target_y = 1
@@ -48,12 +49,12 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED))
 
 /obj/structure/droppod/Destroy()
-	. = ..()
 	if(occupant)
-		exitpod(occupant, TRUE)
+		exitpod(TRUE)
 	userimg = null
 	QDEL_NULL(reserved_area)
 	GLOB.droppod_list -= src
+	return ..()
 
 /obj/structure/droppod/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
@@ -76,7 +77,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		if("launch")
 			launchpod(occupant)
 		if("exitpod")
-			exitpod(occupant)
+			exitpod()
 
 
 /obj/structure/droppod/ui_data(mob/user)
@@ -99,21 +100,22 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 /obj/structure/droppod/attack_hand(mob/living/user)
 	if(occupant)
-		to_chat(user, "<span class='notice'>The droppod is already occupied!</span>")
+		to_chat(user, span_notice("The droppod is already occupied!"))
 		return
 
 	if(drop_state != DROPPOD_READY)
-		to_chat(user, "<span class='notice'>The droppod has already landed!</span>")
+		to_chat(user, span_notice("The droppod has already landed!"))
 		return
 
 	if(!do_after(user, entertime, TRUE, src))
 		return
 
 	if(occupant)
-		to_chat(user, "<span class='warning'>Someone was faster than you!</span>")
+		to_chat(user, span_warning("Someone was faster than you!"))
 		return
 
 	occupant = user
+	RegisterSignal(occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING), .proc/exitpod)
 	user.forceMove(src)
 	userimg = image(user)
 	userimg.layer = DOOR_CLOSED_LAYER
@@ -124,24 +126,24 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 /obj/structure/droppod/proc/checklanding(mob/user)
 	var/turf/target = locate(target_x, target_y, 2)
 	if(target.density)
-		to_chat(user, "<span class='warning'>Dense landing zone detected. Invalid area.</span>")
+		to_chat(user, span_warning("Dense landing zone detected. Invalid area."))
 		return FALSE
 	if(is_type_in_typecache(target, GLOB.blocked_droppod_tiles))
-		to_chat(user, "<span class='warning'>Extremely lethal hazard detected on the target location. Invalid area.</span>")
+		to_chat(user, span_warning("Extremely lethal hazard detected on the target location. Invalid area."))
 		return FALSE
 	var/area/targetarea = get_area(target)
 	if(targetarea.flags_area & NO_DROPPOD) // Thou shall not pass!
-		to_chat(user, "<span class='warning'>Location outside mission parameters. Invalid area.</span>")
+		to_chat(user, span_warning("Location outside mission parameters. Invalid area."))
 		return FALSE
 	if(!targetarea.outside)
-		to_chat(user, "<span class='warning'>Cannot launch pod at a roofed area.</span>")
+		to_chat(user, span_warning("Cannot launch pod at a roofed area."))
 		return FALSE
 	for(var/x in target.contents)
 		var/atom/object = x
 		if(object.density)
-			to_chat(user, "<span class='warning'>Dense object detected in target location. Invalid area.</span>")
+			to_chat(user, span_warning("Dense object detected in target location. Invalid area."))
 			return FALSE
-	to_chat(user, "<span class='notice'>Valid area confirmed!</span>")
+	to_chat(user, span_notice("Valid area confirmed!"))
 	return TRUE
 
 /obj/structure/droppod/verb/openui()
@@ -154,11 +156,13 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 /obj/structure/droppod/proc/launchpod(mob/user)
 	if(!occupant)
 		return
+	#ifndef TESTING
 	if(!operation_started && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock + DROPPOD_DEPLOY_DELAY)
-		to_chat(user, "<span class='notice'>Unable to launch, the ship has not yet reached the combat area.</span>")
+		to_chat(user, span_notice("Unable to launch, the ship has not yet reached the combat area."))
 		return
+	#endif
 	if(!launch_allowed)
-		to_chat(user, "<span class='notice'>Error. Ship calibration unavailable. Please %#&ç:*</span>")
+		to_chat(user, span_notice("Error. Ship calibration unavailable. Please %#&ç:*"))
 		return
 	if(drop_state != DROPPOD_READY)
 		return
@@ -168,6 +172,8 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	var/turf/target = locate(target_x, target_y, 2)
 	log_game("[key_name(user)] launched pod [src] at [AREACOORD(target)]")
 	deadchat_broadcast(" has been launched", src, turf_target = target)
+	for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
+		to_chat(AI, span_notice("[user] has launched [src] towards [target.loc] at X:[target_x] Y:[target_y]"))
 	reserved_area = SSmapping.RequestBlockReservation(3,3)
 
 	drop_state = DROPPOD_ACTIVE
@@ -184,7 +190,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	for(var/a in targetturf.contents)
 		var/atom/target = a
 		if(target.density)	//if theres something dense in the turf try to recalculate a new turf
-			to_chat(occupant, "<span class='warning'>[icon2html(src,occupant)] WARNING! TARGET ZONE OCCUPIED! EVADING!</span>")
+			to_chat(occupant, span_warning("[icon2html(src,occupant)] WARNING! TARGET ZONE OCCUPIED! EVADING!"))
 			var/turf/T0 = locate(target_x + 2,target_y + 2,2)
 			var/turf/T1 = locate(target_x - 2,target_y - 2,2)
 			var/list/block = block(T0,T1) - targetturf
@@ -194,7 +200,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 					targetturf = attemptdrop
 					break
 			if(targetturf.density)//We tried and failed, revert to the old one, which has a new dense obj but is at least not dense
-				to_chat(occupant, "<span class='warning'>[icon2html(src,occupant)] RECALCULATION FAILED!</span>")
+				to_chat(occupant, span_warning("[icon2html(src,occupant)] RECALCULATION FAILED!"))
 				targetturf = locate(target_x, target_y,2)
 			break
 
@@ -215,15 +221,17 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 /obj/structure/droppod/proc/completedrop(mob/user)
 	icon_state = "singlepod_open"
 	drop_state = DROPPOD_LANDED
-	exitpod(user)
+	exitpod()
 
-/obj/structure/droppod/proc/exitpod(mob/user, forced = FALSE)
+/obj/structure/droppod/proc/exitpod(forced = FALSE)
+	SIGNAL_HANDLER
 	if(!occupant)
 		return
-	if(drop_state == DROPPOD_ACTIVE && !forced)
-		to_chat(user, "<span class='warning'>You can't get out while the pod is in transit!</span>")
+	if(drop_state == DROPPOD_ACTIVE && !forced && occupant)
+		to_chat(occupant, span_warning("You can't get out while the pod is in transit!"))
 		return
-	occupant.forceMove(get_turf(src))
+	occupant?.forceMove(get_turf(src))
+	UnregisterSignal(occupant, COMSIG_MOB_DEATH)
 	occupant = null
 	userimg = null
 	cut_overlays()

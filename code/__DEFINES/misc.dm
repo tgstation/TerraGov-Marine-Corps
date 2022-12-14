@@ -19,7 +19,7 @@
 #define APPEARANCE_UI_TRANSFORM (RESET_COLOR|NO_CLIENT_COLOR|RESET_ALPHA|PIXEL_SCALE)
 
 //Just space
-#define SPACE_ICON_STATE "[((x + y) ^ ~(x * y) + z) % 25]"
+#define SPACE_ICON_STATE(x, y, z) "[((x + y) ^ ~(x * y) + z) % 25]"
 
 //dirt type for each turf types.
 #define NO_DIRT 0
@@ -33,6 +33,10 @@
 #define FLOOR_WET_WATER 1
 #define FLOOR_WET_LUBE 2
 #define FLOOR_WET_ICE 3
+
+//stages of shoe tying-ness
+#define SHOES_TIED 1
+#define SHOES_KNOTTED 2
 
 //subtypesof(), typesof() without the parent path
 #define subtypesof(typepath) ( typesof(typepath) - typepath )
@@ -132,3 +136,5 @@ GLOBAL_VAR_INIT(global_unique_id, 1)
 #define LIGHT_EMPTY 1
 #define LIGHT_BROKEN 2
 #define LIGHT_BURNED 3
+
+GLOBAL_VAR_INIT(geothermal_generator_ammount, 0)

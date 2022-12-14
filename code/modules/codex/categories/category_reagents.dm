@@ -11,10 +11,7 @@
 		_lore_text = "[reagent.description] It apparently tastes of [reagent.taste_description].")
 
 		var/list/production_strings = list()
-		for(var/react in GLOB.chemical_reactions_list[reagent.type])
-
-			var/datum/chemical_reaction/reaction = react
-
+		for(var/datum/chemical_reaction/reaction AS in GLOB.chemical_reactions_list[reagent.type])
 			if(reaction.hidden_from_codex)
 				continue
 
