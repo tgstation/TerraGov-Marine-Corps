@@ -34,7 +34,7 @@
 	///Minimum range to fire
 	var/minimum_range = 15
 	///Time it takes for the mortar to cool off to fire
-	var/cool_off_time = 20 SECONDS
+	var/cool_off_time = 1 SECONDS
 	///How long to wait before next shot
 	var/fire_delay = 0.1 SECONDS
 	///Amount of shells that can be loaded
@@ -441,7 +441,7 @@
 	pixel_x = -16
 	anchored = FALSE // You can move this.
 	offset_per_turfs = 25
-	cool_off_time = 45 SECONDS
+	cool_off_time = 25 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/howitzer_fire.ogg'
 	reload_sound = 'sound/weapons/guns/interact/tat36_reload.ogg'
 	fall_sound = 'sound/weapons/guns/misc/howitzer_whistle.ogg'
@@ -457,7 +457,7 @@
 	)
 	tally_type = TALLY_HOWITZER
 	cool_off_time = 2 SECONDS
-	reload_time = 1 SECONDS
+	reload_time = 3 SECONDS
 	max_spread = 8
 
 /obj/machinery/deployable/mortar/howitzer/AltRightClick(mob/living/user)
