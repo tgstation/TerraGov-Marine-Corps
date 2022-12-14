@@ -628,7 +628,7 @@
 
 			key_bindings[full_key] += list(kb_name)
 			key_bindings[full_key] = sortList(key_bindings[full_key])
-			current_client.update_special_keybinds()
+			current_client.set_macros()
 			save_keybinds()
 			if(user)
 				SEND_SIGNAL(user, COMSIG_MOB_KEYBINDINGS_UPDATED, GLOB.keybindings_by_name[kb_name])
@@ -644,7 +644,7 @@
 					key_bindings -= key
 					continue
 				key_bindings[key] = sortList(key_bindings[key])
-			current_client.update_special_keybinds()
+			current_client.set_macros()
 			save_keybinds()
 			return TRUE
 
@@ -672,7 +672,7 @@
 
 		if("reset-keybindings")
 			key_bindings = GLOB.hotkey_keybinding_list_by_key
-			current_client.update_special_keybinds()
+			current_client.set_macros()
 			save_keybinds()
 
 		if("bancheck")

@@ -87,6 +87,9 @@ Administrative related.
 
 /datum/config_entry/flag/log_telecomms
 
+/// log speech indicators(started/stopped speaking)
+/datum/config_entry/flag/log_speech_indicators
+
 /datum/config_entry/flag/log_hivemind
 
 /datum/config_entry/flag/log_runtime

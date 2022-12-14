@@ -11,6 +11,7 @@
 	old_x = -16
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_ZERO
+	bubble_icon = "alienroyal"
 	///How many stacks of combo do we have ? Interacts with every ability.
 	var/combo = 0
 	///Abilities with empowered interactions
