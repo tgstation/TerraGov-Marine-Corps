@@ -908,10 +908,10 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			feedback_flags |= (BULLET_FEEDBACK_FIRE)
 
 	if(proj.ammo.flags_ammo_behavior & AMMO_SUNDERING)
-		if(get_sunder() > get_sunder_cap() && !(proj.ammo.flags_ammo_behavior & AMMO_HARD_SUNDERING))
-			adjust_sunder(min(proj.sundering, (get_sunder() - get_sunder_cap()) * 100))
-		else if(proj.ammo.flags_ammo_behavior & AMMO_HARD_SUNDERING)
+		if(proj.ammo.flags_ammo_behavior & AMMO_HARD_SUNDERING)
 			adjust_sunder(proj.sundering)
+		else if(get_sunder() > get_sunder_cap())
+			adjust_sunder(min(proj.sundering, (get_sunder() - get_sunder_cap()) * 100))
 
 	if(damage)
 		var/shrapnel_roll = do_shrapnel_roll(proj, damage)
