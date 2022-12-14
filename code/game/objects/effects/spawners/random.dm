@@ -520,11 +520,11 @@
 	spawn_loot_chance = 80
 	loot = list(
 		/obj/item/reagent_containers/blood/empty = 95,
-		/obj/item/reagent_containers/blood/AMinus = 30,
-		/obj/item/reagent_containers/blood/APlus = 30,
-		/obj/item/reagent_containers/blood/BMinus = 30,
-		/obj/item/reagent_containers/blood/BPlus = 30,
-		/obj/item/reagent_containers/blood/OPlus = 30,
+		/obj/item/reagent_containers/blood/AMinus = 20,
+		/obj/item/reagent_containers/blood/APlus = 20,
+		/obj/item/reagent_containers/blood/BMinus = 20,
+		/obj/item/reagent_containers/blood/BPlus = 20,
+		/obj/item/reagent_containers/blood/OPlus = 20,
 		/obj/item/reagent_containers/blood/OMinus = 5,
 	)
 
@@ -660,7 +660,6 @@
 	name = "Random medical reagent bottle spawner"
 	icon_state = "random_medbottle"
 	spawn_loot_chance = 50
-	spawn_random_offset = TRUE
 	loot = list(
 		/obj/item/reagent_containers/glass/bottle/bicaridine = 30,
 		/obj/item/reagent_containers/glass/bottle/kelotane = 30,
@@ -1175,7 +1174,7 @@
 	icon_state = "random_medical_closet"
 	spawn_loot_chance = 65
 	loot = list(
-		/obj/structure/closet/secure_closet/medical2/colony = 90,
+		/obj/structure/closet/secure_closet/medical2 = 90,
 		/obj/structure/closet/secure_closet/medical_doctor = 40,
 		/obj/structure/closet/secure_closet/medical1/colony = 20,
 		/obj/structure/closet/secure_closet/chemical/colony = 20,
@@ -1259,7 +1258,7 @@
 
 /obj/effect/spawner/random/structure/random_broken_computer/crewmonitor
 	loot = list(
-		/obj/machinery/prop/mainship/computer/crew = 65,
+		/obj/machinery/computer/crew = 65,
 		/obj/effect/spawner/random/structure/random_broken_computer = 35,
 	)
 

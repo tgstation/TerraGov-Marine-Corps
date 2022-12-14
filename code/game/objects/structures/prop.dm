@@ -1831,7 +1831,7 @@
 	layer = WALL_OBJ_LAYER
 	anchored = TRUE
 
-/obj/structure/prop/Initialize(mapload, newDir)
+/obj/structure/prop/camera/Initialize(mapload, newDir)
 	. = ..()
 	icon_state = "camera1"
 
