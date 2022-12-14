@@ -257,8 +257,7 @@ export const MedScanner = (props, context) => {
                       ) : null}
                       {limb.necrotized ? (
                         <>
-                          <Box
-                            inline color={'brown'} bold={1}>
+                          <Box inline color={'brown'} bold={1}>
                             Necrotizing
                           </Box>
                           <Box inline width={'5px'} />
