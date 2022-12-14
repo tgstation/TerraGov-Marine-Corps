@@ -1,0 +1,5 @@
+author: "Naaanii"
+delete-after: True
+changes:
+  - rscadd: "Added more recipes for items that can be made via reqtorio. (SWAT masks, <s>Optical Imagers,</s> Burn and Trauma Kits and Splints, Valk, Mimir, Tyr, Hlin and Surt modules)"
+  - rscadd: "Added more material sprites. (See factoryparts.dmi)"
