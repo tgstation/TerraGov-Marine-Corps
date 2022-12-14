@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Motion sensor pings can be heard by other mobs up to 7 tiles away"
