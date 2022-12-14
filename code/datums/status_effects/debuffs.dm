@@ -453,23 +453,23 @@
 	return ..()
 
 /datum/status_effect/stacking/intoxicated/stack_decay_effect()
-	if(HAS_TRAIT(debuff_owner, TRAIT_INTOXICATION_RESISTANT) && stacks > max_stacks) // In the event that TRAIT_INTOXICATION_RESISTANT is added while the status already exists
-		max_stacks = round(max_stacks / 2)
-		stacks = max_stacks
+	if(HAS_TRAIT(debuff_owner, TRAIT_INTOXICATION_RESISTANT)) // In the event that TRAIT_INTOXICATION_RESISTANT is added while the status already exists
+		stack_decay = 2
 	var/debuff_damage = SENTINEL_INTOXICATED_BASE_DAMAGE + round(stacks / 10)
 	debuff_owner.adjustFireLoss(debuff_damage)
-	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 5)
+	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4)
 	particle_holder.particles.spawning = 1 + round(stacks / 2)
 	if(!HAS_TRAIT(debuff_owner, TRAIT_INTOXICATION_RESISTANT))
-		if(stacks >= 10)
-			debuff_owner.adjust_slowdown(1)
 		if(stacks >= 20)
+			debuff_owner.adjust_slowdown(1)
 			debuff_owner.adjust_stagger(1)
 
+/// Called when the debuff's owner uses the Resist action for this debuff.
 /datum/status_effect/stacking/intoxicated/proc/call_resist_debuff()
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(src, .proc/resist_debuff) // grilled cheese sandwich
 
+/// Resisting the debuff will allow the debuff's owner to remove some stacks from themselves.
 /datum/status_effect/stacking/intoxicated/proc/resist_debuff()
 	if(!do_after(debuff_owner, 3 SECONDS, TRUE, debuff_owner, BUSY_ICON_GENERIC))
 		debuff_owner.balloon_alert("Interrupted")

@@ -31,11 +31,12 @@
 		var/mob/living/carbon/C = M
 		if(C.issamexenohive(P.firer))
 			return
-		if(!HAS_TRAIT(C, TRAIT_INTOXICATION_IMMUNE))
-			if(C.has_status_effect(STATUS_EFFECT_INTOXICATED))
-				var/datum/status_effect/stacking/intoxicated/debuff = C.has_status_effect(STATUS_EFFECT_INTOXICATED)
-				debuff.add_stacks(SENTINEL_TOXIC_SPIT_STACKS_PER)
-			C.apply_status_effect(STATUS_EFFECT_INTOXICATED, SENTINEL_TOXIC_SPIT_STACKS_PER)
+		if(HAS_TRAIT(C, TRAIT_INTOXICATION_IMMUNE))
+			return
+		if(C.has_status_effect(STATUS_EFFECT_INTOXICATED))
+			var/datum/status_effect/stacking/intoxicated/debuff = C.has_status_effect(STATUS_EFFECT_INTOXICATED)
+			debuff.add_stacks(SENTINEL_TOXIC_SPIT_STACKS_PER)
+		C.apply_status_effect(STATUS_EFFECT_INTOXICATED, SENTINEL_TOXIC_SPIT_STACKS_PER)
 
 // ***************************************
 // *********** Toxic Slash
@@ -47,23 +48,22 @@
 	ability_name = "toxic slash"
 	cooldown_timer = 10 SECONDS
 	plasma_cost = 100
-	use_state_flags = XACT_USE_BUCKLED
-	target_flags = XABB_MOB_TARGET
+	//use_state_flags = XACT_USE_BUCKLED
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOXIC_SLASH,
 	)
-	///The remaining amount of Toxic Slashes.
-	var/toxic_slash_count = 0
-	///Timer ID for the Toxic Slashes timer; we reference this to delete the timer if the effect lapses before the timer does.
-	var/toxic_slash_duration
+	/// The remaining amount of Toxic Slashes.
+	var/remaining_slashes = 0
+	/// Timer for the ability; we reference this to delete the timer if the effect lapses before the timer does.
+	var/ability_duration
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 
 /datum/action/xeno_action/toxic_slash/action_activate()
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
-	toxic_slash_count = SENTINEL_TOXIC_SLASH_COUNT
-	toxic_slash_duration = addtimer(CALLBACK(src, .proc/toxic_slash_deactivate, X), SENTINEL_TOXIC_SLASH_DURATION, TIMER_STOPPABLE) //Initiate the timer and set the timer ID for reference
+	remaining_slashes = SENTINEL_TOXIC_SLASH_COUNT
+	ability_duration = addtimer(CALLBACK(src, .proc/toxic_slash_deactivate, X), SENTINEL_TOXIC_SLASH_DURATION, TIMER_STOPPABLE) //Initiate the timer and set the timer ID for reference
 	RegisterSignal(X, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/toxic_slash)
 	X.balloon_alert(X, "Toxic Slash active")
 	X.playsound_local(X, 'sound/voice/alien_drool2.ogg', 25)
@@ -78,25 +78,25 @@
 /datum/action/xeno_action/toxic_slash/proc/toxic_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/X = owner
-	var/mob/living/carbon/carbon_target = target
-	if(!HAS_TRAIT(carbon_target, TRAIT_INTOXICATION_IMMUNE))
-		playsound(carbon_target, 'sound/effects/spray3.ogg', 20, TRUE)
-		if(carbon_target.has_status_effect(STATUS_EFFECT_INTOXICATED))
-			var/datum/status_effect/stacking/intoxicated/debuff = carbon_target.has_status_effect(STATUS_EFFECT_INTOXICATED)
-			debuff.add_stacks(SENTINEL_TOXIC_SLASH_STACKS_PER)
-		carbon_target.apply_status_effect(STATUS_EFFECT_INTOXICATED, SENTINEL_TOXIC_SLASH_STACKS_PER)
-		toxic_slash_count-- //Decrement the toxic slash count
-		if(!toxic_slash_count) //Deactivate if we have no toxic slashes remaining
-			toxic_slash_deactivate(X)
+	var/mob/living/carbon/C = target
+	if(HAS_TRAIT(C, TRAIT_INTOXICATION_IMMUNE))
+		C.balloon_alert(X, "Immune to Intoxication")
 		return
-	carbon_target.balloon_alert(X, "Immune to Intoxication")
+	playsound(C, 'sound/effects/spray3.ogg', 20, TRUE)
+	if(C.has_status_effect(STATUS_EFFECT_INTOXICATED))
+		var/datum/status_effect/stacking/intoxicated/debuff = C.has_status_effect(STATUS_EFFECT_INTOXICATED)
+		debuff.add_stacks(SENTINEL_TOXIC_SLASH_STACKS_PER)
+	C.apply_status_effect(STATUS_EFFECT_INTOXICATED, SENTINEL_TOXIC_SLASH_STACKS_PER)
+	remaining_slashes-- //Decrement the toxic slash count
+	if(!remaining_slashes) //Deactivate if we have no toxic slashes remaining
+		toxic_slash_deactivate(X)
 
 ///Called when Toxic Slash expires.
 /datum/action/xeno_action/toxic_slash/proc/toxic_slash_deactivate(mob/living/carbon/xenomorph/X)
 	UnregisterSignal(X, COMSIG_XENOMORPH_ATTACK_LIVING)
-	toxic_slash_count = 0
-	deltimer(toxic_slash_duration) // Delete the timer so we don't have mismatch issues, and so we don't potentially try to deactivate the ability twice
-	toxic_slash_duration = null
+	remaining_slashes = 0
+	deltimer(ability_duration) // Delete the timer so we don't have mismatch issues, and so we don't potentially try to deactivate the ability twice
+	ability_duration = null
 	QDEL_NULL(particle_holder)
 	X.balloon_alert(X, "Toxic Slash over") //Let the user know
 	X.playsound_local(X, 'sound/voice/hiss5.ogg', 25)
@@ -169,7 +169,7 @@
 	if(debuff.stacks > debuff.max_stacks - 10)
 		X.apply_status_effect(STATUS_EFFECT_DRAIN_SURGE)
 	C.adjustFireLoss(drain_potency / 5)
-	C.AdjustKnockdown(debuff.stacks)
+	C.AdjustKnockdown(debuff.stacks - 10)
 	HEAL_XENO_DAMAGE(X, drain_potency, FALSE)
 	X.gain_plasma(drain_potency * 3.5)
 	X.do_attack_animation(C, ATTACK_EFFECT_REDSTAB)
