@@ -1679,7 +1679,7 @@ FACTORY
 
 /datum/supply_packs/factory/compressor
 	name = "Industrial compressor"
-	contains = list(/obj/machinery/factory/driller)
+	contains = list(/obj/machinery/factory/compressor)
 	cost = 5
 
 /datum/supply_packs/factory/unboxer
@@ -1812,6 +1812,40 @@ FACTORY
 	contains = list(/obj/item/factory_refill/howitzer_shell_tfoot_refill)
 	cost = 100
 
+/datum/supply_packs/factory/swat_mask_refill
+	name = "SWAT mask assembly refill"
+	contains = list(/obj/item/factory_refill/swat_mask_refill)
+	cost = 50
+
+/datum/supply_packs/factory/med_advpack
+	name = "Advanced medical pack assembly refill"
+	contains = list(/obj/item/factory_refill/med_advpack_refill)
+	cost = 50
+
+/datum/supply_packs/factory/module_valk_refill
+	name = "Valkyrie Automedical Armor System assembly refill"
+	contains = list(/obj/item/factory_refill/module_valk_refill)
+	cost = 60
+
+/datum/supply_packs/factory/module_mimir2_refill
+	name = "Mark 2 Mimir Environmental Resistance System assembly refill"
+	contains = list(/obj/item/factory_refill/module_mimir2_refill)
+	cost = 60
+
+/datum/supply_packs/factory/module_tyr2_refill
+	name = "Mark 2 Tyr Armor Reinforcement assembly refill"
+	contains = list(/obj/item/factory_refill/module_tyr2_refill)
+	cost = 60
+
+/datum/supply_packs/factory/module_hlin_refill
+	name = "Hlin Explosive Compensation Module assembly refill"
+	contains = list(/obj/item/factory_refill/module_hlin_refill)
+	cost = 60
+
+/datum/supply_packs/factory/module_surt_refill
+	name = "Surt Pyrotechnical Insulation System assembly refill"
+	contains = list(/obj/item/factory_refill/module_surt_refill)
+	cost = 60
 /datum/supply_packs/factory/mortar_shell_he_refill
 	name = "Mortar High Explosive shell assembly refill"
 	contains = list(/obj/item/factory_refill/mortar_shell_he_refill)
