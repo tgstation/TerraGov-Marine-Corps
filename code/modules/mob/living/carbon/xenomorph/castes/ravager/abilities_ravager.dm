@@ -455,17 +455,18 @@
 	mechanics_text = "Toggle on to enable boosting on "
 	ability_name = "Vampirism"
 	plasma_cost = 0 //We're limited by nothing, rip and tear
-	cooldown_timer = 5 SECONDS
+	cooldown_timer = 1 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_VAMPIRISM,
 	)
-	var/heal_delay = 2 SECONDS // how long we have to wait before healing again
-	COOLDOWN_DECLARE(last_healed)
+	/// how long we have to wait before healing again
+	var/heal_delay = 2 SECONDS
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 	/// Ref to our particle deletion timer
 	var/timer_ref
+
 /datum/action/xeno_action/vampirism/New(Target)
 	..()
 	var/mutable_appearance/leech_appeareace = mutable_appearance(null,null, ACTION_LAYER_IMAGE_ONTOP)
@@ -507,15 +508,12 @@
 		return
 	if(!ishuman(target)) // no farming on animals/dead
 		return
-	if(!COOLDOWN_CHECK(src, last_healed))
-		return
 	if(timeleft(timer_ref) > 0)
 		return
 	var/mob/living/carbon/xenomorph/x = owner
 	x.adjustBruteLoss(-((x.xeno_caste.max_health - x.health) / 4))
 	x.adjustFireLoss(-((x.xeno_caste.max_health - x.health) / 4))
 	update_button_icon()
-	COOLDOWN_START(src, last_healed, heal_delay)
 	particle_holder = new(x, /particles/xeno_slash/vampirism)
 	particle_holder.pixel_y = 18
 	particle_holder.pixel_x = 18
