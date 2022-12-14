@@ -33,3 +33,21 @@
 	name = "\improper Optical meson prescription ballistic goggles"
 	desc = "Standard issue TGMC prescription goggles. This pair has been fitted with an internal optical meson scanner."
 	prescription = TRUE
+
+/obj/item/clothing/glasses/meson/eyepatch
+	name = "\improper Meson eyepatch"
+	desc = "An eyepatch fitted with the meson scanner interface. For the disabled and/or edgy Engineer."
+	icon_state = "patchmeson"
+	deactive_state = "degoggles_medpatch"
+	species_exception = list(/datum/species/robot)
+	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/glasses.dmi')
+	toggleable = TRUE
+	actions_types = list(/datum/action/item_action/toggle)
+
+/obj/item/clothing/glasses/meson/sunglasses
+	name = "\improper Meson sunglasses"
+	desc = "A pair of designer sunglasses. This pair has been fitted with an optical meson scanner."
+	icon_state = "mesonsunglasses"
+	item_state = "mesonsunglasses"
+	deactive_state = "degoggles_mesonsunglasses"
+	prescription = TRUE

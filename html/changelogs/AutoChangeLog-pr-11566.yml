@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "Tadpole weapons can no longer be deployed on top of other dense objects"

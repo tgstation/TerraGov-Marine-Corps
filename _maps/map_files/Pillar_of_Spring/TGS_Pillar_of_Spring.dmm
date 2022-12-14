@@ -8375,7 +8375,6 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/docking_port/stationary/marine_dropship/crash_target,
 /obj/structure/cable,
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
@@ -18038,6 +18037,22 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
+"YH" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/vending/weapon,
+/obj/docking_port/stationary/marine_dropship/crash_target,
+/turf/open/floor/mainship/black{
+	dir = 1
+	},
+/area/mainship/squads/general)
 "YI" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
@@ -55657,7 +55672,7 @@ Eo
 Eo
 xT
 zh
-WN
+YH
 IQ
 IQ
 xT

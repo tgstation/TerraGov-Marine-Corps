@@ -122,9 +122,8 @@
 	if(is_wired)
 		X.visible_message(span_danger("The barbed wire slices into [X]!"),
 		span_danger("The barbed wire slices into us!"), null, 5)
-		X.apply_damage(10, updating_health = TRUE)
+		X.apply_damage(10, blocked = MELEE , sharp = TRUE, updating_health = TRUE)
 
-	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_BARRICADE)
 	return ..()
 
 /obj/structure/barricade/attackby(obj/item/I, mob/user, params)

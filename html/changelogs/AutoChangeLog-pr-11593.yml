@@ -1,5 +1,0 @@
-author: "Pariah919"
-delete-after: True
-changes:
-  - balance: "SADAR Rework-Unguided rockets that go past your clicks added, they have a much higher payload compared to normal rockets, AP rocket reworked from 325Dam/150Pen/100Sunder to 340Dam/200Pen/0Sunder."
-  - balance: "SADAR rockets in general have 14 tiles of max travel distance in general, includes unguided and laser guided missiles."

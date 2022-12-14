@@ -169,7 +169,8 @@
 	to_chat(world, "DEBUG EX_ACT: armor: [armor * 100], b_loss: [b_loss], f_loss: [f_loss]")
 	#endif
 
-	take_overall_damage(b_loss, f_loss, armor * 100, updating_health = TRUE)
+	take_overall_damage(b_loss, BRUTE, BOMB, updating_health = TRUE)
+	take_overall_damage(f_loss, BURN, BOMB, updating_health = TRUE)
 
 
 /mob/living/carbon/human/attack_animal(mob/living/M as mob)
@@ -180,11 +181,9 @@
 			playsound(loc, M.attack_sound, 25, 1)
 		visible_message(span_danger("[M] [M.attacktext] [src]!"))
 		log_combat(M, src, "attacked")
-		var/damage = M.melee_damage
 		var/dam_zone = pick("chest", "l_hand", "r_hand", "l_leg", "r_leg")
-		var/datum/limb/affecting = get_limb(ran_zone(dam_zone))
-		var/armor = get_soft_armor("melee", affecting)
-		apply_damage(damage, BRUTE, affecting, armor, updating_health = TRUE)
+		dam_zone = ran_zone(dam_zone)
+		apply_damage(M.melee_damage, BRUTE, dam_zone, MELEE, updating_health = TRUE)
 
 /mob/living/carbon/human/show_inv(mob/living/user)
 	var/obj/item/clothing/under/suit
