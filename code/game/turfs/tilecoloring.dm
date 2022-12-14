@@ -1,3 +1,11 @@
+
+/obj/effect/turf_decal
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "whitedecal"
+	plane = FLOOR_PLANE
+	layer = ABOVE_TURF_LAYER
+	mouse_opacity = 0
+
 /obj/effect/turf_decal/tile
 	name = "tile decal"
 	icon_state = "tile_corner"

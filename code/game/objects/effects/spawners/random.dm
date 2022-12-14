@@ -1382,6 +1382,15 @@
 		/obj/structure/reagent_dispensers/fueltank/barrel = 1,
 	)
 
+/obj/effect/spawner/random/structure/curtain
+	name = "curtain spawner"
+	icon_state = "random_curtain"
+	spawn_loot_chance = 95
+	loot = list(
+		/obj/structure/curtain/temple = 90,
+		/obj/structure/curtain/open/temple = 10,
+	)
+
 /obj/effect/spawner/random/structure/chair_or_metal //only works for south facing chairs due to lack of proper directional spawning
 	name = "chair or metal spawner"
 	icon_state = "random_chair"
