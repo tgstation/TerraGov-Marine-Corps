@@ -323,3 +323,6 @@
   - bugfix: fixes humans runtiming on getting attacked in melee by another human
   novaepee:
   - rscdel: Remove a tree south of LV-624 hydro bridge
+2022-12-14:
+  QualityVan:
+  - bugfix: Marine on marine violence more fully uses the correct armor
