@@ -1274,6 +1274,60 @@
 		/obj/effect/spawner/random/structure/random_broken_computer = 15,
 	)
 
+/obj/effect/spawner/random/structure/random_broken_computer/small
+	icon_state = "random_broke_computer_small"
+	loot = list(
+		/obj/structure/prop/computer/broken/eleven = 20,
+		/obj/structure/prop/computer/broken/fifteen = 5,
+		/obj/structure/prop/computer/broken/ten = 20,
+		/obj/structure/prop/computer/broken/sixteen = 5,
+		/obj/structure/prop/computer/broken/nineteen = 5,
+		/obj/structure/prop/computer/broken/fourteen = 20,
+		/obj/structure/prop/computer/broken/twelve = 20,
+		/obj/structure/prop/computer/broken/seventeen = 1,
+		/obj/structure/prop/computer/broken/thirteen = 50,
+		/obj/structure/prop/computer/broken/eighteen = 40,
+	)
+
+/obj/effect/spawner/random/structure/random_broken_computer/small/meddata
+	loot = list(
+		/obj/machinery/computer/med_data/laptop = 85,
+		/obj/effect/spawner/random/structure/random_broken_computer/small = 15,
+	)
+
+/obj/effect/spawner/random/structure/random_broken_computer/small/security
+	loot = list(
+		/obj/machinery/computer/security = 65,
+		/obj/effect/spawner/random/structure/random_broken_computer/small = 35,
+	)
+
+/obj/effect/spawner/random/structure/random_broken_computer/small/securityrecords
+	loot = list(
+		/obj/machinery/computer/security = 85,
+		/obj/effect/spawner/random/structure/random_broken_computer/small = 15,
+	)
+
+/obj/effect/spawner/random/structure/random_broken_computer/small/stationalert
+	loot = list(
+		/obj/machinery/computer/station_alert = 85,
+		/obj/effect/spawner/random/structure/random_broken_computer/small = 15,
+	)
+
+/obj/effect/spawner/random/structure/random_broken_computer/small/atmosalert
+	loot = list(
+		/obj/machinery/computer/atmos_alert = 85,
+		/obj/effect/spawner/random/structure/random_broken_computer/small = 15,
+	)
+
+/obj/effect/spawner/random/structure/powergenerator
+	name = "generator spawner"
+	icon_state = "random_generator"
+	spawn_loot_chance = 75
+	loot = list(
+		/obj/machinery/power/port_gen/pacman = 9,
+		/obj/machinery/power/port_gen/pacman/mrs = 1,
+	)
+
 /obj/effect/spawner/random/structure/girder
 	name = "girder spawner"
 	icon_state = "random_girder"

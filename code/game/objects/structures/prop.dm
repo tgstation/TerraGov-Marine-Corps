@@ -1867,6 +1867,36 @@
 /obj/structure/prop/computer/broken/nine
 	icon_state = "broken_computer9"
 
+/obj/structure/prop/computer/broken/ten
+	icon_state = "broken_computer10"
+
+/obj/structure/prop/computer/broken/eleven
+	icon_state = "broken_computer11"
+
+/obj/structure/prop/computer/broken/twelve
+	icon_state = "broken_computer12"
+
+/obj/structure/prop/computer/broken/thirteen
+	icon_state = "broken_computer13"
+
+/obj/structure/prop/computer/broken/fourteen
+	icon_state = "broken_computer14"
+
+/obj/structure/prop/computer/broken/fifteen
+	icon_state = "broken_computer15"
+
+/obj/structure/prop/computer/broken/sixteen
+	icon_state = "broken_computer16"
+
+/obj/structure/prop/computer/broken/seventeen
+	icon_state = "broken_computer17"
+
+/obj/structure/prop/computer/broken/eighteen
+	icon_state = "broken_computer18"
+
+/obj/structure/prop/computer/broken/nineteen
+	icon_state = "broken_computer19"
+
 /obj/machinery/computer/solars
 	name = "Port Quarter Solar Control"
 	desc = "A controller for solar panel arrays."
