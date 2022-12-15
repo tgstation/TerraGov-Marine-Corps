@@ -21,8 +21,6 @@
 	/// The amount of stacks applied on hit.
 	var/intoxication_stacks = SENTINEL_TOXIC_SPIT_STACKS_PER
 
-
-
 /datum/ammo/xeno/acid/toxic_spit/upgrade1
 	damage = 14
 	intoxication_stacks = SENTINEL_TOXIC_SPIT_STACKS_PER + 1
