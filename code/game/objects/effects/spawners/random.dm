@@ -1047,7 +1047,7 @@
 		/obj/item/stack/sheet/metal = 70,
 		/obj/item/stack/sheet/metal/small_stack = 50,
 		/obj/item/stack/sheet/metal/medium_stack = 20,
-		/obj/item/stack/sheet/metal/large_stack = 3,
+		/obj/item/stack/sheet/metal/large_stack = 2,
 	)
 
 /obj/effect/spawner/random/plasteel
@@ -1317,6 +1317,31 @@
 	loot = list(
 		/obj/machinery/computer/atmos_alert = 85,
 		/obj/effect/spawner/random/structure/random_broken_computer/small = 15,
+	)
+
+/obj/effect/spawner/random/structure/filingcabinet
+	name = "filing cabinet or metal spawner"
+	icon_state = "random_filingcabinet"
+	spawn_loot_chance = 50
+	loot = list(
+		/obj/item/stack/sheet/metal,
+		/obj/structure/filingcabinet,
+	)
+
+/obj/effect/spawner/random/structure/photocopier
+	name = "filing photocopier or metal spawner"
+	icon_state = "random_photocopier"
+	spawn_loot_chance = 45
+	loot = list(
+		/obj/item/stack/sheet/metal,
+		/obj/machinery/photocopier,
+	)
+
+/obj/effect/spawner/random/structure/filingcabinet/chestdrawer
+	icon_state = "random_chestdrawers"
+	loot = list(
+		/obj/item/stack/sheet/metal,
+		/obj/structure/filingcabinet/chestdrawer,
 	)
 
 /obj/effect/spawner/random/structure/powergenerator

@@ -546,6 +546,7 @@
 
 /obj/structure/prop/mainship/cannon_cable_connector/ex_act()
 	return
+
 /obj/structure/prop/mainship/prop_sec
 	name = "Security Officer"
 	desc = "A NT security officer guarding the perimeter. They look rather busy and pays no attention to you."
@@ -889,6 +890,7 @@
 	icon = 'icons/Marine/mainship_props.dmi'
 	desc = "The insides of this vendor are visible and rusted through, you get the feeling there's no fixing this machine."
 	density = TRUE
+	resistance_flags = XENO_DAMAGEABLE
 
 /obj/structure/prop/brokenvendor/brokenweaponsrack
 	icon_state = "marinearmory-broken"
@@ -1608,10 +1610,14 @@
 	icon_state = "railing_corner"
 
 /obj/structure/prop/mainship/solar
+	name = "Solar Array"
+	desc = "A solar panel. Generates electricity when in contact with sunlight."
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "sp_base"
 
 /obj/structure/prop/mainship/solar/tracker
+	name = "solar tracker"
+	desc = "A solar directional tracker."
 	icon_state = "tracker_base"
 
 /obj/structure/prop/vehicle/som_mech
@@ -1629,11 +1635,19 @@
 
 /obj/structure/prop/machine_frame3
 	name = "machine frame"
+	desc = "That's a constructable machine frame."
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "box_2"
 
+/obj/structure/prop/keycardauth
+	name = "Keycard Authentication Device"
+	desc = "This device is used to trigger station functions, which require more than one ID card to authenticate."
+	icon = 'icons/obj/monitors.dmi'
+	icon_state = "auth_off"
+
 //TG BROKEN VENDOR PROPS
 //USE THESE SPARINGLY OUTSIDE OF TG THEMED MAPS OR I'LL BREAK YOUR KNEECAPS
+
 /obj/structure/prop/tgbrokenvendor
 	name = "\improper Broken vendor"
 	icon = 'icons/obj/tg_vending_props.dmi'
@@ -1643,10 +1657,11 @@
 	var/vendorstate = VENDOR_BROKEN
 
 /obj/structure/prop/tgbrokenvendor/Initialize()
-	. = ..() //todo convert this into a switch statement
+	. = ..()
+	vendorstate = pick(VENDOR_BROKEN, VENDOR_BLANK)
 	if(vendorstate == VENDOR_BROKEN)
 		icon_state += "-broken"
-	if(vendorstate == VENDOR_BLANK)
+	else
 		icon_state += "-off"
 
 /obj/structure/prop/tgbrokenvendor/snackbrokebed
@@ -1840,7 +1855,7 @@
 	desc = "A busted PC, the internals look fried, there's no fixing this one."
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "broken_computer1"
-	resistance_flags = RESIST_ALL
+	resistance_flags = XENO_DAMAGEABLE
 	density = TRUE
 
 /obj/structure/prop/computer/broken/two
