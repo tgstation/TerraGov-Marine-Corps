@@ -170,12 +170,80 @@
 	return ..()
 
 // Secrete Resin
+
+/obj/effect/xeno/raising_structure
+	icon = 'icons/mob/actions.dmi'
+	icon_state = RESIN_WALL
+	var/buildable_typepath = /turf/closed/wall/resin/regenerating
+	var/timer_id
+	var/starting_time
+
+/obj/effect/xeno/raising_structure/attacked_by(obj/item/I, mob/user, def_zone)
+	if(!isxeno(user))
+		return
+	var/mob/living/carbon/xenomorph/the_antibuilder = user
+	if(!CHECK_BITFIELD(the_antibuilder.xeno_caste.caste_flags, CASTE_IS_BUILDER))
+		to_chat(the_antibuilder, span_notice("You are not capable of cancelling resin build-ups as a non-builder!"))
+	else
+		to_chat(the_antibuilder, span_notice("You cancel the building of the resin structure"))
+		log_admin("[user] has cancelled a xeno structure build-up as a xenomorph")
+		cancel_build()
+
+/obj/effect/xeno/raising_structure/proc/cancel_build()
+	SIGNAL_HANDLER
+	// Fix for clicking and cancelling by yourself due to the click signal
+	if(world.time - starting_time < 1 SECONDS)
+		return
+	deltimer(timer_id)
+	qdel(src)
+
+/obj/effect/xeno/raising_structure/proc/do_build()
+	var/turf/T = get_turf(src)
+	if(!T)
+		return FALSE
+	if(buildable_typepath == /obj/structure/mineral_door/resin)
+		var/wall_support = FALSE
+		for(var/D in GLOB.cardinals)
+			var/turf/TS = get_step(T,D)
+			if(TS)
+				if(TS.density)
+					wall_support = TRUE
+					break
+				else if(locate(/obj/structure/mineral_door/resin) in TS)
+					wall_support = TRUE
+					break
+		if(!wall_support)
+			return FALSE
+	if(ispath(buildable_typepath, /turf)) // We should change turfs, not spawn them in directly
+		var/list/baseturfs = islist(T.baseturfs) ? T.baseturfs : list(T.baseturfs)
+		baseturfs |= T.type
+		T.ChangeTurf(buildable_typepath, baseturfs)
+	else
+		new buildable_typepath(T)
+	qdel(src)
+
+/obj/effect/xeno/raising_structure/New(loc,building_typepath, delay)
+	..()
+	if(!building_typepath)
+		return FALSE
+	buildable_typepath = building_typepath
+	if(delay <= 0.5)
+		do_build()
+		return TRUE
+	var/atom/building = buildable_typepath
+	icon_state = initial(building.name)
+	alpha = 128
+	timer_id = addtimer(CALLBACK(src, .proc/do_build), delay, TIMER_STOPPABLE)
+	starting_time = world.time
+	RegisterSignal(src, COMSIG_CLICK, .proc/cancel_build)
 /datum/action/xeno_action/activable/secrete_resin
 	name = "Secrete Resin"
 	action_icon_state = RESIN_WALL
 	mechanics_text = "Builds whatever resin you selected"
 	ability_name = "secrete resin"
+	target_flags = XABB_TURF_TARGET
 	plasma_cost = 75
+	action_type = ACTION_TOGGLE
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SECRETE_RESIN,
 	)
@@ -189,6 +257,38 @@
 		/obj/alien/resin/sticky,
 		/obj/structure/mineral_door/resin,
 		)
+	var/dragging = FALSE
+
+/datum/action/xeno_action/activable/secrete_resin/proc/start_resin_drag(mob/user, atom/object, turf/location, control, params)
+	SIGNAL_HANDLER
+	if(toggled)
+		dragging = TRUE
+		preshutter_build_resin(get_turf(object))
+
+/datum/action/xeno_action/activable/secrete_resin/proc/stop_resin_drag()
+	SIGNAL_HANDLER
+	dragging = FALSE
+
+/datum/action/xeno_action/activable/secrete_resin/proc/end_resin_drag()
+	SIGNAL_HANDLER
+	dragging = FALSE
+	UnregisterSignal(owner, list(COMSIG_MOB_MOUSEDRAG, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDOWN))
+	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND))
+
+/datum/action/xeno_action/activable/secrete_resin/give_action(mob/living/L)
+	..()
+	if(SSmonitor.gamestate == SHUTTERS_CLOSED && (GLOB.master_mode == "Nuclear War" || GLOB.master_mode == "Distress Signal"))
+		RegisterSignal(owner, COMSIG_MOB_MOUSEDOWN, .proc/start_resin_drag)
+		RegisterSignal(owner, COMSIG_MOB_MOUSEDRAG, .proc/preshutter_resin_drag)
+		RegisterSignal(owner, COMSIG_MOB_MOUSEUP, .proc/stop_resin_drag)
+		RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND), .proc/end_resin_drag)
+
+/datum/action/xeno_action/activable/secrete_resin/remove_action(mob/living/carbon/xenomorph/X)
+	..()
+	if(SSmonitor.gamestate == SHUTTERS_CLOSED && (GLOB.master_mode == "Nuclear War" || GLOB.master_mode == "Distress Signal"))
+		UnregisterSignal(owner, list(COMSIG_MOB_MOUSEDRAG, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDOWN))
+		UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND))
+
 
 /datum/action/xeno_action/activable/secrete_resin/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -225,7 +325,10 @@
 	X.balloon_alert(X, initial(A.name))
 	update_button_icon()
 
-/datum/action/xeno_action/activable/secrete_resin/use_ability(atom/A)
+/datum/action/xeno_action/activable/secrete_resin/use_ability(turf/A)
+	if(SSmonitor.gamestate == SHUTTERS_CLOSED && (GLOB.master_mode == "Nuclear War" || GLOB.master_mode == "Distress Signal"))
+		preshutter_build_resin(A)
+		return
 	build_resin(get_turf(owner))
 
 /datum/action/xeno_action/activable/secrete_resin/proc/get_wait()
@@ -240,6 +343,52 @@
 			build_resin_modifier = 0.5
 
 	return (base_wait + scaling_wait - max(0, (scaling_wait * X.health / X.maxHealth))) * build_resin_modifier
+
+/datum/action/xeno_action/activable/secrete_resin/proc/preshutter_build_resin(turf/T, silent = FALSE)
+	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/blocker = locate() in T
+	if(blocker && blocker != X && blocker.stat != DEAD)
+		if(!silent)
+			to_chat(X, span_warning("Can't do that with [blocker] in the way!"))
+		return silent ? 0 : fail_activate()
+
+	var/obj/alien/weeds/alien_weeds = locate() in T
+
+	if(!alien_weeds)
+		if(!silent)
+			to_chat(X, span_warning("We can only shape on weeds. We must find some resin before we start building!"))
+		return silent ? 0 : fail_activate()
+
+	if(!T.check_alien_construction(X, planned_building = X.selected_resin) || !T.check_disallow_alien_fortification(X))
+		return silent ? 0 : fail_activate()
+
+	if(X.selected_resin == /obj/structure/mineral_door/resin)
+		var/wall_support = FALSE
+		for(var/D in GLOB.cardinals)
+			var/turf/TS = get_step(T,D)
+			if(TS)
+				if(TS.density)
+					wall_support = TRUE
+					break
+				else if(locate(/obj/structure/mineral_door/resin) in TS)
+					wall_support = TRUE
+					break
+		if(!wall_support)
+			if(!silent)
+				to_chat(X, span_warning("Resin doors need a wall or resin door next to them to stand up."))
+			return silent ? 0 : fail_activate()
+
+	if(locate(/obj/effect/xeno/raising_structure) in T)
+		if(!silent)
+			to_chat(X,span_warning("There is already something being built there!"))
+		return silent ? 0 : fail_activate()
+
+	new /obj/effect/xeno/raising_structure(T, X.selected_resin, 30 SECONDS)
+
+/datum/action/xeno_action/activable/secrete_resin/proc/preshutter_resin_drag(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
+	SIGNAL_HANDLER
+	if(dragging)
+		preshutter_build_resin(get_turf(over_object), TRUE)
 
 /datum/action/xeno_action/activable/secrete_resin/proc/build_resin(turf/T)
 	var/mob/living/carbon/xenomorph/X = owner
