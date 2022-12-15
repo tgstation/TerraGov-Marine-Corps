@@ -78,7 +78,7 @@
 
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.1 SECONDS
-	extra_delay = 0.2 SECONDS
+	extra_delay = 0.3 SECONDS
 	accuracy_mult = 1.05
 	scatter = 0
 	burst_scatter_mult = 0.25
