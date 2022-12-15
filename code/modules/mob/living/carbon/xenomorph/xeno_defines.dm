@@ -232,6 +232,8 @@
 	xenomorph.AddComponent(/datum/component/bump_attack)
 	if(can_flags & CASTE_CAN_RIDE_CRUSHER)
 		xenomorph.RegisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK, /mob/living/carbon/xenomorph.proc/grabbed_self_attack)
+	if(caste_flags & CASTE_IS_BUILDER && SSmonitor.gamestate == SHUTTERS_CLOSED && GLOB.master_mode == "Nuclear War")
+		xenomorph.AddElement(/datum/element/resin_building)
 
 /datum/xeno_caste/proc/on_caste_removed(mob/xenomorph)
 	var/datum/component/bump_attack = xenomorph.GetComponent(/datum/component/bump_attack)
