@@ -329,12 +329,12 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	return
 
 ///Called to return an item to equip using the quick equip hotkey. Will try return a stored item, otherwise returns itself to equip.
-/obj/item/proc/do_quick_equip()
+/obj/item/proc/do_quick_equip(mob/user)
 	var/obj/item/found = locate(/obj/item/storage) in contents
 	if(!found)
 		found = locate(/obj/item/armor_module/storage) in contents
 	if(found)
-		return found.do_quick_equip()
+		return found.do_quick_equip(user)
 	return src
 
 ///called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
@@ -732,7 +732,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		to_y += 10
 		pickup_animation.pixel_x += 6 * (prob(50) ? 1 : -1) //6 to the right or left, helps break up the straight upward move
 
-	flick_overlay(pickup_animation, GLOB.clients, 4)
+	flick_overlay_view(pickup_animation, src, 4)
 	var/matrix/animation_matrix = new(pickup_animation.transform)
 	animation_matrix.Turn(pick(-30, 30))
 	animation_matrix.Scale(0.65)
@@ -1001,29 +1001,29 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			if(C)
 				C.propelled = 4
 			B.Move(get_step(user,movementdirection), movementdirection)
-			sleep(1)
+			sleep(0.1 SECONDS)
 			B.Move(get_step(user,movementdirection), movementdirection)
 			if(C)
 				C.propelled = 3
-			sleep(1)
+			sleep(0.1 SECONDS)
 			B.Move(get_step(user,movementdirection), movementdirection)
-			sleep(1)
+			sleep(0.1 SECONDS)
 			B.Move(get_step(user,movementdirection), movementdirection)
 			if(C)
 				C.propelled = 2
-			sleep(2)
+			sleep(0.2 SECONDS)
 			B.Move(get_step(user,movementdirection), movementdirection)
 			if(C)
 				C.propelled = 1
-			sleep(2)
+			sleep(0.2 SECONDS)
 			B.Move(get_step(user,movementdirection), movementdirection)
 			if(C)
 				C.propelled = 0
-			sleep(3)
+			sleep(0.3 SECONDS)
 			B.Move(get_step(user,movementdirection), movementdirection)
-			sleep(3)
+			sleep(0.3 SECONDS)
 			B.Move(get_step(user,movementdirection), movementdirection)
-			sleep(3)
+			sleep(0.3 SECONDS)
 			B.Move(get_step(user,movementdirection), movementdirection)
 
 	var/turf/T = get_turf(target)
@@ -1071,7 +1071,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 								C.die()
 				if(W.loc == my_target)
 					break
-				sleep(2)
+				sleep(0.2 SECONDS)
 			qdel(W)
 
 	if(isspaceturf(user.loc))
@@ -1320,7 +1320,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	else
 		user.visible_message("[user] deftly flicks and spins [src]!",span_notice(" You flick and spin [src]!"))
 	animation_wrist_flick(src, direction)
-	sleep(3)
+	sleep(0.3 SECONDS)
 	if(loc && user) playsound(user, 'sound/effects/thud.ogg', 25, 1)
 
 ///The fancy trick. Woah.
@@ -1336,7 +1336,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	invisibility = 100
 	for(var/mob/M in viewers(user))
 		SEND_IMAGE(M, trick)
-	sleep(5)
+	sleep(0.5 SECONDS)
 	trick.loc = null
 	if(!loc || !user)
 		return

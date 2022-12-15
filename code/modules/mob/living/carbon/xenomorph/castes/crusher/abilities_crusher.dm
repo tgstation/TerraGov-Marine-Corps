@@ -34,7 +34,7 @@
 		if(distance == 0) //If we're on top of our victim, give him the full impact
 			GLOB.round_statistics.crusher_stomp_victims++
 			SSblackbox.record_feedback("tally", "round_statistics", 1, "crusher_stomp_victims")
-			M.take_overall_damage_armored(damage, BRUTE, "melee", FALSE, FALSE, TRUE)
+			M.take_overall_damage(damage, BRUTE, MELEE, updating_health = TRUE)
 			M.Paralyze(3 SECONDS)
 			to_chat(M, span_highdanger("You are stomped on by [X]!"))
 			shake_camera(M, 3, 3)
@@ -42,7 +42,7 @@
 			step_away(M, X, 1) //Knock away
 			shake_camera(M, 2, 2)
 			to_chat(M, span_highdanger("You reel from the shockwave of [X]'s stomp!"))
-			M.take_overall_damage_armored(damage, BRUTE, "melee", FALSE, FALSE, TRUE)
+			M.take_overall_damage(damage, BRUTE, MELEE, updating_health = TRUE)
 			M.Paralyze(0.5 SECONDS)
 
 /datum/action/xeno_action/activable/stomp/ai_should_start_consider()
@@ -149,7 +149,7 @@
 	if(!X.issamexenohive(A) && isliving(A)) //Friendly xenos don't take damage.
 		var/damage = toss_distance * 6
 		var/mob/living/L = A
-		L.take_overall_damage_armored(damage, BRUTE, "melee", updating_health = TRUE)
+		L.take_overall_damage(damage, BRUTE, MELEE, updating_health = TRUE)
 		shake_camera(L, 2, 2)
 		playsound(A, pick('sound/weapons/alien_claw_block.ogg','sound/weapons/alien_bite2.ogg'), 50, 1)
 

@@ -97,7 +97,7 @@
 /obj/machinery/door/airlock/proc/handlePowerRestore()
 	var/cont = TRUE
 	while(cont)
-		sleep(10)
+		sleep(1 SECONDS)
 		if(QDELETED(src))
 			return
 		cont = FALSE
@@ -151,7 +151,7 @@
 		return 0	//Already shocked someone recently?
 	if(..())
 		hasShocked = 1
-		sleep(10)
+		sleep(1 SECONDS)
 		hasShocked = 0
 		return 1
 	else
@@ -456,7 +456,7 @@
 
 	for(var/turf/turf in locs)
 		for(var/mob/living/M in turf)
-			M.apply_damage(DOOR_CRUSH_DAMAGE, BRUTE)
+			M.apply_damage(DOOR_CRUSH_DAMAGE, BRUTE, blocked = MELEE)
 			M.Stun(10 SECONDS)
 			M.Paralyze(10 SECONDS)
 			if (iscarbon(M))
@@ -546,7 +546,7 @@
 
 /obj/machinery/door/airlock/proc/electrified_loop()
 	while(secondsElectrified > MACHINE_NOT_ELECTRIFIED)
-		sleep(10)
+		sleep(1 SECONDS)
 		if(QDELETED(src))
 			return
 

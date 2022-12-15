@@ -182,6 +182,18 @@
 	resistance_flags = UNACIDABLE
 	layer = ABOVE_TURF_LAYER
 
+/obj/structure/prop/mainship/name_stencil/T
+	icon_state = "TGMC1"
+
+/obj/structure/prop/mainship/name_stencil/G
+	icon_state = "TGMC2"
+
+/obj/structure/prop/mainship/name_stencil/M
+	icon_state = "TGMC3"
+
+/obj/structure/prop/mainship/name_stencil/C
+	icon_state = "TGMC4"
+
 /obj/structure/prop/mainship/name_stencil/Initialize()
 	. = ..()
 	name = SSmapping.configs[SHIP_MAP].map_name
@@ -1149,6 +1161,15 @@
 	bound_width = 128
 	resistance_flags = RESIST_ALL
 	layer = ABOVE_MOB_LAYER
+
+/obj/structure/prop/vehicle/apc/Initialize()
+	. = ..()
+	if(dir == EAST || dir == WEST)
+		bound_height = 64
+		pixel_y = -20
+	else
+		bound_width = 64
+		pixel_x = -34
 
 /obj/structure/prop/vehicle/apc/med
 	icon_state = "apc_base_med"

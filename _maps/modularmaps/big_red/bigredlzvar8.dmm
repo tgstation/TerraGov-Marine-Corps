@@ -683,9 +683,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
 "uc" = (
-/obj/structure/showcase{
-	icon_state = "bus"
-	},
+/obj/structure/prop/mainship/telecomms/bus,
 /turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/telecomm)
 "ui" = (
@@ -1047,9 +1045,7 @@
 	},
 /area/bigredv2/outside/space_port)
 "CH" = (
-/obj/structure/showcase{
-	icon_state = "broadcaster_send"
-	},
+/obj/structure/prop/mainship/telecomms,
 /turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/telecomm)
 "CI" = (

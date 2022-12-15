@@ -170,8 +170,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			continue
 		victim.visible_message(span_danger("[victim] is hit by backlash from \a [proj.name]!"),
 			isxeno(victim) ? span_xenodanger("We are hit by backlash from \a </b>[proj.name]</b>!") : span_highdanger("You are hit by backlash from \a </b>[proj.name]</b>!"))
-		var/armor_block = victim.get_soft_armor(proj.ammo.armor_type)
-		victim.apply_damage(proj.damage * proj.airburst_multiplier, proj.ammo.damage_type, null, armor_block, updating_health = TRUE)
+		victim.apply_damage(proj.damage * proj.airburst_multiplier, proj.ammo.damage_type, blocked = armor_type, updating_health = TRUE)
 
 ///handles the probability of a projectile hit to trigger fire_burst, based off actual damage done
 /datum/ammo/proc/deflagrate(atom/target, obj/projectile/proj)
@@ -200,8 +199,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			victim.visible_message(span_danger("[victim] is scorched by [target] as they burst into flames!"),
 				isxeno(victim) ? span_xenodanger("We are scorched by [target] as they burst into flames!") : span_highdanger("you are scorched by [target] as they burst into flames!"))
 		//Damages the victims, inflicts brief stagger+slow, and ignites
-		var/armor_block = victim.get_soft_armor("fire") //checks fire armour across the victim's whole body
-		victim.apply_damage(fire_burst_damage, BURN, null, armor_block, updating_health = TRUE) //Placeholder damage, will be a ammo var
+		victim.apply_damage(fire_burst_damage, BURN, blocked = FIRE, updating_health = TRUE) //Placeholder damage, will be a ammo var
 
 		staggerstun(victim, proj, 30, stagger = 0.5, slowdown = 0.5, shake = 0)
 		victim.adjust_fire_stacks(5)
@@ -391,8 +389,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/pistol/mech
 	name = "super-heavy pistol bullet"
-	damage = 40
-	penetration = 15
+	damage = 45
+	penetration = 20
 	sundering = 1
 
 /datum/ammo/bullet/pistol/mech/burst
@@ -456,12 +454,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/revolver/tp44
 	name = "standard revolver bullet"
-	damage = 30
-	penetration = 20
-	sundering = 1.5
+	damage = 40
+	penetration = 15
+	sundering = 1
 
 /datum/ammo/bullet/revolver/tp44/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, stagger = 0, slowdown = 0.5, knockback = 1, shake = 0)
+	staggerstun(M, P, stagger = 0, slowdown = 0, knockback = 1, shake = 0)
 
 /datum/ammo/bullet/revolver/small
 	name = "small revolver bullet"
@@ -604,7 +602,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "armor-piercing rifle bullet"
 	hud_state = "rifle_ap"
 	damage = 20
-	penetration = 30
+	penetration = 25
 	sundering = 3
 
 /datum/ammo/bullet/rifle/hv
@@ -741,7 +739,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 0.8
 
 /datum/ammo/bullet/rifle/mech/burst
-	damage = 30
+	damage = 35
 	penetration = 10
 
 /datum/ammo/bullet/rifle/mech/lmg
@@ -1044,20 +1042,23 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "buckshot"
 	hud_state = "shotgun_buckshot"
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/mech/spread
-	bonus_projectiles_amount = 4
-	bonus_projectiles_scatter = 10
+	bonus_projectiles_amount = 2
+	bonus_projectiles_scatter = 5
 	accuracy_var_low = 10
 	accuracy_var_high = 10
 	max_range = 10
-	damage = 60
+	damage = 100
 	damage_falloff = 4
 
 /datum/ammo/bullet/shotgun/mech/spread
 	name = "super-heavy additional buckshot"
 	icon_state = "buckshot"
 	max_range = 10
-	damage = 50
+	damage = 75
 	damage_falloff = 4
+
+/datum/ammo/bullet/shotgun/mech/on_hit_mob(mob/M, obj/projectile/proj)
+	staggerstun(M, proj, weaken = 1, stagger = 1, knockback = 2, slowdown = 0.5, max_range = 3)
 
 /*
 //================================================
@@ -1254,7 +1255,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/minigun/mech
 	name = "vulcan bullet"
 	damage = 30
-	penetration = 20
+	penetration = 10
 	sundering = 0.5
 
 /datum/ammo/bullet/dual_cannon
@@ -1448,14 +1449,17 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/tx54/mech
 	name = "30mm fragmentation grenade"
 	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/mech
-	damage = 30
-	penetration = 20
+	damage = 15
+	penetration = 10
 	projectile_greyscale_colors = "#4f0303"
 
 /datum/ammo/bullet/tx54_spread/mech
-	damage = 20
+	damage = 15
 	penetration = 10
-	sundering = 1
+	sundering = 0.5
+
+/datum/ammo/bullet/tx54_spread/mech/on_hit_mob(mob/M, obj/projectile/proj)
+	staggerstun(M, proj, max_range = 3, stagger = 0, slowdown = 0.2, shake = 0)
 
 //10-gauge Micro rail shells - aka micronades
 /datum/ammo/bullet/micro_rail
@@ -1580,9 +1584,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	for(var/mob/living/carbon/victim in get_hear(2, T))
 		victim.visible_message(span_danger("[victim] is hit by the bomblet blast!"),
 			isxeno(victim) ? span_xenodanger("We are hit by the bomblet blast!") : span_highdanger("you are hit by the bomblet blast!"))
-		var/armor_block = victim.get_soft_armor("bomb")
-		victim.apply_damage(10, BRUTE, null, armor_block, updating_health = FALSE)
-		victim.apply_damage(10, BURN, null, armor_block, updating_health = TRUE)
+		victim.apply_damages(10, 10, 0, 0, 0, blocked = BOMB, updating_health = TRUE)
 		staggerstun(victim, P, stagger = 1, slowdown = 1)
 
 /datum/ammo/micro_rail_cluster/on_leave_turf(turf/T, atom/firer, obj/projectile/proj)
@@ -1658,7 +1660,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shell_speed = 2
 	accuracy = 40
 	accurate_range = 20
-	max_range = 30
+	max_range = 14
 	damage = 200
 	penetration = 100
 	sundering = 100
@@ -1680,13 +1682,20 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/rocket/do_at_max_range(turf/T, obj/projectile/P)
 	drop_nade(T.density ? P.loc : T)
 
+/datum/ammo/rocket/unguided
+	damage = 100
+	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING // We want this one to specifically go over onscreen range.
+
+/datum/ammo/rocket/unguided/drop_nade(turf/T)
+	explosion(T, 0, 7, 0, 2)
+
 /datum/ammo/rocket/ap
-	name = "anti-armor rocket"
+	name = "kinetic penetrator"
 	hud_state = "rocket_ap"
-	damage_falloff = 0
+	damage = 340
 	accurate_range = 15
-	penetration = 150
-	damage = 325
+	penetration = 200
+	sundering = 0
 
 /datum/ammo/rocket/ap/drop_nade(turf/T)
 	explosion(T, flash_range = 1)
@@ -1787,6 +1796,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 75
 	max_range = 30
 	sundering = 100
+
+/datum/ammo/rocket/wp/unguided
+	damage = 100
+	flags_ammo_behavior = AMMO_ROCKET|AMMO_INCENDIARY|AMMO_SUNDERING
+	effect_radius = 5
 
 /datum/ammo/rocket/recoilless
 	name = "high explosive shell"
@@ -1918,9 +1932,15 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 200
 	penetration = 100
 	sundering = 0
+	accuracy = -30 //Not designed for anti human use
+
+/datum/ammo/rocket/som/heat/on_hit_obj(obj/O, obj/projectile/P)
+	drop_nade(get_turf(O))
+	if(ismecha(O))
+		P.damage *= 2 //this is specifically designed to hurt mechs
 
 /datum/ammo/rocket/som/heat/drop_nade(turf/T)
-	explosion(T, flash_range = 1)
+	explosion(T, 0, 1, 0, 1)
 
 /datum/ammo/rocket/som/rad
 	name = "irrad RPG"
@@ -2022,15 +2042,15 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	drop_nade(T.density ? P.loc : T)
 
 /datum/ammo/mortar
-	name = "80mm"
+	name = "80mm shell"
 	icon_state = "mortar"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
 	shell_speed = 1.10
 	damage = 0
 	penetration = 0
 	sundering = 0
-	accuracy = 250
-	max_range = 250
+	accuracy = 1000
+	max_range = 1000
 	ping = null
 	bullet_color = COLOR_WHITE
 
@@ -2064,7 +2084,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	playsound(T, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4)
 
 /datum/ammo/mortar/howi
-	name = "150mm"
+	name = "150mm shell"
 	icon_state = "howi"
 	shell_speed = 1.25
 
@@ -2077,7 +2097,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
 
 /datum/ammo/mortar/smoke/howi
-	name = "150mm"
+	name = "150mm shell"
 	icon_state = "howi"
 	shell_speed = 1.25
 
@@ -2119,6 +2139,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/mortar/rocket/minelayer/drop_nade(turf/T)
 	var/obj/item/explosive/mine/mine = new /obj/item/explosive/mine(T)
 	mine.deploy_mine(null, TGMC_LOYALIST_IFF)
+
+/datum/ammo/mortar/rocket/mlrs
+	shell_speed = 2.5
+
+/datum/ammo/mortar/rocket/mlrs/drop_nade(turf/T)
+	explosion(T, 0, 0, 4, 2, small_animation = TRUE)
 
 /*
 //================================================
@@ -2357,6 +2383,16 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 8.5
 	hitscan_effect_icon = "beam_particle"
 
+/datum/ammo/energy/lasgun/marine/autolaser/swarm
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING
+	name = "swarm laser bolt"
+	icon_state = "swarm_laser"
+	hud_state = "plasma_sphere"
+	max_range = 40
+	shell_speed = 0.1
+	damage = 15
+	bullet_color = COLOR_TESLA_BLUE
+
 /datum/ammo/energy/lasgun/marine/sniper
 	name = "sniper laser bolt"
 	hud_state = "laser_sniper"
@@ -2447,13 +2483,112 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	drop_nade(get_turf(M))
 
 /datum/ammo/energy/lasgun/marine/heavy_laser/on_hit_obj(obj/O, obj/projectile/P)
-	drop_nade(get_turf(O))
+	drop_nade(O.density ? get_step_towards(O, P) : O, P)
 
 /datum/ammo/energy/lasgun/marine/heavy_laser/on_hit_turf(turf/T, obj/projectile/P)
-	drop_nade(T.density ? P.loc : T)
+	drop_nade(T.density ? get_step_towards(T, P) : T)
 
 /datum/ammo/energy/lasgun/marine/heavy_laser/do_at_max_range(turf/T, obj/projectile/P)
-	drop_nade(T.density ? P.loc : T)
+	drop_nade(T.density ? get_step_towards(T, P) : T)
+
+
+/datum/ammo/energy/xeno
+	barricade_clear_distance = 0
+	///Plasma cost to fire this projectile
+	var/plasma_cost
+	///Particle type used when this ammo is used
+	var/particles/channel_particle
+	///The colour the xeno glows when using this ammo type
+	var/glow_color
+
+/datum/ammo/energy/xeno/psy_blast
+	name = "psychic blast"
+	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN
+	damage = 35
+	penetration = 10
+	sundering = 1
+	max_range = 7
+	accurate_range = 7
+	hitscan_effect_icon = "beam_cult"
+	icon_state = "psy_blast"
+	plasma_cost = 230
+	channel_particle = /particles/warlock_charge/psy_blast
+	glow_color = "#9e1f1f"
+	///The AOE for drop_nade
+	var/aoe_range = 2
+
+/datum/ammo/energy/xeno/psy_blast/drop_nade(turf/T, obj/projectile/P)
+	if(!T || !isturf(T))
+		return
+	playsound(T, 'sound/effects/EMPulse.ogg', 50)
+	var/aoe_damage = 25
+	if(isxeno(P.firer))
+		var/mob/living/carbon/xenomorph/xeno_firer = P.firer
+		aoe_damage = xeno_firer.xeno_caste.blast_strength
+	for(var/atom/movable/victim in get_hear(aoe_range, T))
+		if(isliving(victim))
+			var/mob/living/living_victim = victim
+			if(living_victim.stat == DEAD)
+				continue
+			if(!isxeno(living_victim))
+				living_victim.apply_damage(aoe_damage, BURN, blocked = living_victim.get_soft_armor(ENERGY) - penetration, updating_health = TRUE)
+				staggerstun(living_victim, P, 10, slowdown = 1)
+		else if(isobj(victim))
+			var/obj/obj_victim = victim
+			if(!(obj_victim.resistance_flags & XENO_DAMAGEABLE))
+				continue
+			obj_victim.take_damage(aoe_damage, BURN, ENERGY, 0, armour_penetration = penetration)
+		if(victim.anchored)
+			continue
+		var/throw_dir = get_dir(T, victim)
+		if(T == get_turf(victim))
+			throw_dir = get_dir(P.starting_turf, T)
+		victim.safe_throw_at(get_ranged_target_turf(T, throw_dir, 5), 3, 1, spin = TRUE)
+	new /obj/effect/temp_visual/shockwave(T, aoe_range + 2)
+
+/datum/ammo/energy/xeno/psy_blast/on_hit_mob(mob/M, obj/projectile/P)
+	drop_nade(get_turf(M), P)
+
+/datum/ammo/energy/xeno/psy_blast/on_hit_obj(obj/O, obj/projectile/P)
+	drop_nade(O.density ? get_step_towards(O, P) : O, P)
+
+/datum/ammo/energy/xeno/psy_blast/on_hit_turf(turf/T, obj/projectile/P)
+	drop_nade(T.density ? get_step_towards(T, P) : T, P)
+
+/datum/ammo/energy/xeno/psy_blast/do_at_max_range(turf/T, obj/projectile/P)
+	drop_nade(T.density ? get_step_towards(T, P) : T, P)
+
+/datum/ammo/energy/xeno/psy_blast/psy_lance
+	name = "psychic lance"
+	flags_ammo_behavior = AMMO_XENO|AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_PASS_THROUGH_MOVABLE
+	damage = 60
+	penetration = 50
+	accuracy = 100
+	sundering = 5
+	max_range = 12
+	hitscan_effect_icon = "beam_hcult"
+	icon_state = "psy_lance"
+	plasma_cost = 300
+	channel_particle = /particles/warlock_charge/psy_blast/psy_lance
+	glow_color = "#CB0166"
+
+/datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_obj(obj/O, obj/projectile/P)
+	if(ismecha(O))
+		var/obj/vehicle/sealed/mecha/mech_victim = O
+		mech_victim.take_damage(rand(200, 400), BURN, ENERGY, 0, armour_penetration = penetration)
+	else
+		O.take_damage(damage, BURN, ENERGY, 0, armour_penetration = penetration)
+
+/datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_mob(mob/M, obj/projectile/P)
+	if(!isxeno(M))
+		return
+	staggerstun(M, P, 9, stagger = 2, slowdown = 2, knockback = 1)
+
+/datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_turf(turf/T, obj/projectile/P)
+	return
+
+/datum/ammo/energy/xeno/psy_blast/psy_lance/do_at_max_range(turf/T, obj/projectile/P)
+	return
 
 /datum/ammo/energy/lasgun/marine/mech
 	name = "superheated laser bolt"
@@ -2463,14 +2598,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 0.5
 
 /datum/ammo/energy/lasgun/marine/mech/burst
-	damage = 40
-	penetration = 20
+	damage = 30
+	penetration = 10
 	sundering = 0.75
 	damage_falloff = 0.6
 
 /datum/ammo/energy/lasgun/marine/mech/smg
 	name = "superheated pulsed laser bolt"
-	damage = 20
+	damage = 15
 	penetration = 10
 
 // Plasma //

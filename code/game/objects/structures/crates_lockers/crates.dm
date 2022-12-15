@@ -298,6 +298,7 @@
 /obj/structure/closet/crate/trashcart
 	name = "Trash Cart"
 	desc = "A heavy, metal trashcart with wheels."
+	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "closed_trashcart"
 	icon_opened = "open_trashcart"
 	icon_closed = "closed_trashcart"

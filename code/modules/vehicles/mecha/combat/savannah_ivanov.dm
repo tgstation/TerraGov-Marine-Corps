@@ -65,7 +65,9 @@
 	var/skyfall_cooldown_time = 1 MINUTES
 	///skyfall builds up in charges every 2 seconds, when it reaches 5 charges the ability actually starts
 	var/skyfall_charge_level = 0
-
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_MECHABILITY_SKYFALL,
+	)
 /datum/action/vehicle/sealed/mecha/skyfall/action_activate()
 	. = ..()
 	if(!owner || !chassis || !(owner in chassis.occupants))
@@ -227,7 +229,9 @@
 	///how many rockets can we send with ivanov strike
 	var/rockets_left = 0
 	var/aiming_missile = FALSE
-
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_MECHABILITY_STRIKE,
+	)
 /datum/action/vehicle/sealed/mecha/ivanov_strike/Destroy()
 	if(aiming_missile)
 		end_missile_targeting()
@@ -268,7 +272,7 @@
 	RegisterSignal(chassis, COMSIG_MECHA_EQUIPMENT_CLICK, .proc/on_equipment_click)
 	owner.client.mouse_pointer_icon = 'icons/effects/supplypod_down_target.dmi'
 	owner.update_mouse_pointer()
-	owner.overlay_fullscreen("ivanov", /obj/screen/fullscreen/ivanov_display, 1)
+	owner.overlay_fullscreen("ivanov", /atom/movable/screen/fullscreen/ivanov_display, 1)
 	SEND_SOUND(owner, 'sound/machines/terminal_on.ogg') //spammable so I don't want to make it audible to anyone else
 
 /**

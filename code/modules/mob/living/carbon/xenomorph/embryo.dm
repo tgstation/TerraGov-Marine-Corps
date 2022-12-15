@@ -12,6 +12,8 @@
 	var/counter = 0
 	///How long before the larva is kicked out, * SSobj wait
 	var/larva_autoburst_countdown = 20
+	///How long will the embryo's growth rate be increased
+	var/boost_timer = 0
 	var/hivenumber = XENO_HIVE_NORMAL
 	var/admin = FALSE
 
@@ -76,6 +78,9 @@
 	if(affected_mob.reagents.get_reagent_amount(/datum/reagent/medicine/larvaway))
 		counter -= 1 //Halves larval growth progress, for some tradeoffs. Larval toxin purges this
 
+	if(boost_timer)
+		counter += 2.5 //Doubles larval growth progress. Burst time in ~4 min.
+		adjust_boost_timer(-1)
 
 	if(stage < 5 && counter >= 120)
 		counter = 0
@@ -229,3 +234,15 @@
 	if(species.species_flags & NO_PAIN)
 		return
 	emote("burstscream")
+
+
+///Adjusts the growth acceleration timer
+/obj/item/alien_embryo/proc/adjust_boost_timer(amount, capped = 0, override_time = FALSE)
+	if(override_time)
+		boost_timer = max(amount, 0)
+	else
+		boost_timer = max(boost_timer + amount, 0)
+
+	if(capped > 0)
+		boost_timer = min(boost_timer, capped)
+	return

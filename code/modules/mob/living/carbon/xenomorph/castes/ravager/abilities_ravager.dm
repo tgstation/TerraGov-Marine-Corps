@@ -116,14 +116,15 @@
 	for(var/atom/movable/ravaged AS in atoms_to_ravage)
 		if(!(ravaged.resistance_flags & XENO_DAMAGEABLE))
 			continue
-		if(!ravaged.anchored)
-			step_away(ravaged, X, 1, 2)
 		if(!ishuman(ravaged))
 			ravaged.attack_alien(X, X.xeno_caste.melee_damage)
+			if(!ravaged.anchored)
+				step_away(ravaged, X, 1, 2)
 			continue
 		var/mob/living/carbon/human/attacking = ravaged
 		if(attacking.stat == DEAD)
 			continue
+		step_away(attacking, X, 1, 2)
 		attacking.attack_alien_harm(X, X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier * 0.25, FALSE, TRUE, FALSE, TRUE)
 		shake_camera(attacking, 2, 1)
 		attacking.Paralyze(1 SECONDS)
@@ -338,8 +339,8 @@
 
 		if(rage_power >= RAVAGER_RAGE_SUPER_RAGE_THRESHOLD) //If we're super pissed it's time to get crazy
 
-			var/obj/screen/plane_master/floor/OT = L.hud_used.plane_masters["[FLOOR_PLANE]"]
-			var/obj/screen/plane_master/game_world/GW = L.hud_used.plane_masters["[GAME_PLANE]"]
+			var/atom/movable/screen/plane_master/floor/OT = L.hud_used.plane_masters["[FLOOR_PLANE]"]
+			var/atom/movable/screen/plane_master/game_world/GW = L.hud_used.plane_masters["[GAME_PLANE]"]
 
 			addtimer(CALLBACK(OT, /atom.proc/remove_filter, "rage_outcry"), 1 SECONDS)
 			GW.add_filter("rage_outcry", 2, radial_blur_filter(0.07))
@@ -380,7 +381,7 @@
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
 ///Warns the user when his rage is about to end.
-/datum/action/xeno_action/rage/proc/drain_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
+/datum/action/xeno_action/rage/proc/drain_slash(datum/source, mob/living/target, damage, list/damage_mod, armor_pen)
 	SIGNAL_HANDLER
 	var/mob/living/rager = owner
 	var/brute_damage = rager.getBruteLoss()
@@ -501,7 +502,7 @@
 	heal_data[1] = (heal_data[1] * heal_mod)
 
 ///Adds the slashed mob to tracked damage mobs
-/datum/action/xeno_action/vampirism/proc/on_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
+/datum/action/xeno_action/vampirism/proc/on_slash(datum/source, mob/living/target, damage, list/damage_mod, armor_pen)
 	SIGNAL_HANDLER
 	if(target.stat == DEAD)
 		return

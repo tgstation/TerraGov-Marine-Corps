@@ -121,6 +121,15 @@
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 	variants_by_parent_type = list(/obj/item/clothing/head/modular/marine/m10x = "tyr_head_xn", /obj/item/clothing/head/modular/marine/m10x/leader = "tyr_head_xn")
 
+/obj/item/armor_module/module/hod_head
+	name = "\improper Hod Helmet System"
+	desc = "Designed for mounting on a modular helmet. When attached, this system provides substantial resistance to most gunshot wounds by providing high internal padding within the helmet's structure."
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
+	icon_state = "mod_ff_head"
+	item_state = "mod_ff_head_a"
+	soft_armor = list(MELEE = 0, BULLET = 40, LASER = 40, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	slot = ATTACHMENT_SLOT_HEAD_MODULE
+
 /obj/item/armor_module/module/tyr_head/som
 	name = "Lorica Helmet System"
 	desc = "Designed for mounting on a modular SOM helmet. Substantial additional armor improves protection against all damage."
@@ -238,16 +247,32 @@
 	icon_state = "mod_chemsystem"
 	item_state = "mod_chemsystem_a"
 	slot = ATTACHMENT_SLOT_MODULE
+	///Lets us keep track of what icon state we're in
+	var/chemsystem_is_active = FALSE
 
 /obj/item/armor_module/module/chemsystem/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
-	parent.AddComponent(/datum/component/chem_booster)
+	var/datum/component/chem_booster/chemsystem = parent.AddComponent(/datum/component/chem_booster)
+	RegisterSignal(chemsystem, COMSIG_CHEMSYSTEM_TOGGLED, .proc/update_module_icon)
 
 /obj/item/armor_module/module/chemsystem/on_detach(obj/item/detaching_from, mob/user)
 	var/datum/component/chem_booster/chemsystem = parent.GetComponent(/datum/component/chem_booster)
+	UnregisterSignal(chemsystem, COMSIG_CHEMSYSTEM_TOGGLED)
 	chemsystem.RemoveComponent()
 	return ..()
 
+///Updates the module on the armor to glow or not
+/obj/item/armor_module/module/chemsystem/proc/update_module_icon(datum/source, toggle)
+	SIGNAL_HANDLER
+	chemsystem_is_active = toggle
+	update_icon()
+	parent.update_icon()
+
+/obj/item/armor_module/module/chemsystem/update_icon_state()
+	if(chemsystem_is_active)
+		icon_state = "mod_chemsystem_active"
+		return
+	icon_state = initial(icon_state)
 
 /obj/item/armor_module/module/eshield
 	name = "Arrowhead Energy Shield System"

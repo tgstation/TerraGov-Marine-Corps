@@ -16,6 +16,7 @@
 	icon_state = "equip_base"
 	layer = ABOVE_OBJ_LAYER
 	dir = NORTH
+	density = TRUE
 	var/base_category //what kind of equipment this base accepts.
 	var/ship_tag //used to associate the base to a dropship.
 	/// offset in pixels when equipment is attached
@@ -44,6 +45,11 @@
 		return TRUE
 	if(installed_equipment)
 		return TRUE
+	if(!density)
+		for(var/atom/thing_to_check AS in loc)
+			if(thing_to_check.density)
+				balloon_alert(user, "Blocked by [thing_to_check]")
+				return TRUE
 	playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
 	if(!do_after(user, 7 SECONDS, FALSE, src))
 		return TRUE
@@ -76,9 +82,11 @@
 	base_category = DROPSHIP_WEAPON
 
 /obj/effect/attach_point/weapon/dropship1
+	icon_state = "equip_base_l_wing"
 	ship_tag = SHUTTLE_ALAMO
 
 /obj/effect/attach_point/weapon/dropship2
+	icon_state = "equip_base_l_wing"
 	ship_tag = SHUTTLE_NORMANDY
 
 /obj/effect/attach_point/weapon/dropship3
@@ -96,6 +104,7 @@
 /obj/effect/attach_point/crew_weapon
 	name = "rear attach point"
 	base_category = DROPSHIP_CREW_WEAPON
+	density = FALSE
 
 /obj/effect/attach_point/crew_weapon/dropship1
 	ship_tag = SHUTTLE_ALAMO

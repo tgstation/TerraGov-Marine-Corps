@@ -1132,7 +1132,6 @@
 "bdE" = (
 /obj/effect/attach_point/weapon/dropship1{
 	dir = 8;
-	icon_state = "equip_base_l_wing"
 	},
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
@@ -5247,10 +5246,7 @@
 /area/mainship/command/cic/rebel)
 "eTJ" = (
 /obj/structure/lattice,
-/turf/closed/shuttle/ert{
-	icon_state = "leftengine_1";
-	opacity = 0
-	},
+/turf/closed/shuttle/ert/engines/left,
 /area/space)
 "eTK" = (
 /obj/structure/table/mainship,
@@ -6377,9 +6373,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req/rebel)
 "fNt" = (
-/obj/structure/prop/mainship/name_stencil{
-	icon_state = "TGMC2"
-	},
+/obj/structure/prop/mainship/name_stencil/G,
 /turf/open/floor/mainship_hull,
 /area/space)
 "fNQ" = (
@@ -9654,9 +9648,8 @@
 	},
 /area/mainship/medical/medical_science/rebel)
 "iOM" = (
-/turf/closed/shuttle/ert{
-	icon_state = "leftengine_2";
-	opacity = 0
+/turf/closed/shuttle/ert/engines/left{
+	dir = 1;
 	},
 /area/space)
 "iON" = (
@@ -10517,9 +10510,7 @@
 	},
 /area/mainship/hull/lower_hull/rebel)
 "jHd" = (
-/obj/structure/prop/mainship/name_stencil{
-	icon_state = "TGMC4"
-	},
+/obj/structure/prop/mainship/name_stencil/C,
 /turf/open/floor/mainship_hull,
 /area/space)
 "jIi" = (
@@ -18843,10 +18834,7 @@
 /area/mainship/living/bridgebunks)
 "qKD" = (
 /obj/structure/lattice,
-/turf/closed/shuttle/ert{
-	icon_state = "rightengine_1";
-	opacity = 0
-	},
+/turf/closed/shuttle/ert/engines/right,
 /area/space)
 "qKN" = (
 /obj/machinery/vending/nanomed,
@@ -19328,9 +19316,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/lower_medical/rebel)
 "rkc" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-05"
-	},
+/obj/structure/flora/pottedplant/five,
 /obj/machinery/vending/security,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
@@ -20161,9 +20147,8 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science/rebel)
 "rWC" = (
-/turf/closed/shuttle/ert{
-	icon_state = "rightengine_2";
-	opacity = 0
+/turf/closed/shuttle/ert/engines/right{
+	dir = 1;
 	},
 /area/space)
 "rWF" = (
@@ -21590,9 +21575,7 @@
 /turf/open/floor/plating,
 /area/mainship/command/corporateliaison/rebel)
 "tiP" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-05"
-	},
+/obj/structure/flora/pottedplant/five,
 /obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop/rebel)
@@ -24460,7 +24443,6 @@
 "vHQ" = (
 /obj/effect/attach_point/weapon/dropship1{
 	dir = 8;
-	icon_state = "equip_base_l_wing"
 	},
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar/rebel)
@@ -25242,9 +25224,7 @@
 /turf/open/floor/plating/mainship,
 /area/mainship/hull/lower_hull)
 "wps" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-18"
-	},
+/obj/structure/flora/pottedplant/eighteen,
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
@@ -25412,9 +25392,7 @@
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "wwI" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-18"
-	},
+/obj/structure/flora/pottedplant/eighteen,
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks/rebel)
@@ -25867,9 +25845,7 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general/rebel)
 "wOB" = (
-/obj/structure/prop/mainship/name_stencil{
-	icon_state = "TGMC3"
-	},
+/obj/structure/prop/mainship/name_stencil/M,
 /turf/open/floor/mainship_hull,
 /area/space)
 "wOI" = (

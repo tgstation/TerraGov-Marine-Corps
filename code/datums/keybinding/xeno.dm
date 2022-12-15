@@ -40,6 +40,13 @@
 	description = "Builds whatever you’ve selected with (choose resin structure) on your tile."
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN
 
+/datum/keybinding/xeno/place_acid_well
+	name = "place_acid_well"
+	full_name = "Place acid well"
+	description = "Builds acid well on your tile."
+	keybind_signal = COMSIG_XENOABILITY_PLACE_ACID_WELL
+	hotkey_keys = list("G")
+
 /datum/keybinding/xeno/emit_recovery
 	name = "emit_recovery"
 	full_name = "Emit Recovery Pheromones"
@@ -165,6 +172,12 @@
 	full_name = "Carrier: Throw Hugger"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_THROW_HUGGER
+
+/datum/keybinding/xeno/call_younger
+	name = "call_younger"
+	full_name = "Carrier: Call of Younger"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_CALL_YOUNGER
 
 /datum/keybinding/xeno/place_trap
 	name = "place_trap"
@@ -719,3 +732,24 @@
 		return
 	var/mob/living/carbon/xenomorph/xeno = user.mob
 	xeno.vent_crawl()
+
+/datum/keybinding/xeno/psychic_shield
+	name = "Psychic Shield"
+	full_name = "Warlock: Psychic Shield"
+	description = "Channel a psychic shield at your current location that can reflect most projectiles. Activate again while the shield is active to detonate the shield forcibly, producing knockback."
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_SHIELD
+	hotkey_keys = list("E")
+
+/datum/keybinding/xeno/psychic_blast
+	name = "Psychic Blast"
+	full_name = "Warlock: Psychic Blast"
+	description = "Fire a lightly-damaging AOE psychic beam which knocks back enemies after a short charge-up."
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_BLAST
+	hotkey_keys = list("R")
+
+/datum/keybinding/xeno/psychic_crush
+	name = "Psychic Crush"
+	full_name = "Warlock: Psychic Crush"
+	description = "Channel an expanding AOE crush effect, activating it again pre-maturely crushes enemies over an area."
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CRUSH
+	hotkey_keys = list("Q")

@@ -271,7 +271,18 @@
 /obj/item/clothing/suit/modular/xenonauten/mimir
 	starting_attachments = list(/obj/item/armor_module/module/mimir_environment_protection/mark1)
 
-// Thank Jeff for providing sprites to color flak jacket
+/obj/item/clothing/suit/modular/xenonauten/rownin
+	name = "\improper Rownin Skeleton"
+	desc = "A light armor, if you can even called it that, for dedicated marines that want to travel light and have agility in exchange of protection. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	icon_state = "rownin_skeleton"
+	item_state = "rownin_skeleton"
+	slowdown = 0
+
+	icon_state_variants = list()
+
+	current_variant = ""
+
 /obj/item/clothing/suit/modular/xenonauten/pilot
 	name = "\improper TerraGov standard flak jacket"
 	desc = "A flak jacket used by dropship pilots to protect themselves while flying in the cockpit. Excels in protecting the wearer against high-velocity solid projectiles."
@@ -534,6 +545,7 @@
 	greyscale_config = /datum/greyscale_config/modularhelmet
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/hod_head,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
 		/obj/item/armor_module/module/welding,
@@ -570,6 +582,7 @@
 	greyscale_config = /datum/greyscale_config/modularhelmet/skirmisher
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/hod_head,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
 		/obj/item/armor_module/module/welding,
@@ -590,6 +603,7 @@
 	greyscale_config = /datum/greyscale_config/modularhelmet/assault
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/hod_head,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
 		/obj/item/armor_module/module/welding,
@@ -610,6 +624,7 @@
 	greyscale_config = /datum/greyscale_config/modularhelmet/eva
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/hod_head,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
 		/obj/item/armor_module/module/welding,
@@ -635,6 +650,7 @@
 	greyscale_config = /datum/greyscale_config/modularhelmet/eod
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/hod_head,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
 		/obj/item/armor_module/module/welding,
@@ -658,6 +674,7 @@
 	greyscale_config = /datum/greyscale_config/modularhelmet/scout
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/hod_head,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
 		/obj/item/armor_module/module/welding,
@@ -678,6 +695,7 @@
 	greyscale_config = /datum/greyscale_config/modularhelmet/helljumper
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/hod_head,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
 		/obj/item/armor_module/module/welding,
@@ -697,6 +715,7 @@
 	greyscale_config = /datum/greyscale_config/modularhelmet/infantry_open
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/hod_head,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
 		/obj/item/armor_module/module/welding,
@@ -729,6 +748,7 @@
 	greyscale_config = null
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/hod_head,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
 		/obj/item/armor_module/module/welding,
@@ -788,8 +808,6 @@
 		/obj/item/armor_module/module/tyr_extra_armor/som,
 		/obj/item/armor_module/module/mimir_environment_protection/som,
 		/obj/item/armor_module/module/hlin_explosive_armor,
-		/obj/item/armor_module/module/ballistic_armor,
-		/obj/item/armor_module/module/chemsystem,
 		/obj/item/armor_module/module/eshield/som,
 		/obj/item/armor_module/storage/general,
 		/obj/item/armor_module/storage/ammo_mag,
@@ -854,6 +872,23 @@
 	siemens_coefficient = 0.4
 	permeability_coefficient = 0.5
 	gas_transfer_coefficient = 0.5
+	attachments_allowed = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/module/fire_proof/som,
+		/obj/item/armor_module/module/mimir_environment_protection/som,
+		/obj/item/armor_module/module/hlin_explosive_armor,
+		/obj/item/armor_module/module/eshield/som,
+		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/ammo_mag,
+		/obj/item/armor_module/storage/engineering,
+		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/medical/basic,
+		/obj/item/armor_module/storage/injector,
+		/obj/item/armor_module/storage/grenade,
+		/obj/item/armor_module/storage/integrated,
+		/obj/item/armor_module/armor/badge,
+	)
 
 /obj/item/clothing/suit/modular/som/heavy/leader/valk
 	starting_attachments = list(
@@ -886,8 +921,6 @@
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/storage/helmet/som,
-		/obj/item/armor_module/armor/visor/marine,
 		/obj/item/armor_module/armor/badge,
 	)
 
@@ -921,3 +954,12 @@
 	icon_state = "som_helmet_leader"
 	item_state = "som_helmet_leader"
 	soft_armor = list(MELEE = 60, BULLET = 80, LASER = 70, ENERGY = 70, BOMB = 60, BIO = 55, FIRE = 65, ACID = 55)
+	attachments_allowed = list(
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/som,
+		/obj/item/armor_module/module/welding,
+		/obj/item/armor_module/module/welding/superior,
+		/obj/item/armor_module/module/binoculars,
+		/obj/item/armor_module/module/antenna,
+		/obj/item/armor_module/storage/helmet,
+		/obj/item/armor_module/armor/badge,
+	)

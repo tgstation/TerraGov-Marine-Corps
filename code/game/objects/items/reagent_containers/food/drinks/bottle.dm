@@ -8,7 +8,6 @@
 	amount_per_transfer_from_this = 10
 	volume = 100
 	item_state = "broken_beer" //Generic held-item sprite until unique ones are made.
-	var/const/duration = 13 //Directly relates to the 'weaken' duration. Lowered by armor (i.e. helmets)
 	var/isGlass = 1 //Whether the 'bottle' is made of glass or not so that milk cartons dont shatter when someone gets hit by it
 
 /obj/item/reagent_containers/food/drinks/bottle/proc/smash(mob/living/target as mob, mob/living/user as mob)
@@ -44,25 +43,17 @@
 
 	var/datum/limb/affecting = user.zone_selected //Find what the player is aiming at
 
-	var/armor_block = 0 //Get the target's armour values for normal attack damage.
-	var/armor_duration = 0 //The more force the bottle has, the longer the duration.
+	//apply damage
+	var/weaken_duration =  target.apply_damage(force, BRUTE, affecting, updating_health = TRUE)
 
-	//Calculating duration and calculating damage.
-	armor_block = target.get_soft_armor("melee", affecting)
-	armor_duration = duration + force - armor_block
-
-	//Apply the damage!
-	target.apply_damage(force, BRUTE, affecting, armor_block)
-
-	// You are going to knock someone out for longer if they are not wearing a helmet.
 	if(affecting == "head" && istype(target, /mob/living/carbon/) && !isxeno(target))
 
 		if(target != user)
 			user.visible_message(span_danger("[target] has been hit over the head with a bottle of [name], by [user]!"))
 		else
 			user.visible_message(span_danger("[user] has hit [user.p_them()]self with the bottle of [name] on the head!"))
-		if(armor_duration)
-			target.apply_effect(min(armor_duration, 10) , WEAKEN, armor_block) // Never weaken more than a flash!
+		if(weaken_duration >= force) //if they have armor, no stun
+			target.apply_effect(10, WEAKEN)
 
 	else
 		if(target != user)

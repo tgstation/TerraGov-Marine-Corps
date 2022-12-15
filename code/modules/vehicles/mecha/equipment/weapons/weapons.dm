@@ -41,12 +41,22 @@
 	var/burst_amount = 0
 	///fire mode to use for autofire
 	var/fire_mode = GUN_FIREMODE_AUTOMATIC
+	///how many seconds automatic rearming takes
+	var/rearm_time = 2 SECONDS
 
 /obj/item/mecha_parts/mecha_equipment/weapon/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/automatedfire/autofire, projectile_delay, projectile_delay, projectile_burst_delay, burst_amount, fire_mode, CALLBACK(src, .proc/set_bursting), CALLBACK(src, .proc/reset_fire), CALLBACK(src, .proc/fire))
 	equip_cooldown = projectile_delay
 	muzzle_flash = new(src, muzzle_iconstate)
+
+/obj/item/mecha_parts/mecha_equipment/weapon/action_checks(atom/target, ignore_cooldown)
+	. = ..()
+	if(!.)
+		return
+	if(HAS_TRAIT(chassis, TRAIT_MELEE_CORE))
+		to_chat(chassis.occupants, span_warning("Error -- Melee Core active."))
+		return FALSE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/action(mob/source, atom/target, list/modifiers)
 	if(!action_checks(target))
@@ -278,6 +288,11 @@
 	if(projectiles > 0)
 		return
 	playsound(src, 'sound/weapons/guns/misc/empty_alarm.ogg', 25, 1)
+	if(LAZYACCESS(current_firer.do_actions, src) || projectiles_cache < 1)
+		return
+	if(!do_after(current_firer, rearm_time, FALSE, chassis, BUSY_ICON_GENERIC))
+		return
+	rearm()
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/carbine
 	name = "\improper FNX-99 \"Hades\" Carbine"

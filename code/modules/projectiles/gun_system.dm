@@ -190,10 +190,26 @@
 	var/recoil_backtime_multiplier = 2
 	///this is how much deviation the gun recoil can have, recoil pushes the screen towards the reverse angle you shot + some deviation which this is the max.
 	var/recoil_deviation = 22.5
-	///How much the bullet scatters when fired while wielded.
+	///How much the bullet currently scattered when last fired.
 	var/scatter	= 4
 	///How much the bullet scatters when fired while unwielded.
 	var/scatter_unwielded = 12
+	///Maximum scatter
+	var/max_scatter = 360
+	///Maximum scatter when wielded
+	var/max_scatter_unwielded = 360
+	///How much scatter decays every X seconds
+	var/scatter_decay = 0
+	///How much scatter decays every X seconds when wielded
+	var/scatter_decay_unwielded = 0
+	///How much scatter increases per shot
+	var/scatter_increase = 0
+	///How much scatter increases per shot when wielded
+	var/scatter_increase_unwielded = 0
+	///Minimum scatter
+	var/min_scatter = -360
+	///Minimum scatter when wielded
+	var/min_scatter_unwielded = -360
 	///Multiplier. Increases or decreases how much bonus scatter is added when burst firing (wielded only).
 	var/burst_scatter_mult = 1
 	///Multiplier. Defaults to 1 (no penalty). Multiplies accuracy modifier by this amount while burst firing; usually a fraction (penalty) when set.
@@ -746,6 +762,7 @@
 		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE))
 			cycle(gun_user, FALSE)
 		windup_checked = WEAPON_WINDUP_NOT_CHECKED
+		update_icon()
 		return NONE
 
 	if(!do_fire(projectile_to_fire))
@@ -1012,6 +1029,7 @@
 			last_cock_message = world.time
 			return
 		cycle(user, FALSE)
+		update_icon()
 		playsound(src, cocked_sound, 25, 1)
 		if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && casings_to_eject)
 			make_casing()
@@ -1024,6 +1042,7 @@
 		return
 	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN))
 		cycle(user, FALSE)
+		update_icon()
 		playsound(src, cocked_sound, 25, 1)
 		return
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED)) //We want to open it.
@@ -1343,7 +1362,6 @@
 			user.put_in_hands(in_chamber)
 	in_chamber = new_in_chamber
 	update_ammo_count()
-	update_icon()
 	if(!after_fire || CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN))
 		return
 	make_casing()
@@ -1442,7 +1460,6 @@
 		total_max_rounds += get_max_rounds(chamber_item)
 	rounds = total_rounds + (in_chamber ? rounds_per_shot : 0)
 	max_rounds = total_max_rounds
-	update_icon()
 	gun_user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 
 ///Disconnects from a worn magazine.
@@ -1601,8 +1618,12 @@
 
 	if(((flags_item & WIELDED) && wielded_stable()) || CHECK_BITFIELD(flags_item, IS_DEPLOYED) || (master_gun && CHECK_BITFIELD(master_gun.flags_item, WIELDED) && master_gun.wielded_stable()))
 		gun_accuracy_mult = accuracy_mult
+		scatter = clamp((scatter + scatter_increase) - ((world.time - last_fired - 1) * scatter_decay), min_scatter, max_scatter)
 		gun_scatter = scatter
 		wielded_fire = TRUE
+	else
+		scatter_unwielded = clamp((scatter_unwielded + scatter_increase_unwielded) - ((world.time - last_fired - 1) * scatter_decay_unwielded), min_scatter_unwielded, max_scatter_unwielded)
+		gun_scatter = scatter_unwielded
 
 	if(user && world.time - user.last_move_time < 5) //if you moved during the last half second, you have some penalties to accuracy and scatter
 		if(wielded_fire)

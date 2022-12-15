@@ -100,7 +100,7 @@
 			log_combat(source, M, "removed both arms and legs with a real clamp,", "[name]", "(INTENT: [source.a_intent]) (DAMTYPE: [uppertext(damtype)])")
 			return ..()
 
-		M.take_overall_damage(clamp_damage)
+		M.take_overall_damage(clamp_damage, BRUTE, MELEE, updating_health = TRUE)
 		if(!M) //get gibbed stoopid
 			return
 		M.adjustOxyLoss(round(clamp_damage/2))
@@ -134,7 +134,7 @@
 	energy_drain = 0
 	equipment_slot = MECHA_UTILITY
 	range = MECHA_MELEE|MECHA_RANGED
-	mech_flags = EXOSUIT_MODULE_WORKING|EXOSUIT_MODULE_GREYSCALE
+	mech_flags = EXOSUIT_MODULE_WORKING
 	///Minimum amount of reagent needed to activate.
 	var/required_amount = 80
 

@@ -118,9 +118,7 @@
 /turf/open/shuttle/elevator/grating,
 /area/mainship/patrol_base/som)
 "bX" = (
-/obj/structure/prop/mainship/name_stencil{
-	icon_state = "TGMC3"
-	},
+/obj/structure/prop/mainship/name_stencil/M,
 /turf/open/floor/mainship_hull/dir{
 	dir = 8
 	},
@@ -579,9 +577,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "it" = (
-/obj/structure/prop/mainship/name_stencil{
-	icon_state = "TGMC2"
-	},
+/obj/structure/prop/mainship/name_stencil/G,
 /turf/open/floor/mainship_hull/dir{
 	dir = 8
 	},
@@ -1017,7 +1013,7 @@
 /turf/open/floor/mainship/blue/full,
 /area/mainship/patrol_base/som)
 "pK" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -1646,9 +1642,7 @@
 	},
 /area/mainship/patrol_base/som)
 "xz" = (
-/obj/structure/prop/mainship/name_stencil{
-	icon_state = "TGMC4"
-	},
+/obj/structure/prop/mainship/name_stencil/C,
 /turf/open/floor/mainship_hull/dir{
 	dir = 8
 	},
@@ -2023,7 +2017,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "Eo" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base)
 "Eq" = (
@@ -2786,7 +2780,7 @@
 	},
 /area/mainship/patrol_base/som)
 "OB" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /obj/machinery/light{
 	dir = 1
 	},

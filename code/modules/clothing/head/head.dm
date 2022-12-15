@@ -248,15 +248,16 @@
 	flags_inv_hide = HIDEEARS|HIDETOPHAIR
 	anti_hug = 1
 
-	attack_self(mob/user as mob)
-		if(src.icon_state == "ushankadown")
-			src.icon_state = "ushankaup"
-			src.item_state = "ushankaup"
-			to_chat(user, "You raise the ear flaps on the ushanka.")
-		else
-			src.icon_state = "ushankadown"
-			src.item_state = "ushankadown"
-			to_chat(user, "You lower the ear flaps on the ushanka.")
+/obj/item/clothing/head/ushanka/attack_self(mob/user as mob)
+	. = ..()
+	if(icon_state == "ushankadown")
+		icon_state = "ushankaup"
+		item_state = "ushankaup"
+		to_chat(user, "You raise the ear flaps on the ushanka.")
+	else
+		icon_state = "ushankadown"
+		item_state = "ushankadown"
+		to_chat(user, "You lower the ear flaps on the ushanka.")
 
 
 /obj/item/clothing/head/bearpelt
