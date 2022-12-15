@@ -238,7 +238,7 @@
 	///The delay in between shots. Lower = less delay = faster.
 	var/burst_delay = 0.1 SECONDS
 	///When burst-firing, this number is extra time before the weapon can fire again. Depends on number of rounds fired.
-	var/extra_delay	= 0
+	var/extra_delay	= 0.3 SECONDS
 	///when autobursting, this is the total amount of time before the weapon fires again. If no amount is specified, defaults to fire_delay + extra_delay
 	var/autoburst_delay = 0
 
