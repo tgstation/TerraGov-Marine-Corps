@@ -452,7 +452,10 @@
 	QDEL_NULL(particle_holder)
 	return ..()
 
-/datum/status_effect/stacking/intoxicated/stack_decay_effect()
+/datum/status_effect/stacking/intoxicated/tick()
+	. = ..()
+	if(!debuff_owner)
+		return
 	if(HAS_TRAIT(debuff_owner, TRAIT_INTOXICATION_RESISTANT)) // In the event that TRAIT_INTOXICATION_RESISTANT is added while the status already exists
 		stack_decay = 2
 	var/debuff_damage = SENTINEL_INTOXICATED_BASE_DAMAGE + round(stacks / 10)
