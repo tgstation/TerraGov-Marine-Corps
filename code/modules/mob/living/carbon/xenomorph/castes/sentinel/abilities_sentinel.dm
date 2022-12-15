@@ -16,15 +16,24 @@
 	damage = 12
 	spit_cost = 30
 	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_SKIPS_ALIENS
+	/// The owner of this projectile.
+	var/mob/living/carbon/xenomorph/xeno_owner
+	/// The amount of stacks applied on hit.
+	var/intoxication_stacks = SENTINEL_TOXIC_SPIT_STACKS_PER
+
+
 
 /datum/ammo/xeno/acid/toxic_spit/upgrade1
 	damage = 14
+	intoxication_stacks = SENTINEL_TOXIC_SPIT_STACKS_PER + 1
 
 /datum/ammo/xeno/acid/toxic_spit/upgrade2
 	damage = 15
+	intoxication_stacks = SENTINEL_TOXIC_SPIT_STACKS_PER + 2
 
 /datum/ammo/xeno/acid/toxic_spit/upgrade3
 	damage = 16
+	intoxication_stacks = SENTINEL_TOXIC_SPIT_STACKS_PER + 3
 
 /datum/ammo/xeno/acid/toxic_spit/on_hit_mob(mob/M, obj/projectile/P)
 	if(istype(M,/mob/living/carbon))
@@ -35,8 +44,8 @@
 			return
 		if(C.has_status_effect(STATUS_EFFECT_INTOXICATED))
 			var/datum/status_effect/stacking/intoxicated/debuff = C.has_status_effect(STATUS_EFFECT_INTOXICATED)
-			debuff.add_stacks(SENTINEL_TOXIC_SPIT_STACKS_PER)
-		C.apply_status_effect(STATUS_EFFECT_INTOXICATED, SENTINEL_TOXIC_SPIT_STACKS_PER)
+			debuff.add_stacks(intoxication_stacks)
+		C.apply_status_effect(STATUS_EFFECT_INTOXICATED, intoxication_stacks)
 
 // ***************************************
 // *********** Toxic Slash
@@ -52,6 +61,8 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOXIC_SLASH,
 	)
+	/// The amount of stacks to apply per hit.
+	var/intoxication_stacks = 0
 	/// The remaining amount of Toxic Slashes.
 	var/remaining_slashes = 0
 	/// Timer for the ability; we reference this to delete the timer if the effect lapses before the timer does.
@@ -61,12 +72,13 @@
 
 /datum/action/xeno_action/toxic_slash/action_activate()
 	. = ..()
-	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	intoxication_stacks = SENTINEL_TOXIC_SLASH_STACKS_PER + xeno_owner.xeno_caste.additional_stacks
 	remaining_slashes = SENTINEL_TOXIC_SLASH_COUNT
-	ability_duration = addtimer(CALLBACK(src, .proc/toxic_slash_deactivate, X), SENTINEL_TOXIC_SLASH_DURATION, TIMER_STOPPABLE) //Initiate the timer and set the timer ID for reference
-	RegisterSignal(X, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/toxic_slash)
-	X.balloon_alert(X, "Toxic Slash active")
-	X.playsound_local(X, 'sound/voice/alien_drool2.ogg', 25)
+	ability_duration = addtimer(CALLBACK(src, .proc/toxic_slash_deactivate, xeno_owner), SENTINEL_TOXIC_SLASH_DURATION, TIMER_STOPPABLE) //Initiate the timer and set the timer ID for reference
+	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/toxic_slash)
+	xeno_owner.balloon_alert(xeno_owner, "Toxic Slash active")
+	xeno_owner.playsound_local(xeno_owner, 'sound/voice/alien_drool2.ogg', 25)
 	action_icon_state = "neuroclaws_on"
 	particle_holder = new(owner, /particles/toxic_slash)
 	particle_holder.pixel_x = 9
@@ -77,29 +89,29 @@
 ///Called when Toxic Slash is active.
 /datum/action/xeno_action/toxic_slash/proc/toxic_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
 	SIGNAL_HANDLER
-	var/mob/living/carbon/xenomorph/X = owner
-	var/mob/living/carbon/C = target
-	if(HAS_TRAIT(C, TRAIT_INTOXICATION_IMMUNE))
-		C.balloon_alert(X, "Immune to Intoxication")
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	var/mob/living/carbon/xeno_target = target
+	if(HAS_TRAIT(xeno_target, TRAIT_INTOXICATION_IMMUNE))
+		xeno_target.balloon_alert(xeno_owner, "Immune to Intoxication")
 		return
-	playsound(C, 'sound/effects/spray3.ogg', 20, TRUE)
-	if(C.has_status_effect(STATUS_EFFECT_INTOXICATED))
-		var/datum/status_effect/stacking/intoxicated/debuff = C.has_status_effect(STATUS_EFFECT_INTOXICATED)
-		debuff.add_stacks(SENTINEL_TOXIC_SLASH_STACKS_PER)
-	C.apply_status_effect(STATUS_EFFECT_INTOXICATED, SENTINEL_TOXIC_SLASH_STACKS_PER)
+	playsound(xeno_target, 'sound/effects/spray3.ogg', 20, TRUE)
+	if(xeno_target.has_status_effect(STATUS_EFFECT_INTOXICATED))
+		var/datum/status_effect/stacking/intoxicated/debuff = xeno_target.has_status_effect(STATUS_EFFECT_INTOXICATED)
+		debuff.add_stacks(intoxication_stacks)
+	xeno_target.apply_status_effect(STATUS_EFFECT_INTOXICATED, intoxication_stacks)
 	remaining_slashes-- //Decrement the toxic slash count
 	if(!remaining_slashes) //Deactivate if we have no toxic slashes remaining
-		toxic_slash_deactivate(X)
+		toxic_slash_deactivate(xeno_owner)
 
 ///Called when Toxic Slash expires.
-/datum/action/xeno_action/toxic_slash/proc/toxic_slash_deactivate(mob/living/carbon/xenomorph/X)
-	UnregisterSignal(X, COMSIG_XENOMORPH_ATTACK_LIVING)
+/datum/action/xeno_action/toxic_slash/proc/toxic_slash_deactivate(mob/living/carbon/xenomorph/xeno_owner)
+	UnregisterSignal(xeno_owner, COMSIG_XENOMORPH_ATTACK_LIVING)
 	remaining_slashes = 0
 	deltimer(ability_duration) // Delete the timer so we don't have mismatch issues, and so we don't potentially try to deactivate the ability twice
 	ability_duration = null
 	QDEL_NULL(particle_holder)
-	X.balloon_alert(X, "Toxic Slash over") //Let the user know
-	X.playsound_local(X, 'sound/voice/hiss5.ogg', 25)
+	xeno_owner.balloon_alert(xeno_owner, "Toxic Slash over") //Let the user know
+	xeno_owner.playsound_local(xeno_owner, 'sound/voice/hiss5.ogg', 25)
 	action_icon_state = "neuroclaws_off"
 
 /datum/action/xeno_action/toxic_slash/on_cooldown_finish()
@@ -148,31 +160,33 @@
 		return FALSE
 	if(!istype(A, /mob/living/carbon/human))
 		if(!silent)
-			owner.balloon_alert(owner, "Cannot sting")
+			A.balloon_alert(owner, "Cannot sting")
 		return FALSE
-	var/mob/living/carbon/C = A
-	if(!owner.Adjacent(C))
-		owner.balloon_alert(owner, "Cannot reach")
+	var/mob/living/carbon/target = A
+	if(!owner.Adjacent(target))
+		target.balloon_alert(owner, "Cannot reach")
 		return FALSE
-	if(HAS_TRAIT(C, TRAIT_INTOXICATION_IMMUNE))
-		C.balloon_alert(owner, "Immune to intoxication")
+	if(HAS_TRAIT(target, TRAIT_INTOXICATION_IMMUNE))
+		target.balloon_alert(owner, "Immune to intoxication")
 		return FALSE
-	if(!C.has_status_effect(STATUS_EFFECT_INTOXICATED))
-		owner.balloon_alert(owner, "Not intoxicated")
+	if(!target.has_status_effect(STATUS_EFFECT_INTOXICATED))
+		target.balloon_alert(owner, "Not intoxicated")
 		return FALSE
 
 /datum/action/xeno_action/activable/drain_sting/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/X = owner
-	var/mob/living/carbon/C = A
-	var/datum/status_effect/stacking/intoxicated/debuff = C.has_status_effect(STATUS_EFFECT_INTOXICATED)
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	var/mob/living/carbon/xeno_target = A
+	var/datum/status_effect/stacking/intoxicated/debuff = xeno_target.has_status_effect(STATUS_EFFECT_INTOXICATED)
 	var/drain_potency = debuff.stacks * SENTINEL_DRAIN_MULTIPLIER
 	if(debuff.stacks > debuff.max_stacks - 10)
-		X.apply_status_effect(STATUS_EFFECT_DRAIN_SURGE)
-	C.adjustFireLoss(drain_potency / 5)
-	C.AdjustKnockdown(debuff.stacks - 10)
-	HEAL_XENO_DAMAGE(X, drain_potency, FALSE)
-	X.gain_plasma(drain_potency * 3.5)
-	X.do_attack_animation(C, ATTACK_EFFECT_REDSTAB)
+		xeno_target.emote("scream")
+		xeno_owner.apply_status_effect(STATUS_EFFECT_DRAIN_SURGE)
+		new /obj/effect/temp_visual/drain_sting_crit(get_turf(xeno_target))
+	xeno_target.adjustFireLoss(drain_potency / 5)
+	xeno_target.AdjustKnockdown(max(0.1, debuff.stacks - 10))
+	HEAL_XENO_DAMAGE(xeno_owner, drain_potency, FALSE)
+	xeno_owner.gain_plasma(drain_potency * 3.5)
+	xeno_owner.do_attack_animation(xeno_target, ATTACK_EFFECT_DRAIN_STING)
 	playsound(owner.loc, 'sound/effects/alien_tail_swipe1.ogg', 30)
 	debuff.stacks -= round(debuff.stacks * 0.7)
 	succeed_activate()
@@ -182,6 +196,14 @@
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
 	owner.balloon_alert(owner, "Drain Sting ready")
 	return ..()
+
+/obj/effect/temp_visual/drain_sting_crit
+	name = "drain_sting"
+	icon = 'icons/effects/64x64.dmi'
+	icon_state = "drain_sting_crit"
+	duration = 3.5
+	pixel_x = -18
+	pixel_y = -18
 
 // ***************************************
 // *********** Toxic Grenade

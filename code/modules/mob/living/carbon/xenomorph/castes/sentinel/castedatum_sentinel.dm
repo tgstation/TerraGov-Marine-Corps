@@ -11,7 +11,7 @@
 	melee_damage = 14
 
 	// *** Speed *** //
-	speed = -0.9
+	speed = -0.8
 
 	// *** Plasma *** //
 	plasma_max = 300
@@ -36,6 +36,9 @@
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
 	spit_types = list(/datum/ammo/xeno/acid/toxic_spit)
+
+	// *** Sentinel Abilities ***
+	additional_stacks = 0
 
 	// *** Minimap Icon *** //
 	minimap_icon = "sentinel"
@@ -63,7 +66,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Speed *** //
-	speed = -0.9
+	speed = -0.8
 
 	// *** Plasma *** //
 	plasma_max = 450
@@ -79,8 +82,11 @@
 	soft_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 20, FIRE = 20, ACID = 20)
 
 	// *** Ranged Attack *** //
-	spit_delay = 1.3 SECONDS
+	spit_delay = 1.2 SECONDS
 	spit_types = list(/datum/ammo/xeno/acid/toxic_spit/upgrade1)
+
+	// *** Sentinel Abilities ***
+	additional_stacks = 1
 
 /datum/xeno_caste/sentinel/elder
 	upgrade_name = "Elder"
@@ -108,8 +114,11 @@
 	soft_armor = list(MELEE = 23, BULLET = 23, LASER = 23, ENERGY = 23, BOMB = 0, BIO = 23, FIRE = 23, ACID = 23)
 
 	// *** Ranged Attack *** //
-	spit_delay = 1.3 SECONDS
+	spit_delay = 1.1 SECONDS
 	spit_types = list(/datum/ammo/xeno/acid/toxic_spit/upgrade2)
+
+	// *** Sentinel Abilities ***
+	additional_stacks = 2
 
 /datum/xeno_caste/sentinel/ancient
 	upgrade_name = "Ancient"
@@ -137,10 +146,11 @@
 	soft_armor = list(MELEE = 26, BULLET = 26, LASER = 26, ENERGY = 26, BOMB = 0, BIO = 25, FIRE = 26, ACID = 25)
 
 	// *** Ranged Attack *** //
-	spit_delay = 1.3 SECONDS
+	spit_delay = 1.0 SECONDS
 	spit_types = list(/datum/ammo/xeno/acid/toxic_spit/upgrade3)
 
-
+	// *** Sentinel Abilities ***
+	additional_stacks = 3
 
 /datum/xeno_caste/sentinel/primordial
 	upgrade_name = "Primordial"
@@ -165,8 +175,11 @@
 	soft_armor = list(MELEE = 26, BULLET = 26, LASER = 26, ENERGY = 26, BOMB = 0, BIO = 25, FIRE = 26, ACID = 25)
 
 	// *** Ranged Attack *** //
-	spit_delay = 1.3 SECONDS
+	spit_delay = 1.0 SECONDS
 	spit_types = list(/datum/ammo/xeno/acid/toxic_spit/upgrade3)
+
+	// *** Sentinel Abilities ***
+	additional_stacks = 3
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

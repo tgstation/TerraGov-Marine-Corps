@@ -437,7 +437,7 @@
 	. = ..()
 	debuff_owner = new_owner
 	RegisterSignal(debuff_owner, COMSIG_LIVING_DO_RESIST, .proc/call_resist_debuff)
-	debuff_owner.balloon_alert("Intoxicated")
+	debuff_owner.balloon_alert(debuff_owner, "Intoxicated")
 	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 30)
 	particle_holder = new(debuff_owner, /particles/toxic_slash)
 	particle_holder.particles.spawning = 1 + round(stacks / 2)
