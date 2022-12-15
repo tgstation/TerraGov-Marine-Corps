@@ -11,25 +11,25 @@
 	name = "robot left arm"
 	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
 	icon_state = "l_arm"
-	part = list(ARM_LEFT, HAND_LEFT)
+	part = list(BODY_ZONE_L_ARM, BODY_ZONE_PRECISE_L_HAND)
 
 /obj/item/robot_parts/r_arm
 	name = "robot right arm"
 	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
 	icon_state = "r_arm"
-	part = list(ARM_RIGHT, HAND_RIGHT)
+	part = list(BODY_ZONE_R_ARM, BODY_ZONE_PRECISE_R_HAND)
 
 /obj/item/robot_parts/l_leg
 	name = "robot left leg"
 	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
 	icon_state = "l_leg"
-	part = list(LEG_LEFT, FOOT_LEFT)
+	part = list(BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_L_FOOT)
 
 /obj/item/robot_parts/r_leg
 	name = "robot right leg"
 	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
 	icon_state = "r_leg"
-	part = list(LEG_RIGHT, FOOT_RIGHT)
+	part = list(BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_R_FOOT)
 
 /obj/item/robot_parts/chest
 	name = "robot torso"
