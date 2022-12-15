@@ -158,7 +158,7 @@
 
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.15 SECONDS
-	extra_delay = 0.15 SECONDS
+	extra_delay = 0.1 SECONDS
 	accuracy_mult = 1.1
 	scatter = -2
 	wield_delay = 0.7 SECONDS
