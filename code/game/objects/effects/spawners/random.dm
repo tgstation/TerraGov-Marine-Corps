@@ -307,6 +307,7 @@
 /obj/effect/spawner/random/outdoors_snacks
 	name = "Random Outdoors snack"
 	icon_state = "random_outdoors_snack"
+	spawn_random_offset = TRUE
 	loot = list(
 		/obj/item/reagent_containers/food/snacks/taco,
 		/obj/item/reagent_containers/food/snacks/hotdog,
@@ -1168,6 +1169,14 @@
 		/obj/structure/closet/radiation,
 	)
 
+/obj/effect/spawner/random/structure/security_closet
+	name = "security closet spawner"
+	icon_state = "random_security_closet"
+	spawn_loot_chance = 80
+	loot = list(
+		/obj/structure/closet/secure_closet/security,
+	)
+
 /obj/effect/spawner/random/structure/cabinet
 	name = "cabinet or wood spawner"
 	icon_state = "random_cabinet"
@@ -1325,6 +1334,12 @@
 /obj/effect/spawner/random/structure/random_broken_computer/small/atmosalert
 	loot = list(
 		/obj/machinery/computer/atmos_alert = 85,
+		/obj/effect/spawner/random/structure/random_broken_computer/small = 15,
+	)
+
+/obj/effect/spawner/random/structure/random_broken_computer/small/operatingcomputer
+	loot = list(
+		/obj/machinery/computer/operating = 85,
 		/obj/effect/spawner/random/structure/random_broken_computer/small = 15,
 	)
 
@@ -1515,4 +1530,43 @@
 	spawn_loot_chance = 15
 	loot = list(
 		/obj/structure/prop/mainship/deadai,
+	)
+
+/obj/effect/spawner/random/structure/cryo
+	name = "cryo spawner"
+	icon_state = "random_cryo"
+	spawn_loot_chance = 45
+	loot = list(
+		/obj/machinery/atmospherics/components/unary/cryo_cell = 7,
+		/obj/effect/spawner/random/structure/machine_frame = 2,
+		/obj/effect/spawner/random/metal = 1,
+	)
+
+/obj/effect/spawner/random/structure/disposal
+	name = "disposal spawner"
+	icon_state = "random_disposal"
+	spawn_loot_chance = 90
+	loot = list(
+		/obj/machinery/disposal = 9,
+		/obj/item/stack/sheet/metal = 1,
+		/obj/effect/spawner/random/metal = 1,
+	)
+
+/obj/effect/spawner/random/structure/hydrotray
+	name = "hydro tray spawner"
+	icon_state = "random_hydrotray"
+	spawn_loot_chance = 65
+	loot = list(
+		/obj/machinery/portable_atmospherics/hydroponics = 8,
+		/obj/effect/spawner/random/seeds = 1,
+		/obj/effect/spawner/random/structure/machine_frame = 1,
+	)
+
+/obj/effect/spawner/random/structure/microwave
+	name = "microwave spawner"
+	icon_state = "random_microwave"
+	spawn_loot_chance = 85
+	loot = list(
+		/obj/machinery/microwave = 8,
+		/obj/effect/spawner/random/outdoors_snacks = 2,
 	)
