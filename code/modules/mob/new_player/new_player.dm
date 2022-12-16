@@ -231,6 +231,10 @@
 	popup.set_content(dat)
 	popup.open(FALSE)
 
+/mob/new_player/proc/hive_status()
+
+	check_hive_status(usr)
+
 /mob/new_player/proc/view_lore()
 	var/output = "<div align='center'>"
 	output += "<a href='byond://?src=[REF(src)];lobby_choice=marines'>TerraGov Marine Corps</A><br><br><a href='byond://?src=[REF(src)];lobby_choice=aliens'>Xenomorph Hive</A>"

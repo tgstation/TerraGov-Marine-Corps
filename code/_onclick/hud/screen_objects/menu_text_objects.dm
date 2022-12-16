@@ -143,6 +143,14 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/text/lobby/year)
 	var/mob/new_player/player = hud.mymob
 	player.view_manifest()
 
+/atom/movable/screen/text/lobby/clickable/hive_status
+	maptext = "<span class=menutext>Show Hive Status</span>"
+
+/atom/movable/screen/text/lobby/clickable/hive_status/Click()
+	. = ..()
+	var/mob/new_player/player = hud.mymob
+	player.hive_status()
+
 /atom/movable/screen/text/lobby/clickable/background
 	maptext = "<span class=menutext>Background</span>"
 
