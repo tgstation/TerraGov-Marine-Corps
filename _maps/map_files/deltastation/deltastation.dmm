@@ -7930,6 +7930,12 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/entry)
+"bFI" = (
+/obj/effect/decal/sandedge/corner2{
+	dir = 4
+	},
+/turf/open/floor/iron/white,
+/area/deltastation/medical/chemistry)
 "bFK" = (
 /obj/effect/turf_decal/tile/dark_blue/opposingcorners,
 /turf/open/floor/iron/kitchen,
@@ -8841,6 +8847,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/iron/dark,
 /area/deltastation/security/execution/education)
+"bRp" = (
+/obj/effect/ai_node,
+/obj/effect/decal/sandedge{
+	dir = 1
+	},
+/turf/open/floor/iron/white,
+/area/deltastation/medical/chemistry)
 "bRv" = (
 /obj/structure/cable,
 /obj/structure/window/framed/colony/reinforced/tinted,
@@ -15705,6 +15718,17 @@
 	},
 /turf/open/floor/iron/dark,
 /area/deltastation/science/robotics/lab)
+"doZ" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/xeno_resin_door{
+	dir = 4
+	},
+/turf/open/floor/iron,
+/area/deltastation/maintenance/port)
 "dpl" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/line{
@@ -16770,6 +16794,9 @@
 "dzY" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/xeno_resin_door{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/deltastation/maintenance/port)
 "dAf" = (
@@ -23807,12 +23834,6 @@
 /obj/effect/spawner/random/structure/random_broken_computer,
 /turf/open/floor/iron,
 /area/deltastation/science/research)
-"eQw" = (
-/obj/effect/decal/sandedge/corner{
-	dir = 8
-	},
-/turf/open/floor/iron/white,
-/area/deltastation/medical/chemistry)
 "eQy" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/mapping_helpers/simple_pipes/cyan/visible,
@@ -25379,6 +25400,9 @@
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8
 	},
+/obj/effect/landmark/xeno_resin_door{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/deltastation/maintenance/port)
 "fgP" = (
@@ -26735,6 +26759,9 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 8
+	},
+/obj/effect/landmark/xeno_resin_door{
+	dir = 1
 	},
 /turf/open/floor/iron,
 /area/deltastation/maintenance/port)
@@ -31844,15 +31871,6 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/deltastation/asteroidcaves/exteriorasteroids)
-"gvK" = (
-/obj/machinery/door/poddoor/shutters/opened{
-	dir = 2;
-	id = "chem_lab_maint_windows";
-	name = "Privacy Shutters"
-	},
-/obj/effect/spawner/random/structure/broken_reinforced_window,
-/turf/open/floor/plating,
-/area/deltastation/maintenance/port/aft)
 "gvL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -32228,6 +32246,21 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
 /area/deltastation/engineering/supermatter/room)
+"gzL" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/xeno_resin_door{
+	dir = 4
+	},
+/turf/open/floor/iron,
+/area/deltastation/maintenance/port)
 "gzQ" = (
 /turf/closed/wall/r_wall,
 /area/deltastation/command/heads_quarters/cmo)
@@ -34851,6 +34884,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+/obj/effect/landmark/xeno_resin_door{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/deltastation/maintenance/port)
 "hbw" = (
@@ -35515,6 +35551,13 @@
 	},
 /turf/open/floor/grass,
 /area/deltastation/hallway/secondary/exit/departure_lounge)
+"hhE" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/landmark/xeno_resin_door{
+	dir = 4
+	},
+/turf/open/floor/iron/dark,
+/area/deltastation/science/xenobiology)
 "hhF" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
@@ -36267,16 +36310,6 @@
 	dir = 1
 	},
 /area/deltastation/commons/fitness/recreation)
-"hqo" = (
-/obj/machinery/door/poddoor/shutters/opened{
-	dir = 2;
-	id = "chem_lab_maint_windows";
-	name = "Privacy Shutters"
-	},
-/obj/effect/spawner/random/structure/broken_reinforced_window,
-/obj/item/shard,
-/turf/open/floor/plating,
-/area/deltastation/maintenance/port/aft)
 "hqx" = (
 /obj/machinery/door/airlock/command{
 	name = "Head of Personnel's Quarters"
@@ -40869,13 +40902,6 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/entry)
-"itt" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/maintenance/port/aft)
 "itu" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/cable,
@@ -42128,6 +42154,14 @@
 	},
 /turf/open/floor/iron/white,
 /area/deltastation/medical/medbay/lobby)
+"iGD" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/cable,
+/obj/effect/landmark/xeno_resin_door{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/deltastation/maintenance/port)
 "iGM" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -46799,6 +46833,15 @@
 	dir = 1
 	},
 /area/deltastation/engineering/gravity_generator)
+"jGr" = (
+/obj/machinery/door/poddoor/shutters/opened{
+	dir = 2;
+	id = "chem_lab_maint_windows";
+	name = "Privacy Shutters"
+	},
+/obj/effect/spawner/random/structure/broken_reinforced_window,
+/turf/open/floor/plating,
+/area/deltastation/maintenance/port/aft)
 "jGv" = (
 /obj/machinery/door/airlock/mainship/security{
 	name = "Security Checkpoint"
@@ -46992,15 +47035,6 @@
 /obj/machinery/status_display,
 /turf/closed/wall,
 /area/deltastation/medical/paramedic)
-"jIH" = (
-/obj/machinery/door/poddoor/shutters/opened{
-	dir = 2;
-	id = "chem_lab_maint_windows";
-	name = "Privacy Shutters"
-	},
-/obj/effect/spawner/random/structure/broken_reinforced_window,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/maintenance/port/aft)
 "jIP" = (
 /obj/effect/turf_decal/tile/neutral/full,
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -49837,6 +49871,13 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/security/checkpoint/medical/medsci)
+"kni" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/decal/sandedge{
+	dir = 1
+	},
+/turf/open/floor/iron/white,
+/area/deltastation/medical/chemistry)
 "knj" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sign/securearea,
@@ -50081,6 +50122,15 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron,
 /area/deltastation/commons/locker)
+"kpS" = (
+/obj/machinery/door/poddoor/shutters/opened{
+	dir = 2;
+	id = "chem_lab_maint_windows";
+	name = "Privacy Shutters"
+	},
+/obj/effect/spawner/random/structure/broken_reinforced_window,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/deltastation/maintenance/port/aft)
 "kpT" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple,
 /obj/effect/decal/sandedge{
@@ -54229,6 +54279,13 @@
 	},
 /turf/open/floor/wood,
 /area/deltastation/service/theater/abandoned)
+"ljM" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/deltastation/maintenance/port/aft)
 "ljR" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/ai_node,
@@ -62164,6 +62221,9 @@
 /turf/open/floor/iron,
 /area/deltastation/security/lockers)
 "mQe" = (
+/obj/effect/landmark/xeno_resin_door{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/deltastation/science/xenobiology)
 "mQf" = (
@@ -71233,6 +71293,16 @@
 	},
 /turf/open/floor/iron/dark,
 /area/deltastation/ai_monitored/turret_protected/ai_upload)
+"oKR" = (
+/obj/machinery/door/poddoor/shutters/opened{
+	dir = 2;
+	id = "chem_lab_maint_windows";
+	name = "Privacy Shutters"
+	},
+/obj/effect/spawner/random/structure/broken_reinforced_window,
+/obj/item/shard,
+/turf/open/floor/plating,
+/area/deltastation/maintenance/port/aft)
 "oKS" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/structure/microwave{
@@ -77881,6 +77951,11 @@
 /obj/structure/lattice,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/deltastation/asteroidcaves/westerncaves)
+"qcl" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/plating,
+/area/deltastation/maintenance/department/science/xenobiology)
 "qco" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/airlock/maintenance_hatch{
@@ -80654,6 +80729,12 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos/project)
+"qDV" = (
+/obj/effect/decal/sandedge/corner2{
+	dir = 8
+	},
+/turf/open/floor/iron/white,
+/area/deltastation/medical/chemistry)
 "qDY" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/junction{
@@ -81716,12 +81797,6 @@
 /obj/machinery/computer/security/telescreen/entertainment,
 /turf/closed/wall/r_wall/unmeltable,
 /area/deltastation/medical/virology)
-"qOF" = (
-/obj/effect/decal/sandedge/corner2{
-	dir = 8
-	},
-/turf/open/floor/iron/white,
-/area/deltastation/medical/chemistry)
 "qOQ" = (
 /obj/structure/lattice,
 /turf/closed/mineral/smooth/indestructible,
@@ -84845,6 +84920,15 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/deltastation/tcommsat/server)
+"rwD" = (
+/obj/effect/turf_decal/tile/neutral/half/contrasted{
+	dir = 4
+	},
+/obj/effect/landmark/xeno_resin_door{
+	dir = 1
+	},
+/turf/open/floor/iron,
+/area/deltastation/maintenance/port)
 "rwG" = (
 /obj/effect/ai_node,
 /turf/open/floor/gcircuit,
@@ -85871,12 +85955,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/deltastation/ai_monitored/turret_protected/aisat_interior)
-"rIT" = (
-/obj/effect/decal/sandedge/corner2{
-	dir = 4
-	},
-/turf/open/floor/iron/white,
-/area/deltastation/medical/chemistry)
 "rIU" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
@@ -86554,6 +86632,16 @@
 "rPq" = (
 /turf/open/floor/gcircuit,
 /area/deltastation/science/research/abandoned)
+"rPu" = (
+/obj/effect/turf_decal/tile/neutral/half/contrasted{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/xeno_resin_door{
+	dir = 1
+	},
+/turf/open/floor/iron,
+/area/deltastation/maintenance/port)
 "rPz" = (
 /obj/structure/table/woodentable,
 /obj/item/tool/wrench,
@@ -87025,13 +87113,6 @@
 	},
 /turf/open/floor/iron/cafeteria,
 /area/deltastation/service/kitchen)
-"rUS" = (
-/obj/effect/ai_node,
-/obj/effect/decal/sandedge{
-	dir = 1
-	},
-/turf/open/floor/iron/white,
-/area/deltastation/medical/chemistry)
 "rUV" = (
 /obj/structure/closet/secure_closet/personal,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
@@ -91398,6 +91479,19 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/deltastation/commons/toilet/locker)
+"sON" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/neutral/half/contrasted{
+	dir = 1
+	},
+/obj/effect/decal/sandedge{
+	dir = 8
+	},
+/turf/open/floor/iron,
+/area/deltastation/maintenance/port/aft)
 "sOO" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
@@ -91812,6 +91906,12 @@
 	},
 /turf/open/floor/plating,
 /area/deltastation/service/theater/abandoned)
+"sTB" = (
+/obj/effect/landmark/xeno_resin_door{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/deltastation/maintenance/port)
 "sTC" = (
 /obj/effect/decal/warning_stripes/box,
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
@@ -93952,6 +94052,12 @@
 "tpM" = (
 /turf/open/floor/glass/reinforced,
 /area/deltastation/commons/fitness/recreation)
+"tpN" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/decal/sandedge/corner,
+/obj/item/shard,
+/turf/open/floor/iron,
+/area/deltastation/maintenance/port/aft)
 "tpO" = (
 /obj/effect/ai_node,
 /turf/open/floor/iron/white,
@@ -96595,6 +96701,12 @@
 /obj/effect/spawner/random/structure/random_tank_holder,
 /turf/open/floor/iron/dark,
 /area/deltastation/command/heads_quarters/hos)
+"tQQ" = (
+/obj/effect/decal/sandedge/corner{
+	dir = 8
+	},
+/turf/open/floor/iron/white,
+/area/deltastation/medical/chemistry)
 "tQS" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -105350,6 +105462,16 @@
 /obj/effect/turf_decal/tile/green/fourcorners,
 /turf/open/floor/iron/dark,
 /area/deltastation/asteroidcaves/derelictsatellite)
+"vCV" = (
+/obj/effect/turf_decal/tile/neutral/half/contrasted{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/xeno_resin_door{
+	dir = 1
+	},
+/turf/open/floor/iron,
+/area/deltastation/maintenance/port)
 "vCW" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/start/job/xenomorph,
@@ -106001,6 +106123,9 @@
 /obj/effect/turf_decal/box/red,
 /obj/machinery/atmospherics/components/unary/outlet_injector{
 	dir = 1
+	},
+/obj/effect/landmark/xeno_resin_door{
+	dir = 4
 	},
 /turf/open/floor/iron/dark,
 /area/deltastation/science/xenobiology)
@@ -106984,13 +107109,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/iron/dark,
 /area/deltastation/ai_monitored/aisat/exterior)
-"vVl" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/decal/sandedge{
-	dir = 1
-	},
-/turf/open/floor/iron/white,
-/area/deltastation/medical/chemistry)
 "vVr" = (
 /obj/machinery/computer/med_data{
 	dir = 8
@@ -107064,7 +107182,6 @@
 	dir = 5
 	},
 /obj/structure/sign/securearea,
-/obj/structure/prop/mainship/shieldwall,
 /turf/open/floor/plating,
 /area/deltastation/science/xenobiology)
 "vVU" = (
@@ -111841,12 +111958,6 @@
 /obj/effect/turf_decal/tile/neutral/half/contrasted,
 /turf/open/floor/iron,
 /area/deltastation/maintenance/department/science)
-"wQn" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/decal/sandedge/corner,
-/obj/item/shard,
-/turf/open/floor/iron,
-/area/deltastation/maintenance/port/aft)
 "wQu" = (
 /obj/item/storage/secure/safe,
 /turf/closed/wall/r_wall,
@@ -118972,19 +119083,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron,
 /area/deltastation/security/warden)
-"ylh" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/neutral/half/contrasted{
-	dir = 1
-	},
-/obj/effect/decal/sandedge{
-	dir = 8
-	},
-/turf/open/floor/iron,
-/area/deltastation/maintenance/port/aft)
 "ylj" = (
 /obj/structure/window/framed/colony/reinforced/hull,
 /turf/open/floor/plating,
@@ -137204,7 +137302,7 @@ lTW
 dbZ
 awI
 iYW
-lAe
+nhb
 tbQ
 awI
 awI
@@ -137466,7 +137564,7 @@ pQi
 oJL
 oJL
 xeo
-xeo
+qcl
 dwo
 cho
 fCY
@@ -137715,7 +137813,7 @@ wvW
 wvW
 cho
 wMF
-lAe
+wcr
 oJL
 oJL
 bHP
@@ -137972,7 +138070,7 @@ lAO
 qJM
 xUH
 uqI
-xeo
+qcl
 pMA
 hve
 gVm
@@ -137980,7 +138078,7 @@ kTR
 rsv
 wsy
 oJL
-lAe
+wcr
 gmZ
 xUH
 xUH
@@ -138490,7 +138588,7 @@ awI
 lix
 lix
 vJO
-oJL
+hhE
 rFi
 rIO
 mQe
@@ -142593,8 +142691,8 @@ vBD
 coM
 ogB
 xQW
-wuV
-bqU
+doZ
+sTB
 xQW
 wbp
 snT
@@ -145164,7 +145262,7 @@ rqz
 mDM
 xQW
 hbv
-bqU
+sTB
 bzf
 esY
 xru
@@ -147219,8 +147317,8 @@ lrS
 dgc
 kHg
 tpa
-kvB
-bqU
+gzL
+sTB
 hPt
 dyL
 kSE
@@ -148245,7 +148343,7 @@ mrB
 aeo
 twO
 aeo
-aeo
+vCV
 mrB
 bzG
 cFK
@@ -148759,7 +148857,7 @@ fuW
 tWk
 tNI
 fuW
-fuW
+iGD
 wVQ
 rmS
 cvy
@@ -149009,14 +149107,14 @@ aeo
 fPf
 tTT
 hwh
-uIw
+rPu
 vYu
 uIw
 djK
 mrB
 fZg
 bqU
-fZg
+rwD
 nXV
 sLk
 xQW
@@ -153943,7 +154041,7 @@ xbI
 mEH
 hcm
 rKz
-gvK
+jGr
 cSP
 wja
 mWX
@@ -154713,9 +154811,9 @@ uDp
 uDp
 gAZ
 hTr
-qOF
+qDV
 dYi
-ylh
+sON
 geE
 kud
 jzo
@@ -154969,9 +155067,9 @@ kwa
 xux
 tNw
 gAZ
-qOF
+qDV
 hqX
-hqo
+oKR
 vQr
 iGg
 kud
@@ -155226,7 +155324,7 @@ kwa
 tNw
 tNw
 gAZ
-vVl
+kni
 eEM
 kQb
 jYM
@@ -155485,8 +155583,8 @@ tNw
 gAZ
 dfQ
 iEc
-jIH
-itt
+kpS
+ljM
 uWD
 kud
 qwW
@@ -155740,7 +155838,7 @@ mbU
 rEH
 rEH
 gAZ
-rUS
+bRp
 xZX
 kQb
 xYg
@@ -155997,11 +156095,11 @@ xAH
 wPV
 wPV
 vjs
-rIT
-eQw
+bFI
+tQQ
 aBt
-itt
-wQn
+ljM
+tpN
 kud
 qwW
 dTf
@@ -156513,7 +156611,7 @@ fdo
 lPp
 mrg
 nOX
-gvK
+jGr
 wHC
 lsM
 kud
