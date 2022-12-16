@@ -3386,8 +3386,34 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/water
 	name = "water"
+	icon_state = "pulse1"
 	hud_state = "water"
 	hud_state_empty = "water_empty"
+	damage = 0
+	shell_speed = 1
+	damage_type = BURN
+	flags_ammo_behavior = AMMO_EXPLOSIVE
+	bullet_color = null
+
+/datum/ammo/water/proc/splash(turf/extinguished_turf, splash_direction)
+	var/obj/flamer_fire/current_fire = locate(/obj/flamer_fire) in extinguished_turf
+	if(current_fire)
+		qdel(current_fire)
+	for(var/mob/living/mob_caught in extinguished_turf)
+		mob_caught.ExtinguishMob()
+	new /obj/effect/temp_visual/dir_setting/water_splash(extinguished_turf, splash_direction)
+
+/datum/ammo/water/on_hit_mob(mob/M, obj/projectile/P)
+	splash(get_turf(M), P.dir)
+
+/datum/ammo/water/on_hit_obj(obj/O, obj/projectile/P)
+	splash(get_turf(O), P.dir)
+
+/datum/ammo/water/on_hit_turf(turf/T, obj/projectile/P)
+	splash(get_turf(T), P.dir)
+
+/datum/ammo/water/do_at_max_range(turf/T, obj/projectile/P)
+	splash(get_turf(T), P.dir)
 
 /datum/ammo/rocket/toy
 	name = "\improper toy rocket"
