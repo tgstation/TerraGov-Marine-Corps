@@ -282,7 +282,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	. = ..()
 	if(.)
 		return
-	if(!allowed(user))
+	if(isliving(user) && !allowed(user))
 		return
 	if(!SU)
 		SU = new(src)
@@ -348,8 +348,6 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	.["elevator_size"] = supply_shuttle?.return_number_of_turfs()
 
 /datum/supply_ui/ui_data(mob/living/user)
-	if(!isliving(user))
-		return
 	. = list()
 	.["currentpoints"] = round(SSpoints.supply_points[user.faction])
 	.["requests"] = list()
@@ -544,8 +542,6 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	.["supplypackscontents"] = SSpoints.supply_packs_contents
 
 /datum/supply_ui/requests/ui_data(mob/living/user)
-	if(!isliving(user))
-		return
 	. = list()
 	.["currentpoints"] = round(SSpoints.supply_points[user.faction])
 	.["requests"] = list()
