@@ -1065,6 +1065,7 @@
 	name = "wood spawner"
 	icon_state = "random_wood"
 	spawn_loot_chance = 80
+	spawn_random_offset = TRUE
 	loot = list(
 		/obj/item/stack/sheet/wood = 15,
 		/obj/item/stack/sheet/wood/large_stack = 5,
@@ -1078,7 +1079,6 @@
 		/obj/item/stack/sheet/glass = 25,
 		/obj/item/stack/sheet/glass/large_stack = 1,
 	)
-
 
 /obj/effect/spawner/random/firstaid
 	name = "firstaid spawner"
@@ -1128,6 +1128,15 @@
 	loot = list( // 80% chance normal grille, 10% chance of broken, 10% chance of nothing
 		/obj/structure/grille = 8,
 		/obj/structure/grille/broken = 1,
+	)
+
+/obj/effect/spawner/random/structure/wood_barricade //does not support any direction but south, so only use on wood barricades facing south
+	name = "wood barricade spawner"
+	icon_state = "random_wood_barricade"
+	spawn_loot_chance = 30
+	loot = list(
+		/obj/effect/spawner/random/wood = 6,
+		/obj/structure/barricade/wooden = 4,
 	)
 
 /obj/effect/spawner/random/structure/closet

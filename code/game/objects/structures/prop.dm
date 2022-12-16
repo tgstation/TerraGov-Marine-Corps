@@ -543,6 +543,7 @@
 	icon_state = "reflector_prop"
 	density = TRUE
 	anchored = FALSE
+	resistance_flags = XENO_DAMAGEABLE
 
 /obj/structure/prop/mainship/cannon_cable_connector/ex_act()
 	return
