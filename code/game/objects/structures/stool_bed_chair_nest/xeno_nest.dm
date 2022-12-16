@@ -50,6 +50,9 @@
 	if(!isxeno(user))
 		to_chat(user, span_warning("Gross! You're not touching that stuff."))
 		return FALSE
+	if(isxenohivemind(user))
+		to_chat(user, span_warning("We lack limbs to do that."))
+		return FALSE
 	if(LAZYLEN(buckled_mobs))
 		to_chat(user, span_warning("There's already someone in [src]."))
 		return FALSE
