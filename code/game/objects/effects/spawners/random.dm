@@ -704,7 +704,7 @@
 		/obj/item/weapon/gun/shotgun/double/marine,
 		/obj/item/weapon/gun/rifle/standard_autoshotgun,
 		/obj/item/weapon/gun/shotgun/combat/standardmarine,
-		)
+	)
 
 
 ///random shotguns

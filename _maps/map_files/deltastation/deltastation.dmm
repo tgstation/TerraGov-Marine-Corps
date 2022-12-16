@@ -1683,9 +1683,7 @@
 	pixel_y = 2
 	},
 /turf/open/floor/grass,
-/area/deltastation/hallway/secondary/exit/departure_lounge{
-	dir = 4
-	})
+/area/deltastation/hallway/secondary/exit/departure_lounge)
 "asQ" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
@@ -6632,9 +6630,7 @@
 /obj/effect/decal/warning_stripes/box/empty,
 /obj/structure/prop/mainship/protolathe/service,
 /turf/open/floor/iron/checker,
-/area/deltastation/hallway/secondary/service{
-	dir = 4
-	})
+/area/deltastation/hallway/secondary/service)
 "bsy" = (
 /obj/structure/table/reinforced,
 /obj/structure/paper_bin,
@@ -10239,9 +10235,7 @@
 /obj/structure/cable,
 /obj/effect/turf_decal/trimline/neutral/filled/line,
 /turf/open/floor/iron/dark,
-/area/deltastation/service/abandoned_gambling_den{
-	dir = 8
-	})
+/area/deltastation/service/abandoned_gambling_den)
 "cfu" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -12124,10 +12118,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply,
 /turf/open/floor/iron/grimy,
 /area/deltastation/service/library)
-"czX" = (
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/plating,
-/area/deltastation/engineering/supermatter/room)
 "cAe" = (
 /obj/effect/turf_decal/tile/yellow/half/contrasted{
 	dir = 8
@@ -15529,9 +15519,7 @@
 	dir = 8
 	},
 /turf/open/floor/iron/cafeteria,
-/area/deltastation/service/kitchen{
-	dir = 4
-	})
+/area/deltastation/service/kitchen)
 "dle" = (
 /obj/structure/table/woodentable,
 /obj/structure/paper_bin,
@@ -16940,12 +16928,6 @@
 /obj/structure/table,
 /turf/open/floor/iron,
 /area/deltastation/medical/pharmacy)
-"dzj" = (
-/obj/effect/spawner/random/structure/broken_reinforced_window,
-/turf/open/floor/plating,
-/area/deltastation/engineering/supermatter/room{
-	dir = 4
-	})
 "dzl" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/landmark/weed_node,
@@ -17212,7 +17194,6 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/central/fore{
-	dir = 8
 	})
 "dBM" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -18808,9 +18789,7 @@
 "dQF" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
-/area/deltastation/engineering/supermatter/room{
-	dir = 4
-	})
+/area/deltastation/engineering/supermatter/room)
 "dQL" = (
 /obj/structure/lattice,
 /obj/structure/window/reinforced{
@@ -18917,7 +18896,6 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/exit{
-	dir = 4
 	})
 "dRW" = (
 /obj/effect/mapping_helpers/simple_pipes/green/visible,
@@ -23987,7 +23965,6 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/iron,
 /area/deltastation/cargo/storage{
-	dir = 4
 	})
 "eOO" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -24267,7 +24244,6 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/security/processing{
-	dir = 8
 	})
 "eRO" = (
 /obj/structure/cable,
@@ -29099,7 +29075,6 @@
 /obj/effect/spawner/random/structure/table_or_rack,
 /turf/open/floor/iron,
 /area/deltastation/maintenance/port{
-	dir = 8
 	})
 "fPj" = (
 /obj/machinery/landinglight/ds1,
@@ -29118,12 +29093,6 @@
 /obj/machinery/newscaster,
 /turf/closed/wall,
 /area/deltastation/maintenance/port/fore)
-"fPo" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/bed/stool,
-/obj/effect/spawner/random/structure/broken_reinforced_window,
-/turf/open/floor/iron/dark,
-/area/deltastation/service/theater)
 "fPr" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -30876,7 +30845,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/iron/dark,
 /area/deltastation/command/bridge{
-	dir = 8
 	})
 "ghc" = (
 /obj/effect/decal/cleanable/dirt,
@@ -31357,7 +31325,6 @@
 /obj/effect/decal/warning_stripes/box/empty,
 /turf/open/floor/iron,
 /area/deltastation/science/xenobiology{
-	dir = 8
 	})
 "gmx" = (
 /obj/effect/decal/warning_stripes/box/empty,
@@ -35503,7 +35470,6 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/maintenance/port/fore{
-	dir = 4
 	})
 "hcl" = (
 /obj/structure/cable,
@@ -43463,7 +43429,6 @@
 /obj/effect/decal/warning_stripes/box/empty,
 /turf/open/floor/iron/dark/smooth_large,
 /area/deltastation/science/ordnance{
-	dir = 4
 	})
 "iMH" = (
 /obj/effect/turf_decal/stripes/line{
@@ -44223,9 +44188,7 @@
 	layer = 8.35
 	},
 /turf/open/floor/iron/cafeteria,
-/area/deltastation/service/kitchen{
-	dir = 4
-	})
+/area/deltastation/service/kitchen)
 "iUf" = (
 /obj/effect/spawner/random/plant,
 /obj/effect/decal/warning_stripes/box,
@@ -55196,7 +55159,6 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/deltastation/command/bridge{
-	dir = 8
 	})
 "lll" = (
 /obj/structure/cable,
@@ -58476,10 +58438,6 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/central/fore)
-"lRS" = (
-/obj/structure/window/framed/colony/reinforced/hull,
-/turf/open/floor/plating,
-/area/deltastation/engineering/supermatter/room)
 "lRZ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/computer/mech_bay_power_console{
@@ -71054,7 +71012,6 @@
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
 /area/deltastation/science/lobby{
-	dir = 1
 	})
 "oAc" = (
 /obj/structure/showcase/six{
@@ -74439,7 +74396,6 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/central/fore{
-	dir = 4
 	})
 "piv" = (
 /obj/structure/flora/ausbushes/ppflowers,
@@ -82084,7 +82040,6 @@
 /obj/effect/turf_decal/siding/yellow/corner,
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos{
-	dir = 4
 	})
 "qGk" = (
 /obj/structure/cable,
@@ -96245,7 +96200,6 @@
 /obj/structure/window/framed/colony/reinforced/hull,
 /turf/open/floor/plating,
 /area/deltastation/medical/virology{
-	dir = 1
 	})
 "tyD" = (
 /turf/closed/wall/r_wall,
@@ -97484,7 +97438,6 @@
 /obj/machinery/atmospherics/pipe/manifold/supply,
 /turf/open/floor/iron,
 /area/deltastation/science/server{
-	dir = 8
 	})
 "tMb" = (
 /obj/effect/turf_decal/tile/blue/opposingcorners,
@@ -97932,7 +97885,6 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/commons/dorms{
-	dir = 1
 	})
 "tPV" = (
 /obj/structure/cable,
@@ -99065,7 +99017,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/deltastation/security/execution/transfer{
-	dir = 8
 	})
 "ubH" = (
 /obj/structure/closet/firecloset,
@@ -99774,7 +99725,6 @@
 	},
 /turf/open/floor/grass,
 /area/deltastation/hallway/secondary/exit/departure_lounge{
-	dir = 4
 	})
 "uiY" = (
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
@@ -101638,7 +101588,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/iron/dark/smooth_large,
 /area/deltastation/science/genetics{
-	dir = 8
 	})
 "uBH" = (
 /obj/structure/window/framed/colony/reinforced/hull,
@@ -105519,9 +105468,7 @@
 "vpq" = (
 /obj/structure/window/framed/colony/reinforced/hull,
 /turf/open/floor/plating,
-/area/deltastation/engineering/supermatter/room{
-	dir = 4
-	})
+/area/deltastation/engineering/supermatter/room)
 "vpv" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/stripes/corner,
@@ -111863,7 +111810,6 @@
 /obj/effect/mapping_helpers/simple_pipes/yellow/visible,
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos{
-	dir = 8
 	})
 "wAc" = (
 /obj/effect/decal/cleanable/dirt,
@@ -117086,7 +117032,6 @@
 	},
 /turf/open/floor/wood,
 /area/deltastation/service/electronic_marketing_den{
-	dir = 1
 	})
 "xBG" = (
 /obj/structure/cable,
@@ -118977,7 +118922,6 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron,
 /area/deltastation/commons/locker{
-	dir = 8
 	})
 "xTB" = (
 /obj/effect/spawner/random/folder,
@@ -140038,7 +139982,7 @@ aoN
 aoN
 vpq
 grr
-lRS
+vpq
 ezh
 awI
 hcy
@@ -140535,9 +140479,9 @@ ibx
 cbi
 aoN
 aoN
-dzj
+ekN
 ewf
-dzj
+ekN
 aoN
 aoN
 pjK
@@ -142082,7 +142026,7 @@ wms
 sFN
 vva
 wms
-dzj
+ekN
 spQ
 seK
 tbJ
@@ -143364,8 +143308,8 @@ wyI
 rwr
 wyI
 ekN
-czX
-czX
+dQF
+dQF
 wyI
 epd
 nHw
@@ -143892,7 +143836,7 @@ qLR
 oFP
 auT
 oFP
-dzj
+ekN
 pfc
 dEM
 mde
@@ -144149,7 +144093,7 @@ bIu
 dFe
 sna
 dFe
-dzj
+ekN
 ocd
 qgj
 uQl
@@ -144648,9 +144592,9 @@ ppo
 wyI
 yjJ
 qxm
-dzj
-dzj
-dzj
+ekN
+ekN
+ekN
 epd
 wyI
 qxm
@@ -155667,7 +155611,7 @@ jjL
 axq
 vef
 dNX
-fPo
+hLP
 vef
 dxP
 vef
