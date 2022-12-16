@@ -111,7 +111,7 @@
 
 ///Makes the sound of the flamer being lit, and applies the overlay.
 /obj/item/weapon/gun/flamer/proc/light_pilot(light)
-	if(CHECK_BITFIELD(flags_flamer_features, FLAMER_IS_LIT) ? light : !light)
+	if(!CHECK_BITFIELD(flags_flamer_features, FLAMER_IS_LIT) == !light) //!s so we can check equivalence on truthy, rather than true, values
 		return
 	if(light)
 		ENABLE_BITFIELD(flags_flamer_features, FLAMER_IS_LIT)
@@ -123,15 +123,17 @@
 	if(CHECK_BITFIELD(flags_flamer_features, FLAMER_NO_LIT_OVERLAY))
 		return
 
+	update_icon()
+
+/obj/item/weapon/gun/flamer/update_overlays()
+	. = ..()
+	if(!CHECK_BITFIELD(flags_flamer_features, FLAMER_IS_LIT)|| CHECK_BITFIELD(flags_flamer_features, FLAMER_NO_LIT_OVERLAY))
+		return
+
 	var/image/lit_overlay = image(icon, src, lit_overlay_icon_state)
 	lit_overlay.pixel_x += lit_overlay_offset_x
 	lit_overlay.pixel_y += lit_overlay_offset_y
-
-	if(!CHECK_BITFIELD(flags_flamer_features, FLAMER_IS_LIT))
-		overlays.Cut()
-		update_icon()
-		return
-	overlays += lit_overlay
+	. += lit_overlay
 
 /obj/item/weapon/gun/flamer/able_to_fire(mob/user)
 	. = ..()
@@ -368,65 +370,9 @@
 		/obj/item/weapon/gun/flamer/hydro_cannon,
 	)
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle, /obj/item/attachable/stock/t84stock, /obj/item/weapon/gun/flamer/hydro_cannon)
-	var/last_use
-	///If we are using the hydro cannon when clicking
-	var/hydro_active = FALSE
-	///How much water the hydro cannon has
-	var/water_count = 0
-
-/obj/item/weapon/gun/flamer/big_flamer/marinestandard/Initialize()
-	. = ..()
-	reagents = new /datum/reagents(FLAMER_WATER)
-	reagents.my_atom = src
-	reagents.add_reagent(/datum/reagent/water, reagents.maximum_volume)
-	water_count = reagents.maximum_volume
-
-/obj/item/weapon/gun/flamer/big_flamer/marinestandard/update_ammo_count()
-	if(hydro_active)
-		rounds = max(water_count, 0)
-		max_rounds = reagents.maximum_volume
-		return
-	return ..()
-
-/obj/item/weapon/gun/flamer/big_flamer/marinestandard/get_ammo()
-	if(hydro_active)
-		ammo_datum_type = /datum/ammo/water
-		return
-	return ..()
-
-/obj/item/weapon/gun/flamer/big_flamer/marinestandard/examine(mob/user)
-	. = ..()
-	to_chat(user, span_notice("Its hydro cannon contains [reagents.get_reagent_amount(/datum/reagent/water)]/[reagents.maximum_volume] units of water!"))
-
-/obj/item/weapon/gun/flamer/big_flamer/marinestandard/unique_action(mob/user)
-	var/obj/item/attachable/hydro_cannon/hydro = LAZYACCESS(attachments_by_slot, ATTACHMENT_SLOT_UNDER)
-	if(!istype(hydro))
-		return FALSE
-	playsound(user, hydro.activation_sound, 15, 1)
-	if (hydro.activate(user))
-		hydro_active = TRUE
-		light_pilot(FALSE)
-	else
-		hydro_active = FALSE
-		if (rounds > 0)
-			light_pilot(TRUE)
-	get_ammo()
-	update_ammo_count()
-	user.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
-	SEND_SIGNAL(src, COMSIG_ITEM_HYDRO_CANNON_TOGGLED)
-	return TRUE
 
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/do_fire(obj/projectile/projectile_to_fire)
 	if(!target)
-		return
-	if(hydro_active)
-		if(world.time < last_use + 1 SECONDS)
-			return
-		INVOKE_ASYNC(src, .proc/extinguish, target, gun_user) //Fire it.
-		water_count -= 7//reagents is not updated in this proc, we need water_count for a updated HUD
-		last_fired = world.time
-		last_use = world.time
-		gun_user.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 		return
 	if(gun_user?.skills.getRating("firearms") < 0)
 		switch(windup_checked)
@@ -446,22 +392,11 @@
 	windup_checked = WEAPON_WINDUP_CHECKED
 	Fire()
 
-/obj/item/weapon/gun/flamer/big_flamer/marinestandard/afterattack(atom/target, mob/user)
-	. = ..()
-	if(istype(target, /obj/structure/reagent_dispensers/watertank) && get_dist(user,target) <= 1)
-		var/obj/o = target
-		o.reagents.trans_to(src, reagents.maximum_volume)
-		water_count = reagents.maximum_volume
-		to_chat(user, span_notice("\The [src]'s hydro cannon is refilled with water."))
-		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
-		user.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
-		return
-
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/wide
 	starting_attachment_types = list(
 		/obj/item/attachable/flamer_nozzle/wide,
 		/obj/item/attachable/stock/t84stock,
-		/obj/item/attachable/hydro_cannon,
+		/obj/item/weapon/gun/flamer/hydro_cannon,
 		/obj/item/attachable/magnetic_harness,
 	)
 
@@ -697,13 +632,14 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "hydrocannon"
 
-	fire_delay = 1 SECONDS
+	fire_delay = 1.2 SECONDS
 	fire_sound = 'sound/effects/extinguish.ogg'
 	attachable_offset = list("flamer_nozzle_x" = 20, "flamer_nozzle_y" = 27)
 	attachable_allowed = list(
 		/obj/item/attachable/flamer_nozzle,
 		/obj/item/attachable/flamer_nozzle/wide,
-		/obj/item/attachable/flamer_nozzle/long,)
+		/obj/item/attachable/flamer_nozzle/long,
+	)
 	flame_max_range = 7
 
 	ammo_datum_type = /datum/ammo/water

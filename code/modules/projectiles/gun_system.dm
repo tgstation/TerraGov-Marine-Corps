@@ -1458,7 +1458,9 @@
 	for(var/obj/chamber_item in chamber_items)
 		total_rounds += get_current_rounds(chamber_item)
 		total_max_rounds += get_max_rounds(chamber_item)
-	rounds = total_rounds + (in_chamber ? rounds_per_shot : 0)
+	rounds = total_rounds
+	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_DO_NOT_EMPTY_ROUNDS_AFTER_FIRE))
+		rounds += in_chamber ? rounds_per_shot : 0
 	max_rounds = total_max_rounds
 	gun_user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 
@@ -1513,7 +1515,7 @@
 	if(!user || user.incapacitated()  || user.lying_angle || !isturf(user.loc))
 		return
 	if(rounds - rounds_per_shot < 0 && rounds)
-		to_chat(user, span_warning("Theres not enough rounds left to fire."))
+		to_chat(user, span_warning("There's not enough rounds left to fire."))
 		return FALSE
 	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN))
 		to_chat(user, span_warning("The chamber is open! Close it first."))
