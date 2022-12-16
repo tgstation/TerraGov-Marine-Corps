@@ -15,6 +15,7 @@
 	old_x = -16
 	old_y = -3
 
+	bubble_icon = "alien"
 
 /mob/living/carbon/xenomorph/bull/handle_special_state()
 	if(is_charging >= CHARGE_ON)

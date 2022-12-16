@@ -16,6 +16,7 @@
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 	)
+	bubble_icon = "alien"
 
 	var/base_icon_state = "Larva"
 

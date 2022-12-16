@@ -12,6 +12,7 @@
 	pixel_x = -12
 	old_x = -12
 	pull_speed = -2
+	bubble_icon = "alien"
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 	)

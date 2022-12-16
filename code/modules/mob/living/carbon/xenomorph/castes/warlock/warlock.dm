@@ -17,6 +17,7 @@
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_ZERO
 	flags_pass = PASSTABLE
+	bubble_icon = "alienroyal"
 
 /mob/living/carbon/xenomorph/warlock/Initialize()
 	. = ..()

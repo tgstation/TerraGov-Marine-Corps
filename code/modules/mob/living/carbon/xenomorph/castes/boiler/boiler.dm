@@ -14,6 +14,7 @@
 	upgrade = XENO_UPGRADE_ZERO
 	gib_chance = 100
 	drag_delay = 6 //pulling a big dead xeno is hard
+	bubble_icon = "alien"
 	var/datum/effect_system/smoke_spread/xeno/smoke
 	//Boiler ammo
 	var/corrosive_ammo = 0

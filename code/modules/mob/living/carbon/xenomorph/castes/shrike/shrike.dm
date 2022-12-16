@@ -16,6 +16,7 @@
 	drag_delay = 3 //pulling a medium dead xeno is hard
 	tier = XENO_TIER_FOUR
 	upgrade = XENO_UPGRADE_ZERO
+	bubble_icon = "alienroyal"
 	var/shrike_flags = SHRIKE_FLAG_PAIN_HUD_ON
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,

@@ -9,6 +9,7 @@
 	plasma_stored = 400
 	pixel_x = -16
 	old_x = -16
+	bubble_icon = "alienroyal"
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_ZERO
 	var/emitting_gas = FALSE

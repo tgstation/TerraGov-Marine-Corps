@@ -31,6 +31,7 @@
 
 	hud_type = /datum/hud/hivemind
 	hud_possible = list(PLASMA_HUD, HEALTH_HUD_XENO, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD)
+	bubble_icon = "alienroyal"
 	///The core of our hivemind
 	var/obj/structure/xeno/hivemindcore/core
 	///The minimum health we can have

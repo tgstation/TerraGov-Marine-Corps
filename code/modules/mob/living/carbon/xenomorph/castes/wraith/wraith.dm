@@ -11,6 +11,7 @@
 	old_x = -16
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_ZERO
+	bubble_icon = "alien"
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 	)
