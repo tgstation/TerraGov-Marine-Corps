@@ -25847,10 +25847,6 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/entry)
-"flz" = (
-/obj/machinery/newscaster,
-/turf/closed/wall,
-/area/deltastation/service/bar/backroom)
 "flG" = (
 /obj/structure/cable,
 /obj/machinery/light_switch{
@@ -35929,10 +35925,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/deltastation/engineering/atmos)
-"hnc" = (
-/obj/effect/landmark/xeno_resin_door,
-/turf/open/floor/plating,
-/area/deltastation/security/checkpoint/medical/medsci)
 "hng" = (
 /obj/structure/table/woodentable,
 /obj/item/phone{
@@ -54611,6 +54603,10 @@
 	},
 /turf/open/floor/plating,
 /area/deltastation/hallway/primary/central/fore)
+"loH" = (
+/obj/machinery/computer/security/telescreen/entertainment,
+/turf/closed/wall/r_wall,
+/area/deltastation/security/checkpoint/medical/medsci)
 "loJ" = (
 /obj/structure/bed/stool,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
@@ -54702,10 +54698,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos/pumproom)
-"lpF" = (
-/obj/machinery/computer/security/telescreen/entertainment,
-/turf/closed/wall/r_wall,
-/area/deltastation/security/checkpoint/medical/medsci)
 "lpI" = (
 /obj/structure/table,
 /obj/machinery/computer/security,
@@ -80522,6 +80514,10 @@
 	dir = 4
 	},
 /area/deltastation/hallway/secondary/exit/departure_lounge)
+"qDL" = (
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/plating,
+/area/deltastation/security/checkpoint/medical/medsci)
 "qDU" = (
 /obj/machinery/light{
 	dir = 8
@@ -88538,6 +88534,13 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/security/brig)
+"snh" = (
+/obj/effect/spawner/random/structure/cabinet,
+/obj/item/radio/intercom{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/deltastation/commons/dorms)
 "sns" = (
 /obj/effect/decal/warning_stripes/box,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
@@ -95095,6 +95098,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark,
 /area/deltastation/science/robotics/lab)
+"tDk" = (
+/obj/machinery/newscaster,
+/turf/closed/wall,
+/area/deltastation/service/bar/backroom)
 "tDv" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/shuttle/shuttle_control/dropship,
@@ -107979,13 +107986,6 @@
 	},
 /turf/open/floor/plating,
 /area/deltastation/commons/fitness/recreation)
-"wgF" = (
-/obj/effect/spawner/random/structure/cabinet,
-/obj/item/radio/intercom{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/deltastation/commons/dorms)
 "wgJ" = (
 /obj/effect/turf_decal/tile/yellow/fourcorners,
 /obj/effect/landmark/weed_node,
@@ -155277,7 +155277,7 @@ udx
 kYV
 noE
 vDO
-hnc
+qDL
 jCx
 qrR
 mkr
@@ -155791,7 +155791,7 @@ kep
 kYV
 rfO
 aaA
-lpF
+loH
 jBv
 xcb
 oLw
@@ -156737,7 +156737,7 @@ spA
 spA
 spA
 mtB
-flz
+tDk
 xop
 rJw
 pPM
@@ -171706,7 +171706,7 @@ nqN
 iPs
 jcC
 gJj
-wgF
+snh
 hWX
 kMu
 fkI
