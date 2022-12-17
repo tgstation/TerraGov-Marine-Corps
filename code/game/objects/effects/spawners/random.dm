@@ -515,6 +515,29 @@
 		/obj/item/storage/box/syringes = 1,
 	)
 
+/obj/effect/spawner/random/beaker
+	name = "Random beaker spawner"
+	icon_state = "random_beaker"
+	spawn_loot_chance = 85
+	loot = list(
+		/obj/item/reagent_containers/glass/beaker,
+		/obj/item/reagent_containers/glass/beaker/large,
+	)
+
+/obj/effect/spawner/random/beaker/regularweighted
+	loot = list(
+		/obj/item/reagent_containers/glass/beaker = 8,
+		/obj/item/reagent_containers/glass/beaker/large = 2,
+	)
+
+/obj/effect/spawner/random/beaker/largeweighted
+	icon_state = "random_largebeaker"
+	loot = list(
+		/obj/item/reagent_containers/glass/beaker/large = 8,
+		/obj/item/reagent_containers/glass/beaker = 2,
+	)
+
+
 /obj/effect/spawner/random/bloodpack
 	name = "Random blood spawner"
 	icon_state = "random_bloodpack"
@@ -1440,7 +1463,7 @@
 	name = "tank spawner"
 	icon_state = "random_weldtank"
 	loot = list(
-		/obj/structure/reagent_dispensers/fueltank = 7,
+		/obj/structure/reagent_dispensers/fueltank = 8,
 		/obj/structure/reagent_dispensers/watertank = 2,
 	)
 
