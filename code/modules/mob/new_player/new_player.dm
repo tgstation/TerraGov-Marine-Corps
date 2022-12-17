@@ -122,9 +122,6 @@
 		if("late_join")
 			attempt_late_join(href_list["override"])
 
-		if("manifest")
-			view_manifest()
-
 		if("lore")
 			view_lore()
 
@@ -221,14 +218,6 @@
 	var/datum/browser/popup = new(src, "latechoices", "Choose Occupation", 680, 580)
 	popup.add_stylesheet("latechoices", 'html/browser/latechoices.css')
 	popup.set_content(jointext(dat, ""))
-	popup.open(FALSE)
-
-
-/mob/new_player/proc/view_manifest()
-	var/dat = GLOB.datacore.get_manifest(ooc = TRUE)
-
-	var/datum/browser/popup = new(src, "manifest", "<div align='center'>Crew Manifest</div>", 400, 420)
-	popup.set_content(dat)
 	popup.open(FALSE)
 
 /mob/new_player/proc/view_lore()

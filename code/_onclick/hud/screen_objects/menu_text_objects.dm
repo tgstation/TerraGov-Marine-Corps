@@ -135,14 +135,6 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/text/lobby/year)
 	player.toggle_ready()
 	set_text()
 
-/atom/movable/screen/text/lobby/clickable/manifest
-	maptext = "<span class=menutext>View Manifest</span>"
-
-/atom/movable/screen/text/lobby/clickable/manifest/Click()
-	. = ..()
-	var/mob/new_player/player = hud.mymob
-	player.view_manifest()
-
 /atom/movable/screen/text/lobby/clickable/background
 	maptext = "<span class=menutext>Background</span>"
 
