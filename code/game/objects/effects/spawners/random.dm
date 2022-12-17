@@ -1124,7 +1124,6 @@
 		/obj/item/clothing/glasses/sunglasses/sechud = 3,
 	)
 
-
 /obj/effect/spawner/random/prizemecha
 	name = "random toy mecha"
 	icon_state = "random_durand"
@@ -1476,6 +1475,15 @@
 	spawn_loot_chance = 75
 	loot_subtype_path = /obj/structure/table
 	loot = list()
+
+/obj/effect/spawner/random/structure/wooden_table
+	name = "wood table spawner"
+	icon_state = "random_wood_table"
+	spawn_loot_chance = 95
+	loot = list(
+		/obj/structure/table/woodentable = 99,
+		/obj/effect/spawner/random/wood = 1,
+	)
 
 /obj/effect/spawner/random/structure/broken_reinforced_window
 	name = "broken reinforced window spawner"
