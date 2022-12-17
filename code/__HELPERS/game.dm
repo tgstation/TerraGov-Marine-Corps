@@ -11,6 +11,33 @@
 		return
 	return format_text ? format_text(A.name) : A.name
 
+/proc/IsValidForResinStructure(turf/target, needsSupport = FALSE)
+	if(!target || !istype(target))
+		return 0
+	var/obj/alien/weeds/alien_weeds = locate() in target
+	if(!target.check_disallow_alien_fortification(null, TRUE))
+		return "Not allowed to build here"
+	if(!alien_weeds)
+		return "There are no weeds"
+	if(!target.is_weedable())
+		return "This spot can not support weeds"
+	for(var/obj/effect/forcefield/fog/F in range(1, target))
+		return "The fog prevents building!"
+	for(var/mob/living/carbon/xenomorph/blocker in target)
+		if(blocker.stat != DEAD && !CHECK_BITFIELD(blocker.xeno_caste.caste_flags, CASTE_IS_BUILDER))
+			return "The hulking body of [blocker.name] is occupying all the space"
+	if(!target.check_alien_construction(null, TRUE))
+		return 0
+	if(needsSupport)
+		for(var/D in GLOB.cardinals)
+			var/turf/TS = get_step(target,D)
+			if(!TS)
+				continue
+			if(TS.density || locate(/obj/structure/mineral_door/resin) in TS)
+				return TRUE
+		return "No adjaecent support"
+	return TRUE
+
 
 /proc/get_adjacent_open_turfs(atom/center)
 	. = list()
