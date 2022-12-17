@@ -33,13 +33,13 @@
 	SIGNAL_HANDLER
 
 	var/phrase = html_decode(message_args[1])
-	if(!length_char(phrase))
+	if(!length(phrase))
 		return
 
 	var/final_phrase = ""
 	var/original_char = ""
 
-	for(var/i = 1, i <= length_char(phrase), i += length_char(original_char))
+	for(var/i = 1, i <= length(phrase), i += length(original_char))
 		original_char = phrase[i]
 
 		final_phrase += apply_speech(original_char, original_char)
@@ -92,15 +92,15 @@
 
 	var/message = html_decode(message_args[1])
 
-	message = replacetext_char(message, " am ", " ")
-	message = replacetext_char(message, " is ", " ")
-	message = replacetext_char(message, " are ", " ")
-	message = replacetext_char(message, "you", "u")
-	message = replacetext_char(message, "help", "halp")
-	message = replacetext_char(message, "grief", "grife")
-	message = replacetext_char(message, "space", "spess")
-	message = replacetext_char(message, "carp", "crap")
-	message = replacetext_char(message, "reason", "raisin")
+	message = replacetext(message, " am ", " ")
+	message = replacetext(message, " is ", " ")
+	message = replacetext(message, " are ", " ")
+	message = replacetext(message, "you", "u")
+	message = replacetext(message, "help", "halp")
+	message = replacetext(message, "grief", "grife")
+	message = replacetext(message, "space", "spess")
+	message = replacetext(message, "carp", "crap")
+	message = replacetext(message, "reason", "raisin")
 
 	if(prob(capitalize_prob))
 		var/exclamation = pick("!", "!!", "!!!")

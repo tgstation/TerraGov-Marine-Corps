@@ -60,7 +60,7 @@
 	var/stored_index = 1
 
 	//multiz lool
-	while(dmmRegex.Find(tfile, stored_index))
+	while(dmmRegex.Find_char(tfile, stored_index))
 		stored_index = dmmRegex.next
 
 		// "aa" = (/type{vars=blah})
