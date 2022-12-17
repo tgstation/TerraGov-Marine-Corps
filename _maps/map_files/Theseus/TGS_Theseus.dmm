@@ -5656,8 +5656,8 @@
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/surgery_hallway)
 "bHn" = (
-/obj/structure/table/mainship/nometal,
 /obj/machinery/light/mainship,
+/obj/machinery/computer/rdconsole/core,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/surgery_hallway)
 "bHo" = (
@@ -20105,6 +20105,7 @@
 /area/mainship/command/cic)
 "xoW" = (
 /obj/machinery/light/mainship,
+/obj/structure/prop/mainship/protolathe/sci,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/surgery_hallway)
 "xpi" = (

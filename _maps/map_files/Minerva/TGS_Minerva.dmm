@@ -5950,8 +5950,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
 "rB" = (
-/obj/structure/table/mainship/nometal,
-/obj/machinery/recharger,
+/obj/structure/prop/mainship/protolathe/sci,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "rC" = (
@@ -7285,6 +7284,8 @@
 /obj/machinery/light/mainship{
 	dir = 4
 	},
+/obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/glasses/hud/health,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "vA" = (
@@ -10233,6 +10234,7 @@
 /obj/item/healthanalyzer,
 /obj/machinery/light/mainship,
 /obj/item/healthanalyzer,
+/obj/machinery/recharger,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "Eb" = (
@@ -10512,12 +10514,10 @@
 	},
 /area/mainship/living/port_garden)
 "ET" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/clothing/glasses/hud/health,
-/obj/item/clothing/glasses/hud/health,
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
+/obj/machinery/computer/rdconsole/core,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "EU" = (
@@ -23624,7 +23624,7 @@ kt
 fC
 rY
 DW
-rB
+Ea
 kt
 Jy
 qJ
@@ -23720,9 +23720,9 @@ xC
 qK
 kt
 vz
-ET
 hE
-Ea
+ET
+rB
 kt
 MU
 tu

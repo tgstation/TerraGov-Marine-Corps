@@ -1279,6 +1279,12 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
+"dF" = (
+/obj/machinery/researchcomp,
+/turf/open/floor/mainship/sterile/side{
+	dir = 8
+	},
+/area/mainship/medical/lower_medical)
 "dG" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
@@ -2418,10 +2424,8 @@
 	},
 /area/mainship/living/tankerbunks)
 "gX" = (
-/obj/structure/bed/chair/nometal{
-	dir = 1
-	},
-/turf/open/floor/wood,
+/obj/structure/prop/mainship/protolathe/sci,
+/turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "gY" = (
 /obj/machinery/light/mainship/small{
@@ -12700,13 +12704,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
 "JS" = (
-/obj/item/trash/cigbutt{
-	pixel_x = -8;
-	pixel_y = 3
-	},
-/turf/open/floor/mainship/sterile/side{
-	dir = 8
-	},
+/obj/machinery/computer/rdconsole/core,
+/turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "JT" = (
 /turf/open/floor/mainship/ntlogo/nt3,
@@ -12810,7 +12809,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "Kk" = (
-/obj/machinery/researchcomp,
+/obj/structure/prop/mainship/protolathe/sci,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 8
 	},
@@ -44593,14 +44592,14 @@ xu
 pt
 DT
 AN
-DT
+dF
 pJ
 Kk
 NP
 lm
 KP
-Sc
 pt
+gX
 Jg
 Hv
 Hv
@@ -44855,9 +44854,9 @@ uy
 De
 SV
 SV
-SV
-SV
+Sc
 pt
+JS
 Uy
 Hv
 Hv
@@ -45113,8 +45112,8 @@ Sf
 qZ
 Kv
 hq
-gX
 pt
+Hv
 Uy
 Hv
 fL
@@ -45370,8 +45369,8 @@ hL
 pt
 lc
 ip
-lc
 pt
+Hv
 Uy
 TI
 pt
@@ -45627,8 +45626,8 @@ eO
 Fo
 JB
 DT
-JS
 AN
+Hv
 Do
 De
 pt

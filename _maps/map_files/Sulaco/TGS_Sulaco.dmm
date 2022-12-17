@@ -2381,10 +2381,7 @@
 	pixel_x = 1;
 	pixel_y = -21
 	},
-/obj/structure/disposalpipe/trunk{
-	dir = 1
-	},
-/obj/machinery/disposal,
+/obj/structure/prop/mainship/protolathe/sci,
 /turf/open/floor/prison/whitegreen{
 	dir = 6
 	},
@@ -8172,6 +8169,10 @@
 /area/mainship/shipboard/weapon_room)
 "aOW" = (
 /obj/structure/sign/science,
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
 /turf/open/floor/prison/whitegreen,
 /area/sulaco/research)
 "aOY" = (
@@ -8332,7 +8333,7 @@
 /turf/closed/wall/mainship/gray,
 /area/sulaco/morgue)
 "aQk" = (
-/obj/machinery/computer/pandemic,
+/obj/machinery/computer/rdconsole/core,
 /turf/open/floor/prison/whitegreen/full,
 /area/sulaco/research)
 "aQl" = (
@@ -10033,8 +10034,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/sulaco/telecomms)
 "bcF" = (
-/obj/machinery/r_n_d/server/core/alt,
-/turf/open/floorndnship/tcomms,
+/obj/machinery/rnd/server/core/alt,
 /area/sulaco/telecomms)
 "bcG" = (
 /obj/machinery/telecomms/server/presets/common,
@@ -13620,7 +13620,7 @@
 	holo_range = 7;
 	name = "modfied holopad"
 	},
-/obj/structure/disposalpipe/segment/corner{
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/open/floor/prison/whitegreen/corner,
@@ -23817,6 +23817,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
+	},
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/research)
 "tvj" = (
