@@ -1,4 +1,4 @@
-/obj/machinery/r_n_d/destructive_analyzer
+/obj/machinery/rnd/destructive_analyzer
 	name = "Destructive Analyzer"
 	icon_state = "d_analyzer"
 

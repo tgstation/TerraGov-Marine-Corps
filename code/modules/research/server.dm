@@ -1,11 +1,11 @@
-/obj/machinery/r_n_d/server
+/obj/machinery/rnd/server
 	name = "R&D Server"
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "server"
 	req_access = list(ACCESS_MARINE_CMO)
 
 
-/obj/machinery/r_n_d/server/centcom
+/obj/machinery/rnd/server/centcom
 	name = "Centcom Central R&D Database"
 
 
@@ -15,12 +15,12 @@
 	circuit = /obj/item/circuitboard/computer/rdservercontrol
 
 
-/obj/machinery/r_n_d/server/robotics
+/obj/machinery/rnd/server/robotics
 	name = "Robotics R&D Server"
 
 
-/obj/machinery/r_n_d/server/core
+/obj/machinery/rnd/server/core
 	name = "Core R&D Server"
 
-/obj/machinery/r_n_d/server/core/alt
+/obj/machinery/rnd/server/core/alt
 	icon_state = "server_alt"

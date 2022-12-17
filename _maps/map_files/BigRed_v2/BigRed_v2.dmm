@@ -2878,7 +2878,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "azi" = (
-/obj/machinery/r_n_d/protolathe,
+/obj/machinery/rnd/protolathe,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 1
 	},
@@ -6916,7 +6916,7 @@
 /turf/closed/wall,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bxO" = (
-/obj/machinery/r_n_d/protolathe,
+/obj/machinery/rnd/protolathe,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
@@ -6925,7 +6925,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/r_n_d/destructive_analyzer,
+/obj/machinery/rnd/destructive_analyzer,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
@@ -6968,7 +6968,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bys" = (
-/obj/machinery/r_n_d/circuit_imprinter,
+/obj/machinery/rnd/circuit_imprinter,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 6
 	},
@@ -7185,7 +7185,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAf" = (
-/obj/machinery/r_n_d/server,
+/obj/machinery/rnd/server,
 /turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAg" = (

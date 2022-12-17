@@ -1,4 +1,4 @@
-/obj/machinery/r_n_d
+/obj/machinery/rnd
 	name = "R&D Device"
 	icon = 'icons/obj/machines/research.dmi'
 	density = TRUE

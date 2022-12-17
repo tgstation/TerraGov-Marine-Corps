@@ -792,7 +792,7 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "UC" = (
-/obj/machinery/r_n_d/server,
+/obj/machinery/rnd/server,
 /turf/open/shuttle/escapepod,
 /area/bigredv2/caves/secomplex)
 "UJ" = (

@@ -1,3 +1,3 @@
-/obj/machinery/r_n_d/protolathe
+/obj/machinery/rnd/protolathe
 	name = "Protolathe"
 	icon_state = "protolathe"

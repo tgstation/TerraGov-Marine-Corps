@@ -927,7 +927,7 @@
 	},
 /area/magmoor/cave/north)
 "aIw" = (
-/obj/machinery/r_n_d/protolathe,
+/obj/machinery/rnd/protolathe,
 /turf/open/floor/mainship/sterile/purple,
 /area/magmoor/research)
 "aJd" = (
@@ -2493,7 +2493,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/magmoor/compound/north)
 "bJW" = (
-/obj/machinery/r_n_d/destructive_analyzer,
+/obj/machinery/rnd/destructive_analyzer,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -12157,7 +12157,7 @@
 /turf/open/floor/wood,
 /area/magmoor/medical/breakroom)
 "iyA" = (
-/obj/machinery/r_n_d/server,
+/obj/machinery/rnd/server,
 /obj/machinery/alarm,
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/mainship/tcomms,
@@ -27057,7 +27057,7 @@
 	},
 /area/magmoor/cave/south)
 "sQB" = (
-/obj/machinery/r_n_d/server,
+/obj/machinery/rnd/server,
 /turf/open/floor/bcircuit/off,
 /area/magmoor/research/serverroom)
 "sQI" = (
@@ -28152,7 +28152,7 @@
 /turf/open/lavaland/lava/corner,
 /area/magmoor/cave/north)
 "tCM" = (
-/obj/machinery/r_n_d/circuit_imprinter,
+/obj/machinery/rnd/circuit_imprinter,
 /turf/open/floor/mainship/sterile/purple,
 /area/magmoor/research)
 "tCQ" = (
@@ -31334,7 +31334,7 @@
 	},
 /area/magmoor/research)
 "vPb" = (
-/obj/machinery/r_n_d/server,
+/obj/machinery/rnd/server,
 /obj/effect/decal/cleanable/cobweb{
 	dir = 4
 	},

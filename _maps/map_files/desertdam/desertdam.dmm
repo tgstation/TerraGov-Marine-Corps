@@ -4025,7 +4025,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/desert_dam/interior/dam_interior/north_tunnel_entrance)
 "avx" = (
-/obj/machinery/r_n_d/protolathe,
+/obj/machinery/rnd/protolathe,
 /obj/machinery/light,
 /turf/open/floor/prison/darkyellow{
 	dir = 10
@@ -4085,7 +4085,7 @@
 	},
 /area/desert_dam/interior/lab_northeast/east_lab_RND)
 "avL" = (
-/obj/machinery/r_n_d/destructive_analyzer,
+/obj/machinery/rnd/destructive_analyzer,
 /turf/open/floor/prison,
 /area/desert_dam/interior/lab_northeast/east_lab_RND)
 "avM" = (
@@ -4093,7 +4093,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/interior/lab_northeast/east_lab_RND)
 "avN" = (
-/obj/machinery/r_n_d/protolathe,
+/obj/machinery/rnd/protolathe,
 /turf/open/floor/prison,
 /area/desert_dam/interior/lab_northeast/east_lab_RND)
 "avO" = (
@@ -4174,7 +4174,7 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/desert_dam/interior/lab_northeast/east_lab_west_hallway)
 "awe" = (
-/obj/machinery/r_n_d/circuit_imprinter,
+/obj/machinery/rnd/circuit_imprinter,
 /turf/open/floor/prison,
 /area/desert_dam/interior/lab_northeast/east_lab_RND)
 "awg" = (
