@@ -74,4 +74,35 @@
 	AIStatus = AI_OFF
 
 
+/mob/living/simple_animal/hostile/carp
+	name = "swine carp"
+	desc = "A genetic experiment made by NT RnD department."
+	icon_state = "swinecarp"
+	icon_living = "swinecarp"
+	icon_dead = "swinecarp_dead"
+	icon_gib = "swinecarp_gib"
+	speak_chance = 0
+	turns_per_move = 5
+	response_help = "pets"
+	response_disarm = "gently pushes aside"
+	response_harm = "hits"
+	emote_taunt = list("gnashes")
+	taunt_chance = 30
+	speed = 0
+	maxHealth = 100
+	health = 100
+
+	harm_intent_damage = 8
+	obj_damage = 50
+	melee_damage = 15
+	attacktext = "bites"
+	attack_sound = 'sound/voice/oink.ogg'
+	speak_emote = list("oinks")
+
+/mob/living/simple_animal/hostile/carp/franko
+	name = "Franko"
+	desc = "A genetic experiment, resulted in a gluttonous monstrosity, but beloved by the marines."
+	gender = MALE
+	AIStatus = AI_OFF
+
 #undef REGENERATION_DELAY

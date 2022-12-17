@@ -25560,6 +25560,10 @@
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
+"tBy" = (
+/mob/living/simple_animal/hostile/carp/franko,
+/turf/open/floor/carpet,
+/area/mainship/living/pilotbunks)
 "tBT" = (
 /turf/open/ground/river/desertdam/clean/shallow_water_desert_waterway{
 	dir = 4
@@ -59349,7 +59353,7 @@ dBb
 jHF
 xot
 avb
-bhn
+tBy
 bhn
 pOd
 qiQ
