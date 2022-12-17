@@ -1107,6 +1107,29 @@
 		/obj/item/folder/grape = 5,
 	)
 
+/obj/effect/spawner/random/sunglasses
+	name = "sunglasses spawner"
+	icon_state = "random_sunglasses"
+	spawn_random_offset = TRUE
+	spawn_loot_chance = 95
+	loot = list(
+		/obj/item/clothing/glasses/sunglasses/big = 10,
+		/obj/item/clothing/glasses/sunglasses/aviator = 15,
+		/obj/item/clothing/glasses/sunglasses/aviator/yellow = 15,
+		/obj/item/clothing/glasses/sunglasses/big/prescription = 10,
+		/obj/item/clothing/glasses/sunglasses/blindfold = 15,
+		/obj/item/clothing/glasses/sunglasses/fake = 15,
+		/obj/item/clothing/glasses/sunglasses/fake/prescription = 15,
+		/obj/item/clothing/glasses/sunglasses/fake/big = 10,
+		/obj/item/clothing/glasses/sunglasses/sechud = 3,
+	)
+
+
+/obj/effect/spawner/random/prizemecha
+	name = "random toy mecha"
+	icon_state = "random_durand"
+	loot_type_path = /obj/item/toy/prize
+	loot = list()
 
 /obj/effect/spawner/random/insulatedgloves
 	name = "insulated glove spawner"
