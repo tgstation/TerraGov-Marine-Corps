@@ -1,8 +1,0 @@
-author: "Blundir"
-delete-after: True
-changes:
-  - rscadd: "added visually visible unpowered chem machines"
-  - rscadd: "added beaker overlay for liquid dispensers"
-  - soundadd: "added liquid dispensing sound"
-  - imageadd: "added new chem machines, beaker overlay"
-  - imagedel: "deleted old CM chem machines sprites"

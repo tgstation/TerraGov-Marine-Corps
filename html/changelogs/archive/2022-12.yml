@@ -350,3 +350,15 @@
   - rscadd: Typing indicators! Having an IC channel open will show thinking/typing
       icons activity.
   - rscadd: Themes for TGUI Say! There is currently a light mode. More to come.
+2022-12-17:
+  Blundir:
+  - rscadd: added visually visible unpowered chem machines
+  - rscadd: added beaker overlay for liquid dispensers
+  - soundadd: added liquid dispensing sound
+  - imageadd: added new chem machines, beaker overlay
+  - imagedel: deleted old CM chem machines sprites
+  Lewdcifer:
+  - bugfix: SOM SMG belts will now spawn with SMG ammo instead of rifle ammo.
+  grinkgo:
+  - soundadd: Robot footsteps now use the shoe footstep sounds instead of the barefoot
+      sounds
