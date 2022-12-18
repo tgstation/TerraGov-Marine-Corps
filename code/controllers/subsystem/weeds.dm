@@ -56,8 +56,8 @@ SUBSYSTEM_DEF(weeds)
 			return
 		// Adds a bit of jitter to the spawning weeds.
 		addtimer(CALLBACK(src, .proc/create_weed, T, creating[T]), rand(1, 3 SECONDS))
-		if(prob(25) && !locate(/obj/alien/weeds/node) in range(1, T))
-			addtimer(CALLBACK(src, .proc/create_node, T, creating[T]), rand(4, 5 SECONDS))
+		if(prob(33))
+			addtimer(CALLBACK(src, .proc/create_node, T, creating[T]), rand(8, 10 SECONDS))
 		pending -= T
 		spawn_attempts_by_node -= T
 		creating -= T
@@ -114,7 +114,7 @@ SUBSYSTEM_DEF(weeds)
 			node_to_spawn = /obj/alien/weeds/node/sticky
 		if(RESTING_WEED)
 			node_to_spawn = /obj/alien/weeds/node/resting
-	if(!T.is_weedable() || iswallturf(T))
+	if(!T.is_weedable() || iswallturf(T) || (locate(/obj/alien/weeds/node) in range(1, T)))
 		return
 	for (var/obj/O in T)
 		if(O.density)
