@@ -797,7 +797,6 @@
 #include "code\game\objects\machinery\overwatch.dm"
 #include "code\game\objects\machinery\recharger.dm"
 #include "code\game\objects\machinery\rechargestation.dm"
-#include "code\game\objects\machinery\research.dm"
 #include "code\game\objects\machinery\robot_fabricator.dm"
 #include "code\game\objects\machinery\roomba.dm"
 #include "code\game\objects\machinery\science.dm"
