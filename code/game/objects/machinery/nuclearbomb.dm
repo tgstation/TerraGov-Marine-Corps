@@ -215,7 +215,6 @@
 	Time: [has_auth ? "<a href='?src=[REF(src)];time=-10'>--</a> <a href='?src=[REF(src)];time=-1'>-</a> [timeleft] <a href='?src=[REF(src)];time=1'>+</a> <a href='?src=[REF(src)];time=10'>++</a>" : "- - [timeleft] + +"] <br />
 	<br />
 	Safety: [safety ? "On" : "Off"] [has_auth ? "<a href='?src=[REF(src)];safety=1'>Toggle</a>" : "Toggle"] <br />
-	Anchor: [anchored ? "Engaged" : "Off"] [has_auth ? "<a href='?src=[REF(src)];anchor=1'>Toggle</a>" : "Toggle"] <br />
 	<hr />
 	Red Auth. Disk: <a href='?src=[REF(src)];disk=red'>[r_auth ? "++++++++++" : "----------"]</a><br />
 	Green Auth. Disk: <a href='?src=[REF(src)];disk=green'>[g_auth ? "++++++++++" : "----------"]</a><br />
@@ -304,22 +303,6 @@
 				stop_processing()
 			else
 				start_processing()
-		if(href_list["anchor"])
-			if(removal_stage == NUKE_STAGE_BOLTS_REMOVED)
-				anchored = FALSE
-				visible_message(span_warning("\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut."))
-				return
-			if(istype(get_area(loc), /area/shuttle))
-				to_chat(usr, span_warning("This doesn't look like a good spot to anchor the nuke."))
-				return
-
-			anchored = !anchored
-			if(anchored)
-				visible_message(span_warning("With a steely snap, bolts slide out of [src] and anchor it to the flooring."))
-			else
-				visible_message(span_warning("The anchoring bolts slide back into the depths of [src]."))
-				timer_enabled = FALSE
-				stop_processing()
 
 	updateUsrDialog()
 
