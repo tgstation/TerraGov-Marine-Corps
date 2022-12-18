@@ -33,7 +33,7 @@
 		"SMGs" = list(
 			/obj/item/weapon/gun/smg/standard_smg = -1,
 			/obj/item/ammo_magazine/smg/standard_smg = -1,
-			/obj/item/weapon/gun/smg/standard_machinepistol = -1,
+			/obj/item/weapon/gun/smg/standard_machinepistol = 5,
 			/obj/item/ammo_magazine/smg/standard_machinepistol = -1,
 		),
 		"Marksman" = list(
@@ -51,8 +51,8 @@
 		),
 		"Shotgun" = list(
 			/obj/item/weapon/gun/shotgun/pump/t35 = -1,
-			/obj/item/weapon/gun/shotgun/combat/standardmarine = -1,
-			/obj/item/weapon/gun/shotgun/double/marine = -1,
+			/obj/item/weapon/gun/shotgun/combat/standardmarine = 5,
+			/obj/item/weapon/gun/shotgun/double/marine = 5,
 			/obj/item/storage/belt/gun/ts34/full = -1,
 			/obj/item/ammo_magazine/shotgun = -1,
 			/obj/item/ammo_magazine/shotgun/buckshot = -1,
@@ -88,7 +88,7 @@
 			/obj/item/ammo_magazine/pistol/standard_pistol = -1,
 			/obj/item/weapon/gun/pistol/standard_heavypistol = -1,
 			/obj/item/ammo_magazine/pistol/standard_heavypistol = -1,
-			/obj/item/weapon/gun/revolver/standard_revolver = -1,
+			/obj/item/weapon/gun/revolver/standard_revolver = 5,
 			/obj/item/ammo_magazine/revolver/standard_revolver = -1,
 			/obj/item/weapon/gun/pistol/standard_pocketpistol = -1,
 			/obj/item/ammo_magazine/pistol/standard_pocketpistol = -1,
