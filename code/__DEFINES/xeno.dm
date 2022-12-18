@@ -144,3 +144,19 @@ GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
 	} else { \
 		xeno.remove_filter("overheal_vis"); \
 	}
+
+/// Used by the isValidForResinStructure proc.
+/// Simply not allowed by the area to build
+#define ERROR_NOT_ALLOWED "NAL"
+/// No weeds here, but it is weedable
+#define ERROR_NO_WEED "NW"
+/// Area is not weedable
+#define ERROR_CANT_WEED "CW"
+/// Gamemode-fog prevents spawn-building
+#define ERROR_FOG "FG"
+/// Blocked by a xeno
+#define ERROR_BLOCKER "BL"
+/// No adjaecent wall or door tile
+#define ERROR_NO_SUPPORT "NS"
+/// Failed to other blockers such as egg, power plant , coocon , traps
+#define ERROR_CONSTRUCT "CE"

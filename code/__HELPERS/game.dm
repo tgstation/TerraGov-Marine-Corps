@@ -11,23 +11,26 @@
 		return
 	return format_text ? format_text(A.name) : A.name
 
-/proc/IsValidForResinStructure(turf/target, needsSupport = FALSE)
+
+/// Checks all conditions if a spot is valid for construction , will return TRUE
+/proc/IsValidForResinStructure(turf/target, needsSupport = FALSE, mob/builder)
+
 	if(!target || !istype(target))
-		return 0
+		return FALSE
 	var/obj/alien/weeds/alien_weeds = locate() in target
 	if(!target.check_disallow_alien_fortification(null, TRUE))
-		return "Not allowed to build here"
+		return ERROR_NOT_ALLOWED
 	if(!alien_weeds)
-		return "There are no weeds"
+		return ERROR_NO_WEED
 	if(!target.is_weedable())
-		return "This spot can not support weeds"
+		return ERROR_CANT_WEED
 	for(var/obj/effect/forcefield/fog/F in range(1, target))
-		return "The fog prevents building!"
+		return ERROR_FOG
 	for(var/mob/living/carbon/xenomorph/blocker in target)
 		if(blocker.stat != DEAD && !CHECK_BITFIELD(blocker.xeno_caste.caste_flags, CASTE_IS_BUILDER))
-			return "The hulking body of [blocker.name] is occupying all the space"
+			return ERROR_BLOCKER
 	if(!target.check_alien_construction(null, TRUE))
-		return 0
+		return ERROR_CONSTRUCT
 	if(needsSupport)
 		for(var/D in GLOB.cardinals)
 			var/turf/TS = get_step(target,D)
@@ -35,7 +38,7 @@
 				continue
 			if(TS.density || locate(/obj/structure/mineral_door/resin) in TS)
 				return TRUE
-		return "No adjaecent support"
+		return ERROR_NO_SUPPORT
 	return TRUE
 
 
