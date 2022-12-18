@@ -300,7 +300,7 @@
 	return (base_wait + scaling_wait - max(0, (scaling_wait * X.health / X.maxHealth))) * build_resin_modifier
 
 /datum/action/xeno_action/activable/secrete_resin/proc/preshutter_build_resin(turf/T)
-	if(!SSresinshaping.has_building_points(owner))
+	if(!SSresinshaping.get_building_points(owner))
 		owner.balloon_alert(owner, "You have used all your quick-build points! Wait until the marines have landed!")
 		return
 	var/mob/living/carbon/xenomorph/X = owner

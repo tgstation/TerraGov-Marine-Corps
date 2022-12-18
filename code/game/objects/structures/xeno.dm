@@ -117,8 +117,7 @@
 		return FALSE
 
 	if(X.a_intent == INTENT_HARM) //Clear it out on hit; no need to double tap.
-		// No funny spitting and then removing thin spit to get free quick-builds
-		if(src.type == /obj/alien/resin/sticky && (SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD)))
+		if(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD))
 			SSresinshaping.decrement_build_counter(X)
 		X.do_attack_animation(src, ATTACK_EFFECT_CLAW) //SFX
 		playsound(src, "alien_resin_break", 25) //SFX
