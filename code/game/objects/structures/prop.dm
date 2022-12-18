@@ -1858,6 +1858,7 @@
 	icon_state = "broken_computer1"
 	resistance_flags = XENO_DAMAGEABLE
 	density = TRUE
+	max_integrity = 120
 
 /obj/structure/prop/computer/broken/two
 	icon_state = "broken_computer2"
