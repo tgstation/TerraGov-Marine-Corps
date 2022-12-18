@@ -1301,6 +1301,8 @@
 		),
 		"Headwear" = list(
 			/obj/item/clothing/head/slouch = -1,
+			/obj/item/clothing/head/helmet/space/elf/regular = -1,
+			/obj/item/clothing/head/helmet/space/santahat = -1,
 			/obj/item/clothing/head/headband/red = -1,
 			/obj/item/clothing/head/headband/rambo = -1,
 			/obj/item/clothing/head/headband/snake = -1,
@@ -1319,7 +1321,6 @@
 			/obj/item/clothing/head/tgmcberet = -1,
 			/obj/item/clothing/glasses/mgoggles = -1,
 			/obj/item/clothing/glasses/mgoggles/prescription = -1,
-			/obj/item/clothing/head/helmet/space/santahat = -1,
 		),
 		"Masks" = list(
 			/obj/item/clothing/mask/rebreather/scarf = -1,

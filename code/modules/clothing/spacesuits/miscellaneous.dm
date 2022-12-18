@@ -26,7 +26,7 @@
 	flags_inventory = NOPRESSUREDMAGE|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEYES
 	flags_armor_protection = HEAD
-	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
+	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 10, FIRE = 10, ACID = 10)
 	flags_item_map_variant = NONE
 	flags_armor_features = ARMOR_NO_DECAP
 
@@ -35,9 +35,12 @@
 	name = "elf hat"
 	desc = "A slightly floppy hat worn by Santa's workforce, a careful look reveals a tag with the words 'Made on Mars' inside."
 	icon_state = "elfhat"
-	soft_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 15, BIO = 10, FIRE = 10, ACID = 10)
+	soft_armor = list(MELEE = 20, BULLET = 25, LASER = 25, ENERGY = 20, BOMB = 15, BIO = 15, FIRE = 15, ACID = 15)
 	flags_item = NODROP|DELONDROP
 	flags_armor_features = ARMOR_NO_DECAP
+
+/obj/item/clothing/head/helmet/space/elf/regular
+	soft_armor = list(MELEE = 15, BULLET = 10, LASER = 10, ENERGY = 15, BOMB = 15, BIO = 15, FIRE = 10, ACID = 10)
 
 /obj/item/clothing/suit/space/santa
 	name = "Santa's suit"

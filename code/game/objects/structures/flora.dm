@@ -124,13 +124,14 @@
 	var/static/list/took_presents //shared between all xmas trees
 	///meme version of tree that only dispenses guns not presents
 	var/guntree = FALSE
+	resistance_flags = RESIST_ALL
 
 /obj/structure/flora/tree/pine/xmas/presents/Initialize(mapload)
 	. = ..()
 	icon_state = "pinepresents"
 	if(!took_presents)
 		took_presents = list()
-	if(!guntree && prob(1))
+	if(!guntree && prob(3))
 		guntree = TRUE
 		icon_state = "pinepresents_gun"
 		desc = "Reach in and seize your means of freedom!"
@@ -142,7 +143,7 @@
 	if(!user.ckey)
 		return
 	to_chat(user, span_warning("You start rummaging through the pile of presents underneath the tree, trying to locate a gift addressed to you..."))
-	if(!do_after(user, 4 SECONDS))
+	if(!do_after(user, 3 SECONDS))
 		return
 	if(isxeno(user) || prob(1) || HAS_TRAIT(user, TRAIT_CHRISTMAS_GRINCH)) //Santa hates xenos, he also hates really unlucky marines and grinches
 		to_chat(user, span_warning("After a bit of rummaging, you locate a small parcel with your name on it, it splits open to reveal coal."))

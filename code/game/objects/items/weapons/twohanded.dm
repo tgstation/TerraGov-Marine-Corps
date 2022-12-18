@@ -311,7 +311,7 @@
 	desc = "A large rounded piece of candy, this one is thick enough to use as a melee weapon."
 	icon_state = "candycane"
 	item_state = "candycane"
-	force = 45 //five higher damage for lower reach
+	force = 50 //ten higher damage for lower reach
 	sharp = IS_NOT_SHARP_ITEM
 	attack_verb = list("smashed", "beaten", "slammed", "struck", "smashed", "battered", "cracked", "thumped", "festivized", "decorated", "wrapped")
 	reach = 1
@@ -319,7 +319,7 @@
 
 /obj/item/weapon/twohanded/spear/candycane/elf
 	desc = "Too large and hardened to be eaten by children, the elves first resorted to using candy canes as impromptu battering weapons during a union strike in '95 and have never looked back."
-	force = 55
+	force = 60
 	force_wielded = 85
 	reach = 2
 
