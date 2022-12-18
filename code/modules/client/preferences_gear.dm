@@ -344,3 +344,9 @@ GLOBAL_LIST_EMPTY(gear_datums)
 	path = /obj/item/toy/plush/pig
 	cost = 5
 	slot = SLOT_IN_BACKPACK
+
+/datum/gear/t500case
+	display_name = "R-500 bundle"
+	path = /obj/item/storage/box/t500case
+	cost = 3
+	slot = SLOT_IN_BACKPACK

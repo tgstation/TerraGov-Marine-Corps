@@ -795,6 +795,8 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 			. = "huge"
 		if(WEIGHT_CLASS_GIGANTIC)
 			. = "gigantic"
+		if(WEIGHT_CLASS_LARGE) // t500
+			. = "large"
 		else
 			. = ""
 

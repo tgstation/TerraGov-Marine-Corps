@@ -11,6 +11,10 @@ SUBSYSTEM_DEF(ru_items)
 		/obj/item/weapon/gun/revolver/standard_revolver/coltrifle = -1,
 		/obj/item/ammo_magazine/revolver/rifle = -1,
 		/obj/item/ammo_magazine/packet/long_special = -1,
+		/obj/item/ammo_magazine/revolver/t500 = -1,
+		/obj/item/ammo_magazine/packet/t500 = -1,
+		/obj/item/storage/belt/gun/revolver/t500 = -1,
+		/obj/item/storage/box/t500case = 5,
 	)
 
 	var/list/items_val = list(
@@ -645,3 +649,171 @@ SUBSYSTEM_DEF(ru_items)
 /obj/item/clothing/head/tgmcberet/hijab/turban/blue
 	name = "\improper Blue hijab"
 	icon_state = "turban_blue"
+
+//////////////////////////////////////////////////////////////////////////
+/////////////////////////// t500 revolver ////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+/obj/item/weapon/gun/revolver/t500
+	name = "\improper R-500 BF revolver"
+	desc = "The R-500 BF revolver, chambered in .500 Nigro Express. Hard to use, but hits as hard as it’s kicks your hand. This handgun made by BMSS, designed to be deadly, unholy force to stop everything what moves, so in exchange for it, revolver lacking recoil control and have tight cocking system. Because of its specific, handcanon niche, was produced in small numbers. Black & Metzer special attachments system can turn extremely powerful handgun to fullscale rifle, making it a weapon to surpass Metal Gear."
+	icon = 'icons/Marine/t500.dmi'
+	icon_state = "t500"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/BFR_left.dmi',
+		slot_r_hand_str = 'icons/mob/BFR_right.dmi',)
+	item_state = "t500"
+	caliber =  CALIBER_500 //codex
+	max_chamber_items = 5 //codex
+	default_ammo_type = /obj/item/ammo_magazine/revolver/t500
+	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/t500)
+	force = 8
+	actions_types = null
+	attachable_allowed = list(
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/stock/t500stock,
+		/obj/item/attachable/t500barrelshort,
+		/obj/item/attachable/t500barrel,
+	)
+	attachable_offset = list("muzzle_x" = 0, "muzzle_y" = 0,"rail_x" = 0, "rail_y" = 0, "under_x" = 0, "under_y" = 0, "stock_x" = -19, "stock_y" = 0)
+	windup_delay = 0.8 SECONDS
+	windup_sound = 'sound/weapons/guns/fire/t500_start.ogg'
+	fire_sound = 'sound/weapons/guns/fire/t500.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/t500_empty.ogg'
+	fire_animation = "t500_fire"
+	fire_delay = 0.8 SECONDS
+	akimbo_additional_delay = 0.6
+	accuracy_mult_unwielded = 0.85
+	accuracy_mult = 1
+	scatter_unwielded = 5
+	scatter = -1
+	recoil = 2
+	recoil_unwielded = 3
+
+//ammo
+/obj/item/ammo_magazine/revolver/t500
+	name = "\improper R-500 speed loader (.500)"
+	icon_state = "t500"
+	desc = "A R-500 BF revolver speed loader."
+	default_ammo = /datum/ammo/bullet/revolver/t500
+	flags_equip_slot = NONE
+	caliber = CALIBER_500
+	w_class = WEIGHT_CLASS_SMALL
+	max_rounds = 5
+
+/obj/item/ammo_magazine/packet/t500
+	name = "packet of .500 Nigro Express"
+	icon_state = "boxt500"
+	default_ammo = /datum/ammo/bullet/revolver/t500
+	caliber = CALIBER_500
+	current_rounds = 50
+	max_rounds = 50
+	w_class = WEIGHT_CLASS_SMALL
+	used_casings = 5
+
+/datum/ammo/bullet/revolver/t500
+	name = ".500 Nigro Express revolver bullet"
+	handful_icon_state = "nigro"
+	handful_amount = 5
+	damage = 100
+	penetration = 40
+	sundering = 0.5
+
+/datum/ammo/bullet/revolver/t500/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, stagger = 0, slowdown = 0, knockback = 1, shake = 0)
+
+// attachable
+/obj/item/attachable/stock/t500stock
+	name = "R-500 stock"
+	desc = "Cool stock for cool revolver."
+	flags_attach_features = ATTACH_REMOVABLE
+	wield_delay_mod = 0.2 SECONDS
+	delay_mod = -0.4 SECONDS
+	icon = 'icons/Marine/t500.dmi'
+	icon_state = "stock"
+	size_mod = 1
+	accuracy_mod = 0.15
+	recoil_mod = -1
+	recoil_unwielded_mod = 1
+	scatter_mod = -2
+	scatter_unwielded_mod = 5
+	pixel_shift_x = 0
+	pixel_shift_y = 0
+
+/obj/item/attachable/t500barrel
+	name = "R-500 extended barrel"
+	desc = "Cool barrel for cool revolver"
+	slot = ATTACHMENT_SLOT_MUZZLE
+	delay_mod = -0.4 SECONDS
+	icon = 'icons/Marine/t500.dmi'
+	icon_state = "barrel"
+	attach_shell_speed_mod = 1
+	accuracy_mod = 0.15
+	accuracy_unwielded_mod = 0.1
+	scatter_mod = -3
+	scatter_unwielded_mod = 3
+	recoil_unwielded_mod = 1
+	size_mod = 1
+	pixel_shift_x = 0
+	pixel_shift_y = 0
+
+/obj/item/attachable/t500barrelshort
+	name = "R-500 compensator"
+	desc = "Cool compensator for cool revolver"
+	slot = ATTACHMENT_SLOT_MUZZLE
+	delay_mod = -0.2 SECONDS
+	icon = 'icons/Marine/t500.dmi'
+	icon_state = "shortbarrel"
+	scatter_mod = -1
+	recoil_mod = -0.5
+	scatter_unwielded_mod = -3
+	recoil_unwielded_mod = -1
+	size_mod = 0.5
+	pixel_shift_x = 0
+	pixel_shift_y = 0
+
+// storage
+/obj/item/storage/belt/gun/revolver/t500
+	name = "\improper BM500 pattern BF revolver holster rig"
+	desc = "The BM500 is the special modular belt for R-500 BF revolver."
+	icon = 'icons/Marine/t500.dmi'
+	icon_state = "belt"
+	max_w_class = 3.5
+	can_hold = list(
+		/obj/item/weapon/gun/revolver/t500,
+		/obj/item/ammo_magazine/revolver/t500,
+		/obj/item/ammo_magazine/packet/t500,
+	)
+
+/obj/item/storage/box/t500case
+	name = "\improper R-500 special case"
+	desc = "High-tech case made by BMSS for delivery their special weapons. Label on this case says: 'This is the greatest handgun ever made. Five bullets. More than enough to kill anything that moves'."
+	icon = 'icons/Marine/t500.dmi'
+	icon_state = "case"
+	w_class = WEIGHT_CLASS_NORMAL
+	max_w_class = 1
+	storage_slots = 4
+	max_storage_space = 1
+	can_hold = list(
+		/obj/item/attachable/stock/t500stock,
+		/obj/item/attachable/t500barrelshort,
+		/obj/item/attachable/t500barrel,
+		/obj/item/weapon/gun/revolver/t500,
+	)
+	bypass_w_limit = list(
+		/obj/item/attachable/stock/t500stock,
+		/obj/item/attachable/t500barrelshort,
+		/obj/item/attachable/t500barrel,
+		/obj/item/weapon/gun/revolver/t500,
+	)
+
+/obj/item/storage/box/t500case/Initialize()
+	. = ..()
+	new /obj/item/attachable/stock/t500stock(src)
+	new /obj/item/attachable/t500barrelshort(src)
+	new /obj/item/attachable/t500barrel(src)
+	new /obj/item/weapon/gun/revolver/t500(src)
+
+/datum/supply_packs/weapons/t500case
+	name = "R-500 bundle"
+	contains = list(/obj/item/storage/box/t500case)
+	cost = 5
