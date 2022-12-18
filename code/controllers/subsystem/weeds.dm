@@ -56,6 +56,8 @@ SUBSYSTEM_DEF(weeds)
 			return
 		// Adds a bit of jitter to the spawning weeds.
 		addtimer(CALLBACK(src, .proc/create_weed, T, creating[T]), rand(1, 3 SECONDS))
+		if(prob(25) && !locate(/obj/alien/weeds/node) in range(1, T))
+			addtimer(CALLBACK(src, .proc/create_node, T, creating[T]), rand(4, 5 SECONDS))
 		pending -= T
 		spawn_attempts_by_node -= T
 		creating -= T
@@ -100,3 +102,27 @@ SUBSYSTEM_DEF(weeds)
 			swapped = TRUE
 			qdel(O)
 	new weed_to_spawn(T, node, swapped)
+
+/datum/controller/subsystem/weeds/proc/create_node(turf/T, obj/alien/weeds/node/node)
+	if(QDELETED(node))
+		return
+	var/obj/alien/weeds/node/node_to_spawn = /obj/alien/weeds/node
+	switch(node.name)
+		if(WEED)
+			node_to_spawn = /obj/alien/weeds/node
+		if(STICKY_WEED)
+			node_to_spawn = /obj/alien/weeds/node/sticky
+		if(RESTING_WEED)
+			node_to_spawn = /obj/alien/weeds/node/resting
+	if(!T.is_weedable() || iswallturf(T))
+		return
+	for (var/obj/O in T)
+		if(O.density)
+			return
+		else if(istype(O, /obj/alien/weeds))
+			if(istype(O, /obj/alien/weeds/node))
+				return
+			var/obj/alien/weeds/weed = O
+			weed.swapped = TRUE
+			qdel(O)
+	new node_to_spawn(T)
