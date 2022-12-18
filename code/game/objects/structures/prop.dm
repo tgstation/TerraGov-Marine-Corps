@@ -1523,7 +1523,7 @@
 /obj/structure/prop/holidays/stocking/Initialize()
 	. = ..()
 	pixel_y = 26
-	if(prob(25))
+	if(prob(50))
 		numberofpresents = rand(1,3)
 
 /obj/structure/prop/holidays/stocking/attack_hand(mob/living/user)
