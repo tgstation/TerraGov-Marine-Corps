@@ -629,7 +629,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "magnetic"
 	slot = ATTACHMENT_SLOT_RAIL
 	pixel_shift_x = 13
-
+	variants_by_parent_type = list(/obj/item/weapon/gun/revolver/t500 = "no name")
 
 /obj/item/attachable/scope
 	name = "rail scope"
