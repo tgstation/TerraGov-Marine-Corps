@@ -17104,11 +17104,6 @@
 	dir = 8
 	},
 /area/mainship/squads/bravo)
-"ngZ" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/mainship/secure,
-/turf/open/floor/mainship/stripesquare,
-/area/mainship/hallways/starboard_hallway)
 "nhM" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 1;
@@ -71990,9 +71985,9 @@ xZv
 yjZ
 tzu
 tzu
-ngZ
+ceC
 pKy
-ngZ
+ceC
 tkN
 tkN
 tkN
