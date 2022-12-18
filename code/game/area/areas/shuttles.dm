@@ -30,10 +30,10 @@
 	area.flags_area |= MARINE_BASE
 
 /area/shuttle/dropship/alamo
-	name = "Dropship Alamo"
+	name = "Dropship Normandy"
 
 /area/shuttle/dropship/normandy
-	name = "Dropship Normandy"
+	name = "Dropship Alamo"
 
 /area/shuttle/dropship/triumph
 	name = "Dropship Triumph"

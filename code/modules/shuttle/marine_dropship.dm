@@ -102,7 +102,7 @@
 	name = "LZ2: Civ Residence Hangar"
 
 /obj/docking_port/stationary/marine_dropship/hangar/one
-	name = "Shipside 'Alamo' Hangar Pad"
+	name = "Shipside 'Normandy' Hangar Pad"
 	id = SHUTTLE_ALAMO
 	roundstart_template = /datum/map_template/shuttle/dropship_one
 
@@ -112,7 +112,7 @@
 	roundstart_template = /datum/map_template/shuttle/dropship_three
 
 /obj/docking_port/stationary/marine_dropship/hangar/two
-	name = "Shipside 'Normandy' Hangar Pad"
+	name = "Shipside 'Alamo' Hangar Pad"
 	id = SHUTTLE_NORMANDY
 	roundstart_template = /datum/map_template/shuttle/dropship_two
 	dheight = 6
@@ -256,12 +256,12 @@
 	SSshuttle.moveShuttle(id, previous.id, TRUE)
 
 /obj/docking_port/mobile/marine_dropship/one
-	name = "Alamo"
+	name = "Normandy"
 	id = SHUTTLE_ALAMO
 	control_flags = SHUTTLE_MARINE_PRIMARY_DROPSHIP
 
 /obj/docking_port/mobile/marine_dropship/two
-	name = "Normandy"
+	name = "Alamo"
 	id = SHUTTLE_NORMANDY
 	control_flags = SHUTTLE_MARINE_PRIMARY_DROPSHIP
 	callTime = 28 SECONDS //smaller shuttle go whoosh
@@ -428,7 +428,7 @@
 		D.silicon_lock_airlocks(TRUE)
 		to_chat(user, span_warning("We have overriden the shuttle lockdown!"))
 		playsound(user, "alien_roar", 50)
-		priority_announce("Alamo lockdown protocol compromised. Interference preventing remote control", "Dropship Lock Alert")
+		priority_announce("Normandy lockdown protocol compromised. Interference preventing remote control", "Dropship Lock Alert")
 		return FALSE
 	if(D.mode != SHUTTLE_IDLE && D.mode != SHUTTLE_RECHARGING)
 		to_chat(user, span_warning("The bird's mind is currently active. We need to wait until it's more vulnerable..."))
@@ -701,7 +701,7 @@
 		var/confirm = tgui_alert(usr, "Would you like to capture the metal bird?\n THIS WILL END THE ROUND", "Capture the ship?", list( "Yes", "No"))
 		if(confirm != "Yes")
 			return
-		priority_announce("The Alamo has been captured! Losing their main mean of accessing the ground, the marines have no choice but to retreat.", title = "ALAMO CAPTURED")
+		priority_announce("The Normandy has been captured! Losing their main mean of accessing the ground, the marines have no choice but to retreat.", title = "NORMANDY CAPTURED")
 		var/datum/game_mode/infestation/infestation_mode = SSticker.mode
 		infestation_mode.round_stage = INFESTATION_DROPSHIP_CAPTURED_XENOS
 		return
@@ -733,9 +733,9 @@
 
 
 /obj/machinery/computer/shuttle/marine_dropship/one
-	name = "\improper 'Alamo' flight controls"
-	desc = "The flight controls for the 'Alamo' Dropship. Named after the Alamo Mission, stage of the Battle of the Alamo in the United States' state of Texas in the Spring of 1836. The defenders held to the last, encouraging other Texians to rally to the flag."
-	possible_destinations = "lz1;lz2;alamo"
+	name = "\improper 'Normandy' flight controls"
+	desc = "The flight controls for the 'Normandy' Dropship. Named after a department in France, noteworthy for the famous naval invasion of Normandy on the 6th of June 1944, a bloody but decisive victory in World War II and the campaign for the Liberation of France."
+	possible_destinations = "lz1;lz2;normandy"
 
 /obj/machinery/computer/shuttle/marine_dropship/one/Initialize()
 	. = ..()
@@ -745,9 +745,9 @@
 
 /obj/machinery/computer/shuttle/marine_dropship/two
 	name = "\improper 'Normandy' flight controls"
-	desc = "The flight controls for the 'Normandy' Dropship. Named after a department in France, noteworthy for the famous naval invasion of Normandy on the 6th of June 1944, a bloody but decisive victory in World War II and the campaign for the Liberation of France."
+	desc = "The flight controls for the 'Alamo' Dropship. Named after the Alamo Mission, stage of the Battle of the Alamo in the United States' state of Texas in the Spring of 1836. The defenders held to the last, encouraging other Texians to rally to the flag."
 	icon_state = "console2"
-	possible_destinations = "lz1;lz2;alamo;normandy"
+	possible_destinations = "lz1;lz2;normandy;alamo"
 
 /obj/machinery/computer/shuttle/marine_dropship/three
 	name = "\improper 'Triumph' flight controls"
@@ -1352,8 +1352,8 @@
 
 
 /obj/machinery/computer/shuttle/shuttle_control/dropship
-	name = "\improper 'Alamo' dropship console"
-	desc = "The remote controls for the 'Alamo' Dropship. Named after the Alamo Mission, stage of the Battle of the Alamo in the United States' state of Texas in the Spring of 1836. The defenders held to the last, encouraging other Texans to rally to the flag."
+	name = "\improper 'Normandy' dropship console"
+	desc = "The flight controls for the 'Normandy' Dropship. Named after a department in France, noteworthy for the famous naval invasion of Normandy on the 6th of June 1944, a bloody but decisive victory in World War II and the campaign for the Liberation of France."
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "shuttle"
 	resistance_flags = RESIST_ALL
@@ -1364,7 +1364,7 @@
 
 
 /obj/machinery/computer/shuttle/shuttle_control/dropship/two
-	name = "\improper 'Normandy' dropship console"
+	name = "\improper 'Alamo' dropship console"
 	desc = "The remote controls for the 'Normandy' Dropship. Named after a department in France, noteworthy for the famous naval invasion of Normandy on the 6th of June 1944, a bloody but decisive victory in World War II and the campaign for the Liberation of France."
 	shuttleId = SHUTTLE_NORMANDY
 	possible_destinations = "lz1;lz2;alamo;normandy"
@@ -1377,10 +1377,10 @@
 	compatible_control_flags = SHUTTLE_REBEL_PRIMARY_DROPSHIP
 
 /obj/machinery/computer/shuttle/shuttle_control/dropship/loyalist
-	name = "\improper 'Alamo' dropship console"
-	desc = "The remote controls for the 'Alamo' Dropship."
+	name = "\improper 'Normandy' dropship console"
+	desc = "The remote controls for the 'Normandy' Dropship."
 	shuttleId = SHUTTLE_ALAMO
-	possible_destinations = "lz2;alamo"
+	possible_destinations = "lz2;normandy"
 
 /obj/machinery/computer/shuttle/shuttle_control/canterbury
 	name = "\improper 'Canterbury' shuttle console"

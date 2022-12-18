@@ -280,35 +280,35 @@
 	return TRUE
 
 /area/shuttle/drop1/sulaco
-	name = "Dropship Alamo"
+	name = "Dropship Normandy"
 	icon_state = "shuttlered"
 
 /area/shuttle/drop1/LV624
-	name = "Dropship Alamo"
+	name = "Dropship Normandy"
 	icon_state = "shuttle"
 
 /area/shuttle/drop1/Haunted
-	name = "Dropship Alamo"
+	name = "Dropship Normandy"
 	icon_state = "shuttle"
 
 /area/shuttle/drop1/prison
-	name = "Dropship Alamo"
+	name = "Dropship Normandy"
 	icon_state = "shuttle"
 
 /area/shuttle/drop1/BigRed
-	name = "Dropship Alamo"
+	name = "Dropship Normandy"
 	icon_state = "shuttle"
 
 /area/shuttle/drop1/ice_colony
-	name = "Dropship Alamo"
+	name = "Dropship Normandy"
 	icon_state = "shuttle"
 
 /area/shuttle/drop1/transit
-	name = "Dropship Alamo Transit"
+	name = "Dropship Normandy Transit"
 	icon_state = "shuttle2"
 
 /area/shuttle/drop1/lz1
-	name = "Alamo Landing Zone"
+	name = "Normandy Landing Zone"
 	icon_state = "away1"
 	flags_area = NONE
 
@@ -318,35 +318,35 @@
 	return TRUE
 
 /area/shuttle/drop2/sulaco
-	name = "Dropship Normandy"
+	name = "Dropship Alamo"
 	icon_state = "shuttle"
 
 /area/shuttle/drop2/LV624
-	name = "Dropship Normandy"
+	name = "Dropship Alamo"
 	icon_state = "shuttle2"
 
 /area/shuttle/drop2/Haunted
-	name = "Dropship Normandy"
+	name = "Dropship Alamo"
 	icon_state = "shuttle2"
 
 /area/shuttle/drop2/prison
-	name = "Dropship Normandy"
+	name = "Dropship Alamo"
 	icon_state = "shuttle2"
 
 /area/shuttle/drop2/BigRed
-	name = "Dropship Normandy"
+	name = "Dropship Alamo"
 	icon_state = "shuttle2"
 
 /area/shuttle/drop2/ice_colony
-	name = "Dropship Normandy"
+	name = "Dropship Alamo"
 	icon_state = "shuttle2"
 
 /area/shuttle/drop2/transit
-	name = "Dropship Normandy Transit"
+	name = "Dropship Alamo Transit"
 	icon_state = "shuttlered"
 
 /area/shuttle/drop2/lz2
-	name = "Normandy Landing Zone"
+	name = "Normandy Alamo Zone"
 	icon_state = "away2"
 	flags_area = NONE
 

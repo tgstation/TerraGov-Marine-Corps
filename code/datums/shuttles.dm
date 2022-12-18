@@ -106,11 +106,11 @@
 // Shuttles start here:
 /datum/map_template/shuttle/dropship_one
 	shuttle_id = SHUTTLE_ALAMO
-	name = "Alamo"
+	name = "Normandy"
 
 /datum/map_template/shuttle/dropship_two
 	shuttle_id = SHUTTLE_NORMANDY
-	name = "Normandy"
+	name = "Alamo"
 
 /datum/map_template/shuttle/dropship_three
 	shuttle_id = SHUTTLE_TRIUMPH
