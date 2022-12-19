@@ -1,0 +1,4 @@
+author: "collinlunn"
+delete-after: True
+changes:
+  - bugfix: "Heath analyzers are now more clear about what limbs have infections and necrosis."
