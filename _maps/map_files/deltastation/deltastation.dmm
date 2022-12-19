@@ -43659,7 +43659,9 @@
 /turf/open/floor/iron,
 /area/deltastation/asteroidcaves/derelictwest)
 "iPd" = (
-/turf/open/space/basic,
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/structure/cable,
+/turf/open/floor/iron,
 /area/deltastation/hallway/primary/central/aft)
 "iPj" = (
 /obj/effect/turf_decal/stripes/line{
