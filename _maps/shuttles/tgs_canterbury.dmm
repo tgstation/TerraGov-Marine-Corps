@@ -203,7 +203,7 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "aC" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/atmospherics/components/unary/cryo_cell,
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "aD" = (
@@ -402,10 +402,11 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "bw" = (
-/obj/machinery/bodyscanner,
 /obj/machinery/alarm{
 	dir = 4
 	},
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/glass/beaker/cryomix,
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "by" = (
@@ -469,11 +470,12 @@
 /turf/open/floor/mainship/red/full,
 /area/shuttle/canterbury)
 "bG" = (
-/obj/machinery/autodoc,
+/obj/machinery/shower{
+	dir = 4
+	},
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "bH" = (
-/obj/machinery/autodoc_console,
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "bI" = (
@@ -499,15 +501,13 @@
 /turf/open/floor/mainship/red/full,
 /area/shuttle/canterbury)
 "bR" = (
-/obj/machinery/chem_dispenser,
+/obj/machinery/autodoc,
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
 	},
 /area/shuttle/canterbury/medical)
 "bS" = (
-/obj/structure/bed/chair/office/light{
-	dir = 8
-	},
+/obj/machinery/autodoc_console,
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "bT" = (
@@ -515,7 +515,7 @@
 /turf/open/floor/plating/mainship,
 /area/shuttle/canterbury)
 "bU" = (
-/obj/machinery/smartfridge,
+/obj/machinery/chem_dispenser,
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
@@ -535,7 +535,7 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "bZ" = (
-/obj/machinery/chem_master,
+/obj/machinery/bodyscanner,
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
 	},
@@ -545,9 +545,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "cb" = (
-/obj/structure/morgue{
-	dir = 8
-	},
+/obj/machinery/chem_master,
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
@@ -563,12 +561,7 @@
 /turf/open/floor/mainship/red,
 /area/shuttle/canterbury)
 "cd" = (
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/glass/beaker/bluespace,
-/obj/item/reagent_containers/glass/beaker/bluespace{
-	pixel_y = 2;
-	pixel_x = -4
-	},
+/obj/structure/morgue,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 8
 	},
@@ -578,13 +571,10 @@
 /turf/open/floor/mainship/sterile/side,
 /area/shuttle/canterbury/medical)
 "cf" = (
-/obj/structure/closet/bodybag,
 /turf/open/floor/mainship/sterile/side,
 /area/shuttle/canterbury/medical)
 "cg" = (
-/obj/structure/morgue{
-	dir = 8
-	},
+/obj/machinery/smartfridge,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 4
 	},
@@ -822,9 +812,6 @@
 	name = "General Listening Channel";
 	pixel_y = -28
 	},
-/obj/machinery/shower{
-	dir = 4
-	},
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
 	},
@@ -974,10 +961,6 @@
 /obj/machinery/door/airlock/hatch,
 /turf/open/floor/plating/mainship,
 /area/shuttle/canterbury)
-"Gh" = (
-/obj/structure/window/framed/mainship/white/canterbury,
-/turf/open/space/basic,
-/area/shuttle/canterbury/medical)
 "GZ" = (
 /obj/structure/table/reinforced,
 /obj/machinery/reagentgrinder{
@@ -1006,7 +989,13 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/bed/chair/wheelchair,
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/glass/beaker/bluespace{
+	pixel_x = -2
+	},
+/obj/item/reagent_containers/glass/beaker/bluespace{
+	pixel_x = 4
+	},
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
@@ -1016,17 +1005,15 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "Nn" = (
-/obj/structure/window/framed/mainship/hull/canterbury{
-	icon_state = "ship_rwindow1"
-	},
-/turf/open/space/basic,
-/area/shuttle/canterbury/cic)
+/obj/machinery/body_scanconsole,
+/turf/open/floor/mainship/sterile/dark,
+/area/shuttle/canterbury/medical)
 "NW" = (
-/obj/structure/bed/chair/dropship/passenger{
+/obj/structure/bed/chair/office/light{
 	dir = 4
 	},
-/turf/open/floor/mainship/mono,
-/area/shuttle/canterbury)
+/turf/open/floor/mainship/sterile/dark,
+/area/shuttle/canterbury/medical)
 "QF" = (
 /obj/structure/table/gamblingtable,
 /obj/item/flashlight/lamp/green{
@@ -1158,7 +1145,7 @@ ca
 hd
 cJ
 bS
-cJ
+Nn
 ce
 bo
 cm
@@ -1184,7 +1171,7 @@ cJ
 cJ
 cJ
 cJ
-cJ
+NW
 cJ
 cf
 bo
@@ -1238,9 +1225,9 @@ bK
 bK
 bK
 cI
-Gh
-Gh
-Gh
+bK
+bK
+bK
 bo
 an
 "}
@@ -1264,10 +1251,10 @@ bV
 bV
 bV
 bV
-NW
-NW
-NW
-NW
+bV
+bV
+bV
+bV
 cY
 co
 "}
@@ -1355,7 +1342,7 @@ an
 (11,1,1) = {"
 ab
 nf
-Nn
+Zh
 ab
 ab
 cQ
