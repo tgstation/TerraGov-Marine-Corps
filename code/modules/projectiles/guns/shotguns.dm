@@ -131,7 +131,7 @@
 	fire_delay = 20 // Base shotgun fire delay.
 	pixel_shift_x = 14
 	pixel_shift_y = 18
-
+	recoil = 0
 	wield_delay_mod	= 0.2 SECONDS
 
 //-------------------------------------------------------
