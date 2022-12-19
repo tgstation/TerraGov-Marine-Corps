@@ -124,6 +124,8 @@
 			/obj/item/ammo_magazine/flamer_tank/backtank = 4,
 			/obj/item/jetpack_marine = 3,
 			/obj/item/bodybag/tarp = 10,
+			/obj/item/storage/backpack/marine/satchel/scout_cloak = 1,
+			/obj/item/storage/backpack/marine/satchel/scout_cloak/sniper = 1,
 		),
 		"Heavy Weapons" = list(
 			/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
@@ -317,6 +319,8 @@
 			/obj/item/ammo_magazine/flamer_tank/large = 30,
 			/obj/item/ammo_magazine/flamer_tank/backtank = 4,
 			/obj/item/jetpack_marine = 3,
+			/obj/item/storage/backpack/marine/satchel/scout_cloak = 1,
+			/obj/item/storage/backpack/marine/satchel/scout_cloak/sniper = 1,
 		),
 		"Attachments" = list(
 			/obj/item/attachable/bayonet = -1,
@@ -675,6 +679,8 @@
 			/obj/item/ammo_magazine/flamer_tank/large = 30,
 			/obj/item/ammo_magazine/flamer_tank/backtank = 4,
 			/obj/item/jetpack_marine = 3,
+			/obj/item/storage/backpack/marine/satchel/scout_cloak = 1,
+			/obj/item/storage/backpack/marine/satchel/scout_cloak/sniper = 1,
 		),
 		"Attachments" = list(
 			/obj/item/attachable/bayonet = -1,
