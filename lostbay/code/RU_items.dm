@@ -775,7 +775,7 @@ SUBSYSTEM_DEF(ru_items)
 /obj/item/storage/belt/gun/revolver/t500
 	name = "\improper BM500 pattern BF revolver holster rig"
 	desc = "The BM500 is the special modular belt for R-500 BF revolver."
-	icon = 'icons/Marine/t500.dmi'
+	icon = 'icons/Marine/t500_belt.dmi'
 	icon_state = "belt"
 	max_w_class = 3.5
 	can_hold = list(

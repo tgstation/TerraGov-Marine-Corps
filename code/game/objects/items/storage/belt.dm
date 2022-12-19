@@ -1050,7 +1050,11 @@
 	icon_state = "tp44_holster"
 	item_state = "tp44_holster"
 	can_hold = list(
-		/obj/item/weapon/gun/revolver,
+		/obj/item/weapon/gun/revolver/standard_revolver,
+		/obj/item/weapon/gun/revolver/upp,
+		/obj/item/weapon/gun/revolver/small,
+		/obj/item/weapon/gun/revolver/mateba,
+		/obj/item/weapon/gun/revolver/cmb,
 		/obj/item/ammo_magazine/revolver,
 	)
 
