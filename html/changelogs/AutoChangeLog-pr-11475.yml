@@ -1,6 +1,0 @@
-author: "Overdrive659"
-delete-after: True
-changes:
-  - rscadd: "Magmoor Digsite IV Rework"
-  - rscadd: "Code changes to support extended assets used in rework"
-  - rscdel: "Removed old Magmoor version."

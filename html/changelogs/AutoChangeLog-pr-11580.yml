@@ -1,6 +1,0 @@
-author: "Zar000"
-delete-after: True
-changes:
-  - qol: "spiderlings will attack most things now, unlike before"
-  - balance: "buff ?"
-  - bugfix: "spiderlings can now attack objs"

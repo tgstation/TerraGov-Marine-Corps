@@ -267,10 +267,10 @@
 				else
 					log_combat(user, human_caught, "flamed", src)
 
-			if(human_caught.hard_armor.getRating("fire") >= 100)
+			if(human_caught.hard_armor.getRating(FIRE) >= 100)
 				continue
 
-		mob_caught.take_overall_damage(0, rand(burn_level, (burn_level * mob_flame_damage_mod)) * fire_mod, updating_health = TRUE) // Make it so its the amount of heat or twice it for the initial blast.
+		mob_caught.take_overall_damage(rand(burn_level, (burn_level * mob_flame_damage_mod)) * fire_mod, BURN, updating_health = TRUE) // Make it so its the amount of heat or twice it for the initial blast.
 		mob_caught.adjust_fire_stacks(rand(5, (burn_level * mob_flame_damage_mod)))
 		mob_caught.IgniteMob()
 
@@ -542,7 +542,7 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 		for(var/mob/living/C in get_turf(src))
 			C.flamer_fire_act(fire_stacks)
 
-			C.take_overall_damage_armored(fire_damage, BURN, "fire", updating_health = TRUE)
+			C.take_overall_damage(fire_damage, BURN, FIRE, updating_health = TRUE)
 			if(C.IgniteMob())
 				C.visible_message(span_danger("[C] bursts into flames!"), isxeno(C) ? span_xenodanger("You burst into flames!") : span_highdanger("You burst into flames!"))
 
@@ -570,7 +570,7 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 		adjust_fire_stacks(burnlevel) //Make it possible to light them on fire later.
 		IgniteMob()
 	fire_mod *= get_fire_resist()
-	take_overall_damage(0, round(burnlevel*0.5)* fire_mod, updating_health = TRUE)
+	take_overall_damage(round(burnlevel*0.5)* fire_mod, BURN, updating_health = TRUE)
 	to_chat(src, span_danger("You are burned!"))
 
 /obj/flamer_fire/effect_smoke(obj/effect/particle_effect/smoke/S)
@@ -584,8 +584,8 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 		qdel(src)
 
 /mob/living/carbon/human/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
-	if(hard_armor.getRating("fire") >= 100)
-		take_overall_damage_armored(round(burnlevel * 0.2) * fire_mod, BURN, "fire", updating_health = TRUE)
+	if(hard_armor.getRating(FIRE) >= 100)
+		take_overall_damage(round(burnlevel * 0.2) * fire_mod, BURN, FIRE, updating_health = TRUE)
 		return
 	. = ..()
 	if(isxeno(pulledby))

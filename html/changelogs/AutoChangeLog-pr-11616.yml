@@ -1,4 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes:
-  - code_imp: "Purged an additional 1,300 icon_state varedits from our maps, added hard types where appropriate."

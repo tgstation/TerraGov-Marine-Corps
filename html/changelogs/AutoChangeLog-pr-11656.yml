@@ -1,4 +1,0 @@
-author: "XElectricX"
-delete-after: True
-changes:
-  - qol: "Alt-right-click storage items to open them. Does not work if right click opens context menu."

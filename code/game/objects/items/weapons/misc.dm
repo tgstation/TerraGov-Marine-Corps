@@ -95,12 +95,12 @@
 	var/powerused = setting * 30
 	if(powerused >= cell.charge)
 		to_chat(user, span_warning("\The [src]'s cell doesn't have enough power!"))
-		M.apply_damage((force/5), BRUTE)
+		M.apply_damage((force * 0.2), BRUTE, user.zone_selected, MELEE, penetration = src.penetration)
 		playsound(loc, 'sound/weapons/punch1.ogg', 50, TRUE)
 		M.visible_message(span_danger("[user]'s powerfist lets out a dull thunk as they punch [M.name]!"), \
 			span_userdanger("[user] punches you!"))
 		return ..()
-	M.apply_damage(force * setting, BRUTE)
+	M.apply_damage(force * setting, BRUTE, user.zone_selected, MELEE, penetration = src.penetration)
 	M.visible_message(span_danger("[user]'s powerfist shudders as they punch [M.name], flinging them away!"), \
 		span_userdanger("You [user]'s punch flings you backwards!"))
 	playsound(loc, 'sound/weapons/energy_blast.ogg', 50, TRUE)

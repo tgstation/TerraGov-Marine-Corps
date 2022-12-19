@@ -27,8 +27,13 @@
 /obj/item/factory_part/proc/advance_stage()
 	stage++
 	if(length(recipe) < stage)
-		GLOB.round_statistics.req_items_produced[result]++
-		new result(loc)
+		if(islist(result))
+			for(var/production AS in result)
+				GLOB.round_statistics.req_items_produced[production]++
+				new production(loc)
+		else
+			GLOB.round_statistics.req_items_produced[result]++
+			new result(loc)
 		qdel(src)
 		return
 	next_machine = recipe[stage][STEP_NEXT_MACHINE]
@@ -277,9 +282,9 @@ GLOBAL_LIST_INIT(razornade, list(
 
 GLOBAL_LIST_INIT(howitzer_shell, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "cutplate"),
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_FORMER, STEP_ICON_STATE = "hotplate"),
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CONSTRUCTOR, STEP_ICON_STATE = "rockettube"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_DRILLER, STEP_ICON_STATE = "cutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_COMPRESSOR, STEP_ICON_STATE = "barrelplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_GALVANIZER, STEP_ICON_STATE = "rockettube"),
 	))
 /obj/item/factory_part/howitzer_shell_he
 	name = "Howitzer shell"
@@ -316,3 +321,167 @@ GLOBAL_LIST_INIT(howitzer_shell, list(
 /obj/item/factory_part/howitzer_shell_tfoot/Initialize()
 	. = ..()
 	recipe = GLOB.howitzer_shell
+
+GLOBAL_LIST_INIT(swat_mask, list(
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_COMPRESSOR, STEP_ICON_STATE = "cutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_GALVANIZER, STEP_ICON_STATE = "steelingot"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "req_bag4"),
+	))
+
+/obj/item/factory_part/swat_mask
+	name = "SWAT mask"
+	desc = "An unfinished SWAT mask assembly"
+	result = /obj/item/clothing/mask/gas/swat
+
+/obj/item/factory_part/swat_mask/Initialize()
+	. = ..()
+	recipe = GLOB.swat_mask
+
+GLOBAL_LIST_INIT(meds, list(
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_FLATTER, STEP_ICON_STATE = "uncutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_COMPRESSOR, STEP_ICON_STATE = "req_bag3"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_DRILLER, STEP_ICON_STATE = "req_bag1"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_GALVANIZER, STEP_ICON_STATE = "req_bag2"),
+	))
+
+/obj/item/factory_part/med_advpack
+	name = "Advanced First-Aid kit"
+	desc = "An unfinished Advanced First-Aid kit"
+	result = list(
+		/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
+		/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
+		/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
+		/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
+		/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
+		/obj/item/stack/medical/heal_pack/advanced/burn_pack,
+		/obj/item/stack/medical/heal_pack/advanced/burn_pack,
+		/obj/item/stack/medical/heal_pack/advanced/burn_pack,
+		/obj/item/stack/medical/heal_pack/advanced/burn_pack,
+		/obj/item/stack/medical/heal_pack/advanced/burn_pack,
+		/obj/item/stack/medical/splint,
+		/obj/item/stack/medical/splint,
+		/obj/item/stack/medical/splint,
+		/obj/item/stack/medical/splint,
+		/obj/item/stack/medical/splint,
+	)
+
+/obj/item/factory_part/med_advpack/Initialize()
+	. = ..()
+	recipe = GLOB.meds
+
+GLOBAL_LIST_INIT(module, list(
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "cutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_FLATTER, STEP_ICON_STATE = "roundplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_DRILLER, STEP_ICON_STATE = "uncutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "barrelplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_COMPRESSOR, STEP_ICON_STATE = "unfinished_module_top"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_GALVANIZER, STEP_ICON_STATE = "unfinished_module_bottom"),
+	))
+
+/obj/item/factory_part/module_valk
+	name = "Valkyrie Automedical Armor System"
+	desc = "An unfinished Valkyrie Automedical Armor System module"
+	result = /obj/item/armor_module/module/valkyrie_autodoc
+
+/obj/item/factory_part/module_valk/Initialize()
+	. = ..()
+	recipe = GLOB.module
+
+/obj/item/factory_part/module_mimir2
+	name = "Mark 2 Mimir Environmental Resistance System"
+	desc = "An unfinished Mark 2 Mimir Environmental Resistance System module"
+	result = list(
+		/obj/item/armor_module/module/mimir_environment_protection,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
+	)
+
+/obj/item/factory_part/module_mimir2/Initialize()
+	. = ..()
+	recipe = GLOB.module
+
+/obj/item/factory_part/module_tyr2
+	name = "Mark 2 Tyr Armor Reinforcement"
+	desc = "An unfinished Mark 2 Tyr Armor Reinforcement module"
+	result = /obj/item/armor_module/module/tyr_extra_armor
+
+/obj/item/factory_part/module_tyr2/Initialize()
+	. = ..()
+	recipe = GLOB.module
+
+/obj/item/factory_part/module_hlin
+	name = "Hlin Explosive Compensation Module"
+	desc = "An unfinished Hlin Explosive Compensation module"
+	result = /obj/item/armor_module/module/hlin_explosive_armor
+
+/obj/item/factory_part/module_hlin/Initialize()
+	. = ..()
+	recipe = GLOB.module
+
+/obj/item/factory_part/surt
+	name = "Surt Pyrotechnical Insulation System"
+	desc = "An unfinished Surt Pyrotechnical Insulation System module"
+	result = /obj/item/armor_module/module/fire_proof
+
+/obj/item/factory_part/module_surt/Initialize()
+	. = ..()
+	recipe = GLOB.module
+GLOBAL_LIST_INIT(mortar_shell, list(
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "cutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_DRILLER, STEP_ICON_STATE = "hotplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CONSTRUCTOR, STEP_ICON_STATE = "rockettube"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_GALVANIZER, STEP_ICON_STATE = "rockettube"),
+	))
+
+/obj/item/factory_part/mortar_shell_he
+	name = "Mortar shell"
+	desc = "An unfinished High Explosive Mortar shell"
+	result = /obj/item/mortal_shell/he
+
+/obj/item/factory_part/mortar_shell_he/Initialize()
+	. = ..()
+	recipe = GLOB.mortar_shell
+
+/obj/item/factory_part/mortar_shell_incen
+	name = "Mortar shell"
+	desc = "An unfinished Incendiary Mortar shell"
+	result = /obj/item/mortal_shell/incendiary
+
+/obj/item/factory_part/mortar_shell_incen/Initialize()
+	. = ..()
+	recipe = GLOB.mortar_shell
+
+/obj/item/factory_part/mortar_shell_flare
+	name = "Mortar shell"
+	desc = "An unfinished Flare Mortar shell"
+	result = /obj/item/mortal_shell/flare
+
+/obj/item/factory_part/mortar_shell_flare/Initialize()
+	. = ..()
+	recipe = GLOB.mortar_shell
+
+/obj/item/factory_part/mortar_shell_tfoot
+	name = "Mortar shell"
+	desc = "An unfinished Flare Mortar shell"
+	result = /obj/item/mortal_shell/plasmaloss
+
+/obj/item/factory_part/mortar_shell_tfoot/Initialize()
+	. = ..()
+	recipe = GLOB.mortar_shell
+
+GLOBAL_LIST_INIT(mlrs_rocket, list(
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "cutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_DRILLER, STEP_ICON_STATE = "hotplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_COMPRESSOR, STEP_ICON_STATE = "rockettube"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_GALVANIZER, STEP_ICON_STATE = "rockettube"),
+	))
+
+/obj/item/factory_part/mlrs_rocket
+	name = "MLRS rocket"
+	desc = "An unfinished high explosive rocket"
+	result = /obj/item/storage/box/mlrs_rockets
+
+/obj/item/factory_part/mlrs_rockets/Initialize()
+	. = ..()
+	recipe = GLOB.mlrs_rocket

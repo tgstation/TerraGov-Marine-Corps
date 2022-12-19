@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - qol: "Changed APC prop hitboxes to accurate reflect the amount of space they visually take up."

@@ -381,7 +381,7 @@
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
 ///Warns the user when his rage is about to end.
-/datum/action/xeno_action/rage/proc/drain_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
+/datum/action/xeno_action/rage/proc/drain_slash(datum/source, mob/living/target, damage, list/damage_mod, armor_pen)
 	SIGNAL_HANDLER
 	var/mob/living/rager = owner
 	var/brute_damage = rager.getBruteLoss()
@@ -437,23 +437,35 @@
 // ***************************************
 // *********** Vampirism
 // ***************************************
+
+/particles/xeno_slash/vampirism
+	color = "#ff0000"
+	grow = list(-0.2 ,0.5)
+	fade = 10
+	gravity = list(0, -5)
+	velocity = list(1000, 1000)
+	friction = 50
+	lifespan = 10
+	position = generator(GEN_SPHERE, 10, 30, NORMAL_RAND)
+	scale = generator(GEN_VECTOR, list(1, 1), list(0.9, 0.9), NORMAL_RAND)
+
 /datum/action/xeno_action/vampirism
 	name = "Toggle vampirism"
 	action_icon_state = "rage"
 	mechanics_text = "Toggle on to enable boosting on "
 	ability_name = "Vampirism"
-	plasma_cost = 0 //We're limited by cooldowns, not plasma
-	cooldown_timer = 0.5 SECONDS
+	plasma_cost = 0 //We're limited by nothing, rip and tear
+	cooldown_timer = 1 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_VAMPIRISM,
 	)
-	///timer hash for timer to clear last attacked
-	var/clear_timer
-	///int of how stacked we are on leeching
-	var/leech_count
-	///list of mob = timer_key of mobs we are actively leeching
-	var/mob/living/last_leeched
+	/// how long we have to wait before healing again
+	var/heal_delay = 2 SECONDS
+	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
+	var/obj/effect/abstract/particle_holder/particle_holder
+	/// Ref to our particle deletion timer
+	var/timer_ref
 
 /datum/action/xeno_action/vampirism/New(Target)
 	..()
@@ -465,7 +477,6 @@
 	action_icon_state = xeno.vampirism ? "neuroclaws_on" : "neuroclaws_off"
 	button.cut_overlay(visual_references[VREF_MUTABLE_RAV_LEECH])
 	var/mutable_appearance/number = visual_references[VREF_MUTABLE_RAV_LEECH]
-	number.maptext = MAPTEXT("[leech_count]")
 	visual_references[VREF_MUTABLE_RAV_LEECH] = number
 	button.add_overlay(visual_references[VREF_MUTABLE_RAV_LEECH])
 	return ..()
@@ -475,7 +486,6 @@
 	var/mob/living/carbon/xenomorph/xeno = L
 	xeno.vampirism = TRUE
 	RegisterSignal(L, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/on_slash)
-	RegisterSignal(L, COMSIG_XENOMORPH_HEALTH_REGEN, .proc/on_regen)
 
 /datum/action/xeno_action/vampirism/remove_action(mob/living/L)
 	. = ..()
@@ -491,38 +501,20 @@
 		UnregisterSignal(xeno, COMSIG_XENOMORPH_ATTACK_LIVING)
 	to_chat(xeno, span_xenonotice("You will now[xeno.vampirism ? "" : " no longer"] heal from attacking"))
 
-///called on regen, handles regen rate reduction
-/datum/action/xeno_action/vampirism/proc/on_regen(mob/living/carbon/xenomorph/dracula, list/heal_data)
-	SIGNAL_HANDLER
-	if(!leech_count)
-		return
-	//heals 10% extra per leeched
-	var/heal_mod = 1 + (leech_count/10)
-
-	heal_data[1] = (heal_data[1] * heal_mod)
-
 ///Adds the slashed mob to tracked damage mobs
-/datum/action/xeno_action/vampirism/proc/on_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
+/datum/action/xeno_action/vampirism/proc/on_slash(datum/source, mob/living/target, damage, list/damage_mod, armor_pen)
 	SIGNAL_HANDLER
 	if(target.stat == DEAD)
 		return
 	if(!ishuman(target)) // no farming on animals/dead
 		return
-	if(last_leeched == target)
+	if(timeleft(timer_ref) > 0)
 		return
-	addtimer(CALLBACK(src, .proc/end_leech), VAMPIRISM_MOB_DURATION)
-	leech_count++
-	last_leeched = target
-	deltimer(clear_timer)
-	clear_timer = addtimer(CALLBACK(src, .proc/clear_leeched), VAMPIRISM_MOB_DURATION, TIMER_STOPPABLE)
+	var/mob/living/carbon/xenomorph/x = owner
+	x.adjustBruteLoss(-((x.xeno_caste.max_health - x.health) / 4))
+	x.adjustFireLoss(-((x.xeno_caste.max_health - x.health) / 4))
 	update_button_icon()
-
-///Called when the leech effect is supposed to end
-/datum/action/xeno_action/vampirism/proc/end_leech()
-	leech_count--
-	update_button_icon()
-
-///Called when last_leeched mob is deleted
-/datum/action/xeno_action/vampirism/proc/clear_leeched()
-	SIGNAL_HANDLER
-	last_leeched = null
+	particle_holder = new(x, /particles/xeno_slash/vampirism)
+	particle_holder.pixel_y = 18
+	particle_holder.pixel_x = 18
+	timer_ref = QDEL_NULL_IN(src, particle_holder, heal_delay)

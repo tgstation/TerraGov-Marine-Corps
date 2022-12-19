@@ -557,7 +557,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUNTER_POUNCE_SNEAKATTACK_DELAY 30 //3 seconds before we can sneak attack
 #define HANDLE_STEALTH_CHECK 1
 #define HANDLE_SNEAK_ATTACK_CHECK 3
-#define HUNTER_SNEAK_SLASH_ARMOR_PEN 0.8 //1 - this value = the actual penetration
+#define HUNTER_SNEAK_SLASH_ARMOR_PEN 20 //1 - this value = the actual penetration
 #define HUNTER_SNEAK_ATTACK_RUN_DELAY 2 SECONDS
 #define HUNTER_SNEAKATTACK_MAX_MULTIPLIER 2.0
 #define HUNTER_SNEAKATTACK_RUN_REDUCTION 0.2
@@ -590,8 +590,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define RAVAGER_RAGE_MIN_HEALTH_THRESHOLD				0.5 //The maximum % of HP we can have to trigger Rage
 #define RAVAGER_RAGE_SUPER_RAGE_THRESHOLD				0.5 //The minimum amount of Rage Power we need to trigger the bonus Rage effects
 #define RAVAGER_RAGE_ENDURE_INCREASE_PER_SLASH			2 SECONDS //The amount of time each slash during Super Rage increases Endure's duration
-
-#define VAMPIRISM_MOB_DURATION 45 SECONDS
 
 //crusher defines
 #define CRUSHER_STOMP_LOWER_DMG 40

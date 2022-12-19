@@ -611,7 +611,7 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 			span_danger("You avoid [user]'s bite!"), span_hear("You hear jaws snapping shut!"))
 		to_chat(user, span_danger("Your bite misses [victim]!"))
 		return TRUE
-	victim.take_overall_damage(rand(10, 20), updating_health = TRUE)
+	victim.apply_damage(rand(10, 20), BRUTE, "chest", updating_health = TRUE)
 	victim.visible_message(span_danger("[name] bites [victim]!"),
 		span_userdanger("[name] bites you!"), span_hear("You hear a chomp!"))
 	to_chat(user, span_danger("You bite [victim]!"))
@@ -886,30 +886,31 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 		equip_slots |= SLOT_ACCESSORY
 		equip_slots |= SLOT_IN_ACCESSORY
 
+///damage override at the species level, called by /mob/living/proc/apply_damage
+/datum/species/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration, mob/living/carbon/human/victim)
+	var/datum/limb/organ = null
+	if(isorgan(def_zone)) //Got sent a limb datum, convert to a zone define
+		organ = def_zone
+		def_zone = organ.name
 
-/datum/species/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, mob/living/carbon/human/victim)
-	var/hit_percent = (100 - blocked) * 0.01
+	if(!def_zone)
+		def_zone = ran_zone(def_zone)
+	if(!organ)
+		organ = victim.get_limb(check_zone(def_zone))
+	if(!organ)
+		return FALSE
 
-	if(hit_percent <= 0) //total negation
-		return 0
-
-	damage *= CLAMP01(hit_percent) //Percentage reduction
-
-	if(!damage) //Complete negation
-		return 0
+	if(isnum(blocked))
+		damage -= clamp(damage * (blocked - penetration) * 0.01, 0, damage)
+	else
+		damage = victim.modify_by_armor(damage, blocked, penetration, def_zone)
 
 	if(victim.protection_aura)
 		damage = round(damage * ((10 - victim.protection_aura) / 10))
 
-	var/datum/limb/organ = null
-	if(isorgan(def_zone))
-		organ = def_zone
-	else
-		if(!def_zone)
-			def_zone = ran_zone(def_zone)
-		organ = victim.get_limb(check_zone(def_zone))
-	if(!organ)
-		return FALSE
+	if(!damage)
+		return 0
+
 
 	switch(damagetype)
 		if(BRUTE)
