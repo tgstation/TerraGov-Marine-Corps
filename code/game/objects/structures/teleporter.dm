@@ -21,7 +21,7 @@
 	if(!kit.cell)
 		. += "It is currently lacking a power cell."
 	if(kit.linked_teleporter)
-		. += "It is currently linked to another teleporter at [kit.linked_teleporter.loc]"
+		. += "It is currently linked to Teleporter #[kit.linked_teleporter.tele_tag] at [get_area(kit.linked_teleporter)]"
 	else
 		. += "It is not linked to any other teleporter."
 
@@ -29,6 +29,14 @@
 /obj/machinery/deployable/teleporter/Initialize()
 	. = ..()
 	SSminimaps.add_marker(src, z, MINIMAP_FLAG_MARINE, "teleporter")
+
+/obj/machinery/deployable/teleporter/Destroy()
+	var/obj/item/teleporter_kit/kit = internal_item
+
+	if(kit && kit.linked_teleporter)
+		kit.linked_teleporter.linked_teleporter = null
+		QDEL_NULL(kit.cell)
+	return ..()
 
 /obj/machinery/deployable/teleporter/attack_hand(mob/living/user)
 	. = ..()
@@ -152,13 +160,20 @@
 	///The optional cell to power the teleporter if off the grid
 	var/obj/item/cell/cell
 	COOLDOWN_DECLARE(teleport_cooldown)
+	
+	///tag to avoid mixups. Purely for players, not for systems.
+	var/tele_tag
 
 /obj/item/teleporter_kit/Initialize()
 	. = ..()
 	AddElement(/datum/element/deployable_item, /obj/machinery/deployable/teleporter, type, 2 SECONDS)
 	cell = new /obj/item/cell/high(src)
+	tele_tag = rand(1, 999)
+	name = "\improper ASRS Bluespace teleporter #[tele_tag]"
+	
 
 /obj/item/teleporter_kit/Destroy()
+	linked_teleporter.linked_teleporter = null
 	linked_teleporter = null
 	QDEL_NULL(cell)
 	return ..()
@@ -204,5 +219,13 @@
 	var/obj/item/teleporter_kit/teleporter_b = new(loc)
 	teleporter_a.set_linked_teleporter(teleporter_b)
 	teleporter_b.set_linked_teleporter(teleporter_a)
+	var/created_tele_tag = rand(1, 999)
+	var/teleport_name_a = "\improper ASRS Bluespace teleporter #[created_tele_tag]"
+	var/teleport_name_b = "\improper ASRS Bluespace teleporter #[created_tele_tag + 1]"
+
+	teleporter_a.name = teleport_name_a
+	teleporter_b.name = teleport_name_b
+	teleporter_a.tele_tag = created_tele_tag
+	teleporter_b.tele_tag = created_tele_tag + 1
 	qdel(src)
 
