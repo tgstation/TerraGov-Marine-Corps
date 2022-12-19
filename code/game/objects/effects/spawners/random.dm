@@ -1185,6 +1185,27 @@
 	)
 
 
+/obj/effect/spawner/random/assemblies
+	name = "random assembly spawner"
+	icon_state = "random_assembly"
+	loot_subtype_path = /obj/item/assembly
+	loot = list()
+
+/obj/effect/spawner/random/radio
+	name = "radio spawner"
+	icon_state = "random_radio"
+	spawn_loot_chance = 35
+	loot = list(
+		/obj/item/radio/survivor,
+	)
+
+/obj/effect/spawner/random/mineral
+	name = "mineral spawner"
+	icon_state = "random_mineral"
+	spawn_loot_chance = 70
+	loot_subtype_path = /obj/item/stack/sheet/mineral
+	loot = list()
+
 ///STRUCTURE SPAWNERS BELOW THIS LINE
 
 /obj/effect/spawner/random/structure/grille
@@ -1479,8 +1500,16 @@
 		/obj/machinery/portable_atmospherics/canister/oxygen = 1,
 	)
 
-/obj/effect/spawner/random/structure/tank/fuelweighted
+/obj/effect/spawner/random/structure/tank
 	name = "tank spawner"
+	icon_state = "random_watertank"
+	loot = list(
+		/obj/structure/reagent_dispensers/fueltank,
+		/obj/structure/reagent_dispensers/watertank,
+	)
+
+/obj/effect/spawner/random/structure/tank/fuelweighted
+	name = "fuel weighted tank spawner"
 	icon_state = "random_weldtank"
 	loot = list(
 		/obj/structure/reagent_dispensers/fueltank = 8,
@@ -1488,7 +1517,7 @@
 	)
 
 /obj/effect/spawner/random/structure/tank/waterweighted
-	name = "tank spawner"
+	name = "water weighted tank spawner"
 	icon_state = "random_watertank"
 	loot = list(
 		/obj/structure/reagent_dispensers/fueltank = 3,
