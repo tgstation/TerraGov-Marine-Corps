@@ -18,14 +18,13 @@
 /obj/machinery/deployable/teleporter/examine(mob/user)
 	. = ..()
 	var/obj/item/teleporter_kit/kit = internal_item
-	if(!istype(kit))
-		CRASH("A teleporter didn't have an internal item, or it was of the wrong type.")
-	if(kit.linked_teleporter)
-		. += "It is currently linked to [kit.linked_teleporter] at [kit.linked_teleporter.loc]"
-	if(!kit.linked_teleporter)
-		. += "It is not linked to any other teleporter."
 	if(!kit.cell)
 		. += "It is currently lacking a power cell."
+	if(kit.linked_teleporter)
+		. += "It is currently linked to another teleporter at [kit.linked_teleporter.loc]"
+	else
+		. += "It is not linked to any other teleporter."
+
 
 /obj/machinery/deployable/teleporter/Initialize()
 	. = ..()
@@ -164,12 +163,6 @@
 	QDEL_NULL(cell)
 	return ..()
 
-/obj/item/teleporter_kit/examine(mob/user)
-	. = ..()
-	if(linked_teleporter)
-		. += "It is currently linked to [linked_teleporter] at [linked_teleporter.loc]"
-	else
-		. += "It is currently not linked to any other teleporter."
 
 ///Link the two teleporters
 /obj/item/teleporter_kit/proc/set_linked_teleporter(obj/item/teleporter_kit/linked_teleporter)
