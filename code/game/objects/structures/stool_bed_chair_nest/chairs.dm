@@ -210,7 +210,7 @@
 	occupant.apply_effect(6, STUN, blocked)
 	occupant.apply_effect(6, WEAKEN, blocked)
 	occupant.apply_effect(6, STUTTER, blocked)
-	occupant.apply_damage(10, BRUTE, def_zone, blocked)
+	occupant.apply_damage(10, BRUTE, def_zone, MELEE)
 	UPDATEHEALTH(occupant)
 	playsound(src.loc, 'sound/weapons/punch1.ogg', 25, 1)
 	if(isliving(A))
@@ -220,7 +220,7 @@
 		victim.apply_effect(6, STUN, blocked)
 		victim.apply_effect(6, WEAKEN, blocked)
 		victim.apply_effect(6, STUTTER, blocked)
-		victim.apply_damage(10, BRUTE, def_zone, blocked)
+		victim.apply_damage(10, BRUTE, def_zone, MELEE)
 		UPDATEHEALTH(victim)
 	occupant.visible_message(span_danger("[occupant] crashed into \the [A]!"))
 

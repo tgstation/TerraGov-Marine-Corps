@@ -110,8 +110,8 @@
 			var/max_dmg = H.melee_damage + H.skills.getRating("cqc")
 			var/damage = rand(1, max_dmg)
 
-			var/datum/limb/affecting = get_limb(ran_zone(H.zone_selected))
-			var/armor_block = get_soft_armor("melee", affecting)
+			var/target_zone = ran_zone(H.zone_selected)
+			var/armor_block = get_soft_armor("melee", target_zone)
 
 			playsound(loc, attack.attack_sound, 25, TRUE)
 
@@ -123,7 +123,7 @@
 				hit_report += "(KO)"
 
 			damage += attack.damage
-			apply_damage(damage, BRUTE, affecting, armor_block, attack.sharp, attack.edge, updating_health = TRUE)
+			apply_damage(damage, BRUTE, target_zone, MELEE, attack.sharp, attack.edge, updating_health = TRUE)
 
 			hit_report += "(RAW DMG: [damage])"
 
@@ -138,7 +138,7 @@
 
 			H.do_attack_animation(src, ATTACK_EFFECT_DISARM)
 
-			var/datum/limb/affecting = get_limb(ran_zone(H.zone_selected))
+			var/target_zone = ran_zone(H.zone_selected)
 
 			//Accidental gun discharge
 			if(user.skills.getRating("cqc") < SKILL_CQC_MP)
@@ -166,7 +166,7 @@
 			var/randn = rand(1, 100) + skills.getRating("cqc") * 5 - H.skills.getRating("cqc") * 5
 
 			if (randn <= 25)
-				apply_effect(3, WEAKEN, get_soft_armor("melee", affecting))
+				apply_effect(3, WEAKEN, get_soft_armor("melee", target_zone))
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 				visible_message(span_danger("[H] has pushed [src]!"), null, null, 5)
 				log_combat(user, src, "pushed")

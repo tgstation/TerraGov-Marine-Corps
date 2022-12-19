@@ -346,7 +346,7 @@
 		return FALSE
 
 	//calls on the item to return a suitable item to be equipped
-	var/obj/item/found = I.do_quick_equip()
+	var/obj/item/found = I.do_quick_equip(src)
 	if(!found)
 		return FALSE
 	if(CHECK_BITFIELD(found.flags_inventory, NOQUICKEQUIP))

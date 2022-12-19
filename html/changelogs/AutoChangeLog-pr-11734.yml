@@ -1,0 +1,5 @@
+author: "lbnesquik"
+delete-after: True
+changes:
+  - qol: "made AI ghosting harder to do accidentally, look better, and notify marines of the fact"
+  - admin: "made AI ghosting notify admins"

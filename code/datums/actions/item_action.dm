@@ -114,31 +114,3 @@
 /datum/action/item_action/aim_mode/action_activate()
 	var/obj/item/weapon/gun/I = target
 	I.toggle_auto_aim_mode(owner)
-
-
-/datum/action/item_action/toggle/hydro
-	/// This references the TL84 flamer
-	var/obj/item/weapon/gun/flamer/big_flamer/marinestandard/holder_flamer
-	use_obj_appeareance = FALSE
-
-/datum/action/item_action/toggle/hydro/New()
-	. = ..()
-	holder_flamer = holder_item
-	RegisterSignal(holder_flamer, COMSIG_ITEM_HYDRO_CANNON_TOGGLED, .proc/update_toggle_button_icon)
-
-/datum/action/item_action/toggle/hydro/update_button_icon()
-	if(holder_flamer.hydro_active)
-		action_icon_state = "TL_84_Water"
-	else
-		action_icon_state = "TL_84_Flame"
-	set_toggle(holder_flamer.hydro_active)
-	return ..()
-
-///Signal handler for when the hydro cannon is activated
-/datum/action/item_action/toggle/hydro/proc/update_toggle_button_icon()
-	SIGNAL_HANDLER
-	update_button_icon()
-
-/datum/action/item_action/toggle/hydro/Destroy()
-	holder_flamer=null
-	return ..()

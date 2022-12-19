@@ -111,6 +111,8 @@
 	/// Messages currently seen by this client
 	var/list/seen_messages
 
+	/// Does this client have typing indicators enabled?
+	var/typing_indicators = TRUE
 
 	show_popup_menus = TRUE // right click menu no longer shows up
 	control_freak = CONTROL_FREAK_MACROS

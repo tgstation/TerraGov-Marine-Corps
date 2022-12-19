@@ -80,8 +80,8 @@
 			/obj/item/weapon/twohanded/spear/tactical/harvester = -1,
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/shield/riot/marine = 6,
-			/obj/item/weapon/combat_knife/vali_knife = 6,
 			/obj/item/weapon/shield/riot/marine/deployable = 6,
+			/obj/item/weapon/combat_knife/vali_knife = 12,
 		),
 		"Sidearm" = list(
 			/obj/item/weapon/gun/pistol/standard_pistol = -1,
@@ -122,6 +122,7 @@
 			/obj/item/weapon/gun/flamer/big_flamer/marinestandard = 4,
 			/obj/item/ammo_magazine/flamer_tank/large = 16,
 			/obj/item/ammo_magazine/flamer_tank/backtank = 4,
+			/obj/item/ammo_magazine/flamer_tank/water = -1,
 			/obj/item/jetpack_marine = 3,
 			/obj/item/bodybag/tarp = 10,
 		),

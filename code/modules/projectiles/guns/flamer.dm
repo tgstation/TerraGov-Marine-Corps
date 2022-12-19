@@ -111,7 +111,7 @@
 
 ///Makes the sound of the flamer being lit, and applies the overlay.
 /obj/item/weapon/gun/flamer/proc/light_pilot(light)
-	if(CHECK_BITFIELD(flags_flamer_features, FLAMER_IS_LIT) && light)
+	if(!CHECK_BITFIELD(flags_flamer_features, FLAMER_IS_LIT) == !light) //!s so we can check equivalence on truthy, rather than true, values
 		return
 	if(light)
 		ENABLE_BITFIELD(flags_flamer_features, FLAMER_IS_LIT)
@@ -123,15 +123,17 @@
 	if(CHECK_BITFIELD(flags_flamer_features, FLAMER_NO_LIT_OVERLAY))
 		return
 
+	update_icon()
+
+/obj/item/weapon/gun/flamer/update_overlays()
+	. = ..()
+	if(!CHECK_BITFIELD(flags_flamer_features, FLAMER_IS_LIT)|| CHECK_BITFIELD(flags_flamer_features, FLAMER_NO_LIT_OVERLAY))
+		return
+
 	var/image/lit_overlay = image(icon, src, lit_overlay_icon_state)
 	lit_overlay.pixel_x += lit_overlay_offset_x
 	lit_overlay.pixel_y += lit_overlay_offset_y
-
-	if(!CHECK_BITFIELD(flags_flamer_features, FLAMER_IS_LIT))
-		overlays.Cut()
-		update_icon()
-		return
-	overlays += lit_overlay
+	. += lit_overlay
 
 /obj/item/weapon/gun/flamer/able_to_fire(mob/user)
 	. = ..()
@@ -186,7 +188,7 @@
 	//how many resin walls we've penetrated check
 	if(walls_penetrated <= 0)
 		return
-	turfs_to_ignite += path_to_target[iteration]
+	turfs_to_ignite[path_to_target[iteration]] = get_dir(turf_to_check, path_to_target[iteration])
 	if(!burn_list(turfs_to_ignite))
 		return
 	iteration++
@@ -214,7 +216,7 @@
 			//Check to ensure that we dont burn more walls than specified
 			if(walls_penetrated_wide <= 0)
 				break
-			turfs_by_iteration += turf
+			turfs_by_iteration[turf] = get_dir(src, turf)
 
 	burn_list(turfs_by_iteration)
 	iteration++
@@ -234,14 +236,14 @@
 		if(!rounds)
 			light_pilot(FALSE)
 			return FALSE
-		flame_turf(turf_to_ignite, gun_user, burn_time, burn_level, fire_color)
+		flame_turf(turf_to_ignite, gun_user, burn_time, burn_level, fire_color, turfs_to_burn[turf_to_ignite])
 		adjust_current_rounds(chamber_items[current_chamber_position], -1)
 		rounds--
 	gun_user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 	return TRUE
 
 ///Lights the specific turf on fire and processes melting snow or vines and the like.
-/obj/item/weapon/gun/flamer/proc/flame_turf(turf/turf_to_ignite, mob/living/user, burn_time, burn_level, fire_color = "red")
+/obj/item/weapon/gun/flamer/proc/flame_turf(turf/turf_to_ignite, mob/living/user, burn_time, burn_level, fire_color = "red", direction = NORTH)
 	turf_to_ignite.ignite(burn_time, burn_level, fire_color)
 
 	var/fire_mod
@@ -267,10 +269,10 @@
 				else
 					log_combat(user, human_caught, "flamed", src)
 
-			if(human_caught.hard_armor.getRating("fire") >= 100)
+			if(human_caught.hard_armor.getRating(FIRE) >= 100)
 				continue
 
-		mob_caught.take_overall_damage(0, rand(burn_level, (burn_level * mob_flame_damage_mod)) * fire_mod, updating_health = TRUE) // Make it so its the amount of heat or twice it for the initial blast.
+		mob_caught.take_overall_damage(rand(burn_level, (burn_level * mob_flame_damage_mod)) * fire_mod, BURN, updating_health = TRUE) // Make it so its the amount of heat or twice it for the initial blast.
 		mob_caught.adjust_fire_stacks(rand(5, (burn_level * mob_flame_damage_mod)))
 		mob_caught.IgniteMob()
 
@@ -355,74 +357,22 @@
 	icon_state = "tl84"
 	item_state = "tl84"
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_WIELDED_STABLE_FIRING_ONLY
-	attachable_offset = list("rail_x" = 10, "rail_y" = 23, "stock_x" = 16, "stock_y" = 13, "flamer_nozzle_x" = 33, "flamer_nozzle_y" = 20)
+	attachable_offset = list("rail_x" = 10, "rail_y" = 23, "stock_x" = 16, "stock_y" = 13, "flamer_nozzle_x" = 33, "flamer_nozzle_y" = 20, "under_x" = 24, "under_y" = 15)
 	attachable_allowed = list(
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/stock/t84stock,
-		/obj/item/attachable/hydro_cannon,
 		/obj/item/attachable/flamer_nozzle,
 		/obj/item/attachable/flamer_nozzle/wide,
 		/obj/item/attachable/flamer_nozzle/long,
+		/obj/item/weapon/gun/flamer/hydro_cannon,
 	)
-	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle, /obj/item/attachable/stock/t84stock, /obj/item/attachable/hydro_cannon)
-	var/last_use
-	///If we are using the hydro cannon when clicking
-	var/hydro_active = FALSE
-	///How much water the hydro cannon has
-	var/water_count = 0
-
-/obj/item/weapon/gun/flamer/big_flamer/marinestandard/Initialize()
-	. = ..()
-	reagents = new /datum/reagents(FLAMER_WATER)
-	reagents.my_atom = src
-	reagents.add_reagent(/datum/reagent/water, reagents.maximum_volume)
-	water_count = reagents.maximum_volume
-
-/obj/item/weapon/gun/flamer/big_flamer/marinestandard/update_ammo_count()
-	if(hydro_active)
-		rounds = max(water_count, 0)
-		max_rounds = reagents.maximum_volume
-		return
-	return ..()
-
-/obj/item/weapon/gun/flamer/big_flamer/marinestandard/get_ammo()
-	if(hydro_active)
-		ammo_datum_type = /datum/ammo/water
-		return
-	return ..()
-
-/obj/item/weapon/gun/flamer/big_flamer/marinestandard/examine(mob/user)
-	. = ..()
-	to_chat(user, span_notice("Its hydro cannon contains [reagents.get_reagent_amount(/datum/reagent/water)]/[reagents.maximum_volume] units of water!"))
-
-/obj/item/weapon/gun/flamer/big_flamer/marinestandard/unique_action(mob/user)
-	var/obj/item/attachable/hydro_cannon/hydro = LAZYACCESS(attachments_by_slot, ATTACHMENT_SLOT_UNDER)
-	if(!istype(hydro))
-		return FALSE
-	playsound(user, hydro.activation_sound, 15, 1)
-	if (hydro.activate(user))
-		hydro_active = TRUE
-		light_pilot(FALSE)
-	else
-		hydro_active = FALSE
-		if (rounds > 0)
-			light_pilot(TRUE)
-	user.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
-	SEND_SIGNAL(src, COMSIG_ITEM_HYDRO_CANNON_TOGGLED)
-	return TRUE
+	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle, /obj/item/attachable/stock/t84stock, /obj/item/weapon/gun/flamer/hydro_cannon)
 
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/do_fire(obj/projectile/projectile_to_fire)
 	if(!target)
-		return
-	if(hydro_active && (world.time > last_use + 10))
-		INVOKE_ASYNC(src, .proc/extinguish, target, gun_user) //Fire it.
-		water_count -= 7//reagents is not updated in this proc, we need water_count for a updated HUD
-		last_fired = world.time
-		last_use = world.time
-		gun_user.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 		return
 	if(gun_user?.skills.getRating("firearms") < 0)
 		switch(windup_checked)
@@ -442,22 +392,11 @@
 	windup_checked = WEAPON_WINDUP_CHECKED
 	Fire()
 
-/obj/item/weapon/gun/flamer/big_flamer/marinestandard/afterattack(atom/target, mob/user)
-	. = ..()
-	if(istype(target, /obj/structure/reagent_dispensers/watertank) && get_dist(user,target) <= 1)
-		var/obj/o = target
-		o.reagents.trans_to(src, reagents.maximum_volume)
-		water_count = reagents.maximum_volume
-		to_chat(user, span_notice("\The [src]'s hydro cannon is refilled with water."))
-		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
-		user.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
-		return
-
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/wide
 	starting_attachment_types = list(
 		/obj/item/attachable/flamer_nozzle/wide,
 		/obj/item/attachable/stock/t84stock,
-		/obj/item/attachable/hydro_cannon,
+		/obj/item/weapon/gun/flamer/hydro_cannon,
 		/obj/item/attachable/magnetic_harness,
 	)
 
@@ -542,7 +481,7 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 		for(var/mob/living/C in get_turf(src))
 			C.flamer_fire_act(fire_stacks)
 
-			C.take_overall_damage_armored(fire_damage, BURN, "fire", updating_health = TRUE)
+			C.take_overall_damage(fire_damage, BURN, FIRE, updating_health = TRUE)
 			if(C.IgniteMob())
 				C.visible_message(span_danger("[C] bursts into flames!"), isxeno(C) ? span_xenodanger("You burst into flames!") : span_highdanger("You burst into flames!"))
 
@@ -570,7 +509,7 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 		adjust_fire_stacks(burnlevel) //Make it possible to light them on fire later.
 		IgniteMob()
 	fire_mod *= get_fire_resist()
-	take_overall_damage(0, round(burnlevel*0.5)* fire_mod, updating_health = TRUE)
+	take_overall_damage(round(burnlevel*0.5)* fire_mod, BURN, updating_health = TRUE)
 	to_chat(src, span_danger("You are burned!"))
 
 /obj/flamer_fire/effect_smoke(obj/effect/particle_effect/smoke/S)
@@ -584,8 +523,8 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 		qdel(src)
 
 /mob/living/carbon/human/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
-	if(hard_armor.getRating("fire") >= 100)
-		take_overall_damage_armored(round(burnlevel * 0.2) * fire_mod, BURN, "fire", updating_health = TRUE)
+	if(hard_armor.getRating(FIRE) >= 100)
+		take_overall_damage(round(burnlevel * 0.2) * fire_mod, BURN, FIRE, updating_health = TRUE)
 		return
 	. = ..()
 	if(isxeno(pulledby))
@@ -686,5 +625,45 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 	to_chat(src, span_xenodanger("The heat of the fire roars in our veins! KILL! CHARGE! DESTROY!"))
 	if(prob(70))
 		emote("roar")
+
+/obj/item/weapon/gun/flamer/hydro_cannon
+	name = "underslung hydrocannon"
+	desc = "For the quenching of unfortunate mistakes."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "hydrocannon"
+
+	fire_delay = 1.2 SECONDS
+	fire_sound = 'sound/effects/extinguish.ogg'
+	attachable_offset = list("flamer_nozzle_x" = 20, "flamer_nozzle_y" = 27)
+	attachable_allowed = list(
+		/obj/item/attachable/flamer_nozzle,
+		/obj/item/attachable/flamer_nozzle/wide,
+		/obj/item/attachable/flamer_nozzle/long,
+	)
+	flame_max_range = 7
+
+	ammo_datum_type = /datum/ammo/water
+	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/water
+	allowed_ammo_types = list( /obj/item/ammo_magazine/flamer_tank/water)
+
+	slot = ATTACHMENT_SLOT_UNDER
+	attach_delay = 3 SECONDS
+	detach_delay = 3 SECONDS
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
+	flags_flamer_features = FLAMER_NO_LIT_OVERLAY
+
+	flame_max_wall_pen = 1 //Actually means we'll hit one wall and then stop
+	flame_max_wall_pen_wide = 1
+
+/obj/item/weapon/gun/flamer/hydro_cannon/flame_turf(turf/turf_to_ignite, mob/living/user, burn_time, burn_level, fire_color = "red", direction = NORTH)
+	var/obj/flamer_fire/current_fire = locate(/obj/flamer_fire) in turf_to_ignite
+	if(current_fire)
+		qdel(current_fire)
+	for(var/mob/living/mob_caught in turf_to_ignite)
+		mob_caught.ExtinguishMob()
+	new /obj/effect/temp_visual/dir_setting/water_splash(turf_to_ignite, direction)
+
+/obj/item/weapon/gun/flamer/hydro_cannon/light_pilot(light)
+	return
 
 #undef FLAMER_WATER

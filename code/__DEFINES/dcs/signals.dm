@@ -573,6 +573,9 @@
 #define COMSIG_KB_CLIENT_GETHELP_DOWN "keybinding_client_gethelp_down"
 #define COMSIG_KB_CLIENT_SCREENSHOT_DOWN "keybinding_client_screenshot_down"
 #define COMSIG_KB_CLIENT_MINIMALHUD_DOWN "keybinding_client_minimalhud_down"
+#define COMSIG_KB_CLIENT_SAY_DOWN "keybinding_client_say_down"
+#define COMSIG_KB_CLIENT_RADIO_DOWN "keybinding_client_radio_down"
+#define COMSIG_KB_CLIENT_ME_DOWN "keybinding_client_me_down"
 #define COMSIG_KB_CLIENT_OOC_DOWN "keybinding_client_ooc_down"
 #define COMSIG_KB_CLIENT_XOOC_DOWN "keybinding_client_xooc_down"
 #define COMSIG_KB_CLIENT_MOOC_DOWN "keybinding_client_mooc_down"
@@ -586,8 +589,6 @@
 #define COMSIG_KB_MOB_CYCLEINTENTRIGHT_DOWN "keybinding_mob_cycleintentright_down"
 #define COMSIG_KB_MOB_CYCLEINTENTLEFT_DOWN "keybinding_mob_cycleintentleft_down"
 #define COMSIG_KB_MOB_SWAPHANDS_DOWN "keybinding_mob_swaphands_down"
-#define COMSIG_KB_MOB_SAY_DOWN "keybinding_mob_say_down"
-#define COMSIG_KB_MOB_ME_DOWN "keybinding_mob_me_down"
 #define COMSIG_KB_MOB_ACTIVATEINHAND_DOWN "keybinding_mob_activateinhand_down"
 #define COMSIG_KB_MOB_DROPITEM_DOWN "keybinding_mob_dropitem_down"
 #define COMSIG_KB_MOB_EXAMINE_DOWN "keybinding_mob_examine_down"
@@ -769,6 +770,10 @@
 #define COMSIG_XENOABILITY_SPIDER_SWARM "xenoability_spider_swarm"
 #define COMSIG_XENOABILITY_ATTACH_SPIDERLINGS "xenoability_attach_spiderlings"
 #define COMSIG_XENOABILITY_WEB_HOOK "xenoability_web_hook"
+
+#define COMSIG_XENOABILITY_PSYCHIC_SHIELD "xenoability_psychic_shield"
+#define COMSIG_XENOABILITY_PSYCHIC_BLAST "xenoability_psychic_blast"
+#define COMSIG_XENOABILITY_PSYCHIC_CRUSH "xenoability_psychic_crush"
 
 // throw parry signals
 #define COMSIG_THROW_PARRY_CHECK "throw_parry_check"

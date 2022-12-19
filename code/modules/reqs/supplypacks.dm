@@ -700,13 +700,13 @@ EXPLOSIVES
 	cost = 60
 
 /datum/supply_packs/explosives/howitzer_ammo_he
-	name = "MG-100Y howitzer HE shell (x2)"
-	contains = list(/obj/item/mortal_shell/howitzer/he, /obj/item/mortal_shell/howitzer/he)
+	name = "MG-100Y howitzer HE shell"
+	contains = list(/obj/item/mortal_shell/howitzer/he)
 	cost = 4
 
 /datum/supply_packs/explosives/howitzer_ammo_incend
-	name = "MG-100Y howitzer incendiary shell (x2)"
-	contains = list(/obj/item/mortal_shell/howitzer/incendiary, /obj/item/mortal_shell/howitzer/incendiary)
+	name = "MG-100Y howitzer incendiary shell"
+	contains = list(/obj/item/mortal_shell/howitzer/incendiary)
 	cost = 4
 
 /datum/supply_packs/explosives/mortar_ammo_wp
@@ -1679,7 +1679,7 @@ FACTORY
 
 /datum/supply_packs/factory/compressor
 	name = "Industrial compressor"
-	contains = list(/obj/machinery/factory/driller)
+	contains = list(/obj/machinery/factory/compressor)
 	cost = 5
 
 /datum/supply_packs/factory/unboxer
@@ -1806,3 +1806,62 @@ FACTORY
 	name = "Howitzer Tanglefoot shell assembly refill"
 	contains = list(/obj/item/factory_refill/howitzer_shell_tfoot_refill)
 	cost = 100
+
+/datum/supply_packs/factory/swat_mask_refill
+	name = "SWAT mask assembly refill"
+	contains = list(/obj/item/factory_refill/swat_mask_refill)
+	cost = 50
+
+/datum/supply_packs/factory/med_advpack
+	name = "Advanced medical pack assembly refill"
+	contains = list(/obj/item/factory_refill/med_advpack_refill)
+	cost = 50
+
+/datum/supply_packs/factory/module_valk_refill
+	name = "Valkyrie Automedical Armor System assembly refill"
+	contains = list(/obj/item/factory_refill/module_valk_refill)
+	cost = 60
+
+/datum/supply_packs/factory/module_mimir2_refill
+	name = "Mark 2 Mimir Environmental Resistance System assembly refill"
+	contains = list(/obj/item/factory_refill/module_mimir2_refill)
+	cost = 60
+
+/datum/supply_packs/factory/module_tyr2_refill
+	name = "Mark 2 Tyr Armor Reinforcement assembly refill"
+	contains = list(/obj/item/factory_refill/module_tyr2_refill)
+	cost = 60
+
+/datum/supply_packs/factory/module_hlin_refill
+	name = "Hlin Explosive Compensation Module assembly refill"
+	contains = list(/obj/item/factory_refill/module_hlin_refill)
+	cost = 60
+
+/datum/supply_packs/factory/module_surt_refill
+	name = "Surt Pyrotechnical Insulation System assembly refill"
+	contains = list(/obj/item/factory_refill/module_surt_refill)
+	cost = 60
+/datum/supply_packs/factory/mortar_shell_he_refill
+	name = "Mortar High Explosive shell assembly refill"
+	contains = list(/obj/item/factory_refill/mortar_shell_he_refill)
+	cost = 15
+
+/datum/supply_packs/factory/mortar_shell_incen_refill
+	name = "Mortar Incendiary shell assembly refill"
+	contains = list(/obj/item/factory_refill/mortar_shell_incen_refill)
+	cost = 15
+
+/datum/supply_packs/factory/mortar_shell_tfoot_refill
+	name = "Mortar Tanglefoot Gas shell assembly refill"
+	contains = list(/obj/item/factory_refill/mortar_shell_tfoot_refill)
+	cost = 20
+
+/datum/supply_packs/factory/mortar_shell_flare_refill
+	name = "Mortar High Explosive shell assembly refill"
+	contains = list(/obj/item/factory_refill/mortar_shell_flare_refill)
+	cost = 15
+
+/datum/supply_packs/factory/mlrs_rocket_refill
+	name = "MLRS High Explosive rocket assembly refill"
+	contains = list(/obj/item/factory_refill/mlrs_rocket_refill)
+	cost = 24
