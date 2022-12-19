@@ -885,6 +885,9 @@
 /obj/machinery/chem_dispenser/beer{
 	pixel_y = 2
 	},
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/plating/mainship,
 /area/shuttle/canterbury)
 "qu" = (
