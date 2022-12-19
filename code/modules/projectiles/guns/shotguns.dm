@@ -252,6 +252,7 @@
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/stock/shotgun,
+		/obj/item/attachable/motiondetector,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
@@ -493,6 +494,7 @@
 		/obj/item/attachable/scope,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bayonet,
+		/obj/item/attachable/motiondetector,
 	)
 	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 20, "stock_y" = 14)
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
@@ -587,6 +589,7 @@
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/motiondetector,
 	)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 19, "under_x" = 27, "under_y" = 16, "stock_x" = 0, "stock_y" = 0)
 
@@ -676,6 +679,7 @@
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
+		/obj/item/attachable/motiondetector,
 	)
 
 	attachable_offset = list("muzzle_x" = 40, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 23, "under_x" = 29, "under_y" = 12, "stock_x" = 13, "stock_y" = 15)

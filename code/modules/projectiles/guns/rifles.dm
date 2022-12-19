@@ -350,6 +350,7 @@
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/motiondetector,
 		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
@@ -399,6 +400,7 @@
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/motiondetector,
 		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
@@ -451,6 +453,7 @@
 		/obj/item/attachable/scope,
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/stock/irremoveable/m41a,
+		/obj/item/attachable/motiondetector,
 		/obj/item/weapon/gun/grenade_launcher/underslung/invisible,
 		/obj/item/attachable/shoulder_mount,
 	)
@@ -492,6 +495,7 @@
 		/obj/item/attachable/stock/mpi_km,
 		/obj/item/attachable/shoulder_mount,
 		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/motiondetector,
 		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
@@ -570,6 +574,7 @@
 		/obj/item/attachable/m16sight,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/motiondetector,
 		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
@@ -639,6 +644,7 @@
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/motiondetector,
 		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
@@ -707,6 +713,7 @@
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/motiondetector,
 		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
@@ -826,6 +833,7 @@
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/motiondetector,
 		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
@@ -903,6 +911,7 @@
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/motiondetector,
 		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
@@ -944,6 +953,8 @@
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/motiondetector,
+
 		/obj/item/weapon/gun/flamer/mini_flamer/unremovable,
 	)
 	starting_attachment_types = list(/obj/item/weapon/gun/flamer/mini_flamer/unremovable)
@@ -1394,6 +1405,7 @@
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/motiondetector,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
@@ -1454,6 +1466,7 @@
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/motiondetector,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
