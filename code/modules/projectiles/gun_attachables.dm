@@ -307,14 +307,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	else
 		to_chat(user, span_warning("[G] must be in our hands to do this."))
 
-/obj/item/attachable/hydro_cannon/ui_action_click(mob/living/user, datum/action/item_action/action, obj/item/weapon/gun/G)
-	if(G == user.get_active_held_item() || G == user.get_inactive_held_item() || CHECK_BITFIELD(G.flags_item, IS_DEPLOYED))
-		G.do_unique_action(user)
-		return
-
-	if(activate(user)) //success
-		playsound(user, activation_sound, 15, 1)
-
 ///Called when the attachment is activated.
 /obj/item/attachable/proc/activate(mob/user, turn_off) //This is for activating stuff like flamethrowers, or switching weapon modes, or flashlights.
 	return TRUE
@@ -1265,31 +1257,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	scatter_mod = 3
 	accuracy_unwielded_mod = -0.20
 	scatter_unwielded_mod = 5
-
-/obj/item/attachable/hydro_cannon
-	name = "FL-84 Hydro Cannon"
-	desc = "An integrated component of the FL-84 flamethrower, the hydro cannon fires high pressure sprays of water; mainly to extinguish any wayward allies or unintended collateral damage."
-	icon_state = ""
-	slot = ATTACHMENT_SLOT_UNDER
-	flags_attach_features = GUN_ALLOW_SYNTHETIC
-	attachment_action_type = /datum/action/item_action/toggle/hydro
-	var/is_active = FALSE
-
-/obj/item/attachable/hydro_cannon/activate(attached_item, mob/living/user, turn_off)
-	if(is_active)
-		if(user)
-			to_chat(user, span_notice("You are no longer using [src]."))
-		is_active = FALSE
-		. = FALSE
-	else
-		if(user)
-			to_chat(user, span_notice("You are now using [src]."))
-		is_active = TRUE
-		. = TRUE
-	for(var/datum/action/item_action/action AS in master_gun.actions)
-		action.update_button_icon()
-
-	update_icon()
 
 /obj/item/attachable/buildasentry
 	name = "\improper Build-A-Sentry Attachment System"

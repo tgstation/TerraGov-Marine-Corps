@@ -234,3 +234,8 @@
 	timerid = QDEL_IN(src, 0.5 * radius)
 	transform = matrix().Scale(32 / 1024, 32 / 1024)
 	animate(src, time = 1/2 * radius, transform=matrix().Scale((32 / 1024) * radius * 1.5, (32 / 1024) * radius * 1.5))
+
+/obj/effect/temp_visual/dir_setting/water_splash
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "extinguish"
+	duration = 0.5 SECONDS

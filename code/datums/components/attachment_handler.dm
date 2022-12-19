@@ -99,7 +99,7 @@
 	slots[slot] = attachment
 	attachment_data_by_slot[slot] = attachment_data
 
-	RegisterSignal(attachment, COMSIG_ATOM_UPDATE_ICON, .proc/update_parent_overlay)
+	RegisterSignal(attachment, COMSIG_ATOM_UPDATE_OVERLAYS, .proc/update_parent_overlay)
 
 	var/obj/parent_obj = parent
 	///The gun has another gun attached to it
@@ -260,7 +260,7 @@
 	slots[attachment_data[SLOT]] = null //Sets the slot the attachment is being removed from to null.
 	attachment_data_by_slot[attachment_data[SLOT]] = null
 	on_detach?.Invoke(attachment, user)
-	UnregisterSignal(attachment, COMSIG_ATOM_UPDATE_ICON)
+	UnregisterSignal(attachment, COMSIG_ATOM_UPDATE_OVERLAYS)
 	update_parent_overlay()
 
 	if(!user)
