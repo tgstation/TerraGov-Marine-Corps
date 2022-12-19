@@ -296,6 +296,10 @@
 		RES_TIER_RARE = 50,
 	)
 
+/datum/design/research
+	build_type = PROTOLATHE
+	construction_time = 100
+
 ///
 ///Items designed to be products of research
 ///It isn't required for a product of research to be subtype of these
