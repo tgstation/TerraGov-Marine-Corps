@@ -1,16 +1,16 @@
-export const tabs = ["Mecha Assembly", "Weapons"];
-export const equipTabs = ["Weapons", "Power", "Armor", "Utility"];
+export const tabs = ['Mecha Assembly', 'Weapons'];
+export const equipTabs = ['Weapons', 'Power', 'Armor', 'Utility'];
 
 export const partdefinetofluff = {
-  CHEST: "Torso",
-  HEAD: "Head",
-  L_ARM: "Left Arm",
-  R_ARM: "Right arm",
-  LEG: "Legs",
+  CHEST: 'Torso',
+  HEAD: 'Head',
+  L_ARM: 'Left Arm',
+  R_ARM: 'Right arm',
+  LEG: 'Legs',
 };
-export const MECHA_UTILITY = "mecha_utility";
-export const MECHA_POWER = "mecha_power";
-export const MECHA_ARMOR = "mecha_armor";
+export const MECHA_UTILITY = 'mecha_utility';
+export const MECHA_POWER = 'mecha_power';
+export const MECHA_ARMOR = 'mecha_armor';
 
 export type MechVendData = {
   mech_view: string;
