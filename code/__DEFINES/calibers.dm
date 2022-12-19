@@ -69,6 +69,7 @@
 // --- Special ---
 #define CALIBER_FUEL "Fuel"
 #define CALIBER_FUEL_THICK "UT-Napthal Fuel"
+#define CALIBER_WATER "Water"
 #define CALIBER_10X28 "10x28mm" //Sentry, OG Smartgun and SR-26 Sniper?
 #define CALIBER_86 "86mm" //MBT Main Cannon
 #define CALIBER_PEPPERBALL "SAN Ball " //Pepperball gun
