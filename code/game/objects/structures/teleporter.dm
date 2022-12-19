@@ -179,6 +179,25 @@
 		CRASH("A teleporter was linked with itself!")
 	src.linked_teleporter = linked_teleporter
 
+/obj/item/teleporter_kit/attackby(obj/item/I, mob/user, params)
+	if(!ishuman(user))
+		return FALSE
+	if(istype(I, /obj/item/teleporter_kit))
+		var/obj/item/teleporter_kit/gadget = I
+		if(src.linked_teleporter)
+			to_chat(user , span_warning("The teleporter is already linked with another!"))
+			return
+		if(linked_teleporter == src)
+			to_chat(user , span_warning("You can't link the teleporter with itself!"))
+			return
+		src.linked_teleporter = linked_teleporter
+		to_chat(user , span_notice("You link both teleporters to each others."))
+
+		src.set_linked_teleporter(gadget)
+		gadget.set_linked_teleporter(src)
+		return
+	return
+
 /obj/item/teleporter_kit/attack_self(mob/user)
 	do_unique_action(user)
 
