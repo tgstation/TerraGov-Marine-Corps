@@ -1,4 +1,0 @@
-author: "novaepee"
-delete-after: True
-changes:
-  - rscdel: "Remove multiple 1 tile chokepoints in Gelida"
