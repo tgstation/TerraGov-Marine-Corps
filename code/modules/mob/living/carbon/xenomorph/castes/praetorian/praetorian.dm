@@ -13,4 +13,5 @@
 	drag_delay = 6 //pulling a big dead xeno is hard
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_ZERO
+	bubble_icon = "alienroyal"
 
