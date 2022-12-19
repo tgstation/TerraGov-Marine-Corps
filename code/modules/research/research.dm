@@ -47,8 +47,6 @@
 			),
 			RES_TIER_UNCOMMON = list(
 				/obj/item/research_product/money/uncommon,
-				/obj/item/implanter/blade,
-				/obj/item/attachable/shoulder_mount,
 			),
 			RES_TIER_RARE = list(
 				/obj/item/research_product/money/rare,
@@ -56,20 +54,18 @@
 		),
 		RES_XENO = list(
 			RES_TIER_BASIC = list(
-				/obj/item/research_product/money/basic,
-				/obj/item/research_product/money/common,
+				/obj/item/research_product/psionic/basic,
+				/obj/item/research_product/psionic/common,
 			),
 			RES_TIER_COMMON = list(
-				/obj/item/research_product/money/uncommon,
+				/obj/item/research_product/psionic/common,
+				/obj/item/research_product/psionic/uncommon,
 			),
 			RES_TIER_UNCOMMON = list(
-				/obj/item/research_product/money/uncommon,
-				/obj/item/implanter/chem/blood,
-				/obj/item/attachable/shoulder_mount,
+				/obj/item/research_product/psionic/uncommon,
 			),
 			RES_TIER_RARE = list(
-				/obj/item/research_product/money/rare,
-				/obj/item/implanter/cloak,
+				/obj/item/research_product/psionic/rare,
 			),
 		),
 	)
@@ -296,10 +292,6 @@
 		RES_TIER_RARE = 50,
 	)
 
-/datum/design/research
-	build_type = PROTOLATHE
-	construction_time = 100
-
 ///
 ///Items designed to be products of research
 ///It isn't required for a product of research to be subtype of these
@@ -321,8 +313,8 @@
 	. += span_notice("Rewards export points, as the name suggests.")
 
 /obj/item/research_product/money/basic
-	name = "credits - 5"
-	export_points = 5
+	name = "credits - 10"
+	export_points = 10
 
 /obj/item/research_product/money/common
 	name = "credits - 15"
@@ -335,3 +327,27 @@
 /obj/item/research_product/money/rare
 	name = "credits - 80"
 	export_points = 80
+
+/obj/item/research_product/psionic
+	icon_state = "chitin-armor"
+	var/psi
+
+/obj/item/research_product/psionic/basic
+	name = "weak psi core"
+	export_points = 5
+	psi = 5
+
+/obj/item/research_product/psionic/common
+	name = "psi core"
+	export_points = 15
+	psi = 10
+
+/obj/item/research_product/psionic/uncommon
+	name = "charged psi core"
+	export_points = 20
+	psi = 20
+
+/obj/item/research_product/psionic/rare
+	name = "exalted psi core"
+	export_points = 25
+	psi = 40
