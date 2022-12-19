@@ -154,7 +154,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		/obj/item/card/id/syndicate_command,
 		/obj/item/clothing/head/helmet/space/syndicate/black/red,
 		/obj/item/clothing/suit/space/syndicate/black/red,
-		/obj/item/clothing/suit/xenosm
+		/obj/item/clothing/suit/xenos,
 		/obj/item/reagent_containers/food/snacks/grown/ambrosiadeus,
 		/obj/item/reagent_containers/food/snacks/grown/ambrosiavulgaris,
 		/obj/item/tool/shovel/etool,
