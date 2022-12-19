@@ -518,12 +518,6 @@
 		return
 	return (sunder * -0.01) + 1
 
-/mob/living/carbon/xenomorph/get_sunder_cap()
-	. = ..()
-	if(.)
-		return
-	return (sunder_hardcap * -0.01) + 1
-
 /mob/living/carbon/xenomorph/adjust_stagger(amount)
 	if(is_charging >= CHARGE_ON) //If we're charging we don't accumulate more stagger stacks.
 		return FALSE

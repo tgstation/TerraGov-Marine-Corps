@@ -1406,11 +1406,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 /mob/living/proc/get_sunder()
 	return 0
 
-///returns sunder cap value for xenos, in range from 1 to 0
-/mob/living/proc/get_sunder_cap()
-	return 0
-
-
 #undef BULLET_FEEDBACK_PEN
 #undef BULLET_FEEDBACK_SOAK
 #undef BULLET_FEEDBACK_FIRE

@@ -399,7 +399,4 @@
 	///Are we the roony version of this xeno
 	var/is_a_rouny = FALSE
 
-	///Xeno sunder hardcap
-	var/sunder_hardcap = 50
-
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)
