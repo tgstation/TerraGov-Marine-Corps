@@ -96,6 +96,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	icon_state = "overwatch_req"
 	name = "Requisition Overwatch Console"
 	desc = "Big Brother Requisition demands to see money flowing into the void that is greed."
+	circuit = /obj/item/circuitboard/computer/supplyoverwatch
 
 /obj/machinery/computer/camera_advanced/overwatch/rebel
 	faction = FACTION_TERRAGOV_REBEL
@@ -117,10 +118,6 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 /obj/machinery/computer/camera_advanced/overwatch/rebel/delta
 	name = "Delta Overwatch Console"
-
-
-/obj/machinery/computer/camera_advanced/overwatch/attackby(obj/item/I, mob/user, params)
-	return
 
 
 /obj/machinery/computer/camera_advanced/overwatch/CreateEye()

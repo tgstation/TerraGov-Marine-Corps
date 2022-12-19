@@ -5,6 +5,7 @@
 	desc = "used by shipside staff to issue supply drops to squad beacons"
 	icon_state = "supplydrop"
 	interaction_flags = INTERACT_MACHINE_TGUI
+	circuit = /obj/item/circuitboard/computer/supplydrop
 	///Time between two supply drops
 	var/launch_cooldown = 30 SECONDS
 	///The beacon we will send the supplies

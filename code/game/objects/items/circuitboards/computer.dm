@@ -59,6 +59,26 @@
 	name = "Circuit board (ID Computer)"
 	build_path = /obj/machinery/computer/marine_card
 
+/obj/item/circuitboard/computer/supplycomp
+	name = "Circuit board (Requisitions ASRS Computer)"
+	build_path = /obj/machinery/computer/supplycomp
+
+/obj/item/circuitboard/computer/rebelsupplycomp
+	name = "Circuit board (Rebel Requisitions ASRS Computer)"
+	build_path = /obj/machinery/computer/supplycomp/rebel
+
+/obj/item/circuitboard/computer/ordercomp
+	name = "Circuit board (Requisitions Ordering Computer)"
+	build_path = /obj/machinery/computer/ordercomp
+
+/obj/item/circuitboard/computer/supplyoverwatch
+	name = "Circuit board (Requisitions Overwatch Computer)"
+	build_path = /obj/machinery/computer/camera_advanced/overwatch/req
+
+/obj/item/circuitboard/computer/supplydrop
+	name = "Circuit board (Requisitions Targeting Computer)"
+	build_path = /obj/machinery/computer/supplydrop_console
+
 /obj/item/circuitboard/computer/marine_card/centcom
 	name = "Circuit board (CentCom ID Computer)"
 	build_path = /obj/machinery/computer/marine_card/centcom
