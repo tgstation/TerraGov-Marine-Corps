@@ -207,6 +207,26 @@
 		/obj/effect/spawner/random/tool = 5,
 	)
 
+/obj/effect/spawner/random/structure/plastiqueexplosive
+	name = "plastique explosive spawner"
+	icon_state = "random_plastiqueexplosive"
+	spawn_loot_chance = 45
+	loot = list(
+		/obj/item/explosive/plastique = 7,
+		/obj/item/detpack = 2,
+		/obj/item/assembly/signaler/receiver = 1,
+	)
+
+/obj/effect/spawner/random/structure/plastiqueexplosive/multiple
+	spawn_loot_chance = 20
+	icon_state = "random_plastiqueexplosive_multiple_two"
+	spawn_loot_count = 2
+
+/obj/effect/spawner/random/structure/plastiqueexplosive/multiple/four
+	spawn_loot_chance = 10
+	icon_state = "random_plastiqueexplosive_multiple_four"
+	spawn_loot_count = 4
+
 ///All kinds of 'cans'. This include water bottles.
 /obj/effect/spawner/random/drink_cans
 	name = "Random Drink Cans"
@@ -1623,4 +1643,15 @@
 	loot = list(
 		/obj/machinery/microwave = 8,
 		/obj/effect/spawner/random/outdoors_snacks = 2,
+	)
+
+//RANDOM EFFECTS AND DECALS
+
+/obj/effect/spawner/random/decal/blood
+	name = "random blood spawner"
+	icon_state = "random_blood_splatter"
+	spawn_loot_chance = 85
+	spawn_scatter_radius = 1
+	loot = list(
+		/obj/effect/decal/cleanable/blood,
 	)
