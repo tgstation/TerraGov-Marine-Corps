@@ -137,6 +137,14 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		/obj/item/ashtray,
 		/obj/item/clothing/glasses/sunglasses/aviator/yellow,
 		/obj/item/clothing/head/boonie,
+		/obj/item/clothing/head/beaverhat,
+		/obj/item/clothing/head/cakehat,
+		/obj/item/clothing/head/cardborg,
+		/obj/item/clothing/head/chicken,
+		/obj/item/clothing/head/cat,
+		/obj/item/clothing/head/mailman,
+		/obj/item/clothing/head/powdered_wig,
+		/obj/item/clothing/head/xenos,
 		/obj/item/clothing/mask/cigarette/pipe/cobpipe,
 		/obj/item/book/manual/chef_recipes,
 		/obj/item/clothing/head/helmet/space/santahat,
@@ -146,6 +154,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		/obj/item/card/id/syndicate_command,
 		/obj/item/clothing/head/helmet/space/syndicate/black/red,
 		/obj/item/clothing/suit/space/syndicate/black/red,
+		/obj/item/clothing/suit/xenosm
 		/obj/item/reagent_containers/food/snacks/grown/ambrosiadeus,
 		/obj/item/reagent_containers/food/snacks/grown/ambrosiavulgaris,
 		/obj/item/tool/shovel/etool,
@@ -204,11 +213,17 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	gift_type_list += subtypesof(/obj/item/storage/box)  - (typesof(/obj/item/storage/box/loot))
 	gift_type_list += subtypesof(/obj/item/organ)
 	gift_type_list += subtypesof(/obj/item/research_resource)
+	gift_type_list += subtypesof(/obj/item/research_product)
+	gift_type_list += subtypesof(/obj/item/stack/pipe_cleaner)
+	gift_type_list += subtypesof(/obj/item/stack/sheet/animalhide)
+	gift_type_list += subtypesof(/obj/item/stack/sheet/mineral)
 	gift_type_list += subtypesof(/obj/item/robot_parts)
 	gift_type_list += subtypesof(/obj/item/seeds)
 	gift_type_list += subtypesof(/obj/item/stock_parts)
 	gift_type_list += subtypesof(/obj/item/storage/pill_bottle)
 	gift_type_list += subtypesof(/obj/item/storage/toolbox)
+	gift_type_list += subtypesof(/obj/item/reagent_containers/glass)
+	gift_type_list += subtypesof(/obj/item/reagent_containers/pill)
 	gift_type_list += subtypesof(/obj/item/tank)
 	gift_type_list += subtypesof(/obj/item/trash)
 	gift_type_list += subtypesof(/obj/item/instrument)
@@ -217,6 +232,9 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	gift_type_list += subtypesof(/obj/item/weapon/gun/flamer)
 	gift_type_list += subtypesof(/obj/item/weapon/gun/energy)
 	gift_type_list += subtypesof(/obj/item/portable_vendor)
+	gift_type_list += subtypesof(/obj/item/storage/fancy)
+	gift_type_list += subtypesof(/obj/item/storage/holster)
+	gift_type_list += subtypesof(/obj/item/storage/syringe_case)
 	gift_type_list += subtypesof(/obj/item/shard)
 	gift_type_list += subtypesof(/obj/item/minerupgrade)
 	gift_type_list += subtypesof(/obj/item/weapon/shield)
@@ -225,10 +243,25 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	gift_type_list += subtypesof(/obj/item/assembly)
 	gift_type_list += subtypesof(/obj/item/book)
 	gift_type_list += subtypesof(/obj/item/cell)
+	gift_type_list += subtypesof(/obj/item/weapon/twohanded)
+	gift_type_list += subtypesof(/obj/item/clothing/suit/space)
+	gift_type_list += subtypesof(/obj/item/clothing/suit/armor)
 	gift_type_list += subtypesof(/obj/item/circuitboard)
 	gift_type_list += subtypesof(/obj/item/clothing/glasses)
 	gift_type_list += subtypesof(/obj/item/armor_module/module)
 	gift_type_list += subtypesof(/obj/item/armor_module/storage)
+	gift_type_list += subtypesof(/obj/item/clothing/mask/cigarette)
+	gift_type_list += subtypesof(/obj/item/clothing/head/wizard)
+	gift_type_list += subtypesof(/obj/item/clothing/head/soft)
+	gift_type_list += subtypesof(/obj/item/clothing/head/surgery)
+	gift_type_list += subtypesof(/obj/item/clothing/head/tgmcberet)
+	gift_type_list += subtypesof(/obj/item/clothing/head/helmet/space)
+	gift_type_list += subtypesof(/obj/item/clothing/head/collectable)
+	gift_type_list += subtypesof(/obj/item/clothing/head/beret)
+	gift_type_list += subtypesof(/obj/item/clothing/head/bio_hood)
+	gift_type_list += subtypesof(/obj/item/clothing/glasses/sunglasses)
+	gift_type_list += subtypesof(/obj/item/circuitboard/computer)
+	gift_type_list += subtypesof(/obj/item/attachable)
 	var/gift_type = pick(gift_type_list)
 
 	return gift_type
