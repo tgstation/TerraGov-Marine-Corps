@@ -1,5 +1,13 @@
 /** Radio channels */
-export const CHANNELS = ['Say', 'Radio', 'Me', 'OOC'] as const;
+export const CHANNELS = [
+  'Say',
+  'Radio',
+  'Me',
+  'OOC',
+  'LOOC',
+  'XOOC',
+  'MOOC',
+] as const;
 
 /** Window sizes in pixels */
 export enum WINDOW_SIZES {
@@ -26,11 +34,7 @@ export const RADIO_PREFIXES = {
     id: 'hive',
     label: 'Hive',
   },
-  ':b ': {
-    id: 'binary',
-    label: '0101',
-  },
-  ':c ': {
+  ':v ': {
     id: 'command',
     label: 'Cmd',
   },
@@ -42,32 +46,32 @@ export const RADIO_PREFIXES = {
     id: 'medical',
     label: 'Med',
   },
-  ':n ': {
-    id: 'science',
-    label: 'Sci',
-  },
   ':o ': {
     id: 'ai',
     label: 'AI',
   },
   ':s ': {
-    id: 'security',
-    label: 'Sec',
-  },
-  ':t ': {
-    id: 'syndicate',
-    label: 'Syndi',
+    id: 'firesupport',
+    label: 'CAS',
   },
   ':u ': {
-    id: 'supply',
-    label: 'Supp',
+    id: 'requisitions',
+    label: 'Req',
   },
-  ':v ': {
-    id: 'service',
-    label: 'Svc',
+  ':q ': {
+    id: 'alpha',
+    label: 'alpha',
   },
-  ':y ': {
-    id: 'centcom',
-    label: 'CCom',
+  ':b ': {
+    id: 'bravo',
+    label: 'bravo',
+  },
+  ':c ': {
+    id: 'charlie',
+    label: 'charlie',
+  },
+  ':d ': {
+    id: 'delta',
+    label: 'delta',
   },
 } as const;

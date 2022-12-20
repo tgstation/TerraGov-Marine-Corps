@@ -323,3 +323,72 @@
   - bugfix: fixes humans runtiming on getting attacked in melee by another human
   novaepee:
   - rscdel: Remove a tree south of LV-624 hydro bridge
+2022-12-14:
+  QualityVan:
+  - bugfix: Marine on marine violence more fully uses the correct armor
+2022-12-15:
+  Lumipharon:
+  - balance: Motion sensor pings can be heard by other mobs up to 7 tiles away
+  Naaanii:
+  - rscadd: Added more recipes for items that can be made via reqtorio. (SWAT masks,
+      <s>Optical Imagers,</s> Burn and Trauma Kits and Splints, Valk, Mimir, Tyr,
+      Hlin and Surt modules)
+  - rscadd: Added more material sprites. (See factoryparts.dmi)
+  SplinterGP:
+  - rscadd: Adds the TGUI say modal to replace speech input boxes. Many features!
+  - rscadd: You can switch output channel within the TGUI say modal by clicking the
+      channel button or keying TAB.
+  - rscadd: Added 5-message chat history to the say window. Use arrow keys to scroll
+      recent messages.
+  - rscadd: The say window auto-expands! It adds up to two extra lines and scrolls
+      beyond that.
+  - rscadd: The common radio hotkey - "Y". No need to type ; in radio channel. Help
+      maint!
+  - rscadd: Radio subchannel helpers - Typing subchannels like ":e " will show labels.
+  - rscadd: Getting hurt while speaking has a chance to force you to speak. You read
+      that correc-AUGH
+  - rscadd: Typing indicators! Having an IC channel open will show thinking/typing
+      icons activity.
+  - rscadd: Themes for TGUI Say! There is currently a light mode. More to come.
+2022-12-17:
+  Blundir:
+  - rscadd: added visually visible unpowered chem machines
+  - rscadd: added beaker overlay for liquid dispensers
+  - soundadd: added liquid dispensing sound
+  - imageadd: added new chem machines, beaker overlay
+  - imagedel: deleted old CM chem machines sprites
+  Lewdcifer:
+  - bugfix: SOM SMG belts will now spawn with SMG ammo instead of rifle ammo.
+  grinkgo:
+  - soundadd: Robot footsteps now use the shoe footstep sounds instead of the barefoot
+      sounds
+2022-12-19:
+  Zar000:
+  - rscadd: New primo to ravager
+  - balance: The primo for ravager
+  - rscadd: Cool blood dripping effect when used
+  novaepee:
+  - rscdel: Remove multiple 1 tile chokepoints in Gelida
+2022-12-20:
+  Blundir:
+  - imageadd: new sterile mask sprite
+  - imagedel: deleted old sterile mask sprite
+  QualityVan:
+  - rscadd: The flamethrower's hydrocannon is now a proper underslung gun. It can
+      take the same nozzles the flamer can.
+  - bugfix: Projectile flamethrower won't sometimes get stuck if you mash while in
+      hydro mode
+  - bugfix: Underslung weapons won't appear empty when they aren't
+  - bugfix: Weapons that don't autoeject on empty will still visually have their magazine
+      in until you take it out
+  SiegeB0t:
+  - rscadd: Req consoles can be repaired after friendly fire.
+  collinlunn:
+  - bugfix: Limb replacement surgery's attach prosthetic step now works with the radial
+      menu.
+  - bugfix: Heath analyzers are now more clear about what limbs have infections and
+      necrosis.
+  lbnesquik:
+  - qol: made AI ghosting harder to do accidentally, look better, and notify marines
+      of the fact
+  - admin: made AI ghosting notify admins
