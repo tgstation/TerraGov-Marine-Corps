@@ -1,12 +1,81 @@
+
+//All devices that link into the R&D console fall into thise type for easy identification and some shared procs.
+
 /obj/machinery/rnd
 	name = "R&D Device"
 	icon = 'icons/obj/machines/research.dmi'
 	density = TRUE
-	anchored = TRUE
 	use_power = IDLE_POWER_USE
-	var/busy = 0
-	var/hacked = 0
-	var/disabled = 0
-	var/shocked = 0
-	var/opened = 0
-	var/obj/machinery/computer/rdconsole/linked_console
+	var/busy = FALSE
+	var/hacked = FALSE
+	var/console_link = TRUE //allow console link.
+	var/disabled = FALSE
+
+/obj/machinery/rnd/proc/reset_busy()
+	busy = FALSE
+
+/obj/machinery/rnd/Initialize(mapload)
+	. = ..()
+	wires = new /datum/wires/rnd(src)
+
+/obj/machinery/rnd/Destroy()
+	QDEL_NULL(wires)
+	return ..()
+
+/obj/machinery/rnd/attackby(obj/item/O, mob/user, params)
+	if(is_refillable() && O.is_drainable())
+		return FALSE //inserting reagents into the machine
+	if(Insert_Item(O, user))
+		return TRUE
+
+	return ..()
+
+/obj/machinery/rnd/crowbar_act(mob/living/user, obj/item/tool)
+	return default_deconstruction_crowbar(tool)
+
+/obj/machinery/rnd/screwdriver_act(mob/living/user, obj/item/tool)
+	if((flags_atom & NODECONSTRUCT) || tool.tool_behaviour != TOOL_SCREWDRIVER)
+		return FALSE
+
+	tool.play_tool_sound(src, 50)
+	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+		icon_state = "[initial(icon_state)]_t"
+		to_chat(user, span_notice("You open the maintenance hatch of [src]."))
+	else
+		icon_state = initial(icon_state)
+		to_chat(user, span_notice("You close the maintenance hatch of [src]."))
+	TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
+	return TRUE
+
+/obj/machinery/rnd/multitool_act(mob/living/user, obj/item/multitool/tool)
+	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+		wires.interact(user)
+		return TRUE
+
+/obj/machinery/rnd/wirecutter_act(mob/living/user, obj/item/tool)
+	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+		wires.interact(user)
+		return TRUE
+
+//proc used to handle inserting items or reagents into rnd machines
+/obj/machinery/rnd/proc/Insert_Item(obj/item/I, mob/user)
+	return
+
+//whether the machine can have an item inserted in its current state.
+/obj/machinery/rnd/proc/is_insertion_ready(mob/user)
+	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+		to_chat(user, span_warning("You can't load [src] while it's opened!"))
+		return FALSE
+	if(disabled)
+		to_chat(user, span_warning("The insertion belts of [src] won't engage!"))
+		return FALSE
+	if(busy)
+		to_chat(user, span_warning("[src] is busy right now."))
+		return FALSE
+	if(machine_stat & BROKEN)
+		to_chat(user, span_warning("[src] is broken."))
+		return FALSE
+	if(machine_stat & NOPOWER)
+		to_chat(user, span_warning("[src] has no power."))
+		return FALSE
+	return TRUE
