@@ -50,21 +50,30 @@
 /turf/template_noop,
 /area/shuttle/dropship/alamo)
 "aj" = (
-/turf/closed/shuttle/dropship2/glassthree,
+/turf/closed/shuttle/dropship2/glassthree{
+	opacity = 0
+	},
 /area/shuttle/dropship/alamo)
 "ak" = (
 /obj/machinery/computer/security/dropship/one,
-/turf/closed/shuttle/dropship2/panel,
+/turf/closed/shuttle/dropship2/panel{
+	opacity = 0
+	},
 /area/shuttle/dropship/alamo)
 "al" = (
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "am" = (
 /obj/machinery/computer/dropship_weapons/dropship1,
-/turf/closed/shuttle/dropship2/panel,
+/turf/closed/shuttle/dropship2/panel{
+	opacity = 0;
+	dir = 4
+	},
 /area/shuttle/dropship/alamo)
 "an" = (
-/turf/closed/shuttle/dropship2/glassfour,
+/turf/closed/shuttle/dropship2/glassfour{
+	opacity = 0
+	},
 /area/shuttle/dropship/alamo)
 "ao" = (
 /turf/template_noop,
@@ -86,7 +95,9 @@
 /turf/template_noop,
 /area/shuttle/dropship/alamo)
 "ar" = (
-/turf/closed/shuttle/dropship2/interiorwindow,
+/turf/closed/shuttle/dropship2/interiorwindow{
+	opacity = 0
+	},
 /area/shuttle/dropship/alamo)
 "as" = (
 /obj/structure/bed/chair/dropship/pilot{
@@ -114,7 +125,8 @@
 /area/shuttle/dropship/alamo)
 "av" = (
 /turf/closed/shuttle/dropship2/interiorwindow{
-	dir = 8
+	dir = 8;
+	opacity = 0
 	},
 /area/shuttle/dropship/alamo)
 "aw" = (
@@ -554,7 +566,10 @@
 /area/shuttle/dropship/alamo)
 "Ki" = (
 /obj/machinery/computer/shuttle/marine_dropship/one,
-/turf/closed/shuttle/dropship2/panel,
+/turf/closed/shuttle/dropship2/panel{
+	opacity = 0;
+	dir = 1
+	},
 /area/shuttle/dropship/alamo)
 "QK" = (
 /obj/structure/dropship_piece/two/engine/rightbottom,
