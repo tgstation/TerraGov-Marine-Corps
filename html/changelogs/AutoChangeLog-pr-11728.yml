@@ -1,7 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes:
-  - rscadd: "The flamethrower's hydrocannon is now a proper underslung gun. It can take the same nozzles the flamer can."
-  - bugfix: "Projectile flamethrower won't sometimes get stuck if you mash while in hydro mode"
-  - bugfix: "Underslung weapons won't appear empty when they aren't"
-  - bugfix: "Weapons that don't autoeject on empty will still visually have their magazine in until you take it out"
