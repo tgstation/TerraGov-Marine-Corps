@@ -30,13 +30,6 @@
 	. = ..()
 	SSminimaps.add_marker(src, z, MINIMAP_FLAG_MARINE, "teleporter")
 
-/obj/machinery/deployable/teleporter/Destroy()
-	var/obj/item/teleporter_kit/kit = internal_item
-
-	if(kit && kit.linked_teleporter)
-		kit.linked_teleporter.linked_teleporter = null
-		QDEL_NULL(kit.cell)
-	return ..()
 
 /obj/machinery/deployable/teleporter/attack_hand(mob/living/user)
 	. = ..()
@@ -173,10 +166,11 @@
 	
 
 /obj/item/teleporter_kit/Destroy()
-	linked_teleporter.linked_teleporter = null
-	linked_teleporter = null
-	QDEL_NULL(cell)
-	return ..()
+	if(linked_teleporter)
+		linked_teleporter.linked_teleporter = null
+		linked_teleporter = null
+		QDEL_NULL(cell)
+		return ..()
 
 
 ///Link the two teleporters
