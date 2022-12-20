@@ -2,7 +2,7 @@
 	desc = "A flimsy lattice of metal rods, with screws to secure it to the floor."
 	name = "grille"
 	icon = 'icons/obj/structures/structures.dmi'
-	icon_state = "grille"
+	icon_state = "grille0"
 	hit_sound = 'sound/effects/grillehit.ogg'
 	density = TRUE
 	anchored = TRUE
