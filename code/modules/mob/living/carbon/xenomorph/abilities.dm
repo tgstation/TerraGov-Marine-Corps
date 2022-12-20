@@ -360,7 +360,7 @@
 			owner.balloon_alert(owner, span_notice("This spot has no adjaecent support for the structure!"))
 			return
 		if(ERROR_NOT_ALLOWED)
-			owner.balloon_alert(owner, span_notice("The queen mother prohibits us from building here"))
+			owner.balloon_alert(owner, span_notice("The queen mother prohibits us from building here."))
 			return
 		if(ERROR_BLOCKER)
 			owner.balloon_alert(owner, span_notice("Theres another xenomorph blocking the spot!"))
