@@ -185,8 +185,8 @@
 /obj/structure/largecrate/supply/supplies/sandbags,
 /obj/machinery/alarm,
 /obj/machinery/door_control{
-	dir = 4;
-	id = "port_umbilical_outer";
+	dir = 8;
+	id = "starboard_umbilical_outer";
 	name = "outer door-control"
 	},
 /turf/open/floor/mainship/cargo,
