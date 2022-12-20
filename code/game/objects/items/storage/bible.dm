@@ -9,9 +9,20 @@
 	var/deity_name = "Christ"
 
 /obj/item/storage/bible/koran
-	name = "koran"
-	icon_state = "koran"
+	name = "Luxury Koran"
+	icon = 'icons/obj/items/priest.dmi'
+	icon_state = "Koran"
 	deity_name = "Allah"
+
+/obj/item/storage/bible/koran/basic
+	name = "Koran"
+	max_w_class = 3
+	storage_slots = 1
+	can_hold = list(
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/explosive/grenade,
+		/obj/item/explosive/mine,
+    )
 
 /obj/item/storage/bible/booze
 	name = "bible"
