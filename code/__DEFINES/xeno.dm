@@ -145,8 +145,8 @@ GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
 		xeno.remove_filter("overheal_vis"); \
 	}
 
-/// Used by the isValidForResinStructure proc.
-/// 1 is reserved for TRUE , 0 for FALSE
+/// Used by the is_valid_for_resin_structure proc.
+/// 0 is considered valid , anything thats not 0 is false
 /// Simply not allowed by the area to build
 #define ERROR_NOT_ALLOWED 2
 /// No weeds here, but it is weedable

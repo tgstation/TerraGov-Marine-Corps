@@ -13,10 +13,10 @@
 
 
 /// Checks all conditions if a spot is valid for construction , will return TRUE
-/proc/IsValidForResinStructure(turf/target, needsSupport = FALSE, mob/builder)
+/proc/is_valid_for_resin_structure(turf/target, needs_support = FALSE, mob/builder)
 
 	if(!target || !istype(target))
-		return FALSE
+		return TRUE
 	var/obj/alien/weeds/alien_weeds = locate() in target
 	if(!target.check_disallow_alien_fortification(null, TRUE))
 		return ERROR_NOT_ALLOWED
@@ -31,7 +31,7 @@
 			return ERROR_BLOCKER
 	if(!target.check_alien_construction(null, TRUE))
 		return ERROR_CONSTRUCT
-	if(needsSupport)
+	if(needs_support)
 		for(var/D in GLOB.cardinals)
 			var/turf/TS = get_step(target,D)
 			if(!TS)
@@ -39,7 +39,7 @@
 			if(TS.density || locate(/obj/structure/mineral_door/resin) in TS)
 				return TRUE
 		return ERROR_NO_SUPPORT
-	return TRUE
+	return FALSE
 
 
 /proc/get_adjacent_open_turfs(atom/center)
