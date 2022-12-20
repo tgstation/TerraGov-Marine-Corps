@@ -13776,7 +13776,6 @@
 /turf/open/floor/iron,
 /area/deltastation/security/brig)
 "cSE" = (
-/obj/effect/turf_decal/tile/blue,
 /obj/effect/landmark/weed_node,
 /obj/effect/decal/sandedge/corner{
 	dir = 4
@@ -20417,6 +20416,12 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/entry)
+"eeK" = (
+/obj/structure/sign/securearea{
+	dir = 1
+	},
+/turf/closed/wall/r_wall,
+/area/deltastation/science/robotics/lab)
 "eeM" = (
 /obj/machinery/vending/hydronutrients,
 /turf/open/floor/iron,
@@ -29959,6 +29964,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/effect/decal/sandedge/corner2,
 /turf/open/floor/iron,
 /area/deltastation/engineering/break_room)
 "fXE" = (
@@ -38522,8 +38528,8 @@
 /area/deltastation/maintenance/solars/starboard/fore)
 "hLx" = (
 /obj/structure/sign/securearea,
-/turf/closed/wall/r_wall,
-/area/deltastation/science/robotics/mechbay)
+/turf/closed/wall,
+/area/deltastation/service/barber)
 "hLF" = (
 /obj/structure/prop/camera{
 	name = "hallway camera"
@@ -60018,7 +60024,6 @@
 /area/deltastation/engineering/supermatter/room)
 "mhd" = (
 /obj/structure/cable,
-/obj/effect/turf_decal/tile/blue,
 /obj/effect/spawner/random/structure/random_tank_holder,
 /obj/effect/ai_node,
 /obj/effect/decal/sandedge/corner{
@@ -69957,9 +69962,6 @@
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos)
 "ooB" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
 /obj/effect/decal/sandedge{
 	dir = 8
 	},
@@ -104013,9 +104015,6 @@
 /area/deltastation/science/breakroom)
 "uZV" = (
 /obj/effect/turf_decal/tile/purple/fourcorners,
-/obj/structure/sign/securearea{
-	pixel_x = -32
-	},
 /obj/effect/spawner/random/structure/disposal,
 /obj/structure/disposalpipe/trunk{
 	dir = 4
@@ -112135,7 +112134,6 @@
 /turf/open/floor/iron/white,
 /area/deltastation/medical/medbay)
 "wCO" = (
-/obj/effect/turf_decal/tile/blue,
 /obj/effect/decal/sandedge/corner2{
 	dir = 1
 	},
@@ -154386,14 +154384,14 @@ hbe
 wwv
 eIJ
 fgi
-wwv
+hLx
 wyd
 kPN
 kPN
 vYH
 wgd
-hLx
-gkt
+wyd
+eeK
 aXD
 rVE
 tEe
