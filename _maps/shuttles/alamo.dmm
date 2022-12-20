@@ -54,16 +54,14 @@
 /area/shuttle/dropship/alamo)
 "ak" = (
 /obj/machinery/computer/security/dropship/one,
-/turf/closed/shuttle/dropship1/panel,
+/turf/closed/shuttle/dropship2/panel,
 /area/shuttle/dropship/alamo)
 "al" = (
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "am" = (
 /obj/machinery/computer/dropship_weapons/dropship1,
-/turf/closed/shuttle/dropship1/panel{
-	dir = 4
-	},
+/turf/closed/shuttle/dropship2/panel,
 /area/shuttle/dropship/alamo)
 "an" = (
 /turf/closed/shuttle/dropship2/glassfour,
@@ -556,9 +554,7 @@
 /area/shuttle/dropship/alamo)
 "Ki" = (
 /obj/machinery/computer/shuttle/marine_dropship/one,
-/turf/closed/shuttle/dropship1/panel{
-	dir = 1
-	},
+/turf/closed/shuttle/dropship2/panel,
 /area/shuttle/dropship/alamo)
 "QK" = (
 /obj/structure/dropship_piece/two/engine/rightbottom,
