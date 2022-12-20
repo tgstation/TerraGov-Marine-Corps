@@ -454,6 +454,8 @@
 	RegisterSignal(gun_user, COMSIG_KB_UNLOADGUN, .proc/unload_gun)
 	RegisterSignal(gun_user, COMSIG_KB_FIREMODE, .proc/do_toggle_firemode)
 	RegisterSignal(gun_user, COMSIG_KB_GUN_SAFETY, .proc/toggle_gun_safety_keybind)
+	scatter = min_scatter
+	scatter_unwielded = min_scatter_unwielded
 
 
 ///Null out gun user to prevent hard del
@@ -477,9 +479,9 @@
 	. = ..()
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED))
 		icon_state = base_gun_icon + "_o"
-	else if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && !in_chamber && length(chamber_items))
+	else if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && !in_chamber && length(chamber_items))
 		icon_state = base_gun_icon + "_u"
-	else if((!length(chamber_items) && max_chamber_items) || (!rounds && !max_chamber_items))
+	else if((!length(chamber_items) && max_chamber_items) || !rounds)
 		icon_state = base_gun_icon + "_e"
 	else if(current_chamber_position <= length(chamber_items) && chamber_items[current_chamber_position] && chamber_items[current_chamber_position].loc != src)
 		icon_state = base_gun_icon + "_l"
@@ -1017,6 +1019,26 @@
 	if(!length(chamber_items) && in_chamber && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
 		unload(user)
 		return
+	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER))	//Typically lever action guns
+		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED))	//Reciever is currently closed, let's open it
+			DISABLE_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED)
+			playsound(src, opened_sound, 25, 1)
+			cycle(user, FALSE)
+			if(casings_to_eject)	//Eject the current shell/cartridge when opening the reciever
+				make_casing()
+				casings_to_eject = 0
+			to_chat(user, span_notice(chamber_opened_message))
+			if(in_chamber)
+				chamber_items.Insert(current_chamber_position, in_chamber)
+				in_chamber = null
+		else	//Reciever is currently open, let's close it
+			ENABLE_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED)
+			playsound(src, cocked_sound, 25, 1)
+			to_chat(user, span_notice(chamber_closed_message))
+			cycle(user, FALSE)
+		update_ammo_count()
+		update_icon()
+		return
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && !special_treatment)
 		if(last_cocked + cock_delay > world.time)
 			return
@@ -1325,7 +1347,7 @@
 
 ///Cycles the gun, handles ammunition draw
 /obj/item/weapon/gun/proc/cycle(mob/living/user, after_fire = TRUE)
-	if(!length(chamber_items) || (CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && !get_current_rounds(chamber_items[current_chamber_position])))
+	if(!length(chamber_items) && (CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS) && !in_chamber) || (CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && (!length(chamber_items) || !get_current_rounds(chamber_items[current_chamber_position])) && after_fire))	//Skip cycling if: manual operated has no bullets left, pulled trigger on empty magazine-fed gun
 		update_ammo_count()
 		return
 	if((CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES)) || (CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && get_current_rounds(chamber_items[current_chamber_position]) <= 0))
@@ -1346,11 +1368,17 @@
 			var/obj/projectile/projectile_in_chamber = in_chamber
 			var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
 			new_handful.generate_handful(projectile_in_chamber.ammo.type, caliber, 1, projectile_in_chamber.ammo.handful_amount)
-			user.put_in_any_hand_if_possible(new_handful)
+			if(user)
+				user.put_in_hands(new_handful)
+			else	//Theoretically, if the gun is somehow cycling by itself, eject the cartridge onto the floor
+				new_handful.forceMove(get_turf(src))
 			QDEL_NULL(in_chamber)
-		if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_DO_NOT_EMPTY_ROUNDS_AFTER_FIRE))
-			adjust_current_rounds(chamber_items[current_chamber_position], -rounds_per_shot)
-		new_in_chamber = get_ammo_object()
+		if(get_current_rounds(chamber_items[current_chamber_position]) > 0)	//Check if the mag still has rounds to load into the chamber, otherwise infinite bullets
+			new_in_chamber = get_ammo_object()
+			if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_DO_NOT_EMPTY_ROUNDS_AFTER_FIRE))
+				adjust_current_rounds(chamber_items[current_chamber_position], -rounds_per_shot)
+		else
+			new_in_chamber = null
 	else
 		var/object_to_chamber = chamber_items[current_chamber_position]
 		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER))
@@ -1360,6 +1388,11 @@
 		new_in_chamber = object_to_chamber
 		if(in_chamber && !after_fire && user)
 			user.put_in_hands(in_chamber)
+	if(!new_in_chamber && in_chamber && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER))	//Check if the only bullet left in the gun is in the chamber and is not a revolver
+		if(user)
+			user.put_in_hands(in_chamber)
+		else	//Theoretically, if the gun is somehow cycling by itself, eject the cartridge onto the floor
+			in_chamber.forceMove(get_turf(src))
 	in_chamber = new_in_chamber
 	update_ammo_count()
 	if(!after_fire || CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN))
@@ -1368,7 +1401,7 @@
 
 ///Generates a casing.
 /obj/item/weapon/gun/proc/make_casing(obj/item/magazine, after_fire = TRUE)
-	if(!type_of_casings || (current_chamber_position > length(chamber_items) && after_fire) || (!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS)))
+	if(!type_of_casings || (current_chamber_position > length(chamber_items) && after_fire && !casings_to_eject) || (!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS)))
 		return
 	var/num_of_casings
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && istype(chamber_items[current_chamber_position], /obj/item/ammo_magazine))
@@ -1458,9 +1491,7 @@
 	for(var/obj/chamber_item in chamber_items)
 		total_rounds += get_current_rounds(chamber_item)
 		total_max_rounds += get_max_rounds(chamber_item)
-	rounds = total_rounds
-	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_DO_NOT_EMPTY_ROUNDS_AFTER_FIRE))
-		rounds += in_chamber ? rounds_per_shot : 0
+	rounds = total_rounds + (in_chamber ? rounds_per_shot : 0)
 	max_rounds = total_max_rounds
 	gun_user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 
@@ -1515,7 +1546,7 @@
 	if(!user || user.incapacitated()  || user.lying_angle || !isturf(user.loc))
 		return
 	if(rounds - rounds_per_shot < 0 && rounds)
-		to_chat(user, span_warning("There's not enough rounds left to fire."))
+		to_chat(user, span_warning("Theres not enough rounds left to fire."))
 		return FALSE
 	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN))
 		to_chat(user, span_warning("The chamber is open! Close it first."))
@@ -1620,11 +1651,11 @@
 
 	if(((flags_item & WIELDED) && wielded_stable()) || CHECK_BITFIELD(flags_item, IS_DEPLOYED) || (master_gun && CHECK_BITFIELD(master_gun.flags_item, WIELDED) && master_gun.wielded_stable()))
 		gun_accuracy_mult = accuracy_mult
-		scatter = clamp((scatter + scatter_increase) - ((world.time - last_fired - 1) * scatter_decay), min_scatter, max_scatter)
+		scatter = max(max(min_scatter, 0), min((scatter + scatter_increase) - ((world.time - last_fired - 1) * scatter_decay), max_scatter))
 		gun_scatter = scatter
 		wielded_fire = TRUE
 	else
-		scatter_unwielded = clamp((scatter_unwielded + scatter_increase_unwielded) - ((world.time - last_fired - 1) * scatter_decay_unwielded), min_scatter_unwielded, max_scatter_unwielded)
+		scatter_unwielded = max(min_scatter_unwielded, min((scatter + scatter_increase_unwielded) - ((world.time - last_fired - 1) * scatter_decay_unwielded), max_scatter_unwielded))
 		gun_scatter = scatter_unwielded
 
 	if(user && world.time - user.last_move_time < 5) //if you moved during the last half second, you have some penalties to accuracy and scatter
