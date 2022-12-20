@@ -393,7 +393,7 @@
 			owner.balloon_alert(owner, span_notice("The queen mother prohibits us from building here"))
 			return
 		if(ERROR_BLOCKER)
-			owner.balloon_alert(owner, span_notice("Theres another xenomorph blocking the spot!"))
+			owner.balloon_alert(owner, span_notice("There's another xenomorph blocking the spot!"))
 			return
 		if(ERROR_FOG)
 			owner.balloon_alert(owner, span_notice("The fog will prevent the resin from ever taking shape!"))
