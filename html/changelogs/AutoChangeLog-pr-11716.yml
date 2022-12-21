@@ -1,5 +1,0 @@
-author: "Blundir"
-delete-after: True
-changes:
-  - imageadd: "new sterile mask sprite"
-  - imagedel: "deleted old sterile mask sprite"

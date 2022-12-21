@@ -206,6 +206,10 @@
 	///The strength of psychic blast's  AOE effects
 	var/blast_strength = 25
 
+	// *** Sentinel Abilities ***
+	/// The additional amount of stacks that the Sentinel will apply on eligible abilities.
+	var/additional_stacks = 0
+
 	///the 'abilities' available to a caste.
 	var/list/actions
 

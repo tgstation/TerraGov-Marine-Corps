@@ -369,3 +369,29 @@
   - rscadd: Cool blood dripping effect when used
   novaepee:
   - rscdel: Remove multiple 1 tile chokepoints in Gelida
+2022-12-20:
+  Blundir:
+  - imageadd: new sterile mask sprite
+  - imagedel: deleted old sterile mask sprite
+  QualityVan:
+  - rscadd: The flamethrower's hydrocannon is now a proper underslung gun. It can
+      take the same nozzles the flamer can.
+  - bugfix: Projectile flamethrower won't sometimes get stuck if you mash while in
+      hydro mode
+  - bugfix: Underslung weapons won't appear empty when they aren't
+  - bugfix: Weapons that don't autoeject on empty will still visually have their magazine
+      in until you take it out
+  SiegeB0t:
+  - rscadd: Req consoles can be repaired after friendly fire.
+  collinlunn:
+  - bugfix: Limb replacement surgery's attach prosthetic step now works with the radial
+      menu.
+  - bugfix: Heath analyzers are now more clear about what limbs have infections and
+      necrosis.
+  lbnesquik:
+  - qol: made AI ghosting harder to do accidentally, look better, and notify marines
+      of the fact
+  - admin: made AI ghosting notify admins
+2022-12-21:
+  novaepee:
+  - rscdel: remove two r walls and useless apc in Big Red's admin

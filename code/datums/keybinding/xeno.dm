@@ -118,6 +118,23 @@
 	full_name = "Toggle Charge"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_CHARGE
+/datum/keybinding/xeno/toxic_spit
+	name = "toxic_spit"
+	full_name = "Sentinel: Toxic Spit"
+	description = "A type of spit that inflicts the Intoxicated debuff, dealing damage over time."
+	keybind_signal = COMSIG_XENOABILITY_TOXIC_SPIT
+
+/datum/keybinding/xeno/toxic_slash
+	name = "toxic_slash"
+	full_name = "Sentinel: Toxic Slash"
+	description = "Imbue your claws with toxins, inflicting the Intoxicated debuff on hit and dealing damage over time."
+	keybind_signal = COMSIG_XENOABILITY_TOXIC_SLASH
+
+/datum/keybinding/xeno/drain_sting
+	name = "drain_sting"
+	full_name = "Sentinel: Drain Sting"
+	description = "Sting a victim, draining any Intoxicated debuffs they may have, restoring you and dealing damage."
+	keybind_signal = COMSIG_XENOABILITY_DRAIN_STING
 
 /datum/keybinding/xeno/acidic_salve
 	name = "acidic_salve"
@@ -143,11 +160,11 @@
 	description = "Using an Essence Link, increase a sister's capabilities beyond their limits."
 	keybind_signal = COMSIG_XENOABILITY_ENHANCEMENT
 
-/datum/keybinding/xeno/nurogasnade
-	name = "neurogas"
-	full_name = "Sentinel: Neurogas Grenade"
-	description = "Throws a gas emitting grenade at the targetted area"
-	keybind_signal = COMSIG_XENOABILITY_NEUROGAS_GRENADE
+/datum/keybinding/xeno/toxicgrenade
+	name = "toxic_grenade"
+	full_name = "Sentinel: Toxic Grenade"
+	description = "Throws a ball of resin containing a toxin that inflicts the Intoxicated debuff, dealing damage over time."
+	keybind_signal = COMSIG_XENOABILITY_TOXIC_GRENADE
 
 /datum/keybinding/xeno/plow_charge
 	name = "plow_charge"

@@ -594,6 +594,7 @@
 	toxpwr = 0
 
 /datum/reagent/toxin/xeno_sanguinal/on_mob_life(mob/living/L, metabolism)
+	message_admins("toxin/xeno_sanguinal: on_mob_life")
 	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
 		L.adjustStaminaLoss(DEFILER_SANGUINAL_DAMAGE)
 
@@ -602,6 +603,12 @@
 
 	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
 		L.adjustFireLoss(DEFILER_SANGUINAL_DAMAGE)
+
+	if(L.has_status_effect(STATUS_EFFECT_INTOXICATED))
+		var/datum/status_effect/stacking/intoxicated/debuff = L.has_status_effect(STATUS_EFFECT_INTOXICATED)
+		if(debuff.stacks > 0)
+			debuff.stacks = debuff.stacks + SENTINEL_INTOXICATED_SANGUINAL_INCREASE
+			L.adjustFireLoss(DEFILER_SANGUINAL_DAMAGE)
 
 	L.apply_damage(DEFILER_SANGUINAL_DAMAGE, BRUTE, sharp = TRUE)
 

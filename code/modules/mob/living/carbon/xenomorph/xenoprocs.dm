@@ -484,7 +484,6 @@
 	while(i++ < count && do_after(src, channel_time, TRUE, C, BUSY_ICON_HOSTILE))
 	return TRUE
 
-
 /atom/proc/can_sting()
 	return FALSE
 
