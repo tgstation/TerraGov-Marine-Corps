@@ -621,7 +621,20 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "magnetic"
 	slot = ATTACHMENT_SLOT_RAIL
 	pixel_shift_x = 13
+	///Handles the harness functionality, created when attached to a gun and removed on detach
+	var/datum/component/reequip_component
 
+/obj/item/attachable/magnetic_harness/on_attach(attaching_item, mob/user)
+	. = ..()
+	if(!master_gun)
+		return
+	reequip_component = master_gun.AddComponent(/datum/component/reequip, list(SLOT_S_STORE, SLOT_BACK))
+
+/obj/item/attachable/magnetic_harness/on_detach(attaching_item, mob/user)
+	. = ..()
+	if(master_gun)
+		return
+	QDEL_NULL(reequip_component)
 
 /obj/item/attachable/scope
 	name = "rail scope"
