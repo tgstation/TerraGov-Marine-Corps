@@ -309,7 +309,15 @@
 	if(tgui_alert(src, "Do you want to shutdown your systems? WARNING: This will permanently put you out of your mob.", "Shutdown Systems", list("Yes", "No")) != "Yes")
 		return
 
-	to_chat(src, span_notice("Systems shutting down..."))
+	if(tgui_alert(src, "Are you sure you want to shutdown your systems? You won't be able to return to your body. You can't change your mind so choose wisely!", "Shutdown systems confirm", list("Yes", "No")) != "Yes")
+		return
 
+	to_chat(src, span_notice("Systems shutting down..."))
+	icon_state = "ai"
+
+	log_game("[key_name(src)] has ghosted at [AREACOORD(src)].")
+	message_admins("[ADMIN_TPMONTY(src)] has ghosted.")
+
+	priority_announce("[src] has suffered an unexpected NTOS failure over its Logarithmic silicon backhaul functions and has been taken offline. An attempt to load a backup personality core will proceed shortly.", "AI NT-OS Critical Failure")
 	ghostize(FALSE)
 	offer_mob()

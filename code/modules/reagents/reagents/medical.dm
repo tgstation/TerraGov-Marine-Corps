@@ -61,6 +61,14 @@
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 
+/datum/reagent/medicine/ryetalyn/on_mob_add(mob/living/L, metabolism)
+	ADD_TRAIT(L, TRAIT_INTOXICATION_RESISTANT, REAGENT_TRAIT(src))
+	return ..()
+
+/datum/reagent/medicine/ryetalyn/on_mob_delete(mob/living/L, metabolism)
+	REMOVE_TRAIT(L, TRAIT_INTOXICATION_RESISTANT, REAGENT_TRAIT(src))
+	return ..()
+
 /datum/reagent/medicine/ryetalyn/on_mob_life(mob/living/L, metabolism)
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
