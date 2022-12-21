@@ -1,0 +1,4 @@
+author: "SiegeB0t"
+delete-after: True
+changes:
+  - qol: "Ghosts can view supply console information."
