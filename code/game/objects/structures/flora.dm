@@ -33,6 +33,7 @@
 	max_integrity = 500
 	layer = ABOVE_FLY_LAYER
 	var/log_amount = 10
+	var/is_christmastree = FALSE
 
 /obj/structure/flora/tree/Initialize()
 	. = ..()
@@ -65,7 +66,6 @@
 
 	if(!I.sharp && I.force <= 0)
 		return
-
 	if(I.hitsound)
 		playsound(get_turf(src), I.hitsound, 50, 0, 0)
 
@@ -73,6 +73,9 @@
 	var/cut_force = min(1, I.force)
 	var/cutting_time = clamp(10, 20, 100 / cut_force) SECONDS
 	if(!do_after(user, cutting_time , TRUE, src, BUSY_ICON_BUILD))
+		return
+	if(is_christmastree)
+		user.visible_message(span_notice("[user] has a change of heart and embraces the [src], vowing to be a better person for Christmas."),span_notice("You have a change of heart and decide to not be a grinch."), "You hear the sound of a gentle Christmas melodies.")
 		return
 
 	user.visible_message(span_notice("[user] fells [src] with the [I]."),span_notice("You fell [src] with the [I]."), "You hear the sound of a tree falling.")
@@ -86,6 +89,8 @@
 	qdel(src)
 
 /obj/structure/flora/tree/flamer_fire_act(burnlevel)
+	if(is_christmastree)
+		return
 	take_damage(burnlevel/6, BURN, "fire")
 
 
@@ -123,7 +128,7 @@
 	var/unlimited = FALSE
 	var/static/list/took_presents //shared between all xmas trees
 	///meme version of tree that only dispenses guns not presents
-	var/guntree = FALSE
+	is_christmastree = TRUE
 	resistance_flags = RESIST_ALL
 
 /obj/structure/flora/tree/pine/xmas/presents/Initialize(mapload)
@@ -131,10 +136,6 @@
 	icon_state = "pinepresents"
 	if(!took_presents)
 		took_presents = list()
-	if(!guntree && prob(3))
-		guntree = TRUE
-		icon_state = "pinepresents_gun"
-		desc = "Reach in and seize your means of freedom!"
 
 /obj/structure/flora/tree/pine/xmas/presents/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
@@ -153,17 +154,6 @@
 	if(took_presents[user.ckey] && !unlimited)
 		to_chat(user, span_warning("There are no presents with your name on."))
 		return
-	if(guntree)
-		///populate potential gun list
-		var/gun_spawn_list = subtypesof(/obj/item/weapon/gun)
-		var/mob/living/carbon/human/present_receiver = user
-		var/obj/item/G = pick(gun_spawn_list)
-		G.desc += " Property of [present_receiver.real_name]."
-		present_receiver.balloon_alert_to_viewers("Got a [G]")
-		present_receiver.put_in_hands(G)
-		took_presents[present_receiver.ckey] = TRUE
-		log_game("[present_receiver] has obtained a [G] from the gun tree at [AREACOORD(loc)]")
-		return
 	to_chat(user, span_warning("After a bit of rummaging, you locate a gift with your name on it!"))
 
 	if(!unlimited)
@@ -175,9 +165,6 @@
 /obj/structure/flora/tree/pine/xmas/presents/unlimited
 	desc = "A wonderous decorated Christmas tree. It has an endless supply of presents!"
 	unlimited = TRUE
-
-/obj/structure/flora/tree/pine/xmas/presents/guntree //mostly for admin spawn
-	guntree = TRUE
 
 /obj/structure/flora/tree/dead
 	icon = 'icons/obj/flora/deadtrees.dmi'

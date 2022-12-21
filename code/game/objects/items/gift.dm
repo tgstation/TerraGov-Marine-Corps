@@ -104,10 +104,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 
 /obj/item/a_gift/proc/get_gift_type()
 	var/gift_type_list = list(/obj/item/weapon/claymore/mercsword/commissar_sword,
-		/obj/item/weapon/energy/sword/blue,
 		/obj/item/weapon/holo/esword,
-		/obj/item/weapon/gun/revolver/mateba,
-		/obj/item/weapon/gun/pistol/heavy,
 		/obj/item/toy/sword,
 		/obj/item/weapon/claymore,
 		/obj/item/toy/dice/d20,
@@ -115,9 +112,6 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		/obj/item/toy/spinningtoy,
 		/obj/item/toy/syndicateballoon,
 		/obj/item/storage/wallet,
-		/obj/item/attachable/heavy_barrel,
-		/obj/item/attachable/extended_barrel,
-		/obj/item/attachable/burstfire_assembly,
 		/obj/item/storage/wallet/random,
 		/obj/item/megaphone,
 		/obj/item/storage/box/snappops,
@@ -129,13 +123,10 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		/obj/item/tool/pen/invisible,
 		/obj/item/explosive/grenade/smokebomb,
 		/obj/item/corncob,
-		/obj/item/weapon/gun/launcher/rocket/m57a4/xmas,
 		/obj/item/spacecash/c500,
 		/obj/item/spacecash/c100,
 		/obj/item/coin/diamond,
-		/obj/item/cell/infinite,
 		/obj/item/ashtray,
-		/obj/item/clothing/glasses/sunglasses/aviator/yellow,
 		/obj/item/clothing/head/boonie,
 		/obj/item/clothing/head/beaverhat,
 		/obj/item/clothing/head/cakehat,
@@ -167,7 +158,6 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		/obj/item/tweezers,
 		/obj/item/taperecorder,
 		/obj/item/tool/pickaxe/plasmacutter,
-		/obj/item/clothing/glasses/night/imager_goggles,
 		/obj/item/clothing/suit/poncho,
 		/obj/item/clothing/suit/poncho/green,
 		/obj/item/clothing/suit/poncho/red,
@@ -200,7 +190,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		/obj/item/ore/coal)
 
 	gift_type_list += subtypesof(/obj/item/clothing/head/collectable)
-	gift_type_list += subtypesof(/obj/item/toy) //All toys, except for abstract types and syndicate cards.
+	gift_type_list += subtypesof(/obj/item/toy)
 	gift_type_list += subtypesof(/obj/item/cell)
 	gift_type_list += subtypesof(/obj/item/explosive/grenade)
 	gift_type_list += subtypesof(/obj/item/clothing/gloves)
@@ -209,7 +199,6 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	gift_type_list += subtypesof(/obj/item/reagent_containers/spray)
 	gift_type_list += subtypesof(/obj/item/reagent_containers/blood)
 	gift_type_list += subtypesof(/obj/item/tool)
-	gift_type_list += subtypesof(/obj/item/storage/box) - (typesof(/obj/item/storage/box/loot)) - (typesof(/obj/item/storage/box/spec)) - (typesof(/obj/item/storage/box/squadmarine))
 	gift_type_list += subtypesof(/obj/item/organ)
 	gift_type_list += subtypesof(/obj/item/research_resource)
 	gift_type_list += subtypesof(/obj/item/research_product)
@@ -227,7 +216,6 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	gift_type_list += subtypesof(/obj/item/trash)
 	gift_type_list += subtypesof(/obj/item/instrument)
 	gift_type_list += subtypesof(/obj/item/paper)
-	gift_type_list += subtypesof(/obj/item/weapon/gun/shotgun)
 	gift_type_list += subtypesof(/obj/item/weapon/gun/flamer)
 	gift_type_list += subtypesof(/obj/item/portable_vendor)
 	gift_type_list += subtypesof(/obj/item/storage/fancy)
@@ -259,7 +247,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	gift_type_list += subtypesof(/obj/item/clothing/head/collectable)
 	gift_type_list += subtypesof(/obj/item/clothing/head/beret)
 	gift_type_list += subtypesof(/obj/item/clothing/head/bio_hood)
-	gift_type_list += subtypesof(/obj/item/clothing/glasses/sunglasses)
+	gift_type_list += subtypesof(/obj/item/clothing/glasses/sunglasses) - /obj/item/clothing/glasses/sunglasses/sa - /obj/item/clothing/glasses/sunglasses/sa/nodrop
 	gift_type_list += subtypesof(/obj/item/clothing/under)
 	gift_type_list += subtypesof(/obj/item/circuitboard/computer)
 	gift_type_list += subtypesof(/obj/item/attachable)
