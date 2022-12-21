@@ -24,6 +24,9 @@
 /obj/structure/showcase/six
 	icon_state = "showcase_6"
 
+/obj/structure/showcase/coinpress
+	icon_state = "coinpress0"
+
 /obj/machinery/showcase/mulebot
 	name = "Mulebot"
 	desc = "A Multiple Utility Load Effector bot."
@@ -244,4 +247,17 @@
 /obj/structure/plasticflaps/sturdy //Anti-unga flaps
 	desc = "Plastic flaps for transporting supplies."
 	obj_flags = null
+	resistance_flags = XENO_DAMAGEABLE
+
+
+	//Magmoor Cryopods
+
+/obj/structure/cryopods
+	name = "hypersleep chamber"
+	icon = 'icons/obj/machines/cryogenics.dmi'
+	icon_state = "body_scanner_0"
+	desc = "A large automated capsule with LED displays intended to put anyone inside into 'hypersleep'."
+	density = TRUE
+	anchored = TRUE
+	coverage = 15
 	resistance_flags = XENO_DAMAGEABLE

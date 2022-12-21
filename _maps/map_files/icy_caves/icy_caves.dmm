@@ -394,9 +394,8 @@
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "bz" = (
-/turf/closed/shuttle{
-	icon_state = "burst_r"
-	},
+/obj/structure/shuttle/engine/propulsion/burst/right,
+/turf/open/floor/plating,
 /area/icy_caves/caves/crashed_ship)
 "bB" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -481,6 +480,10 @@
 	},
 /turf/open/shuttle/dropship/floor,
 /area/space)
+"cj" = (
+/obj/structure/shuttle/engine/propulsion/burst/left,
+/turf/open/floor/plating,
+/area/icy_caves/caves/crashed_ship)
 "ck" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/wood,
@@ -830,11 +833,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/east)
-"dZ" = (
-/turf/closed/shuttle/dropship2{
-	icon_state = "24"
-	},
-/area/icy_caves/caves/northwestmonorail)
 "ea" = (
 /obj/effect/landmark/corpsespawner/pmc,
 /turf/open/floor/tile/dark,
@@ -1332,8 +1330,9 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
 "gQ" = (
-/obj/structure/dropship_piece/one/corner/middleright,
-/obj/structure/dropship_piece/two/corner/rearright,
+/obj/structure/dropship_piece/two/corner/rearright{
+	dir = 1
+	},
 /turf/open/floor/mainship_hull/dir{
 	dir = 10
 	},
@@ -2104,9 +2103,7 @@
 /turf/open/floor/prison,
 /area/icy_caves/caves/cavesbrig)
 "kU" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "109"
-	},
+/turf/closed/shuttle/dropship2/window,
 /area/icy_caves/caves/northwestmonorail)
 "kW" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -2334,8 +2331,9 @@
 	},
 /area/icy_caves/outpost/LZ2)
 "ma" = (
-/obj/structure/dropship_piece/one/corner/middleleft,
-/obj/structure/dropship_piece/two/corner/rearleft,
+/obj/structure/dropship_piece/two/corner/rearleft{
+	dir = 1
+	},
 /turf/open/floor/mainship_hull/dir{
 	dir = 6
 	},
@@ -3303,13 +3301,6 @@
 	dir = 10
 	},
 /area/icy_caves/outpost/refinery)
-"qu" = (
-/obj/structure/dropship_piece/one/corner/middleleft,
-/obj/structure/dropship_piece/two/corner/rearleft,
-/turf/open/floor/mainship_hull/dir{
-	dir = 4
-	},
-/area/icy_caves/caves/northwestmonorail)
 "qv" = (
 /obj/machinery/space_heater,
 /turf/open/floor/prison/red{
@@ -4235,8 +4226,9 @@
 	},
 /area/icy_caves/outpost/medbay)
 "ul" = (
-/obj/structure/dropship_piece/two/corner/rearright,
-/turf/open/shuttle/dropship/floor,
+/turf/closed/shuttle/dropship2/window{
+	dir = 1
+	},
 /area/icy_caves/caves/northwestmonorail)
 "um" = (
 /obj/structure/rack,
@@ -4378,8 +4370,9 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
 "uO" = (
-/obj/structure/dropship_piece/two/corner/rearleft,
-/turf/open/shuttle/dropship/floor,
+/turf/closed/shuttle/dropship2/window{
+	dir = 8
+	},
 /area/icy_caves/caves/northwestmonorail)
 "uP" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -4504,11 +4497,6 @@
 	dir = 10
 	},
 /area/icy_caves/outpost/engineering)
-"vn" = (
-/turf/closed/shuttle/dropship2{
-	icon_state = "25"
-	},
-/area/icy_caves/caves/northwestmonorail)
 "vo" = (
 /obj/machinery/light{
 	dir = 1
@@ -5487,9 +5475,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/breakroom)
 "zI" = (
-/turf/closed/shuttle/dropship2{
-	icon_state = "103"
-	},
+/turf/closed/shuttle/dropship2/corners,
 /area/icy_caves/caves/northwestmonorail)
 "zJ" = (
 /obj/effect/landmark/corpsespawner/colonist,
@@ -5953,8 +5939,8 @@
 /turf/open/floor/prison,
 /area/icy_caves/caves/cavesbrig)
 "BH" = (
-/turf/closed/shuttle/dropship2{
-	icon_state = "104"
+/turf/closed/shuttle/dropship2/corners{
+	dir = 1
 	},
 /area/icy_caves/caves/northwestmonorail)
 "BI" = (
@@ -6421,13 +6407,6 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
-"DS" = (
-/obj/structure/dropship_piece/one/corner/middleright,
-/obj/structure/dropship_piece/two/corner/rearright,
-/turf/open/floor/mainship_hull/dir{
-	dir = 4
-	},
-/area/icy_caves/caves/northwestmonorail)
 "DU" = (
 /obj/structure/dropship_piece/two/front/right,
 /turf/open/floor/mainship_hull/dir{
@@ -6787,9 +6766,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/medbay)
 "Fx" = (
-/turf/closed/shuttle/dropship2{
-	icon_state = "52"
-	},
+/turf/closed/shuttle/dropship2/walltwo,
 /area/icy_caves/caves/northwestmonorail)
 "Fy" = (
 /turf/open/floor/freezer,
@@ -8318,9 +8295,7 @@
 /turf/closed/ice/thin/corner,
 /area/icy_caves/caves/rock)
 "Mc" = (
-/turf/closed/shuttle/dropship2{
-	icon_state = "54"
-	},
+/turf/closed/shuttle/dropship2/wallthree,
 /area/icy_caves/caves/northwestmonorail)
 "Md" = (
 /obj/effect/decal/remains/xeno,
@@ -10279,10 +10254,7 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/east)
 "UZ" = (
-/obj/structure/dropship_piece/two/front,
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "109"
-	},
+/turf/closed/shuttle/dropship2/singlewindow,
 /area/icy_caves/caves/northwestmonorail)
 "Vb" = (
 /turf/closed/ice_rock/singlePart{
@@ -14318,14 +14290,14 @@ lV
 Fx
 Fx
 Fx
-qu
-zI
+Fx
+Fx
 Fx
 Xe
 Xe
 XQ
 XQ
-dZ
+Fx
 ma
 XV
 Gx
@@ -14474,8 +14446,8 @@ lV
 FW
 TC
 Wg
-BH
-ul
+pl
+lV
 Fk
 NW
 XD
@@ -14621,7 +14593,7 @@ HC
 yd
 RM
 cL
-kU
+ul
 lV
 lV
 lV
@@ -14638,7 +14610,7 @@ ch
 Wy
 Wy
 Wy
-kU
+UZ
 qI
 Gx
 qI
@@ -14777,7 +14749,7 @@ TZ
 GN
 YB
 cF
-kU
+uO
 kn
 To
 JK
@@ -14786,8 +14758,8 @@ JK
 HX
 VG
 VG
-zI
-uO
+pl
+lV
 Qn
 NW
 XD
@@ -14942,14 +14914,14 @@ lV
 Mc
 Mc
 Mc
-DS
-BH
+Mc
+Mc
 Mc
 Xe
 Xe
-vn
-vn
-vn
+Mc
+Mc
+Mc
 gQ
 XV
 Gx
@@ -27269,7 +27241,7 @@ aj
 sH
 bt
 MQ
-bz
+cj
 qR
 WG
 WG
@@ -27737,7 +27709,7 @@ IO
 sH
 sH
 MQ
-bz
+cj
 pH
 SO
 Qo
@@ -29141,7 +29113,7 @@ ab
 bk
 sH
 MQ
-bz
+cj
 Lm
 ZI
 OJ
@@ -29609,7 +29581,7 @@ bg
 bo
 bx
 MQ
-bz
+cj
 qR
 WG
 WG

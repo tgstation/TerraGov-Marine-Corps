@@ -318,6 +318,9 @@
 #define COMSIG_ARMOR_MODULE_ATTACHING "armor_module_attaching"
 #define COMSIG_ARMOR_MODULE_DETACHED "armor_module_detached"
 
+// vali specific
+#define COMSIG_CHEMSYSTEM_TOGGLED "chemsystem_toggled"
+
 // /obj/item/helmet_module signals
 #define COMSIG_HELMET_MODULE_ATTACHING "helmet_module_attaching"
 #define COMSIG_HELMET_MODULE_DETACHED "helmet_module_detached"
@@ -507,17 +510,7 @@
 #define COMSIG_XENOMORPH_ABILITY_ON_UPGRADE "xenomorph_ability_on_upgrade"
 
 #define COMSIG_XENOMORPH_GRAB "xenomorph_grab"
-#define COMSIG_XENOMORPH_ATTACK_BARRICADE "xenomorph_attack_barricade"
-#define COMSIG_XENOMORPH_ATTACK_CLOSET "xenomorph_attack_closet"
-#define COMSIG_XENOMORPH_ATTACK_RAZORWIRE "xenomorph_attack_razorwire"
-#define COMSIG_XENOMORPH_ATTACK_BED "xenomorph_attack_bed"
-#define COMSIG_XENOMORPH_ATTACK_NEST "xenomorph_attack_nest"
-#define COMSIG_XENOMORPH_ATTACK_TABLE "xenomorph_attack_table"
-#define COMSIG_XENOMORPH_ATTACK_RACK "xenomorph_attack_rack"
-#define COMSIG_XENOMORPH_ATTACK_SENTRY "xenomorph_attack_sentry"
-#define COMSIG_XENOMORPH_ATTACK_M56_POST "xenomorph_attack_m56_post"
-#define COMSIG_XENOMORPH_ATTACK_M56 "xenomorph_attack_m56"
-#define COMSIG_XENOMORPH_ATTACK_TANK "xenomorph_attack_tank"
+#define COMSIG_XENOMORPH_ATTACK_OBJ "xenomorph_attack_obj"
 #define COMSIG_XENOMORPH_ATTACK_LIVING "xenomorph_attack_living"
 	#define COMSIG_XENOMORPH_BONUS_APPLIED (1<<0)
 
@@ -580,6 +573,9 @@
 #define COMSIG_KB_CLIENT_GETHELP_DOWN "keybinding_client_gethelp_down"
 #define COMSIG_KB_CLIENT_SCREENSHOT_DOWN "keybinding_client_screenshot_down"
 #define COMSIG_KB_CLIENT_MINIMALHUD_DOWN "keybinding_client_minimalhud_down"
+#define COMSIG_KB_CLIENT_SAY_DOWN "keybinding_client_say_down"
+#define COMSIG_KB_CLIENT_RADIO_DOWN "keybinding_client_radio_down"
+#define COMSIG_KB_CLIENT_ME_DOWN "keybinding_client_me_down"
 #define COMSIG_KB_CLIENT_OOC_DOWN "keybinding_client_ooc_down"
 #define COMSIG_KB_CLIENT_XOOC_DOWN "keybinding_client_xooc_down"
 #define COMSIG_KB_CLIENT_MOOC_DOWN "keybinding_client_mooc_down"
@@ -593,8 +589,6 @@
 #define COMSIG_KB_MOB_CYCLEINTENTRIGHT_DOWN "keybinding_mob_cycleintentright_down"
 #define COMSIG_KB_MOB_CYCLEINTENTLEFT_DOWN "keybinding_mob_cycleintentleft_down"
 #define COMSIG_KB_MOB_SWAPHANDS_DOWN "keybinding_mob_swaphands_down"
-#define COMSIG_KB_MOB_SAY_DOWN "keybinding_mob_say_down"
-#define COMSIG_KB_MOB_ME_DOWN "keybinding_mob_me_down"
 #define COMSIG_KB_MOB_ACTIVATEINHAND_DOWN "keybinding_mob_activateinhand_down"
 #define COMSIG_KB_MOB_DROPITEM_DOWN "keybinding_mob_dropitem_down"
 #define COMSIG_KB_MOB_EXAMINE_DOWN "keybinding_mob_examine_down"
@@ -665,6 +659,7 @@
 #define COMSIG_XENOABILITY_BOMBARD "xenoability_bombard"
 
 #define COMSIG_XENOABILITY_THROW_HUGGER "xenoability_throw_hugger"
+#define COMSIG_XENOABILITY_CALL_YOUNGER "xenoability_call_younger"
 #define COMSIG_XENOABILITY_PLACE_TRAP "xenoability_place_trap"
 #define COMSIG_XENOABILITY_SPAWN_HUGGER "xenoability_spawn_hugger"
 #define COMSIG_XENOABILITY_SWITCH_HUGGER "xenoability_switch_hugger"
@@ -778,6 +773,10 @@
 #define COMSIG_XENOABILITY_ATTACH_SPIDERLINGS "xenoability_attach_spiderlings"
 #define COMSIG_XENOABILITY_WEB_HOOK "xenoability_web_hook"
 
+#define COMSIG_XENOABILITY_PSYCHIC_SHIELD "xenoability_psychic_shield"
+#define COMSIG_XENOABILITY_PSYCHIC_BLAST "xenoability_psychic_blast"
+#define COMSIG_XENOABILITY_PSYCHIC_CRUSH "xenoability_psychic_crush"
+
 // throw parry signals
 #define COMSIG_THROW_PARRY_CHECK "throw_parry_check"
 #define COMSIG_PARRY_TRIGGER "parry_trigger"
@@ -871,6 +870,7 @@
 //Signals for ais
 #define COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED "escorting_behaviour_changed"
 #define COMSIG_ESCORTED_ATOM_CHANGING "escorted_atom_changing"
+#define COMSIG_POINT_TO_ATOM "point_to_atom"
 
 /// from datum ui_act (usr, action)
 #define COMSIG_UI_ACT "COMSIG_UI_ACT"

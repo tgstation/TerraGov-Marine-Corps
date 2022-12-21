@@ -256,7 +256,10 @@
 	if(status_flags & XENO_HOST)
 		var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in src
 		if(E)
-			infection_hud.icon_state = "infected[E.stage]"
+			if(E.boost_timer)
+				infection_hud.icon_state = "infectedmodifier[E.stage]"
+			else
+				infection_hud.icon_state = "infected[E.stage]"
 		else if(locate(/mob/living/carbon/xenomorph/larva) in src)
 			infection_hud.icon_state = "infected6"
 		else

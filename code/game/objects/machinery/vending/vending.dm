@@ -173,7 +173,7 @@
 /obj/machinery/vending/Initialize(mapload, ...)
 	. = ..()
 	wires = new /datum/wires/vending(src)
-	slogan_list = text2list(product_slogans, ";")
+	slogan_list = splittext(product_slogans, ";")
 
 	// So not all machines speak at the exact same time.
 	// The first time this machine says something will be at slogantime + this random value,
@@ -855,8 +855,8 @@
 	. = TRUE
 
 
-/obj/machinery/vending/take_damage(dam)
-	if(density && dam >= knockdown_threshold)
+/obj/machinery/vending/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", effects = TRUE, attack_dir, armour_penetration = 0)
+	if(density && damage_amount >= knockdown_threshold)
 		tip_over()
 	return ..()
 

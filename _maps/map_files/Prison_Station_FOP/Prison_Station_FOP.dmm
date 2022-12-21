@@ -14137,9 +14137,8 @@
 /turf/open/floor/wood,
 /area/prison/hallway/staff)
 "aRz" = (
-/obj/structure/showcase{
+/obj/structure/showcase/coinpress{
 	desc = "A stand with a plastic display of some kind of weird machine.";
-	icon_state = "coinpress0"
 	},
 /turf/open/floor/wood,
 /area/prison/hallway/staff)
@@ -42395,7 +42394,6 @@
 "gSs" = (
 /obj/effect/attach_point/weapon/dropship1{
 	dir = 8;
-	icon_state = "equip_base_l_wing"
 	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
@@ -48434,7 +48432,6 @@
 "xgV" = (
 /obj/effect/attach_point/weapon/dropship1{
 	dir = 8;
-	icon_state = "equip_base_l_wing"
 	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8

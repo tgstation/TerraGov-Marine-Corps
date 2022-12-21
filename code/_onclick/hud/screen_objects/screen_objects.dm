@@ -1,4 +1,4 @@
-/obj/screen
+/atom/movable/screen
 	name = ""
 	icon = 'icons/mob/screen/generic.dmi'
 	layer = HUD_LAYER
@@ -6,7 +6,7 @@
 	resistance_flags = RESIST_ALL | PROJECTILE_IMMUNE
 	appearance_flags = APPEARANCE_UI
 	var/obj/master //A reference to the object in the slot. Grabs or items, generally.
-	var/datum/hud/hud // A reference to the owner HUD, if any./obj/screen
+	var/datum/hud/hud // A reference to the owner HUD, if any./atom/movable/screen
 
 	//Map popups
 	/**
@@ -23,55 +23,55 @@
 	 */
 	var/del_on_map_removal = TRUE
 
-/obj/screen/Destroy()
+/atom/movable/screen/Destroy()
 	master = null
 	hud = null
 	return ..()
 
 
-/obj/screen/proc/component_click(obj/screen/component_button/component, params)
+/atom/movable/screen/proc/component_click(atom/movable/screen/component_button/component, params)
 	return
 
 
 
-/obj/screen/swap_hand
+/atom/movable/screen/swap_hand
 	name = "swap hand"
 	name = "swap"
 	icon_state = "swap_1_m"
 	screen_loc = ui_swaphand1
 
-/obj/screen/swap_hand/Click()
+/atom/movable/screen/swap_hand/Click()
 	if(!iscarbon(usr))
 		return
 	var/mob/living/carbon/M = usr
 	M.swap_hand()
 
-/obj/screen/swap_hand/right
+/atom/movable/screen/swap_hand/right
 	icon_state = "swap_2"
 	screen_loc = ui_swaphand2
 
-/obj/screen/swap_hand/human
+/atom/movable/screen/swap_hand/human
 	icon_state = "swap_1"
 
-/obj/screen/language_menu
+/atom/movable/screen/language_menu
 	name = "language menu"
 	icon = 'icons/mob/screen/midnight.dmi'
 	icon_state = "talk_wheel"
 	screen_loc = ui_language_menu
 
-/obj/screen/language_menu/Click()
+/atom/movable/screen/language_menu/Click()
 	if(isliving(usr))
 		var/mob/living/L = usr
 		L.language_menu()
 
-/obj/screen/inventory
+/atom/movable/screen/inventory
 	var/slot_id	// The indentifier for the slot. It has nothing to do with ID cards.
 	var/icon_empty // Icon when empty. For now used only by humans.
 	var/icon_full  // Icon when contains an item. For now used only by humans.
 	var/list/object_overlays = list()
 
 
-/obj/screen/inventory/Click()
+/atom/movable/screen/inventory/Click()
 	// At this point in client Click() code we have passed the 1/10 sec check and little else
 	// We don't even know if it's a middle click
 	if(world.time <= usr.next_move)
@@ -83,22 +83,22 @@
 	if(istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
 		return TRUE
 
-	if(!istype(src, /obj/screen/inventory/hand) && usr.attack_ui(slot_id)) // until we get a proper hands refactor
+	if(!istype(src, /atom/movable/screen/inventory/hand) && usr.attack_ui(slot_id)) // until we get a proper hands refactor
 		usr.update_inv_l_hand()
 		usr.update_inv_r_hand()
 
-/obj/screen/inventory/hand
+/atom/movable/screen/inventory/hand
 	name = "l_hand"
 	icon_state = "hand_l"
 	screen_loc = ui_lhand
 	var/hand_tag = "l"
 
-/obj/screen/inventory/hand/update_icon(active = FALSE)
+/atom/movable/screen/inventory/hand/update_icon(active = FALSE)
 	cut_overlays()
 	if(active)
 		add_overlay("hand_active")
 
-/obj/screen/inventory/hand/Click()
+/atom/movable/screen/inventory/hand/Click()
 	if(world.time <= usr.next_move)
 		return TRUE
 	if(usr.incapacitated() || !iscarbon(usr))
@@ -108,37 +108,37 @@
 	var/mob/living/carbon/C = usr
 	C.activate_hand(hand_tag)
 
-/obj/screen/inventory/hand/right
+/atom/movable/screen/inventory/hand/right
 	name = "r_hand"
 	icon_state = "hand_r"
 	screen_loc = ui_rhand
 	hand_tag = "r"
 
-/obj/screen/close
+/atom/movable/screen/close
 	name = "close"
 	layer = ABOVE_HUD_LAYER
 	plane = ABOVE_HUD_PLANE
 	icon_state = "backpack_close"
 
 
-/obj/screen/close/Click()
+/atom/movable/screen/close/Click()
 	if(istype(master, /obj/item/storage))
 		var/obj/item/storage/S = master
 		S.close(usr)
 	return TRUE
 
 
-/obj/screen/act_intent
+/atom/movable/screen/act_intent
 	name = "intent"
 	icon_state = "help"
 	screen_loc = ui_acti
 
 
-/obj/screen/act_intent/Click(location, control, params)
+/atom/movable/screen/act_intent/Click(location, control, params)
 	usr.a_intent_change(INTENT_HOTKEY_RIGHT)
 
 
-/obj/screen/act_intent/corner/Click(location, control, params)
+/atom/movable/screen/act_intent/corner/Click(location, control, params)
 	var/_x = text2num(params2list(params)["icon-x"])
 	var/_y = text2num(params2list(params)["icon-y"])
 
@@ -155,13 +155,13 @@
 		usr.a_intent_change(INTENT_DISARM)
 
 
-/obj/screen/internals
+/atom/movable/screen/internals
 	name = "toggle internals"
 	icon_state = "internal0"
 	screen_loc = ui_internal
 
 
-/obj/screen/internals/Click()
+/atom/movable/screen/internals/Click()
 	if(!iscarbon(usr))
 		return
 
@@ -234,18 +234,18 @@
 		C.balloon_alert(C, "You don't have a[breathes=="oxygen" ? "n oxygen" : addtext(" ",breathes)] tank")
 
 
-/obj/screen/mov_intent
+/atom/movable/screen/mov_intent
 	name = "run/walk toggle"
 	icon = 'icons/mob/screen/midnight.dmi'
 	icon_state = "running"
 	screen_loc = ui_movi
 
 
-/obj/screen/mov_intent/Click()
+/atom/movable/screen/mov_intent/Click()
 	usr.toggle_move_intent()
 
 
-/obj/screen/mov_intent/update_icon(mob/user)
+/atom/movable/screen/mov_intent/update_icon(mob/user)
 	if(!user)
 		return
 
@@ -255,41 +255,41 @@
 		if(MOVE_INTENT_WALK)
 			icon_state = "walking"
 
-/obj/screen/mov_intent/alien
+/atom/movable/screen/mov_intent/alien
 	icon = 'icons/mob/screen/alien.dmi'
 
-/obj/screen/rest
+/atom/movable/screen/rest
 	name = "rest"
 	icon = 'icons/mob/screen/midnight.dmi'
 	icon_state = "act_rest"
 	screen_loc = ui_above_movement
 
-/obj/screen/rest/Click()
+/atom/movable/screen/rest/Click()
 	if(!isliving(usr))
 		return
 	var/mob/living/L = usr
 	L.lay_down()
 
-/obj/screen/rest/update_icon(mob/mymob)
+/atom/movable/screen/rest/update_icon(mob/mymob)
 	if(!isliving(mymob))
 		return
 	var/mob/living/L = mymob
 	icon_state = "act_rest[L.resting ? "0" : ""]"
 
-/obj/screen/pull
+/atom/movable/screen/pull
 	name = "stop pulling"
 	icon = 'icons/mob/screen/midnight.dmi'
 	icon_state = "pull0"
 	screen_loc = ui_above_movement
 
 
-/obj/screen/pull/Click()
+/atom/movable/screen/pull/Click()
 	if(isobserver(usr))
 		return
 	usr.stop_pulling()
 
 
-/obj/screen/pull/update_icon(mob/user)
+/atom/movable/screen/pull/update_icon(mob/user)
 	if(!user)
 		return
 	if(user.pulling)
@@ -298,14 +298,14 @@
 		icon_state = "pull0"
 
 
-/obj/screen/resist
+/atom/movable/screen/resist
 	name = "resist"
 	icon = 'icons/mob/screen/midnight.dmi'
 	icon_state = "act_resist"
 	screen_loc = ui_above_intent
 
 
-/obj/screen/resist/Click()
+/atom/movable/screen/resist/Click()
 	if(!isliving(usr))
 		return
 
@@ -313,13 +313,13 @@
 	L.resist()
 
 
-/obj/screen/storage
+/atom/movable/screen/storage
 	name = "storage"
 	icon_state = "block"
 	screen_loc = "7,7 to 10,8"
 
 
-/obj/screen/storage/proc/update_fullness(obj/item/storage/S)
+/atom/movable/screen/storage/proc/update_fullness(obj/item/storage/S)
 	if(!length(S.contents))
 		color = null
 		return
@@ -337,19 +337,19 @@
 			color = null
 
 
-/obj/screen/throw_catch
+/atom/movable/screen/throw_catch
 	name = "throw/catch"
 	icon = 'icons/mob/screen/midnight.dmi'
 	icon_state = "act_throw_off"
 	screen_loc = ui_drop_throw
 
-/obj/screen/throw_catch/Click()
+/atom/movable/screen/throw_catch/Click()
 	if(!iscarbon(usr))
 		return
 	var/mob/living/carbon/C = usr
 	C.toggle_throw_mode()
 
-/obj/screen/zone_sel
+/atom/movable/screen/zone_sel
 	name = "damage zone"
 	icon_state = "zone_sel"
 	screen_loc = ui_zonesel
@@ -358,7 +358,7 @@
 	var/hovering
 	var/z_prefix
 
-/obj/screen/zone_sel/Click(location, control,params)
+/atom/movable/screen/zone_sel/Click(location, control,params)
 	if(isobserver(usr))
 		return
 
@@ -371,10 +371,10 @@
 
 	return set_selected_zone(choice, usr)
 
-/obj/screen/zone_sel/MouseEntered(location, control, params)
+/atom/movable/screen/zone_sel/MouseEntered(location, control, params)
 	MouseMove(location, control, params)
 
-/obj/screen/zone_sel/MouseMove(location, control, params)
+/atom/movable/screen/zone_sel/MouseMove(location, control, params)
 	if(isobserver(usr))
 		return
 
@@ -403,7 +403,7 @@
 	layer = ABOVE_HUD_LAYER
 	plane = ABOVE_HUD_PLANE
 
-/obj/screen/zone_sel/proc/get_zone_at(icon_x, icon_y)
+/atom/movable/screen/zone_sel/proc/get_zone_at(icon_x, icon_y)
 	switch(icon_y)
 		if(1 to 3) //Feet
 			switch(icon_x)
@@ -447,7 +447,7 @@
 							return BODY_ZONE_PRECISE_EYES
 				return BODY_ZONE_HEAD
 
-/obj/screen/zone_sel/proc/set_selected_zone(choice, mob/user)
+/atom/movable/screen/zone_sel/proc/set_selected_zone(choice, mob/user)
 	if(isobserver(user))
 		return
 
@@ -456,41 +456,41 @@
 		update_icon(user)
 	return TRUE
 
-/obj/screen/zone_sel/update_icon(mob/user)
+/atom/movable/screen/zone_sel/update_icon(mob/user)
 	cut_overlays()
 	add_overlay(mutable_appearance('icons/mob/screen/zone_sel.dmi', "[z_prefix][selecting]"))
 	user.zone_selected = selecting
 
-/obj/screen/zone_sel/alien
+/atom/movable/screen/zone_sel/alien
 	icon = 'icons/mob/screen/alien.dmi'
 	z_prefix = "ay_"
 
-/obj/screen/zone_sel/robot
+/atom/movable/screen/zone_sel/robot
 	icon = 'icons/mob/screen/cyborg.dmi'
 
-/obj/screen/healths
+/atom/movable/screen/healths
 	name = "health"
 	icon_state = "health0"
 	screen_loc = ui_health
 	icon = 'icons/mob/screen/health.dmi'
 
-/obj/screen/healths/alien
+/atom/movable/screen/healths/alien
 	icon = 'icons/mob/screen/alien.dmi'
 	screen_loc = ui_alien_health
 
-/obj/screen/healths/robot
+/atom/movable/screen/healths/robot
 	icon = 'icons/mob/screen/cyborg.dmi'
 	screen_loc = ui_borg_health
 
 
-/obj/screen/stamina_hud
+/atom/movable/screen/stamina_hud
 	icon = 'icons/mob/screen/health.dmi'
 	name = "stamina"
 	icon_state = "staminaloss0"
 	screen_loc = UI_STAMINA
 	mouse_opacity = MOUSE_OPACITY_ICON
 
-/obj/screen/stamina_hud/Click(location, control, params)
+/atom/movable/screen/stamina_hud/Click(location, control, params)
 	if(!isliving(usr))
 		return
 	var/mob/living/living_user = usr
@@ -500,22 +500,22 @@
 	living_user.balloon_alert(living_user, "You have [living_user.getStaminaLoss()] stamina loss")
 
 
-/obj/screen/component_button
-	var/obj/screen/parent
+/atom/movable/screen/component_button
+	var/atom/movable/screen/parent
 
-/obj/screen/component_button/Initialize(mapload, obj/screen/parent)
+/atom/movable/screen/component_button/Initialize(mapload, atom/movable/screen/parent)
 	. = ..()
 	src.parent = parent
 
-/obj/screen/component_button/Click(params)
+/atom/movable/screen/component_button/Click(params)
 	parent?.component_click(src, params)
 
-/obj/screen/action_button
+/atom/movable/screen/action_button
 	icon = 'icons/mob/actions.dmi'
 	icon_state = "template"
 	var/datum/action/source_action
 
-/obj/screen/action_button/Click(location, control, params)
+/atom/movable/screen/action_button/Click(location, control, params)
 	if(!usr || !source_action)
 		return TRUE
 	if(usr.next_move >= world.time)
@@ -529,11 +529,11 @@
 	else
 		source_action.fail_activate()
 
-/obj/screen/action_button/Destroy()
+/atom/movable/screen/action_button/Destroy()
 	source_action = null
 	return ..()
 
-/obj/screen/action_button/proc/get_button_screen_loc(button_number)
+/atom/movable/screen/action_button/proc/get_button_screen_loc(button_number)
 	var/row = round((button_number-1)/13) //13 is max amount of buttons per row
 	var/col = ((button_number - 1)%(13)) + 1
 	var/coord_col = "+[col-1]"
@@ -542,13 +542,13 @@
 	var/coord_row_offset = 26
 	return "WEST[coord_col]:[coord_col_offset],NORTH[coord_row]:[coord_row_offset]"
 
-/obj/screen/action_button/hide_toggle
+/atom/movable/screen/action_button/hide_toggle
 	name = "Hide Buttons"
 	icon = 'icons/mob/actions.dmi'
 	icon_state = "hide"
 	var/hidden = 0
 
-/obj/screen/action_button/hide_toggle/Click()
+/atom/movable/screen/action_button/hide_toggle/Click()
 	usr.hud_used.action_buttons_hidden = !usr.hud_used.action_buttons_hidden
 	hidden = usr.hud_used.action_buttons_hidden
 	if(hidden)
@@ -560,7 +560,7 @@
 	usr.update_action_buttons()
 	return TRUE
 
-/obj/screen/SL_locator
+/atom/movable/screen/SL_locator
 	name = "sl locator"
 	icon = 'icons/Marine/marine-items.dmi'
 	icon_state = "Blue_arrow"
@@ -568,27 +568,27 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	screen_loc = ui_sl_dir
 
-/obj/screen/firearms
+/atom/movable/screen/firearms
 
-/obj/screen/firearms/Click()
+/atom/movable/screen/firearms/Click()
 	return get_active_firearm(usr)
 
-/obj/screen/firearms/attachment
+/atom/movable/screen/firearms/attachment
 	name = "Activate weapon attachment"
 	icon_state = "gun_attach"
 	screen_loc = ui_gun_attachment
 
-/obj/screen/firearms/attachment/Click()
+/atom/movable/screen/firearms/attachment/Click()
 	. = ..()
 	var/obj/item/weapon/gun/G = .
 	G?.activate_attachment_verb()
 
-/obj/screen/firearms/flashlight
+/atom/movable/screen/firearms/flashlight
 	name = "Toggle Rail Flashlight"
 	icon_state = "gun_raillight"
 	screen_loc = ui_gun_railtoggle
 
-/obj/screen/firearms/flashlight/Click()
+/atom/movable/screen/firearms/flashlight/Click()
 	. = ..()
 	var/obj/item/weapon/gun/G = .
 	if(!G)
@@ -597,71 +597,71 @@
 	if(F?.activate(usr))
 		playsound(usr, F.activation_sound, 15, 1)
 
-/obj/screen/firearms/magazine
+/atom/movable/screen/firearms/magazine
 	name = "Eject magazine"
 	icon_state = "gun_loaded"
 	screen_loc = ui_gun_eject
 
-/obj/screen/firearms/magazine/Click()
+/atom/movable/screen/firearms/magazine/Click()
 	. = ..()
 	var/obj/item/weapon/gun/G = .
 	G?.empty_mag()
 
-/obj/screen/firearms/firemode
+/atom/movable/screen/firearms/firemode
 	name = "Toggle fire mode"
 	icon_state = "gun_burst"
 	screen_loc = ui_gun_burst
 
-/obj/screen/firearms/firemode/Click()
+/atom/movable/screen/firearms/firemode/Click()
 	. = ..()
 	var/obj/item/weapon/gun/G = .
 	G?.toggle_firemode()
 
-/obj/screen/firearms/unique
+/atom/movable/screen/firearms/unique
 	name = "Use unique action"
 	icon_state = "gun_unique"
 	screen_loc = ui_gun_unique
 
-/obj/screen/firearms/unique/Click()
+/atom/movable/screen/firearms/unique/Click()
 	. = ..()
 	var/obj/item/weapon/gun/G = .
 	G?.use_unique_action()
 
-/obj/screen/drop
+/atom/movable/screen/drop
 	name = "drop"
 	icon = 'icons/mob/screen/midnight.dmi'
 	icon_state = "act_drop"
 	screen_loc = ui_drop_throw
 	layer = HUD_LAYER
 
-/obj/screen/drop/Click()
+/atom/movable/screen/drop/Click()
 	usr.drop_item_v()
 
-/obj/screen/bodytemp
+/atom/movable/screen/bodytemp
 	name = "body temperature"
 	icon_state = "temp0"
 	screen_loc = ui_temp
 
 
-/obj/screen/oxygen
+/atom/movable/screen/oxygen
 	name = "oxygen"
 	icon_state = "oxy0"
 	screen_loc = ui_oxygen
 
 
-/obj/screen/fire
+/atom/movable/screen/fire
 	name = "fire"
 	icon_state = "fire0"
 	screen_loc = ui_fire
 
 
-/obj/screen/toggle_inv
+/atom/movable/screen/toggle_inv
 	name = "toggle"
 	icon = 'icons/mob/screen/midnight.dmi'
 	icon_state = "toggle"
 	screen_loc = ui_inventory
 
-/obj/screen/toggle_inv/Click()
+/atom/movable/screen/toggle_inv/Click()
 	if(usr.hud_used.inventory_shown)
 		usr.hud_used.inventory_shown = FALSE
 		usr.client.screen -= usr.hud_used.toggleable_inventory
@@ -679,7 +679,7 @@
  *
  * Displays a number and an icon representing the ammo for up to 4 at a time
  */
-/obj/screen/ammo
+/atom/movable/screen/ammo
 	name = "ammo"
 	icon = 'icons/mob/ammoHUD.dmi'
 	icon_state = "ammo"
@@ -691,7 +691,7 @@
 	///List of possible screen locs
 	var/static/list/ammo_screen_loc_list = list(ui_ammo1, ui_ammo2, ui_ammo3, ui_ammo4)
 
-/obj/screen/ammo/Initialize()
+/atom/movable/screen/ammo/Initialize()
 	. = ..()
 	flash_holder = new
 	flash_holder.icon_state = "frame"
@@ -701,22 +701,22 @@
 	flash_holder.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	vis_contents += flash_holder
 
-/obj/screen/ammo/Destroy()
+/atom/movable/screen/ammo/Destroy()
 	QDEL_NULL(flash_holder)
 	return ..()
 
 ///wrapper to add this to the users screen with a owner
-/obj/screen/ammo/proc/add_hud(mob/living/user, datum/ammo_owner)
+/atom/movable/screen/ammo/proc/add_hud(mob/living/user, datum/ammo_owner)
 	if(isnull(ammo_owner))
-		CRASH("/obj/screen/ammo/proc/add_hud() has been called from [src] without the required param of ammo_owner")
+		CRASH("/atom/movable/screen/ammo/proc/add_hud() has been called from [src] without the required param of ammo_owner")
 	user?.client.screen += src
 
 ///wrapper to removing this ammo hud from the users screen
-/obj/screen/ammo/proc/remove_hud(mob/living/user)
+/atom/movable/screen/ammo/proc/remove_hud(mob/living/user)
 	user?.client?.screen -= src
 
 ///actually handles upadating the hud
-/obj/screen/ammo/proc/update_hud(mob/living/user, list/ammo_type, rounds)
+/atom/movable/screen/ammo/proc/update_hud(mob/living/user, list/ammo_type, rounds)
 	overlays.Cut()
 
 	if(rounds <= 0)
@@ -753,7 +753,7 @@
 #undef AMMO_HUD_ICON_NORMAL
 #undef AMMO_HUD_ICON_EMPTY
 
-/obj/screen/arrow
+/atom/movable/screen/arrow
 	icon = 'icons/Marine/marine-items.dmi'
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	screen_loc = ui_sl_dir
@@ -765,7 +765,7 @@
 	///The duration of the effect
 	var/duration
 
-/obj/screen/arrow/proc/add_hud(mob/living/carbon/tracker_input, atom/target_input)
+/atom/movable/screen/arrow/proc/add_hud(mob/living/carbon/tracker_input, atom/target_input)
 	if(!tracker_input?.client)
 		return
 	if(target_input == tracker_input)
@@ -778,16 +778,16 @@
 	process() //Ping immediately after parameters have been set
 
 ///Stop the arrow to avoid runtime and hard del
-/obj/screen/arrow/proc/kill_arrow()
+/atom/movable/screen/arrow/proc/kill_arrow()
 	SIGNAL_HANDLER
 	qdel(src)
 
-/obj/screen/arrow/Initialize() //Self-deletes
+/atom/movable/screen/arrow/Initialize() //Self-deletes
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
 	QDEL_IN(src, duration)
 
-/obj/screen/arrow/process() //We ping the target, revealing its direction with an arrow
+/atom/movable/screen/arrow/process() //We ping the target, revealing its direction with an arrow
 	if(!target || !tracker)
 		return PROCESS_KILL
 	if(target.z != tracker.z || get_dist(tracker, target) < 2 || tracker == target)
@@ -797,44 +797,44 @@
 		transform = 0 //Reset and 0 out
 		transform = turn(transform, Get_Angle(tracker, target))
 
-/obj/screen/arrow/Destroy()
+/atom/movable/screen/arrow/Destroy()
 	target = null
 	tracker = null
 	STOP_PROCESSING(SSprocessing, src)
 	return ..()
 
 
-/obj/screen/arrow/leader_tracker_arrow
+/atom/movable/screen/arrow/leader_tracker_arrow
 	name = "hive leader tracker arrow"
 	icon_state = "Blue_arrow"
 	duration = XENO_RALLYING_POINTER_DURATION
 
-/obj/screen/arrow/silo_damaged_arrow
+/atom/movable/screen/arrow/silo_damaged_arrow
 	name = "Hive damaged tracker arrow"
 	icon_state = "Red_arrow"
 	duration = XENO_SILO_DAMAGE_POINTER_DURATION
 
-/obj/screen/arrow/turret_attacking_arrow
+/atom/movable/screen/arrow/turret_attacking_arrow
 	name = "Turret attacking arrow"
 	icon_state = "Green_arrow"
 	duration = XENO_SILO_DAMAGE_POINTER_DURATION
 
-/obj/screen/arrow/attack_order_arrow
+/atom/movable/screen/arrow/attack_order_arrow
 	name = "attack order arrow"
 	icon_state = "Attack_arrow"
 	duration = ORDER_DURATION
 
-/obj/screen/arrow/rally_order_arrow
+/atom/movable/screen/arrow/rally_order_arrow
 	name = "Rally order arrow"
 	icon_state = "Rally_arrow"
 	duration = RALLY_ORDER_DURATION
 
-/obj/screen/arrow/defend_order_arrow
+/atom/movable/screen/arrow/defend_order_arrow
 	name = "Defend order arrow"
 	icon_state = "Defend_arrow"
 	duration = ORDER_DURATION
 
-/obj/screen/arrow/hunter_mark_arrow
+/atom/movable/screen/arrow/hunter_mark_arrow
 	name = "hunter mark arrow"
 	icon_state = "Red_arrow"
 	duration = HUNTER_PSYCHIC_TRACE_COOLDOWN

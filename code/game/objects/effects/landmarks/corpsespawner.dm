@@ -78,12 +78,11 @@
 			victim.update_burst()
 		if(COCOONED_DEATH) //Just cocooned
 			new /obj/structure/cocoon/opened_cocoon(loc)
-		if(HEADBITE_DEATH) //Headbite but left there
+		if(HEADBITE_DEATH) //removed brain
 			var/datum/internal_organ/brain
 			brain = victim.internal_organs_by_name["brain"] //This removes (and later garbage collects) the organ. No brain means instant death.
 			victim.internal_organs_by_name -= "brain"
 			victim.internal_organs -= brain
-			victim.headbitten = TRUE
 			victim.update_headbite()
 	qdel(src)
 

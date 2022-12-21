@@ -164,7 +164,6 @@
 "el" = (
 /obj/effect/attach_point/weapon/dropship1{
 	dir = 8;
-	icon_state = "equip_base_l_wing"
 	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
@@ -620,9 +619,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "pX" = (
-/obj/structure/showcase{
-	icon_state = "broadcaster_send"
-	},
+/obj/structure/prop/mainship/telecomms,
 /turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/telecomm)
 "ql" = (
@@ -1004,9 +1001,7 @@
 /turf/open/floor/freezer,
 /area/bigredv2/outside/marshal_office)
 "Ai" = (
-/obj/structure/showcase{
-	icon_state = "bus"
-	},
+/obj/structure/prop/mainship/telecomms/bus,
 /turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/telecomm)
 "An" = (

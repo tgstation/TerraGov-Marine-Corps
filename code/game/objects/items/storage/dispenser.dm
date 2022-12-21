@@ -131,4 +131,7 @@
 		return ..()
 
 /obj/item/storage/backpack/dispenser/attempt_draw_object(mob/living/user)
-	to_chat(usr, span_notice("You can't grab anything out of [src] while its not deployed."))
+	to_chat(usr, span_notice("You can't grab anything out of [src] while it's not deployed."))
+
+/obj/item/storage/backpack/dispenser/do_quick_equip(mob/user)
+	to_chat(usr, span_notice("You can't grab anything out of [src] while it's not deployed."))

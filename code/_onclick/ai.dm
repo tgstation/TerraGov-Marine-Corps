@@ -34,7 +34,7 @@
 	if(multicam_on)
 		var/turf/T = get_turf(A)
 		if(T)
-			for(var/obj/screen/movable/pic_in_pic/ai/P in T.vis_locs)
+			for(var/atom/movable/screen/movable/pic_in_pic/ai/P in T.vis_locs)
 				if(P.ai == src)
 					P.Click(params)
 					break
@@ -201,7 +201,7 @@
 	if(!user.linked_artillery)
 		to_chat(user, span_notice("No linked mortar found."))
 		return
-	
+
 	var/area/A = get_area(src)
 	if(istype(A) && A.ceiling >= CEILING_UNDERGROUND)
 		to_chat(user, span_warning("You cannot hit the target. It is probably underground."))
