@@ -1327,6 +1327,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 100
 	sundering = 20
 	bullet_color = COLOR_PULSE_BLUE
+	on_pierce_multiplier = 0.85
 
 /datum/ammo/tx54
 	name = "20mm airburst grenade"
