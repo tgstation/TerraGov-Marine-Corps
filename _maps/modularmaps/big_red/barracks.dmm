@@ -226,27 +226,12 @@
 /obj/machinery/light,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
-"jv" = (
-/obj/structure/window/framed/colony/reinforced,
-/obj/machinery/door/poddoor/shutters/mainship{
-	id = "Operations";
-	name = "\improper Operations Shutters"
-	},
-/turf/closed/wall/r_wall,
-/area/bigredv2/outside/admin_building)
 "jz" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/admin_building)
-"jQ" = (
-/obj/machinery/power/apc{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/white,
 /area/bigredv2/outside/admin_building)
 "jZ" = (
 /obj/effect/landmark/weed_node,
@@ -260,6 +245,16 @@
 "kX" = (
 /obj/structure/flora/ausbushes/brflowers,
 /obj/structure/flora/ausbushes/ywflowers,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced/windowstake{
+	dir = 4
+	},
+/obj/structure/window/reinforced/windowstake{
+	dir = 8
+	},
 /turf/open/ground/jungle/clear,
 /area/bigredv2/outside/admin_building)
 "la" = (
@@ -322,7 +317,6 @@
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/admin_building)
 "nO" = (
-/obj/structure/window/reinforced,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -438,9 +432,6 @@
 /turf/open/floor/tile/dark/blue2,
 /area/bigredv2/outside/admin_building)
 "sx" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
 /obj/effect/ai_node,
 /turf/open/floor/grimy,
 /area/bigredv2/outside/admin_building)
@@ -707,12 +698,6 @@
 "DJ" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
-/area/bigredv2/outside/admin_building)
-"Ed" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/open/floor/grimy,
 /area/bigredv2/outside/admin_building)
 "Eg" = (
 /obj/structure/cable,
@@ -1287,13 +1272,6 @@
 	dir = 1
 	},
 /area/bigredv2/outside/c)
-"YF" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/effect/landmark/weed_node,
-/turf/open/floor/grimy,
-/area/bigredv2/outside/admin_building)
 "YR" = (
 /obj/machinery/computer3/server,
 /turf/open/floor/tile/dark,
@@ -1438,7 +1416,7 @@ KC
 eA
 XS
 Lf
-YF
+sE
 CU
 ca
 ep
@@ -1465,7 +1443,7 @@ ad
 CU
 nO
 kX
-Ed
+CU
 rM
 ep
 nt
@@ -1689,7 +1667,7 @@ XA
 jz
 xT
 ye
-jQ
+VB
 VB
 nH
 "}
@@ -2071,8 +2049,8 @@ FS
 nH
 nH
 nH
-jv
-jv
+FS
+FS
 FS
 FS
 nH

@@ -7,6 +7,7 @@
 	datum_flags = DF_USE_TAG
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 	flags_atom = PREVENT_CONTENTS_EXPLOSION
+	resistance_flags = NONE
 
 	//Mob
 	var/stat = CONSCIOUS //Whether a mob is alive or dead. TODO: Move this to living - Nodrak
@@ -17,6 +18,7 @@
 	var/a_intent = INTENT_HELP
 	var/m_intent = MOVE_INTENT_RUN
 	var/in_throw_mode = FALSE
+	var/do_self_harm = TRUE // Whether or not the mob can hit themselves.
 	var/notransform = FALSE
 	var/list/observers //The list of people observing this mob.
 	var/list/speak_emote = list("says") // Verbs used when speaking instead of the default ones.
@@ -61,11 +63,10 @@
 	var/list/progressbars //for stacking do_after bars
 	var/list/progbar_towers //for stacking the total pixel height of the aboves.
 	var/list/fullscreens = list()
-	var/list/alerts = list() // contains /obj/screen/alert only, used by alerts.dm
+	var/list/alerts = list() // contains /atom/movable/screen/alert only, used by alerts.dm
 	var/list/datum/action/actions = list()
 	var/list/actions_by_path = list()
 	var/lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
-	var/image/typing_indicator
 
 	//Interaction
 	///Lazylist assoc list of do_after and do_mob actions the mob is currently performing: list([target] = amount)
@@ -93,3 +94,12 @@
 	var/has_unlimited_silicon_privilege = 0
 	///The faction this mob belongs to
 	var/faction = FACTION_NEUTRAL
+
+	/// what icon the mob uses for speechbubbles
+	var/bubble_icon = "default"
+	///the icon currently used for the typing indicator's bubble
+	var/active_typing_indicator
+	///the icon currently used for the thinking indicator's bubble
+	var/active_thinking_indicator
+	/// User is thinking in character. Used to revert to thinking state after stop_typing
+	var/thinking_IC = FALSE

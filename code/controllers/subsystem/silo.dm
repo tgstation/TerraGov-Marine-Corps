@@ -26,6 +26,8 @@ SUBSYSTEM_DEF(silo)
 	current_larva_spawn_rate += larva_spawn_rate_temporary_buff
 	GLOB.round_statistics.larva_from_silo += current_larva_spawn_rate / xeno_job.job_points_needed
 	xeno_job.add_job_points(current_larva_spawn_rate)
+	var/datum/hive_status/normal_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	normal_hive.update_tier_limits()
 
 ///Activate the subsystem when shutters open and remove the free spawning when marines are joining
 /datum/controller/subsystem/silo/proc/start_spawning()

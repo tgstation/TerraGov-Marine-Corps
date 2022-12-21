@@ -44,7 +44,7 @@
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	to_chat(X, span_warning("We disable the metal thing's lights.") )
 
-/obj/item/flashlight/update_icon()
+/obj/item/flashlight/update_icon_state()
 	. = ..()
 	if(light_on)
 		icon_state = "[initial(icon_state)]-on"

@@ -55,7 +55,7 @@
 
 	/// new maxHealth [/mob/living/carbon/human/var/maxHealth] of the human mob once species is applied
 	var/total_health = 100
-	var/max_stamina_buffer = 50
+	var/max_stamina = 50
 
 	var/cold_level_1 = BODYTEMP_COLD_DAMAGE_LIMIT_ONE  	// Cold damage level 1 below this point.
 	var/cold_level_2 = BODYTEMP_COLD_DAMAGE_LIMIT_TWO  	// Cold damage level 2 below this point.
@@ -236,13 +236,6 @@
 			H.dropItemToGround(thing)
 	for(var/newtrait in inherent_traits)
 		ADD_TRAIT(H, newtrait, SPECIES_TRAIT)
-	var/datum/reagents/R
-	if(species_flags & NO_CHEM_METABOLIZATION)
-		R = new /datum/reagents(0)
-	else
-		R = new /datum/reagents(1000)
-	H.reagents = R
-	R.my_atom = H
 
 //special things to change after we're no longer that species
 /datum/species/proc/post_species_loss(mob/living/carbon/human/H)
@@ -438,10 +431,10 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 	has_organ = list()
 
 
-	screams = list(MALE = "robot_scream", FEMALE = "robot_scream")
-	paincries = list(MALE = "robot_pain", FEMALE = "robot_pain")
-	goredcries = list(MALE = "robot_scream", FEMALE = "robot_scream")
-	warcries = list(MALE = "robot_warcry", FEMALE = "robot_warcry")
+	screams = list(MALE = "robot_scream", FEMALE = "robot_scream", PLURAL = "robot_scream", NEUTER = "robot_scream")
+	paincries = list(MALE = "robot_pain", FEMALE = "robot_pain", PLURAL = "robot_pain", NEUTER = "robot_pain")
+	goredcries = list(MALE = "robot_scream", FEMALE = "robot_scream", PLURAL = "robot_scream", NEUTER = "robot_scream")
+	warcries = list(MALE = "robot_warcry", FEMALE = "robot_warcry", PLURAL = "robot_warcry", NEUTER = "robot_warcry")
 	death_message = "shudders violently whilst spitting out error text before collapsing, their visual sensor darkening..."
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 	joinable_roundstart = TRUE
@@ -460,10 +453,10 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 	. = ..()
 	if(health <= 0 && health > -50)
 		clear_fullscreen("robotlow")
-		overlay_fullscreen("robothalf", /obj/screen/fullscreen/robothalf)
+		overlay_fullscreen("robothalf", /atom/movable/screen/fullscreen/robothalf)
 	else if(health <= -50)
 		clear_fullscreen("robothalf")
-		overlay_fullscreen("robotlow", /obj/screen/fullscreen/robotlow)
+		overlay_fullscreen("robotlow", /atom/movable/screen/fullscreen/robotlow)
 	else
 		clear_fullscreen("robothalf")
 		clear_fullscreen("robotlow")
@@ -523,7 +516,7 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 	return TRUE
 
 
-/datum/species/early_synthetic //cosmetic differences only
+/datum/species/early_synthetic // Worse at medical, better at engineering.
 	name = "Early Synthetic"
 	name_plural = "Early Synthetics"
 	icobase = 'icons/mob/human_races/r_synthetic.dmi'
@@ -618,7 +611,7 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 			span_danger("You avoid [user]'s bite!"), span_hear("You hear jaws snapping shut!"))
 		to_chat(user, span_danger("Your bite misses [victim]!"))
 		return TRUE
-	victim.take_overall_damage(rand(10, 20), updating_health = TRUE)
+	victim.apply_damage(rand(10, 20), BRUTE, "chest", updating_health = TRUE)
 	victim.visible_message(span_danger("[name] bites [victim]!"),
 		span_userdanger("[name] bites you!"), span_hear("You hear a chomp!"))
 	to_chat(user, span_danger("You bite [victim]!"))
@@ -893,30 +886,31 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 		equip_slots |= SLOT_ACCESSORY
 		equip_slots |= SLOT_IN_ACCESSORY
 
+///damage override at the species level, called by /mob/living/proc/apply_damage
+/datum/species/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration, mob/living/carbon/human/victim)
+	var/datum/limb/organ = null
+	if(isorgan(def_zone)) //Got sent a limb datum, convert to a zone define
+		organ = def_zone
+		def_zone = organ.name
 
-/datum/species/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, mob/living/carbon/human/victim)
-	var/hit_percent = (100 - blocked) * 0.01
+	if(!def_zone)
+		def_zone = ran_zone(def_zone)
+	if(!organ)
+		organ = victim.get_limb(check_zone(def_zone))
+	if(!organ)
+		return FALSE
 
-	if(hit_percent <= 0) //total negation
-		return 0
-
-	damage *= CLAMP01(hit_percent) //Percentage reduction
-
-	if(!damage) //Complete negation
-		return 0
+	if(isnum(blocked))
+		damage -= clamp(damage * (blocked - penetration) * 0.01, 0, damage)
+	else
+		damage = victim.modify_by_armor(damage, blocked, penetration, def_zone)
 
 	if(victim.protection_aura)
 		damage = round(damage * ((10 - victim.protection_aura) / 10))
 
-	var/datum/limb/organ = null
-	if(isorgan(def_zone))
-		organ = def_zone
-	else
-		if(!def_zone)
-			def_zone = ran_zone(def_zone)
-		organ = victim.get_limb(check_zone(def_zone))
-	if(!organ)
-		return FALSE
+	if(!damage)
+		return 0
+
 
 	switch(damagetype)
 		if(BRUTE)

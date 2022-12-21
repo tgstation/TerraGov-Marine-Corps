@@ -34,7 +34,7 @@
 		return TRUE
 
 	if(planet_nuked == INFESTATION_NUKE_COMPLETED)
-		message_admins("Round finished: [MODE_INFESTATION_X_MINOR]") //marines managed to nuke the colony
+		message_admins("Round finished: [MODE_INFESTATION_M_MINOR]") //marines managed to nuke the colony
 		round_finished = MODE_INFESTATION_M_MINOR
 		return TRUE
 
@@ -48,7 +48,7 @@
 		return TRUE
 	if(!num_xenos)
 		if(round_stage == INFESTATION_MARINE_CRASHING)
-			message_admins("Round finished: [MODE_INFESTATION_X_MINOR]") //marines lost the ground operation but managed to wipe out Xenos on the ship at a greater cost, minor victory
+			message_admins("Round finished: [MODE_INFESTATION_M_MINOR]") //marines lost the ground operation but managed to wipe out Xenos on the ship at a greater cost, minor victory
 			round_finished = MODE_INFESTATION_M_MINOR
 			return TRUE
 		message_admins("Round finished: [MODE_INFESTATION_M_MAJOR]") //marines win big

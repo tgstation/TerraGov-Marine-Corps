@@ -31,6 +31,7 @@
 	time_to_equip = parent.time_to_equip
 	time_to_unequip = parent.time_to_unequip
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, .proc/open_storage)
+	RegisterSignal(parent, COMSIG_CLICK_ALT_RIGHT, .proc/open_storage)	//Open storage if the armor is alt right clicked
 	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/insert_item)
 	storage.master_item = parent
 
@@ -169,6 +170,7 @@
 		/obj/item/stack/rods,
 		/obj/item/stack/cable_coil,
 		/obj/item/stack/sandbags_empty,
+		/obj/item/stack/sandbags,
 		/obj/item/stack/razorwire,
 		/obj/item/tool/shovel/etool,
 		/obj/item/tool/wrench,
@@ -191,7 +193,7 @@
 		/obj/item/detpack,
 		/obj/item/circuitboard,
 		/obj/item/lightreplacer,
-		/obj/item/tool/solderingtool,
+		/obj/item/tool/surgery/solderingtool,
 	)
 	cant_hold = list()
 
@@ -233,6 +235,7 @@
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/stack/medical,
 		/obj/item/tweezers,
+		/obj/item/tool/surgery/solderingtool,
 	)
 
 /obj/item/armor_module/storage/injector
@@ -263,6 +266,21 @@
 	max_storage_space = 15
 	max_w_class = WEIGHT_CLASS_NORMAL
 
+/obj/item/armor_module/storage/grenade
+	name = "Grenade Storage module"
+	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Can hold a respectable amount of grenades."
+	icon_state = "mod_grenade_harness"
+	storage =  /obj/item/storage/internal/modular/grenade
+
+/obj/item/storage/internal/modular/grenade
+	max_storage_space = 12
+	storage_slots = 6
+	max_w_class = WEIGHT_CLASS_SMALL
+	can_hold = list(
+		/obj/item/explosive/grenade,
+		/obj/item/reagent_containers/food/drinks/cans,
+	)
+
 /obj/item/armor_module/storage/helmet
 	name = "Jaeger Pattern helmet storage"
 	desc = "A small set of bands and straps to allow easy storage of small items."
@@ -271,18 +289,3 @@
 	slowdown = 0
 	show_storage = TRUE
 	flags_attach_features = NONE
-
-/obj/item/armor_module/storage/helmet/som_leader/Initialize()
-	. = ..()
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(storage)
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(storage)
-
-/obj/item/armor_module/storage/helmet/som_vet/Initialize()
-	. = ..()
-	new /obj/item/reagent_containers/hypospray/autoinjector/oxycodone(storage)
-	new /obj/item/reagent_containers/hypospray/autoinjector/russian_red(storage)
-
-/obj/item/armor_module/storage/helmet/som/Initialize()
-	. = ..()
-	new /obj/item/reagent_containers/hypospray/autoinjector/oxycodone(storage)
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat(storage)

@@ -2,7 +2,14 @@
 	animate_movement = SLIDE_STEPS
 	speech_span = SPAN_ROBOT
 	interaction_flags = INTERACT_OBJ_DEFAULT
+	resistance_flags = NONE
 
+	///damage amount to deal when this obj is attacking something
+	var/force = 0
+	///damage type to deal when this obj is attacking something
+	var/damtype = BRUTE
+	///The amount of armor penetration the object has when attacking something
+	var/penetration = 0
 	var/list/materials
 
 	/// %-reduction-based armor.
@@ -34,6 +41,7 @@
 
 	///odds of a projectile hitting the object, if throwpass is true and the object is dense
 	var/coverage = 50
+
 /obj/Initialize()
 	. = ..()
 	if(islist(soft_armor))
@@ -170,3 +178,11 @@
 			setAnchored(var_value)
 			return TRUE
 	return ..()
+
+///Called to return an internally stored item, currently for the deployable element
+/obj/proc/get_internal_item()
+	return
+
+///Called to clear a stored item var, currently for the deployable element
+/obj/proc/clear_internal_item()
+	return

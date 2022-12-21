@@ -21,7 +21,7 @@
 /obj/item/frame/table/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(iswrench(I))
+	if(iswrench(I) && deconstruct_type)
 		new deconstruct_type(loc)
 		qdel(src)
 
@@ -61,6 +61,9 @@
 	user.drop_held_item()
 	qdel(src)
 
+/obj/item/frame/table/nometal
+	deconstruct_type = null
+
 /*
 * Reinforced Table Parts
 */
@@ -97,6 +100,12 @@
 		to_chat(user, span_notice("You put a layer of carpet on [src]."))
 		new /obj/item/frame/table/gambling(get_turf(src))
 		qdel(src)
+
+/obj/item/frame/table/fancywood
+	icon_state = "fwood_tableparts"
+
+/obj/item/frame/table/rusticwood
+	icon_state = "pwood_tableparts"
 
 /*
 * Gambling Table Parts

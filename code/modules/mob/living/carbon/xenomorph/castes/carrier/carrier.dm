@@ -18,25 +18,6 @@
 	)
 
 // ***************************************
-// *********** Death
-// ***************************************
-/mob/living/carbon/xenomorph/carrier/on_death()
-	. = ..()
-	if(!huggers)
-		return
-
-	visible_message(span_xenowarning("A chittering mass of tiny aliens is trying to escape [src]!"))
-	while(huggers > FLOOR(huggers * 0.5,1)) //Half our huggers will avenge us!
-
-		var/obj/item/clothing/mask/facehugger/F = new selected_hugger_type(get_turf(src))
-		step_away(F,src,1)
-		addtimer(CALLBACK(F, /obj/item/clothing/mask/facehugger.proc/go_active, TRUE), F.jump_cooldown)
-
-		huggers--
-
-
-
-// ***************************************
 // *********** Life overrides
 // ***************************************
 /mob/living/carbon/xenomorph/carrier/Stat()

@@ -13,6 +13,9 @@
 ///changing around settings and the like.
 #define VEHICLE_CONTROL_SETTINGS (1<<4)
 
+///ez define for giving a single pilot mech all the flags it needs.
+#define FULL_MECHA_CONTROL ALL
+
 //car_traits flags
 ///Will this car kidnap people by ramming into them?
 #define CAN_KIDNAP (1<<0)

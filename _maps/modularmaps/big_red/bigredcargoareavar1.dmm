@@ -54,7 +54,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "dR" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "em" = (
 /turf/open/floor/plating,
@@ -162,16 +162,12 @@
 	dir = 1
 	},
 /area/bigredv2/outside/nw)
-"mn" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating,
-/area/bigredv2/outside/nw)
 "mu" = (
 /obj/effect/decal/sandedge,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 5
 	},
-/area/bigredv2/caves/northwest)
+/area/bigredv2/outside/nw)
 "mI" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 4
@@ -400,6 +396,10 @@
 	dir = 5
 	},
 /area/bigredv2/outside/virology)
+"Co" = (
+/obj/effect/decal/sandedge,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/nw)
 "CP" = (
 /obj/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning{
@@ -617,7 +617,7 @@
 	},
 /area/bigredv2/outside/virology)
 "QR" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
 "Ri" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -722,7 +722,7 @@
 /area/bigredv2/outside/virology)
 "Zu" = (
 /obj/structure/cable,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "ZC" = (
 /obj/machinery/light{
@@ -732,11 +732,10 @@
 /area/bigredv2/outside/nw)
 "ZD" = (
 /obj/effect/decal/sandedge,
-/obj/machinery/door/airlock/multi_tile/secure2_glass,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 9
 	},
-/area/bigredv2/caves/northwest)
+/area/bigredv2/outside/nw)
 "ZO" = (
 /obj/effect/ai_node,
 /turf/open/floor/asteroidfloor,
@@ -1344,7 +1343,7 @@ rs
 "}
 (26,1,1) = {"
 dR
-dR
+aB
 JP
 aB
 aB
@@ -1367,7 +1366,7 @@ ir
 rs
 "}
 (27,1,1) = {"
-dR
+Co
 aB
 aB
 aB
@@ -1498,7 +1497,7 @@ em
 em
 em
 em
-mn
+em
 em
 em
 em

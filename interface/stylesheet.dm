@@ -1,3 +1,12 @@
+/// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+/// !!!!!!!!!!HEY LISTEN!!!!!!!!!!!!!!!!!!!!!!!!
+/// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+// If you modify this file you ALSO need to modify code/modules/goonchat/browserAssets/browserOutput.css and browserOutput_white.css
+// If you modify this file you ALSO need to modify tgui/packages/tgui-panel/styles/goon/chat-light.scss and chat-dark.scss
+// BUT you have to use PX font sizes with are on a x8 scale of these font sizes
+// Sample font-size: DM: 8 CSS: 64px
+
 /client/script = {"<style>
 html, body {
 	padding: 0;
@@ -125,6 +134,11 @@ a.popt {text-decoration: none;}
 .bravoradio				{color: #C68610;}
 .charlieradio			{color: #AA55AA;}
 .deltaradio				{color: #007FCF;}
+
+.zuluradio				{color: #FF6A00;}
+.yankeeradio			{color: #009999;}
+.xrayradio				{color: #008000;}
+.whiskeyradio			{color: #CC00CC;}
 
 .binarysay    			{color: #20c20e; background-color: #000000; display: block;}
 .binarysay a  			{color: #00ff00;}

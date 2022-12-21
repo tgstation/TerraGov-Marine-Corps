@@ -1,5 +1,5 @@
 
-// Used for spray that you spray at walls, tables, hydrovats etc
+// Used for spray that you spray at walls, tables, hydrovats etc.
 /obj/effect/decal/spraystill
 	density = FALSE
 	anchored = TRUE
@@ -40,6 +40,9 @@
 
 /obj/effect/decal/tile/full/darkgray
 	color = "#818181"
+
+/obj/effect/decal/tile/full/darkgray2
+	color = "#d1d3cd"
 
 /obj/effect/decal/tile/full/white
 	color = "#f7eeee"
@@ -99,13 +102,16 @@
 	color = "#8d498d"
 
 /obj/effect/decal/tile/corsatstraight/lightpurple
-	color = "#a33b94" 
+	color = "#a33b94"
 
 /obj/effect/decal/tile/corsatstraight/darkgreen
 	color = "#238623"
 
 /obj/effect/decal/tile/corsatstraight/white
 	color = "#d3d3d3"
+
+/obj/effect/decal/tile/corsatstraight/gray
+	color = "#d3d3d3c0"
 
 /obj/effect/decal/tile/corsatcorner
 	icon_state = "corsatlinecorner"
@@ -296,7 +302,7 @@
 /obj/effect/decal/tracks/human1/wet
 	color = "#626464"
 	alpha = 140
-	
+
 /obj/effect/decal/tracks/human2
 	icon = 'icons/effects/fluidtracks.dmi'
 	icon_state = "human2"
@@ -344,3 +350,11 @@
 
 /obj/effect/decal/tracks/wheels/bloody
 	color = "#860707"
+
+/obj/effect/decal/apocrune
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "apoccolored"
+
+/obj/effect/decal/large_rune
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "rune_large_colored"

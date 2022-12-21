@@ -93,12 +93,15 @@
 
 		user.visible_message(span_notice("[user] begins welding down \the [src]."),
 		span_notice("You begin welding down \the [src]."))
+		add_overlay(GLOB.welding_sparks)
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		if(!do_after(user, 50, TRUE, src, BUSY_ICON_FRIENDLY))
+			cut_overlay(GLOB.welding_sparks)
 			to_chat(user, span_warning("You need to stand still!"))
 			return
 		user.visible_message(span_notice("[user] welds down \the [src]."),
 		span_notice("You weld down \the [src]."))
+		cut_overlay(GLOB.welding_sparks)
 		if(buildstacktype && dropmetal)
 			new buildstacktype(loc, buildstackamount)
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
@@ -207,7 +210,7 @@
 	occupant.apply_effect(6, STUN, blocked)
 	occupant.apply_effect(6, WEAKEN, blocked)
 	occupant.apply_effect(6, STUTTER, blocked)
-	occupant.apply_damage(10, BRUTE, def_zone, blocked)
+	occupant.apply_damage(10, BRUTE, def_zone, MELEE)
 	UPDATEHEALTH(occupant)
 	playsound(src.loc, 'sound/weapons/punch1.ogg', 25, 1)
 	if(isliving(A))
@@ -217,7 +220,7 @@
 		victim.apply_effect(6, STUN, blocked)
 		victim.apply_effect(6, WEAKEN, blocked)
 		victim.apply_effect(6, STUTTER, blocked)
-		victim.apply_damage(10, BRUTE, def_zone, blocked)
+		victim.apply_damage(10, BRUTE, def_zone, MELEE)
 		UPDATEHEALTH(victim)
 	occupant.visible_message(span_danger("[occupant] crashed into \the [A]!"))
 
@@ -286,7 +289,7 @@
 			chair_state = DROPSHIP_CHAIR_BROKEN
 		else
 			chair_state = DROPSHIP_CHAIR_FOLDED
-		sleep(5) // animation length
+		sleep(0.5 SECONDS) // animation length
 		icon_state = "shuttle_chair_new_folded"
 
 /obj/structure/bed/chair/dropship/passenger/proc/unfold_up()
@@ -296,7 +299,7 @@
 	flick("shuttle_chair_new_unfolding", src)
 	is_animating = 0
 	chair_state = DROPSHIP_CHAIR_UNFOLDED
-	sleep(5)
+	sleep(0.5 SECONDS)
 	icon_state = "shuttle_chair"
 
 /obj/structure/bed/chair/dropship/passenger/rotate()
@@ -356,7 +359,9 @@
 		playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
 		user.visible_message(span_warning("[user] begins repairing \the [src]."),
 		span_warning("You begin repairing \the [src]."))
+		add_overlay(GLOB.welding_sparks)
 		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
+			cut_overlay(GLOB.welding_sparks)
 			return
 
 		user.visible_message(span_warning("[user] repairs \the [src]."),

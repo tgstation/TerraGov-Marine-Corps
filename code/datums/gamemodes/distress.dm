@@ -17,6 +17,7 @@
 		/datum/job/terragov/medical/researcher = 2,
 		/datum/job/terragov/civilian/liaison = 1,
 		/datum/job/terragov/silicon/synthetic = 1,
+		/datum/job/terragov/command/mech_pilot = 0,
 		/datum/job/terragov/silicon/ai = 1,
 		/datum/job/terragov/squad/engineer = 8,
 		/datum/job/terragov/squad/corpsman = 8,
@@ -35,7 +36,7 @@
 	for(var/i in GLOB.xeno_turret_turfs)
 		new /obj/structure/xeno/xeno_turret(i)
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
-		corpse.create_mob(COCOONED_DEATH)
+		corpse.create_mob()
 
 
 /datum/game_mode/infestation/distress/scale_roles(initial_players_assigned)
@@ -50,7 +51,7 @@
 	if(round_finished)
 		return
 	if(round_stage == INFESTATION_MARINE_CRASHING)
-		round_finished = MODE_INFESTATION_X_MINOR
+		round_finished = MODE_INFESTATION_M_MINOR
 		return
 	round_finished = MODE_INFESTATION_M_MAJOR
 

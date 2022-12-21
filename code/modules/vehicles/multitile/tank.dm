@@ -20,7 +20,7 @@
 
 	var/is_zoomed = FALSE
 
-	req_access = list(ACCESS_MARINE_TANK)
+	req_access = list()
 
 /obj/effect/multitile_spawner/cm_armored/tank
 
@@ -283,7 +283,7 @@
 
 
 /obj/vehicle/multitile/root/cm_armored/proc/click_action(A, mob/user, params)
-	if(istype(A, /obj/screen) || A == src)
+	if(istype(A, /atom/movable/screen) || A == src)
 		return FALSE
 
 	if(!can_use_hp(user))

@@ -73,6 +73,7 @@
 
 #define RADIAL_MEDICAL (1<<0)
 #define MIDDLESHIFTCLICKING (1<<1)
+#define RADIAL_STACKS (1<<2)
 
 #define PARALLAX_INSANE -1 //for show offs
 #define PARALLAX_HIGH    0 //default.
@@ -94,7 +95,7 @@
 #define SCALING_METHOD_DISTORT "distort"
 #define SCALING_METHOD_BLUR "blur"
 
-#define TOGGLES_GAMEPLAY_DEFAULT (RADIAL_MEDICAL|MIDDLESHIFTCLICKING)
+#define TOGGLES_GAMEPLAY_DEFAULT (RADIAL_MEDICAL|MIDDLESHIFTCLICKING|RADIAL_STACKS)
 
 #define CHARACTER_CUSTOMIZATION 1
 #define BACKGROUND_INFORMATION 2
@@ -146,6 +147,14 @@
 	"Bravo",\
 	"Charlie",\
 	"Delta",\
+	"None"\
+	)
+
+#define SELECTABLE_SQUADS_SOM list(\
+	"Zulu",\
+	"Yankee",\
+	"Xray",\
+	"Whiskey",\
 	"None"\
 	)
 

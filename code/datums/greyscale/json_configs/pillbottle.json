@@ -2,7 +2,7 @@
 	"": [
 		{
 			"type": "icon_state",
-			"icon_state": "pill_canister1",
+			"icon_state": "pill_canister",
 			"blend_mode": "overlay",
 			"color_ids": [ 1 ]
 		},

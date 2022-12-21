@@ -17,6 +17,7 @@
 	drag_delay = 6 //pulling a big dead xeno is hard
 	tier = XENO_TIER_FOUR //Queen doesn't count towards population limit.
 	upgrade = XENO_UPGRADE_ZERO
+	bubble_icon = "alienroyal"
 
 	var/breathing_counter = 0
 	inherent_verbs = list(
@@ -73,6 +74,10 @@
 	client.perspective = EYE_PERSPECTIVE
 	client.eye = loc
 
+/mob/living/carbon/xenomorph/queen/upgrade_xeno(newlevel, silent = FALSE)
+	. = ..()
+	hive?.update_leader_pheromones()
+
 // ***************************************
 // *********** Name
 // ***************************************
@@ -111,9 +116,3 @@
 /mob/living/carbon/xenomorph/queen/proc/is_burrowed_larva_host(datum/source, list/mothers, list/silos)
 	if(!incapacitated(TRUE))
 		mothers += src //Adding us to the list.
-
-// ***************************************
-// *********** Queen Acidic Salve
-// ***************************************
-/datum/action/xeno_action/activable/psychic_cure/acidic_salve/queen
-	heal_range = HIVELORD_HEAL_RANGE

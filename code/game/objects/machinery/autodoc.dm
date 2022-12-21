@@ -142,7 +142,7 @@
 			blood_transfer = 0
 			say("Blood transfer complete.")
 	if(heal_brute)
-		if(occupant.getexternalBruteLoss() > 0)
+		if(occupant.getBruteLoss() > 0)
 			occupant.heal_limb_damage(3, 0)
 			updating_health = TRUE
 			if(prob(10))
@@ -379,7 +379,7 @@
 						if(!surgery)
 							break
 						if(istype(S.organ_ref,/datum/internal_organ))
-							S.organ_ref.rejuvenate(TRUE)
+							S.organ_ref.heal_organ_damage(S.organ_ref.damage)
 						else
 							say("Organ is missing.")
 
@@ -423,7 +423,7 @@
 									break
 								occupant.disabilities &= ~NEARSIGHTED
 								occupant.disabilities &= ~BLIND
-								E.damage = 0
+								E.heal_organ_damage(E.damage)
 								E.eye_surgery_stage = 0
 
 
@@ -580,7 +580,7 @@
 							else
 								occupant.reagents.add_reagent(/datum/reagent/medicine/spaceacillin, inject_per_second)
 								amount -= inject_per_second
-								sleep(10)
+								sleep(1 SECONDS)
 
 					if(ADSURGERY_FACIAL) // dumb but covers for incomplete facial surgery
 						say("Beginning Facial Reconstruction Surgery.")
@@ -627,7 +627,7 @@
 	while(heal_brute||heal_burn||heal_toxin||filtering||blood_transfer)
 		if(!surgery)
 			break
-		sleep(20)
+		sleep(2 SECONDS)
 		if(prob(5))
 			visible_message("[src] beeps as it continues working.")
 

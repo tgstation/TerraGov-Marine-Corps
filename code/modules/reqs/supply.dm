@@ -263,7 +263,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = SHUTTLE_SUPPLY
 	req_access = list(ACCESS_MARINE_CARGO)
-	circuit = null
+	circuit = /obj/item/circuitboard/computer/supplycomp
 	var/datum/supply_ui/SU
 	///Id of the shuttle controlled
 	var/shuttle_id = SHUTTLE_SUPPLY
@@ -277,6 +277,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	shuttle_id = "supply_rebel"
 	home_id = "supply_home_rebel"
 	faction = FACTION_TERRAGOV_REBEL
+	circuit = /obj/item/circuitboard/computer/rebelsupplycomp
 
 /obj/machinery/computer/supplycomp/interact(mob/user)
 	. = ..()
@@ -611,7 +612,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	name = "Supply ordering console"
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "request"
-	circuit = null
+	circuit = /obj/item/circuitboard/computer/ordercomp
 	var/datum/supply_ui/requests/SU
 
 /obj/machinery/computer/ordercomp/interact(mob/user)
@@ -628,6 +629,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	name = "\improper TGMC radio operator backpack"
 	desc = "A backpack that resembles the ones old-age radio operator soldiers would use."
 	icon_state = "radiopack"
+	item_state = "radiopack"
 	///Var for the window pop-up
 	var/datum/supply_ui/requests/supply_interface
 	/// Reference to the datum used by the supply drop console

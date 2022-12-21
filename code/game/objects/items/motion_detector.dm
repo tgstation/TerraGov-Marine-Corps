@@ -113,6 +113,8 @@
 /// Signal handler to clean out user vars
 /obj/item/attachable/motiondetector/proc/clean_operator()
 	SIGNAL_HANDLER
+	if(operator && (operator.l_hand == src || operator.r_hand == src || operator.l_hand == loc || operator.r_hand == loc))
+		return
 	STOP_PROCESSING(SSobj, src)
 	clean_blips()
 	if(operator)
@@ -139,7 +141,7 @@
 			continue
 		prepare_blip(nearby_xeno, MOTION_DETECTOR_HOSTILE)
 	if(hostile_detected)
-		operator.playsound_local(loc, 'sound/items/tick.ogg', 100, 0, 7, 2)
+		playsound(loc, 'sound/items/tick.ogg', 100, 0, 7, 2)
 	addtimer(CALLBACK(src, .proc/clean_blips), 1 SECONDS)
 
 ///Clean all blips from operator screen

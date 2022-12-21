@@ -470,6 +470,9 @@ GLOBAL_LIST(cable_radial_layer_list)
 			target_layer = CABLE_LAYER_2
 	update_icon()
 
+/obj/item/stack/cable_coil/tiny
+	amount = 1
+	icon_state = "coil2"
 
 ///////////////////////////////////
 // General procedures

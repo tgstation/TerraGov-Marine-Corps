@@ -149,6 +149,104 @@
 	if(!mapload)
 		log_world("### MAP WARNING, [src] spawned outside of mapload!")
 		return
+
+/obj/effect/mapping_helpers/area_flag_injector
+	name = "Area flag Injector"
+	icon_state = "area_flag_injector"
+	/// flags to inject to the area this is placed in
+	var/flag_type = NONE
+
+/obj/effect/mapping_helpers/area_flag_injector/Initialize(mapload)
+	. = ..()
+	var/area/area = get_area(src)
+	area.flags_area |= flag_type
+
+/obj/effect/mapping_helpers/area_flag_injector/marine_base
+	flag_type = MARINE_BASE
+
+/obj/effect/mapping_helpers/area_flag_injector/no_weeding
+	flag_type = DISALLOW_WEEDING
+
+/obj/effect/mapping_helpers/area_flag_injector/ob_immune
+	flag_type = OB_CAS_IMMUNE
+
+/obj/effect/mapping_helpers/area_flag_injector/droppod_immune
+	flag_type = NO_DROPPOD
+
+/obj/effect/mapping_helpers/area_flag_injector/near_fob
+	flag_type = NEAR_FOB
+
+
+/obj/effect/mapping_helpers/simple_pipes
+	name = "Simple Pipes"
+	late = TRUE
+	icon_state = "pipe-3"
+	var/piping_layer = 3
+	var/pipe_color = ""
+	var/connection_num = 0
+	var/hide = FALSE
+
+/obj/effect/mapping_helpers/simple_pipes/LateInitialize()
+	var/list/connections = list( dir2text(NORTH)  = FALSE, dir2text(SOUTH) = FALSE , dir2text(EAST) = FALSE , dir2text(WEST) = FALSE)
+	var/list/valid_connectors = typecacheof(/obj/machinery/atmospherics)
+	for(var/direction in connections)
+		var/turf/T = get_step(src,  text2dir(direction))
+		for(var/machine_type in T.contents)
+			if(istype(machine_type,type))
+				var/obj/effect/mapping_helpers/simple_pipes/found = machine_type
+				if(found.piping_layer != piping_layer)
+					continue
+				connections[direction] = TRUE
+				connection_num++
+				break
+			if(!is_type_in_typecache(machine_type,valid_connectors))
+				continue
+			var/obj/machinery/atmospherics/machine = machine_type
+
+			if(machine.piping_layer != piping_layer)
+				continue
+
+			if(angle2dir(dir2angle(text2dir(direction))+180) & machine.initialize_directions)
+				connections[direction] = TRUE
+				connection_num++
+				break
+
+	switch(connection_num)
+		if(1)
+			for(var/direction in connections)
+				if(connections[direction] != TRUE)
+					continue
+				spawn_pipe(direction,/obj/machinery/atmospherics/pipe/simple)
+		if(2)
+			for(var/direction in connections)
+				if(connections[direction] != TRUE)
+					continue
+				//Detects straight pipes connected from east to west , north to south etc.
+				if(connections[dir2text(angle2dir(dir2angle(text2dir(direction))+180))] == TRUE)
+					spawn_pipe(direction,/obj/machinery/atmospherics/pipe/simple)
+					break
+
+				for(var/direction2 in connections - direction)
+					if(connections[direction2] != TRUE)
+						continue
+					spawn_pipe(dir2text(text2dir(direction)+text2dir(direction2)),/obj/machinery/atmospherics/pipe/simple)
+		if(3)
+			for(var/direction in connections)
+				if(connections[direction] == FALSE)
+					spawn_pipe(direction,/obj/machinery/atmospherics/pipe/manifold)
+		if(4)
+			spawn_pipe(dir2text(NORTH),/obj/machinery/atmospherics/pipe/manifold4w)
+
+	qdel(src)
+
+//spawn pipe
+/obj/effect/mapping_helpers/simple_pipes/proc/spawn_pipe(direction,type )
+	var/obj/machinery/atmospherics/pipe/pipe = new type(get_turf(src),TRUE,text2dir(direction))
+	pipe.level = level
+	pipe.piping_layer = piping_layer
+	pipe.update_layer()
+	pipe.paint(pipe_color)
+
 //	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
 //	if(airlock)
 //		airlock.unres_sides ^= dir

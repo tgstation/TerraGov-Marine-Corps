@@ -158,3 +158,10 @@
 	throwforce = 0
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("needled", "sewed", "stabbed")
+
+/obj/item/tool/surgery/surgical_membrane
+	name = "surgical membrane"
+	icon_state = "surgical_membrane"
+	force = 0
+	throwforce = 0
+	w_class = WEIGHT_CLASS_SMALL

@@ -55,8 +55,11 @@ GLOBAL_DATUM_INIT(cameranet, /datum/cameranet, new)
 	else
 		other_eyes = list()
 
-	if(C && use_static)
-		C.images += obscured
+	if(C)
+		if(use_static)
+			C.images += obscured
+		else
+			C.images -= obscured
 
 	for(var/mob/camera/aiEye/eye AS in moved_eyes)
 		var/list/visibleChunks = list()
