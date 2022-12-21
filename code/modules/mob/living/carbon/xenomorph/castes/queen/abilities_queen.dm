@@ -369,7 +369,7 @@
 	var/remainder = max(0, amount - getBruteLoss())
 	adjustBruteLoss(-amount)
 	adjustFireLoss(-remainder, updating_health = TRUE)
-	adjust_sunder(-amount/20)
+	adjust_sunder(-amount/5)
 
 // ***************************************
 // *********** Queen plasma
