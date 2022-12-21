@@ -141,6 +141,7 @@
 	full_name = "Drone: Acidic Salve"
 	description = "Heal a xenomorph with this."
 	keybind_signal = COMSIG_XENOABILITY_ACIDIC_SALVE
+	hotkey_keys = list("F")
 
 /datum/keybinding/xeno/essence_link
 	name = "essence_link"
@@ -417,6 +418,7 @@
 	full_name = "Hivemind: Change Form"
 	description = ""
 	keybind_signal = COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM
+	hotkey_keys = list("F")
 
 /datum/keybinding/xeno/toggle_stealth
 	name = "toggle_stealth"
@@ -441,12 +443,14 @@
 	full_name = "Hunter: Mark"
 	description = "Mark that lonely marine so that you can track with Psychic Trace."
 	keybind_signal = COMSIG_XENOABILITY_HUNTER_MARK
+	hotkey_keys = list("F")
 
 /datum/keybinding/xeno/psychic_trace
 	name = "psychic_trace"
 	full_name = "Hunter: Psychic Trace"
 	description = "Locate direction of marine that you've marked."
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_TRACE
+	hotkey_keys = list("G")
 
 /datum/keybinding/xeno/psychic_whisper
 	name = "psychic_whisper"
