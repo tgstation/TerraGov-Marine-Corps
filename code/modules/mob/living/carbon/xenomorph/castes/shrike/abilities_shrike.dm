@@ -281,6 +281,7 @@
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	var/mob/living/carbon/xenomorph/patient = target
 	patient.heal_wounds(SHRIKE_CURE_HEAL_MULTIPLIER)
+	patient.adjust_sunder(-SHRIKE_CURE_HEAL_MULTIPLIER)
 	if(patient.health > 0) //If they are not in crit after the heal, let's remove evil debuffs.
 		patient.SetUnconscious(0)
 		patient.SetStun(0)

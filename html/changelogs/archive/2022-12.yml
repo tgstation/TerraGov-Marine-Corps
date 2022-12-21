@@ -392,3 +392,6 @@
   - qol: made AI ghosting harder to do accidentally, look better, and notify marines
       of the fact
   - admin: made AI ghosting notify admins
+2022-12-21:
+  novaepee:
+  - rscdel: remove two r walls and useless apc in Big Red's admin
