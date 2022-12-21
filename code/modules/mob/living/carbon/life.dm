@@ -5,11 +5,6 @@
 
 	if(notransform || stat == DEAD) //If we're dead or set to notransform don't bother processing life
 		return
-	if(!HAS_TRAIT(src, TRAIT_STASIS))
-		if(health < get_crit_threshold() && !reagents.has_reagent(/datum/reagent/medicine/inaprovaline))
-			adjustOxyLoss(CARBON_CRIT_MAX_OXYLOSS, TRUE)
-		else
-			adjustOxyLoss(CARBON_RECOVERY_OXYLOSS, TRUE)
 
 	. = ..()
 
@@ -88,7 +83,7 @@
 	if(drowsyness)
 		adjustDrowsyness(-restingpwr)
 		blur_eyes(2)
-		if(prob(5))
+		if(drowsyness > 18 && prob(5))
 			Sleeping(20)
 			Unconscious(10 SECONDS)
 
@@ -101,13 +96,10 @@
 
 
 
-	if(staminaloss > -max_stamina_buffer)
+	if(staminaloss > -max_stamina)
 		handle_staminaloss()
 
 	if(IsSleeping())
-		if(ishuman(src))
-			var/mob/living/carbon/human/H = src
-			H.speech_problem_flag = 1
 		handle_dreams()
 		if(mind)
 			if((mind.active && client != null) || immune_to_ssd) //This also checks whether a client is connected, if not, sleep is not reduced.
@@ -120,11 +112,11 @@
 		drunkenness = max(drunkenness - (drunkenness * 0.03), 0)
 		if(drunkenness >= 6)
 			if(prob(25))
-				slurring += 2
+				adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/slurring/drunk)
 			jitter(-3)
 
-		if(drunkenness >= 11 && slurring < 5)
-			slurring += 1.2
+		if(drunkenness >= 11)
+			adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/slurring/drunk, 10 SECONDS)
 
 		if(drunkenness >= 41)
 			if(prob(25))

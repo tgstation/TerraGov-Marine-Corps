@@ -407,6 +407,8 @@
 
 /area/mainship/squads/general/rebel
 
+/area/mainship/squads/general/som
+
 /area/mainship/squads/req
 	name = "Requisitions"
 	icon_state = "req"
@@ -429,3 +431,17 @@
 /area/mainship/medical/lounge
 	name = "Medical Lounge"
 	icon_state = "medical"
+
+//combat patrol base
+
+/area/mainship/patrol_base
+	name = "TGMC Combat Patrol Base"
+	icon_state = "req"
+	requires_power = FALSE
+
+/area/mainship/patrol_base/som
+	name = "SOM Combat Patrol Base"
+
+/area/mainship/patrol_base/telecomms
+	name = "Telecommunications"
+	icon_state = "tcomms"

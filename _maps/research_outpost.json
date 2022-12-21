@@ -2,5 +2,5 @@
     "map_name": "Research Outpost",
     "map_path": "map_files/Research_Outpost",
     "map_file": "Research_Outpost.dmm",
-    "announce_text": "A research outpost has had a beacon transmitting the same signal, nonstop. Attempts to hail the colony over comms have proved futile. Because the ###SHIPNAME### was at a nearby drydock, it has been dispatched to figure out what's wrong. TGMC, prepare to deploy!"
+    "announce_text": "A research outpost has had a beacon transmitting the same signal, nonstop. Attempts to hail the colony over comms have proved futile. Because the ship was at a nearby drydock, it has been dispatched to figure out what's wrong. TGMC, prepare to deploy!"
 }

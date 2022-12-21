@@ -6,7 +6,7 @@
 	if(next_move > world.time)
 		return
 
-	if(istype(loc, /obj/vehicle/multitile/root/cm_armored))
+	if(incapacitated())
 		return
 
 	if(hand)
@@ -118,9 +118,9 @@
 		/datum/job/upp/leader,
 		/datum/job/upp/heavy,
 		/datum/job/upp/standard,
-		/datum/job/som/leader,
-		/datum/job/som/veteran,
-		/datum/job/som/standard,
+		/datum/job/som/ert/leader,
+		/datum/job/som/ert/veteran,
+		/datum/job/som/ert/standard,
 		/datum/job/pmc/leader,
 		/datum/job/pmc/standard,
 	)

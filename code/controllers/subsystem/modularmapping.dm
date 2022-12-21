@@ -8,4 +8,5 @@ SUBSYSTEM_DEF(modularmapping)
 	for(var/obj/effect/spawner/modularmap/map AS in markers)
 		map.load_modularmap()
 	markers = null
+	repopulate_sorted_areas() //adds all the modular map areas to the list
 	return ..()

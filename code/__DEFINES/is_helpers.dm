@@ -6,6 +6,12 @@
 
 #define isclient(A) (istype(A, /client))
 
+#define isdatum(thing) (istype(thing, /datum))
+
+#define isweakref(D) (istype(D, /datum/weakref))
+
+#define isgenerator(A) (istype(A, /generator))
+
 //Turfs
 //#define isturf(A) (istype(A, /turf)) This is actually a byond built-in. Added here for completeness sake.
 
@@ -65,8 +71,10 @@
 #define ismedicaljob(J) (istype(J, /datum/job/terragov/medical))
 #define isengineeringjob(J) (istype(J, /datum/job/terragov/engineering))
 #define ismarinejob(J) (istype(J, /datum/job/terragov/squad))
+#define issommarinejob(J) (istype(J, /datum/job/som/squad))
 #define ismarinespecjob(J) (istype(J, /datum/job/terragov/squad/specialist))
 #define ismarineleaderjob(J) (istype(J, /datum/job/terragov/squad/leader))
+#define issommarineleaderjob(J) (istype(J, /datum/job/som/squad/leader))
 #define ismarinecommandjob(J) (istype(J, /datum/job/terragov/command))
 #define ismarinecaptainjob(J) (istype(J, /datum/job/terragov/command/captain))
 #define iscorporateliaisonjob(J) (istype(J, /datum/job/terragov/civilian/liaison))
@@ -96,10 +104,12 @@
 #define isxenolarva(A) (istype(A, /mob/living/carbon/xenomorph/larva))
 #define isxenoqueen(A) (istype(A, /mob/living/carbon/xenomorph/queen))
 #define isxenoshrike(A) (istype(A, /mob/living/carbon/xenomorph/shrike))
-#define isxenodefiler(A) (istype(A, /mob/living/carbon/xenomorph/Defiler))
+#define isxenodefiler(A) (istype(A, /mob/living/carbon/xenomorph/defiler))
 #define isxenobull(A) (istype(A, /mob/living/carbon/xenomorph/bull))
 #define isxenohivemind(A) (istype(A, /mob/living/carbon/xenomorph/hivemind))
 #define isxenowraith(A) (istype(A, /mob/living/carbon/xenomorph/wraith))
+#define isxenowidow(A) (istype(A, /mob/living/carbon/xenomorph/widow))
+#define isxenowarlock(A) (istype(A, /mob/living/carbon/xenomorph/warlock))
 
 //Silicon mobs
 #define issilicon(A) (istype(A, /mob/living/silicon))
@@ -153,6 +163,10 @@
 
 #define isgun(A) (istype(A, /obj/item/weapon/gun))
 
+#define isammomagazine(A) (istype(A, /obj/item/ammo_magazine))
+
+#define isgrenade(A) (istype(A, /obj/item/explosive/grenade))
+
 #define isstorage(A) (istype(A, /obj/item/storage))
 
 #define isitemstack(A) (istype(A, /obj/item/stack))
@@ -191,6 +205,8 @@
 
 #define iscrowbar(I) (istype(I, /obj/item/tool/crowbar))
 
+#define iscell(I) (istype(I, /obj/item/cell))
+
 #define isfactorypart(I) (istype(I, /obj/item/factory_part))
 
 #define isfactoryrefill(I) (istype(I, /obj/item/factory_refill))
@@ -208,6 +224,8 @@
 #define is_cleanable(A) (istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/rune)) //if something is cleanable
 
 #define isvehicle(A) (istype(A, /obj/vehicle))
+
+#define ismecha(A) (istype(A, /obj/vehicle/sealed/mecha))
 
 #define isorgan(A) (istype(A, /datum/limb))
 
@@ -243,6 +261,8 @@
 #define ishuntgamemode(O) (istype(O, /datum/game_mode/infestation/hunt))
 #define iscrashgamemode(O) (istype(O, /datum/game_mode/infestation/crash))
 #define isinfestationgamemode(O) (istype(O, /datum/game_mode/infestation))
+#define iscombatpatrolgamemode(O) (istype(O, /datum/game_mode/combat_patrol))
+#define issensorcapturegamemode(O) (istype(O, /datum/game_mode/combat_patrol/sensor_capture))
 
 #define isxenoresearcharea(A) (istype(A, /area/mainship/medical/medical_science))
 

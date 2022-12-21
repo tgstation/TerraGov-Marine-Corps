@@ -364,7 +364,7 @@
 /obj/structure/window/reinforced/tinted/frosted{
 	dir = 1
 	},
-/obj/machinery/door/window{
+/obj/structure/window/reinforced/tinted/frosted{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -497,9 +497,8 @@
 	},
 /area/deathmatch)
 "fM" = (
-/turf/open/floor/mainship{
-	dir = 8;
-	icon_state = "silvercorner"
+/turf/open/floor/mainship/silver/corner{
+	dir = 8
 	},
 /area/deathmatch)
 "gd" = (
@@ -507,6 +506,11 @@
 	desc = "A ship memorial dedicated to the triumphs of the TGMC and the fallen marines of this ship. On the left there are grand tales of victory etched into the slab. On the right there is a list of famous marines who have fallen in combat serving the TGMC. There seems to be an etch of three spikes on the free space below."
 	},
 /turf/open/floor/plating/mainship,
+/area/deathmatch)
+"gE" = (
+/obj/structure/table/reinforced/prison,
+/obj/effect/spawner/random/plushie/nospawnninetyfive,
+/turf/open/floor/mainship/mono,
 /area/deathmatch)
 "hr" = (
 /obj/structure/bed/chair,
@@ -702,9 +706,8 @@
 /area/deathmatch)
 "Bi" = (
 /obj/effect/landmark/deathmatch,
-/turf/open/floor/mainship{
-	dir = 8;
-	icon_state = "silvercorner"
+/turf/open/floor/mainship/silver/corner{
+	dir = 8
 	},
 /area/deathmatch)
 "Bw" = (
@@ -718,10 +721,16 @@
 /obj/structure/prop/mainship/ship_memorial,
 /turf/open/floor/plating/mainship,
 /area/deathmatch)
+"Cq" = (
+/obj/machinery/door/window{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/deathmatch)
 "Di" = (
 /obj/structure/target_stake,
 /obj/item/target,
-/obj/item/clothing/suit/storage/militia,
+/obj/item/clothing/suit/storage/faction/militia,
 /turf/open/floor/plating/mainship,
 /area/deathmatch)
 "Dn" = (
@@ -875,9 +884,7 @@
 	},
 /area/deathmatch)
 "Sb" = (
-/turf/open/floor/mainship{
-	icon_state = "silvercorner"
-	},
+/turf/open/floor/mainship/silver/corner,
 /area/deathmatch)
 "Sj" = (
 /turf/open/floor/mainship/emerald,
@@ -974,9 +981,7 @@
 /area/space)
 "Wi" = (
 /obj/effect/landmark/deathmatch,
-/turf/open/floor/mainship{
-	icon_state = "silvercorner"
-	},
+/turf/open/floor/mainship/silver/corner,
 /area/deathmatch)
 "WF" = (
 /obj/structure/window/framed/mainship/hull,
@@ -993,6 +998,7 @@
 	pixel_x = 4;
 	pixel_y = 4
 	},
+/obj/effect/spawner/random/plushie/fiftyfifty,
 /turf/open/floor/grass,
 /area/deathmatch)
 "Xx" = (
@@ -1453,7 +1459,7 @@ bI
 aa
 bb
 dH
-ba
+Cq
 bc
 bm
 aa
@@ -2001,7 +2007,7 @@ HL
 aH
 Zu
 ue
-Yy
+gE
 aB
 ca
 HL

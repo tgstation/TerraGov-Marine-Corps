@@ -52,7 +52,7 @@
 /turf/open/floor/marking/asteroidwarning{
 	dir = 5
 	},
-/area/bigredv2/caves/northwest)
+/area/bigredv2/outside/nw)
 "er" = (
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
@@ -171,7 +171,7 @@
 	},
 /area/bigredv2/outside/nw)
 "lm" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
 "lM" = (
 /obj/structure/cargo_container/green,
@@ -216,7 +216,7 @@
 /area/bigredv2/caves/west)
 "pG" = (
 /obj/machinery/light,
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "pR" = (
@@ -376,7 +376,7 @@
 /area/bigredv2/outside/nw)
 "zV" = (
 /obj/structure/cable,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "At" = (
 /obj/structure/cable,
@@ -591,10 +591,6 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
-"OZ" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating,
-/area/bigredv2/outside/nw)
 "Pb" = (
 /obj/structure/cable,
 /turf/open/floor/plating/warning{
@@ -690,7 +686,7 @@
 	},
 /area/bigredv2/outside/nw)
 "Uk" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "Un" = (
 /obj/effect/landmark/weed_node,
@@ -701,7 +697,6 @@
 "Uq" = (
 /obj/machinery/light{
 	dir = 1;
-	icon_state = "tube1"
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
@@ -728,7 +723,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "UP" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "Vv" = (
@@ -742,14 +737,17 @@
 /area/bigredv2/caves/northwest)
 "VG" = (
 /obj/effect/decal/sandedge,
-/obj/machinery/door/airlock/multi_tile/secure2_glass,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 9
 	},
-/area/bigredv2/caves/northwest)
+/area/bigredv2/outside/nw)
 "VS" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/northwest)
+"Wu" = (
+/obj/effect/decal/sandedge,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/nw)
 "Wy" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -801,7 +799,6 @@
 "XR" = (
 /obj/machinery/light{
 	dir = 1;
-	icon_state = "tube1"
 	},
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/plating,
@@ -1460,7 +1457,7 @@ ru
 "}
 (26,1,1) = {"
 Uk
-Uk
+JU
 gK
 JU
 JU
@@ -1483,7 +1480,7 @@ ri
 ru
 "}
 (27,1,1) = {"
-Uk
+Wu
 JU
 JU
 JU
@@ -1828,7 +1825,7 @@ JU
 OL
 tS
 Hh
-OZ
+er
 bw
 er
 cJ

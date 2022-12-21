@@ -137,6 +137,8 @@
 	med_squad_mobhud ? H.add_hud_to(src) : H.remove_hud_from(src)
 	H = GLOB.huds[DATA_HUD_SQUAD_REBEL]
 	med_squad_mobhud ? H.add_hud_to(src) : H.remove_hud_from(src)
+	H = GLOB.huds[DATA_HUD_SQUAD_SOM]
+	med_squad_mobhud ? H.add_hud_to(src) : H.remove_hud_from(src)
 	to_chat(src, span_notice("You have [med_squad_mobhud ? "enabled" : "disabled"] the Human Status HUD."))
 
 /mob/camera/imaginary_friend/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language, ignore_spam = FALSE, forced)
@@ -230,15 +232,6 @@
 /mob/camera/imaginary_friend/ghostize()
 	icon = human_image
 	return ..()
-
-
-/mob/camera/imaginary_friend/add_typing_indicator(emoting)
-	return
-
-
-/mob/camera/imaginary_friend/remove_typing_indicator(emoting)
-	return
-
 
 /datum/action/innate/imaginary_join
 	name = "Join"

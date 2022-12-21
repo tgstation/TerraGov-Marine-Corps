@@ -8,6 +8,7 @@
 	var/dropmetal = TRUE
 	resistance_flags = XENO_DAMAGEABLE
 	max_integrity = 40
+	soft_armor = list(MELEE = 0, BULLET = 80, LASER = 80, ENERGY = 80, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	hit_sound = 'sound/effects/woodhit.ogg'
 	var/spawn_type
 	var/spawn_amount
@@ -178,7 +179,7 @@
 	desc = "A blue storage barrel"
 	icon_state = "barrel_blue"
 
-/obj/structure/largecrate/random/barrel/red
+/obj/structure/largecrate/random/barrel/red //lame non explosive version
 	name = "red barrel"
 	desc = "A red storage barrel"
 	icon_state = "barrel_red"

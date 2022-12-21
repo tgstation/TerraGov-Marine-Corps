@@ -11,43 +11,22 @@
 	if(gloves && germ_level > gloves.germ_level && prob(10))
 		gloves.germ_level++
 
-	if(command_aura_cooldown > 0 && (--command_aura_cooldown == 0))
-		update_action_buttons() // Update "Issue Order" action button
+	return TRUE
 
-	if(command_aura)
-		command_aura_tick--
+/mob/living/carbon/human/finish_aura_cycle()
 
-		if(command_aura_tick < 1 || IsMute()) //Null the command aura if we're muted or its duration is over
-			command_aura = null
-
-		if(stat == CONSCIOUS) //Must be conscious
-			command_aura_strength = skills.getRating("leadership") - 1
-			var/command_aura_range = round(4 + command_aura_strength * 1)
-			for(var/mob/living/carbon/human/H in range(command_aura_range, src))
-				if(command_aura == "move" && command_aura_strength > H.mobility_new)
-					H.mobility_new = command_aura_strength
-				if(command_aura == "hold" && command_aura_strength > H.protection_new)
-					H.protection_new = command_aura_strength
-				if(command_aura == "focus" && command_aura_strength > H.marksman_new)
-					H.marksman_new = command_aura_strength
-
-	set_mobility_aura(mobility_new)
-	protection_aura = protection_new
-	marksman_aura = marksman_new
-
-	mobility_new = 0
-	protection_new = 0
-	marksman_new = 0
-	aura_recovery_multiplier = 0
+	set_mobility_aura(received_auras[AURA_HUMAN_MOVE] || 0)
+	protection_aura = received_auras[AURA_HUMAN_HOLD] || 0
+	marksman_aura = received_auras[AURA_HUMAN_FOCUS] || 0
 
 	//Natural recovery; enhanced by hold/protection aura.
 	if(protection_aura)
-		aura_recovery_multiplier = 1 + max(0,0.5 + 0.5 * protection_aura) //Protection aura adds +50% recovery rate per point of leadership; +100% for an SL +200% for a CO/XO
-		dizzy(- 3 * aura_recovery_multiplier + 3)
-		jitter(- 3 * aura_recovery_multiplier + 3)
+		var/aura_recovery_multiplier = 0.5 + 0.5 * protection_aura //Protection aura adds +50% recovery rate per point of leadership; +100% for an SL +200% for a CO/XO
+		dizzy(- 3 * aura_recovery_multiplier)
+		jitter(- 3 * aura_recovery_multiplier)
 	hud_set_order()
 
-	return TRUE
+	..()
 
 
 /mob/living/carbon/human/proc/set_mobility_aura(new_aura)

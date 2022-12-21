@@ -36,6 +36,22 @@ GLOBAL_LIST_INIT(department_radio_keys_rebel, list(
 	RADIO_KEY_REQUISITIONS = RADIO_CHANNEL_REQUISITIONS_REBEL,
 ))
 
+GLOBAL_LIST_INIT(department_radio_keys_som, list(
+	MODE_KEY_R_HAND = MODE_R_HAND,
+	MODE_KEY_L_HAND = MODE_L_HAND,
+	MODE_KEY_INTERCOM = MODE_INTERCOM,
+
+	MODE_KEY_DEPARTMENT = MODE_DEPARTMENT,
+
+	RADIO_KEY_MEDICAL = RADIO_CHANNEL_MEDICAL_SOM,
+	RADIO_KEY_ENGINEERING = RADIO_CHANNEL_ENGINEERING_SOM,
+	RADIO_KEY_COMMAND = RADIO_CHANNEL_COMMAND_SOM,
+	RADIO_KEY_ALPHA = RADIO_CHANNEL_ZULU,
+	RADIO_KEY_BRAVO = RADIO_CHANNEL_YANKEE,
+	RADIO_KEY_CHARLIE = RADIO_CHANNEL_XRAY,
+	RADIO_KEY_DELTA = RADIO_CHANNEL_WHISKEY,
+))
+
 /mob/living/proc/Ellipsis(original_msg, chance = 50, keep_words)
 	if(chance <= 0)
 		return "..."
@@ -240,15 +256,6 @@ GLOBAL_LIST_INIT(department_radio_keys_rebel, list(
 		else
 			AM.Hear(rendered, src, message_language, message, , spans, message_mode)
 
-	//speech bubble
-	var/list/speech_bubble_recipients = list()
-	for(var/mob/M in listening)
-		if(M.client && !M.client.prefs.chat_on_map)
-			speech_bubble_recipients.Add(M.client)
-	var/image/I = image('icons/mob/talk.dmi', src, "[bubble_type][say_test(message)]", FLY_LAYER)
-	I.appearance_flags = APPEARANCE_UI_TRANSFORM
-	INVOKE_ASYNC(GLOBAL_PROC, /.proc/animate_speech_bubble, I, speech_bubble_recipients, TYPING_INDICATOR_LIFETIME)
-
 
 /mob/living/GetVoice()
 	return name
@@ -285,16 +292,12 @@ GLOBAL_LIST_INIT(department_radio_keys_rebel, list(
 
 
 /mob/living/proc/treat_message(message)
-	if(stuttering)
-		message = stutter(message)
-
-	if(slurring)
-		message = slur(message)
-
-		// check for and apply punctuation
+	// check for and apply punctuation
 	var/end = copytext(message, length(message))
 	if(!(end in list("!", ".", "?", ":", "\"", "-")))
 		message += "."
+
+	SEND_SIGNAL(src, COMSIG_LIVING_TREAT_MESSAGE, args)
 
 	message = capitalize(message)
 
@@ -330,7 +333,7 @@ GLOBAL_LIST_INIT(department_radio_keys_rebel, list(
 		. = verb_whisper
 	else if(message_mode == MODE_WHISPER_CRIT)
 		. = "[verb_whisper] in [p_their()] last breath"
-	else if(stuttering)
+	else if(has_status_effect(/datum/status_effect/speech/stutter))
 		. = "stammers"
 	else if(message_mode == MODE_SING)
 		. = verb_sing

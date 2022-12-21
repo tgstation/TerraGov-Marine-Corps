@@ -82,7 +82,7 @@
 				to_chat(M, span_warning("You take a bite of \the [src]."))
 			if (fullness > 350 && fullness <= 550)
 				to_chat(M, span_warning("You unwillingly chew a bit of \the [src]."))
-			if (fullness > (550 * (1 + C.overeatduration / 2000)))	// The more you eat - the more you can eat
+			if (fullness > 550)
 				to_chat(M, span_warning("You cannot force any more of \the [src] to go down your throat."))
 				return FALSE
 		else
@@ -90,7 +90,7 @@
 			if(ishuman(H) && (H.species.species_flags & ROBOTIC_LIMBS))
 				to_chat(user, span_warning("They have a monitor for a head, where do you think you're going to put that?"))
 				return
-			if (fullness <= (550 * (1 + C.overeatduration / 1000)))
+			if (fullness <= 550)
 				M.visible_message(span_warning("[user] attempts to feed \the [M] [src]."))
 			else
 				M.visible_message(span_warning("[user] cannot force anymore of \the [src] down [M]'s throat."))
@@ -2905,7 +2905,7 @@
 
 /obj/item/reagent_containers/food/snacks/lollipop/combat
 	name = "Commed-pop"
-	desc = "A lolipop devised to heal wounds overtime, with a slower amount of reagent use. Can be eaten or put in the mask slot"
+	desc = "A lolipop devised to heal wounds overtime by mixing sugar with bicard and kelotane, with a slower amount of reagent use. Can be eaten or put in the mask slot"
 	list_reagents = list(/datum/reagent/consumable/sugar = 1, /datum/reagent/medicine/bicaridine = 5, /datum/reagent/medicine/kelotane = 5)
 
 /obj/item/reagent_containers/food/snacks/lollipop/tricord

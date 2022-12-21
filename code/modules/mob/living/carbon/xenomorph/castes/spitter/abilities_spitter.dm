@@ -93,7 +93,7 @@
 			break
 
 		prev_turf = T
-		sleep(2)
+		sleep(0.2 SECONDS)
 
 /datum/action/xeno_action/activable/spray_acid/line/on_cooldown_finish() //Give acid spray a proper cooldown notification
 	to_chat(owner, span_xenodanger("Our dermal pouches bloat with fresh acid; we can use acid spray again."))
@@ -110,7 +110,9 @@
 	ability_name = "scatter spit"
 	plasma_cost = 280
 	cooldown_timer = 5 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_SCATTER_SPIT
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SCATTER_SPIT,
+	)
 
 /datum/action/xeno_action/activable/scatter_spit/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -125,7 +127,6 @@
 
 	var/obj/projectile/newspit = new /obj/projectile(get_turf(X))
 	newspit.generate_bullet(scatter_spit, scatter_spit.damage * SPIT_UPGRADE_BONUS(X))
-	newspit.permutated += X
 	newspit.def_zone = X.get_limbzone_target()
 
 	newspit.fire_at(target, X, null, newspit.ammo.max_range)

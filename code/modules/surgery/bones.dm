@@ -7,7 +7,9 @@
 	var/bone_step
 
 /datum/surgery_step/bone/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
-	return affected.surgery_open_stage >= 2 && !(affected.limb_status & LIMB_DESTROYED) && affected.bone_repair_stage == bone_step && !(affected.limb_status & LIMB_REPAIRED)
+	if(affected.surgery_open_stage >= 2 && !(affected.limb_status & LIMB_DESTROYED) && affected.bone_repair_stage == bone_step && !(affected.limb_status & LIMB_REPAIRED))
+		return SURGERY_CAN_USE
+	return SURGERY_CANNOT_USE
 
 
 /datum/surgery_step/bone/glue_bone

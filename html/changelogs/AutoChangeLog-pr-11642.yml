@@ -1,0 +1,4 @@
+author: "psykzz"
+delete-after: True
+changes:
+  - balance: "mechs now take a minute to build"

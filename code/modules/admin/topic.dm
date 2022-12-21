@@ -288,12 +288,12 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 					var/mob/living/L = i
 					if(!L.client)
 						continue
-					L.revive()
+					L.revive(TRUE)
 	else if(href_list["force_event"])
 		if(!check_rights(R_FUN))
 			return
 		var/datum/round_event_control/E = locate(href_list["force_event"]) in SSevents.control
-		if(E)
+		if(!E)
 			return
 		E.admin_setup(usr)
 		var/datum/round_event/event = E.run_event()
@@ -426,8 +426,14 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/boiler, location, null, delmob)
 			if("crusher")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/crusher, location, null, delmob)
+			if("widow")
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/widow, location, null, delmob)
 			if("defiler")
-				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/Defiler, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/defiler, location, null, delmob)
+			if("gorger")
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/gorger, location, null, delmob)
+			if("warlock")
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/warlock, location, null, delmob)
 			if("shrike")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/shrike, location, null, delmob)
 			if("hivemind")
@@ -450,6 +456,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				newmob = M.change_mob_type(/mob/living/carbon/human/species/vatborn, location, null, delmob)
 			if("vatgrown")
 				newmob = M.change_mob_type(/mob/living/carbon/human/species/vatgrown, location, null, delmob)
+			if("combat_robot")
+				newmob = M.change_mob_type(/mob/living/carbon/human/species/robot, location, null, delmob)
 			if("SKELETON")
 				newmob = M.change_mob_type(/mob/living/carbon/human/species/skeleton, location, null, delmob)
 			if("monkey")
@@ -479,7 +487,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(alert("Are you sure you want to rejuvenate [L]?", "Rejuvenate", "Yes", "No") != "Yes")
 			return
 
-		L.revive()
+		L.revive(TRUE)
 
 		log_admin("[key_name(usr)] revived [key_name(L)].")
 		message_admins("[ADMIN_TPMONTY(usr)] revived [ADMIN_TPMONTY(L)].")
@@ -2036,7 +2044,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				var/datum/job/J = SSjob.GetJob(change)
 				previous = H.job?.title
 				var/squad_to_insert_into
-				if(ismarinejob(J))
+				if(ismarinejob(J) || issommarinejob(J))
 					if(H.assigned_squad)
 						squad_to_insert_into = H.assigned_squad
 					else
@@ -2106,7 +2114,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				change = input("Choose the marine's new squad.", "Change Squad") as null|anything in SSjob.squads
 				if(!change || !istype(H))
 					return
-				if(!ismarinejob(H.job))
+				if(!ismarinejob(H.job) && !issommarinejob(H.job))
 					to_chat(usr, span_warning("Only marine jobs may be part of squads."))
 					return
 				H.change_squad(change)
@@ -2202,7 +2210,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if("upgrade")
 				previous = X.xeno_caste.upgrade
 
-				change = input("Select a new upgrade tier.", "Xeno Panel") as null|anything in (GLOB.xenoupgradetiers - XENO_UPGRADE_BASETYPE - XENO_UPGRADE_INVALID)
+				change = input("Select a new upgrade tier.", "Xeno Panel") as null|anything in (GLOB.xenoupgradetiers - XENO_UPGRADE_BASETYPE - XENO_UPGRADE_INVALID - XENO_UPGRADE_MANIFESTATION)
 				if(!change || change == previous)
 					return
 
@@ -2211,6 +2219,9 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 					return
 
 				X.upgrade_xeno(change)
+				if(change != XENO_UPGRADE_ZERO)
+					var/datum/xeno_caste/previous_maturity = GLOB.xeno_caste_datums[X.caste_base_type][X.upgrade_prev()]
+					X.upgrade_stored = previous_maturity.upgrade_threshold
 
 		DIRECT_OUTPUT(usr, browse(null, "window=xeno_panel_[old_keyname]"))
 		usr.client.holder.xeno_panel(X)

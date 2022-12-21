@@ -32,6 +32,10 @@
 #define VV_HK_EXPOSE "expose"
 #define VV_HK_CALLPROC "proc_call"
 #define VV_HK_MARK "mark"
+
+// /mob/living
+#define VV_HK_GIVE_SPEECH_IMPEDIMENT "impede_speech"
+
 #ifdef REFERENCE_TRACKING
 #define VV_HK_VIEW_REFERENCES "viewreferences"
 #endif

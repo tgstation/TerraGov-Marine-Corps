@@ -1,7 +1,7 @@
 ///After how much time of being active we die
 #define FACEHUGGER_DEATH 10 SECONDS
 ///Time it takes to impregnate someone
-#define IMPREGNATION_TIME 12 SECONDS
+#define IMPREGNATION_TIME 10 SECONDS
 
 /**
  *Facehuggers
@@ -18,6 +18,7 @@
 	icon_state = "facehugger"
 	item_state = "facehugger"
 	w_class = WEIGHT_CLASS_TINY //Note: can be picked up by aliens unlike most other items of w_class below 4
+	resistance_flags = NONE
 	flags_inventory = COVEREYES|ALLOWINTERNALS|COVERMOUTH
 	flags_armor_protection = FACE|EYES
 	flags_atom = CRITICAL_ATOM
@@ -310,7 +311,7 @@
 		return FALSE
 
 	if(isturf(loc))
-		var/obj/effect/alien/egg/hugger/E = locate() in loc
+		var/obj/alien/egg/hugger/E = locate() in loc
 		if(E?.insert_new_hugger(src))
 			return FALSE
 		var/obj/structure/xeno/trap/T = locate() in loc
@@ -537,13 +538,6 @@
 			if(!blocked)
 				M.visible_message(span_danger("[src] smashes against [M]'s [W.name] and rips it off!"))
 				M.dropItemToGround(W)
-			if(ishuman(M)) //Check for camera; if we have one, turn it off.
-				var/mob/living/carbon/human/H = M
-				if(istype(H.wear_ear, /obj/item/radio/headset/mainship/marine))
-					var/obj/item/radio/headset/mainship/marine/R = H.wear_ear
-					if(R.camera.status)
-						R.camera.toggle_cam(null, FALSE) //Turn camera off.
-						to_chat(H, "<span class='danger'>Your headset camera flickers off; you'll need to reactivate it by rebooting your headset HUD!<span>")
 
 	if(blocked)
 		M.visible_message(span_danger("[src] smashes against [M]'s [blocked]!"))
@@ -561,8 +555,7 @@
 		var/hugsound = user.gender == FEMALE ? get_sfx("female_hugged") : get_sfx("male_hugged")
 		playsound(loc, hugsound, 25, 0)
 	if(!sterile && !issynth(user))
-		user.disable_lights(sparks = TRUE, silent = TRUE)
-		var/stamina_dmg = user.maxHealth + user.max_stamina_buffer
+		var/stamina_dmg = user.maxHealth + user.max_stamina
 		user.apply_damage(stamina_dmg, STAMINA) // complete winds the target
 		user.Unconscious(2 SECONDS)
 	addtimer(VARSET_CALLBACK(src, flags_item, flags_item|NODROP), IMPREGNATION_TIME) // becomes stuck after min-impreg time
@@ -765,7 +758,7 @@
 
 	for(var/turf/sticky_tile AS in RANGE_TURFS(1, loc))
 		if(!locate(/obj/effect/xenomorph/spray) in sticky_tile.contents)
-			new /obj/effect/alien/resin/sticky/thin(sticky_tile)
+			new /obj/alien/resin/sticky/thin(sticky_tile)
 
 	var/armor_block
 	for(var/mob/living/target in range(1, loc))
@@ -801,8 +794,7 @@
 	var/affecting = ran_zone(null, 0)
 	if(!affecting) //Still nothing??
 		affecting = BODY_ZONE_CHEST //Gotta have a torso?!
-	var/armor_block = victim.get_soft_armor("melee", affecting)
-	victim.apply_damage(CARRIER_SLASH_HUGGER_DAMAGE, BRUTE, affecting, armor_block) //Crap base damage after armour...
+	victim.apply_damage(CARRIER_SLASH_HUGGER_DAMAGE, BRUTE, affecting, MELEE) //Crap base damage after armour...
 	victim.visible_message(span_danger("[src] frantically claws at [victim]!"),span_danger("[src] frantically claws at you!"))
 	leaping = FALSE
 	go_active() //Slashy boys recover *very* fast.
