@@ -648,6 +648,11 @@
 #define COMSIG_XENOABILITY_RALLY_MINION "xenoability_rally_minion"
 #define COMSIG_XENOABILITY_MINION_BEHAVIOUR "xenoability_minion_behavior"
 
+#define COMSIG_XENOABILITY_TOXIC_SPIT "xenoability_toxic_spit"
+#define COMSIG_XENOABILITY_TOXIC_SLASH "xenoability_toxic_slash"
+#define COMSIG_XENOABILITY_DRAIN_STING "xenoability_drain_sting"
+#define COMSIG_XENOABILITY_TOXIC_GRENADE "xenoability_toxic_grenade"
+
 #define COMSIG_XENOABILITY_ESSENCE_LINK "xenoability_essence_link"
 #define COMSIG_XENOABILITY_ESSENCE_LINK_REMOVE "xenoability_essence_link_remove"
 #define COMSIG_XENOABILITY_ENHANCEMENT "xenoability_enhancement"
@@ -737,8 +742,6 @@
 #define COMSIG_XENOABILITY_POUNCE "xenoability_pounce"
 #define COMSIG_XENOABILITY_EVASION "xenoability_evasion"
 #define COMSIG_XENOABILITY_SNATCH "xenoability_snatch"
-
-#define COMSIG_XENOABILITY_NEUROGAS_GRENADE "xenoability_neurogas_nade"
 
 #define COMSIG_XENOABILITY_VENTCRAWL "xenoability_vent_crawl"
 
