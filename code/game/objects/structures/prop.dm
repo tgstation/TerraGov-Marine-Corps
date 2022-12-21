@@ -137,7 +137,7 @@
 	bound_width = 64
 	bound_height = 32
 	resistance_flags = UNACIDABLE
-	throwpass = FALSE
+	flags_pass = null
 	var/list/fallen_list
 
 /obj/structure/prop/mainship/ship_memorial/attackby(obj/item/I, mob/user)

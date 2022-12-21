@@ -167,7 +167,7 @@
 	density = TRUE
 	opacity = FALSE 	// changed in New()
 	anchored = TRUE
-	throwpass = FALSE
+	flags_pass = null
 	name = "foamed metal"
 	desc = "A lightweight foamed metal wall."
 	resistance_flags = XENO_DAMAGEABLE

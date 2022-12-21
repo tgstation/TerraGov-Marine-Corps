@@ -5,7 +5,6 @@
 	climbable = TRUE
 	anchored = TRUE
 	density = TRUE
-	throwpass = TRUE //You can throw objects over this, despite its density.//This comment is a lie, throwpass is for projectiles apparently
 	layer = BELOW_OBJ_LAYER
 	flags_atom = ON_BORDER
 	resistance_flags = XENO_DAMAGEABLE
@@ -373,7 +372,6 @@
 	max_integrity = 100
 	layer = OBJ_LAYER
 	climbable = FALSE
-	throwpass = FALSE
 	stack_type = /obj/item/stack/sheet/wood
 	stack_amount = 5
 	destroyed_stack_amount = 3
