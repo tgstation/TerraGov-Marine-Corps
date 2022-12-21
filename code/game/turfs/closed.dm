@@ -491,6 +491,7 @@
 
 /turf/closed/shuttle/dropship2/panel
 	icon_state = "shuttle_interior_panel"
+	opacity = 0
 
 /turf/closed/shuttle/dropship2/engineone
 	icon_state = "shuttle_interior_backengine"
@@ -542,6 +543,7 @@
 
 /turf/closed/shuttle/dropship2/interiorwindow
 	icon_state = "shuttle_interior_inwards"
+	opacity = 0
 
 /turf/closed/shuttle/dropship2/singlewindow
 	icon_state = "shuttle_single_window"
