@@ -219,6 +219,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			new_proj.generate_bullet(bonus_projectiles_type)
 		else //If no bonus type is defined then the extra projectiles are the same as the main one.
 			new_proj.generate_bullet(src)
+
 		if(isgun(source))
 			var/obj/item/weapon/gun/gun = source
 			gun.apply_gun_modifiers(new_proj, target, shooter)
@@ -245,11 +246,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			new_proj.generate_bullet(bonus_projectiles_type)
 		else //If no bonus type is defined then the extra projectiles are the same as the main one.
 			new_proj.generate_bullet(src)
-		if(isgun(source))
-				var/obj/item/weapon/gun/gun = source
-				gun.apply_gun_modifiers(new_proj, target, shooter)
 
-		///Scatter here is how many degrees extra stuff deviate from the main projectile's firing angle. Fully randomised with no 45 degree cap like normal bullets
+		if(isgun(source))
+			var/obj/item/weapon/gun/gun = source
+			gun.apply_gun_modifiers(new_proj, target, shooter)
+
+		//Scatter here is how many degrees extra stuff deviate from the main projectile's firing angle. Fully randomised with no 45 degree cap like normal bullets
 		var/f = (i-1)
 		var/new_angle = angle + (main_proj.ammo.bonus_projectiles_scatter * ((f % 2) ? (-(f + 1) * 0.5) : (f * 0.5)))
 		if(new_angle < 0)
