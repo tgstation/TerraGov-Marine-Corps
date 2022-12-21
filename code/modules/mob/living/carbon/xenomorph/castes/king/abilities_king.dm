@@ -248,7 +248,7 @@
 		for(var/mob/living/carbon/human/blasted in target)
 			if(blasted.stat == DEAD)
 				continue
-			blasted.take_overall_damage(0, 15, updating_health = TRUE)
+			blasted.take_overall_damage(15, BURN, updating_health = TRUE)
 	timer_ref = addtimer(CALLBACK(src, .proc/execute_attack), ZEROFORM_TICK_RATE, TIMER_STOPPABLE)
 
 ///ends and cleans up beam
