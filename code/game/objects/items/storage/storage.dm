@@ -75,10 +75,10 @@
 	if(!usr.restrained() && !usr.stat)
 		switch(over_object.name)
 			if("r_hand")
-				usr.dropItemToGround(src)
+				usr.temporarilyRemoveItemFromInventory(src)
 				usr.put_in_r_hand(src)
 			if("l_hand")
-				usr.dropItemToGround(src)
+				usr.temporarilyRemoveItemFromInventory(src)
 				usr.put_in_l_hand(src)
 
 /obj/item/storage/proc/return_inv()
