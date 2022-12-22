@@ -396,3 +396,15 @@
 	item_state = "tp_bodyrobes"
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
 
+/obj/item/clothing/under/maiddress
+	name = "maid costume"
+	desc = "Maid in China."
+	icon_state = "meido"
+	item_state = "meido"
+
+/obj/item/clothing/under/maiduniform
+	name = "maid uniform"
+	desc = "A simple maid uniform for housekeeping."
+	icon_state = "janimaid"
+	item_state = "janimaid"
+

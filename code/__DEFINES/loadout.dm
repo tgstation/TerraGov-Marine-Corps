@@ -555,6 +555,8 @@ GLOBAL_LIST_INIT(synthetic_clothes_listed_products, list(
 		/obj/item/clothing/under/sl_suit = list(CAT_STD, "Amish Suit", 0, "black"),
 		/obj/item/clothing/under/kilt = list(CAT_STD, "Kilt", 0, "black"),
 		/obj/item/clothing/under/waiter = list(CAT_STD, "Waiter's uniform", 0, "black"),
+		/obj/item/clothing/under/maiddress = list(CAT_STD, "Maid dress", 0, "black"),
+		/obj/item/clothing/under/maiduniform = list(CAT_STD, "Maid uniform", 0, "black"),
 		/obj/item/clothing/glasses/meson = list(CAT_GLA, "Optical Meson Scanner", 0, "white"),
 		/obj/item/clothing/suit/storage/hazardvest = list(CAT_AMR, "Orange reflective safety vest", 0, "black"),
 		/obj/item/clothing/suit/storage/hazardvest/lime = list(CAT_AMR, "Lime reflective safety vest", 0, "black"),
