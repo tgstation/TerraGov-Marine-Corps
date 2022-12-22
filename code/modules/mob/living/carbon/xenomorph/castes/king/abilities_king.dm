@@ -34,9 +34,9 @@
 // ***************************************
 // *********** Petrify
 // ***************************************
-#define PETRIFY_RANGE 5
-#define PETRIFY_DURATION 5 SECONDS
-#define PETRIFY_WINDUP_TIME 2.5 SECONDS
+#define PETRIFY_RANGE 7
+#define PETRIFY_DURATION 6 SECONDS
+#define PETRIFY_WINDUP_TIME 2 SECONDS
 /datum/action/xeno_action/petrify
 	name = "Petrify"
 	action_icon_state = "petrify"
@@ -144,6 +144,7 @@
 /datum/action/xeno_action/activable/off_guard/use_ability(atom/target)
 	var/mob/living/carbon/human/human_target = target
 	human_target.apply_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_DEBUFF, 20)
+	human_target.apply_status_effect(STATUS_EFFECT_CONFUSED, 40)
 	human_target.log_message("has been off-guarded by [owner]", LOG_ATTACK, color="pink")
 	human_target.balloon_alert_to_viewers("confused")
 	playsound(human_target, 'sound/effects/off_guard_ability.ogg', 50)
