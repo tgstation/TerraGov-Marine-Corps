@@ -357,9 +357,16 @@ GLOBAL_LIST_EMPTY(gear_datums)
 	cost = 1
 	slot = SLOT_IN_BACKPACK
 	allowed_roles = list(CAPTAIN, FIELD_COMMANDER, SQUAD_LEADER)
+
 /datum/gear/smallkoran
 	display_name = "Koran"
 	path = /obj/item/storage/bible/koran/basic
+	cost = 1
+	slot = SLOT_IN_BACKPACK
+
+/datum/gear/namaz
+	display_name = "Prayer rug"
+	path = /obj/item/namaz
 	cost = 1
 	slot = SLOT_IN_BACKPACK
 

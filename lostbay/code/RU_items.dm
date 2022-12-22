@@ -822,6 +822,8 @@ SUBSYSTEM_DEF(ru_items)
 /////////////////////////  BASED ITEMS  ///////////////////////////////
 ///////////////////////////////////////////////////////////////////////
 
+// anime headband
+
 /obj/item/clothing/head/hachimaki
 	name = "\improper Ancient pilot headband and scarf kit"
 	desc = "Ancient pilot kit of scarf that protects neck from cold wind and headband that protects face from sweat"
@@ -848,3 +850,45 @@ SUBSYSTEM_DEF(ru_items)
 	else
 		activator.say("Tenno Heika Banzai!!")
 		playsound(get_turf(user), 'sound/voice/banzai1.ogg', 30)
+
+// namazlyk
+
+/obj/structure/bed/namaz
+	name = "Prayer rug"
+	desc = "Very halal prayer rug."
+	icon = 'icons/obj/items/priest.dmi'
+	icon_state = "namaz"
+	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL
+	buckle_lying = 0
+	buckling_y = 6
+	dir = NORTH
+	foldabletype = /obj/item/namaz
+	accepts_bodybag = FALSE
+	base_bed_icon = "namaz"
+
+/obj/item/namaz
+	name = "Prayer rug"
+	desc = "Very halal prayer rug."
+	icon = 'icons/obj/items/priest.dmi'
+	icon_state = "rolled_namaz"
+	w_class = WEIGHT_CLASS_SMALL
+	var/rollertype = /obj/structure/bed/namaz
+
+/obj/item/namaz/attack_self(mob/user)
+	deploy_roller(user, user.loc)
+
+/obj/item/namaz/afterattack(obj/target, mob/user , proximity)
+	if(!proximity)
+		return
+	if(isturf(target))
+		var/turf/T = target
+		if(!T.density)
+			deploy_roller(user, target)
+
+/obj/item/namaz/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+/obj/item/namaz/proc/deploy_roller(mob/user, atom/location)
+	var/obj/structure/bed/namaz/R = new rollertype(location) // R is not need here, but i dont know how to delete this shit
+	user.temporarilyRemoveItemFromInventory(src)
+	qdel(src)
