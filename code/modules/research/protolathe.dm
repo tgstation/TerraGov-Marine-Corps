@@ -63,14 +63,25 @@
 
 	data["materials"] = storage
 	data["busy"] = busy
+	var/lockmsg = "allowed"
+	if(locked)
+		if(hacked)
+			lockmsg = "restriction overriden"
+		else
+			lockmsg = "restricted"
+	data["security"] = lockmsg
 	return data
 
 /obj/machinery/rnd/protolathe/ui_act(action, list/params)
 	. = ..()
 	if(.)
 		return
-	if("build")
-		build(params["ref"])
+	switch (action)
+		if("lock")
+			if(allowed(usr))//usr?
+				locked = !locked
+		if("build")
+			build(params["ref"])
 	return TRUE
 
 /obj/machinery/rnd/protolathe/proc/build(datum/design/request)
