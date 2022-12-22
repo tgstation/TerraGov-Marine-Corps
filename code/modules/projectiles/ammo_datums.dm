@@ -1716,6 +1716,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "large high-explosive rocket"
 	damage = 75
 	penetration = 50
+	max_range = 30
 
 /datum/ammo/rocket/mech/drop_nade(turf/T)
 	explosion(T, 0, 2, 4, 5)
@@ -1892,6 +1893,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 100
 	penetration = 100
 	sundering = 100
+	max_range = 30
 
 /datum/ammo/rocket/som
 	name = "low impact RPG"
@@ -1911,7 +1913,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "rpg_le"
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING
 	accurate_range = 15
-	max_range = 20
 	damage = 60
 	penetration = 10
 
@@ -1996,6 +1997,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 90
 	penetration = 30
 	sundering = 10
+	max_range = 30
 	handful_amount = 1
 
 /datum/ammo/rocket/atgun_shell/drop_nade(turf/T)
