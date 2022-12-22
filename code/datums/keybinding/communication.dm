@@ -2,25 +2,25 @@
 	category = CATEGORY_COMMUNICATION
 
 /datum/keybinding/client/communication/say
-	hotkey_keys = list("T")
+	hotkey_keys = list("T,Е")
 	name = SAY_CHANNEL
 	full_name = "IC Say"
 	keybind_signal = COMSIG_KB_CLIENT_SAY_DOWN
 
 /datum/keybinding/client/communication/radio
-	hotkey_keys = list("Y")
+	hotkey_keys = list("Y,Н")
 	name = RADIO_CHANNEL
 	full_name = "IC Radio (;)"
 	keybind_signal = COMSIG_KB_CLIENT_RADIO_DOWN
 
 /datum/keybinding/client/communication/ooc
-	hotkey_keys = list("O")
+	hotkey_keys = list("O,Щ")
 	name = OOC_CHANNEL
 	full_name = "Out Of Character Say (OOC)"
 	keybind_signal = COMSIG_KB_CLIENT_OOC_DOWN
 
 /datum/keybinding/client/communication/me
-	hotkey_keys = list("M")
+	hotkey_keys = list("M,Ь")
 	name = ME_CHANNEL
 	full_name = "Custom Emote (/Me)"
 	keybind_signal = COMSIG_KB_CLIENT_ME_DOWN
