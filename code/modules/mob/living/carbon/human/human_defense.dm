@@ -394,7 +394,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	Stun(stun_duration)
 	Paralyze(stun_duration)
 	//15 Next to queen , 3 at max distance.
-	adjust_stagger(LERP(15, 3, dist_pct) * reduction)
+	adjust_stagger(LERP(7, 3, dist_pct) * reduction)
 	//Max 140 under Queen, 130 beside Queen, 70 at the edge. Reduction of 10 per tile distance from Queen.
 	apply_damage(LERP(140, 70, dist_pct) * reduction, STAMINA, updating_health = TRUE)
 	if(!ear_deaf)
