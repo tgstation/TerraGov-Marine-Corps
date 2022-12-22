@@ -497,7 +497,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury)
 "bQ" = (
-/obj/machinery/vending/uniform_supply,
+/obj/machinery/marine_selector/clothes/commander,
 /turf/open/floor/mainship/red/full,
 /area/shuttle/canterbury)
 "bR" = (
@@ -985,7 +985,7 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 4
 	},
-/obj/machinery/loadout_vendor,
+/obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "IR" = (
@@ -1325,8 +1325,8 @@ cP
 aJ
 cS
 aO
-Hv
 bd
+Hv
 aJ
 bJ
 an
