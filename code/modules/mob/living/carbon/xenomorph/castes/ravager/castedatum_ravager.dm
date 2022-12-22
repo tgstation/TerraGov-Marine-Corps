@@ -22,7 +22,7 @@
 	plasma_icon_state = "fury"
 
 	// *** Health *** //
-	max_health = 325
+	max_health = 290
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_YOUNG_THRESHOLD
@@ -82,7 +82,7 @@
 	plasma_gain = 5
 
 	// *** Health *** //
-	max_health = 350
+	max_health = 310
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_MATURE_THRESHOLD
@@ -108,7 +108,7 @@
 	plasma_regen_limit = 0.6
 
 	// *** Health *** //
-	max_health = 375
+	max_health = 330
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_ELDER_THRESHOLD
@@ -133,7 +133,7 @@
 	plasma_gain = 15
 
 	// *** Health *** //
-	max_health = 400
+	max_health = 350
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_ANCIENT_THRESHOLD
@@ -158,7 +158,7 @@
 	plasma_gain = 15
 
 	// *** Health *** //
-	max_health = 400
+	max_health = 350
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 50, BULLET = 55, LASER = 50, ENERGY = 50, BOMB = 25, BIO = 40, FIRE = 70, ACID = 40)
