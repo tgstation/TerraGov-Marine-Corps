@@ -1002,7 +1002,7 @@
 	log_directed_talk(X, L, msg, LOG_SAY, "psychic whisper")
 	to_chat(L, span_alien("You hear a strange, alien voice in your head. <i>\"[msg]\"</i>"))
 	to_chat(X, span_xenonotice("We said: \"[msg]\" to [L]"))
-
+	message_admins("[msg]")
 
 // ***************************************
 // *********** Lay Egg
