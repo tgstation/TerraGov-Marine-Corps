@@ -81,7 +81,6 @@
 	extra_delay = 0.3 SECONDS
 	accuracy_mult = 1.05
 	scatter = 0
-	burst_scatter_mult = 0.25
 	burst_amount = 4
 	aim_slowdown = 0.30
 	damage_falloff_mult = 0.9
@@ -1283,7 +1282,6 @@
 	accuracy_mult = 1.15
 	scatter = -1
 	scatter_unwielded = 15
-	burst_scatter_mult = 0.33
 	aim_slowdown = 0.45
 	movement_acc_penalty_mult = 6
 
