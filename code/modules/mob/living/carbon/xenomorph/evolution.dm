@@ -222,7 +222,7 @@
 			return
 
 		if(hive.can_hive_have_a_king())
-			to_chat(src, span_warning("The hivemind is too weak to sustain a King. Gather more xenos. [hive.xenos_per_queen] are required."))
+			to_chat(src, span_warning("The hivemind is too weak to sustain a King. Gather more xenos. [hive.xenos_per_king] are required."))
 			return FALSE
 
 		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/king]))
@@ -279,6 +279,10 @@
 	else if(new_caste_type == /mob/living/carbon/xenomorph/hivemind) //Special case for dealing with hiveminds - this may be subject to heavy change, such as multiple hiveminds potentially being an option
 		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind]))
 			to_chat(src, span_warning("There cannot be two manifestations of the hivemind's will at once."))
+			return
+	else if(new_caste_type == /mob/living/carbon/xenomorph/king)
+		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/king]))
+			to_chat(src, span_warning("There cannot be two kings at once."))
 			return
 	else if(!regression) // these shouldnt be checked if trying to become a queen.
 		if(tier == XENO_TIER_ONE && no_room_tier_two)

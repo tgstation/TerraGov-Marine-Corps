@@ -49,14 +49,6 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PETRIFY,
 	)
 
-/datum/action/xeno_action/petrify/can_use_action(silent, override_flags)
-	. = ..()
-	if(!.)
-		return
-	if(LAZYACCESS(owner.do_actions, src))
-		owner.balloon_alert(owner, "already busy")
-		return FALSE
-
 /datum/action/xeno_action/petrify/action_activate()
 	var/obj/effect/overlay/eye/eye = new
 	owner.vis_contents += eye
@@ -68,15 +60,15 @@
 		return
 	playsound(owner, 'sound/effects/petrify_activate.ogg', 50)
 	var/list/mob/living/carbon/human/humans = list()
-	for(var/mob/living/carbon/human/human in view(PETRIFY_RANGE, owner))
-		if(human.stat != CONSCIOUS)
-			continue
+	for(var/mob/living/carbon/human/human in view(PETRIFY_RANGE, owner.loc))
 		if(is_blind(human))
 			continue
 		humans += human
 		human.notransform = TRUE
 		human.status_flags |= GODMODE
 		human.add_atom_colour(COLOR_GRAY, TEMPORARY_COLOUR_PRIORITY)
+		ADD_TRAIT(human, TRAIT_HANDS_BLOCKED, REF(src))
+		human.move_resist = MOVE_FORCE_OVERPOWERING
 		human.log_message("has been petrified by [owner] for [PETRIFY_DURATION] ticks", LOG_ATTACK, color="pink")
 		var/image/stone_overlay = image('icons/effects/effects.dmi', null, "petrified_overlay")
 		stone_overlay.filters += filter(arglist(alpha_mask_filter(render_source="*[REF(human)]",flags=MASK_INVERSE)))
@@ -104,6 +96,8 @@
 		human.notransform = FALSE
 		human.status_flags &= ~GODMODE
 		human.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, COLOR_GRAY)
+		REMOVE_TRAIT(human, TRAIT_HANDS_BLOCKED, REF(src))
+		human.move_resist = initial(human.move_resist)
 		human.overlays -= humans[human]
 
 ///callback for removing the eye from viscontents
@@ -113,6 +107,7 @@
 // ***************************************
 // *********** Off-Guard
 // ***************************************
+#define OFF_GUARD_RANGE 8
 /datum/action/xeno_action/activable/off_guard
 	name = "Off-guard"
 	action_icon_state = "off_guard"
@@ -134,6 +129,10 @@
 	if(!ishuman(A))
 		if(!silent)
 			A.balloon_alert(owner, "not human")
+		return FALSE
+	if((A.z != owner.z) || get_dist(owner, A) > OFF_GUARD_RANGE)
+		if(!silent)
+			A.balloon_alert(owner, "too far")
 		return FALSE
 	var/mob/living/carbon/human/target = A
 	if(target.stat == DEAD)
@@ -202,10 +201,6 @@
 		if(!silent)
 			owner.balloon_alert("too early")
 		return FALSE
-	if(LAZYACCESS(owner.do_actions, src))
-		if(!silent)
-			owner.balloon_alert(owner, "already busy")
-		return FALSE
 
 /datum/action/xeno_action/zero_form_beam/action_activate()
 	if(timer_ref)
@@ -233,13 +228,14 @@
 		else
 			particles_type = /particles/zero_form
 	particles = new(owner, particles_type)
-	beam = owner.beam(targets[length(targets)], "plasmabeam", beam_type = /obj/effect/ebeam/zeroform)
-	sound_loop.start(owner)
+	beam = owner.loc.beam(targets[length(targets)], "plasmabeam", beam_type = /obj/effect/ebeam/zeroform)
+	playsound(owner, 'sound/effects/king_beam_charge.ogg', 80)
 	if(!do_after(owner, ZEROFORM_CHARGE_TIME, FALSE, owner, BUSY_ICON_DANGER))
 		QDEL_NULL(beam)
 		QDEL_NULL(particles)
 		targets = null
 		return fail_activate()
+	sound_loop.start(owner)
 	RegisterSignal(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE), .proc/stop_beaming)
 	var/mob/living/carbon/xenomorph/king/king_owner = owner
 	if(istype(king_owner))
@@ -256,12 +252,13 @@
 		for(var/mob/living/carbon/human/blasted in target)
 			if(blasted.stat == DEAD)
 				continue
-			blasted.take_overall_damage(0, 15, updating_health = TRUE)
+			blasted.take_overall_damage(15, BURN, updating_health = TRUE)
 	timer_ref = addtimer(CALLBACK(src, .proc/execute_attack), ZEROFORM_TICK_RATE, TIMER_STOPPABLE)
 
 ///ends and cleans up beam
 /datum/action/xeno_action/zero_form_beam/proc/stop_beaming()
 	SIGNAL_HANDLER
+	UnregisterSignal(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE))
 	sound_loop.stop(owner)
 	QDEL_NULL(beam)
 	particles.particles.spawning = 0

@@ -728,7 +728,7 @@
 	hotkey_keys = list("E")
 	name = "petrify"
 	full_name = "King: Petrify"
-	description = "Petrifies all humans within views. While petrified humans can neither be damaged or take any actions."
+	description = "Petrifies all humans within view. While petrified humans can neither be damaged or take any actions."
 	keybind_signal = COMSIG_XENOABILITY_PETRIFY
 
 /datum/keybinding/xeno/off_guard
