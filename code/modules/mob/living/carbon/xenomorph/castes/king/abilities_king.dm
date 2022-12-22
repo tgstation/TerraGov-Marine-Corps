@@ -241,6 +241,9 @@
 		targets = null
 		return fail_activate()
 	RegisterSignal(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE), .proc/stop_beaming)
+	var/mob/living/carbon/xenomorph/king/king_owner = owner
+	if(istype(king_owner))
+		king_owner.icon_state = "King Screeching"
 	execute_attack()
 
 /// recursive proc for firing the actual beam
@@ -266,6 +269,7 @@
 	deltimer(timer_ref)
 	timer_ref = null
 	targets = null
+	owner.update_icons()
 	add_cooldown()
 
 /particles/zero_form
