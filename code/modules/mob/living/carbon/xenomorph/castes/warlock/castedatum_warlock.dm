@@ -28,6 +28,7 @@
 		/datum/action/xeno_action/activable/psy_blast,
 		/datum/action/xeno_action/activable/psychic_shield,
 		/datum/action/xeno_action/activable/transfer_plasma/drone,
+		/datum/action/xeno_action/psychic_whisper,
 	)
 
 	water_slowdown = 0

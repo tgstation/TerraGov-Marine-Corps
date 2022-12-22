@@ -395,3 +395,43 @@
 2022-12-21:
   novaepee:
   - rscdel: remove two r walls and useless apc in Big Red's admin
+2022-12-22:
+  Lewdcifer:
+  - rscadd: The Sentinel caste has been redesigned, and is now centered around managing
+      the Intoxicated debuff, which will give victims perjudicial effects.
+  - imageadd: Victims affected by this debuff will display an icon on any given xenomorph's
+      HUD, indicating just how much of that debuff they have.
+  - rscadd: 'New Sentinel ability: Toxic Spit. Spit at a target enemy to inflict them
+      with the Intoxicated debuff.'
+  - rscadd: 'New Sentinel ability: Toxic Slash. Imbue your claws with toxins, inflicting
+      the Intoxicated debuff.'
+  - rscadd: 'New Sentinel ability: Drain Sting. Sting your victim, draining their
+      Intoxication. This will grant you several benefits if used on a victim with
+      high Intoxicated stacks.'
+  - rscadd: 'New Sentinel ability: Toxic Grenade. Throw a ball of resin which will
+      burst into a large gas cloud. Victims caught inside its range will be inflicted
+      with the Intoxicated debuff, and take considerable burn damage.'
+  - rscdel: The Sentinel no longer has access to acid and neurotoxin spits.
+  - rscdel: The Sentinel no longer has access to the Neurotoxin Sting ability.
+  - rscdel: Removed the Neurogas Grenade.
+  - balance: Sentinel slash damage reduced from 16/16/17/17 to 14/14/16/16.
+  - balance: Sentinel movement speed increased from -0.8 to -0.9 (the higher the value,
+      the faster).
+  Lumipharon:
+  - code_imp: Minor proc fix
+  QualityVan:
+  - bugfix: abolition of invisigrillity
+  - refactor: Belt harnesses need an item to be attached to it manually, but any item
+      works - so long as it fits in suit storage or back slot.
+  SiegeB0t:
+  - qol: Ghosts can view supply console information.
+  Waselon:
+  - balance: added sunder resistance based on missing sunder, buffed sunder healing
+      for drone, queen and shrike healing abilities.
+  novaepee:
+  - rscadd: Give kebind for | hunter's Mark | hunter's Psychic Trace | drone's acidic
+      salve | hivemind's change form
+  - qol: 'Change a keybind name from Crusher: Toggle Change to Toggle Change to reflect
+      that both crusher, bull, and primo queen uses toggle charge.'
+  psykzz:
+  - balance: mechs now take a minute to build

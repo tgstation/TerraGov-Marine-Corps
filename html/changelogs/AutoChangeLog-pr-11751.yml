@@ -1,0 +1,4 @@
+author: "DeltaFire15"
+delete-after: True
+changes:
+  - bugfix: "The 'show typing indicator' pref should be functioning properly once again."
