@@ -172,7 +172,6 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		/obj/item/stack/sheet/mineral/phoron/small_stack,
 		/obj/item/stack/sheet/metal/small_stack,
 		/obj/item/jetpack_marine,
-		/obj/item/loot_box,
 		/obj/item/phone,
 		/obj/item/binoculars,
 		/obj/item/clock,
@@ -231,10 +230,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	gift_type_list += subtypesof(/obj/item/cell)
 	gift_type_list += subtypesof(/obj/item/ammo_magazine)
 	gift_type_list += subtypesof(/obj/item/weapon/twohanded)
-	gift_type_list += subtypesof(/obj/item/clothing/suit/space)
-	gift_type_list += subtypesof(/obj/item/clothing/suit/armor)
 	gift_type_list += subtypesof(/obj/item/circuitboard)
-	gift_type_list += subtypesof(/obj/item/clothing/glasses)
 	gift_type_list += subtypesof(/obj/item/armor_module/module)
 	gift_type_list += subtypesof(/obj/item/armor_module/storage)
 	gift_type_list += subtypesof(/obj/item/clothing/mask/cigarette)
