@@ -93,7 +93,7 @@
 	cooldown_timer = 5 SECONDS
 	plasma_cost = 150
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_CURE,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACIDIC_SALVE,
 	)
 	heal_range = DRONE_HEAL_RANGE
 	target_flags = XABB_MOB_TARGET

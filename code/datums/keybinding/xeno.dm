@@ -112,6 +112,11 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_POUNCE
 
+/datum/keybinding/xeno/toggle_charge
+	name = "toggle_charge"
+	full_name = "Toggle Charge"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_TOGGLE_CHARGE
 /datum/keybinding/xeno/toxic_spit
 	name = "toxic_spit"
 	full_name = "Sentinel: Toxic Spit"
@@ -129,6 +134,13 @@
 	full_name = "Sentinel: Drain Sting"
 	description = "Sting a victim, draining any Intoxicated debuffs they may have, restoring you and dealing damage."
 	keybind_signal = COMSIG_XENOABILITY_DRAIN_STING
+
+/datum/keybinding/xeno/acidic_salve
+	name = "acidic_salve"
+	full_name = "Drone: Acidic Salve"
+	description = "Heal a xenomorph with this."
+	keybind_signal = COMSIG_XENOABILITY_ACIDIC_SALVE
+	hotkey_keys = list("F")
 
 /datum/keybinding/xeno/essence_link
 	name = "essence_link"
@@ -249,12 +261,6 @@
 	full_name = "Crusher: Stomp"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_STOMP
-
-/datum/keybinding/xeno/toggle_charge
-	name = "toggle_charge"
-	full_name = "Crusher: Toggle Charge"
-	description = ""
-	keybind_signal = COMSIG_XENOABILITY_TOGGLE_CHARGE
 
 /datum/keybinding/xeno/cresttoss
 	name = "cresttoss"
@@ -406,6 +412,13 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_CREATE_JELLY
 
+/datum/keybinding/xeno/change_form
+	name = "change_form"
+	full_name = "Hivemind: Change Form"
+	description = ""
+	keybind_signal = COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM
+	hotkey_keys = list("F")
+
 /datum/keybinding/xeno/toggle_stealth
 	name = "toggle_stealth"
 	full_name = "Hunter: Toggle Stealth"
@@ -423,6 +436,20 @@
 	full_name = "Hunter: Mirage"
 	description = "Creates multiple mirror images of the xeno."
 	keybind_signal = COMSIG_XENOABILITY_MIRAGE
+
+/datum/keybinding/xeno/mark
+	name = "mark"
+	full_name = "Hunter: Mark"
+	description = "Mark that lonely marine so that you can track with Psychic Trace."
+	keybind_signal = COMSIG_XENOABILITY_HUNTER_MARK
+	hotkey_keys = list("F")
+
+/datum/keybinding/xeno/psychic_trace
+	name = "psychic_trace"
+	full_name = "Hunter: Psychic Trace"
+	description = "Locate direction of marine that you've marked."
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_TRACE
+	hotkey_keys = list("G")
 
 /datum/keybinding/xeno/psychic_whisper
 	name = "psychic_whisper"
