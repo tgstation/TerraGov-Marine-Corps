@@ -817,3 +817,34 @@ SUBSYSTEM_DEF(ru_items)
 	name = "R-500 bundle"
 	contains = list(/obj/item/storage/box/t500case)
 	cost = 5
+
+///////////////////////////////////////////////////////////////////////
+/////////////////////////  BASED ITEMS  ///////////////////////////////
+///////////////////////////////////////////////////////////////////////
+
+/obj/item/clothing/head/hachimaki
+	name = "\improper Ancient pilot headband and scarf kit"
+	desc = "Ancient pilot kit of scarf that protects neck from cold wind and headband that protects face from sweat"
+	icon = 'icons/obj/items/Banzai.dmi'
+	item_icons = list(
+		slot_head_str = 'icons/mob/Banzai.dmi')
+	icon_state = "Banzai"
+	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	w_class = WEIGHT_CLASS_SMALL
+
+	var/list/armor_overlays
+	actions_types = list(/datum/action/item_action/toggle)
+	flags_armor_features = ARMOR_LAMP_OVERLAY|ARMOR_NO_DECAP
+	flags_item = SYNTH_RESTRICTED
+
+/obj/item/clothing/head/hachimaki/attack_self(mob/user)
+	var/mob/living/carbon/human/activator = user
+	if(TIMER_COOLDOWN_CHECK(user, "Banzai"))
+		user.balloon_alert(user, "You used that emote too recently")
+		return
+	TIMER_COOLDOWN_START(user, "Banzai", 7200 SECONDS)
+	if(user.gender == FEMALE)
+		user.balloon_alert(user, "Women can't use that")
+	else
+		activator.say("Tenno Heika Banzai!!")
+		playsound(get_turf(user), 'sound/voice/banzai1.ogg', 30)
