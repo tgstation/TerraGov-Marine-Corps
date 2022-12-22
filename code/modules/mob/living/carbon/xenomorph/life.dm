@@ -32,7 +32,6 @@
 	handle_living_health_updates()
 	handle_living_plasma_updates()
 	update_action_button_icons()
-	update_icons()
 
 /mob/living/carbon/xenomorph/handle_status_effects()
 	. = ..()

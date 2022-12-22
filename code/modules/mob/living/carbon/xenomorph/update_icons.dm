@@ -16,6 +16,10 @@
 /mob/living/carbon/xenomorph/proc/handle_special_wound_states()
 	return FALSE
 
+/mob/living/carbon/xenomorph/toggle_move_intent(new_intent)
+	. = ..()
+	update_icons()
+
 /mob/living/carbon/xenomorph/update_icons()
 	if(HAS_TRAIT(src, TRAIT_MOB_ICON_UPDATE_BLOCKED))
 		return
