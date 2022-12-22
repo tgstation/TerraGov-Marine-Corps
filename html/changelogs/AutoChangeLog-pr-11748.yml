@@ -1,5 +1,0 @@
-author: "novaepee"
-delete-after: True
-changes:
-  - rscadd: "Give kebind for | hunter's Mark | hunter's Psychic Trace | drone's acidic salve | hivemind's change form"
-  - qol: "Change a keybind name from Crusher: Toggle Change to Toggle Change to reflect that both crusher, bull, and primo queen uses toggle charge."
