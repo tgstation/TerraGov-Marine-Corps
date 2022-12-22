@@ -13,6 +13,3 @@ GLOBAL_LIST_EMPTY(materials)
 
 /datum/material/psi
 	name = "psi"
-
-/datum/material/virilyth
-	name = "serum"

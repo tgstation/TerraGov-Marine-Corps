@@ -4,414 +4,158 @@
 	desc = "Makes researched and prototype items with materials and energy."
 	layer = BELOW_OBJ_LAYER
 
-	/// The efficiency coefficient. Material costs and print times are multiplied by this number;
-	/// better parts result in a higher efficiency (and lower value).
-	var/efficiency_coeff = 1
-
-	/// The material storage used by this fabricator.
-	var/datum/component/remote_materials/materials
-
-	/// Which departments forego the lathe tax when using this lathe.
-	var/allowed_department_flags = ALL
+	/// The material storage used by this fabricator. There is not much use for a complete material_container component so materials shall be hardcoded like in the autolathe.
+	var/list/stored_material =  list(/datum/material/psi = 0, /datum/material/metal = 0, /datum/material/glass = 0)
 
 	/// What's flick()'d on print.
-	var/production_animation
+	var/production_animation = "protolathe_n"
 
-	/// The types of designs this fabricator can print.
-	var/allowed_buildtypes = NONE
-
-	/// All designs in the techweb that can be fabricated by this machine, since the last update.
-	var/list/datum/design/cached_designs
+	/// All designs that can be fabricated by this machine.
+	var/list/datum/design/cached_designs = null
 
 	/// The department this fabricator is assigned to.
-	var/department_tag = "Unassigned"
+	var/department_tag = "Science"
 
 	/// What color is this machine's stripe? Leave null to not have a stripe.
-	var/stripe_color = null
+	var/stripe_color = "#D381C9"
 
-	/// Does this charge the user's ID on fabrication?
-	var/charges_tax = TRUE
-
-/obj/machinery/rnd/production/Initialize(mapload)
+/obj/machinery/rnd/protolathe/Initialize(mapload)
 	. = ..()
-
-	cached_designs = list()
-	materials = AddComponent(
-		/datum/component/remote_materials, \
-		"lathe", \
-		mapload, \
-		mat_container_flags = BREAKDOWN_FLAGS_LATHE, \
-	)
-	AddComponent(
-		/datum/component/payment, \
-		0, \
-		SSeconomy.get_dep_account(payment_department), \
-		PAYMENT_CLINICAL, \
-		TRUE, \
-	)
-
+	// should this be a global list?
+	cached_designs = typesof(/datum/design/research)
 	create_reagents(0, OPENCONTAINER)
-	if(stored_research)
-		update_designs()
-	RefreshParts()
-	update_icon(UPDATE_OVERLAYS)
+	update_overlays()
 
-/obj/machinery/rnd/production/connect_techweb(datum/techweb/new_techweb)
-	if(stored_research)
-		UnregisterSignal(stored_research, list(COMSIG_TECHWEB_ADD_DESIGN, COMSIG_TECHWEB_REMOVE_DESIGN))
-
-	. = ..()
-
-	RegisterSignals(
-		stored_research,
-		list(COMSIG_TECHWEB_ADD_DESIGN, COMSIG_TECHWEB_REMOVE_DESIGN),
-		PROC_REF(on_techweb_update)
-	)
-
-/obj/machinery/rnd/production/Destroy()
-	materials = null
-	cached_designs = null
-	return ..()
-
-/obj/machinery/rnd/production/proc/on_techweb_update()
-	SIGNAL_HANDLER
-
-	// We're probably going to get more than one update (design) at a time, so batch
-	// them together.
-	addtimer(CALLBACK(src, PROC_REF(update_designs)), 2 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
-
-/// Updates the list of designs this fabricator can print.
-/obj/machinery/rnd/production/proc/update_designs()
-	var/previous_design_count = cached_designs.len
-
-	cached_designs.Cut()
-
-	for(var/design_id in stored_research.researched_designs)
-		var/datum/design/design = SSresearch.techweb_design_by_id(design_id)
-
-		if((isnull(allowed_department_flags) || (design.departmental_flags & allowed_department_flags)) && (design.build_type & allowed_buildtypes))
-			cached_designs |= design
-
-	var/design_delta = cached_designs.len - previous_design_count
-
-	if(design_delta > 0)
-		say("Received [design_delta] new design[design_delta == 1 ? "" : "s"].")
-		playsound(src, 'sound/machines/twobeep_high.ogg', 50, TRUE)
-
-	update_static_data_for_all_viewers()
-
-/obj/machinery/rnd/production/RefreshParts()
-	. = ..()
-
-	calculate_efficiency()
-	update_static_data_for_all_viewers()
-
-/obj/machinery/rnd/production/ui_assets(mob/user)
-	return list(
-		get_asset_datum(/datum/asset/spritesheet/sheetmaterials),
-		get_asset_datum(/datum/asset/spritesheet/research_designs)
-	)
-
-/obj/machinery/rnd/production/ui_interact(mob/user, datum/tgui/ui)
-	user.set_machine(src)
-
+/obj/machinery/rnd/protolathe/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
-
 	if(!ui)
 		ui = new(user, src, "Fabricator")
 		ui.open()
 
-/obj/machinery/rnd/production/ui_static_data(mob/user)
+/obj/machinery/rnd/protolathe/ui_static_data(mob/user)
 	var/list/data = list()
 	var/list/designs = list()
 
-	var/datum/asset/spritesheet/research_designs/spritesheet = get_asset_datum(/datum/asset/spritesheet/research_designs)
-	var/size32x32 = "[spritesheet.name]32x32"
-
-	var/max_multiplier
-	var/coefficient
-	for(var/datum/design/design in cached_designs)
+	for(var/datum/design/design AS in cached_designs)
 		var/cost = list()
-		coefficient = efficient_with(design.build_path) ? efficiency_coeff : 1
 		for(var/datum/material/material in design.materials)
-			cost[material.name] = design.materials[material] * coefficient
-			max_multiplier = min(50, round(materials.mat_container.get_material_amount(material) / (design.materials[material] * coefficient)))
-		var/icon_size = spritesheet.icon_size_id(design.id)
+			cost[material.name] = design.materials[material]
 
-		designs[design.id] = list(
+		designs[REF(design)] = list(
 			"name" = design.name,
 			"desc" = design.get_description(),
-			"cost" = cost,
-			"id" = design.id,
-			"categories" = design.category,
-			"icon" = "[icon_size == size32x32 ? "" : "[icon_size] "][design.id]",
-			"constructionTime" = 0,
-			"maxmult" = max_multiplier
+			"cost" = cost
 		)
 
 	data["designs"] = designs
 	data["fabName"] = name
-
 	return data
 
-/obj/machinery/rnd/production/ui_data(mob/user)
+/obj/machinery/rnd/protolathe/ui_data(mob/user)
 	var/list/data = list()
+	var/list/storage = list()
+	
+	for(var/datum/material/material AS in stored_material)
+		storage += list(list(
+			"name" = material.name,
+			"amount" = stored_material[material]
+		))
 
-	data["materials"] = materials.mat_container?.ui_data()
-	data["onHold"] = materials.on_hold()
+	data["materials"] = storage
 	data["busy"] = busy
-	data["materialMaximum"] = materials.local_size
-	data["queue"] = list()
-
 	return data
 
-/obj/machinery/rnd/production/ui_act(action, list/params)
+/obj/machinery/rnd/protolathe/ui_act(action, list/params)
 	. = ..()
-
 	if(.)
 		return
+	if("build")
+		build(params["ref"])
+	return TRUE
 
-	. = TRUE
-
-	switch (action)
-		if("remove_mat")
-			var/datum/material/material = locate(params["ref"])
-
-			if(!materials.can_hold_material(material))
-				// I don't know who you are or what you want, but whatever it is,
-				// we don't have it.
-				return
-
-			eject_sheets(material, params["amount"])
-
-		if("build")
-			user_try_print_id(params["ref"], params["amount"])
-
-/// Updates the fabricator's efficiency coefficient based on the installed parts.
-/obj/machinery/rnd/production/proc/calculate_efficiency()
-	efficiency_coeff = 1
-
-	if(reagents)
-		reagents.maximum_volume = 0
-
-		for(var/obj/item/reagent_containers/cup/beaker in component_parts)
-			reagents.maximum_volume += beaker.volume
-			beaker.reagents.trans_to(src, beaker.reagents.total_volume)
-
-	if(materials)
-		var/total_storage = 0
-
-		for(var/obj/item/stock_parts/matter_bin/bin in component_parts)
-			total_storage += bin.rating * 75000
-
-		materials.set_local_size(total_storage)
-
-	var/total_rating = 1.2
-
-	for(var/obj/item/stock_parts/manipulator/manipulator in component_parts)
-		total_rating -= manipulator.rating * 0.1
-
-	efficiency_coeff = max(total_rating, 0)
-
-/obj/machinery/rnd/production/on_deconstruction()
-	for(var/obj/item/reagent_containers/cup/G in component_parts)
-		reagents.trans_to(G, G.reagents.maximum_volume)
-
-	return ..()
-
-/obj/machinery/rnd/production/proc/do_print(path, amount, list/matlist, notify_admins)
-	if(notify_admins)
-		usr.investigate_log("built [amount] of [path] at [src]([type]).", INVESTIGATE_RESEARCH)
-		message_admins("[ADMIN_LOOKUPFLW(usr)] has built [amount] of [path] at \a [src]([type]).")
-
-	for(var/i in 1 to amount)
-		new path(get_turf(src))
-
-	SSblackbox.record_feedback("nested tally", "item_printed", amount, list("[type]", "[path]"))
-
-/obj/machinery/rnd/production/proc/efficient_with(path)
-	return !ispath(path, /obj/item/stack/sheet) && !ispath(path, /obj/item/stack/ore/bluespace_crystal)
-
-/obj/machinery/rnd/production/proc/user_try_print_id(design_id, print_quantity)
-	if(!design_id)
+/obj/machinery/rnd/protolathe/proc/build(datum/design/request)
+	if(!istype(request))//no href shenanigans
 		return FALSE
 
-	if(istext(print_quantity))
-		print_quantity = text2num(print_quantity)
-
-	if(isnull(print_quantity))
-		print_quantity = 1
-
-	var/datum/design/design = stored_research.researched_designs[design_id] ? SSresearch.techweb_design_by_id(design_id) : null
-
-	if(!istype(design))
+	if(locked && !hacked && !allowed(usr))
+		balloon_alert_to_viewers("Build rights restricted by Research Personnel.")
 		return FALSE
 
 	if(busy)
-		say("Warning: fabricator is busy!")
+		balloon_alert_to_viewers("Warning: fabricator is busy!")
 		return FALSE
-
-	if(!(isnull(allowed_department_flags) || (design.departmental_flags & allowed_department_flags)))
-		say("This fabricator does not have the necessary keys to decrypt this design.")
-		return FALSE
-
-	if(design.build_type && !(design.build_type & allowed_buildtypes))
-		say("This fabricator does not have the necessary manipulation systems for this design.")
-		return FALSE
-
-	if(!materials.mat_container)
-		say("No connection to material storage, please contact the quartermaster.")
-		return FALSE
-
-	if(materials.on_hold())
-		say("Mineral access is on hold, please contact the quartermaster.")
-		return FALSE
-
-	var/power = active_power_usage
-
-	print_quantity = clamp(print_quantity, 1, 50)
-
-	for(var/material in design.materials)
-		power += round(design.materials[material] * print_quantity / 35)
-
-	power = min(active_power_usage, power)
-	use_power(power)
-
-	var/coefficient = efficient_with(design.build_path) ? efficiency_coeff : 1
-	var/list/efficient_mats = list()
-
-	for(var/material in design.materials)
-		efficient_mats[material] = design.materials[material] * coefficient
-
-	if(!materials.mat_container.has_materials(efficient_mats, print_quantity))
-		say("Not enough materials to complete prototype[print_quantity > 1? "s" : ""].")
-		return FALSE
-
-	for(var/reagent in design.reagents_list)
-		if(!reagents.has_reagent(reagent, design.reagents_list[reagent] * print_quantity * coefficient))
-			say("Not enough reagents to complete prototype[print_quantity > 1? "s" : ""].")
+	
+	for(var/material in request.materials)
+		if(!stored_material[material] && stored_material[material] >= request.materials[material])
+			balloon_alert_to_viewers("Not enough materials to complete prototype.")
 			return FALSE
 
-	// Charge the lathe tax at least once per ten items.
-	var/total_cost = LATHE_TAX * max(round(print_quantity / 10), 1)
-
-	if(!charges_tax)
-		total_cost = 0
-
-	if(isliving(usr))
-		var/mob/living/user = usr
-		var/obj/item/card/id/card = user.get_idcard(TRUE)
-
-		if(!card && istype(user.pulling, /obj/item/card/id))
-			card = user.pulling
-
-		if(card && card.registered_account)
-			var/datum/bank_account/our_acc = card.registered_account
-			if(our_acc.account_job.departments_bitflags & allowed_department_flags)
-				total_cost = 0 // We are not charging crew for printing their own supplies and equipment.
-
-	if(attempt_charge(src, usr, total_cost) & COMPONENT_OBJ_CANCEL_CHARGE)
-		say("Insufficient funds to complete prototype. Please present a holochip or valid ID card.")
-		return FALSE
-
-	if(iscyborg(usr))
-		var/mob/living/silicon/robot/borg = usr
-
-		if(!borg.cell)
+	for(var/reagent in request.reagents_list)
+		if(!reagents.has_reagent(reagent, request.reagents_list[reagent]))
+			balloon_alert_to_viewers("Not enough reagents to complete prototype.")
 			return FALSE
 
-		borg.cell.use(SILICON_LATHE_TAX)
-
-	materials.mat_container.use_materials(efficient_mats, print_quantity)
-	materials.silo_log(src, "built", -print_quantity, "[design.name]", efficient_mats)
-
-	for(var/reagent in design.reagents_list)
-		reagents.remove_reagent(reagent, design.reagents_list[reagent] * print_quantity * coefficient)
-
+	//is there a race condition on stored material with multiple users? busy can be made atomic or only one user can be allowed to use this machine. minor bug since it can only be exploited once.
 	busy = TRUE
 
-	if(production_animation)
-		flick(production_animation, src)
+	use_power(active_power_usage)
+	for(var/material in request.materials)
+		materials[material] -= request.materials[material]
+	for(var/reagent in request.reagents_list)
+		reagents.remove_reagent(reagent, request.reagents_list[reagent])
 
-	var/time_coefficient = design.lathe_time_factor * efficiency_coeff
-
-	addtimer(CALLBACK(src, PROC_REF(reset_busy)), (30 * time_coefficient * print_quantity) ** 0.5)
-	addtimer(CALLBACK(src, PROC_REF(do_print), design.build_path, print_quantity, efficient_mats, design.dangerous_construction), (32 * time_coefficient * print_quantity) ** 0.8)
-
+	flick(production_animation, src)
+	addtimer(CALLBACK(src, .proc/do_print, request.build_path, request.dangerous_construction), request.construction_time)
 	return TRUE
 
-/obj/machinery/rnd/production/proc/eject_sheets(eject_sheet, eject_amt)
-	var/datum/component/material_container/mat_container = materials.mat_container
-
-	if(!mat_container)
-		say("No access to material storage, please contact the quartermaster.")
-		return 0
-
-	if(materials.on_hold())
-		say("Mineral access is on hold, please contact the quartermaster.")
-		return 0
-
-	var/count = mat_container.retrieve_sheets(text2num(eject_amt), eject_sheet, drop_location())
-
-	var/list/matlist = list()
-	matlist[eject_sheet] = MINERAL_MATERIAL_AMOUNT
-
-	materials.silo_log(src, "ejected", -count, "sheets", matlist)
-
-	return count
+/obj/machinery/rnd/protolathe/proc/do_print(path, notify_admins) //ignoring admin notification
+	busy = FALSE
+	new path(get_turf(src))
+	playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
 
 // Stuff for the stripe on the department machines
-/obj/machinery/rnd/production/default_deconstruction_screwdriver(mob/user, icon_state_open, icon_state_closed, obj/item/screwdriver)
+/obj/machinery/rnd/protolathe/screwdriver_act(mob/living/user, obj/item/tool)
 	. = ..()
+	update_overlays()
 
-	update_icon(UPDATE_OVERLAYS)
-
-/obj/machinery/rnd/production/update_overlays()
+/obj/machinery/rnd/protolathe/update_overlays()
 	. = ..()
-
 	if(!stripe_color)
 		return
-
 	var/mutable_appearance/stripe = mutable_appearance('icons/obj/machines/research.dmi', "protolate_stripe")
-
-	if(!panel_open)
+	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		stripe.icon_state = "protolathe_stripe"
 	else
 		stripe.icon_state = "protolathe_stripe_t"
-
 	stripe.color = stripe_color
-
 	. += stripe
 
-/obj/machinery/rnd/production/examine(mob/user)
-	. = ..()
-
-	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: Storing up to <b>[materials.local_size]</b> material units.<br>Material consumption at <b>[efficiency_coeff * 100]%</b>.<br>Build time reduced by <b>[100 - efficiency_coeff * 100]%</b>.")
-
-//Available designs
-
+//
+///Available designs
+//
 /datum/design/research
 	build_type = PROTOLATHE
-	construction_time = 100
+	construction_time = 5 SECONDS
 
 /datum/design/research/armor_targeting
 	name="Shoulder mount weapon module"
 	desc="Interfaces a weapon with the wearer's mind to allow one to multitask while shooting"
 	build_path=/obj/item/attachable/shoulder_mount
-	materials = list(/datum/material/psi = 20)
+	materials = list(/datum/material/psi = 20, /datum/material/metal = 200)
 	
 /datum/design/research/blood_implant
 	name="Blood regen implant"
 	build_path=/obj/item/implanter/chem/blood
-	materials = list(/datum/material/virilyth = 40)
+	reagents_list = list(/datum/reagent/virilyth = 40)
 
 /datum/design/research/cloak_implant
 	name="Clock implant"
 	build_path=/obj/item/implanter/cloak
-	materials = list(/datum/material/psi = 40, /datum/material/virilyth = 20)
+	materials = list(/datum/material/psi = 40)
+	reagents_list = list(/datum/reagent/virilyth = 20)
 
 /datum/design/research/blade_implant
 	name="Blade implant"
 	build_path=/obj/item/implanter/blade
-	materials = list(/datum/material/psi = 5, /datum/material/virilyth = 80)
+	materials = list(/datum/material/psi = 5)
+	reagents_list = list(/datum/reagent/virilyth = 80)

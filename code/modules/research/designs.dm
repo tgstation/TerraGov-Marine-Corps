@@ -29,18 +29,18 @@ other types of metals and chemistry for reagents).
 	var/build_type = null
 	/// List of materials required to create one unit of the product. Format is (typepath or caregory) -> amount
 	var/list/materials = list()
+	/// List of reagents required to create one unit of the product.
+	var/list/reagents_list = list()
 	/// The amount of time required to create one unit of the product.
 	var/construction_time
 	/// The typepath of the object produced by this design
 	var/build_path = null
-	/// The maximum number of units of whatever is produced by this can be produced in one go.
-	var/maxstack = 1
-	/// For protolathe designs that don't require reagents: If they can be exported to autolathes with a design disk or not.
-	var/autolathe_exportable = TRUE
+	/// If this is [TRUE] the admins get notified whenever anyone prints this. Currently only used by the BoH.
+	var/dangerous_construction = FALSE
 
 /datum/design/error_design
 	name = "ERROR"
-	desc = "This usually means something in the database has corrupted. If this doesn't go away automatically, inform Central Comamnd so their techs can fix this ASAP(tm)"
+	desc = "This usually means something in the database has corrupted. If this doesn't go away automatically, inform Central Command so their techs can fix this ASAP(tm)"
 
 /// Returns the description of the design
 /datum/design/proc/get_description()

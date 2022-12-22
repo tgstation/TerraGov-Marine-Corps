@@ -335,19 +335,19 @@
 /obj/item/research_product/psionic/basic
 	name = "weak psi core"
 	export_points = 5
-	psi = 5
+	materials = list(/datum/material/psi = 5)
 
 /obj/item/research_product/psionic/common
 	name = "psi core"
 	export_points = 15
-	psi = 10
+	materials = list(/datum/material/psi = 10)
 
 /obj/item/research_product/psionic/uncommon
 	name = "charged psi core"
 	export_points = 20
-	psi = 20
+	materials = list(/datum/material/psi = 20)
 
 /obj/item/research_product/psionic/rare
 	name = "exalted psi core"
 	export_points = 25
-	psi = 40
+	materials = list(/datum/material/psi = 40)
