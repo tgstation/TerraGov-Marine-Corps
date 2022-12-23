@@ -1218,6 +1218,16 @@
 		/obj/item/paper = 1,
 	)
 
+/obj/effect/spawner/random/clipboard
+	name = "random clipboard spawner"
+	icon_state = "random_clipboard"
+	spawn_loot_chance = 65
+	spawn_random_offset = TRUE
+	loot = list(
+		/obj/item/clipboard = 8,
+		/obj/item/paper = 2,
+	)
+
 /obj/effect/spawner/random/radio
 	name = "radio spawner"
 	icon_state = "random_radio"
@@ -1282,12 +1292,37 @@
 		/obj/structure/closet/radiation,
 	)
 
+/obj/effect/spawner/random/structure/closet/regular
+	spawn_loot_chance = 90
+	loot = list(
+		/obj/structure/closet = 20,
+		/obj/effect/spawner/random/structure/closet = 1,
+	)
+
 /obj/effect/spawner/random/structure/security_closet
 	name = "security closet spawner"
 	icon_state = "random_security_closet"
 	spawn_loot_chance = 80
 	loot = list(
 		/obj/structure/closet/secure_closet/security,
+	)
+
+/obj/effect/spawner/random/structure/rad_closet
+	name = "radiation closet spawner"
+	icon_state = "random_radsuit"
+	spawn_loot_chance = 90
+	loot = list(
+		/obj/structure/closet/radiation = 9,
+		/obj/item/stack/sheet/metal = 1,
+	)
+
+/obj/effect/spawner/random/structure/fire_closet
+	name = "radiation closet spawner"
+	icon_state = "random_firecloset"
+	spawn_loot_chance = 85
+	loot = list(
+		/obj/structure/closet/firecloset = 9,
+		/obj/item/stack/sheet/metal = 1,
 	)
 
 /obj/effect/spawner/random/structure/cabinet
@@ -1403,6 +1438,12 @@
 	loot = list(
 		/obj/machinery/computer/rdconsole = 85,
 		/obj/effect/spawner/random/structure/random_broken_computer = 15,
+	)
+
+/obj/effect/spawner/random/structure/random_broken_computer/medicalrecords
+	loot = list(
+		/obj/machinery/computer/med_data = 75,
+		/obj/effect/spawner/random/structure/random_broken_computer = 25,
 	)
 
 /obj/effect/spawner/random/structure/random_broken_computer/small
@@ -1699,6 +1740,27 @@
 	loot = list(
 		/obj/machinery/microwave = 8,
 		/obj/effect/spawner/random/outdoors_snacks = 2,
+	)
+
+/obj/effect/spawner/random/structure/rollerbed
+	name = "rollerbed spawner"
+	icon_state = "random_rollerbed"
+	spawn_loot_chance = 85
+	spawn_scatter_radius = 1
+	loot = list(
+		/obj/structure/bed/roller = 90,
+		/obj/effect/spawner/random/decal/blood = 9,
+		/obj/structure/bed/medevac_stretcher = 1,
+	)
+
+/obj/effect/spawner/random/structure/ivdrip
+	name = "iv drip spawner"
+	icon_state = "random_ivdrip"
+	spawn_loot_chance = 50
+	loot = list(
+		/obj/machinery/iv_drip = 90,
+		/obj/effect/spawner/random/decal/blood = 9,
+		/obj/structure/bed/medevac_stretcher = 1,
 	)
 
 //RANDOM EFFECTS AND DECALS
