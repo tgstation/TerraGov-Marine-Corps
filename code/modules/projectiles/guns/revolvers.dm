@@ -321,5 +321,6 @@
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 22,"rail_x" = 17, "rail_y" = 22, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 19)
 
 	fire_delay = 0.15 SECONDS
-	scatter_unwielded = 5
+	damage_mult = 1.1
+	scatter_unwielded = 0
 	scatter = 0
