@@ -148,6 +148,6 @@
 
 /obj/structure/window_frame/prison/hull
 	climbable = FALSE
-	flags_pass = null
+	flags_pass = NONE
 	reinforced = TRUE
 	resistance_flags = INDESTRUCTIBLE|UNACIDABLE
