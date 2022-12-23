@@ -175,10 +175,15 @@
 
 /datum/action/xeno_action/activable/shattering_roar/use_ability(atom/target)
 	playsound(owner, 'sound/voice/ed209_20sec.ogg', 70)
+	var/mob/living/carbon/xenomorph/king/king_owner = owner
+	if(istype(king_owner))
+		king_owner.icon_state = "King Screeching"
 	if(!do_after(owner, 1 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_action, FALSE, XACT_USE_BUSY)))
 		owner.balloon_alert(owner, "interrupted!")
+		owner.update_icons()
 		add_cooldown(5 SECONDS)
 		return
+	owner.update_icons()
 	playsound(owner, 'sound/voice/xenos_roaring.ogg', 100)
 	var/source = get_turf(owner)
 	var/dir_to_target = Get_Angle(source, target)
