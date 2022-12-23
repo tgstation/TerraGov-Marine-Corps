@@ -109,9 +109,7 @@ SUBSYSTEM_DEF(weeds)
 	if(QDELETED(node) || (locate(/obj/alien/weeds/node) in range(1, T)))
 		return
 	var/obj/O = (locate(/obj/alien/weeds) in T)
-	if(istype(O, /obj/alien/weeds))
-		if(istype(O, /obj/alien/weeds/node))
-			return
+	if(O)
 		var/obj/alien/weeds/weed = O
 		weed.swapped = TRUE
 		qdel(O)
