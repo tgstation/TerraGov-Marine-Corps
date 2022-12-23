@@ -9,6 +9,7 @@
 
 /area/deltastation/maintenance
 	name = "Generic Maintenance"
+	ceiling = CEILING_METAL
 
 //Maintenance - Departmental
 
@@ -215,6 +216,7 @@
 /area/deltastation/maintenance/space_hut
 	name = "\improper Space Hut"
 	icon_state = "spacehut"
+	ceiling = CEILING_DEEP_UNDERGROUND
 
 /area/deltastation/maintenance/space_hut/cabin
 	name = "Abandoned Cabin"
@@ -253,6 +255,7 @@
 
 /area/deltastation/hallway
 	icon_state = "hall"
+	ceiling = CEILING_METAL
 
 /area/deltastation/hallway/primary
 	name = "\improper Primary Hallway"
@@ -340,6 +343,7 @@
 /area/deltastation/command
 	name = "Command"
 	icon_state = "command"
+	ceiling = CEILING_METAL
 
 /area/deltastation/command/bridge
 	name = "\improper Bridge"
@@ -407,6 +411,7 @@
 /area/deltastation/commons
 	name = "\improper Crew Facilities"
 	icon_state = "commons"
+	ceiling = CEILING_METAL
 
 /area/deltastation/commons/dorms
 	name = "\improper Dormitories"
@@ -518,6 +523,7 @@
 //Service
 
 /area/deltastation/service
+	ceiling = CEILING_METAL
 
 /area/deltastation/service/cafeteria
 	name = "\improper Cafeteria"
@@ -665,6 +671,7 @@
 
 /area/deltastation/engineering
 	icon_state = "engie"
+	ceiling = CEILING_METAL
 
 /area/deltastation/engineering/engine_smes
 	name = "\improper Engineering SMES"
@@ -724,9 +731,12 @@
 /area/deltastation/engineering/supermatter
 	name = "\improper Supermatter Engine"
 	icon_state = "engine_sm"
+	ceiling = CEILING_DEEP_UNDERGROUND
+
 /area/deltastation/engineering/supermatter/room
 	name = "\improper Supermatter Engine Room"
 	icon_state = "engine_sm_room"
+	ceiling = CEILING_METAL
 
 /area/deltastation/engineering/break_room
 	name = "\improper Engineering Foyer"
@@ -775,7 +785,6 @@
 /area/deltastation/solars
 	icon_state = "panels"
 	requires_power = FALSE
-	base_lighting_alpha = 255
 
 /area/deltastation/solars/fore
 	name = "\improper Fore Solar Array"
@@ -827,6 +836,7 @@
 /area/deltastation/maintenance/solars
 	name = "Solar Maintenance"
 	icon_state = "yellow"
+	ceiling = CEILING_METAL
 
 /area/deltastation/maintenance/solars/port
 	name = "Port Solar Maintenance"
@@ -835,10 +845,12 @@
 /area/deltastation/maintenance/solars/port/aft
 	name = "Port Quarter Solar Maintenance"
 	icon_state = "SolarcontrolAP"
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 /area/deltastation/maintenance/solars/port/fore
 	name = "Port Bow Solar Maintenance"
 	icon_state = "SolarcontrolFP"
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 /area/deltastation/maintenance/solars/starboard
 	name = "Starboard Solar Maintenance"
@@ -847,16 +859,19 @@
 /area/deltastation/maintenance/solars/starboard/aft
 	name = "Starboard Quarter Solar Maintenance"
 	icon_state = "SolarcontrolAS"
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 /area/deltastation/maintenance/solars/starboard/fore
 	name = "Starboard Bow Solar Maintenance"
 	icon_state = "SolarcontrolFS"
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 //MedBay
 
 /area/deltastation/medical
 	name = "Medical"
 	icon_state = "medbay"
+	ceiling = CEILING_METAL
 
 /area/deltastation/medical/abandoned
 	name = "\improper Abandoned Medbay"
@@ -955,11 +970,11 @@
 	icon_state = "psychology"
 
 //Security
-///When adding a new area to the security areas, make sure to add it to /datum/bounty/item/security/paperwork as well!
 
 /area/deltastation/security
 	name = "Security"
 	icon_state = "security"
+	ceiling = CEILING_METAL
 
 /area/deltastation/security/office
 	name = "\improper Security Office"
@@ -1127,6 +1142,7 @@
 /area/deltastation/cargo
 	name = "Quartermasters"
 	icon_state = "quart"
+	ceiling = CEILING_METAL
 
 /area/deltastation/cargo/sorting
 	name = "\improper Delivery Office"
@@ -1176,6 +1192,7 @@
 /area/deltastation/science
 	name = "\improper Science Division"
 	icon_state = "science"
+	ceiling = CEILING_METAL
 
 /area/deltastation/science/lobby
 	name = "\improper Science Lobby"
@@ -1209,6 +1226,7 @@
 /area/deltastation/science/ordnance
 	name = "\improper Ordnance Lab"
 	icon_state = "ord_main"
+	ceiling = CEILING_METAL
 
 /area/deltastation/science/ordnance/office
 	name = "\improper Ordnance Office"
@@ -1233,6 +1251,7 @@
 /area/deltastation/science/ordnance/bomb
 	name = "\improper Ordnance Bomb Site"
 	icon_state = "ord_boom"
+	ceiling = CEILING_DEEP_UNDERGROUND
 
 /area/deltastation/science/genetics
 	name = "\improper Genetics Lab"
@@ -1282,6 +1301,7 @@
 
 /area/deltastation/tcommsat
 	icon_state = "tcomsatcham"
+	ceiling = CEILING_METAL
 
 /area/deltastation/tcommsat/computer
 	name = "\improper Telecomms Control Room"
@@ -1308,6 +1328,7 @@
 /area/deltastation/maintenance/external
 	name = "\improper External Hull Access"
 	icon_state = "amaint"
+	ceiling = CEILING_METAL
 
 /area/deltastation/maintenance/external/aft
 	name = "\improper Aft External Hull Access"

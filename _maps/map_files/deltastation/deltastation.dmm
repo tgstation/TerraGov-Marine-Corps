@@ -4797,6 +4797,9 @@
 	},
 /turf/open/floor/iron/dark,
 /area/deltastation/command/heads_quarters/ce)
+"aYM" = (
+/turf/closed/wall/r_wall/unmeltable,
+/area/deltastation/asteroidcaves/exteriorasteroids)
 "aYP" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -12096,7 +12099,7 @@
 "cyS" = (
 /obj/structure/window/framed/colony/reinforced/hull,
 /turf/open/space,
-/area/space)
+/area/deltastation/asteroidcaves/exteriorasteroids)
 "czb" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
@@ -33358,7 +33361,7 @@
 "gFV" = (
 /obj/item/storage/secure/safe,
 /turf/closed/wall/sulaco,
-/area/deltastation/security/execution/transfer)
+/area/deltastation/asteroidcaves/exteriorasteroids)
 "gFX" = (
 /obj/effect/mapping_helpers/simple_pipes/purple/visible,
 /obj/structure/window/framed/colony/reinforced,
@@ -45449,7 +45452,7 @@
 /area/deltastation/medical/surgery/theatre)
 "jij" = (
 /turf/closed/wall/sulaco,
-/area/deltastation/security/execution/transfer)
+/area/deltastation/asteroidcaves/exteriorasteroids)
 "jil" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 4
@@ -63933,7 +63936,7 @@
 	name = "Escape Pod Airlock"
 	},
 /turf/open/shuttle,
-/area/deltastation/security/execution/transfer)
+/area/deltastation/asteroidcaves/exteriorasteroids)
 "mZX" = (
 /obj/structure/bed/chair/pew,
 /obj/effect/landmark/weed_node,
@@ -70169,8 +70172,8 @@
 /turf/closed/wall,
 /area/deltastation/commons/locker)
 "oqA" = (
-/turf/closed/mineral/smooth/indestructible,
-/area/deltastation/science/ordnance/bomb)
+/turf/closed/wall/r_wall/unmeltable/regular,
+/area/deltastation/asteroidcaves/exteriorasteroids)
 "oqF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
@@ -86116,7 +86119,7 @@
 "rvQ" = (
 /obj/machinery/status_display,
 /turf/closed/wall/sulaco,
-/area/deltastation/security/execution/transfer)
+/area/deltastation/asteroidcaves/exteriorasteroids)
 "rvU" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
@@ -87942,7 +87945,7 @@
 	dir = 1
 	},
 /turf/open/shuttle,
-/area/deltastation/security/execution/transfer)
+/area/deltastation/asteroidcaves/exteriorasteroids)
 "rQg" = (
 /obj/structure/cargo_container/red{
 	dir = 1
@@ -90814,7 +90817,7 @@
 	dir = 4
 	},
 /turf/open/shuttle,
-/area/deltastation/security/execution/transfer)
+/area/deltastation/asteroidcaves/exteriorasteroids)
 "sul" = (
 /obj/effect/decal/sandedge{
 	dir = 8
@@ -133623,7 +133626,7 @@ qwW
 qwW
 mGz
 hvY
-oqA
+vNR
 hvY
 mGz
 qwW
@@ -179278,11 +179281,11 @@ lxH
 lxH
 trz
 kAO
-heZ
+oqA
 jij
 mZS
 jij
-heZ
+oqA
 vNR
 wxm
 vlJ
@@ -179535,11 +179538,11 @@ lxH
 lxH
 lxH
 fCY
-heZ
+oqA
 jij
 rPV
 jij
-heZ
+oqA
 vNR
 vNR
 wxm
@@ -179792,11 +179795,11 @@ lxH
 lxH
 lxH
 fCY
-vUI
+aYM
 gFV
 sua
 rvQ
-vUI
+aYM
 fCY
 vNR
 vNR
