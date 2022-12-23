@@ -1582,6 +1582,7 @@
 	aim_speed_modifier = 2
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.15 SECONDS
+	extra_delay = 0.05 SECONDS
 	accuracy_mult_unwielded = 0.5
 	scatter = 1
 	scatter_unwielded = 15
