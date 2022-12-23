@@ -891,4 +891,5 @@ SUBSYSTEM_DEF(ru_items)
 /obj/item/namaz/proc/deploy_roller(mob/user, atom/location)
 	var/obj/structure/bed/namaz/R = new rollertype(location) // R is not need here, but i dont know how to delete this shit
 	user.temporarilyRemoveItemFromInventory(src)
+	user.visible_message(span_notice(" [user] puts [R] down."), span_notice(" You put [R] down."))
 	qdel(src)
