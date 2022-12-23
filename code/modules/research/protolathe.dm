@@ -27,6 +27,18 @@
 	create_reagents(0, OPENCONTAINER)
 	update_overlays()
 
+/obj/machinery/rnd/protolathe/update_overlays()
+	. = ..()
+	if(!stripe_color)
+		return
+	var/mutable_appearance/stripe = mutable_appearance('icons/obj/machines/research.dmi', "protolate_stripe")
+	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+		stripe.icon_state = "protolathe_stripe"
+	else
+		stripe.icon_state = "protolathe_stripe_t"
+	stripe.color = stripe_color
+	. += stripe
+
 /obj/machinery/rnd/protolathe/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -168,17 +180,6 @@
 	to_chat(user, "You fill \the [src] with \the [eating].")
 	return TRUE
 
-/obj/machinery/rnd/protolathe/update_overlays()
-	. = ..()
-	if(!stripe_color)
-		return
-	var/mutable_appearance/stripe = mutable_appearance('icons/obj/machines/research.dmi', "protolate_stripe")
-	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-		stripe.icon_state = "protolathe_stripe"
-	else
-		stripe.icon_state = "protolathe_stripe_t"
-	stripe.color = stripe_color
-	. += stripe
 
 //
 ///Available designs

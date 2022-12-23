@@ -4,6 +4,7 @@
 /obj/machinery/rnd
 	name = "R&D Device"
 	icon = 'icons/obj/machines/research.dmi'
+	req_access = list(ACCESS_MARINE_RESEARCH)
 	density = TRUE
 	use_power = IDLE_POWER_USE
 	var/busy = FALSE
