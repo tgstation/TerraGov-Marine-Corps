@@ -26,7 +26,7 @@
 		/obj/item/instrument,
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/holster/blade,
-		/obj/item/weapon/claymore,
+		/obj/item/weapon/claymore/harvester,
 		/obj/item/storage/belt/gun,
 		/obj/item/storage/belt/knifepouch,
 		/obj/item/weapon/twohanded,
