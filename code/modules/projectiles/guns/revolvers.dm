@@ -27,8 +27,8 @@
 	fire_delay = 2
 	accuracy_mult_unwielded = 0.85
 	scatter_unwielded = 25
-	recoil = 2
-	recoil_unwielded = 3
+	recoil = 0
+	recoil_unwielded = 1
 
 	placed_overlay_iconstate = "revolver"
 
@@ -189,10 +189,10 @@
 	fire_delay = 0.2 SECONDS
 	aim_fire_delay = 0.3 SECONDS
 	recoil = 0
-	accuracy_mult = 1.1
+	accuracy_mult = 1.15
 	scatter = 0
-	accuracy_mult_unwielded = 0.6
-	scatter_unwielded = 7
+	accuracy_mult_unwielded = 0.8
+	scatter_unwielded = 3
 
 /obj/item/weapon/gun/revolver/mateba/notmarine
 	name = "\improper Mateba autorevolver"
@@ -321,3 +321,5 @@
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 22,"rail_x" = 17, "rail_y" = 22, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 19)
 
 	fire_delay = 0.15 SECONDS
+	scatter_unwielded = 5
+	scatter = 0
