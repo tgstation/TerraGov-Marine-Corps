@@ -1191,6 +1191,33 @@
 	loot_subtype_path = /obj/item/assembly
 	loot = list()
 
+/obj/effect/spawner/random/weapon_recharger
+	name = "random weapon recharger"
+	icon_state = "random_wrecharger"
+	spawn_loot_chance = 45
+	loot = list(
+		/obj/structure/prop/mainship/weapon_recharger,
+	)
+
+/obj/effect/spawner/random/cigar
+	name = "random cigar spawner"
+	icon_state = "random_cigar"
+	spawn_loot_chance = 75
+	loot = list(
+		/obj/item/clothing/mask/cigarette/cigar/cohiba,
+		/obj/item/clothing/mask/cigarette/cigar/havana,
+		/obj/item/clothing/mask/cigarette/cigar,
+	)
+
+/obj/effect/spawner/random/paperbin
+	name = "random paperbin spawner"
+	icon_state = "random_paperbin"
+	spawn_loot_chance = 85
+	loot = list(
+		/obj/structure/paper_bin = 9,
+		/obj/item/paper = 1,
+	)
+
 /obj/effect/spawner/random/radio
 	name = "radio spawner"
 	icon_state = "random_radio"

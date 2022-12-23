@@ -140,6 +140,13 @@
 		"ai-hades_dead",
 	)
 
+/obj/structure/prop/mainship/weapon_recharger
+	name = "recharger"
+	desc = "A charging dock for energy based weaponry, PDAs, and other devices. A small blinking light indicates that this recharger isn't functional."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "weapon_recharger"
+	density = FALSE
+
 //Nonpower using props
 
 /obj/structure/prop/mainship
