@@ -300,7 +300,7 @@
 	aim_fire_delay = 0.2 SECONDS
 	aim_speed_modifier = 3
 
-	autoburst_delay = = 0.6 SECONDS
+	autoburst_delay = 0.60 SECONDS
 	fire_delay = 0.3 SECONDS
 	burst_amount = 3
 	burst_delay = 0.10 SECONDS
