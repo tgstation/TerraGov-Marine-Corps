@@ -23,6 +23,7 @@
 	. = ..()
 	// should this be a global list?
 	cached_designs = typesof(/datum/design/research)
+	//virilyth storage
 	create_reagents(0, OPENCONTAINER)
 	update_overlays()
 
@@ -128,6 +129,44 @@
 /obj/machinery/rnd/protolathe/screwdriver_act(mob/living/user, obj/item/tool)
 	. = ..()
 	update_overlays()
+
+// enable loading inputs
+/obj/machinery/rnd/protolathe/attackby(obj/item/I, mob/user, params)
+	//only accept green blood as a reagent
+	if(istype(I, /obj/item/reagent_containers))
+		var/obj/item/reagent_containers/container = I
+		container.reagents.trans_to(src, container.amount_per_transfer_from_this)
+		reagents.isolate_reagent("virilth")
+		return TRUE
+
+	if(consume_item(I, user))
+		return TRUE
+
+	return ..()
+
+//copied from autolathe. could be extracted to tgstation's /datum/component/material_container
+/obj/machinery/rnd/protolathe/proc/consume_item(obj/item/eating, mob/user)
+	if(!eating.materials)
+		to_chat(user, span_warning("\The [eating] does not contain significant amounts of useful materials and cannot be accepted."))
+		return
+
+	if(eating.flags_item & (NODROP|DELONDROP))
+		to_chat(user, span_warning("\The [eating] is stuck to you and cannot be placed into [src]."))
+		return
+
+	for(var/material in eating.materials)
+		//unknown material
+		if(isnull(stored_material[material]))
+			continue
+		var/total_material = eating.materials[material]
+		//If it's a stack, we eat multiple sheets.
+		if(istype(eating,/obj/item/stack))
+			var/obj/item/stack/stack = eating
+			total_material *= stack.get_amount()
+		stored_material[material] += total_material
+	
+	to_chat(user, "You fill \the [src] with \the [eating].")
+	return TRUE
 
 /obj/machinery/rnd/protolathe/update_overlays()
 	. = ..()

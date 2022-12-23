@@ -53,21 +53,6 @@
 		wires.interact(user)
 		return TRUE
 
-//
-/// enable loading inputs
-//
-/obj/machinery/rnd/attackby(obj/item/O, mob/user, params)
-	if(is_refillable() && O.is_drainable())
-		return FALSE //inserting reagents into the machine
-	if(Insert_Item(O, user))
-		return TRUE
-
-	return ..()
-
-//proc used to handle inserting items or reagents into rnd machines
-/obj/machinery/rnd/proc/Insert_Item(obj/item/I, mob/user)
-	return
-
 //whether the machine can have an item inserted in its current state.
 /obj/machinery/rnd/proc/is_insertion_ready(mob/user)
 	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
