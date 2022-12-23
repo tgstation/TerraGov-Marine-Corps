@@ -163,8 +163,6 @@
 		return FALSE
 	if(!isturf(loc))
 		return FALSE
-	if(incapacitated())
-		return FALSE
 	if(buckling_mob.anchored)
 		return FALSE
 	return TRUE
