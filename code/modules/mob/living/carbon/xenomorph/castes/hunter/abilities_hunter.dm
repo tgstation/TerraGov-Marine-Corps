@@ -480,5 +480,7 @@
 	var/turf/current_turf = get_turf(X)
 
 	var/mob/selected_illusion = illusions[1]
+	owner.drop_r_hand() // drop shit like huggers
+	owner.drop_l_hand()
 	X.forceMove(get_turf(selected_illusion.loc))
 	selected_illusion.forceMove(current_turf)
