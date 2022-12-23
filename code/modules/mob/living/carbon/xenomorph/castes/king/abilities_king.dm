@@ -63,20 +63,23 @@
 	for(var/mob/living/carbon/human/human in view(PETRIFY_RANGE, owner.loc))
 		if(is_blind(human))
 			continue
-		humans += human
+
 		human.notransform = TRUE
 		human.status_flags |= GODMODE
-		human.add_atom_colour(COLOR_GRAY, TEMPORARY_COLOUR_PRIORITY)
 		ADD_TRAIT(human, TRAIT_HANDS_BLOCKED, REF(src))
 		human.move_resist = MOVE_FORCE_OVERPOWERING
+		human.add_atom_colour(COLOR_GRAY, TEMPORARY_COLOUR_PRIORITY)
 		human.log_message("has been petrified by [owner] for [PETRIFY_DURATION] ticks", LOG_ATTACK, color="pink")
+
 		var/image/stone_overlay = image('icons/effects/effects.dmi', null, "petrified_overlay")
 		stone_overlay.filters += filter(arglist(alpha_mask_filter(render_source="*[REF(human)]",flags=MASK_INVERSE)))
+
 		var/mutable_appearance/mask = mutable_appearance()
 		mask.appearance = human.appearance
 		mask.render_target = "*[REF(human)]"
 		mask.alpha = 125
 		stone_overlay.overlays += mask
+
 		human.overlays += stone_overlay
 		humans[human] = stone_overlay
 
@@ -95,9 +98,9 @@
 	for(var/mob/living/carbon/human/human AS in humans)
 		human.notransform = FALSE
 		human.status_flags &= ~GODMODE
-		human.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, COLOR_GRAY)
 		REMOVE_TRAIT(human, TRAIT_HANDS_BLOCKED, REF(src))
 		human.move_resist = initial(human.move_resist)
+		human.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, COLOR_GRAY)
 		human.overlays -= humans[human]
 
 ///callback for removing the eye from viscontents
