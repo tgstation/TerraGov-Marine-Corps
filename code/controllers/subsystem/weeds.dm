@@ -54,10 +54,13 @@ SUBSYSTEM_DEF(weeds)
 	for(var/turf/T AS in creating)
 		if(MC_TICK_CHECK)
 			return
+		var/obj/alien/weeds/node/N = creating[T]
+		var/obj/O = (locate(/obj) in T)
 		// Adds a bit of jitter to the spawning weeds.
-		addtimer(CALLBACK(src, .proc/create_weed, T, creating[T]), rand(1, 3 SECONDS))
-		if(prob(20) && !(locate(/obj/alien/weeds/node) in range(1, T)))
+		if(prob(20) && (N.name == WEED) && T.is_weedable() && !iswallturf(T) && !isnull(O) && !O.density && !(locate(/obj/alien/weeds/node) in range(1, T)))
 			addtimer(CALLBACK(src, .proc/create_node, T, creating[T]), rand(8, 10 SECONDS))
+		else
+			addtimer(CALLBACK(src, .proc/create_weed, T, creating[T]), rand(1, 3 SECONDS))
 		pending -= T
 		spawn_attempts_by_node -= T
 		creating -= T
@@ -104,16 +107,15 @@ SUBSYSTEM_DEF(weeds)
 	new weed_to_spawn(T, node, swapped)
 
 /datum/controller/subsystem/weeds/proc/create_node(turf/T, obj/alien/weeds/node/node)
-	if(QDELETED(node) || (node.name != WEED) || !T.is_weedable() || iswallturf(T) || (locate(/obj/alien/weeds/node) in range(1, T)))
+	if(QDELETED(node) || (locate(/obj/alien/weeds/node) in range(1, T)))
 		return
-	var/obj/alien/weeds/node/node_to_spawn = /obj/alien/weeds/node
-	for (var/obj/O in T)
-		if(O.density)
+	var/obj/O = (locate(/obj) in T)
+	if(!isnull(O) && O.density)
+		return
+	else if(istype(O, /obj/alien/weeds))
+		if(istype(O, /obj/alien/weeds/node))
 			return
-		else if(istype(O, /obj/alien/weeds))
-			if(istype(O, /obj/alien/weeds/node))
-				return
-			var/obj/alien/weeds/weed = O
-			weed.swapped = TRUE
-			qdel(O)
-	new node_to_spawn(T)
+		var/obj/alien/weeds/weed = O
+		weed.swapped = TRUE
+		qdel(O)
+	new /obj/alien/weeds/node(T)
