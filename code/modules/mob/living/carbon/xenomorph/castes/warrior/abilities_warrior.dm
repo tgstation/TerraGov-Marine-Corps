@@ -40,6 +40,14 @@
 		X.soft_armor = X.soft_armor.modifyAllRatings(armor_change)
 		last_agility_bonus = armor_change
 		owner.toggle_move_intent(MOVE_INTENT_RUN) //By default we swap to running when activating agility
+		if(istype(owner.r_hand, /obj/item/clothing/mask/facehugger)) // start drop huggers
+			var/obj/item/clothing/mask/facehugger/FH = owner.r_hand
+			if(FH.stat != DEAD)
+				owner.drop_r_hand()
+		if(istype(owner.l_hand, /obj/item/clothing/mask/facehugger))
+			var/obj/item/clothing/mask/facehugger/FH = owner.l_hand
+			if(FH.stat != DEAD)
+				owner.drop_l_hand() // stop drop huggers
 	else
 		to_chat(X, span_xenowarning("We raise ourselves to stand on two feet, hard scales setting back into place."))
 		X.remove_movespeed_modifier(MOVESPEED_ID_WARRIOR_AGILITY)
