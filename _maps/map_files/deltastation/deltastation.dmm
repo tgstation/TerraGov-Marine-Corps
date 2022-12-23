@@ -932,7 +932,7 @@
 	dir = 4
 	},
 /turf/open/floor/iron/dark/corner,
-/area/deltastation/maintenance/disposal/incinerator)
+/area/deltastation/asteroidcaves/westerncaves)
 "ajO" = (
 /obj/structure/table,
 /obj/item/paper,
@@ -4797,9 +4797,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/deltastation/command/heads_quarters/ce)
-"aYM" = (
-/turf/closed/wall/r_wall/unmeltable,
-/area/deltastation/asteroidcaves/exteriorasteroids)
 "aYP" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -5861,12 +5858,6 @@
 /turf/open/floor/plating,
 /area/deltastation/maintenance/department/security)
 "bjY" = (
-/obj/machinery/power/apc/drained{
-	dir = 1;
-	name = "Recycling APC";
-	pixel_y = -25
-	},
-/obj/structure/cable,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/deltastation/asteroidcaves/derelictwest)
@@ -7913,7 +7904,7 @@
 	dir = 4
 	},
 /turf/open/floor/iron,
-/area/deltastation/maintenance/disposal/incinerator)
+/area/deltastation/asteroidcaves/westerncaves)
 "bDN" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/structure/cable,
@@ -13353,8 +13344,8 @@
 /turf/open/floor/plating,
 /area/deltastation/maintenance/department/chapel)
 "cNB" = (
-/turf/closed/mineral/smooth/indestructible,
-/area/deltastation/asteroidcaves/northcaves)
+/turf/closed/wall/r_wall/unmeltable/regular,
+/area/deltastation/asteroidcaves/exteriorasteroids)
 "cNK" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/trimline/dark_red/filled/warning{
@@ -14995,10 +14986,8 @@
 /turf/open/floor/iron,
 /area/deltastation/cargo/storage)
 "dfe" = (
-/obj/effect/landmark/weed_node,
-/obj/structure/cable,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/maintenance/disposal/incinerator)
+/turf/closed/wall/r_wall/unmeltable,
+/area/deltastation/asteroidcaves/exteriorasteroids)
 "dfm" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/asteroidfloor,
@@ -19304,7 +19293,7 @@
 	dir = 4
 	},
 /turf/open/floor/engine,
-/area/deltastation/maintenance/disposal/incinerator)
+/area/deltastation/asteroidcaves/westerncaves)
 "dUN" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/decal/cleanable/dirt,
@@ -45745,10 +45734,6 @@
 /obj/effect/turf_decal/stripes/box,
 /turf/open/floor/iron/textured_large,
 /area/deltastation/service/janitor)
-"jll" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/maintenance/disposal/incinerator)
 "jlo" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -70171,9 +70156,6 @@
 /obj/machinery/computer/security/telescreen/entertainment,
 /turf/closed/wall,
 /area/deltastation/commons/locker)
-"oqA" = (
-/turf/closed/wall/r_wall/unmeltable/regular,
-/area/deltastation/asteroidcaves/exteriorasteroids)
 "oqF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
@@ -78241,10 +78223,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/iron,
 /area/deltastation/cargo/sorting)
-"pSG" = (
-/obj/structure/cable,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/maintenance/disposal/incinerator)
 "pSL" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
@@ -96928,10 +96906,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
 /area/storage/testroom)
-"tGo" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/maintenance/disposal/incinerator)
 "tGr" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
@@ -102842,9 +102816,6 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/commons/toilet/restrooms)
-"uOn" = (
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/maintenance/disposal/incinerator)
 "uOt" = (
 /obj/structure/table/reinforced,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -115062,7 +115033,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/maintenance/disposal/incinerator)
+/area/deltastation/asteroidcaves/westerncaves)
 "xhW" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/red{
@@ -116150,12 +116121,6 @@
 /obj/effect/spawner/random/structure/girder,
 /turf/open/floor/plating,
 /area/deltastation/command/heads_quarters/captain)
-"xtt" = (
-/obj/effect/landmark/xeno_resin_door{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/maintenance/disposal/incinerator)
 "xtz" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/landmark/weed_node,
@@ -120774,7 +120739,6 @@
 /turf/open/floor/plating,
 /area/deltastation/service/abandoned_gambling_den)
 "yln" = (
-/obj/structure/cable,
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
 /turf/open/floor/plating,
@@ -131700,7 +131664,7 @@ wxm
 tOn
 qsP
 xqv
-ujy
+xqv
 xBv
 wXV
 jfj
@@ -140452,11 +140416,11 @@ fCY
 qOQ
 vNR
 wxm
-jll
-uOn
-tGo
-jll
-tGo
+eUA
+bCp
+olu
+eUA
+olu
 bCp
 bCp
 eUA
@@ -140710,10 +140674,10 @@ vBl
 vNR
 wxm
 wxm
-uOn
-pSG
-pSG
-pSG
+bCp
+qer
+qer
+qer
 qer
 qer
 sUe
@@ -140967,10 +140931,10 @@ qdL
 vNR
 wxm
 wxm
-xtt
+gLy
 xhV
-xtt
-xtt
+gLy
+gLy
 tIB
 wmr
 gLy
@@ -141223,11 +141187,11 @@ pqS
 sph
 vNR
 wxm
-uOn
-uOn
-pSG
-uOn
-uOn
+bCp
+bCp
+qer
+bCp
+bCp
 tsJ
 wmr
 bCp
@@ -141479,12 +141443,12 @@ esJ
 lxH
 ujf
 vNR
-uOn
-tGo
-uOn
-dfe
-jll
-uOn
+bCp
+olu
+bCp
+sUe
+eUA
+bCp
 bCp
 bCp
 eUA
@@ -160176,7 +160140,7 @@ lxH
 vNR
 kTy
 kTy
-cNB
+vNR
 wxm
 wxm
 psq
@@ -160433,7 +160397,7 @@ lxH
 vNR
 nam
 nam
-cNB
+vNR
 vNR
 wxm
 wxm
@@ -179281,11 +179245,11 @@ lxH
 lxH
 trz
 kAO
-oqA
+cNB
 jij
 mZS
 jij
-oqA
+cNB
 vNR
 wxm
 vlJ
@@ -179538,11 +179502,11 @@ lxH
 lxH
 lxH
 fCY
-oqA
+cNB
 jij
 rPV
 jij
-oqA
+cNB
 vNR
 vNR
 wxm
@@ -179795,11 +179759,11 @@ lxH
 lxH
 lxH
 fCY
-aYM
+dfe
 gFV
 sua
 rvQ
-aYM
+dfe
 fCY
 vNR
 vNR

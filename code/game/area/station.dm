@@ -1385,6 +1385,7 @@
 /area/deltastation/asteroidcaves/derelictwest
 	icon_state = "derelict"
 	always_unpowered = FALSE
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 /area/deltastation/asteroidcaves/derelictsatellite
 
