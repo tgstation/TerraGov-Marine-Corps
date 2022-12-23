@@ -231,7 +231,7 @@
 	greyscale_colors = "#42A500"
 	greyscale_config = /datum/greyscale_config/xenogrenade
 	det_time = 15
-	smoke_duration = 2
+	smoke_duration = 5
 	dangerous = TRUE
 	smoketype = /datum/effect_system/smoke_spread/xeno/toxic
 	arm_sound = 'sound/voice/alien_yell_alt.ogg'
