@@ -176,8 +176,15 @@
 			var/obj/item/stack/stack = eating
 			total_material *= stack.get_amount()
 		stored_material[material] += total_material
+
+	if(user.temporarilyRemoveItemFromInventory(eating))
+		qdel(eating)
 	
 	to_chat(user, "You fill \the [src] with \the [eating].")
+	
+	use_power(active_power_usage)
+	add_overlay("protolathe_metal")
+	addtimer(CALLBACK(src, /atom.proc/cut_overlay, "protolathe_metal"), 10)
 	return TRUE
 
 
