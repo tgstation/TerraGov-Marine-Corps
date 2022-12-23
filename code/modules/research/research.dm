@@ -329,8 +329,8 @@
 	export_points = 80
 
 /obj/item/research_product/psionic
+	icon = 'icons/unused/Marine_Research.dmi'
 	icon_state = "chitin-armor"
-	var/psi
 
 /obj/item/research_product/psionic/basic
 	name = "weak psi core"
