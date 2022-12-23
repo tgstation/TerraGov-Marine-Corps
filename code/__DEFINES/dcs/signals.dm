@@ -766,6 +766,7 @@
 #define COMSIG_XENOABILITY_NIGHTFALL "xenoability_nightfall"
 #define COMSIG_XENOABILITY_PETRIFY "xenoability_petrify"
 #define COMSIG_XENOABILITY_OFFGUARD "xenoability_offguard"
+#define COMSIG_XENOABILITY_SHATTERING_ROAR "xenoability_shattering_roar"
 #define COMSIG_XENOABILITY_ZEROFORMBEAM "xenoability_zeroformbeam"
 #define COMSIG_XENOABILITY_HIVE_SUMMON "xenoability_hive_summon"
 

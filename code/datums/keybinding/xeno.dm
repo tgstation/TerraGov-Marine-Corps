@@ -738,6 +738,13 @@
 	description = "Muddles the mind of an enemy, increasing their scatter for a while."
 	keybind_signal = COMSIG_XENOABILITY_OFFGUARD
 
+/datum/keybinding/xeno/shattering_roar
+	hotkey_keys = list("R")
+	name = "shattering_roar"
+	full_name = "King: Shattering roar"
+	description = "Unleash a mighty psychic roar, knocking down any foes in your path and weakening them."
+	keybind_signal = COMSIG_XENOABILITY_SHATTERING_ROAR
+
 /datum/keybinding/xeno/zero_form_beam
 	hotkey_keys = list("R")
 	name = "zero_form_beam"

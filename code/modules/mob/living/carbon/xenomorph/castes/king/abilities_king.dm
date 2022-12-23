@@ -151,6 +151,85 @@
 	add_cooldown()
 	succeed_activate()
 
+// ***************************************
+// *********** Psychic roar
+// ***************************************
+
+#define SHATTERING_ROAR_RANGE 10
+#define SHATTERING_ROAR_ANGLE 60
+#define SHATTERING_ROAR_SPEED 2
+#define SHATTERING_ROAR_DAMAGE 40
+
+/datum/action/xeno_action/activable/shattering_roar
+	name = "Shattering roar"
+	action_icon_state = "shattering_roar"
+	mechanics_text = "Unleash a mighty psychic roar, knocking down any foes in your path and weakening them."
+	ability_name = "shattering roar"
+	plasma_cost = 225
+	cooldown_timer = 25 SECONDS
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	target_flags = XABB_TURF_TARGET
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SHATTERING_ROAR,
+	)
+
+/datum/action/xeno_action/activable/shattering_roar/use_ability(atom/target)
+	playsound(owner, 'sound/voice/ed209_20sec.ogg', 70)
+	if(!do_after(owner, 1 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_action, FALSE, XACT_USE_BUSY)))
+		owner.balloon_alert(owner, "interrupted!")
+		add_cooldown(5 SECONDS)
+		return
+	playsound(owner, 'sound/voice/xenos_roaring.ogg', 100)
+	var/source = get_turf(owner)
+	var/dir_to_target = Get_Angle(source, target)
+	var/list/turf/turfs_to_attack = generate_true_cone(source, SHATTERING_ROAR_RANGE, 1, SHATTERING_ROAR_ANGLE, dir_to_target, bypass_window = TRUE, projectile = TRUE)
+	execute_attack(1, turfs_to_attack, SHATTERING_ROAR_RANGE, target, source)
+
+	add_cooldown()
+	succeed_activate()
+
+/datum/action/xeno_action/activable/shattering_roar/proc/execute_attack(iteration, list/turf/turfs_to_attack, range, target, turf/source)
+	if(iteration > range)
+		return
+
+	for(var/turf/turf AS in turfs_to_attack)
+		if(get_dist(turf, source) == iteration)
+			attack_turf(turf, LERP(1, 0.3, iteration / SHATTERING_ROAR_RANGE))
+
+	iteration++
+	addtimer(CALLBACK(src, .proc/execute_attack, iteration, turfs_to_attack, range, target, source), SHATTERING_ROAR_SPEED)
+
+/datum/action/xeno_action/activable/shattering_roar/proc/attack_turf(turf/turf_victim, severity)
+	new /obj/effect/temp_visual/shattering_roar(turf_victim)
+	for(var/victim in turf_victim)
+		if(iscarbon(victim))
+			var/mob/living/carbon/carbon_victim = victim
+			if(carbon_victim.stat == DEAD || isxeno(carbon_victim))
+				continue
+			carbon_victim.apply_damage(SHATTERING_ROAR_DAMAGE * severity, BRUTE, blocked = MELEE)
+			carbon_victim.apply_damage(SHATTERING_ROAR_DAMAGE * severity, STAMINA)
+			carbon_victim.adjust_stagger(6 * severity)
+			carbon_victim.add_slowdown(6 * severity)
+			shake_camera(carbon_victim, 3 * severity, 3 * severity)
+			carbon_victim.apply_effect(0.5, WEAKEN)
+			to_chat(carbon_victim, "You are smashed to the ground!")
+		else if(ismecha(victim))
+			var/obj/vehicle/sealed/mecha/mecha_victim = victim
+			mecha_victim.take_damage(SHATTERING_ROAR_DAMAGE * 5 * severity, MELEE)
+		else if(istype(victim, /obj/structure/window))
+			var/obj/structure/window/window_victim = victim
+			if(window_victim.damageable)
+				window_victim.ex_act(EXPLODE_DEVASTATE)
+
+
+/obj/effect/temp_visual/shattering_roar
+	name = "shattering_roar"
+	icon = 'icons/effects/effects.dmi'
+	duration = 4
+
+/obj/effect/temp_visual/shattering_roar/Initialize()
+	. = ..()
+	flick("smash", src)
 
 // ***************************************
 // *********** Zero form energy beam
@@ -234,6 +313,7 @@
 		QDEL_NULL(beam)
 		QDEL_NULL(particles)
 		targets = null
+		add_cooldown(5 SECONDS)
 		return fail_activate()
 	sound_loop.start(owner)
 	RegisterSignal(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE), .proc/stop_beaming)
