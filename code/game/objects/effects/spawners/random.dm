@@ -482,14 +482,14 @@
 	name = "Random kitchen utensil spawner"
 	icon_state = "random_utensil"
 	loot = list(
-		/obj/item/tool/kitchen/utensil/fork,
-		/obj/item/tool/kitchen/utensil/pfork,
-		/obj/item/tool/kitchen/utensil/spoon,
-		/obj/item/tool/kitchen/utensil/pspoon,
-		/obj/item/tool/kitchen/utensil/knife,
-		/obj/item/tool/kitchen/utensil/pknife,
-		/obj/item/tool/kitchen/rollingpin,
-		/obj/item/tool/kitchen/tray,
+		/obj/item/tool/kitchen/utensil/fork = 20,
+		/obj/item/tool/kitchen/utensil/pfork = 20,
+		/obj/item/tool/kitchen/utensil/spoon = 20,
+		/obj/item/tool/kitchen/utensil/pspoon = 20,
+		/obj/item/tool/kitchen/utensil/knife = 20,
+		/obj/item/tool/kitchen/utensil/pknife = 20,
+		/obj/item/tool/kitchen/rollingpin = 10,
+		/obj/item/tool/kitchen/tray = 5,
 	)
 
 ///random medical items
@@ -1087,10 +1087,11 @@
 	name = "metal spawner"
 	icon_state = "random_metal"
 	spawn_loot_chance = 80
+	spawn_random_offset = TRUE
 	loot = list(
 		/obj/item/stack/sheet/metal = 70,
-		/obj/item/stack/sheet/metal/small_stack = 50,
-		/obj/item/stack/sheet/metal/medium_stack = 20,
+		/obj/item/stack/sheet/metal/small_stack = 55,
+		/obj/item/stack/sheet/metal/medium_stack = 10,
 		/obj/item/stack/sheet/metal/large_stack = 2,
 	)
 
@@ -1182,6 +1183,35 @@
 	loot = list(
 		/obj/item/clothing/gloves/fyellow = 85,
 		/obj/item/clothing/gloves/yellow = 15,
+	)
+
+/obj/effect/spawner/random/coloredgloves
+	name = "colored glove spawner"
+	icon_state = "random_gloves"
+	spawn_scatter_radius = 1
+	spawn_random_offset = TRUE
+	spawn_loot_chance = 80
+	loot = list(
+		/obj/item/clothing/gloves/black = 30,
+		/obj/item/clothing/gloves/blue = 30,
+		/obj/item/clothing/gloves/brown = 30,
+		/obj/item/clothing/gloves/light_brown = 30,
+		/obj/item/clothing/gloves/green = 30,
+		/obj/item/clothing/gloves/grey = 30,
+		/obj/item/clothing/gloves/latex = 30,
+		/obj/item/clothing/gloves/orange = 30,
+		/obj/item/clothing/gloves/purple = 30,
+		/obj/item/clothing/gloves/rainbow = 30,
+		/obj/item/clothing/gloves/red = 30,
+		/obj/item/clothing/gloves/white = 30,
+		/obj/item/clothing/gloves/yellow = 5,
+	)
+
+/obj/effect/spawner/random/coloredgloves/latex
+	icon_state = "random_latex_gloves"
+	loot = list(
+		/obj/item/clothing/gloves/latex = 30,
+		/obj/effect/spawner/random/coloredgloves = 1,
 	)
 
 
@@ -1353,28 +1383,43 @@
 	icon_state = "random_secure_closet"
 	spawn_loot_chance = 65
 	loot = list(
-		/obj/structure/closet/secure_closet,
-		/obj/structure/closet/secure_closet/CMO,
-		/obj/structure/closet/secure_closet/RD,
-		/obj/structure/closet/secure_closet/animal,
-		/obj/structure/closet/secure_closet/atmos_personal,
-		/obj/structure/closet/secure_closet/bar,
-		/obj/structure/closet/secure_closet/chemical/colony,
-		/obj/structure/closet/secure_closet/courtroom,
-		/obj/structure/closet/secure_closet/detective,
-		/obj/structure/closet/secure_closet/engineering_chief,
-		/obj/structure/closet/secure_closet/engineering_electrical,
-		/obj/structure/closet/secure_closet/engineering_personal,
-		/obj/structure/closet/secure_closet/engineering_welding,
-		/obj/structure/closet/secure_closet/hydroponics,
-		/obj/structure/closet/secure_closet/hos,
-		/obj/structure/closet/secure_closet/marshal,
-		/obj/structure/closet/secure_closet/medical1,
-		/obj/structure/closet/secure_closet/medical2,
-		/obj/structure/closet/secure_closet/medical3,
-		/obj/structure/closet/secure_closet/miner,
-		/obj/structure/closet/secure_closet/security/cargo,
-		/obj/structure/closet/secure_closet/scientist,
+		/obj/structure/closet/secure_closet = 70,
+		/obj/structure/closet/secure_closet/animal = 50,
+		/obj/structure/closet/secure_closet/atmos_personal = 50,
+		/obj/structure/closet/secure_closet/bar = 50,
+		/obj/structure/closet/secure_closet/chemical/colony = 50,
+		/obj/structure/closet/secure_closet/courtroom = 50,
+		/obj/structure/closet/secure_closet/detective = 50,
+		/obj/structure/closet/secure_closet/engineering_personal = 50,
+		/obj/structure/closet/secure_closet/engineering_welding = 50,
+		/obj/structure/closet/secure_closet/hydroponics = 50,
+		/obj/structure/closet/secure_closet/hos = 50,
+		/obj/structure/closet/secure_closet/marshal = 50,
+		/obj/structure/closet/secure_closet/miner = 50,
+		/obj/structure/closet/secure_closet/security/cargo = 50,
+		/obj/structure/closet/secure_closet/scientist = 50,
+		/obj/structure/closet/secure_closet/engineering_electrical = 30,
+		/obj/structure/closet/secure_closet/CMO = 10,
+		/obj/structure/closet/secure_closet/RD = 10,
+		/obj/structure/closet/secure_closet/engineering_chief = 10,
+	)
+
+/obj/effect/spawner/random/structure/securecloset/regular
+	icon_state = "random_regular_secure"
+	spawn_loot_chance = 85
+	loot = list(
+		/obj/structure/closet/secure_closet = 40,
+		/obj/effect/spawner/random/metal = 2,
+		/obj/effect/spawner/random/structure/securecloset = 1,
+	)
+
+/obj/effect/spawner/random/structure/emcloset
+	name = "emergency closet spawner"
+	icon_state = "random_emcloset"
+	spawn_loot_chance = 95
+	loot = list(
+		/obj/structure/closet/emcloset = 9,
+		/obj/item/stack/sheet/metal = 1,
 	)
 
 /obj/effect/spawner/random/structure/random_piano
@@ -1383,6 +1428,14 @@
 	loot = list(
 		/obj/structure/device/broken_piano,
 		/obj/structure/device/piano/full,
+	)
+
+/obj/effect/spawner/random/structure/status_display
+	name = "random status display spawner"
+	icon_state = "random_status_display"
+	spawn_loot_chance = 95
+	loot = list(
+		/obj/machinery/status_display,
 	)
 
 /obj/effect/spawner/random/structure/random_tank_holder
@@ -1568,6 +1621,35 @@
 		/obj/machinery/portable_atmospherics/canister/oxygen = 1,
 	)
 
+/obj/effect/spawner/random/structure/suit_storage
+	name = "suit storage spawner"
+	icon_state = "random_suit_storage"
+	spawn_loot_chance = 95
+	loot = list(
+		/obj/structure/prop/mainship/suit_storage_prop = 9,
+		/obj/effect/spawner/random/metal = 1,
+	)
+
+/obj/effect/spawner/random/structure/tank_dispenser
+	name = "tank dispenser spawner"
+	icon_state = "random_dispenser"
+	loot = list(
+		/obj/structure/dispenser/oxygen,
+		/obj/structure/dispenser/phoron,
+	)
+
+/obj/effect/spawner/random/structure/tank_dispenser/oxygenweighted
+	loot = list(
+		/obj/structure/dispenser/oxygen = 8,
+		/obj/structure/dispenser/phoron = 2,
+	)
+
+/obj/effect/spawner/random/structure/tank_dispenser/phoronweighted
+	loot = list(
+		/obj/structure/dispenser/phoron = 8,
+		/obj/structure/dispenser/oxygen = 2,
+	)
+
 /obj/effect/spawner/random/structure/tank
 	name = "tank spawner"
 	icon_state = "random_watertank"
@@ -1630,7 +1712,7 @@
 	icon_state = "random_col_rwindow"
 	spawn_loot_chance = 70
 	loot = list(
-		/obj/structure/window_frame/colony/reinforced = 9,
+		/obj/structure/window_frame/colony/reinforced/weakened = 9,
 		/obj/structure/window/framed/colony/reinforced = 1,
 	)
 
@@ -1728,7 +1810,7 @@
 	icon_state = "random_hydrotray"
 	spawn_loot_chance = 65
 	loot = list(
-		/obj/machinery/portable_atmospherics/hydroponics = 8,
+		/obj/machinery/portable_atmospherics/hydroponics/slashable = 8,
 		/obj/effect/spawner/random/seeds = 1,
 		/obj/effect/spawner/random/structure/machine_frame = 1,
 	)

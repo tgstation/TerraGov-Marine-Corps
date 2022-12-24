@@ -82,7 +82,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/warning_stripes/box,
 /obj/item/radio/intercom,
-/obj/structure/dispenser/oxygen,
+/obj/effect/spawner/random/structure/tank_dispenser/oxygenweighted,
 /turf/open/floor/iron,
 /area/deltastation/command/gateway)
 "abb" = (
@@ -152,7 +152,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
-/obj/structure/prop/mainship/suit_storage_prop,
+/obj/effect/spawner/random/structure/suit_storage,
 /turf/open/floor/iron/dark/textured,
 /area/deltastation/engineering/storage)
 "abJ" = (
@@ -834,7 +834,7 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/service/chapel/funeral)
 "aiI" = (
-/obj/structure/closet/emcloset,
+/obj/effect/spawner/random/structure/emcloset,
 /turf/open/floor/plating,
 /area/deltastation/external/landingzone)
 "aiN" = (
@@ -1140,13 +1140,7 @@
 /turf/open/floor/iron,
 /area/deltastation/engineering/main)
 "alO" = (
-/obj/structure/closet/secure_closet{
-	anchored = 1;
-	desc = "A basic closet for all your villainous needs.";
-	locked = 1;
-	name = "Closet";
-	req_access = list("syndicate")
-	},
+/obj/effect/spawner/random/structure/securecloset/regular,
 /obj/item/storage/box,
 /obj/item/storage/box,
 /turf/open/floor/prison/redfloor,
@@ -1835,7 +1829,7 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/science/ordnance)
 "aus" = (
-/obj/structure/prop/mainship/suit_storage_prop,
+/obj/effect/spawner/random/structure/suit_storage,
 /turf/open/floor/prison/blackfloor,
 /area/deltastation/asteroidcaves/ship)
 "auB" = (
@@ -2760,8 +2754,8 @@
 "aDK" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/mask/gas,
-/obj/item/clothing/gloves/black,
-/obj/item/clothing/gloves/black,
+/obj/effect/spawner/random/coloredgloves,
+/obj/effect/spawner/random/coloredgloves,
 /obj/item/clothing/glasses/meson,
 /obj/item/clothing/glasses/meson,
 /obj/effect/decal/warning_stripes/box/empty,
@@ -2838,7 +2832,7 @@
 	icon_state = "doors";
 	name = "WARNING: BLAST DOORS"
 	},
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/security/execution/education)
 "aED" = (
@@ -2849,7 +2843,7 @@
 /turf/open/floor/carpet,
 /area/deltastation/command/meeting_room/council)
 "aEE" = (
-/obj/structure/closet/secure_closet,
+/obj/effect/spawner/random/structure/securecloset/regular,
 /obj/effect/decal/warning_stripes/box/empty,
 /turf/open/floor/iron/dark,
 /area/deltastation/engineering/atmos/storage)
@@ -2996,7 +2990,7 @@
 "aGk" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/decal/warning_stripes/box,
-/obj/structure/prop/mainship/suit_storage_prop,
+/obj/effect/spawner/random/structure/suit_storage,
 /turf/open/floor/iron,
 /area/ai_monitored/storage/eva)
 "aGv" = (
@@ -3075,7 +3069,7 @@
 /turf/open/floor/iron,
 /area/deltastation/maintenance/starboard/aft)
 "aHo" = (
-/obj/structure/closet/emcloset,
+/obj/effect/spawner/random/structure/emcloset,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/warning_stripes/box,
 /turf/open/floor/iron,
@@ -4915,7 +4909,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/deltastation/security/execution/transfer)
 "aZv" = (
-/obj/structure/closet/emcloset,
+/obj/effect/spawner/random/structure/emcloset,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/small{
 	dir = 1
@@ -5424,6 +5418,12 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/command/heads_quarters/rd)
+"bfy" = (
+/obj/effect/decal/sandedge{
+	dir = 8
+	},
+/turf/open/floor/iron,
+/area/deltastation/asteroidcaves/derelictwest)
 "bfR" = (
 /obj/effect/spawner/random/structure/filingcabinet/chestdrawer,
 /obj/effect/decal/warning_stripes/box/empty,
@@ -5838,7 +5838,7 @@
 /turf/open/floor/plating,
 /area/deltastation/maintenance/port/fore)
 "bjM" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall,
 /area/deltastation/ai_monitored/turret_protected/aisat_interior)
@@ -6314,7 +6314,7 @@
 /turf/open/floor/iron,
 /area/deltastation/science/research/abandoned)
 "boT" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/engineering/atmos/project)
 "bph" = (
@@ -6324,6 +6324,14 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/iron,
 /area/deltastation/security/processing)
+"bpi" = (
+/obj/structure/window/framed/colony/reinforced/hull,
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
+/turf/open/floor/plating,
+/area/deltastation/maintenance/port/aft)
 "bpo" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /obj/structure/flora/ausbushes/grassybush,
@@ -7093,7 +7101,7 @@
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/central/fore)
 "bwi" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall/unmeltable/regular,
 /area/deltastation/service/chapel/funeral)
 "bwl" = (
@@ -7484,7 +7492,7 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/science/ordnance/testlab)
 "bzf" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/maintenance/port)
 "bzi" = (
@@ -7942,7 +7950,7 @@
 /turf/open/floor/iron,
 /area/deltastation/science/research)
 "bDP" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/maintenance/port)
 "bDQ" = (
@@ -7990,7 +7998,7 @@
 /turf/open/floor/wood,
 /area/deltastation/command/heads_quarters/captain)
 "bEo" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall/unmeltable/regular,
 /area/deltastation/hallway/secondary/entry)
 "bEw" = (
@@ -8691,7 +8699,7 @@
 /turf/open/floor/plating,
 /area/deltastation/asteroidcaves/easterntunnel)
 "bMd" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/maintenance/department/security)
 "bMh" = (
@@ -8736,7 +8744,7 @@
 "bNc" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/turf_decal/bot_red,
-/obj/structure/prop/mainship/suit_storage_prop,
+/obj/effect/spawner/random/structure/suit_storage,
 /turf/open/floor/iron/dark,
 /area/deltastation/security/warden)
 "bNd" = (
@@ -9227,7 +9235,9 @@
 	},
 /obj/item/explosive/grenade/chem_grenade/cleaner,
 /obj/item/reagent_containers/spray/cleaner,
-/obj/machinery/power/apc/drained,
+/obj/machinery/power/apc/drained{
+	dir = 1
+	},
 /turf/open/floor/iron/checker,
 /area/deltastation/service/janitor)
 "bTe" = (
@@ -9315,7 +9325,7 @@
 /turf/open/floor/plating,
 /area/deltastation/maintenance/port/fore)
 "bTK" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/service/hydroponics)
 "bTL" = (
@@ -10020,7 +10030,7 @@
 "cbm" = (
 /obj/machinery/light/small,
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/closet/emcloset,
+/obj/effect/spawner/random/structure/emcloset,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
 /area/storage/testroom)
@@ -10386,7 +10396,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/bot_red,
-/obj/structure/prop/mainship/suit_storage_prop,
+/obj/effect/spawner/random/structure/suit_storage,
 /turf/open/floor/iron/textured,
 /area/deltastation/medical/storage)
 "cfS" = (
@@ -10462,7 +10472,7 @@
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/decal/warning_stripes/box/empty,
-/obj/structure/dispenser/oxygen,
+/obj/effect/spawner/random/structure/tank_dispenser/oxygenweighted,
 /turf/open/floor/iron/dark,
 /area/deltastation/security/warden)
 "cgD" = (
@@ -12326,7 +12336,7 @@
 /turf/open/floor/iron,
 /area/deltastation/commons/fitness/recreation)
 "cBe" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/medical/virology)
 "cBs" = (
@@ -12376,7 +12386,9 @@
 	dir = 8
 	},
 /obj/structure/mirror,
-/obj/structure/sink,
+/obj/structure/sink{
+	dir = 8
+	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor/iron/dark,
 /area/deltastation/medical/morgue)
@@ -12430,7 +12442,7 @@
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos/hfr_room)
 "cCF" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/command/heads_quarters/cmo)
 "cCJ" = (
@@ -12702,7 +12714,7 @@
 /area/deltastation/commons/locker)
 "cFm" = (
 /obj/structure/table/reinforced,
-/obj/item/clothing/gloves/latex,
+/obj/effect/spawner/random/coloredgloves/latex,
 /obj/item/storage/surgical_tray,
 /obj/item/clothing/suit/surgical,
 /obj/structure/window/reinforced{
@@ -12960,7 +12972,7 @@
 /obj/machinery/alarm{
 	dir = 8
 	},
-/obj/structure/prop/mainship/suit_storage_prop,
+/obj/effect/spawner/random/structure/suit_storage,
 /turf/open/floor/iron/dark/textured,
 /area/deltastation/engineering/atmos/storage)
 "cIe" = (
@@ -13469,7 +13481,7 @@
 /area/deltastation/science/robotics/lab)
 "cOR" = (
 /obj/structure/noticeboard,
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/medical/cryo)
 "cOY" = (
@@ -14062,7 +14074,7 @@
 /area/deltastation/science/explab)
 "cUX" = (
 /obj/structure/table,
-/obj/item/tool/kitchen/utensil/pfork,
+/obj/effect/spawner/random/kitchen,
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
@@ -14428,7 +14440,7 @@
 /obj/effect/turf_decal/trimline/neutral/mid_joiner{
 	dir = 4
 	},
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /obj/structure/morgue{
 	dir = 1
 	},
@@ -14436,6 +14448,13 @@
 	dir = 8
 	},
 /area/deltastation/medical/morgue)
+"cYR" = (
+/obj/effect/spawner/random/structure/hydrotray,
+/obj/effect/decal/sandedge{
+	dir = 8
+	},
+/turf/open/floor/light,
+/area/deltastation/asteroidcaves/derelictwest)
 "cZg" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -14612,7 +14631,7 @@
 /turf/open/floor/iron/dark/side,
 /area/deltastation/commons/fitness/recreation)
 "dax" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/commons/fitness/recreation)
 "day" = (
@@ -14689,7 +14708,7 @@
 /turf/open/floor/iron,
 /area/deltastation/maintenance/department/crew_quarters/bar)
 "dbA" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/service/lawoffice)
 "dbG" = (
@@ -14716,7 +14735,7 @@
 /area/deltastation/service/kitchen/coldroom)
 "dbP" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/structure/closet/emcloset,
+/obj/effect/spawner/random/structure/emcloset,
 /obj/effect/decal/warning_stripes/box,
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/exit)
@@ -14870,7 +14889,7 @@
 /turf/open/floor/iron/white,
 /area/deltastation/science/lobby)
 "ddb" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/hallway/primary/fore)
 "ddj" = (
@@ -15347,7 +15366,7 @@
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/fore)
 "diV" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/command/bridge)
 "diY" = (
@@ -16280,7 +16299,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
 	},
-/obj/structure/prop/mainship/suit_storage_prop,
+/obj/effect/spawner/random/structure/suit_storage,
 /turf/open/floor/iron,
 /area/deltastation/command/heads_quarters/rd)
 "dsw" = (
@@ -16549,6 +16568,10 @@
 /area/deltastation/commons/dorms)
 "duG" = (
 /obj/structure/window/framed/colony/reinforced/hull,
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
 /turf/open/floor/plating,
 /area/deltastation/maintenance/department/eva/abandoned)
 "duL" = (
@@ -16621,7 +16644,7 @@
 /area/deltastation/cargo/storage)
 "dvt" = (
 /obj/effect/decal/warning_stripes/box,
-/obj/structure/dispenser/oxygen,
+/obj/effect/spawner/random/structure/tank_dispenser/oxygenweighted,
 /turf/open/floor/iron/dark,
 /area/deltastation/engineering/atmos/storage)
 "dvz" = (
@@ -16648,7 +16671,7 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/asteroidcaves/derelictnortheast)
 "dwl" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/command/teleporter)
 "dwm" = (
@@ -16875,7 +16898,7 @@
 /area/deltastation/commons/dorms)
 "dyk" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/structure/closet/emcloset,
+/obj/effect/spawner/random/structure/emcloset,
 /obj/effect/decal/warning_stripes/box,
 /turf/open/floor/iron/dark,
 /area/deltastation/hallway/secondary/entry)
@@ -16935,7 +16958,7 @@
 "dyL" = (
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/clothing/gloves/orange,
+/obj/effect/spawner/random/coloredgloves,
 /obj/item/storage/box/mousetraps{
 	pixel_x = 3;
 	pixel_y = 3
@@ -17152,7 +17175,7 @@
 	pixel_x = 1;
 	pixel_y = -1
 	},
-/obj/item/clothing/gloves/black,
+/obj/effect/spawner/random/coloredgloves,
 /obj/item/clothing/shoes/black{
 	pixel_x = -3;
 	pixel_y = 3
@@ -17254,7 +17277,7 @@
 /turf/open/floor/plating,
 /area/deltastation/hallway/primary/central/fore)
 "dBx" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/security/prison/visit)
 "dBz" = (
@@ -17387,7 +17410,7 @@
 /turf/open/floor/iron,
 /area/deltastation/science/robotics/mechbay)
 "dCE" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/science/genetics)
 "dCL" = (
@@ -17482,7 +17505,7 @@
 	},
 /area/deltastation/security/office)
 "dEm" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/cargo/sorting)
 "dEn" = (
@@ -17961,7 +17984,7 @@
 /turf/open/floor/plating,
 /area/deltastation/cargo/sorting)
 "dHY" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/science/ordnance/storage)
 "dIa" = (
@@ -18275,7 +18298,7 @@
 /turf/open/floor/grass,
 /area/deltastation/medical/virology)
 "dKV" = (
-/obj/structure/closet/emcloset,
+/obj/effect/spawner/random/structure/emcloset,
 /obj/effect/decal/warning_stripes/box/empty,
 /obj/machinery/light/small,
 /obj/structure/sign/securearea,
@@ -18816,7 +18839,7 @@
 /turf/open/floor/iron,
 /area/deltastation/science/lab)
 "dPZ" = (
-/obj/structure/prop/mainship/suit_storage_prop,
+/obj/effect/spawner/random/structure/suit_storage,
 /obj/machinery/light,
 /turf/open/floor/prison/blackfloor,
 /area/deltastation/asteroidcaves/ship)
@@ -18923,7 +18946,7 @@
 /turf/open/floor/iron,
 /area/deltastation/medical/abandoned)
 "dRe" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/maintenance/department/security)
 "dRh" = (
@@ -19559,7 +19582,7 @@
 /turf/open/floor/foamplating,
 /area/deltastation/maintenance/department/science/xenobiology)
 "dWz" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/ai_monitored/turret_protected/aisat_interior)
 "dWD" = (
@@ -19772,7 +19795,7 @@
 /turf/open/floor/iron,
 /area/deltastation/cargo/lobby)
 "dYi" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/maintenance/port/aft)
 "dYj" = (
@@ -20093,7 +20116,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/warning_stripes/box/empty,
-/obj/structure/closet/emcloset,
+/obj/effect/spawner/random/structure/emcloset,
 /turf/open/floor/iron,
 /area/deltastation/maintenance/department/medical/morgue)
 "eaN" = (
@@ -20434,7 +20457,7 @@
 /turf/open/floor/iron/large,
 /area/deltastation/medical/break_room)
 "eev" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/commons/toilet/restrooms)
 "eeG" = (
@@ -20593,7 +20616,7 @@
 /turf/open/floor/iron,
 /area/deltastation/cargo/storage)
 "egg" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/security/checkpoint)
 "egi" = (
@@ -20992,7 +21015,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/structure/closet/emcloset,
+/obj/effect/spawner/random/structure/emcloset,
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/port)
 "ejQ" = (
@@ -21307,7 +21330,7 @@
 /turf/open/floor/plating,
 /area/deltastation/medical/paramedic)
 "emI" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/command/bridge)
 "emW" = (
@@ -21579,7 +21602,7 @@
 /turf/open/floor/iron,
 /area/deltastation/maintenance/disposal)
 "epd" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/engineering/supermatter/room)
 "epe" = (
@@ -21686,7 +21709,7 @@
 /turf/open/floor/wood,
 /area/deltastation/service/theater)
 "eqJ" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/hallway/secondary/exit/departure_lounge)
 "eqM" = (
@@ -22517,7 +22540,7 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/ai_monitored/turret_protected/ai_upload)
 "ezt" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/tcommsat/computer)
 "ezw" = (
@@ -22547,7 +22570,7 @@
 /obj/effect/spawner/random/health_analyzer{
 	pixel_y = 3
 	},
-/obj/item/clothing/gloves/latex,
+/obj/effect/spawner/random/coloredgloves/latex,
 /obj/item/clothing/glasses/science,
 /obj/effect/spawner/random/medhud,
 /turf/open/floor/iron,
@@ -23124,7 +23147,7 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/security/checkpoint/customs/aft)
 "eFH" = (
-/obj/structure/dispenser/oxygen,
+/obj/effect/spawner/random/structure/tank_dispenser/oxygenweighted,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
 /area/deltastation/asteroidcaves/derelictwest)
@@ -23352,7 +23375,7 @@
 /turf/open/floor/iron,
 /area/deltastation/maintenance/port/aft)
 "eHr" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/engineering/storage)
 "eHx" = (
@@ -23713,7 +23736,7 @@
 /turf/open/floor/wood,
 /area/deltastation/service/lawoffice)
 "eKN" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/medical/morgue)
 "eKT" = (
@@ -24146,7 +24169,7 @@
 /turf/closed/wall/r_wall,
 /area/ai_monitored/storage/eva)
 "ePr" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/commons/vacant_room)
 "ePt" = (
@@ -24319,7 +24342,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/deltastation/asteroidcaves/securitycaves)
 "eQE" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/security/execution/education)
 "eQK" = (
@@ -24491,7 +24514,7 @@
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 4
 	},
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/open/floor/iron/dark,
 /area/deltastation/service/chapel)
 "eTG" = (
@@ -25803,7 +25826,7 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/asteroidcaves/derelictnortheast)
 "fgq" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/service/theater)
 "fgA" = (
@@ -27213,7 +27236,7 @@
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/central/fore)
 "fvg" = (
-/obj/structure/closet/emcloset,
+/obj/effect/spawner/random/structure/emcloset,
 /obj/effect/decal/warning_stripes/box,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron,
@@ -27570,7 +27593,7 @@
 /turf/open/floor/iron,
 /area/deltastation/maintenance/department/chapel)
 "fyL" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/science/circuits)
 "fyM" = (
@@ -27926,7 +27949,7 @@
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/entry)
 "fCm" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/service/chapel/funeral)
 "fCo" = (
@@ -28428,7 +28451,7 @@
 /turf/open/floor/plating,
 /area/deltastation/science/xenobiology)
 "fHC" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/engineering/atmos/project)
 "fHD" = (
@@ -29286,7 +29309,7 @@
 /turf/open/floor/plating,
 /area/deltastation/asteroidcaves/derelictnortheast)
 "fQe" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/engineering/atmos)
 "fQf" = (
@@ -29496,7 +29519,7 @@
 /turf/open/floor/plating,
 /area/deltastation/cargo/sorting)
 "fSD" = (
-/obj/structure/closet/secure_closet,
+/obj/effect/spawner/random/structure/securecloset/regular,
 /obj/effect/decal/warning_stripes/box/empty,
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos/hfr_room)
@@ -29759,7 +29782,7 @@
 /area/deltastation/hallway/primary/central/aft)
 "fVk" = (
 /obj/structure/cable,
-/obj/structure/closet/secure_closet,
+/obj/effect/spawner/random/structure/securecloset/regular,
 /obj/machinery/power/apc/drained{
 	dir = 1
 	},
@@ -29949,8 +29972,8 @@
 /obj/item/defibrillator,
 /obj/effect/spawner/random/medhud,
 /obj/effect/spawner/random/medhud,
-/obj/item/clothing/gloves/latex,
-/obj/item/clothing/gloves/latex,
+/obj/effect/spawner/random/coloredgloves/latex,
+/obj/effect/spawner/random/coloredgloves/latex,
 /obj/effect/spawner/random/medbelt{
 	pixel_y = 3
 	},
@@ -30064,7 +30087,7 @@
 /turf/open/floor/wood,
 /area/deltastation/commons/dorms)
 "fXZ" = (
-/obj/structure/closet/emcloset,
+/obj/effect/spawner/random/structure/emcloset,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
 /area/deltastation/asteroidcaves/derelictwest)
@@ -30826,7 +30849,7 @@
 /turf/open/floor/iron,
 /area/deltastation/service/abandoned_gambling_den)
 "gfI" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/commons/vacant_room/office)
 "gfK" = (
@@ -30986,7 +31009,7 @@
 "ght" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/ausbushes/lavendergrass,
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
@@ -31624,7 +31647,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/yellow,
-/obj/structure/closet/emcloset,
+/obj/effect/spawner/random/structure/emcloset,
 /obj/effect/decal/warning_stripes/box/empty,
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -31642,7 +31665,7 @@
 /turf/open/floor/iron,
 /area/deltastation/engineering/supermatter/room)
 "gnL" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/service/bar)
 "gnM" = (
@@ -31703,7 +31726,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
-/obj/structure/prop/mainship/suit_storage_prop,
+/obj/effect/spawner/random/structure/suit_storage,
 /turf/open/floor/iron,
 /area/deltastation/command/heads_quarters/cmo)
 "goB" = (
@@ -31935,6 +31958,10 @@
 	dir = 8
 	},
 /obj/structure/window/framed/colony/reinforced/hull,
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
 /turf/open/floor/plating,
 /area/deltastation/engineering/supermatter/room)
 "grt" = (
@@ -33574,8 +33601,8 @@
 	pixel_x = -2;
 	pixel_y = 3
 	},
-/obj/item/clothing/gloves/purple,
-/obj/item/clothing/gloves/orange{
+/obj/effect/spawner/random/coloredgloves,
+/obj/effect/spawner/random/coloredgloves{
 	pixel_x = 4;
 	pixel_y = -2
 	},
@@ -33690,7 +33717,7 @@
 /turf/open/floor/plating,
 /area/deltastation/maintenance/department/electrical)
 "gIY" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/service/chapel)
 "gIZ" = (
@@ -33830,7 +33857,7 @@
 /turf/open/floor/iron/cafeteria,
 /area/deltastation/asteroidcaves/derelictwest)
 "gKG" = (
-/obj/structure/closet/emcloset,
+/obj/effect/spawner/random/structure/emcloset,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/structure/extinguisher_cabinet{
 	dir = 4
@@ -34038,7 +34065,7 @@
 /turf/open/floor/iron,
 /area/deltastation/science/xenobiology)
 "gMM" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/commons/locker)
 "gMP" = (
@@ -34353,7 +34380,7 @@
 /area/deltastation/hallway/primary/central/fore)
 "gPL" = (
 /obj/effect/spawner/random/structure/tank/waterweighted,
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /obj/effect/decal/warning_stripes/box/empty,
 /turf/open/floor/iron/textured,
 /area/deltastation/engineering/storage)
@@ -36808,8 +36835,8 @@
 /area/deltastation/service/abandoned_gambling_den)
 "hpk" = (
 /obj/structure/table/reinforced,
-/obj/item/clothing/gloves/black,
-/obj/item/clothing/gloves/black,
+/obj/effect/spawner/random/coloredgloves,
+/obj/effect/spawner/random/coloredgloves,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron,
 /area/deltastation/maintenance/department/eva/abandoned)
@@ -36882,7 +36909,7 @@
 /turf/open/floor/iron/white,
 /area/deltastation/medical/medbay)
 "hpV" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/hallway/secondary/exit)
 "hpZ" = (
@@ -36904,7 +36931,7 @@
 	dir = 4
 	},
 /obj/effect/decal/warning_stripes/box/empty,
-/obj/structure/dispenser/oxygen,
+/obj/effect/spawner/random/structure/tank_dispenser/oxygenweighted,
 /turf/open/floor/iron,
 /area/deltastation/engineering/storage)
 "hqg" = (
@@ -37224,7 +37251,7 @@
 /turf/open/floor/plating,
 /area/deltastation/maintenance/department/security)
 "htN" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/engineering/atmos/storage/gas)
 "hub" = (
@@ -37718,8 +37745,8 @@
 "hzg" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/structure/table/reinforced,
-/obj/item/clothing/gloves/black,
-/obj/item/clothing/gloves/black,
+/obj/effect/spawner/random/coloredgloves,
+/obj/effect/spawner/random/coloredgloves,
 /obj/item/clothing/mask/gas,
 /obj/item/clothing/glasses/meson,
 /obj/effect/decal/warning_stripes/box/empty,
@@ -37794,7 +37821,7 @@
 /turf/open/floor/plating,
 /area/deltastation/service/library/abandoned)
 "hAt" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/engineering/hallway)
 "hAu" = (
@@ -39520,7 +39547,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/deltastation/maintenance/port/fore)
 "hUC" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/security/nuke_storage)
 "hUI" = (
@@ -39585,7 +39612,7 @@
 /area/deltastation/security/courtroom)
 "hVx" = (
 /obj/structure/table,
-/obj/item/clothing/gloves/latex,
+/obj/effect/spawner/random/coloredgloves/latex,
 /obj/item/restraints/handcuffs,
 /obj/item/clothing/mask/muzzle,
 /obj/effect/turf_decal/tile/red{
@@ -39709,7 +39736,7 @@
 /turf/open/floor/iron,
 /area/deltastation/cargo/office)
 "hWI" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -40051,7 +40078,7 @@
 /obj/structure/rack,
 /obj/item/storage/toolbox/mechanical,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/clothing/gloves/black,
+/obj/effect/spawner/random/coloredgloves,
 /turf/open/floor/plating,
 /area/deltastation/science/research/abandoned)
 "ian" = (
@@ -40420,7 +40447,7 @@
 /turf/closed/wall/r_wall/unmeltable,
 /area/deltastation/engineering/atmos/mix)
 "ifP" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall/unmeltable/regular,
 /area/deltastation/hallway/secondary/exit/departure_lounge)
 "ifQ" = (
@@ -40746,7 +40773,7 @@
 /turf/open/floor/prison/blackfloor,
 /area/deltastation/asteroidcaves/ship)
 "ijf" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/engineering/supermatter)
 "ijg" = (
@@ -40883,7 +40910,7 @@
 /area/deltastation/service/hydroponics/garden/abandoned)
 "ikt" = (
 /obj/machinery/light,
-/obj/machinery/status_display{
+/obj/effect/spawner/random/structure/status_display{
 	pixel_y = -32
 	},
 /obj/structure/prop/camera{
@@ -41952,6 +41979,18 @@
 /obj/effect/decal/warning_stripes/box/empty,
 /turf/open/floor/iron,
 /area/deltastation/cargo/miningoffice)
+"ixn" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/caution/stand_clear,
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
+/turf/open/floor/iron,
+/area/deltastation/asteroidcaves/exteriorasteroids)
 "ixp" = (
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 1
@@ -41959,7 +41998,7 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/security/execution/education)
 "ixq" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/command/heads_quarters/qm)
 "ixt" = (
@@ -41988,7 +42027,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/radio/intercom,
 /obj/effect/decal/warning_stripes/box/empty,
-/obj/structure/dispenser/oxygen,
+/obj/effect/spawner/random/structure/tank_dispenser/oxygenweighted,
 /turf/open/floor/iron,
 /area/deltastation/maintenance/port)
 "ixE" = (
@@ -42306,7 +42345,7 @@
 /area/deltastation/service/library/printer)
 "iAy" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /obj/effect/spawner/random/structure/tank/fuelweighted,
 /obj/effect/decal/warning_stripes/box/empty,
 /turf/open/floor/iron/textured,
@@ -42338,7 +42377,7 @@
 /turf/open/floor/iron,
 /area/deltastation/security/processing)
 "iAK" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/science/robotics/lab)
 "iAL" = (
@@ -42589,7 +42628,7 @@
 /turf/closed/wall/r_wall,
 /area/deltastation/engineering/atmos/project)
 "iDl" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/security/processing)
 "iDn" = (
@@ -43266,7 +43305,7 @@
 	pixel_x = 8
 	},
 /obj/effect/turf_decal/box/corners,
-/obj/machinery/status_display{
+/obj/effect/spawner/random/structure/status_display{
 	pixel_x = 32
 	},
 /obj/effect/turf_decal/tile/brown/half/contrasted{
@@ -43354,7 +43393,7 @@
 /turf/open/floor/plating,
 /area/deltastation/commons/toilet/restrooms)
 "iKe" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/engineering/break_room)
 "iKw" = (
@@ -43882,7 +43921,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/item/clothing/gloves/latex,
+/obj/effect/spawner/random/coloredgloves/latex,
 /obj/item/clothing/tie/stethoscope,
 /turf/open/floor/iron/white,
 /area/deltastation/medical/virology)
@@ -44019,7 +44058,7 @@
 /turf/open/floor/iron,
 /area/deltastation/engineering/main)
 "iRJ" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/medical/break_room)
 "iRT" = (
@@ -44192,7 +44231,7 @@
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/entry)
 "iTj" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /obj/effect/spawner/random/structure/girder,
 /turf/open/floor/plating,
 /area/deltastation/engineering/gravity_generator)
@@ -45129,7 +45168,7 @@
 /turf/open/floor/iron,
 /area/deltastation/engineering/storage)
 "jcV" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/maintenance/department/medical/morgue)
 "jde" = (
@@ -45146,7 +45185,7 @@
 /turf/open/floor/plating,
 /area/deltastation/construction/mining/aux_base)
 "jdp" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/medical/virology)
 "jdr" = (
@@ -46105,7 +46144,7 @@
 /turf/open/floor/iron,
 /area/deltastation/engineering/main)
 "joy" = (
-/obj/machinery/status_display{
+/obj/effect/spawner/random/structure/status_display{
 	name = "Cargo Cell";
 	pixel_x = -32;
 	pixel_y = -32
@@ -46218,7 +46257,7 @@
 	dir = 10
 	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/structure/prop/mainship/suit_storage_prop,
+/obj/effect/spawner/random/structure/suit_storage,
 /turf/open/floor/iron/dark,
 /area/deltastation/command/heads_quarters/ce)
 "jqF" = (
@@ -46709,7 +46748,7 @@
 	dir = 4
 	},
 /obj/structure/table/mainship,
-/obj/item/clothing/gloves/latex,
+/obj/effect/spawner/random/coloredgloves/latex,
 /obj/item/clothing/mask/surgical,
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 4
@@ -47342,7 +47381,7 @@
 /turf/open/floor/iron/grimy,
 /area/storage/testroom)
 "jCR" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/science/robotics/mechbay)
 "jDf" = (
@@ -47792,7 +47831,7 @@
 /turf/open/floor/iron,
 /area/deltastation/commons/locker)
 "jIz" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/medical/paramedic)
 "jIP" = (
@@ -48330,7 +48369,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/structure/closet/emcloset,
+/obj/effect/spawner/random/structure/emcloset,
 /turf/open/floor/plating,
 /area/deltastation/hallway/secondary/entry)
 "jOv" = (
@@ -48432,7 +48471,7 @@
 /turf/open/floor/iron,
 /area/deltastation/engineering/main)
 "jPb" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/maintenance/department/chapel)
 "jPi" = (
@@ -48484,7 +48523,7 @@
 /turf/open/floor/iron,
 /area/deltastation/asteroidcaves/derelictwest)
 "jQf" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/maintenance/fore)
 "jQg" = (
@@ -49449,7 +49488,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/deltastation/maintenance/port/aft)
 "jYT" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /obj/structure/morgue{
 	dir = 2
 	},
@@ -50087,7 +50126,7 @@
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/construction)
 "kgV" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/science/lab)
 "kha" = (
@@ -50503,7 +50542,7 @@
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/machinery/light/small,
-/obj/structure/dispenser/oxygen,
+/obj/effect/spawner/random/structure/tank_dispenser/oxygenweighted,
 /turf/open/floor/iron,
 /area/deltastation/engineering/supermatter/room)
 "klE" = (
@@ -50778,7 +50817,7 @@
 /area/deltastation/science/research)
 "kon" = (
 /obj/effect/decal/warning_stripes/box,
-/obj/structure/closet/emcloset,
+/obj/effect/spawner/random/structure/emcloset,
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/entry)
 "koo" = (
@@ -51090,7 +51129,7 @@
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 1
 	},
-/obj/structure/closet/secure_closet,
+/obj/effect/spawner/random/structure/securecloset/regular,
 /obj/effect/decal/warning_stripes/box/empty,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -51280,7 +51319,7 @@
 	},
 /area/deltastation/engineering/lobby)
 "kun" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/engineering/storage/tech)
 "kuo" = (
@@ -51344,7 +51383,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/obj/structure/closet/emcloset,
+/obj/effect/spawner/random/structure/emcloset,
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -51560,7 +51599,7 @@
 /turf/open/floor/plating,
 /area/deltastation/asteroidcaves/ship)
 "kwB" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall/unmeltable/regular,
 /area/deltastation/commons/fitness/recreation)
 "kwQ" = (
@@ -51597,7 +51636,7 @@
 /turf/open/floor/iron,
 /area/deltastation/commons/fitness/recreation)
 "kxo" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/hallway/secondary/service)
 "kxp" = (
@@ -51972,6 +52011,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/effect/decal/sandedge{
+	dir = 8
+	},
 /turf/open/floor/light,
 /area/deltastation/asteroidcaves/derelictwest)
 "kAG" = (
@@ -52236,7 +52278,7 @@
 /turf/open/floor/iron,
 /area/deltastation/commons/dorms)
 "kCQ" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/command/meeting_room/council)
 "kDa" = (
@@ -53075,13 +53117,7 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/hallway/secondary/service)
 "kLt" = (
-/obj/structure/closet/secure_closet{
-	anchored = 1;
-	desc = "A basic closet for all your villainous needs.";
-	locked = 1;
-	name = "Closet";
-	req_access = list("syndicate")
-	},
+/obj/effect/spawner/random/structure/securecloset/regular,
 /obj/item/tool/crowbar/red,
 /turf/open/floor/prison/blackfloor,
 /area/deltastation/asteroidcaves/ship)
@@ -53864,7 +53900,7 @@
 	dir = 4
 	},
 /obj/structure/table,
-/obj/item/clothing/gloves/black,
+/obj/effect/spawner/random/coloredgloves,
 /obj/item/clothing/mask/gas,
 /obj/structure/cable,
 /obj/machinery/light_switch,
@@ -53907,6 +53943,10 @@
 /obj/structure/lattice,
 /obj/structure/sign/securearea{
 	dir = 4
+	},
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
 	},
 /turf/open/space,
 /area/space)
@@ -54005,7 +54045,7 @@
 	pixel_x = 2;
 	pixel_y = 4
 	},
-/obj/item/clothing/gloves/latex,
+/obj/effect/spawner/random/coloredgloves/latex,
 /obj/effect/spawner/random/health_analyzer,
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 8
@@ -54044,7 +54084,7 @@
 /turf/open/floor/iron,
 /area/deltastation/engineering/main)
 "kXq" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall/unmeltable,
 /area/deltastation/security/warden)
 "kXz" = (
@@ -54131,7 +54171,7 @@
 /area/deltastation/medical/medbay)
 "kYz" = (
 /obj/structure/cable,
-/obj/structure/closet/secure_closet,
+/obj/effect/spawner/random/structure/securecloset/regular,
 /obj/item/storage/secure/briefcase,
 /obj/machinery/power/apc/drained,
 /obj/effect/turf_decal/tile/blue/anticorner/contrasted{
@@ -55017,7 +55057,7 @@
 /turf/closed/wall,
 /area/deltastation/service/theater)
 "lhL" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/security/medical)
 "lhM" = (
@@ -55254,8 +55294,8 @@
 /obj/item/defibrillator,
 /obj/effect/spawner/random/medhud,
 /obj/effect/spawner/random/medhud,
-/obj/item/clothing/gloves/latex,
-/obj/item/clothing/gloves/latex,
+/obj/effect/spawner/random/coloredgloves/latex,
+/obj/effect/spawner/random/coloredgloves/latex,
 /obj/effect/spawner/random/medbelt{
 	pixel_y = 3
 	},
@@ -56008,7 +56048,7 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/service/hydroponics)
 "lsa" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall/unmeltable,
 /area/deltastation/security/execution/transfer)
 "lsc" = (
@@ -56067,7 +56107,7 @@
 	dir = 1;
 	id = "cargounload"
 	},
-/obj/machinery/status_display{
+/obj/effect/spawner/random/structure/status_display{
 	pixel_x = 32
 	},
 /turf/open/floor/plating,
@@ -56936,7 +56976,7 @@
 /turf/open/floor/iron,
 /area/deltastation/maintenance/department/science)
 "lAZ" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/service/chapel/office)
 "lBe" = (
@@ -57485,7 +57525,7 @@
 "lGy" = (
 /obj/structure/table,
 /obj/item/clothing/suit/storage/hazardvest,
-/obj/item/clothing/gloves/black,
+/obj/effect/spawner/random/coloredgloves,
 /obj/item/clothing/mask/gas,
 /obj/machinery/light_switch,
 /obj/effect/turf_decal/tile/yellow,
@@ -57723,7 +57763,7 @@
 /area/deltastation/hallway/primary/port)
 "lJo" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/closet/emcloset,
+/obj/effect/spawner/random/structure/emcloset,
 /turf/open/floor/iron,
 /area/deltastation/asteroidcaves/derelictwest)
 "lJs" = (
@@ -57777,7 +57817,7 @@
 /obj/structure/table/mainship,
 /obj/item/storage/surgical_tray,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/item/clothing/gloves/latex,
+/obj/effect/spawner/random/coloredgloves/latex,
 /obj/item/clothing/suit/surgical,
 /obj/structure/window/reinforced{
 	dir = 8
@@ -58101,7 +58141,7 @@
 /turf/open/floor/plating,
 /area/deltastation/medical/abandoned)
 "lMD" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/hallway/secondary/entry)
 "lMI" = (
@@ -58198,18 +58238,18 @@
 /turf/open/floor/plating,
 /area/deltastation/engineering/atmos)
 "lNG" = (
-/obj/structure/closet/emcloset,
+/obj/effect/spawner/random/structure/emcloset,
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
 	},
 /turf/open/floor/iron,
 /area/deltastation/asteroidcaves/derelictnortheast)
 "lNS" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/security/checkpoint/engineering)
 "lNW" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/service/lawoffice)
 "lNZ" = (
@@ -59677,7 +59717,7 @@
 /turf/open/floor/plating,
 /area/deltastation/science/ordnance/testlab)
 "mdq" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/security/range)
 "mdt" = (
@@ -60269,7 +60309,7 @@
 /turf/open/floor/plating,
 /area/deltastation/maintenance/port/fore)
 "miz" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/command/heads_quarters/hop)
 "miH" = (
@@ -60945,7 +60985,7 @@
 /turf/open/floor/iron/white,
 /area/deltastation/security/prison/toilet)
 "mqR" = (
-/obj/machinery/status_display{
+/obj/effect/spawner/random/structure/status_display{
 	name = "Med-Sci Cell";
 	pixel_y = -32
 	},
@@ -61277,7 +61317,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
-/obj/structure/prop/mainship/suit_storage_prop,
+/obj/effect/spawner/random/structure/suit_storage,
 /turf/open/floor/iron,
 /area/deltastation/command/heads_quarters/hos)
 "mva" = (
@@ -61671,7 +61711,7 @@
 /turf/open/floor/iron/white,
 /area/deltastation/commons/fitness/recreation)
 "mzg" = (
-/obj/machinery/status_display{
+/obj/effect/spawner/random/structure/status_display{
 	pixel_x = -32
 	},
 /obj/effect/turf_decal/tile/brown{
@@ -61772,7 +61812,7 @@
 /obj/structure/table/mainship,
 /obj/item/storage/surgical_tray,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/item/clothing/gloves/latex,
+/obj/effect/spawner/random/coloredgloves/latex,
 /obj/item/clothing/suit/surgical,
 /turf/open/floor/iron/dark/textured_half{
 	dir = 8
@@ -62554,7 +62594,7 @@
 	dir = 1
 	},
 /obj/effect/decal/warning_stripes/box/empty,
-/obj/structure/closet/emcloset,
+/obj/effect/spawner/random/structure/emcloset,
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 1
 	},
@@ -63001,7 +63041,7 @@
 /turf/open/floor/iron/smooth_large,
 /area/deltastation/commons/fitness/recreation)
 "mNf" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/security/detectives_office)
 "mNm" = (
@@ -63563,7 +63603,7 @@
 /turf/open/floor/iron,
 /area/deltastation/security/execution/transfer)
 "mTS" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/security/checkpoint/escape)
 "mTZ" = (
@@ -63688,7 +63728,7 @@
 /turf/open/floor/wood,
 /area/deltastation/service/barber)
 "mUH" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/science/breakroom)
 "mUO" = (
@@ -63845,7 +63885,7 @@
 /turf/open/floor/plating,
 /area/deltastation/asteroidcaves/derelictwest)
 "mWT" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/science/breakroom)
 "mWX" = (
@@ -64525,13 +64565,7 @@
 /turf/open/floor/iron,
 /area/deltastation/science/xenobiology)
 "nfe" = (
-/obj/structure/closet/secure_closet{
-	anchored = 1;
-	desc = "A basic closet for all your villainous needs.";
-	locked = 1;
-	name = "Closet";
-	req_access = list("syndicate")
-	},
+/obj/effect/spawner/random/structure/securecloset/regular,
 /turf/open/floor/prison/redfloor,
 /area/deltastation/asteroidcaves/ship)
 "nfi" = (
@@ -64881,7 +64915,7 @@
 	},
 /area/deltastation/hallway/primary/port)
 "nix" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/service/abandoned_gambling_den)
 "niD" = (
@@ -65183,8 +65217,8 @@
 "nma" = (
 /obj/structure/table,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/item/clothing/gloves/latex,
-/obj/item/clothing/gloves/latex,
+/obj/effect/spawner/random/coloredgloves/latex,
+/obj/effect/spawner/random/coloredgloves/latex,
 /obj/item/clothing/glasses/science{
 	pixel_y = 3
 	},
@@ -65306,7 +65340,7 @@
 /turf/open/floor/plating,
 /area/deltastation/maintenance/port)
 "nnZ" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/science/ordnance/office)
 "nob" = (
@@ -67056,7 +67090,7 @@
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/entry)
 "nFH" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/security/range)
 "nFI" = (
@@ -67422,7 +67456,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/deltastation/asteroidcaves/westerncaves)
 "nLd" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/engineering/main)
 "nLo" = (
@@ -68078,7 +68112,7 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/asteroidcaves/derelictnortheast)
 "nRB" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/commons/dorms)
 "nRR" = (
@@ -68997,7 +69031,7 @@
 /turf/open/floor/iron/white,
 /area/deltastation/medical/medbay/lobby)
 "oaS" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall/unmeltable,
 /area/deltastation/ai_monitored/turret_protected/aisat_interior)
 "oaZ" = (
@@ -69014,7 +69048,7 @@
 /turf/open/floor/wood,
 /area/deltastation/service/abandoned_gambling_den)
 "obF" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/maintenance/starboard/aft)
 "obH" = (
@@ -69059,7 +69093,7 @@
 "oci" = (
 /obj/machinery/light/small,
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/closet/emcloset,
+/obj/effect/spawner/random/structure/emcloset,
 /turf/open/floor/iron,
 /area/deltastation/asteroidcaves/derelictwest)
 "ocj" = (
@@ -69541,7 +69575,7 @@
 /turf/open/floor/iron/white,
 /area/deltastation/medical/medbay/lobby)
 "ohe" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/engineering/main)
 "ohl" = (
@@ -69785,7 +69819,7 @@
 /area/deltastation/asteroidcaves/ship)
 "ojn" = (
 /obj/effect/spawner/random/plant,
-/obj/machinery/status_display{
+/obj/effect/spawner/random/structure/status_display{
 	name = "Cell 1";
 	pixel_x = -32
 	},
@@ -70413,16 +70447,16 @@
 /area/deltastation/maintenance/department/science)
 "orB" = (
 /obj/structure/closet/crate,
-/obj/item/tool/kitchen/utensil/pfork,
-/obj/item/tool/kitchen/utensil/pfork,
-/obj/item/tool/kitchen/utensil/pfork,
+/obj/effect/spawner/random/kitchen,
+/obj/effect/spawner/random/kitchen,
+/obj/effect/spawner/random/kitchen,
 /obj/item/storage/box/drinkingglasses,
-/obj/item/tool/kitchen/utensil/pspoon,
-/obj/item/tool/kitchen/utensil/pspoon,
-/obj/item/tool/kitchen/utensil/pspoon,
-/obj/item/tool/kitchen/utensil/pknife,
-/obj/item/tool/kitchen/utensil/pknife,
-/obj/item/tool/kitchen/utensil/pknife,
+/obj/effect/spawner/random/kitchen,
+/obj/effect/spawner/random/kitchen,
+/obj/effect/spawner/random/kitchen,
+/obj/effect/spawner/random/kitchen,
+/obj/effect/spawner/random/kitchen,
+/obj/effect/spawner/random/kitchen,
 /obj/item/tool/kitchen/tray,
 /obj/item/tool/kitchen/tray,
 /obj/item/tool/kitchen/tray,
@@ -70603,7 +70637,7 @@
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos/project)
 "otA" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/command/heads_quarters/rd)
 "otC" = (
@@ -70930,7 +70964,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/status_display{
+/obj/effect/spawner/random/structure/status_display{
 	pixel_y = 32
 	},
 /obj/effect/spawner/random/structure/tank/fuelweighted,
@@ -71500,7 +71534,7 @@
 "oBs" = (
 /obj/structure/table,
 /obj/item/storage/box/bodybags,
-/obj/item/clothing/gloves/latex,
+/obj/effect/spawner/random/coloredgloves/latex,
 /obj/effect/turf_decal/trimline/neutral/warning{
 	dir = 1
 	},
@@ -71828,7 +71862,7 @@
 /turf/open/floor/iron,
 /area/deltastation/engineering/supermatter/room)
 "oEs" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /obj/machinery/power/emitter{
 	dir = 8
 	},
@@ -72449,7 +72483,7 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/engineering/transit_tube)
 "oKi" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/command/heads_quarters/captain)
 "oKj" = (
@@ -73100,7 +73134,7 @@
 /turf/open/floor/iron/cafeteria,
 /area/deltastation/service/kitchen)
 "oRn" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/engineering/atmos/pumproom)
 "oRB" = (
@@ -73230,7 +73264,6 @@
 /turf/open/floor/carpet,
 /area/deltastation/commons/dorms)
 "oTy" = (
-/obj/structure/noticeboard,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/computer/nuke_disk_generator/red,
 /turf/open/floor/iron,
@@ -73736,7 +73769,7 @@
 /turf/open/floor/iron,
 /area/deltastation/medical/cryo)
 "oZj" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/service/kitchen)
 "oZk" = (
@@ -75234,7 +75267,7 @@
 /obj/effect/turf_decal/trimline/neutral/mid_joiner{
 	dir = 8
 	},
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /obj/structure/morgue{
 	dir = 2
 	},
@@ -76057,7 +76090,7 @@
 "pvS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/decal/warning_stripes/box,
-/obj/structure/prop/mainship/suit_storage_prop,
+/obj/effect/spawner/random/structure/suit_storage,
 /turf/open/floor/iron,
 /area/ai_monitored/storage/eva)
 "pvY" = (
@@ -76939,7 +76972,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/deltastation/maintenance/fore)
 "pEe" = (
-/obj/structure/closet/secure_closet,
+/obj/effect/spawner/random/structure/securecloset/regular,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/warning_stripes/box/empty,
 /turf/open/floor/iron,
@@ -76987,7 +77020,7 @@
 /turf/open/floor/iron,
 /area/deltastation/maintenance/port/aft)
 "pEE" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/maintenance/port/fore)
 "pEK" = (
@@ -77363,13 +77396,7 @@
 /turf/open/floor/prison/blackfloor,
 /area/deltastation/asteroidcaves/ship/two)
 "pIs" = (
-/obj/structure/closet/secure_closet{
-	anchored = 1;
-	desc = "A basic closet for all your villainous needs.";
-	locked = 1;
-	name = "Closet";
-	req_access = list("syndicate")
-	},
+/obj/effect/spawner/random/structure/securecloset/regular,
 /obj/item/clothing/under/syndicate/combat,
 /obj/item/clothing/gloves/combat,
 /obj/item/clothing/shoes/combat,
@@ -77578,7 +77605,7 @@
 /area/deltastation/cargo/lobby)
 "pKd" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/structure/closet/emcloset,
+/obj/effect/spawner/random/structure/emcloset,
 /obj/effect/decal/warning_stripes/box,
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/exit/departure_lounge)
@@ -78590,7 +78617,7 @@
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos)
 "pVs" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/sulaco,
 /area/deltastation/commons/fitness/recreation)
 "pVy" = (
@@ -78629,7 +78656,7 @@
 /turf/closed/wall/r_wall,
 /area/deltastation/science/ordnance/office)
 "pVF" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/command/gateway)
 "pVO" = (
@@ -79135,7 +79162,7 @@
 /area/deltastation/science/lab)
 "qaS" = (
 /obj/machinery/recharge_station,
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
@@ -79391,7 +79418,7 @@
 /turf/open/floor/carpet,
 /area/deltastation/security/detectives_office)
 "qcZ" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/science/lobby)
 "qde" = (
@@ -79611,7 +79638,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/deltastation/asteroidcaves/westerncaves)
 "qev" = (
-/obj/machinery/status_display{
+/obj/effect/spawner/random/structure/status_display{
 	pixel_y = 32
 	},
 /obj/effect/turf_decal/arrows{
@@ -79811,7 +79838,7 @@
 /obj/effect/mapping_helpers/simple_pipes/scrubbers/visible{
 	dir = 9
 	},
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos/hfr_room)
 "qgo" = (
@@ -80729,7 +80756,7 @@
 /turf/open/floor/plating,
 /area/deltastation/construction/mining/aux_base)
 "qqk" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/service/electronic_marketing_den)
 "qql" = (
@@ -80848,7 +80875,7 @@
 /area/deltastation/hallway/secondary/exit/departure_lounge)
 "qrp" = (
 /obj/structure/table,
-/obj/item/tool/kitchen/utensil/pfork,
+/obj/effect/spawner/random/kitchen,
 /obj/structure/cable,
 /obj/machinery/power/apc/drained{
 	dir = 1
@@ -81356,7 +81383,7 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/science/xenobiology)
 "qwC" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall/unmeltable,
 /area/deltastation/security/office)
 "qwF" = (
@@ -81993,7 +82020,7 @@
 /turf/open/floor/iron,
 /area/ai_monitored/storage/eva)
 "qCt" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/maintenance/disposal/incinerator)
 "qCu" = (
@@ -82066,7 +82093,7 @@
 /area/deltastation/maintenance/department/security)
 "qDt" = (
 /obj/effect/spawner/random/plant,
-/obj/machinery/status_display{
+/obj/effect/spawner/random/structure/status_display{
 	name = "Cell 2";
 	pixel_x = -32
 	},
@@ -83183,7 +83210,7 @@
 	dir = 6;
 	name = "science camera"
 	},
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/open/floor/iron/dark,
 /area/deltastation/science/genetics)
 "qOr" = (
@@ -83594,7 +83621,7 @@
 /turf/open/floor/iron,
 /area/deltastation/maintenance/department/crew_quarters/bar)
 "qSq" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall/unmeltable/regular,
 /area/deltastation/service/chapel)
 "qSt" = (
@@ -83943,7 +83970,7 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/service/theater)
 "qXt" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall/unmeltable,
 /area/deltastation/engineering/atmos/hfr_room)
 "qXE" = (
@@ -83989,7 +84016,7 @@
 /area/deltastation/security/execution/transfer)
 "qYK" = (
 /obj/structure/table,
-/obj/item/clothing/gloves/latex,
+/obj/effect/spawner/random/coloredgloves/latex,
 /obj/item/clothing/glasses/science,
 /obj/structure/sign/securearea{
 	pixel_x = -32
@@ -84100,6 +84127,9 @@
 	dir = 8
 	},
 /obj/structure/cable,
+/obj/effect/decal/sandedge{
+	dir = 8
+	},
 /turf/open/floor/iron,
 /area/deltastation/asteroidcaves/derelictwest)
 "rab" = (
@@ -84112,7 +84142,7 @@
 "rah" = (
 /obj/structure/cable,
 /obj/effect/spawner/random/plant,
-/obj/machinery/status_display{
+/obj/effect/spawner/random/structure/status_display{
 	name = "Engineering Cell";
 	pixel_y = 32
 	},
@@ -84800,7 +84830,7 @@
 /turf/open/floor/plating,
 /area/deltastation/maintenance/department/chapel)
 "rhc" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/service/library/printer)
 "rhq" = (
@@ -85350,7 +85380,7 @@
 /turf/open/floor/iron,
 /area/deltastation/science/robotics/lab)
 "rmQ" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/cargo/drone_bay)
 "rmS" = (
@@ -85362,7 +85392,7 @@
 /turf/open/floor/plating,
 /area/deltastation/maintenance/port)
 "rmV" = (
-/obj/structure/closet/secure_closet,
+/obj/effect/spawner/random/structure/securecloset/regular,
 /obj/item/storage/secure/briefcase,
 /obj/item/storage/box/ids,
 /obj/machinery/alarm,
@@ -85569,7 +85599,7 @@
 /turf/open/floor/iron/white,
 /area/deltastation/science/robotics/lab)
 "rou" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/command/heads_quarters/hos)
 "roy" = (
@@ -85591,7 +85621,7 @@
 /turf/open/floor/iron,
 /area/deltastation/science/xenobiology)
 "rpe" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/maintenance/department/crew_quarters/bar)
 "rpr" = (
@@ -85618,7 +85648,7 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/security/warden)
 "rps" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/maintenance/department/science)
 "rpx" = (
@@ -85806,7 +85836,7 @@
 /turf/open/floor/iron,
 /area/deltastation/science/research)
 "rqS" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall/unmeltable,
 /area/deltastation/ai_monitored/turret_protected/ai_upload)
@@ -85932,7 +85962,7 @@
 	},
 /area/shuttle/drop1/lz1)
 "rsC" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/command/heads_quarters/captain/private)
 "rsK" = (
@@ -86288,7 +86318,7 @@
 /turf/open/floor/iron/grimy,
 /area/deltastation/command/heads_quarters/hop)
 "rvQ" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/sulaco,
 /area/deltastation/asteroidcaves/exteriorasteroids)
 "rvU" = (
@@ -86713,7 +86743,7 @@
 "rBV" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/status_display{
+/obj/effect/spawner/random/structure/status_display{
 	pixel_x = 32
 	},
 /obj/effect/turf_decal/tile/brown/anticorner/contrasted{
@@ -86844,7 +86874,7 @@
 /turf/open/floor/iron,
 /area/deltastation/cargo/sorting)
 "rCR" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/engineering/gravity_generator)
 "rDa" = (
@@ -87026,7 +87056,7 @@
 /turf/open/floor/iron,
 /area/deltastation/asteroidcaves/derelictwest)
 "rEG" = (
-/obj/structure/closet/emcloset,
+/obj/effect/spawner/random/structure/emcloset,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/decal/warning_stripes/box/empty,
 /turf/open/floor/iron,
@@ -87162,7 +87192,7 @@
 /turf/open/floor/iron,
 /area/deltastation/security/brig)
 "rFC" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/command/corporate_showroom)
 "rFD" = (
@@ -87240,7 +87270,7 @@
 /area/deltastation/service/theater/abandoned)
 "rGE" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /obj/structure/bed/chair/sofa,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -87379,7 +87409,7 @@
 /turf/open/floor/iron,
 /area/deltastation/cargo/office)
 "rIt" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/medical/medbay/lobby)
 "rIy" = (
@@ -87635,7 +87665,7 @@
 "rKb" = (
 /obj/structure/table,
 /obj/effect/spawner/random/clipboard,
-/obj/machinery/status_display{
+/obj/effect/spawner/random/structure/status_display{
 	pixel_y = -32
 	},
 /obj/effect/turf_decal/tile/brown/half/contrasted,
@@ -88094,7 +88124,7 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/science/ordnance)
 "rPj" = (
-/obj/structure/closet/emcloset,
+/obj/effect/spawner/random/structure/emcloset,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/small/built{
 	dir = 4
@@ -88511,7 +88541,7 @@
 /turf/open/floor/iron,
 /area/deltastation/cargo/storage)
 "rTT" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/hallway/primary/central/fore)
 "rUc" = (
@@ -89267,7 +89297,7 @@
 /turf/open/floor/iron,
 /area/deltastation/commons/vacant_room/commissary)
 "sct" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/medical/storage)
 "scy" = (
@@ -89666,13 +89696,7 @@
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/entry)
 "shf" = (
-/obj/structure/closet/secure_closet{
-	anchored = 1;
-	desc = "A basic closet for all your villainous needs.";
-	locked = 1;
-	name = "Closet";
-	req_access = list("syndicate")
-	},
+/obj/effect/spawner/random/structure/securecloset/regular,
 /obj/item/tool/crowbar/red,
 /turf/open/floor/carpet,
 /area/deltastation/asteroidcaves/ship)
@@ -89944,6 +89968,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/textured,
 /area/deltastation/science/robotics/lab)
+"sjO" = (
+/obj/effect/spawner/random/structure/girder,
+/obj/effect/decal/sandedge{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/deltastation/asteroidcaves/derelictwest)
 "sjQ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/neutral{
@@ -89955,7 +89986,7 @@
 /turf/open/floor/iron,
 /area/deltastation/maintenance/department/crew_quarters/bar)
 "sjR" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/medical/pharmacy)
 "sjT" = (
@@ -91043,7 +91074,7 @@
 /turf/open/floor/plating,
 /area/deltastation/medical/pharmacy)
 "suE" = (
-/obj/structure/closet/emcloset,
+/obj/effect/spawner/random/structure/emcloset,
 /obj/effect/decal/warning_stripes/box,
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/entry)
@@ -91628,13 +91659,7 @@
 /turf/closed/wall,
 /area/deltastation/service/theater)
 "sAW" = (
-/obj/structure/closet/secure_closet{
-	anchored = 1;
-	desc = "A basic closet for all your villainous needs.";
-	locked = 1;
-	name = "Closet";
-	req_access = list("syndicate")
-	},
+/obj/effect/spawner/random/structure/securecloset/regular,
 /obj/item/clothing/suit/armor/vest/security,
 /obj/item/clothing/mask/gas/syndicate,
 /obj/item/clothing/under/syndicate,
@@ -91674,7 +91699,7 @@
 /turf/open/floor/iron,
 /area/deltastation/construction/mining/aux_base)
 "sBp" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/ai_monitored/storage/eva)
 "sBq" = (
@@ -92421,7 +92446,7 @@
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/entry)
 "sHY" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/maintenance/port/fore)
 "sIb" = (
@@ -93133,7 +93158,7 @@
 /area/deltastation/service/kitchen)
 "sPO" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/closet/emcloset,
+/obj/effect/spawner/random/structure/emcloset,
 /turf/open/floor/plating,
 /area/deltastation/maintenance/department/chapel)
 "sPQ" = (
@@ -93153,7 +93178,7 @@
 /obj/item/clothing/head/fedora{
 	icon_state = "detective"
 	},
-/obj/item/clothing/gloves/black,
+/obj/effect/spawner/random/coloredgloves,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/deltastation/security/detectives_office/private_investigators_office)
@@ -94174,7 +94199,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/deltastation/hallway/primary/starboard)
 "tbQ" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/maintenance/department/science/xenobiology)
 "tbU" = (
@@ -95367,7 +95392,7 @@
 /turf/open/floor/plating,
 /area/deltastation/maintenance/department/science)
 "tnB" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/security/prison/safe)
 "tnL" = (
@@ -95458,7 +95483,7 @@
 /obj/effect/turf_decal/trimline/neutral/mid_joiner{
 	dir = 8
 	},
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /obj/structure/morgue{
 	dir = 1
 	},
@@ -95591,7 +95616,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/obj/structure/closet/emcloset,
+/obj/effect/spawner/random/structure/emcloset,
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -95620,7 +95645,7 @@
 /area/deltastation/command/heads_quarters/captain/private)
 "tqi" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/closet/emcloset,
+/obj/effect/spawner/random/structure/emcloset,
 /obj/effect/decal/warning_stripes/box,
 /turf/open/floor/iron,
 /area/deltastation/cargo/miningoffice)
@@ -96162,7 +96187,7 @@
 /turf/open/floor/iron,
 /area/deltastation/commons/dorms/laundry)
 "tvr" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/service/abandoned_gambling_den)
 "tvv" = (
@@ -96377,7 +96402,7 @@
 "txN" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/deltastation/maintenance/disposal/incinerator)
@@ -97008,7 +97033,7 @@
 	id = "cargoload"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/status_display{
+/obj/effect/spawner/random/structure/status_display{
 	pixel_x = 32
 	},
 /obj/effect/decal/sandedge{
@@ -97969,7 +97994,7 @@
 /turf/open/floor/gcircuit,
 /area/deltastation/engineering/main)
 "tOq" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/engineering/atmos)
 "tOs" = (
@@ -98136,7 +98161,7 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/security/execution/education)
 "tPO" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/engineering/atmos/storage)
 "tPP" = (
@@ -98564,7 +98589,7 @@
 /turf/open/floor/iron,
 /area/deltastation/science/xenobiology)
 "tUg" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/security/prison/safe)
 "tUo" = (
@@ -99054,7 +99079,7 @@
 /area/deltastation/engineering/main)
 "tZb" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/maintenance/port/fore)
 "tZd" = (
@@ -99224,7 +99249,7 @@
 /turf/open/floor/iron,
 /area/deltastation/command/gateway)
 "uaX" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/security/execution/transfer)
 "ubb" = (
@@ -99322,7 +99347,7 @@
 /area/deltastation/command/heads_quarters/captain/private)
 "ubW" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/status_display{
+/obj/effect/spawner/random/structure/status_display{
 	pixel_x = -32
 	},
 /obj/structure/table/reinforced,
@@ -99549,7 +99574,7 @@
 /area/deltastation/asteroidcaves/derelictwest)
 "ufv" = (
 /obj/structure/table,
-/obj/item/clothing/gloves/latex,
+/obj/effect/spawner/random/coloredgloves/latex,
 /obj/item/clothing/mask/gas,
 /obj/item/clothing/glasses/science,
 /obj/effect/turf_decal/trimline/purple/filled/line{
@@ -99925,7 +99950,7 @@
 /turf/open/floor/iron,
 /area/deltastation/security/office)
 "uii" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/hallway/secondary/command)
 "uik" = (
@@ -100055,7 +100080,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/deltastation/maintenance/port/fore)
 "ujn" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/security/execution/transfer)
 "uju" = (
@@ -100119,7 +100144,7 @@
 /turf/open/floor/iron,
 /area/deltastation/construction/mining/aux_base)
 "ujV" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/cargo/warehouse)
 "ujW" = (
@@ -100398,11 +100423,11 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/service/bar)
 "umH" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/hallway/primary/port)
 "umO" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall/unmeltable,
 /area/deltastation/medical/virology)
 "umR" = (
@@ -102125,7 +102150,7 @@
 /turf/open/floor/iron/dark,
 /area/storage/testroom)
 "uEr" = (
-/obj/structure/closet/emcloset,
+/obj/effect/spawner/random/structure/emcloset,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/deltastation/engineering/hallway)
@@ -102394,7 +102419,7 @@
 /turf/open/floor/iron,
 /area/deltastation/engineering/storage/tech)
 "uIe" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/security/checkpoint/medical/medsci)
 "uIk" = (
@@ -102492,7 +102517,7 @@
 /turf/open/floor/plating,
 /area/deltastation/maintenance/department/security)
 "uJa" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/medical/cryo)
 "uJd" = (
@@ -103039,6 +103064,14 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/commons/toilet/restrooms)
+"uOk" = (
+/obj/structure/window/framed/colony/reinforced/hull,
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
+/turf/open/floor/plating,
+/area/deltastation/asteroidcaves/exteriorasteroids)
 "uOt" = (
 /obj/structure/table/reinforced,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -103541,7 +103574,7 @@
 /turf/open/floor/iron,
 /area/deltastation/commons/fitness/recreation)
 "uTv" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/science/research)
 "uTD" = (
@@ -103874,7 +103907,7 @@
 /turf/open/floor/iron,
 /area/deltastation/maintenance/department/science)
 "uWN" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall/unmeltable/regular,
 /area/deltastation/medical/virology)
 "uWT" = (
@@ -104110,7 +104143,7 @@
 	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/decal/warning_stripes/box/empty,
-/obj/structure/dispenser/oxygen,
+/obj/effect/spawner/random/structure/tank_dispenser/oxygenweighted,
 /turf/open/floor/iron/dark,
 /area/deltastation/science/ordnance)
 "uYX" = (
@@ -104143,7 +104176,7 @@
 /turf/open/floor/iron/half,
 /area/deltastation/security/range)
 "uZk" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/ai_monitored/turret_protected/ai_upload)
 "uZl" = (
@@ -104406,7 +104439,7 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/deltastation/science/ordnance)
 "vbH" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/science/xenobiology)
 "vbO" = (
@@ -104862,7 +104895,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
-/obj/structure/prop/mainship/suit_storage_prop,
+/obj/effect/spawner/random/structure/suit_storage,
 /turf/open/floor/iron,
 /area/deltastation/command/heads_quarters/captain/private)
 "vgC" = (
@@ -105722,6 +105755,10 @@
 /area/deltastation/security/courtroom)
 "vpq" = (
 /obj/structure/window/framed/colony/reinforced/hull,
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
 /turf/open/floor/plating,
 /area/deltastation/engineering/supermatter/room)
 "vpv" = (
@@ -105839,7 +105876,7 @@
 /obj/structure/bookcase{
 	name = "Holy Bookcase"
 	},
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/open/floor/iron/dark,
 /area/deltastation/service/chapel)
 "vqq" = (
@@ -106542,8 +106579,12 @@
 /turf/open/floor/iron,
 /area/deltastation/maintenance/department/security)
 "vxs" = (
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
 /turf/closed/mineral/smooth/indestructible,
-/area/deltastation/hallway/secondary/entry)
+/area/deltastation/asteroidcaves/exteriorasteroids)
 "vxu" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -106857,7 +106898,7 @@
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/entry)
 "vAl" = (
-/obj/structure/dispenser/oxygen,
+/obj/effect/spawner/random/structure/tank_dispenser/oxygenweighted,
 /turf/open/floor/prison/blackfloor,
 /area/deltastation/asteroidcaves/ship)
 "vAm" = (
@@ -107595,7 +107636,7 @@
 "vHb" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/structure/closet/emcloset,
+/obj/effect/spawner/random/structure/emcloset,
 /obj/effect/decal/warning_stripes/box,
 /turf/open/floor/iron/dark,
 /area/deltastation/security/processing)
@@ -107931,7 +107972,7 @@
 /turf/open/floor/carpet,
 /area/deltastation/commons/vacant_room/office)
 "vKC" = (
-/obj/structure/closet/secure_closet,
+/obj/effect/spawner/random/structure/securecloset/regular,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -108659,7 +108700,7 @@
 /turf/open/floor/iron,
 /area/deltastation/command/gateway)
 "vTm" = (
-/obj/structure/closet/emcloset,
+/obj/effect/spawner/random/structure/emcloset,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -109646,7 +109687,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
-/obj/structure/prop/mainship/suit_storage_prop,
+/obj/effect/spawner/random/structure/suit_storage,
 /turf/open/floor/iron/dark/textured,
 /area/deltastation/engineering/storage)
 "wcM" = (
@@ -110087,7 +110128,7 @@
 /turf/open/floor/plating,
 /area/deltastation/hallway/secondary/construction)
 "wgY" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/commons/toilet/locker)
 "whg" = (
@@ -111210,7 +111251,7 @@
 /area/deltastation/science/xenobiology)
 "wsA" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/commons/fitness/recreation)
 "wsB" = (
@@ -111255,7 +111296,7 @@
 /turf/open/floor/iron,
 /area/deltastation/commons/vacant_room/office)
 "wsM" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/security/courtroom)
 "wsN" = (
@@ -111292,7 +111333,7 @@
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/central/fore)
 "wtc" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/sulaco,
 /area/deltastation/hallway/secondary/entry)
 "wtd" = (
@@ -112307,7 +112348,7 @@
 /turf/open/floor/iron,
 /area/deltastation/security/execution/transfer)
 "wCe" = (
-/obj/structure/closet/emcloset,
+/obj/effect/spawner/random/structure/emcloset,
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
@@ -112484,7 +112525,7 @@
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/entry)
 "wDV" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/ai_monitored/turret_protected/ai)
 "wEd" = (
@@ -113468,7 +113509,7 @@
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/entry)
 "wNA" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/security/prison/toilet)
 "wNC" = (
@@ -113574,7 +113615,7 @@
 /turf/open/floor/iron,
 /area/deltastation/commons/lounge)
 "wOG" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/science/genetics)
 "wOH" = (
@@ -114152,6 +114193,14 @@
 	},
 /turf/open/floor/iron/white,
 /area/deltastation/science/xenobiology)
+"wVe" = (
+/obj/structure/catwalk,
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
+/turf/open/space,
+/area/space)
 "wVi" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
@@ -114212,7 +114261,7 @@
 /turf/open/floor/iron,
 /area/deltastation/engineering/lobby)
 "wVD" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/science/lobby)
 "wVH" = (
@@ -114971,7 +115020,7 @@
 /turf/open/floor/carpet,
 /area/deltastation/commons/vacant_room/office)
 "xfe" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/maintenance/department/medical/morgue)
 "xfh" = (
@@ -116772,7 +116821,7 @@
 /turf/open/floor/iron/grimy,
 /area/deltastation/command/heads_quarters/hos)
 "xxX" = (
-/obj/structure/closet/emcloset,
+/obj/effect/spawner/random/structure/emcloset,
 /obj/effect/decal/warning_stripes/box/empty,
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 1
@@ -117027,7 +117076,7 @@
 /turf/open/floor/plating,
 /area/deltastation/maintenance/department/science)
 "xAa" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall,
 /area/deltastation/engineering/atmos/hfr_room)
 "xAc" = (
@@ -117472,7 +117521,7 @@
 /turf/open/floor/iron/white,
 /area/deltastation/medical/virology)
 "xDt" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall/unmeltable,
 /area/deltastation/security/lockers)
 "xDA" = (
@@ -117801,7 +117850,7 @@
 /turf/open/floor/carpet,
 /area/deltastation/commons/vacant_room/office)
 "xGR" = (
-/obj/machinery/status_display{
+/obj/effect/spawner/random/structure/status_display{
 	pixel_y = -1
 	},
 /turf/closed/wall/r_wall/unmeltable,
@@ -118373,7 +118422,7 @@
 /turf/open/floor/iron,
 /area/deltastation/science/xenobiology)
 "xLN" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/commons/storage/primary)
 "xLQ" = (
@@ -118795,7 +118844,7 @@
 /turf/open/floor/gcircuit,
 /area/deltastation/tcommsat/server)
 "xQz" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall/r_wall/unmeltable,
 /area/deltastation/engineering/supermatter)
 "xQH" = (
@@ -119107,7 +119156,7 @@
 /area/deltastation/security/holding_cell)
 "xTh" = (
 /obj/effect/decal/warning_stripes/box/empty,
-/obj/structure/dispenser/oxygen,
+/obj/effect/spawner/random/structure/tank_dispenser/oxygenweighted,
 /turf/open/floor/iron,
 /area/ai_monitored/storage/eva)
 "xTm" = (
@@ -119465,7 +119514,7 @@
 "xWp" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/decal/warning_stripes/box,
-/obj/structure/prop/mainship/suit_storage_prop,
+/obj/effect/spawner/random/structure/suit_storage,
 /turf/open/floor/iron,
 /area/ai_monitored/storage/eva)
 "xWt" = (
@@ -119482,7 +119531,7 @@
 /turf/closed/wall,
 /area/deltastation/maintenance/disposal/incinerator)
 "xWD" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /turf/closed/wall,
 /area/deltastation/service/library)
 "xWH" = (
@@ -119820,6 +119869,11 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/deltastation/medical/chemistry)
+"yaa" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/structure/noticeboard,
+/turf/closed/wall,
+/area/deltastation/asteroidcaves/derelictwest)
 "yag" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/power/apc/drained{
@@ -120681,7 +120735,7 @@
 /turf/open/floor/iron/dark/side,
 /area/deltastation/service/barber)
 "yip" = (
-/obj/machinery/status_display,
+/obj/effect/spawner/random/structure/status_display,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall,
 /area/deltastation/ai_monitored/turret_protected/ai_upload)
@@ -129091,7 +129145,7 @@ dUO
 scc
 nUY
 eFA
-lLb
+yaa
 oTy
 wXV
 rHW
@@ -133478,7 +133532,7 @@ tOn
 xqv
 dJr
 xqv
-eEy
+sjO
 bCp
 bCp
 eUA
@@ -133973,9 +134027,9 @@ wxm
 tOn
 kAF
 qZP
-mRn
-fuA
-mRn
+cYR
+bfy
+cYR
 tOn
 wxm
 wxm
@@ -138915,7 +138969,7 @@ lxH
 kAO
 lxH
 qwW
-lxH
+fCY
 kwf
 jBc
 gjs
@@ -139170,8 +139224,8 @@ xxA
 jVF
 jVF
 eyx
-eyx
-eyx
+jVF
+jVF
 eyx
 rHw
 pwg
@@ -139426,9 +139480,9 @@ aVV
 qqW
 aVV
 oPH
-qCI
-qCI
-qCI
+wVe
+wVe
+wVe
 kUU
 kwf
 jBc
@@ -150053,7 +150107,7 @@ fjO
 mgG
 son
 cVj
-mWX
+bpi
 kAO
 trz
 trz
@@ -150310,7 +150364,7 @@ nJH
 qIn
 bep
 teW
-mWX
+bpi
 kAO
 kAO
 qwW
@@ -150658,7 +150712,7 @@ lxH
 lxH
 lxH
 fCY
-agF
+mUx
 vNR
 vNR
 fCY
@@ -150914,9 +150968,9 @@ lxH
 lxH
 fCY
 fCY
-agF
-agF
-agF
+mUx
+mUx
+mUx
 vNR
 fCY
 lxH
@@ -151172,8 +151226,8 @@ fCY
 wxm
 wxm
 wxm
-agF
-agF
+mUx
+mUx
 vNR
 vNR
 fCY
@@ -151430,8 +151484,8 @@ fCY
 wxm
 wxm
 wxm
-agF
-agF
+mUx
+mUx
 vNR
 vNR
 fCY
@@ -151687,8 +151741,8 @@ lxH
 fCY
 fCY
 wxm
-agF
-agF
+mUx
+mUx
 vNR
 vNR
 fCY
@@ -151945,9 +151999,9 @@ vNR
 vNR
 vNR
 vNR
-lna
+uOk
 vxs
-lna
+uOk
 kAO
 vNR
 vNR
@@ -152202,9 +152256,9 @@ vNR
 vNR
 vNR
 vNR
-lna
-uXh
-lna
+uOk
+ixn
+uOk
 lna
 ifG
 ifG
@@ -164301,7 +164355,7 @@ xYP
 dra
 igg
 jMX
-xYP
+igg
 dra
 kAq
 fwa
