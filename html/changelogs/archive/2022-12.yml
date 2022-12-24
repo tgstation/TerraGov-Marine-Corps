@@ -447,3 +447,9 @@
   - rscadd: directional sprites for ghost ian, now you can spin2win
   - rscadd: Give Warlock psychic whisper
   - rscadd: admins can now read psychic whisper
+2022-12-24:
+  Lumipharon:
+  - bugfix: fixed bonus projectiles stacking gun bonuses incorrectly
+  - bugfix: fixed some rockets having far lower range than they should
+  Waselon:
+  - balance: tweaks to burst weapons burstfire
