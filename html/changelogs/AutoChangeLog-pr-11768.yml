@@ -1,0 +1,5 @@
+author: "novaepee"
+delete-after: True
+changes:
+  - rscadd: "update death message and pray you have your head on when you died"
+  - bugfix: "update death message to reflect that you can survive a chestburst"
