@@ -151,12 +151,12 @@
 	)
 	ammotype = /datum/ammo/bullet/shotgun/mech
 	max_integrity = 350
-	projectiles = 10
-	projectiles_cache = 120
-	projectiles_cache_max = 120
+	projectiles = 20
+	projectiles_cache = 200
+	projectiles_cache_max = 200
 	variance = 6
 	projectile_delay = 2.0 SECONDS
-	slowdown = 0.3
+	slowdown = 0.5
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_SHOTGUN
 	hud_icons = list("shotgun_buckshot", "shotgun_empty")
@@ -179,8 +179,8 @@
 	projectiles_cache = 1200
 	projectiles_cache_max = 1200
 	variance = 25
-	projectile_delay = 0.15 SECONDS
-	slowdown = 0.3
+	projectile_delay = 0.2 SECONDS
+	slowdown = 0.6
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_GREY_LMG
 	hud_icons = list("rifle_heavy", "rifle_empty")
@@ -199,9 +199,9 @@
 	)
 	ammotype = /datum/ammo/tx54/mech
 	max_integrity = 400
-	projectiles = 30
-	projectiles_cache = 300
-	projectiles_cache_max = 300
+	projectiles = 16
+	projectiles_cache = 64
+	projectiles_cache_max = 64
 	variance = 20
 	projectile_delay = 0.7 SECONDS
 	slowdown = 0.4
@@ -226,7 +226,7 @@
 	energy_drain = 10
 	variance = 0
 	projectile_delay = 0.4 SECONDS
-	slowdown = 0.4
+	slowdown = 0.3
 	harmful = TRUE
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 
@@ -388,11 +388,12 @@
 	ammotype = /datum/ammo/flamethrower/mech_flamer
 	max_integrity = 250
 	projectiles = 20
-	projectiles_cache = 20 // low ammo counts so player cant just spam fire while rushing infinitely
-	projectiles_cache_max = 20
+	projectiles_cache = 100 // low ammo counts so player cant just spam fire while rushing infinitely
+	projectiles_cache_max = 100
 	variance = 0
 	projectile_delay = 2 SECONDS
-	slowdown = 0.4
+	// Reduces rushing significantly
+	slowdown = 0.7
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_FLAMER
 	hud_icons = list("flame", "flame_empty")
@@ -412,8 +413,8 @@
 	ammotype = /datum/ammo/rocket/mech
 	max_integrity = 400
 	projectiles = 1
-	projectiles_cache = 1
-	projectiles_cache_max = 1
+	projectiles_cache = 4
+	projectiles_cache_max = 4
 	variance = 0
 	projectile_delay = 2 SECONDS
 	slowdown = 0.7
@@ -435,10 +436,11 @@
 	desc = "A specialized mech laser blade made out of compressed energy with unimaginable power. Its compact size allows fast, short-ranged attacks. When activated, overloads the leg actuators to dash forward, before cutting with a superheated plasma beam. Melee core increases area cut and distance dashed. Heavy, but it is the top-of-the-line melee weapon of TGMC's fine line of mecha close-range offensive capability."
 	icon_state = "moonlight"
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
-	max_integrity = 400
+	/// high integrity , CQC.
+	max_integrity = 800
 	slowdown = 0
 	harmful = TRUE
-	equip_cooldown = 3 SECONDS
+	equip_cooldown = 2 SECONDS
 	energy_drain = 100
 	range = MECHA_MELEE|MECHA_RANGED
 	force = 150
