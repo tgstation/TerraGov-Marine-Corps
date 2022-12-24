@@ -324,6 +324,8 @@
 		X.soft_armor = X.soft_armor.modifyAllRatings(fortifyAB)
 		X.soft_armor = X.soft_armor.setRating(bomb = 100)
 		last_fortify_bonus = fortifyAB
+		owner.drop_r_hand() // drop shit like huggers
+		owner.drop_l_hand()
 	else
 		if(!silent)
 			to_chat(X, span_xenowarning("We resume our normal stance."))
