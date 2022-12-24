@@ -148,6 +148,8 @@ GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
 /// Used by the is_valid_for_resin_structure proc.
 /// 0 is considered valid , anything thats not 0 is false
 /// Simply not allowed by the area to build
+#define NO_ERROR 0
+#define ERROR_JUST_NO 1
 #define ERROR_NOT_ALLOWED 2
 /// No weeds here, but it is weedable
 #define ERROR_NO_WEED 3

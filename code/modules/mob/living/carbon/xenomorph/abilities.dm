@@ -305,6 +305,7 @@
 
 	return (base_wait + scaling_wait - max(0, (scaling_wait * X.health / X.maxHealth))) * build_resin_modifier
 
+/// A version of build_resin with the plasma drain and distance checks removed.
 /datum/action/xeno_action/activable/secrete_resin/proc/preshutter_build_resin(turf/T)
 	if(!SSresinshaping.get_building_points(owner))
 		owner.balloon_alert(owner, "You have used all your quick-build points! Wait until the marines have landed!")
@@ -332,7 +333,7 @@
 		// it fails a lot here when dragging , so its to prevent spam
 		if(ERROR_CONSTRUCT)
 			return
-		if(TRUE)
+		if(ERROR_JUST_NO)
 			return
 	var/atom/new_resin
 	if(ispath(X.selected_resin, /turf)) // We should change turfs, not spawn them in directly

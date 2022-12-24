@@ -16,7 +16,7 @@
 /proc/is_valid_for_resin_structure(turf/target, needs_support = FALSE, mob/builder)
 
 	if(!target || !istype(target))
-		return TRUE
+		return ERROR_JUST_NO
 	var/obj/alien/weeds/alien_weeds = locate() in target
 	if(!target.check_disallow_alien_fortification(null, TRUE))
 		return ERROR_NOT_ALLOWED
@@ -37,9 +37,9 @@
 			if(!TS)
 				continue
 			if(TS.density || locate(/obj/structure/mineral_door/resin) in TS)
-				return FALSE
+				return NO_ERROR
 		return ERROR_NO_SUPPORT
-	return FALSE
+	return NO_ERROR
 
 
 /proc/get_adjacent_open_turfs(atom/center)
