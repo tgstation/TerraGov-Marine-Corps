@@ -2933,6 +2933,19 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	spit_cost = 25
 	added_spit_delay = 0
 
+/datum/ammo/xeno/acid/auto/on_hit_mob(mob/M, obj/projectile/P)
+	var/turf/T = get_turf(M)
+	drop_nade(T.density ? P.loc : T)
+
+/datum/ammo/xeno/acid/auto/on_hit_obj(obj/O, obj/projectile/P)
+	drop_nade(O.density ? P.loc : get_turf(O))
+
+/datum/ammo/xeno/acid/auto/on_hit_turf(turf/T, obj/projectile/P)
+	drop_nade(T.density ? P.loc : T)
+
+/datum/ammo/xeno/acid/auto/do_at_max_range(turf/T, obj/projectile/P)
+	drop_nade(T.density ? P.loc : T)
+
 /datum/ammo/xeno/acid/passthrough
 	name = "acid spittle"
 	damage = 20
@@ -2950,15 +2963,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shell_speed = 2
 	max_range = 9
 
-/datum/ammo/xeno/acid/heavy/on_hit_mob(mob/M,obj/projectile/P)
+/datum/ammo/xeno/acid/heavy/on_hit_mob(mob/M, obj/projectile/P)
 	var/turf/T = get_turf(M)
 	drop_nade(T.density ? P.loc : T)
 
-/datum/ammo/xeno/acid/heavy/on_hit_obj(obj/O,obj/projectile/P)
-	var/turf/T = get_turf(O)
-	drop_nade(T.density ? P.loc : T)
+/datum/ammo/xeno/acid/heavy/on_hit_obj(obj/O, obj/projectile/P)
+	drop_nade(O.density ? P.loc : get_turf(O))
 
-/datum/ammo/xeno/acid/heavy/on_hit_turf(turf/T,obj/projectile/P)
+/datum/ammo/xeno/acid/heavy/on_hit_turf(turf/T, obj/projectile/P)
 	drop_nade(T.density ? P.loc : T)
 
 /datum/ammo/xeno/acid/heavy/do_at_max_range(turf/T, obj/projectile/P)
