@@ -25,7 +25,8 @@
 	upgrade_threshold = TIER_THREE_YOUNG_THRESHOLD
 
 	// *** Flags *** //
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	caste_flags = CASTE_IS_INTELLIGENT
+	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_CORRUPT_GENERATOR
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 30, BIO = 45, FIRE = 100, ACID = 45)
@@ -54,6 +55,7 @@
 		/datum/action/xeno_action/rally_hive,
 		/datum/action/xeno_action/rally_minion,
 		/datum/action/xeno_action/set_agressivity,
+		/datum/action/xeno_action/blessing_menu,
 	)
 
 
@@ -64,6 +66,8 @@
 	caste_desc = "The biggest and baddest xeno, crackling with psychic energy."
 
 	upgrade = XENO_UPGRADE_ONE
+
+	melee_damage = 23
 
 	// *** Speed *** //
 	speed = -0.1
@@ -88,7 +92,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 25
+	melee_damage = 26
 
 	// *** Speed *** //
 	speed = -0.2
@@ -186,4 +190,5 @@
 		/datum/action/xeno_action/rally_hive,
 		/datum/action/xeno_action/rally_minion,
 		/datum/action/xeno_action/set_agressivity,
+		/datum/action/xeno_action/blessing_menu,
 	)
