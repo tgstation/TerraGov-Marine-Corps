@@ -1499,6 +1499,13 @@
 		/obj/effect/spawner/random/structure/random_broken_computer = 25,
 	)
 
+/obj/effect/spawner/random/structure/random_broken_computer/intel
+	icon_state = "random_intel_computer"
+	loot = list(
+		/obj/machinery/computer/intel_computer = 90,
+		/obj/effect/spawner/random/structure/random_broken_computer = 10,
+	)
+
 /obj/effect/spawner/random/structure/random_broken_computer/small
 	icon_state = "random_broke_computer_small"
 	loot = list(
