@@ -118,7 +118,6 @@
 	ability_name = "off guard"
 	plasma_cost = 100
 	cooldown_timer = 20 SECONDS
-	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	target_flags = XABB_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_OFFGUARD,
@@ -170,13 +169,16 @@
 	ability_name = "shattering roar"
 	plasma_cost = 225
 	cooldown_timer = 25 SECONDS
-	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	target_flags = XABB_TURF_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SHATTERING_ROAR,
 	)
 
 /datum/action/xeno_action/activable/shattering_roar/use_ability(atom/target)
+	if(!target)
+		return
+	owner.dir = get_cardinal_dir(owner, target)
+
 	playsound(owner, 'sound/voice/ed209_20sec.ogg', 70)
 	var/mob/living/carbon/xenomorph/king/king_owner = owner
 	if(istype(king_owner))
