@@ -285,6 +285,11 @@
 			to_chat(X, span_warning("Resin doors need a wall or resin door next to them to stand up."))
 			return fail_activate()
 
+	if(X.selected_resin == /obj/structure/bed/nest)
+		for(var/obj/structure/bed/nest/xeno_nest in range (2,X))
+			to_chat(X, span_warning("Another nest is too close!"))
+			return fail_activate()
+
 	if(!do_after(X, get_wait(), TRUE, T, BUSY_ICON_BUILD))
 		return fail_activate()
 
