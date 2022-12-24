@@ -227,6 +227,39 @@
 	icon_state = "random_plastiqueexplosive_multiple_four"
 	spawn_loot_count = 4
 
+/obj/effect/spawner/random/structure/handcuffs
+	name = "handcuff spawner"
+	icon_state = "random_handcuffs"
+	spawn_loot_chance = 85
+	spawn_random_offset = TRUE
+	loot = list(
+		/obj/item/restraints/handcuffs = 15,
+		/obj/item/restraints/handcuffs/cable = 1,
+	)
+
+/obj/effect/spawner/random/structure/hand_labeler
+	name = "hand labeler spawner"
+	icon_state = "random_labeler"
+	spawn_loot_chance = 90
+	spawn_random_offset = TRUE
+	loot = list(
+		/obj/item/tool/hand_labeler = 9,
+		/obj/item/paper,
+	)
+
+/obj/effect/spawner/random/structure/handheld_lighting
+	name = "handheld lighting spawner"
+	icon_state = "random_lighting"
+	spawn_loot_chance = 60
+	spawn_random_offset = TRUE
+	loot = list(
+		/obj/item/flashlight = 15,
+		/obj/item/flashlight/flare = 5,
+		/obj/item/flashlight/lantern = 1,
+		/obj/item/flashlight/pen = 1,
+	)
+
+
 ///All kinds of 'cans'. This include water bottles.
 /obj/effect/spawner/random/drink_cans
 	name = "Random Drink Cans"

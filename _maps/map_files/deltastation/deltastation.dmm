@@ -1941,7 +1941,7 @@
 "auV" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/toolbox/mechanical,
-/obj/item/flashlight,
+/obj/effect/spawner/random/structure/handheld_lighting,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light{
 	dir = 8
@@ -4010,7 +4010,7 @@
 /obj/effect/spawner/random/mineral,
 /obj/item/stack/rods,
 /obj/item/storage/toolbox/emergency,
-/obj/item/flashlight,
+/obj/effect/spawner/random/structure/handheld_lighting,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/warning_stripes/box/empty,
 /obj/structure/extinguisher_cabinet,
@@ -4111,7 +4111,7 @@
 "aSd" = (
 /obj/structure/table/reinforced,
 /obj/item/packageWrap,
-/obj/item/tool/hand_labeler,
+/obj/effect/spawner/random/structure/hand_labeler,
 /turf/open/floor/iron,
 /area/deltastation/commons/storage/primary)
 "aSe" = (
@@ -6395,11 +6395,11 @@
 	pixel_x = -2;
 	pixel_y = 3
 	},
-/obj/item/restraints/handcuffs{
+/obj/effect/spawner/random/structure/handcuffs{
 	pixel_x = 2;
 	pixel_y = 5
 	},
-/obj/item/restraints/handcuffs,
+/obj/effect/spawner/random/structure/handcuffs,
 /turf/open/floor/iron/checker,
 /area/deltastation/service/janitor)
 "bpB" = (
@@ -7401,7 +7401,7 @@
 "byH" = (
 /obj/structure/table/reinforced,
 /obj/item/packageWrap,
-/obj/item/tool/hand_labeler,
+/obj/effect/spawner/random/structure/hand_labeler,
 /turf/open/floor/plating,
 /area/deltastation/maintenance/port)
 "byI" = (
@@ -15572,7 +15572,7 @@
 "dkH" = (
 /obj/structure/table,
 /obj/item/packageWrap,
-/obj/item/tool/hand_labeler,
+/obj/effect/spawner/random/structure/hand_labeler,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/turf_decal/siding/wideplating/dark{
 	dir = 1
@@ -17252,14 +17252,6 @@
 /area/deltastation/service/abandoned_gambling_den/gaming)
 "dBd" = (
 /obj/item/flashlight/flare,
-/obj/item/flashlight/flare,
-/obj/item/flashlight/flare,
-/obj/item/flashlight/flare{
-	pixel_y = 6
-	},
-/obj/item/flashlight/flare{
-	pixel_y = 6
-	},
 /obj/item/flashlight/flare{
 	pixel_y = 6
 	},
@@ -18344,7 +18336,7 @@
 /obj/item/packageWrap,
 /obj/item/packageWrap,
 /obj/effect/spawner/random/clipboard,
-/obj/item/tool/hand_labeler,
+/obj/effect/spawner/random/structure/hand_labeler,
 /turf/open/floor/iron/checker,
 /area/deltastation/hallway/secondary/service)
 "dLs" = (
@@ -19573,7 +19565,7 @@
 /obj/structure/sign/securearea{
 	pixel_y = -32
 	},
-/obj/item/tool/hand_labeler,
+/obj/effect/spawner/random/structure/hand_labeler,
 /turf/open/floor/wood,
 /area/deltastation/commons/vacant_room/office)
 "dWr" = (
@@ -21456,7 +21448,7 @@
 /obj/effect/spawner/random/folder{
 	pixel_x = 3
 	},
-/obj/item/restraints/handcuffs,
+/obj/effect/spawner/random/structure/handcuffs,
 /obj/item/taperecorder,
 /obj/machinery/door_control{
 	id = "justiceblast";
@@ -22696,7 +22688,7 @@
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/packageWrap,
-/obj/item/tool/hand_labeler,
+/obj/effect/spawner/random/structure/hand_labeler,
 /obj/item/clothing/head/welding,
 /obj/machinery/alarm,
 /turf/open/floor/iron,
@@ -24251,7 +24243,7 @@
 "ePL" = (
 /obj/effect/decal/cleanable/blood,
 /obj/structure/bed/chair,
-/obj/item/restraints/handcuffs,
+/obj/effect/spawner/random/structure/handcuffs,
 /obj/effect/decal/remains/human,
 /turf/open/floor/plating,
 /area/deltastation/asteroidcaves/derelictnortheast)
@@ -25569,7 +25561,7 @@
 	},
 /obj/item/packageWrap,
 /obj/item/packageWrap,
-/obj/item/tool/hand_labeler,
+/obj/effect/spawner/random/structure/hand_labeler,
 /obj/structure/table/mainship,
 /turf/open/floor/iron,
 /area/deltastation/service/hydroponics)
@@ -26910,7 +26902,7 @@
 /area/deltastation/maintenance/department/crew_quarters/bar)
 "frv" = (
 /obj/structure/table/reinforced,
-/obj/item/flashlight,
+/obj/effect/spawner/random/structure/handheld_lighting,
 /obj/effect/turf_decal/tile/red/fourcorners,
 /obj/item/clothing/mask/gas,
 /turf/open/floor/iron/dark,
@@ -28419,7 +28411,7 @@
 "fHh" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/syndicate,
-/obj/item/flashlight{
+/obj/effect/spawner/random/structure/handheld_lighting{
 	pixel_y = -12
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -36383,7 +36375,7 @@
 /obj/structure/cable,
 /obj/structure/table/reinforced,
 /obj/item/tool/crowbar,
-/obj/item/restraints/handcuffs,
+/obj/effect/spawner/random/structure/handcuffs,
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 1
 	},
@@ -39626,7 +39618,7 @@
 "hVx" = (
 /obj/structure/table,
 /obj/effect/spawner/random/coloredgloves/latex,
-/obj/item/restraints/handcuffs,
+/obj/effect/spawner/random/structure/handcuffs,
 /obj/item/clothing/mask/muzzle,
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -44757,8 +44749,8 @@
 /obj/structure/table/reinforced,
 /obj/item/clothing/suit/storage/hazardvest,
 /obj/item/clothing/suit/storage/hazardvest,
-/obj/item/flashlight,
-/obj/item/flashlight,
+/obj/effect/spawner/random/structure/handheld_lighting,
+/obj/effect/spawner/random/structure/handheld_lighting,
 /obj/effect/decal/warning_stripes/box/empty,
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos)
@@ -49628,7 +49620,7 @@
 "kaE" = (
 /obj/structure/table,
 /obj/item/packageWrap,
-/obj/item/tool/hand_labeler,
+/obj/effect/spawner/random/structure/hand_labeler,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/deltastation/security/warden)
@@ -51111,7 +51103,7 @@
 "krK" = (
 /obj/structure/closet/secure_closet/hos,
 /obj/structure/extinguisher_cabinet,
-/obj/item/flashlight,
+/obj/effect/spawner/random/structure/handheld_lighting,
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 1
 	},
@@ -51490,9 +51482,9 @@
 /obj/item/flashlight/flare,
 /obj/item/flashlight/flare,
 /obj/item/flashlight/flare,
-/obj/item/flashlight,
-/obj/item/flashlight,
-/obj/item/flashlight,
+/obj/effect/spawner/random/structure/handheld_lighting,
+/obj/effect/spawner/random/structure/handheld_lighting,
+/obj/effect/spawner/random/structure/handheld_lighting,
 /obj/item/tool/shovel,
 /obj/item/tool/pickaxe/drill,
 /obj/item/tool/pickaxe/drill,
@@ -52005,7 +51997,7 @@
 	},
 /obj/item/packageWrap,
 /obj/item/packageWrap,
-/obj/item/tool/hand_labeler,
+/obj/effect/spawner/random/structure/hand_labeler,
 /obj/effect/decal/warning_stripes/box/empty,
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos)
@@ -52648,7 +52640,7 @@
 /area/deltastation/tcommsat/computer)
 "kGU" = (
 /obj/structure/table/reinforced,
-/obj/item/restraints/handcuffs,
+/obj/effect/spawner/random/structure/handcuffs,
 /obj/item/flash,
 /obj/effect/turf_decal/tile/red/fourcorners,
 /turf/open/floor/iron/dark,
@@ -54207,7 +54199,7 @@
 "kYH" = (
 /obj/structure/table,
 /obj/item/packageWrap,
-/obj/item/tool/hand_labeler,
+/obj/effect/spawner/random/structure/hand_labeler,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/yellow/anticorner/contrasted,
 /turf/open/floor/iron,
@@ -57719,7 +57711,7 @@
 /turf/open/floor/plating,
 /area/deltastation/maintenance/starboard/aft)
 "lII" = (
-/obj/item/restraints/handcuffs,
+/obj/effect/spawner/random/structure/handcuffs,
 /obj/item/flash,
 /obj/effect/turf_decal/tile/red/half/contrasted,
 /obj/structure/sign/securearea,
@@ -58248,7 +58240,7 @@
 "lNC" = (
 /obj/structure/table/reinforced,
 /obj/item/packageWrap,
-/obj/item/tool/hand_labeler,
+/obj/effect/spawner/random/structure/hand_labeler,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/decal/warning_stripes/box/empty,
 /turf/open/floor/iron/dark,
@@ -65325,7 +65317,7 @@
 "nnF" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/folder,
-/obj/item/restraints/handcuffs,
+/obj/effect/spawner/random/structure/handcuffs,
 /obj/item/storage/box,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
@@ -65790,7 +65782,7 @@
 	dir = 8
 	},
 /obj/structure/table/woodentable,
-/obj/item/restraints/handcuffs,
+/obj/effect/spawner/random/structure/handcuffs,
 /obj/item/flash,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -66045,7 +66037,7 @@
 "nuM" = (
 /obj/structure/table/reinforced,
 /obj/item/packageWrap,
-/obj/item/tool/hand_labeler,
+/obj/effect/spawner/random/structure/hand_labeler,
 /obj/effect/decal/cleanable/cobweb,
 /obj/machinery/alarm,
 /obj/effect/decal/sandedge/corner2{
@@ -66148,7 +66140,7 @@
 	dir = 4
 	},
 /obj/item/packageWrap,
-/obj/item/tool/hand_labeler,
+/obj/effect/spawner/random/structure/hand_labeler,
 /obj/effect/spawner/random/structure/random_broken_computer/small/security{
 	dir = 8;
 	pixel_x = 26
@@ -67236,7 +67228,7 @@
 "nHB" = (
 /obj/structure/table/reinforced,
 /obj/item/packageWrap,
-/obj/item/tool/hand_labeler,
+/obj/effect/spawner/random/structure/hand_labeler,
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/newscaster,
 /turf/open/floor/iron,
@@ -69097,7 +69089,7 @@
 /area/deltastation/asteroidcaves/derelictnortheast)
 "obO" = (
 /obj/structure/table/reinforced,
-/obj/item/restraints/handcuffs,
+/obj/effect/spawner/random/structure/handcuffs,
 /obj/item/flash,
 /turf/open/floor/iron/dark,
 /area/deltastation/command/bridge)
@@ -75167,7 +75159,7 @@
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/red/fourcorners,
 /obj/machinery/alarm,
-/obj/item/restraints/handcuffs,
+/obj/effect/spawner/random/structure/handcuffs,
 /obj/structure/extinguisher_cabinet,
 /obj/machinery/light/small{
 	dir = 1
@@ -75835,7 +75827,7 @@
 "ptX" = (
 /obj/structure/extinguisher_cabinet,
 /obj/effect/spawner/random/structure/rollerbed,
-/obj/item/restraints/handcuffs,
+/obj/effect/spawner/random/structure/handcuffs,
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 9
 	},
@@ -79109,7 +79101,7 @@
 /obj/item/radio/intercom{
 	dir = 4
 	},
-/obj/item/flashlight{
+/obj/effect/spawner/random/structure/handheld_lighting{
 	pixel_y = 8
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -81775,7 +81767,7 @@
 	name = "Armoury Desk";
 	req_access = list("security")
 	},
-/obj/item/restraints/handcuffs,
+/obj/effect/spawner/random/structure/handcuffs,
 /obj/item/flash,
 /turf/open/floor/iron/dark,
 /area/deltastation/security/warden)
@@ -81958,7 +81950,7 @@
 /obj/structure/table,
 /obj/item/packageWrap,
 /obj/item/packageWrap,
-/obj/item/tool/hand_labeler,
+/obj/effect/spawner/random/structure/hand_labeler,
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 6
 	},
@@ -84984,7 +84976,7 @@
 /area/deltastation/maintenance/department/chapel)
 "rim" = (
 /obj/structure/table,
-/obj/item/restraints/handcuffs,
+/obj/effect/spawner/random/structure/handcuffs,
 /obj/item/clothing/suit/armor/vest,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -85057,8 +85049,8 @@
 /obj/structure/table,
 /obj/item/packageWrap,
 /obj/item/packageWrap,
-/obj/item/tool/hand_labeler,
-/obj/item/tool/hand_labeler,
+/obj/effect/spawner/random/structure/hand_labeler,
+/obj/effect/spawner/random/structure/hand_labeler,
 /turf/open/floor/plating,
 /area/deltastation/science/research/abandoned)
 "rji" = (
@@ -85685,14 +85677,14 @@
 /obj/item/clothing/mask/gas{
 	pixel_y = 3
 	},
-/obj/item/flashlight{
+/obj/effect/spawner/random/structure/handheld_lighting{
 	pixel_y = -1
 	},
-/obj/item/flashlight{
+/obj/effect/spawner/random/structure/handheld_lighting{
 	pixel_x = 2;
 	pixel_y = -3
 	},
-/obj/item/flashlight{
+/obj/effect/spawner/random/structure/handheld_lighting{
 	pixel_x = 4;
 	pixel_y = -5
 	},
@@ -87309,7 +87301,7 @@
 /area/deltastation/service/theater)
 "rGu" = (
 /obj/item/packageWrap,
-/obj/item/tool/hand_labeler,
+/obj/effect/spawner/random/structure/hand_labeler,
 /obj/structure/table/reinforced,
 /obj/structure/prop/camera{
 	name = "command camera"
@@ -88417,7 +88409,7 @@
 "rRU" = (
 /obj/structure/table/woodentable,
 /obj/effect/spawner/random/folder,
-/obj/item/tool/hand_labeler,
+/obj/effect/spawner/random/structure/hand_labeler,
 /turf/open/floor/carpet,
 /area/deltastation/security/detectives_office)
 "rRX" = (
@@ -91213,9 +91205,11 @@
 /area/deltastation/medical/abandoned)
 "svE" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/wood,
 /area/deltastation/command/heads_quarters/captain)
 "svM" = (
@@ -91820,7 +91814,9 @@
 	name = "shutters control";
 	pixel_y = -8
 	},
-/obj/machinery/light/small,
+/obj/machinery/light/small{
+	dir = 1
+	},
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
 	},
@@ -92061,8 +92057,8 @@
 "sDU" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/toolbox/mechanical,
-/obj/item/flashlight,
-/obj/item/flashlight,
+/obj/effect/spawner/random/structure/handheld_lighting,
+/obj/effect/spawner/random/structure/handheld_lighting,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/machinery/light,
 /turf/open/floor/iron,
@@ -92569,14 +92565,14 @@
 /area/deltastation/service/theater)
 "sIs" = (
 /obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 5
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
+	},
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
 	},
 /turf/open/floor/iron/white,
 /area/deltastation/medical/chemistry)
@@ -96894,7 +96890,7 @@
 "tCo" = (
 /obj/structure/table/reinforced,
 /obj/item/packageWrap,
-/obj/item/tool/hand_labeler,
+/obj/effect/spawner/random/structure/hand_labeler,
 /obj/effect/turf_decal/tile/blue/anticorner/contrasted,
 /turf/open/floor/iron/dark,
 /area/deltastation/security/checkpoint/customs/aft)
@@ -97738,7 +97734,7 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/structure/table,
 /obj/item/packageWrap,
-/obj/item/tool/hand_labeler,
+/obj/effect/spawner/random/structure/hand_labeler,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -98707,7 +98703,7 @@
 "tUL" = (
 /obj/structure/table,
 /obj/item/packageWrap,
-/obj/item/tool/hand_labeler,
+/obj/effect/spawner/random/structure/hand_labeler,
 /obj/effect/decal/sandedge/corner2{
 	dir = 1
 	},
@@ -101147,7 +101143,7 @@
 "utr" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/toolbox/mechanical,
-/obj/item/flashlight,
+/obj/effect/spawner/random/structure/handheld_lighting,
 /turf/open/floor/iron,
 /area/deltastation/commons/storage/primary)
 "utt" = (
@@ -102282,7 +102278,7 @@
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/item/packageWrap,
-/obj/item/tool/hand_labeler,
+/obj/effect/spawner/random/structure/hand_labeler,
 /obj/machinery/alarm,
 /turf/open/floor/iron,
 /area/deltastation/commons/vacant_room/commissary)
@@ -102581,7 +102577,7 @@
 "uIZ" = (
 /obj/structure/table,
 /obj/item/clothing/under/rank/security,
-/obj/item/restraints/handcuffs,
+/obj/effect/spawner/random/structure/handcuffs,
 /obj/effect/decal/cleanable/cobweb2,
 /turf/open/floor/plating,
 /area/deltastation/maintenance/department/security)
@@ -102994,7 +102990,7 @@
 /obj/item/wrapping_paper{
 	pixel_y = 5
 	},
-/obj/item/tool/hand_labeler,
+/obj/effect/spawner/random/structure/hand_labeler,
 /obj/effect/turf_decal/tile/brown/half/contrasted{
 	dir = 1
 	},
@@ -104367,7 +104363,7 @@
 	pixel_x = -4;
 	pixel_y = 4
 	},
-/obj/item/tool/hand_labeler,
+/obj/effect/spawner/random/structure/hand_labeler,
 /obj/item/tool/pen,
 /obj/structure/extinguisher_cabinet{
 	dir = 1
@@ -105601,9 +105597,9 @@
 /area/deltastation/engineering/atmos/project)
 "vmL" = (
 /obj/structure/rack,
-/obj/item/restraints/handcuffs,
-/obj/item/restraints/handcuffs,
-/obj/item/restraints/handcuffs,
+/obj/effect/spawner/random/structure/handcuffs,
+/obj/effect/spawner/random/structure/handcuffs,
+/obj/effect/spawner/random/structure/handcuffs,
 /obj/item/flash,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/structure/reagent_dispensers/wallmounted/peppertank{
@@ -107072,7 +107068,7 @@
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/folder,
 /obj/item/packageWrap,
-/obj/item/tool/hand_labeler,
+/obj/effect/spawner/random/structure/hand_labeler,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -108508,7 +108504,7 @@
 /area/deltastation/service/theater/abandoned)
 "vPt" = (
 /obj/item/packageWrap,
-/obj/item/tool/hand_labeler,
+/obj/effect/spawner/random/structure/hand_labeler,
 /obj/item/radio/intercom,
 /obj/machinery/alarm,
 /obj/effect/turf_decal/trimline/green/filled/line{
@@ -110545,7 +110541,7 @@
 	pixel_y = 4
 	},
 /obj/item/wrapping_paper,
-/obj/item/tool/hand_labeler,
+/obj/effect/spawner/random/structure/hand_labeler,
 /turf/open/floor/iron,
 /area/deltastation/commons/fitness/recreation)
 "wkd" = (
@@ -113507,6 +113503,7 @@
 	},
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/ai_node,
 /turf/open/floor/iron/dark,
 /area/deltastation/tcommsat/server)
 "wMU" = (
@@ -116812,7 +116809,7 @@
 /obj/structure/cable,
 /obj/structure/table/woodentable,
 /obj/item/taperecorder,
-/obj/item/restraints/handcuffs,
+/obj/effect/spawner/random/structure/handcuffs,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/machinery/power/apc/drained,
 /obj/machinery/door_control{
@@ -117567,7 +117564,7 @@
 	req_one_access = list("hop","security")
 	},
 /obj/effect/spawner/random/folder,
-/obj/item/tool/hand_labeler,
+/obj/effect/spawner/random/structure/hand_labeler,
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 8
 	},
@@ -118308,7 +118305,7 @@
 "xKl" = (
 /obj/structure/table,
 /obj/item/packageWrap,
-/obj/item/tool/hand_labeler,
+/obj/effect/spawner/random/structure/hand_labeler,
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 5
 	},
