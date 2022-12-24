@@ -765,7 +765,7 @@
 /obj/effect/spawner/random/present
 	name = "Random present spawner"
 	icon_state = "random_present"
-	spawn_nothing_percentage = 65
+	spawn_nothing_percentage = 10
 
 /obj/effect/spawner/random/present/item_to_spawn()
 		return pick(/obj/item/a_gift,\
@@ -774,7 +774,7 @@
 /obj/effect/spawner/random_set/christmas_costume
 	name = "Random santa suit set spawner"
 	icon_state = "random_santasuit"
-	spawn_nothing_percentage = 85
+	spawn_nothing_percentage = 50
 
 	option_list = list(
 		list(/obj/item/clothing/head/helmet/space/santahat, /obj/item/clothing/suit/space/santa,),

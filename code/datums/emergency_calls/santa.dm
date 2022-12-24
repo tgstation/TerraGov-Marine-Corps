@@ -1,9 +1,8 @@
 //Santa is back in town
 /datum/emergency_call/santa
 	name = "Santa's Workshop"
-	base_probability = 24
-	mob_max = 15 //santa gets extra help because he's the only one with decent gear
-	mob_min = 4
+	base_probability = 40
+	alignement_factor = 0
 
 
 /datum/emergency_call/santa/print_backstory(mob/living/carbon/human/H)
