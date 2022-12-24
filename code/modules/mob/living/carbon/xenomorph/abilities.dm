@@ -195,17 +195,19 @@
 	var/dragging = FALSE
 
 
-
+/// Helper for handling the start of mouse-down and to begin the drag-building
 /datum/action/xeno_action/activable/secrete_resin/proc/start_resin_drag(mob/user, atom/object, turf/location, control, params)
 	SIGNAL_HANDLER
 	if(toggled)
 		dragging = TRUE
 		preshutter_build_resin(get_turf(object))
 
+/// Helper for ending drag-building , activated on mose-up
 /datum/action/xeno_action/activable/secrete_resin/proc/stop_resin_drag()
 	SIGNAL_HANDLER
 	dragging = FALSE
 
+/// Handles removing the dragging functionality from the action all-togheter on round-start (shutter open)
 /datum/action/xeno_action/activable/secrete_resin/proc/end_resin_drag()
 	SIGNAL_HANDLER
 	dragging = FALSE

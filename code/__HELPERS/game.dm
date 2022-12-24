@@ -37,7 +37,7 @@
 			if(!TS)
 				continue
 			if(TS.density || locate(/obj/structure/mineral_door/resin) in TS)
-				return TRUE
+				return FALSE
 		return ERROR_NO_SUPPORT
 	return FALSE
 
