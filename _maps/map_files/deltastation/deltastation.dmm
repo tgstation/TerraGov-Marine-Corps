@@ -81,7 +81,9 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/warning_stripes/box,
-/obj/item/radio/intercom,
+/obj/item/radio/intercom{
+	dir = 8
+	},
 /obj/effect/spawner/random/structure/tank_dispenser/oxygenweighted,
 /turf/open/floor/iron,
 /area/deltastation/command/gateway)
@@ -3895,6 +3897,7 @@
 /obj/machinery/light,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/item/radio/intercom{
+	dir = 1;
 	freerange = 1;
 	frequency = 1447;
 	listening = 0;
@@ -11295,7 +11298,9 @@
 /area/deltastation/medical/treatment_center)
 "cpG" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/machinery/firealarm,
+/obj/machinery/firealarm{
+	dir = 1
+	},
 /obj/structure/table/reinforced,
 /obj/machinery/faxmachine{
 	name = "Chief Engineer's Fax Machine"
@@ -17868,6 +17873,9 @@
 	},
 /obj/effect/spawner/random/folder,
 /obj/effect/landmark/weed_node,
+/obj/machinery/firealarm{
+	dir = 4
+	},
 /turf/open/floor/iron,
 /area/deltastation/commons/fitness/recreation)
 "dGT" = (
@@ -24090,7 +24098,9 @@
 /obj/item/target/alien,
 /obj/item/target/alien,
 /obj/item/target,
-/obj/machinery/firealarm,
+/obj/machinery/firealarm{
+	dir = 1
+	},
 /turf/open/floor/iron,
 /area/deltastation/security/range)
 "eOF" = (
@@ -24219,7 +24229,9 @@
 /obj/item/weapon/gun/energy/lasgun/M43/practice,
 /obj/effect/decal/warning_stripes/box/empty,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/machinery/firealarm,
+/obj/machinery/firealarm{
+	dir = 8
+	},
 /turf/open/floor/iron/dark,
 /area/deltastation/science/auxlab/firing_range)
 "ePF" = (
@@ -24964,11 +24976,14 @@
 	pixel_x = 9
 	},
 /obj/item/flashlight/lamp,
-/obj/item/radio/intercom,
+/obj/item/radio/intercom{
+	dir = 4
+	},
 /obj/effect/turf_decal/tile/red/anticorner/contrasted{
 	dir = 8
 	},
 /obj/machinery/firealarm{
+	dir = 4;
 	pixel_x = -4
 	},
 /turf/open/floor/iron/dark,
@@ -34233,12 +34248,6 @@
 "gOF" = (
 /turf/open/floor/plating,
 /area/deltastation/asteroidcaves/derelictnortheast)
-"gOL" = (
-/obj/effect/decal/sandedge{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/maintenance/fore)
 "gOR" = (
 /obj/effect/turf_decal/siding/wideplating/dark,
 /obj/effect/landmark/weed_node,
@@ -34450,7 +34459,9 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/red/half/contrasted,
-/obj/machinery/firealarm,
+/obj/machinery/firealarm{
+	dir = 1
+	},
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/deltastation/security/checkpoint/escape)
@@ -35094,15 +35105,11 @@
 /turf/open/floor/plating,
 /area/deltastation/maintenance/department/science)
 "gXY" = (
-/obj/item/radio/intercom,
-/obj/effect/turf_decal/tile/red/anticorner/contrasted{
-	dir = 8
+/obj/effect/decal/sandedge{
+	dir = 4
 	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1
-	},
-/turf/open/floor/iron/dark,
-/area/deltastation/security/brig)
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/deltastation/maintenance/fore)
 "gYd" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -44880,7 +44887,9 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
-/obj/item/radio/intercom,
+/obj/item/radio/intercom{
+	dir = 8
+	},
 /turf/open/floor/iron/corner,
 /area/deltastation/engineering/atmos/pumproom)
 "jaD" = (
@@ -46155,7 +46164,9 @@
 	pixel_x = -32;
 	pixel_y = -32
 	},
-/obj/item/radio/intercom,
+/obj/item/radio/intercom{
+	dir = 4
+	},
 /obj/effect/turf_decal/tile/red/anticorner/contrasted{
 	dir = 8
 	},
@@ -50397,6 +50408,12 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/construction/mining/aux_base)
+"kjt" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/landmark/weed_node,
+/obj/item/radio/intercom,
+/turf/open/floor/iron,
+/area/deltastation/security/courtroom)
 "kjy" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
@@ -53240,7 +53257,7 @@
 	dir = 8
 	},
 /obj/machinery/firealarm{
-	dir = 1
+	dir = 4
 	},
 /obj/structure/prop/mainship/dnascanner,
 /turf/open/floor/iron/dark,
@@ -53650,7 +53667,9 @@
 /obj/item/tool/crowbar,
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/machinery/firealarm,
+/obj/machinery/firealarm{
+	dir = 4
+	},
 /turf/open/floor/iron,
 /area/ai_monitored/storage/eva)
 "kRY" = (
@@ -59873,7 +59892,9 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 6
 	},
-/obj/machinery/firealarm,
+/obj/machinery/firealarm{
+	dir = 8
+	},
 /turf/open/floor/iron/dark,
 /area/deltastation/engineering/transit_tube)
 "meu" = (
@@ -61378,7 +61399,9 @@
 /obj/structure/table,
 /obj/effect/spawner/random/paperbin,
 /obj/item/tool/pen,
-/obj/item/radio/intercom,
+/obj/item/radio/intercom{
+	dir = 8
+	},
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/construction)
 "mvP" = (
@@ -63102,7 +63125,9 @@
 /obj/structure/table/reinforced,
 /obj/machinery/cell_charger,
 /obj/effect/spawner/random/powercell,
-/obj/machinery/firealarm,
+/obj/machinery/firealarm{
+	dir = 1
+	},
 /obj/machinery/light_switch,
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 1
@@ -70853,7 +70878,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/firealarm,
+/obj/machinery/firealarm{
+	dir = 8
+	},
 /obj/effect/ai_node,
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/central/aft)
@@ -83488,7 +83515,9 @@
 /obj/item/stack/rods,
 /obj/effect/spawner/random/cable,
 /obj/effect/spawner/random/cable,
-/obj/machinery/firealarm,
+/obj/machinery/firealarm{
+	dir = 8
+	},
 /obj/effect/decal/sandedge{
 	dir = 8
 	},
@@ -86852,7 +86881,9 @@
 /area/deltastation/science/ordnance/testlab)
 "rCH" = (
 /obj/effect/decal/warning_stripes/box/empty,
-/obj/item/radio/intercom,
+/obj/item/radio/intercom{
+	dir = 1
+	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/command)
@@ -88756,6 +88787,7 @@
 	name = "Defense"
 	},
 /obj/effect/turf_decal/tile/green/anticorner/contrasted,
+/obj/item/radio/intercom,
 /turf/open/floor/iron,
 /area/deltastation/security/courtroom)
 "rWr" = (
@@ -89001,7 +89033,9 @@
 /area/deltastation/maintenance/solars/starboard/aft)
 "rZB" = (
 /obj/effect/spawner/random/plant,
-/obj/machinery/firealarm,
+/obj/machinery/firealarm{
+	dir = 1
+	},
 /obj/effect/turf_decal/bot/right,
 /turf/open/floor/iron,
 /area/deltastation/engineering/storage/tech)
@@ -90828,7 +90862,9 @@
 /turf/open/floor/iron,
 /area/deltastation/construction/mining/aux_base)
 "ssg" = (
-/obj/machinery/firealarm,
+/obj/machinery/firealarm{
+	dir = 1
+	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -98066,7 +98102,6 @@
 /area/deltastation/commons/lounge)
 "tOy" = (
 /obj/structure/table/woodentable,
-/obj/item/radio/intercom,
 /obj/effect/turf_decal/tile/neutral/half/contrasted,
 /turf/open/floor/iron,
 /area/deltastation/security/courtroom)
@@ -99192,7 +99227,9 @@
 /obj/structure/bed/chair/sofa{
 	dir = 1
 	},
-/obj/machinery/firealarm,
+/obj/machinery/firealarm{
+	dir = 1
+	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
@@ -99273,7 +99310,9 @@
 /obj/effect/spawner/random/radio,
 /obj/effect/spawner/random/radio,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/firealarm,
+/obj/machinery/firealarm{
+	dir = 4
+	},
 /turf/open/floor/iron,
 /area/deltastation/command/gateway)
 "uaX" = (
@@ -103880,7 +103919,6 @@
 /area/deltastation/medical/virology)
 "uVU" = (
 /obj/structure/table/woodentable,
-/obj/item/radio/intercom,
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 1
 	},
@@ -108356,7 +108394,9 @@
 "vOn" = (
 /obj/structure/prop/mainship/turretprop,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/machinery/firealarm,
+/obj/machinery/firealarm{
+	dir = 8
+	},
 /turf/open/floor/iron/dark,
 /area/deltastation/ai_monitored/turret_protected/aisat_interior)
 "vOv" = (
@@ -112027,7 +112067,9 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
 	},
-/obj/item/radio/intercom,
+/obj/item/radio/intercom{
+	dir = 4
+	},
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/entry)
 "wzj" = (
@@ -114405,7 +114447,9 @@
 /area/deltastation/maintenance/port)
 "wXj" = (
 /obj/structure/table,
-/obj/machinery/firealarm,
+/obj/machinery/firealarm{
+	dir = 4
+	},
 /obj/effect/spawner/random/structure/microwave,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -116360,9 +116404,6 @@
 /turf/open/floor/iron,
 /area/deltastation/science/robotics/mechbay)
 "xst" = (
-/obj/machinery/firealarm{
-	dir = 4
-	},
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 8
 	},
@@ -119436,7 +119477,9 @@
 /turf/open/floor/iron/white/smooth_large,
 /area/deltastation/science/ordnance/storage)
 "xVm" = (
-/obj/machinery/firealarm,
+/obj/machinery/firealarm{
+	dir = 4
+	},
 /obj/machinery/light{
 	dir = 8
 	},
@@ -120083,7 +120126,9 @@
 /obj/structure/janitorialcart,
 /obj/item/tool/mop,
 /obj/item/reagent_containers/glass/bucket,
-/obj/item/radio/intercom,
+/obj/item/radio/intercom{
+	dir = 1
+	},
 /obj/effect/turf_decal/siding/purple/corner{
 	dir = 4
 	},
@@ -120363,7 +120408,9 @@
 	dir = 4;
 	name = "science camera"
 	},
-/obj/machinery/firealarm,
+/obj/machinery/firealarm{
+	dir = 4
+	},
 /obj/effect/spawner/random/structure/tank/waterweighted,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/decal/warning_stripes/box,
@@ -165942,7 +165989,7 @@ kVj
 gBw
 kAq
 kAq
-gOL
+gXY
 ldP
 dra
 owW
@@ -167285,7 +167332,7 @@ tdB
 jEB
 cEZ
 uVU
-uNK
+kjt
 rhx
 qny
 tOy
@@ -171389,7 +171436,7 @@ aIZ
 eLq
 fOQ
 hXG
-gXY
+aIZ
 eLq
 jbp
 fLF
