@@ -11,7 +11,7 @@
 	to_chat(H, "<B>Santa travels the galaxy once a year, visiting every single inhabited planet in a single period of 24 standard hours. Santa maintains an active defense force to punish especially naughty sapients with lethal force, this defense force currently numbers more than 30,000 elves and ships.</b>")
 	to_chat(H, "")
 	to_chat(H, "<B>Today, while enroute to visit a TGMC vessel, [SSmapping.configs[SHIP_MAP].map_name], the artificial intelligence in Santa's sleigh detected an abnormally high level of naughtiness in the orbit of [SSmapping.configs[GROUND_MAP].map_name]. Santa has resolved to punish them in the spirit of Christmas!</b>")
-	if(GLOB.round_statistics.number_of_grinches >= 5)
+	if(GLOB.round_statistics.number_of_grinches >= 3)
 		to_chat(H, "<B>Punish the naughty </b>marines and aliens</b> onboard the ship, coal won't be enough this time. The only punishment Santa believes in now is hot lead!</B>")
 	else
 		to_chat(H, "<B>Punish the naughty </b>aliens</b> onboard the ship, coal won't be enough this time. The only punishment Santa believes in now is hot lead!</B>")
