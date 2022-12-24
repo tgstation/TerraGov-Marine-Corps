@@ -2934,6 +2934,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/xeno/acid/auto
 	name = "light acid spatter"
 	damage = 10
+	damage_falloff = 0.3
 	spit_cost = 25
 	added_spit_delay = 0
 
