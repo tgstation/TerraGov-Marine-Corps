@@ -2,7 +2,7 @@ SUBSYSTEM_DEF(vote)
 	name = "Vote"
 	wait = 10
 
-	flags = SS_KEEP_TIMING|SS_NO_INIT
+	flags = SS_KEEP_TIMING|SS_NO_INIT | DEFAULT_NO_VOTE
 
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
 
