@@ -453,3 +453,11 @@
   - bugfix: fixed some rockets having far lower range than they should
   Waselon:
   - balance: tweaks to burst weapons burstfire
+2022-12-25:
+  QualityVan:
+  - bugfix: You can only repair mechs one attempt at a time per person
+  Waselon:
+  - balance: mech UI reload now takes time
+  novaepee:
+  - rscadd: update death message and pray you have your head on when you died
+  - bugfix: update death message to reflect that you can survive a chestburst
