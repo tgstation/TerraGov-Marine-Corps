@@ -50,20 +50,25 @@
 	var/mob/living/carbon/human/pilot = null
 	///Who are we currently aiming/shooting at?
 	var/current_target = null
+	var/deployable = TRUE
+	var/deployed = FALSE
 	var/being_destroyed = FALSE
 	COOLDOWN_DECLARE(enginesound_cooldown)
 
 /obj/vehicle/sealed/helicopter/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/automatedfire/autofire, fire_delay, fire_delay, burst_delay, burst_amount, fire_mode, CALLBACK(src, .proc/set_bursting), CALLBACK(src, .proc/reset_fire), CALLBACK(src, .proc/fire))
+	prepare_huds()
+	for(var/datum/atom_hud/squad/helicopter_hud in GLOB.huds) //Add to the squad HUD
+		helicopter_hud.add_to_hud(src)
 	current_fuel = max_fuel
 	if(starting_weapon)
 		var/obj/item/aircraft_weapon/holder = new starting_weapon
 		attach_starting_weapon(holder)
-	prepare_huds()
-	for(var/datum/atom_hud/squad/helicopter_hud in GLOB.huds) //Add to the squad HUD
-		helicopter_hud.add_to_hud(src)
-	update_icon()
+	if(deployable && !deployed)
+		deploy(null, TRUE)
+	else
+		update_icon()
 
 /obj/vehicle/sealed/helicopter/update_icon()
 	show_helicopter_health()
@@ -80,14 +85,40 @@
 /obj/vehicle/sealed/helicopter/attack_hand(mob/living/user)
 	if(attached_weapon?.current_magazine)
 		return unload(user)
+	if(deployable)
+		return deploy(user)
 	return ..()
 
 /obj/vehicle/sealed/helicopter/attackby(obj/item/I, mob/user, params)
+	if(CHECK_BITFIELD(flags_pass, FLYING) && !CHECK_BITFIELD(user.flags_pass, FLYING))	//Only another flying unit can reach us!
+		return
 	. = ..()
 	if(istype(I, /obj/item/aircraft_weapon))
 		return attach_weapon(I, user)
 	if(istype(I, /obj/item/ammo_magazine))
 		return reload(I, user)
+
+//Deploys and undeploys the heli
+/obj/vehicle/sealed/helicopter/proc/deploy(mob/living/user, deployed_after_spawn = FALSE)
+	if(occupants)	//Or else the people inside become paste
+		return
+	if(!deployed_after_spawn)
+		deployed = !deployed
+	if(deployed)
+		var/area/deploying_area = get_area(src)
+		if(!deploying_area.outside)
+			deployed = !deployed
+			balloon_alert(user, "Must be deployed in an open area!")
+			return
+		pulledby?.stop_pulling()
+		playsound(src, 'sound/machines/hydraulics_1.ogg', 30)
+		icon_state = initial(icon_state)
+		move_resist = initial(move_resist)
+	else
+		playsound(src, 'sound/machines/hydraulics_2.ogg', 30)
+		icon_state = "keys"
+		move_resist = MOVE_RESIST_DEFAULT
+	update_icon()
 
 ///Try to eject the current mag in the attached weapon
 /obj/vehicle/sealed/helicopter/proc/unload(mob/user)
@@ -187,25 +218,36 @@
 	SEND_SIGNAL(src, COMSIG_HELI_FIRE_MODE_TOGGLE, fire_mode)
 
 /obj/vehicle/sealed/helicopter/mob_try_enter(mob/M)
-	if(CHECK_BITFIELD(flags_pass, HOVERING))
+	if(!deployed)
+		to_chat(M, span_warning("[src] must be deployed to board!"))
+		return FALSE
+	if(CHECK_BITFIELD(flags_pass, FLYING))
 		to_chat(M, span_warning("You can't board [src] mid-flight!"))
 		return FALSE
 	return ..()
 
 /obj/vehicle/sealed/helicopter/mob_try_exit(mob/M, mob/user, silent, randomstep)
-	if(CHECK_BITFIELD(flags_pass, HOVERING))
+	if(CHECK_BITFIELD(flags_pass, FLYING) && !being_destroyed)
 		to_chat(M, span_warning("You can't jump out of [src] mid-flight!"))
 		return FALSE
+	if(being_destroyed)	//Eligible for bailing out
+		return mob_exit(M, TRUE, TRUE, TRUE)
 	return ..()
 
-/obj/vehicle/sealed/helicopter/mob_exit(mob/M, silent, randomstep)
+/obj/vehicle/sealed/helicopter/mob_exit(mob/M, silent, randomstep, bailed = FALSE)
 	. = ..()
+	M.set_flying(FALSE)	//Just in case
 	if(M == pilot)
 		change_mouse_pointer_icon(TRUE)
 		UnregisterSignal(pilot, COMSIG_MOB_MOUSEDOWN)
 		UnregisterSignal(pilot, COMSIG_MOB_MOUSEUP)
 		UnregisterSignal(pilot, COMSIG_MOB_MOUSEDRAG)
 		pilot = null
+	if(bailed && iscarbon(M))	//Jumping out of a flying heli can be dangerous
+		var/mob/living/carbon/Carbon = M
+		Carbon.Paralyze(40)
+		Carbon.apply_damage(10)
+		visible_message(span_danger("[Carbon.name] bailed from [src]!"))
 
 /obj/vehicle/sealed/helicopter/auto_assign_occupant_flags(mob/M)
 	if(driver_amount() < max_drivers)
@@ -228,14 +270,16 @@
 /obj/vehicle/sealed/helicopter/proc/toggle_engine()
 	if(!pilot)
 		return
-	if(!CHECK_BITFIELD(flags_pass, HOVERING) && current_fuel)
+	if(!CHECK_BITFIELD(flags_pass, FLYING) && current_fuel)
 		set_flying(TRUE)
 		animate(src, 3 SECONDS, loop = -1, pixel_z = 20)
 		add_filter("flight_shadow", 2, drop_shadow_filter(y = -10, color = "#000000", size = 10))
 		coverage = 0
 		layer = FLY_LAYER
+		for(var/mob/M in occupants)
+			M.set_flying(TRUE)
 		START_PROCESSING(SSobj, src)
-	else if(CHECK_BITFIELD(flags_pass, HOVERING))
+	else if(CHECK_BITFIELD(flags_pass, FLYING))
 		animate(src, 1 SECONDS, pixel_z = 0)
 		STOP_PROCESSING(SSobj, src)
 		addtimer(CALLBACK(src, .proc/shutdown_procedures), 1 SECONDS)
@@ -248,6 +292,8 @@
 	coverage = initial(coverage)
 	layer = initial(layer)
 	remove_filter("flight_shadow")
+	for(var/mob/M in occupants)
+		M.set_flying(FALSE)
 
 //Heli burns fuel at all times while flying, even if only hovering
 /obj/vehicle/sealed/helicopter/process()
@@ -258,6 +304,8 @@
 	if(COOLDOWN_CHECK(src, enginesound_cooldown))
 		COOLDOWN_START(src, enginesound_cooldown, 35)
 		playsound(get_turf(src), 'sound/effects/tadpolehovering.ogg', 100, TRUE)
+	if(being_destroyed)
+		setDir(pick(LeftAndRightOfDir(dir, TRUE)))
 
 /obj/vehicle/sealed/helicopter/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
 	. = ..()
@@ -266,7 +314,7 @@
 	current_fuel--
 
 /obj/vehicle/sealed/helicopter/relaymove(mob/living/user, direction)
-	if(!CHECK_BITFIELD(flags_pass, HOVERING))
+	if(!CHECK_BITFIELD(flags_pass, FLYING))
 		if(!TIMER_COOLDOWN_CHECK(src, "helicopter anti spam"))
 			balloon_alert(user, "Engine offline!")
 			TIMER_COOLDOWN_START(src, "helicopter anti spam", 2 SECONDS)
@@ -291,7 +339,7 @@
 
 /obj/vehicle/sealed/helicopter/Bump(atom/A)
 	. = ..()
-	if(is_blocked_turf(A))	//Watch where you're flying!
+	if(is_blocked_turf(A) && CHECK_BITFIELD(flags_pass, FLYING))	//Watch where you're flying!
 		take_damage(10)
 		Shake(3, 3, 1 SECONDS)
 		for(var/mob/M in occupants)
@@ -304,22 +352,26 @@
 	balloon_alert_to_viewers("Severe damage taken!")
 
 //BLACK HAWK GOING DOWN
-/obj/vehicle/sealed/helicopter/Destroy()
+/obj/vehicle/sealed/helicopter/obj_destruction(damage_amount, damage_type, damage_flag)
 	being_destroyed = TRUE
-	if(CHECK_BITFIELD(flags_pass, HOVERING))
+	if(CHECK_BITFIELD(flags_pass, FLYING))
 		playsound(src, 'sound/effects/alert.ogg', 100)
-		animate(src, 2 SECONDS, pixel_z = 0)
-		spawn(2 SECONDS)
-		explosion(src, 0, 1, 2, 2, 2, 1, smoke = TRUE)
+		animate(src, 5 SECONDS, pixel_z = 0)
+		addtimer(CALLBACK(src, .proc/death_crash), 5 SECONDS)
 	else
 		explosion(src, 0, 0, 1, 1, 1, smoke = TRUE)	//Smaller explosion since it didn't crash into the ground
-	return ..()
+		return ..()
+
+//Proc for convenience
+/obj/vehicle/sealed/helicopter/proc/death_crash()
+	explosion(src, 0, 1, 2, 2, 2, 1, smoke = TRUE)
+	deconstruct(FALSE)
 
 ///Proc that grabs a new target for firing at and changes the helicopter's direction to face the cursor
 /obj/vehicle/sealed/helicopter/proc/change_target(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
 	SIGNAL_HANDLER
 	set_target(get_turf_on_clickcatcher(over_object, pilot, params))
-	if(CHECK_BITFIELD(flags_pass, HOVERING))	//Heli can't turn around if it's not flying!
+	if(CHECK_BITFIELD(flags_pass, FLYING))	//Heli can't turn around if it's not flying!
 		face_atom(current_target)
 
 /* Weapon fire and autofire component related code below; firing code taken from unmanned vehicles and autofire from gun, spitter, and mech code */
@@ -373,7 +425,6 @@
 	if(!current_target)
 		return
 	if(fire_mode == GUN_FIREMODE_SEMIAUTO)
-		to_chat(world, "semi auto")
 		if(!INVOKE_ASYNC(src, .proc/fire))
 			return
 		reset_fire()
@@ -433,7 +484,7 @@
 /datum/action/vehicle/sealed/helicopter/engine/action_activate()
 	. = ..()
 	helicopter.toggle_engine()
-	if(CHECK_BITFIELD(helicopter.flags_pass, HOVERING))
+	if(CHECK_BITFIELD(helicopter.flags_pass, FLYING))
 		name = "Shut Down Helicopter Engine"
 		action_icon_state = "mech_internals_on"
 	else

@@ -489,12 +489,12 @@
 /mob/living/proc/fly_at(atom/target, range, speed, hovering_time)
 	addtimer(CALLBACK(src,.proc/end_flying, layer), hovering_time)
 	layer = FLY_LAYER
-	set_flying(TRUE)
+	set_hovering(TRUE)
 	throw_at(target, range, speed, null, 0, TRUE)
 
 ///remove flying flags and reset the sprite layer
 /mob/living/proc/end_flying(init_layer)
-	set_flying(FALSE)
+	set_hovering(FALSE)
 	layer = init_layer
 
 /mob/living/proc/offer_mob()

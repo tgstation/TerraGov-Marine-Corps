@@ -8,6 +8,7 @@
 #define PASSFIRE (1<<6)
 #define PASSXENO (1<<7)
 #define HOVERING (PASSTABLE|PASSMOB|PASSSMALLSTRUCT|PASSFIRE)
+#define FLYING (PASSTABLE|PASSGLASS|PASSGRILLE|PASSBLOB|PASSMOB|PASSSMALLSTRUCT|PASSFIRE|PASSXENO)
 
 //==========================================================================================
 

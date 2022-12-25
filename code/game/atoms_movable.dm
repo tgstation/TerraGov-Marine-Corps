@@ -1048,11 +1048,17 @@
 	. = throwing
 	throwing = new_throwing
 
-/atom/movable/proc/set_flying(flying)
-	if (flying)
+/atom/movable/proc/set_hovering(hovering)
+	if(hovering)
 		ENABLE_BITFIELD(flags_pass, HOVERING)
 		return
 	DISABLE_BITFIELD(flags_pass, HOVERING)
+
+/atom/movable/proc/set_flying(flying)
+	if(flying)
+		ENABLE_BITFIELD(flags_pass, FLYING)
+		return
+	DISABLE_BITFIELD(flags_pass, FLYING)
 
 ///returns bool for if we want to get forcepushed
 /atom/movable/proc/force_pushed(atom/movable/pusher, force = MOVE_FORCE_DEFAULT, direction)
@@ -1084,7 +1090,10 @@
 	SHOULD_CALL_PARENT(TRUE)
 	if(status_flags & INCORPOREAL) //Incorporeal can normally pass through anything
 		blocker_opinion = TRUE
-
+	if(flags_pass & FLYING)	//An object marked as FLYING can cross over anything so long as it is not out of bounds, like
+		var/area/blocker_area = get_area(blocker)
+		if(blocker_area.outside && !isspacearea(blocker_area))
+			blocker_opinion = TRUE
 	return blocker_opinion
 
 ///allows this movable to hear and adds itself to the important_recursive_contents list of itself and every movable loc its in
