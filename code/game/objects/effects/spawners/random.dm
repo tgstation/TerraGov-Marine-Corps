@@ -1184,6 +1184,26 @@
 		/obj/item/folder/grape = 5,
 	)
 
+/obj/effect/spawner/random/greytide
+	name = "greytide spawner"
+	icon_state = "random_greytide"
+	spawn_loot_chance = 25
+	spawn_loot_count = 2
+	loot = list(
+		/obj/effect/landmark/corpsespawner/assistant/regular = 15,
+		/obj/item/clothing/under/color/grey = 10,
+		/obj/item/clothing/shoes/black = 10,
+		/obj/item/storage/backpack/satchel/norm = 10,
+		/obj/item/clothing/suit/armor/vest = 10,
+		/obj/effect/spawner/random/toolbox = 5,
+		/obj/item/storage/belt/utility = 5,
+		/obj/effect/spawner/random/insulatedgloves = 5,
+		/obj/effect/spawner/random/decal/blood = 5,
+		/obj/item/card/id/guest = 5,
+		/obj/item/weapon/twohanded/fireaxe = 1,
+		/obj/item/storage/belt/utility/full = 1,
+	)
+
 /obj/effect/spawner/random/sunglasses
 	name = "sunglasses spawner"
 	icon_state = "random_sunglasses"

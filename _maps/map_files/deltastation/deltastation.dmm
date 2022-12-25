@@ -293,6 +293,7 @@
 /obj/effect/turf_decal/siding/dark_red{
 	dir = 4
 	},
+/obj/effect/landmark/corpsespawner/security,
 /turf/open/floor/iron/grimy,
 /area/deltastation/command/heads_quarters/hos)
 "adb" = (
@@ -1774,6 +1775,12 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/cargo/warehouse)
+"atL" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/corpsespawner/engineer,
+/turf/open/floor/iron,
+/area/deltastation/engineering/atmos)
 "atR" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -1966,6 +1973,9 @@
 /obj/structure/cable,
 /obj/machinery/door/airlock/multi_tile/mainship/secdoor{
 	dir = 2
+	},
+/obj/effect/landmark/xeno_resin_door{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/deltastation/security/checkpoint/medical/medsci)
@@ -3712,6 +3722,7 @@
 /turf/open/floor/iron,
 /area/deltastation/command/gateway)
 "aNk" = (
+/obj/effect/landmark/corpsespawner/prisoner,
 /turf/open/floor/iron,
 /area/deltastation/security/prison/work)
 "aNo" = (
@@ -6554,6 +6565,11 @@
 "bqU" = (
 /turf/open/floor/plating,
 /area/deltastation/maintenance/port)
+"bqX" = (
+/obj/effect/turf_decal/tile/blue/fourcorners,
+/obj/effect/landmark/corpsespawner/scientist,
+/turf/open/floor/iron/white,
+/area/deltastation/medical/chemistry)
 "bra" = (
 /obj/structure/prop/keycardauth{
 	pixel_y = -38
@@ -11735,6 +11751,11 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/deltastation/maintenance/port/aft)
+"cuS" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/corpsespawner/colonist/burst,
+/turf/open/floor/iron,
+/area/deltastation/asteroidcaves/derelictwest)
 "cuU" = (
 /obj/effect/decal/cleanable/blood/oil,
 /obj/effect/decal/cleanable/dirt,
@@ -12321,11 +12342,11 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
 	},
 /turf/open/floor/iron,
 /area/deltastation/security/office)
@@ -13256,6 +13277,11 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /turf/open/floor/plating,
 /area/deltastation/maintenance/port/fore)
+"cMy" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/landmark/corpsespawner/engineer,
+/turf/open/floor/iron,
+/area/deltastation/engineering/atmos/hfr_room)
 "cMz" = (
 /obj/effect/spawner/random/structure/broken_reinforced_window,
 /obj/effect/decal/sandedge{
@@ -13804,6 +13830,11 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/iron,
 /area/deltastation/maintenance/port)
+"cSX" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/landmark/corpsespawner/miner/burst,
+/turf/open/floor/iron,
+/area/deltastation/cargo/storage)
 "cSY" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/decal/cleanable/dirt,
@@ -15699,6 +15730,12 @@
 /obj/effect/turf_decal/tile/brown/half/contrasted,
 /turf/open/floor/iron,
 /area/deltastation/cargo/drone_bay)
+"dme" = (
+/obj/effect/spawner/random/structure/chair_or_metal/east,
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/spawner/random/greytide,
+/turf/open/floor/iron/dark,
+/area/deltastation/security/courtroom)
 "dmj" = (
 /obj/machinery/newscaster{
 	dir = 4
@@ -16245,6 +16282,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
+/obj/effect/landmark/corpsespawner/security/burst,
 /turf/open/floor/iron/large,
 /area/deltastation/security/checkpoint/medical/medsci)
 "dsC" = (
@@ -16344,6 +16382,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8
 	},
+/obj/effect/spawner/random/greytide,
 /turf/open/floor/iron/dark,
 /area/deltastation/security/courtroom)
 "dtv" = (
@@ -18978,6 +19017,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/effect/spawner/random/greytide,
 /turf/open/floor/plating,
 /area/deltastation/service/abandoned_gambling_den/gaming)
 "dSH" = (
@@ -19555,6 +19595,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 8
 	},
+/obj/effect/landmark/corpsespawner/doctor,
 /turf/open/floor/iron/white,
 /area/deltastation/command/heads_quarters/cmo)
 "dWS" = (
@@ -22034,6 +22075,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/xeno_resin_door{
 	dir = 4
 	},
 /turf/open/floor/iron,
@@ -27936,6 +27980,7 @@
 	},
 /obj/structure/cable,
 /obj/effect/ai_node,
+/obj/effect/landmark/corpsespawner/miner,
 /turf/open/floor/iron,
 /area/deltastation/cargo/miningoffice)
 "fDA" = (
@@ -30882,7 +30927,6 @@
 "ght" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/ausbushes/lavendergrass,
-/obj/effect/spawner/random/structure/status_display,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
@@ -30948,6 +30992,11 @@
 	},
 /turf/open/floor/iron/dark,
 /area/deltastation/service/chapel/funeral)
+"gim" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/spawner/random/greytide,
+/turf/open/floor/iron,
+/area/deltastation/hallway/secondary/exit/departure_lounge)
 "gir" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/iron/half{
@@ -32696,6 +32745,7 @@
 "gzy" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/landmark/weed_node,
+/obj/effect/landmark/corpsespawner/engineer,
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos/mix)
 "gzE" = (
@@ -33845,6 +33895,13 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/entry)
+"gLM" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 2
+	},
+/obj/effect/landmark/corpsespawner/security/regular,
+/turf/open/floor/iron,
+/area/deltastation/security/lockers)
 "gLO" = (
 /obj/effect/step_trigger/teleporter/random{
 	affect_ghosts = 1;
@@ -34243,7 +34300,6 @@
 /area/deltastation/hallway/primary/central/fore)
 "gPL" = (
 /obj/effect/spawner/random/structure/tank/waterweighted,
-/obj/effect/spawner/random/structure/status_display,
 /obj/effect/decal/warning_stripes/box/empty,
 /turf/open/floor/iron/textured,
 /area/deltastation/engineering/storage)
@@ -35044,6 +35100,12 @@
 "gYT" = (
 /turf/closed/wall,
 /area/deltastation/service/library)
+"gZf" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/landmark/weed_node,
+/obj/effect/spawner/random/greytide,
+/turf/open/floor/iron,
+/area/deltastation/hallway/secondary/exit/departure_lounge)
 "gZl" = (
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 1
@@ -35569,6 +35631,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/deltastation/asteroidcaves/derelictnortheast)
+"hcV" = (
+/obj/effect/turf_decal/trimline/purple/filled/line,
+/obj/effect/landmark/corpsespawner/security,
+/turf/open/floor/iron/white,
+/area/deltastation/science/research)
 "hdj" = (
 /obj/structure/sign/securearea{
 	dir = 1
@@ -37179,6 +37246,10 @@
 	},
 /turf/open/floor/iron/dark,
 /area/deltastation/science/ordnance)
+"huZ" = (
+/obj/effect/spawner/random/greytide,
+/turf/open/floor/gcircuit,
+/area/deltastation/science/research/abandoned)
 "hvc" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -37195,6 +37266,7 @@
 "hve" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/corpsespawner/scientist/burst,
 /turf/open/floor/gcircuit,
 /area/deltastation/science/xenobiology)
 "hvj" = (
@@ -37400,6 +37472,7 @@
 /area/space)
 "hxw" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/landmark/corpsespawner/security,
 /turf/open/floor/iron/dark,
 /area/deltastation/security/interrogation)
 "hxA" = (
@@ -38241,6 +38314,7 @@
 /obj/machinery/holopad,
 /obj/effect/decal/warning_stripes/box/empty,
 /obj/effect/turf_decal/tile/neutral/full,
+/obj/effect/landmark/corpsespawner/doctor,
 /turf/open/floor/iron/large,
 /area/deltastation/medical/paramedic)
 "hHE" = (
@@ -42184,7 +42258,6 @@
 /area/deltastation/service/library/printer)
 "iAy" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/structure/status_display,
 /obj/effect/spawner/random/structure/tank/fuelweighted,
 /obj/effect/decal/warning_stripes/box/empty,
 /turf/open/floor/iron/textured,
@@ -43382,6 +43455,11 @@
 /obj/effect/spawner/random/plant,
 /turf/open/floor/wood,
 /area/deltastation/commons/dorms)
+"iMo" = (
+/obj/effect/turf_decal/trimline/purple/filled/line,
+/obj/effect/landmark/corpsespawner/security,
+/turf/open/floor/iron/white,
+/area/deltastation/science/lab)
 "iMs" = (
 /obj/structure/sign/securearea{
 	dir = 4
@@ -44169,6 +44247,7 @@
 "iUe" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/landmark/corpsespawner/chef,
 /turf/open/floor/iron/cafeteria,
 /area/deltastation/service/kitchen)
 "iUf" = (
@@ -44303,6 +44382,11 @@
 	},
 /turf/open/floor/iron/white,
 /area/deltastation/science/research)
+"iVi" = (
+/obj/effect/spawner/random/structure/stool,
+/obj/effect/spawner/random/greytide,
+/turf/open/floor/iron/dark,
+/area/deltastation/service/theater)
 "iVl" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 4
@@ -44796,11 +44880,11 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
 	},
 /turf/open/floor/iron/dark/textured_edge{
 	dir = 4
@@ -45504,6 +45588,7 @@
 /area/deltastation/hallway/primary/central/aft)
 "jjt" = (
 /obj/effect/landmark/weed_node,
+/obj/effect/landmark/corpsespawner/engineer/rig/burst,
 /turf/open/floor/iron,
 /area/deltastation/asteroidcaves/derelictwest)
 "jjB" = (
@@ -46509,6 +46594,7 @@
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 1
 	},
+/obj/effect/landmark/corpsespawner/security,
 /turf/open/floor/iron/dark,
 /area/deltastation/engineering/transit_tube)
 "jur" = (
@@ -49311,14 +49397,19 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/deltastation/maintenance/port/aft)
 "jYT" = (
-/obj/effect/spawner/random/structure/status_display,
-/obj/structure/morgue{
-	dir = 2
+/obj/effect/turf_decal/tile/red{
+	dir = 1
 	},
-/turf/open/floor/iron/dark/textured_half{
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
-/area/deltastation/medical/morgue)
+/obj/effect/landmark/corpsespawner/assistant/regular,
+/turf/open/floor/iron,
+/area/deltastation/service/kitchen/abandoned)
 "jYY" = (
 /turf/open/floor/iron,
 /area/deltastation/asteroidcaves/derelictnortheast)
@@ -51148,6 +51239,7 @@
 /turf/closed/wall,
 /area/deltastation/engineering/storage/tech)
 "kuo" = (
+/obj/effect/landmark/corpsespawner/doctor,
 /turf/open/floor/iron/white,
 /area/deltastation/medical/treatment_center)
 "kur" = (
@@ -55441,6 +55533,7 @@
 	dir = 8
 	},
 /obj/effect/landmark/weed_node,
+/obj/effect/landmark/corpsespawner/engineer,
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos/storage)
 "lnR" = (
@@ -57898,6 +57991,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
 	},
+/obj/effect/landmark/corpsespawner/security,
 /turf/open/floor/iron,
 /area/deltastation/security/holding_cell)
 "lMq" = (
@@ -60580,6 +60674,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/effect/landmark/corpsespawner/prisoner/regular,
 /turf/open/floor/iron/cafeteria,
 /area/deltastation/security/prison/mess)
 "mow" = (
@@ -61064,6 +61159,11 @@
 /obj/effect/turf_decal/delivery/red,
 /turf/open/floor/iron,
 /area/deltastation/maintenance/department/security)
+"muf" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/corpsespawner/prisoner/regular,
+/turf/open/floor/iron,
+/area/deltastation/security/prison/garden)
 "muk" = (
 /obj/machinery/newscaster{
 	dir = 8
@@ -63660,6 +63760,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/iron/dark/textured,
 /area/deltastation/medical/cryo)
+"mWw" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/corpsespawner/marine/engineer/burst,
+/turf/open/floor/iron,
+/area/deltastation/asteroidcaves/derelictwest)
 "mWx" = (
 /obj/machinery/light_switch,
 /turf/closed/wall,
@@ -64021,6 +64126,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/iron,
 /area/deltastation/engineering/break_room)
+"naX" = (
+/obj/effect/landmark/corpsespawner/scientist/burst,
+/turf/open/floor/engine{
+	name = "Holodeck Projector Floor"
+	},
+/area/holodeck)
 "naY" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -64050,6 +64161,7 @@
 "nbg" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/corpsespawner/engineer,
 /turf/open/floor/iron,
 /area/deltastation/maintenance/disposal/incinerator)
 "nbj" = (
@@ -66257,6 +66369,11 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/security/checkpoint/supply)
+"nyN" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/spawner/random/greytide,
+/turf/open/floor/plating,
+/area/deltastation/maintenance/department/crew_quarters/bar)
 "nyR" = (
 /obj/effect/decal/sandedge/corner2,
 /turf/open/floor/iron/white,
@@ -67062,6 +67179,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
 	},
+/obj/effect/spawner/random/greytide,
 /turf/open/floor/plating,
 /area/deltastation/maintenance/port)
 "nIM" = (
@@ -67920,6 +68038,7 @@
 "nSg" = (
 /obj/structure/cable,
 /obj/effect/mapping_helpers/simple_pipes/brown/visible,
+/obj/effect/landmark/corpsespawner/engineer,
 /turf/open/floor/iron,
 /area/deltastation/engineering/supermatter/room)
 "nSh" = (
@@ -68263,6 +68382,10 @@
 /obj/machinery/light_switch,
 /turf/open/floor/wood,
 /area/deltastation/commons/vacant_room/office)
+"nVW" = (
+/obj/effect/spawner/random/greytide,
+/turf/open/floor/plating,
+/area/deltastation/maintenance/port/fore)
 "nWe" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/mineral,
@@ -68826,6 +68949,7 @@
 "oaZ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sign/securearea,
+/obj/effect/spawner/random/greytide,
 /turf/open/floor/plating,
 /area/deltastation/maintenance/department/security)
 "obo" = (
@@ -69451,6 +69575,12 @@
 	},
 /turf/open/floor/iron/white/corner,
 /area/deltastation/security/medical)
+"oir" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/corpsespawner/scientist,
+/turf/open/floor/iron,
+/area/deltastation/maintenance/department/science)
 "oiw" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron,
@@ -70621,6 +70751,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/effect/landmark/corpsespawner/chef,
 /turf/open/floor/iron/cafeteria,
 /area/deltastation/service/kitchen)
 "owe" = (
@@ -71645,12 +71776,10 @@
 /turf/open/floor/iron,
 /area/deltastation/engineering/supermatter/room)
 "oEs" = (
-/obj/effect/spawner/random/structure/status_display,
-/obj/machinery/power/emitter{
-	dir = 8
-	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/random/greytide,
 /turf/open/floor/plating,
-/area/deltastation/engineering/supermatter/room)
+/area/deltastation/maintenance/fore)
 "oEt" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/shard,
@@ -73921,6 +74050,7 @@
 "pcZ" = (
 /obj/effect/spawner/random/structure/office_chair_or_metal/north,
 /obj/effect/turf_decal/tile/purple/half/contrasted,
+/obj/effect/landmark/corpsespawner/scientist/burst,
 /turf/open/floor/iron/white,
 /area/deltastation/command/heads_quarters/rd)
 "pdb" = (
@@ -76337,6 +76467,11 @@
 	},
 /turf/open/floor/iron/large,
 /area/deltastation/security/brig)
+"pAM" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/landmark/corpsespawner/engineer/rig/regular,
+/turf/open/floor/iron,
+/area/deltastation/engineering/atmos/project)
 "pAQ" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
@@ -76453,6 +76588,7 @@
 /obj/effect/turf_decal/stripes/corner,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
+/obj/effect/landmark/corpsespawner/prison_security/burst,
 /turf/open/floor/iron,
 /area/deltastation/asteroidcaves/derelictwest)
 "pCm" = (
@@ -78369,6 +78505,14 @@
 	},
 /turf/open/floor/iron/white,
 /area/deltastation/medical/virology)
+"pVq" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/landmark/corpsespawner/engineer,
+/turf/open/floor/iron,
+/area/deltastation/engineering/supermatter/room)
 "pVr" = (
 /obj/effect/mapping_helpers/simple_pipes/cyan/visible,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
@@ -80463,6 +80607,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/iron,
 /area/deltastation/commons/storage/primary)
+"qpG" = (
+/obj/effect/spawner/random/greytide,
+/turf/open/floor/plating,
+/area/deltastation/service/abandoned_gambling_den)
 "qpH" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
@@ -80512,6 +80660,10 @@
 	},
 /turf/open/floor/iron/large,
 /area/deltastation/science/xenobiology)
+"qqf" = (
+/obj/effect/landmark/corpsespawner/engineer/regular,
+/turf/open/floor/plating,
+/area/deltastation/engineering/supermatter/room)
 "qqi" = (
 /turf/open/floor/plating,
 /area/deltastation/construction/mining/aux_base)
@@ -82045,6 +82197,10 @@
 	},
 /turf/open/floor/plating,
 /area/deltastation/science/lab)
+"qFs" = (
+/obj/effect/spawner/random/greytide,
+/turf/open/floor/iron/grimy,
+/area/deltastation/service/library/abandoned)
 "qFu" = (
 /obj/machinery/holopad,
 /obj/structure/cable,
@@ -83483,6 +83639,12 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/deltastation/asteroidcaves/westerncaves)
+"qTl" = (
+/obj/effect/landmark/corpsespawner/chef/burst,
+/turf/open/floor/engine{
+	name = "Holodeck Projector Floor"
+	},
+/area/holodeck)
 "qTm" = (
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/stripes/line{
@@ -85259,6 +85421,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/effect/landmark/corpsespawner/security,
 /turf/open/floor/iron/white/side{
 	dir = 1
 	},
@@ -85303,6 +85466,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/entry)
+"rol" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/landmark/corpsespawner/miner/rig,
+/turf/open/floor/iron,
+/area/deltastation/cargo/office)
 "ron" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 6
@@ -86206,6 +86374,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/iron/dark,
 /area/deltastation/engineering/atmos)
+"rxm" = (
+/obj/effect/landmark/corpsespawner/colonist/burst,
+/turf/open/floor/iron/freezer,
+/area/deltastation/asteroidcaves/derelictwest)
 "rxo" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -86830,6 +87002,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1
 	},
+/obj/effect/landmark/corpsespawner/security,
 /turf/open/floor/iron/large,
 /area/deltastation/security/office)
 "rEP" = (
@@ -87022,7 +87195,6 @@
 /area/deltastation/service/theater/abandoned)
 "rGE" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/effect/spawner/random/structure/status_display,
 /obj/structure/bed/chair/sofa,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -87651,6 +87823,12 @@
 	},
 /turf/open/floor/iron/grimy,
 /area/deltastation/maintenance/port/fore)
+"rMl" = (
+/obj/effect/mapping_helpers/simple_pipes/dark/visible,
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/landmark/corpsespawner/engineer,
+/turf/open/floor/iron,
+/area/deltastation/engineering/atmos)
 "rMs" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/structure/disposalpipe/segment{
@@ -88793,6 +88971,10 @@
 	},
 /turf/open/floor/iron/white,
 /area/deltastation/medical/virology)
+"rZX" = (
+/obj/effect/landmark/corpsespawner/engineer/burst,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/deltastation/asteroidcaves/westerncaves)
 "rZY" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/engine,
@@ -90137,6 +90319,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/deltastation/maintenance/port/aft)
+"sop" = (
+/obj/effect/landmark/corpsespawner/engineer,
+/turf/open/floor/iron,
+/area/deltastation/engineering/atmos/project)
 "sor" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -90541,6 +90727,12 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/asteroidcaves/derelictnortheast)
+"ssb" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/effect/landmark/corpsespawner/marine/engineer/burst,
+/turf/open/floor/iron,
+/area/deltastation/asteroidcaves/derelictwest)
 "ssc" = (
 /turf/closed/wall/r_wall,
 /area/deltastation/service/chapel/storage)
@@ -91795,6 +91987,7 @@
 /area/deltastation/asteroidcaves/derelictwest)
 "sEr" = (
 /obj/effect/landmark/weed_node,
+/obj/effect/spawner/random/greytide,
 /turf/open/floor/iron/dark,
 /area/deltastation/service/library/abandoned)
 "sEv" = (
@@ -92644,6 +92837,11 @@
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/iron,
 /area/deltastation/science/research/abandoned)
+"sNf" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/landmark/corpsespawner/bridgeofficer/burst,
+/turf/open/floor/iron/dark,
+/area/deltastation/command/bridge)
 "sNh" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -95224,7 +95422,6 @@
 /obj/effect/turf_decal/trimline/neutral/mid_joiner{
 	dir = 8
 	},
-/obj/effect/spawner/random/structure/status_display,
 /obj/structure/morgue{
 	dir = 1
 	},
@@ -96124,6 +96321,12 @@
 	},
 /turf/open/floor/iron/dark,
 /area/deltastation/medical/chemistry)
+"txz" = (
+/obj/effect/landmark/corpsespawner/engineer/rig/burst,
+/turf/open/floor/engine{
+	name = "Holodeck Projector Floor"
+	},
+/area/holodeck)
 "txC" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
@@ -96720,6 +96923,12 @@
 /obj/effect/turf_decal/tile/blue/half/contrasted,
 /turf/open/floor/iron/dark,
 /area/deltastation/command/bridge)
+"tDM" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/corpsespawner/engineer,
+/turf/open/floor/iron,
+/area/deltastation/engineering/atmos)
 "tDN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -96771,19 +96980,11 @@
 /turf/open/floor/carpet,
 /area/deltastation/commons/lounge)
 "tEJ" = (
-/obj/machinery/conveyor{
-	dir = 1;
-	id = "cargoload"
-	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/structure/status_display{
-	pixel_x = 32
-	},
-/obj/effect/decal/sandedge{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/deltastation/cargo/storage)
+/obj/structure/cable,
+/obj/effect/landmark/corpsespawner/colonist/burst,
+/turf/open/floor/iron,
+/area/deltastation/asteroidcaves/derelictwest)
 "tEN" = (
 /obj/structure/table/woodentable,
 /obj/item/flashlight/lamp,
@@ -97208,6 +97409,7 @@
 "tJI" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/turf_decal/tile/yellow/fourcorners,
+/obj/effect/landmark/corpsespawner/engineer,
 /turf/open/floor/iron,
 /area/deltastation/engineering/storage)
 "tJO" = (
@@ -97728,6 +97930,10 @@
 "tOn" = (
 /turf/closed/wall,
 /area/deltastation/asteroidcaves/derelictwest)
+"tOo" = (
+/obj/effect/landmark/corpsespawner/scientist,
+/turf/open/floor/iron/dark,
+/area/deltastation/science/ordnance)
 "tOp" = (
 /obj/structure/cable,
 /obj/machinery/power/smes/buildable/empty,
@@ -97871,6 +98077,7 @@
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 1
 	},
+/obj/effect/landmark/corpsespawner/security,
 /turf/open/floor/iron,
 /area/deltastation/security/processing)
 "tPF" = (
@@ -98870,6 +99077,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/secdoor{
 	name = "Security Post - Science"
 	},
+/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/iron,
 /area/deltastation/security/checkpoint/medical/medsci)
 "tZQ" = (
@@ -99424,6 +99632,7 @@
 /area/deltastation/maintenance/solars/port/aft)
 "ugz" = (
 /obj/structure/cable,
+/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating,
 /area/deltastation/security/checkpoint/medical/medsci)
 "ugD" = (
@@ -103610,6 +103819,11 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/commons/storage/tools)
+"uWz" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/corpsespawner/miner/rig/burst,
+/turf/open/floor/iron,
+/area/deltastation/asteroidcaves/derelictwest)
 "uWD" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -109226,6 +109440,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
 	},
+/obj/effect/landmark/corpsespawner/doctor,
 /turf/open/floor/iron/white,
 /area/deltastation/medical/medbay)
 "wby" = (
@@ -109820,6 +110035,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
+/obj/effect/spawner/random/greytide,
 /turf/open/floor/plating,
 /area/deltastation/hallway/secondary/construction)
 "wgY" = (
@@ -112778,6 +112994,7 @@
 	dir = 1
 	},
 /obj/effect/landmark/weed_node,
+/obj/effect/landmark/corpsespawner/security,
 /turf/open/floor/iron/grimy,
 /area/deltastation/command/heads_quarters/hos)
 "wJT" = (
@@ -113704,6 +113921,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/deltastation/engineering/supermatter/room)
+"wSv" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/landmark/corpsespawner/scientist/burst,
+/turf/open/floor/iron/dark,
+/area/deltastation/science/xenobiology)
 "wSB" = (
 /obj/effect/mapping_helpers/simple_pipes/scrubbers/visible{
 	dir = 10
@@ -114314,6 +114536,12 @@
 	},
 /turf/open/floor/plating,
 /area/deltastation/external/landingzone)
+"xai" = (
+/obj/effect/landmark/corpsespawner/security/burst,
+/turf/open/floor/engine{
+	name = "Holodeck Projector Floor"
+	},
+/area/holodeck)
 "xaj" = (
 /obj/effect/spawner/random/structure/stool,
 /obj/machinery/light/small{
@@ -116511,6 +116739,11 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/maintenance/starboard/aft)
+"xyf" = (
+/obj/structure/cable,
+/obj/effect/spawner/random/greytide,
+/turf/open/floor/plating,
+/area/deltastation/maintenance/starboard/aft)
 "xyl" = (
 /obj/structure/table/reinforced,
 /obj/item/stock_parts/matter_bin,
@@ -116992,6 +117225,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/effect/spawner/random/greytide,
 /turf/open/floor/iron/corner{
 	dir = 1
 	},
@@ -118983,6 +119217,11 @@
 	},
 /turf/open/floor/iron/white,
 /area/deltastation/science/lab)
+"xUe" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/spawner/random/structure/status_display,
+/turf/closed/wall,
+/area/deltastation/cargo/storage)
 "xUg" = (
 /obj/effect/spawner/random/structure/office_chair_or_metal/dark/north,
 /turf/open/floor/carpet,
@@ -119299,6 +119538,7 @@
 /obj/structure/cable,
 /obj/effect/turf_decal/trimline/purple/filled/warning,
 /obj/effect/landmark/weed_node,
+/obj/effect/landmark/corpsespawner/security,
 /turf/open/floor/iron/white,
 /area/deltastation/science/ordnance/office)
 "xXU" = (
@@ -128313,14 +128553,14 @@ xAg
 eFH
 lLb
 xAg
-wXV
+tEJ
 xAg
 xAg
 fuA
 wXV
 jgM
 wXV
-wXV
+ssb
 sEm
 wXV
 lTN
@@ -129610,7 +129850,7 @@ lJo
 rdj
 lJR
 lwp
-xAg
+uWz
 xAg
 xqv
 edb
@@ -129857,12 +130097,12 @@ cZz
 prp
 prp
 xMe
-wXV
+tEJ
 dbs
 fgJ
 meB
 peP
-xAg
+cuS
 jPY
 rdj
 lJR
@@ -130884,9 +131124,9 @@ qsZ
 lLb
 taT
 vOJ
-oUt
+rxm
 tOn
-xAg
+mWw
 wXV
 tOn
 wcb
@@ -136819,7 +137059,7 @@ qer
 bCp
 bCp
 bCp
-bCp
+rZX
 bCp
 bCp
 wxm
@@ -137584,7 +137824,7 @@ wxm
 wxm
 wxm
 bCp
-bCp
+rZX
 hJh
 qer
 hJh
@@ -139459,7 +139699,7 @@ oJL
 bHP
 oJL
 dNd
-oJL
+wSv
 asd
 awI
 fNJ
@@ -141738,8 +141978,8 @@ oDg
 bmt
 qRP
 kDu
-wyI
-oEs
+epd
+qbR
 xXr
 kYb
 vqi
@@ -142001,7 +142241,7 @@ wms
 wms
 sFN
 vva
-wms
+qqf
 ekN
 spQ
 seK
@@ -143069,7 +143309,7 @@ obv
 oJD
 vSu
 fWi
-ttn
+qpG
 eHj
 vrt
 pLO
@@ -143749,7 +143989,7 @@ owt
 ugj
 vJY
 obR
-obR
+rMl
 jOW
 lVa
 obR
@@ -143766,7 +144006,7 @@ flY
 bop
 bop
 yfn
-yfn
+atL
 fSX
 xCU
 yfn
@@ -143804,7 +144044,7 @@ rZY
 slM
 xJc
 fjM
-oFP
+pVq
 vQG
 dLU
 tml
@@ -145292,7 +145532,7 @@ xqh
 neO
 hoO
 jMo
-qgs
+pAM
 rUg
 mJT
 tAm
@@ -145554,7 +145794,7 @@ rXw
 sQl
 ciX
 wPc
-jvd
+tDM
 xCU
 lZY
 vvN
@@ -145898,7 +146138,7 @@ dlM
 tVm
 cpJ
 leX
-rPq
+huZ
 rwG
 rPq
 uHX
@@ -146057,7 +146297,7 @@ kMO
 xHX
 vgC
 dTJ
-bsU
+sop
 lmf
 koL
 fHC
@@ -146405,7 +146645,7 @@ fle
 kyB
 oZP
 qHr
-ltx
+oir
 xxL
 ccV
 ccV
@@ -147082,7 +147322,7 @@ avq
 hIz
 nea
 ual
-vGL
+cMy
 vgC
 kpw
 bsU
@@ -147414,7 +147654,7 @@ qRw
 dcv
 mPg
 gPL
-xQW
+bzf
 qvp
 uXx
 omV
@@ -147928,7 +148168,7 @@ wgJ
 dPh
 mPg
 iAy
-xQW
+bzf
 ozN
 fjr
 nzQ
@@ -150288,7 +150528,7 @@ xkI
 lpr
 bEF
 xkI
-xkI
+qFs
 hHE
 eoz
 gAj
@@ -150439,7 +150679,7 @@ gPA
 keZ
 uhX
 kGe
-kGe
+nVW
 neY
 pAV
 kGe
@@ -150763,7 +151003,7 @@ iIX
 waS
 eLi
 sBK
-frT
+hcV
 tEc
 qRZ
 ehU
@@ -153874,7 +154114,7 @@ kvV
 xUx
 xUx
 kvV
-xUx
+tOo
 nZk
 kvV
 xUx
@@ -155844,7 +156084,7 @@ fEM
 qQS
 nPq
 oag
-vef
+iVi
 vef
 sIq
 nPq
@@ -156165,7 +156405,7 @@ rSy
 fux
 fqM
 bBw
-rXR
+iMo
 qoF
 klI
 gLl
@@ -156702,7 +156942,7 @@ hTr
 hTr
 wei
 hTr
-tNw
+bqX
 kwa
 xux
 tNw
@@ -159201,7 +159441,7 @@ yiT
 emI
 obO
 wES
-xGt
+sNf
 wih
 nrO
 oKT
@@ -159697,7 +159937,7 @@ spA
 hOC
 spA
 spA
-weo
+nyN
 nQg
 uMR
 snd
@@ -160564,7 +160804,7 @@ nLK
 kQS
 pFb
 tol
-mvH
+xfe
 eMC
 eIP
 aRl
@@ -161587,7 +161827,7 @@ uDu
 uDu
 qwF
 eKN
-jYT
+ebK
 koU
 oiI
 eqS
@@ -162266,7 +162506,7 @@ fSF
 fgY
 tiO
 mko
-tZr
+rol
 sIz
 pGU
 nUf
@@ -162492,7 +162732,7 @@ lrb
 cGD
 xMn
 eZu
-xul
+oEs
 vXu
 rbW
 lvM
@@ -162630,7 +162870,7 @@ gSp
 cTW
 mxE
 mxE
-sDn
+gZf
 mxE
 kOo
 sDn
@@ -163914,7 +164154,7 @@ uTU
 mxE
 amM
 gZV
-mxE
+gim
 sDn
 mxE
 hUi
@@ -164420,7 +164660,7 @@ rMb
 saq
 dAz
 mxE
-mxE
+gim
 pQX
 mxE
 mxE
@@ -164800,7 +165040,7 @@ qqi
 qqi
 dFm
 rpC
-csV
+jYT
 cFO
 pPN
 bsF
@@ -164825,7 +165065,7 @@ fYC
 aTV
 rXH
 xYx
-rXH
+cSX
 exI
 fYC
 qLl
@@ -164940,7 +165180,7 @@ dpU
 dmB
 dnP
 rjP
-rjP
+ifP
 rjP
 vXG
 vXG
@@ -166161,7 +166401,7 @@ gPe
 vKn
 cQq
 gPe
-gPe
+dme
 gPe
 qmT
 waK
@@ -166369,7 +166609,7 @@ gmx
 aFX
 sGL
 vHy
-tEJ
+vHy
 vHy
 bgw
 agx
@@ -166626,7 +166866,7 @@ oxy
 uBW
 uBW
 nCC
-qPk
+xUe
 xow
 trt
 fFO
@@ -168749,7 +168989,7 @@ pki
 vVc
 gvT
 vvk
-vfP
+rhc
 rGE
 uRV
 gEj
@@ -173651,7 +173891,7 @@ cfY
 nnT
 ahd
 lIG
-cfY
+xyf
 uqf
 rmv
 eRO
@@ -174124,7 +174364,7 @@ bOA
 xAu
 oiQ
 iNV
-jBW
+gLM
 tdC
 oGt
 lxH
@@ -175098,7 +175338,7 @@ rHg
 sJy
 rWK
 acI
-yeu
+muf
 yeu
 iYn
 foV
@@ -177227,7 +177467,7 @@ xhx
 xhx
 xhx
 lbH
-xhx
+xai
 xhx
 lbH
 xhx
@@ -177481,7 +177721,7 @@ iMl
 mDo
 hWI
 nkr
-xhx
+txz
 wTl
 xhx
 xhx
@@ -177744,7 +177984,7 @@ vCW
 rMI
 tLc
 xhx
-xhx
+xai
 xhx
 xhx
 oYm
@@ -177996,7 +178236,7 @@ mQP
 kSe
 xhx
 xhx
-xhx
+qTl
 xhx
 tLc
 xhx
@@ -178512,7 +178752,7 @@ nkr
 xhx
 wTl
 lbH
-xhx
+naX
 xhx
 lbH
 xhx
