@@ -315,7 +315,7 @@
 /obj/structure/window/reinforced/west
 	dir = WEST
 
-/obj/structure/window/reinforced/west
+/obj/structure/window/reinforced/east
 	dir = EAST
 
 /obj/structure/window/reinforced/Initialize(mapload)
