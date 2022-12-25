@@ -1053,7 +1053,7 @@
 /turf/open/floor/plating,
 /area/deltastation/security/checkpoint/supply)
 "akN" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/sandedge/corner2{
 	dir = 4
@@ -1406,9 +1406,7 @@
 /turf/open/floor/iron,
 /area/ai_monitored/storage/eva)
 "apb" = (
-/obj/structure/bed/chair/office{
-	dir = 8
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/west,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -2428,7 +2426,7 @@
 	},
 /area/deltastation/service/chapel)
 "aAr" = (
-/obj/structure/bed/chair/office,
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark,
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -2781,9 +2779,7 @@
 /turf/open/floor/wood,
 /area/deltastation/maintenance/port/fore)
 "aDY" = (
-/obj/structure/bed/chair/office{
-	dir = 1
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/north,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/deltastation/security/detectives_office)
@@ -2858,9 +2854,7 @@
 /turf/open/floor/wood,
 /area/deltastation/service/library/artgallery)
 "aEK" = (
-/obj/structure/bed/chair/office{
-	dir = 8
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/west,
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -2954,9 +2948,7 @@
 /turf/open/floor/iron/white,
 /area/deltastation/science/lab)
 "aGe" = (
-/obj/structure/bed/chair/office{
-	dir = 8
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/west,
 /obj/effect/turf_decal/tile/neutral/full,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
@@ -3114,7 +3106,7 @@
 "aHX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/carpet,
 /area/deltastation/commons/lounge)
@@ -3761,7 +3753,7 @@
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/entry)
 "aNu" = (
-/obj/structure/bed/chair/office,
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/carpet,
 /area/deltastation/commons/dorms)
@@ -4396,7 +4388,7 @@
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/port)
 "aVv" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/iron,
 /area/deltastation/commons/fitness/recreation)
@@ -5490,7 +5482,7 @@
 /area/deltastation/science/robotics/lab)
 "bgF" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /turf/open/floor/carpet,
 /area/deltastation/commons/lounge)
 "bgJ" = (
@@ -5688,9 +5680,7 @@
 /area/deltastation/service/chapel)
 "bio" = (
 /obj/structure/cable,
-/obj/structure/bed/chair/office{
-	dir = 8
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/west,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -5850,9 +5840,7 @@
 /area/deltastation/cargo/office)
 "bjS" = (
 /obj/effect/turf_decal/stripes/line,
-/obj/structure/bed/chair/office{
-	dir = 4
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/east,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
 /area/deltastation/science/research/abandoned)
@@ -5987,9 +5975,7 @@
 /turf/open/floor/iron,
 /area/deltastation/command/gateway)
 "blk" = (
-/obj/structure/bed/chair/office{
-	dir = 1
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/north,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/deltastation/command/bridge)
@@ -6774,9 +6760,7 @@
 /area/deltastation/cargo/miningoffice)
 "btp" = (
 /obj/structure/cable,
-/obj/structure/bed/chair/office{
-	dir = 4
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/east,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/purple/half/contrasted,
 /turf/open/floor/iron,
@@ -7094,9 +7078,7 @@
 /turf/closed/wall/r_wall/unmeltable/regular,
 /area/deltastation/service/chapel/funeral)
 "bwl" = (
-/obj/structure/bed/chair/office{
-	dir = 4
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/east,
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
 /area/deltastation/maintenance/solars/starboard/aft)
@@ -7528,7 +7510,7 @@
 /turf/open/floor/iron,
 /area/deltastation/commons/vacant_room/commissary)
 "bzs" = (
-/obj/structure/bed/chair/office,
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark,
 /obj/structure/sign/securearea{
 	dir = 1
 	},
@@ -7599,9 +7581,7 @@
 /turf/open/floor/wood,
 /area/deltastation/command/corporate_showroom)
 "bzJ" = (
-/obj/structure/bed/chair/office{
-	dir = 4
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/east,
 /obj/effect/turf_decal/siding/yellow{
 	dir = 5
 	},
@@ -7777,9 +7757,7 @@
 /turf/open/floor/plating,
 /area/deltastation/maintenance/port)
 "bCo" = (
-/obj/structure/bed/chair/office{
-	dir = 1
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/north,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron,
 /area/deltastation/cargo/storage)
@@ -8361,9 +8339,7 @@
 /turf/open/floor/prison/blackfloor,
 /area/deltastation/asteroidcaves/ship)
 "bJd" = (
-/obj/structure/bed/chair/office{
-	dir = 1
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/north,
 /obj/effect/ai_node,
 /turf/open/floor/iron/grimy,
 /area/deltastation/tcommsat/computer)
@@ -8630,7 +8606,7 @@
 "bLK" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/extinguisher_cabinet,
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/effect/decal/sandedge/corner{
 	dir = 4
 	},
@@ -8908,9 +8884,7 @@
 /turf/open/floor/iron/white,
 /area/deltastation/medical/medbay)
 "bPy" = (
-/obj/structure/bed/chair/office{
-	dir = 4
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/east,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8
@@ -10645,7 +10619,7 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /turf/open/floor/iron,
 /area/deltastation/service/kitchen/abandoned)
 "ciu" = (
@@ -11403,7 +11377,7 @@
 /turf/open/space,
 /area/space)
 "cqQ" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/iron/grimy,
@@ -11811,7 +11785,7 @@
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/entry)
 "cvI" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/deltastation/service/abandoned_gambling_den)
@@ -13201,21 +13175,19 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/ai_monitored/turret_protected/aisat_interior)
 "cLP" = (
-/obj/structure/bed/chair/office,
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark,
 /obj/effect/landmark/weed_node,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/grimy,
 /area/deltastation/tcommsat/computer)
 "cLX" = (
 /obj/structure/cable,
-/obj/structure/bed/chair/office{
-	dir = 1
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/north,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/deltastation/command/bridge)
 "cMc" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8
@@ -14439,9 +14411,7 @@
 /turf/open/floor/iron/large,
 /area/deltastation/science/robotics/mechbay)
 "cZn" = (
-/obj/structure/bed/chair/office{
-	dir = 8
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/west,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -14513,9 +14483,7 @@
 /obj/structure/cable,
 /obj/machinery/holopad,
 /obj/effect/decal/warning_stripes/box/empty,
-/obj/structure/bed/chair/office{
-	dir = 4
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/east,
 /turf/open/floor/iron/large,
 /area/deltastation/security/checkpoint/escape)
 "cZV" = (
@@ -16521,9 +16489,7 @@
 /turf/open/floor/iron,
 /area/deltastation/science/ordnance/office)
 "duF" = (
-/obj/structure/bed/chair/office{
-	dir = 1
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/north,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -16915,7 +16881,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /turf/open/floor/iron/checker,
 /area/deltastation/service/theater)
 "dyL" = (
@@ -17448,9 +17414,7 @@
 /turf/open/floor/wood,
 /area/deltastation/service/library/abandoned)
 "dEk" = (
-/obj/structure/bed/chair/office{
-	dir = 4
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/east,
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 4
 	},
@@ -18011,9 +17975,7 @@
 /turf/open/floor/iron/white,
 /area/deltastation/medical/storage)
 "dIP" = (
-/obj/structure/bed/chair/office{
-	dir = 8
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/west,
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 8
 	},
@@ -18091,9 +18053,7 @@
 /turf/open/floor/plating,
 /area/deltastation/command/heads_quarters/hos)
 "dJC" = (
-/obj/structure/bed/chair/office{
-	dir = 1
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/north,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/ai_node,
 /turf/open/floor/iron/dark,
@@ -18579,7 +18539,7 @@
 /turf/open/floor/plating,
 /area/deltastation/engineering/supermatter/room)
 "dNX" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/effect/landmark/weed_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -19450,9 +19410,7 @@
 /turf/open/floor/iron,
 /area/deltastation/maintenance/department/chapel)
 "dVT" = (
-/obj/structure/bed/chair/office{
-	dir = 8
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/west,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/deltastation/security/interrogation)
@@ -20253,9 +20211,7 @@
 /turf/open/floor/iron,
 /area/deltastation/maintenance/port)
 "ecz" = (
-/obj/structure/bed/chair/office{
-	dir = 8
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/west,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -20376,9 +20332,7 @@
 "edP" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/bed/chair/office{
-	dir = 4
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/east,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron,
 /area/deltastation/command/heads_quarters/qm)
@@ -21073,9 +21027,7 @@
 	dir = 5
 	},
 /obj/structure/cable,
-/obj/structure/bed/chair/office{
-	dir = 4
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/east,
 /obj/effect/turf_decal/siding/yellow,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -21203,7 +21155,7 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/engineering/atmos)
 "emi" = (
-/obj/structure/bed/chair/office,
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark,
 /obj/item/radio/intercom{
 	frequency = 1423;
 	name = "Interrogation Intercom"
@@ -21834,7 +21786,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/effect/ai_node,
 /turf/open/floor/iron/dark,
 /area/deltastation/service/abandoned_gambling_den/gaming)
@@ -22019,7 +21971,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/red/half/contrasted,
-/obj/structure/bed/chair/office,
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -22500,7 +22452,7 @@
 /turf/open/floor/iron/grimy,
 /area/deltastation/service/bar/backroom)
 "ezA" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/machinery/light,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/iron/dark,
@@ -23564,9 +23516,7 @@
 /turf/open/floor/iron,
 /area/deltastation/security/checkpoint/supply)
 "eJu" = (
-/obj/structure/bed/chair/office{
-	dir = 1
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/north,
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
 /turf/open/floor/iron/grimy,
@@ -24381,7 +24331,7 @@
 /turf/open/floor/iron/white,
 /area/deltastation/medical/medbay)
 "eSx" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/deltastation/engineering/break_room)
@@ -24484,7 +24434,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/structure/sign/securearea,
 /turf/open/floor/wood,
 /area/deltastation/service/electronic_marketing_den)
@@ -25117,9 +25067,7 @@
 /area/deltastation/security/execution/transfer)
 "fbm" = (
 /obj/machinery/light/small,
-/obj/structure/bed/chair/office{
-	dir = 4
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/east,
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8
@@ -25153,9 +25101,7 @@
 /area/ai_monitored/storage/eva)
 "fbJ" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/structure/bed/chair/office{
-	dir = 8
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/west,
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
 	},
@@ -25710,7 +25656,7 @@
 /turf/open/floor/iron,
 /area/deltastation/security/lockers)
 "ffZ" = (
-/obj/structure/bed/chair/wood,
+/obj/structure/bed/chair/wood/wings,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/deltastation/service/abandoned_gambling_den)
@@ -25727,7 +25673,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/trimline/white,
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /turf/open/floor/iron/cafeteria,
 /area/deltastation/service/barber)
 "fgj" = (
@@ -26475,7 +26421,7 @@
 	},
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /turf/open/floor/iron,
 /area/deltastation/commons/lounge)
 "fmX" = (
@@ -26625,9 +26571,7 @@
 /area/deltastation/medical/medbay)
 "foC" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/structure/bed/chair/office{
-	dir = 8
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/west,
 /obj/effect/turf_decal/siding/yellow{
 	dir = 10
 	},
@@ -28263,7 +28207,7 @@
 /turf/open/floor/iron/grimy,
 /area/deltastation/command/heads_quarters/hop)
 "fGq" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/iron,
@@ -29364,7 +29308,7 @@
 /area/deltastation/service/chapel/storage)
 "fRh" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/bed/chair/office,
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark,
 /turf/open/floor/engine,
 /area/deltastation/asteroidcaves/derelictwest)
 "fRm" = (
@@ -29385,7 +29329,7 @@
 /turf/open/floor/plating,
 /area/deltastation/maintenance/department/crew_quarters/bar)
 "fRG" = (
-/obj/structure/bed/chair/wood,
+/obj/structure/bed/chair/wood/wings,
 /turf/open/floor/wood,
 /area/deltastation/service/abandoned_gambling_den)
 "fRH" = (
@@ -29918,7 +29862,7 @@
 /turf/open/floor/plating,
 /area/deltastation/maintenance/starboard/aft)
 "fWY" = (
-/obj/structure/bed/chair/office,
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/machinery/holopad,
 /obj/effect/decal/warning_stripes/box/empty,
@@ -30714,9 +30658,7 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/deltastation/science/ordnance/testlab)
 "gfq" = (
-/obj/structure/bed/chair/office{
-	dir = 4
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/east,
 /obj/structure/cable,
 /obj/machinery/power/apc/drained{
 	dir = 4
@@ -30821,9 +30763,7 @@
 /turf/open/floor/iron/textured,
 /area/deltastation/science/robotics/lab)
 "ggh" = (
-/obj/structure/bed/chair/office{
-	dir = 1
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/north,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron,
 /area/deltastation/cargo/office)
@@ -31264,7 +31204,7 @@
 /area/deltastation/security/execution/transfer)
 "gkT" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4
 	},
@@ -32026,9 +31966,7 @@
 /area/deltastation/engineering/atmos)
 "gsG" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/structure/bed/chair/office{
-	dir = 1
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/north,
 /turf/open/floor/iron,
 /area/deltastation/cargo/storage)
 "gsI" = (
@@ -32313,9 +32251,7 @@
 /turf/open/floor/iron/grimy,
 /area/deltastation/command/heads_quarters/captain)
 "gvi" = (
-/obj/structure/bed/chair/office{
-	dir = 8
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/west,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/ai_node,
@@ -32793,9 +32729,7 @@
 /turf/open/floor/iron/white/smooth_large,
 /area/deltastation/medical/virology)
 "gAj" = (
-/obj/structure/bed/chair/office{
-	dir = 4
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/east,
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
@@ -33273,7 +33207,7 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/service/chapel)
 "gFa" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/machinery/alarm{
 	dir = 1
 	},
@@ -34281,9 +34215,7 @@
 /turf/open/floor/plating,
 /area/deltastation/maintenance/port/fore)
 "gPB" = (
-/obj/structure/bed/chair/office{
-	dir = 8
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/west,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/iron/grimy,
 /area/deltastation/tcommsat/computer)
@@ -34565,7 +34497,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/structure/bed/chair/office,
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -34625,7 +34557,7 @@
 /turf/open/floor/iron,
 /area/deltastation/service/hydroponics)
 "gSz" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -34643,7 +34575,7 @@
 /turf/closed/wall/r_wall,
 /area/deltastation/command/heads_quarters/cmo)
 "gSV" = (
-/obj/structure/bed/chair/office,
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/carpet,
 /area/deltastation/maintenance/port)
@@ -35388,7 +35320,7 @@
 	},
 /area/deltastation/engineering/atmos)
 "hbn" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /turf/open/floor/wood,
 /area/deltastation/service/abandoned_gambling_den)
 "hbr" = (
@@ -35493,7 +35425,7 @@
 /turf/open/floor/prison/blackfloor,
 /area/deltastation/asteroidcaves/ship)
 "hbL" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/grimy,
 /area/deltastation/service/abandoned_gambling_den)
@@ -35852,9 +35784,7 @@
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos/project)
 "hfL" = (
-/obj/structure/bed/chair/office{
-	dir = 4
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/east,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
@@ -36381,9 +36311,7 @@
 /turf/open/floor/iron,
 /area/deltastation/cargo/storage)
 "hkW" = (
-/obj/structure/bed/chair/office{
-	dir = 4
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/east,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/deltastation/security/interrogation)
@@ -36958,7 +36886,7 @@
 /turf/open/floor/iron/grimy,
 /area/deltastation/service/chapel)
 "hrz" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/neutral/half/contrasted,
 /obj/effect/landmark/weed_node,
@@ -37214,9 +37142,7 @@
 /turf/open/floor/iron,
 /area/deltastation/commons/dorms)
 "huJ" = (
-/obj/structure/bed/chair/office{
-	dir = 1
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/north,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron,
 /area/deltastation/cargo/drone_bay)
@@ -37565,7 +37491,7 @@
 /area/deltastation/service/abandoned_gambling_den)
 "hyr" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -38019,7 +37945,7 @@
 /turf/closed/wall,
 /area/deltastation/construction/mining/aux_base)
 "hDQ" = (
-/obj/structure/bed/chair/wood,
+/obj/structure/bed/chair/wood/wings,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/deltastation/service/abandoned_gambling_den)
@@ -38259,9 +38185,7 @@
 /turf/open/floor/iron,
 /area/deltastation/cargo/storage)
 "hGL" = (
-/obj/structure/bed/chair/office{
-	dir = 1
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/north,
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/iron/grimy,
@@ -38364,7 +38288,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/deltastation/maintenance/port/fore)
 "hHS" = (
-/obj/structure/bed/chair/office,
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark,
 /obj/effect/landmark/weed_node,
 /obj/effect/decal/sandedge{
 	dir = 4
@@ -38623,7 +38547,7 @@
 /area/deltastation/security/detectives_office)
 "hLP" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /turf/open/floor/iron/dark,
 /area/deltastation/service/theater)
 "hLX" = (
@@ -38797,9 +38721,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
-/obj/structure/bed/chair/office{
-	dir = 4
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/east,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
@@ -38948,7 +38870,7 @@
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos/pumproom)
 "hOw" = (
-/obj/structure/bed/chair/wood{
+/obj/structure/bed/chair/wood/wings{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -39827,7 +39749,7 @@
 /turf/open/floor/iron/white,
 /area/deltastation/medical/treatment_center)
 "hXX" = (
-/obj/structure/bed/chair/office,
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/deltastation/security/detectives_office/private_investigators_office)
@@ -39920,9 +39842,7 @@
 /turf/open/floor/iron,
 /area/deltastation/commons/toilet/restrooms)
 "hZk" = (
-/obj/structure/bed/chair/office{
-	dir = 1
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/north,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/carpet,
 /area/deltastation/maintenance/port)
@@ -40046,7 +39966,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/structure/prop/mainship/railing/corner{
 	dir = 4
 	},
@@ -41450,9 +41370,7 @@
 /turf/open/floor/iron,
 /area/deltastation/science/robotics/mechbay)
 "isc" = (
-/obj/structure/bed/chair/office{
-	dir = 8
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/west,
 /obj/machinery/alarm{
 	dir = 1
 	},
@@ -42198,9 +42116,7 @@
 /area/deltastation/medical/surgery/theatre)
 "izG" = (
 /obj/structure/cable,
-/obj/structure/bed/chair/office{
-	dir = 4
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/east,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
 	},
@@ -42304,9 +42220,7 @@
 /turf/closed/wall/r_wall,
 /area/deltastation/science/robotics/lab)
 "iAL" = (
-/obj/structure/bed/chair/office{
-	dir = 8
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/west,
 /turf/open/floor/iron/grimy,
 /area/deltastation/service/lawoffice)
 "iAN" = (
@@ -42666,7 +42580,7 @@
 /turf/open/floor/iron,
 /area/deltastation/commons/locker)
 "iEq" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/effect/turf_decal/trimline/purple/filled/warning,
 /turf/open/floor/iron/white,
 /area/deltastation/science/lobby)
@@ -44390,7 +44304,7 @@
 /turf/open/floor/iron/white,
 /area/deltastation/science/research)
 "iVl" = (
-/obj/structure/bed/chair/wood{
+/obj/structure/bed/chair/wood/wings{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -44405,7 +44319,7 @@
 /turf/open/floor/wood,
 /area/deltastation/service/theater/abandoned)
 "iVu" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /turf/open/floor/iron/cafeteria,
 /area/deltastation/security/prison/mess)
 "iVy" = (
@@ -44579,7 +44493,7 @@
 /area/deltastation/science/xenobiology)
 "iXK" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/bed/chair/office,
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark,
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
 	},
@@ -44671,9 +44585,7 @@
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos)
 "iYC" = (
-/obj/structure/bed/chair/office{
-	dir = 4
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/east,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -45328,7 +45240,7 @@
 /turf/open/floor/iron,
 /area/deltastation/science/xenobiology)
 "jfT" = (
-/obj/structure/bed/chair/wood{
+/obj/structure/bed/chair/wood/wings{
 	dir = 4
 	},
 /obj/machinery/light/small,
@@ -46505,9 +46417,7 @@
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 8
 	},
-/obj/structure/bed/chair/office{
-	dir = 1
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/north,
 /obj/structure/sign/securearea,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -46922,7 +46832,7 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/asteroidcaves/exteriorasteroids)
 "jyH" = (
-/obj/structure/bed/chair/office,
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark,
 /obj/effect/landmark/weed_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -47839,9 +47749,7 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/asteroidcaves/derelictnortheast)
 "jKb" = (
-/obj/structure/bed/chair/office{
-	dir = 4
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/east,
 /obj/structure/cable,
 /turf/open/floor/iron/grimy,
 /area/deltastation/command/heads_quarters/hos)
@@ -47930,7 +47838,7 @@
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/central/aft)
 "jKO" = (
-/obj/structure/bed/chair/office,
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -48295,9 +48203,7 @@
 /area/deltastation/hallway/secondary/entry)
 "jOv" = (
 /obj/structure/cable,
-/obj/structure/bed/chair/office{
-	dir = 4
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/east,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/deltastation/command/bridge)
@@ -48725,9 +48631,7 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/deltastation/science/ordnance)
 "jST" = (
-/obj/structure/bed/chair/office{
-	dir = 1
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/north,
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
@@ -48816,7 +48720,7 @@
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/entry)
 "jTE" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/deltastation/service/abandoned_gambling_den)
@@ -48984,9 +48888,7 @@
 /turf/open/floor/iron,
 /area/deltastation/service/kitchen/abandoned)
 "jUM" = (
-/obj/structure/bed/chair/office{
-	dir = 1
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/north,
 /obj/effect/turf_decal/siding/wood,
 /obj/effect/ai_node,
 /turf/open/floor/iron/grimy,
@@ -49044,7 +48946,7 @@
 /area/deltastation/hallway/secondary/entry)
 "jVl" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -49150,7 +49052,7 @@
 /turf/open/floor/iron/white,
 /area/deltastation/medical/chemistry)
 "jWq" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/structure/window{
 	dir = 1
 	},
@@ -49587,7 +49489,7 @@
 /turf/open/floor/iron,
 /area/deltastation/science/research)
 "kbD" = (
-/obj/structure/bed/chair/office,
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark,
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/deltastation/command/heads_quarters/hop)
@@ -49858,7 +49760,7 @@
 /turf/open/floor/iron/grimy,
 /area/deltastation/service/chapel)
 "kfg" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /turf/open/floor/wood,
 /area/deltastation/engineering/break_room)
 "kfh" = (
@@ -49940,7 +49842,7 @@
 /turf/open/floor/iron,
 /area/ai_monitored/storage/eva)
 "kfY" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/machinery/alarm{
 	dir = 4
 	},
@@ -52781,7 +52683,7 @@
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/command)
 "kJe" = (
-/obj/structure/bed/chair/office,
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/deltastation/service/library/abandoned)
@@ -53141,9 +53043,7 @@
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos/project)
 "kMF" = (
-/obj/structure/bed/chair/office{
-	dir = 4
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/east,
 /obj/effect/ai_node,
 /turf/open/floor/iron/grimy,
 /area/deltastation/tcommsat/computer)
@@ -53219,7 +53119,7 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/service/library)
 "kNT" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/item/radio/intercom{
 	dir = 4
 	},
@@ -54404,7 +54304,7 @@
 /turf/open/floor/iron,
 /area/deltastation/engineering/lobby)
 "lca" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/sandedge{
@@ -55194,7 +55094,7 @@
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos)
 "lkU" = (
-/obj/structure/bed/chair/wood{
+/obj/structure/bed/chair/wood/wings{
 	dir = 8
 	},
 /obj/machinery/light/small,
@@ -55413,7 +55313,7 @@
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/entry)
 "lmM" = (
-/obj/structure/bed/chair/office,
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark,
 /obj/effect/turf_decal/siding/blue{
 	dir = 1
 	},
@@ -55565,9 +55465,7 @@
 /turf/closed/wall,
 /area/deltastation/commons/dorms/laundry)
 "lnV" = (
-/obj/structure/bed/chair/office{
-	dir = 8
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/west,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/carpet,
 /area/deltastation/commons/vacant_room/office)
@@ -55596,9 +55494,7 @@
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 4
 	},
-/obj/structure/bed/chair/office{
-	dir = 4
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/east,
 /turf/open/floor/iron/dark/side{
 	dir = 4
 	},
@@ -55630,7 +55526,7 @@
 /turf/closed/wall/r_wall,
 /area/deltastation/security/checkpoint/medical/medsci)
 "loJ" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/turf_decal/trimline/red/filled/warning{
 	dir = 4
@@ -55682,7 +55578,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /turf/open/floor/iron/cafeteria,
 /area/deltastation/service/cafeteria)
 "lph" = (
@@ -55974,7 +55870,7 @@
 /turf/open/floor/wood,
 /area/deltastation/security/detectives_office/private_investigators_office)
 "lsd" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/neutral/half/contrasted,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -56723,7 +56619,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/deltastation/service/kitchen/abandoned)
 "lzQ" = (
-/obj/structure/bed/chair/wood{
+/obj/structure/bed/chair/wood/wings{
 	dir = 8
 	},
 /turf/open/floor/wood,
@@ -57465,9 +57361,7 @@
 	},
 /area/deltastation/hallway/primary/central/aft)
 "lGF" = (
-/obj/structure/bed/chair/office{
-	dir = 8
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/west,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/alarm{
 	dir = 8
@@ -57486,7 +57380,7 @@
 /turf/open/floor/plating,
 /area/deltastation/security/prison/garden)
 "lHh" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -58691,7 +58585,7 @@
 	pixel_x = 5
 	},
 /obj/structure/cable,
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /turf/open/floor/iron,
 /area/deltastation/science/server)
 "lTg" = (
@@ -58853,9 +58747,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/structure/bed/chair/office{
-	dir = 4
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/east,
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
@@ -59402,7 +59294,7 @@
 /turf/open/floor/iron,
 /area/deltastation/maintenance/fore)
 "maA" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/machinery/newscaster{
 	dir = 1
 	},
@@ -59418,7 +59310,7 @@
 /turf/open/floor/iron,
 /area/deltastation/security/courtroom)
 "maQ" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/effect/turf_decal/tile/red/diagonal_centre,
 /obj/effect/turf_decal/tile/yellow/diagonal_edge,
 /turf/open/floor/iron/diagonal,
@@ -59503,9 +59395,7 @@
 /turf/open/floor/iron,
 /area/ai_monitored/storage/eva)
 "mci" = (
-/obj/structure/bed/chair/office{
-	dir = 8
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/west,
 /turf/open/floor/carpet,
 /area/deltastation/commons/vacant_room/office)
 "mco" = (
@@ -60213,7 +60103,7 @@
 "miv" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/red/half/contrasted,
-/obj/structure/bed/chair/office,
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark,
 /turf/open/floor/iron,
 /area/deltastation/security/warden)
 "miw" = (
@@ -60841,9 +60731,7 @@
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/exit)
 "mpT" = (
-/obj/structure/bed/chair/office{
-	dir = 4
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/east,
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
@@ -61448,7 +61336,7 @@
 /turf/open/floor/iron,
 /area/deltastation/command/heads_quarters/ce)
 "mxc" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /turf/open/floor/iron,
 /area/deltastation/engineering/lobby)
 "mxi" = (
@@ -62001,7 +61889,7 @@
 /area/deltastation/cargo/storage)
 "mCW" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /turf/open/floor/plating,
 /area/deltastation/maintenance/fore)
 "mCX" = (
@@ -62046,7 +61934,7 @@
 /turf/closed/wall/r_wall/unmeltable,
 /area/deltastation/asteroidcaves/derelictnortheast)
 "mDq" = (
-/obj/structure/bed/chair/office,
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark,
 /turf/open/floor/carpet,
 /area/deltastation/maintenance/port)
 "mDw" = (
@@ -62944,7 +62832,7 @@
 /turf/closed/wall/mainship,
 /area/deltastation/asteroidcaves/ship)
 "mMX" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/machinery/light/small,
 /turf/open/floor/wood,
 /area/deltastation/asteroidcaves/derelictwest)
@@ -62967,9 +62855,7 @@
 /turf/open/floor/plating,
 /area/deltastation/service/abandoned_gambling_den)
 "mNp" = (
-/obj/structure/bed/chair/office{
-	dir = 1
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/north,
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /obj/effect/landmark/weed_node,
@@ -63291,7 +63177,7 @@
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/exit/departure_lounge)
 "mRg" = (
-/obj/structure/bed/chair/office,
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/grimy,
 /area/deltastation/service/library/abandoned)
@@ -64702,9 +64588,7 @@
 /turf/closed/wall,
 /area/deltastation/service/janitor)
 "nhq" = (
-/obj/structure/bed/chair/office{
-	dir = 8
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/west,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/ai_node,
 /turf/open/floor/iron/dark,
@@ -65756,9 +65640,7 @@
 /turf/open/floor/plating,
 /area/deltastation/medical/cryo)
 "ntj" = (
-/obj/structure/bed/chair/office{
-	dir = 1
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/north,
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 1
@@ -67541,7 +67423,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/red,
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/effect/ai_node,
 /turf/open/floor/iron,
 /area/deltastation/service/theater)
@@ -67796,7 +67678,7 @@
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/central/aft)
 "nPq" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/iron/dark,
 /area/deltastation/service/theater)
@@ -68002,7 +67884,7 @@
 "nRm" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/machinery/power/apc/drained,
 /turf/open/floor/plating,
 /area/deltastation/service/abandoned_gambling_den/gaming)
@@ -68052,9 +67934,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
-/obj/structure/bed/chair/office{
-	dir = 8
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/west,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/deltastation/security/checkpoint)
@@ -68591,7 +68471,7 @@
 /area/deltastation/maintenance/department/medical/morgue)
 "nXM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/bed/chair/wood{
+/obj/structure/bed/chair/wood/wings{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -68864,7 +68744,7 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/ai_monitored/turret_protected/ai_upload)
 "oag" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8
 	},
@@ -70302,9 +70182,7 @@
 /area/deltastation/science/explab)
 "ora" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/structure/bed/chair/office{
-	dir = 1
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/north,
 /obj/effect/turf_decal/trimline/purple,
 /turf/open/floor/iron/dark,
 /area/deltastation/science/ordnance)
@@ -72123,7 +72001,7 @@
 "oHM" = (
 /obj/effect/turf_decal/tile/red/diagonal_centre,
 /obj/effect/turf_decal/tile/blue/diagonal_edge,
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -72484,7 +72362,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/deltastation/maintenance/port/aft)
 "oKX" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/deltastation/security/prison)
@@ -72755,9 +72633,7 @@
 /turf/open/floor/iron,
 /area/deltastation/maintenance/department/science)
 "oOg" = (
-/obj/structure/bed/chair/office{
-	dir = 8
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/west,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/turf_decal/siding/wood,
 /turf/open/floor/iron/dark,
@@ -73754,7 +73630,7 @@
 /turf/open/floor/iron,
 /area/deltastation/commons/toilet/restrooms)
 "oZF" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4
 	},
@@ -73971,7 +73847,7 @@
 /turf/open/floor/plating,
 /area/deltastation/maintenance/department/chapel)
 "pcj" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/effect/turf_decal/tile/red/diagonal_centre,
 /obj/effect/turf_decal/tile/yellow/diagonal_edge,
 /obj/effect/landmark/weed_node,
@@ -75182,7 +75058,7 @@
 /turf/open/floor/iron,
 /area/deltastation/commons/fitness/recreation)
 "poR" = (
-/obj/structure/bed/chair/office,
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark,
 /turf/open/floor/iron,
 /area/deltastation/security/checkpoint/medical/medsci)
 "poU" = (
@@ -75602,7 +75478,7 @@
 /turf/open/floor/plating,
 /area/storage/testroom)
 "ptc" = (
-/obj/structure/bed/chair/wood{
+/obj/structure/bed/chair/wood/wings{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -75882,7 +75758,7 @@
 /turf/open/floor/iron,
 /area/deltastation/science/xenobiology)
 "pvk" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/effect/decal/sandedge{
 	dir = 8
 	},
@@ -76200,7 +76076,7 @@
 /turf/open/floor/plating,
 /area/deltastation/science/robotics/mechbay)
 "pye" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
 	},
@@ -76618,9 +76494,7 @@
 /turf/open/floor/iron/checker,
 /area/deltastation/service/janitor)
 "pCz" = (
-/obj/structure/bed/chair/office{
-	dir = 4
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/east,
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 4
 	},
@@ -76873,7 +76747,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /turf/open/floor/iron/grimy,
 /area/deltastation/maintenance/port/fore)
 "pEh" = (
@@ -76916,7 +76790,7 @@
 /area/deltastation/maintenance/port/fore)
 "pEK" = (
 /obj/structure/cable,
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/iron/dark,
 /area/deltastation/service/abandoned_gambling_den/gaming)
@@ -77114,9 +76988,7 @@
 /area/deltastation/maintenance/port/aft)
 "pGz" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/bed/chair/office{
-	dir = 4
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/east,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron,
 /area/deltastation/command/heads_quarters/qm)
@@ -77206,7 +77078,7 @@
 /turf/open/floor/iron,
 /area/deltastation/maintenance/department/crew_quarters/bar)
 "pGU" = (
-/obj/structure/bed/chair/office,
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark,
 /obj/effect/turf_decal/tile/brown/half/contrasted,
 /turf/open/floor/iron,
 /area/deltastation/cargo/office)
@@ -77614,7 +77486,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/trimline/white,
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /turf/open/floor/iron/cafeteria,
 /area/deltastation/service/barber)
 "pKU" = (
@@ -77843,9 +77715,7 @@
 /turf/open/floor/iron,
 /area/deltastation/commons/storage/primary)
 "pNP" = (
-/obj/structure/bed/chair/office{
-	dir = 8
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/west,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
@@ -78098,7 +77968,7 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /turf/open/floor/iron,
 /area/deltastation/service/kitchen/abandoned)
 "pPV" = (
@@ -78129,7 +77999,7 @@
 "pQf" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/stripes/line,
-/obj/structure/bed/chair/office,
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark,
 /turf/open/floor/iron,
 /area/deltastation/science/research/abandoned)
 "pQi" = (
@@ -78766,7 +78636,7 @@
 /turf/open/floor/iron/cafeteria,
 /area/deltastation/service/kitchen)
 "pYf" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 1
 	},
@@ -79296,7 +79166,7 @@
 /turf/open/floor/plating,
 /area/deltastation/maintenance/department/security)
 "qcP" = (
-/obj/structure/bed/chair/wood{
+/obj/structure/bed/chair/wood/wings{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -81107,9 +80977,7 @@
 /turf/open/floor/iron/white,
 /area/deltastation/medical/medbay)
 "qvb" = (
-/obj/structure/bed/chair/office{
-	dir = 8
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/west,
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/alarm{
 	dir = 1
@@ -81543,9 +81411,7 @@
 /area/deltastation/service/library)
 "qyU" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/structure/bed/chair/office{
-	dir = 8
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/west,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/iron/dark,
 /area/deltastation/science/circuits)
@@ -82076,7 +81942,7 @@
 	pixel_y = 4;
 	req_access = list("maint_tunnels")
 	},
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/machinery/light/small,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/warning_stripes/box,
@@ -83689,9 +83555,7 @@
 /turf/open/floor/plating,
 /area/deltastation/maintenance/port/aft)
 "qTW" = (
-/obj/structure/bed/chair/office{
-	dir = 8
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/west,
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/ai_node,
@@ -84226,9 +84090,7 @@
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/fore)
 "rbH" = (
-/obj/structure/bed/chair/office{
-	dir = 8
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/west,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/deltastation/ai_monitored/turret_protected/ai)
@@ -85581,7 +85443,7 @@
 /turf/open/floor/plating,
 /area/deltastation/asteroidcaves/exteriorasteroids)
 "rpG" = (
-/obj/structure/bed/chair/wood{
+/obj/structure/bed/chair/wood/wings{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -85888,9 +85750,7 @@
 /area/deltastation/engineering/atmos)
 "rsN" = (
 /obj/structure/cable,
-/obj/structure/bed/chair/office{
-	dir = 8
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/west,
 /turf/open/floor/iron,
 /area/deltastation/security/checkpoint/medical/medsci)
 "rsZ" = (
@@ -86057,7 +85917,7 @@
 /area/deltastation/command/bridge)
 "ruw" = (
 /obj/effect/turf_decal/trimline/dark_red/filled/line,
-/obj/structure/bed/chair/office,
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark,
 /obj/effect/spawner/random/metal,
 /turf/open/floor/iron/dark,
 /area/deltastation/security/warden)
@@ -88087,7 +87947,7 @@
 /turf/open/floor/iron,
 /area/deltastation/maintenance/department/chapel)
 "rQy" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /turf/open/floor/wood,
 /area/deltastation/service/barber)
 "rQA" = (
@@ -88378,7 +88238,7 @@
 "rTc" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/structure/cable,
-/obj/structure/bed/chair/wood{
+/obj/structure/bed/chair/wood/wings{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -88652,7 +88512,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/security/nuke_storage)
 "rWE" = (
-/obj/structure/bed/chair/wood{
+/obj/structure/bed/chair/wood/wings{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -89669,9 +89529,7 @@
 "shT" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/bed/chair/office{
-	dir = 8
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/west,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/iron,
@@ -89814,7 +89672,7 @@
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/central/fore)
 "sjn" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
 /area/deltastation/asteroidcaves/derelictwest)
@@ -90340,9 +90198,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/bed/chair/office{
-	dir = 4
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/east,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron/grimy,
 /area/deltastation/security/detectives_office)
@@ -91308,9 +91164,7 @@
 "syn" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/structure/bed/chair/office{
-	dir = 1
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/north,
 /turf/open/floor/iron,
 /area/deltastation/maintenance/starboard/aft)
 "syq" = (
@@ -92894,7 +92748,7 @@
 /turf/closed/wall,
 /area/deltastation/science/research/abandoned)
 "sOv" = (
-/obj/structure/bed/chair/office,
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/landmark/weed_node,
 /obj/effect/decal/cleanable/dirt,
@@ -93922,11 +93776,11 @@
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 1
 	},
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /turf/open/floor/iron/grimy,
 /area/deltastation/maintenance/port/fore)
 "sZF" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/machinery/light/small,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
@@ -94126,7 +93980,7 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/command/bridge)
 "tcl" = (
-/obj/structure/bed/chair/wood{
+/obj/structure/bed/chair/wood/wings{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -94886,7 +94740,7 @@
 "tjX" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -95154,7 +95008,7 @@
 /obj/machinery/flasher{
 	id = "visitorflash"
 	},
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/turf_decal/trimline/red/filled/warning{
 	dir = 4
@@ -95721,7 +95575,7 @@
 /turf/open/floor/plating,
 /area/deltastation/hallway/secondary/entry)
 "tsg" = (
-/obj/structure/bed/chair/office,
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark,
 /obj/effect/turf_decal/tile/neutral/half{
 	dir = 1
 	},
@@ -95877,7 +95731,7 @@
 /turf/open/floor/carpet,
 /area/deltastation/commons/lounge)
 "ttA" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /turf/open/floor/carpet,
 /area/deltastation/commons/lounge)
 "ttB" = (
@@ -96835,7 +96689,7 @@
 /turf/open/floor/iron/grimy,
 /area/deltastation/service/library/abandoned)
 "tDA" = (
-/obj/structure/bed/chair/office,
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark,
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -97286,9 +97140,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/deltastation/asteroidcaves/westerncaves)
 "tIE" = (
-/obj/structure/bed/chair/office{
-	dir = 4
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/east,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
@@ -97347,7 +97199,7 @@
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/construction)
 "tJD" = (
-/obj/structure/bed/chair/wood{
+/obj/structure/bed/chair/wood/wings{
 	dir = 4
 	},
 /obj/effect/ai_node,
@@ -97375,7 +97227,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/yellow,
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /turf/open/floor/iron,
 /area/deltastation/commons/lounge)
 "tKc" = (
@@ -99061,7 +98913,7 @@
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/fore)
 "tZW" = (
-/obj/structure/bed/chair/wood{
+/obj/structure/bed/chair/wood/wings{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -100229,9 +100081,7 @@
 /turf/open/floor/iron,
 /area/deltastation/engineering/main)
 "ulA" = (
-/obj/structure/bed/chair/office{
-	dir = 8
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/west,
 /turf/open/floor/iron/grimy,
 /area/deltastation/service/library/abandoned)
 "ulC" = (
@@ -100517,7 +100367,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /turf/open/floor/iron/dark,
 /area/deltastation/service/abandoned_gambling_den/gaming)
 "uoz" = (
@@ -101383,9 +101233,7 @@
 /turf/open/floor/plating,
 /area/deltastation/external/landingzone)
 "uxN" = (
-/obj/structure/bed/chair/office{
-	dir = 4
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/east,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/ai_node,
 /turf/open/floor/iron/dark,
@@ -101826,7 +101674,7 @@
 "uBJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /turf/open/floor/carpet,
 /area/deltastation/commons/lounge)
 "uBK" = (
@@ -102971,9 +102819,7 @@
 "uOB" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/bed/chair/office{
-	dir = 8
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/west,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/iron,
 /area/deltastation/security/office)
@@ -104573,7 +104419,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/deltastation/asteroidcaves/easterntunnel)
 "vef" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /turf/open/floor/iron/dark,
 /area/deltastation/service/theater)
 "veg" = (
@@ -105135,7 +104981,7 @@
 	},
 /obj/machinery/alarm,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /turf/open/floor/iron,
 /area/deltastation/service/kitchen/abandoned)
 "vkp" = (
@@ -105368,7 +105214,7 @@
 /area/deltastation/commons/dorms)
 "vmA" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /turf/open/floor/plating,
 /area/deltastation/service/theater/abandoned)
 "vmC" = (
@@ -105938,7 +105784,7 @@
 /turf/open/floor/iron/grimy,
 /area/deltastation/service/chapel/office)
 "vrO" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/effect/ai_node,
 /turf/open/floor/iron,
 /area/deltastation/commons/fitness/recreation)
@@ -106369,9 +106215,7 @@
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
 	},
-/obj/structure/bed/chair/office{
-	dir = 4
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/east,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8
@@ -107008,9 +106852,7 @@
 /turf/open/floor/iron,
 /area/deltastation/asteroidcaves/derelictwest)
 "vCw" = (
-/obj/structure/bed/chair/office{
-	dir = 8
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/west,
 /obj/effect/turf_decal/tile/brown/half/contrasted{
 	dir = 8
 	},
@@ -107091,9 +106933,7 @@
 	},
 /area/holodeck)
 "vDi" = (
-/obj/structure/bed/chair/office{
-	dir = 8
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/west,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/deltastation/command/heads_quarters/hop)
@@ -107848,7 +107688,7 @@
 /turf/open/floor/plating,
 /area/deltastation/maintenance/port/aft)
 "vKJ" = (
-/obj/structure/bed/chair/office,
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark,
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -107981,7 +107821,7 @@
 /turf/open/floor/plating,
 /area/deltastation/science/xenobiology)
 "vMa" = (
-/obj/structure/bed/chair/office,
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark,
 /turf/open/floor/wood,
 /area/deltastation/security/detectives_office/private_investigators_office)
 "vMk" = (
@@ -108863,7 +108703,7 @@
 /turf/closed/wall,
 /area/deltastation/science/breakroom)
 "vVY" = (
-/obj/structure/bed/chair/wood{
+/obj/structure/bed/chair/wood/wings{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -109719,9 +109559,7 @@
 	},
 /area/deltastation/engineering/atmos/pumproom)
 "weD" = (
-/obj/structure/bed/chair/office{
-	dir = 4
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/east,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/deltastation/science/circuits)
@@ -109819,7 +109657,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/yellow,
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -111442,7 +111280,7 @@
 /turf/open/floor/plating,
 /area/deltastation/maintenance/department/eva/abandoned)
 "wvK" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/structure/sign/securearea{
 	dir = 1
 	},
@@ -111693,7 +111531,7 @@
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 4
 	},
-/obj/structure/bed/chair/office,
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark,
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/deltastation/security/warden)
@@ -111828,7 +111666,7 @@
 /turf/open/floor/iron,
 /area/deltastation/security/execution/transfer)
 "wyP" = (
-/obj/structure/bed/chair/wood{
+/obj/structure/bed/chair/wood/wings{
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
@@ -112213,7 +112051,7 @@
 /turf/open/floor/iron,
 /area/deltastation/maintenance/starboard/aft)
 "wCh" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -113233,9 +113071,7 @@
 /turf/open/floor/iron/white,
 /area/deltastation/medical/medbay/lobby)
 "wMc" = (
-/obj/structure/bed/chair/office{
-	dir = 1
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/north,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/iron/grimy,
@@ -113396,7 +113232,7 @@
 /area/deltastation/hallway/secondary/exit/departure_lounge)
 "wNQ" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/structure/bed/chair/office,
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark,
 /obj/effect/turf_decal/siding/yellow,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4
@@ -113467,7 +113303,7 @@
 	},
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /turf/open/floor/iron,
 /area/deltastation/commons/lounge)
 "wOG" = (
@@ -113801,9 +113637,7 @@
 /turf/open/floor/wood,
 /area/deltastation/service/theater)
 "wSm" = (
-/obj/structure/bed/chair/office{
-	dir = 8
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/west,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet,
 /area/deltastation/security/detectives_office)
@@ -114158,7 +113992,7 @@
 /turf/open/floor/plating,
 /area/deltastation/security/checkpoint/escape)
 "wWy" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/effect/decal/sandedge{
 	dir = 1
 	},
@@ -114193,7 +114027,7 @@
 /area/deltastation/command/teleporter)
 "wWU" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/bed/chair/wood{
+/obj/structure/bed/chair/wood/wings{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -114481,7 +114315,7 @@
 /turf/open/floor/plating,
 /area/deltastation/external/landingzone)
 "xaj" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -116163,7 +115997,7 @@
 /turf/open/floor/iron,
 /area/deltastation/engineering/lobby)
 "xsl" = (
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4;
 	piping_layer = 4;
@@ -117688,9 +117522,7 @@
 /turf/open/floor/iron/grimy,
 /area/deltastation/service/library)
 "xGP" = (
-/obj/structure/bed/chair/office{
-	dir = 4
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/east,
 /obj/machinery/newscaster,
 /turf/open/floor/carpet,
 /area/deltastation/commons/vacant_room/office)
@@ -117996,7 +117828,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/iron/cafeteria,
 /area/deltastation/service/cafeteria)
@@ -118044,7 +117876,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
-/obj/structure/bed/stool,
+/obj/effect/spawner/random/structure/stool,
 /turf/open/floor/wood,
 /area/deltastation/service/electronic_marketing_den)
 "xKb" = (
@@ -119152,9 +118984,7 @@
 /turf/open/floor/iron/white,
 /area/deltastation/science/lab)
 "xUg" = (
-/obj/structure/bed/chair/office{
-	dir = 1
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/north,
 /turf/open/floor/carpet,
 /area/deltastation/maintenance/port)
 "xUk" = (
@@ -119222,7 +119052,7 @@
 /turf/open/floor/tile/dark,
 /area/deltastation/external/landingzone)
 "xUT" = (
-/obj/structure/bed/chair/office,
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/iron/dark,
@@ -119503,9 +119333,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/deltastation/maintenance/port/aft)
 "xYj" = (
-/obj/structure/bed/chair/office{
-	dir = 4
-	},
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark/east,
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/alarm,
 /turf/open/floor/plating,
@@ -120473,7 +120301,7 @@
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/construction)
 "ygT" = (
-/obj/structure/bed/chair/office,
+/obj/effect/spawner/random/structure/office_chair_or_metal/dark,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},

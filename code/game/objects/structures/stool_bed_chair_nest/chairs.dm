@@ -204,13 +204,21 @@
 	drag_delay = 1 //Pulling something on wheels is easy
 
 //directional chairs for random spawners
-/obj/structure/bed/chair/office/north
+/obj/structure/bed/chair/office/light/north
 	dir = 1
-
-/obj/structure/bed/chair/office/east
+/obj/structure/bed/chair/office/light/east
 	dir = 4
 
-/obj/structure/bed/chair/office/west
+/obj/structure/bed/chair/office/light/west
+	dir = 8
+
+/obj/structure/bed/chair/office/dark/north
+	dir = 1
+
+/obj/structure/bed/chair/office/dark/east
+	dir = 4
+
+/obj/structure/bed/chair/office/dark/west
 	dir = 8
 
 /obj/structure/bed/chair/office/Bump(atom/A)
