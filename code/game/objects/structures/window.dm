@@ -309,6 +309,15 @@
 	///are we tinted or not
 	var/tinted = FALSE
 
+/obj/structure/window/reinforced/north
+	dir = NORTH
+
+/obj/structure/window/reinforced/west
+	dir = WEST
+
+/obj/structure/window/reinforced/west
+	dir = EAST
+
 /obj/structure/window/reinforced/Initialize(mapload)
 	. = ..()
 	if(dir == NORTH)

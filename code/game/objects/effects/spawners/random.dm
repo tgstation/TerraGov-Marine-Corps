@@ -687,6 +687,17 @@
 		/obj/item/stack/cable_coil/five = 10,
 	)
 
+/obj/effect/spawner/random/shard
+	name = "Random shard spawner"
+	icon_state = "random_shard"
+	spawn_random_offset = TRUE
+	spawn_loot_count = 2
+	spawn_scatter_radius = 1
+	spawn_loot_chance = 90
+	loot = list(
+		/obj/item/shard = 6,
+		/obj/effect/decal/cleanable/glass = 2,
+	)
 
 /obj/effect/spawner/random/seeds
 	name = "Random seed spawner"
@@ -1940,6 +1951,35 @@
 	loot = list(
 		/obj/structure/window_frame/mainship = 10,
 		/obj/structure/window/framed/mainship = 1,
+	)
+
+/obj/effect/spawner/random/structure/directional_window
+	icon_state = "random_rwindow"
+	spawn_loot_chance = 95
+	loot = list(
+		/obj/structure/window/reinforced = 35,
+		/obj/effect/spawner/random/shard = 1,
+	)
+
+/obj/effect/spawner/random/structure/directional_window/north
+	icon_state = "random_rwindow_north"
+	loot = list(
+		/obj/structure/window/reinforced/north = 35,
+		/obj/effect/spawner/random/shard = 1,
+	)
+
+/obj/effect/spawner/random/structure/directional_window/east
+	icon_state = "random_rwindow_east"
+	loot = list(
+		/obj/structure/window/reinforced/east = 35,
+		/obj/effect/spawner/random/shard = 1,
+	)
+
+/obj/effect/spawner/random/structure/directional_window/west
+	icon_state = "random_rwindow_west"
+	loot = list(
+		/obj/structure/window/reinforced/west = 35,
+		/obj/effect/spawner/random/shard = 1,
 	)
 
 /obj/effect/spawner/random/structure/dead_ai
