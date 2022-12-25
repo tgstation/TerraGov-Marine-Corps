@@ -1837,7 +1837,7 @@
 	icon_state = "random_office_chair"
 	spawn_loot_chance = 95
 	loot = list(
-		/obj/structure/bed/chair/dark/office = 10,
+		/obj/structure/bed/chair/office/dark = 10,
 		/obj/item/stack/sheet/metal = 1,
 	)
 
@@ -1855,7 +1855,7 @@
 	icon_state = "random_office_chair_east"
 	spawn_loot_chance = 95
 	loot = list(
-		/obj/structure/bed/chair/dark/office/east = 10,
+		/obj/structure/bed/chair/office/dark/east = 10,
 		/obj/item/stack/sheet/metal = 1,
 	)
 
@@ -1873,7 +1873,7 @@
 	icon_state = "random_office_chair_west"
 	spawn_loot_chance = 95
 	loot = list(
-		/obj/structure/bed/chair/dark/office/west = 10,
+		/obj/structure/bed/chair/office/dark/west = 10,
 		/obj/item/stack/sheet/metal = 1,
 	)
 
@@ -1891,7 +1891,7 @@
 	icon_state = "random_office_chair_north"
 	spawn_loot_chance = 95
 	loot = list(
-		/obj/structure/bed/chair/dark/office/north = 10,
+		/obj/structure/bed/chair/office/dark/north = 10,
 		/obj/item/stack/sheet/metal = 1,
 	)
 
