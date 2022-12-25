@@ -206,6 +206,7 @@
 //directional chairs for random spawners
 /obj/structure/bed/chair/office/light/north
 	dir = 1
+
 /obj/structure/bed/chair/office/light/east
 	dir = 4
 
