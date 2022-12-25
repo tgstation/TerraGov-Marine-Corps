@@ -278,6 +278,7 @@
 	icon_state = "rownin_skeleton"
 	item_state = "rownin_skeleton"
 	slowdown = 0
+	light_range = 8
 
 	icon_state_variants = list()
 
