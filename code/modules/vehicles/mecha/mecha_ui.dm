@@ -174,21 +174,21 @@
 				"ammo_type" = weapon.ammo_type,
 			)
 	data["mech_equipment"] = list("utility" = list(), "power" = list(), "armor" = list())
-	for(var/obj/item/mecha_parts/mecha_equipment/utility as anything in equip_by_category[MECHA_UTILITY])
+	for(var/obj/item/mecha_parts/mecha_equipment/utility AS in equip_by_category[MECHA_UTILITY])
 		data["mech_equipment"]["utility"] += list(list(
 			"name" = utility.name,
 			"activated" = utility.activated,
 			"snowflake" = utility.get_snowflake_data(),
 			"ref" = REF(utility),
 		))
-	for(var/obj/item/mecha_parts/mecha_equipment/power as anything in equip_by_category[MECHA_POWER])
+	for(var/obj/item/mecha_parts/mecha_equipment/power AS in equip_by_category[MECHA_POWER])
 		data["mech_equipment"]["power"] += list(list(
 			"name" = power.name,
 			"activated" = power.activated,
 			"snowflake" = power.get_snowflake_data(),
 			"ref" = REF(power),
 		))
-	for(var/obj/item/mecha_parts/mecha_equipment/armor/armor as anything in equip_by_category[MECHA_ARMOR])
+	for(var/obj/item/mecha_parts/mecha_equipment/armor/armor AS in equip_by_category[MECHA_ARMOR])
 		data["mech_equipment"]["armor"] += list(list(
 			"protect_name" = armor.protect_name,
 			"iconstate_name" = armor.iconstate_name,
