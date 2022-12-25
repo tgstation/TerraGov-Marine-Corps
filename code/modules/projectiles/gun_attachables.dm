@@ -1205,24 +1205,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	to_chat(source, span_warning("Losing support, the bipod retracts!"))
 	playsound(source, 'sound/machines/click.ogg', 15, 1, 4)
 
-
-//when user fires the gun, we check if they have something to support the gun's bipod.
-/obj/item/attachable/proc/check_bipod_support(obj/item/weapon/gun/G, mob/living/user)
-	return FALSE
-
-/obj/item/attachable/bipod/check_bipod_support(obj/item/weapon/gun/G, mob/living/user)
-	var/turf/T = get_turf(user)
-	for(var/obj/O in T)
-		if(O.throwpass && O.density && O.dir == user.dir && O.flags_atom & ON_BORDER)
-			return O
-
-	T = get_step(T, user.dir)
-	for(var/obj/O in T)
-		if((istype(O, /obj/structure/window_frame)))
-			return O
-
-	return FALSE
-
 /obj/item/attachable/lace
 	name = "pistol lace"
 	desc = "A simple lace to wrap around your wrist."

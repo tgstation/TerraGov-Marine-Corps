@@ -6,7 +6,7 @@
 	anchored = TRUE
 	max_integrity = 250
 	resistance_flags = XENO_DAMAGEABLE
-	throwpass = TRUE
+	flags_pass = PASSABLE
 	coverage = 60
 	///list of human mobs we're currently affecting in our area.
 	var/list/mob/living/carbon/human/affecting_list

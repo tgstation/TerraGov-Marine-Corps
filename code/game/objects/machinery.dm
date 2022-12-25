@@ -22,7 +22,7 @@
 	var/mob/living/carbon/human/operator
 
 	///Whether bullets can bypass the object even though it's dense
-	throwpass = TRUE
+	flags_pass = PASSABLE
 
 /obj/machinery/Initialize()
 	. = ..()
