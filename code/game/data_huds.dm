@@ -675,3 +675,27 @@
 	if(internal_damage)
 		holder.icon_state = "hudwarn"
 	holder.icon_state = null
+
+///Updates helicopter health bar (green)
+/obj/vehicle/sealed/helicopter/proc/show_helicopter_health()
+	var/image/holder = hud_list[MACHINE_HEALTH_HUD]
+	if(!holder)
+		return
+	if(obj_integrity < 1)
+		holder.icon_state = "xenohealth0"
+		return
+	var/amount = round(obj_integrity * 100 / max_integrity, 10)
+	/*if(!amount)
+		amount = 1*/
+	holder.icon_state = "xenohealth[amount]"
+
+///Updates helicopter fuel bar (blue)
+/obj/vehicle/sealed/helicopter/proc/show_helicopter_fuel()
+	var/image/holder = hud_list[MACHINE_AMMO_HUD]
+	if(!holder)
+		return
+	if(!current_fuel)
+		holder.icon_state = "plasma0"
+		return
+	var/amount = round(current_fuel * 100 / max_fuel, 10)
+	holder.icon_state = "plasma[amount]"

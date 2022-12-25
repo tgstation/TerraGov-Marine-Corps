@@ -1761,6 +1761,7 @@
 #include "code\modules\tooltip\tooltip.dm"
 #include "code\modules\unit_tests\_unit_tests.dm"
 #include "code\modules\vehicles\_vehicle.dm"
+#include "code\modules\vehicles\aircraft.dm"
 #include "code\modules\vehicles\atv.dm"
 #include "code\modules\vehicles\bicycle.dm"
 #include "code\modules\vehicles\cargo_train.dm"

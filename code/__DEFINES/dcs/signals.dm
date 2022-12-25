@@ -346,6 +346,13 @@
 #define COMSIG_MECH_FIRE "mech_fire"
 #define COMSIG_MECH_STOP_FIRE "mech_stop_fire"
 
+#define COMSIG_HELI_FIRE "heli_fire"
+#define COMSIG_HELI_STOP_FIRE "heli_stop_fire"
+#define COMSIG_HELI_AUTOFIREDELAY_MODIFIED "heli_firedelay_modified"
+#define COMSIG_HELI_BURST_SHOTS_TO_FIRE_MODIFIED "heli_burstamount_modified"
+#define COMSIG_HELI_BURST_SHOT_DELAY_MODIFIED "heli_burstdelay_modified"
+#define COMSIG_HELI_AUTO_BURST_SHOT_DELAY_MODIFIED "heli_auto_burstdelay_modified"
+#define COMSIG_HELI_FIRE_MODE_TOGGLE "heli_firemode_toggle"
 
 // /obj/item/clothing signals
 #define COMSIG_SHOES_STEP_ACTION "shoes_step_action"			//from base of obj/item/clothing/shoes/proc/step_action(): ()

@@ -1641,6 +1641,60 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/smoke_burst/do_at_max_range(turf/T, obj/projectile/P)
 	drop_nade(T.density ? P.loc : T)
 
+/* Helicopter ammo datums */
+/datum/ammo/bullet/aircraft_minigun
+	name = "aircraft minigun bullet"
+	hud_state = "minigun"
+	damage = 15
+	damage_falloff = 0
+	penetration = 15
+	shrapnel_chance = 25
+	sundering = 2.5
+	accuracy = 100
+	accurate_range = 7
+	max_range = 7
+
+/datum/ammo/bullet/aircraft_cannon
+	name = "aircraft cannon round"
+	hud_state = "sniper"
+	damage_falloff = 0
+	damage = 40
+	penetration = 50
+	sundering = 10
+	accuracy = 100
+	accurate_range = 7
+	max_range = 7
+
+/datum/ammo/rocket/predator
+	name = "\improper Predator missile"
+	hud_state = "rocket_fire"
+	damage = 50
+	penetration = 70
+	sundering = 20
+	accuracy = 100
+	accurate_range = 7
+	shell_speed = 1.5
+	max_range = 7
+	barricade_clear_distance = 7
+
+/datum/ammo/rocket/swarm/drop_nade(turf/T)
+	explosion(T, 0, 2, 3, 3, 0, 3)
+
+/datum/ammo/rocket/swarm
+	name = "\improper Swarm missile"
+	icon_state = "atgun"
+	damage = 10
+	penetration = 20
+	sundering = 5
+	accuracy = 100
+	accurate_range = 7
+	shell_speed = 2.5
+	max_range = 7
+	barricade_clear_distance = 7
+
+/datum/ammo/rocket/swarm/drop_nade(turf/T)
+	explosion(T, 0, 0, 2, 0, 0, 0)
+
 /*
 //================================================
 					Rocket Ammo

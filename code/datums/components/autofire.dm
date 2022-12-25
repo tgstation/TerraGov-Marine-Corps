@@ -27,13 +27,13 @@
 /datum/component/automatedfire/autofire/Initialize(_auto_fire_shot_delay = 0.3 SECONDS, _auto_burst_fire_shot_delay, _burstfire_shot_delay, _burst_shots_to_fire = 3, _fire_mode = GUN_FIREMODE_SEMIAUTO, datum/callback/_callback_bursting, datum/callback/_callback_reset_fire, datum/callback/_callback_fire)
 	. = ..()
 
-	RegisterSignal(parent, COMSIG_GUN_FIRE_MODE_TOGGLE, .proc/modify_fire_mode)
-	RegisterSignal(parent, list(COMSIG_GUN_AUTOFIREDELAY_MODIFIED, COMSIG_XENO_AUTOFIREDELAY_MODIFIED), .proc/modify_fire_shot_delay)
-	RegisterSignal(parent, COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED, .proc/modify_burst_shots_to_fire)
-	RegisterSignal(parent, COMSIG_GUN_BURST_SHOT_DELAY_MODIFIED, .proc/modify_burstfire_shot_delay)
-	RegisterSignal(parent, COMSIG_GUN_AUTO_BURST_SHOT_DELAY_MODIFIED, .proc/modify_autoburstfire_shot_delay)
-	RegisterSignal(parent, list(COMSIG_GUN_FIRE, COMSIG_XENO_FIRE, COMSIG_MECH_FIRE), .proc/initiate_shot)
-	RegisterSignal(parent, list(COMSIG_GUN_STOP_FIRE, COMSIG_XENO_STOP_FIRE, COMSIG_MECH_STOP_FIRE), .proc/stop_firing)
+	RegisterSignal(parent, list(COMSIG_GUN_FIRE_MODE_TOGGLE, COMSIG_HELI_FIRE_MODE_TOGGLE), .proc/modify_fire_mode)
+	RegisterSignal(parent, list(COMSIG_GUN_AUTOFIREDELAY_MODIFIED, COMSIG_XENO_AUTOFIREDELAY_MODIFIED, COMSIG_HELI_AUTOFIREDELAY_MODIFIED), .proc/modify_fire_shot_delay)
+	RegisterSignal(parent, list(COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED, COMSIG_HELI_BURST_SHOTS_TO_FIRE_MODIFIED), .proc/modify_burst_shots_to_fire)
+	RegisterSignal(parent, list(COMSIG_GUN_BURST_SHOT_DELAY_MODIFIED, COMSIG_HELI_BURST_SHOT_DELAY_MODIFIED), .proc/modify_burstfire_shot_delay)
+	RegisterSignal(parent, list(COMSIG_GUN_AUTO_BURST_SHOT_DELAY_MODIFIED, COMSIG_HELI_AUTO_BURST_SHOT_DELAY_MODIFIED), .proc/modify_autoburstfire_shot_delay)
+	RegisterSignal(parent, list(COMSIG_GUN_FIRE, COMSIG_XENO_FIRE, COMSIG_MECH_FIRE, COMSIG_HELI_FIRE), .proc/initiate_shot)
+	RegisterSignal(parent, list(COMSIG_GUN_STOP_FIRE, COMSIG_XENO_STOP_FIRE, COMSIG_MECH_STOP_FIRE, COMSIG_HELI_STOP_FIRE), .proc/stop_firing)
 
 	auto_fire_shot_delay = _auto_fire_shot_delay
 	burstfire_shot_delay = _burstfire_shot_delay
