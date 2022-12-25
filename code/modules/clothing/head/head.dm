@@ -40,6 +40,7 @@
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
 	flags_item_map_variant = NONE
 	flags_armor_features = ARMOR_NO_DECAP
+	species_exception = list(/datum/species/robot, /datum/species/synthetic, /datum/species/human, /datum/species/early_synthetic, /datum/species/zombie)
 
 /obj/item/clothing/head/tgmcberet/tan
 	name = "\improper Tan beret"
