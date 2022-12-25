@@ -121,7 +121,7 @@
 
 	var/mob/living/user = usr
 
-	if(!user.skills.getRating("medical"))
+	if(user.skills.getRating("medical") < SKILL_MEDICAL_NOVICE)
 		to_chat(user, span_notice("You start fiddling with \the [src]..."))
 		if(!do_after(user, SKILL_TASK_EASY, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
