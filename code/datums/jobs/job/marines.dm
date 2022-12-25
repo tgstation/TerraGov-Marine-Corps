@@ -154,7 +154,7 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_MEDIUM,
-		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR
+		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
 	)
 
 /datum/job/terragov/squad/engineer/radio_help_message(mob/M)
@@ -231,7 +231,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
-		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_MEDIUM
+		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_MEDIUM,
 	)
 	html_description = {"
 		<b>Difficulty</b>: Hard<br /><br />
@@ -253,7 +253,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	jobworth = list(
 		/datum/job/terragov/silicon/synthetic/rebel = SYNTH_POINTS_REGULAR,
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
-		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_MEDIUM
+		/datum/job/terragov/squad/smartgunner/rebel = SMARTIE_POINTS_MEDIUM,
 	)
 
 /datum/job/terragov/squad/corpsman/radio_help_message(mob/M)
