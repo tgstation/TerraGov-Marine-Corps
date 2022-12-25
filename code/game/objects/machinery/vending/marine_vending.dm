@@ -1154,8 +1154,8 @@
 			/obj/item/clothing/suit/storage/marine/robot/heavy = -1,
 		),
 		"Helmets" = list(
-			/obj/item/clothing/head/modular/marine/m10x = -1,
-			/obj/item/clothing/head/modular/marine/m10x/heavy = -1,
+			/obj/item/clothing/head/modular/m10x = -1,
+			/obj/item/clothing/head/modular/m10x/heavy = -1,
 			/obj/item/clothing/head/modular/marine/skirmisher = -1,
 			/obj/item/clothing/head/modular/marine = -1,
 			/obj/item/clothing/head/modular/marine/eva = -1,

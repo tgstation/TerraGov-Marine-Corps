@@ -5,6 +5,6 @@
 
 
 /obj/item/clothing/suit/modular/pas11x
-/obj/item/clothing/head/modular/marine/m10x/tech
-/obj/item/clothing/head/modular/marine/m10x/corpsman
-/obj/item/clothing/head/modular/marine/m10x/standard
+/obj/item/clothing/head/modular/m10x/tech
+/obj/item/clothing/head/modular/m10x/corpsman
+/obj/item/clothing/head/modular/m10x/standard

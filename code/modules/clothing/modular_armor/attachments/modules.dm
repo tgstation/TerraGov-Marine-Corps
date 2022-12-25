@@ -119,7 +119,7 @@
 	item_state = "tyr_head_a"
 	soft_armor = list(MELEE = 15, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 10, FIRE = 10, ACID = 10)
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/head/modular/marine/m10x = "tyr_head_xn", /obj/item/clothing/head/modular/marine/m10x/leader = "tyr_head_xn")
+	variants_by_parent_type = list(/obj/item/clothing/head/modular/m10x = "tyr_head_xn", /obj/item/clothing/head/modular/m10x/leader = "tyr_head_xn")
 
 /obj/item/armor_module/module/hod_head
 	name = "\improper Hod Helmet System"
@@ -200,7 +200,7 @@
 	soft_armor = list("bio" = 40, ACID = 30)
 	slowdown = 0
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/head/modular/marine/m10x = "mimir_head_xn", /obj/item/clothing/head/modular/marine/m10x/leader = "mimir_head_xn")
+	variants_by_parent_type = list(/obj/item/clothing/head/modular/m10x = "mimir_head_xn", /obj/item/clothing/head/modular/m10x/leader = "mimir_head_xn")
 
 /obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1 //gas protection
 	name = "Mark 1 Mimir Environmental Helmet System"
@@ -440,7 +440,7 @@
 	icon_state = "welding_head"
 	item_state = "welding_head_a"
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/head/modular/marine/m10x = "welding_head_xn", /obj/item/clothing/head/modular/marine/m10x/leader = "welding_head_xn", /obj/item/clothing/head/modular/som/welder = "welding_head_som")
+	variants_by_parent_type = list(/obj/item/clothing/head/modular/m10x = "welding_head_xn", /obj/item/clothing/head/modular/m10x/leader = "welding_head_xn", /obj/item/clothing/head/modular/som/welder = "welding_head_som")
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	active = FALSE
 	prefered_slot = SLOT_HEAD
@@ -484,7 +484,7 @@
 	icon_state = "welding_head"
 	item_state = "welding_head_a"
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/head/modular/marine/m10x = "welding_head_superior_xn", /obj/item/clothing/head/modular/marine/m10x/leader = "welding_head_superior_xn", /obj/item/clothing/head/modular/som/welder = "welding_head_som")
+	variants_by_parent_type = list(/obj/item/clothing/head/modular/m10x = "welding_head_superior_xn", /obj/item/clothing/head/modular/m10x/leader = "welding_head_superior_xn", /obj/item/clothing/head/modular/som/welder = "welding_head_som")
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	active = FALSE
 	prefered_slot = SLOT_HEAD
