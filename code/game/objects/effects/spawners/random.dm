@@ -1792,9 +1792,73 @@
 	icon_state = "random_chair"
 	spawn_loot_chance = 95
 	loot = list(
-		/obj/structure/bed/chair = 8,
-		/obj/item/stack/sheet/metal = 2,
+		/obj/structure/bed/chair = 10,
+		/obj/item/stack/sheet/metal = 1,
 	)
+
+/obj/effect/spawner/random/structure/chair_or_metal/north //only works for south facing chairs due to lack of proper directional spawning
+	name = "chair or metal spawner"
+	icon_state = "random_chair_north"
+	spawn_loot_chance = 95
+	loot = list(
+		/obj/structure/bed/chair/north = 10,
+		/obj/item/stack/sheet/metal = 1,
+	)
+
+/obj/effect/spawner/random/structure/chair_or_metal/west //only works for south facing chairs due to lack of proper directional spawning
+	name = "chair or metal spawner"
+	icon_state = "random_chair_west"
+	spawn_loot_chance = 95
+	loot = list(
+		/obj/structure/bed/chair/west = 10,
+		/obj/item/stack/sheet/metal = 1,
+	)
+
+/obj/effect/spawner/random/structure/chair_or_metal/east //only works for south facing chairs due to lack of proper directional spawning
+	name = "chair or metal spawner"
+	icon_state = "random_chair_east"
+	spawn_loot_chance = 95
+	loot = list(
+		/obj/structure/bed/chair/east = 10,
+		/obj/item/stack/sheet/metal = 1,
+	)
+
+/obj/effect/spawner/random/structure/office_chair_or_metal //only works for south facing chairs due to lack of proper directional spawning
+	name = "office chair or metal spawner"
+	icon_state = "random_office_chair"
+	spawn_loot_chance = 95
+	loot = list(
+		/obj/structure/bed/chair/office = 10,
+		/obj/item/stack/sheet/metal = 1,
+	)
+
+/obj/effect/spawner/random/structure/office_chair_or_metal/east //only works for south facing chairs due to lack of proper directional spawning
+	name = "office chair or metal spawner"
+	icon_state = "random_office_chair_east"
+	spawn_loot_chance = 95
+	loot = list(
+		/obj/structure/bed/chair/office/east = 10,
+		/obj/item/stack/sheet/metal = 1,
+	)
+
+/obj/effect/spawner/random/structure/office_chair_or_metal/west //only works for south facing chairs due to lack of proper directional spawning
+	name = "office chair or metal spawner"
+	icon_state = "random_office_chair_west"
+	spawn_loot_chance = 95
+	loot = list(
+		/obj/structure/bed/chair/office/west = 10,
+		/obj/item/stack/sheet/metal = 1,
+	)
+
+/obj/effect/spawner/random/structure/office_chair_or_metal/north //only works for south facing chairs due to lack of proper directional spawning
+	name = "office chair or metal spawner"
+	icon_state = "random_office_chair_north"
+	spawn_loot_chance = 95
+	loot = list(
+		/obj/structure/bed/chair/office/north = 10,
+		/obj/item/stack/sheet/metal = 1,
+	)
+
 
 /obj/effect/spawner/random/structure/machine_frame
 	name = "machine frame spawner"

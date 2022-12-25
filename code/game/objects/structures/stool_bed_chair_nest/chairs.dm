@@ -10,6 +10,16 @@
 	max_integrity = 20
 	var/propelled = 0 //Check for fire-extinguisher-driven chairs
 
+//directional variants mostly used for random spawners
+/obj/structure/bed/chair/east
+	dir = EAST
+
+/obj/structure/bed/chair/west
+	dir = WEST
+
+/obj/structure/bed/chair/north
+	dir = NORTH
+
 /obj/structure/bed/chair/alt
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "chair_alt"
@@ -192,6 +202,16 @@
 	anchored = FALSE
 	buckle_flags = CAN_BUCKLE
 	drag_delay = 1 //Pulling something on wheels is easy
+
+//directional chairs for random spawners
+/obj/structure/bed/chair/office/north
+	dir = 1
+
+/obj/structure/bed/chair/office/east
+	dir = 4
+
+/obj/structure/bed/chair/office/west
+	dir = 8
 
 /obj/structure/bed/chair/office/Bump(atom/A)
 	. = ..()
