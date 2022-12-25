@@ -98,7 +98,7 @@
 	var/datum/atom_hud/squad/squad_hud = GLOB.huds[hud_type]
 	if(!squad_hud.hudusers[src])
 		return
-	var/obj/screen/arrow/arrow_hud = new arrow_type
+	var/atom/movable/screen/arrow/arrow_hud = new arrow_type
 	arrow_hud.add_hud(src, target)
 	playsound_local(src, "sound/effects/CIC_order.ogg", 20, 1)
 	to_chat(src,span_ordercic("Command is urging you to [verb_name] [get_area(get_turf(target))]!"))
@@ -107,7 +107,7 @@
 	name = "Send Attack Order"
 	action_icon_state = "attack"
 	verb_name = "attack the enemy at"
-	arrow_type = /obj/screen/arrow/attack_order_arrow
+	arrow_type = /atom/movable/screen/arrow/attack_order_arrow
 	visual_type = /obj/effect/temp_visual/order/attack_order
 
 //These 'personal' subtypes are the ones not used by overwatch; like what SL or FC gets
@@ -129,7 +129,7 @@
 	name = "Send Defend Order"
 	action_icon_state = "defend"
 	verb_name = "defend our position in"
-	arrow_type = /obj/screen/arrow/defend_order_arrow
+	arrow_type = /atom/movable/screen/arrow/defend_order_arrow
 	visual_type = /obj/effect/temp_visual/order/defend_order
 
 /datum/action/innate/order/defend_order/personal
@@ -170,7 +170,7 @@
 	name = "Send Rally Order"
 	action_icon_state = "rally"
 	verb_name = "rally to"
-	arrow_type = /obj/screen/arrow/rally_order_arrow
+	arrow_type = /atom/movable/screen/arrow/rally_order_arrow
 	visual_type = /obj/effect/temp_visual/order/rally_order
 
 /datum/action/innate/order/rally_order/personal

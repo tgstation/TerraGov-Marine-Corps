@@ -230,3 +230,18 @@
 /obj/effect/decal/cleanable/mucus/Initialize()
 	. = ..()
 	addtimer(VARSET_CALLBACK(src, dry, TRUE), DRYING_TIME * 2)
+
+/obj/effect/decal/cleanable/blood/humanimprint/one
+	icon_state = "u_madman"
+
+/obj/effect/decal/cleanable/blood/humanimprint/two
+	icon_state = "u_psycopath"
+
+/obj/effect/decal/cleanable/blood/humanimprint/three
+	icon_state = "u_dangerous_l"
+
+/obj/effect/decal/cleanable/blood/humanimprint/four
+	icon_state = "u_madman_l"
+
+/obj/effect/decal/cleanable/blood/humanimprint/five
+	icon_state = "u_psycopath_l"

@@ -13,23 +13,23 @@
 	flags_heat_protection = HEAD
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 
-	attack_self(mob/user)
-		if(!isturf(user.loc))
-			to_chat(user, "You cannot turn the light on while in [user.loc]")
-			return
-		on = !on
-		icon_state = "rig[on]-[rig_color]"
+/obj/item/clothing/head/helmet/space/rig/attack_self(mob/user)
+	if(!isturf(user.loc))
+		to_chat(user, "You cannot turn the light on while in [user.loc]")
+		return
+	on = !on
+	icon_state = "rig[on]-[rig_color]"
 
-		if(on)
-			set_light(brightness_on,brightness_on)
-		else
-			set_light(0)
+	if(on)
+		set_light(brightness_on,brightness_on)
+	else
+		set_light(0)
 
-		if(istype(user,/mob/living/carbon/human))
-			var/mob/living/carbon/human/H = user
-			H.update_inv_head()
+	if(istype(user,/mob/living/carbon/human))
+		var/mob/living/carbon/human/H = user
+		H.update_inv_head()
 
-		update_action_button_icons()
+	update_action_button_icons()
 
 /obj/item/clothing/suit/space/rig
 	name = "hardsuit"

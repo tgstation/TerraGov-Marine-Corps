@@ -153,12 +153,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
-"aw" = (
-/turf/open/floor/plating{
-	dir = 1;
-	icon_state = "warnplatecorner"
-	},
-/area/mainship/hallways/hangar)
 "ax" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -1543,10 +1537,7 @@
 /area/mainship/medical/medical_science)
 "ez" = (
 /obj/structure/lattice,
-/turf/closed/shuttle/ert{
-	icon_state = "rightengine_1";
-	opacity = 0
-	},
+/turf/closed/shuttle/ert/engines/right,
 /area/space)
 "eA" = (
 /obj/structure/cable,
@@ -1891,6 +1882,11 @@
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/port_hallway)
+"fv" = (
+/turf/open/floor/plating/icefloor/warnplate/corner{
+	dir = 1
+	},
+/area/mainship/hallways/hangar)
 "fw" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -2553,13 +2549,6 @@
 	dir = 4
 	},
 /area/mainship/medical/lower_medical)
-"hn" = (
-/obj/machinery/mech_bay_recharge_port{
-	icon_state = "recharge_floor"
-	},
-/obj/vehicle/unmanned/droid,
-/turf/open/floor/mainship/floor,
-/area/mainship/command/airoom)
 "ho" = (
 /obj/machinery/light/mainship{
 	dir = 1
@@ -2797,9 +2786,8 @@
 /turf/open/floor/plating,
 /area/mainship/living/tankerbunks)
 "hY" = (
-/turf/open/floor/plating{
-	dir = 4;
-	icon_state = "warnplatecorner"
+/turf/open/floor/plating/icefloor/warnplate/corner{
+	dir = 4
 	},
 /area/mainship/hallways/hangar)
 "hZ" = (
@@ -3435,10 +3423,7 @@
 /area/mainship/hallways/hangar)
 "jP" = (
 /obj/structure/lattice,
-/turf/closed/shuttle/ert{
-	icon_state = "leftengine_1";
-	opacity = 0
-	},
+/turf/closed/shuttle/ert/engines/left,
 /area/space)
 "jQ" = (
 /obj/structure/cable,
@@ -4223,9 +4208,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
 "mj" = (
-/obj/structure/prop/mainship/name_stencil{
-	icon_state = "TGMC3"
-	},
+/obj/structure/prop/mainship/name_stencil/M,
 /turf/open/floor/mainship_hull,
 /area/space)
 "mk" = (
@@ -6108,9 +6091,7 @@
 /area/mainship/squads/general)
 "ru" = (
 /obj/effect/decal/warning_stripes/thin,
-/turf/open/shuttle/escapepod{
-	icon_state = "floor8"
-	},
+/turf/open/shuttle/escapepod/eight,
 /area/mainship/command/self_destruct)
 "rv" = (
 /obj/machinery/vending/weapon,
@@ -6434,9 +6415,7 @@
 	dir = 1
 	},
 /obj/effect/ai_node,
-/turf/open/shuttle/escapepod{
-	icon_state = "floor11"
-	},
+/turf/open/shuttle/escapepod/eleven,
 /area/mainship/command/self_destruct)
 "sq" = (
 /obj/item/weapon/gun/pistol/vp70,
@@ -8163,8 +8142,7 @@
 /area/mainship/hallways/hangar)
 "xb" = (
 /obj/effect/attach_point/weapon/dropship1{
-	dir = 8;
-	icon_state = "equip_base_l_wing"
+	dir = 8
 	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
@@ -8397,7 +8375,6 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/docking_port/stationary/marine_dropship/crash_target,
 /obj/structure/cable,
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
@@ -9744,10 +9721,7 @@
 /area/mainship/hull/lower_hull)
 "Bt" = (
 /obj/vehicle/unmanned/droid,
-/obj/machinery/mech_bay_recharge_port{
-	icon_state = "recharge_floor"
-	},
-/turf/open/floor/mainship/floor,
+/turf/open/floor/mech_bay_recharge_floor,
 /area/mainship/command/airoom)
 "Bu" = (
 /obj/machinery/disposal,
@@ -10196,6 +10170,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
+"CM" = (
+/turf/open/floor/plating/icefloor/warnplate/corner,
+/area/mainship/hallways/hangar)
 "CN" = (
 /turf/open/floor/mainship/sterile/purple/side{
 	dir = 4
@@ -10520,9 +10497,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "DH" = (
-/turf/closed/shuttle/ert{
-	icon_state = "leftengine_2";
-	opacity = 0
+/turf/closed/shuttle/ert/engines/left{
+	dir = 1
 	},
 /area/space)
 "DI" = (
@@ -11618,9 +11594,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "GH" = (
-/turf/closed/shuttle/ert{
-	icon_state = "rightengine_2";
-	opacity = 0
+/turf/closed/shuttle/ert/engines/right{
+	dir = 1
 	},
 /area/space)
 "GI" = (
@@ -11710,9 +11685,7 @@
 	},
 /area/mainship/command/self_destruct)
 "GY" = (
-/obj/structure/prop/mainship/name_stencil{
-	icon_state = "TGMC4"
-	},
+/obj/structure/prop/mainship/name_stencil/C,
 /turf/open/floor/mainship_hull,
 /area/space)
 "GZ" = (
@@ -13687,9 +13660,7 @@
 /turf/closed/wall/mainship/outer,
 /area/mainship/hallways/hangar)
 "MH" = (
-/obj/structure/prop/mainship/name_stencil{
-	icon_state = "TGMC2"
-	},
+/obj/structure/prop/mainship/name_stencil/G,
 /turf/open/floor/mainship_hull,
 /area/space)
 "MI" = (
@@ -15297,9 +15268,8 @@
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/stern_hallway)
 "Rk" = (
-/turf/open/floor/plating{
-	dir = 8;
-	icon_state = "warnplatecorner"
+/turf/open/floor/plating/icefloor/warnplate/corner{
+	dir = 8
 	},
 /area/mainship/hallways/hangar)
 "Rl" = (
@@ -18067,6 +18037,22 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
+"YH" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/vending/weapon,
+/obj/docking_port/stationary/marine_dropship/crash_target,
+/turf/open/floor/mainship/black{
+	dir = 1
+	},
+/area/mainship/squads/general)
 "YI" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
@@ -18282,9 +18268,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/shuttle/escapepod{
-	icon_state = "floor11"
-	},
+/turf/open/shuttle/escapepod/eleven,
 /area/mainship/command/self_destruct)
 "Zl" = (
 /obj/machinery/light_switch{
@@ -46125,7 +46109,7 @@ BQ
 Gd
 tR
 tR
-KL
+CM
 xl
 Ds
 KD
@@ -48939,7 +48923,7 @@ BQ
 JF
 tR
 tR
-KL
+CM
 xl
 xl
 xl
@@ -49195,7 +49179,7 @@ MG
 BQ
 JF
 tR
-KL
+CM
 Ds
 tR
 tR
@@ -50223,7 +50207,7 @@ MG
 BQ
 JF
 tR
-aw
+fv
 aK
 tR
 tR
@@ -50481,7 +50465,7 @@ BQ
 JF
 tR
 tR
-aw
+fv
 KD
 KD
 KD
@@ -50753,7 +50737,7 @@ tR
 tR
 tR
 tR
-KL
+CM
 Ds
 KD
 JP
@@ -51777,7 +51761,7 @@ Vc
 yj
 rC
 Cf
-KL
+CM
 xl
 xl
 xl
@@ -52291,7 +52275,7 @@ Vc
 xo
 oF
 Sj
-aw
+fv
 KD
 KD
 KD
@@ -53071,7 +53055,7 @@ tR
 tR
 JP
 tR
-aw
+fv
 KD
 KD
 KD
@@ -53159,7 +53143,7 @@ pK
 pK
 pK
 JY
-hn
+Bt
 nw
 Nr
 NS
@@ -53323,7 +53307,7 @@ tR
 tR
 tR
 tR
-aw
+fv
 aK
 xl
 JP
@@ -55688,7 +55672,7 @@ Eo
 Eo
 xT
 zh
-WN
+YH
 IQ
 IQ
 xT

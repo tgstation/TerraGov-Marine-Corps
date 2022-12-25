@@ -115,6 +115,19 @@
 	hud_type = DATA_HUD_MEDICAL_ADVANCED
 	actions_types = list(/datum/action/item_action/toggle)
 
+/obj/item/clothing/glasses/hud/medsunglasses
+	name = "\improper HealthMate sunglasses"
+	desc = "A pair of designer sunglasses. This pair has been fitted with an internal HealthMate HUD projector."
+	icon_state = "medsunglasses"
+	item_state = "medsunglasses"
+	deactive_state = "degoggles_medsunglasses"
+	species_exception = list(/datum/species/robot)
+	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/glasses.dmi')
+	prescription = TRUE
+	toggleable = TRUE
+	hud_type = DATA_HUD_MEDICAL_ADVANCED
+	actions_types = list(/datum/action/item_action/toggle)
+
 /obj/item/clothing/glasses/hud/security
 	name = "\improper PatrolMate HUD"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their ID status and security records."

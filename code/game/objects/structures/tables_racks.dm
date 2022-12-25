@@ -258,11 +258,6 @@
 	if(I.loc != loc)
 		step(I, get_dir(I, src))
 
-/obj/structure/table/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_TABLE)
-	return ..()
-
-
 /obj/structure/table/wrench_act(mob/living/user, obj/item/I)
 	. = ..()
 	if(reinforced && table_status != TABLE_STATUS_WEAKENED)
@@ -300,7 +295,7 @@
 
 			if(prob(15))
 				M.Paralyze(10 SECONDS)
-			M.apply_damage(8, BRUTE, "head", updating_health = TRUE)
+			M.apply_damage(8, BRUTE, "head", blocked = MELEE, updating_health = TRUE)
 			user.visible_message(span_danger("[user] slams [M]'s face against [src]!"),
 			span_danger("You slam [M]'s face against [src]!"))
 			log_combat(user, M, "slammed", "", "against \the [src]")
@@ -644,10 +639,6 @@
 	user.drop_held_item()
 	if(I.loc != loc)
 		step(I, get_dir(I, src))
-
-/obj/structure/rack/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_RACK)
-	return ..()
 
 /obj/structure/rack/attackby(obj/item/I, mob/user, params)
 	. = ..()

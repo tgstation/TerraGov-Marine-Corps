@@ -185,6 +185,15 @@
 /obj/structure/mineral_door/resin/flamer_fire_act(burnlevel)
 	take_damage(burnlevel * 2, BURN, "fire")
 
+/obj/structure/mineral_door/resin/ex_act(severity)
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			qdel()
+		if(EXPLODE_HEAVY)
+			qdel()
+		if(EXPLODE_LIGHT)
+			take_damage((rand(50, 60)))
+
 /turf/closed/wall/resin/fire_act()
 	take_damage(50, BURN, "fire")
 

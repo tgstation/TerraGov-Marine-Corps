@@ -63,11 +63,10 @@
 	var/list/progressbars //for stacking do_after bars
 	var/list/progbar_towers //for stacking the total pixel height of the aboves.
 	var/list/fullscreens = list()
-	var/list/alerts = list() // contains /obj/screen/alert only, used by alerts.dm
+	var/list/alerts = list() // contains /atom/movable/screen/alert only, used by alerts.dm
 	var/list/datum/action/actions = list()
 	var/list/actions_by_path = list()
 	var/lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
-	var/image/typing_indicator
 
 	//Interaction
 	///Lazylist assoc list of do_after and do_mob actions the mob is currently performing: list([target] = amount)
@@ -95,3 +94,12 @@
 	var/has_unlimited_silicon_privilege = 0
 	///The faction this mob belongs to
 	var/faction = FACTION_NEUTRAL
+
+	/// what icon the mob uses for speechbubbles
+	var/bubble_icon = "default"
+	///the icon currently used for the typing indicator's bubble
+	var/active_typing_indicator
+	///the icon currently used for the thinking indicator's bubble
+	var/active_thinking_indicator
+	/// User is thinking in character. Used to revert to thinking state after stop_typing
+	var/thinking_IC = FALSE

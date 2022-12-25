@@ -1,18 +1,18 @@
-/obj/screen/ai
+/atom/movable/screen/ai
 	icon = 'icons/mob/screen_ai.dmi'
 
 
-/obj/screen/ai/Click()
+/atom/movable/screen/ai/Click()
 	if(isobserver(usr) || usr.incapacitated())
 		return TRUE
 
 
-/obj/screen/ai/aicore
+/atom/movable/screen/ai/aicore
 	name = "AI core"
 	icon_state = "ai_core"
 
 
-/obj/screen/ai/aicore/Click()
+/atom/movable/screen/ai/aicore/Click()
 	. = ..()
 	if(.)
 		return
@@ -20,33 +20,33 @@
 	AI.view_core()
 
 
-/obj/screen/ai/camera_list
+/atom/movable/screen/ai/camera_list
 	name = "Show Camera List"
 	icon_state = "camera"
 
-/obj/screen/ai/announcement
+/atom/movable/screen/ai/announcement
 	name = "Make Vox Announcement"
 	icon_state = "announcement"
 
-/obj/screen/ai/announcement/Click()
+/atom/movable/screen/ai/announcement/Click()
 	. = ..()
 	if(.)
 		return
 	var/mob/living/silicon/ai/AI = usr
 	AI.announcement()
 
-/obj/screen/ai/announcement_help
+/atom/movable/screen/ai/announcement_help
 	name = "Vox Announcement Help"
 	icon_state = "alerts"
 
-/obj/screen/ai/announcement_help/Click()
+/atom/movable/screen/ai/announcement_help/Click()
 	. = ..()
 	if(.)
 		return
 	var/mob/living/silicon/ai/AI = usr
 	AI.announcement_help()
 
-/obj/screen/ai/camera_list/Click()
+/atom/movable/screen/ai/camera_list/Click()
 	. = ..()
 	if(.)
 		return
@@ -54,12 +54,12 @@
 	AI.show_camera_list()
 
 
-/obj/screen/ai/camera_track
+/atom/movable/screen/ai/camera_track
 	name = "Track With Camera"
 	icon_state = "track"
 
 
-/obj/screen/ai/camera_track/Click()
+/atom/movable/screen/ai/camera_track/Click()
 	. = ..()
 	if(.)
 		return
@@ -68,12 +68,12 @@
 	AI.ai_camera_track(target_name)
 
 
-/obj/screen/ai/camera_light
+/atom/movable/screen/ai/camera_light
 	name = "Toggle Camera Light"
 	icon_state = "camera_light"
 
 
-/obj/screen/ai/camera_light/Click()
+/atom/movable/screen/ai/camera_light/Click()
 	. = ..()
 	if(.)
 		return
@@ -81,12 +81,12 @@
 	AI.toggle_camera_light()
 
 
-/obj/screen/ai/multicam
+/atom/movable/screen/ai/multicam
 	name = "Multicamera Mode"
 	icon_state = "multicam"
 
 
-/obj/screen/ai/multicam/Click()
+/atom/movable/screen/ai/multicam/Click()
 	. = ..()
 	if(.)
 		return
@@ -94,12 +94,12 @@
 	AI.toggle_multicam()
 
 
-/obj/screen/ai/add_multicam
+/atom/movable/screen/ai/add_multicam
 	name = "New Camera"
 	icon_state = "new_cam"
 
 
-/obj/screen/ai/add_multicam/Click()
+/atom/movable/screen/ai/add_multicam/Click()
 	. = ..()
 	if(.)
 		return
@@ -109,44 +109,44 @@
 
 /datum/hud/ai/New(mob/owner, ui_style, ui_color, ui_alpha = 230)
 	. = ..()
-	var/obj/screen/using
+	var/atom/movable/screen/using
 
 //AI core
-	using = new /obj/screen/ai/aicore()
+	using = new /atom/movable/screen/ai/aicore()
 	using.screen_loc = ui_ai_core
 	static_inventory += using
 
 //Camera list
-	using = new /obj/screen/ai/camera_list()
+	using = new /atom/movable/screen/ai/camera_list()
 	using.screen_loc = ui_ai_camera_list
 	static_inventory += using
 
 //Track
-	using = new /obj/screen/ai/camera_track()
+	using = new /atom/movable/screen/ai/camera_track()
 	using.screen_loc = ui_ai_track_with_camera
 	static_inventory += using
 
 //VOX
-	using = new /obj/screen/ai/announcement()
+	using = new /atom/movable/screen/ai/announcement()
 	using.screen_loc = ui_ai_announcement
 	static_inventory += using
 
 //VOX Help
-	using = new /obj/screen/ai/announcement_help()
+	using = new /atom/movable/screen/ai/announcement_help()
 	using.screen_loc = ui_ai_announcement_help
 	static_inventory += using
 
 //Camera light
-	using = new /obj/screen/ai/camera_light()
+	using = new /atom/movable/screen/ai/camera_light()
 	using.screen_loc = ui_ai_camera_light
 	static_inventory += using
 
 //Multicamera mode
-	using = new /obj/screen/ai/multicam()
+	using = new /atom/movable/screen/ai/multicam()
 	using.screen_loc = ui_ai_multicam
 	static_inventory += using
 
 //Add multicamera camera
-	using = new /obj/screen/ai/add_multicam()
+	using = new /atom/movable/screen/ai/add_multicam()
 	using.screen_loc = ui_ai_add_multicam
 	static_inventory += using

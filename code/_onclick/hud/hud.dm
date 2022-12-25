@@ -14,61 +14,61 @@
 	var/show_intent_icons = 0
 	var/hotkey_ui_hidden = 0	//This is to hide the buttons that can be used via hotkeys. (hotkeybuttons list of buttons)
 
-	var/obj/screen/r_hand_hud_object
-	var/obj/screen/l_hand_hud_object
-	var/obj/screen/action_intent
-	var/obj/screen/move_intent
-	var/obj/screen/alien_plasma_display
-	var/obj/screen/locate_leader
-	var/obj/screen/SL_locator
+	var/atom/movable/screen/r_hand_hud_object
+	var/atom/movable/screen/l_hand_hud_object
+	var/atom/movable/screen/action_intent
+	var/atom/movable/screen/move_intent
+	var/atom/movable/screen/alien_plasma_display
+	var/atom/movable/screen/locate_leader
+	var/atom/movable/screen/SL_locator
 
-	var/obj/screen/module_store_icon
+	var/atom/movable/screen/module_store_icon
 
-	var/obj/screen/nutrition_icon
+	var/atom/movable/screen/nutrition_icon
 
-	var/obj/screen/use_attachment
-	var/obj/screen/toggle_raillight
-	var/obj/screen/eject_mag
-	var/obj/screen/toggle_firemode
-	var/obj/screen/unique_action
+	var/atom/movable/screen/use_attachment
+	var/atom/movable/screen/toggle_raillight
+	var/atom/movable/screen/eject_mag
+	var/atom/movable/screen/toggle_firemode
+	var/atom/movable/screen/unique_action
 
-	var/obj/screen/zone_sel
-	var/obj/screen/pull_icon
-	var/obj/screen/throw_icon
-	var/obj/screen/rest_icon
-	var/obj/screen/oxygen_icon
-	var/obj/screen/pressure_icon
-	var/obj/screen/toxin_icon
-	var/obj/screen/internals
-	var/obj/screen/healths
-	var/obj/screen/stamina_hud/staminas
-	var/obj/screen/fire_icon
-	var/obj/screen/bodytemp_icon
+	var/atom/movable/screen/zone_sel
+	var/atom/movable/screen/pull_icon
+	var/atom/movable/screen/throw_icon
+	var/atom/movable/screen/rest_icon
+	var/atom/movable/screen/oxygen_icon
+	var/atom/movable/screen/pressure_icon
+	var/atom/movable/screen/toxin_icon
+	var/atom/movable/screen/internals
+	var/atom/movable/screen/healths
+	var/atom/movable/screen/stamina_hud/staminas
+	var/atom/movable/screen/fire_icon
+	var/atom/movable/screen/bodytemp_icon
 
-	var/obj/screen/gun_setting_icon
-	var/obj/screen/gun_item_use_icon
-	var/obj/screen/gun_move_icon
-	var/obj/screen/gun_run_icon
+	var/atom/movable/screen/gun_setting_icon
+	var/atom/movable/screen/gun_item_use_icon
+	var/atom/movable/screen/gun_move_icon
+	var/atom/movable/screen/gun_run_icon
 
-	var/list/obj/screen/ammo_hud_list = list()
+	var/list/atom/movable/screen/ammo_hud_list = list()
 
 	var/list/static_inventory = list() //the screen objects which are static
 	var/list/toggleable_inventory = list() //the screen objects which can be hidden
-	var/list/obj/screen/hotkeybuttons = list() //the buttons that can be used via hotkeys
+	var/list/atom/movable/screen/hotkeybuttons = list() //the buttons that can be used via hotkeys
 	var/list/infodisplay = list() //the screen objects that display mob info (health, alien plasma, etc...)
 
-	var/obj/screen/action_button/hide_toggle/hide_actions_toggle
+	var/atom/movable/screen/action_button/hide_toggle/hide_actions_toggle
 	var/action_buttons_hidden = 0
 
-	var/list/obj/screen/plane_master/plane_masters = list() // see "appearance_flags" in the ref, assoc list of "[plane]" = object
+	var/list/atom/movable/screen/plane_master/plane_masters = list() // see "appearance_flags" in the ref, assoc list of "[plane]" = object
 
 
 /datum/hud/New(mob/owner)
 	mymob = owner
 	hide_actions_toggle = new
 
-	for(var/mytype in subtypesof(/obj/screen/plane_master) - /obj/screen/plane_master/rendering_plate)
-		var/obj/screen/plane_master/instance = new mytype()
+	for(var/mytype in subtypesof(/atom/movable/screen/plane_master) - /atom/movable/screen/plane_master/rendering_plate)
+		var/atom/movable/screen/plane_master/instance = new mytype()
 		plane_masters["[instance.plane]"] = instance
 		instance.backdrop(mymob)
 
@@ -152,7 +152,7 @@
 /datum/hud/proc/plane_masters_update()
 	// Plane masters are always shown to OUR mob, never to observers
 	for(var/thing in plane_masters)
-		var/obj/screen/plane_master/PM = plane_masters[thing]
+		var/atom/movable/screen/plane_master/PM = plane_masters[thing]
 		PM.backdrop(mymob)
 		mymob.client.screen += PM
 
@@ -259,7 +259,7 @@
 		return
 	if(ammo_hud_list[ammo_owner])
 		return
-	var/obj/screen/ammo/ammo_hud = new
+	var/atom/movable/screen/ammo/ammo_hud = new
 	ammo_hud_list[ammo_owner] = ammo_hud
 	ammo_hud.screen_loc = ammo_hud.ammo_screen_loc_list[length(ammo_hud_list)]
 	ammo_hud.add_hud(mymob, ammo_owner)
@@ -267,7 +267,7 @@
 
 ///Remove the ammo hud related to the gun G from the user
 /datum/hud/proc/remove_ammo_hud(datum/ammo_owner)
-	var/obj/screen/ammo/ammo_hud = ammo_hud_list[ammo_owner]
+	var/atom/movable/screen/ammo/ammo_hud = ammo_hud_list[ammo_owner]
 	if(isnull(ammo_hud))
 		return
 	ammo_hud.remove_hud(mymob, ammo_owner)
@@ -281,16 +281,16 @@
 
 ///Update the ammo hud related to the gun G
 /datum/hud/proc/update_ammo_hud(datum/ammo_owner, list/ammo_type, ammo_count)
-	var/obj/screen/ammo/ammo_hud = ammo_hud_list[ammo_owner]
+	var/atom/movable/screen/ammo/ammo_hud = ammo_hud_list[ammo_owner]
 	ammo_hud?.update_hud(mymob, ammo_type, ammo_count)
 
-/obj/screen/action_button/MouseEntered(location, control, params)
+/atom/movable/screen/action_button/MouseEntered(location, control, params)
 	if (!usr.client?.prefs?.tooltips)
 		return
 	openToolTip(usr, src, params, title = name, content = desc)
 
 
-/obj/screen/action_button/MouseExited()
+/atom/movable/screen/action_button/MouseExited()
 	if (!usr.client?.prefs?.tooltips)
 		return
 	closeToolTip(usr)

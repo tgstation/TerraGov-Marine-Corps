@@ -80,22 +80,19 @@
 	var/armor_block = 0
 
 	var/list/damage_mod = list()
-	var/list/armor_mod = list()
+	var/armor_pen = 0
 
-	var/signal_return = SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_LIVING, src, damage, damage_mod, armor_mod)
+	var/signal_return = SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_LIVING, src, damage, damage_mod, armor_pen)
 
 	// if we don't get any non-stacking bonuses dont apply dam_bonus
 	if(!(signal_return & COMSIG_XENOMORPH_BONUS_APPLIED))
 		damage_mod += dam_bonus
 
 	if(!(signal_return & COMPONENT_BYPASS_ARMOR))
-		armor_block = get_soft_armor("melee", affecting)
+		armor_block = MELEE
 
 	for(var/i in damage_mod)
 		damage += i
-
-	for(var/i in armor_mod)
-		armor_block *= i
 
 	if(!(signal_return & COMPONENT_BYPASS_SHIELDS))
 		damage = check_shields(COMBAT_MELEE_ATTACK, damage, "melee")
@@ -130,7 +127,7 @@
 	else //Normal xenomorph friendship with benefits
 		log_combat(X, src, log)
 
-	apply_damage(damage, BRUTE, affecting, armor_block, TRUE, TRUE, updating_health = TRUE) //This should slicey dicey
+	apply_damage(damage, BRUTE, affecting, armor_block, TRUE, TRUE, TRUE, armor_pen) //This should slicey dicey
 
 	return TRUE
 

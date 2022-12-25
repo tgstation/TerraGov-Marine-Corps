@@ -263,7 +263,7 @@
 	while(obj_integrity < max_integrity)
 		if(skill < SKILL_ENGINEER_ENGI)
 			user.balloon_alert_to_viewers("fumbles around trying to repair")
-			if(!do_after(user, 30 * (SKILL_ENGINEER_ENGI - skill), TRUE, user, BUSY_ICON_UNSKILLED))
+			if(!do_after(user, 30 * (SKILL_ENGINEER_ENGI - skill), TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 		if(!started)
 			user.balloon_alert_to_viewers("started welding", "started repairing")

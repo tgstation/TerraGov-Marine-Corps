@@ -82,6 +82,7 @@ GLOBAL_LIST_INIT(defiler_toxins_typecache_list, typecacheof(list(
 		/datum/reagent/toxin/xeno_transvitox,
 		/datum/reagent/toxin/xeno_neurotoxin,
 		/datum/reagent/toxin/xeno_sanguinal,
+		/datum/status_effect/stacking/intoxicated,
 		)))
 
 //List of plant types

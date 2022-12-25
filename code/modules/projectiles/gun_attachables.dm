@@ -53,6 +53,22 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/scatter_mod 	= 0
 	///Increases or decreases scatter chance but for onehanded firing.
 	var/scatter_unwielded_mod = 0
+	///Maximum scatter
+	var/max_scatter_mod = 0
+	///Maximum scatter when unwielded
+	var/max_scatter_unwielded_mod = 0
+	///How much scatter decays every X seconds
+	var/scatter_decay_mod = 0
+	///How much scatter decays every X seconds when wielded
+	var/scatter_decay_unwielded_mod = 0
+	///How much scatter increases per shot
+	var/scatter_increase_mod = 0
+	///How much scatter increases per shot when wielded
+	var/scatter_increase_unwielded_mod = 0
+	///Minimum scatter
+	var/min_scatter_mod = 0
+	///Minimum scatter when unwielded
+	var/min_scatter_unwielded_mod = 0
 	///If positive, adds recoil, if negative, lowers it. Recoil can't go below 0.
 	var/recoil_mod 		= 0
 	///If positive, adds recoil, if negative, lowers it. but for onehanded firing. Recoil can't go below 0.
@@ -155,6 +171,14 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.w_class						+= size_mod
 	master_gun.scatter						+= scatter_mod
 	master_gun.scatter_unwielded			+= scatter_unwielded_mod
+	master_gun.max_scatter                  += max_scatter_mod
+	master_gun.max_scatter_unwielded        += max_scatter_unwielded_mod
+	master_gun.scatter_decay                += scatter_decay_mod
+	master_gun.scatter_decay_unwielded      += scatter_decay_unwielded_mod
+	master_gun.scatter_increase             += scatter_increase_mod
+	master_gun.scatter_increase_unwielded   += scatter_increase_unwielded_mod
+	master_gun.min_scatter                  += min_scatter_mod
+	master_gun.min_scatter_unwielded        += min_scatter_unwielded_mod
 	master_gun.aim_speed_modifier			+= initial(master_gun.aim_speed_modifier)*aim_mode_movement_mult
 	master_gun.iff_marine_damage_falloff	+= shot_marine_damage_falloff
 	master_gun.add_aim_mode_fire_delay(name, initial(master_gun.aim_fire_delay) * aim_mode_delay_mod)
@@ -221,6 +245,14 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.w_class						-= size_mod
 	master_gun.scatter						-= scatter_mod
 	master_gun.scatter_unwielded			-= scatter_unwielded_mod
+	master_gun.max_scatter                  -= max_scatter_mod
+	master_gun.max_scatter_unwielded        -= max_scatter_unwielded_mod
+	master_gun.scatter_decay                -= scatter_decay_mod
+	master_gun.scatter_decay_unwielded      -= scatter_decay_unwielded_mod
+	master_gun.scatter_increase             -= scatter_increase_mod
+	master_gun.scatter_increase_unwielded   -= scatter_increase_unwielded_mod
+	master_gun.min_scatter                  -= min_scatter_mod
+	master_gun.min_scatter_unwielded        -= min_scatter_unwielded_mod
 	master_gun.aim_speed_modifier			-= initial(master_gun.aim_speed_modifier)*aim_mode_movement_mult
 	master_gun.iff_marine_damage_falloff	-= shot_marine_damage_falloff
 	master_gun.remove_aim_mode_fire_delay(name)
@@ -274,14 +306,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 			playsound(user, activation_sound, 15, 1)
 	else
 		to_chat(user, span_warning("[G] must be in our hands to do this."))
-
-/obj/item/attachable/hydro_cannon/ui_action_click(mob/living/user, datum/action/item_action/action, obj/item/weapon/gun/G)
-	if(G == user.get_active_held_item() || G == user.get_inactive_held_item() || CHECK_BITFIELD(G.flags_item, IS_DEPLOYED))
-		G.do_unique_action(user)
-		return
-
-	if(activate(user)) //success
-		playsound(user, activation_sound, 15, 1)
 
 ///Called when the attachment is activated.
 /obj/item/attachable/proc/activate(mob/user, turn_off) //This is for activating stuff like flamethrowers, or switching weapon modes, or flashlights.
@@ -597,7 +621,20 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "magnetic"
 	slot = ATTACHMENT_SLOT_RAIL
 	pixel_shift_x = 13
+	///Handles the harness functionality, created when attached to a gun and removed on detach
+	var/datum/component/reequip_component
 
+/obj/item/attachable/magnetic_harness/on_attach(attaching_item, mob/user)
+	. = ..()
+	if(!master_gun)
+		return
+	reequip_component = master_gun.AddComponent(/datum/component/reequip, list(SLOT_S_STORE, SLOT_BACK))
+
+/obj/item/attachable/magnetic_harness/on_detach(attaching_item, mob/user)
+	. = ..()
+	if(master_gun)
+		return
+	QDEL_NULL(reequip_component)
 
 /obj/item/attachable/scope
 	name = "rail scope"
@@ -1233,31 +1270,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	scatter_mod = 3
 	accuracy_unwielded_mod = -0.20
 	scatter_unwielded_mod = 5
-
-/obj/item/attachable/hydro_cannon
-	name = "FL-84 Hydro Cannon"
-	desc = "An integrated component of the FL-84 flamethrower, the hydro cannon fires high pressure sprays of water; mainly to extinguish any wayward allies or unintended collateral damage."
-	icon_state = ""
-	slot = ATTACHMENT_SLOT_UNDER
-	flags_attach_features = GUN_ALLOW_SYNTHETIC
-	attachment_action_type = /datum/action/item_action/toggle/hydro
-	var/is_active = FALSE
-
-/obj/item/attachable/hydro_cannon/activate(attached_item, mob/living/user, turn_off)
-	if(is_active)
-		if(user)
-			to_chat(user, span_notice("You are no longer using [src]."))
-		is_active = FALSE
-		. = FALSE
-	else
-		if(user)
-			to_chat(user, span_notice("You are now using [src]."))
-		is_active = TRUE
-		. = TRUE
-	for(var/datum/action/item_action/action AS in master_gun.actions)
-		action.update_button_icon()
-
-	update_icon()
 
 /obj/item/attachable/buildasentry
 	name = "\improper Build-A-Sentry Attachment System"
