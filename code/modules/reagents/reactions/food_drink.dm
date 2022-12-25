@@ -515,3 +515,8 @@
 	name = "Sui Dream"
 	results = list(/datum/reagent/consumable/ethanol/suidream = 4)
 	required_reagents = list(/datum/reagent/consumable/drink/cold/space_up = 2, /datum/reagent/consumable/ethanol/bluecuracao = 1, /datum/reagent/consumable/ethanol/melonliquor = 1)
+
+/datum/chemical_reaction/eggnog
+	name = "Eggnog"
+	results = list(/datum/reagent/consumable/ethanol/eggnog = 15)
+	required_reagents = list(/datum/reagent/consumable/ethanol/rum = 5, /datum/reagent/consumable/drink/milk/cream = 5, /datum/reagent/consumable/sugar = 2)

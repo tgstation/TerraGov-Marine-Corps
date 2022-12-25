@@ -410,6 +410,33 @@
 		/obj/item/reagent_containers/hypospray,
 	)
 
+/obj/item/storage/pouch/santaspouch
+	name = "Santa's storage pouch"
+	desc = "A pouch bulging with all sorts of goodies for Santa to ingest while handing out beatings to naughty boys and girls."
+	icon_state = "medkit"
+	w_class = WEIGHT_CLASS_BULKY
+	max_w_class = 4
+	storage_slots = 8
+	can_hold = list(
+		/obj/item/reagent_containers/food/snacks/christmas_cookieone,
+		/obj/item/reagent_containers/food/snacks/christmas_cookietwo,
+		/obj/item/reagent_containers/food/snacks/christmas_cookiethree,
+		/obj/item/reagent_containers/food/snacks/christmas_cookiefour,
+		/obj/item/reagent_containers/food/snacks/christmas_cookiefive,
+		/obj/item/reagent_containers/food/snacks/christmas_cookiesix,
+		/obj/item/reagent_containers/food/snacks/christmas_cookieseven,
+		/obj/item/reagent_containers/food/drinks/bottle/eggnog,
+		/obj/item/reagent_containers/food/snacks/christmas_cookieone/special,
+		/obj/item/reagent_containers/food/snacks/christmas_cookietwo/special,
+		/obj/item/reagent_containers/food/snacks/christmas_cookiethree/special,
+		/obj/item/reagent_containers/food/snacks/christmas_cookiefour/special,
+		/obj/item/reagent_containers/food/snacks/christmas_cookiefive/special,
+		/obj/item/reagent_containers/food/snacks/christmas_cookiesix/special,
+		/obj/item/reagent_containers/food/snacks/christmas_cookieseven/special,
+		/obj/item/reagent_containers/food/drinks/bottle/eggnog/special,
+	)
+
+
 /obj/item/storage/pouch/medkit/firstaid
 	desc = "Standard marine first-aid pouch. Contains basic pills, splints, and a stabilizing injector."
 

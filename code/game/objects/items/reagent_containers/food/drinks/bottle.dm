@@ -114,6 +114,18 @@
 	center_of_mass = list("x"=16, "y"=3)
 	list_reagents = list(/datum/reagent/consumable/ethanol/tequila = 100)
 
+/obj/item/reagent_containers/food/drinks/bottle/eggnog
+	name = "\improper Klause's Own Eggnog"
+	desc = "A thick mix of custard and alcohol, perfect for celebrating the holiday season."
+	icon_state = "eggnogbottle"
+	center_of_mass = list("x"=16, "y"=3)
+	list_reagents = list(/datum/reagent/consumable/ethanol/eggnog = 100)
+
+/obj/item/reagent_containers/food/drinks/bottle/eggnog/special
+	name = "\improper Claus' Own Eggnog"
+	desc = "A thick mix of custard and alcohol, perfect for celebrating the holiday season. It feels alive, as if imbued with Christmas magic."
+	list_reagents = list(/datum/reagent/consumable/ethanol/eggnog = 40, /datum/reagent/medicine/bicaridine = 15, /datum/reagent/medicine/kelotane = 15, /datum/reagent/medicine/tramadol = 15, /datum/reagent/medicine/inaprovaline = 15)
+
 /obj/item/reagent_containers/food/drinks/bottle/davenport
 	name = "\improper Davenport Rye Whiskey"
 	desc = "An expensive whiskey with a distinct flavor. The bottle proudly proclaims that it's, 'A True Classic.'"
