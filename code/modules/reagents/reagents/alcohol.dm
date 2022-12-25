@@ -143,6 +143,13 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "grain alcohol"
 	boozepwr = 65
 
+/datum/reagent/consumable/ethanol/champagne
+	name = "Champagne"
+	description = "A sparkling wine known for its ability to strike fast and hard."
+	color = "#fcfcee" // rgb: 252, 252, 238
+	taste_description = "auspicious occasions and bad decisions"
+	boozepwr = 25
+
 /datum/reagent/consumable/ethanol/bilk
 	name = "Bilk"
 	description = "This appears to be beer mixed with milk. Disgusting."

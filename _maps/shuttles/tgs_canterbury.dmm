@@ -424,11 +424,11 @@
 	},
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/glass/beaker/cryomix,
+/obj/machinery/firealarm,
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "by" = (
 /obj/structure/bed/chair/dropship/passenger,
-/obj/machinery/vending/nanomed,
 /obj/effect/landmark/start/job/crash/medicalofficer,
 /obj/structure/prop/holidays/stocking{
 	pixel_y = 26
@@ -459,6 +459,7 @@
 	pixel_x = -19;
 	pixel_y = 26
 	},
+/obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "bB" = (
@@ -940,7 +941,6 @@
 /obj/item/storage/firstaid/o2,
 /obj/item/roller,
 /obj/item/roller,
-/obj/machinery/firealarm,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -1282,8 +1282,8 @@
 	pixel_y = 4;
 	pixel_x = 5
 	},
-/obj/item/reagent_containers/food/drinks/bottle/vodka{
-	pixel_y = 8;
+/obj/item/reagent_containers/food/drinks/bottle/champagne{
+	pixel_y = 14;
 	pixel_x = -7
 	},
 /turf/open/floor/carpet/side,

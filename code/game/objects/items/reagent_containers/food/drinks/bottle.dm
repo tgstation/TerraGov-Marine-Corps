@@ -176,6 +176,13 @@
 	center_of_mass = list("x"=17, "y"=3)
 	list_reagents = list(/datum/reagent/consumable/ethanol/kahlua = 100)
 
+/obj/item/reagent_containers/food/drinks/bottle/champagne
+	name = "Duc du Paysan Soviétique"
+	desc = "Boisson elegante. Servir froid."
+	icon_state = "champagne"
+	center_of_mass = list("x"=17, "y"=3)
+	list_reagents = list(/datum/reagent/consumable/ethanol/champagne = 100)
+
 /obj/item/reagent_containers/food/drinks/bottle/goldschlager
 	name = "College Girl Goldschlager"
 	desc = "Because they are the only ones who will drink 100 proof cinnamon schnapps."

@@ -409,6 +409,11 @@
 				name = "Sbiten"
 				desc = "A spicy mix of Vodka and Spice. Very hot."
 				center_of_mass = list("x"=17, "y"=8)
+			if(/datum/reagent/consumable/ethanol/champagne)
+				icon_state = "champagne_glass"
+				name = "Champagne"
+				desc = "Very fine festive bubbly drink."
+				center_of_mass = list("x"=17, "y"=8)
 			if(/datum/reagent/consumable/ethanol/red_mead)
 				icon_state = "red_meadglass"
 				name = "Red Mead"

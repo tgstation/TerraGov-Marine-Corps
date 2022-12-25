@@ -484,6 +484,7 @@
 		/datum/reagent/consumable/ethanol/sake,
 		/datum/reagent/consumable/ethanol/wine,
 		/datum/reagent/consumable/ethanol/vodka,
+		/datum/reagent/consumable/ethanol/champagne,
 		/datum/reagent/consumable/ethanol/gin,
 		/datum/reagent/consumable/ethanol/rum,
 		/datum/reagent/consumable/ethanol/tequila,

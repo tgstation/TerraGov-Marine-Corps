@@ -42,6 +42,7 @@
 		/obj/item/reagent_containers/food/drinks/bottle/wine = -1,
 		/obj/item/reagent_containers/food/drinks/bottle/cognac = -1,
 		/obj/item/reagent_containers/food/drinks/bottle/kahlua = -1,
+		/obj/item/reagent_containers/food/drinks/bottle/champagne = -1,
 		/obj/item/reagent_containers/food/drinks/cans/beer = -1,
 		/obj/item/reagent_containers/food/drinks/cans/ale = -1,
 		/obj/item/reagent_containers/food/drinks/bottle/orangejuice = -1,
