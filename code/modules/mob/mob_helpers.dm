@@ -141,7 +141,7 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 	. = ""
 	var/char = ""
 	for(var/i = 1, i <= leng, i += length_char(char))
-		char = phrase[i]
+		char = copytext_char(phrase, i, i+1)
 		if(char == " " || !prob(probability))
 			. += char
 		else
@@ -159,7 +159,7 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 	var/newletter = ""
 	var/rawchar = ""
 	for(var/i = 1, i <= leng, i += length_char(rawchar))
-		rawchar = newletter = phrase[i]
+		rawchar = newletter = copytext_char(phrase, i, i+1)
 		if(rand(1, 3) == 3)
 			var/lowerletter = lowertext(newletter)
 			if(lowerletter == "o")
@@ -172,11 +172,23 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 				newletter = "oo"
 			else if(lowerletter == "c")
 				newletter = "k"
+			else if(lowerletter == "о")
+				newletter = "у"
+			else if(lowerletter == "с")
+				newletter = "ч"
+			else if(lowerletter == "а")
+				newletter = "ах"
+			else if(lowerletter == "ц")
+				newletter = "к"
+			else if(lowerletter == "э")
+				newletter = "о"
+			else if(lowerletter == "г")
+				newletter = "х"
 		if(prob(5))
 			if(newletter == " ")
-				newletter = "...huuuhhh..."
+				newletter = "...ээээээм..."
 			else if(newletter == ".")
-				newletter = " *BURP*."
+				newletter = " *ОТРЫЖКА*."
 		if(prob(15))
 			newletter += pick(list("'", "[newletter]", "[newletter][newletter]"))
 		. += "[newletter]"
@@ -190,8 +202,8 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 	var/newletter = ""
 	var/rawchar
 	for(var/i = 1, i <= leng, i += length_char(rawchar))
-		rawchar = newletter = phrase[i]
-		if(prob(80) && !(lowertext(newletter) in list("a", "e", "i", "o", "u", " ")))
+		rawchar = newletter = copytext_char(phrase, i, i+1)
+		if(prob(80) && !(lowertext(newletter) in list("a", "e", "i", "o", "u", " ", "а", "у", "о", "и", "э", "ы", "я", "Ю", "е", "ё")))
 			if(prob(10))
 				newletter = "[newletter]-[newletter]-[newletter]-[newletter]"
 			else if(prob(20))
@@ -214,7 +226,7 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 	var/letter = ""
 	var/lentext = length_char(text)
 	for(var/i = 1, i <= lentext, i += length_char(rawchar))
-		rawchar = letter = text[i]
+		rawchar = letter = copytext_char(text, i, i+1)
 		if(prob(chance))
 			if(replace_characters)
 				letter = ""
