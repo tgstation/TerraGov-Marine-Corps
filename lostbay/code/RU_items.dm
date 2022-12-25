@@ -611,7 +611,7 @@ SUBSYSTEM_DEF(ru_items)
 	item_icons = list(
 		slot_head_str = 'icons/mob/squadhb.dmi')
 	icon_state = "hijab_black"
-	flags_inv_hide = HIDEEARS|HIDEALLHAIR
+	flags_inv_hide = HIDEEARS|HIDETOPHAIR
 
 /obj/item/clothing/head/tgmcberet/hijab/grey
 	name = "\improper Grey hijab"
@@ -634,20 +634,20 @@ SUBSYSTEM_DEF(ru_items)
 	icon_state = "hijab_white"
 
 /obj/item/clothing/head/tgmcberet/hijab/turban
-	name = "\improper White hijab"
+	name = "\improper White turban"
 	desc = "A sturdy cloth, worn around the head."
 	icon_state = "turban_black"
 
 /obj/item/clothing/head/tgmcberet/hijab/turban/white
-	name = "\improper White hijab"
+	name = "\improper White turban"
 	icon_state = "turban_white"
 
 /obj/item/clothing/head/tgmcberet/hijab/turban/red
-	name = "\improper Red hijab"
+	name = "\improper Red turban"
 	icon_state = "turban_red"
 
 /obj/item/clothing/head/tgmcberet/hijab/turban/blue
-	name = "\improper Blue hijab"
+	name = "\improper Blue turban"
 	icon_state = "turban_blue"
 
 //////////////////////////////////////////////////////////////////////////
