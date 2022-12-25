@@ -132,6 +132,9 @@
 /obj/item/clipboard,
 /obj/item/pinpointer,
 /obj/machinery/vending/nanomed,
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
 /turf/open/floor/mainship/blue,
 /area/shuttle/canterbury/cic)
 "at" = (
@@ -141,6 +144,9 @@
 	},
 /obj/machinery/light{
 	dir = 4
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
 	},
 /turf/open/floor/mainship/blue{
 	dir = 6
