@@ -217,6 +217,7 @@
 	name = "\improper Space Hut"
 	icon_state = "spacehut"
 	ceiling = CEILING_DEEP_UNDERGROUND
+	outside = FALSE
 
 /area/deltastation/maintenance/space_hut/cabin
 	name = "Abandoned Cabin"
@@ -732,6 +733,7 @@
 	name = "\improper Supermatter Engine"
 	icon_state = "engine_sm"
 	ceiling = CEILING_DEEP_UNDERGROUND
+	outside = FALSE
 
 /area/deltastation/engineering/supermatter/room
 	name = "\improper Supermatter Engine Room"
@@ -846,11 +848,13 @@
 	name = "Port Quarter Solar Maintenance"
 	icon_state = "SolarcontrolAP"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	outside = FALSE
 
 /area/deltastation/maintenance/solars/port/fore
 	name = "Port Bow Solar Maintenance"
 	icon_state = "SolarcontrolFP"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	outside = FALSE
 
 /area/deltastation/maintenance/solars/starboard
 	name = "Starboard Solar Maintenance"
@@ -860,11 +864,13 @@
 	name = "Starboard Quarter Solar Maintenance"
 	icon_state = "SolarcontrolAS"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	outside = FALSE
 
 /area/deltastation/maintenance/solars/starboard/fore
 	name = "Starboard Bow Solar Maintenance"
 	icon_state = "SolarcontrolFS"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	outside = FALSE
 
 //MedBay
 
@@ -1252,6 +1258,7 @@
 	name = "\improper Ordnance Bomb Site"
 	icon_state = "ord_boom"
 	ceiling = CEILING_DEEP_UNDERGROUND
+	outside = FALSE
 
 /area/deltastation/science/genetics
 	name = "\improper Genetics Lab"
@@ -1392,3 +1399,4 @@
 /area/deltastation/asteroidcaves/southlz
 	ceiling = CEILING_NONE
 	always_unpowered = FALSE
+	outside = TRUE
