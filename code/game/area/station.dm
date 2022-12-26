@@ -10,6 +10,7 @@
 /area/deltastation/maintenance
 	name = "Generic Maintenance"
 	ceiling = CEILING_METAL
+	minimap_color = MINIMAP_AREA_COLONY
 
 //Maintenance - Departmental
 
@@ -217,6 +218,7 @@
 	name = "\improper Space Hut"
 	icon_state = "spacehut"
 	ceiling = CEILING_DEEP_UNDERGROUND
+	minimap_color = MINIMAP_AREA_CAVES
 	outside = FALSE
 
 /area/deltastation/maintenance/space_hut/cabin
@@ -345,6 +347,7 @@
 	name = "Command"
 	icon_state = "command"
 	ceiling = CEILING_METAL
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/deltastation/command/bridge
 	name = "\improper Bridge"
@@ -413,6 +416,7 @@
 	name = "\improper Crew Facilities"
 	icon_state = "commons"
 	ceiling = CEILING_METAL
+	minimap_color = MINIMAP_AREA_COLONY
 
 /area/deltastation/commons/dorms
 	name = "\improper Dormitories"
@@ -525,6 +529,7 @@
 
 /area/deltastation/service
 	ceiling = CEILING_METAL
+	minimap_color = MINIMAP_AREA_CELL_LOW
 
 /area/deltastation/service/cafeteria
 	name = "\improper Cafeteria"
@@ -673,6 +678,7 @@
 /area/deltastation/engineering
 	icon_state = "engie"
 	ceiling = CEILING_METAL
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/deltastation/engineering/engine_smes
 	name = "\improper Engineering SMES"
@@ -733,6 +739,7 @@
 	name = "\improper Supermatter Engine"
 	icon_state = "engine_sm"
 	ceiling = CEILING_DEEP_UNDERGROUND
+	minimap_color = MINIMAP_AREA_ENGI_CAVE
 	outside = FALSE
 
 /area/deltastation/engineering/supermatter/room
@@ -773,6 +780,7 @@
 /area/deltastation/construction
 	name = "\improper Construction Area"
 	icon_state = "construction"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/deltastation/construction/mining/aux_base
 	name = "Auxiliary Base Construction"
@@ -787,6 +795,7 @@
 /area/deltastation/solars
 	icon_state = "panels"
 	requires_power = FALSE
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/deltastation/solars/fore
 	name = "\improper Fore Solar Array"
@@ -839,6 +848,7 @@
 	name = "Solar Maintenance"
 	icon_state = "yellow"
 	ceiling = CEILING_METAL
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/deltastation/maintenance/solars/port
 	name = "Port Solar Maintenance"
@@ -848,12 +858,14 @@
 	name = "Port Quarter Solar Maintenance"
 	icon_state = "SolarcontrolAP"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	minimap_color = MINIMAP_AREA_ENGI_CAVE
 	outside = FALSE
 
 /area/deltastation/maintenance/solars/port/fore
 	name = "Port Bow Solar Maintenance"
 	icon_state = "SolarcontrolFP"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	minimap_color = MINIMAP_AREA_ENGI_CAVE
 	outside = FALSE
 
 /area/deltastation/maintenance/solars/starboard
@@ -864,12 +876,14 @@
 	name = "Starboard Quarter Solar Maintenance"
 	icon_state = "SolarcontrolAS"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	minimap_color = MINIMAP_AREA_ENGI_CAVE
 	outside = FALSE
 
 /area/deltastation/maintenance/solars/starboard/fore
 	name = "Starboard Bow Solar Maintenance"
 	icon_state = "SolarcontrolFS"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	minimap_color = MINIMAP_AREA_ENGI_CAVE
 	outside = FALSE
 
 //MedBay
@@ -878,6 +892,7 @@
 	name = "Medical"
 	icon_state = "medbay"
 	ceiling = CEILING_METAL
+	minimap_color = MINIMAP_AREA_MEDBAY
 
 /area/deltastation/medical/abandoned
 	name = "\improper Abandoned Medbay"
@@ -981,6 +996,7 @@
 	name = "Security"
 	icon_state = "security"
 	ceiling = CEILING_METAL
+	minimap_color = MINIMAP_AREA_SEC
 
 /area/deltastation/security/office
 	name = "\improper Security Office"
@@ -1149,6 +1165,7 @@
 	name = "Quartermasters"
 	icon_state = "quart"
 	ceiling = CEILING_METAL
+	minimap_color = MINIMAP_AREA_CELL_HIGH
 
 /area/deltastation/cargo/sorting
 	name = "\improper Delivery Office"
@@ -1199,6 +1216,7 @@
 	name = "\improper Science Division"
 	icon_state = "science"
 	ceiling = CEILING_METAL
+	minimap_color = MINIMAP_AREA_RESEARCH
 
 /area/deltastation/science/lobby
 	name = "\improper Science Lobby"
@@ -1258,6 +1276,7 @@
 	name = "\improper Ordnance Bomb Site"
 	icon_state = "ord_boom"
 	ceiling = CEILING_DEEP_UNDERGROUND
+	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
 	outside = FALSE
 
 /area/deltastation/science/genetics
@@ -1349,6 +1368,7 @@
 /area/deltastation/external/landingzone
 	name = "\improper Delta Station landing zone"
 	icon_state = "ship"
+	minimap_color = MINIMAP_AREA_LZ
 
 /area/deltastation/asteroidcaves
 	name = "Unknown Area"
@@ -1382,6 +1402,7 @@
 /area/deltastation/asteroidcaves/ship
 	icon_state = "ship"
 	always_unpowered = FALSE
+	minimap_color = MINIMAP_AREA_SHIP
 
 /area/deltastation/asteroidcaves/ship/two
 
