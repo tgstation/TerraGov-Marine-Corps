@@ -258,7 +258,7 @@
 	current_angle += rotation_value
 	var/matrix/rotate_me = matrix()
 	rotate_me.Turn(rotation_value)
-	src.transform = rotate_me
+	transform = rotate_me
 	return ..()
 
 /obj/item/weapon/twohanded/spear/throw_impact(atom/hit_atom, speed, bounce = FALSE)
@@ -273,7 +273,7 @@
 	rotate_me.Turn(initial(current_angle) - current_angle)
 	//Rotate the object in the opposite direction because for some unfathomable reason, the above Turn() is applied twice; it just works
 	rotate_me.Turn(-(initial(current_angle) - current_angle))
-	src.transform = rotate_me
+	transform = rotate_me
 	current_angle = initial(current_angle)	//Reset the angle
 
 /obj/item/weapon/twohanded/spear/tactical
