@@ -536,7 +536,6 @@
 	icon_state = "hoop"
 	anchored = TRUE
 	density = TRUE
-	throwpass = 1
 	var/side = ""
 	var/id = ""
 

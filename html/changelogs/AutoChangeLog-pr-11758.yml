@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "Warlock crush and flamers will no longer get blocked by mechs"
+  - refactor: "refactored throwpass"

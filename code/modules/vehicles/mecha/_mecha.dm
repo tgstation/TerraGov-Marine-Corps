@@ -276,7 +276,7 @@
 	spark_system?.start()
 
 	var/mob/living/silicon/ai/unlucky_ais
-	for(var/mob/living/occupant as anything in occupants)
+	for(var/mob/living/occupant AS in occupants)
 		if(isAI(occupant))
 			unlucky_ais = occupant
 			occupant.gib() //No wreck, no AI to recover
@@ -399,7 +399,7 @@
 			. += "It's falling apart."
 	if(LAZYLEN(flat_equipment))
 		. += "It's equipped with:"
-		for(var/obj/item/mecha_parts/mecha_equipment/ME as anything in flat_equipment)
+		for(var/obj/item/mecha_parts/mecha_equipment/ME AS in flat_equipment)
 			. += "[icon2html(ME, user)] \A [ME]."
 	if(enclosed)
 		return
