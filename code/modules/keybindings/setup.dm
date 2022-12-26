@@ -31,3 +31,10 @@
 	winset(src, null, "map.focus=true")
 
 	update_special_keybinds()
+
+/client/verb/fix_layout()
+	set name = "Исправить раскладку"
+	set category = "Special verbs"
+
+	set_macros()
+	to_chat(world, span_warning("Перерегистрация макросов выполнена."))
