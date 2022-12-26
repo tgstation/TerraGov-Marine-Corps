@@ -597,7 +597,7 @@
 
 	var/wdelay = wield_delay
 	//slower or faster wield delay depending on skill.
-	if(!user.skills.getRating("firearms"))
+	if(user.skills.getRating("firearms") < SKILL_FIREARMS_DEFAULT)
 		wdelay += 0.3 SECONDS //no training in any firearms
 	else
 		var/skill_value = user.skills.getRating(gun_skill_category)
@@ -1557,7 +1557,7 @@
 /obj/item/weapon/gun/proc/gun_on_cooldown(mob/user)
 	var/added_delay = fire_delay
 	if(user)
-		if(!user.skills.getRating("firearms")) //no training in any firearms
+		if(user.skills.getRating("firearms") < SKILL_FIREARMS_DEFAULT)
 			added_delay += 3 //untrained humans fire more slowly.
 		else
 			switch(gun_skill_category)
@@ -1646,7 +1646,7 @@
 	if(user)
 		// Apply any skill-based bonuses to accuracy
 		var/skill_accuracy = 0
-		if(!user.skills.getRating("firearms")) //no training in any firearms
+		if(user.skills.getRating("firearms") < SKILL_FIREARMS_DEFAULT)
 			skill_accuracy = -1
 		else
 			skill_accuracy = user.skills.getRating(gun_skill_category)
