@@ -461,3 +461,14 @@
   novaepee:
   - rscadd: update death message and pray you have your head on when you died
   - bugfix: update death message to reflect that you can survive a chestburst
+2022-12-26:
+  Lumipharon:
+  - bugfix: Warlock crush and flamers will no longer get blocked by mechs
+  - refactor: refactored throwpass
+  - bugfix: fixed brain damage making you better at certain things
+  - code_imp: Cleaned up some unused code for ammo
+  - code_imp: Clean up some warlock code
+  - rscadd: CAS GAU animation behaves more sensibly
+  - bugfix: fixed sentinel gas grenades lasting longer than they should
+  Waselon:
+  - bugfix: fix for deevolve deleting xenos if they are not at full plasma or health
