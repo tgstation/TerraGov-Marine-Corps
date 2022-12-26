@@ -1,11 +1,12 @@
+#define FLYING_CRASH_DAMAGE 20	//Value used for dealing damage when a flying unit bumps/crashes into something
+
 /obj/vehicle/sealed/helicopter
 	name = "helicopter"
 	desc = "Fast and nimble with only space for one pilot."
 	icon_state = "engineering_pod"
-	max_integrity = 200
+	max_integrity = 50
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, FIRE = 0, ACID = 0)
 	flags_atom = BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION
-	flags_pass = null
 	generic_canpass = FALSE
 	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE|PLASMACUTTER_IMMUNE
 	move_resist = MOVE_FORCE_OVERPOWERING
@@ -15,9 +16,9 @@
 	light_system = MOVABLE_LIGHT
 	light_range = 6
 	light_power = 3
-	move_delay = 0.3 SECONDS
+	move_delay = 0.2 SECONDS
 	///Total fuel capacity
-	var/max_fuel = 1000
+	var/max_fuel = 100
 	///How much fuel is in the tank
 	var/current_fuel = 0
 	///Time in BYOND ticks between weapon fires; time between volleys if burst fire
@@ -83,8 +84,8 @@
 	. += "[attached_weapon ? "[attached_weapon.name] is attached" : "No weapon is attached"]."
 
 /obj/vehicle/sealed/helicopter/attack_hand(mob/living/user)
-	if(attached_weapon?.current_magazine)
-		return unload(user)
+	if(CHECK_BITFIELD(flags_pass, FLYING) && !CHECK_BITFIELD(user.flags_pass, FLYING))	//Only another flying unit can reach us!
+		return
 	if(deployable)
 		return deploy(user)
 	return ..()
@@ -93,14 +94,41 @@
 	if(CHECK_BITFIELD(flags_pass, FLYING) && !CHECK_BITFIELD(user.flags_pass, FLYING))	//Only another flying unit can reach us!
 		return
 	. = ..()
+	if(istype(I, /obj/item/reagent_containers/jerrycan))
+		return refuel(I, user)
 	if(istype(I, /obj/item/aircraft_weapon))
 		return attach_weapon(I, user)
 	if(istype(I, /obj/item/ammo_magazine))
 		return reload(I, user)
 
+/obj/vehicle/sealed/helicopter/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)
+	. = ..()
+	if(attached_weapon?.current_magazine)
+		return unload(over)
+
+///Proc for removing fuel from a jerry can and adding it to the aircraft
+/obj/vehicle/sealed/helicopter/proc/refuel(obj/item/reagent_containers/jerrycan/J, mob/user)
+	if(J.reagents.total_volume == 0)
+		balloon_alert(user, "Empty!")
+		return
+	if(current_fuel >= max_fuel)
+		balloon_alert(user, "Gas tank already full!")
+		return
+	//Refueling takes time so that doing it in the field leaves a window of vulnerability
+	balloon_alert_to_viewers("Refueling!")
+	if(!do_after(user, 5 SECONDS, TRUE, src))
+		return
+	//Just transfer it all in one go, no need to spam click
+	var/fuel_transfer_amount = min(max_fuel - current_fuel, J.reagents.total_volume)
+	J.reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
+	current_fuel += fuel_transfer_amount
+	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+	if(current_fuel >= max_fuel)
+		balloon_alert(user, "Full!")
+
 //Deploys and undeploys the heli
 /obj/vehicle/sealed/helicopter/proc/deploy(mob/living/user, deployed_after_spawn = FALSE)
-	if(occupants)	//Or else the people inside become paste
+	if(LAZYLEN(occupants))	//Or else the people inside become paste
 		return
 	if(!deployed_after_spawn)
 		deployed = !deployed
@@ -245,7 +273,7 @@
 		pilot = null
 	if(bailed && iscarbon(M))	//Jumping out of a flying heli can be dangerous
 		var/mob/living/carbon/Carbon = M
-		Carbon.Paralyze(40)
+		Carbon.Paralyze(20)
 		Carbon.apply_damage(10)
 		visible_message(span_danger("[Carbon.name] bailed from [src]!"))
 
@@ -268,9 +296,9 @@
 
 ///Code for toggling the engine on and off, easier to have it separated than as part of the action button
 /obj/vehicle/sealed/helicopter/proc/toggle_engine()
-	if(!pilot)
-		return
 	if(!CHECK_BITFIELD(flags_pass, FLYING) && current_fuel)
+		if(!pilot)
+			return
 		set_flying(TRUE)
 		animate(src, 3 SECONDS, loop = -1, pixel_z = 20)
 		add_filter("flight_shadow", 2, drop_shadow_filter(y = -10, color = "#000000", size = 10))
@@ -294,12 +322,23 @@
 	remove_filter("flight_shadow")
 	for(var/mob/M in occupants)
 		M.set_flying(FALSE)
+	var/turf/landing_zone = get_turf(src)
+	if(landing_zone.density)
+		var/no_valid_turf = TRUE
+		for(var/turf/target in get_adjacent_open_turfs(src))
+			if(!is_blocked_turf(target))	//Try to find a valid open turf
+				throw_at(target, 2, 3, spin = TRUE)	//Throw the heli at this open turf
+				take_damage(FLYING_CRASH_DAMAGE)
+				no_valid_turf = FALSE
+				break
+		if(no_valid_turf)
+			obj_destruction()	//If no valid open turfs nearby, heli goes up in flames
 
 //Heli burns fuel at all times while flying, even if only hovering
 /obj/vehicle/sealed/helicopter/process()
 	current_fuel--
 	update_icon()
-	if(!current_fuel)
+	if(current_fuel <= 0)
 		toggle_engine()
 	if(COOLDOWN_CHECK(src, enginesound_cooldown))
 		COOLDOWN_START(src, enginesound_cooldown, 35)
@@ -329,10 +368,14 @@
 /obj/vehicle/sealed/helicopter/vehicle_move(direction)
 	if(!COOLDOWN_CHECK(src, cooldown_vehicle_move))
 		return FALSE
-	COOLDOWN_START(src, cooldown_vehicle_move, move_delay)
 	if(!direction)
 		return FALSE
-	set_glide_size(DELAY_TO_GLIDE_SIZE(move_delay))
+	if(direction in reverse_nearby_direction(dir))
+		COOLDOWN_START(src, cooldown_vehicle_move, move_delay * 1.5)	//Backpedaling is slower than going forward or strafing
+		set_glide_size(DELAY_TO_GLIDE_SIZE(move_delay * 1.5))
+	else
+		COOLDOWN_START(src, cooldown_vehicle_move, move_delay)
+		set_glide_size(DELAY_TO_GLIDE_SIZE(move_delay))
 	var/old_dir = dir
 	step(src,direction, dir)
 	setDir(old_dir)	//Don't want the heli to turn when moving
@@ -340,8 +383,7 @@
 /obj/vehicle/sealed/helicopter/Bump(atom/A)
 	. = ..()
 	if(is_blocked_turf(A) && CHECK_BITFIELD(flags_pass, FLYING))	//Watch where you're flying!
-		take_damage(10)
-		Shake(3, 3, 1 SECONDS)
+		take_damage(FLYING_CRASH_DAMAGE)
 		for(var/mob/M in occupants)
 			shake_camera(M, 5, 3)
 		playsound(A, 'sound/effects/metal_crash.ogg', 100, TRUE)
@@ -515,8 +557,9 @@
 	name = "attack helicopter"
 	desc = "Ultralight helicopter with a single weapon attachment point."
 	icon_state = "engineering_pod"
-	max_integrity = 400
+	max_integrity = 200
 	soft_armor = list(MELEE = 20, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 0, FIRE = 10, ACID = 0)
+	move_delay = 0.3 SECONDS
 
 /obj/vehicle/sealed/helicopter/attack/minigun
 	desc = "Ultralight helicopter with a single weapon attachment point. Comes equipped with a BZ-22 minigun."
@@ -538,8 +581,9 @@
 	name = "transport helicopter"
 	desc = "Heavily armored and designed to carry 4 passengers."
 	icon_state = "atv"
-	max_integrity = 800	//Beefy boi
+	max_integrity = 500	//Beefy boi
 	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 20, FIRE = 40, ACID = 20)
+	move_delay = 0.4 SECONDS
 	max_occupants = 5
 
 /* Aircraft weapons */

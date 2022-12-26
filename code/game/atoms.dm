@@ -167,6 +167,13 @@ directive is properly returned.
 	. = CanAllowThrough(mover, target)
 	// This is cheaper than calling the proc every time since most things dont override CanPassThrough
 	if(!mover.generic_canpass)
+		if(CHECK_BITFIELD(mover.flags_pass, FLYING))	//Not sure if good for performance this check goes here but no idea where else
+			var/area/area_to_enter = get_area(src)
+			if(!area_to_enter.outside)	//Flying units cannot enter an area that is indoors!
+				if(istype(mover, /obj/vehicle/sealed/helicopter))
+					var/obj/vehicle/sealed/helicopter/heli = mover
+					to_chat(heli.pilot, span_warning("Can't fly inside!"))	//Balloon alert doesn't work for some reason so normal message
+				return FALSE
 		return mover.CanPassThrough(src, target, .)
 
 /// Returns true or false to allow the mover to move through src
