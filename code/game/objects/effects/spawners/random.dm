@@ -2082,5 +2082,5 @@
 	spawn_scatter_radius = 1
 	spawn_loot_count = 3
 	loot = list(
-		/obj/effect/step_trigger/teleporter/random
+		/obj/effect/step_trigger/teleporter/random,
 	)
