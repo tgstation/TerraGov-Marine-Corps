@@ -2082,5 +2082,10 @@
 	spawn_scatter_radius = 1
 	spawn_loot_count = 3
 	loot = list(
-		/obj/effect/step_trigger/teleporter/random,
+		/obj/effect/step_trigger/teleporter/random = 7,
+		/obj/effect/spawner/random/decal/out_of_bounds/rangetwo = 3,
 	)
+
+/obj/effect/spawner/random/decal/out_of_bounds/rangetwo
+	spawn_scatter_radius = 2
+	spawn_loot_count = 6
