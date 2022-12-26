@@ -37,4 +37,4 @@
 	set category = "Special verbs"
 
 	set_macros()
-	to_chat(world, span_warning("Перерегистрация макросов выполнена."))
+	to_chat(src, span_warning("Перерегистрация макросов выполнена."))
