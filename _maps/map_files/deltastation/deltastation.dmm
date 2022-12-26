@@ -4225,10 +4225,6 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/service/hydroponics)
-"aTy" = (
-/obj/effect/spawner/random/decal/out_of_bounds,
-/turf/open/floor/plating,
-/area/deltastation/maintenance/space_hut/observatory)
 "aTN" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -9144,6 +9140,10 @@
 	},
 /turf/open/floor/iron/white,
 /area/deltastation/medical/chemistry)
+"bST" = (
+/obj/effect/spawner/random/decal/out_of_bounds,
+/turf/open/floor/plating,
+/area/deltastation/science/ordnance/bomb)
 "bSV" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
@@ -9657,6 +9657,11 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/iron,
 /area/deltastation/asteroidcaves/derelictwest)
+"bXJ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/random/decal/out_of_bounds,
+/turf/open/floor/glass/reinforced,
+/area/deltastation/maintenance/space_hut/observatory)
 "bXK" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -10904,6 +10909,11 @@
 	},
 /turf/open/floor/plating,
 /area/deltastation/maintenance/department/engine/atmos)
+"clz" = (
+/obj/structure/lattice,
+/obj/effect/spawner/random/decal/out_of_bounds,
+/turf/open/space,
+/area/space)
 "clC" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -12868,11 +12878,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
 /area/deltastation/cargo/warehouse)
-"cHy" = (
-/obj/structure/catwalk,
-/obj/effect/spawner/random/decal/out_of_bounds,
-/turf/open/space,
-/area/space)
 "cHz" = (
 /obj/structure/cable,
 /obj/machinery/alarm{
@@ -12887,10 +12892,6 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos/hfr_room)
-"cHE" = (
-/obj/effect/spawner/random/decal/out_of_bounds,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/exteriorasteroids)
 "cHJ" = (
 /obj/structure/table/reinforced,
 /obj/machinery/reagentgrinder,
@@ -15068,11 +15069,6 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/cargo/storage)
-"dgx" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/decal/out_of_bounds,
-/turf/open/floor/glass/reinforced,
-/area/deltastation/maintenance/space_hut/observatory)
 "dgy" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
@@ -18866,10 +18862,6 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
 /area/deltastation/engineering/supermatter/room)
-"dQI" = (
-/obj/effect/spawner/random/decal/out_of_bounds,
-/turf/open/floor/plating,
-/area/deltastation/science/ordnance/bomb)
 "dQL" = (
 /obj/structure/lattice,
 /obj/effect/spawner/random/structure/directional_window/west,
@@ -32872,6 +32864,10 @@
 	},
 /turf/open/floor/iron/white,
 /area/deltastation/medical/chemistry)
+"gBs" = (
+/obj/effect/spawner/random/decal/out_of_bounds,
+/turf/open/floor/prison/blackfloor,
+/area/deltastation/asteroidcaves/ship/two)
 "gBv" = (
 /obj/structure/table/reinforced,
 /obj/item/disk/tech_disk{
@@ -41124,11 +41120,6 @@
 	},
 /turf/open/floor/plating,
 /area/deltastation/maintenance/port/aft)
-"inN" = (
-/obj/structure/lattice,
-/obj/effect/spawner/random/decal/out_of_bounds,
-/turf/open/space,
-/area/space)
 "inY" = (
 /turf/open/floor/foamplating,
 /area/deltastation/maintenance/department/science/xenobiology)
@@ -46699,6 +46690,10 @@
 	},
 /turf/closed/wall,
 /area/deltastation/maintenance/port/fore)
+"jwc" = (
+/obj/effect/spawner/random/decal/out_of_bounds,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/deltastation/asteroidcaves/exteriorasteroids)
 "jwn" = (
 /obj/structure/bed/chair{
 	dir = 1;
@@ -54350,21 +54345,6 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/maintenance/port/fore)
-"lbu" = (
-/obj/effect/spawner/random/structure/directional_window/east,
-/obj/structure/lattice,
-/obj/effect/step_trigger/teleporter/random{
-	affect_ghosts = 1;
-	name = "tele_ground1";
-	teleport_x = 180;
-	teleport_x_offset = 200;
-	teleport_y = 50;
-	teleport_y_offset = 80;
-	teleport_z = 1;
-	teleport_z_offset = 1
-	},
-/turf/open/space,
-/area/space)
 "lby" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/turf_decal/stripes/line{
@@ -60142,11 +60122,6 @@
 /obj/structure/table/mainship,
 /turf/open/floor/iron,
 /area/deltastation/medical/cryo)
-"mht" = (
-/obj/structure/cable,
-/obj/effect/spawner/random/decal/out_of_bounds,
-/turf/open/floor/prison/blackfloor,
-/area/deltastation/asteroidcaves/ship/two)
 "mhF" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -61177,6 +61152,10 @@
 /obj/effect/turf_decal/delivery/red,
 /turf/open/floor/iron,
 /area/deltastation/maintenance/department/security)
+"mui" = (
+/obj/effect/spawner/random/decal/out_of_bounds,
+/turf/open/floor/plating,
+/area/deltastation/maintenance/space_hut/observatory)
 "muk" = (
 /obj/machinery/newscaster{
 	dir = 8
@@ -63278,6 +63257,29 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/deltastation/commons/fitness/recreation)
+"mQT" = (
+/obj/effect/step_trigger/teleporter/random{
+	affect_ghosts = 1;
+	name = "tele_ground1";
+	teleport_x = 180;
+	teleport_x_offset = 200;
+	teleport_y = 50;
+	teleport_y_offset = 80;
+	teleport_z = 1;
+	teleport_z_offset = 1
+	},
+/obj/effect/step_trigger/teleporter/random{
+	affect_ghosts = 1;
+	name = "tele_ground1";
+	teleport_x = 180;
+	teleport_x_offset = 200;
+	teleport_y = 50;
+	teleport_y_offset = 80;
+	teleport_z = 1;
+	teleport_z_offset = 1
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/deltastation/asteroidcaves/easterntunnel)
 "mQZ" = (
 /obj/structure/bed/chair/sofa{
 	dir = 8
@@ -73128,10 +73130,9 @@
 /turf/open/floor/carpet,
 /area/deltastation/commons/dorms)
 "oTy" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/computer/nuke_disk_generator/red,
-/turf/open/floor/iron,
-/area/deltastation/asteroidcaves/derelictwest)
+/obj/effect/spawner/random/decal/out_of_bounds,
+/turf/open/space/basic,
+/area/space)
 "oTz" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/neutral/half/contrasted,
@@ -74488,9 +74489,10 @@
 /turf/open/floor/iron/grimy,
 /area/deltastation/command/heads_quarters/hos)
 "phE" = (
+/obj/structure/cable,
 /obj/effect/spawner/random/decal/out_of_bounds,
-/turf/open/space/basic,
-/area/space)
+/turf/open/floor/prison/blackfloor,
+/area/deltastation/asteroidcaves/ship/two)
 "phF" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
@@ -81387,10 +81389,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/deltastation/command/bridge)
-"qxC" = (
-/obj/effect/spawner/random/decal/out_of_bounds,
-/turf/open/floor/prison/blackfloor,
-/area/deltastation/asteroidcaves/ship/two)
 "qxF" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/siding/white/corner{
@@ -83278,6 +83276,16 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/step_trigger/teleporter/random{
+	affect_ghosts = 1;
+	name = "tele_ground1";
+	teleport_x = 180;
+	teleport_x_offset = 200;
+	teleport_y = 50;
+	teleport_y_offset = 80;
+	teleport_z = 1;
+	teleport_z_offset = 1
+	},
 /turf/open/shuttle/brig,
 /area/storage/testroom)
 "qQJ" = (
@@ -93271,6 +93279,11 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/service/hydroponics/garden)
+"sTm" = (
+/obj/structure/catwalk,
+/obj/effect/spawner/random/decal/out_of_bounds,
+/turf/open/space,
+/area/space)
 "sTq" = (
 /obj/structure/table/woodentable,
 /obj/effect/spawner/random/structure/random_broken_computer/small/meddata,
@@ -102657,29 +102670,6 @@
 /obj/structure/prop/tgbrokenvendor/cigs,
 /turf/open/floor/iron/cafeteria,
 /area/deltastation/security/prison/mess)
-"uLI" = (
-/obj/effect/step_trigger/teleporter/random{
-	affect_ghosts = 1;
-	name = "tele_ground1";
-	teleport_x = 180;
-	teleport_x_offset = 200;
-	teleport_y = 50;
-	teleport_y_offset = 80;
-	teleport_z = 1;
-	teleport_z_offset = 1
-	},
-/obj/effect/step_trigger/teleporter/random{
-	affect_ghosts = 1;
-	name = "tele_ground1";
-	teleport_x = 180;
-	teleport_x_offset = 200;
-	teleport_y = 50;
-	teleport_y_offset = 80;
-	teleport_z = 1;
-	teleport_z_offset = 1
-	},
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/asteroidcaves/easterntunnel)
 "uLK" = (
 /obj/machinery/door/firedoor{
 	dir = 1
@@ -114303,6 +114293,21 @@
 /obj/effect/ai_node,
 /turf/open/floor/iron,
 /area/deltastation/commons/dorms)
+"wYh" = (
+/obj/effect/spawner/random/structure/directional_window/east,
+/obj/structure/lattice,
+/obj/effect/step_trigger/teleporter/random{
+	affect_ghosts = 1;
+	name = "tele_ground1";
+	teleport_x = 180;
+	teleport_x_offset = 200;
+	teleport_y = 50;
+	teleport_y_offset = 80;
+	teleport_z = 1;
+	teleport_z_offset = 1
+	},
+/turf/open/space,
+/area/space)
 "wYl" = (
 /obj/effect/turf_decal/tile/neutral/half/contrasted,
 /obj/effect/decal/cleanable/dirt,
@@ -121709,7 +121714,7 @@ vNR
 fCY
 fCY
 fCY
-lxH
+fCY
 lxH
 lxH
 lxH
@@ -122065,7 +122070,7 @@ lxH
 lxH
 lxH
 lhb
-phE
+oTy
 lhb
 lhb
 lhb
@@ -122224,7 +122229,7 @@ vNR
 vNR
 vNR
 hRL
-vlJ
+hRL
 vlJ
 vlJ
 lxH
@@ -122633,7 +122638,7 @@ lxH
 lxH
 lxH
 lxH
-phE
+oTy
 lxH
 lxH
 wxm
@@ -122740,7 +122745,7 @@ vNR
 vNR
 hRL
 hRL
-vlJ
+hRL
 vlJ
 lxH
 lxH
@@ -123109,7 +123114,7 @@ agF
 agF
 agF
 lhb
-phE
+oTy
 lhb
 lhb
 lhb
@@ -123119,7 +123124,7 @@ lhb
 lhb
 lhb
 lhb
-phE
+oTy
 lhb
 lhb
 lhb
@@ -123136,7 +123141,7 @@ lhb
 lhb
 lhb
 lhb
-phE
+oTy
 lhb
 lhb
 lhb
@@ -123383,7 +123388,7 @@ wxm
 lhb
 lhb
 lhb
-phE
+oTy
 lhb
 lhb
 lhb
@@ -124138,7 +124143,7 @@ agF
 agF
 lhb
 lhb
-phE
+oTy
 lhb
 lhb
 lhb
@@ -124171,7 +124176,7 @@ lhb
 lhb
 lhb
 lhb
-phE
+oTy
 lhb
 lxH
 lxH
@@ -125169,7 +125174,7 @@ lhb
 lhb
 lhb
 lhb
-phE
+oTy
 lhb
 lhb
 lhb
@@ -125194,7 +125199,7 @@ lhb
 lhb
 lhb
 lxH
-phE
+oTy
 lhb
 wxm
 wxm
@@ -125914,7 +125919,7 @@ eNP
 bCp
 qOQ
 xEK
-lbu
+wYh
 kFY
 lxH
 trz
@@ -125960,7 +125965,7 @@ lhb
 lhb
 lhb
 lhb
-phE
+oTy
 lhb
 lxH
 lxH
@@ -126327,7 +126332,7 @@ aQP
 gvI
 imP
 gvI
-dzW
+gvI
 dzW
 aIe
 aIe
@@ -126468,7 +126473,7 @@ wxm
 wxm
 lhb
 lhb
-phE
+oTy
 lhb
 lhb
 lhb
@@ -127105,7 +127110,7 @@ vNR
 vNR
 vNR
 hRL
-uLI
+mQT
 vlJ
 vlJ
 vlJ
@@ -127500,7 +127505,7 @@ lhb
 lhb
 lhb
 lhb
-phE
+oTy
 lhb
 lhb
 lhb
@@ -127748,7 +127753,7 @@ wxm
 wxm
 lxH
 lhb
-phE
+oTy
 lhb
 lxH
 lxH
@@ -127767,7 +127772,7 @@ lhb
 lhb
 lhb
 lhb
-phE
+oTy
 lxH
 lxH
 lxH
@@ -128027,7 +128032,7 @@ lhb
 lhb
 lhb
 lhb
-phE
+oTy
 lxH
 lxH
 lxH
@@ -128934,7 +128939,7 @@ scc
 nUY
 eFA
 yaa
-oTy
+xAg
 wXV
 rHW
 wXV
@@ -129029,7 +129034,7 @@ wxm
 lxH
 lxH
 lhb
-phE
+oTy
 lhb
 lhb
 lhb
@@ -129275,7 +129280,7 @@ wxm
 wxm
 lxH
 lxH
-phE
+oTy
 lhb
 lhb
 lxH
@@ -130052,7 +130057,7 @@ lhb
 lhb
 lhb
 lhb
-phE
+oTy
 lhb
 lxH
 lxH
@@ -130554,7 +130559,7 @@ kAa
 trz
 fCY
 fCY
-lxH
+fCY
 lxH
 wxm
 fCY
@@ -131618,7 +131623,7 @@ upM
 vxC
 agF
 agF
-cHE
+jwc
 agF
 fCY
 fCY
@@ -132099,7 +132104,7 @@ lxH
 lxH
 agF
 agF
-cHE
+jwc
 agF
 wxm
 wxm
@@ -132872,7 +132877,7 @@ wxm
 wxm
 agF
 agF
-cHE
+jwc
 agF
 wxm
 wxm
@@ -134709,7 +134714,7 @@ mGz
 mGz
 nMY
 vVf
-dQI
+bST
 vpv
 ptP
 mGz
@@ -137388,7 +137393,7 @@ lxH
 wxm
 wxm
 fCY
-lxH
+fCY
 lxH
 lxH
 lxH
@@ -137644,7 +137649,7 @@ fCY
 fCY
 fCY
 fCY
-lxH
+fCY
 lxH
 agF
 agF
@@ -139185,7 +139190,7 @@ fCY
 lxH
 lxH
 lxH
-lxH
+fCY
 fCY
 agF
 agF
@@ -139443,7 +139448,7 @@ lxH
 lxH
 lxH
 lxH
-lxH
+fCY
 fCY
 fCY
 fCY
@@ -143008,11 +143013,11 @@ lxH
 fCY
 lxH
 lhb
-phE
+oTy
 lhb
 lhb
 lhb
-phE
+oTy
 lhb
 lhb
 lhb
@@ -143271,7 +143276,7 @@ lhb
 lhb
 lhb
 lhb
-phE
+oTy
 lhb
 lhb
 lhb
@@ -143581,7 +143586,7 @@ wxm
 lxH
 lxH
 trz
-inN
+clz
 qCI
 lxH
 eyx
@@ -144846,7 +144851,7 @@ gbV
 agF
 agF
 agF
-agF
+jwc
 agF
 bNu
 wxm
@@ -145358,7 +145363,7 @@ mtX
 mtX
 mtX
 wxm
-agF
+jwc
 agF
 bNu
 agF
@@ -146649,7 +146654,7 @@ xEK
 lhb
 wxm
 wxm
-lxH
+eyx
 lxH
 lxH
 lxH
@@ -147416,7 +147421,7 @@ fCY
 fCY
 lxH
 lhb
-phE
+oTy
 lhb
 xEK
 fCY
@@ -147426,7 +147431,7 @@ lxH
 agF
 agF
 agF
-cHE
+jwc
 wxm
 lxH
 lxH
@@ -147926,8 +147931,8 @@ lxH
 lxH
 eyx
 lxH
-lxH
 eyx
+lxH
 lxH
 fCY
 fCY
@@ -148670,7 +148675,7 @@ wxm
 uyW
 ivf
 uFR
-qxC
+gBs
 uFR
 uyW
 wxm
@@ -149440,7 +149445,7 @@ lhb
 agF
 byW
 luH
-mht
+phE
 uFR
 fqz
 uyW
@@ -177356,11 +177361,11 @@ lxH
 kAO
 hxg
 qPs
-aTy
+mui
 qCI
 kxC
 qCI
-cHy
+sTm
 qCI
 qCI
 qCI
@@ -180440,7 +180445,7 @@ fCY
 qgI
 wYd
 eBe
-dgx
+bXJ
 eBe
 qSD
 qgI
