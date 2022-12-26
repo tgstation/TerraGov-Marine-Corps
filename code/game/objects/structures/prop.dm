@@ -962,6 +962,12 @@
 	resistance_flags = RESIST_ALL
 	layer = ABOVE_MOB_LAYER
 
+/obj/structure/prop/vehicle/van/Initialize()
+	. = ..()
+	if(dir & (NORTH|SOUTH))
+		bound_height = 64
+		bound_width = 32
+
 /obj/structure/prop/vehicle/van/destructible
 	max_integrity = 200
 	resistance_flags = XENO_DAMAGEABLE
