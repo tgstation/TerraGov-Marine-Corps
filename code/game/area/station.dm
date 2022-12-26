@@ -590,7 +590,7 @@
 	icon_state = "library_lounge"
 
 /area/deltastation/service/library/artgallery
-	name = "\improper  Art Gallery"
+	name = "\improper Art Gallery"
 	icon_state = "library_gallery"
 
 /area/deltastation/service/library/private

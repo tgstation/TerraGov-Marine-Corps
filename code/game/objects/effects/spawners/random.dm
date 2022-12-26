@@ -27,6 +27,8 @@
 	var/spawn_scatter_radius = 0
 	/// Whether the items should have a random pixel_x/y offset (maxium offset distance is ±16 pixels for x/y)
 	var/spawn_random_offset = FALSE
+	///does the spawned structure need to retain its direction on spawn?
+	var/spawn_with_original_direction = FALSE
 
 /obj/effect/spawner/random/Initialize(mapload)
 	. = ..()
@@ -63,7 +65,8 @@
 					spawn_loc = pick_n_take(spawn_locations)
 
 				var/atom/movable/spawned_loot = make_item(spawn_loc, lootspawn)
-				spawned_loot.setDir(dir)
+				if(!spawn_with_original_direction)
+					spawned_loot.setDir(dir)
 
 				if (!spawn_loot_split && !spawn_random_offset)
 					if (pixel_x != 0)
@@ -1831,6 +1834,7 @@
 	name = "chair or metal spawner"
 	icon_state = "random_chair_north"
 	spawn_loot_chance = 95
+	spawn_with_original_direction = TRUE
 	loot = list(
 		/obj/structure/bed/chair/north = 10,
 		/obj/item/stack/sheet/metal = 1,
@@ -1840,6 +1844,7 @@
 	name = "chair or metal spawner"
 	icon_state = "random_chair_west"
 	spawn_loot_chance = 95
+	spawn_with_original_direction = TRUE
 	loot = list(
 		/obj/structure/bed/chair/west = 10,
 		/obj/item/stack/sheet/metal = 1,
@@ -1849,6 +1854,7 @@
 	name = "chair or metal spawner"
 	icon_state = "random_chair_east"
 	spawn_loot_chance = 95
+	spawn_with_original_direction = TRUE
 	loot = list(
 		/obj/structure/bed/chair/east = 10,
 		/obj/item/stack/sheet/metal = 1,
@@ -1875,6 +1881,7 @@
 /obj/effect/spawner/random/structure/office_chair_or_metal/east //only works for south facing chairs due to lack of proper directional spawning
 	name = "office chair or metal spawner"
 	icon_state = "random_office_chair_east"
+	spawn_with_original_direction = TRUE
 	spawn_loot_chance = 95
 	loot = list(
 		/obj/structure/bed/chair/office/light/east = 10,
@@ -1884,6 +1891,7 @@
 /obj/effect/spawner/random/structure/office_chair_or_metal/dark/east //only works for south facing chairs due to lack of proper directional spawning
 	name = "office chair or metal spawner"
 	icon_state = "random_office_chair_east"
+	spawn_with_original_direction = TRUE
 	spawn_loot_chance = 95
 	loot = list(
 		/obj/structure/bed/chair/office/dark/east = 10,
@@ -1893,6 +1901,7 @@
 /obj/effect/spawner/random/structure/office_chair_or_metal/west //only works for south facing chairs due to lack of proper directional spawning
 	name = "office chair or metal spawner"
 	icon_state = "random_office_chair_west"
+	spawn_with_original_direction = TRUE
 	spawn_loot_chance = 95
 	loot = list(
 		/obj/structure/bed/chair/office/light/west = 10,
@@ -1902,6 +1911,7 @@
 /obj/effect/spawner/random/structure/office_chair_or_metal/dark/west //only works for south facing chairs due to lack of proper directional spawning
 	name = "office chair or metal spawner"
 	icon_state = "random_office_chair_west"
+	spawn_with_original_direction = TRUE
 	spawn_loot_chance = 95
 	loot = list(
 		/obj/structure/bed/chair/office/dark/west = 10,
@@ -1911,6 +1921,7 @@
 /obj/effect/spawner/random/structure/office_chair_or_metal/north //only works for south facing chairs due to lack of proper directional spawning
 	name = "office chair or metal spawner"
 	icon_state = "random_office_chair_north"
+	spawn_with_original_direction = TRUE
 	spawn_loot_chance = 95
 	loot = list(
 		/obj/structure/bed/chair/office/light/north = 10,
@@ -1920,6 +1931,7 @@
 /obj/effect/spawner/random/structure/office_chair_or_metal/dark/north //only works for south facing chairs due to lack of proper directional spawning
 	name = "office chair or metal spawner"
 	icon_state = "random_office_chair_north"
+	spawn_with_original_direction = TRUE
 	spawn_loot_chance = 95
 	loot = list(
 		/obj/structure/bed/chair/office/dark/north = 10,
@@ -1963,6 +1975,7 @@
 
 /obj/effect/spawner/random/structure/directional_window/north
 	icon_state = "random_rwindow_north"
+	spawn_with_original_direction = TRUE
 	loot = list(
 		/obj/structure/window/reinforced/north = 35,
 		/obj/effect/spawner/random/shard = 1,
@@ -1970,6 +1983,7 @@
 
 /obj/effect/spawner/random/structure/directional_window/east
 	icon_state = "random_rwindow_east"
+	spawn_with_original_direction = TRUE
 	loot = list(
 		/obj/structure/window/reinforced/east = 35,
 		/obj/effect/spawner/random/shard = 1,
@@ -1977,6 +1991,7 @@
 
 /obj/effect/spawner/random/structure/directional_window/west
 	icon_state = "random_rwindow_west"
+	spawn_with_original_direction = TRUE
 	loot = list(
 		/obj/structure/window/reinforced/west = 35,
 		/obj/effect/spawner/random/shard = 1,
@@ -2059,4 +2074,13 @@
 	spawn_scatter_radius = 1
 	loot = list(
 		/obj/effect/decal/cleanable/blood,
+	)
+
+/obj/effect/spawner/random/decal/out_of_bounds
+	name = "random out of bounds spawner"
+	icon_state = "random_oob"
+	spawn_scatter_radius = 1
+	spawn_loot_count = 3
+	loot = list(
+		/obj/effect/step_trigger/teleporter/random
 	)

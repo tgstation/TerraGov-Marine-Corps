@@ -107,7 +107,7 @@
 
 /obj/structure/prop/mainship/holobarrier
 	name = "\improper Engineering holobarrier"
-	desc = "A wonder of subsidized corporate design, this holographic barrier is almost entirely resistant to atmos loss and degradation by melee or ballistic damage. It's also made of space asbestos amd is illegal under the new geneva conventions."
+	desc = "A wonder of subsidized corporate design, this holographic barrier is almost entirely resistant to atmos loss and degradation by melee or ballistic damage. It's also made of space asbestos and is illegal under the new Geneva conventions."
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "holosign_engi"
 	density = TRUE
