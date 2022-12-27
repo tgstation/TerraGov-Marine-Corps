@@ -104,7 +104,7 @@
 	return ..()
 
 /obj/item/explosive/grenade/sticky/launched_det_time()
-	return min(40, det_time)
+	det_time -= 1 SECONDS
 
 ///Cleans references to prevent hard deletes.
 /obj/item/explosive/grenade/sticky/proc/clean_refs()

@@ -93,9 +93,9 @@
 	walk(src, null, null)
 	return
 
-///Returns an adjusted det time, used for grenade launchers
+///Adjusts det time, used for grenade launchers
 /obj/item/explosive/grenade/proc/launched_det_time()
-	return min(10, det_time)
+	det_time = min(10, det_time)
 
 ////RAD GRENADE - TOTALLY RAD MAN
 
