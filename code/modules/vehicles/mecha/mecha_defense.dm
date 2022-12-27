@@ -309,19 +309,16 @@
 		if(!fail_chat_override)
 			to_chat(user, span_warning("This box of ammo is empty!"))
 		return FALSE
-	var/ammo_needed
 	var/found_gun
 	for(var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/gun in flat_equipment)
-		ammo_needed = 0
-
 		if(gun.ammo_type != reload_box.ammo_type)
 			continue
 		found_gun = TRUE
-		ammo_needed = gun.projectiles_cache_max - gun.projectiles_cache
-		if(reload_box.direct_load)
-			ammo_needed += initial(gun.projectiles) - gun.projectiles
 
-		if(!ammo_needed)
+		if(reload_box.direct_load)
+			if((gun.projectiles >= initial(gun.projectiles)) && (gun.projectiles_cache >= gun.projectiles_cache_max))
+				continue
+		else if(gun.projectiles_cache >= gun.projectiles_cache_max)
 			continue
 
 		var/amount_to_fill
