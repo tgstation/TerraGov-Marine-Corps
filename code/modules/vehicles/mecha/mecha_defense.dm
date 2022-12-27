@@ -324,26 +324,25 @@
 		if(!ammo_needed)
 			continue
 
-		ammo_needed = min(ammo_needed, reload_box.rounds)
-
 		var/amount_to_fill
-		var/amount_filled = ammo_needed
+		var/amount_filled = 0
 		if(reload_box.direct_load)
-			amount_to_fill = min(initial(gun.projectiles) - gun.projectiles, ammo_needed)
+			amount_to_fill = min(initial(gun.projectiles) - gun.projectiles, reload_box.rounds)
 			gun.projectiles += amount_to_fill
-			ammo_needed -= amount_to_fill
 			reload_box.rounds -= amount_to_fill
+			amount_filled += amount_to_fill
 
-		amount_to_fill = min(gun.projectiles_cache_max - gun.projectiles_cache, ammo_needed)
+		amount_to_fill = min(gun.projectiles_cache_max - gun.projectiles_cache, reload_box.rounds)
 		gun.projectiles_cache += amount_to_fill
+		reload_box.rounds -= amount_to_fill
+		amount_filled += amount_to_fill
 
 		playsound(get_turf(user), reload_box.load_audio, 50, TRUE)
-		to_chat(user, span_notice("You add [amount_filled] [reload_box.ammo_type][ammo_needed > 1?"s":""] to the [gun.name]"))
+		to_chat(user, span_notice("You add [amount_filled] [reload_box.ammo_type][amount_filled > 1?"s":""] to the [gun.name]"))
 
-		if(reload_box.rounds)
-			reload_box.update_icon()
-		else if(reload_box.qdel_on_empty)
+		if(!reload_box.rounds && reload_box.qdel_on_empty)
 			qdel(reload_box)
+		reload_box.update_icon()
 		return TRUE
 
 	if(!fail_chat_override)
