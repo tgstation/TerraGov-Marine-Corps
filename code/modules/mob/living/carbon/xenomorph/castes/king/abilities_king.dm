@@ -54,10 +54,16 @@
 	owner.vis_contents += eye
 	flick("eye_opening", eye)
 	playsound(owner, 'sound/effects/petrify_charge.ogg', 50)
+	REMOVE_TRAIT(owner, TRAIT_STAGGER_RESISTANT, XENO_TRAIT)
+
 	if(!do_after(owner, PETRIFY_WINDUP_TIME, FALSE, owner, BUSY_ICON_DANGER))
 		flick("eye_closing", eye)
 		addtimer(CALLBACK(src, .proc/remove_eye, eye), 7, TIMER_CLIENT_TIME)
-		return
+		reset_resistance()
+		add_cooldown(3 SECONDS)
+		return fail_activate()
+
+	reset_resistance()
 	playsound(owner, 'sound/effects/petrify_activate.ogg', 50)
 	var/list/mob/living/carbon/human/humans = list()
 	for(var/mob/living/carbon/human/human in view(PETRIFY_RANGE, owner.loc))
@@ -87,11 +93,20 @@
 		flick("eye_closing", eye)
 		addtimer(CALLBACK(src, .proc/remove_eye, eye), 7, TIMER_CLIENT_TIME)
 		return
+
 	addtimer(CALLBACK(src, .proc/remove_eye, eye), 10, TIMER_CLIENT_TIME)
 	flick("eye_explode", eye)
 	addtimer(CALLBACK(src, .proc/end_effects, humans), PETRIFY_DURATION)
 	add_cooldown()
 	succeed_activate()
+
+///Readds stagger resistance if applicable
+/datum/action/xeno_action/petrify/proc/reset_resistance()
+	if(!isxeno(owner))
+		return
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	if(xeno_owner.xeno_caste.caste_flags & CASTE_STAGGER_RESISTANT)
+		ADD_TRAIT(owner, TRAIT_STAGGER_RESISTANT, XENO_TRAIT)
 
 ///ends all combat-relazted effects
 /datum/action/xeno_action/petrify/proc/end_effects(list/humans)
@@ -161,6 +176,7 @@
 #define SHATTERING_ROAR_ANGLE 60
 #define SHATTERING_ROAR_SPEED 2
 #define SHATTERING_ROAR_DAMAGE 40
+#define SHATTERING_ROAR_CHARGE_TIME 1 SECONDS
 
 /datum/action/xeno_action/activable/shattering_roar
 	name = "Shattering roar"
@@ -183,12 +199,15 @@
 	var/mob/living/carbon/xenomorph/king/king_owner = owner
 	if(istype(king_owner))
 		king_owner.icon_state = "King Screeching"
-	if(!do_after(owner, 1 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_action, FALSE, XACT_USE_BUSY)))
+	REMOVE_TRAIT(owner, TRAIT_STAGGER_RESISTANT, XENO_TRAIT) //Vulnerable while charging up
+
+	if(!do_after(owner, SHATTERING_ROAR_CHARGE_TIME, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_action, FALSE, XACT_USE_BUSY)))
 		owner.balloon_alert(owner, "interrupted!")
-		owner.update_icons()
-		add_cooldown(5 SECONDS)
-		return
-	owner.update_icons()
+		reset_ability()
+		add_cooldown(3 SECONDS)
+		return fail_activate()
+
+	reset_ability()
 	playsound(owner, 'sound/voice/xenos_roaring.ogg', 100)
 	var/source = get_turf(owner)
 	var/dir_to_target = Get_Angle(source, target)
@@ -231,6 +250,14 @@
 			if(window_victim.damageable)
 				window_victim.ex_act(EXPLODE_DEVASTATE)
 
+///resets owners icon and readds stagger resistance if applicable
+/datum/action/xeno_action/activable/shattering_roar/proc/reset_ability()
+	owner.update_icons()
+	if(!isxeno(owner))
+		return
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	if(xeno_owner.xeno_caste.caste_flags & CASTE_STAGGER_RESISTANT)
+		ADD_TRAIT(owner, TRAIT_STAGGER_RESISTANT, XENO_TRAIT)
 
 /obj/effect/temp_visual/shattering_roar
 	name = "shattering_roar"
@@ -319,11 +346,12 @@
 	particles = new(owner, particles_type)
 	beam = owner.loc.beam(targets[length(targets)], "plasmabeam", beam_type = /obj/effect/ebeam/zeroform)
 	playsound(owner, 'sound/effects/king_beam_charge.ogg', 80)
+	REMOVE_TRAIT(owner, TRAIT_STAGGER_RESISTANT, XENO_TRAIT)
 	if(!do_after(owner, ZEROFORM_CHARGE_TIME, FALSE, owner, BUSY_ICON_DANGER))
 		QDEL_NULL(beam)
 		QDEL_NULL(particles)
 		targets = null
-		add_cooldown(5 SECONDS)
+		add_cooldown(3 SECONDS)
 		return fail_activate()
 	sound_loop.start(owner)
 	RegisterSignal(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE), .proc/stop_beaming)
@@ -356,8 +384,15 @@
 	deltimer(timer_ref)
 	timer_ref = null
 	targets = null
+
 	owner.update_icons()
 	add_cooldown()
+
+	if(!isxeno(owner))
+		return
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	if(xeno_owner.xeno_caste.caste_flags & CASTE_STAGGER_RESISTANT)
+		ADD_TRAIT(owner, TRAIT_STAGGER_RESISTANT, XENO_TRAIT)
 
 /particles/zero_form
 	width = 400
@@ -426,6 +461,7 @@
 		sister.add_filter("summonoutline", 2, outline_filter(1, COLOR_VIOLET))
 
 	if(!do_after(X, 10 SECONDS, FALSE, X, BUSY_ICON_HOSTILE))
+		add_cooldown(3 SECONDS)
 		for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
 			sister.remove_filter("summonoutline")
 		return fail_activate()
