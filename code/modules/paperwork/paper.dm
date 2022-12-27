@@ -464,6 +464,45 @@ then, for every time you included a field, increment fields. */
 	> When you are holding an empty liquid holder, you can empty the Vali's reagent tank into it.<BR>
 	> When you aren't holding a liquid holder, you can pick whether you would like the internal tank's reagents to be automatically injected on activation or not.<BR>"}
 
+/obj/item/paper/tutorial/medical
+	name = "Medical manual"
+	info = {"Up to date as of (insert date here)<BR>
+	<b>Damage types</b><BR>
+	<BR>
+	Note: You can check your damage by using a health scanner on yourself. They can be found in medical vendors.<BR>
+	Note: All damages cause pain. Extreme amounts of pain will cause a random chance of dropping items, movement slowdown, earlier fall in critical condition due to damage, and blurred vision.<BR>
+	<BR>
+	<BR><b>Brute</b> = Caused by slashes and ballistics. Past a threshold of damage, the bodypart will fracture. May cause internal bleeding if strike is strong enough, which causes a gradual loss of blood.<BR>
+	A fractured bodypart will need a splint used on it to prevent symptoms of fracture. A fractured arm or hand will randomly drop the item held. A fractured leg will randomly cause the player to fall. A fractured chest will randomly cause organ damage on movement (more later). A fractured head will randomly cause brain and eye damage.<BR>
+	Damage by gunfire may give the player shrapnel. Shrapnel gives a random chance of brute damage on its respective bodypart on movement. Corpsmen's tweezers can remove these, as well as surgery. This may fracture the limb if damage is high enough as per earlier.<BR>
+	Extreme amounts of damage on an arm, hand, leg, or foot, will cause the limb to be lost. Helmets prevent decapitation, and going without one is not recommended. Decapitation is permanent, unrevivable death. Only surgery can "fix" limbloss by replacement with a robotic one. Obviously, losing an arm means no longer being able to use it whatsoever.<BR>
+	<b>Burn</b> = Caused by fire, acid spits and puddles, and lasers.<BR>
+	They do not have any secondary effects or dangers other than damage. However, they are the most painful type of damage. Sources may also be extremely dangerous such as being set on fire, which can still keep damaging you. Using "resist" (default hotkey: B) will have the player attempt to put themselves out.<BR>
+	<b>Toxin</b> = Caused by reagents and niche situations such as stepping on stage 5 acid wells.<BR>
+	At high enough quantities, they may cause vomiting. They do not cause as much pain as burns, but the danger is in what is actually causing them, such as xeno neurotoxins which can quickly build up in the body after an attack by sentinels, defilers, boilers, etc. In order to treat this, first care must be taken to purge all toxins in the body through dylovene or hypervene.<BR>
+	<b>Oxygen</b> = Caused by low blood or certain toxic reagents. The lower the blood, the faster it will build up. Naturally heals on its own. Marines in critical condition will slowly build up oxygen damage until they are dead or brought up to a stable condition.<BR>
+	<b>Cloneloss</b> = Hidden from medical scanner, spottable by seeing damage despite all damage indicators showing OK, or by self-examination and spotting malformed limbs. Caused by xenomorphs psydraining or cocooning dead marines, or usage of specific chemicals.<BR>
+	No secondary risks other than damage, but extremely difficult to remove. Requires being placed inside a cryotube to heal. Sleeping will heal extremely low amounts of it, though with questionable viability.<BR>
+	<BR>
+	<b>Items and chemicals</b><BR>
+	<BR>
+	<b>Gauze/Advanced Brute Kit</b> = Bandages the limb that it is applied to, preventing bleeding as well as slowly healing the limb so long as it is not damaged again. Only works for brute damage. <BR>
+	<b>Ointment/Advanced Burn Kit</b> = Salves the limb that it is applied to, slowly healing it so long as it is not damaged again. Only works for burns. Will apply to every damaged limb one at a time.<BR>
+	Note: Advanced brute and burn kits are for corpsman use due to the additional bonus in healing when applied. This is due to corpsmen having higher medical stats. Normal marines have a delay on usage with no bonus healing, and should stick to gauzes and ointments.<BR>
+	Note: These can be used in conjunction with chemicals to hasten healing.<BR>
+	<b>Splints</b> = These can be applied to a fractured limb to prevent its symptoms. Splints can be broken should the limb take damage. Splints applied by corpsmen can take more hits than those applied by normal marines. Highly recommended to ask a corpsman to apply it, as self-splinting has great delay.<BR>
+	Note: Too many units of a chemical will cause overdose, which has various negative effect ranging from mild to death.<BR>
+	Note: Not all chemicals are listed, only the basics.<BR>
+	<b>Bicaridine</b> = Heals brute damage. Overdoses at 30u.<BR>
+	<b>Kelotane</b> = Heals burn damage. Overdoses at 30u.<BR>
+	<b>Dylovene</b> = Heals toxin damage while slowly purging toxic reagents. Overdoses at 30u.<BR>
+	<b>Tramadol</b> = Reduces pain. Overdoses at 30u.<BR>
+	<b>Quick-clot</b> = Stops (but does not heal) internal bleeding. Mildly regenerates blood.<BR>
+	<b>Hypervene</b> = Purges ALL reagents present in the body. Useful for dealing with overdoses.<BR>
+	<b>Imidazoline</b> = Heals eye damage.<BR>
+	<b>Alkysine</b> = Heals brain damage.<BR>
+	<b>Inaprovaline</b> = Prevents oxygen damage. At >15u, will give a massive heal to marines in critical condition, most of the time enough to bring them up to their feet.<BR>"}
+
 /obj/item/paper/brassnote
 	name = "Brass Note"
 	icon = 'icons/obj/items/paper.dmi'
