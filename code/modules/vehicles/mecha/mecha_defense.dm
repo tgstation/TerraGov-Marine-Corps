@@ -317,35 +317,35 @@
 		if(gun.ammo_type != reload_box.ammo_type)
 			continue
 		found_gun = TRUE
+		ammo_needed = gun.projectiles_cache_max - gun.projectiles_cache
 		if(reload_box.direct_load)
-			ammo_needed = initial(gun.projectiles) - gun.projectiles
-		else
-			ammo_needed = gun.projectiles_cache_max - gun.projectiles_cache
+			ammo_needed += initial(gun.projectiles) - gun.projectiles
 
 		if(!ammo_needed)
 			continue
-		if(ammo_needed < reload_box.rounds)
-			if(reload_box.direct_load)
-				gun.projectiles = gun.projectiles + ammo_needed
-			else
-				gun.projectiles_cache = gun.projectiles_cache + ammo_needed
-			playsound(get_turf(user), reload_box.load_audio, 50, TRUE)
-			to_chat(user, span_notice("You add [ammo_needed] [reload_box.ammo_type][ammo_needed > 1?"s":""] to the [gun.name]"))
-			reload_box.rounds = reload_box.rounds - ammo_needed
-			return TRUE
 
+		ammo_needed = min(ammo_needed, reload_box.rounds)
+
+		var/amount_to_fill
+		var/amount_filled = ammo_needed
 		if(reload_box.direct_load)
-			gun.projectiles = gun.projectiles + reload_box.rounds
-		else
-			gun.projectiles_cache = gun.projectiles_cache + reload_box.rounds
-		playsound(get_turf(user),reload_box.load_audio,50,TRUE)
-		to_chat(user, span_notice("You add [reload_box.rounds] [reload_box.ammo_type][reload_box.rounds > 1?"s":""] to the [gun.name]"))
-		if(reload_box.qdel_on_empty)
+			amount_to_fill = min(initial(gun.projectiles) - gun.projectiles, ammo_needed)
+			gun.projectiles += amount_to_fill
+			ammo_needed -= amount_to_fill
+			reload_box.rounds -= amount_to_fill
+
+		amount_to_fill = min(gun.projectiles_cache_max - gun.projectiles_cache, ammo_needed)
+		gun.projectiles_cache += amount_to_fill
+
+		playsound(get_turf(user), reload_box.load_audio, 50, TRUE)
+		to_chat(user, span_notice("You add [amount_filled] [reload_box.ammo_type][ammo_needed > 1?"s":""] to the [gun.name]"))
+
+		if(reload_box.rounds)
+			reload_box.update_icon()
+		else if(reload_box.qdel_on_empty)
 			qdel(reload_box)
-			return TRUE
-		reload_box.rounds = 0
-		reload_box.update_icon()
 		return TRUE
+
 	if(!fail_chat_override)
 		if(found_gun)
 			to_chat(user, span_notice("You can't fit any more ammo of this type!"))
