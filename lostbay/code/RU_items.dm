@@ -140,7 +140,7 @@ SUBSYSTEM_DEF(ru_items)
 	icon_state = "T25"
 	item_state = "T25"
 	caliber = CALIBER_10x26_CASELESS //codex
-	max_shells = 50 //codex
+	max_shells = 80 //codex
 	force = 20
 	aim_slowdown = 0.5
 	wield_delay = 0.9 SECONDS
@@ -156,10 +156,6 @@ SUBSYSTEM_DEF(ru_items)
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bipod,
-		/obj/item/attachable/angledgrip,
-		/obj/item/weapon/gun/grenade_launcher/underslung,
-		/obj/item/weapon/gun/shotgun/combat/masterkey,
-		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
@@ -177,7 +173,7 @@ SUBSYSTEM_DEF(ru_items)
 	gun_skill_category = GUN_SKILL_SMARTGUN //Uses SG skill for the penalties.
 	attachable_offset = list("muzzle_x" = 42, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 12, "stock_y" = 13)
 
-	fire_delay = 0.1 SECONDS
+	fire_delay = 0.2 SECONDS
 	burst_amount = 0
 	accuracy_mult_unwielded = 0.5
 	accuracy_mult = 1.2
@@ -191,7 +187,7 @@ SUBSYSTEM_DEF(ru_items)
 	icon_state = "T25"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle/T25
-	max_rounds = 50
+	max_rounds = 80
 	icon_state_mini = "mag_rifle_big"
 
 /datum/ammo/bullet/rifle/T25
