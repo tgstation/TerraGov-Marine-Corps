@@ -8,11 +8,11 @@ mode Crash
 endmode
 
 mode Distress Signal
-	requiredplayers 2
+	requiredplayers 25
 endmode
 
 mode Nuclear War
-	requiredplayers 2
+	requiredplayers 30
 endmode
 
 mode Extended
@@ -21,7 +21,7 @@ mode Extended
 endmode
 
 mode Civil War
-	requiredplayers 2
+	requiredplayers 100
 endmode
 
 mode Combat Patrol
