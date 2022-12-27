@@ -66,6 +66,8 @@
 
 	.["security_level"] = GLOB.marine_main_ship?.get_security_level()
 	.["round_duration"] = SSticker ? round((world.time - SSticker.round_start_time) / 10) : 0
+	.["round_duration_in_second"] = round((SSticker.round_start_time ? world.time - SSticker.round_start_time : FALSE) * 10)
+	.["round_duration_in_ticks"] = (SSticker.round_start_time ? world.time - SSticker.round_start_time : FALSE)
 
 	.["time_dilation_current"] = SStime_track.time_dilation_current
 	.["time_dilation_avg"] = SStime_track.time_dilation_avg
