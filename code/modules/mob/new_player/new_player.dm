@@ -233,7 +233,7 @@
 
 /mob/new_player/proc/view_lore()
 	var/output = "<div align='center'>"
-		output += "<a href='byond://?src=[REF(src)];lobby_choice=marines'>Корпус морпехов TerraGov</A><br><br><a href='byond://?src=[REF(src)];lobby_choice=aliens'>Улей ксеноморфов</A>"
+	output += "<a href='byond://?src=[REF(src)];lobby_choice=marines'>Корпус морпехов TerraGov</A><br><br><a href='byond://?src=[REF(src)];lobby_choice=aliens'>Улей ксеноморфов</A>"
 	output += "</div>"
 
 	var/datum/browser/popup = new(src, "lore", "<div align='center'>Текущий год: [GAME_YEAR]</div>", 240, 300)
