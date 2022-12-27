@@ -466,7 +466,7 @@ then, for every time you included a field, increment fields. */
 
 /obj/item/paper/tutorial/medical
 	name = "Medical manual"
-	info = {"Up to date as of (insert date here)<BR>
+	info = {"Up to date as of December 27th '22<BR>
 	<b>Damage types</b><BR>
 	<BR>
 	Note: You can check your damage by using a health scanner on yourself. They can be found in medical vendors.<BR>
@@ -505,6 +505,10 @@ then, for every time you included a field, increment fields. */
 	<b>Imidazoline</b> = Heals eye damage.<BR>
 	<b>Alkysine</b> = Heals brain damage.<BR>
 	<b>Inaprovaline</b> = Prevents oxygen damage. At >15u, will give a massive heal to marines in critical condition, most of the time enough to bring them up to their feet.<BR>"}
+
+/obj/item/paper/tutorial/mechanics
+	name = "Marine manual"
+	info = {"E"}
 
 /obj/item/paper/brassnote
 	name = "Brass Note"
