@@ -827,10 +827,10 @@
 					var/looc = tgui_say_create_open_command(LOOC_CHANNEL)
 					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[looc]")
 				if(MOOC_CHANNEL)
-					var/mooc = tgui_say_create_open_command(LOOC_CHANNEL)
+					var/mooc = tgui_say_create_open_command(MOOC_CHANNEL)
 					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[mooc]")
 				if(XOOC_CHANNEL)
-					var/xooc = tgui_say_create_open_command(LOOC_CHANNEL)
+					var/xooc = tgui_say_create_open_command(XOOC_CHANNEL)
 					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[xooc]")
 
 
