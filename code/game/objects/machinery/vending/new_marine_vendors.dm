@@ -590,6 +590,7 @@
 		/obj/item/clothing/under/marine,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
+		/obj/item/paper/tutorial/medical
 	)
 
 /obj/effect/essentials_set/basic_jaeger
@@ -599,6 +600,7 @@
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
 		/obj/item/facepaint/green,
+		/obj/item/paper/tutorial/medical
 	)
 
 /obj/effect/essentials_set/basic_smartgunner
