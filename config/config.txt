@@ -5,10 +5,10 @@ $include dbconfig.txt
 $include resources.txt
 
 ## Server name: This appears at the top of the screen in-game.
-SERVER_NAME Lost Bay Marine Corps
+SERVER_NAME [RU] Lost Bay Marine Corps
 
 ## Hosted by name for unix platforms.
-HOSTEDBY yournamehere
+HOSTEDBY KrykiZZ
 
 ## The title of the main window.
 TITLE Lost Bay Marine Corps
