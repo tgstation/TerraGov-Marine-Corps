@@ -185,12 +185,6 @@
 		if(!(owner.species && (owner.species.species_flags & NO_PAIN)))
 			owner.emote("scream") //Getting hit on broken hand hurts
 
-	//Possibly trigger an internal wound, too.
-	var/local_damage = brute_dam + burn_dam + brute
-	if(brute > 15 && local_damage > 30 && prob(brute*0.5) && !(limb_status & LIMB_ROBOT) && !(SSticker.mode?.flags_round_type & MODE_NO_PERMANENT_WOUNDS))
-		new /datum/wound/internal_bleeding(min(brute - 15, 15), src)
-		owner.custom_pain("You feel something rip in your [display_name]!", 1)
-
 	//If they have it splinted and no splint health, the splint won't hold.
 	if(limb_status & LIMB_SPLINTED)
 		if(splint_health <= 0)
