@@ -44,6 +44,7 @@
 	walltype = "lvwall"
 	smoothing_behavior = DIAGONAL_SMOOTHING
 	smoothing_groups = SMOOTH_MINERAL_STRUCTURES
+	resistance_flags = PLASMACUTTER_IMMUNE
 
 /turf/closed/mineral/smooth/outdoor
 	open_turf_type = /turf/open/floor/plating/ground/mars/random/dirt
