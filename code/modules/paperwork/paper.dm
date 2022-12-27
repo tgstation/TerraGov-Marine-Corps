@@ -473,7 +473,7 @@ then, for every time you included a field, increment fields. */
 	Note: All damages cause pain. Extreme amounts of pain will cause a random chance of dropping items, movement slowdown, earlier fall in critical condition due to damage, and blurred vision.<BR>
 	<BR>
 	<BR><b>Brute</b> = Caused by slashes and ballistics. Past a threshold of damage, the bodypart will fracture. May cause internal bleeding if strike is strong enough, which causes a gradual loss of blood.<BR>
-	A fractured bodypart will need a splint used on it to prevent symptoms of fracture. A fractured arm or hand will randomly drop the item held. A fractured leg will randomly cause the player to fall. A fractured chest will randomly cause organ damage on movement (more later). A fractured head will randomly cause brain and eye damage.<BR>
+	A fractured bodypart will need a splint used on it to prevent symptoms of fracture. A fractured arm or hand will randomly drop the item held. A fractured leg will randomly cause the player to fall. A fractured chest will randomly cause organ damage on movement. A fractured head will randomly cause brain and eye damage. Organ damage symptoms range from debilitating to outright crippling and can be fixed through surgery or corpsman-specific chemicals.<BR>
 	Damage by gunfire may give the player shrapnel. Shrapnel gives a random chance of brute damage on its respective bodypart on movement. Corpsmen's tweezers can remove these, as well as surgery. This may fracture the limb if damage is high enough as per earlier.<BR>
 	Extreme amounts of damage on an arm, hand, leg, or foot, will cause the limb to be lost. Helmets prevent decapitation, and going without one is not recommended. Decapitation is permanent, unrevivable death. Only surgery can "fix" limbloss by replacement with a robotic one. Obviously, losing an arm means no longer being able to use it whatsoever.<BR>
 	<b>Burn</b> = Caused by fire, acid spits and puddles, and lasers.<BR>
@@ -484,19 +484,21 @@ then, for every time you included a field, increment fields. */
 	<b>Cloneloss</b> = Hidden from medical scanner, spottable by seeing damage despite all damage indicators showing OK, or by self-examination and spotting malformed limbs. Caused by xenomorphs psydraining or cocooning dead marines, or usage of specific chemicals.<BR>
 	No secondary risks other than damage, but extremely difficult to remove. Requires being placed inside a cryotube to heal. Sleeping will heal extremely low amounts of it, though with questionable viability.<BR>
 	<b>Alien Embryo</b> = The person has been jumped onto by a hugger time ago. Depending on how long ago, he may be close to bursting. Surgery is the only way to remove the embryo, and a stasis bed will delay the timer considerably. Upon bursting, the player will die and likely receive extremely high amounts of internal bleeding and organ damage, but will stil be revivable should said injuries be healed. Death will pause the timer, so it is not unheard of for marines to dliberatedly kill the victim, put him in a stasis bag, and medevac him for removal while dead before revival, or simply letting him burst before sending his body shipside. Sending the marine shipside alive, even moreso if time had passed, is EXTREMELY risky due to the possibility of said marine bursting and the larva escaping into the ship, which will evolve into a xeno and spill acid and destroying critical infrastrcture such as the communications room, potentially leaving the entire marine force deaf to each other.<BR>
+	<b>Stamina</b> = Indicated by a lightning bolt at the right side of the screen. Controls how much you can run. Some toxins and attacks can affect stamina, and stamina being drained fully while still accruing stamina damage will begin to cause toxin and oxygen damage, as well as random chances of being knocked down. Most commonly caused by neurotoxins.<BR>
 	<BR>
 	<b>Items and chemicals</b><BR>
 	<BR>
 	<b>Gauze/Advanced Brute Kit</b> = Bandages the limb that it is applied to, preventing bleeding as well as slowly healing the limb so long as it is not damaged again. Only works for brute damage. <BR>
 	<b>Ointment/Advanced Burn Kit</b> = Salves the limb that it is applied to, slowly healing it so long as it is not damaged again. Only works for burns. Will apply to every damaged limb one at a time.<BR>
 	Note: Advanced brute and burn kits are for corpsman use due to the additional bonus in healing when applied. This is due to corpsmen having higher medical stats. Normal marines have a delay on usage with no bonus healing, and should stick to gauzes and ointments.<BR>
-	Note: These can be used in conjunction with chemicals to hasten healing.<BR>
+	Note: All wounds and injuries should be treated as soon as possible, as any unbandaged/unsalved wounds run the risk of infection and subsequent necrosis which will cause toxin damage and organ damage on the affected bodyparts. These items can be used in conjunction with chemicals to hasten healing.<BR>
 	<b>Splints</b> = These can be applied to a fractured limb to prevent its symptoms. Splints can be broken should the limb take damage. Splints applied by corpsmen can take more hits than those applied by normal marines. Highly recommended to ask a corpsman to apply it, as self-splinting has great delay.<BR>
 	Note: Too many units of a chemical will cause overdose, which has various negative effect ranging from mild to death.<BR>
 	Note: Not all chemicals are listed, only the basics.<BR>
 	<b>Bicaridine</b> = Heals brute damage. Overdoses at 30u.<BR>
 	<b>Kelotane</b> = Heals burn damage. Overdoses at 30u.<BR>
-	<b>Dylovene</b> = Heals toxin damage while slowly purging toxic reagents. Overdoses at 30u.<BR>
+	<b>Tricordrazine</b> = Heals brute, burn, toxin, and oxygen damage at a slower pace than their dedicated medications, but can work in conjunction with them. Does not purge reagents. Overdoses at 30u. EXTREME care must be taken, as overdose causes brain damage.<BR>
+	<b>Dylovene</b> = Heals toxin damage while slowly purging toxic reagents. Halves stamina regeneration. Overdoses at 30u.<BR>
 	<b>Tramadol</b> = Reduces pain. Overdoses at 30u.<BR>
 	<b>Quick-clot</b> = Stops (but does not heal) internal bleeding. Mildly regenerates blood.<BR>
 	<b>Hypervene</b> = Purges ALL reagents present in the body. Useful for dealing with overdoses.<BR>
