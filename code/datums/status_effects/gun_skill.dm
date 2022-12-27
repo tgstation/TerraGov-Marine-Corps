@@ -42,11 +42,11 @@
 	particles = /particles/gun_skill/scatter/debuff
 
 /particles/gun_skill
-	count = 100
+	count = 50
 	spawning = 3
 	gravity = list(0, -0.03)
 	icon = 'icons/effects/particles/generic_particles.dmi'
-	lifespan = 20
+	lifespan = 12
 	fade = 10
 	color = 1
 	color_change = 0.05
