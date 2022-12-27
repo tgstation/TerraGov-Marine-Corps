@@ -184,7 +184,7 @@
 	mechanics_text = "Unleash a mighty psychic roar, knocking down any foes in your path and weakening them."
 	ability_name = "shattering roar"
 	plasma_cost = 225
-	cooldown_timer = 25 SECONDS
+	cooldown_timer = 35 SECONDS
 	target_flags = XABB_TURF_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SHATTERING_ROAR,
