@@ -472,3 +472,8 @@
   - bugfix: fixed sentinel gas grenades lasting longer than they should
   Waselon:
   - bugfix: fix for deevolve deleting xenos if they are not at full plasma or health
+2022-12-27:
+  Lumipharon:
+  - bugfix: fixed some exploits
+  Waselon:
+  - balance: reduced sunder heal for drone, queen and hivelord abilities.
