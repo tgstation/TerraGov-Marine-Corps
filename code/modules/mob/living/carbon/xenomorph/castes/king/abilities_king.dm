@@ -209,6 +209,11 @@
 
 	reset_ability()
 	playsound(owner, 'sound/voice/xenos_roaring.ogg', 100)
+	for(var/mob/living/carbon/human/human_victim AS in GLOB.alive_human_list)
+		if(get_dist(human_victim, owner) > 9)
+			continue
+		shake_camera(human_victim, 2 SECONDS, 1)
+
 	var/source = get_turf(owner)
 	var/dir_to_target = Get_Angle(source, target)
 	var/list/turf/turfs_to_attack = generate_true_cone(source, SHATTERING_ROAR_RANGE, 1, SHATTERING_ROAR_ANGLE, dir_to_target, bypass_window = TRUE, air_pass = TRUE)
