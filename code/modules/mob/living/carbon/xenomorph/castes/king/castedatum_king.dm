@@ -70,7 +70,7 @@
 	melee_damage = 23
 
 	// *** Speed *** //
-	speed = -0.1
+	speed = 0
 
 	// *** Plasma *** //
 	plasma_max = 1000
@@ -95,7 +95,7 @@
 	melee_damage = 26
 
 	// *** Speed *** //
-	speed = -0.2
+	speed = -0.1
 
 	// *** Plasma *** //
 	plasma_max = 1100
@@ -122,7 +122,7 @@
 	melee_damage = 30
 
 	// *** Speed *** //
-	speed = -0.3
+	speed = -0.2
 
 	// *** Plasma *** //
 	plasma_max = 1200
@@ -152,7 +152,7 @@
 	melee_damage = 30
 
 	// *** Speed *** //
-	speed = -0.3
+	speed = -0.2
 
 	// *** Plasma *** //
 	plasma_max = 1200
