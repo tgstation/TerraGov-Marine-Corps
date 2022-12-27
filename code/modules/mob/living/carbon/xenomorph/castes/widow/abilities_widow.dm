@@ -56,10 +56,10 @@
 	icon_state = "aoe_leash"
 	desc = "Sticky and icky. Destroy it when you are stuck!"
 	destroy_sound = "alien_resin_break"
-	max_integrity = 25
+	max_integrity = 75
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
-	throwpass = FALSE
+	flags_pass = NONE
 	density = FALSE
 	obj_flags = CAN_BE_HIT | PROJ_IGNORE_DENSITY
 	/// How long the leash ball lasts untill it dies
@@ -206,7 +206,7 @@
 	X.fire_resist_modifier += BURROW_FIRE_RESIST_MODIFIER
 	X.mouse_opacity = initial(X.mouse_opacity)
 	X.density = TRUE
-	X.throwpass = FALSE
+	X.flags_pass &= ~PASSABLE
 	REMOVE_TRAIT(X, TRAIT_IMMOBILE, WIDOW_ABILITY_TRAIT)
 	REMOVE_TRAIT(X, TRAIT_BURROWED, WIDOW_ABILITY_TRAIT)
 	REMOVE_TRAIT(X, TRAIT_HANDS_BLOCKED, WIDOW_ABILITY_TRAIT)
@@ -221,7 +221,7 @@
 	// This part here actually burrows the xeno
 	owner.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	owner.density = FALSE
-	owner.throwpass = TRUE
+	owner.flags_pass |= PASSABLE
 	// Here we prevent the xeno from moving or attacking or using abilities untill they unburrow by clicking the ability
 	ADD_TRAIT(owner, TRAIT_IMMOBILE, WIDOW_ABILITY_TRAIT)
 	ADD_TRAIT(owner, TRAIT_BURROWED, WIDOW_ABILITY_TRAIT)
@@ -286,7 +286,7 @@
 	mechanics_text = "Shoot out a web and pull it to traverse forward"
 	action_icon_state = "web_hook"
 	plasma_cost = 200
-	cooldown_timer = 20 SECONDS
+	cooldown_timer = 10 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_WEB_HOOK,
 	)

@@ -497,9 +497,8 @@
 	},
 /area/deathmatch)
 "fM" = (
-/turf/open/floor/mainship{
-	dir = 8;
-	icon_state = "silvercorner"
+/turf/open/floor/mainship/silver/corner{
+	dir = 8
 	},
 /area/deathmatch)
 "gd" = (
@@ -707,9 +706,8 @@
 /area/deathmatch)
 "Bi" = (
 /obj/effect/landmark/deathmatch,
-/turf/open/floor/mainship{
-	dir = 8;
-	icon_state = "silvercorner"
+/turf/open/floor/mainship/silver/corner{
+	dir = 8
 	},
 /area/deathmatch)
 "Bw" = (
@@ -886,9 +884,7 @@
 	},
 /area/deathmatch)
 "Sb" = (
-/turf/open/floor/mainship{
-	icon_state = "silvercorner"
-	},
+/turf/open/floor/mainship/silver/corner,
 /area/deathmatch)
 "Sj" = (
 /turf/open/floor/mainship/emerald,
@@ -985,9 +981,7 @@
 /area/space)
 "Wi" = (
 /obj/effect/landmark/deathmatch,
-/turf/open/floor/mainship{
-	icon_state = "silvercorner"
-	},
+/turf/open/floor/mainship/silver/corner,
 /area/deathmatch)
 "WF" = (
 /obj/structure/window/framed/mainship/hull,

@@ -6,7 +6,7 @@
 	var/broken = FALSE //similar to machinery's stat BROKEN
 	obj_flags = CAN_BE_HIT
 	anchored = TRUE
-	throwpass = TRUE
+	flags_pass = PASSABLE
 	destroy_sound = 'sound/effects/meteorimpact.ogg'
 
 /obj/structure/proc/handle_barrier_chance(mob/living/M)

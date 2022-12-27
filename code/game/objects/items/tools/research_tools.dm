@@ -9,7 +9,7 @@
 
 /obj/item/tool/research/xeno_analyzer
 	name = "xenomorph analyzer"
-	desc = "A tool for analyzing xenomorphs for research material. Just click on a xenomorph."
+	desc = "A tool for analyzing xenomorphs for research material. Just click on a xenomorph. Can be used to befriend Newt."
 	icon = 'icons/obj/items/surgery_tools.dmi'
 	icon_state = "predator_bonesaw"
 	///List of rewards for each xeno tier

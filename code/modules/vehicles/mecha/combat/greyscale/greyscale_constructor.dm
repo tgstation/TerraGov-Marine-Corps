@@ -63,7 +63,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 			"ammo_type" = initial(ammo.ammo_type),
 		))
 
-/obj/screen/mech_builder_view
+/atom/movable/screen/mech_builder_view
 	name = "Mech preview"
 	del_on_map_removal = FALSE
 	layer = OBJ_LAYER
@@ -71,16 +71,16 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	///list of plane masters to apply to owners
 	var/list/plane_masters = list()
 
-/obj/screen/mech_builder_view/Initialize(mapload)
+/atom/movable/screen/mech_builder_view/Initialize(mapload)
 	. = ..()
 	assigned_map = "mech_preview_[REF(src)]"
 	set_position(1, 1)
-	for(var/plane_master_type in subtypesof(/obj/screen/plane_master) - /obj/screen/plane_master/blackness)
-		var/obj/screen/plane_master/plane_master = new plane_master_type()
+	for(var/plane_master_type in subtypesof(/atom/movable/screen/plane_master) - /atom/movable/screen/plane_master/blackness)
+		var/atom/movable/screen/plane_master/plane_master = new plane_master_type()
 		plane_master.screen_loc = "[assigned_map]:CENTER"
 		plane_masters += plane_master
 
-/obj/screen/mech_builder_view/Destroy()
+/atom/movable/screen/mech_builder_view/Destroy()
 	QDEL_LIST(plane_masters)
 	return ..()
 
@@ -129,9 +129,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	///List of max equipment that we're allowed to attach while using this console
 	var/equipment_max = MECH_GREYSCALE_MAX_EQUIP
 	///reference to the mech screen object
-	var/obj/screen/mech_builder_view/mech_view
-	///bool if the mech is currently assembling, stops Ui actions
-	var/currently_assembling = FALSE
+	var/atom/movable/screen/mech_builder_view/mech_view
 	///list of stat data that will be sent to the UI
 	var/list/current_stats
 
@@ -181,12 +179,10 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 		return FALSE
 
 /obj/machinery/computer/mech_builder/ui_interact(mob/user, datum/tgui/ui)
-	if(currently_assembling)
-		return
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(ui)
 		return
-	ui = new(user, src, "MechVendor", name, 1600, 650)
+	ui = new(user, src, "MechVendor", name)
 	ui.open()
 	user.client?.screen |= mech_view.plane_masters
 	user.client?.register_map_obj(mech_view)
@@ -219,6 +215,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	data["selected_name"] = selected_name
 	data["selected_equipment"] = selected_equipment
 	data["current_stats"] = current_stats
+	data["cooldown_left"] = S_TIMER_COOLDOWN_TIMELEFT(src, COOLDOWN_MECHA)
 	return data
 
 /obj/machinery/computer/mech_builder/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -226,7 +223,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	if(.)
 		return
 
-	if(currently_assembling)
+	if(S_TIMER_COOLDOWN_TIMELEFT(src, COOLDOWN_MECHA))
 		return FALSE
 	var/selected_part = params["bodypart"]
 	if(selected_part && !(selected_part in selected_primary))
@@ -239,6 +236,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 				if(!(new_color_name in available_colors[key]))
 					continue
 				selected_primary[selected_part] = available_colors[key][new_color_name]
+				update_ui_view()
 				return TRUE
 			return FALSE
 
@@ -248,6 +246,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 				if(!(new_color_name in available_colors[key]))
 					continue
 				selected_secondary[selected_part] = available_colors[key][new_color_name]
+				update_ui_view()
 				return TRUE
 			return FALSE
 
@@ -257,6 +256,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 				if(!(new_color_name in available_visor_colors[key]))
 					continue
 				selected_visor = available_visor_colors[key][new_color_name]
+				update_ui_view()
 				return TRUE
 			return FALSE
 
@@ -288,11 +288,10 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 					return FALSE
 			if(isnull(selected_visor))
 				return FALSE
-			currently_assembling = TRUE
 			addtimer(CALLBACK(src, .proc/deploy_mech), 1 SECONDS)
 			playsound(get_step(src, dir), 'sound/machines/elevator_move.ogg', 50, 0)
-			ui.close()
-			return FALSE
+			S_TIMER_COOLDOWN_START(src, COOLDOWN_MECHA, 5 MINUTES)
+			return TRUE
 
 		if("add_weapon")
 			var/obj/item/mecha_parts/mecha_equipment/weapon/new_type = text2path(params["type"])
@@ -379,7 +378,6 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 		var/datum/mech_limb/limb = new limb_type()
 		limb.update_colors(selected_primary[slot], selected_secondary[slot], selected_visor)
 		limb.attach(mech, slot)
-	currently_assembling = FALSE
 	if(selected_equipment[MECHA_L_ARM])
 		var/new_type = selected_equipment[MECHA_L_ARM]
 		var/obj/item/mecha_parts/mecha_equipment/weapon/new_gun = new new_type
@@ -394,6 +392,9 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 
 	mech.pixel_y = 240
 	animate(mech, time=4 SECONDS, pixel_y=initial(mech.pixel_y), easing=SINE_EASING|EASE_OUT)
+
+	balloon_alert_to_viewers("Beep. Mecha ready for use.")
+	playsound(src, 'sound/machines/chime.ogg', 30, 1)
 
 ///updates the current_stats data for the UI
 /obj/machinery/computer/mech_builder/proc/update_stats(selected_part, old_bodytype, new_bodytype)
@@ -426,8 +427,6 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 
 ///Updates the displayed mech preview dummy in the UI
 /obj/machinery/computer/mech_builder/proc/update_ui_view()
-	var/default_colors = MECH_GREY_PRIMARY_DEFAULT + MECH_GREY_SECONDARY_DEFAULT
-	var/default_visor = MECH_GREY_VISOR_DEFAULT
 	var/new_overlays = list()
 	for(var/slot in selected_variants)
 		var/datum/mech_limb/head/typepath = get_mech_limb(slot, selected_variants[slot])
@@ -435,9 +434,9 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 			var/iconstate = "left"
 			if(slot == MECH_GREY_R_ARM)
 				iconstate = "right"
-			new_overlays += iconstate2appearance(SSgreyscale.GetColoredIconByType(initial(typepath.greyscale_type), default_colors), iconstate)
+			new_overlays += iconstate2appearance(SSgreyscale.GetColoredIconByType(initial(typepath.greyscale_type), selected_primary[slot] + selected_secondary[slot]), iconstate)
 			continue
-		new_overlays += icon2appearance(SSgreyscale.GetColoredIconByType(initial(typepath.greyscale_type), default_colors))
+		new_overlays += icon2appearance(SSgreyscale.GetColoredIconByType(initial(typepath.greyscale_type), selected_primary[slot] + selected_secondary[slot]))
 		if(slot == MECH_GREY_HEAD)
-			new_overlays += icon2appearance(SSgreyscale.GetColoredIconByType(initial(typepath.visor_config), default_visor))
+			new_overlays += icon2appearance(SSgreyscale.GetColoredIconByType(initial(typepath.visor_config), selected_visor))
 	mech_view.overlays = new_overlays

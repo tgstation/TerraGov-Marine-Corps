@@ -214,7 +214,6 @@
 			FH.kill_hugger()
 
 
-
 // ***************************************
 // *********** Psychic Cure
 // ***************************************
@@ -282,6 +281,7 @@
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	var/mob/living/carbon/xenomorph/patient = target
 	patient.heal_wounds(SHRIKE_CURE_HEAL_MULTIPLIER)
+	patient.adjust_sunder(-SHRIKE_CURE_HEAL_MULTIPLIER)
 	if(patient.health > 0) //If they are not in crit after the heal, let's remove evil debuffs.
 		patient.SetUnconscious(0)
 		patient.SetStun(0)
@@ -297,6 +297,7 @@
 	succeed_activate()
 	add_cooldown()
 
+
 // ***************************************
 // *********** Construct Acid Well
 // ***************************************
@@ -306,6 +307,9 @@
 	mechanics_text = "Place an acid well that can put out fires."
 	plasma_cost = 400
 	cooldown_timer = 2 MINUTES
+	keybinding_signals = list(
+	    KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_ACID_WELL,
+	)
 
 /datum/action/xeno_action/place_acidwell/can_use_action(silent = FALSE, override_flags)
 	. = ..()

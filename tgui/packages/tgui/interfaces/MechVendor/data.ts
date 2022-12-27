@@ -1,10 +1,12 @@
 export const tabs = ['Mecha Assembly', 'Weapons'];
+export const equipTabs = ['Weapons', 'Power', 'Armor', 'Utility'];
+
 export const partdefinetofluff = {
-  'CHEST': 'Torso',
-  'HEAD': 'Head',
-  'L_ARM': 'Left Arm',
-  'R_ARM': 'Right arm',
-  'LEG': 'Legs',
+  CHEST: 'Torso',
+  HEAD: 'Head',
+  L_ARM: 'Left Arm',
+  R_ARM: 'Right arm',
+  LEG: 'Legs',
 };
 export const MECHA_UTILITY = 'mecha_utility';
 export const MECHA_POWER = 'mecha_power';
@@ -23,6 +25,7 @@ export type MechVendData = {
   current_stats: MechStatData;
   all_equipment: AllEquipment;
   selected_equipment: SelectedEquip;
+  cooldown_left?: number;
 };
 
 type MaxEquip = {

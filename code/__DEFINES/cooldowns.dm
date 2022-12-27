@@ -49,6 +49,7 @@
 #define COOLDOWN_ITEM_TRICK "cooldown_item_trick"
 
 //Mecha cooldowns
+#define COOLDOWN_MECHA "mecha"
 #define COOLDOWN_MECHA_MESSAGE "mecha_message"
 #define COOLDOWN_MECHA_EQUIPMENT(type) ("mecha_equip_[type]")
 #define COOLDOWN_MECHA_ARMOR "mecha_armor"

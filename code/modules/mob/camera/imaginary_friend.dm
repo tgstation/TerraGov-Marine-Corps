@@ -233,15 +233,6 @@
 	icon = human_image
 	return ..()
 
-
-/mob/camera/imaginary_friend/add_typing_indicator(emoting)
-	return
-
-
-/mob/camera/imaginary_friend/remove_typing_indicator(emoting)
-	return
-
-
 /datum/action/innate/imaginary_join
 	name = "Join"
 	desc = "Join your owner, following them from inside their mind."

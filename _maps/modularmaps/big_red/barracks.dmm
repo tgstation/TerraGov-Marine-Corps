@@ -226,27 +226,12 @@
 /obj/machinery/light,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
-"jv" = (
-/obj/structure/window/framed/colony/reinforced,
-/obj/machinery/door/poddoor/shutters/mainship{
-	id = "Operations";
-	name = "\improper Operations Shutters"
-	},
-/turf/closed/wall/r_wall,
-/area/bigredv2/outside/admin_building)
 "jz" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/admin_building)
-"jQ" = (
-/obj/machinery/power/apc{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/white,
 /area/bigredv2/outside/admin_building)
 "jZ" = (
 /obj/effect/landmark/weed_node,
@@ -1682,7 +1667,7 @@ XA
 jz
 xT
 ye
-jQ
+VB
 VB
 nH
 "}
@@ -2064,8 +2049,8 @@ FS
 nH
 nH
 nH
-jv
-jv
+FS
+FS
 FS
 FS
 nH

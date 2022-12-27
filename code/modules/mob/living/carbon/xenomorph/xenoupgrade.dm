@@ -543,3 +543,19 @@
 
 //----WIDOW END----//
 //============//
+//----WARLOCK START----//
+
+/mob/living/carbon/xenomorph/warlock/mature
+	upgrade = XENO_UPGRADE_ONE
+
+/mob/living/carbon/xenomorph/warlock/elder
+	upgrade = XENO_UPGRADE_TWO
+
+/mob/living/carbon/xenomorph/warlock/ancient
+	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/warlock/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
+//----WARLOCK END----//
+//============//

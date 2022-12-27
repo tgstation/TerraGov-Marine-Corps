@@ -14,7 +14,7 @@
 	icon = 'icons/obj/objects.dmi'
 	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL
 	buckle_lying = 90
-	throwpass = TRUE
+	flags_pass = PASSABLE
 	resistance_flags = XENO_DAMAGEABLE
 	max_integrity = 40
 	resistance_flags = XENO_DAMAGEABLE
@@ -45,7 +45,7 @@
 	else
 		icon_state = "[base_bed_icon]_down"
 
-obj/structure/bed/Destroy()
+/obj/structure/bed/Destroy()
 	if(buckled_bodybag)
 		unbuckle_bodybag()
 	return ..()
@@ -169,10 +169,6 @@ obj/structure/bed/Destroy()
 				if(buildstacktype && dropmetal)
 					new buildstacktype (loc, buildstackamount)
 				qdel(src)
-
-/obj/structure/bed/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_BED)
-	return ..()
 
 /obj/structure/bed/attackby(obj/item/I, mob/user, params)
 	. = ..()

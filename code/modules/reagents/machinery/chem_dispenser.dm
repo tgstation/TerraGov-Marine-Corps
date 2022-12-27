@@ -18,6 +18,7 @@
 	var/amount = 30
 	var/recharge_amount = 30
 	var/recharge_counter = 0
+	var/mutable_appearance/beaker_overlay
 
 	///Reagent amounts that are dispenced
 	var/static/list/possible_transfer_amounts = list(1,5,10,15,20,30,40,60,120)
@@ -92,6 +93,12 @@
 		recharge_counter = 0
 		return
 	recharge_counter++
+
+/obj/machinery/chem_dispenser/proc/display_beaker()
+	var/mutable_appearance/b_o = beaker_overlay || mutable_appearance(icon, "disp_beaker")
+	b_o.pixel_y = -3
+	b_o.pixel_x = rand(-8, 8)
+	return b_o
 
 /obj/machinery/chem_dispenser/ex_act(severity)
 	switch(severity)
@@ -177,7 +184,7 @@
 
 	if(needs_medical_training && ishuman(usr))
 		var/mob/living/carbon/human/user = usr
-		if(!user.skills.getRating("medical"))
+		if(user.skills.getRating("medical") < SKILL_MEDICAL_NOVICE)
 			if(user.do_actions)
 				return
 			to_chat(user, span_notice("You start fiddling with \the [src]..."))
@@ -209,6 +216,10 @@
 						return
 					R.add_reagent(reagent, actual)
 
+					overlays.Cut()
+					update_icon()
+
+					playsound(src.loc, 'sound/machines/reagent_dispense.ogg', 25, 1)
 					work_animation()
 			else
 				recording_recipe[reagent_name] += amount
@@ -333,6 +344,7 @@
 
 			beaker =  I
 			to_chat(user, "You set [I] on the machine.")
+			update_icon()
 			updateUsrDialog()
 			return
 
@@ -354,12 +366,14 @@
 			return
 		cell = I
 		to_chat(user, span_notice("You install \the [cell]."))
+		overlays.Cut()
 		start_processing()
 		update_icon()
 		return
 
 /obj/machinery/chem_dispenser/screwdriver_act(mob/living/user, obj/item/I)
 	TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
+	overlays.Cut()
 	to_chat(user, span_notice("You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] the battery compartment."))
 	update_icon()
 	return TRUE
@@ -371,17 +385,29 @@
 	cell = null
 	to_chat(user, span_notice("You pry out the dispenser's battery."))
 	stop_processing()
+	overlays.Cut()
 	update_icon()
 	return TRUE
 
 /obj/machinery/chem_dispenser/update_overlays()
 	. = ..()
+	if(beaker)
+		beaker_overlay = display_beaker()
+		. += beaker_overlay
+
 	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		return
 	if(cell)
 		. += image(icon, "[initial(icon_state)]_open")
 	else
 		. += image(icon, "[initial(icon_state)]_nobat")
+
+/obj/machinery/chem_dispenser/update_icon_state()
+	if(machine_stat & NOPOWER)
+		icon_state = "dispenser_nopower"
+		return
+	else
+		icon_state = "dispenser"
 
 /obj/machinery/chem_dispenser/soda
 	icon_state = "soda_dispenser"
@@ -419,6 +445,25 @@
 	)
 	needs_medical_training = FALSE
 
+/obj/machinery/chem_dispenser/soda/display_beaker()
+	var/mutable_appearance/b_o = beaker_overlay || mutable_appearance(icon, "disp_beaker")
+	switch(dir)
+		if(NORTH)
+			b_o.pixel_y = 7
+			b_o.pixel_x = rand(-9, 9)
+		if(EAST)
+			b_o.pixel_x = 4
+			b_o.pixel_y = rand(-5, 7)
+		if(WEST)
+			b_o.pixel_x = -5
+			b_o.pixel_y = rand(-5, 7)
+		else//SOUTH
+			b_o.pixel_y = -7
+			b_o.pixel_x = rand(-9, 9)
+	return b_o
+
+/obj/machinery/chem_dispenser/soda/update_icon_state()
+	return
 
 /obj/machinery/chem_dispenser/beer
 	icon_state = "booze_dispenser"
@@ -459,6 +504,26 @@
 		/datum/reagent/consumable/drink/berryjuice,
 	)
 	needs_medical_training = FALSE
+
+/obj/machinery/chem_dispenser/beer/display_beaker()
+	var/mutable_appearance/b_o = beaker_overlay || mutable_appearance(icon, "disp_beaker")
+	switch(dir)
+		if(NORTH)
+			b_o.pixel_y = 7
+			b_o.pixel_x = rand(-9, 9)
+		if(EAST)
+			b_o.pixel_x = 4
+			b_o.pixel_y = rand(-5, 7)
+		if(WEST)
+			b_o.pixel_x = -5
+			b_o.pixel_y = rand(-5, 7)
+		else//SOUTH
+			b_o.pixel_y = -7
+			b_o.pixel_x = rand(-9, 9)
+	return b_o
+
+/obj/machinery/chem_dispenser/beer/update_icon_state()
+	return
 
 /obj/machinery/chem_dispenser/valhalla
 	needs_medical_training = FALSE

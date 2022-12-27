@@ -13,7 +13,7 @@
 	use_state_flags = XACT_USE_LYING
 
 //Parameters used when displaying hive message to all xenos
-/obj/screen/text/screen_text/queen_order
+/atom/movable/screen/text/screen_text/queen_order
 	maptext_height = 128 //Default 64 doubled in height
 	maptext_width = 456 //Default 480 shifted right by 12
 	maptext_x = 12 //Half of 24
@@ -50,7 +50,7 @@
 	for(var/mob/living/carbon/xenomorph/X AS in Q.hive.get_all_xenos())
 		SEND_SOUND(X, queen_sound)
 		//Display the queen's hive message at the top of the game screen.
-		X.play_screen_text(queens_word, /obj/screen/text/screen_text/queen_order)
+		X.play_screen_text(queens_word, /atom/movable/screen/text/screen_text/queen_order)
 		//In case in combat, couldn't read fast enough, or needs to copy paste into a translator. Here's the old hive message.
 		to_chat(X, span_xenoannounce("<h2 class='alert'>The words of the queen reverberate in your head...</h2><br>[span_alert(input)]<br><br>"))
 
@@ -369,7 +369,7 @@
 	var/remainder = max(0, amount - getBruteLoss())
 	adjustBruteLoss(-amount)
 	adjustFireLoss(-remainder, updating_health = TRUE)
-	adjust_sunder(-amount/20)
+	adjust_sunder(-amount/10)
 
 // ***************************************
 // *********** Queen plasma
@@ -466,7 +466,7 @@
 		T.balloon_alert(X, "Cannot deevolve here")
 		return
 
-	if(T.health <= 0)
+	if((T.health < T.maxHealth) || (T.plasma_stored < (T.xeno_caste.plasma_max * T.xeno_caste.plasma_regen_limit)))
 		T.balloon_alert(X, "Cannot deevolve, too weak")
 		return
 
@@ -494,7 +494,7 @@
 	if(!isturf(T.loc))
 		return
 
-	if(T.health <= 0)
+	if((T.health < T.maxHealth) || (T.plasma_stored < (T.xeno_caste.plasma_max * T.xeno_caste.plasma_regen_limit)))
 		return
 
 	T.balloon_alert(T, "Queen deevolution")

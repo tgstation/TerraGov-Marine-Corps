@@ -4,7 +4,6 @@
 	icon = 'icons/obj/structures/fence.dmi'
 	icon_state = "fence0"
 	density = TRUE
-	throwpass = TRUE //So people and xenos can shoot through!
 	anchored = TRUE //We can not be moved.
 	coverage = 5
 	layer = WINDOW_LAYER
@@ -80,20 +79,20 @@
 		switch(state)
 			if(GRAB_PASSIVE)
 				M.visible_message(span_warning("[user] slams [M] against \the [src]!"))
-				M.apply_damage(7)
+				M.apply_damage(7, blocked = MELEE)
 				UPDATEHEALTH(M)
 				take_damage(10)
 			if(GRAB_AGGRESSIVE)
 				M.visible_message(span_danger("[user] bashes [M] against \the [src]!"))
 				if(prob(50))
 					M.Paralyze(20)
-				M.apply_damage(10)
+				M.apply_damage(10, blocked = MELEE)
 				UPDATEHEALTH(M)
 				take_damage(25)
 			if(GRAB_NECK)
 				M.visible_message(span_danger("<big>[user] crushes [M] against \the [src]!</big>"))
 				M.Paralyze(10 SECONDS)
-				M.apply_damage(20)
+				M.apply_damage(20, blocked = MELEE)
 				UPDATEHEALTH(M)
 				take_damage(50)
 

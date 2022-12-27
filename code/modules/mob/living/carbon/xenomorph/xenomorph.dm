@@ -348,7 +348,7 @@
 /mob/living/carbon/xenomorph/update_tracking(mob/living/carbon/xenomorph/X) //X is unused, but we keep that function so it can be called with marines one
 	if(!hud_used?.locate_leader)
 		return
-	var/obj/screen/LL_dir = hud_used.locate_leader
+	var/atom/movable/screen/LL_dir = hud_used.locate_leader
 	if(!tracked)
 		if(hive.living_xeno_ruler)
 			set_tracked(hive.living_xeno_ruler)
@@ -377,7 +377,7 @@
 	if(!hud_used?.locate_leader)
 		return
 
-	var/obj/screen/LL_dir = hud_used.locate_leader
+	var/atom/movable/screen/LL_dir = hud_used.locate_leader
 	LL_dir.icon_state = "trackoff"
 
 

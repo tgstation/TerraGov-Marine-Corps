@@ -67,6 +67,7 @@
 		held_item.advance_stage()
 	if(!locate(held_item.type) in get_step(src, REVERSE_DIR(dir)))
 		icon_state = initial(icon_state)
+
 	held_item = null
 
 /obj/machinery/factory/heater
@@ -100,3 +101,24 @@
 	icon_state = "reconstructor_inactive"
 	processiconstate = "reconstructor"
 	process_type = FACTORY_MACHINE_CONSTRUCTOR
+
+/obj/machinery/factory/driller
+	name = "Industrial driller"
+	desc = "An industrial level driller"
+	icon_state = "driller_inactive"
+	processiconstate = "driller"
+	process_type = FACTORY_MACHINE_DRILLER
+
+/obj/machinery/factory/galvanizer
+	name = "Industrial galvanizer"
+	desc = "An industrial level galvanizer"
+	icon_state = "galvanizer_inactive"
+	processiconstate = "galvanizer"
+	process_type = FACTORY_MACHINE_GALVANIZER
+
+/obj/machinery/factory/compressor
+	name = "Industrial compressor"
+	desc = "An industrial level compressor"
+	icon_state = "compressor_inactive"
+	processiconstate = "compressor"
+	process_type = FACTORY_MACHINE_COMPRESSOR

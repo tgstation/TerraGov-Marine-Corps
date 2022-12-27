@@ -78,11 +78,11 @@
 	pressure_full = 3*ONE_ATMOSPHERE
 
 
-	examine(mob/user)
-		..()
-		if(pressure < 50 && loc==user)
-			to_chat(user, "<span class = 'danger'>The meter on the [src.name] indicates you are almost out of air!</span>")
-			user << sound('sound/effects/alert.ogg')
+/obj/item/tank/emergency_oxygen/examine(mob/user)
+	. = ..()
+	if(pressure < 50 && loc==user)
+		. += span_danger("The meter on [src] indicates you are almost out of air!")
+		SEND_SOUND(user, sound('sound/effects/alert.ogg'))
 
 /obj/item/tank/emergency_oxygen/engi
 	name = "extended-capacity emergency oxygen tank"

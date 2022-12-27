@@ -132,7 +132,7 @@
 	if(..())
 		var/obj/item/robot_parts/p = tool
 		if(p.part)
-			if(!(target_zone in p.part))
+			if(!(affected.name in p.part))
 				return SURGERY_CANNOT_USE
 		if(affected.limb_status & LIMB_AMPUTATED)
 			return SURGERY_CAN_USE
