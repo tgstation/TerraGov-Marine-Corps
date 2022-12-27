@@ -94,8 +94,12 @@
 /obj/effect/temp_visual/heavyimpact
 	name = "heavy impact"
 	icon = 'icons/effects/heavyimpact.dmi'
-	icon_state = "heavyimpact"
+	icon_state = ""
 	duration = 13
+
+/obj/effect/temp_visual/heavyimpact/Initialize()
+	. = ..()
+	flick("heavyimpact", src)
 
 /obj/effect/temp_visual/order
 	icon = 'icons/Marine/marine-items.dmi'

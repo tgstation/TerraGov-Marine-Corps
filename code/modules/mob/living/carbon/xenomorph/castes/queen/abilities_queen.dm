@@ -369,7 +369,7 @@
 	var/remainder = max(0, amount - getBruteLoss())
 	adjustBruteLoss(-amount)
 	adjustFireLoss(-remainder, updating_health = TRUE)
-	adjust_sunder(-amount/5)
+	adjust_sunder(-amount/10)
 
 // ***************************************
 // *********** Queen plasma
@@ -466,7 +466,7 @@
 		T.balloon_alert(X, "Cannot deevolve here")
 		return
 
-	if(T.health <= 0)
+	if((T.health < T.maxHealth) || (T.plasma_stored < (T.xeno_caste.plasma_max * T.xeno_caste.plasma_regen_limit)))
 		T.balloon_alert(X, "Cannot deevolve, too weak")
 		return
 
@@ -494,7 +494,7 @@
 	if(!isturf(T.loc))
 		return
 
-	if(T.health <= 0)
+	if((T.health < T.maxHealth) || (T.plasma_stored < (T.xeno_caste.plasma_max * T.xeno_caste.plasma_regen_limit)))
 		return
 
 	T.balloon_alert(T, "Queen deevolution")

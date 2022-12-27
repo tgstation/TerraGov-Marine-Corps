@@ -29,7 +29,7 @@
 
 /** Sets the mob as "thinking" - with indicator and variable thinking_IC */
 /datum/tgui_say/proc/start_thinking()
-	if(!window_open || !client.typing_indicators)
+	if(!window_open || !client.prefs.show_typing)
 		return FALSE
 	client.mob.thinking_IC = TRUE
 	client.mob.create_thinking_indicator()
@@ -44,7 +44,7 @@
  */
 /datum/tgui_say/proc/start_typing()
 	client.mob.remove_thinking_indicator()
-	if(!window_open || !client.typing_indicators || !client.mob.thinking_IC)
+	if(!window_open || !client.prefs.show_typing || !client.mob.thinking_IC)
 		return FALSE
 	client.mob.create_typing_indicator()
 	addtimer(CALLBACK(src, .proc/stop_typing), 5 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE | TIMER_STOPPABLE)
@@ -57,7 +57,7 @@
 	if(!client?.mob)
 		return FALSE
 	client.mob.remove_typing_indicator()
-	if(!window_open || !client.typing_indicators || !client.mob.thinking_IC)
+	if(!window_open || !client.prefs.show_typing || !client.mob.thinking_IC)
 		return FALSE
 	client.mob.create_thinking_indicator()
 
