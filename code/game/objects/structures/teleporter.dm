@@ -192,13 +192,13 @@
 	
 	var/obj/item/teleporter_kit/gadget = I
 	if(src.linked_teleporter)
-		to_chat(user , span_warning("The teleporter is already linked with another!"))
+		balloon_alert(user, "The teleporter is already linked with another!")
 		return
 	if(linked_teleporter == src)
-		to_chat(user , span_warning("You can't link the teleporter with itself!"))
+		balloon_alert(user, "You can't link the teleporter with itself!")
 		return
 	src.linked_teleporter = linked_teleporter
-	to_chat(user , span_notice("You link both teleporters to each others."))
+	balloon_alert(user, "You link both teleporters to each others.")
 
 	src.set_linked_teleporter(gadget)
 	gadget.set_linked_teleporter(src)
