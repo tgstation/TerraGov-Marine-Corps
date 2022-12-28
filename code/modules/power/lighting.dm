@@ -451,8 +451,8 @@
 		else
 			prot = 1
 
-		if(prot > 0)
-			to_chat(user, "You remove the light [fitting]")
+		if(prot > 0 || isrobot(H))
+			to_chat(user, "You remove the light [fitting].")
 		else
 			to_chat(user, "You try to remove the light [fitting], but it's too hot and you don't want to burn your hand.")
 			return				// if burned, don't remove the light

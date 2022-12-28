@@ -477,3 +477,8 @@
   - bugfix: fixed some exploits
   Waselon:
   - balance: reduced sunder heal for drone, queen and hivelord abilities.
+2022-12-28:
+  Lumipharon:
+  - bugfix: fixed XOOC and MOOC binds incorrectly opening LOOC
+  Three333Digit:
+  - qol: soldering tool repairs the next damaged limb
